@@ -2,6 +2,11 @@
 <body>
 <?php
 chdir('../');
+
+if (!is_readable('protected/config.php')) {
+	die('Try protected/install_wizard.php');
+}
+
 require_once 'inc/_gwf_include.php';
 GWF_Language::initEnglish();
 GWF_HTML::init();
