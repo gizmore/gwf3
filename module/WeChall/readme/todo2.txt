@@ -1,0 +1,79 @@
+This list shall be order by `importance` DESC !
+
+##############
+- Only show ranked sites in ranking, sidebar, quickupdate...[DONE?]
+- check all sites queries [DONE?]
+##############
+
+- Profile: show your own progress in progress table too, when logged in.
+
+[x] check case sensitivity for challs, namely SudokuI :)  (busyr)
+
+[x] Show Latest User Signups by Signup Date DESC in a new page
+
+[x] Tagged Challenges crypto, encoding, stegano, java, php, assembly, audio, Z, exploit, math, fun (amit02204)
+
+- quangntenemy.got.pwned.by.gizmore.org
+
+- Totalscore Graph in Profile hides the graph sometimes when 2 users are compared, so add margin-top (Mr Kaliman)
+
+[x] Forum: "Mark all Read" button does not work for solutionboards (mmhckb)
+
+[x] - Avatar version
+
+[x] showChallsForUser does not show challs where solved=0
+
+[x] - Salted passwords (by Z)
+
+[x] Show users country rank in profile (wzzx)
+
+[x] Trinidad &amp; Tobago (by quangntenemy)
+
+[x] Add usergroups(by gizmore)
+
+[x] Check maxscore 100%
+
+[x]- Show people that became master on a site this week(Kender)
+[x]+- Show people that linked an account today(gizmore)
++- Exclude siteadmins
+
+[x]- search your PM's
+
+[x] - check dateformats
+
+- Add column lastchanged into sites table (last updated)
+
+[x] - need to ensure cookies are enabled else cannot login.
+
+- auto-calc basescores (even better scoring plox)
+
+- Steal Knowledge System from HappySec. Allow a search on user's knowledge.
+- Allow them to be ex/included from the search
+
+- Class User - Add more hidden flags. hide online for subscription, challenge solved, online, allow searching, display at all, way more possible
+
+- Put spoiler js into bbjs (hmmm or general js)
+
+- sites.php: show a site's basescore
+[x] - rethink session handling; store sessions in db perhaps?
+
+- credit page: show users that helped this site grow
+- cool credits page with javascript or flash animation. play fancy SID Chiptune while animating :)
+
+[x] avatar gallery
+
+[x] Hide Sidebar on demand FIX LAYOUT FOR SMALL WIDTH window
+
+- A Welcome Page, instead of news, something between news and about (Drop about?) by totoiste
+
+- Make use of user.fav_site with this query: select sites.name, count(*) from users join sites on sites.siteid=users.fav_site where fav_site>0 group by fav_site order by count(*) desc
+
+###########################
+### New Challenge Ideas ###
+###########################
+Snake Challenge
+PMA subdomain challenge
+UTF8 reverse challenge??
+proc/self challenge
+[+]php_self challenge
+Java Crackit: Boolean, Obfuscator, StringCrypter

@@ -1,0 +1,378 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+	min-height: 100%;
+}
+
+/** hZ **/
+h1, th, h2, h3 {
+	background: #fba;
+	font-size: 1.5em;
+}
+
+h1,h2,h3 {
+	padding: 0 6px;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bolder;
+	color: #404;
+}
+
+/** ERROR AND MSG **/
+.gwf_errors, .gwf_messages {
+	display: block;
+}
+.gwf_error, .gwf_message {
+	display: block;
+}
+
+.gwf_errors {
+	background: #f00;
+	margin: 16px;
+	padding: 6px;
+	border: 2px solid #000;
+}
+.gwf_error {
+	background: url(../../../img/cross_shield_2.png) left center no-repeat;
+	padding-left: 24px;
+	font-weight: bold;
+}
+
+.gwf_messages {
+	background: #0f0;
+	margin: 16px;
+	padding: 6px;
+	border: 2px solid #000;
+}
+.gwf_message {
+	background: url(../../../img/accept.png) left center no-repeat;
+	padding-left: 24px;
+	font-weight: bold;
+}
+
+/** MENU **/
+#ptminimenu {
+/*	float: left;*/
+/*	position: absolute;*/
+}
+
+#ptmenu a {
+	margin: 0 10px;
+	text-decoration: none;
+	font-family: arial;
+	color: #000;
+	font-weight: normal;
+}
+#ptmenu a:HOVER {
+	background: #f00;
+}
+
+.menu_sel {
+	font-size: 1.5em;
+	color: #f00 !important;
+}
+
+a.menu_sel:HOVER {
+	background: #fff !important;
+}
+
+/** FAQ **/
+.ptfaqq {
+	padding: 2px;
+	background: #fcb;
+}
+
+.ptfaqa {
+	padding: 2px;
+	background: #eee;
+}
+
+#ptpage {
+	margin: 2px;
+}
+
+#ptfooter {
+}
+
+/** FORMS **/
+TEXTAREA {
+	width: 100%;
+	min-width: 420px;
+}
+
+FORM TR TD {
+	text-align: right;
+}
+
+FORM TR TD + TD {
+	text-align: left;
+}
+
+FORM {
+	background: #ccc;
+}
+
+/** new footer **/
+#gwf_wrap {
+	min-height: 100%;
+}
+#gwf_inner_wrap {
+	padding: 4px 12px;
+}
+
+#gwf_footer {
+	height: 48px;
+	line-height: 16px;
+	margin-top: -48px;
+	font-size: 0.8em;
+}
+#gwf_footer_space {
+	clear: both;
+	height: 48px;
+}
+
+#gwf_footer_box {
+	margin-top: auto;
+}
+
+#ptmenu, #gwf_footer, body {
+	background: #ddd;
+}
+
+#ptpage {
+	background: #fff;
+	padding: 6px;
+	height: 100%;
+}
+
+.gwf_tr_0, .gwf_trd_0, .gwf_even {
+	background: #eee;
+}
+
+.gwf_tr_1, .gwf_trd_1, .gwf_odd {
+	background: #ddd;
+}
+
+a {
+	text-decoration: underline;
+}
+
+e:VISITED {
+	color: #000;
+}
+
+#ptmenu {
+	overflow: visible;
+}
+
+table {
+	display: table;
+	background: #fff;
+}
+
+form {
+	display: block;
+	background: #fff;
+}
+
+#ptpage, #gwf_inner_wrap, #gwf_wrap {
+	overflow: visible;
+}
+
+
+/** News **/
+.gwf_newsbox_title {
+	font-size: 20px;
+	-moz-border-radius-topleft: 9px;
+	-moz-border-radius-topright: 9px;
+	-webkit-border-top-left-radius: 9px;
+	-webkit-border-top-right-radius: 9px;
+	background: #fba;
+}
+
+.gwf_newsbox_title h3 {
+	padding: 5px;
+}
+
+.gwf_newsbox_date {
+	font-size: 13px;
+}
+
+.gwf_newsbox_item {
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.gwf_newsbox_message {
+	padding: 10px;
+}
+
+.gwf_news_titles {
+	display: inline;
+	float: left;
+}
+
+.gwf_newsbox {
+	overflow: auto;
+}
+
+.gwf_newsbox_author {
+	font-size: 13px;
+}
+
+.gwf_newsbox .gwf_pagemenu {
+	margin: 0 0 8px 15px;
+}
+
+/** Forum **/
+.gwf_post {
+	margin: 10px;
+}
+
+.gwf_board_title {
+	display: block;
+}
+.gwf_board_descr {
+	display: block;
+}
+
+.gwf_post_head, .gwf_pm_head, .gwf_gbe_head {
+	background: #fba;
+	-moz-border-radius-topleft: 9px;
+	-moz-border-radius-topright: 9px;
+	-webkit-border-top-left-radius: 9px;
+	-webkit-border-top-right-radius: 9px;
+	padding: 10px;
+}
+.gwf_post_foot, .gwf_pm_foot, .gwf_gbe_foot {
+	background: #fba;
+	-moz-border-radius-bottomleft: 9px;
+	-moz-border-radius-bottomright: 9px;
+	-webkit-border-bottom-left-radius: 9px;
+	-webkit-border-bottom-right-radius: 9px;
+	padding: 10px;
+}
+.gwf_post_msg, .gwf_gbe_msg {
+	padding: 10px;
+}
+
+
+.gwf_post_uinfo {
+	float: left;
+	margin-right: 20px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	padding: 10px;
+}
+.gwf_post_body {
+	overflow: auto;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+}
+
+.gwf_post_apps, .gwf_post_apps img {
+	vertical-align: middle;
+}
+
+.gwf_post_edited {
+	font-size: 13px;
+	font-family: monospace;
+}
+
+.gwf_code, .gwf_quote {
+	background: #fff;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	padding: 5px;
+	margin-left: 5px;
+	margin-top: 5px;
+	overflow: auto;
+	border: 1px solid black;
+}
+
+blockquote div {
+	padding: 6px;
+}
+
+blockquote span {
+	padding-left: 20px;
+	background: url(../../../img/comment.png) no-repeat #fff center left;
+}
+
+td img {
+	vertical-align: middle;
+}
+
+/** PM **/
+.gwf_pm_date {
+	text-align: left !important;
+	font-size: 13px;
+	font-family: monospace;
+}
+
+.gwf_pm_msg {
+	background: #ddd;
+	padding: 10px;
+}
+
+/* Guestbook */
+.gwf_gbe_head .gwf_date {
+	float: right;
+}
+.gwf_gb_entry {
+	margin-top: 10px;
+	border: 1px solid #000;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+}
+
+/* oops */
+table .gwf_even:HOVER, table .gwf_odd:HOVER {
+	background: #fff;
+}
+
+#gwf_pm_folders {
+	margin-right: 10px;
+}
+
+.gwf_news_titles .gwf_buttons {
+	margin: 3px 0 7px 20px;
+}
+
+#gwf_shoutbox {
+	overflow: auto;
+}
+
+/** FIx */
+
+.gwf_post_toolbar {
+	float: right;
+	display: block;
+	height: 32px;
+}
+
+.gwf_post_apps {
+	vertical-align: middle;
+	line-height: 32px;
+	height: 32px;
+}
+.gwf_button {
+	margin: 0 5px;
+}
+
+.gwf_buttons_outer {
+	margin: 4px 2px;
+}
+
+#ptonline {
+	float: right;
+/*	text-align: right;*/
+}

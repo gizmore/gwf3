@@ -1,0 +1,48 @@
+Kender:
+- Auto updates: update the stats for all users daily (except sites that auto-update)
+- rethink session handling; store sessions in db perhaps?
+- extend the stats page with more graphs
+
+Gizmore:
+- Browse current source with geshi: Browse the sites source with syntax highlighting 
+- news rss feed
+- form/account_link.php: display only yet unlinked sites.
+- avatar gallery
+- quicklinks for users... like i want link 4, 5 and 7 when i click links
+- admin.php: edit users
+- form/forum/new_thread allow users to specify a "hidden" challenge to be applied or also regular challenge, maybe group
+- show most viewed threads (enhance thread table with sorting)
+- allow users to create groups ?
+- profile: about me text field
+- online today: maybe also show users from 2 days
+- add dynamic priviledges... like "needs to be linked to site 4", "needs 4 links inserted", etc ?
+- redesign forum css a little bit (sphinx idea with having reply button on title, and this twice (top and bottom))
+- shoutbox
+- new privildege: challenge creator, bugmaster
+- Dont show links to unknown profiles on other sites
+- Make 100% logos (Master of) glow in ranking :) 
+- make use of autoupdate field in sites table. (just show that this site is using autoupdate)
+- add is_down to sites table 
+- credit page: show users that helped this site grow
+- link forum to its challenges 
+- bbcode [user=foo,bar,foobar] # only foo bar and foobar + author can read this
+- check already activated at activation/registration
+
+quangntenemy:
+- Layout: provide clear and usable layout for all pages
+- Design: Improve graphics and colour schemes
+
+All:
+! case sensitivity for all nicknames !
+- Code cleanup + coding conventions -
+  * a /page.php should only resolve commands and userinput(INPUT) and call classes
+  * Currently most methods return a message (this should change)
+    htmlDisplayError() should be called within classes instead of returning messages
+    ! return values are for code flow and accessability !
+
+xmadx:
+1.  fields more than 255 chars within users table in database_structure.php
+2.  two entries of 'DAFAULT' in users table in database_structure.php
+3.  top 10 ranking takes last 10 users.  Main Ranking takes first 10 users. (need to sort based on time achieved?)
+4.  need to ensure cookies are enabled else cannot login.
+5.  Bind IP checkbox is redundant.. you bind anyway.

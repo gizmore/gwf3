@@ -1,0 +1,41 @@
+<?php
+echo $tVars['form_q'];
+//echo $tVars['form_a'];
+?>
+<?php 
+$headers = array(
+	array($tLang->lang('th_pm_options&1'), 'options&1', 'DESC'),
+	array($tLang->lang('th_pm_date'), 'pm_date', 'DESC'),
+	array($tLang->lang('th_pm_from'), 'T_A.user_name', 'ASC'),
+	array($tLang->lang('th_pm_to'), 'T_B.user_name', 'ASC'),
+	array($tLang->lang('th_pm_title'), 'pm_title', 'ASC'),
+	array('<input type="checkbox" onclick="gwfPmSelectAll"/>'),
+);
+$data = array();
+$uid = GWF_Session::getUserID();
+
+echo $tVars['pagemenu'];
+
+echo sprintf('<form id="gwf_pm_form" method="post" action="%s">', $tVars['form_action']);
+//echo sprintf('<table>');
+foreach ($tVars['pms'] as $pm)
+{
+	$pm instanceof GWF_PM;
+//	$is_read = $pm->isOptionEnabled(GWF_PM::READ);
+//	$is_sender = $pm->getSender()->getID() === $uid;
+//	$is_deleted = $pm->getReceiver()->
+//	$class =  $is_sender ? ($is_read ? 'gwf_pm_read' : 'gwf_pm_unread') : ($is_read ? 'gwf_pm_new' : 'gwf_pm_old');
+	
+	$data[] = array(
+		sprintf('<span class="%s" />', $pm->getHTMLClass()),
+		sprintf('%s', GWF_Time::displayDate($pm->getVar('pm_date'))),
+		sprintf('%s', $pm->getSender()->display('user_name')),
+		sprintf('%s', $pm->getReceiver()->display('user_name')),
+		sprintf('%s', GWF_HTML::anchor($pm->getDisplayHREF(), $pm->getVar('pm_title'))),
+		sprintf('<input type="checkbox" name="pm[%s]" />', $pm->getID()),
+	);
+}
+$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+echo GWF_Table::display2($headers, $data, $tVars['sort_url']);
+echo sprintf('</form>');
+?>

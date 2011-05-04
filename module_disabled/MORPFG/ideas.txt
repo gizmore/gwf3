@@ -1,0 +1,9 @@
+A mixture from dungeon master, flyff, dungeonkeeper
+
+1) Play as good or evil on every login
+1.1) Evil - Your job is to kill players and destroy rooms
+2.2) Good - Your job is to build dungeons, kill npc and other players.
+
+2) Choose your start point on login
+
+3) Build Rooms

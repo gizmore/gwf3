@@ -1,0 +1,139 @@
+<?php
+
+final class Usergroups_Join extends GWF_Method
+{
+	public function isLoginRequired() { return true; }
+	
+	public function execute(GWF_Module $module)
+	{
+		if (false !== ($gid = Common::getGet('deny'))) {
+			return $this->onRefuse($module, $gid);
+		}
+		if (false !== ($gid = Common::getGet('gid'))) {
+			return $this->onJoin($module, $gid);
+		}
+		return '';
+	}
+	
+	private function onRefuse(Module_Usergroups $module, $gid)
+	{
+		if (false === ($group = GWF_Group::getByID($gid))) {
+			return $module->error('err_unk_group');
+		}
+		
+		$userid = GWF_Session::getUserID();
+		
+		if (false === ($row = GWF_UsergroupsInvite::getInviteRow($userid, $group->getID()))) {
+			return $module->error('err_not_invited');
+		}
+		
+		if (false === $row->deny()) {
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		return $module->message('msg_refused', array($group->displayName()));
+	}
+	
+	private function onJoin(Module_Usergroups $module, $gid)
+	{
+		if (false === ($group = GWF_Group::getByID($gid))) {
+			return $module->error('err_unk_group');
+		}
+		
+		if ($group->getFounderID() === 0) {
+			return $module->error('err_no_join');
+		}
+		
+		$user = GWF_Session::getUser();
+		if (GWF_UserGroup::isInGroup($user->getID(), $group->getID())) {
+			return $module->error('err_join_twice');
+		}
+		
+		
+		switch($group->getJoinMode())
+		{
+			case GWF_Group::FREE:
+				return $this->onQuickJoin($module, $group, $user);
+			case GWF_Group::MODERATE:
+				return $this->onRequestJoin($module, $group, $user);
+			case GWF_Group::INVITE:
+				return $this->onInviteJoin($module, $group, $user);
+			default:
+				return $module->error('err_no_join');
+		}
+	}
+	
+	private function onQuickJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	{
+		if (false === $user->addToGroup($group->getName(), false)) {
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		return $module->message('msg_joined', array($group->getName()));
+	}
+		
+	private function onRequestJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	{
+		$userid = $user->getID();
+		$groupid = $group->getID();
+		
+		if (false !== ($request = GWF_UsergroupsInvite::getInviteRow($userid, $groupid))) {
+			return $module->error('err_request_twice');
+		}
+		
+		if (false === GWF_UsergroupsInvite::request($userid, $groupid)) {
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		if (false === ($request = GWF_UsergroupsInvite::getRequestRow($userid, $groupid))) {
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		if (false === $this->onRequestMail($module, $group, $user, $request)) {
+			return GWF_HTML::err('ERR_MAIL_SENT');
+		}
+		
+		return $module->message('msg_requested', array($group->getName()));
+	}
+	
+	private function onRequestMail(Module_Usergroups $module, GWF_Group $group, GWF_User $user, GWF_UsergroupsInvite $request)
+	{
+		if (false === ($leader = $group->getFounder())) {
+			return false;
+		}
+		if ('' === ($email = $leader->getValidMail())) {
+			return false;
+		}
+		
+		$userid = $user->getID();
+		$groupid = $group->getID();
+		$token = $request->getHashcode();
+		$link = Common::getAbsoluteURL('index.php?mo=Usergroups&me=Accept&uid='.$userid.'&gid='.$groupid.'&token='.$token);
+		$link = GWF_HTML::anchor($link, $link);
+		
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver($email);
+		$mail->setSubject($module->lang('mail_subj_req', array( $user->displayUsername()), $group->displayName()));
+		$mail->setBody($module->lang('mail_body_req', array( $leader->displayUsername()), $user->displayUsername(), $group->displayName(), $link));
+		
+		return $mail->sendToUser($leader);
+	}
+	
+	private function onInviteJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	{
+		if (false === ($invite = GWF_UsergroupsInvite::getInviteRow($user->getID(), $group->getID()))) {
+			return $module->error('err_not_invited');
+		}
+		if ($invite->getVar('ugi_type') !== 'invite') {
+			return $module->error('err_not_invited');
+		}
+		
+		if (false === $invite->delete()) {
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		return $this->onQuickJoin($module, $group, $user);
+	}
+}
+?>

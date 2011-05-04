@@ -1,0 +1,29 @@
+<?php
+/**
+ * Mark the challenge news as read.
+ * @author gizmore
+ */
+final class WeChall_ChallNewsRead extends GWF_Method
+{
+	public function isLoginRequired() { return true; }
+	
+	public function execute(GWF_Module $module)
+	{
+		return $this->onMarkRead($module);
+	}
+	
+	private function onMarkRead(Module_WeChall $module)
+	{
+		$user = GWF_Session::getUser();
+		$userid = $user->getID();
+		$sites = GWF_TABLE_PREFIX.'wc_site';
+		$regat = GWF_TABLE_PREFIX.'wc_regat';
+		$query = "UPDATE $regat JOIN $sites ON regat_sid=site_id SET regat_challcount=site_challcount WHERE regat_uid=$userid";
+		$db = gdo_db();
+		if (false === $db->queryWrite($query)) {
+			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		}
+		return $module->message('msg_challs_marked');
+	}
+}
+?>

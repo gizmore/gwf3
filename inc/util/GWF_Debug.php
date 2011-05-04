@@ -1,0 +1,270 @@
+<?php
+/**
+ * Debug backtrace and error handler.
+ * Can send email on PHP errors.
+ * Also has a method to get debug timings.
+ * @example GWF_Debug::enableErrorHandler(); fatal_ooops();
+ * @see GWF_DEBUG_EMAIL in protected/config.php
+ * @author gizmore
+ * @version 3.0
+ */
+final class GWF_Debug
+{
+	private static $die = true;
+	private static $enabled = false;
+	private static $basedir = '';
+	
+	################
+	### Settings ###
+	################
+	public static function setBasedir($basedir)
+	{
+		if (is_dir($basedir) && is_readable($basedir))
+		{
+			self::$basedir = $basedir;
+		}
+	}
+	
+	public static function setDieOnError($bool)
+	{
+		if (is_bool($bool))
+		{
+			self::$die = $bool;
+		}
+	}
+	
+	public static function disableErrorHandler()
+	{
+		if (self::$enabled === true)
+		{
+			restore_error_handler();
+			self::$enabled = false;
+		}
+	}
+	
+	public static function enableErrorHandler()
+	{
+		if (self::$enabled === false)
+		{
+			set_error_handler(array('GWF_Debug', 'error_handler'));
+			register_shutdown_function(array('GWF_DEBUG', 'shutdown_function'));
+			self::$enabled = true;
+		}
+	}
+	
+	public static function enableStubErrorHandler()
+	{
+		self::disableErrorHandler();
+		set_error_handler(array('GWF_Debug', 'error_handler_stub'));
+		self::$enabled = true;
+	}
+
+	##########
+	### GC ###
+	##########
+	public static function collectGarbage()
+	{
+		if (function_exists('gc_collect_cycles')) {
+			gc_collect_cycles();
+		}
+	}
+
+	#####################
+	### Debug Timings ###
+	#####################
+	public static function getTimings($time_start)
+	{
+		$db = gdo_db();
+		$t_sql = $db->getQueryTime();
+		$t_total = microtime(true) - $time_start;
+		$mem_total = memory_get_peak_usage(true);
+		$mem_user = memory_get_peak_usage(false);
+		return array(
+			'queries' => $db->getQueryCount(),
+			't_sql' => $t_sql,
+			't_php' => $t_total - $t_sql,
+			't_total' => $t_total,
+			'mem_php' => $mem_total - $mem_user,
+			'mem_user' => $mem_user,
+			'mem_total' => $mem_total,
+		);
+	}
+	
+	######################
+	### Error Handlers ###
+	######################
+	public static function error_handler_stub($errno, $errstr, $errfile, $errline, $errcontext)
+	{
+		return false;
+	}
+	
+	public static function shutdown_function()
+	{
+		if (self::$enabled)
+		{
+			$error = error_get_last();
+
+			if ($error['type'] != 0)
+			{
+				require_once dirname(__FILE__).'/GWF_Log.php';
+				require_once dirname(__FILE__).'/GWF_IP6.php';
+				require_once dirname(__FILE__).'/GWF_Mail.php';
+				self::error_handler(1, $error['message'], $error['file'], $error['line'], NULL);
+			}
+		}
+	}
+	
+	/**
+	 * Error handler creates some html backtrace and dies on _every_ warning etc.
+	 * @param int $errno
+	 * @param string $errstr
+	 * @param string $errfile
+	 * @param int $errline
+	 * @param $errcontext
+	 * @return unknown_type
+	 */
+	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
+	{
+		// Log as critical!
+		if (class_exists('GWF_Log')) {
+			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline), false);
+		}
+		
+		switch($errno)
+		{
+			case 1:
+				$errnostring = 'PHP Fatal Error'; break;
+			case 2:
+			case 8:
+			case E_USER_WARNING:
+				$errnostring = 'PHP Warning'; break;
+			case E_USER_ERROR:
+				$errnostring = 'PHP Error'; break;
+			case E_USER_NOTICE:
+				$errnostring = 'PHP Notice'; break;
+			case 2048:
+				$errnostring = 'PHP No Timezone'; break;
+			default:
+				$errnostring = 'PHP Unknown Error'; break;
+		}
+
+		$is_html = isset($_SERVER['REMOTE_ADDR']);
+		if ($is_html) {
+			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
+		}
+		else { # cronjob
+			$message = sprintf('%s(%s) %s in %s line %s.', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
+		}
+		
+		$out = self::backtrace($message, $is_html).PHP_EOL;
+		
+		if (GWF_USER_STACKTRACE) {
+			echo $out; 
+		}
+		else {
+			echo $message;
+		}
+		
+		if (GWF_DEBUG_EMAIL & 2) {
+			self::sendDebugMail($out);
+		}
+		else {
+			if (class_exists('GWF_Log')) {
+				GWF_Log::logCritical($out);
+			}
+		}
+		
+		// die?
+		if (self::$die) {
+			die();
+		}
+		
+		return false;
+	}
+
+	/**
+	 * Send a debug mail lvl 2
+	 * @param string $message
+	 */
+	public static function sendDebugMail($message)
+	{
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver(GWF_BOT_EMAIL);
+		$mail->setSubject(GWF_SITENAME.': PHP Error');
+		$mail->setBody($message);
+		$mail->sendAsText();
+	}
+	
+	############################
+	### Own Backtrace Output ###
+	############################
+	/**
+	 * Return a backtrace in either html or plaintext. You should use monospace font.
+	 * @param string $message
+	 * @param boolean $html
+	 * @return string
+	 */
+	public static function backtrace($message='', $html=true)
+	{
+		$back = '';
+		
+		$message = self::shortfile($message);
+		
+//		if (!is_bool($html)) { $html = Common::isHTML(); }
+		
+		$back .= $html === true ? ('<pre style="margin:4px; padding:3px; font-size:14px; text-align:left;">'.PHP_EOL) : '';
+		
+		$trace = debug_backtrace();
+		
+		if ($html === true) {
+			$back .= sprintf('<em>%s</em>', $message);
+		}
+		else {
+			$back .= "$message";
+		}
+		
+		$implode = array();
+		$preline = 'Unknown';
+		$prefile = 'Unknown';
+		$longest = 0;
+		$i = 0;
+		foreach ($trace as $row)
+		{
+			if ($i++ > 0) {
+				$function = sprintf('%s%s()', isset($row['class']) ? $row['class'].'::' : '', $row['function']);
+				$implode[] = array(
+					$function,
+					$prefile,
+					$preline,
+				);
+				$len = strlen($function);
+				$longest = max(array($len, $longest));
+				#$implode[] = sprintf('%s%s(); in %s line %s.', isset($row['class']) ? $row['class'].'::' : '', $row['function'], );
+			}
+			$preline = isset($row['line']) ? $row['line'] : '?';
+			$prefile = isset($row['file']) ? $row['file'] : '[unknown file]';
+		}
+		
+		$copy = array();
+		foreach ($implode as $imp)
+		{
+			list($func, $file, $line) = $imp;
+			$len = strlen($func);
+			$func .= str_repeat('.', $longest-$len);
+			$copy[] = sprintf('%s %s line %s.', $func, self::shortfile($file), $line);
+		}
+		
+		$back .= $html === true ? '<hr/>' : '';
+		$back .= sprintf('Backtrace starts in %s line %s.', self::shortfile($prefile), $preline).PHP_EOL;
+		$back .= implode(PHP_EOL, array_reverse($copy));
+		$back .= $html ? "\n</pre>\n" : "\n";
+		return $back;
+	}
+	
+	private static function shortfile($path)
+	{
+		return trim(str_replace(self::$basedir, '', $path), ' /');
+	}
+}
+?>

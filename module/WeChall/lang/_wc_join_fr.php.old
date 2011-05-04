@@ -1,0 +1,116 @@
+<?php
+$lang = array(
+	# Join_Us page
+	'pt_joinus' => 'Joignez nous',
+	'mt_joinus' => 'Rejoindre WeChall - Classement des Utilisateurs de Sites de Challenges',
+	'join_1_t' => 'Pourquoi rejoindre WeChall',
+	'join_1_b' =>
+		'Notre objectif est principalement de relier les sites de challenges/énigmes. De plus nous voulons créer un classement global pour ces sites.<br/>'.
+		'Ecrire 2 petits scripts n\'est pas bien difficile et nous n\'impliquons pas beaucoup de trafic.<br/>'.
+		'Si votre site comporte des énigmes ou épreuves et garde une trace du progrès des utilisateurs, alors vous êtes vraiment bienvenu ici.<br/>'.
+		'Nous n\'exposons pas les identités des utilisateurs, ni ne volons leurs emails ou quoi que ce soit d\'autre. Nous sommes un site gratuit, avec à l\'esprit uniquement le plaisir de résoudre des problèmes et d\'apprendre de nouveaux trucs.',
+		
+	'join_2_t' => 'Comment faire fonctionner d\'autres sites avec WeChall',
+	'join_2_b' =>
+		'Pour faire fonctionner un site nous devons intéragir avec lui.<br/>'.
+		'Nous avons besoin en particulier d\'un script pour valider les comptes sur votre site,<br/>'.
+		'de même qu\un script pour les points.<br/>'.
+		'Les scripts utilisent des requêtes GET, et les valeurs sont urlencodées.<br/><br/>'.
+		'<b>Ci-dessous un résumé des scripts nécessaires sur votre site pour une interaction correcte avec WeChall:</b><br/>'.
+		'<em>Les noms des scripts et des variables peuvent être choisis librement.</em>',
+	
+	'join_1t' => 'Un script pour valider qu\'un utilisateur possède un compte sur votre site.',
+	'join_1b' =>
+		'<em>validatemail.php?username=%USERNAME%&amp;email=%EMAIL%[&amp;authkey=%AUTHKEY%]</em><br/>'.
+		'<br/>'.
+		'ce script doit retourner seulement "1" OU "0",<br/>'.
+		'1: la combinaison email/username existe.<br/>'.
+		'0: la combinaison n\'existe pas ou la clé d\'authentification est incorrecte.<br/>'.
+		'Merci de vous assurer que vos utilisateurs ont la possiblité de changer leur email ou au moins qu\'ils aient une adresse email utilisée/existante.<br/>'.
+		'Pour relier les comptes à wechall vous devez confirmer le rattachement via l\'adresse email. (si ils se sont enregistrés ici avec le même email il n\'y a pas besoin d\'envoyer de mails).<br/>'.
+		'<br/>'.
+		'hackthissite.org à démontré que la vieille API était proie à une divulgation d\'informations privées. Vous pouvez utiliser simplement le script pour tester les utilisateurs contre les emails, et réciproquement.<br/>'.
+		'Nous avons introduit une variable AUTHKEY optionnelle pour rendre ceci inexploitable publiquement.<br/>'.
+		'Vous pouvez choisir une clé d\'authentification librement, mais elle doit avoir exactement 16 caractères ascii de longueur.<br/>'.PHP_EOL,
+		
+	'join_2t' => 'Un script retournant les points des utilisateurs sur votre site.',
+	'join_2b' =>
+		'<em>userscore.php?username=%USERNAME%[&amp;authkey=%AUTHKEY%]</em><br/>'.
+		'<br/>'.
+		'utiliser la clé d\'authentification authkey est optionnel ici. Si vous avez un accès publique aux profils vous pouvez l\'ignorer.<br/>'.
+		'<br/>'.
+		'Le format de sortie n\'est pas important, étant donné que nous avons un code différent pour chaque site.<br/>'.
+		'Votre fichier de sortie doit contenir au moins le nombre de points de l\'utilisateur et le nombre de points maximum. Le fichier de sortie de ce script pourrait donc être similaire à "userscore:maxscore".<br/>'.
+		'Vous pouvez aussi créer quelque chose similaire à "utilisateur à résolu solved sur total et est classé rank sur usercount"<br/>'.
+		'(voir le point 5)<br/>'.
+		'<br/>'.
+		'WeChall est aussi capable de mettre à jour le nombre d\'utilisateurs et de challenges via ce script.'.
+		'<br/>Une bonne sortie pour ce script serait : classement:score:maxscore:nombreutilisateurs:nombrechallenges',
+		
+	'join_3t' => 'Icône et Description',
+	'join_3b' => array(
+		'Icône de 32*32, gif transparent de préférence.',
+		'Une description de votre site, pouvant être dans la langue du site.',
+		'Le nom à afficher désiré. Vous pouvez aussi utiliser ce nom pour remoteupdate.php',
+	),
+		
+	'join_4t' => '[OPTIONNEL] Une page affichant le profil des utilisateurs.',
+	'join_4b' =>
+		'<em>profile.php?username=%USERNAME%</em><br/>'.
+		'<br/>'.
+		'Ceci est plus une partie de votre site, optionnelle, qui affichera un historique (complet) de l\'utilisateur.<br/>'.
+		'Si vous voulez nous supporter avec ce script, assurez vous que vous ne demandez pas de login pour ça.',
+		
+	'join_5t' => '[OPTIONNEL] Mise à jour automatique avec WeChall',
+	'join_5b' =>
+		'Il y a deux façons de mettre à jour automatiquement les points des utilisateurs sur WeChall:<br/>'.
+		'- La première est de faire exécuter à votre application une requête vers<br/>'.
+		'<em>http://www.wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%</em><br/>'.
+		'lorsqu\'un utilisateur valide une épreuve.<br/>'.
+		'Ceci retournera une chaîne avec le résultat de l\'opération.<br/>'.
+		'Exemple: <br/>'.
+		'<br/>'.
+		'<div class="gwf_code">'.
+			'echo \'&lt;a href=&quot;http://www.wechall.net&quot;&gt;WeChall&lt;/a&gt; à répondu: \';<br/>'.
+			'echo file_get_contents(&quot;http://wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%&quot;);<br/>'.
+		'</div>'.
+		'<br/>'.
+		'ou<br/>'.
+		'<br/>'.
+		'<div class="gwf_code">'.
+			'echo \'&lt;a href=&quot;http://www.wechall.net&quot;&gt;WeChall&lt;/a&gt; reports: \';<br/>'.
+			'$ch = curl_init();<br/>'.
+			'curl_setopt($ch, CURLOPT_URL, &quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%SITENAME%</b>&amp;username=<b>%USERNAME%</b>&quot;);<br/>'.
+			'curl_setopt($ch, CURLOPT_HEADER, 0);<br/>'.
+			'curl_exec($ch);<br/>'.
+			'curl_close($ch);<br/>'.
+		'</div>'.
+		'<br/>'.
+		'- La seconde est de mettre une image sur la page que l\'utilisateur consulte lorsqu\'il valide une épreuve.<br/>'.
+		'<em>http://www.wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%&amp;img=1</em><br/>'.
+		'Ceci retournera une image avec le résultat de l\'opération.<br/>'.
+		'Exemple:<br/>'.
+		'<div class="gwf_code">'.
+			'&lt;a href=&quot;http://www.wechall.net&quot;&gt;&lt;img src=&quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%SITENAME%</b>&amp;username=<b>%USERNAME%</b>&amp;img=1&quot; alt=&quot;http://www.wechall.net&quot; border=0/&gt;&lt;/a&gt;<br/>'.
+		'</div>'.
+		'<br/>'.
+		'Si vous optez pour cette solution, nous n\aurons plus besoin de faire des requêtes périodiques sur votre site pour vérifier si aucun utilisateur n\'a vu son score modifié.<br/>'.
+		'By the way, there is no need to display the results to your users, you may discard the output and simply don\'t show it. For example you can use an image with hidden display and size 1x1 when using the image method.',
+	
+	'join_6t' => '[OPTIONNEL] Interaction avec le bot IRC Pipsqueek',
+	'join_6b' => 
+		'Un script retournant le statut des utilisateurs sous la forme d\'une simple ligne de texte. Nous utilisons ce bot sur irc.idlemonkeys.net<br/>'.
+		'Le type du contenu doit être text/plain et la sortie doit être sur une seule ligne, n\'exédant pas 192 caractères.<br/>'.
+		'Le script doit être du type yourscript.foo?username=%USERNAME%. Notez que le paramètre GET de l\'utilisateur ne peut pas être choisi librement.<br/>'.
+		'C\'est aussi une belle fonctionnalité que de pouvoir afficher les statistiques pour le rang #N avec ce script lorsqu\'un entier est donné en nom d\'utilisateur<br/>',
+		
+	'join_7t' => '[OPTIONNEL] Un script pouvant afficher les derniers sujets des forums.',
+	'join_7b' =>
+		'<em>forum_news.php?timestamp=%NOW%&amp;limit=%LIMIT%</em><br/>'.
+		'<br/>'.
+		'Ce script doit retourner une liste de tous les sujets plus récents que le timestamp.<br/>',
+
+	# v4.04
+	'join_summary' => 'Scripts for interaction',
+);
+?>

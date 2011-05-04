@@ -1,0 +1,271 @@
+#Abkhazia 	None 	None 	None 	Aspar[A] 	None
+#Abkhazia 	Russian ruble 	р. 	RUB 	Kopek 	100
+Afghanistan	Afghan afghani 	؋ 	AFN 	Pul 	100
+#Akrotiri and Dhekelia 	Euro 	€ 	EUR 	Cent 	100
+Albania 	Albanian lek 	L 	ALL 	Qintar 	100
+Alderney 	Alderney pound[A] 	£ 	None 	Penny 	100
+Alderney	British pound[C] 	£ 	GBP 	Penny 	100
+Alderney	Guernsey pound 	£ 	None 	Penny 	100
+Algeria 	Algerian dinar 	د.ج 	DZD 	Centime 	100
+Andorra 	Euro 	€ 	EUR 	Cent 	100
+Angola 	Angolan kwanza 	Kz 	AOA 	Cêntimo 	100
+Anguilla 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Antigua and Barbuda 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Argentina 	Argentine peso 	$ 	ARS 	Centavo 	100
+Armenia 	Armenian dram 	դր. 	AMD 	Luma 	100
+Aruba 	Aruban florin 	ƒ 	AWG 	Cent 	100
+Ascension Island 	Ascension pound[A] 	£ 	None 	Penny 	100
+Ascension Island	Saint Helena pound 	£ 	SHP 	Penny 	100
+Australia 	Australian dollar 	$ 	AUD 	Cent 	100
+Austria 	Euro 	€ 	EUR 	Cent 	100
+Azerbaijan 	Azerbaijani manat 	Azeri manat symbol.svg 	AZN 	Qəpik 	100
+Bahamas 	Bahamian dollar 	$ 	BSD 	Cent 	100
+Bahrain 	Bahraini dinar 	ب.د 	BHD 	Fils 	1,000
+Bangladesh 	Bangladeshi taka 	৳ 	BDT 	Paisa 	100
+Barbados 	Barbadian dollar 	$ 	BBD 	Cent 	100
+Belarus 	Belarusian ruble 	Br 	BYR 	Kapyeyka 	100
+Belgium 	Euro 	€ 	EUR 	Cent 	100
+Belize 	Belize dollar 	$ 	BZD 	Cent 	100
+Benin 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Bermuda 	Bermudian dollar 	$ 	BMD 	Cent 	100
+Bhutan	Bhutanese ngultrum	X	BTN 	Chertrum 	100
+Bhutan	Indian rupee 	₨ 	INR 	Paisa 	100
+Bolivia 	Bolivian boliviano 	Bs. 	BOB 	Centavo 	100
+Bosnia Herzegovina	Bosnia and Herzegovina convertible mark 	KM or КМ 	BAM 	Fening 	100
+Botswana 	Botswana pula 	P 	BWP 	Thebe 	100
+Brazil 	Brazilian real 	R$ 	BRL 	Centavo 	100
+British Indian Ocean Territory 	United States dollar[4] 	$ 	USD 	Cent[D] 	100
+Virgin Islands (British) 	British Virgin Islands dollar[A] 	$ 	None 	Cent 	100
+Virgin Islands (British)	United States dollar 	$ 	USD 	Cent[D] 	100
+Brunei Darussalam 	Brunei dollar 	$ 	BND 	Sen 	100
+Brunei Darussalam 	Singapore dollar 	$ 	SGD 	Cent 	100
+Bulgaria 	Bulgarian lev 	лв 	BGN 	Stotinka 	100
+Burkina Faso 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Burundi 	Burundian franc 	Fr 	BIF 	Centime 	100
+Cambodia 	Cambodian riel 	៛ 	KHR 	Sen 	100
+Cameroon 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Canada 	Canadian dollar 	$ 	CAD 	Cent 	100
+Cape Verde 	Cape Verdean escudo 	$ or Esc 	CVE 	Centavo 	100
+Cayman Islands 	Cayman Islands dollar 	$ 	KYD 	Cent 	100
+Central African Republic 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Chad 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Chile 	Chilean peso 	$ 	CLP 	Centavo 	100
+China 	Chinese yuan 	元 	CNY 	Fen[E] 	100
+Cocos (Keeling) Islands 	Australian dollar 	$ 	AUD 	Cent 	100
+Cocos (Keeling) Islands 	Cocos (Keeling) Islands dollar[A] 	$ 	None 	Cent 	100
+Colombia 	Colombian peso 	$ 	COP 	Centavo 	100
+Comoros 	Comorian franc 	Fr 	KMF 	Centime 	100
+Congo, The Democratic Republic Of The 	Congolese franc 	Fr 	CDF 	Centime 	100
+Congo 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Cook Islands 	New Zealand dollar 	$ 	NZD 	Cent 	100
+Cook Islands 	Cook Islands dollar 	$ 	None 	Cent 	100
+Costa Rica 	Costa Rican colón 	₡ 	CRC 	Céntimo 	100
+Côte d’Ivoire 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Croatia 	Croatian kuna 	kn 	HRK 	Lipa 	100
+Cuba 	Cuban convertible peso 	$ 	CUC 	Centavo 	100
+Cuba	Cuban peso 	$ 	CUP 	Centavo 	100
+Cyprus 	Euro 	€ 	EUR 	Cent 	100
+Czech Republic 	Czech koruna 	Kč 	CZK 	Haléř 	100
+Denmark 	Danish krone 	kr 	DKK 	Øre 	100
+Djibouti 	Djiboutian franc 	Fr 	DJF 	Centime 	100
+Dominica 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Dominican Republic 	Dominican peso 	$ 	DOP 	Centavo 	100
+East Timor 	United States dollar 	$ 	USD 	Cent[D] 	100
+#East Timor 	None 	None 	None 	Centavo 	None
+Ecuador 	United States dollar 	$ 	USD 	Cent[D] 	100
+#Ecuador 	None 	None 	None 	Centavo 	None
+Egypt 	Egyptian pound 	£ or ج.م 	EGP 	Piastre[F] 	100
+El Salvador 	Salvadoran colón 	₡ 	SVC 	Centavo 	100
+El Salvador 	United States dollar 	$ 	USD 	Cent[D] 	100
+Equatorial Guinea 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Eritrea 	Eritrean nakfa 	Nfk 	ERN 	Cent 	100
+Estonia 	Estonian kroon 	KR 	EEK 	Sent 	100
+Ethiopia 	Ethiopian birr	X	ETB 	Santim 	100
+Falkland Islands (Malvinas) 	Falkland Islands pound 	£ 	FKP 	Penny 	100
+Faroe Islands 	Danish krone 	kr 	DKK 	Øre 	100
+Faroe Islands 	Faroese króna 	kr 	None 	Oyra 	100
+Fiji 	Fijian dollar 	$ 	FJD 	Cent 	100
+Finland 	Euro 	€ 	EUR 	Cent 	100
+France 	Euro 	€ 	EUR 	Cent 	100
+French Polynesia 	CFP franc 	Fr 	XPF 	Centime 	100
+Gabon 	Central African CFA franc 	Fr 	XAF 	Centime 	100
+Gambia 	Gambian dalasi 	D 	GMD 	Butut 	100
+Georgia 	Georgian lari 	ლ 	GEL 	Tetri 	100
+Germany 	Euro 	€ 	EUR 	Cent 	100
+Ghana 	Ghanaian cedi 	₵ 	GHS 	Pesewa 	100
+Gibraltar 	Gibraltar pound 	£ 	GIP 	Penny 	100
+Greece 	Euro 	€ 	EUR 	Cent 	100
+Grenada 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Guatemala 	Guatemalan quetzal 	Q 	GTQ 	Centavo 	100
+Guernsey 	British pound[C] 	£ 	GBP 	Penny 	100
+Guernsey	Guernsey pound 	£ 	None 	Penny 	100
+Guinea 	Guinean franc 	Fr 	GNF 	Centime 	100
+Guinea-Bissau 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Guyana 	Guyanese dollar 	$ 	GYD 	Cent 	100
+Haiti 	Haitian gourde 	G 	HTG 	Centime 	100
+Honduras 	Honduran lempira 	L 	HNL 	Centavo 	100
+Hong Kong 	Hong Kong dollar 	$ 	HKD 	Cent 	100
+Hungary 	Hungarian forint 	Ft 	HUF 	Fillér 	100
+Iceland 	Icelandic króna 	kr 	ISK 	Eyrir 	100
+India 	Indian rupee 	Rs 	INR 	Paisa 	100
+Indonesia 	Indonesian rupiah 	Rp 	IDR 	Sen 	100
+Iran 	Iranian rial 	﷼ 	IRR 	Dinar 	100
+Iraq 	Iraqi dinar 	ع.د 	IQD 	Fils 	1,000
+Ireland 	Euro 	€ 	EUR 	Cent 	100
+Isle of Man 	British pound[C] 	£ 	GBP 	Penny 	100
+Isle of Man 	Manx pound 	£ 	None 	Penny 	100
+Israel 	Israeli new sheqel 	₪ 	ILS 	Agora 	100
+Italy 	Euro 	€ 	EUR 	Cent 	100
+Jamaica 	Jamaican dollar 	$ 	JMD 	Cent 	100
+Japan 	Japanese yen 	¥ 	JPY 	Sen[G] 	100
+Jersey 	British pound[C] 	£ 	GBP 	Penny 	100
+Jersey 	Jersey pound 	£ 	None 	Penny 	100
+Jordan 	Jordanian dinar 	د.ا 	JOD 	Piastre[H] 	100
+Kazakhstan 	Kazakhstani tenge 	〒 	KZT 	Tiyn 	100
+Kenya 	Kenyan shilling 	Sh 	KES 	Cent 	100
+Kiribati 	Australian dollar 	$ 	AUD 	Cent 	100
+Kiribati 	Kiribati dollar[A] 	$ 	None 	Cent 	100
+Korea, Democratic People's Republic Of	North Korean won 	₩ 	KPW 	Chŏn 	100
+Korea, Republic Of	South Korean won 	₩ 	KRW 	Jeon 	100
+Kosovo 	Euro 	€ 	EUR 	Cent 	100
+Kuwait 	Kuwaiti dinar 	د.ك 	KWD 	Fils 	1,000
+Kyrgyzstan 	Kyrgyzstani	X	KGS 	Tyiyn 	100
+Lao People's Democratic Republic	Lao kip 	₭ 	LAK 	Att 	100
+Latvia 	Latvian lats 	Ls 	LVL 	Santīms 	100
+Lebanon 	Lebanese pound 	ل.ل 	LBP 	Piastre 	100
+Lesotho 	Lesotho loti 	L 	LSL 	Sente 	100
+Lesotho 	South African rand 	R 	ZAR 	Cent 	100
+Liberia 	Liberian dollar 	$ 	LRD 	Cent 	100
+Libya 	Libyan dinar 	ل.د 	LYD 	Dirham 	1,000
+Liechtenstein 	Swiss franc 	Fr 	CHF 	Rappen 	100
+Lithuania 	Lithuanian litas 	Lt 	LTL 	Centas 	100
+Luxembourg 	Euro 	€ 	EUR 	Cent 	100
+Macau 	Macanese pataca 	P 	MOP 	Avo 	100
+Macedonia, Republic of 	Macedonian denar 	ден 	MKD 	Deni 	100
+#Madagascar 	Malagasy ariary	X	MGA 	Iraimbilanja 	5
+Malawi 	Malawian kwacha 	MK 	MWK 	Tambala 	100
+Malaysia 	Malaysian ringgit 	RM 	MYR 	Sen 	100
+Maldives 	Maldivian rufiyaa 	ރ. 	MVR 	Laari 	100
+Mali 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Malta 	Euro 	€ 	EUR 	Cent 	100
+Marshall Islands 	United States dollar 	$ 	USD 	Cent[D] 	100
+#Mauritania	Mauritanian ouguiya 	UM 	MRO 	Khoums 	5
+Mauritius	Mauritian rupee 	₨ 	MUR 	Cent 	100
+Mexico	Mexican peso 	$ 	MXN 	Centavo 	100
+Micronesia, Federated States Of 	Micronesian dollar[A] 	$ 	None 	Cent 	100
+Micronesia, Federated States Of 	United States dollar 	$ 	USD 	Cent[D] 	100
+Moldova, Republic Of 	Moldovan leu 	L 	MDL 	Ban 	100
+Monaco 	Euro 	€ 	EUR 	Cent 	100
+Mongolia 	Mongolian tögrög 	₮ 	MNT 	Möngö 	100
+Montenegro 	Euro 	€ 	EUR 	Cent 	100
+Montserrat 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Morocco 	Moroccan dirham 	د.م. 	MAD 	Centime 	100
+Mozambique 	Mozambican metical 	MTn 	MZN 	Centavo 	100
+Myanmar 	Myanma kyat 	K 	MMK 	Pya 	100
+#Nagorno-Karabakh 	Armenian dram 	դր. 	AMD 	Luma 	100
+#Nagorno-Karabakh 	Karabakh dram[A] 	դր. 	None 	Luma 	100
+Namibia 	Namibian dollar 	$ 	NAD 	Cent 	100
+Namibia 	South African rand 	R 	ZAR 	Cent 	100
+Nauru 	Australian dollar 	$ 	AUD 	Cent 	100
+Nauru 	Nauruan dollar[A] 	$ 	None 	Cent 	100
+Nepal 	Nepalese rupee 	₨ 	NPR 	Paisa 	100
+Netherlands, The 	Euro 	€ 	EUR 	Cent 	100
+Netherlands Antilles 	Netherlands Antillean guilder 	ƒ 	ANG 	Cent 	100
+New Caledonia 	CFP franc 	Fr 	XPF 	Centime 	100
+New Zealand 	New Zealand dollar 	$ 	NZD 	Cent 	100
+Nicaragua 	Nicaraguan córdoba 	C$ 	NIO 	Centavo 	100
+Niger 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Nigeria 	Nigerian naira 	₦ 	NGN 	Kobo 	100
+Niue 	New Zealand dollar 	$ 	NZD 	Cent 	100
+Niue 	iuean dollar[A] 	$ 	None 	Cent 	100
+Cyprus 	Turkish lira 	₤ 	TRY 	kuruş 	100
+Northern Mariana Islands 	Northern Mariana Islands dollar[A] 	$ 	None 	Cent 	100
+Northern Mariana Islands 	United States dollar 	$ 	USD 	Cent[D] 	100
+Norway 	Norwegian krone 	kr 	NOK 	Øre 	100
+Oman 	Omani rial 	ر.ع. 	OMR 	Baisa 	1,000
+Pakistan 	Pakistani rupee 	₨ 	PKR 	Paisa 	100
+Palau 	Palauan dollar[A] 	$ 	None 	Cent 	100
+Palau 	United States dollar 	$ 	USD 	Cent[D] 	100
+Palestinian Territory, Occupied 	Israeli new sheqel 	₪ 	ILS 	Agora 	100
+Palestinian Territory, Occupied 	Jordanian dinar 	د.ا 	JOD 	Piastre[H] 	100
+Panama 	Panamanian balboa 	B/. 	PAB 	Centésimo 	100
+Panama 	United States dollar 	$ 	USD 	Cent[D] 	100
+Papua New Guinea 	Papua New Guinean kina 	K 	PGK 	Toea 	100
+Paraguay 	Paraguayan guaraní 	₲ 	PYG 	Céntimo 	100
+Peru 	Peruvian nuevo sol 	S/. 	PEN 	Céntimo 	100
+Philippines, The 	Philippine peso 	₱ 	PHP 	Centavo 	100
+Pitcairn Islands 	New Zealand dollar 	$ 	NZD 	Cent 	100
+Poland 	Polish złoty 	zł 	PLN 	Grosz 	100
+Portugal 	Euro 	€ 	EUR 	Cent 	100
+Qatar 	Qatari riyal 	ر.ق 	QAR 	Dirham 	100
+Romania 	Romanian leu 	L 	RON 	Ban 	100
+Russian Federation	Russian ruble 	руб. 	RUB 	Kopek 	100
+Rwanda 	Rwandan franc 	Fr 	RWF 	Centime 	100
+St. Helena 	Saint Helena pound 	£ 	SHP 	Penny 	100
+Saint Kitts and Nevis 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Saint Lucia 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Saint Vincent and the Grenadines 	East Caribbean dollar 	$ 	XCD 	Cent 	100
+Samoa 	Samoan tala 	T 	WST 	Sene 	100
+San Marino 	Euro 	€ 	EUR 	Cent 	100
+São Tomé and Príncipe 	São Tomé and Príncipe dobra 	Db 	STD 	Cêntimo 	100
+Saudi Arabia 	Saudi riyal 	ر.س 	SAR 	Hallallah 	100
+Senegal 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Serbia 	Serbian dinar 	дин. or din. 	RSD 	Para 	100
+Seychelles 	Seychellois rupee 	₨ 	SCR 	Cent 	100
+Sierra Leone 	Sierra Leonean leone 	Le 	SLL 	Cent 	100
+Singapore 	Brunei dollar 	$ 	BND 	Sen 	100
+Singapore 	Singapore dollar 	$ 	SGD 	Cent 	100
+Slovakia 	Euro 	€ 	EUR 	Cent 	100
+Slovenia 	Euro 	€ 	EUR 	Cent 	100
+Solomon Islands 	Solomon Islands dollar 	$ 	SBD 	Cent 	100
+Somalia 	Somali shilling 	Sh 	SOS 	Cent 	100
+#Somaliland 	Somaliland shilling 	Sh 	None 	Cent 	100
+South Africa 	South African rand 	R 	ZAR 	Cent 	100
+South Georgia and the South Sandwich Islands 	British pound 	£ 	GBP 	Penny 	100
+South Georgia and the South Sandwich Islands 	South Georgia and the South Sandwich Islands pound[A] 	£ 	None 	Penny 	100
+#South Ossetia 	Russian ruble 	р. 	RUB 	Kopek 	100
+Spain 	Euro 	€ 	EUR 	Cent 	100
+Sri Lanka 	Sri Lankan rupee 	Rs 	LKR 	Cent 	100
+Sudan 	Sudanese pound 	£ 	SDG 	Piastre 	100
+Suriname 	Surinamese dollar 	$ 	SRD 	Cent 	100
+Swaziland 	Swazi lilangeni 	L 	SZL 	Cent 	100
+Sweden 	Swedish krona 	kr 	SEK 	Öre 	100
+Switzerland 	Swiss franc 	Fr 	CHF 	Rappen[I] 	100
+Syrian Arab Republic 	Syrian pound 	£ or ل.س 	SYP 	Piastre 	100
+Taiwan	New Taiwan dollar 	$ 	TWD 	Cent 	100
+Tajikistan 	Tajikistani somoni 	ЅМ 	TJS 	Diram 	100
+Tanzania, United Republic Of 	Tanzanian shilling 	Sh 	TZS 	Cent 	100
+Thailand 	Thai baht 	฿ 	THB 	Satang 	100
+Togo 	West African CFA franc 	Fr 	XOF 	Centime 	100
+Tonga 	Tongan paʻanga 	T$ 	TOP 	Seniti[J] 	100
+#Transnistria 	Transnistrian ruble 	р. 	None 	Kopek 	100
+Trinidad & Tobago 	Trinidad and Tobago dollar 	$ 	TTD 	Cent 	100
+Tristan da Cunha 	Saint Helena pound 	£ 	SHP 	Penny 	100
+Tristan da Cunha 	Tristan da Cunha pound[A] 	£ 	None 	Penny 	100
+Tunisia 	Tunisian dinar 	د.ت 	TND 	Millime 	1,000
+Turkey 	Turkish lira 	TL 	TRY 	kuruş 	100
+Turkmenistan 	Turkmenistani manat 	m 	TMM 	Tennesi 	100
+Turks and Caicos Islands 	United States dollar 	$ 	USD 	Cent[D] 	100
+Tuvalu 	Australian dollar 	$ 	AUD 	Cent 	100
+Tuvalu 	Tuvaluan dollar 	$ 	None 	Cent 	100
+Uganda 	Ugandan shilling 	Sh 	UGX 	Cent 	100
+Ukraine 	Ukrainian hryvnia 	₴ 	UAH 	Kopiyka 	100
+United Arab Emirates 	United Arab Emirates dirham 	د.إ 	AED 	Fils 	100
+United Kingdom 	British pound[C] 	£ 	GBP 	Penny 	100
+United States 	United States dollar 	$ 	USD 	Cent[D] 	100
+Uruguay 	Uruguayan peso 	$ 	UYU 	Centésimo 	100
+Uzbekistan 	Uzbekistani som 	X 	UZS 	Tiyin 	100
+#Vanuatu 	Vanuatu vatu 	Vt 	VUV 	None 	None
+Holy See (Vatican City State)	Euro 	€ 	EUR 	Cent 	100
+Venezuela 	Venezuelan bolívar 	Bs F 	VEF 	Céntimo 	100
+Vietnam 	Vietnamese đồng 	₫ 	VND 	Hào[K] 	10
+Wallis And Futuna Islands 	CFP franc 	Fr 	XPF 	Centime 	100
+Western Sahara 	Moroccan dirham 	د.م. 	MAD 	Centime 	100
+Yemen 	Yemeni rial 	﷼ 	YER 	Fils 	100
+Zambia 	Zambian kwacha 	ZK 	ZMK 	Ngwee 	100
+Zimbabwe 	Botswana pula 	P 	BWP 	Thebe 	100
+Zimbabwe 	British pound[C] 	£ 	GBP 	Penny 	100
+Zimbabwe 	Euro 	€ 	EUR 	Cent 	100
+Zimbabwe 	South African rand 	R 	ZAR 	Cent 	100
+Zimbabwe 	United States dollar 	$ 	USD 	Cent[D] 	100
+Zimbabwe 	Zimbabwean dollar[L] 	$ 	ZWR 	Cent 	100

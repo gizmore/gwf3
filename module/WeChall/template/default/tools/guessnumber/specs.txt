@@ -1,0 +1,29 @@
+Lesson1: Write "guess the number"
+
+Demo run: (input is marked with *)
+
+Welcome to gtn. You have to guess a number between 1 and N. the max for N is 1 million
+Please specify N: *a*
+You have to input a number between 1 and MAX.
+Please specify N: *10*
+Game has started with N=10.
+Guess the Number(1): *b*
+You have to input a number between 1 and 10.
+Guess the Number(2): *100*
+You have to input a number between 1 and 10.
+Guess the Number(3): *5*
+My number is lower.
+Guess the Number(4): *3*
+Correct. You guessed correctly after 4/M tries. The limites were 1-10.
+Do you want to play again?
+
+Specs:
+calculate M
+No userinput can break the application.
+ 
+Please implement the following function:
+int getIntegerFromConsole(std::string prompt, int min, int max)
+{
+	... prompt user for input ... repeat prompt until input is within min/max ...
+}
+ 
