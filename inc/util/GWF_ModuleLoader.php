@@ -60,7 +60,7 @@ final class GWF_ModuleLoader
 		$modules = array();
 		foreach ($files as $name)
 		{
-			if ($name === '.' || $name === '..') {
+			if (Common::startsWith($name, '.')) {
 				continue;
 			}
 			
@@ -412,7 +412,7 @@ final class GWF_ModuleLoader
 		
 		foreach ($dir as $file)
 		{
-			if ($file === '.' || $file === '..') {
+			if ($file{0} === '.') {
 				continue;
 			}
 			
