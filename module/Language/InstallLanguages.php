@@ -3,7 +3,7 @@ final class InstallLanguages
 {
 	public static function onInstall(Module_Language $module, $dropTables)
 	{
-		return $module->installVars(array(
+		return GWF_ModuleLoader::installVars($module, array(
 			'edit_time' => array('5m', 'time', 0, GWF_Time::ONE_HOUR),
 //			'lang_by_domain' => array('YES', 'bool'),
 		)).self::installSupported($module, $dropTables).
@@ -22,7 +22,7 @@ final class InstallLanguages
 		$supported = explode(';', GWF_SUPPORTED_LANGS);
 		foreach ($supported as $iso)
 		{
-			if (false === ($lang = GWF_Language::getByISOS($iso))) {
+			if (false === ($lang = GWF_Language::getByISO($iso))) {
 				$back .= GWF_HTML::err('ERR_UNKNOWN_LANGUAGE', array( $iso));
 				continue;
 			}
@@ -50,7 +50,7 @@ final class InstallLanguages
 		$back = '';
 		foreach ($data as $iso)
 		{
-			if (false === ($lang = GWF_Language::getByISOS($iso))) {
+			if (false === ($lang = GWF_Language::getByISO($iso))) {
 //				var_dump($iso);
 				$back .= GWF_HTML::err('ERR_UNKNOWN_LANGUAGE', array( $iso));
 				continue;
