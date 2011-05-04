@@ -22,8 +22,10 @@
 </div>
 
 <div class="fl">
+{*
 	<div>SQL_OPENED: {$db->getQueriesOpened()}</div>
 	<div>SQL_CLOSED: {$db->getQueriesClosed()}</div>
+*}
 	<div>MODULES LOADED: {$gwf->Module()->getModulesLoaded()}</div>
 </div>
 {* COMMENT
