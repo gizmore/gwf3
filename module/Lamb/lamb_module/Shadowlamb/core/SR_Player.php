@@ -477,7 +477,7 @@ class SR_Player extends GDO
 	 * @return SR_Party
 	 */
 	public function getParty() { return Shadowrun4::getParty($this->getPartyID()); }
-	public function getPartyID() { return $this->getVar('sr4pl_partyid'); }
+	public function getPartyID() { return $this->getInt('sr4pl_partyid'); }
 	/**
 	 * @return SR_Party
 	 */
