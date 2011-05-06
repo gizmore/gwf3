@@ -48,7 +48,7 @@ final class GWF_GroupSelect
 		}
 		while (false !== ($group = GDO::table('GWF_Group')->fetch($groups, GDO::ARRAY_N)))
 		{
-			if ($own_groups_only && !$user->isInGroupName($groups[1])) {
+			if ($own_groups_only && (!$user->isInGroupName($group[1]))) {
 				continue;
 			}
 			$data[] = $group;
