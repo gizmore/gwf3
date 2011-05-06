@@ -8,6 +8,11 @@ final class PageBuilder_Add extends GWF_Method
 		if (isset($_POST['add'])) {
 			return $this->onAdd($module);
 		}
+		
+		if (isset($_POST['upload'])) {
+			return $this->onUpload($module).$this->templateAdd($module);
+		}
+		
 		return $this->templateAdd($module);
 	}
 	
@@ -24,7 +29,9 @@ final class PageBuilder_Add extends GWF_Method
 			'show_author' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_author')),
 			'show_similar' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_similar')),
 			'show_modified' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_modified')),
-			'show_translations' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans')),
+			'show_trans' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans')),
+			'file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_file')),
+			'upload' => array(GWF_Form::SUBMIT, $module->lang('btn_upload')),
 			'content' => array(GWF_Form::MESSAGE_NOBB, '', $module->lang('th_content')),
 			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
 		);
@@ -78,7 +85,7 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['show_author']) ? GWF_Page::SHOW_AUTHOR : 0;
 		$options |= isset($_POST['show_similar']) ? GWF_Page::SHOW_SIMILAR : 0;
 		$options |= isset($_POST['show_modified']) ? GWF_Page::SHOW_MODIFIED : 0;
-		$options |= isset($_POST['show_translations']) ? GWF_Page::SHOW_TRANS : 0;
+		$options |= isset($_POST['show_trans']) ? GWF_Page::SHOW_TRANS : 0;
 		
 		$gstring = $this->buildGroupString($module);
 		$tags = ','.trim($form->getVar('tags'), ' ,').',';
@@ -90,6 +97,7 @@ final class PageBuilder_Add extends GWF_Method
 			'page_author' => GWF_Session::getUserID(),
 			'page_author_name' => GWF_User::getStaticOrGuest()->getVar('user_name'),
 			'page_groups' => $gstring,
+			'page_create_date' => GWF_Time::getDate(GWF_Time::LEN_SECOND),
 			'page_date' => GWF_Time::getDate(GWF_Time::LEN_SECOND),
 			'page_time' => time(),
 			'page_url' => $form->getVar('url'),
@@ -137,6 +145,15 @@ final class PageBuilder_Add extends GWF_Method
 			}
 		}
 		return $back === '' ? $back : substr($back, 1);
+	}
+	
+	####################
+	### File uploads ###
+	####################
+	private function onUpload(Module_PageBuilder $module)
+	{
+		require_once 'module/PageBuilder/PB_Uploader';
+		return PB_Uploader::onUpload($module);
 	}
 }
 ?>

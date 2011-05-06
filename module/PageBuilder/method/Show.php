@@ -13,7 +13,7 @@ final class PageBuilder_Show extends GWF_Method
 		foreach ($pages as $page)
 		{
 			$url = $this->replaceRewriteURL($page[1]);
-			$back .= "RewriteRule ^{$url}/?$ index.php?mo=PageBuilder&me=Show&page={$page[0]}".PHP_EOL;
+			$back .= "RewriteRule ^{$url}/?$ index.php?mo=PageBuilder&me=Show&pageid={$page[0]}".PHP_EOL;
 		}
 		return $back;
 	}
@@ -28,7 +28,7 @@ final class PageBuilder_Show extends GWF_Method
 	
 	public function execute(Module_PageBuilder $module)
 	{
-		if (false === ($page = GWF_Page::getByID(Common::getGetString('page')))) {
+		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid')))) {
 			header($_SERVER['SERVER_PROTOCOL']." 404 Not Found"); 
 			return $module->error('err_404');
 		}

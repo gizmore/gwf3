@@ -15,6 +15,8 @@ final class GWF_Page extends GDO
 	const SHOW_TRANS = 0x20;
 	const SHOW_MODIFIED = 0x40;
 	const SHOW_SIMILAR = 0x80;
+	
+	const PERMBITS = 0xF8;
 
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'page'; }

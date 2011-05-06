@@ -10,7 +10,7 @@ final class GWF_PB_Install
 	
 	private static function installDirs(Module_PageBuilder $module, $dropTable)
 	{
-		$path = 'dbimg/image';
+		$path = 'dbimg/content';
 		if (Common::isDir($path)) {
 			return '';
 		}

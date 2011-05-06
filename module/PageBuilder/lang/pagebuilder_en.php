@@ -17,10 +17,16 @@ $lang = array(
 	'th_noguests' => 'Login Required',
 	'th_lang' => 'Language',
 	'th_enabled' => 'Enabled',
+	'th_file' => 'File',
+	'th_show_author' => 'Show Author',
+	'th_show_similar' => 'Show Similar Pages',
+	'th_show_modified' => 'Show Modified Date',
+	'th_show_trans' => 'Show Available Translations',
 
 	'btn_add' => 'Add Page',
 	'btn_edit' => 'Edit',
 	'btn_translate' => 'Translate',
+	'btn_upload' => 'Upload',
 
 	'err_page' => 'Unknown page.',
 	'err_404' => 'The page you are looking for does not exist.',
@@ -31,9 +37,17 @@ $lang = array(
 	'err_tags' => 'Your tags are invalid. In total they have to be between %1% and %2% chars long.',
 	'err_content' => 'Your page content is invalid. It has to be between %1% and %2% chars long.',
 	'err_dup_lid' => 'A translated page with this language already exists.',
+	'err_file_ext' => 'Your uploaded file extension is not allowed. Appended &quot;.html&quot; to it.',
+	'err_upload_exists' => 'A file with that name already exists.',
 
 	'msg_added' => 'The page has been added successfully.',
 	'msg_edited' => 'The page has been edited successfully.',
 	'msg_trans' => 'A new page has been created, serving a translation for the current page.',
+	'msg_file_upped' => 'The file has been uploaded to %1%.',
+
+	'info_author' => 'Author: %1%',
+	'info_modified' => 'Page created on %1%. Last Modified on %2%, %3%.',
+	'info_trans' => 'This page is also available in %1%.',
+	'info_similar' => 'You might be interested in similar pages: %1%.',
 );
 ?>

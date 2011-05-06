@@ -24,6 +24,7 @@ final class Module_PageBuilder extends GWF_Module
 				unset($modules[$i]);
 			}
 		}
+		
 		return GWF_ModuleLoader::installHTAccess($modules);
 	}
 }

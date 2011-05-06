@@ -17,6 +17,10 @@ final class PageBuilder_Edit extends GWF_Method
 			GWF_Website::redirect($module->getMethodURL('Translate', '&pageid='.$page->getID()));
 			die();
 		}
+		elseif (isset($_POST['upload'])) {
+			require_once 'module/PageBuilder/PB_Uploader.php';
+			$back .= PB_Uploader::onUpload($module);
+		}
 		
 		return $back.$this->templateEdit($module, $page);
 	}
@@ -41,10 +45,12 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['title'] = array(GWF_Form::STRING, $page->getVar('page_title'), $module->lang('th_title'));
 		$data['descr'] = array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $module->lang('th_descr'));
 		$data['tags'] = array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $module->lang('th_tags'));
-		$data['show_author'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_author'));
-		$data['show_similar'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_similar'));
-		$data['show_modified'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_modified'));
-		$data['show_translations'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans'));
+		$data['show_author'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_AUTHOR), $module->lang('th_show_author'));
+		$data['show_similar'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_SIMILAR), $module->lang('th_show_similar'));
+		$data['show_modified'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED), $module->lang('th_show_modified'));
+		$data['show_trans'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_TRANS), $module->lang('th_show_trans'));
+		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
+		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
 		$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content'));
  		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$module->lang('btn_edit'),'translate'=>$module->lang('btn_translate')));
  		return new GWF_Form($this, $data);
@@ -66,7 +72,7 @@ final class PageBuilder_Edit extends GWF_Method
 		
 		$data = array(
 //			'page_lang' => $form->getVar('lang'),
-			'page_author' => GWF_Session::getUserID(),
+//			'page_author' => GWF_Session::getUserID(),
 			'page_date' => GWF_Time::getDate(GWF_Time::LEN_SECOND),
 			'page_time' => time(),
 			'page_url' => $form->getVar('url'),
@@ -87,7 +93,7 @@ final class PageBuilder_Edit extends GWF_Method
 		}
 		
 //		if ($page->isRoot())
-		if (false === $this->permTranslations($page->getOtherID(), isset($_POST['noguests']), $gstring)) {
+		if (false === $this->permTranslations($page, $gstring)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -152,18 +158,41 @@ final class PageBuilder_Edit extends GWF_Method
 		return explode(',', $page->getVar('page_groups'));
 	}
 	
-	private function permTranslations($otherid, $noguests, $gstring)
+	/**
+	 * Set the same options for all translations of a page
+	 * @param GWF_Page $page
+	 * @param string $gstring group string
+	 * @return boolean
+	 */
+	private function permTranslations(GWF_Page $page, $gstring)
 	{
-		$bit = GWF_Page::LOGIN_REQUIRED;
+		$pages = GDO::table('GWF_Page');
+		$bits = GWF_Page::PERMBITS;
+		$page->setOption($bits, false);
+		$otherid = $page->getOtherID();
+		
+		# Kill all bits.
+		$bits = ~$bits;
+		if (false === $pages->update("page_options=page_options&$bits","page_otherid={$otherid}")) {
+			return false;
+		}
+		
+		# Set the new bits.
 		$gstring = GDO::escape($gstring);
-		if ($noguests)
-		{
-			return GDO::table('GWF_Page')->update("page_groups='{$gstring}', page_options=page_options|{$bit}", "page_otherid={$otherid}");
-		}
-		else
-		{
-			return GDO::table('GWF_Page')->update("page_groups='{$gstring}', page_options=page_options-{$bit}", "page_otherid={$otherid} AND page_options&{$bit}");
-		}
+		$bits = 0;
+		$bits |= isset($_POST['noguests']) ? GWF_Page::LOGIN_REQUIRED : 0;
+		$bits |= isset($_POST['show_author']) ? GWF_Page::SHOW_AUTHOR : 0;
+		$bits |= isset($_POST['show_similar']) ? GWF_Page::SHOW_SIMILAR : 0;
+		$bits |= isset($_POST['show_modified']) ? GWF_Page::SHOW_MODIFIED : 0;
+		$bits |= isset($_POST['show_trans']) ? GWF_Page::SHOW_TRANS : 0;
+		$page->setOption($bits, true);
+		$page->setVar('page_groups', $gstring);
+		
+		# Trigger a recache for all translations.
+		$time = time();
+		
+		# Fire the sql
+		return GDO::table('GWF_Page')->update("page_groups='{$gstring}', page_options=page_options|{$bits}, page_time={$time}", "page_otherid={$otherid}");
 	}
 }
 ?>

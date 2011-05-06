@@ -44,6 +44,8 @@ final class PageBuilder_Translate extends GWF_Method
 			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $module->lang('th_title')),
 			'descr' => array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $module->lang('th_descr')),
 			'tags' => array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $module->lang('th_tags')),
+			'file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_file')),
+			'upload' => array(GWF_Form::SUBMIT, $module->lang('btn_upload')),
 			'content' => array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content')),
 			'translate' => array(GWF_Form::SUBMIT, $module->lang('btn_translate')),
 		);
