@@ -3,7 +3,7 @@ global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
 	# Version
-	'version' => '3.01.2011.APR.28 - GWF '.GWF_CORE_VERSION,
+	'version' => '3.01.2011.MAY.06 - GWF '.GWF_CORE_VERSION,
 
 	# IRC
 	'hostname' => 'lamb3.gizmore.org',
@@ -57,7 +57,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.idlemonkeys.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#wechall,#net-force,#sr,#securitytraps',
+			'channels' => '#wechall,#net-force,#sr,#securitytraps,#idlemonkeys,#3564020356',
 			'admins' => 'gizmore',
 		),
 		
@@ -81,7 +81,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://epic.irc.hackthissite.org:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb',
+			'channels' => '#shadowlamb,#hackthissite',
 			'admins' => 'gizmore',
 		),
 		
