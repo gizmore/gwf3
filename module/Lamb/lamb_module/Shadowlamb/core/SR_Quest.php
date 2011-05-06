@@ -125,6 +125,11 @@ class SR_Quest extends GDO
 		$bits_in = self::$QUEST_FLAGS[$section][0];
 		$bits_out = self::$QUEST_FLAGS[$section][1];
 		$table = self::table(__CLASS__);
+		
+		if ($id < 1) {
+			return false;
+		}
+		
 		if (false === ($row = $table->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_options&$bits_in=$bits_out", 'sr4qu_date ASC', NULL, GDO::ARRAY_A, $id-1))) {
 			return false;
 		}
