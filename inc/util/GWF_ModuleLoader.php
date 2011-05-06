@@ -97,7 +97,7 @@ final class GWF_ModuleLoader
 		if (false === ($module_db = GWF_Module::loadModuleDB($name))) {
 			$options = 0;
 			$options |= $module->getDefaultAutoLoad() ? GWF_Module::AUTOLOAD : 0;
-			$options |= $module->getDefaultEnabled() ? GWF_Module::ENABLED : 0;
+			$options |= $module->isEnabled() ? GWF_Module::ENABLED : 0;
 			$data = array(
 				'module_id' => 0,
 				'module_name' => $name,
