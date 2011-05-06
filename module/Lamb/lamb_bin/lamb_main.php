@@ -6,7 +6,11 @@ if (isset($_SERVER['REMOTE_ADDR'])) {
 
 $_GET['ajax'] = 'true';
 
-# GWF2 core
+# GWF3 core
+if (!file_exists('protected/config_lamb.php')) {
+	die('Please copy your protected/config.php to protected/config_lamb.php. You may have a different gwf config for the bot.');
+}
+
 define('GWF_CONFIG_NAME', 'protected/config_lamb.php');
 require_once 'inc/_gwf_include.php';
 
@@ -15,7 +19,7 @@ GWF_HTML::init();
 
 GWF_Log::init(false, false, Common::substrUntil(dirname(__FILE__), '/module').'/protected/logs');
 
-# Lamb2 core
+# Lamb3 core
 $dir = 'module/Lamb';
 chdir($dir);
 require_once 'lamb_bin/Lamb_ConfigInit.php';
