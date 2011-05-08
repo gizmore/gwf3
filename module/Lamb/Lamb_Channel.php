@@ -94,6 +94,18 @@ final class Lamb_Channel extends GDO
 		return $this->users[$username][0];
 	}
 	
+	public function getUserByNameI($username)
+	{
+		foreach ($this->users as $n => $data)
+		{
+			if (strcasecmp($n, $username) === 0)
+			{
+				return $data[0];
+			}
+		}
+		return false;
+	}
+	
 	public function isUserInChannel($username)
 	{
 		return isset($this->users[$username]);

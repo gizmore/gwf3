@@ -286,6 +286,12 @@ final class Lamb_Server
 		$this->connection->send(sprintf('USER %s %s %s :%s', LAMB_USERNAME, LAMB_HOSTNAME, $this->connection->getHostname(), LAMB_REALNAME));
 	}
 	
+	public function sendBotMode()
+	{
+		$this->connection->send(sprintf('MODE '.$this->current_nick.' +B'));
+		$this->connection->send(sprintf('MODE '.$this->current_nick.' +b'));
+	}
+	
 	public function sendNickname()
 	{
 		# Select next nickname to try.
@@ -484,12 +490,33 @@ final class Lamb_Server
 	}
 	
 	/**
+	 * Get a user by nickname. Case sensitive.
 	 * @param string $nickname
 	 * @return Lamb_User
 	 */
 	public function getUser($nickname)
 	{
 		return isset($this->users[$nickname]) ? $this->users[$nickname] : false;
+	}
+	
+	
+	/**
+	 * Get a user by nickname, case insensitive.
+	 * @see getUser
+	 * @param string $nickname
+	 * @return Lamb_User
+	 */
+	public function getUserI($nickname)
+	{
+		$n = strtolower($nickname);
+		foreach ($this->users as $nick => $user)
+		{
+			if (!strcasecmp($n, $nick))
+			{
+				return $user;
+			}
+		}
+		return false;
 	}
 	
 	/**

@@ -483,6 +483,11 @@ final class Lamb
 		
 		$message = preg_replace('/[ ]{2,}/', ' ', $message);
 		$message = ltrim($message, LAMB_TRIGGER);
+		
+		if ($message{0} === '/') {
+			return;
+		}
+		
 		$command = Common::substrUntil($message, ' ');
 		$message = Common::substrFrom($message, ' ', '');
 		
