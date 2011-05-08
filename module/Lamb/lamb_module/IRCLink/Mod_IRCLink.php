@@ -98,7 +98,7 @@ final class LambModule_IRCLink extends Lamb_Module
 			$msg = "All links have been deleted.";
 		}
 		else {
-			$msg = "All inactive links have been deleted.";
+			$msg = "All inactive links have been deleted. Try to add truncate to flush all links.";
 		}
 		$this->links_saved = implode(';', $this->links);
 		$this->saveLinks();
@@ -203,7 +203,7 @@ final class LambModule_IRCLink extends Lamb_Module
 	{
 		if ( (count($this->links) === 0) || (preg_match('/^\x02/', $message)) )
 		{
-			echo "IRCLink ignored privmsg.\n";
+//			echo "IRCLink ignored privmsg.\n";
 			return;
 		}
 		foreach ($this->links as $link)
