@@ -8,7 +8,7 @@ if ($username === '')
 	return $bot->processMessageA($server, LAMB_TRIGGER.'help seen', $from);
 }
 
-if (false === ($user = $server->getUser($username))) {
+if (false === ($user = $server->getUserI($username))) {
 	return $bot->reply(sprintf('The user %s is unknown.', $username));
 }
 
