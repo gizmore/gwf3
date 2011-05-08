@@ -29,7 +29,7 @@
 		{else}
 		<li><a href="{$root}links">Links</a></li>
 		<li><a href="{$root}forum">Forum</a></li>
-		<li><a href="{$root}chat">Chat</a></li>
+		<li><a href="{$root}irc_chat">Chat</a></li>
 		<li><a href="{$root}register">Register</a></li>
 		<li><a href="{$root}login">Login</a></li>
 		{/if}
