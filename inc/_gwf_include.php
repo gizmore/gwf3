@@ -18,6 +18,10 @@ if (isset($_SERVER['REQUEST_URI']))
 		define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG);
 	}
 }
+else
+{
+	define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG);
+}
 
 # Require the Database
 require_once 'inc/GDO/GDO.php';
