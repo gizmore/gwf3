@@ -7,11 +7,15 @@ if (count($args) !== 2)
 	$bot->processMessageA($server, LAMB_TRIGGER.'help passwd', $from);
 	return;
 }
-if (false === ($user = $server->getUser($args[0]))) {
+if (false === ($user2 = $server->getUser($args[0]))) {
 	$bot->reply('This user is unknown.');
 	return;
 }
-if (false === $user->saveVar('lusr_password', md5($args[1]))) {
+if ($user2->isAdmin() && !$user->isAdmin()) {
+	$bot->reply('You cannot change admin passwords.');
+	return;
+}
+if (false === $user2->saveVar('lusr_password', md5($args[1]))) {
 	$bot->reply('Datatbase error!');
 	return;
 }
