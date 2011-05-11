@@ -6,9 +6,9 @@ class SR_Player extends GDO
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
 	const XP_PER_KARMA = 8;
-	const XP_PER_KARMA_RAISE = 0.5;
-	const XP_PER_LEVEL = 25;
-	const XP_PER_LEVEL_RAISE = 5;
+	const XP_PER_KARMA_RAISE = 0.25;
+	const XP_PER_LEVEL = 35;
+	const XP_PER_LEVEL_RAISE = 4;
 	const WEIGHT_BASE = 6000;
 	const WEIGHT_PER_STRENGTH = 1800;
 	const FIGHT_INIT_BUSY = 25;
@@ -44,7 +44,7 @@ class SR_Player extends GDO
 	public static $KNOWLEDGE = array('icu'=>'indian_culture','ila'=>'indian_language');
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon');
 	public static $RACE = array(
-		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>2,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>2),
+		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>2,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
 		'elve' =>     array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2),
 		'halfelve' => array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2),
 		'darkelve' => array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2),
@@ -58,7 +58,7 @@ class SR_Player extends GDO
 		'gremlin' =>  array('body'=>1,'magic'=>-5,'strength'=> 2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>3,'essence'=>-2.0),
 	);
 	public static $RACE_BASE = array(
-		'fairy' =>    array('base_hp'=>2, 'base_mp'=>6, 'body'=>0,'magic'=> 1,'strength'=>0,'quickness'=>2,'wisdom'=>1,'intelligence'=>3,'charisma'=> 2,'luck'=>0),
+		'fairy' =>    array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>1,'intelligence'=>4,'charisma'=> 3,'luck'=>1),
 		'elve' =>     array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>0,'intelligence'=>2,'charisma'=> 1,'luck'=>0),
 		'halfelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=>1,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 1,'luck'=>0),
 		'darkelve' => array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=>2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 1,'luck'=>0),
@@ -508,6 +508,9 @@ class SR_Player extends GDO
 	##############
 	### Modify ###
 	##############
+	/**
+	 * Update all stats in memory.
+	 */
 	public function modify()
 	{
 		$this->initModify();
@@ -1379,7 +1382,7 @@ class SR_Player extends GDO
 		if (false === ($this->saveVar('sr4pl_'.$field, $value))) {
 			return false;
 		}
-//		$this->sr4_data_modified[$field] = $value;
+		$this->modify();
 		return true;
 	}
 	
@@ -1397,7 +1400,7 @@ class SR_Player extends GDO
 //		$sq = round(sqrt($seconds));
 		$seconds -= $q / 3;
 		$seconds += rand(1, 10) - 5;
-		return Common::clamp($seconds, 5);
+		return round(Common::clamp($seconds, 4));
 	}
 	
 	public function busy($seconds)
@@ -1504,7 +1507,7 @@ class SR_Player extends GDO
 			$this->message(sprintf('You lost your %s.', $item->getItemName()));
 		}
 	}
-
+	
 	public function gotKilledByHuman(SR_Player $player)
 	{
 		Lamb_Log::log(__METHOD__);
