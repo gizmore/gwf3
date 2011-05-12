@@ -157,12 +157,13 @@ final class GWF_Website
 		return true;
 	}
 
-	public static function displayCSS()
+	public static function displayCSS($html = false)
 	{
 		$back = '';
+		$xhtml = ($html ? '>' : ' />');
 		foreach (self::$CSS as $file)
 		{
-			$back .= sprintf('<link rel="stylesheet" type="text/css" href="%s" />', $file);
+			$back .= sprintf('<link rel="stylesheet" type="text/css" href="%s"' . $html, $file);
 		}
 		return $back;
 	}
