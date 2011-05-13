@@ -47,9 +47,10 @@ class GWF_Module extends GDO
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isInstalled() { return $this->getVersionDB() > 0; }
 	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'module/'.$this->getName().'/'.$file; }
-	public static function getModulesLoaded()
+	public static function getModulesLoaded($format = false)
 	{
-		return sprintf('<a href="#" title="%s">%s</a>', implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
+                if(false === $format) { $format = '<a href="#" title="%s">%s</a>';}
+		return sprintf($format, implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
 	}
 	
 	public function onStartup() {}
