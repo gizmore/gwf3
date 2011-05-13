@@ -1,15 +1,22 @@
 <?php
 final class SR_Party extends GDO
 {
+	const MAX_MEMBERS = 7;
+	
 	const NPC_PARTY = 0x01;
 	const BAN_ALL = 0x02;
 	
-	public static $ACTIONS = array('delete', 'talk', 'fight',/* 'search', 'inroom',*/ 'inside', 'outside', 'sleep', 'travel', 'explore', 'goto', 'hunt');
+	const LOOT_CYCLE = 0x10;
+	const LOOT_KILL = 0x20;
+	const LOOT_RAND = 0x40;
+	const LOOT_USER = 0x80;
+	const LOOT_BITS = 0xF0;
+	
+	public static $ACTIONS = array('delete', 'talk', 'fight',/* 'search',*/ 'inside', 'outside', 'sleep', 'travel', 'explore', 'goto', 'hunt');
 	const ACTION_DELETE = 'delete';
 	const ACTION_TALK = 'talk';
 	const ACTION_FIGHT = 'fight';
 //	const ACTION_SEARCH = 'search';
-//	const ACTION_IN_ROOM = 'inroom';
 	const ACTION_INSIDE = 'inside';
 	const ACTION_OUTSIDE = 'outside';
 	const ACTION_SLEEP = 'sleep';
@@ -17,7 +24,9 @@ final class SR_Party extends GDO
 	const ACTION_EXPLORE = 'explore';
 	const ACTION_GOTO = 'goto';
 	const ACTION_HUNT = 'hunt';
-	
+
+	private $loot_user = -1;
+	private $loot_cycle = -1;
 	private $deleted = false;
 	private $members = array();
 	private $distance = array();
@@ -55,7 +64,7 @@ final class SR_Party extends GDO
 	###################
 	public function canMeetEnemies()
 	{
-		return $this->getVar('sr4pa_contact_eta') < Shadowrun4::getTime();
+		return $this->getVar('sr4pa_contact_eta') <= Shadowrun4::getTime();
 	}
 	
 	public function setContactEta($seconds)
@@ -76,8 +85,21 @@ final class SR_Party extends GDO
 	public function isFighting() { return $this->getAction() === self::ACTION_FIGHT; }
 	public function getDistance(SR_Player $player) { return $this->distance[$player->getID()]; }
 	public function isMoving() { return in_array($this->getAction(), array('explore','goto','hunt'), true); }
+	public function isIdle() { return in_array($this->getAction(), array('inside','outside'), true); }
 	public function isDeleted() { return $this->deleted; }
+	public function isHuman() { return $this->getLeader()->isHuman(); }
+	public function isFull() { return $this->getMemberCount() >= self::MAX_MEMBERS; }
 	public function setDeleted($b) { $this->deleted = $b; }
+	public function hasHireling()
+	{
+		if ($this->getLeader()->isNPC()) { return false; }
+		foreach ($this->members as $member) {
+			if ($member->isNPC()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public function isDone($sr_time)
 	{
 		if ('0' === ($eta = $this->getETA())) {
@@ -192,6 +214,8 @@ final class SR_Party extends GDO
 		))) {
 			return false;
 		}
+		
+		$this->onCleanupHirelings();
 
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 		if ($announce === true)
@@ -201,6 +225,21 @@ final class SR_Party extends GDO
 
 		
 		return true;
+	}
+	
+	private function onCleanupHirelings()
+	{
+		foreach ($this->members as $member)
+		{
+			if ($member instanceof SR_HireNPC)
+			{
+				if ($member->hasToLeave())
+				{
+					$this->notice(sprintf('%s thanked you and left the party.', $member->getName()));
+					$this->kickUser($member, true);
+				}
+			}
+		}
 	}
 	
 	public function setMemberOptions($bits, $bool)
@@ -218,16 +257,23 @@ final class SR_Party extends GDO
 	public function getMemberByName($name)
 	{
 		return Shadowfunc::getFriendlyTarget($this->getLeader(), $name);
-//		$name = strtolower($name);
-//		foreach ($this->members as $member)
-//		{
-//			$member instanceof SR_Player;
-//			if (strtolower($member->getName()) === $name)
-//			{
-//				return $member;
-//			}
-//		}
-//		return false;
+	}
+	
+	/**
+	 * Get a member by PlayerID.
+	 * @param int $pid
+	 * @return SR_Player
+	 */
+	public function getMemberByPID($pid)
+	{
+		foreach ($this->members as $member)
+		{
+			if ($member->getID() === $pid)
+			{
+				return $member;
+			}
+		}
+		return false;
 	}
 	
 	public function addUser(SR_Player $player, $update=true)
@@ -608,8 +654,8 @@ final class SR_Party extends GDO
 		$busy = $player->busy(25);
 		$name = $player->getName();
 		$tn = $target->getName();
-		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters. %ds busy.', $name, $move, $tn, $new_d, $busy));
-		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters.', $name, $move, $tn, $new_d));
+		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
+		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters.', $name, -$move, $tn, $new_d));
 	}
 	
 	public function flee(SR_Player $player)
@@ -735,6 +781,8 @@ final class SR_Party extends GDO
 	{
 		if ($this->getMemberCount() > 0 && $this->getLeader()->isHuman())
 		{
+			$this->pushAction('outside', 'Redmond', 0);
+			$this->pushAction('outside', 'Redmond', 0);
 			Lamb_Log::log(sprintf('Human party got action delete!'));
 		}
 		else
@@ -836,6 +884,46 @@ final class SR_Party extends GDO
 	public function on_hunt($done)
 	{
 		
+	}
+
+	public function getRandomMember()
+	{
+		return $this->members[array_rand($this->getMembers())];
+	}
+	
+	#################
+	### Loot Mode ###
+	#################
+	public function getLootMode() { return $this->getOptions() & self::LOOT_BITS; }
+	public function setLootMode($loot_mode) { $this->saveOption(self::LOOT_BITS, false); if ($loot_mode === self::LOOT_CYCLE) { $this->loot_cycle = -1; } return $this->saveOption($loot_mode, true); }
+	public function getKiller(SR_Player $player)
+	{
+		switch ($this->getLootMode())
+		{
+			case self::LOOT_RAND: return $this->getRandomMember();
+			case self::LOOT_CYCLE: return $this->getKillerCycle($player);
+			case self::LOOT_USER: return $this->getKillerUser($player);
+			default:
+			case self::LOOT_KILL: return $player;
+		}
+	}	
+	private function getKillerCycle(SR_Player $player)
+	{
+		$this->loot_cycle++;
+		if ($this->loot_cycle >= $this->getMemberCount())
+		{
+			$this->loot_cycle = 0;
+		}
+		$killer = array_slice($this->members, $this->loot_cycle, 1);
+		return $killer[0];
+	}
+	
+	public function getKillerUser(SR_Player $player)
+	{
+		if (false === ($killer = $this->getMemberByPID($this->loot_user))) {
+			return $player;
+		}
+		return $killer;
 	}
 }
 ?>

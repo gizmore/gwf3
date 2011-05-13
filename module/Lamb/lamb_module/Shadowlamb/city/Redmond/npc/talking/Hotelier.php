@@ -9,32 +9,37 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		$c = LambModule_Shadowlamb::SR_SHORTCUT;
 		$quest = SR_Quest::getQuest($player, 'Renraku_I');
 
-		# DEBUG
-//		if ($word === 'fuck') {
-//			$player->giveItems(Shadowfunc::randLoot($player, 1111));
-//			return;
-//		}
-//		elseif ($word === 'foo') {
-//			SR_NPC::createEnemyParty('Redmond_Lamer')->fight($player->getParty());
-//			return;
-//		}
-//		elseif ($word === 'bar') {
-//			SR_NPC::createEnemyParty('Redmond_Burglar')->fight($player->getParty());
-//			return;
-//		}
-//		elseif ($word === 'foobar') {
-//			SR_NPC::createEnemyParty('Redmond_ToughGuy')->fight($player->getParty());
-//			return;
-//		}
-//		elseif ($word === 'fuckbar') {
-//			SR_NPC::createEnemyParty('Redmond_Ueberpunk')->fight($player->getParty());
-//			return;
-//		}
-//		elseif ($word === 'fuckork') {
-//			SR_NPC::createEnemyParty('Redmond_Ork')->fight($player->getParty());
-//			return;
-//		}
-		
+		if ($player->getShortName() === 'gizmore')
+		{
+			if ($word === 'fuck') {
+				$player->giveItems(Shadowfunc::randLoot($player, 1111));
+				return;
+			}
+			elseif ($word === 'elve') {
+				SR_NPC::createEnemyParty('Seattle_AngryElve')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'foo') {
+				SR_NPC::createEnemyParty('Redmond_Lamer', 'Redmond_Lamer', 'Redmond_Lamer')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'bar') {
+				SR_NPC::createEnemyParty('Redmond_Burglar')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'foobar') {
+				SR_NPC::createEnemyParty('Redmond_ToughGuy')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'fuckbar') {
+				SR_NPC::createEnemyParty('Redmond_Ueberpunk')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'fuckork') {
+				SR_NPC::createEnemyParty('Redmond_Ork')->fight($player->getParty());
+				return;
+			}
+		}
 		
 		if (!$quest->isAccepted($player))
 		{

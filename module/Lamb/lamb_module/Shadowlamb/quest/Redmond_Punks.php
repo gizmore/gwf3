@@ -12,7 +12,7 @@ final class Quest_Redmond_Punks extends SR_Quest
 	{
 		$have = $this->getAmount();
 		$need = $this->getNeededAmount();
-		if ($have > $need) {
+		if ($have >= $need) {
 			$this->onSolve($player);
 		} else {
 			$npc->reply(sprintf('Our informants reported you have killed %d of %d punks yet... Kill some more!', $have, $need));

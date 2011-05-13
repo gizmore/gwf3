@@ -11,7 +11,7 @@ final class Item_ElvenShorts extends SR_Legs
 			'defense' => 0.8,
 			'marm' => 0.5,
 			'farm' => 0.3,
-			'quickness' => 0.8,
+			'quickness' => 0.4,
 		);
 	}
 }

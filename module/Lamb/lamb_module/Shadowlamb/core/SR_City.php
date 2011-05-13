@@ -9,7 +9,7 @@ abstract class SR_City
 	
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }
-	public function getSquareKM() { return count($this->locations); }
+	public function getSquareKM() { return sqrt(count($this->locations) * 2); }
 	public function getExploreETA() { return $this->getSquareKM() * 30; }
 	public function getGotoETA() { return $this->getSquareKM() * 25; }
 	public function getRespawnLocation() { return 'Redmond_Hotel'; }
@@ -57,7 +57,7 @@ abstract class SR_City
 	
 	public function getNPC($name)
 	{
-		return isset($this->npcs[$name]) ? $this->npcs[$name]	: false;
+		return isset($this->npcs[$name]) ? $this->npcs[$name] : false;
 	}
 	
 	#############
@@ -130,6 +130,8 @@ abstract class SR_City
 	{
 		$location = $this->getLocation($party->getTarget());
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
+		# TODO: Announce it!
+		
 		$location->onEnter($party->getLeader());
 	}
 	
@@ -149,6 +151,10 @@ abstract class SR_City
 			case 4: $b = $this->onEvents($party); break;
 		}
 		
+		if (!$b) {
+			$party->setContactEta(2);
+		}
+		
 		return $b;
 	}
 	
@@ -161,12 +167,12 @@ abstract class SR_City
 		{
 			if ( ($ep->isMoving()) && ($p->getCity() === $ep->getCity()) && ($ep->getID() !== $p->getID()) )
 			{
-				$total += 15;
-				$possible[] = array($ep, 15);
+				$total += 50;
+				$possible[] = array($ep, 50);
 			}
 		}
 		
-		$chance_none = (($sqkm * 30) - count($possible)*7) + rand(0, 10);
+		$chance_none = $sqkm * 30 - count($possible);
 		$chance_none = Common::clamp($chance_none, 50);
 		
 		if (false === ($ep = Shadowfunc::randomData($possible, $total, $chance_none))) {
@@ -190,7 +196,7 @@ abstract class SR_City
 			$npc instanceof SR_NPC;
 			if ( ($npc->getNPCLevel() <= $level) && ($npc->isNPCFriendly($party)===$friendly) && ($npc->canNPCMeet($party)) )
 			{
-				$multi = $friendly === true ? 10 : 100;
+				$multi = $friendly === true ? 100 : 100;
 				$percent = round($npc->getNPCMeetPercent($party) * $multi);
 				$total += $percent;
 				$possible[] = array($npc->getNPCClassName(), $percent);

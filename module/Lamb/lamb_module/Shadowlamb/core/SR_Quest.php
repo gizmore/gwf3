@@ -73,6 +73,7 @@ class SR_Quest extends GDO
 	public function onSolve(SR_Player $player)
 	{
 		$this->saveOption(self::DONE, true);
+		$player->updateField('reputation', $player->get('reputation'));
 		$this->onQuestSolve($player);
 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
 	}

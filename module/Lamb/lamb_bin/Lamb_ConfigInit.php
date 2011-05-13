@@ -1,5 +1,5 @@
 <?php
-require_once 'Lamb_Config.php';
+require_once LAMB_CONFIG_FILENAME;
 define('LAMB_HOSTNAME', $LAMB_CFG['hostname']);
 define('LAMB_REALNAME', $LAMB_CFG['realname']);
 define('LAMB_USERNAME', $LAMB_CFG['username']);

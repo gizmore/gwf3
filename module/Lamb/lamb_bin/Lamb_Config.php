@@ -3,7 +3,7 @@ global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
 	# Version
-	'version' => '3.01.2011.MAY.06 - GWF '.GWF_CORE_VERSION,
+	'version' => '3.01.2011.MAY.11(Trunk) - GWF '.GWF_CORE_VERSION,
 
 	# IRC
 	'hostname' => 'lamb3.gizmore.org',
@@ -18,9 +18,9 @@ $LAMB_CFG = array
 	'owner' => 'gizmore',
 	'blocking_io' => false,
 	'ping_timeout' => 420,
-	'connect_timeout' => 10,
-	'sleep_millis' => 50,
-	'timer_interval' => 30.0,
+	'connect_timeout' => 12,
+	'sleep_millis' => 40,
+	'timer_interval' => 40.0,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
 
 	###############
@@ -28,6 +28,7 @@ $LAMB_CFG = array
 	###############
 	'servers' => array
 	(
+	/*
 		array(
 			'host' => 'irc.giz.org:31346',
 			'nickname' => 'Lamb3',
@@ -35,12 +36,12 @@ $LAMB_CFG = array
 			'channels' => '#sr',
 			'admins' => 'gizmore',
 		),
-
+	*/
 		array(
 			'host' => 'ircs://irc.freenode.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#wechall,#shadowlamb,#hacker.org',
+			'channels' => '#wechall,#shadowlamb,#hacker.org,#happy-security',
 			'admins' => 'gizmore',
 		),
 		
@@ -100,7 +101,6 @@ $LAMB_CFG = array
 			'channels' => '#shadowlamb,#Big-Daddy',
 			'admins' => 'gizmore',
 		),
-
 //		array(
 //			'host' => '',
 //			'nickname' => 'Lamb3',

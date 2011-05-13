@@ -1,19 +1,19 @@
 <?php
-abstract class SR_School extends SR_Location
+abstract class SR_School extends SR_Store
 {
-	# array(array(field, price))
+	/**
+	 * Get the courses for a school. array(array(field, price))
+	 * @param SR_Player $player
+	 */
 	public abstract function getFields(SR_Player $player);
+
+	public function getStoreItems(SR_Player $player) { return array(); }
 	
 	public function getCommands(SR_Player $player) { return array('learn', 'courses'); }
 	
 	public function on_courses(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		
-//		if (count($args) !== 0) {
-//			$bot->reply(Shadowhelp::getHelp($player, 'courses'));
-//			return false;
-//		}
 		
 		$c = '';
 		foreach ($this->getFields($player) as $data)
@@ -43,6 +43,8 @@ abstract class SR_School extends SR_Location
 				return $this->onLearn($player, $args[0], $price);
 			}
 		}
+
+		$this->on_courses($player, array());
 		return false;
 	}
 	

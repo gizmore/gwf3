@@ -3,9 +3,11 @@ final class Spell_poison_dart extends SR_Spell
 {
 	public function isOffensive() { return true; }
 
-	public function getHelp(SR_Player $player) { return 'Poisons an enemy.'; }
+	public function getHelp(SR_Player $player) { return 'Poisons an enemy and does some instant damage.'; }
 	
 	public function getRequirements() { return array('magic'=>3); }
+	
+	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	
 	public function getManaCost(SR_Player $player)
 	{
@@ -15,6 +17,17 @@ final class Spell_poison_dart extends SR_Spell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
+		$damage = rand($level, $level+$player->get('wisdom')+1);
+		$this->spellDamageSingleTarget($player, $target, $level, $damage);
+
+		$seconds = Common::clamp(90-$hits, 30, 90);
+		$amount = rand($level*2, $level*2+$hits/3);
+		$per_sec = round($amount / $seconds, 2);
+		echo "Casting poison_dart with level $level and $hits hits. The target will loose $amount HP within $seconds seconds.\n";
+		$modifiers = array('hp' => $per_sec);
+		$target->addEffects(new SR_Effect($seconds, $modifiers, SR_Effect::MODE_REPEAT));
+		$this->announceADV($player, $target, $level);
+		
 		return true;
 	}
 	

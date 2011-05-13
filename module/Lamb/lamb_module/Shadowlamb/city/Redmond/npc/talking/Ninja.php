@@ -14,6 +14,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 		$this->reply('MMMh... you are unsure about your path...');
 		$player->message('The monk strengthens your self confidence... you have learned the melee skill!');
 		$player->updateField('melee', 0);
+		$player->modify();
 		return false;
 	}
 	
@@ -109,6 +110,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 			$player->updateField('ninja', 0);
 			$this->reply("Thank you my friend. Come with me...");
 			$player->message('The monk teaches you the Ninja Skill. This will improve attack and damage for ninja weapons.');
+			$player->modify();
 		} else {
 			$this->reply("I am sorry, but learning the ninja skill cost $p.");
 		}

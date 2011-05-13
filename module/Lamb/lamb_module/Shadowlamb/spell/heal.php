@@ -7,6 +7,8 @@ final class Spell_heal extends SR_Spell
 	
 	public function getRequirements() { return array('magic'=>4,'calm'=>2); }
 	
+	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
+	
 	public function getManaCost(SR_Player $player)
 	{
 		$level = $this->getLevel($player);
@@ -15,6 +17,16 @@ final class Spell_heal extends SR_Spell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
+		$hits = round($hits/4, 1);
+		$min = $level + $hits;
+		$max = ($level + $hits) * intval($level / 2) + rand($player->get('wisdom'));
+		$hp_gain = rand($min*10, $max*10);
+		$hp_gain /= 10;
+		$target->healHP($hp_gain);
+		$hp = $target->getHP();
+		$max_hp = $target->getMaxHP();
+		$append = " gained +{$hp_gain}({$hp}/{$max_hp})HP";
+		$this->announce($player, $target, $level, $append);
 		return true;
 	}
 	

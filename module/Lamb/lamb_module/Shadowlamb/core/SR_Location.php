@@ -23,6 +23,7 @@ abstract class SR_Location
 	public function getFoundText() { return sprintf('You found %s. There is no description yet.', $this->getName()); }
 	public function getEnterText(SR_Player $player) { return false; }
 	public function getHelpText(SR_Player $player) { return false; }
+	public function isPVP() { return false; }
 	
 	public function onEnter(SR_Player $player)
 	{

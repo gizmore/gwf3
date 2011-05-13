@@ -92,6 +92,10 @@ class SR_Item extends GDO
 	##################
 	### StaticLoad ###
 	##################
+	public static function getTotalItemCount()
+	{
+		return count(self::$items);
+	}
 	/**
 	 * @param string $itemname
 	 * @param array $data
@@ -290,7 +294,7 @@ class SR_Item extends GDO
 		$mod = '';
 		foreach ($this->modifiers as $key => $value)
 		{
-			$mod .= sprintf('_%s:%s', $key, $value);
+			$mod .= sprintf(',%s:%s', $key, $value);
 		}
 		return $back.'_of_'.substr($mod, 1);
 	}

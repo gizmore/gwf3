@@ -1,7 +1,7 @@
 <?php
 final class Item_AresPredator extends SR_Pistol
 {
-	public function getAttackTime() { return 30; }
+	public function getAttackTime() { return 35; }
 	public function getAmmoName() { return 'Ammo_9mm'; }
 	public function getBulletsMax() { return 8; }
 	public function getBulletsPerShot() { return 1; }

@@ -4,7 +4,7 @@ final class Item_LargeBeer extends SR_Consumable
 	public function getItemLevel() { return 0; }
 	public function getItemWeight() { return 600; }
 	public function getItemPrice() { return 3.95; }
-	public function getItemDescription() { return '0.5 litres of Unz-Beer - 0.337% alc.'; }
+	public function getItemDescription() { return '0.5 litres of Unz-Beer - 3.37% alc.'; }
 	public function onConsume(SR_Player $player)
 	{
 		$m = array('alcohol'=>0.1);

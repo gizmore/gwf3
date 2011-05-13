@@ -11,6 +11,7 @@ final class Redmond_OrkLeader extends SR_NPC
 			'race' => 'ork',
 			'strength' => rand(5, 6),
 			'quickness' => rand(1, 2),
+			'melee' => rand(2, 3),
 			'base_hp' => rand(10, 14),
 			'distance' => rand(2, 4),
 			'nuyen' => rand(100, 200),

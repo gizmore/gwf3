@@ -13,6 +13,7 @@ final class Shadowrap
 		} else {
 			Lamb::instance()->reply($message);
 		}
+		return true;
 	}
 }
 ?>

@@ -7,6 +7,8 @@ final class Spell_turtle extends SR_Spell
 	
 	public function getRequirements() { return array('magic'=>4); }
 	
+	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
+	
 	public function getManaCost(SR_Player $player)
 	{
 		$level = $this->getLevel($player);
@@ -15,20 +17,13 @@ final class Spell_turtle extends SR_Spell
 
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
+		$dur = round($hits * 8.2) + rand(-15, 15+$player->get('wisdom')*30);
+		$by = round(sqrt($hits)/4, 2);
+		$mod = array('marm'=>$by, 'farm'=>$by);
+		$target->addEffects(new SR_Effect($dur, $mod));
+		$append = sprintf('+%s marm/farm for %s.', $by, GWF_Time::humanDuration($dur));
+		$this->announceADV($player, $target, $level, $append);
 		return true;
 	}
-	
-//	public function cast_spell(Player $player, Player $target, $in_combat)
-//	{
-//		$by = floor($this->level / 3) + 1;
-//		$time = $this->get_support_spell_time($player, $target);
-//		new Effect( $target, "marm", $by, $time, 0);
-//		new Effect( $target, "farm", $by, $time, 0);
-//		
-//		$tname = $target->get_name();
-//		$msg = "cast $this->name on $tname ($time seconds marm/farm +$by).";
-//		$this->announce_B($player, $target, $msg);
-//	}
 }
-
 ?>

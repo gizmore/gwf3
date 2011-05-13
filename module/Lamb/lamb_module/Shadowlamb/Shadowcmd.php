@@ -43,6 +43,7 @@ final class Shadowcmd
 		'uq' => 'unequip',
 		'we' => 'weight',
 		'x' => 'flee',
+		'pl' => 'party_loot',
 	);
 	private static function unshortcut($cmd)
 	{
@@ -63,34 +64,35 @@ final class Shadowcmd
 	################
 	### Triggers ###
 	################
-	public static $CMDS_GM = array('gm','gmi','gml');
-	public static $CMDS_ALWAYS_HIDDEN = array('helo','start','reset','enable','disable','redmond','c','ny','ka','hp','mp','we', 'gmstats');
+	public static $CMDS_GM = array('gm','gmi','gml','gmstats');
+	public static $CMDS_ALWAYS_HIDDEN = array('helo','start','reset','enable','disable','redmond','c','ny','ka','hp','mp','we','motd','stats');
 	public static $CMDS_ALWAYS = array('help','s','a','sk','q','p','i','cy','ef','ex','kp','ks','kw','qu','sd','pm');
 	public static $CMDS = array(
 		'delete' => array(),
-		'talk' => array('l','j','fight','bye','u','eq','uq','r','sp','part','give','drop','say'),
+		'talk' => array('l','j','bye','u','eq','uq','r','sp','part','give','drop','say','fight'),
 		'fight' => array('#','u','sp','fl','eq','uq','r','part','fw','bw','give'),
 //		'search' => array(), 
-		'inside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look'),
-		'outside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look'),
+		'inside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look','info'),
+		'outside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look','fight'),
 		'sleep' => array(),
 		'travel' => array('l','rl','u','sp','eq','uq','r','give','drop'),
-		'explore' => array('l','rl','u','sp','eq','uq','r','part','give','drop'),
-		'goto' => array('l','rl','u','sp','eq','uq','r','part','give','drop'),
-		'hunt' => array('l','rl','u','sp','eq','uq','r','part','give','drop'), 
+		'explore' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'),
+		'goto' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'),
+		'hunt' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'), 
 	);
+	public static $CMDS_LEADER_ALWAYS = array('pl','le','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
-		'talk' => array('kick','ban','unban'),
+		'talk' => array('kick'),
 		'fight' => array(),
-//		'search' => array('ban','unban'), 
-		'inside' => array('le','g','exp','hunt','kick','ban','unban','exit'),
-		'outside' => array('le','g','exp','hunt','kick','ban','unban','en'),
-		'sleep' => array('ban','unban'),
-		'travel' => array('ban','unban'),
-		'explore' => array('le','g','hunt','kick','ban','unban'),
-		'goto' => array('le','g','exp','hunt','kick','ban','unban'),
-		'hunt' => array('le','g','exp','hunt','kick','ban','unban'), 
+//		'search' => array(), 
+		'inside' => array('g','exp','hunt','kick','exit'),
+		'outside' => array('g','exp','hunt','kick','en'),
+		'sleep' => array(),
+		'travel' => array(),
+		'explore' => array('g','hunt','kick'),
+		'goto' => array('g','exp','hunt','kick'),
+		'hunt' => array('g','exp','hunt','kick'), 
 	);
 	public static function getCurrentCommands(SR_Player $player, $show_hidden=true)
 	{
@@ -112,17 +114,23 @@ final class Shadowcmd
 		}
 		
 		# Action commands
+		$commands = array_merge($commands, self::$CMDS[$action]);
 		if ($leader === true)
 		{
+			$commands = array_merge($commands, self::$CMDS_LEADER_ALWAYS);
 			$commands = array_merge($commands, self::$CMDS_LEADER[$action]);
 		}
-		$commands = array_merge($commands, self::$CMDS[$action]);
 		
 		# Location commands
 		if ( (false !== ($location = $party->getLocationClass('inside'))) && ($player->isCreated()) )
 		{
 			$commands = array_merge($commands, $location->getNPCTalkCommands($player));
 			$commands = array_merge($commands, $location->getCommands($player));
+			
+			if ($location->isPVP()) {
+				$commands[] = 'fight';
+			}
+			
 			if ($leader === true)
 			{
 				$commands = array_merge($commands, $location->getLeaderCommands($player));
@@ -190,13 +198,18 @@ final class Shadowcmd
 			'cyberware' => 'Player command. View your cyberware. Usage: '.$c.'cy [<cywa_id>].',
 			'spell' => 'Player command. View your spells or cast a spell. Usage: '.$c.'sp [<sp_id>] [<target>].',
 			'status' => 'Player command. View your status.',
+			'effects' => 'Player command. Usage:'.$c.'effects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
 			'party' => 'Player command. View your party status.',
+			'commands' => "Player command. Usage: {$c}c. List your currently available commands. These are ordered by always,leader,special,location and change depending on your current location and party action.",
+			'known_words' => "Player command. Usage: {$c}kw. List some useful words you have learned, which you can enumerate with {$c}talk and {$c}say.",
+			'known_places' => "Player command. Usage: {$c}kp. List your known locations in your current city. You can go to them with {$c}goto. Use {$c}explore to find new locations.",
+			'weight' => "Player command. Usage: {$c}we(ight). Show how much stuff the party is carrying. You can increase your max_weight with strength.",
 		
 			'set_distance' => 'Player command. Usage: '.$c.'sd <meters>. Set your default combat distance.',
-			'attack' => 'Player command. Usage: '.$c.'attack [<enemy>]. Select your target to attack with your weapon.',
+			'attack' => "Player command. Usage: {$c}attack [<enemy[123] | num>]. Select your target to attack with your weapon. Attack will lock your target, so you don't need to type attack all the time. See #help {$b}busytime{$b} and #help {$b}combat{$b}.",
 			'use' => 'Player command. Usage: '.$c.'use <id|name> [<target>]. Use an item. In combat this costs time.',
-			'drop' => 'Player command. Usage: '.$c.'drop <item>. Drop an item. Used to save weight.',
-			'give' => 'Player command. Usage: '.$c.'give <whom> <i|ny|k|kp|kw> <id|amount|name> [<item_amount>]. Give another player in your location some stuff.',
+			'drop' => 'Player command. Usage: '.$c.'drop <item> [<amount>]. Drop one or multiple items. Used to save weight.',
+			'give' => 'Player command. Usage: '.$c.'give <whom> <i|ny|k|kp|kw> <id|amount|name> [<item_amount>]. Give another player in your location some stuff. In combat this costs time.',
 			'equip' => 'Player command. Usage: '.$c.'equip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
 			'unequip' => 'Player command. Usage: '.$c.'unequip <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 		
@@ -209,13 +222,16 @@ final class Shadowcmd
 			'explore' => 'Leader command. Start to explore the current city.',
 			'goto' => "Leader command. Usage: {$c}goto <#kp|location>. Goto another {$b}location{$b} in the {$b}current{$b} city.",
 			'hunt' => "Leader command. Usage: {$c}hunt <player>. Hunt another {$b}human{$b} {$b}party{$b}.",
-		
+			'stop' => "Leader command. Usage: {$c}stop. The leader can interrupt a moving party with the stop command. Your {$c}explore and {$c}hunt timers will get reset.",
+			'info' => "Player command. Usage: {$c}info. Show the enter_text of the current location, you are inside.",
+			'look' => "Player command. Usage: {$c}look. Look around to spot other players in your current location. You can see players from other servers to.",
 			'party_message' => 'Player command. Usage: '.$c.'pm <your message ...>. Send a message to all party members. Useful for cross-server/cross-channel messages.',
+			'party_loot' => "Leader command. Usage: {$c}pl <kill|cycle|rand|user> [<username>]. Define who loots the items. User takes a 2nd arg.",
 		
 			'leader' => 'Leader command. Usage: '.$c.'leader <player>. Set a new party leader for your party.',
 			'request_leader' => 'Player command. Usage: '.$c.'rl. Request leadership in case the current leader is away.',
 		
-			'flee' => 'Combat player command. Usage: '.$c.'flee. Flee from the enemy.',
+			'flee' => "Combat player command. Usage: {$c}flee. Try to flee from the enemy. If successful you will {$c}part the current {$c}party",
 		
 			'fight' => 'Leader Command. Fight another party. Usage: '.$c.'fight [<player|party>].',
 			'bye' => 'Leader Command. Say goodbye to another party. Usage: '.$c.'bye.',
@@ -223,15 +239,23 @@ final class Shadowcmd
 			'gm' => 'Game Master command. Usage gm <username> <field> <value>',
 //			'gmk' => 'Game Master command. Usage gmk <username> <field> <knowledge>',
 			'gmi' => 'Game Master command. Usage gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
+			'gml' => "Game Master command. Usage: {$c}gml <username> <city> <location>. Teleport a party to a location.",
 		
 			'enable' => 'Player command. Usage: '.$c.'enable <help|notice|privmsg>. Toggle user interface options for your player.',
 			'disable' => 'Player command. Usage: '.$c.'enable <help|notice|privmsg>. Toggle user interface options for your player.',
 			
 			'lvlup' => "Player command. Usage: {$c}lvlup <{$b}skill{$b}|{$b}attribute{$b}|{$b}spell{$b}|{$b}knowledge{$b}>. Increase your {$b}level{$b} for an {$b}attribute{$b},{$b}skill{$b},{$b}spell{$b} or {$b}knowledge{$b} by using {$b}karma{$b}.",
 		
-			'buy' => 'Player command. Usage: '.$c.'buy <item>. In shops you can buy items with this command. The price depends on your negotiation.',
-			'sell' => 'Player command. Usage: '.$c.'sell <item>. In shops you can sell your items with this command. The price depends on your negotiation.',
-			'view' => 'Player command. Usage: '.$c.'view [<item>]. In shops you can view the shops items or examine a shop item with this command.',
+			'buy' => 'Location command. Usage: '.$c.'buy <item>. In shops you can buy items with this command. The price depends on your negotiation.',
+			'sell' => 'Location command. Usage: '.$c.'sell <item>. In shops you can sell your items with this command. The price depends on your negotiation.',
+			'view' => 'Location command. Usage: '.$c.'view [<item>]. In shops you can view the shops items or examine a shop item with this command.',
+			'pushi' => "Location command. Usage: {$c}pushi <item>. In banks you can store items and nuyen to keep them safe for later usage.",
+			'pushy' => "Location command. Usage: {$c}pushy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
+			'popi' => "Location command. Usage: {$c}popi <bankid>. In banks you can store items and nuyen to keep them safe for later usage.",
+			'popy' => "Location command. Usage: {$c}popy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
+		
+			'say' => "Player command. Usage: {$c}say <#kw|the message>. If you meet other parties on street you can use {$c}say to talk to them. This will reset your {$c}bye timeout.",
+			'talk' => "Player command. Usage: {$c}talk <#kw|word>. In many locations you can use {$c}talk to talk to the NPCs. If there is more than one NPC it is often {$c}ttX.",
 		
 			'break' => 'Player command. Usage: '.$c.'break <item>. Will destroy an item and release it`s runes, which you will receive.',
 			'upgrade' => 'Player command. Usage: '.$c.'upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
@@ -298,6 +322,36 @@ final class Shadowcmd
 	################
 	### Commands ###
 	################
+	public static function on_motd(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$path = Lamb::DIR.'lamb_module/Shadowlamb/shadowlamb_motd.txt';
+		if (false === ($motd = @file_get_contents($path))) {
+			$bot->reply('Can not read '.$path);
+		}
+		$bot->reply(sprintf('Message of the day: %s', $motd));
+		return true;
+	}
+	
+	public static function on_stats(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$parties = $human = 0;
+		foreach (Shadowrun4::getParties() as $party)
+		{
+			$parties++;
+			foreach ($party->getMembers() as $member)
+			{
+				if ($member->isHuman())
+				{
+					$human++;
+				}
+			}
+		}
+		$bot->reply(sprintf('Currently there are %s human players in %s parties in memory.', $human, $parties));
+		return true;
+	}
+		
 	public static function on_commands(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -305,6 +359,7 @@ final class Shadowcmd
 		$bot->reply(sprintf('Cmds: %s.', implode(',', $commands)));
 		return true;
 	}
+	
 	public static function on_help(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -374,6 +429,11 @@ final class Shadowcmd
 	 */
 	public static function on_reset(SR_Player $player, array $args)
 	{
+		if (!$player->getParty()->isIdle()) {
+			$player->message('Your party has to be idle to reset players. Try #part to leave your party.');
+			return false;
+		}
+		
 		static $confirm = array();
 
 		$bot = Shadowrap::instance($player);
@@ -738,6 +798,22 @@ final class Shadowcmd
 		return true;
 	}
 	
+	public static function on_hunt(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (false !== ($error = self::checkLeader($player))) {
+			$bot->reply($error);
+			return false;
+		}
+		
+		if (count($args) !== 1) {
+			$bot->reply(Shadowhelp::getHelp($player, 'hunt'));
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public static function on_goto(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -816,7 +892,31 @@ final class Shadowcmd
 		$party->notice(sprintf('You start to explore %s. ETA: %s', $cityname, GWF_Time::humanDurationEN($eta, 2)));
 		return true;
 	}
-
+	
+//	public static function on_hunt(SR_Player $player, array $args)
+//	{
+//		
+//	}
+	
+	public static function on_stop(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (false !== ($error = self::checkLeader($player))) {
+			$bot->reply($error);
+			return false;
+		}
+		$p = $player->getParty();
+		if (!$p->isMoving()) {
+			$bot->reply('Your party is not moving.');
+			return false;
+		}
+		$c = $p->getCity();
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $c);
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $c);
+		$p->notice('The party stopped. What now?!');
+		return true;
+	}
+	
 	############
 	### Give ###
 	############
@@ -979,6 +1079,11 @@ final class Shadowcmd
 			$bot->reply($error);
 			return false;
 		}
+		
+		if (count($args) !== 1) {
+			$player->message('Usage is '.LambModule_Shadowlamb::SR_SHORTCUT.'unequip <item|id>.');
+			return false;
+		}
 
 		if (false === ($item = $player->getItem($args[0]))) {
 			$player->message(sprintf('You don`t have that item.'));
@@ -1068,19 +1173,55 @@ final class Shadowcmd
 		}
 		return true;
 	}
+	
+	/**
+	 * 2 commands in one! Either we are in a party talk, or in/outside a location.
+	 * @param SR_Player $player
+	 * @param array $args
+	 */
 	public static function on_fight(SR_Player $player, array $args)
 	{
 		$p = $player->getParty();
-		$ep = $p->getEnemyParty();
-		$p->popAction();
-		$ep->popAction();
-		$p->fight($ep, true);
-		return true;
+		$a = $p->getAction();
+		if ($p->isTalking())
+		{
+			$ep = $p->getEnemyParty();
+			$p->popAction();
+			$ep->popAction();
+			$p->fight($ep, true);
+			return true;
+		}
+		
+		elseif ($a === SR_Party::ACTION_INSIDE)
+		{
+			$bot = Shadowrap::instance($player);
+			if (count($args) !== 1) {
+				$bot->reply(Shadowhelp::getHelp($player, 'fight'));
+				return false;
+			}
+			if (false === ($target = Shadowfunc::getPlayerInLocation($player, $args[0]))) {
+				$bot->reply(sprintf('%s is not here.', $args[0]));
+				return false;
+			}
+			
+			$ep = $target->getParty();
+			$p->popAction();
+			$ep->popAction();
+			$p->fight($ep, true);
+			return true;
+		}
+		
+		return false;
 	}
 	public static function on_bye(SR_Player $player, array $args)
 	{
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
+		
+		if ($ep->isHuman()) {
+			return false;
+		}
+		
 		$p->popAction(true);
 		$ep->popAction(true);
 		$p->setContactEta(rand(10, 20));
@@ -1226,8 +1367,9 @@ final class Shadowcmd
 			return false;
 		}
 		
-		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
-			$bot->reply(sprintf('The player %s is unknown.', $args[0]));
+		if (false === ($target = Shadowrun4::getPlayerByUID($user->getID()))) {
+//		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
+			$bot->reply(sprintf('The player %s is unknown.', $user->getName()));
 			return false;
 		}
 
@@ -1283,10 +1425,21 @@ final class Shadowcmd
 			return false;
 		}
 		
+		if ($p->isFull()) {
+			$bot->reply('The party has reached the maximum membercount of '.SR_Party::MAX_MEMBERS.'.');
+			return false;
+		}
+		
 		$p->kickUser($player, true);
 		$ep->addUser($player, true);
 		$p->notice(sprintf('%s left the party.', $player->getName()));
 		$ep->notice(sprintf('%s joined the party.', $player->getName()));
+		
+		if ($p->isTalking() && $p->getMemberCount() === 0) {
+			$p->popAction();
+			$ep->popAction(true);
+		}
+		
 		return true;
 	}
 
@@ -1443,7 +1596,7 @@ final class Shadowcmd
 			$bot->reply(Shadowhelp::getHelp($player, 'lvlup'));
 			return false;
 		}
-		$f = $args[0];
+		$f = strtolower($args[0]);
 
 		# Shortcuts
 		if (isset(SR_Player::$SKILL[$f])) { $f = SR_Player::$SKILL[$f]; }
@@ -1516,13 +1669,21 @@ final class Shadowcmd
 			return false;
 		}
 		
-		if (count($args) !== 1) {
+		if ( (count($args) < 1) || (count($args) > 2) ) {
 			$bot->reply(Shadowhelp::getHelp($player, 'drop'));
 			return false;
 		}
-	
+		
 		if (false === ($item = $player->getInvItem($args[0]))) {
 			$bot->reply('You don`t have that item.');
+			return false;
+		}
+		
+		
+		$amt = count($args) === 2 ? (int)$args[1] : 1;
+		
+		if ($amt < 1) {
+			$bot->reply('You can only drop a positive amount of items.');
 			return false;
 		}
 		
@@ -1531,12 +1692,17 @@ final class Shadowcmd
 			return false;
 		}
 		
-		if (false === $item->useAmount($player, 1)) {
+		if ($amt > $item->getAmount()) {
+			$bot->reply('You don\'t have that much '.$item->getName().'.');
+			return false;
+		}
+		
+		if (false === $item->useAmount($player, $amt)) {
 			$bot->reply('Database error 9.');
 			return false;
 		}
 		
-		$bot->reply(sprintf('You got rid of one %s.', $item->getItemName()));
+		$bot->reply(sprintf('You got rid of %d %s.',$amt, $item->getItemName()));
 		return true;
 	}
 	
@@ -1598,11 +1764,16 @@ final class Shadowcmd
 	{
 		$bot = Shadowrap::instance($player);
 		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
+			$player->message($error);
 			return false;
 		}
 		if ( (count($args) === 0) || (count($args) > 2) ) {
-			$player->message(sprintf('Known spells: %s.', Shadowfunc::getSpells($player)));
+			$out = sprintf('Known spells: %s.', Shadowfunc::getSpells($player));
+			if ($player->isFighting()) {
+				$player->message($out);
+			} else {
+				$bot->reply($out);
+			}
 			return false;
 		}
 		
@@ -1612,7 +1783,7 @@ final class Shadowcmd
 			$player->message(sprintf('The spell %s is unknown.', $sn));
 			return false;
 		}
-		if (0 >= ($level = $player->getSpellBaseLevel($sn))) {
+		if (0 > ($level = $player->getSpellBaseLevel($sn))) {
 			$player->message(sprintf('You need to learn the spell %s first.', $sn));
 			return false;
 		}
@@ -1719,6 +1890,57 @@ final class Shadowcmd
 		return true;
 	}
 	
+	public static function on_gml(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (false !== ($error = self::checkCreated($player))) {
+			$bot->reply($error);
+			return false;
+		}
+		if (count($args) !== 3) {
+			$bot->reply(Shadowhelp::getHelp($player, 'gml'));
+			return false;
+		}
+		$server = $player->getUser()->getServer();
+		if (false === ($user = $server->getUserByNickname($args[0]))) {
+			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
+			return false;
+		}
+		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
+			$bot->reply(sprintf('The player %s is unknown.', $args[0]));
+			return false;
+		}
+		if (false !== ($error = self::checkCreated($target))) {
+			$bot->reply(sprintf('The player %s has not started a game yet.', $args[0]));
+			return false;
+		}
+
+		$p = $target->getParty();
+		$a = $p->getAction();
+		if ($a !== SR_Party::ACTION_INSIDE && $a !== SR_Party::ACTION_OUTSIDE) {
+			$bot->reply('The party with '.$args[0].' is moving.');
+			return false;
+		}
+		
+		if (false === ($city = Shadowrun4::getCity($args[1]))) {
+			$bot->reply('The city '.$args[1].' is unknown');
+			return false;
+		}
+		
+		if (false === ($loc = $city->getLocation($args[2]))) {
+			$bot->reply(sprintf('The location %s is unknown in %s.', $args[2], $args[1]));
+			return false;
+		}
+		
+		
+		$cl = $loc->getName();
+		$p->giveKnowledge('places', $cl);
+		$bot->reply(sprintf('The party is now outside of %s.', $cl));
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		return true;
+	}
+	
 	public static function on_enter(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -1733,4 +1955,13 @@ final class Shadowcmd
 		}
 		return self::on_goto($player, array($location->getName()));
 	}
+	
+	public static function on_info(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$p = $player->getParty();
+		$l = $p->getLocationClass();
+		$player->message($l->getFoundText());
+	}
+	
 }

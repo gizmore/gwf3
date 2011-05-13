@@ -1,7 +1,7 @@
 <?php
 final class Redmond_Burglar extends SR_NPC
 {
-	public function getNPCLevel() { return 1; }
+	public function getNPCLevel() { return 2; }
 	public function getNPCPlayerName() { return 'Burglar'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }

@@ -16,10 +16,15 @@ final class Redmond_Ares extends SR_Store
 			array('Ammo_7mm'),
 			array('Ammo_9mm'),
 			array('Flashbang'),
+			array('SmallFirstAid'),
+			array('FirstAid'),
+			array('SportBow'),
+			array('Ammo_Arrow'),
 		);
 	}
 	public function getFoundPercentage() { return 60.00; }
 	public function getFoundText() { return sprintf('You found the local Ares weapon store. You won`t get heavy or illegal stuff here.'); }
+	public function getHelpText(SR_Player $player) { return "You can use #tt1, #tt2, #view, #buy and #sell here."; }
 	public function getEnterText(SR_Player $player) { return "You enter the Ares weapon store. Two dwarfs are behind the counter. One of the Ares sale officers greets you."; }
 } 
 ?>

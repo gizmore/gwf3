@@ -8,8 +8,9 @@ abstract class SR_Spell
 	public abstract function getManaCost(SR_Player $player);
 	public abstract function getHelp(SR_Player $player);
 	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
+	public abstract function getCastTime($level);
 
-	public function getDistance() { return 10.0; }
+	public function getDistance() { return 20.0; }
 	public function getRequirements() { return array(); }
 	
 	##############
@@ -108,12 +109,14 @@ abstract class SR_Spell
 				$args[] = rand(1, $player->getEnemyParty()->getMemberCount());
 			}
 		}
+		
 		else
 		{
 			if (count($args) === 0) {
 				$args[] = $player->getName();
 			}
 		}
+		
 		if (false === ($target = $this->getTarget($player, $args))) {
 			return false;
 		}
@@ -129,6 +132,10 @@ abstract class SR_Spell
 		$level = $this->getLevel($player);
 		$hits = $this->dice($player, $target, $level);
 		
+		if ($player->isFighting()) {
+			$player->busy($this->getCastTime($level));
+		}
+		
 		if ($hits < 10) {
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);
@@ -141,7 +148,7 @@ abstract class SR_Spell
 		return $this->cast($player, $target, $level, $hits);
 	}
 	
-	private function dice(SR_Player $player, SR_Player $target, $level)
+	protected function dice(SR_Player $player, SR_Player $target, $level)
 	{
 		return $this->isOffensive() ? $this->diceOffensive($player, $target, $level) : $this->diceDefensive($player, $target, $level);
 	}
@@ -155,7 +162,7 @@ abstract class SR_Spell
 		$defense = round($target->get('essence') * 6);
 		$defense += round($target->get('intelligence') * 3);
 
-		return Shadowfunc::dicePool($dices, $defense, $defense);
+		return Shadowfunc::dicePool($dices, $defense, 2);
 	}
 
 	private function diceDefensive(SR_Player $player, SR_Player $target, $level)
@@ -184,14 +191,173 @@ abstract class SR_Spell
 		}
 	}
 	
-	public function announceADV(SR_Player $player, SR_Player $target, $level, $append)
+	public function announceADV(SR_Player $player, SR_Player $target, $level, $append='', $append_ep='')
 	{
-		$msg = $this->getAnnounceMessage($player, $target, $level).'. '.$append;
-		$player->getParty()->notice($msg);
+		$msg = $this->getAnnounceMessage($player, $target, $level);
+		$player->getParty()->notice($msg.$append.'.');
 		if ($this->isOffensive()) {
-			$target->getParty()->notice($msg);
+			$target->getParty()->notice($msg.$append_ep.'.');
 		}
 	}
 
+	/**
+	 * Do simple damage to a single target.
+	 * Loot the stuff, send messages.
+	 * @param SR_Player $player
+	 * @param SR_Player $target
+	 * @param int $level
+	 * @param double $damage
+	 */
+	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $damage)
+	{
+		$damage = round($damage, 1);
+		if ($damage <= 0) {
+			$append = $append_ep = ' but caused no damage';
+			$this->announceADV($player, $target, $level, $append, $append_ep);
+			return true;
+		}
+		
+		$p = $player->getParty();
+		$ep = $p->getEnemyParty();
+		$mc = $p->getMemberCount();
+		
+		
+		$target->dealDamage($damage);
+		
+		if ($target->isDead())
+		{
+			$append = $append_ep = ' and kills him with '.$damage.' damage';
+			$this->announceADV($player, $target, $level, $append, $append_ep);
+
+			# Loot him!
+			$xp = $target->getLootXP();
+			$ny = round($target->getLootNuyen() / $mc, 1);
+			
+			foreach ($p->getMembers() as $member)
+			{
+				$lxp = $xp/$mc;
+				$leveldiff = ($target->getBase('level')+1) / ($member->getBase('level')+1);
+				$lxp *= $leveldiff;
+				$lxp = round(Common::clamp($lxp, 0.01), 2);
+				$member->message(sprintf('You loot %s Nuyen and %s XP.', $ny, $lxp));
+			}
+			
+			$target->gotKilledBy($player);
+
+			if ($ep->getMemberCount() === 0) {
+				$p->onFightDone();
+			}
+			
+			return true;
+		}
+		else # just some dmg
+		{
+			$hp = $target->getHP();
+			$maxhp = $target->getMaxHP();
+			$append = " and caused {$damage} damage";
+			$append_ep = "{$append} ($hp/$maxhp)HP left.";
+			$this->announceADV($player, $target, $level, $append, $append_ep);
+			return true;
+		}
+	}
+	
+	/**
+	 * Cause damage to multiple targets.
+	 * @param SR_Player $player
+	 * @param array $damage
+	 * @param int $level
+	 */
+	public function spellDamageMultiTargets(SR_Player $player, array $damage, $level)
+	{
+		$p = $player->getParty();
+		$mc = $p->getMemberCount();
+		$ep = $p->getEnemyParty();
+		
+		$loot_xp = array();
+		$loot_ny = array();
+		foreach ($p->getMembers() as $member)
+		{
+			$loot_xp[$member->getID()] = 0;
+			$loot_ny[$member->getID()] = 0;
+		}
+		
+		
+		$out = '';
+		$out_ep = '';
+		foreach ($damage as $pid => $dmg)
+		{
+			if ($dmg <= 0) {
+				continue; 
+			}
+			
+			$target = $ep->getMemberByPID($pid);
+			$target->dealDamage($dmg);
+			
+			if ($target->isDead())
+			{
+				$xp = $target->getLootXP();
+				$nuyen = $target->getLootNuyen();
+				$target->resetXP();
+				$target->giveNuyen(-$nuyen);
+				
+				$out .= sprintf(', kills %s with %s', $target->getName(), $dmg);
+				$out_ep .= sprintf(', kills %s with %s', $target->getName(), $dmg);
+				
+				foreach ($p->getMembers() as $member)
+				{
+					$lxp = $xp/$mc;
+					$leveldiff = ($target->getBase('level')+1) / ($member->getBase('level')+1);
+					$lxp *= $leveldiff;
+					$lxp = round(Common::clamp($lxp, 0.01), 2);
+
+					$loot_xp[$member->getID()] += $lxp;
+					$loot_ny[$member->getID()] += $nuyen / $mc;
+				}
+				
+			}
+			else 
+			{
+				$out .= sprintf(', hits %s with %s damage', $target->getName(), $dmg);
+				$out_ep .= sprintf(', hits %s with %s(%s/%s)HP left', $target->getName(), $dmg, $target->getHP(), $target->getMaxHP());
+			}
+		}
+
+		if ($out === '') {
+			return;
+		}
+		
+		$out = substr($out, 2);
+		foreach ($p->getMembers() as $member)
+		{
+			$loot_out = '';
+			
+			$ny = $loot_ny[$member->getID()];
+			$xp = $loot_xp[$member->getID()];
+			
+			if ($ny > 0 || $xp > 0)
+			{
+				$loot_out = sprintf('. You loot %s Nuyen and %s XP', $ny, $xp);
+			}
+			
+			$member->message($out.$loot_out.'.');
+		}
+		
+		$out_ep = substr($out_ep, 2);
+		$ep->message($player, $out_ep.'.');
+		
+		foreach ($ep->getMembers() as $target)
+		{
+			if ($target->isDead())
+			{
+				$target->gotKilledBy($player);
+			}
+		}
+		
+		if ($ep->getMemberCount() === 0)
+		{
+			$p->onFightDone();
+		}
+	}
+	
 }
 ?>

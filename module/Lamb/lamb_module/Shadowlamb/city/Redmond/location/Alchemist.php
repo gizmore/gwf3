@@ -12,8 +12,9 @@ final class Redmond_Alchemist extends SR_Store
 			array('EmptyBottle'),
 			array('NinjaPotion'),
 			array('StrengthPotion'),
-			array('NinjaElixir'),
-			array('StrengthElixir'),
+			array('QuicknessPotion'),
+			array('AimWater'),
+			array('StimPatch', 1000),
 		);
 	}
 }

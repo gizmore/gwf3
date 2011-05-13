@@ -60,7 +60,7 @@ final class Shadowrun4
 	 */
 	public static function getParty($partyid)
 	{
-		$partyid = $partyid;
+		$partyid = (int)$partyid;
 		if (!(isset(self::$parties[$partyid]))) {
 			if (false === ($party = SR_Party::getByID($partyid))) {
 				return false;
@@ -100,6 +100,27 @@ final class Shadowrun4
 		}
 		self::$players[$playerid] = $player;
 		return $player;
+	}
+
+	/**
+	 * Get a player by lamb userid from memory.
+	 * @param int $uid
+	 */
+	public static function getPlayerByUID($uid)
+	{
+		foreach (self::$players as $player)
+		{
+			$player instanceof SR_Player;
+			$user = $player->getUser();
+			if ($user instanceof Lamb_User)
+			{
+				if ($uid === $user->getID())
+				{
+					return $player;
+				}
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -177,6 +198,9 @@ final class Shadowrun4
 			self::initItems(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
+			
+			require_once 'SR_Install.php';
+			SR_Install::onInstall(false);
 			
 			self::reloadParties();
 			

@@ -1,7 +1,7 @@
 <?php
 final class Redmond_ToughGuy extends SR_NPC
 {
-	public function getNPCLevel() { return 2; }
+	public function getNPCLevel() { return 3; }
 	public function getNPCPlayerName() { return 'Tough Guy'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
@@ -20,7 +20,7 @@ final class Redmond_ToughGuy extends SR_NPC
 		return array(
 			'nuyen' => rand(30, 40),
 			'base_hp' => rand(-2, 0),
-			'distance' => rand(-1, 3),
+			'distance' => rand(0, 2),
 		);
 	}
 	

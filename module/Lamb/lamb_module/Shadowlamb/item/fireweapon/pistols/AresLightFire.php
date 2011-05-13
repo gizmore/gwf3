@@ -1,7 +1,7 @@
 <?php
 final class Item_AresLightFire extends SR_Pistol
 {
-	public function getAttackTime() { return 30; }
+	public function getAttackTime() { return 40; }
 	public function getAmmoName() { return 'Ammo_7mm'; }
 	public function getBulletsMax() { return 6; }
 	public function getBulletsPerShot() { return 1; }

@@ -16,7 +16,7 @@ abstract class SR_Subway extends SR_Location
 			if ($arg < 1 || $arg > count($targets)) {
 				return false;
 			}
-			list($target, $price, $time) = $target[$arg];
+			list($target, $price, $time) = $targets[$arg];
 			return array($target[$arg], $this->calcTicketPrice($price, $player), $time);
 		}
 		

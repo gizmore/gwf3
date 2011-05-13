@@ -28,6 +28,7 @@ abstract class SR_NPC extends SR_Player
 	public function getNPCInventory() { return array(); }
 	public function getNPCModifiers() { return array(); }
 	public function getNPCModifiersB() { return array(); }
+	public function getNPCSpells() { return array(); }
 	public function getNPCLoot(SR_Player $player) { return array(); }
 	public function onNPCTalk(SR_Player $player, $word) { print(sprintf('IMPLEMENT: %s(%s)', __CLASS__, __METHOD__, $word)); }
 	public function onNPCTalkA(SR_Player $player, $word)
@@ -125,7 +126,8 @@ abstract class SR_NPC extends SR_Player
 	}
 	
 	/**
-	 * @param unknown_type $classname
+	 * Create an NPC and set a valid partyid.
+	 * @param string $classname
 	 * @return SR_NPC
 	 */
 	private function createNPC($classname, SR_Party $party)
@@ -198,6 +200,8 @@ abstract class SR_NPC extends SR_Player
 		
 		$npc->giveItems($inv);
 		
+		$npc->saveSpellData($this->getNPCSpells());
+		
 		$npc->healHP(10000);
 		$npc->healMP(10000);
 		
@@ -241,6 +245,9 @@ abstract class SR_NPC extends SR_Player
 	##########
 	public function combatTimer()
 	{
+		
+		
+		
 		// Exec
 		parent::combatTimer();
 	}
@@ -264,5 +271,57 @@ abstract class SR_TalkingNPC extends SR_NPC
 }
 abstract class SR_HireNPC extends SR_TalkingNPC
 {
+	const HIRE_END = 'hire';
+	
+	public function onHire(SR_Player $player, $price, $time)
+	{
+		$p = $player->getParty();
+		if ($p->hasHireling()) {
+			return "You already have a runner. I work alone.";
+		}
+		
+		if ($price > 0)
+		{
+			if ($player->getNuyen() < $price) {
+				return "I want {$price} nuyen to join join your party.";
+			}
+		}
+		
+		$this->onHireB($player, $price, $time);
+		
+		return "Ok chummers, let's go!";
+	}
+	
+	public function onHireB(SR_Player $player, $price, $time)
+	{
+		$p = $player->getParty();
+		$player->giveNuyen(-$price);
+		$npc = $this->spawn($p);
+		$npc->onHireC($player, $time);
+	}
+	
+	public function onHireC(SR_Player $player, $time)
+	{
+		$player->getParty()->addUser($this, true);
+		$this->onSetHireTime($time);
+	}
+	
+	public function onSetHireTime($time)
+	{
+		$this->setConst(self::HIRE_END, Shadowrun4::getTime() + $time);
+	}
+	
+	public function onAddHireTime($seconds)
+	{
+		$this->setConst(self::HIRE_END, $this->getConst(self::HIRE_END) + $seconds);
+	}
+	
+	public function hasToLeave()
+	{
+		if (!$this->hasConst(self::HIRE_END)) {
+			return false;
+		}
+		return $this->getConst(self::HIRE_END) < Shadowrun4::getTime();
+	}
 }
 ?>

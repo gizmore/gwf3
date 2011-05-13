@@ -6,7 +6,7 @@ abstract class SR_Store extends SR_Location
 	/**
 	 * Get the items available at the store.
 	 * @param SR_Player $player
-	 * @return array(name, price, amount, availperc)
+	 * @return array(array(name, price, amount, availperc))
 	 */
 	public abstract function getStoreItems(SR_Player $player);
 

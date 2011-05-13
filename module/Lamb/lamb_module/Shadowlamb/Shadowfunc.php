@@ -203,6 +203,35 @@ final class Shadowfunc
 		return $hits;
 	}
 	
+	public static function diceHits($mindmg, $arm, $atk, $def, SR_Player $player, SR_Player $target)
+	{
+		if ($player->isHuman())
+		{
+			if ($target->isHuman())
+			{
+				$oops = 25;
+			}
+			else # TARGET is NPC
+			{
+				$oops = 10;
+			}
+		}
+		else # NPC attack
+		{
+			if ($target->isHuman())
+			{
+				$mc = $target->getParty()->getMemberCount();
+				$oops = 2 + $mc * 3;
+			}
+			else # NPC attack NPC
+			{
+				$oops = 15;
+			}
+		}
+		$chances = (($atk*7 + $mindmg*4) / ($def*2 + $arm*2)) * $oops;
+		return Shadowfunc::dicePool((int)$chances, 3, 1);
+	}	
+	
 	#################
 	### Shortcuts ###
 	#################
@@ -225,7 +254,7 @@ final class Shadowfunc
 	##############
 	public static function getStatus(SR_Player $player)
 	{
-		return sprintf('%s %s Level:%s, HP:%s/%s%s, Attack:%s, Defense:%s, Damage:%s-%s, Armor(M/F):%s/%s, XP:%.02f, Karma:%s, ¥:%.02f, Weight:%s/%s.',
+		return sprintf('%s %s Level:%s, HP:%s/%s%s, Atk:%s, Def:%s, Dmg:%s-%s, Arm(M/F):%s/%s, XP:%.02f, Karma:%s, ¥:%.02f, Weight:%s/%s.',
 			$player->getGender(), $player->getRace(), $player->getBase('level'),
 			$player->getHP(), $player->get('max_hp'),
 			$player->get('magic') > 0 ? sprintf(', MP:%s/%s', $player->getMP(), $player->get('max_mp')) : '', 

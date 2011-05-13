@@ -1,1 +1,1 @@
-New: [+]Flashbang. [+]12 magic spells working. [+]Receive messages inside locations from all servers.
+[+] #stop: Stop your moving party. [+] Trolls in is #fight able now

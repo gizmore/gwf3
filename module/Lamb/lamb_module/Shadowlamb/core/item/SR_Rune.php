@@ -112,6 +112,10 @@ class SR_Rune extends SR_Item
 		$i = 1.0;
 		foreach ($modifiers as $k => $v)
 		{
+			if ( ($type === self::RUNE_PRICE) && ($k === 'max_weight') ) {
+				$v /= 1000;
+			}
+			
 			if (!isset($runedata[$k])) {
 				$result += self::RUNE_PRICELESS * $v * $i;
 			} else {

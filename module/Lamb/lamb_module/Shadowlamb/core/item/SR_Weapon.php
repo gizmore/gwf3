@@ -9,6 +9,7 @@ abstract class SR_Weapon extends SR_Equipment
 
 	public function onAttackB(SR_Player $player, $arg, $armor_type)
 	{
+		
 		$p = $player->getParty();
 		$mc = $p->getMemberCount();
 		$ep = $p->getEnemyParty();
@@ -18,7 +19,9 @@ abstract class SR_Weapon extends SR_Equipment
 			return false;
 		}
 		
-		if (abs($player->getDistance()-$target->getDistance()) > $this->getItemRange()) {
+		$d = abs($player->getDistance()-$target->getDistance());
+		
+		if ($d > $this->getItemRange()) {
 			$player->getParty()->moveTowards($player, $target);
 			return false;
 		}
@@ -30,18 +33,9 @@ abstract class SR_Weapon extends SR_Equipment
 		
 		$mindmg = $player->get('min_dmg');
 		$arm = $target->get($armor_type);
-		
-		$atk = ($player->get('attack'));
+		$atk = Common::clamp(($player->get('attack')-$d*2), 2);
 		$def = ($target->get('defense'));
-		
-		$oops = $player->isHuman() ? 10 : 4;
-		
-		$chances = (($atk*6 + $mindmg*6) / ($def*3 + $arm*3)) * $oops;
-		
-		
-		
-		
-		$hits = Shadowfunc::dicePool((int)$chances, 3, 1);
+		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
 		# Dice Hits
 //		$hits = 0;
@@ -68,12 +62,21 @@ abstract class SR_Weapon extends SR_Equipment
 //			$damage = $player->get('min_dmg') + ($hits*0.1);
 //			$damage -= $target->get($armor_type);
 			$damage = round(Common::clamp($damage, 0.0, $player->get('max_dmg')), 2);
+			
+			$sharp = $player->get('sharpshooter') * 10;
+			if (rand(0, 1000) < $sharp) {
+				$damage += rand(0, $damage);
+				$crit = ' critically';
+			} else {
+				$crit = '';
+			}
+			
 			if ($damage > 0.0) {
 				$target->dealDamage($damage);
 			}
 			if ($damage === 0.0) {
 				$msg .= sprintf(' but causes no damage.');
-				$hpmsg = sprintf(' %s/%s HP left.', $target->getHP(), $target->get('max_hp')); 
+				$hpmsg = sprintf(' %s/%s HP left.', round($target->getHP(), 1), round($target->get('max_hp'), 1)); 
 			}
 			elseif ($target->isDead())
 			{
@@ -104,11 +107,11 @@ abstract class SR_Weapon extends SR_Equipment
 				
 //				$lootmsg = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayPrice($nuyen/$mc), $xp/$mc);
 //				$p->giveLoot($xp, $nuyen);
-				$msg .= sprintf(' and kills him with %s damage!', $damage);
+				$msg .= sprintf(' and kills him%s with %s damage!', $crit, $damage);
 			}
 			else
 			{
-				$msg .= sprintf(' and causes %s damage.', $damage);
+				$msg .= sprintf('%s and causes %s damage.', $crit, $damage);
 				$hpmsg = sprintf(' %s/%s HP left.', $target->getHP(), $target->get('max_hp')); 
 			}
 		}
@@ -130,6 +133,8 @@ abstract class SR_Weapon extends SR_Equipment
 				$p->onFightDone();
 			}
 		}
+		
+		return true;
 	}
 }
 ?>

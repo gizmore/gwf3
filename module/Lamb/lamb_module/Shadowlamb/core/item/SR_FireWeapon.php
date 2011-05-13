@@ -11,6 +11,11 @@ abstract class SR_FireWeapon extends SR_Weapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$sub = $player->get($this->getItemSubType());
+		
+		if ($sub === 'bows') {
+			$sub += $player->get('ninja');
+		}
+		
 		return array(
 			'attack' => $player->get('firearms') + $sub,
 			'max_dmg' => round($sub*1.2, 1),
@@ -38,10 +43,10 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$ammo->useAmount($player, $put);
 		$this->increase('sr4it_ammo', $put);
 
-		$message = sprintf(' loads %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
+		$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
 		if ($p->isFighting())
 		{
-			$p->getEnemyParty()->message($player, $message);
+//			$p->getEnemyParty()->message($player, $message);
 			$p->message($player, $message);
 		}
 		else
@@ -49,6 +54,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 			$p->notice('You'.$message);
 		}
 		
+		return true;
 	}
 	
 	
@@ -58,8 +64,12 @@ abstract class SR_FireWeapon extends SR_Weapon
 			$this->onReload($player);
 			return true;
 		}
+		
+		if (false === $this->onAttackB($player, $arg, 'farm')) {
+			return false;
+		}
 		$this->increase('sr4it_ammo', -$this->getBulletsPerShot());
-		return $this->onAttackB($player, $arg, 'farm');
+		return true;
 	}
 }
 
@@ -71,10 +81,28 @@ abstract class SR_Bow extends SR_FireWeapon
 	public function getBulletsPerShot() { return 1; }
 	public function getItemSubType() { return 'bows'; }
 }
+
 abstract class SR_Pistol extends SR_FireWeapon
 {
 	public function getItemSubType() { return 'pistols'; }
 	public function getBulletsPerShot() { return 1; }
 }
-?>
 
+abstract class SR_Shotgun extends SR_FireWeapon
+{
+	public function getItemSubType() { return 'shotguns'; }
+	public function getBulletsPerShot() { return 1; }
+}
+
+abstract class SR_SMG extends SR_FireWeapon
+{
+	public function getItemSubType() { return 'smgs'; }
+	public function getBulletsPerShot() { return 3; }
+}
+
+abstract class SR_HMG extends SR_FireWeapon
+{
+	public function getItemSubType() { return 'hmgs'; }
+	public function getBulletsPerShot() { return 5; }
+}
+?>

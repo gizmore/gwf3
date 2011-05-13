@@ -50,6 +50,7 @@ final class Lamb_User extends GDO
 	public function getServerID() { return $this->getVar('lusr_sid'); }
 	public function getName() { return $this->getVar('lusr_name'); }
 	public function isBot() { return $this->isOptionEnabled(self::BOT); }
+	public function isAdmin() { return $this->isLoggedIn() && $this->getServer()->isAdminUsername($this->getName()); }
 	
 	/**
 	 * @return Lamb_Server

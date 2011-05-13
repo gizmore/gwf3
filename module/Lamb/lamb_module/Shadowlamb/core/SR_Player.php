@@ -5,14 +5,14 @@ class SR_Player extends GDO
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
-	const XP_PER_KARMA = 8;
+	const XP_PER_KARMA = 6;
 	const XP_PER_KARMA_RAISE = 0.25;
 	const XP_PER_LEVEL = 35;
 	const XP_PER_LEVEL_RAISE = 4;
 	const WEIGHT_BASE = 6000;
 	const WEIGHT_PER_STRENGTH = 1800;
 	const FIGHT_INIT_BUSY = 25;
-	const MAX_RANGE = 20.0;
+	const MAX_RANGE = 10.0;
 	
 	# Human Starter
 	const START_HP = 4;
@@ -45,10 +45,10 @@ class SR_Player extends GDO
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon');
 	public static $RACE = array(
 		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>2,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
-		'elve' =>     array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2),
-		'halfelve' => array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2),
-		'darkelve' => array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2),
-		'woodelve' => array('body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2),
+		'elve' =>     array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2,'bows'=>1),
+		'halfelve' => array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
+		'darkelve' => array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
+		'woodelve' => array('body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
 		'human' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
 		'dwarf' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
 		'halfork' =>  array('body'=>3,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
@@ -681,7 +681,7 @@ class SR_Player extends GDO
 		return $back;
 	}
 	
-	private function saveSpellData(array $data)
+	public function saveSpellData(array $data)
 	{
 		$s = '';
 		foreach ($data as $name => $level)
@@ -781,9 +781,9 @@ class SR_Player extends GDO
 	
 	public function addEffects($effect)
 	{
-		foreach (func_get_args() as $effect)
+		foreach (func_get_args() as $ef)
 		{
-			$this->addEffect($effect);
+			$this->addEffect($ef);
 		}
 		$this->modify();
 		$this->updateEffects();
@@ -1382,7 +1382,7 @@ class SR_Player extends GDO
 		if (false === ($this->saveVar('sr4pl_'.$field, $value))) {
 			return false;
 		}
-		$this->modify();
+//		$this->modify();
 		return true;
 	}
 	
@@ -1480,6 +1480,8 @@ class SR_Player extends GDO
 	
 	public function gotKilledBy(SR_Player $killer)
 	{
+		$killer = $killer->getParty()->getKiller($killer);
+		
 		if ($killer->isHuman()) {
 			$this->gotKilledByHuman($killer);
 		} else {

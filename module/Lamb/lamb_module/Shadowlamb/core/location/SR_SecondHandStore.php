@@ -1,6 +1,7 @@
 <?php
 abstract class SR_SecondHandStore extends SR_Store
 {
+	public function getMaxItems() { return 23; }
 	public function getStoreSettingsName() { return 'SR_SHS_'.$this->getName(); }
 	public function getStoreSettings() { return GWF_Settings::getSetting($this->getStoreSettingsName(), NULL); }
 	
@@ -9,6 +10,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		if (count($data) === 0) {
 			$s = NULL;
 		} else {
+			$data = array_values($data);
 			$s = serialize($data);
 		}
 		return GWF_Settings::setSetting($this->getStoreSettingsName(), $s);
@@ -28,6 +30,15 @@ abstract class SR_SecondHandStore extends SR_Store
 	{
 		$items = $this->getStoreItems($player);
 		$items[] = array($item->getItemName(), round($price*11.5, 2));
+		
+//		shuffle($items);
+		
+		$max = $this->getMaxItems();
+		$num = count($items);
+		if ($num > $max) {
+			$items = array_slice($items, $num-$max, $max);
+		}
+		
 		return $this->saveStoreSettings($items);
 	}
 	
@@ -37,6 +48,44 @@ abstract class SR_SecondHandStore extends SR_Store
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
+	public function on_buy(SR_Player $player, array $args)
+	{
+		if (false === parent::on_buy($player, $args)) {
+			return false;
+		}
+		
+		$id = $this->getSecondsHandArgID($player, $args[0]);
+		
+		$this->removeSecondHandItem($player, $id);
+		
+		return true;
+	}
+	
+	public function getSecondsHandArgID(SR_Player $player, $arg)
+	{
+		$items = $this->getStoreItems($player);
+		if (is_numeric($arg)) {
+			return ($arg < 1 || $arg > count($items)) ? false : $arg;
+		}
+		
+		foreach ($items as $id => $data)
+		{
+			if (!strcasecmp($data[0], $arg))
+			{
+				return $id;
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	public function removeSecondHandItem(SR_Player $player, $id)
+	{
+		$items = $this->getStoreItems($player);
+		unset($items[$id-1]);
+		return $this->saveStoreSettings($items);
+	}
 	
 	public function on_sell(SR_Player $player, array $args)
 	{
