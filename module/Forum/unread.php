@@ -4,7 +4,7 @@
  * @param array(GWF_User $user)
  * @return string the counter enclosed in [counter]
  */
-function module_Forum_unread(array $args)
+function module_Forum_unread(array $args, $out = false)
 {
 	$user = $args[0]; $user instanceof GWF_User;
 	if ( ($user->isGuest()) || ($user->isWebspider()) ) {
@@ -21,6 +21,6 @@ function module_Forum_unread(array $args)
 	if (false === ($count = GDO::table('GWF_ForumThread')->selectVar('COUNT(*)', $conditions))) {
 		return '';
 	}
-	return ($count==='0') ? '' : "[$count]";
+	return $out ? "[$count]" : ( ($count==='0') ? '' : "[$count]" );
 }
 ?>
