@@ -20,8 +20,11 @@
 		<li><a href="{$root}forum">Forum{$gwff->module_Forum_unread($user)}</a></li>
 		<li><a href="{$root}irc_chat">Chat</a></li>
 		<li><a href="{$root}pm">PM{$gwff->module_PM_unread($user)}</a></li>
-		{if $user->isInGroupName(admin)}
+		<li><a href="{$root}account">Account</a></li>
+		<li><a href="{$root}profile_settings">Profile</a></li>
+		{if $user->isAdmin()}
 		<li><a href="{$root}nanny">Admin</a></li>
+		<li><a href="{$root}index.php?mo=PageBuilder&me=Admin">CMS</a></li>
 		{/if}
 		<li><a href="{$root}logout">Logout</a>[<a href="{$root}account">{$user->display('user_name')}</a>]</li>
 
