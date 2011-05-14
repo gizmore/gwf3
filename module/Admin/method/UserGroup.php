@@ -57,7 +57,7 @@ final class Admin_UserGroup extends GWF_Method
 			'form_action' => $this->getMethodHref('&uid='.$user->getID()),
 			'form_add' => $form->templateX($module->lang('ft_add_to_group')),
 			'user' => $user,
-			'groups' => $user->getVar('user_groups'), 
+			'groups' => $user->getGroups(), 
 		);
 		return $module->templatePHP('usergroup.php', $tVars);
 	}
@@ -73,14 +73,14 @@ final class Admin_UserGroup extends GWF_Method
 	
 	private function getGroupSelect(Module_Admin $module, GWF_User $user)
 	{
-		$groups = GDO::table('GWF_Group')->selectAll('group_name');
+		$groups = GDO::table('GWF_Group')->selectAll('group_id, group_name');
 		$data = array();
 		$data[] = array($module->lang('sel_group'), 0);
 		foreach ($groups as $group)
 		{
-			if (!$user->isInGroupID($group->getID()))
+			if (!$user->isInGroupID($group['group_id']))
 			{
-				$data[] = array($group->getVar('group_name'), $group->getID());
+				$data[] = array($group['group_name'], $group['group_id']);
 			}
 		}
 		
