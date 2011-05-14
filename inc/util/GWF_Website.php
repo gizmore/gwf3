@@ -39,6 +39,26 @@ final class GWF_Website
 	public static function setPageTitleAfter($text) { self::$PAGE_TITLE_AFTER = $text; }
 	public static function displayPageTitle() { return htmlspecialchars(self::$PAGE_TITLE_PRE.self::$PAGE_TITLE.self::$PAGE_TITLE_AFTER); }
 	
+	############
+	### Meta ###
+	############
+	private static $META = array();
+	public static function addMeta($name, $content, $equiv = false)
+	{
+		self::$META[] = array($name, $content, $equiv);
+	}
+	public static function displayMETA($html = false)
+	{
+		$back = '';
+		$xhtml = ($html ? '>' : ' />') . "\n\t";
+		foreach (self::$META as $meta)
+		{
+			$eq = ($meta[2] ? 'http-equiv' : 'name');
+			$back .= sprintf('<meta %s="%s" content="%s"%s', $eq, $meta[0], $meta[1], $xhtml);
+		}
+		return $back;
+	}
+
 	#################
 	### Meta Tags ###
 	#################
@@ -51,7 +71,7 @@ final class GWF_Website
 	{
 		self::$META_TAGS .= $s;
 	}
-	
+
 	##################
 	### Meta Descr ###
 	##################
@@ -123,6 +143,7 @@ final class GWF_Website
 		$tVars = array(
 			'page_title' => self::displayPageTitle(),
 			'language' => GWF_Language::getCurrentISO(),
+			'meta' => self::displayMETA(),
 			'meta_tags' => self::$META_TAGS,
 			'meta_descr' => self::$META_DESCR,
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
@@ -160,10 +181,10 @@ final class GWF_Website
 	public static function displayCSS($html = false)
 	{
 		$back = '';
-		$xhtml = ($html ? '>' : ' />');
+		$xhtml = ($html ? '>' : ' />') . "\n\t";
 		foreach (self::$CSS as $file)
 		{
-			$back .= sprintf('<link rel="stylesheet" type="text/css" href="%s"' . $html, $file);
+			$back .= sprintf('<link rel="stylesheet" type="text/css" href="%s"%s', $file, $xhtml);
 		}
 		return $back;
 	}
