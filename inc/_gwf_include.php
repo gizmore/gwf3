@@ -13,7 +13,11 @@ if (!defined('GWF_HAVE_CONFIG'))
 if (isset($_SERVER['REQUEST_URI']))
 {
 	if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2}/)#', $_SERVER['REQUEST_URI'], $matches)) {
-		define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG.$matches[1]);
+		if ($matches[1] === 'pm/') {
+			define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG);
+		} else {
+			define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG.$matches[1]);
+		}
 	} else {
 		define('GWF_WEB_ROOT', GWF_WEB_ROOT_NO_LANG);
 	}
