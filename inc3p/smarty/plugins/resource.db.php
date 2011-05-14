@@ -61,7 +61,7 @@ function smarty_resource_db_secure($tpl_name, &$smarty) { return true; }
 function smarty_resource_db_trusted($tpl_name, &$smarty) {}
 
 ### source
-function smartyPBSimilar(array $result)
+function smartyPBSimilar(Module_PageBuilder $module, array $result)
 {
 	$db = gdo_db();
 	$query = 'SELECT page_title, page_url, page_lang FROM '.GWF_TABLE_PREFIX.'page WHERE page_otherid='.$result['oid'].' AND page_id!='.$result['pid'];
