@@ -12,8 +12,9 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 		$player->giveXP($xp);
 		$player->giveNuyen($ny);
 		
-		$scalps = $player->getInvItemByName('PunkScalp');
-		$scalps->deleteItem($player);
+		if (false !== ($scalps = $player->getInvItemByName('PunkScalp'))) {
+			$scalps->deleteItem($player);
+		}
 
 		$quest = SR_Quest::getQuest($player, 'Redmond_AresDwarf_I');
 		if ($quest->isDone($player)) {

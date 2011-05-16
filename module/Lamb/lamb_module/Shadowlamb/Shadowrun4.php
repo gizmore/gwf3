@@ -3,9 +3,12 @@ require_once 'Shadowcmd.php';
 require_once 'Shadowfunc.php';
 require_once 'Shadowhelp.php';
 require_once 'Shadowrap.php';
+require_once 'Shadowshout.php';
 
 final class Shadowrun4
 {
+	const KICK_IDLE_TIMEOUT = 7200; # 2h
+	
 	####################
 	### Game Masters ###
 	####################
@@ -50,6 +53,7 @@ final class Shadowrun4
 		$pid = $party->getID();
 		if (!isset(self::$parties[$pid]))
 		{
+			$party->setTimestamp(self::getTime());
 			self::$parties[$pid] = $party;
 		}
 	}
@@ -73,14 +77,16 @@ final class Shadowrun4
 	public static function removeParty(SR_Party $party)
 	{
 		$partyid = $party->getID();
-//		$party->setDeleted(true);
+		foreach ($party->getMembers() as $member)
+		{
+			self::removePlayer($member);
+		}
 		unset(self::$parties[$partyid]);
 	}
 	
 	public static function removePlayer(SR_Player $player)
 	{
-		$playerid = $player->getID();
-		unset(self::$players[$playerid]);
+		unset(self::$players[$player->getID()]);
 	}
 	
 	/**
@@ -89,7 +95,7 @@ final class Shadowrun4
 	 */
 	public static function getPlayerByPID($playerid)
 	{
-		$playerid = $playerid;
+		$playerid = (int)$playerid;
 		if (isset(self::$players[$playerid]))
 		{
 			return self::$players[$playerid];
@@ -127,7 +133,7 @@ final class Shadowrun4
 	 * @param string $name
 	 * @return SR_Player
 	 */
-	public static function getPlayerByName($name, $shortname=false)
+	public static function getPlayerByName($name)
 	{
 		$name = strtolower($name);
 		foreach (self::$players as $pid => $player)
@@ -135,20 +141,47 @@ final class Shadowrun4
 			$player instanceof SR_Player;
 			if (strtolower($player->getName()) === $name)
 			{
-				return $player;
+				return self::$players[$pid];
 			}
 		}
 		return false;
 	}
 	
+	/**
+	 * Get a player By Shortname from memory. returns 0 when not found. returns -1 when ambigious.
+	 * @param string $name
+	 * @return SR_Player|false|-1
+	 */
+	public static function getPlayerByShortName($name)
+	{
+		$name = strtolower($name);
+		$byshort = array();
+		foreach (self::$players as $pid => $player)
+		{
+			$player instanceof SR_Player;
+			if ( ($player->isHuman()) && (strtolower($player->getShortName()) === $name) )
+			{
+				$byshort[] = $pid;
+			}
+		}
+		switch (count($byshort))
+		{
+			case 0: return self::getPlayerByName($name);
+			case 1: return self::$players[$byshort[0]];
+			default: return -1;
+		}
+	}
 	
 	/**
 	 * @param Lamb_User $user
 	 * @return SR_Player
 	 */
-	public static function getPlayerForUser(Lamb_User $user)
+	public static function getPlayerForUser(Lamb_User $user, $create=true)
 	{ 
 		if (false === ($player = SR_Player::getByUID($user->getID()))) {
+			if ($create === false) {
+				return false;
+			}
 			if (false === ($player = SR_Player::createHuman($user))) {
 				return false;
 			}
@@ -299,18 +332,23 @@ final class Shadowrun4
 		shuffle($partyids);
 		foreach ($partyids as $id)
 		{
-			# still alive?
+			# still there?
 			if (isset(self::$parties[$id]))
 			{
-				# Timer then
-				self::$parties[$id]->timer(self::$sr_timestamp);
+				if (self::$parties[$id]->getTimestamp() < (time()-self::KICK_IDLE_TIMEOUT))
+				{
+					self::removeParty(self::$parties[$id]);
+				}
+				else 
+				{
+					self::$parties[$id]->timer(self::$sr_timestamp);
+				}
 			}
 		}
 	}
 	
 	private static function shadowTimerWebcommands()
 	{
-//		echo __METHOD__.PHP_EOL;
 		$table = GDO::table('Lamb_IRCTo');
 		if (false === ($result = $table->select('*'))) {
 			return;

@@ -10,15 +10,32 @@ abstract class SR_City
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }
 	public function getSquareKM() { return sqrt(count($this->locations) * 2); }
-	public function getExploreETA() { return $this->getSquareKM() * 30; }
-	public function getGotoETA() { return $this->getSquareKM() * 25; }
 	public function getRespawnLocation() { return 'Redmond_Hotel'; }
+	public function onEvents(SR_Party $party) { return false; }
+	public function getImportNPCS() { return array(); }
+	
+	public function getExploreETA(SR_Party $party)
+	{
+		$eta = $this->getSquareKM() * 30;
+		$qu = Common::clamp($party->getMin('quickness')*2, 0, 30);
+		$eta -= rand(0, 10);
+		return $eta;
+	}
+	
+	public function getGotoETA(SR_Party $party)
+	{
+		$eta = $this->getSquareKM() * 25;
+		$qu = Common::clamp($party->getMin('quickness')*2, 0, 25);
+		$eta -= rand(0, 10);
+		return $eta;
+	}
 	
 	public function initNPCS($filename, $fullpath)
 	{
 		$name = substr($filename, 0, -4);
 		$classname = "{$this->name}_{$name}";
 		Lamb_Log::log("Loading NPC $classname...");
+		SR_NPC::$NPC_COUNTER++;
 		require_once $fullpath;
 		$npc = new $classname(false);
 		$npc->setNPCClassName($classname);
@@ -30,12 +47,11 @@ abstract class SR_City
 		$name = substr($filename, 0, -4);
 		$classname = "{$this->name}_{$name}";
 		Lamb_Log::log("Loading Location $classname...");
+		SR_Location::$LOCATION_COUNT++;
 		require_once $fullpath;
 		$location = new $classname($classname);
 		$this->locations[strtolower($name)] = $location;
 	}
-	
-	public function getImportNPCS() { return array(); }
 	
 	public function onInit()
 	{
@@ -92,6 +108,34 @@ abstract class SR_City
 		}
 	}
 	
+	public function onHunt(SR_Party $party, $done)
+	{
+		if ($done === true)
+		{
+			$this->onHunted($party);
+		}
+		elseif (!$this->hasLostHuntTarget($party))
+		{
+			$this->cityMovement($party);
+		}
+	}
+	
+	private function hasLostHuntTarget(SR_Party $party)
+	{
+		if (false === ($target = $party->getHuntTarget())) {
+			
+		}
+		elseif ($target->getParty()->getCity() !== $party->getCity()) {
+			$party->notice(sprintf('%s has left %s.', $target->getName(), $party->getCity()));
+		}
+		else {
+			return false;
+		}
+		
+		$this->onLostHuntTarget($party);
+		return true;
+	}
+	
 	private function onExplored(SR_Party $party)
 	{
 		$cityname = $this->getName();
@@ -130,19 +174,63 @@ abstract class SR_City
 	{
 		$location = $this->getLocation($party->getTarget());
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
-		# TODO: Announce it!
-		
 		$location->onEnter($party->getLeader());
+		
+		# TODO: Announce it!
 	}
 	
-	public function onEvents(SR_Party $party) { return false; }
+	private function onLostHuntTarget(SR_Party $party)
+	{
+		$loc = $party->getCity();
+		$party->notice(sprintf('You have lost your target and continue in the streets of %s.', $loc));
+		$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
+	}
+	
+	private function onHunted(SR_Party $party)
+	{
+		if (false === ($target = $party->getHuntTarget())) {
+			$this->onLostHuntTarget($party);
+			return;
+		}
+		
+		$ep = $target->getParty();
+		switch ($ep->getAction())
+		{
+			case SR_Party::ACTION_OUTSIDE:
+			case SR_Party::ACTION_SLEEP:
+			case SR_Party::ACTION_INSIDE:
+				$loc = $ep->getLocation($ep->getAction());
+				$party->giveKnowledge('places', $loc);
+				$party->notice(sprintf('You found %s at %s with a party of %s members.', $target->getName(), $loc, $ep->getMemberCount()));
+				$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
+				break;
+			case SR_Party::ACTION_EXPLORE:
+			case SR_Party::ACTION_GOTO:
+			case SR_Party::ACTION_HUNT:
+				$loc = $party->getCity();
+				$party->notice(sprintf('You found %s in the streets of %s.', $target->getName(), $loc));
+				$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
+				$party->talk($ep, true);
+				break;
+				
+			case SR_Party::ACTION_TALK:
+			case SR_Party::ACTION_FIGHT:
+				$party->setETA(rand(10, 30));
+				$party->setContactEta(rand(5, 20));
+				break;
+			
+			case SR_Party::ACTION_DELETE:
+			case SR_Party::ACTION_TRAVEL:
+				$this->onLostHuntTarget($party);
+				break;
+		}
+	}
 	
 	private function cityMovement(SR_Party $party)
 	{
 		if (!$party->canMeetEnemies()) {
 			return false;
 		}
-		
 		switch (rand(1, 4))
 		{
 			case 1: $b = $this->partyContact($party); break;
@@ -150,11 +238,6 @@ abstract class SR_City
 			case 3: $b = $this->enemyContact($party, true); break;
 			case 4: $b = $this->onEvents($party); break;
 		}
-		
-		if (!$b) {
-			$party->setContactEta(2);
-		}
-		
 		return $b;
 	}
 	
@@ -204,14 +287,16 @@ abstract class SR_City
 		}
 		
 		$npcs = array();
+		$x = 200;
 		do 
 		{
 			$contact = false;
 			
-			if (false !== ($npc = Shadowfunc::randomData($possible, $total, $total*1.5)))
+			if (false !== ($npc = Shadowfunc::randomData($possible, $total, $x*100)))
 			{
 				$contact = true;
 				$npcs[] = $npc;
+				$x += 100;
 			}
 			
 			if (count($npcs) >= ($mc+1)) {

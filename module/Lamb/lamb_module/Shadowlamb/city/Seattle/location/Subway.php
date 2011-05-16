@@ -5,10 +5,10 @@ final class Seattle_Subway extends SR_Subway
 	public function getFoundPercentage() { return 100.00; }
 	public function getFoundText() { return 'You found the Seattle subway. You can travel to other cities from here.'; }
 	
-	public function getSubwayTargets()
+	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
-			'Redmond_Subway', 100, 900,
+			array('Redmond_Subway', 100, 900),
 		);
 	}
 	

@@ -20,6 +20,7 @@ abstract class SR_Weapon extends SR_Equipment
 		}
 		
 		$d = abs($player->getDistance()-$target->getDistance());
+		$d2 = Common::clamp($d-2, 0);
 		
 		if ($d > $this->getItemRange()) {
 			$player->getParty()->moveTowards($player, $target);
@@ -33,7 +34,7 @@ abstract class SR_Weapon extends SR_Equipment
 		
 		$mindmg = $player->get('min_dmg');
 		$arm = $target->get($armor_type);
-		$atk = Common::clamp(($player->get('attack')-$d*2), 2);
+		$atk = round(Common::clamp(($player->get('attack')-$d2*1.2), 1));
 		$def = ($target->get('defense'));
 		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
@@ -60,10 +61,9 @@ abstract class SR_Weapon extends SR_Equipment
 		{
 			$damage = $hits * 0.1;
 //			$damage = $player->get('min_dmg') + ($hits*0.1);
-//			$damage -= $target->get($armor_type);
 			$damage = round(Common::clamp($damage, 0.0, $player->get('max_dmg')), 2);
 			
-			$sharp = $player->get('sharpshooter') * 10;
+			$sharp = Common::clamp(28 + $player->get('sharpshooter') * 7);
 			if (rand(0, 1000) < $sharp) {
 				$damage += rand(0, $damage);
 				$crit = ' critically';
@@ -71,10 +71,13 @@ abstract class SR_Weapon extends SR_Equipment
 				$crit = '';
 			}
 			
-			if ($damage > 0.0) {
+//			$damage -= $arm;
+//			$damage -= rand(0, $arm*10)/10;
+			
+			if ($damage > 0) {
 				$target->dealDamage($damage);
 			}
-			if ($damage === 0.0) {
+			if ($damage <= 0) {
 				$msg .= sprintf(' but causes no damage.');
 				$hpmsg = sprintf(' %s/%s HP left.', round($target->getHP(), 1), round($target->get('max_hp'), 1)); 
 			}
@@ -88,6 +91,7 @@ abstract class SR_Weapon extends SR_Equipment
 //				$target->getBase('level');
 //				$player->getBase('level');
 				
+				$pxp = 0;
 				foreach ($p->getMembers() as $member)
 				{
 					$member instanceof SR_Player;
@@ -99,11 +103,14 @@ abstract class SR_Weapon extends SR_Equipment
 					$lxp *= $leveldiff;
 					$lxp = round(Common::clamp($lxp, 0.01), 2);
 
+					$pxp += $lxp;
 					$member->giveXP($lxp);
 					$member->giveNuyen($nuyen/$mc);
 					$lootmsg[] = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayPrice($nuyen/$mc), $lxp);
 					$member->setOption(SR_Player::STATS_DIRTY, true);
 				}
+				
+				$p->givePartyXP($pxp);
 				
 //				$lootmsg = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayPrice($nuyen/$mc), $xp/$mc);
 //				$p->giveLoot($xp, $nuyen);

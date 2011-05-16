@@ -1,8 +1,8 @@
 <?php
 final class Item_FullBodyArmor extends SR_Armor
 {
-	public function getItemLevel() { return 14; }
-	public function getItemPrice() { return 12500; }
+	public function getItemLevel() { return -1; }
+	public function getItemPrice() { return 40000; }
 	public function getItemWeight() { return 7500; }
 	public function getItemRequirements() { return array('strength'=>5); }
 	public function getItemDescription() { return 'A full-protective body suite, used by special forces.'; }

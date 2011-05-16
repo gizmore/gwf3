@@ -2,15 +2,18 @@
 final class Redmond_Subway extends SR_Subway
 {
 	public function getNPCS(SR_Player $player) { return array('talk'=>'Redmond_Passenger'); }
-	
+//	public function getCommands(SR_Player $player) { return array('travel'); }
 	public function getFoundPercentage() { return 100.00; }
 	public function getFoundText() { return 'You found the Redmond subway. You can travel to other cities from here.'; }
 	
-	public function getSubwayTargets()
+	public function getSubwayTargets(SR_Player $player)
 	{
-		return array(
-			'Seattle_Subway', 100, 900,
-		);
+		$p = $player->getParty();
+		$back = array();
+		if ($p->getMin('level') >= 8) {
+			$back[] = array('Seattle_Subway', 100, 900);
+		}
+		return $back;
 	}
 	
 	public function onEnter(SR_Player $player)

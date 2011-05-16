@@ -17,9 +17,9 @@ final class Item_AresPredator extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 6,
-			'min_dmg' => 5,
-			'max_dmg' => 10,
+			'attack' => 7,
+			'min_dmg' => 4,
+			'max_dmg' => 12,
 		);
 	}
 	

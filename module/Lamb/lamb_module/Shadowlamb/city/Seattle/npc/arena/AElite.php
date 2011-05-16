@@ -14,7 +14,7 @@ final class Seattle_AElite extends SR_NPC
 			'legs' => 'Trousers',
 		);
 	}
-	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm'); }
+	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
@@ -23,8 +23,9 @@ final class Seattle_AElite extends SR_NPC
 			'strength' => 3,
 			'quickness' => 5,
 			'firearms'  => 5,
+			'smgs' => 5,
 			'distance' => 10,
-			'sharpshooter' => 2,
+			'sharpshooter' => 3,
 			'nuyen' => 100,
 			'base_hp' => 40,
 		);

@@ -1,6 +1,8 @@
 <?php
 abstract class SR_NPC extends SR_Player
 {
+	public static $NPC_COUNTER = 0;
+	
 	#################
 	### SR_Player ###
 	#################
@@ -70,7 +72,7 @@ abstract class SR_NPC extends SR_Player
 			$data['sr4pl_'.$k] = $v;
 		}
 		
-		$malus = rand(4, 5);
+		$malus = rand(2, 4);
 		$data['sr4pl_hp'] -= $malus;
 		$data['sr4pl_base_hp'] -= $malus;
 		
@@ -210,7 +212,7 @@ abstract class SR_NPC extends SR_Player
 		return $npc;
 	}
 
-	public function gotKilledByNPC(SR_NPC $player)
+	public function gotKilledByNPC(SR_Player $player)
 	{
 		Lamb_Log::log(__CLASS__.'::'.__METHOD__);
 	}

@@ -41,7 +41,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 								return;
 							}
 						}
-						$this->onLocationGlobalMessage($server, $player, $channel, $message);
+						Shadowshout::onLocationGlobalMessage($server, $player, $channel, $message);
 					}
 				}
 			}
@@ -49,51 +49,6 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	}
 	public function onTimer() { /*Shadowrun4::onTimer();*/ }
 	
-	
-	private function onLocationGlobalMessage(Lamb_Server $server, SR_Player $player, Lamb_Channel $channel, $message)
-	{
-		$sid = $server->getID();
-		$cid = $channel->getID();
-		$party = $player->getParty();
-		
-		$message = sprintf('%s in %s: "%s".', $player->getName(), $party->getLocation(), $message);
-		
-		$sent = 0;
-		foreach (Shadowrun4::getParties() as $pid => $p)
-		{
-			if ($party->sharesLocation($p))
-			{
-				foreach ($p->getMembers() as $m)
-				{
-					$m instanceof SR_Player;
-					
-					if ($m->isCreated())
-					{
-						$u = $m->getUser();
-						$s = $u->getServer();
-						$c = $s->getChannel('#shadowlamb');
-						
-						if ($sid === $s->getID())
-						{
-							if ($channel->getUserByNameI($u->getName()))
-							{
-								continue; # player already read it in irc.
-							}
-						}
-						
-						# send to player.
-						$m->message($message);
-						$sent++;
-					}
-				}
-			}
-		}
-		
-		if ($sent > 0)
-		{
-			$player->message(sprintf('%s players on other servers read your message inside the same location. Use #exit or privmsg/query/pm with the bot.'));
-		}
-	}
 	
 	###############
 	### Getters ###

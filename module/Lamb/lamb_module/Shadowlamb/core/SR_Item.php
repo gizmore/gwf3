@@ -186,6 +186,9 @@ class SR_Item extends GDO
 		if (in_array($k, SR_Player::$STATS)) {
 			return true;
 		}
+		if (false !== SR_Spell::getSpell($k)) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -382,9 +385,16 @@ class SR_Item extends GDO
 	
 	public function displayModifiersA(SR_Player $player)
 	{
-		return Shadowfunc::getModifiers($this->getItemModifiersA($player));
+		if ('' === ($out = Shadowfunc::getModifiers($this->getItemModifiersA($player)))) {
+			return '';
+		}
+		return " {$out}.";
 	}
 	
+	/**
+	 * Display Rune Modifiers.
+	 * @param SR_Player $player
+	 */
 	public function displayModifiersB(SR_Player $player)
 	{
 		if ($this->modifiers === NULL) {

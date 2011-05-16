@@ -14,8 +14,8 @@ final class Item_T250Shotgun extends SR_Shotgun
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 8,
-			'min_dmg' => 1,
+			'attack' => 14,
+			'min_dmg' => 2,
 			'max_dmg' => 14,
 		);
 	}

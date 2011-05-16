@@ -1,10 +1,10 @@
 <?php
 final class Seattle_AngryElve extends SR_NPC
 {
-	public function getNPCLevel() { return 6; }
+	public function getNPCLevel() { return 9; }
 	public function getNPCPlayerName() { return 'Angry Elve'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
-	public function canNPCMeet(SR_Party $party) { return true; }
+	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }
+//	public function canNPCMeet(SR_Party $party) { return true; }
 //	public function getNPCLoot(SR_Player $player) { return array('Cake'); }
 	public function getNPCEquipment()
 	{
@@ -12,6 +12,7 @@ final class Seattle_AngryElve extends SR_NPC
 			'weapon' => 'ElvenBow',
 			'armor' => 'ElvenVest',
 			'legs' => 'ElvenShorts',
+			'boots' => 'ElvenBoots',
 		);
 	}
 	public function getNPCInventory() { return array('Ammo_Arrow', 'Ammo_Arrow'); }
@@ -19,14 +20,14 @@ final class Seattle_AngryElve extends SR_NPC
 		return array(
 			'race' => 'woodelve',
 			'gender' => 'male',
-			'strength' => rand(1, 3),
-			'quickness' => rand(4, 5),
-			'distance' => rand(8, 14),
-			'bows' => rand(3, 5),
-			'firearms' => rand(2, 4),
-			'sharpshooter' => rand(4, 8),
-			'nuyen' => rand(50, 80),
-			'base_hp' => rand(4, 10),
+			'strength' => rand(3, 4),
+			'quickness' => rand(6, 7),
+			'distance' => rand(8, 12),
+			'bows' => rand(4, 6),
+			'firearms' => rand(4, 6),
+			'sharpshooter' => rand(3, 8),
+			'nuyen' => rand(50, 120),
+			'base_hp' => rand(6, 11),
 		);
 	}
 	

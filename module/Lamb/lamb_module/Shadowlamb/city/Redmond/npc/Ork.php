@@ -4,7 +4,7 @@ final class Redmond_Ork extends SR_NPC
 	public function getNPCLevel() { return 5; }
 	public function getNPCPlayerName() { return 'AngryOrk'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCMeetPercent(SR_Party $party) { return 70.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 80.00; }
 	
 	public function getNPCModifiers()
 	{

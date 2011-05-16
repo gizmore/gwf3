@@ -8,9 +8,9 @@ final class Item_Fists extends SR_NinjaWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack'  => 5.0,
+			'attack'  => 4.0,
 			'min_dmg' => 0.0,
-			'max_dmg' => 5.0,
+			'max_dmg' => 4.0,
 		);
 	}
 }

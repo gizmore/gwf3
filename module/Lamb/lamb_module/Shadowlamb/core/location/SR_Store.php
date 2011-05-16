@@ -6,9 +6,62 @@ abstract class SR_Store extends SR_Location
 	/**
 	 * Get the items available at the store.
 	 * @param SR_Player $player
-	 * @return array(array(name, price, amount, availperc))
+	 * @return array(array(name, availperc, price, amount))
 	 */
 	public abstract function getStoreItems(SR_Player $player);
+	
+	/**
+	 * Filter Store Items through availability.
+	 * @param SR_Player $player
+	 */
+	public function getStoreItemsB(SR_Player $player)
+	{
+		$key = $this->getStoreItemsKey();
+		if ($player->hasTemp($key)) {
+			return $player->getTemp($key);
+		}
+		
+		$rep = Common::clamp($player->get('reputation'), 0, 25) * 0.5;
+		$items = $this->getStoreItems($player);
+		$back = array();
+		$unique = false;
+		foreach ($items as $i => $data)
+		{
+			$avail = isset($data[1]) ? $data[1] : 100.0;
+			$avail += $rep;
+			if (Shadowfunc::dicePercent($avail))
+			{
+				$back[] = $data;
+			}
+			else
+			{
+				$unique = true;
+			}
+		}
+		
+		if ($unique === true)
+		{
+			$player->setTemp($key, $back);
+		}
+		
+		return $back;
+	}
+	
+	public function getStoreItemsKey()
+	{
+		return sprintf('%s_ITEMS', $this->getName());
+	}
+	
+	public function onEnter(SR_Player $player)
+	{
+		$p = $player->getParty();
+		$key = $this->getStoreItemsKey();
+		foreach ($p->getMembers() as $m)
+		{
+			$m->unsetTemp($key);
+		}
+		parent::onEnter($player);
+	}
 
 	public function calcSellPrice(SR_Player $player, SR_Item $item)
 	{
@@ -18,7 +71,7 @@ abstract class SR_Store extends SR_Location
 	
 	public function getStoreItem(SR_Player $player, $itemname)
 	{
-		$items = $this->getStoreItems($player);
+		$items = $this->getStoreItemsB($player);
 		$data = false;
 		if (is_numeric($itemname))
 		{
@@ -49,11 +102,12 @@ abstract class SR_Store extends SR_Location
 	
 	private function createItemFromData(SR_Player $player, array $data)
 	{
-		$amount = isset($data[2]) ? $data[2] : true;
+		$avail = isset($data[1]) ? $data[1] : 100.0;
+		$amount = isset($data[3]) ? $data[3] : true;
 		if (false === ($item = SR_Item::createByName($data[0], $amount, false))) {
 			return false;
 		}
-		$price = isset($data[1]) ? $data[1] : $item->getItemPrice();
+		$price = isset($data[2]) ? $data[2] : $item->getItemPrice();
 		$price = Shadowfunc::calcBuyPrice($price, $player);
 		$item->setStorePrice($price);
 		return $item;
@@ -89,7 +143,7 @@ abstract class SR_Store extends SR_Location
 		$player->setOption(SR_Player::RESPONSE_ITEMS);
 		
 		$back = '';
-		$items = $this->getStoreItems($player);
+		$items = $this->getStoreItemsB($player);
 		
 		if (count($items) === 0) {
 			return 'There are no items here.';

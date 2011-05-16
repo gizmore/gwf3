@@ -67,12 +67,14 @@ final class Shadowhelp
 			'range' => 'In combat you have a range and position. Party A has positive position and Party B has negative postition. You need to be in range for weapons and spells.',
 			'school' => 'You should go to school and learn more skills.',
 			'location' => "In Shadowlamb each party has a location. There are multiple cities or buildings with lots of locations. You can {$c}goto locations and {$c}explore your current city to find more. Check your {$c}kp to see all your known places in the current city.",
-		
+			'npc' => 'Currently there exist '.SR_NPC::$NPC_COUNTER.' different NPCs in '.SR_Location::$LOCATION_COUNT.' locations.',
+			'distance' => "Imagine the combat as a line. +10 +8 +6 +4 +2 +0 -2 -4 -6 -8 -10. One party starts in the positive, the other in the negative. You can set your default distance with {$c}sd.",
+			'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. {$c}upgrade the number of modifiers is way more complex than {$c}upgrade a single modifier.",
 			# Eastereggs
 			'jmoncayo' => 'jmoncayo is the founder of the \'School of Fireweapons\' in Redmond.',
 			'caesum' => 'Caesum is the founder of the \'School of Cryptography and applied Math\' in Seattle.',
-			'livinskull' => 'A lost soul who still thinks Shadowlamb2 is better than Shadowlamb3, because he got used to it. He is also well known for LivinOS, an operating system that fits on every medium, including a sand grain.',
-			
+			'livinskull' => 'livinskull is the founder of the "School of Computers" in the Amerindian Area.',
+			'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
 			# Stats
 			'atk' => 'Your chances to hit.',
 			'def' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',
@@ -87,7 +89,7 @@ final class Shadowhelp
 			'rune' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 			'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 		
-			'shadowlamb' => "Shadowlamb is a full featured mmorpg. You can create parties, solve quests, runecraft your items and learn magic spells. It combines multiple irc networks into a single gameworld, and is thus unique among all irc games.",
+			'shadowlamb' => "Shadowlamb is a full featured mmorpg. You can create parties, solve quests, runecraft your items and learn magic spells. It combines multiple irc networks into a single gameworld, and thus is unique among all irc games.",
 		);
 
 		# Commands

@@ -9,9 +9,9 @@ final class Item_LongSword extends SR_MeleeWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 8.5, 
+			'attack' => 7.5, 
 			'min_dmg' => 2.5,
-			'max_dmg' => 9.0,
+			'max_dmg' => 8.5,
 		);
 	}
 }

@@ -2,7 +2,7 @@
 abstract class SR_MeleeWeapon extends SR_Weapon
 {
 	public function getItemSubType() { return 'melee'; }
-	public function getItemRange() { return 0.50; }
+	public function getItemRange() { return 2.0; }
 
 	public function onReload(SR_Player $player) { $player->message('You can not reload a melee weapon? Oo'); }
 	

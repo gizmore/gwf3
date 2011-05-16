@@ -2,13 +2,24 @@
 abstract class SR_Subway extends SR_Location
 {
 	# array(array($target, $price, $time))
-	public abstract function getSubwayTargets();
+	public abstract function getSubwayTargets(SR_Player $player);
 	
 	public function getLeaderCommands(SR_Player $player) { return array('travel'); }
 	
+	public function calcTicketPrice($price, SR_Player $player)
+	{
+		$neg = Common::clamp($player->get('negotiation'), 0, 10) * 0.01;
+		$mc = $player->getParty()->getMemberCount();
+		$price = $price * $mc;
+		
+		$price = $price * (1.0 - $neg);
+		
+		return $price;
+	}
+	
 	private function getSubwayTarget(SR_Player $player, $arg)
 	{
-		$targets = $this->getSubwayTargets();
+		$targets = $this->getSubwayTargets($player);
 		
 		if (is_numeric($arg))
 		{
@@ -16,8 +27,9 @@ abstract class SR_Subway extends SR_Location
 			if ($arg < 1 || $arg > count($targets)) {
 				return false;
 			}
+			$arg--;
 			list($target, $price, $time) = $targets[$arg];
-			return array($target[$arg], $this->calcTicketPrice($price, $player), $time);
+			return array($target, $this->calcTicketPrice($price, $player), $time);
 		}
 		
 		$arg = strtolower($arg);
@@ -35,7 +47,24 @@ abstract class SR_Subway extends SR_Location
 	
 	private function showSubwayTargets(SR_Player $player)
 	{
+		$bot = Shadowrap::instance($player);
+		$targets = $this->getSubwayTargets($player);
+		$out = '';
 		
+		foreach ($targets as $i => $data)
+		{
+			list($target, $price, $time) = $data;
+			$out .= sprintf(', %s:%s(%s)', $i+1, $target, $price);
+		}
+		
+		if ($out === '') {
+			$out = 'There are no trains planned for today.';
+		}
+		else {
+			$out = substr($out, 2);
+		}
+		
+		$bot->reply($out);
 	}
 	
 	public function on_travel(SR_Player $player, array $args)

@@ -181,6 +181,14 @@ final class Shadowfunc
 		return self::dice(1000000, round($percent*10000));
 	}
 	
+	public static function diceFloat($min, $max, $precision)
+	{
+		$p = pow(10, $precision);
+		$min *= $p;
+		$max *= $p;
+		return rand($min, $max) / $p;
+	}
+	
 	public static function dice($n, $min)
 	{
 		return rand(1, $n) <= $min;
@@ -205,31 +213,32 @@ final class Shadowfunc
 	
 	public static function diceHits($mindmg, $arm, $atk, $def, SR_Player $player, SR_Player $target)
 	{
+		$ep = $target->getParty();
 		if ($player->isHuman())
 		{
 			if ($target->isHuman())
 			{
-				$oops = 25;
+				$oops = rand(80, 250) / 10;
 			}
 			else # TARGET is NPC
 			{
-				$oops = 10;
+				$oops = rand(80, 160) / 10;
 			}
 		}
 		else # NPC attack
 		{
 			if ($target->isHuman())
 			{
-				$mc = $target->getParty()->getMemberCount();
-				$oops = 2 + $mc * 3;
+				$rand = rand(8, 26) / 10;
+				$oops = $rand + $ep->getMemberCount()*1.3 + $ep->getMax('level')*0.1;
 			}
 			else # NPC attack NPC
 			{
-				$oops = 15;
+				$oops = rand(15, 25);
 			}
 		}
-		$chances = (($atk*7 + $mindmg*4) / ($def*2 + $arm*2)) * $oops;
-		return Shadowfunc::dicePool((int)$chances, 3, 1);
+		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops;
+		return Shadowfunc::dicePool(round($chances), round($def)+1, round(sqrt($def)));
 	}	
 	
 	#################
@@ -583,6 +592,22 @@ final class Shadowfunc
 	#############
 	### Drops ###
 	#############
+	/**
+	 * Loot at least N items.
+	 * @param SR_Player $player
+	 * @param int $level
+	 * @param int $n
+	 */
+	public static function randLootNItems(SR_Player $player, $level, $n)
+	{
+		$loot = array();
+		while (count($loot) < $n)
+		{
+			$loot = array_merge($loot, self::randLoot($player, $level));
+		}
+		return $loot;
+	}
+	
 	/**
 	 * Get random loot for a player.
 	 * @param SR_Player $player

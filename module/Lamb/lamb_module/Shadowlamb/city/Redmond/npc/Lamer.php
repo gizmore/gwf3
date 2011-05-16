@@ -25,9 +25,10 @@ final class Redmond_Lamer extends SR_NPC
 	{
 		return array(
 			'nuyen' => rand(10, 20),
-			'base_hp' => rand(-7, -5),
+			'base_hp' => rand(-5, -4),
 			'distance' => rand(0, 2),
 			'strength' => 1,
+			'quickness' => 1,
 		);
 	}
 	public function getNPCModifiersB()

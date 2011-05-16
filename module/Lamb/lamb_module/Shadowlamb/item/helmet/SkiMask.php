@@ -9,8 +9,8 @@ final class Item_SkiMask extends SR_Helmet
 	{
 		return array(
 			'defense' => 0.3,
-			'marm' => 1.2,
-			'farm' => 0.4,
+			'marm' => 0.8,
+			'farm' => 0.3,
 		);
 	}
 	

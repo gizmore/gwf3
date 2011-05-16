@@ -223,7 +223,6 @@ abstract class SR_Spell
 		
 		
 		$target->dealDamage($damage);
-		
 		if ($target->isDead())
 		{
 			$append = $append_ep = ' and kills him with '.$damage.' damage';
@@ -232,6 +231,7 @@ abstract class SR_Spell
 			# Loot him!
 			$xp = $target->getLootXP();
 			$ny = round($target->getLootNuyen() / $mc, 1);
+			$pxp = 0;
 			
 			foreach ($p->getMembers() as $member)
 			{
@@ -239,8 +239,13 @@ abstract class SR_Spell
 				$leveldiff = ($target->getBase('level')+1) / ($member->getBase('level')+1);
 				$lxp *= $leveldiff;
 				$lxp = round(Common::clamp($lxp, 0.01), 2);
+				$pxp += $lxp;
+				$member->giveXP($lxp);
+				$member->giveNuyen($ny);
 				$member->message(sprintf('You loot %s Nuyen and %s XP.', $ny, $lxp));
 			}
+			
+			$p->givePartyXP($pxp);
 			
 			$target->gotKilledBy($player);
 
@@ -302,17 +307,19 @@ abstract class SR_Spell
 				
 				$out .= sprintf(', kills %s with %s', $target->getName(), $dmg);
 				$out_ep .= sprintf(', kills %s with %s', $target->getName(), $dmg);
-				
+				$pxp = 0;
 				foreach ($p->getMembers() as $member)
 				{
 					$lxp = $xp/$mc;
 					$leveldiff = ($target->getBase('level')+1) / ($member->getBase('level')+1);
 					$lxp *= $leveldiff;
 					$lxp = round(Common::clamp($lxp, 0.01), 2);
+					$pxp += $lxp;
 
 					$loot_xp[$member->getID()] += $lxp;
 					$loot_ny[$member->getID()] += $nuyen / $mc;
 				}
+				$p->givePartyXP($pxp);
 				
 			}
 			else 
@@ -337,6 +344,8 @@ abstract class SR_Spell
 			if ($ny > 0 || $xp > 0)
 			{
 				$loot_out = sprintf('. You loot %s Nuyen and %s XP', $ny, $xp);
+				$member->giveNuyen($ny);
+				$member->giveXP($xp);
 			}
 			
 			$member->message($out.$loot_out.'.');

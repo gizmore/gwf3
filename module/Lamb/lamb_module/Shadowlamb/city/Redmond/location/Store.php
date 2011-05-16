@@ -8,7 +8,7 @@ final class Redmond_Store extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Pringles', 2.50),
+			array('Pringles', 100.0, 2.50),
 			array('FirstAid'),
 			array('Cap'),
 			array('Clothes'),

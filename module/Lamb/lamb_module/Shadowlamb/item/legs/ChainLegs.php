@@ -8,9 +8,9 @@ final class Item_ChainLegs extends SR_Legs
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => -0.5,
-			'marm' => 1.8,
-			'farm' => 0.7,
+			'defense' => 0.1,
+			'marm' => 0.9,
+			'farm' => 0.5,
 		);
 	}
 }

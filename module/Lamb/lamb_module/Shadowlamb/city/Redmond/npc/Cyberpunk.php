@@ -3,7 +3,7 @@ final class Redmond_Cyberpunk extends SR_NPC
 {
 	public function getNPCLevel() { return 4; }
 	public function getNPCPlayerName() { return 'Punk'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 80.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 90.00; }
 	public function getNPCEquipment()
 	{
 		return array(

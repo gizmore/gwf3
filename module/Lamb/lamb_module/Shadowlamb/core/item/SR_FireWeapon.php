@@ -51,7 +51,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 		}
 		else
 		{
-			$p->notice('You'.$message);
+			$bot = Shadowrap::instance($player);
+			$bot->reply('You'.$message);
 		}
 		
 		return true;

@@ -1,8 +1,8 @@
 <?php
 final class Seattle extends SR_City
 {
-	public function getArriveText() { return 'You arrive at Seattle. It is a big city with a bunch of slums and a big commercial centrum.		return "Seattle is a big city with a bunch of slums and a big commercial centrum.'; }
-	public function getSquareKM() { return 10; }
+	public function getArriveText() { return 'You arrive at Seattle. It is a big city with a bunch of slums and a big commercial centrum.'; }
+	public function getSquareKM() { return 8; }
 	public function onEvents(SR_Party $party)
 	{
 		$this->onEventWallet($party);

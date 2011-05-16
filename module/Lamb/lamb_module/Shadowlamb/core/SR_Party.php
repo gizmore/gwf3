@@ -2,6 +2,7 @@
 final class SR_Party extends GDO
 {
 	const MAX_MEMBERS = 7;
+	const XP_PER_LEVEL = 50;
 	
 	const NPC_PARTY = 0x01;
 	const BAN_ALL = 0x02;
@@ -16,7 +17,6 @@ final class SR_Party extends GDO
 	const ACTION_DELETE = 'delete';
 	const ACTION_TALK = 'talk';
 	const ACTION_FIGHT = 'fight';
-//	const ACTION_SEARCH = 'search';
 	const ACTION_INSIDE = 'inside';
 	const ACTION_OUTSIDE = 'outside';
 	const ACTION_SLEEP = 'sleep';
@@ -24,12 +24,16 @@ final class SR_Party extends GDO
 	const ACTION_EXPLORE = 'explore';
 	const ACTION_GOTO = 'goto';
 	const ACTION_HUNT = 'hunt';
-
+//	const ACTION_SEARCH = 'search';
+	
 	private $loot_user = -1;
 	private $loot_cycle = -1;
 	private $deleted = false;
 	private $members = array();
 	private $distance = array();
+	
+	private $timestamp = 0; # last event.
+	private $direction = 1; # forward
 	
 	###########
 	### GDO ###
@@ -42,7 +46,7 @@ final class SR_Party extends GDO
 		return array(
 			'sr4pa_id' => array(GDO::AUTO_INCREMENT),
 			'sr4pa_name' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 63),
-			'sr4pa_members' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, '', 255),
+			'sr4pa_members' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', 255),
 			'sr4pa_contact_eta' => array(GDO::UINT, 0),
 		
 			'sr4pa_action' => array(GDO::ENUM, 'delete', self::$ACTIONS),
@@ -56,6 +60,10 @@ final class SR_Party extends GDO
 			'sr4pa_options' => array(GDO::UINT, 0),
 			'sr4pa_ban' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			'sr4pa_distance' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', 255),
+		
+			'sr4pa_xp' => array(GDO::UINT, 0),
+			'sr4pa_xp_total' => array(GDO::UINT, 0),
+			'sr4pa_level' => array(GDO::UINT, 0),
 		);
 	}
 	
@@ -81,15 +89,22 @@ final class SR_Party extends GDO
 	public function getMemberCount() { return count($this->members); }
 	public function isLeader(SR_Player $player) { return $this->getLeader()->getID() === $player->getID(); }
 	public function isMember(SR_Player $player) { return isset($this->members[$player->getID()]); }
-	public function isTalking() { return $this->getAction() === self::ACTION_TALK; }
-	public function isFighting() { return $this->getAction() === self::ACTION_FIGHT; }
+	public function isOutsideLocation() { return strpos($this->getLocation(self::ACTION_OUTSIDE), '_') !== false; }
+	public function isInsideLocation() { return $this->getAction() === self::ACTION_INSIDE; }
+	public function isAtLocation() { return $this->isInsideLocation() || $this->isOutsideLocation(); }
 	public function getDistance(SR_Player $player) { return $this->distance[$player->getID()]; }
 	public function isMoving() { return in_array($this->getAction(), array('explore','goto','hunt'), true); }
 	public function isIdle() { return in_array($this->getAction(), array('inside','outside'), true); }
+	public function isTalking() { return $this->getAction() === self::ACTION_TALK; }
+	public function isFighting() { return $this->getAction() === self::ACTION_FIGHT; }
+	public function isHunting() { return $this->getAction() === self::ACTION_HUNT; }
 	public function isDeleted() { return $this->deleted; }
 	public function isHuman() { return $this->getLeader()->isHuman(); }
 	public function isFull() { return $this->getMemberCount() >= self::MAX_MEMBERS; }
 	public function setDeleted($b) { $this->deleted = $b; }
+	public function getTimestamp() { return $this->timestamp; }
+	public function setTimestamp($time) { $this->timestamp = $time; }
+	
 	public function hasHireling()
 	{
 		if ($this->getLeader()->isNPC()) { return false; }
@@ -113,9 +128,13 @@ final class SR_Party extends GDO
 	public function getLeader() { foreach($this->members as $pid => $player) { return $player; } }
 	public function getCity()
 	{
-		if ($this->isFighting() || $this->isTalking()) {
+		if ($this->isFighting()||$this->isTalking()) {
 			$c = $this->getVar('sr4pa_last_target');
-		} else {
+		}
+		elseif ($this->isHunting()) {
+			return $this->getHuntTargetCity();
+		}
+		else {
 			$c = $this->getTarget();
 		}
 		return Common::substrUntil($c, '_', $c);
@@ -151,6 +170,14 @@ final class SR_Party extends GDO
 	public function getTarget() { return $this->getVar('sr4pa_target'); }
 	public function getETA() { return $this->getVar('sr4pa_eta'); }
 	public function setETA($eta) { return $this->saveVar('sr4pa_eta', $eta+Shadowrun4::getTime()); }
+	
+	/**
+	 * @return SR_Player
+	 */
+	public function getHuntTarget() { return Shadowrun4::getPlayerByName($this->getHuntTargetName()); }
+	public function getHuntTargetCity() { return Common::substrFrom($this->getTarget(), ' in '); }
+	public function getHuntTargetName() { return Common::substrUntil($this->getTarget(), ' in '); }
+	
 	/**
 	 * @return SR_Party
 	 */
@@ -180,10 +207,12 @@ final class SR_Party extends GDO
 			$target = $this->getTarget();
 		}
 		if ($eta >= 0) {
-			$eta = Shadowrun4::getTime() + $eta;
+			$eta = round(Shadowrun4::getTime() + $eta);
 		} else {
 			$eta = 0;
 		}
+		
+		$this->timestamp = time();
 		
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 		
@@ -222,7 +251,8 @@ final class SR_Party extends GDO
 		{
 			$this->notice('You continue '.$this->displayAction());
 		}
-
+		
+		$this->timestamp = time();
 		
 		return true;
 	}
@@ -314,22 +344,10 @@ final class SR_Party extends GDO
 	
 	public function sharesLocation(SR_Party $p)
 	{
-		$a = $this->getAction();
-		if ($a !== self::ACTION_INSIDE && $a !== self::ACTION_OUTSIDE) {
+		if (!$this->isAtLocation()) {
 			return false;
 		}
-		if ($p->getAction() !== $a) {
-			return false;
-		}
-		if ($p->getTarget() !== $this->getTarget()) {
-			return false;
-		}
-		
-		if (strpos($p->getTarget(), '_') === false) {
-			return false; # just outside town!
-		}
-		
-		return true;
+		return ($p->getAction() === $this->getAction()) && ($p->getTarget() === $this->getTarget());
 	}
 	
 	public function setLeader(SR_Player $player)
@@ -441,6 +459,8 @@ final class SR_Party extends GDO
 	
 	private function initFightBusy($neg=1)
 	{
+		$this->direction = $neg > 0 ? -1 : +1;
+		
 		foreach ($this->members as $member)
 		{
 			$member instanceof SR_Player;
@@ -499,6 +519,9 @@ final class SR_Party extends GDO
 			'sr4pa_options' => 0,
 			'sr4pa_ban' => NULL,
 			'sr4pa_distance' => '',
+			'sr4pa_xp' => 0,
+			'sr4pa_xp_total' => 0,
+			'sr4pa_level' => 0,
 		));
 		if (false === ($party->insert())) {
 			return false;
@@ -632,7 +655,7 @@ final class SR_Party extends GDO
 //	}
 	public function moveTowards(SR_Player $player, SR_Player $target)
 	{
-		$move = 2.0; #(1.0 + $player->get('quickness')/2);
+		$move = $player->getMovePerSecond();
 //		$busy = $player->busy(25);
 		$d1 = $player->getDistance();
 		$d2 = $target->getDistance();
@@ -654,28 +677,47 @@ final class SR_Party extends GDO
 		$busy = $player->busy(25);
 		$name = $player->getName();
 		$tn = $target->getName();
-		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
-		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on distance %.01f meters.', $name, -$move, $tn, $new_d));
+		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
+		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters.', $name, -$move, $tn, $new_d));
 	}
 	
+	###############
+	### FW / BW ###
+	###############
+	public function forward(SR_Player $player) { $this->forwardB($player, $this->direction, 'forwards'); }
+	public function backward(SR_Player $player) { $this->forwardB($player, -$this->direction, 'backwards'); }
+	private function forwardB(SR_Player $player, $dir, $fwbw)
+	{
+		$move = $dir * $player->getMovePerSecond();
+		$d = $this->distance[$player->getID()] + $move;
+		$this->distance[$player->getID()] = $d;
+		$this->updateMembers();
+		
+		$message = sprintf(' moves %sm %s and is now on position %s.', $move, $fwbw, $d);
+		$this->message($player, $message);
+		$this->getEnemyParty()->message($player, $message);
+	}
+	
+	
+	############
+	### Flee ###
+	############
 	public function flee(SR_Player $player)
 	{
-		$move = 6.0; #(1.0 + $player->get('quickness')/2);
-		$d1 = $player->getDistance();
-		if ($d1 < 0) {
-			$move = -$move;
-		}
-		$this->distance[$player->getID()] += $move;
+		$ep = $this->getEnemyParty();
 		
-		$this->updateMembers();
-		$busy = $player->busy(12);
+		$q1 = $player->get('quickness');
+		$q2 = $ep->getMax('quickness');
 		
-		$name = $player->getName();
-//		$this->notice(sprintf('%s flees %.01f meters from the enemy. %ds busy.', $name, $move, $busy));
-//		$this->getEnemyParty()->notice(sprintf('%s flees %.01f meters from you.', $name, $move));
+		$min1 = 0;
+		$max1 = $q1 * 8 + $player->get('luck');
+		$r1 = rand($min1, $max1);
 		
-		$d2 = $this->getSmallestDistance($player);
-		return $d2 >= 10.0;
+		$min2 = 10 + 10 * $ep->getMemberCount();
+		$max2 = $min2 + $q2 + $ep->getMax('luck');
+		$r2 = rand($min2, $max2);
+		
+		return $r1 >= $r2;
 	}
 	
 	/**
@@ -794,8 +836,11 @@ final class SR_Party extends GDO
 	
 	public function on_talk($done)
 	{
+		$this->timestamp = time();
 		if ($this->canMeetEnemies())
 		{
+			$this->getEnemyParty()->setContactEta(-1);
+			
 			$this->popAction(true);
 			$this->setContactEta(20);
 		}
@@ -808,6 +853,7 @@ final class SR_Party extends GDO
 		}
 		else
 		{
+			$this->timestamp = time();
 			foreach ($this->members as $player)
 			{
 				$player instanceof SR_Player;
@@ -835,12 +881,13 @@ final class SR_Party extends GDO
 		$this->setContactEta(rand(15,25));
 	}
 
-	public function on_inside($done) {}
-	
-	public function on_outside($done) {}
+	public function on_inside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
+
+	public function on_outside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
 
 	public function on_sleep($done)
 	{
+		$this->timestamp = time();
 		$sleeping = count($this->members);
 		foreach ($this->members as $playerid => $player)
 		{
@@ -862,6 +909,7 @@ final class SR_Party extends GDO
 	
 	public function on_travel($done)
 	{
+		$this->timestamp = time();
 		if ($done === true)
 		{
 			$this->pushAction(self::ACTION_INSIDE);
@@ -871,19 +919,23 @@ final class SR_Party extends GDO
 	
 	public function on_explore($done)
 	{
+		$this->timestamp = time();
 		$city = $this->getCityClass();
 		$city->onExplore($this, $done);
 	}
 	
 	public function on_goto($done)
 	{
+		$this->timestamp = time();
 		$city = $this->getCityClass();
 		$city->onGoto($this, $done);
 	}
 	
 	public function on_hunt($done)
 	{
-		
+		$this->timestamp = time();
+		$city = $this->getCityClass();
+		$city->onHunt($this, $done);
 	}
 
 	public function getRandomMember()
@@ -925,5 +977,41 @@ final class SR_Party extends GDO
 		}
 		return $killer;
 	}
+	
+	###################
+	### Party Level ###
+	###################
+	public function getPartyXP() { return $this->getVar('sr4pa_xp') / 100; }
+	public function getPartyXPTotal() { return $this->getVar('sr4pa_xp_total') / 100; }
+	public function getPartyLevel() { return $this->getVar('sr4pa_level'); }
+	public function givePartyXP($xp)
+	{
+		$xp_gain = (int)round($xp*100);
+		if ($xp_gain <= 0) {
+			return true;
+		}
+		$xpl = self::XP_PER_LEVEL*100;
+		$xp = $this->getVar('sr4pa_xp') + $xp_gain;
+		$data = array('sr4pa_xp_total'=>$this->getVar('sr4pa_xp_total')+$xp);
+		$gain = (int)($xp/$xpl);
+		if ($gain > 0)
+		{
+			$data['sr4pa_level'] = $this->getVar('sr4pa_level') + $gain;
+			$xp = $xp % $xpl;
+		}
+		$data['sr4pa_xp'] = $xp;
+		
+		if (false === ($this->saveVars($data))) {
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			return false;
+		}
+		
+		if ($gain > 0) {
+			$this->notice(sprintf('The party advanced to level %s.', $this->getPartyLevel()));
+		}
+		
+		return true;
+	}
+	
 }
 ?>

@@ -12,6 +12,8 @@ require_once 'location/SR_SecondHandStore.php';
 
 abstract class SR_Location
 {
+	public static $LOCATION_COUNT = 0;
+	
 	private $name;
 	
 	public function __construct($name) { $this->name = $name; }
@@ -71,5 +73,12 @@ abstract class SR_Location
 			}
 		}
 	}
+	
+	### Global say
+	public function on_say(SR_Player $player, array $args)
+	{
+		var_dump($args);
+	}
+	
 }
 ?>

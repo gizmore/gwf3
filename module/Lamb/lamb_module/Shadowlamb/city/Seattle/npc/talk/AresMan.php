@@ -12,6 +12,8 @@ final class Seattle_AresMan extends SR_TalkingNPC
 		$bm = 'Seattle_AresMan_BM';
 		switch ($word)
 		{
+			case 'gizmore': $msg = 'We have multiple gizmo and gadgets.'; break;
+			
 			case "blackmarket":
 				if ($player->hasTemp($bm))
 				{
@@ -19,7 +21,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 				}
 				else
 				{
-					$msg = "Hmm yes, i know the guys in the blackmarket. If you like i can give you a life-long permission for $this->price NY, ".irc_bold( "yes" )." ?";
+					$msg = "Hmm yes, i know the guys in the blackmarket. If you like i can give you a life-long permission for $this->price Nuyen, {$b}yes{$b}?";
 					$player->setTemp($bm, 1);
 				}
 			case 'yes':

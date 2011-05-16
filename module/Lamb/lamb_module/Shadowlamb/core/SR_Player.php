@@ -23,6 +23,9 @@ class SR_Player extends GDO
 	const HELP = 0x02;
 	const NOTICE = 0x00;
 	const PRIVMSG = 0x04;
+	const RUNNING_MODE = 0x08;
+	const BOTTING = 0x10000;
+	const DEAD = 0x20000;
 	
 	# WWW hack
 	const WWW_OUT = 0x10;
@@ -43,20 +46,33 @@ class SR_Player extends GDO
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
 	public static $KNOWLEDGE = array('icu'=>'indian_culture','ila'=>'indian_language');
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon');
+	
+	public static $NPC_RACES = array('droid','dragon');
+	/**
+	 * Bonus values for races.
+	 */
 	public static $RACE = array(
-		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>2,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
+		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>3,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
 		'elve' =>     array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2,'bows'=>1),
 		'halfelve' => array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
 		'darkelve' => array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
 		'woodelve' => array('body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
-		'human' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
-		'dwarf' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
+		'human' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2),
+		'gnome' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
+		'dwarf' =>    array('body'=>3,'magic'=> 0,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
 		'halfork' =>  array('body'=>3,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
 		'halftroll'=> array('body'=>3,'magic'=>-2,'strength'=> 2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 0),
 		'ork' =>      array('body'=>4,'magic'=>-3,'strength'=> 3,'quickness'=>1,'wisdom'=>1,'intelligence'=>1,'charisma'=> 0),
 		'troll' =>    array('body'=>4,'magic'=>-4,'strength'=> 4,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'essence'=>-0.2),
-		'gremlin' =>  array('body'=>1,'magic'=>-5,'strength'=> 2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>3,'essence'=>-2.0),
+		'gremlin' =>  array('body'=>1,'magic'=>-5,'strength'=> 2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>3,'essence'=>-1.0),
+		#NPC
+		'droid' =>    array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-3,'reputation'=>0, 'essence'=>0),
+		'dragon' =>   array('body'=>8,'magic'=>8, 'strength'=> 8,'quickness'=>0,'wisdom'=>8,'intelligence'=>8,'charisma'=> 0,'reputation'=>12,'essence'=>2),
 	);
+	
+	/**
+	 * Base values for races.
+	 */
 	public static $RACE_BASE = array(
 		'fairy' =>    array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>1,'intelligence'=>4,'charisma'=> 3,'luck'=>1),
 		'elve' =>     array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>0,'intelligence'=>2,'charisma'=> 1,'luck'=>0),
@@ -64,12 +80,16 @@ class SR_Player extends GDO
 		'darkelve' => array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=>2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 1,'luck'=>0),
 		'woodelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=>1,'quickness'=>2,'wisdom'=>0,'intelligence'=>0,'charisma'=> 1,'luck'=>0),
 		'human' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
+		'gnome' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
 		'dwarf' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
 		'halfork' =>  array('base_hp'=>7, 'base_mp'=>-1,'body'=>2,'magic'=>-1,'strength'=>2,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
 		'halftroll'=> array('base_hp'=>8, 'base_mp'=>-2,'body'=>3,'magic'=>-1,'strength'=>2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'ork' =>      array('base_hp'=>9,'base_mp'=>-3,'body'=>3,'magic'=>-2,'strength'=>3,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
+		'ork' =>      array('base_hp'=>9,'base_mp'=>-3, 'body'=>3,'magic'=>-2,'strength'=>3,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
 		'troll' =>    array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=>3,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
 		'gremlin' =>  array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=>0,'quickness'=>2,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
+		#NPC
+		'droid' =>    array('base_hp'=>0,'base_mp'=>0, 'body'=>0,'magic'=>0,'strength'=>0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
+		'dragon' =>   array('base_hp'=>0,'base_mp'=>0, 'body'=>8,'magic'=>8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0),
 	);
 	
 	public static $GENDER = array(
@@ -153,7 +173,7 @@ class SR_Player extends GDO
 	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getServerID()); }
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
-	public function isDead() { return $this->getHP() <= 0; }
+	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
 	public function hasSkill($skill) { return $this->getBase($skill) > -1; }
 	public function isOverloaded() { return $this->get('weight') >= $this->get('max_weight'); }
 	public function hasFullHP() { return $this->getHP() == $this->getMaxHP(); }
@@ -167,6 +187,8 @@ class SR_Player extends GDO
 	public function getDistance() { return $this->getParty()->getDistance($this); }
 	public function displayNuyen() { return Shadowfunc::displayPrice($this->getNuyen()); }
 	public function isDrunk() { return $this->get('alc') >= 0.8+$this->get('body')/5+$this->get('strength')/10; }
+	public function getMovePerSecond() { return 1.0 + $this->get('quickness') * 0.15 + Shadowfunc::diceFloat(-0.2,+0.2,1); }
+	public function isRunner() { return $this->isOptionEnabled(self::RUNNING_MODE); }
 	
 	/**
 	 * @return Lamb_User
@@ -227,7 +249,7 @@ class SR_Player extends GDO
 	public static function getByUID($userid)
 	{
 		$userid = (int) $userid;
-		return self::reloadPlayer(self::table(__CLASS__)->selectFirstObject('*', "sr4pl_uid=$userid"));
+		return self::reloadPlayer(self::table(__CLASS__)->selectFirstObject('*', "sr4pl_uid={$userid}"));
 	}
 	
 	public static function getByLongName($username)
@@ -237,7 +259,7 @@ class SR_Player extends GDO
 		}
 		$username = Shadowfunc::toShortname($username);
 		$username = self::escape($username);
-		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "lusr_sid=$sid AND lusr_name='$username'"))) {
+		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "lusr_sid={$sid} AND lusr_name='{$username}'"))) {
 			return false;
 		}
 		return self::reloadPlayer($player);
@@ -1398,7 +1420,7 @@ class SR_Player extends GDO
 	{
 		$q = $this->get('quickness');
 //		$sq = round(sqrt($seconds));
-		$seconds -= $q / 3;
+		$seconds -= $q / 2;
 		$seconds += rand(1, 10) - 5;
 		return round(Common::clamp($seconds, 4));
 	}
@@ -1470,7 +1492,7 @@ class SR_Player extends GDO
 	
 	public function getLootXP()
 	{
-		return $this->getBase('strength') / 2 + ($this->getBase('quickness') / 4) + 1;
+		return round($this->getBase('strength')/2 + $this->getBase('quickness')/4 + 1.5, 1);
 	}
 	
 	public function getLootNuyen()
@@ -1490,8 +1512,12 @@ class SR_Player extends GDO
 		$this->respawn();
 	}
 	
-	public function gotKilledByNPC(SR_NPC $killer)
+	public function gotKilledByNPC(SR_Player $killer)
 	{
+		if ($this->isRunner()) {
+			$this->saveOption(self::DEAD, true);
+		}
+		$this->announceKilled($killer);
 //		Lamb_Log::log(__METHOD__);
 		# Loose an item.
 		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
@@ -1510,9 +1536,14 @@ class SR_Player extends GDO
 		}
 	}
 	
-	public function gotKilledByHuman(SR_Player $player)
+	public function gotKilledByHuman(SR_Player $killer)
 	{
-		Lamb_Log::log(__METHOD__);
+		return $this->gotKilledByNPC($killer);
+	}
+	
+	private function announceKilled(SR_Player $killer)
+	{
+		
 	}
 }
 ?>

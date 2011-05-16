@@ -14,7 +14,7 @@ final class Item_Fichetti extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 8,
+			'attack' => 11,
 			'min_dmg' => 6,
 			'max_dmg' => 12,
 		);

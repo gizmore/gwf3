@@ -29,7 +29,7 @@ abstract class SR_SecondHandStore extends SR_Store
 	public function addSecondHandItem(SR_Player $player, SR_Item $item, $price)
 	{
 		$items = $this->getStoreItems($player);
-		$items[] = array($item->getItemName(), round($price*11.5, 2));
+		$items[] = array($item->getItemName(), 100.0, round($price*11.5, 2));
 		
 //		shuffle($items);
 		
@@ -50,11 +50,14 @@ abstract class SR_SecondHandStore extends SR_Store
 	
 	public function on_buy(SR_Player $player, array $args)
 	{
-		if (false === parent::on_buy($player, $args)) {
+		if (false === ($id = $this->getSecondsHandArgID($player, $args[0]))) {
+			Shadowrap::instance($player)->reply('The item could not been found in the second hand store.');
 			return false;
 		}
 		
-		$id = $this->getSecondsHandArgID($player, $args[0]);
+		if (false === parent::on_buy($player, $args)) {
+			return false;
+		}
 		
 		$this->removeSecondHandItem($player, $id);
 		
@@ -72,7 +75,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		{
 			if (!strcasecmp($data[0], $arg))
 			{
-				return $id;
+				return $id+1;
 			}
 		}
 		

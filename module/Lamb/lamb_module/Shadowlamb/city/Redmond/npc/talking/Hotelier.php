@@ -11,7 +11,11 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 
 		if ($player->getShortName() === 'gizmore')
 		{
-			if ($word === 'fuck') {
+			if ($word === 'Seattle_AElite') {
+				SR_NPC::createEnemyParty('Seattle_AElite')->fight($player->getParty());
+				return;
+			}
+			elseif ($word === 'fuck') {
 				$player->giveItems(Shadowfunc::randLoot($player, 1111));
 				return;
 			}

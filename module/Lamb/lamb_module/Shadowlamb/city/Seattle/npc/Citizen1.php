@@ -29,7 +29,9 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	
 	public function onNPCTalk(SR_Player $player, $word)
 	{
-		$key = 'ASKED_'.$player->getID();
+		$key = 'Seattle_Citizen_Hire_'.$player->getID();
+		$key2 = 'Seattle_Citizen_Invite_'.$player->getID();
+		
 		$b = chr(2);
 		switch ($word)
 		{
@@ -66,6 +68,36 @@ final class Seattle_Citizen1 extends SR_HireNPC
 					$this->reply("Ok, let's go!");
 				}
 				break;
+				
+			case 'invite':
+				
+				$quest = SR_Quest::getQuest($player, 'Seattle_Barkeeper');
+				
+				if (!$quest->isInQuest($player)) {
+					$this->reply('You invite me to a party? Maybe try #join or #say hire.');
+					break;
+				}
+				
+				if (!$this->hasTemp($key2)) {
+					$this->setTemp($key2, rand(1,4));
+				}
+				
+				switch ($this->getTemp($key2))
+				{
+					case 1: $this->reply('Yeah, i am already invited. thanks.'); break;
+					case 2: $this->reply('No, i am not interested.'); break;
+					case 3: $this->reply('Better get a job, chummer'); break;
+					case 4:
+						$this->reply('An invitation for a big party? Sure i am in!');
+						$quest->onInviteCitizen($this, $player);
+						$this->setTemp($key2, 5);
+						break;
+					case 5:
+						$this->reply('See you there!');
+						break;
+				}
+				break;
+				
 				
 			default:
 			case 'hello':

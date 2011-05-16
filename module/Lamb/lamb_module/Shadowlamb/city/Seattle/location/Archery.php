@@ -13,7 +13,7 @@ final class Seattle_Archery extends SR_School
 			array('SportBow'),
 			array('ElvenBow'),
 //			array('DarkBow'),
-			array('Ammo_Arrow', 200, 50),
+			array('Ammo_Arrow', 100.0, 200, 50),
 		);
 	}
 	public function getFields(SR_Player $player)

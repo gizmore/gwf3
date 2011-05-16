@@ -8,9 +8,9 @@ final class Item_BikerHelmet extends SR_Helmet
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => -1.2,
-			'marm' => 2.2,
-			'farm' => 1.2,
+			'defense' => -0.8,
+			'marm' => 2.0,
+			'farm' => 1.0,
 		);
 	}
 	

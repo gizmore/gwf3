@@ -10,7 +10,7 @@ final class Item_ButchersKnife extends SR_MeleeWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => -1.0,
+			'attack' => 3.5,
 			'min_dmg' => 3.5,
 			'max_dmg' => 9.0,
 		);

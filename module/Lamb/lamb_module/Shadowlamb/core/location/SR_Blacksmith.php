@@ -34,6 +34,11 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply('You can only break statted items.');
 			return false;
 		}
+		if ($item instanceof SR_Rune) {
+			$bot->reply('You cannot break runes.');
+			return false;
+		}
+		
 		$itemname = $item->getItemName();
 		
 		$price = Shadowfunc::calcBuyPrice($item->getItemPriceStatted()*0.15, $player);
@@ -64,8 +69,15 @@ abstract class SR_Blacksmith extends SR_Store
 			$runes[] = $rune;
 			$runestr .= ', '.$rn;
 		}
-		$player->giveItems($runes);
-		$bot->reply(sprintf('You pay %s and break the %s into %s.', $p, $itemname, substr($runestr, 2)));
+		if (count($runes) > 0)
+		{
+			$bot->reply(sprintf('You pay %s and break the %s into %s.', $p, $itemname, substr($runestr, 2)));
+			$player->giveItems($runes);
+		}
+		else
+		{
+			$bot->reply(sprintf('You pay %s but breaking the %s into runes failed.', $p, $itemname));
+		}
 		$player->modify();
 		return true;
 	}
@@ -142,6 +154,9 @@ abstract class SR_Blacksmith extends SR_Store
 				$item->addModifiers($rune->getItemModifiersB(), true);
 				$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
 			}
+			
+			$player->modify();
+			
 			return true;
 		}
 	}

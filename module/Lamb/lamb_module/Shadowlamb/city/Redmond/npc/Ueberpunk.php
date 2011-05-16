@@ -3,7 +3,7 @@ final class Redmond_Ueberpunk extends SR_NPC
 {
 	public function getNPCPlayerName() { return 'Ueberpunk'; }
 	public function getNPCLevel() { return 13; }
-	public function getNPCMeetPercent(SR_Party $party) { return 40.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 30.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCLoot(SR_Player $player)
 	{
@@ -30,8 +30,9 @@ final class Redmond_Ueberpunk extends SR_NPC
 			'strength' => rand(2, 3),
 			'quickness' => rand(2, 3),
 			'distance' => rand(8, 10),
+			'firearms' => rand(1, 3),
+			'pistols' => rand(2, 3),
 		);
 	}
-	
 }
 ?>

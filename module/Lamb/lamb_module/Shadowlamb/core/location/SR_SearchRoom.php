@@ -1,21 +1,31 @@
 <?php
 abstract class SR_SearchRoom extends SR_Location
 {
+	public function getSearchMaxAttemps() { return 3; }
 	public abstract function getSearchLevel();
 	
 	public function getCommands(SR_Player $player) { return array('search'); }
 	
 	public function on_search(SR_Player $player, array $args)
 	{
-		if (false === $player->getTemp($this->getTempKey(), false))
-		{
-			$player->message(sprintf('You search the %s...', $this->getName()));
-			$player->giveItems(Shadowfunc::randLoot($player, $this->getSearchLevel()));
-			$player->setTemp($this->getTempKey(), 1);
-		}
-		else
+		$key = $this->getTempKey();
+		$attemp = $player->getTemp($key, 0);
+		
+		if ($attemp >= $this->getSearchMaxAttemps())
 		{
 			$player->message('Not again.');
+			return;
+		}
+		
+		$attemp++;
+		$player->setTemp($key, $attemp);
+
+		$loot = Shadowfunc::randLoot($player, $this->getSearchLevel());
+		if (count($loot) > 0) {
+			$player->message(sprintf('You search the %s...', $this->getName()));
+			$player->giveItems($loot);
+		} else {
+			$player->message(sprintf('You search the %s... but find nothing.', $this->getName()));
 		}
 	}
 	

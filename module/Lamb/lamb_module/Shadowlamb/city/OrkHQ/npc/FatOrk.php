@@ -9,8 +9,10 @@ final class OrkHQ_FatOrk extends SR_NPC
 	{
 		return array(
 			'race' => 'ork',
-			'strength' => rand(3, 4),
+			'gender' => 'male',
+			'strength' => rand(4, 6),
 			'quickness' => rand(0, 1),
+			'melee' => rand(3, 5),
 			'base_hp' => rand(4, 6),
 			'distance' => rand(0, 4),
 			'nuyen' => rand(0, 140),
@@ -28,7 +30,10 @@ final class OrkHQ_FatOrk extends SR_NPC
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		return array('Bacon');
+		if (rand(0, 10) < 3) {
+			return array('Bacon');
+		} 
+		return array();
 	}
 }
 ?>
