@@ -40,6 +40,31 @@ final class Lamb
 	{
 		return $this->servers;
 	}
+
+	
+	/**
+	 * Get the server where the current message came from.
+	 * @return Lamb_Server
+	 */
+	public function getCurrentServer()
+	{
+		return $this->lm_server;
+	}
+	
+	/**
+	 * Get the current channel where the current message came from.
+	 * @see getCurrentOrigin()
+	 * @return Lamb_Channel|false
+	 */
+	public function getCurrentChannel()
+	{
+		return $this->lm_server->getChannel($this->lm_origin);
+	}
+	
+	public function getCurrentOrigin()
+	{
+		return $this->lm_origin;
+	}
 	
 	private function sumUptime()
 	{
@@ -537,27 +562,27 @@ final class Lamb
 	 * Send a message to all channels on all servers.
 	 * @param string $message
 	 */
-	public function superGlobalMessage($message)
-	{
-		foreach ($this->servers as $server)
-		{
-			$server instanceof Lamb_Server;
-			$server->globalMessage($message);
-		}
-	}
-
-	/**
-	 * Send a message to the primary channel on every server.
-	 * @param string $message
-	 */
-	public function globalMessage($message)
-	{
-		foreach ($this->servers as $server)
-		{
-			$server instanceof Lamb_Server;
-			$channel = array_shift($server->getChannels());
-			$server->reply($channel, $message);
-		}
-	}
+//	public function superGlobalMessage($message)
+//	{
+//		foreach ($this->servers as $server)
+//		{
+//			$server instanceof Lamb_Server;
+//			$server->globalMessage($message);
+//		}
+//	}
+//
+//	/**
+//	 * Send a message to the primary channel on every server.
+//	 * @param string $message
+//	 */
+//	public function globalMessage($message)
+//	{
+//		foreach ($this->servers as $server)
+//		{
+//			$server instanceof Lamb_Server;
+//			$channel = array_shift($server->getChannels());
+//			$server->reply($channel, $message);
+//		}
+//	}
 }
 ?>
