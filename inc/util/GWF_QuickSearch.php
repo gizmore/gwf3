@@ -56,7 +56,7 @@ final class GWF_QuickSearch
 //		echo $term."\n";
 		$term = trim($term);
 		if (false === ($tokens = self::search_tokenize($term))) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 		# Whitelist fields
@@ -132,6 +132,8 @@ final class GWF_QuickSearch
 	
 	private static function search_tokenize($term)
 	{
+		$term = str_replace('%', '\\%', $term);
+		
 		$len = strlen($term);
 		$back = array();
 		$cur = '';
