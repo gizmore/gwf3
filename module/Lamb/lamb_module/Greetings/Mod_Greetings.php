@@ -16,14 +16,19 @@ final class LambModule_Greetings extends Lamb_Module
 	####################
 	public function onJoin(Lamb_Server $server, Lamb_User $user, $from, $origin)
 	{
+		if ($user->getName() === $server->getBotsNickname()) {
+			return;
+		}
+		
 		if (false === ($channel = Lamb_Channel::getByName($server, $origin))) {
-			Lamb_Log::log('Unknown channel: '.$origin);
+			Lamb_Log::log('Unknown channel in onJoin Mod_Greeting: '.$origin);
 			return;
 		}
 		
 		if (false === ($message = $this->loadMessage($server, $channel))) {
 			return;
 		}
+		
 		
 		if (Lamb_Greeting::hasBeenGreeted($user->getID(), $channel->getID())) {
 			return;
