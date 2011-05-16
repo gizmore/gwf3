@@ -24,7 +24,7 @@ final class Lamb_NewsFeed extends GDO
 		return array(
 			'lnf_id' => array(GDO::AUTO_INCREMENT),
 			'lnf_name' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::UNIQUE, GDO::NOT_NULL, 63),
-			'lnf_url' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, GDO::NOT_NULL, 255),
+			'lnf_url' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL),
 			'lnf_options' => array(GDO::UINT, 0),
 			'lnf_lastdate' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 		);
