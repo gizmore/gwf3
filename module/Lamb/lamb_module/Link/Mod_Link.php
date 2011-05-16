@@ -178,7 +178,9 @@ final class LambModule_Link extends Lamb_Module
 			return $this->displayLink(intval($message));
 		}
 		
+		
 		$ids = Lamb_Link::searchLinks($message);
+
 		$count = count($ids);
 		
 		if ($count === 0) {

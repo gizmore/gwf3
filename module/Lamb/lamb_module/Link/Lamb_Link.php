@@ -81,7 +81,9 @@ final class Lamb_Link extends GDO
 	public static function searchLinks($term)
 	{
 		$links = self::table(__CLASS__);
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($links, array('link_url', 'link_text'), $term);
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($links, array('link_url', 'link_text'), $term))) {
+			return array();
+		}
 		return $links->selectColumn('link_id', $conditions, 'link_id DESC');
 	}
 	

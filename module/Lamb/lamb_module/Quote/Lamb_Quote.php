@@ -44,7 +44,9 @@ final class Lamb_Quote extends GDO
 	public static function searchQuotes($term)
 	{
 		$quotes = self::table(__CLASS__);
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($quotes, array('quot_text'), $term);
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($quotes, array('quot_text'), $term))) {
+			return array();
+		}
 		return $quotes->selectColumn('quot_id', $conditions, 'quot_id');
 	}
 	
