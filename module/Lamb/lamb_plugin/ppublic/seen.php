@@ -8,7 +8,9 @@ if ($username === '')
 	return $bot->processMessageA($server, LAMB_TRIGGER.'help seen', $from);
 }
 
-if (false === ($user = $server->getUserI($username))) {
+$eu = GDO::escape($username);
+$sid = $server->getID();
+if (false === ($user = GDO::table('Lamb_User')->selectFirstObject('*', "lusr_name='$eu' AND lusr_sid=$sid"))) {
 	return $bot->reply(sprintf('The user %s is unknown.', $username));
 }
 
