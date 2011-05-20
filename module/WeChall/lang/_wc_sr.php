@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster News',
-	'mnews_body' => 'Неки играчи су постигли 100% на challenge сајту. Одлично урађено :)'.PHP_EOL.'Овде[url=%1%]можете видети све сајт Експерте [/url].',
-	'mnews_item' => '[url=/profile/%1%]%1%[/url] је достигао 100% на [url=%2%]%3%[/url]за време %4% од повезивања,почевши од %5%.',
+	'mnews_body' => 'Неки играчи су постигли 100% на challenge сајту. Одлично урађено :)'.PHP_EOL.'Овде[url=%1%] можете видети све сајт Експерте [/url].',
+	'mnews_item' => '[url=/profile/%1%]%1%[/url] је достигао 100% на [url=%2%]%3%[/url] за време %4% од повезивања,почевши од %5%.',
 
 	# Challenge News
 	'cnews_title' => 'There are new Challenges',
@@ -139,20 +139,20 @@ $lang = array(
 	'a_title' => 'Укупни Резултат: %1%',
 	'head_sites' => 'Нови Сајтови',
 	'head_users' => '<a href="%1%">Нови Корисници</a>',
-	'head_online' => '%1% је улогован',
+	'head_online' => '%1% корисник-а је тренутно на вези',
 
 	# Challenge
 	'chall_solvecount' => 'Solved By %1% People',
 	'chall_added' => 'Од',
 
 	# Table Titles
-	'tt_challs' => '%1% Challenges',
+	'tt_challs' => '%1% Изазови',
 	'tt_challs_for' => '%1% Challenge(s) Преглед за %2%',
 	'tt_challs_from' => '%3% %1% Challenges contributed by %2%',
 
 	# Form Titles
 	'ft_solution' => 'Ваше решење за %1%',
-	'ft_edit_chall' => 'измените овај Challenge',
+	'ft_edit_chall' => 'Измените овај Challenge',
 	'ft_link_site' => 'Повежите сајт на Ваш налог',
 	'ft_linked_sites' => 'Ваши повезани сајтови',
 	'ft_add_site' => 'Додајте нови сајт',
@@ -190,7 +190,7 @@ $lang = array(
 	'rp_usercount' => '%1% Корисника',
 	'rp_sites' => '%1% Активних Сајтова',
 	'rp_topusers' => 'Најбољих %1% Корисника',
-	'rp_last_active' => 'Ѕадњих %1% Активности',
+	'rp_last_active' => 'Задњих %1% Активности',
 	#Left Panel
 	'lp_last_online' => 'Улоговани у року од %1%',
 	'lp_last_online2' => '<a href="%1%">%2% Корисника</a>',
@@ -209,7 +209,7 @@ $lang = array(
 
 	# Table Headers
 	'th_csolve_date' => 'Решен',
-	'th_site_tags' => 'Category Tags',
+	'th_site_tags' => 'Тагови по категорији',
 	'th_score' => 'Резултат',
 	'th_totalscore' => 'Коначни резултат',
 	'th_site_country' => '',
@@ -250,7 +250,7 @@ $lang = array(
 	'th_chall_score' => 'Резултат',
 	'th_chall_title' => 'Наслов',
 	'th_chall_solvecount' => 'Решило',
-	'th_chall_date' => 'Age',
+	'th_chall_date' => 'Постоји',
 	'th_chall_creator_name' => 'Аутор',
 	'th_dif' => 'Тежина',
 	'th_edu' => 'Учење',
@@ -293,7 +293,7 @@ $lang = array(
 	'err_wrong' => 'Doh\', Ваш одговор је нетачан!',
 	'err_chall' => 'Challenge је непознат.',
 	'err_chall_score' => 'Резултат за challenge мора бити између 1 и 10.',
-	'err_chall_creator' => 'The following creator(s) are unknown: %1%.',
+	'err_chall_creator' => 'Такав креатор је непознат: %1%.',
 	'err_chall_tags' => 'The following tag(s) are invalid: %1%.',
 	'err_chall_url' => 'Challenge URL није исправан.',
 	'err_site_down' => 'Ажурирање безуспешно. %1% изгледа неради.',
@@ -516,9 +516,9 @@ $lang = array(
 	'stat_low' => 'Ниско Рангиран',
 	'btn_show_stats_all' => 'Прикажи све сајтове',
 	'btn_show_stats' => 'Освежи',
-	'chk_icons' => 'Icons',
-	'chk_values' => 'Values',
-	'chk_zoom' => 'Zoom',
+	'chk_icons' => 'Иконице',
+	'chk_values' => 'Вредности',
+	'chk_zoom' => 'Увеличај',
 	
 	# v4.02
 	'btn_all_sites' => 'Сви Сајтови',
@@ -528,11 +528,11 @@ $lang = array(
 	'site_detail_uinfo' => '%1% has a score of %2%/%3% on %4% (%5%%). Rank %6% within '.GWF_SITENAME.', scoring %7% points.',
 		
 	# v4.03
-	'ft_signup' => 'Направити Налог',
+	'ft_signup' => 'Креирај Налог',
 	'th_password' => 'Шифра',
-	'th_bind_ip' => 'Ограничена сесија за IP',
-	'btn_forgot_pw' => 'Ѕаборављена шифра',
-	'btn_login' => 'Пријава',
+	'th_bind_ip' => 'Ограничи сесију за IP',
+	'btn_forgot_pw' => 'Заборављена шифра',
+	'btn_login' => 'Пријавите се',
 	'bd_over' => 'Задњих %1%',
 	'bd_soon' => 'Следећих %1%',
 		
@@ -614,7 +614,7 @@ $lang = array(
 	'th_favcats' => 'Омиљене категорије',
 	'btn_site_history' => 'Историја',
 	'btn_site_rank' => 'Сајт рангирање',
-		
+
 	# v4.15
 	'err_site_spc' => 'The score per chall is invalid.',
 	'err_site_powarg' => 'The powarg is invalid.',
