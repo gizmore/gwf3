@@ -7,5 +7,6 @@ class GWF_Date
 	const LEN_HOUR = 10;
 	const LEN_MINUTE = 12;
 	const LEN_SECOND = 14;
+	const LEN_MILLI = 17;
 }
 ?>

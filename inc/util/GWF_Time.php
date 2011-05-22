@@ -10,6 +10,7 @@ define('TIME_THIS_DAY', date('d'));
  */
 final class GWF_Time
 {
+	const LEN_MILLI = 17;
 	const LEN_SECOND = 14;
 	const LEN_MINUTE = 12;
 	const LEN_HOUR = 10;
@@ -35,9 +36,21 @@ final class GWF_Time
 	 */
 	public static function getDate($len, $time=NULL)
 	{
-		static $dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis');
 		if ($time === NULL) { $time = time(); }
+		$dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis', 17=>'YmdHis000');
 		return date($dates[$len], $time);
+	}
+	
+	/**
+	 * Get a datestring like YYmmddHHiissMMM
+	 * @param float $microtime
+	 * @return string gdo_date
+	 */
+	public static function getDateMillis($microtime=NULL)
+	{
+		if ($microtime === null) { $microtime = microtime(true); }
+		$time = (int)$microtime;
+		return self::getDate(14, $time).sprintf('%.03f', $microtime-$time);
 	}
 	
 	/**
