@@ -58,15 +58,15 @@ abstract class GDO
 //	const FREE_1   = 0x00800000;
 
 	# Types
-	const INT      = 0x01000000;
-	const DECIMAL  = 0x02000000;
-	const TEXT     = 0x04000000;
-	const CHAR     = 0x08000000;
+	const INT      = 0x01000000;  # No 3rd parameter.
+	const DECIMAL  = 0x02000000;  # The 3rd paramater is array(DIGITS_BEFORE, DIGITS_AFTER) the comma.
+	const TEXT     = 0x04000000;  # No 3rd parameter.
+	const CHAR     = 0x08000000;  # The 3rd parameter is the length of the char field.
 
-	const VARCHAR  = 0x10000000;
-	const BLOB     = 0x20000000;
-	const ENUM     = 0x40000000;
-//	const MSB_BROKEN = 0x80000000;
+	const VARCHAR  = 0x10000000;  # The 3rd parameter is the length of the varchar field.
+	const BLOB     = 0x20000000;  # No 3rd parameter.
+	const ENUM     = 0x40000000;  # The 3rd parameter is an array of allowed options.
+//	const MSB_BROKEN = 0x80000000;# This bit does not work on 32 bit systems. 
 	
 	const MESSAGE  = 0x04041001;
 //	const RES_02   = 0x00000002;
