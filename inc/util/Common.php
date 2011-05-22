@@ -239,5 +239,19 @@ final class Common
 		}
 		return (false === ($pos = strrpos($msg, ' ', -(strlen($msg)-$limit)))) ? $msg : substr($msg, 0, $pos).$append;
 	}
+	
+	/**
+	 * Return the first match of capturing regex. Not safe. Do not use it!
+	 * @param string $pattern
+	 * @param string $s
+	 * @return string|false
+	 */
+	public static function regex($pattern, $s)
+	{
+		if (!preg_match($pattern, $s, $matches)) {
+			return false;
+		}
+		return $matches[1];
+	}
 }
 ?>
