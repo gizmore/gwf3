@@ -13,11 +13,16 @@ if (false === ($user = $server->getUserFromOrigin($from))) {
 }
 
 $channel->addUser($user);
-foreach ($bot->getModules() as $module)
+
+if ($user->getName() !== $server->getBotsNickname())
 {
-	$module instanceof Lamb_Module;
-	$module->onJoin($server, $user, $from, $channel_name);
+	foreach ($bot->getModules() as $module)
+	{
+		$module instanceof Lamb_Module;
+		$module->onJoin($server, $user, $channel);
+	}
 }
+
 //$char = '';
 //switch($user->getOptions()&Lamb_User::USERMODE_FLAGS)
 //{
