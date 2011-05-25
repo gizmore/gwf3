@@ -23,6 +23,7 @@ final class Lamb_Channel extends GDO
 			'chan_ops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_hops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_voice' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
+			'chan_topic' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 		);
 	}
 	
@@ -66,6 +67,7 @@ final class Lamb_Channel extends GDO
 			'chan_ops' => '',
 			'chan_hops' => '',
 			'chan_voice' => '',
+			'chan_topic' => '',
 		));
 		if (false === ($channel->insert())) {
 			return false;
@@ -81,6 +83,11 @@ final class Lamb_Channel extends GDO
 	public function getUsers()
 	{
 		return $this->users;
+	}
+	
+	public function getUserCount()
+	{
+		return count($this->users);
 	}
 	
 	public function addUser(Lamb_User $user, $usermode='')
@@ -124,6 +131,16 @@ final class Lamb_Channel extends GDO
 	public function removeUser($username)
 	{
 		unset($this->users[$username]);
+	}
+	
+	public function getTopic()
+	{
+		return $this->getVar('chan_topic');
+	}
+	
+	public function saveTopic($topic)
+	{
+		return $this->saveVar('chan_topic', $topic);
 	}
 }
 ?>
