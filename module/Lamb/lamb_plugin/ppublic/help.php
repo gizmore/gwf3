@@ -1,7 +1,9 @@
 <?php # Usage: %TRIGGER%help [command]. List all commands or show help for a command.
-$modules = $bot->getModules();
+$bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;
+$modules = $bot->getModules();
+
 $b = chr(2);
 $timeout = 600;
 $username = $user->getName();
@@ -9,6 +11,7 @@ $username = $user->getName();
 global $LAMB_HELP_FLOOD;
 if (!isset($LAMB_HELP_FLOOD)) { $LAMB_HELP_FLOOD = array(); }
 
+# Show all commands
 if ($message === '')
 {
 	# FLOOD
@@ -16,18 +19,19 @@ if ($message === '')
 		if (time() > $LAMB_HELP_FLOOD[$username] + $timeout) {
 			$LAMB_HELP_FLOOD[$username] = time();
 		} else {
-			echo "BLOCKED HELP FLOOD!\n";
+			$bot->reply('Your help flood was blocked.');
 			return;
 		}
 	}
 	else {
 		$LAMB_HELP_FLOOD[$username] = time();
 	}
-	
+
+	# Modules
+	$modout = '';
 	foreach ($modules as $module)
 	{
 		$module instanceof Lamb_Module;
-		$out = $b.$module->getName().$b.': ';
 		$commands = array();
 		foreach (Lamb_User::$PRIVS as $priv)
 		{
@@ -42,15 +46,23 @@ if ($message === '')
 				$commands[] = $symbol.$trigger;
 			}
 		}
-		
 		if (count($commands) > 0)
 		{
-			$out .= implode(', ', $commands);
-			$server->reply($username, $out);
-		}		
+			$modout .= ', '.$b.$module->getName().$b.': '.implode(', ', $commands).'.';
+		}
+	}
+	if ($modout !== '')
+	{
+		$server->sendPrivmsg($username, substr($modout, 2));
 	}
 	
-	foreach (Lamb::getPluginDirs() as $fullpath)
+	# Plugins
+	$plugout = '';
+	$dirs = Lamb::getPluginDirs();
+	if (false === usort($dirs, 'lamb_help_sort_plugins')) {
+		return $bot->reply('usort failed!');
+	}
+	foreach ($dirs as $fullpath)
 	{
 		if (Common::isDir($fullpath))
 		{
@@ -74,18 +86,25 @@ if ($message === '')
 			}
 			$dir->close();
 			
-			
 			if (count($commands) > 0)
 			{
 				sort($commands);
 				$dirname = substr($dirname, 1);
-				$server->reply($username, "[$p]$b$dirname$b: ".implode(', ', $commands));
+				$plugout .= ", {$b}{$dirname}{$b}: ".implode(', ', $commands).'.';
 			}
 		}
 	}
+	
+	if ($plugout !== '')
+	{
+		$server->sendPrivmsg($username, substr($plugout, 2));
+	}
+	
 	return;
-}
+} # end of show all commands
 
+# --- SNIP --- #
+# Show single command
 $command = Common::substrUntil($message, ' ');
 $help = '';
 foreach ($modules as $module)
@@ -124,4 +143,9 @@ if ($help === '')
 
 $help = str_replace('%TRIGGER%', LAMB_TRIGGER, $help);
 $bot->reply($help);
+
+function lamb_help_sort_plugins($a, $b)
+{
+	return strcasecmp(substr($a,1), substr($b,1));
+}
 ?>
