@@ -12,7 +12,7 @@ final class LambModule_Notes extends Lamb_Module
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
 	public function onTimer() {}
 	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args) {}
-	public function onJoin(Lamb_Server $server, Lamb_User $user, $from, $channel) { $this->onJoinTell($server, $user); }
+	public function onJoin(Lamb_Server $server, Lamb_User $user, Lamb_Channel $channel) { $this->onJoinTell($server, $user); }
 	
 	###############
 	### Getters ###
