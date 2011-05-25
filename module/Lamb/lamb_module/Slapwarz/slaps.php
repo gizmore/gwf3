@@ -23,6 +23,7 @@ $slaps = array(
 	array('massively', 40),
 	array('accidently', 15),
 	array('periodically', 33),
+	array('arbitarilly', 32),
 ),
 
 'verbs' => array(
@@ -61,6 +62,7 @@ $slaps = array(
 	array('dissects', 50),
 	array('stomps on', 60),
 	array('kicks', 25),
+	array('clubs', 20),
 ),
 
 
@@ -85,6 +87,9 @@ $slaps = array(
 	array('a gross', 35),
 	array('a living', 37),
 	array('a dangerous', 65),
+	array('an epic', 80),
+	array('a wonderful', 25),
+	array('a grim', 50),
 ),
 
 
@@ -143,6 +148,11 @@ $slaps = array(
 	array('skull', 18),
 	array('deer', 22),
 	array('painting', 15),
+	array('rainbow', 12),
+	array('pot of gold', 23),
+	array('jew', 14),
+	array('grim', 50),
+	array('duck', 15),
 ),
 
 );
