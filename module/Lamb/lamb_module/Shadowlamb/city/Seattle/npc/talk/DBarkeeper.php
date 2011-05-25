@@ -11,6 +11,9 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 		
 		if ($quest->isInQuest($player)) {
 			$quest->checkQuest($this, $player);
+			if ($quest->isDone($player)) {
+				return;
+			}
 		}
 		
 		switch ($word)

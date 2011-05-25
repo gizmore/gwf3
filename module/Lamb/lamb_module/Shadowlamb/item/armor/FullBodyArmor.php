@@ -11,7 +11,7 @@ final class Item_FullBodyArmor extends SR_Armor
 	{
 		return array(
 			'defense' => 1.2,
-			'marm' => 3.8,
+			'marm' => 3.2,
 			'farm' => 3.5,
 		);
 	}

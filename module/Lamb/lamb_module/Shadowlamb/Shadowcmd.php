@@ -65,44 +65,53 @@ final class Shadowcmd
 	################
 	### Triggers ###
 	################
-	public static $CMDS_GM = array('gm', 'gmc','gmi','gml','gmm','gmt','gmstats');
-	public static $CMDS_ALWAYS_HIDDEN = array('helo','start','reset','enable','disable','redmond','c','ny','ka','hp','mp','we','motd','stats','rm','level','shout','sd','pm');
-	public static $CMDS_ALWAYS = array('help','s','a','sk','q','p','i','cy','ef','ex','kp','ks','kw','qu','say');
+	public static $CMDS_ALWAYS_CREATE = array('start', 'help','stats','motd');
+	public static $CMDS_GM = array('gm', 'gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
+	public static $CMDS_ALWAYS_HIDDEN = array('helo','debug','reset','enable','disable','redmond','c','ny','ka','hp','mp','we','rm','level','shout','sd','pm','rl','l');
+	public static $CMDS_ALWAYS = array('help','s','a','sk','q','p','i','cy','ef','ex','kp','ks','kw','qu','r','say');
 	public static $CMDS = array(
 		'delete' => array(),
-		'talk' => array('l','j','bye','u','eq','uq','r','sp','part','give','drop','say','fight'),
-		'fight' => array('#','u','sp','fl','eq','uq','r','part','fw','bw','give'),
-//		'search' => array(), 
-		'inside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look','info'),
-		'outside' => array('l','rl','j','u','sp','eq','uq','r','part','give','drop','look','fight'),
+		'talk' => array('u','r','eq','uq','j','part','give','drop','sp','say','fight','bye'),
+		'fight' => array('fl','eq','uq','give','fw','bw','u','sp','#'),
+		'inside' => array('j','part','u','sp','eq','uq','give','drop','look','info'),
+		'outside' => array('j','part','u','sp','eq','uq','give','drop','look','fight','info'),
 		'sleep' => array(),
-		'travel' => array('l','rl','u','sp','eq','uq','r','give','drop'),
-		'explore' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'),
-		'goto' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'),
-		'hunt' => array('l','rl','u','sp','eq','uq','r','part','give','drop','stop'), 
+	
+		'travel' => array('u','sp','eq','uq','give','drop'),
+		'explore' => array('u','sp','eq','uq','part','give','drop','stop'),
+		'goto' => array('u','sp','eq','uq','part','give','drop','stop'),
+		'hunt' => array('u','sp','eq','uq','part','give','drop','stop'), 
 	);
 	public static $CMDS_LEADER_ALWAYS = array('pl','le','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'talk' => array('kick'),
 		'fight' => array(),
-//		'search' => array(), 
 		'inside' => array('g','exp','hunt','kick','exit'),
 		'outside' => array('g','exp','hunt','kick','en'),
 		'sleep' => array(),
 		'travel' => array(),
-		'explore' => array('g','hunt','kick'),
+		'explore' => array('g','exp','hunt','kick'),
 		'goto' => array('g','exp','hunt','kick'),
 		'hunt' => array('g','exp','hunt','kick'), 
 	);
 	public static function getCurrentCommands(SR_Player $player, $show_hidden=true)
 	{
+		if (false !== ($error = self::checkCreated($player))) {
+			echo "BLOCKING current commands not created.\n";
+			return self::$CMDS_ALWAYS_CREATE;
+		}
+		
 		$party = $player->getParty();
 		$action = $party->getAction();
 		$leader = $player->isLeader();
 		
+		
 		# Allways commands
 		$commands = self::$CMDS_ALWAYS;
+		if ($show_hidden === true) {
+			$commands = array_merge($commands, self::$CMDS_ALWAYS_CREATE);
+		}
 		
 		# GM commands
 		if ($player->isGM()) {
@@ -177,7 +186,7 @@ final class Shadowcmd
 			if ($member->isDead()) {
 				$back .= sprintf(', %s is dead', $member->getName());
 			}
-			elseif ($member->isOverloaded()) {
+			elseif ($member->isOverloadedFull()) {
 				$back .= sprintf(', %s is overloaded', $member->getName());
 			}
 		}
@@ -224,10 +233,11 @@ final class Shadowcmd
 			'join' => 'Player command. Usage '.$c.'join <player>. Join the party of another player.',
 			'part' => 'Player command. Usage '.$c.'part. Leave your current party.',
 		
+			'sleep' => "Leader command. Usage: {$c}sleep. In Hotels and some other locations, you can sleep to restore HP/MP.",
 			'enter' => 'Leader command. Usage: '.$c.'enter. Enter a '.$b.'location'.$b.'.',
 			'exit' => 'Leader command. Usage: '.$c.'exit. Exit a '.$b.'location'.$b.'.',
 			'quests' => 'Player command. Usage: '.$c.'quests [<accepted|rejected|done|failed|aborted>] [<id>]. Shows info about your quests.',
-			'explore' => 'Leader command. Start to explore the current city.',
+			'explore' => 'Leader command. Start to explore the current city. When the explore time is over, you find a new #kp. When you have found a new known_place, you are outside of it. Use #enter to enter it.',
 			'goto' => "Leader command. Usage: {$c}goto <#kp|location>. Goto another {$b}location{$b} in the {$b}current{$b} city.",
 			'hunt' => "Leader command. Usage: {$c}hunt <player>. Hunt another {$b}human{$b} {$b}party{$b}.",
 			'stop' => "Leader command. Usage: {$c}stop. The leader can interrupt a moving party with the stop command. Your {$c}explore and {$c}hunt timers will get reset.",
@@ -268,9 +278,10 @@ final class Shadowcmd
 			'talk' => "Player command. Usage: {$c}talk <#kw|word>. In many locations you can use {$c}talk to talk to the NPCs. If there is more than one NPC it is often {$c}ttX. Always check your {$c}c inside locations.",
 			'shout' => "Player command. Usage: {$c}shout <the message>. Shout a message to all shadowlamb channels on all servers.",
 		
-			'break' => 'Player command. Usage: '.$c.'break <item>. Will destroy an item and release it`s runes, which you will receive.',
-			'upgrade' => 'Player command. Usage: '.$c.'upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
-			'simulate' => 'Player command. Usage: '.$c.'simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
+			'clean' => 'Location command. Usage: '.$c.'clean <item>. Will remove all modifiers from an item.',
+			'break' => 'Location command. Usage: '.$c.'break <item>. Will destroy an item and release it`s runes, which you will receive.',
+			'upgrade' => 'Location command. Usage: '.$c.'upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
+			'simulate' => 'Location command. Usage: '.$c.'simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
 		
 			'running_mode' => "Player command. Usage: {$c}running_mode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death.",
 		);
@@ -307,7 +318,12 @@ final class Shadowcmd
 		$commands = self::getCurrentCommands($player);
 
 		if (!in_array($cmd, $commands, true)) {
-			$bot->reply('The command is not available in your current location or does not exist. Try '.$c.'c to see all currently available commands.');
+			if (!$player->isCreated()) {
+				$bot->reply('You did not #start the game yet.');
+			}
+			else {
+				$bot->reply('The command is not available for your current action or location. Try '.$c.'c to see all currently available commands.');
+			}
 			return false;
 		}
 		
@@ -404,16 +420,8 @@ final class Shadowcmd
 		if ($player->isCreated()) {
 			return $bot->reply('Your character has been created already. You can type '.$c.'reset to start over.');
 		}
-		
-		$races = array();
-		foreach (SR_Player::$RACE as $race => $data)
-		{
-			if (!in_array($race, SR_Player::$NPC_RACES))
-			{
-				$races[] = $race;
-			}
-		}
-		
+
+		$races = SR_Player::getHumanRaces();
 		$races = implode(', ', $races);
 		$genders = implode(', ', array_keys(SR_Player::$GENDER));
 		
@@ -423,12 +431,12 @@ final class Shadowcmd
 			return $bot->reply(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
 		}
 		
-		$race = $args[0];
+		$race = strtolower($args[0]);
 		if (!SR_Player::isValidRace($race)) {
 			return $bot->reply('Your race is unknown. Valid races: '.$races.'.');
 		}
 
-		$gender = $args[1];
+		$gender = strtolower($args[1]);
 		if (!SR_Player::isValidGender($gender)) {
 			return $bot->reply('Your gender is unknown. Valid genders: '.$genders.'.');
 		}
@@ -437,6 +445,7 @@ final class Shadowcmd
 
 		$player->saveVars(array('sr4pl_race'=>$race,'sr4pl_gender'=>$gender));
 		$player->initRaceGender();
+		$player->modify();
 		$player->healHP(10000);
 		$player->healMP(10000);
 		
@@ -449,7 +458,6 @@ final class Shadowcmd
 		$player->giveKnowledge('words', 'Renraku');
 		$player->giveKnowledge('places', 'Redmond_Hotel');
 		
-		$player->modify();
 		return true;
 	}
 	
@@ -467,11 +475,6 @@ final class Shadowcmd
 
 		$bot = Shadowrap::instance($player);
 		$c = LambModule_Shadowlamb::SR_SHORTCUT;
-		
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		$pid = $player->getID();
 		if (!isset($confirm[$pid]))
@@ -494,10 +497,6 @@ final class Shadowcmd
 	public static function on_status(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(Shadowfunc::getStatus($player));
 		return true;
 	}
@@ -505,10 +504,6 @@ final class Shadowcmd
 	public static function on_equipment(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply('Your equipment: '.Shadowfunc::getEquipment($player).'.');
 		return true;
 	}
@@ -516,10 +511,6 @@ final class Shadowcmd
 	public static function on_attributes(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(sprintf('Your attributes: %s.', Shadowfunc::getAttributes($player)));
 		return true;
 	}
@@ -527,10 +518,6 @@ final class Shadowcmd
 	public static function on_skills(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(sprintf('Your skills: %s.', Shadowfunc::getSkills($player)));
 		return true;
 	}
@@ -538,10 +525,6 @@ final class Shadowcmd
 	public static function on_party(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(Shadowfunc::getPartyStatus($player));
 		return true;
 	}
@@ -549,10 +532,6 @@ final class Shadowcmd
 	public static function on_effects(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(sprintf('Your effects: %s.', Shadowfunc::getEffects($player)));
 		return true;
 	}
@@ -560,10 +539,6 @@ final class Shadowcmd
 	public static function on_inventory(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply('Your inventory: '.Shadowfunc::getInventory($player));
 		return true;
 	}
@@ -571,10 +546,6 @@ final class Shadowcmd
 	public static function on_cyberware(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply('Your cyberware: '.Shadowfunc::getCyberware($player));
 		return true;
 	}
@@ -582,10 +553,6 @@ final class Shadowcmd
 	public static function on_examine(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'examine'));
 			return false;
@@ -601,10 +568,6 @@ final class Shadowcmd
 	public static function on_quests(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		$quest = false;
 		switch (count($args))
@@ -660,10 +623,6 @@ final class Shadowcmd
 	public static function on_known_places(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$party = $player->getParty();
 		$city = false;
 		if (count($args) === 1) {
@@ -680,10 +639,6 @@ final class Shadowcmd
 	public static function on_known_spells(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if (count($args) === 1)
 		{
@@ -705,20 +660,18 @@ final class Shadowcmd
 	public static function on_karma(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
+		$b = chr(2);
 		$party = $player->getParty();
 		$members = $party->getMembers();
 		$total = 0;
 		$back = '';
+		$i = 1;
 		foreach ($members as $member)
 		{
 			$member instanceof SR_Player;
 			$karma = $member->getBase('karma');
 			$total += $karma;
-			$back .= sprintf(', %s(%s)', $member->getName(), $karma);
+			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), $karma);
 		}
 		$bot->reply(sprintf('Your party has %s karma: %s.', $total, substr($back, 2)));
 		return true;
@@ -727,20 +680,18 @@ final class Shadowcmd
 	public static function on_nuyen(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
+		$b = chr(2);
 		$party = $player->getParty();
 		$members = $party->getMembers();
 		$total = 0;
 		$back = '';
+		$i = 1;
 		foreach ($members as $member)
 		{
 			$member instanceof SR_Player;
 			$ny = $member->getBase('nuyen');
 			$total += $ny;
-			$back .= sprintf(', %s(%s)', $member->getName(), Shadowfunc::displayPrice($ny));
+			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), Shadowfunc::displayPrice($ny));
 		}
 		$bot->reply(sprintf('Your party has %s: %s.', Shadowfunc::displayPrice($total), substr($back, 2)));
 		return true;
@@ -749,10 +700,6 @@ final class Shadowcmd
 	public static function on_weight(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$party = $player->getParty();
 		$members = $party->getMembers();
 		$total = 0;
@@ -762,8 +709,9 @@ final class Shadowcmd
 			$member instanceof SR_Player;
 			$we = $member->get('weight');
 			$mw = $member->get('max_weight');
+			$b = $we > $mw ? chr(2) : '';
 			$total += $we;
-			$back .= sprintf(', %s(%s/%s)', $member->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($mw));
+			$back .= sprintf(', %s(%s/%s)', $b.$member->getName().$b, $b.Shadowfunc::displayWeight($we).$b, Shadowfunc::displayWeight($mw));
 		}
 		$bot->reply(sprintf('Your party carries %s: %s.', Shadowfunc::displayWeight($total), substr($back, 2)));
 		return true;
@@ -785,11 +733,9 @@ final class Shadowcmd
 	}
 	public static function onHPMP(SR_Player $player, $what, $text)
 	{
+		$i = 1;
+		$b = chr(2);
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$party = $player->getParty();
 		$members = $party->getMembers();
 		$back = '';
@@ -798,7 +744,21 @@ final class Shadowcmd
 			$member instanceof SR_Player;
 			$hpmp = $member->getBase($what);
 			$hpmmpm = $member->get('max_'.$what);
-			$back .= sprintf(', %s(%s/%s)', $member->getName(), $hpmp, $hpmmpm);
+			$b2 = '';
+			if ($what === 'hp')
+			{
+				if ($member->needsHeal()) {
+					$b2 = $b;
+				}
+			}
+			elseif ($what === 'mp')
+			{
+				if ($member->needsEther())
+				{
+					$b2 = $b;
+				}
+			}
+			$back .= sprintf(", %s-%s%s(%s/%s)%a", $b.($i++).$b, $b2, $member->getName(), $hpmp, $hpmmpm, $b2);
 		}
 		$bot->reply(sprintf('Your parties %s: %s.', $text, substr($back, 2)));
 		return true;
@@ -940,6 +900,11 @@ final class Shadowcmd
 			$bot->reply($error);
 			return false;
 		}
+		
+		if ($party->getAction() === SR_Party::ACTION_EXPLORE) {
+			$bot->reply(sprintf('You are already exploring %s.', $party->getCity()));
+		}
+		
 		$city = $party->getCityClass();
 		$cityname = $city->getName();
 		$eta = $city->getExploreETA($party);
@@ -979,10 +944,6 @@ final class Shadowcmd
 	public static function on_give(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if ( (count($args) < 3) || (count($args) > 4) )
 		{
 			$player->message(Shadowhelp::getHelp($player, 'give'));
@@ -1109,10 +1070,6 @@ final class Shadowcmd
 	public static function on_equip(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 1)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'equip'));
@@ -1131,10 +1088,6 @@ final class Shadowcmd
 	public static function on_unequip(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if (count($args) !== 1) {
 			$player->message('Usage is '.LambModule_Shadowlamb::SR_SHORTCUT.'unequip <item|id>.');
@@ -1161,11 +1114,7 @@ final class Shadowcmd
 	public static function on_use(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
-		if ( (count($args) < 1) || (count($args) > 2) ) {
+		if ( (count($args) < 1) /*|| (count($args) > 2)*/ ) {
 			$bot->reply(Shadowhelp::getHelp($player, 'use'));
 			return false;
 		}
@@ -1176,36 +1125,24 @@ final class Shadowcmd
 			return false;
 		}
 		
-		return $item->onItemUse($player, $args);
+		$bool = $item->onItemUse($player, $args);
+		$player->modify();
+		return $bool;
 	}
 	
 	public static function on_reload(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		return $player->getWeapon()->onReload($player);
 	}
 	
 	public static function on_attack(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		return $player->getWeapon()->onAttack($player, isset($args[0])?$args[0]:'');
 	}
 	
 	public static function on_known_words(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$bot->reply(sprintf('Known Words: %s.', Shadowfunc::getKnownWords($player)));
 		return true;
 	}
@@ -1311,11 +1248,10 @@ final class Shadowcmd
 	{
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
-		
-		if ($ep->isHuman()) {
+		if ($ep->isHuman())
+		{
 			return false;
 		}
-		
 		$p->popAction(true);
 		$ep->popAction(true);
 		$p->setContactEta(rand(10, 20));
@@ -1363,10 +1299,6 @@ final class Shadowcmd
 	public static function on_enable(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'enable'));
 			return false;
@@ -1385,10 +1317,6 @@ final class Shadowcmd
 	public static function on_disable(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'disable'));
 			return false;
@@ -1493,10 +1421,6 @@ final class Shadowcmd
 	public static function on_join(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'join'));
 			return false;
@@ -1540,10 +1464,6 @@ final class Shadowcmd
 	public static function on_kick(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'kick'));
@@ -1573,10 +1493,6 @@ final class Shadowcmd
 	public static function on_part(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 0) {
 			$bot->reply(Shadowhelp::getHelp($player, 'part'));
 			return false;
@@ -1592,6 +1508,12 @@ final class Shadowcmd
 		$np = SR_Party::createParty();
 		$np->addUser($player, true);
 		$np->cloneAction($p);
+		
+		if ($np->isMoving())
+		{
+			self::on_stop($player, $args);
+		}
+		
 		return true;
 	}
 
@@ -1600,10 +1522,6 @@ final class Shadowcmd
 	private static function onBan(SR_Player $player, array $args, $bool)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) > 1) {
 			$bot->reply(Shadowhelp::getHelp($player, $bool===true?'ban':'unban'));
 			return false;
@@ -1646,10 +1564,6 @@ final class Shadowcmd
 	public static function on_set_distance(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if (count($args) === 0)
 		{
@@ -1699,11 +1613,13 @@ final class Shadowcmd
 	#############
 	public static function on_lvlup(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
+		$p = $player->getParty();
+		if ($p->isFighting()) {
+			$player->message('You cannot lvlup when your party is fighting.');
 			return false;
 		}
+		
+		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'lvlup'));
 			return false;
@@ -1777,10 +1693,6 @@ final class Shadowcmd
 	public static function on_drop(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if ( (count($args) < 1) || (count($args) > 2) ) {
 			$bot->reply(Shadowhelp::getHelp($player, 'drop'));
@@ -1816,16 +1728,13 @@ final class Shadowcmd
 		}
 		
 		$bot->reply(sprintf('You got rid of %d %s.',$amt, $item->getItemName()));
+		$player->modify();
 		return true;
 	}
 	
 	public static function on_look(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$p = $player->getParty();
 		$pid = $player->getPartyID();
 		
@@ -1863,43 +1772,38 @@ final class Shadowcmd
 	
 	public static function on_party_message(SR_Player $player, array $args)
 	{
+		$b = chr(2);
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
-		$message = sprintf('%s says: "%s"', $player->getName(), implode(' ', $args));
+		$message = sprintf('%s pm: "%s"', $b.$player->getName().$b, implode(' ', $args));
 		$player->getParty()->notice($message);
 		return true;
 	}
 	
 	public static function on_spell(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$player->message($error);
-			return false;
-		}
-		if ( (count($args) === 0) || (count($args) > 2) ) {
+		if (count($args) === 0) {
 			$out = sprintf('Known spells: %s.', Shadowfunc::getSpells($player));
 			if ($player->isFighting()) {
 				$player->message($out);
 			} else {
-				$bot->reply($out);
+				Shadowrap::instance($player)->reply($out);
 			}
 			return false;
 		}
 		
 		$sn = array_shift($args);
 		
-		if (false === ($spell = SR_Spell::getSpell($sn))) {
-			$player->message(sprintf('The spell %s is unknown.', $sn));
+		if (false === ($spell = $player->getSpell($sn))) {
+			$player->message(sprintf('You don\'t know the %s spell.', $sn));
 			return false;
 		}
-		if (0 > ($level = $player->getSpellBaseLevel($sn))) {
-			$player->message(sprintf('You need to learn the spell %s first.', $sn));
-			return false;
-		}
+//		if (false === ($spell = SR_Spell::getSpell($sn))) {
+//			return false;
+//		}
+//		if (0 > ($level = $player->getSpellBaseLevel($sn))) {
+//			$player->message(sprintf('You need to learn the spell %s first.', $sn));
+//			return false;
+//		}
 		
 		return $spell->onCast($player, $args);
 	}
@@ -1907,10 +1811,6 @@ final class Shadowcmd
 	public static function on_leader(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		if (count($args) !== 1) {
 			$bot->reply(Shadowhelp::getHelp($player, 'leader'));
@@ -1944,8 +1844,9 @@ final class Shadowcmd
 	public static function on_request_leader(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
+		
+		if (!$player->getParty()->isIdle()) {
+			$player->message('Your party needs to be idle to request a new leader.');
 			return false;
 		}
 		
@@ -1985,21 +1886,33 @@ final class Shadowcmd
 			$np->clonePreviousAction($party);
 			$np->popAction(true);
 		}
+		else {
+			$busy = $player->busy(40);
+			$party->notice(sprintf('%s tried to flee from the combat. %s busy.', $player->getName(), GWF_Time::humanDuration($busy)));
+		}
 		return true;
 	}
 	
-	public static function on_gmstats(SR_Player $player, array $args)
+	public static function on_gms(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
+		if (count($args) !== 1) {
+			$bot->reply(Shadowhelp::getHelp($player, 'gmstats'));
 			return false;
 		}
-		if (false === ($npc = Shadowrun4::getPlayerByPID($args[0]))) {
-			$bot->reply(sprintf('This NPC is not there.'));
+		if (false !== ($npc = Shadowrun4::getPlayerByShortName($args[0]))) {
+		}
+		elseif (false !== ($npc = Shadowrun4::getPlayerByPID($args[0]))) {
+		}
+		else {
+			$bot->reply('The player '.$args[0].' is not in memory.');
 			return false;
 		}
 		$bot->reply(sprintf('Status for %s: %s', $npc->getName(), Shadowfunc::getStatus($npc)));
+		$bot->reply(sprintf('Equipment: %s', Shadowfunc::getEquipment($npc)));
+		$bot->reply(sprintf('Attributes: %s', Shadowfunc::getAttributes($npc)));
+		$bot->reply(sprintf('Skills: %s', Shadowfunc::getSkills($npc)));
+//		$bot->reply(sprintf('Party: %s.', Shadowfunc::getPartyStatus($npc)));
 		return true;
 	}
 	
@@ -2055,10 +1968,6 @@ final class Shadowcmd
 	public static function on_gml(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		if (count($args) !== 3) {
 			$bot->reply(Shadowhelp::getHelp($player, 'gml'));
 			return false;
@@ -2096,34 +2005,46 @@ final class Shadowcmd
 		
 		
 		$cl = $loc->getName();
-		$p->giveKnowledge('places', $cl);
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		$city->onCityEnter($p);
 		$bot->reply(sprintf('The party is now outside of %s.', $cl));
-		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
-		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		$p->giveKnowledge('places', $cl);
 		return true;
 	}
 	
 	public static function on_enter(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		$party = $player->getParty();
 		if (false === ($location = $party->getLocationClass('outside'))) {
 			$bot->reply('You are not outside of a location.');
 			return false;
 		}
-		return self::on_goto($player, array($location->getName()));
+		
+		if (!$player->isLeader()) {
+			$bot->reply('Only the leader of a party can enter locations.');
+			return false;
+		}
+		
+		$location->onEnter($player);
+		return true;
 	}
 	
 	public static function on_info(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
 		$p = $player->getParty();
-		$l = $p->getLocationClass();
-		$player->message($l->getFoundText());
+		$bot = Shadowrap::instance($player);
+		if ($p->isInsideLocation())
+		{
+			$l = $p->getLocationClass();
+			$bot->reply($l->getEnterText($player));
+		}
+		elseif ($p->isOutsideLocation())
+		{
+			$l = $p->getLocationClass('outside');
+			$bot->reply($l->getFoundText($player));
+		}
 	}
 
 	public static function on_running_mode(SR_Player $player, array $args)
@@ -2158,10 +2079,6 @@ final class Shadowcmd
 	public static function on_level(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkCreated($player))) {
-			$bot->reply($error);
-			return false;
-		}
 		
 		$p = $player->getParty();
 		$out = '';
@@ -2173,10 +2090,73 @@ final class Shadowcmd
 		return true;
 	}
 	
+	#######################
+	### Cronjob/Cleanup ###
+	#######################
 	public static function on_gmc(SR_Player $player, array $args)
 	{
 		require_once Lamb::DIR.'lamb_module/Shadowlamb/Shadowcron.php';
 		Shadowcron::onCronjob();
 	}
 	
+	#############
+	### Debug ###
+	#############
+	public static function on_debug(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (count($args) !== 1) {
+			$bot->reply(Shadowhelp::getHelp($player, 'debug'));
+			return true;
+		}
+		
+		$total_amt = 0;
+		foreach ($player->getAllItems() as $item)
+		{
+			$item instanceof SR_Item;
+			$total_amt += $item->getAmount();
+			printf("%99s: %20s %10s\n", $item->getItemName(), $item->getAmount().'x'.$item->getItemWeight(), $item->getItemWeightStacked());
+		}
+		printf("%99s: %20s %10s\n", 'Total weight according to stats', $total_amt.' items', $player->get('weight'));
+	}
+	
+	public static function on_gmd(SR_Player $player, array $args)
+	{
+	}
+	
+	public static function on_gmsp(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if ( (count($args) < 2) || (count($args) > 3) ) {
+			$bot->reply(Shadowhelp::getHelp($player, 'gmsp'));
+			return false;
+		}
+		
+		if (false === ($spell = SR_Spell::getSpell($args[1]))) {
+			$bot->reply("The spell {$args[1]} is unknown.");
+			return false;
+		};
+		
+		$server = $player->getUser()->getServer();
+		
+		if (false === ($user = $server->getUserByNickname($args[0]))) {
+			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
+			return false;
+		}
+		
+		if (false === ($target = Shadowrun4::getPlayerByUID($user->getID()))) {
+//		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
+			$bot->reply(sprintf('The player %s is unknown.', $user->getName()));
+			return false;
+		}
+
+		if (false !== ($error = self::checkCreated($target))) {
+			$bot->reply(sprintf('The player %s has not started a game yet.', $args[0]));
+			return false;
+		}
+		
+		$target->levelupSpell($spell->getName(),1);
+		$bot->reply(sprintf('The target got increased spells!'));
+		return true;
+	}
 }

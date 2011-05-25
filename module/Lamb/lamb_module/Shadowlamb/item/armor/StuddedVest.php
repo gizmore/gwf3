@@ -9,8 +9,8 @@ final class Item_StuddedVest extends SR_Armor
 	{
 		return array(
 			'defense' => 0.4,
-			'marm' => 0.8,
-			'farm' => 0.5,
+			'marm' => 0.7,
+			'farm' => 0.6,
 		);
 	}
 }

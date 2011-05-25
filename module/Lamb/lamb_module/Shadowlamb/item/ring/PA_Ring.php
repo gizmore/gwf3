@@ -1,9 +1,9 @@
 <?php
 final class Item_PA_Ring extends SR_Ring
 {
-	public function getItemLevel() { return 25; }
-	public function getItemPrice() { return 8000; }
-	public function getItemDropChance() { return 20.00; }
+	public function getItemLevel() { return 52; }
+	public function getItemPrice() { return 16000; }
+	public function getItemDropChance() { return 2; }
 	public function getItemDescription() { return 'A magical ring. The origin is unknown and a mystery'; }
 	
 	public function getItemModifiersA(SR_Player $player)

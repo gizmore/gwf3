@@ -14,7 +14,7 @@ final class Seattle_ASecOrk extends SR_NPC
 			'legs' => 'Trousers',
 		);
 	}
-	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm'); }
+	public function getNPCInventory() { return array('Ammo_Shotgun', 'Ammo_Shotgun', 'Ammo_Shotgun', 'Ammo_Shotgun'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'ork',

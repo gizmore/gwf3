@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Johnson_2 extends SR_Quest
 {
+	public function getQuestName() { return 'BikersOutfit'; }
 	public function getQuestDescription() { return 'Bring a BikerJacket and a BikerHelmet to Mr.Johnson in the Redmond_TrollsInn.'; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{

@@ -3,7 +3,7 @@ final class Redmond_Lamer extends SR_NPC
 {
 	public function getNPCLevel() { return 0; }
 	public function getNPCPlayerName() { return 'Lamer'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCLoot(SR_Player $player)
 	{

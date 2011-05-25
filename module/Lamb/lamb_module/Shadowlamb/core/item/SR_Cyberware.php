@@ -1,6 +1,7 @@
 <?php
 abstract class SR_Cyberware extends SR_Item
 {
+	public function displayType() { return 'Cyberware'; }
 	public function getItemWeight() { return 0; }
 	public function isItemStackable() { return false; }
 	public function getConflicts() { return array(); }

@@ -2,7 +2,7 @@
 final class OrkHQ_FatOrk extends SR_NPC
 {
 	public function getNPCLevel() { return 6; }
-	public function getNPCPlayerName() { return 'Fat Ork'; }
+	public function getNPCPlayerName() { return 'FatOrk'; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
 	public function getNPCModifiers()
@@ -10,12 +10,12 @@ final class OrkHQ_FatOrk extends SR_NPC
 		return array(
 			'race' => 'ork',
 			'gender' => 'male',
-			'strength' => rand(4, 6),
-			'quickness' => rand(0, 1),
-			'melee' => rand(3, 5),
-			'base_hp' => rand(4, 6),
-			'distance' => rand(0, 4),
-			'nuyen' => rand(0, 140),
+			'strength' => rand(6, 9),
+			'quickness' => rand(1, 2),
+			'melee' => rand(4, 7),
+			'base_hp' => rand(8, 12),
+			'distance' => rand(0, 3),
+			'nuyen' => rand(0, 45),
 		);
 	}
 	
@@ -23,14 +23,19 @@ final class OrkHQ_FatOrk extends SR_NPC
 	{
 		return array(
 			'weapon' => 'ButchersKnife',
-			'armor' => 'Clothes',
-			'boots' => 'Sneakers',
+			'armor' => 'LeatherVest',
+			'boots' => 'Sandals',
 		);
+	}
+	
+	public function getNPCInventory()
+	{
+		return array('Bacon');
 	}
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		if (rand(0, 10) < 3) {
+		if (rand(1, 10) <= 5) {
 			return array('Bacon');
 		} 
 		return array();

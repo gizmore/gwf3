@@ -98,6 +98,11 @@ abstract class SR_Spell
 	#################
 	### Base Cast ###
 	#################
+	public function hasEnoughMP(SR_Player $player)
+	{
+		return $this->getManaCost($player) <= $player->getMP();
+	}
+	
 	public function onCast(SR_Player $player, array $args)
 	{
 		if ($this->isOffensive()) {
@@ -136,7 +141,7 @@ abstract class SR_Spell
 			$player->busy($this->getCastTime($level));
 		}
 		
-		if ($hits < 10) {
+		if ($hits < $target->get('essence')) {
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);
 			$player->message(sprintf('You failed to cast %s. %s MP wasted.', $this->getName(), $waste));
@@ -158,6 +163,7 @@ abstract class SR_Spell
 		$dices = round($level * 10);
 		$dices += round($player->get('intelligence') * 5);
 		$dices += round($player->get('essence') * 20);
+		$dices -= round(Shadowfunc::calcDistance($player, $target));
 		
 		$defense = round($target->get('essence') * 6);
 		$defense += round($target->get('intelligence') * 3);
@@ -176,27 +182,21 @@ abstract class SR_Spell
 		return Shadowfunc::dicePool($dices, $defense, $defense);
 	}
 	
+	################
+	### Announce ###
+	################
 	public function getAnnounceMessage(SR_Player $player, SR_Player $target, $level)
 	{
-		return sprintf('%s casts %s level %s on %s', $player->getName(), $this->getName(), $level, $target->getName());
+		return sprintf('%s casts a level %s %s on %s', $player->getName(), $level, $this->getName(), $target->getName());
 	}
 
-	public function announce(SR_Player $player, SR_Player $target, $level)
-	{
-		$msg = $this->getAnnounceMessage($player, $target, $level).'.';
-		
-		$player->getParty()->notice($msg);
-		if ($this->isOffensive()) {
-			$target->getParty()->notice($msg);
-		}
-	}
-	
 	public function announceADV(SR_Player $player, SR_Player $target, $level, $append='', $append_ep='')
 	{
 		$msg = $this->getAnnounceMessage($player, $target, $level);
-		$player->getParty()->notice($msg.$append.'.');
-		if ($this->isOffensive()) {
-			$target->getParty()->notice($msg.$append_ep.'.');
+		$p = $player->getParty();
+		$p->notice($msg.$append.'.');
+		if ($p->isFighting()) {
+			$p->getEnemyParty()->notice($msg.$append_ep.'.');
 		}
 	}
 
@@ -367,6 +367,23 @@ abstract class SR_Spell
 			$p->onFightDone();
 		}
 	}
-	
 }
+
+#--- Abstract ---#
+
+abstract class SR_SupportSpell extends SR_Spell
+{
+	public function isOffensive() { return false; }
+}
+
+abstract class SR_CombatSpell extends SR_Spell
+{
+	public function isOffensive() { return true; }
+}
+
+abstract class SR_HealSpell extends SR_Spell
+{
+	public function isOffensive() { return false; }
+}
+
 ?>

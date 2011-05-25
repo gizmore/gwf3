@@ -43,6 +43,7 @@ class SR_Quest extends GDO
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
 	
 	public function getName() { return $this->getVar('sr4qu_name'); }
+	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
 	public function getAmount() { return $this->getVar('sr4qu_amount'); }
 	public function getNeededAmount() { return 0; }
 	public function onQuestSolve(SR_Player $player) {}
@@ -52,6 +53,7 @@ class SR_Quest extends GDO
 	public function isInQuest(SR_Player $player) { return (!$this->isDone($player)) && ($this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
 	public function isDeclined(SR_Player $player) { return $this->isOptionEnabled(self::REJECTED); }
+	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word) { $this->onNPCQuestTalkB($npc, $player, $word); }
 	public function accept(SR_Player $player)
 	{
 		if ($this->isAccepted($player)) {
@@ -74,14 +76,16 @@ class SR_Quest extends GDO
 	{
 		if ($this->isDone($player)) {
 			$player->message('You already solved this quest (should not happen).');
-			return;
+			return false;
 		}
 		
 		$this->saveOption(self::DONE, true);
-		$player->updateField('reputation', $player->getBase('reputation')+0.1);
+		$player->increase('sr4pl_quests_done', 1);
+//		$player->updateField('reputation', $player->getBase('reputation')+0.1);
 		$this->onQuestSolve($player);
 		$player->modify();
 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
+		return true;
 	}
 	
 	public function giveAmount(SR_Player $player, $by=1)
@@ -112,7 +116,9 @@ class SR_Quest extends GDO
 	public static function getQuest(SR_Player $player, $name)
 	{
 		$uid = $player->getID();
-		require_once Lamb::DIR.'lamb_module/Shadowlamb/quest/'.$name.'.php';
+		
+		$path = Lamb::DIR.'lamb_module/Shadowlamb/quest/'.$name.'.php';
+		require_once $path;
 		$ename = self::escape($name);
 		if (false === ($data = self::table(__CLASS__)->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_name='$ename'"))) {
 			return self::createQuest($player, $name);
@@ -132,6 +138,8 @@ class SR_Quest extends GDO
 		$bits_in = self::$QUEST_FLAGS[$section][0];
 		$bits_out = self::$QUEST_FLAGS[$section][1];
 		$table = self::table(__CLASS__);
+		
+		$id = (int)$id;
 		
 		if ($id < 1) {
 			return false;
@@ -190,6 +198,14 @@ class SR_Quest extends GDO
 		return $quest;
 	}
 	
+	public static function deletePlayer(SR_Player $player)
+	{
+		return self::table(__CLASS__)->deleteWhere('sr4qu_uid='.$player->getID());
+	}
+	
+	##################
+	### Quest Data ###
+	##################
 	public function getQuestData()
 	{
 		if (NULL === ($data = $this->getVar('sr4qu_data'))) {
@@ -208,6 +224,17 @@ class SR_Quest extends GDO
 		return $this->saveVar('sr4qu_data', $s);
 	}
 
+	#####################
+	### Give Questies ###
+	#####################
+	/**
+	 * Give quest items to an NPC.
+	 * @param SR_Player $player
+	 * @param SR_NPC $npc
+	 * @param string $itemname
+	 * @param int $have
+	 * @param int $need
+	 */
 	public function giveQuesties(SR_Player $player, SR_NPC $npc, $itemname, $have, $need)
 	{
 		$left = $need - $have;
@@ -215,7 +242,7 @@ class SR_Quest extends GDO
 		
 		while ($left > 0)
 		{
-			if (false === ($item = $player->getInvItemByName($itemname))) {
+			if (false === ($item = $player->getInvItemByShortName($itemname))) {
 				break;
 			}
 			$possible = Common::clamp($item->getAmount(), 0, $left);
@@ -231,6 +258,28 @@ class SR_Quest extends GDO
 		}
 		
 		return $have;
+	}
+	
+	################
+	### NPCQuest ###
+	################
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	{
+		switch ($word)
+		{
+			case 'confirm':
+				$npc->reply('What do you say, chummer?');
+				break;
+			case 'shadowrun':
+				$npc->reply('Description reply for Quest '.$this->getName());
+				break;
+			case 'yes':
+				$npc->reply('Accept reply for Quest '.$this->getName());
+				break;
+			case 'no':
+				$npc->reply('Deny reply for Quest '.$this->getName());
+				break;
+		}
 	}
 }
 ?>

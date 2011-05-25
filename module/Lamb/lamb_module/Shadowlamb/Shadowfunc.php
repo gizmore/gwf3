@@ -162,9 +162,11 @@ final class Shadowfunc
 		}
 		$i = 1;
 		$back = '';
+		$b = chr(2);
 		foreach ($quests as $quest)
 		{
-			$back .= sprintf(', %d-%s', $i++, $quest->getQuestName());
+			$back .= sprintf(', %s-%s', $b.$i.$b, $quest->getQuestName());
+			$i++;
 		}
 		return $back === '' ? ('You have no '.$section.' quests.') : substr($back, 2);
 	}
@@ -186,7 +188,9 @@ final class Shadowfunc
 		$p = pow(10, $precision);
 		$min *= $p;
 		$max *= $p;
-		return rand($min, $max) / $p;
+		$back = round(rand($min, $max) / $p, $precision);
+		echo "diceFloat($min, $max) = $back\n";
+		return $back;
 	}
 	
 	public static function dice($n, $min)
@@ -214,27 +218,28 @@ final class Shadowfunc
 	public static function diceHits($mindmg, $arm, $atk, $def, SR_Player $player, SR_Player $target)
 	{
 		$ep = $target->getParty();
-		if ($player->isHuman())
+		
+		if ($player->isHuman()) # Human attacks ... 
 		{
-			if ($target->isHuman())
+			if ($target->isHuman()) # Human attacks Human
 			{
 				$oops = rand(80, 250) / 10;
 			}
-			else # TARGET is NPC
+			else # Human Attacks NPC
 			{
-				$oops = rand(80, 160) / 10;
+				$oops = rand(70, 140) / 10;
 			}
 		}
-		else # NPC attack
+		else # NPC attacks ...
 		{
-			if ($target->isHuman())
+			if ($target->isHuman()) # NPC attacks Human
 			{
-				$rand = rand(8, 26) / 10;
-				$oops = $rand + $ep->getMemberCount()*1.3 + $ep->getMax('level')*0.1;
+				$rand = rand(11, 15) / 10;
+				$oops = $rand + $ep->getMemberCount()*0.5 + $ep->getMax('level')*0.02;
 			}
-			else # NPC attack NPC
+			else # NPC attacks NPC
 			{
-				$oops = rand(15, 25);
+				$oops = rand(80, 250) / 10;
 			}
 		}
 		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops;
@@ -253,9 +258,9 @@ final class Shadowfunc
 	public static function shortcut($string, array $array)
 	{
 		if (false === ($key = array_search(strtolower($string), $array, true))) {
-			return $string;
+			return strtolower($string);
 		}
-		return $key;
+		return strtolower($key);
 	}
 	
 	##############
@@ -263,10 +268,11 @@ final class Shadowfunc
 	##############
 	public static function getStatus(SR_Player $player)
 	{
-		return sprintf('%s %s Level:%s, HP:%s/%s%s, Atk:%s, Def:%s, Dmg:%s-%s, Arm(M/F):%s/%s, XP:%.02f, Karma:%s, ¥:%.02f, Weight:%s/%s.',
+		$b = chr(2);
+		return sprintf("%s %s Lvl%s. {$b}HP{$b}:%s/%s%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%.02f, {$b}Karma{$b}:%s, {$b}¥{$b}:%.02f, {$b}Weight{$b}:%s/%s.",
 			$player->getGender(), $player->getRace(), $player->getBase('level'),
 			$player->getHP(), $player->get('max_hp'),
-			$player->get('magic') > 0 ? sprintf(', MP:%s/%s', $player->getMP(), $player->get('max_mp')) : '', 
+			$player->get('magic') > 0 ? sprintf(", {$b}MP{$b}:%s/%s", $player->getMP(), $player->get('max_mp')) : '', 
 			$player->get('attack'), $player->get('defense'),
 			$player->get('min_dmg'), $player->get('max_dmg'),
 			$player->get('marm'), $player->get('farm'),
@@ -279,6 +285,7 @@ final class Shadowfunc
 	public static function getKnownPlaces(SR_Player $player, $cityname)
 	{
 		$cityname = strtolower($cityname);
+		$b = chr(2);
 		$back = '';
 		$kp = $player->getVar('sr4pl_known_places');
 		$i = 1;
@@ -291,7 +298,7 @@ final class Shadowfunc
 			}
 			if (stripos($p, $cn) === 0)
 			{
-				$back .= sprintf(', %d-%s', $i, substr($p, $len));
+				$back .= sprintf(', %s-%s', $b.$i.$b, substr($p, $len));
 			}
 			$i++;
 		}
@@ -304,7 +311,7 @@ final class Shadowfunc
 		$back = '';
 		foreach (explode(',', trim($player->getVar('sr4pl_known_words'), ',')) as $w)
 		{
-			$back .= sprintf(', %d-%s', $i++, $w);
+			$back .= sprintf(", \x02%s\x02-%s", $i++, $w);
 		}
 		return $back === '' ? 'You don`t know any word' : substr($back, 2);
 	}
@@ -343,16 +350,18 @@ final class Shadowfunc
 	
 	public static function getEquipment(SR_Player $player)
 	{
+		$b = chr(2);
 		$back = '';
 		foreach ($player->getAllEquipment(true) as $key => $item)
 		{
-			$back .= sprintf(', %s:%s', $key, $item->getItemName());
+			$back .= sprintf(', %s:%s', "{$b}$key{$b}", $item->getItemName());
 		}
 		return substr($back, 2);
 	}
 	
 	private static function getStatsArray(SR_Player $player, array $fields)
 	{
+		$b = chr(2);
 		$back = '';
 		foreach ($fields as $field)
 		{
@@ -366,13 +375,14 @@ final class Shadowfunc
 			}
 			
 			$now = $base == $now ? '' : "($now)";
-			$back .= sprintf(', %s:%s%s', $field, $base, $now);
+			$back .= sprintf(', %s:%s%s', $b.$field.$b, $base, $now);
 		}
 		return $back === '' ? 'None' : substr($back, 2);
 	}
 	
 	public static function getEffects(SR_Player $player)
 	{
+		$b = chr(2);
 		$e = $player->getEffects();
 		if (count($e) === 0) {
 			return 'none';
@@ -402,7 +412,7 @@ final class Shadowfunc
 		foreach ($sorted as $k => $data)
 		{
 			list($v, $t) = $data;
-			$back .= sprintf(', %s:%s(%s)', $k, $v, GWF_Time::humanDurationEN($t-$t2));
+			$back .= sprintf(', %s:%s(%s)', $b.$k.$b, $v, GWF_Time::humanDurationEN($t-$t2));
 		}
 		
 		return substr($back, 2);
@@ -411,11 +421,14 @@ final class Shadowfunc
 	public static function getSpells(SR_Player $player)
 	{
 		$back = '';
+		$b = chr(2);
+		$i = 1;
 		foreach ($player->getSpellData() as $name => $base)
 		{
 			$mod = $player->get($name);
 			$mod = $mod > $base ? "($mod)" : '';
-			$back .= sprintf(', %s:%s%s', $name, $base, $mod);
+			$back .= sprintf(', %s-%s:%s%s', $b.$i.$b, $name, $base, $mod);
+			$i++;
 		}
 		return $back === '' ? 'None' : substr($back, 2);
 	}
@@ -432,6 +445,7 @@ final class Shadowfunc
 	
 	private static function getItemsSorted(SR_Player $player, array $items)
 	{
+		$b = chr(2);
 		$back = '';
 		$i = 1;
 		foreach ($items as $itemname => $data)
@@ -439,7 +453,7 @@ final class Shadowfunc
 			$count = $data[0];
 			$itemid = $data[1];
 			$count = $count > 1 ? "($count)" : '';
-			$back .= sprintf(', %s:%s%s', $i++, $itemname, $count);
+			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $itemname, $count);
 		}
 		
 		if ($back === '') {
@@ -573,7 +587,8 @@ final class Shadowfunc
 			$b = $b === true ? chr(2) : '';
 			$back .= sprintf(', %s%s:%s%s', $b, $k, $v, $b);
 		}
-		return sprintf(' Requires: %s.', substr($back, 2));
+		$b = chr(2);
+		return sprintf(' %sRequires%s: %s.', $b, $b, substr($back, 2));
 	}
 	
 	public static function getModifiers(array $modifiers)
@@ -721,6 +736,40 @@ final class Shadowfunc
 		if ($i > 0) {
 			$item->updateModifiers();
 		}
+	}
+	
+	public static function randomListItem()
+	{
+		$items = array();
+		
+		foreach (func_get_args() as $arg)
+		{
+			if (is_array($arg))
+			{
+				$items = array_merge($items, $arg);
+			}
+			else {
+				$items[] = $arg;
+			}
+		}
+		
+		return $items[array_rand($items, 1)];
+	}
+	
+	public static function calcDistance(SR_Player $player, SR_Player $target)
+	{
+		$x1 = $player->getEnum() * SR_Party::X_COORD_INC;
+		$y1 = $player->getDistance();
+		$x2 = $target->getEnum() * SR_Party::X_COORD_INC;
+		$y2 = $target->getDistance();
+		return self::calcDistanceB($x1, $y1, $x2, $y2);
+	}
+
+	public static function calcDistanceB($x1, $y1, $x2, $y2)
+	{
+		$x = $x2 - $x1;
+		$y = $y2 - $y1;
+		return sqrt($x*$x + $y*$y);
 	}
 }
 ?>

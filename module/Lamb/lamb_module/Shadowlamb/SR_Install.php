@@ -1,7 +1,7 @@
 <?php
 final class SR_Install
 {
-	public static $TABLES = array('SR_Item', 'SR_Party', 'SR_Player', 'SR_Quest', 'SR_Stats');
+	public static $TABLES = array('SR_Item', 'SR_Party', 'SR_Player', 'SR_Quest', 'SR_Stats', 'SR_PlayerVar');
 	public static function onInstall($dropTable=false)
 	{
 		Lamb_Log::log('SR_Install::onInstall()');

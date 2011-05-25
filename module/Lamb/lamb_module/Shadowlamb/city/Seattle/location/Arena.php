@@ -7,7 +7,7 @@ final class Seattle_Arena extends SR_Location
 {
 	public function getEnterText(SR_Player $player) { return 'You enter the Seattle Arena. A guy comes to you and it seems like this is the director.'; }
 	public function getFoundPercentage()  { return 45.0; }
-	public function getFoundText() { return "You found the Seattle Arena. A well hidden place, because the fights are illegal."; }
+	public function getFoundText(SR_Player $player) { return "You found the Seattle Arena. A well hidden place, because the fights are illegal."; }
 	public function getNPCS(SR_Player $player) { return array("talk" => "Seattle_ArenaGuy"); }
 	public function isPVP() { return true; }
 	public function getHelpText(SR_Player $player) { return 'Use #talk <topic> to talk to the director.'; }

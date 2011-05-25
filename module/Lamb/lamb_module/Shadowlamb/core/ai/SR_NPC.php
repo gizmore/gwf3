@@ -1,329 +1,350 @@
 <?php
-abstract class SR_NPC extends SR_Player
+require_once 'SR_NPCBase.php';
+
+/**
+ * NPC AI extension.
+ * @author gizmore
+ */
+abstract class SR_NPC extends SR_NPCBase
 {
-	public static $NPC_COUNTER = 0;
-	
-	#################
-	### SR_Player ###
-	#################
-	public function getName() { return sprintf('%s[%d]', $this->getVar('sr4pl_name'), $this->getID()); }
-	public function getShortName() { return $this->getName(); }
-	public function help($message) { $this->message($message); }
-	public function message($message) { Lamb_Log::log($message); }
-	public function isCreated() { return true; }
-	public function getLootNuyen() { return $this->getBase('nuyen'); }
-	
-	protected $chat_partner = NULL;
-	
-	###########
-	### NPC ###
-	###########
-	private $npc_classname;
-	public function getNPCLevel() { return 9999; }
-	public function setNPCClassName($classname) { $this->npc_classname = $classname; }
-	public function getNPCClassName() { return $this->npc_classname; }
-	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
-	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
-	public function canNPCMeet(SR_Party $party) { return true; }
-	public function isNPCFriendly(SR_Party $party) { return false; }
-	public function getNPCEquipment() { return array(); }
-	public function getNPCInventory() { return array(); }
-	public function getNPCModifiers() { return array(); }
-	public function getNPCModifiersB() { return array(); }
-	public function getNPCSpells() { return array(); }
-	public function getNPCLoot(SR_Player $player) { return array(); }
-	public function onNPCTalk(SR_Player $player, $word) { print(sprintf('IMPLEMENT: %s(%s)', __CLASS__, __METHOD__, $word)); }
-	public function onNPCTalkA(SR_Player $player, $word)
-	{
-		if ($word === '') {
-			$word = 'hello';
-		}
-		elseif (is_numeric($word)) {
-			if (false === ($word = $player->getKnowledgeByID('words', $word))) {
-				$word = 'hello';
-			}
-		}
-		
-		$this->chat_partner = $player;
-		$this->onNPCTalk($player, strtolower($word));
-	}
-	
-	private function applyNPCStartData(array $data)
-	{
-		$mods = $this->getNPCModifiers();
-		
-		if (isset($mods['race'])) {
-			$race = $mods['race'];
-		}
-		else if (isset($data['race'])) {
-			$race = $data['race'];
-		}
-		else {
-			$race = 'human';
-		}
-		$race = self::$RACE_BASE[$race];
-		foreach ($race as $k => $v)
-		{
-			$data['sr4pl_'.$k] = $v;
-		}
-		
-		foreach ($mods as $k => $v)
-		{
-			$data['sr4pl_'.$k] = $v;
-		}
-		
-		$malus = rand(2, 4);
-		$data['sr4pl_hp'] -= $malus;
-		$data['sr4pl_base_hp'] -= $malus;
-		
-		$data['sr4pl_level'] = $this->getNPCLevel();
-		return $data;
-	}
+	const NEED_HEAL_MULTI = 0.60;
+	const NEED_ETHER_MULTI = 0.20;
 	
 	/**
-	 * Create a new enemy party with arbitary amount of enemies.
-	 * @return SR_Party
+	 * Override the default combat timer.
+	 * @see SR_Player::combatTimer()
 	 */
-	public static function createEnemyParty()
+	public function combatTimer()
 	{
-		$names = array();
-		foreach (func_get_args() as $arg)
+		if (!$this->isBusy())
 		{
-			if (is_array($arg)) {
-				$names = array_merge($names, $arg);
+			$this->combatAI();
+			parent::combatTimer();
+		}
+	}
+	private function combatAIPushUse(SR_Item $item, $argstr='') { $this->combatPush('use '.$item->getItemName().($argstr===''?'':' '.$argstr)); return true; }
+	private function combatAIPushSpell(SR_Spell $spell, $argstr='') { $this->combatPush('spell '.$spell->getName().($argstr===''?'':' '.$argstr)); return true; }
+	
+	/**
+	 * The AI is gonna inject a command.
+	 */
+	private function combatAI()
+	{
+//		echo __METHOD__.PHP_EOL;
+		
+		if ($this->combatAIHeal()) {
+			return;
+		}
+		
+		if ($this->combatAIConsume()) {
+			return;
+		}
+		
+		if ($this->combatAISpell()) {
+			return;
+		}
+		
+		if ($this->combatAIGrenade()) {
+			return;
+		}
+	}
+	
+
+	###############
+	### AI Heal ###
+	###############
+	/**
+	 * The AI wants to heal stuff.
+	 */
+	private function combatAIHeal()
+	{
+		# We need heal itself!
+		if ($this->needsHeal())
+		{
+			if (false !== ($spell = $this->getHealSpell())) {
+				return $this->combatAIPushSpell($spell, $this->getName());
 			}
-			else {
-				$names[] = $arg;
+			if (false !== ($food = $this->getFood())) {
+				return $this->combatAIPushUse($food);
+			}
+			if (false !== ($item = $this->getHealItem())) {
+				return $this->combatAIPushUse($item);
 			}
 		}
 		
-		# Validate
-		if (count($names) === 0) {
-			Lamb_Log::log('Can not create empty party!');
-			return false;
+		# We need to heal a friend!
+		if (false !== ($target = $this->combatAIGetHealTarget()))
+		{
+			if (false !== ($spell = $this->getHealSpell())) {
+				return $this->combatAIPushSpell($spell, $target->getName());
+			}
+			if (false !== ($item = $this->getHealItem())) {
+				return $this->combatAIPushUse($item, $target->getName());
+			}
 		}
 		
-		$npcs = array();
-		foreach ($names as $classname)
+		return false;
+	}
+	
+	###################
+	### Heal Target ###
+	###################
+	private function combatAIGetHealTarget()
+	{
+		$possible = array();
+		foreach ($this->getParty()->getMembers() as $member)
 		{
-			if (false === ($npc = Shadowrun4::getNPC($classname)))
+			if ($member->needsHeal())
 			{
-				Lamb_Log::log('Unknown NPC classname in createEnemyParty: '.$classname);
-				return false;
-			}
-			$npcs[] = $npc;
-		}
-		
-		$party = SR_Party::createParty();
-		foreach ($npcs as $npc)
-		{
-			$npc instanceof SR_NPC;
-			if (false === $npc->spawn($party)) {
-				Lamb_Log::log('Failed to spawn NPC: '.$npc->getNPCClassName());
+				$possible[] = $member;
 			}
 		}
-		
-		$party->updateMembers();
-		return $party;
+		return count($possible) === 0 ? false : $possible[array_rand($possible, 1)];
 	}
 	
-	/**
-	 * Create an NPC and set a valid partyid.
-	 * @param string $classname
-	 * @return SR_NPC
-	 */
-	private function createNPC($classname, SR_Party $party)
+	##################
+	### Heal Spell ###
+	##################
+	private function hasHealSpell()
 	{
-		$data = $this->applyNPCStartData(self::getPlayerData(NULL));
-		$data['sr4pl_classname'] = $classname;
-		$npc = new $classname($data);
-		$npc->setVar('sr4pl_name', $npc->getNPCPlayerName());
-		$npc instanceof SR_NPC;
-		if (false === ($npc->insert())) {
+		$spells = $this->getHealSpells();
+		return count($spells) > 0;
+	}
+	
+	private function getHealSpell()
+	{
+		$spells = $this->getHealSpells();
+		if (count($spells) === 0) {
 			return false;
 		}
-		$party->addUser($npc, false);
-		$npc->saveVar('sr4pl_partyid', $party->getID());
-		return self::reloadPlayer($npc);
+		return $spells[0];
 	}
 	
-//	public function diceNPCMeet(SR_Party $party)
-//	{
-//		
-//		$this->getN
-//		return true;
-//	}
-	
-	/**
-	 * Spawn a copy of this NPC.
-	 * @return SR_NPC
-	 */
-	public function spawn(SR_Party $party)
-	{
-		if (false === ($npc = self::createNPC($this->getNPCClassName(), $party))) {
-			Lamb_Log::log(sprintf('SR_NPC::spawn() failed for NPC class: %s.', $this->getNPCClassName()));
-			return false;
-		}
-		
-		foreach ($this->getNPCEquipment() as $field => $itemname)
-		{
-			if (is_array($itemname)) {
-				shuffle($itemname);
-				$itemname = array_pop($itemname);
-			}
-			
-			if (!in_array($field, SR_Player::$EQUIPMENT, true))
-			{
-				Lamb_Log::log(sprintf('NPC %s has invalid equipment type: %s.', $this->getNPCPlayerName(), $field));
-				$npc->deletePlayer();
-				return false;
-			}
-			
-			if (false === ($item = SR_Item::createByName($itemname))) {
-				Lamb_Log::log(sprintf('NPC %s has invalid %s: %s.', $this->getNPCPlayerName(), $field, $itemname));
-				$npc->deletePlayer();
-				return false;
-			}
-
-			$item->saveVar('sr4it_uid', $npc->getID());
-			$npc->updateEquipment($field, $item);
-		}
-
-		$inv = array();
-		foreach ($this->getNPCInventory() as $itemname)
-		{
-			if (false === ($item = SR_Item::createByName($itemname))) {
-				Lamb_Log::log(sprintf('NPC %s has invalid inventory item: %s.', $this->getNPCPlayerName(), $itemname));
-				$npc->deletePlayer();
-				return false;
-			}
-			$inv[] = $item;
-		}
-		
-		$npc->giveItems($inv);
-		
-		$npc->saveSpellData($this->getNPCSpells());
-		
-		$npc->healHP(10000);
-		$npc->healMP(10000);
-		
-		$npc->modify();
-		
-		return $npc;
-	}
-
-	public function gotKilledByNPC(SR_Player $player)
-	{
-		Lamb_Log::log(__CLASS__.'::'.__METHOD__);
-	}
-
-	public function gotKilledByHuman(SR_Player $player)
-	{
-		$items = array_merge(
-			Shadowfunc::randLoot($player, (int)$this->getBase('level')), 
-			$this->generateNPCLoot($player)
-		);
-		$player->giveItems($items);
-	}
-
-	private function generateNPCLoot(SR_Player $player)
+	private function getHealSpells()
 	{
 		$back = array();
-		foreach ($this->getNPCLoot($player) as $itemname)
+		foreach ($this->getSpellData() as $name => $level)
 		{
-			$back[] = SR_Item::createByName($itemname);
+			$spell = SR_Spell::getSpell($name);
+			if ($spell instanceof SR_HealSpell)
+			{
+				if ($spell->hasEnoughMP($this))
+				{
+					$back[] = $spell;
+				}
+			}
 		}
 		return $back;
 	}
 	
-	public function respawn()
+	#################
+	### Heal Item ###
+	#################
+	private function getHealItem()
 	{
-//		Lamb_Log::log(__METHOD__);
-		$this->deletePlayer();
+		$items = $this->getHealItems();
+		return count($items) ? $items[array_rand($items, 1)] : false;
 	}
 	
-	##########
-	### AI ###
-	##########
-	public function combatTimer()
+	private function getHealItems()
 	{
-		
-		
-		
-		// Exec
-		parent::combatTimer();
-	}
-}
-
-###################
-### Talking NPC ###
-###################
-abstract class SR_TalkingNPC extends SR_NPC
-{
-//	public function getName() { return __CLASS__; }
-	public function isNPCFriendly(SR_Party $party) { return true; }
-	public function canNPCMeet(SR_Party $party) { return false; }
-	################
-	### NPC Talk ###
-	################
-	public function reply($message)
-	{
-		$this->chat_partner->message(sprintf('%s says: "%s"', $this->getName(), $message));
-	}
-}
-abstract class SR_HireNPC extends SR_TalkingNPC
-{
-	const HIRE_END = 'hire';
-	
-	public function onHire(SR_Player $player, $price, $time)
-	{
-		$p = $player->getParty();
-		if ($p->hasHireling()) {
-			return "You already have a runner. I work alone.";
-		}
-		
-		if ($price > 0)
+		$items = array();
+		foreach ($this->getInventory() as $item)
 		{
-			if ($player->getNuyen() < $price) {
-				return "I want {$price} nuyen to join join your party.";
+			if ($item instanceof SR_HealItem)
+			{
+				$items[] = $item;
 			}
 		}
-		
-		$this->onHireB($player, $price, $time);
-		
-		return "Ok chummers, let's go!";
+		return $items;
 	}
 	
-	public function onHireB(SR_Player $player, $price, $time)
+	############
+	### Food ###
+	############
+	private function getFood()
 	{
-		$p = $player->getParty();
-		$player->giveNuyen(-$price);
-		$npc = $this->spawn($p);
-		$npc->onHireC($player, $time);
+		$items = $this->getFoodItems();
+		return count($items) ? $items[array_rand($items, 1)] : false;
 	}
 	
-	public function onHireC(SR_Player $player, $time)
+	private function getFoodItems()
 	{
-		$player->getParty()->addUser($this, true);
-		$this->onSetHireTime($time);
-	}
-	
-	public function onSetHireTime($time)
-	{
-		$this->setConst(self::HIRE_END, Shadowrun4::getTime() + $time);
-	}
-	
-	public function onAddHireTime($seconds)
-	{
-		$this->setConst(self::HIRE_END, $this->getConst(self::HIRE_END) + $seconds);
-	}
-	
-	public function hasToLeave()
-	{
-		if (!$this->hasConst(self::HIRE_END)) {
-			return false;
+		$items = array();
+		foreach ($this->getInventory() as $item)
+		{
+			if ($item instanceof SR_Food)
+			{
+				$items[] = $item;
+			}
 		}
-		return $this->getConst(self::HIRE_END) < Shadowrun4::getTime();
+		return $items;
+	}
+	
+	##################
+	### AI Consume ###
+	##################
+	
+	/**
+	 * The AI wants to consume it's consumeables and potions.
+	 */
+	private function combatAIConsume()
+	{
+		if (rand(0, 2) !== 0) {
+			return false;
+		} 
+		if (false !== ($item = $this->getPotion())) {
+			return $this->combatAIPushUse($item);
+		}
+		return false;
+	}
+
+	private function getPotions()
+	{
+		$potions = array();
+		foreach ($this->getInventory() as $item)
+		{
+			if ($item instanceof SR_Potion)
+			{
+				$potions[] = $item;
+			}
+		}
+		return $potions;
+	}
+	
+	private function getPotion()
+	{
+		$potions = $this->getPotions();
+		return count($potions) ? $potions[array_rand($potions, 1)] : false;
+	}
+	
+	################
+	### AI Magic ###
+	################
+	/**
+	 * The AI wants to cast a combat spell.
+	 */
+	private function combatAISpell()
+	{
+		switch (rand(1, 2))
+		{
+			case 1:
+				return $this->combatAISpellSupportive();
+			case 2:
+				return $this->combatAISpellOffensive();
+			default:
+				return false;
+		}
+	}
+	
+	####################
+	### SupportSpell ###
+	####################
+	private function combatAISpellSupportive()
+	{
+		if (false !== ($spell = $this->getSupportSpell())) {
+			return $this->combatAIPushSpell($spell);
+		}
+		return false;
+	}
+	
+	private function getSupportSpell()
+	{
+		$spells = $this->getSupportSpells();
+		return count($spells) ? $spells[array_rand($spells, 1)] : false;
+	}
+	
+	private function getSupportSpells()
+	{
+		$back = array();
+		foreach ($this->getSpellData() as $name => $level)
+		{
+			$spell = SR_Spell::getSpell($name);
+			if ($spell instanceof SR_SupportSpell)
+			{
+				if ($spell->hasEnoughMP($this))
+				{
+					$back[] = $spell;
+				}
+			}
+		}
+		return $back;
+	}
+	
+	####################
+	### Combat Spell ###
+	####################
+	private function combatAISpellOffensive()
+	{
+		if (false !== ($spell = $this->getCombatSpell())) {
+			return $this->combatAIPushSpell($spell, $this->combatAIGetTarget()->getName());
+		}
+		return false;
+	}
+	
+	private function combatAIGetTarget()
+	{
+		$p = $this->getParty();
+		$ep = $p->getEnemyParty();
+		$emc = $ep->getMemberCount();
+		return $ep->getMemberByEnum(rand(1, $emc));
+	}
+	
+	private function getCombatSpell()
+	{
+		$spells = $this->getCombatSpells();
+		var_dump($spells);
+		return count($spells) > 0 ? $spells[array_rand($spells, 1)] : false;
+	}
+	
+	private function getCombatSpells()
+	{
+		$back = array();
+		foreach ($this->getSpellData() as $name => $level)
+		{
+			$spell = SR_Spell::getSpell($name);
+			if ($spell instanceof SR_CombatSpell)
+			{
+				if ($spell->hasEnoughMP($this))
+				{
+					$back[] = $spell;
+				}
+			}
+		}
+		return $back;
+	}
+	
+	###############
+	### Grenade ###
+	###############
+	private function combatAIGrenade()
+	{
+		if (rand(0, 4)===0)
+		{
+			if (false !== ($item = $this->getGrenade())) {
+				return $this->combatAIPushUse($item);
+			}
+		}
+		return false;
+	}
+	
+	public function getGrenade()
+	{
+		$items = $this->getGrenades();
+		return count($items) ? $items[array_rand($items, 1)] : false;
+	}
+	
+	public function getGrenades()
+	{
+		$items = array();
+		foreach ($this->getInventory() as $item)
+		{
+			if ($item instanceof SR_Grenade)
+			{
+				$items[] = $item;
+			}
+		}
+		return $items;
 	}
 }
 ?>

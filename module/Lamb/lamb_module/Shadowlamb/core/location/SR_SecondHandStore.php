@@ -101,7 +101,7 @@ abstract class SR_SecondHandStore extends SR_Store
 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if (!$item->isItemSellable()) {
+		if (!$item->isItemSellable() || $item->isItemStackable()) {
 			$bot->reply('I don`t want your '.$item->getItemName().'.');
 			return false;
 		}

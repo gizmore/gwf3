@@ -1,8 +1,6 @@
 <?php
-final class Spell_firebolt extends SR_Spell
+final class Spell_firebolt extends SR_CombatSpell
 {
-	public function isOffensive() { return true; }
-	
 	public function getHelp(SR_Player $player) { return 'Cast a firebolt against an enemy. Does some damage.'; }
 	
 	public function getRequirements() { return array('magic'=>2); }

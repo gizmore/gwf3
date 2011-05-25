@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Ueberpunk extends SR_Quest
 {
+	public function getQuestName() { return 'Ueberpunk!!!'; }
 	public function getQuestDescription() { return sprintf('Bring the Ueberpunk\'s head to the bikers in Redmond_HellPub.'); }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{

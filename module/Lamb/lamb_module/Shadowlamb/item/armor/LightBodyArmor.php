@@ -10,7 +10,7 @@ final class Item_LightBodyArmor extends SR_Armor
 	{
 		return array(
 			'defense' => 1.5,
-			'marm' => 3.5,
+			'marm' => 3.0,
 			'farm' => 2.5,
 		);
 	}

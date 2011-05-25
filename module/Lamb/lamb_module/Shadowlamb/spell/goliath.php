@@ -1,8 +1,6 @@
 <?php
-final class Spell_goliath extends SR_Spell
+final class Spell_goliath extends SR_SupportSpell
 {
-	public function isOffensive() { return false; }
-	
 	public function getHelp(SR_Player $player) { return 'Temporarily raises the strength of a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>2); }

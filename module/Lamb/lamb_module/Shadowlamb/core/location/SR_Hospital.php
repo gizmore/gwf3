@@ -67,6 +67,8 @@ abstract class SR_Hospital extends SR_Store
 		}
 		
 		$player->addCyberware($item);
+		$player->modify();
+		
 		$bot->reply(sprintf('You paid %s and got %s implanted.', Shadowfunc::displayPrice($price), $item->getItemName()));
 		return true;
 	}
@@ -97,6 +99,8 @@ abstract class SR_Hospital extends SR_Store
 			return false;
 		}
 		$player->removeCyberware($item);
+		$player->modify();
+		
 		$bot->reply(sprintf('You pay %s and got your %s removed.', $p1, $item->getItemName()));
 		return true;
 	}

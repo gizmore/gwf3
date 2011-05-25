@@ -8,8 +8,8 @@ final class Item_Shorts extends SR_Legs
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => 0.3,
-			'marm' => 0.2,
+			'defense' => 0.1,
+			'marm' => 0.1,
 			'farm' => 0.1,
 		);
 	}

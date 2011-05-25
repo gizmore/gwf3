@@ -9,8 +9,8 @@ final class Item_ChainLegs extends SR_Legs
 	{
 		return array(
 			'defense' => 0.1,
-			'marm' => 0.9,
-			'farm' => 0.5,
+			'marm' => 0.8,
+			'farm' => 0.4,
 		);
 	}
 }

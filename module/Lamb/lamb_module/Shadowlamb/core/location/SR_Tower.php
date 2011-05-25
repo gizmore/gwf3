@@ -1,6 +1,7 @@
 <?php
 abstract class SR_Tower extends SR_Location
 {
+	public function hasATM() { return false; }
 	public function teleport(SR_Player $player, $target)
 	{
 		$party = $player->getParty();

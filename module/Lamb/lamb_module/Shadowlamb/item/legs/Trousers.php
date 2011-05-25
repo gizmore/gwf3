@@ -8,9 +8,9 @@ final class Item_Trousers extends SR_Legs
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => 0.5,
-			'marm' => 0.8,
-			'farm' => 0.3,
+			'defense' => 0.2,
+			'marm' => 0.4,
+			'farm' => 0.2,
 		);
 	}
 }

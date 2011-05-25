@@ -1,6 +1,7 @@
 <?php
 final class Seattle extends SR_City
 {
+	public function getImportNPCS() { return array('Redmond_Cyberpunk','Redmond_Ork','Redmond_Ueberpunk','Redmond_Burglar'); }
 	public function getArriveText() { return 'You arrive at Seattle. It is a big city with a bunch of slums and a big commercial centrum.'; }
 	public function getSquareKM() { return 8; }
 	public function onEvents(SR_Party $party)

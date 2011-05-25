@@ -5,9 +5,9 @@ abstract class SR_Blacksmith extends SR_Store
 	public abstract function getUpgradePrice();
 	public abstract function getUpgradePercentPrice();
 	
-	public function getCommands(SR_Player $player) { return array('view','buy','sell','break','simulate','upgrade'); }
+	public function getCommands(SR_Player $player) { return array('view','buy','sell','clean','break','simulate','upgrade'); }
 	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
-	public function getHelpText(SR_Player $player) { $c = LambModule_Shadowlamb::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes. Also {$c}buy,{$c}sell and {$c}view works here."; }
+	public function getHelpText(SR_Player $player) { $c = LambModule_Shadowlamb::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. Also {$c}view, {$c}buy and {$c}sell works here."; }
 
 	public function calcUpgradePrice(SR_Player $player, $price)
 	{
@@ -17,6 +17,48 @@ abstract class SR_Blacksmith extends SR_Store
 	public function calcSimulationPrice(SR_Player $player, $price)
 	{
 		return Shadowfunc::calcBuyPrice($this->getSimulationPrice(), $player);
+	}
+	
+	public function on_clean(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (count($args) !== 1) {
+			$bot->reply(Shadowhelp::getHelp($player, 'clean'));
+			return false;
+		}
+		if (false === ($item = $player->getItem($args[0]))) {
+			$bot->reply('You don`t have that item.');
+			return false;
+		}
+		if (!$item->isItemStatted()) {
+			$bot->reply('You can only clean statted items.');
+			return false;
+		}
+		if ($item instanceof SR_Rune) {
+			$bot->reply('You cannot clean runes.');
+			return false;
+		}
+
+		$itemname = $item->getItemName();
+		$price = Shadowfunc::calcBuyPrice($item->getItemPriceStatted()*0.25, $player);
+		
+		$p = Shadowfunc::displayPrice($price);
+		if (false === ($player->pay($price))) {
+			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to clean this item. You only have %s."', $p, $player->displayNuyen()));
+			return false;
+		}
+		
+		if (false === $item->saveVar('sr4it_modifiers', NULL)) {
+			$bot->reply('DB Error!');
+		}
+		
+		$item->initModifiersB();
+		$player->modify();
+		
+		$bot->reply("You pay {$p} and the smith cleans the {$itemname} from all it\'s runes. You receive a(n): ".$item->getItemName().'.');
+		
+		return true;
+		
 	}
 	
 	public function on_break(SR_Player $player, array $args)
@@ -60,8 +102,12 @@ abstract class SR_Blacksmith extends SR_Store
 		$runes = array();
 		foreach ($modifiers as $k => $v)
 		{
-			$v -= 0.2;
+			$min = round($v/2, 1);
+			$max = round($v-0.1, 1);
+			$v = Shadowfunc::diceFloat($min, $max, 1);
+//			$v -= 0.2;
 			if ($v <= 0) { continue; }
+			
 			$rn = sprintf('Rune_of_%s:%s', $k, $v);
 			if (false === ($rune = SR_Item::createByName($rn))) {
 				continue;
@@ -106,6 +152,12 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 		if (!($rune instanceof SR_Rune)) {
 			$bot->reply('The second item is not a rune.');
+			return false;
+		}
+		
+		$modsRune = $rune->getModifiers();
+		if (($modsRune === NULL) || (count($modsRune) === 0)) {
+			$bot->reply('The rune has no modifiers. Somethings wrong!');
 			return false;
 		}
 

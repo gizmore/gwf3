@@ -21,5 +21,11 @@ final class SR_Stats extends GDO
 		);
 	}
 	
+	public static function deletePlayer(SR_Player $player)
+	{
+		return self::table(__CLASS__)->deleteWhere('sr4st_pid='.$player->getID());
+	}
+	
+	
 }
 ?>

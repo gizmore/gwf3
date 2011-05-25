@@ -33,26 +33,17 @@ abstract class SR_Weapon extends SR_Equipment
 		$hpmsg = $lootmsg = '';
 		
 		$mindmg = $player->get('min_dmg');
+		$maxdmg = $player->get('max_dmg');
 		$arm = $target->get($armor_type);
 		$atk = round(Common::clamp(($player->get('attack')-$d2*1.2), 1));
 		$def = ($target->get('defense'));
 		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
-		# Dice Hits
-//		$hits = 0;
-//		for ($i = 0; $i < $atk; $i++)
-//		{
-//			if (Shadowfunc::dice($def, 8))
-//			{
-//				$hits++;
-//			}
-//		}
-		
 		# Debug
 		Lamb_Log::log(sprintf('%s (ATK: %s HP: %s) vs. %s (DEF: %s HP: %s) = HITS: %s',$player->getName(),$atk,$player->getHP(),$target->getName(),$def,$target->getHP(),$hits));
 		
 		# Miss
-		if ($hits === 0) {
+		if ($hits < 1) {
 			$msg .= ' but misses.';
 		}
 		
@@ -60,12 +51,15 @@ abstract class SR_Weapon extends SR_Equipment
 		else
 		{
 			$damage = $hits * 0.1;
+//			$damage = Shadowfunc::diceFloat(0.1, $damage*3, 1);
+
 //			$damage = $player->get('min_dmg') + ($hits*0.1);
-			$damage = round(Common::clamp($damage, 0.0, $player->get('max_dmg')), 2);
+
+			$damage = round(Common::clamp($damage, 0.0, $maxdmg), 1);
 			
 			$sharp = Common::clamp(28 + $player->get('sharpshooter') * 7);
 			if (rand(0, 1000) < $sharp) {
-				$damage += rand(0, $damage);
+				$damage += Shadowfunc::diceFloat(1.0, $hits*0.1+1.0, 1);
 				$crit = ' critically';
 			} else {
 				$crit = '';

@@ -3,6 +3,7 @@ final class SR_Party extends GDO
 {
 	const MAX_MEMBERS = 7;
 	const XP_PER_LEVEL = 50;
+	const X_COORD_INC = 4; # increment x coord per member like 1, 2, 3
 	
 	const NPC_PARTY = 0x01;
 	const BAN_ALL = 0x02;
@@ -13,7 +14,7 @@ final class SR_Party extends GDO
 	const LOOT_USER = 0x80;
 	const LOOT_BITS = 0xF0;
 	
-	public static $ACTIONS = array('delete', 'talk', 'fight',/* 'search',*/ 'inside', 'outside', 'sleep', 'travel', 'explore', 'goto', 'hunt');
+	public static $ACTIONS = array('delete', 'talk', 'fight', 'inside', 'outside', 'sleep', 'travel', 'explore', 'goto', 'hunt');
 	const ACTION_DELETE = 'delete';
 	const ACTION_TALK = 'talk';
 	const ACTION_FIGHT = 'fight';
@@ -24,7 +25,6 @@ final class SR_Party extends GDO
 	const ACTION_EXPLORE = 'explore';
 	const ACTION_GOTO = 'goto';
 	const ACTION_HUNT = 'hunt';
-//	const ACTION_SEARCH = 'search';
 	
 	private $loot_user = -1;
 	private $loot_cycle = -1;
@@ -104,6 +104,32 @@ final class SR_Party extends GDO
 	public function setDeleted($b) { $this->deleted = $b; }
 	public function getTimestamp() { return $this->timestamp; }
 	public function setTimestamp($time) { $this->timestamp = $time; }
+	
+	public function getEnum(SR_Player $player)
+	{
+		$pid = $player->getID();
+		$i = 1;
+		foreach ($this->members as $m)
+		{
+			if ($m->getID() === $pid)
+			{
+				return $i;
+			}
+			$i++;
+		}
+		return false;
+	}
+	
+	public function getMemberByEnum($n)
+	{
+		$mc = $this->getMemberCount();
+		$n = (int) $n;
+		if ( ($n < 1) || ($n > $mc) ) {
+			return false;
+		}
+		$back = array_slice($this->members, $n-1, 1, false);
+		return $back[0];
+	}
 	
 	public function hasHireling()
 	{
@@ -335,6 +361,7 @@ final class SR_Party extends GDO
 	
 	public function updateMembers()
 	{
+		$this->timestamp = time();
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		return $this->saveVars(array(
 			'sr4pa_members' => implode(',', array_keys($this->members)),
@@ -698,6 +725,20 @@ final class SR_Party extends GDO
 		$this->getEnemyParty()->message($player, $message);
 	}
 	
+	public function movePlayer(SR_Player $player, $forward=true, $metres=0)
+	{
+		if ( ($metres <= 0) )
+		{
+			return false;
+		} 
+		
+		$dir = $forward ? 1 : -1;
+		$move = $dir * $metres;
+		$d = $this->distance[$player->getID()] + $move;
+		$this->distance[$player->getID()] = $d;
+		$this->updateMembers();
+	}
+	
 	
 	############
 	### Flee ###
@@ -745,13 +786,20 @@ final class SR_Party extends GDO
 	public function displayETA()
 	{
 		$duration = $this->getETA()-Shadowrun4::getTime();
-		return $duration <= 0 ? '0s' : GWF_Time::humanDurationEN($duration);
+		return $duration <= 0 ? '0s' : GWF_Time::humanDuration($duration);
+	}
+	
+	public function displayLastETA()
+	{
+		$duration = $this->getVar('sr4pa_last_eta') - $this->getETA();# + Shadowrun4::getTime();
+//		$duration = $this->getVar('sr4pa_last_eta') - Shadowrun4::getTime();
+		return $duration <= 0 ? '0s' : GWF_Time::humanDuration($duration);
 	}
 	
 	public function displayContactETA()
 	{
 		$duration = $this->getVar('sr4pa_contact_eta')-Shadowrun4::getTime();
-		return $duration <= 0 ? '0s' : GWF_Time::humanDurationEN($duration);
+		return $duration <= 0 ? '0s' : GWF_Time::humanDuration($duration);
 	}
 	
 	
@@ -761,10 +809,8 @@ final class SR_Party extends GDO
 		switch ($action)
 		{
 			case 'delete': return 'beeing deleted.';
-			case 'talk': return sprintf('talking to %s. %s remaining.', $this->getEnemyParty()->displayMembers(), $this->displayContactETA());
-			case 'fight': return sprintf('fighting against %s.', $this->getEnemyParty()->displayMembers(true));
-//			case 'search': return sprintf('searching inside %s. %s remaining.', $this->getLocation($action), $this->displayETA());
-//			case 'inroom': return sprintf('inside %s in %s.', $this->getLocation($action), $this->getLocation($action));
+			case 'talk': return sprintf('talking to %s. %s remaining.%s', $this->getEnemyParty()->displayMembers(), $this->displayContactETA(), $this->displayLastAction());
+			case 'fight': return sprintf('fighting against %s.%s', $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			case 'inside': return sprintf('inside %s.', $this->getLocation($action));
 			case 'outside': return sprintf('outside of %s.', $this->getLocation($action));
 			case 'sleep': return sprintf('sleeping inside %s.', $this->getLocation($action));
@@ -772,6 +818,26 @@ final class SR_Party extends GDO
 			case 'explore': return sprintf('exploring %s. %s remaining.', $this->getLocation($action), $this->displayETA());
 			case 'goto': return sprintf('going to %s. %s remaining.', $this->getLocation($action), $this->displayETA());
 			case 'hunt': return sprintf('hunting %s. %s remaining.', $this->getTarget(), $this->displayETA());
+			default: return 'Unknown party action is unknown.';
+		}
+	}
+	
+	public function displayLastAction()
+	{
+		$la = $this->getVar('sr4pa_last_action');
+		
+		switch ($la)
+		{
+			case 'goto':
+			case 'hunt':
+			case 'explore':
+			case 'travel':
+				$lt = $this->getVar('sr4pa_last_target');
+				$le = $this->displayLastETA();
+				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
+				
+			default:
+				return '';
 		}
 	}
 	
@@ -780,14 +846,14 @@ final class SR_Party extends GDO
 		if ($this->getMemberCount() === 0) {
 			return 'This party is empty! (should not see me)';
 		}
+		$b = chr(2);
+		$i = 1;
 		$back = '';
 		foreach ($this->members as $player)
 		{
 			$player instanceof SR_Player;
-
 			$dist = $with_distance ? sprintf('(%.01fm)', $this->distance[$player->getID()]) : '';
-			
-			$back .= sprintf(', %s%s', $player->getName(), $dist);
+			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $player->getName(), $dist);
 		}
 		return substr($back, 2);
 	}

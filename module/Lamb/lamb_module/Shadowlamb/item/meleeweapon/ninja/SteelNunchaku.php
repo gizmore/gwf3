@@ -10,7 +10,7 @@ final class Item_SteelNunchaku extends SR_NinjaWeapon
 	{
 		return array(
 			'attack' => 8.2,
-			'min_dmg' => 2.0,
+			'min_dmg' => 2.5,
 			'max_dmg' => 9.0,
 		);
 	}

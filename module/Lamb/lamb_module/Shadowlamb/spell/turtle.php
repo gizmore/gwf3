@@ -1,5 +1,5 @@
 <?php
-final class Spell_turtle extends SR_Spell
+final class Spell_turtle extends SR_SupportSpell
 {
 	public function isOffensive() { return false; }
 	

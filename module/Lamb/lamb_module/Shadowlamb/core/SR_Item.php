@@ -17,6 +17,7 @@ require_once 'item/SR_Shield.php';
 require_once 'item/SR_Weapon.php';
 require_once 'item/SR_FireWeapon.php';
 require_once 'item/SR_MeleeWeapon.php';
+require_once 'item/SR_Cyberdeck.php';
 
 /**
  * A shadowrum item.
@@ -246,16 +247,21 @@ class SR_Item extends GDO
 	public function getItemModifiersB() { return $this->modifiers; }
 	public function initModifiersB()
 	{
-		if (NULL === ($modstring = $this->getVar('sr4it_modifiers'))) {
-			$this->modifiers = NULL;
-			return;
-		}
-		$this->modifiers = array();
-		foreach (explode(',', $modstring) as $data)
+		$modifiers = array();
+		foreach (explode(',', $this->getVar('sr4it_modifiers')) as $data)
 		{
-			$data = explode(':', $data);
-			$this->modifiers[$data[0]] = (float)$data[1];
+			if ($data !== '')
+			{
+				$data = explode(':', $data);
+				$modifiers[$data[0]] = (float)$data[1];
+			}
 		}
+		
+		if (count($modifiers) === 0)
+		{
+			$this->modifiers = NULL;
+		}
+		$this->modifiers = count($modifiers) ? $modifiers : NULL;
 	}
 	
 	public function addModifiers(array $modifers, $update=true)
@@ -315,13 +321,14 @@ class SR_Item extends GDO
 		return true;
 	}
 	
+	public function getItemWeightStacked()
+	{
+		return $this->getItemWeight() * $this->getAmount();
+	}
+	
 	public function getItemModifiers(SR_Player $player)
 	{
-		$weight = $this->getItemWeight();
-		if ($this->isItemStackable()) {
-			$weight *= $this->getAmount();
-		}
-		
+		$weight = $this->getItemWeightStacked();
 		$back = array_merge(array('weight'=> $weight), $this->getItemModifiersA($player));
 
 		if (NULL !== ($modB = $this->getItemModifiersB())) {
@@ -332,10 +339,10 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf(
-			'%s%s.%s%s%s%s',
+		return sprintf('%s%s. %s%s%s%s%s%s',
+			$this->displayType(),
+			$this->displayLevel(),
 			$this->getItemDescription(),
-//			$this->getItemTypeDescr($player),
 			$this->displayModifiersA($player),
 			$this->displayModifiersB($player),
 			$this->displayRequirements($player),
@@ -348,7 +355,8 @@ class SR_Item extends GDO
 	{
 		$price = $this->getItemPrice();
 		if ($price > 0) {
-			return sprintf(' Worth: %s.', Shadowfunc::displayPrice($price));
+			$b = chr(2);
+			return sprintf(' %sWorth%s: %s.', $b, $b, Shadowfunc::displayPrice($price));
 		}
 		return '';
 	}
@@ -374,8 +382,13 @@ class SR_Item extends GDO
 	###############
 	public function displayType()
 	{
-		return '';
-		return sprintf('%s(%s)', $this->getItemType(), $this->getItemSubType());
+		return 'Item';
+	}
+	
+	public function displayLevel()
+	{
+		$l = $this->getItemLevel();
+		return $l < 0 ? '' : (' Lvl'.$l);
 	}
 	
 	public function displayRequirements(SR_Player $player)
@@ -400,21 +413,32 @@ class SR_Item extends GDO
 		if ($this->modifiers === NULL) {
 			return '';
 		}
-		return sprintf(' Modifiers: %s.', Shadowfunc::getModifiers($this->getItemModifiersB()));
+		$b = chr(2);
+		return sprintf(' %sModifiers%s: %s.', $b, $b, Shadowfunc::getModifiers($this->getItemModifiersB()));
 	}
 	
 	private function displayWeightB()
 	{
-		return ('' === ($s = $this->displayWeight())) ? '' : ' Weight: '.$s.'.';
+		$b = chr(2);
+		return ('' === ($s = $this->displayWeight())) ? '' : " {$b}Weight{$b}: {$s}.";
 	}
 	
 	public function displayWeight()
 	{
-		$weight = $this->getItemWeight()*$this->getAmount();
-		if ($weight <= 0) {
-			return '';
+//		if ($weight <= 0) {
+//			return '';
+//		}
+		
+//		$weight = $this->getItemWeightStacked();
+		$weight = $this->getItemWeight();
+		$amount = $this->getAmount();
+		
+		$w = Shadowfunc::displayWeight($weight);
+		if ($amount > 1)
+		{
+			return $amount.'x'.$w;
 		}
-		return Shadowfunc::displayWeight($weight);
+		return $w;
 	}
 	
 	public function getItemPriceStatted()
@@ -435,7 +459,7 @@ class SR_Item extends GDO
 	public function getItemType() { return 'item'; }
 	public function getItemSubType() { return 'item'; }
 	public function getItemPrice() { return -1; }
-	public function getItemWeight() { return -987654321; }
+	public function getItemWeight() { return -1; }
 	public function getItemUsetime() { return 60; }
 	public function getItemDescription() { return 'ITEM DESCRIPTION'; }
 	public function getItemTypeDescr(SR_Player $player) { return ''; }

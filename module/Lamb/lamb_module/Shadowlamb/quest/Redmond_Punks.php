@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Punks extends SR_Quest
 {
+	public function getQuestName() { return 'Punks!!'; }
 	public function getQuestDescription() { return sprintf('Kill %s/%s Punks and return to the HellsPub', $this->getAmount(), $this->getNeededAmount()); }
 	public function getNeededAmount() { return 10; }
 	public function onKilledPunk(SR_Player $player)

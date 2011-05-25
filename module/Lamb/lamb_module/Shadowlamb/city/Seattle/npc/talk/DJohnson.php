@@ -100,7 +100,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 				elseif ($i === 2) {
 					$this->reply('You are a good boy, chummer. Your next mission is to punish Mogrid.');
 					$this->reply('He ows a friend some favour, 50000 favors to be exact.');
-					$this->reply("You better get some help from this friend. You will find him in the {$b}blackmarket{$b}.");
+					$this->reply("You better get some help from this friend. You will find him in the {$b}blackmarket{$b}. Just ask him about {$b}Shadowrun{$b}.");
 					$player->giveKnowledge('words', 'Blackmarket');
 					$this->reply('You can do that, right?');
 					$player->setTemp(self::TEMP_WORD, true);

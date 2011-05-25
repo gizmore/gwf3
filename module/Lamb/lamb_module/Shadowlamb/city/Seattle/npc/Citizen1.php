@@ -3,7 +3,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 {
 	public function getNPCLevel() { return 6; }
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
-	public function getNPCMeetPercent(SR_Party $party) { return 90.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCLoot(SR_Player $player) { return array('Cake'); }
 	public function getNPCEquipment()
@@ -88,8 +88,8 @@ final class Seattle_Citizen1 extends SR_HireNPC
 					case 2: $this->reply('No, i am not interested.'); break;
 					case 3: $this->reply('Better get a job, chummer'); break;
 					case 4:
-						$this->reply('An invitation for a big party? Sure i am in!');
-						$quest->onInviteCitizen($this, $player);
+						$this->reply('An invitation for a big party? Sure me and my friends are in. Thank you!');
+						$quest->onInviteCitizen($this, $player, $this->getParty()->getMemberCount());
 						$this->setTemp($key2, 5);
 						break;
 					case 5:

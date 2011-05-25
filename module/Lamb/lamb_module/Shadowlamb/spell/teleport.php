@@ -28,6 +28,8 @@ final class Spell_teleport extends SR_Spell
 			$player->message('Please specify a target to teleport to.');
 			return false;
 		}
+
+		$bot = Shadowrap::instance($player);
 		
 		$tlc = $args[0];
 		$cityclass = $p->getCityClass();
@@ -37,7 +39,7 @@ final class Spell_teleport extends SR_Spell
 		}
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
-			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $cityname));
+			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $p->getCity()));
 			return false;
 		}
 		$tlc = $target->getName();

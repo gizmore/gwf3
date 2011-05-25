@@ -188,6 +188,7 @@ abstract class SR_Store extends SR_Location
 		$bot->reply(sprintf('You paid %s and bought %s.', Shadowfunc::displayPrice($price), $item->getItemName()));
 		
 		$player->giveItems($item);
+		$player->modify();
 		
 		return true;
 	}

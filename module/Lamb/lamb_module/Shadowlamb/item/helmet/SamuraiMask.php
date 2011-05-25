@@ -1,7 +1,7 @@
 <?php
 final class Item_SamuraiMask extends SR_Helmet
 {
-	public function getItemLevel() { return 10; }
+	public function getItemLevel() { return 9; }
 	public function getItemPrice() { return 1500; }
 	public function getItemWeight() { return 650; }
 	public function getItemDescription() { return 'A ski mask... for cold days :)'; }

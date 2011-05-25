@@ -15,24 +15,25 @@ final class Seattle_AMagician extends SR_NPC
 		);
 	}
 	public function getNPCInventory() { return array('FirstAid'); }
-	public function getNPCSpells() { return array('freeze'=>2,'firebolt'=>4); }
+	public function getNPCSpells() { return array('freeze'=>3,'firebolt'=>5); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
-			'strength' => 3,
-			'quickness' => 6,
-			'magic'  => 5,
-			'intelligence' => 6,
-			'wisdom' => 3,
-			'distance' => 10,
+			'strength' => 2,
+			'quickness' => 5,
+			'magic'  => 8,
+			'intelligence' => 8,
+			'wisdom' => 4,
+			'distance' => 12,
 			'base_hp' => 16,
+			'base_mp' => 30,
 		);
 	}
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		$nuyen = 700;
+		$nuyen = 900;
 		$key = 'SEATTLE_ARENA_N';
 		$player->setConst($key, $player->getConst($key)+1);
 		$player->message("The fight is over. The director hands you $nuyen Nuyen.");

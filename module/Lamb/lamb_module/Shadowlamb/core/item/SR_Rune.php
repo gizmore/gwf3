@@ -1,6 +1,8 @@
 <?php
 class SR_Rune extends SR_Item
 {
+	public function displayType() { return 'Rune'; }
+	
 	public function isItemStackable() { return false; }
 	
 	const RUNE_MODIFIER = 0;
@@ -28,7 +30,7 @@ class SR_Rune extends SR_Item
 	private static function initRuneData()
 	{
 		# LEVEL, DROP_CHANCE, PRICE, FAIL, BREAK
-		self::$RUNEDATA['max_hp'] = array('max_hp', 4, 100.00, 200.00, 10.00, 2.00, 0.1, 4.0);
+		self::$RUNEDATA['max_hp'] = array('max_hp', 4, 100.00, 200.00, 10.00, 2.00, 0.1, 2.0);
 		self::$RUNEDATA['max_mp'] = array('max_mp', 8, 100.00, 250.00, 10.00, 2.00, 0.1, 4.0);
 		self::$RUNEDATA['max_weight'] = array('max_weight', 6, 100.00, 300.00, 15.00, 4.00, 10.0, 1000.0);
 		self::$RUNEDATA['attack'] = array('attack', 12, 100.00, 750.00, 20.00, 6.00, 0.1, 1.0);

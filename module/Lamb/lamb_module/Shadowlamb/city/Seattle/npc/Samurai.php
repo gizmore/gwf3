@@ -15,17 +15,18 @@ final class Seattle_Samurai extends SR_NPC
 		);
 	}
 	public function getNPCInventory() { return array('SmallFirstAid'); }
+//	public function getNPCCyberware() { return array('WiredReflexes', 'Sporn'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
 			'strength' => rand(2, 4),
-			'quickness' => rand(3, 5),
+			'quickness' => rand(2, 4),
 			'distance' => rand(0, 2),
-			'melee' => rand(4, 6),
-			'sharpshooter' => rand(1, 3),
-			'nuyen' => rand(60, 120),
-			'base_hp' => rand(14, 20),
+			'melee' => rand(1, 3),
+			'sharpshooter' => rand(0, 2),
+			'nuyen' => rand(30, 50),
+			'base_hp' => rand(3, 7),
 		);
 	}
 }

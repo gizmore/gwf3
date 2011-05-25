@@ -10,16 +10,13 @@ abstract class SR_FireWeapon extends SR_Weapon
 	
 	public function getItemModifiersW(SR_Player $player)
 	{
-		$sub = $player->get($this->getItemSubType());
-		
-		if ($sub === 'bows') {
-			$sub += $player->get('ninja');
-		}
-		
+		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg,bow)
+		$fir = Common::clamp($player->get('firearms')); # (fir),
+		$nin = $sub === 'bows' ? Common::clamp($player->get('ninja')) : 0.0; # (bow++)
 		return array(
-			'attack' => $player->get('firearms') + $sub,
-			'max_dmg' => round($sub*1.2, 1),
-			'min_dmg' => round($sub/3, 1),
+			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
+			'min_dmg' => round($fir*0.0 + $sub*0.2 + $nin*0.0, 1),
+			'max_dmg' => round($fir*0.0 + $sub*0.8 + $nin*0.1, 1),
 		);
 	}
 	
@@ -38,21 +35,27 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$avail = $ammo->getAmount();
 		$put = Common::clamp($max-$now, 0, $avail);
 		
+		if ($put == 0) {
+			$player->message('Your weapon is already loaded.');
+			return false;
+		}
+		
 //		Lamb_Log::log(sprintf('%s reloads his %s: Nee'))
 		
 		$ammo->useAmount($player, $put);
 		$this->increase('sr4it_ammo', $put);
 
-		$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
 		if ($p->isFighting())
 		{
+			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
 //			$p->getEnemyParty()->message($player, $message);
 			$p->message($player, $message);
 		}
 		else
 		{
+			$message = sprintf('You load %d bullet(s) into your %s.', $put, $this->getItemName());
 			$bot = Shadowrap::instance($player);
-			$bot->reply('You'.$message);
+			$bot->reply($message);
 		}
 		
 		return true;
@@ -74,6 +77,10 @@ abstract class SR_FireWeapon extends SR_Weapon
 	}
 }
 
+/**
+ * Bows should not require firearms.
+ * @author gizmore
+ */
 abstract class SR_Bow extends SR_FireWeapon
 {
 	public function getAmmoName() { return 'Ammo_Arrow'; }
@@ -81,29 +88,35 @@ abstract class SR_Bow extends SR_FireWeapon
 	public function getBulletsMax() { return 1; }
 	public function getBulletsPerShot() { return 1; }
 	public function getItemSubType() { return 'bows'; }
+	public function displayType() { return 'Bow'; }
+	
 }
 
 abstract class SR_Pistol extends SR_FireWeapon
 {
 	public function getItemSubType() { return 'pistols'; }
 	public function getBulletsPerShot() { return 1; }
+	public function displayType() { return 'Pistol'; }
 }
 
 abstract class SR_Shotgun extends SR_FireWeapon
 {
 	public function getItemSubType() { return 'shotguns'; }
 	public function getBulletsPerShot() { return 1; }
+	public function displayType() { return 'Shotgun'; }
 }
 
 abstract class SR_SMG extends SR_FireWeapon
 {
 	public function getItemSubType() { return 'smgs'; }
 	public function getBulletsPerShot() { return 3; }
+	public function displayType() { return 'SMG'; }
 }
 
 abstract class SR_HMG extends SR_FireWeapon
 {
 	public function getItemSubType() { return 'hmgs'; }
 	public function getBulletsPerShot() { return 5; }
+	public function displayType() { return 'HMG'; }
 }
 ?>

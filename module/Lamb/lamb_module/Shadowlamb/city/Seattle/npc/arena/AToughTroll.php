@@ -2,7 +2,7 @@
 final class Seattle_AToughTroll extends SR_NPC
 {
 	public function getNPCLevel() { return 6; }
-	public function getNPCPlayerName() { return 'Tough Troll'; }
+	public function getNPCPlayerName() { return 'ToughTroll'; }
 //	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	public function getNPCEquipment()
@@ -23,17 +23,17 @@ final class Seattle_AToughTroll extends SR_NPC
 			'smgs' => 3,
 			'strength' => 4,
 			'quickness' => 3,
-			'firearms'  => 4,
+			'firearms'  => 5,
 			'distance' => 10,
-			'sharpshooter' => 0,
+			'sharpshooter' => 1,
 			'nuyen' => 120,
-			'base_hp' => 30,
+			'base_hp' => 28,
 		);
 	}
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		$nuyen = 800;
+		$nuyen = 1200;
 		$key = 'SEATTLE_ARENA_N';
 		$player->setConst($key, $player->getConst($key)+1);
 		$player->message("The fight is over. The director hands you $nuyen Nuyen.");

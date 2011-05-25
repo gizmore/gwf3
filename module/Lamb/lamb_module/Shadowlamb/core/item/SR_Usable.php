@@ -41,6 +41,8 @@ abstract class SR_Usable extends SR_Item
 
 abstract class SR_HealItem extends SR_Usable
 {
+	public function displayType() { return 'Heal Item'; }
+	
 }
 
 ?>

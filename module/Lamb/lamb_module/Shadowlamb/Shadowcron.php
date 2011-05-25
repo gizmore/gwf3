@@ -71,7 +71,7 @@ final class Shadowcron
 		$pids = $players->selectColumn('sr4pl_id');
 		$items = GDO::table('SR_Item');
 		$before = $items->countRows();
-		if (false === ($result = $items->select('sr4it_id, sr4it_uid'))) {
+		if (false === ($result = $items->select('sr4it_id, sr4it_uid', 'sr4it_uid!=0'))) {
 			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return;
 		}

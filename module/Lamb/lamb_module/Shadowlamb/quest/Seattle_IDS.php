@@ -1,6 +1,7 @@
 <?php
 final class Quest_Seattle_IDS extends SR_Quest
 {
+	public function getQuestName() { return 'Malois'; }
 	public function getQuestDescription() { return 'Bring 3 Renraku ID Cards to the Elve in the Deckers Pub.'; }
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)

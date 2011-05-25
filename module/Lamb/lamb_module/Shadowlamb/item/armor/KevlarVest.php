@@ -1,8 +1,8 @@
 <?php
 final class Item_KevlarVest extends SR_Armor
 {
-	public function getItemLevel() { return 12; }
-	public function getItemPrice() { return 3500; }
+	public function getItemLevel() { return 20; }
+	public function getItemPrice() { return 12500; }
 	public function getItemWeight() { return 1450; }
 	public function getItemUsetime() { return 90; }
 	public function getItemDescription() { return 'A light vest with intermediate protection.'; }
@@ -10,9 +10,9 @@ final class Item_KevlarVest extends SR_Armor
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => 2.5,
+			'defense' => 1.5,
 			'marm' => 1.5,
-			'farm' => 2.0,
+			'farm' => 2.2,
 		);
 	}
 	

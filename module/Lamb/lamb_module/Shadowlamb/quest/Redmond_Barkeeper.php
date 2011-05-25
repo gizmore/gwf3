@@ -6,7 +6,9 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 	const NEED_SMALL_BEER = 12;
 	const NEED_LARGE_BEER = 6;
 	const NEED_BOOZE = 3;
-
+	
+	public function getQuestName() { return 'Booze'; }
+	
 	public function getQuestDescription()
 	{
 		$data = $this->getQuestData();

@@ -9,24 +9,20 @@ abstract class SR_City
 	
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }
-	public function getSquareKM() { return sqrt(count($this->locations) * 2); }
+	public function getSquareKM() { return sqrt(count($this->locations) * 2) + 1; }
 	public function getRespawnLocation() { return 'Redmond_Hotel'; }
 	public function onEvents(SR_Party $party) { return false; }
 	public function getImportNPCS() { return array(); }
-	
-	public function getExploreETA(SR_Party $party)
+	public function isDungeon() { return false; }
+	public function getGotoTime() { return $this->getSquareKM() * 38; }
+	public function getGotoETA(SR_Party $party) { return $this->calcETA($party, $this->getGotoTime()); }
+	public function getExploreTime() { return $this->getSquareKM() * 45; }
+	public function getExploreETA(SR_Party $party) { return $this->calcETA($party, $this->getExploreTime()); }
+	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{
-		$eta = $this->getSquareKM() * 30;
-		$qu = Common::clamp($party->getMin('quickness')*2, 0, 30);
-		$eta -= rand(0, 10);
-		return $eta;
-	}
-	
-	public function getGotoETA(SR_Party $party)
-	{
-		$eta = $this->getSquareKM() * 25;
-		$qu = Common::clamp($party->getMin('quickness')*2, 0, 25);
-		$eta -= rand(0, 10);
+		$qu = round(Common::clamp($party->getMin('quickness')*$tpq, 0, $eta-$mintime-$randtime));
+		$eta -= $qu;
+		$eta -= rand(0, $randtime);
 		return $eta;
 	}
 	
@@ -82,6 +78,15 @@ abstract class SR_City
 	public function onArrive(SR_Party $party)
 	{
 		$party->notice($this->getArriveText());
+		$this->onCityEnter($party);
+	}
+	
+	public function onCityEnter(SR_Party $party)
+	{
+		foreach ($this->locations as $location)
+		{
+			$location->onCityEnter($party);
+		}
 	}
 	
 	public function onExplore(SR_Party $party, $done)
@@ -165,7 +170,8 @@ abstract class SR_City
 		else {
 			$n = $l->getName();
 			$party->giveKnowledge('places', $n);
-			$party->notice($l->getFoundText());
+			$party->notice($l->getFoundText($leader));
+			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them.');
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $n);
 		}
 	}
@@ -226,18 +232,39 @@ abstract class SR_City
 		}
 	}
 	
+	/**
+	 * Dice City Movement.
+	 * @param SR_Party $party
+	 * return boolean
+	 */
 	private function cityMovement(SR_Party $party)
 	{
-		if (!$party->canMeetEnemies()) {
+		if (!$party->canMeetEnemies())
+		{
 			return false;
 		}
-		switch (rand(1, 4))
+		
+		$b = false;
+		
+		switch (rand(1, 6))
 		{
-			case 1: $b = $this->partyContact($party); break;
-			case 2: $b = $this->enemyContact($party, false); break;
-			case 3: $b = $this->enemyContact($party, true); break;
-			case 4: $b = $this->onEvents($party); break;
+			case 1:
+				$b = $this->partyContact($party);
+				break;
+				
+			case 2:
+				$b = $this->enemyContact($party, false);
+				break;
+			
+			case 3:
+				$b = $this->enemyContact($party, true);
+				break;
+				
+			case 4:
+				$b = $this->onEvents($party);
+				break;
 		}
+		
 		return $b;
 	}
 	
@@ -246,17 +273,23 @@ abstract class SR_City
 		$sqkm = $this->getSquareKM();
 		$possible = array();
 		$total = 0;
+		$total_sqkm = $sqkm * 25; // total slots in city
+		
 		foreach (Shadowrun4::getParties() as $ep)
 		{
 			if ( ($ep->isMoving()) && ($p->getCity() === $ep->getCity()) && ($ep->getID() !== $p->getID()) )
 			{
-				$total += 50;
-				$possible[] = array($ep, 50);
+//				$total += 50;
+//				$possible[] = array($ep, 50);
+				$possible[] = array($ep, 1);
 			}
 		}
 		
-		$chance_none = $sqkm * 30 - count($possible);
-		$chance_none = Common::clamp($chance_none, 50);
+//		$chance_none = $sqkm * 30 - count($possible);
+//		$chance_none = Common::clamp($chance_none, 50);
+		
+		$chance_none = $total_sqkm - count($possible);
+		$chance_none = Common::clamp($chance_none, round($sqkm*2.5)); // at least N empty slots
 		
 		if (false === ($ep = Shadowfunc::randomData($possible, $total, $chance_none))) {
 			return false;

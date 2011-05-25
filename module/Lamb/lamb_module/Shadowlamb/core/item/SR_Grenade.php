@@ -49,7 +49,7 @@ abstract class SR_Grenade extends SR_Usable
 			$m instanceof SR_Player;
 			$y = $m->getDistance();
 			$coords[$m->getID()] = array($x, $y);
-			$x += 3;
+			$x += SR_Party::X_COORD_INC;
 		}
 		
 		$handicap = rand(-$inaccuracy*10, +$inaccuracy*10);
@@ -66,19 +66,12 @@ abstract class SR_Grenade extends SR_Usable
 		foreach ($coords as $uid => $data)
 		{
 			list($p_x, $p_y) = $data;
-			$d = self::computeDistance($g_x, $g_y, $p_x, $p_y);
+			$d = Shadowfunc::calcDistanceB($g_x, $g_y, $p_x, $p_y);
 			$p = Shadowrun4::getPlayerByPID($uid);
 			$back[] = array($uid, $d);
 			echo sprintf("%s has coords %.02f / %.02f (distance: %.02f)\n", $p->getName(), $p_x, $p_y, $d);
 		}
 		return $back;
-	}
-	
-	private static function computeDistance($g_x, $g_y, $p_x, $p_y)
-	{
-		$x = $p_x - $g_x;
-		$y = $p_y - $g_y;
-		return sqrt($x*$x + $y*$y);
 	}
 }
 ?>

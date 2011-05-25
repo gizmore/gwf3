@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Orks extends SR_Quest
 {
+	public function getQuestName() { return 'TheBracelett'; }
 	public function getQuestDescription() { return 'Deliver the Bracelett to Reginald, the guest in the TrollsInn.'; }
 	public function onQuestSolve(SR_Player $player)
 	{

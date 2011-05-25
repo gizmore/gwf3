@@ -5,15 +5,11 @@ final class Item_ElvenBow extends SR_Bow
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
 	public function getBulletsPerShot() { return 1; }
-	public function getReloadTime() { return 5; }
-
-	public function getItemLevel() { return 7; }
+	public function getItemLevel() { return 10; }
 	public function getItemWeight() { return 850; }
 	public function getItemPrice() { return 750; }
 	public function getItemDescription() { return 'A nice bow mode from elves. The elves really enjoy archery.'; }
-	
-	public function getItemRequirements() { return array('bows' => 0); }
-	
+	public function getItemRequirements() { return array('bows'=>0); }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(

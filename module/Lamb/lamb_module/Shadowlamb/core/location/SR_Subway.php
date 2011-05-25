@@ -11,9 +11,7 @@ abstract class SR_Subway extends SR_Location
 		$neg = Common::clamp($player->get('negotiation'), 0, 10) * 0.01;
 		$mc = $player->getParty()->getMemberCount();
 		$price = $price * $mc;
-		
 		$price = $price * (1.0 - $neg);
-		
 		return $price;
 	}
 	
@@ -90,7 +88,8 @@ abstract class SR_Subway extends SR_Location
 			return false;
 		}
 		
-		$party->message($player, " paid the price of $dp and you take the next train to $target.");
+		$eta = GWF_Time::humanDuration($time);
+		$party->message($player, " paid the price of $dp and you take the next train to $target. ETA: $eta");
 		$party->pushAction(SR_Party::ACTION_TRAVEL, $target, $time);
 		
 		return true;

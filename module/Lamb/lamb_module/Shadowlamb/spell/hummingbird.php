@@ -1,5 +1,5 @@
 <?php
-final class Spell_hummingbird extends SR_Spell
+final class Spell_hummingbird extends SR_SupportSpell
 {
 	public function isOffensive() { return false; }
 	
@@ -24,17 +24,6 @@ final class Spell_hummingbird extends SR_Spell
 		$this->announceADV($player, $target, $level, sprintf('+%s quickness for %s.', $by, GWF_Time::humanDurationEN($dur)));
 		return true;
 	}
-	
-//	public function cast_spell(Player $player, Player $target, $in_combat)
-//	{
-//		$by = ceil($this->level / 2) + 1;
-//		$time = $this->get_support_spell_time($player, $target);
-//		new Effect( $target, "quickness", $by, $time, 0);
-//		
-//		$tname = $target->get_name();
-//		$msg = "cast $this->name on $tname ($time seconds quickness +$by).";
-//		$this->announce_B($player, $target, $msg);
-//	}
 }
 
 ?>

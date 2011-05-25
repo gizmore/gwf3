@@ -7,7 +7,7 @@ require_once 'Shadowshout.php';
 
 final class Shadowrun4
 {
-	const KICK_IDLE_TIMEOUT = 7200; # 2h
+	const KICK_IDLE_TIMEOUT = 3600; # 1h
 	
 	####################
 	### Game Masters ###
@@ -255,7 +255,7 @@ final class Shadowrun4
 	private static function reloadParties()
 	{
 		$table = GWF_TABLE_PREFIX.'sr4_party';
-		$query = "SELECT * FROM $table WHERE sr4pa_action='talk' OR sr4pa_action='fight' OR sr4pa_action='search' OR sr4pa_action='sleep' OR sr4pa_action='travel' OR sr4pa_action='explore' OR sr4pa_action='goto' OR sr4pa_action='hunt'";
+		$query = "SELECT * FROM $table WHERE sr4pa_action='talk' OR sr4pa_action='fight' OR sr4pa_action='sleep' OR sr4pa_action='travel' OR sr4pa_action='explore' OR sr4pa_action='goto' OR sr4pa_action='hunt'";
 		$db = gdo_db();
 		if (false === ($result = $db->queryRead($query))) {
 			return false;

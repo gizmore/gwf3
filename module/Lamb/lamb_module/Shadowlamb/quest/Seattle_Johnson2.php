@@ -7,6 +7,8 @@ final class Quest_Seattle_Johnson2 extends SR_Quest
 	private $xp = 10;
 	private $nuyen = 3500;
 	
+	public function getQuestName() { return 'TheContractor2'; }
+	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		$have = $this->getAmount();

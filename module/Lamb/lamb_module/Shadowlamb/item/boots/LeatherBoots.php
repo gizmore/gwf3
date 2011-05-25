@@ -10,7 +10,7 @@ final class Item_LeatherBoots extends SR_Boots
 		return array(
 			'defense' => 0.4,
 			'marm' => 0.3,
-			'farm' => 0.2,
+			'farm' => 0.3,
 		);
 	}
 }

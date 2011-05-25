@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Blacksmith extends SR_Quest
 {
+	public function getQuestName() { return 'Smithing'; }
 	public function getQuestDescription() { return 'Bring a SmithHammer to the Redmond Blacksmith, so you can runecraft your equipment.'; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{

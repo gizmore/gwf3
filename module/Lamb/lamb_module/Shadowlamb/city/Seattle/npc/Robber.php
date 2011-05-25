@@ -7,26 +7,26 @@ final class Seattle_Robber extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'RugerWarhhawk',
+			'weapon' => 'AresLightFire',
 			'armor' => 'ChainVest',
 			'legs' => 'Trousers',
 			'boots' => 'LeatherBoots',
 		);
 	}
 
-	public function getNPCInventory() { return array('Ammo_Arrow', 'Ammo_Arrow'); }
+	public function getNPCInventory() { return array('Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
-			'strength' => rand(3, 4),
-			'quickness' => rand(3, 4),
+			'strength' => rand(2, 4),
+			'quickness' => rand(2, 4),
 			'distance' => rand(8, 10),
-			'pistols' => rand(2, 3),
-			'firearms' => rand(2, 3),
+			'pistols' => rand(1, 3),
+			'firearms' => rand(1, 3),
 			'sharpshooter' => rand(1, 3),
-			'nuyen' => rand(80, 170),
-			'base_hp' => rand(10, 18),
+			'nuyen' => rand(20, 40),
+			'base_hp' => rand(2, 6),
 		);
 	}
 }

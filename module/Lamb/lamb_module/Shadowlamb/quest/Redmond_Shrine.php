@@ -1,18 +1,22 @@
 <?php
 final class Quest_Redmond_Shrine extends SR_Quest
 {
+	public function getQuestName() { return 'Monk(ey)s'; }
 	public function getQuestDescription() { return sprintf('Bring %d/%d WoodNunchaku to the monks in Redmond_Shrine.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getNeededAmount() { return 4; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
-		$this->giveQuesties($player, $npc, 'WoodNunchaku', $this->getAmount(), $this->getNeededAmount());
+		$need = $this->getNeededAmount();
+		$have = $this->getAmount();
+		$have = $this->giveQuesties($player, $npc, 'WoodNunchaku', $have, $need);
 		
-		$need = $this->getNeededAmount() - $this->getAmount();
-		if ($need <= 0) {
+		$this->saveVar('sr4qu_amount', $have);
+		
+		if ($have >= $need) {
 			$this->onSolve($player);
 		}
 		else {
-			$player->message(sprintf('Hello my friend. Please bring us %d more WoodNunchaku.', $need));
+			$player->message(sprintf('Hello my friend. Please bring us %d more WoodNunchaku.', $need-$have));
 		}
 	}
 	

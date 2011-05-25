@@ -14,26 +14,25 @@ final class Seattle_AElite extends SR_NPC
 			'legs' => 'Trousers',
 		);
 	}
-	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm'); }
+	public function getNPCInventory() { return array('Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Flashbang', 'FirstAid'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
-			'smgs' => 4,
-			'strength' => 3,
+			'smgs' => 6,
+			'strength' => 5,
 			'quickness' => 5,
-			'firearms'  => 5,
-			'smgs' => 5,
+			'firearms'  => 6,
 			'distance' => 10,
-			'sharpshooter' => 3,
+			'sharpshooter' => 4,
 			'nuyen' => 100,
-			'base_hp' => 40,
+			'base_hp' => 30,
 		);
 	}
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		$nuyen = 800;
+		$nuyen = 1200;
 		$key = 'SEATTLE_ARENA_N';
 		$player->setConst($key, $player->getConst($key)+1);
 		$player->message("The fight is over. The director hands you $nuyen Nuyen.");

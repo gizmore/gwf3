@@ -3,9 +3,8 @@
  * The flu spell will reduce an enemies hp slowly.
  * @author gizmore
  */
-final class Spell_flu extends SR_Spell
+final class Spell_flu extends SR_CombatSpell
 {
-	public function isOffensive() { return true; }
 	public function getHelp(SR_Player $player) { return sprintf('Poisons an enemy which reduces it\'s HP slowly.'); }
 	public function getRequirements() { return array('magic'=>2); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }

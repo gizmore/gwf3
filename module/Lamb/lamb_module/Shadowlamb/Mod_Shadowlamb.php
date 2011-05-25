@@ -4,7 +4,7 @@ require_once 'Shadowrun4.php';
 final class LambModule_Shadowlamb extends Lamb_Module
 {
 	const SR_SHORTCUT = '#';
-	const WITH_INTERLINK = 0;
+//	const WITH_INTERLINK = 0;
 	
 	# Hardcoded shadowlamb channels for shortcuts
 	public static $INCLUDE_CHANS = array('#sr', '#shadowlamb');
@@ -27,27 +27,27 @@ final class LambModule_Shadowlamb extends Lamb_Module
 			return Lamb::instance()->processMessageA($server, LAMB_TRIGGER.'sr '.substr($message, 1), $from);
 		}
 		
-		if (false !== ($player = Shadowrun4::getPlayerByUID($user->getID())))
-		{
-			# Location glob
-			if ($origin{0} === '#' && self::WITH_INTERLINK)
-			{
-				if ($player->isCreated())
-				{
-					if ($player->getParty()->getAction() === 'inside')
-					{
-						if (false === ($channel = $server->getChannel('#shadowlamb'))) {
-							if (false === ($channel = $server->getChannel('#sr'))) {
-								return;
-							}
-						}
-						Shadowshout::onLocationGlobalMessage($server, $player, $channel, $message);
-					}
-				}
-			}
-		}
+		# Location glob interlink (deprecated by #say)
+//		if ($origin{0} === '#' && self::WITH_INTERLINK)
+//		{
+//			if (false !== ($player = Shadowrun4::getPlayerByUID($user->getID())))
+//			{
+//				if ($player->isCreated())
+//				{
+//					if ($player->getParty()->getAction() === 'inside')
+//					{
+//						if (false === ($channel = $server->getChannel('#shadowlamb'))) {
+//							if (false === ($channel = $server->getChannel('#sr'))) {
+//								return;
+//							}
+//						}
+//						Shadowshout::onLocationGlobalMessage($server, $player, $channel, $message);
+//					}
+//				}
+//			}
+//		}
 	}
-	public function onTimer() { /*Shadowrun4::onTimer();*/ }
+//	public function onTimer() { /*Shadowrun4::onTimer();*/ }
 	
 	
 	###############

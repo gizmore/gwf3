@@ -18,7 +18,7 @@ final class Shadowhelp
 			'intelligence' => "Intelligence increases the power of your magic spells.",
 			'charisma' => "Charisma raises the time that hirelings follow you.",
 			'luck' => "Luck increases the chance of better drops.",
-			'reputation' => "Reputation determines how known you are amongs the world of Shadowlamb. Some quests require a minimum reputation.",
+			'reputation' => "Reputation determines how famous you are amongst the world of Shadowlamb. Some quests require a minimum reputation.",
 			'essence' => "Essence describes how wasted your body and mind is.",
 		
 			# Skills
@@ -49,6 +49,11 @@ final class Shadowhelp
 			'death' => "When you die you might loose a random item. Also you will loose {$b}XP{$b} and {$b}nuyen{$b} you might have in your pocket.",
 			'busytime' => "When a fight starts, you have an initial busytime. When this time is over your last command gets executed, and you get busy again, depending on your action.",
 //			'distance' => '',
+
+			# Stats2
+			'alc' => 'The alcohol effect determines how drunk a character is. If a character is too drunk, it might do random actions in combat.',
+			'caf' => 'The caffeine effect determines how caffinated a character is. If a character is too caffinated it cannot sleep.',
+		
 		
 			# Beginners
 			'get_started' => 'First you should #talk to the hotelier. then you should #equip clothes. Then you should #party up with players and #join their parties. Then you should #explore the first city.',
@@ -70,12 +75,18 @@ final class Shadowhelp
 			'npc' => 'Currently there exist '.SR_NPC::$NPC_COUNTER.' different NPCs in '.SR_Location::$LOCATION_COUNT.' locations.',
 			'distance' => "Imagine the combat as a line. +10 +8 +6 +4 +2 +0 -2 -4 -6 -8 -10. One party starts in the positive, the other in the negative. You can set your default distance with {$c}sd.",
 			'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. {$c}upgrade the number of modifiers is way more complex than {$c}upgrade a single modifier.",
+			'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
+			'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
+		
 			# Eastereggs
 			'jmoncayo' => 'jmoncayo is the founder of the \'School of Fireweapons\' in Redmond.',
 			'caesum' => 'Caesum is the founder of the \'School of Cryptography and applied Math\' in Seattle.',
 			'livinskull' => 'livinskull is the founder of the "School of Computers" in the Amerindian Area.',
 			'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
+		
 			# Stats
+			'hp' => "HP are your hitpoints. Use {$c}hp to see all party HP. You can refresh hitpoints in Hotel, or by healing items and spells.",
+			'mp' => "MP are your manapoints. Use {$c}mp to see all party HP. To cast {$b}magic{$b} {$c}{$b}spells{$b} you need MP. You can refresh manapoints in {$b}Hotel{$b}, or by using certain potions or items.",
 			'atk' => 'Your chances to hit.',
 			'def' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',
 			'defense' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',

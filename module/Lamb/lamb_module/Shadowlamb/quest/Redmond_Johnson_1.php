@@ -1,6 +1,7 @@
 <?php
 final class Quest_Redmond_Johnson_1 extends SR_Quest
 {
+	public function getQuestName() { return 'Lame'; }
 	public function getQuestDescription() { return sprintf('Kill %s/%s Lamers and return to Mr.Johnson in the Redmond_TrollsInn.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getNeededAmount() { return 10; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
