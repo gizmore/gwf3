@@ -16,7 +16,7 @@ abstract class Lamb_Module
 	public function onTimer() {}
 	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
 	public function onCTPC(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onJoin(Lamb_Server $server, Lamb_User $user, $from, $origin) {}
+	public function onJoin(Lamb_Server $server, Lamb_User $user, Lamb_Channel $channel) {}
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
 	public function onTrigger(Lamb_Server $server, Lamb_User $user, $from, $origin, $command, $message) {}
 	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args) {}
