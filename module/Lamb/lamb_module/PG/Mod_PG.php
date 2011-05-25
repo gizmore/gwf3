@@ -29,7 +29,7 @@ final class LambModule_PG extends Lamb_Module
 		}
 		
 		if (false === ($channel = $server->getChannel($origin))) {
-			echo "Unknown channel: $origin\n";
+//			echo "Unknown channel: $origin\n";
 			return;
 		}
 		
