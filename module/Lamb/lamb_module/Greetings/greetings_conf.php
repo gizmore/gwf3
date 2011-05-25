@@ -5,14 +5,14 @@ $greet_conf = array(
 		'#sr' => 'Welcome to my localhost, hacker!',
 	),
 	'idlemonkeys' => array(
-		'#sr' => 'Welcome to #sr (Shadowrun). The mmorpg and baim help channel. Please be patient or use baim PM for urgent help requests!',
+		'#sr' => 'Welcome to #sr, the irc mmorpg. type #start to start your journey. type #help get_started for your next steps. If you are here for baim send a PM or be patient!',
 //		'#wechall' => 'Welcome to #wechall! Enjoy your stay :)',
 	),
 	'german-elite' => array(
 		'#shadowlamb' => 'Welcome to #shadowlamb, the first phpircmmorpg ever. Please try #help or .help to learn how to operate the bot.',
 	),
-//	'freenode' => array(
-//		'#wechall' => 'Welcome to the freenode #wechall channel.',
-//	),
+	'freenode' => array(
+//		'#shadowlamb' => 'Welcome to #shadowlamb, fellow runner. Type #start to begin your journey.',
+	),
 );
 ?>

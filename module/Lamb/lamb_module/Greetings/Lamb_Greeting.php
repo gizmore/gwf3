@@ -33,5 +33,6 @@ final class Lamb_Greeting extends GDO
 		$table->deleteWhere("lagreet_cid=$channel_id");
 		return $table->affectedRows();
 	}
+	
 }
 ?>
