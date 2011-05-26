@@ -105,6 +105,7 @@ final class PageBuilder_Add extends GWF_Method
 			'page_meta_tags' => $tags,
 			'page_meta_desc' => $form->getVar('descr'),
 			'page_content' => $form->getVar('content'),
+			'page_views' => 0,
 			'page_options' => $options,
 		));
 		

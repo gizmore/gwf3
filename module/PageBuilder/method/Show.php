@@ -67,6 +67,8 @@ final class PageBuilder_Show extends GWF_Method
 	
 	private function showPage(Module_PageBuilder $module, GWF_Page $page)
 	{
+		$page->increase('page_views', 1);
+		
 		GWF_Website::setMetaDescr($page->getVar('page_meta_desc'));
 		GWF_Website::setMetaTags($page->getVar('page_meta_tags'));
 		GWF_Website::setPageTitle($page->getVar('page_title'));

@@ -38,6 +38,7 @@ final class GWF_Page extends GDO
 			'page_meta_tags' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_meta_desc' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_content' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
+			'page_views' => array(GDO::UINT, 0),
 			'page_options' => array(GDO::UINT|GDO::INDEX, 0),
 		);
 	}
