@@ -464,15 +464,15 @@ final class GWF_ForumBoard extends GDO
 		// Save for threads
 		$bid = $this->getID();
 		$threads = GDO::table('GWF_ForumThread');
-		if (false === ($result = $threads->queryReadAll("thread_bid=$bid"))) {
+		if (false === ($result = $threads->select('*', "thread_bid=$bid"))) {
 			return false;
 		}
-		while (false !== ($thread = $threads->fetchObject($result)))
+		while (false !== ($thread = $threads->fetch($result, GDO::ARRAY_O)))
 		{
 			$thread instanceof GWF_ForumThread;
 			$thread->saveGuestView($bool);
 		}
-		$threads->freeResult($result);
+		$threads->free($result);
 		
 		return true;
 	}
@@ -490,15 +490,15 @@ final class GWF_ForumBoard extends GDO
 		// Save for threads
 		$bid = $this->getID();
 		$threads = GDO::table('GWF_ForumThread');
-		if (false === ($result = $threads->queryReadAll("thread_bid=$bid"))) {
+		if (false === ($result = $threads->select('*', "thread_bid=$bid"))) {
 			return false;
 		}
-		while (false !== ($thread = $threads->fetchObject($result)))
+		while (false !== ($thread = $threads->fetch($result, GDO::ARRAY_O)))
 		{
 			$thread instanceof GWF_ForumThread;
 			$thread->saveGroupID($gid);
 		}
-		$threads->freeResult($result);
+		$threads->free($result);
 		return true;
 	}
 

@@ -61,15 +61,15 @@ final class Forum_Move extends GWF_Method
 	private function cleanupPositions()
 	{
 		$table = GDO::table('GWF_ForumBoard');
-		if (false === ($result = $table->queryReadAll('', 'board_pos ASC'))) {
+		if (false === ($result = $table->select('*', '', 'board_pos ASC'))) {
 			return;
 		}
 		$pos = 1;
-		while (false !== ($row = $table->fetchObject($result)))
+		while (false !== ($row = $table->fetch($result, GDO::ARRAY_O)))
 		{
 			$row->saveVar('board_pos', $pos++);
 		}
-		$table->freeResult($result);
+		$table->free($result);
 		return;
 	}
 }

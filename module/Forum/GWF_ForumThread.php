@@ -756,15 +756,15 @@ final class GWF_ForumThread extends GDO
 		// Save for posts
 		$tid = $this->getID();
 		$posts = GDO::table('GWF_ForumPost');
-		if (false === ($result = $posts->queryReadAll("post_tid=$tid"))) {
+		if (false === ($result = $posts->select('*', "post_tid=$tid"))) {
 			return false;
 		}
-		while (false !== ($post = $posts->fetchObject($result)))
+		while (false !== ($post = $posts->fetchObject($result, GDO::ARRAY_O)))
 		{
 			$post instanceof GWF_ForumPost;
 			$post->saveOption(GWF_ForumPost::GUEST_VIEW, $bool);
 		}
-		$posts->freeResult($result);
+		$posts->free($result);
 		return true;
 
 	}
@@ -782,15 +782,15 @@ final class GWF_ForumThread extends GDO
 		// Save for posts
 		$tid = $this->getID();
 		$posts = GDO::table('GWF_ForumPost');
-		if (false === ($result = $posts->queryReadAll("post_tid=$tid"))) {
+		if (false === ($result = $posts->select('*', "post_tid=$tid"))) {
 			return false;
 		}
-		while (false !== ($post = $posts->fetchObject($result)))
+		while (false !== ($post = $posts->fetch($result, GDO::ARRAY_O)))
 		{
 			$post instanceof GWF_ForumPost;
 			$post->saveVar('post_gid', $gid);
 		}
-		$posts->freeResult($result);
+		$posts->free($result);
 		return true;
 
 	}
