@@ -1,5 +1,5 @@
 <?php
-final class Item_ElvenSabre extends SR_MeleeWeapon
+final class Item_ElvenSabre extends SR_NinaWeapon
 {
 	public function getAttackTime() { return 35; }
 	public function getItemLevel() { return 12; }
