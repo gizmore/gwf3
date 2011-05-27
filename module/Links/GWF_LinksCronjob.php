@@ -62,38 +62,6 @@ final class GWF_LinksCronjob extends GWF_Cronjob
 		
 		$link->saveVar('link_lastcheck', time());
 	}
-	
-//	private static function needCheck(Module_Links $module)
-//	{
-//		if (!$module->cfgWantCheck()) {
-//			return false;
-//		}
-//		$links = GDO::table('GWF_Links');
-//		if (false === ($result = $links->select())) {
-//			self::error("Database error 1");
-//		}
-//		
-//		if ( ($module->cfgLastCheck()+$module->cfgCheckInterval()) > time() ) {
-//			return false;
-//		}
-//		return true;
-//	}
-//	
-//	private static function checkLinksDown(Module_Links $module)
-//	{
-//		$links = GDO::table('GWF_Links');
-//		if (false === ($result = $links->queryReadAll())) {
-//			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
-//		}
-//		
-//		while (false !== ($link = $links->fetchObject($result)))
-//		{
-//			$href = $link->getVar('link_href');
-//			self::notice($href);
-//		}
-//		
-//		$links->freeResult($result);
-//	}
 }
 
 ?>

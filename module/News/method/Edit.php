@@ -266,12 +266,12 @@ final class News_Edit extends GWF_Method
 	{
 		$back = '';
 		$news_table = GDO::table('GWF_News');
-		$result = $news_table->queryReadAll();
-		while (false !== ($news = $news_table->fetchObject($result)))
+		$result = $news_table->select('*');
+		while (false !== ($news = $news_table->fetch($result, GDO::ARRAY_O)))
 		{
 			$back .= $this->newsToForum($module, $news, $visible);
 		}
-		$news_table->freeResult($result);
+		$news_table->free($result);
 		return $back;
 	}
 	
