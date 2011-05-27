@@ -302,6 +302,9 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
+		if (rand(1, 4) !== 1) {
+			return false;
+		}
 		$mc = $party->getMemberCount();
 		$level = $party->getMax('level');
 		

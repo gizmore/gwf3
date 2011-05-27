@@ -7,12 +7,12 @@ class SR_Player extends GDO
 	const MP_PER_MAGIC = 5;
 	const XP_PER_KARMA = 6;
 	const XP_PER_KARMA_RAISE = 0.25;
-	const XP_PER_LEVEL = 35;
+	const XP_PER_LEVEL = 40;
 	const XP_PER_LEVEL_RAISE = 4;
-	const WEIGHT_BASE = 6000;
-	const WEIGHT_PER_STRENGTH = 1800;
-	const FIGHT_INIT_BUSY = 25;
-	const MAX_RANGE = 10.0;
+	const WEIGHT_BASE = 6500;
+	const WEIGHT_PER_STRENGTH = 2000;
+	const FIGHT_INIT_BUSY = 10;
+	const MAX_RANGE = 12.0;
 	
 	# Human Starter
 	const START_HP = 4;
@@ -588,7 +588,12 @@ class SR_Player extends GDO
 		$this->modifyOverload();
 		$this->modifyQuests();
 //		$this->modifyParty(); # DEADLOCK!
+//		$this->modifyClamp();
 	}
+	
+//	private function modifyClamp()
+//	{
+//	}
 	
 	private function modifyOverload()
 	{
@@ -1427,9 +1432,16 @@ class SR_Player extends GDO
 	
 	public function giveKnowledge($field, $knowledge)
 	{
-		static $txt = array('places' => 'location','words' => 'word');
+		static $txt = array('places'=>'location', 'words'=>'word');
 		$args = func_get_args();
 		$field = array_shift($args);
+		
+		if (!isset($txt[$field]))
+		{
+			Lamb_Log::log("WARNING: Unknown knowledge type: {$field}");
+			return false;
+		}
+		
 		foreach ($args as $knowledge)
 		{
 			if ($this->hasKnowledge($field, $knowledge)) {

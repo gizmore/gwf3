@@ -48,7 +48,7 @@ final class SR_Effect
 	public function display()
 	{
 		$eta = $this->time_end - Shadowrun4::getTime();
-		$e = $eta > 0 ? '('.GWF_Time::humanDurationEN($eta).')' : '(Over)';
+		$e = $eta > 0 ? '('.GWF_Time::humanDuration($eta).')' : '(Over)';
 		switch($this->mode)
 		{
 			case self::MODE_REPEAT:
