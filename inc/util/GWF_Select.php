@@ -1,9 +1,10 @@
 <?php
 final class GWF_Select
 {
-	public static function display($name, $data, $selected='0')
+	public static function display($name, $data, $selected='0', $onchange='')
 	{
-		$back = '<select name="'.$name.'">'.PHP_EOL;
+		$onchange = $onchange === '' ? '' : " onchange=\"{$onchange}\"";
+		$back = '<select name="'.$name.'"'.$onchange.'>'.PHP_EOL;
 		foreach ($data as $d)
 		{
 			$sel = $d[0] == $selected ? ' selected="selected"' : '';
@@ -13,9 +14,10 @@ final class GWF_Select
 		return $back;
 	}
 	
-	public static function multi($name, $data, $selected=array())
+	public static function multi($name, $data, $selected=array(), $onchange='')
 	{
-		$back = '<select name="'.$name.'[]" multiple="multiple">'.PHP_EOL;
+		$onchange = $onchange === '' ? '' : " onchange=\"{$onchange}\"";
+		$back = '<select name="'.$name.'[]" multiple="multiple"'.$onchange.'>'.PHP_EOL;
 		
 		foreach ($data as $d)
 		{
