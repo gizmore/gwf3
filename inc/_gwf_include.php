@@ -1,6 +1,7 @@
 <?php
 define('GWF_CORE_VERSION', '3.01-2011.MAY.27');
 
+
 # Get the config
 if (!defined('GWF_HAVE_CONFIG'))
 {
@@ -12,13 +13,13 @@ if (!defined('GWF_HAVE_CONFIG'))
 
 # Web Root
 $root = GWF_WEB_ROOT_NO_LANG;
-if (isset($_SERVER['REQUEST_URI']))
+if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
 {
-	if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2}/)#', $_SERVER['REQUEST_URI'], $matches))
+	if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2}/)#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
 	{
-		if ($matches[1] !== 'pm/')
+		if ($matches[1] !== 'pm/') # Grr /pm/ is not a lang.
 		{
-			$root .= $matches[1];
+			$root .= $matches[1]; # web_root is lang extended
 		}
 	}
 }
