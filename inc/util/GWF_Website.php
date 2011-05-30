@@ -43,9 +43,23 @@ final class GWF_Website
 	### Meta ###
 	############
 	private static $META = array();
-	public static function addMeta($name, $content, $equiv = false)
+	#public static function addMeta($name, $content, $equiv = false)
+	public static function addMeta(array $meta, $aggressive = false)
 	{
-		self::$META[] = array($name, $content, $equiv);
+		#if (in_array($meta, self::$META, true)) {
+		if (array_key_exists($meta[0], self::$META) && !$aggressive) {
+			return true;
+		}
+		#self::$META[] = array($name, $content, $equiv);
+		self::$META[$meta[0]] = $meta;
+		return true;
+	}
+	public static function addMetaA(array $metas)
+	{
+		foreach($metas as $meta) {
+			self::addMeta($meta);
+		}
+		return true;
 	}
 	public static function displayMETA($html = false)
 	{
@@ -71,6 +85,10 @@ final class GWF_Website
 	{
 		self::$META_TAGS .= $s;
 	}
+	public static function displayMetaTags() {
+		self::addMeta(array('keywords', self::$META_TAGS, false), true);
+		return self::$META_TAGS;
+	}
 
 	##################
 	### Meta Descr ###
@@ -80,10 +98,89 @@ final class GWF_Website
 	{
 		self::$META_DESCR = $s;
 	}
-	
 	public static function addMetaDescr($s)
 	{
 		self::$META_DESCR .= $s;
+	}
+	public static function displayMetaDescr() {
+		self::addMeta(array('description', self::$META_DESCR, false), true);
+		return self::$META_DESCR;
+	}	
+			
+	###########
+	### CSS ###
+	###########
+	private static $CSS = array();
+	public static function addCSS($path, $rel = 'stylesheet', $media = false)
+	{
+		if (is_array($path)) {
+			if (in_array($path, self::$CSS, true)) { 
+				return true; 
+			}
+			self::$CSS[] = $path;
+		} else {
+			if (in_array(array($path, $rel, $media), self::$CSS, true)) {
+				return true;
+			}
+			self::$CSS[] = array($path, $rel, $media);
+		}
+		return true;
+	}
+	public static function addCSSA(array $paths)
+	{
+		foreach($paths as $path) {
+			self::addCSS($path);
+		}
+		return true;
+	}
+	public static function displayCSS($html = false)
+	{
+		$back = '';
+		$xhtml = ($html ? '>' : ' />') . "\n\t";
+		foreach (self::$CSS as $css)
+		{
+			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s',$css[1], $css[0], $xhtml);
+		}
+		return $back;
+	}
+
+	##################
+	### Javascript ###
+	##################
+	private static $javascripts = array();
+	public static function addJavascript($path)
+	{
+		if (in_array($path, self::$javascripts, true)) {
+			return true;
+		}
+		self::$javascripts[] = $path;
+		return true;
+	}
+
+	public static function displayJavascripts()
+	{
+		$back = '';
+		foreach (self::$javascripts as $js)
+		{
+			$back .= sprintf('<script type="text/javascript" src="%s"></script>', htmlspecialchars($js));
+		}
+		return $back.self::displayJavascriptInline();
+	}
+	
+	private static $javascript_inline = '';
+	public static function addJavascriptInline($script_html)
+	{
+		self::$javascript_inline .= $script_html;
+	}
+	public static function displayJavascriptInline()
+	{
+		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
+		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline);
+	}
+	
+	public static function includeJQuery()
+	{
+		self::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
 	}
 	
 	#################
@@ -140,17 +237,22 @@ final class GWF_Website
 	
 	public static function getHTMLHead()
 	{
+		if(!defined('GWF_IS_HTML')) { // PLEASE ADD TO CONFIG: true for html5; false for xhtml
+			define('GWF_IS_HTML', false);
+		}
+		//self::addMeta('description', self::$META_DESCR);
+		//self::addMeta('keywords', self::$META_TAGS);
 		$tVars = array(
 			'page_title' => self::displayPageTitle(),
 			'language' => GWF_Language::getCurrentISO(),
-			'meta' => self::displayMETA(),
-			'meta_tags' => self::$META_TAGS,
-			'meta_descr' => self::$META_DESCR,
+			'meta' => self::displayMETA(GWF_IS_HTML),
+			'meta_tags' => self::displayMetaTags(),
+			'meta_descr' => self::displayMetaDescr(),
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
 			'feeds' => self::displayFeeds(),
 			'root' => GWF_WEB_ROOT,
 			'js' => self::displayJavascripts(),
-			'css' => self::displayCSS(),
+			'css' => self::displayCSS(GWF_IS_HTML),
 		);
 		return GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
@@ -163,69 +265,6 @@ final class GWF_Website
 			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return GWF_Template::templateMain('html_body.tpl', $tVars);
-	}
-	
-	###########
-	### CSS ###
-	###########
-	private static $CSS = array();
-	public static function addCSS($path)
-	{
-		if (in_array($path, self::$CSS, true)) {
-			return true;
-		}
-		self::$CSS[] = $path;
-		return true;
-	}
-
-	public static function displayCSS($html = false)
-	{
-		$back = '';
-		$xhtml = ($html ? '>' : ' />') . "\n\t";
-		foreach (self::$CSS as $file)
-		{
-			$back .= sprintf('<link rel="stylesheet" type="text/css" href="%s"%s', $file, $xhtml);
-		}
-		return $back;
-	}
-
-	##################
-	### Javascript ###
-	##################
-	private static $javascripts = array();
-	public static function addJavascript($path)
-	{
-		if (in_array($path, self::$javascripts, true)) {
-			return true;
-		}
-		self::$javascripts[] = $path;
-		return true;
-	}
-
-	public static function displayJavascripts()
-	{
-		$back = '';
-		foreach (self::$javascripts as $js)
-		{
-			$back .= sprintf('<script type="text/javascript" src="%s"></script>', htmlspecialchars($js));
-		}
-		return $back.self::displayJavascriptInline();
-	}
-	
-	private static $javascript_inline = '';
-	public static function addJavascriptInline($script_html)
-	{
-		self::$javascript_inline .= $script_html;
-	}
-	public static function displayJavascriptInline()
-	{
-		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
-		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline);
-	}
-	
-	public static function includeJQuery()
-	{
-		self::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
 	}
 	
 }
