@@ -1,6 +1,6 @@
 <?php
 # Time measurement
-$t = microtime(true);
+define('GWF_DEBUG_TIME_START', microtime(true));
 //$c1 = get_declared_classes();
 
 # Include the core (always a good and safe idea)
@@ -54,7 +54,7 @@ else
 if (isset($_GET['ajax'])) {
 	echo $page;
 } else {
-	echo GWF_Website::displayPage($page, GWF_Debug::getTimings($t));
+	echo GWF_Website::displayPage($page, GWF_DebugInfo::getTimings());
 }
 
 # Commit the session
@@ -65,4 +65,8 @@ GWF_Session::commit();
 
 //$c2 = get_declared_classes();
 //var_dump($c2);
+//$c2 = SF::$loaded;
+//if(isset($_GET['classes'])) {
+//	print_r($c2);
+//}
 ?>
