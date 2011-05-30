@@ -653,13 +653,21 @@ abstract class GDO
 	
 	public function saveVars(array $data)
 	{
-		$db = gdo_db();
 		$set = '';
 		foreach ($data as $k => $v)
 		{
-			$set .= ',`'.$k.'`=\''.$db->escape($v).'\'';
-			$this->gdo_data[$k] = $v;
+			if ($this->gdo_data[$k] !== $v)
+			{
+				$set .= sprintf(",`%s`='%s'", $k, $this->escape($v));
+				$this->gdo_data[$k] = $v;
+			}
 		}
+		
+		if ($set === '')
+		{
+			return true;
+		}
+		
 		$set = substr($set, 1);
 		return $this->update($set, $this->getPKWhere(), NULL, 1);
 	}
