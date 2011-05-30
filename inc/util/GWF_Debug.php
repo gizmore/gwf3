@@ -87,6 +87,9 @@ final class GWF_Debug
 			'mem_php' => $mem_total - $mem_user,
 			'mem_user' => $mem_user,
 			'mem_total' => $mem_total,
+			'space_free' => disk_free_space(__FILE__),
+			'space_total' => disk_total_space(__FILE__),
+			'space_used' => (disk_total_space(__FILE__) - disk_free_space(__FILE__)),
 		);
 	}
 	
