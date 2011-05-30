@@ -27,6 +27,10 @@ else {
 	$me = Common::getGetString('me', GWF_DEFAULT_METHOD);
 }
 
+# Set valid mo/me
+$_GET['mo'] = $module->getName();
+$_GET['me'] = $me;
+
 //ob_start();
 if ($module->isEnabled())
 {
@@ -45,12 +49,6 @@ else
 //$out = ob_get_contents();
 //ob_end_clean();
 
-# Commit the session
-if (false !== ($user = GWF_Session::getUser())) {
-	$user->saveVar('user_lastactivity', time());
-}
-
-GWF_Session::commit();
 
 # Display the page
 if (isset($_GET['ajax'])) {
@@ -58,6 +56,12 @@ if (isset($_GET['ajax'])) {
 } else {
 	echo GWF_Website::displayPage($page, GWF_Debug::getTimings($t));
 }
+
+# Commit the session
+if (false !== ($user = GWF_Session::getUser())) {
+	$user->saveVar('user_lastactivity', time());
+}
+GWF_Session::commit();
 
 //$c2 = get_declared_classes();
 //var_dump($c2);
