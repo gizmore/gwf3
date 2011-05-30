@@ -1,0 +1,33 @@
+<?php
+final class Shadowcmd_running_mode extends Shadowcmd
+{
+	public static function execute(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (!$player->getParty()->isIdle()) {
+			$player->message('Your party is moving. Try this command when idle.');
+			return false;
+		}
+		
+		if ($player->isRunner()) {
+			$bot->reply('You are already playing running mode. Nice!');
+		}
+		elseif (count($args) === 0) {
+			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
+			$bot->reply('Type "#rm RUNNER" to confirm.');
+		}
+		elseif ( (count($args) !== 1) || ($args[0] !== 'RUNNER') ) {
+			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
+		}
+		elseif ($player->getBase('level') > 2) {
+			$bot->reply('You cannot switch to running mode when you passed level 2.');
+		}
+		else {
+			$player->saveOption(SR_Player::RUNNING_MODE, true);
+			$bot->reply('You are now playing running mode. This means unlimited stats but instant death. Good luck!');
+			return true;
+		}
+		return false;
+	}
+}
+?>
