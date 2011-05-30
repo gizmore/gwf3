@@ -43,6 +43,8 @@ class GWF_Form
 	const HEADLINE = 20;
 	const DATE_FUTURE = 21;
 	const SELECT_A = 22;
+	const SUBMIT_IMG = 23;
+	const SUBMIT_IMGS = 24;
 	
 	private $method;
 	private $validator;
@@ -204,6 +206,8 @@ class GWF_Form
 				case self::SELECT_A:
 				case self::SUBMIT:
 				case self::SUBMITS:
+				case self::SUBMIT_IMG:
+				case self::SUBMIT_IMGS:
 				case self::HEADLINE:
 				case self::DIVIDER:
 				case self::CHECKBOX:
@@ -246,6 +250,7 @@ class GWF_Form
 //				case self::SPECIAL_OPT:
 				case self::FILE_OPT:
 				case self::SUBMIT:
+				case self::SUBMIT_IMG:
 //				case self::SUBMITS:
 				case self::SSTRING:
 				case self::HEADLINE:

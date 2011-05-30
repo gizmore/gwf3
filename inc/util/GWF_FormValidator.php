@@ -3,7 +3,9 @@ final class GWF_FormValidator
 {
 	private static $SKIPPERS = array(
 		GWF_Form::SUBMIT,
+		GWF_Form::SUBMIT_IMG,
 //		GWF_Form::SUBMITS,
+//		GWF_Form::SUBMIT_IMBS,
 		GWF_Form::CHECKBOX,
 		GWF_Form::SSTRING,
 		GWF_Form::STRING_NO_CHECK,
@@ -99,6 +101,7 @@ final class GWF_FormValidator
 					break;
 					
 				case GWF_Form::SUBMITS:
+				case GWF_Form::SUBMIT_IMGS:
 						foreach (array_keys($data[1]) as $key)
 						{
 //							if (false !== ($i = array_search($key, $check_sent, true))) {
@@ -156,7 +159,7 @@ final class GWF_FormValidator
 		foreach ($form->getFormData() as $key => $data)
 		{
 			# Skippers
-			if ( (in_array($data[0], self::$SKIPPERS, true)) || $data[0] === GWF_Form::SUBMITS) {
+			if ( (in_array($data[0], self::$SKIPPERS, true)) || ($data[0] === GWF_Form::SUBMITS) || ($data[0] === GWF_Form::SUBMIT_IMGS) ) {
 				continue;
 			}
 			
