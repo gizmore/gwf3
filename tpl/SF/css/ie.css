@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+#body {
+/*	height: 100%;*/
+}
+#left {
+	float: left;
+/*	height:100%;*/
+}
+#middle {
+	float: left;
+/*	height:100%;*/
+}
+#content { 
+	width: 100%;
+	/*height: auto;*/
+}
+#right {
+	float: right;
+	width: 19%!important;
+	/*height:100%;*/
+}
+#copyright_SF {
+	clear: both;
+}

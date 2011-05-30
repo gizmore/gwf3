@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+body, html {
+	width: 100%;
+	height: 100%;
+	background-image: none !important;
+	background-color: transparent !important;
+	background: none !important;
+}
+div#profil,
+div#logo,
+div#headnavi,
+div#details,
+div#right,
+div#left,
+/*div#margin,*/
+div#footer,
+div#copyright,
+div#surfer_infos,
+a.backbutton
+{
+	display: none; 
+	background-image: none !important;
+	background-color: transparent !important;
+	background: none !important;
+}
+div {
+	visibility: hidden;
+	background-image: none !important;
+	background-color: transparent !important;
+	background: none !important;
+}
+
+div#content {
+	position: absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+/*	height:100%;*/
+	height: auto;
+	margin:0;
+	padding:0;
+	background-image:none;
+	background-color: transparent;
+	text-align:justify;
+	font-family: 'Verdana';
+	font-size: 10px;
+	color: #000000;
+}
+
+span#print,
+div#content,
+div#content div {
+	display: block !important;
+	visibility: visible !important;
+}

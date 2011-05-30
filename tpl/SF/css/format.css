@@ -1,0 +1,168 @@
+@charset "utf-8";
+/*----------------GENERAL THINGS---------------*/
+html, body, div {
+	/*cursor: url('../images/blue.cur');*/
+}
+body {
+	font-family: 'Verdana';
+	font-size: 12px;
+	line-height: normal;
+
+}
+a img {
+	border: none;
+}
+q {
+	quotes: "\00BB" "\00AB";
+}
+hr {
+	width: 90%;
+	height: 1px;
+	margin: 0 auto;
+	border: none;
+	background-color: #1c1c1c;
+/*BORDER COLOR IN color.css*/
+	/*border-top: thin solid #CCCCCC;*/
+}
+hr.right {
+	margin-right: 0;
+}
+hr.left {
+	margin: 0;
+	margin-left: 0;
+}
+
+br {}
+p {}
+span {}
+legend {}
+label {}
+fieldset {}
+
+fieldset.login, fieldset.login input {
+	border:none!important;
+}
+
+h1 {
+	font-family: 'Verdana';
+	font-size: 20px;
+	font-style: normal;
+	font-variant:normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	line-height: normal;
+}
+h2 {
+	font-family: 'Verdana';
+	font-size: 15px;
+	font-style: normal;
+	font-variant:normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	line-height: normal;
+}
+h3 {
+	font-family: 'Verdana';
+	font-size: 12px;
+	font-style: normal;
+	font-variant:normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: left;
+	line-height: normal;
+}
+
+/*-------------------CLASSES AND ID's--------------------------*/
+.bold {
+	font-weight:bold;
+}
+p.bottom {
+	text-align: right;
+}
+p.top, p.bottom {
+	margin: 5px;
+}
+span.shell_dir {
+	color:#0000CD;
+}
+
+span.shell_admin {
+	color: #CD0000;
+}
+span.shell_user {
+	color: #00FF00 /* #4E9A06 */;
+}
+.shell {
+	color: #188912;
+}
+#shell_logo {
+	width: auto;
+	overflow: hidden;
+	font-family: 'Droid Sans Mono', 'Monospace';
+	font-size: 10px;
+	/*padding: 8px;*//* DO NOT PADDING IT ! */
+	/*background-color: #131313;*/
+}
+
+input.shell {
+	border: none;
+	background-color: #000000;
+}
+input.border.shell {
+	border-bottom: thin solid #188912;
+}
+input.shell[type=submit] {
+	visibility: hidden;
+}
+
+span.copyright {
+	background-color: #ff0000;
+}
+p.copyright {
+	vertical-align: middle;
+	text-align: center;
+	line-height: 20px;
+}
+div.inhalt {
+	text-align: justify;
+	padding: 10px;
+	overflow: hidden;
+}
+ol.navi a,
+div#footer a.footlink {
+	color: #ffffff;
+	font-family: 'Times New Roman';
+	font-size: 15px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	text-decoration: none;
+	line-height: 15px;
+	vertical-align: middle;
+}
+div.navigation > ol.navi h2:first-letter,
+div.inhalt p:first-letter { 
+	font-weight: bold; font-size: 20px; 
+}
+div.inhalt p:hover { 
+	background-color: #1c1c1c;
+}
+div.inhalt a:hover {
+	text-decoration: underline;
+}
+div.inhalt li {
+	list-style-type: square;
+	list-style-position: inside;
+	padding-left: 10px;
+}
+div.inhalt li > ul > li {
+	list-style-type: disc;
+	list-style-position: inside;
+	padding-left: 10px;
+}
+div.inhalt p {
+	padding-left: 5px;
+	padding-right: 5px;
+}

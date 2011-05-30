@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+div.navigation {
+	position:relative;
+}
+div.navigation > ol.navi {
+	margin: 10px;
+	overflow: hidden;
+}
+/*Alle LI's*/
+div.navigation > ol.navi li { 
+	list-style-position: inside;
+	vertical-align: middle; /*NOTWENDIG? */
+/*	line-height:;*/
+}
+
+/*****************
+** SECTION LI's **
+******************/
+div.navigation > ol.navi > li.sec {
+	margin-bottom: 15px; /* Abstand zwischen einzelnen Sections*/
+	list-style-type:none; /* kein listensymbol/typ für sections*/
+}
+div.navigation > ol.navi > li.sec > h2 { 
+	margin-bottom: 5px; /* Abstand zwischen/unter Überschrift und cat-inhalt */
+}
+div.navigation > ol.navi > li.sec > ul > li.sec_link {
+}
+
+div.navigation > ol.navi > li.sec > ul > li > ul > li, 
+div.navigation > ol.navi > li.sec > ul > li { 
+	width: 150px;
+	overflow:hidden; /* dont display links on non navi area */
+}
+
+/*******************
+**  CATEGORY LI's **
+********************/
+div.navigation > ol.navi > li.sec > ul > li.cat  {
+
+	padding-left: 5px;
+		border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: thin solid #131313;
+	margin: 5px 0; 
+	padding-top: 5px; /* IMPORTANT FOR LAYOUT*/
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > h3 {
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul {
+/*	visibility: hidden;*/
+	padding: 5px;
+	margin: 5px 0;
+	display:none;
+	background-color: #131313;
+}
+/* DECIDE !!! */
+div.navigation > ol.navi > li.sec:target > ul > li.cat > ul,
+div.navigation > ol.navi > li.sec > ul > li.cat:target > ul,
+div.navigation > ol.navi > li.sec:hover > ul > li.cat > ul ,
+div.navigation > ol.navi > li.sec > ul > li.cat:hover > ul {
+	display: block;
+	visibility: visible;
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.cat_link {
+}
+/**********************
+** SUB-CATEGORY LI's **
+***********************/
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat {
+	padding-left: 5px;
+	/*max-height: 16px;*/
+	/*overflow: hidden; /*FIX IT??? */
+	list-style-type: none !important;
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat > ul {
+	padding-left: 5px;
+	/*display: none;*/
+	visibility:hidden;
+}
+div.navigation > ol.navi > li.sec > ul > li.cat:target > ul > li.subcat > ul,
+div.navigation > ol.navi > li.sec > ul > li.cat:hover > ul > li.subcat > ul {
+	/*display: none;*/
+	visibility:visible;
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat > h4 {
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat * {
+	overflow: hidden; /* WHY? USEFULL FOR ALL, MORE? */
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat > ul > li.subcat_link {
+	padding-left: 5px;
+}
+
+/* PSEUDOS */
+div.navigation > ol.navi li.sec_link:hover > a:after,
+div.navigation > ol.navi li.cat_link:hover > a:after,
+div.navigation > ol.navi li.subcat_link:hover > a:after {
+	content: "\0020\00AB\00AB";
+	text-decoration:none;
+}
+div.navigation > ol.navi li.cat:hover > a:after,
+div.navigation > ol.navi li.subcat:hover > a:after {
+	content: "\0020\21D3";
+	font-size: 0.8em;
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat:hover > a:before {
+/*	content: "\0020"; */
+/*	padding-left: 5px;*/
+}
+div.navigation > ol.navi > li.sec > ul > li.cat > ul > li.subcat:hover > a:after {
+	content: "\0020\2039\00AB";
+}
+div.navigation > ol.navi > li > ul > li:hover > ul {
+	border-right: thin solid #8B0000;
+}
