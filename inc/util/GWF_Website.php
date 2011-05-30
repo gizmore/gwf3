@@ -43,14 +43,15 @@ final class GWF_Website
 	### Meta ###
 	############
 	private static $META = array();
-	#public static function addMeta($name, $content, $equiv = false)
+	/**
+	 * @param $meta = array($name, $content, $equiv(?));
+	 * @param $aggressive
+	 */
 	public static function addMeta(array $meta, $aggressive = false)
 	{
-		#if (in_array($meta, self::$META, true)) {
 		if (array_key_exists($meta[0], self::$META) && !$aggressive) {
 			return true;
 		}
-		#self::$META[] = array($name, $content, $equiv);
 		self::$META[$meta[0]] = $meta;
 		return true;
 	}
@@ -237,17 +238,12 @@ final class GWF_Website
 	
 	public static function getHTMLHead()
 	{
-		if(!defined('GWF_IS_HTML')) { // PLEASE ADD TO CONFIG: true for html5; false for xhtml
-			define('GWF_IS_HTML', false);
-		}
-		//self::addMeta('description', self::$META_DESCR);
-		//self::addMeta('keywords', self::$META_TAGS);
 		$tVars = array(
 			'page_title' => self::displayPageTitle(),
 			'language' => GWF_Language::getCurrentISO(),
-			'meta' => self::displayMETA(GWF_IS_HTML),
 			'meta_tags' => self::displayMetaTags(),
 			'meta_descr' => self::displayMetaDescr(),
+			'meta' => self::displayMETA(GWF_IS_HTML), // important: must be under displayMetaDescr/Tags
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
 			'feeds' => self::displayFeeds(),
 			'root' => GWF_WEB_ROOT,
