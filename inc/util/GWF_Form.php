@@ -141,12 +141,12 @@ class GWF_Form
 		return false;
 	}
 	
-	public function templateX($title, $action=true, $method='post')
+	public function templateX($title='', $action=true, $method='post')
 	{
 		return $this->template('formX.php', $title, $action, $method);
 	}
 	
-	public function templateY($title, $action=true, $method='post')
+	public function templateY($title='', $action=true, $method='post')
 	{
 		return $this->template('formY.php', $title, $action, $method);
 	}
