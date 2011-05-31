@@ -66,10 +66,12 @@ final class GWF_Template
 	#######################
 	### Smarty Template ###
 	#######################
+	protected static $_Smarty = NULL;
 	public static function getSmarty()
 	{
-		static $smarty;
+//		static $smarty;
 //		if (!isset($smarty))
+		if (self::$_Smarty === NULL) 
 		{
 			require_once GWF_SMARTY_PATH;
 			$smarty = new Smarty();
@@ -84,8 +86,28 @@ final class GWF_Template
 			$smarty->assign('gwmm', GWF_SmartyModuleMethod::instance());
 			$smarty->assign('root', GWF_WEB_ROOT);
 //			$smarty->assign('user', GWF_User::getStaticOrGuest());
+			self::$_Smarty = $smarty;
 		}
-		return $smarty;
+		return self::$_Smarty;
+	}
+
+	public static function addMainTvars($tVars = NULL) {
+		if (self::$_Smarty === NULL) {
+			$smarty = self::getSmarty();
+		} else {
+			$smarty = self::$_Smarty;
+		}
+		
+		if (is_array($tVars))
+		{
+			foreach ($tVars as $k => $v)
+			{
+				$smarty->assign($k, $v);
+			}
+		}
+		
+		self::$_Smarty = $smarty;
+		
 	}
 	
 	public static function templateMain($file, $tVars=NULL)
