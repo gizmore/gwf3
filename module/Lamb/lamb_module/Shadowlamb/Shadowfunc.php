@@ -10,38 +10,38 @@ final class Shadowfunc
 		}
 	}
 	
-	public static function getPlayerInLocationB(SR_Player $player, $name)
-	{
-		$name = strtolower($name);
-		$n = self::toShortname($name);
-		$candidates = array();
-		$players = Shadowrun4::getPlayers();
-		foreach ($players as $pl)
-		{
-			$pl instanceof SR_Player;
-			
-			if ($name === $pl->getName()) {
-				return $pl;
-			}
-			
-			if ($n !== strtolower($pl->getShortName())) {
-				continue;
-			}
-			
-			if (self::sharesLocation($player, $pl))
-			{
-				$candidates[] = $pl;
-			}
-		}
-		$count = count($candidates);
-		if ($count === 0) {
-			return false;
-		}
-		elseif ($count === 1) {
-			return $candidates[0];
-		}
-		return false;
-	}
+//	public static function getPlayerInLocationB(SR_Player $player, $name)
+//	{
+//		$name = strtolower($name);
+//		$n = self::toShortname($name);
+//		$candidates = array();
+//		$players = Shadowrun4::getPlayers();
+//		foreach ($players as $pl)
+//		{
+//			$pl instanceof SR_Player;
+//			
+//			if ($name === $pl->getName()) {
+//				return $pl;
+//			}
+//			
+//			if ($n !== strtolower($pl->getShortName())) {
+//				continue;
+//			}
+//			
+//			if (self::sharesLocation($player, $pl))
+//			{
+//				$candidates[] = $pl;
+//			}
+//		}
+//		$count = count($candidates);
+//		if ($count === 0) {
+//			return false;
+//		}
+//		elseif ($count === 1) {
+//			return $candidates[0];
+//		}
+//		return false;
+//	}
 	
 	private static function sharesLocation(SR_Player $a, SR_Player $b)
 	{
@@ -105,9 +105,75 @@ final class Shadowfunc
 	 * @param string $arg
 	 * @return SR_Player
 	 */
-	public static function getFriendlyTarget(SR_Player $player, $arg)
+	public static function getFriendlyTarget(SR_Player $player, $arg, $own_members=true)
 	{
-		return $arg === '' ? $player : self::getTarget($player->getParty()->getMembers(), $arg);
+		if ($arg === '')
+		{
+			return $player;
+		}
+		
+		if ($own_members)
+		{
+			if (false !== ($target = self::getTarget($player->getParty()->getMembers(), $arg, true)))
+			{
+				return $target;
+			}
+		}
+		
+		if (false !== ($target = self::getTarget(self::getPlayersInLocation($player, false), $arg, false)))
+		{
+			return $target;
+		}
+		
+		return false;
+	}
+	
+	public static function getPlayersInLocation(SR_Player $player, $own_members=true)
+	{
+		$p = $player->getParty();
+		$a = $p->getAction();
+		
+		$back = $own_members ? $p->getMembers() : array();
+		
+		switch ($a)
+		{
+
+			case SR_Party::ACTION_TALK:
+			case SR_Party::ACTION_FIGHT:
+				// we can see enemy party
+				$back = array_merge($back, $p->getEnemyParty()->getMembers());
+				break;
+				
+				
+			case SR_Party::ACTION_INSIDE:
+			case SR_Party::ACTION_OUTSIDE:
+				// we can see other parties
+				$pid = $p->getID();
+				$loc = $p->getLocation($a);
+				foreach (Shadowrun4::getParties() as $party)
+				{
+					$party instanceof SR_Party;
+					if ($party->getID() !== $pid)
+					{
+						if ($party->getLocation($a) === $loc)
+						{
+							$back = array_merge($back, $party->getMembers());
+						}
+					}
+				}
+				break;
+				
+				// we see no other parties
+			case SR_Party::ACTION_DELETE:
+			case SR_Party::ACTION_SLEEP:
+			case SR_Party::ACTION_TRAVEL:
+			case SR_Party::ACTION_EXPLORE:
+			case SR_Party::ACTION_GOTO:
+			case SR_Party::ACTION_HUNT:
+				break;
+		}
+		
+		return $back;
 	}
 	
 	/**
@@ -120,16 +186,22 @@ final class Shadowfunc
 		return self::getTarget($player->getEnemyParty()->getMembers(), $arg);
 	}
 	
-	private static function getTarget(array $players, $arg)
+	private static function getTarget(array $players, $arg, $enum=true)
 	{
-		if (is_numeric($arg))
+		if ($arg === '')
 		{
-			if ( ($arg < 1)	|| ($arg > count($players)) ) {
-				return false;
+			return Shadowfunc::randomListItem($players);
+		}
+
+		# enum
+		if ($enum && is_numeric($arg))
+		{
+			if ( ($arg > 0)	&& ($arg <= count($players)) )
+			{
+				$arg = (int)$arg;
+				$back = array_slice($players, $arg-1, 1, false);
+				return $back[0];
 			}
-			$arg = (int)$arg;
-			$back = array_slice($players, $arg-1, 1, false);
-			return $back[0];
 		}
 
 		$arg = strtolower($arg);
@@ -137,19 +209,28 @@ final class Shadowfunc
 		$candidates = array();
 		foreach ($players as $target)
 		{
-			if (strtolower($target->getName()) === $arg) {
+			echo sprintf('Checking %s against %s', $target->getName(), $arg).PHP_EOL;
+			if (strtolower($target->getName()) === $arg)
+			{
 				return $target;
 			}
-			if (strtolower($target->getShortName()) === $n) {
+			
+			echo sprintf('Checking %s against %s', $target->getShortName(), $n).PHP_EOL;
+			if (strtolower($target->getShortName()) === $n)
+			{
 				$candidates[] = $target;
 			}
 		}
 		
-		if (count($candidates) === 1) {
-			return $candidates[0];
+		switch (count($candidates))
+		{
+			case 0:
+				return false;
+			case 1:
+				return $candidates[0];
+			default:
+				return false;
 		}
-		
-		return false;
 	}
 	
 	##############
@@ -183,6 +264,13 @@ final class Shadowfunc
 		return self::dice(1000000, round($percent*10000));
 	}
 	
+	/**
+	 * Dice a float value.
+	 * @param int $min
+	 * @param int $max
+	 * @param int $precision
+	 * @return float
+	 */
 	public static function diceFloat($min, $max, $precision)
 	{
 		$p = pow(10, $precision);
@@ -227,7 +315,7 @@ final class Shadowfunc
 			}
 			else # Human Attacks NPC
 			{
-				$oops = rand(70, 140) / 10;
+				$oops = rand(80, 150) / 10;
 			}
 		}
 		else # NPC attacks ...
@@ -235,7 +323,7 @@ final class Shadowfunc
 			if ($target->isHuman()) # NPC attacks Human
 			{
 				$rand = rand(11, 15) / 10;
-				$oops = $rand + $ep->getMemberCount()*0.5 + $ep->getMax('level')*0.02;
+				$oops = $rand + $ep->getMemberCount()*0.4 + $ep->getMax('level')*0.01;
 			}
 			else # NPC attacks NPC
 			{
@@ -412,7 +500,7 @@ final class Shadowfunc
 		foreach ($sorted as $k => $data)
 		{
 			list($v, $t) = $data;
-			$back .= sprintf(', %s:%s(%s)', $b.$k.$b, $v, GWF_Time::humanDurationEN($t-$t2));
+			$back .= sprintf(', %s:%s(%s)', $b.$k.$b, $v, GWF_Time::humanDuration($t-$t2));
 		}
 		
 		return substr($back, 2);
@@ -436,6 +524,11 @@ final class Shadowfunc
 	public static function getBank(SR_Player $player)
 	{
 		return self::getItemsSorted($player, $player->getBankSorted());
+	}
+	
+	public static function getMountInv(SR_Player $player)
+	{
+		return self::getItemsSorted($player, $player->getMountInvSorted());
 	}
 	
 	public static function getInventory(SR_Player $player)
@@ -481,20 +574,34 @@ final class Shadowfunc
 	public static function getRandomName(SR_Player $player)
 	{
 		static $rand = array(
-			'elvemale' => array('Filöen'),
-			'elvefemale' => array('Anja'),
-			'halfelvemale' => array('Filöen'),
-			'halfelvefemale' => array('Anja'),
-			'humanmale' => array('Rolf','Peter','Paul'),
-			'humanfemale' => array('Mary'),
-			'dwarfmale' => array('Roon'),
-			'dwarffemale' => array('Alisa'),
-			'halftrollmale' => array('Roon'),
-			'halftrollfemale' => array('Björk'),
-			'trollmale' => array('Roog'),
-			'trollfemale' => array('Gunda'),
+			'fairy_male' => array('Schwunkol'),
+			'fairy_female' => array('Ambra','Elina'),
+			'vampire_male' => array('Dracool'),
+			'vampire_female' => array('Daria'),
+			'elve_male' => array('Filöen'),
+			'elve_female' => array('Anja'),
+			'darkelve_male' => array('Noplan'),
+			'darkelve_female' => array('Noplan'),
+			'woodelve_male' => array('Noplan'),
+			'woodelve_female' => array('Noplan'),
+			'halfelve_male' => array('Filöen'),
+			'halfelve_female' => array('Anja'),
+			'human_male' => array('Rolf','Peter','Paul','Homer','Carl','Lenny'),
+			'human_female' => array('Mary',''),
+			'dwarf_male' => array('Roon'),
+			'dwarf_female' => array('Alisa'),
+			'ork_male' => array('Grunt'),
+			'ork_female' => array('Broga'),
+			'halfork_male' => array('Bren'),
+			'halfork_female' => array('Yuly'),
+			'halftroll_male' => array('Roon'),
+			'halftroll_female' => array('Björk'),
+			'troll_male' => array('Roog'),
+			'troll_female' => array('Gunda'),
+			'gremlin_male' => array('gizmo'),
+			'gremlin_female' => array('gizma'),
 		);
-		$r = $rand[$player->getVar('sr4pl_race').$player->getVar('sr4pl_gender')];
+		$r = $rand[$player->getVar('sr4pl_race').'_'.$player->getVar('sr4pl_gender')];
 		return $r[rand(0,count($r)-1)];
 	}
 	
@@ -562,8 +669,20 @@ final class Shadowfunc
 		$back = '';
 		foreach ($requirements as $k => $v)
 		{
-			if ($player->getBase($k) < $v) {
-				$back .= sprintf(', %s:%s', $k, $v);
+			$base = $player->getBase($k);
+			if ($k === 'race' || $k === 'gender')
+			{
+				if ($base !== $v)
+				{
+					$back .= sprintf(', %s:%s', $k, $v);
+				}
+			}
+			else
+			{
+				if ($base < $v)
+				{
+					$back .= sprintf(', %s:%s', $k, $v);
+				}
 			}
 		}
 		
