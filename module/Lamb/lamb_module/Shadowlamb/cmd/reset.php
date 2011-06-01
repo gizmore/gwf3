@@ -5,7 +5,6 @@
  */
 final class Shadowcmd_reset extends Shadowcmd
 {
-	const TEMP_KEY = 'CMD_RESET_CONFIRM';
 	public static function execute(SR_Player $player, array $args)
 	{
 		if (!$player->getParty()->isIdle())
@@ -16,21 +15,16 @@ final class Shadowcmd_reset extends Shadowcmd
 
 		$c = Shadowrun4::SR_SHORTCUT;
 		$bot = Shadowrap::instance($player);
-		$key = self::TEMP_KEY;
 		
-		if (!$player->hasTemp($key))
-		{
-			$bot->reply(sprintf('This will completely delete your character. Type %sreset again to confirm.', $c));
-			$player->setTemp($key, 1);
-		}
-		
-		else
+		if ($args[0]==='i_am_sure')
 		{
 			$player->deletePlayer();
 			$player->message(sprintf('Your character has been deleted. You may issue %sstart again.', $c));
-			$player->unsetTemp($key);
 		}
-		
+		else
+		{
+			$bot->reply(sprintf('This will completely delete your character. Type "%sreset i_am_sure" to confirm.', $c));
+		}
 		return true;
 	}
 }
