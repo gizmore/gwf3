@@ -27,6 +27,7 @@ final class Seattle_AMagician extends SR_NPC
 			'wisdom' => 4,
 			'distance' => 12,
 			'base_hp' => 16,
+			'nuyen' => 90,
 			'base_mp' => 30,
 		);
 	}
