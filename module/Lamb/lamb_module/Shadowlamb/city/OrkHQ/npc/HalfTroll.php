@@ -3,7 +3,7 @@ final class OrkHQ_HalfTroll extends SR_NPC
 {
 	public function getNPCLevel() { return 6; }
 	public function getNPCPlayerName() { return 'HQTroll'; }
-	public function canNPCMeet(SR_Party $party) { return false; }
+	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCEquipment()
 	{
 		return array(
