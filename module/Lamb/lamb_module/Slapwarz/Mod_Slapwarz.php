@@ -114,7 +114,7 @@ final class LambModule_Slapwarz extends Lamb_Module
 			}
 			if (isset($remain)) {
 				Lamb_SlapUser::removePoints($user->getID(), self::SLAP_REMAIN_MALUS);
-				$message .= sprintf(' (%s remaining, Lost %d points).', GWF_Time::humanDurationEN($remain), self::SLAP_REMAIN_MALUS);
+				$message .= sprintf(' (%s remaining, Lost %d points).', GWF_Time::humanDuration($remain), self::SLAP_REMAIN_MALUS);
 			}
 		}
 		else
