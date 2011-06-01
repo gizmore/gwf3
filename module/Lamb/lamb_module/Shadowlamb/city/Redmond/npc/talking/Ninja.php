@@ -25,7 +25,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 		}
 		
 		$b = chr(2);
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$quest = SR_Quest::getQuest($player, 'Redmond_Shrine');
 		$amt = $quest->getNeededAmount();
 		$has = $quest->isInQuest($player);

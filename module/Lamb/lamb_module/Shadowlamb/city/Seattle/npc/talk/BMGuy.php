@@ -2,10 +2,46 @@
 final class Seattle_BMGuy extends SR_TalkingNPC
 {
 	public function getName() { return 'Mogrid'; }
+	public function getNPCLevel() { return 9; }
+	public function getNPCPlayerName() { return 'Mogrid'; }
+	public function getNPCMeetPercent(SR_Party $party) { return 0.00; }
+	public function canNPCMeet(SR_Party $party) { return false; }
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson3');
+		return $quest->dropCollar($this, $player);
+	}
+	
+	public function getNPCEquipment()
+	{
+		return array(
+			'weapon' => 'Fichetti',
+			'armor' => 'KevlarVest',
+			'legs' => 'Trousers',
+			'boots' => 'LeatherBoots',
+		);
+	}
+	public function getNPCInventory() { return array('SmallFirstAid','Ammo_5mm','Ammo_5mm','Ammo_5mm','Ammo_5mm','Ammo_5mm'); }
+	public function getNPCModifiers() {
+		return array(
+			'race' => 'human',
+			'gender' => 'male',
+			'strength' => rand(2, 4),
+			'quickness' => rand(2, 4),
+			'distance' => rand(0, 2),
+			'pistols' => rand(1, 2),
+			'firearms' => rand(2, 3),
+			'sharpshooter' => rand(0, 1),
+			'nuyen' => rand(20, 40),
+			'base_hp' => 14,
+		);
+	}
+	
 	
 	public function onNPCTalk(SR_Player $player, $word)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson3');
+		
 		switch ($word)
 		{
 			case 'shadowrun':

@@ -1,7 +1,9 @@
 <?php
 final class Spell_berzerk extends SR_SupportSpell
 {
-	public function getHelp(SR_Player $player) { return 'Temporarily raises the min- and max_dmg for a friendly target.'; }
+	public function getSpellLevel() { return 2; }
+	
+	public function getHelp() { return 'Temporarily raises the min- and max_dmg for a friendly target.'; }
 	public function getRequirements() { return array('magic'=>3); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	

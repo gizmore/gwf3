@@ -9,6 +9,8 @@ final class Quest_Seattle_Library3 extends SR_Quest
 		$have = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have = $this->giveQuesties($player, $npc, 'ElvenStaff', $have, $need);
+		$this->saveVar('sr4qu_amount', $have);
+		
 		if ($have >= $need)
 		{
 			$npc->reply('Thank you so much. Now i can test my spells with new powerful elven staffs.');

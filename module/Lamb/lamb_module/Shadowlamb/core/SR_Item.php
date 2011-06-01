@@ -89,6 +89,7 @@ class SR_Item extends GDO
 	public function getModifiers() { return $this->getVar('sr4it_modifiers'); }
 	
 	public function isEquipped(SR_Player $player) { return false; }
+	public function setOwnerID($pid) { $this->setVar('sr4it_uid', $pid); }
 	
 	##################
 	### StaticLoad ###
@@ -310,11 +311,13 @@ class SR_Item extends GDO
 	
 	public function deleteItem(SR_Player $owner)
 	{
-		if (false === $owner->removeFromInventory($this)) {
+		if (false === $owner->removeFromInventory($this))
+		{
 			Lamb_Log::log(sprintf('Item %s(%d) can not remove from inventory!', $this->getItemName(), $this->getID()));
 			return false;
 		}
-		if (false === $this->delete()) {
+		if (false === $this->delete())
+		{
 			Lamb_Log::log(sprintf('Item %s(%d) can not delete me!', $this->getItemName(), $this->getID()));
 			return false;
 		}
@@ -330,8 +333,8 @@ class SR_Item extends GDO
 	{
 		$weight = $this->getItemWeightStacked();
 		$back = array_merge(array('weight'=> $weight), $this->getItemModifiersA($player));
-
-		if (NULL !== ($modB = $this->getItemModifiersB())) {
+		if (NULL !== ($modB = $this->getItemModifiersB()))
+		{
 			$back = self::mergeModifiers($back, $modB);
 		}
 		return $back;
@@ -455,7 +458,7 @@ class SR_Item extends GDO
 	### Item Overrides ###
 	######################
 	public function getBulletsMax() { return 0; }
-	public function getBulletsPerRound() { return 1; }
+	public function getBulletsPerShot() { return 1; }
 	public function getItemType() { return 'item'; }
 	public function getItemSubType() { return 'item'; }
 	public function getItemPrice() { return -1; }
@@ -471,6 +474,7 @@ class SR_Item extends GDO
 	public function isItemTradeable() { return true; }
 	public function isItemStackable() { return true; }
 	public function isItemStatted() { return $this->modifiers !== NULL; }
+	public function isItemStattable() { return false; }
 	public function isItemDropable() { return true; }
 	public function isItemFriendly() { return false; }
 	public function isItemOffensive() { return false; }

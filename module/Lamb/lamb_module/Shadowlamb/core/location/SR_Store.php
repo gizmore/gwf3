@@ -213,7 +213,8 @@ abstract class SR_Store extends SR_Location
 		}
 
 		# Sell it
-		if ($item->isEquipped($player)) {
+		if ($item->isEquipped($player))
+		{
 			$player->unequip($item);
 		}
 		

@@ -2,6 +2,8 @@
 abstract class SR_Equipment extends SR_Usable
 {
 	public function isItemStackable() { return false; }
+	public function isItemStattable() { return true; }
+	
 	public function isEquipped(SR_Player $player)
 	{
 		$type = $this->getItemType();
@@ -16,18 +18,7 @@ abstract class SR_Equipment extends SR_Usable
 	
 	public function onItemUnequip(SR_Player $player)
 	{
-		if (false === $player->unequip($this)) {
-			return false;
-		}
-		$msg = 'You put your '.$this->getItemName().' into the inventory.';
-		if ($player->isFighting()) {
-			$busy = $player->busy(15);
-			$msg .= sprintf(' %ss busy.', $busy);
-		}
-		$player->modify();
-		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
-		$player->message($msg);
-		return true;
+		return $player->unequip($this);
 	}
 	
 	public function onItemEquip(SR_Player $player)
@@ -43,10 +34,11 @@ abstract class SR_Equipment extends SR_Usable
 		$combat = $player->isFighting();
 		
 		# Unequip first
-		if ($player->hasEquipment($type)) {
+		if ($player->hasEquipment($type))
+		{
 			$item = $player->getEquipment($type);
 			$msg .= 'You put your '.$item->getItemName().' into the inventory. ';
-			$player->unequip($item);
+			$player->unequip($item, false);
 			$busy += $combat === true ? 15 : 0;
 		}
 		
@@ -58,7 +50,7 @@ abstract class SR_Equipment extends SR_Usable
 		if ($busy > 0)
 		{
 			$busy = $player->busy($busy);
-			$msg .= sprintf(' %s busy.', GWF_Time::humanDurationEN($busy));
+			$msg .= sprintf(' %s busy.', GWF_Time::humanDuration($busy));
 		}
 		$player->modify();
 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
@@ -68,12 +60,16 @@ abstract class SR_Equipment extends SR_Usable
 	
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$player->message('This equipment has no special usage. You can equip it with '.$c.'equip.');
 		return false;
 	}
 }
 
+/**
+ * Always statted, like ring etc
+ * @author gizmore
+ */
 abstract class SR_StattedEquipment extends SR_Equipment
 {
 }

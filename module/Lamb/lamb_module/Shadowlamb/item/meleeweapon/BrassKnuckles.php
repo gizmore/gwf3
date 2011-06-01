@@ -10,7 +10,7 @@ final class Item_BrassKnuckles extends SR_MeleeWeapon
 	{
 		return array(
 			'attack' => 5.5,
-			'min_dmg' => 0.5,
+			'min_dmg' => 0.0,
 			'max_dmg' => 5.5,
 		);
 	}

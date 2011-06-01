@@ -37,6 +37,9 @@ class SR_Rune extends SR_Item
 		self::$RUNEDATA['defense'] = array('defense', 16, 100.00, 1000.00, 22.00, 7.00, 0.1, 1.0);
 		self::$RUNEDATA['min_dmg'] = array('min_dmg', 24, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
 		self::$RUNEDATA['max_dmg'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
+		self::$RUNEDATA['lock'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
+		self::$RUNEDATA['transport'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
+		self::$RUNEDATA['max_dmg'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
 		self::$RUNEDATA['marm'] = array('marm', 28, 100.00, 1250.00, 24.00, 8.00, 0.1, 1.0);
 		self::$RUNEDATA['farm'] = array('farm', 32, 100.00, 1250.00, 24.00, 8.00, 0.1, 1.0);
 		
@@ -104,6 +107,7 @@ class SR_Rune extends SR_Item
 		return array($data[self::RUNE_MODIFIER] => $power);
 	}
 	
+	public function calcTotalPrice() { return $this->getItemPriceStatted(); }
 	public static function calcPrice(array $modifiers) { return self::calcMod($modifiers, self::RUNE_PRICE); }
 	public static function calcFailChance(array $modifiers) { return self::calcMod($modifiers, self::RUNE_FAIL_CHANCE); }
 	public static function calcBreakChance(array $modifiers) { return self::calcMod($modifiers, self::RUNE_BREAK_CHANCE); }
@@ -114,8 +118,16 @@ class SR_Rune extends SR_Item
 		$i = 1.0;
 		foreach ($modifiers as $k => $v)
 		{
-			if ( ($type === self::RUNE_PRICE) && ($k === 'max_weight') ) {
-				$v /= 1000;
+			if ($k === 'max_weight')
+			{
+				switch ($type)
+				{
+					case self::RUNE_PRICE:
+					case self::RUNE_FAIL_CHANCE:
+					case self::RUNE_BREAK_CHANCE:
+						$v /= 1000;
+						break;
+				}
 			}
 			
 			if (!isset($runedata[$k])) {

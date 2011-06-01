@@ -9,9 +9,9 @@ final class Item_SamuraiSword extends SR_MeleeWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 8.0, 
+			'attack' => 10.0, 
 			'min_dmg' => 4.5,
-			'max_dmg' => 12.0,
+			'max_dmg' => 11.0,
 		);
 	}
 }

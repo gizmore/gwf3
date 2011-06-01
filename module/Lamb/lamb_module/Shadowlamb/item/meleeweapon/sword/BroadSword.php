@@ -10,8 +10,8 @@ final class Item_BroadSword extends SR_MeleeWeapon
 	{
 		return array(
 			'attack' => 5.5, 
-			'min_dmg' => 2.5,
-			'max_dmg' => 8.5,
+			'min_dmg' => 2.0,
+			'max_dmg' => 9.0,
 		);
 	}
 	

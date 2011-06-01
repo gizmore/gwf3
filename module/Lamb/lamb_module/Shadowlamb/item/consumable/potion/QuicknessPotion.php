@@ -1,5 +1,5 @@
 <?php
-final class Item_QuicknessPotion extends SR_Consumable
+final class Item_QuicknessPotion extends SR_Potion
 {
 	public function getItemLevel() { return 5; }
 	public function getItemWeight() { return 200; }

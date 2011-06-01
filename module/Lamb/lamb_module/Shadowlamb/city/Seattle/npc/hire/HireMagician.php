@@ -4,6 +4,7 @@ final class Seattle_HireMagician extends SR_HireNPC
 	public function getNPCLevel() { return 8; }
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
 	public function canNPCMeet(SR_Party $party) { return false; }
+	
 	public function getNPCEquipment()
 	{
 		return array(
@@ -29,38 +30,36 @@ final class Seattle_HireMagician extends SR_HireNPC
 		);
 	}
 	
+	public function getNPCSpells()
+	{
+		return array(
+			'heal' => 3,
+			'firebolt' => 2,
+//			'freeze' => 2,
+		);
+	}
+	
 	public function onNPCTalk(SR_Player $player, $word)
 	{
+		$price = 800 - Common::clamp($player->get('negotiation'), 0, 10) * 10;
+		$time = 1000 * $player->get('charisma') * 60;
+		
 		$b = chr(2);
 		switch ($word)
 		{
 			case 'shadowrun':
+				return $this->reply("I am one of the best runners you can get. Wanna hire?");
+				
 			case 'yes':
+				return $this->reply("Yes, {$b}hire{$b} me and i'll aid you in combat.");
 			case 'no':
+				return $this->reply("I am good with magic, but not with reading minds.");
 			case 'hire':
+				return $this->onHire($player, $price, $time);
 				
 			default: $msg = ""; break;
 		}
 		$this->reply($msg);
 	}
-	
-//	public function __construct ()
-//	{
-//		$sql_array = array(
-//			"class" => "Seattle_HireMagician",
-//			"name"  => "Frosty",
-//			"strength"  => 2,
-//			"firearms"  => 3,
-//			"pistols"   => 4,
-//			"quickness" => 3,
-//			"armor"  => "Clothes",
-//			"weapon" => "LeatherVest",
-//			"spells" => "heal:3,fireball:4",
-//			"nuyen"  => 350,
-//			"power"  => 0,
-//			"initial_hp" => 25,
-//			"initial_mp" => 50,
-//		);
-//		parent::__construct( $sql_array );
-//	}
 }
+?>

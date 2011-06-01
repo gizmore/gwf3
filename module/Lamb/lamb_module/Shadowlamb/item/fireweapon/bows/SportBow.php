@@ -4,7 +4,6 @@ final class Item_SportBow extends SR_Bow
 	public function getAttackTime() { return 50; }
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
-	public function getBulletsPerShot() { return 1; }
 	public function getItemLevel() { return 5; }
 	public function getItemWeight() { return 950; }
 	public function getItemPrice() { return 250; }

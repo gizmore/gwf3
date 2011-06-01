@@ -40,12 +40,6 @@ abstract class SR_Hospital extends SR_Store
 		}
 		$item instanceof SR_Cyberware;
 		
-		$price = $item->getStorePrice();
-		if (false === ($player->pay($price))) {
-			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayPrice($price), Shadowfunc::displayPrice($player->getBase('nuyen'))));
-			return false;
-		}
-		
 		if ($player->hasCyberware($item->getItemName())) {
 			$bot->reply(sprintf('You already have %s implanted.', $item->getItemName()));
 			return false;
@@ -58,6 +52,12 @@ abstract class SR_Hospital extends SR_Store
 		
 		if (false !== ($error = $item->checkEssence($player))) {
 			$bot->reply($error);
+			return false;
+		}
+		
+		$price = $item->getStorePrice();
+		if (false === ($player->pay($price))) {
+			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayPrice($price), Shadowfunc::displayPrice($player->getBase('nuyen'))));
 			return false;
 		}
 		

@@ -10,17 +10,15 @@ class Item_Scanner_v1 extends SR_Usable
 	
 	public function getScannerTarget(SR_Player $player, array $args)
 	{
-		if (count($args) !== 1) {
-			return false;
-		}
+		$arg = isset($args[0]) ? $args[0] : '';
 		$p = $player->getParty();
 		if ($p->isFighting())
 		{
-			return $this->getOffensiveTarget($player, $args[0]);
+			return $this->getOffensiveTarget($player, $arg);
 		}
 		else
 		{
-			return $this->getFriendlyTarget($player, $args[0]);
+			return $this->getFriendlyTarget($player, $arg);
 		}
 		return $target;
 	}

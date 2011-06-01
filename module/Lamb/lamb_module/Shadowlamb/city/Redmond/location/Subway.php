@@ -20,7 +20,7 @@ final class Redmond_Subway extends SR_Subway
 	{
 		parent::onEnter($player);
 		
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$party = $player->getParty();
 		$party->notice('You enter the Subway and move to the tracks. You see a train to Seattle, and a passenger.');
 		$party->getLeader()->help("Use {$c}travel 1 to travel to Seattle or just {$c}travel to see all trains.");

@@ -1,7 +1,7 @@
 <?php
 final class Spell_hawkeye extends SR_SupportSpell
 {
-	public function getHelp(SR_Player $player) { return 'Will raise the firearms skill for a friendly target.'; }
+	public function getHelp() { return 'Will raise the firearms skill for a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>3); }
 	
@@ -20,7 +20,7 @@ final class Spell_hawkeye extends SR_SupportSpell
 		$by = round(sqrt($hits)/4, 2);
 		$mod = array('firearms'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
-		$this->announceADV($player, $target, $level, sprintf('+%s firearms for %s.', $by, GWF_Time::humanDurationEN($dur)));
+		$this->announceADV($player, $target, $level, sprintf('+%s firearms for %s.', $by, GWF_Time::humanDuration($dur)));
 		return true;
 	}
 }

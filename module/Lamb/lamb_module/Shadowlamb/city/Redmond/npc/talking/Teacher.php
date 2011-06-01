@@ -8,7 +8,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word)
 	{ 
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);
 		switch ($word)
 		{

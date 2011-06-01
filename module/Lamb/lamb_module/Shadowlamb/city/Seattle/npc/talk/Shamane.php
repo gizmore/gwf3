@@ -8,10 +8,11 @@ final class Seattle_Shamane extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word)
 	{ 
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);
 		switch ($word)
 		{
+			case 'blow': $msg = 'The blow spell will increase an enemies target distance.'; break;
 			case 'learn': $msg = "In a place like this you can use {$c}learn and {$c}courses. You may ask me about the courses you can learn, too."; break;
 			case 'berzerk': $msg = 'The berzerk spell will increase a friendly target\'s min and max damage.'; break;
 			case 'freeze': $msg = 'The freeze spell will make an enemy target busy.'; break;

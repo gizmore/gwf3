@@ -3,7 +3,7 @@ final class Spell_poison_dart extends SR_CombatSpell
 {
 	public function isOffensive() { return true; }
 
-	public function getHelp(SR_Player $player) { return 'Poisons an enemy and does some instant damage.'; }
+	public function getHelp() { return 'Poisons an enemy and does some instant damage.'; }
 	
 	public function getRequirements() { return array('magic'=>3); }
 	

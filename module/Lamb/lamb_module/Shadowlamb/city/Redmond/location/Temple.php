@@ -5,7 +5,7 @@ final class Redmond_Temple extends SR_School
 	public function getFoundPercentage() { return 60.00; }
 	public function getFoundText(SR_Player $player) { return 'A bit outside of the town you can spot an old Temple. Maybe there is still some life in there.'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the Temple. You see an elve in a white robe coming towards you.'; }
-	public function getHelpText(SR_Player $player) { $c = LambModule_Shadowlamb::SR_SHORTCUT; return "You can use {$c}learn or {$c}courses here to see the skill(s) to learn. You can also {$c}talk to the elve."; }
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "You can use {$c}learn or {$c}courses here to see the skill(s) to learn. You can also {$c}talk to the elve."; }
 	
 	public function getFields(SR_Player $player)
 	{
@@ -23,7 +23,7 @@ final class Redmond_Temple extends SR_School
 	
 	public function onEnter(SR_Player $player)
 	{
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);
 		parent::onEnter($player);
 		$p = $player->getParty();

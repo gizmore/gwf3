@@ -37,7 +37,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 				break;
 				
 			case 'renraku':
-				$this->reply('Rarely the Renraku Inc. consults me to get dirty work done. It\'s not a secret. But mostly they have their own speial forces to deal with problems.');
+				$this->reply('Rarely the Renraku Inc. consults me to get dirty work done. It\'s not a secret. But mostly they have their own special forces to deal with problems.');
 				break;
 				
 			case 'cyberware':
@@ -110,7 +110,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 			default:
 			case 'hello':
 				if ($q === false) {
-					$this->reply('Hello, I have no further quests for you at the moment... You should maybe got to Seattle...');
+					$this->reply('Hello, I have no further jobs for you at the moment.');
 				}
 				elseif ($has === true) {
 					$q->checkQuest($this, $player);

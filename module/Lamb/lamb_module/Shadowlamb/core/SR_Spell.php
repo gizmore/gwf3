@@ -4,20 +4,24 @@ abstract class SR_Spell
 	################
 	### Abstract ###
 	################
-	public abstract function isOffensive();
-	public abstract function getManaCost(SR_Player $player);
-	public abstract function getHelp(SR_Player $player);
-	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
-	public abstract function getCastTime($level);
-
-	public function getDistance() { return 20.0; }
+	public function displayType() { return 'Magic Spell'; }
+	public function displayClass() { return 'Class '.$this->getSpellLevel(); }
+	public function getSpellLevel() { return 1; } # spells own level
+	public function getRange() { return -1; }
 	public function getRequirements() { return array(); }
-	
+	public abstract function getHelp();
+	public abstract function isOffensive();
+	public abstract function getCastTime($level);
+	public abstract function getManaCost(SR_Player $player);
+	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
+
 	##############
 	### Loader ###
 	##############
 	private static $spells = array();
 	public static function getSpells() { return self::$spells; }
+	public static function getTotalSpellCount() { return count(self::$spells); }
+	
 	/**
 	 * @param string $name
 	 * @return SR_Spell
@@ -38,15 +42,9 @@ abstract class SR_Spell
 	private $name;
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }	
-	public function getLevel(SR_Player $player)
-	{
-		return $player->getSpellLevel($this->getName());
-	}
-
-	public function getBaseLevel(SR_Player $player)
-	{
-		return $player->getSpellBaseLevel($this->getName());
-	}
+	public function getLevel(SR_Player $player) { return $player->getSpellLevel($this->getName()); }
+	public function getBaseLevel(SR_Player $player) { return $player->getSpellBaseLevel($this->getName()); }
+	
 	
 	/**
 	 * @param SR_Player $player
@@ -68,6 +66,9 @@ abstract class SR_Spell
 		return $target;
 	}
 	
+	####################
+	### Requirements ###
+	####################
 	public function checkRequirements(SR_Player $player)
 	{
 		$back = '';
@@ -93,6 +94,11 @@ abstract class SR_Spell
 			}
 		}
 		return $back === '' ? false : substr($back, 2);
+	}
+	
+	public function displayRequirements()
+	{
+		return Shadowfunc::getRequirements($player, $this->getRequirements());
 	}
 	
 	#################
@@ -163,7 +169,7 @@ abstract class SR_Spell
 		$dices = round($level * 10);
 		$dices += round($player->get('intelligence') * 5);
 		$dices += round($player->get('essence') * 20);
-		$dices -= round(Shadowfunc::calcDistance($player, $target));
+		$dices -= round(Shadowfunc::calcDistance($player, $target)/4);
 		
 		$defense = round($target->get('essence') * 6);
 		$defense += round($target->get('intelligence') * 3);
@@ -200,6 +206,9 @@ abstract class SR_Spell
 		}
 	}
 
+	#####################
+	### Single Damage ###
+	#####################
 	/**
 	 * Do simple damage to a single target.
 	 * Loot the stuff, send messages.
@@ -265,7 +274,10 @@ abstract class SR_Spell
 			return true;
 		}
 	}
-	
+
+	###################
+	### Area Damage ###
+	###################
 	/**
 	 * Cause damage to multiple targets.
 	 * @param SR_Player $player
@@ -369,21 +381,28 @@ abstract class SR_Spell
 	}
 }
 
+#----------------#
 #--- Abstract ---#
+
+abstract class SR_HealSpell extends SR_Spell
+{
+	public function displayType() { return 'Support Spell'; }
+	public function isOffensive() { return false; }
+	public function getRange() { return 6; }
+}
 
 abstract class SR_SupportSpell extends SR_Spell
 {
+	public function displayType() { return 'Support Spell'; }
 	public function isOffensive() { return false; }
+	public function getRange() { return 8; }
 }
 
 abstract class SR_CombatSpell extends SR_Spell
 {
+	public function displayType() { return 'Combat Spell'; }
 	public function isOffensive() { return true; }
-}
-
-abstract class SR_HealSpell extends SR_Spell
-{
-	public function isOffensive() { return false; }
+	public function getRange() { return 10; }
 }
 
 ?>

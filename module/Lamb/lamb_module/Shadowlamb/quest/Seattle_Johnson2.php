@@ -13,7 +13,8 @@ final class Quest_Seattle_Johnson2 extends SR_Quest
 	{
 		$have = $this->getAmount();
 		$need = $this->getNeededAmount();
-		$have = $this->giveQuesties($player, $npc, 'IDCards', $have, $need);
+		$have = $this->giveQuesties($player, $npc, 'IDCard', $have, $need);
+		$this->saveVar('sr4qu_amount', $have);
 		if ($have >= $need)
 		{
 			$npc->reply('You are the best. Our customer pays well. Here chummer, thats for you.');

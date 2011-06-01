@@ -8,6 +8,7 @@ require_once 'Shadowshout.php';
 final class Shadowrun4
 {
 	const KICK_IDLE_TIMEOUT = 3600; # 1h
+	const SR_SHORTCUT = '#';
 	
 	####################
 	### Game Masters ###
@@ -178,7 +179,21 @@ final class Shadowrun4
 	 */
 	public static function getPlayerForUser(Lamb_User $user, $create=true)
 	{ 
-		if (false === ($player = SR_Player::getByUID($user->getID()))) {
+		foreach (self::$players as $pid => $player)
+		{
+			$player instanceof SR_Player;
+			$u = $player->getUser();
+			if ($u instanceof Lamb_User)
+			{
+				if ($user->getID() === $u->getID())
+				{
+					return $player;
+				}
+			}
+		}
+		
+		if (false === ($player = SR_Player::getByUID($user->getID())))
+		{
 			if ($create === false) {
 				return false;
 			}
@@ -188,9 +203,9 @@ final class Shadowrun4
 		}
 		
 		$pid = $player->getID();
-		if (!isset(self::$players[$pid])) {
-			self::$players[$pid] = $player;
-		}
+//		if (!isset(self::$players[$pid])) {
+		self::$players[$pid] = $player;
+//		}
 		return self::$players[$pid];
 	}
 	
@@ -228,6 +243,7 @@ final class Shadowrun4
 			$inited = true;
 			
 			self::initCore(Lamb::DIR);
+			self::initCmds(Lamb::DIR);
 			self::initItems(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
@@ -246,6 +262,7 @@ final class Shadowrun4
 		}
 	}
 	
+	public static function initCmds($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/cmd', array(__CLASS__, 'includeFile')); }
 	public static function initCore($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/core', array(__CLASS__, 'includeFile')); }
 	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); }
 	public static function initSpells($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/spell', array('SR_Spell', 'includeSpell')); }

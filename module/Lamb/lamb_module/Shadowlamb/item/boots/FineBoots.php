@@ -8,10 +8,10 @@ final class Item_FineBoots extends SR_Boots
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'defense' => 0.5,
+			'defense' => 0.4,
 			'marm' => 0.3,
-			'farm' => 0.4,
-			'quickness' => 0.6,
+			'farm' => 0.3,
+			'intelligence' => 0.6,
 		);
 	}
 }

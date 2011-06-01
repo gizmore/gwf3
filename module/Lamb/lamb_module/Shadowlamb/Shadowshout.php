@@ -99,7 +99,8 @@ final class Shadowshout
 						{
 							if ( ($channel !== false) && ($channel->getUserByNameI($u->getName())) )
 							{
-								continue; # player already read it in irc.
+								# TODO: fix this
+//								continue; # player already read it in irc.
 							}
 						}
 						

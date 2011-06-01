@@ -24,9 +24,9 @@ final class Seattle_Killer extends SR_NPC
 			'strength' => rand(1, 3),
 			'quickness' => rand(2, 4),
 			'distance' => rand(8, 12),
-			'pistols' => rand(2, 4),
+			'pistols' => rand(1, 3),
 			'firearms' => rand(1, 3),
-			'sharpshooter' => rand(1, 3),
+			'sharpshooter' => rand(1, 2),
 			'nuyen' => rand(50, 100),
 			'base_hp' => rand(4, 8),
 		);

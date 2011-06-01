@@ -5,7 +5,7 @@
  * 200s ninja+1
  * @author gizmore
  */
-final class Item_NinjaPotion extends SR_Consumable
+final class Item_NinjaPotion extends SR_Potion
 {
 	public function getItemLevel() { return 5; }
 	public function getItemWeight() { return 200; }

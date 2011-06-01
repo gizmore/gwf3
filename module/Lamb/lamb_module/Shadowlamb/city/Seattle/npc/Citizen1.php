@@ -20,9 +20,10 @@ final class Seattle_Citizen1 extends SR_HireNPC
 			'race' => 'human',
 			'gender' => 'male',
 			'strength' => rand(2, 4),
+			'melee' => rand(2, 4),
 			'quickness' => rand(2, 4),
 			'distance' => rand(0, 2),
-			'nuyen' => rand(60, 80),
+			'nuyen' => rand(40, 60),
 			'base_hp' => rand(8, 16),
 		);
 	}

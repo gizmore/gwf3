@@ -4,7 +4,6 @@ final class Item_ElvenBow extends SR_Bow
 	public function getAttackTime() { return 45; }
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
-	public function getBulletsPerShot() { return 1; }
 	public function getItemLevel() { return 10; }
 	public function getItemWeight() { return 850; }
 	public function getItemPrice() { return 750; }

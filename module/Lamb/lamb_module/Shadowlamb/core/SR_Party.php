@@ -170,9 +170,9 @@ final class SR_Party extends GDO
 	 */
 	public function getCityClass() { return Shadowrun4::getCity($this->getCity()); }
 	
-	public function getLocation($where='inside')
+	public function getLocation($action='inside')
 	{
-		if ($this->getAction() !== $where) {
+		if ($this->getAction() !== $action) {
 			return false;
 		}
 		return $this->getVar('sr4pa_target');
@@ -594,20 +594,6 @@ final class SR_Party extends GDO
 	public function message(SR_Player $player, $message)
 	{
 		$this->notice($player->getName().$message);
-//		$pid = $player->getID();
-//		foreach ($this->members as $member)
-//		{
-//			$member instanceof SR_Player;
-//			
-////			if ($pid === $member->getID()) {
-////				$who = 'You';
-////			}
-////			else {
-////				$who = ;
-////			}
-//			
-//			$member->message($player->getName().$message);
-//		}
 	}
 	
 	#################
@@ -711,8 +697,8 @@ final class SR_Party extends GDO
 	###############
 	### FW / BW ###
 	###############
-	public function forward(SR_Player $player) { $this->forwardB($player, $this->direction, 'forwards'); }
-	public function backward(SR_Player $player) { $this->forwardB($player, -$this->direction, 'backwards'); }
+	public function forward(SR_Player $player) { return $this->forwardB($player, $this->direction, 'forwards'); }
+	public function backward(SR_Player $player) { return $this->forwardB($player, -$this->direction, 'backwards'); }
 	private function forwardB(SR_Player $player, $dir, $fwbw)
 	{
 		$move = $dir * $player->getMovePerSecond();
@@ -723,6 +709,7 @@ final class SR_Party extends GDO
 		$message = sprintf(' moves %sm %s and is now on position %s.', $move, $fwbw, $d);
 		$this->message($player, $message);
 		$this->getEnemyParty()->message($player, $message);
+		return true;
 	}
 	
 	public function movePlayer(SR_Player $player, $forward=true, $metres=0)
@@ -887,16 +874,17 @@ final class SR_Party extends GDO
 	
 	public function on_delete($done)
 	{
-		if ($this->getMemberCount() > 0 && $this->getLeader()->isHuman())
+		foreach ($this->getMembers() as $member)
 		{
-			$this->pushAction('outside', 'Redmond', 0);
-			$this->pushAction('outside', 'Redmond', 0);
-			Lamb_Log::log(sprintf('Human party got action delete!'));
+			if ($member->isHuman())
+			{
+				$this->pushAction('outside', 'Redmond', 0);
+				$this->pushAction('outside', 'Redmond', 0);
+				Lamb_Log::log(sprintf('Human party got action delete!'));
+				return;
+			}
 		}
-		else
-		{
-			$this->deleteParty();
-		}
+		$this->deleteParty();
 	}
 	
 	
@@ -1080,5 +1068,58 @@ final class SR_Party extends GDO
 		return true;
 	}
 	
+	#############
+	### Mount ###
+	#############
+	public function getMounts()
+	{
+		$back = array();
+		foreach ($this->members as $member)
+		{
+			if ($member->hasEquipment('mount'))
+			{
+				$back[] = $member->getEquipment('mount');
+			}
+		}
+		return $back;
+	}
+	
+	private function filterSmallMounts($mounts)
+	{
+		$mc = $this->getMemberCount();
+		foreach ($mounts as $i => $mount)
+		{
+			$mount instanceof SR_Mount;
+			if ($mount->getMountPassengers() < $mc)
+			{
+				unset($mounts[$i]);
+			}
+		}
+		return array_values($mounts);
+	}
+	
+	public static function sort_mount_eta_asc($a, $b)
+	{
+		$b->getMountTime(1000) - $a->getMountTime(1000);
+	}
+	
+	/**
+	 * Get the best available mount for this party.
+	 * @return SR_Mount
+	 */
+	public function getBestMount()
+	{
+		$mounts = $this->getMounts();
+		$mounts = $this->filterSmallMounts($mounts);
+		
+		if (count($mounts) === 0)
+		{
+			return $this->getLeader()->getPockets();
+		}
+		
+		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
+		
+		return $mounts[0];
+	}
 }
 ?>

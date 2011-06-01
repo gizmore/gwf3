@@ -10,7 +10,7 @@ final class Item_Fists extends SR_NinjaWeapon
 		return array(
 			'attack'  => 3.0,
 			'min_dmg' => 0.0,
-			'max_dmg' => 5.0,
+			'max_dmg' => 3.0,
 		);
 	}
 }

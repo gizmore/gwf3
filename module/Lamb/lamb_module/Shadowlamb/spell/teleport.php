@@ -1,11 +1,13 @@
 <?php
 final class Spell_teleport extends SR_Spell
 {
+	public function getSpellLevel() { return 2; }
+	
 	const MANA_MIN = 10;
 	const MANA_PER_M = 5;
 	
 	public function isOffensive() { return false; }
-	public function getHelp(SR_Player $player) { return 'Teleport your party outside a known place in the same city.'; }
+	public function getHelp() { return 'Teleport your party outside a known place in the same city.'; }
 	public function getCastTime($level) { return 60; }
 	public function getRequirements() { return array('magic'=>5); }
 	public function getManaCost(SR_Player $player)

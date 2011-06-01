@@ -16,6 +16,7 @@ final class Item_Booze extends SR_Drink
 		$player->addEffects(new SR_Effect(GWF_Time::ONE_HOUR*5, $m));
 		$player->addEffects(new SR_Effect(GWF_Time::ONE_HOUR*6, $m));
 		$player->addEffects(new SR_Effect(GWF_Time::ONE_HOUR*7, $m));
+		$player->getParty()->notice(sprintf('%s drunk a bottle of booze got alcoholized (+0.7).', $player->getName()));
 	}
 }
 ?>

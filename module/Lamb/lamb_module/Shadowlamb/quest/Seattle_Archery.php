@@ -9,6 +9,11 @@ final class Quest_Seattle_Archery extends SR_Quest
 
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
+		if (!$this->isInQuest($player))
+		{
+			return false;
+		}
+		
 		if ($this->getAmount() >= $this->getNeededAmount()) {
 			$npc->reply('Thank you very much!');
 			$player->message(sprintf('The elve cheers and hands out a glowing dark bow.'));
@@ -19,9 +24,11 @@ final class Quest_Seattle_Archery extends SR_Quest
 			$bow->addModifiers($modifiers);
 			$player->giveItems($bow);
 			$this->onSolve($player);
+			return true;
 		}
 		else {
 			$npc->reply(sprintf('I see you have punished %s of %s Angry Elves.', $this->getAmount(), $this->getNeededAmount()));
+			return false;
 		}
 	}
 }

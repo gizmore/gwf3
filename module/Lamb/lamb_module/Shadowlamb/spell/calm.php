@@ -1,7 +1,7 @@
 <?php
 final class Spell_calm extends SR_HealSpell
 {
-	public function getHelp(SR_Player $player) { return 'Slowly heal a friendly target.'; }
+	public function getHelp() { return 'Slowly heal a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>1); }
 	

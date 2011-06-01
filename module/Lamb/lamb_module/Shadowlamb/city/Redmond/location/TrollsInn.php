@@ -2,7 +2,7 @@
 final class Redmond_TrollsInn extends SR_Location
 {
 	public function getNPCS(SR_Player $player) { return array('ttb' => 'Redmond_Barkeeper', 'ttj' => 'Redmond_Johnson', 'ttg' => 'Redmond_Reginald', 'tts' => 'Redmond_Soldier'); }
-	public function getFoundPercentage() { return 60.00; }
+	public function getFoundPercentage() { return 20.00; }
 	public function getFoundText(SR_Player $player) { return sprintf('In a small sidestreet you found a pub called Trolls_Inn. You have a bad feeling in this area.'); }
 	public function isPVP() { return true; }
 	public function onEnter(SR_Player $player)
@@ -33,7 +33,7 @@ final class Redmond_TrollsInn extends SR_Location
 		$p->pushAction(SR_Party::ACTION_INSIDE);
 		
 		$b = chr(2);
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$p->notice('The guys in there stare quiet at their drinks when you enter the Trolls Inn.');
 		$p->notice('You see a barkeeper, a suspicious person in a dark corner, a soldier and some guests, mostly orks and trolls. One of the guests greets and beckons you.');
 		$p->help("Use {$b}{$c}ttb{$b}(arkeeper), {$b}{$c}ttg{$b}(uest), {$b}{$c}ttj{$b}(ohnson) and {$b}{$c}tts{$b}(oldier) to talk to the persons.");

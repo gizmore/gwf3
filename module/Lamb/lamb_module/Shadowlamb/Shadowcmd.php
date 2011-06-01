@@ -58,7 +58,7 @@ class Shadowcmd
 	################
 //	public static $CMDS_WWW = array('helo');
 //	public static $CMDS_DEBUG = array('debug');
-	public static $CMDS_ALWAYS_CREATE = array('helo','start','help','stats','motd');
+	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','motd');
 	public static $CMDS_GM = array('gm', 'gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
 	public static $CMDS_ALWAYS = array('s','a','sk','q','p','i','cy','ef','ex','kp','ks','kw','qu','r','say');
 	public static $CMDS_ALWAYS_HIDDEN = array('reset','enable','disable','redmond','c','cc','ny','ka','hp','mp','we','rm','level','mo','mounts','shout','w','sd','pm','rl','l');

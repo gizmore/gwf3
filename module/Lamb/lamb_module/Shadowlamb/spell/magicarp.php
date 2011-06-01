@@ -1,7 +1,8 @@
 <?php
 final class Spell_magicarp extends SR_Spell
 {
-	public function getHelp(SR_Player $player) { return 'Reduce an opponents MP.'; }
+	public function getSpellLevel() { return 2; }
+	public function getHelp() { return 'Reduce an opponents MP.'; }
 	public function getRequirements() { return array('magic'=>5,'calm'=>1,'blow'=>1); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	public function isOffensive() { return true; }

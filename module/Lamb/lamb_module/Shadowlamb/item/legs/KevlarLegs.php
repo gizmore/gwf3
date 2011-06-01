@@ -9,7 +9,7 @@ final class Item_KevlarLegs extends SR_Legs
 	{
 		return array(
 			'defense' => 0.3,
-			'marm' => 0.7,
+			'marm' => 0.5,
 			'farm' => 0.6,
 		);
 	}

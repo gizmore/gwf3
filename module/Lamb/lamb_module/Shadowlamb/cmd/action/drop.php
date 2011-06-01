@@ -28,18 +28,43 @@ final class Shadowcmd_drop extends Shadowcmd
 			return false;
 		}
 		
-		if ($amt > $item->getAmount()) {
-			$bot->reply('You don\'t have that much '.$item->getName().' in one itemid (ammo should work).');
-			return false;
+		# Drop stackable.
+		if ($item->isItemStackable())
+		{
+			if ($amt > $item->getAmount())
+			{
+				$bot->reply('You don\'t have that much '.$item->getName().'.');
+				return false;
+			}
+			if (false === $item->useAmount($player, $amt))
+			{
+				$bot->reply('Database error 9.');
+				return false;
+			}
+		
+			$dropped = $amt;
 		}
 		
-		if (false === $item->useAmount($player, $amt)) {
-			$bot->reply('Database error 9.');
-			return false;
+
+		else
+		{
+			$dropped = 0;
+			while ($dropped < $amt)
+			{
+				if (false === ($item2 = $player->getInvItem($args[0])))
+				{
+					break;
+				}
+				if ($player->removeFromInventory($item2))
+				{
+					$dropped++;
+				}
+			}
 		}
 		
-		$bot->reply(sprintf('You got rid of %d %s.',$amt, $item->getItemName()));
+		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $item->getItemName()));
 		$player->modify();
+		
 		return true;
 	}
 }

@@ -5,14 +5,19 @@ class SR_Player extends GDO
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
-	const XP_PER_KARMA = 6;
-	const XP_PER_KARMA_RAISE = 0.25;
-	const XP_PER_LEVEL = 40;
-	const XP_PER_LEVEL_RAISE = 4;
-	const WEIGHT_BASE = 6500;
+	const XP_PER_KARMA = 4;
+	const XP_PER_KARMA_RAISE = 0.5;
+	
+	const XP_PER_LEVEL = 30;
+	const XP_PER_LEVEL_RAISE = 9;
+	
+	const WEIGHT_BASE = 7500;
 	const WEIGHT_PER_STRENGTH = 2000;
-	const FIGHT_INIT_BUSY = 10;
-	const MAX_RANGE = 12.0;
+	const FIGHT_INIT_BUSY = 12;
+	
+	const MAX_RANGE = 13.0;
+	
+	const UNEQUIP_TIME = 20;
 	
 	# Human Starter
 	const START_HP = 4;
@@ -37,15 +42,18 @@ class SR_Player extends GDO
 	const LOCATION_DIRTY = 0x400;
 	const CYBER_DIRTY = 0x800;
 	const WORDS_DIRTY = 0x1000;
+	const MOUNT_DIRTY = 0x10000;
 	const RESPONSE_ITEMS = 0x2000;
 	const RESPONSE_PLAYERS = 0x4000;
-	const DIRTY_FLAGS = 0x7fe0;
+	const DIRTY_FLAGS = 0x17fe0;
 	
-	public static $STATS = array('max_weight','attack','defense','min_dmg','max_dmg','marm','farm','max_hp','max_mp',);
+	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy');
+	public static $STATS = array('weight','max_weight','attack','defense','min_dmg','max_dmg','marm','farm','spellatk','spelldef','max_hp','max_mp');
+	public static $MOUNT_STATS = array('lock','transport','tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
-	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon');
+	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
 	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Seattle');
 	public static $NPC_RACES = array('droid','dragon');
 	/**
@@ -144,6 +152,7 @@ class SR_Player extends GDO
 			# Items
 			'sr4pl_bank' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			'sr4pl_inventory' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
+			'sr4pl_mount_inv' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			'sr4pl_cyberware' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			# Effects
 			'sr4pl_effects' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
@@ -178,8 +187,8 @@ class SR_Player extends GDO
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
 	public function hasSkill($skill) { return $this->getBase($skill) > -1; }
-	public function isOverloadedHalf() { return $this->get('weight') >= ($this->get('max_weight')*0.8); }
-	public function isOverloadedFull() { return $this->get('weight') >= ($this->get('max_weight')*1.0); }
+	public function isOverloadedHalf() { return $this->get('weight') >= ($this->get('max_weight')*1.0); }
+	public function isOverloadedFull() { return $this->get('weight') >= ($this->get('max_weight')*1.5); }
 	public function hasFullHP() { return $this->getHP() == $this->getMaxHP(); }
 	public function hasFullMP() { return $this->getMP() == $this->getMaxMP(); }
 	public function hasFullHPMP() { return $this->hasFullHP() && $this->hasFullMP(); }
@@ -415,6 +424,7 @@ class SR_Player extends GDO
 			'sr4pl_known_places' => ',',
 			'sr4pl_bank' => NULL,
 			'sr4pl_inventory' => NULL,
+			'sr4pl_mount_inv' => NULL,
 			'sr4pl_cyberware' => NULL,
 			'sr4pl_effects' => NULL,
 			'sr4pl_const_vars' => NULL,
@@ -481,27 +491,31 @@ class SR_Player extends GDO
 	{
 		if (NULL === ($user = $this->getUser())) {
 			Lamb_Log::log('User does not exist: '.$message);
-			return;
+			return false;
 		}
 		
 		if ($this->isOptionEnabled(self::WWW_OUT)) {
 			$this->onMessageWWW($message);
-			return;
+			return true;
 		}
 		
 		$username = $user->getName();
 		if (false === ($server = $user->getServer())) {
 			Lamb_Log::log(sprintf('User %s does not have a server: %s', $username, $message));
-			return;
+			return false;
 		}
 		
-		if ($server->getUser($username) === false) {
+		# TODO: stop messenging.
+		
+		if ($server->getUserI($username) === false) {
 			$this->onMessageTell($message);
 		} elseif ($this->isOptionEnabled(self::PRIVMSG)) {
 			$server->sendPrivmsg($username, $message);
 		} else {
 			$server->sendNotice($username, $message);
 		}
+
+		return true;
 	}
 	
 	private function onMessageTell($message)
@@ -583,10 +597,18 @@ class SR_Player extends GDO
 		$this->modifyItems($this->sr4_cyberware);
 		$this->modifyInventory();
 		
-		$this->modifyMaxima();
-		$this->modifyEffects();
-		$this->modifyOverload();
 		$this->modifyQuests();
+		
+		$this->modifyEffectsOnce();
+		
+		$this->modifyMaxima();
+		
+		$this->modifyEffectsRepeat();
+		
+		$this->modifyCombat();
+		
+		$this->modifyOverload(); # malus
+		
 //		$this->modifyParty(); # DEADLOCK!
 //		$this->modifyClamp();
 	}
@@ -597,15 +619,16 @@ class SR_Player extends GDO
 	
 	private function modifyOverload()
 	{
-		if ($this->isOverloadedHalf())
+		$load = $this->get('weight') / $this->get('max_weight'); # 1.0 == 100.0%-load == 0.00%-overload
+		$load = Common::clamp($load, 0.0, 2.0); # clamp to +100%-overload
+		if ($load > 1.0)
 		{
-			$this->sr4_data_modified['attack'] -= 2;
-			$this->sr4_data_modified['defense'] -= 1;
-		}
-		if ($this->isOverloadedFull())
-		{
-			$this->sr4_data_modified['attack'] /= 1.25;
-			$this->sr4_data_modified['defense'] /= 1.25;
+			$perc = $load - 1.0; # +100% load = no malus
+			$perc = $perc / 2.0; # max +200% overload
+			echo sprintf("Player gets malus of %.02f%%\n", $perc*100);
+			$perc = 1 - $perc;
+			$this->sr4_data_modified['attack'] = round($this->sr4_data_modified['attack'] * $perc); 
+			$this->sr4_data_modified['defense'] = round($this->sr4_data_modified['attack'] * $perc); 
 		}
 	}
 	
@@ -627,39 +650,32 @@ class SR_Player extends GDO
 	{
 		foreach ($this->sr4_inventory as $item)
 		{
-			$this->sr4_data_modified['weight'] += $item->getItemWeight();
+			$item instanceof SR_Item;
+			$this->sr4_data_modified['weight'] += $item->getItemWeightStacked();
 		}
 	}
 	
 	private function initModify()
 	{
 		$this->sr4_data_modified = array(
-			'weight' => 0,
-			'max_weight' => 0,
-			'attack' => 0,
-			'defense' => 0,
-			'min_dmg' => 0,
-			'max_dmg' => 0,
-			'marm' => 0,
-			'farm' => 0,
-//			'hp' => $this->getVar('sr4pl_hp'),
-//			'mp' => $this->getVar('sr4pl_mp'),
-			'max_hp' => 0,
-			'max_mp' => 0,
 			'base_hp' => $this->getVar('sr4pl_base_hp'),
 			'base_mp' => $this->getVar('sr4pl_base_mp'),
 			'hp_per_body' => self::HP_PER_BODY,
 			'mp_per_magic' => self::MP_PER_MAGIC,
 			'level' => $this->getVar('sr4pl_level'),
-			
-			'sick' => 0,
-			'tired' => 0,
-			'hunger' => 0,
-			'thirst' => 0,
-			'alc' => 0,
-			'poisoned' => 0,
-			'caf' => 0,
 		);
+		foreach (self::$STATS as $stat)
+		{
+			$this->sr4_data_modified[$stat] = 0;
+		}
+		foreach (self::$MOUNT_STATS as $stat)
+		{
+			$this->sr4_data_modified[$stat] = 0;
+		}
+		foreach (self::$CONDITIONS as $cond)
+		{
+			$this->sr4_data_modified[$cond] = 0;
+		}
 		$this->initModifyArray(self::$SKILL);
 		$this->initModifyArray(self::$ATTRIBUTE);
 		$this->initModifyArray(self::$KNOWLEDGE);
@@ -683,11 +699,13 @@ class SR_Player extends GDO
 		$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP;
 		$this->sr4_data_modified['max_weight'] += $this->get('strength') * self::WEIGHT_PER_STRENGTH + self::WEIGHT_BASE;
 		
-		$this->applyModifiers($this->getWeapon()->getItemModifiersW($this));
-		
-		$this->sr4_data_modified['defense'] += $this->get('quickness') / 2;
-		
 		$this->applyModifiers($this->getNPCModifiersB());
+	}
+	
+	private function modifyCombat()
+	{
+		$this->applyModifiers($this->getWeapon()->getItemModifiersW($this));
+		$this->sr4_data_modified['defense'] += round(($this->get('quickness')/4), 1);
 	}
 	
 	private function initModifyArray(array $fields)
@@ -735,12 +753,39 @@ class SR_Player extends GDO
 		$this->applyModifiers($item->getItemModifiers($this));
 	}
 	
-	private function modifyEffects()
+	private function modifyEffectsOnce()
 	{
 		$changed = false;
 		foreach ($this->sr4_effects as $i => $effect)
 		{
 			$effect instanceof SR_Effect;
+			if ($effect->getMode() !== SR_Effect::MODE_ONCE) {
+				continue;
+			}
+			
+			if ($effect->isOver()) {
+				unset($this->sr4_effects[$i]);
+				$changed = true;
+			}
+			else {
+				$this->applyModifiers($effect->getModifiers($this));
+			}
+		}
+		if ($changed === true) {
+			$this->updateEffects();
+		}
+	}
+	
+	private function modifyEffectsRepeat()
+	{
+		$changed = false;
+		foreach ($this->sr4_effects as $i => $effect)
+		{
+			$effect instanceof SR_Effect;
+			if ($effect->getMode() !== SR_Effect::MODE_REPEAT) {
+				continue;
+			}
+			
 			if ($effect->isOver()) {
 				unset($this->sr4_effects[$i]);
 				$changed = true;
@@ -881,7 +926,8 @@ class SR_Player extends GDO
 	public function getAllEquipment($with_fists=true)
 	{
 		$back = array();
-		if (!$this->hasEquipment('weapon')) {
+		if ( ($with_fists) && (!$this->hasEquipment('weapon')) )
+		{
 			$back['weapon'] = Item_Fists::staticFists();
 		}
 		$back = array_merge($back, $this->sr4_equipment);
@@ -896,17 +942,37 @@ class SR_Player extends GDO
 		$this->updateEquipment($item->getItemType(), $item);
 	}
 	
-	public function unequip(SR_Equipment $item)
+	public function unequip(SR_Equipment $item, $announce=true)
 	{
 		$field = $item->getItemType();
 		$itemid = $item->getID();
 		# Can unequip?
-		if ( (false === ($item = $this->getEquipment($field))) || ($item->getID() !== $itemid) ) {
+		if ( (false === ($item = $this->getEquipment($field))) || ($item->getID() !== $itemid) )
+		{
 			return false;
 		}
+		
 		$this->sr4_inventory[$itemid] = $item;
 		$this->updateInventory();
 		$this->updateEquipment($field, NULL);
+
+		if ($this->isFighting())
+		{
+			$busy = $this->busy(self::UNEQUIP_TIME);
+		}
+		
+		if ($announce)
+		{
+			$msg = 'You put your '.$item->getItemName().' into the inventory.';
+			if ($this->isFighting())
+			{
+				$msg .= sprintf(' %ss busy.', $busy);	
+			}
+			$this->message($msg);
+		}
+//		$this->modify();
+		$this->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
+		return true;
 	}
 	
 	public function updateEquipment($field, $item=NULL)
@@ -1026,6 +1092,11 @@ class SR_Player extends GDO
 		return $this->getItemByID($this->getBankSorted(), $id, $this->getBankItems());
 	}
 	
+	public function getMountInvItemByID($id)
+	{
+		return $this->getItemByID($this->getMountInvSorted(), $id, $this->getMountInvItems());
+	}
+	
 	public function getItemByInvID($invid)
 	{
 		return $this->getItemByID($this->getInventorySorted(), $invid, $this->sr4_inventory);
@@ -1073,6 +1144,11 @@ class SR_Player extends GDO
 		return $this->getItemByNameB($itemname, $this->getBankItems());
 	}
 	
+	public function getMountInvItemByName($itemname)
+	{
+		return $this->getItemByNameB($itemname, $this->getMountInvItems());
+	}
+	
 	/**
 	 * @param string $itemname
 	 * @return SR_Item
@@ -1085,6 +1161,45 @@ class SR_Player extends GDO
 			return $this->getInvItemByName($invid);
 		}
 	}
+	
+	/**
+	 * Get multiple items(equipment) with the same itemname.
+	 * @param string $arg
+	 * @param int $max
+	 * @return array(SR_Item)
+	 */
+	public function getInvItems($arg, $max=-1)
+	{
+		$max = $max < 0 ? PHP_INT_MAX : intval($max);
+
+		$back = array();
+		
+		# Convert id to itemname
+		if (is_numeric($arg))
+		{
+			if (false === ($item = $this->getInvItem($arg)))
+			{
+				return $back;
+			}
+			$arg = $item->getItemName();
+		}
+		
+		# Collect by itemname
+		foreach ($this->sr4_inventory as $item)
+		{
+			if ($item->getItemName() === $arg)
+			{
+				$back[] = $item;
+				if (count($back) >= $max)
+				{
+					break;
+				}
+			}
+		}
+		
+		return $back;
+	}
+	
 	
 	/**
 	 * @param string $itemname
@@ -1235,6 +1350,11 @@ class SR_Player extends GDO
 		return $this->getItemsSorted($this->getBankItems());
 	}
 	
+	public function getMountInvSorted()
+	{
+		return $this->getItemsSorted($this->getMountInvItems());
+	}
+	
 	private function getItemsSorted(array $items)
 	{
 		$temp = array();
@@ -1256,8 +1376,6 @@ class SR_Player extends GDO
 	 */
 	public function giveItems()
 	{
-		$message = '';
-		
 		$args = func_get_args();
 		$items = array();
 		foreach ($args as $arg)
@@ -1268,40 +1386,69 @@ class SR_Player extends GDO
 				$items[] = $arg;
 			}
 		}
+		if (0 === ($cnt = count($items)))
+		{
+			return true;
+		}
+		
+
+		$message = '';
 		foreach ($items as $item)
 		{
 			$this->giveItem($item);
-			$message .= sprintf(', %s', $item->getItemName());
+			$amt = $item->getAmount();
+			$multi = $amt > 1 ? "{$amt} x " : '';
+			$message .= sprintf(', %s%s', $multi, $item->getItemName());
 		}
-		if ($message !== '')
+		
+		if (false === $this->updateInventory())
 		{
-			$this->updateInventory();
-			$this->getParty()->message($this, 'Received item(s): '.substr($message,2 ));
+			return false;
 		}
+		
+		
+		$message = substr($message, 2);
+		$from = '';
+//		$from = $from === '' ? '' : " from {$from}";
+		$plur = $cnt > 1 ? $cnt.' items' : 'an item';
+		$message = sprintf('received %s%s: %s.', $plur, $from, $message);
+		$this->getParty()->message($this, $message);
+		return true;
 	}
 	
-	private function giveItem(SR_Item $item)
+	public function giveItem(SR_Item $item)
 	{
 		if ($item->isItemStackable())
 		{
-			if (false !== ($other = $this->getItem($item->getItemName()))) {
+			if (false !== ($other = $this->getItem($item->getItemName())))
+			{
 				$other->increase('sr4it_amount', $item->getAmount());
 				$item->delete();
 				return true;
 			}
 		}
-		$item->saveVar('sr4it_uid', $this->getID());
+		
 		$this->sr4_inventory[$item->getID()] = $item;
-		return true;
+		
+		return $item->saveVar('sr4it_uid', $this->getID());
 	}
 	
-	private function updateInventory()
+	public function updateInventory()
 	{
 		if (false === $this->updateItemArray('sr4pl_inventory', $this->sr4_inventory)) {
 			return false;
 		}
 		$this->setOption(self::INV_DIRTY, true);
 		$this->modify();
+		return true;
+	}
+	
+	private function updateMountInv($mount_inv)
+	{
+		if (false === $this->updateItemArray('sr4pl_mount_inv', $mount_inv)) {
+			return false;
+		}
+		$this->setOption(self::MOUNT_DIRTY, true);
 		return true;
 	}
 	
@@ -1313,21 +1460,108 @@ class SR_Player extends GDO
 	public function removeFromInventory(SR_Item $item)
 	{
 		$id = $item->getID();
-		if (!(isset($this->sr4_inventory[$id]))) {
-			return false;
+		if (isset($this->sr4_inventory[$id]))
+		{
+			unset($this->sr4_inventory[$id]);
+			if (!$this->updateInventory())
+			{
+				return false;
+			}
 		}
-		unset($this->sr4_inventory[$id]);
-		$this->updateInventory();
-		$this->modify();
 		return true;
 	}
 	
 	public function removeItem(SR_Item $item)
 	{
-		if ($item->isEquipped($this)) {
-			$this->unequip($item);
+		if ($item->isEquipped($this))
+		{
+			$this->unequip($item, false);
 		}
 		return $this->removeFromInventory($item);
+	}
+	
+	#############
+	### Mount ###
+	#############
+	/**
+	 * Get the players mount.
+	 * @return SR_Mount
+	 */
+	public function getMount()
+	{
+		return $this->hasEquipment('mount') ? $this->getEquipment('mount') : $this->getPockets();
+	}
+	
+	public function getPockets()
+	{
+		$pockets = SR_Item::getItem('Pockets');
+		$pockets->setOwnerID($this->getID());
+		return $pockets;
+	}
+	
+	public function putInMountInv(SR_Item $item)
+	{
+		if ($item->isItemStackable())
+		{
+			if (false !== ($other = $this->getMountInvItemByName($item->getItemName())))
+			{
+				$other->increase('sr4it_amount', $item->getAmount());
+				$item->delete();
+				return true;
+			}
+		}
+		$mount_inv = $this->getMountInvItems();
+		$mount_inv[$item->getID()] = $item;
+		return $this->updateMountInv($mount_inv);
+	}
+	
+	public function getMountInvItemCount()
+	{
+		return count($this->getMountInvItems());
+	}
+	
+	public function getMountInvItems()
+	{
+		$mount_inv = array();
+		foreach (explode(',', $this->getVar('sr4pl_mount_inv')) as $itemid)
+		{
+			$itemid = (int) $itemid;
+			if (false !== ($item = SR_Item::getByID($itemid)))
+			{
+				$mount_inv[$itemid] = $item;
+			}
+		}
+		return $mount_inv;
+	}
+
+	public function getMountInvItemsByItemName($itemname)
+	{
+		$back = array();
+		foreach ($this->getMountInvItems() as $itemid => $item)
+		{
+			if ($item->getItemName() === $itemname)
+			{
+				$back[] = $item;
+			}
+		}
+		return $back;
+	}
+	
+	public function removeFromMountInv(SR_Item $item)
+	{
+		$mount_inv = $this->getMountInvItems();
+		unset($mount_inv[$item->getID()]);
+		return $this->updateMountInv($mount_inv);
+	}
+	
+	/**
+	 * Get a mount_inv item by mount_inv_id or itemname.
+	 * @param string|int $arg
+	 * @return SR_Item
+	 */
+	public function getMountInvItem($arg)
+	{
+		return is_numeric($arg) ? $this->getMountInvItemByID($arg) : $this->getMountInvItemByName($arg);
 	}
 	
 	############
@@ -1335,6 +1569,16 @@ class SR_Player extends GDO
 	############
 	public function putInBank(SR_Item $item)
 	{
+		if ($item->isItemStackable())
+		{
+			if (false !== ($other = $this->getBankItemByName($item->getItemName())))
+			{
+				$other->increase('sr4it_amount', $item->getAmount());
+				$item->delete();
+				return true;
+			}
+		}
+		
 		$bank = $this->getBankItems();
 		$bank[$item->getID()] = $item;
 		return $this->updateBank($bank);
@@ -1342,7 +1586,7 @@ class SR_Player extends GDO
 	
 	private function updateBank(array $items)
 	{
-		$this->updateItemArray('sr4pl_bank', $items);
+		return $this->updateItemArray('sr4pl_bank', $items);
 	}
 	
 	public function getBankItems()
@@ -1359,28 +1603,35 @@ class SR_Player extends GDO
 		return $bank;
 	}
 	
-	public function removeFromBank($itemname)
+	public function getBankItemsByItemName($itemname)
 	{
-		if (is_numeric($itemname))
+		$back = array();
+		foreach ($this->getBankItems() as $itemid => $item)
 		{
-			$item = $this->getBankItemByID($itemname);
+			if ($item->getItemName() === $itemname)
+			{
+				$back[] = $item;
+			}
 		}
-		else
-		{
-			$item = $this->getBankItemByName($itemname);
-		}
-		
-		if ($item === false) {
-			return false;
-		}
-		
+		return $back;
+	}
+	
+	
+	public function removeFromBank(SR_Item $item)
+	{
 		$bank = $this->getBankItems();
 		unset($bank[$item->getID()]);
-		$this->updateBank($bank);
-		$this->giveItem($item);
-		$this->updateInventory();
-		$this->modify();
-		return $item;
+		return $this->updateBank($bank);
+	}
+	
+	/**
+	 * Get a bank item by bank_id or itemname.
+	 * @param string|int $arg
+	 * @return SR_Item
+	 */
+	public function getBankItem($arg)
+	{
+		return is_numeric($arg) ? $this->getBankItemByID($arg) : $this->getBankItemByName($arg);
 	}
 	
 	#############
@@ -1393,10 +1644,12 @@ class SR_Player extends GDO
 	
 	public function pay($nuyen)
 	{
-		if (0 === ($nuyen = (int) $nuyen)) {
+		if (0 >= ($nuyen = (int)$nuyen))
+		{
 			return true;
 		}
-		if ($nuyen > $this->getBase('nuyen')) {
+		if ($nuyen > $this->getBase('nuyen'))
+		{
 			return false;
 		}
 		return $this->alterField('nuyen', -$nuyen);
@@ -1637,7 +1890,7 @@ class SR_Player extends GDO
 	
 	public function combatPush($message)
 	{
-		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
+//		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
 		$this->combat_stack = $message;
 	}
 		
@@ -1710,7 +1963,17 @@ class SR_Player extends GDO
 		$this->announceKilled($killer);
 //		Lamb_Log::log(__METHOD__);
 		# Loose an item.
-		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
+		$equipment = $this->sr4_equipment;
+		foreach ($equipment as $i => $item)
+		{
+			if ($item instanceof SR_Mount)
+			{
+				unset($equipment[$i]);
+			}
+		}
+		
+		$items = array_merge($equipment, $this->sr4_inventory);
+		
 		if (0 !== ($rand = rand(0, count($items))))
 		{
 			shuffle($items);
@@ -1718,7 +1981,7 @@ class SR_Player extends GDO
 			$item instanceof SR_Item;
 			if ($item->isEquipped($this))
 			{
-				$this->unequip($item);
+				$this->unequip($item, false);
 			}
 			$this->removeFromInventory($item);
 			$killer->giveItems($item);

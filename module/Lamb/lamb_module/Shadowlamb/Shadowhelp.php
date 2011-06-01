@@ -106,7 +106,7 @@ final class Shadowhelp
 							'fairy' => 'The fairy is small, weak and very hard to play. It is meant to be a party character.',
 							'elve' => 'The elve is weak and difficult to play. He enjoys the arcane powers. As every elve he has a bonus on the bows skill.',
 							'halfelve' => 'The halfelve are often merchants or teachers that stopped to learn magic.',
-							'vampire' => 'Vampires are undead creatures. They have a low body and HP and trust on equipment they have collected over their years.',
+							'vampire' => 'Vampires are undead creatures. They have a low body and HP and trust in equipment they have collected over their years.',
 							'darkelve' => 'The darkelve combines melee, bows and magic into a playable character.',
 							'woodelve' => 'The woodelve combines melee, bows and magic into a playable character.',
 							'human' => 'The human is the intermediate character.',
@@ -199,7 +199,20 @@ final class Shadowhelp
 						'attributes' => NULL,
 						'skills' => NULL,
 						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment.',
-						'party' => 'Player command. Usage. #(p)arty. View your party status.',
+						array(
+							'amulet' => 'You can #equip amulets and wear them as #equipment.',
+							'armor' => 'You can #equip armory and wear them as #equipment.',
+							'boots' => 'You can #equip boots and wear them as #equipment.',
+							'earring' => 'You can #equip earrings and wear them as #equipment.',
+							'helmet' => 'You can #equip helmets and wear them as #equipment.',
+							'legs' => 'You can #equip legs and wear them as #equipment.',
+							'ring' => 'You can #equip rings and wear them as #equipment.',
+							'shield' => 'You can #equip shields and wear them as #equipment.',
+							'weapon' => 'You can #equip weapons and wear them as #equipment.',
+							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them.',
+						),
+				
+					'party' => 'Player command. Usage. #(p)arty. View your party status.',
 						'inventory' => 'Player command. Usage: #(i)nventory. View your inventory.',
 						'cyberware' => 'Player command. Usage: #()yberware [<cy_id>]. View your cyberware.',
 						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
@@ -277,12 +290,18 @@ final class Shadowhelp
 						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',
 					),
 					
+					'mount_cmds' => 'Mount commands',
+					array(
+						'mount' => 'Player command. Usage #mount [<push|pop|clean>] [<item>]. Show your mount or push and pop items from it. Items in your mount can be stolen via #hijack from other players.',
+						'mounts' => 'Player command. Usage #mounts. Show all the mounts in your party.',
+					),
+					
 					'location_cmds' => 'All location commands',
 					array(
 					
 						'look' => "Player command. Usage: #look. Look around to spot other players in your current location. You can see players from other servers too.",
 					
-						'store_cmds' => 'Store commands',
+						'shop_cmds' => 'Store commands',
 						array(
 							'buy' => 'Location command. Usage: #buy <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #sell <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
@@ -301,6 +320,7 @@ final class Shadowhelp
 						array(
 							'clean' => 'Location command. Usage: #clean <item>. Will remove all modifiers from an item.',
 							'break' => 'Location command. Usage: #break <item>. Will destroy an item and release it`s runes, which you will receive.',
+							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
 							'upgrade' => 'Location command. Usage: #upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
 							'simulate' => 'Location command. Usage: #simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
 						),
@@ -309,6 +329,29 @@ final class Shadowhelp
 						array(
 							'courses' => 'Location command. Usage: #courses. In schools you can show available courses to learn.',
 							'learn' => 'Location command. Usage: #learn <course>. In schools you can learn new skills and spells.',
+						),
+						
+						'hospital_cmds' => 'Hospital commands',
+						array(
+							'implant' => 'Location command. Usage #implant <view_id|item>. In hospitals you can implant cyberware. Cyberware will cost essence, which is important for magic spells.',
+							'unplant' => 'Location command. Usage #unplant <cy_id|item>. In hospitals you can unimplant your cyberware, in case it conflicts with other cyberware or you need more essence.',
+							'heal_cmd' => 'Location command. Usage #heal. In hospitals you can quickly get healed for a small fee.',
+						),
+						
+						'subway_cmds' => 'Subway commands',
+						array(
+							'travel' => 'Location command. Usage: #travel [<target>]. In subways you can travel to other cities. When no argument is given, the available targets are shown.',
+						),
+//						
+						'hotel_cmds' => 'Hotel commands',
+						array(
+							'sleep' => 'Location command. Usage: #sleep. In hotels you can sleep to recover your parties HP and MP. In some hotels this cost some nuyen.',
+						),
+						
+						'dungeon_cmds' => 'Dungeon commands',
+						array(
+							'leave' => 'Location command. Usage: #leave. In most dungeons you can goto an exit and issue leave there to leave the dungeon.',
+							'search' => 'Location command. Usage: #search. In some dungeon rooms you can use #search to search for hidden items.',
 						),
 					),
 				),
@@ -465,17 +508,19 @@ final class Shadowhelp
 		self::getHelpRec($topic, $help, $results);
 		if (count($results) === 0)
 		{
-			$bot->reply('This help topic is unknown.');
+			return 'This help topic is unknown.';
 		}
 		
 		# Display
+		$back = '';
 		$keywords = array();
 		self::collectKeysRec($help, $keywords);
 		usort($keywords, array(__CLASS__, 'sort_strlen'));
 		foreach ($results as $result)
 		{
-			self::displayResult($bot, $result, $keywords);
+			$back .= ' '.self::displayResult($bot, $result, $keywords);
 		}
+		return substr($back, 1);
 	}
 
 	private static function displayResult(Shadowrap $bot, array $two_items, array &$keywords)
@@ -502,6 +547,7 @@ final class Shadowhelp
 			$text = preg_replace("/([^a-z0-9_])({$keyword})([^a-z0-9_])/i", "$1{$b}$2{$b}$3", $text);
 		}
 		
-		$bot->reply($text);
+		return $text;
 	}
 }
+?>

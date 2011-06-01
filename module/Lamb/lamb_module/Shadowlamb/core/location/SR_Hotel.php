@@ -14,7 +14,7 @@ abstract class SR_Hotel extends SR_Location
 	public function getHelpText(SR_Player $player)
 	{
 		$price = $this->calcPrice($player);
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		return sprintf('You can pay %s to %ssleep here and restore your party`s HP/MP.', $price, $c); 
 	}
 	

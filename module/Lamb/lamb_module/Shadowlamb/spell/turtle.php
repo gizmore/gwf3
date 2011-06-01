@@ -3,7 +3,7 @@ final class Spell_turtle extends SR_SupportSpell
 {
 	public function isOffensive() { return false; }
 	
-	public function getHelp(SR_Player $player) { return 'Temporarily increases the melee- and fireweapon armor of a friendly target.'; }
+	public function getHelp() { return 'Temporarily increases the melee- and fireweapon armor of a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>4); }
 	

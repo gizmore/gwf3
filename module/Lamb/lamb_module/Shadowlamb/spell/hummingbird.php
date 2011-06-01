@@ -3,7 +3,7 @@ final class Spell_hummingbird extends SR_SupportSpell
 {
 	public function isOffensive() { return false; }
 	
-	public function getHelp(SR_Player $player) { return 'Temporarily increases the quickness of a friendly target.'; }
+	public function getHelp() { return 'Temporarily increases the quickness of a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>4); }
 	
@@ -21,7 +21,7 @@ final class Spell_hummingbird extends SR_SupportSpell
 		$by = round(sqrt($hits)/4, 2);
 		$mod = array('quickness'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
-		$this->announceADV($player, $target, $level, sprintf('+%s quickness for %s.', $by, GWF_Time::humanDurationEN($dur)));
+		$this->announceADV($player, $target, $level, sprintf('+%s quickness for %s.', $by, GWF_Time::humanDuration($dur)));
 		return true;
 	}
 }

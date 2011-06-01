@@ -1,7 +1,7 @@
 <?php
 final class Redmond_Hideout extends SR_Tower
 {
-	public function getFoundPercentage() { return 10.00; }
+	public function getFoundPercentage() { return 8.00; }
 	public function getFoundText(SR_Player $player) { return 'You see two punks coming out of a ruinous house. You stealthy move to one of the windows. Seems like this is one of the Punks hideout.'; }
 	
 	public function onEnter(SR_Player $player)

@@ -6,7 +6,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word)
 	{
-		$c = LambModule_Shadowlamb::SR_SHORTCUT;
+		$c = Shadowrun4::SR_SHORTCUT;
 		$quest = SR_Quest::getQuest($player, 'Renraku_I');
 
 		if ($player->getShortName() === 'gizmore')

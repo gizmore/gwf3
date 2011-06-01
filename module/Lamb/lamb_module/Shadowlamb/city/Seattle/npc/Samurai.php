@@ -23,8 +23,8 @@ final class Seattle_Samurai extends SR_NPC
 			'strength' => rand(2, 4),
 			'quickness' => rand(2, 4),
 			'distance' => rand(0, 2),
-			'melee' => rand(1, 3),
-			'sharpshooter' => rand(0, 2),
+			'melee' => rand(1, 2),
+			'sharpshooter' => rand(0, 1),
 			'nuyen' => rand(30, 50),
 			'base_hp' => rand(3, 7),
 		);

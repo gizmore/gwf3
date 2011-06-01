@@ -3,8 +3,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 {
 	public abstract function getAmmoName();
 	public abstract function getReloadTime();
-	public abstract function getBulletsPerShot();
-	public function isLoaded() { return $this->getAmmo() >= $this->getBulletsPerRound(); }
+	public function isLoaded() { return $this->getAmmo() >= $this->getBulletsPerShot(); }
 	
 	public function getItemRange() { return 20.0; }
 	
@@ -20,9 +19,21 @@ abstract class SR_FireWeapon extends SR_Weapon
 		);
 	}
 	
+	public function displayRequirements(SR_Player $player)
+	{
+		return $this->displayRequireAmmo($player).parent::displayRequirements($player);
+	}
+	
+	private function displayRequireAmmo(SR_Player $player)
+	{
+		$b = chr(2);
+		return sprintf(" {$b}Ammo{$b}: %s, %s/%s bullets per shot.", $this->getAmmoName(), $this->getBulletsPerShot(), $this->getBulletsMax());
+	}
+	
 	public function onReload(SR_Player $player)
 	{
-		if (false === ($ammo = $player->getItemByName($this->getAmmoName()))) {
+		if (false === ($ammo = $player->getItemByName($this->getAmmoName())))
+		{
 			$player->message('You are out of ammo!');
 			$player->unequip($this);
 			return true;
@@ -35,7 +46,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$avail = $ammo->getAmount();
 		$put = Common::clamp($max-$now, 0, $avail);
 		
-		if ($put == 0) {
+		if ($put == 0)
+		{
 			$player->message('Your weapon is already loaded.');
 			return false;
 		}

@@ -29,7 +29,7 @@ final class Quest_Seattle_Barkeeper extends SR_Quest
 	{
 		$xp = 6;
 		$ny = 1000;
-		$player->message(sprintf('The barkeeper hands you %s Nuyen and smiles: "Good job. We surely will have more guests.". You also gain %s XP.', $ny, $xp));
+		$player->message(sprintf('The barkeeper hands you %s Nuyen and smiles: "Good job. We surely will have more guests now.". You also gain %s XP.', $ny, $xp));
 		$player->giveNuyen($ny);
 		$player->giveXP($xp);
 		$player->message(sprintf('Here, take this as a bonus reward. Guests forgot these items lately.'));

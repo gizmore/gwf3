@@ -19,6 +19,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function message($message) { Lamb_Log::log($message); }
 	public function isCreated() { return true; }
 	public function getLootNuyen() { return $this->getBase('nuyen'); }
+	public function getUser() { return NULL; }
 	
 	protected $chat_partner = NULL;
 	
@@ -258,10 +259,21 @@ abstract class SR_NPCBase extends SR_Player
 	public function gotKilledByHuman(SR_Player $player)
 	{
 		$items = array_merge(
-			Shadowfunc::randLoot($player, (int)$this->getBase('level')), 
+			Shadowfunc::randLoot($player, (int)$this->getBase('level'), $this->getNPCHighChanceDrops()), 
 			$this->generateNPCLoot($player)
 		);
 		$player->giveItems($items);
+	}
+	
+	private function getNPCHighChanceDrops()
+	{
+		$back = array();
+		foreach ($this->getAllEquipment(false) as $item)
+		{
+			$item instanceof SR_Item;
+			$back[] = $item->getName();
+		}
+		return $back;
 	}
 
 	private function generateNPCLoot(SR_Player $player)

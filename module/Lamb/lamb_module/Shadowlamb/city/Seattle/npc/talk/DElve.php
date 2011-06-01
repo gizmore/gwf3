@@ -35,8 +35,15 @@ final class Seattle_DElve extends SR_TalkingNPC
 				break;
 			
 			case 'shadowrun':
-				$msg = "You are a runner? ... Thank god, i could need one, as i have some problems involving {$b}Renraku{$b}.";
-				$player->giveKnowledge('words', 'Renraku');
+				if (!$quest->isAccepted($player))
+				{
+					$msg = "You are a runner? ... Thank god, i could need one, as i have some problems involving {$b}Renraku{$b}.";
+					$player->giveKnowledge('words', 'Renraku');
+				}
+				else
+				{
+					$msg = 'Hello chummer.';
+				}
 				break;
 				
 			case 'yes':

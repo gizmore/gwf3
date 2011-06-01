@@ -3,7 +3,7 @@ require_once 'Shadowrun4.php';
 
 final class LambModule_Shadowlamb extends Lamb_Module
 {
-	const SR_SHORTCUT = '#';
+//	const SR_SHORTCUT = '#';
 //	const WITH_INTERLINK = 0;
 	
 	# Hardcoded shadowlamb channels for shortcuts
@@ -23,7 +23,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 		}
 		
 		# Trigger?
-		if (Common::startsWith($message, self::SR_SHORTCUT)) {
+		if (Common::startsWith($message, Shadowrun4::SR_SHORTCUT)) {
 			return Lamb::instance()->processMessageA($server, LAMB_TRIGGER.'sr '.substr($message, 1), $from);
 		}
 		
@@ -65,7 +65,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	public function getHelp($trigger)
 	{
 		$help = array(
-			'sr' => '%TRIGGER%sr <shadowrun command here>. Try '.self::SR_SHORTCUT.'help.',
+			'sr' => '%TRIGGER%sr <shadowrun command here>. Try '.Shadowrun4::SR_SHORTCUT.'help.',
 		);
 		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}

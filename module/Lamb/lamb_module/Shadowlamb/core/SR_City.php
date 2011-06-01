@@ -20,9 +20,10 @@ abstract class SR_City
 	public function getExploreETA(SR_Party $party) { return $this->calcETA($party, $this->getExploreTime()); }
 	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{
-		$qu = round(Common::clamp($party->getMin('quickness')*$tpq, 0, $eta-$mintime-$randtime));
-		$eta -= $qu;
-		$eta -= rand(0, $randtime);
+		$mount = $party->getBestMount();
+		$eta = $mount->getMountTime($eta);
+		$eta += rand(0, $randtime);
+		$eta = Common::clamp(round($eta), $mintime);
 		return $eta;
 	}
 	

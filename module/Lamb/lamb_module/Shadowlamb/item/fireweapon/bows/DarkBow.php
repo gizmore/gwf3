@@ -5,7 +5,6 @@ final class Item_DarkBow extends SR_Bow
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
 	public function getReloadTime() { return 6; }
-	public function getBulletsPerShot() { return 1; }
 	public function getItemLevel() { return 15; }
 	public function getItemWeight() { return 800; }
 	public function getItemPrice() { return 1250; }

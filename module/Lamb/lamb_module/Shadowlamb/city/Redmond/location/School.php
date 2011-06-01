@@ -5,7 +5,7 @@ final class Redmond_School extends SR_School
 	
 	public function getFoundPercentage() { return 60.00; }
 	public function getFoundText(SR_Player $player) { return 'You found an interesting building: "Jmoncayos School of Fireweapons".'; }
-	public function getHelpText(SR_Player $player) { $c = LambModule_Shadowlamb::SR_SHORTCUT; return "Use {$c}learn <course> to learn a new skill. See an overview of the skills to learn with {$c}courses. Use {$c}talk <word> to talk to the teacher.";}
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "Use {$c}learn <course> to learn a new skill. See an overview of the skills to learn with {$c}courses. Use {$c}talk <word> to talk to the teacher.";}
 	
 	public function onEnter(SR_Player $player)
 	{

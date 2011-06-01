@@ -3,6 +3,7 @@ final class Redmond extends SR_City
 {
 	public function getArriveText() { return 'You arrive at Redmond. Home sweet home.'; }
 	public function getSquareKM() { return 6; }
+//	public function getExploreTime() { return 180; }
 	
 	public function onEvents(SR_Party $party)
 	{

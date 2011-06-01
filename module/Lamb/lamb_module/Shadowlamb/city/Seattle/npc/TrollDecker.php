@@ -23,9 +23,9 @@ final class Seattle_TrollDecker extends SR_NPC
 			'strength' => rand(3, 5),
 			'quickness' => rand(1, 2),
 			'distance' => rand(8, 10),
-			'pistols' => rand(1, 3),
+			'pistols' => rand(1, 2),
 			'firearms' => rand(2, 3),
-			'sharpshooter' => rand(1, 2),
+			'sharpshooter' => rand(0, 1),
 			'nuyen' => rand(40, 120),
 			'base_hp' => rand(3, 9),
 		);

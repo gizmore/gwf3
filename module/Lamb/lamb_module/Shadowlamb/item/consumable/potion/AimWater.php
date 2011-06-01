@@ -1,5 +1,5 @@
 <?php
-final class Item_AimWater extends SR_Consumable
+final class Item_AimWater extends SR_Potion
 {
 	public function getItemLevel() { return 5; }
 	public function getItemWeight() { return 250; }

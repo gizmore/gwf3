@@ -31,7 +31,7 @@ abstract class SR_Consumable extends SR_Usable
 	
 	public function getConsumeMessage($busy)
 	{
-		$busy = $busy > 0 ? sprintf(' %s busy.', GWF_Time::humanDurationEN($busy)) : '';
+		$busy = $busy > 0 ? sprintf(' %s busy.', GWF_Time::humanDuration($busy)) : '';
 		return sprintf('consumed an item: %s.%s', $this->getItemName(), $busy);
 	}
 }
@@ -39,18 +39,15 @@ abstract class SR_Consumable extends SR_Usable
 abstract class SR_Food extends SR_Consumable
 {
 	public function displayType() { return 'Food'; }
-//	public function isItemSellable() { return false; }
 }
 
 abstract class SR_Drink extends SR_Consumable
 {
 	public function displayType() { return 'Drink'; }
-//	public function isItemSellable() { return false; }
 }
 
 abstract class SR_Potion extends SR_Drink
 {
 	public function displayType() { return 'Potion'; }
-//	public function isItemSellable() { return true; }
 }
 ?>

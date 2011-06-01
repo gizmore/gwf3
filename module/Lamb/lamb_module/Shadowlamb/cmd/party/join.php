@@ -18,6 +18,12 @@ final class Shadowcmd_join extends Shadowcmd
 //		if (false === ($target = Shadowfunc::getPlayerInLocationB($player, $args[0]))) {
 //			return false;
 //		}
+
+		if ($target->getParty()->getLeader()->isNPC())
+		{
+			$bot->reply('You cannot join NPC parties.');
+			return false;
+		}
 		
 		if ($target->getID() === $player->getID()) {
 			$bot->reply('You cannot join yourself.');

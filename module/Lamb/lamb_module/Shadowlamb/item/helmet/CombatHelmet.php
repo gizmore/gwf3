@@ -1,7 +1,7 @@
 <?php
 final class Item_CombatHelmet extends SR_Helmet
 {
-	public function getItemLevel() { return 13; }
+	public function getItemLevel() { return 24; }
 	public function getItemPrice() { return 8000; }
 	public function getItemWeight() { return 1600; }
 	public function getItemDescription() { return 'This helmet would look dangerous with a BodyArmor.'; }
@@ -13,6 +13,5 @@ final class Item_CombatHelmet extends SR_Helmet
 			'farm' => 1.8,
 		);
 	}
-	
 }
 ?>

@@ -102,14 +102,15 @@ abstract class SR_SecondHandStore extends SR_Store
 			return false;
 		}
 		if (!$item->isItemSellable() || $item->isItemStackable()) {
-			$bot->reply('I don`t want your '.$item->getItemName().'.');
+			$bot->reply('I don`t want your '.$item->getItemName().'. We only trade equipment here.');
 			return false;
 		}
 
 		$price = $this->calcSellPrice($player, $item);
 		
 		# Sell it
-		if ($item->isEquipped($player)) {
+		if ($item->isEquipped($player))
+		{
 			$player->unequip($item);
 		}
 		$player->removeFromInventory($item);

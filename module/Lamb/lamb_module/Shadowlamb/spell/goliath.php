@@ -1,7 +1,7 @@
 <?php
 final class Spell_goliath extends SR_SupportSpell
 {
-	public function getHelp(SR_Player $player) { return 'Temporarily raises the strength of a friendly target.'; }
+	public function getHelp() { return 'Temporarily raises the strength of a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>2); }
 	
@@ -42,7 +42,7 @@ final class Spell_goliath extends SR_SupportSpell
 //		$target->addEffects(new SR_Effect($dur, $str), new SR_Effect(round($dur/2), $str));
 //		
 //		# Announce
-//		$msg = sprintf(' casts goliath on %s. %s strength +%s', $target->getName(), GWF_Time::humanDurationEN($dur), $by*2);
+//		$msg = sprintf(' casts goliath on %s. %s strength +%s', $target->getName(), GWF_Time::humanDuration($dur), $by*2);
 //		$player->getParty()->message($player, $msg);
 //		$target->getParty()->message($player, $msg);
 //		

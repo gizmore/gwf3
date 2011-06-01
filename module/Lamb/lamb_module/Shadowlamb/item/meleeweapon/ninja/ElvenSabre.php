@@ -1,5 +1,5 @@
 <?php
-final class Item_ElvenSabre extends SR_NinaWeapon
+final class Item_ElvenSabre extends SR_NinjaWeapon
 {
 	public function getAttackTime() { return 35; }
 	public function getItemLevel() { return 12; }
@@ -9,9 +9,9 @@ final class Item_ElvenSabre extends SR_NinaWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 6.5, 
-			'min_dmg' => 3.5,
-			'max_dmg' => 11.5,
+			'attack' => 9.5, 
+			'min_dmg' => 1.5,
+			'max_dmg' => 9.5,
 		);
 	}
 }

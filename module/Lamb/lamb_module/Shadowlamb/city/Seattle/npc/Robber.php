@@ -19,12 +19,12 @@ final class Seattle_Robber extends SR_NPC
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
-			'strength' => rand(2, 4),
-			'quickness' => rand(2, 4),
+			'strength' => rand(2, 3),
+			'quickness' => rand(2, 3),
 			'distance' => rand(8, 10),
-			'pistols' => rand(1, 3),
+			'pistols' => rand(1, 2),
 			'firearms' => rand(1, 3),
-			'sharpshooter' => rand(1, 3),
+			'sharpshooter' => rand(1, 2),
 			'nuyen' => rand(20, 40),
 			'base_hp' => rand(2, 6),
 		);

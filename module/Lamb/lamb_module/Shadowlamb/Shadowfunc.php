@@ -610,15 +610,15 @@ final class Shadowfunc
 	##############
 	public static function calcBuyPrice($price, SR_Player $player)
 	{
-		$neg = Common::clamp((int)$player->get('negotiation'), 0, 50);
-		$f = (100 - $neg) / 100;
+		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
+		$f = (200 - $neg) / 200;
 		return round($price*$f, 2);
 	}
 	
 	public static function calcSellPrice($price, SR_Player $player)
 	{
-		$neg = Common::clamp((int)$player->get('negotiation'), 0, 50);
-		$f = (100 + $neg) / 100;
+		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
+		$f = (100 + ($neg/2)) / 100;
 		return round($price*$f, 2);
 	}
 	
@@ -747,7 +747,7 @@ final class Shadowfunc
 	 * @param SR_Player $player
 	 * @return array
 	 */
-	public static function randLoot(SR_Player $player, $level)
+	public static function randLoot(SR_Player $player, $level, $high_chance=array())
 	{
 		$items = SR_Item::getAllItems();
 		$possible = array();
@@ -757,10 +757,19 @@ final class Shadowfunc
 		{
 			$item instanceof SR_Item;
 			$il = $item->getItemLevel();
-			if ($il > $level || $il < 0) {
+			if ($il > $level || $il < 0)
+			{
 				continue;
 			}
-			$dc = round($item->getItemDropChance()*100);
+			$chance = 90;
+			$chance += round($player->get('luck')/2);
+			if (in_array($item->getItemName(), $high_chance))
+			{
+				$chance *= 2;
+			}
+			$chance = round($chance);
+			
+			$dc = round($item->getItemDropChance()*$chance);
 			$possible[] = array($item->getName(), $dc);
 			$total += $dc;
 		}

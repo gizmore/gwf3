@@ -5,7 +5,7 @@ final class SR_PlayerVar extends GDO
 	### GDO ###
 	###########
 	public function getClassName() { return __CLASS__; }
-	public function getTableName() { return 'sr4_player_vars'; }
+	public function getTableName() { return GWF_TABLE_PREFIX.'sr4_player_vars'; }
 	public function getColumnDefines()
 	{
 		return array(

@@ -2,6 +2,7 @@
 final class Redmond_Hellkeeper extends SR_TalkingNPC
 {
 	public function getName() { return 'The barkeeper'; }
+	
 	public function onNPCTalk(SR_Player $player, $word)
 	{
 		$b = chr(2);
@@ -17,18 +18,17 @@ final class Redmond_Hellkeeper extends SR_TalkingNPC
 				return $this->reply('Most of my guests are hardcore bikers. They protect my pub and in exchange they can have cheap parties here. They do not annoy the other guests, so all are fine with that.');
 			case 'punk': case 'punks':
 				return $this->reply("The punks and the bikers are in kinda clanwar. Better don`t mention them when you like to talk with the {$b}bikers{$b}.");
-				break;
 			case 'ork': case 'orks':
 				return $this->reply('We have not much trouble with orks here. The bikers protect us.');
-				break;
+			case 'beer':
+				return $this->reply('One beer. Ok!');
 			case 'hello':
 				return $this->reply("Hello chummer. Better don`t annoy the bikers. They are pissed because of the {$b}punks{$b}");
-				break;
 			default:
 				$msg = array('anything new?', 'the usual stuff?', 'how can i serve you?');
 				return $this->reply('Hello chummer, '.Shadowfunc::randomListItem($msg));
 		}
-		return true;
+		return false;
 	}	
 }
 ?>
