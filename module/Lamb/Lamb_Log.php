@@ -8,21 +8,11 @@ final class Lamb_Log
 	
 	public static function log($message)
 	{
-//		if (Common::isCLI())
-//		{
+		if (PHP_SAPI === 'cli')
+		{
 			echo $message.PHP_EOL;
-//		}
+		}
 		GWF_Log::log('lamb', $message, true);
-//		$filename = self::getFilename();
-//		if (false === ($fh = fopen($filename, 'a'))) {
-//			return false;
-//		}
-//		
-//		echo "$message\n";
-//		
-//		fprintf($fh, "%s: %s\n", date('H:i:s'), $message);
-//		
-//		fclose($fh);
 	}
 	
 	public static function debugCommand(Lamb_Server $server, $command, $from, array $args)
