@@ -3,14 +3,24 @@ final class Lamb_Shadowlamb extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 'RewriteRule ^shadowlamb$ index.php?mo=Lamb&me=Shadowlamb'.PHP_EOL;
+		return 'RewriteRule ^shadowlamb/?$ index.php?mo=Lamb&me=Shadowlamb'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module)
 	{
+		require_once 'module/Lamb/Lamb_User.php';
+		require_once 'module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';
+		
+		GWF_Website::addJavascript($module->getModuleFilePath('js/shadowlamb.js?v=1'));
+		
+		return $this->templateShadowlamb($module);
+	}
+	
+	private function templateShadowlamb(Module_Lamb $module)
+	{
 		$tVars = array(
-			'account_select' => '',
+			'account_select' => $module->getMethod('Client')->selectAccounts($module),
 		);
-		return $module->template('shadowlamb.php', NULL, $tVars);
+		return $module->templatePHP('shadowlamb.php', $tVars);
 	}
 }

@@ -16,10 +16,12 @@ final class Module_Lamb extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/lamb'); }
 	public function getDefaultPriority() { return 60; } # 50 is default
 	public function getDefaultAutoLoad() { return true; }
+	
 	public function onStartup()
 	{
 		self::$instance = $this;
-		#$this->onLoadLanguage();
+		$this->onLoadLanguage();
+		GWF_Website::addCSS('tpl/lamb/css/lamb.css?v=1');
 	}
 	
 	public static function accountButtons()

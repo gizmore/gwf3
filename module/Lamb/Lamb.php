@@ -66,6 +66,12 @@ final class Lamb
 		return $this->lm_origin;
 	}
 	
+	public function getCurrentUser()
+	{
+		$from = $this->lm_server->getFrom();
+		return $this->lm_server->getUser($from);
+	}
+	
 	private function sumUptime()
 	{
 		$total = GWF_Settings::getSetting('_lamb3_uptime');
@@ -168,6 +174,7 @@ final class Lamb
 			
 			foreach ($this->servers as $serverid => $server)
 			{
+				$this->lm_server = $server;
 				$this->processServer($server);
 			}
 			
@@ -242,7 +249,7 @@ final class Lamb
 	
 	private function processServer(Lamb_Server $server)
 	{
-		$this->lm_server = $server;
+//		$this->lm_server = $server;
 		$c = $server->getConnection();
 		if ($c->isConnected())
 		{
@@ -333,6 +340,9 @@ final class Lamb
 //		
 //		$command = array_shift($split);
 //		$args = $split;
+
+		# VERY UGLY HACK!!!
+		$this->lm_origin = $args[0];
 
 		$this->processCommand($server, $command, $from, $args);
 	}
@@ -557,32 +567,5 @@ final class Lamb
 	{
 		$this->lm_server->reply($this->lm_origin, $message);
 	}
-	
-	/**
-	 * Send a message to all channels on all servers.
-	 * @param string $message
-	 */
-//	public function superGlobalMessage($message)
-//	{
-//		foreach ($this->servers as $server)
-//		{
-//			$server instanceof Lamb_Server;
-//			$server->globalMessage($message);
-//		}
-//	}
-//
-//	/**
-//	 * Send a message to the primary channel on every server.
-//	 * @param string $message
-//	 */
-//	public function globalMessage($message)
-//	{
-//		foreach ($this->servers as $server)
-//		{
-//			$server instanceof Lamb_Server;
-//			$channel = array_shift($server->getChannels());
-//			$server->reply($channel, $message);
-//		}
-//	}
 }
 ?>

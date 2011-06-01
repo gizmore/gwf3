@@ -11,7 +11,7 @@ final class Lamb_Client extends GWF_Method
 			$pid = 0;
 		} else {
 			GWF_Session::set('SL4_PID', $pid);
-			GWF_Website::includeJQuery();
+//			GWF_Website::includeJQuery();
 			GWF_Website::addJavascriptInline("$(document).ready(function() { sl4Init($pid); } );");
 			Lamb_IRCTo::pushMessage($pid, 'helo');
 		}
@@ -27,7 +27,7 @@ final class Lamb_Client extends GWF_Method
 		
 		$tVars = array(
 			'player' => $player,
-			'select_account' => $this->selectAccounts($module, $player),
+			'select_account' => self::selectAccounts($module, $player->getID()),
 			'inventory' => $ajax->getInventory($module, $player),
 			'equipment' => $ajax->getEquipment($module, $player),
 			'cyberware' => $ajax->getCyberware($module, $player),
@@ -39,23 +39,22 @@ final class Lamb_Client extends GWF_Method
 		return $module->template('client.php', NULL, $tVars);
 	}
 	
-	public function selectAccounts(Module_Lamb $module, $player)
+	public function selectAccounts(Module_Lamb $module, $selected='0')
 	{
 		$userid = GWF_Session::getUserID();
 		$table = GDO::table('Lamb_Players');
-		if (false === ($result = $table->select("ll_uid=$userid"))) {
+		if (false === ($result = $table->select('sr4pl_id,lusr_name,lusr_sid', "ll_uid={$userid}", '', array('ll_lid', 'll_pid'))))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 
 		$onchange = 'sl4SwitchAccount(this.value);';
-		$selected = 0;
-		$data = array(array($module->lang('sel_account'), 0));
-		while (false !== ($row = $table->fetchAssoc($result)))
+		$data = array(array('0', $module->lang('sel_account')));
+		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-			$id = (int)$row['sr4pl_id'];
-			$data[] = array(sprintf('%s{%s}', $row['lusr_name'], $row['lusr_sid']), $id);
+			$data[] = array($row['sr4pl_id'], sprintf('%s{%s}', $row['lusr_name'], $row['lusr_sid']));
 		}
-		$table->freeResult($result);
+		$table->free($result);
 		
 		return GWF_Select::display('account', $data, $selected, $onchange);
 	}

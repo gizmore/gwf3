@@ -51,9 +51,9 @@ final class Lamb_HTML
 		$data = $user->getUserData();
 		$stamp = isset($data['GWF_FORUM_STAMP']) ? $data['GWF_FORUM_STAMP'] : $user->getVar('user_regdate');
 		$regtimequery = sprintf('thread_firstdate>=\'%s\'', $stamp);
-		$query = "SELECT COUNT(*) FROM $threads WHERE (thread_postcount>0 AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0))";
+		$query = "SELECT COUNT(*) c FROM $threads WHERE (thread_postcount>0 AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0))";
 		$result = gdo_db()->queryFirst($query, false);
-		return (int)$result[0];
+		return (int)$result['c'];
 	}
 
 	private static function menuPM(Module_Lamb $module, $user)
@@ -71,9 +71,9 @@ final class Lamb_HTML
 		$db = gdo_db();
 		$pms = GWF_TABLE_PREFIX.'pm';
 		$uid = $user->getVar('user_id');
-		$query = "SELECT COUNT(*) FROM $pms WHERE pm_to=$uid AND (pm_options&1=0)";
+		$query = "SELECT COUNT(*) c FROM $pms WHERE pm_to=$uid AND (pm_options&1=0)";
 		$result = $db->queryFirst($query, false);
-		return (int) $result[0];
+		return (int) $result['c'];
 	}
 	
 	private static function menuSignup(Module_Lamb $module, $user)
@@ -117,7 +117,7 @@ final class Lamb_HTML
 	
 	private static function menuAdmin(Module_Lamb $module, $user)
 	{
-		if ($user === false || (!$user->isInGroup('admin'))) {
+		if ($user === false || (!$user->isInGroupName('admin'))) {
 			return '';
 		}
 		$sel = Common::getGet('mo') === 'Admin' ? ' class="lamb_menu_sel"' : '';

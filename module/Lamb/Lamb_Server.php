@@ -207,6 +207,7 @@ final class Lamb_Server
 	}
 	
 	/**
+	 * Get a channel from memory.
 	 * @param string $channel_name
 	 * @return Lamb_Channel
 	 */

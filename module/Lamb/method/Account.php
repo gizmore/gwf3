@@ -64,12 +64,12 @@ final class Lamb_Account extends GWF_Method
 		$formLink = $this->formLink($module);
 		$formCreate = $this->formCreate($module);
 		$tVars = array(
-			'form_link' => $formLink->templateX($module->lang('ft_link'), true),
+			'form_link' => $formLink->templateX($module->lang('ft_link')),
 			'form_create' => $formCreate->templateX(),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Lamb&me=Account&by=%BY%&dir=%DIR%',
 			'chars' => $this->sr_players,
 		);
-		return $module->template('account.php', NULL, $tVars);
+		return $module->templatePHP('account.php', $tVars);
 	}
 	
 	public function validate_create_player_name(Module_Lamb $m, $arg)
@@ -148,7 +148,7 @@ final class Lamb_Account extends GWF_Method
 			'lusr_password' => md5(Common::getPostString('create_player_pass')),
 			'lusr_timestamp' => 0,
 			'lusr_hostname' => '',
-			'lusr_ip' => GWF_IP6::getIP(IP6::BIN_32_128),
+			'lusr_ip' => GWF_IP6::getIP(GWF_IP6::BIN_32_128),
 		));
 		
 		if (false === $lamb_user->insert()) {
@@ -159,7 +159,7 @@ final class Lamb_Account extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		if (false === Lamb_Players::link($this->sr_player->getID(), GWF_Session::getUserID())) {
+		if (false === Lamb_Players::link($this->sr_player->getID(), GWF_Session::getUserID(), $lamb_user->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		

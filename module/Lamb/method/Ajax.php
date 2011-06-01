@@ -41,7 +41,7 @@ final class Lamb_Ajax extends GWF_Method
 	
 	private function sendMessage(Module_Lamb $module, $pid)
 	{
-		require_once 'modules/Lamb/Lamb_IRCTo.php';
+		require_once 'module/Lamb/Lamb_IRCTo.php';
 		if ('' !== ($msg = Common::getGetString('send', ''))) {
 			if (false === Lamb_IRCTo::pushMessage($pid, $msg)) {
 				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
@@ -52,9 +52,9 @@ final class Lamb_Ajax extends GWF_Method
 	
 	private function peekMessages(Module_Lamb $module, $pid)
 	{
-		require_once 'modules/Lamb/Lamb_IRCFrom.php';
+		require_once 'module/Lamb/Lamb_IRCFrom.php';
 		$table = GDO::table('Lamb_IRCFrom');
-		if (false === ($result = $table->queryAll("lif_pid=$pid"))) {
+		if (false === ($result = $table->selectAll('lif_message, lif_options', "lif_pid=$pid", 'lif_time ASC'))) {
 			return '';
 		}
 		$table->deleteWhere("lif_pid=$pid");
@@ -109,12 +109,16 @@ final class Lamb_Ajax extends GWF_Method
 	
 	public function getLocations(Module_Lamb $module, $player)
 	{
-		$back = '';
 		if ($player === false) {
-			return $back;
+			return '';
 		}
 		$player instanceof SR_Player;
 		$places = Shadowfunc::getKnownPlaces($player, $player->getParty()->getCity());
+		if ($places === false) {
+			return '';
+		}
+
+		$back = '';
 		foreach (explode(',', $places) as $place)
 		{
 			$place = trim($place);

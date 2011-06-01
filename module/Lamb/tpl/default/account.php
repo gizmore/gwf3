@@ -7,11 +7,11 @@ $headers = array(
 	array($tLang->lang('th_player_name')),
 	array($tLang->lang('th_level')),
 );
-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 
 
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders($headers);
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 foreach ($tVars['chars'] as $char)
 {
 	$char = $char->getVar('ll_pid'); $char instanceof SR_Player;
