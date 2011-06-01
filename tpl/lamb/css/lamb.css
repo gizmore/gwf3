@@ -1,0 +1,26 @@
+body {
+	background: #000;
+	color: #fff;
+}
+#gwf3_topmenu li, #gwf3_footmenu li {
+	display: inline;
+}
+#gwf3_topmenu a, #gwf3_footmenu a {
+	color: white;
+	padding: 0 10px;
+}
+
+
+/** Shadowlamb **/
+#sl4_equipment p, #sl4_inventory p {
+	font-weight: bold;
+}
+
+#sl4_cmdbar div {
+	display: inline;
+	margin: 0 10px;
+}
+
+#sl4_cmdbar img {
+	padding: 0 10px;
+}
