@@ -1,12 +1,7 @@
 <?php
-final class Hideout_Exit extends SR_Tower
+final class Hideout_Exit extends SR_Exit
 {
 	public function getEnterText(SR_Player $player) { return 'You enter the punk`s hideout.'; }
-	public function getHelpText(SR_Player $player) { return 'You can return to this location to #leave the building.'; }
-	public function getCommands(SR_Player $player) { return array('leave'); }
-	public function on_leave(SR_Player $player, array $args)
-	{
-		$this->teleport($player, 'Redmond_Hideout');
-	}
+	public function getExitLocation() { return 'Redmond_Hideout'; }
 }
 ?>
