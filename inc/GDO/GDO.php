@@ -663,13 +663,7 @@ abstract class GDO
 			}
 		}
 		
-		if ($set === '')
-		{
-			return true;
-		}
-		
-		$set = substr($set, 1);
-		return $this->update($set, $this->getPKWhere(), NULL, 1);
+		return $set === '' ? true : $this->update(substr($set, 1), $this->getPKWhere(), NULL, 1);
 	}
 
 	##############
