@@ -75,7 +75,7 @@ final class Lamb_Note extends GDO
 	public function displayNote(Lamb_Server $server, $viewerid)
 	{
 		$time = $this->getVar('lnote_time');
-		$ago = GWF_Time::humanDurationEN(time()-$time);
+		$ago = GWF_Time::humanDuration(time()-$time);
 		$date = GWF_Time::displayTimestamp($time);
 		$from = $this->getVar('lnote_from');
 		$to = $this->getVar('lnote_from');

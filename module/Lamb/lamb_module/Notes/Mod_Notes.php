@@ -113,7 +113,7 @@ final class LambModule_Notes extends Lamb_Module
 		}
 		
 		if (false === Lamb_Note::isWithinLimits($user->getID())) {
-			return sprintf("You have exceeded your limit of %s messages within %s.", Lamb_Note::LIMIT_AMT, GWF_Time::humanDurationEN(Lamb_Note::LIMIT_TIME));
+			return sprintf("You have exceeded your limit of %s messages within %s.", Lamb_Note::LIMIT_AMT, GWF_Time::humanDuration(Lamb_Note::LIMIT_TIME));
 		}
 		
 		if (false !== $server->getUserByNickAndChannel($nickname, $origin)) {
