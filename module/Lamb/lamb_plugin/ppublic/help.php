@@ -1,4 +1,16 @@
 <?php # Usage: %TRIGGER%help [command]. List all commands or show help for a command.
+
+# Sort
+if (!function_exists('lamb_help_sort_plugins'))
+{
+	function lamb_help_sort_plugins($a, $b)
+	{
+		return strcasecmp(substr($a,1), substr($b,1));
+	}
+}
+# End of sort
+
+# The plugin
 $bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;
@@ -117,6 +129,8 @@ foreach ($modules as $module)
 
 if ($help === '')
 {
+	$command = str_replace(array('.', '/', '\\'), '', $command);
+	
 	foreach (Lamb::getPluginDirs() as $dirname)
 	{
 		$plugin_path = sprintf('%s/%s.php', $dirname, $command);
@@ -144,8 +158,4 @@ if ($help === '')
 $help = str_replace('%TRIGGER%', LAMB_TRIGGER, $help);
 $bot->reply($help);
 
-function lamb_help_sort_plugins($a, $b)
-{
-	return strcasecmp(substr($a,1), substr($b,1));
-}
 ?>
