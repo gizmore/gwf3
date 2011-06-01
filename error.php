@@ -1,6 +1,6 @@
 <?php
 # Time measurement
-$t = microtime(true);
+define('GWF_DEBUG_TIME_START', microtime(true));
 
 # Include the core (always a good and safe idea)
 require_once 'inc/_gwf_include.php';
@@ -28,7 +28,7 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 GWF_Session::commit(false);
 
 # Display Page
-echo GWF_Website::displayPage($page, GWF_DebugInfo::getTimings($t));
+echo GWF_Website::displayPage($page, GWF_DebugInfo::getTimings());
 
 function gwf_error_404_mail()
 {
