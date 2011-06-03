@@ -27,6 +27,7 @@ final class Spell_bunny extends SR_SupportSpell
 			Shadowcmd_flee::onFlee($player);
 			return true;
 		}
+		
 		return true;
 	}
 }

@@ -18,7 +18,7 @@ final class Spell_rabbit extends SR_SupportSpell
 		
 		if ($hits > $this->getManaCost())
 		{
-			Shadowcmd_flee::onFlee($player);
+			Shadowcmd_flee::onFlee($target);
 			return true;
 		}
 		return true;

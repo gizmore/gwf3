@@ -15,7 +15,7 @@ final class Spell_hawkeye extends SR_SupportSpell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$wis = $player->getWisdom() * 30;
+		$wis = $player->get('wisdom') * 30;
 		$dur = round($hits * 8.2) + rand(-15, 15) + rand(0, $wis);
 		$by = round(sqrt($hits)/4, 2);
 		$mod = array('firearms'=>$by);
