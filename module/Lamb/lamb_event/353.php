@@ -17,7 +17,7 @@ foreach (explode(' ', $nicknames) as $nickname)
 	
 	if ($usermode !== '')
 	{
-		echo 'Auto login'.PHP_EOL;
+//		echo 'Auto login'.PHP_EOL;
 		$user->setLoggedIn(true);
 	}
 	
