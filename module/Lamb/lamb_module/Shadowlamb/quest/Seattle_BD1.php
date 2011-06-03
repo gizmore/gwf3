@@ -1,9 +1,9 @@
 <?php
 final class Quest_Seattle_BD1 extends SR_Quest
 {
-	const NEED_LONG = 2;
+	const NEED_LONG = 3;
 	const NEED_BROAD = 4;
-	const NEED_SHORT = 6;
+	const NEED_SHORT = 5;
 	public function getQuestName() { return 'PoorSmith1'; }
 	public function getBDQuestData()
 	{

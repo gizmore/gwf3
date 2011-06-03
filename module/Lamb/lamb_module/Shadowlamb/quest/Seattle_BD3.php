@@ -1,9 +1,9 @@
 <?php
 final class Quest_Seattle_BD3 extends SR_Quest
 {
-	const NEED_LEG = 6;
-	const NEED_ARMOR = 6;
-	const NEED_HELMET = 6;
+	const NEED_LEG = 3;
+	const NEED_ARMOR = 3;
+	const NEED_HELMET = 4;
 	
 	const REWARD_XP = 4;
 	const REWARD_NUYEN = 1500;
@@ -27,9 +27,9 @@ final class Quest_Seattle_BD3 extends SR_Quest
 		
 		$this->saveQuestData($data);
 		
-		$need_leg = $data['LEG'] - self::NEED_LEG;
-		$need_armor = $data['ARMOR'] - self::NEED_ARMOR;
-		$need_helmet = $data['HELMET'] - self::NEED_HELMET;
+		$need_leg = self::NEED_LEG - $data['LEG'];
+		$need_armor = self::NEED_ARMOR - $data['ARMOR'];
+		$need_helmet = self::NEED_HELMET - $data['HELMET'];
 		
 		$need = array();
 		if ($need_leg > 0)
@@ -49,7 +49,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 		{
 			$npc->reply('Thank you very very much.');
 			$npc->reply('Please take this as reward!');
-			$player->message('The dwarf hands you %s. You also gain %s XP.', Shadowfunc::displayPrice(self::REWARD_NUYEN), self::REWARD_XP);
+			$player->message(sprintf('The dwarf hands you %s. You also gain %s XP.', Shadowfunc::displayPrice(self::REWARD_NUYEN), self::REWARD_XP));
 			$player->giveXP(self::REWARD_XP);
 			$player->giveNuyen(self::REWARD_NUYEN);
 			$this->onSolve($player);
