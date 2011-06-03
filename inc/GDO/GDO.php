@@ -357,24 +357,34 @@ abstract class GDO
 	##############
 	### Select ###
 	##############
-	public function select($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1)
+	public function select($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
 		$db = gdo_db();
 		$table = $this->getTableName();
 		$join = $this->getJoins($joins);
 		$where = $this->getWhere($where);
+		$groupby = $this->getGroupBy($groupby);
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
-		$query = "SELECT $columns FROM `$table` t  $join$where$orderby$limit";
-		if (false === ($result = $db->queryRead($query))) {
-			return false;
-		}
-		return $result;
+		$query = "SELECT {$columns} FROM `{$table}` t ".$join.$where.$groupby.$orderby.$limit;
+		return $db->queryRead($query);
 	}
 
-	public function selectAll($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $r_type=self::ARRAY_A)
+	/**
+	 * Select all results from a result set.
+	 * @param string $columns
+	 * @param string $where
+	 * @param string $orderby
+	 * @param NULL|array $joins
+	 * @param int $limit
+	 * @param int $from
+	 * @param enum $r_type
+	 * @param string $groupby
+	 * @return array($r_types)
+	 */
+	public function selectAll($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $r_type=self::ARRAY_A, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby))) {
 			return false;
 		}
 		$back = array();
@@ -386,9 +396,9 @@ abstract class GDO
 		return $back;
 	}
 	
-	public function selectFirst($columns='*', $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $from=-1)
+	public function selectFirst($columns='*', $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $from=-1, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, '1', $from))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, '1', $from, $groupby))) {
 			return false;
 		}
 		$row = $this->fetch($result, $r_type);
@@ -396,9 +406,9 @@ abstract class GDO
 		return $row;
 	}
 	
-	public function selectFirstObject($columns='*', $where='', $orderby='')
+	public function selectFirstObject($columns='*', $where='', $orderby='', $groupby='')
 	{
-		return $this->selectFirst($columns, $where, $orderby, $this->getAutoJoins(), self::ARRAY_O);
+		return $this->selectFirst($columns, $where, $orderby, $this->getAutoJoins(), self::ARRAY_O, -1, $groupby);
 	}
 	
 	public function fetch($result, $r_type=self::ARRAY_A)
@@ -415,31 +425,35 @@ abstract class GDO
 		}
 	}
 	
-	public function selectVar($column, $where='', $orderby='', $joins=NULL)
+	public function selectVar($column, $where='', $orderby='', $joins=NULL, $groupby='')
 	{
-		if (false === ($result = $this->selectFirst($column, $where, $orderby, $joins, self::ARRAY_N))) {
+		if (false === ($result = $this->selectFirst($column, $where, $orderby, $joins, self::ARRAY_N, -1, $groupby)))
+		{
 			return false;
 		}
 		return $result[0];
 	}
 	
-	public function selectColumn($column, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1)
+	public function selectColumn($column, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
 		$db = gdo_db();
-		if (false === ($result = $this->select($column, $where, $orderby, $joins, $limit, $from))) {
+		if (false === ($result = $this->select($column, $where, $orderby, $joins, $limit, $from, $groupby)))
+		{
 			return false;
 		}
 		$back = array();
-		while (false !== ($row = $db->fetchRow($result))) {
+		while (false !== ($row = $db->fetchRow($result)))
+		{
 			$back[] = $row[0];
 		}
 		$db->free($result);
 		return $back;
 	}
 	
-	public function selectObjects($columns='*', $where='', $orderby='', $limit=-1, $from=-1)
+	public function selectObjects($columns='*', $where='', $orderby='', $limit=-1, $from=-1, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $this->getAutoJoins(), $limit, $from))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $this->getAutoJoins(), $limit, $from, $groupby)))
+		{
 			return false;
 		}
 		return $this->createObjects($result);
@@ -470,7 +484,8 @@ abstract class GDO
 	###############
 	private function getJoins($joins)
 	{
-		if ($joins === NULL) {
+		if ($joins === NULL)
+		{
 			return '';
 		}
 		$back = '';
@@ -548,7 +563,7 @@ abstract class GDO
 		$class = self::table(array_shift($map));
 		$key = array_shift($map);
 		$where = $this->getWhereFromArray($map);
-		$gdo_map = $class->selectArrayMap('*', $where, "`$key` ASC", $joins, self::ARRAY_A, -1,-1, $key);
+		$gdo_map = $class->selectArrayMap('*', $where, "`{$key}` ASC", $joins, self::ARRAY_A, -1,-1, $key);
 		$this->setVar($c, $gdo_map);
 	}
 	
@@ -568,14 +583,22 @@ abstract class GDO
 	
 	private function getWhere($where)
 	{
-		return $where === '' ? '' : " WHERE $where";
+		return $where === '' ? '' : " WHERE {$where}";
 	}
 	
 	private function getOrderBy($orderby)
 	{
-		return $orderby === '' ? '' : " ORDER BY $orderby";
+		return $orderby === '' ? '' : " ORDER BY {$orderby}";
 	}
 	
+	private function getGroupBy($groupby='')
+	{
+		return $groupby === '' ? '' : " GROUP BY {$groupby}";
+	}
+	
+	/**
+	 * Get a where condition for this object via primary keys and object cache. 
+	 */
 	private function getPKWhere()
 	{
 		$con = array();
@@ -592,17 +615,39 @@ abstract class GDO
 	##############
 	### Insert ###
 	##############
-	public function insert() { return $this->replace(false); }
+	/**
+	 * Insert this object from it's GDO data. Auto assign INSERT ID to object cache.
+	 * @see replace()
+	 */
+	public function insert()
+	{
+		return $this->replace(false);
+	}
+	
+	/**
+	 * Replace this object. Auto assign INSERT ID to object cache.
+	 * Enter description here ...
+	 * @param unknown_type $replace
+	 */
 	public function replace($replace=true)
 	{
-		if (false === $this->insertAssoc($this->gdo_data, true)) {
+		if (false === $this->insertAssoc($this->gdo_data, $replace))
+		{
 			return false;
 		}
-		if (false !== ($col = $this->getAutoColName())) {
+		if (false !== ($col = $this->getAutoColName()))
+		{
 			$this->setVar($col, gdo_db()->insertID());
 		}
 		return true;
 	}
+	
+	/**
+	 * Insert a row.
+	 * @param array $data
+	 * @param boolean $replace
+	 * @return boolean
+	 */
 	public function insertAssoc(array $data, $replace=true)
 	{
 		$db = gdo_db();
@@ -626,31 +671,59 @@ abstract class GDO
 	##############
 	### Delete ###
 	##############
+	/**
+	 * Delete this object.
+	 * @return boolean
+	 */
 	public function delete()
 	{
 		return $this->deleteWhere($this->getPKWhere());
 	}
 	
-	public function deleteWhere($where='', $orderby='', $joins=NULL, $limit=-1, $from=-1)
+	/**
+	 * Delete from this table.
+	 * @param string $where
+	 * @param string $orderby
+	 * @param NULL|array $joins
+	 * @param int $limit
+	 * @param int $from
+	 * @param string $groupby
+	 * @return boolean
+	 */
+	public function deleteWhere($where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
 		$db = gdo_db();
 		$tablename = $this->getTableName();
 		$join = $this->getJoins($joins);
 		$where = $this->getWhere($where);
+		$groupby = $this->getGroupBy($groupby);
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
-		$query = "DELETE FROM `$tablename`$join$where$orderby$limit";
+		$query = "DELETE FROM `{$tablename}`".$join.$where.$groupby.$orderby.$limit;
 		return $db->queryWrite($query);
 	}
 	
 	############
 	### Save ###
 	############
+	/**
+	 * Save a single var and update object cache.
+	 * @param string $var
+	 * @param string $value
+	 * @return boolean
+	 */
 	public function saveVar($var, $value)
 	{
 		return $this->saveVars(array($var => $value));
 	}
 	
+	
+	/**
+	 * Save multiple vars and update object cache.
+	 * @param string $var
+	 * @param string $value
+	 * @return boolean
+	 */
 	public function saveVars(array $data)
 	{
 		$set = '';
@@ -669,23 +742,45 @@ abstract class GDO
 	##############
 	### Update ###
 	##############
-	public function update($set='', $where='', $joins=NULL, $limit=-1, $from=-1)
+	/**
+	 * Table wide update.
+	 * @param string $set
+	 * @param string $where
+	 * @param NULL|array $joins
+	 * @param int $limit
+	 * @param int $from
+	 * @param string $groupby
+	 * @return boolean
+	 */
+	public function update($set='', $where='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		$db = gdo_db();
-		$tablename = $this->getTableName();
-		$joins = $this->getJoins($joins);
-		$limit = $this->getLimit($limit, $from);
-		$where = $this->getWhere($where);
-		$query = "UPDATE `$tablename`$joins SET $set$where$limit";
-		return $db->queryWrite($query);
+		if ($set !== '')
+		{
+			$db = gdo_db();
+			$tablename = $this->getTableName();
+			$joins = $this->getJoins($joins);
+			$limit = $this->getLimit($limit, $from);
+			$where = $this->getWhere($where);
+			$groupby = $this->getGroupBy($groupby);
+			$query = "UPDATE `{$tablename}`{$joins} SET ".$set.$where.$groupby.$limit;
+			return $db->queryWrite($query);
+		}
+		return true;
 	}
 	
 	#############
 	### Count ###
 	#############
-	public function countRows($where='', $joins=NULL)
+	/**
+	 * A typical count rows query.
+	 * @param string $where
+	 * @param null|array $joins
+	 * @param string $groupby
+	 * @return int
+	 */
+	public function countRows($where='', $joins=NULL, $groupby='')
 	{
-		if (false === ($result = $this->selectFirst('COUNT(*)', $where, '', $joins, self::ARRAY_N))) {
+		if (false === ($result = $this->selectFirst('COUNT(*)', $where, '', $joins, self::ARRAY_N, -1, $groupby))) {
 			return false;
 		}
 		return (int)$result[0];
@@ -703,17 +798,18 @@ abstract class GDO
 	
 	##############
 	### GetRow ###
-//	##############
+	##############
 	/**
 	 * Get a row by primary key(s)
-	 * @param array $pks
+	 * @param ... $pks
 	 * @return GDO|false
 	 */
 	public function getRow()
 	{
 		$values = func_get_args();
 		$keys = $this->getPrimaryKeys();
-		if (count($keys) !== count($values) || count($keys) < 1) {
+		if (count($keys) !== count($values) || count($keys) < 1)
+		{
 			return false;
 		}
 		$where = '';
@@ -721,10 +817,17 @@ abstract class GDO
 			$where .= sprintf(' AND `%s`=\'%s\'', $key, $this->escape($values[$i]));
 		}
 		$where = substr($where, 5);
-		
-		return $this->selectFirstObject('*', $where, '', $this->getAutoJoins());
+		return $this->selectFirstObject('*', $where);
 	}
 	
+	/**
+	 * Get a row by single key=>value.
+	 * @param string $key
+	 * @param string $value
+	 * @param enum $r_type
+	 * @param array|null $joins
+	 * @return false|array|GDO
+	 */
 	public function getBy($key, $value, $r_type=self::ARRAY_O, $joins=NULL)
 	{
 		$key = self::escapeIdentifier($key);
@@ -770,9 +873,9 @@ abstract class GDO
 	 * @param int $limit
 	 * @param int $from
 	 */
-	public function selectArrayMap($columns, $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $limit=-1, $from=-1, $keyname=NULL)
+	public function selectArrayMap($columns, $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $limit=-1, $from=-1, $keyname=NULL, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby))) {
 			return false;
 		}
 		$back = array();
@@ -800,9 +903,9 @@ abstract class GDO
 	##############
 	### Random ###
 	##############
-	public function selectRandom($columns, $where='', $amount=1, $joins=NULL, $r_type=self::ARRAY_O)
+	public function selectRandom($columns, $where='', $amount=1, $joins=NULL, $r_type=self::ARRAY_O, $groupby='')
 	{
-		return $this->selectAll($columns, $where, "RAND()", $joins, $amount, '0', $r_type);
+		return $this->selectAll($columns, $where, "RAND()", $joins, $amount, '0', $r_type, $groupby);
 	}
 	
 	/**
