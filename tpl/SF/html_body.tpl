@@ -14,92 +14,67 @@
 		</div>
 <!-- BODY -->
 		<div id="body">
+{if $settings.display.navileft}
 <!--LEFT NAVIGATION -->
 			<div id="left" class="navigation">
-				<p class="top" style="background-image: url('/templates/{$smarty.const.GWF_DEFAULT_DESIGN}/{$settings['template']['layout']}/images/navilefthead.png');">
-					[+]
-				</p><hr>
-{SF_Website::display_navigation('left')}
-				<hr><p class="bottom"></p>
+{include file="tpl/{$smarty.const.GWF_DEFAULT_DESIGN}/navi_left.tpl"}
 			</div>
+{/if}
 <!-- CENTERED MIDDLE -->
-			<div id="middle" style="background-color: #131313;">
-{if $smarty.get.mo != 'SMF'}
+			<div id="middle">
+{if $smarty.get.mo != 'SF_Shell'}
 <!-- SHELL -->
 				<div id="smallshell" class="shell">
-{include file="templates/Form/shell.tpl"}
+{include file="tpl/Form/shell.tpl"}
 				</div>
 {/if}
 <!-- CONTENT -->
 				<div id="content">
-					<p class="top" style="background-image:url('templates/{$smarty.const.GWF_DEFAULT_DESIGN}/{$settings['template']['layout']}/images/contenthead.png');">
-						<span style="float:left;">{*getPath::displayPath()*}, {date('d.m.Y')}</span>
+					<p class="top">
+						<span style="float:left;">{*$gwf->SF_getPath->displayPath()*}, {date('d.m.Y')}</span>
 						<span style="float:right;">{$lang->lang('last_change')}</span>
 					</p><hr style="clear:both;">
 <!--PAGE Beginn -->					
-					<div class="inhalt">
-{if $smarty.get['mo'] == 'SMF'}
-<!-- SHELL -->
-				<div id="largeshell" class="shell">
-{include file="templates/Form/shell.tpl"}
-					<br>
-					<br>
-					{$page}
-				</div>
-{else}
+					<div class="inhalt {if $smarty.get.mo == 'SF_Shell'}shell" id="largeshell{/if}">
 						<div style="width: 100%;" class="GWF_FTW">
-{if isset($smarty.get['sec'])} 
-Please login to see content!
-{/if}		
+							{if isset($smarty.get.sec)}Please login to see content!{/if}
 							{$page}
 							<br>
 						</div>
-{/if}
 					</div><hr>
 <!-- PAGE End -->
 					<p class="bottom">
-						<a class="backbutton" href="{$smarty.const.GWF_LastURL}" title="{$smarty.const.GWF_LastURL}">{$lang->lang('back')} ({$smarty.const.GWF_LastURL}) {*GWF_Session::getLastURL()*}</a>
+						<a class="backbutton" href="{$lastURL}" title="{$lastURL}">{$lang->lang('back')} ({$lastURL})</a>
 					</p>
 				</div>
 			</div>
-{if isset($smarty.get['mo'])}
-{if $smarty.get['mo'] != 'Forum'}
-{if $smarty.get['mo'] != 'Admin'}
+{if $settings.display.naviright}
 <!-- RIGHT NAVIGATION -->
 			<div id="right" class="navigation">
-				<p class="top" style="background-image:url('templates/{$smarty.const.GWF_DEFAULT_DESIGN}/{$settings['template']['layout']}/images/navirighthead.png');"> _</p><hr>
-
-{SF_Website::display_navigation('right')}
-				<hr><p class="bottom"></p>
+{include file="tpl/{$smarty.const.GWF_DEFAULT_DESIGN}/navi_right.tpl"}
 			</div>
-{/if}
-{/if}
 {/if}
 		</div>
 <!-- COPYRIGHT -->
-		<div id="copyright"><p class="copyright">SPACE-Framework is copyright by <a href="{$root}profile/space" title="space's profile">Florian Best</a> & <a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a></p></div>
+		<div id="copyright">
+			<p class="copyright">
+				SPACE-Framework is copyright by 
+				<a href="{$root}profile/space" title="space's profile">Florian Best</a> & 
+				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
+			</p>
+		</div
+{if $settings['display']['details']}
 <!-- DETAILS -->
 		<div id="details">
 {include file="templates/{$smarty.const.GWF_DEFAULT_DESIGN}/details.tpl"}
 		</div>
+{/if}
 <!-- FOOTER -->
 		<div id="footer"><hr>
-			<p style="vertical-align: middle; text-align: center; line-height: 20px;">
-				<a href="contact/" class="footlink">Kontakt</a> | 
-				<a href="impressum/" class="footlink">Impressum</a> | 
-				<a href="disclaimer/" class="footlink">Disclaimer</a> | 
-				<a href="sitemap/" class="footlink">Sitemap</a> | 
-				<a href="roadmap/" class="footlink">Roadmap</a> | 
-				<a href="changelog/" class="footlink">Changelog</a> | 
-				<a href="credits/" class="footlink">Credits</a> | 
-				<a href="bugreport/" class="footlink">Report Bug</a> | 
-				<a href="todo/" class="footlink">TO-DO Liste</a> | 
-				<!--<a href="SF/framework-latest.tar.gz" class="footlink">Space-Framework</a> | -->
-				<a href="#" class="footlink">Bookmark</a>
-			</p>
+{include file="tpl/{$smarty.const.GWF_DEFAULT_DESIGN}/html_foot.tpl"}
 		</div>
 	</div>
-	<p style="text-align:center;">
-{include file="tpl/{$smarty.const.GWF_DEFAULT_DESIGN}/html_foot.tpl"}
+	<p style="text-align: center;">
+{include file="tpl/{$smarty.const.GWF_DEFAULT_DESIGN}/debug_time.tpl"}
 	</p>
 </body>

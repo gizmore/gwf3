@@ -14,6 +14,7 @@ div#profil {
 	/*background: #181818 url('./images/profile.png') repeat-x;*/
 	background-color: #181818;
 }
+div#middle,
 div#logo {
 	background-color: #131313;
 }

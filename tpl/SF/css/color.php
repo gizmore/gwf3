@@ -100,12 +100,15 @@ switch($_GET['color']) {
 }
 
 $tpl = array(
-	'design' => 'new/',
+	'design' => 'SF/',
 	'layout' => 'space',
 );
 
 ?>
 
+.top {
+	background-image:url('templates/<?php echo $tpl['design'] . $tpl['layout']; ?>/images/contenthead.png');
+}
 
 /*- ------------------------ MAIN THINGS AND ID's ------------------------*/
 div#margin { /* BORDER HIGHLIGHT EFECT*/

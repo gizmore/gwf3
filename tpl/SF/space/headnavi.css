@@ -157,7 +157,7 @@ div#headnavi > ol.navi > li.sec > ul > li.cat > ul > li > a {
 }
 
 div#headnavi > ol.navi > li.sec > ul > li.cat:after {
-    content: url('tpl/new/space/images/arrow.gif');
+    content: url('/tpl/SF/space/images/arrow.gif');
     vertical-align: middle;
 	position: absolute;
 	right:1px;

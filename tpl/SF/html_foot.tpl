@@ -1,7 +1,13 @@
-SQL: {$timings['t_sql']|string_format:"%.03f"}s ({$timings['queries']} Queries);
-PHP: {$timings['t_php']|string_format:"%.03f"}s;
-TOTAL: {$timings['t_total']|string_format:"%.03f"}s;
-MEM PHP: {$timings['mem_php']|filesize:"2":"1024"};
-MEM USER: {$timings['mem_user']|filesize:"2":"1024"};
-MEM TOTAL: {$timings['mem_total']|filesize:"2":"1024"};<br>
-MODULES LOADED: {$gwf->Module()->getModulesLoaded('%count% (%mods%)')};
+			<p style="vertical-align: middle; text-align: center; line-height: 20px;">
+				<a href="contact/" class="footlink">Kontakt</a> | 
+				<a href="impressum/" class="footlink">Impressum</a> | 
+				<a href="disclaimer/" class="footlink">Disclaimer</a> | 
+				<a href="sitemap/" class="footlink">Sitemap</a> | 
+				<a href="roadmap/" class="footlink">Roadmap</a> | 
+				<a href="changelog/" class="footlink">Changelog</a> | 
+				<a href="credits/" class="footlink">Credits</a> | 
+				<a href="bugreport/" class="footlink">Report Bug</a> | 
+				<a href="todo/" class="footlink">TO-DO Liste</a> | 
+				<!--<a href="SF/framework-latest.tar.gz" class="footlink">Space-Framework</a> | -->
+				<a href="#" class="footlink">Bookmark</a>
+			</p>
