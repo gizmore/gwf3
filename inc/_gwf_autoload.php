@@ -5,5 +5,6 @@ function gwf3_autoload($classname)
 	{
 		require_once 'inc/util/'.$classname.'.php';
 	}
-} spl_autoload_register('gwf3_autoload');
+}
+spl_autoload_register('gwf3_autoload');
 ?>

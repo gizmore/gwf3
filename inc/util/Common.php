@@ -248,10 +248,11 @@ final class Common
 	 */
 	public static function regex($pattern, $s)
 	{
-		if (!preg_match($pattern, $s, $matches)) {
-			return false;
+		if (preg_match($pattern, $s, $matches))
+		{
+			return $matches[1];
 		}
-		return $matches[1];
+		return false;
 	}
 }
 ?>

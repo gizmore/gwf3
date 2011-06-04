@@ -1,5 +1,5 @@
 <?php
-define('GWF_CORE_VERSION', '3.01-2011.MAY.27');
+define('GWF_CORE_VERSION', '3.01-2011.JUN.04');
 
 
 # Get the config

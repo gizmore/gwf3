@@ -348,7 +348,7 @@ final class GWF_Time
 	
 	public static function displayAgeTS($timestamp)
 	{
-		return self::humanDuration(time()-$timestamp);
+		return self::humanDuration(time()-round($timestamp));
 	}
 	
 	
@@ -392,6 +392,7 @@ final class GWF_Time
 	
 	public static function humanDurationRaw($duration, $nUnits=2, array $units)
 	{
+		$duration = (int)$duration;
 		$calced = array();
 		foreach ($units as $text => $mod)
 		{
