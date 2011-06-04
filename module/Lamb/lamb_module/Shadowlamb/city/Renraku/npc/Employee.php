@@ -6,7 +6,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 20.0; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$hire = __CLASS__.'_HIRE';
 		$help = __CLASS__.'_HELP';

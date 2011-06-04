@@ -5,7 +5,7 @@ final class Renraku_Guard extends SR_TalkingNPC
 	public function getNPCPlayerName() { return 'Guard'; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		switch ($word)

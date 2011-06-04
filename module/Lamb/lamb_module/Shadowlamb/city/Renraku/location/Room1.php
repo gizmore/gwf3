@@ -48,7 +48,8 @@ final class Renraku_Room1 extends SR_SearchRoom
 	public function getSearchLevel() { return 5; }
 	public function getSearchMaxAttemps() { return 1; }
 	
-	public function getFoundText(SR_Player $player) { return 'You find a room with several computers.'; }
+	public function getFoundPercentage() { return 50; }
+	public function getFoundText(SR_Player $player) { return 'You find a room with several computers. Nobody is around.'; }
 	public function getEnterText(SR_Player $player) { return 'You see several computers and a lot of garbage in the corners.'; }
 	public function getHelpText(SR_Player $player) { return $player->canHack() ? 'You can use a cyberdeck here to hack into the workstations.' : parent::getHelpText($player); }
 }

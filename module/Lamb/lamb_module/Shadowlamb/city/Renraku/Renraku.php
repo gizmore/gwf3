@@ -1,24 +1,25 @@
 <?php
-final class Renraku extends SR_City
+final class Renraku extends SR_Dungeon
 {
-	public function isDungeon() { return true; }
 	public function getArriveText() { return 'You enter the Renraku office. "Stay calm", you think by yourself.'; }
-	public function getExploreTime() { return 120; }
+	public function getGotoTime() { return 120; }
+	public function getExploreTime() { return 160; }
 	
-	#############
-	### Alert ###
-	#############
-	private static $ALERT = array();
-	
-	public static function isAlert(SR_Party $party)
+	/**
+	 * Get the renraku main elevator.
+	 * @return Renraku_Elevator
+	 */
+	public function getRenrakuElevator()
 	{
-		$pid = $party->getID();
-		return isset(self::$ALERT[$pid]) && self::$ALERT[$pid] > Shadowrun4::getTime();
+		return $this->getLocation('Elevator');
 	}
 	
-	public static function setAlert(SR_Party $party, $duration=600)
+	/**
+	 * @param SR_Party $party
+	 */
+	public function onCityEnter(SR_Party $party)
 	{
-		self::$ALERT[$pid] = Shadowrun4::getTime() + $duration;
+		$this->getRenrakuElevator()->setElevatorFlagsDefault($party);
 	}
 }
 ?>
