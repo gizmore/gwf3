@@ -127,10 +127,10 @@ final class GWF_Website
 		}
 		return true;
 	}
-	public static function addCSSA(array $paths)
+	public static function addCSSA(array $paths, $pre = '', $after = '')
 	{
 		foreach($paths as $path) {
-			self::addCSS($path);
+			self::addCSS($pre.$path.$after);
 		}
 		return true;
 	}

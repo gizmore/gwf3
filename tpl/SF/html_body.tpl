@@ -1,7 +1,7 @@
 <body>
 	<div id="margin">
 <!-- PROFILE -->
-		<div id="profil">
+		<div id="profile">
 {include file="tpl/{$SF->design()}/menu_profile.tpl"}
 		</div>
 <!-- LOGO -->

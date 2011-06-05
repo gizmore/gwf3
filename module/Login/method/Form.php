@@ -8,8 +8,7 @@ final class Login_Form extends GWF_Method
 	
 	public function getHTAccess(GWF_Module $module)
 	{
-		return
-			'RewriteRule ^login/?$ index.php?mo=Login&me=Form'.PHP_EOL;
+		return 'RewriteRule ^login/?$ index.php?mo=Login&me=Form'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module)
@@ -28,6 +27,8 @@ final class Login_Form extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('title_login')),
 			'have_cookies' => GWF_Session::haveCookies(),
+			'token' => $form->getFormCSRFToken(),
+			'tooltip' => $form->getTooltipText('bind_ip'),
 		);
 		return $module->template('login.tpl', $tVars);
 	}

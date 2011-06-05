@@ -120,7 +120,7 @@ div#logo {
 	border-top: thin groove <?php echo $color['design_dark']; ?>;
 }
 /*div#footer*/
-div#profil,
+div#profile,
 div#body
 {
 	border-top: thin groove <?php echo $color['design_dark']; ?>;
@@ -151,7 +151,7 @@ fieldset
 	color: <?php echo $color['design_dark']; ?>; 
 }
 a.backbutton,
-div#profil a,
+div#profile a,
 div#copyright a,
 div#details a,
 div#footer,

@@ -35,6 +35,10 @@ hr.left {
 br {}
 p {}
 span {}
+input {
+	padding-left: 2px;
+	padding-right: 2px;
+}
 #content legend {
 	text-transform: uppercase;
 	padding: 5px;
@@ -50,8 +54,6 @@ span {}
 #content fieldset input {
 	display: block;
 	margin-bottom: 7px;
-	padding-left: 2px;
-	padding-right: 2px;
 	width: 20%;
 }
 #content fieldset {
@@ -59,7 +61,19 @@ span {}
 	width: 90%;
 	margin: auto;
 }
-
+#profile #gwf_login_form {
+	float: left;
+	vertical-align: middle;
+}
+#profile .gwf_errors {
+	display: none!important;
+}
+#profile fieldset {
+	border: none;
+}
+#profile legend {
+	display: none;
+}
 fieldset.login, fieldset.login input {
 	border:none!important;
 }

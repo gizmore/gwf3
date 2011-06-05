@@ -3,7 +3,7 @@
 * { 
     margin: 0;
     padding: 0;
-    /*border: none;*/
+    border: none;
 }
 div { /* FOR DEBUGGING */
 	/*border: thin solid #00ff00;*/
@@ -22,7 +22,7 @@ div#margin {
 	padding: 2px; /*wichtiger innenabstand*/
 	height:auto !important; /* Important Regel für moderne Browser */
 }
-div#profil {
+div#profile {
 /*	width: 100%;*/
 	height: 25px;
 	overflow: hidden;
