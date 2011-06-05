@@ -1,0 +1,8 @@
+User-Agent: *
+Disallow: /
+
+User-agent: BizInformation
+Disallow: /
+
+User-agent: Browsershots
+Disallow: /

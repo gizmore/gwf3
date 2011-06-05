@@ -9,8 +9,8 @@ deny from all
 </Limit>
 
 # Custom error pages
-ErrorDocument 403 /de/error.php?code=403
-ErrorDocument 404 /de/error.php?code=404
+ErrorDocument 403 /error.php?code=403
+ErrorDocument 404 /error.php?code=404
 
 RewriteEngine On
 
@@ -19,42 +19,13 @@ RewriteEngine On
 ############
 RewriteRule ^en/(.*) $1
 RewriteRule ^de/(.*) $1
-RewriteRule ^fr/(.*) $1
-RewriteRule ^it/(.*) $1
-RewriteRule ^pl/(.*) $1
-RewriteRule ^hu/(.*) $1
-RewriteRule ^es/(.*) $1
-RewriteRule ^bs/(.*) $1
-RewriteRule ^et/(.*) $1
-RewriteRule ^fi/(.*) $1
-RewriteRule ^ur/(.*) $1
-RewriteRule ^tr/(.*) $1
-RewriteRule ^sq/(.*) $1
-RewriteRule ^nl/(.*) $1
-RewriteRule ^ru/(.*) $1
-RewriteRule ^cs/(.*) $1
-RewriteRule ^sr/(.*) $1
 
-
-# PoolTool
-RewriteRule ^about_pooltool$ index.php?mo=PoolTool&me=About
-RewriteRule ^playray\.php$ index.php?mo=PoolTool&me=CollectIP&no_session=true
-RewriteRule ^pray\.php$ index.php?mo=PoolTool&me=MatchIP
-RewriteRule ^pooltool_tutorial$ index.php?mo=PoolTool&me=Tutorial
-
-# Ban
 
 # Heart
 
-# PageBuilder
-RewriteRule ^tutorial/test\.html/?$ index.php?mo=PageBuilder&me=Show&page=1
-RewriteRule ^lolcats/lolcats\.html/?$ index.php?mo=PageBuilder&me=Show&page=2
-RewriteRule ^anleitung/beispiel\.html/?$ index.php?mo=PageBuilder&me=Show&page=3
-RewriteRule ^matze/doof\.html/?$ index.php?mo=PageBuilder&me=Show&page=4
-
-# Account
-RewriteRule ^account/delete$ index.php?mo=Account&me=Delete
-RewriteRule ^account/?$ index.php?mo=Account&me=Form
+# SF
+RewriteRule ^Stundenplan/?$ index.php?mo=SF&me=Stundenplan
+RewriteRule ^construction/?$ index.php?mo=SF&me=construction
 
 # Admin
 RewriteRule ^nanny/install_all$ index.php?mo=Admin&me=Install&all=true
@@ -65,33 +36,23 @@ RewriteRule ^nanny$ index.php?mo=Admin&me=Modules&by=module_name&dir=ASC
 RewriteRule ^nanny/modules/by/([a-z_]+)/(DESC|ASC)$ index.php?mo=Admin&me=Modules&by=$1&dir=$2
 RewriteRule ^nanny/move/(up|down|first|last)/([a-zA-Z]+)$ index.php?mo=Admin&me=Move&$1=now&modulename=$2
 
+# Shoutbox
+RewriteRule ^shoutbox/history$ index.php?mo=Shoutbox&me=History
+RewriteRule ^shoutbox/history/by/page-(\d+)$ index.php?mo=Shoutbox&me=History&page=$1
+RewriteRule ^shoutbox/history/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Shoutbox&me=History&by=$1&dir=$2&page=$3
+
+# Account
+RewriteRule ^account/delete$ index.php?mo=Account&me=Delete
+RewriteRule ^account/?$ index.php?mo=Account&me=Form
+
 # Category
 RewriteRule ^category/add/?$ index.php?mo=Category&me=Add
 RewriteRule ^category/admin/?$ index.php?mo=Category&me=Admin
 RewriteRule ^category/edit/([0-9]+)/? index.php?mo=Category&me=Edit&catid=$1
 
-# Chat
-RewriteRule ^gwf_chat.php$ modules/Chat/gwf_chat.php
-RewriteRule ^chat/history/for/([^/]+)/page-([0-9]+)$ index.php?mo=Chat&me=History&channel=$1&page=$2
-RewriteRule ^chat/history/for/([^/]+)$ index.php?mo=Chat&me=History&channel=$1
-RewriteRule ^chat/history/page-([0-9]+)$ index.php?mo=Chat&me=History&channel=&page=$1
-RewriteRule ^chat/history$ index.php?mo=Chat&me=History
-RewriteRule ^irc_chat/?$ index.php?mo=Chat&me=Mibbit
-RewriteRule ^irc_chat_fullscreen/?$ index.php?mo=Chat&me=Mibbit&fullscreen=yes
-RewriteRule ^chat/page/?$ index.php?mo=Chat&me=Page
-
 # Contact
 RewriteRule ^contact/?$ index.php?mo=Contact&me=Form
 RewriteRule ^send/email/to/([^/]+)$ index.php?mo=Contact&me=SendMail&username=$1
-
-# DNSCache
-
-# Download
-RewriteRule ^download/(\d+)/[^/]+$ index.php?mo=Download&me=Download&id=$1
-RewriteRule ^download/(\d+)/[^/]+/([a-zA-Z0-9]+)$ index.php?mo=Download&me=Download&id=$1&token=$2
-RewriteRule ^downloads$ index.php?mo=Download&me=List
-RewriteRule ^downloads/by/page-(\d+)$ index.php?mo=Download&me=List&page=$1
-RewriteRule ^downloads/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Download&me=List&by=$1&dir=$2&page=$3
 
 # Forum
 RewriteRule ^forum/add/attachment/to/post/(\d+)/[^/]+$ index.php?mo=Forum&me=AddAttach&pid=$1
@@ -130,9 +91,6 @@ RewriteRule ^forum/unsubscribe/([0-9]+)/([0-9a-f]{16})/from/all$ index.php?mo=Fo
 RewriteRule ^forum/thanks/for/post/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Thanks&pid=$1
 RewriteRule ^forum/vote/(up|down)/post/([0-9]+)/? index.php?mo=Forum&me=Vote&dir=$1&pid=$2
 
-# GWF
-RewriteRule ^about_gwf/?$ index.php?mo=GWF&me=About
-
 # Guestbook
 RewriteRule ^guestbook/edit/(\d+)$ index.php?mo=Guestbook&me=Moderate&gbid=$1
 RewriteRule ^guestbook$ index.php?mo=Guestbook&me=Show&gbid=1
@@ -157,8 +115,6 @@ RewriteRule ^links/by/page-(\d+)$ index.php?mo=Links&me=Overview&page=$1
 RewriteRule ^links/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Links&me=Overview&by=$1&dir=$2&page=$3
 RewriteRule ^link/search$ index.php?mo=Links&me=Search
 RewriteRule ^link/search/([^/]+)$ index.php?mo=Links&me=Search&term=$1
-
-# Log
 
 # Login
 RewriteRule ^login/?$ index.php?mo=Login&me=Form
@@ -202,13 +158,15 @@ RewriteRule ^pm/show/(\d+)/[^/]+$ index.php?mo=PM&me=Show&pmid=$1
 RewriteRule ^pm/show/(\d+)/[^/]+/([^/]+)$ index.php?mo=PM&me=Show&pmid=$1&term=$2
 RewriteRule ^pm/show_translated/(\d+)/[^/]+$ index.php?mo=PM&me=Show&pmid=$1&translate=please
 
+# PageBuilder
+RewriteRule ^impressum/?$ index.php?mo=PageBuilder&me=Show&pageid=5
+RewriteRule ^disclaimer/?$ index.php?mo=PageBuilder&me=Show&pageid=8
+RewriteRule ^todo/?$ index.php?mo=PageBuilder&me=Show&pageid=9
+RewriteRule ^Klassenfahrt/?$ index.php?mo=PageBuilder&me=Show&pageid=10
+
 # PasswordForgot
 RewriteRule ^change_password/([0-9]+)/([0-9A-Za-z]+)$ index.php?mo=PasswordForgot&me=Change&token=$2&userid=$1
 RewriteRule ^recovery$ index.php?mo=PasswordForgot&me=Form
-
-# Payment
-
-# PaymentPaypal
 
 # Profile
 RewriteRule ^profile_settings$ index.php?mo=Profile&me=Form
@@ -219,11 +177,6 @@ RewriteRule ^profile/([^/]+)/?$ index.php?mo=Profile&me=Profile&username=$1
 RewriteRule ^activate/([a-zA-Z0-9]+)$ index.php?mo=Register&me=Activate&token=$1&mail=yes
 RewriteRule ^quick_activate/([a-zA-Z0-9]+)$ index.php?mo=Register&me=Activate&token=$1
 RewriteRule ^register/?$ index.php?mo=Register&me=Form&se=1
-
-# Shoutbox
-RewriteRule ^shoutbox/history$ index.php?mo=Shoutbox&me=History
-RewriteRule ^shoutbox/history/by/page-(\d+)$ index.php?mo=Shoutbox&me=History&page=$1
-RewriteRule ^shoutbox/history/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Shoutbox&me=History&by=$1&dir=$2&page=$3
 
 # Usergroups
 RewriteRule ^avatar/gallery$ index.php?mo=Usergroups&me=AvatarGallery
@@ -238,9 +191,6 @@ RewriteRule ^users$ index.php?mo=Usergroups&me=Users
 RewriteRule ^users/with/([A-Za-z]+)/page-(\d+)$ index.php?mo=Usergroups&me=Users&with=$1&page=$2
 RewriteRule ^users/with/([A-Za-z]+)/by/page-(\d+)$ index.php?mo=Usergroups&me=Users&with=$1&page=$2
 RewriteRule ^users/with/([A-Za-z]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Usergroups&me=Users&with=$1&by=$2&dir=$3&page=$4
-
-# VersionServer
-RewriteRule ^zipper/?$ index.php?mo=VersionServer&me=Zipper
 
 # Votes
 RewriteRule ^poll/add$ index.php?mo=Votes&me=AddPoll
