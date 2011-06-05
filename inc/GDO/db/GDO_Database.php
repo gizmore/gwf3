@@ -89,12 +89,20 @@ abstract class GDO_Database
 	###################
 	### Convinience ###
 	###################
+	/**
+	 * STUPID Lamb!
+	 * @deprecated
+	 * @param string $query
+	 * @return array|false
+	 */
 	public function queryFirst($query)
 	{
-		if (false === ($result = $this->queryRead($query))) {
+		if (false === ($result = $this->queryRead($query)))
+		{
 			return false;
 		}
-		if (false === ($row = $this->fetchAssoc($result))) {
+		if (false === ($row = $this->fetchAssoc($result)))
+		{
 			return false;
 		}
 		$this->free($result); 
