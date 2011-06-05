@@ -8,6 +8,15 @@
 final class GWF_File
 {
 	/**
+	 * Wrapper for file_get_contents.
+	 * @param string $path
+	 */
+	public static function getContents($filename)
+	{
+		return file_get_contents($filename);
+	}
+	
+	/**
 	 * Check if a file is writeable or could be created. Returns true or false.
 	 * @param string $filename
 	 * @return boolean
