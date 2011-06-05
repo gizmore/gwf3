@@ -247,12 +247,15 @@ class GWF_Module extends GDO
 	
 	public function requestMethodB($methodname, $get=NULL, $post=NULL)
 	{
-		if (is_array($get)) {
-			$_GET = $get;
-			$_REQUEST = $get;
+		# Copy vars.
+		if (is_array($post))
+		{
+			$_POST = $post;
+			$_REQUEST = $post;
 		}
-		if (is_array($post)) {
-			$_POST = $get;
+		elseif (is_array($get))
+		{
+			$_GET = $get;
 			$_REQUEST = $get;
 		}
 		return $this->getMethod($methodname)->execute($this);
