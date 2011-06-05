@@ -2,13 +2,16 @@
 $server instanceof Lamb_Server;
 $channel_name = $args[0];
 
-if (false === ($channel = $server->getOrCreateChannel($channel_name))) {
-	Lamb_Log::log(sprintf('events/JOIN.php: getOrCreateChannel() $channel_name='.$channel_name));
+if (false === ($channel = $server->getOrCreateChannel($channel_name)))
+{
+	Lamb_Log::logError(sprintf('Can not get or create channel in events/JOIN.php! $channel_name='.$channel_name));
 	return;
 }
 
-if (false === ($user = $server->getUserFromOrigin($from))) {
-	Lamb_Log::log(sprintf('events/JOIN.php: getUserFromOrigin() $from='.$from));
+if (false === ($user = $server->getUserFromOrigin($from)))
+{
+	Lamb_Log::logError(sprintf('Can not getUserFromOrigin(%s)! Channel name=%s.', $from, $channel_name));
+	Lamb_Log::logError(sprintf('events/JOIN.php: getUserFromOrigin() $from='.$from));
 	return;
 }
 
@@ -31,7 +34,6 @@ if ($user->getName() !== $server->getBotsNickname())
 //	case Lamb_User::OPERATOR: $char = 'o'; break;
 //	case Lamb_User::HALFOP: $char = 'h'; break;
 //	case Lamb_User::VOICE: $char = 'v'; break;
-//	default: Lamb_Log::log(sprintf('Unknown usermode flag: %08x', 0)); break;
 //}
 //if ($char !== '') {
 //	
