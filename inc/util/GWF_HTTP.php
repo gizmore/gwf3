@@ -5,125 +5,190 @@
  */
 final class GWF_HTTP
 {
+	######################
+	### Static timeout ###
+	######################
+	const DEFAULT_TIMEOUT = 60;
+	const DEFAULT_TIMEOUT_CONNECT = 10;
+	
+	private static $TIMEOUT = self::DEFAULT_TIMEOUT;
+	private static $TIMEOUT_CONNECT = self::DEFAULT_TIMEOUT_CONNECT;
+	
+	/**
+	 * Set the global curl timeout. If no argument is given, a default timeout of 60 seconds is used.
+	 * @param int $timeout
+	 */
+	public static function setTimeout($timeout=self::DEFAULT_TIMEOUT)
+	{
+		self::$TIMEOUT = $timeout;
+	}
+	
+	/**
+	 * Set the global curl timeout. If no argument is given, a default timeout of 60 seconds is used.
+	 * @param int $timeout
+	 */
+	public static function setConnectTimeout($timeout=self::DEFAULT_TIMEOUT_CONNECT)
+	{
+		self::$TIMEOUT_CONNECT = $timeout;
+	}
+	
+	/**
+	 * Check if a page exists.
+	 * @param string $url
+	 * @return true|false
+	 */
 	public static function pageExists($url)
 	{
-		if (substr($url, 0, 1)==='/') {
+		if (substr($url, 0, 1)==='/')
+		{
 			$url = 'http://'.GWF_DOMAIN.GWF_WEB_ROOT.substr($url, 1);
 		}
 
-		// Check URL
+		# Check URL
 //		GWF_Debug::disableErrorHandler();
 //		$parts = @parse_url($url);
 //		GWF_Debug::enableErrorHandler();
 //		if(!$parts) {
 //			return false; /* the URL was seriously wrong */
 //		}
-		if (!GWF_Validator::isValidURL($url)) {
+		
+		if (!GWF_Validator::isValidURL($url))
+		{
 			return false;
 		}
 
-		if (false === ($ch = curl_init($url))) {
+		if (false === ($ch = curl_init($url)))
+		{
 			return false;
 		}
-
-		/* set the user agent - might help, doesn't hurt */
+		
+		#curl_setopt($ch, CURLOPT_VERBOSE, true);
+		
+		# Set the user agent - might help, doesn't hurt
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
  
-		/* try to follow redirects */
+		# Try to follow redirects
 		@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
  
-		#curl_setopt($ch, CURLOPT_VERBOSE, true);
-		
-
-		/* timeout after the specified number of seconds. assuming that this script runs 
-		on a server, 20 seconds should be plenty of time to verify a valid URL.  */
-  		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-  		curl_setopt($ch, CURLOPT_TIMEOUT, 35);
+		# Timeout
+  		curl_setopt($ch, CURLOPT_TIMEOUT, self::$TIMEOUT);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::$TIMEOUT_CONNECT);
  
 		/* don't download the page, just the header (much faster in this case) */
 		curl_setopt($ch, CURLOPT_NOBODY, true);
 		curl_setopt($ch, CURLOPT_HEADER, true);
  
-		/* handle HTTPS links */
-		if(isset($parts['scheme']) && $parts['scheme']=='https') {
+		# Handle HTTPS links
+		if(isset($parts['scheme']) && $parts['scheme']=='https')
+		{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); # Should be 1!
 		}
  
 		$response = curl_exec($ch);
 		curl_close($ch);
 		
-		/*  get the status code from HTTP headers */
-		if(preg_match('/HTTP\/1\.\d+\s+(\d+)/', $response, $matches)){
+		# Get the status code from HTTP headers
+		if(preg_match('/HTTP\/1\.\d+\s+(\d+)/', $response, $matches))
+		{
 			$code = intval($matches[1]);
   		} 
-  		else {
+  		else
+  		{
   			return false;
   		}
  
-  		/* see if code indicates success */
+  		# See if code indicates success
   		return (($code>=200) && ($code<400)) || $code == 403;	
 	}
 
+	/**
+	 * Do a get request to an URL.
+	 * @param string $url
+	 * @param boolean $returnHeader
+	 * @param false|string $cookie
+	 * @return string content from curl request.
+	 */
 	public static function getFromURL($url, $returnHeader=false, $cookie=false)
 	{
+		# Cleanup URL
 		$url = trim($url);
 		$replace = array(
 			" " => "%20",
 		);
 		$url = str_replace(array_keys($replace), array_values($replace), $url);
 		
-		$ch = curl_init();
 		
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		$ch = curl_init();
 		
 		#curl_setopt($ch, CURLOPT_VERBOSE, 1);
 		
-		if ($cookie !== false) {
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		
+		if ($cookie !== false)
+		{
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
 		
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)');
 		
-  		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-  		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+  		curl_setopt($ch, CURLOPT_TIMEOUT, self::$TIMEOUT);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::$TIMEOUT_CONNECT);
 		
  		curl_setopt($ch, CURLOPT_URL, $url);
  		
- 		if (is_bool($returnHeader)) {
+ 		if (is_bool($returnHeader))
+ 		{
  			curl_setopt($ch, CURLOPT_HEADER, $returnHeader);
  		}
+ 		
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		
-		/* handle HTTPS links */
-		if(Common::startsWith($url, 'https://')) {
+		# Handle HTTPS links
+		if(Common::startsWith($url, 'https://'))
+		{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0'); # should be 1!
 		}
 		
-		if (false === $received = curl_exec($ch)) {
+		if (false === $received = curl_exec($ch))
+		{
 			echo GWF_HTML::error('GWF_HTTP', curl_errno($ch).' - '.curl_error($ch));
 		}
 		
-		#echo $received;
-		
 		curl_close($ch);
+		
 		return $received;
 	}
 	
+	/**
+	 * Send a post request to an URL.
+	 * @param string $url
+	 * @param string|array $postdata
+	 * @param boolean $returnHeader
+	 * @param false|array $httpHeaders
+	 * @param false|string $cookie
+	 * @return string the page content
+	 */
 	public static function post($url, $postdata, $returnHeader=false, $httpHeaders=false, $cookie=false)
 	{
-		if (strlen($url) < 10) {
+		# Clean URL
+		if (strlen($url) < 10)
+		{
 			return false;
 		}
-		if (false === ($parts = parse_url($url))) {
+		if (false === ($parts = parse_url($url)))
+		{
 			return false;
 		}
+		
 		$ch = curl_init();
 		#curl_setopt($ch, CURLOPT_VERBOSE, true);
 
-		if (is_array($httpHeaders)) {
+		# Optional HTTP headers
+		if (is_array($httpHeaders))
+		{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeaders);
 		}
 		
@@ -136,7 +201,7 @@ final class GWF_HTTP
 		if($parts['scheme']=='https')
 		{
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		}
 		if ($returnHeader === true) {
 			curl_setopt($ch, CURLOPT_HEADER, true);
@@ -146,7 +211,8 @@ final class GWF_HTTP
 		if (is_array($postdata))
 		{
 			$data = array();
-			foreach ($postdata as $key => $value) {
+			foreach ($postdata as $key => $value)
+			{
 				$data[] = urlencode($key).'='.urlencode($value);
 			}
 			$postdata = implode("&", $data);
@@ -159,6 +225,10 @@ final class GWF_HTTP
 		return $received;		
 	}
 	
+	/**
+	 * Disable caching for the current page.
+	 * Could be split apart from this file.
+	 */
 	public static function noCache()
 	{
 		header('Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0');
