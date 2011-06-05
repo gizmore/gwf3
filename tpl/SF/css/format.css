@@ -7,7 +7,6 @@ body {
 	font-family: 'Verdana';
 	font-size: 12px;
 	line-height: normal;
-
 }
 a img {
 	border: none;
@@ -113,13 +112,22 @@ h3 {
 .bold {
 	font-weight:bold;
 }
-p.bottom {
-	text-align: right;
+p.top img, p.bottom img {
+	height: 10px;
 }
 p.top, p.bottom {
-	margin: 5px;
-	margin-top: 0;
+	padding: 5px 15px;
+	background-repeat: no-repeat;
+	text-align: right;
 }
+
+.GWF_FTW table {
+	width: 95%;
+}
+.GWF_FTW textarea {
+	width: 100%;
+}
+
 span.shell_dir {
 	color:#0000CD;
 }

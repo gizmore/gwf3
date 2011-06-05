@@ -82,6 +82,11 @@ final class GWF_SF_SurferInfos {
 	);
 	private static $BROWSER = array(
 		array('Unknown', 'Unknown', 'unknown'),
+		array('Firefox/4', 'Firefox4', 'ff4'),
+		array('Firefox/3', 'Firefox3', 'ff3'),
+		array('Firefox/5', 'Firefox5', 'ff5'),
+		array('Firefox', 'Firefox', 'ff'),
+		array('Opera', 'Opera', 'opera'),
 		array('MSIE 9.0', 'Internet Explorer 9', 'ie9'),
 		array('MSIE 8.0', 'Internet Explorer 8', 'ie8'),
 		array('MSIE 7.0', 'Internet Explorer 7', 'ie7'),
@@ -89,12 +94,10 @@ final class GWF_SF_SurferInfos {
 		array('MSIE 5.0', 'Internet Explorer 5', 'ie5'),
 		array('MSIE 5.5', 'Internet Explorer 5.5', 'ie5'),
 		array('MSIE', 'Internet Explorer', 'ie'),
-		array('Opera', 'Opera', 'opera'),
-		array("Firefox", 'Firefox', 'firefox'),
-		array("Safari", 'Safari', 'safari'),
-		array("Lynx", 'Lynx', 'lynx'),
-		array("WebTV", 'WebTV', 'webtv'),
-		array("Konqueror", 'Konqueror', 'konqueror'),
+		array('Safari', 'Safari', 'safari'),
+		array('Lynx', 'Lynx', 'lynx'),
+		array('WebTV', 'WebTV', 'webtv'),
+		array('Konqueror', 'Konqueror', 'konqueror'),
 		array('Mozilla', 'Mozilla', 'mozilla'),
 		array('w3m', 'w3m', 'w3m'),
 	);

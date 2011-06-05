@@ -126,17 +126,8 @@ div#footer {
 	padding-right: 5px;
 }
 .top {
-	position:relative;
-	left:0px;
-	top:0px;
-	margin:0;
-	padding:0;
+	vertical-align: top;
 }
 p.bottom {
-	position:relative;
-	left:0px;
-	bottom:0px;
-	margin:0;
-	padding:0;
 	vertical-align: bottom;
 }

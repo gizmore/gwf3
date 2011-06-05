@@ -50,7 +50,7 @@
 	<li class="sec"><h2><a href="{$root}login">Login</a></h2></li>
 {/if}
 	<li class="sec">
-		<a title="Designfarbe: Rot" href="{htmlspecialchars($smarty.server['REQUEST_URI'])}?layoutcolor=red">
+		<a title="Designfarbe: Rot" href="{$root}?layoutcolor=red">
 			<img src="{$root}img/SF/circle_red.png" style="height: 20px; border: 0px;" alt="Designfarbe:Rot">
        </a>
        <a title="Designfarbe: Blau" href="{$root}index.php?layoutcolor=blue">
