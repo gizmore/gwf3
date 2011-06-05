@@ -129,18 +129,34 @@ class GWF_Module extends GDO
 	 * @param string $modulename
 	 * @return GWF_Module
 	 */
-	public static function loadModuleDB($modulename)
+	public static function loadModuleDB($modulename, $include=false, $load_lang=false)
 	{
-		if (isset(self::$MODULES[$modulename])) {
+		if (isset(self::$MODULES[$modulename]))
+		{
 			return self::$MODULES[$modulename];
 		}
 		
-		$emodulename = self::escape($modulename);
-		if (false === ($module = self::table(__CLASS__)->selectFirst('*', "module_name='$emodulename'"))) {
+		if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\'')))
+		{
 			return false;
 		}
 		
-		return self::initModuleB($modulename, $module);
+		if (false === ($module = self::initModuleB($modulename, $data)))
+		{
+			return false;
+		}
+		
+		if ($include)
+		{
+			$module->onInclude();
+		}
+		
+		if ($load_lang)
+		{
+			$module->onLoadLanguage();
+		}
+		
+		return $module;
 	}
 	
 	/**
@@ -163,6 +179,12 @@ class GWF_Module extends GDO
 		}
 	}
 	
+	/**
+	 * Init a module from assoc data array.
+	 * @param string $modulename
+	 * @param array $data
+	 * @return GWF_Module
+	 */
 	private static function initModuleB($modulename, array $data)
 	{
 		$classname = "Module_$modulename";
@@ -172,11 +194,10 @@ class GWF_Module extends GDO
 		}
 		require_once $path;
 		self::$MODULES[$modulename] = $m = new $classname($data);
-		if (false === $m->loadVars()) {
+		if (false === $m->loadVars())
+		{
 			return false;
 		}
-//		$m->onInclude();
-//		var_dump($m->getName());
 		$m->onStartup();
 		return $m;
 	}
