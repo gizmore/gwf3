@@ -136,6 +136,7 @@ div.sitenav {
 /*p.bottom,
 p.top,*/
 #sitenav a:hover span,
+fieldset,
 fieldset legend {
 	border: thin solid <?php echo $color['design_light']; ?>;
 }

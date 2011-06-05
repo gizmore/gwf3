@@ -35,9 +35,30 @@ hr.left {
 br {}
 p {}
 span {}
-legend {}
-label {}
-fieldset {}
+#content legend {
+	text-transform: uppercase;
+	padding: 5px;
+}
+#content label {
+	float: left;
+	clear: left;
+	width: 45%;
+	text-align: right;
+	margin-right: 10px;
+	margin-bottom: 7px;
+}
+#content fieldset input {
+	display: block;
+	margin-bottom: 7px;
+	padding-left: 2px;
+	padding-right: 2px;
+	width: 20%;
+}
+#content fieldset {
+	padding: 5px;
+	width: 90%;
+	margin: auto;
+}
 
 fieldset.login, fieldset.login input {
 	border:none!important;

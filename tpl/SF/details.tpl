@@ -13,11 +13,11 @@ Heute ist {$TAGNAME_HEUTE} der {$TAG_HEUTE}. {$MONATNAME} {$JAHR}.<br>
 -->
 <table>
 	<tr>
-		<th>{strtoupper($lang->lang('server'))}</th>
-		<th>{strtoupper($lang->lang('visitor'))}</th>
-		<th>{strtoupper($lang->lang('surfer_infos'))}</th>
-		{*<th>{strtoupper($lang->lang('statistics'))}</th>
-		<th>{strtoupper($lang->lang('donations'))}</th>*}
+		<th>{strtoupper($SF->lang('server'))}</th>
+		<th>{strtoupper($SF->lang('visitor'))}</th>
+		<th>{strtoupper($SF->lang('surfer_infos'))}</th>
+		{*<th>{strtoupper($SF->lang('statistics'))}</th>
+		<th>{strtoupper($SF->lang('donations'))}</th>*}
 	</tr>
 	<tr>
 		<td>
@@ -33,13 +33,13 @@ Heute ist {$TAGNAME_HEUTE} der {$TAG_HEUTE}. {$MONATNAME} {$JAHR}.<br>
 		</td>
 
 		<td style="vertical-align: top;">
-			{$lang->lang('ip')}: <span class="color">{GWF_SF_SurferInfos::get_ipaddress()}</span><br>
-			{$lang->lang('operating_system')}: <span class="color">{GWF_SF_SurferInfos::get_operatingsystem()}</span><br>
-			{$lang->lang('browser')}: <span class="color">{GWF_SF_SurferInfos::get_browser()}</span><br>
-			{$lang->lang('provider')}: <span class="color">{GWF_SF_SurferInfos::get_provider()}</span><br>
-			{$lang->lang('hostname')}: <span class="color" title="{GWF_SF_SurferInfos::get_hostname()}">{GWF_SF_SurferInfos::get_hostname()}</span><br>
-			{$lang->lang('referer')}: <span class="color" title="{GWF_SF_SurferInfos::get_referer()}">{GWF_SF_SurferInfos::get_referer()}</span><br>
-			{$lang->lang('user_agent')}: <span class="color" title="{GWF_SF_SurferInfos::get_useragent()}">{GWF_SF_SurferInfos::get_useragent()}</span>
+			{$SF->lang('ip')}: <span class="color">{GWF_SF_SurferInfos::get_ipaddress()}</span><br>
+			{$SF->lang('operating_system')}: <span class="color">{GWF_SF_SurferInfos::get_operatingsystem()}</span><br>
+			{$SF->lang('browser')}: <span class="color">{GWF_SF_SurferInfos::get_browser()}</span><br>
+			{$SF->lang('provider')}: <span class="color">{GWF_SF_SurferInfos::get_provider()}</span><br>
+			{$SF->lang('hostname')}: <span class="color" title="{GWF_SF_SurferInfos::get_hostname()}">{GWF_SF_SurferInfos::get_hostname()}</span><br>
+			{$SF->lang('referer')}: <span class="color" title="{GWF_SF_SurferInfos::get_referer()}">{GWF_SF_SurferInfos::get_referer()}</span><br>
+			{$SF->lang('user_agent')}: <span class="color" title="{GWF_SF_SurferInfos::get_useragent()}">{GWF_SF_SurferInfos::get_useragent()}</span>
 		</td>{*
 		<td style="vertical-align: top;">
 			There are 5 new Challenges:<br>
@@ -47,13 +47,13 @@ Heute ist {$TAGNAME_HEUTE} der {$TAG_HEUTE}. {$MONATNAME} {$JAHR}.<br>
 			2 in Steganography<br>
 		</td>
 		<td style="vertical-align: top;">
-			{$lang->lang('day')}: {$lang->lang('daynames', $server['day']['day'])}, {$server['day']['day']}<br>
-			{$lang->lang('month')}: {$lang->lang('monthnames', $server['day']['month'])} , {$server['day']['month']}<br>
-			{$lang->lang('year')}: {$server['day']['year']}<br>
+			{$SF->lang('day')}: {$SF->lang('daynames', $server['day']['day'])}, {$server['day']['day']}<br>
+			{$SF->lang('month')}: {$SF->lang('monthnames', $server['day']['month'])} , {$server['day']['month']}<br>
+			{$SF->lang('year')}: {$server['day']['year']}<br>
 			sternzeichen
-			{$lang->lang('hour')}: {$server['day']['hour']}<br>
-			{$lang->lang('minute')}: {$server['day']['minute']}<br>
-			{$lang->lang('second')}: {$server['day']['second']}<br>
+			{$SF->lang('hour')}: {$server['day']['hour']}<br>
+			{$SF->lang('minute')}: {$server['day']['minute']}<br>
+			{$SF->lang('second')}: {$server['day']['second']}<br>
 		</td>
 		<td style="vertical-align: top;">
 			No Donators, yet...<br>

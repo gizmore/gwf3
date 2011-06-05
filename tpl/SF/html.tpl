@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{$SF->doctype()}
 {$head}
 {$body}
 </html>
