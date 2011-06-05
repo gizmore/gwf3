@@ -118,6 +118,7 @@ p.bottom {
 }
 p.top, p.bottom {
 	margin: 5px;
+	margin-top: 0;
 }
 span.shell_dir {
 	color:#0000CD;

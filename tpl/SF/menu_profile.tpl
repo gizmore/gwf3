@@ -9,9 +9,7 @@
 	{*Answers: 3; Articles: 3, Changes: 0, *}  ; 
 </span>
 {else}
-
 {$gwf->Module()->loadModuleDB('Login', true, true)->execute('Form')}
-
 {/if}
 
 <span style="float:right; vertical-align: middle;">

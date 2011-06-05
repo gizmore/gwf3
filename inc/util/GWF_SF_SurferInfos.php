@@ -114,7 +114,7 @@ final class GWF_SF_SurferInfos {
 		return isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : $default;
 	}
 	//public static function get_forwarder() { return GWF_IP6::forwarder(); }
-	public static function get_details($search, $subj, $type = 1) {
+	public static function get_details($search, $subj, $type = 1, $default = false) {
 
 		if( !$search ) return $default;
 

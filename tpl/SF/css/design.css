@@ -58,8 +58,9 @@ div#body {
 	display: table; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
 }
 div#left {
-/* 	float: left; */
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
+	vertical-align: top; /* IMPORTANT */
+	margin-top: 0;
 	width: 20%;
 	width: 190px;
 	overflow: hidden;
@@ -67,8 +68,9 @@ div#left {
 /*	height:100%;*/
 }
 div#middle {
-/* 	float: left; */
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
+	vertical-align: top; /* IMPORTANT */
+	margin-top: 0;
 /*	margin: 0 auto; */
 /*	width: 59%;*/
 	width:auto;
@@ -93,9 +95,10 @@ div#content { /* in #middle und unter #shell */
 	overflow: hidden;
 }
 div#right {
-/* 	float: right; */
 	overflow: hidden;
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
+	vertical-align: top; /* IMPORTANT */
+	margin-top: 0;
 	width: 20%;
 	width: 190px;
 	z-index: 100;
