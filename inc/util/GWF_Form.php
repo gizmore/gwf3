@@ -63,6 +63,9 @@ class GWF_Form
 	
 	public function getMethod() { return $this->method; }
 	public function getFormData() { return $this->form_data; }
+	public function getFormDataFor($key) { return $this->form_data[$key]; }
+	public function getFormCSRFToken() { return $this->form_data[GWF_CSRF::TOKEN_NAME][self::VALUE]; }
+	public function getTooltipText($key) { return isset($this->form_data[$key][self::TOOLTIP]) ? $this->form_data[$key][self::TOOLTIP] : ''; }
 	
 	public function getVar($key, $default=false)
 	{
