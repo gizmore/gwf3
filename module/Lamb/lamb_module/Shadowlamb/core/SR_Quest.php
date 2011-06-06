@@ -1,7 +1,15 @@
 <?php
 class SR_Quest extends GDO
 {
-	# Options
+	#################
+	### Statistic ###
+	#################
+	private static $TOTAL_QUESTS = 0;
+	public static function getTotalQuestCount() { return self::$TOTAL_QUESTS; }
+	
+	####################
+	### Option flags ###
+	####################
 	const ACCEPTED = 0x001;
 	const REJECTED = 0x002;
 	const DONE = 0x010;
@@ -9,7 +17,6 @@ class SR_Quest extends GDO
 	const ABORTED = 0x040;
 	const STATUS_BITS = 0x0FF;
 	const PARTY_QUEST = 0x100;
-
 	public static $QUEST_FLAGS = array(
 		'accepted' => array(self::STATUS_BITS, self::ACCEPTED),
 		'rejected' => array(self::REJECTED, self::REJECTED),
@@ -83,7 +90,6 @@ class SR_Quest extends GDO
 		
 		$this->saveOption(self::DONE, true);
 		$player->increase('sr4pl_quests_done', 1);
-//		$player->updateField('reputation', $player->getBase('reputation')+0.1);
 		$this->onQuestSolve($player);
 		$player->modify();
 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
@@ -110,7 +116,7 @@ class SR_Quest extends GDO
 	### Static ###
 	##############
 	/**
-	 * Get a quest.
+	 * Get a quest by filename.
 	 * @param $player
 	 * @param $name
 	 * @return SR_Quest
@@ -118,23 +124,38 @@ class SR_Quest extends GDO
 	public static function getQuest(SR_Player $player, $name)
 	{
 		$uid = $player->getID();
-		
-		$path = Lamb::DIR.'lamb_module/Shadowlamb/quest/'.$name.'.php';
-		require_once $path;
 		$ename = self::escape($name);
-		if (false === ($data = self::table(__CLASS__)->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_name='$ename'"))) {
+		if (false === ($data = self::table(__CLASS__)->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_name='$ename'")))
+		{
 			return self::createQuest($player, $name);
 		}
-
 		$classname = 'Quest_'.$name;
 		$quest = new $classname($data);
 		return $quest;
 	}
 	
+	/**
+	 * Include all quests on init.
+	 * @param string $entry
+	 * @param string $fullpath
+	 */
+	public static function includeQuest($entry, $fullpath)
+	{
+		require_once $fullpath;
+		self::$TOTAL_QUESTS++;
+	}
+	
+	/**
+	 * Get a quest by enum.
+	 * @param SR_Player $player The current player.
+	 * @param string $section Section from constant.
+	 * @param int $id The enum ID.
+	 */
 	public static function getByID(SR_Player $player, $section, $id)
 	{
-		if (!isset(self::$QUEST_FLAGS[$section])) {
-			return false;
+		if (!isset(self::$QUEST_FLAGS[$section]))
+		{
+			return Lamb_Log::logError(__METHOD__.': Invalid section!');
 		}
 		$uid = $player->getID();
 		$bits_in = self::$QUEST_FLAGS[$section][0];
@@ -142,19 +163,17 @@ class SR_Quest extends GDO
 		$table = self::table(__CLASS__);
 		
 		$id = (int)$id;
-		
-		if ($id < 1) {
+		if ($id < 1)
+		{
+			return false;
+		}
+		if (false === ($row = $table->selectFirst('*', "sr4qu_uid={$uid} AND sr4qu_options&{$bits_in}={$bits_out}", 'sr4qu_date ASC', NULL, GDO::ARRAY_A, $id-1)))
+		{
 			return false;
 		}
 		
-		if (false === ($row = $table->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_options&$bits_in=$bits_out", 'sr4qu_date ASC', NULL, GDO::ARRAY_A, $id-1))) {
-			return false;
-		}
-		$name = $row['sr4qu_name'];
-		$classname = 'Quest_'.$name;
-		require_once Lamb::DIR.'lamb_module/Shadowlamb/quest/'.$name.'.php';
-		$quest = new $classname($row);
-		return $quest;
+		$classname = 'Quest_'.$row['sr4qu_name'];
+		return new $classname($row);
 	}
 	
 	public static function getQuests(SR_Player $player, $section)
@@ -172,9 +191,7 @@ class SR_Quest extends GDO
 		$back = array();
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-			$questname = $row['sr4qu_name'];
-			$classname = 'Quest_'.$questname;
-			require_once Lamb::DIR.'lamb_module/Shadowlamb/quest/'.$questname.'.php';
+			$classname = 'Quest_'.$row['sr4qu_name'];
 			$quest = new $classname($row); 
 			$back[] = $quest;
 		}
@@ -244,7 +261,8 @@ class SR_Quest extends GDO
 		
 		while ($left > 0)
 		{
-			if (false === ($item = $player->getInvItemByShortName($itemname))) {
+			if (false === ($item = $player->getInvItemByShortName($itemname)))
+			{
 				break;
 			}
 			$possible = Common::clamp($item->getAmount(), 0, $left);
@@ -282,6 +300,7 @@ class SR_Quest extends GDO
 				$npc->reply('Deny reply for Quest '.$this->getName());
 				break;
 		}
+		return false;
 	}
 }
 ?>
