@@ -21,7 +21,7 @@ final class Module_Lamb extends GWF_Module
 	{
 		self::$instance = $this;
 		$this->onLoadLanguage();
-		GWF_Website::addCSS('tpl/lamb/css/lamb.css?v=1');
+		GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/lamb/css/lamb.css?v=1');
 	}
 	
 	public static function accountButtons()
