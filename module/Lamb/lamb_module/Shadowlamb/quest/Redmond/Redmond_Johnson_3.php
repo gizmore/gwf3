@@ -6,8 +6,8 @@ final class Quest_Redmond_Johnson_3 extends SR_Quest
 	
 	public function accept(SR_Player $player)
 	{
-		parent::accept($player);
-		$player->giveItems(SR_Item::createByName('Package'));
+		$player->giveItems(array(SR_Item::createByName('Package')));
+		return parent::accept($player);
 	}
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)

@@ -8,7 +8,7 @@ final class Item_QuicknessPotion extends SR_Potion
 	public function onConsume(SR_Player $player)
 	{
 		$mod = array('quickness' => 1);
-		$player->addEffects(new SR_Effect(400, $mod), new SR_Effect(200, $mod));
+		$player->addEffects(new SR_Effect(3600, $mod), new SR_Effect(1800, $mod));
 	}
 }
 ?>

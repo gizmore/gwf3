@@ -39,7 +39,7 @@ final class Seattle_HireMagician extends SR_HireNPC
 		);
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$price = 800 - Common::clamp($player->get('negotiation'), 0, 10) * 10;
 		$time = 1000 * $player->get('charisma') * 60;

@@ -14,7 +14,7 @@ final class Redmond_Hospital extends SR_Hospital
 		return array(
 			array('Headcomputer'),
 			array('SmartGoggles'),
-			array('Sporn'),
+//			array('Sporn'),
 			array('Cybermuscles'),
 			array('DermalPlates'),
 			array('WiredReflexes'),

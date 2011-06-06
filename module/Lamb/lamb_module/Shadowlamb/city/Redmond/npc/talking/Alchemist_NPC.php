@@ -8,7 +8,7 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 		return array('race'=>'elve');
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		switch ($word)

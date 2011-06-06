@@ -37,7 +37,8 @@ final class Shadowcmd_gmi extends Shadowcmd
 			$item->saveVar('sr4it_amount', intval($args[2]));
 		}
 		
-		$target->giveItems($item);
+		$b = chr(2);
+		$target->giveItems(array($item), sprintf("{$b}[GM]_%s{$b}", $player->getName()));
 		
 		return true;
 	}

@@ -4,7 +4,7 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 	const TEMP_WORD = 'Seattle_Barkeeper_Run';
 	
 	public function getName() { return 'The barkeeper'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_Barkeeper');
 		$need = $quest->getNeededAmount();

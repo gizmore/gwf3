@@ -3,7 +3,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 {
 	const TEMP_WORD = 'SEATTLE_JOHNSON_TALK';
 	public function getName() { return 'Mr. Johnson'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quests = array(

@@ -24,8 +24,7 @@ final class Harbor_Depot1 extends SR_SearchRoom
 		{
 			return false;
 		}
-		
-		$party = $player->getParty();
+		return true;
 	}
 	
 }

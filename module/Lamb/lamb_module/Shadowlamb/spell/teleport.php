@@ -45,12 +45,14 @@ final class Spell_teleport extends SR_Spell
 			return false;
 		}
 		$tlc = $target->getName();
-		if (!$player->hasKnowledge('places', $tlc)) {
+		if (!$player->hasKnowledge('places', $tlc))
+		{
 			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
 			return false;
 		}
 		
-		if ($p->getLocation('inside') === $tlc || $p->getLocation('outside') === $tlc) {
+		if ($p->getLocation() === $tlc)
+		{
 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
 		}

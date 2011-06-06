@@ -17,8 +17,8 @@ final class Spell_turtle extends SR_SupportSpell
 
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$dur = round($hits * 8.2) + rand(-15, 15+$player->get('wisdom')*30);
-		$by = round(sqrt($hits)/4, 2);
+		$dur = $this->getSpellDuration($player, $target, $level, $hits);
+		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('marm'=>$by, 'farm'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$append = sprintf('+%s marm/farm for %s.', $by, GWF_Time::humanDuration($dur));

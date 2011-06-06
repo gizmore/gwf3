@@ -3,7 +3,6 @@ require_once 'Shadowrun4.php';
 
 final class LambModule_Shadowlamb extends Lamb_Module
 {
-//	const SR_SHORTCUT = '#';
 //	const WITH_INTERLINK = 0;
 	
 	# Hardcoded shadowlamb channels for shortcuts
@@ -12,19 +11,20 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) { Shadowrun4::init($server); }
-	public function onInstall() { require_once 'SR_Install.php'; SR_Install::onInstall(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
+	public function onInstall() { Shadowrun4::init(); require_once 'SR_Install.php'; SR_Install::onInstall(false); }
+	public function onInitTimers() { Shadowrun4::initTimers(); }
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
 		# NO SPAM with it in other channels
-		if ( ($server->getBotsNickname() !== $origin) && (!in_array($origin, self::$INCLUDE_CHANS, true)) ) {
+		if ( ($server->getBotsNickname() !== $origin) && (!in_array($origin, self::$INCLUDE_CHANS, true)) )
+		{
 			return;
 		}
 		
 		# Trigger?
-		if (Common::startsWith($message, Shadowrun4::SR_SHORTCUT)) {
-			return Lamb::instance()->processMessageA($server, LAMB_TRIGGER.'sr '.substr($message, 1), $from);
+		if (Common::startsWith($message, Shadowrun4::SR_SHORTCUT))
+		{
+			return Shadowrun4::onTrigger($server, $user, $origin, substr($message, 1));
 		}
 		
 		# Location glob interlink (deprecated by #say)
@@ -47,8 +47,6 @@ final class LambModule_Shadowlamb extends Lamb_Module
 //			}
 //		}
 	}
-//	public function onTimer() { /*Shadowrun4::onTimer();*/ }
-	
 	
 	###############
 	### Getters ###
@@ -62,12 +60,11 @@ final class LambModule_Shadowlamb extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'sr' => '%TRIGGER%sr <shadowrun command here>. Try '.Shadowrun4::SR_SHORTCUT.'help.',
+		return array(
+			'sr' => '%CMD% <shadowrun command here>. Try '.Shadowrun4::SR_SHORTCUT.'help.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	################
@@ -77,6 +74,5 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	{
 		Shadowrun4::onTrigger($server, $user, $channel_name, $msg);
 	}
-	
 }
 ?>

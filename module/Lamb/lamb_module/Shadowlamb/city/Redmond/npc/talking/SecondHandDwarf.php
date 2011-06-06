@@ -2,7 +2,7 @@
 final class Redmond_SecondHandDwarf extends SR_TalkingNPC
 {
 	public function getName() { return 'Donor'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		switch ($word)

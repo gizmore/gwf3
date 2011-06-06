@@ -16,6 +16,8 @@ final class Shadowhelp
 			'dmg' => 'damage',
 			'skill' => 'skills',
 			'attribute' => 'attributes',
+			'casting' => 'cast',
+			'bmi' => 'body mass',
 		);
 		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
 		
@@ -30,7 +32,6 @@ final class Shadowhelp
 	public static function getAllHelp($player=NULL)
 	{
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
-		
 		$back = array(
 			'root' => "Check out these topics",
 			array(
@@ -53,7 +54,7 @@ final class Shadowhelp
 					'charisma' => "Charisma raises the time that hirelings follow you.",
 					'luck' => "Luck increases the chance of better drops.",
 					'reputation' => "Reputation determines how famous you are amongst the world of Shadowlamb. Some quests require a minimum reputation.",
-					'essence' => "Essence describes how wasted your body and mind is.",
+					'essence' => "Essence describes how wasted your body and mind is. Every player starts with an essence of 6. You cannot lvlup your essence. Although it is known that some rare runes can increase your essence. Essence is essential for casting spells.",
 				),
 				
 				'skills' => 'Player Command. Usage: #(sk)ills. Show your learned Skills',
@@ -70,7 +71,7 @@ final class Shadowhelp
 					'electronics' => 'The electronics skill will increase your chance to disable traps.',
 					'biotech' => 'The biotech skill will increase your healing when using items.',
 					'negotiation' => 'The negotiation skill will lower prices when buying items, and raise prices when selling items.',
-					'sharpshooter' => 'The sharpshooter skill will raise your chance for a critical hit.',
+					'sharpshooter' => 'The sharpshooter skill will raise your chance for a critical hit. This also applies to melee and ninja weapons.',
 					'searching' => 'The searching skill will increase the dropchance on searches.',
 					'lockpicking' => 'The lockpicking skill will increase your chance on picking locks.',
 					'thief' => 'The thief skill will increase your chance on thieving items of shops and not getting caught. ',
@@ -109,7 +110,7 @@ final class Shadowhelp
 							'vampire' => 'Vampires are undead creatures. They have a low body and HP and trust in equipment they have collected over their years.',
 							'darkelve' => 'The darkelve combines melee, bows and magic into a playable character.',
 							'woodelve' => 'The woodelve combines melee, bows and magic into a playable character.',
-							'human' => 'The human is the intermediate character.',
+							'human' => 'The human is the intermediate character of the player_races. There are player_races and npc_races.',
 							'gnome' => 'The gnome is a bit smaller than a halfork.',
 							'dwarf' => 'The dwarf is a bit smaller than a gnome.',
 							'halfork' =>  'The halfork is a bit dumb, but easy to play for beginners.',
@@ -124,6 +125,13 @@ final class Shadowhelp
 							'droid' => 'An electronical device that makes your life harder.',
 							'dragon' => 'A mysterious creature from the very same planet.',
 						),
+					),
+					
+					'asl' => 'Player command. Usage: #asl [<age|bmi|height>]. Use #aslset to setup your asl. Show your',
+					array(
+						'age' => 'Your character\'s age, in years.',
+						'bodymass' => 'Your characters body mass in gramm.',
+						'height' => 'Your character\'s height in centimeters.',
 					),
 					
 					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. '.SR_Player::XP_PER_LEVEL.' XP equal 1 level.',
@@ -175,6 +183,7 @@ final class Shadowhelp
 						'help' => 'Browse the Shadowhelp file. Usage: #help [<keyword>].',
 						'stats' => 'Print current gameworld stats.',
 						'motd' => 'Print the current "message of the day".',
+						'world' => 'Print info about the world of Shadowlamb.',
 					),
 					
 					'gm_cmds' => '"Game Master" commands for debugging and cheating',
@@ -198,6 +207,8 @@ final class Shadowhelp
 						'status' => 'Player command. Usage: #(s)tatus. View your status.',
 						'attributes' => NULL,
 						'skills' => NULL,
+						'asl' => NULL,
+						'aslset' => "Player command. Usage: #aslset RANDOM || #aslset <age>y <bmi>kg <hgt>cm. Example: #aslset 20y 140cm 80kg.",
 						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment.',
 						array(
 							'amulet' => 'You can #equip amulets and wear them as #equipment.',
@@ -240,25 +251,35 @@ final class Shadowhelp
 						'whisper' => "Player command. Usage: #(w)hisper <player> <the message>. Send a message to another player. This works accross networks.",
 					),
 					
-					'combat_cmds' => 'Commands that also work in combat',
+					'combat_cmds' => 'Commands work in combat',
 					array(
-						'drop' => 'Player command. Usage: #drop <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
-						'give' => 'Player command. Usage: #give <player_name> <i|ny|kp|kw> <inv_id|amount|kp_id|kw_id> [<item_amount>]. Give another player some stuff. You need to share the same place. In combat this costs time.',
-						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
-						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 						'forward' => "Combat command. Usage: #forward|#fw. Move forward in distance.",
 						'backward' => "Combat command. Usage: #backward|#bw. Move backwards in distance.",
 						'flee' => "Combat command. Usage: #(fl)ee. Try to flee from the enemy. If successful you will #part the current #(p)arty.",
 						'attack' => "Combat command. Usage: #attack|## [<enemy_name|enemy_enum>]. Select your target to attack with your weapon. Attack will lock your target, so you don't need to type attack all the time. See #help busytime and #help combat.",
-						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
 						'set_distance' => 'Player command. Usage: #(s)et_(d)istance/#sd <meters>. Set your default combat distance.',
-						'spell' => 'Player command. Usage: #(sp)ell [<ks_id|spell_name>] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum.',
+					),
+					
+					'action_cmds' => 'Action commands',
+					array(
+						'npc' => 'Leader command. Usage: #npc <the remote command>. Execute a command in the name of your NPC.',
+						'say' => NULL,
 						'use' => 'Player command. Usage: #(u)se <inv_id|item_name> [<target_name|target_enum>]. Use an item. In combat this costs time.',
+						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
+						'drop' => 'Player command. Usage: #drop <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
+						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
+						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
+						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
+						'hijack' => 'Leader command. Usage: #hijack [<target>]. Try to break into a player mount and steal an item.',
+						'give' => 'Player command. Usage: #give <player_name> <inv_id|item> [<amount>]. Give a player in the same location some items. In combat this costs time. See also #givekp, #givekw and #giveny.',
+						'givekp' => 'Player command. Usage: #givekp <player_name> <#(kp)_id|place>. Tell a player in your location about a known place. See #give, #givekw and #giveny.',
+						'givekw' => 'Player command. Usage: #givekw <player_name> <#(kw)_id|word. Tell a player in your location about a known word. See #give, #givekp and #giveny.',
+						'giveny' => 'Player command. Usage: #giveny <player_name> <nuyen>. Give a player in your location some nuyen. See #give, #givekp and #givekw.',
 					),
 					
 					'option_cmds' => 'Commands that change your player and client options',
 					array(
-						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool.',
+						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
 						'enable' => 'Player command. Usage: #enable <help|notice|privmsg>. Toggle user interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help>. Toggle user interface options for your player.',
@@ -387,7 +408,6 @@ final class Shadowhelp
 					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
 					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
 					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
-					'npc' => 'Currently there exist '.SR_NPC::$NPC_COUNTER.' different NPCs in '.SR_Location::$LOCATION_COUNT.' locations.',
 					
 					'teachers' => 'The teachers',
 					array(
@@ -513,7 +533,7 @@ final class Shadowhelp
 		
 		# Display
 		$back = '';
-		$keywords = array();
+		$keywords = self::getHighlightKeywords();
 		self::collectKeysRec($help, $keywords);
 		usort($keywords, array(__CLASS__, 'sort_strlen'));
 		foreach ($results as $result)
@@ -522,7 +542,12 @@ final class Shadowhelp
 		}
 		return substr($back, 1);
 	}
-
+	
+	private static function getHighlightKeywords()
+	{
+		return array('example');
+	}
+	
 	private static function displayResult(Shadowrap $bot, array $two_items, array &$keywords)
 	{
 		list($text, $item) = $two_items;

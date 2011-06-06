@@ -21,11 +21,11 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Rune_of_strength:0.4', 100.0, 900),
-			array('Rune_of_quickness:0.4', 100.0, 1400),
-			array('Rune_of_melee:0.2', 100.0, 2100),
-			array('Rune_of_firearms:0.2', 100.0, 2900),
-			array('Rune_of_bows:0.3', 100.0, 900),
+			array('Rune_of_strength:0.4', 100.0, 1000),
+			array('Rune_of_quickness:0.1', 100.0, 1000),
+			array('Rune_of_melee:0.1', 100.0, 2000),
+			array('Rune_of_firearms:0.1', 100.0, 1500),
+			array('Rune_of_bows:0.2', 100.0, 1000),
 		);
 	}
 
@@ -46,7 +46,12 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 		if (isset(SR_Player::$SKILL[$f])) { $f = SR_Player::$SKILL[$f]; }
 		if (isset(SR_Player::$ATTRIBUTE[$f])) { $f = SR_Player::$ATTRIBUTE[$f]; }
 		
-		if (in_array($f, SR_Player::$SKILL)) {
+		if ($f === 'essence')
+		{
+			$min = 0.1;
+			$max = 0.1;
+		}
+		elseif (in_array($f, SR_Player::$SKILL)) {
 			$min = 0.2;
 			$max = 0.6;
 		}
@@ -62,15 +67,17 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 		$bot->reply('The dwarf cheers and get\'s to work.');
 		
 		$itemname = 'Rune_of_'.$f.':'.Shadowfunc::diceFloat($min, $max, 1);
-		if (false === ($item = SR_Item::createByName($itemname))) {
+		if (false === ($item = SR_Item::createByName($itemname)))
+		{
 			$bot->reply('My smith hammer is broken!');
 			return false;
 		}
 		
-		$player->giveItems($item);
-		$player->decreaseConst(Seattle_Blacksmith::REWARD_RUNES, -1);
-		
-		if (!$player->hasConst($key)) {
+		$key = self::REWARD_RUNES;
+		$player->giveItems(array($item));
+		$player->decreaseConst($key, -1);
+		if (!$player->hasConst($key))
+		{
 			$bot->reply('You haved used all your #reward now.');
 		}
 		

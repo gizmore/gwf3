@@ -19,12 +19,17 @@ final class Shadowshout
 		foreach (Lamb::instance()->getServers() as $server)
 		{
 			$server instanceof Lamb_Server;
-			foreach (LambModule_Shadowlamb::$INCLUDE_CHANS as $channel_name)
+			self::sendServerMessage($server, $message);
+		}
+	}
+	
+	public static function sendServerMessage(Lamb_Server $server, $message)
+	{
+		foreach (LambModule_Shadowlamb::$INCLUDE_CHANS as $channel_name)
+		{
+			if (false !== ($channel = $server->getChannel($channel_name)))
 			{
-				if (false !== ($channel = $server->getChannel($channel_name)))
-				{
-					$server->sendPrivmsg($channel_name, $message);
-				}
+				$server->sendPrivmsg($channel_name, $message);
 			}
 		}
 	}
@@ -97,7 +102,7 @@ final class Shadowshout
 						
 						if ($sid === $s->getID())
 						{
-							if ( ($channel !== false) && ($channel->getUserByNameI($u->getName())) )
+							if ( ($channel !== false) && ($channel->getUserByName($u->getName())) )
 							{
 								# TODO: fix this
 //								continue; # player already read it in irc.

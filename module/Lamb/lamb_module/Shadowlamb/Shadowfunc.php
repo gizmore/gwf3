@@ -101,6 +101,7 @@ final class Shadowfunc
 	### Combat ###
 	##############
 	/**
+	 * Get a firendly target in the same location.
 	 * @param SR_Player $player
 	 * @param string $arg
 	 * @return SR_Player
@@ -186,7 +187,7 @@ final class Shadowfunc
 		return self::getTarget($player->getEnemyParty()->getMembers(), $arg);
 	}
 	
-	private static function getTarget(array $players, $arg, $enum=true)
+	public static function getTarget(array $players, $arg, $enum=true)
 	{
 		if ($arg === '')
 		{
@@ -209,13 +210,13 @@ final class Shadowfunc
 		$candidates = array();
 		foreach ($players as $target)
 		{
-			echo sprintf('Checking %s against %s', $target->getName(), $arg).PHP_EOL;
+//			echo sprintf('Checking %s against %s', $target->getName(), $arg).PHP_EOL;
 			if (strtolower($target->getName()) === $arg)
 			{
 				return $target;
 			}
 			
-			echo sprintf('Checking %s against %s', $target->getShortName(), $n).PHP_EOL;
+//			echo sprintf('Checking %s against %s', $target->getShortName(), $n).PHP_EOL;
 			if (strtolower($target->getShortName()) === $n)
 			{
 				$candidates[] = $target;
@@ -271,7 +272,7 @@ final class Shadowfunc
 	 * @param int $precision
 	 * @return float
 	 */
-	public static function diceFloat($min, $max, $precision)
+	public static function diceFloat($min, $max, $precision=1)
 	{
 		$p = pow(10, $precision);
 		$min *= $p;
@@ -289,6 +290,7 @@ final class Shadowfunc
 	public static function dicePool($dices, $n, $min)
 	{
 		$hits = 0;
+		$dices = round($dices);
 		$m = Common::clamp($min, 1, $n);
 		for ($i = 0; $i < $dices; $i++)
 		{
@@ -297,16 +299,13 @@ final class Shadowfunc
 				$hits++;
 			}
 		}
-		
-		echo sprintf('Shadowfunc::dicePool(dices=%s, sides=%s, min=%s) === %s', $dices, $n, $min, $hits).PHP_EOL;
-		
+		echo sprintf('Shadowfunc::dicePool(dices=%s, sides=%s, min=%s) === %s hits', $dices, $n, $min, $hits).PHP_EOL;
 		return $hits;
 	}
 	
 	public static function diceHits($mindmg, $arm, $atk, $def, SR_Player $player, SR_Player $target)
 	{
 		$ep = $target->getParty();
-		
 		if ($player->isHuman()) # Human attacks ... 
 		{
 			if ($target->isHuman()) # Human attacks Human
@@ -640,7 +639,6 @@ final class Shadowfunc
 		return sprintf('%s%.02f(%.02f/%.02f)%s', $sign, $gain, $now, $max, $unit);
 	}
 	
-	
 	public static function displayPrice($price)
 	{
 		return sprintf('%.02f¥', $price);
@@ -651,6 +649,30 @@ final class Shadowfunc
 		return $weight > 1000 ? sprintf('%.02fkg', $weight/1000) : $weight.'g';
 	}
 	
+	public static function displayDistance($distance, $precision=1)
+	{
+		return sprintf("%.0{$precision}fm", $distance);
+	}
+	
+	public static function displayBusy($seconds)
+	{
+		return sprintf('%s busy.', GWF_Time::humanDuration($seconds));
+	}
+	
+	public static function displayETA($seconds)
+	{
+		return sprintf('ETA: %s.', GWF_Time::humanDuration($seconds));
+	}
+	
+	public static function displayASL(SR_Player $player)
+	{
+		$b = chr(2);
+		if (0 >= ($age = $player->getBase('age')))
+		{
+			return 'No asl info';
+		}
+		return sprintf("{$b}Age{$b}:%d, %dcm %s", $age, $player->getBase('height'), Shadowfunc::displayWeight($player->getBase('bmi')));
+	}
 	
 	####################
 	### Requirements ###
@@ -749,10 +771,11 @@ final class Shadowfunc
 	 */
 	public static function randLoot(SR_Player $player, $level, $high_chance=array())
 	{
+		$back = array();
+		
 		$items = SR_Item::getAllItems();
-		$possible = array();
-//		$level = (int)$player->getBase('level');
 		$total = 0;
+		$possible = array();
 		foreach ($items as $item)
 		{
 			$item instanceof SR_Item;
@@ -761,8 +784,8 @@ final class Shadowfunc
 			{
 				continue;
 			}
-			$chance = 90;
-			$chance += round($player->get('luck')/2);
+			$chance = 100;
+//			$chance += round($player->get('luck')/2);
 			if (in_array($item->getItemName(), $high_chance))
 			{
 				$chance *= 2;
@@ -774,35 +797,47 @@ final class Shadowfunc
 			$total += $dc;
 		}
 
-		$i = 1.414;
-		$back = array();
+		$chance_none = 1.80;
+		$chance_none -= ($player->get('luck') / 200) - ($player->getParty()->getPartyLevel() / 200);
+		$i = $chance_none;
 		while (true)
 		{
-			if (false === ($drop = self::randLootItem($player, $level, $possible, $total, $total*$i))) {
+			if (false === ($drop = self::randLootItem($player, $level, $possible, $total, $total*$i)))
+			{
 				break;
 			}
-			$i *= $i;
+			
 			$back[] = $drop;
+			
+			$i *= $i;
 		}
+		
 		return $back;
 	}
 
+	/**
+	 * Get a random item with percentages and with a chance of no item. 
+	 * $data is an array of array(mixed $back, int $chance).
+	 * @param array $data
+	 * @param int $total
+	 * @param int $chance_none 
+	 * @return mixed
+	 */
 	public static function randomData(array $data, $total, $chance_none=0)
 	{
-		$total = (int)$total;
-		$chance_none = (int) $chance_none;
-		
-		shuffle($data);
-		
-		$chance = $total + $chance_none;
-		$rand = rand(1, $chance);
-		
-		Lamb_Log::log(sprintf('Shadowfunc::randomData(%s, %s) Dice: %s', $total, $chance_none, $rand));
-		
-		if ($rand <= $chance_none) {
+		if ( (0 >= ($total = (int)$total)) )
+		{
 			return false;
 		}
-		
+		$chance_none = (int)$chance_none;
+		$chance = $total + $chance_none;
+		$rand = rand(1, $chance);
+		Lamb_Log::logDebug(sprintf('Shadowfunc::randomData(): Total(%s)+None(%s)=MAX(%s). Dice: %s', $total, $chance_none, $chance, $rand));
+		if ($rand <= $chance_none)
+		{
+			return false;
+		}
+		shuffle($data);
 		$rand -= $chance_none;
 		foreach ($data as $d)
 		{
@@ -812,13 +847,13 @@ final class Shadowfunc
 			}
 			$rand -= $d[1];
 		}
-		
 		return false;
 	}
 	
 	private static function randLootItem(SR_Player $player, $level, array $possible, $total, $chance_none)
 	{
-		if (false === ($data = self::randomData($possible, $total, $chance_none))) {
+		if (false === ($data = self::randomData($possible, $total, $chance_none)))
+		{
 			return false;
 		}
 		return self::randLootItemB($player, $level, $data);
@@ -839,7 +874,10 @@ final class Shadowfunc
 		{
 			self::randLootStatItem($player, $level, $item, array(100.00, 35.00, 15.00));
 		}
-		
+		elseif ($item instanceof SR_Mount)
+		{
+			# nuts
+		}
 		elseif ($item instanceof SR_Equipment)
 		{
 			self::randLootStatItem($player, $level, $item, array(45.00, 22.00, 12.00));
@@ -852,16 +890,21 @@ final class Shadowfunc
 	{
 		for ($i = 0; $i < count($chance); $i++)
 		{
-			if (!self::dicePercent($chance[$i])) {
+			if (!self::dicePercent($chance[$i]))
+			{
 				break;
 			}
 			
-			if (false === ($modifiers = SR_Rune::randModifier($player, $level))) {
+			if (false === ($modifiers = SR_Rune::randModifier($player, $level)))
+			{
 				break;
 			}
+			
 			$item->addModifiers($modifiers, false);
 		}
-		if ($i > 0) {
+		
+		if ($i > 0)
+		{
 			$item->updateModifiers();
 		}
 	}

@@ -1,5 +1,5 @@
 <?php
-final class Spell_teleport2 extends SR_Spell
+final class Spell_teleportii extends SR_Spell
 {
 	public function getSpellLevel() { return 3; }
 	
@@ -67,7 +67,7 @@ final class Spell_teleport2 extends SR_Spell
 			return false;
 		}
 		
-		if ($p->getLocation('inside') === $tlc || $p->getLocation('outside') === $tlc)
+		if ($p->getLocation() === $tlc)
 		{
 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
@@ -79,7 +79,7 @@ final class Spell_teleport2 extends SR_Spell
 		$need_level = $mc / 2;
 		if ($level < $mc)
 		{
-			$bot->reply(sprintf('You need at least teleport2 level %s to teleport %s party members.', $need_level, $mc));
+			$bot->reply(sprintf('You need at least %s level %s to teleport %s party members.', $this->getName(), $need_level, $mc));
 			return false;
 		}
 		
@@ -92,7 +92,7 @@ final class Spell_teleport2 extends SR_Spell
 		}
 
 		$player->healMP(-$need);
-		$p->notice(sprintf('%s used %s MP to cast teleport2 and your party is now outside of %s.', $player->getName(), $need, $tlc));
+		$p->notice(sprintf('%s used %s MP to cast %s and your party is now outside of %s.', $player->getName(), $need, $this->getName(), $tlc));
 		$p->pushAction('outside', $tlc);
 		return true;
 	}

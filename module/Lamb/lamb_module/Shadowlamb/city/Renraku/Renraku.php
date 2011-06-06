@@ -20,6 +20,7 @@ final class Renraku extends SR_Dungeon
 	public function onCityEnter(SR_Party $party)
 	{
 		$this->getRenrakuElevator()->setElevatorFlagsDefault($party);
+		parent::onCityEnter($party);
 	}
 }
 ?>

@@ -16,8 +16,8 @@ final class Quest_Renraku_I extends SR_Quest
 		$data['ORK1'] = 1;
 		$this->saveQuestData($data);
 		
-		$player->message('The ork dies. You grab his knife. It has "Renraku" as initials.');
-		$player->giveItems(SR_Item::createByName('Knife'));
+		$player->message('The Ork dies. You grab his knife. It has "Renraku" as initials.');
+		$player->giveItems(array(SR_Item::createByName('Knife')), 'The Ork');
 	}
 }
 ?>

@@ -15,9 +15,8 @@ final class Spell_berzerk extends SR_SupportSpell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$wis = $player->get('wisdom') * 30;
-		$dur = round($hits * 8.2) + rand(-15, 15) + $wis;
-		$by = round(sqrt($hits)/8, 2);
+		$dur = $this->getSpellDuration($player, $target, $level, $hits);
+		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('min_dmg'=>$by, 'max_dmg'=>$by*2);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$append = sprintf('+%s min_dmg / +%s max_dmg for %s.', $by, $by*2, GWF_Time::humanDuration($dur));

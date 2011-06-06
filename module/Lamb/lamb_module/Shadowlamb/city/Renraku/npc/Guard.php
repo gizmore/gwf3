@@ -66,11 +66,15 @@ final class Renraku_Guard extends SR_TalkingNPC
 			$member instanceof SR_Player;
 			$card = $member->getInvItemByName('IDCard');
 			$card->useAmount($member, 1);
-			$this->reply('Your ID cards have been revoked and you have to get a new one. I will also have to keep them for investigation. I may let you pass as your security level is below 2.');
+			$this->reply('These ID cards need to be revoked and you have to get a new one. I will also have to keep them for investigation. I may let you pass as your security level is below 2.');
 			$p->notice("Each member hands an IDCard to the guards and you enter the Renraku tower.");
+			
 			$p->giveKnowledge('places', 'Renraku_Exit');
-			$p->pushAction('inside', 'Renraku_Exit');
-			Shadowrun4::getCity('Renraku')->onCityEnter($p);
+			
+			$renraku = Shadowrun4::getCity('Renraku');
+			$exit = $renraku->getLocation('Renraku_Exit');
+			$renraku->onCityEnter($p);
+			$exit->onEnter($player);
 		}
 	}
 }

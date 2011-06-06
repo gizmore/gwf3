@@ -4,8 +4,6 @@ final class Seattle_AngryElve extends SR_NPC
 	public function getNPCLevel() { return 10; }
 	public function getNPCPlayerName() { return 'AngryElve'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }
-//	public function canNPCMeet(SR_Party $party) { return true; }
-//	public function getNPCLoot(SR_Player $player) { return array('Cake'); }
 	public function getNPCEquipment()
 	{
 		return array(

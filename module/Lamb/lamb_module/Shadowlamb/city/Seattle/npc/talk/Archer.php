@@ -4,7 +4,7 @@ final class Seattle_Archer extends SR_TalkingNPC
 	public function getName() { return 'Jonathan'; }
 	public function getNPCModifiers() { return array('race' => 'human'); }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quest = SR_Quest::getQuest($player, 'Seattle_Archery');

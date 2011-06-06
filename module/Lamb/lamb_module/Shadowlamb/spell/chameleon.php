@@ -17,8 +17,8 @@ final class Spell_chameleon extends SR_SupportSpell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$dur = round($hits * 8.2) + rand(-15, 15) + rand(0, $player->get('wisdom')*30);
-		$by = round(sqrt($hits)/4, 2);
+		$dur = $this->getSpellDuration($player, $target, $level, $hits);
+		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('charisma'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$this->announceADV($player, $target, $level, sprintf('+%s charisma for %s.', $by, GWF_Time::humanDuration($dur)));

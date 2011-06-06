@@ -7,12 +7,15 @@ final class Shadowcmd_known_spells extends Shadowcmd
 		
 		if (count($args) === 1)
 		{
-			if (false === ($spell = SR_Spell::getSpell($args[0]))) {
-				$bot->reply(sprintf('The spell %s is unknown.', $args[0]));
+			$arg = $args[0];
+			if (false === ($spell = $player->getSpell($arg)))
+			{
+				$bot->reply(sprintf('The spell "%s" is unknown or you did not learn it yet.', $arg));
 				return false;
 			}
-			else {
-				$bot->reply(sprintf('%s level %s: %s', $spell->getName(), $spell->getLevel($player), $spell->getHelp($player)));
+			else
+			{
+				return Shadowhelp::getHelp($player, $spell->getName());
 			}
 		}
 		else

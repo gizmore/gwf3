@@ -5,7 +5,6 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
 	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCLoot(SR_Player $player) { return array('Cake'); }
 	public function getNPCEquipment()
 	{
 		return array(
@@ -28,7 +27,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 		);
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$key = 'Seattle_Citizen_Hire_'.$player->getID();
 		$key2 = 'Seattle_Citizen_Invite_'.$player->getID();

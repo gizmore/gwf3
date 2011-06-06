@@ -5,7 +5,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 	
 	public function getName() { return 'Mr. Johnson'; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$quests = array(
 			SR_Quest::getQuest($player, 'Redmond_Johnson_1'),

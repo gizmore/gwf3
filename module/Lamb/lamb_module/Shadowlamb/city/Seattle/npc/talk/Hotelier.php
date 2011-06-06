@@ -16,7 +16,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 		return $price;
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$price = 40;
 		

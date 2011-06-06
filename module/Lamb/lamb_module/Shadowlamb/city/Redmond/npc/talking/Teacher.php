@@ -6,7 +6,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 	public function getName() { return 'Filöen'; }
 	public function getNPCModifiers() { return array('race' => 'elve'); }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{ 
 		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);

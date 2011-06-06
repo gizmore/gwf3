@@ -3,7 +3,7 @@ final class Seattle_Doctor extends SR_TalkingNPC
 {
 	public function getName() { return 'The doctor'; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);

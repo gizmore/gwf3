@@ -1,4 +1,10 @@
 <?php
+/**
+ * Basic command class that can execute stuff and manage commands.
+ * @author gizmore
+ * @version 3.0
+ * @since 1.0
+ */
 class Shadowcmd
 {
 	const RL_TIME = 360; # Request_Leader_Time
@@ -11,6 +17,8 @@ class Shadowcmd
 		'a' => 'attributes',
 		'bw' => 'backward',
 		'c' => 'commands',
+		'ca' => 'spell',
+		'cast' => 'spell',
 		'cc' => 'ccommands',
 		'cy' => 'cyberware',
 		'ef' => 'effects',
@@ -21,6 +29,10 @@ class Shadowcmd
 		'fl' => 'flee',
 		'fw' => 'forward',
 		'g' => 'goto',
+		'gi' => 'give',
+		'gp' => 'givekp',
+		'gw' => 'givekw',
+		'gy' => 'giveny',
 		'i' => 'inventory',
 		'j' => 'join',
 		'k' => 'knowledge',
@@ -42,8 +54,10 @@ class Shadowcmd
 		'rm' => 'running_mode',
 		's' => 'status',
 		'sd' => 'set_distance',
-		'sp' => 'spell',
+		'sh' => 'shout',
 		'sk' => 'skills',
+		'sp' => 'spell',
+		'spells' => 'known_spells',
 		'u' => 'use',
 		'uq' => 'unequip',
 		'w' => 'whisper',
@@ -56,25 +70,23 @@ class Shadowcmd
 	################
 	### Triggers ###
 	################
-//	public static $CMDS_WWW = array('helo');
-//	public static $CMDS_DEBUG = array('debug');
-	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','motd');
-	public static $CMDS_GM = array('gm', 'gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
-	public static $CMDS_ALWAYS = array('s','a','sk','q','p','i','cy','ef','ex','kp','ks','kw','qu','r','say');
-	public static $CMDS_ALWAYS_HIDDEN = array('reset','enable','disable','redmond','c','cc','ny','ka','hp','mp','we','rm','level','mo','mounts','shout','w','sd','pm','rl','l');
+	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','world','motd');
+	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
+	public static $CMDS_ALWAYS = array('s','a','sk','q','p','i','cy','l','ef','ex','kp','ks','kw','qu','r','say');
+	public static $CMDS_ALWAYS_HIDDEN = array('c','cc','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','shout','w','sd','pm','rl');
 	public static $CMDS = array(
-		'sleep' => array(),
+		'sleep' => array('stop'),
 		'delete' => array(),
-		'inside' => array('j','part','u','sp','eq','uq','give','drop','look','info'),
-		'outside' => array('j','part','u','sp','eq','uq','give','drop','look','info','hijack'),
-		'explore' => array('u','sp','eq','uq','part','give','drop','stop'),
-		'goto' => array('u','sp','eq','uq','part','give','drop','stop'),
-		'hunt' => array('u','sp','eq','uq','part','give','drop','stop'), 
-		'travel' => array('u','sp','eq','uq','give','drop'),
-		'talk' => array('u','r','eq','uq','j','part','give','drop','sp','say','fight','bye'),
-		'fight' => array('fl','eq','uq','give','fw','bw','u','sp','#'),
+		'inside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
+		'outside' => array('j','part','u','ca','eq','uq','gi','drop','look','info','hijack'),
+		'explore' => array('u','ca','eq','uq','part','gi','drop','stop'),
+		'goto' => array('u','ca','eq','uq','part','gi','drop','stop'),
+		'hunt' => array('u','ca','eq','uq','part','gi','drop','stop'), 
+		'travel' => array('u','ca','eq','uq','gi','drop'),
+		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say','fight','bye'),
+		'fight' => array('fl','eq','uq','gi','fw','bw','u','ca','#'),
 	);
-	public static $CMDS_LEADER_ALWAYS = array('pl','le','ban','unban');
+	public static $CMDS_LEADER_ALWAYS = array('npc','pl','le','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'talk' => array('kick'),
@@ -161,6 +173,12 @@ class Shadowcmd
 	################
 	### Checkers ###
 	################
+	/**
+	 * Check if the player is created. Return false on success and string on error.
+	 * @deprecated
+	 * @param SR_Player $player
+	 * @return false|string
+	 */
 	protected static function checkCreated(SR_Player $player)
 	{
 		if ($player->isCreated())
@@ -171,6 +189,11 @@ class Shadowcmd
 		return 'You did not start the game yet. Type '.$c.'start <race> <gender> to start your journey in Shadowlamb.';
 	}
 	
+	/**
+	 * Check if the player is leader of a party. Return false on success and string on error.
+	 * @param SR_Player $player
+	 * @return false|string
+	 */
 	protected static function checkLeader(SR_Player $player)
 	{
 		if (false !== ($error = self::checkCreated($player)))
@@ -184,8 +207,14 @@ class Shadowcmd
 		return 'This command is only available to the party leader.';
 	}
 	
+	/**
+	 * Check if the party can move. Return false on success and string on error.
+	 * @param SR_Player $player
+	 * @return false|string
+	 */
 	protected static function checkMove(SR_Party $party)
 	{
+		$b = chr(2);
 		$back = '';
 		foreach ($party->getMembers() as $member)
 		{
@@ -198,6 +227,10 @@ class Shadowcmd
 			{
 				$back .= sprintf(', %s is overloaded', $member->getName());
 			}
+			elseif ($member->getBase('age') <= 0)
+			{
+				$back .= sprintf(", %s has no {$b}#asl{$b}", $member->getName());
+			}
 		}
 		return $back === '' ? false : 'You cannot move because '.substr($back, 2).'.';
 	}
@@ -209,7 +242,8 @@ class Shadowcmd
 	{
 		if ($player->isFighting())
 		{
-			$cmd = self::shortcut(Common::substrUntil($message, ' ', $message));
+			$cmd = Common::substrUntil($message, ' ', $message);
+			$cmd = self::shortcut(self::unshortcut($cmd));
 			if (in_array($cmd, self::$CMDS['fight'], true))
 			{
 				$player->combatPush($message);
@@ -228,7 +262,9 @@ class Shadowcmd
 		$c = Shadowrun4::SR_SHORTCUT;
 
 		$args = explode(' ', $message);
-		$cmd = self::shortcut(array_shift($args));
+		
+		$cmd = array_shift($args);
+		$cmd = self::shortcut(self::unshortcut($cmd));
 		$command = self::unshortcut($cmd);
 		$commands = self::getCurrentCommands($player);
 
@@ -247,15 +283,13 @@ class Shadowcmd
 		$p->setTimestamp(time());
 		
 		$classname = 'Shadowcmd_'.$command;
-		$location = $p->getLocationClass('inside');
 		if (class_exists($classname))
-//		if (method_exists(__CLASS__, $function))
 		{
-//			return call_user_func(array(__CLASS__, $function), $player, $args);
 			return call_user_func(array($classname, 'execute'), $player, $args);
 		}
 
 		$function = 'on_'.$command;
+		$location = $p->getLocationClass('inside');
 		if ( ($location !== false) && (method_exists($location, $function)))
 		{
 			return call_user_func(array($location, $function), $player, $args);
@@ -270,20 +304,19 @@ class Shadowcmd
 		return false;
 	}
 	
-	####################
-	### Action Reply ###
-	####################
+	#############
+	### Reply ###
+	#############
 	public static function reply(SR_Player $player, $message)
 	{
 		if ($player->isFighting())
 		{
-			$player->message($message);
+			return $player->message($message);
 		}
 		else
 		{
-			Shadowrap::instance($player)->reply($message);
+			return Shadowrap::instance($player)->reply($message);
 		}
-		return true;
 	}
 }
 ?>

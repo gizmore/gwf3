@@ -9,7 +9,10 @@ final class Shadowcmd_fight extends Shadowcmd
 		{
 			$ep = $p->getEnemyParty();
 			$p->popAction();
-			$ep->popAction();
+			if ($ep !== false)
+			{
+				$ep->popAction();
+			}
 			$p->fight($ep, true);
 			return true;
 		}

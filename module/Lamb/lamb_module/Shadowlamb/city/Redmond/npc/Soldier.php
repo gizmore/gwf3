@@ -26,7 +26,7 @@ final class Redmond_Soldier extends SR_HireNPC
 		);
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$t = 'Redmond_Soldier_Hire';
 		

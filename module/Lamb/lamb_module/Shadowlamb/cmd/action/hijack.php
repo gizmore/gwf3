@@ -6,7 +6,7 @@ final class Shadowcmd_hijack extends Shadowcmd
 		$p = $player->getParty();
 		if (false === ($location = $p->getLocationClass('outside')))
 		{
-			return $player->reply('This command only works when you are outside a location.');
+			return $player->message('This command only works when you are outside a location.');
 		}
 		
 		$bot = Shadowrap::instance($player);

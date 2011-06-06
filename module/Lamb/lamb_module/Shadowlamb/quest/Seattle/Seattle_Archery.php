@@ -22,7 +22,7 @@ final class Quest_Seattle_Archery extends SR_Quest
 			$mod2 = SR_Rune::randModifier($player, 10);
 			$modifiers = SR_Rune::mergeModifiers($mod1, $mod2);
 			$bow->addModifiers($modifiers);
-			$player->giveItems($bow);
+			$player->giveItems(array($bow));
 			$this->onSolve($player);
 			return true;
 		}

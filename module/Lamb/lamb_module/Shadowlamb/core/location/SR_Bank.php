@@ -9,7 +9,7 @@ abstract class SR_Bank extends SR_Location
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		$p = Shadowfunc::displayPrice($this->calcPrice($player));
-		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c} popy to bank nuyens. Every transaction is $p for you.";
+		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Every transaction is $p for you.";
 	}
 	
 	public function calcPrice(SR_Player $player)
@@ -210,7 +210,7 @@ abstract class SR_Bank extends SR_Location
 				$bot->reply('You don`t have that item in your bank.');
 				return false;
 			}
-			if (!$player->giveItems($item))
+			if (!$player->giveItems(array($item)))
 			{
 				$bot->reply(sprintf('Database error in %s line %s.', __FILE__, __LINE__));
 				return false;

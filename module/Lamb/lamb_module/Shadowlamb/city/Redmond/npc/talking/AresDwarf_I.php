@@ -2,7 +2,7 @@
 final class Redmond_AresDwarf_I extends SR_TalkingNPC
 {
 	public function getName() { return 'Aron'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$quest1 = SR_Quest::getQuest($player, 'Redmond_AresDwarf_I');
 		$num = $quest1->getNeededAmount();

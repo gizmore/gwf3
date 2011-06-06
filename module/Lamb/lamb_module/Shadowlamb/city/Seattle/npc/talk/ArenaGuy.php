@@ -3,7 +3,7 @@ final class Seattle_ArenaGuy extends SR_TalkingNPC
 {
 	public function getName() { return 'The director'; }
 	public function getNPCModifiers() { return array('race' => 'human'); }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);

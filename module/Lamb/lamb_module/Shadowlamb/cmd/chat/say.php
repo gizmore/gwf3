@@ -18,7 +18,7 @@ final class Shadowcmd_say extends Shadowcmd
 			if ($el->isNPC())
 			{
 				$ep->setContactEta(60);
-				$el->onNPCTalkA($player, isset($args[0])?$args[0]:'hello');
+				$el->onNPCTalkA($player, (isset($args[0])?$args[0]:'hello'), $args);
 			}
 		}
 		elseif ($p->isAtLocation())

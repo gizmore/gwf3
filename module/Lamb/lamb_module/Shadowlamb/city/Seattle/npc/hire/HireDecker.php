@@ -40,14 +40,16 @@ final class Seattle_HireDecker extends SR_HireNPC
 		);
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		$price = 800 - Common::clamp($player->get('negotiation'), 0, 10) * 10;
+		$time = 1000 * $player->get('charisma') * 60;
+		
 		$b = chr(2);
 		switch ($word)
 		{
 			case 'shadowrun':
-				return $this->reply("I am one of the best runners you can get. Wanna hire?");
-				
+				return $this->reply("I am in for a run, Do you want to {$b}hire{$b} my hacking skills?");
 			case 'yes':
 				return $this->reply("Yes, {$b}hire{$b} me and i'll aid you in combat.");
 			case 'no':

@@ -1,5 +1,5 @@
 <?php
-class SR_SearchRoom extends SR_Location
+class SR_SearchRoom extends SR_Tower
 {
 	public function isLocked() { return false; } 
 	public function getLockLevel() { return 0.0; } # 0.0-10.0
@@ -9,6 +9,21 @@ class SR_SearchRoom extends SR_Location
 	public function isSearchable() { return true; }
 	public function getSearchMaxAttemps() { return 2; }
 	public function getSearchLevel() { return 0; }
+	public function getSearchLoot(SR_Player $player) { return array(); }
+	
+	public function getHelpText(SR_Player $player)
+	{
+		$back = '';
+		if (count($this->getComputers()) > 0)
+		{
+			$back .= ' You can use a Cyberdeck here to hack into a computer.';
+		}
+		if ($this->isSearchable())
+		{
+			$back .= ' You can use #search here to search the room for items.';
+		}
+		return $back === '' ? false : substr($back, 1);
+	}
 	
 	public function getCommands(SR_Player $player)
 	{
@@ -35,22 +50,25 @@ class SR_SearchRoom extends SR_Location
 		
 		if ($attemp >= $this->getSearchMaxAttemps())
 		{
-			$player->message('Not again.');
+			$player->message('NoSR_SearchRoomt again.');
 			return;
 		}
 		
 		$attemp++;
 		$player->setTemp($key, $attemp);
 
-		$loot = Shadowfunc::randLoot($player, $this->getSearchLevel());
-		if (count($loot) > 0) {
+		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel()), $this->getSearchLoot($player));
+		
+		if (count($loot) > 0)
+		{
 			$player->message(sprintf('You search the %s...', $this->getName()));
-			$player->giveItems($loot);
-		} else {
+			$player->giveItems($loot, 'searching '.$this->getName());
+		}
+		else
+		{
 			$player->message(sprintf('You search the %s... but find nothing.', $this->getName()));
 		}
 	}
-	
 	
 	public function clearSearchCache(SR_Party $party)
 	{
@@ -135,7 +153,7 @@ class SR_SearchRoom extends SR_Location
 				return true;
 			}
 		}
-		parent::onEnter($player);
+		return parent::onEnter($player);
 	}
 
 	##################

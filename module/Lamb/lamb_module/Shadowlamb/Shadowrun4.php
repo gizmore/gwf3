@@ -16,7 +16,8 @@ final class Shadowrun4
 	private static $GMS = array('gizmore');
 	public static function isGM(SR_Player $player)
 	{
-		if (NULL === ($user = $player->getUser())) {
+		if (NULL === ($user = $player->getUser()))
+		{
 			return false;
 		}
 //		if (!$user->isLoggedIn()) {
@@ -34,7 +35,7 @@ final class Shadowrun4
 	
 	public static function getParties() { return self::$parties; }
 	public static function getPlayers() { return self::$players; }
-	
+	public static function getCityCount() { return count(self::$cities); }
 	
 	/**
 	 * @param string $name
@@ -42,8 +43,9 @@ final class Shadowrun4
 	 */
 	public static function getCity($name)
 	{
-		if (!isset(self::$cities[$name])) {
-			Lamb_Log::log(sprintf('Unknown city: %s.', $name));
+		if (!isset(self::$cities[$name]))
+		{
+			Lamb_Log::logError(sprintf('Unknown city: %s.', $name));
 			return false;
 		}
 		return self::$cities[$name];
@@ -57,6 +59,15 @@ final class Shadowrun4
 			$party->setTimestamp(self::getTime());
 			self::$parties[$pid] = $party;
 		}
+	}
+	
+	public static function getLocationByTarget($target)
+	{
+		if (false === ($city = self::getCity(Common::substrUntil($target, '_'))))
+		{
+			return false;
+		}
+		return $city->getLocation(Common::substrFrom($target, '_', ''));
 	}
 	
 	/**
@@ -91,20 +102,24 @@ final class Shadowrun4
 	}
 	
 	/**
+	 * Get or load a player.
 	 * @param int $playerid
 	 * @return SR_Player
 	 */
 	public static function getPlayerByPID($playerid)
 	{
 		$playerid = (int)$playerid;
+		# Cached
 		if (isset(self::$players[$playerid]))
 		{
 			return self::$players[$playerid];
 		}
-		
-		if (false === ($player = SR_Player::getByID($playerid))) {
+		# Load?
+		if (false === ($player = SR_Player::getByID($playerid)))
+		{
 			return false;
 		}
+		# Cache
 		self::$players[$playerid] = $player;
 		return $player;
 	}
@@ -118,10 +133,10 @@ final class Shadowrun4
 		foreach (self::$players as $player)
 		{
 			$player instanceof SR_Player;
-			$user = $player->getUser();
-			if ($user instanceof Lamb_User)
+			if (NULL !== ($user = $player->getUser()))
+//			if ($user instanceof Lamb_User)
 			{
-				if ($uid === $user->getID())
+				if ($uid == $user->getID())
 				{
 					return $player;
 				}
@@ -131,6 +146,7 @@ final class Shadowrun4
 	}
 	
 	/**
+	 * Get a player by full name, including {server}.
 	 * @param string $name
 	 * @return SR_Player
 	 */
@@ -149,7 +165,20 @@ final class Shadowrun4
 	}
 	
 	/**
-	 * Get a player By Shortname from memory. returns 0 when not found. returns -1 when ambigious.
+	 * Load a player by name. Usually this username{serverid}
+	 * @param string $username
+	 */
+	public static function loadPlayerByName($username)
+	{
+		if (false === ($player = self::getPlayerByName($username)))
+		{
+			return SR_Player::getByLongName($username);
+		}
+		return $player;
+	}
+	
+	/**
+	 * Get a player By Shortname from memory. returns false when not found. returns -1 when ambigious.
 	 * @param string $name
 	 * @return SR_Player|false|-1
 	 */
@@ -210,22 +239,23 @@ final class Shadowrun4
 	}
 	
 	/**
+	 * Get an NPC by name.
 	 * @param string $name
 	 * @return SR_NPC
 	 */
 	public static function getNPC($name)
 	{
-		if (false === ($cityname = Common::substrUntil($name, '_', false))) {
-			Lamb_Log::log(sprintf('Shadowrun4::getNPC(%s) failed no cityname.', $name));
-			return false;
+		if (false === ($cityname = Common::substrUntil($name, '_', false)))
+		{
+			return Lamb_Log::logError(sprintf('Shadowrun4::getNPC(%s) failed no cityname.', $name));
 		}
-		if (false === ($city = self::getCity($cityname))) {
-			Lamb_Log::log(sprintf('Shadowrun4::getNPC(%s) failed no city.', $name));
-			return false;
+		if (false === ($city = self::getCity($cityname)))
+		{
+			return Lamb_Log::logError(sprintf('Shadowrun4::getNPC(%s) failed no city.', $name));
 		}
-		if (false === ($npc = $city->getNPC($name))) {
-			Lamb_Log::log(sprintf('Shadowrun4::getNPC(%s) failed no such NPC.', $name));
-			return false;
+		if (false === ($npc = $city->getNPC($name)))
+		{
+			return Lamb_Log::logError(sprintf('Shadowrun4::getNPC(%s) failed no such NPC.', $name));
 		}
 		return $npc;
 	}
@@ -234,9 +264,10 @@ final class Shadowrun4
 	### Init ###
 	############
 	public static function includeFile($filename, $fullpath) { require_once $fullpath; }
-	public static function init(Lamb_Server $server)
+	public static function init()
 	{
-		Lamb_Log::log('Shadowrun4::init()');
+		Lamb_Log::logDebug(__METHOD__);
+		
 		static $inited = false;
 		if ($inited === false)
 		{
@@ -247,13 +278,12 @@ final class Shadowrun4
 			self::initItems(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
+			self::initQuests(Lamb::DIR);
 			
 			require_once 'SR_Install.php';
-			SR_Install::onInstall(false);
+			SR_Install::onInstall();
 			
 			self::reloadParties();
-			
-			Lamb::instance()->addTimer($server, array(__CLASS__, 'shadowTimer'), NULL, 1.0);
 			
 			Shadowrap::init();
 			
@@ -261,14 +291,22 @@ final class Shadowrun4
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
 		}
 	}
+	public static function initTimers()
+	{
+		$bot = Lamb::instance();
+		$bot->addTimer(array(__CLASS__, 'shadowTimer'), 1.0);
+		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), SR_Player::HP_REFRESH_TIMER);
+		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), SR_Player::MP_REFRESH_TIMER);
+	}
 	
 	public static function initCmds($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/cmd', array(__CLASS__, 'includeFile')); }
 	public static function initCore($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/core', array(__CLASS__, 'includeFile')); }
 	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); }
 	public static function initSpells($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/spell', array('SR_Spell', 'includeSpell')); }
 	public static function initCities($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
+	public static function initQuests($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/quest', array('SR_Quest', 'includeQuest')); }
 	public static function initTimer() { self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp'); }
-	
+
 	private static function reloadParties()
 	{
 		$table = GWF_TABLE_PREFIX.'sr4_party';
@@ -292,7 +330,7 @@ final class Shadowrun4
 	
 	public static function initCity($entry, $fullpath)
 	{
-		Lamb_Log::log(sprintf('Shadowrun4::initCity(%s)', $entry));
+		Lamb_Log::logDebug(sprintf('Shadowrun4::initCity(%s)', $entry));
 		require_once $fullpath."/$entry.php";
 		self::$cities[$entry] = $city = new $entry($entry);
 		GWF_File::filewalker($fullpath.'/location', array($city, 'initLocations'));
@@ -332,17 +370,13 @@ final class Shadowrun4
 	#############
 	private static $sr_timestamp = 0;
 	public static function getTime() { return self::$sr_timestamp; }
-	public static function shadowTimer(Lamb_Server $server)
+	public static function shadowTimer()
 	{
 		# Execute Web Commands
 		self::shadowTimerWebcommands();
 		
 		# 1 second over in the Shadowlamb world.
 		self::$sr_timestamp = GWF_Counter::getAndCount('Lamb_SR4_Timestamp');
-//		Lamb_Log::log(sprintf('Shadowrun4::shadowTimer(%s) with %d parties.', self::$sr_timestamp, count(self::$parties)));
-		
-		# Call timer in 1 second again
-		Lamb::instance()->addTimer($server, array(__CLASS__, 'shadowTimer'), NULL, 1.0);
 		
 		# All parties:
 		$partyids = array_keys(self::$parties);
@@ -363,7 +397,6 @@ final class Shadowrun4
 			}
 		}
 	}
-	
 	private static function shadowTimerWebcommands()
 	{
 		$table = GDO::table('Lamb_IRCTo');
@@ -382,6 +415,22 @@ final class Shadowrun4
 		}
 		$table->free($result);
 		$table->truncate();
+	}
+	public static function shadowTimerRefreshHP()
+	{
+		foreach (self::$players as $player)
+		{
+			$player instanceof SR_Player;
+			$player->refreshHPTimer();
+		}
+	}
+	public static function shadowTimerRefreshMP()
+	{
+		foreach (self::$players as $player)
+		{
+			$player instanceof SR_Player;
+			$player->refreshMPTimer();
+		}
 	}
 }
 ?>

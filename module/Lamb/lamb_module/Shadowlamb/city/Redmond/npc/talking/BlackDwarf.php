@@ -3,7 +3,7 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 {
 	const TEMP_WORD = 'Redmond_BlackDwarf_sr';
 	public function getName() { return 'Galdor'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quest = SR_Quest::getQuest($player, 'Redmond_Blacksmith');

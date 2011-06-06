@@ -19,7 +19,7 @@ final class Quest_Redmond_Ueberpunk extends SR_Quest
 		$player->message('The biker says: "Haha chummer, good job. Take this." - He hands you '.$ny.' nuyen and a BikerHelmet. You also gained '.$xp.' XP.');
 		$player->giveXP($xp);
 		$player->giveNuyen($ny);
-		$player->giveItems(SR_Item::createByName('BikerHelmet'));
+		$player->giveItems(array(SR_Item::createByName('BikerHelmet')));
 	}
 }
 ?>

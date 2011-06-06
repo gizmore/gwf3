@@ -36,7 +36,7 @@ final class Seattle_Ninja extends SR_NPC
 		{
 			if (rand(1, 3) === 1)
 			{
-				return array('Tengui');
+				return array('Tenugui');
 			}
 		}
 		return array();

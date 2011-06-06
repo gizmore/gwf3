@@ -4,7 +4,7 @@ final class Redmond_Helldrinker extends SR_TalkingNPC
 	const TEMP_WORD = 'Redmond_Helldrinker';
 	
 	public function getName() { return 'The guest'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quest = SR_Quest::getQuest($player, 'Redmond_Punks');

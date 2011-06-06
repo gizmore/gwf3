@@ -42,23 +42,18 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 			case 'shadowrun':
 				$npc->reply('Oh you want to help me again? That is very kind of you :)');
 				$npc->reply('Well ... to be honest i am short on nuyen, and i need to hire a decker to get me into level2 of the Renraku office.');
-				$npc->reply('If you could give me %s, so i can continue my research ... what do you think?', $this->displayNuyen());
+				$npc->reply(sprintf('If you could give me %s, so i can continue my research ... what do you think?', $this->displayNuyen()));
 				break;
-			
 			case 'confirm':
-				$npc->reply(sprintf('I think it is of your own interest to know the truth.'));
+				$npc->reply('I think it is of your own interest to know the truth.');
 				break;
-				
 			case 'yes':
-				$npc->reply(sprintf('Yes, it\'s horrible.'));
+				$npc->reply('Yes, it\'s horrible.');
 				break;
-				
 			case 'no':
-				$npc->reply(sprintf('Too bad.'));
+				$npc->reply('Too bad.');
 				break;
 		}
 	}
-	
-	
 }
 ?>

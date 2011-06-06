@@ -16,7 +16,9 @@ final class Seattle_Killer extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Knife'); }
-	public function getNPCModifiers() {
+	
+	public function getNPCModifiers()
+	{
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
@@ -30,6 +32,17 @@ final class Seattle_Killer extends SR_NPC
 			'nuyen' => rand(50, 100),
 			'base_hp' => rand(4, 8),
 		);
+	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson1');
+		if ($quest->isInQuest($player))
+		{
+			$quest->increase('sr4qu_amount', 1);
+			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
+		}
+		return array();
 	}
 }
 ?>

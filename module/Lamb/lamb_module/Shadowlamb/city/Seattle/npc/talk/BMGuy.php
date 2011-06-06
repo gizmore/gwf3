@@ -38,7 +38,7 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 	}
 	
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson3');
 		

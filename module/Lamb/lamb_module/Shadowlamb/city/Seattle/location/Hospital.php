@@ -11,17 +11,20 @@ final class Seattle_Hospital extends SR_Hospital
 	
 	public function getStoreItems(SR_Player $player)
 	{
-		return array(
-			array('Sporn'),
-			array('Headcomputer'),
-			array('SmartGoggles'),
-			array('Cybermuscles'),
-			array('CybermusclesV2'),
-			array('DermalPlates'),
-			array('DermalPlatesV2'),
-			array('WiredReflexes'),
-			array('WiredReflexesV2'),
-		);
+		$back = array();
+		$rep = $player->get('reputation');
+		
+		$back[] = array('Headcomputer');
+		$back[] = array('SmartGoggles');
+		$back[] = array('Cybermuscles');
+		$back[] = array('CybermusclesV2');
+		$back[] = array('DermalPlates');
+		if ($rep >= 2) $back[] = array('DermalPlatesV2');
+		$back[] = array('WiredReflexes');
+		if ($rep >= 2) $back[] = array('WiredReflexesV2');
+		$back[] = array('Sporn');
+		
+		return $back;
 	}
 }
 ?>

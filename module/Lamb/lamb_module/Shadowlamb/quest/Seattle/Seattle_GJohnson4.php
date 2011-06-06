@@ -1,5 +1,5 @@
 <?php
-final class Quest_Seattle_GJohnson3 extends SR_Quest
+final class Quest_Seattle_GJohnson4 extends SR_Quest
 {
 	const REWARD_XP = 4;
 	const REWARD_NUYEN = 2500;

@@ -74,6 +74,7 @@ final class Quest_Seattle_BD1 extends SR_Quest
 		}
 		
 		$reward = $possible[array_rand($possible, 1)];
+		
 		$back = array();
 		foreach ($reward as $itemname)
 		{

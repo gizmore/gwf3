@@ -1,6 +1,8 @@
 <?php
 final class Renraku_Secretary extends SR_TalkingNPC
 {
+	public function getName() { return 'The secretary'; }
+	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);

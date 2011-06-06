@@ -29,8 +29,7 @@ final class Harbor_Depot3 extends SR_SearchRoom
 		{
 			return false;
 		}
-		
-		return parent::onEnter($player);
+		return true;
 	}
 }
 ?>

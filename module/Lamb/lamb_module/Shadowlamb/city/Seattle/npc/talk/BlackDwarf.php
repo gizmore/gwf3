@@ -4,7 +4,7 @@ final class Seattle_BlackDwarf extends SR_TalkingNPC
 	public function getName() { return 'Tuldir'; }
 	public function getNPCQuests(SR_Player $player) { return array('Seattle_BD1','Seattle_BD2','Seattle_BD3','Seattle_BD4'); }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b=chr(2);
 		if ($this->onNPCQuestTalk($player, $word)) {

@@ -2,7 +2,7 @@
 final class Redmond_jmoncayo extends SR_TalkingNPC
 {
 	public function getName() { return 'jmoncayo'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		switch ($word)
 		{

@@ -2,7 +2,7 @@
 final class Seattle_DElve extends SR_TalkingNPC
 {
 	public function getName() { return 'Malois'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$key = 'Seattle_DElve_R';

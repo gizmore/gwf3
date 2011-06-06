@@ -6,7 +6,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 	
 	private $price = 500;
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$bm = 'Seattle_AresMan_BM';

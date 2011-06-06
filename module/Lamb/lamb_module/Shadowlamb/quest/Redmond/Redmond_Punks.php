@@ -24,7 +24,7 @@ final class Quest_Redmond_Punks extends SR_Quest
 		$player->message('The biker cheers: "Here chummer, you may now wear our jacket." - He hands you a biker jacket and 150 nuyen. You also gained 2 XP.');
 		$player->giveNuyen(150);
 		$player->giveXP(2);
-		$player->giveItems(SR_Item::createByName('BikerJacket'));
+		$player->giveItems(array(SR_Item::createByName('BikerJacket')));
 	}
 }
 ?>

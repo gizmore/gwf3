@@ -18,7 +18,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 		return false;
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		if (false === $this->meleeSkill($player, $word)) {
 			return;

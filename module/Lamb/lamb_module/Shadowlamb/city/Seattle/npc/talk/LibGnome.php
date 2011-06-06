@@ -5,7 +5,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 	
 	public function getName() { return 'Federico'; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quests = array(

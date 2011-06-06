@@ -5,6 +5,7 @@ final class Shadowcmd_info extends Shadowcmd
 	{
 		$p = $player->getParty();
 		$bot = Shadowrap::instance($player);
+		
 		if ($p->isInsideLocation())
 		{
 			$l = $p->getLocationClass();
@@ -12,7 +13,7 @@ final class Shadowcmd_info extends Shadowcmd
 		}
 		elseif ($p->isOutsideLocation())
 		{
-			$l = $p->getLocationClass('outside');
+			$l = $p->getLocationClass();
 			$bot->reply($l->getFoundText($player));
 		}
 	}

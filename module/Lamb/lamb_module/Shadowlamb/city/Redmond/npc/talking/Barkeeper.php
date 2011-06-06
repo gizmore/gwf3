@@ -5,7 +5,7 @@ final class Redmond_Barkeeper extends SR_TalkingNPC
 	
 	public function getName() { return 'The barkeeper'; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$quest = SR_Quest::getQuest($player, 'Redmond_Barkeeper');

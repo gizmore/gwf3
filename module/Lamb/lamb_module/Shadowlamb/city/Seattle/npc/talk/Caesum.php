@@ -2,7 +2,7 @@
 final class Seattle_Caesum extends SR_TalkingNPC
 {
 	public function getName() { return 'Caesum'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		switch ($word)
 		{

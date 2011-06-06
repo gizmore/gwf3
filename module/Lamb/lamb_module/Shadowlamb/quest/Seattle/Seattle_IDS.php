@@ -25,7 +25,7 @@ final class Quest_Seattle_IDS extends SR_Quest
 		$player->message('Malois sneakily hands you '.$nuyen.' Nuyen and a piece of paper.');
 		$player->giveNuyen($nuyen);
 		$note = SR_Item::createByName('Note');
-		$player->giveItems($note);
+		$player->giveItems(array($note));
 	}
 }
 ?>

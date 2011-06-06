@@ -2,7 +2,7 @@
 final class Redmond_SecondHandTroll extends SR_TalkingNPC
 {
 	public function getName() { return 'The Troll'; }
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		switch ($word)
 		{

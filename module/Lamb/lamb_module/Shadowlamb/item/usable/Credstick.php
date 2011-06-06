@@ -40,7 +40,7 @@ class Item_Credstick extends SR_Usable
 		$p = $player->getParty();
 		if ( (!$p->isInsideLocation()) || (!$p->getLocationClass()->hasATM()) )
 		{
-			$this->reply($player, "You are not inside a location with an ATM. Towers and buildings usually don't have those.");
+			$this->reply($player, "You are not inside a location with an ATM. Towers and dungeons usually don't have those.");
 			return false;
 		}
 		

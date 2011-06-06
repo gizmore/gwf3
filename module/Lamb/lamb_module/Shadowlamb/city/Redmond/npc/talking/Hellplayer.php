@@ -13,7 +13,7 @@ final class Redmond_Hellplayer extends SR_TalkingNPC
 		SR_NPC::createEnemyParty('Redmond_ToughGuy','Redmond_ToughGuy')->fight($party, true);
 	}
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
 		$t = self::TEMP_WORD;

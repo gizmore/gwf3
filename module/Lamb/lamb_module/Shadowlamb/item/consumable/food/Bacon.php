@@ -10,9 +10,8 @@ final class Item_Bacon extends SR_Food
 	public function onConsume(SR_Player $player)
 	{
 		$oldhp = $player->getHP();
-		$gain = $player->healHP(rand(5,8));
+		$gain = $player->healHP(Shadowfunc::diceFloat(1.0, 3.0, 1));
 		$player->getParty()->message($player, 'ate some bacon. '.Shadowfunc::displayHPGain($oldhp, $gain, $player->getMaxHP()));
 	}
-	
 }
 ?>

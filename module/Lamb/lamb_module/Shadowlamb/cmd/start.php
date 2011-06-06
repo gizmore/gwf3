@@ -6,28 +6,36 @@ final class Shadowcmd_start extends Shadowcmd
 		$bot = Shadowrap::instance($player);
 		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);
-		if ($player->isCreated()) {
-			return $bot->reply('Your character has been created already. You can type '.$c.'reset to start over.');
+		
+		if ($player->isCreated())
+		{
+			$bot->reply('Your character has been created already. You can type '.$c.'reset to start over.');
+			return false;
 		}
 
-		$races = SR_Player::getHumanRaces();
-		$races = implode(', ', $races);
+		$races2 = SR_Player::getHumanRaces();
+		$races = implode(', ', $races2);
 		$genders = implode(', ', array_keys(SR_Player::$GENDER));
 		
 		if (count($args) !== 2)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'start'));
-			return $bot->reply(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
+			$bot->reply(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
+			return false;
 		}
 		
 		$race = strtolower($args[0]);
-		if (!SR_Player::isValidRace($race)) {
-			return $bot->reply('Your race is unknown. Valid races: '.$races.'.');
+		if (!in_array($race, $races2, true))
+		{
+			$bot->reply('Your race is unknown or an NPC only race. Valid races: '.$races.'.');
+			return false;
 		}
 
 		$gender = strtolower($args[1]);
-		if (!SR_Player::isValidGender($gender)) {
-			return $bot->reply('Your gender is unknown. Valid genders: '.$genders.'.');
+		if (!SR_Player::isValidGender($gender))
+		{
+			$bot->reply('Your gender is unknown. Valid genders: '.$genders.'.');
+			return false;
 		}
 		
 		$player->saveOption(SR_Player::CREATED, true);
@@ -43,10 +51,10 @@ final class Shadowcmd_start extends Shadowcmd
 		$player->message("You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.");
 		$player->help("Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files.");
 	
-		$player->giveItems(SR_Item::createByName('Pen'));
+		$player->giveItems(array(SR_Item::createByName('Pen')));
 		$player->giveKnowledge('words', 'Renraku');
+		$player->giveKnowledge('words', 'Shadowrun');
 		$player->giveKnowledge('places', 'Redmond_Hotel');
-		
 		return true;
 	}
 }

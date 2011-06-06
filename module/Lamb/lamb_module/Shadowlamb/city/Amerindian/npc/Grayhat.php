@@ -41,6 +41,5 @@ final class Amerindian_Grayhat extends SR_NPC
 			'blow' => 2,
 		); 
 	}
-//	public function getNPCLoot(SR_Player $player) { return array('Cake'); }
 }
 ?>

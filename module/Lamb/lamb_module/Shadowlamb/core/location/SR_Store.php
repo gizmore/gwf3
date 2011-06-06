@@ -2,6 +2,7 @@
 abstract class SR_Store extends SR_Location
 {
 	public function getCommands(SR_Player $player) { return array('view','buy','sell'); }
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "In shops you can use {$c}view, {$c}buy and {$c}sell."; }
 	
 	/**
 	 * Get the items available at the store.
@@ -165,31 +166,33 @@ abstract class SR_Store extends SR_Location
 	public function on_buy(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1) {
+		if (count($args) !== 1)
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'buy'));
 			return false;
 		}
-		if (false === ($item = $this->getStoreItem($player, $args[0]))) {
+		if (false === ($item = $this->getStoreItem($player, $args[0])))
+		{
 			$bot->reply('We don`t have that item.');
 			return false;
 		}
 		
 		$price = $item->getStorePrice();
-		if (false === ($player->pay($price))) {
+		if (false === ($player->pay($price)))
+		{
 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayPrice($price), Shadowfunc::displayPrice($player->getBase('nuyen'))));
 			return false;
 		}
 		
-		if (false === $item->insert()) {
+		if (false === $item->insert())
+		{
 			$bot->reply('Database error 5.');
 			return false;
 		}
 		
 		$bot->reply(sprintf('You paid %s and bought %s.', Shadowfunc::displayPrice($price), $item->getItemName()));
-		
-		$player->giveItems($item);
+		$player->giveItems(array($item));
 		$player->modify();
-		
 		return true;
 	}
 	

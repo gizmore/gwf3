@@ -4,7 +4,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 	public function getName() { return 'The hotelier'; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
-	public function onNPCTalk(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		$quest = SR_Quest::getQuest($player, 'Renraku_I');
@@ -16,7 +16,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 				return;
 			}
 			elseif ($word === 'fuck') {
-				$player->giveItems(Shadowfunc::randLoot($player, 1111));
+				$player->giveItems(Shadowfunc::randLoot($player, 100), $this->getName());
 				return;
 			}
 			elseif ($word === 'elve') {
@@ -53,7 +53,9 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 			$player->giveKnowledge('words', 'Hello', 'Renraku');
 			sleep(1);
 			$this->reply('You were saying something about Renraku... Don`t ask me why ... but ... take this... and maybe wear some clothes... :S');
-			$player->giveItems(SR_Item::createByName('FirstAid'), SR_Item::createByName('Clothes'), SR_Item::createByName('Trousers'), SR_Item::createByName('Shoes'));
+			
+			$items = array(SR_Item::createByName('FirstAid'), SR_Item::createByName('Clothes'), SR_Item::createByName('Trousers'), SR_Item::createByName('Shoes'));
+			$player->giveItems($items, $this->getName());
 			$quest->accept($player);
 			sleep(1);
 			$player->help('Equip your items now with the #equip command. Try #(eq)uip 3, #(eq)uip Trousers and #eq Shoes.');
