@@ -9,7 +9,8 @@ abstract class SR_Cyberdeck extends SR_Usable
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$p = $player->getParty();
-		if (false === ($l = $p->getLocationClass(SR_Party::ACTION_INSIDE))) {
+		if (false === ($l = $p->getLocationClass(SR_Party::ACTION_INSIDE)))
+		{
 			$player->message('This item only works inside locations with computers.');
 			return false;
 		}
