@@ -2,7 +2,7 @@
 /**
  * Often used stuff.
  * @author gizmore
- * @version 3.0
+ * @version 3.01
  * @since 1.0
  */
 final class Common
@@ -141,20 +141,20 @@ final class Common
 	### Math Util ###
 	#################
 	/**
-	 * Clamp a numeric value.
-	 * bool as numeric param disables clamping / infinity
-	 * if val is a string it gets converted to double :S
+	 * Clamp a numeric value. NULL as min or max disables a check. $val should be an int or float. No conversion is done when something is in range.
 	 * @param $val mixed string or int or float or double
 	 * @param $min bool or numeric as above
 	 * @param $max bool or numeric as above
-	 * @return unknown_type
+	 * @return int|float
 	 */
 	public static function clamp($val, $min=NULL, $max=NULL)
 	{
-		if ($min !== NULL && $val < $min) {
+		if ($min !== NULL && $val < $min)
+		{
 			return $min;
 		}
-		if ($max !== NULL && $val > $max) {
+		if ($max !== NULL && $val > $max)
+		{
 			return $max;
 		}
 		return $val;
@@ -163,6 +163,11 @@ final class Common
 	###################
 	### String Util ###
 	###################
+	/**
+	 * UTF8 strlen.
+	 * @param string $str
+	 * @return int
+	 */
 	public static function strlen($str)
 	{
 		return mb_strlen($str, 'utf8');
@@ -199,7 +204,8 @@ final class Common
 	 * */
 	public static function substrUntil($string, $until, $default=NULL)
 	{
-		if (false === ($pos = strpos($string, $until))) {
+		if (false === ($pos = strpos($string, $until)))
+		{
 			return $default === NULL ? $string : $default;
 		}
 		return substr($string, 0, $pos);
@@ -234,7 +240,8 @@ final class Common
 	 */
 	public static function stripMessage($msg, $limit, $append='...')
 	{
-		if (strlen($msg)<=$limit) {
+		if (strlen($msg)<=$limit)
+		{
 			return $msg;
 		}
 		return (false === ($pos = strrpos($msg, ' ', -(strlen($msg)-$limit)))) ? $msg : substr($msg, 0, $pos).$append;
