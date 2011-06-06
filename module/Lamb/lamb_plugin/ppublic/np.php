@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%np. Show information of the current song played at http://slayradio.org
+<?php # Usage: %CMD%. Show information of the current song played at http://slayradio.org
 $url = 'http://slayradio.org/now_playing.php';
 
 if (false === ($result = GWF_HTTP::getFromURL($url))) {

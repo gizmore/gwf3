@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%wiki <page>. Search wikipedia.
+<?php # Usage: %CMD% <page>. Search wikipedia.
 $bot = Lamb::instance();
 
 return;

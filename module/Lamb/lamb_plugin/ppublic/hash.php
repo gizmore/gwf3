@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%hash [type] [<text to hash>]. Use PHP hash library to hash messages.
+<?php # Usage: %CMD% [type] [<text to hash>]. Use PHP hash library to hash messages.
 $algos = hash_algos();
 $algo = Common::substrUntil($message, ' ');
 $data = Common::substrFrom($message, ' ');

@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%stats. Prints bot statistics.
+<?php # Usage: %CMD%. Prints bot statistics.
 $servers = $bot->getServers();
 $chancount = 0;
 $usercount = 0;

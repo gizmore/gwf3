@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%help [command]. List all commands or show help for a command.
+<?php # Usage: %CMD% [command]. List all commands or show help for a command.
 
 # Sort
 if (!function_exists('lamb_help_sort_plugins'))
@@ -122,7 +122,10 @@ $help = '';
 foreach ($modules as $module)
 {
 	$module instanceof Lamb_Module;
-	if ('' !== ($help = $module->getHelp($command))) {
+	$h = $module->getHelp();
+	if ( (isset($h[$command])) && ('' !== ($help = $h[$command])) )
+//	if ('' !== ($help = $module->getHelp($command)))
+	{
 		break;
 	}
 }
@@ -155,7 +158,8 @@ if ($help === '')
 	return;
 }
 
-$help = str_replace('%TRIGGER%', LAMB_TRIGGER, $help);
+//$help = str_replace('%TRIGGER%', LAMB_TRIGGER, $help);
+$help = str_replace('%CMD%', LAMB_TRIGGER.$command, $help);
 $bot->reply($help);
 
 ?>

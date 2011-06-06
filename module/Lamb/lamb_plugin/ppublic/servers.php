@@ -1,37 +1,39 @@
-<?php # Usage: %TRIGGER%server_info <id|name>. Show info about a server.
+<?php # Usage: %CMD% <id|name>. Show info about a server.
+$b = chr(2);
 if ($message === '')
 {
-	$db = gdo_db();
-	$table = GWF_TABLE_PREFIX.'lamb_server';
-	$query = "SELECT serv_id, serv_name FROM $table ORDER BY serv_id ASC";
-	if (false === ($result = $db->queryRead($query))) {
+	if (false === ($result = $server->select('serv_id, serv_host', '', 'serv_id ASC')))
+	{
 		$bot->reply('Database error!');
 		return;
 	}
-	
 	$out = '';
 	$servercount = 0;
-	while (false !== ($s = $db->fetchRow($result)))
+	while (false !== ($s = $server->fetch($result, GDO::ARRAY_N)))
 	{
 		$servercount++;
-		$out .= sprintf(', %s(%s)', Common::getTLD($s[1]), $s[0]);
+		$out .= sprintf(", {$b}%s{$b}-%s", $s[0], Common::getTLD($s[1]));
 	}
-	$db->free($result);
+	$server->free($result);
 	
 	$out = sprintf('%s server(s) in the database: %s.', $servercount, substr($out, 2));
 	$bot->reply($out);
+	
 	return;
 } 
+
 if (is_numeric($message))
 {
-	if (false === ($s = Lamb_Server::getByID($message))) {
+	if (false === ($s = Lamb_Server::getByID($message)))
+	{
 		$bot->reply('This server is unknown.');
 		return;
 	}
 }
 else
 {
-	if (false === ($s = Lamb_Server::getByHost($message))) {
+	if (false === ($s = Lamb_Server::getByHost($message)))
+	{
 		$bot->reply('This server is unknown.');
 		return;
 	}
@@ -39,12 +41,11 @@ else
 
 $s instanceof Lamb_Server;
 $id = $s->getID();
-$name = $s->getName();
+$name = $s->getHostname();
 $port = $s->getPort();
 $ssl = $s->isSSL() ? ' (SSL)' : '';
 $ip = $s->getIP();
 $maxu = $s->getMaxUsers();
 $maxc = $s->getMaxChannels();
-$b = chr(2);
-$bot->reply(sprintf("Server %s - $b%s$b:%s%s (%s) - Maxusers: %s, Maxchans: %s", $id, $name, $port, $ssl, $ip, $maxu, $maxc));
+$bot->reply(sprintf("Server %s-$b%s$b:%s%s (%s) - Maxusers: %s, Maxchans: %s", $id, $name, $port, $ssl, $ip, $maxu, $maxc));
 ?>

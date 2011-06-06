@@ -1,3 +1,3 @@
-<?php # Usage: %TRIGGER%ping. Useful to check your irc connection.
+<?php # Usage: %CMD%. Useful to check your irc connection.
 $bot->reply('pong!');
 ?>

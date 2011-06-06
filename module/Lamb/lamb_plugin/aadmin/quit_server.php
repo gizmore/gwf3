@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%quit_server [<id>]. Quit this server or another server by ID.
+<?php # Usage: %CMD% [<id>]. Quit this server or another server by ID.
 $bot instanceof Lamb;
 
 if ($message === '') {

@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%math <expression>. Evaluate a math expression and print results.
+<?php # Usage: %CMD% <expression>. Evaluate a math expression and print results.
 $bot instanceof Lamb;
 $path = 'inc3p/EvalMath.php';
 if (!Common::isFile($path)) {

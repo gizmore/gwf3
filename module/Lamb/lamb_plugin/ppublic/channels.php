@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%channels [server]
+<?php # Usage: %CMD% [server]
 
 # Pick Server
 if ($message === '')

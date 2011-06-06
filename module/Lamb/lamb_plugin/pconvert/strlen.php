@@ -1,3 +1,3 @@
-<?php # Usage: %TRIGGER%strlen <string>. Print the length of an ascii string. See %TRIGGER%strlen8.
+<?php # Usage: %CMD% <string>. Print the length of an ascii string. See %CMD%.
 $bot->reply(strlen($message));
 ?>

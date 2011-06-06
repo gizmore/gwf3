@@ -1,4 +1,4 @@
-<?php # Reset a user password. Usage: %TRIGGER%passwd <username> <password>
+<?php # Reset a user password. Usage: %CMD% <username> <password>
 $bot instanceof Lamb;
 $server instanceof Lamb_Server;
 $args = explode(' ', $message);

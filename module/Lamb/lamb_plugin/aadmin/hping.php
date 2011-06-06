@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%hping <host>. Ping a target server.
+<?php # Usage: %CMD% <host>. Ping a target server.
 $host = Common::substrUntil($message, ' ', $message);
 if (!preg_match('/^[a-z0-9\.\-]+$/i', $host)) {
 	$bot->reply('The host looks invalid.');

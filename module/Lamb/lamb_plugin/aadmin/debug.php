@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%debug. Prints some statistics to the console.
+<?php # Usage: %CMD%. Prints some statistics to the console.
 $channels = $server->getChannels();
 echo PHP_EOL;
 echo PHP_EOL;

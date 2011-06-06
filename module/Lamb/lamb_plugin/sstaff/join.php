@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%join <channel>. Make the bot join a channel.
+<?php # Usage: %CMD% <channel>. Make the bot join a channel.
 $channel = Common::substrUntil($message, ' ');
 $channels = $server->getChannels();
 //if (isset($channels[$channel]))

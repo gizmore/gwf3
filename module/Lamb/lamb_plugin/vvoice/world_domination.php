@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%world_domination <evil plan>. Gain world domination with your evil plan. TODO: implement.
+<?php # Usage: %CMD% <evil plan>. Gain world domination with your evil plan. TODO: implement.
  
 $bot instanceof Lamb;
 $server instanceof Lamb_Server;

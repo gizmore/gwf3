@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%login <password>. Logs you in. Not needed if you are logged in to NickServ already.
+<?php # Usage: %CMD% <password>. Logs you in. Not needed if you are logged in to NickServ already.
 if ($user->isLoggedIn())
 {
 	$bot->reply('You are already logged in. Maybe by NickServ.');

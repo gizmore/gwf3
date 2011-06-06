@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%dec2utf <decimal numbers separated by space>. Convert decimal numbers to utf8 text. See also hex2utf.
+<?php # Usage: %CMD% <decimal numbers separated by space>. Convert decimal numbers to utf8 text. See also hex2utf.
 if ($message === '') {
 	$bot->reply('You have to append hexadecimal numbers to this command.');
 	return;

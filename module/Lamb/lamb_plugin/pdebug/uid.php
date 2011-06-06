@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%uid [<username>]. Display the global unique userid of a user located on this server.
+<?php # Usage: %CMD% [<username>]. Display the global unique userid of a user located on this server.
 $server instanceof Lamb_Server;
 if ($message === '') {
 	$u = $user;

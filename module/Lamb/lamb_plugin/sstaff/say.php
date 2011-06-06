@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%say <target> <the message ...>. Send a message to an arbitary target. 
+<?php # Usage: %CMD% <target> <the message ...>. Send a message to an arbitary target. 
 $bot instanceof Lamb;
 $server instanceof Lamb_Server;
 $t = explode(' ', trim($message), 2);

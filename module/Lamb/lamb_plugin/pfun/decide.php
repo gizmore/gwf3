@@ -1,4 +1,4 @@
-<?php # Usage : %TRIGGER%decide <option1>[ or <optionN> ... ]. Let the bot choose of a set of options for you.
+<?php # Usage : %CMD% <option1>[ or <optionN> ... ]. Let the bot choose of a set of options for you.
 $bot = Lamb::instance();
 
 # Last input

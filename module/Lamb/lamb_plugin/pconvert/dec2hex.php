@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%dec2hex <decimal numbers separated by space>. Convert dec into hex. See also hex2dec.
+<?php # Usage: %CMD% <decimal numbers separated by space>. Convert dec into hex. See also hex2dec.
 
 if ($message === '') {
 	$bot->reply('You have to append hexadecimal numbers to this command.');

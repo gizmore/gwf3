@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%utf2hex <text>. Convert utf8 text into hexadecimal numbers.
+<?php # Usage: %CMD% <text>. Convert utf8 text into hexadecimal numbers.
 if (!function_exists('mb_strlen')) {
 	$bot->reply('Missing function: mb_strlen!');
 	return;

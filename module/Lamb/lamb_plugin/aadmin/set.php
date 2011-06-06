@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%set [<var>] [<value>]. Set a config var to a new value or get the current value.
+<?php # Usage: %CMD% [<var>] [<value>]. Set a config var to a new value or get the current value.
 // List all
 if ($message === '')
 {

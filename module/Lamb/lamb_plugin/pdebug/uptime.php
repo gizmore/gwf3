@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%uptime. Print statistics about the bots uptime.
+<?php # Usage: %CMD%. Print statistics about the bots uptime.
 $now = microtime(true) - GWF_Settings::getSetting('_lamb3_startuptime');
 //$now = GWF_Settings::getSetting('_lamb3_shutdowntime') - GWF_Settings::getSetting('_lamb3_startuptime');
 $total = GWF_Settings::getSetting('_lamb3_uptime');

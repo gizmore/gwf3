@@ -1,4 +1,4 @@
-<?php # Query wechall for user or site info. Usage: %TRIGGER%wc <username|rank> || %TRIGGER%wc !site <sitename> || %TRIGGER%wc !sites <username> || %TRIGGER%wc !<sitename> <username|rank>
+<?php # Query wechall for user or site info. Usage: %CMD% <username|rank> || %CMD% !site <sitename> || %CMD% !sites <username> || %CMD% !<sitename> <username|rank>
 $bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;

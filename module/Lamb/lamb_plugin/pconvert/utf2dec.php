@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%utf2dec <text>. Convert utf8 text into decimal numbers.
+<?php # Usage: %CMD% <text>. Convert utf8 text into decimal numbers.
 if (!function_exists('mb_strlen')) {
 	$bot->reply('Missing function: mb_strlen!');
 	return;

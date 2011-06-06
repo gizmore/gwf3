@@ -1,4 +1,4 @@
-<?php # Usage: %TRIGGER%seen <username>. Show the last message from a user.
+<?php # Usage: %CMD% <username>. Show the last message from a user.
 $bot instanceof Lamb;
 $user instanceof Lamb_User; 
 $server instanceof Lamb_Server;
