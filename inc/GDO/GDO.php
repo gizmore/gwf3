@@ -419,9 +419,7 @@ abstract class GDO
 			case self::ARRAY_A: return $db->fetchAssoc($result);
 			case self::ARRAY_N: return $db->fetchRow($result);
 			case self::ARRAY_O: return (false === ($row = $db->fetchAssoc($result))) ? false : $this->createObject($row);
-			default: 
-				echo GWF_Debug::backtrace();
-				die("Unknown fetch() r_type: $r_type in ".__METHOD__.' line '.__LINE__);				
+			default: die("Unknown fetch() r_type: $r_type in ".__METHOD__.' line '.__LINE__);				
 		}
 	}
 	
