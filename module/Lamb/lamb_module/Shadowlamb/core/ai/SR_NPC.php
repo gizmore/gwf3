@@ -293,7 +293,7 @@ abstract class SR_NPC extends SR_NPCBase
 	private function getCombatSpell()
 	{
 		$spells = $this->getCombatSpells();
-		var_dump($spells);
+//		var_dump($spells);
 		return count($spells) > 0 ? $spells[array_rand($spells, 1)] : false;
 	}
 	

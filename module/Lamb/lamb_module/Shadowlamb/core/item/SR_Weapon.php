@@ -40,7 +40,7 @@ abstract class SR_Weapon extends SR_Equipment
 		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
 		# Debug
-		Lamb_Log::log(sprintf('%s (ATK: %s HP: %s) vs. %s (DEF: %s HP: %s) = HITS: %s',$player->getName(),$atk,$player->getHP(),$target->getName(),$def,$target->getHP(),$hits));
+		Lamb_Log::logDebug(sprintf('%s (ATK: %s HP: %s) vs. %s (DEF: %s HP: %s) = HITS: %s',$player->getName(),$atk,$player->getHP(),$target->getName(),$def,$target->getHP(),$hits));
 		
 		# Miss
 		if ($hits < 1) {

@@ -52,7 +52,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 			return false;
 		}
 		
-//		Lamb_Log::log(sprintf('%s reloads his %s: Nee'))
+//		Lamb_Log::logDebug(sprintf('%s reloads his %s: Nee'))
 		
 		$ammo->useAmount($player, $put);
 		$this->increase('sr4it_ammo', $put);
@@ -60,8 +60,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 		if ($p->isFighting())
 		{
 			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
-//			$p->getEnemyParty()->message($player, $message);
 			$p->message($player, $message);
+//			$p->getEnemyParty()->message($player, $message);
 		}
 		else
 		{

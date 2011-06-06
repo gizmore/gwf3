@@ -18,6 +18,7 @@ abstract class SR_City
 	public function getGotoETA(SR_Party $party) { return $this->calcETA($party, $this->getGotoTime()); }
 	public function getExploreTime() { return $this->getSquareKM() * 45; }
 	public function getExploreETA(SR_Party $party) { return $this->calcETA($party, $this->getExploreTime()); }
+	
 	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{
 		$mount = $party->getBestMount();
@@ -31,7 +32,7 @@ abstract class SR_City
 	{
 		$name = substr($filename, 0, -4);
 		$classname = "{$this->name}_{$name}";
-		Lamb_Log::log("Loading NPC $classname...");
+		Lamb_Log::logDebug("Loading NPC $classname...");
 		SR_NPC::$NPC_COUNTER++;
 		require_once $fullpath;
 		$npc = new $classname(false);
@@ -43,7 +44,7 @@ abstract class SR_City
 	{
 		$name = substr($filename, 0, -4);
 		$classname = "{$this->name}_{$name}";
-		Lamb_Log::log("Loading Location $classname...");
+		Lamb_Log::logDebug("Loading Location $classname...");
 		SR_Location::$LOCATION_COUNT++;
 		require_once $fullpath;
 		$location = new $classname($classname);
@@ -59,15 +60,21 @@ abstract class SR_City
 	}
 	
 	/**
+	 * Get a location in this city by Full_Name
 	 * @param $name
 	 * @return SR_Location
 	 */
 	public function getLocation($name)
 	{
-		$name = str_ireplace($this->getName().'_', '', strtolower($name));
+		$name = str_replace(strtolower($this->getName()).'_', '', strtolower($name));
 		return isset($this->locations[$name]) ? $this->locations[$name] : false;
 	}
 	
+	/**
+	 * Get an NPC class from this city.
+	 * @param string $name
+	 * @return SR_NPC
+	 */
 	public function getNPC($name)
 	{
 		return isset($this->npcs[$name]) ? $this->npcs[$name] : false;
@@ -86,6 +93,7 @@ abstract class SR_City
 	{
 		foreach ($this->locations as $location)
 		{
+			$location instanceof SR_Location;
 			$location->onCityEnter($party);
 		}
 	}
@@ -195,7 +203,8 @@ abstract class SR_City
 	
 	private function onHunted(SR_Party $party)
 	{
-		if (false === ($target = $party->getHuntTarget())) {
+		if (false === ($target = $party->getHuntTarget()))
+		{
 			$this->onLostHuntTarget($party);
 			return;
 		}
@@ -206,7 +215,7 @@ abstract class SR_City
 			case SR_Party::ACTION_OUTSIDE:
 			case SR_Party::ACTION_SLEEP:
 			case SR_Party::ACTION_INSIDE:
-				$loc = $ep->getLocation($ep->getAction());
+				$loc = $ep->getLocation();
 				$party->giveKnowledge('places', $loc);
 				$party->notice(sprintf('You found %s at %s with a party of %s members.', $target->getName(), $loc, $ep->getMemberCount()));
 				$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
@@ -274,7 +283,7 @@ abstract class SR_City
 		$sqkm = $this->getSquareKM();
 		$possible = array();
 		$total = 0;
-		$total_sqkm = $sqkm * 25; // total slots in city
+		$total_sqkm = $sqkm * 3; // total slots in city
 		
 		foreach (Shadowrun4::getParties() as $ep)
 		{

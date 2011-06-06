@@ -2,13 +2,13 @@
 /**
  * Base NPC creation.
  * @author gizmore
+ * @see SR_NPC
  */
 abstract class SR_NPCBase extends SR_Player
 {
 	public static $NPC_COUNTER = 0;
-	
-	private $ai_decision;
-	
+	protected $chat_partner = NULL;
+	private $npc_classname;
 	
 	#################
 	### SR_Player ###
@@ -16,20 +16,31 @@ abstract class SR_NPCBase extends SR_Player
 	public function getName() { return sprintf('%s[%d]', $this->getVar('sr4pl_name'), $this->getID()); }
 	public function getShortName() { return $this->getName(); }
 	public function help($message) { $this->message($message); }
-	public function message($message) { Lamb_Log::log($message); }
 	public function isCreated() { return true; }
 	public function getLootNuyen() { return $this->getBase('nuyen'); }
 	public function getUser() { return NULL; }
 	
-	protected $chat_partner = NULL;
+	/**
+	 * NPC messages are queued to a player on remote commands.
+	 * @see SR_Player::message()
+	 */
+	public function message($message)
+	{
+		Lamb_Log::logDebug($message);
+		if (false !== ($user = $this->getRemotePlayer()))
+		{
+			$user->message($message);
+		}
+		return true;
+	}
 	
 	###########
 	### NPC ###
 	###########
-	private $npc_classname;
 	public function getNPCLevel() { return 9999; }
 	public function getLootXP() { return parent::getLootXP() + $this->getNPCLootXP(); }
 	public function getNPCLootXP() { return 0; }
+	public function getNPCCityClass() { return Shadowrun4::getCity(Common::substrUntil($this->getNPCClassName(), '_')); }
 	public function setNPCClassName($classname) { $this->npc_classname = $classname; }
 	public function getNPCClassName() { return $this->npc_classname; }
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
@@ -43,8 +54,8 @@ abstract class SR_NPCBase extends SR_Player
 	public function getNPCSpells() { return array(); }
 	public function getNPCCyberware() { return array(); }
 	public function getNPCLoot(SR_Player $player) { return array(); }
-	public function onNPCTalk(SR_Player $player, $word) { Lamb_Log::log(sprintf('IMPLEMENT: %s(%s)', __CLASS__, __METHOD__, $word)); }
-	public function onNPCTalkA(SR_Player $player, $word)
+	public function onNPCTalk(SR_Player $player, $word, array $args) {}
+	public function onNPCTalkA(SR_Player $player, $word, array $args)
 	{
 		if ($word === '') {
 			$word = 'hello';
@@ -56,7 +67,7 @@ abstract class SR_NPCBase extends SR_Player
 		}
 		
 		$this->chat_partner = $player;
-		$this->onNPCTalk($player, strtolower($word));
+		$this->onNPCTalk($player, strtolower($word), $args);
 
 //		foreach (SR_Player::$WORDS as $word2)
 //		{
@@ -124,6 +135,7 @@ abstract class SR_NPCBase extends SR_Player
 	
 	/**
 	 * Create a new enemy party with arbitary amount of enemies.
+	 * @see SR_NPCBase::spawn
 	 * @return SR_Party
 	 */
 	public static function createEnemyParty()
@@ -131,18 +143,20 @@ abstract class SR_NPCBase extends SR_Player
 		$names = array();
 		foreach (func_get_args() as $arg)
 		{
-			if (is_array($arg)) {
+			if (is_array($arg))
+			{
 				$names = array_merge($names, $arg);
 			}
-			else {
+			else
+			{
 				$names[] = $arg;
 			}
 		}
 		
 		# Validate
-		if (count($names) === 0) {
-			Lamb_Log::log('Can not create empty party!');
-			return false;
+		if (count($names) === 0)
+		{
+			Lamb_Log::logError('WARNING: Empty party is empty!');
 		}
 		
 		$npcs = array();
@@ -150,22 +164,25 @@ abstract class SR_NPCBase extends SR_Player
 		{
 			if (false === ($npc = Shadowrun4::getNPC($classname)))
 			{
-				Lamb_Log::log('Unknown NPC classname in createEnemyParty: '.$classname);
+				Lamb_Log::logError('Unknown NPC classname in createEnemyParty: '.$classname);
 				return false;
 			}
 			$npcs[] = $npc;
 		}
 		
 		$party = SR_Party::createParty();
+		
 		foreach ($npcs as $npc)
 		{
 			$npc instanceof SR_NPC;
-			if (false === $npc->spawn($party)) {
-				Lamb_Log::log('Failed to spawn NPC: '.$npc->getNPCClassName());
+			if (false === $npc->spawn($party))
+			{
+				Lamb_Log::logError('Failed to spawn NPC: '.$npc->getNPCClassName());
 			}
 		}
-		
+			
 		$party->updateMembers();
+		
 		return $party;
 	}
 	
@@ -195,27 +212,33 @@ abstract class SR_NPCBase extends SR_Player
 	 */
 	public function spawn(SR_Party $party)
 	{
-		if (false === ($npc = self::createNPC($this->getNPCClassName(), $party))) {
-			Lamb_Log::log(sprintf('SR_NPC::spawn() failed for NPC class: %s.', $this->getNPCClassName()));
+		if (false === ($npc = self::createNPC($this->getNPCClassName(), $party)))
+		{
+			Lamb_Log::logError(sprintf('SR_NPC::spawn() failed for NPC class: %s.', $this->getNPCClassName()));
 			return false;
 		}
 		
 		foreach ($this->getNPCEquipment() as $field => $itemname)
 		{
-			if (is_array($itemname)) {
+			if (is_array($itemname))
+			{
 				$itemname = Shadowfunc::randomListItem($itemname);
 			}
+			
 			if (!in_array($field, SR_Player::$EQUIPMENT, true))
 			{
-				Lamb_Log::log(sprintf('NPC %s has invalid equipment type: %s.', $this->getNPCPlayerName(), $field));
+				Lamb_Log::logError(sprintf('NPC %s has invalid equipment type: %s.', $this->getNPCPlayerName(), $field));
 				$npc->deletePlayer();
 				return false;
 			}
-			if (false === ($item = SR_Item::createByName($itemname))) {
-				Lamb_Log::log(sprintf('NPC %s has invalid %s: %s.', $this->getNPCPlayerName(), $field, $itemname));
+			
+			if (false === ($item = SR_Item::createByName($itemname)))
+			{
+				Lamb_Log::logError(sprintf('NPC %s has invalid %s: %s.', $this->getNPCPlayerName(), $field, $itemname));
 				$npc->deletePlayer();
 				return false;
 			}
+			
 			$item->saveVar('sr4it_uid', $npc->getID());
 			$npc->updateEquipment($field, $item);
 		}
@@ -228,8 +251,9 @@ abstract class SR_NPCBase extends SR_Player
 		$inv = array();
 		foreach ($this->getNPCInventory() as $itemname)
 		{
-			if (false === ($item = SR_Item::createByName($itemname))) {
-				Lamb_Log::log(sprintf('NPC %s has invalid inventory item: %s.', $this->getNPCPlayerName(), $itemname));
+			if (false === ($item = SR_Item::createByName($itemname)))
+			{
+				Lamb_Log::logError(sprintf('NPC %s has invalid inventory item: %s.', $this->getNPCPlayerName(), $itemname));
 				$npc->deletePlayer();
 				return false;
 			}
@@ -240,10 +264,10 @@ abstract class SR_NPCBase extends SR_Player
 		
 		$npc->saveSpellData($this->getNPCSpells());
 		
+		$npc->modify();
+		
 		$npc->healHP(10000);
 		$npc->healMP(10000);
-		
-		$npc->modify();
 		
 		return $npc;
 	}
@@ -253,7 +277,7 @@ abstract class SR_NPCBase extends SR_Player
 	##############
 	public function gotKilledByNPC(SR_Player $player)
 	{
-		Lamb_Log::log(__CLASS__.'::'.__METHOD__);
+		return $this->gotKilledByHuman($player);
 	}
 
 	public function gotKilledByHuman(SR_Player $player)
@@ -262,7 +286,7 @@ abstract class SR_NPCBase extends SR_Player
 			Shadowfunc::randLoot($player, (int)$this->getBase('level'), $this->getNPCHighChanceDrops()), 
 			$this->generateNPCLoot($player)
 		);
-		$player->giveItems($items);
+		$player->giveItems($items, 'looting '.$this->getName());
 	}
 	
 	private function getNPCHighChanceDrops()
@@ -288,7 +312,6 @@ abstract class SR_NPCBase extends SR_Player
 	
 	public function respawn()
 	{
-//		Lamb_Log::log(__METHOD__);
 		$this->deletePlayer();
 	}
 }

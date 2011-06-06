@@ -37,13 +37,16 @@ class SR_Item extends GDO
 	public static function getAllItems() { return self::$items; }
 	public static function includeItem($filename, $fullpath)
 	{
-		Lamb_Log::log("SR_Item::initItem($filename)");
+		Lamb_Log::logDebug("SR_Item::initItem($filename)");
 		require_once $fullpath;
 		$itemname = substr($filename, 0, -4);
 		$classname = 'Item_'.$itemname;
-		if (!class_exists($classname)) {
-			Lamb_Log::log("SR_Item::initItem($fullpath) failed: no such class: $classname");
+		if (!class_exists($classname))
+		{
+			Lamb_Log::logError("SR_Item::initItem($fullpath) failed: no such class: $classname");
+			die();
 		}
+		
 		$item = new $classname(array(
 			'sr4it_id' => 0,
 			'sr4it_uid' => 0,
@@ -53,6 +56,7 @@ class SR_Item extends GDO
 			'sr4it_health' => 10000,
 			'sr4it_modifiers' => NULL,
 		));
+		
 		self::$items[$itemname] = $item;
 	}
 	
@@ -169,8 +173,9 @@ class SR_Item extends GDO
 		foreach (explode(',', $modstring) as $modstr)
 		{
 			list($k, $v) = explode(':', $modstr);
-			if (!self::isValidModifier($k)) {
-				Lamb_Log::log(sprintf('Invalid modstring: %s. Invalid modifier: %s.', $modstring, $k));
+			if (!self::isValidModifier($k))
+			{
+				Lamb_Log::logError(sprintf('Invalid modstring: %s. Invalid modifier: %s.', $modstring, $k));
 				return false;
 			}
 		}
@@ -179,19 +184,14 @@ class SR_Item extends GDO
 	
 	private static function isValidModifier($k)
 	{
-		if (in_array($k, SR_Player::$ATTRIBUTE)) {
-			return true;
-		}
-		if (in_array($k, SR_Player::$SKILL)) {
-			return true;
-		}
-		if (in_array($k, SR_Player::$STATS)) {
-			return true;
-		}
-		if (false !== SR_Spell::getSpell($k)) {
-			return true;
-		}
-		return false;
+		return
+			( (in_array($k, SR_Player::$ATTRIBUTE))
+			||(in_array($k, SR_Player::$SKILL))
+			||(in_array($k, SR_Player::$COMBAT_STATS))
+			||(in_array($k, SR_Player::$MAGIC_STATS))
+			||(in_array($k, SR_Player::$MOUNT_STATS))
+			||(SR_Spell::getSpell($k) !== false)
+			);
 	}
 	
 	/**
@@ -313,12 +313,12 @@ class SR_Item extends GDO
 	{
 		if (false === $owner->removeFromInventory($this))
 		{
-			Lamb_Log::log(sprintf('Item %s(%d) can not remove from inventory!', $this->getItemName(), $this->getID()));
+			Lamb_Log::logError(sprintf('Item %s(%d) can not remove from inventory!', $this->getItemName(), $this->getID()));
 			return false;
 		}
 		if (false === $this->delete())
 		{
-			Lamb_Log::log(sprintf('Item %s(%d) can not delete me!', $this->getItemName(), $this->getID()));
+			Lamb_Log::logError(sprintf('Item %s(%d) can not delete me!', $this->getItemName(), $this->getID()));
 			return false;
 		}
 		return true;
@@ -364,20 +364,25 @@ class SR_Item extends GDO
 		return '';
 	}
 	
+	/**
+	 * Use the amount of an item. Delete item when empty.
+	 * @param SR_Player $player
+	 * @param int $amount
+	 * @return true|false
+	 */
 	public function useAmount(SR_Player $player, $amount=1)
 	{
-		if ($amount > $this->getAmount()) {
-			Lamb_Log::log(sprintf('Item %s(%d) can not use amount %d!', $this->getItemName(), $this->getID(), $amount));
+		if ($amount > $this->getAmount())
+		{
+			Lamb_Log::logError(sprintf('Item %s(%d) has not %d amount to use!', $this->getItemName(), $this->getID(), $amount));
 			return false;
 		}
-		if (false === $this->increase('sr4it_amount', -$amount)) {
-			Lamb_Log::log(sprintf('Item %s(%d) can not decrease amount %d!', $this->getItemName(), $this->getID(), $amount));
+		if (false === $this->increase('sr4it_amount', -$amount))
+		{
+			Lamb_Log::logError(sprintf('Item %s(%d) can not decrease amount %d!', $this->getItemName(), $this->getID(), $amount));
 			return false;
 		}
-		if ($this->getAmount() <= 0) {
-			return $this->deleteItem($player);
-		}
-		return true;
+		return $this->getAmount() < 1 ? $this->deleteItem($player) : true;
 	}
 	
 	###############

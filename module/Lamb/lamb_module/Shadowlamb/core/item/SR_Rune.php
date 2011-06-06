@@ -6,15 +6,16 @@ class SR_Rune extends SR_Item
 	public function isItemStackable() { return false; }
 	
 	const RUNE_MODIFIER = 0;
-	const RUNE_LEVEL = 1;
-	const RUNE_DROP_CHANCE = 2;
-	const RUNE_PRICE = 3;
-	const RUNE_FAIL_CHANCE = 4;
-	const RUNE_BREAK_CHANCE = 5;
-	const RUNE_MIN_MODIFIER = 6;
-	const RUNE_MAX_MODIFIER = 7;
+	const RUNE_MIN_LEVEL = 1;
+	const RUNE_MAX_LEVEL = 2;
+	const RUNE_DROP_CHANCE = 3;
+	const RUNE_PRICE = 4;
+	const RUNE_FAIL_CHANCE = 5;
+	const RUNE_BREAK_CHANCE = 6;
+	const RUNE_MIN_MODIFIER = 7;
+	const RUNE_MAX_MODIFIER = 8;
 	
-	const RUNE_PRICELESS = 100000; # Priceless runes! (essence)
+	const RUNE_PRICELESS = 0; # Priceless runes! (essence)
 	
 	################
 	### Runedata ###
@@ -29,35 +30,35 @@ class SR_Rune extends SR_Item
 	}
 	private static function initRuneData()
 	{
-		# LEVEL, DROP_CHANCE, PRICE, FAIL, BREAK
-		self::$RUNEDATA['max_hp'] = array('max_hp', 4, 100.00, 200.00, 10.00, 2.00, 0.1, 2.0);
-		self::$RUNEDATA['max_mp'] = array('max_mp', 8, 100.00, 250.00, 10.00, 2.00, 0.1, 4.0);
-		self::$RUNEDATA['max_weight'] = array('max_weight', 6, 100.00, 300.00, 15.00, 4.00, 10.0, 1000.0);
-		self::$RUNEDATA['attack'] = array('attack', 12, 100.00, 750.00, 20.00, 6.00, 0.1, 1.0);
-		self::$RUNEDATA['defense'] = array('defense', 16, 100.00, 1000.00, 22.00, 7.00, 0.1, 1.0);
-		self::$RUNEDATA['min_dmg'] = array('min_dmg', 24, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
-		self::$RUNEDATA['max_dmg'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
-		self::$RUNEDATA['lock'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
-		self::$RUNEDATA['transport'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
-		self::$RUNEDATA['max_dmg'] = array('max_dmg', 12, 50.00, 900.00, 21.00, 6.50, 0.1, 1.0);
-		self::$RUNEDATA['marm'] = array('marm', 28, 100.00, 1250.00, 24.00, 8.00, 0.1, 1.0);
-		self::$RUNEDATA['farm'] = array('farm', 32, 100.00, 1250.00, 24.00, 8.00, 0.1, 1.0);
-		
+		### NAME TWICE                               min, maxLEVEL, DROP_C,   PRICE, FAIL_C, BRK_C,  MIN,    MAX
+		self::$RUNEDATA['elephants']  = array('elephants',  4, 200,  20.00,  200.00,  30.00, 12.00,  0.1,    4.0);
+		self::$RUNEDATA['orcas']      = array('orcas',      3, 200,  20.00,  200.00,  30.00, 10.00,  0.1,    4.0);
+		self::$RUNEDATA['max_hp']     = array('max_hp',     2, 150,  80.00,  200.00,  10.00,  2.00,  0.1,    3.0);
+		self::$RUNEDATA['max_mp']     = array('max_mp',     5, 150,  80.00,  250.00,  10.00,  2.00,  0.1,    6.0);
+		self::$RUNEDATA['max_weight'] = array('max_weight', 6, 100, 100.00,  300.00,  15.00,  4.00, 10.0, 1000.0);
+		self::$RUNEDATA['attack']     = array('attack',     8, 100,  60.00,  650.00,  20.00,  6.00,  0.1,    2.0);
+		self::$RUNEDATA['defense']    = array('defense',   10, 150,  50.00,  900.00,  22.00,  7.00,  0.1,    2.0);
+		self::$RUNEDATA['spellatk']   = array('spellatk',  12, 120,  40.00,  750.00,  20.00,  6.00,  0.1,    2.0);
+		self::$RUNEDATA['spelldef']   = array('spelldef',  14, 160,  30.00, 1000.00,  22.00,  7.00,  0.1,    2.0);
+		self::$RUNEDATA['min_dmg']    = array('min_dmg',   18, 120,  10.00,  900.00,  21.00,  6.50,  0.1,    2.0);
+		self::$RUNEDATA['max_dmg']    = array('max_dmg',   16, 110,  20.00,  900.00,  21.00,  6.50,  0.1,    2.0);
+		self::$RUNEDATA['marm']       = array('marm',      20, 120,   8.00, 1250.00,  24.00,  8.00,  0.1,    2.0);
+		self::$RUNEDATA['farm']       = array('farm',      22, 130,   7.00, 1250.00,  24.00,  8.00,  0.1,    2.0);
+		# Mount
+		self::$RUNEDATA['lock']       = array('lock',      14, 140,  50.00,  800.00,  25.00,  6.50,  0.1,    2.0);
+		self::$RUNEDATA['transport']  = array('transport', 12, 120,  50.00,  600.00,  20.00,  6.50,  0.1,    2.0);
+		self::$RUNEDATA['tuneup']     = array('tuneup',    10, 100,  50.00,  400.00,  15.00,  6.50,  0.1,    2.0);
 		foreach (SR_Player::$ATTRIBUTE as $a)
 		{
-			self::$RUNEDATA[$a] = array($a, 8, 100.00, 400.00, 12.00, 4.00, 0.1, 1.0);
+			self::$RUNEDATA[$a]       = array($a,           7, 100, 100.00,  400.00,  12.00,  4.00,  0.1,    1.0);
 		}
-		unset(self::$RUNEDATA['essence']);
-		
 		foreach (SR_Player::$SKILL as $sk)
 		{
-			self::$RUNEDATA[$sk] = array($sk, 16, 100.00, 600.00, 14.00, 5.00, 0.1, 1.0);
+			self::$RUNEDATA[$sk]      = array($sk,         10, 120,  60.00,  600.00,  16.00,  8.00,  0.1,    2.0);
 		}
-		
 		foreach (SR_Spell::getSpells() as $sp => $spell)
 		{
-			$spell instanceof SR_Spell;
-			self::$RUNEDATA[$sp] = array($sp, 12, 100.00, 600.00, 14.00, 5.00, 1, 1);
+			self::$RUNEDATA[$sp]      = array($sp,         12, 130,  50.00,  800.00,  18.00,  9.00,  0.5,    3.0);
 		}
 	}
 	
@@ -68,13 +69,17 @@ class SR_Rune extends SR_Item
 		$level = (int) $level;
 		foreach (self::getRuneData() as $data)
 		{
-//			if ($level < $data[self::RUNE_LEVEL]) {
-//				continue;
-//			}
-			$l = $data[self::RUNE_LEVEL];
-			$l = Common::clamp($level, 0, $l) / $l;
+			$minlvl = $data[self::RUNE_MIN_LEVEL];
+			if ($level < $minlvl)
+			{
+				continue;
+			}
+			
+			$maxlvl = $data[self::RUNE_MAX_LEVEL];
+			$l = Common::clamp($level, 0, $maxlvl) / $maxlvl;
 			$dc = round($data[self::RUNE_DROP_CHANCE] * $l * 100);
-			if ($dc < 1) {
+			if ($dc < 1)
+			{
 				continue;
 			}
 			
@@ -82,28 +87,28 @@ class SR_Rune extends SR_Item
 			$total += $dc;
 		}
 		
-		if (count($possible) === 0) {
+		if (count($possible) === 0)
+		{
 			return false;
 		}
 		
-		if (false === ($data = Shadowfunc::randomData($possible, $total))) {
+		if (false === ($data = Shadowfunc::randomData($possible, $total, 0)))
+		{
 			return false;
 		}
 		
-		$l = $data[self::RUNE_LEVEL];
-		$l = Common::clamp($level, 0, $l) / $l;
+		$minlvl = $data[self::RUNE_MIN_LEVEL];
+		$maxlvl = $data[self::RUNE_MAX_LEVEL];
+		$l = Common::clamp($level, 0, $maxlvl) / $maxlvl;
 		
-		$min = $data[self::RUNE_MIN_MODIFIER]*$l*100;
-		$max = $data[self::RUNE_MAX_MODIFIER]*$l*100;
-		
-		$power = rand($min, $max);
-		$power = round($power/100, 1);
-		if ($power < 0.1) {
+		$min = $data[self::RUNE_MIN_MODIFIER]*$l;
+		$max = $data[self::RUNE_MAX_MODIFIER]*$l;
+		$power = Shadowfunc::diceFloat($min, $max, 2);
+		if ($power < 0.01)
+		{
 			return false;
 		}
-
-		echo "RUNE POWER $min - $max: $power\n";
-		
+//		echo "RUNE POWER $min - $max: $power\n";
 		return array($data[self::RUNE_MODIFIER] => $power);
 	}
 	

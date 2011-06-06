@@ -1,6 +1,7 @@
 <?php
 require_once 'location/SR_Subway.php';
 require_once 'location/SR_Tower.php';
+require_once 'location/SR_Exit.php';
 require_once 'location/SR_Store.php';
 require_once 'location/SR_Bank.php';
 require_once 'location/SR_Blacksmith.php';
@@ -21,35 +22,49 @@ abstract class SR_Location
 	
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }
+	public function getShortName() { return Common::substrFrom($this->name, '_', $this->name); }
 	public function getNPCS(SR_Player $player) { return array(); }
 	public function getComputers() { return array(); }
 	public function getCommands(SR_Player $player) { return array(); }
 	public function getLeaderCommands(SR_Player $player) { return array(); }
-	public function getFoundPercentage() { return 100.00; }
+	public function getFoundPercentage() { return 0.00; }
 	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
-	public function getEnterText(SR_Player $player) { return false; }
+	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
 	public function getHelpText(SR_Player $player) { return false; }
 	public function isPVP() { return false; }
 	public function getCity() { return Common::substrUntil($this->getName(), '_'); }
 	public function getCityClass() { return Shadowrun4::getCity($this->getCity()); }
 	public function hasATM() { return !$this->getCityClass()->isDungeon(); }
 	public function onCityEnter(SR_Party $party) { $this->onCleanComputers($party); }
+	
+	/**
+	 * We enter the location and are inside after we message the members.
+	 * @param SR_Player $player
+	 * @return true
+	 */
 	public function onEnter(SR_Player $player)
 	{
 		$party = $player->getParty();
 		
-		$party->pushAction(SR_Party::ACTION_INSIDE, $this->getName());
-		
+		# Messages
 		foreach ($party->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
-			if (false !== ($text = $this->getEnterText($member))) {
+			
+			if (false !== ($text = $this->getEnterText($member)))
+			{
 				$member->message($text);
 			}
-			if (false !== ($text = $this->getHelpText($member))) {
+			if (false !== ($text = $this->getHelpText($member)))
+			{
 				$member->help($text);
 			}
 		}
+
+		# Enter
+		$party->pushAction(SR_Party::ACTION_INSIDE, $this->getName());
+		
+		return true;
 	}
 	
 	public function diceLocate()
@@ -81,7 +96,8 @@ abstract class SR_Location
 		{
 			if (false !== ($npc = Shadowrun4::getNPC($npcs[$name])))
 			{
-				return $npc->onNPCTalkA($player, $word);
+				
+				return $npc->onNPCTalkA($player, $word, $args[0]);
 			}
 		}
 		echo "ERROR: Unknown function '$name'.\n";

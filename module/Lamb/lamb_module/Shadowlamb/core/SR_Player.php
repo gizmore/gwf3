@@ -1,54 +1,64 @@
 <?php
 class SR_Player extends GDO
 {
+	const MAX_RANGE = 12.0;
+	
 	const BASE_HP = 4;
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
+	const HP_REFRESH_MULTI = 0.01;
+	const MP_REFRESH_MULTI = 0.02;
+	const HP_REFRESH_TIMER = 200;
+	const MP_REFRESH_TIMER = 180;
+	
 	const XP_PER_KARMA = 4;
 	const XP_PER_KARMA_RAISE = 0.5;
-	
 	const XP_PER_LEVEL = 30;
 	const XP_PER_LEVEL_RAISE = 9;
 	
-	const WEIGHT_BASE = 7500;
-	const WEIGHT_PER_STRENGTH = 2000;
-	const FIGHT_INIT_BUSY = 12;
-	
-	const MAX_RANGE = 13.0;
-	
-	const UNEQUIP_TIME = 20;
+	const WEIGHT_BASE = 6500;
+	const WEIGHT_PER_STRENGTH = 1500;
 	
 	# Human Starter
 	const START_HP = 4;
 	const START_NUYEN = 75;
 	
 	# Options
-	const CREATED = 0x01;
-	const HELP = 0x02;
-	const NOTICE = 0x00;
-	const PRIVMSG = 0x04;
-	const RUNNING_MODE = 0x08;
+	const CREATED = 0x00001;
+	const HELP = 0x00002;
+	const NOTICE = 0x00000;
+	const PRIVMSG = 0x00004;
+	const RUNNING_MODE = 0x00008;
 	const BOTTING = 0x10000;
 	const DEAD = 0x20000;
+	const SILENCE = 0x40000;
+	
+	# Timing
+	const FIGHT_INIT_BUSY = 12;
+	const GIVE_TIME = 60;
+	const UNEQUIP_TIME = 20;
+	const FORWARD_TIME = 30;
+	const BACKWARD_TIME = 45;
 	
 	# WWW hack
-	const WWW_OUT = 0x10;
-	const INV_DIRTY = 0x20;
-	const CMD_DIRTY = 0x40;
-	const STATS_DIRTY = 0x80;
-	const EQ_DIRTY = 0x100;
-	const PARTY_DIRTY = 0x200;
-	const LOCATION_DIRTY = 0x400;
-	const CYBER_DIRTY = 0x800;
-	const WORDS_DIRTY = 0x1000;
-	const MOUNT_DIRTY = 0x10000;
-	const RESPONSE_ITEMS = 0x2000;
-	const RESPONSE_PLAYERS = 0x4000;
-	const DIRTY_FLAGS = 0x17fe0;
+	const WWW_OUT = 0x00010;
+	const INV_DIRTY = 0x00020;
+	const CMD_DIRTY = 0x00040;
+	const STATS_DIRTY = 0x00080;
+	const EQ_DIRTY = 0x00100;
+	const PARTY_DIRTY = 0x00200;
+	const LOCATION_DIRTY = 0x00400;
+	const CYBER_DIRTY = 0x00800;
+	const WORDS_DIRTY = 0x01000;
+	const RESPONSE_ITEMS = 0x02000;
+	const RESPONSE_PLAYERS = 0x04000;
+	const MOUNT_DIRTY = 0x80000;
+	const DIRTY_FLAGS = 0x87fe0;
 	
-	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy');
-	public static $STATS = array('weight','max_weight','attack','defense','min_dmg','max_dmg','marm','farm','spellatk','spelldef','max_hp','max_mp');
+	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
+	public static $COMBAT_STATS = array('elephants','max_hp','max_weight','attack','defense','min_dmg','max_dmg','marm','farm');
+	public static $MAGIC_STATS = array('orcas','max_mp','spellatk','spelldef');
 	public static $MOUNT_STATS = array('lock','transport','tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
@@ -56,6 +66,7 @@ class SR_Player extends GDO
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
 	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Seattle');
 	public static $NPC_RACES = array('droid','dragon');
+	
 	/**
 	 * Bonus values for races.
 	 */
@@ -83,23 +94,23 @@ class SR_Player extends GDO
 	 * Base values for races.
 	 */
 	public static $RACE_BASE = array(
-		'fairy' =>    array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>1,'intelligence'=>4,'charisma'=> 3,'luck'=>1),
-		'elve' =>     array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=>0,'quickness'=>3,'wisdom'=>0,'intelligence'=>2,'charisma'=> 1,'luck'=>0),
-		'halfelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=>1,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 1,'luck'=>0),
-		'vampire' =>  array('base_hp'=>5, 'base_mp'=>3, 'body'=>0,'magic'=> 1,'strength'=>2,'quickness'=>2,'wisdom'=>0,'intelligence'=>2,'charisma'=> 0,'luck'=>0),
-		'darkelve' => array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=>2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 1,'luck'=>0),
-		'woodelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=>1,'quickness'=>2,'wisdom'=>0,'intelligence'=>0,'charisma'=> 1,'luck'=>0),
-		'human' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'gnome' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'dwarf' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=>1,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'halfork' =>  array('base_hp'=>7, 'base_mp'=>-1,'body'=>2,'magic'=>-1,'strength'=>2,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'halftroll'=> array('base_hp'=>8, 'base_mp'=>-2,'body'=>3,'magic'=>-1,'strength'=>2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'ork' =>      array('base_hp'=>9,'base_mp'=>-3, 'body'=>3,'magic'=>-2,'strength'=>3,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'troll' =>    array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=>3,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'gremlin' =>  array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=>0,'quickness'=>2,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
+		'fairy' =>    array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 1,'intelligence'=> 4,'charisma'=> 3,'luck'=>1,'height'=>120,'age'=>  20,'bmi'=> 40), # fairy
+		'elve' =>     array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 1,'luck'=>0,'height'=>140,'age'=>  32,'bmi'=> 50), # elve
+		'halfelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>160,'age'=>  28,'bmi'=> 60), # halfelve
+		'vampire' =>  array('base_hp'=>5, 'base_mp'=>3, 'body'=>0,'magic'=> 1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=> 140,'bmi'=> 70), # vampire
+		'darkelve' => array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>170,'age'=>  26,'bmi'=> 70), # darkelve
+		'woodelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>180,'age'=>  24,'bmi'=> 75), # woodelve
+		'human' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=>  30,'bmi'=> 80), # human
+		'gnome' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>130,'age'=>  32,'bmi'=> 55), # gnome
+		'dwarf' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>145,'age'=>  34,'bmi'=> 65), # dwarf
+		'halfork' =>  array('base_hp'=>7, 'base_mp'=>-1,'body'=>2,'magic'=>-1,'strength'=> 2,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>195,'age'=>  24,'bmi'=> 80), # halfork
+		'halftroll'=> array('base_hp'=>8, 'base_mp'=>-2,'body'=>3,'magic'=>-1,'strength'=> 2,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>200,'age'=>  24,'bmi'=> 90), # halftroll
+		'ork' =>      array('base_hp'=>9, 'base_mp'=>-3,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>205,'age'=>  22,'bmi'=>100), # ork
+		'troll' =>    array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>215,'age'=>  18,'bmi'=>110), # troll
+		'gremlin' =>  array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=> 0,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=> 50,'age'=>   1,'bmi'=> 10), # gremlin
 		#NPC
-		'droid' =>    array('base_hp'=>0,'base_mp'=>0, 'body'=>0,'magic'=>0,'strength'=>0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'luck'=>0),
-		'dragon' =>   array('base_hp'=>0,'base_mp'=>0, 'body'=>8,'magic'=>8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0),
+		'droid' =>    array('base_hp'=>0, 'base_mp'=>0, 'body'=>0,'magic'=> 0,'strength'=> 0,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>160,'age'=>   2,'bmi'=> 70), # droid
+		'dragon' =>   array('base_hp'=>0, 'base_mp'=>0, 'body'=>8,'magic'=> 8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0,'height'=>500,'age'=>6000,'bmi'=>400), # dragon
 	);
 	
 	public static $GENDER = array(
@@ -125,6 +136,9 @@ class SR_Player extends GDO
 			'sr4pl_title' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
 			'sr4pl_race' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'human', 63),
 			'sr4pl_gender' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'male', 63),
+			'sr4pl_age' => array(GDO::UINT, GDO::NULL), # age in years
+			'sr4pl_bmi' => array(GDO::UINT, GDO::NULL), # own weight in gramm
+			'sr4pl_height' => array(GDO::UINT, GDO::NULL), # height in cm
 			'sr4pl_options' => array(GDO::UINT, self::HELP),
 			# Stats
 			'sr4pl_hp' => array(GDO::DECIMAL, 0.0, array(7,2)),
@@ -141,7 +155,10 @@ class SR_Player extends GDO
 			'sr4pl_bad_karma_total' => array(GDO::UINT, 0),
 			'sr4pl_xp_level' => array(GDO::DECIMAL, 0.0, array(7,2)),
 			'sr4pl_level' => array(GDO::UINT, 0),
+			'sr4pl_bounty' => array(GDO::UINT, 0),
+			'sr4pl_bounty_done' => array(GDO::UINT, 0),
 			'sr4pl_quests_done' => array(GDO::UINT, 0),
+		
 			# Nuyen
 			'sr4pl_nuyen' => array(GDO::DECIMAL, 0.0, array(16,2)),
 			'sr4pl_bank_nuyen' => array(GDO::DECIMAL, 0.0, array(16,2)),
@@ -173,6 +190,7 @@ class SR_Player extends GDO
 	### Convinience ###
 	###################
 	public function getID() { return $this->getInt('sr4pl_id'); }
+	public function getUID() { return $this->getUser()->getID(); }
 	public function isNPC() { return $this->getVar('sr4pl_uid') === NULL; }
 	public function isHuman() { return $this->getVar('sr4pl_uid') !== NULL; }
 	public function isCreated() { return $this->isOptionEnabled(self::CREATED); }
@@ -209,6 +227,14 @@ class SR_Player extends GDO
 	public function getEnum() { return $this->getParty()->getEnum($this); }
 	public function canHack() { return ( ($this->getBase('computers') >= 0) && ($this->hasCyberdeck()) && ($this->hasHeadcomputer()) );}
 	
+	############
+	### Race ###
+	############
+	public function getRaceBase() { $r = $this->getRace(); return isset(self::$RACE_BASE[$r]) ? self::$RACE_BASE[$r] : array(); }
+	public function getRaceBonus() { $r = $this->getRace(); return isset(self::$RACE[$r]) ? self::$RACE[$r] : array(); }
+	public function getRaceBaseVar($key, $default=false) { $d = self::getRaceBase(); return isset($d[$key]) ? $d[$key] : $default; }
+	public function getRaceBonusVar($key, $default=false) { $d = self::getRaceBonus(); return isset($d[$key]) ? $d[$key] : $default; }
+	
 	/**
 	 * @return Lamb_User
 	 */
@@ -237,16 +263,21 @@ class SR_Player extends GDO
 	public function increaseConst($key, $by) { $old = $this->hasConst($key) ? $this->getConst($key) : 0; $this->setConst($key, $old+$by); }
 	public function decreaseConst($key, $by) { $old = $this->hasConst($key) ? $this->getConst($key) : 0; $new = $old+$by; if ($new == 0) { $this->unsetConst($key); } else { $this->setConst($key, $new); } }
 	
+	##############
+	### Remote ###
+	##############
+	private $remote_pid = 0;
+	public function setRemotePlayer(SR_Player $player) { $this->remote_pid = $player->getID(); } 
+	public function unsetRemotePlayer() { $this->remote_pid = 0; }
+	public function getRemotePlayer() { return $this->remote_pid === 0 ? false : Shadowrun4::getPlayerByPID($this->remote_pid); }
+	
 	#################
 	### Validator ###
 	#################
 	public static function isValidRace($race) { return array_key_exists($race, self::$RACE); }
 	public static function isValidGender($gender) { return array_key_exists($gender, self::$GENDER); }
-	
-	
-	public static function getRandomGender() { return Shadowfunc::randomListItem('male', 'female'); }
 	public static function getRandomRace() { return Shadowfunc::randomListItem(self::getHumanRaces()); }
-	
+	public static function getRandomGender() { return Shadowfunc::randomListItem('male', 'female'); }
 	public static function getHumanRaces()
 	{
 		$races = array();
@@ -293,7 +324,7 @@ class SR_Player extends GDO
 	
 	public static function getByLongName($username)
 	{
-		if (0 === ($sid = (int)Common::regex('/\{(\\d+)\}$/', $username))) {
+		if (0 === ($sid = (int)Common::regex('/^.+\{(\\d+)\}$/', $username))) {
 			return false;
 		}
 		$username = Shadowfunc::toShortname($username);
@@ -306,32 +337,30 @@ class SR_Player extends GDO
 	
 	public function initRaceGender()
 	{
-		foreach (SR_Item::mergeModifiers(self::$RACE_BASE[$this->getRace()], array('essence'=>6.0)) as $k => $v) {
+		foreach (SR_Item::mergeModifiers(self::$RACE_BASE[$this->getRace()], array('essence'=>6.0)) as $k => $v)
+		{
 			$mods['sr4pl_'.$k] = $v;
 			unset($mods[$k]);
 		}
-		
 		return $this->saveVars($mods);
 	}
 	
 	public static function reloadPlayer($player)
 	{
-		if ($player === false){
+		if ($player === false)
+		{
 			return false;
-		} $player instanceof SR_Player;
-		
-		foreach (self::$EQUIPMENT as $e) {
+		}
+		$player instanceof SR_Player;
+		foreach (self::$EQUIPMENT as $e)
+		{
 			$player->reloadEquipment($e);
 		}
 		$player->sr4_inventory = $player->reloadItemArray('inventory');
 		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
-		
 		$player->reloadConstVars();
-		
 		$player->reloadEffects();
-		
 		$player->modify();
-		
 		return $player;
 	}
 	
@@ -416,6 +445,8 @@ class SR_Player extends GDO
 			'sr4pl_bad_karma_total' => 0,
 			'sr4pl_xp_level' => 0,
 			'sr4pl_level' => 0,
+			'sr4pl_bounty' => 0,
+			'sr4pl_bounty_done' => 0,
 			'sr4pl_quests_done' => 0,
 			'sr4pl_nuyen' => 0,
 			'sr4pl_bank_nuyen' => 0,
@@ -482,39 +513,53 @@ class SR_Player extends GDO
 	#################
 	public function help($message)
 	{
-		if ($this->isOptionEnabled(self::HELP)) {
+		if ($this->isOptionEnabled(self::HELP))
+		{
 			$this->message($message);
 		}
 	}
 	
 	public function message($message)
 	{
-		if (NULL === ($user = $this->getUser())) {
-			Lamb_Log::log('User does not exist: '.$message);
+		if (NULL === ($user = $this->getUser()))
+		{
+			Lamb_Log::logError('User does not exist: '.$message);
 			return false;
 		}
 		
-		if ($this->isOptionEnabled(self::WWW_OUT)) {
-			$this->onMessageWWW($message);
-			return true;
+		if (false !== ($remote = $this->getRemotePlayer()))
+		{
+			return $remote->message($message);
+		}
+		
+		if ($this->isOptionEnabled(self::WWW_OUT))
+		{
+			return $this->onMessageWWW($message);
 		}
 		
 		$username = $user->getName();
-		if (false === ($server = $user->getServer())) {
-			Lamb_Log::log(sprintf('User %s does not have a server: %s', $username, $message));
+		if (false === ($server = $user->getServer()))
+		{
+			Lamb_Log::logError(sprintf('User %s does not have a server: %s', $username, $message));
 			return false;
 		}
-		
-		# TODO: stop messenging.
-		
-		if ($server->getUserI($username) === false) {
+		elseif ($this->isOptionEnabled(self::SILENCE))
+		{
+			# silence ...
+		}
+		elseif ($server->getUser($username) === false)
+		{
 			$this->onMessageTell($message);
-		} elseif ($this->isOptionEnabled(self::PRIVMSG)) {
+		}
+		elseif ($this->isOptionEnabled(self::PRIVMSG))
+		{
 			$server->sendPrivmsg($username, $message);
-		} else {
+		}
+		else
+		{
 			$server->sendNotice($username, $message);
 		}
-
+		
 		return true;
 	}
 	
@@ -540,6 +585,8 @@ class SR_Player extends GDO
 	
 	public function get($field) { return $this->sr4_data_modified[$field]; }
 	public function getBase($field) { return $this->getVar('sr4pl_'.$field); }
+	public function saveBase($field, $value) { return $this->saveVar('sr4pl_'.$field, $value); }
+	
 	/**
 	 * @return SR_Party
 	 */
@@ -559,6 +606,7 @@ class SR_Player extends GDO
 		}
 		Shadowrun4::removePlayer($this);
 		SR_Quest::deletePlayer($this);
+		SR_PlayerVar::deletePlayer($this);
 		$this->delete();
 	}
 	
@@ -664,32 +712,29 @@ class SR_Player extends GDO
 			'mp_per_magic' => self::MP_PER_MAGIC,
 			'level' => $this->getVar('sr4pl_level'),
 		);
-		foreach (self::$STATS as $stat)
-		{
-			$this->sr4_data_modified[$stat] = 0;
-		}
-		foreach (self::$MOUNT_STATS as $stat)
-		{
-			$this->sr4_data_modified[$stat] = 0;
-		}
-		foreach (self::$CONDITIONS as $cond)
-		{
-			$this->sr4_data_modified[$cond] = 0;
-		}
+		$this->initModifyStats(self::$COMBAT_STATS);
+		$this->initModifyStats(self::$MAGIC_STATS);
+		$this->initModifyStats(self::$MOUNT_STATS);
+		$this->initModifyStats(self::$CONDITIONS);
 		$this->initModifyArray(self::$SKILL);
 		$this->initModifyArray(self::$ATTRIBUTE);
 		$this->initModifyArray(self::$KNOWLEDGE);
-		foreach (SR_Spell::getSpells() as $name => $spell)
-		{
-			$this->sr4_data_modified[$name] = -1;
-		}
+		$this->initModifyStats(array_keys(SR_Spell::getSpells()), -1);
 		foreach (explode(',', $this->getVar('sr4pl_known_spells')) as $data)
 		{
-			if ($data === '') {
-				continue;
+			if ($data !== '')
+			{
+				$d = explode(':', $data);
+				$this->sr4_data_modified[$d[0]] = $d[1];
 			}
-			$data = explode(':', $data);
-			$this->sr4_data_modified[$data[0]] = $data[1];
+		}
+	}
+	
+	private function initModifyStats(array $keys, $v=0)
+	{
+		foreach ($keys as $key)
+		{
+			$this->sr4_data_modified[$key] = $v;
 		}
 	}
 	
@@ -719,9 +764,10 @@ class SR_Player extends GDO
 	private function modifyRace()
 	{
 		$race = $this->getRace();
-		if (!isset(self::$RACE[$race])) {
+		if (!isset(self::$RACE[$race]))
+		{
 			$msg = sprintf('%s has an invalid race: "%s".', $this->getName(), $race);
-			Lamb_Log::log($msg);
+			Lamb_Log::logError($msg);
 			GWF_Log::logCritical($msg);
 			$race = 'human';
 		}
@@ -731,9 +777,10 @@ class SR_Player extends GDO
 	private function modifyGender()
 	{
 		$gender = $this->getGender();
-		if (!isset(self::$GENDER[$gender])) {
+		if (!isset(self::$GENDER[$gender]))
+		{
 			$msg = sprintf('%s has an invalid gender: "%s".', $this->getName(), $gender);
-			Lamb_Log::log($msg);
+			Lamb_Log::logError($msg);
 			GWF_Log::logCritical($msg);
 			$gender = 'male';
 		}
@@ -846,7 +893,8 @@ class SR_Player extends GDO
 		{
 			$s .= sprintf(',%s:%s', $name, $level);
 		}
-		$this->saveVar('sr4pl_known_spells', $s.',');
+		
+		return $this->saveVar('sr4pl_known_spells', $s.',');
 	}
 	
 	public function getSpellBaseLevel($spellname)
@@ -857,13 +905,22 @@ class SR_Player extends GDO
 	
 	public function levelupSpell($spellname, $by=1)
 	{
+		if (false === SR_Spell::getSpell($spellname))
+		{
+			return false;
+		}
+		
 		$data = $this->getSpellData();
-		if (isset($data[$spellname])) {
+		if (isset($data[$spellname]))
+		{
 			$data[$spellname] += $by;
-		} else {
+		}
+		else
+		{
 			$data[$spellname] = 0;
 		}
-		$this->saveSpellData($data);
+		
+		return $this->saveSpellData($data);
 	}
 	
 	/**
@@ -873,10 +930,9 @@ class SR_Player extends GDO
 	 */
 	public function getSpell($arg)
 	{
-		var_dump($arg);
 		if (is_numeric($arg))
 		{
-			return $this->getSpellByEnum(intval($arg));
+			return $this->getSpellByEnum(intval($arg, 10));
 		}
 		else
 		{
@@ -886,15 +942,16 @@ class SR_Player extends GDO
 	
 	public function getSpellByEnum($n)
 	{
-		if ($n < 1) {
+		if ($n < 1)
+		{
 			return false;
 		}
 		$spells = $this->getSpellData();
-		if ($n > count($spells)) {
+		if ($n > count($spells))
+		{
 			return false;
 		}
-		$spells = array_keys($spells);
-		$back = array_slice($spells, $n-1, 1);
+		$back = array_slice(array_keys($spells), $n-1, 1);
 		return SR_Spell::getSpell($back[0]);
 	}
 	
@@ -1016,10 +1073,12 @@ class SR_Player extends GDO
 	
 	private function updateEffects()
 	{
-		if (count($this->sr4_effects) === 0) {
+		if (count($this->sr4_effects) === 0)
+		{
 			return $this->saveVar('sr4pl_effects', NULL);
 		}
-		else {
+		else
+		{
 			return $this->saveVar('sr4pl_effects', serialize($this->sr4_effects));
 		}
 	}
@@ -1038,7 +1097,8 @@ class SR_Player extends GDO
 				$changed = true;
 			}
 			
-			elseif ($effect->getMode() === SR_Effect::MODE_REPEAT) {
+			elseif ($effect->getMode() === SR_Effect::MODE_REPEAT)
+			{
 				$modified = true;
 			}
 		}
@@ -1052,6 +1112,33 @@ class SR_Player extends GDO
 		{
 			$this->modify();
 		}
+		
+		return true;
+	}
+	
+	public function refreshMPTimer()
+	{
+		$ma = $this->getBase('magic');
+		if ($ma > 0)
+		{
+			$ma += $this->get('orcas');
+			$gain = round(self::MP_REFRESH_MULTI*$ma, 2);
+			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
+			return $this->healMP($gain);
+		}
+		return true;
+	}
+	
+	public function refreshHPTimer()
+	{
+		$ele = $this->get('elephants');
+		if ($ele > 0)
+		{
+			$gain = round(self::HP_REFRESH_MULTI*$ele, 2);
+			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
+			return $this->healHP($gain);
+		}
+		return true;
 	}
 	
 	############
@@ -1268,15 +1355,6 @@ class SR_Player extends GDO
 	public function getCyberwareByName($itemname)
 	{
 		return $this->getItemByNameB($itemname, $this->sr4_cyberware);
-//		$itemname = strtolower($itemname);
-//		foreach ($this->sr4_cyberware as $item)
-//		{
-//			if ($itemname === strtolower($item->getItemName()))
-//			{
-//				return $item;
-//			}
-//		}
-//		return false;
 	}
 	
 	public function addCyberware(SR_Cyberware $item)
@@ -1372,33 +1450,27 @@ class SR_Player extends GDO
 	}
 	
 	/**
-	 * Give items to a player. Argument(s) can be array(s) and/or items.
+	 * Give items to a player. If 0 items are given, nothing is done and true is returned.
+	 * If the from argument is empty, no message is sent.
+	 * @param array $items
+	 * @param string $from
+	 * @return true|false
 	 */
-	public function giveItems()
+	public function giveItems(array $items, $from='')
 	{
-		$args = func_get_args();
-		$items = array();
-		foreach ($args as $arg)
-		{
-			if (is_array($arg)) {
-				$items = array_merge($items, $arg);
-			} else {
-				$items[] = $arg;
-			}
-		}
 		if (0 === ($cnt = count($items)))
 		{
 			return true;
 		}
 		
-
+		$b = chr(2);
 		$message = '';
 		foreach ($items as $item)
 		{
 			$this->giveItem($item);
 			$amt = $item->getAmount();
 			$multi = $amt > 1 ? "{$amt} x " : '';
-			$message .= sprintf(', %s%s', $multi, $item->getItemName());
+			$message .= sprintf(", {$b}%s%s{$b}", $multi, $item->getItemName());
 		}
 		
 		if (false === $this->updateInventory())
@@ -1406,13 +1478,15 @@ class SR_Player extends GDO
 			return false;
 		}
 		
+		if ($from !== '')
+		{
+			$message = substr($message, 2);
+			$from = " from {$from}";
+			$plur = $cnt > 1 ? $cnt.' items' : 'an item';
+			$message = sprintf('received %s%s: %s.', $plur, $from, $message);
+			$this->getParty()->message($this, $message);
+		}
 		
-		$message = substr($message, 2);
-		$from = '';
-//		$from = $from === '' ? '' : " from {$from}";
-		$plur = $cnt > 1 ? $cnt.' items' : 'an item';
-		$message = sprintf('received %s%s: %s.', $plur, $from, $message);
-		$this->getParty()->message($this, $message);
 		return true;
 	}
 	
@@ -1644,15 +1718,7 @@ class SR_Player extends GDO
 	
 	public function pay($nuyen)
 	{
-		if (0 >= ($nuyen = (int)$nuyen))
-		{
-			return true;
-		}
-		if ($nuyen > $this->getBase('nuyen'))
-		{
-			return false;
-		}
-		return $this->alterField('nuyen', -$nuyen);
+		return $nuyen <= 0 ? true : $this->giveNuyen(-$nuyen);
 	}
 	
 	public function alterField($field, $by)
@@ -1678,41 +1744,65 @@ class SR_Player extends GDO
 		return $k[$id-1];
 	}
 	
+	public function getKnowledgeByArg($field, $arg)
+	{
+		if (is_numeric($arg))
+		{
+			if (false === ($arg = $player->getKnowledgeByID($field, $arg)))
+			{
+				return false;
+			}
+		}
+		elseif (!$player->hasKnowledge($field, $arg))
+		{
+			return false;
+		}
+		return $arg;
+	}
+	
 	public function hasKnowledge($field, $knowledge)
 	{
 		return stripos($this->getKnowledge($field), ",$knowledge,") !== false;
 	}
 	
-	public function giveKnowledge($field, $knowledge)
+	public function giveKnowledge($field, $knowledge, $announce=true)
 	{
 		static $txt = array('places'=>'location', 'words'=>'word');
+		$b = chr(2);
 		$args = func_get_args();
 		$field = array_shift($args);
 		
 		if (!isset($txt[$field]))
 		{
-			Lamb_Log::log("WARNING: Unknown knowledge type: {$field}");
+			Lamb_Log::logError("WARNING: Unknown knowledge type: {$field}");
 			return false;
 		}
 		
 		foreach ($args as $knowledge)
 		{
-			if ($this->hasKnowledge($field, $knowledge)) {
+			if ($this->hasKnowledge($field, $knowledge))
+			{
 				continue;
 			}
 			$k = $this->getKnowledge($field);
-			if (false === $this->saveVar('sr4pl_known_'.$field, $k.$knowledge.',')) {
+			if (false === $this->saveVar('sr4pl_known_'.$field, $k.$knowledge.','))
+			{
 				return false;
 			}
 			
-			if ($field === 'places') {
+			if ($field === 'places')
+			{
 				$this->setOption(self::LOCATION_DIRTY, true);
 			}
-			elseif ($field === 'words') {
+			elseif ($field === 'words')
+			{
 				$this->setOption(self::WORDS_DIRTY, true);
 			}
 			
-			$this->message(sprintf('You know a new %s: %s.', $txt[$field], $knowledge));
+			if ($announce)
+			{
+				$this->message(sprintf('You know a new %s: %s.', $txt[$field], $b.$knowledge.$b));
+			}
 		}
 		return true;
 	}
@@ -1734,11 +1824,23 @@ class SR_Player extends GDO
 	############
 	### Heal ###
 	############
+	/**
+	 * Heal a players HP. Return the new current HP
+	 * @see healMP()
+	 * @param float $gain
+	 * @return float
+	 */
 	public function healHP($gain)
 	{
 		return $this->heal('hp', $gain);
 	}
 
+	/**
+	 * Heal a players MP. Return the new current MP
+	 * @see healHP()
+	 * @param float $gain
+	 * @return float
+	 */
 	public function healMP($gain)
 	{
 		return $this->heal('mp', $gain);
@@ -1750,10 +1852,15 @@ class SR_Player extends GDO
 		$max = $this->get('max_'.$field);
 		$new = Common::clamp($old+$gain, 0.0, $max);
 		$this->setOption(SR_Player::STATS_DIRTY, true);
-		$this->updateField($field, $new);
+		$this->updateField($field, round($new, 2));
 		return $new-$old;
 	}
 	
+	/**
+	 * Deal damage to a target.
+	 * @see healHP()
+	 * @param float $damage
+	 */
 	public function dealDamage($damage)
 	{
 		return $this->healHP(-$damage);
@@ -1785,6 +1892,8 @@ class SR_Player extends GDO
 	
 	public function giveXP($xp)
 	{
+		$b = chr(2);
+		
 		if (false === ($this->alterField('xp', $xp))) {
 			return false;
 		}
@@ -1804,7 +1913,7 @@ class SR_Player extends GDO
 		}
 		if ($level > 0)
 		{
-			$this->getParty()->message($this, sprintf(' reached level %s(+%d)', $this->getBase('level'), $level));
+			$this->getParty()->notice(sprintf("{$b}%s{$b} reached {$b}level %s(+%d){$b}.", $this->getName(), $this->getBase('level'), $level));
 		}
 		
 		$karma = 0;
@@ -1817,18 +1926,18 @@ class SR_Player extends GDO
 		
 		if ($karma > 0)
 		{
-			$this->message(sprintf('You now have %d(+%d) karma.', $this->getBase('karma'), $karma));
+			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}.", $this->getBase('karma'), $karma));
 		}
 	}
 	
 	public function giveNuyen($nuyen)
 	{
-		return $this->alterField('nuyen', $nuyen);
+		return $this->alterField('nuyen', round($nuyen, 2));
 	}
 	
 	public function giveBankNuyen($nuyen)
 	{
-		return $this->alterField('bank_nuyen', $nuyen);
+		return $this->alterField('bank_nuyen', round($nuyen, 2));
 	}
 	
 	public function resetXP()
@@ -1904,7 +2013,7 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
-		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
+//		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
 		$result = Shadowcmd::onExecute($this, $this->combat_stack);
 		
 		if ($this->keepCombatStack($result) === false) {
@@ -1928,7 +2037,7 @@ class SR_Player extends GDO
 			return true;
 		}
 		
-		echo sprintf('cleared the combat stack.').PHP_EOL;
+//		echo sprintf('cleared the combat stack.').PHP_EOL;
 		
 		return false;
 	}
@@ -1957,22 +2066,23 @@ class SR_Player extends GDO
 	
 	public function gotKilledByNPC(SR_Player $killer)
 	{
-		if ($this->isRunner()) {
+		if ($this->isRunner())
+		{
 			$this->saveOption(self::DEAD, true);
 		}
 		$this->announceKilled($killer);
-//		Lamb_Log::log(__METHOD__);
+
 		# Loose an item.
-		$equipment = $this->sr4_equipment;
-		foreach ($equipment as $i => $item)
+		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
+		foreach ($items as $i => $item)
 		{
-			if ($item instanceof SR_Mount)
+			$item instanceof SR_Item;
+			if ( ($item instanceof SR_Mount) || (!$item->isItemDropable()) )
 			{
-				unset($equipment[$i]);
+				unset($items[$i]);
 			}
 		}
 		
-		$items = array_merge($equipment, $this->sr4_inventory);
 		
 		if (0 !== ($rand = rand(0, count($items))))
 		{
@@ -1984,7 +2094,7 @@ class SR_Player extends GDO
 				$this->unequip($item, false);
 			}
 			$this->removeFromInventory($item);
-			$killer->giveItems($item);
+			$killer->giveItems(array($item), 'killing '.$this->getName());
 			$this->message(sprintf('You lost your %s.', $item->getItemName()));
 		}
 	}
@@ -1992,11 +2102,17 @@ class SR_Player extends GDO
 	public function gotKilledByHuman(SR_Player $killer)
 	{
 		return $this->gotKilledByNPC($killer);
+		
+		SR_Bounty::onKilledByHuman($killer, $this);
 	}
 	
 	private function announceKilled(SR_Player $killer)
 	{
-		
+		$famous = $this->isRunner() ? 'famous' : 'newbie';
+		$famous2 = $killer->isRunner() ? 'famous' : 'newbie';
+		$npchuman = $killer->isHuman() ? 'runner' : 'NPC';
+		$message = sprintf('[Shadowlamb] - The %s runner %s got killed by the %s %s %s', $famous, $this->getName(), $famous2, $npchuman, $killer->getName());
+		Shadowshout::sendGlobalMessage($message);
 	}
 }
 ?>

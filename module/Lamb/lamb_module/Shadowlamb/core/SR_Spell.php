@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Spell
 {
+	const MAX_ESSENCE = 9;
+	
 	################
 	### Abstract ###
 	################
@@ -31,7 +33,7 @@ abstract class SR_Spell
 	{
 		$spellname = substr($filename, 0, -4);
 		$classname = 'Spell_'.$spellname;
-		Lamb_log::log("SR_Spell::includeSpell($classname)");
+		Lamb_Log::logDebug("SR_Spell::includeSpell($classname)");
 		require_once $fullpath;
 		self::$spells[$spellname] = new $classname($spellname);
 	}
@@ -72,25 +74,32 @@ abstract class SR_Spell
 	public function checkRequirements(SR_Player $player)
 	{
 		$back = '';
-		foreach ($this->getRequirements() as $spellname => $level)
+		foreach ($this->getRequirements() as $require => $level)
 		{
-			if (false !== ($spell = self::getSpell($spellname))) {
-				if ($spell->getBaseLevel($player) < $level) {
-					$back .= sprintf(', %s level %s', $spellname, $level);
+			if (false !== ($spell = self::getSpell($require)))
+			{
+				if ($spell->getBaseLevel($player) < $level)
+				{
+					$back .= sprintf(', %s level %s', $require, $level);
 				}
 			}
-			elseif (in_array($spellname, SR_Player::$ATTRIBUTE)) {
-				if ($player->getBase($spellname) < $level) {
-					$back .= sprintf(', %s level %s', $spellname, $level);
+			elseif (in_array($require, SR_Player::$ATTRIBUTE))
+			{
+				if ($player->getBase($require) < $level)
+				{
+					$back .= sprintf(', %s level %s', $require, $level);
 				}
 			}
-			elseif (in_array($spellname, SR_Player::$SKILL)) {
-				if ($player->getBase($spellname) < $level) {
-					$back .= sprintf(', %s level %s', $spellname, $level);
+			elseif (in_array($require, SR_Player::$SKILL))
+			{
+				if ($player->getBase($require) < $level)
+				{
+					$back .= sprintf(', %s level %s', $require, $level);
 				}
 			}
-			else {
-				Lamb_Log::log(sprintf('Unknown requirement for %s: %s.', $this->getName(), $spellname));
+			else
+			{
+				Lamb_Log::logError(sprintf('Unknown requirement for Spell "%s": %s.', $this->getName(), $require));
 			}
 		}
 		return $back === '' ? false : substr($back, 2);
@@ -143,14 +152,16 @@ abstract class SR_Spell
 		$level = $this->getLevel($player);
 		$hits = $this->dice($player, $target, $level);
 		
-		if ($player->isFighting()) {
-			$player->busy($this->getCastTime($level));
+		if ($player->isFighting())
+		{
+			$busy = Shadowfunc::displayBusy($player->busy($this->getCastTime($level)));
 		}
 		
-		if ($hits < $target->get('essence')) {
+		if ($hits < $target->get('essence')*2)
+		{
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);
-			$player->message(sprintf('You failed to cast %s. %s MP wasted.', $this->getName(), $waste));
+			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
 			return true;
 		}
 		
@@ -171,8 +182,8 @@ abstract class SR_Spell
 		$dices += round($player->get('essence') * 20);
 		$dices -= round(Shadowfunc::calcDistance($player, $target)/4);
 		
-		$defense = round($target->get('essence') * 6);
-		$defense += round($target->get('intelligence') * 3);
+		$defense = round($target->get('essence') * 2);
+		$defense += round($target->get('intelligence') * 2);
 
 		return Shadowfunc::dicePool($dices, $defense, 2);
 	}
@@ -181,11 +192,17 @@ abstract class SR_Spell
 	{
 		$dices = round($level * 10);
 		$dices += round($player->get('intelligence') * 5);
-		$dices += round($player->get('essence') * 20);
+		$dices += round($player->get('essence') * 15);
 		
-		$defense = (7 - $target->get('essence')) * 15;
+		# To have supportive defense is bad.
+		$es = $target->get('essence');
+		$defense = Common::clamp(($es/6), 0.1, 1.0); # 0.1-1.0 compared against base essence
+		$dices *= $defense; # percent of dices
+		
+		# The dice defense
+		$defense = Common::clamp(self::MAX_ESSENCE-$es, 2, self::MAX_ESSENCE); # roll a 1-8 against essence
 
-		return Shadowfunc::dicePool($dices, $defense, $defense);
+		return Shadowfunc::dicePool($dices, $defense, 2);
 	}
 	
 	################
@@ -396,6 +413,20 @@ abstract class SR_SupportSpell extends SR_Spell
 	public function displayType() { return 'Support Spell'; }
 	public function isOffensive() { return false; }
 	public function getRange() { return 8; }
+
+	public function getSpellDuration(SR_Player $player, SR_Player $target, $level, $hits)
+	{
+		$wis = $player->get('wisdom');
+		$hits += $level * 10;
+		$hits += $wis * 10;
+		$hits += rand(-10, +10);
+		return round($hits * (5.0 + $level * 0.5));
+	}
+	
+	public function getSpellIncrement(SR_Player $player, SR_Player $target, $level, $hits)
+	{
+		return round(sqrt($hits)/8, 2);
+	}
 }
 
 abstract class SR_CombatSpell extends SR_Spell
