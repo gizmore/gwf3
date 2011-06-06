@@ -11,7 +11,7 @@ final class SR_PlayerVar extends GDO
 		return array(
 			'sr4pv_uid' => array(GDO::UINT|GDO::PRIMARY_KEY),
 			'sr4pv_key' => array(GDO::VARCHAR|GDO::PRIMARY_KEY|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 255),
-			'sr4pv_val' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL, 255),
+			'sr4pv_val' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL),
 		);
 	}
 	
@@ -19,7 +19,7 @@ final class SR_PlayerVar extends GDO
 	{
 		$uid = $player->getID();
 		$key = self::escape($key);
-		if (false === ($val = self::table(__CLASS__)->selectVar('', "sr4pv_uid={$uid} AND sr4pv_key='{$key}'")))
+		if (false === ($val = self::table(__CLASS__)->selectVar('sr4pv_val', "sr4pv_uid={$uid} AND sr4pv_key='{$key}'")))
 		{
 			return $default;
 		}
@@ -35,5 +35,9 @@ final class SR_PlayerVar extends GDO
 		), true);
 	}
 	
+	public static function deletePlayer(SR_Player $player)
+	{
+		return self::table(__CLASS__)->deleteWhere('sr4pv_uid='.$player->getID());
+	}
 }
 ?>
