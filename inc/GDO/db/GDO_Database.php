@@ -66,10 +66,10 @@ abstract class GDO_Database
 	##############
 	public function error($query, $errno, $error)
 	{
-		$message = sprintf('SQL Error(%s): %s<br/>%s', $errno, $error, $query);
-		echo GWF_HTML::error('GDO', $message.'<br/>'.GWF_Debug::backtrace('Stacktrace'));
+		$message = sprintf("SQL Error(%s): %s<br/>\n%s<br/>\n", $errno, $error, $query);
+		echo GWF_HTML::error('GDO', $message);
 		$this->emailOnError($message);
-		die(1337);
+		die(1);
 	}
 	
 	private function emailOnError($message)

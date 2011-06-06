@@ -103,7 +103,6 @@ final class GWF_Time
 //			return 'Never';
 //		}
 //		if (!isset($formats[$datelen])) {
-//			return GWF_Debug::backtrace('Invalid $gdo_date length');
 //		}
 //		$format = $formats[$datelen];
 //		return self::displayDateFormat($gdo_date, $format, $default_return,

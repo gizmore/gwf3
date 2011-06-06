@@ -64,7 +64,8 @@ final class GWF_Debug
 	##########
 	public static function collectGarbage()
 	{
-		if (function_exists('gc_collect_cycles')) {
+		if (function_exists('gc_collect_cycles'))
+		{
 			gc_collect_cycles();
 		}
 	}
@@ -122,7 +123,8 @@ final class GWF_Debug
 			default: $errnostring = 'PHP Unknown Error'; break;
 		}
 
-		$is_html = PHP_SAPI !== 'cli';
+		$is_html = isset($_SERVER['REMOTE_ADDR']);
+
 		if ($is_html)
 		{
 			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
@@ -223,7 +225,7 @@ final class GWF_Debug
 			$copy[] = sprintf('%s %s line %s.', $func, self::shortfile($file), $line);
 		}
 		
-		$back .= $html === true ? '<hr/>' : '';
+		$back .= $html === true ? '<hr/>' : PHP_EOL;
 		$back .= sprintf('Backtrace starts in %s line %s.', self::shortfile($prefile), $preline).PHP_EOL;
 		$back .= implode(PHP_EOL, array_reverse($copy));
 		$back .= $html ? "\n</pre>\n" : "\n";

@@ -184,10 +184,12 @@ final class GWF_Session extends GDO
 	
 	public static function setCookies($id, $uid, $sessid)
 	{
-		if (PHP_SAPI === 'cli') { return; }
-		# cookie is valid one year, but it's checked against config later.
-		$domain = (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : GWF_DOMAIN;
-		setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, '.'.$domain, false, true);
+		if (isset($_SERVER['REMOTE_ADDR']))
+		{
+			# cookie is valid one year, but it's checked against config later.
+			$domain = (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : GWF_DOMAIN;
+			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, '.'.$domain, false, true);
+		}
 	}
 	
 	##############

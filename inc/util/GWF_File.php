@@ -23,7 +23,8 @@ final class GWF_File
 	 */
 	public static function isWriteable($filename)
 	{
-		if (file_exists($filename)) {
+		if (file_exists($filename))
+		{
 			return is_writable($filename);
 		}
 		$dir = dirname($filename);
@@ -34,7 +35,7 @@ final class GWF_File
 	 * Remove a dir recursively. Returns boolean, true on success. Prints error messages to stdout when verbose.
 	 * @param string $path
 	 * @param boolean $verbose
-	 * @return boolean
+	 * @return true|false
 	 */
 	public static function removeDir($path, $verbose=true)
 	{
@@ -46,27 +47,34 @@ final class GWF_File
 		
 		if (false === ($dir = @dir($path)))
 		{
-			if ($verbose) { 
+			if ($verbose)
+			{ 
 				echo GWF_HTML::err('ERR_FILE_NOT_FOUND', htmlspecialchars($path));
 			}
-			
 			return false;
 		}
 		
 		while (false !== ($entry = $dir->read()))
 		{
-			if ($entry === '.' || $entry === '..') {
+			if ($entry === '.' || $entry === '..')
+			{
 				continue;
 			}
+			
 			$fullpath = $path.'/'.$entry;
-			if (is_dir($fullpath)) { // dir
-				if (!self::removeDir($fullpath)) {
+			if (is_dir($fullpath))
+			{ // dir
+				if (!self::removeDir($fullpath))
+				{
 					$success = false;
 				}
 			}
-			else { // file
-				if (!@unlink($fullpath)) {
-					if($verbose) {
+			else // file
+			{
+				if (!@unlink($fullpath))
+				{
+					if($verbose)
+					{
 						echo GWF_HTML::err('ERR_WRITE_FILE', htmlspecialchars($fullpath));
 					}
 					$success = false;
@@ -75,8 +83,10 @@ final class GWF_File
 		}
 		
 		// current dir
-		if (!@rmdir($path)) {
-			if ($verbose) {
+		if (!@rmdir($path))
+		{
+			if ($verbose)
+			{
 				echo GWF_HTML::err('ERR_WRITE_FILE', htmlspecialchars($path));
 			}
 			$success = false;
@@ -85,7 +95,14 @@ final class GWF_File
 		return $success;
 	}
 	
-	public static function filewalker_stub($entry, $fullpath) {}
+	/**
+	 * Template for a filewalker callback.
+	 * @param string $entry dir/filename.
+	 * @param string $fullpath fullpath of this dir/file.
+	 * @param mixed $args Custom args.
+	 */
+	public static function filewalker_stub($entry, $fullpath, $args=NULL) {}
+	
 	/**
 	 * Walk a dir and trigger callbacks on files and dirs
 	 * @param string $path
@@ -93,22 +110,25 @@ final class GWF_File
 	 * @param mixed $callback_dir
 	 * @return void
 	 */
-	public static function filewalker($path, $callback_file=true, $callback_dir=true, $recursive=true)
+	public static function filewalker($path, $callback_file=true, $callback_dir=true, $recursive=true, $args=NULL)
 	{
-		if (false === ($dir = dir($path))) {
+		# Readable?
+		if (false === ($dir = dir($path)))
+		{
 			return false;
 		}
 		
-		if (is_bool($callback_file)) {
+		if (is_bool($callback_file))
+		{
 			$callback_file = array(__CLASS__, 'filewalker_stub');
 		}
-		if (is_bool($callback_dir)) {
+		
+		if (is_bool($callback_dir))
+		{
 			$callback_dir = array(__CLASS__, 'filewalker_stub');
 		}
 		
-		
 		$dirstack = array();
-		
 		while (false !== ($entry = $dir->read()))
 		{
 			$fullpath = $path.'/'.$entry;
@@ -121,10 +141,9 @@ final class GWF_File
 			{
 				$dirstack[] = array($entry, $fullpath);
 			}
-			
 			elseif (is_file($fullpath))
 			{
-				call_user_func($callback_file, $entry, $fullpath);
+				call_user_func($callback_file, $entry, $fullpath, $args);
 			}
 		}
 		
@@ -132,8 +151,8 @@ final class GWF_File
 		
 		foreach ($dirstack as $d)
 		{
-			call_user_func($callback_dir, $d[0], $d[1]);
-			
+			call_user_func($callback_dir, $d[0], $d[1], $args);
+
 			if ($recursive === true)
 			{
 				self::filewalker($d[1], $callback_file, $callback_dir);

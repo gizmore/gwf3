@@ -31,11 +31,13 @@ final class GWF_HTML
 	public static function error($title=NULL, $message, $log=true) { return self::errorA($title, array($message), $log); }
 	public static function errorA($title=NULL, array $messages, $log=true)
 	{
-		if (count($messages) === 0) {
+		if (count($messages) === 0)
+		{
 			return '';
 		}
 		
-		if ($log === true) {
+		if ($log === true)
+		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
 
