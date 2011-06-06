@@ -104,61 +104,51 @@ final class GWF_Debug
 	 */
 	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 	{
-		// Log as critical!
-		if (class_exists('GWF_Log')) {
+		# Log as critical!
+		if (class_exists('GWF_Log'))
+		{
 			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline), false);
 		}
 		
 		switch($errno)
 		{
-			case 1:
-				$errnostring = 'PHP Fatal Error'; break;
+			case 1: $errnostring = 'PHP Fatal Error'; break;
 			case 2:
 			case 8:
-			case E_USER_WARNING:
-				$errnostring = 'PHP Warning'; break;
-			case E_USER_ERROR:
-				$errnostring = 'PHP Error'; break;
-			case E_USER_NOTICE:
-				$errnostring = 'PHP Notice'; break;
-			case 2048:
-				$errnostring = 'PHP No Timezone'; break;
-			default:
-				$errnostring = 'PHP Unknown Error'; break;
+			case E_USER_WARNING: $errnostring = 'PHP Warning'; break;
+			case E_USER_ERROR: $errnostring = 'PHP Error'; break;
+			case E_USER_NOTICE: $errnostring = 'PHP Notice'; break;
+			case 2048: $errnostring = 'PHP No Timezone'; break;
+			default: $errnostring = 'PHP Unknown Error'; break;
 		}
 
-		$is_html = isset($_SERVER['REMOTE_ADDR']);
-		if ($is_html) {
+		$is_html = PHP_SAPI !== 'cli';
+		if ($is_html)
+		{
 			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
 		}
-		else { # cronjob
+		else
+		{
 			$message = sprintf('%s(%s) %s in %s line %s.', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
 		}
 		
-		$out = self::backtrace($message, $is_html).PHP_EOL;
-		
-		if (GWF_USER_STACKTRACE) {
-			echo $out; 
+		# Show error to user
+		if (GWF_USER_STACKTRACE)
+		{
+			echo self::backtrace($message, $is_html).PHP_EOL;
 		}
-		else {
+		else
+		{
 			echo $message;
 		}
 		
-		if (GWF_DEBUG_EMAIL & 2) {
-			self::sendDebugMail($out);
-		}
-		else {
-			if (class_exists('GWF_Log')) {
-				GWF_Log::logCritical($out);
-			}
+		# Send error to admin
+		if (GWF_DEBUG_EMAIL & 2)
+		{
+			self::sendDebugMail(self::backtrace($message, false));
 		}
 		
-		// die?
-		if (self::$die) {
-			die();
-		}
-		
-		return false;
+		return self::$die ? die(1) : false;
 	}
 
 	/**
@@ -179,7 +169,9 @@ final class GWF_Debug
 	### Own Backtrace Output ###
 	############################
 	/**
-	 * Return a backtrace in either html or plaintext. You should use monospace font.
+	 * Return a backtrace in either HTML or plaintext. You should use monospace font for html.
+	 * HTML means (x)html(5) and <pre> stlye.
+	 * Plaintext means nice for logfiles.
 	 * @param string $message
 	 * @param boolean $html
 	 * @return string
@@ -188,19 +180,16 @@ final class GWF_Debug
 	{
 		$back = '';
 		
+		# Fix full path disclosure
 		$message = self::shortfile($message);
 		
-//		if (!is_bool($html)) { $html = Common::isHTML(); }
+		# Append PRE header.
+		$back .= $html ? ('<pre style="margin:4px; padding:3px; font-size:14px; text-align:left;">'.PHP_EOL) : '';
 		
-		$back .= $html === true ? ('<pre style="margin:4px; padding:3px; font-size:14px; text-align:left;">'.PHP_EOL) : '';
-		
-		$trace = debug_backtrace();
-		
-		if ($html === true) {
-			$back .= sprintf('<em>%s</em>', $message);
-		}
-		else {
-			$back .= "$message";
+		# Append general title message.
+		if ($message !== '')
+		{
+			$back .= $html ? '<em>'.$message.'</em>' : $message;
 		}
 		
 		$implode = array();
@@ -208,9 +197,10 @@ final class GWF_Debug
 		$prefile = 'Unknown';
 		$longest = 0;
 		$i = 0;
-		foreach ($trace as $row)
+		foreach (debug_backtrace() as $row)
 		{
-			if ($i++ > 0) {
+			if ($i++ > 0)
+			{
 				$function = sprintf('%s%s()', isset($row['class']) ? $row['class'].'::' : '', $row['function']);
 				$implode[] = array(
 					$function,
@@ -219,7 +209,6 @@ final class GWF_Debug
 				);
 				$len = strlen($function);
 				$longest = max(array($len, $longest));
-				#$implode[] = sprintf('%s%s(); in %s line %s.', isset($row['class']) ? $row['class'].'::' : '', $row['function'], );
 			}
 			$preline = isset($row['line']) ? $row['line'] : '?';
 			$prefile = isset($row['file']) ? $row['file'] : '[unknown file]';
