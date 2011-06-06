@@ -3,7 +3,8 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 {
 	# Date we want to query
 	$date = GWF_Settings::getSetting('LAMB_FORUM_DATE_'.$key, date('Ymd000000'));
-	if (strlen($date) !== 14) {
+	if (strlen($date) !== 14)
+	{
 		$date = date('Ymd000000');
 	}
 	
@@ -15,15 +16,21 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 	
 //	echo $url.PHP_EOL;
 	
-	if (false === ($content = GWF_HTTP::getFromURL($url))) {
+	GWF_HTTP::setTimeout(3);
+	GWF_HTTP::setConnectTimeout(2);
+	if (false === ($content = GWF_HTTP::getFromURL($url)))
+	{
 		return;
 	}
+	GWF_HTTP::setTimeout();
+	GWF_HTTP::setConnectTimeout();
 	
 //	echo $content.PHP_EOL;
 	
 	# Nothing happened
-	if ($content === '') {
-		return '';
+	if ($content === '')
+	{
+		return;
 	}
 	
 	$latest_date = $date;
@@ -33,12 +40,14 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 	$badlines = 0;
 	foreach ($lines as $line)
 	{
-		if ('' === ($line = trim($line))) {
+		if ('' === ($line = trim($line)))
+		{
 			continue;
 		}
 		
 		$thedata = explode('::', $line);
-		if (count($thedata) !== 6) {
+		if (count($thedata) !== 6)
+		{
 			$badlines++;
 			echo 'Invalid line in lamb_wc_forum: '.$line.PHP_EOL;
 			if ($badlines > 3) {

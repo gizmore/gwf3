@@ -1,6 +1,8 @@
 <?php
 final class Lamb_Install
 {
+	public static $DB_CLASSES = array('Lamb_Server', 'Lamb_Channel', 'Lamb_User', 'Lamb_IRCFrom', 'Lamb_IRCTo');
+	
 	# Edit me!
 	const LAMB_SERVERS = 'irc.giz.org:31346';
 	const LAMB_NICKNAMES = 'Lamb2';
@@ -18,18 +20,20 @@ final class Lamb_Install
 		return
 			self::installLamb($module, $dropTable). 
 			GWF_ModuleLoader::installVars($module, array(
-				'LAMB_OWNER' => array('gizmore', 'script'),
 				'LAMB_VERSION' => array('2.0.1', 'script'),
-				'LAMB_BLOCKING_IO' => array('NO', 'bool'),
-				'LAMB_PING_TIMEOUT' => array('240', 'int', '30', '3600'),
-				'LAMB_CONNECT_TIMEOUT' => array('20', 'int', '5', '300'),
-				'LAMB_TRIGGER' => array('.', 'script'),
-				'LAMB_SLEEP_MILLIS' => array('75', 'int', '5', '5000'),
-				'LAMB_TIMER_INTERVAL' => array('10.0', 'float', '1.0', '7200.0'),
-				'LAMB_HOSTNAME' => array('lamb.gizmore.org', 'script'),
-				'LAMB_REALNAME' => array('Lamb2 - IRC Bot', 'script'),
 				'LAMB_USERNAME' => array('Lamb2', 'script'),
+				'LAMB_REALNAME' => array('Lamb2 - IRC Bot', 'script'),
+				'LAMB_HOSTNAME' => array('lamb.gizmore.org', 'script'),
 				'LAMB_MODULES' => array('Link;News;Quote;Scum;Shadowlamb;Slapwarz', 'script'),
+				'LAMB_OWNER' => array('gizmore', 'script'),
+				'LAMB_EVENTS' => array('NO', 'bool'),
+				'LAMB_TRIGGER' => array('.', 'script'),
+				'LAMB_LOGGING' => array('YES', 'bool'),
+				'LAMB_PING_TIMEOUT' => array('360', 'int', '30', '3600'),
+				'LAMB_CONNECT_TIMEOUT' => array('3', 'int', '5', '300'),
+				'LAMB_SLEEP_MILLIS' => array('50', 'int', '5', '5000'),
+				'LAMB_NICKREPLY' => array('YES', 'bool'),
+				# Servers
 				'LAMB_SERVERS' => array(self::LAMB_SERVERS, 'script'),
 				'LAMB_NICKNAMES' => array(self::LAMB_NICKNAMES, 'script'),
 				'LAMB_PASSWORDS' => array(self::LAMB_PASSWORDS, 'script'),
@@ -38,33 +42,12 @@ final class Lamb_Install
 			));
 	}
 
-	private static $DB_CLASSES = array('Lamb_Channel', 'Lamb_User');
 	private static function installLamb(Module_Lamb $module, $dropTable)
 	{
-		if ('' !== ($error = GWF_ModuleLoader::installModuleClassesB($module, self::$DB_CLASSES, $dropTable))) {
+		if ('' !== ($error = GWF_ModuleLoader::installModuleClassesB($module, self::$DB_CLASSES, $dropTable)))
+		{
 			return $error;
 		}
-		$db = gdo_db();
-		$table = GWF_TABLE_PREFIX.'lamb_server';
-		$query =
-			'CREATE TABLE IF NOT EXISTS '.$table.' ('.
-			'serv_id    INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, '.
-			'serv_name  VARCHAR(255) CHARACTER SET ascii COLLATE ascii_bin, '.
-			'serv_ip    VARCHAR(40)  CHARACTER SET ascii COLLATE ascii_bin, '.
-			'serv_maxusers INT(11) UNSIGNED NOT NULL DEFAULT 0, '.
-			'serv_maxchannels INT(11) UNSIGNED NOT NULL DEFAULT 0, '.
-			'serv_version VARCHAR(255) CHARACTER SET ascii COLLATE ascii_bin DEFAULT "", '.
-			'serv_options INT(11) UNSIGNED NOT NULL DEFAULT 0, '.
-			'serv_password VARCHAR(255) CHARACTER SET ascii COLLATE ascii_bin, '.
-			'serv_nicknames TEXT CHARACTER SET ascii COLLATE ascii_bin, '.
-			'serv_channels TEXT CHARACTER SET ascii COLLATE ascii_bin, '.
-			'serv_admins TEXT CHARACTER SET ascii COLLATE ascii_bin '.
-		') ENGINE=InnoDB DEFAULT CHARSET=utf8';
-		
-		if (false === $db->queryWrite($query)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
-		}
-		
 		return '';
 	}
 }

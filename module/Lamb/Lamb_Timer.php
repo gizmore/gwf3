@@ -1,6 +1,6 @@
 <?php
 /**
- * Lamb timer.
+ * Lamb timer under the WPL :)
  * @author gizmore
  * @version 3.0
  * @since 3.0
@@ -31,14 +31,15 @@ final class Lamb_Timer
 	}
 	
 	/**
-	 * Execute the timer and do all the magic and stuff and checks.
-	 * @return true|false True if the timer should be removed. False if all is fine.
+	 * Execute the timer and do all the magic and stuff and checks. Return True if the timer should be removed. False if all is fine.
+	 * @return true|false testreturndocstest
 	 */
 	public function execute($time)
 	{
+		# Wait
 		if ($this->time_exec > $time)
 		{
-			return false; # Wait
+			return false;
 		}
 		
 		# Exec
@@ -48,13 +49,22 @@ final class Lamb_Timer
 		}
 		
 		# Delete?
-		return $this->repeat < 0 ? false : (--$this->repeat) > 0;
+		return $this->repeat < 0 ? false : (--$this->repeat) <= 0;
 	}
 	
+	/**
+	 * Really execute the timer now :)
+	 * @param float $time
+	 * @return true|false|mixed
+	 */
 	private function onExecute($time)
 	{
-		Lamb_Log::logDebug(sprintf('Executing timer "%s" ...', GWF_Hook::callbackToName($this->callback)));
-		$this->time_exec = $time + $seconds;
+//		Lamb_Log::logDebug(sprintf('Executing timer "%s" ...', GWF_Hook::callbackToName($this->callback)));
+		
+		# Repeat
+		$this->time_exec = $time + $this->seconds;
+		
+		# Exec
 		return call_user_func($this->callback, $this->server, $this->args);
 	}
 }
