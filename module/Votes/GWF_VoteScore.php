@@ -208,9 +208,9 @@ final class GWF_VoteScore extends GDO #implements GDO_Sortable, GDO_Editable
 		$min = (int) $min;
 		$max = (int) $max;
 		
-		if ($max === $min) {
-			$msg = 'NOTHING TO VOTE! (MIN==MAX=='.$min.')'.PHP_EOL;
-			echo GWF_Debug::backtrace($msg);
+		if ($max === $min)
+		{
+			GWF_Log::logCritical('NOTHING TO VOTE! (MIN==MAX=='.$min.')');
 			return false;
 		}
 		
