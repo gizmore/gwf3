@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# TODO: clone this file or add options
+
 # chroot
 cd ../../../
 
@@ -8,3 +12,6 @@ cd ../
 
 # exec bot
 php module/Lamb/lamb_bin/lamb_main.php protected/config_lamb.php Lamb_Config.php
+
+# Oops
+mplayer module/Lamb/lamb_bin/wecken.mp3

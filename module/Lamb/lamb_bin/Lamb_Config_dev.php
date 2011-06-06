@@ -1,4 +1,6 @@
 <?php
+define('LAMB_DEV', true);
+
 global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
@@ -11,16 +13,16 @@ $LAMB_CFG = array
 	'username' => 'Lamb3',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare2;Greetings;PG',
+	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG',
 
 	# Various
-	'trigger' => '.',
 	'owner' => 'gizmore',
-	'blocking_io' => false,
-	'ping_timeout' => 420,
-	'connect_timeout' => 10,
-	'sleep_millis' => 50,
-	'timer_interval' => 30.0,
+	'logging' => true, # Default flag for logging.
+	'trigger' => '.',
+	'sleep_millis' => 20,
+	'event_plugins' => true,
+	'ping_timeout' => 300,
+	'connect_timeout' => 1,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
 
 	###############

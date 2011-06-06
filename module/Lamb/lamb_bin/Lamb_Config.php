@@ -3,24 +3,24 @@ global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
 	# Version
-	'version' => '3.01.2011.MAY.11(Trunk) - GWF '.GWF_CORE_VERSION,
+	'version' => '3.01.2011.JUN.06(trunk) - GWF '.GWF_CORE_VERSION,
 
 	# IRC
-	'hostname' => 'lamb3.gizmore.org',
-	'realname' => 'Lamb: IRC-Botten',
 	'username' => 'Lamb3',
+	'realname' => 'Lamb: IRC Botten',
+	'hostname' => 'lamb3.gizmore.org',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare2;Greetings;PG',
+	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;Greetings',#;IRCLink;Warfare;PG',
 
 	# Various
-	'trigger' => '.',
 	'owner' => 'gizmore',
-	'blocking_io' => false,
-	'ping_timeout' => 420,
-	'connect_timeout' => 12,
-	'sleep_millis' => 40,
-	'timer_interval' => 40.0,
+	'logging' => true, # Default flag for logging.
+	'trigger' => '.',
+	'event_plugins' => false,
+	'sleep_millis' => 50,
+	'ping_timeout' => 300,
+	'connect_timeout' => 4,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
 
 	###############
@@ -82,7 +82,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://epic.irc.hackthissite.org:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#hackthissite',
+			'channels' => '#shadowlamb',#,#hackthissite',
 			'admins' => 'gizmore',
 		),
 		

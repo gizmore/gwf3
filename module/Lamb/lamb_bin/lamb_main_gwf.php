@@ -8,7 +8,7 @@ define('GWF_CONFIG_NAME', 'protected/config_lamb.php');
 require_once 'inc/_gwf_include.php';
 
 # Lamb2 core
-$dir = 'modules/Lamb';
+$dir = 'module/Lamb';
 chdir($dir);
 require 'Lamb_Channel.php';
 require 'Lamb_IRC.php';
