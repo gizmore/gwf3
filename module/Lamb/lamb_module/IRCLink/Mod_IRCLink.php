@@ -1,4 +1,9 @@
 <?php
+/**
+ * Link multiple channels from different servers.
+ * @author gizmore
+ * @version 3.0
+ */
 final class LambModule_IRCLink extends Lamb_Module
 {
 	private $links = array();
@@ -7,23 +12,19 @@ final class LambModule_IRCLink extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server)
-	{
-		Lamb::instance()->addTimer($server, array($this, 'onInitC'), NULL, 4);
-	}
-	public function onInitC(Lamb_Server $server, $args) { $this->onInitB($server); }
-	public function onInitB(Lamb_Server $server)
+	public function onOnline()
 	{
 		$this->links_saved = GWF_Settings::getSetting('lamb_irc_links', '');
 //		echo "Loading irc_links: $this->links_saved.\n";
 		$links = explode(';', $this->links_saved);
 		foreach ($links as $i => $link)
 		{
-			if ($link === '') {
+			if ($link === '')
+			{
 				unset($links[$i]);
-				continue;
 			}
-			if ('' !== $this->checkLinkChain($link)) {
+			elseif ('' !== $this->checkLinkChain($link))
+			{
 				unset($links[$i]);
 //				echo "Removed Link from memory: $link";
 			}
@@ -54,14 +55,13 @@ final class LambModule_IRCLink extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'irc_link' => 'Usage: %TRIGGER%irc_link <servid:servchan> <servid:servchan> [servid:servchan]... Link 2 or more channels together.',
-			'irc_links_reload' => 'Usage: %TRIGGER%irc_links_reload. Refresh the irc link table.',
-			'irc_links_reset' => 'Usage: %TRIGGER%irc_links_reset [cleanup|truncate]. Drop non-active irc links or the whole table.',
+		return array(
+			'irc_link' => 'Usage: %CMD% <servid:servchan> <servid:servchan> [servid:servchan]... Link 2 or more channels together.',
+			'irc_links_reload' => 'Usage: %CMD%. Refresh the irc link table.',
+			'irc_links_reset' => 'Usage: %CMD% [cleanup|truncate]. Drop non-active irc links or the whole table.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	################

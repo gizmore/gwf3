@@ -35,11 +35,17 @@ final class Lamb_ChannelPeak extends GDO
 		$count = $channel->getUserCount();
 		$peak = self::getPeak($cid);
 		$old_peak = $peak->getVar('lcpeak_peak');
-		if ($count <= $old_peak) {
+		if ($count <= $old_peak)
+		{
+			Lamb_Log::logDebug('Old channel peak was larger.');
 			return;
 		}
 		
-		$peak->savePeak($count);
+		if (false === $peak->savePeak($count))
+		{
+			Lamb_Log::logError('Cannot save channel peak!');
+			return;
+		}
 		
 		if ( ($old_peak > 0) && ($count > $old_peak) )
 		{
@@ -54,8 +60,8 @@ final class Lamb_ChannelPeak extends GDO
 	public function savePeak($count)
 	{
 		return $this->saveVars(array(
-			'lcpeak_peak'=>$count,
-			'lcpeak_date'=>GWF_Time::getDate(GWF_Date::LEN_SECOND),
+			'lcpeak_peak' => $count,
+			'lcpeak_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		));		
 	}
 	
@@ -64,7 +70,8 @@ final class Lamb_ChannelPeak extends GDO
 	#################
 	public static function getPeak($cid)
 	{
-		if (false !== ($peak = GDO::table(__CLASS__)->getRow($cid))) {
+		if (false !== ($peak = GDO::table(__CLASS__)->getRow($cid)))
+		{
 			return $peak;
 		}
 		return self::createPeak($cid);
@@ -78,7 +85,8 @@ final class Lamb_ChannelPeak extends GDO
 			'lcpeak_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 			'lcpeak_options' => 0,
 		));
-		if (false === $peak->replace()) {
+		if (false === $peak->replace())
+		{
 			return false;
 		}
 		return $peak;

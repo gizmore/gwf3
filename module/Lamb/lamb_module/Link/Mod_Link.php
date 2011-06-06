@@ -10,10 +10,10 @@ final class LambModule_Link extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) {}
-	public function onInstall() { GDO::table('Lamb_Link')->createTable(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
+	public function onInstall()
+	{
+		GDO::table('Lamb_Link')->createTable(false);
+	}
 	
 	###############
 	### Getters ###
@@ -27,18 +27,15 @@ final class LambModule_Link extends Lamb_Module
 			default: return array();
 		}
 	}
-	public function getHelp($trigger, $replaced=false)
+	public function getHelp()
 	{
-		$help = array(
-			'link' => 'Usage: %TRIGGER%link [id|search terms]. Display or search for a link. When no argument is given, a random link is displayed.',
-			'links' => 'Usage: %TRIGGER%links. Display statistics for the links module.',
-			'link++' => 'Usage: %TRIGGER%link++ <id>. Vote a link up.',
-			'link--' => 'Usage: %TRIGGER%link-- <id>. Vote a link down.',
-			'-link' => 'Usage: %TRIGGER%-link <id>. Remove a link from the database.',
+		return array(
+			'link' => 'Usage: %CMD% [id|search terms]. Display or search for a link. When no argument is given, a random link is displayed.',
+			'links' => 'Usage: %CMD%. Display statistics for the links module.',
+			'link++' => 'Usage: %CMD% <id>. Vote a link up.',
+			'link--' => 'Usage: %CMD% <id>. Vote a link down.',
+			'-link' => 'Usage: %CMD% <id>. Remove a link from the database.',
 		);
-		
-		$back = isset($help[$trigger]) ? $help[$trigger] : '';
-		return $replaced === true ? $this->replaceHelp($back) : $back;
 	}
 
 	#####################################
@@ -58,17 +55,20 @@ final class LambModule_Link extends Lamb_Module
 	
 	private function onAdd($username, $url)
 	{
-		if (false !== ($link = Lamb_Link::getByURL($url))) {
+		if (false !== ($link = Lamb_Link::getByURL($url)))
+		{
 			return true;
 		}
 		
-		if (false === ($description = $this->getDescription($url))) {
-			Lamb_Log::log('Mod_Link::onAdd() failed. URL: '.$url.'; Username: '.$username);
+		if (false === ($description = $this->getDescription($url)))
+		{
+			Lamb_Log::logError('Mod_Link::onAdd() failed. URL: '.$url.'; Username: '.$username);
 			return false;
 		}
 		
-		if (false === ($link = Lamb_Link::insertLink($username, $url, $description))) {
-			return 'Database error.';
+		if (false === ($link = Lamb_Link::insertLink($username, $url, $description)))
+		{
+			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return sprintf('Inserted Link %s (ID:%d)', $url, $link->getID());
@@ -76,15 +76,24 @@ final class LambModule_Link extends Lamb_Module
 	
 	private function getDescription($url)
 	{
-		if (false === ($content = GWF_HTTP::getFromURL($url))) {
-			Lamb_Log::log('Mod_Link::getDescription(): getFromURL() failed. URL: '.$url);
+		# Get page content
+		# TODO: Only download .txt and .html content!
+		GWF_HTTP::setTimeout(10);
+		GWF_HTTP::setConnectTimeout(3);
+		$content = GWF_HTTP::getFromURL($url);
+		GWF_HTTP::setTimeout();
+		GWF_HTTP::setConnectTimeout();
+		if ($content === false)
+		{
+			Lamb_Log::logError('Mod_Link::getDescription(): getFromURL() failed. URL: '.$url);
 			return false;
 		}
 		
-		if (0 === preg_match('#< *title *>([^<]+)< */ *title *>#i', $content, $matches)) {
+		# Get Title from html
+		if (0 === preg_match('#< *title *>([^<]+)< */ *title *>#i', $content, $matches))
+		{
 			return false;
 		}
-		
 		
 		$title = $this->decode($matches[1]);
 
@@ -222,24 +231,22 @@ final class LambModule_Link extends Lamb_Module
 	
 	private function onVote($message, $by)
 	{
-		if ($message === '') {
+		if ($message === '')
+		{
 			$a = $by > 0 ? '++' : '--';
-			return $this->getHelp('link'.$a, true);
+			return $this->getHelpText('link'.$a);
 		}
-		
 		$id = (int)$message;
-		if (false === ($link = Lamb_Link::getByID($id))) {
+		if (false === ($link = Lamb_Link::getByID($id)))
+		{
 			return sprintf('Quote with ID(%d) not found.', $id);
 		}
-		
-		if (false === $link->increase('link_rating', $by)) {
+		if (false === $link->increase('link_rating', $by))
+		{
 			return 'Database Error.';
 		}
-		
 		GWF_Counter::increaseCount('lamb_linkvotes', 1);
-		
 		return 'Vote registered.';
-		
 	}
 	
 	private function onDelete($message)

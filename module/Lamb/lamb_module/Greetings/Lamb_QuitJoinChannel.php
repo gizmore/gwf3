@@ -93,7 +93,7 @@ final class Lamb_QuitJoinChannel extends Lamb_QuitJoin
 	public function displayServer()
 	{
 		$id = $this->getVar('lqj_sid');
-		return GDO::table('Lamb_Server')->selectVar('serv_name', "serv_id={$id}");
+		return GDO::table('Lamb_Server')->selectVar('serv_host', "serv_id={$id}");
 	}
 	
 	public function displayTime()

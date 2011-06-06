@@ -22,7 +22,6 @@ final class LambModule_News extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) {}
 	public function onInstall()
 	{
 		GDO::table('Lamb_News')->createTable(false);
@@ -31,9 +30,6 @@ final class LambModule_News extends Lamb_Module
 		echo $this->addFeed('http://www.heise.de/security/news/news.rdf').PHP_EOL;
 		echo $this->addFeed('http://www.wechall.net/news/feed').PHP_EOL;
 	}
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
 	
 	###############
 	### Getters ###
@@ -49,14 +45,13 @@ final class LambModule_News extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'-feed' => 'Usage: %TRIGGER%-feed <feed_id>. Deletes a feed.',
-			'+feed' => 'Usage: %TRIGGER%+feed <url>. Add an rss feed.',
-			'news' => 'Usage: %TRIGGER%news to display feeds. %TRIGGER%news <id> to show the feed. %TRIGGER%news drop to drop remaining news.',
+		return array(
+			'-feed' => 'Usage: %CMD% <feed_id>. Deletes a feed.',
+			'+feed' => 'Usage: %CMD% <url>. Add an rss feed.',
+			'news' => 'Usage: %CMD% to display feeds. %CMD% <id> to show the feed. %CMD% drop to drop remaining news.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	public function isRunning()
@@ -139,13 +134,15 @@ final class LambModule_News extends Lamb_Module
 	
 	private function setupFeed(Lamb_NewsFeed $feed, $content)
 	{
-		if (!Common::startsWith($content, '<?xml')) {
-			Lamb_Log::log('Feed does not start with <?xml');
+		if (!Common::startsWith($content, '<?xml'))
+		{
+			Lamb_Log::logError('Feed does not start with <?xml');
 			return false;
 		}
 		
-		if (false === ($xml = simplexml_load_string($content))) {
-			Lamb_Log::log('Feed is not valid XML!');
+		if (false === ($xml = simplexml_load_string($content)))
+		{
+			Lamb_Log::logError('Feed is not valid XML!');
 			return false;
 		}
 		
@@ -155,11 +152,12 @@ final class LambModule_News extends Lamb_Module
 		switch ($version)
 		{
 			case '2.0': $rss_version = Lamb_NewsFeed::RSS_20; break;
-			default: Lamb_Log::log(sprintf('RSS Version %s is not supported!', $version)); return false;
+			default: Lamb_Log::logError(sprintf('RSS Version %s is not supported!', $version)); return false;
 		}
 		
-		if  ( (!isset($xml->channel->title)) || ((string)$xml->channel->title==='') ) {
-			Lamb_Log::log('Feed channel has no title!');
+		if  ( (!isset($xml->channel->title)) || ((string)$xml->channel->title==='') )
+		{
+			Lamb_Log::logError('Feed channel has no title!');
 			return false;
 		}
 		
@@ -262,7 +260,8 @@ final class LambModule_News extends Lamb_Module
 
 	private function resetTimer(Lamb_Server $server)
 	{
-		Lamb::instance()->addTimer($server, array($this, 'feedTimer'), NULL, 0.5);
+//		Lamb::instance()->addTimer($server, array($this, 'feedTimer'), NULL, 0.5);
+		Lamb::instance()->addTimer(array($this, 'feedTimer'), 0.5, $server);
 	}
 	
 	public function feedTimer(Lamb_Server $server, $args)
@@ -290,7 +289,7 @@ final class LambModule_News extends Lamb_Module
 			case 5:
 				return true;
 			default:
-				Lamb_Log::log('Unknown runlevel: '. $this->runlevel);
+				Lamb_Log::logError('Unknown runlevel: '. $this->runlevel);
 				break;
 		}
 
@@ -301,8 +300,9 @@ final class LambModule_News extends Lamb_Module
 	
 	private function parse(Lamb_Server $server, $received)
 	{
-		if (false === ($xml = simplexml_load_string($received))) {
-			Lamb_Log::log('Mod_News::parse() - simplexml_load_string() failed.');
+		if (false === ($xml = simplexml_load_string($received)))
+		{
+			Lamb_Log::logError('Mod_News::parse() - simplexml_load_string() failed.');
 			return false;
 		}
 		
@@ -346,15 +346,21 @@ final class LambModule_News extends Lamb_Module
 				'ln_descr' => $descr,
 				'ln_options' => 0,
 			));
-			if (false === $item->insert()) {
-				Lamb_Log::log('Database error in Mod_News::insertChannelItem()');
+			if (false === $item->insert())
+			{
+				Lamb_Log::logError('Database error in Mod_News::insertChannelItem()');
 			}
-			
+			else
+			{
+				$this->queue[] = $item;
+			}
+		}
+		
+		elseif ( ($this->origin === $server->getBotsNickname()) || (!$item->isDisplayed()) )
+		{
 			$this->queue[] = $item;
 		}
-		elseif ( ($this->origin === $server->getBotsNickname()) || (!$item->isDisplayed()) ) {
-			$this->queue[] = $item;
-		}
+		
 		return true;
 	}
 

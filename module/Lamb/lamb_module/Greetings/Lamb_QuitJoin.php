@@ -5,7 +5,7 @@
  */
 class Lamb_QuitJoin extends GDO
 {
-	CONST NOTEWORTHY = 7200; # 10 Seconds is good. 
+	CONST NOTEWORTHY = 10; # 10 Seconds is good. 
 	
 	###########
 	### GDO ###

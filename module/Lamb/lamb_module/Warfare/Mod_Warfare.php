@@ -22,22 +22,18 @@ final class LambModule_Warfare extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server)
+	public function onInitServer(Lamb_Server $server)
 	{
 //		echo __METHOD__.PHP_EOL;
-		if (false === ($dir = glob('modules/Warfare/ports/*.php'))) {
-			Lamb_Log::log('Cannot read ports directory.');
+		if (false === ($dir = glob('modules/Warfare/ports/*.php')))
+		{
+			Lamb_Log::logError('Warfare cannot read ports directory.');
 			return false;
 		}
 		self::$PORTS = $dir;
 	}
 
 	public function onInstall()
-	{
-//		echo __METHOD__.PHP_EOL;
-	}
-	
-	public function onTimer()
 	{
 //		echo __METHOD__.PHP_EOL;
 	}
@@ -54,14 +50,13 @@ final class LambModule_Warfare extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'probe' => 'Usage: %TRIGGER%probe <host|ip>. Initiate a service discovery on a given host.',
-			'autoprobe' => 'Usage: %TRIGGER%autoprobe <on|off>. Toggle the autoprobe mode. Off by default.',
-			'probe_out' => 'Usage: %TRIGGER%probe_out <channels,nicknames>. Set the probe output destinations. Default is echo to console!.',
+		return array(
+			'probe' => 'Usage: %CMD% <host|ip>. Initiate a service discovery on a given host.',
+			'autoprobe' => 'Usage: %CMD% <on|off>. Toggle the autoprobe mode. Off by default.',
+			'probe_out' => 'Usage: %CMD% <channels,nicknames>. Set the probe output destinations. Default is echo to console!.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	##############
@@ -157,7 +152,8 @@ final class LambModule_Warfare extends Lamb_Module
 		$this->to_scan_ip[] = $ip;
 		$this->to_scan_host[] = $host;
 		$this->to_scan_user[] = $user;
-		if ($this->status === 0) {
+		if ($this->status === 0)
+		{
 			$this->addTimer($server);
 		}
 	}
@@ -165,7 +161,8 @@ final class LambModule_Warfare extends Lamb_Module
 	private function addTimer(Lamb_Server $server)
 	{
 //		echo "Added new timer.\n";
-		Lamb::instance()->addTimer($server, array($this, 'scanTimer'), NULL, self::TIMEOUT+rand(2,5));
+//		Lamb::instance()->addTimer($server, array($this, 'scanTimer'), NULL, self::TIMEOUT+rand(2,5));
+		Lamb::instance()->addTimer(array($this, 'scanTimer'), self::TIMEOUT+rand(1,5), $server);
 	}
 
 	public function onAutoprobe(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
@@ -259,7 +256,7 @@ final class LambModule_Warfare extends Lamb_Module
 		$ip = $this->curr_ip;
 		$host = $this->curr_host;
 		$username = $this->getCurrUsername();
-		Lamb_Log::log(sprintf('Probe %s (%s) [%s] on port %s', $host, $ip, $username, $portname));
+		Lamb_Log::logDebug(sprintf('Probe %s (%s) [%s] on port %s', $host, $ip, $username, $portname));
 		include $port;
 	}
 	

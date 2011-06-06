@@ -2,6 +2,7 @@
 require_once 'Lamb_ScumGame.php';
 require_once 'Lamb_ScumHistory.php';
 require_once 'Lamb_ScumStats.php';
+
 /**
  * Woho teh scum!
  * @author gizmore
@@ -16,11 +17,11 @@ final class LambModule_Scum extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) {}
-	public function onInstall() { GDO::table('Lamb_ScumHistory')->createTable(false); GDO::table('Lamb_ScumStats')->createTable(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
+	public function onInstall()
+	{
+		GDO::table('Lamb_ScumHistory')->createTable();
+		GDO::table('Lamb_ScumStats')->createTable();
+	}
 	
 	###############
 	### Getters ###
@@ -34,12 +35,11 @@ final class LambModule_Scum extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'scum' => 'Scum is a cardgame. Use: %TRIGGER%scum help to learn how to play.',
+		return array(
+			'scum' => 'Scum is a cardgame. Use: %CMD% help to learn how to play.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	################
@@ -67,10 +67,12 @@ final class LambModule_Scum extends Lamb_Module
 			default: $out = $this->scumPlay($server, $channel_name, $user, $msg, false); break;
 		}
 		
-		if ($out !== '') {
-			if(empty($out)) {
-				echo GWF_Debug::backtrace('OUTCH');
-			}
+		if(empty($out))
+		{
+			Lamb_Log::logError('!!!Scum output is EMPTY!!!');
+		}
+		else
+		{
 			$bot->reply($out);
 		}
 	}

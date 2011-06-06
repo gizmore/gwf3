@@ -17,11 +17,13 @@ final class LambModule_Slapwarz extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) {}
-	public function onInstall() { GDO::table('Lamb_SlapHistory')->createTable(false); GDO::table('Lamb_SlapItem')->createTable(false); GDO::table('Lamb_SlapUser')->createTable(false); GDO::table('Lamb_SlapStats')->createTable(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
+	public function onInstall()
+	{
+		GDO::table('Lamb_SlapHistory')->createTable();
+		GDO::table('Lamb_SlapItem')->createTable();
+		GDO::table('Lamb_SlapUser')->createTable();
+		GDO::table('Lamb_SlapStats')->createTable();
+	}
 	
 	###############
 	### Getters ###
@@ -35,16 +37,14 @@ final class LambModule_Slapwarz extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'slap' => 'Usage: %TRIGGER%slap [nickname]. Slap your target!',
-//			'slapstats' => 'Usage: %TRIGGER%slapstats <user|item|damage|topten> <nickname|item|>. Example: %TRIGGER%slapstats user gizmore. Example: slapstats item used quote',
-			'slapinfo' => 'Usage: %TRIGGER%slapinfo <itemname|itemid>.',
-			'slapstats' => 'Usage: %TRIGGER%slapstats <nickname>.',
-			'slaptop5' => 'Usage: %TRIGGER%slaptop5 <dealt,taken,cmds,used>',
+		return array(
+			'slap' => 'Usage: %CMD% [nickname]. Slap your target!',
+			'slapinfo' => 'Usage: %CMD% <itemname|itemid>.',
+			'slapstats' => 'Usage: %CMD% <nickname>.',
+			'slaptop5' => 'Usage: %CMD% <dealt,taken,cmds,used>',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	################
@@ -76,8 +76,9 @@ final class LambModule_Slapwarz extends Lamb_Module
 	
 	private function onSlap(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
-		if ($message === '') {
-			return $this->getHelp('slap');
+		if ($message === '')
+		{
+			return $this->getHelpText('slap');
 		}
 		
 		require Lamb::DIR.'lamb_module/Slapwarz/slaps.php';

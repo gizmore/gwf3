@@ -61,14 +61,16 @@ final class Lamb_ScumStats extends GDO
 		foreach ($game->getWinners() as $name)
 		{
 			$score--;
-			if (false === ($user = $server->getUserByNickname($name))) {
-				Lamb_Log::log('Can not find user '.$name);
+			if (false === ($user = $server->getUserByNickname($name)))
+			{
+				Lamb_Log::logError('Can not find user '.$name);
 				continue;
 			}
 			
 			$userid = $user->getID();
-			if (false === ($row = (self::getOrCreateStatsRow($userid)))) {
-				Lamb_Log::log('Can not find user '.$name);
+			if (false === ($row = (self::getOrCreateStatsRow($userid))))
+			{
+				Lamb_Log::logError('Can not find stats for user '.$name);
 				continue;
 			}
 			$row->updateRow("scums_games=scums_games+1, scums_won=scums_won+$won, scums_score=scums_score+$score");

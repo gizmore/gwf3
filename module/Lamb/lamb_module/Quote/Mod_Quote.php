@@ -1,18 +1,21 @@
 <?php
 require_once 'Lamb_Quote.php';
+
 /**
+ * Lamb3 Quotes Module.
+ * TODO: Say a random quote once in an hour.
  * @author gizmore
+ * @version 3.0
  */
 final class LambModule_Quote extends Lamb_Module
 {
 	################
 	### Triggers ###
 	################
-	public function onInit(Lamb_Server $server) {}
-	public function onInstall() { GDO::table('Lamb_Quote')->createTable(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
+	public function onInstall()
+	{
+		GDO::table('Lamb_Quote')->createTable(false);
+	}
 	
 	###############
 	### Getters ###
@@ -27,17 +30,16 @@ final class LambModule_Quote extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'quote' => 'Usage: %TRIGGER%quote <id|search terms>. Search the quote database.',
-			'+quote' => 'Usage: %TRIGGER%+quote <quote text to add>. Will add a quote to the database.',
-			'-quote' => 'Usage: %TRIGGER%-quote <id>. Remove a quote from the database.',
-			'quote++' => 'Usage: %TRIGGER%quote++ <id>. Vote a quote up.',
-			'quote--' => 'Usage: %TRIGGER%quote-- <id>. Vote a quote down.',
-			'quotes' => 'Usage: %TRIGGER%quotes. Show quote statistics.',
+		return array(
+			'quote' => 'Usage: %CMD% <id|search terms>. Search the quote database.',
+			'+quote' => 'Usage: %CMD% <quote text to add>. Will add a quote to the database.',
+			'-quote' => 'Usage: %CMD% <id>. Remove a quote from the database.',
+			'quote++' => 'Usage: %CMD% <id>. Vote a quote up.',
+			'quote--' => 'Usage: %CMD% <id>. Vote a quote down.',
+			'quotes' => 'Usage: %CMD%. Show quote statistics.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	################
@@ -59,7 +61,8 @@ final class LambModule_Quote extends Lamb_Module
 	
 	private function onDisplay($message)
 	{
-		if ($message === '') {
+		if ($message === '')
+		{
 			return $this->displayQuote(Lamb_Quote::getRandomID());
 		}
 		
@@ -69,11 +72,13 @@ final class LambModule_Quote extends Lamb_Module
 		}
 		
 		$ids = Lamb_Quote::searchQuotes($message);
-		if (count($ids) === 0) {
+		if (count($ids) === 0)
+		{
 			return sprintf('No quote found with search term "%s"', $message);
 		}
 		
-		if (count($ids) === 1) {
+		if (count($ids) === 1)
+		{
 			return $this->displayQuote($ids[0]);
 		}
 		
@@ -82,7 +87,8 @@ final class LambModule_Quote extends Lamb_Module
 	
 	private function displayQuote($id)
 	{
-		if (false === ($quote = Lamb_Quote::getByID($id))) {
+		if (false === ($quote = Lamb_Quote::getByID($id)))
+		{
 			return sprintf('Quote with ID(%d) not found.', $id);
 		}
 		return sprintf('Quote(%d): %s - Rating(%d)', $id, $quote->getVar('quot_text'), $quote->getVar('quot_rating'));
@@ -90,11 +96,13 @@ final class LambModule_Quote extends Lamb_Module
 
 	private function onAdd($username, $message)
 	{
-		if ($message === '') {
-			return str_replace('%TRIGGER%', LAMB_TRIGGER, $this->getHelp('+quote'));
+		if ($message === '')
+		{
+			return $this->getHelpText('+quote');
 		}
 		
-		if (false === ($quote = Lamb_Quote::insertQuote($username, $message))) {
+		if (false === ($quote = Lamb_Quote::insertQuote($username, $message)))
+		{
 			return 'Database Error.';
 		}
 		
@@ -104,10 +112,12 @@ final class LambModule_Quote extends Lamb_Module
 	private function onDelete($message)
 	{
 		$id = (int)$message;
-		if (false === ($quote = Lamb_Quote::getByID($id))) {
+		if (false === ($quote = Lamb_Quote::getByID($id)))
+		{
 			return sprintf('Quote with ID(%d) not found.', $id);
 		}
-		if (false === ($quote->delete())) {
+		if (false === ($quote->delete()))
+		{
 			return 'Database Error.';
 		}
 		return sprintf('Quote with ID %d has been deleted.', $id);
@@ -116,11 +126,13 @@ final class LambModule_Quote extends Lamb_Module
 	private function onVote($message, $vote)
 	{
 		$id = (int)$message;
-		if (false === ($quote = Lamb_Quote::getByID($id))) {
+		if (false === ($quote = Lamb_Quote::getByID($id)))
+		{
 			return sprintf('Quote with ID(%d) not found.', $id);
 		}
 		
-		if (false === $quote->increase('quot_rating', $vote)) {
+		if (false === $quote->increase('quot_rating', $vote))
+		{
 			return 'Database Error.';
 		}
 		
@@ -137,7 +149,6 @@ final class LambModule_Quote extends Lamb_Module
 		$last = $quotes->selectFirstObject('*', '', 'quot_date DESC');
 		$last = $last === false ? '' : sprintf(' The last quote has been added by %s at %s.', $last->getVar('quot_username'), $last->displayDate());
 		return sprintf('I have %d quotes in the database.%s The quotes have been voted %d times.', $count, $last, $votes);
-		
 	}
 }
 ?>

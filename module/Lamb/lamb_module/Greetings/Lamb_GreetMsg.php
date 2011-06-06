@@ -51,6 +51,11 @@ final class Lamb_GreetMsg extends GDO
 		return $this->isOptionEnabled(self::ENABLED);
 	}
 	
+	public function isDisabled()
+	{
+		return !$this->isOptionEnabled(self::ENABLED);
+	}
+	
 	###############
 	### Message ###
 	###############
@@ -61,10 +66,7 @@ final class Lamb_GreetMsg extends GDO
 			'lgm_msg' => $message,
 			'lgm_options' => self::ENABLED|self::MODE_CHAN,
 		));
-		if (false === ($msg->replace())) {
-			return false;
-		}
-		return true;
+		return $msg->replace();
 	}
 	
 	public static function getGreetMsg(Lamb_Server $server, Lamb_Channel $channel)

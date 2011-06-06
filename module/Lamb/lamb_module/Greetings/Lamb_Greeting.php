@@ -30,9 +30,13 @@ final class Lamb_Greeting extends GDO
 	public static function dropChannel($channel_id)
 	{
 		$table = self::table(__CLASS__);
-		$table->deleteWhere("lagreet_cid=$channel_id");
+		
+		if (false === $table->deleteWhere("lagreet_cid=$channel_id"))
+		{
+			return -1;
+		}
+		
 		return $table->affectedRows();
 	}
-	
 }
 ?>

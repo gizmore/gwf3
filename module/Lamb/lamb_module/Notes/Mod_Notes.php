@@ -3,16 +3,19 @@ require_once 'Lamb_Note.php';
 
 final class LambModule_Notes extends Lamb_Module
 {
-	################
-	### Triggers ###
-	################
-	public function onInit(Lamb_Server $server) {}
-	public function onInstall() { GDO::table('Lamb_Note')->createTable(false); }
-	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) {}
-	public function onTimer() {}
-	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args) {}
-	public function onJoin(Lamb_Server $server, Lamb_User $user, Lamb_Channel $channel) { $this->onJoinTell($server, $user); }
+	##############
+	### Module ###
+	##############
+	public function onInstall()
+	{
+		GDO::table('Lamb_Note')->createTable();
+	
+	}
+	
+	public function onJoin(Lamb_Server $server, Lamb_User $user, Lamb_Channel $channel)
+	{
+		$this->onJoinTell($server, $user);
+	}
 	
 	###############
 	### Getters ###
@@ -26,18 +29,18 @@ final class LambModule_Notes extends Lamb_Module
 		}
 	}
 	
-	public function getHelp($trigger)
+	public function getHelp()
 	{
-		$help = array(
-			'note' => 'The Notes Module. Leave messages for users and show them when they join the next time. Try %TRIGGER%note help.',
+		return array(
+			'note' => 'The Notes Module. Leave messages for users and show them when they join the next time. Try %CMD% help.',
 		);
-		return isset($help[$trigger]) ? $help[$trigger] : '';
 	}
 	
 	public function onJoinTell(Lamb_Server $server, Lamb_User $user)
 	{
 		$userid = $user->getID();
-		if (0 == ($count = Lamb_Note::countUnread($userid))) {
+		if (0 == ($count = Lamb_Note::countUnread($userid)))
+		{
 			return;
 		}
 		$username = $user->getName();

@@ -1,6 +1,5 @@
 <?php
 require_once 'Lamb_PG.php';
-
 /**
  * Some anti annoyance filters.
  * @author gizmore
@@ -18,7 +17,7 @@ final class LambModule_PG extends Lamb_Module
 	const BAN_COUNT = 5;
 	const BAN_TIMEOUT = 86400;
 	
-	public function onInstall() { GDO::table('Lamb_PG')->createTable(false); }
+	public function onInstall() { GDO::table('Lamb_PG')->createTable(); }
 	public function onNotice(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) { $this->onPG($server, $user, $from, $origin, $message); }
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message) { $this->onPG($server, $user, $from, $origin, $message); }
 
@@ -28,7 +27,8 @@ final class LambModule_PG extends Lamb_Module
 			return;
 		}
 		
-		if (false === ($channel = $server->getChannel($origin))) {
+		if (false === ($channel = $server->getChannel($origin)))
+		{
 //			echo "Unknown channel: $origin\n";
 			return;
 		}
@@ -80,7 +80,8 @@ final class LambModule_PG extends Lamb_Module
 
 	private function onCapslockFlood(Lamb_Server $server, Lamb_Channel $channel, Lamb_User $user, $message)
 	{
-		if (strlen($message) < self::CAPS_MINLEN) {
+		if (strlen($message) < self::CAPS_MINLEN)
+		{
 			return;
 		}
 		
@@ -91,20 +92,24 @@ final class LambModule_PG extends Lamb_Module
 		for ($i = 0; $i < $len; $i++)
 		{
 			$c = $message{$i};
-			if ($c >= 'a' && $c <= 'z') {
+			if ($c >= 'a' && $c <= 'z')
+			{
 				$lower++;
 			}
-			elseif ($c >= 'A' && $c <= 'Z') {
+			elseif ($c >= 'A' && $c <= 'Z')
+			{
 				$upper++;
 			}
-			else {
+			else
+			{
 				continue;
 			}
 			$total++;
 		}
 		
 		$ratio = $upper / $total;
-		if ($ratio >= self::CAPS_LOCK_RATIO) {
+		if ($ratio >= self::CAPS_LOCK_RATIO)
+		{
 			$this->kick($server, $channel, $user, "Please turn off caps lock!");
 		}
 	}
