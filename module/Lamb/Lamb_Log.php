@@ -6,50 +6,26 @@
  */
 final class Lamb_Log
 {
-	public static function log($message)
-	{
-		if (PHP_SAPI === 'cli')
-		{
-			echo $message.PHP_EOL;
-		}
-		GWF_Log::log('lamb', $message, true);
-		return true;
-	}
-	
 	public static function logChat(Lamb_Server $server, $message)
 	{
-		if (PHP_SAPI === 'cli')
-		{
-			echo $message.PHP_EOL;
-		}
-		
 		# One file per server
 		$host = preg_replace('/[^a-z0-9_\\.]/', '', strtolower($server->getHostname()));
-		
-		# Log it
-		GWF_Log::log("lamb_chat_{$host}", $message, true);
-		return true;
+		return GWF_Log::log("lamb_chat_{$host}", $message, true);
 	}
 	
 	public static function logError($message)
 	{
-		if (PHP_SAPI === 'cli')
-		{
-			echo 'ERROR: '.$message.PHP_EOL;
-		}
 		GWF_Log::log('lamb_error', $message, true);
 		GWF_Log::log('lamb_error_details', GWF_Debug::backtrace($message, false));
 		return false;
 	}
 	
+	#############
+	### Debug ###
+	#############
 	public static function logDebug($message)
 	{
-		if (PHP_SAPI === 'cli')
-		{
-			echo $message.PHP_EOL;
-		}
-		GWF_Log::log('lamb_debug', $message, true);
-		return true;
+		return GWF_Log::log('lamb_debug', $message, true);
 	}
 	
 	/**
