@@ -77,7 +77,8 @@ final class Lamb_User extends GDO
 	public static function getOrCreate(Lamb_Server $server, $username)
 	{
 		$username = ltrim(trim($username), self::USERMODES);
-		if (false !== ($user = self::getUser($server, $username))) {
+		if (false !== ($user = self::getUser($server, $username)))
+		{
 			return $user;
 		}
 		return self::createUser($server, $username);
@@ -159,15 +160,18 @@ final class Lamb_User extends GDO
 	
 	public function hasPriviledge($priviledge)
 	{
-		if ($this->isBot()) {
+		if ($this->isBot())
+		{
 			return false;
 		}
 		
-		if (0 === ($need = $this->priviledgeToOption($priviledge))) {
+		if (0 === ($need = $this->priviledgeToOption($priviledge)))
+		{
 			return true;
 		}
 		
-		if (0 === ($have = ($this->getOptions() & self::USERMODE_FLAGS)))  {
+		if (0 === ($have = ($this->getOptions() & self::USERMODE_FLAGS)))
+		{
 			return false;
 		}
 		

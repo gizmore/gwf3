@@ -1,7 +1,8 @@
 <?php
 /**
- * A channel on a server.
+ * An irc channel.
  * @author gizmore
+ * @version 3
  */
 final class Lamb_Channel extends GDO
 {
@@ -18,7 +19,7 @@ final class Lamb_Channel extends GDO
 		return array(
 			'chan_id' => array(GDO::AUTO_INCREMENT),
 			'chan_sid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
-			'chan_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 64),
+			'chan_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I|GDO::INDEX, GDO::NOT_NULL, 63),
 			'chan_maxusers' => array(GDO::UINT, 0),
 			'chan_ops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_hops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
@@ -48,7 +49,7 @@ final class Lamb_Channel extends GDO
 	{
 		$sid = $server->getID();
 		$channel_name = self::escape($channel_name);
-		return self::table(__CLASS__)->selectFirstObject('*', "chan_sid=$sid AND chan_name='$channel_name'");
+		return self::table(__CLASS__)->selectFirstObject('*', "chan_sid={$sid} AND chan_name='{$channel_name}'");
 	}
 
 	/**
@@ -69,7 +70,8 @@ final class Lamb_Channel extends GDO
 			'chan_voice' => '',
 			'chan_topic' => '',
 		));
-		if (false === ($channel->insert())) {
+		if (false === ($channel->insert()))
+		{
 			return false;
 		}
 		return $channel;
@@ -92,45 +94,34 @@ final class Lamb_Channel extends GDO
 	
 	public function addUser(Lamb_User $user, $usermode='')
 	{
-		$username = $user->getVar('lusr_name');
-		$this->users[$username] = array($user, $usermode);
+		$u = strtolower($user->getVar('lusr_name'));
+		$this->users[$u] = array($user, $usermode);
 	}
 	
 	public function getUserByName($username)
 	{
-		return $this->users[$username][0];
-	}
-	
-	public function getUserByNameI($username)
-	{
-		foreach ($this->users as $n => $data)
-		{
-			if (strcasecmp($n, $username) === 0)
-			{
-				return $data[0];
-			}
-		}
-		return false;
+		return $this->users[strtolower($username)][0];
 	}
 	
 	public function isUserInChannel($username)
 	{
-		return isset($this->users[$username]);
+		return isset($this->users[strtolower($username)]);
 	}
 	
 	public function getModeByName($username)
 	{
-		return $this->users[$username][1];
+		return $this->users[strtolower($username)][1];
 	}
 	
 	public function setUserMode($username, $usermode)
 	{
-		$this->users[$username] = array($this->getUserByName($username), $usermode);
+		$u = strtolower($username);
+		$this->users[$u] = array($this->getUserByName($u), $usermode);
 	}
 	
 	public function removeUser($username)
 	{
-		unset($this->users[$username]);
+		unset($this->users[strtolower($username)]);
 	}
 	
 	public function getTopic()
