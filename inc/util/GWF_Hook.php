@@ -120,7 +120,7 @@ final class GWF_Hook
 		}
 		
 		if ($result === false) {
-			return GWF_HTML::err('ERR_HOOK', array(self::hookToName($hook)));
+			return GWF_HTML::err('ERR_HOOK', array(self::callbackToName($hook)));
 		}
 		
 		return $result;
@@ -131,24 +131,32 @@ final class GWF_Hook
 	##########################
 	/**
 	 * Helper function to convert a hook to a string representation.
-	 * @param mixed $hook
+	 * @author gizmore
+	 * @example callbackToName('funcname') returns funcname
+	 * @example callbackToName(array($this, 'foo')) returns BlubClass->foo
+	 * @example callbackToName(array('FooClass', 'bar')) returns FooClass::bar
+	 * @param mixed $callback
 	 * @return string
 	 */
-	private static function hookToName($hook)
+	public static function callbackToName($callback)
 	{
-		$cb = $hook[1];
+		$cb = $callback[1];
 		if (is_array($cb))
 		{
 			
-			if (is_object($cb[0])) {
-				return $cb[0]->getClassName().'->'.$cb[1];
-			} else {
+			if (is_object($cb[0]))
+			{
+				return get_class($cb[0]).'->'.$cb[1];
+//				return $cb[0]->getClassName().'->'.$cb[1];
+			}
+			else
+			{
 				return $cb[0].'::'.$cb[1];
 			}
 		}
 		else
 		{
-			return (string) $cb;
+			return (string)$cb;
 		}
 	}
 }
