@@ -37,7 +37,7 @@ final class GWF_Group extends GDO
 			'group_country' => array(GDO::UINT, 0), #, array('GWF_Country', 'group_country')),
 			'group_founder' => array(GDO::OBJECT|GDO::INDEX, 0, array('GWF_User', 'group_founder', 'user_id')),
 			'group_memberc' => array(GDO::UINT, 0),
-			'group_bid' => array(GDO::UINT, 0),
+			'group_bid' => array(GDO::UINT, 0), # BoardID(wtf)
 			'group_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 //			'founder' => array(GDO::JOIN, GDO::NULL, array('GWF_User', 'group_founder', 'user_id')),
 		);

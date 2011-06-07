@@ -37,7 +37,20 @@ final class Admin_GroupAdd extends GWF_Method
 			return $err.$this->templateAdd($module);
 		}
 		
-		if (false === GWF_Group::insertNewGroup($form->getVar('groupname'))) {
+		$group = new GWF_Group(array(
+			'group_id' => 0,
+			'group_name' => $form->getVar('groupname'),
+			'group_options' => GWF_Group::FULL|GWF_Group::SCRIPT,
+			'group_lang' => 0,
+			'group_country' => 0,
+			'group_founder' => 0,
+			'group_memberc' => 0,
+			'group_bid' => 0,
+			'group_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+		));
+		
+		if (false === ($group->insert()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($module);
 		}
 		
