@@ -2,10 +2,8 @@
 
 <head>
 	<title>{$page_title}</title>
-	<base href="http://{$smarty.server['SERVER_NAME']}">
+	<!--<base href="http://{$smarty.server['SERVER_NAME']}{$root}"> -->
 
-	{*<meta name="keywords" content="{$meta_tags}" />
-	<meta name="description" content="{$meta_descr}" />*}
 	{$meta}
 	<link rel="shortcut icon" href="/templates/{$SF->design()}/{$SF->layout()}/images/favicon.ico">
 	<link rel="alternate stylesheet" href="/templates/{$SF->design()}/css/print.css" title="PrintView" type="text/css">

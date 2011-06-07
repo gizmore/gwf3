@@ -1,5 +1,5 @@
-				<p class="top" style="background-image:url('templates/{$SF->design()}/{$SF->layout()}/images/navirighthead.png');"> 
+				<p class="top" style="background-image:url('{$root}templates/{$SF->design()}/{$SF->layout()}/images/navirighthead.png');"> 
 					<img src="{$root}img/sub.png" alt="[-]" title="Hide Navigation">
 				</p><hr>
-{SF_Website::display_navigation('right')}
+{$SF->displayNavi('right')}
 				<hr><p class="bottom"></p>
