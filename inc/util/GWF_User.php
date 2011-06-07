@@ -175,7 +175,7 @@ final class GWF_User extends GDO
 		if ($this->groups === true)
 		{ 
 			$this->groups = GDO::table('GWF_UserGroup')->selectArrayMap(
-				'group_name, t.*', 'ug_userid='.$this->getID(), '', array('group'), self::ARRAY_O, -1, -1, 'group_name'
+				'group_name, t.*, group_founder', 'ug_userid='.$this->getID(), '', array('group'), self::ARRAY_O, -1, -1, 'group_name'
 			);
 		}
 		return $this->groups;
