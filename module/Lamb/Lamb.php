@@ -128,8 +128,10 @@ final class Lamb
 				
 				if (false !== $server->replace())
 				{
-					$server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i]);
-					$this->addServer($server);
+					if (false !== $server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i]))
+					{
+						$this->addServer($server);
+					}
 				}
 			}
 		}
@@ -140,6 +142,7 @@ final class Lamb
 		foreach ($this->servers as $server)
 		{
 			$server instanceof Lamb_Server;
+			Lamb_Log::logDebug(sprintf('Checking server %s-%s', $server->getID(), $server->getHost()));
 			if ($server->setupIP())
 			{
 				$up++;
@@ -853,9 +856,20 @@ final class Lamb
 			return Lamb_Log::logError(sprintf('In %s(%s, %s, %s, %s): getUserFromOrigin(%s) failed!', __METHOD__, $server->getHostname(), $from, $origin, $message, $from));
 		}
 		
-//		$this->lm_origin = $origin;
-		
 		$is_admin = $user->isLoggedIn() && $server->isAdminUsername($user->getName());
+		
+		if (!$is_admin)
+		{
+			if (false !== ($channel = $server->getChannel($origin)))
+			{
+				if (!$channel->allowsTrigger())
+				{
+					return false;
+				}
+			}
+		}
+		
+//		$this->lm_origin = $origin;
 		
 		$message = preg_replace('/[ ]{2,}/', ' ', $message);
 		$message = ltrim($message, LAMB_TRIGGER);

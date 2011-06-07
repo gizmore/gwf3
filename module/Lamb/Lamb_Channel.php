@@ -8,12 +8,14 @@ final class Lamb_Channel extends GDO
 {
 	private $users = array();
 	
+	const NO_RESPONSE = 0x01;
+	
 	###########
 	### GDO ###
 	###########
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'lamb_channel'; }
-//	public function getOptionsName() { return ''; }
+	public function getOptionsName() { return 'chan_options'; }
 	public function getColumnDefines()
 	{
 		return array(
@@ -25,7 +27,13 @@ final class Lamb_Channel extends GDO
 			'chan_hops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_voice' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_topic' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
+			'chan_options' => array(GDO::UINT, 0),
 		);
+	}
+	
+	public function allowsTrigger()
+	{
+		return !$this->isOptionEnabled(self::NO_RESPONSE);
 	}
 	
 	##############
