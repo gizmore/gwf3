@@ -241,7 +241,7 @@ final class GWF_ForumSubscription extends GDO
 		
 		$boardText = self::getBoardTreeText($thread->getBoard());
 		$threadTitle = $thread->display('thread_title');
-		$sender = $module->getSubscriptionSender();
+		$sender = GWF_BOT_EMAIL;
 		
 		foreach ($users as $user)
 		{
