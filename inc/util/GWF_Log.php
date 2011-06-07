@@ -84,8 +84,8 @@ final class GWF_Log
 	########################
 	public static function logCron($message) { return self::log('cron', $message, true); }
 	public static function logError($message) { return self::log('error', $message) && self::log('error_details', GWF_Debug::backtrace($message, false)); }
-//	public static function logMessage($message) { return self::log('message', $message); }
-//	public static function logWarning($message) { return self::log('warning', $message); }
+	public static function logMessage($message) { return self::log('message', $message); }
+	public static function logWarning($message) { return self::log('warning', $message); }
 	public static function logCritical($message) { return self::log('critical', $message) && self::log('critical_details', GWF_Debug::backtrace($message, false)); }
 	
 	##############
