@@ -267,7 +267,7 @@ final class Lamb
 			}
 			else
 			{
-				Lamb_Log::logError(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $serverid, $entry, $fullpath));
+				Lamb_Log::logDebug(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $serverid, $entry, $fullpath));
 			}
 		}
 		else
@@ -510,6 +510,7 @@ final class Lamb
 		{
 			while (true)
 			{
+				$server->getConnection()->sendQueue();
 				
 //				if ( ($msg === false) || ($msg === '') ) 
 				if ('' === ($msg = trim($c->getMessage())))

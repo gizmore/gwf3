@@ -9,6 +9,8 @@ final class Lamb_IRC
 	private $timestamp = 0;
 	private $context = NULL;
 	
+	private $queue = array();
+	
 	public function __construct($host, $default_port=6667)
 	{
 		# Host & Protocol
@@ -155,17 +157,47 @@ final class Lamb_IRC
 		return '';
 	}
 	
+	/**
+	 * Send a message or put into flood queue.
+	 * @param string $message
+	 */
 	public function send($message)
 	{
+		# On flood, put the message into queue.
 		if ($this->isFlooding())
 		{
 			Lamb_Log::logDebug("Flooding");
-			sleep(1);
+			$this->queue[] = $message;
+			return true;
 		}
-		
-		# Anti remote irc cmd execution.
+		else
+		{
+			return $this->sendB($message);
+		}
+	}
+	
+	/**
+	 * In case we were flooding, we have a queue to send.
+	 * @return true|false
+	 */
+	public function sendQueue()
+	{
+		while ( (!$this->isFlooding()) && (count($this->queue) > 0) )
+		{
+			if (false === $this->sendB(array_shift($this->queue)))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private function sendB($message)
+	{
+		# Anti remote-irc-cmd-execution. (thx noother)
 		$message = str_replace(array("\r", "\n"), '', $message);
 		fprintf($this->socket, "%s\r\n", $message);
+		$this->flood_count++;
 		
 		# Log?
 		$server = Lamb::instance()->getCurrentServer();
@@ -173,9 +205,9 @@ final class Lamb_IRC
 		{
 			Lamb_Log::logChat($server, $message);
 		}
-		
 		return fflush($this->socket);
 	}
+	
 	
 	##################
 	### Anti Flood ###
@@ -201,7 +233,6 @@ final class Lamb_IRC
 		}
 		else
 		{
-			$this->flood_count++;
 			if ($this->flood_count >= $server->getInt('serv_flood_amt'))
 			{
 				return true;
