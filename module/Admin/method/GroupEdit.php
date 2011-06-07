@@ -166,7 +166,7 @@ final class Admin_GroupEdit extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
 		}
-		return $module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->displayName()));
+		return $module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->display('group_name')));
 	}
 	
 	##################

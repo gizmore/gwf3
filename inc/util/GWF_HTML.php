@@ -61,11 +61,13 @@ final class GWF_HTML
 	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
 	public static function messageA($title=NULL, array $messages, $log=true)
 	{
-		if (count($messages) === 0) {
+		if (count($messages) === 0)
+		{
 			return '';
 		}
 		
-		if ($log === true) {
+		if ($log === true)
+		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
 
