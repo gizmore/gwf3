@@ -76,6 +76,7 @@ final class Lamb_Server extends GDO
 	public function isAutoChannel($channel_name) { return in_array($channel_name, $this->getAutoChannels(), true); }
 	public function getNicknames() { return explode(',', $this->getVar('serv_nicknames')); }
 	public function getAdminUsernames() { return explode(',', $this->getVar('serv_admins')); }
+	public function isThrottled() { return $this->getInt('serv_flood_amt') > 0; }
 	
 //	private $id = 0;
 //	private $nicknames = 'Lamb,Lamb2,Lamb3';

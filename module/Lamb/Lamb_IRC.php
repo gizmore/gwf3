@@ -186,6 +186,12 @@ final class Lamb_IRC
 	const DEFAULT_FLOOD_AMOUNT = 5;
 	private function isFlooding()
 	{
+		$server = Lamb::instance()->getCurrentServer();
+		if (!$server->isThrottled())
+		{
+			return false;
+		}
+		
 		$t2 = microtime(true);
 		$t1 = $this->flood_time;
 		if (($t2 - $t1) > self::FLOOD_TIMEOUT)
@@ -196,7 +202,7 @@ final class Lamb_IRC
 		else
 		{
 			$this->flood_count++;
-			if ($this->flood_count >= Lamb::instance()->getCurrentServer()->getInt('serv_flood_amt'))
+			if ($this->flood_count >= $server->getInt('serv_flood_amt'))
 			{
 				return true;
 			}
