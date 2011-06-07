@@ -160,7 +160,10 @@ final class Admin_GroupEdit extends GWF_Method
 	
 	public function onRemFromGroup(Module_Admin $module, $uid)
 	{
-		if (false === GWF_UserGroup::removeFromGroupID($uid, $this->group->getID())) {
+		$uid = (int)$uid;
+		$gid = $this->group->getID();
+		if (false === GDO::table('GWF_UserGroup')->deleteWhere("ug_userid={$uid} AND ug_groupid={$gid}", '', NULL, 1))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
 		}
 		return $module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->displayName()));
