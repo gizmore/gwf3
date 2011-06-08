@@ -1718,7 +1718,11 @@ class SR_Player extends GDO
 	
 	public function pay($nuyen)
 	{
-		return $nuyen <= 0 ? true : $this->giveNuyen(-$nuyen);
+		if ($nuyen <= 0)
+		{
+			return true;
+		}
+		return $this->hasNuyen($nuyen) ? $this->giveNuyen(-$nuyen) : false;
 	}
 	
 	public function alterField($field, $by)
