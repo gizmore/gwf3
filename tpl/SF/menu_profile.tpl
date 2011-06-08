@@ -16,6 +16,6 @@
 {if $user->isLoggedIn()}
 	Last Login: <span class="color">{GWF_Time::displayTimestamp($user->getVar('user_lastlogin'))}</span>
 {/if}
-	<a href="{$root}de/"><img src="/templates/{$SF->design()}/images/German.png" alt="[DE]" title="{$SF->lang('change_language')}"></a>
-	<a href="{$root}en/"><img src="/templates/{$SF->design()}/images/America.png" alt="[EN]" title="{$SF->lang('change_language')}"></a>
+	<a href="de/"><img src="/templates/{$SF->design()}/images/German.png" alt="[DE]" title="{$SF->lang('change_language')}"></a>
+	<a href="en/"><img src="/templates/{$SF->design()}/images/America.png" alt="[EN]" title="{$SF->lang('change_language')}"></a>
 </span>

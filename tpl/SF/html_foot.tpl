@@ -8,6 +8,6 @@
 				<a href="{$root}credits/" class="footlink">Credits</a> | 
 				<a href="{$root}bugreport/" class="footlink">Report Bug</a> | 
 				<a href="{$root}todo/" class="footlink">TO-DO Liste</a> | 
-				<!--<a href="{$root}SF/framework-latest.tar.gz" class="footlink">Space-Framework</a> | -->
+				{*<a href="{$root}SF" class="footlink">Space-Framework</a> | *}
 				<a href="#" class="footlink">Bookmark</a>
 			</p>

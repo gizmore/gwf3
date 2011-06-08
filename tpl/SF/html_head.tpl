@@ -2,8 +2,9 @@
 
 <head>
 	<title>{$page_title}</title>
-	<!--<base href="http://{$smarty.server['SERVER_NAME']}{$root}"> -->
-
+{if $SF->is_displayed('base')}
+	<base href="http://{$smarty.server['SERVER_NAME']}">
+{/if}
 	{$meta}
 	<link rel="shortcut icon" href="/templates/{$SF->design()}/{$SF->layout()}/images/favicon.ico">
 	<link rel="alternate stylesheet" href="/templates/{$SF->design()}/css/print.css" title="PrintView" type="text/css">
