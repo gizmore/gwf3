@@ -1,14 +1,14 @@
 <?php
 class SR_SearchRoom extends SR_Tower
 {
-	public function isLocked() { return false; } 
-	public function getLockLevel() { return 0.0; } # 0.0-10.0
+	public function isLocked() { return $this->getLockLevel() >= 0; } 
+	public function getLockLevel() { return -1; } # 0.0-10.0
 	public function onCrackLockFailed(SR_Player $player) { $player->message('Your party members tried to crack the lock, but failed.'); }
-	public function onCrackedLock(SR_Player $player, SR_Player $cracker) { $player->getParty->message($cracker, ' cracked the lock!'); }
+	public function onCrackedLock(SR_Player $player, SR_Player $cracker) { $player->getParty()->message($cracker, ' cracked the lock!'); }
 	
-	public function isSearchable() { return true; }
-	public function getSearchMaxAttemps() { return 2; }
-	public function getSearchLevel() { return 0; }
+	public function isSearchable() { return $this->getSearchLevel() >= 0; }
+	public function getSearchMaxAttemps() { return 1; }
+	public function getSearchLevel() { return -1; }
 	public function getSearchLoot(SR_Player $player) { return array(); }
 	
 	public function getHelpText(SR_Player $player)
@@ -50,7 +50,7 @@ class SR_SearchRoom extends SR_Tower
 		
 		if ($attemp >= $this->getSearchMaxAttemps())
 		{
-			$player->message('NoSR_SearchRoomt again.');
+			$player->message('Not again.');
 			return;
 		}
 		
@@ -150,7 +150,7 @@ class SR_SearchRoom extends SR_Tower
 		{
 			if (!$this->onEnterLocked($player))
 			{
-				return true;
+				return false;
 			}
 		}
 		return parent::onEnter($player);
@@ -170,7 +170,7 @@ class SR_SearchRoom extends SR_Tower
 		
 		if (false === ($crackers = $this->onCrackLockInit($party)))
 		{
-			$this->onLocked($player);
+			$this->onCrackLockFailed($player);
 			return false;
 		}
 		
@@ -201,6 +201,10 @@ class SR_SearchRoom extends SR_Tower
 		{
 			$this->onSetLockPlayer($member, 1);
 			$this->onCrackedLock($player, $member);
+		}
+		else
+		{
+			$this->onSetLockPlayer($member, 0);
 		}
 	}
 
