@@ -590,7 +590,8 @@ final class Lamb
 		# Cache
 		$server->setFrom($from);
 		$this->lm_server = $server;
-		$this->lm_origin = $args[0];
+		
+		$this->lm_origin = isset($args[0]) ? $args[0] : '';
 		
 		# Process
 		return $this->processCommand($server, $command, $from, $args);
@@ -957,8 +958,8 @@ final class Lamb
 	public static function softhyphe($s)
 	{
 //		if ($s === '') { return ''; }
-		$pos = rand(1, strlen($string)-1);
-		return substr($string, 0, $pos)."\xC2\xAD".substr($string, $pos);
+		$pos = rand(1, strlen($s)-1);
+		return substr($s, 0, $pos)."\xC2\xAD".substr($s, $pos);
 	}
 }
 ?>
