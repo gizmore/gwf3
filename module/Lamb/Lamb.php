@@ -945,5 +945,20 @@ final class Lamb
 	{
 		return $this->lm_server->reply($this->lm_origin, $message);
 	}
+	
+	/**
+	 * Display a distorted string, as anti-highlight measure. Usually used to display nicknames when not wanting to highlight.
+	 * Returns the string with a soft hyphen in it.
+	 * @param string $s
+	 * @return string
+	 * @author noother
+	 * @since 3.0
+	 */
+	public static function softhyphe($s)
+	{
+//		if ($s === '') { return ''; }
+		$pos = rand(1, strlen($string)-1);
+		return substr($string, 0, $pos)."\xC2\xAD".substr($string, $pos);
+	}
 }
 ?>
