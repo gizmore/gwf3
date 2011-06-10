@@ -78,6 +78,8 @@ final class Module_WeChall extends GWF_Module
 		GWF_Hook::add(GWF_HOOK::VOTED_SCORE, array(__CLASS__, 'hookVoteScore'));
 		GWF_Hook::add(GWF_HOOK::ACTIVATE, array(__CLASS__, 'hookRegister'));
 		GWF_Hook::add(GWF_HOOK::CHANGE_PASSWD, array(__CLASS__, 'hookChangePass'));
+		GWF_Hook::add(GWF_HOOK::DELETE_USER, array(__CLASS__, 'hookDeleteUser'));
+		GWF_Hook::add(GWF_HOOK::CHANGE_UNAME, array(__CLASS__, 'hookDeleteUser'));
 		
 		# _ALLWAYS_ include this Oo :(
 //		if (false !== ($mv = self::getModule('Votes'))) {
@@ -192,6 +194,20 @@ final class Module_WeChall extends GWF_Module
 		require_once 'module/WeChall/WC_PasswordMap.php';
 		$uid = $user->getID();
 		return GDO::table('WC_PasswordMap')->deleteWhere("pmap_uid=$uid");
+	}
+	
+	public function hookRenameUser(GWF_User $user, array $args)
+	{
+		list($oldname, $newname) = $args;
+		$newname = GDO::escape($newname);
+		$uid = $user->getID();
+		$sid = WC_Site::getWeChall()->getID();
+		return GDO::table('WC_RegAt')->update("regat_onsitename='$newname'", "regat_uid={$uid} AND regat_sid={$sid}");
+	}
+	
+	public function hookDeleteUser(GWF_User $user, array $args)
+	{
+		# TODO: delete a lot of stuff.
 	}
 	
 	#######################
