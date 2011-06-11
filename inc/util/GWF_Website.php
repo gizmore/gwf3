@@ -190,13 +190,14 @@ final class GWF_Website
 //	public static function redirectHome() { self::redirect(GWF_WEB_ROOT.GWF_DEFAULT_URL); }
 //	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d;url=%s', $seconds, $url)); }
 	public static function redirect($url) { header(sprintf('Location: %s', $url)); }
-//	public static function redirectBack()
-//	{
-//		if (false === ($url = GWF_Session::getLastURL())) {
-//			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL;
-//		}
-//		self::redirect($url);
-//	}
+	public static function redirectBack()
+	{
+		if (false === ($url = GWF_Session::getLastURL()))
+		{
+			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL;
+		}
+		self::redirect($url);
+	}
 
 	#############
 	### Feeds ###
