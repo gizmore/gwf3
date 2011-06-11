@@ -120,7 +120,7 @@ final class GWF_User extends GDO
 	###############
 	### Profile ###
 	###############
-//	public function getProfileHREF() { return sprintf('%sprofile/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
+	public function getProfileHREF() { return sprintf('%sprofile/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
 	public function displayUsername() { return $this->display('user_name'); }
 	public function getGenderSelect($name='gender') { return GWF_Gender::select($name, Common::getPostString($name, $this->getVar('user_gender'))); }
 	public function getCountrySelect($name='country') { return GWF_CountrySelect::single($name, Common::getPostString($name, $this->getCountryID())); }
