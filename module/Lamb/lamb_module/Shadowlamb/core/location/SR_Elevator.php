@@ -60,7 +60,8 @@ abstract class SR_Elevator extends SR_Tower
 	### Location ###
 	################
 	public function isPVP() { return false; }
-	public function getEnterText(SR_Player $player) { return sprintf('You enter the %. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }
+	public function getFoundPercentage() { return 100.0; }
+	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }
 	public function getFoundText(SR_Player $player) { return 'You found an elevator.'; }
 	public function getHelpText(SR_Player $player) { return 'In elevators you can use #up, #down and #floor.'; }
 	public function getCommands(SR_Player $player) { return array('up','down','floor'); }
@@ -70,7 +71,7 @@ abstract class SR_Elevator extends SR_Tower
 	#############
 	public function getElevatorKey()
 	{
-		return 'SL_ELEV_'.$this->getElevatorCity().'_'.$this->getShortName();
+		return 'SL_ELEV_'.$this->getElevatorCity();#.'_'.$this->getShortName();
 	}
 	
 	public function getElevatorFlags(SR_Player $player)
@@ -87,7 +88,7 @@ abstract class SR_Elevator extends SR_Tower
 	{
 		foreach ($party->getMembers() as $member)
 		{
-			if (false === $this->setElevatorFlags($member, self::ALL_BITS, false))
+			if (false === $this->setElevatorFlags($member, $floors, $bool))
 			{
 				return false;
 			}
@@ -136,7 +137,9 @@ abstract class SR_Elevator extends SR_Tower
 	
 	private function getElevatorN()
 	{
-		if ('' === ($floor = str_replace($this->getElevatorCity(), '', $this->getName())))
+		$c = $this->getElevatorCity();
+		$floor = Common::regex("/^{$c}([C0-9]*)_/", $this->getName());
+		if ($floor === '')
 		{
 			return 0;
 		}
@@ -150,7 +153,7 @@ abstract class SR_Elevator extends SR_Tower
 		}
 	}
 	
-	private function getElevatorNFromArg($arg)
+	private function getElevatorNFromArg(SR_Player $player, $arg)
 	{
 		if ( ($arg{0}==='E') || ($arg{0}==='e') || ($arg==='0') )
 		{
@@ -171,12 +174,13 @@ abstract class SR_Elevator extends SR_Tower
 	
 	private function hasElevatorPermN(SR_Player $player, $n)
 	{
-		return $this->hasElevatorPermBit($player, $this->getElevatorBitN($n));
+		return $this->hasElevatorPermBit($player, $this->getElevatorBitN($player, $n));
 	}
 	
 	private function hasElevatorPermBit(SR_Player $player, $bit)
 	{
 		$bits = $this->getElevatorFlags($player);
+//		var_dump($bits, $bit);
 		return ($bits & $bit) === $bit;
 	}
 	
@@ -187,13 +191,13 @@ abstract class SR_Elevator extends SR_Tower
 	
 	private function getElevatorButtonFromN($n)
 	{
-		if ($n === 0)
+		if ($n == 0)
 		{
 			return 'E';
 		}
 		elseif ($n > 0)
 		{
-			return sprintf('%02d', $n);
+			return sprintf('%02d', $n+1);
 		}
 		else
 		{
@@ -214,6 +218,12 @@ abstract class SR_Elevator extends SR_Tower
 		if (false === $this->hasElevatorPermN($player, $n))
 		{
 			$player->message('Somehow the elevator is blocking this floor for you.');
+			return false;
+		}
+		
+		if ($floor->getName() === $this->getName())
+		{
+			$player->message('You push the button but you are on the very same floor already.');
 			return false;
 		}
 
@@ -263,7 +273,7 @@ abstract class SR_Elevator extends SR_Tower
 	{
 		if (count($args) === 0)
 		{
-			return $this->on_floors($player);
+			return $this->on_floors($player, $args);
 		}
 		elseif (count($args) === 1)
 		{
@@ -287,6 +297,8 @@ abstract class SR_Elevator extends SR_Tower
 		$b = chr(2);
 		$bot = Shadowrap::instance($player);
 		
+		$out = '';
+		
 		# Cellars
 		$i = 8;
 		$bit = self::FLOOR_C8;
@@ -302,7 +314,7 @@ abstract class SR_Elevator extends SR_Tower
 		# Partere
 		if ($this->hasElevatorPermBit($player, self::FLOOR_PARTERE))
 		{
-			$out .= sprintf(", {$b}E{$b}");
+			$out .= ", {$b}E{$b}";
 		}
 		# Upper floors
 		$i = 2;
