@@ -438,5 +438,15 @@ final class GWF_Time
 		$duration = GWF_TimeConvert::humanToSeconds($string);
 		return $duration >= $min && $duration <= $max;
 	}
+
+	/**
+	 * Get timestamp of start of this week. (Monday)
+	 * @return int unix timestamp.
+	 * */
+	public static function getTimeWeekStart()
+	{
+		$s = 'previous monday';
+		return strtotime($s, time()+self::ONE_DAY);
+	}
 }
 ?>
