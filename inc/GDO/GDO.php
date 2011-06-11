@@ -864,6 +864,7 @@ abstract class GDO
 	#################
 	/**
 	 * Get all rows mapped to key => value pairs. The key is col0, the values are r_types.
+	 * @see GDO::selectMatrix2D
 	 * @param string $columns
 	 * @param string $where
 	 * @param string $orderby
@@ -896,6 +897,32 @@ abstract class GDO
 		
 		$this->free($result);
 		
+		return $back;
+	}
+	
+	/**
+	 * Get an associatve array $col1 => $col2.
+	 * @see GDO::selectArrayMap
+	 * @param string $col1
+	 * @param string $col2
+	 * @param string $where
+	 * @param string $orderby
+	 * @param array|NULL $joins
+	 * @param int $limit
+	 * @param int $from
+	 * @param string $groupby
+	 */
+	public function selectMatrix2D($col1, $col2, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
+	{
+		if (false === ($result = $this->select("{$col1}, {$col1}", $where, $orderby, $joins, $limit, $from, $groupby))) {
+			return false;
+		}
+		$back = array();
+		while (false !== ($row = $this->fetch($result, self::ARRAY_N)))
+		{
+			$back[$row[0]] = $row[1];
+		}
+		$this->free($result);
 		return $back;
 	}
 	
