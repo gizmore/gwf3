@@ -445,8 +445,7 @@ final class GWF_Time
 	 * */
 	public static function getTimeWeekStart()
 	{
-		$s = 'previous monday';
-		return strtotime($s, time()+self::ONE_DAY);
+		return strtotime('previous monday', time()+self::ONE_DAY);
 	}
 }
 ?>
