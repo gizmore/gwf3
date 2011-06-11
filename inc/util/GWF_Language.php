@@ -21,6 +21,8 @@ final class GWF_Language extends GDO
 			'lang_options' => array(GDO::UINT, 0),
 		);
 	}
+	public function getID() { return $this->getVar('lang_id'); }
+	public function getISO() { return $this->getVar('lang_iso'); }
 	
 	public static function getByID($id) { return self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.intval($id)); }
 	public static function getByISO($iso) { $iso = self::escape($iso); return self::table(__CLASS__)->selectFirstObject('*', "lang_iso='$iso'"); }
@@ -34,6 +36,12 @@ final class GWF_Language extends GDO
 			return $c;
 		}
 		return self::getUnknown();
+	}
+	
+	public static function getISOByID($id)
+	{
+		$id = (int)$id;
+		return self::table(__CLASS__)->getVar('lang_iso', "lang_id={$id}");
 	}
 	
 	###############
