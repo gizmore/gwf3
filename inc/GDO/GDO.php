@@ -135,6 +135,7 @@ abstract class GDO
 	public function getEscaped($var) { return $this->escape($this->gdo_data[$var]); }
 	public function display($var) { return htmlspecialchars($this->gdo_data[$var]); }
 	public function urlencode($s) { return urlencode($this->getVar($s)); }
+	public function urlencode2($s) { return urlencode(urlencode($this->getVar($s))); }
 	public function urlencodeSEO($var) { return Common::urlencodeSEO($this->gdo_data[$var]); }
 	
 	#############
