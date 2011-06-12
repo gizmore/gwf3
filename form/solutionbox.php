@@ -7,7 +7,7 @@ function formSolutionbox(WC_Challenge $chall)
 	
 	echo 
 		'<div id="wc_solutionbox">'.PHP_EOL.
-		$form->templateX(WC_HTML::lang('ft_solution', $chall->display('chall_title')), true).
+		$form->templateX(WC_HTML::lang('ft_solution', array($chall->display('chall_title')))).
 		'</div>'.PHP_EOL;
 }
 
