@@ -59,9 +59,9 @@ final class WeChall_RankingTag extends GWF_Method
 		
 		$dtag = GWF_HTML::display($tag);
 		
-		GWF_Website::setPageTitle($module->lang('pt_tagrank', $dtag));
-		GWF_Website::setMetaTags($module->lang('mt_tagrank', $dtag));
-		GWF_Website::setMetaDescr($module->lang('md_tagrank', $dtag, $page, $nPages));
+		GWF_Website::setPageTitle($module->lang('pt_tagrank', array($dtag)));
+		GWF_Website::setMetaTags($module->lang('mt_tagrank', array($dtag)));
+		GWF_Website::setMetaDescr($module->lang('md_tagrank', array($dtag, $page, $nPages)));
 		
 		$tVars = array(
 			'rank' => $rank,
@@ -73,7 +73,7 @@ final class WeChall_RankingTag extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('category_ranking/%s/page-%%PAGE%%', urlencode($tag))),
 			'select' => $this->getTagSelect($module),
 		);
-		return $module->template('ranking_tag.php', NULL, $tVars);
+		return $module->templatePHP('ranking_tag.php', $tVars);
 	}
 	
 	private function getPageNum($ipp, $bit)
@@ -175,7 +175,7 @@ final class WeChall_RankingTag extends GWF_Method
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
 		$query = "SELECT DISTINCT sitecat_bit, sitecat_name FROM $cats ORDER BY sitecat_name ASC";
 		if (false === ($result = $db->queryRead($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$sel = Common::getGet('tag', self::DEFAULT_TAG);

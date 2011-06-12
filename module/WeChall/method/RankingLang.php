@@ -20,9 +20,9 @@ final class WeChall_RankingLang extends GWF_Method
 			die();
 		}
 		
-		if (false === ($lang = GWF_Language::getByISOS(Common::getGet('iso')))) {
-			if (false === ($lang = GWF_Language::getByISOS('en'))) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		if (false === ($lang = GWF_Language::getByISO(Common::getGet('iso')))) {
+			if (false === ($lang = GWF_Language::getByISO('en'))) {
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -55,7 +55,7 @@ final class WeChall_RankingLang extends GWF_Method
 		# Count number of users playing this language.
 		$query = "SELECT COUNT(DISTINCT regat_uid) AS c FROM $regat WHERE regat_langid=$langid AND regat_options&4=0";
 		if (false === ($result = $db->queryFirst($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		# Page Menu
@@ -63,9 +63,9 @@ final class WeChall_RankingLang extends GWF_Method
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		list($page, $hl_rank) = $this->getPageRank($langid, $ipp, $user);
 		
-		GWF_Website::setPageTitle($module->lang('pt_langrank', $lang->displayName(), $page, $nPages));
-		GWF_Website::setMetaTags($module->lang('mt_ranking_lang', $lang->displayName()));
-		GWF_Website::setMetaDescr($module->lang('md_ranking_lang', $lang->displayName(), $page, $nPages));
+		GWF_Website::setPageTitle($module->lang('pt_langrank', array($lang->displayName(), $page, $nPages)));
+		GWF_Website::setMetaTags($module->lang('mt_ranking_lang', array($lang->displayName())));
+		GWF_Website::setMetaDescr($module->lang('md_ranking_lang', array($lang->displayName(), $page, $nPages)));
 		
 //		echo 'PAGE:';
 //		var_dump($page);
@@ -85,7 +85,7 @@ final class WeChall_RankingLang extends GWF_Method
 			"WHERE regat_options&4=0 ".
 			"ORDER BY sum DESC ";
 		if (false === ($result = $db->queryRead($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 //		var_dump($query);
@@ -113,7 +113,7 @@ final class WeChall_RankingLang extends GWF_Method
 			'form_action' => $this->getMethodHref(),
 			'iso' => $lang->getISO(),
 		);
-		return $module->template('ranking_lang.php', array(), $tVars);
+		return $module->templatePHP('ranking_lang.php', $tVars);
 	}
 	
 	private function getPageRank($langid, $ipp, $user)

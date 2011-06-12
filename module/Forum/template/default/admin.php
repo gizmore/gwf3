@@ -17,9 +17,8 @@ if (count($tVars['posts_mod']) > 0)
 		array($tLang->lang('th_approve')),
 		array($tLang->lang('th_delete')),
 	);
-	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url_mod'], 'mby', 'mdir');
 	echo '<table>';
-	echo GWF_Table::displayHeaders($headers);
+	echo GWF_Table::displayHeaders2($headers, $tVars['sort_url_mod'], 'mby', 'mdir');
 	
 	$txt_yes = $tLang->lang('th_approve');
 	$txt_no = $tLang->lang('th_delete');

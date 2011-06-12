@@ -14,11 +14,7 @@ $headers = array(
 	array($tLang->lang('th_vs_avg'), 'vs_avg'),
 	array(),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
-
 echo $tVars['page_menu'];
-
-
 echo '<table>';
 echo GWF_Table::displayHeaders1($headers);
 foreach ($tVars['downloads'] as $dl)

@@ -73,31 +73,33 @@ class Shadowcmd
 	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
 	public static $CMDS_ALWAYS = array('s','a','sk','q','p','i','cy','l','ef','ex','kp','ks','kw','qu','r','say');
-	public static $CMDS_ALWAYS_HIDDEN = array('c','cc','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','shout','w','sd','pm','rl');
+	public static $CMDS_ALWAYS_HIDDEN = array('c','cc','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
 	public static $CMDS = array(
-		'sleep' => array('stop'),
 		'delete' => array(),
-		'inside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
-		'outside' => array('j','part','u','ca','eq','uq','gi','drop','look','info','hijack'),
-		'explore' => array('u','ca','eq','uq','part','gi','drop','stop'),
-		'goto' => array('u','ca','eq','uq','part','gi','drop','stop'),
-		'hunt' => array('u','ca','eq','uq','part','gi','drop','stop'), 
-		'travel' => array('u','ca','eq','uq','gi','drop'),
+		'sleep' => array(),
 		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say','fight','bye'),
 		'fight' => array('fl','eq','uq','gi','fw','bw','u','ca','#'),
+		'inside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
+		'outside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
+		'explore' => array('u','ca','eq','uq','part','gi','drop'),
+		'goto' => array('u','ca','eq','uq','gi','drop','part'),
+		'hunt' => array('u','ca','eq','uq','gi','drop','part'),
+		'travel' => array('u','ca','eq','uq','gi','drop'),
+		'hijack' => array('u','ca','eq','uq','gi','drop','part'),
 	);
-	public static $CMDS_LEADER_ALWAYS = array('npc','pl','le','ban','unban');
+	public static $CMDS_LEADER_ALWAYS = array('npc','pl','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
-		'talk' => array('kick'),
+		'sleep' => array('stop','le'),
+		'talk' => array('kick','le'),
 		'fight' => array(),
-		'inside' => array('g','exp','hunt','kick','exit'),
-		'outside' => array('g','exp','hunt','kick','en'),
-		'sleep' => array(),
-		'travel' => array(),
-		'explore' => array('g','exp','hunt','kick'),
-		'goto' => array('g','exp','hunt','kick'),
-		'hunt' => array('g','exp','hunt','kick'), 
+		'inside' => array('g','exp','hunt','kick','exit','le'),
+		'outside' => array('g','exp','hunt','hijack','kick','en','le'),
+		'explore' => array('g','exp','hunt','kick','stop','le'),
+		'goto' => array('g','exp','hunt','kick','stop','le'),
+		'hunt' => array('g','exp','hunt','kick','stop','le'), 
+		'travel' => array('le'),
+		'hijack' => array('g','exp','hunt','en','stop'),
 	);
 	
 	##########################

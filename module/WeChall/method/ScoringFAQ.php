@@ -13,7 +13,7 @@ final class WeChall_ScoringFAQ extends GWF_Method
 		$tVars = array(
 			'scoring' => new GWF_LangTrans('module/WeChall/lang/_wc_scoring'), 
 		);
-		return $module->template('scoring_faq.php', NULL, $tVars);
+		return $module->templatePHP('scoring_faq.php', $tVars);
 	}
 }
 ?>

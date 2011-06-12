@@ -42,7 +42,7 @@ final class WeChall_SiteHistory extends GWF_Method
 			'result' => $rows,
 			'site_quickjump' => $module->templateSiteQuickjumpHistory(),
 		);
-		return $module->template('site_history.php', NULL, $tVars);
+		return $module->templatePHP('site_history.php', $tVars);
 	}
 	
 	private function onQuickjump(Module_WeChall $module)

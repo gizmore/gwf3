@@ -37,7 +37,7 @@ final class Register_Form extends GWF_Method
 		
 		if ($module->isTOSForced()) {
 			if ('' !== ($href_tos = $module->cfgHrefTos())) {
-				$data['tos'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_tos2', array(htmlspecialchars($href_tos))), 20);
+				$data['tos'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_tos2', array(htmlspecialchars($href_tos))));
 			} else {
 				$data['tos'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_tos'));
 			}

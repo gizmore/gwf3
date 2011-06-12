@@ -10,6 +10,8 @@ final class Usergroups_ShowGroups extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
+		GWF_Module::loadModuleDB('Forum',true);
+		
 		if (false !== ($array = Common::getPost('part'))) {
 			return $this->onPart($module, $array).$this->templateGroups($module);
 		}
@@ -33,7 +35,7 @@ final class Usergroups_ShowGroups extends GWF_Method
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$href_pagemenu = GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%';
 		$tVars = array(
-			'groups' => $table->select($conditions, $orderby, $ipp, $from),
+			'groups' => $table->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&amp;by=%BY%&dir=%DIR%&page=1',
 			'form_action' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&by='.urlencode($by).'&dir='.urlencode($dir).'&page='.$page,

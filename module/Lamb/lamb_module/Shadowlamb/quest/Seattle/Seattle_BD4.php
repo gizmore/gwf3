@@ -29,7 +29,7 @@ final class Quest_Seattle_BD4 extends SR_Quest
 			$player->giveNuyen(self::REWARD_NUYEN);
 			$player->giveXP($xp);
 			$this->onSolve($player);
-			sleep(2);
+//			sleep(2);
 			$npc->reply('You know what ... i will teach you how to use lockpicking.');
 			$player->alterField('lockpicking', 1);
 			$player->message(sprintf('Your lockpicking skill has increased by 1.'));

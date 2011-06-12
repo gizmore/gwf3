@@ -22,32 +22,40 @@ final class WeChall_GraphSite extends GWF_Method
 		}
 		require_once 'module/WeChall/WC_HistorySite.php';
 		if (false === GDO::table('WC_HistorySite')->getWhitelistedBy($type, false)) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		require_once $module->cfgJPGraphDir().'jpgraph.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_date.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_line.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_plotline.php';
+		$dir = dirname(GWF_JPGRAPH_PATH);
+		require_once $dir.'/jpgraph.php';
+		require_once $dir.'/jpgraph_date.php';
+		require_once $dir.'/jpgraph_line.php';
+		require_once $dir.'/jpgraph_plotline.php';
 		
 		return $this->graphB($module, $site, $type);
 	}
 	
 	private function graphB(Module_WeChall $module, WC_Site $site, $field)
 	{
-		$graphtitle = $module->lang('gt_site_'.$field, $site->getVar('site_name'));
+		$graphtitle = $module->lang('gt_site_'.$field, array($site->getVar('site_name')));
 		$siteid = $site->getID();
-		$db = gdo_db();
-		$table = GDO::table('WC_HistorySite')->getTableName();
-		if (false === ($result = $db->query("SELECT sitehist_date, $field FROM $table WHERE sitehist_sid=$siteid ORDER BY sitehist_date ASC"))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		$history = GDO::table('WC_HistorySite');
+		if (false === ($result = $history->select("sitehist_date, {$field}", 'sitehist_sid='.$siteid, 'sitehist_date ASC')))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
+		
+//		$db = gdo_db();
+//		$table = $history->getTableName();
+//		if (false === ($result = $db->query("SELECT sitehist_date, $field FROM $table WHERE sitehist_sid=$siteid ORDER BY sitehist_date ASC"))) {
+//			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+//		}
 		
 		//load in the data
 		$xdataarray = array();
 		$ydataarray = array();
 		$highestvalue = 0;
-		while (false !== ($row = $db->fetchRow($result)))
+//		while (false !== ($row = $db->fetchRow($result)))
+		while (false !== ($row = $history->fetch($result, GDO::ARRAY_N)))
 		{
 			$value = (int) $row[1];
 			$xdataarray[] = $row[0];
@@ -58,7 +66,7 @@ final class WeChall_GraphSite extends GWF_Method
 			}
 		}
 		
-		$db->free($result);
+		$history->free($result);
 		
 		
 		// add current value

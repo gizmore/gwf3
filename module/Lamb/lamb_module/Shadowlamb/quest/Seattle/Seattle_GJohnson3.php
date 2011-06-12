@@ -45,6 +45,12 @@ final class Quest_Seattle_GJohnson3 extends SR_Quest
 		}
 	}
 	
+	public function onAccept(SR_Player $player)
+	{
+		$player->giveItems(array(SR_Item::createByName('RenrakuPackage')), 'Mr.Johnson');
+	}
+	
+	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
 	{
 		switch ($word)

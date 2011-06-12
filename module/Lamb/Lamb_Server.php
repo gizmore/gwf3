@@ -272,13 +272,18 @@ final class Lamb_Server extends GDO
 	
 	public function saveConfigVars($host, $nicks, $chans, $pass, $admin)
 	{
-		return $this->saveVars(array(
+		if (false === $this->saveVars(array(
 			'serv_host' => $host,
 			'serv_nicknames' => $nicks,
 			'serv_channels' => $chans,
 			'serv_password' => $pass,
 			'serv_admins' => $admin,
-		));
+		)))
+		{
+			return false;
+		}
+		$this->setupConnection();
+		return true;
 //		$db = gdo_db();
 //		$id = $this->getID();
 //		$table = $this->getTableName();

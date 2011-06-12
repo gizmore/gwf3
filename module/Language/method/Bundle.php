@@ -33,7 +33,7 @@ final class Language_Bundle extends GWF_Method
 	private function getForm(Module_Language $module)
 	{
 		$data = array(
-			'target' => array(GWF_Form::SELECT, GWF_Language::getLanguageSelectS('target', Common::getPost('target'), true), $module->lang('th_target')),
+			'target' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'target', Common::getPost('target')), $module->lang('th_target')),
 			'all_targets' => array(GWF_Form::CHECKBOX, false, $module->lang('th_all_targets')),
 			'missing' => array(GWF_Form::SUBMIT, $module->lang('btn_missing')),
 			'bundle' => array(GWF_Form::SUBMIT, $module->lang('btn_bundle')),

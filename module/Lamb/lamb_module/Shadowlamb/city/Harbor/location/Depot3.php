@@ -12,16 +12,17 @@ final class Harbor_Depot3 extends SR_SearchRoom
 	public function getSearchLevel() { return 8; }
 	public function getSearchLoot(SR_Player $player)
 	{
-		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson3');
-		return $quest->giveElectronicParts();
+		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson4');
+		$quest instanceof Quest_Seattle_GJohnson4;
+		return $quest->giveElectronicParts($player);
 	}
 	
-	public function onCrackedLock(SR_Player $player, SR_Player $cracker)
-	{
-		$party = $player->getParty();
-		$party->notice(sprintf('Four depot guards suprise you and attack.'));
-		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
-	}
+//	public function onCrackedLock(SR_Player $player, SR_Player $cracker)
+//	{
+//		$party = $player->getParty();
+//		$party->notice(sprintf('Four depot guards suprise you and attack.'));
+//		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
+//	}
 	
 	public function onEnter(SR_Player $player)
 	{
@@ -29,6 +30,9 @@ final class Harbor_Depot3 extends SR_SearchRoom
 		{
 			return false;
 		}
+		$party = $player->getParty();
+		$party->notice(sprintf('Four depot guards suprise you and attack.'));
+		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
 		return true;
 	}
 }

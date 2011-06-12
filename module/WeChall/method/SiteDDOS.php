@@ -28,7 +28,7 @@ final class WeChall_SiteDDOS extends GWF_Method
 		
 		$db = gdo_db();
 		if (false === ($result = $db->queryRead($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$user = new GWF_User();

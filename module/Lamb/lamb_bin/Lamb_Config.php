@@ -1,4 +1,6 @@
 <?php
+define('LAMB_DEV', false);
+
 global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
@@ -82,7 +84,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://epic.irc.hackthissite.org:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb',#,#hackthissite',
+			'channels' => '#shadowlamb,#hackthissite',
 			'admins' => 'gizmore',
 		),
 		
@@ -101,6 +103,21 @@ $LAMB_CFG = array
 			'channels' => '#shadowlamb,#Big-Daddy',
 			'admins' => 'gizmore',
 		),
+		array(
+			'host' => 'irc://irc.gizmore.org:6668',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+		array(
+			'host' => 'ircs://irc2.hackbbs.org:9999',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb,#hackbbs-en',
+			'admins' => 'gizmore',
+		),
+		
 //		array(
 //			'host' => '',
 //			'nickname' => 'Lamb3',

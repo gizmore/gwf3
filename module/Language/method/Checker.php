@@ -30,7 +30,7 @@ final class Language_Checker extends GWF_Method
 	private function getForm(Module_Language $module)
 	{
 		$data = array(
-			'langs' => array(GWF_Form::SELECT, GWF_Language::getLanguageSelectS('langs', Common::getPost('langs', 'en'), true), $module->lang('th_langs')),
+			'langs' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langs', Common::getPost('langs', 'en'), true), $module->lang('th_langs')),
 			'warns' => array(GWF_Form::CHECKBOX, true, $module->lang('th_warns')),
 			'check' => array(GWF_Form::SUBMIT, $module->lang('btn_check')),
 		);

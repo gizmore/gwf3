@@ -29,6 +29,7 @@ else
 }
 $s instanceof Lamb_Server;
 
+$i = 0;
 
 # Show channels
 if ($s->getConnection()->isConnected())
@@ -42,10 +43,10 @@ if ($s->getConnection()->isConnected())
 	if ($channels !== '') {
 		$channels = substr($channels, 2);
 	}
-	
+	$i++;
 }
 else { $channels = 'Not connected!'; }
 
 
-$bot->reply(sprintf('Channels on Server %d(%s): %s.', $s->getID(), $s->getHostname(), $channels))
+$bot->reply(sprintf("I am on %d channels on server %d-%s: %s.", $i, $s->getID(), $s->getHostname(), $channels))
 ?>

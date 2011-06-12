@@ -28,7 +28,7 @@ function wcProfileFavSites($userid)
 
 function wcProfileFavCats($userid)
 {
-	require_once 'modules/WeChall/WC_FavCats.php';
+	require_once 'module/WeChall/WC_FavCats.php';
 	$cats = WC_FavCats::getFavCats($userid);
 	if (count($cats) === 0) {
 		return '';
@@ -51,14 +51,14 @@ function wcProfileRegats(array $regats, $sort_url, $priv=false, $hide_score=fals
 		array(WC_HTML::lang('th_progress'), 'regat_solved'),
 		array(WC_HTML::lang('th_regat_lastdate'), 'regat_lastdate'),
 	);
-	$headers = GWF_Table::getHeaders2($headers, $sort_url);
+//	$headers = GWF_Table::getHeaders2($headers, $sort_url);
 	echo '<table>';
-	echo GWF_Table::displayHeaders($headers);
+	echo GWF_Table::displayHeaders1($headers);
 	foreach ($regats as $regat)
 	{
 		$regat instanceof WC_RegAt;
 		$site = $regat->getSite();
-		$color = GWF_HTML::interpolatBound(0, 1, $site->calcPercent($regat), 0xff0000, 0x008800);
+		$color = GWF_Color::interpolatBound(0, 1, $site->calcPercent($regat), 0xff0000, 0x008800);
 		if ($hide_score)
 		{
 			$score = $percent = '???';
@@ -83,12 +83,12 @@ function wcProfileLastActivity(GWF_User $user, $ipp, $priv=false)
 {
 	$uid = $user->getID();
 	$uh = GDO::table('WC_HistoryUser2');
-	$entries = $uh->select("userhist_uid=$uid", 'userhist_date DESC', $ipp);
+	$entries = $uh->selectObjects('*', "userhist_uid=$uid", 'userhist_date DESC', $ipp);
 //	$entries = array_reverse($entries);
 	$back = '';
 	$back .= '<table class="fl">';
 	$href_txt_history = GWF_WEB_ROOT.'history/for/'.$user->urlencode2('user_name');
-	$anchor = GWF_HTML::anchor($href_txt_history, WC_HTML::lang('th_last_activites', $user->displayUsername()));
+	$anchor = GWF_HTML::anchor($href_txt_history, WC_HTML::lang('th_last_activites', array($user->displayUsername())));
 	$back .= sprintf('<thead><tr><th colspan="2">%s</th></tr></thead>', $anchor);
 	$unknown = GWF_HTML::lang('unknown');
 	foreach ($entries as $entry)
@@ -118,7 +118,7 @@ function wcProfileGraph(GWF_User $user, $type)
 	if ( (false === ($tu = GWF_Session::getUser())) || ($tu->getLevel() === 0 || ($tu->getID()===$user->getID())) )
 	{
 		$href = GWF_WEB_ROOT.'graph/wc_'.$type.'.'.$user->urlencode('user_name').'.png';
-		$alt = WC_HTML::lang('alt_graph_'.$type, $user->displayUsername());
+		$alt = WC_HTML::lang('alt_graph_'.$type, array($user->displayUsername()));
 		return sprintf('<img src="%s" alt="%s" title="%s" />', $href, $alt, $alt);
 	}
 	else {
@@ -157,7 +157,7 @@ function wcProfileFavLinks(GWF_User $user, Module_Links $mod_links)
 		return '';
 	}
 
-	return '<h2>'.WC_HTML::lang('fav_links', $user->displayUsername(), $count).'</h2>'.$mod_links->templateLinks($links, '', '', '', false, false, false, false);
+	return '<h2>'.WC_HTML::lang('fav_links', array($user->displayUsername(), $count)).'</h2>'.$mod_links->templateLinks($links, '', '', '', false, false, false, false);
 }
 
 function wcProfileOwnLinks(GWF_User $user, Module_Links $mod_links)
@@ -192,7 +192,7 @@ function wcProfileOwnLinks(GWF_User $user, Module_Links $mod_links)
 		return '';
 	}
 
-	return '<h2>'.WC_HTML::lang('own_links', $user->displayUsername(), $count).'</h2>'.$mod_links->templateLinks($links, '', '', '', false, false, false, false);
+	return '<h2>'.WC_HTML::lang('own_links', array($user->displayUsername(), $count)).'</h2>'.$mod_links->templateLinks($links, '', '', '', false, false, false, false);
 }
 
 function wcProfileGuestbook(GWF_User $user)
@@ -232,11 +232,11 @@ function wcProfileUsergroup(GWF_User $user, $is_logged_in)
 	{
 		if ($group->isAskToJoin())
 		{
-			echo sprintf('<h2>%s</h2>', WC_HTML::lang('pi_ug_info', $user->displayUsername(), $group->display('group_name'), $group->getMembercount()));
+			echo sprintf('<h2>%s</h2>', WC_HTML::lang('pi_ug_info', array($user->displayUsername(), $group->display('group_name'), $group->getMembercount())));
 			if ($is_logged_in) {
-				echo sprintf('<h3>%s</h3>', WC_HTML::lang('pi_ug_join', GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;gid='.$group->getID()));
+				echo sprintf('<h3>%s</h3>', WC_HTML::lang('pi_ug_join', array(GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;gid='.$group->getID())));
 			} else {
-				echo sprintf('<h3>%s</h3>', WC_HTML::lang('pi_ug_register', GWF_WEB_ROOT.'register'));
+				echo sprintf('<h3>%s</h3>', WC_HTML::lang('pi_ug_register', array(GWF_WEB_ROOT.'register')));
 			}
 		} else {
 			

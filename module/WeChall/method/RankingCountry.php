@@ -30,7 +30,7 @@ final class WeChall_RankingCountry extends GWF_Method
 	private function templateRanking(Module_WeChall $module)
 	{
 		$whitelist = array('countryname','totalscore','users','avg','top3','topuser','spc');
-		$by = GDO::getWhitelistedByS(Common::getGet('by', 'avg'), 'avg', $whitelist);
+		$by = GDO::getWhitelistedByS(Common::getGet('by', 'avg'), $whitelist, 'avg');
 		$dir = GDO::getWhitelistedDirS(Common::getGet('dir', 'DESC'), 'DESC');
 		
 		$users = GWF_TABLE_PREFIX.'user';
@@ -59,7 +59,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		$db = gdo_db();
 		
 		if (false === ($result = $db->queryAll($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$tVars = array(
@@ -67,7 +67,7 @@ final class WeChall_RankingCountry extends GWF_Method
 			'data' => $result,
 			'sort_url' => GWF_WEB_ROOT.'country_ranking/by/%BY%/%DIR%/page-1',
 		);
-		return $module->template('ranking_countries.php', array(), $tVars);
+		return $module->templatePHP('ranking_countries.php', $tVars);
 	}
 	
 	private function getHighlightCountry()
@@ -116,9 +116,9 @@ final class WeChall_RankingCountry extends GWF_Method
 		
 		$cname = $country->display('country_name');
 
-		GWF_Website::setPageTitle($module->lang('pt_crank', $cname, $page));
-		GWF_Website::setMetaTags($module->lang('mt_crank', $cname, $page));
-		GWF_Website::setMetaDescr($module->lang('md_crank', $cname, $page));
+		GWF_Website::setPageTitle($module->lang('pt_crank', array($cname, $page)));
+		GWF_Website::setMetaTags($module->lang('mt_crank', array($cname, $page)));
+		GWF_Website::setMetaDescr($module->lang('md_crank', array($cname, $page)));
 		
 		$tVars = array(
 			'country' => $country,
@@ -130,13 +130,13 @@ final class WeChall_RankingCountry extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'country_ranking/for/'.$cid.'/'.$country->urlencodeSEO('country_name').'/page-%PAGE%'),
 			'data' => $this->getDataForCountry($country, $ipp, $from),
 		);
-		return $module->template('ranking_country.php', NULL, $tVars);
+		return $module->templatePHP('ranking_country.php', $tVars);
 	}
 	
 	private function getDataForCountry(GWF_Country $country, $ipp, $from)
 	{
 		$cid = $country->getID();
-		return GDO::table('GWF_User')->select("user_countryid=$cid and user_options&0x10000000=0", "user_level DESC ", $ipp, $from);
+		return GDO::table('GWF_User')->selectObjects('*', "user_countryid=$cid and user_options&0x10000000=0", "user_level DESC ", $ipp, $from);
 	}
 	
 	private function getSinglePageRank($cid, $ipp, $user)

@@ -10,8 +10,6 @@ $headers = array(
 	array('th_translation'),
 	
 );
-//$headers = GWF_Table::getHeaders2($headers);
-
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers);
 foreach ($trans as $langid => $data)

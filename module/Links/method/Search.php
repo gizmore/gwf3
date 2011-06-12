@@ -89,11 +89,11 @@ final class Links_Search extends GWF_Method
 		}
 		$links = GDO::table('GWF_Links');
 		$by = $links->getWhitelistedBy(Common::getGet('by'), 'link_id');
-		$dir = $links->getWhitelistedDir(Common::getGet('dir'), 'DESC');
+		$dir = GDO::getWhitelistedDirS(Common::getGet('dir'), 'DESC');
 		$conditions = $module->getPermQuery(GWF_Session::getUser());
 		$limit = 50;
 		$from = 0;
-		if (false === ($matches = $links->search($fields, $term, "$by $dir", $limit, $from, $conditions))) {
+		if (false === ($matches = GWF_QuickSearch::search($links, $fields, $term, "$by $dir", $limit, $from, $conditions))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		return $this->templateSearch($module, $matches, $term);

@@ -10,6 +10,10 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 	
 	public function giveElectronicParts(SR_Player $player)
 	{
+		if (!$this->isInQuest($player))
+		{
+			return array();
+		}
 		$data = $this->getQuestData();
 		if (!isset($data['DROPPED']))
 		{
@@ -24,7 +28,7 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		$data['DROPPED']++;
 		$this->saveQuestData($data);
 		
-		return array('ElectronicParts');
+		return array(SR_Item::createByName('ElectronicParts'));
 	}
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)

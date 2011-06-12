@@ -42,7 +42,7 @@ final class WC_HTML
 		}
 		
 		if (false === ($module = GWF_Module::getModule('WeChall'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', 'WeChall');
+			return GWF_HTML::err('ERR_MODULE_MISSING', array('WeChall'));
 		}
 		
 		return
@@ -195,19 +195,19 @@ final class WC_HTML
 
 	private static function displayHeaderUsers(Module_WeChall $module, $amount=8)
 	{
-		$users = GDO::table('GWF_User')->select("user_level>0", 'user_regdate DESC', $amount, 0, true);
+		$users = GDO::table('GWF_User')->selectObjects('*', "user_level>0", 'user_regdate DESC', $amount, 0);
 		$count = count($users);
 		$back = '';
 		$back .= '<div class="wc_head_bigbox">';
 		
-		$back .= '<div class="wc_head_title">'.$module->lang('head_users', GWF_WEB_ROOT.'users/with/All/by/user_regdate/DESC/page-1').'</div>';
+		$back .= '<div class="wc_head_title">'.$module->lang('head_users', array(GWF_WEB_ROOT.'users/with/All/by/user_regdate/DESC/page-1')).'</div>';
 		
 		$back .= '<div class="wc_head_box">';
 		for ($i = 0; $i < 4; $i++)
 		{
 			if ($i === $count) { break; }
 			$user = $users[$i];
-			$back .= sprintf('<a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername());
+			$back .= sprintf('<a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername());
 		}
 		$back .= '</div>';
 		
@@ -216,7 +216,7 @@ final class WC_HTML
 		{
 			if ($i >= $count) { break; }
 			$user = $users[$i];
-			$back .= sprintf('<a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername());
+			$back .= sprintf('<a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername());
 		}
 		$back .= '</div>';
 		
@@ -228,22 +228,23 @@ final class WC_HTML
 		$back = '';
 		foreach ($users as $user)
 		{
-			$back .= sprintf(', <a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername());
+			$back .= sprintf(', <a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername());
 		}
 		
 //		var_dump($back);
 		
-		return $module->lang('head_users', GWF_WEB_ROOT.'users/with/All/by/user_regdate/DESC/page-1').'&nbsp;'.substr($back, 2);
+		return $module->lang('head_users', array(GWF_WEB_ROOT.'users/with/All/by/user_regdate/DESC/page-1')).'&nbsp;'.substr($back, 2);
 	}
 	
 	private static function displayHeaderOnline(Module_WeChall $module, $max=20)
 	{
 		$cut = time() - GWF_ONLINE_TIMEOUT;
-		$sessions = GWF_Session::getOnlineSessions();
+		$sessions = GDO::table('GWF_Session')->selectObjects('*', 'sess_time>'.$cut);
+//		$sessions = GWF_Session::getOnlineSessions();
 		$back = '';
 		$back = '';
 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
-		$back .= '<div class="wc_head_title"><a href="'.GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1">'.$module->lang('head_online', count($sessions)).'</a></div>';
+		$back .= '<div class="wc_head_title"><a href="'.GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1">'.$module->lang('head_online', array(count($sessions))).'</a></div>';
 		$back .= '<div class="wc_head_online">';
 
 		$text = '';
@@ -254,16 +255,17 @@ final class WC_HTML
 			$sess instanceof GWF_Session;
 			if (NULL !== ($user = $sess->getVar('sess_user', false)))
 			{
-				if (!$user->isOnlineHidden() && $user->getID() !== 0)
+				if ( ($user->getID() === '0') || ($user->isOptionEnabled(GWF_User::HIDE_ONLINE)) )
 				{
-					$i++;
-					if ($i <= $max) {
-						$text .= sprintf(', <a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername());
-					}
-					else {
-						$more = self::onlineMoreAnchor($module);
-						break;
-					}
+					continue;
+				}
+				$i++;
+				if ($i <= $max) {
+					$text .= sprintf(', <a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername());
+				}
+				else {
+					$more = self::onlineMoreAnchor($module);
+					break;
 				}
 			}
 		}
@@ -328,23 +330,36 @@ final class WC_HTML
 	
 	public static function displayFooter($debug=true)
 	{
-		if (self::$FOOTER === false) {
+		if (!self::wantFooter()) {
 			return '';
 		}
-		if (false === ($module = GWF_Module::getModule('GWF'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', 'GWF');
+		if (false === ($module = GWF_Module::getModule('Heart'))) {
+			return GWF_HTML::err('ERR_MODULE_MISSING', array('Heart'));
 		}
 		
 		$back = '<div id="gwf_footer">';
 		$back .= self::displayFooterMenu(Module_WeChall::instance());
 		$back .= '<div id="foot_boxes">'.PHP_EOL;
 		$back .= '<div class="foot_box">'.self::lang('footer_1').'</div>'.PHP_EOL;
-		$back .= '<div class="foot_box">'.self::lang('footer_2', $module->cfgUserrecordCount(), $module->cfgUserrecordDate(), $module->cfgPagecount()).'</div>'.PHP_EOL;
-		$back .= $debug ? '<div class="foot_box">'.GWF_Website::debugFooter(4).'</div>'.PHP_EOL : '';
+		$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), $module->cfgUserrecordDate(), $module->cfgPagecount())).'</div>'.PHP_EOL;
+		$back .= $debug ? '<div class="foot_box">'.self::debugFooter(2).'</div>'.PHP_EOL : '';
 		$back .= '</div>'.PHP_EOL;
 		$back .= '<div class="cl"></div>'.PHP_EOL;
 		$back .= '</div>'.PHP_EOL;
 		return $back;
+	}
+	
+	private static function debugFooter($precision=5)
+	{
+		$db = gdo_db();
+		$queries = $db->getQueryCount();
+		$t_total = GWF_DEBUG_TIME_START-microtime(true);
+		$t_mysql = $db->getQueryTime();
+		$t_php = $t_total - $t_mysql;
+		$f = sprintf('%%0.%dfs', (int)$precision);
+		$bd = '';#self::debugBrowser();
+		$mem = GWF_Upload::humanFilesize(memory_get_peak_usage(true));
+		return sprintf("<div>%d Queries in $f - PHP Time: $f - Total Time: $f. Memory: %s", $queries, $t_mysql, $t_php, $t_total, $mem).$bd;
 	}
 	
 	private static function displayFooterMenu(Module_WeChall $module)
@@ -371,7 +386,7 @@ final class WC_HTML
 	public static function displayMenu()
 	{
 		if (false === ($module = GWF_Module::getModule('WeChall'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', 'WeChall');
+			return GWF_HTML::err('ERR_MODULE_MISSING', array('WeChall'));
 		}
 		
 		$back = '<div id="wc_menu">';
@@ -399,7 +414,8 @@ final class WC_HTML
 	
 	public static function displayMenuLangSelect(Module_WeChall $module)
 	{
-		return '<li id="wc_lang_sel">'.GWF_Website::getSwitchLangSelect(true).'</li>'.PHP_EOL;
+//		return '<li id="wc_lang_sel">'.GWF_Website::getSwitchLangSelect(true).'</li>'.PHP_EOL;
+		return '<li id="wc_lang_sel">'.''.'</li>'.PHP_EOL;
 	}
 
 	public static function displayMenuNews(Module_WeChall $module)
@@ -436,11 +452,11 @@ final class WC_HTML
 		$db = gdo_db();
 		$table = GWF_TABLE_PREFIX.'links';
 		$conditions = self::getLinksUnreadConditions($user);
-		$query = "SELECT COUNT(*) FROM $table WHERE $conditions";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT COUNT(*) c FROM $table WHERE $conditions";
+		if (false === ($result = $db->queryFirst($query))) {
 			return 0;
 		} else {
-			return (int) $result[0];
+			return (int) $result['c'];
 		}
 	}
 	
@@ -507,9 +523,9 @@ final class WC_HTML
 		$data = $user->getUserData();
 		$stamp = isset($data['GWF_FORUM_STAMP']) ? $data['GWF_FORUM_STAMP'] : $user->getVar('user_regdate');
 		$regtimequery = sprintf('thread_lastdate>=\'%s\'', $stamp);
-		$query = "SELECT COUNT(*) FROM $threads WHERE (thread_postcount>0 AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0))";
-		$result = gdo_db()->queryFirst($query, false);
-		return (int)$result[0];
+		$query = "SELECT COUNT(*) c FROM $threads WHERE (thread_postcount>0 AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0))";
+		$result = gdo_db()->queryFirst($query);
+		return (int)$result['c'];
 	}
 
 	public static function displayMenuForum(Module_WeChall $module)
@@ -557,7 +573,7 @@ final class WC_HTML
 		$link_site = $module->isMethodSelected('LinkedSites');
 		$forum_opts = Common::getGet('mo') === 'Forum' && Common::getGet('me') === 'Options';
 		$pm_opts = Common::getGet('mo') === 'PM' && Common::getGet('me') === 'Options';
-		$own_profile = Common::getGet('mo') === 'Profile' && (Common::getGet('username') === GWF_User::displayUsernameS() || Common::getGet('me') === 'Form');
+		$own_profile = Common::getGet('mo') === 'Profile' && (Common::getGet('username') === $user->getVar('user_name') || Common::getGet('me') === 'Form');
 		$favs = $module->isMethodSelected('FavoriteSites');
 		$sel = $account || $link_site || $forum_opts || $pm_opts || $own_profile || $favs ? ' class="wc_menu_sel"' : '';
 		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'linked_sites">'.$module->lang('menu_account').'</a></li>';
@@ -578,9 +594,9 @@ final class WC_HTML
 		$db = gdo_db();
 		$pms = GWF_TABLE_PREFIX.'pm';
 		$uid = $user->getVar('user_id');
-		$query = "SELECT COUNT(*) FROM $pms WHERE pm_to=$uid AND (pm_options&1=0)";
+		$query = "SELECT COUNT(*) c FROM $pms WHERE pm_to=$uid AND (pm_options&1=0)";
 		$result = $db->queryFirst($query, false);
-		return (int) $result[0];
+		return (int) $result['c'];
 	}
 	
 	public static function displayMenuStats(Module_WeChall $module)
@@ -637,25 +653,25 @@ final class WC_HTML
 		return GWF_User::isAdminS() ? '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'nanny">'.$module->lang('menu_admin').'</a></li>' : '';
 	}
 	
-	public static function lang($key)
+	public static function lang($key, array $args=NULL)
 	{
-		$args = func_get_args();
-		unset($args[0]);
+//		$args = func_get_args();
+//		unset($args[0]);
 		return Module_WeChall::instance()->getLanguage()->lang($key, $args);
 	}
 	
-	public static function message($key)
+	public static function message($key, array $args=NULL)
 	{
-		$args = func_get_args();
-		unset($args[0]);
+//		$args = func_get_args();
+//		unset($args[0]);
 		$msg = Module_WeChall::instance()->getLanguage()->lang($key, $args);
 		return GWF_HTML::message('WeChall', $msg);
 	}
 	
-	public static function error($key)
+	public static function error($key, array $args=NULL)
 	{
-		$args = func_get_args();
-		unset($args[0]);
+//		$args = func_get_args();
+//		unset($args[0]);
 		$msg = Module_WeChall::instance()->getLanguage()->lang($key, $args);
 		return GWF_HTML::error('WeChall', $msg);
 	}

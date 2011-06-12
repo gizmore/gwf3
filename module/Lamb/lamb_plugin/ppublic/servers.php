@@ -39,13 +39,17 @@ else
 	}
 }
 
-$s instanceof Lamb_Server;
 $id = $s->getID();
+$s2 = Lamb::instance()->getServer($id);
+
 $name = $s->getHostname();
 $port = $s->getPort();
 $ssl = $s->isSSL() ? ' (SSL)' : '';
 $ip = $s->getIP();
 $maxu = $s->getMaxUsers();
 $maxc = $s->getMaxChannels();
-$bot->reply(sprintf("Server %s-$b%s$b:%s%s (%s) - Maxusers: %s, Maxchans: %s", $id, $name, $port, $ssl, $ip, $maxu, $maxc));
+$version = $s->getVar('serv_version');
+//$online = $s->isOnline() ? " \x02(up)\x02" : '';
+$online = ($s2 !== false) && ($s2->isOnline()) ? " \x02(up)\x02" : '';
+$bot->reply(sprintf("Server %s-$b%s$b:%s%s (IP: %s) (IRCD: %s)%s - Maxusers: %s, Maxchans: %s.", $id, $name, $port, $ssl, $ip, $version, $online, $maxu, $maxc));
 ?>

@@ -9,7 +9,7 @@ final class Shadowcmd_dropkp extends Shadowcmd
 			return false;
 		}
 		
-		if (false !== ($k = $player->getKnowledgeByID('places', $args[0])))
+		if (false === ($k = $player->getKnowledgeByArg('places', $args[0])))
 		{
 			$player->message('You don\'t have this knowledge.');
 			return false;
@@ -21,7 +21,7 @@ final class Shadowcmd_dropkp extends Shadowcmd
 			return false;
 		}
 		
-		$player->message('You removed a known place');
+		$player->message('You removed a known place: '.$k);
 		return true;
 	}
 }

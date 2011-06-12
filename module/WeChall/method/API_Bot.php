@@ -72,8 +72,9 @@ final class WeChall_API_Bot extends GWF_Method
 		$username = $user->displayUsername();
 		$score = $user->getVar('user_level');
 		$usercount = GDO::table('GWF_User')->countRows();
-		$average = GDO::table('WC_Regat')->selectAverage('regat_solved', "regat_uid=$userid");
-		$nSites = GDO::table('WC_Regat')->countRows("regat_uid=$userid");
+		$average = GDO::table('WC_Regat')->selectVar('AVG(regat_solved)', 'regat_uid='.$userid);
+//		$average = GDO::table('WC_Regat')->selectAverage('regat_solved', "regat_uid=$userid");
+		$nSites = GDO::table('WC_Regat')->countRows('regat_uid='.$userid);
 		
 		# Build rankup text.
 		if ($rank > 1) {
@@ -292,7 +293,7 @@ final class WeChall_API_Bot extends GWF_Method
 		$site instanceof WC_Site;
 		$url = $site->getScoreURL($onsitename);
 		if (false === ($result = $site->parseStats($url))) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 
 		$rank = (int)$result[1];

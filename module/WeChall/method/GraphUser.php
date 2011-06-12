@@ -53,7 +53,7 @@ final class WeChall_GraphUser extends GWF_Method
 			return $this->graphUserLevel($module, 'userhist_rank');
 		}
 		
-		return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 	}
 	
 	private function graphError($msg)
@@ -63,10 +63,11 @@ final class WeChall_GraphUser extends GWF_Method
 	
 	private function graphUserLevel(Module_WeChall $module, $type)
 	{
-		require_once $module->cfgJPGraphDir().'jpgraph.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_date.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_line.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_plotline.php';
+		$dir = dirname(GWF_JPGRAPH_PATH).'/';
+		require_once $dir.'jpgraph.php';
+		require_once $dir.'jpgraph_date.php';
+		require_once $dir.'jpgraph_line.php';
+		require_once $dir.'jpgraph_plotline.php';
 		
 		if (false === ($user = GWF_User::getByName(Common::getGet('username', '')))) {
 			return $this->graphError(GWF_HTML::lang('ERR_UNKNOWN_USER'));
@@ -86,9 +87,9 @@ final class WeChall_GraphUser extends GWF_Method
 		}
 		
 		if ($vs === false) {
-			$graphtitle = $module->lang('alt_graph_'.$type2, $user->displayUsername());
+			$graphtitle = $module->lang('alt_graph_'.$type2, array($user->displayUsername()));
 		} else {
-			$graphtitle = $module->lang('alt_graph_'.$type2.'_vs', $user->displayUsername(), $vs->displayUsername());
+			$graphtitle = $module->lang('alt_graph_'.$type2.'_vs', array($user->displayUsername(), $vs->displayUsername()));
 		}
 		
 		$db = gdo_db();
@@ -96,7 +97,7 @@ final class WeChall_GraphUser extends GWF_Method
 		$uid = $user->getID();
 		$query = "SELECT userhist_date,$type FROM $uh WHERE userhist_uid=$uid ORDER BY userhist_date ASC";
 		if (false === ($result = $db->queryRead($query))) {
-			die(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__));
+			die(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)));
 		}
 		
 		$invert = $type2 === 'rank';
@@ -138,7 +139,7 @@ final class WeChall_GraphUser extends GWF_Method
 			$uid2 = $vs->getID();
 			$query = "SELECT userhist_date,$type FROM $uh WHERE userhist_uid=$uid2 ORDER BY userhist_date ASC";
 			if (false === ($result = $db->queryRead($query))) {
-				die(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__));
+				die(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)));
 			}
 			
 			$xdata2 = array();

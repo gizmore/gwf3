@@ -585,7 +585,7 @@ final class Shadowfunc
 			'woodelve_female' => array('Noplan'),
 			'halfelve_male' => array('Filöen'),
 			'halfelve_female' => array('Anja'),
-			'human_male' => array('Rolf','Peter','Paul','Homer','Carl','Lenny'),
+			'human_male' => array('Lesley','Norman','Simon','Jessey','Tobias','Marcus','Oliver','Richard','Gandalf','Carsten','Mike','Paul','Wesley','Mathew','Jersey','Stephen'),
 			'human_female' => array('Mary',''),
 			'dwarf_male' => array('Roon'),
 			'dwarf_female' => array('Alisa'),

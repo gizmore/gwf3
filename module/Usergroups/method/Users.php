@@ -35,7 +35,7 @@ final class Usergroups_Users extends GWF_Method
 		$orderby = $users->getMultiOrderby($by, $dir);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$tVars = array(
-			'users' => $users->select($conditions, $orderby, $ipp, $from),
+			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'users/with/'.urlencode($letter).'/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
 			'lettermenu' => GWF_PageMenu::displayLetterMenu($letter, GWF_WEB_ROOT.'users/with/%LETTER%/page-1'),
 			'sort_url' => GWF_WEB_ROOT.'users/with/'.urlencode($letter).'/by/%BY%/%DIR%/page-1',

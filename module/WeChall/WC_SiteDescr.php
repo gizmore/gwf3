@@ -50,28 +50,42 @@ final class WC_SiteDescr extends GDO
 	public static function getDescriptions($siteid)
 	{
 		$siteid = (int)$siteid;
-		return GDO::table(__CLASS__)->selectMatrix2D('site_desc_lid', 'site_desc_txt', "site_desc_sid=$siteid");
+		return GDO::table(__CLASS__)->selectArrayMap('site_desc_lid', 'site_desc_txt', 'site_desc_sid='.$siteid);
+		return GDO::table(__CLASS__)->selectMatrix2D('site_desc_lid', 'site_desc_txt', 'site_desc_sid='.$siteid);
 	}
 	
 	public static function getDescription($siteid)
 	{
 		$siteid = (int)$siteid;
 		$browser_lid = GWF_Language::getCurrentID();
-		$sites = GWF_TABLE_PREFIX.'wc_site';
-		$descr = GWF_TABLE_PREFIX.'wc_site_descr';
-		$db = gdo_db();
-		$query = "SELECT site_desc_lid, site_desc_txt FROM $sites JOIN $descr ON site_desc_sid=site_id WHERE site_desc_sid=$siteid AND (site_desc_lid=$browser_lid OR site_desc_lid=site_descr_lid)";
-		if (false === ($result = $db->queryAll($query, false))) {
-			return '';
+		if (false === ($result = GDO::table('WC_Site')->selectAll('site_desc_lid, site_desc_txt', "site_desc_sid={$siteid} AND (site_desc_lid= {$browser_lid} OR site_desc_lid=site_descr_lid)", '', array('description'), 2, 0, GDO::ARRAY_N)))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (count($result) === 2) {
-			if ($result[0][0] == $browser_lid) {
+//		$sites = GWF_TABLE_PREFIX.'wc_site';
+//		$descr = GWF_TABLE_PREFIX.'wc_site_descr';
+//		$db = gdo_db();
+//		
+//		$query = "SELECT site_desc_lid, site_desc_txt FROM $sites JOIN $descr ON site_desc_sid=site_id WHERE site_desc_sid=$siteid AND (site_desc_lid=$browser_lid OR site_desc_lid=site_descr_lid)";
+//		
+//		if (false === ($result = $db->queryAll($query, false))) {
+//			return '';
+//		}
+//		
+		if (count($result) === 2)
+		{
+			if ($result[0][0] === $browser_lid)
+			{
 				return $result[0][1];
-			} else {
+			}
+			else
+			{
 				return $result[1][1];
 			}
-		} else {
+		}
+		else
+		{
 			return $result[0][1];
 		}
 	}

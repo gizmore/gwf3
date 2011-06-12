@@ -13,7 +13,7 @@ final class WC_HistoryUser extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'userhist_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('GWF_User', 'userhist_uid')),
+			'userhist_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('GWF_User', 'userhist_uid', 'user_id')),
 //			'userhist_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'userhist_date' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 		

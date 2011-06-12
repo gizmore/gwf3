@@ -26,7 +26,9 @@ final class WeChall_SiteDetails extends GWF_Method
 		require_once('module/WeChall/WC_SiteAdmin.php');
 		require_once 'module/WeChall/WC_SiteDescr.php';
 		
-		GWF_Module::getModule('Votes')->onInclude();
+		GWF_Module::loadModuleDB('Forum', true, true);
+		GWF_ForumBoard::init(true, true);
+		GWF_Module::loadModuleDB('Votes', true);
 		
 		$time = $module->cfgLastPlayersTime();
 		$tVars = array(
@@ -37,17 +39,20 @@ final class WeChall_SiteDetails extends GWF_Method
 			'latest_players' => $this->getLatestPlayers($time, $site->getID()),
 			'jquery' => Common::getGet('ajax') !== false,
 		);
-		return $module->template('site_detail.php', array(), $tVars);
+		return $module->templatePHP('site_detail.php', $tVars);
 	}
 	
 	private function getLatestPlayers($time, $siteid)
 	{
-		$db = gdo_db();
-		$regat = GDO::table('WC_RegAt')->getTableName();
-		$users = GDO::table('GWF_User')->getTableName();
 		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$time);
-		$query = "SELECT user_name FROM $regat JOIN $users AS u ON regat_uid=user_id WHERE regat_lastdate>'$cut' AND regat_sid=$siteid";
-		return $db->queryAll($query);
+		$siteid = (int)$siteid;
+		return GDO::table('WC_RegAt')->selectColumn('user_name', "regat_lastdate>'{$cut}' AND regat_sid={$siteid}", '', array('user'));
+//		$db = gdo_db();
+//		$regat = GDO::table('WC_RegAt')->getTableName();
+//		$users = GDO::table('GWF_User')->getTableName();
+//		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$time);
+//		$query = "SELECT user_name FROM $regat JOIN $users AS u ON regat_uid=user_id WHERE regat_lastdate>'$cut' AND regat_sid=$siteid";
+//		return $db->queryAll($query);
 	}
 	
 	private function onQuickJump(Module_WeChall $module)

@@ -42,10 +42,10 @@ final class WeChall_Sidebar extends GWF_Method
 		$hideBTN = GWF_Button::delete($this->getMethodHref('&rightpanel=0'), $module->lang('btn_sidebar_on'));
 		$back = sprintf('<div>%s%s</div>', $hideBTN, $module->lang('rp_stats')).PHP_EOL;
 		$back .= '<ol>'.PHP_EOL;
-		$back .= '<li><a href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('rp_sitecount', count(WC_Site::getActiveSites())).'</a></li>'.PHP_EOL;
-		$back .= '<li><a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('rp_challcount', GDO::table('WC_Challenge')->countRows()).'</a></li>'.PHP_EOL;
-		$back .= '<li><a href="'.GWF_WEB_ROOT.'forum">'.$module->lang('rp_postcount', $mod_forum->cfgPostCount()).'</a></li>'.PHP_EOL;
-		$back .= '<li><a href="'.GWF_WEB_ROOT.'users">'.$module->lang('rp_usercount', GDO::table('GWF_User')->countRows()).'</a></li>'.PHP_EOL;
+		$back .= '<li><a href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></li>'.PHP_EOL;
+		$back .= '<li><a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('rp_challcount', array(GDO::table('WC_Challenge')->countRows())).'</a></li>'.PHP_EOL;
+		$back .= '<li><a href="'.GWF_WEB_ROOT.'forum">'.$module->lang('rp_postcount', array($mod_forum->cfgPostCount())).'</a></li>'.PHP_EOL;
+		$back .= '<li><a href="'.GWF_WEB_ROOT.'users">'.$module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></li>'.PHP_EOL;
 		$back .= '</ol>'.PHP_EOL;
 		return $back;
 	}
@@ -58,7 +58,7 @@ final class WeChall_Sidebar extends GWF_Method
 			return '';
 		}
 		
-		$back = sprintf('<div>%s</div>', $module->lang('rp_sites', count($sites))).PHP_EOL;
+		$back = sprintf('<div>%s</div>', $module->lang('rp_sites', array(count($sites)))).PHP_EOL;
 		$back .= '<ol>'.PHP_EOL;
 		foreach ($sites as $site)
 		{
@@ -88,16 +88,16 @@ final class WeChall_Sidebar extends GWF_Method
 	{
 		$hideBTN = GWF_Button::delete($this->getMethodHref('&leftpanel=0'), $module->lang('btn_sidebar_on'));
 		
-		$users = GDO::table('GWF_User')->select('user_options&0x10000000=0', 'user_level DESC', 10);
+		$users = GDO::table('GWF_User')->selectObjects('*', 'user_options&0x10000000=0', 'user_level DESC', 10);
 		if (count($users) === 0) {
 			return $hideBTN;
 		}
 		
-		$back = sprintf('<div>%s%s</div>', $hideBTN, $module->lang('rp_topusers', 10)).PHP_EOL;
+		$back = sprintf('<div>%s%s</div>', $hideBTN, $module->lang('rp_topusers', array(10))).PHP_EOL;
 		$back .= '<ol>'.PHP_EOL;
 		foreach ($users as $user)
 		{
-			$back .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername()).PHP_EOL;
+			$back .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername()).PHP_EOL;
 		}
 		$back .= '</ol>'.PHP_EOL;
 		return $back;
@@ -114,7 +114,7 @@ final class WeChall_Sidebar extends GWF_Method
 			return '';
 		}
 #		$users = GDO::table('WC_UserHistory')->selectColumn('user_name', '', 'userhist_date DESC');
-		$back = sprintf('<div>%s</div>', $module->lang('rp_last_active', $amount)).PHP_EOL;
+		$back = sprintf('<div>%s</div>', $module->lang('rp_last_active', array($amount))).PHP_EOL;
 
 		$back .= '<ol>';
 		
@@ -142,7 +142,7 @@ final class WeChall_Sidebar extends GWF_Method
 			return '';
 		}
 #		$users = GDO::table('WC_UserHistory')->selectColumn('user_name', '', 'userhist_date DESC');
-		$back = sprintf('<div>%s</div>', $module->lang('rp_last_active', $amount)).PHP_EOL;
+		$back = sprintf('<div>%s</div>', $module->lang('rp_last_active', array($amount))).PHP_EOL;
 
 		$back .= '<ol>';
 		
@@ -152,7 +152,7 @@ final class WeChall_Sidebar extends GWF_Method
 		{
 			$href = GWF_WEB_ROOT.'profile/'.urlencode($row[1]);
 //			$title = sprintf('%s: %s; %s', $txtts, $row[2], GWF_HTML::display($row[3]));
-			$title = $module->lang('li_last_active', GWF_HTML::display($row[1]), round($row[3]*100, 2), GWF_HTML::display($row[4]));
+			$title = $module->lang('li_last_active', array(GWF_HTML::display($row[1]), round($row[3]*100, 2)), GWF_HTML::display($row[4]));
 			$back .= sprintf('<li><a href="%s" title="%s">%s</a></li>', $href, $title, GWF_HTML::display($row[1]));
 		}
 		$back .= '</ol>';
@@ -170,8 +170,8 @@ final class WeChall_Sidebar extends GWF_Method
 		$count = $users->countRows("user_lastactivity>$cutt AND user_options&$hidden=0");
 		
 		$href = GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1';
-		$back .= sprintf('<div>%s</div>', $module->lang('lp_last_online', GWF_Time::humanDuration($cut, 1)));
-		$back .= sprintf('<ol><li>%s</li></ol>', $module->lang('lp_last_online2', $href, $count));
+		$back .= sprintf('<div>%s</div>', $module->lang('lp_last_online', array(GWF_Time::humanDuration($cut, 1))));
+		$back .= sprintf('<ol><li>%s</li></ol>', $module->lang('lp_last_online2', array($href, $count)));
 		
 		return $back;
 	}

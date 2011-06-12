@@ -5,12 +5,12 @@ function Upgrade_WeChall_1_04(Module_WeChall $module)
 	$sites = GWF_TABLE_PREFIX.'wc_site';
 	$query = "ALTER TABLE $sites ADD COLUMN site_descr_lid INT(11) UNSIGNED NOT NULL DEFAULT 1";
 	if (false === ($db->queryWrite($query))) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	require_once 'module/WeChall/WC_SiteDescr.php';
 	if (false === GDO::table('WC_SiteDescr')->createTable(true)) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	$patches = array(
@@ -33,16 +33,16 @@ function Upgrade_WeChall_1_04(Module_WeChall $module)
 			$langid = 1;
 		}
 		if (false === WC_SiteDescr::insertDescr($siteid, $langid, $desc)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === $site->saveVar('site_descr_lid', $langid)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 	}
 	
 	$query = "ALTER TABLE `$sites` DROP `site_description`";
 	if (false === ($db->queryWrite($query))) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 
 	GWF_Website::addDefaultOutput(GWF_HTML::message('WC', '[+] Multi Lang Descriptions'));

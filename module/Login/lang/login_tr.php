@@ -50,5 +50,4 @@ $lang = array (
 'msg_cleared' => 'Your login history has been cleared.',
 'info_cleared' => 'Your login history was last cleared at %1% from this IP: %2% / %3%',
 );
-
-?> 
+?>

@@ -134,6 +134,25 @@ abstract class SR_City
 		}
 	}
 	
+	public function onHijack(SR_Party $party, $done)
+	{
+		if (
+			(false === ($target = $party->getHijackTarget())) ||
+			($target->getParty()->getLocation('inside') !== $party->getLocation())
+		)
+		{
+			$party->notice('Your target for hijacking ('.$party->getTarget().') gone away.');
+			$party->pushAction('outside', $party->getLocation());
+			return false;
+		}
+		
+		if ($done)
+		{
+			$target->getMount()->onHijack($party->getLeader());
+			return true;
+		}
+	}
+	
 	private function hasLostHuntTarget(SR_Party $party)
 	{
 		if (false === ($target = $party->getHuntTarget())) {

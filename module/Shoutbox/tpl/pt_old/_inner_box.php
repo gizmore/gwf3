@@ -33,7 +33,7 @@ function wcShoutColorForUser($user)
 		return 'ff8';
 	}
 	
-	if ($user->isInGroup('moderator')) {
+	if ($user->isInGroupName('moderator')) {
 		return 'f88';
 	}
 	

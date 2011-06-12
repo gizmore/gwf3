@@ -89,11 +89,11 @@ $board_headers = array(
 	array($tLang->lang('th_postcount'), 'board_postcount'), # 2 btns
 	
 );
-$board_headers = GWF_Table::getHeaders2($board_headers, $tVars['board_sort_url'], 'bby', 'bdir');
+//$board_headers = GWF_Table::getHeaders2($board_headers, $tVars['board_sort_url'], 'bby', 'bdir');
 
 echo GWF_Table::start('fl ri');
 $raw = '<tr><th class="ri" colspan="5">'.$b->display('board_descr').'</th></tr>';
-echo GWF_Table::displayHeaders($board_headers, $raw);
+echo GWF_Table::displayHeaders2($board_headers, $tVars['board_sort_url'], '', '', 'bby', 'bdir', $raw);
 ?>
 
 <?php foreach ($childs as $i => $c) { $c instanceof GWF_ForumBoard; echo GWF_Table::rowStart(); ?>
@@ -145,13 +145,10 @@ $t_headers = array(
 	array($tLang->lang('th_votes_up'), 'thread_votes_up'),
 	array($tLang->lang('th_thread_viewcount'), 'thread_viewcount'),
 );
-$t_headers = GWF_Table::getHeaders2($t_headers, $tVars['thread_sort_url'], 'tby', 'tdir');
-?>
 
-<?php
 echo $tVars['pagemenu_threads'];
 echo GWF_Table::start('ri');
-echo GWF_Table::displayHeaders($t_headers);
+echo GWF_Table::displayHeaders2($t_headers, $tVars['thread_sort_url'], 'th_lastdate', 'DESC', 'tby', 'tdir');
 
 foreach ($tVars['threads'] as $t) { $t instanceof GWF_ForumThread;
 	$edit = $t->hasEditPermission() ? GWF_Button::edit($t->getEditHREF(), $tLang->lang('btn_edit')) : '';

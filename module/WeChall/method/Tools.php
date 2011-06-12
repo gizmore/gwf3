@@ -32,12 +32,12 @@ final class WeChall_Tools extends GWF_Method
 		);
 		$file = Common::getGet('file');
 		if (!in_array($file, $whitelist, true)) {
-			return GWF_HTML::err('ERR_PARAMETER', __FILE__, __LINE__, 'file');
+			return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'file'));
 		}
 		
 		# Counter Box
 		$count = GWF_Counter::getAndCount($file, 1);
-		$box = GWF_Box::box($module->lang('pi_viewcount', $count));
+		$box = GWF_Box::box($module->lang('pi_viewcount', array($count)));
 		
 		# Translations
 		$langpath = $module->getDir().'/lang/'.$file;#.'/'.$file;
@@ -48,7 +48,7 @@ final class WeChall_Tools extends GWF_Method
 		$tVars = array(
 			'lang' => $trans,
 		);
-		return $module->template("tools/$file/$file.php", array(), $tVars).$box;
+		return $module->templatePHP("tools/$file/$file.php", $tVars).$box;
 	}
 }
 ?>

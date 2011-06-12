@@ -30,12 +30,12 @@ final class WeChall_API_User extends GWF_Method
 		
 		require_once 'module/WeChall/WC_RegAt.php';
 		if (false === ($regats = WC_RegAt::getRegats($user->getID(), 'regat_solved ASC'))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		require_once 'module/Forum/GWF_ForumOptions.php';
 		if (false === ($fopts = GWF_ForumOptions::getUserOptions($user, false))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$unknown = GWF_HTML::lang('unknown');
@@ -83,7 +83,7 @@ final class WeChall_API_User extends GWF_Method
 	{
 		require_once 'module/Profile/GWF_Profile.php';
 		if (false === ($p = GWF_Profile::getProfile($user->getID()))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if ($p->isGuestHidden() || $p->isHiddenLevel(0)) {

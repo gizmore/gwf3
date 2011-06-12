@@ -57,7 +57,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_edit_chall')),
 		);
-		return $module->template('chall_edit.php', array(), $tVars);
+		return $module->templatePHP('chall_edit.php', $tVars);
 	}
 
 	private function onEdit(Module_WeChall $module, WC_Challenge $chall)
@@ -75,7 +75,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		if ('' !== ($solution = Common::getPost('solution', '')))
 		{
 			if (false === $chall->saveVar('chall_solution', $chall->hashSolution($solution, $is_case_i))) {
-				$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -84,7 +84,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		if ($chall->isOptionEnabled($case_i) !== $is_case_i)
 		{
 			if (false === ($chall->saveOption($case_i, $is_case_i))) {
-				$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -97,11 +97,11 @@ final class WeChall_ChallEdit extends GWF_Method
 			}
 			
 			if (false === ($chall->saveVar('chall_score', $new_score))) {
-				$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 
 			if (false === $wc->saveVar('site_maxscore', WC_Challenge::getMaxScore())) {
-				$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 
 			$wc->recalcSite();
@@ -114,17 +114,17 @@ final class WeChall_ChallEdit extends GWF_Method
 			'chall_title' => $form->getVar('title'),
 			
 		))) {
-			$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		# Creator:
 		if (false === $chall->updateCreators($form->getVar('creators'))) {
-			$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		# Tags:
 		if (false === $chall->saveVar('chall_tags', trim($form->getVar('tags'), ' ,'))) {
-			$msgs .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		Module_WeChall::instance()->cacheChallTags();
@@ -136,7 +136,7 @@ final class WeChall_ChallEdit extends GWF_Method
 	private function onDelete(Module_WeChall $module, WC_Challenge $chall)
 	{
 		if (false === $chall->onDelete()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$wc->recalcSite();
@@ -164,7 +164,7 @@ final class WeChall_ChallEdit extends GWF_Method
 				$back .= ', '.GWF_HTML::display($tag);
 			}
 		}
-		return $back === '' ? false : $m->lang('err_chall_tags', substr($back, 2));
+		return $back === '' ? false : $m->lang('err_chall_tags', array(substr($back, 2)));
 	}
 	
 	public function validate_creators(Module_WeChall $m, $arg)
@@ -180,7 +180,7 @@ final class WeChall_ChallEdit extends GWF_Method
 				$back .= ', '.GWF_HTML::display($c);
 			}
 		}
-		return $back === '' ? false : $m->lang('err_chall_creator', substr($back, 2));
+		return $back === '' ? false : $m->lang('err_chall_creator', array(substr($back, 2)));
 	}
 	
 	private function onReset(Module_WeChall $module, WC_Challenge $chall)
@@ -191,7 +191,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$cid = $chall->getID();
 		$solved = GDO::table('WC_ChallSolved');
 		if (false === $solved->update("csolve_date='', csolve_options=0", "csolve_cid=$cid")) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$affected = $solved->affectedRows();
 		$back = GWF_HTML::message('WeChall', "Reset $affected players that have solved it.");
@@ -200,7 +200,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$gid = $chall->getGID();
 		$usergroup = GDO::table('GWF_UserGroup');
 		if (false === ($usergroup->deleteWhere("ug_groupid=$gid"))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$affected = $usergroup->affectedRows();
 		$back .= GWF_HTML::message('WeChall', "Removed $affected players from the challenge group.");
@@ -208,16 +208,16 @@ final class WeChall_ChallEdit extends GWF_Method
 		# Reset votes
 		Module_WeChall::includeVotes();
 		if (false === $chall->getVotesDif()->resetVotesSameSettings()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === $chall->getVotesEdu()->resetVotesSameSettings()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === $chall->getVotesFun()->resetVotesSameSettings()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === $chall->onRecalcVotes()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		# reset solve count and various vars
@@ -226,7 +226,7 @@ final class WeChall_ChallEdit extends GWF_Method
 			'chall_views' => 0,
 			'chall_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return $back;
 	}

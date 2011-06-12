@@ -13,7 +13,7 @@ final class WC_SiteAdmin extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'siteadmin_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'siteadmin_uid')),
+			'siteadmin_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'siteadmin_uid', 'user_id')),
 			'siteadmin_sid' => array(GDO::UINT|GDO::PRIMARY_KEY),
 		);
 	}
@@ -50,7 +50,7 @@ final class WC_SiteAdmin extends GDO
 	
 	public static function getSiteAdmins($siteid)
 	{
-		return self::table(__CLASS__)->select('siteadmin_sid='.intval($siteid));
+		return self::table(__CLASS__)->selectObjects('*', 'siteadmin_sid='.intval($siteid));
 	}
 }
 

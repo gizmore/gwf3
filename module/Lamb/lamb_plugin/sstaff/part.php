@@ -8,7 +8,7 @@ if (!isset($channels[$channel]))
 }
 else
 {
-	$bot->reply('Attemp to part channel '.$channel.'...');
+//	$bot->reply('Attemp to part channel '.$channel.'...');
 	$server->part($channel);
 }
 ?>

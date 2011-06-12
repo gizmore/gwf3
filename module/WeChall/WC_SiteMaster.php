@@ -18,8 +18,8 @@ final class WC_SiteMaster extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'sitemas_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'sitemas_uid')),
-			'sitemas_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'sitemas_sid')),
+			'sitemas_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'sitemas_uid', 'user_id')),
+			'sitemas_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'sitemas_sid', 'site_id')),
 //			'sitemas_perc' => array(GDO::UINT|GDO::PRIMARY_KEY, 0), # 100, 90, ... We only use 100s atm
 			'sitemas_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'sitemas_firstdate' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
@@ -146,7 +146,7 @@ final class WC_SiteMaster extends GDO
 	public static function getMasters($timestamp)
 	{
 		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$timestamp);
-		return self::table(__CLASS__)->select("sitemas_date>'$cut'", 'sitemas_date DESC');
+		return self::table(__CLASS__)->selectObjects('*', "sitemas_date>'$cut'", 'sitemas_date DESC');
 	}
 	
 	public static function countMasters($timestamp)

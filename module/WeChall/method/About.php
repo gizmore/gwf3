@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Show WeChall about page :)
+ * @author gizmore
+ * @version 3.01
+ */
 final class WeChall_About extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
@@ -12,11 +16,10 @@ final class WeChall_About extends GWF_Method
 		$lang = new GWF_LangTrans('module/WeChall/lang/_wc_about');
 		GWF_Website::setPageTitle($lang->lang('about_pagetitle'));
 		GWF_Website::setMetaTags($lang->lang('about_meta'));
-		
 		$tVars = array(
 			'about' => $lang,
 		);
-		return $module->template('about.php', array(), $tVars);
+		return $module->templatePHP('about.php', $tVars);
 	}
 }
 

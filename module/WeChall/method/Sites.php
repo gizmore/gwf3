@@ -73,7 +73,7 @@ final class WeChall_Sites extends GWF_Method
 		$href = $this->getPageMenuHREF();
 		
 		$tVars = array(
-			'sites' => $table->select($conditions, $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
+			'sites' => $table->selectObjects('*', $conditions, $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
 			'descrs' => WC_SiteDescr::getAllDescr(),
 			'site_quickjump' => $module->templateSiteQuickjumpDetail(),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
@@ -82,7 +82,7 @@ final class WeChall_Sites extends GWF_Method
 			'tag' => $tag,
 			'page_title' => $this->pageTitle,
 		);
-		return $module->template('sites.php', array(), $tVars);
+		return $module->templatePHP('sites.php', $tVars);
 	}
 	
 	private function getWhich()
@@ -98,7 +98,7 @@ final class WeChall_Sites extends GWF_Method
 		}
 		
 		if ($tag !== '') {
-			$this->pageTitle = $module->lang('pt_sites_'.$which.'_tagged', $tag);
+			$this->pageTitle = $module->lang('pt_sites_'.$which.'_tagged', array($tag));
 		}
 		else {
 			$this->pageTitle = $module->lang('pt_sites_'.$which);
@@ -126,7 +126,9 @@ final class WeChall_Sites extends GWF_Method
 		if ('all' === ($iso = trim(Common::getGet('langiso', '')))) {
 			return '1';
 		}
-		if (false === ($lang = GWF_Language::getByISOS($iso))) {
+		
+		if (false === ($lang = GWF_Language::getByISO($iso)))
+		{
 			return '1';
 		}
 		$langid = $lang->getID();

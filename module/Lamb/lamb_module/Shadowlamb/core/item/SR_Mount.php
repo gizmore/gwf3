@@ -1,6 +1,17 @@
 <?php
 abstract class SR_Mount extends SR_Equipment
 {
+	# Times to hijack a mount, if time elapsed we roll a dice.
+	const HIJACK_TIME_MIN = 120; 
+	const HIJACK_TIME_MAX = 300;
+	const HIJACK_TIME_MAXLVL = 100; # And the level is a percentage in between like 280.
+	const HIJACK_TIME_BONUS = 20; # - 20 sec rand.
+	const HIJACK_TIME_ADD = 30; # And for every attemp we add N seconds ...
+	const HIJACK_TIME_MULTI = 1.5; # and afterwards multiply by N.
+	
+	# Hijack dice
+	
+	
 	######################
 	### Abstract Mount ###
 	######################
@@ -67,6 +78,86 @@ abstract class SR_Mount extends SR_Equipment
 			return false;
 		}
 		return parent::onItemUnequip($player);
+	}
+	
+	##############
+	### Hijack ###
+	##############
+	public function initHijackBy(SR_Player $player)
+	{
+		$player->setConst('_SL4_HIJACK', 0);
+		$eta = $this->calcHijackTime($player);
+		$player->message(sprintf('You start to to crack the lock on %s\'s %s. ETA: %s', $this->getOwner()->getName(), $this->getName(), $eta));
+		return $this->hijackBy($player, $eta);
+	}
+	
+	public function hijackBy(SR_Player $player, $eta)
+	{
+		$party = $player->getParty();
+		if (false === ($loc = $party->getLocation('outside')))
+		{
+			return false;
+		}
+		return $party->pushAction(SR_Party::ACTION_HIJACK, $this->getOwner()->getName().' at '.$loc, $eta);
+	}
+	
+	public function onHijack(SR_Player $player)
+	{
+		$attemp = $player->getConst('_SL4_HIJACK') + 1;
+		$thief = $player->get('thief');
+		$locpic = $player->get('lockpicking');
+		$lock = $this->getMountLockLevel();
+
+		$atk = Shadowfunc::diceFloat($locpic, $locpic * 2.0 + 1.0, 2);
+		$def = Shadowfunc::diceFloat($lock, $lock * 1.5 + 4.0 + $attemp, 2);
+		
+		if ($atk >= $def)
+		{
+			$this->onHijacked($player);
+		}
+		else
+		{
+			$eta = $this->calcHijackTime($player);
+			$player->message(sprintf('You failed to crack the lock on %s\'s %s. You try again. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
+			$this->hijackBy($player, $eta);
+		}
+	}
+	
+	public function calcHijackTime(SR_Player $player)
+	{
+		$thief = $player->get('thief');
+		$locpic = $player->get('lockpicking');
+		$lock = $this->getMountLockLevel();
+		
+		$pl = Common::clamp(round($thief + $locpic, 2), 0, self::HIJACK_TIME_MAXLVL);
+		$pl = 1 - ($pl / self::HIJACK_TIME_MAXLVL);
+		$pl += $lock / 10;
+		
+		$min = SR_Mount::HIJACK_TIME_MIN + $lock * 20;
+		$max = SR_Mount::HIJACK_TIME_MAX + $lock * 20;
+		$rng = $max - $min;
+		
+		return round($rng * $pl + $min - rand(0, self::HIJACK_TIME_BONUS));
+	}
+	
+	private function onHijacked(SR_Player $player)
+	{
+		$party = $player->getParty();
+		$party->pushAction('outside', $party->getLocation());
+		
+		$owner = $this->getOwner();
+		$items = $owner->getMountInvItems();
+		if (count($items) > 0)
+		{
+			$item = $items[array_rand($items, 1)];
+			$player->message(sprintf('You managed to crack the lock on %s\'s %s and stole a %s.', $this->getOwner()->getName(), $this->getName(), $item->getItemName()));
+			$player->giveItems(array($item), 'hijacking '.$owner->getName());
+			$owner->message(sprintf('%s stole a %s out of your %s.', $player->getName(), $item->getItemName(), $this->getName()));
+		}
+			
+		$player->message(sprintf('You managed to crack the lock on %s\'s %s but it seems empty.', $this->getOwner()->getName(), $this->getName()));
+		
+		return true;
 	}
 }
 ?>

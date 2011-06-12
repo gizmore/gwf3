@@ -201,14 +201,15 @@ class SR_Player extends GDO
 	public function isFemale() { return $this->getGender() === 'female'; }
 	public static function getGenders() { return array_keys(self::$GENDER); }
 	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getServerID()); }
+	public function displayName() { $u = $this->getUser(); return sprintf("\x02%s{%s}\x02", Lamb::softhyphe($u->getName()), $u->getServerID()) ; }
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
 	public function hasSkill($skill) { return $this->getBase($skill) > -1; }
 	public function isOverloadedHalf() { return $this->get('weight') >= ($this->get('max_weight')*1.0); }
 	public function isOverloadedFull() { return $this->get('weight') >= ($this->get('max_weight')*1.5); }
-	public function hasFullHP() { return $this->getHP() == $this->getMaxHP(); }
-	public function hasFullMP() { return $this->getMP() == $this->getMaxMP(); }
+	public function hasFullHP() { return $this->getHP() >= $this->getMaxHP(); }
+	public function hasFullMP() { return $this->getMP() >= $this->getMaxMP(); }
 	public function hasFullHPMP() { return $this->hasFullHP() && $this->hasFullMP(); }
 	public function getHP() { return $this->getFloat('sr4pl_hp'); }
 	public function getMP() { return $this->getFloat('sr4pl_mp'); }
@@ -1752,12 +1753,12 @@ class SR_Player extends GDO
 	{
 		if (is_numeric($arg))
 		{
-			if (false === ($arg = $player->getKnowledgeByID($field, $arg)))
+			if (false === ($arg = $this->getKnowledgeByID($field, $arg)))
 			{
 				return false;
 			}
 		}
-		elseif (!$player->hasKnowledge($field, $arg))
+		elseif (!$this->hasKnowledge($field, $arg))
 		{
 			return false;
 		}
@@ -1814,14 +1815,16 @@ class SR_Player extends GDO
 	public function removeKnowledge($field, $knowledge)
 	{
 		$knowledge = strtolower($knowledge);
-		if (!$this->hasKnowledge($field, $knowledge)) {
+		if (!$this->hasKnowledge($field, $knowledge))
+		{
+			$this->message(sprintf('You don\'t have knowledge for %s.', $knowledge));
 			return true;
 		}
 		$k = $this->getKnowledge($field);
-		if (false === $this->saveVar('known_'.$field, str_ireplace(",$knowledge,", ',', $k))) {
+		if (false === $this->saveVar('sr4pl_known_'.$field, str_ireplace(",$knowledge,", ',', $k))) {
 			return false;
 		}
-		$this->message(sprintf('You forget about the %s: %s.', $field, $knowledge));
+		$this->message(sprintf('You surely forgot about the %s: %s.', $field, $knowledge));
 		return true;
 	}
 	
@@ -1854,7 +1857,7 @@ class SR_Player extends GDO
 	{
 		$old = $this->getBase($field);
 		$max = $this->get('max_'.$field);
-		$new = Common::clamp($old+$gain, 0.0, $max);
+		$new = round(Common::clamp($old+$gain, 0.0, $max), 2);
 		$this->setOption(SR_Player::STATS_DIRTY, true);
 		$this->updateField($field, round($new, 2));
 		return $new-$old;

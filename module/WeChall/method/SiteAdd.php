@@ -26,7 +26,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_add_site')),
 		);
-		return $module->template('site_add.php', array(), $tVars);
+		return $module->templatePHP('site_add.php', $tVars);
 	}
 
 	public function getForm(Module_WeChall $module)
@@ -77,23 +77,23 @@ final class WeChall_SiteAdd extends GWF_Method
 			'site_tags' => '',
 		));
 		if (false === ($site->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		Module_WeChall::includeVotes();
 		if (false === $site->onCreateVotes()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		Module_WeChall::includeForums();
 		if (false === $site->onCreateBoard()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === $site->onCreateThread($module)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		require_once 'module/WeChall/WC_SiteDescr.php';
 		if (false === WC_SiteDescr::insertDescr($site->getID(), 1, 'Please edit me :)')) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_site_added');
@@ -110,7 +110,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		$len = Common::strlen($arg);
 		$max = $m->cfgMaxSitenameLen();
 		if ($len < 1 || $len > $max) {
-			return $m->lang('err_site_name', 1, $max);
+			return $m->lang('err_site_name', array(1, $max));
 		}
 		return false;
 	}
@@ -124,12 +124,12 @@ final class WeChall_SiteAdd extends GWF_Method
 		$max = $m->cfgMaxSitenameLen();
 		
 		if (1 !== preg_match('/^[a-z][a-z0-9_]+$/i', $arg)) {
-			return $m->lang('err_site_cname', 1, $max);
+			return $m->lang('err_site_cname', array(1, $max));
 		}
 		
 		$len = Common::strlen($arg);
 		if ($len < 1 || $len > $max) {
-			return $m->lang('err_site_cname', 1, $max);
+			return $m->lang('err_site_cname', array(1, $max));
 		}
 		return false;
 		

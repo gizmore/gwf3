@@ -78,7 +78,7 @@ if ($actions)
 
 echo $tVars['pagemenu'];
 
-require_once 'modules/WeChall/WC_RegAt.php';
+require_once 'module/WeChall/WC_RegAt.php';
 
 echo '<div class="gwf_posts">'.PHP_EOL;
 $tVars['thread'] = $t;

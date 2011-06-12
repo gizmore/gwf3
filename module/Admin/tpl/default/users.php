@@ -12,7 +12,6 @@ $headers = array(
 	array($tLang->lang('th_regip'), 'user_regip', 'ASC'),
 	array($tLang->lang('th_lastactivity'), 'user_lastactivity', 'DESC'),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 echo $tVars['pagemenu'];
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers);

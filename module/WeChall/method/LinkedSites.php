@@ -72,7 +72,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		
 		$by = Common::getGet('by', 'site_name');
 		$dir = Common::getGet('dir', 'ASC');
-		$by = GDO::getWhitelistedByS($by, 'site_name', $whitelist);
+		$by = GDO::getWhitelistedByS($by, $whitelist, 'site_name');
 		$dir = GDO::getWhitelistedDirS($dir, 'ASC');
 		$orderby = "$by $dir";
 		
@@ -84,22 +84,24 @@ final class WeChall_LinkedSites extends GWF_Method
 			'can_link' => count($this->not_linked) > 0,
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=LinkedSites&by=%BY%&dir=%DIR%',
 		);
-		return $module->template('linked_sites.php', array(), $tVars);
+		return $module->templatePHP('linked_sites.php', $tVars);
 	}
 	
 	private function getLinkedSites($userid, $orderby)
 	{
-		$db = gdo_db();
-		$regat = GWF_TABLE_PREFIX.'wc_regat';
-		$sites = GWF_TABLE_PREFIX.'wc_site';
-		$query = "SELECT * FROM $regat JOIN $sites ON regat_sid=site_id WHERE regat_uid=$userid ORDER BY $orderby";
-		return $db->queryAll($query, true);
+//		$userid = (int) $userid;
+		return GDO::table('WC_RegAt')->selectAll('*', 'regat_uid='.$userid, $orderby, array('site'));
+//		$db = gdo_db();
+//		$regat = GWF_TABLE_PREFIX.'wc_regat';
+//		$sites = GWF_TABLE_PREFIX.'wc_site';
+//		$query = "SELECT * FROM $regat JOIN $sites ON regat_sid=site_id WHERE regat_uid=$userid ORDER BY $orderby";
+//		return $db->queryAll($query, true);
 	}
 
 	public function getFormLink(Module_WeChall $module)
 	{
 		if (false === ($this->not_linked = WC_Site::getUnlinkedSites(GWF_Session::getUserID()))) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
 		
@@ -180,7 +182,7 @@ final class WeChall_LinkedSites extends GWF_Method
 
 		if (false !== ($regat = WC_RegAt::getByOnsitename($site->getID(), $onsitename))) {
 			if (false === ($user = $regat->getUser())) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			else {
 				return $module->error('err_onsitename_taken', htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername());
@@ -205,8 +207,8 @@ final class WeChall_LinkedSites extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($onsitemail);
-		$mail->setSubject($module->lang('mail_link_subj', $site->display('site_name')));
-		$mail->setBody($module->lang('mail_link_body', $user->displayUsername(), $site->displayName(), $link));
+		$mail->setSubject($module->lang('mail_link_subj', array($site->display('site_name'))));
+		$mail->setBody($module->lang('mail_link_body', array($user->displayUsername(), $site->displayName(), $link)));
 		return $mail->sendToUser($user) ? $module->message('msg_linkmail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
 	}
 
@@ -225,7 +227,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		}
 		
 		if (false === ($onsitename = Common::getGet('onsitename'))) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
 		if ($token !== $site->getLinkToken($user->getID(), $onsitename)) {
@@ -266,22 +268,22 @@ final class WeChall_LinkedSites extends GWF_Method
 			'regat_linkdate' => GWF_Time::getDate(GWF_Date::LEN_DAY),
 		));
 		if (false === ($regat->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === ($site->increase('site_linkcount', 1))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$error = $site->onUpdateUser($user, true, true);
 		
 		if (false === ($regat2 = WC_RegAt::getRegatRow($userid, $siteid))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		require_once 'module/WeChall/WC_FirstLink.php';
 		if (false === WC_FirstLink::insertFirstLink($user, $site, $onsitename, $regat2->getOnsiteScore())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $error->display().$module->message('msg_site_linked', $site->displayName());
@@ -303,11 +305,11 @@ final class WeChall_LinkedSites extends GWF_Method
 		}
 		
 		if (false === ($regat = WC_RegAt::getRegatRow(GWF_Session::getUserID(), $siteid))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === $regat->saveOption(WC_RegAt::HIDE_SITENAME, $status > 0)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_hide_sitename_'.$status, $site->displayName());
@@ -337,11 +339,11 @@ final class WeChall_LinkedSites extends GWF_Method
 		}
 		
 		if (false === ($regat = WC_RegAt::getRegatRow($userid, $site->getID()))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === WC_RegAt::unlink($userid, $site->getID())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$site->increase('site_linkcount', -1);

@@ -16,7 +16,8 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 				return;
 			}
 			elseif ($word === 'fuck') {
-				$player->giveItems(Shadowfunc::randLoot($player, 100), $this->getName());
+				$level = isset($args[1]) ? intval($args[1]) : 6;
+				$player->giveItems(Shadowfunc::randLoot($player, $level), $this->getName());
 				return;
 			}
 			elseif ($word === 'elve') {
@@ -48,16 +49,16 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		if (!$quest->isAccepted($player))
 		{
 			$this->reply('Hello chummer, are you alright? You have been asleep for 32 hours!' );
-			sleep(1);
+//			sleep(1);
 			$this->reply('You are another victim of Renraku?');
 			$player->giveKnowledge('words', 'Hello', 'Renraku');
-			sleep(1);
+//			sleep(1);
 			$this->reply('You were saying something about Renraku... Don`t ask me why ... but ... take this... and maybe wear some clothes... :S');
 			
 			$items = array(SR_Item::createByName('FirstAid'), SR_Item::createByName('Clothes'), SR_Item::createByName('Trousers'), SR_Item::createByName('Shoes'));
 			$player->giveItems($items, $this->getName());
 			$quest->accept($player);
-			sleep(1);
+//			sleep(1);
 			$player->help('Equip your items now with the #equip command. Try #(eq)uip 3, #(eq)uip Trousers and #eq Shoes.');
 			$player->help('Check your character with: #(s)tatus, #(i)nventory, #e(q)uipment. Examine items with #(ex)amine.');
 			$player->help('The first thing you should do after checking your equipment is to find new "#kp" in your current city with #(exp)lore.');

@@ -36,11 +36,11 @@ final class WeChall_SiteMasters extends GWF_Method
 		$orderby = $masters->getMultiOrderby($by, $dir);
 		$tVars = array(
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.$pre.'site_masters/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
-			'masters' => $masters->select($conditions, $orderby, $ipp, $from),
+			'masters' => $masters->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'sort_url' => GWF_WEB_ROOT.$pre.'site_masters/by/%BY%/%DIR%/page-1',
 			'old' => $old,
 		);
-		return $module->template('site_masters.php', array(), $tVars);
+		return $module->templatePHP('site_masters.php', $tVars);
 	}
 }
 

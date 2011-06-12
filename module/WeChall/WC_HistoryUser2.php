@@ -18,10 +18,10 @@ final class WC_HistoryUser2 extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'userhist_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('GWF_User', 'userhist_uid')),
+			'userhist_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('GWF_User', 'userhist_uid', 'user_id')),
 			'userhist_date' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 		
-			'userhist_sid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('WC_Site', 'userhist_sid')), # siteid can be 0
+			'userhist_sid' => array(GDO::OBJECT|GDO::INDEX, GDO::NOT_NULL, array('WC_Site', 'userhist_sid', 'site_id')), # siteid can be 0
 			'userhist_percent' => array(GDO::UINT, GDO::NOT_NULL), # percent solved (same as onsitescore?)
 			'userhist_onsitescore' => array(GDO::UINT, GDO::NOT_NULL), # onsitescore
 		
@@ -36,7 +36,6 @@ final class WC_HistoryUser2 extends GDO
 			'userhist_onsiterank' => array(GDO::UINT, 0),
 			'userhist_options' => array(GDO::UINT, 0),
 		
-//			'userhist_regat' => array(GDO::OBJECT, GDO::),
 		);
 	}
 
@@ -49,7 +48,7 @@ final class WC_HistoryUser2 extends GDO
 	public function getSite() { return $this->getVar('userhist_sid'); }
 	public function displayDate() { return GWF_Time::displayTimestamp($this->getVar('userhist_date')); }
 	public function displayPercent() { return sprintf('%.02f%%', $this->getVar('userhist_percent')/100); }
-	public function displayComment() { return WC_HTML::lang('userhist_'.$this->getVar('userhist_type'), $this->getSite()->displayName(), $this->getVar('userhist_gain_score'), sprintf('%.02f', $this->getVar('userhist_percent')/100), sprintf('%.02f', $this->getVar('userhist_gain_perc')/100) ); }
+	public function displayComment() { return WC_HTML::lang('userhist_'.$this->getVar('userhist_type'), array($this->getSite()->displayName(), $this->getVar('userhist_gain_score'), sprintf('%.02f', $this->getVar('userhist_percent')/100), sprintf('%.02f', $this->getVar('userhist_gain_perc')/100) )); }
 	public function displayUser() { return $this->getVar('userhist_uid')->displayProfileLink(); }
 	##############
 	### Static ###

@@ -55,7 +55,8 @@ final class SR_Bounty extends GDO
 			return "This player has no bounty.";
 		}
 		$total = Shadowfunc::displayPrice($bounty);
-		return sprintf('There is a total {$b}bounty of %s{$b} for %s: %s.', $total, $player->getName(), $this->displayBountyPlayerDetails($player));
+		$b = chr(2);
+		return sprintf("There is a total {$b}bounty of %s{$b} for %s: %s.", $total, $player->getName(), self::displayBountyPlayerDetails($player));
 	}
 	
 	public static function displayBountyPlayerDetails(SR_Player $player)

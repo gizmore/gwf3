@@ -98,6 +98,7 @@ final class SR_Party extends GDO
 	public function isIdle() { return in_array($this->getAction(), array('inside','outside'), true); }
 	public function isTalking() { return $this->getAction() === self::ACTION_TALK; }
 	public function isFighting() { return $this->getAction() === self::ACTION_FIGHT; }
+	public function isHijacking() { return $this->getAction() === self::ACTION_HIJACK; }
 	public function isHunting() { return $this->getAction() === self::ACTION_HUNT; }
 	public function isSleeping() { return $this->getAction() === self::ACTION_SLEEP; }
 	public function isDeleted() { return $this->deleted; }
@@ -217,6 +218,8 @@ final class SR_Party extends GDO
 				return $this->getVar('sr4pa_target');
 			case 'hunt':  
 				return $this->getHuntTargetCity();
+			case 'hijack':  
+				return $this->getHijackTargetCity();
 			case 'travel':
 				return Common::substrUntil($this->getVar('sr4pa_last_target'), '_', false);
 			case 'delete':
@@ -245,6 +248,13 @@ final class SR_Party extends GDO
 	public function getHuntTarget() { return Shadowrun4::getPlayerByName($this->getHuntTargetName()); }
 	public function getHuntTargetCity() { return Common::substrFrom($this->getTarget(), ' in '); }
 	public function getHuntTargetName() { return Common::substrUntil($this->getTarget(), ' in '); }
+	
+	/**
+	 * @return SR_Player
+	 */
+	public function getHijackTarget() { return Shadowrun4::getPlayerByName($this->getHijackTargetName()); }
+	public function getHijackTargetCity() { return Common::substrFrom($this->getTarget(), ' at '); }
+	public function getHijackTargetName() { return Common::substrUntil($this->getTarget(), ' at '); }
 	
 	/**
 	 * @return SR_Party
@@ -858,7 +868,7 @@ final class SR_Party extends GDO
 			case 'explore': return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			case 'goto': return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			case 'hunt': return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
-			case 'hijack': return sprintf("{$b}hijacking{$b} %s in %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
+			case 'hijack': return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
 			default: return 'UNKNOWN PARTY ACTION IS UNKNOWN.';
 		}
 	}
@@ -1049,7 +1059,14 @@ final class SR_Party extends GDO
 		$city = $this->getCityClass();
 		$city->onHunt($this, $done);
 	}
-
+	
+	public function on_hijack($done)
+	{
+		$this->timestamp = time();
+		$city = $this->getCityClass();
+		$city->onHijack($this, $done);
+	}
+	
 	public function getRandomMember()
 	{
 		return $this->members[array_rand($this->getMembers())];

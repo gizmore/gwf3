@@ -25,6 +25,7 @@ abstract class SR_Dungeon extends SR_City
 	
 	public function setAlert(SR_Party $party, $duration=600)
 	{
+		$pid = $party->getID();
 		$this->alert[$pid] = Shadowrun4::getTime() + $duration;
 	}
 	

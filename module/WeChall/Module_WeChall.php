@@ -94,18 +94,20 @@ final class Module_WeChall extends GWF_Module
 		GWF_Website::setPageTitlePre('[WeChall] ');
 		GWF_Website::setMetaTags(WC_HTML::lang('mt_wechall'));
 		GWF_Website::setMetaDescr(WC_HTML::lang('md_wechall'));
-		GWF_Website::includeJQuery();
+//		GWF_Website::includeJQuery();
 		GWF_Website::addJavascript($this->getModuleFilePath('js/wc.js?v=3'));
 		GWF_Website::addJavascriptInline("$(document).ready(function() { wcjsProfileJQuery(); } );");
 	}
 	
 	public static function includeVotes()
 	{
-		self::getModule('Votes')->onInclude();
+		GWF_Module::loadModuleDB('Votes', true);
+//		self::getModule('Votes')->onInclude();
 	}
 	public static function includeForums()
 	{
-		self::getModule('Forum')->onInclude();
+		GWF_Module::loadModuleDB('Forum', true);
+//		self::getModule('Forum')->onInclude();
 		GWF_ForumBoard::init(true);
 	}
 	
@@ -161,16 +163,16 @@ final class Module_WeChall extends GWF_Module
 			'regat_tagbits' => $site->getTagBits(),
 		));
 		if (false === ($regat->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === $site->increase('site_linkcount', 1)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		require_once 'module/WeChall/WC_FirstLink.php';
 		if (false === WC_FirstLink::insertFirstLink($user, $site, $user->getVar('user_name'), 0)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return true;
@@ -273,7 +275,7 @@ final class Module_WeChall extends GWF_Module
 			'mode' => $mode,
 			'form_action' => $actions[$mode],
 		);
-		return $this->template('site_quickjump.php', array(), $tVars);
+		return $this->templatePHP('site_quickjump.php', $tVars);
 	}
 	public function templateSiteQuickjumpDetail()
 	{
@@ -347,7 +349,7 @@ final class Module_WeChall extends GWF_Module
 		$query = "SELECT user_name, user_birthdate, SUBSTR(user_birthdate, 5) AS bd FROM $users WHERE user_options&$showbd AND SUBSTR(user_birthdate, 5) BETWEEN $monday AND $sunday";
 		$db = gdo_db();
 		if (false === ($result = $db->queryRead($query))) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return '';
 		}
 		
@@ -379,7 +381,7 @@ final class Module_WeChall extends GWF_Module
 		# Output
 		$href = '/index.php?mo=WeChall&me=BirthdayRead';
 		$title = $this->lang('bdnews_title');
-		$text = $this->lang('bdnews_body_init', $href);
+		$text = $this->lang('bdnews_body_init', array($href));
 		$weekdays = GWF_Time::getWeekdaysFromMo();
 		$i = -1;
 		foreach ($userdate as $date => $data)
@@ -400,10 +402,10 @@ final class Module_WeChall extends GWF_Module
 				$day = WC_HTML::lang('Tommorow');
 			}
 			elseif ($date < $today) {
-				$day = WC_HTML::lang('bd_over', $day);
+				$day = WC_HTML::lang('bd_over', array($day));
 			}
 			elseif ($date > $today) {
-				$day = WC_HTML::lang('bd_soon', $day);
+				$day = WC_HTML::lang('bd_soon', array($day));
 			}
 			
 			$text .= $day.': ';
@@ -436,7 +438,7 @@ final class Module_WeChall extends GWF_Module
 		$query = "SELECT site_name, regat_challcount, site_challcount, site_url FROM $regat JOIN $sites ON site_id=regat_sid WHERE regat_challcount != site_challcount AND regat_uid=$userid";
 		$db = gdo_db();
 		if (false === ($result = $db->queryRead($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if ($db->numRows($result) === 0) {
@@ -446,19 +448,19 @@ final class Module_WeChall extends GWF_Module
 		
 		$href = '/index.php?mo=WeChall&me=ChallNewsRead';
 		$title = $this->lang('cnews_title');
-		$text = $this->lang('cnews_body', $href).PHP_EOL.PHP_EOL;
+		$text = $this->lang('cnews_body', array($href)).PHP_EOL.PHP_EOL;
 		while (false !== ($row = $db->fetchRow($result)))
 		{
 			$mark = intval($row[1]);
 			$total = intval($row[2]);
 			$anchor = sprintf('[url=%s]%s[/url]', htmlspecialchars($row[3]), htmlspecialchars($row[0]));
-			$text .= $this->lang('cnews_item', $total-$mark, $anchor, $total).PHP_EOL;
+			$text .= $this->lang('cnews_item', array($total-$mark, $anchor, $total)).PHP_EOL;
 		}
 
 		$db->free($result);
 		
 		if (false === ($thm = Module_WeChall::instance()->cfgWeChallUser())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$english = GWF_Language::getEnglish();
 		
@@ -476,16 +478,16 @@ final class Module_WeChall extends GWF_Module
 		}
 		
 		$title = $this->lang('mnews_title');
-		$text = $this->lang('mnews_body', '/site_masters').PHP_EOL.PHP_EOL;
+		$text = $this->lang('mnews_body', array(GWF_WEB_ROOT.'site_masters')).PHP_EOL.PHP_EOL;
 		foreach ($masters as $row)
 		{
 			$row instanceof WC_SiteMaster;
 			$site = $row->getSite();
-			$text .= $this->lang('mnews_item', $row->getUser()->displayUsername(), $site->getURL(), $site->getVar('site_name'), $row->displayTrackTime(), $row->displayStartPerc()).PHP_EOL;
+			$text .= $this->lang('mnews_item', array($row->getUser()->displayUsername(), $site->getURL(), $site->getVar('site_name'), $row->displayTrackTime(), $row->displayStartPerc())).PHP_EOL;
 		}
 		
 		if (false === ($wcu = $this->cfgWeChallUser())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$english = GWF_Language::getEnglish();
 		
@@ -536,7 +538,7 @@ final class Module_WeChall extends GWF_Module
 		{
 			$userdata = $user->getUserData();
 			$bdm = isset($userdata['birthdaymark']) ? intval($userdata['birthdaymark']) : 0;
-			if ($bdm !== GWF_Time::THIS_WEEK)
+			if ($bdm !== date('W'))
 			{
 				$count += $this->getNewsCountBDay();
 			}
@@ -637,7 +639,7 @@ final class Module_WeChall extends GWF_Module
 			$site_link = sprintf('[b]%s[/b]', ($sn));
 			$perc = sprintf('%.02f', $row['fili_percent']);
 			$profile_link = sprintf('[url=/profile/%s]%s[/url]', $un, $un);
-			$msg .= $this->lang('newsrow_link', $profile_link, $site_link, $perc).PHP_EOL;
+			$msg .= $this->lang('newsrow_link', array($profile_link, $site_link, $perc)).PHP_EOL;
 //			$msg .= sprintf('%s', $this->lang('newsrow_link', sprintf('<a href="%sprofile/%s">%s</a>', GWF_WEB_ROOT, urlencode($un), GWF_HTML::display($row['fili_username'])), , )).PHP_EOL;
 		}
 		

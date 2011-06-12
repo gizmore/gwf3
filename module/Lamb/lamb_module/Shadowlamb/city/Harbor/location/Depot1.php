@@ -11,12 +11,13 @@ final class Harbor_Depot1 extends SR_SearchRoom
 	public function getSearchMaxAttemps() { return 1; }
 	public function getSearchLevel() { return 4; }
 	
-	public function onCrackedLock(SR_Player $player, SR_Player $cracker)
-	{
-		$party = $player->getParty();
-		$party->notice(sprintf('Two depot guards suprise you and attack.'));
-		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
-	}
+//	public function onCrackedLock(SR_Player $player, SR_Player $cracker)
+//	{
+//		$party = $player->getParty();
+//		$party->notice(sprintf('Two depot guards suprise you and attack.'));
+//		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
+//		
+//	}
 	
 	public function onEnter(SR_Player $player)
 	{
@@ -24,6 +25,11 @@ final class Harbor_Depot1 extends SR_SearchRoom
 		{
 			return false;
 		}
+
+		$party = $player->getParty();
+		$party->notice(sprintf('Two depot guards suprise you and attack.'));
+		SR_NPC::createEnemyParty('Harbor_DepotGuard','Harbor_DepotGuard')->fight($party, true);
+		
 		return true;
 	}
 	

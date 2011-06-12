@@ -27,7 +27,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 				break;
 			
 			case 'renraku':
-				$this->nervousAlert();
+				$this->nervousAlert($player);
 				break;
 				
 			case 'yes':
@@ -45,7 +45,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 			case 'no':
 				if ($this->hasTemp($helpyes))
 				{
-					$this->nervousAlert();
+					$this->nervousAlert($player);
 				}
 				break;
 				
@@ -69,12 +69,14 @@ final class Renraku_Employee extends SR_TalkingNPC
 		return true;
 	}
 
-	private function nervousAlert()
+	private function nervousAlert(SR_Player $player)
 	{
-		$player->getParty()->notice('The employee looks nervous ... ');
+		$party = $player->getParty();
+		$party->notice('The employee looks nervous ... ');
 		$this->reply('I have to go now.');
-		$player->getParty()->notice('After a few seconds you hear the alert sound.');
-		Renraku::setAlert($party, 600);
+		$party->notice('After a few seconds you hear the alert sound.');
+		$renraku = Shadowrun4::getCity('Renraku');
+		$renraku->setAlert($party, 1200);
 		return $this->bye();
 	}
 }

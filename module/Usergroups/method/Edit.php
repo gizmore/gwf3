@@ -21,7 +21,7 @@ final class Usergroups_Edit extends GWF_Method
 		
 		
 		$groupname = $group->getName();
-		if (!$user->isInGroup($groupname)) {
+		if (!$user->isInGroupName($groupname)) {
 			return $module->error('err_unk_group');
 		}
 		

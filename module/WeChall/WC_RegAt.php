@@ -38,6 +38,10 @@ final class WC_RegAt extends GDO
 			
 			# v4.2
 			'regat_onsiterank' => array(GDO::UINT|GDO::INDEX, 0),
+		
+		 	# v5.0
+		 	'site' => array(GDO::JOIN, NULL, array('WC_Site', 'regat_sid', 'site_id')), 
+			'user' => array(GDO::JOIN, NULL, array('GWF_User', 'regat_uid', 'user_id')), 
 		);
 	}
 	
@@ -56,7 +60,7 @@ final class WC_RegAt extends GDO
 	public static function getRegats($userid, $orderby='')
 	{
 		$userid = (int) $userid;
-		return self::table(__CLASS__)->select("regat_uid=$userid", $orderby);
+		return self::table(__CLASS__)->selectObjects('*', "regat_uid=$userid", $orderby);
 	}
 	
 	public static function countRegats($userid)
@@ -142,14 +146,14 @@ final class WC_RegAt extends GDO
 			$challcount = $site->getVar('site_challcount');
 			$powarg = $site->getPowArg();
 			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=POW((regat_onsitescore/$maxscore),(1+($powarg/$challcount)))*$sitescore ", "regat_sid=$siteid")) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		else
 		{
 			# Original Code
 			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=(regat_onsitescore/$maxscore)*(regat_onsitescore/$maxscore)*$sitescore ", "regat_sid=$siteid")) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -158,7 +162,7 @@ final class WC_RegAt extends GDO
 		return false;
 		# VERY OLD CODE
 //		if (false === ($result = $regats->queryReadAll("regat_sid=$siteid"))) {
-//			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //		}
 //		$db = gdo_db();
 //		while (false !== ($row = $db->fetchAssoc($result)))
@@ -307,7 +311,7 @@ final class WC_RegAt extends GDO
 //			foreach ($totalscores as $langid => $score)
 //			{
 //				if (false === WC_Scores::updateScore($userid, $langid, $score, $num_linked[$langid])) {
-//					echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//					echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //					return false;
 //				}
 //			}
@@ -315,7 +319,7 @@ final class WC_RegAt extends GDO
 //		}
 //		
 //		if (false === $user->saveVar('user_level', $totalscore)) {
-//			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //			return false;
 //		}
 //		
@@ -328,7 +332,7 @@ final class WC_RegAt extends GDO
 		$siteid = $site->getID();
 		$maxscore = $site->getOnsiteScore();
 		if (false === GDO::table(__CLASS__)->update("regat_solved=regat_onsitescore/$maxscore WHERE regat_sid=$siteid")) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
 		return true;
@@ -417,7 +421,7 @@ final class WC_RegAt extends GDO
 		if ($rank < 1) {
 			return false;
 		}
-		$users = GDO::table('GWF_User')->select("", 'user_level DESC', 1, $rank-1);
+		$users = GDO::table('GWF_User')->selectObjects("*", 'user_level DESC', 1, $rank-1);
 		if (count($users) === 1) {
 			return $users[0];
 		} else {
@@ -440,7 +444,7 @@ final class WC_RegAt extends GDO
 		}
 		
 		$table = GDO::table('WC_RegAt');
-		if (false === ($regats = $table->select("regat_sid=$siteid", 'regat_score DESC, regat_uid ASC', 1, $rank-1))) {
+		if (false === ($regats = $table->selectObjects('*', "regat_sid=$siteid", 'regat_score DESC, regat_uid ASC', 1, $rank-1))) {
 			return false;
 		}
 		if (count($regats) === 1) {

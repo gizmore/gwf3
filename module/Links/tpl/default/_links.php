@@ -11,11 +11,11 @@ $headers = array();
 $headers['id'] = array($tLang->lang('th_link_id'), 'link_id');
 $headers['text'] = array($tLang->lang('th_link_descr'), 'link_descr');
 $headers['url'] = array($tLang->lang('th_link_href'));
-$headers['favs'] = array($tLang->lang('th_favs'), 'link_favcount');
-$headers['clicks'] = array($tLang->lang('th_link_clicks'), 'link_clicks');
+$headers['favs'] = array($tLang->lang('th_favs'), 'link_favcount', 'DESC');
+$headers['clicks'] = array($tLang->lang('th_link_clicks'), 'link_clicks', 'DESC');
 $wv = $tVars['with_votes'];
-$headers['vs_count'] = array($tLang->lang('th_vs_count'), 'vs_count');
-$headers['vs_avg'] = array($tLang->lang('th_vs_avg'), 'vs_avg');
+$headers['vs_count'] = array($tLang->lang('th_vs_count'), 'vs_count', 'DESC');
+$headers['vs_avg'] = array($tLang->lang('th_vs_avg'), 'vs_avg', 'DESC');
 if ($wv) { 
 	$headers['vote'] = array($tLang->lang('th_vote') );
 }
@@ -51,7 +51,7 @@ foreach ($tVars['links'] as $link)
 		}
 //	}
 	
-	echo GWF_Table::rowStart($style);
+	echo GWF_Table::rowStart(true, '', '', $style);
 	
 	if ($permitted && ('' !== ($perm_text = $link->getPermissionText($module, $user))))
 	{

@@ -17,7 +17,7 @@ final class Renraku_Secretary extends SR_TalkingNPC
 				return $this->reply("The office is only for {$b}employee{$b}.");
 			
 			default:
-				if ($quest->isInQuest($player) && ($quest->getAmount()===0))
+				if ($quest->isInQuest($player) && ($quest->getAmount()==0))
 				{
 					$this->reply('Hello. Please deliver the package to the bureau. The floor to the left. Room 0104.');
 					$player->giveKnowledge('places', 'Renraku_Bureau');

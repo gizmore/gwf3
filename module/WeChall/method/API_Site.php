@@ -20,7 +20,7 @@ final class WeChall_API_Site extends GWF_Method
 	private function showAllSites(Module_WeChall $module)
 	{
 		if (false === ($sites = WC_Site::getSites('site_name ASC'))) {
-			return GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$back = '';

@@ -1,5 +1,4 @@
 <?php
-
 final class Profile_Profile extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)

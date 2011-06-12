@@ -141,7 +141,7 @@ abstract class SR_Blacksmith extends SR_Store
 			$max = round($v-0.1, 1);
 			$v = Shadowfunc::diceFloat($min, $max, 1);
 //			$v -= 0.2;
-			if ($v <= 0) { continue; }
+			if ($v <= 0.01) { continue; }
 			
 			$rn = sprintf('Rune_of_%s:%s', $k, $v);
 			if (false === ($rune = SR_Item::createByName($rn))) {

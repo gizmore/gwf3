@@ -81,7 +81,8 @@ final class WeChall_Freeze extends GWF_Method
 		$form = $this->formFreeze($module);
 		
 		$tVars = array(
-			'frozen' => $freezes->selectAll($orderby, $ipp, $from),
+//			'frozen' => $freezes->selectAll($orderby, $ipp, $from),
+			'frozen' => $freezes->selectObjects('*', '', $orderby, $ipp, $from),
 			'form' => $form->templateY($module->lang('ft_freeze')),
 			'form_action' => $this->getMethodHref(),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, sprintf(GWF_WEB_ROOT.'index.php?mo=WeChall&me=Freeze&by=%s&dir=%s&page=%%PAGE%%', urlencode($by), urlencode($dir))),
@@ -94,7 +95,7 @@ final class WeChall_Freeze extends GWF_Method
 			'href_sitetags' => $module->getMethodURL('Admin', '&sitetags=yes'),
 			'href_freeze' => $module->getMethodURL('Freeze'),
 		);
-		return $module->template('freeze.php', NULL, $tVars);
+		return $module->templatePHP('freeze.php', $tVars);
 	}
 	
 	private function onFreeze(Module_WeChall $module)
@@ -119,7 +120,7 @@ final class WeChall_Freeze extends GWF_Method
 		{
 			# Unlink
 			if (false === WC_RegAt::unlink($userid, $siteid)) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			$this->site->increase('site_linkcount', -1);
 			
@@ -135,7 +136,7 @@ final class WeChall_Freeze extends GWF_Method
 		
 		# Insert Freeze
 		if (false === WC_Freeze::freezeUser($userid, $siteid)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		# All done :)
@@ -149,12 +150,12 @@ final class WeChall_Freeze extends GWF_Method
 		}
 		
 		if (!is_array($data)) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		foreach ($data as $key => $value) { break; }
 		$data = explode(',', $key);
 		if (count($data) !== 2) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		$userid = intval($data[0]);
 		$siteid = intval($data[1]);
@@ -170,7 +171,7 @@ final class WeChall_Freeze extends GWF_Method
 		{
 			# Unfreeze
 			if (false === WC_Freeze::unfreezeUser($userid, $siteid)) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			
 			# Insert event.

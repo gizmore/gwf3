@@ -223,7 +223,7 @@ final class WeChall_GraphStats extends GWF_Method
 		$query = "SELECT userhist_uid, userhist_sid, userhist_percent, userhist_date FROM $history WHERE (userhist_uid=$uid1$where2) AND userhist_date BETWEEN $start AND $end ORDER BY userhist_date ASC";
 		
 		if (false === ($result = $db->queryRead($query))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		while (false !== ($row = $db->fetchRow($result)))
@@ -400,9 +400,9 @@ final class WeChall_GraphStats extends GWF_Method
 	private function getGraphTitle(Module_WeChall $module)
 	{
 		if ($this->user2 === false) {
-			return $module->lang('pt_stats', $this->user1->getVar('user_name'));
+			return $module->lang('pt_stats', array($this->user1->getVar('user_name')));
 		} else {
-			return $module->lang('pt_stats2', $this->user1->getVar('user_name'), $this->user2->getVar('user_name'));
+			return $module->lang('pt_stats2', array($this->user1->getVar('user_name'), $this->user2->getVar('user_name')));
 		}
 	}
 	

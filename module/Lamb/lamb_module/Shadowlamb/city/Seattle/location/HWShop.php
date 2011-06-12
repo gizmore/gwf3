@@ -17,6 +17,7 @@ final class Seattle_HWShop extends SR_School
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
+			array('C6401'),
 			array('AM500'),
 			array('AT1024'),
 			array('DG442'),

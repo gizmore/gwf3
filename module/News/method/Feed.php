@@ -12,7 +12,7 @@ final class News_Feed extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 //		$iso = Common::getGet('iso', 'en');
-//		if (false === ($lang = GWF_Language::getByISOS($iso))) {
+//		if (false === ($lang = GWF_Language::getByISO($iso))) {
 //			$lang = GWF_Language::getEnglish();
 //		}
 		$lang = GWF_Language::getCurrentLanguage();

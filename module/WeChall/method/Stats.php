@@ -38,9 +38,9 @@ final class WeChall_Stats extends GWF_Method
 	private function setPageTitles(Module_WeChall $module)
 	{
 		if ($this->user1 === false) {
-			GWF_Website::setPageTitle($module->lang('pt_stats', 'Unknown'));
-			GWF_Website::setMetaTags($module->lang('mt_stats', 'Unknown'));
-			GWF_Website::setMetaDescr($module->lang('md_stats', 'Unknown'));
+			GWF_Website::setPageTitle($module->lang('pt_stats', array('Unknown')));
+			GWF_Website::setMetaTags($module->lang('mt_stats', array('Unknown')));
+			GWF_Website::setMetaDescr($module->lang('md_stats', array('Unknown')));
 			return;
 		}
 		
@@ -49,15 +49,17 @@ final class WeChall_Stats extends GWF_Method
 		$name2 = $this->user2 === false ? '' : $this->user2->displayUsername();
 		if ($name2 === '')
 		{
-			GWF_Website::setPageTitle($module->lang('pt_stats', $name1));
-			GWF_Website::setMetaTags($module->lang('mt_stats', $name1));
-			GWF_Website::setMetaDescr($module->lang('md_stats', $name1));
+			$args = array($name1);
+			GWF_Website::setPageTitle($module->lang('pt_stats', $args));
+			GWF_Website::setMetaTags($module->lang('mt_stats', $args));
+			GWF_Website::setMetaDescr($module->lang('md_stats', $args));
 		}
 		else
 		{
-			GWF_Website::setPageTitle($module->lang('pt_stats2', $name1, $name2));
-			GWF_Website::setMetaTags($module->lang('mt_stats2', $name1, $name2));
-			GWF_Website::setMetaDescr($module->lang('md_stats2', $name1, $name2));
+			$args = array($name1, $name2);
+			GWF_Website::setPageTitle($module->lang('pt_stats2', $args));
+			GWF_Website::setMetaTags($module->lang('mt_stats2', $args));
+			GWF_Website::setMetaDescr($module->lang('md_stats2', $args));
 		}
 	}
 
@@ -177,7 +179,7 @@ final class WeChall_Stats extends GWF_Method
 			'months' => $this->months===0?'':$this->months,
 		);
 		
-		return $module->template('stats.php', NULL, $tVars);
+		return $module->templatePHP('stats.php', $tVars);
 	}
 	
 	private function getSites(Module_WeChall $module)

@@ -21,7 +21,7 @@ final class WeChall_ChallNewsRead extends GWF_Method
 		$query = "UPDATE $regat JOIN $sites ON regat_sid=site_id SET regat_challcount=site_challcount WHERE regat_uid=$userid";
 		$db = gdo_db();
 		if (false === $db->queryWrite($query)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return $module->message('msg_challs_marked');
 	}

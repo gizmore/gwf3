@@ -52,7 +52,7 @@ final class WeChall_Ranking extends GWF_Method
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$href = GWF_WEB_ROOT.'ranking/page-%PAGE%';
 		
-		GWF_Website::setPageTitle($module->lang('pt_ranking', $page));
+		GWF_Website::setPageTitle($module->lang('pt_ranking', array($page)));
 		GWF_Website::setMetaTags($module->lang('mt_ranking'));
 		
 		$userdata = $this->selectUsers($ipp, $from);
@@ -65,7 +65,7 @@ final class WeChall_Ranking extends GWF_Method
 			'userdata' => $userdata,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 		);
-		return $module->template('ranking.php', array(), $tVars);
+		return $module->templatePHP('ranking.php', $tVars);
 	}
 	
 	public function getPageForSession($ipp, $user)

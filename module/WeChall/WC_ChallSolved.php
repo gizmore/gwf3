@@ -89,7 +89,7 @@ final class WC_ChallSolved extends GDO
 	public static function getSolvedForUser($userid, $solved_only=true)
 	{
 		$solve = $solved_only ? " AND csolve_date != ''" : '';
-		$result = GDO::table(__CLASS__)->queryAll("csolve_uid=$userid$solve");#, 'csolve_cid ASC');
+		$result = GDO::table(__CLASS__)->selectAll('*', "csolve_uid=$userid$solve");#, 'csolve_cid ASC');
 		$back = array();
 		foreach ($result as $row)
 		{

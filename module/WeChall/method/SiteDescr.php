@@ -50,13 +50,13 @@ final class WeChall_SiteDescr extends GWF_Method
 			'forms_edit' => $this->getFormsEdit($module, $descr),
 			'form_new' => $form_new->templateY($module->lang('ft_add_descr')),
 		);
-		return $module->template('site_edit_descr.php', NULL, $tVars);
+		return $module->templatePHP('site_edit_descr.php', $tVars);
 	}
 	
 	private function getFormNew(Module_WeChall $module, array $descr)
 	{
 		$data = array(
-			'langid' => array(GWF_Form::SELECT, GWF_Language::getLanguageSelectS('langid', Common::getPostInt('langid')), $module->lang('th_site_language')),
+			'langid' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid', Common::getPostInt('langid')), $module->lang('th_site_language')),
 			'descr_new' => array(GWF_Form::MESSAGE, '', $module->lang('th_site_description')),
 			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
 		);
@@ -88,8 +88,8 @@ final class WeChall_SiteDescr extends GWF_Method
 		$is_def = $default == $langid ? GWF_HTML::lang('yes') : GWF_HTML::lang('no');
 		$langname = GWF_Language::getByID($langid)->getNativeName();
 		$data = array(
-			'default' => array(GWF_Form::STEXT, $is_def, $module->lang('th_is_default')),
-			'langid' => array(GWF_Form::STEXT, $langname, $module->lang('th_site_language')),
+			'default' => array(GWF_Form::HEADLINE, $is_def, $module->lang('th_is_default')),
+			'langid' => array(GWF_Form::HEADLINE, $langname, $module->lang('th_site_language')),
 			'descr' => array(GWF_Form::MESSAGE, $desc, $module->lang('th_site_description')),
 			'btns' => array(GWF_Form::SUBMITS, $buttons),
 		);
@@ -115,7 +115,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		}
 		
 		if (false === WC_SiteDescr::insertDescr($this->site->getID(), $langid, $form->getVar('descr_new'))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
 		return $module->message('msg_add_descr');
@@ -146,7 +146,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		}
 		
 		if (false === WC_SiteDescr::insertDescr($this->site->getID(), $langid, $form->getVar('descr'))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_edit_descr');
@@ -166,7 +166,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		}
 		
 		if (false === WC_SiteDescr::deleteDescr($this->site->getID(), $langid)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return $module->message('msg_del_descr');
 	}
@@ -194,7 +194,7 @@ final class WeChall_SiteDescr extends GWF_Method
 			'site_descr_lid' => $langid,
 //			'site_description' => $descr[$langid],
 		))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_def_descr', GWF_Language::getByID($langid)->getName());

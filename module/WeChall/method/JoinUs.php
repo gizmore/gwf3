@@ -25,7 +25,7 @@ final class WeChall_JoinUs extends GWF_Method
 		$tVars = array(
 			'join' => $lang,
 		);
-		return $module->template($filename, NULL, $tVars);
+		return $module->templatePHP($filename, $tVars);
 	}
 }
 ?>

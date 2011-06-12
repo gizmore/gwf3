@@ -84,7 +84,7 @@ final class WC_Challenge extends GDO
 	 */
 	public static function getByTitle($title, $store_look=true)
 	{
-		$back = self::table(__CLASS__)->selectFirst("chall_title='".self::escape($title)."'");
+		$back = self::table(__CLASS__)->getBy('chall_title', $title);
 
 		# The challenge is installed
 		if ($back !== false)
@@ -98,7 +98,7 @@ final class WC_Challenge extends GDO
 			
 			# Increase viewcount
 			if (false === $back->increase('chall_views', 1)) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -323,7 +323,7 @@ final class WC_Challenge extends GDO
 	
 	public static function installChallenge($title, $solution, $score, $url, $creators='', $tags='', $verbose=true, $options=0)
 	{
-		GWF_Module::getModule('Votes')->onInclude();
+		GWF_Module::loadModuleDB('Votes', true);
 		
 		if (false !== (self::getByTitle($title, false))) {
 			if ($verbose) {
@@ -362,7 +362,7 @@ final class WC_Challenge extends GDO
 		
 		if (false === $chall->insertChallenge(0, $creators, true, $verbose)) {
 			if ($verbose) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			return false;
 		}
@@ -435,7 +435,7 @@ final class WC_Challenge extends GDO
 		// Voting tables.
 		if (false === ($this->getVotesDif())) {
 			if (false === ($votes = Module_Votes::installVoteScoreTable('ch_dif_'.$challid, 0, 10, false, false, GWF_VoteScore::SHOW_RESULT_VOTED, false))) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				$success = false;
 			} else {
 				$this->saveVar('chall_vote_dif', $votes->getID());
@@ -444,7 +444,7 @@ final class WC_Challenge extends GDO
 		
 		if (false === ($this->getVotesEdu())) {
 			if (false === ($votes = Module_Votes::installVoteScoreTable('ch_edu_'.$challid, 0, 10, false, false, GWF_VoteScore::SHOW_RESULT_VOTED, false))) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				$success = false;
 			} else {
 				$this->saveVar('chall_vote_edu', $votes->getID());
@@ -453,7 +453,7 @@ final class WC_Challenge extends GDO
 		
 		if (false === ($this->getVotesFun())) {
 			if (false === ($votes = Module_Votes::installVoteScoreTable('ch_fun_'.$challid, 0, 10, false, false, GWF_VoteScore::SHOW_RESULT_VOTED, false))) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				$success = false;
 			} else {
 				$this->saveVar('chall_vote_fun', $votes->getID());
@@ -471,7 +471,7 @@ final class WC_Challenge extends GDO
 		
 		### Authors ###
 		if (false === $this->updateCreators($created_by)) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		
@@ -479,7 +479,7 @@ final class WC_Challenge extends GDO
 		if ($createBoards)
 		{
 			if (false === ($module = GWF_Module::getModule('WeChall'))) {
-				echo GWF_HTML::err('ERR_MODULE_MISSING', 'WeChall');
+				echo GWF_HTML::err('ERR_MODULE_MISSING', array('WeChall'));
 				return false;
 			}
 			
@@ -492,7 +492,7 @@ final class WC_Challenge extends GDO
 					$module->cfgChallengeBoardID(),
 					GWF_ForumBoard::ALLOW_THREADS|GWF_ForumBoard::GUEST_VIEW
 				))) {
-					echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+					echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 					$success = false;
 				}
 				else {
@@ -507,7 +507,7 @@ final class WC_Challenge extends GDO
 					GWF_ForumBoard::ALLOW_THREADS|GWF_ForumBoard::GUEST_VIEW,
 					$group->getID()
 					))) {
-					echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+					echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 					$success = false;
 				}
 				else {
@@ -566,9 +566,8 @@ final class WC_Challenge extends GDO
 	public function onDelete()
 	{
 		# Delete Votes
-		if (false === ($mo_votes = GWF_Module::getModule('Votes')))
+		if (false === ($mo_votes = GWF_Module::loadModuleDB('Votes', true)))
 		{
-			$mo_votes->onInclude();
 			if (false !== ($v = $this->getVotesDif())) {
 				$v->onDelete();
 			}
@@ -581,10 +580,8 @@ final class WC_Challenge extends GDO
 		}
 		
 		# Delete Boards
-		if (false !== ($module = GWF_Module::getModule('Forum')))
+		if (false !== ($module = GWF_Module::loadModuleDB('Forum', true)))
 		{
-			$module->onInclude();
-			
 			# Include Forum
 			GWF_ForumBoard::init();
 			
@@ -722,7 +719,7 @@ final class WC_Challenge extends GDO
 		}
 		
 		if (false === ($row = $this->getSolvedRow($userid))) {
-			return GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
 
@@ -764,11 +761,11 @@ final class WC_Challenge extends GDO
 		$challs = GWF_TABLE_PREFIX.'wc_chall';
 		$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
 		$userid = $user->getVar('user_id');
-		$query = "SELECT SUM(chall_score) FROM $solved INNER JOIN $challs ON chall_id=csolve_cid WHERE csolve_uid=$userid AND csolve_date!=''";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT SUM(chall_score) s FROM $solved INNER JOIN $challs ON chall_id=csolve_cid WHERE csolve_uid=$userid AND csolve_date!=''";
+		if (false === ($result = $db->queryFirst($query))) {
 			return -1;
 		}
-		return intval($result[0]);
+		return intval($result['s']);
 	}
 	
 	public static function getMaxScore()
@@ -850,7 +847,7 @@ final class WC_Challenge extends GDO
 		echo '<div class="chall_head box box_c">'.PHP_EOL;
 		echo '<span>'.$this->displayBoardLinks(true, $isSolved).'</span>'.PHP_EOL.$div;
 		echo '<span>'.WC_HTML::lang('score').': '.$this->getVar('chall_score').'</span>'.PHP_EOL.$div;
-		echo '<span>'.GWF_HTML::anchor($this->hrefSolvers(), WC_HTML::lang('chall_solvecount', $this->getVar('chall_solvecount'))).'</span>'.PHP_EOL.$div;
+		echo '<span>'.GWF_HTML::anchor($this->hrefSolvers(), WC_HTML::lang('chall_solvecount', array($this->getVar('chall_solvecount')))).'</span>'.PHP_EOL.$div;
 		echo '<span>'.$this->getVar('chall_views').' '.WC_HTML::lang('views').'</span>'.PHP_EOL.$div;
 		echo '<span>'.WC_HTML::lang('chall_added').' '.GWF_Time::displayDate($this->getVar('chall_date')).'</span>';
 		echo '</div>'.PHP_EOL;
@@ -865,7 +862,7 @@ final class WC_Challenge extends GDO
 		if ($alt === NULL) {
 			$alt = WC_HTML::lang('alt_solboard');
 			$sol = WC_HTML::lang('solutions');
-			$ico = GWF_WEB_ROOT.'template/wc/ico/solutionboard.gif';
+			$ico = GWF_WEB_ROOT.'tpl/wc4/ico/solutionboard.gif';
 		}
 		
 		if (false !== ($b = $this->getSolutionBoard())) {
@@ -881,7 +878,7 @@ final class WC_Challenge extends GDO
 		if ($alt === NULL) {
 			$alt = WC_HTML::lang('alt_challboard');
 			$help = WC_HTML::lang('helpboard');
-			$icon = GWF_WEB_ROOT.'template/wc/ico/challboard.gif';
+			$icon = GWF_WEB_ROOT.'tpl/wc4/ico/challboard.gif';
 		}
 		if (false !== ($b = $this->getBoard())) {
 			$href = $b->getShowBoardHREF();
@@ -916,7 +913,7 @@ final class WC_Challenge extends GDO
 	{
 		if ($this->challLang === true)
 		{
-			$this->challLang = new GWF_LangTrans(GWF_SERVER_PATH.'/'.Common::getDir($this->getVar('chall_url')).'/lang/chall');
+			$this->challLang = new GWF_LangTrans(dirname($this->getVar('chall_url')).'/lang/chall');
 		}
 		return $this->challLang;
 	}
@@ -928,13 +925,14 @@ final class WC_Challenge extends GDO
 	 * @param string $key
 	 * @return string
 	 */
-	public function lang($key)
+	public function lang($key, $args=NULL)
 	{
-		if (false === ($lang = $this->getLang())) {
+		if (false === ($lang = $this->getLang()))
+		{
 			return $key;
 		}
-		$args = func_get_args();
-		unset($args[0]);
+//		$args = func_get_args();
+//		unset($args[0]);
 		return $lang->lang($key, $args);
 	}
 	

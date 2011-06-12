@@ -7,19 +7,19 @@ function Upgrade_WeChall_1_02(Module_WeChall $module)
 	$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
 	$query = "ALTER TABLE $solved ADD COLUMN csolve_time_taken INT(11) UNSIGNED NOT NULL DEFAULT 0";
 	if (false === ($db->queryWrite($query))) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	$query = "ALTER TABLE $solved ADD COLUMN csolve_tries INT(11) UNSIGNED NOT NULL DEFAULT 0";
 	if (false === ($db->queryWrite($query))) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	require_once 'module/WeChall/WC_ChallSolved.php';
 	$table = GDO::table('WC_ChallSolved');
 	
 	if (false === ($result = $table->queryReadAll("csolve_date != ''"))) {
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	$challs = GDO::table('WC_Challenge');
@@ -41,7 +41,7 @@ function Upgrade_WeChall_1_02(Module_WeChall $module)
 			$time = $row->calcTimeTaken($solved);
 		}
 		if (false === $row->saveVar('csolve_time_taken', $time)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 	}
 	$table->freeResult($result);

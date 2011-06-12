@@ -64,25 +64,26 @@ final class WeChall_Challs extends GWF_Method
 		$tag_2 = $tag == '' ? '' : $tag.'/';
 		$tVars = array(
 			'sort_url' => GWF_WEB_ROOT.'challs/'.$tag_2.'by/%BY%/%DIR%/page-1',
-			'challs' => $challs->select($conditions, $orderby),
+//			'challs' => $challs->select($conditions, $orderby),
+			'challs' => $challs->selectObjects('*', $conditions, $orderby),
 			'tags' => $show_cloud ? $this->getTags($module) : '',
 			'solved_bits' => $solved_bits,
 			'table_title' => $this->getTableTitle($module, $for_userid, $from_userid, $tag, $count),
 			'by' => $by,
 			'dir' => $dir,
 		);
-		return $module->template('challs.php', array(), $tVars);
+		return $module->templatePHP('challs.php', $tVars);
 	}
 	
 	private function getTableTitle(Module_WeChall $module, $for_userid, $from_userid, $tag, $challcount)
 	{
 		$dtag = GWF_HTML::display($tag);
 		if ($for_userid != 0) {
-			return $module->lang('tt_challs_for', $dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername());
+			return $module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
 		} else if ($from_userid != 0) {
-			return $module->lang('tt_challs_from', $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername(), $challcount);
+			return $module->lang('tt_challs_from', array($dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername(), $challcount));
 		} else {
-			return $module->lang('tt_challs', $dtag);
+			return $module->lang('tt_challs', array($dtag));
 		}
 	}
 	
@@ -95,18 +96,18 @@ final class WeChall_Challs extends GWF_Method
 		if ($for_userid != 0) {
 			$for_user = GWF_User::getByIDOrGuest($for_userid);
 			$for_username = $for_user->displayUsername();
-			GWF_Website::setMetaTags($module->lang('mt_challs_for', $dtag, $for_username), false);
-			GWF_Website::setMetaDescr($module->lang('md_challs_for', $dtag, $for_username), false);
+			GWF_Website::setMetaTags($module->lang('mt_challs_for', array($dtag, $for_username)), false);
+			GWF_Website::setMetaDescr($module->lang('md_challs_for', array($dtag, $for_username)), false);
 		}
 		else if ($from_userid != 0) {
 			$from_user = GWF_User::getByIDOrGuest($from_userid);
 			$from_username = $from_user->displayUsername();
-			GWF_Website::setMetaTags($module->lang('mt_challs_from', $dtag, $from_username), false);
-			GWF_Website::setMetaDescr($module->lang('md_challs_from', $dtag, $from_username), false);
+			GWF_Website::setMetaTags($module->lang('mt_challs_from', array($dtag, $from_username)), false);
+			GWF_Website::setMetaDescr($module->lang('md_challs_from', array($dtag, $from_username)), false);
 		}
 		else {
-			GWF_Website::setMetaTags($module->lang('mt_challs', $dtag, GWF_HTML::display($tag)), false);
-			GWF_Website::setMetaDescr($module->lang('md_challs', $dtag, GWF_HTML::display($tag)), false);
+			GWF_Website::setMetaTags($module->lang('mt_challs', array($dtag, GWF_HTML::display($tag))), false);
+			GWF_Website::setMetaDescr($module->lang('md_challs', array($dtag, GWF_HTML::display($tag))), false);
 		}
 	}
 	

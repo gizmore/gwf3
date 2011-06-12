@@ -6,11 +6,11 @@
 
 
 <div class="box">
-<?php echo WC_HTML::lang('register_tos', GWF_WEB_ROOT.'wechall_license'); ?>
+<?php echo WC_HTML::lang('register_tos', array(GWF_WEB_ROOT.'wechall_license')); ?>
 </div>
 
 <?php echo $tVars['form'] ?>
 
 <div class="box">
-<?php echo WC_HTML::lang('register_forgot', GWF_WEB_ROOT.'recovery'); ?>
+<?php echo WC_HTML::lang('register_forgot', array(GWF_WEB_ROOT.'recovery')); ?>
 </div>

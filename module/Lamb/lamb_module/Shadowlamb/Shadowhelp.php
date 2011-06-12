@@ -150,6 +150,14 @@ final class Shadowhelp
 					'weight' => NULL,
 					'max_weight' => 'The max weight you can carry.',
 					'nuyen' => NULL,
+					
+					'special_stats' => 'There are some special stats too:',
+					array(
+						'spellatk' => 'Increases your magic attack. This is also affected by essence and intelligence.',
+						'spelldef' => 'Increases your magic defense. This is also affected by essence and intelligence.',
+						'orcas' => 'Increases your MP refreshening. This is also affected by the magic attribute.',
+						'elephants' => 'Increases your HP refreshening.',
+					),
 				),
 				
 				'effects' => 'Known effects',
@@ -184,19 +192,20 @@ final class Shadowhelp
 						'stats' => 'Print current gameworld stats.',
 						'motd' => 'Print the current "message of the day".',
 						'world' => 'Print info about the world of Shadowlamb.',
+						'players' => 'Usage: #players <page>. Print info about the current players. Paginated.',
 					),
 					
 					'gm_cmds' => '"Game Master" commands for debugging and cheating',
 					array(
-						'gm' => 'GM command. Usage gm <username> <field> <value>.',
-						'gmc' => 'GM command. Cleanup the database. Handle with care!',
-						#'gmd' => 'GM command. Usage #gmd <player> <command> [<args>] ...',
-						'gmi' => 'GM command. Usage gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
-						#'gmk' => 'GM command. Usage gmk <username> <field> <knowledge>',
+						'gm' => 'GM command. Usage: #gm <username> <field> <value>.',
+						'gmc' => 'GM command. Usage: #gmc. Cleanup the database. Handle with care!',
+						'gmd' => 'GM command. Usage: #gmd <player> <remote command to execute>.',
+						'gmi' => 'GM command. Usage: #gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
+						#'gmk' => 'GM command. Usage: #gmk <username> <field> <knowledge>',
 						'gml' => "GM command. Usage: #gml <username> <city> <location>. Teleport a party to a location.",
 						'gmm' => "GM command. Usage: #gmm <the message>. Send a hyperglobal message to all Shadowlamb channels.",
 						'gms' => "GM command. Usage: #gms <player>. Print a lot of status of a player.",
-						#'gmsp' => "GM command. Usage: #gmsp <player> <spell> <level>. Adjust the spell for a player.",
+						'gmsp' => "GM command. Usage: #gmsp <player> <spell> <level>. Adjust the spell for a player.",
 						'gmt' => "GM command. Usage: #gmt <username> <enemy,enemy,...>. Attack a party with enemies for debugging purposes.",
 					),
 						

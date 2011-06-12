@@ -10,10 +10,9 @@ final class WeChall_ChallVotes extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		if (false === ($mod_votes = GWF_Module::getModule('Votes'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', 'Votes');
+		if (false === ($mod_votes = GWF_Module::loadModuleDB('Votes', true))) {
+			return GWF_HTML::err('ERR_MODULE_MISSING', array('Votes'));
 		}
-		$mod_votes->onInclude();
 		
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid', 0)))) {
 			return $module->error('err_chall');
@@ -42,9 +41,9 @@ final class WeChall_ChallVotes extends GWF_Method
 		$tVars = array(
 			'chall' => $chall,
 			'has_solved' => $has_solved,
-			'form_vote' => $form_vote->templateX($module->lang('ft_vote_chall', $chall->display('chall_title'))),
+			'form_vote' => $form_vote->templateX($module->lang('ft_vote_chall', array($chall->display('chall_title')))),
 		);
-		return $module->template('chall_votes.php', array(), $tVars);
+		return $module->templatePHP('chall_votes.php', $tVars);
 	}
 	
 	private function getFormVote(Module_WeChall $module, WC_Challenge $chall, $has_solved, $userid)
@@ -102,11 +101,11 @@ final class WeChall_ChallVotes extends GWF_Method
 		}
 		
 		if (false === WC_ChallSolved::setVoted($userid, $chall->getID(), true)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === $chall->onRecalcVotes()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_chall_voted');

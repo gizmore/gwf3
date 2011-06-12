@@ -12,7 +12,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 	private function onMarkRead(Module_WeChall $module)
 	{
 		if (false === ($user = GWF_Session::getUser())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$userdata = $user->getUserData();
@@ -20,7 +20,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 		$userdata['birthdaymark'] = GWF_Time::THIS_WEEK;
 		
 		if (false === $user->saveUserData($userdata)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_bd_marked');

@@ -7,13 +7,13 @@ final class WCSite_NC extends WC_Site
 	public function parseStats($url)
 	{
 		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 		$file = explode('<br>', $result);
 
 		if (count($file) !== 5) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 //		$ranking = $file[1];
@@ -29,7 +29,7 @@ final class WCSite_NC extends WC_Site
 		preg_match('#(\d*)\/(\d*)#', $points, $back);
 		
 		if (count($back) !== 3 || $back[1] < 0 || $back[1] > $back[2] || $usercount == 0 || $challcount == 0) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 		$this->updateSite($back[2], $usercount, $challcount);

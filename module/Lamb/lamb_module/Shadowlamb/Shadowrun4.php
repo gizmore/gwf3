@@ -7,8 +7,9 @@ require_once 'Shadowshout.php';
 
 final class Shadowrun4
 {
-	const KICK_IDLE_TIMEOUT = 3600; # 1h
 	const SR_SHORTCUT = '#';
+	const KICK_IDLE_TIMEOUT = 3600; # 1h
+	const SECONDS_PER_TICK = 1.0;
 	
 	####################
 	### Game Masters ###
@@ -45,7 +46,7 @@ final class Shadowrun4
 	{
 		if (!isset(self::$cities[$name]))
 		{
-			Lamb_Log::logError(sprintf('Unknown city: %s.', $name));
+//			Lamb_Log::logError(sprintf('Unknown city: %s.', $name));
 			return false;
 		}
 		return self::$cities[$name];
@@ -272,21 +273,17 @@ final class Shadowrun4
 		if ($inited === false)
 		{
 			$inited = true;
-			
+			Shadowrap::init();
+			self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp');
 			self::initCore(Lamb::DIR);
 			self::initCmds(Lamb::DIR);
 			self::initItems(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
 			self::initQuests(Lamb::DIR);
-			
-			require_once 'SR_Install.php';
-			SR_Install::onInstall();
-			
+//			require_once 'SR_Install.php';
+//			SR_Install::onInstall();
 			self::reloadParties();
-			
-			Shadowrap::init();
-			
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
 		}
@@ -294,7 +291,7 @@ final class Shadowrun4
 	public static function initTimers()
 	{
 		$bot = Lamb::instance();
-		$bot->addTimer(array(__CLASS__, 'shadowTimer'), 1.0);
+		$bot->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), SR_Player::HP_REFRESH_TIMER);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), SR_Player::MP_REFRESH_TIMER);
 	}
@@ -303,9 +300,11 @@ final class Shadowrun4
 	public static function initCore($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/core', array(__CLASS__, 'includeFile')); }
 	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); }
 	public static function initSpells($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/spell', array('SR_Spell', 'includeSpell')); }
-	public static function initCities($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
+	public static function initCities($dir='') { self::initCityFiles($dir); self::initCityAfter(); }
+	private static function initCityFiles($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
+	private static function initCityAfter() { foreach (self::$cities as $city) { $city->onInit(); } }
 	public static function initQuests($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/quest', array('SR_Quest', 'includeQuest')); }
-	public static function initTimer() { self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp'); }
+//	public static function initTimer() { self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp'); }
 
 	private static function reloadParties()
 	{
@@ -372,11 +371,15 @@ final class Shadowrun4
 	public static function getTime() { return self::$sr_timestamp; }
 	public static function shadowTimer()
 	{
-		# Execute Web Commands
-		self::shadowTimerWebcommands();
-		
 		# 1 second over in the Shadowlamb world.
 		self::$sr_timestamp = GWF_Counter::getAndCount('Lamb_SR4_Timestamp');
+//		Lamb_Log::logDebug(sprintf('Executing %s with shadowtime=%s', __METHOD__, self::$sr_timestamp));
+		
+		# Next tick in one second max pls.
+		Lamb::instance()->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
+		
+		# Execute Web Commands
+		self::shadowTimerWebcommands();
 		
 		# All parties:
 		$partyids = array_keys(self::$parties);

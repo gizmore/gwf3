@@ -26,7 +26,7 @@ final class WeChall_SolvedBy extends GWF_Method
 			'sort_url' => '',
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'challenge_solvers_for/'.$chall->getVar('chall_id').'/'.$chall->urlencode('chall_title').'/page-%PAGE%'),
 		);
-		return $module->template('chall_solvers.php', NULL, $tVars);
+		return $module->templatePHP('chall_solvers.php', $tVars);
 	}
 
 	public function getSolvers(GWF_Module $module, WC_Challenge $chall, $from, $ipp)

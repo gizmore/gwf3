@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_npc extends Shadowcmd_gmd
 {
+	public $WHITELIST = array('u','ca','le','sell','buy','view','drop','eq','uq','x','fw','bw','#');
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		if (count($args) < 2)
@@ -19,6 +21,12 @@ final class Shadowcmd_npc extends Shadowcmd_gmd
 		if ($remote->isHuman())
 		{
 			$player->message('You can only remote control NPC.');
+			return false;
+		}
+		
+		if (!in_array($args[0], self::$WHITELIST, true))
+		{
+			$player->message(sprintf('Only the following remote commands are allowed: %s.', implode(', ', self::$WHITELIST)));
 			return false;
 		}
 		

@@ -1,4 +1,4 @@
-{$cleared}
+{box content=$cleared}
 
 {$pagemenu}
 

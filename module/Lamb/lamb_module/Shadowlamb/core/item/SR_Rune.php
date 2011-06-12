@@ -35,7 +35,7 @@ class SR_Rune extends SR_Item
 		self::$RUNEDATA['orcas']      = array('orcas',      3, 200,  20.00,  200.00,  30.00, 10.00,  0.1,    4.0);
 		self::$RUNEDATA['max_hp']     = array('max_hp',     2, 150,  80.00,  200.00,  10.00,  2.00,  0.1,    3.0);
 		self::$RUNEDATA['max_mp']     = array('max_mp',     5, 150,  80.00,  250.00,  10.00,  2.00,  0.1,    6.0);
-		self::$RUNEDATA['max_weight'] = array('max_weight', 6, 100, 100.00,  300.00,  15.00,  4.00, 10.0, 1000.0);
+		self::$RUNEDATA['max_weight'] = array('max_weight', 6, 100, 100.00,  300.00,  15.00,  4.00, 50.0, 1000.0);
 		self::$RUNEDATA['attack']     = array('attack',     8, 100,  60.00,  650.00,  20.00,  6.00,  0.1,    2.0);
 		self::$RUNEDATA['defense']    = array('defense',   10, 150,  50.00,  900.00,  22.00,  7.00,  0.1,    2.0);
 		self::$RUNEDATA['spellatk']   = array('spellatk',  12, 120,  40.00,  750.00,  20.00,  6.00,  0.1,    2.0);
@@ -60,6 +60,8 @@ class SR_Rune extends SR_Item
 		{
 			self::$RUNEDATA[$sp]      = array($sp,         12, 130,  50.00,  800.00,  18.00,  9.00,  0.5,    3.0);
 		}
+		
+		self::$RUNEDATA['essence']    = array('essence',   50, 100,   0.00,  500.00,  45.00, 25.00,  0.1,    1.0);
 	}
 	
 	public static function randModifier(SR_Player $player, $level)
@@ -74,9 +76,12 @@ class SR_Rune extends SR_Item
 			{
 				continue;
 			}
-			
 			$maxlvl = $data[self::RUNE_MAX_LEVEL];
-			$l = Common::clamp($level, 0, $maxlvl) / $maxlvl;
+			$range = $maxlvl - $minlvl;
+			# Percent of level
+			$level = Common::clamp($level, 0, $maxlvl);
+			$l = $level - $minlvl;
+			$l = $l / $range;
 			$dc = round($data[self::RUNE_DROP_CHANCE] * $l * 100);
 			if ($dc < 1)
 			{
@@ -99,11 +104,14 @@ class SR_Rune extends SR_Item
 		
 		$minlvl = $data[self::RUNE_MIN_LEVEL];
 		$maxlvl = $data[self::RUNE_MAX_LEVEL];
-		$l = Common::clamp($level, 0, $maxlvl) / $maxlvl;
-		
-		$min = $data[self::RUNE_MIN_MODIFIER]*$l;
-		$max = $data[self::RUNE_MAX_MODIFIER]*$l;
-		$power = Shadowfunc::diceFloat($min, $max, 2);
+		$range = $maxlvl - $minlvl;
+		$l = $level - $minlvl;
+		$l = $l / $range;
+		$min = $data[self::RUNE_MIN_MODIFIER];
+		$max = $data[self::RUNE_MAX_MODIFIER];
+		$r = $max-$min;
+		$max = $r*$l;
+		$power = Shadowfunc::diceFloat($min, $min+$max, 2);
 		if ($power < 0.01)
 		{
 			return false;

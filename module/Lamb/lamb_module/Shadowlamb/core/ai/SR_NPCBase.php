@@ -14,6 +14,7 @@ abstract class SR_NPCBase extends SR_Player
 	### SR_Player ###
 	#################
 	public function getName() { return sprintf('%s[%d]', $this->getVar('sr4pl_name'), $this->getID()); }
+	public function displayName() { sprintf("\x02%s\x02", $this->getName()) ; }
 	public function getShortName() { return $this->getName(); }
 	public function help($message) { $this->message($message); }
 	public function isCreated() { return true; }

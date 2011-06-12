@@ -55,7 +55,7 @@ final class WeChall_Admin extends GWF_Method
 			'form_hardlink' => $formHardlink->templateY($module->lang('ft_hardlink')),
 			'href_siteminmail' => $module->getMethodURL('Admin', '&siteminmail=yes'),
 		);
-		return $module->template('admin.php', array(), $tVars);
+		return $module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function onCacheChallTags(Module_WeChall $module)
@@ -79,7 +79,7 @@ final class WeChall_Admin extends GWF_Method
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
 		$table = GDO::table('WC_FavCats');
 		if (false === $table->deleteWhere("IF((SELECT 1 FROM $cats WHERE sitecat_name=wcfc_cat LIMIT 1), 0, 1)")) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$num_deleted = $table->affectedRows();
@@ -100,8 +100,10 @@ final class WeChall_Admin extends GWF_Method
 		$table = GDO::table('WC_Challenge');
 		$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
 		
-		if (false === ($challs = $table->selectAll())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateAdmin($module);
+		if (false === ($challs = $table->selectObjects('*')))
+//		if (false === ($challs = $table->selectAll()))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($module);
 		}
 		
 		foreach ($challs as $chall)
@@ -112,12 +114,12 @@ final class WeChall_Admin extends GWF_Method
 				'chall_creator_name' => $this->fixComma($chall->getVar('chall_creator_name')),
 				'chall_tags' => $this->fixComma($chall->getVar('chall_tags')),
 			))) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateAdmin($module);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($module);
 			}
 		}
 		
 		if (false === $table->update("chall_solvecount=(SELECT COUNT(*) FROM $solved WHERE csolve_cid=chall_id AND csolve_date!='')")) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateAdmin($module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($module);
 		}
 		
 		return $this->templateAdmin($module);
@@ -133,8 +135,8 @@ final class WeChall_Admin extends GWF_Method
 	
 	private function onFixIRC(Module_WeChall $module)
 	{
-		if (false === ($sites = GDO::table('WC_Site')->selectAll())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateAdmin($module);
+		if (false === ($sites = GDO::table('WC_Site')->selectObjects())) {
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($module);
 		}
 		foreach ($sites as $site)
 		{
@@ -171,10 +173,10 @@ final class WeChall_Admin extends GWF_Method
 	{
 		if ($arg === '') {
 			if ($this->site === false) {
-				return $m->lang('err_onsitename', 'Site');
+				return $m->lang('err_onsitename', array('Site'));
 			}
 			else {
-				return $m->lang('err_onsitename', $this->site->displayName());
+				return $m->lang('err_onsitename', array($this->site->displayName()));
 			}
 		}
 		return false;
@@ -228,7 +230,7 @@ final class WeChall_Admin extends GWF_Method
 		}
 		if (false !== ($regat = WC_RegAt::getByOnsitename($site->getID(), $onsitename))) {
 			if (false === ($user = $regat->getUser())) {
-				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			else {
 				return $module->error('err_onsitename_taken', htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername());
@@ -252,7 +254,7 @@ final class WeChall_Admin extends GWF_Method
 		));
 		
 		if (false === $entry->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_hardlinked', $user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename));

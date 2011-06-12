@@ -26,7 +26,7 @@ final class WeChall_MathSolutions extends GWF_Method
 	
 	private function templateSolutions(Module_WeChall $module, WC_Challenge $chall, GWF_User $user, $length, $token)
 	{
-		$tt = $module->lang('pt_wmc_sol', $chall->display('chall_title'), $length);
+		$tt = $module->lang('pt_wmc_sol', array($chall->display('chall_title'), $length));
 		GWF_Website::setPageTitle($tt);
 		$ipp = 50;
 		$cid = $chall->getID();
@@ -52,7 +52,7 @@ final class WeChall_MathSolutions extends GWF_Method
 			'table_title' => $tt,
 			'chall' => $chall,
 		);
-		return $module->template('math_solutions.php', NULL, $tVars);
+		return $module->templatePHP('math_solutions.php', $tVars);
 	}
 }
 ?>

@@ -89,6 +89,8 @@ class WC_Site extends GDO
 		
 			'site_descr_lid' => array(GDO::UINT, 1),
 		
+			'description' => array(GDO::JOIN, NULL, array('WC_SiteDescr', 'site_id', 'site_desc_sid')),
+		
 		);
 	}
 	
@@ -179,8 +181,10 @@ class WC_Site extends GDO
 	public static function getByID($siteid)
 	{
 		static $cache = array();
+		
 		$siteid = (int) $siteid;
-		if (!isset($cache[$siteid])) {
+		if (!isset($cache[$siteid]))
+		{
 			$cache[$siteid] = self::table(__CLASS__)->getRow($siteid);
 		}
 		
@@ -283,14 +287,15 @@ class WC_Site extends GDO
 		static $cache = true;
 		if ($cache === true)
 		{
-			$cache = GDO::table('WC_Site')->select("site_status='up'", 'site_joindate DESC');
+//			$cache = GDO::table('WC_Site')->select("site_status='up'", 'site_joindate DESC');
+			$cache = GDO::table('WC_Site')->selectObjects('*', "site_status='up'", 'site_joindate DESC');
 		}
 		return $cache;
 	}
 	
-	public static function getSites($orderby='site_name ASC') { return self::table(__CLASS__)->selectAll($orderby); }
+	public static function getSites($orderby='site_name ASC') { return self::table(__CLASS__)->selectObjects('*', '', $orderby); }
 	
-	public static function getSitesRanked($orderby='site_name ASC') { return self::table(__CLASS__)->select("site_status='up' OR site_status='down'", $orderby); }
+	public static function getSitesRanked($orderby='site_name ASC') { return self::table(__CLASS__)->selectObjects('*', "site_status='up' OR site_status='down'", $orderby); }
 	
 	/**
 	 * Get all sites for a user which are not linked to the user.
@@ -301,14 +306,14 @@ class WC_Site extends GDO
 	{
 		$userid = (int) $userid;
 		$regat = GDO::table('WC_Regat')->getTableName();
-		return GDO::table(__CLASS__)->select("(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1)) AND site_status='up'", "site_name ASC");
+		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1)) AND site_status='up'", "site_name ASC");
 	}
 	
 	public static function getLinkedSites($userid, $orderby='site_name ASC')
 	{
 		$userid = (int) $userid;
 		$regat = GDO::table('WC_Regat')->getTableName();
-		return GDO::table(__CLASS__)->select("(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 1, 0))", $orderby);
+		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 1, 0))", $orderby);
 	}
 	
 	public static function getLinkedSitesVS2($userid1, $userid2)
@@ -316,7 +321,7 @@ class WC_Site extends GDO
 		$userid1 = (int) $userid1;
 		$userid2 = (int) $userid2;
 		$regat = GDO::table('WC_Regat')->getTableName();
-		return GDO::table(__CLASS__)->select("(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND (regat_uid=$userid1 OR regat_uid=$userid2) ), 1, 0))", "site_name ASC");
+		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND (regat_uid=$userid1 OR regat_uid=$userid2) ), 1, 0))", "site_name ASC");
 	}
 	
 	public static function getQuickUpdateSites($userid)
@@ -325,7 +330,7 @@ class WC_Site extends GDO
 //		$regat = GDO::table('WC_Regat')->getTableName();
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
 		$au = self::AUTO_UPDATE;
-		return GDO::table(__CLASS__)->select("site_options&$au=0 AND (IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 1, 0))");
+		return GDO::table(__CLASS__)->selectObjects('*', "site_options&$au=0 AND (IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 1, 0))");
 	}
 	
 	public function getSimilarSites($active_only=false)
@@ -333,14 +338,14 @@ class WC_Site extends GDO
 		$bits = $this->getTagBits();
 		$sid = $this->getVar('site_id');
 		$activeQuery = $active_only ? "site_status='up' OR site_status='down'" : '1'; 
-		return self::table(__CLASS__)->select("site_tagbits&$bits AND site_id!=$sid AND ($activeQuery)", "site_joindate ASC");
+		return self::table(__CLASS__)->selectObjects('*', "site_tagbits&$bits AND site_id!=$sid AND ($activeQuery)", "site_joindate ASC");
 	}
 	
 	public static function getSimilarSitesS($bits, $active_only=false)
 	{
 		$bits = (int) $bits;
 		$activeQuery = $active_only ? "site_status='up' OR site_status='down'" : '1'; 
-		return self::table(__CLASS__)->select("site_tagbits&$bits AND ($activeQuery)", "site_joindate ASC");
+		return self::table(__CLASS__)->selectObjects('*', "site_tagbits&$bits AND ($activeQuery)", "site_joindate ASC");
 	}
 	
 	public static function validateSiteID($siteid)
@@ -371,7 +376,7 @@ class WC_Site extends GDO
 	public function displayScore() { return $this->isScored() ? $this->getVar('site_score') : ''; }
 	public function displayIRC()
 	{
-		GWF_Module::getModule('Chat', true);
+		GWF_Module::loadModuleDB('Chat', true);
 		$back = '';
 		foreach (explode(',', $this->getVar('site_irc')) as $url)
 		{
@@ -451,7 +456,7 @@ class WC_Site extends GDO
 			return '';
 		}
 		if ($user->isAdmin() || $this->isSiteAdmin($user)) {
-			return GWF_Button::edit($this->hrefEdit(), $module->lang('ft_edit_site', $this->displayName()));
+			return GWF_Button::edit($this->hrefEdit(), $module->lang('ft_edit_site', array($this->displayName())));
 		}
 		return '';
 	}
@@ -546,7 +551,7 @@ class WC_Site extends GDO
 	public function displayLogoUN($username, $solved, $min=2, $max=32, $pad=false)
 	{
 		$percent = round($solved*100, 2);
-		$text = WC_HTML::lang('logo2_hover', $username, $percent, $this->displayName());
+		$text = WC_HTML::lang('logo2_hover', array($username, $percent, $this->displayName()));
 		return $this->displayLogoUNT($username, $solved, $min, $max, $pad, $text);
 	}
 
@@ -570,7 +575,7 @@ class WC_Site extends GDO
 	{
 		$color = $this->isUp() ? 'green' : 'red';
 		$text = WC_HTML::lang('site_dot_'.$color);
-		return sprintf('<img src="%stemplate/wc/img/dot_%s.png" alt="%s" title="%s" />', GWF_WEB_ROOT, $color, $text, $text);
+		return sprintf('<img src="%stpl/wc4/img/dot_%s.png" alt="%s" title="%s" />', GWF_WEB_ROOT, $color, $text, $text);
 	}
 	
 	/**
@@ -627,16 +632,16 @@ class WC_Site extends GDO
 	public function onCreateSite(Module_WeChall $module, &$back='')
 	{
 		if (!$this->insert()) {
-			$back = GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$back = GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		elseif (!self::onCreateVotes()) {
-			$back = GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$back = GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		elseif (!self::onCreateBoard()) {
-			$back = GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$back = GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		elseif (!GWF_ForumBoard::init(true, true) || !self::onCreateThread($module)) {
-			$back = GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			$back = GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		else {
 			return true; 
@@ -772,7 +777,7 @@ class WC_Site extends GDO
 			'site_usercount' => $usercount,
 			'site_challcount' => $challcount,
 		))) {
-			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
 		
@@ -781,7 +786,7 @@ class WC_Site extends GDO
 		WC_RegAt::calcSite($this);
 		
 //		if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $usercount, $challcount)) {
-//			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //			return false;
 //		}
 		
@@ -860,12 +865,12 @@ class WC_Site extends GDO
 		$classname = 'WCSite_'.$this->getVar('site_classname');
 		$path = sprintf('module/WeChall/sites/%s.php', $classname);
 		if (!file_exists($path)) {
-			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', $path);
+			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
 			return false;
 		}
 		require_once $path;
 		if (!class_exists($classname)) {
-			echo GWF_HTML::err('ERR_CLASS_NOT_FOUND', $classname);
+			echo GWF_HTML::err('ERR_CLASS_NOT_FOUND', array($classname));
 			return false;
 		}
 		return new $classname($this->getGDOData());
@@ -890,7 +895,7 @@ class WC_Site extends GDO
 		require_once 'module/WeChall/WC_RegAt.php';
 		
 		if (!$this->isUp()) {
-			return new GWF_Result(WC_HTML::lang('err_site_down', $this->displayName()), true);
+			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
 		}
 		
 		if (false === ($regat = WC_RegAt::getRegatRow($user->getID(), $this->getID()))) {
@@ -898,11 +903,11 @@ class WC_Site extends GDO
 		}
 		
 		if (false === ($site = $this->getSiteClass())) {
-			return new GWF_Result(GWF_HTML::lang('ERR_GENERAL', __FILE__, __LINE__), true);
+			return new GWF_Result(GWF_HTML::lang('ERR_GENERAL', array(__FILE__, __LINE__)), true);
 		}
 		
 		if (false === ($regat = WC_RegAt::getRegatRow($user->getID(), $this->getID()))) {
-			return new GWF_Result(WC_HTML::lang('err_not_linked', $this->displayName()), true);
+			return new GWF_Result(WC_HTML::lang('err_not_linked', array($this->displayName())), true);
 		}
 		
 		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
@@ -915,7 +920,7 @@ class WC_Site extends GDO
 		
 		$stats = $site->parseStats($url);
 		if (!is_array($stats)) {
-			return new GWF_Result(WC_HTML::lang('err_site_down', $this->displayName()), true);
+			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
 		}
 		
 		# OnsiteScore Change
@@ -992,7 +997,7 @@ class WC_Site extends GDO
 		$type = $this->getUserHistType($old_score, $new_score, $onlink);
 		
 		if (false === WC_HistoryUser2::insertEntry($user, $this, $type, $new_score, $old_score, $scoregain, $regat->getVar('regat_onsiterank'))) {
-			return new GWF_Result(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__), true);
+			return new GWF_Result(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)), true);
 		}
 
 		require_once 'module/WeChall/WC_SiteMaster.php';
@@ -1081,7 +1086,7 @@ class WC_Site extends GDO
 		{
 			require_once 'module/WeChall/WC_HistorySite.php';
 			if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $this->getUsercount(), $this->getChallcount())) {
-				echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				return false;
 			}
 			return $this->saveVar('site_score', $basescore);
@@ -1096,7 +1101,7 @@ class WC_Site extends GDO
 	public function onLinkUser(GWF_User $user)
 	{
 		if (false === ($regat = WC_RegAt::linkUser($user->getID(), $this->getID()))) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 	}
 	
@@ -1202,7 +1207,7 @@ class WC_Site extends GDO
 	public static function getSitesLang($langid)
 	{
 		$langid = (int) $langid;
-		return self::table(__CLASS__)->select("site_language=$langid AND (site_status='up' OR site_status='down')", 'site_joindate ASC');
+		return self::table(__CLASS__)->selectObjects('*', "site_language=$langid AND (site_status='up' OR site_status='down')", 'site_joindate ASC');
 	}
 	
 	/**

@@ -66,9 +66,9 @@ final class WeChall_WeChallSettings extends GWF_Method
 			'form_cat' => $form_favcat->templateX($module->lang('ft_favcats')),
 			'favcats' => WC_FavCats::getFavCats($userid),
 //			'sort_url' => GWF_WEB_ROOT.'favorite_sites/by/%BY%/%DIR%',
-			'sort_url' => GWF_WEB_ROOT.sprintf('index.php?mo=WeChall&me=WeChallSettings'),
+			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WeChallSettings',
 		);
-		return $module->template('site_favorites.php', NULL, $tVars).$this->templateWeChallSettings($module);
+		return $module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings($module);
 	}
 
 	private function getForm(Module_WeChall $module, $userid)
@@ -239,7 +239,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 			}
 			$changed = 1;
 			if (false === GDO::table('WC_HistoryUser2')->update($set, $where."userhist_uid=$uid")) {
-				$back .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -302,7 +302,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if ($changed === 1)
 		{
 			if (false === $user->saveUserData($data)) {
-				$back .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
@@ -320,7 +320,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		
 		$cat = $form->getVar('favcat');
 		if (false === WC_FavCats::insertFavCat($userid, $cat)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $module->message('msg_add_favcat', htmlspecialchars($cat));

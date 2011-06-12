@@ -17,12 +17,17 @@ class Shadowcmd_gmd extends Shadowcmd
 		}
 		
 		$username = array_shift($args);
-		if (false === ($remote = Shadowrun4::getPlayerByShortName($username)))
+		$remote = Shadowrun4::getPlayerByShortName($username);
+		if ($remote === -1)
 		{
-			$player->message('This player is not in memory.');
+			$player->message('The username is ambigious.');
 			return false;
 		}
-		
+		if ($remote === false)
+		{
+			$player->message('The player is not in memory or unknown.');
+			return false;
+		}
 		return self::onRemote($player, $remote, $args);
 	}
 	

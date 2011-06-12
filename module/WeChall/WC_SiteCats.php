@@ -115,11 +115,11 @@ final class WC_SiteCats extends GDO
 		$db = gdo_db();
 		$bit = (int) $bit;
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
-		$query = "SELECT sitecat_name FROM $cats WHERE sitecat_bit='$bit'";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT sitecat_name n FROM $cats WHERE sitecat_bit='$bit'";
+		if (false === ($result = $db->queryFirst($query))) {
 			return false;
 		}
-		return $result[0];
+		return $result['n'];
 	}
 	
 	public static function getBitForCat($tag)
@@ -130,11 +130,11 @@ final class WC_SiteCats extends GDO
 		$db = gdo_db();
 		$tag = $db->escape($tag);
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
-		$query = "SELECT sitecat_bit FROM $cats WHERE sitecat_name='$tag'";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT sitecat_bit b FROM $cats WHERE sitecat_name='$tag'";
+		if (false === ($result = $db->queryFirst($query))) {
 			return 0;
 		}
-		return (int) $result[0];
+		return (int) $result['b'];
 	}
 	
 	public static function getAllCats($orderby='sitecat_name ASC')
@@ -145,7 +145,7 @@ final class WC_SiteCats extends GDO
 	public static function isValidCatName($cat)
 	{
 		$cat = self::escape($cat);
-		return self::table(__CLASS__)->selectFirst("sitecat_name='$cat'") !== false;
+		return self::table(__CLASS__)->selectVar('1', "sitecat_name='$cat'") !== false;
 	}
 }
 

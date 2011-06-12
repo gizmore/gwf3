@@ -44,7 +44,7 @@ final class Quest_Seattle_BD1 extends SR_Quest
 				break;
 			case 'shadowrun':
 				$npc->reply('I have been robbed by a horde of AngryElves and Orks. Again. There is not much left.');
-				sleep(2);
+//				sleep(2);
 				$npc->reply('If you could only organize me some unstatted swords to get back in business, i could only spare a few rare items, though.');
 				$player->message($npc->getName().' looks at you questioning.');
 				break;

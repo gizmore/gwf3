@@ -40,6 +40,7 @@ final class Seattle_HireDecker extends SR_HireNPC
 		);
 	}
 	
+	const MANIFESTO = 'SLHD_MANIFEST';
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$price = 800 - Common::clamp($player->get('negotiation'), 0, 10) * 10;
@@ -51,15 +52,28 @@ final class Seattle_HireDecker extends SR_HireNPC
 			case 'shadowrun':
 				return $this->reply("I am in for a run, Do you want to {$b}hire{$b} my hacking skills?");
 			case 'yes':
-				return $this->reply("Yes, {$b}hire{$b} me and i'll aid you in combat.");
+				return $this->reply("Yes, {$b}hire{$b} me and i'll aid you in combat and hacking.");
 			case 'no':
-				return $this->reply("I am good with magic, but not with reading minds.");
+				if ($player->hasTemp(self::MANIFESTO))
+				{
+					$this->reply('Yes, no, what else?');
+				}
+				else
+				{
+					$this->reply("This is our world now... the world of the electron and the switch, the beauty of the baud.");
+					$this->reply("We make use of a service already existing without paying for what could be dirt-cheap if it wasn't run by profiteering gluttons, and you call us criminals.");
+					$this->reply("We explore... and you call us criminals. We seek after knowledge... and you call us criminals. We exist without skin color, without nationality, without religious bias... and you call us criminals.");
+					$this->reply("You build atomic bombs, you wage wars, you murder, cheat, and lie to us and try to make us believe it's for our own good, yet we're the criminals.");
+					$this->reply("Yes, I am a criminal. My crime is that of curiosity. My crime is that of judging people by what they say and think, not what they look like. My crime is that of outsmarting you, something that you will never forgive me for.");
+					$this->reply("I am a hacker, and this is my manifesto. You may stop this individual, but you can't stop us all... after all, we're all alike.");
+					$player->setTemp(self::MANIFESTO, 1);
+				}
+				break;
 			case 'hire':
+				return $this->onHire($player, $price, $time);
 				
-				
-			default: $msg = ""; break;
+			default: $this->reply("Need a hacker?"); break;
 		}
-		$this->reply($msg);
 	}
 }
 ?>

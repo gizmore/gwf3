@@ -31,7 +31,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 			'minlevel' => array(GWF_Form::INT, 0, $module->lang('th_user_level'), 20, '', '', false),
 			'email' => array(GWF_Form::STRING, '', $module->lang('th_user_email'), 20, '', '', false),
 			'country' => array(GWF_Form::SELECT, GWF_Country::getCountrySelectS('country', Common::getPost('country')), $module->lang('th_country'), 20, '', '', false),
-			'language' => array(GWF_Form::SELECT, GWF_Language::getLanguageSelectS('language', Common::getPost('language'), false, false), $module->lang('th_language'), 20, '', '', false),
+			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $module->lang('th_language'), 20, '', '', false),
 			'gender' => array(GWF_Form::SELECT, GWF_User::getGenderSelectS('gender', Common::getPost('gender')), $module->lang('th_gender'), 20, '', '', false),
 			'hasmail' => array(GWF_Form::CHECKBOX, false, $module->lang('th_hasmail')),
 			'haswww' => array(GWF_Form::CHECKBOX, false, $module->lang('th_haswww')),

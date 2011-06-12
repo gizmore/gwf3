@@ -201,10 +201,12 @@ class SR_SearchRoom extends SR_Tower
 		{
 			$this->onSetLockPlayer($member, 1);
 			$this->onCrackedLock($player, $member);
+			return true;
 		}
 		else
 		{
 			$this->onSetLockPlayer($member, 0);
+			return false;
 		}
 	}
 

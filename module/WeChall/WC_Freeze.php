@@ -13,8 +13,8 @@ final class WC_Freeze extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'wcf_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'wcf_uid')),
-			'wcf_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'wcf_sid')),
+			'wcf_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'wcf_uid', 'user_id')),
+			'wcf_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'wcf_sid', 'site_id')),
 		);
 	}
 	

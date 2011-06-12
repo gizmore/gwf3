@@ -446,7 +446,7 @@ final class Lamb
 	 */
 	public function addTimer($callback, $seconds=1.0, $server=NULL, $args=NULL, $repeat=Lamb_Timer::REPEAT_INF, $delay=Lamb_Timer::DELAY_DISABLE)
 	{
-		Lamb_Log::logDebug(sprintf('Adding new timer: "%s" in %.02f with repeat %d.', GWF_Hook::callbackToName($callback), $seconds, $repeat));
+//		Lamb_Log::logDebug(sprintf('Adding new timer: "%s" in %.02f with repeat %d.', GWF_Hook::callbackToName($callback), $seconds, $repeat));
 		$this->timers[] = new Lamb_Timer($callback, $seconds, $server, $args, $repeat, $delay);
 	}
 	
@@ -459,7 +459,7 @@ final class Lamb
 			if ($timer->execute($t))
 			{
 				unset($this->timers[$i]);
-				Lamb_Log::logDebug('A Lamb_Timer got removed.');
+//				Lamb_Log::logDebug('A Lamb_Timer got removed.');
 			}
 		}
 	}

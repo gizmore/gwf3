@@ -169,7 +169,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 				if ($t === true)
 				{
 					$q->onNPCQuestTalk($this, $player, $word);
-					$player->unsetTemp(self::TEMP_WORD);
+					$player->unsetTemp($key);
 					return true;
 				}
 				return false;

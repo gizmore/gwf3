@@ -87,7 +87,8 @@ abstract class SR_School extends SR_Store
 		} elseif ($type === 'skill') {
 			$player->updateField($field, 0);
 		} else {
-			die('Oops SR_School::onLearn()');
+			$player->message('Database error!');
+			return Lamb_Log::logError(sprintf('Learned field "%s" is neither a skill nor a spell!', $field));
 		}
 	
 		$player->modify();

@@ -55,7 +55,7 @@ final class GWF_WeChallInstall
 		$t = $boards->escape(Module_WeChall::BOARD_CHALLS);
 		if (false === ($board = $boards->getBy('board_title', $t))) {
 			if (false === ($board = GWF_ForumBoard::createBoard(Module_WeChall::BOARD_CHALLS, Module_WeChall::BOARD_CHALLS_DESCR, 1, GWF_ForumBoard::GUEST_VIEW|GWF_ForumBoard::ALLOW_THREADS, 0))) {
-				$back .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		$boardid = $board === false ? 0 : $board->getID();
@@ -64,7 +64,7 @@ final class GWF_WeChallInstall
 		$t = $boards->escape(Module_WeChall::BOARD_SOLUTIONS);
 		if (false === ($board = $boards->getBy('board_title', $t))) {
 			if (false === ($board = GWF_ForumBoard::createBoard(Module_WeChall::BOARD_SOLUTIONS, Module_WeChall::BOARD_SOLUTIONS_DESCR, 1, GWF_ForumBoard::GUEST_VIEW|GWF_ForumBoard::ALLOW_THREADS, 0))) {
-				$back .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		$boardid = $board === false ? 0 : $board->getID();
@@ -73,7 +73,7 @@ final class GWF_WeChallInstall
 		$t = $boards->escape(Module_WeChall::BOARD_SITES);
 		if (false === ($board = $boards->getBy('board_title', $t))) {
 			if (false === ($board = GWF_ForumBoard::createBoard(Module_WeChall::BOARD_SITES, Module_WeChall::BOARD_SITES_DESCR, 1, GWF_ForumBoard::GUEST_VIEW|GWF_ForumBoard::ALLOW_THREADS, 0))) {
-				$back .= GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		$boardid = $board === false ? 0 : $board->getID();
@@ -91,7 +91,7 @@ final class GWF_WeChallInstall
 				continue;
 			}			
 			if (false === mkdir($path, GWF_CHMOD)) {
-				return GWF_HTML::err('ERR_WRITE_FILE', $path);
+				return GWF_HTML::err('ERR_WRITE_FILE', array($path));
 			}
 			chmod($path, GWF_CHMOD);
 		}
@@ -100,16 +100,15 @@ final class GWF_WeChallInstall
 
 	private static function recalcVotes(Module_WeChall $module, $dropTable)
 	{
-		if (false === ($mod_votes = GWF_Module::getModule('Votes'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', 'Votes');
+		if (false === ($mod_votes = GWF_Module::loadModuleDB('Votes', true))) {
+			return GWF_HTML::err('ERR_MODULE_MISSING', array('Votes'));
 		}
-		$mod_votes->onInclude();
 		
 		if (false === WC_Site::onRecalcAllVotes()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		if (false === WC_Challenge::onRecalcAllVotes()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return '';
 	}
@@ -117,7 +116,7 @@ final class GWF_WeChallInstall
 	private static function fixSiteLinkCount(Module_WeChall $module, $dropTable)
 	{
 		if (false === WC_Site::fixAllLinkCounts()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return '';
 	}
@@ -151,7 +150,7 @@ final class GWF_WeChallInstall
 		}
 		
 		if (false === $module->saveModuleVar('wc_uid', $uid)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return '';
 	}
@@ -217,7 +216,7 @@ final class GWF_WeChallInstall
 		
 		require_once 'module/WeChall/WC_SiteDescr.php';
 		if (false === WC_SiteDescr::insertDescr($site->getID(), 1, 'Please edit me :)')) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return '';

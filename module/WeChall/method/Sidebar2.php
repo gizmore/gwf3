@@ -45,7 +45,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			return '';
 		}
 		
-		$formhash = GWF_Password::getToken('_username_password_bind_ip_login');
+		$formhash = GWF_Password::getToken('_username_password_bind_ip');
 		$username = $module->lang('th_user_name');
 		$password = $module->lang('th_password');
 		$bind_ip = $module->lang('th_bind_ip');
@@ -57,14 +57,14 @@ final class WeChall_Sidebar2 extends GWF_Method
 //			'<div id="sidebar_login">'.PHP_EOL.
 			'<form action="'.GWF_WEB_ROOT.'login" method="post" id="wc_toplogin">'.PHP_EOL.
 			'<div>'.GWF_CSRF::hiddenForm($formhash).'</div>'.PHP_EOL.
-			'<div><img src="'.GWF_WEB_ROOT.'template/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.':" />&nbsp;<input type="text" name="username" value="" /></div>'.PHP_EOL.
-			'<div><img src="'.GWF_WEB_ROOT.'template/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.':" />&nbsp;<input type="password" name="password" value="" /></div>'.PHP_EOL.
+			'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.':" />&nbsp;<input type="text" name="username" value="" /></div>'.PHP_EOL.
+			'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.':" />&nbsp;<input type="password" name="password" value="" /></div>'.PHP_EOL.
 			'<div class="le">'.$bind_ip.'&nbsp;<input type="checkbox" name="bind_ip" checked="checked" /></div>'.PHP_EOL.
 			'<div class="le"><input type="submit" name="login" value="'.$login.'" /></div>'.PHP_EOL.
 			'<div><a href="'.GWF_WEB_ROOT.'register">'.$register.'</a>&nbsp;&nbsp;&nbsp;<a href="'.GWF_WEB_ROOT.'recovery">'.$forgot.'</a></div>'.PHP_EOL.
 //			GWF_Table::start().
-//			'<tr><td><img src="'.GWF_WEB_ROOT.'template/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.'" /></td><td><input type="text" name="username" value="" /></td></tr>'.PHP_EOL.
-//			'<tr><td><img src="'.GWF_WEB_ROOT.'template/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.'" /></td><td><input type="password" name="password" value="" /></td></tr>'.PHP_EOL.
+//			'<tr><td><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.'" /></td><td><input type="text" name="username" value="" /></td></tr>'.PHP_EOL.
+//			'<tr><td><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.'" /></td><td><input type="password" name="password" value="" /></td></tr>'.PHP_EOL.
 //			'<tr><td>'.$bind_ip.'</td><td><input type="checkbox" name="bind_ip" checked="checked" /></td></tr>'.PHP_EOL.
 //			'<tr><td></td><td><input type="submit" name="login" value="'.$login.'" /></td></tr>'.PHP_EOL.
 //			'<tr><td><a href="'.GWF_WEB_ROOT.'register">'.$register.'</a></td><td><a href="'.GWF_WEB_ROOT.'forgot">'.$forgot.'</a></td></tr>'.PHP_EOL.
@@ -83,16 +83,16 @@ final class WeChall_Sidebar2 extends GWF_Method
 	{
 		$db = gdo_db();
 		$posts = GWF_TABLE_PREFIX.'forumpost';
-		$postcount = $db->queryFirst("SELECT COUNT(*) FROM $posts", false);
-		$postcount = $postcount[0];
+		$postcount = $db->queryFirst("SELECT COUNT(*) c FROM $posts");
+		$postcount = $postcount['c'];
 		
 		$btn = GWF_Session::isLoggedIn() ? $this->getHideButton($module) : '';
 
 		$box = 
-			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('rp_sitecount', count(WC_Site::getActiveSites())).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('rp_challcount', GDO::table('WC_Challenge')->countRows()).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'forum">'.$module->lang('rp_postcount', $postcount).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'users">'.$module->lang('rp_usercount', GDO::table('GWF_User')->countRows()).'</a></div>'.PHP_EOL;
+			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('rp_challcount', array(GDO::table('WC_Challenge')->countRows())).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'forum">'.$module->lang('rp_postcount', array($postcount)).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'users">'.$module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></div>'.PHP_EOL;
 		return
 			$this->sidebox($module->lang('rp_stats').$btn, $box);
 	}
@@ -110,21 +110,21 @@ final class WeChall_Sidebar2 extends GWF_Method
 			$site instanceof WC_Site;
 			$box .= '<div>'.$site->displayLink().'</div>'.PHP_EOL;
 		}
-		return $this->sidebox($module->lang('rp_sites', $count), $box);
+		return $this->sidebox($module->lang('rp_sites', array($count)), $box);
 	}
 
 	private function displayTopTen(Module_WeChall $module, $amount=10)
 	{
-		$users = GDO::table('GWF_User')->select('user_options&0x10000000=0', 'user_level DESC', $amount);
+		$users = GDO::table('GWF_User')->selectObjects('*', 'user_options&0x10000000=0', 'user_level DESC', $amount);
 		if (count($users) === 0) {
 			return '';
 		}
 		$box = '';
 		foreach ($users as $user)
 		{
-			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $user->getProfileHREF(), $module->lang('a_title', $user->getVar('user_level')), $user->displayUsername()).PHP_EOL;
+			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername()).PHP_EOL;
 		}
-		return $this->sidebox($module->lang('rp_topusers', $amount), $box);
+		return $this->sidebox($module->lang('rp_topusers', array($amount)), $box);
 	}
 	
 	private function displayActive(Module_WeChall $module, $amount=20)
@@ -143,11 +143,11 @@ final class WeChall_Sidebar2 extends GWF_Method
 		while (false !== ($row = $db->fetchRow($result)))
 		{
 			$href = GWF_WEB_ROOT.'profile/'.urlencode($row[1]);
-			$title = $module->lang('li_last_active', GWF_HTML::display($row[1]), round($row[3]*100, 2), GWF_HTML::display($row[4]));
+			$title = $module->lang('li_last_active', array(GWF_HTML::display($row[1]), round($row[3]*100, 2), GWF_HTML::display($row[4])));
 			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $href, $title, GWF_HTML::display($row[1]));
 		}
 		
-		return $this->sidebox($module->lang('rp_last_active', $amount), $box);
+		return $this->sidebox($module->lang('rp_last_active', array($amount)), $box);
 	}
 	
 	private function displayOnline(Module_WeChall $module, $max=20)
@@ -160,9 +160,9 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$count = $users->countRows($conditions);
 		$href = GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1';
 		
-		$box = sprintf('<div>%s</div>', $module->lang('lp_last_online2', $href, $count));
+		$box = sprintf('<div>%s</div>', $module->lang('lp_last_online2', array($href, $count)));
 		
-		$users2 = $users->select($conditions, 'user_lastactivity DESC', $max);
+		$users2 = $users->selectObjects('*', $conditions, 'user_lastactivity DESC', $max);
 		foreach ($users2 as $user)
 		{
 			$user instanceof GWF_User;
@@ -173,7 +173,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			$box .= '<div><a href="'.$href.'">more...</a></div>';
 		}
 		
-		return $this->sidebox($module->lang('lp_last_online', GWF_Time::humanDuration($cut, 1)), $box);
+		return $this->sidebox($module->lang('lp_last_online', array(GWF_Time::humanDuration($cut, 1))), $box);
 	}
 	
 }

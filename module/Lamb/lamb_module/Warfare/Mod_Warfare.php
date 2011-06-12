@@ -25,7 +25,7 @@ final class LambModule_Warfare extends Lamb_Module
 	public function onInitServer(Lamb_Server $server)
 	{
 //		echo __METHOD__.PHP_EOL;
-		if (false === ($dir = glob('modules/Warfare/ports/*.php')))
+		if (false === ($dir = glob('lamb_module/Warfare/ports/*.php')))
 		{
 			Lamb_Log::logError('Warfare cannot read ports directory.');
 			return false;

@@ -1,7 +1,7 @@
 <?php
-require_once 'modules/WeChall/WC_RegAt.php';
-require_once 'modules/WeChall/WC_SiteFavorites.php';
-require_once '_profile_funcs.php';
+require_once 'module/WeChall/WC_RegAt.php';
+require_once 'module/WeChall/WC_SiteFavorites.php';
+require_once 'module/Profile/tpl/wc4/_profile_funcs.php';
 $wechall = Module_WeChall::instance();
 $u = $tVars['user']; $u instanceof GWF_User;
 $p = $tVars['profile']; $p instanceof GWF_Profile;
@@ -14,6 +14,7 @@ $is_admin = $user->isAdmin();
 $data = $u->getUserData();
 $priv = isset($data['WC_PRIV_HIST']) && !$is_admin;
 
+
 # Head
 $buttons = '';
 if ($tVars['jquery']) {
@@ -24,6 +25,7 @@ if ($tVars['jquery']) {
 
 echo '<h1>'.$buttons.$tLang->lang('pt_profile', array( $u->displayUsername())).'</h1>';
 
+
 # Permission
 if ($p->isHidden($user))
 {
@@ -31,11 +33,12 @@ if ($p->isHidden($user))
 	return;
 }
 
+
+
 # About Me
 if ('' !== ($v = $p->displayAboutMe())) {
 	echo GWF_Box::box($v, $tLang->lang('title_about_me', array( $u->displayUsername())));
 }
-
 
 # Default Profile
 echo '<div class="fl">'.PHP_EOL;
@@ -47,6 +50,7 @@ if ($u->hasCountry()) {
 	echo gwfProfileRow($tLang->lang('th_user_country'), $u->displayCountryFlag(true));
 }
 echo gwfProfileRow($tLang->lang('th_user_name'), $u->displayUsername());
+
 
 if (isset($data['WC_HIDE_SCORE'])) {
 	echo gwfProfileRow(WC_HTML::lang('th_score'), $wechall->lang('hidden'));
@@ -71,11 +75,11 @@ if ($u->getVar('user_countryid') !== '0') {
 		echo gwfProfileRow(WC_HTML::lang('th_crank'), GWF_HTML::anchor($href_crank, $cRank));
 	}
 }
-echo gwfProfileRow($tLang->lang('th_registered'), $u->displayRegdate());
-if ($u->isOnlineHidden()) {
+echo gwfProfileRow($tLang->lang('th_registered'), GWF_Time::displayDate($u->getVar('user_regdate')));
+if ($u->isOptionEnabled(GWF_User::HIDE_ONLINE)) {
 	$lastactivity = GWF_HTML::lang('unknown');
 } else {
-	$lastactivity = $u->displayLastActivity();
+	$lastactivity = GWF_Time::displayTimestamp($u->getVar('user_lastactivity'));
 }
 echo gwfProfileRow($tLang->lang('th_last_active'), $lastactivity);
 echo gwfProfileRow($tLang->lang('th_views'), $p->getVar('prof_views'));
@@ -100,7 +104,7 @@ if ('' !== ($v = $p->getVar('prof_website', ''))) {
 }
 if (!$p->isContactHidden($user) || $is_admin)
 {
-	if ($u->isEmailPublic() || $is_admin) {
+	if ($u->isOptionEnabled(GWF_User::SHOW_EMAIL) || $is_admin) {
 		if ('' !== ($v = $u->displayEMail())) {
 			echo gwfProfileRow($tLang->lang('th_email'), $v);
 		}
@@ -138,7 +142,7 @@ if (!$p->isContactHidden($user) || $is_admin)
 	$buttons = '';
 	if ('' !== ($email = $u->getValidMail())) {
 		$txt = $tLang->lang('at_mailto', array( $u->displayUsername()));
-		if ($u->isEmailAllowed()) {
+		if ($u->isOptionEnabled(GWF_User::ALLOW_EMAIL)) {
 			$buttons .= GWF_Button::mail(GWF_WEB_ROOT.'send/email/to/'.$u->urlencode('user_name'), $txt);
 		}
 	}
@@ -173,7 +177,7 @@ if (count($regats) > 0)
 # Break on jquery
 if ($tVars['jquery']) { echo '<div class="cb"></div>'.PHP_EOL; return; }
 
-require_once 'modules/WeChall/WC_HistoryUser2.php';
+require_once 'module/WeChall/WC_HistoryUser2.php';
 
 # Graphs and Activity
 if ($u->getLevel() > 0)
@@ -219,4 +223,6 @@ echo wcProfileGuestbook($u);
 
 # Groups
 echo wcProfileUsergroup($u, GWF_User::isLoggedIn());
+
+
 ?>

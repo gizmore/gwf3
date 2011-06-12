@@ -54,17 +54,17 @@ function wcStyleForUser($user)
 		return "background-color: #$color!important; font-weight: bold;";
 	}
 	
-	if ($user->isInGroup('siteadmin')) {
+	if ($user->isInGroupName('siteadmin')) {
 		$color = $swap ? '8F8' : '6D6';
 		return "background: #$color!important; font-weight: bold;";
 	}
 	
-	if ($user->isInGroup('moderator')) {
+	if ($user->isInGroupName('moderator')) {
 		$color = $swap ? 'F88' : 'F77';
 		return "background: #$color!important; font-weight: bold;";
 	}
 	
-	if ($user->isInGroup('betatester')) {
+	if ($user->isInGroupName('betatester')) {
 		$color = $swap ? '77F' : '66F';
 		return "background: #$color!important; font-weight: bold; color: #FFF;";
 	}

@@ -45,11 +45,12 @@ final class WeChall_SiteRankings extends GWF_Method
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 
-		$title = $module->lang('pt_site_ranking', $site->displayName(), $page);
+		$args = array($site->displayName(), $page);
+		$title = $module->lang('pt_site_ranking', $args);
 		
 		GWF_Website::setPageTitle($title);
-		GWF_Website::setMetaTags($module->lang('mt_site_ranking', $site->displayName(), $page));
-		GWF_Website::setMetaDescr($module->lang('md_site_ranking', $site->displayName(), $page));
+		GWF_Website::setMetaTags($module->lang('mt_site_ranking', $args));
+		GWF_Website::setMetaDescr($module->lang('md_site_ranking', $args));
 		
 		$tVars = array(
 			'userdata' => $this->getRankedUsers($module, $site, $from, $ipp),
@@ -60,7 +61,7 @@ final class WeChall_SiteRankings extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'site/ranking/for/'.$site->getID().'/'.$site->urlencodeSEO('site_name').'/page-%PAGE%'),
 			'page_title' => $title,
 		);
-		return $module->template('site_ranking.php', array(), $tVars);
+		return $module->templatePHP('site_ranking.php', $tVars);
 	}
 	
 //	private function getRankedUsersOLD(Module_WeChall $module, WC_Site $site, $from, $ipp)
@@ -71,7 +72,7 @@ final class WeChall_SiteRankings extends GWF_Method
 //		$siteid = $site->getID();
 //		$query = "SELECT regat_onsitescore,regat_options,u.user_name,u.user_level,u.user_countryid FROM $regat AS r JOIN $users AS u ON u.user_id=r.regat_uid WHERE r.regat_sid=$siteid ORDER BY regat_onsitescore DESC LIMIT $from, $ipp";
 //		if (false === ($result = $db->queryAll($query))) {
-//			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //			return array();
 //		}
 //		return $result;
@@ -93,7 +94,7 @@ final class WeChall_SiteRankings extends GWF_Method
 //		
 //		echo $query;
 //		if (false === ($result = $db->queryRead($query))) {
-//			echo GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 //			return array();
 //		}
 //		$back = array();
@@ -142,7 +143,7 @@ final class WeChall_SiteRankings extends GWF_Method
 		return $back;
 	}
 	
-	private function getUserStuff(array $row, GWF_Database $db, $bits)
+	private function getUserStuff(array $row, GDO_Database $db, $bits)
 	{
 		$back = new GWF_User($row);
 		$regat = GWF_TABLE_PREFIX.'wc_regat';

@@ -15,7 +15,7 @@ final class WC_SiteFavorites extends GDO
 	{
 		return array(
 			'sitefav_uid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
-			'sitefav_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'sitefav_sid')),
+			'sitefav_sid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('WC_Site', 'sitefav_sid', 'site_id')),
 		);
 	}
 	
@@ -45,14 +45,16 @@ final class WC_SiteFavorites extends GDO
 	{
 		$userid = (int) $userid;
 		$favs = GWF_TABLE_PREFIX.'wc_site_favs';
-		return self::table('WC_Site')->select("(IF((SELECT 1 FROM $favs WHERE sitefav_sid=site_id AND sitefav_uid=$userid), 1, 0))", 'site_name ASC');
+//		return self::table('WC_Site')->select("(IF((SELECT 1 FROM $favs WHERE sitefav_sid=site_id AND sitefav_uid=$userid), 1, 0))", 'site_name ASC');
+		return self::table('WC_Site')->selectObjects('*', "(IF((SELECT 1 FROM {$favs} WHERE sitefav_sid=site_id AND sitefav_uid={$userid}), 1, 0))", 'site_name ASC');
 	}
 	
 	public static function getNonFavoriteSites($userid)
 	{
 		$userid = (int) $userid;
 		$favs = GWF_TABLE_PREFIX.'wc_site_favs';
-		return self::table('WC_Site')->select("(IF((SELECT 1 FROM $favs WHERE sitefav_sid=site_id AND sitefav_uid=$userid), 0, 1))", 'site_name ASC');
+//		return self::table('WC_Site')->select("(IF((SELECT 1 FROM $favs WHERE sitefav_sid=site_id AND sitefav_uid=$userid), 0, 1))", 'site_name ASC');
+		return self::table('WC_Site')->selectObjects('*', "(IF((SELECT 1 FROM {$favs} WHERE sitefav_sid=site_id AND sitefav_uid={$userid}), 0, 1))", 'site_name ASC');
 	}
 	
 }

@@ -10,13 +10,13 @@ class WCSite_Mirmo extends WC_Site
 	public function parseStats($url)
 	{
 		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		$result = Common::substrUntil($result, "<br/>");
 		$data = explode(":", $result);
 		
 		if (count($data) !== 5) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 		$rank = (int)$data[0];
@@ -26,7 +26,7 @@ class WCSite_Mirmo extends WC_Site
 		$challs = (int) $data[4];
 		
 		if ($score > $maxscore || $score < 0 || $maxscore == 0 || $users == 0) {
-			return htmlDisplayError(WC_HTML::lang('err_response', GWF_HTML::display($result), $this->displayName()));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 		$this->updateSite($maxscore, $users, $challs);

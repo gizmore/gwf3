@@ -1,4 +1,6 @@
 <?php
+define('LAMB_DEV', false);
+
 global $LAMB_CONFIG;
 $LAMB_CFG = array
 (

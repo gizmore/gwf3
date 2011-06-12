@@ -63,6 +63,7 @@ class SR_Quest extends GDO
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
 	public function isDeclined(SR_Player $player) { return $this->isOptionEnabled(self::REJECTED); }
 	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word) { $this->onNPCQuestTalkB($npc, $player, $word); }
+	public function onAccept(SR_Player $player) {}
 	public function accept(SR_Player $player)
 	{
 		if ($this->isAccepted($player)) {
@@ -70,6 +71,8 @@ class SR_Quest extends GDO
 		}
 		$this->saveOption(self::ACCEPTED, true);
 		$player->message(sprintf('You got a new quest: %s.', $this->getQuestName()));
+		$this->onAccept($player);
+		return true;
 	}
 	
 	public function decline(SR_Player $player)
