@@ -1,7 +1,7 @@
 <?php
 final class GWF_Install
 {
-	const SPIDER_FILE = 'modules/GWF/spider.dat';
+	const SPIDER_FILE = 'module/GWF/spider.dat';
 	
 	public static function onInstall(Module_GWF $module, $dropTable)
 	{
