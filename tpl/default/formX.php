@@ -1,8 +1,9 @@
 <div class="gwf3_form">
-	<div class="gw3_form_title" ><?php echo $tVars['title']?></div>
+<!-- <div class="gw3_form_title" ><?php echo $tVars['title']?></div>  -->
 	<form action="<?php echo $tVars['action']; ?>" method="<?php echo $tVars['method']; ?>" enctype="<?php echo $tVars['enctype']; ?>">
 	<table>
 		<thead>
+			<tr><th colspan="100"><?php echo $tVars['title']?></th></tr>
 			<tr>
 <?php
 $no_head = array(GWF_Form::HIDDEN, GWF_Form::SUBMIT);
@@ -28,6 +29,7 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::HIDDEN:
 			printf('<input type="hidden" name="%s" value="%s" />'.PHP_EOL, $key, $data[1]);
 			break;
+		case GWF_Form::INT:
 		case GWF_Form::STRING:
 			printf('<input type="text" name="%s" value="%s" />'.PHP_EOL, $key, $data[1]);
 			break;
