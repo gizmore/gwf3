@@ -10,6 +10,10 @@ GWF_Website::init(dirname(__FILE__));
 
 GWF_Module::autoloadModules();
 
+$_GET['mo'] = 'GWF';
+$_GET['me'] = 'Error';
+
+
 # Get the error page
 $errors = array(403, 404);
 $realcode = Common::getGetInt('code', 0);
