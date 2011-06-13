@@ -51,7 +51,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 	public static function validate_username(Module_Usergroups $m, $v) { return false; }
 	public static function validate_email(Module_Usergroups $m, $v) { return false; }
 	public static function validate_country(Module_Usergroups $m, $v) { return GWF_CountrySelect::validate_countryid($v, true); }
-	public static function validate_language(Module_Usergroups $m, $v) { return GWF_Language::validate_langid($v, true); }
+	public static function validate_language(Module_Usergroups $m, $v) { return GWF_LangSelect::validate_langid($v, true); }
 	
 	private function onSearch(Module_Usergroups $module)
 	{

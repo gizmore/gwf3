@@ -249,7 +249,7 @@ final class Module_Usergroups extends GWF_Module
 		return GWF_Select::display($name, $data, intval($selected));
 	}
 	
-	public function validate_name($arg) { return GWF_Form::validateUsername($this, 'name', $arg, false, ' '); }
+	public function validate_name($arg) { return GWF_Validator::validateUsername($this, 'name', $arg, false, ' '); }
 	public function validate_join($arg) { return GWF_Group::isValidJoinFlag($arg) ? false : $this->lang('err_join'); }
 	public function validate_view($arg) { return GWF_Group::isValidViewFlag($arg) ? false : $this->lang('err_view'); }
 	public function validate_username($arg)

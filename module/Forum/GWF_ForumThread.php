@@ -274,6 +274,7 @@ final class GWF_ForumThread extends GDO
 		if (false === ($ugo = $user->getGroupByID($gid))) {
 			return false;
 		}
+		$ugo = $ugo->getInt('group_options');
 		if (($ugo &(GWF_UserGroup::MODERATOR|GWF_UserGroup::CO_LEADER|GWF_UserGroup::LEADER)) > 0) {
 			return true;
 		}
