@@ -191,6 +191,9 @@ $lang = array(
 	
 	# 2.06 fix
 	'bbspoiler_info' => 'Klikni pro spoiler',
+	
+	# 3.00 Filesize
+	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB')
 
 );
 

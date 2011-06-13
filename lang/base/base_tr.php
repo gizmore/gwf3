@@ -185,8 +185,11 @@ array(4=>'Y', 6=>'M Y', 8=>'D, M j, Y', 10=>'M d, Y - H:00', 12=>'M d, Y - H:i',
 'yes' => 'Evet',
 'no' => 'Yok',
 
-	# 2.06 spoiler
-	'bbspoiler_info' => 'Click for spoiler',
+# 2.06 spoiler
+'bbspoiler_info' => 'Click for spoiler',
+
+# 3.00 Filesize
+'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB')
 );
 
 ?>
