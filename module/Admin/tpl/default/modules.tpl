@@ -1,7 +1,7 @@
 {box content="$install_all"}
 
 <table>
-	<thead>{$tablehead}</thead>
+	{$tablehead}
 	<tbody>
 		{foreach $modules as $name => $mod}
 		<tr class="gwf_{cycle values='odd,even'}">
@@ -26,7 +26,7 @@
 			<td><a href="{$mod['edit_url']}">{$configure}</a></td>
 			
 			{if $mod['admin_url'] !== '#'}
-			<td><a href="{$mod['admin_url']}">{$adminsect}</a></td>
+			<td><a href="{$mod['admin_url']|htmlspecialchars}">{$adminsect}</a></td>
 			{else}
 			<td></td>
 			{/if}
