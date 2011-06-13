@@ -75,7 +75,7 @@ final class Admin_UserSearch extends GWF_Method
 		$dir = Common::getGet('dir', self::DEFAULT_DIR);
 		$orderby = $users->getMultiOrderby($by, $dir);
 		
-		$conditions = $users->getQuickSearchConditions($fields, $term);
+		$conditions = GWF_QuickSearch::getQuickSearchConditions($users, $fields, $term);
 		
 		$hits = $users->countRows($conditions);
 		
@@ -86,9 +86,9 @@ final class Admin_UserSearch extends GWF_Method
 
 		$tVars = array(
 			'searched' => true,
-			'form' => $form->templateX($module->lang('ft_search'), false),
+			'form' => $form->templateX($module->lang('ft_search')),
 			'hits' => $hits,
-			'users' => $users->select($conditions, $orderby, $ipp, $from),
+			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'term' => $term,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by='.urlencode($by).'&dir='.urlencode($dir).'&page=1'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by=%BY%&dir=%DIR%&page=1',

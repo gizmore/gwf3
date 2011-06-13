@@ -44,7 +44,7 @@ final class Admin_Users extends GWF_Method
 //			'by' => $this->by,
 //			'dir' => $this->dir,
 			'sort_url' => $this->getTableSortURL(),
-			'search_form' => $this->getSearchForm($module)->templateX($module->lang('ft_search'), false, GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
+			'search_form' => $this->getSearchForm($module)->templateX($module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
 		);
 		return $module->templatePHP('users.php', $tVars);
 	}

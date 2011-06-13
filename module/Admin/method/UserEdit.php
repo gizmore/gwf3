@@ -44,7 +44,7 @@ final class Admin_UserEdit extends GWF_Method
 			'gender' => array(GWF_Form::SELECT, $u->getGenderSelect('gender'), $module->lang('th_gender')),
 			'country' => array(GWF_Form::SELECT, $u->getCountrySelect('country'), $module->lang('th_country')),
 			'lang1' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang1', $u->getVar('user_langid')), $module->lang('th_lang_1')),
-			'lang2' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang2', $u->getVar('user_langid2')), $module->lang('th_lang_1')),
+			'lang2' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang2', $u->getVar('user_langid2')), $module->lang('th_lang_2')),
 			# Options
 			'level' => array(GWF_Form::STRING, $u->getVar('user_level'), $module->lang('th_level')),
 			'approved' => array(GWF_Form::CHECKBOX, $u->hasValidMail(), $module->lang('th_is_approved')),
