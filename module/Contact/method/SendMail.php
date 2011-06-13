@@ -16,7 +16,7 @@ final class Contact_SendMail extends GWF_Method
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		if ('' === ($email = $user->getValidMail()) || (!$user->isEmailAllowed())) {
+		if ('' === ($email = $user->getValidMail()) || (!$user->isOptionEnabled(GWF_User::ALLOW_EMAIL))) {
 			return $module->error('err_no_mail');
 		}
 		
@@ -62,7 +62,7 @@ final class Contact_SendMail extends GWF_Method
 		return $module->message('msg_mailed', array($user->displayUsername()));
 	}
 
-	public function validate_email(Module_Contact $m, $arg) { return GWF_Form::validateEMail($m, 'email', $arg, true, true); }
+	public function validate_email(Module_Contact $m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg, true, true); }
 	public function validate_message(Module_Contact $m, $arg) { return GWF_Validator::validateString($m, 'message', $arg, 16, $m->cfgMaxMsgLen(), false); }
 	private function form(Module_Contact $module, GWF_User $user)
 	{
