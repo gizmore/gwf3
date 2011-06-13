@@ -29,7 +29,7 @@ final class Admin_Superuser extends GWF_Method
 	##############
 	public function validate_check_pass(Module_Admin $module, $arg)
 	{
-		return Common::checkPasswordS($arg, $module->cfgSuperHash()) ? false : $module->lang('err_check_pass');
+		return GWF_Password::checkPasswordS($arg, $module->cfgSuperHash()) ? false : $module->lang('err_check_pass');
 	}
 	
 	public function getFormPrompt(Module_Admin $module)

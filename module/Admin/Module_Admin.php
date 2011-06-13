@@ -32,10 +32,10 @@ final class Module_Admin extends GWF_Module
 	###############
 	### Startup ###
 	###############
-	public function onRequest()
+	public function execute($methodname)
 	{
 		if ($this->checkSuperuserPassword()) {
-			return parent::onRequest();
+			return parent::execute($methodname);
 		}
 		return '';
 	}
