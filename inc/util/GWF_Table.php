@@ -24,12 +24,13 @@ final class GWF_Table
 		return sprintf('<td%s%s>%s</td>', $class, $colspan, $text);
 	}
 	
-	public static function displayHeaders1(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir')
+	public static function displayHeaders1(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
-		$back = '';
+//		$back = '';
 		$sel = Common::getGetString($by, $default);
 		
-//		$back = '<thead>'.PHP_EOL;
+		$back = '<thead>'.PHP_EOL;
+		$back .= $raw;
 		
 //		if ($raw !== '') {
 //			$back .= sprintf('<tr><th colspan="%d">%s</th></tr>', count($headers), $raw).PHP_EOL;
@@ -69,7 +70,7 @@ final class GWF_Table
 			
 		}
 		$back .= '</tr>'.PHP_EOL;
-//		$back .= '</thead>'.PHP_EOL;
+		$back .= '</thead>'.PHP_EOL;
 		return $back;
 	}
 		
@@ -78,10 +79,11 @@ final class GWF_Table
 		return strtoupper($dir) === 'ASC' ? 'DESC' : 'ASC';
 	}
 	
-	public static function displayHeaders2(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir')
+	public static function displayHeaders2(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
 		$tVars = array(
 			'headers' => self::getHeaders2($headers, $sortURL, $by, $dir),
+			'raw' => $raw,
 		);
 		return GWF_Template::templatePHPMain('thead.php', $tVars);
 	}

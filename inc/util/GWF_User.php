@@ -69,6 +69,8 @@ final class GWF_User extends GDO
 		);
 	}
 	public function getID() { return $this->getVar('user_id'); }
+	public function hasAvatar() { return $this->isOptionEnabled(self::HAS_AVATAR); }
+	public function hasCountry() { return $this->getVar('user_countryid') !== '0'; }
 	
 	/**
 	 * Get a user by ID.
@@ -120,7 +122,7 @@ final class GWF_User extends GDO
 	###############
 	### Profile ###
 	###############
-	public function getProfileHREF() { return sprintf('%sprofile/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
+	public function getProfileHREF() { return GWF_WEB_ROOT.'profile/'.$this->urlencode('user_name'); }
 	public function displayUsername() { return $this->display('user_name'); }
 	public function getGenderSelect($name='gender') { return GWF_Gender::select($name, Common::getPostString($name, $this->getVar('user_gender'))); }
 	public function getCountrySelect($name='country') { return GWF_CountrySelect::single($name, Common::getPostString($name, $this->getCountryID())); }
@@ -145,6 +147,20 @@ final class GWF_User extends GDO
 	public function displayTitle() { return $this->display('user_title'); }
 	public function isOnline() { return $this->isOptionEnabled(self::HIDE_ONLINE) ? false : ($this->getVar('user_lastactivity') + GWF_ONLINE_TIMEOUT) >= time(); }
 	public function getPMHREF() { return sprintf('%spm/send/to/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
+	
+	public function displayEMail()
+	{
+		switch(rand(1,6))
+		{
+			case 1: $r = array('[at]', ' dot '); break;
+			case 2: $r = array('[at]', 'dot'); break;
+			case 3: $r = array('at ', '[dot]'); break;
+			case 4: $r = array(' at ', 'dot'); break;
+			case 5: $r = array(' at', ' dot '); break;
+			case 6: $r = array(' at ', '[dot]'); break;
+		}
+		return htmlspecialchars(str_replace(array('@', '.'), $r, $this->getVar('user_email')));
+	}
 	
 	###################
 	### Permissions ###
@@ -175,7 +191,7 @@ final class GWF_User extends GDO
 		if ($this->groups === true)
 		{ 
 			$this->groups = GDO::table('GWF_UserGroup')->selectArrayMap(
-				'group_name, t.*, group_founder, group_id', 'ug_userid='.$this->getID(), '', array('group'), self::ARRAY_O, -1, -1, 'group_name'
+				'group_name, t.*, group_founder, group_id, group_options', 'ug_userid='.$this->getID(), '', array('group'), self::ARRAY_O, -1, -1, 'group_name'
 			);
 		}
 		return $this->groups;

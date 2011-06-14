@@ -138,6 +138,7 @@ final class GWF_Mail
 		{
 			echo sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message);
 			
+//			die('TESTMAIL');
 //			echo "<pre>$encrypted</pre>";
 			
 			return true;

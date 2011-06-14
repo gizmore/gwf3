@@ -41,7 +41,7 @@ final class GWF_Language extends GDO
 	public static function getISOByID($id)
 	{
 		$id = (int)$id;
-		return self::table(__CLASS__)->getVar('lang_iso', "lang_id={$id}");
+		return self::table(__CLASS__)->selectVar('lang_iso', "lang_id={$id}");
 	}
 	
 	###############

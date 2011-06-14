@@ -27,7 +27,7 @@ final class GWF_HTML
 	##############
 	### Errors ###
 	##############
-	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', self::$trans->lang($key, $args), $log); }
+	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log); }
 	public static function error($title=NULL, $message, $log=true) { return self::errorA($title, array($message), $log); }
 	public static function errorA($title=NULL, array $messages, $log=true)
 	{
@@ -46,7 +46,7 @@ final class GWF_HTML
 			$errors = '';
 			foreach ($messages as $msg)
 			{
-				$msg = self::decode($msg);
+				$msg = GWF_Debug::shortpath(self::decode($msg));
 				$errors .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
 			}
 			return $errors;
@@ -106,13 +106,13 @@ final class GWF_HTML
 	
 	public static function anchor($url, $text=NULL, $title=NULL)
 	{
-		$url = htmlspecialchars($url);
 		if ($text === NULL) {
 			$text = $url;
 		}
+		$url = htmlspecialchars($url);
 		$title = $title === NULL ? '' : ' title="'.htmlspecialchars($title).'"';
 		
-		return sprintf('<a href="%s"%s>%s</a>', $url, $title, $text);
+		return sprintf('<a href="%s"%s>%s</a>', $url, $title, htmlspecialchars($text));
 	}
 	
 	public static function selected($bool)

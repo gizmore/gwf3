@@ -19,7 +19,6 @@ class GWF_Form
 	const LENGTH = 4;
 	const REQUIRED = 5;
 	
-	
 	# Data Types
 	const INT = 1;
 	const DATE = 2;

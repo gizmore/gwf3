@@ -132,6 +132,7 @@ abstract class GDO
 	public function getInt($var) { return (int)$this->gdo_data[$var]; }
 	public function getFloat($var) { return (double)$this->gdo_data[$var]; }
 	public function setVar($var, $val) { $this->gdo_data[$var] = $val; }
+	public function setVars(array $data) { $this->gdo_data = array_merge($this->gdo_data, $data); }
 	public function getEscaped($var) { return $this->escape($this->gdo_data[$var]); }
 	public function display($var) { return htmlspecialchars($this->gdo_data[$var]); }
 	public function urlencode($s) { return urlencode($this->getVar($s)); }

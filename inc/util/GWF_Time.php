@@ -447,5 +447,16 @@ final class GWF_Time
 	{
 		return strtotime('previous monday', time()+self::ONE_DAY);
 	}
+
+	/**
+	 * Get Long Weekday Names (translated), starting from monday. returns array('monday', 'tuesday', ...); 
+	 * @return array
+	 */
+	public static function getWeekdaysFromMo()
+	{
+		$l = GWF_HTML::getLang();
+		return array($l->lang('D1'),$l->lang('D2'),$l->lang('D3'),$l->lang('D4'),$l->lang('D5'),$l->lang('D6'),$l->lang('D0'));
+	}
+	
 }
 ?>

@@ -100,6 +100,8 @@ final class GWF_Session extends GDO
 			}
 		}
 		
+		$session->setVar('sess_time', time());
+		
 		self::$SESSION = $session;
 		
 		self::$SESSDATA = self::reloadSessData($session->getVar('sess_data'));
@@ -301,7 +303,16 @@ final class GWF_Session extends GDO
 			return false;
 		}
 		
+		self::$SESSION->setVar('sess_user', GWF_Guest::getGuest());
+		
 		return true;
+	}
+	
+	public static function getOnlineSessions()
+	{
+		$cut = time() - GWF_ONLINE_TIMEOUT;
+		$sid = self::$SESSION->getSessID();
+		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut} AND sess_sid!='{$sid}'"));
 	}
 }
 ?>

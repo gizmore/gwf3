@@ -138,7 +138,7 @@ final class GWF_PageMenu
 			'selected' => $letter,
 		);
 		
-		return GWF_Template::getSiteTemplate('letter_menu.php', array(), $tVars);
+		return GWF_Template::templatePHPMain('letter_menu.php', $tVars);
 	}
 	
 	private static function replaceLetterHREF($href, $letter)

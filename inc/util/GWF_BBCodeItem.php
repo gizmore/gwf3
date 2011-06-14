@@ -188,7 +188,7 @@ final class GWF_BBCodeItem
 		
 		$head .= $title === '' ? '' : ' '.GWF_HTML::lang('for').' '.$title;
 		
-		if (!GWF_WITH_GPL)
+		if (!GWF_GESHI_PATH)
 		{
 			$pre = '<div class="gwf_code">';
 			$pre .= sprintf('<div>%s</div>', $head);

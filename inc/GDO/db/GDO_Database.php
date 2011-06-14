@@ -17,10 +17,22 @@ abstract class GDO_Database
 	#############
 	const DEBUG = 0; # very verbose log 
 	const DEBUG_PATH = 'db_query';
-	protected $queries_opened = 0;
-	protected $queries_closed = 0;
+	
+	protected $queries_opened = 1;
+	protected $queries_closed = 1;
 	public function getQueriesOpened() { return $this->queries_opened; }
 	public function getQueriesClosed() { return $this->queries_closed; }
+	
+	private $logging = true;
+	public function isLogging() { return $this->logging; }
+	public function setLogging($bool) { $this->logging = $bool; }
+	
+	private $email = true;
+	public function setEMailOnError($bool) { $this->email = $bool; }
+	
+	private $verbose = GWF_USER_STACKTRACE;
+	public function isVerbose() { return $this->verbose === true; }
+	public function setVerbose($bool) { $this->verbose = $bool; }
 	
 	##############
 	### Timing ###
@@ -67,8 +79,8 @@ abstract class GDO_Database
 	public function error($query, $errno, $error)
 	{
 		$message = sprintf("SQL Error(%s): %s<br/>\n%s<br/>\n", $errno, $error, htmlspecialchars($query));
-		echo GWF_HTML::error('GDO', $message);
-		if (GWF_USER_STACKTRACE)
+		echo GWF_HTML::error('GDO', $message, $this->isLogging());
+		if ($this->verbose)
 		{
 			echo GWF_Debug::backtrace($message, true);
 		}
@@ -78,7 +90,7 @@ abstract class GDO_Database
 	
 	private function emailOnError($message)
 	{
-		if (GWF_DEBUG_EMAIL & 1)
+		if ( (GWF_DEBUG_EMAIL & 1) && ($this->email) )
 		{
 			$message = GWF_HTML::br2nl($message).PHP_EOL.PHP_EOL;
 			$mail = new GWF_Mail();
@@ -111,6 +123,27 @@ abstract class GDO_Database
 		}
 		$this->free($result); 
 		return $row;
+	}
+	
+	/**
+	 * STUPID WeChall!
+	 * @deprecated
+	 * @param string $query
+	 * @return array|false
+	 */
+	public function queryAll($query)
+	{
+		if (false === ($result = $this->queryRead($query)))
+		{
+			return false;
+		}
+		$back = array();
+		while (false !== ($row = $this->fetchAssoc($result)))
+		{
+			$back[] = $row;
+		}
+		$this->free($result);
+		return $back;
 	}
 }
 ?>

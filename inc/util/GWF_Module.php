@@ -29,6 +29,7 @@ class GWF_Module extends GDO
 	}
 
 	public function getID() { return $this->getVar('module_id'); }
+	public function getDir() { return 'module/'.$this->getName(); }
 	public function getName() { return $this->getVar('module_name'); }
 	public function getLang() { return $this->lang; }
 	public function getVersion() { return 1.00; }
@@ -47,6 +48,7 @@ class GWF_Module extends GDO
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isInstalled() { return $this->getVersionDB() > 0; }
 	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'module/'.$this->getName().'/'.$file; }
+	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
 	public static function getModulesLoaded($format = false)
 	{
 		if(false === $format) {
@@ -131,20 +133,23 @@ class GWF_Module extends GDO
 	 */
 	public static function loadModuleDB($modulename, $include=false, $load_lang=false)
 	{
-		if (isset(self::$MODULES[$modulename]))
+		if (!isset(self::$MODULES[$modulename]))
 		{
-			return self::$MODULES[$modulename];
+			if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\'')))
+			{
+				return false;
+			}
+			
+			if (false === ($module = self::initModuleB($modulename, $data)))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			$module = self::$MODULES[$modulename];
 		}
 		
-		if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\'')))
-		{
-			return false;
-		}
-		
-		if (false === ($module = self::initModuleB($modulename, $data)))
-		{
-			return false;
-		}
 		
 		if ($include)
 		{

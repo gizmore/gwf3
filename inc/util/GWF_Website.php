@@ -4,10 +4,10 @@ final class GWF_Website
 	############
 	### Init ###
 	############
-	public static function init($server_root)
+	public static function init($server_root, $blocking=true)
 	{
 		header('Content-Type: text/html; charset=UTF-8');
-		if (!GWF_Session::start()) { return false; } # Not installed
+		if (!GWF_Session::start($blocking)) { return false; } # Not installed
 		GWF_Language::init();
 		GWF_HTML::init();
 		GWF_Debug::setBasedir($server_root);

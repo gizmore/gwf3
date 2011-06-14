@@ -89,7 +89,7 @@ final class GWF_Debug
 				require_once dirname(__FILE__).'/GWF_Log.php';
 				require_once dirname(__FILE__).'/GWF_IP6.php';
 				require_once dirname(__FILE__).'/GWF_Mail.php';
-				self::error_handler(1, $error['message'], $error['file'], $error['line'], NULL);
+				self::error_handler(1, $error['message'], self::shortpath($error['file']), $error['line'], NULL);
 			}
 		}
 	}
@@ -183,7 +183,7 @@ final class GWF_Debug
 		$back = '';
 		
 		# Fix full path disclosure
-		$message = self::shortfile($message);
+		$message = self::shortpath($message);
 		
 		# Append PRE header.
 		$back .= $html ? ('<pre style="margin:4px; padding:3px; font-size:14px; text-align:left;">'.PHP_EOL) : '';
@@ -222,17 +222,17 @@ final class GWF_Debug
 			list($func, $file, $line) = $imp;
 			$len = strlen($func);
 			$func .= str_repeat('.', $longest-$len);
-			$copy[] = sprintf('%s %s line %s.', $func, self::shortfile($file), $line);
+			$copy[] = sprintf('%s %s line %s.', $func, self::shortpath($file), $line);
 		}
 		
 		$back .= $html === true ? '<hr/>' : PHP_EOL;
-		$back .= sprintf('Backtrace starts in %s line %s.', self::shortfile($prefile), $preline).PHP_EOL;
+		$back .= sprintf('Backtrace starts in %s line %s.', self::shortpath($prefile), $preline).PHP_EOL;
 		$back .= implode(PHP_EOL, array_reverse($copy));
 		$back .= $html ? "\n</pre>\n" : "\n";
 		return $back;
 	}
 	
-	private static function shortfile($path)
+	public static function shortpath($path)
 	{
 		return trim(str_replace(self::$basedir, '', $path), ' /');
 	}
