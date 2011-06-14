@@ -460,6 +460,7 @@ final class GWF_ModuleLoader
 		{
 			$module instanceof GWF_Module;
 			$module->onInclude();
+			$module->onLoadLanguage();
 			$module->onCronjob();
 		}
 		
