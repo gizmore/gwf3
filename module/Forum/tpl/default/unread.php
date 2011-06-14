@@ -24,8 +24,11 @@ echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 foreach ($tVars['threads'] as $t)
 {
 	$t instanceof GWF_ForumThread;
+	$b = $t->getBoard();
 	echo GWF_Table::rowStart();
-	echo GWF_Table::column(GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title')));
+	$boardlink = GWF_HTML::anchor($b->getShowBoardHREF(), $b->getVar('board_title'));
+	$threadlink = GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title'));
+	echo GWF_Table::column("{$boardlink}<br/>{$threadlink}");
 	echo GWF_Table::column($t->getFirstPosterLink());
 	echo GWF_Table::column($t->getPostCount(), 'gwf_num');
 	echo GWF_Table::column($t->getLastPosterLink());
