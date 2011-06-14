@@ -60,7 +60,7 @@ final class Forum_ShowThread extends GWF_Method
 	#########################
 	private function sanitize(Module_Forum $module)
 	{
-		if (false === ($this->thread = $module->getCurrentThread())) {
+		if (false === ($this->thread = GWF_ForumThread::getByID(Common::getGetString('tid')))) {
 			return $module->error('err_thread');
 		}
 		
