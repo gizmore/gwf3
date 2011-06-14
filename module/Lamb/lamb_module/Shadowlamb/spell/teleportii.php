@@ -77,7 +77,7 @@ final class Spell_teleportii extends SR_Spell
 		
 		$mc = $p->getMemberCount();
 		$need_level = $mc / 2;
-		if ($level < $mc)
+		if ($level < $need_level)
 		{
 			$bot->reply(sprintf('You need at least %s level %s to teleport %s party members.', $this->getName(), $need_level, $mc));
 			return false;
