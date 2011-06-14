@@ -160,6 +160,18 @@ final class Common
 		return $val;
 	}
 	
+	/**
+	 * janklopper .AT. gmail dot.com 10-Nov-2004 02:26
+	 * Since pow doesn't support decimal powers, you can use a different solution.
+	 * Thanks to dOt for doing the math!
+	 * @param float $a
+	 * @param float $b
+	 */
+	public static function pow($a, $b)
+	{
+		return exp($b * log($a));
+	}
+	
 	###################
 	### String Util ###
 	###################
