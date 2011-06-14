@@ -638,5 +638,19 @@ $lang = array(
 	'msg_add_descr' => 'The description has been added.',
 	'msg_def_descr' => 'The default description has been changed to %1%.',
 	'btn_edit_site_descr' => 'Edit Site Descriptions',
+
+	# v4.17 (Hide ranking)
+	'th_hide_rank' => 'Hide your ranks',
+	'tt_hide_rank' => 'Remove yourself from the ranking tables.',
+	'th_hide_score' => 'Hide your scores',
+	'tt_hide_score' => 'This will hide your scores and percentages in your profile.',
+	'msg_hide_rank_1' => 'Your rank is now hidden in your profile and the rankings.',
+	'msg_hide_rank_0' => 'Your rank is now visible in your profile and the rankings.',
+	'msg_hide_score_1' => 'Your scores and percentages are now hidden in your profile.',
+	'msg_hide_score_0' => 'Your scores and percentages are now visible in your profile.',
+	'hidden' => 'Hidden',
+		
+	# v5.00 (fixes)
+	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
 );
 ?>
