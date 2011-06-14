@@ -8,7 +8,7 @@ function smarty_function_button($params, $template)
 	$type = empty($params['type']) ? 'generic' : $params['type'];
 	$url = empty($params['url']) ? '#' : $params['url'];
 	return sprintf('<a class="gwf_button %s" href="%s"%s title="%s"><span class="gwf_btn_%s">%s</span></a>'.PHP_EOL, 
-		$class, $url, $onclick, $title, $type, $text
+		$class, htmlspecialchars($url), $onclick, $title, $type, $text
 	);
 }
 ?>
