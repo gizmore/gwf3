@@ -1,7 +1,4 @@
 <?php
-define('TIME_THIS_YEAR', date('Y'));
-define('TIME_THIS_MONTH', date('m'));
-define('TIME_THIS_DAY', date('d'));
 /**
  * GDO_Time helper class.
  * TODO: Make ready for applications that don't use base/lang files.
@@ -25,8 +22,6 @@ final class GWF_Time
 	const ONE_WEEK = 604800;
 	const ONE_MONTH = 2592000;
 	const ONE_YEAR = 31536000;
-	
-	const THIS_YEAR = TIME_THIS_YEAR;
 	
 	/**
 	 * Get a gdo_date from a timestamp.

@@ -160,7 +160,7 @@ final class GWF_DateSelect
 	{
 		if (!is_numeric($selected)) { $selected = 0; }
 		$min = (int) $min;
-		if (!is_numeric($max)) { $max = GWF_Time::THIS_YEAR; }
+		if (!is_numeric($max)) { $max = date('Y'); }
 
 		$back = sprintf('<select name="%s">', $key);
 		$sel = $selected < $min || $selected > $max ? ' selected="selected"' : '';
