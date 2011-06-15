@@ -49,7 +49,7 @@
 				
 			case GWF_Form::CAPTCHA:
 				$foo = empty($data[1]) ? '' : '?chars='.$data[1];
-				printf('<tr><td>%s</td><td>%s</td><td><img src="%simg/captcha.php%s" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
+				printf('<tr><td>%s</td><td>%s</td><td><img src="%simg/captcha.php%s" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" alt="Captcha" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
 				printf('<tr><td>%s</td><td>%s</td><td><input type="text" name="%s" value="%s" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 				break;
 				
@@ -66,7 +66,15 @@
 				break;
 				
 			case GWF_Form::HEADLINE:
-				printf('<tr class="headline"><td colspan="%d">%s</td></tr>'.PHP_EOL, $cols, $data[1]);
+				if (isset($data[2]))
+				{
+					printf('<tr><td>%s%s</td><td>%s</td><td>%s</td></tr>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
+				}
+				else
+				{
+
+					printf('<tr class="headline"><td colspan="%d">%s</td></tr>'.PHP_EOL, $cols, $data[1]);
+				}
 				break;
 				
 			case GWF_Form::SUBMITS:
