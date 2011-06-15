@@ -39,5 +39,7 @@ require_once 'module/WeChall/WC_ChallSolved.php';
 
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 
+GWF_Doctype::setDoctype('xhtmlstrict');
+
 # HTML Header //TODO: replace wc4
-echo GWF_Template::template('tpl/wc4/chall_head.tpl', array('iso' => GWF_Language::getCurrentISO(), 'doctype' => GWF_Doctype::xhtmlstrict(), 'html_head' => GWF_Website::getHTMLHead()) );
+echo GWF_Website::getHTMLHead() . '<body><div id="page_wrap">';
