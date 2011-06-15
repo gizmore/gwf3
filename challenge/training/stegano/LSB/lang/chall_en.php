@@ -1,0 +1,14 @@
+<?php
+$lang = array(
+	'title' => 'Training: LSB - The least significant bit',
+	'info' => 
+		'This is a very simple, yet spectacular trick.<br/>'.
+		'Can you see the hidden solution?<br/>'.
+		'<br/>'.
+		'Note: The solution is bound to your session ID and consits of twelve letters.<br/><br/>'.
+		'%1%<br/>'.
+		'Thanks go out to %2% for creating the image :)',
+
+	'img_title' => 'The carrier image',
+);
+?>
