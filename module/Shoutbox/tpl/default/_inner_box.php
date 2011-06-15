@@ -9,7 +9,7 @@ foreach ($tVars['msgs'] as $msg)
 	$style = wcStyleForUser($user);
 //	$style = 'background: #'.$color.'!important;';
 	
-	echo GWF_Table::rowStart($style);
+	echo GWF_Table::rowStart(false, '', '', $style);
 	echo sprintf('<td>%s</td>', $msg->displayUsername()).PHP_EOL;
 	echo sprintf('<td>%s</td>', $msg->displayMessage()).PHP_EOL;
 	echo GWF_Table::rowEnd();
