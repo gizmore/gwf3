@@ -1,6 +1,8 @@
 <?php
 ### This is wechall html_head!
 
+define('GWF_DEBUG_TIME_START', microtime(true));
+
 if(defined('WC_HTML_HEAD__DEFINED')) {
 	return;
 }
@@ -10,10 +12,9 @@ if(defined('WC_HTML_HEAD__DEFINED')) {
 #####################################
 require_once 'inc/_gwf_include.php';
 
-GWF_Session::start(defined('GWF_SESSION_NOT_BLOCKING')?false:true);
+GWF_Website::init(dirname(__FILE__), defined('GWF_SESSION_NOT_BLOCKING')?false:true);
 
-GWF_Language::init();
-GWF_HTML::init();
+GWF_Module::autoloadModules();
 
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';

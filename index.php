@@ -17,7 +17,7 @@ if (false === GWF_Module::autoloadModules()) {
 }
 
 # Load the module
-if (false === ($module = GWF_Module::loadModuleDB(Common::getGetString('mo')))) {
+if (false === ($module = GWF_Module::loadModuleDB(Common::getGetString('mo', GWF_DEFAULT_MODULE)))) {
 	if (false === ($module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) {
 		die('No module found.');
 	}
