@@ -35,7 +35,7 @@ final class Contact_SendMail extends GWF_Method
 			'form' => $form->templateY($module->lang('ft_sendmail', array( $user->displayUsername()))),
 //			'' => '',
 		);
-		return $module->template('sendmail.php', $tVars);
+		return $module->templatePHP('sendmail.php', $tVars);
 	}
 	
 	private function send(Module_Contact $module, GWF_User $user)
