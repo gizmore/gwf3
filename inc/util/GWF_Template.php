@@ -91,12 +91,14 @@ final class GWF_Template
 		return self::$_Smarty;
 	}
 
-	public static function addMainTvars($tVars = NULL) {
-		if (self::$_Smarty === NULL) {
-			$smarty = self::getSmarty();
-		} else {
-			$smarty = self::$_Smarty;
-		}
+	public static function addMainTvars($tVars = NULL)
+	{
+		$smarty = self::getSmarty();
+//		if (self::$_Smarty === NULL) {
+//			$smarty = self::getSmarty();
+//		} else {
+//			$smarty = self::$_Smarty;
+//		}
 		
 		if (is_array($tVars))
 		{
@@ -106,24 +108,24 @@ final class GWF_Template
 			}
 		}
 		
-		self::$_Smarty = $smarty;
-		
+//		self::$_Smarty = $smarty;
 	}
 	
 	public static function templateMain($file, $tVars=NULL)
 	{
-		return self::template("tpl/%DESIGN%/$file", $tVars);
+		return self::template('tpl/%DESIGN%/'.$file, $tVars);
 	}
 	
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
 	{
 		$name = $module->getName();
-		return self::template("module/$name/tpl/%DESIGN%/$file", $tVars);
+		return self::template("module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
 	}
 	
 	public static function template($path, $tVars=NULL)
 	{
-		if (false === ($path2 = self::getPath($path))) {
+		if (false === ($path2 = self::getPath($path)))
+		{
 			return self::pathError($path);
 		}
 		$smarty = self::getSmarty();

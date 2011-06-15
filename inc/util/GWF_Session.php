@@ -265,10 +265,12 @@ final class GWF_Session extends GDO
 		if (false === self::$SESSION->saveVars($data)) {
 			return false;
 		}
+		self::$SESSION->setVar('sess_user', $user);
 		
 		# Set cookies
 		self::setCookies(self::$SESSION->getVar('sess_id'), $userid, self::$SESSION->getVar('sess_sid'));
 		self::$USER = $user;
+		
 
 		# Call hooks
 		return $with_hooks ? GWF_Hook::call(GWF_Hook::LOGIN, $user) : true;

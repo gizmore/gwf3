@@ -4,15 +4,24 @@ final class GWF_Website
 	############
 	### Init ###
 	############
-	public static function init($server_root, $blocking=true)
+	public static function init($server_root, $blocking=true, $no_session=false)
 	{
 		header('Content-Type: text/html; charset=UTF-8');
-		if (!GWF_Session::start($blocking)) { return false; } # Not installed
 		GWF_Language::init();
-		GWF_HTML::init();
 		GWF_Debug::setBasedir($server_root);
-		$user = GWF_Session::getUser();
-		$username = $user === false ? false : $user->getVar('user_name');
+		GWF_HTML::init();
+		$username = false;
+		if (!$no_session)
+		{
+			if (!GWF_Session::start($blocking))
+			{
+				return false; # Not installed
+			}
+			if (false !== ($user = GWF_Session::getUser()))
+			{
+				$username = $user->getVar('user_name');
+			}
+		}
 		GWF_Log::init($username, true, $server_root.'/protected/logs');
 	}
 	
