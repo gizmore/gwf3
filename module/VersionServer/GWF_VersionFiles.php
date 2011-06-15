@@ -102,7 +102,7 @@ final class GWF_VersionFiles extends GDO
 		# Get designname
 		if (is_string($designname)) { // keep
 		}
-		if (preg_match('#.*(^|/)template/([^/]+)/.+$#', $fullpath, $matches)) {
+		if (preg_match('#.*(^|/)tpl/([^/]+)/.+$#', $fullpath, $matches)) {
 			$designname = $matches[2];
 		} else {
 			$designname = '';

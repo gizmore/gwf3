@@ -105,7 +105,7 @@ final class VersionServer_Upgrade extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		fprintf($fhManifest, 'GWF2:DATESTAMP:%s'.PHP_EOL, GWF_Time::THIS_DATE);
+		fprintf($fhManifest, 'GWF2:DATESTAMP:%s'.PHP_EOL, date('YmdHis'));
 		
 		while (false !== ($file = $files->fetchObject($result)))
 		{
