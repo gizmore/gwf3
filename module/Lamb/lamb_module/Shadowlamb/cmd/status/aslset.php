@@ -1,4 +1,6 @@
 <?php
+require_once 'asl.php';
+
 final class Shadowcmd_aslset extends Shadowcmd_asl
 {
 	public static function getASLSetHelp(SR_Player $player) { return Shadowhelp::getHelp($player, 'aslset'); }
