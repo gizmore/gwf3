@@ -233,24 +233,7 @@ final class GWF_Website
 	####################
 	### Display Page ###
 	####################
-	public static function displayPage($page, $timings)
-	{
-//		if (false === ($user = GWF_Session::getUser())) {
-//			$user = GWF_Guest::getGuest();
-//		}
-//		
-//		$tVars = array(
-//			'user' => $user,
-//			'head' => self::getHTMLHead(),
-//			'body' => self::getHTMLBody($page, $timings),
-//		);
-		
-//		return GWF_Template::templateMain('html.tpl', $tVars);
-		
-		return GWF_Doctype::getDoctype() . self::getHTMLHead() . self::getHTMLBody($page, $timings) . PHP_EOL.'</html>';
-		
-	}
-	
+
 	public static function getHTMLHead()
 	{
 		$tVars = array(
@@ -268,29 +251,30 @@ final class GWF_Website
 		return GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_head($timings, $path = 'tpl/%DESIGN%/') {
+	public static function getHTMLbody_head($t, $path = 'tpl/%DESIGN%/') {
 		$tVars = array(
-			'timings' => $timings,
+//			'timings' => $timings,
 			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return GWF_Template::template($path.'html_body.tpl', $tVars);
 	}
+	
 	public static function getHTMLbody_foot($timings, $path = 'tpl/%DESIGN%/') {
 		$tVars = array(
-			'timings' => $timings,
+			'timings' => GWF_DebugInfo::getTimings(),
 			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return GWF_Template::template($path.'html_foot.tpl', $tVars);
 	}
-	public static function getHTMLBody($page, $timings)
+	
+	public static function getHTMLBody($page)
 	{
-		$tVars = array(
-//			'page' => $page,
-			'timings' => $timings,
-			'user' => GWF_User::getStaticOrGuest(),
-		);
-		return GWF_Template::templateMain('html_body.tpl', $tVars) . $page . GWF_Template::templateMain('html_foot.tpl', $tVars);
+		return self::getHTMLbody_head() . $page . self::getHTMLbody_foot();
 	}
 	
+	public static function displayPage($page)
+	{
+		return GWF_Doctype::getDoctype() . self::getHTMLHead() . self::getHTMLBody($page) . PHP_EOL.'</html>';
+	}
 }
 ?>
