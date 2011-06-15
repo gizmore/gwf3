@@ -10,7 +10,7 @@ final class GWF_AvatarGallery extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'ag_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'ag_uid')),
+			'ag_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'ag_uid', 'user_id')),
 			'ag_hits' => array(GDO::UINT, 0),
 			'ag_version' => array(GDO::UINT, 0),
 		);
@@ -24,11 +24,12 @@ final class GWF_AvatarGallery extends GDO
 	public static function onViewed(GWF_User $user)
 	{
 		$userid = $user->getID();
+		$av = $user->getVar('user_avatar_v');
 		if (false === ($row = self::getByID($userid))) {
 			$row = new self(array(
 				'ag_uid' => $userid,
 				'ag_hits' => 1,
-				'ag_version' => $user->getAvatarVersion(),
+				'ag_version' => $av,
 			));
 			if (false === $row->insert()) {
 				return false;
@@ -37,10 +38,10 @@ final class GWF_AvatarGallery extends GDO
 			return true;
 		}
 		
-		if ($row->getVar('ag_version') !== $user->getAvatarVersion()) {
+		if ($row->getVar('ag_version') !== $av) {
 			return $row->saveVars(array(
 				'ag_hits' => 1,
-				'ag_version' => $user->getAvatarVersion(),
+				'ag_version' => $av,
 			));
 		}
 		
