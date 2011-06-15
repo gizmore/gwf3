@@ -3,17 +3,24 @@ final class GWF_Doctype
 {
 	public static function html4()
 	{
-		die('Please implement '.__METHOD__);
+		return 
+			'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"'.PHP_EOL.
+			'"http://www.w3.org/TR/html4/loose.dtd">'.PHP_EOL;
+		
 	}
 
 	public static function html4strict()
 	{
-		die('Please implement '.__METHOD__);
+		return
+			'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"'.PHP_EOL.
+			'"http://www.w3.org/TR/html4/strict.dtd">'.PHP_EOL;
 	}
 
 	public static function xhtml()
 	{
-		die('Please implement '.__METHOD__);
+		return
+			'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.PHP_EOL.
+			'"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'.PHP_EOL;
 	}
 
 	public static function xhtmlstrict()
@@ -25,7 +32,7 @@ final class GWF_Doctype
 
 	public static function html5()
 	{
-		die('Please implement '.__METHOD__);
+		return '<!DOCTYPE html>';
 	}
 }
 ?>
