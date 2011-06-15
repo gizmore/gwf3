@@ -194,11 +194,12 @@ else {
 }
 
 # Links
-if ( (false !== ($mod_links = GWF_Module::getModule('Links'))) && (false !== ($mod_votes = GWF_Module::getModule('Votes'))) )
+//if ( (false !== ($mod_links = GWF_Module::getModule('Links'))) && (false !== ($mod_votes = GWF_Module::getModule('Votes'))) )
+if ( (false !== ($mod_links = GWF_Module::loadModuleDB('Links', true, true))) && (false !== ($mod_votes = GWF_Module::loadModuleDB('Votes', true))) )
 {
-	$mod_votes->onInclude();
-	$mod_links->onInclude();
-	$mod_links->onLoadLanguage();
+//	$mod_votes->onInclude();
+//	$mod_links->onInclude();
+//	$mod_links->onLoadLanguage();
 	echo wcProfileFavLinks($u, $mod_links);
 	echo wcProfileOwnLinks($u, $mod_links);
 }

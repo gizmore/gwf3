@@ -123,7 +123,7 @@ function wcProfileGraph(GWF_User $user, $type)
 	}
 	else {
 		$href = GWF_WEB_ROOT.'graph/wc_'.$type.'.'.$user->urlencode('user_name').'.vs.'.$tu->urlencode('user_name').'.png';
-		$alt = WC_HTML::lang('alt_graph_'.$type.'_vs', $user->displayUsername(), $tu->displayUsername());
+		$alt = WC_HTML::lang('alt_graph_'.$type.'_vs', array($user->displayUsername(), $tu->displayUsername()));
 		return sprintf('<img src="%s" alt="%s" title="%s" />', $href, $alt, $alt);
 	}
 }
@@ -148,9 +148,9 @@ function wcProfileFavLinks(GWF_User $user, Module_Links $mod_links)
 		return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 	}
 	$links = array();
-	while (false !==($row = $db->fetchAssoc($result)))
+	while (false !== ($row = $db->fetchAssoc($result)))
 	{
-		$links[] = $linksT->createClass($row);
+		$links[] = new GWF_Links($row);#$linksT->createClass($row);
 	}
 	
 	if (0 === ($count = count($links))) {
@@ -185,7 +185,7 @@ function wcProfileOwnLinks(GWF_User $user, Module_Links $mod_links)
 	$links = array();
 	while (false !==($row = $db->fetchAssoc($result)))
 	{
-		$links[] = $linksT->createClass($row);
+		$links[] = new GWF_Links($row);# $linksT->createClass($row);
 	}
 	
 	if (0 === ($count = count($links))) {
