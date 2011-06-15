@@ -51,9 +51,9 @@ final class BAIM_MC extends GDO
 	public function canChange()
 	{
 		# Ugly hackfix for some user -.-
-		if ($this->getVar('bmc_uid') === 215) {
-			return true;
-		}
+//		if ($this->getVar('bmc_uid') === 215) {
+//			return true;
+//		}
 		
 		if (NULL === ($last_change = $this->getVar('bmc_date'))) {
 			return true;
