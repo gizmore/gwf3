@@ -27,7 +27,6 @@ echo '<head>'.PHP_EOL;
 echo sprintf('<title>GWF Install Wizard</title>').PHP_EOL;
 echo '<script type="text/javascript" src="'.GWF_WEB_ROOT.'js/jquery-1.4.2.min.js"></script>'.PHP_EOL;
 echo '<link rel="stylesheet" type="text/css" href="install_css/install.css?v=1" />'.PHP_EOL;
-//echo '<link rel="stylesheet" type="text/css" href="'.GWF_WEB_ROOT.'template/default/gwf_install.css?v=1" />'.PHP_EOL;
 echo '</head>'.PHP_EOL;
 echo '<body>'.PHP_EOL;
 echo install_wizard_banner();
