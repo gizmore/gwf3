@@ -302,7 +302,7 @@ final class Shadowhelp
 						'hunt' => "Leader command. Usage: #hunt <player>. Hunt another human party.",
 						'enter' => 'Leader command. Usage: #(en)ter. Enter a location. Check your current location with #kp. find new locations with #(exp)lore.',
 						'exit' => 'Leader command. Usage: #exit. Exit a location and return outside of it in the same city. To leave a dungeon, use #leave in the dungeons exit.',
-						'sleep' => "Leader command. Usage: #sleep. In Hotels and some other locations, you can sleep to restore your HP and MP.",
+						'sleep' => "Leader command. Usage: #sleep. In Hotels and some other locations, you can sleep to rest and restore your HP and MP.",
 						'stop' => "Leader command. Usage: #stop. The leader can interrupt a moving party with the stop command. Your #(exp)lore and #(g)oto timers will reset.",
 					),
 					
@@ -375,7 +375,7 @@ final class Shadowhelp
 //						
 						'hotel_cmds' => 'Hotel commands',
 						array(
-							'sleep' => 'Location command. Usage: #sleep. In hotels you can sleep to recover your parties HP and MP. In some hotels this cost some nuyen.',
+							'sleep' => NULL,#'Location command. Usage: #sleep. In hotels you can sleep to recover your parties HP and MP. In some hotels this cost some nuyen.',
 						),
 						
 						'dungeon_cmds' => 'Dungeon commands',
