@@ -26,8 +26,8 @@ final class WeChall_SiteDetails extends GWF_Method
 		require_once('module/WeChall/WC_SiteAdmin.php');
 		require_once 'module/WeChall/WC_SiteDescr.php';
 		
-		GWF_Module::loadModuleDB('Forum', true, true);
-		GWF_ForumBoard::init(true, true);
+//		GWF_Module::loadModuleDB('Forum', true, true);
+//		GWF_ForumBoard::init(true, true);
 		GWF_Module::loadModuleDB('Votes', true);
 		
 		$time = $module->cfgLastPlayersTime();

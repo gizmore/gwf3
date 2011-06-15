@@ -110,7 +110,7 @@ final class WeChall_Freeze extends GWF_Method
 		
 		if (WC_Freeze::isUserFrozenOnSite($userid, $siteid))
 		{
-			return $module->message('msg_frozen', $this->user->displayUsername(), $this->site->displayName());
+			return $module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
 		}
 
 		$old_totalscore = $this->user->getVar('user_level');
@@ -129,7 +129,7 @@ final class WeChall_Freeze extends GWF_Method
 
 		# Insert event.
 		$rank = WC_RegAt::calcExactRank($this->user);
-		$this->user = GWF_User::getByIDNoCache($userid);
+		$this->user = GWF_User::getByID($userid);
 		$totalscore = $this->user->getVar('user_level');
 		
 		WC_HistoryUser2::insertEntry($this->user, $this->site, 'ban', 0, $row->getOnsiteScore(), $totalscore-$old_totalscore);
@@ -140,7 +140,7 @@ final class WeChall_Freeze extends GWF_Method
 		}
 		
 		# All done :)
-		return $module->message('msg_frozen', $this->user->displayUsername(), $this->site->displayName());
+		return $module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
 	}
 		
 	private function onUnFreeze(Module_WeChall $module, $data)
@@ -180,7 +180,7 @@ final class WeChall_Freeze extends GWF_Method
 		}
 
 		# Done
-		return $module->message('msg_unfrozen', $user->displayUsername(), $site->displayName());
+		return $module->message('msg_unfrozen', array($user->displayUsername(), $site->displayName()));
 	}
 }
 ?>

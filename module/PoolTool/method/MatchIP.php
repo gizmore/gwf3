@@ -31,13 +31,13 @@ final class PoolTool_MatchIP extends GWF_Method
 	private function getForm(Module_PoolTool $module)
 	{
 		if (!(isset($_POST['dated']))) {
-			$_POST['dated'] = GWF_Time::THIS_DAY;
+			$_POST['dated'] = date('d');
 		}
 		if (!(isset($_POST['datem']))) {
-			$_POST['datem'] = GWF_Time::THIS_MONTH;
+			$_POST['datem'] = date('m');
 		}
 		if (!(isset($_POST['datey']))) {
-			$_POST['datey'] = GWF_Time::THIS_YEAR;
+			$_POST['datey'] = date('Y');
 		}
 		
 		$data = array(

@@ -37,7 +37,7 @@ final class WC_HistoryUser extends GDO
 	
 	public static function insertEntry(GWF_User $user, WC_Site $site, $onsitescore, $comment)
 	{
-		$user = GWF_User::getByIDNoCache($user->getID());
+		$user = GWF_User::getByID($user->getID());
 		$max = $site->getOnsiteScore();
 		$perc = $max <= 0 ? 0 : round($onsitescore / $max * 10000);
 		$entry = new self(array(

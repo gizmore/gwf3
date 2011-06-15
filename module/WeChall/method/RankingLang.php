@@ -150,20 +150,22 @@ final class WeChall_RankingLang extends GWF_Method
 		#SELECT SUM(regat_score) FROM gwf_wc_regat WHERE regat_langid=1 GROUP BY regat_uid HAVING SUM(regat_score)>180000;
 		$db = gdo_db();
 		$userid = $user->getID();
-		$query = "SELECT SUM(regat_score) FROM $regat WHERE regat_langid=$langid AND regat_uid=$userid";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT SUM(regat_score) s FROM $regat WHERE regat_langid=$langid AND regat_uid=$userid";
+		if (false === ($result = $db->queryFirst($query))) {
 			return array(1, 1);
 		}
-		if ($result[0] === NULL) {
+		if ($result['s'] === NULL) {
 			return array(1, 1);
 		}
-		$score = $result[0];
+		$score = $result['s'];
 		
 		$query = "SELECT SUM(regat_score) FROM $regat WHERE regat_langid=$langid GROUP BY regat_uid HAVING (SUM(regat_score)>($score)) OR (SUM(regat_score)=($score) AND regat_uid<$userid)";
 		if (false === ($result = $db->queryRead($query))) {
+			$db->free($result);
 			return array(1, 1);
 		}
 		$rank = $db->numRows($result)+1;
+		$db->free($result);
 //		$rank = intval($result['c'])+1;
 		$page = GWF_PageMenu::getPageForPos($rank, $ipp);
 		return array($page, $rank);

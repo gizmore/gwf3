@@ -25,8 +25,8 @@ echo '<a name="join_6"></a>'.PHP_EOL;
 echo GWF_Box::box($l->lang('join_6b'), '6) '.$l->lang('join_6t'));
 
 # 7
-$code_7_1 = htmlspecialchars(file_get_contents('module/WeChall/template/default/join_us/code_7_1.php'));
-$code_7_2 = htmlspecialchars(file_get_contents('module/WeChall/template/default/join_us/code_7_2.php'));
+$code_7_1 = htmlspecialchars(file_get_contents('module/WeChall/tpl/default/join_us/code_7_1.php'));
+$code_7_2 = htmlspecialchars(file_get_contents('module/WeChall/tpl/default/join_us/code_7_2.php'));
 $url_7_1 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional&amp;show=example_7_1';
 $url_7_2 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional&amp;show=example_7_2';
 $hidden_7_1 = Common::getGet('show') === 'example_7_1' ? 'block' : 'none';

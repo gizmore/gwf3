@@ -79,7 +79,7 @@ final class WC_RegAt extends GDO
 	{
 		$siteid = (int)$siteid;
 		$onsitename = GDO::escape($onsitename);
-		return self::table(__CLASS__)->selectFirst("regat_sid=$siteid AND regat_onsitename='$onsitename'");
+		return self::table(__CLASS__)->selectFirstObject('*', "regat_sid=$siteid AND regat_onsitename='$onsitename'");
 	}
 	
 	/**
@@ -92,7 +92,7 @@ final class WC_RegAt extends GDO
 	{
 		$siteid = (int) $siteid;
 		$onsitename = self::escape($onsitename);
-		if (false === ($regat = self::table(__CLASS__)->selectFirst("regat_sid=$siteid AND regat_onsitename='$onsitename'"))) {
+		if (false === ($regat = self::table(__CLASS__)->selectFirstObject('*', "regat_sid=$siteid AND regat_onsitename='$onsitename'"))) {
 			return false;
 		}
 		return GWF_User::getByID($regat->getVar('regat_uid'));

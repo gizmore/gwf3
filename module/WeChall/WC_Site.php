@@ -132,17 +132,17 @@ class WC_Site extends GDO
 	public function getLinkcount() { return $this->getVar('site_linkcount'); }
 	public function getOnsiteScore() { return $this->getVar('site_maxscore'); }
 	public function getAuthKey() { return $this->getVar('site_authkey'); }
-	public function getLinkToken($userid, $onsitename) { return Common::md5(GWF_SECRET_SALT.$this->getAuthKey().$userid.$this->getID().$onsitename.GWF_SECRET_SALT); }
+	public function getLinkToken($userid, $onsitename) { return GWF_Password::md5(GWF_SECRET_SALT.$this->getAuthKey().$userid.$this->getID().$onsitename.GWF_SECRET_SALT); }
 	public function getTags() { return $this->getVar('site_tags'); }
 	public function getTagArray() { return explode(',', $this->getVar('site_tags')); }
 	public function getTagBits() { return $this->getVar('site_tagbits'); }
 	public function getColor() { return $this->getVar('site_color'); }
 
-	public static function getLangs() {  return self::table(__CLASS__)->selectColumn('site_language', 'site_language>0'); }
+	public static function getLangs() {  return self::table(__CLASS__)->selectColumn('DISTINCT(site_language)', 'site_language>0'); }
 	public static function getLangISOs()
 	{
 		$back = array();
-		foreach (self::getLangs() as $id)
+		foreach (self::getLangs() as $id => $lang)
 		{
 			$back[] = GWF_Language::getISOByID($id);
 		}
@@ -878,7 +878,7 @@ class WC_Site extends GDO
 	
 	public function recalcAvg()
 	{
-		$avg = GDO::table('WC_RegAt')->selectAverage('regat_onsitescore', 'regat_sid='.$this->getID());
+		$avg = GDO::table('WC_RegAt')->selectVar('AVG(regat_onsitescore)', 'regat_sid='.$this->getID());
 		return $this->saveVar('site_avg', $avg);
 	}
 	
@@ -947,7 +947,7 @@ class WC_Site extends GDO
 		}
 		
 		// if onlink is false and we have a 0 score, do not update further.
-		if ( ($new_score !== $regat->getOnsiteScore()) || ($onlink === true && $new_score==0 ) ) {
+		if ( ($new_score != $regat->getOnsiteScore()) || ($onlink === true && $new_score==0 ) ) {
 			// do update events...
 			return $site->onUpdateUserB($user, $regat, $new_score, $recalc_scores, $onlink);
 		}
@@ -1054,7 +1054,7 @@ class WC_Site extends GDO
 		}
 		else {
 			$sid = $this->getVar('site_id');
-			$avg = GDO::table('WC_RegAt')->selectAverage('regat_onsitescore', "regat_sid=$sid AND regat_onsitescore>0");
+			$avg = GDO::table('WC_RegAt')->selectVar('AVG(regat_onsitescore)', "regat_sid=$sid AND regat_onsitescore>0");
 			$avg /= $max;
 		}
 		
@@ -1172,7 +1172,7 @@ class WC_Site extends GDO
 		require_once 'module/WeChall/WC_RegAt.php';
 		if (WECHALL_DEBUG_SCORING)
 		{
-			echo WC_HTML::message('msg_site_recalc', $this->displayName());
+			echo WC_HTML::message('msg_site_recalc', array($this->displayName()));
 		}
 		$this->recalcAverage();
 		$this->recalcScore();

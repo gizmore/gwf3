@@ -90,7 +90,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', $site->getCountryID()), $module->lang('th_site_country2'));
 		if ($is_admin) {
-			$data['site_language'] = array(GWF_Form::SELECT, GWF_LangSelect::single('site_language', $site->getLangID()), $module->lang('th_site_language2'));
+			$data['site_language'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'site_language', $site->getLangID()), $module->lang('th_site_language2'));
 		}
 		if ($is_admin) {
 			$data['site_joindate'] = array(GWF_Form::STRING, $site->getVar('site_joindate'), $module->lang('th_site_joindate'), '', GWF_Date::LEN_SECOND);
@@ -195,7 +195,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		$sid = $site->getID();
 		$filename = 'dbimg/logo/'.$sid;
 		if (false === ($file = GWF_Upload::moveTo($file, $filename))) {
-			return $module->error('err_write_logo', $filename);
+			return $module->error('err_write_logo', array($filename));
 		}
 		
 		# Convert to GIF
@@ -204,7 +204,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		$filenamegif = 'dbimg/logo_gif/'.$sid.'.gif';
 		if (false === imagegif($img, $filenamegif)) {
-			return $module->error('err_write_logo', $filenamegif);
+			return $module->error('err_write_logo', array($filenamegif));
 		}
 		imagedestroy($img);
 		
@@ -217,25 +217,25 @@ final class WeChall_SiteEdit extends GWF_Method
 	##################
 	### Validators ###
 	##################
-	public function validate_site_name(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_name', $arg, 3, 32); }
+	public function validate_site_name(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_name', $arg, 3, 32); }
 	public function validate_site_classname(Module_WeChall $m, $arg) { return GWF_Validator::validateClassname($m, 'site_classname', $arg, 2, 24); }
 	public function validate_site_basescore(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_basescore', $arg, 0, 20000); }
 	public function validate_site_usercount(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_usercount', $arg, 0); }
 	public function validate_site_challcount(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_challcount', $arg, 0); }
-	public function validate_site_country(Module_WeChall $m, $arg) { return GWF_Country::validate_countryid($arg, false); }
-	public function validate_site_language(Module_WeChall $m, $arg) { return GWF_Language::validate_langid($arg, false); }
-	public function validate_site_joindate(Module_WeChall $m, $arg) { return GWF_Form::validateDate($m, 'site_joindate', $arg, GWF_Date::LEN_SECOND, true); }
-	public function validate_site_launchdate(Module_WeChall $m, $arg) { return GWF_Form::validateDate($m, 'site_launchdate', $arg, GWF_Date::LEN_DAY, true); }
-	public function validate_site_authkey(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_authkey', $arg, 0, 32); }
-	public function validate_site_xauthkey(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_xauthkey', $arg, 0, 32); }
-	public function validate_site_irc(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_site_irc', $arg, 0, 255); }
-	public function validate_site_url(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_url', $arg, 0, 255); }
-	public function validate_site_url_mail(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_url_mail', $arg, 0, 255); }
-	public function validate_site_url_score(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_url_score', $arg, 0, 255); }
-	public function validate_site_url_profile(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_url_profile', $arg, 0, 255); }
-	public function validate_site_description(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'site_description', $arg, 0, 4096); }
+	public function validate_site_country(Module_WeChall $m, $arg) { return GWF_CountrySelect::validate_countryid($arg, false); }
+	public function validate_site_language(Module_WeChall $m, $arg) { return GWF_LangSelect::validate_langid($arg, false); }
+	public function validate_site_joindate(Module_WeChall $m, $arg) { return GWF_Validator::validateDate($m, 'site_joindate', $arg, GWF_Date::LEN_SECOND, true); }
+	public function validate_site_launchdate(Module_WeChall $m, $arg) { return GWF_Validator::validateDate($m, 'site_launchdate', $arg, GWF_Date::LEN_DAY, true); }
+	public function validate_site_authkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_authkey', $arg, 0, 32); }
+	public function validate_site_xauthkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_xauthkey', $arg, 0, 32); }
+	public function validate_site_irc(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_site_irc', $arg, 0, 255); }
+	public function validate_site_url(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url', $arg, 0, 255); }
+	public function validate_site_url_mail(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_mail', $arg, 0, 255); }
+	public function validate_site_url_score(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_score', $arg, 0, 255); }
+	public function validate_site_url_profile(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_profile', $arg, 0, 255); }
+	public function validate_site_description(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_description', $arg, 0, 4096); }
 	public function validate_site_status(Module_WeChall $m, $arg) { return (false === (in_array($arg, WC_Site::$STATES, true))) ? $m->lang('err_site_status') : false; }
-	public function validate_site_tags(Module_WeChall $m, $arg) { return GWF_Form::validateTags($m, 'site_tags', $arg, 3, 32); }
+	public function validate_site_tags(Module_WeChall $m, $arg) { return GWF_Validator::validateTags($m, 'site_tags', $arg, 3, 32); }
 	public function validate_username(Module_WeChall $m, $arg) { return (false === GWF_User::getByName($arg)) ? GWF_HTML::lang('ERR_UNKNOWN_USER') : false; }
 	public function validate_site_spc(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'site_spc', $arg, 0, 100, true); }
 	public function validate_site_powarg(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'site_powarg', $arg, 0, 10000, true); }
@@ -315,7 +315,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 //		}
 		
-		return $module->message('msg_site_edited', $site->displayName());
+		return $module->message('msg_site_edited', array($site->displayName()));
 	}	
 
 	##################
@@ -333,14 +333,14 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		
 		if (true === WC_SiteAdmin::isSiteAdmin($user->getID(), $site->getID())) {
-			return $module->error('err_sitemin_dup', $user->displayUsername(), $site->displayName());
+			return $module->error('err_sitemin_dup', array($user->displayUsername(), $site->displayName()));
 		}
 		
 		if (false === WC_SiteAdmin::makeSiteAdmin($user->getID(), $site->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_sitemin_add', $user->displayUsername(), $site->displayName());
+		return $module->message('msg_sitemin_add', array($user->displayUsername(), $site->displayName()));
 		
 	}
 
@@ -356,14 +356,14 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		
 		if (false === WC_SiteAdmin::isSiteAdmin($user->getID(), $site->getID())) {
-			return $module->error('err_not_sitemin', $user->displayUsername(), $site->displayName());
+			return $module->error('err_not_sitemin', array($user->displayUsername(), $site->displayName()));
 		}
 		
 		if (false === WC_SiteAdmin::remSiteAdmin($user->getID(), $site->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_sitemin_rem', $user->displayUsername(), $site->displayName());
+		return $module->message('msg_sitemin_rem', array($user->displayUsername(), $site->displayName()));
 		
 	}
 }

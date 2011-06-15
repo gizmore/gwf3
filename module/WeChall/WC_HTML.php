@@ -235,12 +235,19 @@ final class WC_HTML
 		
 		return $module->lang('head_users', array(GWF_WEB_ROOT.'users/with/All/by/user_regdate/DESC/page-1')).'&nbsp;'.substr($back, 2);
 	}
+
+//	private static function displayHeaderOnline(Module_WeChall $module, $max=20)
+//	{
+//		$back = '<div class="wc_head_bigbox" style="max-width:30%;">';
+//		$back .= GWF_SmartyFile::instance()->__call('module_Heart_beat', array());
+//		$back .= '</div>';
+//		
+//	}
 	
+
 	private static function displayHeaderOnline(Module_WeChall $module, $max=20)
 	{
-		$cut = time() - GWF_ONLINE_TIMEOUT;
-		$sessions = GDO::table('GWF_Session')->selectObjects('*', 'sess_time>'.$cut);
-//		$sessions = GWF_Session::getOnlineSessions();
+		$sessions = GWF_Session::getOnlineSessions();
 		$back = '';
 		$back = '';
 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
@@ -255,7 +262,7 @@ final class WC_HTML
 			$sess instanceof GWF_Session;
 			if (NULL !== ($user = $sess->getVar('sess_user', false)))
 			{
-				if ( ($user->getID() === '0') || ($user->isOptionEnabled(GWF_User::HIDE_ONLINE)) )
+				if ( ($user->getID() === NULL) || ($user->isOptionEnabled(GWF_User::HIDE_ONLINE)) )
 				{
 					continue;
 				}
@@ -341,31 +348,32 @@ final class WC_HTML
 		$back .= self::displayFooterMenu(Module_WeChall::instance());
 		$back .= '<div id="foot_boxes">'.PHP_EOL;
 		$back .= '<div class="foot_box">'.self::lang('footer_1').'</div>'.PHP_EOL;
-		$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), $module->cfgUserrecordDate(), $module->cfgPagecount())).'</div>'.PHP_EOL;
-		$back .= $debug ? '<div class="foot_box">'.self::debugFooter(2).'</div>'.PHP_EOL : '';
+		$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), GWF_Time::displayDate($module->cfgUserrecordDate()), $module->cfgPagecount())).'</div>'.PHP_EOL;
+		$back .= $debug ? '<div class="foot_box">'.self::debugFooter().'</div>'.PHP_EOL : '';
 		$back .= '</div>'.PHP_EOL;
 		$back .= '<div class="cl"></div>'.PHP_EOL;
 		$back .= '</div>'.PHP_EOL;
 		return $back;
 	}
 	
-	private static function debugFooter($precision=5)
+	private static function debugFooter($precision=4)
 	{
 		$db = gdo_db();
 		$queries = $db->getQueryCount();
-		$t_total = GWF_DEBUG_TIME_START-microtime(true);
+		$t_total = microtime(true)-GWF_DEBUG_TIME_START;
 		$t_mysql = $db->getQueryTime();
 		$t_php = $t_total - $t_mysql;
 		$f = sprintf('%%0.%dfs', (int)$precision);
 		$bd = '';#self::debugBrowser();
 		$mem = GWF_Upload::humanFilesize(memory_get_peak_usage(true));
-		return sprintf("<div>%d Queries in $f - PHP Time: $f - Total Time: $f. Memory: %s", $queries, $t_mysql, $t_php, $t_total, $mem).$bd;
+		$mods = GWF_Module::getModulesLoaded();
+		return sprintf("<div>%d Queries in $f - PHP Time: $f - Total Time: $f. Memory: %s<br/>Modules loaded: %s</div>", $queries, $t_mysql, $t_php, $t_total, $mem, $mods).$bd;
 	}
 	
 	private static function displayFooterMenu(Module_WeChall $module)
 	{
 		return
-			'<div id="gwf_foot_menu">'.PHP_EOL.
+		'<div id="gwf_foot_menu">'.PHP_EOL.
 			'<a href="'.GWF_WEB_ROOT.'news">'.$module->lang('menu_news').'</a>'.PHP_EOL.
 			'| <a href="'.GWF_WEB_ROOT.'about_wechall">'.$module->lang('menu_about').'</a>'.PHP_EOL.
 			'| <a href="'.GWF_WEB_ROOT.'join_us">'.$module->lang('menu_join').'</a>'.PHP_EOL.

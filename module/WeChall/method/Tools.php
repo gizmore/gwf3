@@ -8,6 +8,7 @@ final class WeChall_Tools extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return
+			'RewriteRule ^tools/?$ index.php?mo=WeChall&me=Tools&list=1'.PHP_EOL.
 			# Tools
 			'RewriteRule ^tools/JPK/?$ index.php?mo=WeChall&me=Tools&file=jpk'.PHP_EOL.
 			'RewriteRule ^tools/YaBfDbg/?$ index.php?mo=WeChall&me=Tools&file=yabfdbg'.PHP_EOL.
@@ -16,7 +17,7 @@ final class WeChall_Tools extends GWF_Method
 			'RewriteRule ^tools/Wordpat/?$ index.php?mo=WeChall&me=Tools&file=wordpat'.PHP_EOL.
 			# Downloads
 			'RewriteRule ^tools/wordlists/?$ index.php?mo=WeChall&me=Tools&file=wordlists'.PHP_EOL.
-			'RewriteRule ^tools/wordlists/english.zip$ module/WeChall/template/default/tools/wordlists/files/english.zip'.PHP_EOL.
+			'RewriteRule ^tools/wordlists/english.zip$ module/WeChall/tpl/default/tools/wordlists/files/english.zip'.PHP_EOL.
 			# Tutorials
 			'RewriteRule ^tutorials/starting_cpp.php$ index.php?mo=WeChall&me=Tools&file=startcpp'.PHP_EOL.
 //			'RewriteRule ^tutorial/encoding_lesson$ index.php?mo=WeChall&me=Tools&file=encodings'.PHP_EOL.
@@ -25,6 +26,11 @@ final class WeChall_Tools extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
+		if (Common::getGetString('list', '0') === '1')
+		{
+			return $module->template("tools/list.tpl");
+		}
+		
 		$whitelist = array(
 			'jpk', 'yabfdbg', 'jcs', 'jdictac', 'wordpat',
 			'wordlists',
@@ -46,8 +52,10 @@ final class WeChall_Tools extends GWF_Method
 		GWF_Website::setMetaTags($trans->lang('meta_tags'));
 		
 		$tVars = array(
-			'lang' => $trans,
+			'lang2' => $trans,
 		);
+		
+		
 		return $module->templatePHP("tools/$file/$file.php", $tVars).$box;
 	}
 }

@@ -7,11 +7,10 @@ final class WeChall_Challs extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return
-//			'RewriteRule ^challs$ index.php?mo=WeChall&me=Challs&by=chall_date&dir=ASC'.PHP_EOL.
-			'RewriteRule ^challs$ index.php?mo=WeChall&me=Challs'.PHP_EOL.
+			'RewriteRule ^challs/?$ index.php?mo=WeChall&me=Challs'.PHP_EOL.
+			'RewriteRule ^challs/([a-zA-Z0-9]+)+$ index.php?mo=WeChall&me=Challs&tag=$2'.PHP_EOL.
 			'RewriteRule ^challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3'.PHP_EOL.
 			'RewriteRule ^challs/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&page=$1'.PHP_EOL.
-			'RewriteRule ^challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1'.PHP_EOL.
 			'RewriteRule ^challs/([a-zA-Z0-9]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&page=$2'.PHP_EOL.
 			'RewriteRule ^challs/([a-zA-Z0-9]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&by=$2&dir=$3&page=$4'.PHP_EOL.
 			'RewriteRule ^chall/solvers/(\d+)/[^/]+$ index.php?mo=WeChall&me=Challs&solvers=$1'.PHP_EOL.
@@ -53,6 +52,7 @@ final class WeChall_Challs extends GWF_Method
 		$from_query = $from_userid === 0 ? '1' : "chall_creator LIKE '%,$from_userid,%'";
 		$tag_query = $tag == '' ? '1' : "chall_tags LIKE '%,".GDO::escape($tag)."%'";
 		$conditions = "($from_query) AND ($tag_query)";
+//		var_dump($conditions);
 		if (0 === ($count = $challs->countRows($conditions))) {
 			return '';
 		}

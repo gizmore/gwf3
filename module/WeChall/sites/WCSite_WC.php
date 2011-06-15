@@ -9,7 +9,7 @@ final class WCSite_WC extends WC_Site
 		$result = explode(':', $result2);
 		
 		if (count($result) !== 5) {
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result2), $this->displayName())));
 		}
 		
 		list($rank, $score, $maxscore, $challcount, $usercount) = $result;

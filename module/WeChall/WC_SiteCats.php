@@ -139,7 +139,7 @@ final class WC_SiteCats extends GDO
 	
 	public static function getAllCats($orderby='sitecat_name ASC')
 	{
-		return self::table(__CLASS__)->selectColumn('sitecat_name', '', $orderby);
+		return self::table(__CLASS__)->selectColumn('DISTINCT(sitecat_name)', '', $orderby);
 	}
 	
 	public static function isValidCatName($cat)

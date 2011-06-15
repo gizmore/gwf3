@@ -93,7 +93,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$old_score = $chall->getVar('chall_score');
 		if ($new_score !== $old_score) {
 			if (!WC_Challenge::isValidScore($new_score)) {
-				$msgs .= $module->error('err_chall_score', $new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE);
+				$msgs .= $module->error('err_chall_score', array($new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE));
 			}
 			
 			if (false === ($chall->saveVar('chall_score', $new_score))) {

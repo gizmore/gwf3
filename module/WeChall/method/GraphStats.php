@@ -187,10 +187,12 @@ final class WeChall_GraphStats extends GWF_Method
 //		echo 'Numbers';
 //		var_dump($this->withNumbers);
 		
-		require_once $module->cfgJPGraphDir().'jpgraph.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_date.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_line.php';
-		require_once $module->cfgJPGraphDir().'jpgraph_plotline.php';
+		
+		$dir = dirname(GWF_JPGRAPH_PATH).'/';
+		require_once $dir.'jpgraph.php';
+		require_once $dir.'jpgraph_date.php';
+		require_once $dir.'jpgraph_line.php';
+		require_once $dir.'jpgraph_plotline.php';
 		
 		$xdata = array();
 		$ydata = array();

@@ -95,24 +95,24 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if (false === ($cats = WC_SiteCats::getAllCats())) {
 			return '';
 		}
-		$data = array(array($module->lang('th_sel_favcat'), 0));
+		$data = array(array('0', $module->lang('th_sel_favcat')));
 		foreach ($cats as $cat)
 		{
 			$cat = htmlspecialchars($cat);
 			$data[] = array($cat, $cat);
 		}
-		return GWF_Select::display('favcat', $data, 0);
+		return GWF_Select::display('favcat', $data, '0');
 	}
 	
 	private function getSelect(Module_WeChall $module, $userid)
 	{
-		$data = array(array($module->lang('th_sel_favsite'), 0));
+		$data = array(array('0', $module->lang('th_sel_favsite')));
 		$sites = WC_SiteFavorites::getNonFavoriteSites($userid);
 		foreach ($sites as $site)
 		{
-			$data[] = array($site->getVar('site_name'), $site->getID());
+			$data[] = array($site->getID(), $site->getVar('site_name'));
 		}
-		return GWF_Select::display('favsite', $data, 0);
+		return GWF_Select::display('favsite', $data, '0');
 	}
 	
 	private $site;
@@ -134,7 +134,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		
 		WC_SiteFavorites::setFavorite($userid, $this->site->getID(), true);
 
-		return $module->message('msg_marked_fav', $this->site->displayName());
+		return $module->message('msg_marked_fav', array($this->site->displayName()));
 	}
 
 	private function onRemoveFavorite(Module_WeChall $module, $sid)
@@ -147,7 +147,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		
 		WC_SiteFavorites::setFavorite($userid, $site->getID(), false);
 		
-		return $module->message('msg_unmarked_fav', $site->displayName());
+		return $module->message('msg_unmarked_fav', array($site->displayName()));
 	}
 	
 	private function onQuickjump(Module_WeChall $module, $sid)
@@ -169,12 +169,12 @@ final class WeChall_WeChallSettings extends GWF_Method
 		$old_pass = isset($data['WC_NO_XSS_PASS']) ? $data['WC_NO_XSS_PASS'] : '';
 		
 		$data = array(
-			'priv_history' => array(GWF_Form::CHECKBOX, isset($data['WC_PRIV_HIST']), $module->lang('th_priv_history'), 1, '', $module->lang('tt_priv_history')),
-			'cross_site' => array(GWF_Form::CHECKBOX, isset($data['WC_NO_XSS']), $module->lang('th_no_xss'), 1, '', $module->lang('tt_no_xss')),
-			'cross_pass' => array(GWF_Form::STRING, $old_pass, $module->lang('th_xss_pass'), 16, '', $module->lang('tt_xss_pass'), false),
+			'priv_history' => array(GWF_Form::CHECKBOX, isset($data['WC_PRIV_HIST']), $module->lang('th_priv_history'), $module->lang('tt_priv_history')),
+			'cross_site' => array(GWF_Form::CHECKBOX, isset($data['WC_NO_XSS']), $module->lang('th_no_xss'), $module->lang('tt_no_xss')),
+			'cross_pass' => array(GWF_Form::STRING, $old_pass, $module->lang('th_xss_pass'), $module->lang('tt_xss_pass'), false),
 			'div1' => array(GWF_Form::DIVIDER),
-			'hide_rank' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_RANK']), $module->lang('th_hide_rank'), 1, '', $module->lang('tt_hide_rank')),
-			'hide_score' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_SCORE']), $module->lang('th_hide_score'), 1, '', $module->lang('tt_hide_score')),
+			'hide_rank' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_RANK']), $module->lang('th_hide_rank'), $module->lang('tt_hide_rank')),
+			'hide_score' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_SCORE']), $module->lang('th_hide_score'), $module->lang('tt_hide_score')),
 			'set_settings' => array(GWF_Form::SUBMIT, $module->lang('btn_set_settings')),
 		);
 		return new GWF_Form($this, $data);
@@ -323,7 +323,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_add_favcat', htmlspecialchars($cat));
+		return $module->message('msg_add_favcat', array(htmlspecialchars($cat)));
 	}
 	
 	private function onRemFavCat(Module_WeChall $module, $cat)
@@ -332,7 +332,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if (false === (WC_FavCats::removeFavCat($userid, $cat))) {
 			return '';
 		}
-		return $module->message('msg_rem_favcat', htmlspecialchars($cat));
+		return $module->message('msg_rem_favcat', array(htmlspecialchars($cat)));
 	}
 }
 

@@ -132,13 +132,9 @@ if ('0' !== ($tid = $site->getVar('site_threadid')))
 	$_GET['last_page'] = true;
 	if (false !== ($forum = GWF_Module::loadModuleDB('Forum', true, true)))
 	{
+		GWF_ForumBoard::init(true, false);
 		echo $forum->requestMethodB('ShowThread');
 	}
-//	$forum = GWF_Module::getModule('Forum');
-//	$forum->onInclude();
-//	$forum->onLoadLanguage();
-//	$forum->onRequestInit();
-//	echo $forum->requestMethodB('ShowThread');
 } 
 
 $dtitle = $site->getVar('site_name');

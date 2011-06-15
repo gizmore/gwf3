@@ -198,7 +198,7 @@ $lang = array(
 
 	# Footer
 	'footer_1' => '©2008-2011 by wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">All code</a> runs under the terms of the <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a>; You can <a href="'.GWF_WEB_ROOT.'contact">contact us here</a>.',
-	'footer_2' => '%1% users were online at %2% - %3% pages have been served until now',
+	'footer_2' => '%1% users were online at %2%<br/>%3% pages have been served until now',
 
 
 	# Register

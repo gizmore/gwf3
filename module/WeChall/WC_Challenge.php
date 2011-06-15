@@ -368,7 +368,7 @@ final class WC_Challenge extends GDO
 		}
 		
 		if ($verbose) {
-			echo WC_HTML::message('msg_chall_installed', $chall->display('chall_title'));
+			echo WC_HTML::message('msg_chall_installed', array($chall->display('chall_title')));
 		}
 		
 		self::recalcWeChall();
@@ -386,7 +386,7 @@ final class WC_Challenge extends GDO
 			$string = strtolower($string);
 		}
 
-		return Common::md5($string);
+		return GWF_Password::md5($string);
 	}
 	
 	/**
@@ -724,7 +724,7 @@ final class WC_Challenge extends GDO
 		}
 
 		if ($row->isSolved()) {
-			echo WC_HTML::message('msg_correct_again', $this->hrefVotes());
+			echo WC_HTML::message('msg_correct_again', array($this->hrefVotes()));
 			return true;
 		}
 		
@@ -743,7 +743,7 @@ final class WC_Challenge extends GDO
 			$href_sb = '#';
 		}
 		
-		echo WC_HTML::message('msg_correct', $this->hrefVotes(), $href_sb);
+		echo WC_HTML::message('msg_correct', array($this->hrefVotes(), $href_sb));
 		
 		if (false !== ($wechall = WC_Site::getWeChall())) {
 			echo $wechall->onUpdateUser($user)->display('WeChall');
@@ -889,7 +889,7 @@ final class WC_Challenge extends GDO
 	
 	public function copyrightFooter()
 	{
-		$now = GWF_Time::THIS_YEAR;
+		$now = date('Y');
 		$cye = intval(substr($this->getVar('chall_date'), 0, 4), 10);
 		$arr = array();
 		for ($y = $cye; $y <= $now; $y++)
@@ -927,13 +927,7 @@ final class WC_Challenge extends GDO
 	 */
 	public function lang($key, $args=NULL)
 	{
-		if (false === ($lang = $this->getLang()))
-		{
-			return $key;
-		}
-//		$args = func_get_args();
-//		unset($args[0]);
-		return $lang->lang($key, $args);
+		return false === ($lang = $this->getLang()) ? $key : $lang->lang($key, $args);
 	}
 	
 	public static function isValidScore($score)

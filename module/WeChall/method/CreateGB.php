@@ -38,7 +38,7 @@ final class WeChall_CreateGB extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_created_gb', GWF_WEB_ROOT.'guestbook/edit/'.$gb->getID());
+		return $module->message('msg_created_gb', array(GWF_WEB_ROOT.'guestbook/edit/'.$gb->getID()));
 	}
 }
 

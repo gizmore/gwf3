@@ -61,7 +61,7 @@ final class WeChall_Ranking extends GWF_Method
 			'rank' => $from+1,
 			'highlight_rank' => $rank,
 			'langs' => WC_Site::getLangs(),
-			'isos' => WC_Site::getLangISOs(),
+//			'isos' => WC_Site::getLangISOs(),
 			'userdata' => $userdata,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 		);

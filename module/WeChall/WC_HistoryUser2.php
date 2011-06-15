@@ -56,7 +56,7 @@ final class WC_HistoryUser2 extends GDO
 	public static function insertEntry(GWF_User $user, WC_Site $site, $type, $onsitescore_new=0, $onsitescore_old=0, $scoregain=0, $onsiterank=0)
 	{
 		$uid = $user->getID();
-		$user = GWF_User::getByIDNoCache($uid);
+		$user = GWF_User::getByID($uid);
 		$max = $site->getOnsiteScore();
 		$perc_new = $max <= 0 ? 0 : round($onsitescore_new / $max * 10000);
 		$perc_old = $max <= 0 ? 0 : round($onsitescore_old / $max * 10000);
@@ -97,14 +97,14 @@ final class WC_HistoryUser2 extends GDO
 	{
 		$userid = (int) $userid;
 		$siteid = (int) $siteid;
-		return self::table(__CLASS__)->selectMin('userhist_date', "userhist_uid=$userid AND userhist_sid=$siteid");
+		return self::table(__CLASS__)->selectVar('MIN(userhist_date)', "userhist_uid=$userid AND userhist_sid=$siteid");
 	}
 
 	public static function getMasterDate($userid, $siteid)
 	{
 		$userid = (int) $userid;
 		$siteid = (int) $siteid;
-		return self::table(__CLASS__)->selectMin('userhist_date', "userhist_uid=$userid AND userhist_sid=$siteid AND userhist_percent>=10000");
+		return self::table(__CLASS__)->selectVar('MIN(userhist_date)', "userhist_uid=$userid AND userhist_sid=$siteid AND userhist_percent>=10000");
 	}
 
 	/**
@@ -117,7 +117,7 @@ final class WC_HistoryUser2 extends GDO
 	{
 		$userid = (int) $userid;
 		$siteid = (int) $siteid;
-		return self::table(__CLASS__)->selectFirst("userhist_uid=$userid AND userhist_sid=$siteid", "userhist_date ASC");
+		return self::table(__CLASS__)->selectFirstObject('*', "userhist_uid=$userid AND userhist_sid=$siteid", "userhist_date ASC");
 	}
 }
 ?>

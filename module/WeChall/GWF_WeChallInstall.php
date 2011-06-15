@@ -12,6 +12,7 @@ final class GWF_WeChallInstall
 	
 	public static function onInstall(Module_WeChall $module, $dropTable)
 	{
+		Module_WeChall::includeForums();
 		return
 		self::installMoreClasses($module, $dropTable).
 		GWF_ModuleLoader::installVars($module, array(
@@ -44,7 +45,6 @@ final class GWF_WeChallInstall
 	private static function createForums(Module_WeChall $module, $dropTable)
 	{
 		$back = '';
-		Module_WeChall::includeForums();
 //		if (false === ($module_forum = GWF_Module::getModule('Forum'))) {
 //			return GWF_HTML::err('ERR_MODULE_MISSING', 'Forum');
 //		}

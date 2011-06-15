@@ -97,9 +97,9 @@ final class WeChall_SiteDescr extends GWF_Method
 	}
 	
 	### Validators ###
-	public function validate_langid(Module_WeChall $m, $arg) { return GWF_Language::validate_langid($arg, false); }
-	public function validate_descr(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'descr', $arg, 12, 4096); } 
-	public function validate_descr_new(Module_WeChall $m, $arg) { return GWF_Form::validateString($m, 'descr_new', $arg, 12, 4096); } 
+	public function validate_langid(Module_WeChall $m, $arg) { return GWF_LangSelect::validate_langid($arg, false); }
+	public function validate_descr(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 12, 4096); } 
+	public function validate_descr_new(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'descr_new', $arg, 12, 4096); } 
 	
 	private function onAdd(Module_WeChall $module)
 	{
@@ -197,7 +197,7 @@ final class WeChall_SiteDescr extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_def_descr', GWF_Language::getByID($langid)->getName());
+		return $module->message('msg_def_descr', array(GWF_Language::getByID($langid)->displayName()));
 	}
 }
 ?>

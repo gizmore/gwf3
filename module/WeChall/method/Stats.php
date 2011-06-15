@@ -140,7 +140,7 @@ final class WeChall_Stats extends GWF_Method
 		
 		$uid = $this->user1->getVar('user_id');
 		$limit = $all === false ? 5 : -1;
-		$sites = WC_Site::table('WC_RegAt')->selectColumn('regat_sid', "regat_uid=$uid", 'regat_solved DESC', $limit);
+		$sites = WC_Site::table('WC_RegAt')->selectColumn('regat_sid', "regat_uid=$uid", 'regat_solved DESC', NULL, $limit);
 		foreach ($sites as $siteid)
 		{
 			$back[intval($siteid)] = 'on';
@@ -157,7 +157,7 @@ final class WeChall_Stats extends GWF_Method
 		
 		GWF_Website::addJavascriptInline("$(document).ready(function() { wcjsStatsJQuery(); } );");
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-ui-1.8.5.custom.min.js');
-		GWF_Website::addCSS(GWF_WEB_ROOT.'template/wc4/css/ui-lightness/jquery-ui-1.8.5.custom.css');
+		GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/wc4/css/ui-lightness/jquery-ui-1.8.5.custom.css');
 		
 		if ($this->user1 === false) {
 			$form_action = GWF_WEB_ROOT.'stats';
@@ -244,9 +244,9 @@ final class WeChall_Stats extends GWF_Method
 			return '#';
 		}
 		
-		$y = GWF_Time::THIS_YEAR;
-		$m = GWF_Time::THIS_MONTH;
-		$d = GWF_Time::THIS_DAY;
+		$y = date('Y');
+		$m = date('m');
+		$d = date('d');
 		$site_encode = $this->getSiteEncode();
 		$months = $this->months === 0 ? '' : sprintf('.%d.month', $this->months);
 		$options = array();

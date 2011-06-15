@@ -102,13 +102,13 @@ final class Module_WeChall extends GWF_Module
 	public static function includeVotes()
 	{
 		GWF_Module::loadModuleDB('Votes', true);
-//		self::getModule('Votes')->onInclude();
 	}
 	public static function includeForums()
 	{
-		GWF_Module::loadModuleDB('Forum', true);
-//		self::getModule('Forum')->onInclude();
-		GWF_ForumBoard::init(true);
+		if (false !== GWF_Module::loadModuleDB('Forum', true))
+		{
+			GWF_ForumBoard::init(true);
+		}
 	}
 	
  	#############
@@ -222,7 +222,7 @@ final class Module_WeChall extends GWF_Module
 	public function cacheChallTags()
 	{
 		$tags = array();
-		$challs = GDO::table('WC_Challenge')->selectAll();
+		$challs = GDO::table('WC_Challenge')->selectObjects();
 		
 		foreach ($challs as $chall)
 		{
@@ -319,7 +319,7 @@ final class Module_WeChall extends GWF_Module
 		# Marked Read?
 		$userdata = $user->getUserData();
 		$bdm = isset($userdata['birthdaymark']) ? intval($userdata['birthdaymark']) : 0;
-		if ($bdm === GWF_Time::THIS_WEEK) {
+		if ($bdm === date('W')) {
 //			echo '<div>THIS WEEK IS MARKED READ!</div>';
 			return '';
 		}

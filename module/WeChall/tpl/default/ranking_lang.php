@@ -31,9 +31,7 @@ $headers = array(
 
 echo $tVars['page_menu'].PHP_EOL;
 
-?>
-<table>
-<?php
+echo GWF_Table::start();
 $hl_rank = $tVars['hlrank'];
 $rank = $tVars['rank'];
 echo GWF_Table::displayHeaders2($headers).PHP_EOL;
@@ -44,7 +42,7 @@ foreach ($tVars['users'] as $user)
 	$user instanceof GWF_User;
 	$username = $user->displayUsername();
 	$style = $rank === $hl_rank ? WC_HTML::styleSelected() : '';
-	echo GWF_Table::rowStart($style);
+	echo GWF_Table::rowStart(true, '', '', $style);
 	echo sprintf('<td class="gwf_num">%s</td>', $rank);
 	echo sprintf('<td>%s</td>', $user->displayCountryFlag());
 	echo sprintf('<td><a href="%s" title="%s">%s</a></td>', $user->getProfileHREF(), $tLang->lang('a_title', array($user->getVar('user_level'), $username)), $user->displayUsername());
@@ -73,8 +71,8 @@ foreach ($tVars['users'] as $user)
 	echo GWF_Table::rowEnd();
 	$rank++;
 }
+echo GWF_Table::end();
 ?>
-</table>
 <?php echo $tVars['page_menu'].PHP_EOL; ?>
 <?php echo GWF_Box::box($tLang->lang('scorefaq_box', array(GWF_WEB_ROOT.'scoring_faq'))); ?>
 

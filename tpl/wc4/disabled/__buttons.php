@@ -1,0 +1,1 @@
+<span class="gwf_button gwf_btn_%TYPE%%CLASS%"><a href="%HREF%">%TEXT%</a></span>

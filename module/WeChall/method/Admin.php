@@ -223,17 +223,17 @@ final class WeChall_Admin extends GWF_Method
 		require_once 'module/WeChall/WC_Freeze.php';
 		
 		if (false !== WC_RegAt::getRegatRow($user->getID(), $site->getID())) {
-			return $module->error('err_already_linked', $site->displayName());
+			return $module->error('err_already_linked', array($site->displayName()));
 		}
 		if (WC_Freeze::isUserFrozenOnSite($user->getID(), $site->getID())) {
-			return $module->error('err_site_ban', $site->displayName());
+			return $module->error('err_site_ban', array($site->displayName()));
 		}
 		if (false !== ($regat = WC_RegAt::getByOnsitename($site->getID(), $onsitename))) {
 			if (false === ($user = $regat->getUser())) {
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			else {
-				return $module->error('err_onsitename_taken', htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername());
+				return $module->error('err_onsitename_taken', array(htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername()));
 			}
 		}
 		
@@ -257,7 +257,7 @@ final class WeChall_Admin extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_hardlinked', $user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename));
+		return $module->message('msg_hardlinked', array($user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename)));
 	}
 }
 

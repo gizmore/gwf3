@@ -101,11 +101,11 @@ final class WeChall_RankingTag extends GWF_Method
 		$bit = (int) $bit;
 		$uid = $user->getVar('user_id');
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
-		$query = "SELECT SUM(regat_score) FROM $regat WHERE regat_uid=$uid AND regat_tagbits&$bit";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT SUM(regat_score) s FROM $regat WHERE regat_uid=$uid AND regat_tagbits&$bit";
+		if (false === ($result = $db->queryFirst($query))) {
 			return -1;
 		}
-		return (int)$result[0];
+		return (int)$result['s'];
 	}
 	
 	private function calcRank(GWF_User $user, $bit)
@@ -162,11 +162,11 @@ final class WeChall_RankingTag extends GWF_Method
 		$db = gdo_db();
 		$bit = (int) $bit;
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
-		$query = "SELECT COUNT(DISTINCT(regat_uid)) FROM $regat WHERE regat_tagbits&$bit AND regat_options&4=0";
-		if (false === ($result = $db->queryFirst($query, false))) {
+		$query = "SELECT COUNT(DISTINCT(regat_uid)) c FROM $regat WHERE regat_tagbits&$bit AND regat_options&4=0";
+		if (false === ($result = $db->queryFirst($query))) {
 			return 0;
 		}
-		return (int) $result[0];
+		return (int) $result['c'];
 	}
 
 	private function getTagSelect(GWF_Module $module)

@@ -25,11 +25,11 @@ final class WeChall_GraphSite extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		$dir = dirname(GWF_JPGRAPH_PATH);
-		require_once $dir.'/jpgraph.php';
-		require_once $dir.'/jpgraph_date.php';
-		require_once $dir.'/jpgraph_line.php';
-		require_once $dir.'/jpgraph_plotline.php';
+		$dir = dirname(GWF_JPGRAPH_PATH).'/';
+		require_once $dir.'jpgraph.php';
+		require_once $dir.'jpgraph_date.php';
+		require_once $dir.'jpgraph_line.php';
+		require_once $dir.'jpgraph_plotline.php';
 		
 		return $this->graphB($module, $site, $type);
 	}

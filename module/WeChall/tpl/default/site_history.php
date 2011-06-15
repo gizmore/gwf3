@@ -10,7 +10,7 @@ $result = $tVars['result'];
 $hist = new WC_HistoryUser2(false);
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, '');
-while (false !== ($row = $hist->fetchObject($result)))
+while (false !== ($row = $hist->fetch($result, GDO::ARRAY_O)))
 {
 	echo GWF_Table::rowStart();
 	echo GWF_Table::column($row->displayDate());
@@ -18,6 +18,7 @@ while (false !== ($row = $hist->fetchObject($result)))
 	echo GWF_Table::column($row->displayComment());
 	echo GWF_Table::rowEnd();
 }
+$hist->free($result);
 echo GWF_Table::end();
 echo $tVars['pagemenu'];
 ?>

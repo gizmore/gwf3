@@ -15,21 +15,22 @@ $headers = array(
 	array($tLang->lang('th_top_player'), 'topuser', 'ASC'),
 );
 //$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
-?>
-<table>
-<?php
+
 $rank = 1;
 $hlc = $tVars['highlight_country'];
+
+echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+$sl = WC_HTML::styleSelected();
 foreach ($tVars['data'] as $row)
 {
 	$cid = $row['country_id'];
 	$topuser = $row['topuser'];
-	$style = $hlc == $cid ? WC_HTML::styleSelected() : '';
+	$style = $hlc == $cid ? $sl : '';
 	$href = GWF_WEB_ROOT.'country_ranking/for/'.$cid.'/'.Common::urlencodeSEO($row['countryname']);
-	echo GWF_Table::rowStart($style);
+	echo GWF_Table::rowStart(true, '', '', $style);
 	echo sprintf('<td class="gwf_num">%d</td>', $rank++);
-	echo sprintf('<td>%s</td>', GWF_Country::displayFlagS($cid));
+	echo sprintf('<td>%s</td>', GWF_Country::displayFlagS2($cid, $row['countryname']));
 	echo sprintf('<td><a href="%s">%s</a></td>', $href, GWF_HTML::display($row['countryname']));
 	
 	echo sprintf('<td class="gwf_num">%d</td>', $row['users']);
@@ -40,7 +41,7 @@ foreach ($tVars['data'] as $row)
 	echo sprintf('<td><a href="%s" title="%s">%s</a></td>', GWF_WEB_ROOT.'profile/'.urlencode($topuser), $tLang->lang('a_title', array($row['topscore'])), GWF_HTML::display($topuser));
 	echo GWF_Table::rowEnd();
 }
-?>
-</table>
+echo GWF_Table::end();
 
-<?php echo GWF_Box::box($tLang->lang('scorefaq_box', GWF_WEB_ROOT.'scoring_faq')); ?>
+echo GWF_Box::box($tLang->lang('scorefaq_box', GWF_WEB_ROOT.'scoring_faq'));
+?>

@@ -17,9 +17,9 @@ final class WeChall_About extends GWF_Method
 		GWF_Website::setPageTitle($lang->lang('about_pagetitle'));
 		GWF_Website::setMetaTags($lang->lang('about_meta'));
 		$tVars = array(
-			'about' => $lang,
+			'about_08' => $lang->lang('about_08'),
 		);
-		return $module->templatePHP('about.php', $tVars);
+		return $module->template('about.tpl', $tVars);
 	}
 }
 

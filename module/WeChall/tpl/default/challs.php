@@ -34,7 +34,6 @@ $headers = array(
 	array($tLang->lang('th_forum')),
 
 );
-
 //$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 echo '<table class="wc_chall_table">';
 echo '<thead>'.PHP_EOL;

@@ -35,7 +35,7 @@ final class WeChall_SiteHistory extends GWF_Method
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(Common::getGetInt('page', $nPages), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
-		$rows = $table->queryRead($conditions, $orderby, 50, $from);
+		$rows = $table->select('*', $conditions, $orderby, array('userhist_uid','userhist_sid'), 50, $from);
 		$href_pagemenu = GWF_WEB_ROOT.'site/history/'.$site->urlencode2('site_name').'/page/%PAGE%';
 		$tVars = array(
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),

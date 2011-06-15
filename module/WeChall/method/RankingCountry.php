@@ -56,6 +56,8 @@ final class WeChall_RankingCountry extends GWF_Method
 			"GROUP BY `country_id` ".
 			"ORDER BY $by $dir; ";
 		
+//		echo "$query<br/>";
+		
 		$db = gdo_db();
 		
 		if (false === ($result = $db->queryAll($query))) {

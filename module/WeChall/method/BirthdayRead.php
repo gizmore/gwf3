@@ -17,7 +17,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 		
 		$userdata = $user->getUserData();
 		
-		$userdata['birthdaymark'] = GWF_Time::THIS_WEEK;
+		$userdata['birthdaymark'] = date('W');
 		
 		if (false === $user->saveUserData($userdata)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
