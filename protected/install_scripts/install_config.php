@@ -248,7 +248,7 @@ final class GWF_InstallConfig
 //			array('int10', 'Various', 'GWF_URL_LENGTH', 255, 'Maximum URL length. Example: 255.'),
 //			array('int10', 'Various', 'GWF_EMAIL_LENGTH', 255, 'Maximum EMail length. Example: 255.'),
 //			array('int10', 'Various', 'GWF_USERNAME_LENGTH', 28, 'Maximum username length. Example: 28.'),
-//			array('text',  'Various', 'GWF_SITE_BIRTHDAY', GWF_Time::getGDODate(DATE_LEN_DAY) , 'Site Launchdate. Format: YYYYMMDD'),
+//			array('text',  'Various', 'GWF_SITE_BIRTHDAY', GWF_Time::getGDODate(GWF_DATE::LEN_DAY) , 'Site Launchdate. Format: YYYYMMDD'),
 //			array('bool',  'Various', 'GWF_EMAIL_ON_DATABASE_ERROR', true, 'Send email on database error? Example: true'),
 //			array('int10', 'Various', 'GWF_MIN_SEARCH_LEN', 3, 'Minimum search length.'),
 //			array('int10', 'Various', 'GWF_MAX_SEARCH_LEN', 64, 'Maximum search length.'),
