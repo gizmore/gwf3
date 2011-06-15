@@ -11,6 +11,8 @@ $lang = array(
 	'th_langs' => 'Language To Check',
 	'th_target' => 'Target Language',
 	'th_all_targets' => 'All Languages',
+	'th_lang' => 'Language',
+	'th_title' => 'Title',
 
 	'btn_chksyn' => 'Check PHP Syntax',
 	'btn_edit' => 'Edit',
@@ -19,6 +21,7 @@ $lang = array(
 	'btn_check' => 'Check',
 	'btn_bundle' => 'Bundle',
 	'btn_missing' => 'Missing',
+	'btn_code' => 'Submit Sourcecode',
 	
 	'ft_checker' => 'Check Language',
 	'ft_bundle' => 'Bundle Lang Files',
