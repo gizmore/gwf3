@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html, body {
-    background: url('./images/bg.gif') repeat;
+    background: url('./images/bg.gif') repeat !important;
 }
 div#margin {
 	background: transparent /*url('./images/shadowleft.png') repeat-y 10px 0*/; 

@@ -21,6 +21,12 @@
 			<li class="cat"><h2><a href="{$root}index.php?mo=PageBuilder&amp;me=Admin">CMS</a></h2></li>
 		</ul>
 	</li>
+	<li class="sec">
+		<h2><a href="{$root}challs">[Wechall]</a></h2>
+		<ul>
+			<li class="cat"><h2><a href="{$root}challs">Challenges</a></h2></li>
+			<li class="cat"><h2><a href="{$root}linked_sites">Linked Sites</a></h2></li>
+		</ul>
 	{/if}
 	<li class="sec">
 		<h2><a href="{$root}links">Links{$gwff->module_Links_unread($user)}</a></h2>

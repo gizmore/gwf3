@@ -1,13 +1,39 @@
-			<p style="vertical-align: middle; text-align: center; line-height: 20px;">
-				<a href="{$root}contact/" class="footlink">Kontakt</a> | 
-				<a href="{$root}impressum/" class="footlink">Impressum</a> | 
-				<a href="{$root}disclaimer/" class="footlink">Disclaimer</a> | 
-				<a href="{$root}sitemap/" class="footlink">Sitemap</a> | 
-				<a href="{$root}roadmap/" class="footlink">Roadmap</a> | 
-				<a href="{$root}changelog/" class="footlink">Changelog</a> | 
-				<a href="{$root}credits/" class="footlink">Credits</a> | 
-				<a href="{$root}bugreport/" class="footlink">Report Bug</a> | 
-				<a href="{$root}todo/" class="footlink">TO-DO Liste</a> | 
-				{*<a href="{$root}SF" class="footlink">Space-Framework</a> | *}
-				<a href="#" class="footlink">Bookmark</a>
+							<br>
+						</div>
+					</div><hr>
+<!-- PAGE End -->
+					<p class="bottom">
+						<a class="backbutton" href="{$lastURL}" title="{$lastURL}">{$SF->lang('back')} ({$lastURL})</a>
+					</p>
+				</div>
+			</div>
+{if $SF->is_displayed('naviright')}
+<!-- RIGHT NAVIGATION -->
+			<div id="right" class="navigation">
+{include file="tpl/{$SF->design()}/navi_right.tpl"}
+			</div>
+{/if}
+		</div>
+<!-- COPYRIGHT -->
+		<div id="copyright">
+			<p class="copyright">
+				SPACE-Framework is copyright by 
+				<a href="{$root}profile/space" title="space's profile">Florian Best</a> & 
+				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
 			</p>
+		</div>
+{if $SF->is_displayed('details')}
+<!-- DETAILS -->
+		<div id="details">
+{include file="templates/{$SF->design()}/details.tpl"}
+		</div>
+{/if}
+<!-- FOOTER -->
+		<div id="footer"><hr>
+{include file="tpl/{$SF->design()}/html_footer.tpl"}
+		</div>
+	</div>
+	<p style="text-align: center;">
+{include file="tpl/{$SF->design()}/debug_time.tpl"}
+	</p>
+</body>

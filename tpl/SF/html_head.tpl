@@ -1,5 +1,4 @@
 <html lang="{$language}" dir="ltr">
-
 <head>
 	<title>{$page_title}</title>
 {if $SF->is_displayed('base')}

@@ -8,11 +8,15 @@
 div { /* FOR DEBUGGING */
 	/*border: thin solid #00ff00;*/
 }
+div.GWF_FTW {
+	max-width: 1000px;
+	width: auto;
+}
 html, body {
 	width: 100%;
 	height:100%;
 	color: #fff;
-	background-color: #fff;
+	/*background-color: #fff; */
 }
 div#margin {
 	margin: 0 auto; /*zentrierung*/
