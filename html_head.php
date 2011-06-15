@@ -3,16 +3,14 @@
 
 define('GWF_DEBUG_TIME_START', microtime(true));
 
-if(defined('WC_HTML_HEAD__DEFINED')) {
-	return;
-}
+if(defined('WC_HTML_HEAD__DEFINED')) { return; }
 
 #####################################
 ### Init core templates and stuff ###
 #####################################
 require_once 'inc/_gwf_include.php';
 
-GWF_Website::init(dirname(__FILE__), defined('GWF_SESSION_NOT_BLOCKING')?false:true);
+GWF_Website::init(dirname(__FILE__), !defined('GWF_SESSION_NOT_BLOCKING'));
 
 GWF_Module::autoloadModules();
 
@@ -32,23 +30,14 @@ if (defined('GWF_PAGE_TITLE')) {
 //	GWF_Website::addJavascriptInline('setTimeout("var e = document.getElementById(\'answer\'); if (e!==null) { e.focus(); }", 1000);');
 }
 
-# Doctype Shebang!
-echo GWF_Doctype::xhtmlstrict();
-
-$iso = GWF_Language::getCurrentISO();
-echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$iso.'" lang="'.$iso.'">'.PHP_EOL;
-
-# HTML Header
-echo GWF_Website::getHTMLHead();
-
 # Include Needed Modules
 //GWF_Module::getModule('Votes', true);
 GWF_Module::loadModuleDB('Forum', true);
 GWF_Module::getModule('WeChall', true)->onLoadLanguage();
 require_once 'module/WeChall/WC_ChallSolved.php';
 //GWF_ForumBoard::init(true);
-# Body Start, see footer
-echo '<body>';
+
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
-?>
-<div id="page_wrap">
+
+# HTML Header //TODO: replace wc4
+echo GWF_Template::template('tpl/wc4/chall_head.tpl', array('iso' => GWF_Language::getCurrentISO(), 'doctype' => GWF_Doctype::xhtmlstrict(), 'html_head' => GWF_Website::getHTMLHead()) );
