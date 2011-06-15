@@ -14,12 +14,11 @@
 //}
 //if ($box !== '') {
 //	echo '<div class="fl">';
-//	echo GWF_Website::box($box);
+//	echo GWF_Box::box($box);
 //	echo '</div>'.PHP_EOL;
 //}
 ?>
  -->
-<div class="box">
 <div class="gwf_pm oa">
 	<div class="gwf_pm_head">
 		<h3>{$title}</h3>
@@ -37,7 +36,6 @@
 	<div class="gwf_pm_foot">
 		{$buttons}
 	</div>
-</div>
 </div>
 <div class="cl"></div>
 
