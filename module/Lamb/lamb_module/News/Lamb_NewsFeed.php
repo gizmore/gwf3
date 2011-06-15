@@ -17,7 +17,7 @@ final class Lamb_NewsFeed extends GDO
 	### GDO ###
 	###########
 	public function getClassName() { return __CLASS__; }
-	public function getTableName() { return GWF_TABLE_PREFIX.'lambnewsfeed'; }
+	public function getTableName() { return GWF_TABLE_PREFIX.'lamb_newsfeed'; }
 	public function getOptionsName() { return 'lnf_options'; }
 	public function getColumnDefines()
 	{

@@ -21,7 +21,7 @@ final class Module_Lamb extends GWF_Module
 	{
 		self::$instance = $this;
 		$this->onLoadLanguage();
-		GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/lamb/css/lamb.css?v=1');
+//		GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/lamb/css/lamb.css?v=1');
 	}
 	
 	public static function accountButtons()
@@ -63,13 +63,13 @@ final class Module_Lamb extends GWF_Module
 	public static function equipButton(SR_Item $item, SR_Player $player)
 	{
 		$name = $item->getItemName();
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/eq.png" alt="Equip %s" title="Equip %s" width="32" height="32" onclick="sl4SendCommand(\'eq %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/eq.png" alt="Equip %s" title="Equip %s" width="32" height="32" onclick="sl4SendCommand(\'eq %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
 	}
 
 	public static function unequipButton(SR_Item $item, SR_Player $player)
 	{
 		$name = $item->getItemName();
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/uq.png" alt="Unequip %s" title="Unequip %s" width="32" height="32" onclick="sl4SendCommand(\'uq %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/uq.png" alt="Unequip %s" title="Unequip %s" width="32" height="32" onclick="sl4SendCommand(\'uq %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
 	}
 
 	public static function useButton(SR_Item $item, SR_Player $player)
@@ -78,25 +78,25 @@ final class Module_Lamb extends GWF_Module
 		$friend = $item->isItemFriendly() ? 1 : 0;
 		$foe = $item->isItemOffensive() ? 1 : 0;
 		$instant = $item instanceof SR_Consumable ? 1 : 0;
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/u.png" alt="Use %s" title="Use %s" width="32" height="32" onclick="sl4UseItem(\'%s\', %d, %d, %d)" />', GWF_WEB_ROOT, $name, $name, $name, $friend, $foe, $instant);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/u.png" alt="Use %s" title="Use %s" width="32" height="32" onclick="sl4UseItem(\'%s\', %d, %d, %d)" />', GWF_WEB_ROOT, $name, $name, $name, $friend, $foe, $instant);
 	}
 
 	public static function dropButton(SR_Item $item, SR_Player $player)
 	{
 		$name = $item->getItemName();
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/drop.png" alt="Drop %s" title="Drop %s" width="32" height="32" onclick="sl4SendCommand(\'drop %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/drop.png" alt="Drop %s" title="Drop %s" width="32" height="32" onclick="sl4SendCommand(\'drop %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
 	}
 	
 	public static function buyButton(SR_Item $item, SR_Player $player)
 	{
 		$name = $item->getItemName();
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/buy.png" alt="Buy %s" title="Buy %s" width="32" height="32" onclick="sl4SendCommand(\'buy %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/buy.png" alt="Buy %s" title="Buy %s" width="32" height="32" onclick="sl4SendCommand(\'buy %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
 	}
 	
 	public static function sellButton(SR_Item $item, SR_Player $player)
 	{
 		$name = $item->getItemName();
-		return sprintf('<img src="%stemplate/lamb/slimg/cmd/sell.png" alt="Sell %s" title="Sell %s" width="32" height="32" onclick="sl4SendCommand(\'sell %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
+		return sprintf('<img src="%stpl/lamb/slimg/cmd/sell.png" alt="Sell %s" title="Sell %s" width="32" height="32" onclick="sl4SendCommand(\'sell %s\')" />', GWF_WEB_ROOT, $name, $name, $name);
 	}
 	
 	public static function displayEquipment($type, $equipment)

@@ -8,6 +8,13 @@ final class Shadowcmd_fight extends Shadowcmd
 		if ($p->isTalking())
 		{
 			$ep = $p->getEnemyParty();
+			
+			if (SR_KillProtect::isKillProtectedParty($p, $ep))
+			{
+				$player->message('You cannot attack this party again.');
+				return true;
+			}
+			
 			$p->popAction();
 			if ($ep !== false)
 			{
@@ -29,8 +36,6 @@ final class Shadowcmd_fight extends Shadowcmd
 			}
 			
 			$ep = $target->getParty();
-			$p->popAction();
-			$ep->popAction();
 			$p->fight($ep, true);
 			return true;
 		}

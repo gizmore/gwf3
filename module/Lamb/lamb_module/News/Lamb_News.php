@@ -10,7 +10,7 @@ final class Lamb_News extends GDO
 	### GDO ###
 	###########
 	public function getClassName() { return __CLASS__; }
-	public function getTableName() { return GWF_TABLE_PREFIX.'lambnews'; }
+	public function getTableName() { return GWF_TABLE_PREFIX.'lamb_news'; }
 	public function getOptionsName() { return 'ln_options'; }
 	public function getColumnDefines()
 	{
@@ -19,7 +19,7 @@ final class Lamb_News extends GDO
 			'ln_fid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'ln_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'ln_title' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
-			'ln_url' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, GDO::NOT_NULL, 255),
+			'ln_url' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'ln_descr' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'ln_options' => array(GDO::UINT, 0),
 		);

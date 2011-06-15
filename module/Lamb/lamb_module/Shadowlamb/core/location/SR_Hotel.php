@@ -1,6 +1,7 @@
 <?php
 abstract class SR_Hotel extends SR_Location
 {
+	public function isHijackable() { return true; }
 	public function getSleepPrice(SR_Player $player) { return 0; }
 	public function getNPCS(SR_Player $player) { return array(); }
 	public function getLeaderCommands(SR_Player $player) { return array('sleep'); }

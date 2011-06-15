@@ -70,7 +70,7 @@ final class Lamb_Ajax extends GWF_Method
 		$tVars = array(
 			'item' => $item,
 			'player' => $player,
-			'img' => GWF_WEB_ROOT.'template/lamb/slimg/item/'.$item->getName().'.png',
+			'img' => GWF_WEB_ROOT.'tpl/lamb/slimg/item/'.$item->getName().'.png',
 		);
 		return $module->template('item.php', NULL, $tVars);
 	}
@@ -84,7 +84,7 @@ final class Lamb_Ajax extends GWF_Method
 		$tVars = array(
 			'item' => $item,
 			'player' => $player,
-			'img' => GWF_WEB_ROOT.'template/lamb/slimg/item/'.$item->getName().'.png',
+			'img' => GWF_WEB_ROOT.'tpl/lamb/slimg/item/'.$item->getName().'.png',
 		);
 		return $module->template('store_item.php', NULL, $tVars);
 	}
@@ -101,7 +101,7 @@ final class Lamb_Ajax extends GWF_Method
 		{
 			if (!in_array($cmd, $blacklist, true))
 			{
-				$back .= sprintf('<img src="%stemplate/lamb/slimg/cmd/%s.png" alt="%s" title="%s" width="32" height="32" onclick="return sl4ClickCommand(\'%s\')" />', GWF_WEB_ROOT, $cmd, $cmd, $cmd, $cmd);
+				$back .= sprintf('<img src="%stpl/lamb/slimg/cmd/%s.png" alt="%s" title="%s" width="32" height="32" onclick="return sl4ClickCommand(\'%s\')" />', GWF_WEB_ROOT, $cmd, $cmd, $cmd, $cmd);
 			}
 		}
 		return $back;
@@ -123,7 +123,7 @@ final class Lamb_Ajax extends GWF_Method
 		{
 			$place = trim($place);
 			$place = explode('-', $place);
-			$back .= sprintf('<img src="%stemplate/lamb/slimg/location/%s.png" width="32" height="32" title="%s" alt="%s" onclick="return sl4ClickLocation(%s);" />', GWF_WEB_ROOT, $place[1], $place[1], $place[1], $place[0]);
+			$back .= sprintf('<img src="%stpl/lamb/slimg/location/%s.png" width="32" height="32" title="%s" alt="%s" onclick="return sl4ClickLocation(%s);" />', GWF_WEB_ROOT, $place[1], $place[1], $place[1], $place[0]);
 		}
 		return $back;
 	}

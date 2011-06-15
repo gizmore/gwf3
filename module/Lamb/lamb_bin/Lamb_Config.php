@@ -13,7 +13,7 @@ $LAMB_CFG = array
 	'hostname' => 'lamb3.gizmore.org',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;Greetings',#;IRCLink;Warfare;PG',
+	'modules' => 'Shadowlamb;Link;Quote;Scum;Slapwarz;Notes;Greetings',#;News;IRCLink;Warfare;PG',
 
 	# Various
 	'owner' => 'gizmore',
@@ -52,7 +52,7 @@ $LAMB_CFG = array
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 //			'channels' => '#shadowlamb,#hackbbs',
-			'channels' => '#shadowlamb',
+			'channels' => '#shadowlamb,#hackbbs,#hackbbs-en',
 			'admins' => 'gizmore',
 		),
 		
@@ -68,7 +68,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#coding,#127.0.0.1,#linux,#radio-tekula',
+			'channels' => '#shadowlamb,#coding,#127.0.0.1,#linux,#radio-tekula,#mo',
 			'admins' => 'gizmore',
 		),
 		
@@ -114,7 +114,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc2.hackbbs.org:9999',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#hackbbs-en',
+			'channels' => '#shadowlamb,#hackbbs,#hackbbs-en',
 			'admins' => 'gizmore',
 		),
 		

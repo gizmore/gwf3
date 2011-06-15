@@ -8,7 +8,7 @@ $i = 1;
 foreach ($party->getMembers() as $member)
 {
 	$name = $member->getName();
-	echo sprintf('<img src="%stemplate/lamb/slimg/char/%s.png" width="32" height="32" alt="%s" title="%s" onclick="return sl4ClickFriend(%s)" />', 
+	echo sprintf('<img src="%stpl/lamb/slimg/char/%s.png" width="32" height="32" alt="%s" title="%s" onclick="return sl4ClickFriend(%s)" />', 
 		GWF_WEB_ROOT, get_class($member), $name, $name, $i++);
 }
 
@@ -19,7 +19,7 @@ if (false !== ($ep = $party->getEnemyParty()))
 	foreach ($ep->getMembers() as $member)
 	{
 		$name = $member->getName();
-		echo sprintf('<img src="%stemplate/lamb/slimg/char/%s.png" width="32" height="32" alt="%s" title="%s" onclick="return sl4ClickEnemy(%s)" />', 
+		echo sprintf('<img src="%stpl/lamb/slimg/char/%s.png" width="32" height="32" alt="%s" title="%s" onclick="return sl4ClickEnemy(%s)" />', 
 			GWF_WEB_ROOT, get_class($member), $name, $name, $i++);
 	}
 }

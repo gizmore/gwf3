@@ -36,6 +36,7 @@ abstract class SR_Location
 	public function getCityClass() { return Shadowrun4::getCity($this->getCity()); }
 	public function hasATM() { return !$this->getCityClass()->isDungeon(); }
 	public function onCityEnter(SR_Party $party) { $this->onCleanComputers($party); }
+	public function isHijackable() { return true; }
 	
 	/**
 	 * We enter the location and are inside after we message the members.

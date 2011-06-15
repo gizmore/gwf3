@@ -96,7 +96,10 @@ final class Shadowshout
 					
 					if ($m->isCreated())
 					{
-						$u = $m->getUser();
+						if (NULL === ($u = $m->getUser()))
+						{
+							continue;
+						}
 						$s = $u->getServer();
 						$c = $s->getChannel('#shadowlamb');
 						

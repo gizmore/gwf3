@@ -342,7 +342,8 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf('%s%s. %s%s%s%s%s%s',
+		return sprintf('%s is %s%s. %s%s%s%s%s%s',
+			$this->getName(),
 			$this->displayType(),
 			$this->displayLevel(),
 			$this->getItemDescription(),

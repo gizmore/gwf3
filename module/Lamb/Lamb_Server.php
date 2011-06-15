@@ -1,4 +1,6 @@
 <?php
+require_once 'Lamb_IRC.php';
+
 /**
  * An IRC server.
  * @author gizmore

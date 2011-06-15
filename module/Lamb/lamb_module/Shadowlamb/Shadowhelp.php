@@ -310,7 +310,7 @@ final class Shadowhelp
 					array(
 						'leader' => 'Leader command. Usage: #(le)ader <member_name|member_enum>. Set a new party leader for your party.',
 						'request_leader' => 'Player command. Usage: #request_leader|#rl. Request leadership in case the current leader is away.',
-						'join' => 'Player command. Usage: #(j)oin <player>. Join the party of another player.',
+						'join' => 'Player command. Usage: #(j)oin <player>. Join the party of another player who is at the same location as you. You can #look to see which players are around you.',
 						'part' => 'Player command. Usage: #part. Leave your current party and create a fresh one.',
 						'fight' => 'Leader Command. Usage: #fight [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
 						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party.',

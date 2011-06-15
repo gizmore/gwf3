@@ -99,8 +99,8 @@ final class LambModule_Greetings extends Lamb_Module
 		switch ($priviledge)
 		{
 			case 'public': return array('quitjoin', 'peak');
-			case 'staff': return array('+quitjoin', '-quitjoin', '+peak', '-peak');
-			case 'admin': return array('+greet', '-greet', 'greet', 'greetmode', 'greet_again');
+			case 'staff': return array('+greet', '-greet', 'greetmode', '+peak', '-peak', '+quitjoin', '-quitjoin');
+			case 'admin': return array('greet', 'greet_again');
 			default: return array();
 		}
 	}
@@ -160,7 +160,7 @@ final class LambModule_Greetings extends Lamb_Module
 			return 'This command works in channels only.';
 		}
 		
-		if (false === ($peak = Lamb_ChannelPeak::getPeak($channel)))
+		if (false === ($peak = Lamb_ChannelPeak::getPeak($channel->getID())))
 		{
 			return 'Database error!';
 		}

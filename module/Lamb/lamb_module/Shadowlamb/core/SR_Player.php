@@ -2078,8 +2078,10 @@ class SR_Player extends GDO
 			$this->saveOption(self::DEAD, true);
 		}
 		$this->announceKilled($killer);
-
-		# Loose an item.
+	}
+	
+	private function looseItem(SR_Player $killer)
+	{
 		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
 		foreach ($items as $i => $item)
 		{
@@ -2089,8 +2091,6 @@ class SR_Player extends GDO
 				unset($items[$i]);
 			}
 		}
-		
-		
 		if (0 !== ($rand = rand(0, count($items))))
 		{
 			shuffle($items);
@@ -2108,9 +2108,15 @@ class SR_Player extends GDO
 	
 	public function gotKilledByHuman(SR_Player $killer)
 	{
-		return $this->gotKilledByNPC($killer);
-		
 		SR_Bounty::onKilledByHuman($killer, $this);
+		
+		if (!SR_KillProtect::isKillProtected($killer, $this))
+		{
+			$this->looseItem($killer);
+			SR_KillProtect::onKilled($killer, $victim);
+		}
+		
+		return $this->gotKilledByNPC($killer);
 	}
 	
 	private function announceKilled(SR_Player $killer)

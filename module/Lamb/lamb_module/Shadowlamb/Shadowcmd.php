@@ -94,7 +94,7 @@ class Shadowcmd
 		'talk' => array('kick','le'),
 		'fight' => array(),
 		'inside' => array('g','exp','hunt','kick','exit','le'),
-		'outside' => array('g','exp','hunt','hijack','kick','en','le'),
+		'outside' => array('g','exp','hunt','kick','en','le'),
 		'explore' => array('g','exp','hunt','kick','stop','le'),
 		'goto' => array('g','exp','hunt','kick','stop','le'),
 		'hunt' => array('g','exp','hunt','kick','stop','le'), 
@@ -163,10 +163,14 @@ class Shadowcmd
 		
 		if (false !== ($location = $party->getLocationClass('outside')))
 		{
-			if ($location->isPVP())
+			if ($location->isHijackable())
 			{
-				$commands[] = 'fight';
+				$commands[] = 'hijack';
 			}
+//			if ($location->isPVP())
+//			{
+				$commands[] = 'fight';
+//			}
 		}
 		
 		return $commands;
