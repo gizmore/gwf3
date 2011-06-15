@@ -13,6 +13,14 @@ echo $tVars['page_menu'];
 
 echo '<div class="cb"></div>'.PHP_EOL;
 
+if ($tVars['page'] === 1) {
+	$wc = Module_WeChall::instance();
+	echo $wc->showBirthdayNews();
+	echo $wc->showChallengeNews();
+	echo $wc->showSiteMasterNews();
+	echo $wc->showAccountLinkNews();
+}
+
 foreach ($tVars['news'] as $news)
 {
 ?>
