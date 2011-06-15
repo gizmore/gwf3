@@ -49,23 +49,20 @@ else
 //$out = ob_get_contents();
 //ob_end_clean();
 
-
-# Display the page
-if (isset($_GET['ajax'])) {
-	echo $page;
-} else {
-	echo GWF_Website::displayPage($page, GWF_DebugInfo::getTimings());
-}
-
 # Commit the session
 if (false !== ($user = GWF_Session::getUser())) {
 	$user->saveVar('user_lastactivity', time());
 }
 GWF_Session::commit();
 
+# Display the page
+if (isset($_GET['ajax'])) {
+	echo $page;
+} else {
+	echo GWF_Website::displayPage($page);
+}
+
 //$c2 = get_declared_classes();
-//var_dump($c2);
-//$c2 = SF::$loaded;
 //if(isset($_GET['classes'])) {
 //	print_r($c2);
 //}

@@ -32,7 +32,7 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 GWF_Session::commit(false);
 
 # Display Page
-echo GWF_Website::displayPage($page, GWF_DebugInfo::getTimings());
+echo GWF_Website::displayPage($page);
 
 function gwf_error_404_mail()
 {

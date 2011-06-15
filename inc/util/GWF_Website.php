@@ -251,7 +251,7 @@ final class GWF_Website
 		return GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_head($t, $path = 'tpl/%DESIGN%/') {
+	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/') {
 		$tVars = array(
 //			'timings' => $timings,
 			'user' => GWF_User::getStaticOrGuest(),
@@ -259,7 +259,7 @@ final class GWF_Website
 		return GWF_Template::template($path.'html_body.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_foot($timings, $path = 'tpl/%DESIGN%/') {
+	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/') {
 		$tVars = array(
 			'timings' => GWF_DebugInfo::getTimings(),
 			'user' => GWF_User::getStaticOrGuest(),
