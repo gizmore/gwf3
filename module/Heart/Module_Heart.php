@@ -17,14 +17,22 @@ final class Module_Heart extends GWF_Module
 		GWF_Website::addJavascriptInline(sprintf('setTimeout("gwf_heartbeat(%s);", %s);', $ms, $ms));
 		GWF_Website::addJavascript($this->getModuleFilePath('js/hb.js'));
 		
+		$cut = time() - GWF_ONLINE_TIMEOUT;
+		$spider = GWF_User::WEBSPIDER;
+		$online = GDO::table('GWF_User')->selectVar('COUNT(*)', "user_lastactivity>{$cut} AND user_options&{$spider}=0");
 		
+		if ($online > $this->cfgUserrecordCount())
+		{
+			$this->saveModuleVar('hb_userrecord', $online);
+			$this->saveModuleVar('hb_recorddate', GWF_Time::getDate(14));
+		}
 		
 		$pc = $this->cfgPagecount();
 		$this->saveModuleVar('hb_pagecount', $pc+1);
 	}
 	
 	public function cfgPagecount() { return $this->getModuleVar('hb_pagecount', '0'); }
-	public function cfgUserrecordDate() { return $this->getModuleVar('hb_recorddate', '0'); }
-	public function cfgUserrecordCount() { return $this->getModuleVar('hb_userrecord', '00000000000000'); }
+	public function cfgUserrecordCount() { return $this->getModuleVar('hb_userrecord', '0'); }
+	public function cfgUserrecordDate() { return $this->getModuleVar('hb_recorddate', '00000000000000'); }
 }
 ?>
