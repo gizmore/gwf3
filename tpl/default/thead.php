@@ -1,3 +1,4 @@
+<thead>
 <tr>
 <?php foreach ($tVars['headers'] as $head) {
 	echo '<th class="nowrap">';
@@ -15,3 +16,4 @@
 }
 ?>
 </tr>
+</thead>
