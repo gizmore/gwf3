@@ -1,257 +1,321 @@
-@CHARSET "UTF-8";
-
-/* Emptyness */
-* { margin: 0; padding: 0; text-decoration: none; }
-a img { border: none; }
-
-/* COMMON */
-.gwf_num { font-family: monospace; text-align: right; padding-right: 3px; }
-.gwf_date { font-family: monospace; text-align: right; padding-right: 3px; }
-.ce { text-align: center; margin-left: auto; margin-right: auto; }
-.ib { display: inline-block; }
-.t { display: table; }
-.b { display: block; }
-.h { display: none; }
-.i { display: inline; }
-.fl { float: left; }
-.fr { float: right; }
-.cb { clear: both; }
-.cl { clear: left; }
-.cr { clear: right; }
-.le { text-align: left; }
-.ri { text-align: right; }
-.oa { overflow: auto; }
-.oh { overflow: hidden; }
-.os { overflow: scroll; }
-.ov { overflow: visible; }
-.nowrap { white-space: nowrap; }
-
-/* Buttons */
-.gwf_button span, .gwf_pm_icon {
-	background-repeat: no-repeat;
-	display: inline-block;
-	min-height: 16px;
-	min-width: 16px;
-	font-size: 12px;
-	white-space: nowrap;
-	vertical-align: middle;
-}
-.gwf_button span b {
-	display: none;
-}
-
-.gwf_btn_thumbsup, .gwf_btn_thumbsdown {
-	width: 20px;
-	height: 24px;
-}
-.gwf_btn_thanks {
-	width: 68px;
-	height: 22px;
-}
-.gwf_btn_sel {
-	border-width: 2px;
-	border-color: #006;
-}
-
-.gwf_btn_add { background: url(../../../img/add.png); }
-.gwf_btn_sub { background: url(../../../img/sub.png); }
-.gwf_btn_favorite { background: url(../../../img/star_2.png); }
-.gwf_btn_user { background: url(../../../img/user.png); }
-.gwf_btn_mail { background: url(../../../img/email.png); }
-.gwf_btn_edit { background: url(../../../img/application_edit.png); }
-.gwf_btn_reply { background: url(../../../img/pencil.png); }
-.gwf_btn_quote { background: url(../../../img/comment.png); }
-.gwf_btn_options { background: url(../../../img/cog.png); }
-.gwf_btn_delete { background: url(../../../img/delete.png); }
-.gwf_btn_restore { background: url(../../../img/hammer_screwdriver.png); }
-.gwf_btn_ignore { background: url(../../../img/user_thief.png); }
-.gwf_btn_forward { background: url(../../../img/arrow_branch.png); }
-.gwf_btn_search { background: url(../../../img/find.png); }
-.gwf_btn_trashcan { background: url(../../../img/lifebuoy.png); }
-.gwf_btn_bell { background: url(../../../img/bell.png); }
-.gwf_btn_translate { background: url(../../../img/google_16.png); }
-.gwf_btn_thumbsup { background: url(../../../img/thumbs_up.gif); }
-.gwf_btn_thumbsdown { background: url(../../../img/thumbs_down.gif); }
-.gwf_btn_thanks { background: url(../../../img/thanks.gif); }
-.gwf_btn_link { background: url(../../../img/arrow_right.png); }
-.gwf_btn_prev { background: url(../../../img/arrow_left.png); }
-.gwf_btn_next { background: url(../../../img/arrow_right.png); }
-
-/** PM **/
-.gwf_pm_new { background: url(../../../img/bell.png); }
-.gwf_pm_old { background: url(../../../img/email.png); }
-.gwf_pm_read { background: url(../../../img/accept.png); }
-.gwf_pm_unread { background: url(../../../img/arrow_refresh.png); }
-.gwf_pm_deleted { background: url(../../../img/delete.png); }
-
-
-/** GWF_Table **/
-.gwf_th_asc, .gwf_th_desc, .gwf_th_asc_sel, .gwf_th_desc_sel {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
-}
-.gwf_th_asc { background: url(../../../img/arrow_up.gif) no-repeat; }
-.gwf_th_desc { background: url(../../../img/arrow_down.gif) no-repeat; }
-.gwf_th_asc_sel { background: url(../../../img/arrow_up_sel.gif) no-repeat; }
-.gwf_th_desc_sel { background: url(../../../img/arrow_down_sel.gif) no-repeat; }
-
-
-
-/** PageMenu **/
-.gwf_pagemenu {
-	font-size: 14px;
-}
-
-.gwf_pagemenu_sel {
-	font-size: 18px;
-}
-
-/*
-.free_pay {
-	background: url(../../../img/buy_gwf.gif);
-	width: 96px;
-	height: 64px;
-}*/
-
-
-
-/** Forum **/
-.gwf_hl {
-	font-weight: bold;
-	font-style: italic;
-	background: #ffb;
-}
-code {
-	font-family: monospace;
-	white-space: pre;
-}
-/*quote {
-}*/
-
-.gwf_attachments, .gwf_attachment {
-	margin: 10px 5px 5px 5px;
-}
-.gwf_attachment {
-	padding: 2px;
-	border: 1px solid #000;
-}
-
-/** Textarea **/
-.bb_replace_bar {
-}
-.bb_replace {
-	display: inline;
-}
-textarea {
-	width: 100%;
-	min-height: 200px;
-	min-width: 640px;
-}
-
-
-
-/** Chat **/
-#gwf_mibbit {
-	width: 100%;
-	min-height: 480px;
-}
-
-
-.gwf_full_width, .gwf_full_width table {
-	width: 100%;
-}
-
-/** BBCode Spoiler **/
-.gwf_spoiler {
-	display: none;
-}
-
-/** Default YForms **/
-.gwf3_formY table tr > td {
-	text-align: right;
-}
-.gwf3_formY table tr > td + td {
-	text-align: left;
-}
-
-/** Fancy Default Messages **/
-/** Fancy Default Error+MSG **/
-.gwf_errors, .gwf_messages {
-	float: left;
-	margin: 28px 20px;
-	line-height: 18px;
-	padding: 0 10px 15px 10px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
-	border: 1px solid #700;
-}
-
-.gwf_errors {
-	background-color: #f33;
-}
-.gwf_messages {
-	background-color: #3f3;
-}
-.gwf_err_t, .gwf_msg_t {
-	display: inline-block;
-	position: relative;
-	top: -16px;
-	left: 40px;
-	line-height: 30px;
-	padding: 0px 10px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
-	border: 1px solid #700;
-}
-.gwf_err_t{
-	background-color: #f66;
-}
-.gwf_msg_t{
-	background-color: #6f6;
-}
-.gwf_errors ul, .gwf_messages ul {
-	margin-top: -5px;
-}
-.gwf_errors li, .gwf_messages li {
-	list-style: none;
-/*	font-weight: bolder;*/
-	font-size: 17px;
-	margin: 0;
-	padding: 0px 10px 2px 22px;
-}
-.gwf_errors li {
-	background: url(../../../img/cross_shield_2.png) left center no-repeat;
-}
-.gwf_messages li {
-	background: url(../../../img/accept.png) left center no-repeat;
-}
-
-/** Top Menu **/
-#gwf3_topmenu li, #gwf3_footmenu li {
-	display: inline-block;
-	padding: 2px 8px;
-}
-
-/** Forum **/
-.gwf_board_quicktree {
-	padding: 5px 10px;
-}
-.gwf_board_quicktree a {
-	padding: 0 5px;
-}
-.gwf_thread h1 {
-	padding: 10px 30px;
-}
-.gwf_post_uinfo {
-	padding: 10px;
-	float: left;
-}
-
-.gwf_post_body {
-	padding: 10px;
-	overflow: auto;
-}
-
+array('2x', '2X'),
+array('absolute', 'Absolute'),
+array('abuledu', 'AbulÉdu'),
+array('agilia', 'AgiliaLinux'),
+array('alinex', 'Alinex'),
+array('alinux', 'aLinux'),
+array('alpine', 'Alpine'),
+array('alt', 'ALT'),
+array('annyung', 'AnNyung'),
+array('antix', 'antiX'),
+array('apodio', 'APODIO'),
+array('aptosid', 'aptosid'),
+array('arch', 'Arch'),
+array('archbang', 'ArchBang'),
+array('archeos', 'ArcheOS'),
+array('arios', 'AriOS'),
+array('ark', 'Ark'),
+array('artistx', 'ArtistX'),
+array('asianux', 'Asianux'),
+array('astaro', 'Astaro'),
+array('asterisknow', 'AsteriskNOW'),
+array('asturix', 'Asturix'),
+array('auroraos', 'Aurora'),
+array('austrumi', 'AUSTRUMI'),
+array('avlinux', 'AV Linux'),
+array('backtrack', 'BackTrack'),
+array('baltix', 'Baltix'),
+array('bardinux', 'Bardinux'),
+array('bayanihan', 'Bayanihan'),
+array('berry', 'Berry'),
+array('biglinux', 'Big Linux'),
+array('blackpanther', 'blackPanther'),
+array('blag', 'BLAG'),
+array('blankon', 'BlankOn'),
+array('bodhi', 'Bodhi'),
+array('boss', 'BOSS'),
+array('brlix', 'BRLix'),
+array('bulinux', 'BU Linux'),
+array('burapha', 'Burapha'),
+array('cae', 'CAELinux'),
+array('caine', 'CAINE'),
+array('caixamagica', 'Caixa Mágica'),
+array('calculate', 'Calculate'),
+array('canaima', 'Canaima'),
+array('caos', 'Caos'),
+array('catix', 'Càtix'),
+array('ccux', 'CCux'),
+array('cdlinux', 'CDlinux'),
+array('censornet', 'CensorNet'),
+array('centos', 'CentOS'),
+array('chakra', 'Chakra'),
+array('clearos', 'ClearOS'),
+array('clonezilla', 'Clonezilla'),
+array('comfusion', 'Comfusion'),
+array('connochaet', 'Connochaet'),
+array('coyote', 'Coyote'),
+array('crunchbang', 'CrunchBang'),
+array('crux', 'CRUX'),
+array('ctkarch', 'CTKArch'),
+array('debian', 'Debian'),
+array('debris', 'Debris'),
+array('debxpde', 'DebXPde'),
+array('deepin', 'Deepin'),
+array('deft', 'DEFT'),
+array('desktopbsd', 'DesktopBSD'),
+array('devil', 'Devil'),
+array('digantel', 'DigAnTel'),
+array('doudou', 'DoudouLinux'),
+array('draco', 'Draco'),
+array('dragonflybsd', 'DragonFly'),
+array('dragora', 'Dragora'),
+array('dreamlinux', 'Dreamlinux'),
+array('dvl', 'DVL'),
+array('easypeasy', 'EasyPeasy'),
+array('edubuntu', 'Edubuntu'),
+array('ekaaty', 'Ekaaty'),
+array('elastix', 'Elastix'),
+array('elementary', 'elementary'),
+array('elive', 'Elive'),
+array('endian', 'Endian'),
+array('engarde', 'EnGarde'),
+array('epidemic', 'Epidemic'),
+array('estrellaroja', 'Estrella Roja'),
+array('esun', 'ESUN'),
+array('evinux', 'Evinux'),
+array('extix', 'ExTIX'),
+array('fedora', 'Fedora'),
+array('fermi', 'Fermi'),
+array('finnix', 'Finnix'),
+array('foresight', 'Foresight'),
+array('freebsd', 'FreeBSD'),
+array('freenas', 'FreeNAS'),
+array('frenzy', 'Frenzy'),
+array('frugalware', 'Frugalware'),
+array('fuduntu', 'Fuduntu'),
+array('fuguita', 'FuguIta'),
+array('fusion', 'Fusion'),
+array('geexbox', 'GeeXboX'),
+array('gentoo', 'Gentoo'),
+array('gentoox', 'Gentoox'),
+array('ghostbsd', 'GhostBSD'),
+array('gibraltar', 'Gibraltar'),
+array('gnacktrack', 'GnackTrack'),
+array('gnewsense', 'gNewSense'),
+array('gnobsd', 'GNOBSD'),
+array('gnustep', 'GNUstep'),
+array('gparted', 'GParted'),
+array('greenie', 'Greenie'),
+array('grml', 'Grml'),
+array('guadalinex', 'Guadalinex'),
+array('hacao', 'Hacao'),
+array('helix', 'Helix'),
+array('honeywall', 'Honeywall'),
+array('idms', 'IDMS'),
+array('imagicos', 'iMagic'),
+array('imagineos', 'Imagineos'),
+array('incognito', 'Incognito'),
+array('inquisitor', 'Inquisitor'),
+array('insigne', 'Insigne'),
+array('ipcop', 'IPCop'),
+array('ipfire', 'IPFire'),
+array('jibbed', 'Jibbed'),
+array('jolinux', 'JoLinux'),
+array('jolios', 'Joli OS'),
+array('k12linux', 'K12Linux'),
+array('kdemar', 'kademar'),
+array('kahelos', 'KahelOS'),
+array('kanotix', 'KANOTIX'),
+array('karoshi', 'Karoshi'),
+array('kiwi', 'Kiwi'),
+array('knoppel', 'Knoppel'),
+array('knoppix', 'KNOPPIX'),
+array('knosciences', 'KnoSciences'),
+array('kongoni', 'Kongoni'),
+array('kororaa', 'Kororaa'),
+array('kubuntu', 'Kubuntu'),
+array('kwort', 'Kwort'),
+array('legacy', 'Legacy'),
+array('lfs', 'LFS'),
+array('linex', 'LinEx'),
+array('linhes', 'LinHES'),
+array('linpus', 'Linpus'),
+array('linuxconsole', 'LinuxConsole'),
+array('linuxeducd', 'Linux-EduCD'),
+array('linuxgamers', 'linuX-gamers'),
+array('linuxtle', 'LinuxTLE'),
+array('litrix', 'Litrix'),
+array('livecdrouter', 'LiveCD Router'),
+array('lliurex', 'LliureX'),
+array('lubuntu', 'Lubuntu'),
+array('lunar', 'Lunar'),
+array('monowall', 'm0n0wall'),
+array('macpup', 'Macpup'),
+array('madbox', 'Madbox'),
+array('mageia', 'Mageia'),
+array('magic', 'Magic'),
+array('mandriva', 'Mandriva'),
+array('mangaka', 'Mangaka'),
+array('max', 'MAX'),
+array('mcnlive', 'MCNLive'),
+array('meego', 'MeeGo'),
+array('mepis', 'MEPIS'),
+array('midnightbsd', 'MidnightBSD'),
+array('milax', 'MilaX'),
+array('minino', 'MiniNo'),
+array('minix', 'MINIX'),
+array('mint', 'Mint'),
+array('miracle', 'Miracle'),
+array('miros', 'MirOS'),
+array('moblin', 'Moblin'),
+array('molinux', 'MoLinux'),
+array('momonga', 'Momonga'),
+array('monomaxos', 'Monomaxos'),
+array('moonos', 'moonOS'),
+array('musix', 'Musix'),
+array('myrinix', 'Myrinix'),
+array('mythbuntu', 'Mythbuntu'),
+array('mythdora', 'MythDora'),
+array('natures', 'Nature's'),
+array('neoshine', 'NeoShine'),
+array('nepalinux', 'NepaLinux'),
+array('netbsd', 'NetBSD'),
+array('netrunner', 'Netrunner'),
+array('netsecl', 'NetSecL'),
+array('nexenta', 'Nexenta'),
+array('nexentastor', 'NexentaStor'),
+array('niigata', 'Niigata'),
+array('nimblex', 'NimbleX'),
+array('nova', 'Nova'),
+array('novell', 'Novell SLE'),
+array('nst', 'NST'),
+array('nutyx', 'NuTyX'),
+array('ojuba', 'Ojuba'),
+array('olpc', 'OLPC'),
+array('omoikane', 'Omoikane'),
+array('onet', 'O-Net'),
+array('openbsd', 'OpenBSD'),
+array('openfiler', 'Openfiler'),
+array('openindiana', 'OpenIndiana'),
+array('openmamba', 'openmamba'),
+array('suse', 'openSUSE'),
+array('openwall', 'Openwall'),
+array('ophcrack', 'Ophcrack'),
+array('oracle', 'Oracle'),
+array('paipix', 'PAIPIX'),
+array('paldo', 'paldo'),
+array('papug', 'PapugLinux'),
+array('pardus', 'Pardus'),
+array('parsix', 'Parsix'),
+array('partedmagic', 'Parted Magic'),
+array('pcbsd', 'PC-BSD'),
+array('pclinuxos', 'PCLinuxOS'),
+array('pcos', 'PC/OS'),
+array('pelicanhpc', 'PelicanHPC'),
+array('pentoo', 'Pentoo'),
+array('peppermint', 'Peppermint'),
+array('pfsense', 'pfSense'),
+array('phayoune', 'Phayoune'),
+array('pinguy', 'Pinguy'),
+array('plamo', 'Plamo'),
+array('pld', 'PLD'),
+array('plop', 'Plop'),
+array('porteus', 'Porteus'),
+array('poseidon', 'Poseidon'),
+array('pqui', 'pQui'),
+array('privatix', 'Privatix'),
+array('puppy', 'Puppy'),
+array('puredyne', 'Puredyne'),
+array('pureos', 'PureOS'),
+array('qimo', 'Qimo'),
+array('qomo', 'Qomo'),
+array('quirky', 'Quirky'),
+array('redflag', 'Red Flag'),
+array('redhat', 'Red Hat'),
+array('redwall', 'redWall'),
+array('resulinux', 'Resulinux'),
+  <option selected="" value="rip', 'RIPLinuX'),
+array('rockscluster', 'Rocks Cluster'),
+array('rpath', 'rPath'),
+array('runtu', 'Runtu'),
+array('sabayon', 'Sabayon'),
+array('sabily', 'Sabily'),
+array('saline', 'SalineOS'),
+array('salix', 'Salix'),
+array('samity', 'SAMity'),
+array('satux', 'Satux'),
+array('schillix', 'SchilliX'),
+array('scientific', 'Scientific'),
+array('securepoint', 'Securepoint'),
+array('skolelinux', 'Skolelinux'),
+array('slackintosh', 'Slackintosh'),
+array('slackware', 'Slackware'),
+array('slampp', 'SLAMPP'),
+array('slitaz', 'SliTaz'),
+array('smeserver', 'SME Server'),
+array('smoothwall', 'SmoothWall'),
+array('sms', 'SMS'),
+array('sol', 'SoL'),
+array('solaris', 'Solaris'),
+array('sorcerer', 'Sorcerer'),
+array('sourcemage', 'Source Mage'),
+array('startcom', 'StartCom'),
+array('std', 'STD'),
+array('stresslinux', 'StressLinux'),
+array('stux', 'STUX'),
+array('sulix', 'SuliX'),
+array('supergamer', 'SuperGamer'),
+array('superos', 'Super OS'),
+array('suriyan', 'Suriyan'),
+array('syllable', 'Syllable'),
+array('systemrescue', 'SystemRescue'),
+array('t2', 'T2'),
+array('tfm', 'TFM'),
+array('thinstation', 'Thinstation'),
+array('tinycore', 'Tiny Core'),
+array('tinyme', 'TinyMe'),
+array('toorox', 'Toorox'),
+array('topologilinux', 'Topologilinux'),
+array('toutou', 'Toutou'),
+array('trinity', 'Trinity'),
+array('trisquel', 'Trisquel'),
+array('trixbox', 'trixbox'),
+array('tuquito', 'Tuquito'),
+array('turbolinux', 'Turbolinux'),
+array('turnkey', 'TurnKey'),
+array('uberstudent', 'UberStudent'),
+array('ubuntu', 'Ubuntu'),
+array('ubunturescue', 'Ubuntu Rescue'),
+array('ubuntustudio', 'Ubuntu Studio'),
+array('uhu', 'UHU-Linux'),
+array('ulteo', 'Ulteo'),
+array('ultimate', 'Ultimate'),
+array('unity', 'Unity'),
+array('untangle', 'Untangle'),
+array('ubuntupr', 'UPR'),
+array('userful', 'Userful'),
+array('ututo', 'UTUTO'),
+array('vector', 'Vector'),
+array('venenux', 'VENENUX'),
+array('vine', 'Vine'),
+array('vinux', 'Vinux'),
+array('vlos', 'VLOS'),
+array('vmknoppix', 'VMKnoppix'),
+array('vnlinux', 'VNLinux'),
+array('vortexbox', 'VortexBox'),
+array('vyatta', 'Vyatta'),
+array('wattos', 'wattOS'),
+array('webconverger', 'Webconverger'),
+array('wifislax', 'Wifislax'),
+array('xange', 'Xange'),
+array('xpud', 'xPUD'),
+array('xubuntu', 'Xubuntu'),
+array('yellowdog', 'Yellow Dog'),
+array('ylmf', 'Ylmf'),
+array('yoper', 'Yoper'),
+array('zencafe', 'Zencafe'),
+array('zentyal', 'Zentyal'),
+array('zenwalk', 'Zenwalk'),
+array('zeroshell', 'Zeroshell'),
+array('zevenos', 'ZevenOS'),
+array('zorin', 'Zorin'),

@@ -217,6 +217,7 @@ final class GWF_InstallConfig
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
 			array('text',   'Main', 'GWF_SITENAME', 'Gizmore Website Framework', 'Your Site`s name. htmlspecialchars() it yourself.'),
 			array('text',   'Main', 'GWF_WEB_ROOT_NO_LANG', $self, 'Add trailing and leading slash. Example: \'/\' or \'/mywebdir/\'.'),
+			array('text',   'Main', 'GWF_DEFAULT_DOCTYPE', 'xhtml_strict', 'Set the default html-doctype for gwf. Modules can change it.'),
 //			array('text',   'Main', 'GWF_SERVER_PATH', $path, 'Full path. Do NOT add trailing slash. Example: \'/home/foo/public_html\'.'),
 //			array('bool',   'Main', 'GWF_OUTPUT_BUFFERING', true, 'Enable output buffering. Example: true.'),
 //			array('bool',   'Main', 'GWF_WITH_GPL', false, 'Use GPL Licensed, 3rd party stuff? Example: false.'),
