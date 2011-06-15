@@ -6,7 +6,6 @@ final class GWF_Doctype
 		return 
 			'<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"'.PHP_EOL.
 			'"http://www.w3.org/TR/html4/loose.dtd">'.PHP_EOL;
-		
 	}
 
 	public static function html4strict()
@@ -32,7 +31,7 @@ final class GWF_Doctype
 
 	public static function html5()
 	{
-		return '<!DOCTYPE html>';
+		return '<!DOCTYPE html>'.PHP_EOL;
 	}
 }
 ?>
