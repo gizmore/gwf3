@@ -25,6 +25,8 @@ final class GWF_Website
 		GWF_Log::init($username, true, $server_root.'/protected/logs');
 	}
 	
+	public static function isHTML() { return strpos(GWF_DEFAULT_DOCTYPE, 'xhtml') === false; }
+	
 	#################
 	### Birthdate ###
 	#################
@@ -256,12 +258,12 @@ final class GWF_Website
 			'language' => GWF_Language::getCurrentISO(),
 			'meta_tags' => self::displayMetaTags(),
 			'meta_descr' => self::displayMetaDescr(),
-			'meta' => self::displayMETA(GWF_IS_HTML), // important: must be under displayMetaDescr/Tags
+			'meta' => self::displayMETA(self::isHTML()), // important: must be under displayMetaDescr/Tags
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
 			'feeds' => self::displayFeeds(),
 			'root' => GWF_WEB_ROOT,
 			'js' => self::displayJavascripts(),
-			'css' => self::displayCSS(GWF_IS_HTML),
+			'css' => self::displayCSS(self::isHTML()),
 		);
 		return GWF_Template::templateMain('html_head.tpl', $tVars);
 	}

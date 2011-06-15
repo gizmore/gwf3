@@ -241,7 +241,6 @@ final class GWF_InstallConfig
 			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
 			
 			# Various
-			array('bool', 'Various', 'GWF_IS_HTML', false, 'will GWF be HTML5(true) or XHTML(false)?'),
 			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 60, 'A request will mark you online for N seconds.'),
 			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 0, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
 			array('text',  'Various', 'GWF_CAPTCHA_COLOR_BG', 'FFFFFF', 'Captcha background color. 6 hex digits. Example: ffffff' ),
