@@ -111,7 +111,7 @@ final class Account_Form extends GWF_Method
 			// Avatar
 			if ($user->isOptionEnabled(GWF_User::HAS_AVATAR))
 			{
-				$data['avatar'] = array(GWF_Form::SSTRING, $user->displayAvatar(), $module->lang('th_avatar'));
+				$data['avatar'] = array(GWF_Form::HEADLINE, $user->displayAvatar(), $module->lang('th_avatar'));
 				$data['drop_avatar'] = array(GWF_Form::SUBMIT, $module->lang('btn_drop_avatar'), '');
 			}
 			else

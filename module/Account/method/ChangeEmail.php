@@ -96,7 +96,7 @@ final class Account_ChangeEmail extends GWF_Method
 		$email1 = Common::getPost('email');
 		$email2 = Common::getPost('email_re');
 		if (!GWF_Validator::isValidEmail($email1)) {
-			return GWF_HTML::err('ERR_INVALID_EMAIL').$this->templateChangeMailB($module, $row);
+			return $module->error('err_email_invalid').$this->templateChangeMailB($module, $row);
 		}
 		
 		if ($email1 !== $email2) {
@@ -104,7 +104,7 @@ final class Account_ChangeEmail extends GWF_Method
 		}
 		
 		if (GWF_User::getByEmail($email1) !== false) {
-			return GWF_HTML::err('ERR_EMAIL_TAKEN');
+			return GWF_HTML::err('err_email_taken');
 		}
 		
 		if (false === $row->delete()) {

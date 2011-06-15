@@ -186,5 +186,7 @@ $lang = array(
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',
 	'err_email_invalid' => 'Your email looks invalid.',
+	# v3.00 (fixes3)
+	'err_email_taken' => 'This email address is already in use.',
 );
 ?>
