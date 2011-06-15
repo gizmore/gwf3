@@ -12,7 +12,7 @@ require_once 'inc/_gwf_include.php';
 $modules = GWF_Module::loadModulesDB();
 
 # Start session
-if (false === gwf_session_start(false)) {
+if (false === GWF_Session::start(false)) {
 	die('Session error. GWF not installed?');
 }
 
