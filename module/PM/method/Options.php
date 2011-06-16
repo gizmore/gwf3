@@ -57,7 +57,8 @@ final class PM_Options extends GWF_Method
 	public function getFormIgnore(Module_PM $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name'), 24),
+			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
+			'reason' => array(GWF_Form::STRING, '', $module->lang('th_reason')),
 			'ignore' => array(GWF_Form::SUBMIT, $module->lang('btn_ignore2')),
 		);
 		return new GWF_Form($this, $data);
@@ -72,7 +73,7 @@ final class PM_Options extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_options'), $action),
 			'form_ignore' => $form2->templateX($module->lang('ft_ignore'), $action),
-			'ignores' => GDO::table('GWF_PMIgnore')->selectColumn('DISTINCT(user_name)', "pmi_uid=$uid", 'user_name ASC', array('pmi_user')),
+			'ignores' => GDO::table('GWF_PMIgnore')->selectAll('user_name, pmi_reason', "pmi_uid=$uid", 'user_name ASC', array('pmi_iuser'), -1, -1, GDO::ARRAY_N),
 			'href_auto_folder' => $this->getMethodHref('&auto_folder=all'),
 		);
 		return $module->templatePHP('options.php', $tVars);
@@ -119,12 +120,12 @@ final class PM_Options extends GWF_Method
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
 		}
 		
-		if (false === ($user = GWF_User::getByName(Common::getPost('username')))) {
+		if (false === ($user = GWF_User::getByName(Common::getPostString('username')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		#$method instanceof PM_Ignore;
-		return $method->onIgnore($module, 'do', $user->getID());
+		$method instanceof PM_Ignore;
+		return $method->onIgnore($module, 'do', $user->getID(), Common::getPostString('reason'));
 	}
 
 	private function onUnIgnore(Module_PM $module, $username)

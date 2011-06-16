@@ -9,15 +9,17 @@ if (count($tVars['ignores']) > 0)
 {
 	$headers = array(
 		array($tLang->lang('th_user_name')),#, 'user_name', 'ASC'),
+		array($tLang->lang('th_reason')),#, 'pmi_reason', 'ASC'),
 		array($tLang->lang('th_actions')),
 	);
 	echo GWF_Table::start();
 	echo GWF_Table::displayHeaders1($headers);
-	foreach ($tVars['ignores'] as $uname)
+	foreach ($tVars['ignores'] as $row)
 	{
 		echo GWF_Table::rowStart();
-		$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($uname);
-		echo GWF_Table::column(GWF_HTML::display($uname));
+		$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($row[0]);
+		echo GWF_Table::column(GWF_HTML::display($row[0]));
+		echo GWF_Table::column(GWF_HTML::display($row[1]));
 		echo GWF_Table::column(GWF_Button::delete($del_href));
 		echo GWF_Table::rowEnd();
 	}

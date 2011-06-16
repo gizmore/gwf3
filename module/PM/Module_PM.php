@@ -9,7 +9,7 @@ final class Module_PM extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.03; }
+	public function getVersion() { return 1.04; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/pm'); }
 	
 	################
@@ -217,8 +217,8 @@ final class Module_PM extends GWF_Module
 			return false;
 		}
 		
-		if (GWF_PMIgnore::isIgnored($recipient->getID(), $user->getID())) {
-			return $this->lang('err_ignore', $recipient->display('user_name'));
+		if (false !== ($message = GWF_PMIgnore::isIgnored($recipient->getID(), $user->getID()))) {
+			return $this->lang('err_ignored', array($recipient->display('user_name'), htmlspecialchars($message)));
 		}
 		
 		return false;

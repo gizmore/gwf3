@@ -20,7 +20,7 @@ final class PM_Ignore extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($mode = Common::getGet('mode'))) {
-			return $this->onIgnore($module, $mode, Common::getGet('uid')).$this->templateIgnore($module);
+			return $this->onIgnore($module, $mode, Common::getGetString('uid'), Common::getGetString('reason')).$this->templateIgnore($module);
 		}
 		
 		return $this->templateIgnore($module);
@@ -31,7 +31,7 @@ final class PM_Ignore extends GWF_Method
 		return $module->requestMethodB('Overview');
 	}
 
-	public function onIgnore(Module_PM $module, $mode, $ignore_id)
+	public function onIgnore(Module_PM $module, $mode, $ignore_id, $reason='')
 	{
 		if (false === ($user = GWF_User::getByID($ignore_id))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
@@ -42,14 +42,14 @@ final class PM_Ignore extends GWF_Method
 		if ($uid === $user->getID()) {
 			return $module->error('err_ignore_self');
 		}
-		
+
 		switch($mode)
 		{
 			case 'do':
 				if ($user->isInGroupName(GWF_Group::ADMIN)) {
 					return $module->error('err_ignore_admin');
 				}
-				if (false === GWF_PMIgnore::ignore($uid, $user->getID())) {
+				if (false === GWF_PMIgnore::ignore($uid, $user->getID(), $reason)) {
 					return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 				}
 				break;

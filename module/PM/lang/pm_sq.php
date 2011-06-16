@@ -43,7 +43,7 @@ $lang = array(
 	'err_pmoaf' => 'Vlera për dosje automatike është i pavlefshëm.',
 	'err_limit' => 'Ju keni arritur kufirin e tyre për PN sot. Ju mund të hyjë deri %1% Mesazh brenda %2% dërgoj.',
 
-	'err_ignored' => '%1% injoruar ato.',
+	'err_ignored' => '%1% injoruar ato.<br/>%2%',
 	'err_delete' => 'Një gabim ndodhi gjatë fshini mbi PN e tyre.',
 	'err_folder_exists' => 'Kjo dosje tashmë ekziston.',
 	'err_folder_len' => 'Emri i dosjes duhet të jetë një deri në %1% Figurë.',

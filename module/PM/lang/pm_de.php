@@ -43,7 +43,7 @@ $lang = array(
 	'err_pmoaf' => 'Der Wert für automatische Ordner ist ungültig.',
 	'err_limit' => 'Sie haben ihr PN Limit für heute erreicht. Sie können maximal %1% Nachricht(en) innerhalb von %2% senden.',
 
-	'err_ignored' => '%1% ignoriert sie.',
+	'err_ignored' => '%1% ignoriert sie.<br/>%2%',
 	'err_delete' => 'Ein Fehler trat beim löschen ihrer PN auf.',
 	'err_folder_exists' => 'Dieser Ordner existiert bereits.',
 	'err_folder_len' => 'Der Name des Ordners muss zwischen einem und %1% Zeichen lang sein.',

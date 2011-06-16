@@ -49,7 +49,7 @@ final class PM_Send extends GWF_Method
 			return $this->create2($module, $username);
 		}
 		
-		return GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, ''));
+		return GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'me'));
 	}
 	
 	/**
