@@ -374,10 +374,8 @@ final class GWF_ForumBoard extends GDO
 	public function deleteBoard()
 	{
 		$back = true;
-		
 		$bid = $this->getID();
-		$threads = new GWF_ForumThread(false);
-		if (false === ($threads = $threads->select("thread_bid=$bid"))) {
+		if (false === ($threads = GDO::table('GWF_ForumThread')->selectObjects('*', "thread_bid={$bid}"))) {
 			return false;
 		}
 		
