@@ -462,7 +462,22 @@ final class WC_Challenge extends GDO
 		
 		if (false === ($group = GWF_Group::getByName($title))) {
 			// Create a group for that challenge
-			$group = GWF_Group::insertNewGroup($title, $founderid, 0, 0);
+			$group = new GWF_Group(array(
+				'group_id' => 0,
+				'group_name' => $title,
+				'group_options' => GWF_Group::FULL|GWF_Group::SCRIPT,
+				'group_lang' => 0,
+				'group_country' => 0,
+				'group_founder' => 0,
+				'group_memberc' => 0,
+				'group_bid' => 0,
+				'group_date' => GWF_Time::getDate(GWF_Time::LEN_SECOND),
+			));
+			if (false === $group->insert())
+			{
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			}
+//			$group = GWF_Group::insertNewGroup($title, $founderid, 0, 0);
 		}
 
 		$this->saveVar('chall_gid', $group->getID());
