@@ -733,12 +733,14 @@ final class WC_Challenge extends GDO
 			return false;
 		}
 		
-		if (false === ($row = $this->getSolvedRow($userid))) {
-			return GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__));
+		if (false === ($row = $this->getSolvedRow($userid)))
+		{
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
 
-		if ($row->isSolved()) {
+		if ($row->isSolved())
+		{
 			echo WC_HTML::message('msg_correct_again', array($this->hrefVotes()));
 			return true;
 		}
@@ -747,8 +749,13 @@ final class WC_Challenge extends GDO
 		
 		$row->markSolved();
 		
-		if (false !== ($user = GWF_User::getByID($userid))) {
-			$user->addToGroup($this->getGroup()->getName(), false);
+		if (false !== ($user = GWF_User::getByID($userid)))
+		{
+			if (false === GWF_UserGroup::addToGroup($userid, $this->getGID()))
+			{
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+				return false;
+			}
 		}
 		
 		GWF_ForumBoard::init(false, true);
