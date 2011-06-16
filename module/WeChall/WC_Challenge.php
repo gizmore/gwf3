@@ -785,7 +785,7 @@ final class WC_Challenge extends GDO
 	
 	public static function getMaxScore()
 	{
-		return self::table(__CLASS__)->selectSum('chall_score');
+		return self::table(__CLASS__)->selectVar('SUM(chall_score)');
 	}
 	
 	public static function getChallCount()

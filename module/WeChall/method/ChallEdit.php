@@ -139,6 +139,7 @@ final class WeChall_ChallEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
+		$wc = WC_Site::getWeChall();
 		$wc->recalcSite();
 		
 		return $module->message('msg_chall_deleted');
