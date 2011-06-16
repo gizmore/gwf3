@@ -8,7 +8,6 @@ $headers = array(
 	array($tLang->lang('th_user_birthdate'), 'user_birthdate'),
 	array($tLang->lang('th_user_lastactivity'), 'user_lastactivity'),
 );
-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 
 echo $tVars['module']->getUserGroupButtons();
 
@@ -19,7 +18,7 @@ if (isset($tVars['lettermenu'])) {
 echo $tVars['pagemenu'];
 
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders($headers);
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 
 foreach ($tVars['users'] as $user)
 {
