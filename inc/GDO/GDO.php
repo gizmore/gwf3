@@ -665,6 +665,7 @@ abstract class GDO
 		}
 		$type = $replace ? 'REPLACE' : 'INSERT';
 		$query = sprintf("%s INTO `$tablename` (%s) VALUES (%s)", $type, substr($keys,1), substr($vals,1));
+//		echo $query."<br/>\n";
 		return $db->queryWrite($query);
 	}
 	
@@ -706,6 +707,20 @@ abstract class GDO
 	############
 	### Save ###
 	############
+	/**
+	 * Update this row with a custom SET clause.
+	 * @param string $set
+	 * @return boolean
+	 */
+	public function updateRow($set)
+	{
+		$db = gdo_db();
+		$table = $this->getTableName();
+		$where = $this->getPKWhere();
+		$query = "UPDATE `$table` SET {$set} WHERE {$where} LIMIT 1";
+		return $db->queryWrite($query);
+	}
+	
 	/**
 	 * Save a single var and update object cache.
 	 * @param string $var
