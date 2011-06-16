@@ -10,12 +10,12 @@ if(defined('WC_HTML_HEAD__DEFINED')) { return; }
 #####################################
 require_once 'inc/_gwf_include.php';
 
+$_GET['mo'] = 'WeChall';
+$_GET['me'] = 'Challenge';
 GWF_Website::init(dirname(__FILE__), !defined('GWF_SESSION_NOT_BLOCKING'));
 
 GWF_Module::autoloadModules();
 
-$_GET['mo'] = 'WeChall';
-$_GET['me'] = 'Challenge';
 if (false === ($wechall = GWF_Module::loadModuleDB('WeChall', true)))
 {
 	die('GWF3/WC5 not installed?');
@@ -41,5 +41,5 @@ $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 
 GWF_Doctype::setDoctype('xhtmlstrict');
 
-# HTML Header //TODO: replace wc4
+# HTML Header
 echo GWF_Website::getHTMLHead() . '<body><div id="page_wrap">';
