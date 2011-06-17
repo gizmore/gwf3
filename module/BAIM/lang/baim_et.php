@@ -68,6 +68,7 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 	'dl_info_b' =>
 		'Mõned näpunäited B.AiM<br/>'.
 		'<br/>'.
+		'The official support will end on <b>%3%</b>.<br/>'.
 		'Iga koopia on unikaalne, sa ei või seda jagada.<br/>'.
 		'Iga koopia töötab ühe arvutiga, vahetades arvutit saad selle lunastada uuesti, aga võid nii teha iga %1% järel.<br/>'.
 		'<br/>'.
@@ -76,7 +77,7 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 		'Et osta läbi PaySafe, pead andma meile oma PIN/ID läbi emaili ja me lunastame su koopia.<br/>'.
 		'<br/>'.
 		'On võimalik, et server on vahel maas.<br/>'.
-		'Me üritame serveri alati kiiresti üles saada.Lubame, et teenus püsib vähemalt 12 kuud.<br/>'.
+//		'Me üritame serveri alati kiiresti üles saada.Lubame, et teenus püsib vähemalt 12 kuud.<br/>'.
 		'Mida me <b>ei saa</b> garanteerida, on see, et B.aim töötab igavesti, aga me proovime parandada iga vea.',
 
 

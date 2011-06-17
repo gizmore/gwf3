@@ -70,6 +70,7 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 	'dl_info_b' =>
 		'Here are a few release notes for B.AiM<br/>'.
 		'<br/>'.
+		'The official support will end on <b>%3%</b>.<br/>'.
 		'Every version of B.AiM is unique. You may not redistribute or share your copy.<br/>'.
 		'Each copy is designed to run on a single computer only. When you change your computer, you can unlock your copy again, but may only do so every %1%.<br/>'.
 		'<br/>'.
@@ -78,7 +79,7 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 		'To purchase via PaySafe, you have to give us your PIN/ID via PM and we will unlock you by hand.<br/>'.
 		'<br/>'.
 		'It is possible that the server that is responsible for the copy protection has downtimes.<br/>'.
-		'We will try out best to resolve any downtime as soon as possible. Also we guarantee that the service will be up for at least 9 months.<br/>'.
+		'We will try out best to resolve any downtime as soon as possible.<br/>'.
 		'What we can <b>not</b> guarantee is that B.AiM will work forever, but we will try our best to fix any issue.',
 
 

@@ -71,6 +71,7 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 	'dl_info_t' => 'B.AiM Download Info',
 	'dl_info_b' =>
 		'Einige Informationen vom aktuellen B.AiM Release<br/>'.
+		'Der offiziele support läuft aus am <b>%3%</b>.<br/>'.
 		'<br/>'.
 		'Jede Version von B.AiM ist einzigartig. Du darfst deine Kopie nicht weitergeben.<br/>'.
 		'Jede Kopie läuft nur auf einem Computer. Wenn du deinen Computer wechselst kannst du deine Kopie alle %1% neu freischalten.<br/>'.
