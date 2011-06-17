@@ -157,6 +157,7 @@ $slaps = array(
 	array('XBOX', 20),
 	array('PS3', 19),
 	array('unicorn', 35),
+	array('toilet paper roll', 15),
 ),
 
 );
