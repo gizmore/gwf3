@@ -25,7 +25,6 @@ else
 		array($tLang->lang('th_regip'), 'user_regip'),
 		array($tLang->lang('th_lastactivity'), 'user_lastactivity')
 	);
-//	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 	
 	echo GWF_Table::start();
 	echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
