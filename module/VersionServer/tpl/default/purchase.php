@@ -26,11 +26,10 @@ $headers = array(
 	array($tLang->lang('th_module_deps')),
 	array($tLang->lang('th_module_methods')),
 );
-$headers = GWF_Table::getHeaders2($headers);
 
 echo GWF_Form::start();
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders($headers);
+echo GWF_Table::displayHeaders2($headers);
 foreach ($tVars['modules'] as $module)
 {
 	$module instanceof GWF_Module;
@@ -78,9 +77,8 @@ $headers = array(
 	array($tLang->Lang('th_design_name')),
 	array($tLang->Lang('th_design_price')),
 );
-$headers = GWF_Table::getHeaders2($headers);
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders($headers);
+echo GWF_Table::displayHeaders2($headers);
 foreach ($tVars['designs'] as $design => $price)
 {
 	if ($client !== false)

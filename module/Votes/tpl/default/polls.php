@@ -5,7 +5,6 @@ $headers = array(
 	array($tLang->lang('th_votes'), 'vm_votes'),
 	array($tLang->lang('th_top_answ')),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 ?>
 <table>
 <?php

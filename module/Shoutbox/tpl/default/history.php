@@ -12,8 +12,6 @@ $headers = array(
 if ($may_del) {
 	$headers[] = array($btn_del);
 }
-
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 echo $tVars['page_menu'];
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
