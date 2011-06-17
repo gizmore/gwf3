@@ -15,7 +15,7 @@ final class Forum_Move extends GWF_Method
 		if (false !== ($bid = Common::getGet('down'))) {
 			return $this->move($module, +1, $bid);
 		}
-		return GWF_HTML::err('ERR_PARAMETER', _FILE__, __LINE__, 'move');
+		return GWF_HTML::err('ERR_PARAMETER', array(_FILE__, __LINE__, 'move'));
 	}
 	
 	private function move(Module_Forum $module, $dir=-1, $bid)
@@ -25,7 +25,7 @@ final class Forum_Move extends GWF_Method
 		}
 		
 		if ($board->isRoot()) {
-			return GWF_HTML::err('ERR_PARAMETER', _FILE__, __LINE__, 'board_is_root');
+			return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'board_is_root'));
 		}
 		
 		$myPos = $board->getVar('board_pos');

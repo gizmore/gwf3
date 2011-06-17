@@ -20,7 +20,7 @@ final class Forum_Vote extends GWF_Method
 		{
 			case 'up': return $this->onVote($module, $post, 1);
 			case 'down': return $this->onVote($module, $post, 0);
-			default: return GWF_HTML::err('ERR_PARAMETER', __FILE__, __LINE__, '$_GET[dir]');
+			default: return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, '$_GET[dir]'));
 		}
 	}
 	

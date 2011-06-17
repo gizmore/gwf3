@@ -12,7 +12,6 @@ $headers = array(
 	array($tLang->lang('th_thread_votes_up'), 'thread_votes_up'),
 	array($tLang->lang('th_thread_viewcount'), 'thread_viewcount'),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 
 echo $tVars['pagemenu'];
 echo GWF_Table::start();
