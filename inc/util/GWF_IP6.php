@@ -150,7 +150,7 @@ final class GWF_IP6
 			
 			case self::UA_HASH: return 16;
 			
-			default: echo GWF_HTML::err('ERR_PARAMETER', __FILE__, __LINE__, 'type'); echo $type; return false;
+			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); echo $type; return false;
 		}
 	}
 	public static function getDefault($type, $wanted=GDO::NOT_NULL)
@@ -172,7 +172,7 @@ final class GWF_IP6
 			case self::PACK_2:
 			case self::UA_HASH:
 				return $wanted;
-			default: echo GWF_HTML::err('ERR_PARAMETER', __FILE__, __LINE__, 'type'); return false;
+			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); return false;
 		}
 	}
 	public static function getGDOType($type, $gdo_flags=0)
@@ -208,7 +208,7 @@ final class GWF_IP6
 			case self::UA_HASH:
 				return GDO::TOKEN|$gdo_flags; 
 			
-			default: echo GWF_HTML::err('ERR_PARAMETER', __FILE__, __LINE__, 'type'); return false;
+			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); return false;
 		}
 	}
 	

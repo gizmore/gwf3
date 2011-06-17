@@ -150,6 +150,11 @@ class GWF_Module extends GDO
 			$module = self::$MODULES[$modulename];
 		}
 		
+//		if (!$module->isEnabled())
+//		{
+//			return false;
+//		}
+		
 		
 		if ($include)
 		{

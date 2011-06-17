@@ -218,14 +218,24 @@ final class GWF_ModuleLoader
 			if (!function_exists($func)) {
 				return  'Missing function in upgrade: '.$func;
 			}
-			if ('' !== ($error = call_user_func($func, $module))) {
+			
+			$result = call_user_func($func, $module);
+			
+			if ( ($result === true) || ($result === '') || ($result === NULL))
+			{
+			}
+			else
+			{
 				return $error;
 			}
 		}
 
-		if (false === $module->saveVar('module_version', $version)) {
+		if (false === $module->saveVar('module_version', $version))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
+		
+		echo GWF_HTML::message('GWF', sprintf('Upgraded module to version %.02f.', $version));
 		
 		return '';
 	}
@@ -258,7 +268,7 @@ final class GWF_ModuleLoader
 			$max = isset($d[3]) ? $d[3] : NULL;
 			
 			if (false === ($val = self::getVarValue($value, $type, $min, $max))) {
-				$back .= GWF_HTML::err('ERR_PARAMETER', array($module->getName(), htmlspecialchars($key), htmlspecialchars($value)));
+				$back .= GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, '$key='.$key.', $value='.htmlspecialchars($value).', $type='.$type));
 				continue;
 			}
 			
