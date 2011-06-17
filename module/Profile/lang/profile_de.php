@@ -91,7 +91,7 @@ $lang = array(
 
 	# v2.02 (fixes)
 	'err_level_all' => 'Der minimale Benutzer-Level um dein Profil einzusehen ist fehlerhaft.',
-	'err_level_contact' => 'Der minimale Benutzer-Level um deine Kontaktdaten ist fehlerhaft.',
+	'err_level_contact' => 'Der minimale Benutzer-Level um deine Kontaktdaten zu sehen ist fehlerhaft.',
 
 	# v2.03 (fixes2)
 	'title_about_me' => 'Über %1%',
@@ -105,14 +105,14 @@ $lang = array(
 	'th_email' => 'EMail',
 
 	# v2.06 (birthday)
-	'th_age' => 'Age',
-	'th_birthdate' => 'Birthdate',
+	'th_age' => 'Alter',
+	'th_birthdate' => 'Geburtstag',
 
 	# v2.07 (IRC+Robots)
 	'th_irc' => 'IRC',
-	'th_hiderobot' => 'Hide from web crawlers?',
-	'tt_hiderobot' => 'Checkmark this if you don\'t want your profile get indexed by search engines.',
-	'err_no_spiders' => 'This profile can not be watched by web crawlers.',
+	'th_hiderobot' => 'Vor Suchmaschinen verstecken?',
+	'tt_hiderobot' => 'Aktiviere diese Option wenn du nicht willst das Suchmaschinen dein Profil indizieren.',
+	'err_no_spiders' => 'Dieses Profil ist vor Suchmaschinen versteckt.',
 );
 
 ?>
