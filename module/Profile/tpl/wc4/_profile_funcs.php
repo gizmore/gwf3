@@ -51,7 +51,6 @@ function wcProfileRegats(array $regats, $sort_url, $priv=false, $hide_score=fals
 		array(WC_HTML::lang('th_progress'), 'regat_solved'),
 		array(WC_HTML::lang('th_regat_lastdate'), 'regat_lastdate'),
 	);
-//	$headers = GWF_Table::getHeaders2($headers, $sort_url);
 	echo '<table>';
 	echo GWF_Table::displayHeaders1($headers);
 	foreach ($regats as $regat)

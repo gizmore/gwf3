@@ -40,12 +40,6 @@ foreach ($tVars['pms'] as $pm)
 }
 echo GWF_Table::end();
 
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
-//$btns = '<input type="submit" name="restore" value="'.$tLang->lang('btn_restore').'" />';
-//$raw_body = '<tr><td colspan="4"></td><td class="ri">'.$btns.'</td><td>'.'<input type="checkbox" onclick="gwfPMToggleAll(this.checked);"/>'.'</td></tr>';
-//
-//echo GWF_Table::display2($headers, $data, $tVars['sort_url'], '', $raw_body);
-////echo sprintf('</table>');
 echo sprintf('</form>');
 
 echo $tVars['form_empty'];

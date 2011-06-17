@@ -4,7 +4,6 @@ $headers = array(
 	array($tLang->lang('th_pmf_count'), 'pmf_count', 'DESC'),
 	array(),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 echo GWF_Form::start($tVars['folder_action']);
 echo GWF_CSRF::hiddenForm('PM_REM_FOLDER');
 echo GWF_Table::start();

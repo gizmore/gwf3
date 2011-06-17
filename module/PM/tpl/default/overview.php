@@ -25,7 +25,6 @@ $headers = array(
 	array($tLang->lang('th_pm_title'), 'pm_title', 'ASC'),
 	array('<input type="checkbox" onclick="gwfPMToggleAll(this.checked);"/>'),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 $uid = GWF_Session::getUserID();
 
 if (count($tVars['pms']) > 0)
@@ -56,7 +55,6 @@ if (count($tVars['pms']) > 0)
 	echo GWF_Table::rowStart();
 	echo GWF_Table::column(sprintf('<input type="checkbox" name="toggle" onclick="gwfPMToggleAll(this.checked);" />'), 'ri', 5);
 	echo GWF_Table::rowEnd();
-//	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 	$btns =
 		'<input type="submit" name="delete" value="Delete" />'.
 		$tVars['folder_select'].

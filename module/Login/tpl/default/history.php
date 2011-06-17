@@ -11,10 +11,9 @@ $headers = array(
 	array($tLang->lang('th_loghis_ip'), 'loghis_ip'),
 	array($tLang->lang('th_hostname')),
 );
-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 echo $tVars['page_menu'];
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders($headers);
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 foreach ($tVars['history'] as $h)
 {
 	$h instanceof GWF_LoginHistory;

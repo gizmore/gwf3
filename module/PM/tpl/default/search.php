@@ -16,7 +16,6 @@ $headers = array(
 	array('<input type="checkbox" onclick="gwfPmToggleAll"/>'),
 );
 $uid = GWF_Session::getUserID();
-//$headers = GWF_Table::getHeaders2($headers, );
 
 echo $tVars['pagemenu'];
 
