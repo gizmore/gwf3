@@ -240,8 +240,8 @@ final class Lamb
 			$module->onInitTimers();
 		}
 		
-		# One timer for all server.
-		$dir = self::DIR.'lamb_timer/all_servers_one';
+		# One timer for each server.
+		$dir = self::DIR.'lamb_timer/all_servers_all';
 		foreach ($this->getServers() as $server)
 		{
 			$server instanceof Lamb_Server;
@@ -249,7 +249,7 @@ final class Lamb
 		}
 
 		# One timer per server for all servers.
-		$dir = self::DIR.'lamb_timer/all_servers_all';
+		$dir = self::DIR.'lamb_timer/all_servers_one';
 		GWF_File::filewalker($dir, true, array($this, 'initTimersDir'), false, $server);
 		
 		# One timer per server for a single server.
