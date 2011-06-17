@@ -34,7 +34,7 @@ $LAMB_CFG = array
 			'host' => 'irc.giz.org:6668',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#sr',
+			'channels' => '#sr,#wechall',
 			'admins' => 'gizmore',
 		),
 //		array(
