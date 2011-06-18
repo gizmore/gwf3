@@ -607,11 +607,11 @@ final class Lamb_Server extends GDO
 		{
 			if (false === ($channel = Lamb_Channel::createChannel($this, $channel_name)))
 			{
-				return Lamb_Log::logError("Lamb_Server::getOrCreateChannel($channel) FAILED!");
+				return Lamb_Log::logError("Lamb_Server::getOrCreateChannel($channel_name) FAILED!");
 			}
 		}
 		
-		$this->channels[$channel_name] = $channel;
+		$this->channels[$cn] = $channel;
 
 		return $channel;
 	}
