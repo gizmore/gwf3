@@ -44,15 +44,15 @@ $lang = array(
 	# Messages
 	'msg_update_var' => 'Der Wert für &quot;%1%&quot; wurde auf %2% gesetzt.',
 	'msg_update' => 'Das Modul wurde konfiguriert.',
-	'msg_install' => 'Das Modul %1% wurde (re)installiert. Führe Datenbank updates aus...',
+	'msg_install' => 'Das Modul %1% wurde (re)installiert. Führe Datenbank Updates aus...',
 	'msg_wipe_confirm' => 'Möchten sie wirklich die Datenbank für das Modul %1% löschen?',
 	'msg_wipe' => 'Das Modul %1% wurde aus der Datenbank entfernt. Alle Daten sind verloren und seine Tabelle(n) wurde(n) neu angelegt.',
 	'msg_installed' => 'Sie können nun fortfahren und <a href="%1%">das Modul %2% konfigurieren</a>.',
-	'msg_install_all' => 'Alle Module wurden installiert und auf den neuesten Stand gebracht.<br/><a href="%1%">Klicken Sie hier um zu der Modul übersicht zurückzukehren</a>.',
+	'msg_install_all' => 'Alle Module wurden installiert und auf den neuesten Stand gebracht.<br/><a href="%1%">Klicken Sie hier um zu der Modulübersicht zurückzukehren</a>.',
 	'msg_enabled' => 'Das Modul wurde aktiviert.',
 	'msg_disabled' => 'Das Modul wurde deaktiviert.',
 	'msg_pass_cleared' => 'Das Superuser Passwort wurde gelöscht.',
-	'msg_pass_set' => 'Das Superuser Passwort lautet ab jetzt &quot;%1%&quot;<br/>Bewahren sie dieses sicher auf, da sie es nicht einfach wiederherstellen oder löschen können.',
+	'msg_pass_set' => 'Das Superuser Passwort lautet ab jetzt &quot;%1%&quot;<br/>Bewahren Sie dieses sicher auf, da sie es nicht einfach wiederherstellen oder löschen können.',
 	'msg_login_as' => 'Sie sind nun eingeloggt als %1%.',
 	'msg_userpass_changed' => 'Das Passwort für %1% lautet nun &quot;%2%&quot;.',
 	'msg_username_changed' => 'Der Benutzer %1% heisst nun %2%.',
@@ -72,7 +72,7 @@ $lang = array(
 	'msg_module_enabled' => 'Das %1% Modul wurde aktiviert.',
 	'msg_module_disabled' => 'Das %1% Modul wurde deaktiviert.',
 	'msg_new_path' => 'Der Modul-Pfad wurde erfolgreich geändert.',
-	'msg_new_name' => 'Das Modul wurde umbenannt zu %1%. <b>Warnung</b>: Das wird sicherliche alle URLs ungültig machen!',
+	'msg_new_name' => 'Das Modul wurde umbenannt zu %1%. <b>Warnung</b>: Das wird sicherlich alle URLs ungültig machen!',
 	'msg_defaults' => 'Alle Modul-Variablen wurden auf Werkseinstellungen zurückgesetzt.',
 	'msg_removed_from_grp' => 'Der Benutzer %1% wurde aus der Gruppe %2% entfernt.',
 	'msg_added_to_grp' => 'Der Benutzer %1% wurde der Gruppe %2% hinzugefügt.',
@@ -83,7 +83,7 @@ $lang = array(
 	'th_version_db' => 'Version ',
 	'th_version_hd' => 'Verfügbar',
 	'th_priority' => 'Priorität',
-	'th_move' => 'Bewegen',
+	'th_move' => 'Verschieben',
 	'th_name' => 'Modul-Name',
 	'th_install' => 'Installieren',
 	'th_basic' => 'Konfigurieren',
@@ -108,7 +108,7 @@ $lang = array(
 	'th_show_email' => 'EMail öffentlich sichtbar?',
 	'th_want_adult' => 'Möchte Inhalt f.Erwachsene?',
 	'th_deleted' => 'Ist als gelöscht markiert?',
-	'th_birthdate' => 'Geburts Datum',
+	'th_birthdate' => 'Geburtsdatum',
 	'th_cfg_div' => '%1% Variablen',
 	'th_group_name' => 'Benutzergruppe',
 	'th_group_sel_view' => 'Sichtbarkeit',
@@ -158,8 +158,8 @@ $lang = array(
 	# Tooltips
 	'tt_int' => 'Ganzzahl zwischen %1% und %2%.',
 	'tt_text' => 'Zeichenkette mit der Länge %1% bis %2%.',
-	'tt_bool' => 'Boolscher Wert. Entweder 0 oder 1'.PHP_EOL.'Sie können auch YES,NO, ON,OFF verwenden.',
-	'tt_script' => 'Skript Wert welcher ausschliesslich vom Modul kontrolliert wird.',
+	'tt_bool' => 'Boolescher Wert. Entweder 0 oder 1'.PHP_EOL.'Sie können auch YES,NO, ON,OFF verwenden.',
+	'tt_script' => 'Skript Wert welcher ausschließlich vom Modul kontrolliert wird.',
 	'tt_time' => 'Dauer zwischen %1% und %2%.<br/>Sie können auch Zeichenketten wie 1 year oder 1d 3m angeben.',
 	'tt_float' => 'Fließkommazahl zwischen %1% und %2%.',
 
@@ -188,12 +188,12 @@ $lang = array(
 	'btn_install_all' => 'Alle Module installieren',
 
 	#v2.06 (GPG)
-	'err_gpg_key' => 'Your GPG Signature looks invalid.',
-	'msg_gpg_key' => 'Please use this as your fingerprint in config.php: %1%',
+	'err_gpg_key' => 'Ihre GPG Signatur scheint ungültig zu sein.',
+	'msg_gpg_key' => 'Bitte benutzen sie diesen Fingerprint in config.php: %1%',
 
 	#v2.07 (fix)
-	'msg_edit_group' => 'The group has been edited.',
-	'msg_mod_del' => 'The module has been deleted from the database.',
-	'btn_delete' => 'Delete',
+	'msg_edit_group' => 'Die Gruppe wurde bearbeitet.',
+	'msg_mod_del' => 'Modul aus der Datenbank gelöscht.',
+	'btn_delete' => 'Löschen',
 ); 
 ?>
