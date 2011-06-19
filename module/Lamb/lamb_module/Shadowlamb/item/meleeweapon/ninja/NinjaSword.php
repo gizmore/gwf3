@@ -9,7 +9,7 @@ final class Item_NinjaSword extends SR_NinjaWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 11.5, 
+			'attack' => 13.5, 
 			'min_dmg' => 3.5,
 			'max_dmg' => 13.5,
 		);
