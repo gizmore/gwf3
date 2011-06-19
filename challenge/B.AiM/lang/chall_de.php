@@ -12,7 +12,7 @@ $lang = array(
 
 	'form_title' => 'Einen Benutzer als gelöst markieren',
 	'err_password' => 'Das Super-Geheime-Passwort ist falsch!',
-	'info_unlock' => 'Um einen Benutzer als gelöst zu markieren, <a href="%1%">Klicke hier</a>.',
+	'info_unlock' => 'Um einen benutzer als gelöst zu markieren, <a href="%1%">Klicke hier</a>.',
 	'btn_submit' => 'Absenden',
 );
 ?>

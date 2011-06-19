@@ -2,8 +2,8 @@
 $lang = array(
 	# Admin Config
 	'cfg_users_per_page' => 'Benutzer pro Seite',	
-	'cfg_super_hash' => 'Zusatz-Passwort f¸r das Admin Modul',
-	'cfg_super_time' => 'Zeitspanne f¸r eine Admin Session',
+	'cfg_super_hash' => 'Zusatz-Passwort f√ºr das Admin Modul',
+	'cfg_super_time' => 'Zeitspanne f√ºr eine Admin Session',
 
 	# Info
 	'install_info' => 'Einige Module ben√∂tigen ein Update. Sie k√∂nnen auch <a href="%1%">alle Module updaten und installieren</a>.',
@@ -188,12 +188,12 @@ $lang = array(
 	'btn_install_all' => 'Alle Module installieren',
 
 	#v2.06 (GPG)
-	'err_gpg_key' => 'Ihre GPG Signatur scheint ung¸ltig zu sein.',
-	'msg_gpg_key' => 'Bitte benutzen sie diese Signatur in config.php: %1%',
+	'err_gpg_key' => 'Your GPG Signature looks invalid.',
+	'msg_gpg_key' => 'Please use this as your fingerprint in config.php: %1%',
 
 	#v2.07 (fix)
-	'msg_edit_group' => 'Die Grppe wurde bearbeitet.',
-	'msg_mod_del' => 'Das Modul wurde aus der Datenbank gelˆscht.',
-	'btn_delete' => 'Lˆschen',
+	'msg_edit_group' => 'The group has been edited.',
+	'msg_mod_del' => 'The module has been deleted from the database.',
+	'btn_delete' => 'Delete',
 ); 
 ?>
