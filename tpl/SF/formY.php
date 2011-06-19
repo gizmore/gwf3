@@ -4,7 +4,6 @@
 			<legend><?php echo $tVars['title']; ?></legend>
 			<ul>
 <?php 
-#function tab($num) { return str_repeat("\t", $num); }
 $required = "(*)";
 foreach ($tVars['data'] as $key => $data) {
 	$tt = '';
@@ -22,7 +21,7 @@ foreach ($tVars['data'] as $key => $data) {
 	switch ($data[0])
 	{
 		case GWF_Form::HIDDEN:
-			printf('<li><input type="hidden" name="%s" value="%s"></li>'.PHP_EOL, $key, $data[1]);
+			printf('<input type="hidden" name="%s" value="%s">'.PHP_EOL, $key, $data[1]);
 			break;
 			
 		case GWF_Form::STRING:
@@ -58,7 +57,7 @@ foreach ($tVars['data'] as $key => $data) {
 		case GWF_Form::SELECT:
 		case GWF_Form::SELECT_A:
 		case GWF_Form::SSTRING:
-			printf('<li><label for="lf_'.$key.'">%s%s%s</label><span id="lf_'.$key.'"%s</span></li>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
+			printf('<li><label for="lf_'.$key.'">%s%s%s</label><span id="lf_'.$key.'">%s</span></li>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
 			break;
 			
 		case GWF_Form::DIVIDER:
@@ -85,8 +84,7 @@ foreach ($tVars['data'] as $key => $data) {
 			break;
 				
 		case GWF_Form::MESSAGE:
-			echo GWF_Message::getCodeBar($key) . PHP_EOL;
-			#printf('<tr><td colspan="%d">%s</td></tr>'.PHP_EOL, $cols, GWF_Message::getCodeBar($key));
+			echo '<li>' .GWF_Message::getCodeBar($key) . PHP_EOL . '</li>';
 			### Fallthrough...
 		case GWF_Form::MESSAGE_NOBB:
 			printf('<li>%s</li>'.PHP_EOL, $data[2]);
@@ -107,10 +105,10 @@ foreach ($tVars['data'] as $key => $data) {
 	}
 }
 ?>
+<?php if (isset($have_required)) {
+	echo '<li class="last">'.GWF_HTML::lang('form_required', array('*')).'</li>';
+}?>
 			</ul>
 		</fieldset>
 	</form>
-<?php if (isset($have_required)) {
-	echo GWF_HTML::lang('form_required', array('*'));
-}?>
 </div>
