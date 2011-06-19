@@ -2,8 +2,8 @@
 $lang = array(
 	# Admin Config
 	'cfg_users_per_page' => 'Benutzer pro Seite',	
-	'cfg_super_hash' => 'Zusatz-Passwort für das Admin Modul',
-	'cfg_super_time' => 'Zeitspanne für eine Admin Session',
+	'cfg_super_hash' => 'Zusatz-Passwort f�r das Admin Modul',
+	'cfg_super_time' => 'Zeitspanne f�r eine Admin Session',
 
 	# Info
 	'install_info' => 'Einige Module benötigen ein Update. Sie können auch <a href="%1%">alle Module updaten und installieren</a>.',
