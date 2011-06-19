@@ -318,8 +318,9 @@ final class Module_WeChall extends GWF_Module
 		
 		# Marked Read?
 		$userdata = $user->getUserData();
-		$bdm = isset($userdata['birthdaymark']) ? intval($userdata['birthdaymark']) : 0;
-		if ($bdm === date('W')) {
+		$bdm = isset($userdata['birthdaymark']) ? $userdata['birthdaymark'] : '00';
+		if ($bdm === sprintf('%02d', date('W')))
+		{
 //			echo '<div>THIS WEEK IS MARKED READ!</div>';
 			return '';
 		}
@@ -537,8 +538,8 @@ final class Module_WeChall extends GWF_Module
 		if ($user->isOptionEnabled(GWF_User::SHOW_OTHER_BIRTHDAYS))
 		{
 			$userdata = $user->getUserData();
-			$bdm = isset($userdata['birthdaymark']) ? intval($userdata['birthdaymark']) : 0;
-			if ($bdm !== date('W'))
+			$bdm = isset($userdata['birthdaymark']) ? $userdata['birthdaymark'] : '00';
+			if ($bdm !== sprintf('%02d', date('W')))
 			{
 				$count += $this->getNewsCountBDay();
 			}

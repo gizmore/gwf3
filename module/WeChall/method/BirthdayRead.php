@@ -1,5 +1,4 @@
 <?php
-
 final class WeChall_BirthdayRead extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
@@ -16,8 +15,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 		}
 		
 		$userdata = $user->getUserData();
-		
-		$userdata['birthdaymark'] = date('W');
+		$userdata['birthdaymark'] = sprintf('%02d', date('W'));
 		
 		if (false === $user->saveUserData($userdata)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -26,5 +24,4 @@ final class WeChall_BirthdayRead extends GWF_Method
 		return $module->message('msg_bd_marked');
 	}
 }
-
 ?>
