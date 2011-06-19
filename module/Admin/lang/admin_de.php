@@ -188,12 +188,12 @@ $lang = array(
 	'btn_install_all' => 'Alle Module installieren',
 
 	#v2.06 (GPG)
-	'err_gpg_key' => 'Your GPG Signature looks invalid.',
-	'msg_gpg_key' => 'Please use this as your fingerprint in config.php: %1%',
+	'err_gpg_key' => 'Ihre GPG Signatur scheint ungültig zu sein.',
+	'msg_gpg_key' => 'Bitte benutzen sie diese Signatur in config.php: %1%',
 
 	#v2.07 (fix)
-	'msg_edit_group' => 'The group has been edited.',
-	'msg_mod_del' => 'The module has been deleted from the database.',
-	'btn_delete' => 'Delete',
+	'msg_edit_group' => 'Die Grppe wurde bearbeitet.',
+	'msg_mod_del' => 'Das Modul wurde aus der Datenbank gelöscht.',
+	'btn_delete' => 'Löschen',
 ); 
 ?>

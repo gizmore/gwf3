@@ -4,7 +4,7 @@ $lang = array(
 
 	# Titles
 	'form_title' => 'Konto Einstellungen',
-	'chmail_title' => 'Geben sie ihre neue EMail Address an',
+	'chmail_title' => 'Geben sie ihre neue EMail Addresse an',
 
 	# Headers
 	'th_username' => 'Ihr Benutzername',
@@ -146,48 +146,48 @@ $lang = array(
 		
 
 	# v2.03 Email Options
-	'th_email_fmt' => 'Preferred EMail Format',
-	'email_fmt_text' => 'Plain Text',
-	'email_fmt_html' => 'Simple HTML',
-	'err_email_fmt' => 'Please select a valid EMail Format.',
-	'msg_email_fmt_0' => 'You will now receive emails in simple html format.',
-	'msg_email_fmt_4096' => 'You will now receive emails in plain text format.',
-	'ft_gpg' => 'Setup PGP/GPG Encryption',
-	'th_gpg_key' => 'Upload your public key',
-	'th_gpg_key2' => 'Or paste it here',
-	'tt_gpg_key' => 'When you have set a pgp key all the emails sent to you by the scripts are encrypted with your public key',
-	'tt_gpg_key2' => 'Either paste your public key here, or upload your public key file.',
-	'btn_setup_gpg' => 'Upload Key',
-	'btn_remove_gpg' => 'Remove Key',
-	'err_gpg_setup' => 'Either upload a file which contains your public key or paste your public key in the text area.',
-	'err_gpg_key' => 'Your public key seems invalid.',
-	'err_gpg_token' => 'Your gpg fingerprint token does not match our records.',
-	'err_no_gpg_key' => 'The user %1% did not submit a public key yet.',
-	'err_no_mail' => 'You don`t have an approved main contact email address.',
-	'err_gpg_del' => 'You don`t have a validated GPG key to delete.',
-	'err_gpg_fine' => 'You already have a GPG key. Please delete it first.',
-	'msg_gpg_del' => 'Your GPG key has been deleted successfully.',
-	'msg_setup_gpg' => 'Your GPG has been stored and is in use now.',
-	'mails_gpg' => GWF_SITENAME.': Setup GPG Encryption',
+	'th_email_fmt' => 'Bevorzugtes EMail Format',
+	'email_fmt_text' => 'Text',
+	'email_fmt_html' => 'HTML',
+	'err_email_fmt' => 'Bitte wählen Sie ein gültiges EMail Format.',
+	'msg_email_fmt_0' => 'Sie werden EMails jetzt im HTML Format erhalten.',
+	'msg_email_fmt_4096' => 'Sie werden EMails jetzt im Text Format erhalten.',
+	'ft_gpg' => 'PGP/GPG Verschlüsselung einrichten',
+	'th_gpg_key' => 'Laden Sie ihren öffentlichen Schlüssel hoch',
+	'th_gpg_key2' => 'Oder fügen Sie ihn hier ein',
+	'tt_gpg_key' => 'Wenn Sie einen PGP Schlüssel einstellen werden alle zu Ihnen gesendete EMails mit Ihrem öffentlichen Schlüssel verschlüsselt',
+	'tt_gpg_key2' => 'Fügen Sie hier ihren öffentlichen Schlüssel ein oder Laden Sie ihn als Datei hoch.',
+	'btn_setup_gpg' => 'Schlüssel hochladeen',
+	'btn_remove_gpg' => 'Schlüssel entfernen',
+	'err_gpg_setup' => 'Fügen Sie hier ihren öffentlichen Schlüssel ein oder Laden Sie ihn als Datei hoch.',
+	'err_gpg_key' => 'Ihr öffentlicher Schlüssel scheint ungültig zu sein.',
+	'err_gpg_token' => 'Ihre GPG Signatur passt nicht zu unseren Daten.',
+	'err_no_gpg_key' => 'Der Benutzer %1% hat noch keinen öffentlichen Schlüssel angegeben.',
+	'err_no_mail' => 'Sie haben keine bestätigte EMail Addresse.',
+	'err_gpg_del' => 'Sie haben keinen bestätigten GPG Schlüssel zum Löschen.',
+	'err_gpg_fine' => 'Sie haben schon einen GPG Schlüssel. Bitte löschen Sie diesen zuerst.',
+	'msg_gpg_del' => 'Ihr GPG Schlüssel wurde erfolgreich gelöscht.',
+	'msg_setup_gpg' => 'Ihr GPG Schlüssel wurde gespeichert und wird ab jetzt verwendet.',
+	'mails_gpg' => GWF_SITENAME.': GPG Verschlüsselung einrichten',
 	'mailb_gpg' =>
-		'Dear %1%,'.PHP_EOL.
+		'Sehr geehrte(r) %1%,'.PHP_EOL.
 		PHP_EOL.
-		'You have decided to turn on gpg encryption for emails sent by this robot.'.PHP_EOL.
-		'To do so, follow the link below:'.PHP_EOL.
+		'Sie wollen die GPG Verschlüsselung für EMails dieser Seite aktivieren.'.PHP_EOL.
+		'Klicken Sie zur Aktivierung auf den folgenden Link:'.PHP_EOL.
 		PHP_EOL.
 		'%2%'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
-		'The '.GWF_SITENAME.' staff',
+		'Mit freundlichen Grüßen'.PHP_EOL.
+		'Das '.GWF_SITENAME.' Team',
 
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1%">Change your password</a>',
-	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
+	'th_change_pw' => '<a href="%1%">Passwort ändern</a>',
+	'err_gpg_raw' => GWF_SITENAME.' unterstützt nur ASCII formatierte GPG Schlüssel.',
 	# v2.05 (fixes)
-	'btn_delete' => 'Delete Account',
-	'err_email_invalid' => 'Your email looks invalid.',
+	'btn_delete' => 'Account löschen',
+	'err_email_invalid' => 'Ihre EMail scheint ungültig zu sein.',
 
 	# v3.00 (fixes3)
-	'err_email_taken' => 'This email address is already in use.',
+	'err_email_taken' => 'Diese EMail Addresse wird bereits von einem anderen Benutzer genutzt.',
 );
 ?>
