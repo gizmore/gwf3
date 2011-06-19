@@ -23,6 +23,8 @@ final class GWF_Mail
 	private $attachments = array();
 	private $headers = array();
 	private $gpgKey = '';
+	
+	private $allowGPG = true;
 
 	public function __construct() {}
 	public function setSender($s) { $this->sender = $s; }
@@ -32,6 +34,7 @@ final class GWF_Mail
 	public function setSubject($s) { $this->subject = $s; }
 	public function setBody($b) { $this->body = $b; }
 	public function setGPGKey($k) { $this->gpgKey = $k; }
+	public function setAllowGPG($bool) { $this->allowGPG = $bool; }
 //	public function addAttachment($title, $file) {}
 //	public function removeAttachment($title) {}
 
@@ -151,11 +154,14 @@ final class GWF_Mail
 	
 	private function setupGPG(GWF_User $user)
 	{
-		if (function_exists('gnupg_init'))
+		if ($this->allowGPG)
 		{
-			if (false !== ($fingerprint = GWF_PublicKey::getFingerprintForUser($user)))
+			if (function_exists('gnupg_init'))
 			{
-				$this->setGPGKey($fingerprint);
+				if (false !== ($fingerprint = GWF_PublicKey::getFingerprintForUser($user)))
+				{
+					$this->setGPGKey($fingerprint);
+				}
 			}
 		}
 	}

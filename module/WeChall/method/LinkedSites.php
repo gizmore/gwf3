@@ -215,6 +215,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		$mail->setReceiver($onsitemail);
 		$mail->setSubject($module->lang('mail_link_subj', array($site->display('site_name'))));
 		$mail->setBody($module->lang('mail_link_body', array($user->displayUsername(), $site->displayName(), $link)));
+		$mail->setAllowGPG(false);
 		return $mail->sendToUser($user) ? $module->message('msg_linkmail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
 	}
 
