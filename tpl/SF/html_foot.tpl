@@ -29,7 +29,7 @@
 		</div>
 {/if}
 <!-- FOOTER -->
-		<div id="footer"><hr>
+		<div id="footer"><hr style="margin: 0;">
 {include file="tpl/{$SF->design()}/html_footer.tpl"}
 		</div>
 	</div>

@@ -61,7 +61,7 @@ foreach ($tVars['data'] as $key => $data) {
 			break;
 			
 		case GWF_Form::DIVIDER:
-			echo '<hr>'.PHP_EOL;
+			echo '<hr class="form_hr">'.PHP_EOL;
 			break;
 			
 		case GWF_Form::HEADLINE:

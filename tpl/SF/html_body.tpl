@@ -37,4 +37,5 @@
 <!--PAGE Beginn -->					
 					<div class="inhalt {if $smarty.get.mo == 'SF_Shell'}shell" id="largeshell{/if}">
 						<div class="GWF_FTW">
-							{if isset($smarty.get.sec)}Please login to see content!{/if}
+{$messages}
+{$errors}

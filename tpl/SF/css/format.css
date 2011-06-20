@@ -17,7 +17,7 @@ q {
 hr {
 	width: 90%;
 	height: 1px;
-	margin: 0 auto;
+	margin: 5px auto;
 	border: none;
 	background-color: #1c1c1c;
 /*BORDER COLOR IN color.css*/
@@ -48,12 +48,12 @@ input {
 	width: 45%;
 	text-align: right;
 	margin-right: 10px;
-	margin-bottom: 7px;
+/*	margin-bottom: 7px;*/
 }
 #content fieldset input {
 	display: block;
-	margin-bottom: 7px;
-	width: 20%;
+/*	margin-bottom: 7px;
+	width: 20%;*/
 }
 #content fieldset {
 	padding: 5px;
@@ -196,7 +196,7 @@ div.inhalt p:hover {
 div.inhalt a:hover {
 	text-decoration: underline;
 }
-div.inhalt li {
+div.inhalt p li {
 	list-style-type: square;
 	list-style-position: inside;
 	padding-left: 10px;
