@@ -95,7 +95,7 @@ body {
 	border: 2px solid #000;
 }
 .gwf_error {
-	background: url(../../../img/cross_shield_2.png) left center no-repeat;
+	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
 	padding-left: 24px;
 	font-weight: bold;
 }
@@ -107,7 +107,7 @@ body {
 	border: 2px solid #000;
 }
 .gwf_message {
-	background: url(../../../img/accept.png) left center no-repeat;
+	background: url(../../../img/default/accept.png) left center no-repeat;
 	padding-left: 24px;
 	font-weight: bold;
 }

@@ -5,7 +5,7 @@
 
 #header {
 	display: block;
-	background: url("../img/B1_B.AiM.PNG");
+	background: url("../img/default/B1_B.AiM.PNG");
 	background-repeat: repeat-x;
 	height: 208px;
 	text-align: right;
@@ -89,7 +89,7 @@ table, .gwf_forum_shoutbox, .gwf_gb_entry, .gwf_tags, .gwf_buttons_outer, .box, 
 	border: 2px solid #000;
 }
 .gwf_error {
-	background: url(../../../img/cross_shield_2.png) left center no-repeat;
+	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
 	padding-left: 24px;
 	font-weight: bold;
 }
@@ -101,7 +101,7 @@ table, .gwf_forum_shoutbox, .gwf_gb_entry, .gwf_tags, .gwf_buttons_outer, .box, 
 	border: 2px solid #000;
 }
 .gwf_message {
-	background: url(../../../img/accept.png) left center no-repeat;
+	background: url(../../../img/default/accept.png) left center no-repeat;
 	padding-left: 24px;
 	font-weight: bold;
 }
@@ -185,7 +185,7 @@ blockquote div {
 }
 blockquote span {
 	padding-left: 20px;
-	background: url(../../../img/comment.png) no-repeat #fff center left;
+	background: url(../../../img/default/comment.png) no-repeat #fff center left;
 }
 .gwf_signature {
 	margin-top: 20px;

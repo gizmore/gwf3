@@ -235,6 +235,7 @@ final class GWF_InstallConfig
 			array('text', 'Defaults', 'GWF_DEFAULT_MODULE', 'GWF', '1st visit module. Example: \'MyModule\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_METHOD', 'About', '1st visit method. Example: \'Home\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'default\'.'),
+			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
 			
 			# Language
 			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),

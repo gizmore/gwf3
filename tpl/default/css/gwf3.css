@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+@charset "utf-8";
 
 /* Emptyness */
 * { margin: 0; padding: 0; text-decoration: none; }
@@ -254,3 +254,7 @@ textarea {
 	padding: 10px;
 	overflow: auto;
 }
+
+/** Forms **/
+.SF_formY fieldset{margin:0; padding:0; border:0;}
+.SF_formY label{display:block; float:left; width:55px; text-align:right; padding-right:5px; margin:0 0 0 5px;}
