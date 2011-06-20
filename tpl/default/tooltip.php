@@ -1,1 +1,1 @@
-<img class="gwf_tooltip" src="<?php echo GWF_WEB_ROOT; ?>img/lightbulb.png" alt="<?php echo GWF_HTML::lang('ToolTip'); ?>" title="%TEXT_HTML%" onclick="alert('%TEXT_JS%');" />
+<img class="gwf_tooltip" src="<?php echo GWF_WEB_ROOT.'img/'.GWF_ICON_SET; ?>/lightbulb.png" alt="<?php echo GWF_HTML::lang('ToolTip'); ?>" title="%TEXT_HTML%" onclick="alert('%TEXT_JS%');" />

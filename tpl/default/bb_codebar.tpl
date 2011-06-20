@@ -53,7 +53,7 @@
 		title="[spoiler]{$gwfl->bbhelp_spoiler()}[/spoiler]"
 		onclick="return bbInsert('{$key}', '[spoiler]', '[/spoiler]')"
 	/>
-{*	<img src="{$root}img/user.png" 
+{*	<img src="{$root}img/{$iconset}/user.png" 
 	/>
 *}
 </div>

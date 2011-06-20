@@ -247,6 +247,7 @@ final class GWF_Website
 			'root' => GWF_WEB_ROOT,
 			'js' => self::displayJavascripts(),
 			'css' => self::displayCSS(self::isHTML()),
+			'iconset' => GWF_ICON_SET,
 		);
 		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
@@ -266,10 +267,13 @@ final class GWF_Website
 		);
 		return GWF_Template::template($path.'html_foot.tpl', $tVars);
 	}
+	public static function getPagehead($path = 'tpl/%DESIGN%/') {
+		return self::getHTMLHead() . self::getHTMLbody_head($path);
+	}
 	
-	public static function getHTMLBody($page)
+	public static function getHTMLBody($page, $path = 'tpl/%DESIGN%/')
 	{
-		return self::getHTMLbody_head() . $page . self::getHTMLbody_foot();
+		return self::getHTMLbody_head($path) . $page . self::getHTMLbody_foot($path);
 	}
 	
 	public static function displayPage($page)
