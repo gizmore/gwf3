@@ -32,10 +32,7 @@ final class GWF_HTML
 	public static function error($title=NULL, $message, $log=true) { return self::errorA($title, array($message), $log); }
 	public static function errorA($title=NULL, array $messages, $log=true)
 	{
-		if (count($messages) === 0)
-		{
-			return '';
-		}
+		if (count($messages) === 0) return '';
 		
 		if ($log === true)
 		{
@@ -46,6 +43,8 @@ final class GWF_HTML
 	}
 	public static function displayErrors() 
 	{
+		if(count(self::$_ERRORS) === 0) return ''; 
+		
 		if (Common::getGet('ajax') !== false)
 		{
 			$errors = '';
@@ -66,10 +65,7 @@ final class GWF_HTML
 	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
 	public static function messageA($title=NULL, array $messages, $log=true)
 	{
-		if (count($messages) === 0)
-		{
-			return '';
-		}
+		if (count($messages) === 0) return '';
 		
 		if ($log === true)
 		{
@@ -80,6 +76,8 @@ final class GWF_HTML
 	}
 	public static function displayMessages() 
 	{
+		if(count(self::$_MESSAGES) === 0) return ''; 
+		
 		if (Common::getGet('ajax') !== false)
 		{
 			$output = '';
