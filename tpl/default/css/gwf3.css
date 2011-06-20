@@ -53,36 +53,36 @@ a img { border: none; }
 	border-color: #006;
 }
 
-.gwf_btn_add { background: url(../../../img/add.png); }
-.gwf_btn_sub { background: url(../../../img/sub.png); }
-.gwf_btn_favorite { background: url(../../../img/star_2.png); }
-.gwf_btn_user { background: url(../../../img/user.png); }
-.gwf_btn_mail { background: url(../../../img/email.png); }
-.gwf_btn_edit { background: url(../../../img/application_edit.png); }
-.gwf_btn_reply { background: url(../../../img/pencil.png); }
-.gwf_btn_quote { background: url(../../../img/comment.png); }
-.gwf_btn_options { background: url(../../../img/cog.png); }
-.gwf_btn_delete { background: url(../../../img/delete.png); }
-.gwf_btn_restore { background: url(../../../img/hammer_screwdriver.png); }
-.gwf_btn_ignore { background: url(../../../img/user_thief.png); }
-.gwf_btn_forward { background: url(../../../img/arrow_branch.png); }
-.gwf_btn_search { background: url(../../../img/find.png); }
-.gwf_btn_trashcan { background: url(../../../img/lifebuoy.png); }
-.gwf_btn_bell { background: url(../../../img/bell.png); }
-.gwf_btn_translate { background: url(../../../img/google_16.png); }
-.gwf_btn_thumbsup { background: url(../../../img/thumbs_up.gif); }
-.gwf_btn_thumbsdown { background: url(../../../img/thumbs_down.gif); }
-.gwf_btn_thanks { background: url(../../../img/thanks.gif); }
-.gwf_btn_link { background: url(../../../img/arrow_right.png); }
-.gwf_btn_prev { background: url(../../../img/arrow_left.png); }
-.gwf_btn_next { background: url(../../../img/arrow_right.png); }
+.gwf_btn_add { background: url(../../../img/default/add.png); }
+.gwf_btn_sub { background: url(../../../img/default/sub.png); }
+.gwf_btn_favorite { background: url(../../../img/default/star_2.png); }
+.gwf_btn_user { background: url(../../../img/default/user.png); }
+.gwf_btn_mail { background: url(../../../img/default/email.png); }
+.gwf_btn_edit { background: url(../../../img/default/application_edit.png); }
+.gwf_btn_reply { background: url(../../../img/default/pencil.png); }
+.gwf_btn_quote { background: url(../../../img/default/comment.png); }
+.gwf_btn_options { background: url(../../../img/default/cog.png); }
+.gwf_btn_delete { background: url(../../../img/default/delete.png); }
+.gwf_btn_restore { background: url(../../../img/default/hammer_screwdriver.png); }
+.gwf_btn_ignore { background: url(../../../img/default/user_thief.png); }
+.gwf_btn_forward { background: url(../../../img/default/arrow_branch.png); }
+.gwf_btn_search { background: url(../../../img/default/find.png); }
+.gwf_btn_trashcan { background: url(../../../img/default/lifebuoy.png); }
+.gwf_btn_bell { background: url(../../../img/default/bell.png); }
+.gwf_btn_translate { background: url(../../../img/default/google_16.png); }
+.gwf_btn_thumbsup { background: url(../../../img/default/thumbs_up.gif); }
+.gwf_btn_thumbsdown { background: url(../../../img/default/thumbs_down.gif); }
+.gwf_btn_thanks { background: url(../../../img/default/thanks.gif); }
+.gwf_btn_link { background: url(../../../img/default/arrow_right.png); }
+.gwf_btn_prev { background: url(../../../img/default/arrow_left.png); }
+.gwf_btn_next { background: url(../../../img/default/arrow_right.png); }
 
 /** PM **/
-.gwf_pm_new { background: url(../../../img/bell.png); }
-.gwf_pm_old { background: url(../../../img/email.png); }
-.gwf_pm_read { background: url(../../../img/accept.png); }
-.gwf_pm_unread { background: url(../../../img/arrow_refresh.png); }
-.gwf_pm_deleted { background: url(../../../img/delete.png); }
+.gwf_pm_new { background: url(../../../img/default/bell.png); }
+.gwf_pm_old { background: url(../../../img/default/email.png); }
+.gwf_pm_read { background: url(../../../img/default/accept.png); }
+.gwf_pm_unread { background: url(../../../img/default/arrow_refresh.png); }
+.gwf_pm_deleted { background: url(../../../img/default/delete.png); }
 
 
 /** GWF_Table **/
@@ -91,10 +91,10 @@ a img { border: none; }
 	height: 16px;
 	display: inline-block;
 }
-.gwf_th_asc { background: url(../../../img/arrow_up.gif) no-repeat; }
-.gwf_th_desc { background: url(../../../img/arrow_down.gif) no-repeat; }
-.gwf_th_asc_sel { background: url(../../../img/arrow_up_sel.gif) no-repeat; }
-.gwf_th_desc_sel { background: url(../../../img/arrow_down_sel.gif) no-repeat; }
+.gwf_th_asc { background: url(../../../img/default/arrow_up.gif) no-repeat; }
+.gwf_th_desc { background: url(../../../img/default/arrow_down.gif) no-repeat; }
+.gwf_th_asc_sel { background: url(../../../img/default/arrow_up_sel.gif) no-repeat; }
+.gwf_th_desc_sel { background: url(../../../img/default/arrow_down_sel.gif) no-repeat; }
 
 
 
@@ -109,7 +109,7 @@ a img { border: none; }
 
 /*
 .free_pay {
-	background: url(../../../img/buy_gwf.gif);
+	background: url(../../../img/default/buy_gwf.gif);
 	width: 96px;
 	height: 64px;
 }*/
@@ -223,10 +223,10 @@ textarea {
 	padding: 0px 10px 2px 22px;
 }
 .gwf_errors li {
-	background: url(../../../img/cross_shield_2.png) left center no-repeat;
+	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
 }
 .gwf_messages li {
-	background: url(../../../img/accept.png) left center no-repeat;
+	background: url(../../../img/default/accept.png) left center no-repeat;
 }
 
 /** Top Menu **/
