@@ -110,7 +110,7 @@ class SR_Item extends GDO
 	protected static function instance($itemname, $data=NULL)
 	{
 		if (!array_key_exists($itemname, self::$items)) {
-			Lamb_log::log(sprintf('SR_Item::instance() failed: Unknown itemname: %s.', $itemname));
+			Lamb_Log::logError(sprintf('SR_Item::instance() failed: Unknown itemname: %s.', $itemname));
 			return false;
 		}
 		
@@ -203,7 +203,7 @@ class SR_Item extends GDO
 	{
 		$name = Common::substrUntil($itemname, '_of_', $itemname);
 		if (!array_key_exists($name, self::$items)) {
-			Lamb_log::log(sprintf('SR_Item::createByName(%s) failed: Unknown itemname: %s.', $itemname, $name));
+			Lamb_Log::logError(sprintf('SR_Item::createByName(%s) failed: Unknown itemname: %s.', $itemname, $name));
 			return false;
 		}
 		$classname = "Item_$name";
