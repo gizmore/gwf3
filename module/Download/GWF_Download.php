@@ -246,9 +246,9 @@ final class GWF_Download extends GDO implements GWF_Orderable #implements GDO_Se
 		}
 		
 		if ($this->expires()) {
-			GWF_Website::addDefaultOutput($module->message('msg_purchased', array($token, GWF_Time::humanDuration($this->getVar('dl_expire')), $this->hrefDownload())));
+			$module->message('msg_purchased', array($token, GWF_Time::humanDuration($this->getVar('dl_expire')), $this->hrefDownload()));
 		} else {
-			GWF_Website::addDefaultOutput($module->message('msg_purchased2', array($token, $this->hrefDownload())));
+			$module->message('msg_purchased2', array($token, $this->hrefDownload()));
 		}
 		
 		return true;

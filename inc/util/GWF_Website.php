@@ -247,8 +247,9 @@ final class GWF_Website
 			'root' => GWF_WEB_ROOT,
 			'js' => self::displayJavascripts(),
 			'css' => self::displayCSS(self::isHTML()),
-			'iconset' => GWF_ICON_SET,
 		);
+		GWF_Template::addMainTvars(array('errors' => GWF_HTML::displayErrors(), 'messages' => GWF_HTML::displayMessages()));
+		
 		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
 	

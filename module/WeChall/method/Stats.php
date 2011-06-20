@@ -74,7 +74,7 @@ final class WeChall_Stats extends GWF_Method
 		}
 		elseif (false === ($this->user1 = GWF_User::getByName(Common::getGet('user1', 0)))) {
 			if (false === ($this->user1 = GWF_Session::getUser())) {
-				GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_UNKNOWN_USER'));
+				GWF_HTML::err('ERR_UNKNOWN_USER');
 			}
 		}
 		

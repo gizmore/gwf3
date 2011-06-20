@@ -45,23 +45,19 @@ final class InstallLanguages
 		);
 		$s = GWF_Language::GOOGLE_HAS_IT;
 		if (false === GDO::table('GWF_Language')->update("lang_options=lang_options-$s", "lang_options&$s")) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)); // TODO: return value ?
 		}
-		$back = '';
 		foreach ($data as $iso)
 		{
 			if (false === ($lang = GWF_Language::getByISO($iso))) {
 //				var_dump($iso);
-				$back .= GWF_HTML::err('ERR_UNKNOWN_LANGUAGE', array( $iso));
+				GWF_HTML::err('ERR_UNKNOWN_LANGUAGE', array( $iso));
 				continue;
 			}
 			if (false === $lang->saveOption($s, true)) {
-				$back .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+				GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-		}
-		
-		GWF_Website::addDefaultOutput($back);
-		
+		}	
 		return '';
 	}
 }

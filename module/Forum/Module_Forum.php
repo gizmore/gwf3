@@ -189,7 +189,7 @@ final class Module_Forum extends GWF_Module
 		else {
 			$this->board_id = (int) Common::getGet('bid', 1);
 			if (false === ($this->board = GWF_ForumBoard::getBoard($this->board_id))) {
-				GWF_Website::addDefaultOutput($this->error('err_board'));
+				$this->error('err_board');
 				$this->board_id = 1;
 				if (false === ($this->board = GWF_ForumBoard::getRoot())) {
 					$this->board_id = 0;

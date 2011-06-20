@@ -52,7 +52,6 @@ final class Module_Ban extends GWF_Module
 	{
 		$output = $this->lang('info').'<br/>';
 		$disable = false;
-		$back = '';
 		foreach ($msgs as $ban)
 		{
 			$ban instanceof GWF_Ban;
@@ -60,14 +59,14 @@ final class Module_Ban extends GWF_Module
 			
 			if ($ban->isWarning()) {
 				$href = GWF_WEB_ROOT.'index.php?mo=Ban&me=MarkRead&bid='.$ban->getID();
-				$back .= $this->error('info_warning', array($msg, $href));
+				$this->error('info_warning', array($msg, $href));
 			}
 			elseif ($ban->isPermanent()) {
 				$disable = true;
-				$back .= $this->error('info_permban', array($msg));
+				$this->error('info_permban', array($msg));
 			} else {
 				$disable = true;
-				$back .= $this->error('info_tempban', array($ban->displayEndDate(), $msg));
+				$this->error('info_tempban', array($ban->displayEndDate(), $msg));
 			}
 		}
 		
@@ -76,8 +75,6 @@ final class Module_Ban extends GWF_Module
 			$_GET['mo'] = GWF_DEFAULT_MODULE;
 			$_GET['me'] = GWF_DEFAULT_METHOD;
 		}
-		
-		GWF_Website::addDefaultOutput($back);
 	}
 }
 ?>

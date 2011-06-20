@@ -135,7 +135,7 @@ final class Module_WeChall extends GWF_Module
 	public function hookLoginAfter(GWF_User $user, array $args)
 	{
 		# Show last location
-		GWF_Website::addDefaultOutput(GWF_Box::box($this->lang('pi_login_link', array(GWF_HTML::display($args[0])))));
+		GWF_Box::box($this->lang('pi_login_link', array(GWF_HTML::display($args[0]))));
 		return '';
 	}
 	

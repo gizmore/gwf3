@@ -85,6 +85,7 @@ final class GWF_Template
 			$smarty->assign('gwfl', GWF_SmartyHTMLLang::instance());
 			$smarty->assign('gwmm', GWF_SmartyModuleMethod::instance());
 			$smarty->assign('root', GWF_WEB_ROOT);
+			$smarty->assign('iconset', GWF_ICON_SET);
 //			$smarty->assign('user', GWF_User::getStaticOrGuest());
 			self::$_Smarty = $smarty;
 		}

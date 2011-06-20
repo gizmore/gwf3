@@ -45,7 +45,7 @@ function Upgrade_WeChall_1_04(Module_WeChall $module)
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 
-	GWF_Website::addDefaultOutput(GWF_HTML::message('WC', '[+] Multi Lang Descriptions'));
+	GWF_HTML::message('WC', '[+] Multi Lang Descriptions');
 	
 	return '';
 }

@@ -1,7 +1,7 @@
 <?php
 function Upgrade_GWF_1_03(Module_GWF $module)
 {
-	GWF_Website::addDefaultOutput(GWF_HTML::message('GWF', '[+] GWF 1.03 (faster session handling)'));
+	GWF_HTML::message('GWF', '[+] GWF 1.03 (faster session handling)');
 	GDO::table('GWF_Session')->createTable(true);
 }
 ?>

@@ -13,7 +13,7 @@ function Upgrade_WeChall_1_03(Module_WeChall $module)
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
-	GWF_Website::addDefaultOutput(GWF_HTML::message('WC', '[+] Advanced Scoring by Caesum'));
+	GWF_HTML::message('WC', '[+] Advanced Scoring by Caesum');
 	return '';
 }
 ?>

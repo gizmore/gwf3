@@ -8,7 +8,7 @@ function Upgrade_GWF_1_04(Module_GWF $module)
 		return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 	}
 
-	GWF_Website::addDefaultOutput(GWF_HTML::message('GWF', '[+] GWF 1.04 (country population)'));
+	GWF_HTML::message('GWF', '[+] GWF 1.04 (country population)');
 	
 	return '';
 }

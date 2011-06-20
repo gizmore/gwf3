@@ -40,7 +40,7 @@ final class Module_Usergroups extends GWF_Module
 //					$href2 = GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;deny='.$group->getID();
 //					$msgs[] = $this->lang('pi_invited', $group->getFounder()->displayUsername(), $group->displayName(), $href, $href2);
 //				}
-//				GWF_Website::addDefaultOutput(GWF_HTML::messageA('Usergroups', $msgs, false));
+//				GWF_HTML::messageA('Usergroups', $msgs, false);
 //			}
 //		}
 	}

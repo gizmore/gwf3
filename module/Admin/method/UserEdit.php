@@ -154,7 +154,7 @@ final class Admin_UserEdit extends GWF_Method
 			return array();
 		}
 		if (false === $this->user->saveOption($bits, $newFlag)) {
-			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
+			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return array();
 		}
 		$key = sprintf('msg_%s_%s', $key, $newFlag === true ? '1' : '0');
@@ -169,7 +169,7 @@ final class Admin_UserEdit extends GWF_Method
 		}
 		
 		if (false === $u->saveOption(GWF_User::DELETED, $newFlag)) {
-			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
+			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return array();
 		}
 
@@ -191,7 +191,7 @@ final class Admin_UserEdit extends GWF_Method
 		}
 		
 		if (false === $u->saveVar('user_name', $newName)) {
-			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
+			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return array();
 		}
 		
@@ -209,7 +209,7 @@ final class Admin_UserEdit extends GWF_Method
 		unset($_POST['password']); 
 		
 		if (false === $user->saveVar('user_password' , GWF_Password::hashPasswordS($newpass))) {
-			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
+			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return array();
 		}
 		

@@ -27,6 +27,7 @@ final class GWF_HTML
 	##############
 	### Errors ###
 	##############
+	private static $_ERRORS = array();
 	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log); }
 	public static function error($title=NULL, $message, $log=true) { return self::errorA($title, array($message), $log); }
 	public static function errorA($title=NULL, array $messages, $log=true)
@@ -38,26 +39,30 @@ final class GWF_HTML
 		
 		if ($log === true)
 		{
-			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
+				GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-
+		self::$_ERRORS[] = array('title' => $title, 'messages' => $messages); 
+		return true;
+	}
+	public static function displayErrors() 
+	{
 		if (Common::getGet('ajax') !== false)
 		{
 			$errors = '';
-			foreach ($messages as $msg)
+			foreach (self::$_ERRORS as $msg)
 			{
-				$msg = GWF_Debug::shortpath(self::decode($msg));
+				$msg = GWF_Debug::shortpath(self::decode($msg['messages']));
 				$errors .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
 			}
-			return $errors;
+			return GWF_Website::addDefaultOutput($errors);
 		}
-		
-		return GWF_Template::templateMain('error.tpl', array('title'=>$title, 'errors'=>$messages));
+		return GWF_Template::templateMain('error.tpl', array('errors' => self::$_ERRORS));
 	}
 
 	################
 	### Messages ###
 	################
+	private static $_MESSAGES = array();
 	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
 	public static function messageA($title=NULL, array $messages, $log=true)
 	{
@@ -70,19 +75,22 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-
+		self::$_MESSAGES[] = array('title' => $title, 'messages' => $messages); 
+		return true;
+	}
+	public static function displayMessages() 
+	{
 		if (Common::getGet('ajax') !== false)
 		{
 			$output = '';
-			foreach ($messages as $msg)
+			foreach (self::$_MESSAGES as $msg)
 			{
-				$msg = self::decode($msg);
-				$output .= sprintf('1:%d:%s', strlen($msg), $msg).PHP_EOL;
+				$msg = GWF_Debug::shortpath(self::decode($msg['messages']));
+				$output .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
 			}
-			return $output;
+			return GWF_Website::addDefaultOutput($output);
 		}
-		
-		return GWF_Template::templateMain('message.tpl', array('title'=>$title, 'messages'=>$messages));
+		return GWF_Template::templateMain('message.tpl', array('messages' => self::$_MESSAGES));
 	}
 	
 	##############
