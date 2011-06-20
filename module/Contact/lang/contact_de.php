@@ -7,9 +7,9 @@ $lang = array(
 
 	'contact_title' => 'Kontakt',
 	'contact_info' =>
-		'Hier können sie uns per E-Mail kontaktieren. Bitte geben sie eine gültige E-Mail an, damit wir ihnen antworten können.<br/>'.
+		'Hier können Sie uns per E-Mail kontaktieren. Bitte geben Sie eine gültige E-Mail an, damit wir Ihnen antworten können.<br/>'.
 		'Sie können auch direkt eine E-Mail an <a href="mailto:%1%">%1%</a> senden.',
-	'form_title' => 'Kontaktiere uns',
+	'form_title' => 'Kontaktieren Sie uns',
 	'th_email' => 'Ihre E-Mail',
 	'th_message' => 'Ihre Nachricht',
 	'btn_contact' => 'Absenden',
@@ -24,7 +24,7 @@ $lang = array(
 
 	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %1%.',
 
-	'err_email' => 'Ihre E-Mail ist ungültig. Sie können diese Feld frei lassen wenn sie möchten.',
+	'err_email' => 'Ihre E-Mail ist ungültig. Sie können dieses Feld frei lassen wenn sie möchten.',
 	'err_message' => 'Ihre Nachricht ist zu kurz oder zu lang.',
 
 	# Admin Config
@@ -35,7 +35,7 @@ $lang = array(
 	'cfg_maxmsglen' => 'Max. Message Länge',
 
 	# Sendmail
-	'th_user_email' => 'Ihre E-Mail Addresse',
+	'th_user_email' => 'Ihre E-Mail Adresse',
 	'ft_sendmail' => 'Eine E-Mail an %1% senden',
 	'btn_sendmail' => 'E-Mail Senden',
 	'err_no_mail' => 'Dieser Benutzer möchte keine E-Mails empfangen.',

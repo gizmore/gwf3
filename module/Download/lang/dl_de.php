@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Exklusive Downloads auf '.GWF_SITENAME.'.',
 
 	# Page Info
-	'pi_add' => 'Am besten laden sie zuerst ihre Datei hoch. Diese wird dann in ihrer Session gespeichert. Danach können sie weiterhin Optionen ändern.<br/>Die maximale Dateigrösse beträgt %1%.',
+	'pi_add' => 'Am besten laden Sie zuerst Ihre Datei hoch. Diese wird dann in Ihrer Session gespeichert. Danach können Sie weiterhin Optionen ändern.<br/>Die maximale Dateigröße beträgt %1%.',
 
 	# Form Titles
 	'ft_add' => 'Eine Datei hochladen',
@@ -37,7 +37,7 @@ $lang = array(
 	'th_dl_descr' => 'Beschreibung',
 	'th_dl_price' => 'Preis',
 	'th_dl_count' => 'Zugriffe',
-	'th_dl_size' => 'Dateigrösse',
+	'th_dl_size' => 'Dateigröße',
 	'th_user_name' => 'Verantwortlich',
 	'th_adult' => 'Erwachseneninhalt',
 	'th_huname' => 'Uploader verstecken?',
@@ -69,13 +69,13 @@ $lang = array(
 
 	# Order
 	'order_title' => 'Download-Code für %1% (Code: %2%)',
-	'order_descr' => 'Erworbenes Download-Token für %1%. Gütlig für %2%. Code: %3%',
-	'msg_purchased' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1%\' und ist für %2% gültig.<br/><b>Schreiben sie ihren Code auf, falls sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen sie sich bitte ein und <a href="%3%">rufen den Download-Link auf</a>.',
+	'order_descr' => 'Erworbenes Download-Token für %1%. Gültig für %2%. Code: %3%',
+	'msg_purchased' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1%\' und ist für %2% gültig.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%3%">rufen den Download-Link auf</a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Käufe',
 
-	# v2.02 Expire + finsih
+	# v2.02 Expire + finish ;P
 	'err_dl_expire' => 'Die Vorhaltezeit muss zwischen 0 Sekunden und 5 Jahren betragen.',
 	'th_dl_expire' => 'Download läuft ab nach',
 	'tt_dl_expire' => 'Vorhaltezeit als zeitlicher Ausdruck. Zum Beispiel 5s oder 1 month 3 days.',
@@ -85,12 +85,12 @@ $lang = array(
 	'tt_dl_guest_down' => 'Können Gäste den Download herunterladen?',
 	'ft_reup' => 'Datei neu hochladen',
 	'order_descr2' => 'Erworbener Download-Code für %1%. Code: %2%.',
-	'msg_purchased2' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1%\'.<br/><b>Schreiben sie ihren Code auf, falls sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen sie sich bitte ein und <a href="%2%">rufen den Download-Link auf</a>.',
-	'err_group' => 'Sie müssen sich in der &quot;%1%&quot; Benutzergruppe befinden, um diese Datei herunterzuladen.',
+	'msg_purchased2' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1%\'.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%2%">rufen den Download-Link auf</a>.',
+	'err_group' => 'Sie müssen sich in der Benutzergruppe &quot;%1%&quot; befinden, um diese Datei herunterzuladen.',
 	'err_level' => 'Sie benötigen einen Benutzerlevel von %1%, um diese Datei herunterzuladen.',
 	'err_guest' => 'Gäste dürfen diese Datei nicht herunterladen.',
 	'err_adult' => 'Dieser Inhalt ist für Erwachsene.',
 
-	'th_dl_date' => 'Date',
+	'th_dl_date' => 'Datum',
 );
 ?>

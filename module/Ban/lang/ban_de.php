@@ -14,7 +14,7 @@ $lang = array(
 	'th_ban_date' => 'Datum',
 
 	# Tooltips
-	'tt_ban_ends' => 'Nur für einen temporären Ban. Sie müssen ausserdem bei Ban ein Häkchen setzen.',
+	'tt_ban_ends' => 'Nur für einen temporären Ban. Sie müssen außerdem bei Ban ein Häkchen setzen.',
 	'tt_ban_perm' => 'Die Permanent Option ignoriert das End-Datum',
 	'tt_ban_type' => 'Warnung, oder ein Häkchen setzen für Ban',
 
@@ -22,7 +22,7 @@ $lang = array(
 	'btn_add_ban' => 'Verwarnen / Bannen',
 
 	# Errors
-	'err_perm_or_date' => 'Wählen sie entweder ein End-Datum oder setzen sie ein Häkchen bei Permanent.',
+	'err_perm_or_date' => 'Wählen Sie entweder ein End-Datum oder setzen Sie ein Häkchen bei Permanent.',
 	'err_msg' => 'Sie haben die Nachricht vergessen.',
 	'err_ends' => 'Das End-Datum ist ungültig.',
 
@@ -30,10 +30,10 @@ $lang = array(
 	'msg_permbanned' => 'Der Benutzer %1% wurde permanent gebannt.',
 	'msg_tempbanned' => 'Der Benutzer %1% wurde gebannt bis %2%.',
 	'msg_warned' => 'Der Benutzer %1% wurde verwarnt.',
-	'msg_marked_read' => 'Die Nachricht wurde als gelese markiert.',
+	'msg_marked_read' => 'Die Nachricht wurde als gelesen markiert.',
 	
 	# Info
-	'info_warning' => 'Sie wurden verwarnt!<br/>%1%<br/><a href="%2%">Klicken sie hier um die Nachricht als gelesen zu markieren</a>.',
+	'info_warning' => 'Sie wurden verwarnt!<br/>%1%<br/><a href="%2%">Klicken Sie hier um die Nachricht als gelesen zu markieren</a>.',
 	'info_tempban' => 'Ihr Benutzerkonto ist gesperrt bis %1%!<br/>%2%',
 	'info_permban' => 'Ihr Benutzerkonto wurden permanent gesperrt:<br/>%1%',
 
