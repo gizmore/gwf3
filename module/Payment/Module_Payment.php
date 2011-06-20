@@ -138,9 +138,9 @@ final class Module_Payment extends GWF_Module
 	public static function displayOrderActionBtns()
 	{
 		return
-			self::tinyForm('on_order_1', 'img/coins.png').
-			self::tinyForm('on_put_cart', 'img/add.png').
-			self::tinyForm('on_show_cart', 'img/cart.png');
+			self::tinyForm('on_order_1', 'img/'.GWF_ICON_SET.'coins.png').
+			self::tinyForm('on_put_cart', 'img/'.GWF_ICON_SET.'add.png').
+			self::tinyForm('on_show_cart', 'img/'.GWF_ICON_SET.'cart.png');
 	}
 	
 	public static function tinyform($name, $src, $action=true, $hidden='')

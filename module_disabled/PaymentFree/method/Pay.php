@@ -54,7 +54,7 @@ final class PaymentFree_Pay extends GWF_Method
 		$form = $this->tinyCaptchaForm($module, $order);
 		$buttons = $form->templateY('Free', $action);
 		
-//		$buttons = Module_Payment::tinyform('Free', 'img/buy_free.gif', $action, $hidden);
+//		$buttons = Module_Payment::tinyform('Free', 'img/'.GWF_ICON_SET.'buy_free.gif', $action, $hidden);
 
 //		$lang = $module->loadLangGWF();
 		
