@@ -72,8 +72,8 @@ class Shadowcmd
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
-	public static $CMDS_ALWAYS = array('s','a','sk','q','p','i','cy','l','ef','ex','kp','ks','kw','qu','r','say');
-	public static $CMDS_ALWAYS_HIDDEN = array('c','cc','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
+	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','i','cy','l','ef','ex','kp','ks','kw','qu','r','say');
+	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
@@ -87,18 +87,18 @@ class Shadowcmd
 		'travel' => array('u','ca','eq','uq','gi','drop'),
 		'hijack' => array('u','ca','eq','uq','gi','drop','part'),
 	);
-	public static $CMDS_LEADER_ALWAYS = array('npc','pl','ban','unban');
+	public static $CMDS_LEADER_ALWAYS = array('le','npc','pl','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
-		'sleep' => array('stop','le'),
-		'talk' => array('kick','le'),
+		'sleep' => array('stop'),
+		'talk' => array('kick'),
 		'fight' => array(),
-		'inside' => array('g','exp','hunt','kick','exit','le'),
-		'outside' => array('g','exp','hunt','kick','en','le'),
-		'explore' => array('g','exp','hunt','kick','stop','le'),
-		'goto' => array('g','exp','hunt','kick','stop','le'),
-		'hunt' => array('g','exp','hunt','kick','stop','le'), 
-		'travel' => array('le'),
+		'inside' => array('g','exp','hunt','kick','exit'),
+		'outside' => array('g','exp','hunt','kick','en'),
+		'explore' => array('g','exp','hunt','kick','stop'),
+		'goto' => array('g','exp','hunt','kick','stop'),
+		'hunt' => array('g','exp','hunt','kick','stop'), 
+		'travel' => array(),
 		'hijack' => array('g','exp','hunt','en','stop'),
 	);
 	

@@ -26,10 +26,20 @@ final class Shadowcmd_leader extends Shadowcmd
 			return false;
 		}
 		
+		switch ($party->getAction())
+		{
+			case SR_Party::ACTION_HIJACK:
+			case SR_Party::ACTION_FIGHT:
+				$bot->reply(sprintf('You cannot change leadership now.'));
+				return false;
+		}
+		
+		# Do it!
 		if (false === $party->setLeader($target)) {
 			$bot->reply('Error.');
 			return false;
 		}
+		
 		$party->notice(sprintf('%s is the new party leader.', $target->getName()));
 		return true;
 	}
