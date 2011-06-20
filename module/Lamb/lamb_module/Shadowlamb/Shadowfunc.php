@@ -452,17 +452,15 @@ final class Shadowfunc
 		$back = '';
 		foreach ($fields as $field)
 		{
-			if (0 > ($base = $player->getBase($field))) {
-				continue;
-			}
 			$now = $player->get($field);
-			
-			if ($base < 0 && $now < 0) {
-				continue;
+			$base = $player->getBase($field);
+//			if ($base < 0 && $now < 0)
+			if ($now >= 0)
+			{
+				$now = $base == $now ? '' : "($now)";
+				$back .= sprintf(', %s:%s%s', $b.$field.$b, $base, $now);
 			}
 			
-			$now = $base == $now ? '' : "($now)";
-			$back .= sprintf(', %s:%s%s', $b.$field.$b, $base, $now);
 		}
 		return $back === '' ? 'None' : substr($back, 2);
 	}
@@ -575,25 +573,25 @@ final class Shadowfunc
 		static $rand = array(
 			'fairy_male' => array('Schwunkol'),
 			'fairy_female' => array('Ambra','Elina'),
-			'vampire_male' => array('Dracool'),
+			'vampire_male' => array('Dracool','Vincent'),
 			'vampire_female' => array('Daria'),
-			'elve_male' => array('Filöen'),
+			'elve_male' => array('Filöen','Vincent'),
 			'elve_female' => array('Anja'),
 			'darkelve_male' => array('Noplan'),
 			'darkelve_female' => array('Noplan'),
 			'woodelve_male' => array('Noplan'),
 			'woodelve_female' => array('Noplan'),
-			'halfelve_male' => array('Filöen'),
+			'halfelve_male' => array('Filöen','Alaster'),
 			'halfelve_female' => array('Anja'),
 			'human_male' => array('Lesley','Norman','Simon','Jessey','Tobias','Marcus','Oliver','Richard','Gandalf','Carsten','Mike','Paul','Wesley','Mathew','Jersey','Stephen'),
 			'human_female' => array('Mary',''),
-			'dwarf_male' => array('Roon'),
+			'dwarf_male' => array('Roon','Reiner','Oscar'),
 			'dwarf_female' => array('Alisa'),
-			'ork_male' => array('Grunt'),
+			'ork_male' => array('Grunt','Bruno'),
 			'ork_female' => array('Broga'),
-			'halfork_male' => array('Bren'),
+			'halfork_male' => array('Bren','Diego'),
 			'halfork_female' => array('Yuly'),
-			'halftroll_male' => array('Roon'),
+			'halftroll_male' => array('Roon','Rodrigo'),
 			'halftroll_female' => array('Björk'),
 			'troll_male' => array('Roog'),
 			'troll_female' => array('Gunda'),
