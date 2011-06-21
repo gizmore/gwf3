@@ -299,34 +299,49 @@ abstract class SR_City
 	
 	private function partyContact(SR_Party $p)
 	{
-		$sqkm = $this->getSquareKM();
-		$possible = array();
-		$total = 0;
-		$total_sqkm = $sqkm * 3; // total slots in city
+		if (rand(0, 2)) # 0 ok, 1-2 fail
+		{
+			return false; # fail
+		}
 		
 		foreach (Shadowrun4::getParties() as $ep)
 		{
 			if ( ($ep->isMoving()) && ($p->getCity() === $ep->getCity()) && ($ep->getID() !== $p->getID()) )
 			{
-//				$total += 50;
-//				$possible[] = array($ep, 50);
-				$possible[] = array($ep, 1);
+				$p->talk($ep, true);
+				return true;
 			}
 		}
-		
-//		$chance_none = $sqkm * 30 - count($possible);
-//		$chance_none = Common::clamp($chance_none, 50);
-		
-		$chance_none = $total_sqkm - count($possible);
-		$chance_none = Common::clamp($chance_none, round($sqkm*2.5)); // at least N empty slots
-		
-		if (false === ($ep = Shadowfunc::randomData($possible, $total, $chance_none))) {
-			return false;
-		}
-		
-		$p->talk($ep, true);
-		
-		return true;
+		return false;
+				
+//		$sqkm = $this->getSquareKM();
+//		$possible = array();
+//		$total = 0;
+//		$total_sqkm = $sqkm * 3; // total slots in city
+//		
+//		foreach (Shadowrun4::getParties() as $ep)
+//		{
+//			if ( ($ep->isMoving()) && ($p->getCity() === $ep->getCity()) && ($ep->getID() !== $p->getID()) )
+//			{
+////				$total += 50;
+////				$possible[] = array($ep, 50);
+//				$possible[] = array($ep, 1);
+//			}
+//		}
+//		
+////		$chance_none = $sqkm * 30 - count($possible);
+////		$chance_none = Common::clamp($chance_none, 50);
+//		
+//		$chance_none = $total_sqkm - count($possible);
+//		$chance_none = Common::clamp($chance_none, round($sqkm*2.5)); // at least N empty slots
+//		
+//		if (false === ($ep = Shadowfunc::randomData($possible, $total, $chance_none))) {
+//			return false;
+//		}
+//		
+//		$p->talk($ep, true);
+//		
+//		return true;
 	}
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
