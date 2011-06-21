@@ -212,6 +212,9 @@ $lang = array(
 		'%5%'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
+		'To view the thread please visit this page:'.PHP_EOL.
+		'%8%'.PHP_EOL.
+		PHP_EOL.
 		'Për të përfunduar Abbonement për këtë çështje ata e quajnë këtë faqe:'.PHP_EOL.
 		'%6%'.PHP_EOL.
 		PHP_EOL.

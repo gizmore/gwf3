@@ -265,6 +265,9 @@ final class GWF_ForumSubscription extends GDO
 		}
 		$token = $options->getVar('fopt_token');
 		
+		$href = Common::getAbsoluteURL($thread->getLastPageHREF(false), false);
+		$showLink = GWF_HTML::anchor($href, $href);
+		
 		$href = Common::getAbsoluteURL($thread->getExternalUnSubscribeHREF($userid, $token, true), false);
 		$unsubLink = GWF_HTML::anchor($href, $href);
 
@@ -275,7 +278,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
 		$mail->setSubject($module->langUser($user, 'submail_subj'));
-		$mail->setBody($module->langUser($user, 'submail_body', $username, $msg_count, $boardText, $threadTitle, $msg_block, $unsubLink, $unsubLinkAll));
+		$mail->setBody($module->langUser($user, 'submail_body', $username, $msg_count, $boardText, $threadTitle, $msg_block, $unsubLink, $unsubLinkAll, $showLink));
 		
 		if (false === $mail->sendToUser($user)) {
 			GWF_Log::logCron('[ERROR] Can not send mail to '.$username.'; EMail: '.$receiver);

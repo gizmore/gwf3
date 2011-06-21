@@ -214,6 +214,9 @@ $lang = array(
 		'%5%'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
+		'Um den Thread anzusehen rufen sie diese Seite auf:'.PHP_EOL.
+		'%8%'.PHP_EOL.
+		PHP_EOL.
 		'Um das Abonnement zu diesem Thema zu kündigen rufen Sie diese Seite auf:'.PHP_EOL.
 		'%6%'.PHP_EOL.
 		PHP_EOL.
