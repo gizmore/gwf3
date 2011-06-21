@@ -17,7 +17,7 @@ final class Shadowhelp
 			'skill' => 'skills',
 			'attribute' => 'attributes',
 			'casting' => 'cast',
-			'bmi' => 'body mass',
+			'bmi' => 'body_mass',
 		);
 		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
 		
@@ -130,13 +130,13 @@ final class Shadowhelp
 					'asl' => 'Player command. Usage: #asl [<age|bmi|height>]. Use #aslset to setup your asl. Show your',
 					array(
 						'age' => 'Your character\'s age, in years.',
-						'bodymass' => 'Your characters body mass in gramm.',
+						'body_mass' => 'Your characters body_mass in gramm.',
 						'height' => 'Your character\'s height in centimeters.',
 					),
 					
 					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. '.SR_Player::XP_PER_LEVEL.' XP equal 1 level.',
 					'hp' => "HP are your hitpoints. Use #hp to see all party HP. You can refresh hitpoints in Hotel, or by healing items and spells.",
-					'mp' => "MP are your manapoints. Use #mp to see all party HP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
+					'mp' => "MP are your manapoints. Use #mp to see all party MP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
 					'atk' => 'Your chances to hit.',
 					'defense' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',
 					'damage' => 'The min and max damage you can cause.',
