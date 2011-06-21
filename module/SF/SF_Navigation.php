@@ -46,7 +46,7 @@ final class SF_Navigation extends GDO
 		return GDO::table(__CLASS__)->selectAll('*', $where, $orderby);
 	}
 	public static function sql() {
-        $permission = 0; 
+		$permission = 0; 
 		return array(
 			'secs' => self::fetchAll("TID = '".self::SECTIONS."' AND is_visible = '1' AND display_to >= '{$permission}'", 'position'),
 			'cats' => self::fetchAll("TID = '".self::CATEGORIES."' AND is_visible = '1' AND display_to >= '{$permission}'", "parent_id, position"),
@@ -55,9 +55,9 @@ final class SF_Navigation extends GDO
 			'catlinks' => self::fetchAll("TID = '".self::LINKS."' AND is_visible = '1' AND display_to >= '{$permission}'AND side = 'CAT'", "parent_id, position"),
 			'sublinks' => self::fetchAll("TID = '".self::LINKS."' AND is_visible = '1' AND display_to >= '{$permission}' AND side = 'SUB'", "parent_id, position")
 		);
-    }
+	}
 	public static function display_navigation($side) {
-        $res = self::sql();
+		$res = self::sql();
 		$secs = $res['secs'];
 		$cats = $res['cats'];
 		$subs = $res['subs'];
@@ -75,7 +75,7 @@ final class SF_Navigation extends GDO
 
 			foreach($seclinks as $seclink) 
 			{
-				if(/*$seclink['parent_type'] === 'SEC' &&*/ $seclink['parent_id'] === $sec['ID']) {
+				if($seclink['parent_id'] === $sec['ID']) {
 			
 					$ret .= self::liste('sec_link', '', 3) . 
 							self::link('index.php?sec=' . $sec['short'] . '&amp;site=' . $seclink['short'], $seclink['name'], $seclink['title'], 4) .
@@ -87,12 +87,12 @@ final class SF_Navigation extends GDO
 				if($cat['parent_id'] === $sec['ID']) {
 
 					$ret .= self::liste('cat', $sec['short'] . '_' . $cat['short'], 3) .
-							self::link('index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '#nav_' . $sec['short'] . '_' . $cat['short'], $cat['name'], '', 4 ,false ,'h2') . // END
+							self::link('index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '#nav_' . $sec['short'] . '_' . $cat['short'], $cat['name'], '', 4 ,false ,'h2') . 
 							self::tab(4) . "<ul>".PHP_EOL; // NO INPUT ?
 
 					foreach($catlinks as $catlink) 
 					{
-						if(/*$catlink['parent_id_type'] === 'CAT' &&*/ $catlink['parent_id'] === $cat['ID']) {
+						if($catlink['parent_id'] === $cat['ID']) {
 
 							$ret .= self::liste('cat_link' ,'', 5) . 
 									self::link('/index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;site=' . $catlink['short'], $catlink['name'], '',6) .
@@ -110,7 +110,7 @@ final class SF_Navigation extends GDO
 					
 							foreach($sublinks as $sublink) 
 							{
-								if(/*$sublink['parent_id_type'] === 'SUB' &&*/ $sublink['parent_id'] == $sub['ID']) {
+								if($sublink['parent_id'] == $sub['ID']) {
 
 									$ret .= self::liste('subcat_link', '', 7) .
 											self::link('index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;subcat=' . $sub['short'] . '&amp;site=' . $sublink['short'], $sublink['name'], '', 8) .

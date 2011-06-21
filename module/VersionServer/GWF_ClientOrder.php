@@ -136,7 +136,7 @@ final class GWF_ClientOrder extends GDO implements GWF_Orderable
 			return false;
 		}
 		
-		$module->message('msg_purchased', array($client->getVar('vsc_token')));
+		$module->message('msg_purchased', array($client->getVar('vsc_token')), true, true);
 		
 		return true;
 	} 

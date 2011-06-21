@@ -59,14 +59,14 @@ final class Module_Ban extends GWF_Module
 			
 			if ($ban->isWarning()) {
 				$href = GWF_WEB_ROOT.'index.php?mo=Ban&me=MarkRead&bid='.$ban->getID();
-				$this->error('info_warning', array($msg, $href));
+				$this->error('info_warning', array($msg, $href), true, true);
 			}
 			elseif ($ban->isPermanent()) {
 				$disable = true;
-				$this->error('info_permban', array($msg));
+				$this->error('info_permban', array($msg), true, true);
 			} else {
 				$disable = true;
-				$this->error('info_tempban', array($ban->displayEndDate(), $msg));
+				$this->error('info_tempban', array($ban->displayEndDate(), $msg), true, true);
 			}
 		}
 		
