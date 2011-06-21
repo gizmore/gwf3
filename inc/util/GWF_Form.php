@@ -253,7 +253,7 @@ class GWF_Form
 				case self::FILE_OPT:
 				case self::SUBMIT:
 				case self::SUBMIT_IMG:
-//				case self::SUBMITS:
+				case self::SUBMITS:
 				case self::SSTRING:
 				case self::HEADLINE:
 					break;

@@ -79,6 +79,7 @@ final class GWF_CSRF
 				return false;
 			}
 			
+			
 			$tokens =& GWF_Session::get(self::TOKEN_NAME);
 			foreach ($tokens as $id => $d)
 			{

@@ -150,6 +150,11 @@ final class GWF_User extends GDO
 	
 	public function displayEMail()
 	{
+		return self::displayEMailS($this->getVar('user_email'));
+	}
+	
+	public static function displayEMailS($email)
+	{
 		switch(rand(1,6))
 		{
 			case 1: $r = array('[at]', ' dot '); break;
@@ -159,7 +164,7 @@ final class GWF_User extends GDO
 			case 5: $r = array(' at', ' dot '); break;
 			case 6: $r = array(' at ', '[dot]'); break;
 		}
-		return htmlspecialchars(str_replace(array('@', '.'), $r, $this->getVar('user_email')));
+		return htmlspecialchars(str_replace(array('@', '.'), $r, $email));
 	}
 	
 	###################

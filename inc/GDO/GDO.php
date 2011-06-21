@@ -348,10 +348,10 @@ abstract class GDO
 		$dir = explode(',', $dir);
 		foreach ($by as $i => $b)
 		{
-			if (false === ($b = $this->getWhitelistedBy($b, false, $nested))) {
-				continue;
+			if (false !== ($b = $this->getWhitelistedBy($b, false, $nested)))
+			{
+				$back .= sprintf(',%s %s', $b, self::getWhitelistedDirS($dir[$i], 'ASC'));
 			}
-			$back .= sprintf(',%s %s', $b, self::getWhitelistedDirS($dir[$i], 'ASC'));
 		}
 		return $back === '' ? '' : substr($back, 1);
 	}
