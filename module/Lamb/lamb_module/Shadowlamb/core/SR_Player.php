@@ -2113,7 +2113,7 @@ class SR_Player extends GDO
 		if (!SR_KillProtect::isKillProtected($killer, $this))
 		{
 			$this->looseItem($killer);
-			SR_KillProtect::onKilled($killer, $victim);
+			SR_KillProtect::onKilled($killer, $this);
 		}
 		
 		return $this->gotKilledByNPC($killer);

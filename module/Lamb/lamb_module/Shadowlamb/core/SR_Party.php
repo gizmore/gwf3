@@ -423,7 +423,8 @@ final class SR_Party extends GDO
 	
 	public function sharesLocation(SR_Party $p)
 	{
-		if (!$this->isAtLocation()) {
+		if (!$this->isAtLocation())
+		{
 			return false;
 		}
 		return ($p->getAction() === $this->getAction()) && ($p->getTarget() === $this->getTarget());
@@ -598,7 +599,7 @@ final class SR_Party extends GDO
 			'sr4pa_last_action' => 'delete',
 			'sr4pa_last_target' => NULL,
 			'sr4pa_last_eta' => 0,
-			'sr4pa_options' => 0,
+			'sr4pa_options' => SR_Party::LOOT_KILL,
 			'sr4pa_ban' => NULL,
 			'sr4pa_distance' => '',
 			'sr4pa_xp' => 0,

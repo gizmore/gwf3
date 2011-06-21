@@ -44,7 +44,7 @@ final class SR_KillProtect extends GDO
 		{
 			return false;
 		}
-		return in_array($killer.':'.$victim, self::$CACHE, true);
+		return in_array($killer->getID().':'.$victim->getID(), self::$CACHE, true);
 	}
 	
 	public static function isKillProtected(SR_Player $killer, SR_Player $victim)
