@@ -19,7 +19,7 @@ $lang = array(
 	'btn_register' => 'Registrieren',
 
 	# Table Headers
-	'th_username' => 'Benutzername',
+	'th_username' => 'Benutzer',
 	'th_password' => 'Passwort',
 
 	# Solved!

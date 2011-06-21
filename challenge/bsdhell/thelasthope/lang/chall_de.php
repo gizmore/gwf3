@@ -9,7 +9,7 @@ $lang = array(
 		'<br/>'.PHP_EOL.
 		'Unsere letzte Hoffnung ist, dass dieses Passwort auch für das VPN verwendet wird :('.PHP_EOL,
 
-	'msg_literal' => 'Sehr gut gemacht, die Lösung ist Benutzername_Passwort! Einfach oder?',
+	'msg_literal' => 'Sehr gut gemacht, die Lösung ist Benutzer_Passwort! Einfach oder?',
 	'err_literal' => 'Warnung: Sarkasmus erkannt: Junge, willst du mich veräppeln? (Tölpel Nr. %1%)',
 );
 ?>
