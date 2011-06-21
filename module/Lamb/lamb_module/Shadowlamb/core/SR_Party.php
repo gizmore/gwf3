@@ -90,7 +90,7 @@ final class SR_Party extends GDO
 	public function getMemberCount() { return count($this->members); }
 	public function isLeader(SR_Player $player) { return $this->getLeader()->getID() === $player->getID(); }
 	public function isMember(SR_Player $player) { return isset($this->members[$player->getID()]); }
-	public function isOutsideLocation() { return $this->getAction() === self::ACTION_OUTSIDE; }
+	public function isOutsideLocation() { return $this->getLocationClass(self::ACTION_OUTSIDE) !== false; }
 	public function isInsideLocation() { return $this->getAction() === self::ACTION_INSIDE; }
 	public function isAtLocation() { return $this->isInsideLocation() || $this->isOutsideLocation(); }
 	public function getDistance(SR_Player $player) { return $this->distance[$player->getID()]; }
@@ -862,7 +862,16 @@ final class SR_Party extends GDO
 			case 'talk': return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $this->getEnemyParty()->displayMembers(), $this->displayContactETA(), $this->displayLastAction());
 			case 'fight': return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			case 'inside': return sprintf("{$b}inside{$b} %s.", $this->getLocation());
-			case 'outside': return sprintf("{$b}outside{$b} of %s.", $this->getLocation());
+			case 'outside':
+				$city = $this->getCityClass();
+				if ($this->isAtLocation() || (!$city->isDungeon()))
+				{
+					return sprintf("{$b}outside{$b} of %s.", $this->getLocation());
+				}
+				else
+				{
+					return sprintf("somewhere inside %s.", $this->getLocation());
+				}
 			case 'sleep': return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
 			case 'travel': return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			case 'explore': return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
