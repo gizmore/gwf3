@@ -28,9 +28,9 @@ final class GWF_HTML
 	### Errors ###
 	##############
 	private static $_ERRORS = array();
-	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log); }
-	public static function error($title=NULL, $message, $log=true) { return self::errorA($title, array($message), $log); }
-	public static function errorA($title=NULL, array $messages, $log=true)
+	public static function err($key, $args=NULL, $log=true, $to_smarty = false) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log, $to_smarty); }
+	public static function error($title=NULL, $message, $log=true, $to_smarty = false) { return self::errorA($title, array($message), $log, $to_smarty); }
+	public static function errorA($title=NULL, array $messages, $log=true, $to_smarty = false)
 	{
 		if (count($messages) === 0) return '';
 		
@@ -38,32 +38,38 @@ final class GWF_HTML
 		{
 				GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
+		if ($to_smarty === false)
+		{
+			return self::displayErrors(array('title' => $title, 'messages' => $messages));
+		}
+		
 		self::$_ERRORS[] = array('title' => $title, 'messages' => $messages); 
-		return true;
+		return '';
 	}
-	public static function displayErrors() 
+	public static function displayErrors($errors = NULL) 
 	{
-		if(count(self::$_ERRORS) === 0) return ''; 
+		$errors = (($errors === NULL) ? self::$_ERRORS : array($errors)); 
+		if(count($errors) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)
 		{
-			$errors = '';
-			foreach (self::$_ERRORS as $msg)
+			$err = '';
+			foreach ($errors as $msg)
 			{
 				$msg = GWF_Debug::shortpath(self::decode($msg['messages']));
-				$errors .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
+				$err .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
 			}
-			return GWF_Website::addDefaultOutput($errors);
+			return GWF_Website::addDefaultOutput($err);
 		}
-		return GWF_Template::templateMain('error.tpl', array('errors' => self::$_ERRORS));
+		return GWF_Template::templateMain('error.tpl', array('errors' => $errors));
 	}
 
 	################
 	### Messages ###
 	################
 	private static $_MESSAGES = array();
-	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
-	public static function messageA($title=NULL, array $messages, $log=true)
+	public static function message($title=NULL, $message, $log=true, $to_smarty=false) { return self::messageA($title, array($message), $log, $to_smarty); }
+	public static function messageA($title=NULL, array $messages, $log=true, $to_smarty=false)
 	{
 		if (count($messages) === 0) return '';
 		
@@ -71,24 +77,29 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
+		if ($to_smarty === false)
+		{
+			return self::displayMessages(array('title' => $title, 'messages' => $messages));
+		}
 		self::$_MESSAGES[] = array('title' => $title, 'messages' => $messages); 
-		return true;
+		return '';
 	}
-	public static function displayMessages() 
+	public static function displayMessages($messages = NULL) 
 	{
-		if(count(self::$_MESSAGES) === 0) return ''; 
+		$messages = (($messages === NULL) ? self::$_MESSAGES : array($messages)); 
+		if(count($messages) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)
 		{
 			$output = '';
-			foreach (self::$_MESSAGES as $msg)
+			foreach ($messages as $msg)
 			{
 				$msg = GWF_Debug::shortpath(self::decode($msg['messages']));
 				$output .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
 			}
 			return GWF_Website::addDefaultOutput($output);
 		}
-		return GWF_Template::templateMain('message.tpl', array('messages' => self::$_MESSAGES));
+		return GWF_Template::templateMain('message.tpl', array('messages' => $messages));
 	}
 	
 	##############
