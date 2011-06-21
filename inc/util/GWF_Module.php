@@ -90,8 +90,8 @@ class GWF_Module extends GDO
 	public function getLanguage() { return $this->lang; }
 	public function loadLanguage($path) { if ($this->lang === NULL) { $this->lang = new GWF_LangTrans(sprintf('module/%s/%s', $this->getName(), $path)); } }
 	public function onLoadLanguage() { $this->lang = GWF_HTML::getLang(); } # $this->loadLanguage('lang/'.$this->getName()); }
-	public function error($key, $args=NULL, $log=true) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log); }
-	public function message($key, $args=NULL, $log=true) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log); }
+	public function error($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
+	public function message($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
 	public function lang($key, $args=NULL) { return $this->lang->lang($key, $args); }
 	public function langAdmin($key, $args=NULL) { return $this->lang->langAdmin($key, $args); }
 	public function langUser(GWF_User $user, $key, $args=NULL) { return $this->lang->langUser($user, $key, $args); }
