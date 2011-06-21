@@ -8,7 +8,11 @@ function lamb_svn_info($key, $repo, $user='', $pass='', $displayurl='', $channel
 
 	$svninfo->setRepository($repo, $user, $pass);
 
-	$currentRevision = $svninfo->getCurrentRevision();
+	if (false === ($currentRevision = $svninfo->getCurrentRevision()))
+	{
+		Lamb_Log::logDebug('Fetching current revision failed.');
+		return;
+	}
 //	Lamb_Log::logDebug(sprintf('Polled the current revision from repositry: %d', $currentRevision));
 	
 	$lastRevision = GWF_Settings::getSetting($key, $currentRevision);
