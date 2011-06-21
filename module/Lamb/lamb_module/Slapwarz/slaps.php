@@ -19,7 +19,7 @@ $slaps = array(
 	array('weirdly', 32),
 	array('immediately', 30),
 	array('suddenly', 35),
-	array('hardly', 10),
+	array('hardly', 14),
 	array('massively', 40),
 	array('accidently', 15),
 	array('periodically', 33),
