@@ -1,4 +1,4 @@
-<span style="color: #000; opacity:0.3; opacity: 0.30; background-color: {$SF->layoutcolor('design_light')}; font-size: 20px; vertical-align: top; text-align: right;">
+<span style="color: #000; opacity:0.3; opacity: 0.30; background-color: {$SF->getLayoutcolor('design_light')}; font-size: 20px; vertical-align: top; text-align: right;">
 www.FlorianBest.de<br>	- the perfection of WebApplication -
 </span><br><br>
 <p style="position: relative; right: 0; bottom: 0;">

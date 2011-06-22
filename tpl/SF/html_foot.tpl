@@ -3,14 +3,14 @@
 					</div><hr>
 <!-- PAGE End -->
 					<p class="bottom">
-						<a class="backbutton" href="{$lastURL}" title="{$lastURL}">{$SF->lang('back')} ({$lastURL})</a>
+						<a class="backbutton" href="{$SF->getLastURL()}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({$SF->getLastURL()})</a>
 					</p>
 				</div>
 			</div>
 {if $SF->is_displayed('naviright')}
 <!-- RIGHT NAVIGATION -->
 			<div id="right" class="navigation">
-{include file="tpl/{$SF->design()}/navi_right.tpl"}
+{include file="tpl/{$SF->getDesign()}/navi_right.tpl"}
 			</div>
 {/if}
 		</div>
@@ -25,15 +25,15 @@
 {if $SF->is_displayed('details')}
 <!-- DETAILS -->
 		<div id="details">
-{include file="templates/{$SF->design()}/details.tpl"}
+{include file="templates/{$SF->getDesign()}/details.tpl"}
 		</div>
 {/if}
 <!-- FOOTER -->
 		<div id="footer"><hr style="margin: 0;">
-{include file="tpl/{$SF->design()}/html_footer.tpl"}
+{include file="tpl/{$SF->getDesign()}/html_footer.tpl"}
 		</div>
 	</div>
 	<p style="text-align: center;">
-{include file="tpl/{$SF->design()}/debug_time.tpl"}
+{include file="tpl/{$SF->getDesign()}/debug_time.tpl"}
 	</p>
 </body>
