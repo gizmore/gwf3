@@ -48,7 +48,7 @@ final class GWF_HTML
 	}
 	public static function displayErrors($errors = NULL) 
 	{
-		$errors = (($errors === NULL) ? self::$_ERRORS : array($errors)); 
+		$errors = $errors === NULL ? self::$_ERRORS : array($errors); 
 		if(count($errors) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)
@@ -61,7 +61,7 @@ final class GWF_HTML
 			}
 			return GWF_Website::addDefaultOutput($err);
 		}
-		return GWF_Template::templateMain('error.tpl', array('errors' => $errors));
+		return GWF_Template::templateMain('error.tpl', array('title'=>$errors[0]['title'], 'errors' => $errors));
 	}
 
 	################
@@ -86,7 +86,7 @@ final class GWF_HTML
 	}
 	public static function displayMessages($messages = NULL) 
 	{
-		$messages = (($messages === NULL) ? self::$_MESSAGES : array($messages)); 
+		$messages = $messages === NULL ? self::$_MESSAGES : array($messages); 
 		if(count($messages) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)
@@ -99,7 +99,7 @@ final class GWF_HTML
 			}
 			return GWF_Website::addDefaultOutput($output);
 		}
-		return GWF_Template::templateMain('message.tpl', array('messages' => $messages));
+		return GWF_Template::templateMain('message.tpl', array('title'=>$messages[0]['title'], 'messages' => $messages));
 	}
 	
 	##############
