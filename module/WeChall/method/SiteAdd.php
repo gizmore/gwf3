@@ -124,12 +124,12 @@ final class WeChall_SiteAdd extends GWF_Method
 		$max = $m->cfgMaxSitenameLen();
 		
 		if (1 !== preg_match('/^[a-z][a-z0-9_]+$/i', $arg)) {
-			return $m->lang('err_site_cname', array(1, $max));
+			return $m->lang('err_site_classname', array(1, $max));
 		}
 		
 		$len = Common::strlen($arg);
 		if ($len < 1 || $len > $max) {
-			return $m->lang('err_site_cname', array(1, $max));
+			return $m->lang('err_site_classname', array(1, $max));
 		}
 		return false;
 		
