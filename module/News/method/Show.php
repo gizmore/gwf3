@@ -21,7 +21,12 @@ final class News_Show extends GWF_Method
 			'RewriteRule ^news$ index.php?mo=News&me=Show&catid=0&page=1'.PHP_EOL.
 			'RewriteRule ^news/[a-z]{2}$ index.php?mo=News&me=Show&catid=0&page=1'.PHP_EOL.
 			# Show by cat and page
-			'RewriteRule ^news/[a-z]{2}/([0-9]+)/[^/]+/page-([0-9]+)/?$ index.php?mo=News&me=Show&catid=$1&page=$2'.PHP_EOL;
+			'RewriteRule ^news/[a-z]{2}/([0-9]+)/[^/]+/page-([0-9]+)/?$ index.php?mo=News&me=Show&catid=$1&page=$2'.PHP_EOL.
+		
+		
+			# Comments
+//			'RewriteRule ^news/comment/(\\d+) index.php?mo='.PHP_EOL.
+			'';
 	}
 	
 	public function execute(GWF_Module $module)
@@ -113,6 +118,7 @@ final class News_Show extends GWF_Method
 			'may_add' => GWF_User::isAdminS() || GWF_User::isStaffS(),
 			'href_add' => $module->hrefAddNews(),
 //			'with_forum' => ( ($mod_forum !== false) && ($module->cfgNewsInForum()) ),
+//			'href_comments_more' => GWF_WEB_RO
 		
 		);
 		return $module->templatePHP('show.php', $tVars);

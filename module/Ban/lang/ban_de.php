@@ -5,7 +5,7 @@ $lang = array(
 	'fi_add_ban' => 'Um den Benutzer zu bannen markieren sie die Ban Checkbox und wählen entweder Permanent oder ein End-Datum.',
 
 	# Table Headers
-	'th_user_name' => 'Benutzername',		
+	'th_user_name' => 'Nickname',		
 	'th_ban_msg' => 'Nachricht',
 	'th_ban_ends' => 'Endet am',
 	'th_ban_perm' => 'Permanent ',

@@ -14,8 +14,6 @@ $headers = array(
 	array($tLang->lang('th_sumtop3'), 'top3', 'DESC'),
 	array($tLang->lang('th_top_player'), 'topuser', 'ASC'),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
-
 $rank = 1;
 $hlc = $tVars['highlight_country'];
 

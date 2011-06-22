@@ -14,10 +14,10 @@ final class Module_SF extends GWF_Module
 	public function getVersion() { return 1.01; }
 	public function getDefaultPriority() { return 50; }
 	public function getDefaultAutoLoad() { return true; }
-	public function getClasses() { return array('SF', 'SF_init', 'SF_Navigation'); }
+	public function getClasses() { return array('SF', 'SF_Init', 'SF_Navigation'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Config'); }
-	public function onStartup() { return $this->onInclude(); }
+//	public function onStartup() { return $this->onInclude(); }
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(

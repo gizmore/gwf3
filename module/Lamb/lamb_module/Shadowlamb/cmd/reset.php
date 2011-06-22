@@ -16,7 +16,7 @@ final class Shadowcmd_reset extends Shadowcmd
 		$c = Shadowrun4::SR_SHORTCUT;
 		$bot = Shadowrap::instance($player);
 		
-		if ($args[0]==='i_am_sure')
+		if ( (count($args)===1) && ($args[0]==='i_am_sure') )
 		{
 			$player->deletePlayer();
 			$player->message(sprintf('Your character has been deleted. You may issue %sstart again.', $c));
@@ -25,6 +25,7 @@ final class Shadowcmd_reset extends Shadowcmd
 		{
 			$bot->reply(sprintf('This will completely delete your character. Type "%sreset i_am_sure" to confirm.', $c));
 		}
+		
 		return true;
 	}
 }

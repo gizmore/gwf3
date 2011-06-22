@@ -7,7 +7,7 @@ $lang = array(
 	'chmail_title' => 'Geben sie ihre neue EMail Adresse an',
 
 	# Headers
-	'th_username' => 'Ihr Benutzername',
+	'th_username' => 'Ihr Nickname',
 	'th_email' => 'Kontakt EMail',
 	'th_demo' => 'Demographische Optionen - Diese können sie nur einmal alle %1% ändern.',
 	'th_countryid' => 'Land',	

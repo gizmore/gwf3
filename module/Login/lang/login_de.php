@@ -5,12 +5,12 @@ $lang = array(
 	'pt_login' => 'Einloggen auf '.GWF_SITENAME,
 	'title_login' => 'Einloggen',
 	
-	'th_username' => 'Benutzername',
+	'th_username' => 'Nickname',
 	'th_password' => 'Passwort',
 	'th_login' => 'Einloggen',
 	'btn_login' => 'Einloggen',
 
-	'err_login' => 'Unbekannter Benutzername',
+	'err_login' => 'Unbekannter Nickname',
 	'err_login2' => 'Falsches Passwort. Sie haben noch %1% Versuche bevor das Konto für %2% blockiert wird.',
 	'err_blocked' => 'Bitte warten sie %1% bevor sie es erneut versuchen.',
 

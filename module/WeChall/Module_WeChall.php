@@ -90,6 +90,8 @@ final class Module_WeChall extends GWF_Module
 		if (Common::getGet('mo')!=='WeChall') {
 			$this->onInclude();
 		}
+		
+//		GWF_Website::addDefaultOutput(GWF_HTML::message('Test', sprintf('Your last url is: %s', GWF_Session::getLastURL()), false));
 
 		GWF_Website::setPageTitlePre('[WeChall] ');
 		GWF_Website::setMetaTags(WC_HTML::lang('mt_wechall'));

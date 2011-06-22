@@ -37,8 +37,25 @@ foreach ($tVars['news'] as $news)
 	</div>
 
 	<?php #if ($is_staff) { echo '<div class="gwf_newsbox_translate">'.$news->getTranslateSelect().'</div>'; } ?>
+	<?php
+	$more = '';
+	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true)))
+	{
+		$comments instanceof Module_Comments;
+		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'])));
+		{
+			$c instanceof GWF_Comments;
+//			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
+//			$more .= '<br/>'.$c->displayTopComments();
+//			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
+			$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.htmlspecialchars($news['newst_title']).'-page-1.html');
+//			$more .= '<br/>'.$c->displayTopComments();
+//			$more .= '<br/>'.$c->displayReplyForm();
+		}
+	} 
+	?>
 
-	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']); ?></div>
+	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']).$more; ?></div>
 	
 	<?php
 //	$tid = intval($t['newst_threadid']);

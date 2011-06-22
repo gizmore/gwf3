@@ -8,7 +8,7 @@ if ($message === '') {
 	return $bot->processMessageA($server, LAMB_TRIGGER.'help world_domination', $from);
 }
 
-switch (rand(1,4))
+switch (rand(1,5))
 {
 	case 1:
 		$msg = "Your evil plan failed."; break;
@@ -18,6 +18,8 @@ switch (rand(1,4))
 		$msg = sprintf('Evil plan is running. You did not specify a main contact email tho.'); break;
 	case 4:
 		$msg = sprintf('Evil plan is running.'); break;
+	case 5:
+		$msg = sprintf('Database error. If you are %s you might have exhausted the evil plan slots.', $user->getName()); break;
 }
 
 $bot->reply($msg);

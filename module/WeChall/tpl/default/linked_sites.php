@@ -24,7 +24,6 @@ if (count($tVars['linked']) > 0)
 	echo sprintf('<form method="post" action="%s">', $tVars['action']).PHP_EOL;
 	echo sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('0')).PHP_EOL;
 	echo GWF_Table::start();
-//	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 	echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 	$userid = GWF_Session::getUserID();
 	$txtshow = $tLang->lang('btn_show');

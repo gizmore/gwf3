@@ -45,7 +45,8 @@ final class WeChall_Sidebar2 extends GWF_Method
 			return '';
 		}
 		
-		$formhash = GWF_Password::getToken('_username_password_bind_ip');
+		$formhash = '_username_password_bind_ip';
+		$formhash = GWF_Password::getToken($formhash);
 		$username = $module->lang('th_user_name');
 		$password = $module->lang('th_password');
 		$bind_ip = $module->lang('th_bind_ip');

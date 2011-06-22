@@ -4,7 +4,6 @@ $headers = array(
 	array($tLang->lang('th_user_name')),
 	array($tLang->lang('th_score')),
 );
-//$headers = GWF_Table::getHeaders2($headers);
 
 echo GWF_Box::box($tLang->lang('pi_crank', array($tVars['cname'])), GWF_Country::displayFlagS($tVars['cid']).' '.$tLang->lang('pt_crank', array($tVars['cname'], $tVars['page'])));
 

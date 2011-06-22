@@ -47,20 +47,20 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-		array(
-			'host' => 'ircs://irc.2600.net:6697',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-//			'channels' => '#shadowlamb,#hackbbs',
-			'channels' => '#shadowlamb,#hackbbs,#hackbbs-en',
-			'admins' => 'gizmore',
-		),
+//		array(
+//			'host' => 'ircs://irc.2600.net:6697',
+//			'nickname' => 'Lamb3',
+//			'password' => 'lamblamb',
+////			'channels' => '#shadowlamb,#hackbbs',
+//			'channels' => '#shadowlamb,#hackbbs,#hackbbs-en',
+//			'admins' => 'gizmore',
+//		),
 		
 		array(
 			'host' => 'ircs://irc.idlemonkeys.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#wechall,#net-force,#sr,#securitytraps,#idlemonkeys,#3564020356',
+			'channels' => '#wechall,#net-force,#sr,#securitytraps,#idlemonkeys,#3564020356,#RevolutionElite',
 			'admins' => 'gizmore',
 		),
 		

@@ -4,7 +4,7 @@ $user instanceof Lamb_User;
 if ($user->getName() === 'gizmore') {
 	$steal = '.';
 }
-elseif (rand(0,1)) {
+elseif (rand(0,3)) {
 	$steal = '.';
 }
 else {

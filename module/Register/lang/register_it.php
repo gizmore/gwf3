@@ -47,7 +47,7 @@ $lang = array(
 
 	'regmail_ptbody' => 
 		'Hier nochmals Ihre Zugangsdaten:<br/><b>'.
-		'Benutzername: %1%<br/>'.
+		'Nickname: %1%<br/>'.
 		'Passwort: %2%<br/>'.
 		'</b><br/>'.
 		'Es ist eine gute Idee diese Email zu löschen, und sich das Password sicherer aufzubewahren.<br/>'.
@@ -74,7 +74,7 @@ $lang = array(
 	'th_token' => 'Token',
 	'th_timestamp' => 'Anmelde-Datum',
 	'th_ip' => 'Anmelde IP',
-	'tt_username' => 'Der Benutzername muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1% Zeichen.', 
+	'tt_username' => 'Der Nickname muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1% Zeichen.', 
 	'tt_email' => 'Eine gültige EMail ist für die Anmeldung erforderlich.',
 
 	'info_no_cookie' => 'Ihr Browser unterstützt keine cookies, oder erlaubt diese nicht. Zum einloggen werden diese aber benötigt.',

@@ -21,7 +21,6 @@ $headers = array(
 	array($tLang->lang('th_regat_onsitescore')),
 	array($tLang->lang('th_progress')),
 );
-//$headers = GWF_Table::getHeaders2($headers, '');
 
 $rank = $tVars['rank'];
 $same_rank = $rank;

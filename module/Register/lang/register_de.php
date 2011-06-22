@@ -4,7 +4,7 @@ $lang = array(
 
 	'title_register' => 'Registrieren',
 
-	'th_username' => 'Benutzername',
+	'th_username' => 'Nickname',
 	'th_password' => 'Passwort',
 	'th_email' => 'E-Mail',
 	'th_birthdate' => 'Geburtsdatum',
@@ -16,8 +16,8 @@ $lang = array(
 	'btn_register' => 'Registrieren',
 	
 	'err_register' => 'Ein Fehler ist beim registrieren aufgetreten.',
-	'err_name_invalid' => 'Ihr Benutzername ist ungültig.',
-	'err_name_taken' => 'Der gewählte Benutzername ist bereits vergeben.',
+	'err_name_invalid' => 'Ihr Nickname ist ungültig.',
+	'err_name_taken' => 'Der gewählte Nickname ist bereits vergeben.',
 	'err_country' => 'Ihr gewähltes Land ist ungültig.',
 	'err_pass_weak' => 'Ihr gewähltes Passwort ist zu kurz. Tip: <b>Verwenden sie wichtige Passwörter nicht mehrmals</b>.',
 	'err_token' => 'Ihr aktivierungscode ist ungültig. Möglicherweise sind sie bereits aktiviert.',
@@ -46,7 +46,7 @@ $lang = array(
 
 	'regmail_ptbody' => 
 		'Hier nochmals Ihre Zugangsdaten:<br/><b>'.
-		'Benutzername: %1%<br/>'.
+		'Nickname: %1%<br/>'.
 		'Passwort: %2%<br/>'.
 		'</b><br/>'.
 		'Es ist eine gute Idee diese Email zu löschen, und sich das Passwort sicherer aufzubewahren.<br/>'.
@@ -73,7 +73,7 @@ $lang = array(
 	'th_token' => 'Code',
 	'th_timestamp' => 'Anmelde-Datum',
 	'th_ip' => 'Anmelde IP',
-	'tt_username' => 'Der Benutzername muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1% Zeichen.', 
+	'tt_username' => 'Der Nickname muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1% Zeichen.', 
 	'tt_email' => 'Eine gültige EMail ist für die Anmeldung erforderlich.',
 
 	'info_no_cookie' => 'Ihr Browser unterstützt keine cookies, oder erlaubt diese nicht. Zum einloggen werden diese aber benötigt.',

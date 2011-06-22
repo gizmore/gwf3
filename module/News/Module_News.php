@@ -66,6 +66,8 @@ final class Module_News extends GWF_Module
 	public function onStartup()
 	{
 		self::$instance = $this;
+//		$this->isMethodSelected('Show');
+//		GWF_Hook::add(GWF_Hook::SHOW_COMMENT_ITEM, self::hookShowCommentItem());
 	}
 	
 	public function execute($methodname)

@@ -83,7 +83,7 @@ $lang = array(
 	'th_link_descr2' => 'ausführliche Beschreibung',
 	'th_link_options&1' => 'Sticky? ',
 	'th_link_options&2' => 'In Moderation? ',
-	'th_link_options&4' => 'Benutzernamen verbergen?',
+	'th_link_options&4' => 'Nicknamen verbergen?',
 	'th_link_options&8' => 'Nur für Mitglieder sichtbar?',
 	'th_link_options&16' => 'Ist der Link privat?',
 	'th_link_id' => 'ID ',
@@ -95,7 +95,7 @@ $lang = array(
 	'th_vs_count' => 'Bewertungen',
 	'th_vote' => 'Bewerten',
 	'th_link_date' => 'Datum einfügen',
-	'th_user_name' => 'Benutzername',
+	'th_user_name' => 'Nickname',
 
 	# Tooltips
 	'tt_link_gid' => 'Link auf Nutzergruppe beschränken (oder leer lassen)',

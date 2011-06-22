@@ -31,10 +31,11 @@ final class GWF_News extends GDO
 			'cat' => array(GDO::JOIN, 0, array('GWF_Category', 'news_catid', 'cat_id')),
 		);
 	}
-	public function getID() { return (int) $this->getVar('news_id'); }
+	public function getID() { return $this->getVar('news_id'); }
 	public function getDate() { return $this->getVar('news_date'); }
-	public function getCategoryID() { return (int) $this->getVar('news_catid'); }
+	public function getCategoryID() { return $this->getVar('news_catid'); }
 	public function getUser() { return $this->getVar('news_userid'); }
+	public function getCommentsKey() { return '_NEWS_ID_'.$this->getVar('news_id'); }
 	
 	public function isHidden() { return $this->isOptionEnabled(self::HIDDEN); }
 	public function isToBeMailed() { return $this->isOptionEnabled(self::MAIL_ME); }

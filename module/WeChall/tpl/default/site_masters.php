@@ -21,8 +21,6 @@ if ($tVars['old'] === true) {
 	$headers[] = array($tLang->lang('th_regat_onsitescore'), 'sitemas_currperc');
 }
 
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
-
 echo $tVars['page_menu'];
 ?>
 <table>

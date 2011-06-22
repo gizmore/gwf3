@@ -5,7 +5,6 @@ $headers = array(
 	array($tLang->lang('th_userhist_date'), 'userhist_date'),
 	array($tLang->lang('th_userhist_comment')),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 
 $args = array($tVars['duname']);
 echo GWF_Box::box($tLang->lang('pi_texthis', $args), $tLang->lang('pt_texthis', $args));

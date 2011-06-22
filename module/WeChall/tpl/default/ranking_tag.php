@@ -20,7 +20,6 @@ $headers = array(
 	array($tLang->lang('th_score')),
 	array($tLang->lang('th_progress')),
 );
-//$headers = GWF_Table::getHeaders2($headers);
 
 echo $tVars['page_menu'];
 echo GWF_Table::start();

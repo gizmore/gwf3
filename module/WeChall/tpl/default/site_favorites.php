@@ -15,7 +15,6 @@ if (count($s) > 0)
 		array($tLang->lang('th_site_name'), 'site_name'),
 		array($txt_rem),
 	);
-//	$headers = GWF_Table::getHeaders2($headers, '');
 	echo '<table>';
 	echo GWF_Table::displayHeaders1($headers);
 	foreach ($s as $site)
@@ -42,7 +41,6 @@ if (count($fc) > 0)
 		array($tLang->lang('th_cat'), 'wcfc_cat'),
 		array($txt_rem),
 	);
-//	$headers = GWF_Table::getHeaders2($headers, '');
 	echo GWF_Table::start();
 	echo GWF_Table::displayHeaders1($headers, '');
 	foreach ($fc as $cat)

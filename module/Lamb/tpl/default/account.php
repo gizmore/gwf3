@@ -7,7 +7,6 @@ $headers = array(
 	array($tLang->lang('th_player_name')),
 	array($tLang->lang('th_level')),
 );
-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
 
 
 echo GWF_Table::start();

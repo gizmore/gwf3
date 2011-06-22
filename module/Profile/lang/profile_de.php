@@ -44,7 +44,7 @@ $lang = array(
 	'msg_edited' => 'Dein Profil wurde aktualisiert.',
 
 	# Headers
-	'th_user_name' => 'Benutzername',
+	'th_user_name' => 'Nickname',
 	'th_user_level' => 'Level',
 	'th_user_avatar' => 'Avatar',
 	'th_gender' => 'Geschlecht',

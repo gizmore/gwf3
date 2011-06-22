@@ -9,7 +9,7 @@ $lang = array(
 	# Errors
 	'err_gb' => 'Das Gästebuch existiert nicht.',
 	'err_gbm' => 'Der Eintrag existiert nicht.',
-	'err_gbm_username' => 'Der Benutzername ist ungültig und muss zwischen %1% und %2% Zeichen lang sein.',
+	'err_gbm_username' => 'Der Nickname ist ungültig und muss zwischen %1% und %2% Zeichen lang sein.',
 	'err_gbm_message' => 'Ihre Nachricht ist zu kurz oder zu lang. (%1% bis %2% Zeichen).',
 	'err_gbm_url' => 'Ihre Webseite ist nicht erreichbar oder die URL ist ungültig.',
 	'err_gbm_email' => 'Ihre EMail ist nicht gültig.',
