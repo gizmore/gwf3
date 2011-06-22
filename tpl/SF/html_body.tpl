@@ -14,7 +14,7 @@
 		</div>
 <!-- BODY -->
 		<div id="body">
-{if $SF->is_displayed('navileft')}
+{if $SF->isDisplayed('navileft')}
 <!--LEFT NAVIGATION -->
 			<div id="left" class="navigation">
 {include file="tpl/{$SF->getDesign()}/navi_left.tpl"}
@@ -22,7 +22,7 @@
 {/if}
 <!-- CENTERED MIDDLE -->
 			<div id="middle">
-{if $SF->is_displayed('shell')}
+{if $SF->isDisplayed('shell')}
 <!-- SHELL -->
 				<div id="smallshell" class="shell">
 {include file="tpl/{$SF->getDesign()}/shell.tpl"}

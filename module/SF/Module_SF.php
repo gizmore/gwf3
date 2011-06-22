@@ -24,6 +24,7 @@ final class Module_SF extends GWF_Module
 			'default_layout' => array('space', 'text', '0', '11'),
 			'default_design' => array('SF', 'text', '0', '11'),
 			'default_color' => array('green', 'text', '0', '11'),
+			'shell_is_enabled' => array(true, 'bool'),
 		));
 	}
 	##############
@@ -33,6 +34,7 @@ final class Module_SF extends GWF_Module
 	public function cfgdefaultDesign() { return $this->getModuleVar('default_design', 'SF'); }
 	public function cfgdefaultColor() { return $this->getModuleVar('default_color', 'green'); }
 	public function cfgCookieTime() { return (time()+60*60*24*30); }
+	public function cfgShellIsEnabled() { return $this->getModuleVar('shell_is_enabled', true); }
 }
 
 ?>

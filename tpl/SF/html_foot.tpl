@@ -7,7 +7,7 @@
 					</p>
 				</div>
 			</div>
-{if $SF->is_displayed('naviright')}
+{if $SF->isDisplayed('naviright')}
 <!-- RIGHT NAVIGATION -->
 			<div id="right" class="navigation">
 {include file="tpl/{$SF->getDesign()}/navi_right.tpl"}
@@ -22,7 +22,7 @@
 				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
 			</p>
 		</div>
-{if $SF->is_displayed('details')}
+{if $SF->isDisplayed('details')}
 <!-- DETAILS -->
 		<div id="details">
 {include file="templates/{$SF->getDesign()}/details.tpl"}

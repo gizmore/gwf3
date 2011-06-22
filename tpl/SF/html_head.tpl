@@ -1,7 +1,7 @@
 <html lang="{$language}" dir="ltr">
 <head>
 	<title>{$page_title}</title>
-{if $SF->is_displayed('base')}
+{if $SF->isDisplayed('base')}
 	<base href="http://{$smarty.server['SERVER_NAME']}">
 {/if}
 	{$meta}

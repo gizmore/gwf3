@@ -1,7 +1,7 @@
 <pre class="logo" id="shell_logo">
         .--.      _____________________________________________________________
-       |o_o |    /    WELCOME TO       {$SF->lang($SF->greeting())}                            \
-       |:_/ | --&lt;|       WWW.SPACE     {$SF->get_dayinfos()}|
+       |o_o |    /    WELCOME TO       {$SF->lang($SF->getGreeting())}                            \
+       |:_/ | --&lt;|       WWW.SPACE     {$SF->getDayinfos()}|
       //   \ \   \           ONE.ORG !!!  Es ist {date('G:i:s')} Uhr                   /
      (|     | )   --------------------------------------------------------------
     /'\_   _/`\ type in ´help´ for
