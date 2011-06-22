@@ -10,10 +10,10 @@ $lang = array(
 		'Good luck!',
 
 	'msg_reset' => 'Your password has been scrambled for security reasons.',
-	'msg_logged_in' => 'Welcome back, user. You would now be logged in after %1% attemps.',
-	'err_login' => 'Your password is wrong, user. This was your %1%. attemp!',
-	'err_attempt' => 'We are sorry but it took you %1% attemps to retrieve the hash. The limit is %2%.',
-	'err_wrong' => 'Your answer is wrong. This was your %1%. attemp!',
+	'msg_logged_in' => 'Welcome back, user. You would now be logged in after %1% attempts.',
+	'err_login' => 'Your password is wrong, user. This was your %1%. attempt!',
+	'err_attempt' => 'We are sorry but it took you %1% attempts to retrieve the hash. The limit is %2%.',
+	'err_wrong' => 'Your answer is wrong. This was your %1%. attempt!',
 
 	'th_injection' => 'Password',
 	'th_thehash' => 'Solution',
