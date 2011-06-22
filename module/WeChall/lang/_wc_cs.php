@@ -310,13 +310,12 @@ $lang = array(
 	'err_site_launchdate' => 'Neplatný datum vzniku stránky.',
 	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2% chars long.',
 	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2% chars long.',
-	'err_site_site_irc' => 'Neplatný IRC server. Max %2% znaků.',
 	'err_site_url' => 'Nelatné URL stránky. URL musí mít od %1% do %2% znaků.',
 	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_description' => 'The Site`s Description is invalid. Max %2% chars long.',
-	'err_site_status'  => 'Neplatné IRC stránky. IRC musí být %1% až %2% znaků.',
+	'err_site_irc'  => 'Neplatné IRC stránky. IRC musí být %1% až %2% znaků.',
 	'err_site_tags'  => 'Jeden nebo více tagů stráky je neplatný. (3-32 znaků - pouze písmena nebo číslice, začínat musí písmenem, case sensitive).',
 	'err_write_logo' => 'Není možné zapsat logo %1%.',
 	'err_no_logo' => 'Odeslaný soubor není obrázek.',
@@ -650,5 +649,6 @@ $lang = array(
 		
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
+	'err_site_status' => 'The sites status is invalid.',
 );
 ?>

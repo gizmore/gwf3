@@ -228,7 +228,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function validate_site_launchdate(Module_WeChall $m, $arg) { return GWF_Validator::validateDate($m, 'site_launchdate', $arg, GWF_Date::LEN_DAY, true); }
 	public function validate_site_authkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_authkey', $arg, 0, 32); }
 	public function validate_site_xauthkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_xauthkey', $arg, 0, 32); }
-	public function validate_site_irc(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_site_irc', $arg, 0, 255); }
+	public function validate_site_irc(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_irc', $arg, 0, 255); }
 	public function validate_site_url(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url', $arg, 0, 255); }
 	public function validate_site_url_mail(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_mail', $arg, 0, 255); }
 	public function validate_site_url_score(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_score', $arg, 0, 255); }

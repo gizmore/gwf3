@@ -309,13 +309,12 @@ $lang = array(
 	'err_site_launchdate' => 'The Site`s Launchdate is invalid.',
 	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2% chars long.',
 	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2% chars long.',
-	'err_site_site_irc' => 'The Site`s IRC Server is invalid. Max %2% chars long.',
 	'err_site_url' => 'The Site`s URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %1% to %2% chars long.',
 	'err_site_description' => 'The Site`s Description is invalid. Max %2% chars long.',
-	'err_site_status'  => 'The Site`s IRC Server is invalid. It has to be %1% to %2% chars long.',
+	'err_site_irc'  => 'The Site`s IRC Server is invalid. It has to be %1% to %2% chars long.',
 	'err_site_tags'  => 'One or more site tags are invalid. (3-32 chars only letters or digits, start with a letter, case sensitive).',
 	'err_write_logo' => 'Can not write logo to %1%.',
 	'err_no_logo' => 'Your submitted file is no image.',
@@ -647,5 +646,6 @@ $lang = array(
 		
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
+	'err_site_status' => 'The sites status is invalid.',
 );
 ?>

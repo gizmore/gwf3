@@ -313,13 +313,12 @@ $lang = array(
 	'err_site_launchdate' => 'La date de lancement du Site est invalide.',
 	'err_site_authkey' => 'La clé d\'authentification du Site est invalide. Max %2% caractères de long.',
 	'err_site_xauthkey' => 'La X-Authkey est invalide. Max %2% caractères de long.',
-	'err_site_site_irc' => 'Le serveur IRC du Site est invalide. Max %2% caractères de long.',
 	'err_site_url' => 'L\'URL du Site est invalide. Elle doit avoir entre %1% et %2% caractères.',
 	'err_site_url_mail' => 'L\'URL d\'authentification du Site est invalide. Elle doit avoir %1% à %2% caractères de long.',
 	'err_site_url_score' => 'L\'URL des Points du Site est invalide. Elle doit avoir entre %1% et %2% caractères de long.',
 	'err_site_url_profile' => 'L\'URL de Profil du Site est invalide. Elle doit avoir entre %1% et %2% caractères de long.',
 	'err_site_description' => 'La description du Site est invalide. Max %2% caractères.',
-	'err_site_status'  => 'Le serveur IRC du Site est invalide. Il doit avoir %1% à %2% caractères de long.',
+	'err_site_irc'  => 'Le serveur IRC du Site est invalide. Il doit avoir %1% à %2% caractères de long.',
 	'err_site_tags'  => 'Un ou plusieurs tags de site est/sont invalide(s). (3-32 caractères alphanumériques, commencant par une lettre, sensible à la casse).',
 	'err_write_logo' => 'Impossible d\'écrire le logo sur %1%.',
 	'err_no_logo' => 'Le fichier envoyé n\'est pas une image.',
@@ -653,6 +652,6 @@ $lang = array(
 
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
-		
+	'err_site_status' => 'The sites status is invalid.',
 );
 ?>

@@ -310,13 +310,12 @@ $lang = array(
 	'err_site_launchdate' => 'Датум пуштања у рад сајта је погрешан.',
 	'err_site_authkey' => 'Authkey сајта је неисправан. Максимум %2% карактера дужине.',
 	'err_site_xauthkey' => 'X-Authkey сајта је неисправан. Максимум %2% карактера дужине.',
-	'err_site_site_irc' => 'IRC сервер сајта је неисправан. Максимум %2% карактера дужине.',
 	'err_site_url' => 'URL сајта је неисправан. Мора бити %1% до %2% катактера дугачак.',
 	'err_site_url_mail' => 'Auth-URL сајта је неисправан. Мора бити %1% до %2% карактера дугачак.',
 	'err_site_url_score' => 'Резултат-URL сајта је неисправан. Мора бити %1% до %2% карактера дугачак.',
 	'err_site_url_profile' => 'Профил-URL сајта је неисправан. Мора бити %1% до %2% карактера дугачак.',
 	'err_site_description' => 'Опис сајта је неисправан. Максимум %2% карактера дужине.',
-	'err_site_status'  => 'IRC сервер сајта је неисправан. Мора бити %1% до %2% карактера дугачак.',
+	'err_site_irc'  => 'IRC сервер сајта је неисправан. Мора бити %1% до %2% карактера дугачак.',
 	'err_site_tags'  => 'Један или више тагова сајта је неисправно. (3-32 карактера словима или бројевима, почиње словом, мала и велика слова се не третирају исто).',
 	'err_write_logo' => 'Не може се поставити лого на %1%.',
 	'err_no_logo' => 'Ваш потврђен фајл није слика.',
@@ -647,5 +646,9 @@ $lang = array(
 	'msg_hide_score_1' => 'Your scores and percentages are now hidden in your profile.',
 	'msg_hide_score_0' => 'Your scores and percentages are now visible in your profile.',
 	'hidden' => 'Hidden',
+
+	# v5.00 (fixes)
+	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
+	'err_site_status' => 'The sites status is invalid.',
 );
 ?>
