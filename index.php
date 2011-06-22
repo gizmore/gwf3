@@ -12,6 +12,7 @@ if (false === GWF_Website::init(dirname(__FILE__))) {
 }
 
 # Autoload Modules :/
+# SKIP AUTOLOAD MODULES
 if (false === GWF_Module::autoloadModules()) {
 	die('Cannot autoload modules. GWF not installed?');
 }
@@ -49,11 +50,6 @@ else
 //$out = ob_get_contents();
 //ob_end_clean();
 
-# Commit the session
-if (false !== ($user = GWF_Session::getUser())) {
-	$user->saveVar('user_lastactivity', time());
-}
-GWF_Session::commit();
 
 # Display the page
 if (isset($_GET['ajax'])) {
@@ -61,6 +57,12 @@ if (isset($_GET['ajax'])) {
 } else {
 	echo GWF_Website::displayPage($page);
 }
+
+# Commit the session
+if (false !== ($user = GWF_Session::getUser())) {
+	$user->saveVar('user_lastactivity', time());
+}
+GWF_Session::commit();
 
 //$c2 = get_declared_classes();
 //if(isset($_GET['classes'])) {
