@@ -350,293 +350,291 @@ $lang = array(
 	'site_state_coming_soon' => 'Kommt bald',
 
 	# Messages
-	'msg_correct' => 'Your answer is correct. Congratulations you have solved this challenge.<br/>Please <a href="%1%">vote this challenge</a>.<br/>You may also access <a href="%2%">the solution board</a> for this challenge now.',
-	'msg_correct_alpha' => 'Your answer is correct, but the challenge is not installed yet.',
-	'msg_correct_again' => 'Your answer is correct but you have already solved this challenge.<br/>Did you <a href="%1%">vote for this challenge</a> yet?',
-	'msg_correct_guest' => 'Your answer is correct. To keep track of your progress you need to register.',
-	'msg_chall_edited' => 'The challenge has been edited.',
-	'msg_chall_installed' => 'The %1% Challenge has been installed and is ready to get solved :)',
-	'msg_chall_deleted' => 'The challenge has been deleted.',
-	'msg_cached_ctags' => 'The challenge Tag-Cloud has been re-populated.',
-	'msg_site_added' => 'A new challenge site has been added.',
-	'msg_site_edited' => 'The Site %1% has been edited.',
-	'msg_site_recalc' => 'Recalculating all Scores for %1%.',
-	'msg_sites_recalc' => 'Recalculating all Scores.',
-	'msg_site_linked' => 'Your %1% account has been successfully linked.',
-	'msg_site_unlinked' => 'Your %1% account has been successfully un-linked.',
-	'msg_hide_sitename_1' => 'Your Username for %1% is now hidden.',
-	'msg_hide_sitename_0' => 'Your Username for %1% is now shown.',
-	'msg_updating' => 'Updating your stats for %1%.',
-	'msg_sitemin_add' => 'Added %1% as Site Admin for %2%.',
-	'msg_sitemin_rem' => '%1% is no longer site admin of %2%.',
-	'msg_no_change' => 'Nothing has changed.',
-	'msg_chall_voted' => 'Thank you for your vote.',
-	'msg_created_gb' => 'Your guestbook has been created. You can <a href="%1%">configure it here</a>.',
-	'msg_bd_marked' => 'This week`s birthdays have all been marked as read.',
-	'msg_challs_marked' => 'The Challenge news have been marked as read.',
-	'msg_marked_fav' => '%1% is now marked as one of your favorite sites.',
-	'msg_unmarked_fav' => '%1% is not longer one of your favorite sites.',
+	'msg_correct' => 'Ihre Antwort ist richtig. Gratulation, Sie haben diese Challenge gelöst.<br/>Bitte <a href="%1%">bewerten Sie diese Challenge</a>.<br/>Sie können jetzt auch <a href="%2%">das Lösungsforum</a> für diese Challenge aufrufen.',
+	'msg_correct_alpha' => 'Ihre Antwort ist richtig, aber die Challenge ist noch nicht installiert.',
+	'msg_correct_again' => 'Ihre Antwort ist richtig, aber Sie haben diese Challenge bereits gelöst.<br/>Haben Sie <a href="%1%">diese Challenge schon bewertet?</a>',
+	'msg_correct_guest' => 'Ihre Antwort ist richtig. Um Ihren Fortschritt zu speichern müssen Sie sich registrieren.',
+	'msg_chall_edited' => 'Die Challenge wurde bearbeitet.',
+	'msg_chall_installed' => 'Die Challenge %1% wurde installiert und wartet darauf gelöst zu werden :)',
+	'msg_chall_deleted' => 'Die Challenge wurde gelöscht.',
+	'msg_cached_ctags' => 'Die Challenge Tag-Wolke wurde neu berechnet.',
+	'msg_site_added' => 'Eine neue Challenge Seite wurde hinzugefügt.',
+	'msg_site_edited' => 'Die Seite %1% wurde bearbeitet.',
+	'msg_site_recalc' => 'Berechne alle Punkte für %1% neu.',
+	'msg_sites_recalc' => 'Berechne alle Punkte neu.',
+	'msg_site_linked' => 'Ihr %1% Konto wurde verlinkt.',
+	'msg_site_unlinked' => 'Die Verlinkung für Ihr %1% Konto wurde aufgehoben.',
+	'msg_hide_sitename_1' => 'Ihr Benutzername von %1% ist jetzt versteckt.',
+	'msg_hide_sitename_0' => 'Ihr Benutzername von %1% wird jetzt angezeigt.',
+	'msg_updating' => 'Aktualisiere Ihren Fortschritt für %1%.',
+	'msg_sitemin_add' => '%1% als Admin für %2% hinzugefügt.',
+	'msg_sitemin_rem' => '%1% ist nicht mehr Admin von %2%.',
+	'msg_no_change' => 'Alles beim Alten.',
+	'msg_chall_voted' => 'Danke für Ihre Bewertung.',
+	'msg_created_gb' => 'Ihr Gästebuch wurde erstellt. Sie können es <a href="%1%">hier konfigurieren</a>.',
+	'msg_bd_marked' => 'Die Geburtstage dieser Woche wurden als gelesen markiert.',
+	'msg_challs_marked' => 'Die Challenge Neuigkeiten wurden als gelesen markiert.',
+	'msg_marked_fav' => '%1% ist jetzt eine Ihrer bevorzugten Seiten.',
+	'msg_unmarked_fav' => '%1% wurde von Ihren bevorzugten Seiten entfernt.',
 
 	# Buttons
 	'btn_pm' => 'PM %1%',
-	'btn_email' => 'Send EMail to %1%',
-	'btn_solve' => 'Submit',
-	'btn_link' => 'Link Site',
-	'btn_linked_sites' => 'Linked Sites',
-	'btn_edit_profile' => 'Edit Profile',
-	'btn_account' => 'Account Settings',
-	'btn_pm_settings' => 'PM Settings',
-	'btn_forum_settings' => 'Forum Settings',
-	'btn_delete_account' => 'Delete Account',
-	'btn_view_profile' => 'View Profile',
-	'btn_add_site' => 'Add Site',
-	'btn_active_sites' => 'Active Sites',
-	'btn_graveyard' => 'Graveyard',
-	'btn_not_ranked' => 'Not Ranked',
-	'btn_coming_soon' => 'Coming Soon',
-	'btn_edit_site' => 'Edit Site',
-	'btn_sidebar_on' => 'Hide Sidebar',
-	'btn_sidebar_off' => 'Show Sidebar',
-	'btn_update_one' => 'Update User',
-	'btn_update_all' => 'Update All Users',
-	'btn_update_all_sites' => 'Update All Sites',
-	'btn_set_logo' => 'Set Logo',
+	'btn_email' => 'EMail an %1% senden',
+	'btn_solve' => 'Absenden',
+	'btn_link' => 'Seite verlinken',
+	'btn_linked_sites' => 'Verlinkte Seiten',
+	'btn_edit_profile' => 'Profil bearbeiten',
+	'btn_account' => 'Konto Einstellungen',
+	'btn_pm_settings' => 'PM Einstellungen',
+	'btn_forum_settings' => 'Forum Einstellungen',
+	'btn_delete_account' => 'Konto löschen',
+	'btn_view_profile' => 'Profil ansehen',
+	'btn_add_site' => 'Seite hinzufügen',
+	'btn_active_sites' => 'Aktive Seiten', # meh :/ "Seiten die online sind"? -.-
+	'btn_graveyard' => 'Friedhof',
+	'btn_not_ranked' => 'Nicht auf WeChall',
+	'btn_coming_soon' => 'Bald auf WeChall',
+	'btn_edit_site' => 'Seite bearbeiten',
+	'btn_sidebar_on' => 'Sidebar verstecken',
+	'btn_sidebar_off' => 'Sidebar zeigen',
+	'btn_update_one' => 'Benutzer aktualisieren',
+	'btn_update_all' => 'Alle Benutzer aktualisieren',
+	'btn_update_all_sites' => 'Alle Seiten aktualisieren',
+	'btn_set_logo' => 'Logo setzen',
 	'btn_update' => 'Update',
 	'btn_unlink' => 'Unlink',
-	'btn_hide' => 'Hide',
-	'btn_show' => 'Show',
-	'btn_manage_gb' => 'Manage Your Guestbook',
-	'btn_manage_ug' => 'Manage Personal Usergroup',
-	'btn_vote' => 'Vote',
-	'btn_quickjump' => 'Quickjump',
-	'btn_ranking' => 'Ranking',
-	'btn_global_rank' => 'Global Ranking',
-	'btn_lang_rank' => 'Language Ranking',
-	'btn_country_rank' => 'Country Ranking',
-	'btn_tag_rank' => 'Category Ranking',
-	'btn_grp_rank' => 'Group Ranking',
-	'btn_rem_logo' => 'Remove Logo',
-	'btn_add_sitemin' => 'Add Siteadmin',
-	'btn_rem_sitemin' => 'Delete Siteadmin',
-	'btn_remove' => 'Remove',
-	'btn_view_groups' => 'Show Groups',
+	'btn_hide' => 'Verstecken',
+	'btn_show' => 'Zeigen',
+	'btn_manage_gb' => 'Ihr Gästebuch verwalten',
+	'btn_manage_ug' => 'Benutzergruppen verwalten',
+	'btn_vote' => 'Bewerten',
+	'btn_quickjump' => 'Quickjump',		# ?
+	'btn_ranking' => 'Rangliste',
+	'btn_global_rank' => 'Globale Rangliste',
+	'btn_lang_rank' => 'Rangliste nach Sprache',
+	'btn_country_rank' => 'Rangliste nach Land',
+	'btn_tag_rank' => 'Rangliste nach Kategorie',
+	'btn_grp_rank' => 'Rangliste nach Gruppe',
+	'btn_rem_logo' => 'Logo entfernen',
+	'btn_add_sitemin' => 'Seiten Admin hinzufügen',
+	'btn_rem_sitemin' => 'Seiten Admin löschen',
+	'btn_remove' => 'Löschen',
+	'btn_view_groups' => 'Gruppen zeigen',
 
 	# Challenge->Forum
-	'chall_help_desc' => 'Help for the %1% Challenge',
-	'chall_solution_desc' => 'Solutions for the %1% Challenge',
+	'chall_help_desc' => 'Hilfe zu %1%',
+	'chall_solution_desc' => 'Lösungen von %1%',
 
 	
 	# EMail on Link Site
-	'mail_link_subj' => GWF_SITENAME.': Link Account to %1%',
+	'mail_link_subj' => GWF_SITENAME.': Konto zu %1% verlinken',
 	'mail_link_body' => 
-		'Hello %1%'.PHP_EOL.
+		'Hallo %1%'.PHP_EOL.
 		PHP_EOL.
-		'It appears you try to link your %2% account to '.GWF_SITENAME.'.'.PHP_EOL.
-		'To confirm you own this account, please visit the link below.'.PHP_EOL.
+		'Sie wollen ihr %2% Konto zu '.GWF_SITENAME.' linken.'.PHP_EOL.
+		'Um zu bestätigen das dieses Konto Ihnen gehört, klicken Sie bitte auf den folgenden Link:'.PHP_EOL.
 		PHP_EOL.
 		'%3%'.PHP_EOL.
 		PHP_EOL.
-		'If you did not request to link the accounts, you could alert us by writing an email to '.GWF_ADMIN_EMAIL.', or simply ignore it.'.PHP_EOL.
+		'Wenn Sie Ihre Konten nicht linken wollten, können Sie uns darüber informieren indem Sie eine EMail an '.GWF_ADMIN_EMAIL.', schreiben, oder diese EMail einfach ignorieren.'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
-		'The WeChall Script',
+		'Freundliche Grüße'.PHP_EOL.
+		'WeChall',
 		
 	# Admin config
-	'cfg_wc_basescore' => 'WeChall`s own basescore',	
-	'cfg_wc_graph_w' => 'Global Graph Width',
-	'cfg_wc_graph_h' => 'Global Graph Height',
-	'cfg_wc_ipp' => 'Items per page',
-	'cfg_wc_score_chall' => 'BaseScore per Chall',
-	'cfg_wc_sitename_len' => 'Max Sitename Length',
-	'cfg_wc_chall_board' => 'Challenge Board ID',
+	'cfg_wc_basescore' => 'WeChall`s eigene Basispunkte',	
+	'cfg_wc_graph_w' => 'Global Graph Width',	# ?
+	'cfg_wc_graph_h' => 'Global Graph Height',	# ?
+	'cfg_wc_ipp' => 'Einträge pro Seite',
+	'cfg_wc_score_chall' => 'Basispunkte pro Challenge',
+	'cfg_wc_sitename_len' => 'Maximale Länge eines Seiten Namens',
+	'cfg_wc_chall_board' => 'Challenge Forum ID',
 	'cfg_wc_ctags' => 'Challenge Tag Cloud',
-	'cfg_wc_site_board' => 'Sites Board ID',
-	'cfg_wc_sol_board' => 'Solution Board ID',
+	'cfg_wc_site_board' => 'Seiten Forum ID',
+	'cfg_wc_sol_board' => 'Lösungs Forum ID',
 	'cfg_wc_uid' => 'WeChall-User UserID',
 	'cfg_wc_jpgraph' => 'JPGraph Include Dir',
-	'cfg_wc_lpt' => 'Latest Players Time',
-	'cfg_wc_sitemas_dur' => 'Sitemaster News Duration',	
+	'cfg_wc_lpt' => 'Latest Players Time',		# ?
+	'cfg_wc_sitemas_dur' => 'Sitemaster News Duration',	#?
 
 	
 	
-	'pt_sitefav' => 'Your favorite challenge sites',
-	'pi_sitefav' => 'Here you can select your favorite sites, which will appear as quickjump in the header, as well as in your profile.',
-	'btn_fav_sites' => 'Favorite Sites',
+	'pt_sitefav' => 'Ihre bevorzugten Challenge Seiten',
+	'pi_sitefav' => 'Hier können Sie Ihre bevorzugten Seiten auswählen, welche zum Schnellen Besuchen im oberen Menü, sowie auf ihrem Profil eingeblendet werden.',
+	'btn_fav_sites' => 'Bevorzugte Seiten',
 	'th_selfavsite' => 'Quickjump',
-	'th_selfavsite2' => 'Select site',
-	'ft_favsites' => 'Add a favorite site',
-	'th_sel_favsite' => 'Select a site',
-	'btn_add_favsite' => 'Add',
+	'th_selfavsite2' => 'Seite wählen',
+	'ft_favsites' => 'Bevorzugte Seite hinzufügen',
+	'th_sel_favsite' => 'Wählen Sie eine Seite',
+	'btn_add_favsite' => 'Hinzufügen',
 	
 	'pt_site_detail' => '%1% Details',
 	'mt_site_detail' => '%1%, Challenge, Site, Details, Overview, WeChall',
-	'md_site_detail' => 'Details of %1% challenge site on WeChall',
+	'md_site_detail' => 'Details der %1% challenge seite auf WeChall',
 	
 	# Statgraph
-	'err_end_date' => 'The End-Date is invalid.',
-	'percentage' => 'Percentage',
+	'err_end_date' => 'Das Enddatum ist ungültig.',
+	'percentage' => 'Prozent',	# "Fortschritt"?
 	
 	# Join Box
-	'sites_join_t' => 'How to add other sites to WeChall',
+	'sites_join_t' => 'Wie können neue Seiten bei WeChall aufgenommen werden?',
 	'sites_join_b' => 
-		'If you are a challenge site administrator, please read <a href="%1%">join.php</a>.<br/>'.
-		'If you want your favorite site to get added you can try to contact their admins.<br/>'.
-		'Please do not post about WeChall in their public forums, instead write them an email or pm.',
+		'Wenn Sie ein Challenge Seiten Administrator sind, lesen Sie bitte <a href="%1%">join.php</a>.<br/>'.
+		'Wenn Sie Ihre Lieblingsseite hier sehen möchten, kontaktieren Sie deren Admins.<br/>'.
+		'Bitte schreiben Sie aber nicht direkt in deren öffentliches Forum, sondern kontaktieren Sie die Admins direkt per EMail oder PM.',
 		
 	# V4.01 (more stuff)
-	'menu_groups' => 'Groups',
-	'btn_site_masters' => 'Site Masters',
-	'cfg_wc_active_time' => 'Active User Time (Sidebar)', 
+	'menu_groups' => 'Gruppen',
+	'btn_site_masters' => 'Site Masters',		# meh? so lassen?
+	'cfg_wc_active_time' => 'Active User Time (Sidebar)',  # ?
 	
 	# v4.02 (Freeze)
-	'err_frozen' => 'Your account is frozen. You are not allowed to unlink sites.',
-	'err_site_ban' => 'You are officially banned from %1%. You may not link it.',
-	'ft_freeze' => 'Mark a user banned on a site',
+	'err_frozen' => 'Ihr Konto wurde eingefroren, Sie können keine Seiten un-linken.',
+	'err_site_ban' => 'Sie sind offiziell von %1% gebanned. Sie können deshalb nicht verlinken.',
+	'ft_freeze' => 'Einen User auf einer Seite als gebanned markieren',
 	'btn_freeze' => 'Freeze',
-	'btn_unfreeze' => 'Remove',
-	'msg_frozen' => 'The user %1% is now marked as banned from %2%.',
-	'msg_unfrozen' => 'The user %1% got unbanned from %2%.',
+	'btn_unfreeze' => 'Entfernen',
+	'msg_frozen' => 'Der Benutzer %1% ist jetzt von %2% gebanned.',
+	'msg_unfrozen' => 'Der Benutzer %1% ist nicht mehr von  %2% gebanned.',
 	
 	# v4.03 (finish)
-	'scorefaq_box' => 'How <a href="%1%">scoring</a> works on WeChall',
-	'err_bot_challenge' => 'Bots are not allowed to solve challenges.',
+	'scorefaq_box' => 'Wie die <a href="%1%">Punkteberechnung</a> auf WeChall funktioniert',
+	'err_bot_challenge' => 'Bots dürfen keine Challenges lösen.',
 		
 	# v4.04 (fixes+stats)
-	'msg_linkmail_sent' => 'An email has been sent to your onsite email address. Please follow the instructions there to link your account.',
+	'msg_linkmail_sent' => 'Eine EMail wurde an Ihre EMail Adresse auf der Seite gesendet. Bitte folgen Sie den Anweisungen darin um Ihr Konto zu verlinken.',
 	
-	'pt_stats' => 'Stats for %1%',
-	'md_stats' => GWF_SITENAME.' statistics for %1%.',
+	'pt_stats' => 'Stats für %1%',
+	'md_stats' => GWF_SITENAME.' Statistiken für %1%.',
 	'mt_stats' => GWF_SITENAME.', Stats, Statistics, %1%, Graphs',
-	'pt_stats2' => 'Stats for %1% vs %2%',
-	'md_stats2' => GWF_SITENAME.' statistics for %1% versus %2%.',
+	'pt_stats2' => 'Stats für %1% vs %2%',
+	'md_stats2' => GWF_SITENAME.' Statistiken für %1% versus %2%.',
 	'mt_stats2' => GWF_SITENAME.', Stats, Statistics, %1%, versus, %2%, Graphs',
 	
-	'stat_high' => 'High ranked',
-	'stat_med' => 'Medium ranked',
-	'stat_low' => 'Low ranked',
-	'btn_show_stats_all' => 'Show all sites',
-	'btn_show_stats' => 'Refresh',
+	'stat_high' => 'hoher Rang',
+	'stat_med' => 'mittlerer Rang',
+	'stat_low' => 'niedriger Rang',
+	'btn_show_stats_all' => 'Alle Seiten anzeigen',
+	'btn_show_stats' => 'Aktualisieren',
 	'chk_icons' => 'Icons',
-	'chk_values' => 'Values',
+	'chk_values' => 'Werte',
 	'chk_zoom' => 'Zoom',
 	
 	# v4.02
-	'btn_all_sites' => 'All Sites',
-	'pt_sites_5' => 'All sites listed on '.GWF_SITENAME,
-	'pt_sites_5_tagged' => 'Sites with %1% challenges on '.GWF_SITENAME,
-	'th_site_country_detail' => 'Sites origin country',
-	'site_detail_uinfo' => '%1% has a score of %2%/%3% on %4% (%5%%). Rank %6% within '.GWF_SITENAME.', scoring %7% points.',
+	'btn_all_sites' => 'Alle Seiten',
+	'pt_sites_5' => 'Alle Seiten auf '.GWF_SITENAME,
+	'pt_sites_5_tagged' => 'Seiten mit %1% Challenges auf '.GWF_SITENAME,
+	'th_site_country_detail' => 'Sites origin country',	# ?
+	'site_detail_uinfo' => '%1% hat eine Punktzahl von  %2%/%3% auf %4% (%5%%). Rang %6% auf '.GWF_SITENAME.', mit %7% Punkten.',
 		
 	# v4.03
-	'ft_signup' => 'Signup',
-	'th_password' => 'Password',
-	'th_bind_ip' => 'Restrict session to IP',
-	'btn_forgot_pw' => 'Forgot password',
-	'btn_login' => 'Login',
-	'bd_over' => 'Last %1%',
-	'bd_soon' => 'Next %1%',
+	'ft_signup' => 'Registrieren',
+	'th_password' => 'Passwort',
+	'th_bind_ip' => 'Sitzung auf IP beschränken',
+	'btn_forgot_pw' => 'Passwort vergessen',
+	'btn_login' => 'Anmelden',
+	'bd_over' => 'Last %1%',	# ?
+	'bd_soon' => 'Next %1%',	# ?
 		
-	'btn_close' => 'Close',
-	'btn_guestbook' => 'Guestbook',
+	'btn_close' => 'Schliessen',
+	'btn_guestbook' => 'Gästebuch',
 		
 	# v4.04 
-	'err_site_down' => '%1% is currently down.',
+	'err_site_down' => '%1% ist zur Zeit offline.',
 		
 	# v4.05 (Private History)
-	'ft_settings' => GWF_SITENAME.' Settings',
-	'btn_set_settings' => 'Save Settings',
-	'btn_wc_settings' => GWF_SITENAME.' Settings',
-	'th_priv_history' => 'Private History',
-	'tt_priv_history' => 'You can toggle your profile a bit more private, and not show dates of last activity.',
-	'msg_priv_hist_0' => 'Your history is now showing dates of last activity again.',
-	'msg_priv_hist_1' => 'Your history is now a bit more private and not showing dates of last activity.',
+	'ft_settings' => GWF_SITENAME.' Einstellungen',
+	'btn_set_settings' => 'Einstellungen speichern',
+	'btn_wc_settings' => GWF_SITENAME.' Einstellungen',
+	'th_priv_history' => 'Privater Verlauf',
+	'tt_priv_history' => 'Sie könne ihr Profil ein bisschen mehr privat machen, und die Zeiten der letzten Aktivitäten nicht anzeigen.',
+	'msg_priv_hist_0' => 'Ihr Verlauf zeigt die Zeiten nun wieder an.',
+	'msg_priv_hist_1' => 'Ihr Verlauf ist nun ein bisschen privater und die letzten Aktivitätszeiten werden nicht mehr angezeigt.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Linked an account to %1% with %3%% (%2% points)',
-	'userhist_unlink' => 'Unlinked an account from %1% (%2% points)',
-	'userhist_gain' => 'Gained %4%% on %1% (%2% points)',
-	'userhist_lost' => 'Lost %4%% on %1% (%2% points)',
-	'userhist_ban' => 'Got banned on %1% (%2% points)',
-	'userhist_unban' => 'Got unbanned from %1%',
-	'userhist_unknown' => 'Updated his account on %1%',
+	'userhist_link' => 'Hat sein Konto zu %1% mit %3%% (%2% Punkte) verlinkt',
+	'userhist_unlink' => 'Hat die Verlinkung mit %1% (%2% Punkte) entfernt',
+	'userhist_gain' => 'Hat %4%% auf %1% erhalten (%2% Punkte)',
+	'userhist_lost' => 'Hat %4%% auf %1% verloren (%2% Punkte)',
+	'userhist_ban' => 'Wurde auf %1% gebanned (%2% Punkte)',
+	'userhist_unban' => 'Ban wurde aufgehoben auf %1%',
+	'userhist_unknown' => 'Hat sein/ihr Konto auf %1% aktualisiert',
 	
 	# v4.07 (More settings and join us)
-	'tt_no_xss' => 'You can exclude yourself from certain cross-site-requests, done via the WeChall API.',
-	'th_no_xss' => 'Hide from API',
-	'msg_no_xss_0' => 'Your account data is now visible to the WeChall API.',
-	'msg_no_xss_1' => 'Your account data is now hidden from the WeChall API.',
-	'menu_join' => 'Join Us',
+	'tt_no_xss' => 'Sie können sich selbst von einigen Abfragen über die WeChall API ausnehmen.',
+	'th_no_xss' => 'Vor API verstecken',
+	'msg_no_xss_0' => 'Ihre Daten sind jetzt für die WeChall API sichtbar.',
+	'msg_no_xss_1' => 'Ihre Daten sind jetzt für die WeChall API unsichtbar.',
+	'menu_join' => 'Trete uns bei',
 		
 	# v4.08 (XSS Pass)
-	'th_xss_pass' => 'API Password',
-	'tt_xss_pass' => 'You can set a password for API calls, so some trusted users can always make use of it.',
-	'msg_xss_pass_0' => 'You removed your private API call password.',
-	'msg_xss_pass_1' => 'Your private API call password has been set.<br/>To protect your account from API calls you have to checkmark the checkbox as well.',
-	'err_api_block' => 'Please wait until you do your next request. If you need to do more requests, please contact us for a masterkey.',
+	'th_xss_pass' => 'API Passwort',
+	'tt_xss_pass' => 'Sie können ein Passwort für API Aufrufe setzen, so dass einzelne Personen sie immer benutzen können.',
+	'msg_xss_pass_0' => 'Sie haben ihr privates API Passwort gelöscht.',
+	'msg_xss_pass_1' => 'Ihr privates API Passwort wurde gesetzt.<br/>Um Ihr Konto vor API Aufrufen zu schützen müssen Sie zusätzlich die Box ankreuzen.',
+	'err_api_block' => 'Bitte warten Sie eine Weile vor der nächsten Anfrage. Wenn Sie mehr Anfragen benötigen, kontaktieren Sie uns bitte.',
 		
 	# v4.09 (onsiterank)
-	'th_site_has_osr' => 'Has OnSiteRank',
-	'btn_site_masters_old' => 'Old Masters',
+	'th_site_has_osr' => 'Hat eigene Rangliste',
+	'btn_site_masters_old' => 'Old Masters',	# ?
 	'btn_site_details' => 'Details',
 	
 	# v4.10 (hardlink)
-	'msg_hardlinked' => 'The user %1% has been linked to %2% with onsitename %3%.',
-	'err_onsitename_taken' => 'The username %1% on %2% is already taken by %3%.',
+	'msg_hardlinked' => 'Der Benutzer %1% wurde zu %2% mit dem Namen %3% verlinkt.',
+	'err_onsitename_taken' => 'Der Benutzername %1% auf %2% wird schon von %3% benutzt.',
 	
 	# v4.11
-	'err_solution_block' => 'You have entered too much answers within a short amount of time. Please wait %1% until you enter your next answer.',
-
-	'err_link_account_hts' => 'The Username/EMail combination does not seem to exist on %1%.<br/>On %1% you need to enable wechall for your account explicitly.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
-		
+	'err_solution_block' => 'Sie haben zu viele Antworten in zu kurzer Zeit eingegeben. Bitte warten Sie %1% bis Sie es das nächste Mal versuchen.',
+	'err_link_account_hts' => 'Die Username/EMail Kombination scheint auf %1% nicht zu existieren.<br/>Auf %1% müssen Sie WeChall für Ihr Konto explizit aktivieren.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 	'th_spc' => 'SpC',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Your solution of length %1% has been inserted into the database.<br/>You may <a href="%2%">look up solutions</a> with length >= %1% now.',
-	'th_length' => 'Length',
-	'err_token' => 'Your token is invalid.',
-	'pt_wmc_sol' => 'Solutions for %1% with length >= %2%',
-	'menu_contact' => 'Contact',
-	'msg_wmc_solved' => 'You have solved the %1% challenge. You can <a href="%2%">lookup all solutions</a>, if you like to.',
+	'msg_wmc_sol_inserted' => 'Ihre Lösung mit der Länge %1% wurde in die Datenbank eingefügt.<br/>Sie können jetzt <a href="%2%">alle Lösungen</a> länger als %1% ansehen.',
+	'th_length' => 'Länge',
+	'err_token' => 'Ihr token ist ungültig.', # meins auch....
+	'pt_wmc_sol' => 'Lösungen für %1% mit Länge >= %2%',
+	'menu_contact' => 'Kontakt',
+	'msg_wmc_solved' => 'Sie haben die Challenge %1% gelöst. Sie können jetzt <a href="%2%">alle Lösungen ansehen</a>, wenn Sie wollen.',
 
 	# v4.13
-	'th_csolve_time_taken' => 'Time',
+	'th_csolve_time_taken' => 'zeit',
 	'menu_stats2' => 'Stats',
 	'stat_vs' => 'Versus',
-	'btn_show_stats_none' => 'No Sites',
+	'btn_show_stats_none' => 'Keine Seiten',
 		
 	# v4.14
-	'ft_favcats' => 'Add a favorite category',
-	'th_sel_favcat' => 'Select a category',
-	'btn_add_favcat' => 'Add category',
-	'th_cat' => 'Category',
-	'err_cat' => 'This category is unknown.',
-	'msg_add_favcat' => '%1% has been added as one of your favorite categories.',
-	'th_favcats' => 'Favorite Categories',
-	'btn_site_history' => 'History',
-	'btn_site_rank' => 'Site Ranking',
+	'ft_favcats' => 'Eine bevorzugte Kategorie hinzufügen',
+	'th_sel_favcat' => 'Kategorie auswählen',
+	'btn_add_favcat' => 'Kategorie hinzufügen',
+	'th_cat' => 'Kategorie',
+	'err_cat' => 'Diese Kategorie ist unbekannt.',
+	'msg_add_favcat' => '%1% wurde zu Ihren bevorzugten Kategorien hinzugefügt.',
+	'th_favcats' => 'Bevorzugte Kategorien',
+	'btn_site_history' => 'Verlauf',
+	'btn_site_rank' => 'Seiten Rang',
 		
 	# v4.15
-	'err_site_spc' => 'The score per chall is invalid.',
-	'err_site_powarg' => 'The powarg is invalid.',
-	'th_site_spc' => 'Basescore per chall',
-	'th_site_powarg' => 'pow() exponent',
+	'err_site_spc' => 'Die Punkte pro Challenge sind ungültig.',
+	'err_site_powarg' => 'The powarg is invalid.',	# your argument is invalid...
+	'th_site_spc' => 'Basispunkte pro Challenge',
+	'th_site_powarg' => 'pow() exponent',	# wtf..
 		
 	# v4.16 (multilang descr)
-	'th_is_default' => 'Is default?',
-	'btn_add' => 'Add',
-	'btn_edit' => 'Edit',
-	'btn_delete' => 'Delete',
-	'btn_set_default' => 'Make Default',
-	'ft_add_descr' => 'Add a description',
-	'ft_edit_descr' => 'Edit the description in %1%',
-	'err_descr' => 'Your description is invalid. It has to be %1%-%2% characters long.',
-	'err_descr_new' => 'Your description is invalid. It has to be %1%-%2% characters long.',
-	'err_dup_descr' => 'A description in that language already exists. Please use the edit function.',
-	'err_del_default_descr' => 'You cannot delete the default description.',
-	'msg_edit_descr' => 'The description has been edited.',
-	'msg_del_descr' => 'The description has been deleted.',
-	'msg_add_descr' => 'The description has been added.',
-	'msg_def_descr' => 'The default description has been changed to %1%.',
-	'btn_edit_site_descr' => 'Edit Site Descriptions',
+	'th_is_default' => 'Standard?',
+	'btn_add' => 'Hinzufügen',
+	'btn_edit' => 'Bearbeiten',
+	'btn_delete' => 'Löschen',
+	'btn_set_default' => 'Als Standard setzen',
+	'ft_add_descr' => 'Beschreibung hinzufügen',
+	'ft_edit_descr' => 'Beschreibung in %1% editieren',
+	'err_descr' => 'Ihre Beschreibung ist ungültig. Sie muss zwischen %1% und %2% Zeichen lang sein.',
+	'err_descr_new' => 'Ihre Beschreibung ist ungültig. Sie muss zwischen %1% und %2% Zeichen lang sein.',
+	'err_dup_descr' => 'Eine Beschreibung in dieser Sprache existiert bereits. Bitte nutzen Sie die Bearbeiten-Funktion.',
+	'err_del_default_descr' => 'Sie können die Standardbeschreibung nicht löschen.',
+	'msg_edit_descr' => 'Die Beschreibung wurde bearbeitet.',
+	'msg_del_descr' => 'Die Beschreibung wurde gelöscht.',
+	'msg_add_descr' => 'Die Beschreibung wurde hinzugefügt.',
+	'msg_def_descr' => 'Die Standardbeschreibung wurde geändert zu %1%.',
+	'btn_edit_site_descr' => 'Seiten Beschreibungen bearbeiten',
 );
 ?>
