@@ -321,7 +321,7 @@ final class GWF_BBCodeItem
 		$score = isset($this->params['score']) ? intval($this->params['score']) : 1;
 		if (GWF_User::getStaticOrGuest()->getLevel() <= $score)
 		{
-			return GWF_HTML::lang('err_bb_level');
+			return GWF_HTML::lang('err_bb_level', array($score));
 		}
 		else
 		{

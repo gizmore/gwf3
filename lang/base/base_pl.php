@@ -191,7 +191,8 @@ $lang = array(
 	'bbspoiler_info' => 'Click for spoiler',
 
 	# 3.00 Filesize
-	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB')
+	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
+	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
 );
 
 ?>
