@@ -13,11 +13,17 @@ final class Module_SF extends GWF_Module
 {
 	public function getVersion() { return 1.01; }
 	public function getDefaultPriority() { return 50; }
-	public function getDefaultAutoLoad() { return true; }
-	public function getClasses() { return array('SF', 'SF_Init', 'SF_Navigation'); }
+	public function getDefaultAutoLoad() { return defined('GWF_SF') ? true : false; }
+	public function getClasses() { 
+		$classes = array('SF', 'SF_init', 'SF_Navigation'); 
+		if($this->cfgShellIsEnabled()) {
+			$classes[] = 'Shellfunctions';
+		}
+	}
 	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Config'); }
-//	public function onStartup() { return $this->onInclude(); }
+	public function getShellPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
+	public function onStartup() { return defined('GWF_SF') ? $this->onInclude() : false; }
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(

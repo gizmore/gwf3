@@ -18,6 +18,7 @@ class SF {
 
 	# nothing to worry about
 	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
+	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
 	
 	############
 	## SET UP ##
