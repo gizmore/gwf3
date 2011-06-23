@@ -34,7 +34,7 @@ function lamb_svn_info($key, $repo, $user='', $pass='', $displayurl='', $channel
 				$keyshort, 
 				$entry['version-name'], 
 				$entry['creator-displayname'],
-				$entry['comment']
+				html_entity_decode($entry['comment'])
 			);
 
 		if ($displayurl != '')
