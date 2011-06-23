@@ -66,7 +66,7 @@ $lang = array(
 	'step_5_0' => 'You can now install or skip the useragent database.<br/>It is recommended to skip that part, as the useragent database is completely unused currently.',
 
 	'step_6' => 'Install useragent map',
-	'step_6_0' => 'You should now install all modules that are shipped with your package of GWF2.',
+	'step_6_0' => 'You should now install all modules that are shipped with your package of GWF3.',
 
 	'step_7' => 'Install all modules',
 	'step_7_0' => 'You should now create at least one admin account.',
