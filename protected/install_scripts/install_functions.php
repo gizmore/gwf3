@@ -87,6 +87,14 @@ function install_default_groups()
 		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		return false;
 	}
+	if (false === install_default_group(GWF_Group::MODRATOR)) {
+		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		return false;
+	}
+	if (false === install_default_group(GWF_Group::PUBLISHER)) {
+		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		return false;
+	}
 	return true;
 }
 function install_default_group($name)

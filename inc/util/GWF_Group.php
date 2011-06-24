@@ -3,6 +3,9 @@ final class GWF_Group extends GDO
 {
 	const ADMIN = 'admin';
 	const STAFF = 'staff';
+	const MODERATOR = 'moderator';
+	const PUBLISHER = 'publisher';
+	
 	const NAME_LEN = 63; # maxlen
 	
 	###############
