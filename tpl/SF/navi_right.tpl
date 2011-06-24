@@ -2,4 +2,10 @@
 					<a href="{$root}index.php?naviright=false"><img src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Navigation"></a>
 				</p><hr>
 {$SF->displayNavi('right')}
-				<hr><p class="bottom"></p>
+				<hr><p class="bottom">
+					<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css">
+						<img style="border:0;width:88px;height:31px"
+							src="http://jigsaw.w3.org/css-validator/images/vcss"
+							alt="CSS ist valide!" />
+					</a>
+				</p>

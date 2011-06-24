@@ -182,8 +182,6 @@ textarea {
 	margin: 28px 20px;
 	line-height: 18px;
 	padding: 0 10px 15px 10px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
 	border-radius: 15px;
 	border: 1px solid #700;
 }
@@ -201,8 +199,6 @@ textarea {
 	left: 40px;
 	line-height: 30px;
 	padding: 0px 10px;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
 	border-radius: 15px;
 	border: 1px solid #700;
 }

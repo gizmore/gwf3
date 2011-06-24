@@ -8,6 +8,8 @@ class SF {
 		self::$_Lang = new GWF_LangTrans('lang/SF/SF');
 		$this->addMainTvars(array('SF' => $this));
 	}
+
+	public function sendHeader($header) { return header($header) ? true : false; }
 	
 	############
 	## CONFIG ##
@@ -18,7 +20,7 @@ class SF {
 
 	# nothing to worry about
 	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
-	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
+	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\ 0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
 	
 	############
 	## SET UP ##
@@ -82,5 +84,20 @@ class SF {
 		#if(Common::getCookie($navi) == 'false') return false;
 		
 		return true;
+	}
+	
+	public function getColorCSS() {
+		
+		$tVars = array(
+			'tpl' => array('layout' => $this->getLayout(), 'design' => $this->getDesign().'/'),
+			'color' => array(
+				'border_light' => $this->getLayoutcolor('border_light'),
+				'border_dark' => $this->getLayoutcolor('border_dark'),
+				'design_dark' => $this->getLayoutcolor('design_dark'),
+				'design_light' => $this->getLayoutcolor('design_light'),
+				'base_color' => $this->getLayoutcolor('base_color'),
+			)
+		);
+		return $tVars;
 	}
 }

@@ -187,7 +187,9 @@ div#footer a.footlink {
 	vertical-align: middle;
 }
 div.navigation > ol.navi h2:first-letter,
-div.inhalt p:first-letter { 
+div.GWF_FTW > p:first-letter,
+div.pb_content > p:first-letter,
+div.inhalt > p:first-letter { 
 	font-weight: bold; font-size: 20px; 
 }
 div.inhalt p:hover { 

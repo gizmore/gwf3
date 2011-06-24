@@ -1,3 +1,4 @@
+{$SF->getWelcomeComment()}
 <html lang="{$language}" dir="ltr">
 <head>
 	<title>{$page_title}</title>

@@ -15,7 +15,7 @@ final class Module_SF extends GWF_Module
 	public function getDefaultPriority() { return 50; }
 	public function getDefaultAutoLoad() { return defined('GWF_SF') ? true : false; }
 	public function getClasses() { 
-		$classes = array('SF', 'SF_Init', 'SF_Navigation'); 
+		$classes = array('SF', 'SF_Navigation'); 
 		if($this->cfgShellIsEnabled()) {
 			$classes[] = 'Shellfunctions';
 		}
@@ -24,7 +24,15 @@ final class Module_SF extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Config'); }
 	public function getShellPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
-	public function onStartup() { return defined('GWF_SF') ? $this->onInclude() : false; }
+	public function onStartup() { 
+		if(!isset($_GET['mo'])) $_GET['mo'] = GWF_DEFAULT_MODULE;
+		if(!isset($_GET['me'])) $_GET['me'] = GWF_DEFAULT_METHOD;
+	
+		if(defined('GWF_SF')) {
+			$this->onInclude();
+			require_once 'method/color.php';
+		}
+	}
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
