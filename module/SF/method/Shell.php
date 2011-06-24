@@ -9,7 +9,7 @@ final class SF_Shell extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 'RewriteRule ^Shell/(.*?)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL;
+		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module)
@@ -27,7 +27,7 @@ final class SF_Shell extends GWF_Method
 		'ln' => array('descr' => 'Link zur Linkliste hinzufügen', 'args' => 1),
 		'find' => array('descr' => 'Datei suchen', 'args' => 1),
 		'locate' => array('descr' => 'Artikel suchen', 'args' => 1),
-		'md5' => array('descr' => 'MD5 Summe eines Strings anzeigen', 'args' => 1),
+		'md5' => array('descr' => 'MD5 Summe eines Strings anzeigen', 'args' => 2),
 		'lp' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
 		'lpr' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
 		'pwd' => array('descr' => 'aktuellen Verzeichnis&Dateinamen anzeigen', 'args' => 1),
@@ -45,7 +45,7 @@ final class SF_Shell extends GWF_Method
 		'id' => array('descr' => 'zeigt Gruppenzugehörigkeiten an', 'args' => 1),
 		'uptime' => array('descr' => 'zeigt eingeloggte Zeit an', 'args' => 1),
 		'echo' => array('descr' => 'gibt Text aus', 'args' => 1),
-		'eval' => array('descr' => 'führt Shell-Befehle aus', 'args' => 1),
+		'eval' => array('descr' => 'führt PHP-Befehle aus', 'args' => 1),
 		'exec' => array('descr' => 'führt Shell-Befehle aus', 'args' => 1),
 		'time' => array('descr' => 'zeigt aktuelle Uhrzeit an', 'args' => 1),
 		'date' => array('descr' => 'zeigt Datumsinformationen an', 'args' => 1),
@@ -73,19 +73,23 @@ final class SF_Shell extends GWF_Method
 		{
 //			$this->onPipe($cmdS);
 			
-			$cmdS = trim(strtolower($cmdS));
+			$cmdS = trim($cmdS);
 			$cmdS = explode(' ', $cmdS);
-			$cmd = $cmdS[0];
+			$cmd = strtolower($cmdS[0]);
 			# hilfe befehl?
 			if($cmd === 'help') {
-				return $this->onHelp();
+				return (count($cmdS) > 1) ? $this->onHelp($cmdS[1]) : $this->onHelp();
 			}
-			
+			if($cmd === 'echo') {
+				unset($cmdS[0]);
+				return htmlspecialchars(implode(' ', $cmdS)); 
+			}
 			# existiert der befehl?
 			if(array_key_exists($cmd, self::$cmds)) {
 				# sind die mindestargumente angegeben?
 				if(count($cmdS) >= self::$cmds[$cmd]['args']) {
-					return function_exists(self::$cmd[0]) ? self::$cmd() : self::onFunctionError($cmd);
+					$shfuncts = new Shellfunctions;
+					return method_exists($shfuncts, $cmd) ? $shfuncts->$cmd($cmdS) : $this->onFunctionError($cmd);
 				} else {
 					return $this->onArgs($cmd);
 				}
@@ -95,24 +99,28 @@ final class SF_Shell extends GWF_Method
 		} 
 		# no command given!
 		else {
-			return ($this->getMoMe == array('SF', 'Shell') ) ? $this->onNoCommand() : '';
+			return (array($_GET['mo'], $_GET['me']) == array('SF', 'Shell') ) ? $this->onNoCommand() : '';
 		}
 	}
 	public function onOptions() { return;}
 	public function onPipe() { return; }
-	public function onError() { return GWF_HTML::error(__CLASS__, 'This isn\'t a command yet!'); }
+	public function onError($cmd = 'This') { return GWF_HTML::error(__CLASS__, $cmd.' isn\'t a command!'); }
 	public function onFunctionError($cmd) { return GWF_HTML::error(__CLASS__, 'the '.  htmlspecialchars($cmd).' Function is currently not programmed ;) But I\'m on it!'); }
 	public function onArgs($cmd) { return GWF_HTML::error(__CLASS__, 'You didn\'t give enough params!'); }
 	public function onNoCommand() { return GWF_HTML::error(__CLASS__, 'You didn\'t give me any command!'); }
 	public function onHelp($cmd = false) { 
+		// help for all commands?
 		if($cmd === false) {
 			$ret = '<ol>'.PHP_EOL;
 			foreach(self::$cmds as $key => $cmd) {
 				$ret .= '<li>'.$key.': '.$cmd['descr'].'</li>'.PHP_EOL;
 			}
-			$ret = '</ol>'.PHP_EOL;
-		} else {
-			return self::$cmds[$cmd[0]]['descr'];
+			$ret .= '</ol>'.PHP_EOL;
+			return $ret;
+		} 
+		// help for a single command
+		else {
+			return array_key_exists($cmd, self::$cmds) ? self::$cmds[$cmd]['descr'] : $this->onError($cmd);
 		}
 		
 	}
