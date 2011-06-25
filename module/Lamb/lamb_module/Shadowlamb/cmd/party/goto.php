@@ -57,6 +57,12 @@ final class Shadowcmd_goto extends Shadowcmd
 			$target->onEnter($player);
 			return true;
 		}
+		
+		if ( ($party->getAction() === SR_Party::ACTION_GOTO) && ($party->getTarget() === $tlc) )
+		{
+			$bot->reply(sprintf('You are already going to %s.', $tlc));
+			return false;
+		}
 
 		$cityclass = $party->getCityClass();
 		$eta = $cityclass->getGotoETA($party);
