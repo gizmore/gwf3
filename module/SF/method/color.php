@@ -136,7 +136,8 @@ final class SF_color extends GWF_Method
 	}
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 'RewriteRule ^colorCSS/?$ index.php?ajax=SF&mo=SF&me=color'.PHP_EOL;
+		return 'RewriteRule ^colorCSS/?$ index.php?ajax=SF&mo=SF&me=color'.PHP_EOL.
+		       'RewriteRule ^layoutcolor/(.*+)$ index.php?layoutcolor=$1'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module)
