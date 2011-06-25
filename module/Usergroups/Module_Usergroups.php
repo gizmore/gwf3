@@ -38,7 +38,7 @@ final class Module_Usergroups extends GWF_Module
 //				{
 //					$href = GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;gid='.$group->getID();
 //					$href2 = GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;deny='.$group->getID();
-//					$msgs[] = $this->lang('pi_invited', $group->getFounder()->displayUsername(), $group->displayName(), $href, $href2);
+//					$msgs[] = $this->lang('pi_invited', $group->getFounder()->displayUsername(), $group->display('group_name'), $href, $href2);
 //				}
 //				GWF_HTML::messageA('Usergroups', $msgs, false, true);
 //			}
@@ -101,10 +101,10 @@ final class Module_Usergroups extends GWF_Module
 	public function getForumBoard()
 	{
 		// Include Forum
-		if (false === ($mod_forum = GWF_Module::getModule('Forum'))) {
+		if (false === ($mod_forum = GWF_Module::loadModuleDB('Forum', true)))
+		{
 			return false;
 		}
-		$mod_forum->onInclude();
 		
 		// Get or Create Usergroup Forum
 		if (false === ($board = GWF_ForumBoard::getByTitle('Usergroups'))) {
@@ -135,7 +135,7 @@ final class Module_Usergroups extends GWF_Module
 		# Adjust Board and Thread Flags
 		$gid = 0;
 		$guestview = true;
-		switch($group->getViewFlag())
+		switch($group->getVisibleMode())
 		{
 			case GWF_Group::VISIBLE:
 //				$board->saveVar('board_gid', 0);
@@ -226,12 +226,12 @@ final class Module_Usergroups extends GWF_Module
 	public function selectJoinType($selected=0, $name='join')
 	{
 		$data = array(
-			array($this->lang('sel_join_type'), 0)
+			array(0, $this->lang('sel_join_type'))
 		);
-		$jointypes = GWF_Group::getJoinFlags();
+		$jointypes = array(GWF_Group::FULL, GWF_Group::INVITE, GWF_Group::MODERATE, GWF_Group::FREE, GWF_Group::SYSTEM);
 		foreach ($jointypes as $type)
 		{
-			$data[] = array($this->lang('sel_join_'.$type), $type);
+			$data[] = array($type, $this->lang('sel_join_'.$type));
 		}
 		return GWF_Select::display($name, $data, intval($selected));
 	}
@@ -239,19 +239,43 @@ final class Module_Usergroups extends GWF_Module
 	public function selectViewType($selected=0, $name='view')
 	{
 		$data = array(
-			array($this->lang('sel_view_type'), 0)
+			array(0, $this->lang('sel_view_type'))
 		);
-		$jointypes = GWF_Group::getViewFlags();
+		$jointypes = array(GWF_Group::VISIBLE, GWF_Group::COMUNITY, GWF_Group::HIDDEN, GWF_Group::SCRIPT);
 		foreach ($jointypes as $type)
 		{
-			$data[] = array($this->lang('sel_view_'.$type), $type);
+			$data[] = array($type, $this->lang('sel_view_'.$type));
 		}
 		return GWF_Select::display($name, $data, intval($selected));
 	}
 	
 	public function validate_name($arg) { return GWF_Validator::validateUsername($this, 'name', $arg, false, ' '); }
-	public function validate_join($arg) { return GWF_Group::isValidJoinFlag($arg) ? false : $this->lang('err_join'); }
-	public function validate_view($arg) { return GWF_Group::isValidViewFlag($arg) ? false : $this->lang('err_view'); }
+	
+	public function validate_join($arg)
+	{
+		switch ($arg)
+		{
+			case GWF_Group::FULL:
+			case GWF_Group::INVITE:
+			case GWF_Group::MODERATE:
+			case GWF_Group::FREE:
+			case GWF_Group::SYSTEM: return false;
+			default: return $this->lang('err_join');
+		}
+	}
+	
+	public function validate_view($arg)
+	{
+		switch ($arg)
+		{
+			case GWF_Group::VISIBLE:
+			case GWF_Group::COMUNITY:
+			case GWF_Group::HIDDEN:
+			case GWF_Group::SCRIPT: return false;
+			default: return $this->lang('err_view');
+		}
+	}
+	
 	public function validate_username($arg)
 	{
 		$arg = $_POST['username'] = trim($arg);

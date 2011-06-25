@@ -18,7 +18,7 @@ foreach ($tVars['avatars'] as $data)
 	
 	$href = GWF_WEB_ROOT.'avatar/gallery/show/'.$data['user_id'];
 	$uname = htmlspecialchars($data['user_name']);
-	$title = GWF_HTML::lang('alt_avatar', $uname);
+	$title = GWF_HTML::lang('alt_avatar', array($uname));
 	$src = GWF_WEB_ROOT.'dbimg/avatar/'.$data['user_id'];
 	echo sprintf('<td class="gwf_trd_%d"><a href="%s" title="%s"><img src="%s" alt="%s" /><div>%s<br/>%d Hits</div></a></td>', $td, $href, $title, $src, $title, $uname, intval($data['ag_hits'])).PHP_EOL;
 	

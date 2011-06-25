@@ -51,16 +51,25 @@ final class Usergroups_ShowGroups extends GWF_Method
 			return GWF_HTML::error('Part Group', $error);
 		}
 		
-		foreach ($array as $gid => $stub) { break; }
+		$gid = key($array);
+//		foreach ($array as $gid => $stub) { break; }
 		
 		if (false === ($group = GWF_Group::getByID($gid))) {
 			return $module->error('err_unk_group');
 		}
 		
-		if ($group->getFounderID() === GWF_Session::getUserID()) {
+		if ($group->getFounder()->getID() === GWF_Session::getUserID()) {
 			return $module->error('err_kick_leader');
 		}
 		
+		$gid = $group->getID();
+		$uid = GWF_Session::getUserID();
+		if (false === GDO::table('GWF_UserGroup')->deleteWhere("ug_userid={$uid} AND ug_groupid={$gid}"))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		return '';
 	}
 	
 }

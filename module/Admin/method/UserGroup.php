@@ -31,21 +31,24 @@ final class Admin_UserGroup extends GWF_Method
 			return $error;
 		}
 		
-		if (false === ($group = GWF_Group::getByID($form->getVar('groups')))) {
+		$user->loadGroups();
+		
+		if (false === ($group = GWF_Group::getByID($form->getVar('groups'))))
+		{
 			return $module->error('err_group');
 		}
 		
-		if ($user->isInGroupID($group->getID())) {
+		if ($user->isInGroupName($group->getName()))
+		{
 			return $module->error('err_in_group');
 		}
 		
-		if (!$user->addToGroup($group->getVar('group_name'), false)) {
+		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		$user->loadGroups();
-		
-		return $module->message('msg_added_to_grp', array($user->displayUsername(), $group->displayName()));
+		return $module->message('msg_added_to_grp', array($user->displayUsername(), $group->display('group_name')));
 	}
 	
 	public function showGroups(Module_Admin $module, GWF_User $user)

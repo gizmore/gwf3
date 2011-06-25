@@ -18,7 +18,8 @@ final class Usergroups_ShowUsers extends GWF_Method
 			return $module->error('err_unk_group');
 		}
 		
-		if ($group->isVisibleMembers()) {
+		if ($group->isOptionEnabled(GWF_Group::VISIBLE_MEMBERS))
+		{
 		}
 		else switch ($group->getVisibleMode())
 		{
@@ -33,7 +34,8 @@ final class Usergroups_ShowUsers extends GWF_Method
 				
 			case GWF_Group::HIDDEN:
 			case GWF_Group::SCRIPT:
-				if (!GWF_User::isInGroupIDS($group->getID())) {
+				if (!GWF_User::isInGroupS($group->getVar('group_name')))
+				{
 					return $module->error('err_not_invited');
 				}
 				break;
@@ -57,7 +59,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 		$orderby = $users->getMultiOrderby($by, $dir);
 		
 		$ipp = 50;
-		$nItems = $group->getMembercount();
+		$nItems = $group->getVar('group_memberc');
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(Common::getGetInt('page', 1), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
@@ -69,7 +71,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 		$tVars = array(
 			'sort_url' => GWF_WEB_ROOT.'users_in_group/'.$gid.'/'.$gn.'/by/%BY%/%DIR%/page-1',
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('users_in_group/%s/%s/by/%s/%s/page-%%PAGE%%', $gid, $gn, urlencode($by), urlencode($dir))),
-			'users' => $users->select($conditions, $orderby, $ipp, $from),
+			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 		);
 		return $module->templatePHP('users.php', $tVars);
 	}

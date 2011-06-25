@@ -107,6 +107,8 @@ final class GWF_User extends GDO
 	 */
 	public function getSecLanguage() { return GWF_Language::getByID($this->getVar('user_langid2')); }
 	
+	public function getLangID() { return $this->getVar('user_langid'); }
+	
 	###############
 	### Country ###
 	###############
@@ -217,6 +219,14 @@ final class GWF_User extends GDO
 			}
 		}
 		return false;
+	}
+	public function getUserGroupOptions($gid)
+	{
+		if (false === ($group = $this->getGroupByID($gid)))
+		{
+			return 0;
+		}
+		return $group->getInt('ug_options');
 	}
 	
 	###################

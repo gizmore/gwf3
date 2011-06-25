@@ -31,7 +31,7 @@ final class Usergroups_Join extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_refused', array($group->displayName()));
+		return $module->message('msg_refused', array($group->display('group_name')));
 	}
 	
 	private function onJoin(Module_Usergroups $module, $gid)
@@ -45,7 +45,8 @@ final class Usergroups_Join extends GWF_Method
 		}
 		
 		$user = GWF_Session::getUser();
-		if (GWF_UserGroup::isInGroup($user->getID(), $group->getID())) {
+		if ($user->isInGroupName($group->getName()))
+		{
 			return $module->error('err_join_twice');
 		}
 		
@@ -65,7 +66,8 @@ final class Usergroups_Join extends GWF_Method
 	
 	private function onQuickJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
 	{
-		if (false === $user->addToGroup($group->getName(), false)) {
+		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -114,8 +116,8 @@ final class Usergroups_Join extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($email);
-		$mail->setSubject($module->lang('mail_subj_req', array( $user->displayUsername()), $group->displayName()));
-		$mail->setBody($module->lang('mail_body_req', array( $leader->displayUsername()), $user->displayUsername(), $group->displayName(), $link));
+		$mail->setSubject($module->lang('mail_subj_req', array( $user->displayUsername()), $group->display('group_name')));
+		$mail->setBody($module->lang('mail_body_req', array( $leader->displayUsername()), $user->displayUsername(), $group->display('group_name'), $link));
 		
 		return $mail->sendToUser($leader);
 	}

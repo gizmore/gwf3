@@ -128,7 +128,7 @@ final class Module_Download extends GWF_Module
 			if (false === ($group = GWF_Group::getByID($gid))) {
 			}
 			elseif ($gid > 0 && (!$user->isInGroupID($download->getVar('dl_gid')))) {
-				return $this->error('err_group', $group->displayName());
+				return $this->error('err_group', $group->display('group_name'));
 			}
 			
 			return false;

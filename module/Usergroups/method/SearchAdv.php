@@ -30,9 +30,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name'), 20, '', '', false),
 			'minlevel' => array(GWF_Form::INT, 0, $module->lang('th_user_level'), 20, '', '', false),
 			'email' => array(GWF_Form::STRING, '', $module->lang('th_user_email'), 20, '', '', false),
-			'country' => array(GWF_Form::SELECT, GWF_Country::getCountrySelectS('country', Common::getPost('country')), $module->lang('th_country'), 20, '', '', false),
+			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', Common::getPost('country')), $module->lang('th_country'), 20, '', '', false),
 			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $module->lang('th_language'), 20, '', '', false),
-			'gender' => array(GWF_Form::SELECT, GWF_User::getGenderSelectS('gender', Common::getPost('gender')), $module->lang('th_gender'), 20, '', '', false),
+			'gender' => array(GWF_Form::SELECT, GWF_Gender::select('gender', Common::getPost('gender')), $module->lang('th_gender'), 20, '', '', false),
 			'hasmail' => array(GWF_Form::CHECKBOX, false, $module->lang('th_hasmail')),
 			'haswww' => array(GWF_Form::CHECKBOX, false, $module->lang('th_haswww')),
 			'icq' => array(GWF_Form::CHECKBOX, false, $module->lang('th_icq')),
@@ -99,14 +99,14 @@ final class Usergroups_SearchAdv extends GWF_Method
 		if (false === ($result = $db->queryFirst($query, false))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		$nRows = (int)$result[0];
+		$nRows = (int)$result['c'];
 		
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nRows);
 		$page = Common::clamp(Common::getGetInt('page', 1), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$limit = GDO::getLimit($ipp, $from);
 		
-		$by = GDO::getWhitelistedByS(Common::getGetString('by'), 'user_name', $whitelist);
+		$by = GDO::getWhitelistedByS(Common::getGetString('by'), $whitelist, 'user_name');
 		$dir = GDO::getWhitelistedDirS(Common::getGetString('dir'), 'ASC');
 		
 		$_GET['search'] = 'yes';

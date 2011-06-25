@@ -73,13 +73,16 @@ final class Usergroups_Create extends GWF_Method
 			'group_country' => $user->getCountryID(),
 			'group_founder' => $user->getID(),
 			'group_memberc' => 0,
+			'group_bid' => 0,
+			'group_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		));
 		
 		if (false === $group->insert()) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false === $user->addToGroup($groupname, true)) {
+		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID(), GWF_UserGroup::LEADER))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -92,8 +95,6 @@ final class Usergroups_Create extends GWF_Method
 	
 	private function createBoard(Module_Usergroups $module, GWF_Group $group)
 	{
-		
-		
 		$name = $group->getName();
 		
 		$pid = $module->getForumBoard()->getID();

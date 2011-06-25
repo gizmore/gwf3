@@ -15,6 +15,7 @@ $headers = array(
 
 echo $tVars['page_menu'];
 
+$user instanceof GWF_User;
 
 echo '<form method="post" action="'.htmlspecialchars($tVars['form_action']).'">'.PHP_EOL;
 echo sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('partgrp'));
@@ -28,7 +29,7 @@ foreach ($tVars['groups'] as $group)
 	$in_grp = $user->isInGroupName($groupname);
 	
 	if ($in_grp) {
-		$ugopt = $user->getGroupByName($groupname)->getInt('group_options');
+		$ugopt = $user->getUserGroupOptions($group->getID());#getGroupByName($groupname)->getInt('group_options');
 //		$ugopt = $user->getUserGroupOptions($groupname);
 	} else {
 		$ugopt = 0;

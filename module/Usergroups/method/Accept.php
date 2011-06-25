@@ -32,7 +32,8 @@ final class Usergroups_Accept extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 		
-		if (false === $user->addToGroup($group->getName(), false)) {
+		if (false === GWF_UserGroup::addToGroup($uid, $gid))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		

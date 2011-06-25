@@ -2,7 +2,7 @@
 echo $tVars['module']->getUserGroupButtons();
 echo $tVars['form_edit'];
 echo $tVars['form_delete'];
-if ($tVars['group']->isInviteMode()) {
+if ($tVars['group']->isOptionEnabled(GWF_Group::INVITE)) {
 	echo $tVars['form_invite'];
 }
 echo $tVars['pagemenu_members'];
@@ -17,7 +17,7 @@ if (count($tVars['users']) > 0) {
 ?>
 <form action="<?php echo $tVars['form_action']; ?>" method="post">
 <table>
-<?php foreach($tVars['users'] as $user) { $user instanceof GWF_User; $username = $user->displayUsername(); $user->loadGroups(); $gd = $user->getUserGroupOptions($tVars['group']->getVar('group_name'));  ?>
+<?php foreach($tVars['users'] as $user) { $user instanceof GWF_User; $username = $user->displayUsername(); $user->loadGroups(); $gd = $user->getUserGroupOptions($tVars['group']->getID());  ?>
 	<tr>
 		<td><a href="<?php echo $user->getProfileHREF(); ?>"><?php echo $username; ?></a></td>
 		

@@ -46,9 +46,13 @@ final class GWF_Group extends GDO
 		);
 	}
 	public function getID() { return $this->getVar('group_id'); }
+	public function getName() { return $this->getVar('group_name'); }
+	public function getBoardID() { return $this->getVar('group_bid'); }
 	public function getFounder() { return $this->getVar('group_founder'); }
+	public function getFounderID() { return $this->getFounder()->getID(); }
 	public function getVisibleMode() { return $this->getVar('group_options') & self::VIEW_FLAGS; }
 	public function getJoinMode() { return $this->getVar('group_options') & self::JOIN_FLAGS; }
+	public function isAskToJoin() { return ($this->getJoinMode() & (self::MODERATE|self::FREE)) > 0; }
 	
 	public static function getByID($gid) { return self::table(__CLASS__)->getRow($gid); }
 	public static function getByName($name) { $name = self::escape($name); return self::table(__CLASS__)->selectFirstObject('*', "group_name='$name'"); }
@@ -85,7 +89,6 @@ final class GWF_Group extends GDO
 				return 'ERR_GRP_FLAG'.$flag;
 		}
 	}
-	
 	
 }
 ?>

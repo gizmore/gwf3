@@ -301,7 +301,7 @@ function wcProfileUsergroup(GWF_User $user, $is_logged_in)
 	{
 		if ($group->isAskToJoin())
 		{
-			echo sprintf('<h2>%s</h2>', WC_HTML::lang('pi_ug_info', array($user->displayUsername(), $group->display('group_name'), $group->getMembercount())));
+			echo sprintf('<h2>%s</h2>', WC_HTML::lang('pi_ug_info', array($user->displayUsername(), $group->display('group_name'), $group->getVar('group_memberc'))));
 			if ($is_logged_in) {
 				echo sprintf('<h3>%s</h3>', WC_HTML::lang('pi_ug_join', array(GWF_WEB_ROOT.'index.php?mo=Usergroups&amp;me=Join&amp;gid='.$group->getID())));
 			} else {

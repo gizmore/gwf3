@@ -18,14 +18,18 @@ final class Usergroups_Edit extends GWF_Method
 			return $module->error('err_unk_group');
 		}
 		$group = $this->group;
-		
-		
-		$groupname = $group->getName();
+
+		$groupname = $group->getVar('group_name');
 		if (!$user->isInGroupName($groupname)) {
 			return $module->error('err_unk_group');
 		}
 		
-		$ugo = $user->getUserGroupOptions($groupname);
+//		$gid = $group->getID();
+//		$groups = $user->getGroups();
+//		$ugo = $groups[(string)($gid)]['ug_options'];
+		
+		$ugo = $user->getUserGroupOptions($group->getID());
+//		var_dump($ugo);
 		if ( ($ugo&(GWF_UserGroup::LEADER|GWF_UserGroup::CO_LEADER)) === 0 ) {
 			return $module->error('err_unk_group');
 		}
@@ -80,7 +84,7 @@ final class Usergroups_Edit extends GWF_Method
 		$form_invite = $this->getFormInvite($module, $group);
 		
 		$ipp = $module->cfgIPP();
-		$nUsers = $group->getMembercount();
+		$nUsers = $group->getVar('group_memberc');
 		$nPagesM = GWF_PageMenu::getPagecount($ipp, $nUsers);
 		$pageM = Common::clamp(intval(Common::getGet('memberpage')), 1, $nPagesM);
 		
@@ -90,7 +94,7 @@ final class Usergroups_Edit extends GWF_Method
 		
 		$tVars = array(
 			'group' => $group,
-			'form_action' => $group->hrefEdit2(),
+			'form_action' => GWF_WEB_ROOT.'edit_usergroup/'.$group->getVar('group_id').'/'.$group->urlencodeSEO('group_name'),
 			'form_edit' => $form->templateY($module->lang('ft_edit')),
 			'form_invite' => $form_invite->templateX($module->lang('ft_invite')),
 			'form_delete' => $formDelete,
@@ -157,11 +161,11 @@ final class Usergroups_Edit extends GWF_Method
 			'delete' => $module->lang('btn_delete'),
 		);
 		$data = array(
-			'name' => array(GWF_Form::STRING, $group->getName(), $module->lang('th_name'), 24),
-			'join' => array(GWF_Form::SELECT, $module->selectJoinType($group->getJoinFlag()), $module->lang('th_join')),
-			'view' => array(GWF_Form::SELECT, $module->selectViewType($group->getViewFlag()), $module->lang('th_view')),
-			'vis_grp' => array(GWF_Form::CHECKBOX, $group->isVisibleGroup(), $module->lang('th_vis_grp'), 0, '', $module->lang('tt_vis_grp')),
-			'vis_mem' => array(GWF_Form::CHECKBOX, $group->isVisibleMembers(), $module->lang('th_vis_mem'), 0, '', $module->lang('tt_vis_mem')),
+			'name' => array(GWF_Form::STRING, $group->getVar('group_name'), $module->lang('th_name'), 24),
+			'join' => array(GWF_Form::SELECT, $module->selectJoinType($group->getJoinMode()), $module->lang('th_join')),
+			'view' => array(GWF_Form::SELECT, $module->selectViewType($group->getVisibleMode()), $module->lang('th_view')),
+			'vis_grp' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_GROUP), $module->lang('th_vis_grp'), 0, '', $module->lang('tt_vis_grp')),
+			'vis_mem' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_MEMBERS), $module->lang('th_vis_mem'), 0, '', $module->lang('tt_vis_mem')),
 			'cmd' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -202,7 +206,7 @@ final class Usergroups_Edit extends GWF_Method
 	
 	private function changeGroupName(Module_Usergroups $module, GWF_Group $group, $new_name)
 	{
-		if ($new_name === $group->getName()) {
+		if ($new_name === $group->getVar('group_name')) {
 			return true;
 		}
 		
@@ -246,11 +250,13 @@ final class Usergroups_Edit extends GWF_Method
 			return $module->error('err_kick_leader');
 		}
 		
-		if (!GWF_UserGroup::isInGroup($user->getID(), $group->getID())) {
+		if (!$user->isInGroupName($group->getName()))
+		{
 			return $module->error('err_kick', $user->displayUsername());
 		}
 		
-		if (false === $user->removeFromGroup($group)) {
+		if (false === GWF_UserGroup::removeFromGroup($user->getID(), $group->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -275,7 +281,8 @@ final class Usergroups_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false === $user->addToGroup($group->getName(), false)) {
+		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -283,7 +290,7 @@ final class Usergroups_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_accepted', array($user->displayUsername(), $group->displayName()));
+		return $module->message('msg_accepted', array($user->displayUsername(), $group->display('group_name')));
 	}
 
 	public function validate_username(Module_Usergroups $module, $arg) { return $module->validate_username($arg); }
@@ -377,7 +384,7 @@ final class Usergroups_Edit extends GWF_Method
 		}
 		
 		return
-			$module->message('msg_ugf_'.$flag.'_'.intval($bool), $uname).
+			$module->message('msg_ugf_'.$flag.'_'.intval($bool), array($uname)).
 			$this->templateEdit($module, $group);
 	}
 	
@@ -387,7 +394,7 @@ final class Usergroups_Edit extends GWF_Method
 	public function onDelete(Module_Usergroups $module, GWF_Group $group)
 	{
 		$form = $this->formDelete($module, $group);
-		$formDelete = $form->templateY($module->lang('ft_del_group', array( $group->displayName())));
+		$formDelete = $form->templateY($module->lang('ft_del_group', array($group->display('group_name'))));
 		return $this->templateEdit($module, $group, $formDelete);
 	}
 	
@@ -395,7 +402,7 @@ final class Usergroups_Edit extends GWF_Method
 	{
 		$data = array(
 			'del_groupname' => array(GWF_Form::STRING, '', $module->lang('th_del_groupname'), 24, '', $module->lang('tt_del_groupname'), true),
-			'del_confirm' => array(GWF_Form::SUBMIT, $module->lang('btn_del_group', array( $group->displayName()))),
+			'del_confirm' => array(GWF_Form::SUBMIT, $module->lang('btn_del_group', array($group->display('group_name')))),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -429,7 +436,7 @@ final class Usergroups_Edit extends GWF_Method
 		}
 		$n1 = $group->affectedRows();
 		
-		return $module->message('msg_del_group', array($group->displayName(), $n1, $n2));
+		return $module->message('msg_del_group', array($group->display('group_name'), $n1, $n2));
 	}
 }
 	

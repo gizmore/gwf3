@@ -48,5 +48,11 @@ final class GWF_UserGroup extends GDO
 		return GDO::table('GWF_Group')->update("group_memberc=(SELECT COUNT(*) FROM $ug WHERE ug_groupid=group_id)");
 	}
 	
+	public static function removeFromGroup($userid, $groupid)
+	{
+		$userid = (int)$userid;
+		$groupid = (int)$groupid;
+		return self::table(__CLASS__)->deleteWhere("ug_userid={$userid} AND ug_groupid={$groupid}");
+	}
 }
 ?>
