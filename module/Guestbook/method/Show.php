@@ -60,6 +60,7 @@ final class Guestbook_Show extends GWF_Method
 		
 		$gbid_app = $gbid === 1 ? '' : '/'.$gbid; # append
 
+		// TODO tVAR cleanup ?
 		$tVars = array(
 			'gb' => $gb,
 			'entries' => $msgs->selectObjects('*', $conditions, $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
@@ -67,12 +68,16 @@ final class Guestbook_Show extends GWF_Method
 			'href_sign' => GWF_WEB_ROOT.'guestbook/sign/'.$gbid,
 			'href_moderate' => GWF_WEB_ROOT.'guestbook/edit/'.$gbid,
 			'can_moderate' => $can_moderate, 
+			'can_sign' => $gb->canSign(GWF_Session::getUser(), $module->cfgAllowGuest()),
+			'allow_url' => $module->cfgAllowURL(),
+			'allow_email' => $module->cfgAllowEMail(),
+			'btn_edit' => $can_moderate ? GWF_Button::options(GWF_WEB_ROOT.'guestbook/edit/'.$gbid, $module->lang('btn_edit_gb')) : '',
 		);
 		
-		$filename = 'show.php';
+		$filename = 'show.tpl';
 //		$filename = $nested ? 'show_nested.php' : 'show.php';
 		
-		return $module->templatePHP($filename, $tVars);
+		return $module->template($filename, $tVars);
 	}
 
 	public function templateNested(Module_Guestbook $module, GWF_Guestbook $gb)
