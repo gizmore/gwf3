@@ -155,7 +155,7 @@ final class GWF_File
 
 			if ($recursive === true)
 			{
-				self::filewalker($d[1], $callback_file, $callback_dir);
+				self::filewalker($d[1], $callback_file, $callback_dir, $recursive, $args);
 			}
 		}
 	}
