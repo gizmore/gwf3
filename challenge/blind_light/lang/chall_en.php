@@ -7,6 +7,8 @@ $lang = array(
 		'Again your are given <a href="%2%">the sourcecode</a> of the vulnerable script, also as <a href="%3%">highlighted version</a>.<br/>'.PHP_EOL.
 		'To restart the challenge, you are allowed to <a href="%4%">execute a reset</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
+		'%5%'. # Easteregg
+		'<br/>'.PHP_EOL.
 		'Good luck!',
 
 	'msg_reset' => 'Your password has been scrambled for security reasons.',

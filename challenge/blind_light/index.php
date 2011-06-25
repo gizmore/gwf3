@@ -26,7 +26,7 @@ elseif (isset($_POST['mybutton']))
 	$solution = blightGetHash();
 	$attemp = blightAttemp();
 	
-	if ($answer === $solution)
+	if (!strcasecmp($answer, $solution))
 	{
 		if ($attemp > (BLIGHT_ATTEMPS+1) )
 		{
@@ -63,10 +63,12 @@ elseif (isset($_POST['inject']))
 $url1 = 'index.php?show=source';
 $url2 = 'index.php?highlight=christmas';
 $url3 = 'index.php?reset=me';
-htmlTitleBox($chall->lang('title'), $chall->lang('info', array(BLIGHT_ATTEMPS, $url1, $url2, $url3)));
+$egg = '%68%74%74%70%3a%2f%2f%77%77%77%2e%79%6f%75%74%75%62%65%2e%63%6f%6d%2f%77%61%74%63%68%3f%76%3d%45%67%38%63%44%6d%69%37%2d%55%38';
+$egg = '<span style="color: #eee;">'.$egg.'</span>';
+htmlTitleBox($chall->lang('title'), $chall->lang('info', array(BLIGHT_ATTEMPS, $url1, $url2, $url3, $egg)));
 if (Common::getGetString('highlight') === 'christmas')
 {
-	echo GWF_Message::display('[code title=vuln.php]'.file_get_contents('challenge/blind_light/vuln.php').'[/code]');
+	echo GWF_Message::display('[php title=vuln.php]'.file_get_contents('challenge/blind_light/vuln.php').'[/php]');
 }
 ?>
 <div class="box box_c">
