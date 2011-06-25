@@ -78,7 +78,7 @@ final class SF_color extends GWF_Method
 		'profile' => 'index.php?form=profile',
 		'donate' => 'index.php?form=donate',
 		'design_switch' => 'index.php?form=design_switch',
-		'shell' => 'index.php?mo=SF&me=Shell',
+		'shell' => 'index.php?mo=SF&amp;me=Shell',
 	);
 	private static $meta = array(
 		'content-type' => array('content-type', 'text/html;charset=utf-8', true),
@@ -126,7 +126,7 @@ final class SF_color extends GWF_Method
 		$SF->setMeta(self::$meta);
 		$SF->setFormActions(self::$formaction);
 		$SF->setPageTitlePre('www.FlorianBest.de - ');
-		GWF_Website::addCSS('/index.php?ajax=SF&mo=SF&me=color');
+		GWF_Website::addCSS('/index.php?ajax=SF&amp;mo=SF&amp;me=color');
 		$SF->setDesignCSS(array('reset', 'gwf3', 'design', 'main', 'format'));
 		$SF->setLayoutCSS(array('layout', 'navigation', 'headnavi'));
 		$SF->setDoctype('html5');

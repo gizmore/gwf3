@@ -20,7 +20,7 @@ class SF {
 
 	# nothing to worry about
 	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
-	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\ 0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
+	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
 	
 	############
 	## SET UP ##
@@ -51,6 +51,11 @@ class SF {
 	public function lang($key, $args=NULL) { return self::$_Lang->lang($key, $args); }
 	public function displayNavi($side) { return SF_Navigation::display_navigation($side); }
 	public function getGreeting() { return GWF_SF_Utils::greeting(); }
+	public function getMoMe($mome)
+	{
+		$class = $_GET['mo'].'_'.$_GET['me'];
+		return $class === $mome;
+	}
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
 	public function getPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
@@ -66,7 +71,7 @@ class SF {
 	}
 
 	public function is_details_displayed() { return false; }
-	public function is_shell_displayed() { return $_GET['me'] == 'Shell' ? false : true; }
+	public function is_shell_displayed() { return !$this->getMoMe('SF_Shell'); }
 	public function is_base_displayed() { return (isset($_GET['fancy']) || $_GET['me'] == 'Challenge') ? false : true; }
 	public function is_navi_displayed($navi) {
 		$user = GWF_User::getStaticOrGuest(); // Class Variable?

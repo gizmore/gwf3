@@ -11,10 +11,9 @@ final class SF_Shell extends GWF_Method
 	{
 		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL;
 	}
-	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateShell($module, $this->init(Common::getRequestString('cmd')));
+		return $this->templateShell($module, $this->init(Common::getRequestString('cmd')), htmlspecialchars(Common::getRequestString('cmd')));
 	}
 	private static $cmds = array(
 		'cat' => array('descr' => 'Quelltext anzeigen', 'args' => 1),
@@ -30,7 +29,7 @@ final class SF_Shell extends GWF_Method
 		'md5' => array('descr' => 'MD5 Summe eines Strings anzeigen', 'args' => 2),
 		'lp' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
 		'lpr' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
-		'pwd' => array('descr' => 'aktuellen Verzeichnis&Dateinamen anzeigen', 'args' => 1),
+		'pwd' => array('descr' => 'aktuellen Verzeichnis&amp;Dateinamen anzeigen', 'args' => 1),
 		'df' => array('descr' => 'Zeigt Speicherplatzinformationen des Servers an', 'args' => 1),
 		'diff' => array('descr' => '', 'args' => 1),
 		'free' => array('descr' => 'freien Arbeitsspeicher anzeigen', 'args' => 1),
@@ -111,11 +110,11 @@ final class SF_Shell extends GWF_Method
 	public function onHelp($cmd = false) { 
 		// help for all commands?
 		if($cmd === false) {
-			$ret = '<ol>'.PHP_EOL;
+			$ret = '<ul class="shell_output">'.PHP_EOL;
 			foreach(self::$cmds as $key => $cmd) {
 				$ret .= '<li>'.$key.': '.$cmd['descr'].'</li>'.PHP_EOL;
 			}
-			$ret .= '</ol>'.PHP_EOL;
+			$ret .= '</ul>'.PHP_EOL;
 			return $ret;
 		} 
 		// help for a single command
@@ -125,10 +124,10 @@ final class SF_Shell extends GWF_Method
 		
 	}
 	
-	private function templateShell(Module_SF $module, $output)
+	private function templateShell(Module_SF $module, $output, $lastCMD)
 	{
 		$module->onLoadLanguage();
-		$tVars = array('output' => $output, 'SF' => new SF, 'user' => GWF_User::getStaticOrGuest());
+		$tVars = array('output' => $output,'lastCMD' => $lastCMD, 'SF' => new SF, 'user' => GWF_User::getStaticOrGuest());
 		return $module->template('shell.tpl', $tVars);
 	}
 	

@@ -149,7 +149,9 @@ span.shell_user {
 	/*padding: 8px;*//* DO NOT PADDING IT ! */
 	/*background-color: #131313;*/
 }
-
+.shell_output  {
+	padding-left: 10px!important;
+}
 input.shell {
 	border: none;
 	background-color: #000000;
@@ -192,7 +194,9 @@ div.pb_content > p:first-letter,
 div.inhalt > p:first-letter { 
 	font-weight: bold; font-size: 20px; 
 }
-div.inhalt p:hover { 
+div.GWF_FTW > p:hover,
+div.pb_content > p:hover,
+div.inhalt > p:hover { 
 	background-color: #1c1c1c;
 }
 div.inhalt a:hover {

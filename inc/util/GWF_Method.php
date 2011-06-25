@@ -51,7 +51,7 @@ abstract class GWF_Method
 		return GWF_WEB_ROOT.'index.php?mo='.$mo.'&me='.$me.$app;
 	}
 	
-	private function getMoMe()
+	public function getMoMe()
 	{
 		$class = get_class($this);
 		return array(Common::substrUntil($class, '_'), Common::substrFrom($class, '_'));

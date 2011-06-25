@@ -18,6 +18,9 @@ div#middle,
 div#logo {
 	background-color: #131313;
 }
+div#logo {
+	text-align: right;
+}
 div#headnavi {
 	background:#181818 url('./images/headnavi.png') repeat-x;
 }
@@ -38,5 +41,4 @@ div#copyright {
 }
 div#footer {
 	background:#181818 url('./images/footer.png') fixed no-repeat center bottom;
-
 }

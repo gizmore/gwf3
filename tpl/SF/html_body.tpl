@@ -25,7 +25,7 @@
 {if $SF->isDisplayed('shell')}
 <!-- SHELL -->
 				<div id="smallshell" class="shell">
-{include file="tpl/{$SF->getDesign()}/shell.tpl"}
+{include file="module/SF/tpl/SF/shortshell.tpl"}
 				</div>
 {/if}
 <!-- CONTENT -->
@@ -35,7 +35,7 @@
 						<span style="float:right;">{$SF->lang('last_change')}</span>
 					</p><hr style="clear:both;">
 <!--PAGE Beginn -->					
-					<div class="inhalt {if $smarty.get.mo == 'SF_Shell'}shell" id="largeshell{/if}">
+					<div class="inhalt {if $SF->getMoMe('SF_Shell')}shell" id="largeshell{/if}">
 						<div class="GWF_FTW">
 {$messages}
 {$errors}
