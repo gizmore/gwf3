@@ -59,7 +59,7 @@ final class Contact_Form extends GWF_Method
 			'skype' => $skype === '' ? '' : $module->lang('info_skype', array( $skype)),
 			'admin_profiles' => $this->getAdminProfiles($module),
 		);
-		return $module->templatePHP('form.php', $tVars);
+		return $module->template('form.tpl', $tVars);
 	}
 
 	private function getAdminProfiles(Module_Contact $module)
