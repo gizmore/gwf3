@@ -30,7 +30,7 @@ elseif (isset($_POST['mybutton']))
 	{
 		if ($attemp > (BLIGHT_ATTEMPS+1) )
 		{
-			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attemps', array($attemp, (BLIGHT_ATTEMPS+1))));
+			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attempt', array($attemp, (BLIGHT_ATTEMPS+1))));
 		}
 		else
 		{
