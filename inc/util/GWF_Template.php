@@ -125,12 +125,16 @@ final class GWF_Template
 	
 	public static function template($path, $tVars=NULL)
 	{
-		if (false === ($path2 = self::getPath($path)))
-		{
+		$smarty = self::getSmarty();
+
+		if($smarty->templateExists($path1 = str_replace('%DESIGN%', self::getDesign(), $path)) ){
+			$path2 = $path1;
+		} elseif($smarty->templateExists($path1 = str_replace('%DESIGN%', 'default', $path)) ){
+			$path2 = $path1;
+		} else {
 			return self::pathError($path);
 		}
-		$smarty = self::getSmarty();
-		
+
 		if (is_array($tVars))
 		{
 			foreach ($tVars as $k => $v)
@@ -138,7 +142,7 @@ final class GWF_Template
 				$smarty->assign($k, $v);
 			}
 		}
-		
+
 		return $smarty->fetch($path2);
 	}
 }
