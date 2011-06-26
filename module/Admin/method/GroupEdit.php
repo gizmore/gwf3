@@ -114,6 +114,7 @@ final class Admin_GroupEdit extends GWF_Method
 			'userids' => $groups->selectColumn('ug_userid', $conditions, '', NULL, $ipp, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->getMethodHref(sprintf('&gid=%d&page=%%PAGE%%', $gid))),
 			'sort_url' => '',
+			'headers' => GWF_Table::displayHeaders1(array(array($module->lang('th_user_name')),array(''),), ''),
 		);
 		return $module->templatePHP('groupedit.php', $tVars);
 	}

@@ -8,13 +8,8 @@
 <?php echo $tVars['pagemenu']; ?>
 
 <?php
-$headers = array(
-	array($tLang->lang('th_user_name')),
-	array(''),
-);
-
 echo GWF_Table::start();
-echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+echo $headers;
 $gid = $tVars['group']->getID();
 $guest = GWF_Guest::getGuest();
 foreach ($tVars['userids'] as $userid)
