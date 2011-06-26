@@ -21,7 +21,7 @@ foreach ($tVars['data'] as $key => $data) {
 	switch ($data[0])
 	{
 		case GWF_Form::HIDDEN:
-			printf('<input type="hidden" name="%s" value="%s">'.PHP_EOL, $key, $data[1]);
+			printf('<li style="display: none;"><input type="hidden" name="%s" value="%s"></li>'.PHP_EOL, $key, $data[1]);
 			break;
 			
 		case GWF_Form::STRING:
@@ -48,7 +48,7 @@ foreach ($tVars['data'] as $key => $data) {
 			
 		case GWF_Form::CAPTCHA:
 			$foo = empty($data[1]) ? '' : '?chars='.$data[1];
-			printf('<li><img src="%simg/captcha.php%s" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" alt="Captcha" /></li>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
+			echo '<li>'.GWF_HTML::lang('th_captcha1').GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')).'<img src="'.GWF_WEB_ROOT.'img/captcha.php'.$foo.'" onclick="this.src=\''.GWF_WEB_ROOT.'img/captcha.php?\'+(new Date()).getTime();" alt="Captcha"></li>'.PHP_EOL;
 			printf('<li><label for="lf_'.$key.'">%s%s</label><input id="lf_'.$key.'" type="text" name="%s" value="%s"></li>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 			break;
 			
@@ -84,7 +84,7 @@ foreach ($tVars['data'] as $key => $data) {
 			break;
 				
 		case GWF_Form::MESSAGE:
-			echo '<li>' .GWF_Message::getCodeBar($key) . PHP_EOL . '</li>';
+			echo '<li>' .GWF_Message::getCodeBar($key).'</li>'.PHP_EOL;
 			### Fallthrough...
 		case GWF_Form::MESSAGE_NOBB:
 			printf('<li>%s</li>'.PHP_EOL, $data[2]);
@@ -106,7 +106,7 @@ foreach ($tVars['data'] as $key => $data) {
 }
 ?>
 <?php if (isset($have_required)) {
-	echo '<li class="last">'.GWF_HTML::lang('form_required', array('*')).'</li>';
+	echo '<li class="last">'.GWF_HTML::lang('form_required', array('*')).'</li>'.PHP_EOL;
 }?>
 			</ul>
 		</fieldset>
