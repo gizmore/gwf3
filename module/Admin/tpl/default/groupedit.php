@@ -9,7 +9,7 @@
 
 <?php
 echo GWF_Table::start();
-echo $headers;
+echo $tVars['headers'];
 $gid = $tVars['group']->getID();
 $guest = GWF_Guest::getGuest();
 foreach ($tVars['userids'] as $userid)
