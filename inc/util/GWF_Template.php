@@ -139,11 +139,7 @@ final class GWF_Template
 			}
 		}
 		
-		ob_start();
-		$smarty->display($path2);
-		$back = ob_get_contents();
-		ob_end_clean();
-		return $back;
+		return $smarty->fetch($path2);
 	}
 }
 ?>
