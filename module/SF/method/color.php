@@ -143,7 +143,7 @@ final class SF_color extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		$SF = self::$SF;
-		$SF->sendHeader('Content-type: text/css');
+		$SF->sendHeader('Content-type: text/css; charset=UTF-8');
 
 		return $this->templateColor($module, $SF->getColorCSS());
 	}

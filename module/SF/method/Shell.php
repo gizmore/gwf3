@@ -65,29 +65,35 @@ final class SF_Shell extends GWF_Method
 		'less' => array(), # also do overflow: scroll;
 		'help' => array(),
 	);
-	
+	private $cmd = array();
 	public function init($cmdS) 
 	{
 		if($cmdS !== false && $cmdS != NULL)
 		{
 //			$this->onPipe($cmdS);
 			
+			
+			// split that shit
+			// $this->cmd = array('cmd' => , 'options' => array(), 'pipes', 'params' => array())
+			
 			$cmdS = trim($cmdS);
 			$cmdS = explode(' ', $cmdS);
 			$cmd = strtolower($cmdS[0]);
+			unset($cmdS[0]);
+			
 			# hilfe befehl?
 			if($cmd === 'help') {
-				return (count($cmdS) > 1) ? $this->onHelp($cmdS[1]) : $this->onHelp();
+				return (count($cmdS) > 0) ? $this->onHelp($cmdS) : $this->onHelp();
 			}
 			if($cmd === 'echo') {
-				unset($cmdS[0]);
 				return htmlspecialchars(implode(' ', $cmdS)); 
 			}
 			# existiert der befehl?
 			if(array_key_exists($cmd, self::$cmds)) {
 				# sind die mindestargumente angegeben?
-				if(count($cmdS) >= self::$cmds[$cmd]['args']) {
-					$shfuncts = new Shellfunctions;
+				if(count($cmdS) >= self::$cmds[$cmd]['args']-1) {
+					require_once 'module/SF/SF_Shellfunctions.php';
+					$shfuncts = new SF_Shellfunctions;
 					return method_exists($shfuncts, $cmd) ? $shfuncts->$cmd($cmdS) : $this->onFunctionError($cmd);
 				} else {
 					return $this->onArgs($cmd);
@@ -119,7 +125,7 @@ final class SF_Shell extends GWF_Method
 		} 
 		// help for a single command
 		else {
-			return array_key_exists($cmd, self::$cmds) ? self::$cmds[$cmd]['descr'] : $this->onError($cmd);
+			return array_key_exists($cmd[0], self::$cmds) ? self::$cmds[$cmd[0]]['descr'] : $this->onError($cmd);
 		}
 		
 	}

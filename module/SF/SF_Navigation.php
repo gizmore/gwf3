@@ -40,7 +40,7 @@ final class SF_Navigation extends GDO
 			'<a href="'.GWF_WEB_ROOT.$href.'"' .
 			(!empty($class) ? ' class="'.$class.'"' : '') .
 			(!empty($title) ? ' title="'.$title.'"' : '')
-			. ">".PHP_EOL . $content . "</a>".PHP_EOL . ($h2 ? '</h2>' : '' );
+			. ">" . $content . "</a>".PHP_EOL . ($h2 ? '</h2>' : '' );
 	}
 	public static function fetchAll($where, $orderby) {
 		return GDO::table(__CLASS__)->selectAll('*', $where, $orderby);
@@ -65,7 +65,7 @@ final class SF_Navigation extends GDO
 		$catlinks = $res['catlinks'];
 		$sublinks = $res['sublinks'];
 
-		$ret = '<ol class="navi">' .PHP_EOL;
+		$ret = '';
 		foreach($secs as $sec) if($sec['side'] == $side)
 		{
 
@@ -129,7 +129,6 @@ final class SF_Navigation extends GDO
 			$ret .= self::tab(2) ."</ul>".PHP_EOL; // NO INPUT ?
 			$ret .= self::tab(1) ."</li>".PHP_EOL;
 		}
-		$ret .= '</ol>'.PHP_EOL;
 
 	return $ret;
 	}

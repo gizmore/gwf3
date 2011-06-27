@@ -12,6 +12,12 @@
 	</li>
 	{if $user->isAdmin()}{* Admin *}
 	<li class="sec">
+		<h2>[CMS]</h2>
+		<ul>
+			{$SF->displayNavi('left')}
+		</ul>
+	</li>
+	<li class="sec">
 		<h2><a href="{$root}nanny">[Admin]</a></h2>
 		<ul>
 			<li class="cat"><h2><a href="{$root}nanny">Admin</a></h2></li>

@@ -34,9 +34,8 @@ hr.left {
 br {}
 p {}
 span {}
-input {
-	padding-left: 2px;
-	padding-right: 2px;
+input[type=text] {
+	padding: 0 2px;
 }
 #content legend {
 	text-transform: uppercase;

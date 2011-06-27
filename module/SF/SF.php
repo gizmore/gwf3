@@ -2,9 +2,10 @@
 
 class SF {
 	
-	private static $_Lang = NULL, $_layoutcolor = array(), $_formaction = array();
+	private static $_Lang = NULL, $_User = NULL, $_layoutcolor = array(), $_formaction = array();
 	
 	public function __construct() {
+		self::$_User = GWF_User::getStaticOrGuest();
 		self::$_Lang = new GWF_LangTrans('lang/SF/SF');
 		$this->addMainTvars(array('SF' => $this));
 	}
@@ -20,7 +21,14 @@ class SF {
 
 	# nothing to worry about
 	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
-	public function getWelcomeComment() { return GWF_Webspider::getSpider() === false ? "<!--Can you see the sourcecode? Great! -->\0\n" : '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; }
+	public function getWelcomeComment() { 
+		if(GWF_Webspider::getSpider() !== false) {
+			return '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; 
+		} elseif(self::$_User->isAdmin()) {
+			return '<!-- Welcome Back Admin! -->';
+		}
+		return "<!--Can you see the sourcecode? Great! -->\0\n";
+	}
 	
 	############
 	## SET UP ##
@@ -74,21 +82,15 @@ class SF {
 	public function is_shell_displayed() { return !$this->getMoMe('SF_Shell'); }
 	public function is_base_displayed() { return (isset($_GET['fancy']) || $_GET['me'] == 'Challenge') ? false : true; }
 	public function is_navi_displayed($navi) {
-		$user = GWF_User::getStaticOrGuest(); // Class Variable?
-		return $user->isAdmin() ? true : false;
-		
-		//TODO
-		$arr = array('naviright' => array('Forum', 'Admin', 'SF'), 'navileft' => array('SF'));
-		if(in_array(Common::getGet('mo'), $arr[$navi])) { return false; }
-		
-		#GWF_SF_Utils::save_guest_setting_bool($navi, true, time()+60*60*24*30);
-		if('false' === GWF_SF_Utils::save_guest_setting($navi, array('true' => 'true', 'false' => 'false'), true, time()+60*60*24*30)) { 
-			#GWF_HTML::error('fehler', 'error in SF::SaveSetting()', false); 
-			return false; 
+		$mods = array('SF', 'PageBuilder', 'GWF', GWF_DEFAULT_MODULE);
+		if(!in_array(Common::getGet('mo', GWF_DEFAULT_MODULE), $mods)) {
+			return false;
+		}	
+		switch(GWF_SF_Utils::save_guest_setting($navi, array('hidden' => true, 'shown' => true), 'shown', $this->cfgCookieTime())) {
+			case 'shown' : return true;
+			case 'hidden': return false;
+			default: return (true === self::$_User->isAdmin());
 		}
-		#if(Common::getCookie($navi) == 'false') return false;
-		
-		return true;
 	}
 	
 	public function getColorCSS() {
