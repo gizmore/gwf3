@@ -12,6 +12,10 @@
 			<div id="right" class="navigation">
 {include file="tpl/{$SF->getDesign()}/navi_right.tpl"}
 			</div>
+{else}
+			<div id="right">
+				<a href="{$SF->getIndex('naviright')}naviright=shown"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/add.png" alt="[+]" title="Show Navigation"></a>
+			</div>
 {/if}
 		</div>
 <!-- COPYRIGHT -->

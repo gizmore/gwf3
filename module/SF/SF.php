@@ -64,6 +64,25 @@ class SF {
 		$class = $_GET['mo'].'_'.$_GET['me'];
 		return $class === $mome;
 	}
+	public function getIndex($except = '') {
+		
+		$back = GWF_WEB_ROOT.'index.php?';
+		foreach($_GET as $k => $v) {
+			if(is_array($except)) {
+				foreach ($except as $exc => $trash) {
+					if($exc != $k) {
+						$back .= htmlspecialchars($k).'='.htmlspecialchars($v).'&amp;';
+					}
+				}
+			} else {
+				if($except != $k) {
+					$back .= htmlspecialchars($k).'='.htmlspecialchars($v).'&amp;';
+				}
+			}
+			
+		}
+		return $back;
+	}
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
 	public function getPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
@@ -83,13 +102,13 @@ class SF {
 	public function is_base_displayed() { return (isset($_GET['fancy']) || $_GET['me'] == 'Challenge') ? false : true; }
 	public function is_navi_displayed($navi) {
 		$mods = array('SF', 'PageBuilder', 'GWF', GWF_DEFAULT_MODULE);
-		if(!in_array(Common::getGet('mo', GWF_DEFAULT_MODULE), $mods)) {
-			return false;
-		}	
-		switch(GWF_SF_Utils::save_guest_setting($navi, array('hidden' => true, 'shown' => true), 'shown', $this->cfgCookieTime())) {
+		switch(GWF_SF_Utils::save_guest_setting($navi, array('hidden' => true, 'shown' => true), 'default', $this->cfgCookieTime())) {
 			case 'shown' : return true;
 			case 'hidden': return false;
-			default: return (true === self::$_User->isAdmin());
+			default: 
+				if(!in_array(Common::getGet('mo', GWF_DEFAULT_MODULE), $mods)) {
+					return false;
+				} else return (true === self::$_User->isAdmin());
 		}
 	}
 	

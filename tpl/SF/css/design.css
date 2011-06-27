@@ -65,11 +65,13 @@ div#left {
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
 	vertical-align: top; /* IMPORTANT */
 	margin-top: 0;
-	width: 20%;
-	width: 190px;
 	overflow: hidden;
 	z-index: 50;
 /*	height:100%;*/
+}
+div#left.navigation, div#right.navigation {
+/*	width: 20%; */
+	width: 190px;
 }
 div#middle {
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
@@ -103,8 +105,6 @@ div#right {
 	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
 	vertical-align: top; /* IMPORTANT */
 	margin-top: 0;
-	width: 20%;
-	width: 190px;
 	z-index: 100;
 	/*height:100%;*/
 }

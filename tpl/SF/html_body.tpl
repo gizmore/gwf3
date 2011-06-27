@@ -19,6 +19,10 @@
 			<div id="left" class="navigation">
 {include file="tpl/{$SF->getDesign()}/navi_left.tpl"}
 			</div>
+{else}
+			<div id="left">
+				<a href="{$SF->getIndex('navileft')}navileft=shown"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/add.png" alt="[+]" title="Show Navigation"></a>
+			</div>
 {/if}
 <!-- CENTERED MIDDLE -->
 			<div id="middle">
