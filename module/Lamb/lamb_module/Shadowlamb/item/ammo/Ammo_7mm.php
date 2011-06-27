@@ -1,6 +1,7 @@
 <?php
 final class Item_Ammo_7mm extends SR_Ammo
 {
+	public function getItemLevel() { return 6; }
 	public function getItemPrice() { return 99.95; }
 	public function getItemWeight() { return 2; }
 	public function getItemDefaultAmount() { return 100; }

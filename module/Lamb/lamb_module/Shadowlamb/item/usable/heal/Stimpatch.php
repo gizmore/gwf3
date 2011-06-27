@@ -20,7 +20,7 @@ final class Item_Stimpatch extends SR_HealItem
 			return $player->message(sprintf('%s does not need to get healed.', $target->getName()));
 		}
 		
-		$bio = $player->get('biotech');
+		$bio = Common::clamp($player->get('biotech'), 0);
 		$mingain = 40 + $bio*8;
 		$maxgain = 140 + $bio*14;
 		$gain = round(rand($mingain, $maxgain) / 10, 2);
