@@ -58,6 +58,10 @@ final class GWF_LangTrans
 	{
 		return $this->translate(self::getBrowserISO(), $key, $args);
 	}
+	public function langA($var, $key) {
+		$back = $this->lang($var);
+		return is_array($back) ? $back[$key] : $back;
+	}
 	
 	public function langUser(GWF_User $user, $key, $args)
 	{
