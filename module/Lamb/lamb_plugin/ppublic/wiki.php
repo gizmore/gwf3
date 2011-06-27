@@ -49,7 +49,7 @@ function getWikiText($term, $wikiurl, $notfound) {
 	$content = str_replace(chr(160)," ",$content);
 
 	$output['text'] = $content;
-	$output['link'] = "http://".$server.$path.urlencode($term);
+	$output['link'] = $wikiurl.urlencode($term);
 	return $output;
 }
 
