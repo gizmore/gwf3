@@ -39,7 +39,12 @@ final class GWF_LangTrans
 		}
 		
 		$back = $this->trans[$iso][$key];
+		$back = $this->replaceArgs($back, $args);
 		
+		return $back;
+	}
+	private function replaceArgs($back, $args)
+	{
 		if (is_array($args))
 		{
 			$len = count($args);
@@ -50,7 +55,6 @@ final class GWF_LangTrans
 				$back = str_replace("%$i%", $args[$j], $back);
 			}
 		}
-		
 		return $back;
 	}
 	
@@ -58,9 +62,9 @@ final class GWF_LangTrans
 	{
 		return $this->translate(self::getBrowserISO(), $key, $args);
 	}
-	public function langA($var, $key) {
+	public function langA($var, $key, $args=NULL) {
 		$back = $this->lang($var);
-		return is_array($back) ? $back[$key] : $back;
+		return array_key_exists($key, $back) ? $this->replaceArgs($back[$key], $args) : $back;
 	}
 	
 	public function langUser(GWF_User $user, $key, $args)
