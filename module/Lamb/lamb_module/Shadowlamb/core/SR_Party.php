@@ -972,9 +972,9 @@ final class SR_Party extends GDO
 		{
 			if (false !== ($p = $this->getEnemyParty()))
 			{
-				$this->getEnemyParty()->setContactEta(20);
+				$p->popAction(true);
+				$p->setContactEta(20);
 			}
-			
 			$this->popAction(true);
 			$this->setContactEta(20);
 		}

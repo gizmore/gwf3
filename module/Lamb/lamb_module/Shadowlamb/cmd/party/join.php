@@ -47,8 +47,9 @@ final class Shadowcmd_join extends Shadowcmd
 		$p->notice(sprintf('%s left the party.', $player->getName()));
 		$ep->notice(sprintf('%s joined the party.', $player->getName()));
 		
-		if ($p->isTalking() && $p->getMemberCount() === 0) {
-			$p->popAction();
+		if ($p->isTalking() && $p->getMemberCount() === 0)
+		{
+			$p->popAction(true);
 			$ep->popAction(true);
 		}
 		
