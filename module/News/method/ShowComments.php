@@ -19,7 +19,8 @@ final class News_ShowComments extends GWF_Method
 		}
 		
 		$key = $news->getCommentsKey();
-		if (false === ($comments = GWF_Comments::getOrCreateComments($key)))
+		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
+		if (false === ($comments = GWF_Comments::getOrCreateComments($key, 0, $gid)))
 		{
 			return $module->error('err_news');
 		}

@@ -42,7 +42,8 @@ foreach ($tVars['news'] as $news)
 	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true)))
 	{
 		$comments instanceof Module_Comments;
-		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'])));
+		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
+		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'], 0, $gid)));
 		{
 			$c instanceof GWF_Comments;
 //			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
