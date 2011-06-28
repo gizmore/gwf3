@@ -56,8 +56,11 @@ final class GWF_HTML
 			$err = '';
 			foreach ($errors as $msg)
 			{
-				$msg = GWF_Debug::shortpath(self::decode($msg['messages']));
-				$err .= sprintf('0:%d:%s', strlen($msg), $msg).PHP_EOL;
+				foreach ($msg['messages'] as $m)
+				{
+					$m2 = GWF_Debug::shortpath(self::decode($m));
+					$err .= sprintf('0:%d:%s', strlen($m2), $m2).PHP_EOL;
+				}
 			}
 			return GWF_Website::addDefaultOutput($err);
 		}
