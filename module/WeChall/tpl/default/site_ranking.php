@@ -31,7 +31,7 @@ echo $tVars['page_menu'];
 
 $has_osr = $site->isOptionEnabled(WC_Site::ONSITE_RANK);
 
-echo '<table>';
+echo GWF_Table::start();
 echo GWF_Table::displayHeaders2($headers);
 $solvetext = ' solved ';
 $ontxt = ' on ';
@@ -100,8 +100,9 @@ foreach ($tVars['userdata'] as $user)
 	echo GWF_Table::rowEnd();
 	$rank++;
 }
-echo '</table>';
+echo GWF_Table::end();
 
+echo $tVars['page_menu'];
 ?>
 
 <div id="wcrl_slide"></div>

@@ -29,7 +29,7 @@ final class WeChall_SiteRankings extends GWF_Method
 	{
 		$siteid=(int)$siteid;
 		require_once 'module/WeChall/WC_RegAt.php';
-		return GDO::table('WC_RegAt')->countRows("regat_sid=$siteid AND regat_options&4=0");
+		return GDO::table('WC_RegAt')->countRows("regat_sid={$siteid} AND regat_options&4=1");
 	}
 	
 	public function templateRanking(Module_WeChall $module)
@@ -37,7 +37,6 @@ final class WeChall_SiteRankings extends GWF_Method
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
 			return $module->error('err_site');
 		}
-
 		
 		$ipp = $module->cfgItemsPerPage();
 		$nItems = $site->getLinkcount() - $this->getLinkcountUnranked($site->getID());
