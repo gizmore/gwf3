@@ -5,8 +5,8 @@ final class Comments_Reply extends GWF_Method
 	{
 		if (isset($_POST['reply']))
 		{
-			unset($_POST['x']);
-			unset($_POST['y']);
+//			unset($_POST['x']);
+//			unset($_POST['y']);
 			return $this->onReply($module);
 		}
 		
@@ -57,14 +57,14 @@ final class Comments_Reply extends GWF_Method
 	public function validate_message($m, $arg) { return GWF_Validator::validateString($m, 'message', $arg, 8, $m->cfgMaxMsgLen(), false); }
 	public function validate_www($m, $arg) { return GWF_Validator::validateURL($m, 'www', $arg, true, false); }
 	public function validate_email($m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg, false, true); }
-	public function validate_username($m, $arg) { return GWF_Validator::validateUsername($m, $key, $arg, false); }
+	public function validate_username($m, $arg) { return GWF_Validator::validateUsername($m, 'username', $arg, false); }
 	
 	public function onReply(Module_Comments $module, $href=NULL)
 	{
 		$form = $this->formReply($module, $href);
 		if (false !== ($error = $form->validate($module)))
 		{
-			return $this->templateReply($module, $href);
+			return $error . $this->templateReply($module, $href);
 		}
 		
 		$user = GWF_Session::getUser();

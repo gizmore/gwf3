@@ -10,7 +10,18 @@ final class Comments_Edit extends GWF_Method
 			return $error;
 		}
 		
-		return $this->templateEdit($module);
+		$back = '';
+		
+		if (isset($_POST['editcmt']))
+		{
+			$back = $this->onEditComment($module);
+		}
+		elseif (isset($_POST['editcmts']))
+		{
+			$back = $this->onEditComments($module);
+		}
+		
+		return $back . $this->templateEdit($module);
 	}
 	
 	public function sanitize(Module_Comments $module)
@@ -53,10 +64,10 @@ final class Comments_Edit extends GWF_Method
 	{
 		$c = $this->comment;
 		
-		
+		$buttons = array('editcmt' => $module->lang('btn_edit'));
 		
 		$data = array(
-			'message' => array(GWF_Form::MESSAGE, $this->comment->getVar('cmt_message')),
+			'message' => array(GWF_Form::MESSAGE, $this->comment->getVar('cmt_message'), $module->lang('th_message')),
 			'btns' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -64,9 +75,40 @@ final class Comments_Edit extends GWF_Method
 
 	public function formComments(Module_Comments $module)
 	{
+		$buttons = array('editcmts' => $module->lang('btn_edit'));
 		$data = array(
+			'btns' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
+	}
+	
+	public function validate_message($m, $arg) { return GWF_Validator::validateString($m, 'message', $arg, 8, $m->cfgMaxMsgLen(), false); }
+	
+	public function onEditComment(Module_Comments $module)
+	{
+		$formComment = $this->formComment($module);
+		if (false !== ($error = $formComment->validate($module)))
+		{
+			return $error;
+		}
+		
+		if (false === $this->comment->saveVars(array(
+			'cmt_message' => $formComment->getVar('message'),
+		)))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		return $module->message('msg_edited');
+	}
+
+	public function onEditComments(Module_Comments $module)
+	{
+		$formComments = $this->formComments($module);
+		if (false !== ($error = $formComments->validate($module)))
+		{
+			return $error;
+		}
+		return $module->message('msg_edited');
 	}
 }
 ?>

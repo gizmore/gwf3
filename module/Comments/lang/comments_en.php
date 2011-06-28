@@ -9,18 +9,30 @@ $lang = array(
 	'err_hashcode' => 'Permission denied.',
 	'err_email' => 'Your email looks invalid.',
 	'err_www' => 'Your website looks invalid.',
+	'err_username' => 'Your username ist invalid and has to be %1% to %2% chars in length.',
 
 	'msg_commented' => 'Your comment has been added.',
 	'msg_commented_mod' => 'Your comment has been added, but has to be approved before it is shown.',
+	'msg_hide' => 'The comment is now hidden.',
 	'msg_visible' => 'The comment is now visible.',
 	'msg_deleted' => 'The comment has been deleted.',
+	'msg_edited' => 'The comment has been edited.',
 
 	'ft_reply' => 'Leave a comment',
 	'btn_reply' => 'Send',
 
+	'btn_hide' => 'Hide',
+	'btn_show' => 'Show',
+
+	'ft_edit_cmt' => 'Edit comment',
+	'ft_edit_cmts' => 'Edit comment thread',
+
+	'btn_edit' => 'Edit',
+
 	'th_message' => 'Your message',
 	'th_www' => 'Your website',
 	'th_email' => 'Your email',
+	'th_username' => 'Your nickname',
 	'th_showmail' => 'Show email to public',
 
 	# Moderation #

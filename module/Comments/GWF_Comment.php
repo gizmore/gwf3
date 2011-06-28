@@ -35,6 +35,7 @@ final class GWF_Comment extends GDO
 		);
 	}
 	public function getID() { return $this->getVar('cmt_id'); }
+	public function isVisible() { return $this->isOptionEnabled(self::VISIBLE); }
 	
 	/**
 	 * Get the comments thread for this comment.

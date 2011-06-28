@@ -12,7 +12,12 @@
 	<div class="gwf_comment_foot box_f">
 		{if $can_mod}
 		<div class="gwf_buttons gwf_buttons_outer">
-			{button type="edit" url=$c->hrefEdit() text=$lang->lang('btn_edit')}
+			{if $c->isVisible()}
+			{button type="delete" url=$c->hrefHide() title=$lang->lang('btn_hide')}
+			{else}
+			{button type="add" url=$c->hrefShow() title=$lang->lang('btn_show')}
+			{/if}
+			{button type="edit" url=$c->hrefEdit() title=$lang->lang('btn_edit')}
 		</div>
 		{/if}
 	</div>
