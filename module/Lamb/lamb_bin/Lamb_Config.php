@@ -118,6 +118,14 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
+		array(
+			'host' => 'ircs://irc3.srn.ano:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => '/NNN/gizmore',
+		),
+		
 //		array(
 //			'host' => '',
 //			'nickname' => 'Lamb3',

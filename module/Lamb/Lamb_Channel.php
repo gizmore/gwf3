@@ -77,6 +77,7 @@ final class Lamb_Channel extends GDO
 			'chan_hops' => '',
 			'chan_voice' => '',
 			'chan_topic' => '',
+			'chan_options' => 0,
 		));
 		if (false === ($channel->insert()))
 		{

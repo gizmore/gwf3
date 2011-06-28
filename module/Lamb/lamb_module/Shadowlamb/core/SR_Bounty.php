@@ -124,14 +124,18 @@ final class SR_Bounty extends GDO
 	public static function onKilledByHuman(SR_Player $killer, SR_Player $victim)
 	{
 		$b = chr(2);
-		$bounty = self::table(__CLASS__)->selectAll('sr4bo_id, sr4bo_bounty', 'sr4bo_victim='.$victim->getUID(), '');
+		$where = 'sr4bo_victim='.$victim->getUID();
+		$bounty = self::table(__CLASS__)->selectAll('sr4bo_id, sr4bo_bounty', $where, '');
 		$sum = 0;
 		foreach ($bounty as $data)
 		{
-			$b = $data[1];
+			$b = $data['sr4bo_bounty'];
 //			SR_BountyStats::i
 			$sum += $b;
 		}
+		
+		$killer->giveNuyen($sum);
+		self::table(__CLASS__)->deleteWhere($where);
 		
 		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayPrice($sum)));
 	}

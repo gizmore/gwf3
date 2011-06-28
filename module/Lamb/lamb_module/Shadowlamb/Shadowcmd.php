@@ -7,8 +7,6 @@
  */
 class Shadowcmd
 {
-	const RL_TIME = 360; # Request_Leader_Time
-	
 	#################
 	### Shortcuts ###
 	#################

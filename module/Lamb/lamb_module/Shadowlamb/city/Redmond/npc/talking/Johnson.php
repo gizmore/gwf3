@@ -58,7 +58,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 				
 			case 'shadowrun':
 				if ($q === false) {
-					$this->reply('Hello, I have no further quests for you at the moment... You should maybe got to Seattle...');
+					$this->reply('Hello, I have no further quests for you at the moment... You should maybe go to Seattle...');
 				}
 				elseif ($has === true) {
 					$q->checkQuest($this, $player);

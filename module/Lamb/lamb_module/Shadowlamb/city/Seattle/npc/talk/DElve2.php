@@ -12,6 +12,7 @@ final class Seattle_DElve2 extends SR_TalkingNPC
 		}
 		$quest1 = SR_Quest::getQuest($player, 'Renraku_I');
 		$quest2 = SR_Quest::getQuest($player, 'Renraku_II');
+		
 		switch ($word)
 		{
 			case 'experiment':

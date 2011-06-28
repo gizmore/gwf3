@@ -141,7 +141,7 @@ final class SR_Party extends GDO
 	
 	public function getMemberByArg($arg)
 	{
-		return Shadowfunc::getTarget($this->getMembers(), $name, true);
+		return Shadowfunc::getTarget($this->getMembers(), $arg, true);
 	}
 	
 	public function hasHireling()
@@ -860,7 +860,10 @@ final class SR_Party extends GDO
 		switch ($action)
 		{
 			case 'delete': return "{$b}beeing deleted{$b}.";
-			case 'talk': return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $this->getEnemyParty()->displayMembers(), $this->displayContactETA(), $this->displayLastAction());
+			case 'talk':
+				$ep = $this->getEnemyParty();
+				$epm = $ep === false ? 'Empty party' : $ep->displayMembers();
+				return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $epm, $this->displayContactETA(), $this->displayLastAction());
 			case 'fight': return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			case 'inside': return sprintf("{$b}inside{$b} %s.", $this->getLocation());
 			case 'outside':
@@ -969,7 +972,7 @@ final class SR_Party extends GDO
 		{
 			if (false !== ($p = $this->getEnemyParty()))
 			{
-				$this->getEnemyParty()->setContactEta(-1);
+				$this->getEnemyParty()->setContactEta(20);
 			}
 			
 			$this->popAction(true);

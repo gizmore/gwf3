@@ -2,11 +2,11 @@
 require_once 'module/Lamb/lamb_module/Shadowlamb/cmd/gm/gmd.php';
 final class Shadowcmd_npc extends Shadowcmd_gmd
 {
-	public $WHITELIST = array('u','ca','le','sell','buy','view','drop','eq','uq','x','fw','bw','#');
+	public $WHITELIST = array('u','ca','le','sell','buy','view','drop','eq','uq','x','fw','bw','#','i','q','ks');
 	
 	public static function execute(SR_Player $player, array $args)
 	{
-		if (count($args) < 2)
+		if (count($args) < 1)
 		{
 			$player->message(Shadowhelp::getHelp($player, 'npc'));
 			return false;

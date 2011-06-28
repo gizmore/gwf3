@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_request_leader extends Shadowcmd
 {
+	const RL_TIME = 600; # Request_Leader_Time
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);

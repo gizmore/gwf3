@@ -9,6 +9,12 @@ final class Shadowcmd_fight extends Shadowcmd
 		{
 			$ep = $p->getEnemyParty();
 			
+			if ($ep === false)
+			{
+				$player->message('Error: Cannot get enemy party for your party. Tell gizmore!');
+				return true;
+			}
+			
 			if (SR_KillProtect::isKillProtectedParty($p, $ep))
 			{
 				$player->message('You cannot attack this party again.');

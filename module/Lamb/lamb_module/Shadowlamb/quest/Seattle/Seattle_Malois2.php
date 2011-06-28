@@ -40,9 +40,16 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Oh you want to help me again? That is very kind of you :)');
-				$npc->reply('Well ... to be honest i am short on nuyen, and i need to hire a decker to get me into level2 of the Renraku office.');
-				$npc->reply(sprintf('If you could give me %s, so i can continue my research ... what do you think?', $this->displayNuyen()));
+				if ($this->isInQuest($player))
+				{
+					return $this->checkQuest($this, $player);					
+				}
+				else
+				{
+					$npc->reply('Oh you want to help me again? That is very kind of you :)');
+					$npc->reply('Well ... to be honest i am short on nuyen, and i need to hire a decker to get me into level2 of the Renraku office.');
+					$npc->reply(sprintf('If you could give me %s, so i can continue my research ... what do you think?', $this->displayNuyen()));
+				}
 				break;
 			case 'confirm':
 				$npc->reply('I think it is of your own interest to know the truth.');
@@ -54,6 +61,7 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 				$npc->reply('Too bad.');
 				break;
 		}
+		return true;
 	}
 }
 ?>

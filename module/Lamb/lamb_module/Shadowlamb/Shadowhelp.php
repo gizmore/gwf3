@@ -63,7 +63,7 @@ final class Shadowhelp
 					'ninja' => 'The ninja skill will increase your damage and attack for ninja weapons.',
 					'firearms' => 'The firearms skill will increase your damage and attack for fireweapons.',
 					'bows' => 'The bows skill will increase your damage and attack for bows.',
-					'pistols' => 'The firearms skill will increase your damage and attack for pistols.',
+					'pistols' => 'The pistols skill will increase your damage and attack for pistols.',
 					'shotguns' => 'The shotguns skill will increase your damage and attack for shotguns.',
 					'smgs' => 'The smgs skill will increase your damage and attack for small machine guns.',
 					'hmgs' => 'The hmgs skill will increase your damage and attack for heavy machine guns.',
@@ -148,7 +148,7 @@ final class Shadowhelp
 					'xp' => NULL,
 					'karma' => NULL,
 					'weight' => NULL,
-					'max_weight' => 'The max weight you can carry.',
+					'max_weight' => 'The max_weight you can carry. If you exceed your max_weight you get a malus on your attack and defense or cannot move at all.',
 					'nuyen' => NULL,
 					
 					'special_stats' => 'There are some special stats too:',
@@ -169,7 +169,7 @@ final class Shadowhelp
 //				'items' => "There are ".SR_Item::getTotalItemCount()." items",
 //				self::getItemTree($player),
 				
-				'spells' => 'There are '.SR_Spell::getTotalSpellCount().' spells',
+				'all_spells' => 'There are '.SR_Spell::getTotalSpellCount().' spells',
 				self::getSpellTree($player),
 				
 				'all_cmds' => 'There are a lot of commands',

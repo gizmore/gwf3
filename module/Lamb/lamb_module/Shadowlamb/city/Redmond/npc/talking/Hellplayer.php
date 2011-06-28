@@ -51,7 +51,7 @@ final class Redmond_Hellplayer extends SR_TalkingNPC
 					case 3:
 					case 0: $this->reply('Are you a punk?!'); $player->setTemp($t, 1); break;
 					case 1: $this->reply('I asked yo, chummer: _are_you_a_punk_!?'); $player->setTemp($t, 2); break;
-					case 2: $this->isReallyPissed($player); break;
+					case 2: $this->isReallyPissed($player); $player->unsetTemp($t); break;
 				}
 				break;
 				

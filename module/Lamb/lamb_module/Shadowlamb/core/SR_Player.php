@@ -621,7 +621,8 @@ class SR_Player extends GDO
 		$party->kickUser($this, true);
 		$new_party = SR_Party::createParty();
 		$new_party->addUser($this, true);
-		$location = $city->getRespawnLocation();
+		$location = $city === false ? 'Redmond_Hotel' : $city->getRespawnLocation();
+//		$location = $city->getRespawnLocation();
 		$new_party->pushAction(SR_Party::ACTION_INSIDE, $location);
 		$this->updateField('partyid', $new_party->getID());
 		$this->message(sprintf('You respawn at %s.', $location));

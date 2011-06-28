@@ -5,6 +5,11 @@ final class Shadowcmd_bye extends Shadowcmd
 	{
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
+		if ($ep === false)
+		{
+			return false;
+		}
+		
 		if ($ep->isHuman())
 		{
 			return false;

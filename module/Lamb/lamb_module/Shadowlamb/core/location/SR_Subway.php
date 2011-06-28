@@ -69,6 +69,7 @@ abstract class SR_Subway extends SR_Location
 	{
 		$bot = Shadowrap::instance($player);
 		$party = $player->getParty();
+		$c = Shadowrun4::SR_SHORTCUT;
 		
 		if (count($args) === 0)
 		{

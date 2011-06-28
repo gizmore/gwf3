@@ -8,7 +8,7 @@ final class Shadowcmd_say extends Shadowcmd
 		$ep = $p->getEnemyParty();
 		$msg = sprintf('%s says: "%s"', $b.$player->getName().$b, implode(' ', $args));
 		
-		if ($p->isTalking())
+		if ($p->isTalking() && ($ep !== false) )
 		{
 			$p->notice($msg);
 			$ep->notice($msg);
