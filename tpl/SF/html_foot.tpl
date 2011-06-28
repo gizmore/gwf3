@@ -1,6 +1,6 @@
-							<br>
+							<br/>
 						</div>
-					</div><hr>
+					</div><hr/>
 <!-- PAGE End -->
 					<p class="bottom">
 						<a class="backbutton" href="{$SF->getLastURL()}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({$SF->getLastURL()})</a>
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<p style="text-align: center;">
-{include file="tpl/{$SF->getDesign()}/debug_time.tpl"}<br>
+{include file="tpl/{$SF->getDesign()}/debug_time.tpl"}<br/>
 		Valid <a href="http://validator.w3.org/check?uri=referer">HTML5</a> and <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a>
 	</p>
 </body>

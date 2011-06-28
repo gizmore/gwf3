@@ -69,7 +69,7 @@ class SF {
 		$back = GWF_WEB_ROOT.'index.php?';
 		foreach($_GET as $k => $v) {
 			if(is_array($except)) {
-				foreach ($except as $exc => $trash) {
+				foreach ($except as $trash => $exc) {
 					if($exc != $k) {
 						$back .= htmlspecialchars($k).'='.htmlspecialchars($v).'&amp;';
 					}
@@ -90,11 +90,16 @@ class SF {
 	public function getLayout() { return GWF_SF_DEFAULT_LAYOUT; }
 	public function getFormaction($key) { return self::$_formaction[$key]; }
 	public function getLastURL() { return GWF_Session::getLastURL(); }
-	public function getDayinfos() { //TODO
+	public function getDayinfos() {
 		$lang = self::$_Lang;
-		$today = $lang->lang('daynames');
-		$month = $lang->lang('monthnames');
-		return $lang->lang('today') . ' ist ' . $today[date('w')] . ', der ' . date('w') . '.' . $month[date('n')] . '(' . date('n') . '), ' . date('Y') . '.';
+		$args = array(
+			'dayname' => $lang->langA('daynames', date('w')),
+			'day' => date('w'),
+			'month' => date('n'),
+			'monthname' => $lang->langA('monthnames', date('n')),
+			'year' => date('Y')
+		);
+		return $lang->lang('today_is_the', $args);
 	}
 
 	public function is_details_displayed() { return false; }
@@ -126,4 +131,13 @@ class SF {
 		);
 		return $tVars;
 	}
+	
+	public function getIP($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_ipaddress() : $cmp === GWF_SF_SurferInfos::get_ipaddress(); }
+	public function getOS($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_operatingsystem() : $cmp === GWF_SF_SurferInfos::get_operatingsystem(); }
+	public function getBrowser($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_browser() : $cmp === GWF_SF_SurferInfos::get_browser(); }
+	public function getProvider($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_provider() : $cmp === GWF_SF_SurferInfos::get_provider(); }
+	public function getCountry() {}
+	public function getHostname() { return GWF_SF_SurferInfos::get_hostname(); }
+	public function getReferer() { return GWF_SF_SurferInfos::get_referer(); }
+	public function getUserAgent() { return GWF_SF_SurferInfos::get_useragent(); }
 }
