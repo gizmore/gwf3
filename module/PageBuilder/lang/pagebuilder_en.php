@@ -8,6 +8,8 @@ $lang = array(
 
 	'th_id' => 'ID',
 	'th_otherid' => 'PID',
+	'th_type' => 'Type',
+	'th_cat' => 'Category',
 	'th_url' => 'URL',
 	'th_groups' => 'Allowed groups',
 	'th_title' => 'Title',
@@ -22,6 +24,12 @@ $lang = array(
 	'th_show_similar' => 'Show Similar Pages',
 	'th_show_modified' => 'Show Modified Date',
 	'th_show_trans' => 'Show Available Translations',
+	'th_show_comments' => 'Allow comments',
+
+	'sel_type' => 'Select a type',
+	'type_html' => 'HTML',
+	'type_bbcode' => 'BBCode',
+	'type_smarty' => 'Smarty',
 
 	'btn_add' => 'Add Page',
 	'btn_edit' => 'Edit',
@@ -39,6 +47,7 @@ $lang = array(
 	'err_dup_lid' => 'A translated page with this language already exists.',
 	'err_file_ext' => 'Your uploaded file extension is not allowed. Appended &quot;.html&quot; to it.',
 	'err_upload_exists' => 'A file with that name already exists.',
+	'err_type' => 'Your page type is invalid. It has to be either html, bbcode or smarty.',
 
 	'msg_added' => 'The page has been added successfully.',
 	'msg_edited' => 'The page has been edited successfully.',
@@ -49,5 +58,12 @@ $lang = array(
 	'info_modified' => 'Page created on %1%. Last Modified on %2%, %3%.',
 	'info_trans' => 'This page is also available in %1%.',
 	'info_similar' => 'You might be interested in similar pages: %1%.',
+
+	'author' => 'Author',
+	'created_on' => 'Created on',
+	'modified_on' => 'Modified on',
+	'translations' => 'Available translations',
+	'similar_pages' => 'Similiar pages',
+
 );
 ?>

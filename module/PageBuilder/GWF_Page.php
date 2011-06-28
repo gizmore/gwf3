@@ -17,6 +17,13 @@ final class GWF_Page extends GDO
 	const SHOW_SIMILAR = 0x80;
 	
 	const PERMBITS = 0xF8;
+	
+	const SMARTY = 0x100;
+	const HTML = 0x200;
+	const BBCODE = 0x400;
+	const MODES = 0x700;
+	
+	const COMMENTS = 0x800;
 
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'page'; }
@@ -35,6 +42,7 @@ final class GWF_Page extends GDO
 			'page_time' => array(GDO::UINT, GDO::NOT_NULL),
 			'page_url' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_title' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
+			'page_cat' => array(GDO::UINT, 0),
 			'page_meta_tags' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_meta_desc' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_content' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
@@ -56,6 +64,21 @@ final class GWF_Page extends GDO
 	public function isRoot() { return $this->getID() === $this->getOtherID(); }
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isLoginRequired() { return $this->isOptionEnabled(self::LOGIN_REQUIRED); }
+	public function getMode() { return $this->getOptions() & self::MODES; }
+	public function wantComments() { return $this->isOptionEnabled(self::COMMENTS); }
+	
+	/**
+	 * Get the comments thread.
+	 * @return GWF_Comments
+	 */
+	public function getComments()
+	{
+		if (false === ($mod_c = GWF_Module::loadModuleDB('Comments', true, true)))
+		{
+			return false;
+		}
+		return GWF_Comments::getOrCreateComments('_GWF_PBC_'.$this->getID(), $this->getVar('page_author'));
+	}
 	
 	public function hrefEdit() { return GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Edit&pageid='.$this->getID(); }
 	public function hrefShow() { return GWF_WEB_ROOT.$this->getVar('page_url'); }

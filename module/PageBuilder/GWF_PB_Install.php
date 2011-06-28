@@ -4,6 +4,7 @@ final class GWF_PB_Install
 	public static function onInstall(Module_PageBuilder $module, $dropTable)
 	{
 		return GWF_ModuleLoader::installVars($module, array(
+			'ipp' => array('10', 'int', '1', '100'),
 		)).
 		self::installDirs($module, $dropTable);
 	}

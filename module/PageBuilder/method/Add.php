@@ -18,23 +18,30 @@ final class PageBuilder_Add extends GWF_Method
 	
 	private function formAdd(Module_PageBuilder $module)
 	{
-		$data = array(
-			'url' => array(GWF_Form::STRING, '', $module->lang('th_url')),
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $module->lang('th_lang')),
-			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', true, true, true), $module->lang('th_groups')),
-			'noguests' => array(GWF_Form::CHECKBOX, false, $module->lang('th_noguests')),
-			'title' => array(GWF_Form::STRING, '', $module->lang('th_title')),
-			'descr' => array(GWF_Form::STRING, '', $module->lang('th_descr')),
-			'tags' => array(GWF_Form::STRING, '', $module->lang('th_tags')),
-			'show_author' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_author')),
-			'show_similar' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_similar')),
-			'show_modified' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_modified')),
-			'show_trans' => array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans')),
-			'file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_file')),
-			'upload' => array(GWF_Form::SUBMIT, $module->lang('btn_upload')),
-			'content' => array(GWF_Form::MESSAGE_NOBB, '', $module->lang('th_content')),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
-		);
+		$mod_cat = GWF_Module::loadModuleDB('Category', true, true);
+		
+		$data = array();
+		$data['url'] = array(GWF_Form::STRING, '', $module->lang('th_url'));
+		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($module), $module->lang('th_type'));
+		$data['lang'] = array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $module->lang('th_lang'));
+		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', true, true, true), $module->lang('th_groups'));
+		$data['noguests'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_noguests'));
+		$data['title'] = array(GWF_Form::STRING, '', $module->lang('th_title'));
+		if ($mod_cat !== false)
+		{
+			$data['cat'] = array(GWF_Form::SELECT, GWF_CategorySelect::single('cat', Common::getPostString('cat')), $module->lang('th_cat'));
+		}
+		$data['descr'] = array(GWF_Form::STRING, '', $module->lang('th_descr'));
+		$data['tags'] = array(GWF_Form::STRING, '', $module->lang('th_tags'));
+		$data['show_author'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_author'));
+		$data['show_similar'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_similar'));
+		$data['show_modified'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_modified'));
+		$data['show_trans'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans'));
+		$data['show_comments'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_comments'));
+		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
+		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
+		$data['content'] = array(GWF_Form::MESSAGE_NOBB, '', $module->lang('th_content'));
+		$data['add'] = array(GWF_Form::SUBMIT, $module->lang('btn_add'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -53,6 +60,8 @@ final class PageBuilder_Add extends GWF_Method
 	public function validate_content($m, $arg) { return GWF_Validator::validateString($m, 'content', $arg, 4, 65536, false); }
 	public function validate_url($m, $arg) { return GWF_Validator::validateString($m, 'url', $arg, 4, 255, false); }
 	public function validate_lang($m, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
+	public function validate_type($m, $arg) { return GWF_PageType::validateType($m, $arg); }
+	public function validate_cat($m, $arg) { return GWF_CategorySelect::validateCat($arg, true); }
 	public function validate_groups($m, $arg)
 	{
 		if ($arg === false) {
@@ -86,6 +95,8 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['show_similar']) ? GWF_Page::SHOW_SIMILAR : 0;
 		$options |= isset($_POST['show_modified']) ? GWF_Page::SHOW_MODIFIED : 0;
 		$options |= isset($_POST['show_trans']) ? GWF_Page::SHOW_TRANS : 0;
+		$options |= isset($_POST['show_comments']) ? GWF_Page::COMMENTS : 0;
+		$options |= $form->getVar('type');
 		
 		$gstring = $this->buildGroupString($module);
 		$tags = ','.trim($form->getVar('tags'), ' ,').',';
@@ -153,7 +164,7 @@ final class PageBuilder_Add extends GWF_Method
 	####################
 	private function onUpload(Module_PageBuilder $module)
 	{
-		require_once 'module/PageBuilder/PB_Uploader';
+		require_once 'module/PageBuilder/PB_Uploader.php';
 		return PB_Uploader::onUpload($module);
 	}
 }

@@ -37,7 +37,7 @@ final class GWF_PageTags extends GDO
 		$tag = GDO::escape($tag);
 		if (false !== $t->selectVar('1', "ptag_tag='{$tag}'"))
 		{
-			$t->insertAssoc(array(
+			return $t->insertAssoc(array(
 				'ptag_tag' => $tag,
 			));
 		}
