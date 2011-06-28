@@ -1,15 +1,21 @@
 <?php
 /**
-* Smarty Internal Plugin Configfilelexer
-*
-* This is the lexer to break the config file source into tokens 
-* @package Smarty
-* @subpackage Config
-* @author Uwe Tews 
-*/
+ * Smarty Internal Plugin Configfilelexer
+ *
+ *
+ * @package Smarty
+ * @subpackage Config
+ * @author Uwe Tews
+ */
+
 /**
-* Smarty Internal Plugin Configfilelexer
-*/
+ * Smarty Internal Plugin Configfilelexer
+ *
+ * This is the lexer to break the config file source into tokens.
+ *
+ * @package Smarty
+ * @subpackage Config
+ */
 class Smarty_Internal_Configfilelexer
 {
 
@@ -20,18 +26,21 @@ class Smarty_Internal_Configfilelexer
     public $node;
     public $line;
     private $state = 1;
-    public $smarty_token_names = array (		// Text for parser error messages
-   				);
-    				
-    				
-    function __construct($data, $smarty)
+    /**
+     * List of texts for parser error messages
+     *
+     * @var array
+     */
+    public $smarty_token_names = array ();
+
+    public function __construct($data, $smarty)
     {
         // set instance object
-        self::instance($this); 
+        self::instance($this);
         $this->data = $data . "\n"; //now all lines are \n-terminated
         $this->counter = 0;
         $this->line = 1;
-        $this->smarty = $smarty; 
+        $this->smarty = $smarty;
      }
     public static function &instance($new_instance = null)
     {
@@ -39,7 +48,7 @@ class Smarty_Internal_Configfilelexer
         if (isset($new_instance) && is_object($new_instance))
             $instance = $new_instance;
         return $instance;
-    } 
+    }
 
 
 
@@ -67,9 +76,6 @@ class Smarty_Internal_Configfilelexer
         $this->_yy_state = $state;
     }
 
-
-
-
     function yylex1()
     {
         $tokenMap = array (
@@ -84,15 +90,15 @@ class Smarty_Internal_Configfilelexer
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
-        $yy_global_pattern = "/^(#)|^(\\[)|^(\\])|^(=)|^([ \t\r]+)|^(\n)|^([0-9]*[a-zA-Z_]\\w*)/iS";
+        $yy_global_pattern = "/\G(#|;)|\G(\\[)|\G(\\])|\G(=)|\G([ \t\r]+)|\G(\n)|\G([0-9]*[a-zA-Z_]\\w*)/iS";
 
         do {
-            if (preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches)) {
+            if (preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
-                        'an empty string.  Input "' . substr($this->data,
+                        ' an empty string.  Input "' . substr($this->data,
                         $this->counter, 5) . '... state START');
                 }
                 next($yymatches); // skip global match
@@ -132,48 +138,45 @@ class Smarty_Internal_Configfilelexer
 
     } // end function
 
-
     const START = 1;
+
     function yy_r1_1($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_COMMENTSTART;
-    $this->yypushstate(self::COMMENT);
+        $this->token = Smarty_Internal_Configfileparser::TPC_COMMENTSTART;
+        $this->yypushstate(self::COMMENT);
     }
+
     function yy_r1_2($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_OPENB;
-    $this->yypushstate(self::SECTION);
+        $this->token = Smarty_Internal_Configfileparser::TPC_OPENB;
+        $this->yypushstate(self::SECTION);
     }
+
     function yy_r1_3($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_CLOSEB;
+        $this->token = Smarty_Internal_Configfileparser::TPC_CLOSEB;
     }
+
     function yy_r1_4($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_EQUAL;
-    $this->yypushstate(self::VALUE);
+        $this->token = Smarty_Internal_Configfileparser::TPC_EQUAL;
+        $this->yypushstate(self::VALUE);
     }
+
     function yy_r1_5($yy_subpatterns)
     {
-
-    return false;
+        return false;
     }
+
     function yy_r1_6($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
+        $this->token = Smarty_Internal_Configfileparser::TPC_NEWLINE;
     }
+
     function yy_r1_7($yy_subpatterns)
     {
-
-    $this->token = Smarty_Internal_Configfileparser::TPC_ID;
+        $this->token = Smarty_Internal_Configfileparser::TPC_ID;
     }
-
-
 
     function yylex2()
     {
@@ -183,23 +186,23 @@ class Smarty_Internal_Configfilelexer
               3 => 0,
               4 => 0,
               5 => 0,
-              6 => 0,
-              7 => 0,
+              6 => 1,
               8 => 0,
               9 => 0,
+              10 => 0,
             );
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
-        $yy_global_pattern = "/^([ \t\r]+)|^(\\d+\\.\\d+(?=[ \t\r]*[\n#]))|^(\\d+(?=[ \t\r]*[\n#]))|^('[^'\\\\]*(?:\\\\.[^'\\\\]*)*'(?=[ \t\r]*[\n#]))|^(\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"(?=[ \t\r]*[\n#]))|^(\"\"\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"\"\"(?=[ \t\r]*[\n#]))|^([a-zA-Z]+(?=[ \t\r]*[\n#]))|^([^\n]+?(?=[ \t\r]*\n))|^(\n)/iS";
+        $yy_global_pattern = "/\G([ \t\r]+)|\G(\\d+\\.\\d+(?=[ \t\r]*[\n#;]))|\G(\\d+(?=[ \t\r]*[\n#;]))|\G('[^'\\\\]*(?:\\\\.[^'\\\\]*)*'(?=[ \t\r]*[\n#;]))|\G(\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"(?=[ \t\r]*[\n#;]))|\G(\"\"\"([^\"]|\\\\\"|\"{1,2}[^\"])*\"\"\"(?=[ \t\r]*[\n#;]))|\G([a-zA-Z]+(?=[ \t\r]*[\n#;]))|\G([^\n]+?(?=[ \t\r]*\n))|\G(\n)/iS";
 
         do {
-            if (preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches)) {
+            if (preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
-                        'an empty string.  Input "' . substr($this->data,
+                        ' an empty string.  Input "' . substr($this->data,
                         $this->counter, 5) . '... state VALUE');
                 }
                 next($yymatches); // skip global match
@@ -276,7 +279,7 @@ class Smarty_Internal_Configfilelexer
     $this->token = Smarty_Internal_Configfileparser::TPC_TRIPPLE_DOUBLE_QUOTED_STRING;
     $this->yypopstate();
     }
-    function yy_r2_7($yy_subpatterns)
+    function yy_r2_8($yy_subpatterns)
     {
 
     if (!$this->smarty->config_booleanize || !in_array(strtolower($this->value), Array("true", "false", "on", "off", "yes", "no")) ) {
@@ -288,13 +291,13 @@ class Smarty_Internal_Configfilelexer
         $this->yypopstate();
     }
     }
-    function yy_r2_8($yy_subpatterns)
+    function yy_r2_9($yy_subpatterns)
     {
 
     $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
     $this->yypopstate();
     }
-    function yy_r2_9($yy_subpatterns)
+    function yy_r2_10($yy_subpatterns)
     {
 
     $this->token = Smarty_Internal_Configfileparser::TPC_NAKED_STRING;
@@ -312,15 +315,15 @@ class Smarty_Internal_Configfilelexer
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
-        $yy_global_pattern = "/^([^\n]+?(?=[ \t\r]*\n))/iS";
+        $yy_global_pattern = "/\G([^\n]+?(?=[ \t\r]*\n))/iS";
 
         do {
-            if (preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches)) {
+            if (preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
-                        'an empty string.  Input "' . substr($this->data,
+                        ' an empty string.  Input "' . substr($this->data,
                         $this->counter, 5) . '... state NAKED_STRING_VALUE');
                 }
                 next($yymatches); // skip global match
@@ -381,15 +384,15 @@ class Smarty_Internal_Configfilelexer
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
-        $yy_global_pattern = "/^([ \t\r]+)|^([^\n]+?(?=[ \t\r]*\n))|^(\n)/iS";
+        $yy_global_pattern = "/\G([ \t\r]+)|\G([^\n]+?(?=[ \t\r]*\n))|\G(\n)/iS";
 
         do {
-            if (preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches)) {
+            if (preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
-                        'an empty string.  Input "' . substr($this->data,
+                        ' an empty string.  Input "' . substr($this->data,
                         $this->counter, 5) . '... state COMMENT');
                 }
                 next($yymatches); // skip global match
@@ -459,15 +462,15 @@ class Smarty_Internal_Configfilelexer
         if ($this->counter >= strlen($this->data)) {
             return false; // end of input
         }
-        $yy_global_pattern = "/^(\\.)|^(.*?(?=[\.=[\]\r\n]))/iS";
+        $yy_global_pattern = "/\G(\\.)|\G(.*?(?=[\.=[\]\r\n]))/iS";
 
         do {
-            if (preg_match($yy_global_pattern, substr($this->data, $this->counter), $yymatches)) {
+            if (preg_match($yy_global_pattern,$this->data, $yymatches, null, $this->counter)) {
                 $yysubmatches = $yymatches;
                 $yymatches = array_filter($yymatches, 'strlen'); // remove empty sub-patterns
                 if (!count($yymatches)) {
                     throw new Exception('Error: lexing failed because a rule matched' .
-                        'an empty string.  Input "' . substr($this->data,
+                        ' an empty string.  Input "' . substr($this->data,
                         $this->counter, 5) . '... state SECTION');
                 }
                 next($yymatches); // skip global match
