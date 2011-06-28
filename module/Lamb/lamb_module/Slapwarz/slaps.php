@@ -92,6 +92,7 @@ $slaps = array(
 	array('a grim', 50),
 	array('a gay', 15),
 	array('a poison', 35),
+	array('a sharp', 29),
 ),
 
 
@@ -162,6 +163,7 @@ $slaps = array(
 	array('flamethrower', 45),
 	array('sabretooth', 22),
 	array('CPU', 12),
+	array('edge', 22),
 ),
 
 );
