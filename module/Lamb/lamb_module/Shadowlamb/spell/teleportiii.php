@@ -1,15 +1,15 @@
 <?php
-final class Spell_teleportii extends SR_Spell
+final class Spell_teleportiii extends SR_Spell
 {
 	public function getSpellLevel() { return 3; }
 	
-	const MANA_MIN = 15;
-	const MANA_PER_M = 10;
+	const MANA_MIN = 20;
+	const MANA_PER_M = 14;
 	
 	public function isOffensive() { return false; }
-	public function getHelp() { return 'Teleport your party outside a known place in a known city, from a known place in a known city.'; }
+	public function getHelp() { return 'Teleport your party to a known place in a known city.'; }
 	public function getCastTime($level) { return 60; }
-	public function getRequirements() { return array('magic'=>6,'teleport'=>1); }
+	public function getRequirements() { return array('teleportii'=>2); }
 	public function getManaCost(SR_Player $player)
 	{
 		$p = $player->getParty();
@@ -72,13 +72,6 @@ final class Spell_teleportii extends SR_Spell
 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
 		}
-		
-		if ($p->getCityClass()->isDungeon())
-		{
-			$bot->reply('You cannot cast this spell inside a dungeon.');
-			return false;
-		}
-		
 		
 		$level = $this->getLevel($player);
 		
