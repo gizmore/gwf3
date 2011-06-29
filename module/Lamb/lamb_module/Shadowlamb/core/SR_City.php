@@ -206,8 +206,10 @@ abstract class SR_City
 	
 	private function onWentTo(SR_Party $party)
 	{
-		$location = $this->getLocation($party->getTarget());
-		$party->pushAction(SR_Party::ACTION_OUTSIDE);
+		$target = $party->getTarget();
+		$location = $this->getLocation($target);
+		$party->giveKnowledge('places', $target);
+		$party->pushAction(SR_Party::ACTION_OUTSIDE, $target);
 		$location->onEnter($party->getLeader());
 		
 		# TODO: Announce it!
