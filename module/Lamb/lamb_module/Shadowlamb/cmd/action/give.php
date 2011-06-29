@@ -22,7 +22,7 @@ final class Shadowcmd_give extends Shadowcmd
 			return false;
 		}			
 		
-		return self::giveItem($player, $target, $args[1], (isset($args[3])?intval($args[3],10):1) );
+		return self::giveItem($player, $target, $args[1], (isset($args[2])?intval($args[2],10):1) );
 	}
 	
 	public static function giveItem(SR_Player $player, SR_Player $target, $id, $amt=1)
