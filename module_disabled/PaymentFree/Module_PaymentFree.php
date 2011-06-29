@@ -21,7 +21,7 @@ final class Module_PaymentFree extends GWF_PaymentModule
 	{
 		$action = GWF_WEB_ROOT.'index.php?mo=PaymentFree&me=Pay';
 		$hidden = GWF_Form::hidden('gwf_token', $order->getOrderToken());
-		return Module_Payment::tinyform('Free', 'img/'.GWF_ICON_SET.'buy_free.gif', $action, $hidden);
+		return Module_Payment::tinyform('Free', 'img/'.GWF_ICON_SET.'buy_free.png', $action, $hidden);
 	}
 	
 	public function canAfford($user, $price)

@@ -35,7 +35,7 @@ final class Module_PaymentBank extends GWF_PaymentModule
 	{
 		$action = GWF_WEB_ROOT.'index.php?mo=PaymentBank&me=Pay';
 		$hidden = GWF_Form::hidden('gwf_token', $order->getOrderToken());
-		return Module_Payment::tinyform('Bank Transaction', 'img/'.GWF_ICON_SET.'buy_bank.gif', $action, $hidden);
+		return Module_Payment::tinyform('Bank Transaction', 'img/'.GWF_ICON_SET.'buy_bank.png', $action, $hidden);
 	}
 	
 	###############################

@@ -55,7 +55,7 @@ final class Module_PaymentAlertpay extends GWF_PaymentModule
 			GWF_Form::hidden('ap_cancelurl', Common::getAbsoluteURL($gdo->getOrderCancelURL($user), false));
 			
 //		echo GWF_HTML::display($hidden);
-		return Module_Payment::tinyform('pay_ap', 'img/'.GWF_ICON_SET.'buy_ap.gif', $action, $hidden);
+		return Module_Payment::tinyform('pay_ap', 'img/'.GWF_ICON_SET.'buy_ap.png', $action, $hidden);
 	}
 	
 	

@@ -70,9 +70,9 @@ a img { border: none; }
 .gwf_btn_trashcan { background: url(../../../img/default/lifebuoy.png); }
 .gwf_btn_bell { background: url(../../../img/default/bell.png); }
 .gwf_btn_translate { background: url(../../../img/default/google_16.png); }
-.gwf_btn_thumbsup { background: url(../../../img/default/thumbs_up.gif); }
-.gwf_btn_thumbsdown { background: url(../../../img/default/thumbs_down.gif); }
-.gwf_btn_thanks { background: url(../../../img/default/thanks.gif); }
+.gwf_btn_thumbsup { background: url(../../../img/default/thumbs_up.png); }
+.gwf_btn_thumbsdown { background: url(../../../img/default/thumbs_down.png); }
+.gwf_btn_thanks { background: url(../../../img/default/thanks.png); }
 .gwf_btn_link { background: url(../../../img/default/arrow_right.png); }
 .gwf_btn_prev { background: url(../../../img/default/arrow_left.png); }
 .gwf_btn_next { background: url(../../../img/default/arrow_right.png); }
@@ -91,10 +91,10 @@ a img { border: none; }
 	height: 16px;
 	display: inline-block;
 }
-.gwf_th_asc { background: url(../../../img/default/arrow_up.gif) no-repeat; }
-.gwf_th_desc { background: url(../../../img/default/arrow_down.gif) no-repeat; }
-.gwf_th_asc_sel { background: url(../../../img/default/arrow_up_sel.gif) no-repeat; }
-.gwf_th_desc_sel { background: url(../../../img/default/arrow_down_sel.gif) no-repeat; }
+.gwf_th_asc { background: url(../../../img/default/arrow_up.png) no-repeat; }
+.gwf_th_desc { background: url(../../../img/default/arrow_down.png) no-repeat; }
+.gwf_th_asc_sel { background: url(../../../img/default/arrow_up_sel.png) no-repeat; }
+.gwf_th_desc_sel { background: url(../../../img/default/arrow_down_sel.png) no-repeat; }
 
 
 
@@ -109,7 +109,7 @@ a img { border: none; }
 
 /*
 .free_pay {
-	background: url(../../../img/default/buy_gwf.gif);
+	background: url(../../../img/default/buy_gwf.png);
 	width: 96px;
 	height: 64px;
 }*/
