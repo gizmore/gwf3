@@ -2079,7 +2079,11 @@ class SR_Player extends GDO
 	{
 		if ($this->isRunner())
 		{
-			$this->saveOption(self::DEAD, true);
+			# Forever a dead?
+			if ( ($killer->isNPC()) || ($killer->isRunner()) )
+			{
+				$this->saveOption(self::DEAD, true);
+			}
 		}
 		$this->announceKilled($killer);
 	}
