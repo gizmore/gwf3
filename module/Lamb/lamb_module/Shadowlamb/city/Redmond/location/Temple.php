@@ -11,12 +11,12 @@ final class Redmond_Temple extends SR_School
 	{
 		$p = $player->getTemp(Redmond_Teacher::TEMP_PISSED, 0) * 150;
 		return array(
-			array('magic', 2500+$p),
-			array('calm', 2500+$p),
-			array('goliath', 2500+$p),
-			array('hawkeye', 2000+$p),
-			array('hummingbird', 2500+$p),
-			array('turtle', 3500+$p),
+			array('magic', 1000+$p),
+			array('calm', 2000+$p),
+			array('goliath', 1000+$p),
+			array('hawkeye', 1000+$p),
+			array('hummingbird', 1500+$p),
+			array('turtle', 2500+$p),
 			array('firebolt', 1500+$p),
 		);
 	}
