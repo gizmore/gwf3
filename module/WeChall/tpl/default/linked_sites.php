@@ -10,6 +10,7 @@ if (count($tVars['linked']) > 0)
 	$headers = array(
 		array(),
 		array($tLang->lang('th_site_name'), 'site_name', 'ASC'),
+		array($tLang->lang('th_challs_solved'), 'regat', 'DESC'),
 		array($tLang->lang('th_site_challcount'), 'site_challcount', 'DESC'),
 		array($tLang->lang('th_auto_update')),
 		array(),
@@ -43,6 +44,7 @@ if (count($tVars['linked']) > 0)
 		echo GWF_Table::rowStart();
 		echo GWF_Table::column($site->displayStatus());
 		echo GWF_Table::column($site->displayIcon(1.0).'&nbsp;'.$site->displayLink());
+		echo GWF_Table::column($regat->getVar('regat_challsolved'), 'gwf_num');
 		echo GWF_Table::column($site->getVar('site_challcount'), 'gwf_num');
 		echo GWF_Table::column($site->displayAutoUpdate());
 		echo GWF_Table::column($btn_update);

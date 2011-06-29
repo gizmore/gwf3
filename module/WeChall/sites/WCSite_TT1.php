@@ -27,7 +27,7 @@ final class WCSite_TT1 extends WC_Site
 		
 		$this->updateSite($data[2], $usercount, $challcount);
 		
-		return array($data[1], $data[0]);
+		return array($data[1], $data[0], -1);
 	}
 }
 ?>

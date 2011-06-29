@@ -25,7 +25,7 @@ final class WCSite_Rankk extends WC_Site
 		
 		$this->updateSite($data[2], $usercount, $challcount);
 		
-		return array($data[1], $data[4]);
+		return array($data[1], $data[4], -1);
 	}
 }
 ?>

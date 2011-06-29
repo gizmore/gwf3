@@ -27,7 +27,7 @@ class WCSite_Yash extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($score, $rank);
+		return array($score, $rank, -1);
 	}
 }
 ?>

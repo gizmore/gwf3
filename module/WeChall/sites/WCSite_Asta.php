@@ -21,7 +21,7 @@ class WCSite_Asta extends WC_Site
 		
 		$this->updateSite($challcount, $usercount, $challcount);
 		
-		return array($onsitescore, -1);
+		return array($onsitescore, -1, -1);
 	}
 }
 ?>

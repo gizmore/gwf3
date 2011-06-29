@@ -23,7 +23,7 @@ final class WCSite_RCode extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($onsitescore, -1);
+		return array($onsitescore, -1, -1);
 	}
 }
 ?>

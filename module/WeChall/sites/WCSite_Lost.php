@@ -22,7 +22,7 @@ class WCSite_Lost extends WC_Site
 		
 		$this->updateSite($data[2], $data[3], $data[4]);
 		
-		return array($data[1], $data[0]);
+		return array($data[1], $data[0], -1);
 	}
 }
 ?>

@@ -30,7 +30,7 @@ class WCSite_HS extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($score, $rank);		
+		return array($score, $rank, -1);		
 	}
 	
 }

@@ -26,7 +26,7 @@ final class WCSite_HTS extends WC_Site
 		
 		$this->updateSite($onsitescore, $usercount, $challcount);
 		
-		return array($score, -1);
+		return array($score, -1, -1);
 	}
 }
 ?>

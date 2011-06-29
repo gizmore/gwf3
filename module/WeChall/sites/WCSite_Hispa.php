@@ -22,7 +22,7 @@ class WCSite_Hispa extends WC_Site
 		
 		$this->updateSite($challs, 0, $challs);
 		
-		return array($done, -1);
+		return array($done, -1, $done);
 	}
 }
 ?>

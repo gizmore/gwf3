@@ -25,7 +25,7 @@ class WCSite_TDH extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($onsitescore, $rank);
+		return array($onsitescore, $rank, $solved_challs);
 	}
 }
 ?>

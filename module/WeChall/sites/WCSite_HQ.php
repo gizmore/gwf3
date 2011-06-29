@@ -24,7 +24,7 @@ class WCSite_HQ extends WC_Site
 		
 		$score = round($stats[0] / $stats[1] * 10000);
 		
-		return array($score, -1);
+		return array($score, -1, -1);
 	}
 	
 }

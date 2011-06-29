@@ -21,7 +21,7 @@ class WCSite_LB extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($onsitescore, $rank);
+		return array($onsitescore, $rank, -1);
 	}
 }
 ?>

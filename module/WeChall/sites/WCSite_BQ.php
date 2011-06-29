@@ -21,7 +21,7 @@ class WCSite_BQ extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array(round($score), $rank);
+		return array(round($score), $rank, -1);
 	}
 	
 }

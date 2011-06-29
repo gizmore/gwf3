@@ -31,7 +31,7 @@ class WCSite_Mirmo extends WC_Site
 		
 		$this->updateSite($maxscore, $users, $challs);
 		
-		return array($score, $rank);
+		return array($score, $rank, -1);
 	}
 }
 ?>

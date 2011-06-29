@@ -16,7 +16,7 @@ final class WCSite_WC extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array(intval($score), (int)$rank);
+		return array(intval($score), (int)$rank, -1);
 	}
 }
 

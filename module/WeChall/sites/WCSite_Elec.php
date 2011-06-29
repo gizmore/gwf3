@@ -25,7 +25,7 @@ final class WCSite_Elec extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array(round($percent * $maxscore), -1);
+		return array(round($percent * $maxscore), -1, -1);
 	}
 }
 ?>

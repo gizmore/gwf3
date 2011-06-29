@@ -31,7 +31,7 @@ final class WCSite_W3C extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($onsitescore, $rank);
+		return array($onsitescore, $rank, $challssolved);
 	}
 }
 ?>

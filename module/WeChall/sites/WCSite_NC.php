@@ -34,7 +34,7 @@ final class WCSite_NC extends WC_Site
 		
 		$this->updateSite($back[2], $usercount, $challcount);
 
-		return array($back[1], $ranking);
+		return array($back[1], $ranking, -1);
 	}
 }
 

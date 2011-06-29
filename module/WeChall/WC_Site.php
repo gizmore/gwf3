@@ -926,6 +926,7 @@ class WC_Site extends GDO
 		# OnsiteScore Change
 		$new_score = Common::clamp((int)$stats[0], 0, $site->getOnsiteScore());
 		$onsiterank = Common::clamp((int)$stats[1], -1);
+		$challs_solved = (int) $stats[2];
 		
 		# Save OSR flag
 		$newosr = $onsiterank >= 0;
@@ -949,7 +950,7 @@ class WC_Site extends GDO
 		// if onlink is false and we have a 0 score, do not update further.
 		if ( ($new_score != $regat->getOnsiteScore()) || ($onlink === true && $new_score==0 ) ) {
 			// do update events...
-			return $site->onUpdateUserB($user, $regat, $new_score, $recalc_scores, $onlink);
+			return $site->onUpdateUserB($user, $regat, $new_score, $recalc_scores, $onlink, $challs_solved);
 		}
 		
 		return new GWF_Result(WC_HTML::lang('msg_no_change'), false);
@@ -965,7 +966,7 @@ class WC_Site extends GDO
 	 * @param boolean $onlink
 	 * @return GWF_Result
 	 */
-	private function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false)
+	private function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false, $challs_solved=-1)
 	{
 		$old_score = $regat->getOnsiteScore();
 		$old_totalscore = $this->calcScore($regat);
@@ -982,6 +983,7 @@ class WC_Site extends GDO
 			'regat_solved' => $solved,
 			'regat_onsitescore' => $new_score,
 			'regat_lastdate' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+			'regat_challsolved' => $challs_solved,
 		));
 		if ($recalc_scores)
 		{

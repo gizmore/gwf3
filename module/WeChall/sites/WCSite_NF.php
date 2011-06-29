@@ -24,7 +24,7 @@ class WCSite_NF extends WC_Site
 		
 		$this->updateSite($challcount, $usercount, $challcount);
 		
-		return array($score, $rank);
+		return array($score, $rank, $score);
 	}
 }
 
