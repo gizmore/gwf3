@@ -50,10 +50,10 @@ div#headnavi {
 	margin-right: 5px;*/
 }
 div#details {
-	height: 140px;
+/*	height: 140px;*/
 /*	height: auto; */
 	padding: 5px;
-	overflow: auto;
+/*	overflow: auto;*/
 }
 div#body {
 	width: 100%;

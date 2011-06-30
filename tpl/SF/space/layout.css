@@ -40,5 +40,5 @@ div#copyright {
 	background:#181818 url('./images/copyright.png') no-repeat;
 }
 div#footer {
-	background:#181818 url('./images/footer.png') fixed no-repeat center bottom;
+	background:#181818 url('./images/footer.png');
 }

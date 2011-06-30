@@ -22,9 +22,9 @@ class SF {
 	# nothing to worry about
 	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
 	public function getWelcomeComment() { 
-		if(GWF_Webspider::getSpider() !== false) {
-			return '<!--Hi '.htmlspecialchars(GWF_Webspider::getSpider()->displayUsername()).'-->'; 
-		} elseif(self::$_User->isAdmin()) {
+		if(true === self::$_User->isWebspider()) {
+			return '<!--Hi '.htmlspecialchars(self::$_User->displayUsername()).'-->'; 
+		} elseif(true === self::$_User->isAdmin()) {
 			return '<!-- Welcome Back Admin! -->';
 		}
 		return "<!--Can you see the sourcecode? Great! -->\0\n";
@@ -57,6 +57,7 @@ class SF {
 		}
 	}
 	public function lang($key, $args=NULL) { return self::$_Lang->lang($key, $args); }
+	public function langA($var, $key, $args=NULL) { return self::$_Lang->langA($var, $key, $args); }
 	public function displayNavi($side) { return SF_Navigation::display_navigation($side); }
 	public function getGreeting() { return GWF_SF_Utils::greeting(); }
 	public function getMoMe($mome)
@@ -85,24 +86,18 @@ class SF {
 	}
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
-	public function getPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
+	public function getPath() { return htmlspecialchars($_SERVER['REQUEST_URI']); }
 	public function getDesign() { return GWF_SF_DEFAULT_DESIGN; }
 	public function getLayout() { return GWF_SF_DEFAULT_LAYOUT; }
 	public function getFormaction($key) { return self::$_formaction[$key]; }
 	public function getLastURL() { return GWF_Session::getLastURL(); }
 	public function getDayinfos() {
 		$lang = self::$_Lang;
-		$args = array(
-			'dayname' => $lang->langA('daynames', date('w')),
-			'day' => date('w'),
-			'month' => date('n'),
-			'monthname' => $lang->langA('monthnames', date('n')),
-			'year' => date('Y')
-		);
+		$args = array( $lang->langA('daynames', date('w')), date('w'), $lang->langA('monthnames', date('n')), date('n'), date('Y'));
 		return $lang->lang('today_is_the', $args);
 	}
 
-	public function is_details_displayed() { return false; }
+	public function is_details_displayed() { return true === self::$_User->isAdmin(); }
 	public function is_shell_displayed() { return !$this->getMoMe('SF_Shell'); }
 	public function is_base_displayed() { return (isset($_GET['fancy']) || $_GET['me'] == 'Challenge') ? false : true; }
 	public function is_navi_displayed($navi) {
@@ -133,11 +128,28 @@ class SF {
 	}
 	
 	public function getIP($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_ipaddress() : $cmp === GWF_SF_SurferInfos::get_ipaddress(); }
-	public function getOS($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_operatingsystem() : $cmp === GWF_SF_SurferInfos::get_operatingsystem(); }
-	public function getBrowser($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_browser() : $cmp === GWF_SF_SurferInfos::get_browser(); }
-	public function getProvider($cmp = NULL) { return $cmp == NULL ? GWF_SF_SurferInfos::get_provider() : $cmp === GWF_SF_SurferInfos::get_provider(); }
-	public function getCountry() {}
+	public function getOS($type = 1,$cmp = NULL) { return GWF_SF_SurferInfos::get_operatingsystem($type, $cmp); }
+	public function getBrowser($type = 1,$cmp = NULL) { return GWF_SF_SurferInfos::get_browser($type, $cmp); }
+	public function getProvider($type = 1,$cmp = NULL) { return GWF_SF_SurferInfos::get_provider($type, $cmp); }
+	public function getCountry($cmp = NULL, $id = false) { 
+		#$countryid = GWF_IP2Country::detectCountryID();
+	#	$country = GWF_Country::getByID($countryid);
+	#	$noimg = $cmp == NULL ? htmlspecialchars($country) : $cmp === htmlspecialchars($country);
+	#	return true === $id ? $countryid : $noimg;
+	}
 	public function getHostname() { return GWF_SF_SurferInfos::get_hostname(); }
 	public function getReferer() { return GWF_SF_SurferInfos::get_referer(); }
 	public function getUserAgent() { return GWF_SF_SurferInfos::get_useragent(); }
+	public function imgBrowser() { 
+		return sprintf('<img src="'.GWF_WEB_ROOT.'img/SF/Browser/16x16/%s.png" title="%s" alt="%s">',$this->getBrowser(2),$this->getBrowser(),$this->getBrowser()); 
+	}
+	public function imgOS() { 
+		return sprintf('<img height="16px" src="'.GWF_WEB_ROOT.'img/SF/OS/%s.png" title="%s" alt="%s">',$this->getOS(2),$this->getOS(),$this->getOS()); 
+	}
+	public function imgProvider() { 
+		return sprintf('<img height="16px" src="'.GWF_WEB_ROOT.'img/SF/Provider/%s.png" title="%s" alt="%s">',$this->getProvider(2),$this->getProvider(),$this->getProvider()); 
+	}
+	public function imgCountry() { 
+		#return sprintf('<img src="%s" width="24" height="24" title="%s" alt="%s"/>', GWF_WEB_ROOT.'img/country/'.$this->getCountry(NULL, true), $this->getCountry(), $this->getCountry()).PHP_EOL; 
+	}
 }

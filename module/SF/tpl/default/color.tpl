@@ -41,6 +41,7 @@ fieldset
 #inhalt p:first-letter {ldelim}
 	color: {$color['design_dark']}; 
 {rdelim}
+a,
 a.backbutton,
 div#profile a,
 div#copyright a,

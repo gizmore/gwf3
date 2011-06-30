@@ -6,6 +6,9 @@ table {
 	border-collapse:collapse;
 	border-spacing:0;
 }
+td {
+	vertical-align: top;
+}
 fieldset,img { 
 	border:0;
 }
@@ -17,7 +20,7 @@ strong{
 	font-weight:bold;
 }
 ol,ul {
-	list-style:none;
+	/*list-style:none;*/
 }
 caption,th {
 	text-align:left;

@@ -30,8 +30,8 @@ a img { border: none; }
 .gwf_button span, .gwf_pm_icon {
 	background-repeat: no-repeat;
 	display: inline-block;
-	min-height: 16px;
-	min-width: 16px;
+	min-height: 24px;
+	min-width: 24px;
 	font-size: 12px;
 	white-space: nowrap;
 	vertical-align: middle;
@@ -53,14 +53,14 @@ a img { border: none; }
 	border-color: #006;
 }
 
-.gwf_btn_add { background: url(../../../img/default/add.png); }
+.gwf_btn_add { background: url(../../../img/SF/add.png); }
 .gwf_btn_sub { background: url(../../../img/default/sub.png); }
-.gwf_btn_favorite { background: url(../../../img/default/star_2.png); }
-.gwf_btn_user { background: url(../../../img/default/user.png); }
-.gwf_btn_mail { background: url(../../../img/default/email.png); }
-.gwf_btn_edit { background: url(../../../img/default/application_edit.png); }
-.gwf_btn_reply { background: url(../../../img/default/pencil.png); }
-.gwf_btn_quote { background: url(../../../img/default/comment.png); }
+.gwf_btn_favorite { background: url(../../../img/SF/star.png); }
+.gwf_btn_user { background: url(../../../img/SF/user.png); }
+.gwf_btn_mail { background: url(../../../img/SF/email.png); }
+.gwf_btn_edit { background: url(../../../img/SF/application_edit.png); }
+.gwf_btn_reply { background: url(../../../img/SF/pencil.png); }
+.gwf_btn_quote { background: url(../../../img/SF/comment.png); }
 .gwf_btn_options { background: url(../../../img/default/cog.png); }
 .gwf_btn_delete { background: url(../../../img/default/delete.png); }
 .gwf_btn_restore { background: url(../../../img/default/hammer_screwdriver.png); }
@@ -70,31 +70,31 @@ a img { border: none; }
 .gwf_btn_trashcan { background: url(../../../img/default/lifebuoy.png); }
 .gwf_btn_bell { background: url(../../../img/default/bell.png); }
 .gwf_btn_translate { background: url(../../../img/default/google_16.png); }
-.gwf_btn_thumbsup { background: url(../../../img/default/thumbs_up.gif); }
-.gwf_btn_thumbsdown { background: url(../../../img/default/thumbs_down.gif); }
-.gwf_btn_thanks { background: url(../../../img/default/thanks.gif); }
-.gwf_btn_link { background: url(../../../img/default/arrow_right.png); }
-.gwf_btn_prev { background: url(../../../img/default/arrow_left.png); }
-.gwf_btn_next { background: url(../../../img/default/arrow_right.png); }
+.gwf_btn_thumbsup { background: url(../../../img/SF/thumbs_up.png); }
+.gwf_btn_thumbsdown { background: url(../../../img/SF/thumbs_down.png); }
+.gwf_btn_thanks { background: url(../../../img/default/thanks.png); }
+.gwf_btn_link { background: url(../../../img/SF/arrow_right.png); }
+.gwf_btn_prev { background: url(../../../img/SF/arrow_left.png); }
+.gwf_btn_next { background: url(../../../img/SF/arrow_right.png); }
 
 /** PM **/
 .gwf_pm_new { background: url(../../../img/default/bell.png); }
-.gwf_pm_old { background: url(../../../img/default/email.png); }
-.gwf_pm_read { background: url(../../../img/default/accept.png); }
+.gwf_pm_old { background: url(../../../img/SF/email.png); }
+.gwf_pm_read { background: url(../../../img/SF/accept.png); }
 .gwf_pm_unread { background: url(../../../img/default/arrow_refresh.png); }
 .gwf_pm_deleted { background: url(../../../img/default/delete.png); }
 
 
 /** GWF_Table **/
 .gwf_th_asc, .gwf_th_desc, .gwf_th_asc_sel, .gwf_th_desc_sel {
-	width: 16px;
-	height: 16px;
+	width: 24px;
+	height: 24px;
 	display: inline-block;
 }
-.gwf_th_asc { background: url(../../../img/default/arrow_up.gif) no-repeat; }
-.gwf_th_desc { background: url(../../../img/default/arrow_down.gif) no-repeat; }
-.gwf_th_asc_sel { background: url(../../../img/default/arrow_up_sel.gif) no-repeat; }
-.gwf_th_desc_sel { background: url(../../../img/default/arrow_down_sel.gif) no-repeat; }
+.gwf_th_asc { background: url(../../../img/SF/arrow_up.png) no-repeat; }
+.gwf_th_desc { background: url(../../../img/SF/arrow_down.png) no-repeat; }
+.gwf_th_asc_sel { background: url(../../../img/SF/arrow_up_sel.png) no-repeat; }
+.gwf_th_desc_sel { background: url(../../../img/SF/arrow_down_sel.png) no-repeat; }
 
 
 
@@ -109,7 +109,7 @@ a img { border: none; }
 
 /*
 .free_pay {
-	background: url(../../../img/default/buy_gwf.gif);
+	background: url(../../../img/default/buy_gwf.png);
 	width: 96px;
 	height: 64px;
 }*/
@@ -199,7 +199,7 @@ div.gwf_table table {
 .gwf_err_t, .gwf_msg_t {
 	display: inline-block;
 	position: relative;
-	top: -16px;
+	top: -24px;
 	left: 40px;
 	line-height: 30px;
 	padding: 0px 10px;
@@ -226,7 +226,7 @@ div.gwf_table table {
 	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
 }
 .gwf_messages li {
-	background: url(../../../img/default/accept.png) left center no-repeat;
+	background: url(../../../img/SF/accept.png) left center no-repeat;
 }
 
 /** Top Menu **/
@@ -270,13 +270,20 @@ table.fl tr td {
 .SF_formY ul li.last{border-bottom:0;}
 .form_hr {margin: 5px 0;}
 /*
-.SF_formY .text{width:188px; padding:3px 3px 3px 22px; border:1px solid #fff; border-top:1px solid #b3c3e3; border-left:1px solid #b3c3e3; height:15px; background:#fff url(name_icon.gif) 2px 3px no-repeat;}
-.SF_formY input#email{background:#fff url(email_icon.gif) 3px 3px no-repeat;}
-.SF_formY textarea.text{height:100px;background:#fff url(nachricht_icon.gif) 3px 3px no-repeat;}
-.SF_formY input.submit{width:90px; height:23px; cursor:pointer; border:0; background:url(button2.gif) no-repeat; color:#69c; font-weight:bold; margin-left:65px;}
+.SF_formY .text{width:188px; padding:3px 3px 3px 22px; border:1px solid #fff; border-top:1px solid #b3c3e3; border-left:1px solid #b3c3e3; height:15px; background:#fff url(name_icon.png) 2px 3px no-repeat;}
+.SF_formY input#email{background:#fff url(email_icon.png) 3px 3px no-repeat;}
+.SF_formY textarea.text{height:100px;background:#fff url(nachricht_icon.png) 3px 3px no-repeat;}
+.SF_formY input.submit{width:90px; height:23px; cursor:pointer; border:0; background:url(button2.png) no-repeat; color:#69c; font-weight:bold; margin-left:65px;}
 */
 
-input[name=email] { background-image: url(../../../img/default/email.png); background-repeat: no-repeat; padding-left: 16px;}
-input[name=username] { background-image: url(../../../img/default/user.png); background-repeat: no-repeat; padding-left: 16px;}
-input[name=password] { background-image: url(../../../img/default/key.png); background-repeat: no-repeat; padding-left: 16px;}
-textarea[name=message] { background-image: url(../../../img/default/comment.png); background-repeat: no-repeat; padding-left: 16px;}
+input[name=email] { background-image: url(../../../img/SF/email.png); background-repeat: no-repeat; padding-left: 24px!important;}
+input[name=username] { background-image: url(../../../img/SF/user.png); background-repeat: no-repeat; padding-left: 24px!important;}
+input[name=password] { background-image: url(../../../img/default/key.png); background-repeat: no-repeat; padding-left: 24px!important;}
+textarea[name=message] { background-image: url(../../../img/SF/comment.png); background-repeat: no-repeat; padding-left: 24px!important;}
+
+input {
+	-webkit-background-size: 16px 16px; 
+	-khtml-background-size: 16px 16px; 
+	-o-background-size: 16px 16px;
+	background-repeat: no-repeat;
+}

@@ -38,7 +38,6 @@ div.navigation > ol.navi > li.sec > ul > li {
 **  CATEGORY LI's **
 ********************/
 div.navigation > ol.navi > li.sec > ul > li.cat  {
-
 	padding-left: 5px;
 	border-radius: 10px;
 	border: thin solid #131313;
@@ -58,7 +57,9 @@ div.navigation > ol.navi > li.sec > ul > li.cat > ul {
 div.navigation > ol.navi > li.sec:target > ul > li.cat > ul,
 div.navigation > ol.navi > li.sec > ul > li.cat:target > ul,
 div.navigation > ol.navi > li.sec:hover > ul > li.cat > ul ,
-div.navigation > ol.navi > li.sec > ul > li.cat:hover > ul {
+div.navigation > ol.navi > li.sec > ul > li.cat:hover > ul,
+div.navigation > ol.navi > li.sec > ul > li.cat > ul
+{
 	display: block;
 	visibility: visible;
 }

@@ -3,7 +3,7 @@
     .--.      _____________________________________________________________
    |o_o |    /    WELCOME TO       {$SF->lang($SF->getGreeting())}                            \
    |:_/ | --&lt;|       WWW.FLORIAN     {$SF->getDayinfos()}|
-  //   \ \   \           BEST.DE !!!  Es ist {date('G:i:s')} Uhr                   /
+  //   \ \   \           BEST.DE !!!  Es ist {date('G:i:s')} Uhr                   / {*$days_to_weekend*} {*sternzeichen*}
  (|     | )   --------------------------------------------------------------
 /'\_   _/`\ type in ´help´ for
 \___)=(___/  a list of commands!
@@ -14,7 +14,7 @@
 	</p>
 	<p class="shell_output">
 		{$output}
-		<br>
+		<br/>
 	</p>
 	<form method="GET" action="{$SF->getFormaction('shell')}">
 		<p class="shell">
@@ -24,7 +24,7 @@
 			<input type="hidden" name="me" value="Shell">
 			<input type="text" size="8" value="cmd" name="cmd" class="shell border">
 			<input type="submit" value=" " name="submit" class="shell">
-			<br><br>
+			<br/><br/>
 		</p>
 	</form>
 	
