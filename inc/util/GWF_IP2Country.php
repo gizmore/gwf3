@@ -33,15 +33,10 @@ final class GWF_IP2Country extends GDO
 	
 	public static function detectCountryID()
 	{
-		if (self::$detectedCountry !== true) {
-			if (self::$detectedCountry === false) {
-				return 0;
-			}
-			return self::$detectedCountry->getVar('ip2c_cid');
-		}
-		$ip = GWF_IP6::getIP(GWF_IP6::UINT_32);
-		if (false === (self::$detectedCountry = self::table(__CLASS__)->selectVar('ip2c_cid', "ip2c_start<='$ip' AND ip2c_end>='$ip'"))) {
-			return false;
+		if (self::$detectedCountry === true)
+		{
+			$ip = GWF_IP6::getIP(GWF_IP6::UINT_32);
+			self::$detectedCountry = self::table(__CLASS__)->selectVar('ip2c_cid', "ip2c_start<='$ip' AND ip2c_end>='$ip'");
 		}
 		return self::$detectedCountry;
 	}
