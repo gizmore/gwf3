@@ -13,11 +13,11 @@ if (!defined('GWF_HAVE_CONFIG'))
 $root = GWF_WEB_ROOT_NO_LANG;
 if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
 {
-	if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2}/)#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
+	if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
 	{
-		if ($matches[1] !== 'pm/') # Grr /pm/ is not a lang.
+		if (strpos(';'.GWF_SUPPORTED_LANGS.';', $matches[1]) !== false)
 		{
-			$root .= $matches[1]; # web_root is lang extended
+			$root .= $matches[1].'/'; # web_root is lang extended
 		}
 	}
 }
