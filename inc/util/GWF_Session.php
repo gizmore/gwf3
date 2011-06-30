@@ -49,6 +49,7 @@ final class GWF_Session extends GDO
 	public static function &get($var) { return self::$SESSDATA[$var]; }
 	public static function getOrDefault($var, $default=false) { return isset(self::$SESSDATA[$var]) ? self::$SESSDATA[$var] : $default; }
 	public static function getLastURL() { return self::$SESSION->getVar('sess_lasturl'); }
+	public static function getCurrentURL() { return isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI']; }
 	public static function getUserID() { return self::$USER === false ? '0' : self::$USER->getID(); }
 	public static function isLoggedIn() { return self::$USER !== false; }
 	############
@@ -213,7 +214,7 @@ final class GWF_Session extends GDO
 		
 		# Save new last url
 		if ( $store_last_url && (!isset($_GET['ajax'])) ) {
-			$lasturl = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
+			$lasturl = self::getCurrentURL();
 			if ($lasturl !== self::$SESSION->getVar('sess_lasturl'))
 			{
 				$data['sess_lasturl'] = $lasturl;
