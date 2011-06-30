@@ -423,7 +423,7 @@ final class WC_HTML
 	public static function displayMenuLangSelect(Module_WeChall $module)
 	{
 //		return '<li id="wc_lang_sel">'.GWF_Website::getSwitchLangSelect(true).'</li>'.PHP_EOL;
-		return '<li id="wc_lang_sel">'.''.'</li>'.PHP_EOL;
+		return '<li id="wc_lang_sel">'.GWF_LangSwitch::select().'</li>'.PHP_EOL;
 	}
 
 	public static function displayMenuNews(Module_WeChall $module)

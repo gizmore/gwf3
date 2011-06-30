@@ -142,7 +142,13 @@ final class GWF_Language extends GDO
 		return self::$LANG_NAMES->lang($this->getVar('lang_name'));
 	}
 	
-	
-	
+	/**
+	 * Get an array of all supported language.
+	 * @return array|false
+	 */
+	public static function getSupported()
+	{
+		return GDO::table(__CLASS__)->selectObjects('*', 'lang_options&1');
+	}
 }
 ?>
