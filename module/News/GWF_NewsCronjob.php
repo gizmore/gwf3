@@ -82,7 +82,7 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 			self::notice("Sending EMail to $receive_mail ($iso)");
 			
 			$title = GWF_HTML::display($ts[$uselid]['newst_title']);
-			$message = GWF_HTML::display($ts[$uselid]['newst_message']);
+			$message = GWF_Message::display($ts[$uselid]['newst_message'], true, false, false);
 			$username = GWF_HTML::display($rec->getUsername());
 			$unsign = $unsign = $rec->getUnsignAnchor();
 			$body = $module->langISO($iso, 'newsletter_wrap', $username, $unsign, $title, $message);
