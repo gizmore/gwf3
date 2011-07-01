@@ -10,25 +10,23 @@ final class Delaware_Ares extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Knife'),
-			array('Stiletto'),
-			array('SamuraiSword'),
-			array('Flashbang'),
-			array('AresLightFire'),
-			array('AresPredator'),
-			array('AresViper'),
-			array('Fichetti'),
-			array('RugerWarhawk'),
-			array('LeatherVest'),
-			array('ChainVest'),
-			array('KevlarVest'),
-			array('FirstAid'),
 			array('Ammo_5mm'),
 			array('Ammo_7mm'),
 			array('Ammo_9mm'),
 			array('Ammo_11mm'),
-			array('Ammo_Shotgun'),
 			array('Ammo_Arrow'),
+			array('Ammo_Shotgun'),
+			array('Stimpatch'),
+			array('FirstAid'),
+			array('AresViper'),
+			array('Fichetti'),
+			array('RugerWarhawk'),
+			array('KevlarVest', 90.0, 55000),
+			array('KevlarHelmet', 90.0, 35000),
+			array('KevlarLegs', 90.0, 25000),
+			array('KevlarShield', 90.0, 35000),
+			array('LightBodyArmor', 10.0, 75000),
+			array('CombatHelmet', 10.0, 25000),
 		);
 	}
 	
