@@ -193,7 +193,7 @@ final class Module_PM extends GWF_Module
 		$count = GDO::table('GWF_PM')->countRows("pm_from=$uid AND pm_date>'$cut'");
 		$max = $this->calcPMLimit($user);
 		if ($count >= $max) {
-			return $this->lang('err_limit', $max, GWF_Time::humanDuration($within));
+			return $this->lang('err_limit', array($max, GWF_Time::humanDuration($within)));
 		}
 		return false;
 	}
