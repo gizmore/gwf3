@@ -8,12 +8,10 @@ final class Redmond_Subway extends SR_Subway
 	
 	public function getSubwayTargets(SR_Player $player)
 	{
-		$p = $player->getParty();
-		$back = array();
-		if ($p->getMin('level') >= 8) {
-			$back[] = array('Seattle_Subway', 100, 300);
-		}
-		return $back;
+		return array(
+			array('Seattle_Subway', 100, 300, 8),
+//			array('Delaware_Subway', 200, 600, 12),
+		);
 	}
 	
 	public function onEnter(SR_Player $player)

@@ -86,7 +86,8 @@ class SR_Quest extends GDO
 	
 	public function onSolve(SR_Player $player)
 	{
-		if ($this->isDone($player)) {
+		if ($this->isDone($player))
+		{
 			$player->message('You already solved this quest (should not happen).');
 			return false;
 		}
@@ -94,6 +95,7 @@ class SR_Quest extends GDO
 		$this->saveOption(self::DONE, true);
 		$player->increase('sr4pl_quests_done', 1);
 		$this->onQuestSolve($player);
+		$this->onReward($player);
 		$player->modify();
 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
 		return true;
@@ -304,6 +306,50 @@ class SR_Quest extends GDO
 				break;
 		}
 		return false;
+	}
+	
+	##############
+	### Reward ###
+	##############
+	public function getRewardXP() { return 0; }
+	public function getRewardNuyen() { return 0; }
+	public function getRewardItems() { return array('Cake'); }
+	public function displayRewardNuyen() { return Shadowfunc::displayPrice($this->getRewardNuyen()); }
+	
+	public function onReward(SR_Player $player)
+	{
+		$nystr = $xpstr = $itemstr = '';
+		
+		# Ny
+		if (0 < ($ny = $this->getRewardNuyen()))
+		{
+			$nystr = Shadowfunc::displayPrice($ny);
+		}
+		
+		# XP
+		if (0 < ($xp = $this->getRewardXP()))
+		{
+			$xpstr = $xp.' XP';
+		}
+
+		# Items
+		$items = $this->getRewardItems();
+		$giveitems = array();
+		foreach ($items as $itemname)
+		{
+			if (false !== ($item = SR_Item::createByName($itemname)))
+			{
+				$itemstr .= ', '.$itemname;
+				$giveitems[] = $item;
+			}
+		}
+		$player->giveItems($giveitems);
+		
+		$out = $nystr.$xpstr.$itemstr;
+		if ($out !== '')
+		{
+			$player->message(sprintf('You received %s.', substr($out, 2)));
+		}
 	}
 }
 ?>

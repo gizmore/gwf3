@@ -1,7 +1,7 @@
 <?php
 final class Delaware extends SR_City
 {
-	public function getImportNPCS() { return array('Redmond_Ork','Redmond_Ueberpunk','Redmond_Goblin'); }
+	public function getImportNPCS() { return array('Redmond_Ork','Redmond_Ueberpunk','Seattle_Cop','Seattle_Ninja'); }
 	public function getArriveText() { return 'You arrive in Delaware. Meanwhile it\'s known for it\'s automobile industry.'; }
 	public function getSquareKM() { return 12; }
 	public function onEvents(SR_Party $party)

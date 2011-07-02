@@ -66,8 +66,8 @@ final class Account_ChangeEmail extends GWF_Method
 	private function getChangeMailForm(Module_Account $module, GWF_AccountChange $ac)
 	{
 		$data = array(
-			'email' => array(GWF_Form::STRING, '', $module->lang('th_email_new'), 48, '', '', true),
-			'email_re' => array(GWF_Form::STRING, '', $module->lang('th_email_re'), 48, '', '', true),
+			'email' => array(GWF_Form::STRING, '', $module->lang('th_email_new')),
+			'email_re' => array(GWF_Form::STRING, '', $module->lang('th_email_re')),
 			'changemail' => array(GWF_Form::SUBMIT, $module->lang('btn_changemail')),
 			'token' => array(GWF_Form::HIDDEN, $ac->getVar('token')),
 			'userid' => array(GWF_Form::HIDDEN, $ac->getVar('userid')),

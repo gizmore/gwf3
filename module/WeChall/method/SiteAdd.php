@@ -32,8 +32,8 @@ final class WeChall_SiteAdd extends GWF_Method
 	public function getForm(Module_WeChall $module)
 	{
 		$data = array(
-			'site_name' => array(GWF_Form::STRING, '', $module->lang('th_site_name'), 24),
-			'site_classname' => array(GWF_Form::STRING, '', $module->lang('th_site_classname'), 16),
+			'site_name' => array(GWF_Form::STRING, '', $module->lang('th_site_name')),
+			'site_classname' => array(GWF_Form::STRING, '', $module->lang('th_site_classname')),
 			'add_site' => array(GWF_Form::SUBMIT, $module->lang('btn_add_site')),
 		);
 		return new GWF_Form($this, $data);

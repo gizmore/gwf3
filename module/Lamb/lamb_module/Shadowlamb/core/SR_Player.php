@@ -2135,5 +2135,17 @@ class SR_Player extends GDO
 		$message = sprintf('[Shadowlamb] - The %s runner %s got killed by the %s %s %s', $famous, $this->getName(), $famous2, $npchuman, $killer->getName());
 		Shadowshout::sendGlobalMessage($message);
 	}
+	
+	public function itemDurationTimer()
+	{
+		foreach ($this->getAllItems() as $item)
+		{
+			$item instanceof SR_Item;
+			if ($item->isBreaking())
+			{
+				$item->breakItem();
+			}
+		}
+	}
 }
 ?>

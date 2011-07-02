@@ -29,8 +29,8 @@ final class PasswordForgot_Form extends GWF_Method
 	private function getForm(Module_PasswordForgot $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_username'), 20),
-			'email' => array(GWF_Form::STRING, '', $module->lang('th_email'), 20),
+			'username' => array(GWF_Form::STRING, '', $module->lang('th_username')),
+			'email' => array(GWF_Form::STRING, '', $module->lang('th_email')),
 		);
 		if ($module->wantCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);

@@ -27,6 +27,7 @@ $slaps = array(
 ),
 
 'verbs' => array(
+	array('disconnects' , 60),
 	array('slaps' , 50),
 	array('blats' , 45),
 	array('blunts' , 40),
@@ -93,6 +94,7 @@ $slaps = array(
 	array('a gay', 15),
 	array('a poison', 35),
 	array('a sharp', 29),
+	array('an amazing', 40),
 ),
 
 
@@ -164,6 +166,8 @@ $slaps = array(
 	array('sabretooth', 22),
 	array('CPU', 12),
 	array('edge', 22),
+	array('drone strike', 55),
+	array('horse', 30),
 ),
 
 );

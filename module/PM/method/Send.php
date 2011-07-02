@@ -148,7 +148,7 @@ final class PM_Send extends GWF_Method
 	private function getForm(Module_PM $module)
 	{
 		$data = array(
-			'title' => array(GWF_Form::STRING, $this->getFormTitle($module), $module->lang('th_pm_title'), 32),
+			'title' => array(GWF_Form::STRING, $this->getFormTitle($module), $module->lang('th_pm_title')),
 			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage($module), $module->lang('th_pm_message')),
 			'ignore' => array(GWF_Form::VALIDATOR),
 			'limits' => array(GWF_Form::VALIDATOR)

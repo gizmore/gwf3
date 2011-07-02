@@ -32,7 +32,7 @@ foreach ($tVars['result'] as $row)
 	echo GWF_Table::column($user->displayCountryFlag(false));
 	echo GWF_Table::column($user->displayProfileLink());
 	if (isset($_GET['minlevel'])) { echo GWF_Table::column($row['user_level'], 'gwf_num'); }
-	if (isset($_GET['hasmail'])||isset($_GET['email'])) { echo GWF_Table::column($user->displayEMailLink()); }
+	if (isset($_GET['hasmail'])||isset($_GET['email'])) { echo GWF_Table::column($user->displayEMail()); }
 	if (isset($_GET['haswww'])) { $a = htmlspecialchars($row['prof_website']); echo GWF_Table::column(sprintf('<a href="%s">%s</a>',$a,$a)); }
 	if (isset($_GET['icq'])) { echo GWF_Table::column(htmlspecialchars($row['prof_icq']), 'gwf_num'); }
 	if (isset($_GET['msn'])) { echo GWF_Table::column(htmlspecialchars($row['prof_msn']), 'gwf_num'); }

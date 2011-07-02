@@ -106,7 +106,7 @@ final class Download_Download extends GWF_Method
 	{
 		$data = array(
 			'name'=> array(GWF_Form::SSTRING, $dl->getVar('dl_filename', ''), $module->lang('th_dl_filename')),
-			'token' => array(GWF_Form::STRING, '', $module->lang('th_token'), GWF_DownloadToken::TOKEN_LEN ),
+			'token' => array(GWF_Form::STRING, '', $module->lang('th_token')),
 			'dl_token' => array(GWF_Form::SUBMIT, $module->lang('btn_download')),
 		);
 		return new GWF_Form($this, $data);

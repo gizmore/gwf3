@@ -766,7 +766,8 @@ class WC_Site extends GDO
 		$usercount = (int) $usercount;
 		$challcount = (int) $challcount;
 		
-		if (($this->getOnsiteScore() === $maxscore) && ($this->getUsercount() === $usercount) && ($this->getChallcount() === $challcount)) {
+		if (($this->getOnsiteScore() === $maxscore) && ($this->getUsercount() === $usercount) && ($this->getChallcount() === $challcount))
+		{
 			return true; # no change
 		}
 		
@@ -919,7 +920,11 @@ class WC_Site extends GDO
 		}
 		
 		$stats = $site->parseStats($url);
-		if (!is_array($stats)) {
+		
+		var_dump($stats);
+		
+		if (!is_array($stats))
+		{
 			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
 		}
 		

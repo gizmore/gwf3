@@ -24,9 +24,9 @@ final class Category_Add extends GWF_Method
 	private function getForm(Module_Category $module)
 	{
 		$data = array(
-			'key' => array(GWF_Form::STRING, '', $module->lang('th_key'), GWF_Category::KEY_LENGTH),
-			'group' => array(GWF_Form::STRING, '', $module->lang('th_group'), GWF_Category::KEY_LENGTH),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add'), ''),
+			'key' => array(GWF_Form::STRING, '', $module->lang('th_key')),
+			'group' => array(GWF_Form::STRING, '', $module->lang('th_group')),
+			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
 		);
 		return new GWF_Form($this, $data);
 	}

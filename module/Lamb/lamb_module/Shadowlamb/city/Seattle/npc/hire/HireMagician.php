@@ -57,7 +57,7 @@ final class Seattle_HireMagician extends SR_HireNPC
 			case 'hire':
 				return $this->onHire($player, $price, $time);
 				
-			default: $msg = ""; break;
+			default: $msg = "Hello chummer, need a partner?"; break;
 		}
 		$this->reply($msg);
 	}

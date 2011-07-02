@@ -10,7 +10,7 @@ if (count($tVars['linked']) > 0)
 	$headers = array(
 		array(),
 		array($tLang->lang('th_site_name'), 'site_name', 'ASC'),
-		array($tLang->lang('th_challs_solved'), 'regat', 'DESC'),
+		array($tLang->lang('th_regat_solved'), 'regat_challsolved', 'DESC'),
 		array($tLang->lang('th_site_challcount'), 'site_challcount', 'DESC'),
 		array($tLang->lang('th_auto_update')),
 		array(),

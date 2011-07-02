@@ -43,13 +43,13 @@ final class Forum_AddBoard extends GWF_Method
 		$data = array(
 			'parentid' => array(GWF_Form::HIDDEN, $parent->getID()),
 			'groupid' => array(GWF_Form::SELECT, $module->getGroupSelect($this->board->getGroupID()), $module->lang('th_groupid')),
-			'title' => array(GWF_Form::STRING, '', $module->lang('th_board_title'), 64),
-			'descr' => array(GWF_Form::STRING, '', $module->lang('th_board_descr'), 64),
+			'title' => array(GWF_Form::STRING, '', $module->lang('th_board_title')),
+			'descr' => array(GWF_Form::STRING, '', $module->lang('th_board_descr')),
 			'allow_threads' => array(GWF_Form::CHECKBOX, true, $module->lang('th_thread_allowed')),
 			'is_locked' => array(GWF_Form::CHECKBOX, false, $module->lang('th_locked')),
 			'guest_view' => array(GWF_Form::CHECKBOX, $parent->isGuestView(), $module->lang('th_guest_view')),
 			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $module->lang('th_guests')),
-			'add_board' => array(GWF_Form::SUBMIT, $module->lang('btn_add_board'), ''),
+			'add_board' => array(GWF_Form::SUBMIT, $module->lang('btn_add_board')),
 		);
 		return new GWF_Form($this, $data);
 	}

@@ -378,8 +378,8 @@ final class Account_Form extends GWF_Method
 		
 		$buttons = array('setup_gpg'=>$module->lang('btn_setup_gpg'), 'remove_gpg'=>$module->lang('btn_remove_gpg'));
 		$data = array(
-			'gpg_file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_gpg_key'), 0, '', $module->lang('tt_gpg_key'), false),
-			'gpg_paste' => array(GWF_Form::MESSAGE_NOBB, $old_key, $module->lang('th_gpg_key2'), 0, '', $module->lang('tt_gpg_key2'), false),
+			'gpg_file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_gpg_key'), $module->lang('tt_gpg_key')),
+			'gpg_paste' => array(GWF_Form::MESSAGE_NOBB, $old_key, $module->lang('th_gpg_key2'), $module->lang('tt_gpg_key2')),
 			'buttons' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);

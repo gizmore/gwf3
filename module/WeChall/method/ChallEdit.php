@@ -39,12 +39,12 @@ final class WeChall_ChallEdit extends GWF_Method
 			'delete' => $module->lang('btn_delete'),
 		);
 		$data = array(
-			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $module->lang('th_chall_score'), 2),
-			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $module->lang('th_chall_title'), 32),
-			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $module->lang('th_chall_tags'), 32),
-			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $module->lang('th_chall_url'), 32),
-			'solution' => array(GWF_Form::STRING, '', $module->lang('th_chall_solution'), 32),
-			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $module->lang('th_chall_creator_name'), 32),
+			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $module->lang('th_chall_score')),
+			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $module->lang('th_chall_title')),
+			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $module->lang('th_chall_tags')),
+			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $module->lang('th_chall_url')),
+			'solution' => array(GWF_Form::STRING, '', $module->lang('th_chall_solution')),
+			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $module->lang('th_chall_creator_name')),
 			'case_i' => array(GWF_Form::CHECKBOX, $chall->isCaseI(), $module->lang('th_chall_case_i')),
 			'cmd' => array(GWF_Form::SUBMITS, $buttons),
 		);

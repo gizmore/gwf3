@@ -47,7 +47,7 @@ final class Login_Form extends GWF_Method
 		if ($module->cfgCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['login'] = array(GWF_Form::SUBMIT, $module->lang('btn_login'), '');//$module->lang('th_login'));
+		$data['login'] = array(GWF_Form::SUBMIT, $module->lang('btn_login'));
 		return new GWF_Form($this, $data);
 	}
 	

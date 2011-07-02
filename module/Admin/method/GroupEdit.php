@@ -75,7 +75,7 @@ final class Admin_GroupEdit extends GWF_Method
 	{
 		$g = $this->group;
 		$data = array(
-			'group_name' => array(GWF_Form::STRING, $g->getVar('group_name'), $module->lang('th_group_name'), 24),
+			'group_name' => array(GWF_Form::STRING, $g->getVar('group_name'), $module->lang('th_group_name')),
 			'view' => array(GWF_Form::SELECT, $this->getGroupViewSelect($module, $g->getVisibleMode(), 'view'), $module->lang('th_group_sel_view')),
 			'join' => array(GWF_Form::SELECT, $this->getGroupInviteSelect($module, $g->getJoinMode(), 'join'), $module->lang('th_group_sel_join')),
 			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang', $g->getVar('group_lang')), $module->lang('th_group_lang')),

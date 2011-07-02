@@ -1,7 +1,7 @@
 <?php
 abstract class SR_Subway extends SR_Location
 {
-	# array(array($target, $price, $time))
+	# array(array($target, $price, $time, $level))
 	public abstract function getSubwayTargets(SR_Player $player);
 	
 	public function getLeaderCommands(SR_Player $player) { return array('travel'); }
@@ -17,7 +17,7 @@ abstract class SR_Subway extends SR_Location
 	
 	private function getSubwayTarget(SR_Player $player, $arg)
 	{
-		$targets = $this->getSubwayTargets($player);
+		$targets = $this->getFilteredTargets($player);
 		
 		if (is_numeric($arg))
 		{
@@ -42,16 +42,31 @@ abstract class SR_Subway extends SR_Location
 		}
 		return false;
 	}
+
+	private function getFilteredTargets(SR_Player $player)
+	{
+		$back = array();
+		$targets = $this->getSubwayTargets($player);
+		$party = $player->getParty();
+		foreach ($targets as $data)
+		{
+			list($target, $price, $time, $level) = $data;
+			if ($level <= $party->getMin('level'))
+			{
+				$back[] = $data;
+			}
+		}
+		return $back;
+	}
 	
 	private function showSubwayTargets(SR_Player $player)
 	{
 		$bot = Shadowrap::instance($player);
-		$targets = $this->getSubwayTargets($player);
 		$out = '';
 		
-		foreach ($targets as $i => $data)
+		foreach ($this->getFilteredTargets($player) as $i => $data)
 		{
-			list($target, $price, $time) = $data;
+			list($target, $price, $time, $level) = $data;
 			$out .= sprintf(', %s:%s(%s)', $i+1, $target, $price);
 		}
 		

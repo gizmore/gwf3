@@ -7,6 +7,12 @@ abstract class SR_Consumable extends SR_Usable
 	{
 		$busy = $player->isFighting() ? $this->getItemUseTime() : 0;
 		
+		if ($this->isBroken())
+		{
+			$player->message(sprintf('Your %s is broken and cannot get consumed.', $this->getItemName()));
+			return false;
+		}
+		
 		# Consume it
 		$this->onConsume($player);
 		$this->increase('sr4it_amount', -1);
@@ -38,16 +44,26 @@ abstract class SR_Consumable extends SR_Usable
 
 abstract class SR_Food extends SR_Consumable
 {
+	public function getItemDuration() { return 3600*24*7; } # 1 week.
 	public function displayType() { return 'Food'; }
 }
 
 abstract class SR_Drink extends SR_Consumable
 {
+	public function getItemDuration() { return 3600*24*64; } # 64 days.
 	public function displayType() { return 'Drink'; }
 }
 
 abstract class SR_Potion extends SR_Drink
 {
 	public function displayType() { return 'Potion'; }
+	public function onItemUse(SR_Player $player, array $args)
+	{
+		parent::onItemUse($player, $args);
+		$empty_bottle = SR_Item::createByName('EmptyBottle');
+		$player->giveItems(array($empty_bottle));
+	}
 }
+
+
 ?>

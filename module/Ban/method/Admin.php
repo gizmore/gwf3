@@ -41,8 +41,8 @@ final class Ban_Admin extends GWF_Method
 			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
 			'msg' => array(GWF_Form::MESSAGE, '', $module->lang('th_ban_msg')),
 			'ends' => array(GWF_Form::DATE_FUTURE, '20110101235959', $module->lang('th_ban_ends'), $module->lang('tt_ban_ends'), GWF_Date::LEN_SECOND, false),
-			'perm' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_perm'), 0, '', $module->lang('tt_ban_perm')),
-			'type' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_type2'), 0, '', $module->lang('tt_ban_type')),
+			'perm' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_perm'), $module->lang('tt_ban_perm')),
+			'type' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_type2'), $module->lang('tt_ban_type')),
 			'addban' => array(GWF_Form::SUBMIT, $module->lang('btn_add_ban')),
 		);
 		return new GWF_Form($this, $data);

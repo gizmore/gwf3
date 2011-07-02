@@ -161,11 +161,11 @@ final class Usergroups_Edit extends GWF_Method
 			'delete' => $module->lang('btn_delete'),
 		);
 		$data = array(
-			'name' => array(GWF_Form::STRING, $group->getVar('group_name'), $module->lang('th_name'), 24),
+			'name' => array(GWF_Form::STRING, $group->getVar('group_name'), $module->lang('th_name')),
 			'join' => array(GWF_Form::SELECT, $module->selectJoinType($group->getJoinMode()), $module->lang('th_join')),
 			'view' => array(GWF_Form::SELECT, $module->selectViewType($group->getVisibleMode()), $module->lang('th_view')),
-			'vis_grp' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_GROUP), $module->lang('th_vis_grp'), 0, '', $module->lang('tt_vis_grp')),
-			'vis_mem' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_MEMBERS), $module->lang('th_vis_mem'), 0, '', $module->lang('tt_vis_mem')),
+			'vis_grp' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_GROUP), $module->lang('th_vis_grp'), $module->lang('tt_vis_grp')),
+			'vis_mem' => array(GWF_Form::CHECKBOX, $group->isOptionEnabled(GWF_Group::VISIBLE_MEMBERS), $module->lang('th_vis_mem'), $module->lang('tt_vis_mem')),
 			'cmd' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -401,7 +401,7 @@ final class Usergroups_Edit extends GWF_Method
 	private function formDelete(Module_Usergroups $module, GWF_Group $group)
 	{
 		$data = array(
-			'del_groupname' => array(GWF_Form::STRING, '', $module->lang('th_del_groupname'), 24, '', $module->lang('tt_del_groupname'), true),
+			'del_groupname' => array(GWF_Form::STRING, '', $module->lang('th_del_groupname'), $module->lang('tt_del_groupname')),
 			'del_confirm' => array(GWF_Form::SUBMIT, $module->lang('btn_del_group', array($group->display('group_name')))),
 		);
 		return new GWF_Form($this, $data);

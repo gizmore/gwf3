@@ -46,8 +46,8 @@ final class Forum_EditBoard extends GWF_Method
 		);
 		$data = array(
 			'groupid' => array(GWF_Form::SELECT, $module->getGroupSelect($this->board->getGroupID()), $module->lang('th_groupid')),
-			'title' => array(GWF_Form::STRING, $this->board->display('board_title'), $module->lang('th_title'), 48),
-			'descr' => array(GWF_Form::STRING, $this->board->display('board_descr'), $module->lang('th_descr'), 48),
+			'title' => array(GWF_Form::STRING, $this->board->display('board_title'), $module->lang('th_title')),
+			'descr' => array(GWF_Form::STRING, $this->board->display('board_descr'), $module->lang('th_descr')),
 			'allow_threads' => array(GWF_Form::CHECKBOX, $this->board->isThreadAllowed(), $module->lang('th_thread_allowed')),
 			'guest_view' => array(GWF_Form::CHECKBOX, $this->board->isGuestView(), $module->lang('th_guest_view')),
 			'is_locked' => array(GWF_Form::CHECKBOX, $this->board->isLocked(), $module->lang('th_locked')),

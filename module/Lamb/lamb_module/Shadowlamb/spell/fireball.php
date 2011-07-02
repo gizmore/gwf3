@@ -20,13 +20,16 @@ final class Spell_fireball extends SR_CombatSpell
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
 		
+		$firebolt = $player->getSpell('firebolt');
+		$level += $firebolt === false ? 0 : $firebolt->getLevel($player);
+		
 		$damage = array();
 		foreach ($targets as $data)
 		{
 			list($pid, $d) = $data;
 			$d = Common::clamp($d, 1);
 			$target = $ep->getMemberByPID($pid);
-			$hits = $this->dice($player, $target, $level) * $level / 2;
+			$hits = $this->dice($player, $target, $level);# * $level / 2;
 			echo "Fireball hits=$hits, Distance=$d";
 			$hits /= $d;
 			echo "Fireball hits=$hits";

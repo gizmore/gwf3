@@ -768,8 +768,8 @@ final class SR_Party extends GDO
 		$this->distance[$player->getID()] = $d;
 		$this->updateMembers();
 		
-		$busy = $busy > 0 ? Shadowfunc::displayBusy($player->busy($busy)) : '';
-		$message = sprintf(' moves %sm %s and is now on position %s%s.', $move, $fwbw, $d, $busy);
+		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '';
+		$message = sprintf(' moves %sm %s and is now on position %.02fm%s.', $move, $fwbw, $d, $busy);
 		$this->message($player, $message);
 		$this->getEnemyParty()->message($player, $message);
 		return true;

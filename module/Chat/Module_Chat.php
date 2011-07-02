@@ -432,13 +432,13 @@ final class Module_Chat extends GWF_Module
 	{
 		$data = array();
 		if (false === ($nick = $this->getNickname())) {
-			$data['yournick'] = array(GWF_Form::STRING, '', $this->lang('th_yournick'), 24);
+			$data['yournick'] = array(GWF_Form::STRING, '', $this->lang('th_yournick'));
 		} else {
-			$data['yournick'] = array(GWF_Form::SSTRING, $nick, $this->lang('th_yournick'), 24);
+			$data['yournick'] = array(GWF_Form::SSTRING, $nick, $this->lang('th_yournick'));
 		}
 		$data['target'] = array(GWF_Form::HIDDEN, '', '');
-		$data['message'] = array(GWF_Form::STRING, '', $this->lang('th_message'), 24);
-		$data['post'] = array(GWF_Form::SUBMIT, $this->lang('btn_post'), '');
+		$data['message'] = array(GWF_Form::STRING, '', $this->lang('th_message'));
+		$data['post'] = array(GWF_Form::SUBMIT, $this->lang('btn_post'));
 		return new GWF_Form($this->getMethod('Page'), $data);
 	}
 }

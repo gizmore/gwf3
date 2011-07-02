@@ -48,7 +48,10 @@ final class PageBuilder_Show extends GWF_Method
 		if ($page->isOptionEnabled(GWF_Page::COMMENTS))
 		{
 			$this->mod_c = GWF_Module::loadModuleDB('Comments', true, true);
-			$this->comments = $page->getComments();
+			if (false === ($this->comments = $page->getComments()))
+			{
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			}
 			$_REQUEST['cmts_id'] = $this->comments->getID();
 			
 		}

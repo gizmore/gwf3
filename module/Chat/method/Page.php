@@ -30,12 +30,12 @@ final class Chat_Page extends GWF_Method
 	{
 		$data = array();
 		if (false === ($nick = $module->getNickname())) {
-			$data['yournick'] = array(GWF_Form::STRING, '', $module->lang('th_yournick'), 24);
+			$data['yournick'] = array(GWF_Form::STRING, '', $module->lang('th_yournick'));
 		} else {
-			$data['yournick'] = array(GWF_Form::SSTRING, $nick, $module->lang('th_yournick'), 24);
+			$data['yournick'] = array(GWF_Form::SSTRING, $nick, $module->lang('th_yournick'));
 		}
-		$data['target'] = array(GWF_Form::STRING, '', $module->lang('th_target'), 24);
-		$data['message'] = array(GWF_Form::STRING, '', $module->lang('th_message'), 64);
+		$data['target'] = array(GWF_Form::STRING, '', $module->lang('th_target'));
+		$data['message'] = array(GWF_Form::STRING, '', $module->lang('th_message'));
 		$data['post'] = array(GWF_Form::SUBMIT, $module->lang('btn_post'), '');
 		return new GWF_Form($this, $data);
 	}

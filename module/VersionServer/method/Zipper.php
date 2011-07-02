@@ -81,7 +81,7 @@ final class VersionServer_Zipper extends GWF_Method
 			$key = sprintf('mod_%s', $name);
 			$data[$key] = array(GWF_Form::CHECKBOX, $m->isEnabled(), $name);
 		}
-		$data['zipper'] = array(GWF_Form::SUBMIT, $module->lang('btn_zip'), '');
+		$data['zipper'] = array(GWF_Form::SUBMIT, $module->lang('btn_zip'));
 		
 		return new GWF_Form($this, $data);
 	}

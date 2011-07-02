@@ -107,6 +107,37 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 					$this->reply(sprintf('Hello chummer. My name is %s. As you can see i am busy. Also be quiet here!', $this->getName()));
 				}
 				break;
+				
+			case 'auris':
+				return $this->onTalkAuris($player);
+		}
+	}
+	
+	private function onTalkAuris(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Delaware_Exams5');
+		if (!$quest->isInQuest($player))
+		{
+			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tommorow.');
+		}
+		
+		$auris = $player->getInvItemByName('Auris');
+		
+		if ($auris === false)
+		{
+			$auris = SR_Item::createByName('Auris');
+			$player->message('The gnome casts a magic spell and presents you a pot of fluid Auris');
+			$this->reply("Here chummer, this is a pot of fluid Auris. Use it quick as it will turn to stone after a few minutes");
+			$player->giveItems($auris, 'library gnome');
+			$quest->resetTimer($player);
+			return true;
+		}
+		else
+		{
+			$player->message('The gnome casts a magic spell and your pot of Auris is fluid again.');
+			$quest->resetTimer($player);
+			$this->reply("Here chummer, Your Auris is fluid again. Use it quick as it will turn to stone after a few minutes");
+			return true;
 		}
 	}
 }

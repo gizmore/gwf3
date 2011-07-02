@@ -5,6 +5,7 @@ final class Item_Knife extends SR_MeleeWeapon
 	public function getItemLevel() { return 2; }
 	public function getItemWeight() { return 250; }
 	public function getItemPrice() { return 150; }
+	public function getItemRange() { return 1.4; }
 	public function getItemDescription() { return 'A long steel knife.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

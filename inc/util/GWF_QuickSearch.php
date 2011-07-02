@@ -28,7 +28,7 @@ final class GWF_QuickSearch
 	public static function getQuickSearchForm(GWF_Module $module, $caller, $use_captcha=false)
 	{
 		$data = array(
-			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), GWF_HTML::lang('term'), 24),
+			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), GWF_HTML::lang('term')),
 			'qsearch' => array(GWF_Form::SUBMIT, GWF_HTML::lang('search')),
 		);
 		return new GWF_Form($caller, $data);

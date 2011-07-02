@@ -71,8 +71,8 @@ final class News_Edit extends GWF_Method
 //		GWF_Language::setShowSupported(true);
 		$data = array(
 			'langid' => array(GWF_Form::HIDDEN, $langid),
-			'title' => array(GWF_Form::STRING, $title, $module->lang('th_title'), 30),
-			'message' => array(GWF_Form::MESSAGE, $message, $module->lang('th_message'), 30),
+			'title' => array(GWF_Form::STRING, $title, $module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, $message, $module->lang('th_message')),
 			'hidden' => array(GWF_Form::CHECKBOX, $this->news->isHidden(), $module->lang('th_hidden')),
 			'mailme' => array(GWF_Form::CHECKBOX, $this->news->isToBeMailed(), $module->lang('th_mail_me')),
 			'preview' => array(GWF_Form::SUBMIT, $module->lang('btn_preview'), ''),

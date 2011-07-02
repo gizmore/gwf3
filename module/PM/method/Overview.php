@@ -136,7 +136,7 @@ final class PM_Overview extends GWF_Method
 	private function getFormNewFolder(Module_PM $module)
 	{
 		$data = array(
-			'foldername' => array(GWF_Form::STRING, '', $module->lang('th_pmf_name'), 24, '', ''),
+			'foldername' => array(GWF_Form::STRING, '', $module->lang('th_pmf_name')),
 			'newfolder' => array(GWF_Form::SUBMIT, $module->lang('btn_new_folder')),
 		);
 		return new GWF_Form($this, $data);
@@ -155,7 +155,7 @@ final class PM_Overview extends GWF_Method
 	{
 		$data = array(
 			#'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($module, $this->getCorrespondence(), 'username_sel')),
-			'username' => array(GWF_Form::STRING, '', '', 24),
+			'username' => array(GWF_Form::STRING, ''),
 			'create' => array(GWF_Form::SUBMIT, $module->lang('btn_create')),
 		);
 		$form = new GWF_Form($this, $data);
@@ -167,7 +167,7 @@ final class PM_Overview extends GWF_Method
 		$data = array(
 			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($module, $this->getUsernamesPPM(), 'username_sel')),
 			'create' => array(GWF_Form::SUBMIT, $module->lang('btn_create')),
-			'username' => array(GWF_Form::STRING, '', '', 24),
+			'username' => array(GWF_Form::STRING),
 		);
 		$form = new GWF_Form($this, $data);
 		return $form->templateX($module->lang('ft_new_pm'), GWF_PM::getNewPMHref());

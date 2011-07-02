@@ -52,7 +52,7 @@ foreach ($tVars['sites'] as $site)
 }
 echo GWF_Table::end();
 
-echo GWF_Box::box($tLang->lang('sites_join_b', GWF_WEB_ROOT.'join_us'), $tLang->lang('sites_join_t'));
+echo GWF_Box::box($tLang->lang('sites_join_b', array(GWF_WEB_ROOT.'join_us')), $tLang->lang('sites_join_t'));
 
 if (GWF_User::isAdminS()) {
 	echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;

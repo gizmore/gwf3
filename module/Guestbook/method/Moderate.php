@@ -64,7 +64,7 @@ final class Guestbook_Moderate extends GWF_Method
 	{
 		$data = array();
 		
-		$data['title'] = array(GWF_Form::STRING, $gb->getVar('gb_title'), $module->lang('th_gb_title'), 32);
+		$data['title'] = array(GWF_Form::STRING, $gb->getVar('gb_title'), $module->lang('th_gb_title'));
 		$data['locked'] = array(GWF_Form::CHECKBOX, $gb->isLocked(), $module->lang('th_gb_locked'));
 		$data['moderated'] = array(GWF_Form::CHECKBOX, $gb->isModerated(), $module->lang('th_gb_moderated'));
 		$data['g_view'] = array(GWF_Form::CHECKBOX, $gb->isGuestViewable(), $module->lang('th_gb_guest_view'));

@@ -21,6 +21,9 @@ final class Seattle_HireDecker extends SR_HireNPC
 			'race' => 'human',
 			'gender' => 'male',
 			'strength' => rand(2, 3),
+			'pistols' => rand(2, 3),
+			'firearms' => rand(2, 3),
+			'body' => rand(3, 4),
 			'quickness' => rand(4, 5),
 			'distance' => rand(6, 8),
 			'nuyen' => rand(80, 140),
@@ -56,7 +59,7 @@ final class Seattle_HireDecker extends SR_HireNPC
 			case 'no':
 				if ($player->hasTemp(self::MANIFESTO))
 				{
-					$this->reply('Yes, no, what else?');
+					return $this->reply('Yes, no, what else?');
 				}
 				else
 				{
@@ -67,12 +70,13 @@ final class Seattle_HireDecker extends SR_HireNPC
 					$this->reply("Yes, I am a criminal. My crime is that of curiosity. My crime is that of judging people by what they say and think, not what they look like. My crime is that of outsmarting you, something that you will never forgive me for.");
 					$this->reply("I am a hacker, and this is my manifesto. You may stop this individual, but you can't stop us all... after all, we're all alike.");
 					$player->setTemp(self::MANIFESTO, 1);
+					return true;
 				}
 				break;
 			case 'hire':
-				return $this->onHire($player, $price, $time);
+				return $this->reply($this->onHire($player, $price, $time));
 				
-			default: $this->reply("Need a hacker?"); break;
+			default: return $this->reply("Need a hacker?"); break;
 		}
 	}
 }

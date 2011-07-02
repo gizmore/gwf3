@@ -1,7 +1,7 @@
 <?php
 final class Spell_teleportiii extends SR_Spell
 {
-	public function getSpellLevel() { return 3; }
+	public function getSpellLevel() { return 4; }
 	
 	const MANA_MIN = 20;
 	const MANA_PER_M = 14;

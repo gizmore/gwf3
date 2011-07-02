@@ -34,7 +34,7 @@ final class PM_Search extends GWF_Method
 		$data = array(
 			'mo' => array(GWF_Form::HIDDEN, 'PM'),
 			'me' => array(GWF_Form::HIDDEN, 'Search'),
-			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), $module->lang('searchterm'), 32),
+			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), $module->lang('searchterm')),
 			'qsearch' => array(GWF_Form::SUBMIT, $module->lang('btn_search')),
 		);
 		return new GWF_Form($this, $data);

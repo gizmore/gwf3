@@ -64,9 +64,9 @@ final class Download_Add extends GWF_Method
 			$data['price'] = array(GWF_Form::FLOAT, '0.00', $module->lang('th_dl_price'));
 		}
 		
-		$data['expire'] = array(GWF_Form::STRING, '0 seconds', $module->lang('th_dl_expire'), 12, '', $module->lang('tt_dl_expire'), false);
-		$data['guest_view'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_dl_guest_view'), 0, '', $module->lang('tt_dl_guest_view'), false);
-		$data['guest_down'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_dl_guest_down'), 0, '', $module->lang('tt_dl_guest_down'), false);
+		$data['expire'] = array(GWF_Form::STRING, '0 seconds', $module->lang('th_dl_expire'), $module->lang('tt_dl_expire'));
+		$data['guest_view'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_dl_guest_view'), $module->lang('tt_dl_guest_view'));
+		$data['guest_down'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_dl_guest_down'), $module->lang('tt_dl_guest_down'));
 		
 		$data['adult'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_adult'));
 		

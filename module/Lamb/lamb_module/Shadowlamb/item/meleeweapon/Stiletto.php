@@ -5,6 +5,7 @@ final class Item_Stiletto extends SR_MeleeWeapon
 	public function getItemLevel() { return 2; }
 	public function getItemWeight() { return 350; }
 	public function getItemPrice() { return 175; }
+	public function getItemRange() { return 0.9; }
 	public function getItemDescription() { return 'A surgical instrument. Actually not made for combat.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

@@ -38,7 +38,7 @@ final class Contact_Form extends GWF_Method
 		$user = GWF_Session::getUser();
 		$default_email = $user === false ? '' : $user->getVar('user_email');
 		$data = array(
-			'email' => array(GWF_Form::STRING, $default_email, $module->lang('th_email'), 30),
+			'email' => array(GWF_Form::STRING, $default_email, $module->lang('th_email')),
 			'message' => array(GWF_Form::MESSAGE, '', $module->lang('th_message')),
 		);
 		if ($module->isCaptchaEnabled()) {

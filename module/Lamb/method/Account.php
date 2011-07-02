@@ -40,8 +40,8 @@ final class Lamb_Account extends GWF_Method
 	private function formLink(Module_Lamb $module)
 	{
 		$data = array(
-			'player_name' => array(GWF_Form::STRING, '', $module->lang('th_player_name'), 24, '', $module->lang('tt_player_name')),
-			'player_pass' => array(GWF_Form::PASSWORD, '', $module->lang('th_player_pass'), 24, '', $module->lang('tt_player_pass')),
+			'player_name' => array(GWF_Form::STRING, '', $module->lang('th_player_name'), $module->lang('tt_player_name')),
+			'player_pass' => array(GWF_Form::PASSWORD, '', $module->lang('th_player_pass'), $module->lang('tt_player_pass')),
 			'link_player' => array(GWF_Form::SUBMIT, $module->lang('btn_link_account')),
 		);
 		return new GWF_Form($this, $data);
@@ -52,8 +52,8 @@ final class Lamb_Account extends GWF_Method
 		$user = GWF_Session::getUser();
 		$default_name = $user->getVar('user_name');
 		$data = array(
-			'create_player_name' => array(GWF_Form::STRING, $default_name, $module->lang('th_player_name'), 24, '', $module->lang('tt_player_name')),
-			'create_player_pass' => array(GWF_Form::PASSWORD, '', $module->lang('th_player_pass'), 24, '', $module->lang('tt_player_pass')),
+			'create_player_name' => array(GWF_Form::STRING, $default_name, $module->lang('th_player_name'), $module->lang('tt_player_name')),
+			'create_player_pass' => array(GWF_Form::PASSWORD, '', $module->lang('th_player_pass'), $module->lang('tt_player_pass')),
 			'create_player' => array(GWF_Form::SUBMIT, $module->lang('btn_create_account')),
 		);
 		return new GWF_Form($this, $data);

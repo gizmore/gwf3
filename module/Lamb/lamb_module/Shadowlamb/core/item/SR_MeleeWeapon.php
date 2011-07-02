@@ -28,6 +28,7 @@ abstract class SR_MeleeWeapon extends SR_Weapon
 
 abstract class SR_NinjaWeapon extends SR_MeleeWeapon
 {
+	public function displayType() { return 'Ninja Weapon'; }
 	public function getItemSubType() { return 'ninja'; }
 	public function getItemModifiersW(SR_Player $player)
 	{

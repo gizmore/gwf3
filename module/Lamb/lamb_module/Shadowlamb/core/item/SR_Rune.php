@@ -4,6 +4,7 @@ class SR_Rune extends SR_Item
 	public function displayType() { return 'Rune'; }
 	
 	public function isItemStackable() { return false; }
+	public function getItemDuration() { return 3600*24*120; } # 120 days
 	
 	const RUNE_MODIFIER = 0;
 	const RUNE_MIN_LEVEL = 1;

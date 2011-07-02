@@ -22,7 +22,7 @@ final class BAIM_SetMC extends GWF_Method
 	private function formMC(Module_BAIM $module, BAIM_MC $row)
 	{
 		$data = array(
-//			'mc' => array(GWF_Form::STRING, $row->getMC(), $module->lang('th_mc'), 32, '', $module->lang('tt_mc'), true),
+//			'mc' => array(GWF_Form::STRING, $row->getMC(), $module->lang('th_mc'), $module->lang('tt_mc')),
 			'mc' => array(GWF_Form::VALIDATOR),
 			'set' => array(GWF_Form::SUBMIT, $module->lang('menu_mc')),
 		);

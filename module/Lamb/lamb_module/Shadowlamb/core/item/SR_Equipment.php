@@ -3,6 +3,7 @@ abstract class SR_Equipment extends SR_Usable
 {
 	public function isItemStackable() { return false; }
 	public function isItemStattable() { return true; }
+	public function getItemDuration() { return 3600*24*60; } # 60 days
 	
 	public function isEquipped(SR_Player $player)
 	{
@@ -23,8 +24,15 @@ abstract class SR_Equipment extends SR_Usable
 	
 	public function onItemEquip(SR_Player $player)
 	{
-		if (false !== ($error = Shadowfunc::checkRequirements($player, $this->getItemRequirements()))) {
+		if (false !== ($error = Shadowfunc::checkRequirements($player, $this->getItemRequirements())))
+		{
 			$player->message($error);
+			return false;
+		}
+		
+		if ($this->isBroken())
+		{
+			$player->message(sprintf('Your %s is broken and needs to get repaired first.', $this->getItemName()));
 			return false;
 		}
 		
@@ -72,6 +80,7 @@ abstract class SR_Equipment extends SR_Usable
  */
 abstract class SR_StattedEquipment extends SR_Equipment
 {
+	public function getItemDuration() { return 3600*24*120; } # 60 days
 }
 
 ?>

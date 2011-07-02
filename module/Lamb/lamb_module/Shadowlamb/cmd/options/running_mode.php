@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_running_mode extends Shadowcmd
 {
+	const WORD = 'I_AM_RUNNER';
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -14,9 +16,9 @@ final class Shadowcmd_running_mode extends Shadowcmd
 		}
 		elseif (count($args) === 0) {
 			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
-			$bot->reply('Type "#rm RUNNER" to confirm.');
+			$bot->reply('Type "#rm '.self::WORD.' to confirm.');
 		}
-		elseif ( (count($args) !== 1) || ($args[0] !== 'RUNNER') ) {
+		elseif ( (count($args) !== 1) || ($args[0] !== self::WORD) ) {
 			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
 		}
 		elseif ($player->getBase('level') > 2) {

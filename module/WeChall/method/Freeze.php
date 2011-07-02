@@ -26,7 +26,7 @@ final class WeChall_Freeze extends GWF_Method
 	private function formFreeze(Module_WeChall $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name'), GWF_User::USERNAME_LENGTH),
+			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
 			'siteid' => array(GWF_Form::SELECT, $this->getSiteSelect($module), $module->lang('th_site_name')),
 			'freeze' => array(GWF_Form::SUBMIT, $module->lang('btn_freeze')),
 		);

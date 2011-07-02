@@ -7,6 +7,11 @@ if (false === ($old_user = $server->getUserFromOrigin($from))) {
 	return;
 }
 
+if ($old_user->getName() === $server->getBotsNickname())
+{
+	$server->changeNick($args[0]);
+}
+
 if (false === ($new_user = $server->getUserByNickname($nickname))) {
 	return;
 }

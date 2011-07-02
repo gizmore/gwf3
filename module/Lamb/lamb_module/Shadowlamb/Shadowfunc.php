@@ -576,7 +576,7 @@ final class Shadowfunc
 			'vampire_male' => array('Dracool','Vincent'),
 			'vampire_female' => array('Daria'),
 			'elve_male' => array('Filöen','Vincent'),
-			'elve_female' => array('Anja'),
+			'elve_female' => array('Anja', 'Joanna'),
 			'darkelve_male' => array('Noplan'),
 			'darkelve_female' => array('Noplan'),
 			'woodelve_male' => array('Noplan'),
@@ -765,6 +765,7 @@ final class Shadowfunc
 	/**
 	 * Get random loot for a player.
 	 * @param SR_Player $player
+	 * @param int $level of killed mob
 	 * @return array
 	 */
 	public static function randLoot(SR_Player $player, $level, $high_chance=array())
@@ -795,7 +796,7 @@ final class Shadowfunc
 			$total += $dc;
 		}
 
-		$chance_none = 1.80;
+		$chance_none = 1.81;
 		$chance_none -= ($player->get('luck') / 200) - ($player->getParty()->getPartyLevel() / 200);
 		$i = $chance_none;
 		while (true)
@@ -862,7 +863,14 @@ final class Shadowfunc
 	{
 		$def = SR_Item::getItem($itemname);
 		
-		$item = SR_Item::createByName($itemname, $def->getItemDefaultAmount(), true);
+		$item = SR_Item::createByName($itemname, $def->getItemDefaultAmount(), false);
+		
+		$item->setRandomDuration();
+		
+		if (false === $item->insert())
+		{
+			return false;
+		}
 		
 		if ($item instanceof SR_Rune)
 		{

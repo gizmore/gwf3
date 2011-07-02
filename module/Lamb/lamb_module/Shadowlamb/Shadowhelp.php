@@ -31,6 +31,8 @@ final class Shadowhelp
 	
 	public static function getAllHelp($player=NULL)
 	{
+		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
+		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
 			'root' => "Check out these topics",
@@ -184,6 +186,11 @@ final class Shadowhelp
 //					array(
 //						'debug' => 'Undocumented',
 //					),
+
+					'leader_cmds' => 'Some special leader commands',
+					array(
+						'kick' => 'Leader command. Usage: #kick <player>. Kick a player from you party. See #ban.',
+					),
 					
 					'guest_cmds' => 'These commands always work',
 					array(
@@ -412,7 +419,7 @@ final class Shadowhelp
 						'action_hunt' => 'This means the party is hunting another human player.',
 					),
 				
-					'xp' => "Collect ".SR_Player::XP_PER_KARMA." XP and gain 1 Karma. With Karma you can #(l)vlup.",
+					'xp' => "Collect {$xppk} XP and gain 1 Karma. With Karma you can #(l)vlup.",
 					'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
 					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",

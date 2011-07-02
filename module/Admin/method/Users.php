@@ -65,7 +65,7 @@ final class Admin_Users extends GWF_Method
 	{
 		require 'UserSearch.php';
 		$data = array(
-			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), GWF_HTML::lang('term'), 40),
+			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), GWF_HTML::lang('term')),
 			'search' => array(GWF_Form::SUBMIT, GWF_HTML::lang('search'), ''),
 		);
 		return new GWF_Form('Admin_UserSearch', $data);

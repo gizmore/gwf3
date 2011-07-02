@@ -32,7 +32,7 @@ final class Account_Delete extends GWF_Method
 	private function getForm(Module_Account $module)
 	{
 		$data = array(
-			'note' => array(GWF_Form::MESSAGE, '', $module->lang('th_accrm_note'), 0, '', '', false),
+			'note' => array(GWF_Form::MESSAGE, '', $module->lang('th_accrm_note')),
 			'delete' => array(GWF_Form::SUBMIT, $module->lang('btn_accrm')),
 		);
 		return new GWF_Form($this, $data);

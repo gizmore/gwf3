@@ -59,7 +59,7 @@ final class Guestbook_Sign extends GWF_Method
 		$user = GWF_Session::getUser();
 		
 		if ($user === false) {
-			$data['username'] = array(GWF_Form::STRING, '', $module->lang('th_gbm_username'), '', 32, true);
+			$data['username'] = array(GWF_Form::STRING, '', $module->lang('th_gbm_username'));
 		}
 		
 		if ($gb->isEMailAllowed() && $module->cfgAllowEMail()) {
@@ -73,7 +73,7 @@ final class Guestbook_Sign extends GWF_Method
 		
 		$msg = $gbe === false ? '' : $gbe->getVar('gbm_message');
 		
-		$data['message'] = array(GWF_Form::MESSAGE, $msg, $module->lang('th_gbm_message'), '', 64, true);
+		$data['message'] = array(GWF_Form::MESSAGE, $msg, $module->lang('th_gbm_message'));
 		
 		if ($user === false && $module->cfgGuestCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);

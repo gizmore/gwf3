@@ -57,9 +57,9 @@ final class Download_Edit extends GWF_Method
 			$data['price'] = array(GWF_Form::FLOAT, $dl->getVar('dl_price'), $module->lang('th_dl_price'));
 		}
 		
-		$data['expire'] = array(GWF_Form::STRING, GWF_Time::humanDuration($dl->getVar('dl_expire')), $module->lang('th_dl_expire'), 12, '', $module->lang('tt_dl_expire'), false);
-		$data['guest_view'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_VISIBLE), $module->lang('th_dl_guest_view'), 0, '', $module->lang('tt_dl_guest_view'), false);
-		$data['guest_down'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_DOWNLOAD), $module->lang('th_dl_guest_down'), 0, '', $module->lang('tt_dl_guest_down'), false);
+		$data['expire'] = array(GWF_Form::STRING, GWF_Time::humanDuration($dl->getVar('dl_expire')), $module->lang('th_dl_expire'), $module->lang('tt_dl_expire'));
+		$data['guest_view'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_VISIBLE), $module->lang('th_dl_guest_view'), $module->lang('tt_dl_guest_view'));
+		$data['guest_down'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_DOWNLOAD), $module->lang('th_dl_guest_down'), $module->lang('tt_dl_guest_down'));
 		
 		$data['adult'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::ADULT), $module->lang('th_adult'));
 		$data['huname'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::HIDE_UNAME), $module->lang('th_huname'));

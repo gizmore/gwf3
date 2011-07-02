@@ -294,6 +294,7 @@ final class Shadowrun4
 		$bot->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), SR_Player::HP_REFRESH_TIMER);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), SR_Player::MP_REFRESH_TIMER);
+//		$bot->addTimer(array(__CLASS__, 'shadowTimerItems'), 60);
 	}
 	
 	public static function initCmds($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/cmd', array(__CLASS__, 'includeFile')); }
@@ -434,6 +435,16 @@ final class Shadowrun4
 			$player instanceof SR_Player;
 			$player->refreshMPTimer();
 		}
+	}
+	
+	public static function shadowTimerItems()
+	{
+		foreach (self::$players as $player)
+		{
+			$player instanceof SR_Player;
+			$player->itemDurationTimer();
+		}
+		
 	}
 }
 ?>

@@ -63,9 +63,9 @@ final class WeChall_ChallVotes extends GWF_Method
 		}
 		
 		$data = array(
-			'dif' => array(GWF_Form::INT, $dif, $module->lang('th_dif'), 2),
-			'edu' => array(GWF_Form::INT, $edu, $module->lang('th_edu'), 2),
-			'fun' => array(GWF_Form::INT, $fun, $module->lang('th_fun'), 2),
+			'dif' => array(GWF_Form::INT, $dif, $module->lang('th_dif'), '', 2),
+			'edu' => array(GWF_Form::INT, $edu, $module->lang('th_edu'), '', 2),
+			'fun' => array(GWF_Form::INT, $fun, $module->lang('th_fun'), '', 2),
 			'vote' => array(GWF_Form::SUBMIT, $module->lang('btn_vote')),
 		);
 		return new GWF_Form($this, $data);

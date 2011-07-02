@@ -47,12 +47,12 @@ final class Forum_EditThread extends GWF_Method
 			'closed' => array(GWF_Form::CHECKBOX, $t->isClosed(), $module->lang('th_closed')),
 			'guest_view' => array(GWF_Form::CHECKBOX, $t->isGuestView(), $module->lang('th_guest_view')),
 			'invisible' => array(GWF_Form::CHECKBOX, $t->isInvisible(), $module->lang('th_invisble')),
-			'title' => array(GWF_Form::STRING, $t->getVar('thread_title'), $module->lang('th_title'), 32), 
+			'title' => array(GWF_Form::STRING, $t->getVar('thread_title'), $module->lang('th_title')), 
 			'merge' => array(GWF_Form::SELECT, $t->getMergeSelect('merge'), $module->lang('th_merge')),
 //			'move' => array(GWF_Form::GDO, $t->getBoardID(), $module->lang('th_board'), 0, 'GWF_ForumBoard'),
 			'move' => array(GWF_Form::SELECT, GWF_ForumBoardSelect::single('move', $t->getBoardID()), $module->lang('th_board')),
-			'edit' => array(GWF_Form::SUBMIT, $module->lang('btn_edit'), ''),
-			'delete' => array(GWF_Form::SUBMIT, $module->lang('th_delete'), ''),
+			'edit' => array(GWF_Form::SUBMIT, $module->lang('btn_edit')),
+			'delete' => array(GWF_Form::SUBMIT, $module->lang('th_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}

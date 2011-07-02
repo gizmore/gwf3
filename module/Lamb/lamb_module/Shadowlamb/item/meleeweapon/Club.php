@@ -5,7 +5,7 @@ final class Item_Club extends SR_MeleeWeapon
 	public function getItemLevel() { return 0; }
 	public function getItemWeight() { return 750; }
 	public function getItemPrice() { return 150; }
-	public function getItemRange() { return 0.7; }
+	public function getItemRange() { return 1.2; }
 	public function getItemDescription() { return 'A wooden club. You wonder if the humanity does evolute at all.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

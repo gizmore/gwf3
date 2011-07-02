@@ -358,7 +358,9 @@ abstract class SR_Spell
 			}
 		}
 
-		if ($out === '') {
+		if ($out === '')
+		{
+			$p->notice('The spell did not do any damage.');
 			return;
 		}
 		

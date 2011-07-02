@@ -31,8 +31,8 @@ final class Links_Search extends GWF_Method
 	private function getFormQuick(Module_Links $module)
 	{
 		$data = array(
-			'term' => array(GWF_Form::STRING, '', GWF_HTML::lang('term'), 42),
-			'search_quick' => array(GWF_Form::SUBMIT, $module->lang('btn_search'), ''),
+			'term' => array(GWF_Form::STRING, '', GWF_HTML::lang('term')),
+			'search_quick' => array(GWF_Form::SUBMIT, $module->lang('btn_search')),
 		);
 		return new GWF_Form($this, $data);
 	}

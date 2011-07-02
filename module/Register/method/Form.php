@@ -48,7 +48,7 @@ final class Register_Form extends GWF_Method
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		
-		$data['register'] = array(GWF_Form::SUBMIT, $module->lang('btn_register'), '');
+		$data['register'] = array(GWF_Form::SUBMIT, $module->lang('btn_register'));
 		
 		return new GWF_Form($this, $data);
 	}

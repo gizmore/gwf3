@@ -1,6 +1,9 @@
 <?php
 abstract class SR_Usable extends SR_Item
 {
+	public function displayType() { return 'Usable'; }
+	public function getItemDuration() { return 3600*24*360; } # 360 days
+	
 	/**
 	 * @param SR_Player $player
 	 * @param array $args

@@ -63,10 +63,10 @@ final class WeChall_SiteEdit extends GWF_Method
 	{
 		$data = array();
 		
-		$data['site_name'] = array(GWF_Form::STRING, $site->getVar('site_name'), $module->lang('th_site_name'), 24);
+		$data['site_name'] = array(GWF_Form::STRING, $site->getVar('site_name'), $module->lang('th_site_name'));
 		
 		if ($is_admin) {
-			$data['site_classname'] = array(GWF_Form::STRING, $site->getVar('site_classname'), $module->lang('th_site_classname'), 16);
+			$data['site_classname'] = array(GWF_Form::STRING, $site->getVar('site_classname'), $module->lang('th_site_classname'));
 			$data['site_basescore'] = array(GWF_Form::INT, $site->getVar('site_basescore'), $module->lang('th_site_basescore'));
 			$data['site_usercount'] = array(GWF_Form::INT, $site->getVar('site_usercount'), $module->lang('th_site_usercount'));
 			$data['site_challcount'] = array(GWF_Form::INT, $site->getVar('site_challcount'), $module->lang('th_site_challcount'));
@@ -85,7 +85,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		if ($is_admin) {
 			$data['divi0'] = array(GWF_Form::HEADLINE, $module->lang('pi_site_tags', array($site->displayTags(true))));
-			$data['site_tags'] = array(GWF_Form::STRING, $site->getVar('site_tags'), $module->lang('th_site_tags'), 32);
+			$data['site_tags'] = array(GWF_Form::STRING, $site->getVar('site_tags'), $module->lang('th_site_tags'));
 		}
 		
 		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', $site->getCountryID()), $module->lang('th_site_country2'));
@@ -98,19 +98,19 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['site_launchdate'] = array(GWF_Form::DATE, $site->getVar('site_launchdate'), $module->lang('th_site_launchdate'), '', GWF_Date::LEN_DAY);
 		
 		if ($is_admin) {
-			$data['site_authkey'] = array(GWF_Form::STRING, $site->getVar('site_authkey'), $module->lang('th_site_authkey'), 32);
+			$data['site_authkey'] = array(GWF_Form::STRING, $site->getVar('site_authkey'), $module->lang('th_site_authkey'));
 		}
 		
-		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $module->lang('th_site_xauthkey'), 32);
+		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $module->lang('th_site_xauthkey'));
 
 		$data['site_irc'] = array(GWF_Form::STRING, $site->getVar('site_irc'), $module->lang('th_site_irc'));
 		
 		$data['div2'] = array(GWF_Form::DIVIDER);
 		$data['div3'] = array(GWF_Form::HEADLINE, $module->lang('pi_site_urls'));
-		$data['site_url'] = array(GWF_Form::STRING, $site->getVar('site_url'), $module->lang('th_site_url'), 32);
-		$data['site_url_mail'] = array(GWF_Form::STRING, $site->getVar('site_url_mail'), $module->lang('th_site_url_mail'), 32);
-		$data['site_url_score'] = array(GWF_Form::STRING, $site->getVar('site_url_score'), $module->lang('th_site_url_score'), 32);
-		$data['site_url_profile'] = array(GWF_Form::STRING, $site->getVar('site_url_profile'), $module->lang('th_site_url_profile'), 32);
+		$data['site_url'] = array(GWF_Form::STRING, $site->getVar('site_url'), $module->lang('th_site_url'));
+		$data['site_url_mail'] = array(GWF_Form::STRING, $site->getVar('site_url_mail'), $module->lang('th_site_url_mail'));
+		$data['site_url_score'] = array(GWF_Form::STRING, $site->getVar('site_url_score'), $module->lang('th_site_url_score'));
+		$data['site_url_profile'] = array(GWF_Form::STRING, $site->getVar('site_url_profile'), $module->lang('th_site_url_profile'));
 		
 //		$data['site_description'] = array(GWF_Form::MESSAGE, $site->getVar('site_description'), $module->lang('th_site_description'));
 		

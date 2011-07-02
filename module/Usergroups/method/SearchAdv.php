@@ -27,12 +27,12 @@ final class Usergroups_SearchAdv extends GWF_Method
 	private function formSearch(Module_Usergroups $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name'), 20, '', '', false),
-			'minlevel' => array(GWF_Form::INT, 0, $module->lang('th_user_level'), 20, '', '', false),
-			'email' => array(GWF_Form::STRING, '', $module->lang('th_user_email'), 20, '', '', false),
-			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', Common::getPost('country')), $module->lang('th_country'), 20, '', '', false),
-			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $module->lang('th_language'), 20, '', '', false),
-			'gender' => array(GWF_Form::SELECT, GWF_Gender::select('gender', Common::getPost('gender')), $module->lang('th_gender'), 20, '', '', false),
+			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
+			'minlevel' => array(GWF_Form::INT, 0, $module->lang('th_user_level')),
+			'email' => array(GWF_Form::STRING, '', $module->lang('th_user_email')),
+			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', Common::getPost('country')), $module->lang('th_country')),
+			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $module->lang('th_language')),
+			'gender' => array(GWF_Form::SELECT, GWF_Gender::select('gender', Common::getPost('gender')), $module->lang('th_gender')),
 			'hasmail' => array(GWF_Form::CHECKBOX, false, $module->lang('th_hasmail')),
 			'haswww' => array(GWF_Form::CHECKBOX, false, $module->lang('th_haswww')),
 			'icq' => array(GWF_Form::CHECKBOX, false, $module->lang('th_icq')),
