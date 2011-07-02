@@ -94,7 +94,7 @@ final class Links_Search extends GWF_Method
 		$limit = 50;
 		$from = 0;
 		if (false === ($matches = GWF_QuickSearch::search($links, $fields, $term, "$by $dir", $limit, $from, $conditions))) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+			return $this->templateSearch($module, array(), '');
 		}
 		return $this->templateSearch($module, $matches, $term);
 	}

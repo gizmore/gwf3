@@ -47,7 +47,10 @@ final class GWF_QuickSearch
 	public static function search(GDO $gdo, array $fields, $term, $orderby='', $limit=-1, $from=0, $where='')
 	{
 		$where = $where === '' ? '' : ' AND ('.$where.')';
-		$where = self::getQuickSearchConditions($gdo, $fields, $term).$where;
+		if (false === ($conditions = self::getQuickSearchConditions($gdo, $fields, $term))) {
+			return array();
+		}
+		$where = $conditions.$where;
 		return $gdo->selectObjects('*', $where, $orderby, $limit, $from);
 	}
 	
@@ -56,7 +59,7 @@ final class GWF_QuickSearch
 //		echo $term."\n";
 		$term = trim($term);
 		if (false === ($tokens = self::search_tokenize($term))) {
-			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
+			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
 			return false;
 		}
 		# Whitelist fields
