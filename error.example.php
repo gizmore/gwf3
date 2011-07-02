@@ -3,6 +3,7 @@
  * This is an example how your error.php could look like!
  */
 require_once 'gwf3.class.php';
+$gwf = new GWF3(__FILE__, true, false);
 
 $_GET['mo'] = 'GWF';
 $_GET['me'] = 'Error';
@@ -21,7 +22,6 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 	'file' => htmlspecialchars($_SERVER['REQUEST_URI']),
 ));
 
-$gwf = new GWF3(__FILE__, true, false);
 
 # Commit Session
 $gwf->onSessionCommit();
