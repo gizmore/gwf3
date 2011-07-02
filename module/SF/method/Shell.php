@@ -133,7 +133,7 @@ final class SF_Shell extends GWF_Method
 	private function templateShell(Module_SF $module, $output, $lastCMD)
 	{
 		$module->onLoadLanguage();
-		$tVars = array('output' => $output,'lastCMD' => $lastCMD, 'SF' => new SF, 'user' => GWF_User::getStaticOrGuest());
+		$tVars = array('output' => $output,'lastCMD' => $lastCMD);
 		return $module->template('shell.tpl', $tVars);
 	}
 	

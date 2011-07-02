@@ -110,7 +110,6 @@ final class Helpdesk_Ticket extends GWF_Method
 			'is_worker' => GWF_Session::getUserID() === $ticket->getWorkerID(),
 			'is_admin' => GWF_User::isAdminS(),
 			'form' => $form,
-			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return $module->template('ticket.tpl', $tVars);
 	}

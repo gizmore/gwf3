@@ -29,7 +29,6 @@ final class Helpdesk_ShowTickets extends GWF_Method
 			'tickets' => $tickets->selectAll('*, worker.user_name worker_name', $where, $orderby, array('worker'), $limit, $from, GDO::ARRAY_O),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by=%BY%&dir=%DIR%',
-			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return $module->template('user.tpl', $tVars);
 	}

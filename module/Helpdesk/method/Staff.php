@@ -34,7 +34,6 @@ final class Helpdesk_Staff extends GWF_Method
 			'href_work' => $this->getMethodHREF('&mode=work'),
 			'href_closed' => $this->getMethodHREF('&mode=closed'),
 			'href_unsolved' => $this->getMethodHREF('&mode=unsolved'),
-			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return $module->template('staff.tpl', $tVars);
 	}

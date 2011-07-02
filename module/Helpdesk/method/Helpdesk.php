@@ -22,7 +22,6 @@ final class Helpdesk_Helpdesk extends GWF_Method
 			'href_faq' => $module->getMethodURL('FAQ'),
 			'ticketcount' => $this->getTicketCount($module),
 			'stafftickets' => $this->getTicketCountStaff($module),
-			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return $module->template('helpdesk.tpl', $tVars);
 	}
