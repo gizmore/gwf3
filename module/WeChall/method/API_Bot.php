@@ -9,9 +9,9 @@ final class WeChall_API_Bot extends GWF_Method
 	{
 		return
 			'RewriteCond %{QUERY_STRING} username=([^&]+)'.PHP_EOL.
-			'RewriteRule ^wechall.php$ index.php?mo=WeChall&me=API_Bot&username=%1&no_session=true'.PHP_EOL.
+			'RewriteRule ^wechall.php$ index.php?mo=WeChall&me=API_Bot&username=%1&no_session=true&ajax=true'.PHP_EOL.
 			'RewriteCond %{QUERY_STRING} username=([^&]+)'.PHP_EOL.
-			'RewriteRule ^wechallchalls.php$ index.php?mo=WeChall&me=API_Bot&username=%1&wechall=yes&no_session=true'.PHP_EOL;
+			'RewriteRule ^wechallchalls.php$ index.php?mo=WeChall&me=API_Bot&username=%1&wechall=yes&no_session=true&ajax=true'.PHP_EOL;
 //			'RewriteCond %{QUERY_STRING} sitename=([^&]+)'.PHP_EOL.
 //			'RewriteRule ^wechallonsite.php$ index.php?mo=WeChall&me=Bot&onsite=%1&no_session=true'.PHP_EOL	;
 	}
@@ -20,7 +20,7 @@ final class WeChall_API_Bot extends GWF_Method
 	{
 		GWF_Website::plaintext();
 		
-		$input = trim(Common::getGet('username', ''));
+		$input = trim(Common::getGetString('username', ''));
 		
 		if (false !== ($onsitename = Common::getGet('onsitename')) && false !== ($sitename = Common::getGet('sitename'))) {
 			die($this->rawOnSiteStats($module, $sitename, $onsitename));

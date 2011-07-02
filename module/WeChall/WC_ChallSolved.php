@@ -151,6 +151,12 @@ final class WC_ChallSolved extends GDO
 		}
 		return $row->saveOption(self::VOTED, $bool);
 	}
+	
+	public static function getChallsSolvedForUser(GWF_User $user)
+	{
+		$uid = $user->getID();
+		return self::table(__CLASS__)->selectVar('count(1)', "csolve_uid=$uid AND csolve_date!=''");
+	}
 }
 
 ?>

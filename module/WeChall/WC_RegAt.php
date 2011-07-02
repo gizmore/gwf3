@@ -422,7 +422,7 @@ final class WC_RegAt extends GDO
 		if ($rank < 1) {
 			return false;
 		}
-		$users = GDO::table('GWF_User')->selectObjects("*", 'user_level DESC', 1, $rank-1);
+		$users = GDO::table('GWF_User')->selectObjects("*", '', 'user_level DESC', 1, $rank-1);
 		if (count($users) === 1) {
 			return $users[0];
 		} else {

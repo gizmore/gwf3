@@ -921,8 +921,6 @@ class WC_Site extends GDO
 		
 		$stats = $site->parseStats($url);
 		
-		var_dump($stats);
-		
 		if (!is_array($stats))
 		{
 			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);

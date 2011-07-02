@@ -376,7 +376,7 @@ $lang = array(
 
 	# Buttons
 	'btn_pm' => 'PM %1%',
-	'btn_email' => 'Send EMail to %1%',
+//	'btn_email' => 'Send EMail to %1%',
 	'btn_solve' => 'Submit',
 	'btn_link' => 'Link Site',
 	'btn_linked_sites' => 'Linked Sites',

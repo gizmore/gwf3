@@ -410,6 +410,7 @@ final class WC_HTML
 		$back .= self::displayMenuAccount($module).PHP_EOL;
 		$back .= self::displayMenuPM($module).PHP_EOL;
 		$back .= self::displayMenuStats($module).PHP_EOL;
+		$back .= self::displayMenuDownload($module).PHP_EOL;
 		$back .= self::displayMenuChat($module).PHP_EOL;
 		$back .= self::displayMenuGroups($module).PHP_EOL;
 		$back .= self::displayMenuAdmin($module).PHP_EOL;
@@ -609,8 +610,10 @@ final class WC_HTML
 	
 	public static function displayMenuStats(Module_WeChall $module)
 	{
-		if ( (false === ($user = GWF_Session::getUser())) || ($user->isWebspider()) ) {
-			return self::displayMenuStatsGuest($module);
+		if ( (false === ($user = GWF_Session::getUser())) || ($user->isWebspider()) )
+		{
+			return '';
+//			return self::displayMenuStatsGuest($module);
 		}
 		$sel = Common::getGet('me') === 'Stats' ? ' class="wc_menu_sel"' : '';
 		$href = GWF_WEB_ROOT.'stats/'.$user->urlencode('user_name');
@@ -622,6 +625,18 @@ final class WC_HTML
 		$sel = Common::getGet('me') === 'Stats' ? ' class="wc_menu_sel"' : '';
 		$href = GWF_WEB_ROOT.'stats';
 		return sprintf('<li><a'.$sel.' href="%s">%s</a></li>', $href, $module->lang('menu_stats2'));
+	}
+	
+	public static function displayMenuDownload(Module_WeChall $module)
+	{
+		$user = GWF_User::getStaticOrGuest();
+		if ($user->isWebspider())
+		{
+			return '';
+		}
+		$sel = GWF3::getMo() === 'Download' ? ' class="wc_menu_sel"' : '';
+		$href =  GWF_WEB_ROOT.'download';
+		return sprintf('<li><a'.$sel.' href="%s">%s</a></li>', $href, $module->lang('menu_download'));
 	}
 	
 	public static function displayMenuLogout(Module_WeChall $module)

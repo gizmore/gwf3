@@ -27,14 +27,15 @@ final class WeChall_CrossSite extends GWF_Method
 		}
 		
 		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'module/WeChall/WC_ChallSolved.php';
 		
 		$score = WC_Challenge::getScoreForUser($user);
 		$maxscore = WC_Challenge::getMaxScore();
-		
+		$challs_solved = WC_ChallSolved::getChallsSolvedForUser($user);
 		$challcount = WC_Challenge::getChallCount();
 		$usercount = GDO::table('GWF_User')->countRows();
 		$rank = WC_RegAt::calcExactRank($user);
-		die(sprintf('%d:%s:%s:%s:%s', $rank, $score, $maxscore, $challcount, $usercount));
+		die(sprintf('%d:%s:%s:%s:%s:%s', $rank, $score, $maxscore, $challs_solved, $challcount, $usercount));
 	}
 	
 	private function outputLink(Module_WeChall $module, $username, $email)

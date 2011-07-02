@@ -844,7 +844,7 @@ final class WC_Challenge extends GDO
 	 * @param boolean $embed
 	 * @return string html
 	 */
-	public function showHeader($embed=false)
+	public function showHeader($embed=true)
 	{
 		if (!$embed)
 		{
@@ -956,7 +956,6 @@ final class WC_Challenge extends GDO
 	{
 		return $score >= 1 && $score <= 10;
 	}
-	
 }
 
 ?>

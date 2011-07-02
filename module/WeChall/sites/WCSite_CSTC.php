@@ -9,11 +9,6 @@ class WCSite_CSTC extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		if (WECHALL_DEBUG_LINKING)
-		{
-			var_dump($result);
-		}
-		
 		$stats = explode(':', $result);
 		if (count($stats) < 3) {
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
