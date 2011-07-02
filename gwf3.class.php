@@ -66,7 +66,8 @@ class GWF3
 			self::$module->onInclude();
 			self::$module->onLoadLanguage();
 			self::$page = self::$module->execute(self::$me);
-			if (!isset($_GET['ajax'])) {
+			if (isset($_GET['ajax']))
+			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
 			}
 		}

@@ -40,10 +40,11 @@ final class Forum_Thanks extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		if ($module->isAjax()) {
+		if ($module->isAjax())
+		{
 			return '1:'.$post->getThanksCount();
-#			  'msg_thanked_ajax');
-		} else {
+		} else
+		{
 			return $module->message('msg_thanked', $post->getShowHREF());
 		}
 	}
