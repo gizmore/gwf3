@@ -16,12 +16,18 @@ require_once 'inc/_gwf_include.php';
  */
 class GWF3 
 {
-	private static $module, $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD, $page;
-	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true) {
-
+	private static $module, $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD, $page, $user;
+	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true, $user = true)
+	{
 		if (false !== $basepath) { $this->onInit(dirname($basepath)); }
-		if (true === $autoload) { $this->onAutoloadModules(); }
-		if (true === $loadmo) { $this->onLoadModule(); }
+		if (false !== $autoload) { $this->onAutoloadModules(); }
+		if (false !== $loadmo) { $this->onLoadModule(); }
+		if (false !== $user) 
+		{		
+			self::$user = GWF_User::getStaticOrGuest();
+			GWF_Template::addMainTvars(array('user' => self::$user));
+		}
+		return $this;
 	}
 	public function __destruct() 
 	{
@@ -105,15 +111,8 @@ class GWF3
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
-	public static function getMo() 
-	{
-		return self::$mo;
-	}
-	public static function getMe() 
-	{
-		return self::$me;
-	}
-	public static function getModule() {
-		return self::$module;
-	}
+	public static function getMo() { return self::$mo; }
+	public static function getMe() { return self::$me; }
+	public static function getModule() { return self::$module; }
+	public static function getUser() { return self::$user; }
 }
