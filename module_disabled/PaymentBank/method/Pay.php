@@ -24,7 +24,7 @@ final class PaymentBank_Pay extends GWF_Method
 		
 		$action = GWF_WEB_ROOT.'index.php?mo=PaymentBank&me=Pay2';
 		$hidden = GWF_Form::hidden('gwf_token', $order->getOrderToken());
-		$buttons = Module_Payment::tinyform('Bank Transfer', 'img/'.GWF_ICON_SET.'buy_bank.gif', $action, $hidden);
+		$buttons = Module_Payment::tinyform('Bank Transfer', 'img/'.GWF_ICON_SET.'buy_bank.png', $action, $hidden);
 
 		$lang = $module->loadLangGWF();
 		

@@ -97,7 +97,7 @@ final class PageBuilder_Show extends GWF_Method
 		GWF_Website::setPageTitle($page->getVar('page_title'));
 		
 		$smarty = GWF_Template::getSmarty();
-		$smarty->assign('user', GWF_User::getStaticOrGuest());
+		$smarty->assign('user', GWF_User::getStaticOrGuest()); // TODO: not required anymore?!
 		
 		ob_start();
 		$smarty->display('db:'.$page->getID());
@@ -143,13 +143,8 @@ final class PageBuilder_Show extends GWF_Method
 	private function getPageContentSmarty(Module_PageBuilder $module, GWF_Page $page)
 	{
 		$smarty = GWF_Template::getSmarty();
-		$smarty->assign('user', GWF_User::getStaticOrGuest());
+//		$smarty->assign('user', GWF_User::getStaticOrGuest());
 		return $smarty->fetch('db:'.$page->getID());
-//		ob_start();
-//		$smarty->display('db:'.$page->getID());
-//		$back = ob_get_contents();
-//		ob_end_clean();
-//		return $back;
 	}
 
 	private function getPageComments(Module_PageBuilder $module, GWF_Page $thePage)

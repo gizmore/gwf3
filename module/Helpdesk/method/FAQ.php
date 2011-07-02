@@ -23,7 +23,6 @@ final class Helpdesk_FAQ extends GWF_Method
 			'href_add' => $module->getMethodURL('FAQAdd'),
 			'href_generate' => $this->getMethodHREF('&generate=now'),
 			'faq' => $this->buildFAQ($module),
-			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return $module->template('faq.tpl', $tVars);
 	}

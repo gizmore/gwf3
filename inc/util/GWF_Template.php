@@ -69,8 +69,6 @@ final class GWF_Template
 	protected static $_Smarty = NULL;
 	public static function getSmarty()
 	{
-//		static $smarty;
-//		if (!isset($smarty))
 		if (self::$_Smarty === NULL) 
 		{
 			require_once GWF_SMARTY_PATH;
@@ -86,7 +84,6 @@ final class GWF_Template
 			$smarty->assign('gwmm', GWF_SmartyModuleMethod::instance());
 			$smarty->assign('root', GWF_WEB_ROOT);
 			$smarty->assign('iconset', GWF_ICON_SET);
-//			$smarty->assign('user', GWF_User::getStaticOrGuest());
 			self::$_Smarty = $smarty;
 		}
 		return self::$_Smarty;
@@ -95,11 +92,6 @@ final class GWF_Template
 	public static function addMainTvars($tVars = NULL)
 	{
 		$smarty = self::getSmarty();
-//		if (self::$_Smarty === NULL) {
-//			$smarty = self::getSmarty();
-//		} else {
-//			$smarty = self::$_Smarty;
-//		}
 		
 		if (is_array($tVars))
 		{
@@ -108,8 +100,6 @@ final class GWF_Template
 				$smarty->assign($k, $v);
 			}
 		}
-		
-//		self::$_Smarty = $smarty;
 	}
 	
 	public static function templateMain($file, $tVars=NULL)
