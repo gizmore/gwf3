@@ -25,10 +25,14 @@ require_once 'item/SR_Cyberdeck.php';
  */
 class SR_Item extends GDO
 {
+	const BROKEN = -2;
+	const IMMORTAL = -1;
+	
 	####################
 	### Static Items ###
 	####################
 	private static $items = array();
+	
 	/**
 	 * @param string $name
 	 * @return SR_Item
@@ -55,6 +59,7 @@ class SR_Item extends GDO
 			'sr4it_amount' => 1,
 			'sr4it_health' => 10000,
 			'sr4it_modifiers' => NULL,
+			'sr4it_duration' => -1,
 		));
 		
 		self::$items[$itemname] = $item;
@@ -81,6 +86,7 @@ class SR_Item extends GDO
 			'sr4it_amount' => array(GDO::UINT, 1),
 			'sr4it_health' => array(GDO::UINT, 10000),
 			'sr4it_modifiers' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
+			'sr4it_duration' => array(GDO::INT, -1), # sr time
 		);
 	}
 	public function getID() { return $this->getInt('sr4it_id'); }
@@ -88,6 +94,7 @@ class SR_Item extends GDO
 	public function getOwner() { return Shadowrun4::getPlayerByPID($this->getOwnerID()); }
 	public function getOwnerID() { return $this->getVar('sr4it_uid'); }
 	public function getAmmo() { return $this->getVar('sr4it_ammo'); }
+	public function getDuration() { return $this->getVar('sr4it_duration'); }
 	public function getAmount() { return $this->getVar('sr4it_amount'); }
 	public function getHealth() { return $this->getVar('sr4it_health'); }
 	public function getModifiers() { return $this->getVar('sr4it_modifiers'); }
@@ -127,6 +134,7 @@ class SR_Item extends GDO
 				'sr4it_amount' => 1,
 				'sr4it_health' => 10000,
 				'sr4it_modifiers' => NULL,
+				'sr4it_duration' => -1,
 			);
 		}
 		else {
@@ -138,6 +146,7 @@ class SR_Item extends GDO
 		if ($is_null === true)
 		{
 			$back->setVar('sr4it_ammo', $back->getBulletsMax());
+			$back->setVar('sr4it_duration', $back->getItemDuration());
 		}
 		
 		return $back;
@@ -342,7 +351,7 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf('%s is %s%s. %s%s%s%s%s%s',
+		return sprintf('%s is %s%s. %s%s%s%s%s%s%s',
 			$this->getName(),
 			$this->displayType(),
 			$this->displayLevel(),
@@ -350,9 +359,16 @@ class SR_Item extends GDO
 			$this->displayModifiersA($player),
 			$this->displayModifiersB($player),
 			$this->displayRequirements($player),
+			$this->displayRange($player),
 			$this->displayWeightB(),
 			$this->displayWorth()
 		);
+	}
+		
+	private function displayRange(SR_Player $player)
+	{
+		$range = $this->getItemRange();
+		return $range <= 0 ? '' : sprintf(" \X02Range\X02: %s.", Shadowfunc::displayDistance($range, 1));
 	}
 	
 	private function displayWorth()
@@ -434,14 +450,13 @@ class SR_Item extends GDO
 	
 	public function displayWeight()
 	{
-//		if ($weight <= 0) {
-//			return '';
-//		}
-		
 //		$weight = $this->getItemWeightStacked();
 		$weight = $this->getItemWeight();
+		if ($weight <= 0)
+		{
+			return '';
+		}
 		$amount = $this->getAmount();
-		
 		$w = Shadowfunc::displayWeight($weight);
 		if ($amount > 1)
 		{
@@ -459,6 +474,28 @@ class SR_Item extends GDO
 		return $price + SR_Rune::calcPrice($mods);
 	}
 	
+	public function getInventoryID()
+	{
+		if (false === ($owner = $this->getOwner()))
+		{
+			return -1;
+		}
+		
+		$name = $this->getItemName();
+		$i = 1;
+		foreach ($owner->getInventorySorted() as $itemname => $data)
+		{
+			var_dump($itemname);
+			if ($name === $itemname)
+			{
+				return $i;
+			} 
+			$i++;
+		}
+		
+		return -1;
+	}
+	
 	
 	######################
 	### Item Overrides ###
@@ -470,6 +507,7 @@ class SR_Item extends GDO
 	public function getItemPrice() { return -1; }
 	public function getItemWeight() { return -1; }
 	public function getItemUsetime() { return 60; }
+	public function getItemDuration() { return self::IMMORTAL; }
 	public function getItemDescription() { return 'ITEM DESCRIPTION'; }
 	public function getItemTypeDescr(SR_Player $player) { return ''; }
 	public function getItemDefaultAmount() { return 1; }
@@ -534,5 +572,77 @@ class SR_Item extends GDO
 		}
 		return $back;
 	}
+	
+	################
+	### Duration ###
+	################
+	public function displayDuration()
+	{
+		if ($this->isImmortal())
+		{
+			return "\X02Immortal\X02";
+		}
+		elseif ($this->isBroken())
+		{
+			return "\X02Broken\X02";
+		}
+		else
+		{
+			$d = $this->getDuration();
+			$st = Shadowrun4::getTime();
+			return sprintf('Best before: %s.', GWF_Time::humanDuration($d-$st));
+		}
+	}
+	public function setRandomDuration()
+	{
+		$max = round($this->getItemDuration());
+		$min = round($max / 2);
+		$this->setVar('sr4it_duration', rand($min, $max));
+	}
+	
+	public function setDuration($dur)
+	{
+		$dur += Shadowrun4::getTime();
+		return $this->saveVars(array('sr4it_duration' => $dur));
+	}
+	
+	public function isBreaking()
+	{
+		$d = $this->getDuration();
+		if ($d > 0)
+		{
+			return $d < Shadowrun4::getTime();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function breakItem()
+	{
+		if (false === $this->saveVar('sr4it_duration', self::BROKEN))
+		{
+			return false;
+		}
+		return $this->onBreak();
+	}
+	
+	public function isBroken()
+	{
+		return $this->getVar('sr4it_duration') == self::BROKEN;
+	}
+	
+	public function onBreak()
+	{
+		$player = $this->getOwner();
+		$player->message(sprintf("Your %s broke.", $this->getItemName()));
+		if ($this->isEquipped($player))
+		{
+			$this->onItemUnequip($player);
+		}
+		return true;
+	}
+	
 }
 ?>

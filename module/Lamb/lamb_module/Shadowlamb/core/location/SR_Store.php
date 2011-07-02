@@ -189,10 +189,11 @@ abstract class SR_Store extends SR_Location
 			$bot->reply('Database error 5.');
 			return false;
 		}
-		
-		$bot->reply(sprintf('You paid %s and bought %s.', Shadowfunc::displayPrice($price), $item->getItemName()));
+
 		$player->giveItems(array($item));
 		$player->modify();
+		$item = $player->getInvItemByName($item->getItemName());
+		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayPrice($price), $item->getItemName(), $item->getInventoryID()));
 		return true;
 	}
 	
