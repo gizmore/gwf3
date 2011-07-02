@@ -106,7 +106,7 @@ final class WeChall_GraphStats extends GWF_Method
 //		var_dump($this->start);
 
 		// Check sites
-		$sites = Common::getGet('sites');
+		$sites = Common::getGetString('sites');
 		if ($sites === 'all') {
 			if ($this->user2 === false) {
 				$this->sites = WC_Site::getLinkedSites($this->user1->getID());
@@ -159,6 +159,7 @@ final class WeChall_GraphStats extends GWF_Method
 		$back = array();
 		foreach ($this->sites as $site)
 		{
+			$site instanceof WC_Site;
 			$back[] = $site->getID();
 		}
 //		var_dump($back);
@@ -202,7 +203,7 @@ final class WeChall_GraphStats extends GWF_Method
 		$db = gdo_db();
 		$uid1 = $this->user1->getVar('user_id');
 		$uid2 = $this->user2 === false ? 0 : $this->user2->getVar('user_id');
-		$history = GWF_TABLE_PREFIX.'wc_user_history2';
+//		$history = GWF_TABLE_PREFIX.'wc_user_history2';
 		$start = GWF_Time::getTimestamp($this->start);
 		$end = GWF_Time::getTimestamp($this->end) + GWF_Time::ONE_DAY;
 		
@@ -221,17 +222,26 @@ final class WeChall_GraphStats extends GWF_Method
 			$ylast[$uid2] = array();
 		}
 		
-		
-		$query = "SELECT userhist_uid, userhist_sid, userhist_percent, userhist_date FROM $history WHERE (userhist_uid=$uid1$where2) AND userhist_date BETWEEN $start AND $end ORDER BY userhist_date ASC";
-		
-		if (false === ($result = $db->queryRead($query))) {
+		require_once 'module/WeChall/WC_HistoryUser2.php';
+		$history = GDO::table('WC_HistoryUser2');
+		$where = "(userhist_uid=$uid1$where2) AND userhist_date BETWEEN $start AND $end";
+		$orderby = 'userhist_date ASC';
+		if (false === ($result = $history->select('userhist_uid, userhist_sid, userhist_percent, userhist_date', $where, $orderby)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		while (false !== ($row = $db->fetchRow($result)))
+//		$query = "SELECT userhist_uid, userhist_sid, userhist_percent, userhist_date FROM $history WHERE (userhist_uid=$uid1$where2) AND userhist_date BETWEEN $start AND $end ORDER BY userhist_date ASC";
+//		if (false === ($result = $db->queryRead($query))) {
+//			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+//		}
+		
+//		while (false !== ($row = $db->fetchRow($result)))
+		while (false !== ($row = $history->fetch($result, GDO::ARRAY_N)))
 		{
-			$siteid = (int)$row[1];
-			if (!in_array($siteid, $sites2, true)) {
+			$siteid = $row[1];
+			if (!in_array($siteid, $sites2, true))
+			{
 				continue; // site not wanted in graph...
 			}
 			
@@ -356,7 +366,7 @@ final class WeChall_GraphStats extends GWF_Method
 				$text = $module->lang('err_no_sites');
 			}
 			else {
-				$text = $module->lang('err_no_data');
+				$text = $module->lang('err_graph_empty');
 			}
 			
 			$txt = new Text($text);
