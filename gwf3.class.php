@@ -1,29 +1,25 @@
 <?php
 
-# Time measurement
-if(!defined('GWF_DEBUG_TIME_START')) 
-{
-	define('GWF_DEBUG_TIME_START', microtime(true));
-}
+define('GWF_DEBUG_TIME_START', microtime(true));
 
 # Include the core (always a good and safe idea)
 require_once 'inc/_gwf_include.php';
 /**
  * @author spaceone
- * @version 1.00
+ * @version 1.01
  * @todo check if Session commit works
  * @todo better $mo/$me handling
  * @todo class variable $user?
- * @param $init initialisation
+ * @param $basepath should be __FILE__
  * @param $autoload load all autoload-modules
  * @param $loadmo load the requested module
  */
 class GWF3 
 {
 	private static $module, $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD, $page;
-	public function __construct($init = true, $autoload = true, $loadmo = true) {
+	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true) {
 
-		if (true === $init) { $this->onInit(); }
+		if (false !== $basepath) { $this->onInit(dirname($basepath)); }
 		if (true === $autoload) { $this->onAutoloadModules(); }
 		if (true === $loadmo) { $this->onLoadModule(); }
 	}
@@ -31,15 +27,15 @@ class GWF3
 	{
 		$this->onSessionCommit();
 	}
-	final public function onInit() 
+	public function onInit($server_root, $blocking=true, $no_session=false) 
 	{
 		# Init core
-		if (false === GWF_Website::init(dirname(__FILE__))) {
+		if (false === GWF_Website::init($server_root, $blocking, $no_session)) {
 			die('GWF3 does not seem to be installed properly.');
 		}
 		return $this;
 	}
-	final public function onAutoloadModules()
+	public function onAutoloadModules()
 	{
 		# Autoload Modules
 		if (false === GWF_Module::autoloadModules()) {
@@ -47,13 +43,14 @@ class GWF3
 		}
 		return $this;
 	}
-	final public function onLoadModule()
+	public function onLoadModule()
 	{
 		# Load the module
 		if (false === (self::$module = GWF_Module::loadModuleDB(Common::getGetString('mo', GWF_DEFAULT_MODULE)))) {
 			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) {
 				die('No module found.');
 			}
+			self::$me = GWF_DEFAULT_METHOD; //IMPORTANT
 		}
 		else {
 			self::$me = Common::getGetString('me', GWF_DEFAULT_METHOD);
@@ -80,7 +77,7 @@ class GWF3
 		return $this;
 
 	}
-	final public function onSessionCommit() 
+	public function onSessionCommit() 
 	{
 		# Commit the session
 		if (false !== ($user = GWF_Session::getUser())) {
@@ -107,13 +104,15 @@ class GWF3
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
-	private static function getMo() 
+	public static function getMo() 
 	{
 		return self::$mo;
 	}
-	private static function getMe() 
+	public static function getMe() 
 	{
 		return self::$me;
 	}
-
+	public static function getModule() {
+		return self::$module;
+	}
 }

@@ -1,20 +1,16 @@
 <?php
 ### This is wechall html_head!
 
-define('GWF_DEBUG_TIME_START', microtime(true));
-
 if(defined('WC_HTML_HEAD__DEFINED')) { return; }
 
-#####################################
-### Init core templates and stuff ###
-#####################################
-require_once 'inc/_gwf_include.php';
+require_once 'gwf3.class.php';
 
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
-GWF_Website::init(dirname(__FILE__), !defined('GWF_SESSION_NOT_BLOCKING'));
 
-GWF_Module::autoloadModules();
+$gwf = new GWF3(false, false, false);
+$gwf->onInit(dirname(__FILE__), !defined('GWF_SESSION_NOT_BLOCKING'));
+$gwf->onAutoloadModules();
 
 if (false === ($wechall = GWF_Module::loadModuleDB('WeChall', true)))
 {
@@ -42,4 +38,4 @@ $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 GWF_Doctype::setDoctype('xhtmlstrict');
 
 # HTML Header
-echo GWF_Website::getHTMLHead() . '<body><div id="page_wrap">';
+echo $gwf->onDisplayHead() . '<div id="page_wrap">';

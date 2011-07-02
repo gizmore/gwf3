@@ -1,18 +1,11 @@
 <?php
-# Time measurement
-define('GWF_DEBUG_TIME_START', microtime(true));
-
-# Include the core (always a good and safe idea)
-require_once 'inc/_gwf_include.php';
-
-# Init core for http/html
-GWF_Website::init(dirname(__FILE__));
-
-GWF_Module::autoloadModules();
+/**
+ * This is an example how your error.php could look like!
+ */
+require_once 'gwf3.class.php';
 
 $_GET['mo'] = 'GWF';
 $_GET['me'] = 'Error';
-
 
 # Get the error page
 $errors = array(403, 404);
@@ -28,11 +21,13 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 	'file' => htmlspecialchars($_SERVER['REQUEST_URI']),
 ));
 
+$gwf = new GWF3(__FILE__, true, false);
+
 # Commit Session
-GWF_Session::commit(false);
+$gwf->onSessionCommit();
 
 # Display Page
-echo GWF_Website::displayPage($page);
+echo $gwf->onDisplayPage($page);
 
 function gwf_error_404_mail()
 {
