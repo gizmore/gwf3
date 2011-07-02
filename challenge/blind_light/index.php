@@ -48,7 +48,7 @@ elseif (isset($_POST['inject']))
 	blightInit();
 	$password = Common::getPostString('injection');
 	$success = blightVuln($password);
-	$attemp = blightAttemp();
+	$attemp = blightAttemp()+1;
 	
 	if ($success)
 	{
@@ -58,6 +58,8 @@ elseif (isset($_POST['inject']))
 	{
 		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_login', array($attemp)));
 	}
+	
+	blightSetAttempt($attemp);
 }
 
 $url1 = 'index.php?show=source';

@@ -46,12 +46,15 @@ function blightInstall()
  */
 function blightVuln($password)
 {
-	# 1 attemp gone.
-	blightCountUp();
+	# Do not mess with attemp counter or sessid!
+	if ( (strpos($password, '/*') !== false) || (stripos($password, 'attemp') !== false) || (stripos($password, 'sessid') !== false) )
+	{
+		return false;
+	}
 	
 	$db = blightDB();
 	$sessid = GWF_Session::getSession()->getID();
-	$query = "SELECT 1 FROM blight WHERE sessid=$sessid AND password='$password'";
+	$query = "SELECT 1 FROM blight WHERE sessid=$sessid AND (password='$password')";
 	return $db->queryFirst($query) !== false;
 }
 
@@ -68,6 +71,20 @@ function blightCountUp()
 	$db = blightDB();
 	$sessid = GWF_Session::getSession()->getID();
 	$query = "UPDATE blight SET attemp=attemp+1 WHERE sessid=$sessid";
+	return $db->queryWrite($query);
+}
+
+/**
+ * Set the attempt counter for a session.
+ * @param int $attempt
+ * @return true|false
+ */
+function blightSetAttempt($attempt)
+{
+	$db = blightDB();
+	$sessid = GWF_Session::getSession()->getID();
+	$attempt = (int)$attempt;
+	$query = "UPDATE blight SET attemp=$attempt WHERE sessid=$sessid";
 	return $db->queryWrite($query);
 }
 
