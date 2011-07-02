@@ -374,7 +374,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		}
 		
 		$gid = $this->getGroupID();
-		if (false === ($ugo = $user->getGroupByID($gid))) {
+		if (false === ($ugo = $user->getUserGroupOptions($gid))) {
 			return false;
 		}
 

@@ -253,28 +253,28 @@ final class GWF_ForumThread extends GDO
 
 	public function hasEditPermission($user=true)
 	{
-		if ($user === true) {
+		if ($user === true)
+		{
 			$user = GWF_Session::getUser();
 		}
 
-		if ($user === false) {
+		if ($user === false)
+		{
 			return false;
 		}
 
-		if ($user->isInGroupName('moderator')) {
+		if ($user->isInGroupName('moderator'))
+		{
 			return true;
 		}
 		
 		$gid = $this->getGroupID();
-		if (!$user->isInGroupID($gid)) {
+		if (!$user->isInGroupID($gid))
+		{
 			return false;
 		}
 		
-//		$ugo = $user->getUserGroupOptionsByID($gid);
-		if (false === ($ugo = $user->getGroupByID($gid))) {
-			return false;
-		}
-		$ugo = $ugo->getInt('group_options');
+		$ugo = $user->getUserGroupOptions($gid);
 		if (($ugo &(GWF_UserGroup::MODERATOR|GWF_UserGroup::CO_LEADER|GWF_UserGroup::LEADER)) > 0) {
 			return true;
 		}
