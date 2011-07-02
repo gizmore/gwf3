@@ -57,6 +57,7 @@ else switch(intval(Common::getGet('step', 0)))
 	case 8: echo install_wizard_8(); break; # Admins
 	case 9: echo install_wizard_9(); break; # Done
 	case 10: echo install_wizard_10(); break; # htaccess
+	case 11: echo install_wizard_11(); break; # create index.php, error.php
 }
 
 echo '</div>'.PHP_EOL;
@@ -580,7 +581,7 @@ function install_wizard_9()
 {
 	return 
 		GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished. Please login as your admin account now. Also: <b>DO NOT FORGET TO .htaccess PROTECT THE FOLDER /protected</b>', false).
-		install_wizard_btn('10');
+		install_wizard_btn('11');
 }
 
 function install_wizard_10()
@@ -590,6 +591,16 @@ function install_wizard_10()
 	}
 	
 	return GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished.', false);
+}
+
+function install_wizard_11()
+{
+	if (false === copyExampleFiles()) {
+		echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php and error.example.php => error.php now'));
+	} else { 
+		echo GWF_HTML::message('Install Wizard', 'Successfully created index.pp and error.php.', false);
+	}
+	return install_wizard_btn('10');
 }
 
 
