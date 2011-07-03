@@ -22,7 +22,6 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 	'file' => htmlspecialchars($_SERVER['REQUEST_URI']),
 ));
 
-
 # Commit Session
 $gwf->onSessionCommit();
 

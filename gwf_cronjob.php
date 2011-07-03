@@ -6,16 +6,9 @@ if (isset($_SERVER['REMOTE_ADDR']))
 }
 
 # Include Kernel
-require_once 'inc/_gwf_include.php';
-
+require_once 'gwf3.class.php';
 # Init
-GWF_Website::init(dirname(__FILE__, false, true));
-
-# Get the modules.
-if (false === ($modules = GWF_Module::autoloadModules()))
-{
-	die('GWF IS NOT INSTALLED.'.PHP_EOL);
-}
+$gwf = new GWF3(__FILE__, true, false);
 
 # Call Cronjobs
 GWF_Website::cronjobs();
