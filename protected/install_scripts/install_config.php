@@ -236,6 +236,7 @@ final class GWF_InstallConfig
 			array('text', 'Defaults', 'GWF_DEFAULT_METHOD', 'About', '1st visit method. Example: \'Home\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'default\'.'),
 			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
+			array('text', 'Defaults', 'GWF_DOWN_REASON', 'Converting the database atm. should be back within 45 minutes.', 'The Message if maintainance-mode is enabled.'),
 			
 			# Language
 			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
