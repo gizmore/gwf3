@@ -447,7 +447,7 @@ final class GWF_SF_SurferInfos {
 		foreach($subj as $detail) {
 			if(is_array($detail)) {
 				if(stristr($search, $detail[0])) {
-					return $detail[$type];
+					return array_key_exists($type, $detail) ? $detail[$type] : $detail[1];
 				}	
 			} elseif(stristr($search, $detail)) {
 				return $detail;
@@ -456,9 +456,18 @@ final class GWF_SF_SurferInfos {
 		return $subj[0][$type];
 	
 	}
-	public static function get_provider($type = 1) { return self::get_details(self::get_hostname(), self::$PROVIDER, $type); }
-	public static function get_operatingsystem($type = 1) { return self::get_details(self::get_useragent(), self::$SYSTEM, $type); }
-	public static function get_browser($type = 1) { return self::get_details(self::get_useragent(), self::$BROWSER, $type);}
+	public static function get_provider($type = 1, $cmp = NULL) { 
+		$detail = self::get_details(self::get_hostname(), self::$PROVIDER, $type); 
+		return $cmp == NULL ? $detail : $cmp === $detail;
+	}
+	public static function get_operatingsystem($type = 1, $cmp = NULL) { 
+		$detail = self::get_details(self::get_useragent(), self::$SYSTEM, $type); 
+		return $cmp == NULL ? $detail : $cmp === $detail;
+	}
+	public static function get_browser($type = 1, $cmp = NULL) { 
+		$detail = self::get_details(self::get_useragent(), self::$BROWSER, $type);
+		return $cmp == NULL ? $detail : $cmp === $detail;
+	}
 
 	// public static function save_referer() { return;	}
 

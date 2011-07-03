@@ -17,7 +17,7 @@ final class GWF_Counter extends GDO
 			'count_value' => array(GDO::UINT, 0),
 		);
 	}
-	#################GWF_Counter##
+	###################
 	### Convinience ###
 	###################
 	/**
