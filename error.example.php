@@ -22,11 +22,11 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 	'file' => htmlspecialchars($_SERVER['REQUEST_URI']),
 ));
 
-# Commit Session
-$gwf->onSessionCommit();
-
 # Display Page
 echo $gwf->onDisplayPage($page);
+
+# Commit Session
+$gwf->onSessionCommit(false);
 
 function gwf_error_404_mail()
 {

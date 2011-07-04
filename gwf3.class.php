@@ -84,13 +84,13 @@ class GWF3
 		return $this;
 
 	}
-	public function onSessionCommit() 
+	public function onSessionCommit($store_last_url=true) 
 	{
 		# Commit the session
 		if (false !== ($user = GWF_Session::getUser())) {
 			$user->saveVar('user_lastactivity', time());
 		}
-		GWF_Session::commit();
+		GWF_Session::commit($store_last_url);
 		return $this;
 	}
 	public function onDisplayPage($content = NULL)

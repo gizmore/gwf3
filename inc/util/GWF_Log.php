@@ -120,6 +120,10 @@ final class GWF_Log
 			{
 				if (!is_dir($curr))
 				{
+					if (!is_writable($curr))
+					{
+						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
+					}
 					if (!mkdir($curr))
 					{
 						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));

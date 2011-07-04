@@ -1,6 +1,11 @@
 <?php
 final class GWF_Website
 {
+	####################
+	### Content-Type ###
+	####################
+	public static function plaintext() { header('Content-Type: text/plain'); }
+	
 	############
 	### Init ###
 	############

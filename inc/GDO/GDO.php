@@ -369,6 +369,7 @@ abstract class GDO
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
 		$query = "SELECT {$columns} FROM `{$table}` t ".$join.$where.$groupby.$orderby.$limit;
+//		echo "$query<br/>\n";
 		return $db->queryRead($query);
 	}
 
@@ -843,11 +844,11 @@ abstract class GDO
 	 * @param array|null $joins
 	 * @return false|array|GDO
 	 */
-	public function getBy($key, $value, $r_type=self::ARRAY_O, $joins=NULL)
+	public function getBy($key, $value, $r_type=self::ARRAY_O, $joins=NULL, $orderby='')
 	{
 		$key = self::escapeIdentifier($key);
 		$value = self::escape($value);
-		return self::selectFirst('*', "`$key`='$value'", '', $joins, $r_type);
+		return self::selectFirst('*', "`{$key}`='{$value}'", $orderby, $joins, $r_type);
 	}
 	
 	private function getAutoJoins()
