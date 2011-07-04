@@ -1,5 +1,6 @@
 #!/bin/bash
 # Call this script once a day
+# via Crontab at 3 o'clock: 0 3 * * * cd /path/to/protected && ./db_backup.sh
 
 # Database Settings
 # Please escape password properly.
