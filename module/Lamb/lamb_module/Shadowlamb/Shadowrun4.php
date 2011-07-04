@@ -283,7 +283,6 @@ final class Shadowrun4
 			self::initQuests(Lamb::DIR);
 //			require_once 'SR_Install.php';
 //			SR_Install::onInstall();
-			self::reloadParties();
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
 		}
@@ -291,6 +290,7 @@ final class Shadowrun4
 	public static function initTimers()
 	{
 		$bot = Lamb::instance();
+		self::reloadParties();
 		$bot->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), SR_Player::HP_REFRESH_TIMER);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), SR_Player::MP_REFRESH_TIMER);
