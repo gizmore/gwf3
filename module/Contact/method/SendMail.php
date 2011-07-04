@@ -55,7 +55,7 @@ final class Contact_SendMail extends GWF_Method
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
 		$mail->setSubject($module->langUser($user, 'mail_subj_mail', $sendermail));
-		$mail->setBody($module->langUser($user, 'mail_subj_body', $user->displayUsername(), $sendermail, GWF_Message::display($_POST['message'])));
+		$mail->setBody($module->langUser($user, 'mail_subj_body', array($user->displayUsername(), $sendermail, GWF_Message::display($_POST['message']))));
 		if (false === $mail->sendToUser($u)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}

@@ -33,7 +33,7 @@
 <?php
 		$buttons = '';
 		if ('' !== ($email = $user->getValidMail())) {
-			$txt = $tLang->lang('at_mailto', $user->displayUsername());
+			$txt = $tLang->lang('at_mailto', array($user->displayUsername()));
 			if ($user->isOptionEnabled(GWF_User::SHOW_EMAIL)) {
 				$buttons .= GWF_Button::mail('mailto:'.$email, $txt);
 			}

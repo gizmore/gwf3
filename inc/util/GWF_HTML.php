@@ -100,7 +100,7 @@ final class GWF_HTML
 				foreach ($msg['messages'] as $m)
 				{
 					$m2 = GWF_Debug::shortpath(self::decode($m));
-					$output .= sprintf('0:%d:%s', strlen($m2), $m2).PHP_EOL;
+					$output .= sprintf('1:%d:%s', strlen($m2), $m2).PHP_EOL;
 				}
 			}
 			return GWF_Website::addDefaultOutput($output);

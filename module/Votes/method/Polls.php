@@ -33,9 +33,16 @@ final class Votes_Polls extends GWF_Method
 		$dir = Common::getGet('dir', 'DESC');
 		$orderby = $t->getMultiOrderby($by, $dir);
 		
+		$polls = $t->selectObjects('*', $conditions, $orderby, $ipp, $from);
+		foreach ($polls as $poll)
+		{
+			$poll instanceof GWF_VoteMulti;
+			$poll->loadVoteOptions();
+		}
+		
 		$tVars = array(
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'poll_overview/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
-			'polls' => $t->selectObjects('*', $conditions, $orderby, $ipp, $from),
+			'polls' => $polls,
 			'sort_url' => GWF_WEB_ROOT.'poll_overview/by/%BY%/%DIR%/page-1',
 			'may_add_poll' => Module_Votes::mayAddPoll($user),
 			'href_add_poll' => GWF_WEB_ROOT.'poll/add',

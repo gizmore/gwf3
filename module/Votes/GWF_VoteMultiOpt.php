@@ -16,7 +16,7 @@ final class GWF_VoteMultiOpt extends GDO
 			'vmo_text' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'vmo_votes' => array(GDO::UINT, 0),
 		
-			'vmo_vm' => array(GDO::JOIN, NULL, array('GWF_VoteMulti', 'vmo_vmid', 'vm_id')),
+			'votemulti' => array(GDO::JOIN, NULL, array('GWF_VoteMulti', 'vmo_vmid', 'vm_id')),
 		);
 	}
 }

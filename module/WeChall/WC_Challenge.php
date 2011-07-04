@@ -625,7 +625,7 @@ final class WC_Challenge extends GDO
 	public static function getByVSID($vsid)
 	{
 		$vsid = (int)$vsid;
-		return self::table(__CLASS__)->selectFirst("chall_vote_dif=$vsid OR chall_vote_edu=$vsid OR chall_vote_fun=$vsid");
+		return self::table(__CLASS__)->selectFirstObject('*', "chall_vote_dif=$vsid OR chall_vote_edu=$vsid OR chall_vote_fun=$vsid");
 	}
 	
 	private static function getRecalcVoteQuery()

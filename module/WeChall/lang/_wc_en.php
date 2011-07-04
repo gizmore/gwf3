@@ -650,5 +650,6 @@ $lang = array(
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
+	'menu_download' => 'Downloads',
 );
 ?>

@@ -44,8 +44,10 @@ final class GWF_VoteMulti extends GDO
 			'vm_options' => array(GDO::UINT, 0),
 		
 			# The choices as array
-			'vm_vmo' => array(GDO::GDO_ARRAY, false, array('GWF_VoteMultiOpt', 'vmo_vmoid', 'vmo_vmid', 'vm_id'), array('vmo_vm')),
+//			'vm_vmo' => array(GDO::GDO_ARRAY, false, array('GWF_VoteMultiOpt', 'vmo_vmoid', 'vm_id', 'vmo_vmid'), array('votemulti')),
 			'vm_votes' => array(GDO::UINT, 0), # total votes
+			
+//			'choices' => array(GDO::JOIN, false, array('GWF_VoteMultiOpt', 'vmo_vmid', 'vm_id')),
 		);
 	}
 	
@@ -205,7 +207,21 @@ final class GWF_VoteMulti extends GDO
 	 */
 	public static function getByID($vmid)
 	{
-		return self::table(__CLASS__)->getRow($vmid);
+//		return self::table(__CLASS__)->getBy('vm_id', $vmid, GDO::ARRAY_O, array('choices'));
+		$back = self::table(__CLASS__)->getRow($vmid);
+		$back->loadVoteOptions();
+		return $back;
+	}
+	
+	public function loadVoteOptions()
+	{
+		return $this->setVar('vm_vmo', $this->loadVoteOptionsB());
+	}
+	
+	private function loadVoteOptionsB()
+	{
+		$id = $this->getID();
+		return GDO::table('GWF_VoteMultiOpt')->selectArrayMap('vmo_vmoid,vmo_text,vmo_votes', "vmo_vmid={$id}", 'vmo_vmoid ASC');
 	}
 	
 	/**
@@ -216,7 +232,7 @@ final class GWF_VoteMulti extends GDO
 	public static function getByName($name)
 	{
 		$t = self::table(__CLASS__);
-		return $t->selectFirst(sprintf("vm_name='%s'", $t->escape($name)));
+		return $t->selectFirstObject('*', sprintf("vm_name='%s'", $t->escape($name)));
 	}
 	
 	/**
