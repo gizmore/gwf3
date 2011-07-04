@@ -10,6 +10,10 @@ final class Shadowcmd_info extends Shadowcmd
 		{
 			$l = $p->getLocationClass();
 			$bot->reply($l->getEnterText($player));
+			if (false !== ($text = $l->getHelpText($player)))
+			{
+				$bot->reply($text);
+			}
 		}
 		elseif ($p->isOutsideLocation())
 		{
