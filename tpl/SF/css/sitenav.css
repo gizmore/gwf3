@@ -1,0 +1,49 @@
+div.sitenav {
+	position:fixed;
+	margin:0 0 20px 10px;
+	top: 20%;
+	width: 160px;
+	height: 100%;
+	border: medium double #131313;
+}
+#sitenav {
+	position:fixed;
+	margin:0 0 0 20px;
+	top: 20%;
+	bottom:20%;
+	width: 150px;
+	height: 60%;
+	list-style-type:none;
+}
+#sitenav img {
+	height:20px;
+	border:0px;
+}
+#sitenav li {
+	margin:12px 0;
+	padding:0;
+	height:16px;
+}
+#sitenav a:link, 
+#sitenav a:visited, 
+#sitenav a:active {
+	visibility: visible;
+	padding:0;
+}
+#sitenav a:hover {
+	visibility: visible;
+	cursor: help;
+}
+#sitenav a:hover span, 
+#sitenav a span:hover {
+	visibility: visible; 
+	background: #131313;
+}
+#sitenav a span {
+	visibility: hidden; 
+	position: absolute; 
+	left: 25px; 
+	width:auto;
+	height:auto;
+	text-decoration: none;
+}

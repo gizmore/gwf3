@@ -34,10 +34,6 @@
 {/if}
 <!-- CONTENT -->
 				<div id="content">
-					<p class="top">
-						<span style="float:left;">{$SF->getPath()}, {date('d.m.Y')}</span>
-						<span style="float:right;">{$SF->lang('last_change')}</span>
-					</p><hr style="clear:both;">
 <!--PAGE Beginn -->					
 					<div class="inhalt {if $SF->getMoMe('SF_Shell')}shell" id="largeshell{/if}">
 						<div class="GWF_FTW">
