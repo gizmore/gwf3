@@ -228,6 +228,12 @@ final class GWF_InstallConfig
 			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/inc3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
+
+			# Smarty
+			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', 'temp/smarty_cache/tpl', 'Default path to smarty template directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', 'temp/smarty_cache/tplc', 'Default path to smarty caching directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', 'temp/smarty_cache/cache', 'Default path to smarty cache directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', 'temp/smarty_cache/cfg', 'Default path to smarty config directory.'),
 			
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_URL', 'about_gwf', '1st visit URL. Example: \'home\'.'),
