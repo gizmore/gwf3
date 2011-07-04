@@ -749,11 +749,14 @@ final class Lamb
 			return;
 		}
 		
-		$user->saveVars(array(
+		if (false === $user->saveVars(array(
 			'lusr_last_channel' => $origin,
 			'lusr_last_message' => $message,
 			'lusr_timestamp' => time(),
-		));
+		)))
+		{
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
 		
 		$message = preg_replace('/[ ]{2,}/', ' ', $message);
 		

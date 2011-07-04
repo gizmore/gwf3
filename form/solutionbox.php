@@ -14,7 +14,7 @@ function formSolutionbox(WC_Challenge $chall)
 function formSolutionboxForm(WC_Challenge $chall)
 {
 	$data = array(
-		'answer' => array(GWF_Form::STRING, '', WC_HTML::lang('th_solution'), 24, 'answer'),
+		'answer' => array(GWF_Form::STRING, '', WC_HTML::lang('th_solution')),
 		'solve' => array(GWF_Form::SUBMIT, WC_HTML::lang('btn_solve')),
 	);
 	return new GWF_Form($chall, $data);

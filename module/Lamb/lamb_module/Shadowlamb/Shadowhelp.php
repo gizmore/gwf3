@@ -447,7 +447,10 @@ final class Shadowhelp
 	private static function getSpellTree($player)
 	{
 		$back = array();
-		foreach (SR_Spell::getSpells() as $name => $spell)
+		$spells = SR_Spell::getSpells();
+		ksort($spells);
+		
+		foreach ($spells as $name => $spell)
 		{
 			$spell instanceof SR_Spell;
 			if ( ($player === NULL) || ($spell->getBaseLevel($player) < 0) )

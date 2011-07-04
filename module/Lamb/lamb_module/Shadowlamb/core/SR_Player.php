@@ -239,8 +239,19 @@ class SR_Player extends GDO
 	/**
 	 * @return Lamb_User
 	 */
-	public function getUser() { return $this->getVar('sr4pl_uid'); }
-	
+	public function getUser()
+	{
+		$user = $this->getVar('sr4pl_uid');
+		if (false !== ($server = Lamb::instance()->getServer($user->getVar('lusr_sid'))))
+		{
+			if (false !== ($u = $server->getUser($user->getVar('lusr_name'))))
+			{
+				return $u;
+			}
+		}
+		return $user;
+	}
+		
 	#################
 	### Temp vars ###
 	#################

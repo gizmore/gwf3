@@ -101,7 +101,7 @@ final class Lamb_Channel extends GDO
 		return count($this->users);
 	}
 	
-	public function addUser(Lamb_User $user, $usermode='')
+	public function addUser(Lamb_User &$user, $usermode='')
 	{
 		$u = strtolower($user->getVar('lusr_name'));
 		$this->users[$u] = array($user, $usermode);

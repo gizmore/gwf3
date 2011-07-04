@@ -8,8 +8,10 @@ if ($message === '') {
 	return $bot->processMessageA($server, LAMB_TRIGGER.'help world_domination', $from);
 }
 
-switch (rand(1,5))
+switch (rand(0,5))
 {
+	case 0:
+		$msg = 'This is not bizarroworld.'; break;
 	case 1:
 		$msg = "Your evil plan failed."; break;
 	case 2:

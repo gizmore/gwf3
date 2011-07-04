@@ -502,7 +502,7 @@ function bbInsertCodeInit(key)
 	
 	if (GWF_BB_CODE_LANGS === undefined)
 	{
-		var result = ajaxSync(GWF_WEB_ROOT+'index.php?mo=Admin&me=CodeLangs&ajax=true&key='+key);
+		var result = ajaxSync(GWF_WEB_ROOT+'index.php?mo=Language&me=CodeLangs&ajax=true&key='+key);
 		div.html(result);
 		GWF_BB_CODE_LANGS = true;
 	}
