@@ -89,12 +89,12 @@ final class PasswordForgot_Form extends GWF_Method
 
 	private function sendMail(Module_PasswordForgot $module, GWF_User $user)
 	{
-		if (!$user->hasValidMail()) {
+		if ('' === ($email = $user->getValidMail()))
+		{
 			return $module->error('err_no_mail');
 		}
 
 		$sender = $module->getMailSender();
-		$email = $user->getEmail();
 		$username = $user->displayUsername();
 		$link = $this->getRequestLink($module, $user);
 		$body = $module->lang('mail_body', array( $username, $sender, $link));
