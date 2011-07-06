@@ -8,8 +8,16 @@ require_once 'gwf3.class.php';
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
 
-$gwf = new GWF3(false, false, false, false);
-$gwf->onInit(dirname(__FILE__), !defined('GWF_SESSION_NOT_BLOCKING'));
+$gwf = new GWF3(__DIR__, array(
+	'website_init' => false,
+	'autoload_modules' => false,
+	'load_module' => false,
+	'get_user' => false,
+	'config_path' => GWF_CONFIG_NAME,
+//	'logging' => true,
+));
+
+$gwf->onInit(__DIR__, !defined('GWF_SESSION_NOT_BLOCKING'));
 $gwf->onAutoloadModules();
 
 if (false === ($wechall = GWF_Module::loadModuleDB('WeChall', true, true)))

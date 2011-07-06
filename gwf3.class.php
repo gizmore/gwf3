@@ -8,23 +8,48 @@ if (!defined('GWF_CONFIG_NAME')) define('GWF_CONFIG_NAME', 'protected/config.php
 
 /**
  * @author spaceone
- * @version 1.01
+ * @version 1.02
  * @todo check if Session commit works
  * @todo better $mo/$me handling
- * @param $basepath should be __FILE__
- * @param $autoload load all autoload-modules
- * @param $loadmo load the requested module
  */
 class GWF3 
 {
-	private static $module, $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD, $page, $user;
-	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true, $user = true, $config=GWF_CONFIG_NAME)
+	const CONFIG = array(
+		'website_init' => true,
+		'autoload_modules' => true,
+		'load_module' => true,
+		'get_user' => true,
+		'config_path' => GWF_CONFIG_NAME,
+//		'logging' => true,
+	);
+	
+	private static $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD;
+	private static $module, $page, $user;
+
+	/**
+	 *
+	 * @param array $config
+	 * @param $basepath = __DIR__
+	 * @return GWF3 
+	 */
+	public function __construct($basepath, array $config)
 	{
-		$this->onLoadConfig($config);
-		if (false !== $basepath) { $this->onInit(dirname($basepath)); }
-		if (false !== $autoload) { $this->onAutoloadModules(); }
-		if (false !== $loadmo) { $this->onLoadModule(); }
-		if (false !== $user) 
+		define('GWF_WWW_PATH', $basepath);
+		$this->onLoadConfig($config['config_path']);
+		
+		if (false !== $config['website_init']) 
+		{ 
+			$this->onInit(dirname($basepath)); 
+		}
+		if (false !== $config['autoload_modules']) 
+		{ 
+			$this->onAutoloadModules(); 
+		}
+		if (false !== $config['load_module']) 
+		{ 
+			$this->onLoadModule(); 
+		}
+		if (false !== $config['get_user']) 
 		{		
 			self::$user = GWF_User::getStaticOrGuest();
 			GWF_Template::addMainTvars(array('user' => self::$user));
