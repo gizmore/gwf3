@@ -10,6 +10,7 @@ final class GWF_HTTP
 	######################
 	const DEFAULT_TIMEOUT = 60;
 	const DEFAULT_TIMEOUT_CONNECT = 10;
+	const USERAGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0';
 	
 	private static $TIMEOUT = self::DEFAULT_TIMEOUT;
 	private static $TIMEOUT_CONNECT = self::DEFAULT_TIMEOUT_CONNECT;
@@ -65,11 +66,18 @@ final class GWF_HTTP
 		#curl_setopt($ch, CURLOPT_VERBOSE, true);
 		
 		# Set the user agent - might help, doesn't hurt
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
  
 		# Try to follow redirects
-		@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+		curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		
+		# Cookie stuff
+		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
+		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
  
 		# Timeout
   		curl_setopt($ch, CURLOPT_TIMEOUT, self::$TIMEOUT);
@@ -122,22 +130,31 @@ final class GWF_HTTP
 		
 		$ch = curl_init();
 		
-		#curl_setopt($ch, CURLOPT_VERBOSE, 1);
+//		curl_setopt($ch, CURLOPT_VERBOSE, 1);
 		
+		# Try to follow redirects
+		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+		curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		
+		# Cookie stuff
+		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
+		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
 		
 		if ($cookie !== false)
 		{
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
 		
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
 		
   		curl_setopt($ch, CURLOPT_TIMEOUT, self::$TIMEOUT);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::$TIMEOUT_CONNECT);
 		
  		curl_setopt($ch, CURLOPT_URL, $url);
  		
+// 		$returnHeader = true;
  		if (is_bool($returnHeader))
  		{
  			curl_setopt($ch, CURLOPT_HEADER, $returnHeader);
@@ -152,7 +169,7 @@ final class GWF_HTTP
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0'); # should be 1!
 		}
 		
-		if (false === $received = curl_exec($ch))
+		if (false === ($received = curl_exec($ch)))
 		{
 			echo GWF_HTML::error('GWF_HTTP', curl_errno($ch).' - '.curl_error($ch));
 		}
@@ -192,6 +209,10 @@ final class GWF_HTTP
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeaders);
 		}
 		
+		# Cookie stuff
+		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
+		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
 		if ($cookie !== false) {
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
@@ -207,6 +228,7 @@ final class GWF_HTTP
 			curl_setopt($ch, CURLOPT_HEADER, true);
 		}
 		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
 		
 		if (is_array($postdata))
 		{
