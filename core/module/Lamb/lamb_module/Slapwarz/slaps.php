@@ -95,6 +95,7 @@ $slaps = array(
 	array('a poison', 35),
 	array('a sharp', 29),
 	array('an amazing', 40),
+	array('an electric', 33),
 ),
 
 
