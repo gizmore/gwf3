@@ -106,7 +106,7 @@ final class Module_PM extends GWF_Module
 	
 	public function deliver($from, $to, $title, $message, $parent1=0, $parent2=0)
 	{
-		require_once 'module/PM/GWF_PM.php';
+		require_once 'core/module/PM/GWF_PM.php';
 		
 		$pm1 = GWF_PM::fakePM($from, $to, $title, $message, $from, GWF_PM::OUTBOX, $parent1);
 		$pm1->setOption(GWF_PM::READ, true);
@@ -127,7 +127,7 @@ final class Module_PM extends GWF_Module
 		if (!$this->cfgEmailOnPM()) {
 			return 0;
 		}
-		require_once 'module/PM/GWF_EMailOnPM.php';
+		require_once 'core/module/PM/GWF_EMailOnPM.php';
 		return GWF_EMailOnPM::deliver($this, $pm2);
 	}
 	

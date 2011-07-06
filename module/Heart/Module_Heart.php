@@ -10,7 +10,7 @@ final class Module_Heart extends GWF_Module
 {
 	public function getVersion() { return 1.02; }
 	public function getDefaultAutoLoad() { return true; }
-	public function onInstall($dropTables) { require_once 'module/Heart/GWF_HeartInstall.php'; GWF_HeartInstall::onInstall($this, $dropTables); }
+	public function onInstall($dropTables) { require_once 'core/module/Heart/GWF_HeartInstall.php'; GWF_HeartInstall::onInstall($this, $dropTables); }
 	public function onStartup()
 	{
 		$ms = (string)((GWF_ONLINE_TIMEOUT-3)*1000);

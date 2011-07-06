@@ -82,7 +82,7 @@ final class Admin_Module extends GWF_Method
 		
 		$data = array(
 			'modulename' => array(GWF_Form::SSTRING, $mod->getName(), $m->lang('th_modulename')),
-			'path' => array(GWF_Form::SSTRING, 'module/'.$mod->getName(), $m->lang('th_path'), 30),
+			'path' => array(GWF_Form::SSTRING, 'core/module/'.$mod->getName(), $m->lang('th_path'), 30),
 			'version_db' => array(GWF_Form::SSTRING, $mod->getVersionDB(), $m->lang('th_version_db')),
 			'version_hd' => array(GWF_Form::SSTRING, $mod->getVersion(), $m->lang('th_version_hd')),
 			'div1' => array(GWF_Form::DIVIDER),

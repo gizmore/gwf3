@@ -28,7 +28,7 @@ final class WeChall_SiteRankings extends GWF_Method
 	private function getLinkcountUnranked($siteid)
 	{
 		$siteid=(int)$siteid;
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		return GDO::table('WC_RegAt')->countRows("regat_sid={$siteid} AND regat_options&4=1");
 	}
 	

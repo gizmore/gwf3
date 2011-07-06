@@ -9,9 +9,9 @@ final class WeChall_Freeze extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/WeChall/WC_RegAt.php';
-		require_once 'module/WeChall/WC_Freeze.php';
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_Freeze.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		if (false !== Common::getPost('freeze')) {
 			return $this->onFreeze($module).$this->templateFreeze($module);
 		}

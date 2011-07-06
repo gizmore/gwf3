@@ -10,7 +10,7 @@ final class Module_Language extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/lang'); }
 	public function onInstall($dropTable)
 	{
-		require_once 'module/Language/InstallLanguages.php';
+		require_once 'core/module/Language/InstallLanguages.php';
 		return InstallLanguages::onInstall($this, $dropTable);
 	}
 //	public function cfgLangByDomain() { return $this->getModuleVar('lang_by_domain', true); }

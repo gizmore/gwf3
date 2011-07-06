@@ -6,7 +6,7 @@ final class GWF_VersionFiles extends GDO
 	private static $size_unpacked = 0;
 	
 	private static $blacklist = array(
-		'#^module/WeChall/method/Convert.php$#',
+		'#^core/module/WeChall/method/Convert.php$#',
 	);
 	
 //	private static $whitelist = array(

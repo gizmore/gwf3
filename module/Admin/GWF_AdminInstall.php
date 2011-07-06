@@ -30,11 +30,11 @@ final class GWF_AdminInstall
 	}
 	
 	
-	const SPIDER_FILE = 'module/GWF/spider.dat';
+	const SPIDER_FILE = 'core/module/GWF/spider.dat';
 	private static function installWebspiders(Module_Admin $module, $dropTables)
 	{
 		$back = '';
-		require_once 'module/Admin/GWF_AdminWebSpiders.php';
+		require_once 'core/module/Admin/GWF_AdminWebSpiders.php';
 		if ($module->cfgInstallSpiders())
 		{
 			$back .= GWF_AdminWebSpiders::install($module, $dropTables);

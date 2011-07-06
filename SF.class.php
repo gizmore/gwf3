@@ -34,7 +34,7 @@ final class SF extends GWF3 {
 	public function cfgLayoutcolor($lc) { return GWF_SF_Utils::save_guest_setting('layoutcolor', $lc, $this->cfgdefaultColor(), $this->cfgCookieTime()); }
 
 	# nothing to worry about
-	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
+	public function onIncludeBeef() { return GWF_Website::addJavascript('core/inc3p/beef/hook/beefmagic.js.php'); }
 	public function getWelcomeComment() { 
 		if(true === self::getUser()->isWebspider()) {
 			return '<!--Hi '.htmlspecialchars(self::getUser()->displayUsername()).'-->'; 

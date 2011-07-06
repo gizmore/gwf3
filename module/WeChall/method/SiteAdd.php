@@ -91,7 +91,7 @@ final class WeChall_SiteAdd extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		require_once 'module/WeChall/WC_SiteDescr.php';
+		require_once 'core/module/WeChall/WC_SiteDescr.php';
 		if (false === WC_SiteDescr::insertDescr($site->getID(), 1, 'Please edit me :)')) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}

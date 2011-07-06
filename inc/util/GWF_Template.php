@@ -1,5 +1,5 @@
 <?php
-require_once 'inc/util/GWF_TemplateWrappers.php';
+require_once 'core/inc/util/GWF_TemplateWrappers.php';
 
 /**
  * There are two types of templates.
@@ -43,7 +43,7 @@ final class GWF_Template
 	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
 	{
 		$name = $module->getName();
-		return self::templatePHP("module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
+		return self::templatePHP("core/module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
 	}
 	
 	private static function templatePHP($path, $tVars=NULL, $tLang=NULL)
@@ -111,7 +111,7 @@ final class GWF_Template
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
 	{
 		$name = $module->getName();
-		return self::template("module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
+		return self::template("core/module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
 	}
 	
 	public static function template($path, $tVars=NULL)

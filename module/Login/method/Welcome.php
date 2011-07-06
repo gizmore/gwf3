@@ -23,7 +23,7 @@ final class Login_Welcome extends GWF_Method
 		if (false === ($user = GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
-		require_once 'module/Login/GWF_LoginHistory.php';
+		require_once 'core/module/Login/GWF_LoginHistory.php';
 		
 		GWF_Hook::call(GWF_Hook::LOGIN_AFTER, $user, array(GWF_Session::getOrDefault('GWF_LOGIN_BACK', GWF_WEB_ROOT.GWF_DEFAULT_URL)));
 		

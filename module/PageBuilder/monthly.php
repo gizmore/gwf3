@@ -1,7 +1,7 @@
 <?php
 function module_PageBuilder_monthly()
 {
-	require_once 'module/PageBuilder/GWF_Page.php';
+	require_once 'core/module/PageBuilder/GWF_Page.php';
 	$enabled = GWF_Page::ENABLED;
 	$langid = GWF_Language::getCurrentID();
 	$db = gdo_db();

@@ -1,7 +1,7 @@
 <?php
 final class Helpdesk_FAQ extends GWF_Method
 {
-	private function onGenerate(Module_Helpdesk $module) { require_once 'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($module); }
+	private function onGenerate(Module_Helpdesk $module) { require_once 'core/module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($module); }
 	
 	public function execute(Module_Helpdesk $module)
 	{

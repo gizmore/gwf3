@@ -153,7 +153,7 @@ final class Module_WeChall extends GWF_Module
 		if (false === ($site = WC_Site::getWeChall())) {
 			return true;
 		}
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		$regat = new WC_RegAt(array(
 			'regat_uid' => $user->getID(),
 			'regat_sid' => $site->getID(),
@@ -172,7 +172,7 @@ final class Module_WeChall extends GWF_Module
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		require_once 'module/WeChall/WC_FirstLink.php';
+		require_once 'core/module/WeChall/WC_FirstLink.php';
 		if (false === WC_FirstLink::insertFirstLink($user, $site, $user->getVar('user_name'), 0)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
@@ -195,7 +195,7 @@ final class Module_WeChall extends GWF_Module
 	
 	public function hookChangePass(GWF_User $user, array $args)
 	{
-		require_once 'module/WeChall/WC_PasswordMap.php';
+		require_once 'core/module/WeChall/WC_PasswordMap.php';
 		$uid = $user->getID();
 		return GDO::table('WC_PasswordMap')->deleteWhere("pmap_uid=$uid");
 	}
@@ -510,7 +510,7 @@ final class Module_WeChall extends GWF_Module
 		$count = 0;
 
 		# Masters
-		require_once 'module/WeChall/WC_SiteMaster.php';
+		require_once 'core/module/WeChall/WC_SiteMaster.php';
 		$mastercount = WC_SiteMaster::countMasters($this->cfgSiteMasterTime());
 		if ($mastercount > 0) {
 //			$count++;

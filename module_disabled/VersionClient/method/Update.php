@@ -75,7 +75,7 @@ final class VersionClient_Update extends GWF_Method
 		if (!class_exists('ZipArchive', false)) {
 			return $module->error('err_no_zip');
 		}
-//		require_once 'inc/util/GWF_ZipArchive.php';
+//		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
 		
 		$curlurl = $module->cfgCURLURL();

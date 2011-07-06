@@ -18,7 +18,7 @@ final class PageBuilder_Edit extends GWF_Method
 			die();
 		}
 		elseif (isset($_POST['upload'])) {
-			require_once 'module/PageBuilder/PB_Uploader.php';
+			require_once 'core/module/PageBuilder/PB_Uploader.php';
 			$back .= PB_Uploader::onUpload($module);
 		}
 		

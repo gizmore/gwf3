@@ -5,8 +5,8 @@ final class Login_History extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/Login/GWF_LoginCleared.php';
-		require_once 'module/Login/GWF_LoginHistory.php';
+		require_once 'core/module/Login/GWF_LoginCleared.php';
+		require_once 'core/module/Login/GWF_LoginHistory.php';
 		if (false !== Common::getPost('clear')) {
 			return $this->onClear($module).$this->templateHistory($module);
 		}

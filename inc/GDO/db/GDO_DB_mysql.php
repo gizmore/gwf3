@@ -127,25 +127,25 @@ final class GDO_DB_mysql extends GDO_Database
 	
 	public function createTable($tablename, array $defines)
 	{
-		require_once 'inc/GDO/db/GDO_DB_mysql_STRUCT.php';
+		require_once 'core/inc/GDO/db/GDO_DB_mysql_STRUCT.php';
 		return GDO_DB_mysql_STRUCT::createTable($tablename, $defines);
 	}
 	
 	public function createColumn($tablename, $columnname, array $define)
 	{
-		require_once 'inc/GDO/db/GDO_DB_mysql_STRUCT.php';
+		require_once 'core/inc/GDO/db/GDO_DB_mysql_STRUCT.php';
 		return GDO_DB_mysql_STRUCT::createColumn($tablename, $columnname, $define);
 	}
 	
 	public function renameTable($old_tablename, $new_tablename)
 	{
-		require_once 'inc/GDO/db/GDO_DB_mysql_STRUCT.php';
+		require_once 'core/inc/GDO/db/GDO_DB_mysql_STRUCT.php';
 		return GDO_DB_mysql_STRUCT::renameTable($old_tablename, $new_tablename);
 	}
 	
 	public function changeColumn($tablename, $old_columnname, $new_columnname, array $define)
 	{
-		require_once 'inc/GDO/db/GDO_DB_mysql_STRUCT.php';
+		require_once 'core/inc/GDO/db/GDO_DB_mysql_STRUCT.php';
 		return GDO_DB_mysql_STRUCT::changeColumn($tablename, $old_columnname, $new_columnname, $define);
 	}
 }

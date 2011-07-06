@@ -112,7 +112,7 @@ final class PasswordForgot_Form extends GWF_Method
 	{
 		$userid = $user->getID();
 		
-		require_once 'module/Account/GWF_AccountChange.php';
+		require_once 'core/module/Account/GWF_AccountChange.php';
 		
 		if (false === ($token = GWF_AccountChange::createToken($userid, 'pass'))) {
 			return 'ERR';

@@ -5,12 +5,12 @@
 function install_get_core_tables()
 {
 	$classnames = array();
-	foreach (scandir('inc/util') as $file)
+	foreach (scandir('core/inc/util') as $file)
 	{
 		if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/i', $file, $matches))
 		{
 			$classname = $matches[1];
-			if (false === ($content = file_get_contents("inc/util/{$file}"))) {
+			if (false === ($content = file_get_contents("core/inc/util/{$file}"))) {
 				continue;
 			}
 			if ( (strpos($content, ' extends GDO') !== false) && (strpos($content, 'abstract class') === false) )

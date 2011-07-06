@@ -11,7 +11,7 @@ final class WeChall_ScoringFAQ extends GWF_Method
 		GWF_Website::setPageTitle($module->lang('pt_scorefaq'));
 		GWF_Website::setMetaTags($module->lang('mt_scorefaq'));
 		$tVars = array(
-			'scoring' => new GWF_LangTrans('module/WeChall/lang/_wc_scoring'), 
+			'scoring' => new GWF_LangTrans('core/module/WeChall/lang/_wc_scoring'), 
 		);
 		return $module->templatePHP('scoring_faq.php', $tVars);
 	}

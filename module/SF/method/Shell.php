@@ -92,7 +92,7 @@ final class SF_Shell extends GWF_Method
 			if(array_key_exists($cmd, self::$cmds)) {
 				# sind die mindestargumente angegeben?
 				if(count($cmdS) >= self::$cmds[$cmd]['args']-1) {
-					require_once 'module/SF/SF_Shellfunctions.php';
+					require_once 'core/module/SF/SF_Shellfunctions.php';
 					$shfuncts = new SF_Shellfunctions;
 					return method_exists($shfuncts, $cmd) ? $shfuncts->$cmd($cmdS) : $this->onFunctionError($cmd);
 				} else {

@@ -29,7 +29,7 @@ class GWF_Module extends GDO
 	}
 
 	public function getID() { return $this->getVar('module_id'); }
-	public function getDir() { return 'module/'.$this->getName(); }
+	public function getDir() { return 'core/module/'.$this->getName(); }
 	public function getName() { return $this->getVar('module_name'); }
 	public function getLang() { return $this->lang; }
 	public function getVersion() { return 1.00; }
@@ -47,7 +47,7 @@ class GWF_Module extends GDO
 	public function hasAdminSection() { return $this->getAdminSectionURL() !== '#'; }
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isInstalled() { return $this->getVersionDB() > 0; }
-	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'module/'.$this->getName().'/'.$file; }
+	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'core/module/'.$this->getName().'/'.$file; }
 	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
 	public static function getModulesLoaded($format = false)
 	{
@@ -88,7 +88,7 @@ class GWF_Module extends GDO
 	### Lang ###
 	############
 	public function getLanguage() { return $this->lang; }
-	public function loadLanguage($path) { if ($this->lang === NULL) { $this->lang = new GWF_LangTrans(sprintf('module/%s/%s', $this->getName(), $path)); } }
+	public function loadLanguage($path) { if ($this->lang === NULL) { $this->lang = new GWF_LangTrans(sprintf('core/module/%s/%s', $this->getName(), $path)); } }
 	public function onLoadLanguage() { $this->lang = GWF_HTML::getLang(); } # $this->loadLanguage('lang/'.$this->getName()); }
 	public function error($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
 	public function message($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
@@ -198,7 +198,7 @@ class GWF_Module extends GDO
 	private static function initModuleB($modulename, array $data)
 	{
 		$classname = "Module_$modulename";
-		$path = "module/$modulename/$classname.php";
+		$path = "core/module/$modulename/$classname.php";
 		if (!Common::isFile($path)) {
 			return false;
 		}
@@ -252,7 +252,7 @@ class GWF_Module extends GDO
 	{
 		foreach ($this->getClasses() as $class)
 		{
-			require_once 'module/'.$this->getName().'/'.$class.'.php';
+			require_once 'core/module/'.$this->getName().'/'.$class.'.php';
 		}
 	}
 	
@@ -264,7 +264,7 @@ class GWF_Module extends GDO
 	{
 		$name = $this->getName();
 		$methodname = str_replace('/', '', $methodname); # LFI
-		$path = "module/$name/method/$methodname.php";
+		$path = "core/module/$name/method/$methodname.php";
 		if (!Common::isFile($path)) {
 			return false;
 		}

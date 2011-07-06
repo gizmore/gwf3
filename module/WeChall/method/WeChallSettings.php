@@ -21,8 +21,8 @@ final class WeChall_WeChallSettings extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/WeChall/WC_SiteFavorites.php';
-		require_once 'module/WeChall/WC_FavCats.php';
+		require_once 'core/module/WeChall/WC_SiteFavorites.php';
+		require_once 'core/module/WeChall/WC_FavCats.php';
 		
 		if (false !== (Common::getPost('add_fav'))) {
 			return $this->onMarkFavorite($module).$this->templateFavSites($module);
@@ -91,7 +91,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	
 	private function getFavcatSelect(Module_WeChall $module, $userid)
 	{
-		require_once 'module/WeChall/WC_SiteCats.php';
+		require_once 'core/module/WeChall/WC_SiteCats.php';
 		if (false === ($cats = WC_SiteCats::getAllCats())) {
 			return '';
 		}
@@ -223,7 +223,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		$old_xss = isset($data['WC_NO_XSS']);
 		if ($new_xss !== $old_xss)
 		{
-			require_once 'module/WeChall/WC_HistoryUser2.php';
+			require_once 'core/module/WeChall/WC_HistoryUser2.php';
 			$noxss = WC_HistoryUser2::NO_XSS;
 			if ($new_xss === false) {
 				unset($data['WC_NO_XSS']);
@@ -266,7 +266,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		$new_hide_rank = isset($_POST['hide_rank']);
 		if ($old_hide_rank !== $new_hide_rank)
 		{
-			require_once 'module/WeChall/WC_RegAt.php';
+			require_once 'core/module/WeChall/WC_RegAt.php';
 			if ($new_hide_rank === false) {
 				unset($data['WC_HIDE_RANK']);
 				$user->saveOption(0x10000000, false);

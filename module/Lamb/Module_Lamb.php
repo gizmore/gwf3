@@ -11,7 +11,7 @@ final class Module_Lamb extends GWF_Module
 	### GWF_Module ###
 	##################
 	public function getVersion() { return 1.0; }
-	public function onInstall($dropTable) { require_once 'module/Lamb/Lamb_Install.php'; return Lamb_Install::onInstall($this, $dropTable); }
+	public function onInstall($dropTable) { require_once 'core/module/Lamb/Lamb_Install.php'; return Lamb_Install::onInstall($this, $dropTable); }
 	public function getClasses() { return array('Lamb_IRCFrom', 'Lamb_IRCTo', 'Lamb_Players'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/lamb'); }
 	public function getDefaultPriority() { return 60; } # 50 is default

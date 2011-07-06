@@ -82,7 +82,7 @@ final class GWF_ModuleLoader
 		}
 		
 		$modulename = "Module_$name";
-		$filename = "module/$name/$modulename.php";
+		$filename = "core/module/$name/$modulename.php";
 		if (!Common::isFile($filename)) {
 			return false;
 		}
@@ -142,7 +142,7 @@ final class GWF_ModuleLoader
 		$back = '';
 		foreach ($classnames as $classname)
 		{
-			require_once "module/$name/$classname.php";
+			require_once "core/module/$name/$classname.php";
 			$table = GDO::table($classname);
 			if ($table instanceof GDO)
 			{
@@ -209,7 +209,7 @@ final class GWF_ModuleLoader
 	{
 		$name = $module->getName();
 		$vstr = str_replace('.', '_', sprintf('%.02f', $version));
-		$path = sprintf('module/%s/Upgrade_%s_%s.php', $name, $name, $vstr);
+		$path = sprintf('core/module/%s/Upgrade_%s_%s.php', $name, $name, $vstr);
 
 		if (Common::isFile($path))
 		{
@@ -410,7 +410,7 @@ final class GWF_ModuleLoader
 	{
 		$back = array();
 		$name = $module->getName();
-		$path = "module/$name/method";
+		$path = "core/module/$name/method";
 		
 		if (!Common::isDir($path)) {
 			return array();

@@ -7,7 +7,7 @@ if (!is_readable('protected/config.php')) {
 	die('Try protected/install_wizard.php');
 }
 
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 GWF_Language::initEnglish();
 GWF_HTML::init();
 GWF_Log::init(false, true, 'protected/logs');

@@ -9,7 +9,7 @@ final class Lamb
 	#############
 	### Const ###
 	#############
-	const DIR = 'module/Lamb/';
+	const DIR = 'core/module/Lamb/';
 	
 	################
 	### Instance ###

@@ -18,7 +18,7 @@ final class WeChall_ChallVotes extends GWF_Method
 			return $module->error('err_chall');
 		}
 		
-		require_once 'module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
 		
 		if (false !== (Common::getPost('vote'))) {
 			return $this->onVote($module, $chall).$this->templateVotes($module, $chall);

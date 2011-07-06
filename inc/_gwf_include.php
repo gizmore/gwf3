@@ -24,11 +24,11 @@ if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
 define('GWF_WEB_ROOT', $root);
 
 # Require the Database
-require_once 'inc/GDO/GDO.php';
+require_once 'core/inc/GDO/GDO.php';
 
 # Require the util
-require_once 'inc/util/Common.php';
-require_once 'inc/_gwf_autoload.php';
+require_once 'core/inc/util/Common.php';
+require_once 'core/inc/_gwf_autoload.php';
 
 # Enable the error handlers
 GWF_Debug::enableErrorHandler();

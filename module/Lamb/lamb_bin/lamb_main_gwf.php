@@ -5,10 +5,10 @@ if (isset($_SERVER['REMOTE_ADDR'])) {
 }
 # GWF2 core
 define('GWF_CONFIG_NAME', 'protected/config_lamb.php');
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 
 # Lamb2 core
-$dir = 'module/Lamb';
+$dir = 'core/module/Lamb';
 chdir($dir);
 require 'Lamb_Channel.php';
 require 'Lamb_IRC.php';

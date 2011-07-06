@@ -92,7 +92,7 @@ final class WC_Challenge extends GDO
 			# Get the solved row and store 1st-look-at date.
 			if ($back !== false && $store_look && (0 !== ($userid = GWF_Session::getUserID())))
 			{
-				require_once 'module/WeChall/WC_ChallSolved.php';
+				require_once 'core/module/WeChall/WC_ChallSolved.php';
 				$back->solveRow = WC_ChallSolved::getSolvedRow($userid, $back->getID());
 			}
 			
@@ -276,7 +276,7 @@ final class WC_Challenge extends GDO
 	 */
 	public function getSolvedRow($userid)
 	{
-		require_once 'module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
 		return WC_ChallSolved::getSolvedRow($userid, $this->getID());
 	}
 	
@@ -403,7 +403,7 @@ final class WC_Challenge extends GDO
 			if (false === $wechall->saveVar('site_maxscore', self::getMaxScore())) {
 				return false;
 			}
-//			require_once 'module/WeChall/WC_RegAt.php';
+//			require_once 'core/module/WeChall/WC_RegAt.php';
 //			WC_RegAt::fixPercent(WC_Site::getWeChall());
 			$wechall->recalcSite();
 			return true;
@@ -608,7 +608,7 @@ final class WC_Challenge extends GDO
 			}
 		}
 		# Delete Solved
-		require_once 'module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
 		GDO::table('WC_ChallSolved')->deleteWhere('csolve_cid='.$this->getID());
 		
 		# Delete Challenge
@@ -677,7 +677,7 @@ final class WC_Challenge extends GDO
 			}
 		}
 		
-		require_once 'module/WeChall/WC_SolutionBlock.php';
+		require_once 'core/module/WeChall/WC_SolutionBlock.php';
 		if (false !== ($wait = WC_SolutionBlock::isBlocked($user)))
 		{
 			echo WC_HTML::error('err_solution_block', GWF_Time::humanDuration($wait));
@@ -860,7 +860,7 @@ final class WC_Challenge extends GDO
 		if ('0' === ($uid = GWF_Session::getUserID())) {
 			$isSolved = false;
 		} else {
-			require_once 'module/WeChall/WC_ChallSolved.php';
+			require_once 'core/module/WeChall/WC_ChallSolved.php';
 			$isSolved = WC_ChallSolved::hasSolved($uid, $this->getID());
 		}
 		

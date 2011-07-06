@@ -28,7 +28,7 @@ GWF_SmartyFile::init();
 
 
 /**
- * Call a static inc/util function via smarty.
+ * Call a static core/inc/util function via smarty.
  * @example smartyhtml: {$gwf->Time()->getDate()}
  * @author gizmore
  */

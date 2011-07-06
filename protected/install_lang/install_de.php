@@ -56,7 +56,7 @@ $lang = array(
 
 	'step_3' => 'Installiere core Tabellen',
 	'create_table' => 'Erstelle Tabelle für class %1%... ',
-	'step_3_0' => 'Wir werden jetzt die Tabellen für die core-Klassen erstellen.<br/>Sie finden diese im &quot;inc/&quot; Ordner.<br/>Jede Klasse besitzt eine Datenbanktabelle.',
+	'step_3_0' => 'Wir werden jetzt die Tabellen für die core-Klassen erstellen.<br/>Sie finden diese im &quot;core/inc/&quot; Ordner.<br/>Jede Klasse besitzt eine Datenbanktabelle.',
 	'step_3_1' => 'Sie können jetzt entweder versuchen die Land/Sprach Tabellen mit oder ohne ip2country Mapping zu installieren.<br/>IP2country Mapping kann mehrere Minuten zum installieren benötigen.',
 
 	'step_4' => 'Installiere Land+Sprach Tabellen',

@@ -23,7 +23,7 @@ final class WeChall_RankingTag extends GWF_Method
 	
 	private function onQuickjump(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_SiteCats.php';
+		require_once 'core/module/WeChall/WC_SiteCats.php';
 		if (false === ($cat = WC_SiteCats::getCatForBit(Common::getPost('category')))) {
 			$location = GWF_WEB_ROOT.'category_ranking';
 		}
@@ -36,7 +36,7 @@ final class WeChall_RankingTag extends GWF_Method
 	
 	private function templateRanking(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_SiteCats.php';
+		require_once 'core/module/WeChall/WC_SiteCats.php';
 		
 		$tag = Common::getGet('tag', self::DEFAULT_TAG);
 		if (0 === ($bit = WC_SiteCats::getBitForCat($tag))) {

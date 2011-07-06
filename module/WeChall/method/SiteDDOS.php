@@ -19,7 +19,7 @@ final class WeChall_SiteDDOS extends GWF_Method
 	
 	private function templateDDOS(Module_WeChall $module, WC_Site $site)
 	{
-//		require_once 'module/WeChall/WC_RegAt.php';
+//		require_once 'core/module/WeChall/WC_RegAt.php';
 		
 		$siteid = $site->getVar('site_id');
 		$regat = GWF_TABLE_PREFIX.'wc_regat';

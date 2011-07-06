@@ -3,7 +3,7 @@ final class Module_Helpdesk extends GWF_Module
 {
 	# Module #
 	public function getClasses() { return array('GWF_HelpdeskFAQ', 'GWF_HelpdeskMsg', 'GWF_HelpdeskTicket'); }
-	public function onInstall($dropTable) { require_once 'module/Helpdesk/GWF_HelpdeskInstall.php'; GWF_HelpdeskInstall::onInstall($this, $dropTable); }
+	public function onInstall($dropTable) { require_once 'core/module/Helpdesk/GWF_HelpdeskInstall.php'; GWF_HelpdeskInstall::onInstall($this, $dropTable); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/helpdesk'); }
 	# Config #
 	public function cfgMaxTitleLen() { return $this->getModuleVar('maxlen_title', '255'); }

@@ -11,7 +11,7 @@ $text = $tVars['lang2']->lang('page_info1').'<br/><br/>'.PHP_EOL;
 foreach ($wordlists as $i => $filename)
 {
 	$href = GWF_WEB_ROOT.'applet/wordlists/'.$filename;
-//	$href = GWF_WEB_ROOT.'module/WeChall/tpl/default/tools/wordlists/files/'.$filename;
+//	$href = GWF_WEB_ROOT.'core/module/WeChall/tpl/default/tools/wordlists/files/'.$filename;
 	$info = $tVars['lang2']->lang('link_info1_'.$i);
 	$text .= sprintf('<div><a href="%s">%s</a></div>', $href, $info).PHP_EOL;
 }
@@ -26,7 +26,7 @@ $text = $tVars['lang2']->lang('page_info2', array(GWF_WEB_ROOT.'profile/mirmo', 
 foreach ($trigraphs as $filename => $info)
 {
 	$href = GWF_WEB_ROOT.'applet/wordlists/'.$filename;
-//	$href = GWF_WEB_ROOT.'module/WeChall/tpl/default/tools/wordlists/files/'.$filename;
+//	$href = GWF_WEB_ROOT.'core/module/WeChall/tpl/default/tools/wordlists/files/'.$filename;
 	$info = $tVars['lang2']->lang('link_info2', array($info));
 	$text .= sprintf('<div><a href="%s">%s</a></div>', $href, $info).PHP_EOL;
 }

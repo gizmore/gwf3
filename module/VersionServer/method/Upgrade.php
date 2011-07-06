@@ -73,7 +73,7 @@ final class VersionServer_Upgrade extends GWF_Method
 		if (!class_exists('ZipArchive', false)) {
 			return $module->error('err_no_zip');
 		}
-//		require_once 'inc/util/GWF_ZipArchive.php';
+//		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
 		# Populate the DB again
 		GWF_VersionFiles::populateAll();

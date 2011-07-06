@@ -41,9 +41,9 @@ final class WeChall_Sites extends GWF_Method
 	
 	private function templateSites(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_SiteAdmin.php';
-		require_once 'module/WeChall/WC_SiteCats.php';
-		require_once 'module/WeChall/WC_SiteDescr.php';
+		require_once 'core/module/WeChall/WC_SiteAdmin.php';
+		require_once 'core/module/WeChall/WC_SiteCats.php';
+		require_once 'core/module/WeChall/WC_SiteDescr.php';
 		
 		$tag = Common::getGet('tag', '');
 		if (0 === ($tag_bit = WC_SiteCats::getBitForCat($tag))) {

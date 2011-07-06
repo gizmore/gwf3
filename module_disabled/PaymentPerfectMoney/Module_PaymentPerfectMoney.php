@@ -1,5 +1,5 @@
 <?php
-require_once 'module/Payment/GWF_PaymentModule.php';
+require_once 'core/module/Payment/GWF_PaymentModule.php';
 
 final class Module_PaymentPerfectMoney extends GWF_PaymentModule
 {

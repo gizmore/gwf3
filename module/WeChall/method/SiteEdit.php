@@ -11,7 +11,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/WeChall/WC_SiteAdmin.php';
+		require_once 'core/module/WeChall/WC_SiteAdmin.php';
 		
 		if (false === ($site = WC_Site::getByID(Common::getGet('siteid')))) {
 			return $module->error('err_site');
@@ -297,7 +297,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			if ($site->getTags() !== $new_tags) {
 				echo GWF_HTML::message('WeChall', 'Fixing challenge site tags..');
 				$site->saveVar('site_tags', str_replace(' ', '', $new_tags));
-				require_once 'module/WeChall/WC_SiteCats.php';
+				require_once 'core/module/WeChall/WC_SiteCats.php';
 				WC_SiteCats::fixCatBits();
 			}
 		}

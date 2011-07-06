@@ -13,7 +13,7 @@ final class WeChall_ChallsProfile extends GWF_Method
 	{
 		$whitelist = array('chall_score','chall_title','chall_creator_name','chall_solvecount','chall_date','chall_dif','chall_edu','chall_fun','csolve_date', 'csolve_time_taken');
 		
-		require_once 'module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
 		$challs = GDO::table('WC_Challenge');
 		
 		$db = gdo_db();

@@ -4,7 +4,7 @@ if (PHP_SAPI!=='cli') {
 }
 chdir('../');
 if (!file_exists('protected/config.php')) { $write_a_config = true; define('GWF_HAVE_CONFIG', true); }
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 require_once 'protected/install_scripts/install_wizard.inc.php';
 require_once 'protected/install_scripts/install_functions.php';
 require_once 'protected/install_scripts/install_config.php';

@@ -183,7 +183,7 @@ class GWF_Message {
 //    	static $inited = false;
 //    	if (!$inited)
 //    	{
-//			require_once 'inc3p/quickerubb.php';
+//			require_once 'core/inc3p/quickerubb.php';
 //			self::$parser = new ubbParser();
 //    	}
 //    }
@@ -235,7 +235,7 @@ class GWF_Message {
 	 */
 /*	public function bbReplace($posterid, $defaultScore=false)
 	{
-		require_once 'inc3p/quickerubb.php';
+		require_once 'core/inc3p/quickerubb.php';
 
 		if ($defaultScore !== false) {
 			$score = $defaultScore;

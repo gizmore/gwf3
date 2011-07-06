@@ -21,21 +21,21 @@ if (!file_exists($gwfcfg))
 define('GWF_CONFIG_NAME', $gwfcfg);
 
 # Lamb config
-if (!file_exists("module/Lamb/lamb_bin/{$argv[2]}"))
+if (!file_exists("core/module/Lamb/lamb_bin/{$argv[2]}"))
 {
 	die("Error: Lamb Config File not found.\nExample for the 2nd parameter: Lamb_Config.php\nThis is the Lamb3 config file.");
 }
 define('LAMB_CONFIG_FILENAME', $argv[2]);
 
 # Include GWF core
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 # Init it
 GWF_HTML::init();
 # Init the logger
 GWF_Log::init(false, false, Common::substrUntil(dirname(__FILE__), '/module').'/protected/logs');
 
 # Lamb3 core config
-$dir = 'module/Lamb';
+$dir = 'core/module/Lamb';
 chdir($dir);
 require_once 'lamb_bin/Lamb_ConfigInit.php';
 

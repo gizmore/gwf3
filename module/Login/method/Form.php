@@ -53,7 +53,7 @@ final class Login_Form extends GWF_Method
 	
 	public function onLogin(Module_Login $module)
 	{
-		require_once 'module/Login/GWF_LoginFailure.php';
+		require_once 'core/module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
 		$form = $this->getForm($module);
 		if (false !== ($errors = $form->validate($module, $isAjax))) {
@@ -132,7 +132,7 @@ final class Login_Form extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		require_once 'module/Login/GWF_LoginHistory.php';
+		require_once 'core/module/Login/GWF_LoginHistory.php';
 		GWF_LoginHistory::insertEvent($user->getID());
 		
 		# save last login time

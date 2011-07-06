@@ -864,7 +864,7 @@ class WC_Site extends GDO
 	public function getSiteClass()
 	{
 		$classname = 'WCSite_'.$this->getVar('site_classname');
-		$path = sprintf('module/WeChall/sites/%s.php', $classname);
+		$path = sprintf('core/module/WeChall/sites/%s.php', $classname);
 		if (!file_exists($path)) {
 			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
 			return false;
@@ -893,7 +893,7 @@ class WC_Site extends GDO
 	 */
 	public function onUpdateUser(GWF_User $user, $recalc_scores=true, $onlink=false)
 	{
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		
 		if (!$this->isUp()) {
 			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
@@ -998,14 +998,14 @@ class WC_Site extends GDO
 		# Insert into User History
 		$comment = $this->getUserHistComment($old_score, $new_score, $onlink, $scoregain);
 		$user = GWF_User::getByID($user->getID());
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		$type = $this->getUserHistType($old_score, $new_score, $onlink);
 		
 		if (false === WC_HistoryUser2::insertEntry($user, $this, $type, $new_score, $old_score, $scoregain, $regat->getVar('regat_onsiterank'))) {
 			return new GWF_Result(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)), true);
 		}
 
-		require_once 'module/WeChall/WC_SiteMaster.php';
+		require_once 'core/module/WeChall/WC_SiteMaster.php';
 		if ($solved >= 1.0) {
 			WC_SiteMaster::markSiteMaster($user->getID(), $this->getID());
 		}
@@ -1089,7 +1089,7 @@ class WC_Site extends GDO
 		
 		if ($basescore !== $this->getVar('site_score'))
 		{
-			require_once 'module/WeChall/WC_HistorySite.php';
+			require_once 'core/module/WeChall/WC_HistorySite.php';
 			if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $this->getUsercount(), $this->getChallcount())) {
 				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				return false;
@@ -1174,7 +1174,7 @@ class WC_Site extends GDO
 	 */
 	public function recalcSite()
 	{
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		if (WECHALL_DEBUG_SCORING)
 		{
 			echo WC_HTML::message('msg_site_recalc', array($this->displayName()));

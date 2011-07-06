@@ -1,5 +1,5 @@
 <?php
-require_once 'module/Payment/GWF_PaymentModule.php';
+require_once 'core/module/Payment/GWF_PaymentModule.php';
 
 # CBusch1980@gmx.de
 # 9Kt1NjFGlhGKlPvc

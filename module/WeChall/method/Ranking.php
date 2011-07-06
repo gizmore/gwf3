@@ -33,7 +33,7 @@ final class WeChall_Ranking extends GWF_Method
 	
 	private function templateRanking(Module_WeChall $module, $user)
 	{
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		$users = GDO::table('GWF_User');
 		$ipp = $module->cfgItemsPerPage();
 		$nItems = $users->countRows("user_level>0");

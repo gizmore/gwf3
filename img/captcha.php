@@ -1,8 +1,8 @@
 <?php
 chdir("../");
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 GWF_Session::start(false);
-require('inc3p/Class_Captcha.php');
+require('core/inc3p/Class_Captcha.php');
 GWF_HTTP::noCache();
 $aFonts = array('font/teen.ttf');
 $rgbcolor = GWF_CAPTCHA_COLOR_BG;

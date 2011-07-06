@@ -85,7 +85,7 @@ final class WeChall_API_History extends GWF_Method
 		
 //		if (!isset($no_block))
 //		{
-//			require_once 'module/WeChall/WC_API_Block.php';
+//			require_once 'core/module/WeChall/WC_API_Block.php';
 //			if (WC_API_Block::isBlocked())
 //			{
 //				return $module->error('err_api_block');
@@ -97,7 +97,7 @@ final class WeChall_API_History extends GWF_Method
 	
 	private function history(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		$conditions = array();
 		if ($this->user !== false) {
 			$conditions[] = 'userhist_uid='.$this->user->getVar('user_id');

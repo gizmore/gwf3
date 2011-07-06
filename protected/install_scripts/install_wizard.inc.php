@@ -10,7 +10,7 @@ if (!defined('GWF_WEB_ROOT_NO_LANG')) { define('GWF_WEB_ROOT_NO_LANG', Common::s
 if (!defined('GWF_USER_STACKTRACE')) { define('GWF_USER_STACKTRACE', true); }
 if (!defined('GWF_SITENAME')) { define('GWF_SITENAME', 'GWF3'); }
 ####//if (!defined('GWF_SERVER_PATH')) { define('GWF_SERVER_PATH', Common::substrUntil($_SERVER['SCRIPT_FILENAME'], '/protected/')); }
-if (!defined('GWF_SMARTY_PATH')) { define('GWF_SMARTY_PATH', $server_root.'/inc3p/smarty/Smarty.class.php'); }
+if (!defined('GWF_SMARTY_PATH')) { define('GWF_SMARTY_PATH', $server_root.'/core/inc3p/smarty/Smarty.class.php'); }
 
 if (!defined('GWF_DEFAULT_LANG')) { define('GWF_DEFAULT_LANG', 'en'); }
 if (!defined('GWF_DEFAULT_DESIGN')) { define('GWF_DEFAULT_DESIGN', 'default'); }

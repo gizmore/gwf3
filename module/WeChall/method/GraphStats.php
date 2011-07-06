@@ -222,7 +222,7 @@ final class WeChall_GraphStats extends GWF_Method
 			$ylast[$uid2] = array();
 		}
 		
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		$history = GDO::table('WC_HistoryUser2');
 		$where = "(userhist_uid=$uid1$where2) AND userhist_date BETWEEN $start AND $end";
 		$orderby = 'userhist_date ASC';

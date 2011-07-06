@@ -13,8 +13,8 @@ final class WeChall_MathSolutions extends GWF_Method
 		$token = Common::getGetString('token');
 		$length = Common::clamp(Common::getGetInt('length'), 1);
 		
-		require_once 'module/WeChall/WC_ChallSolved.php';
-		require_once 'module/WeChall/WC_MathChall.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_MathChall.php';
 		if (!WC_ChallSolved::hasSolved($user->getID(), $chall->getID())) {
 			if (!WC_MathChall::checkToken($chall, $length, $token)) {
 				return $module->error('err_token');

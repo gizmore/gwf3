@@ -26,7 +26,7 @@ final class WeChall_API_Bot extends GWF_Method
 			die($this->rawOnSiteStats($module, $sitename, $onsitename));
 		}
 		
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		
 		if (Common::getGet('wechall') === 'yes') {
 			die($this->wechallChalls($module, $input));
@@ -244,7 +244,7 @@ final class WeChall_API_Bot extends GWF_Method
 			return sprintf('Try wechallchalls.php?userame=blub');
 		}
 		
-		require_once 'module/WeChall/WC_ChallSolved.php';
+		require_once 'core/module/WeChall/WC_ChallSolved.php';
 		
 		$wechall = WC_Site::getWeChall();
 		$siteid = $wechall->getID();
@@ -316,7 +316,7 @@ final class WeChall_API_Bot extends GWF_Method
 			die('Unknown Site '.$classname);
 		}
 		
-		require_once 'module/WeChall/WC_SiteDescr.php';
+		require_once 'core/module/WeChall/WC_SiteDescr.php';
 		$descr = WC_SiteDescr::getDescription($site->getID());
 //		$descr = $site->getVar('site_description');
 //		$message = $descr;

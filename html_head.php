@@ -30,7 +30,7 @@ if (defined('GWF_PAGE_TITLE')) {
 //GWF_Module::getModule('Votes', true);
 GWF_Module::loadModuleDB('Forum', true);
 //GWF_Module::getModule('WeChall', true)->onLoadLanguage();
-require_once 'module/WeChall/WC_ChallSolved.php';
+require_once 'core/module/WeChall/WC_ChallSolved.php';
 //GWF_ForumBoard::init(true);
 
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';

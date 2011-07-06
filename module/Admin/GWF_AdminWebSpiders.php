@@ -1,9 +1,9 @@
 <?php
 final class GWF_AdminWebSpiders
 {
-//	const SPIDER_FILE = 'module/Admin/spider_msn.dat';
-//	const SPIDER_FILE = 'module/Admin/spider_test.dat';
-	const SPIDER_FILE = 'module/Admin/spider.dat';
+//	const SPIDER_FILE = 'core/module/Admin/spider_msn.dat';
+//	const SPIDER_FILE = 'core/module/Admin/spider_test.dat';
+	const SPIDER_FILE = 'core/module/Admin/spider.dat';
 	
 	public static function installHide(Module_Admin $module, $hide)
 	{

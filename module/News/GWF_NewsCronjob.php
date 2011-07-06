@@ -10,7 +10,7 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 	
 	private static function sendNewsletters(Module_News $module)
 	{
-		require_once 'module/News/GWF_Newsletter.php';
+		require_once 'core/module/News/GWF_Newsletter.php';
 		$news = GDO::table('GWF_News');
 		$newsletter = GDO::table('GWF_Newsletter');
 		

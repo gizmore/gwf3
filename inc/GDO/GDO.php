@@ -27,8 +27,8 @@ function gdo_db()
 function gdo_db_instance($host, $user, $pass, $database, $type='mysql', $charset='utf8')
 {
 	$classname = 'GDO_DB_'.$type;
-	require_once 'inc/GDO/db/GDO_Database.php';
-	require_once 'inc/GDO/db/'.$classname.'.php';
+	require_once 'core/inc/GDO/db/GDO_Database.php';
+	require_once 'core/inc/GDO/db/'.$classname.'.php';
 	$db = new $classname();
 	if (false === $db->connect($host, $user, $pass, $database, $charset)) {
 		return false;

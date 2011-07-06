@@ -115,7 +115,7 @@ final class PT_Menu
 		$app = '';
 		if (false !== ($user = GWF_Session::getUser()))
 		{
-			require_once 'module/Forum/GWF_ForumThread.php';
+			require_once 'core/module/Forum/GWF_ForumThread.php';
 			$count = GWF_ForumThread::getUnreadThreadCount($user);
 			if ($count > 0) {
 				$app = " [$count]";

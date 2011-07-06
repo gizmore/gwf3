@@ -56,7 +56,7 @@ $lang = array(
 
 	'step_3' => 'Install core tables',
 	'create_table' => 'Creating table for class %1%... ',
-	'step_3_0' => 'We will now create the tables for the core classes.<br/>You can find these in the &quot;inc/&quot; directory.<br/>Every class takes care of one database table.',
+	'step_3_0' => 'We will now create the tables for the core classes.<br/>You can find these in the &quot;core/inc/&quot; directory.<br/>Every class takes care of one database table.',
 	'step_3_1' => 'You may now either install country/language tables with or without ip2country mapping.<br/>IP2country mapping may take several minutes to install.',
 
 	'step_4' => 'Install country+language tables',

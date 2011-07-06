@@ -19,8 +19,8 @@ final class WeChall_LinkedSites extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/WeChall/WC_Freeze.php';
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_Freeze.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		
 		if (false !== ($token = Common::getGet('link'))) {
 			return $this->onLinkSiteAfterMailPre($module, $token, (int)Common::getGet('site', 0));
@@ -288,7 +288,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		require_once 'module/WeChall/WC_FirstLink.php';
+		require_once 'core/module/WeChall/WC_FirstLink.php';
 		if (false === WC_FirstLink::insertFirstLink($user, $site, $onsitename, $regat2->getOnsiteScore())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
@@ -360,7 +360,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		$user = GWF_User::getByID($userid);
 		$new_totalscore = $user->getVar('user_level');
 		
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		WC_HistoryUser2::insertEntry($user, $site, 'unlink', 0, $regat->getOnsiteScore(), $new_totalscore-$old_totalscore);
 		
 		return $module->message('msg_site_unlinked', array($site->displayName()));

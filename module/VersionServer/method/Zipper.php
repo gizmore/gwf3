@@ -129,7 +129,7 @@ final class VersionServer_Zipper extends GWF_Method
 		if (!class_exists('ZipArchive', false)) {
 			return $module->error('err_no_zip');
 		}
-//		require_once 'inc/util/GWF_ZipArchive.php';
+//		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
 		# Post Vars
 		$this->style = explode(',', Common::getPost('style', 'default'));
@@ -159,7 +159,7 @@ final class VersionServer_Zipper extends GWF_Method
 				continue;
 			}
 			# zip dir recursive, do not ignore style
-			if (false === ($this->zipDir($archive, 'module/'.substr($group, 4), true, false))) {
+			if (false === ($this->zipDir($archive, 'core/module/'.substr($group, 4), true, false))) {
 				return $module->error('err_zip', array(__FILE__, __LINE__));
 			}
 		}

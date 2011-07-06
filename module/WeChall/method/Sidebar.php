@@ -9,7 +9,7 @@ final class WeChall_Sidebar extends GWF_Method
 {
 	/**
 	 * toggle panels
-	 * @see inc/GWF_Method#execute($module)
+	 * @see core/inc/GWF_Method#execute($module)
 	 */
 	public function execute(GWF_Module $module)
 	{

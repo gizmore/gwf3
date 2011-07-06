@@ -1,7 +1,7 @@
 <?php
-require_once 'module/WeChall/WC_RegAt.php';
-require_once 'module/WeChall/WC_SiteFavorites.php';
-require_once 'module/Profile/tpl/wc4/_profile_funcs.php';
+require_once 'core/module/WeChall/WC_RegAt.php';
+require_once 'core/module/WeChall/WC_SiteFavorites.php';
+require_once 'core/module/Profile/tpl/wc4/_profile_funcs.php';
 $wechall = Module_WeChall::instance();
 $u = $tVars['user']; $u instanceof GWF_User;
 $p = $tVars['profile']; $p instanceof GWF_Profile;
@@ -177,7 +177,7 @@ if (count($regats) > 0)
 # Break on jquery
 if ($tVars['jquery']) { echo '<div class="cb"></div>'.PHP_EOL; return; }
 
-require_once 'module/WeChall/WC_HistoryUser2.php';
+require_once 'core/module/WeChall/WC_HistoryUser2.php';
 
 # Graphs and Activity
 if ($u->getLevel() > 0)

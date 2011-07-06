@@ -8,8 +8,8 @@ final class Lamb_Shadowlamb extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'module/Lamb/Lamb_User.php';
-		require_once 'module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';
+		require_once 'core/module/Lamb/Lamb_User.php';
+		require_once 'core/module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';
 		
 		GWF_Website::addJavascript($module->getModuleFilePath('js/shadowlamb.js?v=1'));
 		

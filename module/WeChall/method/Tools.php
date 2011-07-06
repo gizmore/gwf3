@@ -17,7 +17,7 @@ final class WeChall_Tools extends GWF_Method
 			'RewriteRule ^tools/Wordpat/?$ index.php?mo=WeChall&me=Tools&file=wordpat'.PHP_EOL.
 			# Downloads
 			'RewriteRule ^tools/wordlists/?$ index.php?mo=WeChall&me=Tools&file=wordlists'.PHP_EOL.
-			'RewriteRule ^tools/wordlists/english.zip$ module/WeChall/tpl/default/tools/wordlists/files/english.zip'.PHP_EOL.
+			'RewriteRule ^tools/wordlists/english.zip$ core/module/WeChall/tpl/default/tools/wordlists/files/english.zip'.PHP_EOL.
 			# Tutorials
 			'RewriteRule ^tutorials/starting_cpp.php$ index.php?mo=WeChall&me=Tools&file=startcpp'.PHP_EOL.
 //			'RewriteRule ^tutorial/encoding_lesson$ index.php?mo=WeChall&me=Tools&file=encodings'.PHP_EOL.

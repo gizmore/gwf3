@@ -17,7 +17,7 @@ final class WeChall_Stats extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 //		GWF_Website::addJavascript($module->getJSPath('wc.js'));
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		
 		if (false !== Common::getPost('clear')) {
 			return $this->onClear($module);

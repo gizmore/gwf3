@@ -15,7 +15,7 @@ function Upgrade_WeChall_1_02(Module_WeChall $module)
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
-	require_once 'module/WeChall/WC_ChallSolved.php';
+	require_once 'core/module/WeChall/WC_ChallSolved.php';
 	$table = GDO::table('WC_ChallSolved');
 	
 	if (false === ($result = $table->queryReadAll("csolve_date != ''"))) {

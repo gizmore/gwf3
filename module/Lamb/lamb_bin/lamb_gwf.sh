@@ -11,7 +11,7 @@ cd protected
 cd ../
 
 # exec bot
-php module/Lamb/lamb_bin/lamb_main.php protected/config.php Lamb_Config.php
+php core/module/Lamb/lamb_bin/lamb_main.php protected/config.php Lamb_Config.php
 
 # Oops
-mplayer module/Lamb/lamb_bin/wecken.mp3
+mplayer core/module/Lamb/lamb_bin/wecken.mp3

@@ -8,7 +8,7 @@ function Upgrade_WeChall_1_04(Module_WeChall $module)
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
-	require_once 'module/WeChall/WC_SiteDescr.php';
+	require_once 'core/module/WeChall/WC_SiteDescr.php';
 	if (false === GDO::table('WC_SiteDescr')->createTable(true)) {
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}

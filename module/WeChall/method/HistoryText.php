@@ -20,8 +20,8 @@ final class WeChall_HistoryText extends GWF_Method
 
 	private function templateHistory(GWF_Module $module, GWF_User $user)
 	{
-		require_once 'module/WeChall/WC_SiteDescr.php';
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_SiteDescr.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		$uid = $user->getID();
 		$ipp = 50;
 		$history = GDO::table('WC_HistoryUser2');

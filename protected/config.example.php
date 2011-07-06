@@ -21,7 +21,7 @@ define('GWF_WEB_ROOT_NO_LANG', '/'); # usually / or /GWF/
 ### 3rd Party GPL Code ###
 ##########################
 define('GWF_GESHI_PATH', '/data/_ProjectPDT2/geshi/geshi.php'); # GeSHi - Generic Syntax Highlighter
-define('GWF_SMARTY_PATH', '/data/_ProjectPDT5/GWF33/inc3p/smarty/Smarty.class.php'); # Smarty - Template Engine
+define('GWF_SMARTY_PATH', '/data/_ProjectPDT5/GWF33/core/inc3p/smarty/Smarty.class.php'); # Smarty - Template Engine
 define('GWF_JPGRAPH_PATH', '/date/_ProjectPDT2/jphraph/jpgraph.php'); # JPGraph - 
 
 ################

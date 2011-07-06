@@ -27,7 +27,7 @@ echo GWF_Box::box($l->lang('api_2b', array($href_opt_6, $example_6_1, $example_6
 # API 3)
 $xss_url = sprintf('%s://%s%sindex.php?mo=WeChall&me=API_History&no_session=1&', Common::getProtocol(), GWF_DOMAIN, GWF_WEB_ROOT);
 $usage_3_1 = htmlspecialchars($xss_url.'<parameters>');
-require_once 'module/WeChall/WC_HistoryUser2.php';
+require_once 'core/module/WeChall/WC_HistoryUser2.php';
 $event_types = implode(', ', WC_HistoryUser2::$HISTORY_TYPES);
 $examples = array(
 	'username=HaDeS',

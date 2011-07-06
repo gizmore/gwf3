@@ -67,7 +67,7 @@ final class WeChall_Admin extends GWF_Method
 	
 	private function onCacheSiteTags(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_SiteCats.php';
+		require_once 'core/module/WeChall/WC_SiteCats.php';
 		WC_SiteCats::fixCatBits();
 		$this->fixFavCats($module);
 		return $this->templateAdmin($module);
@@ -75,7 +75,7 @@ final class WeChall_Admin extends GWF_Method
 	
 	private function fixFavCats(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_FavCats.php';
+		require_once 'core/module/WeChall/WC_FavCats.php';
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
 		$table = GDO::table('WC_FavCats');
 		if (false === $table->deleteWhere("IF((SELECT 1 FROM $cats WHERE sitecat_name=wcfc_cat LIMIT 1), 0, 1)")) {
@@ -88,7 +88,7 @@ final class WeChall_Admin extends GWF_Method
 	
 	private function onRecalcEverything(Module_WeChall $module)
 	{
-		require_once 'module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
 		WC_Site::recalcAllSites();
 		WC_RegAt::calcTotalscores();
 		
@@ -219,8 +219,8 @@ final class WeChall_Admin extends GWF_Method
 		$site = $this->site;
 		$user = $this->user;
 		
-		require_once 'module/WeChall/WC_RegAt.php';
-		require_once 'module/WeChall/WC_Freeze.php';
+		require_once 'core/module/WeChall/WC_RegAt.php';
+		require_once 'core/module/WeChall/WC_Freeze.php';
 		
 		if (false !== WC_RegAt::getRegatRow($user->getID(), $site->getID())) {
 			return $module->error('err_already_linked', array($site->displayName()));

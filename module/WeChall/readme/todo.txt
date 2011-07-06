@@ -4,4 +4,4 @@
 - PHP Caching for faster timings (include stuff really is a bottleneck according to kcachegrind, so i expect good speed gain)
 - JPGraph 3.0.7
 - Nicen the /tpl/wc/css/merged/merged.css
-- !There is one file to exclude from the module/WeChall: /method/Convert.php as it contains challenge solutions!!!
+- !There is one file to exclude from the core/module/WeChall: /method/Convert.php as it contains challenge solutions!!!

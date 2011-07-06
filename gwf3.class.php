@@ -3,7 +3,7 @@
 define('GWF_DEBUG_TIME_START', microtime(true));
 
 # Include the core (always a good and safe idea)
-require_once 'inc/_gwf_include.php';
+require_once 'core/inc/_gwf_include.php';
 /**
  * @author spaceone
  * @version 1.01

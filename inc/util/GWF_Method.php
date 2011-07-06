@@ -2,7 +2,7 @@
 /**
  * A method called via index.php?mo=Module&me=Method.
  * The methods classname name has to be Module_Method.
- * The methods path has to be module/Module/method/Method.
+ * The methods path has to be core/module/Module/method/Method.
  * The method has to support a method named "execute".
  * @author gizmore
  * @see GWF_Module

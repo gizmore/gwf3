@@ -222,10 +222,10 @@ final class GWF_InstallConfig
 //			array('bool',   'Main', 'GWF_OUTPUT_BUFFERING', true, 'Enable output buffering. Example: true.'),
 //			array('bool',   'Main', 'GWF_WITH_GPL', false, 'Use GPL Licensed, 3rd party stuff? Example: false.'),
 //			array('script', 'Main', 'GWF_BSD_ONLY', '!GWF_WITH_GPL', 'Use BSD licensed code only? It`s the opposite of above.'),
-//			array('text',   'Main', 'GWF_GESHI_PATH', 'inc3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
+//			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# 3rd Party
-			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/inc3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/core/inc3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
@@ -234,7 +234,7 @@ final class GWF_InstallConfig
 			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', 'temp/smarty_cache/tplc', 'Path to smarty caching directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', 'temp/smarty_cache/cache', 'Path to smarty cache directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', 'temp/smarty_cache/cfg', 'Path to smarty config directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', 'inc/smartyplugins', 'Path to the gwf smarty plugins.'),
+			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', 'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
 			
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_URL', 'about_gwf', '1st visit URL. Example: \'home\'.'),
@@ -282,8 +282,8 @@ final class GWF_InstallConfig
 			array('int10',  'Session', 'GWF_SESS_PER_USER', '1', 'Number of allowed simultanous sessions per user. Example: 1'),
 			
 			# IP
-			array('text',  'IP', 'GWF_IP_QUICK', 'hash_32_1', 'Hashed IP Duplicates. See inc/util/GWF_IP6.php'),
-			array('text',  'IP', 'GWF_IP_EXACT', 'bin_32_128', 'Complete IP storage. See inc/util/GWF_IP6.php'),
+			array('text',  'IP', 'GWF_IP_QUICK', 'hash_32_1', 'Hashed IP Duplicates. See core/inc/util/GWF_IP6.php'),
+			array('text',  'IP', 'GWF_IP_EXACT', 'bin_32_128', 'Complete IP storage. See core/inc/util/GWF_IP6.php'),
 			
 			# EMail
 			array('int10', 'EMail', 'GWF_DEBUG_EMAIL', 15, 'Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP_ERRORS, 4=404, 8=403, 16=MailToScreen)'),

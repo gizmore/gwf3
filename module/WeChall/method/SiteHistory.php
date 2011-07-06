@@ -25,7 +25,7 @@ final class WeChall_SiteHistory extends GWF_Method
 	
 	private function templateHistory(Module_WeChall $module, WC_Site $site)
 	{
-		require_once 'module/WeChall/WC_HistoryUser2.php';
+		require_once 'core/module/WeChall/WC_HistoryUser2.php';
 		$table = GDO::table('WC_HistoryUser2');
 		$orderby = 'userhist_date ASC';
 		$siteid = $site->getVar('site_id');
