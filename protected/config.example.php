@@ -20,9 +20,9 @@ define('GWF_WEB_ROOT_NO_LANG', '/'); # usually / or /GWF/
 ##########################
 ### 3rd Party GPL Code ###
 ##########################
-define('GWF_GESHI_PATH', '/data/_ProjectPDT2/geshi/geshi.php'); # GeSHi - Generic Syntax Highlighter
-define('GWF_SMARTY_PATH', '/data/_ProjectPDT5/GWF33/core/inc3p/smarty/Smarty.class.php'); # Smarty - Template Engine
-define('GWF_JPGRAPH_PATH', '/date/_ProjectPDT2/jphraph/jpgraph.php'); # JPGraph - 
+define('GWF_GESHI_PATH', '/path/to/geshi/geshi.php'); # GeSHi - Generic Syntax Highlighter
+define('GWF_SMARTY_PATH', '/path/to/core/inc3p/smarty/Smarty.class.php'); # Smarty - Template Engine
+define('GWF_JPGRAPH_PATH', '/path/to/jphraph/jpgraph.php'); # JPGraph - 
 
 ################
 ### Defaults ###
@@ -64,7 +64,6 @@ define('GWF_TABLE_PREFIX', 'lamb3_'); # Change at will, dual install possible.
 ### Session/Cookie Config ###
 #############################
 define('GWF_SESS_NAME', 'GWF3'); # cookie name
-define('GWF_SESS_SECURE', false); # cookie is ssl only
 define('GWF_SESS_LIFETIME', 432000); # cookie lifetime
 define('GWF_SESS_PER_USER', 3); # sessions max per user
 

@@ -276,7 +276,6 @@ final class GWF_InstallConfig
 			
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
-			array('bool',  'Session', 'GWF_SESS_SECURE', false, 'Cookie is HTTPS only? Example: false.'),
 			array('int10', 'Session', 'GWF_SESS_LIFETIME', 60*240, 'Session lifetime in seconds.'),
 //			array('bool',  'Session', 'GWF_SESS_HTTP_ONLY', true, 'Cookie is HTTP only? Should be true.'),
 			array('int10',  'Session', 'GWF_SESS_PER_USER', '1', 'Number of allowed simultanous sessions per user. Example: 1'),

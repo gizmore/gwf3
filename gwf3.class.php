@@ -4,6 +4,7 @@ define('GWF_DEBUG_TIME_START', microtime(true));
 define('GWF_CORE_VERSION', '3.01-2011.JUL.02');
 define('GWF_PATH', __DIR__.'/');
 define('GWF_CORE_PATH', GWF_PATH.'core/');
+if (!defined('GWF_CONFIG_NAME')) define('GWF_CONFIG_NAME', 'protected/config.php');
 
 /**
  * @author spaceone
@@ -17,8 +18,9 @@ define('GWF_CORE_PATH', GWF_PATH.'core/');
 class GWF3 
 {
 	private static $module, $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD, $page, $user;
-	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true, $user = true)
+	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true, $user = true, $config=GWF_CONFIG_NAME)
 	{
+		$this->onLoadConfig($config);
 		if (false !== $basepath) { $this->onInit(dirname($basepath)); }
 		if (false !== $autoload) { $this->onAutoloadModules(); }
 		if (false !== $loadmo) { $this->onLoadModule(); }
@@ -91,7 +93,7 @@ class GWF3
 			require_once GWF_CORE_PATH.'/inc/util/'.$classname.'.php';
 		}
 	}
-	public static function onLoadConfig($config = 'protected/config.php') {
+	public static function onLoadConfig($config = GWF_CONFIG_NAME) {
 		# Get the config
 		if (!defined('GWF_HAVE_CONFIG'))
 		{
