@@ -57,7 +57,7 @@ abstract class SR_Weapon extends SR_Equipment
 
 			$damage = round(Common::clamp($damage, 0.0, $maxdmg), 1);
 			
-			$sharp = Common::clamp(28 + $player->get('sharpshooter') * 7);
+			$sharp = $player->getCritPermille();
 			if (rand(0, 1000) < $sharp) {
 				$damage += Shadowfunc::diceFloat(1.0, $hits*0.1+1.0, 1);
 				$crit = ' critically';

@@ -15,9 +15,15 @@ final class Shadowcmd_fight extends Shadowcmd
 				return true;
 			}
 			
-			if (SR_KillProtect::isKillProtectedParty($p, $ep))
+			if (SR_KillProtect::isKillProtectedPartyLevel($p, $ep))
 			{
-				$player->message('You cannot attack this party again.');
+				return true;
+			}
+			
+			if (false !== ($time = SR_KillProtect::isKillProtectedParty($p, $ep)))
+			{
+				$wait = GWF_Time::humanDuration($time-Shadowrun4::getTime());
+				$player->message(sprintf('You cannot attack this party again. Please wait %s.', $wait));
 				return true;
 			}
 			
