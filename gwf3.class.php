@@ -39,7 +39,7 @@ class GWF3
 		
 		if (false !== $config['website_init']) 
 		{ 
-			$this->onInit(dirname($basepath)); 
+			$this->onInit($basepath); 
 		}
 		if (false !== $config['autoload_modules']) 
 		{ 
