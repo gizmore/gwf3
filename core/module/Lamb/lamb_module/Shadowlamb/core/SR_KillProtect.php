@@ -1,6 +1,7 @@
 <?php
 final class SR_KillProtect extends GDO
 {
+	const MAX_LEVEL_DIFF = 5;
 	const KILL_TIMEOUT_MIN = 3600; # 1h
 	const KILL_TIMEOUT_ADD = 7200; # 1h
 	const KILL_TIMEOUT_AVG = 6000; # 4h
@@ -35,7 +36,7 @@ final class SR_KillProtect extends GDO
 	
 	private static function refreshCache()
 	{
-		self::$CACHE = self::table(__CLASS__)->selectColumn('CONCAT(sr4kp_killer,":",sr4kp_victim)');
+		self::$CACHE = self::table(__CLASS__)->selectColumn('CONCAT(sr4kp_killer,":",sr4kp_victim,":",sr4kp_srtime)');
 	}
 	
 	private static function isKillProtectedB(SR_Player $killer, SR_Player $victim)
@@ -44,7 +45,17 @@ final class SR_KillProtect extends GDO
 		{
 			return false;
 		}
-		return in_array($killer->getID().':'.$victim->getID(), self::$CACHE, true);
+		foreach (self::$CACHE as $entry)
+		{
+			$search = $killer->getID().':'.$victim->getID().':';
+			$pos = strpos($entry, $search);
+			if ($pos !== false)
+			{
+				return (int)substr($entry, $pos);
+			}
+		}
+		
+		return false;
 	}
 	
 	public static function isKillProtected(SR_Player $killer, SR_Player $victim)
@@ -87,11 +98,24 @@ final class SR_KillProtect extends GDO
 		{
 			foreach ($defenders->getMembers() as $victim)
 			{
-				if (self::isKillProtectedB($killer, $victim))
+				if (false !== ($time = self::isKillProtectedB($killer, $victim)))
 				{
-					return true;
+					return $time;
 				}
 			}
+		}
+		return false;
+	}
+	
+	public static function isKillProtectedPartyLevel(SR_Party $attackers, SR_Party $defenders)
+	{
+		$al = $attackers->getSum('level');
+		$dl = $defenders->getSum('level');
+		$dif = $dl - $al;
+		if ($dif > self::MAX_LEVEL_DIFF)
+		{
+			$attackers->getLeader()->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
+			return true;
 		}
 		return false;
 	}
