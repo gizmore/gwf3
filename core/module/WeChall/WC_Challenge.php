@@ -956,6 +956,14 @@ final class WC_Challenge extends GDO
 	{
 		return $score >= 1 && $score <= 10;
 	}
+	
+	public function onCheckSolution()
+	{
+		if (false !== ($answer = Common::getPostString('answer', false)))
+		{
+			$this->onSolve(GWF_Session::getUser(), $answer);
+		}
+	}
 }
 
 ?>
