@@ -33,6 +33,16 @@ final class Shadowhelp
 	{
 		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
 		
+		$ele = $player === NULL ? 0 : $player->get('elephants');
+		$ele_gain = $player === NULL ? 0 : $player->getHPGain();
+		$ele_time = GWF_Time::humanDuration(SR_Player::HP_REFRESH_TIMER); 
+		
+		$orca = $player === NULL ? 0 : $player->get('orcas');
+		$orca_gain = $player === NULL ? 0 : $player->getMPGain();
+		$orca_time = GWF_Time::humanDuration(SR_Player::MP_REFRESH_TIMER); 
+		
+		$crit = $player === NULL ? 0 : sprintf('%.03f', $player->getCritPermille()/1000);
+		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
 			'root' => "Check out these topics",
@@ -157,8 +167,9 @@ final class Shadowhelp
 					array(
 						'spellatk' => 'Increases your magic attack. This is also affected by essence and intelligence.',
 						'spelldef' => 'Increases your magic defense. This is also affected by essence and intelligence.',
-						'orcas' => 'Increases your MP refreshening. This is also affected by the magic attribute.',
-						'elephants' => 'Increases your HP refreshening.',
+						'orcas' => "Increases your MP refreshening. This is also affected by the magic attribute. Your current orcas level is {$orca} and you gain {$orca_gain} every {$orca_time}.",
+						'elephants' => "Increases your HP refreshening. Your current elephants level is {$ele} and you gain {$ele_gain} every {$ele_time}.",
+						'critical' => "Your current chance of a critical hit is {$crit}%.",
 					),
 				),
 				
