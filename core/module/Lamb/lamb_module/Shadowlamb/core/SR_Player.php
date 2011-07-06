@@ -1980,6 +1980,7 @@ class SR_Player extends GDO
 		$this->alterField('xp', -$xp);
 		$this->alterField('xp_level', -$xp);
 		$this->alterField('xp_total', -$xp);
+		$this->message(sprintf('You lost %.02f XP!', $xp));
 	}
 	
 	##############
@@ -2083,7 +2084,9 @@ class SR_Player extends GDO
 	
 	public function getLootNuyen()
 	{
-		return round($this->getBase('nuyen') / 8, 2);
+		$back = round($this->getBase('nuyen') / 8, 2);
+		$this->message(sprintf('You lost %s!', Shadowfunc::displayPrice($back)));
+		return $back;
 	}
 	
 	public function gotKilledBy(SR_Player $killer)
