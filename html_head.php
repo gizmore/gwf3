@@ -13,8 +13,6 @@ $gwf = new GWF3(__DIR__, array(
 	'autoload_modules' => false,
 	'load_module' => false,
 	'get_user' => false,
-	'config_path' => GWF_CONFIG_NAME,
-//	'logging' => true,
 ));
 
 $gwf->onInit(__DIR__, !defined('GWF_SESSION_NOT_BLOCKING'));

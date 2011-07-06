@@ -32,8 +32,9 @@ class GWF3
 	 * @param $basepath = __DIR__
 	 * @return GWF3 
 	 */
-	public function __construct($basepath, array $config)
+	public function __construct($basepath, array $config = array())
 	{
+		$config = array_merge(self::CONFIG, $config);
 		define('GWF_WWW_PATH', $basepath);
 		$this->onLoadConfig($config['config_path']);
 		

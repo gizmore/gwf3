@@ -4,12 +4,7 @@
  */
 require_once 'gwf3.class.php';
 $gwf = new GWF3(__DIR__, array(
-	'website_init' => true,
-	'autoload_modules' => true,
 	'load_module' => false,
-	'get_user' => true,
-	'config_path' => GWF_CONFIG_NAME,
-//	'logging' => true,
 ));
 
 $_GET['mo'] = 'GWF';
