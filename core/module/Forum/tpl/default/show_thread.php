@@ -76,6 +76,9 @@ if ($actions)
 	if ($t->canSubscribe()) {
 		$buttons .= GWF_Button::generic($tLang->lang('btn_subscribe'), $t->getSubscribeHREF());
 	}
+	if ($t->canUnSubscribe()) {
+		$buttons .= GWF_Button::generic($tLang->lang('btn_unsubscribe'), $t->getUnSubscribeHREF());
+	}
 	if ($t->hasEditPermission(GWF_Session::getUser())) {
 		$buttons .= GWF_Button::generic($tLang->lang('btn_edit'), $tVars['href_edit']);
 	}

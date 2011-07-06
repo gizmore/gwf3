@@ -52,7 +52,7 @@ final class GWF_ForumSubscription extends GDO
 		$userid = $user->getID();
 		$threadid = (int) $threadid;
 		$table = new self(false);
-		return $table->selectFirst("subscr_uid=$userid AND subscr_tid=$threadid") !== false;
+		return $table->selectFirst('1', "subscr_uid=$userid AND subscr_tid=$threadid") !== false;
 	}
 	
 	##########################################
