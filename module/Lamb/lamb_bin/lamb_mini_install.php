@@ -6,7 +6,7 @@ chdir('../../../');
 
 # CHANGE THIS! THEN IT MIGHT WORK!
 define('GWF_CONFIG_NAME', 'protected/config_lamb_dev.php');
-die("CHANGE THIS!\n");
+//die("CHANGE THIS!\n");
 
 require_once 'inc/_gwf_include.php';
 require_once 'module/Lamb/Lamb_Install.php';

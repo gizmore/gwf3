@@ -10,9 +10,9 @@ final class Renraku_Guard extends SR_TalkingNPC
 		$b = chr(2);
 		switch ($word)
 		{
-			case 'renraku': $this->reply("The office is only for {$b}employee{$b}.");
-			case 'employee': $this->checkIDCards($player); break;
-			default: $this->reply("Good day sire. If you are not an {$b}employee{$b}, please move away.");
+			case 'renraku': return $this->reply("The office is only for {$b}employee{$b}.");
+			case 'employee': return $this->checkIDCards($player); break;
+			default: return $this->reply("Good day sire. If you are not an {$b}employee{$b}, please move away.");
 		}
 	}
 	

@@ -42,6 +42,7 @@ final class Shadowcmd_start extends Shadowcmd
 
 		$player->saveVars(array('sr4pl_race'=>$race,'sr4pl_gender'=>$gender));
 		$player->initRaceGender();
+		Shadowcmd_aslset::onASLSetRandom($player);
 		$player->modify();
 		$player->healHP(10000);
 		$player->healMP(10000);

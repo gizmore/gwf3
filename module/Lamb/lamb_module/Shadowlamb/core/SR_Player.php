@@ -1872,9 +1872,9 @@ class SR_Player extends GDO
 	{
 		$old = $this->getBase($field);
 		$max = $this->get('max_'.$field);
-		$new = round(Common::clamp($old+$gain, 0.0, $max), 2);
+		$new = round(Common::clamp($old+$gain, 0.0, $max), 3);
 		$this->setOption(SR_Player::STATS_DIRTY, true);
-		$this->updateField($field, round($new, 2));
+		$this->updateField($field, round($new, 3));
 		return $new-$old;
 	}
 	

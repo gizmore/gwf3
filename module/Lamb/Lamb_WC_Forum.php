@@ -142,7 +142,7 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 				{
 					$channel instanceof Lamb_Channel;
 					$channel = $channel->getVar('chan_name');
-//					echo $channel.PHP_EOL;
+					echo $channel.PHP_EOL;
 					foreach ($channels as $c)
 					{
 						if (strtolower($c) === strtolower($channel))

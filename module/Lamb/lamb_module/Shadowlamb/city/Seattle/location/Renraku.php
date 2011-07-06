@@ -16,6 +16,8 @@ final class Seattle_Renraku extends SR_Tower
 				return true;
 			}
 		}
+		
+		return parent::onEnter($player);
 	}
 }
 ?>
