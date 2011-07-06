@@ -2,12 +2,13 @@
 class SR_Player extends GDO
 {
 	const MAX_RANGE = 12.0;
-	
+	const MAX_WEIGHT_MALUS = 0.25; # 25%
+		
 	const BASE_HP = 4;
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
-	const HP_REFRESH_MULTI = 0.01;
+	const HP_REFRESH_MULTI = 0.015;
 	const MP_REFRESH_MULTI = 0.02;
 	const HP_REFRESH_TIMER = 200;
 	const MP_REFRESH_TIMER = 180;
@@ -687,8 +688,8 @@ class SR_Player extends GDO
 		$load = Common::clamp($load, 0.0, 2.0); # clamp to +100%-overload
 		if ($load > 1.0)
 		{
-			$perc = $load - 1.0; # +100% load = no malus
-			$perc = $perc / 2.0; # max +200% overload
+			$load -= 1.0; # 100% malus
+			$perc = $load * self::MAX_WEIGHT_MALUS;
 			echo sprintf("Player gets malus of %.02f%%\n", $perc*100);
 			$perc = 1 - $perc;
 			$this->sr4_data_modified['attack'] = round($this->sr4_data_modified['attack'] * $perc); 
@@ -1137,12 +1138,18 @@ class SR_Player extends GDO
 		$ma = $this->getBase('magic');
 		if ($ma > 0)
 		{
-			$ma += $this->get('orcas');
-			$gain = round(self::MP_REFRESH_MULTI*$ma, 2);
+			$gain = $this->getMPGain();
 			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
 			return $this->healMP($gain);
 		}
 		return true;
+	}
+	
+	public function getMPGain()
+	{
+		$ma = $this->getBase('magic');
+		$ma += $this->get('orcas');
+		return round(self::MP_REFRESH_MULTI*$ma, 2);
 	}
 	
 	public function refreshHPTimer()
@@ -1150,11 +1157,16 @@ class SR_Player extends GDO
 		$ele = $this->get('elephants');
 		if ($ele > 0)
 		{
-			$gain = round(self::HP_REFRESH_MULTI*$ele, 2);
+			$gain = $this->getHPGain();
 			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
 			return $this->healHP($gain);
 		}
 		return true;
+	}
+	
+	public function getHPGain()
+	{
+		return round(self::HP_REFRESH_MULTI*$this->get('elephants'), 2);
 	}
 	
 	############
@@ -1872,9 +1884,9 @@ class SR_Player extends GDO
 	{
 		$old = $this->getBase($field);
 		$max = $this->get('max_'.$field);
-		$new = round(Common::clamp($old+$gain, 0.0, $max), 3);
+		$new = round(Common::clamp($old+$gain, 0.0, $max), 2);
 		$this->setOption(SR_Player::STATS_DIRTY, true);
-		$this->updateField($field, round($new, 3));
+		$this->updateField($field, $new);
 		return $new-$old;
 	}
 	
@@ -2157,6 +2169,11 @@ class SR_Player extends GDO
 				$item->breakItem();
 			}
 		}
+	}
+	
+	public function getCritPermille()
+	{
+		return Common::clamp(28 + $this->get('sharpshooter') * 7);		
 	}
 }
 ?>
