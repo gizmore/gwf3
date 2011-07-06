@@ -1,15 +1,15 @@
 <?php
 
 define('GWF_DEBUG_TIME_START', microtime(true));
+define('GWF_CORE_VERSION', '3.01-2011.JUL.02');
+define('GWF_PATH', __DIR__.'/');
+define('GWF_CORE_PATH', GWF_PATH.'core/');
 
-# Include the core (always a good and safe idea)
-require_once 'core/inc/_gwf_include.php';
 /**
  * @author spaceone
  * @version 1.01
  * @todo check if Session commit works
  * @todo better $mo/$me handling
- * @todo class variable $user?
  * @param $basepath should be __FILE__
  * @param $autoload load all autoload-modules
  * @param $loadmo load the requested module
@@ -84,6 +84,37 @@ class GWF3
 		return $this;
 
 	}
+	function gwf3_autoload($classname)
+	{
+		if (substr($classname, 0, 4) === 'GWF_')
+		{
+			require_once GWF_CORE_PATH.'/inc/util/'.$classname.'.php';
+		}
+	}
+	public static function onLoadConfig($config = 'protected/config.php') {
+		# Get the config
+		if (!defined('GWF_HAVE_CONFIG'))
+		{
+			require_once $config;
+			define('GWF_HAVE_CONFIG', 1);
+			self::onDefineWebRoot();
+		}
+	}
+	public static function onDefineWebRoot() {
+		# Web Root
+		$root = GWF_WEB_ROOT_NO_LANG;
+		if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
+		{
+			if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
+			{
+				if (strpos(';'.GWF_SUPPORTED_LANGS.';', $matches[1]) !== false)
+				{
+					$root .= $matches[1].'/'; # web_root is lang extended
+				}
+			}
+		}
+		define('GWF_WEB_ROOT', $root);
+	}
 	public function onSessionCommit($store_last_url=true) 
 	{
 		# Commit the session
@@ -116,3 +147,15 @@ class GWF3
 	public static function getModule() { return self::$module; }
 	public static function getUser() { return self::$user; }
 }
+
+# Require the Database
+require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
+
+# Require the util
+require_once GWF_CORE_PATH.'/util/Common.php';
+
+# The GWF autoloader
+spl_autoload_register(array('GWF3','gwf3_autoload'));
+
+# Enable the error handlers
+GWF_Debug::enableErrorHandler();
