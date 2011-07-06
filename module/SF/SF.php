@@ -6,7 +6,7 @@ class SF {
 	
 	public function __construct() {
 		self::$_User = GWF_User::getStaticOrGuest();
-		self::$_Lang = new GWF_LangTrans('lang/SF/SF');
+		self::$_Lang = new GWF_LangTrans('module/SF/lang/SF'); # TODO: Use lang file from module
 		$this->addMainTvars(array('SF' => $this));
 	}
 

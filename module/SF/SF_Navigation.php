@@ -13,12 +13,12 @@ final class SF_Navigation extends GDO
 	{		
 		return array(
 			'ID' => array(GDO::AUTO_INCREMENT),
-			'name' => array(GDO::VARCHAR, GDO::NULL, 30),
-			'title' => array(GDO::VARCHAR, GDO::NULL, 50),
-			'short' => array(GDO::VARCHAR, GDO::NOT_NULL, 20),
-			'side' => array(GDO::VARCHAR, GDO::NOT_NULL, 8),
-			'TID' => array(GDO::INT, GDO::NOT_NULL, 11),
-			'parent_id' => array(GDO::INT, GDO::NOT_NULL, 11),
+			'name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 30),
+			'title' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 50),
+			'short' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 20),
+			'side' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 8),
+			'TID' => array(GDO::UINT, GDO::NOT_NULL, 11),
+			'parent_id' => array(GDO::UINT, GDO::NOT_NULL, 11),
 			'position' => array(GDO::INT, GDO::NOT_NULL, 11),
 			'display_to' => array(GDO::INT, GDO::NOT_NULL, 2),
 			'is_visible' => array(GDO::INT, GDO::NOT_NULL, 1),
