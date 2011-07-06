@@ -11,7 +11,7 @@ final class GWF_SmartyFile
 	private static $instance; public static function init() { self::$instance = new self(); } public static function instance() { return self::$instance; }
 	public function __call($name, $args)
 	{
-		$path = str_replace('_', '/', $name).'.php';
+		$path = 'core/'.str_replace('_', '/', $name).'.php';
 		if (Common::isFile($path))
 		{
 			require_once $path;

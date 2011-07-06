@@ -214,11 +214,7 @@ final class GWF_Session extends GDO
 		
 		# Save new last url
 		if ( $store_last_url && (!isset($_GET['ajax'])) ) {
-			$lasturl = self::getCurrentURL();
-			if ($lasturl !== self::$SESSION->getVar('sess_lasturl'))
-			{
-				$data['sess_lasturl'] = $lasturl;
-			}
+			$data['sess_lasturl'] = self::getCurrentURL();
 		}
 		
 		# Save new session data
