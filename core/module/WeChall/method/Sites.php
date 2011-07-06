@@ -87,7 +87,7 @@ final class WeChall_Sites extends GWF_Method
 	
 	private function getWhich()
 	{
-		return Common::clamp(intval(Common::getGet('which', 1)), 1, 5);
+		return Common::clamp(intval(Common::getGetInt('which', 1)), 1, 5);
 	}
 	
 	private function setPageDescription(Module_WeChall $module, $tag)
@@ -123,7 +123,7 @@ final class WeChall_Sites extends GWF_Method
 	
 	private function getLangQuery()
 	{
-		if ('all' === ($iso = trim(Common::getGet('langiso', '')))) {
+		if ('all' === ($iso = trim(Common::getGetString('langiso', 'all')))) {
 			return '1';
 		}
 		
