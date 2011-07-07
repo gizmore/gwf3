@@ -4,8 +4,9 @@ if (isset($_SERVER['REMOTE_ADDR'])) {
 	die('NO REMOTE CALL PLS');
 }
 # GWF2 core
-define('GWF_CONFIG_NAME', 'protected/config_lamb.php');
-require_once 'core/inc/_gwf_include.php';
+define('GWF_CONFIG_PATH', 'protected/config_lamb.php');
+require_once 'gwf3.class.php'; 
+GWF3::onLoadConfig(GWF_CONFIG_PATH);
 
 # Lamb2 core
 $dir = 'core/module/Lamb';

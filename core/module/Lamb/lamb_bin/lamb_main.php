@@ -18,7 +18,7 @@ if (!file_exists($gwfcfg))
 {
 	die("Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.");
 }
-define('GWF_CONFIG_NAME', $gwfcfg);
+define('GWF_CONFIG_PATH', $gwfcfg);
 
 # Lamb config
 if (!file_exists("core/module/Lamb/lamb_bin/{$argv[2]}"))
@@ -29,7 +29,7 @@ define('LAMB_CONFIG_FILENAME', $argv[2]);
 
 # Include GWF core
 require_once 'gwf3.class.php';
-GWF3::onLoadConfig(GWF_CONFIG_NAME);
+GWF3::onLoadConfig(GWF_CONFIG_PATH);
 var_dump(GWF_CORE_PATH);
 GWF_Language::initEnglish();
 GWF_Debug::setBasedir(GWF_CORE_PATH);

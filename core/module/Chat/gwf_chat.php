@@ -6,7 +6,8 @@ ini_set('zlib.output_compression', 0);
 //ini_set('implicit_flush', 1);
 #ob_implicit_flush();
 
-require_once 'core/inc/_gwf_include.php';
+require_once 'gwf3.class.php'; 
+GWF3::onLoadConfig(GWF_CONFIG_PATH);
 
 # Get the modules.
 $modules = GWF_Module::loadModulesDB();

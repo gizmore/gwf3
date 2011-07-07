@@ -5,7 +5,8 @@ if (!file_exists('protected/config.php')) {
 	require_once 'core/inc/util/Common.php';
 	require_once 'protected/install_scripts/install_wizard.inc.php';
 }
-require_once 'core/inc/_gwf_include.php';
+require_once 'gwf3.class.php'; 
+GWF3::onLoadConfig(GWF_CONFIG_PATH);
 require_once 'protected/install_scripts/install_functions.php';
 require_once 'protected/install_scripts/install_config.php';
 

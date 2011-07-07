@@ -4,7 +4,7 @@ define('GWF_DEBUG_TIME_START', microtime(true));
 define('GWF_CORE_VERSION', '3.01-2011.JUL.02');
 define('GWF_PATH', __DIR__.'/');
 define('GWF_CORE_PATH', GWF_PATH.'core/');
-if (!defined('GWF_CONFIG_NAME')) define('GWF_CONFIG_NAME', 'protected/config.php');
+if (!defined('GWF_CONFIG_PATH')) define('GWF_CONFIG_PATH', 'protected/config.php');
 
 /**
  * @author spaceone
@@ -19,7 +19,7 @@ class GWF3
 		'autoload_modules' => true,
 		'load_module' => true,
 		'get_user' => true,
-		'config_path' => GWF_CONFIG_NAME,
+		'config_path' => GWF_CONFIG_PATH,
 //		'logging' => true,
 	);
 	
@@ -121,7 +121,7 @@ class GWF3
 			require_once GWF_CORE_PATH.'/inc/util/'.$classname.'.php';
 		}
 	}
-	public static function onLoadConfig($config = GWF_CONFIG_NAME) {
+	public static function onLoadConfig($config = GWF_CONFIG_PATH) {
 		# Get the config
 		if (!defined('GWF_HAVE_CONFIG'))
 		{
