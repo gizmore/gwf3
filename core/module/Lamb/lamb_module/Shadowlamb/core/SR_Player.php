@@ -8,7 +8,7 @@ class SR_Player extends GDO
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
-	const HP_REFRESH_MULTI = 0.015;
+	const HP_REFRESH_MULTI = 0.03;
 	const MP_REFRESH_MULTI = 0.02;
 	const HP_REFRESH_TIMER = 200;
 	const MP_REFRESH_TIMER = 180;
@@ -58,9 +58,9 @@ class SR_Player extends GDO
 	const DIRTY_FLAGS = 0x87fe0;
 	
 	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
-	public static $COMBAT_STATS = array('elephants','max_hp','max_weight','attack','defense','min_dmg','max_dmg','marm','farm');
-	public static $MAGIC_STATS = array('orcas','max_mp','spellatk','spelldef');
-	public static $MOUNT_STATS = array('lock','transport','tuneup');
+	public static $COMBAT_STATS = array('ele'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
+	public static $MAGIC_STATS = array('orc'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
+	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
@@ -2144,7 +2144,7 @@ class SR_Player extends GDO
 	{
 		SR_Bounty::onKilledByHuman($killer, $this);
 		
-		if (!SR_KillProtect::isKillProtected($killer, $this))
+		if ( (!SR_KillProtect::isKillProtected($killer, $this)) && (!SR_KillProtect::isKillProtectedLevel($killer, $this)) )
 		{
 			$this->looseItem($killer);
 			SR_KillProtect::onKilled($killer, $this);
