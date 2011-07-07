@@ -118,7 +118,7 @@ class GWF3
 	{
 		if (substr($classname, 0, 4) === 'GWF_')
 		{
-			require_once GWF_CORE_PATH.'/inc/util/'.$classname.'.php';
+			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
 		}
 	}
 	public static function onLoadConfig($config = GWF_CONFIG_PATH) {
