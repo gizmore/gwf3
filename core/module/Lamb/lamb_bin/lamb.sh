@@ -3,7 +3,7 @@
 # TODO: clone this file or add options
 
 # chroot
-cd ../../../
+cd ../../../../
 
 # backup db
 cd protected
