@@ -60,7 +60,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 			return;
 		}
 		
-		$player->giveNuyen(-$nuyen);
+		$player->giveNuyen(-$this->price);
 		$player->message("You give $this->price Nuyen to the salesman...");
 		$player->setConst("SEATTLE_BM", 1);
 		$this->reply('Ok, here is your permission to enter the blackmarket. And you don\'t know me!');
