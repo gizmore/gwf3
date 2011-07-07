@@ -1,0 +1,287 @@
+<?php
+/**
+ * Compare two items with each other.
+ * @author digitalseraphim
+ * @since Shadowlamb 3.1
+ */
+final class Shadowcmd_compare extends Shadowcmd
+{
+	public static function execute(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$numArgs = count($args);
+
+		if ($numArgs < 1 || $numArgs > 2)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'compare'));
+			return false;
+		}
+
+		$item1 = self::getItem($bot, $player, $args[0]);
+
+		if(!$item1)
+		{
+			$bot->reply('I don`t know what item "'.$args[0].'" is.');
+			return false;
+		}
+		
+		if($numArgs > 1)
+		{
+			$item2 = self::getItem($bot, $player, $args[1]);
+			if(!$item2)
+			{
+				$bot->reply('I don`t know what item "'.$args[1].'" is.');
+				return false;
+			}
+		}else{
+			$item2 = $player->getItem( $item1->getItemType() );
+			if(!$item2)
+			{
+				$bot->reply('You don`t have anything comparable to "'.$item1->getItemName().'" equipped');
+				return false;
+			}
+		}
+		$bot->replyTable(self::getComparisonMatrix($player, $item1, $item2));
+		return true;
+	}
+
+	private static function getComparisonMatrix($player, $item1, $item2)
+	{
+		$titles=array();
+		$item1Stuff=array();
+		$item2Stuff=array();
+		$b = chr(2);
+		$n = chr(15);
+
+		$type = $item1->getItemType();
+
+		$titles[] = 'Type';
+		$item1Stuff[] = str_replace(" Weapon","",$item1->displayType());
+		$item2Stuff[] = str_replace(" Weapon","",$item2->displayType());
+
+		$titles[] = $n.'Lvl'.$n;
+		$item1Lvl = $item1->getItemLevel();
+		$item2Lvl = $item2->getItemLevel();
+		if($item1Lvl == $item2Lvl)
+		{
+			$item1Stuff[] = $b.$item1Lvl.$b;
+			$item2Stuff[] = $b.$item2Lvl.$b;
+		}
+		else if($item2Lvl > $item1Lvl)
+		{
+			$item1Stuff[] = $n.$item1Lvl.$n;
+			$item2Stuff[] = $b.$item2Lvl.$b;
+		}
+		else
+		{
+			$item1Stuff[] = $b.$item1Lvl.$b;
+			$item2Stuff[] = $n.$item2Lvl.$n;
+		}
+		
+		$item1ModA = $item1->getItemModifiersA($player);
+		$item2ModA = $item2->getItemModifiersA($player);
+
+		if($item1ModA || $item2ModA)
+		{
+			if($type == 'weapon')
+			{
+				$titles[] = $n.'dmg'.$n;
+				$item1min = $item1ModA['min_dmg'];
+				$item1max = $item1ModA['max_dmg'];
+				$item2min = $item2ModA['min_dmg'];
+				$item2max = $item2ModA['max_dmg'];
+
+				if($item1min == $item2min)
+				{
+					$item1min = $b.$item1min.$b;
+					$item2min = $b.$item2min.$b;
+				}
+				else if($item1min > $item2min)
+				{
+					$item1min = $b.$item1min.$b;
+					$item2min = $n.$item2min.$n;
+				}
+				else
+				{
+					$item1min = $n.$item1min.$n;
+					$item2min = $b.$item2min.$b;
+				}
+				if($item1max == $item2max)
+				{
+					$item1min = $b.$item1min.$b;
+					$item2min = $b.$item2min.$b;
+				}
+				else if($item1max > $item2max)
+				{
+					$item1max = $b.$item1max.$b;
+					$item2min = $n.$item2min.$n;
+				}
+				else
+				{
+					$item1max = $n.$item1max.$n;
+					$item2max = $b.$item2max.$b;
+				}
+				
+				$item1Stuff[] = $item1min.'-'.$item1max;
+				$item2Stuff[] = $item2min.'-'.$item2max;
+				unset($item1ModA['min_dmg']);
+				unset($item2ModA['min_dmg']);
+				unset($item1ModA['max_dmg']);
+				unset($item2ModA['max_dmg']);
+			}
+
+			$keys = array_unique(array_merge(array_keys($item1ModA?$item1ModA:array()), 
+			                                 array_keys($item2ModA?$item2ModA:array())));
+			foreach($keys as $k => $v)
+			{
+				$titles[] = $n.Shadowfunc::longModifierToShort($v).$n;
+				$item1V = ($item1ModA&&array_key_exists($v,$item1ModA))?$item1ModA[$v]:false; 
+				$item2V = ($item2ModA&&array_key_exists($v,$item2ModA))?$item2ModA[$v]:false;
+
+				if($item1V && $item2V && ($item1V == $item2V))
+				{
+					$item1V = $b.$item1V.$b;
+					$item2V = $b.$item2V.$b;
+				}
+				else if(!$item1V || $item2V > $item1V)
+				{
+					$item1V = $n.$item1V.$n;
+					$item2V = $b.$item2V.$b;
+				}
+				else if(!$item2V || $item1V > $item2V)
+				{
+					$item1V = $b.$item1V.$b;
+					$item2V = $n.$item2V.$n;
+				}
+
+				$item1Stuff[] = $item1V;
+				$item2Stuff[] = $item2V;
+			}
+		}
+		
+		$item1ModB = $item1->getItemModifiersB();
+		$item2ModB = $item2->getItemModifiersB();
+
+		if($item1ModB || $item2ModB)
+		{
+			$keys = array_unique(array_merge(array_keys($item1ModB?$item1ModB:array()), array_keys($item2ModB?$item2ModB:array())));
+			foreach($keys as $k => $v){
+				$titles[] = $n.Shadowfunc::longModifierToShort($v).$n;
+				$item1V = ($item1ModB&&array_key_exists($v,$item1ModB))?$item1ModB[$v]:false; 
+				$item2V = ($item2ModB&&array_key_exists($v,$item2ModB))?$item2ModB[$v]:false;
+
+				if($item1V && $item2V && ($item1V == $item2V))
+				{
+					$item1V = $b.$item1V.$b;
+					$item2V = $b.$item2V.$b;
+				}
+				else if(!$item1V || $item2V > $item1V)
+				{
+					$item1V = $n.$item1V.$n;
+					$item2V = $b.$item2V.$b;
+				}
+				else if(!$item2V || $item1V > $item2V)
+				{
+					$item1V = $b.$item1V.$b;
+					$item2V = $n.$item2V.$n;
+				}
+				
+				$item1Stuff[] = $item1V;
+				$item2Stuff[] = $item2V;
+			}
+		}
+
+		$item1Reqs = $item1->getItemRequirements();
+		$item2Reqs = $item2->getItemRequirements();
+		if($item1Reqs || $item2Reqs){
+			$titles[] = 'Reqs';
+			$item1Stuff[] = $item1->displayRequirements($player);
+			$item2Stuff[] = $item2->displayRequirements($player);
+		}
+
+		$item1Rng = $item1->getItemRange();
+		$item2Rng = $item2->getItemRange();
+
+		if($item1Rng > 0 || $item2Rng > 0)
+		{
+			$titles[] = $n.'Rng'.$n;
+			if($item1Rng == $item2Rng)
+			{
+				$item1Stuff[] = $b.$item1Rng.$b;
+				$item2Stuff[] = $b.$item2Rng.$b;
+			}
+			else if($item2Rng > $item1Rng)
+			{
+				$item1Stuff[] = $n.$item1Rng.$n;
+				$item2Stuff[] = $b.$item2Rng.$b;
+			}
+			else
+			{
+				$item1Stuff[] = $b.$item1Rng.$b;
+				$item2Stuff[] = $n.$item2Rng.$n;
+			}
+		}
+		
+		$titles[] = $n.'Wgt'.$n;
+		$item1Wgt = $item1->getItemWeight();
+		$item2Wgt = $item2->getItemWeight();
+		if($item1Wgt == $item2Wgt)
+		{
+			$item1Stuff[] = $b.$item1Wgt.$b;
+			$item2Stuff[] = $b.$item2Wgt.$b;
+		}
+		else if($item2Wgt < $item1Wgt) //NOTE:: This test is opposite from other tests
+		{                              // because lower item weight is better!
+			$item1Stuff[] = $n.$item1Wgt.$n;
+			$item2Stuff[] = $b.$item2Wgt.$b;
+		}
+		else
+		{
+			$item1Stuff[] = $b.$item1Wgt.$b;
+			$item2Stuff[] = $n.$item2Wgt.$n;
+		}
+		
+		$titles[] = $n.'Worth'.$n;
+		$item1Prc = $item1->getItemPrice();
+		$item2Prc = $item2->getItemPrice();
+		if($item1Prc == $item2Prc)
+		{
+			$item1Stuff[] = $b.Shadowfunc::displayPrice($item1Prc).$b;
+			$item2Stuff[] = $b.Shadowfunc::displayPrice($item2Prc).$b;
+		}
+		else if($item2Prc > $item1Prc)
+		{
+			$item1Stuff[] = $n.Shadowfunc::displayPrice($item1Prc).$n;
+			$item2Stuff[] = $b.Shadowfunc::displayPrice($item2Prc).$b;
+		}
+		else
+		{
+			$item1Stuff[] = $b.Shadowfunc::displayPrice($item1Prc).$b;
+			$item2Stuff[] = $n.Shadowfunc::displayPrice($item2Prc).$n;
+		}
+		
+		return array('Name' => $titles, $item1->getItemName() => $item1Stuff, $item2->getItemName() => $item2Stuff);
+	}
+
+	private static function getItem($bot, SR_Player $player, $itemid)
+	{
+		if (preg_match('/^S_[0-9]+$/',$itemid))
+		{
+			$location = $player->getParty()->getLocationClass('inside');
+			if ($location !== false && $location instanceof SR_Store)
+			{
+				return $location->getStoreItem($player, substr($itemid,2));
+			}
+			else
+			{
+				$bot->reply('You are not in a store!');
+			}
+			return false;
+		}
+		else
+		{
+			return $player->getItem($itemid);
+		}
+	}
+}
+?>

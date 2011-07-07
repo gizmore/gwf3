@@ -948,5 +948,17 @@ final class Shadowfunc
 		$y = $y2 - $y1;
 		return sqrt($x*$x + $y*$y);
 	}
+
+	public static function longModifierToShort($mod)
+	{
+		if(array_key_exists($mod,SR_Player::$REV_ALL))
+		{
+			return SR_Player::$REV_ALL[$mod];
+		}
+		else
+		{
+			return $mod;
+		}
+	}
 }
 ?>

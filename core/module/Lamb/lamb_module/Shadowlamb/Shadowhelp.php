@@ -250,8 +250,11 @@ final class Shadowhelp
 							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them.',
 						),
 				
-					'party' => 'Player command. Usage. #(p)arty. View your party status.',
-						'inventory' => 'Player command. Usage: #(i)nventory. View your inventory.',
+						'party' => 'Player command. Usage. #(p)arty. View your party status.',
+						'inventory' => 'Player command. Usage: #(i)nventory. View your inventory. See',
+						array(
+							'compare' => 'Player command. Usage: #(c)o(mp)are <item1: inv_id|S<store_id>|item_name> [<item2:inv_id|S<store_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
+						),
 						'cyberware' => 'Player command. Usage: #()yberware [<cy_id>]. View your cyberware.',
 						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
 						'examine' => 'Player command. Usage: #ex <inv_id|'.$eqs.'|itemname>. Examine your items.',
