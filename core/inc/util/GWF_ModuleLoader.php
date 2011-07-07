@@ -53,8 +53,8 @@ final class GWF_ModuleLoader
 	###############
 	public static function loadModulesFS()
 	{
-		if (false == ($files = @scandir('module'))) {
-			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array('module'));
+		if (false == ($files = @scandir('core/module'))) {
+			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array('core/module'));
 			return false;
 		}
 		$modules = array();
