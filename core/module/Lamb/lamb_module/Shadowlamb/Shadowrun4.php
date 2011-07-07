@@ -281,6 +281,7 @@ final class Shadowrun4
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
 			self::initQuests(Lamb::DIR);
+			SR_Player::init();
 //			require_once 'SR_Install.php';
 //			SR_Install::onInstall();
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';

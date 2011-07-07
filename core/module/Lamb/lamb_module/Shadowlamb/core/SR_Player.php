@@ -57,6 +57,7 @@ class SR_Player extends GDO
 	const MOUNT_DIRTY = 0x80000;
 	const DIRTY_FLAGS = 0x87fe0;
 	
+	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
 	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
 	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
@@ -307,6 +308,21 @@ class SR_Player extends GDO
 	##############
 	### Static ###
 	##############
+	/**
+	 * Init static player stuff.
+	 * @author digitalseraphim
+	 */
+    public static function init()
+    {
+    	self::$REV_ALL = array_merge(
+    		array_flip(self::$ATTRIBUTE),
+    		array_flip(self::$SKILL),
+    		array_flip(self::$COMBAT_STATS),
+    		array_flip(self::$MAGIC_STATS),
+    		array_flip(self::$MOUNT_STATS)
+    	);
+    }
+	
 	public static function getByID($player_id)
 	{
 		$db = gdo_db();
@@ -633,7 +649,7 @@ class SR_Player extends GDO
 		$party->kickUser($this, true);
 		$new_party = SR_Party::createParty();
 		$new_party->addUser($this, true);
-		$location = $city === false ? 'Redmond_Hotel' : $city->getRespawnLocation();
+		$location = $city === false ? 'Redmond_Hotel' : $city->getRespawnLocation($this);
 //		$location = $city->getRespawnLocation();
 		$new_party->pushAction(SR_Party::ACTION_INSIDE, $location);
 		$this->updateField('partyid', $new_party->getID());
