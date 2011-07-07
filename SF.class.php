@@ -17,8 +17,8 @@ final class SF extends GWF3 {
 	
 	private static $_Lang = NULL, $_layoutcolor = array(), $_formaction = array();
 	
-	public function __construct($basepath = __FILE__, $autoload = true, $loadmo = true) {
-		parent::__construct($basepath, $autoload, $loadmo, true);
+	public function __construct($basepath, array $config = array()) {
+		parent::__construct($basepath, $config);
 		self::$_Lang = new GWF_LangTrans('lang/SF/SF');
 		$this->addMainTvars(array('SF' => $this));
 	}
@@ -47,6 +47,8 @@ final class SF extends GWF3 {
 	############
 	## SET UP ##
 	############
+	public function setLayout($layout) { define('GWF_SF_LAYOUT', $layout); }
+	public function setDesign($design) { define('GWF_SF_DESIGN', $design); }
 	public function setLayoutColor(array $lc) { self::$_layoutcolor = $lc[$this->cfgLayoutcolor($lc)]; }
 	public function setDoctype($doctype) { return GWF_Doctype::setDoctype($doctype);}
 	public function setMeta($meta) { return GWF_Website::addMetaA($meta); }
@@ -101,8 +103,8 @@ final class SF extends GWF3 {
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
 	public function getPath() { return htmlspecialchars($_SERVER['REQUEST_URI']); }
-	public function getDesign() { return GWF_SF_DEFAULT_DESIGN; }
-	public function getLayout() { return GWF_SF_DEFAULT_LAYOUT; }
+	public function getDesign() { return defined('GWF_SF_DESIGN') ? GWF_SF_DESIGN : GWF_SF_DEFAULT_DESIGN; }
+	public function getLayout() { return defined('GWF_SF_LAYOUT') ? GWF_SF_LAYOUT : GWF_SF_DEFAULT_LAYOUT; }
 	public function getFormaction($key) { return self::$_formaction[$key]; }
 	public function getLastURL() { return GWF_Session::getLastURL(); }
 	public function getDayinfos() {

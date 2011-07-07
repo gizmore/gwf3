@@ -36,7 +36,7 @@ class GWF3
 	{
 		$config = array_merge(self::$CONFIG, $config);
 		define('GWF_WWW_PATH', $basepath);
-		$this->onLoadConfig($config['config_path']);
+		self::onLoadConfig($config['config_path']);
 		
 		if ($config['website_init']) 
 		{ 
