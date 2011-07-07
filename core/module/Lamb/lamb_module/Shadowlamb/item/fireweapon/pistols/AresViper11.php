@@ -6,7 +6,7 @@ final class Item_AresViper11 extends SR_Pistol
 	public function getBulletsMax() { return 8; }
 	public function getBulletsPerShot() { return 1; }
 	public function getReloadTime() { return 75; }
-	public function getItemLevel() { return 11; }
+	public function getItemLevel() { return 13; }
 	public function getItemWeight() { return 1950; }
 	public function getItemPrice() { return 1350; }
 	public function getItemDescription() { return 'A russian modification of the Ares Viper. It is illegal.'; }

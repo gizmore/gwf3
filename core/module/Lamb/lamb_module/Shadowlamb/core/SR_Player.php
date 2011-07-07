@@ -58,8 +58,8 @@ class SR_Player extends GDO
 	const DIRTY_FLAGS = 0x87fe0;
 	
 	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
-	public static $COMBAT_STATS = array('ele'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
-	public static $MAGIC_STATS = array('orc'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
+	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
+	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');

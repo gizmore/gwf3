@@ -704,6 +704,7 @@ final class SR_Party extends GDO
 		$sum = 0;
 		foreach ($this->members as $member)
 		{
+			$member instanceof SR_Player;
 			$sum += $member->get($field);
 		}
 		return $sum;

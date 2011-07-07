@@ -1,7 +1,7 @@
 <?php
 final class SR_KillProtect extends GDO
 {
-	const MAX_LEVEL_DIFF = 5;
+	const MAX_LEVEL_DIFF = 20;
 	const KILL_TIMEOUT_MIN = 3600; # 1h
 	const KILL_TIMEOUT_ADD = 7200; # 1h
 	const KILL_TIMEOUT_AVG = 6000; # 4h
@@ -129,7 +129,7 @@ final class SR_KillProtect extends GDO
 		}
 		
 		# A member as bounty
-		foreach ($defenders as $defender)
+		foreach ($defenders->getMembers() as $defender)
 		{
 			$defender instanceof SR_Player;
 			if ($defender->getBase('bounty') > 0)
