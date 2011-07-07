@@ -19,6 +19,8 @@ class WCSite_Hacker extends WC_Site
 		$maxscore = intval($stats[2]);
 		$usercount = intval($stats[3]);
 		$challcount = intval($stats[4]);
+		## does this work?
+//		list($rank, $onsitescore, $maxscore, $usercount, $challcount) = intval($stats);
 		if ($maxscore === 0 || $challcount === 0 || $usercount === 0) {
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
