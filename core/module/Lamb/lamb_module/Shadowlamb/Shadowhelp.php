@@ -261,7 +261,7 @@ final class Shadowhelp
 						'known_places' => "Player command. Usage: #known_places|#kp. List your known places in your current city. You can go to them with #(g)oto. Use #(exp)lore to find new places.",
 						'known_words' => "Player command. Usage: #known_words|#kw. List some useful words you have learned, which you can enumerate with #talk and #say.",
 						'known_spells' => 'Player command. Usage: #known_spells|#ks <[ks_id|spell_name]>. List your known magic spells or examine a spell.',
-						'quests' => 'Player command. Usage: #(qu)ests [<accepted|rejected|done|failed|aborted>] [<id>]. Shows info about your quests.',
+						'quests' => 'Player command. Usage: #(qu)ests [<accepted|rejected|done|failed|aborted>] [<id>]. Shows info about your quests. To get quests you need to talk to the npc. Most often, the trigger is #talk shadowrun and #talk yes to get them.',
 						'nuyen' => 'Player command. Usage: #(n)u(y)en/#ny. Show the parties nuyen. Nuyen is the currency(money) in Shadowlamb. It means "New Yen".',
 						'karma' => 'Player command. Usage: #(ka)rma. Show the parties karma. With karma you can lvlup your skills, attributes and spells.',
 						'hp' => NULL,
