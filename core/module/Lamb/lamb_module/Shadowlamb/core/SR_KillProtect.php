@@ -51,13 +51,18 @@ final class SR_KillProtect extends GDO
 			$pos = strpos($entry, $search);
 			if ($pos !== false)
 			{
-				return (int)substr($entry, $pos);
+				return (int)substr($entry, strlen($search));
 			}
 		}
 		
 		return false;
 	}
 	
+	/**
+	 * Check if we have a time based kill protection.
+	 * @param SR_Player $killer
+	 * @param SR_Player $victim
+	 */
 	public static function isKillProtected(SR_Player $killer, SR_Player $victim)
 	{
 		self::cleanup();
@@ -86,8 +91,9 @@ final class SR_KillProtect extends GDO
 	}
 	
 	/**
-	 * @param unknown_type $attackers
-	 * @param unknown_type $defenders
+	 * Check if we have a time based kill protection.
+	 * @param SR_Party $attackers
+	 * @param SR_Party $defenders
 	 * @return int seconds timout
 	 */
 	public static function isKillProtectedParty(SR_Party $attackers, SR_Party $defenders)
@@ -107,14 +113,63 @@ final class SR_KillProtect extends GDO
 		return false;
 	}
 	
-	public static function isKillProtectedPartyLevel(SR_Party $attackers, SR_Party $defenders)
+	/**
+	 * Check if the party sum levels match nicely.
+	 * @param SR_Party $attackers
+	 * @param SR_Party $defenders
+	 * @param boolean $verbose
+	 * @return true|false
+	 */
+	public static function isKillProtectedPartyLevel(SR_Party $attackers, SR_Party $defenders, $verbose=true)
 	{
+		# NPC
+		if (!$defenders->isHuman())
+		{
+			return false;
+		}
+		
+		# A member as bounty
+		foreach ($defenders as $defender)
+		{
+			$defender instanceof SR_Player;
+			if ($defender->getBase('bounty') > 0)
+			{
+				return false;
+			}
+		}
+		
+		# Check party sums
 		$al = $attackers->getSum('level');
 		$dl = $defenders->getSum('level');
-		$dif = $dl - $al;
+		$dif = $al - $dl;
 		if ($dif > self::MAX_LEVEL_DIFF)
 		{
-			$attackers->getLeader()->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
+			if ($verbose)
+			{
+				$attackers->getLeader()->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
+			}
+			# Protected by level
+			return true;
+		}
+		
+		# No protection
+		return false;
+	}
+	
+	/**
+	 * Check if the player levels match nicely.
+	 * @param SR_Party $attackers
+	 * @param SR_Party $defenders
+	 * @param boolean $verbose
+	 * @return true|false
+	 */
+	public static function isKillProtectedLevel(SR_Player $attacker, SR_Player $defender)
+	{
+		$al = $attacker->get('level');
+		$dl = $defender->get('level');
+		$dif = $al - $dl;
+		if ($dif > self::MAX_LEVEL_DIFF)
+		{
 			return true;
 		}
 		return false;
