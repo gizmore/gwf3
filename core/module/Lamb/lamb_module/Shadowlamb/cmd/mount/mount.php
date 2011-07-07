@@ -103,7 +103,8 @@ final class Shadowcmd_mount extends Shadowcmd
 		}
 		
 		# Is room in mount?
-		$iw = $item->getItemWeightStacked();
+//		$iw = $item->getItemWeightStacked();
+		$iw = $item->getItemWeight() * $amt;
 		$we = $mount->calcMountWeight();
 		if ( ($iw + $we) > $max )
 		{
