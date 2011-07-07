@@ -531,6 +531,8 @@ function bbInsertCodeNow(key)
 	var titleHTML = title.value === '' ? '' : ' title='+title.value;
 	bbInsert(key, '[code'+langHTML+titleHTML+']', '[/code]');
 	div.style.display = 'none';
+	div.html('');
+	GWF_BB_CODE_LANGS = undefined;
 	return false;
 }
 
