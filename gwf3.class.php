@@ -23,7 +23,9 @@ class GWF3
 //		'logging' => true,
 	);
 	
-	private static $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD;
+//	private static $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD;
+	private static $me = '';
+	private static $mo = '';
 	private static $module, $page, $user;
 
 	/**

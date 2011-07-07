@@ -120,15 +120,15 @@ final class GWF_Log
 			{
 				if (!is_dir($curr))
 				{
-					if (!is_writable($curr))
+//					if (!is_writable($curr))
+//					{
+//						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
+//					}
+					if (!@mkdir($curr))
 					{
 						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
 					}
-					if (!mkdir($curr))
-					{
-						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
-					}
-					if (!chmod($curr, GWF_CHMOD))
+					if (!@chmod($curr, GWF_CHMOD))
 					{
 						die(sprintf('Cannot chmod dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
 					}

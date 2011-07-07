@@ -13,7 +13,6 @@ final class GWF_Website
 	{
 		header('Content-Type: text/html; charset=UTF-8');
 		GWF_Language::init();
-		GWF_Debug::setBasedir($server_root);
 		$username = false;
 		if (!$no_session)
 		{
@@ -28,6 +27,7 @@ final class GWF_Website
 		}
 		GWF_Log::init($username, true, $server_root.'/protected/logs');
 		GWF_HTML::init();
+		GWF_Debug::setBasedir($server_root);
 	}
 	
 	public static function isHTML() { return strpos(GWF_DEFAULT_DOCTYPE, 'xhtml') === false; }
