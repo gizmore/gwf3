@@ -23,6 +23,7 @@ final class Shadowcmd_mount extends Shadowcmd
 //			case 'unload': return self::on_unload($player, $args);
 			case 'push': return self::on_push($player, $args);
 			case 'pop': return self::on_pop($player, $args);
+			case 'clean': return self::on_clean($player, $args);
 			
 			default: self::on_help($player, $args); return false;
 		}
@@ -471,6 +472,23 @@ final class Shadowcmd_mount extends Shadowcmd
 //		$bot->reply($message);
 //		
 //		return true;
+	}
+	
+	private static function on_clean(SR_Player $player, array $args)
+	{	
+		if (count($args) !== 0)
+		{
+			return self::on_help($player, $args);
+		}
+		while (count($player->getMountInvItems()) > 0)
+		{
+			$item = $player->getMountInvItemByID(1);
+			$player->removeFromMountInv($item);
+			$player->giveItem($item);
+		}
+		$player->updateInventory();
+		$player->message('You have cleaned your mount.');
+		return true;
 	}
 }
 ?>
