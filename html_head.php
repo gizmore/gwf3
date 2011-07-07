@@ -7,7 +7,7 @@ require_once 'gwf3.class.php';
 
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
-
+GWF3::onLoadConfig('protected/config.php');
 $gwf = new GWF3(__DIR__, array(
 	'website_init' => false,
 	'autoload_modules' => false,

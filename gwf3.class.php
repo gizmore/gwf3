@@ -14,7 +14,7 @@ if (!defined('GWF_CONFIG_NAME')) define('GWF_CONFIG_NAME', 'protected/config.php
  */
 class GWF3 
 {
-	const CONFIG = array(
+	public static $CONFIG = array(
 		'website_init' => true,
 		'autoload_modules' => true,
 		'load_module' => true,
@@ -34,28 +34,28 @@ class GWF3
 	 */
 	public function __construct($basepath, array $config = array())
 	{
-		$config = array_merge(self::CONFIG, $config);
+		$config = array_merge(self::$CONFIG, $config);
 		define('GWF_WWW_PATH', $basepath);
 		$this->onLoadConfig($config['config_path']);
 		
-		if (false !== $config['website_init']) 
+		if ($config['website_init']) 
 		{ 
 			$this->onInit($basepath); 
 		}
-		if (false !== $config['autoload_modules']) 
+		if ($config['autoload_modules']) 
 		{ 
 			$this->onAutoloadModules(); 
 		}
-		if (false !== $config['load_module']) 
+		if ($config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
 		}
-		if (false !== $config['get_user']) 
+		if ($config['get_user']) 
 		{		
 			self::$user = GWF_User::getStaticOrGuest();
 			GWF_Template::addMainTvars(array('user' => self::$user));
 		}
-		return $this;
+//		return $this;
 	}
 	public function __destruct() 
 	{
@@ -112,7 +112,7 @@ class GWF3
 		return $this;
 
 	}
-	function gwf3_autoload($classname)
+	public static function gwf3_autoload($classname)
 	{
 		if (substr($classname, 0, 4) === 'GWF_')
 		{
@@ -180,7 +180,7 @@ class GWF3
 require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 
 # Require the util
-require_once GWF_CORE_PATH.'/util/Common.php';
+require_once GWF_CORE_PATH.'inc/util/Common.php';
 
 # The GWF autoloader
 spl_autoload_register(array('GWF3','gwf3_autoload'));
