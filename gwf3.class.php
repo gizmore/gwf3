@@ -5,7 +5,7 @@ define('GWF_CORE_VERSION', '3.01-2011.JUL.02');
 define('GWF_PATH', __DIR__.'/');
 define('GWF_CORE_PATH', GWF_PATH.'core/');
 if (!defined('GWF_CONFIG_PATH')) define('GWF_CONFIG_PATH', 'protected/config.php');
-if (!defined('GWF_LOGGING_PATH')) define('GWF_LOGGING_PATH', GWF_PATH.'protected/logs.php');
+if (!defined('GWF_LOGGING_PATH')) define('GWF_LOGGING_PATH', GWF_PATH.'protected/logs');
 
 /**
  * @author spaceone
