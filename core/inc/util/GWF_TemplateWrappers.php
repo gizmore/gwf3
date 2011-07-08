@@ -8,19 +8,39 @@
  */
 final class GWF_SmartyFile
 {
+	/**
+	 * @todo cleanup
+	 * @todo wtf? function doesnt work if output isn't a string (because of echo)
+	 * why using echo and not return?
+	 */
 	private static $instance; public static function init() { self::$instance = new self(); } public static function instance() { return self::$instance; }
 	public function __call($name, $args)
 	{
 		$path = 'core/'.str_replace('_', '/', $name).'.php';
-		if (Common::isFile($path))
+		$foo = true;
+		if (!Common::isFile($path))
 		{
+			if (!Common::isFile(GWF_PATH.$path))
+			{
+				$foo = false;
+				echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array(htmlspecialchars($path))); 
+			}
+			else {
+				$path = GWF_PATH.$path;
+			}
+		} 
+		if ($foo)
+		{ 
 			require_once $path;
 			if (function_exists($name))
 			{
 				echo call_user_func($name, $args);
 			}
-			else { echo GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($name))); }
-		} else { echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array(htmlspecialchars($path))); }
+			else 
+			{ 
+				echo GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($name))); 
+			}
+		}
 	}
 } 
 GWF_SmartyFile::init();
