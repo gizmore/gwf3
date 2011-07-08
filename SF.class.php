@@ -100,6 +100,7 @@ final class SF extends GWF3 {
 		}
 		return $back;
 	}
+	public function getGWFPath() { return GWF_PATH; }
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
 	public function getPath() { return htmlspecialchars($_SERVER['REQUEST_URI']); }

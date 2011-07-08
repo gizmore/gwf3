@@ -29,7 +29,7 @@
 {if $SF->isDisplayed('shell')}
 <!-- SHELL -->
 				<div id="smallshell" class="shell">
-{include file="core/module/SF/tpl/SF/shortshell.tpl"}
+{include file="{$SF->getGWFPath()}core/module/SF/tpl/SF/shortshell.tpl"}
 				</div>
 {/if}
 <!-- CONTENT -->
