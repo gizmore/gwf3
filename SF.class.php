@@ -114,7 +114,7 @@ final class SF extends GWF3 {
 		return $lang->lang('today_is_the', $args);
 	}
 
-	public function is_details_displayed() { return true === self::getUser()->isAdmin(); }
+	public function is_details_displayed() { return $this->is_navi_displayed('details'); }
 	public function is_shell_displayed() { return !$this->getMoMe('SF_Shell'); }
 	public function is_base_displayed() { return ($this->getMoMe('Fancy_head') || $_GET['me'] == 'Challenge') ? false : true; }
 	public function is_navi_displayed($navi) {

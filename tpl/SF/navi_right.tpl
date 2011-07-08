@@ -1,5 +1,5 @@
 				<p class="top" style="background-image:url('{$root}templates/{$SF->getDesign()}/{$SF->getLayout()}/images/navirighthead.png');"> 
-					<a href="{$root}index.php?naviright=hidden"><img src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Navigation"></a>
+					<a href="{$SF->getIndex('naviright')}naviright=hidden"><img src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Navigation"></a>
 				</p><hr/>
 				<ol class="navi">
 {$SF->displayNavi('right')}
