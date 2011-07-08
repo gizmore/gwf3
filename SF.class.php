@@ -1,5 +1,5 @@
 <?php
-require_once 'GWF3/gwf3.class.php';
+require_once 'gwf3.class.php';
 if(!isset($_GET['mo'])) $_GET['mo'] = GWF_DEFAULT_MODULE;
 if(!isset($_GET['me'])) $_GET['me'] = GWF_DEFAULT_METHOD;
 
