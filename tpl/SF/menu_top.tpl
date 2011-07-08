@@ -37,20 +37,16 @@
 		</ul>
 	{/if}
 	<li class="sec">
-		<h2><a href="{$root}links">Links{$gwff->module_Links_unread($user)}</a></h2>
+		<h2><a href="{$root}links">[Modules]</a></h2>
 		<ul>
-			<li class="cat"><h2><a href="{$root}index.php?mo=Links&amp;me=Add&amp;tag=">hinzufügen</a></h2></li>
-		</ul>
-	</li>
-	<li class="sec">
-		<h2><a href="{$root}forum">Forum{$gwff->module_Forum_unread($user)}</a></h2>
-		<ul>
+			<li class="cat"><h2><a href="{$root}links">Links{$gwff->module_Links_unread($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}index.php?mo=Links&amp;me=Add&amp;tag=">Link hinzufügen</a></h2></li>
+			<li class="cat"><h2><a href="{$root}forum">Forum{$gwff->module_Forum_unread($user)}</a></h2></li>
 			<li class="cat"><h2><a href="{$root}index.php?mo=Forum&amp;me=Unread">ungelesene</a></h2></li>
+			<li class="cat"><h2><a href="{$root}pm">PM{$gwff->module_PM_unread($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}news">News{$gwff->module_News_unread($user)}</a></h2></li>
 		</ul>
-			
 	</li>
-	<li class="sec"><h2><a href="{$root}pm">PM{$gwff->module_PM_unread($user)}</a></h2></li>
-	<li class="sec"><h2><a href="{$root}news">News{$gwff->module_News_unread($user)}</a></h2></li>
 	{if $user->isInGroupName(klasse)}
 	<li class="sec"><h2><a href="{$root}Stundenplan">Stundenplan</a></h2></li>
 	{/if}

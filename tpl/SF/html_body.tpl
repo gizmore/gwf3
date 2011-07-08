@@ -29,8 +29,15 @@
 {if $SF->isDisplayed('shell')}
 <!-- SHELL -->
 				<div id="smallshell" class="shell">
+<span style="float:right;">
+<a href="{$SF->getIndex('shell')}shell=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Shell"></a>
+</span><br>
 {include file="{$SF->getGWFPath()}core/module/SF/tpl/SF/shortshell.tpl"}
 				</div>
+{else}
+<span style="float:right;">
+<a href="{$SF->getIndex('shell')}shell=shown"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/add.png" alt="[+]" title="Show Shell"></a>
+</span>
 {/if}
 <!-- CONTENT -->
 				<div id="content">

@@ -10,6 +10,7 @@ require_once 'gwf3.class.php';
  * @since 10.05.2011
  * @visit www.florianbest.de
  * @license none
+ * @todo: is_visible: new name; move to session + usersetting
  */
 final class SF extends GWF3 {
 	
@@ -115,9 +116,9 @@ final class SF extends GWF3 {
 	}
 
 	public function is_details_displayed() { return $this->is_navi_displayed('details'); }
-	public function is_shell_displayed() { return !$this->getMoMe('SF_Shell'); }
+	public function is_shell_displayed() { return $this->getMoMe('SF_Shell') ? false : $this->is_navi_displayed('shell'); }
 	public function is_base_displayed() { return ($this->getMoMe('Fancy_head') || $_GET['me'] == 'Challenge') ? false : true; }
-	public function is_navi_displayed($navi) {
+	public function is_navi_displayed($navi, $default = true) {
 		$mods = array('SF', 'PageBuilder', 'GWF', GWF_DEFAULT_MODULE);
 		switch(GWF_SF_Utils::save_guest_setting($navi, array('hidden' => true, 'shown' => true), 'default', $this->cfgCookieTime())) {
 			case 'shown' : return true;

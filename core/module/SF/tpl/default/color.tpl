@@ -56,7 +56,7 @@ div#footer,
 {rdelim}
 
 hr {ldelim}
-	border-bottom: thin solid {$color['design_dark']};
+	border-bottom: thin solid {$color['design_dark']}!important;
 {rdelim}
 
 /*--------------------------- HEADNAV -------------------------------*/
