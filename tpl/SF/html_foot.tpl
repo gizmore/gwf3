@@ -25,6 +25,8 @@
 				<a href="{$root}profile/space" title="space's profile">Florian Best</a> & 
 				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
 			</p>
+			<p class="copyright">
+			</p>
 		</div>
 {if $SF->isDisplayed('details')}
 <!-- DETAILS -->

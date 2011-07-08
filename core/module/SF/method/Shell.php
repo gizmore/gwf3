@@ -94,7 +94,7 @@ final class SF_Shell extends GWF_Method
 				if(count($cmdS) >= self::$cmds[$cmd]['args']-1) {
 					require_once 'core/module/SF/SF_Shellfunctions.php';
 					$shfuncts = new SF_Shellfunctions;
-					return method_exists($shfuncts, $cmd) ? $shfuncts->$cmd($cmdS) : $this->onFunctionError($cmd);
+					return method_exists($shfuncts, $cmd) ? call_user_func($shfuncts->$cmd, $cmdS) : $this->onFunctionError($cmd);
 				} else {
 					return $this->onArgs($cmd);
 				}

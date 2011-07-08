@@ -168,7 +168,8 @@ span.copyright {
 p.copyright {
 	vertical-align: middle;
 	text-align: center;
-	line-height: 20px;
+	line-height: 25px;
+	margin: 0;
 }
 div.inhalt {
 	text-align: justify;

@@ -74,6 +74,7 @@ class GWF3
 	}
 	public function onAutoloadModules()
 	{
+		if(defined('GWF_WEBSITE_DOWN')) return;
 		# Autoload Modules
 		if (false === GWF_Module::autoloadModules()) {
 			die('Cannot autoload modules. GWF not installed?');
@@ -82,6 +83,7 @@ class GWF3
 	}
 	public function onLoadModule()
 	{
+		if(defined('GWF_WEBSITE_DOWN')) return;
 		# Load the module
 		if (false === (self::$module = GWF_Module::loadModuleDB(Common::getGetString('mo', GWF_DEFAULT_MODULE)))) {
 			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) {
@@ -157,6 +159,7 @@ class GWF3
 	}
 	public function onDisplayPage($content = NULL)
 	{
+		if(defined('GWF_WEBSITE_DOWN')) return GWF_WEBSITE_DOWN;
 		# Display the page
 		if (isset($_GET['ajax'])) {
 			return self::$page;

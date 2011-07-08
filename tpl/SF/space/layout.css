@@ -25,7 +25,7 @@ div#headnavi {
 	background:#181818 url('./images/headnavi.png') repeat-x;
 }
 div#details {
-	background: #171817 url('./images/details.png') repeat-x scroll;
+	background: #171817 url('./images/details.png') repeat scroll;
 }
 div#body {
 	background:#1c1c1c url('./images/main.png') repeat-y;
