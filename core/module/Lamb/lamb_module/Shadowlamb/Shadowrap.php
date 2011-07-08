@@ -25,7 +25,7 @@ final class Shadowrap
 		
 		return true;
 	}
-	
+
 	/**
 	  * Reply to the current origin and user, display as a table
 	  * @author digitalseraphim
@@ -43,13 +43,16 @@ final class Shadowrap
 			$maxWidths[-1] = max($maxWidths[-1],strlen($key));
 			foreach ($value as $k => $v)
 			{
+				$charcounts = count_chars($v,0);
+				$vlen = strlen($v)-$charcounts[2];
+				
 				if(!array_key_exists($k,$maxWidths))
 				{
-					$maxWidths[$k] = strlen($v);
+					$maxWidths[$k] = $vlen;
 				}
 				else
 				{
-					$maxWidths[$k] = max($maxWidths[$k],strlen($v));
+					$maxWidths[$k] = max($maxWidths[$k],$vlen);
 				}
 			}
 		}
@@ -59,7 +62,8 @@ final class Shadowrap
 			$s = sprintf('%-'.($maxWidths[-1]+1).'s',$key) ;
 			foreach ($value as $k => $v)
 			{
-				$s .= sprintf('| %-'.($maxWidths[$k]+1).'s', $v);
+				$charcounts = count_chars($v,0);
+				$s .= sprintf('| %-'.($maxWidths[$k]+1+$charcounts[2]).'s', $v);
 			}
 			$this->reply($s);
 		}
