@@ -25,7 +25,8 @@ final class GWF_Website
 				$username = $user->getVar('user_name');
 			}
 		}
-		GWF_Log::init($username, true, $server_root.'/protected/logs');
+#		GWF_Log::init($username, true, $server_root.'/protected/logs');
+		GWF_Log::init($username, true, GWF_LOGGING_PATH);
 		GWF_HTML::init();
 		GWF_Debug::setBasedir($server_root);
 	}

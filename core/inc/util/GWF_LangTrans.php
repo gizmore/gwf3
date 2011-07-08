@@ -119,7 +119,11 @@ final class GWF_LangTrans
 		}
 		
 		if (!Common::isFile($path)) {
-			die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
+			if (!Common::isFile(GWF_PATH.$path)) {
+				die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
+			} else {
+				$path = GWF_PATH.$path;
+			}
 		}
 		
 		require $path;

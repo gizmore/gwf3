@@ -1,7 +1,5 @@
 <?php
 require_once 'gwf3.class.php';
-if(!isset($_GET['mo'])) $_GET['mo'] = GWF_DEFAULT_MODULE;
-if(!isset($_GET['me'])) $_GET['me'] = GWF_DEFAULT_METHOD;
 
 /**
  * This is the SpaceFramework::init.
@@ -19,6 +17,8 @@ final class SF extends GWF3 {
 	
 	public function __construct($basepath, array $config = array()) {
 		parent::__construct($basepath, $config);
+		if(!isset($_GET['mo'])) $_GET['mo'] = GWF_DEFAULT_MODULE;
+		if(!isset($_GET['me'])) $_GET['me'] = GWF_DEFAULT_METHOD;
 		self::$_Lang = new GWF_LangTrans('lang/SF/SF');
 		$this->addMainTvars(array('SF' => $this));
 	}
@@ -34,7 +34,7 @@ final class SF extends GWF3 {
 	public function cfgLayoutcolor($lc) { return GWF_SF_Utils::save_guest_setting('layoutcolor', $lc, $this->cfgdefaultColor(), $this->cfgCookieTime()); }
 
 	# nothing to worry about
-	public function onIncludeBeef() { return GWF_Website::addJavascript('core/inc3p/beef/hook/beefmagic.js.php'); }
+	public function onIncludeBeef() { return GWF_Website::addJavascript('inc3p/beef/hook/beefmagic.js.php'); }
 	public function getWelcomeComment() { 
 		if(true === self::getUser()->isWebspider()) {
 			return '<!--Hi '.htmlspecialchars(self::getUser()->displayUsername()).'-->'; 
@@ -43,7 +43,7 @@ final class SF extends GWF3 {
 		}
 		return "<!--Can you see the sourcecode? Great! -->\0\n";
 	}
-	
+
 	############
 	## SET UP ##
 	############

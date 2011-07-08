@@ -21,7 +21,7 @@ final class SF_Navigation extends GDO
 			'parent_id' => array(GDO::UINT, GDO::NOT_NULL, 11),
 			'position' => array(GDO::INT, GDO::NOT_NULL, 11),
 			'display_to' => array(GDO::INT, GDO::NOT_NULL, 2),
-			'is_visible' => array(GDO::INT, GDO::NOT_NULL, 1),
+			'is_visible' => array(GDO::TINYINT, GDO::NOT_NULL, 1),
 		);
 	}
 	private static function tab($num) { return str_repeat("\t", $num); }

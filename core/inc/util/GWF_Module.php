@@ -199,8 +199,14 @@ class GWF_Module extends GDO
 	{
 		$classname = "Module_$modulename";
 		$path = "core/module/$modulename/$classname.php";
+		# for using modules which aren't in include_path
 		if (!Common::isFile($path)) {
-			return false;
+			# required if GWF is in include_path
+			if (!Common::isFile(GWF_PATH.$path)) {
+				return false;
+			} else {
+				$path = GWF_PATH.$path;
+			}
 		}
 		require_once $path;
 		self::$MODULES[$modulename] = $m = new $classname($data);

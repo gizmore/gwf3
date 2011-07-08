@@ -15,9 +15,9 @@ final class Module_SF extends GWF_Module
 	public function getDefaultPriority() { return 50; }
 	public function getDefaultAutoLoad() { return defined('GWF_SF') ? true : false; }
 	public function getClasses() { 
-		$classes = array('SF', 'SF_Navigation'); 
+		$classes = array(); 
 //		if($this->cfgShellIsEnabled()) {
-//			$classes[] = 'Shellfunctions';
+//			$classes[] = 'SF_Shellfunctions';
 //		}
 		return $classes;
 	}
@@ -30,7 +30,6 @@ final class Module_SF extends GWF_Module
 	
 		if(defined('GWF_SF')) {
 			$this->onInclude();
-			require_once 'method/color.php';
 		}
 	}
 	public function onInstall($dropTable)
