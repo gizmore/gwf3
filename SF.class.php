@@ -101,6 +101,15 @@ final class SF extends GWF3 {
 		}
 		return $back;
 	}
+	public function getLoadedModules($s = '%count% (%mods%)') { return GWF_Module::getModulesLoaded($s); }
+	public function getOnlineUsers() { return GWF_SmartyFile::instance()->module_Heart_beat(); }
+	public function getUnreadLinks($user) { return GWF_SmartyFile::instance()->module_Links_unread($user); }
+	public function getUnreadForum($user) { return GWF_SmartyFile::instance()->module_Forum_unread($user); }
+	public function getUnreadPM($user) { return GWF_SmartyFile::instance()->module_PM_unread($user); }
+	public function getUnreadNews($user) { return GWF_SmartyFile::instance()->module_News_unread($user); }
+	public function getUnreadChallenges($user) {  }
+	public function getUnreadPageBuilder($user) {  }
+	public function getLoginForm() { return GWF_Module::loadModuleDB('Login', true, true)->execute('Form'); }
 	public function getGWFPath() { return GWF_PATH; }
 	public function getLayoutcolor($key = 'base_color') { return self::$_layoutcolor[$key]; }
 	public function getServerName() { return $_SERVER['SERVER_NAME']; }
@@ -159,16 +168,19 @@ final class SF extends GWF3 {
 	public function getReferer() { return GWF_SF_SurferInfos::get_referer(); }
 	public function getUserAgent() { return GWF_SF_SurferInfos::get_useragent(); }
 	public function imgBrowser() { 
-		return sprintf('<img src="'.GWF_WEB_ROOT.'img/SF/Browser/16x16/%s.png" title="%s" alt="%s">',$this->getBrowser(2),$this->getBrowser(),$this->getBrowser()); 
+		return sprintf('<img class="detailimg" src="'.GWF_WEB_ROOT.'img/SF/Browser/16x16/%s.png" title="%s" alt="%s">',$this->getBrowser(2),$this->getBrowser(),$this->getBrowser()); 
 	}
 	public function imgOS() { 
-		return sprintf('<img height="16px" src="'.GWF_WEB_ROOT.'img/SF/OS/%s.png" title="%s" alt="%s">',$this->getOS(2),$this->getOS(),$this->getOS()); 
+		return sprintf('<img class="detailimg" src="'.GWF_WEB_ROOT.'img/SF/OS/%s.png" title="%s" alt="%s">',$this->getOS(2),$this->getOS(),$this->getOS()); 
 	}
 	public function imgProvider() { 
-		return sprintf('<img height="16px" src="'.GWF_WEB_ROOT.'img/SF/Provider/%s.png" title="%s" alt="%s">',$this->getProvider(2),$this->getProvider(),$this->getProvider()); 
+		return sprintf('<img class="detailimg" src="'.GWF_WEB_ROOT.'img/SF/Provider/%s.png" title="%s" alt="%s">',$this->getProvider(2),$this->getProvider(),$this->getProvider()); 
 	}
 	public function imgCountry() { 
 		#return sprintf('<img src="%s" width="24" height="24" title="%s" alt="%s"/>', GWF_WEB_ROOT.'img/country/'.$this->getCountry(NULL, true), $this->getCountry(), $this->getCountry()).PHP_EOL; 
+	}
+	public function umrechnung($size, $praefix=true, $short= true) {
+		return GWF_SF_Utils::umrechnung($size, $praefix, $short);
 	}
 	public function gwf_error_404_mail($body = 'The page %s threw a 404 error.')
 	{

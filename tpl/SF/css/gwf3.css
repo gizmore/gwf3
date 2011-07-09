@@ -282,8 +282,6 @@ input[name=password] { background-image: url(../../../img/default/key.png); back
 textarea[name=message] { background-image: url(../../../img/SF/comment.png); background-repeat: no-repeat; padding-left: 24px!important;}
 
 input {
-	-webkit-background-size: 16px 16px; 
-	-khtml-background-size: 16px 16px; 
-	-o-background-size: 16px 16px;
+	background-size: 16px 16px;
 	background-repeat: no-repeat;
 }

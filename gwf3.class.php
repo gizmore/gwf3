@@ -180,6 +180,16 @@ class GWF3
 	public static function getMe() { return self::$me; }
 	public static function getModule() { return self::$module; }
 	public static function getUser() { return self::$user; }
+	
+	public function __toString() {
+		$module = Common::displayGet('mo', GWF_DEFAULT_MODULE);
+		$method = Common::displayGet('me', GWF_DEFAULT_METHOD);
+		$class = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT, GWF_HTML::lang(__CLASS__), GWF_HTML::lang(__CLASS__));
+		$method = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT.'index.php?mo='.$module.'&amp;me='.$method, $method, $method);
+		$module = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT.'index.php?mo='.$module, $module, $module);
+
+		return $class.' &gt;&gt; '.$module.' &gt; '.$method;
+	}
 }
 
 # Require the Database

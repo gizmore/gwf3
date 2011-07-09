@@ -8,7 +8,7 @@
 	</tr>
 	<tr>
 		<td>
-			{$SF->lang('ct_online_atm', array($gwff->module_Heart_beat()))}<br>
+			{$SF->lang('ct_online_atm', array($SF->getOnlineUsers()))}<br>
 			{$SF->lang('ct_vis_total')}<br>
 			{$SF->lang('ct_vis_today')}<br>
 			{$SF->lang('ct_vis_yesterday')}<br>

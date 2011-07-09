@@ -64,7 +64,7 @@ final class GWF_LangTrans
 	}
 	public function langA($var, $key, $args=NULL) {
 		$back = $this->lang($var);
-		return array_key_exists($key, $back) ? $this->replaceArgs($back[$key], $args) : $back;
+		return (array_key_exists($key, $back) || !is_array($back) ) ? $this->replaceArgs($back[$key], $args) : $back;
 	}
 	
 	public function langUser(GWF_User $user, $key, $args)

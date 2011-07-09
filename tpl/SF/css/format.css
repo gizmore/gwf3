@@ -31,6 +31,10 @@ hr.left {
 	margin-left: 0;
 }
 
+img.detailimg {
+	height: 16px;
+}
+
 br {}
 p {}
 span {}

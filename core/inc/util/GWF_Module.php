@@ -47,7 +47,7 @@ class GWF_Module extends GDO
 	public function hasAdminSection() { return $this->getAdminSectionURL() !== '#'; }
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isInstalled() { return $this->getVersionDB() > 0; }
-	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'core/module/'.$this->getName().'/'.$file; }
+	public function getModuleFilePath($file) { return GWF_WEB_ROOT.'core/module/'.$this->getName().'/'.$file; } // wont work in new baselayout!
 	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
 	public static function getModulesLoaded($format = false)
 	{
@@ -258,7 +258,7 @@ class GWF_Module extends GDO
 	{
 		foreach ($this->getClasses() as $class)
 		{
-			require_once 'core/module/'.$this->getName().'/'.$class.'.php';
+			require_once GWF_PATH.'core/module/'.$this->getName().'/'.$class.'.php';
 		}
 	}
 	
@@ -272,7 +272,11 @@ class GWF_Module extends GDO
 		$methodname = str_replace('/', '', $methodname); # LFI
 		$path = "core/module/$name/method/$methodname.php";
 		if (!Common::isFile($path)) {
-			return false;
+			if (!Common::isFile(GWF_PATH.$path)) {
+				return false;
+			} else {
+				$path = GWF_PATH.$path;
+			}
 		}
 		require_once $path;
 		$classname = $name.'_'.$methodname;

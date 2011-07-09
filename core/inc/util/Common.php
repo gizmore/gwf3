@@ -15,13 +15,14 @@ final class Common
 	public static function getGetInt($var, $default=0) { return isset($_GET[$var]) ? intval($_GET[$var],10) : $default; }
 	public static function getGetString($var, $default='') { return (isset($_GET[$var]) ? (string)$_GET[$var] : $default); }
 	public static function getGetArray($var, $default=false) { return (isset($_GET[$var]) && is_array($_GET[$var])) ? $_GET[$var] : $default; }
-	public static function displayGet($var) { return isset($_GET[$var]) ? htmlspecialchars($_GET[$var]) : ''; }
+	public static function displayGet($var, $default='') { return isset($_GET[$var]) ? htmlspecialchars($_GET[$var], ENT_QUOTES) : $default; }
 	
 	public static function getPost($var, $default=false) { return isset($_POST[$var]) ? ($_POST[$var]) : $default; }
 	public static function cmpPost($var, $cmp, $default=false) { return $cmp === self::getPost($var, $default) ? true : $default; }
 	public static function getPostInt($var, $default=0) { return isset($_POST[$var]) ? intval($_POST[$var],10) : $default; }
 	public static function getPostString($var, $default='') { return (isset($_POST[$var]) ? (string)$_POST[$var] : $default); }
 	public static function getPostArray($var, $default=false) { return (isset($_POST[$var]) && is_array($_POST[$var])) ? $_POST[$var] : $default; }
+	public static function displayPost($var, $default='') { return isset($_POST[$var]) ? htmlspecialchars($_POST[$var], ENT_QUOTES) : $default; }
 	
 	public static function getRequest($var, $default=false) { return isset($_REQUEST[$var]) ? ($_REQUEST[$var]) : $default; }
 	public static function cmpRequest($var, $cmp, $default=false) { return $cmp === self::getRequest($var, $default) ? true : $default; }
@@ -31,6 +32,7 @@ final class Common
 	
 	public static function getCookie($var, $default=NULL) { return (isset($_COOKIE[$var]) ? (string)$_COOKIE[$var] : $default); }
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
+	public static function displayCookie($var, $default='') { return isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
 	
 	###########
 	### URL ###
