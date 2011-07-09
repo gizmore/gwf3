@@ -13,6 +13,15 @@ final class Seattle extends SR_City
 		return false;
 	}
 	
+	public function getRespawnLocation(SR_Player $player)
+	{
+		if ( ($player->getNuyen() > 100) && ($player->hasKnowledge('places', 'Seattle_Hotel')) )
+		{
+			return 'Seattle_Hotel';
+		}
+		return parent::getRespawnLocation($player);
+	}
+	
 	public function onEventWallet(SR_Party $party)
 	{
 		foreach ($party->getMembers() as $member)
