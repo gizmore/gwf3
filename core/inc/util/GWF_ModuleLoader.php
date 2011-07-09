@@ -462,8 +462,12 @@ final class GWF_ModuleLoader
 	
 	public static function cronjobs()
 	{
-		GWF_Log::outputLogMessages(true);
+//		GWF_Log::outputLogMessages(true);
 		ob_start();
+		
+		self::cronjobsCore();
+		
+		$back = '';
 		
 		$modules = self::loadModulesFS();
 		foreach ($modules as $module)
@@ -471,13 +475,29 @@ final class GWF_ModuleLoader
 			$module instanceof GWF_Module;
 			$module->onInclude();
 			$module->onLoadLanguage();
-			$module->onCronjob();
+			$back .= $module->onCronjob();
 		}
 		
 		$output = ob_get_contents();
 		ob_end_clean();
 		
 		return $output;
+	}
+	
+	private static function cronjobsCore()
+	{
+		GWF_Log::logCron("[Session]");
+		$table = GDO::table('GWF_Session');
+		$cut = time() - GWF_SESS_LIFETIME;
+		if (false === $table->deleteWhere("sess_time<{$cut}"))
+		{
+			GWF_Log::logCron(sprintf('ERROR!'));
+		}
+		else
+		{
+			GWF_Log::logCron(sprintf('[NOTICE] Deleted %d sesssions.', $table->affectedRows()));
+		}
+		GWF_Log::logCron("[Done]");
 	}
 	
 	##

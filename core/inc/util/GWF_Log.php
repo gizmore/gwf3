@@ -82,7 +82,7 @@ final class GWF_Log
 	########################
 	### Default logfiles ###
 	########################
-	public static function logCron($message) { return self::log('cron', $message, true); }
+	public static function logCron($message) { echo $message.PHP_EOL; return self::log('cron', $message, true); }
 	public static function logError($message) { return self::log('error', $message) && self::log('error_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
 	public static function logMessage($message) { return self::log('message', $message); }
 	public static function logWarning($message) { return self::log('warning', $message); }

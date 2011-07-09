@@ -4,12 +4,12 @@ if (isset($_SERVER['REMOTE_ADDR']))
 {
 	die('Error 0915: Cronjob is called by www. Check GWF SERVER PATH.');
 }
-
 # Include Kernel
 require_once 'gwf3.class.php';
+
 # Init
-$gwf = new GWF3(__FILE__, true, false);
+$gwf = new GWF3(__DIR__);
 
 # Call Cronjobs
-GWF_Website::cronjobs();
+GWF_ModuleLoader::cronjobs();
 ?>
