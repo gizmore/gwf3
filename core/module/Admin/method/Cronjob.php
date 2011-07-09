@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Trigger cronjob manually for debugging purposes.
+ * @author gizmore
+ * @since GWF2
+ */
 final class Admin_Cronjob extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
