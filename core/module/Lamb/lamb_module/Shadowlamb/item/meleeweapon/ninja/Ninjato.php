@@ -1,17 +1,17 @@
 <?php
-final class Item_NinjaSword extends SR_NinjaWeapon
+final class Item_Ninjato extends SR_NinjaWeapon
 {
 	public function getAttackTime() { return 40; }
-	public function getItemLevel() { return 13; }
-	public function getItemWeight() { return 1030; }
-	public function getItemPrice() { return 1800; }
+	public function getItemLevel() { return 14; }
+	public function getItemWeight() { return 970; }
+	public function getItemPrice() { return 2000; }
 	public function getItemDescription() { return 'A black, slim and deadly sword. Sweet.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 13.5, 
+			'attack' => 12.5, 
 			'min_dmg' => 3.5,
-			'max_dmg' => 13.5,
+			'max_dmg' => 14.5,
 		);
 	}
 }
