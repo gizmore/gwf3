@@ -110,7 +110,6 @@ foreach ($childs as $i => $c) { $c instanceof GWF_ForumBoard; echo GWF_Table::ro
 <?php echo GWF_Table::end(); ?>
 <?php } ?>
 
-
 <?php # SHOUTBOX
 if ($b->isRoot())
 {
@@ -167,14 +166,25 @@ echo $tVars['pagemenu_threads'];
 ?>
 
 <!-- Board Actions -->
-<?php if ($tVars['new_thread_allowed']) {
-	echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
-//	echo GWF_Button::add($tLang->lang('btn_add_thread'), $b->getAddThreadHREF());
+<?php
+echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
+if ($tVars['new_thread_allowed'])
+{
 	echo GWF_Button::generic($tLang->lang('btn_add_thread'), $b->getAddThreadHREF());
-	echo '</div></div>'.PHP_EOL;
 }
+if (!$b->isRoot())
+{
+	if ($b->canSubscribe())
+	{
+		echo GWF_Button::generic($tLang->lang('btn_subscribe'), $b->getSubscribeHREF());
+	}
+	if ($b->canUnSubscribe())
+	{
+		echo GWF_Button::generic($tLang->lang('btn_unsubscribe'), $b->getUnSubscribeHREF());
+	}
+}
+echo '</div></div>'.PHP_EOL;
 ?>
-
 
 <!-- Admin Control -->
 <?php if (GWF_User::isAdminS()) { ?>

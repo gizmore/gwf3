@@ -13,8 +13,8 @@ final class Forum_Subscribe extends GWF_Method
 		return
 			'RewriteRule ^forum/subscribe/to/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&tid=$1&sub=me'.PHP_EOL.
 			'RewriteRule ^forum/unsubscribe/from/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&tid=$1&unsub=me'.PHP_EOL.
-			'RewriteRule ^forum/unsubscribe/([0-9]+)/([0-9a-f]{'.$c.'})/from/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&uid=$1&ext_thread=$2&tid=$3'.PHP_EOL.
-			'RewriteRule ^forum/unsubscribe/([0-9]+)/([0-9a-f]{'.$c.'})/from/all$ index.php?mo=Forum&me=Subscribe&uid=$1&ext_all=$2'.PHP_EOL;
+			'RewriteRule ^forum/unsubscribe/([0-9]+)/([0-9a-zA-Z]{'.$c.'})/from/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&uid=$1&ext_thread=$2&tid=$3'.PHP_EOL.
+			'RewriteRule ^forum/unsubscribe/([0-9]+)/([0-9a-zA-Z]{'.$c.'})/from/all$ index.php?mo=Forum&me=Subscribe&uid=$1&ext_all=$2'.PHP_EOL;
 	}
 	
 	/**

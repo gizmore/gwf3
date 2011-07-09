@@ -58,7 +58,7 @@ final class Module_Forum extends GWF_Module
 	##############
 	### Module ###
 	##############
-	public function getVersion() { return 1.04; }
+	public function getVersion() { return 1.05; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/forum'); }
 	public function getAdminSectionURL() { return GWF_WEB_ROOT.'forum/admin'; }
 	public function onCronjob() { require_once 'GWF_ForumCronjob.php'; return GWF_ForumCronjob::onCronjob($this); }
@@ -72,6 +72,7 @@ final class Module_Forum extends GWF_Module
 			'GWF_ForumOptions',
 			'GWF_ForumPost',
 			'GWF_ForumPostHistory',
+			'GWF_ForumSubscrBoard',
 			'GWF_ForumSubscription',
 			'GWF_ForumThread',
 			'GWF_ForumVisitors',
@@ -145,7 +146,7 @@ final class Module_Forum extends GWF_Module
 	public function isUnreadThreadsEnabled() { return $this->getModuleVar('unread', '1') === '1'; }
 	public function cfgUseGTranslate() { return $this->getModuleVar('gtranslate', '1') === '1'; }
 //	public function getSubscriptionSender() { return $this->getModuleVar('subscr_sender', GWF_BOT_EMAIL); }
-//	public function cfgMailMicrosleep() { return $this->getModuleVar('mail_microsleep', 200000); }
+	public function cfgMailMicrosleep() { return 200000; }
 	public function cfgThanksEnabled() { return $this->getModuleVar('thanks', '1') === '1'; }
 	public function cfgVotesEnabled() { return $this->getModuleVar('votes', '1') === '1'; }
 	public function cfgWatchTimeout() { return $this->getModuleVar('watch_timeout', 300); }

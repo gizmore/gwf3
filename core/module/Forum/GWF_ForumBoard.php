@@ -498,6 +498,37 @@ final class GWF_ForumBoard extends GDO
 		$threads->free($result);
 		return true;
 	}
+	
+	#######################
+	### Subscribe board ###
+	#######################
+	public function canSubscribe()
+	{
+		$fopts = GWF_ForumOptions::getUserOptionsS();
+		if ($fopts->getVar('fopt_subscr') === GWF_ForumOptions::SUBSCRIBE_ALL)
+		{
+			return false;
+		}
+		if (GWF_ForumSubscrBoard::hasSubscribed(GWF_Session::getUserID(), $this->getID()))
+		{
+			return false;
+		}
+		return true;
+	}
 
+	public function canUnSubscribe()
+	{
+		return GWF_ForumSubscrBoard::hasSubscribed(GWF_Session::getUserID(), $this->getID());
+	}
+	
+	public function getSubscribeHREF()
+	{
+		return GWF_WEB_ROOT.'index.php?mo=Forum&me=SubscribeBoard&subscribe='.$this->getID();
+	}
+
+	public function getUnSubscribeHREF()
+	{
+		return GWF_WEB_ROOT.'index.php?mo=Forum&me=SubscribeBoard&unsubscribe='.$this->getID();
+	}
 }
 ?>

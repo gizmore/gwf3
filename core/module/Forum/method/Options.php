@@ -38,8 +38,9 @@ final class Forum_Options extends GWF_Method
 		$form = $this->getForm($module);
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_options')),
+			'href_subscr' => $module->getMethodURL('Subscriptions'),
 		);
-		return $module->templatePHP('options.php', $tVars);
+		return $module->template('options.tpl', $tVars);
 	}
 	
 	private function onChange(Module_Forum $module)

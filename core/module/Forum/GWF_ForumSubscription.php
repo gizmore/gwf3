@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Table of manually subribed threads.
+ * @author gizmore
+ */
 final class GWF_ForumSubscription extends GDO
 {
 	###########
@@ -14,6 +17,8 @@ final class GWF_ForumSubscription extends GDO
 			'subscr_uid' => array(GDO::UINT|GDO::PRIMARY_KEY, true),
 			'subscr_tid' => array(GDO::UINT|GDO::PRIMARY_KEY, true),
 			'subscr_fopts' => array(GDO::OBJECT, GDO::NULL, array('GWF_ForumOptions', 'subscr_uid', 'fopt_uid')),
+		
+			'threads' => array(GDO::JOIN, GDO::NULL, array('GWF_ForumThread', 'subscr_tid', 'thread_tid')),
 		);
 	}
 	
@@ -69,6 +74,7 @@ final class GWF_ForumSubscription extends GDO
 		return 
 			self::filterSubscriptions($thread, array_merge(
 				self::getSubscriptionsManual($thread, $show_hidden),
+				self::getSubscriptionsManualBoard($thread, $show_hidden),
 				self::getSubscriptionsOwn($thread, $show_hidden),
 				self::getSubscriptionsAll($thread, $show_hidden)
 			));
@@ -118,6 +124,21 @@ final class GWF_ForumSubscription extends GDO
 			return array();
 		}
 		return self::getSubscrConverted($rows);
+	}
+	
+	private static function getSubscriptionsManualBoard(GWF_ForumThread $thread, $show_hidden)
+	{
+		$back = array();
+		$table = GDO::table('GWF_ForumSubscrBoard');
+		$curr = $thread->getBoard();
+		while ($curr !== false)
+		{
+			$bid = $curr->getID();
+			$back2 = $table->selectColumn('subscr_uid', "subscr_bid={$bid}");
+			$back = array_merge($back, $back2);
+			$curr = $curr->getParent();
+		}
+		return self::getSubscrConverted($back);
 	}
 	
 	private static function getSubscriptionsOwn(GWF_ForumThread $thread, $show_hidden)
@@ -278,7 +299,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
 		$mail->setSubject($module->langUser($user, 'submail_subj'));
-		$mail->setBody($module->langUser($user, 'submail_body', $username, $msg_count, $boardText, $threadTitle, $msg_block, $unsubLink, $unsubLinkAll, $showLink));
+		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $unsubLink, $unsubLinkAll, $showLink)));
 		
 		if (false === $mail->sendToUser($user)) {
 			GWF_Log::logCron('[ERROR] Can not send mail to '.$username.'; EMail: '.$receiver);
