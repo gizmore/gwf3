@@ -21,7 +21,7 @@ final class Quest_Seattle_BD4 extends SR_Quest
 		$this->saveAmount($have);
 		if ($have >= $need)
 		{
-			$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
 			$npc->reply('Haha, great! You are the best. This might have been a lesson for them.');
 			$npc->reply(sprintf('I am still a bit short on money. But you can have %s.', $ny));

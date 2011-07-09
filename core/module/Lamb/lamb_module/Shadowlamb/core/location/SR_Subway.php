@@ -98,7 +98,7 @@ abstract class SR_Subway extends SR_Location
 		}
 		
 		list($target, $price, $time) = $target;
-		$dp = Shadowfunc::displayPrice($price);
+		$dp = Shadowfunc::displayNuyen($price);
 		if (false === ($player->pay($price))) {
 			$bot->reply(sprintf('You can not afford %d tickets for %s', $party->getMemberCount(), $dp));
 			return false;

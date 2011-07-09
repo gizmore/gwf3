@@ -39,21 +39,21 @@ final class Delaware_Priest extends SR_TalkingNPC
 			return $this->onPraySins($player, $price);
 		}
 
-		$dp = Shadowfunc::displayPrice($price);
+		$dp = Shadowfunc::displayNuyen($price);
 		return $this->reply("You have {$badkarma} bad karma and it would cost {$dp} to forgive your sins. Type #pray sins now to confirm.");
 	}
 
 	private function onPraySins(SR_Player $player, $price)
 	{
 		$nuyen = $player->getNuyen();
-		$dp = Shadowfunc::displayPrice($price);
-		$dn = Shadowfunc::displayPrice($nuyen);
+		$dp = Shadowfunc::displayNuyen($price);
+		$dn = Shadowfunc::displayNuyen($nuyen);
 		if ($price > $nuyen)
 		{
 			return $this->reply(sprintf('My son, it would cost %s to forgive your sins, but you have only %s.', $dp, $dn));
 		}
 		$player->giveNuyen(-$price);
-		$dl = Shadowfunc::displayPrice($nuyen-$price);
+		$dl = Shadowfunc::displayNuyen($nuyen-$price);
 		$player->message("You pay the price of {$dp} and have {$dl} left.");
 		$player->alterField('bad_karma', -1);
 		$badkarma = $player->getBase('bad_karma');

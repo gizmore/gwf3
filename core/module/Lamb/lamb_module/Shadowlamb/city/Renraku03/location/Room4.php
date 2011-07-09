@@ -9,7 +9,7 @@ final class PC_Renraku03_Box4 extends SR_Computer
 	{
 		$nuyen = rand(100, 200);
 		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayPrice($nuyen)));
+		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
 	}
 }
 

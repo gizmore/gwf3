@@ -314,7 +314,7 @@ class SR_Quest extends GDO
 	public function getRewardXP() { return 0; }
 	public function getRewardNuyen() { return 0; }
 	public function getRewardItems() { return array('Cake'); }
-	public function displayRewardNuyen() { return Shadowfunc::displayPrice($this->getRewardNuyen()); }
+	public function displayRewardNuyen() { return Shadowfunc::displayNuyen($this->getRewardNuyen()); }
 	
 	public function onReward(SR_Player $player)
 	{
@@ -323,7 +323,7 @@ class SR_Quest extends GDO
 		# Ny
 		if (0 < ($ny = $this->getRewardNuyen()))
 		{
-			$nystr = ', '.Shadowfunc::displayPrice($ny);
+			$nystr = ', '.Shadowfunc::displayNuyen($ny);
 		}
 		
 		# XP

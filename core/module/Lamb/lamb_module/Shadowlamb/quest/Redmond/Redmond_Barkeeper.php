@@ -26,7 +26,7 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 	public function onQuestSolve(SR_Player $player)
 	{
 		$player->message(sprintf('The barkeeper looks happy: "Now we have enough drinks for the party :)", he says.'));
-		$player->message(sprintf('He hands you %s, and you also gained %d XP.', Shadowfunc::displayPrice(self::REWARD_NY), self::REWARD_XP));
+		$player->message(sprintf('He hands you %s, and you also gained %d XP.', Shadowfunc::displayNuyen(self::REWARD_NY), self::REWARD_XP));
 		$player->giveXP(self::REWARD_XP);
 		$player->giveNuyen(self::REWARD_NY);
 	}

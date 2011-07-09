@@ -8,7 +8,7 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 	{
 		$xp = 7;
 		$ny = 1500;
-		$player->message(sprintf('The dwarf cheers and hands you %s. You also gained %s XP.', Shadowfunc::displayPrice($ny), $xp));
+		$player->message(sprintf('The dwarf cheers and hands you %s. You also gained %s XP.', Shadowfunc::displayNuyen($ny), $xp));
 		$player->giveXP($xp);
 		$player->giveNuyen($ny);
 		

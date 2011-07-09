@@ -36,7 +36,7 @@ final class Quest_Redmond_Johnson_2 extends SR_Quest
 	{
 		$ny = 650;
 		$xp = 5;
-		$player->message(sprintf('Mr.Johnson hands you the payment: %s and %d XP.', Shadowfunc::displayPrice($ny), $xp));
+		$player->message(sprintf('Mr.Johnson hands you the payment: %s and %d XP.', Shadowfunc::displayNuyen($ny), $xp));
 		$player->giveNuyen($ny);
 		$player->giveXP($xp);
 	}

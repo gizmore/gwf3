@@ -8,7 +8,7 @@ class PC_RenrakuBOX1 extends SR_Computer
 	{
 		$nuyen = rand(100, 200);
 		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayPrice($nuyen)));
+		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
 	}
 }
 
@@ -22,7 +22,7 @@ class PC_RenrakuBOX2 extends SR_Computer
 	{
 		$nuyen = rand(200, 400);
 		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayPrice($nuyen)));
+		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
 	}
 }
 
@@ -36,7 +36,7 @@ class PC_RenrakuBOX3 extends SR_Computer
 	{
 		$nuyen = rand(100, 300);
 		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayPrice($nuyen)));
+		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
 	}
 }
 

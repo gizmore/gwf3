@@ -23,7 +23,7 @@ final class Quest_Seattle_GJohnson2 extends SR_Quest
 		if ($have >= $need)
 		{
 			$npc->reply('Good job, chummer. Here is your reward.');
-			$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
 			$player->message(sprintf('Mr.Johnson hands you a couvert with %s. You also gain %s XP.', $ny, $xp));
 			$player->giveNuyen(self::REWARD_NUYEN);
@@ -45,13 +45,13 @@ final class Quest_Seattle_GJohnson2 extends SR_Quest
 			case 'shadowrun':
 				$npc->reply('Yo chummer, i have an important application from a big contractor.');
 				$npc->reply('The Renraku coorparation got a security breach and needs to collect their stolen IDCards ... "lol" right?');
-				$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+				$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 				$npc->reply(sprintf('Please bring me %s IDCards and i will pay you %s.', $this->getNeededAmount(), $ny));
 				$npc->reply('Do you accept?');
 				break;
 			
 			case 'confirm':
-				$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+				$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 				$npc->reply(sprintf('I will pay you %s for this run.', $ny));
 				break;
 				

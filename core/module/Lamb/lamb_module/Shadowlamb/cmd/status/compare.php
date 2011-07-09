@@ -320,18 +320,18 @@ final class Shadowcmd_compare extends Shadowcmd
 		$item2Prc = $item2->getItemPrice();
 		if($item1Prc == $item2Prc)
 		{
-			$item1Stuff[] = $b.Shadowfunc::displayPrice($item1Prc).$b;
-			$item2Stuff[] = $b.Shadowfunc::displayPrice($item2Prc).$b;
+			$item1Stuff[] = $b.Shadowfunc::displayNuyen($item1Prc).$b;
+			$item2Stuff[] = $b.Shadowfunc::displayNuyen($item2Prc).$b;
 		}
 		else if($item2Prc > $item1Prc)
 		{
-			$item1Stuff[] = Shadowfunc::displayPrice($item1Prc);
-			$item2Stuff[] = $b.Shadowfunc::displayPrice($item2Prc).$b;
+			$item1Stuff[] = Shadowfunc::displayNuyen($item1Prc);
+			$item2Stuff[] = $b.Shadowfunc::displayNuyen($item2Prc).$b;
 		}
 		else
 		{
-			$item1Stuff[] = $b.Shadowfunc::displayPrice($item1Prc).$b;
-			$item2Stuff[] = Shadowfunc::displayPrice($item2Prc);
+			$item1Stuff[] = $b.Shadowfunc::displayNuyen($item1Prc).$b;
+			$item2Stuff[] = Shadowfunc::displayNuyen($item2Prc);
 		}
 		
 		return array('Name' => $titles, $item1->getItemName() => $item1Stuff, $item2->getItemName() => $item2Stuff);

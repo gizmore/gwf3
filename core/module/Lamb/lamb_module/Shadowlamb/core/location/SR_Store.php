@@ -155,7 +155,7 @@ abstract class SR_Store extends SR_Location
 			if (false === ($item = $this->createItemFromData($player, $data))) {
 				continue;
 			}
-			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayPrice($item->getStorePrice()));
+			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
 		}
 		return substr($back, 2);
 	}
@@ -180,7 +180,7 @@ abstract class SR_Store extends SR_Location
 		$price = $item->getStorePrice();
 		if (false === ($player->pay($price)))
 		{
-			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayPrice($price), Shadowfunc::displayPrice($player->getBase('nuyen'))));
+			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
 			return false;
 		}
 		
@@ -193,7 +193,7 @@ abstract class SR_Store extends SR_Location
 		$player->giveItems(array($item));
 		$player->modify();
 		$item = $player->getInvItemByName($item->getItemName());
-		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayPrice($price), $item->getItemName(), $item->getInventoryID()));
+		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayNuyen($price), $item->getItemName(), $item->getInventoryID()));
 		return true;
 	}
 	
@@ -231,7 +231,7 @@ abstract class SR_Store extends SR_Location
 
 		$player->giveNuyen($price);
 				
-		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayPrice($price)));
+		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayNuyen($price)));
 		return true;
 	}
 	

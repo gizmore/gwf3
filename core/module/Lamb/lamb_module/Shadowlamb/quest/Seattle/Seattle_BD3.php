@@ -49,7 +49,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 		{
 			$npc->reply('Thank you very very much.');
 			$npc->reply('Please take this as reward!');
-			$player->message(sprintf('The dwarf hands you %s. You also gain %s XP.', Shadowfunc::displayPrice(self::REWARD_NUYEN), self::REWARD_XP));
+			$player->message(sprintf('The dwarf hands you %s. You also gain %s XP.', Shadowfunc::displayNuyen(self::REWARD_NUYEN), self::REWARD_XP));
 			$player->giveXP(self::REWARD_XP);
 			$player->giveNuyen(self::REWARD_NUYEN);
 			$this->onSolve($player);
@@ -72,7 +72,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 				$npc->reply('Thanks to you i have some runes now, and the customers are already coming.');
 				$npc->reply('However, i need Chain armory for the Arena and i have no time to smith it.');
 				$npc->reply(sprintf('Could you bring me %s ChainLegs, %s ChainBodies and %s ChainHelmets?', self::NEED_LEG, self::NEED_ARMOR, self::NEED_HELMET));
-				$npc->reply(sprintf('I can pay you %s for that job! Yes?', Shadowfunc::displayPrice(self::REWARD_NUYEN)));
+				$npc->reply(sprintf('I can pay you %s for that job! Yes?', Shadowfunc::displayNuyen(self::REWARD_NUYEN)));
 				break;
 			case 'yes':
 				$npc->reply(sprintf('Thank you so very much. Please hurry. The Arena frequently needs melee armory.'));

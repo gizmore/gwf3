@@ -377,7 +377,7 @@ class SR_Item extends GDO
 		$price = $this->getItemPrice();
 		if ($price > 0) {
 			$b = chr(2);
-			return sprintf(' %sWorth%s: %s.', $b, $b, Shadowfunc::displayPrice($price));
+			return sprintf(' %sWorth%s: %s.', $b, $b, Shadowfunc::displayNuyen($price));
 		}
 		return '';
 	}

@@ -26,7 +26,7 @@ final class Seattle extends SR_City
 				if (Shadowfunc::dicePercent($percent))
 				{
 					$nuyen = rand(10, 60);
-					$member->message(sprintf('You found a wallet with %s in it.', Shadowfunc::displayPrice($nuyen)));
+					$member->message(sprintf('You found a wallet with %s in it.', Shadowfunc::displayNuyen($nuyen)));
 					$member->giveNuyen($nuyen);
 				}
 			}

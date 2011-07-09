@@ -8,7 +8,7 @@ abstract class SR_Bank extends SR_Location
 	public function getHelpText(SR_Player $player)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
-		$p = Shadowfunc::displayPrice($this->calcPrice($player));
+		$p = Shadowfunc::displayNuyen($this->calcPrice($player));
 		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Every transaction is $p for you.";
 	}
 	
@@ -311,7 +311,7 @@ abstract class SR_Bank extends SR_Location
 	private function showNuyen(SR_Player $player)
 	{
 		$bot = Shadowrap::instance($player);
-		$bot->reply(sprintf('You carry %s. In your bank are %s. Every transaction costs %s', $player->displayNuyen(), Shadowfunc::displayPrice($player->getBase('bank_nuyen')), Shadowfunc::displayPrice($this->calcPrice($player))));
+		$bot->reply(sprintf('You carry %s. In your bank are %s. Every transaction costs %s', $player->displayNuyen(), Shadowfunc::displayNuyen($player->getBase('bank_nuyen')), Shadowfunc::displayNuyen($this->calcPrice($player))));
 	}
 	
 	##################
@@ -336,7 +336,7 @@ abstract class SR_Bank extends SR_Location
 		
 		$have = $player->getNuyen();
 		if ($want > $have) {
-			$bot->reply(sprintf('You can not push %s, because you only carry %s.', Shadowfunc::displayPrice($want), $player->displayNuyen()));
+			$bot->reply(sprintf('You can not push %s, because you only carry %s.', Shadowfunc::displayNuyen($want), $player->displayNuyen()));
 			return false;
 		}
 		
@@ -347,7 +347,7 @@ abstract class SR_Bank extends SR_Location
 		if ('' === ($paymsg = $this->pay($player))) {
 			$paymsg .= 'You ';
 		}
-		$paymsg .= sprintf('push %s into your bank account(now %s) and keep %s in your inventory.', Shadowfunc::displayPrice($want), Shadowfunc::displayPrice($have), $player->displayNuyen());
+		$paymsg .= sprintf('push %s into your bank account(now %s) and keep %s in your inventory.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
 		$bot->reply($paymsg);
 		return true;
 		
@@ -375,7 +375,7 @@ abstract class SR_Bank extends SR_Location
 		
 		$have = $player->getBase('bank_nuyen');
 		if ($want > $have) {
-			$bot->reply(sprintf('You can not pop %s, because you only have %s in your bank account.', Shadowfunc::displayPrice($want), Shadowfunc::displayPrice($have)));
+			$bot->reply(sprintf('You can not pop %s, because you only have %s in your bank account.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have)));
 			return false;
 		}
 		
@@ -386,7 +386,7 @@ abstract class SR_Bank extends SR_Location
 		if ('' === ($paymsg = $this->pay($player))) {
 			$paymsg .= 'You ';
 		}
-		$paymsg .= sprintf('pop %s from your bank account(%s left) and now carry %s.', Shadowfunc::displayPrice($want), Shadowfunc::displayPrice($have), $player->displayNuyen());
+		$paymsg .= sprintf('pop %s from your bank account(%s left) and now carry %s.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
 		$bot->reply($paymsg);
 		return true;
 	}

@@ -67,7 +67,7 @@ abstract class SR_Blacksmith extends SR_Store
 		$itemname = $item->getItemName();
 		$price = $this->calcCleanPrice($player, $item->getItemPriceStatted());
 		
-		$p = Shadowfunc::displayPrice($price);
+		$p = Shadowfunc::displayNuyen($price);
 		if (false === ($player->pay($price))) {
 			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to clean this item. You only have %s."', $p, $player->displayNuyen()));
 			return false;
@@ -118,7 +118,7 @@ abstract class SR_Blacksmith extends SR_Store
 		$itemname = $item->getItemName();
 		
 		$price = $this->calcBreakPrice($player, $item->getItemPriceStatted());
-		$p = Shadowfunc::displayPrice($price);
+		$p = Shadowfunc::displayNuyen($price);
 		if (false === ($player->pay($price))) {
 			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to break this item. You only have %s."', $p, $player->displayNuyen()));
 			return false;
@@ -207,12 +207,12 @@ abstract class SR_Blacksmith extends SR_Store
 		$fail = SR_Rune::calcFailChance($mods)/10;
 		$break = SR_Rune::calcBreakChance($mods)/10;
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
-		$dpu = Shadowfunc::displayPrice($price_u);
+		$dpu = Shadowfunc::displayNuyen($price_u);
 		
 		if ($simulated === true)
 		{
 			$price_s = $this->calcSimulationPrice($player, $price_u);
-			$dps = Shadowfunc::displayPrice($price_s);
+			$dps = Shadowfunc::displayNuyen($price_s);
 			if (false === ($player->pay($price_s))) {
 				$bot->reply(sprintf('The smith says: "I am sorry chummer, the simulation will cost %s."', $dps));
 				return false;
@@ -239,7 +239,7 @@ abstract class SR_Blacksmith extends SR_Store
 				else {
 					$price_f = $this->calcUpgradePrice($player, 0);
 					$player->pay($price_f);
-					$dpf = Shadowfunc::displayPrice($price_f);
+					$dpf = Shadowfunc::displayNuyen($price_f);
 					$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
 				}
 			}
@@ -296,7 +296,7 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		# Check price
 		$price = $this->calcSplitPrice($player, $rune->getItemPriceStatted());
-		$dp = Shadowfunc::displayPrice($price);
+		$dp = Shadowfunc::displayNuyen($price);
 		if (!$player->hasNuyen($price))
 		{
 			$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));

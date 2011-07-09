@@ -1,7 +1,7 @@
 <?php
 class Item_Credstick extends SR_Usable
 {
-	public function getItemDescription() { return sprintf("You can access your bank money with a Credstick. Try #use Credstick [<push|pop>] [<amount>]. Each transaction cost %s with your stick. Example #use Credstick push 100.", Shadowfunc::displayPrice($this->getTransactionCost())); }
+	public function getItemDescription() { return sprintf("You can access your bank money with a Credstick. Try #use Credstick [<push|pop>] [<amount>]. Each transaction cost %s with your stick. Example #use Credstick push 100.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
 	public function getItemPrice() { return 129.95; }
 	public function getItemUsetime() { return 20; } 
 	public function getItemWeight() { return 150; }

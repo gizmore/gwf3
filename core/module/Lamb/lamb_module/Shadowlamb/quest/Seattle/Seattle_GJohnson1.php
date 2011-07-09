@@ -20,7 +20,7 @@ final class Quest_Seattle_GJohnson1 extends SR_Quest
 		if ($have >= $need)
 		{
 			$npc->reply('Well done and quite fast, chummer. Here is your business.');
-			$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
 			$player->message(sprintf('Mr.Johnson hands you a couvert with %s. You also gain %s XP.', $ny, $xp));
 			$player->giveNuyen(self::REWARD_NUYEN);
@@ -46,7 +46,7 @@ final class Quest_Seattle_GJohnson1 extends SR_Quest
 				break;
 			
 			case 'confirm':
-				$ny = Shadowfunc::displayPrice(self::REWARD_NUYEN);
+				$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 				$npc->reply(sprintf('I will pay you %s for this run.', $ny));
 				break;
 				

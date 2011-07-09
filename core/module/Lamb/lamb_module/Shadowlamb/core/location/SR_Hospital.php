@@ -10,7 +10,7 @@ abstract class SR_Hospital extends SR_Store
 	{
 		$bot = Shadowrap::instance($player);
 		$price = $this->calcHealPrice($player);
-		$p1 = Shadowfunc::displayPrice($price);
+		$p1 = Shadowfunc::displayNuyen($price);
 		
 		if ($player->hasFullHP()) {
 			$bot->reply(sprintf('The doctor says: "You don`t need my help, chummer."'));
@@ -18,7 +18,7 @@ abstract class SR_Hospital extends SR_Store
 		}
 		
 		if (!$player->pay($price)) {
-			$p2 = Shadowfunc::displayPrice($player->getBase('nuyen'));
+			$p2 = Shadowfunc::displayNuyen($player->getBase('nuyen'));
 			$bot->reply(sprintf('The doctor shakes his head: "No, my friend. Healing you will cost %s but you only have %s."', $p1, $p2));
 			return false;
 		}
@@ -57,7 +57,7 @@ abstract class SR_Hospital extends SR_Store
 		
 		$price = $item->getStorePrice();
 		if (false === ($player->pay($price))) {
-			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayPrice($price), Shadowfunc::displayPrice($player->getBase('nuyen'))));
+			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
 			return false;
 		}
 		
@@ -69,7 +69,7 @@ abstract class SR_Hospital extends SR_Store
 		$player->addCyberware($item);
 		$player->modify();
 		
-		$bot->reply(sprintf('You paid %s and got %s implanted.', Shadowfunc::displayPrice($price), $item->getItemName()));
+		$bot->reply(sprintf('You paid %s and got %s implanted.', Shadowfunc::displayNuyen($price), $item->getItemName()));
 		return true;
 	}
 
@@ -93,7 +93,7 @@ abstract class SR_Hospital extends SR_Store
 		$item instanceof SR_Cyberware;
 		
 		$price = Shadowfunc::calcBuyPrice($item->getItemPrice() * 0.10, $player);
-		$p1 = Shadowfunc::displayPrice($price);
+		$p1 = Shadowfunc::displayNuyen($price);
 		if (false === $player->pay($price)) {
 			$bot->reply(sprintf('The doctor shakes his head: "My friend, removing this from your body will cost %s, but you only have %s."', $p1, $player->displayNuyen()));
 			return false;

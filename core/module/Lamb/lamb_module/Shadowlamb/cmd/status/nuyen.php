@@ -15,9 +15,9 @@ final class Shadowcmd_nuyen extends Shadowcmd
 			$member instanceof SR_Player;
 			$ny = $member->getBase('nuyen');
 			$total += $ny;
-			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), Shadowfunc::displayPrice($ny));
+			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), Shadowfunc::displayNuyen($ny));
 		}
-		$bot->reply(sprintf('Your party has %s: %s.', Shadowfunc::displayPrice($total), substr($back, 2)));
+		$bot->reply(sprintf('Your party has %s: %s.', Shadowfunc::displayNuyen($total), substr($back, 2)));
 		return true;
 	}
 }

@@ -220,7 +220,7 @@ class SR_Player extends GDO
 	public function getNuyen() { return $this->getFloat('sr4pl_nuyen'); }
 	public function getBankNuyen() { return $this->getFloat('sr4pl_bank_nuyen'); }
 	public function getDistance() { return $this->getParty()->getDistance($this); }
-	public function displayNuyen() { return Shadowfunc::displayPrice($this->getNuyen()); }
+	public function displayNuyen() { return Shadowfunc::displayNuyen($this->getNuyen()); }
 	public function isDrunk() { return $this->get('alc') >= (0.8 + $this->getBase('body')*0.20); }
 	public function isCaffed() { return $this->get('caf') >= (1.4 + $this->getBase('body')*0.25); }
 	public function getMovePerSecond() { return 1.0 + $this->get('quickness') * 0.15 + Shadowfunc::diceFloat(-0.2,+0.2,1); }
@@ -2102,7 +2102,7 @@ class SR_Player extends GDO
 	public function getLootNuyen()
 	{
 		$back = round($this->getBase('nuyen') / 8, 2);
-		$this->message(sprintf('You lost %s!', Shadowfunc::displayPrice($back)));
+		$this->message(sprintf('You lost %s!', Shadowfunc::displayNuyen($back)));
 		return $back;
 	}
 	

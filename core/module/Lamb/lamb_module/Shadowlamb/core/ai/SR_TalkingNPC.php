@@ -96,13 +96,13 @@ abstract class SR_TalkingNPC extends SR_NPC
 				$min_nuyen = SR_Bounty::getMinNuyen($target);
 				if ($nuyen < $min_nuyen)
 				{
-					$this->reply(sprintf('The minimum bounty for %s is %s.', $target->getName(), Shadowfunc::displayPrice($min_nuyen)));
+					$this->reply(sprintf('The minimum bounty for %s is %s.', $target->getName(), Shadowfunc::displayNuyen($min_nuyen)));
 					return true;
 				}
 				
 				if (false === ($player->pay($nuyen)))
 				{
-					$this->reply(sprintf('Database error in %s line %s.', __FILE__, __LINE__));
+					$this->reply(sprintf("You don't seem to have %s.", Shadowfunc::displayNuyen($nuyen)));
 					return false;
 				}
 				
@@ -112,8 +112,8 @@ abstract class SR_TalkingNPC extends SR_NPC
 					return false;
 				}
 				
-				$bounty = Shadowfunc::displayPrice($nuyen);
-				$total = Shadowfunc::displayPrice($target->getBase('bounty'));
+				$bounty = Shadowfunc::displayNuyen($nuyen);
+				$total = Shadowfunc::displayNuyen($target->getBase('bounty'));
 				
 				$target->message(sprintf("\x02%s put a bounty on you: +%s = %s!\x02", $player->getName(), $bounty, $total));
 				$this->reply(sprintf('You put a bounty of %s on %s. This is valid for %s. Total bounty for this chummer is %s now.', $bounty, $target->getName(), GWF_TimeConvert::humanDuration(SR_Bounty::TIMEOUT), $total));

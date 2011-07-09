@@ -102,13 +102,13 @@ abstract class SR_Weapon extends SR_Equipment
 					$pxp += $lxp;
 					$member->giveXP($lxp);
 					$member->giveNuyen($nuyen/$mc);
-					$lootmsg[] = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayPrice($nuyen/$mc), $lxp);
+					$lootmsg[] = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayNuyen($nuyen/$mc), $lxp);
 					$member->setOption(SR_Player::STATS_DIRTY, true);
 				}
 				
 				$p->givePartyXP($pxp);
 				
-//				$lootmsg = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayPrice($nuyen/$mc), $xp/$mc);
+//				$lootmsg = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayNuyen($nuyen/$mc), $xp/$mc);
 //				$p->giveLoot($xp, $nuyen);
 				$msg .= sprintf(' and kills him%s with %s damage!', $crit, $damage);
 			}

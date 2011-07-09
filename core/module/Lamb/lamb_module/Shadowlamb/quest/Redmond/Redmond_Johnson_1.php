@@ -21,7 +21,7 @@ final class Quest_Redmond_Johnson_1 extends SR_Quest
 		$ny = 350;
 		$xp = 3;
 		$player->message('Mr.Johnson looks pleased. "Well done", he says. As a reward take this...');
-		$player->message(sprintf('Mr.Johnson hands you %s. You also gained %d XP.', Shadowfunc::displayPrice($ny), $xp));
+		$player->message(sprintf('Mr.Johnson hands you %s. You also gained %d XP.', Shadowfunc::displayNuyen($ny), $xp));
 	}
 }
 ?>

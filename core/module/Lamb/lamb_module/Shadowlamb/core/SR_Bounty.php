@@ -3,7 +3,7 @@ final class SR_Bounty extends GDO
 {
 	const FEE = 10.00;
 	const TIMEOUT = 604800; # 1 Week
-	const NUYEN_PER_LEVEL = 100;
+	const NUYEN_PER_LEVEL = 50;
 	
 	###########
 	### GDO ###
@@ -41,7 +41,7 @@ final class SR_Bounty extends GDO
 			$bounty = $member->getBase('bounty');
 			if ($bounty > 0)
 			{
-				$back .= sprintf(", {$b}%s{$b}-%s(%s)", $i++, $member->getName(), Shadowfunc::displayPrice($bounty));
+				$back .= sprintf(", {$b}%s{$b}-%s(%s)", $i++, $member->getName(), Shadowfunc::displayNuyen($bounty));
 			}
 		}
 		return $back === '' ? '' : sprintf(" There is a {$b}bounty{$b} on %s.", substr($back, 2));
@@ -54,7 +54,7 @@ final class SR_Bounty extends GDO
 		{
 			return "This player has no bounty.";
 		}
-		$total = Shadowfunc::displayPrice($bounty);
+		$total = Shadowfunc::displayNuyen($bounty);
 		$b = chr(2);
 		return sprintf("There is a total {$b}bounty of %s{$b} for %s: %s.", $total, $player->getName(), self::displayBountyPlayerDetails($player));
 	}
@@ -82,7 +82,7 @@ final class SR_Bounty extends GDO
 		$out = '';
 		foreach ($bounties as $i => $data)
 		{
-			$ny = Shadowfunc::displayPrice($data[1]);
+			$ny = Shadowfunc::displayNuyen($data[1]);
 			$out .= sprintf(", \x02\%s\x02-%s(%s)", $i+1, $data[0], $ny);
 		}
 		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
@@ -137,7 +137,7 @@ final class SR_Bounty extends GDO
 		$killer->giveNuyen($sum);
 		self::table(__CLASS__)->deleteWhere($where);
 		
-		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayPrice($sum)));
+		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayNuyen($sum)));
 	}
 	
 }

@@ -19,7 +19,7 @@ abstract class SR_School extends SR_Store
 		foreach ($this->getFields($player) as $data)
 		{
 			$price = Shadowfunc::calcBuyPrice($data[1], $player);
-			$dp = Shadowfunc::displayPrice($price);
+			$dp = Shadowfunc::displayNuyen($price);
 			$c .= sprintf(', %s(%s)', $data[0], $price);
 		}
 		
@@ -76,7 +76,7 @@ abstract class SR_School extends SR_Store
 			}
 		}
 		
-		$dp = Shadowfunc::displayPrice($price);
+		$dp = Shadowfunc::displayNuyen($price);
 		if (false === $player->pay($price)) {
 			$player->message(sprintf('It cost %s to learn the %s %s, but you only have %s.', $dp, $type, $field, $player->displayNuyen()));
 			return false;

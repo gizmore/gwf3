@@ -9,7 +9,7 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 	
 	public function displayNuyen()
 	{
-		return Shadowfunc::displayPrice($this->getNeededAmount());
+		return Shadowfunc::displayNuyen($this->getNeededAmount());
 	}
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)

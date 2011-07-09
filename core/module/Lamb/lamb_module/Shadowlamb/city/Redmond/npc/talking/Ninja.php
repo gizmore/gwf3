@@ -40,7 +40,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 				break;
 			
 			case 'donate': case 'donation': case 'donating':
-				$this->reply("It would be really kind from you if you donate a few Nuyen. For ".Shadowfunc::displayPrice($price)." i would teach you the {$b}ninja{$b} skill.");
+				$this->reply("It would be really kind from you if you donate a few Nuyen. For ".Shadowfunc::displayNuyen($price)." i would teach you the {$b}ninja{$b} skill.");
 				break;
 			
 			case 'yes':
@@ -101,7 +101,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 	
 	private function teachNinja(SR_Player $player, $price)
 	{
-		$p = Shadowfunc::displayPrice($price);
+		$p = Shadowfunc::displayNuyen($price);
 		
 		if ($player->hasSkill('ninja')) {
 			$this->reply('Thank you, but you already donated enough :)');
