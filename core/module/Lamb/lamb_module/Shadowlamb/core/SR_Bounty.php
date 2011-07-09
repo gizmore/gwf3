@@ -134,7 +134,10 @@ final class SR_Bounty extends GDO
 			$sum += $b;
 		}
 		
+		$victim->updateField('bounty', 0);
+		
 		$killer->giveNuyen($sum);
+		
 		self::table(__CLASS__)->deleteWhere($where);
 		
 		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayNuyen($sum)));
