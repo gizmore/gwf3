@@ -130,13 +130,17 @@ final class SR_Bounty extends GDO
 		foreach ($bounty as $data)
 		{
 			$b = $data['sr4bo_bounty'];
-//			SR_BountyStats::i
+			
+//			SR_BountyHistory::onKilled($killer, $victim, $data['sr4bo_id']);
+
 			$sum += $b;
 		}
 		
 		$victim->updateField('bounty', 0);
 		
 		$killer->giveNuyen($sum);
+		
+		$killer->increase('sr4pl_bounty_done', $sum);
 		
 		self::table(__CLASS__)->deleteWhere($where);
 		

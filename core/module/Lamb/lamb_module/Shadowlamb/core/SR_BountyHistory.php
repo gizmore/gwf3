@@ -16,9 +16,14 @@ final class SR_BountyHistory extends GDO
 		);
 	}
 	
-	public static function onKilled(SR_Player $killer, SR_Player $victim)
+	public static function onKilled(SR_Player $killer, SR_Player $victim, $bountyid)
 	{
-		
+		return self::insertAssoc(array(
+			'sr4bh_id' => 0,
+			'sr4bh_killer_id' => $killer->getID(),
+			'sr4bh_bounty_id' => $bountyid,
+			'sr4bh_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+		));
 	}
 }
 ?>
