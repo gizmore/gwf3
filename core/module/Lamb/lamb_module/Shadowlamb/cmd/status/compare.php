@@ -112,11 +112,9 @@ final class Shadowcmd_compare extends Shadowcmd
 				else if($item1min > $item2min)
 				{
 					$item1min = $b.$item1min.$b;
-					$item2min = $item2min;
 				}
 				else
 				{
-					$item1min = $item1min;
 					$item2min = $b.$item2min.$b;
 				}
 				if($item1max == $item2max)
@@ -127,15 +125,13 @@ final class Shadowcmd_compare extends Shadowcmd
 				else if($item1max > $item2max)
 				{
 					$item1max = $b.$item1max.$b;
-					$item2min = $item2min;
 				}
 				else
 				{
-					$item1max = $item1max;
 					$item2max = $b.$item2max.$b;
 				}
 				
-				if($item1min)
+				if($item1max)
 				{
 					$item1Stuff[] = $item1min.'-'.$item1max;
 				}
@@ -143,7 +139,7 @@ final class Shadowcmd_compare extends Shadowcmd
 				{
 					$item1Stuff[] = "";
 				}
-				if($item2min)
+				if($item2max)
 				{
 					$item2Stuff[] = $item2min.'-'.$item2max;
 				}
@@ -305,18 +301,18 @@ final class Shadowcmd_compare extends Shadowcmd
 		$item2Wgt = $item2->getItemWeight();
 		if($item1Wgt == $item2Wgt)
 		{
-			$item1Stuff[] = $b.$item1Wgt.$b;
-			$item2Stuff[] = $b.$item2Wgt.$b;
+			$item1Stuff[] = $b.$item1Wgt.'g'.$b;
+			$item2Stuff[] = $b.$item2Wgt.'g'.$b;
 		}
 		else if($item2Wgt < $item1Wgt) //NOTE:: This test is opposite from other tests
 		{                              // because lower item weight is better!
-			$item1Stuff[] = $item1Wgt;
-			$item2Stuff[] = $b.$item2Wgt.$b;
+			$item1Stuff[] = $item1Wgt.'g';
+			$item2Stuff[] = $b.$item2Wgt.'g'.$b;
 		}
 		else
 		{
-			$item1Stuff[] = $b.$item1Wgt.$b;
-			$item2Stuff[] = $item2Wgt;
+			$item1Stuff[] = $b.$item1Wgt.'g'.$b;
+			$item2Stuff[] = $item2Wgt.'g';
 		}
 		
 		$titles[] = 'Worth';
