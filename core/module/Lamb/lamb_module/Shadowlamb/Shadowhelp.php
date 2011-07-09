@@ -258,6 +258,7 @@ final class Shadowhelp
 						'cyberware' => 'Player command. Usage: #()yberware [<cy_id>]. View your cyberware.',
 						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
 						'examine' => 'Player command. Usage: #ex <inv_id|'.$eqs.'|itemname>. Examine your items.',
+						'known_knowledge' => "Player command. Usage: #known_knowledge|#kk. List your known knowledge. Knowledge can help you on some quests but it is not required.",
 						'known_places' => "Player command. Usage: #known_places|#kp. List your known places in your current city. You can go to them with #(g)oto. Use #(exp)lore to find new places.",
 						'known_words' => "Player command. Usage: #known_words|#kw. List some useful words you have learned, which you can enumerate with #talk and #say.",
 						'known_spells' => 'Player command. Usage: #known_spells|#ks <[ks_id|spell_name]>. List your known magic spells or examine a spell.',

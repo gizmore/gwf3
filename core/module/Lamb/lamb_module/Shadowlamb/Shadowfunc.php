@@ -435,6 +435,11 @@ final class Shadowfunc
 		return self::getStatsArray($player, SR_Player::$ATTRIBUTE);
 	}
 	
+	public static function getKnowledge(SR_Player $player)
+	{
+		return self::getStatsArray($player, SR_Player::$KNOWLEDGE);
+	}
+	
 	public static function getEquipment(SR_Player $player)
 	{
 		$b = chr(2);

@@ -34,8 +34,8 @@ class Shadowcmd
 		'gy' => 'giveny',
 		'i' => 'inventory',
 		'j' => 'join',
-		'k' => 'knowledge',
 		'ka' => 'karma',
+		'kk' => 'known_knowledge',
 		'kp' => 'known_places',
 		'ks' => 'known_spells',
 		'kw' => 'known_words',
@@ -71,7 +71,7 @@ class Shadowcmd
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','stats','players','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
-	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','i','cy','l','ef','ex','cmp','kp','ks','kw','qu','r','say');
+	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','i','cy','l','ef','ex','cmp','kk','kp','ks','kw','qu','r','say');
 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','enable','disable','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
