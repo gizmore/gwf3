@@ -116,20 +116,20 @@ final class Shadowhelp
 					
 						'player_races' => 'Available player races',
 						array(
-							'fairy' => 'The fairy is small, weak and very hard to play. It is meant to be a party character.',
-							'elve' => 'The elve is weak and difficult to play. He enjoys the arcane powers. As every elve he has a bonus on the bows skill.',
-							'halfelve' => 'The halfelve are often merchants or teachers that stopped to learn magic.',
-							'vampire' => 'Vampires are undead creatures. They have a low body and HP and trust in equipment they have collected over their years.',
-							'darkelve' => 'The darkelve combines melee, bows and magic into a playable character.',
-							'woodelve' => 'The woodelve combines melee, bows and magic into a playable character.',
-							'human' => 'The human is the intermediate character of the player_races. There are player_races and npc_races.',
-							'gnome' => 'The gnome is a bit smaller than a halfork.',
-							'dwarf' => 'The dwarf is a bit smaller than a gnome.',
-							'halfork' =>  'The halfork is a bit dumb, but easy to play for beginners.',
-							'halftroll'=> 'The halftroll is a bit dumb, but very easy to play for beginners.',
-							'ork' => 'The ork is dumb and easy to play for beginners.',
-							'troll' => 'The population of trolls has increased by 140% in the last year.',
-							'gremlin' => 'The gremlin is not meant to be played because it cannot swim.',
+							'fairy' => 'The fairy is small, weak and very hard to play. It is meant to be a party character.'.self::helpRace('fairy'),
+							'elve' => 'The elve is weak and difficult to play. He enjoys the arcane powers. As every elve he has a bonus on the bows skill.'.self::helpRace('elve'),
+							'halfelve' => 'The halfelve are often merchants or teachers that stopped to learn magic.'.self::helpRace('halfelve'),
+							'vampire' => 'Vampires are undead creatures. They have a low body and HP and trust in equipment they have collected over their years.'.self::helpRace('vampire'),
+							'darkelve' => 'The darkelve combines melee, bows and magic into a playable character.'.self::helpRace('darkelve'),
+							'woodelve' => 'The woodelve combines melee, bows and magic into a playable character.'.self::helpRace('woodelve'),
+							'human' => 'The human is the intermediate character of the player_races.'.self::helpRace('human'),
+							'gnome' => 'The gnome is a bit smaller than a halfork.'.self::helpRace('gnome'),
+							'dwarf' => 'The dwarf is a bit smaller than a gnome.'.self::helpRace('dwarf'),
+							'halfork' =>  'The halfork is a bit dumb, but easy to play for beginners.'.self::helpRace('halfork'),
+							'halftroll'=> 'The halftroll is a bit dumb, but very easy to play for beginners.'.self::helpRace('halftroll'),
+							'ork' => 'The ork is dumb and easy to play for beginners.'.self::helpRace('ork'),
+							'troll' => 'The population of trolls has increased by 140% in the last year.'.self::helpRace('troll'),
+							'gremlin' => 'The gremlin is not meant to be played because it cannot swim.'.self::helpRace('gremlin')
 						),
 						
 						'npc_races' => 'NPC only races',
@@ -205,7 +205,7 @@ final class Shadowhelp
 					
 					'guest_cmds' => 'These commands always work',
 					array(
-						'start' => 'Player command. The first command you have to type in Shadowlamb. Usage: #start <race> <gender>.',
+						'start' => 'Player command. The first command you have to type in Shadowlamb. Usage: #start <race> <gender>. Each race has a different bonus. The human is medium. Left from it has more magic. Right from it has more melee.',
 						'help' => 'Browse the Shadowhelp file. Usage: #help [<keyword>].',
 						'stats' => 'Print current gameworld stats.',
 						'motd' => 'Print the current "message of the day".',
@@ -446,6 +446,7 @@ final class Shadowhelp
 						'caesum' => 'Caesum is the founder of the \'School of Cryptography and applied Math\' in Seattle.',
 						'livinskull' => 'livinskull is the founder of the "School of Computers" in the Amerindian Area.',
 						'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
+						'digitalseraphim' => 'digitalseraphim is the founder of the School of Alchemy in Delaware.',
 					),
 				),
 			),
@@ -607,6 +608,29 @@ final class Shadowhelp
 		}
 		
 		return $text;
+	}
+	
+	private static function helpRace($race)
+	{
+		$base = SR_Player::$RACE_BASE[$race];
+		$bonus = SR_Player::$RACE[$race];
+		$out = array();
+		foreach ($base as $k => $v) { $out[$k] = array(0, 0); }
+		foreach ($bonus as $k => $v) { $out[$k] = array(0, 0); }
+		foreach ($base as $k => $v) { $out[$k] = array($v, $v); }
+		foreach ($bonus as $k => $v) { $out[$k][1] += $v; }
+		
+		unset($out['height']);
+		unset($out['age']);
+		unset($out['bmi']);
+		
+		$back = '';
+		foreach ($out as $k => $data)
+		{
+			$back .= sprintf(', %s: %s(%s)', $k, $data[0], $data[1]);
+		}
+		
+		return sprintf(' Stats: %s.', substr($back, 2));
 	}
 }
 ?>
