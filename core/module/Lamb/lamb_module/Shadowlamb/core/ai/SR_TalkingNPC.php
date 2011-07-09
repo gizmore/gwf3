@@ -134,7 +134,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 		}
 		
 		$key = $q->getTempKey();
-		$has = $q === false ? false : $q->isInQuest($player);
+		$has = $q->isInQuest($player);
 		$t = $player->hasTemp($key);
 		
 		switch ($word)
@@ -159,8 +159,8 @@ abstract class SR_TalkingNPC extends SR_NPC
 				if ($t === true)
 				{
 					$q->accept($player);
-					$q->onNPCQuestTalk($this, $player, $word);
 					$player->unsetTemp($key);
+					$q->onNPCQuestTalk($this, $player, $word);
 					return true;
 				}
 				return false;

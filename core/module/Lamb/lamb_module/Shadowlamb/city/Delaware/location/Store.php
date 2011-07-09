@@ -15,7 +15,7 @@ final class Delaware_Store extends SR_Store
 			array('Knife'),
 			array('Backpack'),
 			array('RacingBike'),
-			array('Scanner_v2'),
+			array('Scanner_v3'),
 		);
 	}
 }

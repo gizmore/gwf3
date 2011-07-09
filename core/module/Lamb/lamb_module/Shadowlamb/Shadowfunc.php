@@ -642,9 +642,9 @@ final class Shadowfunc
 		return sprintf('%s%.02f(%.02f/%.02f)%s', $sign, $gain, $now, $max, $unit);
 	}
 	
-	public static function displayPrice($price)
+	public static function displayPrice($price, $precision=2)
 	{
-		return sprintf('%.02f¥', $price);
+		return sprintf('%.0'.$precision.'f¥', $price);
 	}
 	
 	public static function displayWeight($weight)

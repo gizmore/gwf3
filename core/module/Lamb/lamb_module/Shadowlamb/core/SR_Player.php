@@ -2060,21 +2060,25 @@ class SR_Player extends GDO
 			return;
 		}
 		
-		if ($this->combat_stack === '') {
+		if ($this->combat_stack === '')
+		{
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
-//		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
+		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
 		$result = Shadowcmd::onExecute($this, $this->combat_stack);
 		
-		if ($this->keepCombatStack($result) === false) {
+		if (!$this->keepCombatStack($result))
+		{
 			$this->combat_stack = '';
+			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
 	}
 	
 	private function keepCombatStack($bool)
 	{
-		if ($bool === false) {
+		if ($bool === false)
+		{
 			return false;
 		}
 		$c = strtolower($this->combat_stack);
@@ -2087,9 +2091,6 @@ class SR_Player extends GDO
 		if (Common::startsWith($c, 'fl')) {
 			return true;
 		}
-		
-//		echo sprintf('cleared the combat stack.').PHP_EOL;
-		
 		return false;
 	}
 	
@@ -2132,6 +2133,7 @@ class SR_Player extends GDO
 	
 	private function looseItem(SR_Player $killer)
 	{
+		echo "COULD LOOSE ITEM!!!!\n";
 		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
 		foreach ($items as $i => $item)
 		{

@@ -4,7 +4,7 @@ class Item_Scanner_v4 extends Item_Scanner_v3
 {
 	public function getItemDescription() { return 'Will scan a target for stats, attributes, skills and cyberware.'; }
 	public function getItemPrice() { return 800; }
-	public function getItemUsetime() { return 55; } 
+	public function getItemUsetime() { return 20; } 
 	public function getItemWeight() { return 450; }
 	
 	public function onItemUse(SR_Player $player, array $args)

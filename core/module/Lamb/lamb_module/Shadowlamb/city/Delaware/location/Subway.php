@@ -7,7 +7,6 @@ final class Delaware_Subway extends SR_Subway
 	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
-			array('Redmond_Subway', 100, 300, 0),
 			array('Seattle_Subway', 200, 600, 8),
 		);
 	}

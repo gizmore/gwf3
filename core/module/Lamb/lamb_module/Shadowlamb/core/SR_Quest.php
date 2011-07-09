@@ -323,13 +323,13 @@ class SR_Quest extends GDO
 		# Ny
 		if (0 < ($ny = $this->getRewardNuyen()))
 		{
-			$nystr = Shadowfunc::displayPrice($ny);
+			$nystr = ', '.Shadowfunc::displayPrice($ny);
 		}
 		
 		# XP
 		if (0 < ($xp = $this->getRewardXP()))
 		{
-			$xpstr = $xp.' XP';
+			$xpstr = ', '.$xp.' XP';
 		}
 
 		# Items

@@ -9,8 +9,7 @@ final class Redmond_Subway extends SR_Subway
 	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
-			array('Seattle_Subway', 100, 300, 8),
-//			array('Delaware_Subway', 200, 600, 12),
+			array('Seattle_Subway', 100, Redmond::TIME_TO_SEATTLE, 8),
 		);
 	}
 	

@@ -4,7 +4,7 @@ class Item_Scanner_v2 extends Item_Scanner_v1
 {
 	public function getItemDescription() { return 'Will scan a target for stats and attributes.'; }
 	public function getItemPrice() { return 600; }
-	public function getItemUsetime() { return 55; } 
+	public function getItemUsetime() { return 45; } 
 	public function getItemWeight() { return 450; }
 	
 	public function onItemUse(SR_Player $player, array $args)

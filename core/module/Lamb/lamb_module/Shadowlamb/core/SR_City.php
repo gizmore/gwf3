@@ -348,7 +348,9 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
-		if (rand(1, 4) !== 1) {
+		$dice = $friendly ? 7 : 6;
+		if (rand(1, $dice) !== 1)
+		{
 			return false;
 		}
 		$mc = $party->getMemberCount();

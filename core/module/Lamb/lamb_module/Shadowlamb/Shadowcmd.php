@@ -117,6 +117,12 @@ class Shadowcmd
 		
 		# Allways commands
 		$commands = self::$CMDS_ALWAYS;
+		
+		if (false !== $scanner = $player->getInvItemByName('Scanner_v6'))
+		{
+			$commands = array_merge(array('spy'), $commands);
+		}
+		
 		if ($show_hidden) {
 			$commands = array_merge($commands, self::$CMDS_ALWAYS_CREATE);
 		}

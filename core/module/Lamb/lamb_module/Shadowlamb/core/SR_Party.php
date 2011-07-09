@@ -732,7 +732,6 @@ final class SR_Party extends GDO
 	public function moveTowards(SR_Player $player, SR_Player $target)
 	{
 		$move = $player->getMovePerSecond();
-//		$busy = $player->busy(25);
 		$d1 = $player->getDistance();
 		$d2 = $target->getDistance();
 		$dt = $d1 - $d2;
@@ -755,6 +754,7 @@ final class SR_Party extends GDO
 		$tn = $target->getName();
 		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
 		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters.', $name, -$move, $tn, $new_d));
+		return true;
 	}
 	
 	###############

@@ -67,7 +67,7 @@ final class Quest_Delaware_Exams5 extends SR_Quest
 		$time = Seattle::TIME_TO_DELAWARE + 60;
 		$data['eta'] = Shadowrun4::getTime() + $time;
 		$this->saveQuestData($data);
-		$player->message("Your pot of Auris is fluid for %s.", GWF_Time::humanDuration($time));
+		$player->message(sprintf("Your pot of Auris is fluid for %s.", GWF_Time::humanDuration($time)));
 		return true;
 	}
 }

@@ -15,6 +15,9 @@ final class Delaware_LibGnome extends SR_TalkingNPC
 		$b = chr(2);
 		switch ($word)
 		{
+			case 'auris':
+				return $this->reply('Auris is magic matter. Ask my friend in Seattle about it.');
+				
 			case 'magic':
 				return $this->reply("Magic is more powerful if you bind it into potions.");
 				

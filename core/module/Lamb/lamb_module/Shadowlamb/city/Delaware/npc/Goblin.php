@@ -10,9 +10,9 @@ final class Delaware_Goblin extends SR_NPC
 	{
 		return array(
 			'race' => 'gnome',
-			'strength' => rand(1, 2),
-			'melee' => rand(4, 5),
-			'sharpshooter' => rand(1, 3),
+			'strength' => rand(2, 3),
+			'melee' => rand(4, 6),
+			'sharpshooter' => rand(2, 3),
 			'quickness' => rand(3, 4),
 			'base_hp' => rand(12, 15),
 			'distance' => rand(1, 3),
@@ -25,9 +25,9 @@ final class Delaware_Goblin extends SR_NPC
 		return array(
 			'weapon' => array('Knife'),
 			'armor' => 'LeatherVest',
-			'boots' => 'Sandals',
+			'boots' => 'Shoes',
 			'helmet' => 'Cap',
-			'legs' => 'Shorts',
+			'legs' => 'Trousers',
 		);
 	}
 	

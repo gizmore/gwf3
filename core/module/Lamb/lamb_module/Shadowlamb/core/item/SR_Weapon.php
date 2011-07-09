@@ -15,16 +15,18 @@ abstract class SR_Weapon extends SR_Equipment
 		$ep = $p->getEnemyParty();
 		$emc = $ep->getMemberCount();
 		
-		if (false === ($target = $this->getOffensiveTarget($player, $arg))) {
+		if (false === ($target = $this->getOffensiveTarget($player, $arg)))
+		{
 			return false;
 		}
 		
 		$d = abs($player->getDistance()-$target->getDistance());
 		$d2 = Common::clamp($d-2, 0);
 		
-		if ($d > $this->getItemRange()) {
+		if ($d > $this->getItemRange())
+		{
 			$player->getParty()->moveTowards($player, $target);
-			return false;
+			return true;
 		}
 		
 		$player->busy($this->getAttackTime());

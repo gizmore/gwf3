@@ -11,10 +11,10 @@ final class Delaware_Troll extends SR_NPC
 		return array(
 			'race' => 'troll',
 			'strength' => rand(3, 4),
-			'melee' => rand(4, 5),
+			'melee' => rand(4, 6),
 			'sharpshooter' => rand(1, 2),
 			'quickness' => rand(2, 4),
-			'base_hp' => rand(14, 16),
+			'base_hp' => rand(15, 17),
 			'distance' => rand(1, 3),
 			'nuyen' => rand(25, 50),
 		);

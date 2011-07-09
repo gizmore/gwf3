@@ -1,10 +1,10 @@
 <?php
-require_once 'Scanner_v2.php';
-class Item_Scanner_v3 extends Item_Scanner_v2
+require_once 'Scanner_v4.php';
+class Item_Scanner_v5 extends Item_Scanner_v4
 {
-	public function getItemDescription() { return 'Will scan a target for stats, attributes and skills.'; }
-	public function getItemPrice() { return 600; }
-	public function getItemUsetime() { return 25; } 
+	public function getItemDescription() { return 'Will scan a target for stats, attributes, skills, cyberware and spells.'; }
+	public function getItemPrice() { return 2000; }
+	public function getItemUsetime() { return 15; } 
 	public function getItemWeight() { return 450; }
 	
 	public function onItemUse(SR_Player $player, array $args)
@@ -16,11 +16,13 @@ class Item_Scanner_v3 extends Item_Scanner_v2
 		$this->onScanLevel1($player, $target);
 		$this->onScanLevel2($player, $target);
 		$this->onScanLevel3($player, $target);
+		$this->onScanLevel4($player, $target);
+		$this->onScanLevel5($player, $target);
 	}
 	
-	public function onScanLevel3(SR_Player $player, SR_Player $target)
+	public function onScanLevel5(SR_Player $player, SR_Player $target)
 	{
-		$message = 'Skills: '.Shadowfunc::getSkills($target);
+		$message = 'Spells: '.Shadowfunc::getSpells($target);
 		if ($player->isFighting())
 		{
 			$player->message($message);

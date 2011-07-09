@@ -351,7 +351,7 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf('%s is %s%s. %s%s%s%s%s%s%s',
+		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s',
 			$this->getName(),
 			$this->displayType(),
 			$this->displayLevel(),
@@ -361,6 +361,7 @@ class SR_Item extends GDO
 			$this->displayRequirements($player),
 			$this->displayRange($player),
 			$this->displayWeightB(),
+			$this->displayDuration(),
 			$this->displayWorth()
 		);
 	}
@@ -578,21 +579,25 @@ class SR_Item extends GDO
 	################
 	public function displayDuration()
 	{
+		return '';
+		if ($this->isItemStackable())
+		{
+			return '';
+		}
 		if ($this->isImmortal())
 		{
-			return "\X02Immortal\X02";
+			return " \X02Immortal!\X02";
 		}
 		elseif ($this->isBroken())
 		{
-			return "\X02Broken\X02";
+			return " \X02Broken!\X02";
 		}
 		else
 		{
-			$d = $this->getDuration();
-			$st = Shadowrun4::getTime();
-			return sprintf('Best before: %s.', GWF_Time::humanDuration($d-$st));
+			return sprintf(" \X02Best before\X02: %s.", GWF_Time::humanDuration($this->getDuration()-Shadowrun4::getTime()));
 		}
 	}
+	
 	public function setRandomDuration()
 	{
 		$max = round($this->getItemDuration());
@@ -606,8 +611,27 @@ class SR_Item extends GDO
 		return $this->saveVars(array('sr4it_duration' => $dur));
 	}
 	
+	public function alterDuration($by)
+	{
+		if (0 === ($by = ((int)$by)))
+		{
+			return true;
+		}
+
+		if (0 < ($d = $this->getDuration()))
+		{
+			return $this->saveVars(array('sr4it_duration' => $d+$by));
+		}
+		
+		return true;
+	}
+	
 	public function isBreaking()
 	{
+		if ($this->isItemStackable())
+		{
+			return false;
+		}
 		$d = $this->getDuration();
 		if ($d > 0)
 		{
@@ -631,6 +655,11 @@ class SR_Item extends GDO
 	public function isBroken()
 	{
 		return $this->getVar('sr4it_duration') == self::BROKEN;
+	}
+	
+	public function isImmortal()
+	{
+		return $this->getVar('sr4it_duration') == self::IMMORTAL;
 	}
 	
 	public function onBreak()
