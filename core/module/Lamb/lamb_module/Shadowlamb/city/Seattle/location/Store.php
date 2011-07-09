@@ -47,7 +47,7 @@ final class Seattle_Store extends SR_Store
 	{
 		return array(
 			array('Stimpatch'),
-			array('Ether'),
+			array('Ether', 100.0, 1000),
 			array('AimWater'),
 			array('StrengthPotion'),
 			array('QuicknessElixir'),

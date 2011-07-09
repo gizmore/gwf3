@@ -116,6 +116,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 	private function onTalkAuris(SR_Player $player)
 	{
 		$quest = SR_Quest::getQuest($player, 'Delaware_Exams5');
+		$quest instanceof Quest_Delaware_Exams5;
 		if (!$quest->isInQuest($player))
 		{
 			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tommorow.');
@@ -128,7 +129,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 			$auris = SR_Item::createByName('Auris');
 			$player->message('The gnome casts a magic spell and presents you a pot of fluid Auris');
 			$this->reply("Here chummer, this is a pot of fluid Auris. Use it quick as it will turn to stone after a few minutes");
-			$player->giveItems($auris, 'library gnome');
+			$player->giveItems(array($auris), 'library gnome');
 			$quest->resetTimer($player);
 			return true;
 		}
