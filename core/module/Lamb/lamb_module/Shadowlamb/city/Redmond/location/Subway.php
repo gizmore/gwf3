@@ -20,7 +20,7 @@ final class Redmond_Subway extends SR_Subway
 		$c = Shadowrun4::SR_SHORTCUT;
 		$party = $player->getParty();
 		$party->notice('You enter the Subway and move to the tracks. You see a train to Seattle, and a passenger.');
-		$party->getLeader()->help("If all party members reached level 8, you can use {$c}travel 1 to travel to Seattle or just {$c}travel to see all trains.");
+		$party->getLeader()->help("If all party members reached level 8, you can use {$c}travel 1 to travel to Seattle. Use {$c}travel to see all possible targets.");
 		$party->help("Use {$c}talk <topic> to talk to the passenger.");
 	}
 }
