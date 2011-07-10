@@ -26,23 +26,30 @@ final class Shadowcmd_lvlup extends Shadowcmd
 			if($player->getSpellData())
 			{
 				$max = $runner ? 36 : 12;
-				foreach ($player->getSpellData() as $name => $base)
+				$nl = $player->getSpellData();
+				asort($nl);
+				foreach (array_reverse($nl) as $name => $base)
 				{
 					if($base == $max){
-						$n = '*';
+						$n = $b.'*'.$b;
 					}else{
 						$n = ($base + 1) * $cost;
 						if($n <= $have){
-							$n = $b.$n.'k'.$b;
+							$n = $b.$n.'K'.$b;
+							$name = $b.$name.$b;
+						}else{
+							$n = $n.'K';
 						}
 					}
-					$s .= sprintf(', %s:%s(%s)', $b.$name.$b, ($base+1), $n);
+					$s .= sprintf(', %s:%s(%s)', $name, ($base+1), $n);
 				}
 			}
 			if($s == ''){
 				$s = 'None';
+			}else{
+				$s = substr($s,2);
 			}
-			$player->message('Spells to upgrade: '.substr($s,2));
+			$player->message('Spells to upgrade: '.$s);
 			return false;
 		}
 		$f = strtolower($args[0]);

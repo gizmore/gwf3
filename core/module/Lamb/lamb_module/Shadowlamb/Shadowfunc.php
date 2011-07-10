@@ -475,9 +475,14 @@ final class Shadowfunc
 		$b = chr(2);
 		$back = '';
 		$karma = $player->getBase('karma');
-		foreach ($fields as $field)
+		$nl = array();
+		
+		foreach($fields as $aa => $bb) { $nl[$aa] = $player->getBase($bb); }
+
+		asort($nl);
+		
+		foreach (array_reverse($nl) as $field => $base)
 		{
-			$base = $player->getBase($field);
 			if ($base >= 0)
 			{
 				if($base == $max){
@@ -485,10 +490,13 @@ final class Shadowfunc
 				}else{
 					$n = ($base + 1) * $cost;
 					if($n <= $karma){
-						$n = $b.$n.'k'.$b;
+						$n = $b.$n.'K'.$b;
+						$field = $b.$field.$b;
+					}else{
+						$n = $n.'K';
 					}
 				}
-				$back .= sprintf(', %s:%s(%s)', $b.$field.$b, ($base+1), $n);
+				$back .= sprintf(', %s:%s(%s)', $field, ($base+1), $n);
 			}
 			
 		}
