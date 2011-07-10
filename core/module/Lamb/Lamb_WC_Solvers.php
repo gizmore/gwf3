@@ -1,20 +1,22 @@
 <?php
-function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids=false, $skipgids=false)
+
+# uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount
+# lamb_wc_solvers('WC', '[WeChall]', 'https://www.wechall.net/index.php?mo=WeChall&me=API_ChallSolved&ajax=true&datestamp=%DATE%&no_session=true')
+
+function lamb_wc_solvers($key, $name, $url, $channels=array())
 {
 	# Date we want to query
-	$date = GWF_Settings::getSetting('LAMB_FORUM_DATE_'.$key, date('Ymd000000'));
-	if (strlen($date) !== 14)
+	$lastdate = GWF_Settings::getSetting('LAMB_SOLVERS_DATE_'.$key, '');
+	if (strlen($lastdate) !== 14)
 	{
-		$date = date('Ymd000000');
+		$lastdate = date('YmdHis');
+		GWF_Settings::setSetting('LAMB_SOLVERS_DATE_'.$key, $lastdate);
 	}
 	
-	# We already know these threads for the current data stored
-	$known = GWF_Settings::getSetting('LAMB_FORUM_LAST_'.$key, ',');
-	
 	# Query URL
-	$url = str_replace(array('%DATE%', '%LIMIT%'), array($date, $limit), $url);
+	$url = str_replace(array('%DATE%'), array($lastdate), $url);
 	
-//	echo $url.PHP_EOL;
+	//echo $url.PHP_EOL;
 	
 	GWF_HTTP::setTimeout(3);
 	GWF_HTTP::setConnectTimeout(2);
@@ -25,7 +27,7 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 	GWF_HTTP::setTimeout();
 	GWF_HTTP::setConnectTimeout();
 	
-//	echo $content.PHP_EOL;
+	//echo $content.PHP_EOL;
 	
 	# Nothing happened
 	if ($content === '')
@@ -33,11 +35,11 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 		return;
 	}
 	
-	$latest_date = $date;
-	$new_known = $known;
 	$lines = explode("\n", $content);
 	$changed = false;
 	$badlines = 0;
+	$latestdate = $lastdate;
+	
 	foreach ($lines as $line)
 	{
 		if ('' === ($line = trim($line)))
@@ -46,10 +48,10 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 		}
 		
 		$thedata = explode('::', $line);
-		if (count($thedata) !== 6)
+		if (count($thedata) !== 12)
 		{
 			$badlines++;
-			echo 'Invalid line in lamb_wc_forum: '.$line.PHP_EOL;
+			echo 'Invalid line in lamb_wc_solvers: '.$line.PHP_EOL;
 			if ($badlines > 3) {
 				return;
 			}
@@ -60,61 +62,22 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 		$thedata = array_map('unescape_csv_like', $thedata);
 		
 		# Fetch line
-		list($threadid, $lastdate, $lock, $url, $username, $title) = $thedata;
+		# uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount::url
+		list($uid, $cid, $solvedate, $firstdate, $views, $options, $timetaken, $tries, $username, $challname, $solvercount, $challurl) = $thedata;
 		
-		if (strlen($lastdate) !== 14) {
+		if (strlen($firstdate) !== 14) {
 			echo "Dateformat in $url is invalid: $lastdate\n";
 			return false;
 		}
 		
-		$gid = (int)$lock;
-		
-		if (is_array($onlygids))
-		{
-			if (!in_array($gid, $onlygids, true))
-			{
-//				echo "Not an only gid: $gid\n";
-				continue;
-			}
-		}
-		
-		if (is_array($skipgids))
-		{
-			if (in_array($gid, $skipgids, true))
-			{
-//				echo "Skipped gid: $gid\n";
-				continue;
-			}
-		}
-		
-		# Duplicate output?
-		if ( ($lastdate === $date) && (strpos($known, ','.$threadid.',') !== false) ) {
-			continue;
-		}
-		
-		# Is it private?
-		$lock = $lock === '0' ? '' : ' locked';
-		
-		# does the date change?
-		if ($latest_date !== $lastdate) {
-			$latest_date = $lastdate;
-			$new_known = ',';
-		}
-		
-		# Mark this thread as known for this datestamp
-		$new_known .= $threadid.',';
-		
-		if (strpos($url, 'http') !== 0) {
-			$url = 'http://'.$url;
-		}
+		if (intval($latestdate) <= intval($solvedate))
+			$latestdate = intval($solvedate) + 1;
+
 		
 		$lamb = Lamb::instance();
 		# Output message
-		if ($lock === ' locked') {
-			$msg = sprintf('%s New%s post: %s', $name, $lock, $url);
-		} else {
-			$msg = sprintf('%s New post by %s in %s: %s', $name, $username, $title, $url);
-		}
+		$msg = sprintf("%s \x02%s\x02 has just solved \x02%s\x02. This challenge has been solved %d times. (https://www.wechall.net/%s)", $name, $username, $challname, $solvercount, $challurl);
+
 		
 		if (count($channels) === 0)
 		{
@@ -161,12 +124,12 @@ function lamb_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids
 	# Save state
 	if ($changed)
 	{
-		GWF_Settings::setSetting('LAMB_FORUM_DATE_'.$key, $lastdate);
-		GWF_Settings::setSetting('LAMB_FORUM_LAST_'.$key, $new_known);
+		GWF_Settings::setSetting('LAMB_SOLVERS_DATE_'.$key, $latestdate);
 	}
 
 }
 
+/* this is defined in Lamb_WC_Forum.php */
 if (!function_exists('unescape_csv_like')) {
 	function unescape_csv_like($s)
 	{
