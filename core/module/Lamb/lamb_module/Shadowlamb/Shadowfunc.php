@@ -470,6 +470,31 @@ final class Shadowfunc
 		return $back === '' ? 'None' : substr($back, 2);
 	}
 	
+	public static function getStatsLvlUpArray(SR_Player $player, array $fields, $cost, $max)
+	{
+		$b = chr(2);
+		$back = '';
+		$karma = $player->getBase('karma');
+		foreach ($fields as $field)
+		{
+			$base = $player->getBase($field);
+			if ($base >= 0)
+			{
+				if($base == $max){
+					$n = '*';
+				}else{
+					$n = ($base + 1) * $cost;
+					if($n <= $karma){
+						$n = $b.$n.'k'.$b;
+					}
+				}
+				$back .= sprintf(', %s:%s(%s)', $b.$field.$b, ($base+1), $n);
+			}
+			
+		}
+		return $back === '' ? 'None' : substr($back, 2);
+	}
+	
 	public static function getEffects(SR_Player $player)
 	{
 		$b = chr(2);

@@ -10,8 +10,39 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 		$bot = Shadowrap::instance($player);
+		$runner = $player->isRunner();
+		$have = $player->getBase('karma');
+
 		if (count($args) !== 1) {
-			$bot->reply(Shadowhelp::getHelp($player, 'lvlup'));
+			$cost = 3;
+			$b = chr(2);
+			$player->message('Skills to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$SKILL, $cost, $runner?48:24));
+			$arr = SR_Player::$ATTRIBUTE;
+			unset($arr['es']);//ignore essence
+			$player->message('Attributes to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, $arr, 2, $runner?18:12));
+			$player->message('Knowledge to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$KNOWLEDGE, 2, $runner?24:12));
+			$s = '';
+
+			if($player->getSpellData())
+			{
+				$max = $runner ? 36 : 12;
+				foreach ($player->getSpellData() as $name => $base)
+				{
+					if($base == $max){
+						$n = '*';
+					}else{
+						$n = ($base + 1) * $cost;
+						if($n <= $have){
+							$n = $b.$n.'k'.$b;
+						}
+					}
+					$s .= sprintf(', %s:%s(%s)', $b.$name.$b, ($base+1), $n);
+				}
+			}
+			if($s == ''){
+				$s = 'None';
+			}
+			$player->message('Spells to upgrade: '.substr($s,2));
 			return false;
 		}
 		$f = strtolower($args[0]);
@@ -23,7 +54,6 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		if ($f === 'essence') { $bot->reply('You can not levelup your essence.'); return false; }
 		
 		$is_spell = false;
-		$runner = $player->isRunner();
 		
 		if (in_array($f, SR_Player::$SKILL)) {
 			$level = $player->getBase($f);
@@ -62,7 +92,6 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 		$need = ($level+1) * $cost;
-		$have = $player->getBase('karma');
 		if ($need > $have) {
 			$bot->reply(sprintf('You need %d karma to increase your base level for %s from %d to %d, but you only have %d karma.', $need, $f, $level, $level+1, $have));
 			return false;
