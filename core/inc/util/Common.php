@@ -34,6 +34,17 @@ final class Common
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
 	public static function displayCookie($var, $default='') { return isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
 	
+	###############
+	## CONSTANTS ##
+	###############
+	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
+	public static function defineConst($var, $val) {
+		if (!defined($var)) {
+			define($var, $val);
+		}
+		return constant($var);
+	}
+	
 	###########
 	### URL ###
 	###########
