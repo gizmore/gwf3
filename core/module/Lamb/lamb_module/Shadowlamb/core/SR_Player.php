@@ -86,7 +86,7 @@ class SR_Player extends GDO
 		'halftroll'=> array('body'=>3,'magic'=>-2,'strength'=> 2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 0),
 		'ork' =>      array('body'=>4,'magic'=>-3,'strength'=> 3,'quickness'=>1,'wisdom'=>1,'intelligence'=>1,'charisma'=> 0),
 		'troll' =>    array('body'=>4,'magic'=>-4,'strength'=> 4,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'essence'=>-0.2),
-		'gremlin' =>  array('body'=>1,'magic'=>-5,'strength'=> 2,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>3,'essence'=>-1.0),
+		'gremlin' =>  array('body'=>4,'magic'=>-5,'strength'=> 3,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>2,'essence'=>-0.5),
 		#NPC
 		'droid' =>    array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-3,'reputation'=>0, 'essence'=>0),
 		'dragon' =>   array('body'=>8,'magic'=>8, 'strength'=> 8,'quickness'=>0,'wisdom'=>8,'intelligence'=>8,'charisma'=> 0,'reputation'=>12,'essence'=>2),
@@ -223,7 +223,7 @@ class SR_Player extends GDO
 	public function displayNuyen() { return Shadowfunc::displayNuyen($this->getNuyen()); }
 	public function isDrunk() { return $this->get('alc') >= (0.8 + $this->getBase('body')*0.20); }
 	public function isCaffed() { return $this->get('caf') >= (1.4 + $this->getBase('body')*0.25); }
-	public function getMovePerSecond() { return 1.0 + $this->get('quickness') * 0.15 + Shadowfunc::diceFloat(-0.2,+0.2,1); }
+	public function getMovePerSecond() { return 1.5 + $this->get('quickness') * 0.25 + Shadowfunc::diceFloat(-0.2,+0.2,1); }
 	public function isRunner() { return $this->isOptionEnabled(self::RUNNING_MODE); }
 	public function needsHeal() { return ($this->getHP() / $this->getMaxHP()) <= SR_NPC::NEED_HEAL_MULTI; }
 	public function needsEther() { return ($this->getMP() / $this->getMaxMP()) <= SR_NPC::NEED_ETHER_MULTI; }
@@ -744,6 +744,7 @@ class SR_Player extends GDO
 			'hp_per_body' => self::HP_PER_BODY,
 			'mp_per_magic' => self::MP_PER_MAGIC,
 			'level' => $this->getVar('sr4pl_level'),
+			'bad_karma' => $this->getVar('sr4pl_bad_karma'),
 		);
 		$this->initModifyStats(self::$COMBAT_STATS);
 		$this->initModifyStats(self::$MAGIC_STATS);
@@ -2133,7 +2134,7 @@ class SR_Player extends GDO
 	
 	private function looseItem(SR_Player $killer)
 	{
-		echo "COULD LOOSE ITEM!!!!\n";
+		Lamb_Log::logDebug(sprintf('%s could loose an item!', $this->getName()));
 		$items = array_merge($this->sr4_equipment, $this->sr4_inventory);
 		foreach ($items as $i => $item)
 		{
