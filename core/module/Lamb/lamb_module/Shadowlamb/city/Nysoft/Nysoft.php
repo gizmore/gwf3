@@ -5,6 +5,7 @@ final class Nysoft extends SR_Dungeon
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 	
+	public function getImportNPCS() { return array('Seattle_BlackOp'); }
 //	/**
 //	 * Get the renraku main elevator.
 //	 * @return Renraku_Elevator
