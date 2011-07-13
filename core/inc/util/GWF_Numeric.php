@@ -1,9 +1,18 @@
 <?php
-/*
- * Numeric base conversion of arbitary length
+/**
+ * Numeric helper class.
+ * [+] Base conversion
+ * [+] Factorization
+ * [+] Digit sums
+ * Enter description here ...
+ * @author gizmore
+ * @since GWF3
  */
-class GWF_Numeric {
-	
+final class GWF_Numeric
+{
+	#######################
+	### Base Conversion ###
+	#######################
 	private static $inCharset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-";
 	private static $outCharset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-";
 	
@@ -98,6 +107,41 @@ class GWF_Numeric {
 		
 	}
 	
+	#####################
+	### Factorization ###
+	#####################
+	public static function factorize($n)
+	{
+		$back = array(); 
+		while ($n != 1)
+		{
+			for ($i = 2; $i <= $n; $i++)
+			{
+				if ( ($n % $i) === 0 )
+				{
+					$n /= $i;
+					$back[] = $i;
+					break;
+				}
+			}
+		}
+		return $back;
+	}
+
+	#################
+	### Digit sum ###
+	#################
+	public static function digitSum($n)
+	{
+		$sum = 0;
+		$n = (string)$n;
+		$len = strlen($n);
+		for ($i = 0; $i < $len; $i++)
+		{
+			$sum += (int)$n{$i};
+		}
+		return $sum;
+	}
 }
 
 ?>
