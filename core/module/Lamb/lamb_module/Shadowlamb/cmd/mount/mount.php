@@ -55,7 +55,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			$weight = ', '.$weight;
 		}
-		$message = sprintf('Your %s(LOCK %s%s): ', $mount->getName(), $mount->getMountLockLevel(), $weight);
+		$message = sprintf('Your %s(LOCK %s%s): ', $mount->getName(), $mount->getMountLockLevelB(), $weight);
 		return self::reply($player, $message.Shadowfunc::getMountInv($player).'.');
 	}
 
@@ -81,7 +81,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		$itemname = $item->getItemName();
 
 		# Is Storage Mount?
-		if (0 >= ($max = $mount->getMountWeight()))
+		if (0 >= ($max = $mount->getMountWeightB()))
 		{
 			$bot->reply(sprintf('You cannot store items in your %s.', $mount->getName()));
 			return false;

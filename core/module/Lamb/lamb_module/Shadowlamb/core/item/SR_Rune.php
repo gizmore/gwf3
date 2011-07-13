@@ -65,6 +65,11 @@ class SR_Rune extends SR_Item
 		self::$RUNEDATA['essence']    = array('essence',   50, 100,   0.00,  500.00,  45.00, 25.00,  0.1,    1.0);
 	}
 	
+	public static function isMountModifier($key)
+	{
+		return in_array($key, array('lock', 'transport', 'tuneup'), true);
+	}
+	
 	public static function randModifier(SR_Player $player, $level)
 	{
 		$total = 0;
@@ -152,6 +157,39 @@ class SR_Rune extends SR_Item
 			$i *= 1.25;
 		}
 		return round($result, 2);
+	}
+	
+	###################
+	### Mount Runes ###
+	###################
+	public function isMixedRune()
+	{
+		$have_mount = false;
+		$have_equip = false;
+		foreach ($this->getItemModifiersB() as $k => $v)
+		{
+			if ($this->isMountModifier($k))
+			{
+				$have_mount = true;
+			}
+			else
+			{
+				$have_equip = true;
+			}
+		}
+		return $have_mount && $have_equip;
+	}
+	
+	public function isMountRune()
+	{
+		foreach ($this->getItemModifiersB() as $k => $v)
+		{
+			if ($this->isMountModifier($k))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

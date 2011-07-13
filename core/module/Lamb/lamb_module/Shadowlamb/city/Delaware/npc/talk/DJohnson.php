@@ -2,7 +2,7 @@
 final class Delaware_DJohnson extends SR_TalkingNPC
 {
 	public function getName() { return 'Mr.Johnson'; }
-	public function getNPCQuests(SR_Player $player) { return array('Delaware_DJohnson1','Delaware_DJohnson2','Delaware_DJohnson3','Delaware_DJohnson4','Delaware_DJohnson5'); }
+	public function getNPCQuests(SR_Player $player) { return array('Delaware_DallasJ1','Delaware_DallasJ2','Delaware_DallasJ3','Delaware_DallasJ4'); }
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		if ($this->onNPCQuestTalk($player, $word))

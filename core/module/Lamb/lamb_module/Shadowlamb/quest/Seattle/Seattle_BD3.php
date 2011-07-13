@@ -61,7 +61,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 		return true;
 	}
 	
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		switch ($word)
 		{
@@ -81,6 +81,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 				$npc->reply('Anyway check out my offers!');
 				break;
 		}
+		return true;
 	}
 }
 ?>

@@ -71,6 +71,8 @@ final class Renraku_Guard extends SR_TalkingNPC
 			
 			$p->giveKnowledge('places', 'Renraku_Exit');
 			
+			$this->getParty()->popAction(true);
+			
 			$renraku = Shadowrun4::getCity('Renraku');
 			$exit = $renraku->getLocation('Renraku_Exit');
 			$renraku->onCityEnter($p);

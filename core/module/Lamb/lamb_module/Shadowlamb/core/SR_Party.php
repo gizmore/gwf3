@@ -512,8 +512,9 @@ final class SR_Party extends GDO
 		$party->pushAction(self::ACTION_FIGHT, $this->getID(), 0);
 		$this->initFightBusy(1);
 		$party->initFightBusy(-1);
-		$this->setContactEta(rand(8,25));
-		$party->setContactEta(rand(8,25));
+		$this->initNPCb($party);
+		$this->setContactEta(rand(10,25));
+		$party->setContactEta(rand(10,25));
 		if ($announce === true)
 		{
 			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true)));
@@ -521,6 +522,27 @@ final class SR_Party extends GDO
 		}
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+	}
+	
+	private function initNPCb(SR_Party $ep)
+	{
+		if (!$this->isHuman())
+		{
+			$this->initNPCc($this, $ep);
+		}
+		if (!$ep->isHuman())
+		{
+			$this->initNPCc($ep, $this);
+		}
+	}
+	
+	private function initNPCc(SR_Party $p, SR_Party $ep)
+	{
+		foreach ($p->getMembers() as $member)
+		{
+			$member instanceof SR_NPC;
+			$member->onInitNPC($ep);
+		}
 	}
 	
 	public function talk(SR_Party $party, $announce=true)
@@ -878,7 +900,7 @@ final class SR_Party extends GDO
 					return sprintf("somewhere inside %s.", $this->getLocation());
 				}
 			case 'sleep': return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
-			case 'travel': return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
+			case 'travel': return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			case 'explore': return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			case 'goto': return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			case 'hunt': return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());

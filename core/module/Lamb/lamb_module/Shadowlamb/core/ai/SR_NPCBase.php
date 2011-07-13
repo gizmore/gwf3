@@ -48,6 +48,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function isNPCFriendly(SR_Party $party) { return false; }
+	public function isNPCDropping(SR_Party $party) { return true; }
 	public function getNPCEquipment() { return array(); }
 	public function getNPCInventory() { return array(); }
 	public function getNPCModifiers() { return array(); }
@@ -58,7 +59,8 @@ abstract class SR_NPCBase extends SR_Player
 	public function onNPCTalk(SR_Player $player, $word, array $args) {}
 	public function onNPCTalkA(SR_Player $player, $word, array $args)
 	{
-		if ($word === '') {
+		if (empty($word)) {
+//		if ($word === '') {
 			$word = 'hello';
 		}
 		elseif (is_numeric($word)) {
@@ -68,8 +70,9 @@ abstract class SR_NPCBase extends SR_Player
 		}
 		
 		$this->chat_partner = $player;
-		$this->onNPCTalk($player, strtolower($word), $args);
+		return $this->onNPCTalk($player, strtolower($word), $args);
 
+		# teach guessed word
 //		foreach (SR_Player::$WORDS as $word2)
 //		{
 //			if (strcasecmp($word, $word2))
@@ -192,7 +195,7 @@ abstract class SR_NPCBase extends SR_Player
 	 * @param string $classname
 	 * @return SR_NPC
 	 */
-	private function createNPC($classname, SR_Party $party)
+	private function createNPC($classname, SR_Party $party, SR_Party $attackers=NULL)
 	{
 		$data = $this->applyNPCStartData(self::getPlayerData(NULL));
 		$data['sr4pl_classname'] = $classname;
@@ -211,9 +214,9 @@ abstract class SR_NPCBase extends SR_Player
 	 * Spawn a copy of this NPC.
 	 * @return SR_NPC
 	 */
-	public function spawn(SR_Party $party)
+	public function spawn(SR_Party $party, SR_Party $attackers=NULL)
 	{
-		if (false === ($npc = self::createNPC($this->getNPCClassName(), $party)))
+		if (false === ($npc = self::createNPC($this->getNPCClassName(), $party, $attackers)))
 		{
 			Lamb_Log::logError(sprintf('SR_NPC::spawn() failed for NPC class: %s.', $this->getNPCClassName()));
 			return false;
@@ -283,11 +286,14 @@ abstract class SR_NPCBase extends SR_Player
 
 	public function gotKilledByHuman(SR_Player $player)
 	{
-		$items = array_merge(
-			Shadowfunc::randLoot($player, (int)$this->getBase('level'), $this->getNPCHighChanceDrops()), 
-			$this->generateNPCLoot($player)
-		);
-		$player->giveItems($items, 'looting '.$this->getName());
+		if ($this->isNPCDropping($player->getParty()))
+		{
+			$items = array_merge(
+				Shadowfunc::randLoot($player, (int)$this->getBase('level'), $this->getNPCHighChanceDrops()), 
+				$this->generateNPCLoot($player)
+			);
+			$player->giveItems($items, 'looting '.$this->getName());
+		}
 	}
 	
 	private function getNPCHighChanceDrops()

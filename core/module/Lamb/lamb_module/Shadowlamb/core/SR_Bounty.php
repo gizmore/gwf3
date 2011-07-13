@@ -83,7 +83,7 @@ final class SR_Bounty extends GDO
 		foreach ($bounties as $i => $data)
 		{
 			$ny = Shadowfunc::displayNuyen($data[1]);
-			$out .= sprintf(", \x02\%s\x02-%s(%s)", $i+1, $data[0], $ny);
+			$out .= sprintf(", \x02%s\X02-%s(%s)", $i+1, $data[0], $ny);
 		}
 		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
 	}

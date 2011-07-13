@@ -547,7 +547,7 @@ final class Lamb
 //		{
 //			return true;
 //		}
-		
+			
 		if ($server->isLogging())
 		{
 			Lamb_Log::logChat($server, $message);
@@ -594,7 +594,9 @@ final class Lamb
 		$this->lm_origin = isset($args[0]) ? $args[0] : '';
 		
 		# Process
-		return $this->processCommand($server, $command, $from, $args);
+		$back = $this->processCommand($server, $command, $from, $args);
+		
+		return $back;
 		
 		# OLD
 //		$by_colon = explode(':', $message, (($message{0} === ':') ? 3 : 2));
@@ -694,7 +696,7 @@ final class Lamb
 			return false;
 		}
 		# Remove
-		unset($this->servers[$i]);
+		unset($this->servers[$sid]);
 		$server->disconnect('Server removed unexpectedly?');
 		$this->running = count($this->servers) > 0;
 		Lamb_Log::logDebug(sprintf('Server %s-%s got removed.', $server->getID(), $server->getHostname()));

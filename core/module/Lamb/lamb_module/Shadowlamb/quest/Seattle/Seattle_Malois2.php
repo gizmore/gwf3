@@ -35,7 +35,7 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 		}
 	}
 	
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		switch ($word)
 		{

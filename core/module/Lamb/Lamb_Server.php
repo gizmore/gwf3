@@ -166,6 +166,8 @@ final class Lamb_Server extends GDO
 			'serv_channels' => $channels,
 			'serv_admins' => $admins,
 			'serv_flood_amt' => Lamb_IRC::DEFAULT_FLOOD_AMOUNT,
+			'serv_usermodes' => '',
+			'serv_chanmodes' => '',
 			'serv_options' => '0',
 		));
 		

@@ -126,7 +126,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	}
 	
 	
-	public function onNPCQuestTalk(SR_Player $player, $word)
+	public function onNPCQuestTalk(SR_Player $player, $word, array $args=NULL)
 	{
 		if (false === ($q = $this->getNPCQuest($player)))
 		{
@@ -146,12 +146,14 @@ abstract class SR_TalkingNPC extends SR_NPC
 				}
 				elseif ($t === true)
 				{
-					$q->onNPCQuestTalk($this, $player, 'confirm');
+					$q->onNPCQuestTalk($this, $player, 'confirm', $args);
 				}
 				else
 				{
-					$q->onNPCQuestTalk($this, $player, $word);
-					$player->setTemp($key, 1);
+					if ($q->onNPCQuestTalk($this, $player, $word, $args))
+					{
+						$player->setTemp($key, 1);
+					}
 				}
 				return true;
 				
@@ -160,7 +162,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 				{
 					$q->accept($player);
 					$player->unsetTemp($key);
-					$q->onNPCQuestTalk($this, $player, $word);
+					$q->onNPCQuestTalk($this, $player, $word, $args);
 					return true;
 				}
 				return false;
@@ -168,7 +170,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 			case 'no':
 				if ($t === true)
 				{
-					$q->onNPCQuestTalk($this, $player, $word);
+					$q->onNPCQuestTalk($this, $player, $word, $args);
 					$player->unsetTemp($key);
 					return true;
 				}

@@ -126,6 +126,22 @@ $LAMB_CFG = array
 			'admins' => '/NNN/gizmore',
 		),
 		
+		array(
+			'host' => 'irc://xs4all.nl.quakenet.org:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+		
+		array(
+			'host' => 'ircs://irc.enigmagroup.org:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#wechall,#shadowlamb',
+			'admins' => 'gizmore',
+		),
+		
 //		array(
 //			'host' => '',
 //			'nickname' => 'Lamb3',

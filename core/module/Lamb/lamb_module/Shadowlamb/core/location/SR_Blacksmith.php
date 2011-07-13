@@ -184,10 +184,6 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply('The first item is not an equipment.');
 			return false;
 		}
-		if (!$item->isItemStattable()) {
-			$bot->reply('This item can not get runes applied to it.');
-			return false;
-		}
 		if (false === ($rune = $player->getItem($args[1]))) {
 			$bot->reply('You don`t have that rune.');
 			return false;
@@ -202,7 +198,13 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply('The rune has no modifiers. Somethings wrong!');
 			return false;
 		}
-
+		
+		if (!$this->checkCombination($player, $item, $rune))
+		{
+			$bot->reply('This item can not get this rune applied to it.');
+			return false;
+		}
+		
 		$mods = SR_Item::mergeModifiers($item->getItemModifiersB(), $rune->getItemModifiersB());
 		$fail = SR_Rune::calcFailChance($mods)/10;
 		$break = SR_Rune::calcBreakChance($mods)/10;
@@ -254,6 +256,36 @@ abstract class SR_Blacksmith extends SR_Store
 			
 			return true;
 		}
+	}
+	
+	private function checkCombination(SR_Player $player, SR_Item $item, SR_Rune $rune)
+	{
+		if ($rune->isMixedRune())
+		{
+			$player->message('The rune has mixed mount and equipment modifiers. You have to split it first.');
+			return false;
+		}
+		
+		$mr = $rune->isMountRune();
+		
+		if ($rune->isMountRune())
+		{
+			if (!($item instanceof SR_Mount))
+			{
+				$player->message('This rune can only applied to mounts.');
+				return false;
+			}
+		}
+		else
+		{
+			if (!$item->isItemStattable())
+			{
+				$player->message('This rune can only be applied to equipment.');
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	#############

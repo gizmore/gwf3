@@ -60,7 +60,7 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		}
 	}
 	
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		switch ($word)
 		{
@@ -83,6 +83,7 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 				$npc->reply(sprintf('See you around, chummer.'));
 				break;
 		}
+		return true;
 	}
 }
 ?>

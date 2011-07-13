@@ -62,7 +62,7 @@ class SR_Quest extends GDO
 	public function isInQuest(SR_Player $player) { return (!$this->isDone($player)) && ($this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
 	public function isDeclined(SR_Player $player) { return $this->isOptionEnabled(self::REJECTED); }
-	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word) { $this->onNPCQuestTalkB($npc, $player, $word); }
+	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL) { return $this->onNPCQuestTalkB($npc, $player, $word, $args); }
 	public function onAccept(SR_Player $player) {}
 	public function accept(SR_Player $player)
 	{
@@ -288,7 +288,7 @@ class SR_Quest extends GDO
 	################
 	### NPCQuest ###
 	################
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		switch ($word)
 		{
@@ -305,7 +305,7 @@ class SR_Quest extends GDO
 				$npc->reply('Deny reply for Quest '.$this->getName());
 				break;
 		}
-		return false;
+		return true;
 	}
 	
 	##############
@@ -313,7 +313,7 @@ class SR_Quest extends GDO
 	##############
 	public function getRewardXP() { return 0; }
 	public function getRewardNuyen() { return 0; }
-	public function getRewardItems() { return array('Cake'); }
+	public function getRewardItems() { return array(); }
 	public function displayRewardNuyen() { return Shadowfunc::displayNuyen($this->getRewardNuyen()); }
 	
 	public function onReward(SR_Player $player)

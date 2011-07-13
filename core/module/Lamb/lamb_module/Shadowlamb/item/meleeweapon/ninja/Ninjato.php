@@ -5,7 +5,8 @@ final class Item_Ninjato extends SR_NinjaWeapon
 	public function getItemLevel() { return 14; }
 	public function getItemWeight() { return 970; }
 	public function getItemPrice() { return 2000; }
-	public function getItemDescription() { return 'A black, slim and deadly sword. Sweet.'; }
+	public function getItemRange() { return 1.9; }
+	public function getItemDescription() { return 'A short and slim Ninja Sword.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(

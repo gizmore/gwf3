@@ -36,7 +36,7 @@ final class Quest_Delaware_Seraphim2 extends SR_Quest
 		return $this->saveQuestData($data);
 	}
 	
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word)
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		$need = $this->getNeededAmount();
 		switch ($word)

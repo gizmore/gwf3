@@ -27,6 +27,13 @@ final class Redmond_Temple extends SR_School
 		$b = chr(2);
 		parent::onEnter($player);
 		$p = $player->getParty();
+		
+		foreach ($p->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->unsetTemp(Redmond_Teacher::TEMP_PISSED);
+		}
+		
 		$p->notice("The elve says: \"Hi, do you want to {$b}{$c}learn{$b} the arcane powers of {$b}magic{$b}?\"");
 	}
 }

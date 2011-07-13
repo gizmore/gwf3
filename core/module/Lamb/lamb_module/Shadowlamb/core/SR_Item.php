@@ -486,7 +486,6 @@ class SR_Item extends GDO
 		$i = 1;
 		foreach ($owner->getInventorySorted() as $itemname => $data)
 		{
-			var_dump($itemname);
 			if ($name === $itemname)
 			{
 				return $i;

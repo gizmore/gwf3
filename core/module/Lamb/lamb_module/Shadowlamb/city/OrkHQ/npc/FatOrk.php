@@ -1,7 +1,7 @@
 <?php
 final class OrkHQ_FatOrk extends SR_NPC
 {
-	public function getNPCLevel() { return 6; }
+	public function getNPCLevel() { return 5; }
 	public function getNPCPlayerName() { return 'FatOrk'; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
@@ -14,8 +14,8 @@ final class OrkHQ_FatOrk extends SR_NPC
 			'quickness' => rand(1, 2),
 			'melee' => rand(4, 7),
 			'base_hp' => rand(8, 12),
-			'distance' => rand(0, 3),
-			'nuyen' => rand(0, 45),
+			'distance' => rand(0, 4),
+			'nuyen' => rand(0, 35),
 		);
 	}
 	
@@ -25,6 +25,8 @@ final class OrkHQ_FatOrk extends SR_NPC
 			'weapon' => 'ButchersKnife',
 			'armor' => 'LeatherVest',
 			'boots' => 'Sandals',
+			'helmet' => 'LeatherCap',
+			'shield' => 'SmallShield',
 		);
 	}
 	

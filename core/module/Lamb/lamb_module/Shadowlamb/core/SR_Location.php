@@ -91,14 +91,14 @@ abstract class SR_Location
 	public function __call($name, $args)
 	{
 		$player = array_shift($args);
+		$args = array_shift($args);;
 		$npcs = $this->getNPCS($player);
-		$word = isset($args[0][0]) ? $args[0][0] : '';
+		$word = array_shift($args);
 		if (isset($npcs[$name]))
 		{
 			if (false !== ($npc = Shadowrun4::getNPC($npcs[$name])))
 			{
-				
-				return $npc->onNPCTalkA($player, $word, $args[0]);
+				return $npc->onNPCTalkA($player, $word, $args);
 			}
 		}
 		echo "ERROR: Unknown function '$name'.\n";

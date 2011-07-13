@@ -32,13 +32,38 @@ abstract class SR_Mount extends SR_Equipment
 		return $this->mount_inv_weight;
 	}
 
+	public function getMountWeightB()
+	{
+		if (0 >= ($max = $this->getMountWeight()))
+		{
+			return 0;
+		}
+		$mods = $this->getItemModifiersB();
+		$trans = isset($mods['transport']) ? $mods['transport'] : 0;
+		return $max + ($trans*1000);
+	}
+	
+	public function getMountLockLevelB()
+	{
+		$lock = $this->getMountLockLevel();
+		$mods = $this->getItemModifiersB();
+		$lock2 = isset($mods['lock']) ? $mods['lock'] : 0;
+		return $lock + $lock2;
+	}
+	
+	public function getMountTuneup()
+	{
+		$mods = $this->getItemModifiersB();
+		return isset($mods['tuneup']) ? $mods['tuneup'] : 0;
+	}
+	
 	############
 	### Item ###
 	############
-	public function displayType() { return 'Mount LOCK '.$this->getMountLockLevel(); }
+	public function displayType() { return 'Mount LOCK '.$this->getMountLockLevelB(); }
 	public function displayWeight()
 	{
-		if (0 == ($max = $this->getMountWeight()))
+		if (0 == ($max = $this->getMountWeightB()))
 		{
 			return '';
 		}
@@ -87,14 +112,14 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		$player->setConst('_SL4_HIJACK', 0);
 		$eta = $this->calcHijackTime($player);
-		$player->message(sprintf('You start to to crack the lock on %s\'s %s. ETA: %s', $this->getOwner()->getName(), $this->getName(), $eta));
+		$player->message(sprintf('You start to to crack the lock on %s\'s %s. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
 		return $this->hijackBy($player, $eta);
 	}
 	
 	public function hijackBy(SR_Player $player, $eta)
 	{
 		$party = $player->getParty();
-		if (false === ($loc = $party->getLocation('outside')))
+		if (false === ($loc = $party->getLocation()))
 		{
 			return false;
 		}
@@ -106,7 +131,7 @@ abstract class SR_Mount extends SR_Equipment
 		$attemp = $player->getConst('_SL4_HIJACK') + 1;
 		$thief = $player->get('thief');
 		$locpic = $player->get('lockpicking');
-		$lock = $this->getMountLockLevel();
+		$lock = $this->getMountLockLevelB();
 
 		$atk = Shadowfunc::diceFloat($locpic, $locpic * 2.0 + 1.0, 2);
 		$def = Shadowfunc::diceFloat($lock, $lock * 1.5 + 4.0 + $attemp, 2);
@@ -119,6 +144,7 @@ abstract class SR_Mount extends SR_Equipment
 		{
 			$eta = $this->calcHijackTime($player);
 			$player->message(sprintf('You failed to crack the lock on %s\'s %s. You try again. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
+			$player->getParty()->popAction(false);
 			$this->hijackBy($player, $eta);
 		}
 	}
@@ -127,17 +153,21 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		$thief = $player->get('thief');
 		$locpic = $player->get('lockpicking');
-		$lock = $this->getMountLockLevel();
+		$lock = $this->getMountLockLevelB();
+		$lockB = $lock + 5 - $thief - $locpic;
 		
-		$pl = Common::clamp(round($thief + $locpic, 2), 0, self::HIJACK_TIME_MAXLVL);
-		$pl = 1 - ($pl / self::HIJACK_TIME_MAXLVL);
-		$pl += $lock / 10;
+//		$pl = Common::clamp(round($thief + $locpic, 2), 0, self::HIJACK_TIME_MAXLVL);
+//		$pl = 1 - ($pl / self::HIJACK_TIME_MAXLVL);
+//		$pl += $lock / 10;
 		
-		$min = SR_Mount::HIJACK_TIME_MIN + $lock * 20;
-		$max = SR_Mount::HIJACK_TIME_MAX + $lock * 20;
-		$rng = $max - $min;
+		$min = SR_Mount::HIJACK_TIME_MIN + $lockB * 10;
+		$max = SR_Mount::HIJACK_TIME_MAX + $lockB * 40;
+//		$rng = $max - $min;
 		
-		return round($rng * $pl + $min - rand(0, self::HIJACK_TIME_BONUS));
+		$rand = rand($min, $max);
+		
+		return Common::clamp($rand, SR_Mount::HIJACK_TIME_MIN);
+//		return round($rng * $pl + $min - rand(0, self::HIJACK_TIME_BONUS));
 	}
 	
 	private function onHijacked(SR_Player $player)

@@ -19,9 +19,7 @@ final class Shadowcmd_start extends Shadowcmd
 		
 		if (count($args) !== 2)
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'start'));
-			$bot->reply(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
-			return false;
+			return self::onHelp($player, $races, $genders);
 		}
 		
 		$race = strtolower($args[0]);
@@ -57,6 +55,15 @@ final class Shadowcmd_start extends Shadowcmd
 		$player->giveKnowledge('words', 'Shadowrun');
 		$player->giveKnowledge('places', 'Redmond_Hotel');
 		return true;
+	}
+	
+	private static function onHelp(SR_Player $player, $races, $genders)
+	{
+//		$bot = Shadowrap::instance($player);
+		$b = chr(2);
+		$player->message(Shadowhelp::getHelp($player, 'start'));
+		$player->message(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
+		return false;
 	}
 }
 ?>

@@ -23,6 +23,7 @@ abstract class SR_City
 	{
 		$mount = $party->getBestMount();
 		$eta = $mount->getMountTime($eta);
+		$eta -= ($mount->getMountTuneup() * 10);
 		$eta += rand(0, $randtime);
 		$eta = Common::clamp(round($eta), $mintime);
 		return $eta;
@@ -136,6 +137,7 @@ abstract class SR_City
 	
 	public function onHijack(SR_Party $party, $done)
 	{
+		# Still have valid target?
 		if (
 			(false === ($target = $party->getHijackTarget())) ||
 			($target->getParty()->getLocation('inside') !== $party->getLocation())
@@ -146,6 +148,7 @@ abstract class SR_City
 			return false;
 		}
 		
+		# Time over?
 		if ($done)
 		{
 			$target->getMount()->onHijack($party->getLeader());

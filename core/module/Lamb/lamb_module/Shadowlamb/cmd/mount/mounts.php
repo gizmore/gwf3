@@ -13,7 +13,7 @@ final class Shadowcmd_mounts extends Shadowcmd
 			$member instanceof SR_Player;
 			$mount = $member->getMount();
 			$we = $mount->calcMountWeight();
-			$max = $mount->getMountWeight();
+			$max = $mount->getMountWeightB();
 			$total += $we;
 			$total_max += $max;
 			if ('' !== ($weight = $mount->displayWeight()))

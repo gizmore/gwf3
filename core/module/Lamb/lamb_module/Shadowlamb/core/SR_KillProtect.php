@@ -1,7 +1,7 @@
 <?php
 final class SR_KillProtect extends GDO
 {
-	const MAX_LEVEL_DIFF = 20;
+	const MAX_LEVEL_DIFF = 15;
 	const KILL_TIMEOUT_MIN = 3600; # 1h
 	const KILL_TIMEOUT_ADD = 7200; # 1h
 	const KILL_TIMEOUT_AVG = 6000; # 4h
@@ -120,7 +120,7 @@ final class SR_KillProtect extends GDO
 	 * @param boolean $verbose
 	 * @return true|false
 	 */
-	public static function isKillProtectedPartyLevel(SR_Party $attackers, SR_Party $defenders, $verbose=true)
+	public static function isKillProtectedPartyLevel(SR_Party $attackers, SR_Party $defenders, SR_Player $player, $verbose=true)
 	{
 		# NPC
 		if (!$defenders->isHuman())
@@ -146,7 +146,7 @@ final class SR_KillProtect extends GDO
 		{
 			if ($verbose)
 			{
-				$attackers->getLeader()->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
+				$player->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
 			}
 			# Protected by level
 			return true;

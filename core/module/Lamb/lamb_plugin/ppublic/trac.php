@@ -1,4 +1,4 @@
-<?php # Usage: %CMD% <filename>. Search for a file in the gwf3 code repositry.
+<?php # Usage: %CMD% <filename>. Search for a file in the gwf3 code repositry at http://trac.gwf3.gizmore.org
 if ($message === '')
 {
 	return $bot->getHelp('trac');

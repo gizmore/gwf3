@@ -12,6 +12,7 @@ function lamb_wc_solvers($key, $name, $url, $channels=array())
 		$lastdate = date('YmdHis');
 		GWF_Settings::setSetting('LAMB_SOLVERS_DATE_'.$key, $lastdate);
 	}
+	$lastpair = GWF_Settings::getSetting('LAMB_SOLVERS_PAIR_'.$key, '');
 	
 	# Query URL
 	$url = str_replace(array('%DATE%'), array($lastdate), $url);
@@ -39,6 +40,7 @@ function lamb_wc_solvers($key, $name, $url, $channels=array())
 	$changed = false;
 	$badlines = 0;
 	$latestdate = $lastdate;
+	$firstpair = false;
 	
 	foreach ($lines as $line)
 	{
@@ -70,8 +72,21 @@ function lamb_wc_solvers($key, $name, $url, $channels=array())
 			return false;
 		}
 		
-		if (intval($latestdate) <= intval($solvedate))
-			$latestdate = intval($solvedate) + 1;
+		$latestdate = $solvedate;
+		$pair = "$uid:$cid";
+
+		if ($firstpair === false)
+		{
+			$firstpair = $pair;
+		}
+		
+		if ($pair === $lastpair)
+		{
+			break;
+		}
+//		if (intval($latestdate) <= intval($solvedate))
+//			$latestdate = intval($solvedate) + 1;
+
 
 		
 		$lamb = Lamb::instance();
@@ -124,7 +139,9 @@ function lamb_wc_solvers($key, $name, $url, $channels=array())
 	# Save state
 	if ($changed)
 	{
+//		$latestdate = date('YmdHis');
 		GWF_Settings::setSetting('LAMB_SOLVERS_DATE_'.$key, $latestdate);
+		GWF_Settings::setSetting('LAMB_SOLVERS_PAIR_'.$key, $firstpair);
 	}
 
 }

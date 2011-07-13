@@ -9,8 +9,27 @@ final class Lamb_Log
 	public static function logChat(Lamb_Server $server, $message)
 	{
 		# One file per server
+		$bot = Lamb::instance();
 		$host = preg_replace('/[^a-z0-9_\\.]/', '', strtolower($server->getHostname()));
-		return GWF_Log::log("lamb_chat_{$host}", $message, true);
+		
+		$result = true;
+		
+		if (false !== ($user = $bot->getCurrentUser()))
+		{
+			$name = $user->getName();
+			GWF_Log::log("lamb/lamb_chat_{$host}_{$name}", $message, true);
+		}
+		elseif (false !== ($chan = $bot->getCurrentChannel()))
+		{
+			$name = $chan->getName();
+			GWF_Log::log("lamb/lamb_chat_{$host}_{$name}", $message, true);
+		}
+		else
+		{
+			GWF_Log::log("lamb/lamb_chat_{$host}", $message, true);
+		}
+		
+		return $result;
 	}
 	
 	public static function logError($message)

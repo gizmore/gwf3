@@ -180,7 +180,6 @@ abstract class SR_Elevator extends SR_Tower
 	private function hasElevatorPermBit(SR_Player $player, $bit)
 	{
 		$bits = $this->getElevatorFlags($player);
-//		var_dump($bits, $bit);
 		return ($bits & $bit) === $bit;
 	}
 	

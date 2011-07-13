@@ -16,7 +16,7 @@ final class Redmond_Ares extends SR_Store
 			array('Ammo_5mm'),
 			array('Ammo_7mm'),
 			array('Ammo_9mm'),
-			array('Ammo_11mm'),
+			array('Ammo_11mm', 100.0, 200),
 			array('Flashbang'),
 			array('SmallFirstAid'),
 			array('FirstAid'),

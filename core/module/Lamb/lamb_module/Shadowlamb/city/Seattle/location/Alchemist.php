@@ -16,7 +16,7 @@ final class Seattle_Alchemist extends SR_Store
 			array('AimWater'),
 			array('Stimpatch', 100.0, 1200),
 			array('ScrollOfWisdom', 100.0, 1000),
-			array('ElvenStaff', 100.0, 3000),
+			array('ElvenStaff', 100.0, 5000),
 		);
 	}
 }

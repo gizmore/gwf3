@@ -16,7 +16,7 @@ final class Shadowhelp
 			'dmg' => 'damage',
 			'skill' => 'skills',
 			'attribute' => 'attributes',
-			'casting' => 'cast',
+//			'casting' => 'cast',
 			'bmi' => 'body_mass',
 		);
 		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);

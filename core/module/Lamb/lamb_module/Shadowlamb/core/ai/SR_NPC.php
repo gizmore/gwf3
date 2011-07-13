@@ -10,6 +10,8 @@ abstract class SR_NPC extends SR_NPCBase
 	const NEED_HEAL_MULTI = 0.60;
 	const NEED_ETHER_MULTI = 0.20;
 	
+	public function onInitNPC(SR_Party $ep) {}
+	
 	/**
 	 * Override the default combat timer.
 	 * @see SR_Player::combatTimer()
@@ -293,7 +295,6 @@ abstract class SR_NPC extends SR_NPCBase
 	private function getCombatSpell()
 	{
 		$spells = $this->getCombatSpells();
-//		var_dump($spells);
 		return count($spells) > 0 ? $spells[array_rand($spells, 1)] : false;
 	}
 	

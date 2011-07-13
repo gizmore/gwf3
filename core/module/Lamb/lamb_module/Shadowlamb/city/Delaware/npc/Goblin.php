@@ -1,7 +1,7 @@
 <?php
 final class Delaware_Goblin extends SR_NPC
 {
-	public function getNPCLevel() { return 12; }
+	public function getNPCLevel() { return 14; }
 	public function getNPCPlayerName() { return 'Goblin'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }

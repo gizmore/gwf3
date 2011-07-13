@@ -1,7 +1,7 @@
 <?php
 final class Delaware_Troll extends SR_NPC
 {
-	public function getNPCLevel() { return 13; }
+	public function getNPCLevel() { return 17; }
 	public function getNPCPlayerName() { return 'Troll'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }

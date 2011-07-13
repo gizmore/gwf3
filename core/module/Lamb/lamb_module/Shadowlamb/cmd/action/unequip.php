@@ -22,7 +22,9 @@ final class Shadowcmd_unequip extends Shadowcmd
 			return false;
 		}
 		
-		return $item->onItemUnequip($player);
+		$item->onItemUnequip($player);
+		$player->modify();
+		return true;
 	}
 }
 ?>

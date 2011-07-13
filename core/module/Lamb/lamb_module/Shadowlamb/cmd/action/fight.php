@@ -15,7 +15,7 @@ final class Shadowcmd_fight extends Shadowcmd
 				return true;
 			}
 			
-			if (SR_KillProtect::isKillProtectedPartyLevel($p, $ep))
+			if (SR_KillProtect::isKillProtectedPartyLevel($p, $ep, $player))
 			{
 				return true;
 			}

@@ -24,6 +24,7 @@ $slaps = array(
 	array('accidently', 15),
 	array('periodically', 33),
 	array('arbitarilly', 32),
+	array('ruthlessly', 45),
 ),
 
 'verbs' => array(
@@ -96,6 +97,7 @@ $slaps = array(
 	array('a sharp', 29),
 	array('an amazing', 40),
 	array('an electric', 33),
+	array('a bloody', 35),
 ),
 
 
