@@ -36,6 +36,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 		{
 			$player->message('You are out of ammo!');
 			$player->unequip($this);
+			$player->modify();
 			return true;
 		}
 		
@@ -59,7 +60,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 
 		if ($p->isFighting())
 		{
-			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime())));
+			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime()+rand(0, 10))));
 			$p->message($player, $message);
 //			$p->getEnemyParty()->message($player, $message);
 		}
