@@ -79,9 +79,12 @@ abstract class SR_Weapon extends SR_Equipment
 			}
 			elseif ($target->isDead())
 			{
-				$xp = $target->getLootXP();
+				$xp = $target->isHuman() ? 0 : $target->getLootXP();
 				$nuyen = $target->getLootNuyen();
-				$target->resetXP();
+				if ($player->isNPC())
+				{
+					$target->resetXP();
+				}
 				$target->giveNuyen(-$nuyen);
 				
 //				$target->getBase('level');
