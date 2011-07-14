@@ -2,7 +2,7 @@
 final class Item_KevlarVest extends SR_Armor
 {
 	public function getItemLevel() { return 20; }
-	public function getItemPrice() { return 12500; }
+	public function getItemPrice() { return 1500; }
 	public function getItemWeight() { return 1450; }
 	public function getItemUsetime() { return 90; }
 	public function getItemDescription() { return 'A light vest with intermediate protection.'; }

@@ -4,7 +4,7 @@ final class Item_SteelNunchaku extends SR_NinjaWeapon
 	public function getAttackTime() { return 35; }
 	public function getItemLevel() { return 10; }
 	public function getItemWeight() { return 1250; }
-	public function getItemPrice() { return 800; }
+	public function getItemPrice() { return 400; }
 	public function getItemDescription() { return 'A steel nunchaku. Better than the wooden ones.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

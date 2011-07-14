@@ -2,7 +2,7 @@
 final class Item_Blouse extends SR_Armor
 {
 	public function getItemLevel() { return 2; }
-	public function getItemPrice() { return 200; }
+	public function getItemPrice() { return 100; }
 	public function getItemWeight() { return 550; }
 	public function getItemDescription() { return 'A light red blouse. Not very protective.'; }
 	public function getItemModifiersA(SR_Player $player)

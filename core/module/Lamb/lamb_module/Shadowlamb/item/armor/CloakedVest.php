@@ -2,7 +2,7 @@
 final class Item_CloakedVest extends SR_Armor
 {
 	public function getItemLevel() { return 19; }
-	public function getItemPrice() { return 7500; }
+	public function getItemPrice() { return 1500; }
 	public function getItemWeight() { return 1250; }
 	public function getItemUsetime() { return 90; }
 	public function getItemDescription() { return 'A long vest, ideal to hide small weapons.'; }

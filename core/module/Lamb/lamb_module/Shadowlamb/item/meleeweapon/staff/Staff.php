@@ -4,7 +4,7 @@ final class Item_Staff extends SR_MeleeWeapon
 	public function getAttackTime() { return 40; }
 	public function getItemLevel() { return 4; }
 	public function getItemWeight() { return 650; }
-	public function getItemPrice() { return 275; }
+	public function getItemPrice() { return 175; }
 	public function getItemDescription() { return 'A wooden staff for magicians.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

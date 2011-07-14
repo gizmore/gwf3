@@ -2,7 +2,7 @@
 final class Item_KevlarLegs extends SR_Legs
 {
 	public function getItemLevel() { return 15; }
-	public function getItemPrice() { return 4950; }
+	public function getItemPrice() { return 850; }
 	public function getItemWeight() { return 1350; }
 	public function getItemDescription() { return 'Kevlar Protective Legs from Renraku. Not too bad.'; }
 	public function getItemModifiersA(SR_Player $player)

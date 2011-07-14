@@ -2,7 +2,7 @@
 final class Item_Hakama extends SR_Legs
 {
 	public function getItemLevel() { return 13; }
-	public function getItemPrice() { return 3749; }
+	public function getItemPrice() { return 149; }
 	public function getItemWeight() { return 650; }
 	public function getItemDescription() { return 'Very light ninja legs. High defense, but not much armor.'; }
 	public function getItemModifiersA(SR_Player $player)

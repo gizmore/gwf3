@@ -2,7 +2,7 @@
 final class Item_NinjaCloak extends SR_Armor
 {
 	public function getItemLevel() { return 13; }
-	public function getItemPrice() { return 2500; }
+	public function getItemPrice() { return 1200; }
 	public function getItemWeight() { return 900; }
 	public function getItemUsetime() { return 60; }
 	public function getItemDescription() { return 'A light ninja cloak. No invisible powers.'; }

@@ -2,7 +2,7 @@
 final class Item_Skirt extends SR_Legs
 {
 	public function getItemLevel() { return 1; }
-	public function getItemPrice() { return 90; }
+	public function getItemPrice() { return 60; }
 	public function getItemWeight() { return 350; }
 	public function getItemDescription() { return 'A beautiful red skirt. You feel flyffy in there.'; }
 	public function getItemRequirements() { return array('gender'=>'female'); }

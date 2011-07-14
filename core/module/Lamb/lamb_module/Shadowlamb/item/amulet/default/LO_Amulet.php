@@ -4,7 +4,7 @@ class Item_LO_Amulet extends SR_Amulet
 	public function getItemLevel() { return 17; }
 	public function getItemDescription() { return 'This amulet is a piece of the magic ThalionLionhearth.'; }
 	public function getItemDropChance() { return 13.00; }
-	public function getItemPrice() { return 2500; }
+	public function getItemPrice() { return 1000; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		$back = array();

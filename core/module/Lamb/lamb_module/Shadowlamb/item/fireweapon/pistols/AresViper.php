@@ -8,7 +8,7 @@ final class Item_AresViper extends SR_Pistol
 	public function getReloadTime() { return 55; }
 	public function getItemLevel() { return 8; }
 	public function getItemWeight() { return 1350; }
-	public function getItemPrice() { return 1250; }
+	public function getItemPrice() { return 650; }
 	public function getItemDescription() { return 'The famous "Ares Viper(tm)" pistol.'; }
 	public function getItemRequirements() { return array('firearms'=>2); }
 	public function getItemModifiersA(SR_Player $player)

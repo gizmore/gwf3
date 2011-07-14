@@ -2,7 +2,7 @@
 final class Item_ArmyBoots extends SR_Boots
 {
 	public function getItemLevel() { return 9; }
-	public function getItemPrice() { return 950; }
+	public function getItemPrice() { return 150; }
 	public function getItemWeight() { return 950; }
 	public function getItemDescription() { return 'Gray/greenish army boots.'; }
 	public function getItemModifiersA(SR_Player $player)

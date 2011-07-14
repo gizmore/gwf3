@@ -5,7 +5,7 @@ final class Item_Stimpatch extends SR_HealItem
 	public function getItemDescription() { return 'A small and fast painkiller. Excellent for combat.'; }
 	public function getItemWeight() { return 150; }
 	public function getItemUseTime(){ return 10; }
-	public function getItemPrice() { return 950; }
+	public function getItemPrice() { return 250; }
 	public function getItemDropChance() { return 50; }
 	public function isItemFriendly() { return true; }
 	

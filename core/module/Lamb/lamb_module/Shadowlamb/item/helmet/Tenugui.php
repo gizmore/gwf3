@@ -2,7 +2,7 @@
 final class Item_Tenugui extends SR_Helmet
 {
 	public function getItemLevel() { return 13; }
-	public function getItemPrice() { return 100; }
+	public function getItemPrice() { return 300; }
 	public function getItemWeight() { return 1600; }
 	public function getItemDescription() { return 'A ninja mask to disguise.'; }
 	public function getItemModifiersA(SR_Player $player)

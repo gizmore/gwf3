@@ -9,7 +9,7 @@ final class Item_AresLightFire extends SR_Pistol
 
 	public function getItemLevel() { return 5; }
 	public function getItemWeight() { return 1150; }
-	public function getItemPrice() { return 650; }
+	public function getItemPrice() { return 550; }
 	public function getItemDescription() { return 'The cheapest pistol on the market. Not much damage but reliable.'; }
 	
 	public function getItemRequirements() { return array('firearms'=>0); }

@@ -4,7 +4,7 @@ final class Item_NinjaSword extends SR_NinjaWeapon
 	public function getAttackTime() { return 40; }
 	public function getItemLevel() { return 13; }
 	public function getItemWeight() { return 1030; }
-	public function getItemPrice() { return 1600; }
+	public function getItemPrice() { return 1500; }
 	public function getItemDescription() { return 'A black, slim and deadly sword. Sweet.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

@@ -2,7 +2,7 @@
 final class Item_ChainHelmet extends SR_Helmet
 {
 	public function getItemLevel() { return 10; }
-	public function getItemPrice() { return 2200; }
+	public function getItemPrice() { return 450; }
 	public function getItemWeight() { return 1250; }
 	public function getItemDescription() { return 'A metal helmet for melee combat.'; }
 	public function getItemModifiersA(SR_Player $player)

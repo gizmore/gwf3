@@ -4,7 +4,7 @@ final class Item_BroadSword extends SR_MeleeWeapon
 	public function getAttackTime() { return 30; }
 	public function getItemLevel() { return 6; }
 	public function getItemWeight() { return 950; }
-	public function getItemPrice() { return 725; }
+	public function getItemPrice() { return 625; }
 	public function getItemDescription() { return 'A broad steel sword.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

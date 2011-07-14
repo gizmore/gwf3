@@ -4,7 +4,7 @@ final class Item_LongSword extends SR_MeleeWeapon
 	public function getAttackTime() { return 35; }
 	public function getItemLevel() { return 7; }
 	public function getItemWeight() { return 1250; }
-	public function getItemPrice() { return 975; }
+	public function getItemPrice() { return 875; }
 	public function getItemDescription() { return 'A long steel sword.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

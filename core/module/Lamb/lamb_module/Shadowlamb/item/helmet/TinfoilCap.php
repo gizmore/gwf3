@@ -2,7 +2,7 @@
 final class Item_TinfoilCap extends SR_Helmet
 {
 	public function getItemLevel() { return 0; }
-	public function getItemPrice() { return 10; }
+	public function getItemPrice() { return 4.95; }
 	public function getItemWeight() { return 250; }
 	public function getItemDescription() { return 'A cap made of tinfoil. Protects against alien mindbenders.'; }
 //	public function isItemSellable() { return false; }

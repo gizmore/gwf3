@@ -2,7 +2,7 @@
 final class Item_CombatHelmet extends SR_Helmet
 {
 	public function getItemLevel() { return 24; }
-	public function getItemPrice() { return 8000; }
+	public function getItemPrice() { return 1000; }
 	public function getItemWeight() { return 1600; }
 	public function getItemDescription() { return 'This helmet would look dangerous with a BodyArmor.'; }
 	public function getItemModifiersA(SR_Player $player)

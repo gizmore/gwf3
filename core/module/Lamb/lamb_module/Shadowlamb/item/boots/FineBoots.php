@@ -2,7 +2,7 @@
 final class Item_FineBoots extends SR_Boots
 {
 	public function getItemLevel() { return 13; }
-	public function getItemPrice() { return 4750; }
+	public function getItemPrice() { return 550; }
 	public function getItemWeight() { return 250; }
 	public function getItemDescription() { return 'Fine boots with a magic protection. Quite expensive.'; }
 	public function getItemModifiersA(SR_Player $player)

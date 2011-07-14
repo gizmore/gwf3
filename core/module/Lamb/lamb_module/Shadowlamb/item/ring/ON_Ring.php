@@ -2,7 +2,7 @@
 final class Item_ON_Ring extends SR_Ring
 {
 	public function getItemLevel() { return 32; }
-	public function getItemPrice() { return 4000; }
+	public function getItemPrice() { return 2500; }
 	public function getItemDropChance() { return 8; }
 	public function getItemDescription() { return 'A powerful ring made by evil elves.'; }
 	public function getItemModifiersB()

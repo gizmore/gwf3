@@ -8,7 +8,7 @@ final class Item_William911 extends SR_Pistol
 	public function getReloadTime() { return 55; }
 	public function getItemLevel() { return 9; }
 	public function getItemWeight() { return 1250; }
-	public function getItemPrice() { return 1950; }
+	public function getItemPrice() { return 750; }
 	public function getItemDescription() { return 'A solid and accurate 9mm pistol. A bit pricey and not famous.'; }
 	public function getItemRequirements() { return array('firearms'=>2); }
 	public function getItemModifiersA(SR_Player $player)

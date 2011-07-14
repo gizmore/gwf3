@@ -8,7 +8,7 @@ final class Item_Fichetti extends SR_Pistol
 	public function getReloadTime() { return 50; }
 	public function getItemLevel() { return 9; }
 	public function getItemWeight() { return 1150; }
-	public function getItemPrice() { return 950; }
+	public function getItemPrice() { return 450; }
 	public function getItemDescription() { return 'Six 5.44mm at one shot. This is actually a small shotgun.'; }
 	public function getItemRequirements() { return array('firearms'=>3,'pistols'=>1); }
 	public function getItemModifiersA(SR_Player $player)

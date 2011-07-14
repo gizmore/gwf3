@@ -2,7 +2,7 @@
 final class Item_ElvenRobe extends SR_Armor
 {
 	public function getItemLevel() { return 6; }
-	public function getItemPrice() { return 1700; }
+	public function getItemPrice() { return 1100; }
 	public function getItemWeight() { return 325; }
 	public function getItemDescription() { return 'Looks like a white robe for magicians. It glows light green a bit.'; }
 	public function getItemModifiersA(SR_Player $player)

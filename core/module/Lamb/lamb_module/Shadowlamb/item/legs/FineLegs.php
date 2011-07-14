@@ -2,7 +2,7 @@
 final class Item_FineLegs extends SR_Legs
 {
 	public function getItemLevel() { return 18; }
-	public function getItemPrice() { return 9550; }
+	public function getItemPrice() { return 350; }
 	public function getItemWeight() { return 250; }
 	public function getItemDropChance() { return 1.00; }
 	public function getItemDescription() { return 'Fine legs with a magic protection and aura. Quite expensive.'; }

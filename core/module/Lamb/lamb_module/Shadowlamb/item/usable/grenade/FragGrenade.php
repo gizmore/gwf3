@@ -2,7 +2,7 @@
 final class Item_FragGrenade extends SR_Grenade
 {
 	public function getItemDescription() { return 'Will do moderate party damage.'; }
-	public function getItemPrice() { return 650; }
+	public function getItemPrice() { return 150; }
 	public function getItemUsetime() { return 20; }
 	public function getItemWeight() { return 420; }
 	

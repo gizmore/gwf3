@@ -5,7 +5,7 @@ final class Item_SmallFirstAid extends SR_Usable
 	public function getItemDescription() { return 'A small first aid kid to heal friendly players. Sadly does not contain too much of the useful healing tools.'; }
 	public function getItemWeight() { return 300; }
 	public function getItemUseTime(){ return 50; }
-	public function getItemPrice() { return 150; }
+	public function getItemPrice() { return 80; }
 	public function isItemFriendly() { return true; }
 	
 	public function onItemUse(SR_Player $player, array $args)

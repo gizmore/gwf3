@@ -9,7 +9,7 @@ final class Item_AresPredator extends SR_Pistol
 
 	public function getItemLevel() { return 6; }
 	public function getItemWeight() { return 1250; }
-	public function getItemPrice() { return 750; }
+	public function getItemPrice() { return 550; }
 	public function getItemDescription() { return 'The famous "Ares Predator(tm)".'; }
 	
 	public function getItemRequirements() { return array('firearms'=>0); }

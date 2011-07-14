@@ -6,7 +6,7 @@ final class Item_ElvenBow extends SR_Bow
 	public function getBulletsMax() { return 1; }
 	public function getItemLevel() { return 10; }
 	public function getItemWeight() { return 850; }
-	public function getItemPrice() { return 750; }
+	public function getItemPrice() { return 450; }
 	public function getItemDescription() { return 'A nice bow mode from elves. The elves really enjoy archery.'; }
 	public function getItemRequirements() { return array('bows'=>0); }
 	public function getItemModifiersA(SR_Player $player)

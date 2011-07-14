@@ -3,7 +3,7 @@ final class Item_Ether extends SR_Potion
 {
 	public function getItemLevel() { return 16; }
 	public function getItemWeight() { return 250; }
-	public function getItemPrice() { return 500; }
+	public function getItemPrice() { return 300; }
 	public function getItemDropChance() { return 13.37; }
 	public function getItemDescription() { return 'A magic potion that stimulates your neocortex. The result is a refreshing MP.'; }
 	public function onConsume(SR_Player $player)

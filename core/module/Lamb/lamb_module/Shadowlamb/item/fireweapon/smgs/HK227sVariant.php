@@ -8,7 +8,7 @@ final class Item_HK227sVariant extends SR_SMG
 	public function getReloadTime() { return 60; }
 	public function getItemLevel() { return 14; }
 	public function getItemWeight() { return 1550; }
-	public function getItemPrice() { return 14300; }
+	public function getItemPrice() { return 1100; }
 	public function getItemDescription() { return 'A small SubMachineGun from Hekler&Koch. A sure thing for combat.'; }
 	public function getItemRequirements() { return array('firearms'=>3,'smgs'=>2); }
 	public function getItemModifiersA(SR_Player $player)

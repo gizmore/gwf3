@@ -2,7 +2,7 @@
 final class Item_StuddedVest extends SR_Armor
 {
 	public function getItemLevel() { return 7; }
-	public function getItemPrice() { return 450; }
+	public function getItemPrice() { return 350; }
 	public function getItemWeight() { return 2500; }
 	public function getItemDescription() { return 'A studded leather vest. A bit more protection than a leather vest.'; }
 	public function getItemModifiersA(SR_Player $player)

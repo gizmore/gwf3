@@ -2,7 +2,7 @@
 final class Item_ElvenTrousers extends SR_Legs
 {
 	public function getItemLevel() { return 8; }
-	public function getItemPrice() { return 450; }
+	public function getItemPrice() { return 350; }
 	public function getItemWeight() { return 450; }
 	public function getItemDescription() { return 'Elven Trousers. Light and better defense, but less armor. They glow slightly green.'; }
 	public function getItemModifiersA(SR_Player $player)

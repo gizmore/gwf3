@@ -2,7 +2,7 @@
 final class Item_LeatherCap extends SR_Helmet
 {
 	public function getItemLevel() { return 4; }
-	public function getItemPrice() { return 79; }
+	public function getItemPrice() { return 49; }
 	public function getItemWeight() { return 390; }
 	public function getItemDescription() { return 'A sloppy brown leather cap. Looks ok.'; }
 	public function getItemModifiersA(SR_Player $player)

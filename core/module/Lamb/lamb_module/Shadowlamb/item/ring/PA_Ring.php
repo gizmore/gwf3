@@ -2,7 +2,7 @@
 final class Item_PA_Ring extends SR_Ring
 {
 	public function getItemLevel() { return 52; }
-	public function getItemPrice() { return 16000; }
+	public function getItemPrice() { return 9000; }
 	public function getItemDropChance() { return 2; }
 	public function getItemDescription() { return 'A magical ring. The origin is unknown and a mystery'; }
 	

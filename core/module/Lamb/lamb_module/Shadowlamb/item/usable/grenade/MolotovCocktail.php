@@ -2,7 +2,7 @@
 final class Item_MolotovCocktail extends SR_Grenade
 {
 	public function getItemDescription() { return 'Will do slight party damage to a larger area.'; }
-	public function getItemPrice() { return 250; }
+	public function getItemPrice() { return 60; }
 	public function getItemUsetime() { return 45; }
 	public function getItemWeight() { return 550; }
 	
