@@ -154,6 +154,7 @@ class GWF3
 		'no_session' => false
 	);
 	
+	private static $design = GWF_DEFAULT_DESIGN;
 	private static $me = '';
 	private static $module, $page, $user;
 
@@ -280,6 +281,8 @@ class GWF3
 	public static function getMe() { return self::$me; }
 	public static function getModule() { return self::$module; }
 	public static function getUser() { return self::$user; }
+	public static function setDesign($design) { self::$design = $design; }
+	public static function getDesign() { return self::$design; }
 	
 	public function __toString() {
 		$module = Common::displayGet('mo', GWF_DEFAULT_MODULE);

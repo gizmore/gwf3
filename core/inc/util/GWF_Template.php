@@ -16,7 +16,7 @@ final class GWF_Template
 {
 	private static function getDesign()
 	{
-		return GWF_DEFAULT_DESIGN;
+		return GWF3::getDesign();
 	}
 	
 	private static function getPath($path)
@@ -43,7 +43,7 @@ final class GWF_Template
 	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
 	{
 		$name = $module->getName();
-		return self::templatePHP("core/module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
+		return self::templatePHP(GWF_CORE_PATH."module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
 	}
 	
 	private static function templatePHP($path, $tVars=NULL, $tLang=NULL)
@@ -111,7 +111,7 @@ final class GWF_Template
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
 	{
 		$name = $module->getName();
-		return self::template("core/module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
+		return self::template(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
 	}
 	
 	public static function template($path, $tVars=NULL)
