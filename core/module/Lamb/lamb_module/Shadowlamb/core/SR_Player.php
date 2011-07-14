@@ -2197,5 +2197,23 @@ class SR_Player extends GDO
 	{
 		return Common::clamp(28 + $this->get('sharpshooter') * 7);		
 	}
+	
+	public function iExecAnyway()
+	{
+		$anyway = array(
+			'eq','equip',
+			'g','give',
+			'uq','unequip',
+			'ca','cast',
+			'u','use'
+		);
+		$cmd = $this->combat_stack;
+		$cmd = Common::substrUntil($cmd, ' ', $cmd);
+		if (in_array($cmd, $anyway, true))
+		{
+			return Shadowcmd::onExecute($this, $this->combat_stack);
+		}
+		return true;
+	}
 }
 ?>

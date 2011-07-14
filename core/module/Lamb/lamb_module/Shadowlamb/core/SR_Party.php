@@ -1036,7 +1036,18 @@ final class SR_Party extends GDO
 	{
 		$this->popAction(true);
 		$this->setContactEta(rand(15,25));
+		$this->iExecAnyway();
 	}
+	
+	private function iExecAnyway()
+	{
+		foreach ($this->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->iExecAnyway();
+		}
+	}
+	
 
 	public function on_inside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
 
