@@ -8,14 +8,14 @@ final class Delaware_Store extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('LeatherVest'),
-			array('FirstAid'),
-			array('Boots'),
-			array('Trousers'),
-			array('Knife'),
-			array('Backpack'),
-			array('RacingBike'),
-			array('Scanner_v3'),
+			array('LeatherVest', 100.0, 300),
+			array('FirstAid', 100.0, 700),
+			array('Boots', 100.0, 400),
+			array('Trousers', 100.0, 100),
+			array('Knife', 100.0, 200),
+			array('Backpack', 100.0, 500),
+			array('RacingBike', 100.0, 1000),
+			array('Scanner_v3', 100.0, 2000),
 		);
 	}
 }

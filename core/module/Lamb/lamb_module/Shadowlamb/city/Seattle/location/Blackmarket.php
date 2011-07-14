@@ -5,20 +5,20 @@ final class Seattle_Blackmarket extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('SamuraiSword', 40.0),
-			array('NinjaSword', 0.0),
-			array('Flashbang', 60.0),
-			array('FragGrenade', 2.0),
-			array('Fichetti', 50.0),
-			array('RugerWarhawk', 35.0),
-			array('T250Shotgun', 20.0),
-			array('Uzi', 15.0),
-			array('KevlarVest', 15.0),
-			array('ChainMail', 30.0),
-			array('CloakedVest', 6.0),
-			array('LightBodyArmor', -5.0),
-			array('FullBodyArmor', -10.0),
-			array('CombatHelmet', 16.0),
+			array('SamuraiSword', 40.0, 4000),
+			array('NinjaSword', 0.0, 8000),
+			array('Flashbang', 60.0, 1500),
+//			array('FragGrenade', 2.0, 3000),
+			array('Fichetti', 50.0, 4000),
+			array('RugerWarhawk', 35.0, 5000),
+			array('T250Shotgun', 20.0, 10000),
+			array('Uzi', 15.0, 30000),
+			array('KevlarVest', 15.0, 50000),
+			array('ChainMail', 30.0, 25000),
+			array('CloakedVest', 6.0, 60000),
+			array('LightBodyArmor', -5.0, 100000),
+			array('FullBodyArmor', -10.0, 300000),
+			array('CombatHelmet', 16.0, 75000),
 		);
 	}
 	public function getFoundPercentage()  { return 15; }

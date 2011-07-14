@@ -9,6 +9,8 @@ final class Quest_Delaware_DallasJ1 extends SR_Quest
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
+		$have_before = $this->getAmount();
+		$need = $this->getNeededAmount();
 		if (1 === $this->giveQuesties($player, $npc, 'AresViper11', $have_before, $need))
 		{
 			$npc->reply('Good job chummer.');

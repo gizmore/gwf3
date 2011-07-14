@@ -10,7 +10,7 @@ final class Seattle_Archery extends SR_School
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('SportBow'),
+			array('SportBow', 100.0, 179.95),
 			array('ElvenBow', 100.0, 1399.95),
 //			array('DarkBow'),
 			array('Ammo_Arrow', 100.0, 150, 30),

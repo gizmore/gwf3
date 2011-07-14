@@ -9,15 +9,15 @@ final class Redmond_Store extends SR_Store
 	{
 		return array(
 			array('Pringles', 100.0, 2.50),
-			array('FirstAid'),
-			array('Cap'),
-			array('Clothes'),
-			array('Sneakers'),
-			array('Sandals'),
-			array('Trousers'),
-			array('Shorts'),
-			array('Backpack'),
-			array('Bike'),
+			array('FirstAid', 100.0, 250),
+			array('Cap', 100.0, 49.95),
+			array('Clothes', 100.0, 89.95),
+			array('Sneakers', 100.0, 29.95),
+			array('Sandals', 100.0, 9.95),
+			array('Trousers', 100.0, 69.95),
+			array('Shorts', 100.0, 49.95),
+			array('Backpack', 100.0, 69.95),
+			array('Bike', 100.0, 229.95),
 			array('Scanner_v1'),
 		);
 	}

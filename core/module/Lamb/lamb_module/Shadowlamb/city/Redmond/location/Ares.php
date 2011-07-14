@@ -5,23 +5,23 @@ final class Redmond_Ares extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Clothes'),
-			array('LeatherVest'),
-			array('ChainVest'),
-			array('Knife'),
-			array('Stiletto'),
-			array('ShortSword'),
-			array('AresLightFire'),
-			array('AresPredator'),
+			array('Clothes', 100.0, 100),
+			array('LeatherVest', 100.0, 200),
+			array('ChainVest', 100.0, 750),
+			array('Knife', 100.0, 200),
+			array('Stiletto', 100.0, 149.95),
+			array('ShortSword', 100.0, 550),
+			array('AresLightFire', 100.0, 750),
+			array('AresPredator', 100.0, 950),
 			array('Ammo_5mm'),
 			array('Ammo_7mm'),
 			array('Ammo_9mm'),
 			array('Ammo_11mm', 100.0, 200),
-			array('Flashbang'),
-			array('SmallFirstAid'),
-			array('FirstAid'),
-			array('SportBow'),
-			array('Ammo_Arrow'),
+			array('Flashbang', 100.0, 600),
+			array('SmallFirstAid', 100.0, 300),
+			array('FirstAid', 100.0, 500),
+			array('SportBow', 100.0, 250),
+			array('Ammo_Arrow', 100.0, 50),
 		);
 	}
 	public function getFoundPercentage() { return 60.00; }

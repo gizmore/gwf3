@@ -10,10 +10,10 @@ final class Redmond_Alchemist extends SR_Store
 	{
 		return array(
 			array('EmptyBottle'),
-			array('NinjaPotion'),
-			array('StrengthPotion'),
-			array('QuicknessPotion'),
-			array('AimWater'),
+			array('NinjaPotion', 100.0, 250),
+			array('StrengthPotion', 100.0, 150),
+			array('QuicknessPotion', 100.0, 200),
+			array('AimWater', 100.0, 300),
 			array('Stimpatch', 100.0, 1300),
 			array('ScrollOfWisdom', 100.0, 2000),
 		);

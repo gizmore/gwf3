@@ -10,10 +10,10 @@ final class Seattle_Alchemist extends SR_Store
 	{
 		return array(
 			array('Ether', 100.0, 1750),
-			array('NinjaPotion'),
-			array('StrengthPotion'),
-			array('QuicknessPotion'),
-			array('AimWater'),
+			array('NinjaPotion', 100.0, 450),
+			array('StrengthPotion', 100.0, 350),
+			array('QuicknessPotion', 100.0, 400),
+			array('AimWater', 100.0, 500),
 			array('Stimpatch', 100.0, 1200),
 			array('ScrollOfWisdom', 100.0, 1000),
 			array('ElvenStaff', 100.0, 5000),

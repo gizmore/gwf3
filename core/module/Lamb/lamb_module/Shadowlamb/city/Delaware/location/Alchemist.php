@@ -8,12 +8,11 @@ final class Delaware_Alchemist extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('EmptyBottle'),
 			array('WaterBottle'),
-			array('NinjaPotion'),
-			array('StrengthElixir'),
-			array('QuicknessPotion'),
-			array('AimWater'),
+			array('NinjaPotion', 100.0, 500),
+			array('StrengthElixir', 100.0, 600),
+			array('QuicknessPotion', 100.0, 400),
+			array('AimWater', 100.0, 650),
 			array('Stimpatch', 100.0, 1000),
 			array('ScrollOfWisdom', 100.0, 200),
 			array('Ether', 100.0, 2000),
