@@ -29,7 +29,7 @@ define('LAMB_CONFIG_FILENAME', $argv[2]);
 
 # Include GWF core
 require_once 'gwf3.class.php';
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
+GWF::onLoadConfig(GWF_CONFIG_PATH);
 var_dump(GWF_CORE_PATH);
 GWF_Language::initEnglish();
 GWF_Debug::setBasedir(GWF_CORE_PATH);

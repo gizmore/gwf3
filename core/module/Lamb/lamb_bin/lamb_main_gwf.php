@@ -6,7 +6,7 @@ if (isset($_SERVER['REMOTE_ADDR'])) {
 # GWF2 core
 define('GWF_CONFIG_PATH', 'protected/config_lamb.php');
 require_once 'gwf3.class.php'; 
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
+GWF::onLoadConfig(GWF_CONFIG_PATH);
 
 # Lamb2 core
 $dir = 'core/module/Lamb';

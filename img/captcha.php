@@ -1,7 +1,7 @@
 <?php
 chdir("../");
 require_once 'gwf3.class.php';
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
+GWF::onLoadConfig(GWF_CONFIG_PATH);
 GWF_Session::start(false);
 require('core/inc3p/Class_Captcha.php');
 GWF_HTTP::noCache();

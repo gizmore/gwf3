@@ -8,7 +8,7 @@ if (!is_readable('protected/config.php')) {
 }
 
 require_once 'gwf3.class.php'; 
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
+GWF::onLoadConfig(GWF_CONFIG_PATH);
 GWF_Language::initEnglish();
 GWF_HTML::init();
 GWF_Log::init(false, true, 'protected/logs');
