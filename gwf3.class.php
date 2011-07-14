@@ -167,7 +167,7 @@ class GWF3
 		$config = array_merge(self::$CONFIG, $config);
 
 		if (false === GWF::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session']) 
-			|| !defined('GWF_INSTALLATION')	)
+			&& !defined('GWF_INSTALLATION')	)
 		{			
 			die('GWF Initialisation: GWF not installed?!');
 		}
