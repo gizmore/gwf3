@@ -76,7 +76,7 @@ class Shadowcmd
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
-		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say','fight','bye'),
+		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say','bye'),
 		'fight' => array('fl','eq','uq','gi','fw','bw','u','ca','#'),
 		'inside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
 		'outside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
@@ -90,7 +90,7 @@ class Shadowcmd
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'sleep' => array('stop'),
-		'talk' => array('kick'),
+		'talk' => array('kick','fight'),
 		'fight' => array(),
 		'inside' => array('g','exp','hunt','kick','exit'),
 		'outside' => array('g','exp','hunt','kick','en'),
