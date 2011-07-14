@@ -2,13 +2,13 @@
 /**
  * This is an example how your error.php could look like!
  */
+$_GET['mo'] = 'GWF';
+$_GET['me'] = 'Error';
+
 require_once 'gwf3.class.php';
 $gwf = new GWF3(__DIR__, array(
 	'load_module' => false,
 ));
-
-$_GET['mo'] = 'GWF';
-$_GET['me'] = 'Error';
 
 # Get the error page
 $errors = array(403, 404);

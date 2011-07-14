@@ -12,18 +12,9 @@ final class GWF_Debug
 {
 	private static $die = true;
 	private static $enabled = false;
-	private static $basedir = '';
-	
 	################
 	### Settings ###
 	################
-	public static function setBasedir($basedir)
-	{
-		if (is_dir($basedir) && is_readable($basedir))
-		{
-			self::$basedir = $basedir;
-		}
-	}
 	
 	public static function setDieOnError($bool)
 	{
@@ -234,7 +225,9 @@ final class GWF_Debug
 	
 	public static function shortpath($path)
 	{
-		return trim(str_replace(self::$basedir, '', $path), ' /');
+		$path = str_replace(GWF_PATH, '', $path);
+		$path = str_replace(GWF_WWW_PATH, '', $path); // if isn't a GWF3 instance, it could not be defined!
+		return trim($path, ' /');
 	}
 }
 ?>

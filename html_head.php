@@ -3,20 +3,15 @@
 
 if(defined('WC_HTML_HEAD__DEFINED')) { return; }
 
-require_once 'gwf3.class.php';
-
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
-GWF3::onLoadConfig('protected/config.php');
+
+require_once 'gwf3.class.php';
 $gwf = new GWF3(__DIR__, array(
-	'website_init' => false,
-	'autoload_modules' => false,
 	'load_module' => false,
 	'get_user' => false,
+	'blocking' => !defined('GWF_SESSION_NOT_BLOCKING'),
 ));
-
-$gwf->onInit(__DIR__, !defined('GWF_SESSION_NOT_BLOCKING'));
-$gwf->onAutoloadModules();
 
 if (false === ($wechall = GWF_Module::loadModuleDB('WeChall', true, true)))
 {

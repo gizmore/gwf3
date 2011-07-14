@@ -1,17 +1,144 @@
 <?php
 
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.01-2011.JUL.02');
-define('GWF_PATH', __DIR__.'/');
-define('GWF_CORE_PATH', GWF_PATH.'core/');
-if (!defined('GWF_CONFIG_PATH')) define('GWF_CONFIG_PATH', 'protected/config.php');
-if (!defined('GWF_LOGGING_PATH')) define('GWF_LOGGING_PATH', GWF_PATH.'protected/logs');
+define('GWF_CORE_VERSION', '3.02-2011.JUL.14');
+
+/**
+ * Welcome to
+ * Space & Gizmore Website Framework
+ * @author spaceone
+ * @version 1.00
+ * @since 14.07.2011
+ */
+final class GWF
+{
+	/**
+	 * This is always required!
+	 */
+	public static function _init()
+	{
+		define('GWF_PATH', __DIR__.'/');
+		define('GWF_CORE_PATH', GWF_PATH.'core/');
+		
+		# Require the Database
+		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
+
+		# Require the util
+		require_once GWF_CORE_PATH.'inc/util/Common.php';
+
+		# The GWF autoloader
+		spl_autoload_register(array('GWF','onAutoloadClass'));
+	
+		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'protected/');
+		Common::defineConst('GWF_DEFAULT_CONFIG_PATH', GWF_DEFAULT_PROTECTED_PATH.'config.php'); // This could also the path for the example file, use it for installation-script!
+		Common::defineConst('GWF_DEFAULT_LOGGING_PATH', GWF_DEFAULT_PROTECTED_PATH.'logs'); // without trailing slash
+	}
+	
+	/**
+	 * This will be required for a new GWF3() Instance.
+	 * It will be called there!
+	 */
+	private static $_instance = false;
+	public static function init($basepath, $configpath, $loggingpath, $blocking=true, $no_session=false) 
+	{
+		# Actions already done?
+		if(true === self::$_instance) return;
+		
+		# Important definements
+		Common::defineConst('GWF_WWW_PATH', $basepath);
+
+		# Enable the error handlers
+		GWF_Debug::enableErrorHandler();
+		
+		# Load the Config
+		self::onLoadConfig($configpath);
+		
+		# Start Logging
+		if (false === self::onStartLogging($loggingpath, $blocking, $no_session))
+		{
+			return false;
+		}
+		
+		# Set valid mo/me
+		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
+		$_GET['me'] = Common::defineConst('GWF_METHOD', Common::getGetString('me', GWF_DEFAULT_METHOD));
+
+		self::$_instance = true;
+		return true;
+	}
+	public static function onAutoloadClass($classname, $prefix='GWF_')
+	{
+		if (substr($classname, 0, 4) === $prefix)
+		{
+			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
+		}
+	}
+	public static function onLoadConfig($config=GWF_DEFAULT_CONFIG_PATH) 
+	{
+		$config = Common::defineConst('GWF_CONFIG_PATH', $config);
+
+		# Get the config
+		if (!defined('GWF_HAVE_CONFIG'))
+		{
+			if(!file_exists($config))
+			{			
+				if(!file_exists(GWF_DEFAULT_CONFIG_PATH)) {
+					die('GWF3 couldnt load the config: file doesnt exists.');
+				} else {
+					$config = GWF_DEFAULT_CONFIG_PATH;
+					// REPORT THAT ACTION WITH EMAIL ?!
+				}
+			}
+			require_once $config;
+			define('GWF_HAVE_CONFIG', 1);
+			self::onDefineWebRoot();
+		}
+	}
+	public static function onDefineWebRoot() 
+	{
+		# Web Root
+		$root = GWF_WEB_ROOT_NO_LANG;
+		if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
+		{
+			if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
+			{
+				if (strpos(';'.GWF_SUPPORTED_LANGS.';', $matches[1]) !== false)
+				{
+					$root .= $matches[1].'/'; # web_root is lang extended
+				}
+			}
+		}
+		// User can decide for his instance
+		Common::defineConst('GWF_WEB_ROOT', $root);
+	}
+	public static function onStartLogging($logpath=GWF_DEFAULT_LOGGING_PATH, $blocking=true, $no_session=false)
+	{
+		$logpath = Common::defineConst('GWF_LOGGING_PATH', $logpath);
+		
+		$username = false;
+		if (!$no_session)
+		{
+			if (!GWF_Session::start($blocking))
+			{
+				return false; # Not installed
+			}
+			if (false !== ($user = GWF_Session::getUser()))
+			{
+				$username = $user->getVar('user_name');
+			}
+		}
+		GWF_Log::init($username, true, $logpath);
+		
+	}
+}
 
 /**
  * @author spaceone
  * @version 1.02
+ * @since 01.07.2011
  * @todo check if Session commit works
- * @todo better $mo/$me handling
+ * @todo better GWF_WEBSITE_DOWN
+ * @todo disable logging for an instance
  */
 class GWF3 
 {
@@ -20,17 +147,17 @@ class GWF3
 		'autoload_modules' => true,
 		'load_module' => true,
 		'get_user' => true,
-		'config_path' => GWF_CONFIG_PATH,
-//		'logging' => true,
+		'config_path' => GWF_DEFAULT_CONFIG_PATH,
+		'logging_path' => GWF_DEFAULT_LOGGING_PATH,
+//		'do_logging' => true,
+		'blocking' => true,
+		'no_session' => false
 	);
 	
-//	private static $me = GWF_DEFAULT_MODULE, $mo = GWF_DEFAULT_METHOD;
 	private static $me = '';
-	private static $mo = '';
 	private static $module, $page, $user;
 
 	/**
-	 *
 	 * @param array $config
 	 * @param $basepath = __DIR__
 	 * @return GWF3 
@@ -38,9 +165,12 @@ class GWF3
 	public function __construct($basepath, array $config = array())
 	{
 		$config = array_merge(self::$CONFIG, $config);
-		define('GWF_WWW_PATH', $basepath);
-		self::onLoadConfig($config['config_path']);
-		
+
+		if (false === GWF::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session']) 
+			|| !defined('GWF_INSTALLATION')	)
+		{			
+			die('GWF Initialisation: GWF not installed?!');
+		}
 		if ($config['website_init']) 
 		{ 
 			$this->onInit($basepath); 
@@ -55,19 +185,18 @@ class GWF3
 		}
 		if ($config['get_user']) 
 		{		
-			self::$user = GWF_User::getStaticOrGuest();
-			GWF_Template::addMainTvars(array('user' => self::$user));
+			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest()) ));
 		}
-//		return $this;
 	}
 	public function __destruct() 
 	{
 		$this->onSessionCommit();
 	}
-	public function onInit($server_root, $blocking=true, $no_session=false) 
+	// this function is maybe senseless now... it cant return false?!
+	public function onInit() 
 	{
 		# Init core
-		if (false === GWF_Website::init($server_root, $blocking, $no_session)) {
+		if (false === GWF_Website::init()) {
 			die('GWF3 does not seem to be installed properly.');
 		}
 		return $this;
@@ -85,19 +214,20 @@ class GWF3
 	{
 		if(defined('GWF_WEBSITE_DOWN')) return;
 		# Load the module
-		if (false === (self::$module = GWF_Module::loadModuleDB(Common::getGetString('mo', GWF_DEFAULT_MODULE)))) {
-			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) {
+		if (false === (self::$module = GWF_Module::loadModuleDB(GWF_MODULE))) 
+		{
+			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
+			{
 				die('No module found.');
 			}
+			// add Module::defaultMethod(); !!!!!!!!!!!!!! check if method exists
+			// good for performance!
 			self::$me = GWF_DEFAULT_METHOD; //IMPORTANT
 		}
-		else {
-			self::$me = Common::getGetString('me', GWF_DEFAULT_METHOD);
+		else 
+		{
+			self::$me = GWF_METHOD;
 		}
-
-		# Set valid mo/me
-		$_GET['mo'] = self::$module->getName();
-		$_GET['me'] = self::$me;
 
 		if (self::$module->isEnabled())
 		{
@@ -117,37 +247,7 @@ class GWF3
 		return $this;
 
 	}
-	public static function gwf3_autoload($classname)
-	{
-		if (substr($classname, 0, 4) === 'GWF_')
-		{
-			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
-		}
-	}
-	public static function onLoadConfig($config = GWF_CONFIG_PATH) {
-		# Get the config
-		if (!defined('GWF_HAVE_CONFIG'))
-		{
-			require_once $config;
-			define('GWF_HAVE_CONFIG', 1);
-			self::onDefineWebRoot();
-		}
-	}
-	public static function onDefineWebRoot() {
-		# Web Root
-		$root = GWF_WEB_ROOT_NO_LANG;
-		if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
-		{
-			if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
-			{
-				if (strpos(';'.GWF_SUPPORTED_LANGS.';', $matches[1]) !== false)
-				{
-					$root .= $matches[1].'/'; # web_root is lang extended
-				}
-			}
-		}
-		define('GWF_WEB_ROOT', $root);
-	}
+
 	public function onSessionCommit($store_last_url=true) 
 	{
 		# Commit the session
@@ -176,7 +276,7 @@ class GWF3
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
-	public static function getMo() { return self::$mo; }
+	public static function getMo() { return GWF_MODULE; }
 	public static function getMe() { return self::$me; }
 	public static function getModule() { return self::$module; }
 	public static function getUser() { return self::$user; }
@@ -192,14 +292,4 @@ class GWF3
 	}
 }
 
-# Require the Database
-require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
-
-# Require the util
-require_once GWF_CORE_PATH.'inc/util/Common.php';
-
-# The GWF autoloader
-spl_autoload_register(array('GWF3','gwf3_autoload'));
-
-# Enable the error handlers
-GWF_Debug::enableErrorHandler();
+GWF::_init();
