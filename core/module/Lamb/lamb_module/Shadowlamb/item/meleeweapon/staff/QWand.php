@@ -5,7 +5,7 @@ final class Item_QWand extends SR_MeleeWeapon
 	public function getItemLevel() { return 6; }
 	public function getItemDropChance() { return 2.56; }
 	public function getItemWeight() { return 150; }
-	public function getItemPrice() { return 3275; }
+	public function getItemPrice() { return 1275; }
 	public function getItemDescription() { return 'A small magic wand. It glows in different colors.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

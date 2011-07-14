@@ -4,7 +4,7 @@ final class Item_ElvenStaff extends SR_MeleeWeapon
 	public function getAttackTime() { return 35; }
 	public function getItemLevel() { return 8; }
 	public function getItemWeight() { return 550; }
-	public function getItemPrice() { return 1275; }
+	public function getItemPrice() { return 975; }
 	public function getItemDescription() { return 'A wooden staff for magicians, charmed by the elves.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{
