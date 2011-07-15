@@ -40,7 +40,14 @@ abstract class SR_Hotel extends SR_Location
 
 		$b = chr(2);
 		$party->pushAction(SR_Party::ACTION_SLEEP);
-		$party->notice("The party goes to sleep. You go to your {$b}own{$b} bedroom.");
+		
+		foreach ($party->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->effectsReset();
+		}
+		
+		$party->notice("The party goes to sleep. You go to your {$b}own{$b} bedroom. All your effects have been reset.");
 	}
 }
 ?>

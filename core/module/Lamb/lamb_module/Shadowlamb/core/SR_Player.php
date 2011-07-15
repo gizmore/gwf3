@@ -1117,6 +1117,13 @@ class SR_Player extends GDO
 		}
 	}
 	
+	public function effectsReset()
+	{
+		$this->sr4_effects = array();
+		$this->updateEffects();
+		$this->modify();
+	}
+	
 	public function effectsTimer()
 	{
 		$changed = false;
