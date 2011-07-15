@@ -39,7 +39,7 @@ final class GWF
 	 * It will be called there!
 	 */
 	private static $_instance = false;
-	public static function init($basepath, $configpath, $loggingpath, $blocking=true, $no_session=false) 
+	public static function init($basepath, $configpath, $loggingpath, $blocking=true, $no_session=false, $do_logging=true) 
 	{
 		# Actions already done?
 		if(true === self::$_instance) return;
@@ -53,10 +53,13 @@ final class GWF
 		# Load the Config
 		self::onLoadConfig($configpath);
 		
-		# Start Logging
-		if (false === self::onStartLogging($loggingpath, $blocking, $no_session))
+		if($do_logging)
 		{
-			return false;
+			# Start Logging
+			if (false === self::onStartLogging($loggingpath, $blocking, $no_session))
+			{
+				return false;
+			}
 		}
 		
 		# Set valid mo/me
@@ -128,7 +131,6 @@ final class GWF
 			}
 		}
 		GWF_Log::init($username, true, $logpath);
-		
 	}
 }
 
@@ -149,7 +151,7 @@ class GWF3
 		'get_user' => true,
 		'config_path' => GWF_DEFAULT_CONFIG_PATH,
 		'logging_path' => GWF_DEFAULT_LOGGING_PATH,
-//		'do_logging' => true,
+		'do_logging' => true,
 		'blocking' => true,
 		'no_session' => false
 	);
@@ -167,14 +169,14 @@ class GWF3
 	{
 		$config = array_merge(self::$CONFIG, $config);
 
-		if (false === GWF::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session']) 
+		if (false === GWF::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
 			&& !defined('GWF_INSTALLATION')	)
 		{			
 			die('GWF Initialisation: GWF not installed?!');
 		}
 		if ($config['website_init']) 
 		{ 
-			$this->onInit($basepath); 
+			$this->onInit(); 
 		}
 		if ($config['autoload_modules']) 
 		{ 

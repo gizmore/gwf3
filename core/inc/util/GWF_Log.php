@@ -1,5 +1,5 @@
 <?php
-if (!defined('GWF_CHMOD')) { define('GWF_CHMOD', '0777'); }
+Common::defineConst('GWF_CHMOD', '0777');
 
 /**
  * The GWF Logger
