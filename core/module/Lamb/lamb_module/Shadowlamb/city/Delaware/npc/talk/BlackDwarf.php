@@ -3,7 +3,7 @@ final class Delaware_BlackDwarf extends SR_TalkingNPC
 {
 	public function getName() { return 'Brujios'; }
 	
-	public function getNPCQuests(SR_Player $player) { return array('Delaware_BS1','Delaware_BS2'); }
+	public function getNPCQuests(SR_Player $player) { return array('Delaware_BS1','Delaware_BS2','Delaware_BS3'); }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{

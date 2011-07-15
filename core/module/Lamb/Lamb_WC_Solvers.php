@@ -5,6 +5,8 @@
 
 function lamb_wc_solvers($key, $name, $url, $channels=array())
 {
+	$max_solvercount = 250;
+	
 	# Date we want to query
 	$lastdate = GWF_Settings::getSetting('LAMB_SOLVERS_DATE_'.$key, '');
 	if (strlen($lastdate) !== 14)
@@ -87,6 +89,10 @@ function lamb_wc_solvers($key, $name, $url, $channels=array())
 //		if (intval($latestdate) <= intval($solvedate))
 //			$latestdate = intval($solvedate) + 1;
 
+		if ($solvercount > $max_solvercount)
+		{
+			continue;
+		}
 
 		
 		$lamb = Lamb::instance();

@@ -220,6 +220,7 @@ abstract class SR_Store extends SR_Location
 		if ($item->isEquipped($player))
 		{
 			$player->unequip($item);
+			$player->modify();
 		}
 		
 		$price = $this->calcSellPrice($player, $item);

@@ -7,6 +7,7 @@ final class Seattle_Blackmarket extends SR_Store
 		return array(
 			array('SamuraiSword', 40.0, 4000),
 			array('NinjaSword', 0.0, 8000),
+			array('WoodNunchaku', 70.0, 800),
 			array('Flashbang', 60.0, 1500),
 //			array('FragGrenade', 2.0, 3000),
 			array('Fichetti', 50.0, 4000),

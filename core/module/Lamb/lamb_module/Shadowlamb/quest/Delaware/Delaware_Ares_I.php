@@ -1,15 +1,17 @@
 <?php
 final class Quest_Delaware_Ares_I extends SR_Quest
 {
-	const REWARD_XP = 2;
-	const REWARD_NUYEN = 500;
-	
 	public function getQuestName() { return 'Pistols'; }
 	public function getQuestDescription() { return sprintf('Bring an AresViper11 to the Ares salesman in Delaware.'); }
 	public function getNeededAmount() { return 1; }
 	
+	public function getRewardXP() { return 3; }
+	public function getRewardNuyen() { return 500; }
+	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
+		$need = $this->getNeededAmount();
+		$have_before = $this->getAmount();
 		if (1 === $this->giveQuesties($player, $npc, 'AresViper11', $have_before, $need))
 		{
 			$npc->reply('Thank you chummer. This will totally fit in my collection.');
@@ -35,7 +37,7 @@ final class Quest_Delaware_Ares_I extends SR_Quest
 				$npc->reply("If i get one gun from some runners we should find the right gun.");
 				break;
 			case 'yes':
-				$npc->reply('Yeah?');
+				$npc->reply('Thank you, chummer. I hope you can organize one soon!');
 				break;
 			case 'no':
 				$npc->reply('Ok.');

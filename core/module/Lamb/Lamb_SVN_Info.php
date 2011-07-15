@@ -8,7 +8,7 @@ function lamb_svn_info($key, $repo, $user='', $pass='', $displayurl='', $channel
 
 	$svninfo->setRepository($repo, $user, $pass);
 
-	if (false === ($currentRevision = $svninfo->getCurrentRevision()))
+	if (0 == ($currentRevision = $svninfo->getCurrentRevision()))
 	{
 		Lamb_Log::logDebug('Fetching current revision failed.');
 		return;

@@ -6,6 +6,8 @@ $lines = preg_split('/\\n/', $result);
 
 $map = array(
 	'Revolution Elite' => '#RevolutionElite',
+	'Hacker.org' => '#hacker.org',
+	'Security Traps' => '#securitytraps',
 );
 
 foreach ($lines as $line)
