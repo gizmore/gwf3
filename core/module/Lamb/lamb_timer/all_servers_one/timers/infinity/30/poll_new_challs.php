@@ -3,6 +3,11 @@ $bot = Lamb::instance();
 $url = "http://www.wechall.net/index.php?mo=WeChall&me=API_Site&no_session=1";
 $result = GWF_HTTP::getFromURL($url);
 $lines = preg_split('/\\n/', $result);
+
+$map = array(
+	'Revolution Elite' => '#RevolutionElite',
+);
+
 foreach ($lines as $line)
 {
 	$data = explode('::', $line);
@@ -41,6 +46,24 @@ foreach ($lines as $line)
 				$s->sendPrivmsg($c->getName(), $message);
 			}
 		}
+		
+		if (isset($map[$sitename]))
+		{
+			$chan = $map[$sitename];
+			foreach ($bot->getServers() as $s)
+			{
+				$s instanceof Lamb_Server;
+				foreach ($s->getChannels() as $c)
+				{
+					$c instanceof Lamb_Channel;
+					if (!strcasecmp($c->getName(), $chan))
+					{
+						$s->sendPrivmsg($c->getName(), $message);
+					}
+				}
+			}
+		}
+		
 		GWF_Settings::setSetting($setname, $challs);
 	}
 }
