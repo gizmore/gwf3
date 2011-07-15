@@ -130,6 +130,7 @@ abstract class SR_Blacksmith extends SR_Store
 		if ($item->isEquipped($player))
 		{
 			$player->unequip($item);
+			$player->modify();
 		}
 		$item->deleteItem($player);
 		
