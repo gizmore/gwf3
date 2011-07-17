@@ -416,13 +416,14 @@ final class WC_RegAt extends GDO
 	###################
 	### Get By Rank ###
 	###################
-	public static function getUserByGlobalRank($rank)
+	public static function getUserByGlobalRank($rank, $respect_nonrank=true)
 	{
 		$rank = intval($rank);
 		if ($rank < 1) {
 			return false;
 		}
-		$users = GDO::table('GWF_User')->selectObjects("*", '', 'user_level DESC', 1, $rank-1);
+		$where = $respect_nonrank ? 'user_options&0x10000000=0' : '';
+		$users = GDO::table('GWF_User')->selectObjects("*", $where, 'user_level DESC', 1, $rank-1);
 		if (count($users) === 1) {
 			return $users[0];
 		} else {
