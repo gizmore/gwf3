@@ -164,6 +164,9 @@ abstract class SR_City
 		elseif ($target->getParty()->getCity() !== $party->getCity()) {
 			$party->notice(sprintf('%s has left %s.', $target->getName(), $party->getCity()));
 		}
+		elseif ($target->getPartyID() === $party->getID()) {
+			$party->notice(sprintf('%s is in your party now.', $target->getName()));
+		}
 		else {
 			return false;
 		}
