@@ -167,6 +167,8 @@ abstract class SR_Spell
 		
 		$player->healMP(-$need);
 		
+		#
+		
 		return $this->cast($player, $target, $level, $hits);
 	}
 	
@@ -255,9 +257,14 @@ abstract class SR_Spell
 			$this->announceADV($player, $target, $level, $append, $append_ep);
 
 			# Loot him!
-			$xp = $target->getLootXP();
+			$xp = $target->isHuman() ? 0 : $target->getLootXP();
+//			$xp = $target->getLootXP();
 			$ny = round($target->getLootNuyen() / $mc, 1);
 			$pxp = 0;
+			if ($player->isNPC())
+			{
+				$target->resetXP();
+			}
 			
 			foreach ($p->getMembers() as $member)
 			{
@@ -329,9 +336,13 @@ abstract class SR_Spell
 			
 			if ($target->isDead())
 			{
-				$xp = $target->getLootXP();
+				$xp = $target->isHuman() ? 0 : $target->getLootXP();
+//				$xp = $target->getLootXP();
 				$nuyen = $target->getLootNuyen();
-				$target->resetXP();
+				if ($player->isNPC())
+				{
+					$target->resetXP();
+				}
 				$target->giveNuyen(-$nuyen);
 				
 				$out .= sprintf(', kills %s with %s', $target->getName(), $dmg);
