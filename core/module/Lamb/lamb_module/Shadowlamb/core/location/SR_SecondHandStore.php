@@ -50,8 +50,15 @@ abstract class SR_SecondHandStore extends SR_Store
 	
 	public function on_buy(SR_Player $player, array $args)
 	{
+		$bot = Shadowrap::instance($player);
+		if (is_numeric($args[0]))
+		{
+			$bot->reply("Purchasing items by ID is disabled in second hand store, because of possible race conditions.");
+			return false;
+		}
+		
 		if (false === ($id = $this->getSecondsHandArgID($player, $args[0]))) {
-			Shadowrap::instance($player)->reply('The item could not been found in the second hand store.');
+			$bot->reply('The item could not been found in the second hand store.');
 			return false;
 		}
 		
