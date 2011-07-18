@@ -14,8 +14,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$nin = $sub === 'bows' ? Common::clamp($player->get('ninja')) : 0.0; # (bow++)
 		return array(
 			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
-			'min_dmg' => round($fir*0.0 + $sub*0.2 + $nin*0.0, 1),
-			'max_dmg' => round($fir*0.0 + $sub*0.8 + $nin*0.1, 1),
+			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.0, 1),
+			'max_dmg' => round($fir*0.2 + $sub*0.8 + $nin*0.1, 1),
 		);
 	}
 	
