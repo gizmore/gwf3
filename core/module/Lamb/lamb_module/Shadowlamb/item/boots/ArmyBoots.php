@@ -9,8 +9,8 @@ final class Item_ArmyBoots extends SR_Boots
 	{
 		return array(
 			'defense' => 0.4,
-			'marm' => 0.6,
-			'farm' => 0.6,
+			'marm' => 0.5,
+			'farm' => 0.5,
 		);
 	}
 }
