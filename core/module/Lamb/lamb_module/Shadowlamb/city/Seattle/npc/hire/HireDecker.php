@@ -1,7 +1,7 @@
 <?php
 final class Seattle_HireDecker extends SR_HireNPC
 {
-	public function getName() { return 'The hireling'; }
+//	public function getName() { return 'The hireling'; }
 	public function getNPCLevel() { return 8; }
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
 	public function canNPCMeet(SR_Party $party) { return false; }
