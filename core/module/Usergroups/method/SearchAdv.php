@@ -93,6 +93,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 			$where = "'1'='0'";
 		}
 		
+		$deleted = GWF_User::DELETED;
+		$where .= " AND user_options&$deleted=0";
+		
 		$users = GWF_TABLE_PREFIX.'user';
 		$profiles = GWF_TABLE_PREFIX.'profile';
 		$query = "SELECT COUNT(*) AS c FROM $users LEFT JOIN $profiles ON prof_uid=user_id WHERE $where";

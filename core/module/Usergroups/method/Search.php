@@ -36,7 +36,8 @@ final class Usergroups_Search extends GWF_Method
 		else
 		{
 			$eterm = GDO::escape($term);
-			$conditions = "user_name LIKE '%$eterm%'";
+			$deleted = GWF_User::DELETED;
+			$conditions = "user_name LIKE '%$eterm%' AND user_options&$deleted=0";
 			$nItems = $usertable->countRows($conditions);
 			$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 			$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
