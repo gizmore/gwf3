@@ -64,9 +64,9 @@ abstract class SR_Store extends SR_Location
 		parent::onEnter($player);
 	}
 
-	public function calcSellPrice(SR_Player $player, SR_Item $item)
+	public function calcSellPrice(SR_Player $player, SR_Item $item, $amt=1)
 	{
-		$price = $item->getItemPrice() * 0.10;
+		$price = $item->getItemPrice() * 0.10 * $amt;
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
@@ -203,37 +203,143 @@ abstract class SR_Store extends SR_Location
 	public function on_sell(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1) {
+		if (count($args) === 0) {
 			$bot->reply(Shadowhelp::getHelp($player, 'sell'));
 			return false;
 		}
-		if (false === ($item = $player->getInvItem($args[0]))) {
-			$bot->reply('You don`t have that item in your inventory.');
-			return false;
-		}
-		if (!$item->isItemSellable()) {
-			$bot->reply('I don`t want your '.$item->getItemName().'.');
-			return false;
-		}
-
-		# Sell it
-		if ($item->isEquipped($player))
+		
+		# Item
+		$itemname = array_shift($args);
+		if (false === ($item = $player->getInvItem($itemname)))
 		{
-			$player->unequip($item);
-			$player->modify();
-		}
-		
-		$price = $this->calcSellPrice($player, $item);
-		
-		if (false === $item->useAmount($player, 1)) {
-			$bot->reply('Database error in SR_Store::on_sell()');
+			$bot->reply('You don\'t have that item.');
 			return false;
 		}
-
+		$itemname = $item->getItemName();
+		if (!$item->isItemSellable())
+		{
+			$bot->reply(sprintf('I don\'t want your %s.', $item->getItemName()));
+			return false;
+		}
+		
+		# Price
+		$price = $item->getItemPrice() / $item->getItemDefaultAmount();
+		$total = 0.0;
+		
+		# Amount
+		$amt = isset($args[0]) ? array_shift($args) : 1;
+		
+		
+		# A stackable?
+		if ($item->isItemStackable())
+		{
+			$have_amt = $item->getAmount();
+			# Split item
+			if ($amt > $have_amt)
+			{
+				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+				return false;
+			}
+				
+			if (!$item->useAmount($player, $amt))
+			{
+				$bot->reply('Database Error R2 D2.');
+				return false;
+			}
+		}
+		
+		# Not stackable
+		else
+		{
+			$items2 = $player->getInvItems($item->getItemName(), $amt);
+			if (count($items2) < $amt)
+			{
+				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+				return false;
+			}
+				
+			$stored = 0;
+			foreach ($items2 as $item2)
+			{
+				if (!$player->removeFromInventory($item2))
+				{
+					$bot->reply('Database Error R2 D2.');
+					return false;
+				}
+			}
+		}
+		
+		$total = $this->calcSellPrice($player, $item, $amt);
+		
 		$player->giveNuyen($price);
 				
-		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayNuyen($price)));
+		$bot->reply(sprintf('You sold %d of your %s for %s.', $amt, $item->getItemName(), Shadowfunc::displayNuyen($total)));
 		return true;
+//		
+//		$inv = $player->getInventorySorted();
+//		
+//		if (is_numeric($arg))
+//		{
+//			$arg = (int)$arg;
+//			if ( ($arg < 1) || ($arg > count($inv)) )
+//			{
+//				$item = false;
+//			}
+//			else
+//			{
+//				$item = array_slice($inv, $arg-1, 1, true);
+//				$itemname = key($item);
+//			}
+//		}
+//		else
+//		{
+//			
+//			$item = $player->getInvItem($arg);
+//			$confirmed = true;
+//		}
+//		
+//		
+//		
+//
+//		if ($item === false)
+//		{
+//			$bot->reply('You don`t have that item in your inventory.');
+//			return false;
+//		}
+//		
+//		if (false === ($item = $player->getInvItem($args[0]))) {
+//			$bot->reply('You don`t have that item in your inventory.');
+//			return false;
+//		}
+//		if (!$item->isItemSellable()) {
+//			$bot->reply('I don`t want your '.$item->getItemName().'.');
+//			return false;
+//		}
+//
+////		# Sell it
+////		if ($item->isEquipped($player))
+////		{
+////			$player->unequip($item);
+////			$player->modify();
+////		}
+//
+//		if ($amt < 1)
+//		{
+//			$bot->reply('Please sell a positive amount.');
+//			return false;
+//		}
+//		
+//		$price = $this->calcSellPrice($player, $item) * $amt;
+//		
+//		if (false === $item->useAmount($player, 1)) {
+//			$bot->reply('Database error in SR_Store::on_sell()');
+//			return false;
+//		}
+//
+//		$player->giveNuyen($price);
+//				
+//		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayNuyen($price)));
+//		return true;
 	}
 	
 }

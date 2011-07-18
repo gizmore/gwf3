@@ -42,9 +42,9 @@ final class Delaware_Emo extends SR_NPC
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		SR_Quest::getQuest($player, 'Delaware_MCGuest')->onKill($player);
-		SR_Quest::getQuest($player, 'Delaware_MCGuest')->onKill($player);
-		SR_Quest::getQuest($player, 'Delaware_MCGuest')->onKill($player);
+		SR_Quest::getQuest($player, 'Delaware_MCGuest11')->onKill($player);
+		SR_Quest::getQuest($player, 'Delaware_MCGuest32')->onKill($player);
+		SR_Quest::getQuest($player, 'Delaware_MCJohnson1')->onKillEmo($player);
 		return array();
 	}
 }

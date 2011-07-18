@@ -51,8 +51,11 @@ final class Quest_Delaware_MCGuest31 extends SR_Quest
 	
 	public function onKill(SR_Player $player)
 	{
-		$this->increaseAmount(1);
-		$player->message(sprintf("Now you killed %d of %d %s for the %s quest.", $this->getAmount(), $this->getNeededAmount(), self::EMO_TYPE, $this->getQuestName()));
+		if ($this->isInQuest($player))
+		{
+			$this->increaseAmount(1);
+			$player->message(sprintf("Now you killed %d of %d %s for the %s quest.", $this->getAmount(), $this->getNeededAmount(), self::EMO_TYPE, $this->getQuestName()));
+		}
 	}
 }
 ?>

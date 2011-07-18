@@ -17,7 +17,7 @@ final class Redmond_Store extends SR_Store
 			array('Trousers', 100.0, 69.95),
 			array('Shorts', 100.0, 49.95),
 			array('Backpack', 100.0, 69.95),
-			array('Bike', 100.0, 229.95),
+			array('Bike', 100.0, 499.95),
 			array('Scanner_v1'),
 		);
 	}

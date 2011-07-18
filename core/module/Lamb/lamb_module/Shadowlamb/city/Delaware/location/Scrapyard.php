@@ -1,5 +1,5 @@
 <?php
-final class Delaware_Scrapyard extends SR_Store
+final class Delaware_Scrapyard extends SR_Arena
 {
 	public function getFoundPercentage() { return 25.0; }
 	public function getFoundText(SR_Player $player) { return 'You found a scrapyard. You see lots of junk already from far behind.'; }

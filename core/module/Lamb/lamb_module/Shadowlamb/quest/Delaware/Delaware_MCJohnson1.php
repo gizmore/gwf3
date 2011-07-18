@@ -66,10 +66,10 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 				$npc->reply("I will pay you $dp.");
 				break;
 			case 'yes':
-				$npc->reply("Good luck hunting!.");
+				$npc->reply("Good luck hunting!");
 				break;
 			case 'no':
-				$npc->reply('God, ok.');
+				$npc->reply('Hmm ok, maybe later.');
 				break;
 		}
 		return true;
@@ -95,7 +95,21 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 			return false;
 		}
 	}
-	
-	
+
+	# KILL
+	public function onKillEmo(SR_Player $player) { $this->onKill($player, 'E', 'Emos'); }
+	public function onKillGoth(SR_Player $player) { $this->onKill($player, 'G', 'Goths'); }
+	public function onKillHipster(SR_Player $player) { $this->onKill($player, 'H', 'Hipsters'); }
+	public function onKill(SR_Player $player, $key, $name)
+	{
+		if (!$this->isInQuest($player))
+		{
+			return;
+		}
+		$data = $this->getKillData();
+		$data[$key]++;
+		$player->message(sprintf("Now you killed %d of %d %s for Mr.Johnson in the Mac Larens.", $data[$key], self::KILLS_NEEDED, $name));
+		$this->saveQuestData($data);
+	}
 }
 ?>

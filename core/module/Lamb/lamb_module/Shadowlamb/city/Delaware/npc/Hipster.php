@@ -33,15 +33,12 @@ final class Delaware_Hipster extends SR_NPC
 		);
 	}
 	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Delaware_DallasJ2');
-//		if ($quest->isInQuest($player))
-//		{
-//			$quest->increase('sr4qu_amount', 1);
-//			$player->message(sprintf('Now you killed %d goblins for Mr.Johnson.', $quest->getAmount()));
-//		}
-//		return array();
-//	}
+	public function getNPCLoot(SR_Player $player)
+	{
+		SR_Quest::getQuest($player, 'Delaware_MCGuest12')->onKill($player);
+		SR_Quest::getQuest($player, 'Delaware_MCGuest22')->onKill($player);
+		SR_Quest::getQuest($player, 'Delaware_MCJohnson1')->onKillHipster($player);
+		return array();
+	}
 }
 ?>
