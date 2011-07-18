@@ -197,12 +197,21 @@ final class Shadowfunc
 		# enum
 		if ($enum && is_numeric($arg))
 		{
-			if ( ($arg > 0)	&& ($arg <= count($players)) )
+			foreach ($players as $player)
 			{
-				$arg = (int)$arg;
-				$back = array_slice($players, $arg-1, 1, false);
-				return $back[0];
+				$player instanceof SR_Player;
+				if ($player->getEnum() == $arg)
+				{
+					return $player;
+				}
 			}
+//			if ( ($arg > 0)	&& ($arg <= count($players)) )
+//			{
+//				$arg = (int)$arg;
+//				$back = array_slice($players, $arg-1, 1, false);
+//				return $back[0];
+//			}
+//			return false;
 		}
 
 		$arg = strtolower($arg);
@@ -623,6 +632,8 @@ final class Shadowfunc
 			'halfelve_female' => array('Anja'),
 			'human_male' => array('Lesley','Norman','Simon','Jessey','Tobias','Marcus','Oliver','Richard','Gandalf','Carsten','Mike','Paul','Wesley','Mathew','Jersey','Stephen'),
 			'human_female' => array('Mary','Tanny'),
+			'gnome_male' => array('Garry'),
+			'gnome_female' => array('Sabine'),
 			'dwarf_male' => array('Roon','Reiner','Oscar'),
 			'dwarf_female' => array('Alisa'),
 			'ork_male' => array('Grunt','Bruno'),
@@ -997,6 +1008,114 @@ final class Shadowfunc
 		{
 			return $mod;
 		}
+	}
+	
+	/**
+	 * Do damage to multiple targets and announce the kills and damage in a compressed way.
+	 * @param SR_Player $player
+	 * @param array $damage
+	 */
+	public static function multiDamage(SR_Player $player, array $damage, $failmsg='Nothing happened.')
+	{
+		$p = $player->getParty();
+		$mc = $p->getMemberCount();
+		$ep = $p->getEnemyParty();
+		
+		$loot_xp = array();
+		$loot_ny = array();
+		foreach ($p->getMembers() as $member)
+		{
+			$loot_xp[$member->getID()] = 0;
+			$loot_ny[$member->getID()] = 0;
+		}
+		
+		
+		$out = '';
+		$out_ep = '';
+		foreach ($damage as $pid => $dmg)
+		{
+			if ($dmg <= 0) {
+				continue; 
+			}
+			
+			$target = $ep->getMemberByPID($pid);
+			$target->dealDamage($dmg);
+			
+			if ($target->isDead())
+			{
+				$xp = $target->isHuman() ? 0 : $target->getLootXP();
+//				$xp = $target->getLootXP();
+				$nuyen = $target->getLootNuyen();
+				if ($player->isNPC())
+				{
+					$target->resetXP();
+				}
+				$target->giveNuyen(-$nuyen);
+				
+				$out .= sprintf(', kills %s with %s', $target->getName(), $dmg);
+				$out_ep .= sprintf(', kills %s with %s', $target->getName(), $dmg);
+				$pxp = 0;
+				foreach ($p->getMembers() as $member)
+				{
+					$lxp = $xp/$mc;
+					$leveldiff = ($target->getBase('level')+1) / ($member->getBase('level')+1);
+					$lxp *= $leveldiff;
+					$lxp = round(Common::clamp($lxp, 0.01), 2);
+					$pxp += $lxp;
+
+					$loot_xp[$member->getID()] += $lxp;
+					$loot_ny[$member->getID()] += $nuyen / $mc;
+				}
+				$p->givePartyXP($pxp);
+				
+			}
+			else 
+			{
+				$out .= sprintf(', hits %s with %s damage', $target->getName(), $dmg);
+				$out_ep .= sprintf(', hits %s with %s(%s/%s)HP left', $target->getName(), $dmg, $target->getHP(), $target->getMaxHP());
+			}
+		}
+
+		if ($out === '')
+		{
+			$p->notice($failmsg);
+			return;
+		}
+		
+		$out = substr($out, 2);
+		foreach ($p->getMembers() as $member)
+		{
+			$loot_out = '';
+			
+			$ny = $loot_ny[$member->getID()];
+			$xp = $loot_xp[$member->getID()];
+			
+			if ($ny > 0 || $xp > 0)
+			{
+				$loot_out = sprintf('. You loot %s Nuyen and %s XP', $ny, $xp);
+				$member->giveNuyen($ny);
+				$member->giveXP($xp);
+			}
+			
+			$member->message($out.$loot_out.'.');
+		}
+		
+		$out_ep = substr($out_ep, 2);
+		$ep->message($player, $out_ep.'.');
+		
+		foreach ($ep->getMembers() as $target)
+		{
+			if ($target->isDead())
+			{
+				$target->gotKilledBy($player);
+			}
+		}
+		
+		if ($ep->getMemberCount() === 0)
+		{
+			$p->onFightDone();
+		}
+		
 	}
 }
 ?>

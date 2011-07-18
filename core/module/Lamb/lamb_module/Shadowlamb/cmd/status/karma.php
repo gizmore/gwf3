@@ -9,13 +9,13 @@ final class Shadowcmd_karma extends Shadowcmd
 		$members = $party->getMembers();
 		$total = 0;
 		$back = '';
-		$i = 1;
+//		$i = 1;
 		foreach ($members as $member)
 		{
 			$member instanceof SR_Player;
 			$karma = $member->getBase('karma');
 			$total += $karma;
-			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), $karma);
+			$back .= sprintf(', %s-%s(%s)', $b.($member->getEnum()).$b, $member->getName(), $karma);
 		}
 		$bot->reply(sprintf('Your party has %s karma: %s.', $total, substr($back, 2)));
 		return true;

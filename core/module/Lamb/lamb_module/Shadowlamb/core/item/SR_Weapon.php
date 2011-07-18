@@ -9,7 +9,6 @@ abstract class SR_Weapon extends SR_Equipment
 
 	public function onAttackB(SR_Player $player, $arg, $armor_type)
 	{
-		
 		$p = $player->getParty();
 		$mc = $p->getMemberCount();
 		$ep = $p->getEnemyParty();
@@ -19,6 +18,8 @@ abstract class SR_Weapon extends SR_Equipment
 		{
 			return false;
 		}
+		
+//		$player->combatPush("attack ".$target->getName());
 		
 		$d = abs($player->getDistance()-$target->getDistance());
 		$d2 = Common::clamp($d-2, 0);

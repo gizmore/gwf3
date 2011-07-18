@@ -186,6 +186,7 @@ abstract class SR_NPCBase extends SR_Player
 		}
 			
 		$party->updateMembers();
+		$party->recomputeEnums();
 		
 		return $party;
 	}

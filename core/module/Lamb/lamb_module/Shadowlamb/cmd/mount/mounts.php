@@ -4,7 +4,7 @@ final class Shadowcmd_mounts extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$p = $player->getParty();
-		$i = 1;
+//		$i = 1;
 		$out = '';
 		$total = 0.0;
 		$total_max = 0.0;
@@ -20,7 +20,7 @@ final class Shadowcmd_mounts extends Shadowcmd
 			{
 				$weight = "({$weight})";
 			}
-			$out .= sprintf(", \x02%s\x02-%s%s", $i++, $mount->getName(), $weight);
+			$out .= sprintf(", \x02%s\x02-%s%s", $member->getEnum(), $mount->getName(), $weight);
 		}
 		
 		$message = sprintf('Party Mounts(%s/%s): %s.', Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2));

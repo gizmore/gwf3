@@ -11,7 +11,7 @@ class Shadowcmd_hp extends Shadowcmd
 	#############
 	protected static function onHPMP(SR_Player $player, $what, $text)
 	{
-		$i = 1;
+//		$i = 1;
 		$b = chr(2);
 		$bot = Shadowrap::instance($player);
 		$party = $player->getParty();
@@ -36,7 +36,7 @@ class Shadowcmd_hp extends Shadowcmd
 					$b2 = $b;
 				}
 			}
-			$back .= sprintf(", %s-%s%s(%s/%s)%s", $b.($i++).$b, $b2, $member->getName(), $hpmp, $hpmmpm, $b2);
+			$back .= sprintf(", %s-%s%s(%s/%s)%s", $b.($member->getEnum()).$b, $b2, $member->getName(), $hpmp, $hpmmpm, $b2);
 		}
 		$bot->reply(sprintf('Your parties %s: %s.', $text, substr($back, 2)));
 		return true;

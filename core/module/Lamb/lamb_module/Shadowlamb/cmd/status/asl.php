@@ -55,7 +55,7 @@ class Shadowcmd_asl extends Shadowcmd
 		$b = chr(2);
 		$out = '';
 		$sum = 0;
-		$i = 1;
+//		$i = 1;
 		foreach ($player->getParty()->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
@@ -68,7 +68,7 @@ class Shadowcmd_asl extends Shadowcmd
 				case 'height': $out2 = Shadowfunc::displayDistance($val, 2); break;
 				default: self::reply($player, 'Error unknown field in onASLShowPartyB()'); return false;
 			}
-			$out .= sprintf(", {$b}%d{$b}-%s(%s)", $i++, $member->getName(), $out2);
+			$out .= sprintf(", {$b}%d{$b}-%s(%s)", $member->getEnum(), $member->getName(), $out2);
 		}
 		
 		switch ($field)

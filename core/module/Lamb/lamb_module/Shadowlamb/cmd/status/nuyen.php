@@ -9,13 +9,13 @@ final class Shadowcmd_nuyen extends Shadowcmd
 		$members = $party->getMembers();
 		$total = 0;
 		$back = '';
-		$i = 1;
+//		$i = 1;
 		foreach ($members as $member)
 		{
 			$member instanceof SR_Player;
 			$ny = $member->getBase('nuyen');
 			$total += $ny;
-			$back .= sprintf(', %s-%s(%s)', $b.($i++).$b, $member->getName(), Shadowfunc::displayNuyen($ny));
+			$back .= sprintf(', %s-%s(%s)', $b.$member->getEnum().$b, $member->getName(), Shadowfunc::displayNuyen($ny));
 		}
 		$bot->reply(sprintf('Your party has %s: %s.', Shadowfunc::displayNuyen($total), substr($back, 2)));
 		return true;

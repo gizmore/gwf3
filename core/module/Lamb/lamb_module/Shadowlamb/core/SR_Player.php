@@ -227,8 +227,14 @@ class SR_Player extends GDO
 	public function isRunner() { return $this->isOptionEnabled(self::RUNNING_MODE); }
 	public function needsHeal() { return ($this->getHP() / $this->getMaxHP()) <= SR_NPC::NEED_HEAL_MULTI; }
 	public function needsEther() { return ($this->getMP() / $this->getMaxMP()) <= SR_NPC::NEED_ETHER_MULTI; }
-	public function getEnum() { return $this->getParty()->getEnum($this); }
 	public function canHack() { return ( ($this->getBase('computers') >= 0) && ($this->hasCyberdeck()) && ($this->hasHeadcomputer()) );}
+	
+	############
+	### Enum ###
+	############
+	private $enum = 0;
+	public function getEnum() { return $this->enum; }
+	public function setEnum($enum) { $this->enum = $enum; }
 	
 	############
 	### Race ###
@@ -1117,12 +1123,12 @@ class SR_Player extends GDO
 		}
 	}
 	
-	public function effectsReset()
-	{
-		$this->sr4_effects = array();
-		$this->updateEffects();
-		$this->modify();
-	}
+//	public function effectsReset()
+//	{
+//		$this->sr4_effects = array();
+//		$this->updateEffects();
+//		$this->modify();
+//	}
 	
 	public function effectsTimer()
 	{
@@ -1535,7 +1541,7 @@ class SR_Player extends GDO
 			$message = substr($message, 2);
 			$from = " from {$from}";
 			$plur = $cnt > 1 ? $cnt.' items' : 'an item';
-			$message = sprintf('received %s%s: %s.', $plur, $from, $message);
+			$message = sprintf(' received %s%s: %s.', $plur, $from, $message);
 			$this->getParty()->message($this, $message);
 		}
 		
@@ -2053,7 +2059,10 @@ class SR_Player extends GDO
 		if (false === ($ep = $this->getEnemyParty())) {
 			return '#';
 		}
-		return sprintf('# %s', rand(1, $ep->getMemberCount()));
+		
+		$targets = $ep->getMembers();
+		$target = $targets[array_rand($targets)];
+		return '# '.$target->getEnum();
 	}
 	
 	public function combatPush($message)

@@ -115,28 +115,38 @@ final class SR_Party extends GDO
 	 */
 	public function getEnum(SR_Player $player)
 	{
-		$i = 1;
-		$pid = $player->getID();
-		foreach ($this->members as $m)
-		{
-			if ($m->getID() === $pid)
-			{
-				return $i;
-			}
-			$i++;
-		}
-		return false;
+		return $player->getEnum();
+//		$i = 1;
+//		$pid = $player->getID();
+//		foreach ($this->members as $m)
+//		{
+//			if ($m->getID() === $pid)
+//			{
+//				return $i;
+//			}
+//			$i++;
+//		}
+//		return false;
 	}
 	
 	public function getMemberByEnum($n)
 	{
 		$n = (int)$n;
-		if ( ($n < 1) || ($n > $this->getMemberCount()) )
+		foreach ($this->members as $member)
 		{
-			return false;
+			$member instanceof SR_Player;
+			if ($member->getEnum() === $n)
+			{
+				return $member;
+			}
 		}
-		$back = array_slice($this->members, $n-1, 1, false);
-		return $back[0];
+		return false;
+//		if ( ($n < 1) || ($n > $this->getMemberCount()) )
+//		{
+//			return false;
+//		}
+//		$back = array_slice($this->members, $n-1, 1, false);
+//		return $back[0];
 	}
 	
 	public function getMemberByArg($arg)
@@ -393,6 +403,7 @@ final class SR_Party extends GDO
 		{
 			$player->saveVar('sr4pl_partyid', $this->getID());
 			$this->updateMembers();
+			$this->recomputeEnums();
 		}
 	}
 	
@@ -449,7 +460,12 @@ final class SR_Party extends GDO
 		}
 		$this->members = $t1;
 		$this->distance = $t2;
-		return $this->updateMembers();
+		if (false === $this->updateMembers())
+		{
+			return false;
+		}
+		$this->recomputeEnums();
+		return true;
 	}
 	
 	###########
@@ -602,6 +618,9 @@ final class SR_Party extends GDO
 		if (false === $this->updateMembers()) {
 			return false;
 		}
+		
+		$this->recomputeEnums();
+		
 		return true;
 	}
 	
@@ -934,13 +953,13 @@ final class SR_Party extends GDO
 			return 'This party is empty! (should not see me)';
 		}
 		$b = chr(2);
-		$i = 1;
+//		$i = 1;
 		$back = '';
 		foreach ($this->members as $player)
 		{
 			$player instanceof SR_Player;
 			$dist = $with_distance ? sprintf('(%.01fm)', $this->distance[$player->getID()]) : '';
-			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $player->getName(), $dist);
+			$back .= sprintf(', %s-%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist);
 		}
 		return substr($back, 2);
 	}
@@ -1037,6 +1056,7 @@ final class SR_Party extends GDO
 		$this->popAction(true);
 		$this->setContactEta(rand(15,25));
 		$this->iExecAnyway();
+		$this->recomputeEnums();
 	}
 	
 	private function iExecAnyway()
@@ -1241,6 +1261,19 @@ final class SR_Party extends GDO
 		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
 		
 		return $mounts[0];
+	}
+	
+	################
+	### New Enum ###
+	################
+	public function recomputeEnums()
+	{
+		$enum = 1;
+		foreach ($this->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->setEnum($enum++);
+		}
 	}
 }
 ?>
