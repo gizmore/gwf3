@@ -48,8 +48,8 @@ abstract class SR_Grenade extends SR_Usable
 		{
 			$m instanceof SR_Player;
 			$y = $m->getDistance();
+			$x = SR_Party::X_COORD_INC * $m->getEnum();
 			$coords[$m->getID()] = array($x, $y);
-			$x += SR_Party::X_COORD_INC;
 		}
 		
 		$handicap = rand(-$inaccuracy*10, +$inaccuracy*10);
