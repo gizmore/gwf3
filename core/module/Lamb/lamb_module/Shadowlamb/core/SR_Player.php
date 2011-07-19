@@ -1958,6 +1958,11 @@ class SR_Player extends GDO
 	{
 		$b = chr(2);
 		
+		if ($xp <= 0)
+		{
+			return false;
+		}
+		
 		if (false === ($this->alterField('xp', $xp))) {
 			return false;
 		}
@@ -1991,6 +1996,11 @@ class SR_Player extends GDO
 		if ($karma > 0)
 		{
 			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}.", $this->getBase('karma'), $karma));
+		}
+		
+		if ( ($karma > 0) || ($level > 0) )
+		{
+			$this->modify();
 		}
 	}
 	
