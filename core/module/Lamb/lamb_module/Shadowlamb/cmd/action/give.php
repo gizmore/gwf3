@@ -27,6 +27,12 @@ final class Shadowcmd_give extends Shadowcmd
 	
 	public static function giveItem(SR_Player $player, SR_Player $target, $id, $amt=1)
 	{
+		if ($amt < 1)
+		{
+			$player->message('Please give a positive amount of items.');
+			return false;
+		}
+		
 		if (false === ($item = $player->getInvItem($id)))
 		{
 			$player->message('You don`t have that item.');
