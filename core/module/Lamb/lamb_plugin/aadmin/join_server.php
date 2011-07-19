@@ -51,14 +51,16 @@ else
 }
 
 
-if (false === $bot->addServer($server))
-{
-	$bot->reply($out.' Duplicate Server!');
-}
-elseif (false === $server->replace())
+if (false === $server->replace())
 {
 	$bot->reply('Database error!');
 }
+
+elseif (false === $bot->addServer($server))
+{
+	$bot->reply($out.' Duplicate Server!');
+}
+
 else
 {
 	$bot->reply($message.' Connecting...');
