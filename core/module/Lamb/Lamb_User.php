@@ -170,6 +170,11 @@ final class Lamb_User extends GDO
 			return true;
 		}
 		
+		if (!$this->isLoggedIn())
+		{
+			return false;
+		}
+		
 		if (0 === ($have = ($this->getOptions() & self::USERMODE_FLAGS)))
 		{
 			return false;
