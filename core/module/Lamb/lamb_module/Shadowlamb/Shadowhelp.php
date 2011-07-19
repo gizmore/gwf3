@@ -32,6 +32,7 @@ final class Shadowhelp
 	public static function getAllHelp($player=NULL)
 	{
 		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
+		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
 		
 		$ele = $player === NULL ? 0 : $player->get('elephants');
 		$ele_gain = $player === NULL ? 0 : $player->getHPGain();
@@ -42,6 +43,8 @@ final class Shadowhelp
 		$orca_time = GWF_Time::humanDuration(SR_Player::MP_REFRESH_TIMER); 
 		
 		$crit = $player === NULL ? 0 : sprintf('%.03f', $player->getCritPermille()/1000);
+		
+		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %s bad_karma.', $player->getBase('bad_karma'));
 		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
@@ -146,7 +149,7 @@ final class Shadowhelp
 						'height' => 'Your character\'s height in centimeters.',
 					),
 					
-					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. '.SR_Player::XP_PER_LEVEL.' XP equal 1 level.',
+					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. '.$xppl.' XP equal 1 level.',
 					'hp' => "HP are your hitpoints. Use #hp to see all party HP. You can refresh hitpoints in Hotel, or by healing items and spells.",
 					'mp' => "MP are your manapoints. Use #mp to see all party MP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
 					'atk' => 'Your chances to hit.',
@@ -162,6 +165,7 @@ final class Shadowhelp
 					'weight' => NULL,
 					'max_weight' => 'The max_weight you can carry. If you exceed your max_weight you get a malus on your attack and defense or cannot move at all.',
 					'nuyen' => NULL,
+					'bad_karma' => "Bad karma determines how evil your character is. If you have bad karma you might meet Polizia, also known as BlackOps. These will annoy the bad guys during their journey.$bad_karma",
 					
 					'special_stats' => 'There are some special stats too:',
 					array(
@@ -414,7 +418,7 @@ final class Shadowhelp
 					'annoying' => 'Annoying stuff',
 					array(
 						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
-						'bots' => 'You are not allowed to do actions with an automated script (botting). If you get caught all your characters will be deleted. Do not whine! You have been warned!',
+						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, you might get bad_karma, which will annoy you during your journey.',
 						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
 					),
 					
@@ -439,6 +443,7 @@ final class Shadowhelp
 					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
 					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
 					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
+					'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
 					
 					'teachers' => 'The teachers',
 					array(
