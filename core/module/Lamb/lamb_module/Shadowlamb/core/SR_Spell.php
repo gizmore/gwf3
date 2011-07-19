@@ -126,7 +126,10 @@ abstract class SR_Spell
 				return false;
 			}
 			if (count($args) === 0) {
-				$args[] = rand(1, $player->getEnemyParty()->getMemberCount());
+				$members = $player->getEnemyParty()->getMembers();
+				$member = $members[array_rand($members)];
+				$args[] = $member->getEnum();
+//				$args[] = rand(1, $player->getEnemyParty()->getMemberCount());
 			}
 		}
 		
