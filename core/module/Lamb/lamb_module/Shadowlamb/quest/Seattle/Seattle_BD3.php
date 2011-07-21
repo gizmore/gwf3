@@ -9,7 +9,16 @@ final class Quest_Seattle_BD3 extends SR_Quest
 	const REWARD_NUYEN = 1500;
 	
 	public function getQuestName() { return 'PoorSmith3'; }
-	public function getQuestDescription() { return sprintf('Bring %s ChainLegs, %s ChainBody and %s ChainHelmet to the Seattle Blacksmith.', self::NEED_LEG, self::NEED_ARMOR, self::NEED_HELMET); }
+	public function getQuestDescription()
+	{
+		$data = $this->getQuestData();
+		if (!isset($data['LEG'])) { $data = array('LEG'=>0,'ARMOR'=>0,'HELMET'=>0); }
+		return sprintf(
+			'Bring %s/%s ChainLegs, %s/%s ChainBody and %s/%s ChainHelmet to the Seattle Blacksmith.',
+			$data['LEG'], self::NEED_LEG, $data['ARMOR'], self::NEED_ARMOR, $data['HELMET'], self::NEED_HELMET
+		);
+
+	}
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
