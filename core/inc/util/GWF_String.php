@@ -17,5 +17,21 @@ final class GWF_String
 	{
 		return ( (($c>='a')&&($c<='z')) || (($c>='A')&&($c<='Z')) || (($c>='0')&&($c<='9')) );
 	}
+	
+	/**
+	 * Count the occurance of a string within a string.
+	 * @param string $s
+	 * @param string $c
+	 */
+	public static function countChar($s, $c)
+	{
+		$count = 0;
+		$offset = -1;
+		while (false !== ($offset = strpos($s, $c, $offset+1)))
+		{
+			$count++;
+		}
+		return $count;
+	}
 }
 ?>
