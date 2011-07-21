@@ -9,11 +9,16 @@ final class Quest_Seattle_Library2 extends SR_Quest
 		$have = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have = $this->giveQuesties($player, $npc, 'Bacon', $have, $need);
+		$this->saveAmount($have);
 		if ($have >= $need)
 		{
 			$npc->reply('MMmm bacon ... my favorite snack. How did you know?');
 			$player->message('The gnome returns to work.');
 			$this->onSolve($player);
+		}
+		else
+		{
+			
 		}
 	}
 }
