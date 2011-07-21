@@ -137,6 +137,9 @@ final class GWF_QuickSearch
 	{
 		$term = str_replace('%', '\\%', $term);
 		
+		#Thx Geo
+		$term = preg_replace('/\( *\)/', '', $term);
+		
 		$len = strlen($term);
 		$back = array();
 		$cur = '';
