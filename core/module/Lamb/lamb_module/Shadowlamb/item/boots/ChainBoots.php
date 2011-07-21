@@ -1,7 +1,7 @@
 <?php
 final class Item_ChainBoots extends SR_Boots
 {
-	public function getItemLevel() { return 9; }
+	public function getItemLevel() { return 8; }
 	public function getItemPrice() { return 450; }
 	public function getItemWeight() { return 1450; }
 	public function getItemDescription() { return 'Heavy metal chain boots.'; }
