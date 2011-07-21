@@ -135,7 +135,8 @@ final class GWF_QuickSearch
 	
 	private static function search_tokenize($term)
 	{
-		$term = str_replace('%', '\\%', $term);
+		# Thx Geo
+		$term = str_replace(array('%', '_'), array('\\%', '\\_'), $term);
 		
 		#Thx Geo
 		$term = preg_replace('/\( *\)/', '', $term);
