@@ -109,6 +109,12 @@ final class WC_RegAt extends GDO
 		return GDO::table(__CLASS__)->deleteWhere("regat_uid=$userid AND regat_sid=$siteid");
 	}
 	
+	public static function unlinkAll($userid)
+	{
+		$userid = (int) $userid;
+		return GDO::table(__CLASS__)->deleteWhere("regat_uid=$userid");
+	}
+	
 	###################
 	### Convinience ###
 	###################

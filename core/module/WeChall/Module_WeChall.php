@@ -212,6 +212,10 @@ final class Module_WeChall extends GWF_Module
 	public function hookDeleteUser(GWF_User $user, array $args)
 	{
 		# TODO: delete a lot of stuff.
+		
+		# Let's start with unlinking all sites.
+		$userid = $user->getID();
+		WC_RegAt::unlinkAll($userid);
 	}
 	
 	#######################
