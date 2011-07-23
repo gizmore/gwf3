@@ -831,3 +831,7 @@ input, select {
 .gwf_comment_head a {
 	color: #fff;
 }
+
+.box_c {
+	overflow: auto;
+}
