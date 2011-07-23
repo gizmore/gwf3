@@ -41,7 +41,7 @@ final class Shadowcmd_fight extends Shadowcmd
 			
 			return true;
 		}
-		elseif ($a === SR_Party::ACTION_INSIDE)
+		elseif ( ($a === SR_Party::ACTION_INSIDE) || ($a === SR_Party::ACTION_OUTSIDE) )
 		{
 			$bot = Shadowrap::instance($player);
 			if (count($args) !== 1) {

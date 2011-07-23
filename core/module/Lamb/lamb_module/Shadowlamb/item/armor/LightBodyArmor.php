@@ -1,8 +1,8 @@
 <?php
 final class Item_LightBodyArmor extends SR_Armor
 {
-	public function getItemLevel() { return -1; }
-	public function getItemPrice() { return 20000; }
+	public function getItemLevel() { return 30; }
+	public function getItemPrice() { return 2500; }
 	public function getItemWeight() { return 5500; }
 	public function getItemDescription() { return 'A protective body suite, used by tactical commandos.'; }
 	public function getItemUsetime() { return 180; }

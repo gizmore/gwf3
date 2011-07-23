@@ -415,6 +415,7 @@ final class SR_Party extends GDO
 		if ($update === true)
 		{
 			$this->updateMembers();
+//			$this->recomputeEnums();
 			if ($this->getMemberCount() === 0)
 			{
 				$this->deleteParty();
@@ -1081,9 +1082,15 @@ final class SR_Party extends GDO
 		{
 			$player instanceof SR_Player;
 			if ($player->hasFullHPMP()) { $sleeping--; continue; }
+			
 			$player->healHP(0.1);
 			$player->healMP(0.1);
-			if ($player->hasFullHPMP()) {
+			
+//			printf("Player %s has now %s/%s HP and %s/%s MP.\n", $player->getName(), $player->getHP(), $player->getMaxHP(), $player->getMP(), $player->getMaxMP());
+			
+			if ($player->hasFullHPMP())
+			{
+				$sleeping--;
 				$player->message('You awake and have a delicious breakfast.');
 			}
 		}
@@ -1130,8 +1137,14 @@ final class SR_Party extends GDO
 	public function on_hijack($done)
 	{
 		$this->timestamp = time();
-		$city = $this->getCityClass();
-		$city->onHijack($this, $done);
+		if (false === ($city = $this->getCityClass()))
+		{
+			$this->popAction(true);
+		}
+		else
+		{
+			$city->onHijack($this, $done);
+		}
 	}
 	
 	public function getRandomMember()

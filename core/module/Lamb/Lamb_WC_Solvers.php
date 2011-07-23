@@ -3,10 +3,8 @@
 # uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount
 # lamb_wc_solvers('WC', '[WeChall]', 'https://www.wechall.net/index.php?mo=WeChall&me=API_ChallSolved&ajax=true&datestamp=%DATE%&no_session=true')
 
-function lamb_wc_solvers($key, $name, $url, $channels=array())
+function lamb_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=100)
 {
-	$max_solvercount = 250;
-	
 	# Date we want to query
 	$lastdate = GWF_Settings::getSetting('LAMB_SOLVERS_DATE_'.$key, '');
 	if (strlen($lastdate) !== 14)

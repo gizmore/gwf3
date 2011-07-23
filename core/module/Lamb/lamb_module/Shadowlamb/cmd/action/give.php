@@ -51,7 +51,7 @@ final class Shadowcmd_give extends Shadowcmd
 		}
 		else
 		{
-			if ($amt > 1)
+			if ($amt !== 1)
 			{
 				$player->message('Currently you can only give one equipment at a time.');
 				return false;

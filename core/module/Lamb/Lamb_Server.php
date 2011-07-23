@@ -57,6 +57,7 @@ final class Lamb_Server extends GDO
 	###############
 	### Getters ###
 	###############
+	public function getName() { return $this->getHostname(); }
 	public function getID() { return $this->getVar('serv_id'); }
 	public function getHost() { return $this->getVar('serv_host'); }
 	public function getPort() { return $this->connection->getPort(); }

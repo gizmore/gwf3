@@ -15,7 +15,7 @@ final class Seattle_AMagician extends SR_NPC
 		);
 	}
 	public function getNPCInventory() { return array('FirstAid'); }
-	public function getNPCSpells() { return array('freeze'=>3,'firebolt'=>5); }
+	public function getNPCSpells() { return array('freeze'=>1,'firebolt'=>3); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',

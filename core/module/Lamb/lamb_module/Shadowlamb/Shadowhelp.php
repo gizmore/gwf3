@@ -149,7 +149,7 @@ final class Shadowhelp
 						'height' => 'Your character\'s height in centimeters.',
 					),
 					
-					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. '.$xppl.' XP equal 1 level.',
+					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. Collect '.$xppl.' XP to levelup.',
 					'hp' => "HP are your hitpoints. Use #hp to see all party HP. You can refresh hitpoints in Hotel, or by healing items and spells.",
 					'mp' => "MP are your manapoints. Use #mp to see all party MP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
 					'atk' => 'Your chances to hit.',
@@ -251,7 +251,12 @@ final class Shadowhelp
 							'ring' => 'You can #equip rings and wear them as #equipment.',
 							'shield' => 'You can #equip shields and wear them as #equipment.',
 							'weapon' => 'You can #equip weapons and wear them as #equipment.',
-							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them.',
+							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them. There are also mount runes:',
+							array(
+								'lock' => 'LOCK determines the safety of your mount and prevents a #hijack. LOCK runes can only get applied on a mount.',
+								'tuneup' => '',
+								'transport' => '',
+							),
 						),
 				
 						'party' => 'Player command. Usage. #(p)arty. View your party status.',
@@ -374,7 +379,7 @@ final class Shadowhelp
 
 						'smith_cmds' => 'Blacksmith commands',
 						array(
-							'clean' => 'Location command. Usage: #clean <item>. Will remove all modifiers from an item.',
+							'clean' => 'Location command. Usage: #clean <item>. Will remove all modifiers from an item. The runes / modifiers will be lost.',
 							'break' => 'Location command. Usage: #break <item>. Will destroy an item and release it`s runes, which you will receive.',
 							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
 							'upgrade' => 'Location command. Usage: #upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
@@ -418,7 +423,7 @@ final class Shadowhelp
 					'annoying' => 'Annoying stuff',
 					array(
 						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
-						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, you might get bad_karma, which will annoy you during your journey.',
+						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey.',
 						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
 					),
 					

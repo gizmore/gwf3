@@ -18,7 +18,7 @@ foreach (explode(' ', $nicknames) as $nickname)
 	if ($usermode !== '')
 	{
 //		echo 'Auto login'.PHP_EOL;
-		$user->setLoggedIn(true);
+//		$user->setLoggedIn(true);
 	}
 	
 	$channel->addUser($user, $usermode);

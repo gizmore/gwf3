@@ -1,12 +1,17 @@
 <?php # Usage: %CMD% <level>. Set the trottle for a server. Level means messages within three seconds. Default is 5.
 $server instanceof Lamb_Server;
+
 if ($message === '')
 {
-	return $bot->getHelp('throttle');
+	return $bot->reply(sprintf('This server has set it\'s throttle to %s.', $server->getVar('serv_flood_amt')));
+//	return $bot->getHelp('throttle');
 }
+
 $min = 0;
 $max = 10;
 $level = intval($message, 10);
+
+
 
 if ( ($level < $min) || ($level > $max) )
 {

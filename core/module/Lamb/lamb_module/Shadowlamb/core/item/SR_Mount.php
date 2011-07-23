@@ -144,7 +144,7 @@ abstract class SR_Mount extends SR_Equipment
 		{
 			$eta = $this->calcHijackTime($player);
 			$player->message(sprintf('You failed to crack the lock on %s\'s %s. You try again. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
-			$player->getParty()->popAction(false);
+//			$player->getParty()->popAction(false);
 			$this->hijackBy($player, $eta);
 		}
 	}

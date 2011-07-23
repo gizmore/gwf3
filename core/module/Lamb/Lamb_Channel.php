@@ -119,7 +119,7 @@ final class Lamb_Channel extends GDO
 	
 	public function getModeByName($username)
 	{
-		return $this->users[strtolower($username)][1];
+		return isset($this->users[strtolower($username)][1]) ? $this->users[strtolower($username)][1] : '';
 	}
 	
 	public function setUserMode($username, $usermode)

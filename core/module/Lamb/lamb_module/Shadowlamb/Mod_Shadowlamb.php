@@ -15,6 +15,10 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	public function onInitTimers() { Shadowrun4::initTimers(); }
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
+		if ($user->isBot())
+		{
+			return;
+		}
 		# NO SPAM with it in other channels
 		if ( ($server->getBotsNickname() !== $origin) && (!in_array($origin, self::$INCLUDE_CHANS, true)) )
 		{

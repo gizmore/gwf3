@@ -373,7 +373,7 @@ final class Shadowfunc
 			$player->get('min_dmg'), $player->get('max_dmg'),
 			$player->get('marm'), $player->get('farm'),
 			$player->getBase('xp'), $player->getBase('karma'),
-			$player->getBase('nuyen'),
+			$player->getNuyen(),
 			self::displayWeight($player->get('weight')), self::displayWeight($player->get('max_weight'))
 		);
 	}

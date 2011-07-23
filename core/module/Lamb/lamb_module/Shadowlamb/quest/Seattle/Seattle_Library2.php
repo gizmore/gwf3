@@ -18,7 +18,7 @@ final class Quest_Seattle_Library2 extends SR_Quest
 		}
 		else
 		{
-			
+			$player->message('The gnome returns to work.');
 		}
 	}
 }

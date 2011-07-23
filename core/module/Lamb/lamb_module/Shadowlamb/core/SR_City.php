@@ -151,6 +151,7 @@ abstract class SR_City
 		# Time over?
 		if ($done)
 		{
+			$party->pushAction('outside', $party->getLocation());
 			$target->getMount()->onHijack($party->getLeader());
 			return true;
 		}

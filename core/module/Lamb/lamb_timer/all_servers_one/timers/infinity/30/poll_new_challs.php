@@ -8,6 +8,7 @@ $map = array(
 	'Revolution Elite' => '#RevolutionElite',
 	'Hacker.org' => '#hacker.org',
 	'Security Traps' => '#securitytraps',
+	'Rankk' => '#pyramid',
 );
 
 foreach ($lines as $line)

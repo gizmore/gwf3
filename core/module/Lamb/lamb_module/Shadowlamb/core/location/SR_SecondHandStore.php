@@ -42,9 +42,9 @@ abstract class SR_SecondHandStore extends SR_Store
 		return $this->saveStoreSettings($items);
 	}
 	
-	public function calcSellPrice(SR_Player $player, SR_Item $item)
+	public function calcSellPrice(SR_Player $player, SR_Item $item, $amt=1)
 	{
-		$price = $item->getItemPriceStatted() * 0.08;
+		$price = $item->getItemPriceStatted() * 0.09 * $amt;
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
