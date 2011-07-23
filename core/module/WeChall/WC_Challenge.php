@@ -680,7 +680,7 @@ final class WC_Challenge extends GDO
 		require_once 'core/module/WeChall/WC_SolutionBlock.php';
 		if (false !== ($wait = WC_SolutionBlock::isBlocked($user)))
 		{
-			echo WC_HTML::error('err_solution_block', GWF_Time::humanDuration($wait));
+			echo WC_HTML::error('err_solution_block', array(GWF_Time::humanDuration($wait)));
 			return false;
 		}
 		

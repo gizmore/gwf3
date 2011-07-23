@@ -12,8 +12,7 @@ final class GWF_VersionFiles extends GDO
 //	private static $whitelist = array(
 //		# WeChall extra whitelist.
 //		# Dir, Module, Design, Path
-//		array('form', 'WeChall', '', 'form/solutionbox.php'),
-//		array('',     'WeChall', '', 'chall_check_solution.php'),
+//		array('form', 'WeChall', '', GWF_CORE_PATH.'module/WeChall/solutionbox.php'),
 //		array('',     'WeChall', '', 'html_foot.php'),
 //		array('',     'WeChall', '', 'html_head.php'),
 //		array('',     'WeChall', '', 'remoteupdate.php'),

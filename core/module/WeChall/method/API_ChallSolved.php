@@ -51,6 +51,7 @@ final class WeChall_API_ChallSolved extends GWF_Method
 			$row['username'] = $user->getVar('user_name');
 			$row['challname'] = $chall->getVar('chall_title');
 			$row['solvecount'] = $chall->getVar('chall_solvecount');
+			$row['curl'] = $chall->getVar('chall_url');
 			$row = array_map(array(__CLASS__, 'escapeCSV'), $row);
 			$back .= implode('::', $row).PHP_EOL;
 		}

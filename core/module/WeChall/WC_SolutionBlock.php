@@ -35,7 +35,7 @@ final class WC_SolutionBlock extends GDO
 		
 		if ($count >= self::MAX_ANSWERS)
 		{
-			$min = $table->selectMin('wcsb_time', "wcsb_ip='$eip' AND wcsb_time>$cut");
+			$min = $table->selectVar('MIN(wcsb_time)', "wcsb_ip='$eip' AND wcsb_time>$cut");
 			return $min + self::MAX_TIMEOUT - time();
 		}
 		
