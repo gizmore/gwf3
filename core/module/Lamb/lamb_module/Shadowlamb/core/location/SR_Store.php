@@ -252,7 +252,6 @@ abstract class SR_Store extends SR_Location
 		else
 		{
 			$items2 = $player->getInvItems($item->getItemName(), $amt);
-			$items2 = array_reverse($items2);
 			if (count($items2) < $amt)
 			{
 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));

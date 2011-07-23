@@ -696,6 +696,8 @@ class SR_Player extends GDO
 		
 		$this->modifyOverload(); # malus
 		
+		$this->modifyFinish();
+		
 //		$this->modifyParty(); # DEADLOCK!
 //		$this->modifyClamp();
 	}
@@ -703,6 +705,12 @@ class SR_Player extends GDO
 //	private function modifyClamp()
 //	{
 //	}
+
+	private function modifyFinish()
+	{
+		$this->sr4_data_modified['max_hp'] = round($this->sr4_data_modified['max_hp'], 2);
+		$this->sr4_data_modified['max_mp'] = round($this->sr4_data_modified['max_mp'], 2);
+	}
 	
 	private function modifyOverload()
 	{
@@ -1330,7 +1338,7 @@ class SR_Player extends GDO
 		}
 		
 		# Collect by itemname
-		foreach ($this->sr4_inventory as $item)
+		foreach (array_reverse($this->sr4_inventory) as $item)
 		{
 			if ($item->getItemName() === $arg)
 			{
@@ -1595,10 +1603,7 @@ class SR_Player extends GDO
 		if (isset($this->sr4_inventory[$id]))
 		{
 			unset($this->sr4_inventory[$id]);
-			if (!$this->updateInventory())
-			{
-				return false;
-			}
+			return $this->updateInventory();
 		}
 		return true;
 	}
