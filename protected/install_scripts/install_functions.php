@@ -4,13 +4,14 @@
 ############
 function install_get_core_tables()
 {
+	Common::defineConst('GWF_CORE_PATH', __DIR__.'/../../core/');
 	$classnames = array();
-	foreach (scandir('core/inc/util') as $file)
+	foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
 	{
 		if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/i', $file, $matches))
 		{
 			$classname = $matches[1];
-			if (false === ($content = file_get_contents("core/inc/util/{$file}"))) {
+			if (false === ($content = file_get_contents(GWF_CORE_PATH."inc/util/{$file}"))) {
 				continue;
 			}
 			if ( (strpos($content, ' extends GDO') !== false) && (strpos($content, 'abstract class') === false) )

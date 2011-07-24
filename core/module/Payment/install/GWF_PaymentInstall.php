@@ -20,7 +20,7 @@ final class GWF_PaymentInstall
 	
 	public static function installCurrencies(Module_Payment $module, $dropTable)
 	{
-		$path = 'core/module/Payment/install/_currencies.txt';
+		$path = GWF_CORE_PATH.'/module/Payment/install/_currencies.txt';
 		if (false === ($fh = @fopen($path, 'r'))) {
 			return GWF_HTML::err('ERR_FILE_NOT_FOUND', array( $path));
 		}

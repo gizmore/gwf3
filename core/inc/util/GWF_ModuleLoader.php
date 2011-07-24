@@ -53,7 +53,7 @@ final class GWF_ModuleLoader
 	###############
 	public static function loadModulesFS()
 	{
-		if (false == ($files = @scandir('core/module'))) {
+		if (false == ($files = @scandir(GWF_CORE_PATH.'module'))) {
 			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array('core/module'));
 			return false;
 		}
@@ -82,7 +82,7 @@ final class GWF_ModuleLoader
 		}
 		
 		$modulename = "Module_$name";
-		$filename = "core/module/$name/$modulename.php";
+		$filename = GWF_CORE_PATH."module/$name/$modulename.php";
 		if (!Common::isFile($filename)) {
 			return false;
 		}
