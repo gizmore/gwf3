@@ -7,31 +7,35 @@ define('GWF_CORE_VERSION', '3.02-2011.JUL.14');
  * Welcome to
  * Space & Gizmore Website Framework
  * @author spaceone
- * @version 1.00
- * @since 14.07.2011
+ * @version 1.02
+ * @since 01.07.2011
+ * @todo check if Session commit works
+ * @todo better GWF_WEBSITE_DOWN
+ * @todo disable logging for an instance
  */
-final class GWF
+class GWF3 
 {
 	/**
 	 * This is always required!
 	 */
 	public static function _init()
 	{
+		# Require the util
+		require_once GWF_CORE_PATH.'inc/util/Common.php';
+
+		# Definements
 		define('GWF_PATH', __DIR__.'/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
+		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'protected/');
+		self::$CONFIG['config_path'] = Common::defineConst('GWF_DEFAULT_CONFIG_PATH', GWF_DEFAULT_PROTECTED_PATH.'config.php'); // This could also the path for the example file, use it for installation-script!
+		self::$CONFIG['logging_path'] = Common::defineConst('GWF_DEFAULT_LOGGING_PATH', GWF_DEFAULT_PROTECTED_PATH.'logs'); // without trailing slash
 		
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 
-		# Require the util
-		require_once GWF_CORE_PATH.'inc/util/Common.php';
-
 		# The GWF autoloader
 		spl_autoload_register(array('GWF','onAutoloadClass'));
-	
-		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'protected/');
-		Common::defineConst('GWF_DEFAULT_CONFIG_PATH', GWF_DEFAULT_PROTECTED_PATH.'config.php'); // This could also the path for the example file, use it for installation-script!
-		Common::defineConst('GWF_DEFAULT_LOGGING_PATH', GWF_DEFAULT_PROTECTED_PATH.'logs'); // without trailing slash
+
 	}
 	
 	/**
@@ -132,18 +136,7 @@ final class GWF
 		}
 		GWF_Log::init($username, true, $logpath);
 	}
-}
 
-/**
- * @author spaceone
- * @version 1.02
- * @since 01.07.2011
- * @todo check if Session commit works
- * @todo better GWF_WEBSITE_DOWN
- * @todo disable logging for an instance
- */
-class GWF3 
-{
 	public static $CONFIG = array(
 		'website_init' => true,
 		'autoload_modules' => true,
@@ -153,7 +146,8 @@ class GWF3
 		'logging_path' => GWF_DEFAULT_LOGGING_PATH,
 		'do_logging' => true,
 		'blocking' => true,
-		'no_session' => false
+		'no_session' => false,
+		'store_last_url' => true,
 	);
 	
 	private static $design = GWF_DEFAULT_DESIGN;
@@ -169,7 +163,7 @@ class GWF3
 	{
 		$config = array_merge(self::$CONFIG, $config);
 
-		if (false === GWF::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
+		if (false === self::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
 			&& !defined('GWF_INSTALLATION')	)
 		{			
 			die('GWF Initialisation: GWF not installed?!');
@@ -193,7 +187,7 @@ class GWF3
 	}
 	public function __destruct() 
 	{
-		$this->onSessionCommit();
+		$this->onSessionCommit(self::$CONFIG['store_last_url']);
 	}
 	// this function is maybe senseless now... it cant return false?!
 	public function onInit() 
@@ -297,4 +291,4 @@ class GWF3
 	}
 }
 
-GWF::_init();
+GWF3::_init();

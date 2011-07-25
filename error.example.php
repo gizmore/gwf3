@@ -8,6 +8,7 @@ $_GET['me'] = 'Error';
 require_once 'gwf3.class.php';
 $gwf = new GWF3(__DIR__, array(
 	'load_module' => false,
+	'store_last_url' => false,
 ));
 
 # Get the error page
@@ -26,9 +27,6 @@ $page = GWF_Template::templatePHPMain(sprintf("%03d.php", $code), array(
 
 # Display Page
 echo $gwf->onDisplayPage($page);
-
-# Commit Session
-$gwf->onSessionCommit(false);
 
 function gwf_error_404_mail()
 {
