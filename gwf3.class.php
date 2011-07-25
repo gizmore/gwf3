@@ -34,7 +34,7 @@ class GWF3
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 
 		# The GWF autoloader
-		spl_autoload_register(array('GWF','onAutoloadClass'));
+		spl_autoload_register(array('GWF3','onAutoloadClass'));
 
 	}
 	
@@ -142,8 +142,8 @@ class GWF3
 		'autoload_modules' => true,
 		'load_module' => true,
 		'get_user' => true,
-		'config_path' => GWF_DEFAULT_CONFIG_PATH,
-		'logging_path' => GWF_DEFAULT_LOGGING_PATH,
+		'config_path' => 'protected/config.php',
+		'logging_path' => 'protected/logs',
 		'do_logging' => true,
 		'blocking' => true,
 		'no_session' => false,
