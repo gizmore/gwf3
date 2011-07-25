@@ -137,7 +137,7 @@ final class GWF_Language extends GDO
 	### DisplayName ###
 	###################
 	private static $LANG_NAMES = true;
-	private static function initLangNames() { if (self::$LANG_NAMES === true) { self::$LANG_NAMES = new GWF_LangTrans('lang/language/languages'); } }
+	private static function initLangNames() { if (self::$LANG_NAMES === true) { self::$LANG_NAMES = new GWF_LangTrans(GWF_CORE_PATH.'lang/language/languages'); } }
 	public function displayName() { return $this->displayNameISO(GWF_Language::getCurrentISO()); }
 	public function displayNameISO($iso)
 	{

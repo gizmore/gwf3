@@ -82,7 +82,7 @@ final class GWF_Country extends GDO
 	### ISO Names ###
 	#################
 	private static $COUNTRY_NAMES = true;
-	private static function initCountryNames() { if (self::$COUNTRY_NAMES === true) { self::$COUNTRY_NAMES = new GWF_LangTrans('lang/country/countries'); } }
+	private static function initCountryNames() { if (self::$COUNTRY_NAMES === true) { self::$COUNTRY_NAMES = new GWF_LangTrans(GWF_CORE_PATH.'lang/country/countries'); } }
 	public function displayName() { return $this->displayNameISO(GWF_Language::getCurrentISO()); }
 	public function displayNameISO($iso)
 	{

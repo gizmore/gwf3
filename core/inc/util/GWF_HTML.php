@@ -17,7 +17,7 @@ final class GWF_HTML
 	#################
 	### Lang File ###
 	#################
-	public static function init() { self::$trans = new GWF_LangTrans('lang/base/base'); }
+	public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/base/base'); }
 	public static function &getLang() { return self::$trans; }
 	public static function lang($key, $args=NULL) { return self::$trans->lang($key, $args); }
 	public static function langAdmin($key, $args=NULL) { return self::$trans->langAdmin($key, $args); }

@@ -40,7 +40,7 @@ GWF_Website::addCSS('/tpl/install/css/install.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
 
-GWF_Install::setGWFIL(new GWF_LangTrans('lang/install/install'));
+GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
 
 $page = '';
 
