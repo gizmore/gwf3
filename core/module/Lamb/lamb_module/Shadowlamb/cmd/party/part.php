@@ -19,6 +19,7 @@ final class Shadowcmd_part extends Shadowcmd
 		$np = SR_Party::createParty();
 		$np->addUser($player, true);
 		$np->cloneAction($p);
+		$np->clonePreviousAction($p);
 		
 		if ($np->isMoving())
 		{
