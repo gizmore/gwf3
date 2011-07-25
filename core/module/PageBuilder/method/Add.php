@@ -122,6 +122,7 @@ final class PageBuilder_Add extends GWF_Method
 			'page_content' => $form->getVar('content'),
 			'page_views' => 0,
 			'page_options' => $options,
+			'page_menu_pos' => -1,
 		));
 		
 		if (false === $page->insert()) {
