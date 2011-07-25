@@ -49,11 +49,11 @@ final class VersionClient_Update extends GWF_Method
 	
 	private function getArchiveName()
 	{
-		return 'temp/update_'.GWF_Time::THIS_DATE.'.zip';
+		return 'extra/temp/update_'.GWF_Time::THIS_DATE.'.zip';
 	}
 	private function getArchiveDir()
 	{
-		return 'temp/update_'.GWF_Time::THIS_DATE;
+		return 'extra/temp/update_'.GWF_Time::THIS_DATE;
 	}
 	
 	private function onCleanUpdate(Module_VersionClient $module)

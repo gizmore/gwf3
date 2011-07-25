@@ -125,7 +125,7 @@ final class GWF_Upload
 	 * @param $pubtemp - path to public readable dir on server, defaults to "temp"
 	 * @return mixed - false or array.
 	 * */
-	public static function moveToPublicTemp($file, $pubtemp='temp/upload')
+	public static function moveToPublicTemp($file, $pubtemp='extra/temp/upload')
 	{
 		$newtmp = self::getFileName($file['tmp_name']);
 		$newtmp = $pubtemp.'/'.$newtmp;

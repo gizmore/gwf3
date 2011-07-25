@@ -393,7 +393,7 @@ final class Account_Form extends GWF_Method
 		}
 		
 		$user = GWF_Session::getUser();
-		$outfile = 'temp/gpg/'.$user->getVar('user_id');
+		$outfile = 'extra/temp/gpg/'.$user->getVar('user_id');
 //		if (!is_writable($outfile)) {
 //			return GWF_HTML::err('ERR_WRITE_FILE', array($outfile));
 //		}

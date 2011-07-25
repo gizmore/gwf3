@@ -1,5 +1,5 @@
 <?php
-function module_PM_unread(array $args, $format='[%s]')
+function module_PM_unread(array $args, $default='')
 {
 	$user = $args[0]; $user instanceof GWF_User;
 	if ('0' !== ($userid = $user->getID()))
@@ -11,6 +11,8 @@ function module_PM_unread(array $args, $format='[%s]')
 		if ($count > 0)
 		{
 			return sprintf($pattern, $count);
+		} else {
+			return $default;
 		}
 	}
 }

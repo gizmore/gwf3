@@ -75,7 +75,7 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		
 		# Cookie stuff
-		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		$cookiefile = tempnam('extra/temp/gwfhttp', 'cookie');
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
 		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
  
@@ -138,7 +138,7 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		
 		# Cookie stuff
-		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		$cookiefile = tempnam('extra/temp/gwfhttp', 'cookie');
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
 		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
 		
@@ -210,7 +210,7 @@ final class GWF_HTTP
 		}
 		
 		# Cookie stuff
-		$cookiefile = tempnam('temp/gwfhttp', 'cookie');
+		$cookiefile = tempnam('extra/temp/gwfhttp', 'cookie');
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
 		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
 		if ($cookie !== false) {

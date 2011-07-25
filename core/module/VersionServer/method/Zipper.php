@@ -48,10 +48,10 @@ final class VersionServer_Zipper extends GWF_Method
 	
 	public static $tempdirs = array(
 		'cache', 'applet',
-		'temp', 'temp/banner', 'temp/offer', 'temp/upload', 'temp/gpg',
+		'temp', 'extra/temp/banner', 'extra/temp/offer', 'extra/temp/upload', 'extra/temp/gpg',
 		'dbimg/banner', 'dbimg/cover', 'dbimg/partner',
 		'protected/logs', 'protected/db_backups', 'protected/db_backups_old', 'protected/rawlog', 'protected/zipped',
-		'temp/smarty_cache', 'temp/smarty_cache/cache', 'temp/smarty_cache/cfg', 'temp/smarty_cache/tpl', 'temp/smarty_cache/tplc',
+		'extra/temp/smarty_cache', 'extra/temp/smarty_cache/cache', 'extra/temp/smarty_cache/cfg', 'extra/temp/smarty_cache/tpl', 'extra/temp/smarty_cache/tplc',
 	);
 	
 	public function execute(GWF_Module $module)

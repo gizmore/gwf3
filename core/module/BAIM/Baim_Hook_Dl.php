@@ -16,7 +16,7 @@ final class Baim_Hook_Dl
 		
 		$mime = $dl->getVar('dl_mime');
 		$path = $dl->getDownloadPath();
-		$temp_path = 'temp/baim/'.$user->getVar('user_id').'_'.$row->getToken();
+		$temp_path = 'extra/temp/baim/'.$user->getVar('user_id').'_'.$row->getToken();
 		
 		if (Common::isFile($temp_path)) {
 			if (false === unlink($temp_path)) {

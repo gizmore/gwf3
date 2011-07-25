@@ -79,7 +79,7 @@ final class VersionServer_Upgrade extends GWF_Method
 		GWF_VersionFiles::populateAll();
 		
 		# Open temp manifest file.
-		$manifestName = sprintf('temp/upgrade_manifest_%s_%s.gwf_manifest', $this->client->getVar('vsc_uid'), $this->datestamp);
+		$manifestName = sprintf('extra/temp/upgrade_manifest_%s_%s.gwf_manifest', $this->client->getVar('vsc_uid'), $this->datestamp);
 		if (false === ($fhManifest = fopen($manifestName, 'w'))) {
 			return GWF_HTML::err('ERR_WRITE_FILE', array( $manifestName));
 		} 
@@ -87,7 +87,7 @@ final class VersionServer_Upgrade extends GWF_Method
 		
 		# Create ZIP
 		$archive = new GWF_ZipArchive();
-		$archivename = sprintf('temp/upgrade_%s_%s.zip', $this->client->getVar('vsc_uid'), $this->datestamp);
+		$archivename = sprintf('extra/temp/upgrade_%s_%s.zip', $this->client->getVar('vsc_uid'), $this->datestamp);
 		if (false === ($archive->open($archivename, ZipArchive::CREATE|ZipArchive::CM_REDUCE_4))) {
 			fclose($fhManifest);
 			return $module->error('err_zip', __FILE__, __LINE__);
