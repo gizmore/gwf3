@@ -23,8 +23,8 @@ final class GWF_HTAccess
 			'deny from all'.PHP_EOL.
 			'</Limit>'.PHP_EOL.PHP_EOL.
 			'# Custom error pages'.PHP_EOL.
-			'ErrorDocument 403 '.GWF_WEB_ROOT.'error.php?code=403'.PHP_EOL.
-			'ErrorDocument 404 '.GWF_WEB_ROOT.'error.php?code=404'.PHP_EOL.PHP_EOL.
+			'ErrorDocument 403 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=403'.PHP_EOL.
+			'ErrorDocument 404 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=404'.PHP_EOL.PHP_EOL.
 			'RewriteEngine On'.PHP_EOL.PHP_EOL.
 			self::getLangRewrites().PHP_EOL.PHP_EOL;
 	}
