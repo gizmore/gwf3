@@ -21,7 +21,7 @@ class GWF3
 	public static function _init()
 	{
 		# Require the util
-		require_once GWF_CORE_PATH.'inc/util/Common.php';
+		require_once __DIR__.'/core/inc/util/Common.php';
 
 		# Definements
 		define('GWF_PATH', __DIR__.'/');
