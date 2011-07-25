@@ -25,6 +25,8 @@ $lang = array(
 	'th_show_modified' => 'Show Modified Date',
 	'th_show_trans' => 'Show Available Translations',
 	'th_show_comments' => 'Allow comments',
+	'th_index' => 'Allow indexing',
+	'th_follow' => 'Allow following',
 
 	'sel_type' => 'Select a type',
 	'type_html' => 'HTML',

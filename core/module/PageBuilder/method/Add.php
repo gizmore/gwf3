@@ -26,6 +26,8 @@ final class PageBuilder_Add extends GWF_Method
 		$data['lang'] = array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $module->lang('th_lang'));
 		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', true, true, true), $module->lang('th_groups'));
 		$data['noguests'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_noguests'));
+		$data['index'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_index'));
+		$data['follow'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_follow'));
 		$data['title'] = array(GWF_Form::STRING, '', $module->lang('th_title'));
 		if ($mod_cat !== false)
 		{
@@ -96,6 +98,8 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['show_modified']) ? GWF_Page::SHOW_MODIFIED : 0;
 		$options |= isset($_POST['show_trans']) ? GWF_Page::SHOW_TRANS : 0;
 		$options |= isset($_POST['show_comments']) ? GWF_Page::COMMENTS : 0;
+		$options |= isset($_POST['index']) ? GWF_Page::INDEX : 0;
+		$options |= isset($_POST['follow']) ? GWF_Page::FOLLOW : 0;
 		$options |= $form->getVar('type');
 		
 		$gstring = $this->buildGroupString($module);

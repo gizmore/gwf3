@@ -43,6 +43,8 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($module), $module->lang('th_type'));
 		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($module, $page), true, true), $module->lang('th_groups'));
 		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $module->lang('th_noguests'));
+		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $module->lang('th_index'));
+		$data['follow'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::FOLLOW), $module->lang('th_follow'));
 //		'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $page->getVar('page_lang')), $module->lang('th_lang')),
 		$data['enabled'] = array(GWF_Form::CHECKBOX, $page->isEnabled(), $module->lang('th_enabled'));
 		$data['title'] = array(GWF_Form::STRING, $page->getVar('page_title'), $module->lang('th_title'));
@@ -197,6 +199,8 @@ final class PageBuilder_Edit extends GWF_Method
 		$bits |= isset($_POST['show_modified']) ? GWF_Page::SHOW_MODIFIED : 0;
 		$bits |= isset($_POST['show_trans']) ? GWF_Page::SHOW_TRANS : 0;
 		$bits |= isset($_POST['show_comments']) ? GWF_Page::COMMENTS : 0;
+		$bits |= isset($_POST['index']) ? GWF_Page::INDEX : 0;
+		$bits |= isset($_POST['follow']) ? GWF_Page::FOLLOW : 0;
 		$bits |= $_POST['type'];
 		$page->setOption($bits, true);
 		$page->setVar('page_groups', $gstring);

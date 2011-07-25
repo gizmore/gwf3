@@ -24,6 +24,9 @@ final class GWF_Page extends GDO
 	const MODES = 0x700;
 	
 	const COMMENTS = 0x800;
+	
+	const INDEX = 0x1000;
+	const FOLLOW = 0x2000;
 
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'page'; }
