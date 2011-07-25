@@ -13,7 +13,7 @@ final class GWF_Category extends GWF_Tree
 		return array_merge(parent::getColumnDefines(), 
 		array(
 			'cat_group' => array(GDO::INDEX|GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', self::KEY_LENGTH),
-			'translations' => array(GDO::GDO_ARRAY, GDO::NOT_NULL, array('GWF_CategoryTranslation', 'langid', 'catid', 'catid'), array('trans')),
+			'translations' => array(GDO::GDO_ARRAY, GDO::NOT_NULL, array('GWF_CategoryTranslation', 'cl_langid', 'cl_catid', 'cat_tree_id'), array('trans')),
 			'trans' => array(GDO::JOIN, true, array('GWF_CategoryTranslation', 'cat_tree_id', 'cl_catid')),
 		));
 	}
@@ -93,12 +93,12 @@ final class GWF_Category extends GWF_Tree
 		$trans = self::table('GWF_CategoryTranslation');
 		if (false === ($t = $trans->getRow($catid, $langid))) {
 			$t = new GWF_CategoryTranslation(array(
-				'catid' => $catid,
-				'langid' => $langid,
-				'translation' => $text,
+				'cl_catid' => $catid,
+				'cl_langid' => $langid,
+				'cl_translation' => $text,
 			));
 		} else {
-			$t->setVar('translation', $text);
+			$t->setVar('cl_translation', $text);
 		}
 		
 		if (false === $t->replace()) {
@@ -106,9 +106,9 @@ final class GWF_Category extends GWF_Tree
 		}
 		
 		$this->gdo_data['translations'][$langid] = array(
-			'catid' => $catid,
-			'langid' => $langid,
-			'translation' => $text
+			'cl_catid' => $catid,
+			'cl_langid' => $langid,
+			'cl_translation' => $text
 		);
 		return true;
 	}
@@ -160,7 +160,7 @@ final class GWF_Category extends GWF_Tree
 			$langid = (string) GWF_Language::getCurrentID();
 		}
 		if (isset($this->gdo_data['translations'][$langid])) {
-			return $this->gdo_data['translations'][$langid]['translation'];
+			return $this->gdo_data['translations'][$langid]['cl_translation'];
 		}
 		else {
 			return $this->getVar('key for '.$langid);
