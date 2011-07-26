@@ -154,12 +154,12 @@ final class GWF_VersionFiles extends GDO
 	{
 		self::$size_unpacked = 0;
 		
-		self::populate('extra/font');
+		self::populate(GWF_PATH.'extra/font');
 		self::populate(GWF_WWW_PATH.'img');
-		self::populate('core/inc');
+		self::populate(GWF_PATH.'core/inc');
 		self::populate(GWF_WWW_PATH.'js');
-		self::populate('core/lang');
-		self::populate('core/module');
+		self::populate(GWF_PATH.'core/lang');
+		self::populate(GWF_PATH.'core/module');
 		self::populate(GWF_WWW_PATH.'tpl');
 		
 		GWF_Module::getModule('VersionServer')->getMethod('Zipper');

@@ -21,6 +21,23 @@ final class Module_GWF extends GWF_Module
 	public function cfgHTMLTable() { return $this->getModuleVar('HTMLTable','false') === 'true'; }
 	public function cfgSuppressDescription() { return $this->getModuleVar('SuppressDescription', 'true') === 'true'; }
 	public function cfgSuppressRules() { return $this->getModuleVar('SuppressRules', 'true') === 'true'; }
+
+	public function onInstall($dropTable)
+	{
+		return GWF_ModuleLoader::installVars($this, array(
+			'NameWidth' => array('450', 'int'),
+			'NameWidth' => array('25', 'int'),
+			'IconHeight' => array('16', 'int'),
+			'IconWidth' => array('16', 'int'),
+	//		'Design' => array(GWF_Template::getDesign(), 'text'),
+			'SuppressHTMLPreamble' => array(true, 'bool'),
+			'FoldersFirst' => array(true, 'bool'),
+			'ScanHTMLTitles' => array(true, 'bool'),
+			'HTMLTable' => array(false, 'bool'),
+			'SuppressDescription' => array(true, 'bool'),
+			'SuppressRules' => array(true, 'bool'),
+		));
+	}	
 	
 }
 ?>
