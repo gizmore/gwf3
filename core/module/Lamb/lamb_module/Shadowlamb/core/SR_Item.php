@@ -400,6 +400,9 @@ class SR_Item extends GDO
 			Lamb_Log::logError(sprintf('Item %s(%d) can not decrease amount %d!', $this->getItemName(), $this->getID(), $amount));
 			return false;
 		}
+		
+		$player->modify();
+		
 		return $this->getAmount() < 1 ? $this->deleteItem($player) : true;
 	}
 	
