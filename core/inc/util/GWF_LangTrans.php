@@ -54,6 +54,12 @@ final class GWF_LangTrans
 				$j = $i++;
 				$back = str_replace("%$i%", $args[$j], $back);
 			}
+## Gizmore: please decide: this algo is 'key' capable; maybe faster?
+//			foreach($args as $i =>$j)
+//			{
+//				if(is_int($i)) { $i++; }
+//				$back = str_replace("%$i%", $j, $back);
+//			}
 		}
 		return $back;
 	}
@@ -64,7 +70,7 @@ final class GWF_LangTrans
 	}
 	public function langA($var, $key, $args=NULL) {
 		$back = $this->lang($var);
-		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $key;
+		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $back.'['.$key.']';
 	}
 	
 	public function langUser(GWF_User $user, $key, $args)
