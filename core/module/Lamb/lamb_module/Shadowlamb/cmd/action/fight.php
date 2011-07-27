@@ -33,9 +33,7 @@ final class Shadowcmd_fight extends Shadowcmd
 				$ep->popAction();
 			}
 			
-			# Someone attacks another party. Bad karma?
-//			$bad_karma = self::calcBadKarma($p, $ep);
-//			SR_BadKarma::giveBadKarma($bad_karma);
+			SR_BadKarma::onFight($player, $ep);
 			
 			$p->fight($ep, true);
 			
