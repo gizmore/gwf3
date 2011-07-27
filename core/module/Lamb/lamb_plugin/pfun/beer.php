@@ -1,6 +1,8 @@
 <?php # Codemonkey cool down get a beer...
 $server instanceof Lamb_Server;
 $user instanceof Lamb_User;
+
+# Steal
 if ($user->getName() === 'gizmore') {
 	$steal = '.';
 }
@@ -10,5 +12,28 @@ elseif (rand(0,3)) {
 else {
 	$steal = ', but gizmore steals it!';
 }
-$server->sendAction($origin, sprintf('hands %s a cold beer%s', $user->getName(), $steal));
+
+# Left
+global $DOTBEERLEFT;
+if (!isset($DOTBEERLEFT))
+{
+	$DOTBEERLEFT = 100;
+}
+else
+{
+	$DOTBEERLEFT--;
+}
+
+if ($DOTBEERLEFT < 0)
+{
+	switch (rand(0, 2))
+	{
+		case 0: return $bot->reply('Is there any .vodka left?');
+		case 1: return $bot->reply('Alert Emergy Log Critical Error help!!!!! Beer is empty, repeat. BEER IS EMPTY!');
+		case 2: return $bot->reply('I have no beer left.');
+	}
+	
+}
+
+$server->sendAction($origin, sprintf('passes %d of %d bottles of cold beer around to %s%s', 1, $DOTBEERLEFT, $user->getName(), $steal));
 ?>
