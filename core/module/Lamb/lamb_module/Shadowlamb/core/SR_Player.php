@@ -1185,8 +1185,8 @@ class SR_Player extends GDO
 	
 	public function getMPGain()
 	{
-		$ma = $this->getBase('magic');
-		$ma += $this->get('orcas');
+		$ma = $this->get('magic') * 5;
+		$ma += $this->get('orcas') * 20;
 		return round(self::MP_REFRESH_MULTI*$ma, 2);
 	}
 	

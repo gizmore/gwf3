@@ -11,7 +11,7 @@ final class SR_BazarItem extends GDO
 		return array(
 			'sr4ba_id' => array(GDO::AUTO_INCREMENT),
 			'sr4ba_pname' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::INDEX, GDO::NOT_NULL, 63),
-			'sr4ba_iname' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
+			'sr4ba_iname' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'sr4ba_price' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4ba_iamt' => array(GDO::UINT, GDO::NOT_NULL),
 		);
@@ -75,7 +75,18 @@ final class SR_BazarItem extends GDO
 		
 		$player->message(sprintf('%s have been booked to your bank account for selling %s %s to %s.', Shadowfunc::displayNuyen($price), $amt, $iname, $buyer->getName()));
 		
-		return $player->giveBankNuyen($price);
+		if (false === $player->giveBankNuyen($price))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public static function getUsedSlots($pname)
+	{
+		$pname = self::escape($pname);
+		return self::table(__CLASS__)->countRows("sr4ba_pname='$pname'");
 	}
 }
 

@@ -88,13 +88,14 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-		array(
-			'host' => 'ircs://irc.hackerzvoice.net:6697',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-			'channels' => '#shadowlamb',
-			'admins' => 'gizmore',
-		),
+//		array(
+//			'host' => 'ircs://irc.hackerzvoice.net:6697',
+//			'nickname' => 'Lamb3',
+//			'password' => 'lamblamb',
+//			'channels' => '#shadowlamb',
+//			'admins' => 'gizmore',
+//		),
+
 		array(
 		
 			'host' => 'ircs://irc.big-daddy.fr:6697',
@@ -103,6 +104,7 @@ $LAMB_CFG = array
 			'channels' => '#shadowlamb,#Big-Daddy',
 			'admins' => 'gizmore',
 		),
+		
 		array(
 			'host' => 'irc://irc.gizmore.org:6668',
 			'nickname' => 'Lamb3',
@@ -110,6 +112,7 @@ $LAMB_CFG = array
 			'channels' => '#shadowlamb',
 			'admins' => 'gizmore',
 		),
+		
 		array(
 			'host' => 'ircs://irc2.hackbbs.org:9999',
 			'nickname' => 'Lamb3',
@@ -118,8 +121,16 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
+//		array(
+//			'host' => 'ircs://irc3.srn.ano:6697',
+//			'nickname' => 'Lamb3',
+//			'password' => 'lamblamb',
+//			'channels' => '#shadowlamb',
+//			'admins' => '/NNN/gizmore',
+//		),
+		
 		array(
-			'host' => 'ircs://irc3.srn.ano:6697',
+			'host' => 'irc://irc2.sevilnatas.ano:6667',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',

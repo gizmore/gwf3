@@ -8,20 +8,19 @@ final class Shadowcmd_gmi extends Shadowcmd
 			$bot->reply(Shadowhelp::getHelp($player, 'gmi'));
 			return false;
 		}
-		
-		$server = $player->getUser()->getServer();
-		
-		if (false === ($user = $server->getUserByNickname($args[0]))) {
-			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
-			return false;
-		}
-		
-		if (false === ($target = Shadowrun4::getPlayerByUID($user->getID()))) {
-//		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
-			$bot->reply(sprintf('The player %s is unknown.', $user->getName()));
-			return false;
-		}
 
+		$target = Shadowrun4::getPlayerByShortName($args[0]);
+		if ($target === -1)
+		{
+			$player->message('The username is ambigious.');
+			return false;
+		}
+		if ($target === false)
+		{
+			$player->message('The player is not in memory or unknown.');
+			return false;
+		}
+		
 		if (false !== ($error = self::checkCreated($target))) {
 			$bot->reply(sprintf('The player %s has not started a game yet.', $args[0]));
 			return false;
@@ -34,6 +33,11 @@ final class Shadowcmd_gmi extends Shadowcmd
 		
 		if (isset($args[2]))
 		{
+			if (!$item->isItemStackable())
+			{
+				$bot->reply('No amount for equipment!');
+				return false;
+			}
 			$item->saveVar('sr4it_amount', intval($args[2]));
 		}
 		

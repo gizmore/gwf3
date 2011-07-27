@@ -376,6 +376,18 @@ final class Shadowhelp
 							'popi' => "Location command. Usage: #popi <bankid>. In banks you can store items and nuyen to keep them safe for later usage.",
 							'popy' => "Location command. Usage: #popy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
 						),
+						
+						'bazar_cmds' => 'Bazar commands',
+						array(
+							'bazar_view' => 'Bazar command. Usage #view [<player>] [<item>]. Browse the bazar.',
+							'bazar_push' => 'Bazar command. Usage #push <item> <price> [<amt>]. Push your items to the bazar and offer it for a price.',
+							'bazar_pop' => 'Bazar command. Usage #pop <item>. Remove an item from your bazar and put it back into your inventory. The fee is 50Y.',
+							'bazar_buy' => 'Bazar command. Usage #buy <player> <item> [<amt>]. Buy an item from the bazar.',
+							'bazar_buyslot' => 'Bazar command. Usage: #buyslot [<CONFIRM>]. Buy another slot in your bazar to sell items. ',
+							'bazar_price' => 'Bazar command. Usage: #price <item> <price>. Set a new price for one of your items offered in your bazar.',
+							'bazar_search' => 'Bazar command. Usage: #search <itemname>. Search the bazar for items in their full-name.',
+//							'bazar_bestbuy' => '',
+						),
 
 						'smith_cmds' => 'Blacksmith commands',
 						array(

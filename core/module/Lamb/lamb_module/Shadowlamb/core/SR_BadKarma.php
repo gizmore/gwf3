@@ -13,6 +13,7 @@ final class SR_BadKarma
 			$e instanceof SR_Player;
 			if (!$e->isHuman())
 			{
+				$add += 0.05;
 				continue;
 			}
 			

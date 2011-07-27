@@ -29,7 +29,7 @@ if ($DOTBEERLEFT < 0)
 	switch (rand(0, 2))
 	{
 		case 0: return $bot->reply('Is there any .vodka left?');
-		case 1: return $bot->reply('Alert Emergy Log Critical Error help!!!!! Beer is empty, repeat. BEER IS EMPTY!');
+		case 1: return $bot->reply('Alert, Emergency Log!, Critical Error! help!!!!! Beer is empty, repeat. BEER IS EMPTY!');
 		case 2: return $bot->reply('I have no beer left.');
 	}
 	

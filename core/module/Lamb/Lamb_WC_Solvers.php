@@ -3,7 +3,7 @@
 # uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount
 # lamb_wc_solvers('WC', '[WeChall]', 'https://www.wechall.net/index.php?mo=WeChall&me=API_ChallSolved&ajax=true&datestamp=%DATE%&no_session=true')
 
-function lamb_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=100)
+function lamb_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=100, $format)
 {
 	# Date we want to query
 	$lastdate = GWF_Settings::getSetting('LAMB_SOLVERS_DATE_'.$key, '');
@@ -95,8 +95,8 @@ function lamb_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=
 		
 		$lamb = Lamb::instance();
 		# Output message
-		$msg = sprintf("%s \x02%s\x02 has just solved \x02%s\x02. This challenge has been solved %d times. (https://www.wechall.net/%s)", $name, $username, $challname, $solvercount, $challurl);
-
+		
+		$msg = sprintf($format, $name, $username, $challname, $solvercount, $challurl);
 		
 		if (count($channels) === 0)
 		{

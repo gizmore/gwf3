@@ -17,6 +17,16 @@ final class SR_BazarShop extends GDO
 		);
 	}
 	
+	public function fixItemCount()
+	{
+		$epname = self::escape($this->getVar('sr4bs_pname'));
+		if (false === ($count = GDO::table('SR_BazarItem')->selectVar('SUM(sr4ba_iamt)', "sr4ba_pname='$epname'")))
+		{
+			return false;
+		}
+		return $this->saveVar('sr4bs_itemcount', $count);
+	}
+	
 	public function getSlogan()
 	{
 		if ('' === ($slogan = $this->getVar('sr4bs_message')))

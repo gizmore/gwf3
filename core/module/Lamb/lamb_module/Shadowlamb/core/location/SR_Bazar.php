@@ -14,6 +14,8 @@ class SR_Bazar extends SR_Location
 	const TEMP_PAGE = 'BAZAR_PAGE';
 	const TEMP_SEARCH = 'BAZAR_SEARCH';
 	
+	const TEMP_BUY_CONFIRM = 'BAZAR_BUY';
+	
 	################
 	### Location ###
 	################
@@ -278,13 +280,19 @@ class SR_Bazar extends SR_Location
 				}
 			}
 			
-			if (false === ($shop->increase('sr4bs_itemcount', 1)))
+//			if (false === ($shop->increase('sr4bs_itemcount', 1)))
+//			{
+//				$player->message('Database Error 12!');
+//				return false;
+//			}
+
+			if (false === ($shop->fixItemCount()))
 			{
-				$player->message('Database Error 12!');
-				return false;
+				$player->message('Database Error 21!');
 			}
 
-			return $player->message(sprintf('You offered %d %s for %s each in your bazar.', $amt, $iname, Shadowfunc::displayNuyen($price)));
+			$price2 = $this->calcBuyPrice($price);
+			return $player->message(sprintf('You offered %d %s for %s each in your bazar.', $amt, $iname, Shadowfunc::displayNuyen($price2)));
 		}
 		
 		# Add to bazar stack
@@ -337,6 +345,11 @@ class SR_Bazar extends SR_Location
 				return false;
 			}
 			
+			if (false === ($shop->fixItemCount()))
+			{
+				$player->message('Database Error 21!');
+			}
+			
 			if (false === $bitem->saveVar('sr4ba_price', $price))
 			{
 				$player->message('Database Error 5!');
@@ -355,7 +368,7 @@ class SR_Bazar extends SR_Location
 		{
 			return true;
 		}
-		$used_slots = $shop->getVar('sr4bs_itemcount');
+		$used_slots = SR_BazarItem::getUsedSlots($pname);
 		$avail_slots = $this->getBazarSlots($player);
 		return $used_slots < $avail_slots; 
 	}
@@ -469,10 +482,15 @@ class SR_Bazar extends SR_Location
 			return false;
 		} 
 		
-		if (false === $shop->increase('sr4bs_itemcount', -$amt))
+//		if (false === $shop->increase('sr4bs_itemcount', -$amt))
+//		{
+//			$player->message('Database Error 4!');
+//			return false;
+//		}
+
+		if (false === ($shop->fixItemCount()))
 		{
-			$player->message('Database Error 4!');
-			return false;
+			$player->message('Database Error 21!');
 		}
 		
 		$player->giveNuyen(-$fee);
@@ -485,21 +503,29 @@ class SR_Bazar extends SR_Location
 	###########
 	public function calcBuyPrice($price)
 	{
-		return $price * round(self::FEE / 100 + 1.00, 3);
+		return $price * round(self::FEE / 100 + 1.00, 2);
 	}
 	
 	public function on_buy(SR_Player $player, array $args)
 	{
 		$count = count($args);
 		
+		# Bad args?
 		if ( ($count === 0) || ($count > 4) )
 		{
 			$player->message(Shadowhelp::getHelp($player, 'bazar_buy'));
 			return false;
 		}
-		
+
+		# Player name
 		$pname = $args[0];
+		if ($pname === $player->getName())
+		{
+			$player->message('You cannot buy items from your own shop.');
+			return false;
+		}
 		
+		# Show single shop?
 		if ($count === 1)
 		{
 			return $this->onViewShop($player, $pname);
@@ -540,6 +566,17 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
+		# Confirm!
+		$msg = sprintf('%s::%s::%s::%s', $pname, $iname, $amt, $price);
+		$old_msg = $player->getTemp(self::TEMP_BUY_CONFIRM, '');
+		if ($old_msg !== $msg)
+		{
+			$player->setTemp(self::TEMP_BUY_CONFIRM, $msg);
+			$player->message(sprintf('You attempt to purchase %d %s from %s for %s each. Retype to confirm.', $amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
+			return true;
+		}
+		
+		# Do it!
 		if ($item->isItemStackable())
 		{
 			$item2 = SR_Item::createByName($iname, $amt, true);
@@ -562,6 +599,7 @@ class SR_Bazar extends SR_Location
 			$player->message('Database error 19!');
 			return false;
 		}
+
 		
 		if (false === $bi->onPurchased($amt))
 		{
@@ -573,6 +611,11 @@ class SR_Bazar extends SR_Location
 		{
 			$player->message('Database error 20!');
 			return false;
+		}
+		
+		if (false === ($shop->fixItemCount()))
+		{
+			$player->message('Database Error 21!');
 		}
 		
 		SR_BazarHistory::insertPurchase($player->getName(), $pname, $iname, $bi->getVar('sr4ba_price'), $amt);
@@ -620,7 +663,7 @@ class SR_Bazar extends SR_Location
 		}
 		else
 		{
-			$used_slots = $shop->getVar('sr4bs_itemcount');
+			$used_slots = SR_BazarItem::getUsedSlots($pname);
 		}
 		$avail_slots = $this->getBazarSlots($player);
 		$price = $this->calcBuySlotPrice($player);
@@ -641,8 +684,6 @@ class SR_Bazar extends SR_Location
 			$price += $price;
 		}
 		return $price;
-
-//		return Common::pow(self::SLOT_PRICE, $ps+1);
 	}
 	
 	private function onBuySlot(SR_Player $player)
@@ -786,7 +827,7 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		$nPages = GWF_PageMenu::getPagecount($ioo, $nItems);
+		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 
 		$old_term = $player->getTemp(self::TEMP_SEARCH, '');
 		if ($old_term === $term)
@@ -796,6 +837,8 @@ class SR_Bazar extends SR_Location
 		}
 		else
 		{
+			$player->setTemp(self::TEMP_SEARCH, $term);
+			$player->setTemp(self::TEMP_PAGE, 2);
 			$page = 1;
 		}
 		
@@ -813,13 +856,17 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
+		$out = '';
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-			
+			$amt = $row['sr4ba_iamt'];
+			$amt = $amt > 1 ? "({$amt}x)" : '';
+			$out .= sprintf(', %s %s %s%s', $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
 		
 		$table->free($result);
 		
+		return $player->message(sprintf('Matches %d/%d: %s.', $page, $nPages, substr($out, 2)));
 	}
 }
 ?>

@@ -18,11 +18,11 @@ final class Shadowcmd_bye extends Shadowcmd
 	
 	private static function onHumanBye(SR_Party $p, SR_Party $ep)
 	{
-		$key = self::getByeKey($a, $b);
+		$key = self::getByeKey($p, $ep);
 		$bye = self::$BYEBYE[$key];
 		if ($bye === '')
 		{
-			self::$BYEBYE[$key] = $p->getID;
+			self::$BYEBYE[$key] = $p->getID();
 			return false;
 		}
 		elseif ($bye == $ep->getID())

@@ -564,6 +564,7 @@ final class SR_Party extends GDO
 	
 	public function talk(SR_Party $party, $announce=true)
 	{
+		Shadowcmd_bye::onPartyMeet($party, $this);
 		$this->pushAction(self::ACTION_TALK, $party->getID(), 0);
 		$party->pushAction(self::ACTION_TALK, $this->getID(), 0);
 		$this->setContactEta(60);
