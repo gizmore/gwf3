@@ -49,7 +49,7 @@ class GWF3
 		if(true === self::$_instance) return;
 		
 		# Important definements
-		Common::defineConst('GWF_WWW_PATH', $basepath);
+		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
 
 		# Enable the error handlers
 		GWF_Debug::enableErrorHandler();
@@ -195,6 +195,9 @@ class GWF3
 		# Init core
 		if (false === GWF_Website::init()) {
 			die('GWF3 does not seem to be installed properly.');
+		}
+		if(false !== Common::getGet('plain', false)) {
+			GWF_Website::plaintext();
 		}
 		return $this;
 	}
