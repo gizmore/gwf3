@@ -1,6 +1,6 @@
 <?php
 require_once 'RacingBike.php';
-final class Item_Moped extends Item_RacingBike
+class Item_Moped extends Item_RacingBike
 {
 	public function getItemDescription() { return 'An old 125ccm moped.'; }
 	public function getItemPrice() { return 1500; }
