@@ -30,7 +30,7 @@ final class GWF_HTML
 	private static $_ERRORS = array();
 	public static function err($key, $args=NULL, $log=true, $to_smarty = false) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log, $to_smarty); }
 	public static function error($title=NULL, $message, $log=true, $to_smarty = false) { return self::errorA($title, array($message), $log, $to_smarty); }
-	public static function errorA($title=NULL, array $messages, $log=true, $to_smarty = false)
+	public static function errorA($title=NULL, array $messages, $log=true, $to_smarty=false)
 	{
 		if (count($messages) === 0) return '';
 		
@@ -38,7 +38,7 @@ final class GWF_HTML
 		{
 				GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if ($to_smarty === false)
+		if ($to_smarty === false && false === Common::getConst('GWF_ERRORS_TO_SMARTY', false))
 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
 		}
@@ -80,7 +80,7 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if ($to_smarty === false)
+		if ($to_smarty === false && false === Common::getConst('GWF_MESSAGES_TO_SMARTY', false))
 		{
 			return self::displayMessages(array('title' => $title, 'messages' => $messages));
 		}
