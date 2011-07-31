@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_drop extends Shadowcmd
 {
+	private static $CONFIRM = array();
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -27,15 +29,37 @@ final class Shadowcmd_drop extends Shadowcmd
 			$bot->reply('You should not drop that item.');
 			return false;
 		}
+		$iname = $item->getItemName();
+		
+		# Confirm
+		$pid = (int)$player->getID();
+		$msg = implode(' ', $args);
+		if ( (!isset(self::$CONFIRM[$pid])) || ($msg !== self::$CONFIRM[$pid]) )
+		{
+			self::$CONFIRM[$pid] = $msg;
+			$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
+			return true;
+		}
+		else
+		{
+			unset(self::$CONFIRM[$pid]);
+		}
+		
 		
 		# Drop stackable.
 		if ($item->isItemStackable())
 		{
+//			if ($amt > $item->getAmount())
+//			{
+//				$bot->reply('You don\'t have that much '.$item->getName().'.');
+//				return false;
+//			}
+
 			if ($amt > $item->getAmount())
 			{
-				$bot->reply('You don\'t have that much '.$item->getName().'.');
-				return false;
+				$amt = $item->getAmount();
 			}
+			
 			if (false === $item->useAmount($player, $amt))
 			{
 				$bot->reply('Database error 9.');
