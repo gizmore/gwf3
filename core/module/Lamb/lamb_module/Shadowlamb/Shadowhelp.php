@@ -265,7 +265,7 @@ final class Shadowhelp
 							'compare' => 'Player command. Usage: #(c)o(mp)are <item1: inv_id|S<store_id>|item_name> [<item2:inv_id|S<store_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
 							'swap' => 'Player command. Usage: #(sw)ap <item1> <item2>.  Will swap inventory item position',
 						),
-						'cyberware' => 'Player command. Usage: #()yberware [<cy_id>]. View your cyberware.',
+						'cyberware' => 'Player command. Usage: #(cy)berware [<cy_id>]. View your cyberware.',
 						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
 						'examine' => 'Player command. Usage: #ex <inv_id|'.$eqs.'|itemname>. Examine your items.',
 						'known_knowledge' => "Player command. Usage: #known_knowledge|#kk. List your known knowledge. Knowledge can help you on some quests but it is not required.",
