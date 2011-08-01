@@ -1514,6 +1514,67 @@ class SR_Player extends GDO
 		}
 		return $temp;
 	}
+
+	public function swapInvItems($item1, $item2){
+		$items1 = $this->getInvItems($item1);
+		$items2 = $this->getInvItems($item2);
+
+		if($items1[0]->getName() == $items2[0]->getName()){
+			return -3;
+		}
+		if(count($items1) == 0){
+			return -1;
+		}
+		if(count($items2) == 0){
+			return -2;
+		}
+
+		$beforeFirst = array();
+		$firstKey = -1;
+		$firstVal = null;
+		$beforeSecond = array();
+		$secondKey = -1;
+		$toMove = array();
+		$newinv = array();
+		$currentAdd =& $beforeFirst;
+
+		foreach($this->sr4_inventory as $key=>$value){
+			$vName = $value->getName();
+			if($vName == $items1[0]->getName() || $vName == $items2[0]->getName()){
+				if($firstKey == -1){
+					$firstKey = $key;
+					$firstVal = $value;
+					$currentAdd =& $beforeSecond;
+				}elseif($secondKey == -1 && $vName != $firstVal->getName()){
+					$secondKey = $key;
+
+					foreach($beforeFirst as $k => $v){
+						$newinv[$k] = $v;
+					}
+					$newinv[$key] = $value;
+					foreach($beforeSecond as $k => $v){
+						$newinv[$k] = $v;
+					}
+					$newinv[$firstKey] = $firstVal;
+					foreach($beforeSecond as $k => $v){
+						$newinv[$k] = $v;
+					}
+					foreach($toMove as $k => $v){
+						$newinv[$k] = $v;
+					}
+					$currentAdd =& $newinv;
+					$toMove =& $newinv;
+				}else{
+					$toMove[$key] = $value;
+				}
+			}else{
+				$currentAdd[$key] = $value;
+			}
+		}
+
+		$this->sr4_inventory =& $newinv;
+		$this->updateInventory();
+	}
 	
 	/**
 	 * Give items to a player. If 0 items are given, nothing is done and true is returned.
