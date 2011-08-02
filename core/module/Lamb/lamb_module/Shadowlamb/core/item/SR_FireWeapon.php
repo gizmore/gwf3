@@ -7,15 +7,27 @@ abstract class SR_FireWeapon extends SR_Weapon
 	
 	public function getItemRange() { return 20.0; }
 	
+//	public function getItemModifiersW(SR_Player $player)
+//	{
+//		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg,bow)
+//		$fir = Common::clamp($player->get('firearms')); # (fir),
+//		$nin = $sub === 'bows' ? Common::clamp($player->get('ninja')) : 0.0; # (bow++)
+//		return array(
+//			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
+//			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.0, 1),
+//			'max_dmg' => round($fir*0.2 + $sub*0.8 + $nin*0.1, 1),
+//		);
+//	}
+	
 	public function getItemModifiersW(SR_Player $player)
 	{
-		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg,bow)
 		$fir = Common::clamp($player->get('firearms')); # (fir),
-		$nin = $sub === 'bows' ? Common::clamp($player->get('ninja')) : 0.0; # (bow++)
+		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg)
+		$nin = Common::clamp($player->get('ninja')); # (nin)
 		return array(
-			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
-			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.0, 1),
-			'max_dmg' => round($fir*0.2 + $sub*0.8 + $nin*0.1, 1),
+			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.5, 1),
+			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.1, 1),
+			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.1, 1),
 		);
 	}
 	
@@ -102,6 +114,18 @@ abstract class SR_Bow extends SR_FireWeapon
 	public function getBulletsPerShot() { return 1; }
 	public function getItemSubType() { return 'bows'; }
 	public function displayType() { return 'Bow'; }
+	
+	public function getItemModifiersW(SR_Player $player)
+	{
+		$fir = Common::clamp($player->get('firearms'));
+		$sub = Common::clamp($player->get('bows', 0));
+		$nin = Common::clamp($player->get('ninja'));
+		return array(
+			'attack' =>  round($fir*1.0 + $sub*2.0 + $nin*1.0, 1),
+			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.2, 1),
+			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.2, 1),
+		);
+	}
 	
 }
 
