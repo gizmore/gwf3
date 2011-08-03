@@ -72,21 +72,25 @@ final class Shadowcmd_drop extends Shadowcmd
 
 		else
 		{
-			$dropped = 0;
-			while ($dropped < $amt)
+			$items = $player->getInvItems($iname, $amt);
+			foreach ($items as $item2)
 			{
-				if (false === ($item2 = $player->getInvItem($args[0])))
-				{
-					break;
-				}
 				if ($player->removeFromInventory($item2))
 				{
 					$dropped++;
 				}
 			}
+//			$dropped = 0;
+//			while ($dropped < $amt)
+//			{
+//				if (false === ($item2 = $player->getInvItem($args[0])))
+//				{
+//					break;
+//				}
+//			}
 		}
 		
-		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $item->getItemName()));
+		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $iname));
 		$player->modify();
 		
 		return true;
