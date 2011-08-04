@@ -32,17 +32,20 @@ final class Shadowcmd_drop extends Shadowcmd
 		$iname = $item->getItemName();
 		
 		# Confirm
-		$pid = (int)$player->getID();
-		$msg = implode(' ', $args);
-		if ( (!isset(self::$CONFIRM[$pid])) || ($msg !== self::$CONFIRM[$pid]) )
+		if (!is_numeric($args[0]))
 		{
-			self::$CONFIRM[$pid] = $msg;
-			$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
-			return true;
-		}
-		else
-		{
-			unset(self::$CONFIRM[$pid]);
+			$pid = (int)$player->getID();
+			$msg = implode(' ', $args);
+			if ( (!isset(self::$CONFIRM[$pid])) || ($msg !== self::$CONFIRM[$pid]) )
+			{
+				self::$CONFIRM[$pid] = $msg;
+				$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
+				return true;
+			}
+			else
+			{
+				unset(self::$CONFIRM[$pid]);
+			}
 		}
 		
 		
