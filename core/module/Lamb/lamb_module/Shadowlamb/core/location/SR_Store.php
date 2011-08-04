@@ -271,7 +271,7 @@ abstract class SR_Store extends SR_Location
 		
 		$total = $this->calcSellPrice($player, $item, $amt);
 		
-		$player->giveNuyen($price);
+		$player->giveNuyen($total);
 				
 		$bot->reply(sprintf('You sold %d of your %s for %s.', $amt, $item->getItemName(), Shadowfunc::displayNuyen($total)));
 		return true;
@@ -340,6 +340,24 @@ abstract class SR_Store extends SR_Location
 //				
 //		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayNuyen($price)));
 //		return true;
+	}
+
+
+	public function checkLocation()
+	{
+		$player = new SR_Player(SR_Player::getPlayerData(0));
+		$player->modify();
+		$items = $this->getStoreItems($player);
+		foreach ($items as $data)
+		{
+			$iname = $data[0];
+//			printf("Checking %s in %s.\n", $iname, $this->getName());
+			if (false === SR_Item::createByName($iname, 1, false))
+			{
+				die(sprintf('%s has an invalid item: %s.', $this->getName(), $iname));
+			}
+		}
+		return true;
 	}
 	
 }
