@@ -285,11 +285,6 @@ abstract class SR_Spell
 			
 			$target->gotKilledBy($player);
 
-			if ($ep->getMemberCount() === 0) {
-				$p->onFightDone();
-			}
-			
-			return true;
 		}
 		else # just some dmg
 		{
@@ -298,8 +293,14 @@ abstract class SR_Spell
 			$append = " and caused {$damage} damage";
 			$append_ep = "{$append} ($hp/$maxhp)HP left.";
 			$this->announceADV($player, $target, $level, $append, $append_ep);
-			return true;
 		}
+
+		if ($ep->getMemberCount() === 0)
+		{
+			$p->onFightDone();
+		}
+
+		return true;
 	}
 
 	###################
