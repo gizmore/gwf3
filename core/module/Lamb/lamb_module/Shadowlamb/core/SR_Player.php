@@ -2166,14 +2166,15 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
-		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
-		$result = Shadowcmd::onExecute($this, $this->combat_stack);
-		
 		if (!$this->keepCombatStack($result))
 		{
 			$this->combat_stack = '';
 			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
+		
+		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
+		$result = Shadowcmd::onExecute($this, $this->combat_stack);
+		
 	}
 	
 	private function keepCombatStack($bool)
@@ -2190,6 +2191,9 @@ class SR_Player extends GDO
 			return true;
 		}
 		if (Common::startsWith($c, 'fl')) {
+			return true;
+		}
+		if (Common::startsWith($c, 'flee')) {
 			return true;
 		}
 		return false;
