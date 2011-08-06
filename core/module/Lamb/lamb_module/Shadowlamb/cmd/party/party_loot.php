@@ -24,6 +24,11 @@ final class Shadowcmd_party_loot extends Shadowcmd
 			return self::reply($player, sprintf("Your party has set it's loot mode to: \X02%s\X02.", $type));
 		}
 		
+		if (!$player->isLeader())
+		{
+			return self::reply($player, 'Only the leader can change the party loot settings.');
+		}
+		
 		# Change mode
 		switch ($args[0])
 		{

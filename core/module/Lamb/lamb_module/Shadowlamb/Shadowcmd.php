@@ -72,7 +72,7 @@ class Shadowcmd
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','enable','disable','stats','players','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt');
-	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','i','cy','l','ef','ex','cmp','kk','kp','ks','kw','qu','r','say','sw');
+	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','cmp','kk','kp','ks','kw','qu','r','say','sw');
 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
@@ -87,7 +87,7 @@ class Shadowcmd
 		'travel' => array('u','ca','eq','uq','gi','drop'),
 		'hijack' => array('u','ca','eq','uq','gi','drop','part'),
 	);
-	public static $CMDS_LEADER_ALWAYS = array('le','npc','pl','ban','unban');
+	public static $CMDS_LEADER_ALWAYS = array('le','npc','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'sleep' => array('stop'),
