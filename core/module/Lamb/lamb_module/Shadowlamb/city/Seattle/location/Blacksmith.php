@@ -20,6 +20,10 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 	
 	public function getStoreItems(SR_Player $player)
 	{
+		if (Shadowrun4::SR4_ALPHA)
+		{
+			return array();
+		}
 		return array(
 			array('Rune_of_strength:0.4', 100.0, 1000),
 			array('Rune_of_quickness:0.1', 100.0, 1000),

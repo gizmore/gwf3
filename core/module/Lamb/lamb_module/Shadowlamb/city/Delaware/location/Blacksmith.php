@@ -9,12 +9,20 @@ final class Delaware_Blacksmith extends SR_Blacksmith
 	
 	public function getStoreItems(SR_Player $player)
 	{
+		if (Shadowrun4::SR4_ALPHA)
+		{
+			return array(
+				array('ShortSword', 100.0, 1000),
+				array('BroadSword', 100.0, 1500),
+				array('LongSword', 100.0, 2000),
+				array('Katana', 100.0, 4000),
+			);
+		}
 		return array(
 			array('ShortSword', 100.0, 1000),
 			array('BroadSword', 100.0, 1500),
 			array('LongSword', 100.0, 2000),
-			array('Rune_of_strength:0.3', 100.0, 1500),
-			array('Rune_of_quickness:0.2', 100.0, 1500),
+			array('Katana', 100.0, 4000),
 			array('Rune_of_melee:0.2', 100.0, 3000),
 			array('Rune_of_firearms:0.2', 100.0, 3000),
 			array('Rune_of_bows:0.2', 100.0, 1500),

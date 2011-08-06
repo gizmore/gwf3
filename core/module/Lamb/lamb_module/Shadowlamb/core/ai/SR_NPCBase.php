@@ -10,6 +10,19 @@ abstract class SR_NPCBase extends SR_Player
 	protected $chat_partner = NULL;
 	private $npc_classname;
 	
+	#############
+	### Arena ###
+	#############
+	private $arena_key = NULL;
+	private $arena_ny = 0;
+	public function setArenaKey($key, $bit)
+	{
+		$this->arena_key = "{$bit}:{$key}";
+	}
+	public function setArenaNuyen($nuyen)
+	{
+		$this->arena_ny = $nuyen;
+	}
 	#################
 	### SR_Player ###
 	#################
@@ -55,7 +68,6 @@ abstract class SR_NPCBase extends SR_Player
 	public function getNPCModifiersB() { return array(); }
 	public function getNPCSpells() { return array(); }
 	public function getNPCCyberware() { return array(); }
-	public function getNPCLoot(SR_Player $player) { return array(); }
 	public function onNPCTalk(SR_Player $player, $word, array $args) {}
 	public function onNPCTalkA(SR_Player $player, $word, array $args)
 	{
@@ -321,6 +333,26 @@ abstract class SR_NPCBase extends SR_Player
 	public function respawn()
 	{
 		$this->deletePlayer();
+	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		if ($this->arena_ny > 0)
+		{
+			$ny = $this->arena_ny;
+			$player->message(sprintf('You get a reward of %s for killing the enemy.', Shadowfunc::displayNuyen($ny)));
+			$player->giveNuyen($ny);
+		}
+		
+		if ($this->arena_key === NULL)
+		{
+			return array();
+		}
+		list($bit, $key) = explode(':', $this->arena_key);
+		$bits = SR_PlayerVar::getVal($player, $key, 0);
+		$bits |= $bit;
+		SR_PlayerVar::setVal($player, $key, $bits);
+		return array();
 	}
 }
 ?>

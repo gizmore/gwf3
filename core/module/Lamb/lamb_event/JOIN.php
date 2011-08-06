@@ -1,5 +1,11 @@
 <?php
 $server instanceof Lamb_Server;
+
+if (!isset($args[0]))
+{
+	return;
+}
+
 $channel_name = $args[0];
 
 if (false === ($channel = $server->getOrCreateChannel($channel_name)))

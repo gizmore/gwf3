@@ -7,10 +7,10 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 	public function getQuestDescription()
 	{
 		$kn = self::KILLS_NEEDED;
-		list ($kh, $kg, $ke) = $this->getKillData();
+		$data = $this->getKillData();
 		return sprintf(
 			'Kill %d / %d Hipster, %d / %d Emos and %d / %d Goths and return to Mr.Johnson in the McLaren pub.',
-			$kh, $kn, $ke, $kn, $kg, $kn
+			$data['H'], $kn, $data['E'], $kn, $data['G'], $kn
 		);
 	}
 	public function getNeededAmount() { return 10; }

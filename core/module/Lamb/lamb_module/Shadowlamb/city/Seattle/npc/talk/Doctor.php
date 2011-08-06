@@ -15,7 +15,7 @@ final class Seattle_Doctor extends SR_TalkingNPC
 			
 			case 'yes': case 'no':
 			case 'cyberware':
-				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accesoires.");
+				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accessoires.");
 				break;
 				
 			case 'hello':

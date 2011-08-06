@@ -18,7 +18,7 @@ final class Delaware_Subway extends SR_Subway
 		$c = Shadowrun4::SR_SHORTCUT;
 		$party = $player->getParty();
 		$party->notice('You enter the Subway and move to the tracks. You see one passenger waiting for a train.');
-		$party->getLeader()->help("Use {$c}travel 1 to travel to Redmond.");
+		$party->getLeader()->help("Use {$c}travel 1 to travel back to Seattle.");
 		$party->help("Use {$c}talk <topic> to talk to the passenger.");
 	}
 }

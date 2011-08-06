@@ -28,9 +28,12 @@ if (!file_exists("core/module/Lamb/lamb_bin/{$argv[2]}"))
 define('LAMB_CONFIG_FILENAME', $argv[2]);
 define('GWF_WWW_PATH', '');
 # Include GWF core
-require_once 'gwf3.class.php';
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
-var_dump(GWF_CORE_PATH);
+require_once GWF_CONFIG_PATH;
+require_once 'GWF3.php';
+GWF3::init();
+//require_once 'gwf3.class.php';
+//GWF3::onLoadConfig(GWF_CONFIG_PATH);
+//var_dump(GWF_CORE_PATH);
 GWF_Language::initEnglish();
 //GWF_Debug::setBasedir(GWF_CORE_PATH);
 GWF_HTML::init();
@@ -38,7 +41,7 @@ GWF_HTML::init();
 //$gwf->onInit(getcwd(), false, true);
 //require_once 'core/inc/_gwf_include.php';
 # Init it
-GWF_HTML::init();
+//GWF_HTML::init();
 # Init the logger
 GWF_Log::init(false, false, Common::substrUntil(dirname(__FILE__), '/core').'/protected/logs');
 

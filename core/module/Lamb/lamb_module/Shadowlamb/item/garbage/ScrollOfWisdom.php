@@ -13,10 +13,16 @@ final class Item_ScrollOfWisdom extends SR_Item
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$this->deleteItem($player);
-		$player->message(sprintf('The scroll reads: "Congrats! Enter %s_%s without the quotes".', $player->getName(), substr(md5(md5($player->getName().'scroll').'of'), 3, 8).'_wisdom'));
+		$player->message(sprintf('The scroll reads:  `Congrats! Enter "%s" without the quotes`.', $this->getSolution($player)));
 		$player->message(sprintf('The scroll puffs into magic challenging dust.'));
 		return true;
 	}
 	
+	public function getSolution(SR_Player $player)
+	{
+		$pname = strtolower($player->getName());
+		$hash = substr(md5(md5($pname).LAMB_PASSWORD2), 2, 16);
+		return sprintf('%s!%s!wisdom', $pname, $hash);
+	}
 }
 ?>

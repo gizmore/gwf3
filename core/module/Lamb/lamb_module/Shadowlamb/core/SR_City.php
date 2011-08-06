@@ -39,6 +39,37 @@ abstract class SR_City
 		$npc = new $classname(false);
 		$npc->setNPCClassName($classname);
 		$this->npcs[$classname] = $npc;
+		$this->checkNPCEquipment($npc);
+	}
+	
+	private function checkNPCEquipment(SR_NPC $npc)
+	{
+		foreach ($npc->getNPCEquipment() as $key => $value)
+		{
+			$this->checkNPCEquipmentB($npc, $value);
+		}
+		$this->checkNPCEquipmentB($npc, $npc->getNPCInventory());
+		$this->checkNPCEquipmentB($npc, $npc->getNPCCyberware());
+	}
+	
+	private function checkNPCEquipmentB(SR_NPC $npc, $items)
+	{
+		if ($items === '')
+		{
+			return;
+		}
+		if (!is_array($items))
+		{
+			$items = array($items);
+		}
+		foreach ($items as $iname)
+		{
+//			printf("Testing item %s - %s.\n", get_class($npc), $iname);
+			if (false === SR_Item::createByName($iname, 1, false))
+			{
+				die(sprintf('The NPC %s has an invalid item: %s.', get_class($npc), $iname));
+			}
+		}
 	}
 	
 	public function initLocations($filename, $fullpath)
@@ -50,6 +81,7 @@ abstract class SR_City
 		require_once $fullpath;
 		$location = new $classname($classname);
 		$this->locations[strtolower($name)] = $location;
+		$location->checkLocation();
 	}
 	
 	public function onInit()
@@ -206,7 +238,7 @@ abstract class SR_City
 			$n = $l->getName();
 			$party->giveKnowledge('places', $n);
 			$party->notice($l->getFoundText($leader));
-			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them.');
+			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.');
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $n);
 		}
 	}
@@ -355,7 +387,7 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
-		$dice = $friendly ? 7 : 6;
+		$dice = $friendly ? 12 : 8;
 		if (rand(1, $dice) !== 1)
 		{
 			return false;

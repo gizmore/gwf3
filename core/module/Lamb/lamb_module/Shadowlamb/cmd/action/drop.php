@@ -32,7 +32,7 @@ final class Shadowcmd_drop extends Shadowcmd
 		$iname = $item->getItemName();
 		
 		# Confirm
-		if (!is_numeric($args[0]))
+		if (is_numeric($args[0]))
 		{
 			$pid = (int)$player->getID();
 			$msg = implode(' ', $args);
@@ -49,6 +49,7 @@ final class Shadowcmd_drop extends Shadowcmd
 		}
 		
 		
+		$dropped = 0;
 		# Drop stackable.
 		if ($item->isItemStackable())
 		{

@@ -19,7 +19,8 @@ final class Redmond_School extends SR_School
 	{
 		return array(
 			array('firearms', 250),
-			array('pistols', 400),
+			array('bows', 350),
+			array('pistols', 450),
 			array('shotguns', 600),
 			array('smgs', 900),
 			array('sharpshooter', 1200),

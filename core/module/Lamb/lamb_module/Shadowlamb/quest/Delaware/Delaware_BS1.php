@@ -3,7 +3,7 @@ final class Quest_Delaware_BS1 extends SR_Quest
 {
 	public function getQuestName() { return 'Amace'; }
 	public function getNeededAmount() { return 3; }
-	public function getQuestDescription() { return sprintf('Bring %d/%d Mace to the Delaware Blacksmith.'); }
+	public function getQuestDescription() { return sprintf('Bring %d/%d Mace to the Delaware Blacksmith.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 5; }
 	public function getRewardNuyen() { return 800; }
 	
@@ -12,6 +12,7 @@ final class Quest_Delaware_BS1 extends SR_Quest
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have_after = $this->giveQuesties($player, $npc, 'Mace', $have_before, $need);
+		$this->saveAmount($have_after);
 		if ($have_after >= $need)
 		{
 			$npc->reply('Thank you very much, chummer.');

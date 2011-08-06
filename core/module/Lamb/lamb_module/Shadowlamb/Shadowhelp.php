@@ -75,7 +75,7 @@ final class Shadowhelp
 				'skills' => 'Player Command. Usage: #(sk)ills. Show your learned Skills',
 				array(
 					'melee' => 'The melee skill will increase your attack for melee weapons.',
-					'ninja' => 'The ninja skill will increase your damage and attack for ninja weapons.',
+					'ninja' => 'The ninja skill will increase your damage and attack for ninja weapons. The ninja weapons extend melee weapons, so they get a big additional bonus.',
 					'firearms' => 'The firearms skill will increase your damage and attack for fireweapons.',
 					'bows' => 'The bows skill will increase your damage and attack for bows.',
 					'pistols' => 'The pistols skill will increase your damage and attack for pistols.',
@@ -254,8 +254,8 @@ final class Shadowhelp
 							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them. There are also mount runes:',
 							array(
 								'lock' => 'LOCK determines the safety of your mount and prevents a #hijack. LOCK runes can only get applied on a mount.',
-								'tuneup' => '',
-								'transport' => '',
+								'tuneup' => 'Tuneup runes can only be applied to a mount and reduce travel times.',
+								'transport' => 'Transport runes can only be applied to a mount and increase the max weight it can store.',
 							),
 						),
 				
@@ -324,7 +324,7 @@ final class Shadowhelp
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
 						'enable' => 'Player command. Usage: #enable <help|notice|privmsg>. Toggle user interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help>. Toggle user interface options for your player.',
-						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death.",
+						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death. The instant death rule applies when killed by NPC or other Runners.",
 					),
 					
 					'move_cmds' => 'Commands that change the party location or action',
@@ -437,6 +437,7 @@ final class Shadowhelp
 					array(
 						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
 						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey.',
+						'clones' => 'You are allowed to have multiple characters, aka. clones. For clones, the same rules as for bots apply.',
 						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
 					),
 					

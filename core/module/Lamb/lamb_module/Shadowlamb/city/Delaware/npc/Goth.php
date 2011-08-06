@@ -25,7 +25,7 @@ final class Delaware_Goth extends SR_NPC
 	
 	public function getNPCSpells()
 	{
-		return array('firebolt'=>2);
+		return array('firebolt'=>1);
 	}
 	
 	public function getNPCEquipment()

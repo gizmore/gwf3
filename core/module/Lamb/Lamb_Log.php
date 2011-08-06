@@ -17,6 +17,7 @@ final class Lamb_Log
 		if (false !== ($user = $bot->getCurrentUser()))
 		{
 			$name = $user->getName();
+			$name = preg_replace('/[^a-z_0-9]/i', '', $name);
 			GWF_Log::log("lamb/lamb_chat_{$host}_{$name}", $message, true);
 		}
 		elseif (false !== ($chan = $bot->getCurrentChannel()))

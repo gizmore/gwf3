@@ -71,7 +71,7 @@ class SR_Bazar extends SR_Location
 		}
 		else
 		{
-			return Shadowhelp::getHelp($player, 'bazaar_view');
+			return Shadowhelp::getHelp($player, 'bazar_view');
 		}
 	}
 	
@@ -161,7 +161,7 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		$price = $this->calcBuyPrice($bi['sr4ba_price']);
+		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price'));
 		
 		$out = sprintf("%s sells one of %d items for \X02%s\X02: %s.", $pname, $bi->getVar('sr4ba_iamt'), Shadowfunc::displayNuyen($price), $item->getItemInfo($player));
 		
@@ -175,7 +175,7 @@ class SR_Bazar extends SR_Location
 	{
 		if ( (count($args) < 2) || (count($args) > 3) )
 		{
-			$player->message(Shadowhelp::getHelp($player, 'bazaar_push'));
+			$player->message(Shadowhelp::getHelp($player, 'bazar_push'));
 			return false;
 		}
 		
@@ -392,7 +392,7 @@ class SR_Bazar extends SR_Location
 		$c = count($args);
 		if ($c > 2)
 		{
-			$player->message(Shadowhelp::getHelp($player, 'bazaar_pop'));
+			$player->message(Shadowhelp::getHelp($player, 'bazar_pop'));
 			return false;
 		}
 		if ($c === 0)
@@ -433,6 +433,7 @@ class SR_Bazar extends SR_Location
 			$player->message('The itemname is invalid. Please report this to gizmore!');
 			return false;
 		}
+		$iname = $item->getItemName();
 		
 		$fee = $this->calcPopFee($player, $amt);
 		if ($player->getNuyen() < $fee)
@@ -548,7 +549,7 @@ class SR_Bazar extends SR_Location
 		
 		if ($amt > $bi->getVar('sr4ba_iamt'))
 		{
-			$player->message(sprintf('You tried to purchase %d %s, but the shop only offers %d.', $amt, $iname, $bi['sr4ba_iamt']));
+			$player->message(sprintf('You tried to purchase %d %s, but the shop only offers %d.', $amt, $iname, $bi->getVar('sr4ba_iamt')));
 			return false;
 		}
 		
@@ -565,6 +566,7 @@ class SR_Bazar extends SR_Location
 			$player->message('The item seems invalid! Report this to gizmore!');
 			return false;
 		}
+		$iname = $item->getItemName();
 		
 		# Confirm!
 		$msg = sprintf('%s::%s::%s::%s', $pname, $iname, $amt, $price);
@@ -607,7 +609,7 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		if (false === $bi->onPayOwner($amt))
+		if (false === $bi->onPayOwner($player, $amt))
 		{
 			$player->message('Database error 20!');
 			return false;
@@ -797,7 +799,9 @@ class SR_Bazar extends SR_Location
 			$player->message('Database Error 1!');
 			return false;
 		}
-		return $player->message(sprintf('You now offer %d %s for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price)));
+		
+		$price2 = $this->calcBuyPrice($price);
+		return $player->message(sprintf('You now offer %d %s for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price2)));
 	}
 	
 	##############
@@ -817,7 +821,11 @@ class SR_Bazar extends SR_Location
 		$term = $args[0];
 		$table = GDO::table('SR_BazarItem');
 		
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($table, array('sr4ba_iname'), $term);
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($table, array('sr4ba_iname'), $term)))
+		{
+			$player->message(Shadowhelp::getHelp($player, 'bazar_search'));
+			return false;
+		}
 		$orderby = 'sr4ba_price ASC';
 		$nItems = $table->countRows($conditions);
 		
@@ -861,7 +869,7 @@ class SR_Bazar extends SR_Location
 		{
 			$amt = $row['sr4ba_iamt'];
 			$amt = $amt > 1 ? "({$amt}x)" : '';
-			$out .= sprintf(', %s %s %s%s', $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
+			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
 		
 		$table->free($result);

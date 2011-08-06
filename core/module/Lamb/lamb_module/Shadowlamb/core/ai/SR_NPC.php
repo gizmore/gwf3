@@ -288,8 +288,10 @@ abstract class SR_NPC extends SR_NPCBase
 	{
 		$p = $this->getParty();
 		$ep = $p->getEnemyParty();
-		$emc = $ep->getMemberCount();
-		return $ep->getMemberByEnum(rand(1, $emc));
+//		$emc = $ep->getMemberCount();
+		$em = $ep->getMembers();
+		return $em[array_rand($em)];
+//		return $ep->getMemberByEnum(rand(1, $emc));
 	}
 	
 	private function getCombatSpell()

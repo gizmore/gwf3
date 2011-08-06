@@ -4,7 +4,7 @@ class SR_Arena extends SR_Store
 	public function getStoreItems(SR_Player $player) { return array(); }
 
 	/**
-	 * Get available enemies. Array of array(bit, name, text).
+	 * Get available enemies. Array of array(bit, name, text, nuyen).
 	 * @param SR_Player $player
 	 * @return array 
 	 */
@@ -38,10 +38,10 @@ class SR_Arena extends SR_Store
 		
 		foreach ($enemies as $data)
 		{
-			list($bit, $name, $text) = $data;
+			list($bit, $name, $text, $nuyen) = $data;
 			if (!($bits & $bit))
 			{
-				return $this->onChallengeB($player, $bit, $name, $text);
+				return $this->onChallengeB($player, $bit, $name, $text, $nuyen);
 			}
 		}
 		
@@ -49,9 +49,21 @@ class SR_Arena extends SR_Store
 		return false;
 	}
 	
-	private function onChallengeB(SR_Player $player, $bit, $name, $text)
+	private function onChallengeB(SR_Player $player, $bit, $name, $text, $nuyen)
 	{
+		$party = $player->getParty();
+		if (false === ($ep = SR_NPC::createEnemyParty($name)))
+		{
+			$player->message('Database error!');
+			return false;
+		}
+		$player->message(sprintf('You are guided into the arena and see your enemy: %s', $text));
 		
+		$e = $ep->getLeader();
+		$e->setArenaKey($this->getArenaKey($player), $bit);
+		$e->setArenaNuyen($nuyen);
+		$ep->fight($party);
+		return true;
 	}
 }
 ?>

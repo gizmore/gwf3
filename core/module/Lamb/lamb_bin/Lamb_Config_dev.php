@@ -1,5 +1,6 @@
 <?php
 define('LAMB_DEV', true);
+require_once 'lamb_pass.php';
 
 global $LAMB_CONFIG;
 $LAMB_CFG = array

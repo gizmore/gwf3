@@ -7,6 +7,8 @@ require_once 'Shadowshout.php';
 
 final class Shadowrun4
 {
+	const SR4_ALPHA = false; #
+	
 	const SR_SHORTCUT = '#';
 	const KICK_IDLE_TIMEOUT = 3600; # 1h
 	const SECONDS_PER_TICK = 1.0;
@@ -445,7 +447,6 @@ final class Shadowrun4
 			$player instanceof SR_Player;
 			$player->itemDurationTimer();
 		}
-		
 	}
 }
 ?>

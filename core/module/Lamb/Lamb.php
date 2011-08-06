@@ -466,6 +466,7 @@ final class Lamb
 	
 	public function flushTimers()
 	{
+		$this->online = true;
 		$this->timers = array();
 		return $this->initTimers();
 	}

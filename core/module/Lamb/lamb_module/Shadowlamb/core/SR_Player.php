@@ -1515,7 +1515,15 @@ class SR_Player extends GDO
 		return $temp;
 	}
 
-	public function swapInvItems($item1, $item2){
+	/**
+	 * Swap the position of 2 items.
+	 * @author digitalseraphim
+	 * @param string $item1
+	 * @param string $item2
+	 * @return int
+	 */
+	public function swapInvItems($item1, $item2)
+	{
 		$items1 = $this->getInvItems($item1);
 		$items2 = $this->getInvItems($item2);
 
@@ -1572,7 +1580,7 @@ class SR_Player extends GDO
 			}
 		}
 
-		$this->sr4_inventory =& $newinv;
+		$this->sr4_inventory = $newinv;
 		$this->updateInventory();
 	}
 	
@@ -2201,6 +2209,8 @@ class SR_Player extends GDO
 	
 	public function gotKilledBy(SR_Player $killer)
 	{
+		SR_PlayerStats::onKill($killer, $this);
+		
 		$killer = $killer->getParty()->getKiller($killer);
 		
 		if ($killer->isHuman()) {

@@ -6,5 +6,9 @@ final class Harbor extends SR_Dungeon
 	public function getSquareKM() { return 3; }
 	public function getExploreTime() { return 250; }
 	public function getGotoTime() { return 240; }
+	public function getRespawnLocation(SR_Player $player)
+	{
+		return Shadowrun4::getCity('Seattle')->getRespawnLocation($player);
+	}
 }
 ?>

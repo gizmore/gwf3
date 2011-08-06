@@ -5,7 +5,7 @@ final class Item_ReignBow extends SR_Bow
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
 	public function getReloadTime() { return 7; }
-	public function getItemLevel() { return 20; }
+	public function getItemLevel() { return 18; }
 	public function getItemWeight() { return 835; }
 	public function getItemPrice() { return 950; }
 	public function getItemDescription() { return 'A special dark bow, made from the dark elves in the race wars.'; }

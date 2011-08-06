@@ -4,7 +4,7 @@ final class Item_SteelBow extends SR_Bow
 	public function getAttackTime() { return 55; }
 	public function getAmmoName() { return 'Ammo_Arrow'; }
 	public function getBulletsMax() { return 1; }
-	public function getItemLevel() { return 6; }
+	public function getItemLevel() { return 4; }
 	public function getItemWeight() { return 1450; }
 	public function getItemPrice() { return 120; }
 	public function getItemDescription() { return 'A simple bow of steel. Needs quite some strength and skill to use it.'; }

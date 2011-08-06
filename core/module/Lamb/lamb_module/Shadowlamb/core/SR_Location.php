@@ -115,5 +115,10 @@ abstract class SR_Location
 			}
 		}
 	}
+	
+	public function checkLocation()
+	{
+		return true;
+	}
 }
 ?>

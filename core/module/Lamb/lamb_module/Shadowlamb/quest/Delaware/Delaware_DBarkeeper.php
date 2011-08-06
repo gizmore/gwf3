@@ -3,7 +3,7 @@ final class Quest_Delaware_DBarkeeper extends SR_Quest
 {
 	public function getQuestName() { return 'Whine'; }
 	public function getNeededAmount() { return 8; }
-	public function getQuestDescription() { return sprintf('Bring %d/%d bottles of wine to the barkeeper in the Delaware Dallas.'); }
+	public function getQuestDescription() { return sprintf('Bring %d/%d bottles of wine to the barkeeper in the Delaware Dallas.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 5; }
 	public function getRewardNuyen() { return 600; }
 	
@@ -12,6 +12,7 @@ final class Quest_Delaware_DBarkeeper extends SR_Quest
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have_after = $this->giveQuesties($player, $npc, 'Rune', $have_before, $need);
+		$this->saveAmount($have_after);
 		if ($have_after >= $need)
 		{
 			$npc->reply('Thank you chummer, this will last until my next delivery!');

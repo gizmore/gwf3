@@ -23,5 +23,11 @@ final class Nysoft extends SR_Dungeon
 //		$this->getRenrakuElevator()->setElevatorFlagsDefault($party);
 		parent::onCityEnter($party);
 	}
+	
+	public function getRespawnLocation(SR_Player $player)
+	{
+		return Shadowrun4::getCity('Delaware')->getRespawnLocation($player);
+	}
+	
 }
 ?>

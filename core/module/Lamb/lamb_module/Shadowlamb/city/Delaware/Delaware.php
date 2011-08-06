@@ -10,6 +10,18 @@ final class Delaware extends SR_City
 		return false;
 	}
 	
+	public function getRespawnLocation(SR_Player $player)
+	{
+		if ( ($player->getNuyen() > 200) && ($player->hasKnowledge('places', 'Delaware_Hotel')) )
+		{
+			return 'Delaware_Hotel';
+		}
+		else
+		{
+			return Shadowrun4::getCity('Seattle')->getRespawnLocation($player);
+		}
+	}
+	
 	public function onEventWallet(SR_Party $party)
 	{
 		foreach ($party->getMembers() as $member)

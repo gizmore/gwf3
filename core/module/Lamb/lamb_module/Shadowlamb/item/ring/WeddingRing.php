@@ -11,8 +11,8 @@ final class Item_WeddingRing extends SR_Ring
 		$partner = 'Your PC';
 		switch ($username)
 		{
-			case 'ynori7': $partner = 'CPUKiller'; break;
-			case 'CPUKiller': $partner = 'ynori7'; break;
+			case 'ynori7': $partner = 'CPUkiller'; break;
+			case 'CPUkiller': $partner = 'ynori7'; break;
 		}
 		return 'Your wedding ring. You are currently married to '.$partner.'.';
 	}
@@ -23,7 +23,7 @@ final class Item_WeddingRing extends SR_Ring
 		$back = array();
 		switch($player->getRace())
 		{
-			default: $back['attack'] = 0.5;
+			default: $back['charisma'] = 2.0;
 		}
 		return $back;
 	}

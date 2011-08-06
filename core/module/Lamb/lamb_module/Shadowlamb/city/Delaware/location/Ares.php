@@ -21,7 +21,7 @@ final class Delaware_Ares extends SR_Store
 			array('AresViper', 100.0, 1250),
 			array('Fichetti', 100.0, 1450),
 			array('RugerWarhawk', 100.0, 1650),
-			array('KevlarVest', 90.0, 55000),
+			array('KevlarVest', 90.0, 25000),
 			array('KevlarHelmet', 90.0, 35000),
 			array('KevlarLegs', 90.0, 25000),
 			array('KevlarShield', 90.0, 35000),

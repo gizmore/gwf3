@@ -1,4 +1,6 @@
 <?php
+require_once 'lamb_pass.php';
+
 define('LAMB_DEV', false);
 
 global $LAMB_CONFIG;
@@ -42,7 +44,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'ircs://irc.freenode.net:7000',
 			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
+			'password' => LAMB_PASSWORD,
 			'channels' => '#wechall,#shadowlamb,#hacker.org,#happy-security',
 			'admins' => 'gizmore',
 		),
@@ -74,8 +76,8 @@ $LAMB_CFG = array
 		
 		array(
 			'host' => 'ircs://natalya.psych0tik.net:6697',
-			'nickname' => 'Richard',
-			'password' => 'lamblamb',
+			'nickname' => 'Lamb',
+			'password' => LAMB_PASSWORD2,
 			'channels' => '#shadowlamb,#hbh',
 			'admins' => 'gizmore',
 		),
@@ -109,7 +111,7 @@ $LAMB_CFG = array
 			'host' => 'irc://irc.gizmore.org:6668',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb',
+			'channels' => '#shadowlamb,#wechall',
 			'admins' => 'gizmore',
 		),
 		
@@ -129,12 +131,28 @@ $LAMB_CFG = array
 //			'admins' => '/NNN/gizmore',
 //		),
 		
+//		array(
+//			'host' => 'irc://irc2.sevilnatas.ano:6667',
+//			'nickname' => 'Lamb3',
+//			'password' => 'lamblamb',
+//			'channels' => '#shadowlamb',
+//			'admins' => '/sI2/gizmore',
+//		),
+		
 		array(
-			'host' => 'irc://irc2.sevilnatas.ano:6667',
+			'host' => 'irc://irc.a2.ano:6667',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',
 			'admins' => '/NNN/gizmore',
+		),
+		
+		array(
+			'host' => 'irc://irc.muffinnet.ano:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => '!!',
 		),
 		
 		array(

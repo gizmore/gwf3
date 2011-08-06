@@ -39,10 +39,10 @@ final class Quest_Delaware_Exams2 extends SR_Quest
 				$npc->reply('Thanks.');
 				break;
 			case 'confirm':
-				$npc->reply("Yes, thank you.");
+				$npc->reply("Do you accept the quest?");
 				break;
 			case 'yes':
-				$npc->reply('Yes.');
+				$npc->reply('Thank you chummer.');
 				break;
 			case 'no':
 				$npc->reply('I am not sure.');

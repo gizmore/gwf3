@@ -3,7 +3,7 @@ final class Redmond_Noob extends SR_NPC
 {
 	public function getNPCLevel() { return 1; }
 	public function getNPCPlayerName() { return 'Noob'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 70.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 //	public function getNPCLoot(SR_Player $player) { return array(); }
 	public function getNPCEquipment()

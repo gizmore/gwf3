@@ -15,7 +15,7 @@ final class Redmond_Alchemist extends SR_Store
 			array('QuicknessPotion', 100.0, 200),
 			array('AimWater', 100.0, 300),
 			array('Stimpatch', 100.0, 1300),
-			array('ScrollOfWisdom', 100.0, 2000),
+			array('ScrollOfWisdom', 100.0, 800),
 		);
 	}
 }

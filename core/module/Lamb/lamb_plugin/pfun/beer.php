@@ -24,6 +24,7 @@ else
 	$DOTBEERLEFT--;
 }
 
+
 if ($DOTBEERLEFT < 0)
 {
 	switch (rand(0, 2))
