@@ -20,10 +20,10 @@ final class Shadowcmd_giveny extends Shadowcmd
 			return false;
 		}
 
-		return self::giveNyKa($player, $target, 'nuyen', $args[1]);
+		return self::giveNuyen($player, $target, 'nuyen', $args[1]);
 	}
 	
-	public static function giveNyKa(SR_Player $player, SR_Player $target, $what, $amt)
+	public static function giveNuyen(SR_Player $player, SR_Player $target, $what, $amt)
 	{
 		if ($amt <= 0)
 		{
@@ -37,7 +37,15 @@ final class Shadowcmd_giveny extends Shadowcmd
 			$player->message(sprintf('You only have %s %s.', $have, $what));
 			return false;
 		}
-		
+
+		# Thx jjk
+		if (($have - $amt) <= SR_Player::START_NUYEN)
+		{
+			$player->message(sprintf('You can\'t give all your money away, you need at least %s', Shadowfunc::displayNuyen(SR_Player::START_NUYEN)));
+			$player->message(sprintf('Maximum you can give is %s', Shadowfunc::displayNuyen($have-SR_Player::START_NUYEN)));
+			return false;
+		}
+			
 		if (false === $target->alterField($what, $amt))
 		{
 			$player->message('Database error in giveNyKa()... 1');
