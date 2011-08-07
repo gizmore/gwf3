@@ -9,6 +9,7 @@ class SR_Bazar extends SR_Location
 	const MIN_SLOTS = 2;
 	const MAX_SLOTS_BUY = 18;
 	
+	const MIN_PRICE = 50;
 	const MAX_PRICE = 1234567890;
 	
 	const TEMP_PAGE = 'BAZAR_PAGE';
@@ -186,9 +187,9 @@ class SR_Bazar extends SR_Location
 		$iname = $args[0];
 		
 		$price = round($args[1]);
-		if ($price < 1)
+		if ($price < self::MIN_PRICE)
 		{
-			$player->message("Please push a positive amount into your bazar.");
+			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
 		if ($price > self::MAX_PRICE)
@@ -783,9 +784,9 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		if ($price < 1)
+		if ($price < self::MIN_PRICE)
 		{
-			$player->message('Please set a positive price for your items.');
+			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
 		if ($price > self::MAX_PRICE)
