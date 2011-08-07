@@ -23,10 +23,11 @@ final class GWF_Country extends GDO
 	
 	public static function getByIDOrUnknown($id)
 	{
-		if ($id == 0) {
+		$id = (int)$id;
+		if ($id === 0) {
 			return self::getUnknown();
 		}
-		if (false !== ($c = self::table(__CLASS__)->selectFirstObject('*', 'country_id='.intval($id)))) {
+		if (false !== ($c = self::table(__CLASS__)->selectFirstObject('*', 'country_id='.$id))) {
 			return $c;
 		}
 		return self::getUnknown();

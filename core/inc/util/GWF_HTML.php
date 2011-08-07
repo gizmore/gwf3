@@ -36,7 +36,7 @@ final class GWF_HTML
 		
 		if ($log === true)
 		{
-				GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
+			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
 		if ($to_smarty === false && false === Common::getConst('GWF_ERRORS_TO_SMARTY', false))
 		{
