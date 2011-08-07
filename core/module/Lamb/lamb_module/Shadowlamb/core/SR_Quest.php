@@ -323,12 +323,14 @@ class SR_Quest extends GDO
 		# Ny
 		if (0 < ($ny = $this->getRewardNuyen()))
 		{
+			$player->giveNuyen($ny);
 			$nystr = ', '.Shadowfunc::displayNuyen($ny);
 		}
 		
 		# XP
 		if (0 < ($xp = $this->getRewardXP()))
 		{
+			$player->giveXP($xp);
 			$xpstr = ', '.$xp.' XP';
 		}
 
