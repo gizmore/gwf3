@@ -30,7 +30,7 @@ define('GWF_WWW_PATH', '');
 # Include GWF core
 require_once GWF_CONFIG_PATH;
 require_once 'GWF3.php';
-GWF3::init();
+GWF3::init(__DIR__);
 //require_once 'gwf3.class.php';
 //GWF3::onLoadConfig(GWF_CONFIG_PATH);
 //var_dump(GWF_CORE_PATH);

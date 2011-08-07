@@ -23,12 +23,12 @@ final class Seattle_Ares extends SR_Store
 			array('ChainVest', 100.0, 1500),
 			array('KevlarVest', 100.0, 14000),
 			array('FirstAid', 100.0, 450),
-			array('Ammo_5mm'),
-			array('Ammo_7mm'),
-			array('Ammo_9mm'),
-			array('Ammo_11mm'),
-			array('Ammo_Shotgun'),
-			array('Ammo_Arrow'),
+			array('Ammo_Arrow', 100.0, 9.95),
+			array('Ammo_5mm', 100.0, 29.95),
+			array('Ammo_7mm', 100.0, 39.95),
+			array('Ammo_9mm', 100.0, 49.95),
+			array('Ammo_11mm', 100.0, 59.95),
+			array('Ammo_Shotgun', 100.0, 69.95),
 		);
 	}
 	

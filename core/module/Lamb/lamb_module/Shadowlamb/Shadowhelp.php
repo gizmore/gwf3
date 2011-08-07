@@ -16,6 +16,7 @@ final class Shadowhelp
 			'dmg' => 'damage',
 			'skill' => 'skills',
 			'attribute' => 'attributes',
+//			'ca' => 'cast'
 //			'casting' => 'cast',
 			'bmi' => 'body_mass',
 		);
@@ -346,7 +347,7 @@ final class Shadowhelp
 						'part' => 'Player command. Usage: #part. Leave your current party and create a fresh one.',
 						'fight' => 'Leader Command. Usage: #fight [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
 						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party.',
-						'party_loot' => "Leader command. Usage: #pl <kill|cycle|rand>. Define who loots the items from kills. The default is killer.",
+						'party_loot' => "Leader command. Usage: #pl <killer|cycle|rand>. Define who loots the items from kills. The default is killer.",
 						'info' => "Player command. Usage: #info. Show the info text of your current location.",
 						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
 						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',

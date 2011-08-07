@@ -25,7 +25,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg)
 		$nin = Common::clamp($player->get('ninja')); # (nin)
 		return array(
-			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.5, 1),
+			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
 			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.1, 1),
 			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.1, 1),
 		);
@@ -73,7 +73,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 		if ($p->isFighting())
 		{
 			$busy = $player->busy(round($this->getReloadTime()+rand(0, 10)));
-			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), Shadowfunc::displayBusy($busy));
+			$message = sprintf(' load(s) %d bullet(s) into his %s. %s', $put, $this->getItemName(), Shadowfunc::displayBusy($busy));
 //			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime()+rand(0, 10))));
 			$p->message($player, $message);
 //			$p->getEnemyParty()->message($player, $message);

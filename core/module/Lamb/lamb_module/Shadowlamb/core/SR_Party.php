@@ -949,7 +949,7 @@ final class SR_Party extends GDO
 		}
 	}
 	
-	public function displayMembers($with_distance=false)
+	public function displayMembers($with_distance=false, $with_levels=false)
 	{
 		if ($this->getMemberCount() === 0) {
 			return 'This party is empty! (should not see me)';

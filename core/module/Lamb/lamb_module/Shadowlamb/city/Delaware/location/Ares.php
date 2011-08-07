@@ -10,12 +10,12 @@ final class Delaware_Ares extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Ammo_5mm'),
-			array('Ammo_7mm'),
-			array('Ammo_9mm'),
-			array('Ammo_11mm'),
-			array('Ammo_Arrow'),
-			array('Ammo_Shotgun'),
+			array('Ammo_Arrow', 100.0, 9.95),
+			array('Ammo_5mm', 100.0, 29.95),
+			array('Ammo_7mm', 100.0, 39.95),
+			array('Ammo_9mm', 100.0, 49.95),
+			array('Ammo_11mm', 100.0, 59.95),
+			array('Ammo_Shotgun', 100.0, 69.95),
 			array('Stimpatch', 100.0, 750),
 			array('FirstAid', 100.0, 500),
 			array('AresViper', 100.0, 1250),

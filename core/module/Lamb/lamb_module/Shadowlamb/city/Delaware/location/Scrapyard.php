@@ -15,6 +15,7 @@ final class Delaware_Scrapyard extends SR_Arena
 			array(0x01, 'Delaware_MeleeOrk', 'A grunt looking ork in a melee armor.', 250),
 			array(0x02, 'Delaware_MeleeTroll', 'A grunt looking troll in a melee armor.', 350),
 			array(0x04, 'Delaware_Knight', 'A medival knight in shiny armor.', 750),
+			array(0x08, 'Delaware_DarkKnight', 'A medival knight in shiny black armor.', 850),
 		);
 	}
 	

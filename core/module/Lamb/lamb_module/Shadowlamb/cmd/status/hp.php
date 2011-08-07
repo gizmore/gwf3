@@ -31,9 +31,12 @@ class Shadowcmd_hp extends Shadowcmd
 			}
 			elseif ($what === 'mp')
 			{
-				if ($member->needsEther())
+				if ($member->getBase('magic') >= 0)
 				{
-					$b2 = $b;
+					if ($member->needsEther())
+					{
+						$b2 = $b;
+					}
 				}
 			}
 			$back .= sprintf(", %s-%s%s(%s/%s)%s", $b.($member->getEnum()).$b, $b2, $member->getName(), $hpmp, $hpmmpm, $b2);

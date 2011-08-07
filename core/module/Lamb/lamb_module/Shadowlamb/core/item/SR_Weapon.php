@@ -30,6 +30,12 @@ abstract class SR_Weapon extends SR_Equipment
 			return true;
 		}
 		
+		# Bows are great for distance
+		if ($this instanceof SR_Bow)
+		{
+			$d2 /= 4;
+		}
+		
 		$player->busy($this->getAttackTime());
 		
 		$msg = sprintf(' attacks %s with %s', $target->getName(), $this->getName());

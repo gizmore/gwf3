@@ -9,7 +9,7 @@ final class Redmond_Alchemist extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('EmptyBottle'),
+			array('EmptyBottle', 100.0, 19.95),
 			array('NinjaPotion', 100.0, 250),
 			array('StrengthPotion', 100.0, 150),
 			array('QuicknessPotion', 100.0, 200),

@@ -280,6 +280,7 @@ class Shadowcmd
 		$command = self::unshortcut($cmd);
 		$commands = self::getCurrentCommands($player);
 
+//		var_dump($cmd);
 		if (!in_array($cmd, $commands, true))
 		{
 			if (!$player->isCreated()) {

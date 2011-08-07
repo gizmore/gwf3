@@ -11,7 +11,7 @@ if (!(function_exists('lamb_trac_helper')))
 {
 	function lamb_trac_helper($entry, $fullpath, $search)
 	{
-		if (stripos($entry, $search) !== false)
+		if (stripos($fullpath, $search) !== false)
 		{
 			global $results;
 			$results[] = $fullpath;

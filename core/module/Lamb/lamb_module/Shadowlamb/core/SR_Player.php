@@ -2141,7 +2141,7 @@ class SR_Player extends GDO
 	protected function cmdAttackRandom()
 	{
 		if (false === ($ep = $this->getEnemyParty())) {
-			return '#';
+			return '# 1';
 		}
 		
 		$targets = $ep->getMembers();
@@ -2151,13 +2151,14 @@ class SR_Player extends GDO
 	
 	public function combatPush($message)
 	{
-//		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
+		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
 		$this->combat_stack = $message;
 	}
 		
 	public function combatTimer()
 	{
-		if ($this->isBusy()) {
+		if ($this->isBusy())
+		{
 			return;
 		}
 		
@@ -2166,24 +2167,31 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
-		if (!$this->keepCombatStack($result))
+		$stack = $this->combat_stack;
+		if (!$this->keepCombatStack(true, $stack))
 		{
 			$this->combat_stack = '';
 			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
 		
-		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $this->combat_stack);
-		$result = Shadowcmd::onExecute($this, $this->combat_stack);
-		
+		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $stack);
+		$result = Shadowcmd::onExecute($this, $stack);
+		if (!$this->keepCombatStack($result, $stack))
+		{
+			$this->combat_stack = '';
+			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
+		}
+		return $result;
 	}
 	
-	private function keepCombatStack($bool)
+	private function keepCombatStack($bool, $stack)
 	{
+		var_dump($stack);
 		if ($bool === false)
 		{
 			return false;
 		}
-		$c = strtolower($this->combat_stack);
+		$c = strtolower($stack);
 		if (Common::startsWith($c, '#')) {
 			return true;
 		}

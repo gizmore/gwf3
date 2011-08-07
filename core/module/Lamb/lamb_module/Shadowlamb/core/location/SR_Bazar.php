@@ -22,12 +22,12 @@ class SR_Bazar extends SR_Location
 	################
 	public function getHelpText(SR_Player $player)
 	{
-		return "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #buyslot, #slogan and #price here.";
+		return "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.";
 	}
 	
 	public function getCommands(SR_Player $player)
 	{
-		return array('push','pop','view','search','buy','buyslot','slogan','price');
+		return array('push','pop','view','search','buy','bestbuy','buyslot','slogan','price');
 	}
 	
 	public function getBazarSlots(SR_Player $player)
@@ -876,6 +876,76 @@ class SR_Bazar extends SR_Location
 		$table->free($result);
 		
 		return $player->message(sprintf('Matches %d/%d: %s.', $page, $nPages, substr($out, 2)));
+	}
+
+	################
+	### Best Buy ###
+	################
+	public function on_bestbuy(SR_Player $player, array $args)
+	{
+		#bestbuy Firstaid 30000 3
+		$c = count($args);
+		if ( ($c < 2) || ($c > 3) )
+		{
+			$player->message(Shadowhelp::getHelp($player, 'bazar_bestbuy'));
+			return false;
+		}
+		
+		# Wanted Price
+		$total = $args[1];
+		if ($total < self::MIN_PRICE)
+		{
+			$player->message(sprintf('The minimum price for a single item is %s. Your total bid should be larger or equal than this.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
+			return false;
+		}
+		
+		# Wanted Amount
+		$amt = isset($args[2]) ? ((int)$args[2]) : 1;
+		if ( ($amt < 1) || ($amt > 1234567123) )
+		{
+			$player->message(sprintf('Please buy a positive amount of items.'));
+			return false;
+		}
+		
+		# Search
+		$table = GDO::table('SR_BazarItem');
+		$iname = $args[0];
+		$einame = GDO::escape($iname);
+		$conditions = "sr4ba_iname='$einame'";
+//		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($table, array('sr4ba_iname'), $term)))
+//		{
+//			$player->message(Shadowhelp::getHelp($player, 'bazar_bestbuy'));
+//			return false;
+//		}
+		
+		if (false === ($result = $table->select('sr4ba_iname,sr4ba_price,sr4ba_amt', $conditions, 'sr4ba_price ASC')))
+		{
+			$player->message('Database Error');
+			return false;
+		}
+		
+		$have_price = 0;
+		$have_amt = 0;
+		
+		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
+		{
+			list($_name, $_price, $_amt) = $row;
+			for ($i = 0; $i < $_amt; $i++)
+			{
+				$have_amt++;
+				$have_price += $_price;
+				if ($have_amt >= $amt)
+				{
+					$break;
+				}
+			}
+		}
+		
+		$table->free($result);
+
+		# Check Result
+		
+		
 	}
 }
 ?>

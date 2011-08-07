@@ -13,16 +13,17 @@ final class Redmond_Ares extends SR_Store
 			array('ShortSword', 100.0, 550),
 			array('AresLightFire', 100.0, 750),
 			array('AresPredator', 100.0, 950),
-			array('Ammo_5mm'),
-			array('Ammo_7mm'),
-			array('Ammo_9mm'),
-			array('Ammo_11mm', 100.0, 200),
 			array('Flashbang', 100.0, 600),
 			array('SmallFirstAid', 100.0, 300),
 			array('FirstAid', 100.0, 500),
 			array('SportBow', 100.0, 250),
-			array('Ammo_Arrow', 100.0, 50),
-		);
+			array('Ammo_Arrow', 100.0, 9.95),
+			array('Ammo_5mm', 100.0, 29.95),
+			array('Ammo_7mm', 100.0, 39.95),
+			array('Ammo_9mm', 100.0, 49.95),
+			array('Ammo_11mm', 100.0, 59.95),
+			array('Ammo_Shotgun', 100.0, 69.95),
+			);
 	}
 	public function getFoundPercentage() { return 60.00; }
 	public function getFoundText(SR_Player $player) { return sprintf('You found the local Ares weapon store. You won`t get heavy or illegal stuff here.'); }
