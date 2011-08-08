@@ -14,11 +14,18 @@ final class Shadowcmd_whisper extends Shadowcmd
 		$message = implode(' ', $args);
 		
 		$result = Shadowrun4::getPlayerByShortName($name);
-		switch ($result)
+		
+		if ($result === false)
 		{
-			case false: return $player->message('The player is unknown or not in memory.');
-			case -1: return $player->message('The player name is ambigous. Try the {server} version.');
-			default: return self::onWhisper($player, $result, $message);
+			return $player->message('The player is unknown or not in memory.');
+		}
+		elseif ($result === -1)
+		{
+			return $player->message('The player name is ambigous. Try the {server} version.');
+		}
+		else
+		{
+			return self::onWhisper($player, $result, $message);
 		}
 	}
 	
