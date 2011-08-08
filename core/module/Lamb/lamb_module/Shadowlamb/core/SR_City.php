@@ -387,13 +387,13 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
-		$dice = $friendly ? 12 : 8;
+		$dice = $friendly ? 12 : 7;
 		if (rand(1, $dice) !== 1)
 		{
 			return false;
 		}
 		$mc = $party->getMemberCount();
-		$level = $party->getMax('level');
+		$level = $party->getMax('level', true);
 		
 		$possible = array();
 		$total = 0;

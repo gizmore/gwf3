@@ -66,5 +66,21 @@ final class SR_BadKarma
 			$player->message(sprintf('Your character has been punished with %s bad_karma.', $abk));
 		}
 	}
+	
+	public static function displayBadKarmaParty(SR_Party $party)
+	{
+		$back = '';
+		foreach ($party->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$bk = $member->getBase('bad_karma');
+			if ($bk > 0)
+			{
+				$back .= sprintf(', %s has %d bad_karma', $member->getName(), $bk);
+			}
+		}
+		
+		return $back === '' ? '' : sprintf('%s.', substr($back, 2));
+	}
 }
 ?>

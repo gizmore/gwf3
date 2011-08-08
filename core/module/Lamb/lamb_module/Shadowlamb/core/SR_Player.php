@@ -34,6 +34,7 @@ class SR_Player extends GDO
 	const BOTTING = 0x10000;
 	const DEAD = 0x20000;
 	const SILENCE = 0x40000;
+	const LOCKED = 0x100000;
 	
 	# Timing
 	const FIGHT_INIT_BUSY = 12;
@@ -228,6 +229,7 @@ class SR_Player extends GDO
 	public function needsHeal() { return ($this->getHP() / $this->getMaxHP()) <= SR_NPC::NEED_HEAL_MULTI; }
 	public function needsEther() { return ($this->getMP() / $this->getMaxMP()) <= SR_NPC::NEED_ETHER_MULTI; }
 	public function canHack() { return ( ($this->getBase('computers') >= 0) && ($this->hasCyberdeck()) && ($this->hasHeadcomputer()) );}
+	public function isLocked() { return $this->isOptionEnabled(self::LOCKED); }
 	
 	############
 	### Enum ###
@@ -710,6 +712,59 @@ class SR_Player extends GDO
 	{
 		$this->sr4_data_modified['max_hp'] = round($this->sr4_data_modified['max_hp'], 2);
 		$this->sr4_data_modified['max_mp'] = round($this->sr4_data_modified['max_mp'], 2);
+		
+		if ($this->isLocked())
+		{
+			$this->modifyLevelLocked();
+		}
+		else
+		{
+			$this->modifyLevelInventory();
+		}
+	}
+	
+	private function modifyLevelEquipment()
+	{
+		$back = $this->sr4_equipment;
+		unset($back['mount']);
+		return array_values($back);
+	}
+	
+	private function modifyLevelLocked()
+	{
+		$this->modifyLevelItems($this->modifyLevelEquipment());
+	}
+	
+	private function modifyLevelInventory()
+	{
+		$this->modifyLevelItems(array_merge($this->modifyLevelEquipment(), $this->sr4_inventory));
+	}
+	
+	private function modifyLevelItems(array $items)
+	{
+		$eq = self::$EQUIPMENT;
+		unset($eq['mo']);
+		
+		$max = array();
+		
+		foreach ($items as $item)
+		{
+			$item instanceof SR_Item;
+			$type = $item->getItemType();
+			$lev = $item->getItemLevel();
+			if (in_array($type, $eq, true))
+			{
+				if (!isset($max[$type]))
+				{
+					$max[$type] = $lev;
+				}
+				else
+				{
+					$max[$type] = max(array($max[$type]), $lev);
+				}
+			}
+		}
+		$this->sr4_data_modified['level'] += array_sum($max);
 	}
 	
 	private function modifyOverload()

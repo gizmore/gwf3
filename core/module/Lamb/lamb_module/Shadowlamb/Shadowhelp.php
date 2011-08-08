@@ -388,7 +388,7 @@ final class Shadowhelp
 							'bazar_buyslot' => 'Bazar command. Usage: #buyslot [<CONFIRM>]. Buy another slot in your bazar to sell items. ',
 							'bazar_price' => 'Bazar command. Usage: #price <item> <price>. Set a new price for one of your items offered in your bazar.',
 							'bazar_search' => 'Bazar command. Usage: #search <itemname>. Search the bazar for items in their full-name.',
-//							'bazar_bestbuy' => '',
+							'bazar_bestbuy' => 'Bazar command. Usage: #bestbuy <itemname> <price> [<amt>]. Try to purchase an item for a given price or less.',
 						),
 
 						'smith_cmds' => 'Blacksmith commands',

@@ -51,7 +51,7 @@ abstract class SR_Subway extends SR_Location
 		foreach ($targets as $data)
 		{
 			list($target, $price, $time, $level) = $data;
-			if ($level <= $party->getMin('level'))
+			if ($level <= $party->getMin('level', true))
 			{
 				$back[] = $data;
 			}

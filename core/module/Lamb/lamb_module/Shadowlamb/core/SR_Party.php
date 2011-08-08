@@ -572,8 +572,8 @@ final class SR_Party extends GDO
 		
 		if ($announce === true)
 		{
-			$this->notice(sprintf('You meet %s.%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party)));
-			$party->notice(sprintf('You meet %s.%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this)));
+			$this->notice(sprintf('You meet %s.%s%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
+			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 		}
 		
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
@@ -967,7 +967,7 @@ final class SR_Party extends GDO
 		{
 			$player instanceof SR_Player;
 			$dist = $with_distance ? sprintf('(%.01fm)', $this->distance[$player->getID()]) : '';
-			$level = $with_levels ? sprintf('(L%s(%s))', $player->getBase('level'), $player->get('level')) : '';
+			$level = $with_levels ? Shadowfunc::displayLevel($player) : '';
 			$back .= sprintf(', %s-%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level);
 		}
 		return substr($back, 2);
