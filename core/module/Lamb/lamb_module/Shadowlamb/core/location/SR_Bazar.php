@@ -16,6 +16,7 @@ class SR_Bazar extends SR_Location
 	const TEMP_SEARCH = 'BAZAR_SEARCH';
 	
 	const TEMP_BUY_CONFIRM = 'BAZAR_BUY';
+	const TEMP_BBUY_CONFIRM = 'BAZAR_BBUY';
 	
 	################
 	### Location ###
@@ -898,6 +899,11 @@ class SR_Bazar extends SR_Location
 			$player->message(sprintf('The minimum price for a single item is %s. Your total bid should be larger or equal than this.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
+		if ($total > $player->getNuyen())
+		{
+			$player->message(sprintf('You want to purchase items worth %s, but you only have %s.', Shadowfunc::displayNuyen($total), $player->displayNuyen()));
+			return false;
+		}
 		
 		# Wanted Amount
 		$amt = isset($args[2]) ? ((int)$args[2]) : 1;
@@ -918,7 +924,7 @@ class SR_Bazar extends SR_Location
 //			return false;
 //		}
 		
-		if (false === ($result = $table->select('sr4ba_iname,sr4ba_price,sr4ba_amt', $conditions, 'sr4ba_price ASC')))
+		if (false === ($result = $table->select('sr4ba_iname,sr4ba_price,sr4ba_iamt', $conditions, 'sr4ba_price ASC')))
 		{
 			$player->message('Database Error');
 			return false;
@@ -930,22 +936,166 @@ class SR_Bazar extends SR_Location
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
 		{
 			list($_name, $_price, $_amt) = $row;
+			$iname = $_name;
 			for ($i = 0; $i < $_amt; $i++)
 			{
-				$have_amt++;
+				$have_amt += 1;
+				$_price = $this->calcBuyPrice($_price);
 				$have_price += $_price;
 				if ($have_amt >= $amt)
 				{
-					$break;
+					break;
 				}
+			}
+			if ($have_amt >= $amt)
+			{
+				break;
 			}
 		}
 		
 		$table->free($result);
 
 		# Check Result
+		if ($have_amt < $amt)
+		{
+			$player->message(sprintf('You want to purchase %d %s, but you can only find %d.', $amt, $iname, $have_amt));
+			$player->unsetTemp(self::TEMP_BBUY_CONFIRM);
+			return false;
+		}
 		
+		if ($have_price > $total)
+		{
+			$player->message(sprintf('You want to pay %s for %d %s, but the best price is %s.', Shadowfunc::displayNuyen($total), $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+			$player->unsetTemp(self::TEMP_BBUY_CONFIRM);
+			return false;
+		}
 		
+		$msg = implode(' ', $args);
+		$old_msg = $player->getTemp(self::TEMP_BBUY_CONFIRM, '');
+		if ($old_msg === $msg)
+		{
+			$player->unsetTemp(self::TEMP_BBUY_CONFIRM);
+			return $this->onBestBuy2($player, $iname, $amt, $total);
+		}
+		else
+		{
+			$player->setTemp(self::TEMP_BBUY_CONFIRM, $msg);
+			$player->message(sprintf('You are about to buy %d %s for %s in total. Retype your command to confirm.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+			return true;
+		}
+	}
+	
+	private function onBestBuy2(SR_Player $player, $iname, $amt, $total)
+	{
+		if (false === ($item = SR_Item::createByName($iname, 1, false)))
+		{
+			$player->message('The item seems invalid. Report to gizmore!');
+			return false;
+		}
+		
+		$table = GDO::table('SR_BazarItem');
+		$einame = GDO::escape($iname);
+		$conditions = "sr4ba_iname='$einame'";
+		if (false === ($result = $table->select('*', $conditions, 'sr4ba_price ASC')))
+		{
+			$player->message('Datbase error 2!');
+			return false;
+		}
+		
+		$buyer = $player->getName();
+		$have_amt = 0;
+		$have_price = 0;
+		
+		while (false !== ($bitem = $table->fetch($result, GDO::ARRAY_O)))
+		{
+			$bitem instanceof SR_BazarItem;
+			
+			$_amt = $bitem->getVar('sr4ba_iamt');
+			$need = $amt - $have_amt;
+			if ($_amt > $need)
+			{
+				$_amt = $need;
+			}
+			
+			$have_amt += $amt;
+			
+			if (false === $bitem->onPurchased($_amt))
+			{
+				$player->message('Database error 3!');
+				return false;
+			}
+			
+			if (false === $bitem->onPayOwner($player, $_amt))
+			{
+				$player->message('Database error 5!');
+				return false;
+			}
+			
+			
+			$_price = $bitem->getVar('sr4ba_price');
+			$_price = $this->calcBuyPrice($_price) * $_amt;
+			$have_price += $_price;
+			
+			$seller = $bitem->getVar('sr4ba_pname');
+			if (false === SR_BazarHistory::insertPurchase($buyer, $seller, $iname, $bitem->getVar('sr4ba_price'), $_amt))
+			{
+				$player->message('Database error 4!');
+				return false;
+			}
+			
+			if ($have_amt >= $amt)
+			{
+				break;
+			}
+		}
+		$table->free($result);
+		
+		# Stackable
+		if ($item->isItemStackable())
+		{
+			if (false === ($item2 = SR_Item::createByName($iname, $amt, true)))
+			{
+				$player->message('Database error 6!');
+				return false;
+			}
+			if (false === $player->giveItems(array($item2), 'the bazaar'))
+			{
+				$player->message('Database error 7!');
+				return false;
+			}
+		}
+		# Equipment
+		else
+		{
+			for ($i = 0; $i < $amt; $i++)
+			{
+				if (false === ($item2 = SR_Item::createByName($iname, 1, true)))
+				{
+					$player->message('Database error 6!');
+					return false;
+				}
+				
+				if (false === $player->giveItem($item2))
+				{
+					$player->message('Database error 7!');
+					return false;
+				}
+			}
+			if (false === $player->updateInventory())
+			{
+				$player->message('Database error 7!');
+				return false;
+			}
+			
+			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazaar.', $player->getName(), $amt, $iname));
+		}
+		
+		SR_BazarShop::fixAllItemCounts();
+		
+		$player->giveNuyen(-$have_price);
+		$player->message(sprintf('You purchased %d %s for a total price of %s.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+		
+		return true;
 	}
 }
 ?>
