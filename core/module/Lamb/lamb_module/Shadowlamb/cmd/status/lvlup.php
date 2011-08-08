@@ -33,7 +33,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 					if($base == $max){
 						$n = $b.'*'.$b;
 					}else{
-						$n = ($base + 1) * $cost;
+						$n = ($base + 1) * 2;
 						if($n <= $have){
 							$n = $b.$n.'K'.$b;
 							$name = $b.$name.$b;
