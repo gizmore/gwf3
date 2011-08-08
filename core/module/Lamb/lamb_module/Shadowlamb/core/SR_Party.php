@@ -534,8 +534,8 @@ final class SR_Party extends GDO
 		$party->setContactEta(rand(10,25));
 		if ($announce === true)
 		{
-			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true)));
-			$party->notice(sprintf('You encounter %s.', $this->displayMembers(true)));
+			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true, true)));
+			$party->notice(sprintf('You encounter %s.', $this->displayMembers(true, true)));
 		}
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
@@ -572,8 +572,8 @@ final class SR_Party extends GDO
 		
 		if ($announce === true)
 		{
-			$this->notice(sprintf('You meet %s.%s', $party->displayMembers(), SR_Bounty::displayBountyParty($party)));
-			$party->notice(sprintf('You meet %s.%s', $this->displayMembers(), SR_Bounty::displayBountyParty($this)));
+			$this->notice(sprintf('You meet %s.%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party)));
+			$party->notice(sprintf('You meet %s.%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this)));
 		}
 		
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
@@ -716,38 +716,44 @@ final class SR_Party extends GDO
 	#############
 	### Stats ###
 	#############
-	public function getMin($field)
+	public function getMin($field, $base=false)
 	{
 		$min = PHP_INT_MAX;
 		foreach ($this->members as $member)
 		{
-			$t = $member->get($field);
-			if ($t < $min) {
+			$t = $base === true ? $member->getBase($field) : $member->get($field);
+//			$t = $member->get($field);
+			if ($t < $min)
+			{
 				$min = $t;
 			}
 		}
 		return $min;
 	}
 	
-	public function getMax($field)
+	public function getMax($field, $base=false)
 	{
 		$max = -1;
 		foreach ($this->members as $member)
 		{
-			$t = $member->get($field);
-			if ($t > $max) {
+			$t = $base === true ? $member->getBase($field) : $member->get($field);
+//			$t = $member->get($field);
+			if ($t > $max)
+			{
 				$max = $t;
 			}
 		}
 		return $max;
 	}
 	
-	public function getSum($field)
+	public function getSum($field, $base=false)
 	{
 		$sum = 0;
 		foreach ($this->members as $member)
 		{
 			$member instanceof SR_Player;
+			$t = $base === true ? $member->getBase($field) : $member->get($field);
+			$sum += $t;
 			$sum += $member->get($field);
 		}
 		return $sum;
@@ -961,7 +967,8 @@ final class SR_Party extends GDO
 		{
 			$player instanceof SR_Player;
 			$dist = $with_distance ? sprintf('(%.01fm)', $this->distance[$player->getID()]) : '';
-			$back .= sprintf(', %s-%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist);
+			$level = $with_levels ? sprintf('(L%s(%s))', $player->getBase('level'), $player->get('level')) : '';
+			$back .= sprintf(', %s-%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level);
 		}
 		return substr($back, 2);
 	}
