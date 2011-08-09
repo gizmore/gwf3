@@ -14,6 +14,7 @@ class Shadowcmd_enable extends Shadowcmd
 			case 'help': return self::onEnable($player, SR_Player::HELP, true, 'Help'); break;
 			case 'notice': return self::onToggleMessageType($player, SR_Player::NOTICE); break;
 			case 'privmsg': return self::onToggleMessageType($player, SR_Player::PRIVMSG); break;
+			case 'lock': return self::onEnable($player, SR_Player::LOCKED, true, 'Equipment Lock'); break;
 			default: $bot->reply(Shadowhelp::getHelp($player, 'enable'));
 		}
 		return false;
@@ -32,6 +33,7 @@ class Shadowcmd_enable extends Shadowcmd
 			return false;
 		}
 		$player->message(sprintf('%s has been %s for your character.', $name, $text));
+		$player->modify();
 		return true;
 	}
 	

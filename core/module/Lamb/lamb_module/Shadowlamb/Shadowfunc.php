@@ -365,8 +365,8 @@ final class Shadowfunc
 	public static function getStatus(SR_Player $player)
 	{
 		$b = chr(2);
-		return sprintf("%s %s Lvl%s(%s). {$b}HP{$b}:%s/%s%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%.02f, {$b}Karma{$b}:%s, {$b}¥{$b}:%.02f, {$b}Weight{$b}:%s/%s.",
-			$player->getGender(), $player->getRace(), $player->getBase('level'), $player->get('level'),
+		return sprintf("%s %s %s. {$b}HP{$b}:%s/%s%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%.02f, {$b}Karma{$b}:%s, {$b}¥{$b}:%.02f, {$b}Weight{$b}:%s/%s.",
+			$player->getGender(), $player->getRace(), self::displayLevel($player),
 			$player->getHP(), $player->get('max_hp'),
 			$player->get('magic') > 0 ? sprintf(", {$b}MP{$b}:%s/%s", $player->getMP(), $player->get('max_mp')) : '', 
 			$player->get('attack'), $player->get('defense'),
@@ -1121,8 +1121,8 @@ final class Shadowfunc
 	public static function displayLevel(SR_Player $player)
 	{
 		$base = $player->getBase('level');
-		$adju = $player->get('level');
-		return $base == $adju ? "(L{$base})" : "(L{$base}({$adj}))";
+		$adj = $player->get('level');
+		return $base == $adj ? "(L\X02{$base}\X02)" : "(L\X02{$base}\X02({$adj}))";
 	}
 }
 ?>

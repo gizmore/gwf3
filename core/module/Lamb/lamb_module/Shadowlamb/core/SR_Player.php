@@ -723,21 +723,14 @@ class SR_Player extends GDO
 		}
 	}
 	
-	private function modifyLevelEquipment()
-	{
-		$back = $this->sr4_equipment;
-		unset($back['mount']);
-		return array_values($back);
-	}
-	
 	private function modifyLevelLocked()
 	{
-		$this->modifyLevelItems($this->modifyLevelEquipment());
+		$this->modifyLevelItems($this->sr4_equipment);
 	}
 	
 	private function modifyLevelInventory()
 	{
-		$this->modifyLevelItems(array_merge($this->modifyLevelEquipment(), $this->sr4_inventory));
+		$this->modifyLevelItems(array_merge($this->sr4_equipment, $this->sr4_inventory));
 	}
 	
 	private function modifyLevelItems(array $items)
@@ -760,11 +753,18 @@ class SR_Player extends GDO
 				}
 				else
 				{
-					$max[$type] = max(array($max[$type]), $lev);
+					$max[$type] = max(array($max[$type], $lev));
 				}
 			}
 		}
-		$this->sr4_data_modified['level'] += array_sum($max);
+		
+		$add = array_sum($max);
+		
+		$add /= 4;
+		
+		$add = round($add);
+		
+		$this->sr4_data_modified['level'] += $add;
 	}
 	
 	private function modifyOverload()

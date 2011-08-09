@@ -10,6 +10,12 @@ final class Shadowcmd_unequip extends Shadowcmd
 			return false;
 		}
 
+		if ($player->isFighting() && $player->isLocked())
+		{
+			$player->message('You cannot change your equipment in combat when it\'s locked.');
+			return false;
+		}
+		
 		if (false === ($item = $player->getItem($args[0])))
 		{
 			$player->message(sprintf('You don`t have that item.'));
