@@ -656,16 +656,28 @@ final class Shadowfunc
 	##############
 	public static function calcBuyPrice($price, SR_Player $player)
 	{
-		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
-		$f = (200 - $neg) / 200;
+//		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
+//		$f = (200 - $neg) / 200;
+//		return round($price*$f, 2);
+		$ch = $player->get('charisma') - 2;
+		$neg = $player->get('negotiation');
+		$perc = ($ch * 0.2) + ($neg * 0.5);
+		$f = (100 - $perc) / 100;
+		$f = Common::clamp($f, 0, 100);
 		return round($price*$f, 2);
 	}
 	
 	public static function calcSellPrice($price, SR_Player $player)
 	{
-		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
-		$f = (100 + ($neg/2)) / 100;
-		return round($price*$f, 2);
+//		$neg = Common::clamp((int)$player->get('negotiation'), 0, 100);
+//		$f = (100 + ($neg/2)) / 100;
+//		return round($price*$f, 2);
+		$ch = $player->get('charisma');
+		$neg = $player->get('negotiation');
+		$perc = ($ch * 0.1) + ($neg * 0.8);
+		$f = (100 + $perc) / 100;
+		$f = Common::clamp($f, 100, 200);
+		return round($price*$f/10, 2);
 	}
 	
 	###############
