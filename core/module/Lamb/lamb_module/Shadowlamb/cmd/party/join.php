@@ -37,7 +37,7 @@ final class Shadowcmd_join extends Shadowcmd
 			return false;
 		}
 		
-		if ($p->isFull()) {
+		if ($ep->isFull()) {
 			$bot->reply('The party has reached the maximum membercount of '.SR_Party::MAX_MEMBERS.'.');
 			return false;
 		}
