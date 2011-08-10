@@ -23,7 +23,7 @@ class SR_Player extends GDO
 	
 	# Human Starter
 	const START_HP = 4;
-	const START_NUYEN = 75;
+	const START_NUYEN = 0;
 	
 	# Options
 	const CREATED = 0x00001;
