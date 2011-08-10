@@ -184,11 +184,13 @@ abstract class SR_Spell
 	{
 		$dices = round($level * 10);
 		$dices += round($player->get('intelligence') * 5);
-		$dices += round($player->get('essence') * 20);
+		$dices += round($player->get('spellatk') * 6);
+		$dices += round($player->get('essence') * 18);
 		$dices -= round(Shadowfunc::calcDistance($player, $target)/4);
 		
 		$defense = round($target->get('essence') * 2);
 		$defense += round($target->get('intelligence') * 2);
+		$defense += round($target->get('spelldef') * 2);
 
 		return Shadowfunc::dicePool($dices, $defense, 2);
 	}
