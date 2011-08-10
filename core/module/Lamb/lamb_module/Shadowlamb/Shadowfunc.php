@@ -1,6 +1,12 @@
 <?php
 final class Shadowfunc
 {
+	/** Move that to a file! **/
+	const BUY_PERCENT_CHARISMA = 0.1;
+	const BUY_PERCENT_NEGOTIATION = 0.5;
+	const SELL_PERCENT_CHARISMA = 0.2;
+	const SELL_PERCENT_NEGOTIATION = 0.8;
+	
 	public static function toShortname($name)
 	{
 		if (false !== ($pos = strrpos($name, '{'))) {
@@ -661,10 +667,13 @@ final class Shadowfunc
 //		return round($price*$f, 2);
 		$ch = $player->get('charisma') - 2;
 		$neg = $player->get('negotiation');
-		$perc = ($ch * 0.2) + ($neg * 0.5);
-		$f = (100 - $perc) / 100;
-		$f = Common::clamp($f, 0, 100);
-		return round($price*$f, 2);
+		
+		$perc = ($ch * self::BUY_PERCENT_CHARISMA) + ($neg * self::BUY_PERCENT_NEGOTIATION);
+		$perc = Common::clamp($perc, 0, 50);
+		$perc = 100 - $perc;
+		$perc /= 100;
+		
+		return round($price*$perc, 2);
 	}
 	
 	public static function calcSellPrice($price, SR_Player $player)
@@ -674,10 +683,10 @@ final class Shadowfunc
 //		return round($price*$f, 2);
 		$ch = $player->get('charisma');
 		$neg = $player->get('negotiation');
-		$perc = ($ch * 0.1) + ($neg * 0.8);
-		$f = (100 + $perc) / 100;
-		$f = Common::clamp($f, 100, 200);
-		return round($price*$f/10, 2);
+		$perc = 100 + ($ch * self::SELL_PERCENT_CHARISMA) + ($neg * self::SELL_PERCENT_NEGOTIATION);
+		$perc = Common::clamp($perc, 100, 200);
+		$perc /= 100;
+		return round($price*$perc, 2);
 	}
 	
 	###############

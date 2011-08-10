@@ -32,6 +32,9 @@ final class Shadowhelp
 	
 	public static function getAllHelp($player=NULL)
 	{
+		$sell_rate = $player === NULL ? 10 : Shadowfunc::calcSellPrice(100/10, $player);
+		$buy_rate = $player === NULL ? 100 : Shadowfunc::calcBuyPrice(100, $player);
+		
 		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
 		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
 		
@@ -67,7 +70,7 @@ final class Shadowhelp
 					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime and explore times will decrease.",
 					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",
 					'intelligence' => "Intelligence increases the power of your magic spells.",
-					'charisma' => "Charisma raises the time that hirelings follow you.",
+					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::BUY_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::SELL_PERCENT_CHARISMA."%) prices for your character.  You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
 					'luck' => "Luck increases the chance of better drops.",
 					'reputation' => "Reputation determines how famous you are amongst the world of Shadowlamb. Some quests require a minimum reputation.",
 					'essence' => "Essence describes how wasted your body and mind is. Every player starts with an essence of 6. You cannot lvlup your essence. Although it is known that some rare runes can increase your essence. Essence is essential for casting spells.",
@@ -86,7 +89,7 @@ final class Shadowhelp
 					'computers' => 'The computers skill will increase your chance to hack computers.',
 					'electronics' => 'The electronics skill will increase your chance to disable traps.',
 					'biotech' => 'The biotech skill will increase your healing when using items.',
-					'negotiation' => 'The negotiation skill will lower prices when buying items, and raise prices when selling items.',
+					'negotiation' => "The negotiation skill will lower prices when buying items(-".Shadowfunc::BUY_PERCENT_NEGOTIATION."%), and raise prices when selling items(+".Shadowfunc::SELL_PERCENT_NEGOTIATION."%). This is also effected by charisma. You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
 					'sharpshooter' => 'The sharpshooter skill will raise your chance for a critical hit. This also applies to melee and ninja weapons.',
 					'searching' => 'The searching skill will increase the dropchance on searches.',
 					'lockpicking' => 'The lockpicking skill will increase your chance on picking locks.',
