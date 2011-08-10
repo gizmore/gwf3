@@ -223,7 +223,7 @@ abstract class SR_Store extends SR_Location
 		}
 		
 		# Price
-		$price = $item->getItemPrice() / $item->getItemDefaultAmount();
+		$price = $item->getItemPrice();# / $item->getItemDefaultAmount();
 		$total = 0.0;
 		
 		# Amount
