@@ -11,7 +11,7 @@ final class Quest_Delaware_DBarkeeper extends SR_Quest
 	{
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
-		$have_after = $this->giveQuesties($player, $npc, 'Rune', $have_before, $need);
+		$have_after = $this->giveQuesties($player, $npc, 'Wine', $have_before, $need);
 		$this->saveAmount($have_after);
 		if ($have_after >= $need)
 		{
