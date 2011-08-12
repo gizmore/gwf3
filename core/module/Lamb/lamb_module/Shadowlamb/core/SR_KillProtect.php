@@ -128,7 +128,7 @@ final class SR_KillProtect extends GDO
 			return false;
 		}
 		
-		# A member as bounty
+		# A member has bounty or bad karma
 		foreach ($defenders->getMembers() as $defender)
 		{
 			$defender instanceof SR_Player;
@@ -136,11 +136,15 @@ final class SR_KillProtect extends GDO
 			{
 				return false;
 			}
+			if ($defender->getBase('bad_karma'))
+			{
+				return false;
+			}
 		}
 		
-		# Check party sums
-		$al = $attackers->getSum('level');
-		$dl = $defenders->getSum('level');
+		# Check party sums for effective level.
+		$al = $attackers->getSum('level', false);
+		$dl = $defenders->getSum('level', false);
 		$dif = $al - $dl;
 		if ($dif > self::MAX_LEVEL_DIFF)
 		{
