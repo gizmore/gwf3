@@ -59,7 +59,7 @@ class SR_Player extends GDO
 	const DIRTY_FLAGS = 0x87fe0;
 	
 	public static $REV_ALL = NULL; # see init
-	public static $CONDITIONS = array('sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
+	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
 	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
 	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
@@ -208,6 +208,7 @@ class SR_Player extends GDO
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
+	public function isFrozen() { return $this->get('frozen') > 0; }
 	public function hasSkill($skill) { return $this->getBase($skill) > -1; }
 	public function isOverloadedHalf() { return $this->get('weight') >= ($this->get('max_weight')*1.0); }
 	public function isOverloadedFull() { return $this->get('weight') >= ($this->get('max_weight')*1.5); }
@@ -909,7 +910,8 @@ class SR_Player extends GDO
 		foreach ($this->sr4_effects as $i => $effect)
 		{
 			$effect instanceof SR_Effect;
-			if ($effect->getMode() !== SR_Effect::MODE_ONCE) {
+			if (!$effect->isOnce())
+			{
 				continue;
 			}
 			
@@ -1171,7 +1173,37 @@ class SR_Player extends GDO
 	
 	private function addEffect(SR_Effect $effect)
 	{
+		if ($effect->getMode() === SR_Effect::MODE_ONCE_EXTEND)
+		{
+			$this->extendEffect($effect);
+		}
+		else
+		{
+			$this->sr4_effects[] = $effect;
+		}
+	}
+	
+	private function extendEffect(SR_Effect $effect)
+	{
+		$kk = $effect->getModifiersRaw();
+		$kk = key($kk);
+		$seconds = $effect->getETA();
+		foreach ($this->sr4_effects as $ef)
+		{
+			$ef instanceof SR_Effect;
+			$mod = $ef->getModifiersRaw();
+			foreach ($mod as $k => $v)
+			{
+				if ($kk === $k)
+				{
+//					printf("Extending effect %s\n", $seconds);
+					$ef->extendTimeEnd($seconds);
+					return true;
+				}
+			}
+		}
 		$this->sr4_effects[] = $effect;
+		return true;
 	}
 	
 	private function updateEffects()
@@ -2175,9 +2207,12 @@ class SR_Player extends GDO
 	public function calcBusyTime($seconds)
 	{
 		$q = $this->get('quickness');
-//		$sq = round(sqrt($seconds));
 		$seconds -= $q / 2;
 		$seconds += rand(1, 10) - 5;
+		
+		$f = $this->get('frozen') * 10;
+//		printf(" ---- Freeze busy: %s\n", $f);
+		$seconds += $f;
 		return round(Common::clamp($seconds, 4));
 	}
 	
@@ -2206,7 +2241,7 @@ class SR_Player extends GDO
 	
 	public function combatPush($message)
 	{
-		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
+//		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
 		$this->combat_stack = $message;
 	}
 		
@@ -2226,22 +2261,22 @@ class SR_Player extends GDO
 		if (!$this->keepCombatStack(true, $stack))
 		{
 			$this->combat_stack = '';
-			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
+//			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
 		
-		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $stack);
+//		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $stack);
 		$result = Shadowcmd::onExecute($this, $stack);
 		if (!$this->keepCombatStack($result, $stack))
 		{
 			$this->combat_stack = '';
-			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
+//			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
 		return $result;
 	}
 	
 	private function keepCombatStack($bool, $stack)
 	{
-		var_dump($stack);
+//		var_dump($stack);
 		if ($bool === false)
 		{
 			return false;
