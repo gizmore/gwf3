@@ -52,7 +52,7 @@ abstract class SR_NPCBase extends SR_Player
 	### NPC ###
 	###########
 	public function getNPCLevel() { return 1; }
-	public function getLootXP() { return parent::getLootXP() + $this->getNPCLootXP(); }
+	public function getLootXP() { return Shadowfunc::diceFloat(1, 2+$this->getBase('level')/5, 1) + $this->getNPCLootXP(); }
 	public function getNPCLootXP() { return 0; }
 	public function getNPCCityClass() { return Shadowrun4::getCity(Common::substrUntil($this->getNPCClassName(), '_')); }
 	public function setNPCClassName($classname) { $this->npc_classname = $classname; }

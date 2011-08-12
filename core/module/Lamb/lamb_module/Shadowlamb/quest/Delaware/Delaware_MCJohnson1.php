@@ -28,7 +28,10 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
-		list ($kh, $kg, $ke) = $this->getKillData();
+		$data = $this->getKillData();
+		$kh = $data['H'];
+		$kg = $data['G'];
+		$ke = $data['E'];
 		
 		if ( ($kh >= self::KILLS_NEEDED) && ($kg >= self::KILLS_NEEDED) && ($ke >= self::KILLS_NEEDED) )
 		{

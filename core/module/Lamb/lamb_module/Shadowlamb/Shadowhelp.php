@@ -326,8 +326,8 @@ final class Shadowhelp
 					array(
 						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
-						'enable' => 'Player command. Usage: #enable <help|notice|privmsg>. Toggle user interface options for your player.',
-						'disable' => 'Player command. Usage: #disable <help>. Toggle user interface options for your player.',
+						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock>. Toggle user interface options for your player.',
+						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock>. Toggle user interface options for your player.',
 						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death. The instant death rule applies when killed by NPC or other Runners.",
 					),
 					

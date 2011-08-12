@@ -23,7 +23,7 @@ final class Seattle_HireMagician extends SR_HireNPC
 			'distance' => rand(6, 8),
 			'nuyen' => rand(140, 180),
 			'base_hp' => rand(6, 14),
-			'base_mp' => rand(8, 16),
+			'base_mp' => rand(30, 40),
 			'magic' => rand(4, 5),
 			'intelligence' => rand(2, 4),
 			'wisdom' => rand(2, 4),

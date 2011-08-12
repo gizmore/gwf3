@@ -19,7 +19,7 @@ final class Amerindian_Grayhat extends SR_NPC
 			'race' => 'woodelve',
 			'gender' => 'male',
 			'base_hp' => rand(14, 20),
-			'base_mp' => rand(80, 120),
+			'base_mp' => rand(20, 60),
 			'nuyen' => rand(50, 120),
 			'distance' => rand(8, 12),
 		

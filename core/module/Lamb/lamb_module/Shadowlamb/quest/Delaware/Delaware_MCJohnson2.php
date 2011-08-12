@@ -22,7 +22,7 @@ final class Quest_Delaware_MCJohnson2 extends SR_Quest
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
-		$kn = self::KILLS_NEEDED;
+//		$kn = self::KILLS_NEEDED;
 		$dp = $this->displayRewardNuyen();
 		switch ($word)
 		{
@@ -30,7 +30,7 @@ final class Quest_Delaware_MCJohnson2 extends SR_Quest
 				$npc->reply("A client has a delicate problem. He got robbed by several CaveTrolls who stole a big Emerald.");
 				$npc->reply("Your job would be to get the gem back.");
 				$npc->reply("Do you think you can do it?");
-				return false;
+//				return false;
 				break;
 			case 'confirm':
 				$npc->reply("I will pay you $dp.");

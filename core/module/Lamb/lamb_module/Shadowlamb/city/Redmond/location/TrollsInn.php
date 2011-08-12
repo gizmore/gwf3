@@ -9,7 +9,7 @@ final class Redmond_TrollsInn extends SR_Location
 	{
 		$p = $player->getParty();
 		
-		if ($p->getMin('level') < 1) {
+		if ($p->getMin('level', true) < 1) {
 			$p->notice('You are too afraid to go in there. (Each party member needs a minimum level of 1)');
 			return true;
 		}

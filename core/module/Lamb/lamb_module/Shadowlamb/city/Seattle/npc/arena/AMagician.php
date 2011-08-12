@@ -15,7 +15,7 @@ final class Seattle_AMagician extends SR_NPC
 		);
 	}
 	public function getNPCInventory() { return array('FirstAid'); }
-	public function getNPCSpells() { return array('freeze'=>1,'firebolt'=>3); }
+	public function getNPCSpells() { return array('freeze'=>2,'firebolt'=>2); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
@@ -28,7 +28,7 @@ final class Seattle_AMagician extends SR_NPC
 			'distance' => 12,
 			'base_hp' => 16,
 			'nuyen' => 90,
-			'base_mp' => 30,
+			'base_mp' => 20,
 		);
 	}
 	

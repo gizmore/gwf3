@@ -7,7 +7,7 @@ final class Delaware_Subway extends SR_Subway
 	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
-			array('Seattle_Subway', 200, 600, 8),
+			array('Seattle_Subway', 200, Seattle::TIME_TO_DELAWARE, 8),
 		);
 	}
 	

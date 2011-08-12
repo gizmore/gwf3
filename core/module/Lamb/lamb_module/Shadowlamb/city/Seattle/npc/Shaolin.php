@@ -30,7 +30,7 @@ final class Seattle_Shaolin extends SR_NPC
 			'magic' => rand(1, 2),
 			'intelligence' => 4,
 			'wisdom' => 2,
-			'base_mp' => rand(-12, -10),
+			'base_mp' => rand(8, 16),
 		);
 		
 	}

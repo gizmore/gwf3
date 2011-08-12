@@ -2,10 +2,10 @@
 final class Shadowfunc
 {
 	/** Move that to a file! **/
-	const BUY_PERCENT_CHARISMA = 0.1;
-	const BUY_PERCENT_NEGOTIATION = 0.5;
-	const SELL_PERCENT_CHARISMA = 0.2;
-	const SELL_PERCENT_NEGOTIATION = 0.8;
+	const BUY_PERCENT_CHARISMA = 0.5;
+	const BUY_PERCENT_NEGOTIATION = 1.0;
+	const SELL_PERCENT_CHARISMA = 0.6;
+	const SELL_PERCENT_NEGOTIATION = 1.0;
 	
 	public static function toShortname($name)
 	{

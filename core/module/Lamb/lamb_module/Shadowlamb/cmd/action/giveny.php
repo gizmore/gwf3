@@ -39,12 +39,12 @@ final class Shadowcmd_giveny extends Shadowcmd
 		}
 
 		# Thx jjk
-		if (($have - $amt) <= SR_Player::START_NUYEN)
-		{
-			$player->message(sprintf('You can\'t give all your money away, you need at least %s', Shadowfunc::displayNuyen(SR_Player::START_NUYEN)));
-			$player->message(sprintf('Maximum you can give is %s', Shadowfunc::displayNuyen($have-SR_Player::START_NUYEN)));
-			return false;
-		}
+//		if (($have - $amt) <= SR_Player::START_NUYEN)
+//		{
+//			$player->message(sprintf('You can\'t give all your money away, you need at least %s', Shadowfunc::displayNuyen(SR_Player::START_NUYEN)));
+//			$player->message(sprintf('Maximum you can give is %s', Shadowfunc::displayNuyen($have-SR_Player::START_NUYEN)));
+//			return false;
+//		}
 			
 		if (false === $target->alterField($what, $amt))
 		{

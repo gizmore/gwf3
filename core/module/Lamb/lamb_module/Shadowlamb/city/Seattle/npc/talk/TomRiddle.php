@@ -23,7 +23,7 @@ final class Seattle_TomRiddle extends SR_TalkingNPC
 	{
 		if (count($args) !== 1)
 		{
-			$this->reply('I wrote down some message and cannot decipher it myself again -.- Please tell me the solution with #talk crypto <answer>.');
+			$this->reply('I wrote down some message and cannot decipher it myself again -.- Please tell me the password with #talk crypto <password>.');
 			$this->reply('eht swordsap ot ym fase si ont xenophi tub gimmuhnbrid.');
 			$cry = $player->get('crypto');
 			if ($cry >= 1)
