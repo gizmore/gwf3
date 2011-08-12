@@ -10,8 +10,8 @@ final class Seattle_CSchool extends SR_School
 	{
 		return array(
 			array('math', 5000),
-			array('cryptography', 5000),
-			array('steganography', 5000),
+			array('crypto', 5000),
+			array('stegano', 5000),
 		);
 	}
 }
