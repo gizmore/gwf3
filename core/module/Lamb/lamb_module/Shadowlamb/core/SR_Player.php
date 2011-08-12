@@ -844,11 +844,17 @@ class SR_Player extends GDO
 	
 	private function modifyMaxima()
 	{
-		$this->sr4_data_modified['max_hp'] += $this->get('body') * $this->get('hp_per_body') + $this->get('base_hp') + self::BASE_HP;
-		$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP;
-		$this->sr4_data_modified['max_weight'] += $this->get('strength') * self::WEIGHT_PER_STRENGTH + self::WEIGHT_BASE;
+		if ($this->isHuman())
+		{
+			$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP;
+		}
+		else
+		{
+			$this->applyModifiers($this->getNPCModifiersB());
+		}
 		
-		$this->applyModifiers($this->getNPCModifiersB());
+		$this->sr4_data_modified['max_hp'] += $this->get('body') * $this->get('hp_per_body') + $this->get('base_hp') + self::BASE_HP;
+		$this->sr4_data_modified['max_weight'] += $this->get('strength') * self::WEIGHT_PER_STRENGTH + self::WEIGHT_BASE;
 	}
 	
 	private function modifyCombat()
