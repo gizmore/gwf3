@@ -155,7 +155,9 @@ final class Shadowhelp
 					
 					'level' => 'Player command. Show the party- and memberlevels. Your level determines what mobs you can encounter. Collect '.$xppl.' XP to levelup.',
 					'hp' => "HP are your hitpoints. Use #hp to see all party HP. You can refresh hitpoints in Hotel, or by healing items and spells.",
+					'max_hp' => 'The maximum amount of HP your character can have. You can increase this with the body attribute or rune modifiers.',
 					'mp' => "MP are your manapoints. Use #mp to see all party MP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
+					'max_mp' => 'The maximum amount of MP your character can have. You can increase this with the magic attribute or rune modifiers.',
 					'atk' => 'Your chances to hit.',
 					'defense' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',
 					'damage' => 'The min and max damage you can cause.',
@@ -349,7 +351,7 @@ final class Shadowhelp
 						'join' => 'Player command. Usage: #(j)oin <player>. Join the party of another player who is at the same location as you. You can #look to see which players are around you.',
 						'part' => 'Player command. Usage: #part. Leave your current party and create a fresh one.',
 						'fight' => 'Leader Command. Usage: #fight [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
-						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party.',
+						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party. If you meet humans, both have to say bye so the "evil" players get a chance to kill you.',
 						'party_loot' => "Leader command. Usage: #pl <killer|cycle|rand>. Define who loots the items from kills. The default is killer.",
 						'info' => "Player command. Usage: #info. Show the info text of your current location.",
 						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
