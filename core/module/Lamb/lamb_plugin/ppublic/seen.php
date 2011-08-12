@@ -7,6 +7,10 @@ if ($username === '')
 {
 	return $bot->processMessageA($server, LAMB_TRIGGER.'help seen', $from);
 }
+if (!preg_match('/^[a-z0-9_\\[\\]]+$/i', $username))
+{
+	return $bot->getHelp('seen');
+}
 
 $eu = GDO::escape($username);
 $sid = $server->getID();
