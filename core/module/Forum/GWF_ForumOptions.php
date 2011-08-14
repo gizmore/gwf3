@@ -63,7 +63,7 @@ final class GWF_ForumOptions extends GDO
 		static $row = true;
 		if ($row === true)
 		{
-			$row = self::getUserOptions(GWF_Session::getUser());
+			$row = self::getUserOptions(GWF_Session::getUser(), true);
 		}
 		return $row;
 	}
