@@ -403,7 +403,7 @@ final class GWF_ModuleLoader
 			$hta .= PHP_EOL;
 		}
 		$hta = GWF_HTAccess::getHTAccess().$hta;
-		return file_put_contents('.htaccess', $hta);
+		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
 	}
 	
 	public static function getAllMethods(GWF_Module $module)
