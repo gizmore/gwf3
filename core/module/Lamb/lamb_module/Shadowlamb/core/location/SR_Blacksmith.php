@@ -12,10 +12,11 @@ abstract class SR_Blacksmith extends SR_Store
 	public function getSplitPrice() { return 200; }
 	public function getSplitPercentPrice() { return 35.00; }
 	
-	public function getCommands(SR_Player $player) { return array('view','buy','sell','clean','break','split','simulate','upgrade'); }
+	public function getCommands(SR_Player $player) { return array('view','buy','sell','clean','break','split'/*,'simulate'*/,'upgrade'); }
 	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
-
+//	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
+	
 	public function calcUpgradePrice(SR_Player $player, $item_price)
 	{
 		return Shadowfunc::calcBuyPrice(($item_price*($this->getUpgradePercentPrice()/100))+$this->getUpgradePrice(), $player);
@@ -167,9 +168,10 @@ abstract class SR_Blacksmith extends SR_Store
 	##########################
 	### Upgrade / Simulate ###
 	##########################
+	private static $UPGRADE_CONFIRM = array();
 	public function on_upgrade(SR_Player $player, array $args) { return $this->onUpgrade($player, $args, false); }
-	public function on_simulate(SR_Player $player, array $args) { return $this->onUpgrade($player, $args, true); }
-	private function onUpgrade(SR_Player $player, array $args, $simulated=true)
+//	public function on_simulate(SR_Player $player, array $args) { return $this->onUpgrade($player, $args, true); }
+	private function onUpgrade(SR_Player $player, array $args, $simulated=false)
 	{
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 2) {
@@ -212,18 +214,35 @@ abstract class SR_Blacksmith extends SR_Store
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
 		$dpu = Shadowfunc::displayNuyen($price_u);
 		
-		if ($simulated === true)
+		## Confirm
+		$pid = $player->getID();
+		$msg = implode(' ', $args);
+		$old_msg = isset(self::$UPGRADE_CONFIRM[$pid]) ? self::$UPGRADE_CONFIRM[$pid] : '';
+		if ($msg !== $old_msg)
 		{
-			$price_s = $this->calcSimulationPrice($player, $price_u);
-			$dps = Shadowfunc::displayNuyen($price_s);
-			if (false === ($player->pay($price_s))) {
-				$bot->reply(sprintf('The smith says: "I am sorry chummer, the simulation will cost %s."', $dps));
-				return false;
-			}
-			$bot->reply(sprintf('You pay %s and the smith examines your items: "The upgrade would cost %s. Chance to fail: %s%%. Chance to break: %s%%."', $dps, $dpu, $fail, $break));
-			return true;
+			self::$UPGRADE_CONFIRM[$pid] = $msg;
+			return $player->message(sprintf(
+				'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',
+				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
+			));
 		}
-		else
+		else {
+			unset(self::$UPGRADE_CONFIRM[$pid]);
+		}
+		
+		
+//		if ($simulated === true)
+//		{
+//			$price_s = $this->calcSimulationPrice($player, $price_u);
+//			$dps = Shadowfunc::displayNuyen($price_s);
+//			if (false === ($player->pay($price_s))) {
+//				$bot->reply(sprintf('The smith says: "I am sorry chummer, the simulation will cost %s."', $dps));
+//				return false;
+//			}
+//			$bot->reply(sprintf('You pay %s and the smith examines your items: "The upgrade would cost %s. Chance to fail: %s%%. Chance to break: %s%%."', $dps, $dpu, $fail, $break));
+//			return true;
+//		}
+//		else
 		{
 			if (!$player->hasNuyen($price_u)) {
 				$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));

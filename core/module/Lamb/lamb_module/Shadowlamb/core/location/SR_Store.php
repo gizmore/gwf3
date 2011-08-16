@@ -345,6 +345,7 @@ abstract class SR_Store extends SR_Location
 
 	public function checkLocation()
 	{
+		return true;
 		$player = new SR_Player(SR_Player::getPlayerData(0));
 		$player->modify();
 		$items = $this->getStoreItems($player);
