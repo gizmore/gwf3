@@ -209,11 +209,11 @@ final class LambModule_Greetings extends Lamb_Module
 	{
 		$bot = Lamb::instance();
 		if (false === ($channel = $bot->getCurrentChannel())) {
-			if (false === ($record = Lamb_QuitJoinChannel::getGlobalRecord())) {
+//			if (false === ($record = Lamb_QuitJoinChannel::getGlobalRecord())) {
 				return 'I do not have any quitjoin records yet.';
-			} else {
-				return sprintf('The shortest join ever was from %s in %s on %s: %.02fs.', $record->displayUser(), $record->displayChannel(), $record->displayServer(), $record->displayTime());
-			}
+//			} else {
+//				return sprintf('The shortest join ever was from %s in %s on %s: %.02fs.', $record->displayUser(), $record->displayChannel(), $record->displayServer(), $record->displayTime());
+//			}
 		}
 		
 		if (false === ($record = Lamb_QuitJoinChannel::getChannelRecord($channel))) {

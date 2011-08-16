@@ -217,7 +217,7 @@ abstract class SR_Spell
 	################
 	public function getAnnounceMessage(SR_Player $player, SR_Player $target, $level)
 	{
-		return sprintf('%s casts a level %s %s on %s', $player->getName(), $level, $this->getName(), $target->getName());
+		return sprintf('%s-%s casts a level %s %s on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
 	}
 
 	public function announceADV(SR_Player $player, SR_Player $target, $level, $append='', $append_ep='')

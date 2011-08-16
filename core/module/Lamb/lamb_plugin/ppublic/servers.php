@@ -1,8 +1,7 @@
 <?php # Usage: %CMD% <id|name>. Show info about a server.
-$b = chr(2);
 if ($message === '')
 {
-	if (false === ($result = $server->select('serv_id, serv_host', '', 'serv_id ASC')))
+	if (false === ($result = $server->select('serv_id, serv_host, serv_flood_amt', '', 'serv_id ASC')))
 	{
 		$bot->reply('Database error!');
 		return;
@@ -12,7 +11,11 @@ if ($message === '')
 	while (false !== ($s = $server->fetch($result, GDO::ARRAY_N)))
 	{
 		$servercount++;
-		$out .= sprintf(", {$b}%s{$b}-%s", $s[0], Common::getTLD($s[1]));
+		$b = $s[2] >= 4 ? chr(2) : '';
+		$throttle = $s[2] == 0 ? '' : "({$b}T{$s[2]}{$b})";
+		$b = $bot->getServer($s[0]) === false ? '' : chr(2);
+		$b2 = $s[2] == 0 ? chr(2) : '';
+		$out .= sprintf(", {$b}%s{$b}-{$b2}%s{$b2}%s", $s[0], Common::getTLD($s[1]), $throttle);
 	}
 	$server->free($result);
 	

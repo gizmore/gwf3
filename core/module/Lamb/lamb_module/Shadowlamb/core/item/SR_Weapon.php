@@ -38,7 +38,7 @@ abstract class SR_Weapon extends SR_Equipment
 		
 		$player->busy($this->getAttackTime());
 		
-		$msg = sprintf(' attacks %s with %s', $target->getName(), $this->getName());
+		$msg = sprintf(' attacks %s-%s with %s', $target->getEnum(), $target->getName(), $this->getName());
 		$hpmsg = $lootmsg = '';
 		
 		$mindmg = $player->get('min_dmg');
@@ -49,7 +49,7 @@ abstract class SR_Weapon extends SR_Equipment
 		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
 		# Debug
-		Lamb_Log::logDebug(sprintf('%s (ATK: %s HP: %s) vs. %s (DEF: %s HP: %s) = HITS: %s',$player->getName(),$atk,$player->getHP(),$target->getName(),$def,$target->getHP(),$hits));
+//		Lamb_Log::logDebug(sprintf('%s (ATK: %s HP: %s) vs. %s (DEF: %s HP: %s) = HITS: %s',$player->getName(),$atk,$player->getHP(),$target->getName(),$def,$target->getHP(),$hits));
 		
 		# Miss
 		if ($hits < 1) {
@@ -134,7 +134,7 @@ abstract class SR_Weapon extends SR_Equipment
 		foreach ($p->getMembers() as $member)
 		{
 			$lmsg = is_array($lootmsg) ? $lootmsg[$i++] : $lootmsg;
-			$member->message($player->getName().$msg.$lmsg);
+			$member->message($player->getEnum().'-'.$player->getName().$msg.$lmsg);
 		}
 //		$p->message($player, $msg.$lootmsg);
 		$ep->message($player, $msg.$hpmsg);

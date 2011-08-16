@@ -606,7 +606,7 @@ class SR_Player extends GDO
 	
 	private function onMessageTell($message)
 	{
-		print('TELL: '.$message.PHP_EOL);
+		return SR_Tell::tell($this->getID(), $message);
 	}
 
 	private function onMessageWWW($message)
@@ -1619,17 +1619,17 @@ class SR_Player extends GDO
 	{
 		$items1 = $this->getInvItems($item1);
 		$items2 = $this->getInvItems($item2);
-
-		if($items1[0]->getName() == $items2[0]->getName()){
-			return -3;
-		}
+		
 		if(count($items1) == 0){
 			return -1;
 		}
 		if(count($items2) == 0){
 			return -2;
 		}
-
+		if($items1[0]->getName() == $items2[0]->getName()){
+			return -3;
+		}
+		
 		$beforeFirst = array();
 		$firstKey = -1;
 		$firstVal = null;

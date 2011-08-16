@@ -7,6 +7,14 @@ final class Shadowcmd_shout extends Shadowcmd
 			Shadowrap::instance($player)->reply(Shadowhelp::getHelp($player, 'shout'));
 			return false;
 		}
+		
+		$wait = SR_NoShout::isNoShout($player->getID());
+		if ($wait > 0)
+		{
+			$player->message(sprintf('Please wait %s before you shout again.', GWF_Time::humanDuration($wait)));
+			return false;
+		}
+		
 		Shadowshout::shout($player, implode(' ', $args));
 		return true;
 	}

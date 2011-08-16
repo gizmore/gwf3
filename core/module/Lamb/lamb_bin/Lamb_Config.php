@@ -78,7 +78,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://natalya.psych0tik.net:6697',
 			'nickname' => 'Lamb',
 			'password' => LAMB_PASSWORD2,
-			'channels' => '#shadowlamb,#hbh',
+			'channels' => '#shadowlamb,#hbh,#shadowlamb_bots',
 			'admins' => 'gizmore',
 		),
 		
@@ -98,14 +98,13 @@ $LAMB_CFG = array
 //			'admins' => 'gizmore',
 //		),
 
-		array(
-		
-			'host' => 'ircs://irc.big-daddy.fr:6697',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#Big-Daddy',
-			'admins' => 'gizmore',
-		),
+//		array(
+//			'host' => 'ircs://irc.big-daddy.fr:6697',
+//			'nickname' => 'Lamb3',
+//			'password' => 'lamblamb',
+//			'channels' => '#shadowlamb,#Big-Daddy',
+//			'admins' => 'gizmore',
+//		),
 		
 		array(
 			'host' => 'irc://irc.gizmore.org:6668',

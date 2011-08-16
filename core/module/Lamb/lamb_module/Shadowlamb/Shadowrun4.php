@@ -364,6 +364,8 @@ final class Shadowrun4
 		
 		$player->setOption(SR_Player::WWW_OUT, false);
 		
+		SR_Tell::onTell($player);
+		
 		# Do it!
 		Shadowcmd::onTrigger($player, $msg);
 	}

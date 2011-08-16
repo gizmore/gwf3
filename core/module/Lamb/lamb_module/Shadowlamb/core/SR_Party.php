@@ -694,7 +694,7 @@ final class SR_Party extends GDO
 	
 	public function message(SR_Player $player, $message)
 	{
-		return $this->notice($player->getName().$message);
+		return $this->notice($player->getEnum().'-'.$player->getName().$message);
 	}
 	
 	#################
@@ -754,7 +754,7 @@ final class SR_Party extends GDO
 			$member instanceof SR_Player;
 			$t = $base === true ? $member->getBase($field) : $member->get($field);
 			$sum += $t;
-			$sum += $member->get($field);
+//			$sum += $member->get($field);
 		}
 		return $sum;
 	}
