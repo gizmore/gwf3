@@ -66,7 +66,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 				break;
 				
 			case 'blackmarket':
-				if ($done || $has) {
+				if ($has) {
 					$quest->checkQuest($this, $player);
 				}
 				else {
@@ -79,7 +79,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 				break;
 				
 			case 'shadowrun':
-				if ($done || $has) {
+				if ($has) {
 					$quest->checkQuest($this, $player);
 				}
 				else {
