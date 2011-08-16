@@ -85,7 +85,7 @@ abstract class GDO_Database
 			echo GWF_Debug::backtrace($message, true);
 		}
 		$this->emailOnError($message);
-		die(1);
+//		die(1);
 	}
 	
 	private function emailOnError($message)

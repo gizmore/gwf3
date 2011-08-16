@@ -244,17 +244,25 @@ final class GWF_Website
 		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL) {
+	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL)
+	{
+		$tVars = array(
+			'user' => GWF_User::getStaticOrGuest(),
+		);
 		return GWF_Template::template($path.'html_body.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/') {
+	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/')
+	{
 		$tVars = array(
 			'timings' => GWF_DebugInfo::getTimings(),
+			'user' => GWF_User::getStaticOrGuest(),
 		);
 		return GWF_Template::template($path.'html_foot.tpl', $tVars);
 	}
-	public static function getPagehead($path = 'tpl/%DESIGN%/') {
+	
+	public static function getPagehead($path = 'tpl/%DESIGN%/')
+	{
 		return self::getHTMLHead() . self::getHTMLbody_head($path);
 	}
 	

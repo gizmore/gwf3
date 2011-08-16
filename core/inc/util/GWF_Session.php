@@ -57,18 +57,12 @@ final class GWF_Session extends GDO
 	############
 	public static function start($blocking=true)
 	{
-		if (NULL !== ($cookie = Common::getCookie(GWF_SESS_NAME)))
-		{
-			if (false === self::reload($cookie)) {
-				return self::create();
-			} else {
-				return true;
-			}
-		}
-		else
+		if ( (NULL === ($cookie = Common::getCookie(GWF_SESS_NAME)))
+		  || (!self::reload($cookie)) )
 		{
 			return self::create();
 		}
+		return true;
 	}
 	
 	private static function reload($cookie)
@@ -125,15 +119,34 @@ final class GWF_Session extends GDO
 
 	private static function create()
 	{
-		if (false !== ($spider = GWF_Webspider::getSpider())) {
+		if (false !== ($spider = GWF_Webspider::getSpider()))
+		{
 			return self::createSpider($spider);
 		}
+		
+//		return self::createByETag();
 		return self::createSession();
 	}
 	
-	private static function createSession()
+//	private static function createByETag()
+//	{
+//		# Reload by ETag
+//		if (isset($_SERVER['HTTP_IF_NONE_MATCH']))
+//		{
+//			if (self::reload(substr($_SERVER['HTTP_IF_NONE_MATCH'], 2)))
+//			{
+//				self::setETag(self::$SESSION->getID(), self::getUserID(), self::getSessID());
+//				return true;
+//			}
+//		}
+//		
+//		return self::createSession(true);
+//	}
+	
+	private static function createSession($create_etag=false)
 	{
 		$sessid = Common::randomKey(self::SESS_ENTROPY);
+		
 		$session = new self(array(
 			'sess_id' => 0,
 			'sess_sid' => $sessid,
@@ -143,17 +156,27 @@ final class GWF_Session extends GDO
 			'sess_ip' => NULL,
 			'sess_lasturl' => NULL,
 		));
-		if (false === ($session->insert())) {
-//			return false;
+		if (false === $session->insert())
+		{
+			return false;
 		}
 		
 		self::$SESSION = $session;
-//		self::$SESSDATA = array();
+		
+//		if ($create_etag)
+//		{
+//			self::setETag($session->getVar('sess_id'), 0, $sessid);
+//		}
 		
 		self::setCookies($session->getVar('sess_id'), 0, $sessid);
 		
 		return true;
 	}
+	
+//	private static function setETag($id, $uid, $sessid)
+//	{
+//		header('Etag: '.sprintf('W/%s-%s-%s', $id, $uid, $sessid));
+//	}
 	
 	private static function createSpider($spiderid)
 	{
@@ -224,8 +247,6 @@ final class GWF_Session extends GDO
 			$data['sess_data'] = $serialized;
 		}
 		
-//		var_dump(self::$SESSION);
-		
 		# Save it
 		return count($data) === 0 ? true : self::$SESSION->saveVars($data);
 	}
@@ -236,8 +257,6 @@ final class GWF_Session extends GDO
 	public static function onLogin(GWF_User $user, $bind_to_ip=true, $with_hooks=true)
 	{
 		$userid = $user->getID();
-		
-		
 
 		# Keep only N sessions for one user
 		if (false === ($result = self::$SESSION->selectFirst('MIN(sess_id) min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER))) {
