@@ -80,5 +80,7 @@ $lang = array(
 	'btn_recovery' => 'Recuperar contraseña',
 	# v2.04 (Fixes)
 	'tt_password' => 'Your password can be chosen freely. Please do not re-use important passwords. Consider a short phrase as password.',
+	# v2.05 (Blacklist)
+	'err_domain_banned' => 'Your email provider is on the blacklist.',
 );
 ?>

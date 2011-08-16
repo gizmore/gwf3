@@ -174,6 +174,10 @@ final class Register_Form extends GWF_Method
 		if (!GWF_Validator::isValidEmail($arg)) {
 			return $module->lang('err_email_invalid');
 		}
+		if (GWF_BlackMail::isBlacklisted($arg))
+		{
+			return $module->lang('err_domain_banned');
+		}
 		return false;
 	}
 	 
