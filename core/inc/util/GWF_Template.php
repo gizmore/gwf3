@@ -14,7 +14,7 @@ require_once 'core/inc/util/GWF_TemplateWrappers.php';
  */
 final class GWF_Template
 {
-	private static function getDesign()
+	public static function getDesign()
 	{
 		return GWF3::getDesign();
 	}

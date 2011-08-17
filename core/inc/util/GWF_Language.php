@@ -153,5 +153,9 @@ final class GWF_Language extends GDO
 	{
 		return GDO::table(__CLASS__)->selectObjects('*', 'lang_options&1');
 	}
+	public static function getAvailable()
+	{
+		return preg_split('/[;,]+/', GWF_SUPPORTED_LANGS);
+	}
 }
 ?>
