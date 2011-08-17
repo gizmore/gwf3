@@ -37,7 +37,7 @@ final class GWF_Template
 	####################
 	public static function templatePHPMain($file, $tVars=NULL)
 	{
-		return self::templatePHP("tpl/%DESIGN%/$file", $tVars);
+		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN%/$file", $tVars);
 	}
 
 	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
@@ -105,7 +105,7 @@ final class GWF_Template
 	
 	public static function templateMain($file, $tVars=NULL)
 	{
-		return self::template('tpl/%DESIGN%/'.$file, $tVars);
+		return self::template(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file, $tVars);
 	}
 	
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
@@ -116,8 +116,8 @@ final class GWF_Template
 	
 	public static function template($path, $tVars=NULL)
 	{
+//		var_dump('LOADING '.$path);
 		$smarty = self::getSmarty();
-
 		if($smarty->templateExists($path1 = str_replace('%DESIGN%', self::getDesign(), $path)) ){
 			$path2 = $path1;
 		} elseif($smarty->templateExists($path1 = str_replace('%DESIGN%', 'default', $path)) ){
@@ -125,7 +125,7 @@ final class GWF_Template
 		} else {
 			return self::pathError($path);
 		}
-
+		
 		if (is_array($tVars))
 		{
 			foreach ($tVars as $k => $v)
