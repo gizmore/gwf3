@@ -22,6 +22,7 @@ final class GWF_SF_SurferInfos {
 		array('hosteurope.de' ,'Host Europe', 'hosteurope'),
 		array('kabelbw.de' ,'Kabel BW', 'kabelbw'),
 		array('ish.de' ,'Unitymedia', 'unitymedia'),
+		array('unitymediagroup.de' ,'Unitymedia', 'unitymedia'),
 		array('mediaways.net' ,'Telefonica', 'telefonica'),
 		array('mnet-online.de' ,'M-net', 'mnet'),
 		array('netcologne.de' ,'NetCologne', 'netcologne'),
@@ -471,6 +472,25 @@ final class GWF_SF_SurferInfos {
 
 	// public static function save_referer() { return;	}
 
+	public static function BrowserIs() {
+		return;
+	}
+	public static function BrowserIsTrident() { // IE, MS
+		return stristr('Trident', self::get_useragent());
+	}
+	public static function BrowserIsGecko() { // Firefox, Mozilla
+		return stristr('Gecko', self::get_useragent());
+	}
+	public static function BrowserIsWebkit() { // Safari, Chrome
+		return stristr('Webkit', self::get_useragent());
+	}
+	public static function BrowserIsPresto() { // Opera
+		return stristr('Presto', self::get_useragent());
+	}
+	public static function BrowserIsKhtml() { // Konqueror, KDE
+		return stristr('KHTML', self::get_useragent());
+	}
+	
 }
 
 ?>
