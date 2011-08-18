@@ -354,7 +354,9 @@ final class Shadowrun4
 	public static function onTrigger(Lamb_Server $server, Lamb_User $user, $channel_name, $msg)
 	{
 		$bot = Lamb::instance();
-		if ($user->isRegistered() && !$user->isLoggedIn()) {
+		if ($user->isRegistered() && !$user->isLoggedIn())
+		{
+			$bot->tryAutologin($user);
 			return $bot->reply('You need to login to play.');
 		}
 		

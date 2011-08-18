@@ -967,5 +967,15 @@ final class Lamb
 		$pos = rand(1, strlen($s)-1);
 		return substr($s, 0, $pos)."\xC2\xAD".substr($s, $pos);
 	}
+	
+	public function tryAutologin(Lamb_User $user)
+	{
+		if ($user->getAutoLoginAttempt() > 0)
+		{
+			return; # trying ...
+		}
+		$user->setAutoLoginAttempt(1);
+		$user->getServer()->sendWhoRequest($user);
+	}
 }
 ?>

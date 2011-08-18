@@ -750,5 +750,11 @@ final class Lamb_Server extends GDO
 		}
 		return LAMB_LOGGING;
 	}
+	
+	public function sendWhoRequest(Lamb_User $user)
+	{
+		$this->connection->send('WHOIS '.$user->getName());
+	}
+	
 }
 ?>

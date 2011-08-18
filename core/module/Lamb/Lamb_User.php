@@ -4,6 +4,10 @@ final class Lamb_User extends GDO
 	#################
 	### Constants ###
 	#################
+	private $auto_login_attempt = 0;
+	public function setAutoLoginAttempt($i) { $this->auto_login_attempt = $i; }
+	public function getAutoLoginAttempt() { return $this->auto_login_attempt; }
+	
 	const USERMODES = '~&@%+';
 	
 	const ADMIN = 0x01;
