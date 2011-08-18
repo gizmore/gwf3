@@ -2,7 +2,7 @@
 final class Quest_Renraku_I extends SR_Quest
 {
 	public function getQuestName() { return 'Renraku1'; }
-	public function getQuestDescription() { return 'Gather information about Renraku and your role in the conspiracy.'; }
+	public function getQuestDescription() { return 'Gather information about Renraku and your role in the conspiracy. You need to reach level 8 and travel to Seattle to accomplish this quest.'; }
 	
 	public function checkOrk(SR_Player $player)
 	{
