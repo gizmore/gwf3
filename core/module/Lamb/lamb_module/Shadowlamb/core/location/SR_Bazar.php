@@ -576,7 +576,7 @@ class SR_Bazar extends SR_Location
 		if ($old_msg !== $msg)
 		{
 			$player->setTemp(self::TEMP_BUY_CONFIRM, $msg);
-			$player->message(sprintf('You attempt to purchase %d %s from %s for %s each. Retype to confirm.', $amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
+			$player->message(sprintf('You attempt to purchase %d %s from %s for %s. Retype to confirm.', $amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
 			return true;
 		}
 		
