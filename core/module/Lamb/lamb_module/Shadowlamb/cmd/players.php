@@ -29,7 +29,7 @@ final class Shadowcmd_players extends Shadowcmd
 		foreach (array_slice($players, $from, $ppp, false) as $p)
 		{
 			$p instanceof SR_Player;
-			$out .= sprintf(', %s', $p->displayName());
+			$out .= sprintf(', %s(L%s(%s))', $p->displayName(), $p->getBase('level'), $p->get('level'));
 		}
 
 		$out = $out === '' ? 'This page is empty.' : sprintf('Active players (page %d of %d): %s.', $page, $nPages, substr($out, 2));
