@@ -224,6 +224,7 @@ final class Shadowhelp
 						'motd' => 'Print the current "message of the day".',
 						'world' => 'Print info about the world of Shadowlamb.',
 						'players' => 'Usage: #players <page>. Print info about the current players. Paginated.',
+						'parties' => 'Usage: #parties <page>. Print info about the current active parties, paginated.',
 					),
 					
 					'gm_cmds' => '"Game Master" commands for debugging and cheating',
