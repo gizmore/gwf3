@@ -7,12 +7,12 @@ abstract class SR_Consumable extends SR_Usable
 	{
 		$busy = $player->isFighting() ? $this->getItemUseTime() : 0;
 		
-		if ($this->isBroken())
-		{
-			$player->message(sprintf('Your %s is broken and cannot get consumed.', $this->getItemName()));
-			return false;
-		}
-		
+//		if ($this->isBroken())
+//		{
+//			$player->message(sprintf('Your %s is broken and cannot get consumed.', $this->getItemName()));
+//			return false;
+//		}
+
 		# Consume it
 		$this->onConsume($player);
 		$this->increase('sr4it_amount', -1);

@@ -1,7 +1,7 @@
 <?php
 final class SR_KillProtect extends GDO
 {
-	const MAX_LEVEL_DIFF = 20; # Effective Level
+	const MAX_LEVEL_DIFF = 30; # Effective Level
 	const KILL_TIMEOUT_MIN = 3600; # 1h
 	const KILL_TIMEOUT_ADD = 7200; # 1h
 	const KILL_TIMEOUT_AVG = 6000; # 4h

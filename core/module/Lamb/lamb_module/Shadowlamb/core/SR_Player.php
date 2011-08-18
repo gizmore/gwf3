@@ -35,6 +35,7 @@ class SR_Player extends GDO
 	const DEAD = 0x20000;
 	const SILENCE = 0x40000;
 	const LOCKED = 0x100000;
+	const PLAYER_BOT = 0x200000;
 	
 	# Timing
 	const FIGHT_INIT_BUSY = 12;
@@ -204,7 +205,7 @@ class SR_Player extends GDO
 	public function isFemale() { return $this->getGender() === 'female'; }
 	public static function getGenders() { return array_keys(self::$GENDER); }
 	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getServerID()); }
-	public function displayName() { $u = $this->getUser(); return sprintf("\x02%s{%s}\x02", Lamb::softhyphe($u->getName()), $u->getServerID()) ; }
+	public function displayName() { $u = $this->getUser(); return sprintf("\X02%s{%s}\X02", Lamb::softhyphe($u->getName()), $u->getServerID()) ; }
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }

@@ -10,18 +10,24 @@ final class Shadowcmd_gml extends Shadowcmd
 			return false;
 		}
 		
-		$server = $player->getUser()->getServer();
-		if (false === ($user = $server->getUserByNickname($args[0])))
+//		$server = $player->getUser()->getServer();
+//		if (false === ($user = $server->getUserByNickname($args[0])))
+		if (false === ($target = Shadowrun4::getPlayerByShortName($args[0])))
 		{
 			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
 			return false;
 		}
-		
-		if (false === ($target = Shadowrun4::getPlayerForUser($user)))
+		elseif ($target === -1)
 		{
-			$bot->reply(sprintf('The player %s is unknown.', $args[0]));
+			$bot->reply('The player name is ambigious.');
 			return false;
 		}
+		
+//		if (false === ($target = Shadowrun4::getPlayerForUser($user)))
+//		{
+//			$bot->reply(sprintf('The player %s is unknown.', $args[0]));
+//			return false;
+//		}
 		
 		if (false !== ($error = self::checkCreated($target)))
 		{

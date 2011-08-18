@@ -2,7 +2,7 @@
 final class Item_Clothes extends SR_Armor
 {
 	public function getItemLevel() { return 0; }
-	public function getItemPrice() { return 100; }
+	public function getItemPrice() { return 45; }
 	public function getItemWeight() { return 450; }
 	public function getItemDescription() { return 'Usual street clothes.'; }
 	public function getItemModifiersA(SR_Player $player)

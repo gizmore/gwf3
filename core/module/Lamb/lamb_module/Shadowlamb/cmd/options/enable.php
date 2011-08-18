@@ -15,6 +15,7 @@ class Shadowcmd_enable extends Shadowcmd
 			case 'notice': return self::onToggleMessageType($player, SR_Player::NOTICE); break;
 			case 'privmsg': return self::onToggleMessageType($player, SR_Player::PRIVMSG); break;
 			case 'lock': return self::onEnable($player, SR_Player::LOCKED, true, 'Equipment Lock'); break;
+			case 'bot': return self::onEnable($player, SR_Player::PLAYER_BOT, true, 'Player Botflag'); break;
 			default: $bot->reply(Shadowhelp::getHelp($player, 'enable'));
 		}
 		return false;
