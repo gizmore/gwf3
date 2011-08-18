@@ -37,6 +37,9 @@ final class Shadowhelp
 		
 		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
 		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
+		$xp = $player === NULL ? 0 : $player->getBase('xp');
+		$xpl = $player === NULL ? 0 : $player->getBase('xp_level');
+		$xpt = $player === NULL ? 0 : $player->getBase('xp_total');
 		
 		$ele = $player === NULL ? 0 : $player->get('elephants');
 		$ele_gain = $player === NULL ? 0 : $player->getHPGain();
@@ -464,7 +467,7 @@ final class Shadowhelp
 						'action_hunt' => 'This means the party is hunting another human player.',
 					),
 				
-					'xp' => "Collect {$xppk} XP and gain 1 Karma. With Karma you can #(l)vlup.",
+					'xp' => "Collect {$xp}/{$xppk} XP and gain 1 Karma. With Karma you can #(l)vlup. Collect {$xpl}/{$xppl} XP and gain one level. In total you have collected {$xpt} XP.",
 					'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
 					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
