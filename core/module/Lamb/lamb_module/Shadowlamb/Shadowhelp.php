@@ -296,6 +296,7 @@ final class Shadowhelp
 						'talk' => "Player command. Usage: #talk <#kw_id|word>. In many locations you can use #talk to talk to the NPCs. If there is more than one NPC it is often #ttX. Always check your #c inside locations.",
 						'shout' => "Player command. Usage: #shout <the message>. Shout a message to all shadowlamb channels on all servers.",
 						'whisper' => "Player command. Usage: #(w)hisper <player> <the message>. Send a message to another player. This works accross networks.",
+						'whisper_back' => "Player command. Usage: #(w)hisper_(b)ack <the message>. Send a message back to the player who whispered you.",
 					),
 					
 					'combat_cmds' => 'Commands work in combat',

@@ -61,6 +61,7 @@ class Shadowcmd
 		'u' => 'use',
 		'uq' => 'unequip',
 		'w' => 'whisper',
+		'wb' => 'whisper_back',
 		'we' => 'weight',
 		'x' => 'flee',
 	);
@@ -73,7 +74,7 @@ class Shadowcmd
 	public static $CMDS_ALWAYS_CREATE = array('helo','time','start','help','enable','disable','stats','players','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmm','gms','gmsp','gmt','gmns','gmx');
 	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','cmp','kk','kp','ks','kw','qu','r','say','sw');
-	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','sd','pm','rl');
+	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','wb','sd','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
