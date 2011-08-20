@@ -25,8 +25,9 @@ final class Shadowcmd_kick extends Shadowcmd
 		
 		$p->kickUser($target, true);
 		$np = SR_Party::createParty();
-		$np->addUser($target, true);
 		$np->cloneAction($p);
+		$np->clonePreviousAction($p);
+		$np->addUser($target, true);
 		return true;
 	}
 }
