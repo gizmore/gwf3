@@ -15,9 +15,9 @@ final class Spell_calm extends SR_HealSpell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$wis = $player->get('wisdom') + 1;
-		$amount = $level + rand(0, $wis);
-		$seconds = Common::clamp(90-$hits, 30, 90);
+		$wis = $player->get('wisdom');
+		$amount = $level + Shadowfunc::diceFloat(0, $wis+2, 1);
+		$seconds = Common::clamp(240-$hits, 30, 240);
 		$per_sec = round($amount / $seconds, 2);
 		echo "Cast calm with amount=$amount and seconds=$seconds and per_sec=$per_sec\n";
 		$mod = array('hp' => $per_sec);

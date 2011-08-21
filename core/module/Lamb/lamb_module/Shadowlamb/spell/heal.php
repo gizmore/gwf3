@@ -8,7 +8,8 @@ final class Spell_heal extends SR_HealSpell
 	public function getManaCost(SR_Player $player) { return 6 + $this->getLevel($player); }
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		$hits = round($hits/4, 1) + $player->getBase('wisdom');
+		$hits = ($hits+$wisdom) / 10;
+//		$hits = round($hits/4, 1) + $player->getBase('wisdom');
 		$min = $level + $hits;
 		$max = ($level + $hits) * intval($level / 2) + rand(0, $player->get('wisdom'));
 		$hp_gain = rand($min*10, $max*10);
