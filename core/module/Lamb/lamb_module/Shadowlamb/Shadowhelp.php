@@ -587,6 +587,12 @@ final class Shadowhelp
 	{
 		$bot = Shadowrap::instance($player);
 		
+		if (false !== ($item = SR_Item::getItem($topic)))
+		{
+			var_dump($item);
+			return $item->getItemInfo($player);
+		}
+		
 		# Shortcuts
 		$topic = self::unshortcut($topic);
 		

@@ -37,7 +37,7 @@ class SR_Item extends GDO
 	 * @param string $name
 	 * @return SR_Item
 	 */
-	public static function getItem($name) { return self::$items[$name]; }
+	public static function getItem($name) { return isset(self::$items[$name]) ? self::$items[$name] : false; }
 	public static function getAllItems() { return self::$items; }
 	public static function includeItem($filename, $fullpath)
 	{
