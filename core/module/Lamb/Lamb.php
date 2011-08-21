@@ -864,6 +864,11 @@ final class Lamb
 			return Lamb_Log::logError(sprintf('In %s(%s, %s, %s, %s): getUserFromOrigin(%s) failed!', __METHOD__, $server->getHostname(), $from, $origin, $message, $from));
 		}
 		
+		if (!$user->isLoggedIn())
+		{
+			$this->tryAutologin($user);
+		}
+		
 		$is_admin = $user->isLoggedIn() && $server->isAdminUsername($user->getName());
 		
 		if (!$is_admin)
@@ -965,7 +970,7 @@ final class Lamb
 	{
 //		if ($s === '') { return ''; }
 		$pos = rand(1, strlen($s)-1);
-		return substr($s, 0, $pos)."\xC2\xAD".substr($s, $pos);
+		return substr($s, 0, $pos)."\XC2\XAD".substr($s, $pos);
 	}
 	
 	public function tryAutologin(Lamb_User $user)
@@ -975,7 +980,7 @@ final class Lamb
 			return; # trying ...
 		}
 		$user->setAutoLoginAttempt(1);
-		$user->getServer()->sendWhoRequest($user);
+		$user->getServer()->tryAutologin($user);
 	}
 }
 ?>

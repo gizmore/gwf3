@@ -8,17 +8,5 @@
  
  */
 //var_dump($args);
-if ($args[3] === '*')
-{
-	$nickname = $args[1];
-	if (false !== ($user = $server->getUser($nickname)))
-	{
-		$server->sendNotice($user->getName(), 'You just have been logged in by NickServ.');
-	
-		$user->setAutoLoginAttempt(0);
-		
-		$user->setLoggedIn(true);
-	}
-}
 ?>
 

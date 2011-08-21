@@ -24,6 +24,9 @@ final class Lamb_Server extends GDO
 	const LOG_OFF = 0x02;
 	const NO_CLOAK = 0x04;
 	
+	const HAS_STATUS = 0x10;
+	const HAS_ACC = 0x20;
+	
 	# Current Message From
 	private $lm_from = ''; # latest from/origin:
 	private $lm_from_raw = ''; # latest from/origin:!IP.blub
@@ -751,10 +754,39 @@ final class Lamb_Server extends GDO
 		return LAMB_LOGGING;
 	}
 	
-	public function sendWhoRequest(Lamb_User $user)
+	public function sendWhoRequest($username)
 	{
-		$this->connection->send('WHOIS '.$user->getName());
+		$this->connection->send('WHOIS '.$username);
 	}
+	
+	public function sendNickservStatus($username)
+	{
+		$this->connection->sendPrivmsg('NickServ', 'STATUS '.$username);
+	}
+	
+	public function probeCapabilites()
+	{
+		echo __METHOD__.PHP_EOL;
+		$username = $this->getBotsNickname();
+//		$this->sendWhoRequest($username);
+		$this->sendNickservStatus($username);
+//		$this->sendNickservAcc($username);
+	}
+	
+	public function tryAutologin(Lamb_User $user)
+	{
+		$username = $user->getName();
+		$this->setOption(self::HAS_STATUS, true);
+		if ($this->isOptionEnabled(self::HAS_STATUS))
+		{
+			$this->sendNickservStatus($username);
+		}
+		else
+		{
+			$this->sendWhoRequest($username);
+		}
+	}
+	
 	
 }
 ?>

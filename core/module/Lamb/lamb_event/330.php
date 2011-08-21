@@ -10,12 +10,14 @@ ARGS: Lamb3,foo,foo,is logged in as
 ======================
 */
 $nickname = $args[2];
-if (false !== ($user = $server->getUser($nickname)))
+if ($nickname === $server->getBotsNickname())
+{
+	
+}
+elseif (false !== ($user = $server->getUser($nickname)))
 {
 	$server->sendNotice($user->getName(), 'You just have been logged in by NickServ.');
-
 	$user->setAutoLoginAttempt(0);
-	
 	$user->setLoggedIn(true);
 }
 ?>

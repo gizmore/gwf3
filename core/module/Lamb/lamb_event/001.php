@@ -3,4 +3,5 @@
 #$server->addUser($args[0]); // Add the bot to userlist
 $server->autojoinChannels();
 $server->sendBotMode();
+$server->probeCapabilites(); 
 ?>
