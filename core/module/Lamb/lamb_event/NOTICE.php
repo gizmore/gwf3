@@ -8,7 +8,7 @@ if (stripos($from, 'NickServ!') === 0)
 		$nickname = $matches[1];
 		
 		# Probe
-		if ($nickname === $server->getBotsNickname())
+		if ( ($nickname === $server->getBotsNickname()) && ($matches[2]==='3') )
 		{
 			echo "Has status!\n";
 			$server->setOption(Lamb_Server::HAS_STATUS);

@@ -84,22 +84,6 @@ final class Lamb_Server extends GDO
 	public function getAdminUsernames() { return explode(',', $this->getVar('serv_admins')); }
 	public function isThrottled() { return $this->getInt('serv_flood_amt') > 0; }
 	
-//	private $id = 0;
-//	private $nicknames = 'Lamb,Lamb2,Lamb3';
-//	private $password = '';
-//	private $nickname_id = -1;
-//	private $current_nick = '';
-	
-//	private $auto_chans = '';
-//	private $admins = array();
-//	private $full_hostname = '';
-//	private $hostname = '';
-//	private $port = 6667;
-//	private $maxusers = 0;
-//	private $maxchannels = 0;
-//	private $ip = '';
-//	private $options = 0;
-	
 	###########
 	### IRC ###
 	###########
@@ -111,20 +95,6 @@ final class Lamb_Server extends GDO
 	private $channels = array(); # Array of class Lamb_Channel
 	private $current_nick = ''; # Current nickname
 	private $nickname_id = -1; # And cycle ID
-	
-//	public function __construct($host, $nicknames, $password, $channels, $admin, $options=0)
-//	{
-//		$this->full_hostname = $host;
-//		$this->hostname = $this->connection->getHostname();
-//		$this->port = $this->connection->getPort();
-//		$this->nicknames = trim($nicknames);
-//		$this->password = trim($password);
-//		$this->auto_chans = trim($channels);
-//		$this->admins = $admin === '' ? array() : explode(',', $admin);
-//		$this->options = abs((int)$options);
-//		$this->next_retry = time();
-//		$this->syncDB();
-//	}
 	
 	public function __construct($data=NULL)
 	{
@@ -196,14 +166,6 @@ final class Lamb_Server extends GDO
 	public static function getByID($id)
 	{
 		return self::table(__CLASS__)->getRow($id);
-//		$db = gdo_db();
-//		$id = (int)$id;
-//		$table = GWF_TABLE_PREFIX.'lamb_server';
-//		if (false === ($result = $db->queryFirst("SELECT serv_name,serv_nicknames,serv_password,serv_channels,serv_admins,serv_options from $table WHERE serv_id=$id", false))) {
-//			return false;
-//		}
-//		$result = array_values($result);
-//		return new self($result[0], $result[1], $result[2], $result[3], $result[4], $result[5]);
 	}
 	
 	/**
@@ -230,14 +192,6 @@ final class Lamb_Server extends GDO
 	{
 		$h = self::escape($hostname);
 		return self::table(__CLASS__)->selectFirstObject('*', "serv_host LIKE '%{$h}%'");
-//		$db = gdo_db();
-//		$hostname = $db->escape($hostname);
-//		$table = GWF_TABLE_PREFIX.'lamb_server';
-//		if (false === ($result = $db->queryFirst("SELECT serv_name,serv_nicknames,serv_password,serv_channels,serv_admins,serv_options from $table WHERE serv_name LIKE '%$hostname%'", false))) {
-//			return false;
-//		}
-//		$result = array_values($result);
-//		return new self($result[0], $result[1], $result[2], $result[3], $result[4], $result[5]);
 	}
 	
 	public function __destruct()
@@ -246,28 +200,6 @@ final class Lamb_Server extends GDO
 		$this->connection = NULL;
 	}
 	
-	
-//	private function syncDB()
-//	{
-//		$db = gdo_db();
-//		$table = $this->getTableName();
-//		$tld = $this->getTLD();
-//		$tld = $db->escape($tld);
-//		$query = "SELECT serv_id, serv_maxusers, serv_maxchannels, serv_ip, serv_nicknames, serv_channels, serv_password, serv_admins FROM $table WHERE serv_name LIKE '%$tld%'";
-//		if (false === ($result = $db->queryFirst($query))) {
-//			return $this->newServer();
-//		}
-//		$this->id = (int) $result['serv_id'];
-//		$this->maxusers = (int) $result['serv_maxusers'];
-//		$this->maxchannels = (int) $result['serv_maxchannels'];
-//		$this->ip = $result['serv_ip'];
-//		$this->nicknames = $result['serv_nicknames'];
-//		$this->auto_chans = trim($result['serv_channels']);
-//		$this->password = $result['serv_password'];
-//		$this->admins = explode(',', $result['serv_admins']);
-//		$this->options = (int)$result['serv_options'];
-//	}
-
 	public function setupIP()
 	{
 		$h = $this->getHostname();
@@ -292,19 +224,6 @@ final class Lamb_Server extends GDO
 		}
 		$this->setupConnection();
 		return true;
-//		$db = gdo_db();
-//		$id = $this->getID();
-//		$table = $this->getTableName();
-//		$this->full_hostname = $host; $host = $db->escape($host);
-//		$this->nicknames = $nicks; $nicks = $db->escape($nicks);
-//		$this->auto_chans = $chans; $chans = $db->escape($chans);
-//		$this->password = $pass; $pass = $db->escape($pass);
-//		$admins = $db->escape($admin);
-//		$this->admins = $admin === '' ? array() : explode(',', $admin);
-//		$query = "UPDATE $table SET serv_name='$host', serv_nicknames='$nicks', serv_channels='$chans', serv_password='$pass', serv_admins='$admins' WHERE serv_id=$id";
-//		if (false === $db->queryWrite($query)) {
-//			die('DB Error: Cannot write server table');
-//		}
 	}
 	
 	
@@ -319,27 +238,6 @@ final class Lamb_Server extends GDO
 		$n = strtolower($channel_name);
 		return isset($this->channels[$n]) ? $this->channels[$n] : false;
 	}
-	
-	
-//	private function newServer()
-//	{
-//		$db = gdo_db();
-//		$name = $db->escape($this->full_hostname);
-//		$ip = gethostbyname($this->hostname);
-//		$table = $this->getTableName();
-//		$enicks = $db->escape($this->nicknames);
-//		$echans = $db->escape(implode(',', $this->channels));
-//		$epass = $db->escape($this->password); 
-//		$eadmins = $db->escape(implode(',', $this->admins));
-//		$query = "INSERT INTO $table (serv_name, serv_ip, serv_nicknames, serv_channels, serv_password, serv_admins) VALUES('$name', '$ip', '$enicks', '$echans', '$epass', '$eadmins')";
-//		if (false === $db->queryWrite($query))
-//		{
-//			return false;
-//		}
-//		$this->ip = $ip;
-//		$this->id = $db->insertID();
-//		return true;
-//	}
 	
 	/**
 	 * @return Lamb_IRC
@@ -407,13 +305,13 @@ final class Lamb_Server extends GDO
 		$this->connection->send(sprintf('MODE '.$this->current_nick.' +b'));
 	}
 	
-	public function sendNickname()
+	/**
+	 * Select next nickname to try.
+	 */
+	public function selectNextNickname()
 	{
-		# Select next nickname to try.
-//		$nicks = explode(',', $this->nicknames);
 		$nicks = $this->getNicknames();
 		$this->nickname_id++;
-		
 		if ($this->nickname_id >= count($nicks))
 		{
 			$this->nickname_id = -1;
@@ -423,22 +321,19 @@ final class Lamb_Server extends GDO
 		{
 			$this->current_nick = $nicks[$this->nickname_id];
 		}
-		
-		$this->changeNick($this->current_nick);
 	}
 	
-	public function changeNick($nickname)
+	public function sendNickname()
 	{
-		$this->current_nick = $nickname;
-		$this->connection->send('NICK '.$nickname);
+		$this->connection->send('NICK '.$this->current_nick);
 	}
 	
 	public function identify()
 	{
-//		if ($this->nickname_id === 0)
-//		{
-			$this->connection->sendPrivmsg('NickServ', 'IDENTIFY '.$this->password);
-//		}
+		if ($this->nickname_id === 0)
+		{
+			$this->connection->sendPrivmsg('NickServ', 'IDENTIFY '.$this->getVar('serv_password'));
+		}
 	}
 	
 	public function sendPrivmsg($to, $message)
@@ -554,43 +449,8 @@ final class Lamb_Server extends GDO
 	public function updateMaxchannels($channelcount)
 	{
 		return $this->saveVar('serv_maxchannels', $channelcount);
-//		$channelcount = (int) $channelcount;
-//		if ($channelcount > $this->maxchannels)
-//		{
-//			if (false === $this->updateInt($field, $value))
-//			{
-//				return false;
-//			}
-//			$this->maxchannels = $channelcount;
-//			
-//			$db = gdo_db();
-//			$id = $this->getID();
-//			$table = $this->getTableName();
-//			if (false === $db->queryWrite("UPDATE $table SET serv_maxchannels=$channelcount WHERE serv_id=$id"))
-//			{
-//				return false;
-//			}
-//		}
-//		return true;
 	}
 	
-//	public function updateOptions($options)
-//	{
-//		$options = (int)$options;
-//		if ($options !== $this->options)
-//		{
-//			$db = gdo_db();
-//			$id = $this->getID();
-//			$table = $this->getTableName();
-//			if (false === $db->queryWrite("UPDATE `{$table}` SET serv_options={$options} WHERE serv_id={$id}"))
-//			{
-//				return false;
-//			}
-//			$this->options = $options;
-//		}
-//		return true;
-//	}
-
 	/**
 	 * Get a channel for this server.
 	 * @param string $channel_name
@@ -786,7 +646,5 @@ final class Lamb_Server extends GDO
 			$this->sendWhoRequest($username);
 		}
 	}
-	
-	
 }
 ?>

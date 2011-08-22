@@ -126,6 +126,8 @@ final class Lamb
 			{
 				$server = Lamb_Server::factory($host, $nicks[$i], $passs[$i], $chans[$i], $admin[$i]);
 				
+				$server->selectNextNickname();
+				
 				if (false !== $server->replace())
 				{
 					if (false !== $server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i]))
@@ -864,7 +866,7 @@ final class Lamb
 			return Lamb_Log::logError(sprintf('In %s(%s, %s, %s, %s): getUserFromOrigin(%s) failed!', __METHOD__, $server->getHostname(), $from, $origin, $message, $from));
 		}
 		
-		if (!$user->isLoggedIn())
+		if ( $user->isRegistered() && (!$user->isLoggedIn()) )
 		{
 			$this->tryAutologin($user);
 		}
