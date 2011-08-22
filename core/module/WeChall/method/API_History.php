@@ -97,7 +97,7 @@ final class WeChall_API_History extends GWF_Method
 	
 	private function history(Module_WeChall $module)
 	{
-		require_once 'core/module/WeChall/WC_HistoryUser2.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		$conditions = array();
 		if ($this->user !== false) {
 			$conditions[] = 'userhist_uid='.$this->user->getVar('user_id');

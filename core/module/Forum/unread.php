@@ -10,7 +10,7 @@ function module_Forum_unread(array $args, $out = false)
 	if ( ($user->isGuest()) || ($user->isWebspider()) ) {
 		return '';
 	}
-	require_once 'core/module/Forum/GWF_ForumThread.php';
+	require_once GWF_CORE_PATH.'module/Forum/GWF_ForumThread.php';
 	$uid = $user->getID();
 	$data = $user->getUserData();
 	$grp = GWF_TABLE_PREFIX.'usergroup';

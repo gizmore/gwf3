@@ -20,7 +20,7 @@ final class WeChall_GraphSite extends GWF_Method
 		if (false === ($site = WC_Site::getByName($sitename))) {
 			return $module->error('err_site');
 		}
-		require_once 'core/module/WeChall/WC_HistorySite.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_HistorySite.php';
 		if (false === GDO::table('WC_HistorySite')->getWhitelistedBy($type, false)) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}

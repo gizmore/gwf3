@@ -5,7 +5,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'core/module/Helpdesk/GWF_HelpdeskTitle.php';
+		require_once GWF_CORE_PATH.'module/Helpdesk/GWF_HelpdeskTitle.php';
 		
 		if (false !== Common::getPost('create')) {
 			return $this->onCreate($module);

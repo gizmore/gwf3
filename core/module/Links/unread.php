@@ -6,7 +6,7 @@ function module_Links_unread(array $args)
 	if ($user->isGuest())
 	{
 		$links = GWF_Module::loadModuleDB('Links'); $links instanceof Module_Links;
-		require_once 'core/module/Links/GWF_Links.php';
+		require_once 'GWF_Links.php';
 		if (0 < ($unread = $links->countUnread($user)))
 		{
 			printf($pattern, $unread);

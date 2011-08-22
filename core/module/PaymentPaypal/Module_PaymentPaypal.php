@@ -1,5 +1,5 @@
 <?php
-require_once 'core/module/Payment/GWF_PaymentModule.php';
+require_once GWF_CORE_PATH.'module/Payment/GWF_PaymentModule.php';
 require_once 'Paypal_Util.php';
 
 final class Module_PaymentPaypal extends GWF_PaymentModule

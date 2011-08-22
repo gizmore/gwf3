@@ -18,7 +18,7 @@ final class WeChall_SiteMasters extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		require_once 'core/module/WeChall/WC_SiteDescr.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		return $this->masterTable($module, Common::getGet('old')==='1');
 	}
 	

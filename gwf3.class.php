@@ -22,11 +22,12 @@ class GWF3
 	{
 		# Require the util
 		require_once __DIR__.'/core/inc/util/Common.php';
+		
 
 		# Definements
 		define('GWF_PATH', __DIR__.'/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
-		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'protected/');
+		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'www/protected/');
 		self::$CONFIG['config_path'] = Common::defineConst('GWF_DEFAULT_CONFIG_PATH', GWF_DEFAULT_PROTECTED_PATH.'config.php'); // This could also the path for the example file, use it for installation-script!
 		self::$CONFIG['logging_path'] = Common::defineConst('GWF_DEFAULT_LOGGING_PATH', GWF_DEFAULT_PROTECTED_PATH.'logs'); // without trailing slash
 		
@@ -150,7 +151,7 @@ class GWF3
 		'store_last_url' => true,
 	);
 	
-	private static $design = GWF_DEFAULT_DESIGN;
+	private static $design = 'default';
 	private static $me = '';
 	private static $module, $page, $user;
 
@@ -168,6 +169,10 @@ class GWF3
 		{			
 			die('GWF Initialisation: GWF not installed?!');
 		}
+		
+		# Setting the Design... TODO...
+		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
+		
 		if ($config['website_init']) 
 		{ 
 			$this->onInit(); 

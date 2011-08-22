@@ -245,7 +245,7 @@ class GWF_HTTPSock
 				{
 					$line = fgets($this->socket);
 				}
-				while($line !== '\r\n');
+				while($line !== "\r\n");
 				
 				return $body;
 			}

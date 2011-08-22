@@ -29,7 +29,7 @@ final class News_Add extends GWF_Method
 	{
 		$langid = Common::getPostString('langid', GWF_Language::getEnglish()->getID());
 		
-		require_once 'core/module/Category/GWF_CategorySelect.php';
+		require_once GWF_CORE_PATH.'module/Category/GWF_CategorySelect.php';
 		
 		//key => array(TYPE, default, text, classname)
 //		GWF_Language::setShowSupported(true);

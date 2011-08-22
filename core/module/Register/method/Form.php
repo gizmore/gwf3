@@ -78,7 +78,7 @@ final class Register_Form extends GWF_Method
 		$birthdate = sprintf('%04d%02d%02d', Common::getPost('birthdatey'), Common::getPost('birthdatem'), Common::getPost('birthdated'));
 		$default_country = $module->cfgDetectCountry() ? GWF_IP2Country::detectCountryID() : 0;
 		$countryid = $form->getVar('countryid', $default_country);
-		require_once 'core/module/Register/GWF_UserActivation.php';
+		require_once GWF_CORE_PATH.'module/Register/GWF_UserActivation.php';
 		$token = GWF_UserActivation::generateToken();
 		$ua = new GWF_UserActivation(array(
 			'username' => $username,

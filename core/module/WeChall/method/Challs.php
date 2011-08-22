@@ -38,7 +38,7 @@ final class WeChall_Challs extends GWF_Method
 	
 	public function templateChalls(Module_WeChall $module, $for_userid=false, $from_userid=false, $tag='', $by='', $dir='', $show_cloud=true, $show_empty=true)
 	{
-		require_once 'core/module/WeChall/WC_ChallSolved.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		$challs = GDO::table('WC_Challenge');
 		
 		$for_userid = (int) $for_userid;

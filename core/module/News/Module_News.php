@@ -33,8 +33,8 @@ final class Module_News extends GWF_Module
 	public function getClasses() { return array('GWF_News', 'GWF_Newsletter', 'GWF_NewsTranslation'); }
 	public function onInclude()
 	{
-		require_once 'core/module/Category/GWF_Category.php';
-		require_once 'core/module/Category/GWF_CategoryTranslation.php';
+		require_once GWF_CORE_PATH.'module/Category/GWF_Category.php';
+		require_once GWF_CORE_PATH.'module/Category/GWF_CategoryTranslation.php';
 		parent::onInclude();
 	}
 	

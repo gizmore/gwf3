@@ -159,7 +159,7 @@ final class GWF_WeChallInstall
 	{
 		foreach (self::$more_classes as $classname)
 		{
-			require_once 'core/module/WeChall/'.$classname.'.php';
+			require_once GWF_CORE_PATH.'module/WeChall/'.$classname.'.php';
 		}
 		return GWF_ModuleLoader::installModuleClassesB($module, self::$more_classes, $dropTable);
 	}
@@ -214,7 +214,7 @@ final class GWF_WeChallInstall
 			return $back;
 		}
 		
-		require_once 'core/module/WeChall/WC_SiteDescr.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		if (false === WC_SiteDescr::insertDescr($site->getID(), 1, 'Please edit me :)')) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}

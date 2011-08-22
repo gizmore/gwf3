@@ -29,7 +29,7 @@ final class WeChall_API_ChallSolved extends GWF_Method
 	
 	public function templateOutput(Module_WeChall $module, $date, $amt)
 	{
-		require_once 'core/module/WeChall/WC_ChallSolved.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		$table = GDO::table('WC_ChallSolved');
 		
 		if (false === ($result = $table->selectAll('*', "csolve_date>='{$date}'", 'csolve_date DESC', NULL, $amt)))

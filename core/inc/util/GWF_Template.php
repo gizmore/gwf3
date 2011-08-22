@@ -1,5 +1,5 @@
 <?php
-require_once 'core/inc/util/GWF_TemplateWrappers.php';
+require_once 'GWF_TemplateWrappers.php';
 
 /**
  * There are two types of templates.

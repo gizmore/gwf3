@@ -10,7 +10,7 @@ final class WeChall_SiteDescr extends GWF_Method
 			return GWF_HTML::errorA('WC4', $errors, true);
 		}
 		
-		require_once 'core/module/WeChall/WC_SiteDescr.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
 		if (false !== Common::getPost('add'))  {
 			return $this->onAdd($module).$this->templateDescr($module);
@@ -34,7 +34,7 @@ final class WeChall_SiteDescr extends GWF_Method
 			return array($module->lang('err_site'));
 		}
 		
-		require_once 'core/module/WeChall/WC_SiteAdmin.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php';
 		if ( (!WC_SiteAdmin::isSiteAdmin(GWF_Session::getUserID(), $this->site->getID())) && (!GWF_User::isAdminS()) ) {
 			return array(GWF_HTML::lang('ERR_NO_PERMISSION'));
 		}

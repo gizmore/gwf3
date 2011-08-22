@@ -38,7 +38,7 @@ final class WC_SiteCats extends GDO
 	{
 		self::table(__CLASS__)->truncate();
 		
-		require_once 'core/module/WeChall/WC_RegAt.php';
+		require_once 'WC_RegAt.php';
 		$sites = WC_Site::getSites();
 		$tag_c = array();
 		foreach ($sites as $site)

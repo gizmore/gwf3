@@ -186,7 +186,7 @@ final class WeChall_ChallEdit extends GWF_Method
 	
 	private function onReset(Module_WeChall $module, WC_Challenge $chall)
 	{
-		require_once 'core/module/WeChall/WC_ChallSolved.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		
 		# Remove solved
 		$cid = $chall->getID();

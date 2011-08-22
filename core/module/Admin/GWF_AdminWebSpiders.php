@@ -1,9 +1,9 @@
 <?php
 final class GWF_AdminWebSpiders
 {
-//	const SPIDER_FILE = 'core/module/Admin/spider_msn.dat';
-//	const SPIDER_FILE = 'core/module/Admin/spider_test.dat';
-	const SPIDER_FILE = 'core/module/Admin/spider.dat';
+//	const SPIDER_FILE = 'spider_msn.dat';
+//	const SPIDER_FILE = 'spider_test.dat';
+	const SPIDER_FILE = 'spider.dat';
 	
 	public static function installHide(Module_Admin $module, $hide)
 	{
@@ -36,7 +36,7 @@ final class GWF_AdminWebSpiders
 		
 		GDO::table('GWF_Webspider')->createTable(true);
 		
-		$filename = self::SPIDER_FILE;
+		$filename = GWF_CORE_PATH.'module/GWF/'.self::SPIDER_FILE;
 		if (false === ($fh = fopen($filename, 'r'))) {
 			return GWF_HTML::err('ERR_FILE_NOT_FOUND', $filename);
 		}

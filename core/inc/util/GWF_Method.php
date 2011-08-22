@@ -9,8 +9,7 @@
  */
 abstract class GWF_Method
 {
-	# This is called but not defined!
-//	public abstract function execute(GWF_Module $module) {return ''; }
+	public abstract function execute(GWF_Module $module);
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
 	public function isLoginRequired() { return false; }

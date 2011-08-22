@@ -25,7 +25,7 @@ final class Forum_EditThread extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		require_once 'core/module/Forum/GWF_ForumBoardSelect.php';
+		require_once GWF_CORE_PATH.'module/Forum/GWF_ForumBoardSelect.php';
 		
 		if (false !== Common::getPost('edit')) {
 			return $this->onEdit($module).$this->templateEditThread($module);

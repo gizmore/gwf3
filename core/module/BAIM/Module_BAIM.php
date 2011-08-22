@@ -33,7 +33,7 @@ final class Module_BAIM extends GWF_Module
 		GWF_Hook::add(GWF_Hook::DOWNLOAD, array(__CLASS__, 'hookDownload'));
 	}
 	
-	public function hookDownload(GWF_User $user, array $args) { $this->onInclude(); require_once 'core/module/BAIM/Baim_Hook_Dl.php'; Baim_Hook_Dl::hook($user, $args[0]); }
+	public function hookDownload(GWF_User $user, array $args) { $this->onInclude(); require_once GWF_CORE_PATH.'module/BAIM/Baim_Hook_Dl.php'; Baim_Hook_Dl::hook($user, $args[0]); }
 }
 
 ?>

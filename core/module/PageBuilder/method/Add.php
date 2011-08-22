@@ -169,7 +169,7 @@ final class PageBuilder_Add extends GWF_Method
 	####################
 	private function onUpload(Module_PageBuilder $module)
 	{
-		require_once 'core/module/PageBuilder/PB_Uploader.php';
+		require_once GWF_CORE_PATH.'module/PageBuilder/PB_Uploader.php';
 		return PB_Uploader::onUpload($module);
 	}
 }

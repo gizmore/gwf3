@@ -209,7 +209,7 @@ final class GWF_ModuleLoader
 	{
 		$name = $module->getName();
 		$vstr = str_replace('.', '_', sprintf('%.02f', $version));
-		$path = sprintf('core/module/%s/Upgrade_%s_%s.php', $name, $name, $vstr);
+		$path = sprintf('%smodule/%s/Upgrade_%s_%s.php', GWF_CORE_PATH, $name, $name, $vstr);
 
 		if (Common::isFile($path))
 		{
@@ -410,7 +410,7 @@ final class GWF_ModuleLoader
 	{
 		$back = array();
 		$name = $module->getName();
-		$path = "core/module/$name/method";
+		$path = GWF_CORE_PATH."module/{$name}/method";
 		
 		if (!Common::isDir($path)) {
 			return array();

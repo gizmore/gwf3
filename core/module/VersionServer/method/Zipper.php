@@ -159,7 +159,7 @@ final class VersionServer_Zipper extends GWF_Method
 				continue;
 			}
 			# zip dir recursive, do not ignore style
-			if (false === ($this->zipDir($archive, 'core/module/'.substr($group, 4), true, false))) {
+			if (false === ($this->zipDir($archive, GWF_CORE_PATH.'module/'.substr($group, 4), true, false))) {
 				return $module->error('err_zip', array(__FILE__, __LINE__));
 			}
 		}

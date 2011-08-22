@@ -4,7 +4,7 @@
 {$page_menu}
 
 {foreach $entries as $e}
-	{include file='core/module/Guestbook/tpl/default/_entry.tpl'}
+	{include file='_entry.tpl'}
 {/foreach}
 
 {$page_menu}

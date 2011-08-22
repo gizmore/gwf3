@@ -28,7 +28,7 @@ function wcProfileFavSites($userid)
 
 function wcProfileFavCats($userid)
 {
-	require_once 'core/module/WeChall/WC_FavCats.php';
+	require_once GWF_CORE_PATH.'module/WeChall/WC_FavCats.php';
 	$cats = WC_FavCats::getFavCats($userid);
 	if (count($cats) === 0) {
 		return '';

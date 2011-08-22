@@ -134,7 +134,7 @@ $lang = array(
 	# Selects
 	'sel_group' => 'Select a Usergroup',
 	'subscr_none' => 'Nothing',
-	'subscr_own' => 'Where i posted',
+	'subscr_own' => 'Where I\'ve Posted',
 	'subscr_all' => 'All Threads',
 
 	# Config

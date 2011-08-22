@@ -20,7 +20,7 @@ final class Module_Admin extends GWF_Module
 	########################
 	### Config / Install ###
 	########################
-	public function onInstall($dropTable) { require_once 'core/module/Admin/GWF_AdminInstall.php'; return GWF_AdminInstall::onInstall($this, $dropTable); }
+	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/Admin/GWF_AdminInstall.php'; return GWF_AdminInstall::onInstall($this, $dropTable); }
 	public function cfgUsersPerPage() { return $this->getModuleVar('users_per_page', 50); }
 	public function cfgSuperHash() { return $this->getModuleVar('super_hash', ''); }
 	public function cfgHasPassword() { return $this->cfgSuperHash() !== ''; }

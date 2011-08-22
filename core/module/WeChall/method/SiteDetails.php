@@ -22,9 +22,9 @@ final class WeChall_SiteDetails extends GWF_Method
 	
 	public function templateSiteDetail(Module_WeChall $module, WC_Site $site)
 	{
-		require_once('core/module/WeChall/WC_RegAt.php');
-		require_once('core/module/WeChall/WC_SiteAdmin.php');
-		require_once 'core/module/WeChall/WC_SiteDescr.php';
+		require_once(GWF_CORE_PATH.'module/WeChall/WC_RegAt.php');
+		require_once(GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php');
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
 //		GWF_Module::loadModuleDB('Forum', true, true);
 //		GWF_ForumBoard::init(true, true);

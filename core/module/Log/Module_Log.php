@@ -16,7 +16,7 @@ final class Module_Log extends GWF_Module
 //	{
 //		if ($this->cfgLogIPs())
 //		{
-//			require_once 'core/module/Log/GWF_LogIP.php';
+//			require_once 'GWF_LogIP.php';
 //			GWF_LogIP::logIP();
 //		}
 //	}

@@ -26,8 +26,8 @@ final class WeChall_CrossSite extends GWF_Method
 			die('Unknown Site');
 		}
 		
-		require_once 'core/module/WeChall/WC_RegAt.php';
-		require_once 'core/module/WeChall/WC_ChallSolved.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		
 		$score = WC_Challenge::getScoreForUser($user);
 		$maxscore = WC_Challenge::getMaxScore();

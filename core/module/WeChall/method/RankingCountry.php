@@ -103,7 +103,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		if (false === ($country = GWF_Country::getByID($cid))) {
 			return GWF_HTML::err('ERR_UNKNOWN_COUNTRY');
 		}
-		require_once 'core/module/WeChall/WC_RegAt.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 
 		$cid = $country->getID();
 		$ipp = 50;

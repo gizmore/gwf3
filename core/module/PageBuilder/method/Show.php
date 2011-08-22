@@ -7,7 +7,7 @@ final class PageBuilder_Show extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		require_once 'core/module/PageBuilder/GWF_Page.php';
+		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
 		$pages = GDO::table('GWF_Page')->selectAll('page_id, page_url', 'page_options&1', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '';
 		foreach ($pages as $page)
