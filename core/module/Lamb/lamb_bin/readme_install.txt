@@ -1,6 +1,6 @@
 Lamb install guide.
 
-Lamb3 is a GWF3 module meanwhile, so it needs at least the gwf3 core in "core/inc/", "core/inc3p/" and the lamb module itself in "core/module/Lamb"
+Lamb3 is a GWF3 module meanwhile, so it needs at least the gwf3 core in "core/inc/", "core/inc/3p/" and the lamb module itself in "core/module/Lamb"
 Also, the "protected/" folder is used for the logfiles, db_backups and the gwf3_config.
 
 ===================================

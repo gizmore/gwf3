@@ -15,7 +15,7 @@ $gwf = new GWF3(__DIR__	, array(
 ));
 //GWF_Session::start(false);
 GWF_HTTP::noCache();
-require(GWF_CORE_PATH.'inc3p/Class_Captcha.php');
+require(GWF_CORE_PATH.'inc/3p/Class_Captcha.php');
 $aFonts = array(GWF_PATH.'font/teen.ttf');
 $rgbcolor = GWF_CAPTCHA_COLOR_BG;
 $oVisualCaptcha = new PhpCaptcha($aFonts, 210, 42, $rgbcolor);

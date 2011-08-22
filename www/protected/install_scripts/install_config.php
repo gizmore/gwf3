@@ -222,10 +222,10 @@ final class GWF_InstallConfig
 //			array('bool',   'Main', 'GWF_OUTPUT_BUFFERING', true, 'Enable output buffering. Example: true.'),
 //			array('bool',   'Main', 'GWF_WITH_GPL', false, 'Use GPL Licensed, 3rd party stuff? Example: false.'),
 //			array('script', 'Main', 'GWF_BSD_ONLY', '!GWF_WITH_GPL', 'Use BSD licensed code only? It`s the opposite of above.'),
-//			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
+//			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc/3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# 3rd Party
-			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/core/inc3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/core/inc/3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 

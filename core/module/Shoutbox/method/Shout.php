@@ -42,7 +42,7 @@ final class Shoutbox_Shout extends GWF_Method
 		
 		# Check captcha
 		if ($module->cfgCaptcha()) {
-			require_once 'core/inc3p/Class_Captcha.php';
+			require_once 'core/inc/3p/Class_Captcha.php';
 			if (!PhpCaptcha::Validate(Common::getPostString('captcha'), true)) {
 				return GWF_HTML::err('ERR_WRONG_CAPTCHA');
 			}

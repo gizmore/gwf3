@@ -1,6 +1,6 @@
 <?php # Usage: %CMD% <expression>. Evaluate a math expression and print results.
 $bot instanceof Lamb;
-$path = 'core/inc3p/EvalMath.php';
+$path = 'core/inc/3p/EvalMath.php';
 if (!Common::isFile($path)) {
 	$bot->reply('EvalMath lib by Miles Kaufmann is missing.');
 	return;
