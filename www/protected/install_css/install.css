@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+
+html {
+	
+}
+
+body {
+	
+}
+
+
+.gwfinstall0 {
+	background: #eef;
+}
+.gwfinstall1 {
+	background: #ddf;
+}
+.gwfinstall2 {
+	background: #ccf;
+}
+.gwfinstall3 {
+	background: #bbf;
+}
+.gwfinstall4 {
+	background: #aaf;
+}
+.gwfinstall5 {
+	background: #99f;
+}
+.gwfinstall6 {
+	background: #88f;
+}
+.gwfinstall7 {
+	background: #77f;
+}
+.gwfinstall8 {
+	background: #66f;
+}
+
+.gwfinstallformdiv {
+}
+
+#gwfinstmaindiv {
+	padding: 5px;
+}
+
+#gwfinstallbanner {
+}
+
+#gwfinstallbanner a {
+	font-size: 24px;
+	color: black;
+	text-decoration: none;
+}
+
+#gwfinstallbanner li a {
+	font-size: 16px;
+}
+
+#gwfinstallbanner li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: inline;
+}
+
+.gwfinstallbtn {
+	background: #99f;
+}
+
+.gwfinstallbtns {
+	background: #aaf;
+}
+
+.gwfinstallno {
+	color: #f00;
+}
+
+.gwfinstallyes {
+	color: #0f0;
+}
+
+/** ERRORS / MSG **/
+.gwf_errors, .gwf_messages {
+	display: block;
+}
+.gwf_error, .gwf_message {
+	display: block;
+}
+
+.gwf_errors {
+	background: #f00;
+	margin: 16px;
+	padding: 6px;
+	border: 2px solid #000;
+}
+.gwf_error {
+	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
+	padding-left: 24px;
+	font-weight: bold;
+}
+
+.gwf_messages {
+	background: #0f0;
+	margin: 16px;
+	padding: 6px;
+	border: 2px solid #000;
+}
+.gwf_message {
+	background: url(../../../img/default/accept.png) left center no-repeat;
+	padding-left: 24px;
+	font-weight: bold;
+}

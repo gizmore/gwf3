@@ -1,0 +1,39 @@
+18:42 [192.168.0.4] [Unknown] - require_once(protected/temp_ban.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/protected/config.php line 99
+18:51 [192.168.0.4] [Unknown] - require_once(protected/temp_ban.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/protected/config.php line 99
+18:54 [192.168.0.4] [Unknown] - require_once(protected/temp_ban.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/protected/config.php line 99
+21:10 [192.168.0.4] [Unknown] - require_once(core/module/WeChall/WC_SiteMaster.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/core/module/WeChall/Module_WeChall.php line 518
+21:13 [192.168.0.4] [Unknown] - require_once(core/module/WeChall/WC_SiteMaster.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/core/module/WeChall/Module_WeChall.php line 518
+21:13 [192.168.0.4] [Unknown] - require_once(core/module/WeChall/WC_ChallSolved.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /data/_ProjectPDT5/GWF33/core/module/WeChall/method/Challs.php line 41
+21:14 [91.39.98.254] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:14 [88.70.146.182] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:14 [192.168.0.4] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:14 [91.39.98.254] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:14 [88.70.146.182] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:15 [192.168.0.4] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:15 [91.39.98.254] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:37 [192.168.0.4] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+21:38 [192.168.0.4] [Unknown] - Abstract function GWF_Method::execute() cannot contain body in core/inc/util/GWF_Method.php line 12
+22:11 [81.169.168.122] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:11 [81.169.168.122] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [85.190.0.3] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [81.169.168.122] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [81.169.168.122] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:13 [91.213.203.203] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:18 [91.213.203.203] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:23 [91.213.203.203] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+22:28 [91.213.203.203] [Unknown] - Undefined index: HTTP_HOST in /data/_ProjectPDT5/GWF33/core/inc/util/GWF_Session.php line 216
+23:27 [192.168.0.4] [Unknown] - Missing argument 1 for GWF3::__construct(), called in /data/_ProjectPDT5/GWF33/www/img/captcha.php on line 18 and defined in /data/_ProjectPDT5/GWF33/gwf3.class.php line 163
+23:27 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:27 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:28 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:28 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:28 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:28 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:28 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
+23:29 [192.168.0.4] [Unknown] - imageftbbox() [<a href='function.imageftbbox'>function.imageftbbox</a>]: Could not find/open font in /data/_ProjectPDT5/GWF33/core/inc3p/Class_Captcha.php line 311
