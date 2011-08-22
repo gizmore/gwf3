@@ -1,4 +1,0 @@
-<Limit GET POST PUT DELETE CONNECT>
-order deny,allow
-deny from all
-</Limit>
