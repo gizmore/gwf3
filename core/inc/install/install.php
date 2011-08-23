@@ -23,7 +23,7 @@ require_once $cpath;
 
 GWF_Debug::setDieOnError(false);
 
-$gwf = new GWF3(__DIR__, array(
+$gwf = new GWF3($dir, array(
 	'website_init' => false,
 	'autoload_modules' => false,
 	'load_module' => false,
@@ -45,6 +45,7 @@ GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
 # Design Init
 GWF3::setDesign('install');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::includeJQuery();
 GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'wizard_banner' => GWF_Install::wizard_banner()));

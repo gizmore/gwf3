@@ -150,7 +150,7 @@ class GWF3
 		'no_session' => false,
 		'store_last_url' => true,
 	);
-	
+
 	private static $design = 'default';
 	private static $me = '';
 	private static $module, $page, $user;
@@ -258,11 +258,13 @@ class GWF3
 
 	public function onSessionCommit($store_last_url=true) 
 	{
-		# Commit the session
-		if (false !== ($user = GWF_Session::getUser())) {
-			$user->saveVar('user_lastactivity', time());
+		if(!defined('GWF_INSTALLATION')) {
+			# Commit the session
+			if (false !== ($user = GWF_Session::getUser())) {
+				$user->saveVar('user_lastactivity', time());
+			}
+			GWF_Session::commit($store_last_url);
 		}
-		GWF_Session::commit($store_last_url);
 		return $this;
 	}
 	public function onDisplayPage($content = NULL)

@@ -39,6 +39,7 @@ final class GWF_Debug
 		{
 			set_error_handler(array('GWF_Debug', 'error_handler'));
 			register_shutdown_function(array('GWF_DEBUG', 'shutdown_function'));
+//			ini_set('display_errors', 0);
 			self::$enabled = true;
 		}
 	}

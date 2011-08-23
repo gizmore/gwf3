@@ -1,6 +1,6 @@
 <?php
-die('Dont use it atm, its also not protected!-.-');
-
+#die('Dont use it atm, its also not protected!-.-');
+$dir = __DIR__;
 $prefix = '../';
 
 require_once $prefix.'core/inc/install/install.php';

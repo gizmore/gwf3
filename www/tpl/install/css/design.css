@@ -1,0 +1,75 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style-position: inside;
+	list-style-type: none;
+}
+body {
+	
+	background-color: #e0e6ec;
+}
+div#gwf_inst_main {
+	border: thin solid #0000ff;
+	background-color: #ffffff;
+	width: 880px; /* 768, 100% etc. */
+	margin: 0 auto;
+}/*
+div#gwf_inst_head {
+	background-color: #000080;
+	height: 20px;
+	line-height: 30px;
+	color: #122639;
+	padding: 0 1%;
+}*/
+div#gwf_inst_logo h1 {
+	float: left; 
+	width: 40%;
+	font-size: 100px;
+	line-height: 110px;
+	vertical-align: middle;
+}
+div#gwf_inst_logo span {
+}
+div#gwf_inst_logo {
+	border-top: 20px solid #000080;
+	background-color: #122639;
+	color: #ffffff;
+	height: 120px;
+	padding: 1%;
+}
+div#gwf_inst_body {
+	padding: 15px 5%;
+}
+div#gwf_inst_foot {
+/*	border-bottom: 20px solid #000080;*/
+	background-color: #000080;
+	color: #ffffff;
+	padding: 0 1%;
+}
+div#gwf_inst_errors {
+	padding: 1%;
+}
+div#gwf_inst_progress {
+	border-top: thick solid #0000ff;
+	background-color: #122639;
+	color: #ffffff;
+	padding: 1%;
+}
+div#gwf_inst_stepmenu {
+		
+}
+div#gwf_inst_stepmenu ol {
+	padding: 1%;
+	display: block;
+	background-color: #122639;
+}
+div#gwf_inst_stepmenu ol li {
+	background-color: #000080;
+	color: #e0e6ec;
+	border: thin solid #0000ff;
+	display: inline;
+	padding: 2px;
+}
+div#gwf_inst_stepmenu ol li.hover {
+	background-color: #0000ff;
+}
