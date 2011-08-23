@@ -22,7 +22,6 @@ class GWF3
 	{
 		# Require the util
 		require_once __DIR__.'/core/inc/util/Common.php';
-		
 
 		# Definements
 		define('GWF_PATH', __DIR__.'/');
@@ -91,7 +90,7 @@ class GWF3
 			if(!file_exists($config))
 			{			
 				if(!file_exists(GWF_DEFAULT_CONFIG_PATH)) {
-					die('GWF3 couldnt load the config: file doesnt exists.');
+					die('GWF3 couldnt load the config: file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
 				} else {
 					$config = GWF_DEFAULT_CONFIG_PATH;
 					// REPORT THAT ACTION WITH EMAIL ?!
@@ -137,7 +136,8 @@ class GWF3
 		}
 		GWF_Log::init($username, true, $logpath);
 	}
-
+	public static function getConfig($key) { return self::$CONFIG[$key]; }
+	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static $CONFIG = array(
 		'website_init' => true,
 		'autoload_modules' => true,
@@ -162,7 +162,7 @@ class GWF3
 	 */
 	public function __construct($basepath, array $config = array())
 	{
-		$config = array_merge(self::$CONFIG, $config);
+		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
 
 		if (false === self::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
 			&& !defined('GWF_INSTALLATION')	)

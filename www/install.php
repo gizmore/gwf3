@@ -1,30 +1,43 @@
 <?php
-
-define('GWF_INSTALLATION', true);
-
+/** The GWF-Installation (Wizard)
+ * @author spaceone, gizmore
+ * @todo use this script with cli? $_GET[ajax]
+ * @todo protect this file, include www/mini_install.php: self-deletion!
+ * @todo path-handling, logging
+ */
 die('Dont use it atm, its also not protected!-.-');
-#TODO: use this script with cli? $_GET[ajax]
+define('GWF_INSTALLATION', true);
 require_once 'gwf3.class.php';
-# gizmore: permit to move these files.. (may to inc/util ??)
-require_once GWF_PATH.'protected/install_scripts/install_functions.php';
-require_once GWF_PATH.'protected/install_scripts/install_config.php';
 
-$cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', GWF_PATH.'protected/config.example.php'));
-$lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', GWF_PATH.'protected/installog'));
+$cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.example.php'));
+$lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
+$spath = Common::defineConst('GWF_SMARTY_PATH', Common::getGet('smartypath', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php'));
 
-if(!file_exists($cpath))
+if(!file_exists($cpath) || !file_exists($spath))
 {
-	# TODO: Create Form; do html error message! define GWF_HTML const to use all errors in smarty
-	die('please give me an existing example config; example: ?configpath=/home/GWF/config.example.php');
+	$error = '<p>The config-file OR the Smarty-class couldn\'t be found! Please give me the needed information!</p>';
+	$error .= sprintf('
+	<form action="%s" method="GET">
+		<label for="config">Example-Config-Path:</label><input size="50" id="config" type="text" name="path" value="%s"><br>
+		<label for="smarty">Smarty-Config-Path:</label><input size="50" id="smarty" type="text" name="path" value="%s"><br>
+		<label for="logging">Logging-Path: </label><input size="50" id="logging" type="text" name="path" value="%s">
+		<input type="submit" value="Install GWF!">
+	</form>
+	', '/install.php', $cpath, $spath, $lpath);
+	die($error);
 }
 
-$gwf = new GWF3(__DIR__	, array(
+require_once $spath;
+require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
+require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
+
+$gwf = new GWF3(__DIR__, array(
 		'website_init' => false,
 		'autoload_modules' => false,
 		'load_module' => false,
 		'get_user' => false,
-#		'config_path' => GWF_PATH.'protected/config.example.php',
-#		'logging_path' => GWF_PATH.'protected/installlog',
+		'config_path' => $cpath,
+		'logging_path' => $lpath,
 		'do_logging' => true,
 		'no_session' => true
 ));
@@ -36,10 +49,12 @@ GWF_HTML::init();
 
 # Design Init
 GWF3::setDesign('install');
-GWF_Website::addCSS('/tpl/install/css/install.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
-GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
+GWF_Website::includeJQuery();
+GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH));
 
+# set Install Language
 GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
 
 $page = '';
@@ -56,7 +71,7 @@ elseif (false !== (Common::getPost('write_config'))) {
 elseif (false !== (Common::getPost('install_modules'))) {
 	$page .= GWF_Install::wizard_7a();
 }
-else switch(intval(Common::getGet('step', 0)))
+else switch(Common::getGetInt('step', 0))
 {
 	case 0: $page .= GWF_Install::wizard_0(); break; # List Status
 	case 1: $page .= GWF_Install::wizard_1(); break;
