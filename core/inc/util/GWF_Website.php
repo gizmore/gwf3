@@ -241,23 +241,20 @@ final class GWF_Website
 		);
 		GWF_Template::addMainTvars(array('errors' => GWF_HTML::displayErrors(), 'messages' => GWF_HTML::displayMessages()));
 		
-		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars);
+		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
 	
 	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL)
 	{
-		$tVars = array(
-			'user' => GWF_User::getStaticOrGuest(),
-		);
 		return GWF_Template::template($path.'html_body.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/')
+	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/', $tVars = array())
 	{
-		$tVars = array(
-			'timings' => GWF_DebugInfo::getTimings(),
-			'user' => GWF_User::getStaticOrGuest(),
-		);
+		if(!defined('GWF_INSTALLATION')) {
+			$tVars['timings'] = GWF_DebugInfo::getTimings();
+		}
+
 		return GWF_Template::template($path.'html_foot.tpl', $tVars);
 	}
 	

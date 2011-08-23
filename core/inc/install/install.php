@@ -3,43 +3,35 @@
  * @author spaceone, gizmore
  * @todo use this script with cli? $_GET[ajax]
  * @todo protect this file, include www/mini_install.php: self-deletion!
- * @todo path-handling, logging
+ * @todo path-handling, logging, cleanup path, smarty
  */
-die('Dont use it atm, its also not protected!-.-');
+
 define('GWF_INSTALLATION', true);
+define('GWF_ERRORS_TO_SMARTY', true);
+define('GWF_MESSAGES_TO_SMARTY', true);
+define('GWF_WEB_ROOT_NO_LANG', '/GWF3/www/');
+
 require_once 'gwf3.class.php';
 
 $cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.example.php'));
 $lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
-$spath = Common::defineConst('GWF_SMARTY_PATH', Common::getGet('smartypath', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php'));
 
-if(!file_exists($cpath) || !file_exists($spath))
-{
-	$error = '<p>The config-file OR the Smarty-class couldn\'t be found! Please give me the needed information!</p>';
-	$error .= sprintf('
-	<form action="%s" method="GET">
-		<label for="config">Example-Config-Path:</label><input size="50" id="config" type="text" name="path" value="%s"><br>
-		<label for="smarty">Smarty-Config-Path:</label><input size="50" id="smarty" type="text" name="path" value="%s"><br>
-		<label for="logging">Logging-Path: </label><input size="50" id="logging" type="text" name="path" value="%s">
-		<input type="submit" value="Install GWF!">
-	</form>
-	', '/install.php', $cpath, $spath, $lpath);
-	die($error);
-}
-
-require_once $spath;
+require_once GWF_CORE_PATH.'inc/install/GWF_Install.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
+require_once $cpath;
+
+GWF_Debug::setDieOnError(false);
 
 $gwf = new GWF3(__DIR__, array(
-		'website_init' => false,
-		'autoload_modules' => false,
-		'load_module' => false,
-		'get_user' => false,
-		'config_path' => $cpath,
-		'logging_path' => $lpath,
-		'do_logging' => true,
-		'no_session' => true
+	'website_init' => false,
+	'autoload_modules' => false,
+	'load_module' => false,
+	'get_user' => false,
+	'config_path' => $cpath,
+	'logging_path' => $lpath,
+	'do_logging' => true,
+	'no_session' => true
 ));
 
 # Website Init #Grr... cant have different languages atm
@@ -47,15 +39,15 @@ header('Content-Type: text/html; charset=UTF-8');
 GWF_Language::initEnglish();
 GWF_HTML::init();
 
+# set Install Language
+GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
+
 # Design Init
 GWF3::setDesign('install');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::includeJQuery();
-GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH));
-
-# set Install Language
-GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
+GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'wizard_banner' => GWF_Install::wizard_banner()));
 
 $page = '';
 

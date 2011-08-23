@@ -185,9 +185,12 @@ class GWF3
 		{ 
 			$this->onLoadModule(); 
 		}
-		if ($config['get_user']) 
+//		if ($config['get_user']) 
+		if (!defined('GWF_INSTALLATION')) 
 		{		
-			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest()) ));
+			GWF_Template::addMainTvars(array(
+				'user' => (self::$user = GWF_User::getStaticOrGuest()),
+			));
 		}
 	}
 	public function __destruct() 
