@@ -59,13 +59,13 @@ abstract class GWF_Tree extends GDO
 		$right = $left + 1;
 		$p = $this->getParentColumn();
 		$id = $this->getIDColumn();
-		$result = $this->selectColumn($id, "where $p=$parent");
+		$result = $this->selectColumn($id, "$p=$parent");
 		foreach ($result as $id)
 		{
 			$right = $this->rebuildTree($id, $right);
 		}
-		$l = $this->leftColumn();
-		$r = $this->rightColumn();
+		$l = $this->getLeftColumn();
+		$r = $this->getRightColumn();
 		$this->update("$l=$left, $r=$right", "$id=$parent");
 		return $right+1;  
 	}   
