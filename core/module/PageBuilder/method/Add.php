@@ -3,7 +3,7 @@ final class PageBuilder_Add extends GWF_Method
 {
 	public function getUserGroups() { return array('admin'); }
 	
-	public function execute(Module_PageBuilder $module)
+	public function execute(GWF_Module $module)
 	{
 		if (isset($_POST['add'])) {
 			return $this->onAdd($module);

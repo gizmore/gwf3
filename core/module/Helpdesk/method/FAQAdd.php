@@ -3,7 +3,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 {
 	public function getUserGroups() { return array('admin','staff'); }
 	
-	public function execute(Module_Helpdesk $module)
+	public function execute(GWF_Module $module)
 	{
 		if (isset($_POST['add'])) {
 			return $this->onAdd($module);

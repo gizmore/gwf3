@@ -3,7 +3,7 @@ final class PageBuilder_Admin extends GWF_Method
 {
 	public function getUserGroups() { return array('admin'); }
 	
-	public function execute(Module_PageBuilder $module)
+	public function execute(GWF_Module $module)
 	{
 
 		return $this->templateAdmin($module);

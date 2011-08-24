@@ -28,7 +28,7 @@ final class PageBuilder_Show extends GWF_Method
 	private $mod_c = false;
 	private $comments = NULL;
 	
-	public function execute(Module_PageBuilder $module)
+	public function execute(GWF_Module $module)
 	{
 		# Page exists?
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid'))))
