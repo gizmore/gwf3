@@ -28,6 +28,7 @@ final class PageBuilder_Add extends GWF_Method
 		$data['noguests'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_noguests'));
 		$data['index'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_index'));
 		$data['follow'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_follow'));
+		$data['sitemap'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_in_sitemap'));
 		$data['title'] = array(GWF_Form::STRING, '', $module->lang('th_title'));
 		if ($mod_cat !== false)
 		{
@@ -100,6 +101,7 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['show_comments']) ? GWF_Page::COMMENTS : 0;
 		$options |= isset($_POST['index']) ? GWF_Page::INDEX : 0;
 		$options |= isset($_POST['follow']) ? GWF_Page::FOLLOW : 0;
+		$options |= isset($_POST['sitemap']) ? GWF_Page::IN_SITEMAP : 0;
 		$options |= $form->getVar('type');
 		
 		$gstring = $this->buildGroupString($module);

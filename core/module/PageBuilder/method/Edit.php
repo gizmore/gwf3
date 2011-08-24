@@ -45,6 +45,7 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $module->lang('th_noguests'));
 		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $module->lang('th_index'));
 		$data['follow'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::FOLLOW), $module->lang('th_follow'));
+		$data['sitemap'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::IN_SITEMAP), $module->lang('th_in_sitemap'));
 //		'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $page->getVar('page_lang')), $module->lang('th_lang')),
 		$data['enabled'] = array(GWF_Form::CHECKBOX, $page->isEnabled(), $module->lang('th_enabled'));
 		$data['title'] = array(GWF_Form::STRING, $page->getVar('page_title'), $module->lang('th_title'));
@@ -201,6 +202,7 @@ final class PageBuilder_Edit extends GWF_Method
 		$bits |= isset($_POST['show_comments']) ? GWF_Page::COMMENTS : 0;
 		$bits |= isset($_POST['index']) ? GWF_Page::INDEX : 0;
 		$bits |= isset($_POST['follow']) ? GWF_Page::FOLLOW : 0;
+		$bits |= isset($_POST['sitemap']) ? GWF_Page::IN_SITEMAP : 0;
 		$bits |= $_POST['type'];
 		$page->setOption($bits, true);
 		$page->setVar('page_groups', $gstring);

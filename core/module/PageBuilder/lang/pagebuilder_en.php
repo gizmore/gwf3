@@ -27,6 +27,7 @@ $lang = array(
 	'th_show_comments' => 'Allow comments',
 	'th_index' => 'Allow indexing',
 	'th_follow' => 'Allow following',
+	'th_in_sitemap' => 'List in sitemap',
 
 	'sel_type' => 'Select a type',
 	'type_html' => 'HTML',
