@@ -263,3 +263,12 @@ textarea {
 .box_c {
 	overflow: auto;
 }
+
+/** GWF_Debug **/
+.gwf_backtrace {
+	margin: 4px;
+	padding: 3px;
+	font-size: 14px;
+	text-align: left;
+	font-family: monospace;
+}

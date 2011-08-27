@@ -178,7 +178,7 @@ final class GWF_Debug
 		$message = self::shortpath($message);
 		
 		# Append PRE header.
-		$back .= $html ? ('<pre style="margin:4px; padding:3px; font-size:14px; text-align:left;">'.PHP_EOL) : '';
+		$back .= $html ? ('<pre class="gwf_backtrace">'.PHP_EOL) : '';
 		
 		# Append general title message.
 		if ($message !== '')
