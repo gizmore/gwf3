@@ -20,7 +20,14 @@ abstract class SR_NPC extends SR_NPCBase
 	{
 		if (!$this->isBusy())
 		{
-			$this->combatAI();
+			if (LAMB_DEV)
+			{
+				SR_AICMD::combatTimer($this);
+			}
+			else
+			{
+				$this->combatAI();
+			}
 			parent::combatTimer();
 		}
 	}

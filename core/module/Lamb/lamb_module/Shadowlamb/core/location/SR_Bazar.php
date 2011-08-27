@@ -613,8 +613,8 @@ class SR_Bazar extends SR_Location
 		
 		if (false === $bi->onPayOwner($player, $amt))
 		{
-			$player->message('Database error 20!');
-			return false;
+			$player->message('Shop owner could not been paid, because the player is probably deleted.');
+//			return false;
 		}
 		
 		if (false === ($shop->fixItemCount()))

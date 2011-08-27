@@ -15,7 +15,7 @@ final class Shadowcmd_parties extends Shadowcmd
 			}
 		}
 		
-		$page = isset($args[0]) ? int($args[0]) : 1;
+		$page = isset($args[0]) ? intval($args[0]) : 1;
 		$nItems = count($pp);
 		$nPages = GWF_PageMenu::getPagecount(self::PPP, $nItems);
 		$page = Common::clamp($page, 1, $nPages);

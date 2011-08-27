@@ -179,6 +179,8 @@ class SR_Player extends GDO
 			'sr4pl_effects' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			# Vars
 			'sr4pl_const_vars' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
+			'sr4pl_combat_ai' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
+			'sr4pl_game_ai' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 		);
 		foreach (self::$ATTRIBUTE as $key) { $back['sr4pl_'.$key] = array(GDO::INT, 0); }
 		foreach (self::$EQUIPMENT as $key) { $back['sr4pl_'.$key] = array(GDO::UINT, 0); }
@@ -287,6 +289,19 @@ class SR_Player extends GDO
 	public function increaseConst($key, $by) { $old = $this->hasConst($key) ? $this->getConst($key) : 0; $this->setConst($key, $old+$by); }
 	public function decreaseConst($key, $by) { $old = $this->hasConst($key) ? $this->getConst($key) : 0; $new = $old+$by; if ($new == 0) { $this->unsetConst($key); } else { $this->setConst($key, $new); } }
 	
+	###############
+	### AI vars ###
+	###############
+	private $sr4_view;
+	public function &getAIView()
+	{
+		return $this->sr4_view;
+	}
+	public function initAIView()
+	{
+		$this->sr4_view = new SR_AIView($this, $this);
+	}
+	
 	##############
 	### Remote ###
 	##############
@@ -363,7 +378,7 @@ class SR_Player extends GDO
 	
 	public static function getByLongName($username)
 	{
-		if (0 === ($sid = (int)Common::regex('/^.+\{(\\d+)\}$/', $username))) {
+		if (0 === ($sid = (int)Common::regex('/^.+\\{(\\d+)\\}$/', $username))) {
 			return false;
 		}
 		$username = Shadowfunc::toShortname($username);
@@ -501,6 +516,8 @@ class SR_Player extends GDO
 			'sr4pl_cyberware' => NULL,
 			'sr4pl_effects' => NULL,
 			'sr4pl_const_vars' => NULL,
+			'sr4pl_combat_ai' => NULL,
+			'sr4pl_game_ai' => NULL,
 		);
 		foreach (self::$ATTRIBUTE as $key) { $back['sr4pl_'.$key] = 0; }
 		$back['sr4pl_magic'] = -1;
@@ -2226,8 +2243,13 @@ class SR_Player extends GDO
 	public function busy($seconds)
 	{
 		$seconds = $this->calcBusyTime($seconds);
-		$this->combat_eta = Shadowrun4::getTime() + $seconds;
+		$this->setCombatETA($seconds);
 		return $seconds;
+	}
+	
+	public function setCombatETA($seconds)
+	{
+		$this->combat_eta = Shadowrun4::getTime() + $seconds;
 	}
 	
 	public function isBusy()

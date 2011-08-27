@@ -118,7 +118,7 @@ abstract class SR_Spell
 		return $this->getManaCost($player) <= $player->getMP();
 	}
 	
-	public function onCast(SR_Player $player, array $args)
+	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
 		if ($this->isOffensive()) {
 			if (!$player->isFighting()) {
@@ -153,6 +153,26 @@ abstract class SR_Spell
 		}
 		
 		$level = $this->getLevel($player);
+		
+		if ($wanted_level !== true)
+		{
+			$wanted_level = (int)$wanted_level;
+			if ($wanted_level < 0)
+			{
+				$player->message('You cannot cast a spell with a level smaller than 0.');
+				return false;
+			}
+			elseif ($wanted_level > $level)
+			{
+				$player->message(sprintf('You cannot cast %s level %s because your spell level is only %s.', $this->getName(), $wanted_level, $level));
+				return false;
+			}
+			else
+			{
+				$level = $wanted_level;
+			}
+		}
+		
 		$hits = $this->dice($player, $target, $level);
 		
 		if ($player->isFighting())

@@ -317,7 +317,7 @@ final class Shadowhelp
 						'npc' => 'Leader command. Usage: #npc <the remote command>. Execute a command in the name of your NPC.',
 						'say' => NULL,
 						'use' => 'Player command. Usage: #(u)se <inv_id|item_name> [<target_name|target_enum>]. Use an item. In combat this costs time.',
-						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
+						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>][:level] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
 						'drop' => 'Player command. Usage: #drop <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
 						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
 						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
@@ -474,6 +474,12 @@ final class Shadowhelp
 					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
 					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
 					'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
+					
+					'slang' => 'Terms',
+					array(
+						'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
+					),
+					
 					
 					'teachers' => 'The teachers',
 					array(

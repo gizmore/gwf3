@@ -1,5 +1,5 @@
 <?php
-final class Item_KusariGama extends SR_MeleeWeapon
+final class Item_KusariGama extends SR_NinjaWeapon
 {
 	public function getAttackTime() { return 55; }
 	public function getItemLevel() { return 15; }

@@ -10,8 +10,8 @@ abstract class SR_MeleeWeapon extends SR_Weapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$st = $player->get('strength');
-		$mel = Common::clamp($player->get('melee'), 0);
-		$nin = Common::clamp($player->get('ninja'), 0);
+		$mel = Common::clamp($player->get('melee'));
+		$nin = Common::clamp($player->get('ninja'));
 		
 		return array(
 			'attack' =>  round($st*0.5 + $mel*2.0, 1),#($player->get('strength')+$player->get('melee'))*1.35, 1),
@@ -33,8 +33,8 @@ abstract class SR_NinjaWeapon extends SR_MeleeWeapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$st = $player->get('strength');
-		$mel = Common::clamp($player->get('melee'), 0);
-		$nin = Common::clamp($player->get('ninja'), 0);
+		$mel = Common::clamp($player->get('melee'));
+		$nin = Common::clamp($player->get('ninja'));
 		return array(
 			'attack'   => round($st*0.5 + $mel*2.0 + $nin*1.0, 1),
 			'min_dmg'  => round($st*0.1 + $mel*0.0 + $nin*0.5, 1),

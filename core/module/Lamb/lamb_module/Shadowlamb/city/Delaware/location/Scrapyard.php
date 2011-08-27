@@ -4,6 +4,7 @@ final class Delaware_Scrapyard extends SR_Arena
 	public function getFoundPercentage() { return 25.0; }
 	public function getFoundText(SR_Player $player) { return 'You found a scrapyard. You see lots of junk already from far behind.'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the scrapyard. A lot of metal, old cars and other garbage.'; }
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "You can use {$c}view and {$c}buy here."; }
 	
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Delaware_ScrapGuy'); }
 	

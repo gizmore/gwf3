@@ -19,7 +19,7 @@ final class Shadowcmd_hunt extends Shadowcmd
 			$bot->reply('This player is not in memory.');
 			return false;
 		}
-		if ($target === -1) {
+		elseif ($target === -1) {
 			$bot->reply('The player name is ambigous. Try the {server} version.');
 			return false;
 		}

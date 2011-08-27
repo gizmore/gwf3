@@ -21,7 +21,8 @@ final class Shadowcmd_part extends Shadowcmd
 		$np->cloneAction($p);
 		$np->clonePreviousAction($p);
 		
-		if ($np->isMoving())
+//		if ($np->isMoving())
+		if (!$np->isIdle())
 		{
 			Shadowcmd_stop::execute($player, $args);
 		}

@@ -65,6 +65,7 @@ final class SR_BazarItem extends GDO
 		$price = $this->getVar('sr4ba_price') * $amt;
 		
 		$pname = $this->getVar('sr4ba_pname');
+		
 		if (false === ($seller = Shadowrun4::getPlayerByName($pname)))
 		{
 			if (false === ($seller = SR_Player::getByLongName($pname)))

@@ -28,7 +28,12 @@ final class Shadowcmd_kick extends Shadowcmd
 		$np->cloneAction($p);
 		$np->clonePreviousAction($p);
 		$np->addUser($target, true);
+		if (!$np->isIdle())
+		{
+			$np->popAction(true);
+		}
 		return true;
+		
 	}
 }
 ?>

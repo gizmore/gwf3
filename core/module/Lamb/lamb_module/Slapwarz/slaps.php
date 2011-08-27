@@ -171,6 +171,7 @@ $slaps = array(
 	array('edge', 22),
 	array('drone strike', 55),
 	array('horse', 30),
+	array('cactus', 20),
 ),
 
 );

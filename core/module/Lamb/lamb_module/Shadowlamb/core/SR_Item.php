@@ -352,7 +352,7 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s',
+		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s%s',
 			$this->getName(),
 			$this->displayType(),
 			$this->displayLevel(),
@@ -361,6 +361,7 @@ class SR_Item extends GDO
 			$this->displayModifiersB($player),
 			$this->displayRequirements($player),
 			$this->displayRange($player),
+			$this->displayUseTime($player),
 			$this->displayWeightB(),
 			$this->displayDuration(),
 			$this->displayWorth()
@@ -371,6 +372,19 @@ class SR_Item extends GDO
 	{
 		$range = $this->getItemRange();
 		return $range <= 0 ? '' : sprintf(" \X02Range\X02: %s.", Shadowfunc::displayDistance($range, 1));
+	}
+	
+	private function displayUseTime(SR_Player $player)
+	{
+		if ($this instanceof SR_Weapon)
+		{
+			$t = $this->getAttackTime();
+			return $t > 0 ? sprintf(" \X02UseTime\X02: %ss.", $t) : '';
+		}
+		else
+		{
+			return '';
+		}
 	}
 	
 	private function displayWorth()

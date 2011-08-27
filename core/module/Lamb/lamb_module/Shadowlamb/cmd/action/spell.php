@@ -11,13 +11,16 @@ final class Shadowcmd_spell extends Shadowcmd
 		}
 		
 		$sn = array_shift($args);
+		$wanted_level = Common::substrFrom($sn, ':', true);
+		$sn = Common::substrUntil($sn, ':', $sn);
+		
 		if (false === ($spell = $player->getSpell($sn)))
 		{
 			$player->message(sprintf('You don\'t know the %s spell.', $sn));
 			return false;
 		}
 		
-		return $spell->onCast($player, $args);
+		return $spell->onCast($player, $args, $wanted_level);
 	}
 }
 ?>

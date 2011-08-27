@@ -10,9 +10,9 @@ final class Item_BattleAxe extends SR_MeleeWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 3.0, 
-			'min_dmg' => 4.5,
-			'max_dmg' => 12.0,
+			'attack' => 6.0, 
+			'min_dmg' => 3.5,
+			'max_dmg' => 18.0,
 		);
 	}
 }

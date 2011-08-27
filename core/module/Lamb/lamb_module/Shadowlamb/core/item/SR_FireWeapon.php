@@ -22,7 +22,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$fir = Common::clamp($player->get('firearms')); # (fir),
-		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg)
+		$sub = Common::clamp($player->get($this->getItemSubType())); # (pis,sho,smg,hmg)
 		$nin = Common::clamp($player->get('ninja')); # (nin)
 		return array(
 			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
@@ -120,7 +120,7 @@ abstract class SR_Bow extends SR_FireWeapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$fir = Common::clamp($player->get('firearms'));
-		$sub = Common::clamp($player->get('bows', 0));
+		$sub = Common::clamp($player->get('bows'));
 		$nin = Common::clamp($player->get('ninja'));
 		return array(
 			'attack' =>  round($fir*1.0 + $sub*2.0 + $nin*1.0, 1),

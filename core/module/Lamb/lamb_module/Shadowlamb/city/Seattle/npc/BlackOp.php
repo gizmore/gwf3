@@ -7,7 +7,6 @@ final class Seattle_BlackOp extends SR_NPC
 	public function getNPCMeetPercent(SR_Party $party)
 	{
 		$bad_karma = $party->getSum('bad_karma', true);
-		printf('--- Blackop Party Sum: %s', $bad_karma);
 		$perc = ($bad_karma/50) * 100;
 		return Common::clamp($perc, 0.0, 100.0);
 	}
