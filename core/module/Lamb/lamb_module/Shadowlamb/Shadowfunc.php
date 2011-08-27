@@ -119,17 +119,26 @@ final class Shadowfunc
 			return $player;
 		}
 		
+		# Gather all targets.
+		$targets = self::getPlayersInLocation($player, false);
+		if ($own_members)
+		{
+			$targets = array_merge($targets, $player->getParty()->getMembers());
+		}
+		
+		# Do first run with all possible targets.
+		if (false !== ($target = self::getTarget($targets, $arg, false)))
+		{
+			return $target;
+		}
+		
+		# Do second run with own members and enum.
 		if ($own_members)
 		{
 			if (false !== ($target = self::getTarget($player->getParty()->getMembers(), $arg, true)))
 			{
 				return $target;
 			}
-		}
-		
-		if (false !== ($target = self::getTarget(self::getPlayersInLocation($player, false), $arg, false)))
-		{
-			return $target;
 		}
 		
 		return false;
@@ -177,6 +186,7 @@ final class Shadowfunc
 			case SR_Party::ACTION_EXPLORE:
 			case SR_Party::ACTION_GOTO:
 			case SR_Party::ACTION_HUNT:
+			default:
 				break;
 		}
 		
@@ -1000,7 +1010,7 @@ final class Shadowfunc
 			}
 		}
 		
-		return $items[array_rand($items, 1)];
+		return count($items) === 0 ? false : $items[array_rand($items, 1)];
 	}
 	
 	public static function calcDistance(SR_Player $player, SR_Player $target)
