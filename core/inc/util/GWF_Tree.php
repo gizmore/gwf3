@@ -42,10 +42,10 @@ abstract class GWF_Tree extends GDO
 		
 	}
 	
-	public function insertTreeItem($name, $pid=0)
-	{
-		
-	}
+//	public function insertTreeItem($name, $pid=0)
+//	{
+//		
+//	}
 	
 	function rebuildFullTree()
 	{

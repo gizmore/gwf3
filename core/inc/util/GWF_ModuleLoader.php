@@ -142,7 +142,7 @@ final class GWF_ModuleLoader
 		$back = '';
 		foreach ($classnames as $classname)
 		{
-			require_once "core/module/$name/$classname.php";
+			require_once GWF_CORE_PATH."module/{$name}/{$classname}.php";
 			$table = GDO::table($classname);
 			if ($table instanceof GDO)
 			{

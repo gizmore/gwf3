@@ -55,9 +55,9 @@ final class Category_Edit extends GWF_Method
 //		var_dump($trans);
 		foreach ($trans as $key => $value)
 		{
-			$getkey = sprintf('trans[%s]', $value['langid']);
-			$lang = GWF_Language::getByID($value['langid']);
-			$back[$getkey] = array(GWF_Form::STRING, $value['translation'], $lang->getNativeName());
+			$getkey = sprintf('trans[%s]', $value['cl_langid']);
+			$lang = GWF_Language::getByID($value['cl_langid']);
+			$back[$getkey] = array(GWF_Form::STRING, $value['cl_translation'], $lang->getVar('lang_name'));
 		}
 		return $back;
 	}
@@ -72,6 +72,11 @@ final class Category_Edit extends GWF_Method
 		return $module->templatePHP('edit.php', $tVars);
 	}
 	
+	public function validate_trans(Module_Category $module, $key)
+	{
+		return false;
+	}
+
 	public function validate_key(Module_Category $module, $key)
 	{
 		if (self::$cat->getKey() !== $key)
@@ -132,7 +137,7 @@ final class Category_Edit extends GWF_Method
 			if (false === $cat->saveTranslation($langid, $trans)) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			$back .= $module->message('msg_trans_added', array(GWF_Language::displayNativeByID($langid), GWF_HTML::display($keyOld), GWF_HTML::display($trans)));
+			$back .= $module->message('msg_trans_added', array(GWF_Language::getByID($langid)->display('lang_name'), GWF_HTML::display($keyOld), GWF_HTML::display($trans)));
 		}
 		
 		// change key!
@@ -156,8 +161,8 @@ final class Category_Edit extends GWF_Method
 				if (false === $cat->saveTranslation($langid, $textNew)) {
 					return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 				}
-				
-				$back .= $module->message('msg_trans_changed', array(GWF_Language::displayNativeByID($langid), GWF_HTML::display($textNew)));
+				$langname = GWF_Language::getByID($langid)->display('lang_name');
+				$back .= $module->message('msg_trans_changed', array($langname, GWF_HTML::display($textNew)));
 			}
 //			var_dump($langid);
 //			var_dump($textNew);

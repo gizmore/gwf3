@@ -9,6 +9,7 @@ final class GWF_CategoryTranslation extends GDO
 			'cl_catid' => array(GDO::UINT|GDO::PRIMARY_KEY, true),
 			'cl_langid' => array(GDO::UINT|GDO::PRIMARY_KEY, true),
 			'cl_translation' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, true),
+			'cats' => array(GDO::JOIN, GDO::NULL, array('GWF_Category', 'cl_catid', 'cat_tree_id')),
 		);
 	}
 }

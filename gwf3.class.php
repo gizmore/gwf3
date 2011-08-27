@@ -149,6 +149,7 @@ class GWF3
 		'blocking' => true,
 		'no_session' => false,
 		'store_last_url' => true,
+		'ignore_user_abort' => true,
 	);
 
 	private static $design = 'default';
@@ -163,6 +164,8 @@ class GWF3
 	public function __construct($basepath, array $config = array())
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
+		
+		ignore_user_abort($config['ignore_user_abort']);
 
 		if (false === self::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
 			&& !defined('GWF_INSTALLATION')	)
