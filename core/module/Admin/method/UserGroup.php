@@ -78,12 +78,12 @@ final class Admin_UserGroup extends GWF_Method
 	{
 		$groups = GDO::table('GWF_Group')->selectAll('group_id, group_name');
 		$data = array();
-		$data[] = array($module->lang('sel_group'), 0);
+		$data[] = array('0', $module->lang('sel_group'));
 		foreach ($groups as $group)
 		{
 			if (!$user->isInGroupID($group['group_id']))
 			{
-				$data[] = array($group['group_name'], $group['group_id']);
+				$data[] = array($group['group_id'], $group['group_name']);
 			}
 		}
 		
