@@ -61,7 +61,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'ircs://irc.idlemonkeys.net:7000',
 			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
+			'password' => LAMB_PASSWORD,
 			'channels' => '#wechall,#net-force,#sr,#securitytraps,#idlemonkeys,#3564020356,#RevolutionElite,#pyramid',
 			'admins' => 'gizmore',
 		),

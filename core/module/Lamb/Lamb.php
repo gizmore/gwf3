@@ -126,7 +126,7 @@ final class Lamb
 			{
 				$server = Lamb_Server::factory($host, $nicks[$i], $passs[$i], $chans[$i], $admin[$i]);
 				
-				$server->selectNextNickname();
+//				$server->selectNextNickname();
 				
 				if (false !== $server->replace())
 				{

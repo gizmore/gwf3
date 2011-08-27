@@ -272,6 +272,7 @@ final class Lamb_Server extends GDO
 		if (false !== $this->connection->connect(LAMB_BLOCKING_IO))
 		{
 			$this->login();
+			$this->selectNextNickname();
 			$this->sendNickname();
 			$this->setupIP();
 			Lamb::instance()->initServer($this);
@@ -327,6 +328,14 @@ final class Lamb_Server extends GDO
 	{
 		$this->connection->send('NICK '.$this->current_nick);
 	}
+	
+
+	public function changeNick($nickname)
+	{
+		$this->nickname_id = -1;
+		$this->current_nick = $nickname;
+//		$this->connection->send('NICK '.$nickname);
+	} 
 	
 	public function identify()
 	{
@@ -636,7 +645,6 @@ final class Lamb_Server extends GDO
 	public function tryAutologin(Lamb_User $user)
 	{
 		$username = $user->getName();
-		$this->setOption(self::HAS_STATUS, true);
 		if ($this->isOptionEnabled(self::HAS_STATUS))
 		{
 			$this->sendNickservStatus($username);

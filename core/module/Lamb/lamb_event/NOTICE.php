@@ -1,16 +1,17 @@
 <?php
 if (stripos($from, 'NickServ!') === 0)
 {
-//	echo "1\n";
+	echo $args[1].PHP_EOL;
+	echo "1\n";
 	if (preg_match('/^STATUS ([^ ]+) ([0-9])$/', $args[1], $matches))
 	{
-//		echo "2\n";
 		$nickname = $matches[1];
+		echo "2 $nickname\n";
 		
 		# Probe
-		if ( ($nickname === $server->getBotsNickname()) && ($matches[2]==='3') )
+		if ( ($nickname === $server->getBotsNickname()) && (($matches[2]==='0') || ($matches[2]==='3')) )
 		{
-			echo "Has status!\n";
+			echo "--- Has status!\n";
 			$server->setOption(Lamb_Server::HAS_STATUS);
 		}
 		
