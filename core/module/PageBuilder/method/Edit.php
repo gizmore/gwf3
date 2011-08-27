@@ -40,7 +40,7 @@ final class PageBuilder_Edit extends GWF_Method
 		
 		$data = array();
 		$data['url'] = array(GWF_Form::STRING, $page->getVar('page_url'), $module->lang('th_url'));
-		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($module), $module->lang('th_type'));
+		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($module, $page->getMode()), $module->lang('th_type'));
 		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($module, $page), true, true), $module->lang('th_groups'));
 		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $module->lang('th_noguests'));
 		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $module->lang('th_index'));

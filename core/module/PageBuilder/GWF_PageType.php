@@ -5,9 +5,9 @@
  */
 final class GWF_PageType
 {
-	public static function select(Module_PageBuilder $module)
+	public static function select(Module_PageBuilder $module, $sel=true)
 	{
-		$sel = Common::getPostString('type', '0');
+		$sel = $sel === true ? Common::getPostString('type', '0') : $sel;
 		$data = array(array('0', $module->lang('sel_type')));
 		if (GWF_User::isAdminS())
 		{

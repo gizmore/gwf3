@@ -24,7 +24,7 @@ final class GWF_Table
 		return sprintf('<td%s%s>%s</td>', $class, $colspan, $text);
 	}
 	
-	public static function displayHeaders1(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
+	public static function displayHeaders1(array $headers=array(), $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
 //		$back = '';
 		$sel = Common::getGetString($by, $default);
