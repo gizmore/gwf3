@@ -978,5 +978,9 @@ abstract class GDO
 		return substr(md5($hash), 0, 12);
 	}
 	
+	public function lock($string)
+	{
+		return gdo_db()->lock($string);
+	}
 }
 ?>

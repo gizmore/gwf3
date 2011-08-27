@@ -73,6 +73,8 @@ abstract class GDO_Database
 	public abstract function renameTable($old_tablename, $new_tablename);
 	public abstract function changeColumn($tablename, $old_columnname, $new_columnname, array $define);
 	
+	public abstract function lock($string);
+	
 	##############
 	### Errors ###
 	##############

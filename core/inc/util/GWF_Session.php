@@ -58,14 +58,14 @@ final class GWF_Session extends GDO
 	public static function start($blocking=true)
 	{
 		if ( (NULL === ($cookie = Common::getCookie(GWF_SESS_NAME)))
-		  || (!self::reload($cookie)) )
+		  || (!self::reload($cookie, $blocking)) )
 		{
 			return self::create();
 		}
 		return true;
 	}
 	
-	private static function reload($cookie)
+	private static function reload($cookie, $blocking)
 	{
 		$split = explode('-', $cookie);
 		if (count($split) !== 3) {
@@ -73,6 +73,8 @@ final class GWF_Session extends GDO
 			return false;
 		}
 		$id = (int)$split[0];
+		
+		
 		if (false === ($session = GDO::table(__CLASS__)->selectFirstObject('*', "sess_id=$id"))) {
 			return false;
 		}
@@ -94,6 +96,13 @@ final class GWF_Session extends GDO
 				return false;
 			}
 		}
+		
+		# Lock if logged in and blocking is enabled.
+		if ( ($user->getID() > 0) && ($blocking) && (false === ($session->lock('GWF_SESS_'.$user->getID()))) )
+		{
+			die('The server is currently very busy. (or your cookie is broken)');
+		}
+		
 		
 		$session->setVar('sess_time', time());
 		
