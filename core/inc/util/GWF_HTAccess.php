@@ -39,7 +39,7 @@ final class GWF_HTAccess
 		{
 			if (false !== GWF_Language::getByISO($iso))
 			{
-				$back .= sprintf('RewriteRule ^%s/(.*) $1', $iso).PHP_EOL;
+				$back .= sprintf('RewriteRule ^%s/(.*) /$1', $iso).PHP_EOL;
 			}
 		}
 		return $back;

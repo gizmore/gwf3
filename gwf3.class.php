@@ -1,7 +1,6 @@
 <?php
-
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.JUL.14');
+define('GWF_CORE_VERSION', '3.02-2011.Aug.28');
 
 /**
  * Welcome to
@@ -15,6 +14,10 @@ define('GWF_CORE_VERSION', '3.02-2011.JUL.14');
  */
 class GWF3 
 {
+	private static $design = 'default';
+	private static $me = '';
+	private static $module, $page, $user;
+	
 	/**
 	 * This is always required!
 	 */
@@ -80,6 +83,7 @@ class GWF3
 			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
 		}
 	}
+	
 	public static function onLoadConfig($config=GWF_DEFAULT_CONFIG_PATH) 
 	{
 		$config = Common::defineConst('GWF_CONFIG_PATH', $config);
@@ -101,6 +105,7 @@ class GWF3
 			self::onDefineWebRoot();
 		}
 	}
+	
 	public static function onDefineWebRoot() 
 	{
 		# Web Root
@@ -118,6 +123,7 @@ class GWF3
 		// User can decide for his instance
 		Common::defineConst('GWF_WEB_ROOT', $root);
 	}
+	
 	public static function onStartLogging($logpath=GWF_DEFAULT_LOGGING_PATH, $blocking=true, $no_session=false)
 	{
 		$logpath = Common::defineConst('GWF_LOGGING_PATH', $logpath);
@@ -136,6 +142,7 @@ class GWF3
 		}
 		GWF_Log::init($username, true, $logpath);
 	}
+	
 	public static function getConfig($key) { return self::$CONFIG[$key]; }
 	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static $CONFIG = array(
@@ -151,10 +158,6 @@ class GWF3
 		'store_last_url' => true,
 		'ignore_user_abort' => true,
 	);
-
-	private static $design = 'default';
-	private static $me = '';
-	private static $module, $page, $user;
 
 	/**
 	 * @param array $config
@@ -196,10 +199,12 @@ class GWF3
 			));
 		}
 	}
+	
 	public function __destruct() 
 	{
 		$this->onSessionCommit(self::$CONFIG['store_last_url']);
 	}
+	
 	// this function is maybe senseless now... it cant return false?!
 	public function onInit() 
 	{
@@ -212,6 +217,7 @@ class GWF3
 		}
 		return $this;
 	}
+	
 	public function onAutoloadModules()
 	{
 		if(defined('GWF_WEBSITE_DOWN')) return;
@@ -221,6 +227,7 @@ class GWF3
 		}
 		return $this;
 	}
+	
 	public function onLoadModule()
 	{
 		if(defined('GWF_WEBSITE_DOWN')) return;
@@ -261,34 +268,44 @@ class GWF3
 
 	public function onSessionCommit($store_last_url=true) 
 	{
-		if(!defined('GWF_INSTALLATION')) {
+		if(!defined('GWF_INSTALLATION'))
+		{
 			# Commit the session
-			if (false !== ($user = GWF_Session::getUser())) {
+			if (false !== ($user = GWF_Session::getUser()))
+			{
 				$user->saveVar('user_lastactivity', time());
 			}
 			GWF_Session::commit($store_last_url);
 		}
 		return $this;
 	}
+	
 	public function onDisplayPage($content = NULL)
 	{
 		if(defined('GWF_WEBSITE_DOWN')) return GWF_WEBSITE_DOWN;
+		
 		# Display the page
-		if (isset($_GET['ajax'])) {
+		if (isset($_GET['ajax']))
+		{
 			return self::$page;
-		} else {
+		}
+		else
+		{
 			$page = $content === NULL ? self::$page : $content;
 			return GWF_Website::displayPage($page);
 		}
 	}
+	
 	public static function onDisplayHead($path = 'tpl/%DESIGN%/') 
 	{
 		return GWF_Website::getPagehead($path);
 	}
+	
 	public static function onDisplayFoot($path = 'tpl/%DESIGN%/')
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
+	
 	public static function getMo() { return GWF_MODULE; }
 	public static function getMe() { return self::$me; }
 	public static function getModule() { return self::$module; }
@@ -296,7 +313,8 @@ class GWF3
 	public static function setDesign($design) { self::$design = $design; }
 	public static function getDesign() { return self::$design; }
 	
-	public function __toString() {
+	public function __toString()
+	{
 		$module = Common::displayGet('mo', GWF_DEFAULT_MODULE);
 		$method = Common::displayGet('me', GWF_DEFAULT_METHOD);
 		$class = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT, GWF_HTML::lang(__CLASS__), GWF_HTML::lang(__CLASS__));
@@ -308,3 +326,4 @@ class GWF3
 }
 
 GWF3::_init();
+?>

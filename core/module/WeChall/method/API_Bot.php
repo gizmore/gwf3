@@ -60,7 +60,7 @@ final class WeChall_API_Bot extends GWF_Method
 			$rank = (int) $input;
 		}
 		else {
-			$message = sprintf('The user %s does not exist on https://www.wechall.net', htmlspecialchars($input));
+			$message = sprintf('The user does not exist on https://www.wechall.net');
 			die($message);
 		}
 		
@@ -114,7 +114,7 @@ final class WeChall_API_Bot extends GWF_Method
 		}
 
 		else {
-			die( "The user '".htmlspecialchars($username)."' doesnt exist at https://www.wechall.net" );
+			die( "The user doesnt exist at https://www.wechall.net" );
 		}
 		
 //		if (false !== ($error = $module->isExcludedFromAPI($user))) {
@@ -256,7 +256,7 @@ final class WeChall_API_Bot extends GWF_Method
 			$rank = intval($input);
 		}
 		else {
-			return sprintf('The user \'%s\' does not exist.', htmlspecialchars($input));
+			return sprintf('The user does not exist.');
 		}
 		
 //		if (false !== ($error = $module->isExcludedFromAPI($user))) {

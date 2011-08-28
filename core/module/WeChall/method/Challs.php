@@ -8,7 +8,7 @@ final class WeChall_Challs extends GWF_Method
 	{
 		return
 			'RewriteRule ^challs/?$ index.php?mo=WeChall&me=Challs'.PHP_EOL.
-			'RewriteRule ^challs/([a-zA-Z0-9]+)+$ index.php?mo=WeChall&me=Challs&tag=$2'.PHP_EOL.
+			'RewriteRule ^challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1'.PHP_EOL.
 			'RewriteRule ^challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3'.PHP_EOL.
 			'RewriteRule ^challs/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&page=$1'.PHP_EOL.
 			'RewriteRule ^challs/([a-zA-Z0-9]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&page=$2'.PHP_EOL.
@@ -30,9 +30,9 @@ final class WeChall_Challs extends GWF_Method
 		
 		$for_userid = GWF_Session::getUserID();
 		$from_userid = false;
-		$tag = Common::getGet('tag', '');
-		$by = Common::getGet('by', self::DEFAULT_BY);
-		$dir = Common::getGet('dir', self::DEFAULT_DIR);
+		$tag = Common::getGetString('tag', '');
+		$by = Common::getGetString('by', self::DEFAULT_BY);
+		$dir = Common::getGetString('dir', self::DEFAULT_DIR);
 		return $this->templateChalls($module, $for_userid, $from_userid, $tag, $by, $dir);
 	}
 	

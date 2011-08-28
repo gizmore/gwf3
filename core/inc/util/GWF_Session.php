@@ -104,7 +104,7 @@ final class GWF_Session extends GDO
 		}
 		
 		
-		$session->setVar('sess_time', time());
+		$session->setVar('sess_time', time()-1);
 		
 		self::$SESSION = $session;
 		
@@ -222,7 +222,14 @@ final class GWF_Session extends GDO
 		if (isset($_SERVER['REMOTE_ADDR']))
 		{
 			# cookie is valid one year, but it's checked against config later.
-			$domain = (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : '.'.GWF_DOMAIN;
+			if (isset($_SERVER['HTTP_HOST']))
+			{
+				$domain = (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : '.'.GWF_DOMAIN;
+			}
+			else
+			{
+				$domain = '.'.GWF_DOMAIN;
+			}
 			$secure = Common::getProtocol() === 'https';
 			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, $domain, $secure, true);
 		}
@@ -240,12 +247,14 @@ final class GWF_Session extends GDO
 		$data = array();
 		
 		# Save new sess last activity time
-		if (self::$SESSION->getVar('sess_time') < time()) {
+		if (self::$SESSION->getInt('sess_time') < time())
+		{
 			$data['sess_time'] = time();
 		}
 		
 		# Save new last url
-		if ( $store_last_url && (!isset($_GET['ajax'])) ) {
+		if ( $store_last_url && (!isset($_GET['ajax'])) )
+		{
 			$data['sess_lasturl'] = self::getCurrentURL();
 		}
 		

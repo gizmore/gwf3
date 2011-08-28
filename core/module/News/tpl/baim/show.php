@@ -5,14 +5,42 @@ $is_staff = $tVars['may_add'];
 <div class="gwf_newsbox">
 
 <?php
-if ($tVars['can_sign']) {
+if ($tVars['can_sign'])
+{
+	echo '<div class="gwf_buttons_outer fr">'.PHP_EOL;
 	echo GWF_Button::wrap(GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']));
+	echo '</div>'.PHP_EOL;
+	echo '<div class="cb"></div>'.PHP_EOL;
 }
 
 echo $tVars['page_menu'];
 
-echo '<div class="cb"></div>'.PHP_EOL;
+echo '<div class="gwf_news_titles oa">'.PHP_EOL;
+$headers = array(
+	array($tLang->lang('th_title')),
+);
+$data = array();
+$iso = GWF_Language::getCurrentISO();
+echo GWF_Table::start();
+echo GWF_Table::displayHeaders1($headers);
+foreach ($tVars['titles'] as $d)
+{
+	echo GWF_Table::rowStart();
+	$newsid = $d[0];
+	$title = $d[1];
+	$catid = 0;
+	$cat = 'FOO';
+//	$catid = (int) $d[1];
+//	$cat = $catid === 0 ? GWF_HTML::lang('no_category') : $d[2];
+//	$cat = Common::urlencodeSEO($cat);
+	$url = sprintf(GWF_WEB_ROOT.'news/%s/%d/%s/%s/%s#newsid%s', $iso, $catid, urlencode($cat), $newsid, Common::urlencodeSEO($title), $newsid);
+	echo GWF_Table::column(sprintf('<a href="%s">%s</a>', htmlspecialchars($url), htmlspecialchars($title)));
+	echo GWF_Table::rowEnd();
+}
+echo GWF_Table::end();
+echo '</div>'.PHP_EOL;
 
+echo '<div class="gwf_news_items fr oa">'.PHP_EOL;
 foreach ($tVars['news'] as $news)
 {
 ?>
@@ -64,11 +92,15 @@ foreach ($tVars['news'] as $news)
 	?>
 	
 </div>
-<?php } ?>	
-<?php echo $tVars['page_menu']; ?>
+<?php
+}
+echo '</div>'.PHP_EOL;
+echo '<div class="cb"></div>'.PHP_EOL;
+echo $tVars['page_menu'];
+?>
 </div>
 
-<div class="cb"></div>
+
 
 <?php # Categories
 if (count($tVars['cats'])) { ?>

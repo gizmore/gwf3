@@ -167,7 +167,7 @@ final class PM_Overview extends GWF_Method
 		$data = array(
 			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($module, $this->getUsernamesPPM(), 'username_sel')),
 			'create' => array(GWF_Form::SUBMIT, $module->lang('btn_create')),
-			'username' => array(GWF_Form::STRING),
+			'username' => array(GWF_Form::STRING, ''),
 		);
 		$form = new GWF_Form($this, $data);
 		return $form->templateX($module->lang('ft_new_pm'), GWF_PM::getNewPMHref());

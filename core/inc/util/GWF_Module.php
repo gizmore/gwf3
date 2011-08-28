@@ -131,11 +131,12 @@ class GWF_Module extends GDO
 	 * @param string $modulename
 	 * @return GWF_Module
 	 */
-	public static function loadModuleDB($modulename, $include=false, $load_lang=false)
+	public static function loadModuleDB($modulename, $include=false, $load_lang=false, $check_enabled=false)
 	{
 		if (!isset(self::$MODULES[$modulename]))
 		{
-			if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\'')))
+			$enabled = $check_enabled ? ' AND module_options&'.self::ENABLED : '';
+			if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\''.$enabled)))
 			{
 				return false;
 			}
@@ -239,15 +240,18 @@ class GWF_Module extends GDO
 	############
 	public function execute($methodname)
 	{
-		if (!$this->isEnabled()) {
+		if (!$this->isEnabled())
+		{
 			return '';
 		}
 		
-		if (false === ($method = $this->getMethod($methodname))) {
+		if (false === ($method = $this->getMethod($methodname)))
+		{
 			return GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($methodname), $this->getName()));
 		}
 		
-		if (false === $method->hasPermission()) {
+		if (false === $method->hasPermission())
+		{
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		

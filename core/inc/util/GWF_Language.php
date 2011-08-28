@@ -81,16 +81,15 @@ final class GWF_Language extends GDO
 	}
 	public static function init()
 	{
-		# by /de root folder :S
-//		if (false !== ($dir = GWF_G))
-		
 		# IN URL
 //		if (isset($_SERVER['REQUEST_URI']))
 //		{
-			$pattern = '#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/.*#';
-			if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
+			$pattern = '#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})(/.*)?$#';
+			if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches))
+			{
 				$iso = $matches[1];
-				if (false !== (self::$LANG = GWF_Language::getByISO($iso))) {
+				if (false !== (self::$LANG = GWF_Language::getByISO($iso)))
+				{
 					self::$ISO = $iso;
 					return true;
 				}
@@ -98,25 +97,30 @@ final class GWF_Language extends GDO
 //		}
 		
 		# Domain
-		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/', $_SERVER['HTTP_HOST'], $matches)) {
+		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/', $_SERVER['HTTP_HOST'], $matches))
+		{
 			$iso = $matches[1];
-			if (false !== (self::$LANG = self::getByISO($iso))) {
+			if (false !== (self::$LANG = self::getByISO($iso)))
+			{
 				self::$ISO = $iso;
 				return true;
 			}
 		}
 		
 		# Browser
-		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+		{
 			$iso = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-			if (false !== (self::$LANG = self::getByISO($iso))) {
+			if (false !== (self::$LANG = self::getByISO($iso)))
+			{
 				self::$ISO = $iso;
 				return true;
 			}
 		}
 
 		# Default
-		if (false !== (self::$LANG = GWF_Language::getByISO(self::$ISO))) {
+		if (false !== (self::$LANG = GWF_Language::getByISO(self::$ISO)))
+		{
 			return true;
 		}
 		
@@ -126,7 +130,8 @@ final class GWF_Language extends GDO
 	
 	public static function initEnglish()
 	{
-		if (false !== (self::$LANG = self::getEnglish())) {
+		if (false !== (self::$LANG = self::getEnglish()))
+		{
 			self::$ISO = 'en';
 			return true;
 		}

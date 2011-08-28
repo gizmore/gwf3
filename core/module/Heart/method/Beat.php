@@ -9,7 +9,8 @@ final class Heart_Beat extends GWF_Method
 		$user = new GWF_User();
 		$table = GDO::table('GWF_Session');
 		$profiles = '';
-		if (false === ($result = $table->select('sess_user,user_name,user_options,user_level', "sess_time>=$cut", 'user_name ASC', array('sess_user')))) {
+		if (false === ($result = $table->select('sess_user,user_name,user_options,user_level', "sess_time>=$cut", 'user_name ASC', array('user'))))
+		{
 			return;
 		}
 	
@@ -22,16 +23,20 @@ final class Heart_Beat extends GWF_Method
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
 //			echo sprintf('%s: %08x<br/>', $row['user_name'], $row['user_options']);
+			
 			$total++;
 			$uid = $row['sess_user'];
-			if ($uid == 0) {
+			
+			if ($uid == 0)
+			{
 				$guest++;
 				continue;
 			}
+
 			$member++;
-			
 			$user->setGDOData($row);
-			if ($user->isOptionEnabled(GWF_User::HIDE_ONLINE)) {
+			if ($user->isOptionEnabled(GWF_User::HIDE_ONLINE))
+			{
 				continue;
 			}
 			

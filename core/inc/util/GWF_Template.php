@@ -73,11 +73,11 @@ final class GWF_Template
 		{
 			require_once GWF_SMARTY_PATH;
 			$smarty = new Smarty();
-			$smarty->setTemplateDir(GWF_SMARTY_TPL_DIR);
-			$smarty->setCompileDir(GWF_SMARTY_COMPILE_DIR);
-			$smarty->setCacheDir(GWF_SMARTY_CACHE_DIR);
-			$smarty->setConfigDir(GWF_SMARTY_CONFIG_DIR);
-			$smarty->plugins_dir[] = GWF_CORE_PATH.GWF_SMARTY_PLUGINS_DIR;
+			$smarty->setTemplateDir(GWF_PATH.GWF_SMARTY_TPL_DIR);
+			$smarty->setCompileDir(GWF_PATH.GWF_SMARTY_COMPILE_DIR);
+			$smarty->setCacheDir(GWF_PATH.GWF_SMARTY_CACHE_DIR);
+			$smarty->setConfigDir(GWF_PATH.GWF_SMARTY_CONFIG_DIR);
+			$smarty->plugins_dir[] = GWF_PATH.GWF_SMARTY_PLUGINS_DIR;
 //			$smarty->assign('db', gdo_db());
 			$smarty->assign('gwf', GWF_SmartyUtil::instance());
 			$smarty->assign('gwff', GWF_SmartyFile::instance());

@@ -13,11 +13,10 @@ final class Module_Heart extends GWF_Module
 	public function onInstall($dropTables) { require_once 'GWF_HeartInstall.php'; GWF_HeartInstall::onInstall($this, $dropTables); }
 	public function onStartup()
 	{
-		$ms = (string)((GWF_ONLINE_TIMEOUT-3)*1000);
+		$ms = (string)((GWF_ONLINE_TIMEOUT/2-1)*1000);
 		
 //		GWF_Website::addJavascript($this->getModuleFilePath('js/hb.js'));
-		GWF_Website::addJavascript('/tpl/module/Heart/js/hb.js');
-
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'tpl/module/Heart/js/hb.js');
 		GWF_Website::addJavascriptInline(sprintf('setTimeout("gwf_heartbeat(%s);", %s);', $ms, $ms));
 		
 		$cut = time() - GWF_ONLINE_TIMEOUT;

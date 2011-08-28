@@ -79,7 +79,7 @@ final class Account_Form extends GWF_Method
 		$data['countryid'] = array(GWF_Form::SELECT, $user->getCountrySelect('countryid'), $module->lang('th_countryid'));
 		$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid', Common::getPostString('langid', $user->getVar('user_langid'))), $module->lang('th_langid'));
 		$data['langid2'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid2', Common::getPostString('langid2', $user->getVar('user_langid2'))), $module->lang('th_langid2'));
-		$data['birthdate'] = array(GWF_Form::DATE, $user->getVar('user_birthdate'), $module->lang('th_birthdate'), 'foo', GWF_Date::LEN_DAY);
+		$data['birthdate'] = array(GWF_Form::DATE, $user->getVar('user_birthdate'), $module->lang('th_birthdate'), '', GWF_Date::LEN_DAY);
 		if ($module->cfgShowGender())
 		{
 			$data['gender'] = array(GWF_Form::SELECT, $user->getGenderSelect(), $module->lang('th_gender'));

@@ -34,6 +34,9 @@ abstract class GDO_Database
 	public function isVerbose() { return $this->verbose === true; }
 	public function setVerbose($bool) { $this->verbose = $bool; }
 	
+	private $die = true;
+	public function setDieOnError($bool) { $this->die = $bool; }
+	
 	##############
 	### Timing ###
 	##############
@@ -78,21 +81,38 @@ abstract class GDO_Database
 	##############
 	### Errors ###
 	##############
+	/**
+	 * A database error occured.
+	 * @param string $query
+	 * @param int $errno
+	 * @param string $error
+	 */
 	public function error($query, $errno, $error)
 	{
 		$message = sprintf("SQL Error(%s): %s<br/>\n%s<br/>\n", $errno, $error, htmlspecialchars($query));
+		
 		echo GWF_HTML::error('GDO', $message, $this->isLogging());
+		
 		if ($this->verbose)
 		{
 			echo GWF_Debug::backtrace($message, true);
 		}
-		$this->emailOnError($message);
-//		die(1);
+		
+		if ($this->email)
+		{
+			$this->emailOnError($message);
+		}
+		
+		if ($this->die)
+		{
+			die(1);
+		}
 	}
 	
 	private function emailOnError($message)
 	{
-		if ( (GWF_DEBUG_EMAIL & 1) && ($this->email) )
+//		if ( (GWF_DEBUG_EMAIL & 1) && ($this->email) )
+		if (GWF_DEBUG_EMAIL & 1)
 		{
 			$message = GWF_HTML::br2nl($message).PHP_EOL.PHP_EOL;
 			$mail = new GWF_Mail();

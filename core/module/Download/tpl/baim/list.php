@@ -1,6 +1,6 @@
 <?php
 $user = GWF_Session::getUser();
-$mb = Module_BAIM::getInstance();
+$mb = GWF_Module::loadModuleDB('BAIM', true, true);#Module_BAIM::getInstance();
 echo GWF_Box::box($mb->lang('dl_info_b', array(GWF_Time::humanDuration(BAIM_MC::CHANGE_TIMEOUT), $mb->lang('dl_info_t'), GWF_Time::displayDate('20130101000000'))));
 
 $headers = array(

@@ -7,13 +7,12 @@
 	</div>
 	<div class="gwf_gbe_msg">{$e->displayMessage()}</div>
 {if $can_moderate}
-		<div class="gwf_gbe_foot">
+	<div class="gwf_gbe_foot">
 		<div class="gwf_buttons_outer"><div class="gwf_buttons">
 		{$e->getToggleModButton($module)}
 		{$e->getTogglePublicButton($module)}
 		{$e->getEditButton($module)}
 		</div></div>
-		</div>
+	</div>
 {/if}
-
 </div>{*gb_entry*}

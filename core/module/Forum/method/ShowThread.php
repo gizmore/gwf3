@@ -47,7 +47,7 @@ final class Forum_ShowThread extends GWF_Method
 		{
 			GWF_Website::addJavascript('http://www.google.com/jsapi');
 //			GWF_Website::addJavascript(GWF_WEB_ROOT.'js/gwf_core.js');
-			GWF_Website::addJavascript($module->getModuleFilePath('js/gwf_forum.js'));
+			GWF_Website::addJavascript(GWF_WEB_ROOT.'tpl/module/Forum/js/gwf_forum.js');
 			GWF_Website::addJavascriptInline('google.load("language", "1");');
 		}
 		

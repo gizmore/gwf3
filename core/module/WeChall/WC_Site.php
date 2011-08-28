@@ -876,7 +876,7 @@ class WC_Site extends GDO
 	public function getSiteClass()
 	{
 		$classname = 'WCSite_'.$this->getVar('site_classname');
-		$path = sprintf('sites/%s.php', $classname);
+		$path = sprintf(GWF_CORE_PATH.'module/WeChall/sites/%s.php', $classname);
 		if (!file_exists($path)) {
 			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
 			return false;

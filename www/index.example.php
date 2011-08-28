@@ -18,6 +18,7 @@ $gwf = new GWF3(__DIR__	, array(
 //	'blocking' => true,
 //	'no_session' => false,
 //	'store_last_url' => true,
+//	'ignore_user_abort' => true,
 ));
 
 # Display Page

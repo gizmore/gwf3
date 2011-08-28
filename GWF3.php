@@ -8,9 +8,10 @@ define('GWF_CORE_VERSION', '3.02-2011.JUL.14');
  */
 class GWF3
 {
-	public static function init()
+	public static function init($basepath)
 	{
 		define('GWF_PATH', __DIR__.'/');
+		define('GWF_WWW_PATH', $basepath);
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
 		# Require the Database
@@ -18,7 +19,7 @@ class GWF3
 
 		# Require the util
 		require_once GWF_CORE_PATH.'inc/util/Common.php';
-
+		
 		# The GWF autoloader
 		spl_autoload_register(array(__CLASS__,'onAutoloadClass'));
 	}
@@ -29,6 +30,39 @@ class GWF3
 		{
 			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
 		}
+	}
+	
+	public static function getDesign()
+	{
+		return GWF_DEFAULT_DESIGN;
+	}
+	
+	public static function getMo()
+	{
+		return $_GET['mo'];
+	}
+	
+	public static function getMe()
+	{
+		return $_GET['me'];
+	}
+	
+	public static function onDefineWebRoot() 
+	{
+		# Web Root
+		$root = GWF_WEB_ROOT_NO_LANG;
+		if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
+		{
+			if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
+			{
+				if (strpos(';'.GWF_SUPPORTED_LANGS.';', $matches[1]) !== false)
+				{
+					$root .= $matches[1].'/'; # web_root is lang extended
+				}
+			}
+		}
+		// User can decide for his instance?
+		define('GWF_WEB_ROOT', $root);
 	}
 }
 ?>

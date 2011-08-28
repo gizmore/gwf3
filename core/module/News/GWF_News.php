@@ -160,7 +160,7 @@ final class GWF_News extends GDO
 		$joins = array('t1','t2');
 //		$query = "SELECT FROM $news LEFT JOIN $trans t1 ON news_id=t1.newst_newsid AND t1.newst_langid=$langid LEFT JOIN $trans t2 ON news_id=t2.newst_newsid AND t2.newst_langid=$fallback WHERE news_catid=$catid AND news_options&$hidden=0 ORDER BY news_date DESC";
 //		$query = "SELECT IFNULL(t1.newst_title,t2.newst_title), catid, 'foo', news_id FROM $news LEFT JOIN $trans ON news_id=newst_newsid AND (IFNULL(newst_langid=$langid, newst_langid=$fallback)) LEFT JOIN $cats ON news_catid=catid WHERE news_catid=$catid AND news_options&$hidden=0 ORDER BY news_date DESC";
-		return GDO::table(__CLASS__)->selectAll($fields, $where, $orderby, $joins);
+		return GDO::table(__CLASS__)->selectAll($fields, $where, $orderby, $joins, -1, -1, GDO::ARRAY_N);
 //		return $db->queryAll($query, false);
 	}
 	
