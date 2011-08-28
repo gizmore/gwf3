@@ -1,9 +1,0 @@
-:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
-:irc.gizmore.org 353 Lamb3 = #sr :@gizmore Lamb3
-:irc.gizmore.org 353 Lamb3 = #wechall :@Lamb3
-:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
-:irc.gizmore.org 353 Lamb3 = #sr :@gizmore Lamb3
-:irc.gizmore.org 353 Lamb3 = #wechall :@Lamb3
-:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
-:irc.gizmore.org 353 Lamb3 = #sr :@gizmore Lamb3
-:irc.gizmore.org 353 Lamb3 = #wechall :@Lamb3
