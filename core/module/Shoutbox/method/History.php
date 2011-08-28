@@ -36,7 +36,7 @@ final class Shoutbox_History extends GWF_Method
 		GWF_Website::setMetaTags($module->lang('mt_history'));
 		
 		$tVars = array(
-			'data' => $shouts->selectAll('*', '', $orderby, array('shout_uid'), $ipp, $from),
+			'data' => $shouts->selectAll('*', '', $orderby, array('shout_uid'), $ipp, $from, GDO::ARRAY_O),
 			'sort_url' => GWF_WEB_ROOT.'shoutbox/history/by/%BY%/%DIR%/page-1',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'shoutbox/history/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
 			'form_action' => $module->hrefShout(),

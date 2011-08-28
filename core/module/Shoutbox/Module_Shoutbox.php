@@ -5,7 +5,7 @@ final class Module_Shoutbox extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.00; }
+	public function getVersion() { return 1.01; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/shoutbox'); }
 	public function getClasses() { return array('GWF_Shoutbox'); }
 	public function onStartup() { self::$instance = $this; }
@@ -21,6 +21,7 @@ final class Module_Shoutbox extends GWF_Module
 			'sb_timeout' => array('60', 'time', 0, GWF_Time::ONE_DAY*2),
 			'sb_maxdayu' => array('12', 'int', 1, 1024),
 			'sb_maxdayg' => array('6', 'int', 1, 1024),
+			'sb_email_moderation' => array('YES', 'bool'), 
 		));
 	}
 	public function cfgMaxlen() { return (int)$this->getModuleVar('sb_maxlen', 196); }
@@ -33,6 +34,7 @@ final class Module_Shoutbox extends GWF_Module
 	public function cfgTimeout() { return (int)$this->getModuleVar('sb_timeout', 60); }
 	public function cfgMaxPerDayUser() { return (int)$this->getModuleVar('sb_maxdayu', 12); }
 	public function cfgMaxPerDayGuest() { return (int)$this->getModuleVar('sb_maxdayg', 6); }
+	public function cfgEMailModeration() { return $this->getModuleVar('sb_email_moderation', '1') === '1'; }
 	
 	############
 	### HREF ###

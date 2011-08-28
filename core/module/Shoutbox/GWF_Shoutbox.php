@@ -78,16 +78,5 @@ final class GWF_Shoutbox extends GDO
 			return abs(crc32($_SERVER['REMOTE_ADDR']));
 		}
 	}
-	
-	public static function shout($message)
-	{
-		$entry = new self(array(
-			'shout_uid' => GWF_Session::getUserID(),
-			'shout_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
-			'shout_uname' => self::generateUsername(),
-			'shout_message' => $message,
-		));
-		return $entry->insert();
-	}
 }
 ?>

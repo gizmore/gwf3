@@ -40,7 +40,7 @@ function wcStyleForUser($user)
 	static $swap = 1;
 	$swap = 1 - $swap;
 
-	if ($user === false || $user->getID() === 0) {
+	if ($user === false || $user->getID() == 0) {
 		$color = $swap ? 'eee' : 'fff';
 		return "background: #$color!important; color #000";
 	}

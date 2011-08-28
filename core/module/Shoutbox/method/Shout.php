@@ -19,14 +19,25 @@ final class Shoutbox_Shout extends GWF_Method
 		if (false !== ($error = $this->validate_message($module, $message))) {
 			return GWF_HTML::error('Shoutbox', $error);
 		}
-
-		if (false === GWF_Shoutbox::shout($message)) {
+		
+		$entry = new GWF_Shoutbox(array(
+			'shout_id' => '0',
+			'shout_uid' => GWF_Session::getUserID(),
+			'shout_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+			'shout_uname' => GWF_Shoutbox::generateUsername(),
+			'shout_message' => $message,
+		));
+		if (false === $entry->insert())
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		$last_url = GWF_Session::getLastURL();
-		
-		return $module->message('msg_shouted', array(htmlspecialchars($last_url)));
+		if ($module->cfgEMailModeration())
+		{
+			$this->onEMailModeration($module, $user, $entry);
+		}
+
+		return $module->message('msg_shouted', array(htmlspecialchars(GWF_Session::getLastURL())));
 	}
 	
 	public function isFlooding(Module_Shoutbox $module)
@@ -42,7 +53,7 @@ final class Shoutbox_Shout extends GWF_Method
 		
 		# Check captcha
 		if ($module->cfgCaptcha()) {
-			require_once 'core/inc/3p/Class_Captcha.php';
+			require_once GWF_CORE_PATH.'inc/3p/Class_Captcha.php';
 			if (!PhpCaptcha::Validate(Common::getPostString('captcha'), true)) {
 				return GWF_HTML::err('ERR_WRONG_CAPTCHA');
 			}
@@ -71,6 +82,37 @@ final class Shoutbox_Shout extends GWF_Method
 	public function validate_message(Module_Shoutbox $module, $message)
 	{
 		return GWF_Validator::validateString($module, 'message', $message, 1, $module->cfgMaxlen(), true);
+	}
+	
+	########################
+	### EMail Moderation ###
+	########################
+	public function onEMailModeration(Module_Shoutbox $module, $user, GWF_Shoutbox $entry)
+	{
+		foreach (GWF_UserSelect::getUsers(GWF_Group::STAFF) as $staff)
+		{
+			$this->onEMailModerationB($module, $user, $entry, new GWF_User($staff));
+		}
+	}
+
+	private function onEMailModerationB(Module_Shoutbox $module, $user, GWF_Shoutbox $entry, GWF_User $staff)
+	{
+		if ('' === ($rec = $staff->getValidMail()))
+		{
+			return;
+		}
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver($rec);
+		$mail->setSubject($module->langUser($staff, 'emod_subj'));
+		$id = $entry->getID();
+		$token = $entry->getHashcode();
+		$deletion_url = Common::getAbsoluteURL("index.php?mo=Shoutbox&me=Moderate&shoutid={$id}&token={$token}");
+		$deletion_link = GWF_HTML::anchor($deletion_url, $deletion_url);
+		$message = $entry->display('shout_message');
+		$username = $user === false ? GWF_HTML::lang('guest') : $user->display('user_name');
+		$mail->setBody($module->langUser($staff, 'emod_body', array($username, $message, $deletion_link)));
+		return $mail->sendToUser($staff);
 	}
 }
 ?>

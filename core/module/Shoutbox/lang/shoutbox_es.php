@@ -35,5 +35,21 @@ $lang = array(
 	'cfg_sb_maxdayg' => 'Máximo de mensajes por día para los invitados',
 	'cfg_sb_maxdayu' => 'Máximo de mensajes al día para los miembros',
 	'cfg_sb_timeout' => 'Tiempo de espera de entre 2 mensajes',
+
+	# v1.01 (EMail moderation)
+	'cfg_sb_email_moderation' => 'EMail moderation',
+	'emod_subj' => GWF_SITENAME.': New shoutbox entry',
+	'emod_body' =>
+		'Dear staff,'.PHP_EOL.
+		''.PHP_EOL.
+		'There is a new entry in the shoutbox.'.PHP_EOL.
+		''.PHP_EOL.
+		'From: %1%'.PHP_EOL.
+		'%2%'.PHP_EOL.
+		''.PHP_EOL.
+		'You can delete it via %3%'.PHP_EOL.
+		''.PHP_EOL.
+		'Regards'.PHP_EOL.
+		'The GWF3 script',
 );
 ?>
