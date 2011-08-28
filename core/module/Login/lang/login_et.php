@@ -8,6 +8,8 @@ $lang = array(
 	'th_password' => 'Salasõna',
 	'th_login' => 'Logi sisse',
 	'btn_login' => 'Logi sisse',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Kasutajanime ei leitud',
 	'err_login2' => 'Vale salasõna. Teil on veel %1% katset, enne kui sind blokeeritakse %2%.',

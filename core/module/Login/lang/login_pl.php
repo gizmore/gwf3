@@ -9,6 +9,8 @@ $lang = array(
 	'th_password' => 'Hasło',
 	'th_login' => 'Logowanie',
 	'btn_login' => 'Logowanie',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Taki użytkownik nie istnieje.',
 	'err_login2' => 'Złe hasło. Pozostało Ci jeszcze %1% prób zanim zostaniesz zablokowany na czas %2% sekund.',

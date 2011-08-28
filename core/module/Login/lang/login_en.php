@@ -9,6 +9,8 @@ $lang = array(
 	'th_password' => 'Password',
 	'th_login' => 'Login',
 	'btn_login' => 'Login',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Unknown Username',
 	'err_login2' => 'Wrong Password. You now have %1% tries left until you are blocked for %2%.',

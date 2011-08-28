@@ -9,6 +9,8 @@ $lang = array(
 	'th_password' => 'Heslo',
 	'th_login' => 'Přihlášení',
 	'btn_login' => 'Přihlásit',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Neznámé uživatelské jméno',
 	'err_login2' => 'Špatné heslo. Máš ještě %1% pokusů, potom ti bude zablokovaný přístup na %2%.',

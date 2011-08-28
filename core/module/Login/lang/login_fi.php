@@ -8,6 +8,8 @@ $lang = array(
 	'th_password' => 'Salasana',
 	'th_login' => 'Kirjautuminen',
 	'btn_login' => 'Kirjautuminen',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Tuntematon käyttäjänimi',
 	'err_login2' => 'Väärä salasana. Sinulla on %1% yritystä jäljellä ennen kuin sinut estetään seuraavaksi ajaksi: %2%.',

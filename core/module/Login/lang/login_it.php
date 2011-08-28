@@ -9,6 +9,8 @@ $lang = array(
 	'th_password' => 'Passwort',
 	'th_login' => 'Login',
 	'btn_login' => 'Login',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Nome Utente sconosciuto',
 	'err_login2' => 'Passwort errato. Avete ancora %1% tentativo, prima che il Conto sarrà %2% bloccato.',

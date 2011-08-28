@@ -7,6 +7,8 @@ $lang = array(
 	'th_password' => 'Fjalëkalim',
 	'th_login' => 'Lidhem',
 	'btn_login' => 'Lidhem',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Emri i përdoruesit Panjohur',
 	'err_login2' => 'Falsches Passwort. Keni %1% Përpjekjet para llogari për %2% do të bllokohet.',

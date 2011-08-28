@@ -9,6 +9,8 @@ $lang = array(
 	'th_password' => 'Jelszó',
 	'th_login' => 'Belépés',
 	'btn_login' => 'Belépés',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Ismeretlen felhasználói név',
 	'err_login2' => 'Hibás jelszó. Már csak %1% próbálkozásod maradt mielőtt %2% zárolnánk.',

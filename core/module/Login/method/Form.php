@@ -29,10 +29,14 @@ final class Login_Form extends GWF_Method
 			'have_cookies' => GWF_Session::haveCookies(),
 			'token' => $form->getFormCSRFToken(),
 			'tooltip' => $form->getTooltipText('bind_ip'),
+			'register' => GWF_Module::loadModuleDB('Register', false, false, true) !== false,
+			'recovery' => GWF_Module::loadModuleDB('PasswordForgot', false, false, true) !== false,
 		);
 		return $module->template('login.tpl', $tVars);
 	}
-	public function shortform(Module_Login $module) {
+	
+	public function shortform(Module_Login $module)
+	{
 		$form = $this->getForm($module);
 		$tVars = array(
 			'form' => $form->templateY($module->lang('title_login')),

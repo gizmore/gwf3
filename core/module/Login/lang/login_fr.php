@@ -10,6 +10,8 @@ $lang = array(
 	'th_password' => 'Mot de Passe',
 	'th_login' => 'Se connecter',
 	'btn_login' => 'Se connecter',
+	'btn_register' => 'Register',
+	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Utilisateur Inconnu',
 	'err_login2' => 'Mauvais Password. Il vous reste %1% essais avant d\'être bloqué pour %2%.',
