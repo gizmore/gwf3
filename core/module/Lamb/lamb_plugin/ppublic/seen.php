@@ -15,7 +15,7 @@ if (!preg_match('/^[a-z0-9_\\[\\]]+$/i', $username))
 $eu = GDO::escape($username);
 $sid = $server->getID();
 if (false === ($user = GDO::table('Lamb_User')->selectFirstObject('*', "lusr_name='$eu' AND lusr_sid=$sid"))) {
-	return $bot->reply(sprintf('The user %s is unknown.', $username));
+	return $bot->reply(sprintf('The user is unknown.', $username));
 }
 
 $timestamp = $user->getVar('lusr_timestamp');
@@ -24,6 +24,6 @@ $ago = time() - $timestamp;
 $ago = GWF_Time::humanDuration($ago);
 
 $message = sprintf('I have seen %s at %s (%s ago) in %s saying: "%s".', $username, GWF_Time::displayDate($date), $ago, $user->getVar('lusr_last_channel'), $user->getVar('lusr_last_message'));
-//$bot->reply($message);
-$server->sendPrivmsg($user->getName(), $message)
+$bot->reply($message);
+//$server->sendPrivmsg($user->getName(), $message)
 ?>

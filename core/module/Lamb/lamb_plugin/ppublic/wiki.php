@@ -49,7 +49,7 @@ if (!function_exists('getWikiText'))
 
 if (false === ($result = getWikiText($message, 'http://en.wikipedia.org/wiki/', 'Wikipedia does not have an article with this exact name')))
 {
-	return $bot->reply('Your term doesnt exist: '.$message);
+	return $bot->reply('Your term doesnt exist.');
 }
 
 $output = substr($result['text'], 0, $maxlength - (strlen($result['link']) + 6));

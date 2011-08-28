@@ -43,7 +43,7 @@ GWF_HTML::init();
 # Init it
 //GWF_HTML::init();
 # Init the logger
-GWF_Log::init(false, false, Common::substrUntil(dirname(__FILE__), '/core').'/protected/logs');
+GWF_Log::init(false, false, 'www/protected/logs');
 
 # Lamb3 core config
 $dir = 'core/module/Lamb';
@@ -85,6 +85,8 @@ if (!$lamb->init())
 }
 # No halt on warnings ...
 GWF_Debug::setDieOnError(false);
+# No halt on db errors ...
+gdo_db()->setDieOnError(false);
 # ... and go!
 $lamb->mainloop();
 ?>

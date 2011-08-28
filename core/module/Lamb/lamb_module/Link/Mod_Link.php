@@ -111,7 +111,8 @@ final class LambModule_Link extends Lamb_Module
 	private function decode($s)
 	{
 		$s = str_replace(array('&nbsp;'), array(' '), $s);
-		return htmlspecialchars_decode($s, ENT_QUOTES);
+		$s = htmlspecialchars_decode($s, ENT_QUOTES);
+		return strlen($s) > 1024 ? substr($s, 0, 1024) : $s;
 	}
 	
 	################

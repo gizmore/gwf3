@@ -380,7 +380,7 @@ final class Lamb_Server extends GDO
 		# PRIVMSG to the bot
 		if ($to === $this->current_nick)
 		{
-			$message = preg_replace('#https?://#', '', $message);
+//			$message = preg_replace('#https?://#', '', $message);
 			$to = $this->getFrom();
 		}
 		elseif (LAMB_REPLY_ISSUING_NICK)

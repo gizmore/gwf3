@@ -39,11 +39,11 @@ if ($s->getConnection()->isConnected())
 	{
 		$channel instanceof Lamb_Channel;
 		$channels .= sprintf(', %s(%d users)', $channel->getName(), count($channel->getUsers()));
+		$i++;
 	}
 	if ($channels !== '') {
 		$channels = substr($channels, 2);
 	}
-	$i++;
 }
 else { $channels = 'Not connected!'; }
 

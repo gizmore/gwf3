@@ -1,0 +1,187 @@
+USER Lamb3 lamb3.gizmore.org irc.giz.org :Lamb: IRC-Botten
+NICK Lamb3
+:irc.gizmore.org NOTICE Auth :*** Looking up your hostname...
+:irc.gizmore.org NOTICE 1SLAAAAAZ :*** Skipping host resolution (disabled by server administrator)
+PING :ZdVjuTQdKe
+PONG ZdVjuTQdKe
+USER Lamb3 lamb3.gizmore.org irc.giz.org :Lamb: IRC-Botten
+NICK Lamb3
+:irc.gizmore.org NOTICE Auth :*** Looking up your hostname...
+:irc.gizmore.org NOTICE 1SLAAAAA0 :*** Skipping host resolution (disabled by server administrator)
+PING :l~|xthBIAg
+PONG l~|xthBIAg
+:irc.gizmore.org NOTICE Auth :Welcome to lambnet!
+:irc.gizmore.org 001 Lamb3 :Welcome to the lambnet IRC Network Lamb3!Lamb3@192.168.0.4
+PRIVMSG NickServ :IDENTIFY lamblamb
+MODE Lamb3 +B
+MODE Lamb3 +b
+JOIN #sr,#wechall
+PRIVMSG NickServ :STATUS Lamb3
+:irc.gizmore.org 002 Lamb3 :Your host is irc.gizmore.org, running version InspIRCd-2.0
+:irc.gizmore.org 003 Lamb3 :This server was created 01:37:38 Jul 26 2011
+:irc.gizmore.org 004 Lamb3 irc.gizmore.org InspIRCd-2.0 IRSWiorswx AMRSabhijklmnopqrstvz abhjkloqv
+:irc.gizmore.org 005 Lamb3 AWAYLEN=201 CASEMAPPING=rfc1459 CHANMODES=b,k,jl,AMRSimnprstz CHANTYPES=# CHARSET=ascii ELIST=MU EXTBAN=,ARSz FNC KICKLEN=256 MAP MAXBANS=60 MAXCHANNELS=5 MAXPARA=32 :are supported by this server
+:irc.gizmore.org 005 Lamb3 MAXTARGETS=20 MODES=20 NETWORK=lambnet NICKLEN=32 PREFIX=(qaohv)~&@%+ SECURELIST SSL=192.168.0.4:6666 STARTTLS STATUSMSG=~&@%+ TOPICLEN=308 USERIP VBANLIST WALLCHOPS :are supported by this server
+:irc.gizmore.org 005 Lamb3 WALLVOICES :are supported by this server
+:irc.gizmore.org 042 Lamb3 1SLAAAAA0 :your unique ID
+:irc.gizmore.org 375 Lamb3 :irc.gizmore.org message of the day
+:irc.gizmore.org 372 Lamb3 :- Welcome to the Lamb3 IRCD.
+:irc.gizmore.org 372 Lamb3 :- Enjoy and follow the /RULES.
+:irc.gizmore.org 372 Lamb3 :- Lamb is free software. Get a copy from http://lamb3.gizmore.org
+:irc.gizmore.org 376 Lamb3 :End of message of the day.
+:irc.gizmore.org 251 Lamb3 :There are 2 users and 0 invisible on 1 servers
+:irc.gizmore.org 254 Lamb3 1 :channels formed
+:irc.gizmore.org 255 Lamb3 :I have 2 clients and 0 servers
+:irc.gizmore.org 265 Lamb3 :Current Local Users: 2  Max: 2
+:irc.gizmore.org 266 Lamb3 :Current Global Users: 2  Max: 2
+:irc.gizmore.org 396 Lamb3 giz-1ia.tpl.pduugs.IP :is now your displayed host
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP MODE Lamb3 +x
+:irc.gizmore.org 501 Lamb3 B :is unknown mode char to me
+:irc.gizmore.org 501 Lamb3 b :is unknown mode char to me
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#sr
+:irc.gizmore.org 366 Lamb3 #sr :End of /NAMES list.
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#wechall
+:irc.gizmore.org 366 Lamb3 #wechall :End of /NAMES list.
+:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
+PRIVMSG #sr :[WeChall] New post by Gizmore in New Challenges: http://www.wechall.net/forum/show/thread/549/New_Challenges/page-1#post3461
+PRIVMSG #wechall :[WeChall] SpArroW has just solved GizCrypt. This challenge has been solved 39 times. (https://www.wechall.net/challenge/gizcrypt/index.php)
+PRIVMSG #wechall :[WeChall] SpArroW has just solved Stop us. This challenge has been solved 7 times. (https://www.wechall.net/challenge/noother/stop_us/index.php)
+PRIVMSG #wechall :[WeChall] noother has just solved Stop us. This challenge has been solved 7 times. (https://www.wechall.net/challenge/noother/stop_us/index.php)
+PRIVMSG #sr :There is 1 new challenge on Revolution Elite ( http://sabrefilms.co.uk/revolutionelite ).
+PRIVMSG #sr :There is 1 new challenge on WeChall ( http://www.wechall.net/ ).
+PRIVMSG #sr :There are 10 new challenges on Yashira ( http://www.yashira.org ).
+PRIVMSG #wechall :[HBBS] New locked post: http://forum.hackbbs.org/viewtopic.php?t=4530
+PRIVMSG #wechall :[HBBS] New locked post: http://forum.hackbbs.org/viewtopic.php?t=4531
+PRIVMSG #wechall :[HBBS] New locked post: http://forum.hackbbs.org/viewtopic.php?t=4532
+PRIVMSG #wechall :[HBBS] New locked post: http://forum.hackbbs.org/viewtopic.php?t=4533
+PRIVMSG #wechall :[HBBS] New locked post: http://forum.hackbbs.org/viewtopic.php?t=4534
+PRIVMSG #wechall :[GWF3-SVN] New revision 767 by Gizmore: WC5: New challenge from noother. (thx noother) ( http://trac.gwf3.gizmore.org/changeset/767 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 768 by Gizmore: GWF3: Session locking is back. (thx jjk) ( http://trac.gwf3.gizmore.org/changeset/768 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 769 by Gizmore: Shadowlamb: Fixed a quirk in #give. (thx jjk) ( http://trac.gwf3.gizmore.org/changeset/769 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 770 by Gizmore: GWF3: Module Category might be almost working now. ( http://trac.gwf3.gizmore.org/changeset/770 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 771 by Gizmore: Shadowlamb: Backup sync to SVN. Note that the new AI is not working yet. ( http://trac.gwf3.gizmore.org/changeset/771 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 772 by Gizmore: Lamb: Backup sync to SVN. Some plugins have been abused and send their replies in query now. ( http://trac.gwf3.gizmore.org/changeset/772 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 773 by Gizmore: GWF3: Fixes for Pagebuilder and Comments. (thx spaceone) ( http://trac.gwf3.gizmore.org/changeset/773 )
+PRIVMSG #wechall :[GWF3-SVN] New revision 774 by Gizmore: GWF3: Fixed Admin edit user groups. (thx spaceone) ( http://trac.gwf3.gizmore.org/changeset/774 )
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PRIVMSG #wechall :[GWF3-SVN] New revision 775 by Gizmore: GWF3: The debug backtrace is now styled via css. ( http://trac.gwf3.gizmore.org/changeset/775 )
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+PING :irc.gizmore.org
+PONG irc.gizmore.org
+USER Lamb3 lamb3.gizmore.org irc.giz.org :Lamb: IRC-Botten
+NICK Lamb3
+:irc.gizmore.org NOTICE Auth :*** Looking up your hostname...
+:irc.gizmore.org NOTICE 1SLAAAAA1 :*** Skipping host resolution (disabled by server administrator)
+PING :zu~tjG`Sfe
+PONG zu~tjG`Sfe
+USER Lamb3 lamb3.gizmore.org irc.giz.org :Lamb: IRC-Botten
+NICK Lamb3
+:irc.gizmore.org NOTICE Auth :*** Looking up your hostname...
+:irc.gizmore.org NOTICE 1SLAAAAA2 :*** Skipping host resolution (disabled by server administrator)
+PING :Jh}CPWbYBZ
+PONG Jh}CPWbYBZ
+:irc.gizmore.org NOTICE Auth :Welcome to lambnet!
+:irc.gizmore.org 001 Lamb3 :Welcome to the lambnet IRC Network Lamb3!Lamb3@192.168.0.4
+PRIVMSG NickServ :IDENTIFY lamblamb
+MODE Lamb3 +B
+MODE Lamb3 +b
+JOIN #sr,#wechall
+PRIVMSG NickServ :STATUS Lamb3
+:irc.gizmore.org 002 Lamb3 :Your host is irc.gizmore.org, running version InspIRCd-2.0
+:irc.gizmore.org 003 Lamb3 :This server was created 01:37:38 Jul 26 2011
+:irc.gizmore.org 004 Lamb3 irc.gizmore.org InspIRCd-2.0 IRSWiorswx AMRSabhijklmnopqrstvz abhjkloqv
+:irc.gizmore.org 005 Lamb3 AWAYLEN=201 CASEMAPPING=rfc1459 CHANMODES=b,k,jl,AMRSimnprstz CHANTYPES=# CHARSET=ascii ELIST=MU EXTBAN=,ARSz FNC KICKLEN=256 MAP MAXBANS=60 MAXCHANNELS=5 MAXPARA=32 :are supported by this server
+:irc.gizmore.org 005 Lamb3 MAXTARGETS=20 MODES=20 NETWORK=lambnet NICKLEN=32 PREFIX=(qaohv)~&@%+ SECURELIST SSL=192.168.0.4:6666 STARTTLS STATUSMSG=~&@%+ TOPICLEN=308 USERIP VBANLIST WALLCHOPS :are supported by this server
+:irc.gizmore.org 005 Lamb3 WALLVOICES :are supported by this server
+:irc.gizmore.org 042 Lamb3 1SLAAAAA2 :your unique ID
+:irc.gizmore.org 375 Lamb3 :irc.gizmore.org message of the day
+:irc.gizmore.org 372 Lamb3 :- Welcome to the Lamb3 IRCD.
+:irc.gizmore.org 372 Lamb3 :- Enjoy and follow the /RULES.
+:irc.gizmore.org 372 Lamb3 :- Lamb is free software. Get a copy from http://lamb3.gizmore.org
+:irc.gizmore.org 376 Lamb3 :End of message of the day.
+:irc.gizmore.org 251 Lamb3 :There are 2 users and 0 invisible on 1 servers
+:irc.gizmore.org 254 Lamb3 1 :channels formed
+:irc.gizmore.org 255 Lamb3 :I have 2 clients and 0 servers
+:irc.gizmore.org 265 Lamb3 :Current Local Users: 2  Max: 2
+:irc.gizmore.org 266 Lamb3 :Current Global Users: 2  Max: 2
+:irc.gizmore.org 396 Lamb3 giz-1ia.tpl.pduugs.IP :is now your displayed host
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP MODE Lamb3 +x
+:irc.gizmore.org 501 Lamb3 B :is unknown mode char to me
+:irc.gizmore.org 501 Lamb3 b :is unknown mode char to me
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#sr
+:irc.gizmore.org 366 Lamb3 #sr :End of /NAMES list.
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#wechall
+:irc.gizmore.org 366 Lamb3 #wechall :End of /NAMES list.
+:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
+USER Lamb3 lamb3.gizmore.org irc.giz.org :Lamb: IRC-Botten
+NICK Lamb3
+:irc.gizmore.org NOTICE Auth :*** Looking up your hostname...
+:irc.gizmore.org NOTICE 1SLAAAAA3 :*** Skipping host resolution (disabled by server administrator)
+PING :ys~siaEMtd
+PONG ys~siaEMtd
+:irc.gizmore.org NOTICE Auth :Welcome to lambnet!
+:irc.gizmore.org 001 Lamb3 :Welcome to the lambnet IRC Network Lamb3!Lamb3@192.168.0.4
+PRIVMSG NickServ :IDENTIFY lamblamb
+MODE Lamb3 +B
+MODE Lamb3 +b
+JOIN #sr,#wechall
+PRIVMSG NickServ :STATUS Lamb3
+:irc.gizmore.org 002 Lamb3 :Your host is irc.gizmore.org, running version InspIRCd-2.0
+:irc.gizmore.org 003 Lamb3 :This server was created 01:37:38 Jul 26 2011
+:irc.gizmore.org 004 Lamb3 irc.gizmore.org InspIRCd-2.0 IRSWiorswx AMRSabhijklmnopqrstvz abhjkloqv
+:irc.gizmore.org 005 Lamb3 AWAYLEN=201 CASEMAPPING=rfc1459 CHANMODES=b,k,jl,AMRSimnprstz CHANTYPES=# CHARSET=ascii ELIST=MU EXTBAN=,ARSz FNC KICKLEN=256 MAP MAXBANS=60 MAXCHANNELS=5 MAXPARA=32 :are supported by this server
+:irc.gizmore.org 005 Lamb3 MAXTARGETS=20 MODES=20 NETWORK=lambnet NICKLEN=32 PREFIX=(qaohv)~&@%+ SECURELIST SSL=192.168.0.4:6666 STARTTLS STATUSMSG=~&@%+ TOPICLEN=308 USERIP VBANLIST WALLCHOPS :are supported by this server
+:irc.gizmore.org 005 Lamb3 WALLVOICES :are supported by this server
+:irc.gizmore.org 042 Lamb3 1SLAAAAA3 :your unique ID
+:irc.gizmore.org 375 Lamb3 :irc.gizmore.org message of the day
+:irc.gizmore.org 372 Lamb3 :- Welcome to the Lamb3 IRCD.
+:irc.gizmore.org 372 Lamb3 :- Enjoy and follow the /RULES.
+:irc.gizmore.org 372 Lamb3 :- Lamb is free software. Get a copy from http://lamb3.gizmore.org
+:irc.gizmore.org 376 Lamb3 :End of message of the day.
+:irc.gizmore.org 251 Lamb3 :There are 2 users and 0 invisible on 1 servers
+:irc.gizmore.org 254 Lamb3 1 :channels formed
+:irc.gizmore.org 255 Lamb3 :I have 2 clients and 0 servers
+:irc.gizmore.org 265 Lamb3 :Current Local Users: 2  Max: 2
+:irc.gizmore.org 266 Lamb3 :Current Global Users: 2  Max: 2
+:irc.gizmore.org 396 Lamb3 giz-1ia.tpl.pduugs.IP :is now your displayed host
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP MODE Lamb3 +x
+:irc.gizmore.org 501 Lamb3 B :is unknown mode char to me
+:irc.gizmore.org 501 Lamb3 b :is unknown mode char to me
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#sr
+:irc.gizmore.org 366 Lamb3 #sr :End of /NAMES list.
+:Lamb3!Lamb3@giz-1ia.tpl.pduugs.IP JOIN :#wechall
+:irc.gizmore.org 366 Lamb3 #wechall :End of /NAMES list.
+:irc.gizmore.org 401 Lamb3 NickServ :No such nick/channel
+:gizmore!gizmore@giz-1ia.tpl.pduugs.IP PRIVMSG #sr :dfhdfh

@@ -17,7 +17,7 @@ final class Spell_teleportiii extends SR_Spell
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits) {}
 	
-	public function onCast(SR_Player $player, array $args)
+	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
 		$p = $player->getParty();
 		
