@@ -235,7 +235,9 @@ final class GWF_InstallConfig
 			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', 'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', 'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', 'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
-			
+                        array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
+                        array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
+
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_URL', 'about_gwf', '1st visit URL. Example: \'home\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_LANG', 'en', 'Fallback language. Should be \'en\'.'),
