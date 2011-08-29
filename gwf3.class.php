@@ -8,31 +8,108 @@ define('GWF_CORE_VERSION', '3.02-2011.Aug.28');
  * @author spaceone
  * @version 1.02
  * @since 01.07.2011
- * @todo check if Session commit works
  * @todo better GWF_WEBSITE_DOWN
- * @todo disable logging for an instance
+ * @todo mo/me handling
  */
 class GWF3 
 {
 	private static $design = 'default';
 	private static $me = '';
 	private static $module, $page, $user;
+	public static $CONFIG = array(
+		'website_init' => true,
+		'autoload_modules' => true,
+		'load_module' => true,
+		'load_config' => true,
+		'start_debug' => true,
+		'get_user' => true,
+		'do_logging' => true,
+		'blocking' => true,
+		'no_session' => false,
+		'store_last_url' => true,
+		'ignore_user_abort' => true,
+	);
 	
+	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
+	public static function getConfig($key) { return self::$CONFIG[$key]; }
+
+	/**
+	 * @param array $config
+	 * @param $basepath = __DIR__
+	 * @return GWF3 
+	 */
+	public function __construct($basepath, array $config = array())
+	{
+		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
+		
+		# Important definements...
+		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
+		Common::defineConst('GWF_PROTECTED_PATH', GWF_WWW_PATH.'protected/');
+		Common::defineConst('GWF_CONFIG_PATH', GWF_PROTECTED_PATH.'config.php');
+		Common::defineConst('GWF_LOGGING_PATH', GWF_PROTECTED_PATH.'logs');
+
+		# Set valid mo/me
+		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
+		$_GET['me'] = Common::defineConst('GWF_METHOD', Common::getGetString('me', GWF_DEFAULT_METHOD));
+		
+		# Setting the Design... TODO...
+		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
+
+		ignore_user_abort($config['ignore_user_abort']);
+		
+		if($config['load_config'])
+		{
+			$this->onLoadConfig();
+		}
+		if($config['start_debug'])
+		{
+			GWF_Debug::enableErrorHandler();
+		}
+		if($config['do_logging'])
+		{
+			$this->onStartLogging(self::getConfig('blocking'), self::getConfig('no_session'));
+		}
+		if ($config['website_init']) 
+		{ 
+//			$this->onInit(); 
+			GWF_Website::init();
+		}
+		if ($config['autoload_modules']) 
+		{ 
+			$this->onAutoloadModules(); 
+		}
+		if ($config['load_module']) 
+		{ 
+			$this->onLoadModule(); 
+		}
+//		if ($config['get_user']) 
+		if (!defined('GWF_INSTALLATION')) 
+		{		
+			GWF_Template::addMainTvars(array(
+				'user' => (self::$user = GWF_User::getStaticOrGuest()),
+			));
+		}
+	}
+	
+	public function __destruct() 
+	{
+		$this->onSessionCommit(self::$CONFIG['store_last_url']);
+	}
+		
 	/**
 	 * This is always required!
 	 */
 	public static function _init()
 	{
-		# Require the util
-		require_once __DIR__.'/core/inc/util/Common.php';
-
-		# Definements
-		define('GWF_PATH', __DIR__.'/');
-		define('GWF_CORE_PATH', GWF_PATH.'core/');
-		Common::defineConst('GWF_DEFAULT_PROTECTED_PATH', GWF_PATH.'www/protected/');
-		self::$CONFIG['config_path'] = Common::defineConst('GWF_DEFAULT_CONFIG_PATH', GWF_DEFAULT_PROTECTED_PATH.'config.php'); // This could also the path for the example file, use it for installation-script!
-		self::$CONFIG['logging_path'] = Common::defineConst('GWF_DEFAULT_LOGGING_PATH', GWF_DEFAULT_PROTECTED_PATH.'logs'); // without trailing slash
+		#default definements
+		Common::defineConst('GWF_PATH', __DIR__.'/');
+//		Common::defineConst('GWF_CLASS', GWF_PATH.'gwf3.class.php');
+		Common::defineConst('GWF_EXTRA_PATH', GWF_PATH.'extra/');
+		Common::defineConst('GWF_CORE_PATH', GWF_PATH.'core/');
 		
+		# Require the util
+		require_once GWF_CORE_PATH.'inc/util/Common.php';
+
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 
@@ -40,42 +117,7 @@ class GWF3
 		spl_autoload_register(array('GWF3','onAutoloadClass'));
 
 	}
-	
-	/**
-	 * This will be required for a new GWF3() Instance.
-	 * It will be called there!
-	 */
-	private static $_instance = false;
-	public static function init($basepath, $configpath, $loggingpath, $blocking=true, $no_session=false, $do_logging=true) 
-	{
-		# Actions already done?
-		if(true === self::$_instance) return;
 		
-		# Important definements
-		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
-
-		# Enable the error handlers
-		GWF_Debug::enableErrorHandler();
-		
-		# Load the Config
-		self::onLoadConfig($configpath);
-		
-		if($do_logging)
-		{
-			# Start Logging
-			if (false === self::onStartLogging($loggingpath, $blocking, $no_session))
-			{
-				return false;
-			}
-		}
-		
-		# Set valid mo/me
-		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
-		$_GET['me'] = Common::defineConst('GWF_METHOD', Common::getGetString('me', GWF_DEFAULT_METHOD));
-
-		self::$_instance = true;
-		return true;
-	}
 	public static function onAutoloadClass($classname, $prefix='GWF_')
 	{
 		if (substr($classname, 0, 4) === $prefix)
@@ -84,21 +126,14 @@ class GWF3
 		}
 	}
 	
-	public static function onLoadConfig($config=GWF_DEFAULT_CONFIG_PATH) 
+	public static function onLoadConfig($config=GWF_CONFIG_PATH) 
 	{
-		$config = Common::defineConst('GWF_CONFIG_PATH', $config);
-
 		# Get the config
 		if (!defined('GWF_HAVE_CONFIG'))
 		{
 			if(!file_exists($config))
 			{			
-				if(!file_exists(GWF_DEFAULT_CONFIG_PATH)) {
-					die('GWF3 couldnt load the config: file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
-				} else {
-					$config = GWF_DEFAULT_CONFIG_PATH;
-					// REPORT THAT ACTION WITH EMAIL ?!
-				}
+				die('GWF3 couldnt load the config: file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
 			}
 			require_once $config;
 			define('GWF_HAVE_CONFIG', 1);
@@ -124,98 +159,22 @@ class GWF3
 		Common::defineConst('GWF_WEB_ROOT', $root);
 	}
 	
-	public static function onStartLogging($logpath=GWF_DEFAULT_LOGGING_PATH, $blocking=true, $no_session=false)
+	public static function onStartLogging($blocking=true, $no_session=false)
 	{
-		$logpath = Common::defineConst('GWF_LOGGING_PATH', $logpath);
-		
 		$username = false;
 		if (!$no_session)
 		{
-			if (!GWF_Session::start($blocking))
+			if (!GWF_Session::start($blocking) && !defined('GWF_INSTALLATION'))
 			{
-				return false; # Not installed
+				die('GWF not installed?!');
+//				return false; # Not installed
 			}
 			if (false !== ($user = GWF_Session::getUser()))
 			{
 				$username = $user->getVar('user_name');
 			}
 		}
-		GWF_Log::init($username, true, $logpath);
-	}
-	
-	public static function getConfig($key) { return self::$CONFIG[$key]; }
-	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
-	public static $CONFIG = array(
-		'website_init' => true,
-		'autoload_modules' => true,
-		'load_module' => true,
-		'get_user' => true,
-		'config_path' => 'protected/config.php',
-		'logging_path' => 'protected/logs',
-		'do_logging' => true,
-		'blocking' => true,
-		'no_session' => false,
-		'store_last_url' => true,
-		'ignore_user_abort' => true,
-	);
-
-	/**
-	 * @param array $config
-	 * @param $basepath = __DIR__
-	 * @return GWF3 
-	 */
-	public function __construct($basepath, array $config = array())
-	{
-		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
-		
-		ignore_user_abort($config['ignore_user_abort']);
-
-		if (false === self::init($basepath, $config['config_path'], $config['logging_path'], $config['blocking'], $config['no_session'], $config['do_logging']) 
-			&& !defined('GWF_INSTALLATION')	)
-		{			
-			die('GWF Initialisation: GWF not installed?!');
-		}
-		
-		# Setting the Design... TODO...
-		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
-		
-		if ($config['website_init']) 
-		{ 
-			$this->onInit(); 
-		}
-		if ($config['autoload_modules']) 
-		{ 
-			$this->onAutoloadModules(); 
-		}
-		if ($config['load_module']) 
-		{ 
-			$this->onLoadModule(); 
-		}
-//		if ($config['get_user']) 
-		if (!defined('GWF_INSTALLATION')) 
-		{		
-			GWF_Template::addMainTvars(array(
-				'user' => (self::$user = GWF_User::getStaticOrGuest()),
-			));
-		}
-	}
-	
-	public function __destruct() 
-	{
-		$this->onSessionCommit(self::$CONFIG['store_last_url']);
-	}
-	
-	// this function is maybe senseless now... it cant return false?!
-	public function onInit() 
-	{
-		# Init core
-		if (false === GWF_Website::init()) {
-			die('GWF3 does not seem to be installed properly.');
-		}
-		if(false !== Common::getGet('plain', false)) {
-			GWF_Website::plaintext();
-		}
-		return $this;
+		GWF_Log::init($username, true, GWF_LOGGING_PATH);
 	}
 	
 	public function onAutoloadModules()
