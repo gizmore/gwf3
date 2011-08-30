@@ -27,7 +27,9 @@ class GWF3
 		'store_last_url' => true,
 		'ignore_user_abort' => true,
 	);
-	
+	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
+	public static function getConfig($key) { return self::$CONFIG[$key]; }
+ 	
 	/**
 	 * @param array $config
 	 * @param $basepath = __DIR__
@@ -64,11 +66,11 @@ class GWF3
 		}
 		if(!$config['no_session'])
 		{
-			GWF_Session::start(self::getConfig('blocking'));
+			GWF_Session::start($config['blocking']);
 		}
 		if($config['do_logging'])
 		{
-			$this->onStartLogging(self::getConfig('blocking'), self::getConfig('no_session'));
+			$this->onStartLogging($config['blocking'], $config['no_session']);
 		}
 		if ($config['website_init']) 
 		{ 
