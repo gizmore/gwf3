@@ -121,7 +121,9 @@ final class PageBuilder_Show extends GWF_Method
 		GWF_Website::setPageTitle($page->getVar('page_title'));
 		
 		$tVars = array(
-			'title' => $page->display('page_title'),
+			'page' => $page,
+			'page_views' => $page->getVar('page_views'),
+ 			'title' => $page->display('page_title'),
 			'author' => $page->display('page_author_name'),
 			'created' => GWF_Time::displayDate($page->getVar('page_create_date')),
 			'modified' => GWF_Time::displayDate($page->getVar('page_date')),
@@ -238,7 +240,7 @@ final class PageBuilder_Show extends GWF_Method
 
 	private function getPageCommentsForm(Module_PageBuilder $module, GWF_Page $page)
 	{
-		if (isset($_POST['reply']))
+		if (isset($_POST['reply']) || !$page->isOptionEnabled(GWF_Page::COMMENTS))
 		{
 			return '';
 		}

@@ -56,17 +56,20 @@ $lang = array(
 	'msg_edited' => 'The page has been edited successfully.',
 	'msg_trans' => 'A new page has been created, serving a translation for the current page.',
 	'msg_file_upped' => 'The file has been uploaded to %1%.',
+	'msg_no_trans' => 'There are no available translations. If you like to, you can translate this page.',
 
 	'info_author' => 'Author: %1%',
 	'info_modified' => 'Page created on %1%. Last Modified on %2%, %3%.',
 	'info_trans' => 'This page is also available in %1%.',
 	'info_similar' => 'You might be interested in similar pages: %1%.',
+	'info_pageviews' => 'The page has benn served %1% times.',
 
 	'author' => 'Author',
 	'created_on' => 'Created on',
 	'modified_on' => 'Modified on',
 	'translations' => 'Available translations',
 	'similar_pages' => 'Similiar pages',
+	'page_views' => 'Views',
 
 );
 ?>
