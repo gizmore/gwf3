@@ -11,7 +11,12 @@ final class GWF_Website
 	############
 	public static function init()
 	{
-		header('Content-Type: text/html; charset=UTF-8');
+		if(false !== Common::getGet('plain', false)) {
+			self::plaintext();
+		} else {
+			header('Content-Type: text/html; charset=UTF-8');
+		}
+		
 		GWF_Language::init();
 		GWF_HTML::init();
 	}

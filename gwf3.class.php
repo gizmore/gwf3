@@ -12,7 +12,6 @@ define('GWF_CORE_VERSION', '3.02-2011.Aug.28');
 class GWF3 
 {
 	private static $design = 'default';
-	private static $me = '';
 	private static $module, $page, $user;
 	public static $CONFIG = array(
 		'website_init' => true,
@@ -51,8 +50,8 @@ class GWF3
 		}
 		
 		# Set valid mo/me
-		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
-		$_GET['me'] = Common::defineConst('GWF_METHOD', Common::getGetString('me', GWF_DEFAULT_METHOD));
+		$_GET['mo'] = Common::getGetString('mo', GWF_DEFAULT_MODULE);
+		$_GET['me'] = Common::getGetString('me', GWF_DEFAULT_METHOD);
 		
 		# Setting the Design... TODO...
 		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
@@ -203,13 +202,7 @@ class GWF3
 			{
 				die('No module found.');
 			}
-			// add Module::defaultMethod(); !!!!!!!!!!!!!! check if method exists
-			// good for performance!
-			self::$me = GWF_DEFAULT_METHOD; //IMPORTANT
-		}
-		else 
-		{
-			self::$me = GWF_METHOD;
+			$_GET['me'] = GWF_DEFAULT_METHOD;
 		}
 
 		if (self::$module->isEnabled())
@@ -217,7 +210,7 @@ class GWF3
 			# Execute the method
 			self::$module->onInclude();
 			self::$module->onLoadLanguage();
-			self::$page = self::$module->execute(self::$me);
+			self::$page = self::$module->execute($_GET['me']);
 			if (isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
@@ -270,9 +263,7 @@ class GWF3
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
-	
-	public static function getMo() { return GWF_MODULE; }
-	public static function getMe() { return self::$me; }
+
 	public static function getModule() { return self::$module; }
 	public static function getUser() { return self::$user; }
 	public static function setDesign($design) { self::$design = $design; }

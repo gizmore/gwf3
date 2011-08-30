@@ -53,6 +53,10 @@ a img { border: none; }
 	border-color: #006;
 }
 
+form.gwf_shortform {
+	float: left;
+}
+
 .gwf_btn_add { background: url(../../../img/SF/add.png); }
 .gwf_btn_sub { background: url(../../../img/default/sub.png); }
 .gwf_btn_favorite { background: url(../../../img/SF/star.png); }
