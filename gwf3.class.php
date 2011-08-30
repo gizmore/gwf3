@@ -110,6 +110,35 @@ class GWF3
 		# Require the util
 		require_once GWF_CORE_PATH.'inc/util/Common.php';
 
+		# Enable the error handlers
+		GWF_Debug::enableErrorHandler();
+		
+		# Load the Config
+		self::onLoadConfig($configpath);
+		
+		# Start session
+		if (!$no_session)
+		{
+			if (!GWF_Session::start($blocking))
+			{
+				return false; # Not installed
+			}
+		}
+		
+		# Start logger
+		if($do_logging)
+		{
+			# Start Logging
+			if (false === self::onStartLogging($no_session))
+			{
+				return false;
+			}
+		}
+		
+		# Set valid mo/me
+		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
+		$_GET['me'] = Common::defineConst('GWF_METHOD', Common::getGetString('me', GWF_DEFAULT_METHOD));
+		
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 
@@ -159,16 +188,11 @@ class GWF3
 		Common::defineConst('GWF_WEB_ROOT', $root);
 	}
 	
-	public static function onStartLogging($blocking=true, $no_session=false)
+	public static function onStartLogging($no_session=false)
 	{
 		$username = false;
 		if (!$no_session)
 		{
-			if (!GWF_Session::start($blocking) && !defined('GWF_INSTALLATION'))
-			{
-				die('GWF not installed?!');
-//				return false; # Not installed
-			}
 			if (false !== ($user = GWF_Session::getUser()))
 			{
 				$username = $user->getVar('user_name');
