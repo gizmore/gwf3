@@ -88,9 +88,7 @@ class GWF3
 //		if ($config['get_user']) 
 		if (!defined('GWF_INSTALLATION')) 
 		{		
-			GWF_Template::addMainTvars(array(
-				'user' => (self::$user = GWF_User::getStaticOrGuest()),
-			));
+			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
 	}
 	
@@ -114,9 +112,6 @@ class GWF3
 		
 		# The GWF autoloader
 		spl_autoload_register(array(__CLASS__,'onAutoloadClass'));
-		
-		# Require the util
-		require_once GWF_CORE_PATH.'inc/util/Common.php';
 		
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';

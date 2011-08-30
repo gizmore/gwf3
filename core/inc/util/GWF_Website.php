@@ -11,7 +11,7 @@ final class GWF_Website
 	############
 	public static function init()
 	{
-		if(false !== Common::getGet('plain', false)) {
+		if(isset($_GET['plain'])) {
 			self::plaintext();
 		} else {
 			header('Content-Type: text/html; charset=UTF-8');
