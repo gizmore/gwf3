@@ -3,6 +3,7 @@
 /**
  * This is an example how your index.php could look like
  */
+require_once 'protected/config.php';
 require_once 'gwf3.class.php';
 
 # Instance also loads config!

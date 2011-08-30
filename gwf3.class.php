@@ -3,13 +3,11 @@ define('GWF_DEBUG_TIME_START', microtime(true));
 define('GWF_CORE_VERSION', '3.02-2011.Aug.28');
 
 /**
- * Welcome to
- * Space & Gizmore Website Framework
- * @author spaceone
+ * Welcome to GWF3
+ * @author spaceone, gizmore
  * @version 1.02
  * @since 01.07.2011
  * @todo better GWF_WEBSITE_DOWN
- * @todo mo/me handling
  */
 class GWF3 
 {
@@ -20,7 +18,7 @@ class GWF3
 		'website_init' => true,
 		'autoload_modules' => true,
 		'load_module' => true,
-		'load_config' => true,
+		'load_config' => false,
 		'start_debug' => true,
 		'get_user' => true,
 		'do_logging' => true,
@@ -30,9 +28,6 @@ class GWF3
 		'ignore_user_abort' => true,
 	);
 	
-	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
-	public static function getConfig($key) { return self::$CONFIG[$key]; }
-
 	/**
 	 * @param array $config
 	 * @param $basepath = __DIR__
@@ -57,6 +52,8 @@ class GWF3
 
 		ignore_user_abort($config['ignore_user_abort']);
 		
+		self::onDefineWebRoot();
+		
 		if($config['load_config'])
 		{
 			$this->onLoadConfig();
@@ -64,6 +61,10 @@ class GWF3
 		if($config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
+		}
+		if(!$config['no_session'])
+		{
+			GWF_Session::start(self::getConfig('blocking'));
 		}
 		if($config['do_logging'])
 		{
@@ -102,38 +103,44 @@ class GWF3
 	public static function _init()
 	{
 		#default definements
-		Common::defineConst('GWF_PATH', __DIR__.'/');
+		define('GWF_PATH', __DIR__.'/');
+		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
+		define('GWF_CORE_PATH', GWF_PATH.'core/');
+//		Common::defineConst('GWF_PATH', __DIR__.'/');
 //		Common::defineConst('GWF_CLASS', GWF_PATH.'gwf3.class.php');
-		Common::defineConst('GWF_EXTRA_PATH', GWF_PATH.'extra/');
-		Common::defineConst('GWF_CORE_PATH', GWF_PATH.'core/');
+//		Common::defineConst('GWF_EXTRA_PATH', GWF_PATH.'extra/');
+//		Common::defineConst('GWF_CORE_PATH', GWF_PATH.'core/');
+		
+		# The GWF autoloader
+		spl_autoload_register(array(__CLASS__,'onAutoloadClass'));
 		
 		# Require the util
 		require_once GWF_CORE_PATH.'inc/util/Common.php';
-
-		# Enable the error handlers
-		GWF_Debug::enableErrorHandler();
 		
 		# Load the Config
-		self::onLoadConfig($configpath);
+//		self::onLoadConfig($configpath);
+		
+		# Enable the error handlers
+//		GWF_Debug::enableErrorHandler();
 		
 		# Start session
-		if (!$no_session)
-		{
-			if (!GWF_Session::start($blocking))
-			{
-				return false; # Not installed
-			}
-		}
+//		if (!$no_session)
+//		{
+//			if (!GWF_Session::start($blocking))
+//			{
+//				return false; # Not installed
+//			}
+//		}
 		
 		# Start logger
-		if($do_logging)
-		{
-			# Start Logging
-			if (false === self::onStartLogging($no_session))
-			{
-				return false;
-			}
-		}
+//		if($do_logging)
+//		{
+//			# Start Logging
+//			if (false === self::onStartLogging($no_session))
+//			{
+//				return false;
+//			}
+//		}
 		
 		# Set valid mo/me
 		$_GET['mo'] = Common::defineConst('GWF_MODULE', Common::getGetString('mo', GWF_DEFAULT_MODULE));
@@ -141,9 +148,6 @@ class GWF3
 		
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
-
-		# The GWF autoloader
-		spl_autoload_register(array('GWF3','onAutoloadClass'));
 
 	}
 		
@@ -155,7 +159,7 @@ class GWF3
 		}
 	}
 	
-	public static function onLoadConfig($config=GWF_CONFIG_PATH) 
+	public static function onLoadConfig($config='protected/config.php') 
 	{
 		# Get the config
 		if (!defined('GWF_HAVE_CONFIG'))
@@ -166,7 +170,6 @@ class GWF3
 			}
 			require_once $config;
 			define('GWF_HAVE_CONFIG', 1);
-			self::onDefineWebRoot();
 		}
 	}
 	

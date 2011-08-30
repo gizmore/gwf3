@@ -1,13 +1,12 @@
 <?php
 chdir("../");
+require_once 'protected/config.php';
 require_once '../gwf3.class.php';
 $gwf = new GWF3(__DIR__	, array(
 	'website_init' => true,
 	'autoload_modules' => false,
 	'load_module' => false,
 	'get_user' => false,
-//	'config_path' => GWF_PATH.'protected/config.php',
-//	'logging_path' => GWF_PATH.'protected/logs',
 	'do_logging' => false,
 	'blocking' => false,
 	'no_session' => false,
