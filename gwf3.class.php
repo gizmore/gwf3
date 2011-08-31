@@ -191,7 +191,7 @@ class GWF3
 	{
 		if(defined('GWF_WEBSITE_DOWN')) return;
 		# Load the module
-		if (false === (self::$module = GWF_Module::loadModuleDB(GWF_MODULE))) 
+		if (false === (self::$module = GWF_Module::loadModuleDB($_GET['mo']))) 
 		{
 			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
 			{

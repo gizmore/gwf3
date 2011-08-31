@@ -16,7 +16,8 @@ final class GWF_CategorySelect
 			foreach ($cats as $cat)
 			{
 				$cat instanceof GWF_Category;
-				$data[] = array($cat->getID(), false !== $cat->getTranslation($langid) ? $cat->getTranslation($langid) : $cat->getVar('cat_tree_key'));
+				$trans = $cat->getTranslation($langid);
+				$data[] = array($cat->getID(), false !== $trans ? $trans : $cat->getVar('cat_tree_key'));
 			}
 		}
 		return GWF_Select::display($name, $data, $selected);
