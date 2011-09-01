@@ -525,6 +525,12 @@ final class SR_Party extends GDO
 	 */
 	public function fight(SR_Party $party, $announce=true)
 	{
+		if ($party->getMemberCount() === 0)
+		{
+			Lamb_Log::logError('Cannot fight empty party!');
+			return false;
+		}
+		
 		$this->pushAction(self::ACTION_FIGHT, $party->getID(), 0);
 		$party->pushAction(self::ACTION_FIGHT, $this->getID(), 0);
 		$this->initFightBusy(1);
@@ -539,6 +545,7 @@ final class SR_Party extends GDO
 		}
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+		return true;
 	}
 	
 	private function initNPCb(SR_Party $ep)
@@ -564,6 +571,12 @@ final class SR_Party extends GDO
 	
 	public function talk(SR_Party $party, $announce=true)
 	{
+		if ($party->getMemberCount() === 0)
+		{
+			Lamb_Log::logError('Cannot talk to empty party!');
+			return false;
+		}
+		
 		Shadowcmd_bye::onPartyMeet($party, $this);
 		$this->pushAction(self::ACTION_TALK, $party->getID(), 0);
 		$party->pushAction(self::ACTION_TALK, $this->getID(), 0);

@@ -8,6 +8,7 @@ class SR_Player extends GDO
 	const BASE_MP = 0;
 	const HP_PER_BODY = 2;
 	const MP_PER_MAGIC = 5;
+	const MP_PER_CASTING = 5;
 	const HP_REFRESH_MULTI = 0.03;
 	const MP_REFRESH_MULTI = 0.02;
 	const HP_REFRESH_TIMER = 200;
@@ -61,11 +62,14 @@ class SR_Player extends GDO
 
 	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
-	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
-	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
+//	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
+//	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
+	public static $COMBAT_STATS = array('mxhp'=>'max_hp','mxmp'=>'max_mp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
+	public static $MAGIC_STATS = array();
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
-	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
+//	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
+	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief','orc'=>'orcas','ele'=>'elephants','sat'=>'spellatk','sde'=>'spelldef','cas'=>'casting');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
 	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Magic','Redmond','Seattle','Delaware');
@@ -831,6 +835,7 @@ class SR_Player extends GDO
 			'base_mp' => $this->getVar('sr4pl_base_mp'),
 			'hp_per_body' => self::HP_PER_BODY,
 			'mp_per_magic' => self::MP_PER_MAGIC,
+			'mp_per_casting' => self::MP_PER_CASTING,
 			'level' => $this->getVar('sr4pl_level'),
 			'bad_karma' => $this->getVar('sr4pl_bad_karma'),
 		);
@@ -864,7 +869,7 @@ class SR_Player extends GDO
 	{
 		if ($this->isHuman())
 		{
-			$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP;
+			$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP + $this->get('casting') * $this->get('mp_per_casting');
 		}
 		else
 		{
@@ -2447,11 +2452,6 @@ class SR_Player extends GDO
 			return Shadowcmd::onExecute($this, $this->combat_stack);
 		}
 		return true;
-	}
-	
-	public function isMaxed()
-	{
-		
 	}
 }
 ?>

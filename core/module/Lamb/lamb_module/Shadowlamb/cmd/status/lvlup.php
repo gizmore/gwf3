@@ -92,11 +92,11 @@ final class Shadowcmd_lvlup extends Shadowcmd
 			$max = $runner ? self::MAX_VAL_ATTRIBUTE_RUNNER : self::MAX_VAL_ATTRIBUTE;
 		}
 		
-		elseif (in_array($f, self::$KNOWLEDGE))
+		elseif (in_array($f, SR_Player::$KNOWLEDGE))
 		{
 			$level = $player->getBase($f);
 			$cost = self::KARMA_COST_KNOWLEDGE;
-			$max = $runner ? self::MAX_VAL_KNOWLEDGE_RUNNER: self::MAX_VAL_KNOWLEDGE;
+			$max = $runner ? self::MAX_VAL_KNOWLEDGE_RUNNER : self::MAX_VAL_KNOWLEDGE;
 		}
 		elseif (false !== ($spell = SR_Spell::getSpell($f))) {
 			$level = $spell->getBaseLevel($player);
@@ -144,7 +144,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 		$player->modify();
-		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $level, $level+1));
+		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));
 	}
 }
 ?>
