@@ -34,16 +34,11 @@ final class Delaware_Headhunter extends SR_NPC
 			'base_hp' => rand(14, 18),
 		);
 	}
-//	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson1');
-//		if ($quest->isInQuest($player))
-//		{
-//			$quest->increase('sr4qu_amount', 1);
-//			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
-//		}
-//		return array();
-//	}
+
+	public function getNPCLoot(SR_Player $player)
+	{
+		SR_Quest::getQuest($player, 'Troll_Support')->onKillHeadHunter($player);
+		return array();
+	}
 }
 ?>

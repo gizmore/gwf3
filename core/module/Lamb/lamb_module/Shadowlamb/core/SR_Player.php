@@ -58,7 +58,7 @@ class SR_Player extends GDO
 	const RESPONSE_PLAYERS = 0x04000;
 	const MOUNT_DIRTY = 0x80000;
 	const DIRTY_FLAGS = 0x87fe0;
-	
+
 	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
 	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
@@ -68,7 +68,7 @@ class SR_Player extends GDO
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
-	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Seattle');
+	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Magic','Redmond','Seattle','Delaware');
 	public static $NPC_RACES = array('droid','dragon');
 	
 	/**
@@ -2447,6 +2447,11 @@ class SR_Player extends GDO
 			return Shadowcmd::onExecute($this, $this->combat_stack);
 		}
 		return true;
+	}
+	
+	public function isMaxed()
+	{
+		
 	}
 }
 ?>

@@ -34,6 +34,13 @@ final class Delaware_Commando extends SR_NPC
 			'base_hp' => rand(14, 18),
 		);
 	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
+		return array();
+	}
+	
 //	
 //	public function getNPCLoot(SR_Player $player)
 //	{
