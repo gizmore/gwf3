@@ -12,12 +12,15 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 		$player->giveXP($xp);
 		$player->giveNuyen($ny);
 		
-		if (false !== ($scalps = $player->getInvItemByName('PunkScalp'))) {
+		if (false !== ($scalps = $player->getInvItemByName('PunkScalp')))
+		{
 			$scalps->deleteItem($player);
 		}
 
 		$quest = SR_Quest::getQuest($player, 'Redmond_AresDwarf_I');
-		if ($quest->isDone($player)) {
+		
+		if ($quest->isDone($player))
+		{
 			$this->onSolveDuo($player);
 		}
 	}
@@ -26,9 +29,21 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 	{
 		$player->message('The dwars look very pleased.');
 		$player->message('"Thank you so much", Aron says, "For your help we have thought of a special reward..."');
-		$player->message('Your melee skill has increased by 1.');
-		$player->increase('sr4pl_melee', 1);
-		$player->modify();
+		
+		$max = $player->isRunner() ? Shadowcmd_lvlup::MAX_VAL_SKILL_RUNNER : Shadowcmd_lvlup::MAX_VAL_SKILL;
+		if ($player->getBase('melee') > $max)
+		{
+			$player->giveNuyen(5000);
+			$player->message('You received another 5000 nuyen!');
+		}
+		else
+		{
+			$player->message('Your melee skill has increased by 1.');
+			$player->increase('sr4pl_melee', 1);
+			$player->modify();
+		}
+		return true;
+		
 	}
 	
 } 
