@@ -32,16 +32,16 @@ class SR_Rune extends SR_Item
 	private static function initRuneData()
 	{
 		### NAME TWICE                               min, maxLEVEL, DROP_C,   PRICE, FAIL_C, BRK_C,  MIN,    MAX
-		self::$RUNEDATA['elephants']  = array('elephants',  3, 200,  20.00,  200.00,  30.00, 12.00,   0.2,    4.0);
-		self::$RUNEDATA['orcas']      = array('orcas',      6, 200,  20.00,  200.00,  30.00, 10.00,   0.2,    4.0);
+//		self::$RUNEDATA['elephants']  = array('elephants',  3, 200,  20.00,  200.00,  30.00, 12.00,   0.2,    4.0);
+//		self::$RUNEDATA['orcas']      = array('orcas',      6, 200,  20.00,  200.00,  30.00, 10.00,   0.2,    4.0);
 		self::$RUNEDATA['max_hp']     = array('max_hp',     2, 150,  80.00,  200.00,  10.00,  2.00,   0.2,    3.0);
 		self::$RUNEDATA['max_mp']     = array('max_mp',     4, 150,  80.00,  250.00,  10.00,  2.00,   0.2,    6.0);
 		self::$RUNEDATA['max_weight'] = array('max_weight', 3, 100, 100.00,  300.00,  15.00,  4.00, 100.0, 3000.0);
 //		self::$RUNEDATA['attack']     = array('attack',     5, 100,  60.00,  650.00,  20.00,  6.00,   0.2,    2.0);
 		self::$RUNEDATA['attack']     = array('attack',     2,  32,  60.00,  250.00,   1.50,  0.50,   0.5,    5.0);
 		self::$RUNEDATA['defense']    = array('defense',    6, 150,  50.00,  900.00,  22.00,  7.00,   0.2,    2.0);
-		self::$RUNEDATA['spellatk']   = array('spellatk',  10, 120,  40.00,  750.00,  20.00,  6.00,   0.2,    2.0);
-		self::$RUNEDATA['spelldef']   = array('spelldef',  	6, 160,  30.00, 1000.00,  22.00,  7.00,   0.2,    2.0);
+//		self::$RUNEDATA['spellatk']   = array('spellatk',  10, 120,  40.00,  750.00,  20.00,  6.00,   0.2,    2.0);
+//		self::$RUNEDATA['spelldef']   = array('spelldef',  	6, 160,  30.00, 1000.00,  22.00,  7.00,   0.2,    2.0);
 		self::$RUNEDATA['min_dmg']    = array('min_dmg',   12, 120,  10.00,  900.00,  21.00,  6.50,   0.2,    2.0);
 		self::$RUNEDATA['max_dmg']    = array('max_dmg',   10, 110,  20.00,  900.00,  21.00,  6.50,   0.2,    2.0);
 		self::$RUNEDATA['marm']       = array('marm',      10, 120,   8.00, 1250.00,  24.00,  8.00,   0.2,    2.0);

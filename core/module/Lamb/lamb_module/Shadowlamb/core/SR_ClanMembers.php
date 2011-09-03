@@ -12,11 +12,10 @@ final class SR_ClanMembers extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'sr4cm_cid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
 			'sr4cm_pid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
+			'sr4cm_cid' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4cm_options' => array(GDO::UINT, 0),
 		);
 	}
-	
 }
 ?>

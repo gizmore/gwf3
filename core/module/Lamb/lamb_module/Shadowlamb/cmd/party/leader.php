@@ -5,23 +5,27 @@ final class Shadowcmd_leader extends Shadowcmd
 	{
 		$bot = Shadowrap::instance($player);
 		
-		if (count($args) !== 1) {
+		if (count($args) !== 1)
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'leader'));
 			return false;
 		}
 		
 		$party = $player->getParty();
-		if (false === ($target = $party->getMemberByName($args[0]))) {
+		if (false === ($target = $party->getMemberByArg($args[0])))
+		{
 			$bot->reply(sprintf('%s is not in your party.', $args[0]));
 			return false;
 		}
 		
-		if ($target->isLeader()) {
+		if ($target->isLeader())
+		{
 			$bot->reply(sprintf('%s is already the party leader.', $target->getName()));
 			return false;
 		}
 		
-		if ($target->isNPC()) {
+		if ($target->isNPC())
+		{
 			$bot->reply(sprintf('You can not give leadership to NPCs.'));
 			return false;
 		}
@@ -35,7 +39,8 @@ final class Shadowcmd_leader extends Shadowcmd
 		}
 		
 		# Do it!
-		if (false === $party->setLeader($target)) {
+		if (false === $party->setLeader($target))
+		{
 			$bot->reply('Error.');
 			return false;
 		}

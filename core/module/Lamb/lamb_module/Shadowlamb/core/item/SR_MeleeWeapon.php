@@ -7,22 +7,25 @@ abstract class SR_MeleeWeapon extends SR_Weapon
 
 	public function onReload(SR_Player $player) { $player->message('You can not reload a melee weapon? Oo'); }
 	
-	public function getItemModifiersW(SR_Player $player)
-	{
-		$st = $player->get('strength');
-		$mel = Common::clamp($player->get('melee'));
-		$nin = Common::clamp($player->get('ninja'));
-		
-		return array(
-			'attack' =>  round($st*0.5 + $mel*2.0, 1),#($player->get('strength')+$player->get('melee'))*1.35, 1),
-			'min_dmg' => round($st*0.1 + $mel*0.2, 1),#$player->get('melee') * 1.25, 1),
-			'max_dmg' => round($st*0.1 + $mel*0.5, 1),#$player->get('melee') * 1.25, 1),
-		);
-	}
-	
 	public function onAttack(SR_Player $player, $arg)
 	{
 		return $this->onAttackB($player, $arg, 'marm');
+	}
+	
+	public function getItemModifiersW(SR_Player $player)
+	{
+		$st = $player->get('strength');
+		$mel = $player->get('melee');
+		$nin = $player->get('ninja');
+		
+		return array(
+			'attack' =>  3.0 + round($st*0.5 + $mel*2.5, 1), # 3.0
+			'min_dmg' => 0.7 + round($st*0.2 + $mel*0.5, 1), # 0.7
+			'max_dmg' => 1.7 + round($st*0.5 + $mel*1.2, 1), # 1.7
+//			'attack' =>  round($st*0.5 + $mel*2.0, 1), # 2.5
+//			'min_dmg' => round($st*0.1 + $mel*0.2, 1), # 0.3
+//			'max_dmg' => round($st*0.1 + $mel*0.5, 1), # 0.6
+		);
 	}
 }
 
@@ -33,14 +36,15 @@ abstract class SR_NinjaWeapon extends SR_MeleeWeapon
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$st = $player->get('strength');
-		$mel = Common::clamp($player->get('melee'));
-		$nin = Common::clamp($player->get('ninja'));
+		$mel = $player->get('melee');
+		$nin = $player->get('ninja');
 		return array(
-			'attack'   => round($st*0.5 + $mel*2.0 + $nin*1.0, 1),
-			'min_dmg'  => round($st*0.1 + $mel*0.0 + $nin*0.5, 1),
-			'max_dmg'  => round($st*0.1 + $mel*0.0 + $nin*1.0, 1),
-//			'max_dmg' => round($player->get('melee')*0+( $player->get('ninja'))) * 1.0, 1),
-//			'min_dmg' => round(($player->get('melee')+($player->get('ninja'))) * 0.1, 1),
+			'attack'   => 3.0 + round($st*0.5 + $mel*0.5 + $nin*2.0, 1), # 3.0
+			'min_dmg'  => 0.9 + round($st*0.2 + $mel*0.1 + $nin*0.6, 1), # 0.9
+			'max_dmg'  => 1.5 + round($st*0.5 + $mel*0.2 + $nin*0.8, 1), # 1.5
+//			'attack'   => round($st*0.5 + $mel*2.0 + $nin*1.0, 1), # 3.5
+//			'min_dmg'  => round($st*0.1 + $mel*0.0 + $nin*0.5, 1), # 0.6
+//			'max_dmg'  => round($st*0.1 + $mel*0.0 + $nin*1.0, 1), # 1.1
 		);
 	}
 }

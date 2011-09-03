@@ -5,6 +5,7 @@ final class Item_CopCap extends SR_Helmet
 	public function getItemPrice() { return -1; }
 	public function getItemWeight() { return 300; }
 	public function getItemDescription() { return 'A useless copcap. Maybe a fun trophy.'; }
+	public function getItemDropChance() { return 40.0; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
@@ -13,6 +14,5 @@ final class Item_CopCap extends SR_Helmet
 			'farm' => 0.2,
 		);
 	}
-	
 }
 ?>

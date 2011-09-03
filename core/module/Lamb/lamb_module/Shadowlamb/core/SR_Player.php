@@ -5,8 +5,9 @@ class SR_Player extends GDO
 	const MAX_WEIGHT_MALUS = 0.25; # 25%
 		
 	const BASE_HP = 4;
+	const BASE_HP_NPC = 1;
 	const BASE_MP = 0;
-	const HP_PER_BODY = 2;
+	const HP_PER_BODY = 2.5;
 	const MP_PER_MAGIC = 5;
 	const MP_PER_CASTING = 5;
 	const HP_REFRESH_MULTI = 0.03;
@@ -869,14 +870,19 @@ class SR_Player extends GDO
 	{
 		if ($this->isHuman())
 		{
-			$this->sr4_data_modified['max_mp'] += $this->get('magic') * $this->get('mp_per_magic') + $this->get('base_mp') + self::BASE_MP + $this->get('casting') * $this->get('mp_per_casting');
+			$basehp = self::BASE_HP;
+			$this->sr4_data_modified['max_mp'] +=
+				 $this->get('magic') * $this->get('mp_per_magic') /*+ $this->get('mp_per_magic')*/ + # -1?
+				 $this->get('base_mp') + self::BASE_MP + # Race bonus
+				 $this->get('casting') * $this->get('mp_per_casting') /*+ $this->get('mp_per_casting')*/; # -1?
 		}
 		else
 		{
+			$basehp = self::BASE_HP_NPC;
 			$this->applyModifiers($this->getNPCModifiersB());
 		}
 		
-		$this->sr4_data_modified['max_hp'] += $this->get('body') * $this->get('hp_per_body') + $this->get('base_hp') + self::BASE_HP;
+		$this->sr4_data_modified['max_hp'] += $this->get('body') * $this->get('hp_per_body') + $this->get('base_hp') + $basehp;
 		$this->sr4_data_modified['max_weight'] += $this->get('strength') * self::WEIGHT_PER_STRENGTH + self::WEIGHT_BASE;
 	}
 	
@@ -1302,7 +1308,7 @@ class SR_Player extends GDO
 	public function getMPGain()
 	{
 		$ma = $this->get('magic') * 5;
-		$ma += $this->get('orcas') * 20;
+		$ma += ($this->get('orcas')+1) * 20;
 		return round(self::MP_REFRESH_MULTI*$ma, 2);
 	}
 	
@@ -1479,17 +1485,26 @@ class SR_Player extends GDO
 		return $this->getItemByNameB($itemname, $this->sr4_inventory);
 	}
 	
-	public function getItemByNameB($itemname, array $items)
+	public function getItemByNameB($itemname, array $items, $shortcuts=true)
 	{
 		$itemname = strtolower($itemname);
+		
 		foreach (array_reverse($items) as $item)
 		{
-			if (strtolower($item->getItemName()) === $itemname)
+			if (strtolower($item->getItemName() === $itemname))
 			{
 				return $item;
 			}
 		}
-		return false;
+		
+		if (strlen($itemname) < 4)
+		{
+			$shortcuts = false;
+		}
+		
+		return $shortcuts
+			? $this->getItemByShortNameB($itemname, $items)
+			: false;
 	}
 	
 	public function getInvItemByShortName($itemname)

@@ -4,7 +4,7 @@ final class Delaware_Goth extends SR_NPC
 	public function getNPCLevel() { return 15; }
 	public function getNPCPlayerName() { return 'Goth'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 10.00; }
 	
 	public function getNPCModifiers()
 	{

@@ -221,13 +221,6 @@ final class Shadowfunc
 					return $player;
 				}
 			}
-//			if ( ($arg > 0)	&& ($arg <= count($players)) )
-//			{
-//				$arg = (int)$arg;
-//				$back = array_slice($players, $arg-1, 1, false);
-//				return $back[0];
-//			}
-//			return false;
 		}
 
 		$arg = strtolower($arg);
@@ -236,13 +229,18 @@ final class Shadowfunc
 		foreach ($players as $target)
 		{
 //			echo sprintf('Checking %s against %s', $target->getName(), $arg).PHP_EOL;
-			if (strtolower($target->getName()) === $arg)
+			$name = strtolower($target->getName());
+			
+			# Exact match
+			if ($name === $arg)
 			{
 				return $target;
 			}
 			
 //			echo sprintf('Checking %s against %s', $target->getShortName(), $n).PHP_EOL;
-			if (strtolower($target->getShortName()) === $n)
+//			if (strtolower($target->getShortName()) === $n)
+			# Partial match
+			if (strpos($name, $n) !== false)
 			{
 				$candidates[] = $target;
 			}
@@ -346,7 +344,7 @@ final class Shadowfunc
 		{
 			if ($target->isHuman()) # NPC attacks Human
 			{
-				$rand = rand(11, 15) / 10;
+				$rand = rand(12, 20) / 10;
 				$oops = $rand + $ep->getMemberCount()*0.4 + $ep->getMax('level', true)*0.01;
 			}
 			else # NPC attacks NPC
@@ -354,7 +352,7 @@ final class Shadowfunc
 				$oops = rand(80, 250) / 10;
 			}
 		}
-		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops;
+		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops * 0.65;
 		return Shadowfunc::dicePool(round($chances), round($def)+1, round(sqrt($def)));
 	}	
 	

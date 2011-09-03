@@ -4,7 +4,7 @@ final class Delaware_Emo extends SR_NPC
 	public function getNPCLevel() { return 15; }
 	public function getNPCPlayerName() { return 'Emo'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCMeetPercent(SR_Party $party) { return 40.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
 	
 	public function getNPCModifiers()
 	{

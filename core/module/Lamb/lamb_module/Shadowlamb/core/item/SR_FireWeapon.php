@@ -7,27 +7,21 @@ abstract class SR_FireWeapon extends SR_Weapon
 	
 	public function getItemRange() { return 20.0; }
 	
-//	public function getItemModifiersW(SR_Player $player)
-//	{
-//		$sub = Common::clamp($player->get($this->getItemSubType()), 0); # (pis,sho,smg,hmg,bow)
-//		$fir = Common::clamp($player->get('firearms')); # (fir),
-//		$nin = $sub === 'bows' ? Common::clamp($player->get('ninja')) : 0.0; # (bow++)
-//		return array(
-//			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
-//			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.0, 1),
-//			'max_dmg' => round($fir*0.2 + $sub*0.8 + $nin*0.1, 1),
-//		);
-//	}
-	
 	public function getItemModifiersW(SR_Player $player)
 	{
-		$fir = Common::clamp($player->get('firearms')); # (fir),
-		$sub = Common::clamp($player->get($this->getItemSubType())); # (pis,sho,smg,hmg)
-		$nin = Common::clamp($player->get('ninja')); # (nin)
+//		$fir = Common::clamp($player->get('firearms')); # (fir),
+//		$sub = Common::clamp($player->get($this->getItemSubType())); # (pis,sho,smg,hmg)
+//		$nin = Common::clamp($player->get('ninja')); # (nin)
+		$fir = $player->get('firearms');
+		$sub = $player->get('bows');
+//		$nin = $player->get('ninja');
 		return array(
-			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1),
-			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.1, 1),
-			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.1, 1),
+			'attack' =>  3.2 + round($fir*2.0 + $sub*1.2, 1), # 3.2
+			'min_dmg' => 0.6 + round($fir*0.2 + $sub*0.4, 1), # 0.6
+			'max_dmg' => 1.8 + round($fir*0.9 + $sub*0.9, 1), # 1.8
+//			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1), # 3.2
+//			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.1, 1), # 0.4
+//			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.1, 1), # 1.0
 		);
 	}
 	
@@ -119,13 +113,19 @@ abstract class SR_Bow extends SR_FireWeapon
 	
 	public function getItemModifiersW(SR_Player $player)
 	{
-		$fir = Common::clamp($player->get('firearms'));
-		$sub = Common::clamp($player->get('bows'));
-		$nin = Common::clamp($player->get('ninja'));
+//		$fir = Common::clamp($player->get('firearms'));
+//		$sub = Common::clamp($player->get('bows'));
+//		$nin = Common::clamp($player->get('ninja'));
+		$fir = $player->get('firearms');
+		$sub = $player->get('bows');
+		$nin = $player->get('ninja');
 		return array(
-			'attack' =>  round($fir*1.0 + $sub*2.0 + $nin*1.0, 1),
-			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.2, 1),
-			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.2, 1),
+			'attack' =>  3.2 + round($fir*1.5 + $sub*1.5 + $nin*0.2, 1), # 3.2
+			'min_dmg' => 0.4 + round($fir*0.1 + $sub*0.1 + $nin*0.2, 1), # 0.4
+			'max_dmg' => 2.0 + round($fir*0.6 + $sub*0.7 + $nin*0.7, 1), # 2.0
+//			'attack' =>  round($fir*1.0 + $sub*2.0 + $nin*1.0, 1), # 3.2
+//			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.2, 1), # 0.5
+//			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.2, 1), # 1.1
 		);
 	}
 	

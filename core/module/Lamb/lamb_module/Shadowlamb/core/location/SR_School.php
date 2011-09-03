@@ -53,15 +53,25 @@ abstract class SR_School extends SR_Store
 		$have = false;
 		$type = 'skill';
 		
-		if (false !== ($spell = SR_Spell::getSpell($field))) {
+		if (false !== ($spell = SR_Spell::getSpell($field)))
+		{
 			$type = 'spell';
-			if ($spell->getBaseLevel($player) > -1) {
+			if ($spell->getBaseLevel($player) > -1)
+			{
 				$have = true;
 			}
 		}
-		elseif ($player->getBase($field) > -1) {
+		elseif ($player->getBase($field) > -1)
+		{
 			$have = true;
 		}
+		
+		if ($player->getBase($field) < -1)
+		{
+			$player->message(sprintf('Your character cannot learn %s.', $field));
+			return false;
+		}
+		
 		
 		if ($have === true) {
 			$player->message(sprintf('You already learned the %s %s.', $type, $field));
