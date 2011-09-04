@@ -9,9 +9,9 @@ final class Spell_poison_dart extends SR_CombatSpell
 	
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return $level + 6;
 	}
 	

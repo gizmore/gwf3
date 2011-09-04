@@ -5,9 +5,9 @@ final class Spell_fireball extends SR_CombatSpell
 	public function getHelp() { return 'Cast a fireball into the enemies. Does moderate area damage.'; }
 	public function getRequirements() { return array('firebolt'=>2,'goliath'=>1); }
 	public function getCastTime($level) { return Common::clamp(40-$level, 30, 42); }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return 6 + ($level*2);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)

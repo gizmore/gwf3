@@ -6,9 +6,9 @@ final class Spell_bunny extends SR_SupportSpell
 	public function getHelp() { return 'Make yourself #flee a combat.'; }
 	public function getRequirements() { return array('magic'=>2); }
 	public function getCastTime($level) { return Common::clamp(rand(10, 30)); }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return Common::clamp(7-$level/4, 1);
 	}
 	

@@ -5,7 +5,11 @@ final class Spell_heal extends SR_HealSpell
 	public function getHelp() { return 'Heals a friendly target.'; }
 	public function getRequirements() { return array('magic'=>4,'calm'=>2); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
-	public function getManaCost(SR_Player $player) { return 6 + $this->getLevel($player); }
+	public function getManaCost(SR_Player $player, $level)
+	{
+//		return 6 + $this->getLevel($player);
+		return 6 + $level;
+	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
 		$min = $level + 1;

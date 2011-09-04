@@ -7,9 +7,10 @@ final class Spell_whirlwind extends SR_CombatSpell
 	public function getCastTime($level) { return 50; }
 	public function getRequirements() { return array('magic'=>4,'blow'=>2); }
 	public function getRange() { return 8.0; }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		return 7 + $this->getLevel($player);
+//		return 7 + $this->getLevel($player);
+		return 7 + $level;
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)

@@ -8,9 +8,9 @@ final class Spell_flu extends SR_CombatSpell
 	public function getHelp() { return sprintf('Poisons an enemy which reduces it\'s HP slowly.'); }
 	public function getRequirements() { return array('magic'=>2); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return $level + 2;
 	}
 	

@@ -5,9 +5,10 @@ final class Spell_blow extends SR_CombatSpell
 	public function getCastTime($level) { return 45; }
 	public function getRequirements() { return array('magic'=>2); }
 	public function getRange() { return 4.0; }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		return 4 + $this->getLevel($player);
+		return 4 + $level;
+//		return 4 + $this->getLevel($player);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)

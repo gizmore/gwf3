@@ -530,7 +530,8 @@ final class Shadowhelp
 	
 	private static function getSpellHelp(SR_Spell $spell, SR_Player $player)
 	{
-		return sprintf('%s %s. Level %s (%s MP). %s', $spell->displayType(), $spell->displayClass(), $spell->getLevel($player), $spell->getManaCost($player), $spell->getHelp());
+		$level = $spell->getLevel($player);
+		return sprintf('%s %s. Level %s (%s MP). %s', $spell->displayType(), $spell->displayClass(), $level, $spell->getManaCost($player, $level), $spell->getHelp());
 	}
 	
 	###############

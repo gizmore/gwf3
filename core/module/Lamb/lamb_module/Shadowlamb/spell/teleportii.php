@@ -10,7 +10,7 @@ final class Spell_teleportii extends SR_Spell
 	public function getHelp() { return 'Teleport your party outside a known place in a known city, from a known place in a known city.'; }
 	public function getCastTime($level) { return 60; }
 	public function getRequirements() { return array('magic'=>6,'teleport'=>1); }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
 		$p = $player->getParty();
 		return self::MANA_MIN + self::MANA_PER_M * $p->getMemberCount();

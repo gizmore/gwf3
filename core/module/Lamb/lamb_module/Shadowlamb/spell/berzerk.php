@@ -7,9 +7,9 @@ final class Spell_berzerk extends SR_SupportSpell
 	public function getRequirements() { return array('magic'=>3); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return (($level+3)/2) + 1;
 	}
 	

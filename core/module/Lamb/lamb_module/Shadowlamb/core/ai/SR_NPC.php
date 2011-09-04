@@ -137,7 +137,8 @@ abstract class SR_NPC extends SR_NPCBase
 			$spell = SR_Spell::getSpell($name);
 			if ($spell instanceof SR_HealSpell)
 			{
-				if ($spell->hasEnoughMP($this))
+				$level = $spell->getLevel($this);
+				if ($spell->hasEnoughMP($this, $level))
 				{
 					$back[] = $spell;
 				}
@@ -271,7 +272,7 @@ abstract class SR_NPC extends SR_NPCBase
 			$spell = SR_Spell::getSpell($name);
 			if ($spell instanceof SR_SupportSpell)
 			{
-				if ($spell->hasEnoughMP($this))
+				if ($spell->hasEnoughMP($this, $spell->getLevel($this)))
 				{
 					$back[] = $spell;
 				}
@@ -315,7 +316,7 @@ abstract class SR_NPC extends SR_NPCBase
 			$spell = SR_Spell::getSpell($name);
 			if ($spell instanceof SR_CombatSpell)
 			{
-				if ($spell->hasEnoughMP($this))
+				if ($spell->hasEnoughMP($this, $spell->getLevel($this)))
 				{
 					$back[] = $spell;
 				}

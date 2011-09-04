@@ -6,9 +6,9 @@ final class Spell_magicarp extends SR_Spell
 	public function getRequirements() { return array('magic'=>5,'calm'=>1,'blow'=>1); }
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	public function isOffensive() { return true; }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return 6 + ($level*0.7);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)

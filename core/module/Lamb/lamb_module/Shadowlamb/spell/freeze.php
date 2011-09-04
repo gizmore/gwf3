@@ -9,9 +9,9 @@ final class Spell_freeze extends SR_CombatSpell
 	public function getHelp() { return "Freezes an enemy for some time"; }
 	public function getRequirements() { return array('magic'=>3); }
 	public function getCastTime($level) { return Common::clamp(20-$level, 10, 40); }
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return 6 + $level;
 	}
 

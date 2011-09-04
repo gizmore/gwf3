@@ -9,9 +9,9 @@ final class Spell_turtle extends SR_SupportSpell
 	
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return $level + 6;
 	}
 

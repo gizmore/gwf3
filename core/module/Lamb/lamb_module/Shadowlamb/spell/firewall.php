@@ -7,9 +7,9 @@ final class Spell_firewall extends SR_CombatSpell
 	
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
 	
-	public function getManaCost(SR_Player $player)
+	public function getManaCost(SR_Player $player, $level)
 	{
-		$level = $this->getLevel($player);
+//		$level = $this->getLevel($player);
 		return 2 + ($level*0.5);
 	}
 	

@@ -14,7 +14,7 @@ abstract class SR_Spell
 	public abstract function getHelp();
 	public abstract function isOffensive();
 	public abstract function getCastTime($level);
-	public abstract function getManaCost(SR_Player $player);
+	public abstract function getManaCost(SR_Player $player, $level);
 	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
 
 	##############
@@ -113,9 +113,9 @@ abstract class SR_Spell
 	#################
 	### Base Cast ###
 	#################
-	public function hasEnoughMP(SR_Player $player)
+	public function hasEnoughMP(SR_Player $player, $level)
 	{
-		return $this->getManaCost($player) <= $player->getMP();
+		return $this->getManaCost($player, $level) <= $player->getMP();
 	}
 	
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
@@ -144,14 +144,6 @@ abstract class SR_Spell
 			return false;
 		}
 		
-		$need = $this->getManaCost($player);
-		$have = $player->getMP();
-		
-		if ($need > $have) {
-			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
-			return false;
-		}
-		
 		$level = $this->getLevel($player);
 		
 		if ($wanted_level !== true)
@@ -172,6 +164,15 @@ abstract class SR_Spell
 				$level = $wanted_level;
 			}
 		}
+		
+		$need = $this->getManaCost($player, $level);
+		$have = $player->getMP();
+		
+		if ($need > $have) {
+			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
+			return false;
+		}
+		
 		
 		$hits = $this->dice($player, $target, $level);
 		
