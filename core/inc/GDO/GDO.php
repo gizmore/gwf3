@@ -268,6 +268,9 @@ abstract class GDO
 	#############
 	public static function getLimit($limit=-1, $from=-1)
 	{
+		$limit = (int)$limit;
+		$from = (int)$from;
+		
 		if ($from === -1) {
 			if ($limit === -1) {
 				return '';
