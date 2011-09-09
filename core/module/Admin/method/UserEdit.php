@@ -175,6 +175,12 @@ final class Admin_UserEdit extends GWF_Method
 
 		GWF_Hook::call(GWF_Hook::DELETE_USER, $u);
 		
+		if ($newFlag)
+		{
+			$uid = $this->user->getID();
+			GDO::table('GWF_Session')->deleteWhere('sess_user='.$uid);
+		}
+		
 		$key = $newFlag === true ? 'msg_deleted' : 'msg_undeleted';
 		return array($module->lang($key));
 	}

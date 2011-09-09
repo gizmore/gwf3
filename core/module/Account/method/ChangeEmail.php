@@ -104,7 +104,7 @@ final class Account_ChangeEmail extends GWF_Method
 		}
 		
 		if (GWF_User::getByEmail($email1) !== false) {
-			return GWF_HTML::err('err_email_taken');
+			return $module->error('err_email_taken');
 		}
 		
 		if (false === $row->delete()) {
