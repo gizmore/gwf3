@@ -85,6 +85,11 @@ final class GWF_FormValidator
 					unset($check_sent[$key]);
 					break;
 				
+				case GWF_Form::TIME:
+					$check_need[] = $key.'h';
+					$check_need[] = $key.'i';
+					break;
+					
 				case GWF_Form::DATE:
 				case GWF_Form::DATE_FUTURE:
 					switch ($data[4])

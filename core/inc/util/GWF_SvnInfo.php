@@ -225,9 +225,12 @@ Repository
 			return false;
 		}
 
-		$datedRevision = $datedRevision[0];
-
-		return (int)$datedRevision;
+		if (!isset($datedRevision[0]))
+		{
+			return 0;
+		}
+		
+		return (int)$datedRevision[0];
 	}
 
 	/**

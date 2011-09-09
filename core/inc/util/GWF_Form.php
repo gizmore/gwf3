@@ -44,6 +44,7 @@ class GWF_Form
 	const SELECT_A = 22;
 	const SUBMIT_IMG = 23;
 	const SUBMIT_IMGS = 24;
+	const TIME = 25;
 	
 	private $method;
 	private $validator;
@@ -68,7 +69,8 @@ class GWF_Form
 	
 	public function getVar($key, $default=false)
 	{
-		if (!isset($this->form_data[$key])) {
+		if (!isset($this->form_data[$key]))
+		{
 			return $default;
 		}
 		
@@ -78,6 +80,8 @@ class GWF_Form
 				return $this->getFile($key, $default);
 			case self::DATE: case self::DATE_FUTURE:
 				return $this->getDate($key, $this->form_data[$key][4]);
+			case self::TIME:
+				return sprintf('%02s%02s', Common::getPostString($key.'h', '00'), Common::getPostString($key.'i', '00'));
 			case self::CHECKBOX:
 				return isset($_POST[$key]);
 			case self::INT:
@@ -203,6 +207,9 @@ class GWF_Form
 					break;
 				case self::DATE_FUTURE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, true, false);
+					break;
+				case self::TIME:
+					$this->form_data[$key][1] = GWF_TimeSelect::select($key.'h', $key.'i', $data[1]);
 					break;
 				case self::SELECT:
 				case self::SELECT_A:

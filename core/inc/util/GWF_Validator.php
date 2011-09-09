@@ -331,6 +331,20 @@ final class GWF_Validator
 		return false;
 	}
 	
+	public static function validateTime($m, $key, $arg, $allow_zero=true, $unset=true)
+	{
+		if (!GWF_TimeSelect::isValidTime($arg, $allow_zero))
+		{
+			if ($unset)
+			{
+				unset($_POST[$key.'h']);
+				unset($_POST[$key.'i']);
+			}
+			return $m->lang('err_'.$key);
+		}
+		return false;
+	}
+	
 	public static function validateTags($m, $key, $arg, $minlen=3, $maxlen=32)
 	{
 		$tags = explode(',', $arg);
