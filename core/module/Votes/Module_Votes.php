@@ -13,24 +13,8 @@ final class Module_Votes extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/voting'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Staff'); }
 	public function getClasses() { return array('GWF_VoteMulti', 'GWF_VoteMultiOpt', 'GWF_VoteMultiRow', 'GWF_VoteScore', 'GWF_VoteScoreRow'); }
-	public function onIncludeAjax()
-	{
-		GWF_Website::addJavascript($this->getModuleFilePath('js/gwf_vote.js?v=3'));
-	}
+	public function onIncludeAjax() { GWF_Website::addJavascript(GWF_WEB_ROOT.'tpl/module/Votes/js/gwf_vote.js'); }
 	
-//	public function onAddMenu()
-//	{
-//		if (false === ($user = (GWF_Session::getUser()))) {
-//			# Guest
-//			$append = '';
-//		}
-//		else {
-//			# Member
-//			$append = '';
-//		}
-//		
-//		GWF_TopMenu::addMenu('votes', $this->hrefOverview(), $append, $this->isSelected());
-//	}
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
