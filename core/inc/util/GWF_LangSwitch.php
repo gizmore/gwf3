@@ -19,7 +19,7 @@ final class GWF_LangSwitch
 	
 	public static function getOnChange()
 	{
-		$current_url = GWF_Session::getCurrentURL();
+		$current_url = htmlspecialchars(GWF_Session::getCurrentURL(), ENT_QUOTES);
 		$url = Common::getProtocol().'://'.$_SERVER['HTTP_HOST'].'/';
 		return 'window.location = \''.$url.'\'+this.value+\''.$current_url.'\'; return true;';
 	}

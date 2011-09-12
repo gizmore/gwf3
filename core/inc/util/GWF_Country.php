@@ -76,7 +76,7 @@ final class GWF_Country extends GDO
 	{
 		$path = GWF_WEB_ROOT.'img/country/'.$countryid;
 		$t = htmlspecialchars($countryname);
-		return sprintf('<img src="%s" width="30" height="18" title="%s" alt="%s"/>', $path, $t, $t).PHP_EOL;
+		return sprintf('<img src="%s" width="30" height="18" title="%s" alt="%s" />', $path, $t, $t).PHP_EOL;
 	}
 	
 	#################

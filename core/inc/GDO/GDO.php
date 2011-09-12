@@ -969,16 +969,19 @@ abstract class GDO
 //			if (($flags & self::PRIMARY_KEY) === self::PRIMARY_KEY) {
 //				continue;
 //			}
-			if (($flags & self::OBJECT) === self::OBJECT) {
+			if (($flags & self::OBJECT) === self::OBJECT)
+			{
 				continue;
 			}
-			if (($flags & self::JOIN) === self::JOIN) {
+			if (($flags & self::JOIN) === self::JOIN)
+			{
 				continue;
 			}
+//			echo "$c is ".$this->gdo_data[$c].'<br/>'.PHP_EOL;
 			$hash .= '::'.$this->gdo_data[$c];
 		}
 //		var_dump($hash);
-		return substr(md5($hash), 0, 12);
+		return substr(md5($hash.GWF_SECRET_SALT), 0, 12);
 	}
 	
 	public function lock($string)
