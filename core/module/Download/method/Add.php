@@ -85,11 +85,13 @@ final class Download_Add extends GWF_Method
 	private function onAdd(Module_Download $module)
 	{
 		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		if (false !== ($errors = $form->validate($module)))
+		{
 			return $errors.$this->templateAdd($module);
 		}
 
-		if (false === ($file = $this->getFile($module))) {
+		if (false === ($file = $this->getFile($module)))
+		{
 			$this->uploadedFile($module, $form);
 			$file = $form->getVar('file');
 		}
@@ -97,18 +99,23 @@ final class Download_Add extends GWF_Method
 //		var_dump($file);
 		
 		$tempname = $file['tmp_name'];
-		if (!file_exists($tempname)) {
+		if (!file_exists($tempname))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($module);
 		}
 
+		$mod = $module->isModerated($module);
+		
 		$userid = GWF_Session::getUserID();
 		$options = 0;
 		$options |= isset($_POST['adult']) ? GWF_Download::ADULT : 0;
 		$options |= isset($_POST['huname']) ? GWF_Download::HIDE_UNAME : 0;
 		$options |= isset($_POST['guest_view']) ? GWF_Download::GUEST_VISIBLE : 0;
 		$options |= isset($_POST['guest_down']) ? GWF_Download::GUEST_DOWNLOAD : 0;
+		$options |= $mod ? 0 : GWF_Download::ENABLED;
 		
 		$dl = new GWF_Download(array(
+			'dl_id' => 0,
 			'dl_uid' => $userid,
 			'dl_gid' => $form->getVar('group'),
 			'dl_level' => $form->getVar('level'),
@@ -119,9 +126,10 @@ final class Download_Add extends GWF_Method
 			'dl_realname' => $file['name'],
 			'dl_descr' => $form->getVar('descr'),
 			'dl_mime' => GWF_Upload::getMimeType($file['tmp_name']),
-			'dl_price' => $form->getVar('price', 0.0),
+			'dl_price' => sprintf('%.02f', $form->getVar('price', 0.0)),
 			'dl_options' => $options,
 			'dl_voteid' => 0,
+			'dl_purchases' => 0,
 			'dl_expire' => GWF_TimeConvert::humanToSeconds($form->getVar('expire')),
 		));
 		if (false === $dl->insert()) {
@@ -130,18 +138,30 @@ final class Download_Add extends GWF_Method
 		
 		$dlid = $dl->getID();
 		$filename = 'dbimg/dl/'.$dlid;
-		if (false === GWF_Upload::moveTo($file, $filename)) {
+		
+		if (false === GWF_Upload::moveTo($file, $filename))
+		{
 			return GWF_HTML::err('ERR_WRITE_FILE', array( $filename)).$this->templateAdd($module);
 		}
-		if (false === @unlink($tempname)) {
+		
+		if (false === @unlink($tempname))
+		{
 			return GWF_HTML::err('ERR_WRITE_FILE', array( $tempname)).$this->templateAdd($module);
 		}
 		
-		if (false === $dl->createVotes($module)) {
+		if (false === $dl->createVotes($module))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($module);
 		}
 		
 		$this->clearFile($module);
+		
+		if ($mod)
+		{
+			$this->sendModMail($module, $dl);
+			return $module->message('msg_uploaded_mod');
+		}
+		
 		
 		return $module->message('msg_uploaded');
 	}
@@ -193,6 +213,55 @@ final class Download_Add extends GWF_Method
 	public function validate_level(Module_Download $m, $arg) { return GWF_Validator::validateInt($m, 'level', $arg, 0, 3999999999, '0'); }
 	public function validate_descr(Module_Download $m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 0, $m->cfgMaxDescrLen(), false); }
 	public function validate_expire(Module_Download $m, $arg) { return GWF_Time::isValidDuration($arg, 0, GWF_Time::ONE_YEAR*10) ? false : $m->lang('err_dl_expire'); }
+
+	##################
+	### Moderation ###
+	##################
+	private function sendModMail(Module_Download $module, GWF_Download $dl)
+	{
+//		$dl->setVar('', $val);
+		
+		$user = GWF_Session::getUser();
+		foreach (GWF_UserSelect::getUsers(GWF_Group::STAFF) as $staff)
+		{
+			$this->sendModMailB($module, $dl, $user, new GWF_User($staff));
+		}
+	}
 	
+	private function sendModMailB(Module_Download $module, GWF_Download $dl, GWF_User $uploader, GWF_User $staff)
+	{
+		if ('' === ($rec = $staff->getValidMail()))
+		{
+			return;
+		}
+		
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver($rec);
+		$mail->setSubject($module->langUser($staff, 'mod_mail_subj'));
+		
+		$token = $dl->getHashcode();
+		$dlid = $dl->getID();
+		$url1 = "index.php?mo=Download&me=Moderate&token={$token}&dlid={$dlid}&action=download";
+		$url2 = "index.php?mo=Download&me=Moderate&token={$token}&dlid={$dlid}&action=allow";
+		$url3 = "index.php?mo=Download&me=Moderate&token={$token}&dlid={$dlid}&action=delete";
+		
+		$args = array(
+			$staff->displayUsername(),
+			$uploader->displayUsername(),
+			$dl->display('dl_filename'),
+			$dl->display('dl_realname'),
+			$dl->display('dl_mime'),
+			$dl->getFilesize(),
+			$dl->display('dl_descr'),
+			Common::getAbsoluteURL($url1, true),
+			Common::getAbsoluteURL($url2, true),
+			Common::getAbsoluteURL($url3, true),
+		);
+		
+		$mail->setBody($module->langUser($staff, 'mod_mail_body', $args));
+		
+		$mail->sendToUser($staff);
+	}
 }
 ?>

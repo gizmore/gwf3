@@ -68,8 +68,14 @@ final class Download_Download extends GWF_Method
 		# Downloaded one more time
 		$dl->increase('dl_count', 1);
 		
-		$realpath = $dl->getCustomDownloadPath();
+		$this->sendTheFile($module, $dl);
+	}
+	
+	public function sendTheFile(GWF_Module $module, GWF_Download $dl)
+	{
+		GWF3::setConfig('store_last_url', false);
 		
+		$realpath = $dl->getCustomDownloadPath();
 		# http header
 		$mime = $dl->getVar('dl_mime'); # currently i am looking for pecl filetype?
 		$mime = 'application/octet-stream'; # not sure about...
@@ -79,11 +85,11 @@ final class Download_Download extends GWF_Method
 		header("Content-Disposition: attachment; filename=\"$name\""); # drop attachment?
 		$size = filesize($realpath);
 		header("Content-Length: $size");
-		
 		# Print file and die
 		echo file_get_contents($realpath);
 		die(0);
 	}
+	
 	
 	private function templatePay(GWF_Module $module, GWF_Download $dl)
 	{

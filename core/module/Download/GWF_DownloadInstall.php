@@ -15,51 +15,53 @@ final class GWF_DownloadInstall
 				'dl_maxvote' => array('5', 'int', 3, 100),
 				'dl_gvotes' => array('NO', 'bool'),
 				'dl_gcaptcha' => array('YES', 'bool'),
+				'dl_moderators' => array('moderator', 'text', 0, 63),
+				'dl_moderated' => array('YES', 'bool'),
+				'dl_min_level' => array('0', 'int', 0, 1000000),
 			)).
+			self::dropVotes($module, $dropTable).
 			self::installDlDirs($module, $dropTable);
+	}
+	
+	private static function dropVotes($module, $dropTable)
+	{
+		if ($dropTable)
+		{
+			if (false === GDO::table('GWF_VoteScore')->deleteWhere("vs_name LIKE 'dl_%'"))
+			{
+				return GWF_HTML::err('ERR_WRITE_FILE', array( $dir));
+			}
+		}
+		return '';
 	}
 	
 	private static function installDlDirs($module, $dropTable)
 	{
 		$dir = 'dbimg/dl';
+		
 		if (is_dir($dir))
 		{
-			if (false === GWF_HTAccess::protect($dir)) {
+			if (false === GWF_HTAccess::protect($dir))
+			{
 				return GWF_HTML::err('ERR_WRITE_FILE', array( $dir.'/.htaccess'));
 			}
-			else {
+			else
+			{
 				return '';
 			}
 		}
 		
-		if (false === mkdir($dir) || false === chmod($dir, GWF_CHMOD)) {
+		if (false === mkdir($dir) || false === chmod($dir, GWF_CHMOD))
+		{
 			return GWF_HTML::err('ERR_WRITE_FILE', array( $dir));
 		}
 
-		if (false === GWF_HTAccess::protect($dir)) {
+		if (false === GWF_HTAccess::protect($dir))
+		{
 			return GWF_HTML::err('ERR_WRITE_FILE', array( $dir.'/.htaccess'));
 		}
 		
 		return '';
 	}
-	
-//	private static function installDLHTAccess()
-//	{
-//		$filename = 'dbimg/dl/.htaccess';
-//		if (false === file_put_contents($filename, self::getDLHTAccess())) {
-//			return GWF_HTML::err('ERR_WRITE_FILE', array( $filename));
-//		}
-//		return '';
-//	}
-//
-//	private static function getDLHTAccess()
-//	{
-//		return
-//			'<Limit GET POST PUT DELETE CONNECT>'.PHP_EOL.
-//				'order deny,allow'.PHP_EOL.
-//				'deny from all'.PHP_EOL.
-//			'</Limit>'.PHP_EOL;
-//	}
-	
 }
 ?>

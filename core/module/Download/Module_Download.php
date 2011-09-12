@@ -8,17 +8,20 @@ final class Module_Download extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.00; }
+	public function getVersion() { return 1.01; }
 	public function getPrice() { return 19.95; }
 	public function getClasses() { return array('GWF_Download', 'GWF_DownloadToken'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/dl'); }
 	public function onInstall($dropTable) { require_once 'GWF_DownloadInstall.php'; return GWF_DownloadInstall::install($this, $dropTable); }
+	
 	public function execute($methodname)
 	{
-		if (false !== ($mod = GWF_Module::loadModuleDB('Votes'))) {
+		if (false !== ($mod = GWF_Module::loadModuleDB('Votes')))
+		{
 			$mod->onInclude();
 		}
-		if (false !== ($mod = GWF_Module::loadModuleDB('Payment'))) {
+		if (false !== ($mod = GWF_Module::loadModuleDB('Payment')))
+		{
 			$mod->onInclude();
 		}
 		return parent::execute($methodname);
@@ -26,7 +29,8 @@ final class Module_Download extends GWF_Module
 	
 	public function onInclude()
 	{
-		if (false !== ($mod = GWF_Module::loadModuleDB('Votes'))) {
+		if (false !== ($mod = GWF_Module::loadModuleDB('Votes')))
+		{
 			$mod->onInclude();
 		}
 		return parent::onInclude();
@@ -45,6 +49,9 @@ final class Module_Download extends GWF_Module
 	public function cfgMaxVote() { return $this->getModuleVar('dl_maxvote', 5); }
 	public function cfgGuestVote() { return $this->getModuleVar('dl_gvotes', '0') === '1'; }
 	public function cfgGuestCaptcha() { return $this->getModuleVar('dl_gcaptcha', '1') === '1'; }
+	public function cfgModerated() { return $this->getModuleVar('dl_moderated', '1') === '1'; }
+	public function cfgModerators() { return $this->getModuleVar('dl_moderators', 'moderator'); }
+	public function cfgMinLevel() { return (int)$this->getModuleVar('dl_min_level', 0); }
 	
 	public function saveModuleVar($key, $value)
 	{
@@ -91,6 +98,10 @@ final class Module_Download extends GWF_Module
 		if ($user === false)
 		{
 			# Guest
+			if (!$download->isEnabled())
+			{
+				return $this->error('err_disabled');
+			}
 			if ($download->isAdult())
 			{
 				return $this->error('err_adult');
@@ -110,11 +121,18 @@ final class Module_Download extends GWF_Module
 			$user instanceof GWF_User;
 			
 			# Admin
-			if ($user->isAdmin()) {
+			if ($user->isAdmin())
+			{
 				return false;
 			}
 			
-			if ($download->isAdult() && !$user->wantsAdult()) {
+			if (!$download->isEnabled())
+			{
+				return $this->error('err_disabled');
+			}
+			
+			if ($download->isAdult() && !$user->wantsAdult())
+			{
 				return $this->error('err_adult');
 			}
 			
@@ -137,19 +155,49 @@ final class Module_Download extends GWF_Module
 	
 	public function mayUpload($user)
 	{
+		$level = $this->cfgMinLevel();
+		
 		if ($user === false)
 		{
-			return $this->cfgAnonUp(); # Guest
+			return $level <= 0 ? $this->cfgAnonUp() : false;
 		}
 		else
 		{
-			if ($user->isAdmin()) { # Admin
+			$user instanceof GWF_User;
+			if ($user->isAdmin())
+			{
 				return true;
 			}
-			else {
-				return $this->cfgUserUp(); # User
+			else
+			{
+				if ($user->getLevel() < $level)
+				{
+					return false;
+				}
+				return $this->cfgUserUp();
 			}
 		}
+	}
+	
+	public function isModerated()
+	{
+		if (!$this->cfgModerated())
+		{
+			return false;
+		}
+		
+		$user = GWF_Session::getUser();
+		if ($user->isAdmin())
+		{
+			return false;
+		}
+		
+		if ($user->isInGroupName($this->cfgModerators()))
+		{
+			return false;
+		}
+		
+		return true;
 	}
 }
 ?>

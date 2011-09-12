@@ -92,5 +92,39 @@ $lang = array(
 	'err_adult' => 'Tämä on aikuissisältöinen.',
 
 	'th_dl_date' => 'Date',
+
+	# GWF3v1.1
+	'cfg_dl_min_level' => 'Minimum userlevel for an upload',
+	'cfg_dl_moderated' => 'Require moderators to unlock uploads?',
+	'cfg_dl_moderators' => 'Usergroup for upload moderators.',
+	'th_enabled' => 'Enabled?',
+	'err_disabled' => 'This download isn\'t enabled yet.',
+	'msg_enabled' => 'The download has been enabled.',
+	'msg_uploaded_mod' => 'Your file has been uploaded successfully, but has to be reviewed before it is released.',
+
+	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
+	'mod_mail_body' =>
+		'Dear %1%'.PHP_EOL.
+		PHP_EOL.
+		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
+		PHP_EOL.
+		'From: %2%'.PHP_EOL.
+		'File: %3% (%4%)'.PHP_EOL.
+		'Mime: %5%'.PHP_EOL.
+		'Size: %6%'.PHP_EOL.
+		'Desc: %7%'.PHP_EOL.
+		PHP_EOL.
+		'You can download the file here:'.PHP_EOL.
+		'%8%'.PHP_EOL.
+		PHP_EOL.
+		'You can allow the download here:'.PHP_EOL.
+		'%9%'.PHP_EOL.
+		PHP_EOL.
+		'You can delete the download here:'.PHP_EOL.
+		'%10%'.PHP_EOL.
+		PHP_EOL.
+		PHP_EOL.
+		'Kind Regards'.PHP_EOL.
+		'The '.GWF_SITENAME.' script!',
 );
 ?>
