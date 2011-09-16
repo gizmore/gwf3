@@ -374,10 +374,13 @@ thead th, .gwf_form_head {
 /*	background-color: #64768A;*/
 }
 
-td, th {
+td {
 	padding: 2px;
 }
 
+th {
+	padding: 3px 8px;
+}
 /** Challs */
 .wc_chall_votes table {
 	width: 100%;
@@ -834,4 +837,8 @@ input, select {
 
 .box_c {
 	overflow: auto;
+}
+
+.gwf3_formY table {
+	min-width: 400px;
 }
