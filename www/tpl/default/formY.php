@@ -22,7 +22,7 @@
 		switch ($data[0])
 		{
 			case GWF_Form::HIDDEN:
-				printf('<tr><td><input type="hidden" name="%s" value="%s" /></td></tr>'.PHP_EOL, $key, $data[1]);
+				printf('<tr><td colspan="%s"><input type="hidden" name="%s" value="%s" /></td></tr>'.PHP_EOL, $cols, $key, $data[1]);
 				break;
 				
 			case GWF_Form::STRING:
@@ -52,7 +52,8 @@
 				printf('<tr><td>%s</td><td>%s</td><td><img src="%simg/captcha.php%s" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" alt="Captcha" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
 				printf('<tr><td>%s</td><td>%s</td><td><input type="text" name="%s" value="%s" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 				break;
-				
+			
+			case GWF_Form::TIME:
 			case GWF_Form::DATE:
 			case GWF_Form::DATE_FUTURE:
 			case GWF_Form::SELECT:
@@ -100,7 +101,7 @@
 				
 			case GWF_Form::FILE:
 			case GWF_Form::FILE_OPT:
-				printf('<tr><td>%s%s</td><td>%s</td><td><input type="file" name="%s" value="%s" /></td></tr>'.PHP_EOL, $req, $data[2], $tt, $key, $data[1]);
+				printf('<tr><td>%s%s</td><td>%s</td><td><input type="file" name="%s" /></td></tr>'.PHP_EOL, $req, $data[2], $tt, $key);
 				break;
 				
 			default:
@@ -112,7 +113,5 @@
 		</tbody>
 	</table>
 	</form>
-	<?php if (isset($have_required)) {
-		echo GWF_HTML::lang('form_required', array('*'));
-	}?>
+	<?php if (isset($have_required)) { echo GWF_HTML::lang('form_required', array('*')); } ?>
 </div>

@@ -26,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'El término de búsqueda debe tener entre %1% y %2% carácteres de longitud.',
 	'ERR_SEARCH_NO_MATCH' => 'Su búsqueda de "%1%" no encontró resultados.',
 	'ERR_POST_VAR' => 'Variable POST inesperada: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

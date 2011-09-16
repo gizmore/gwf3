@@ -1,7 +1,5 @@
 <?php
-
 $lang = array(
-
 	'ERR_DATABASE' => 'Erreur de base de donnée fichier %1% ligne %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Fichier non trouvé: %1%',
 	'ERR_MODULE_DISABLED' => 'Le module %1% est actuellement désactivé.',
@@ -28,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Le terme cherché doit avoir %1% - %2% caractères de long.',
 	'ERR_SEARCH_NO_MATCH' => 'Votre recherche de &quot;%1%&quot; n\'a trouvé aucune correspondance.',
 	'ERR_POST_VAR' => 'Variable POST non attendue: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

@@ -25,7 +25,8 @@ final class GWF_Settings extends GDO
 	public static function getSetting($var, $default='')
 	{
 		$var = GDO::escape($var);
-		if (false === ($val = self::table(__CLASS__)->selectVar('set_val', "set_key='$var'"))) {
+		if (false === ($val = self::table(__CLASS__)->selectVar('set_val', "set_key='$var'")))
+		{
 			return $default;
 		}
 		return $val;
@@ -34,6 +35,12 @@ final class GWF_Settings extends GDO
 	public static function setSetting($var, $value)
 	{
 		return self::table(__CLASS__)->insertAssoc(array('set_key' => $var, 'set_val' => $value), true);
+	}
+	
+	public static function unsetSetting($var)
+	{
+		$var = GDO::escape($var);
+		return self::table(__CLASS__)->deleteWhere("set_key='$var'");
 	}
 }
 ?>

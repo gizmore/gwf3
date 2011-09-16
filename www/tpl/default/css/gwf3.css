@@ -24,6 +24,7 @@ a img { border: none; }
 .oh { overflow: hidden; }
 .os { overflow: scroll; }
 .ov { overflow: visible; }
+.fw { width: 100%; }
 .nowrap { white-space: nowrap; }
 
 /* Buttons */
@@ -146,7 +147,7 @@ code {
 textarea {
 	width: 100%;
 	min-height: 200px;
-	min-width: 640px;
+/* 	min-width: 640px; */
 }
 
 

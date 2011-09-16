@@ -1,7 +1,5 @@
 <?php
-
 $lang = array(
-
 	'ERR_DATABASE' => 'Tietokantavirhe tiedostossa %1% linjalla %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Tiedostoa ei löytynyt: %1%',
 	'ERR_MODULE_DISABLED' => 'Moduuli %1% ei ole käytössä.',
@@ -28,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Hakusanan täytyy olla %1% - %2% merkkiä pitkä.',
 	'ERR_SEARCH_NO_MATCH' => 'Haullasi &quot;%1%&quot; ei löytynyt mitään.',
 	'ERR_POST_VAR' => 'Odottamaton POST var: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

@@ -1,7 +1,5 @@
 <?php
-
 $lang = array(
-
 	'ERR_DATABASE' => 'Adatbázis hiba a(z) %1% állomány %2% sorában.',
 	'ERR_FILE_NOT_FOUND' => 'Az állomány nem található: %1%',
 	'ERR_MODULE_DISABLED' => 'A(z) %1% modul jelenleg le van tiltva.',
@@ -28,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'A keresési feltétel legalább mimimum %1% maximum %2% karakter hosszú lehet.',
 	'ERR_SEARCH_NO_MATCH' => 'A keresésed, &quot;%1%&quot; nem talált egyezést.',
 	'ERR_POST_VAR' => 'Váratlan POST változó: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 'm',

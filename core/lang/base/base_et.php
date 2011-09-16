@@ -1,7 +1,5 @@
 <?php
-
 $lang = array(
-
 	'ERR_DATABASE' => 'Andmebaasi viga %1% real %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Faili ei leitud: %1%',
 	'ERR_MODULE_DISABLED' => 'Moodul %1% on hetkel keelatud.',
@@ -28,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Otsisõna peab olema %1% - %2% tähte pikk.',
 	'ERR_SEARCH_NO_MATCH' => 'Teie otsing &quot;%1%&quote i andnud tulemusi.',
 	'ERR_POST_VAR' => 'Ootamatu POST var: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

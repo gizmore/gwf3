@@ -348,6 +348,16 @@ final class GWF_Upload
 			? sprintf("%d%s", $bytes, $txt[$i])
 			: sprintf("%.0{$digits}f%s", ($bytes+$rem/$factor), $txt[$i]);
 	}
+	
+	/**
+	 * Check if a file contains php code, which is potentially dangerous.
+	 * @param array $file
+	 * @return boolean
+	 */
+	public static function isDangerous(array $file)
+	{
+		return strpos(file_get_contents($file['tmp_name']), '<?') !== false;
+	}
 }
 
 ?>

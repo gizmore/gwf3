@@ -26,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => ' %1% - %2% تلاش کے لئے دئیے گئے کم از کم الفاظ کی تعداد ',
 	'ERR_SEARCH_NO_MATCH' => 'کا کوئی نتیجہ نہیں نکلا &quot;%1%&quot; آپکی تلاش برائے',
 	'ERR_POST_VAR' => 'ویری ایبل غیر متوقع: %1% ۔ POST',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

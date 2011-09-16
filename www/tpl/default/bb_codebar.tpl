@@ -68,7 +68,7 @@
 		<option value="">{$gwfl->other('3', 2, 1)}</option> 
 	</select>
 	<input id="bb_url_href_{$key}" type="text" value="google.de" />
-	<input type="image" onclick="" />
+	<input type="image" onclick="" alt="Add URL" />
 </div>
 
 <!-- /GWF3 BB CODE BAR  -->

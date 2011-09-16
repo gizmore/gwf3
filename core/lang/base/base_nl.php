@@ -1,7 +1,5 @@
 <?php
-
 $lang = array(
-
 	'ERR_DATABASE' => 'Database fout in bestand %1% op regel %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Bestand niet gevonden: %1%',
 	'ERR_MODULE_DISABLED' => 'De module %1% is correct uitgevinkt.',
@@ -28,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'De zoek term moet minimaal %1% - %2% characters lang zijn.',
 	'ERR_SEARCH_NO_MATCH' => 'Je zoekt voor &quot;%1%&quot; Heeft geen resultaten gevonden.',
 	'ERR_POST_VAR' => 'Geen geaccepteerde post var: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

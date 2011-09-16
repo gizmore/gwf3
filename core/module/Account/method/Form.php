@@ -264,6 +264,11 @@ final class Account_Form extends GWF_Method
 			return $module->error('err_no_image');
 		}
 		
+		if (GWF3::getConfig('disallow_php_uploads') && GWF_Upload::isDangerous($file))
+		{
+			return GWF_HTML::err('ERR_DANGEROUS_UPLOAD');
+		}
+		
 		$user = GWF_Session::getUser();
 		$uid = $user->getID();
 		

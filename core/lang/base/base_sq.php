@@ -1,6 +1,5 @@
 <?php
 $lang = array(
-
 	'ERR_DATABASE' => 'Gabim bazës së të dhënave ne skedar %1% Zeile %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Skedar nuk osht gjetur: %1%',
 	'ERR_MODULE_DISABLED' => 'Moduli %1% eshte ne moment me aftësi të kufizuara.',
@@ -27,6 +26,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Termi kërko duhet %1% - %2% Figurë.',
 	'ERR_SEARCH_NO_MATCH' => 'Kërkimi juaj për &quot;%1%&quot; kthyer asnjë rezultat.',
 	'ERR_POST_VAR' => 'Të dhënat papritur formë: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

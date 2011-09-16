@@ -42,11 +42,12 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::SUBMIT:
 			printf('<input type="submit" name="%s" value="%s" />'.PHP_EOL, $key, $data[1]);
 			break;
-			case GWF_Form::DATE:
-			case GWF_Form::SELECT:
-			case GWF_Form::SSTRING:
-				printf('%s'.PHP_EOL, $data[1]);
-				break;
+		case GWF_Form::TIME:
+		case GWF_Form::DATE:
+		case GWF_Form::SELECT:
+		case GWF_Form::SSTRING:
+			printf('%s'.PHP_EOL, $data[1]);
+			break;
 			
 //		case GWF_Form::CAPTCHA:
 //			printf('<tr><td>%s</td><td>%s</td><td><img src="%simg/captcha.php" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, GWF_WEB_ROOT);

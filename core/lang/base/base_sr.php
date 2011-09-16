@@ -1,7 +1,6 @@
 <?php
 # translation by Bejker
 $lang = array(
-
 	'ERR_DATABASE' => 'База података има грешку у фајлу %1% Линија %2%.',
 	'ERR_FILE_NOT_FOUND' => 'Фајл није пронађен: %1%',
 	'ERR_MODULE_DISABLED' => 'Модул %1% је тренутно онемогућен.',
@@ -28,6 +27,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Термин за претрагу мора бити %1% - %2% карактера дугачак.',
 	'ERR_SEARCH_NO_MATCH' => 'Тражени термин &quot;%1%&quot; није пронађен.',
 	'ERR_POST_VAR' => 'Неочекивана POST променљива: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

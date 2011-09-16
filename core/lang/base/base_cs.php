@@ -28,6 +28,7 @@ $lang = array(
 	'ERR_SEARCH_TERM' => 'Vyhledávaný řetězec musí byt %1% - %2% znaků dlouhý.',
 	'ERR_SEARCH_NO_MATCH' => 'To co jsi hledal &quot;%1%&quot; nebylo nalezeno.',
 	'ERR_POST_VAR' => 'Neočekávaná POST var: %1%.',
+	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
 	'unit_sec_s' => 's',

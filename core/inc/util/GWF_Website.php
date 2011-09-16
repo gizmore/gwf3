@@ -158,11 +158,10 @@ final class GWF_Website
 	private static $javascripts = array();
 	public static function addJavascript($path)
 	{
-		if (in_array($path, self::$javascripts, true)) {
-			return true;
+		if (!in_array($path, self::$javascripts, true))
+		{
+			self::$javascripts[] = $path;
 		}
-		self::$javascripts[] = $path;
-		return true;
 	}
 
 	public static function displayJavascripts()
