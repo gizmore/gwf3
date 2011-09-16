@@ -2,6 +2,7 @@
 final class Item_ElvenStaff extends SR_MeleeWeapon
 {
 	public function getAttackTime() { return 35; }
+	public function getItemRange() { return 3; }
 	public function getItemLevel() { return 8; }
 	public function getItemWeight() { return 550; }
 	public function getItemPrice() { return 775; }
@@ -16,6 +17,5 @@ final class Item_ElvenStaff extends SR_MeleeWeapon
 			'intelligence' => 1.5,
 		);
 	}
-	
 }
 ?>

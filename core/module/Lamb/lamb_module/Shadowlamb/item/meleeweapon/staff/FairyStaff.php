@@ -1,7 +1,8 @@
 <?php
 final class Item_FairyStaff extends SR_MeleeWeapon
 {
-	public function getAttackTime() { return 25; }
+	public function getAttackTime() { return 30; }
+	public function getItemRange() { return 50; }
 	public function getItemLevel() { return 10; }
 	public function getItemWeight() { return 250; }
 	public function getItemPrice() { return 275; }
@@ -9,9 +10,9 @@ final class Item_FairyStaff extends SR_MeleeWeapon
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 10.0, 
-			'min_dmg' => 0.1 * $player->get('magic'),
-			'max_dmg' => 0.2 * $player->get('magic'),
+			'attack' => 6.0, 
+			'min_dmg' => 0.0,
+			'max_dmg' => 2.0,
 			'max_mp' => 5.0,
 			'intelligence' => 1.8,
 		);
