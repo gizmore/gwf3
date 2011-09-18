@@ -203,7 +203,7 @@ final class Shadowfunc
 		return self::getTarget($player->getEnemyParty()->getMembers(), $arg);
 	}
 	
-	public static function getTarget(array $players, $arg, $enum=true)
+	public static function getTarget(array $players, $arg, $enum=true, $shortcuts=true)
 	{
 		if ($arg === '')
 		{
@@ -222,13 +222,17 @@ final class Shadowfunc
 				}
 			}
 		}
+		
+		if (strlen($arg) < 3)
+		{
+			$shortcuts = false;
+		}
 
 		$arg = strtolower($arg);
 		$n = self::toShortname($arg);
 		$candidates = array();
 		foreach ($players as $target)
 		{
-//			echo sprintf('Checking %s against %s', $target->getName(), $arg).PHP_EOL;
 			$name = strtolower($target->getName());
 			
 			# Exact match
@@ -237,9 +241,12 @@ final class Shadowfunc
 				return $target;
 			}
 			
-//			echo sprintf('Checking %s against %s', $target->getShortName(), $n).PHP_EOL;
-//			if (strtolower($target->getShortName()) === $n)
 			# Partial match
+			if (
+				(strtolower($target->getShortName()) === $n) # Exact Shortname (Moe)
+				||
+				(($shortcuts) && (strpos($name, $arg)!==false)) # Pattern match (izmo)
+			)
 			if (strpos($name, $n) !== false)
 			{
 				$candidates[] = $target;

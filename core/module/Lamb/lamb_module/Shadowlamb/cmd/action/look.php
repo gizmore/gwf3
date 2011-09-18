@@ -11,10 +11,14 @@ final class Shadowcmd_look extends Shadowcmd
 		foreach (Shadowrun4::getParties() as $party)
 		{
 			$party instanceof SR_Party;
-			if ($party->getID() === $pid) {
+			
+			if ($party->getID() === $pid)
+			{
 				continue;
 			}
-			if (!$party->sharesLocation($p)) {
+			
+			if (!$party->sharesLocation($p))
+			{
 				continue;
 			}
 			
@@ -28,10 +32,12 @@ final class Shadowcmd_look extends Shadowcmd
 			}
 		}
 		
-		if ($back === '') {
+		if ($back === '')
+		{
 			$bot->reply('You see no other players.');
 		}
-		else {
+		else
+		{
 			$player->setOption(SR_Player::RESPONSE_PLAYERS);
 			$bot->reply(sprintf('You see these players: %s.', substr($back, 2)));
 		}

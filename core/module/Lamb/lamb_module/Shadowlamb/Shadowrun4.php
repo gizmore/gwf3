@@ -7,7 +7,7 @@ require_once 'Shadowshout.php';
 
 final class Shadowrun4
 {
-	const SR4_ALPHA = false; #
+	const SR4_ALPHA = false; # iS BETA?
 	
 	const SR_SHORTCUT = '#';
 	const KICK_IDLE_TIMEOUT = 3600; # 1h
@@ -102,6 +102,11 @@ final class Shadowrun4
 	public static function removePlayer(SR_Player $player)
 	{
 		unset(self::$players[$player->getID()]);
+	}
+	
+	public static function addPlayer(SR_Player $player)
+	{
+		self::$players[$player->getID()] = $player;
 	}
 	
 	/**

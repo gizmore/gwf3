@@ -1497,7 +1497,7 @@ class SR_Player extends GDO
 			}
 		}
 		
-		if (strlen($itemname) < 4)
+		if (strlen($itemname) < 3)
 		{
 			$shortcuts = false;
 		}
@@ -2466,6 +2466,7 @@ class SR_Player extends GDO
 		{
 			return Shadowcmd::onExecute($this, $this->combat_stack);
 		}
+		$this->combat_stack = '';
 		return true;
 	}
 }

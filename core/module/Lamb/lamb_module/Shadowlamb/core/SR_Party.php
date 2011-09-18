@@ -149,6 +149,11 @@ final class SR_Party extends GDO
 //		return $back[0];
 	}
 	
+	/**
+	 * Get a party member by argument.
+	 * @param string $arg
+	 * @return SR_Player
+	 */
 	public function getMemberByArg($arg)
 	{
 		return Shadowfunc::getTarget($this->getMembers(), $arg, true);
@@ -410,17 +415,23 @@ final class SR_Party extends GDO
 	public function kickUser(SR_Player $player, $update=true)
 	{
 		$pid = $player->getID();
+		
+		if (!isset($this->members[$pid]))
+		{
+			return false;
+		}
+		
 		unset($this->members[$pid]);
 		unset($this->distance[$pid]);
 		if ($update === true)
 		{
 			$this->updateMembers();
-//			$this->recomputeEnums();
 			if ($this->getMemberCount() === 0)
 			{
 				$this->deleteParty();
 			}
 		}
+		return true;
 	}
 	
 	public function updateMembers()

@@ -5,8 +5,8 @@ abstract class SR_Blacksmith extends SR_Store
 	public abstract function getUpgradePrice();
 	public abstract function getUpgradePercentPrice();
 	
-	public function getBreakPrice() { return 100; }
-	public function getBreakPercentPrice() { return 30.00; }
+	public function getBreakPrice() { return 50; }
+	public function getBreakPercentPrice() { return 10.00; }
 	public function getCleanPrice() { return 500; }
 	public function getCleanPercentPrice() { return 40.00; }
 	public function getSplitPrice() { return 200; }

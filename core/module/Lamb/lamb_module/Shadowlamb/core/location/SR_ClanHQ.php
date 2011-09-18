@@ -17,7 +17,7 @@ class SR_ClanHQ extends SR_Location
 		return "You can join clans here with {$c}request, {$c}accept and {$c}manage. You can access clan bank with {$c}push and {$c}pop. You can access clan money with {$c}pushy and {$c}popy.";
 	}
 	
-	public function getCommands($player)
+	public function getCommands(SR_Player $player)
 	{
 		return array('request', 'accept', 'manage', 'push', 'pop', 'pushy', 'popy');
 	}

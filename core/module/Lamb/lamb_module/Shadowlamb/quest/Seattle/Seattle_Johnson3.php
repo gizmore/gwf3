@@ -20,11 +20,16 @@ final class Quest_Seattle_Johnson3 extends SR_Quest
 			$this->onSolve($player);
 			return true;
 		}
+		$npc->reply('Bring me the money, chummer, so i can give you a share.');
 		return false;
 	}
 	
 	public function dropCollar(SR_NPC $npc, SR_Player $player)
 	{
+		if (!$this->isInQuest($player))
+		{
+			return array();
+		}
 		$data = $this->getQuestData();
 		if (isset($data['DROPPED']))
 		{
