@@ -123,7 +123,10 @@ final class Lamb_User extends GDO
 	 */
 	public static function getUsermode($nickname)
 	{
-		$nickname = trim($nickname);
+		if ('' === ($nickname = trim($nickname)))
+		{
+			return '';
+		}
 		$char = $nickname{0};
 		if (strpos(self::USERMODES, $char) === false) {
 			return '';

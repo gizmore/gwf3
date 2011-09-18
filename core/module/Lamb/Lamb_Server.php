@@ -329,6 +329,10 @@ final class Lamb_Server extends GDO
 		$this->connection->send('NICK '.$this->current_nick);
 	}
 	
+	public function getCurrentNick()
+	{
+		return $this->current_nick;
+	}
 
 	public function changeNick($nickname)
 	{
@@ -500,11 +504,7 @@ final class Lamb_Server extends GDO
 	 */
 	public function getUserFromOrigin($origin, $channel_name=NULL)
 	{
-		if (strpos($origin, '!') === false)
-		{
-			return false;
-		}
-		$username = trim(Common::substrUntil($origin, '!'), ': ');
+		$username = trim(Common::substrUntil($origin, '!', $origin), ': ');
 		
 		if (false === ($user = $this->getUserByNickname($username, $channel_name)))
 		{

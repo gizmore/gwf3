@@ -23,7 +23,7 @@ $slaps = array(
 	array('massively', 40),
 	array('accidently', 15),
 	array('periodically', 33),
-	array('arbitarilly', 32),
+	array('arbitarily', 32),
 	array('ruthlessly', 45),
 ),
 
@@ -59,7 +59,7 @@ $slaps = array(
 	array('faps', 18),
 	array('punches', 24),
 	array('combats', 38),
-	array('eleminates', 71),
+	array('eliminates', 71),
 	array('trolls', 10),
 	array('dissects', 50),
 	array('stomps on', 60),
@@ -98,6 +98,8 @@ $slaps = array(
 	array('an amazing', 40),
 	array('an electric', 33),
 	array('a bloody', 35),
+	array('a mysterious', 40),
+	array('a hot', 30),
 ),
 
 
@@ -152,13 +154,13 @@ $slaps = array(
 	array('google translation', 17),
 	array('eel', 19),
 	array('shark', 37),
-	array('hot iron', 25),
+	array('iron', 25),
 	array('skull', 18),
 	array('deer', 22),
 	array('painting', 15),
 	array('rainbow', 12),
 	array('pot of gold', 23),
-	array('jew', 14),
+//	array('jew', 14),
 	array('grim', 50),
 	array('duck', 15),
 	array('XBOX', 20),
@@ -171,7 +173,13 @@ $slaps = array(
 	array('edge', 22),
 	array('drone strike', 55),
 	array('horse', 30),
-	array('cactus', 20),
+	array('cactus', 22),
+	array('puppy', 18),
+	
+//	array('jedi', 20),
+//	array('flying spagetthi monster', 15),
+//	array('god', 20),
+//	array('allah', 20)
 ),
 
 );

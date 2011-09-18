@@ -23,6 +23,11 @@ final class Lamb_SlapItem extends GDO
 	}
 	public function getID() { return $this->getVar('lsi_id'); }
 	
+	public static function getByID($id)
+	{
+		return self::table(__CLASS__)->getBy('lsi_id', $id);
+	}
+	
 	public static function getSlapRow($type, $name, $damage)
 	{
 		$type = self::escape($type);

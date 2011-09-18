@@ -1,5 +1,5 @@
 <?php
-final class Item_FairyStaff extends SR_MeleeWeapon
+final class Item_FairyStaff extends SR_MagicWeapon
 {
 	public function getAttackTime() { return 30; }
 	public function getItemRange() { return 50; }

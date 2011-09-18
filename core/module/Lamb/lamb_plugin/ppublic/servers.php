@@ -54,5 +54,6 @@ $maxc = $s->getMaxChannels();
 $version = $s->getVar('serv_version');
 //$online = $s->isOnline() ? " \x02(up)\x02" : '';
 $online = ($s2 !== false) && ($s2->isOnline()) ? " \x02(up)\x02" : '';
+$b = chr(2);
 $bot->reply(sprintf("Server %s-$b%s$b:%s%s (IP: %s) (IRCD: %s)%s - Maxusers: %s, Maxchans: %s.", $id, $name, $port, $ssl, $ip, $version, $online, $maxu, $maxc));
 ?>

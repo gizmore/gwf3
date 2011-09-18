@@ -13,6 +13,7 @@ $output = array();
 exec("free -m", $output);
 foreach ($output as $line)
 {
+//	$bot->reply($line);
 	$server->sendNotice($user->getName(), $line);
 }
 ?>

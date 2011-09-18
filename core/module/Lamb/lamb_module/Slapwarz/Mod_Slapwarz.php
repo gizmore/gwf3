@@ -220,10 +220,13 @@ final class LambModule_Slapwarz extends Lamb_Module
 	
 	private function onTop5(Lamb_User $user, $message)
 	{
-		switch ($message)
+		$args = explode(' ', $message);
+		switch ($args[0])
 		{
-			case 'damage': case 'dealt':
-				return $this->onTop5Damage('lsh_slapper', 'dealt');
+			case 'damage':
+				return $this->onTop5DamageBest(isset($args[1])?$args[1]:1);
+			case 'dealt':
+				return $this->onTop5Dealt('lsh_slapper', 'dealt');
 			case 'taken':
 				return $this->onTop5Damage('lsh_target', 'taken');
 			case 'slaps':
@@ -237,7 +240,35 @@ final class LambModule_Slapwarz extends Lamb_Module
 		}
 	}
 	
-	private function onTop5Damage($column, $text)
+	private function onTop5DamageBest($rank)
+	{
+		$db = gdo_db();
+		$user = GWF_TABLE_PREFIX.'lamb_user';
+		$user2 = GWF_TABLE_PREFIX.'lamb_user';
+		$lsh = GWF_TABLE_PREFIX.'lamb_slap_history';
+		$limit = GDO::getLimit(1, Common::clamp($rank-1, 0));
+		$query = "SELECT u.lusr_name slapper, u2.lusr_name target, s.* FROM $lsh s JOIN $user u ON u.lusr_id=lsh_slapper JOIN $user2 u2 ON u2.lusr_id=lsh_target ORDER BY lsh_damage DESC $limit";
+		
+		echo $query.PHP_EOL;
+		if (false === ($row = $db->queryFirst($query)))
+		{
+			return 'No database record found.'.PHP_EOL;
+		}
+		
+		$adverb = Lamb_SlapItem::getByID($row['lsh_adverb']);
+		$verb = Lamb_SlapItem::getByID($row['lsh_verb']);
+		$adjective = Lamb_SlapItem::getByID($row['lsh_adjective']);
+		$item = Lamb_SlapItem::getByID($row['lsh_item']);
+		
+		$date = $row['lsh_date'];
+		
+		return sprintf('BestSlap #%d: %s %s %s %s with %s %s. This dealt %d damage and happened on %s, %s ago.',
+				$rank, $row['slapper'], $adverb->getVar('lsi_name'), $verb->getVar('lsi_name'), $row['target'],
+				$adjective->getVar('lsi_name'), $item->getVar('lsi_name'), $row['lsh_damage'],
+				GWF_Time::displayDate($date), GWF_Time::displayAge($date));
+	}
+	
+	private function onTop5Dealt($column, $text)
 	{
 		$db = gdo_db();
 		$user = GWF_TABLE_PREFIX.'lamb_user';
