@@ -27,7 +27,7 @@ if (false !== ($error = GWF_ModuleLoader::checkModuleDependencies($module))) {
 $methods = GWF_ModuleLoader::getAllMethods($module);
 if (count($methods) > 0)
 {
-	printf('<p>%s</p>', $tLang->lang('info_methods', array(count($methods))));
+	printf('<div class="box box_c">%s</div>', $tLang->lang('info_methods', array(count($methods))));
 	foreach ($methods as $method)
 	{
 		$method instanceof GWF_Method;

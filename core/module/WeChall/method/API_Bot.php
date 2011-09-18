@@ -205,7 +205,7 @@ final class WeChall_API_Bot extends GWF_Method
 		{
 			$out = sprintf(
 				'%s completed %%%.02f on %s (%d of %d points). '.
-				'On %s, %s\'s rank is unknown. '.
+				'On %s , %s\'s rank is unknown. '.
 				'Linked to WeChall he claims rank %s, scoring %d points.',
 	//			'Within WeChall, %s is at rank %d on %s scoring %d points',
 				$username, $percent, $sitename, $onsitescore, $maxonsitescore,
@@ -304,7 +304,7 @@ final class WeChall_API_Bot extends GWF_Method
 		
 		$msg_rank = $rank > 0 ? ' and claims rank '.$rank : '';
 		
-		$msg = sprintf('On %s, the user %s scores %d of %d points(%.02f%%)%s.', $site->getURL(), $onsitename, $score, $maxscore, $percent, $msg_rank);
+		$msg = sprintf('On %s , the user %s scores %d of %d points(%.02f%%)%s.', $site->getURL(), $onsitename, $score, $maxscore, $percent, $msg_rank);
 		
 		return $msg;
 	}

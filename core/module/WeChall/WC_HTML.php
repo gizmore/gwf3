@@ -634,7 +634,7 @@ final class WC_HTML
 		{
 			return '';
 		}
-		$sel = GWF3::getMo() === 'Download' ? ' class="wc_menu_sel"' : '';
+		$sel = Common::getGet('mo') === 'Download' ? ' class="wc_menu_sel"' : '';
 		$href =  GWF_WEB_ROOT.'downloads';
 		return sprintf('<li><a'.$sel.' href="%s">%s</a></li>', $href, $module->lang('menu_download'));
 	}

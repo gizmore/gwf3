@@ -30,7 +30,7 @@ foreach ($tVars['users'] as $user)
 	echo GWF_Table::column(GWF_HTML::anchor($href, $user->display('user_email')));
 	echo GWF_Table::column(GWF_HTML::anchor($href, $user->displayBirthdate()), 'gwf_date');
 	echo GWF_Table::column(GWF_HTML::anchor($href, GWF_IP6::displayIP($user->getVar('user_regip'), GWF_IP_EXACT)));
-	echo GWF_Table::column(GWF_HTML::anchor($href, $user->displayLastActivity()), 'gwf_date');
+	echo GWF_Table::column(GWF_HTML::anchor($href, GWF_Time::displayAgeTS($user->getVar('user_lastactivity'))), 'gwf_date');
 	echo GWF_Table::rowEnd();
 }
 echo GWF_Table::end();

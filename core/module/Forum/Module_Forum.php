@@ -58,7 +58,7 @@ final class Module_Forum extends GWF_Module
 	##############
 	### Module ###
 	##############
-	public function getVersion() { return 1.05; }
+	public function getVersion() { return 1.06; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/forum'); }
 	public function getAdminSectionURL() { return GWF_WEB_ROOT.'forum/admin'; }
 	public function onCronjob() { require_once 'GWF_ForumCronjob.php'; return GWF_ForumCronjob::onCronjob($this); }

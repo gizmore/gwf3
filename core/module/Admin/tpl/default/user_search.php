@@ -34,13 +34,13 @@ else
 		
 		echo GWF_Table::rowStart();
 		echo '<td>'.GWF_HTML::anchor($href, $user->getID()).'</td>';
-		echo '<td>'.GWF_HTML::anchor($href, $user->displayCountryFlag()).'</td>';
+		echo sprintf('<td><a href="%s">%s</a></td>', $href, $user->displayCountryFlag());
 		echo '<td>'.GWF_HTML::anchor($href, $user->display('user_name')).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, GWF_Time::displayDate($user->getVar('user_regdate'))).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, $user->display('user_email')).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, GWF_Time::displayDate($user->getVar('user_birthdate'))).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, GWF_IP6::displayIP($user->getVar('user_regip'), GWF_IP_EXACT)).'</td>';
-		echo '<td>'.GWF_HTML::anchor($href, $user->displayLastActivity()).'</td>';
+		echo '<td>'.GWF_HTML::anchor($href, GWF_Time::displayAgeTS($user->getVar('user_lastactivity'))).'</td>';
 		echo GWF_Table::rowEnd();
 	}
 	echo '</table>';

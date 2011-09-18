@@ -642,10 +642,10 @@ $lang = array(
 	'msg_hide_score_1' => 'Your scores and percentages are now hidden in your profile.',
 	'msg_hide_score_0' => 'Your scores and percentages are now visible in your profile.',
 	'hidden' => 'Hidden',
-
 		
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
+	'menu_download' => 'Downloads',
 );
 ?>

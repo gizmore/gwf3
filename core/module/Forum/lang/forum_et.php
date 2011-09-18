@@ -309,5 +309,20 @@ $lang = array(
 	'txt_lastpost' => 'Goto last post',
 	'err_thank_self' => 'You cannot thank yourself for a post.',
 	'err_vote_self' => 'You cannot vote your own posts.',
+
+	# v3.00 fixes 12
+	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
+	'msg_cleanup' => 'I have deleted %1% threads and %2% posts that have been in moderation.',
+		
+	# v1.05 (subscriptions)
+	'submode' => 'Your global subscription mode is set to: &quot;%1%&quot;.',
+	'submode_all' => 'The whole board',
+	'submode_own' => 'Where you posted',
+	'submode_none' => 'Manually',
+	'subscr_boards' => 'Your have manually subscribed to %1% boards.',
+	'subscr_threads' => 'You have manually subscribed to %1% threads.',
+	'btn_subscriptions' => 'Manage Subscriptions',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
 );
 ?>

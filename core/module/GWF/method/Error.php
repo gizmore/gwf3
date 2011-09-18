@@ -1,9 +1,7 @@
 <?php
-
 /**
- * Description of Error
- *
- * @author spaceone
+ * Custom 404 error pages and email on 404.
+ * @author spaceone, gizmore
  */
 final class GWF_Error extends GWF_Method
 {
@@ -27,9 +25,12 @@ final class GWF_Error extends GWF_Method
 		$realcode = Common::getGetInt('code', 0);
 		$code =  in_array($realcode, $errors, true) ? $realcode : 0;
 
-		if ($realcode === 403) {
+		if ($realcode === 403)
+		{
 			header($_SERVER['SERVER_PROTOCOL']." 403 Forbidden"); 
-		} else {
+		}
+		else
+		{
 			header($_SERVER['SERVER_PROTOCOL']." 404 Not Found"); 
 			self::gwf_error_404_mail();
 		}
@@ -38,6 +39,7 @@ final class GWF_Error extends GWF_Method
 			'code' => $realcode,
 			'file' => GWF_HTML::err(GWF_HTML::lang('ERR_FILE_NOT_FOUND', array(htmlspecialchars($_SERVER['REQUEST_URI'])))),
 		);
+		
 		return $module->template('error.tpl', $tVars);
 	}
 	
@@ -45,17 +47,18 @@ final class GWF_Error extends GWF_Method
 	{
 		$blacklist = array(
 		);
-		$pagename = $_SERVER['REQUEST_URI'];
-		if (in_array($pagename, $blacklist, true)) {
+		
+		if (in_array($_SERVER['REQUEST_URI'], $blacklist, true))
+		{
 			return;
 		}
+		
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject(GWF_SITENAME.': 404 Error');
-		$mail->setBody(sprintf('The page %s threw a 404 error.', $pagename));
+		$mail->setBody(sprintf('The page %s threw a 404 error.', htmlspecialchars($_SERVER['REQUEST_URI'])));
 		$mail->sendAsText();
 	}
-	
 }
 ?>

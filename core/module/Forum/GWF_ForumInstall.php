@@ -35,6 +35,8 @@ final class GWF_ForumInstall
 			'postcount' => array('0', 'script'),
 			'doublepost' => array('YES', 'bool'),
 			'lang_boards' => array('NO', 'bool'),
+		
+			'post_timeout' => array('0', 'time', 0, '172800'),
 		)).
 		self::installForumDefaults($module);
 	}

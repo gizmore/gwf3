@@ -41,7 +41,7 @@ else
 		echo '<td>'.GWF_HTML::anchor($href, $user->display('user_email')).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, $user->displayBirthdate()).'</td>';
 		echo '<td>'.GWF_HTML::anchor($href, GWF_IP6::displayIP($user->getVar('user_regip'), GWF_IP_EXACT)).'</td>';
-		echo '<td>'.GWF_HTML::anchor($href, $user->displayLastActivity()).'</td>';
+		echo '<td>'.GWF_HTML::anchor($href, GWF_Time::displayAgeTS($user->getVar('user_lastactivity'))).'</td>';
 		echo GWF_Table::rowEnd();
 	}
 	echo '</table>';

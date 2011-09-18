@@ -2,10 +2,8 @@
 {$form}
 </div>
 {if $register || $recovery}
-<div class="box box">
-	<div class="gwf_buttons_outer">
-		{if $register}{button type='generic' url="{$root}register" text=$lang->lang('btn_register')}{/if}
-		{if $recovery}{button type='generic' url="{$root}recovery" text=$lang->lang('btn_recovery')}{/if}
-	</div>
+<div class="gwf_buttons_outer">
+	{if $register}{button type='generic' url="{$root}register" text=$lang->lang('btn_register')}{/if}
+	{if $recovery}{button type='generic' url="{$root}recovery" text=$lang->lang('btn_recovery')}{/if}
 </div>
 {/if}

@@ -324,6 +324,9 @@ $lang = array(
 	'btn_subscriptions' => 'Manage Subscriptions',
 	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
 	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
+		
+	# v1.06 (timeout)
+	
 );
 
 ?>
