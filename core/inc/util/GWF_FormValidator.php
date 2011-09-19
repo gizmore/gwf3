@@ -16,7 +16,8 @@ final class GWF_FormValidator
 	
 	public static function validate(GWF_Module $module, GWF_Form $form, $validator)
 	{
-		if (false === ($errors = self::validateB($module, $form, $validator))) {
+		if (false === ($errors = self::validateB($module, $form, $validator)))
+		{
 			return false;
 		}
 		return $errors;
@@ -24,37 +25,47 @@ final class GWF_FormValidator
 	
 	private static function validateB(GWF_Module $module, GWF_Form $form, $validator)
 	{	
-		if (false !== ($error = self::validateCSRF($module, $form, $validator))) {
+		if (false !== ($error = self::validateCSRF($module, $form, $validator)))
+		{
 			return GWF_HTML::error($module->getName(), $error, false);
 		}
 		
-		if (false !== ($errors = self::validateMissingVars($module, $form, $validator))) {
+		if (false !== ($errors = self::validateMissingVars($module, $form, $validator)))
+		{
 			return GWF_HTML::errorA($module->getName(), $errors, false);
 		}
 		
-		if (false !== ($errors = self::validateVars($module, $form, $validator))) {
+		if (false !== ($errors = self::validateVars($module, $form, $validator)))
+		{
 			return GWF_HTML::errorA($module->getName(), $errors, false);
 		}
+		
 		return false;
 	}
 	
 	private static function validateCSRF(GWF_Module $module, GWF_Form $form, $validator)
 	{
-		if (false === ($token = GWF_CSRF::validateToken())) {
-			return GWF_HTML::lang('ERR_CSRF');
+		if (GWF_Form::CSRF_OFF === ($level = $form->getCSRFLevel()))
+		{
 		}
-		# Debug Mode
-		if ($token === true) { return false; }
-		
-		if ($token !== $form->getCSRFToken()) {
-			return GWF_HTML::lang('ERR_CSRF');
+//		elseif ($level === GWF_Form::CSRF_WEAK)
+//		{
+//			
+//		}
+		else#if ($level === GWF_Form::CSRF_STRONG)
+		{
+			if ( (false === ($token = GWF_CSRF::validateToken())) || ($token !== $form->getCSRFToken()) )
+			{
+				return GWF_HTML::lang('ERR_CSRF');
+			}
 		}
 		return false;
 	}
 	
 	private static function validateCaptcha(GWF_Module $module, GWF_Form $form, $validator, $key)
 	{
-		if (GWF_Session::getOrDefault('php_captcha', false) !== strtoupper($_POST[$key])) {
+		if (GWF_Session::getOrDefault('php_captcha', false) !== strtoupper($form->getVar($key)))
+		{
 			$form->onNewCaptcha();
 			return GWF_HTML::lang('ERR_WRONG_CAPTCHA');
 		}
@@ -66,12 +77,14 @@ final class GWF_FormValidator
 	private static function validateMissingVars(GWF_Module $module, GWF_Form $form, $validator)
 	{
 		$errors = array();
-		$check_sent = $_POST;
+		$check_sent = count($_POST) > 0 ? $_POST : $_GET;
+//		$check_sent = $_POST;
 		$check_need = array();
 		
 		foreach ($form->getFormData() as $key => $data)
 		{
-			if (in_array($data[0], self::$SKIPPERS, true)) {
+			if (in_array($data[0], self::$SKIPPERS, true))
+			{
 				unset($check_sent[$key]);
 				continue;
 			}
@@ -126,14 +139,16 @@ final class GWF_FormValidator
 					
 				case GWF_Form::INT:
 				case GWF_Form::STRING:
-					if (Common::endsWith($key, ']')) {
+					if (Common::endsWith($key, ']'))
+					{
 						$key = Common::substrUntil($key, '[');
-						if (!in_array($key, $check_need)) {
+						if (!in_array($key, $check_need))
+						{
 							$check_need[] = $key;
 						}
 						break;
 					}
-				
+					
 				default:
 					$check_need[] = $key;
 					break;
@@ -142,9 +157,12 @@ final class GWF_FormValidator
 		
 		foreach ($check_need as $key)
 		{
-			if (!isset($check_sent[$key])) {
+			if (!isset($check_sent[$key]))
+			{
 				$errors[] = GWF_HTML::lang('ERR_MISSING_VAR', array(htmlspecialchars($key)));
-			} else {
+			}
+			else
+			{
 				unset ($check_sent[$key]);
 			}
 		}
@@ -161,32 +179,50 @@ final class GWF_FormValidator
 	private static function validateVars(GWF_Module $module, GWF_Form $form, $validator)
 	{
 		$errors = array();
+		
+		$method = $form->getMethod();
+		
 		foreach ($form->getFormData() as $key => $data)
 		{
 			# Skippers
-			if ( (in_array($data[0], self::$SKIPPERS, true)) || ($data[0] === GWF_Form::SUBMITS) || ($data[0] === GWF_Form::SUBMIT_IMGS) ) {
+			if ( (in_array($data[0], self::$SKIPPERS, true)) || ($data[0] === GWF_Form::SUBMITS) || ($data[0] === GWF_Form::SUBMIT_IMGS) )
+			{
 				continue;
 			}
 			
 			# Captcha
-			if ($data[0] === GWF_Form::CAPTCHA) {
-				if (false !== ($error = self::validateCaptcha($module, $form, $validator, $key))) {
+			if ($data[0] === GWF_Form::CAPTCHA)
+			{
+				if (false !== ($error = self::validateCaptcha($module, $form, $validator, $key)))
+				{
 					$errors[] = $error;
 				}
 				continue;
 			}
 			
+			# Get forms do not validate mo/me
+			if ($method === GWF_Form::METHOD_GET)
+			{
+				if ( ($key === 'mo') || ($key === 'me') )
+				{
+					continue;
+				}
+			}
+			
 			# Validators
 			$func_name = 'validate_'.Common::substrUntil($key, '[', $key);
 			$function = array($validator, $func_name);
-			if (!method_exists($validator, $func_name)) {
+			if (!method_exists($validator, $func_name))
+			{
 				$errors[] = GWF_HTML::lang('ERR_METHOD_MISSING', array($func_name, get_class($validator)));
 				continue;
 			}
-			if (false !== ($error = call_user_func($function, $module, $form->getVar($key)))) {
+			if (false !== ($error = call_user_func($function, $module, $form->getVar($key))))
+			{
 				$errors[] = $error;
 			}
 		}
+		
 		return count($errors) === 0 ? false : $errors;
 	}
 }

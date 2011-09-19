@@ -1,8 +1,13 @@
 <?php
+/**
+ * HTML tables featuring alternation, different types of server side sorting.
+ * @author gizmore
+ */
 final class GWF_Table
 {
 	public static function start($class='', $id='') { $cl = $class === '' ? '' : " class=\"$class\""; $id = $id === '' ? '' : " id=\"$id\""; return '<div class="gwf_table"><table'.$cl.$id.'>'.PHP_EOL; }
 	public static function end() { return '</table></div>'.PHP_EOL; }
+	
 	public static function rowStart($flip=true, $class='', $id='', $style='')
 	{
 		static $odd = 0;
@@ -17,6 +22,7 @@ final class GWF_Table
 		return sprintf('<tr%s%s%s>', $id, $class, $style).PHP_EOL;
 	}
 	public static function rowEnd() { return '</tr>'.PHP_EOL; }
+
 	public static function column($text='', $class='', $colspan=1)
 	{
 		$colspan = $colspan === 1 ? '' : "colspan=\"$colspan\"";
@@ -24,15 +30,26 @@ final class GWF_Table
 		return sprintf('<td%s%s>%s</td>', $class, $colspan, $text);
 	}
 	
+	/**
+	 * Simple one column sorting.
+	 * @param array $headers
+	 * @param string $sortURL The URL template
+	 * @param string $default orderby
+	 * @param string $defdir orderdir
+	 * @param string $by custom $_GET['by'] name
+	 * @param string $dir custom $_GET['dir'] name
+	 * @param unknown_type $raw
+	 * @return string 'html'
+	 */
 	public static function displayHeaders1(array $headers=array(), $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
-//		$back = '';
 		$sel = Common::getGetString($by, $default);
 		
 		$back = '<thead>'.PHP_EOL;
 		$back .= $raw;
 		
-//		if ($raw !== '') {
+//		if ($raw !== '')
+//		{
 //			$back .= sprintf('<tr><th colspan="%d">%s</th></tr>', count($headers), $raw).PHP_EOL;
 //		}
 		
@@ -73,12 +90,18 @@ final class GWF_Table
 		$back .= '</thead>'.PHP_EOL;
 		return $back;
 	}
-		
-	private static function flipOrderDir($dir='ASC')
-	{
-		return strtoupper($dir) === 'ASC' ? 'DESC' : 'ASC';
-	}
 	
+	/**
+	 * Display a multisort header. These rarely make sense, only on overlapping values. (School notes would be an example)
+	 * @param array $headers
+	 * @param string $sortURL The URL template
+	 * @param string $default orderby
+	 * @param string $defdir orderdir
+	 * @param string $by custom $_GET['by'] name
+	 * @param string $dir custom $_GET['dir'] name
+	 * @param unknown_type $raw
+	 * @return string 'html'
+	 */
 	public static function displayHeaders2(array $headers, $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
 		$tVars = array(
@@ -107,9 +130,11 @@ final class GWF_Table
 		$cur = array();
 		foreach ($curBy as $i => $cby)
 		{
-			if (!(in_array($cby, $allowed, true))) {
+			if (!(in_array($cby, $allowed, true)))
+			{
 				continue;
 			}
+			
 			$cd = isset($curDir[$i]) ? $curDir[$i] : 'ASC';
 			$cd = GDO::getWhitelistedDirS($cd, 'ASC');
 			$cur[$cby] = $cd;
@@ -144,14 +169,30 @@ final class GWF_Table
 		return $back;
 	}
 
+	/**
+	 * Return a sort-url.
+	 */
 	private static function getTHeadURL($sortURL, array $current, $by, $dir, $exclude=false)
 	{
-		if ($exclude === $by && isset($current[$by])) {
+		if ($exclude === $by && isset($current[$by]))
+		{
 			$current = array();
 		}
 		$current[$by] = $dir;
 		unset($current[$exclude]);
 		return str_replace(array('%BY%', '%DIR%'), array( urlencode(implode(',', array_keys($current))), urlencode(implode(',', array_values($current)))), $sortURL );
 	}
+	
+	/**
+	 * Flip the order direction.
+	 * @param string $dir
+	 * @return 'ASC'|'DESC'
+	 */
+	private static function flipOrderDir($dir='ASC')
+	{
+		return strtoupper($dir) === 'ASC' ? 'DESC' : 'ASC';
+	}
+	
+	
 }
 ?>

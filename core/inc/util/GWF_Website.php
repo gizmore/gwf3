@@ -194,7 +194,7 @@ final class GWF_Website
 	### Redirects ###
 	#################
 //	public static function redirectHome() { self::redirect(GWF_WEB_ROOT.GWF_DEFAULT_URL); }
-//	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d;url=%s', $seconds, $url)); }
+	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d; url=%s', $seconds, $url)); }
 	public static function redirect($url) { header(sprintf('Location: %s', $url)); }
 	public static function redirectBack()
 	{

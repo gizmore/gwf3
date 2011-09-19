@@ -7,6 +7,10 @@
  */
 class GWF_Form
 {
+	# Methods
+	const METHOD_GET = 'get';
+	const METHOD_POST = 'post';
+	
 	# Encoding Types
 	const ENC_DEFAULT   = 'application/x-www-form-urlencoded';
 	const ENC_MULTIPART = 'multipart/form-data';
@@ -45,23 +49,33 @@ class GWF_Form
 	const SUBMIT_IMG = 23;
 	const SUBMIT_IMGS = 24;
 	const TIME = 25;
+//	const HIDDEN_NO_CHECK = 26;
+	
+	# CSRF protection levels.
+	const CSRF_OFF = 0;
+	const CSRF_WEAK = 1;
+	const CSRF_STRONG = 2;
 	
 	private $method;
 	private $validator;
 	private $form_data;
+	private $csrf_bit;
 	
 	/**
 	 * $data is [0]=TYPE,[1]=value,[2]=title,[3]=Tooltip,[4]=LEN?,[5]=required
 	 * @param callback $validator
 	 * @param array $data
 	 */
-	public function __construct($validator, $data)
+	public function __construct($validator, array $data, $method=self::METHOD_POST, $csrf_bit=self::CSRF_STRONG)
 	{
 		$this->validator = $validator;
 		$this->form_data = $data;
+		$this->method = $method;
+		$this->csrf_bit = $csrf_bit;
 	}
 	
 	public function getMethod() { return $this->method; }
+	public function getCSRFLevel() { return $this->csrf_bit; }
 	public function getFormData() { return $this->form_data; }
 	public function getFormDataFor($key) { return $this->form_data[$key]; }
 	public function getFormCSRFToken() { return $this->form_data[GWF_CSRF::TOKEN_NAME][self::VALUE]; }
@@ -73,52 +87,88 @@ class GWF_Form
 		{
 			return $default;
 		}
-		
+		return count($_POST) > 0 ? $this->getPostVar($key, $default) : $this->getGetVar($key, $default);
+	}
+	
+	private function getPostVar($key, $default)
+	{
 		switch($this->form_data[$key][0])
 		{
 			case self::FILE: case self::FILE_OPT:
 				return $this->getFile($key, $default);
+				
 			case self::DATE: case self::DATE_FUTURE:
-				return $this->getDate($key, $this->form_data[$key][4]);
+				return $this->getDate($key, $this->form_data[$key][4], $_POST);
+				
 			case self::TIME:
 				return sprintf('%02s%02s', Common::getPostString($key.'h', '00'), Common::getPostString($key.'i', '00'));
+			
 			case self::CHECKBOX:
 				return isset($_POST[$key]);
+			
 			case self::INT:
 				return Common::getPostInt($key, $default);
+			
 			case self::SELECT_A:
 				return Common::getPostArray($key, $default);
+			
 			default:
 				return Common::getPostString($key, $default);
 		}
 	}
 	
+	private function getGetVar($key, $default)
+	{
+		switch($this->form_data[$key][0])
+		{
+			case self::FILE: case self::FILE_OPT:
+				return $default;
+				
+			case self::DATE: case self::DATE_FUTURE:
+				return $this->getDate($key, $this->form_data[$key][4], $_GET);
+				
+			case self::TIME:
+				return sprintf('%02s%02s', Common::getGetString($key.'h', '00'), Common::getGetString($key.'i', '00'));
+			
+			case self::CHECKBOX:
+				return isset($_GET[$key]);
+			
+			case self::INT:
+				return Common::getGetInt($key, $default);
+			
+			case self::SELECT_A:
+				return Common::getGetArray($key, $default);
+			
+			default:
+				return Common::getGetString($key, $default);
+		}
+	}
+	
 	private function getFile($key, $default)
 	{
-		if (!isset($_FILES[$key])) {
+		if (!isset($_FILES[$key]))
+		{
 			return $default;
 		}
-		
 		$file = $_FILES[$key];
-
-		if ($file['error'] !== 0 || $file['size'] === 0) {
+		if ( ($file['error'] !== 0) || ($file['size'] === 0) )
+		{
 			return $default;
 		}
-		
 		return $file;
 	}
 	
-	private function getDate($key, $len)
+	private function getDate($key, $len, array $array)
 	{
 		$back = '';
 		switch ($len)
 		{
-			case 14: $back = $_POST[$key.'s'].$back;
-			case 12: $back = $_POST[$key.'i'].$back;
-			case 10: $back = $_POST[$key.'h'].$back;
-			case 8: $back = $_POST[$key.'d'].$back;
-			case 6: $back = $_POST[$key.'m'].$back;
-			case 4: $back = $_POST[$key.'y'].$back;
+			case 14: $back = $array[$key.'s'].$back;
+			case 12: $back = $array[$key.'i'].$back;
+			case 10: $back = $array[$key.'h'].$back;
+			case 8: $back = $array[$key.'d'].$back;
+			case 6: $back = $array[$key.'m'].$back;
+			case 4: $back = $array[$key.'y'].$back;
 				break;
 			default: die('Form Date Length is invalid for '.$key);
 		}
@@ -134,7 +184,8 @@ class GWF_Form
 	
 	public function validate(GWF_Module $module)
 	{
-		if (false !== ($error = GWF_FormValidator::validate($module, $this, $this->validator))) {
+		if (false !== ($error = GWF_FormValidator::validate($module, $this, $this->validator)))
+		{
 			return $error;
 		}
 		$this->onNewCaptcha();
@@ -143,40 +194,45 @@ class GWF_Form
 	
 	public static function validateCSRF_WeakS()
 	{
-		if (false === ($token = GWF_CSRF::validateToken())) {
+		if (false === ($token = GWF_CSRF::validateToken()))
+		{
 			return GWF_HTML::lang('ERR_CSRF');
 		}
 		return false;
 	}
 	
-	public function templateX($title='', $action=true, $method='post')
+	public function templateX($title='', $action=true)
 	{
-		return $this->template('formX.php', $title, $action, $method);
+		return $this->template('formX.php', $title, $action);
 	}
 	
-	public function templateY($title='', $action=true, $method='post')
+	public function templateY($title='', $action=true)
 	{
-		return $this->template('formY.php', $title, $action, $method);
+		return $this->template('formY.php', $title, $action);
 	}
 	
-	private function template($file, $title, $action=true, $method='post')
+	private function template($file, $title, $action=true)
 	{
-		if (!is_string($method) || ($method !== 'get')) {
-			$method = 'post';
-		}
-		$this->method = $method;
 		
-		if (is_bool($action)) {
+//		if (!is_string($method) || ($method !== 'get'))
+//		{
+//			$method = 'post';
+//		}
+//		$this->method = $method;
+		
+		if (is_bool($action))
+		{
 			$action = $_SERVER['REQUEST_URI'];
 		}
+		
 		$tVars = array(
 			'data' => $this->getTemplateData(),
 			'title' => $title,
 			'action' => htmlspecialchars($action),
-			'method' => $method,
+			'method' => $this->method,
 			'enctype' => $this->getEncType(),
-//			'requiredFields' => $this->getRequiredText(),
 		);
+		
 		return GWF_Template::templatePHPMain($file, $tVars);
 	}
 	
@@ -223,24 +279,28 @@ class GWF_Form
 				case self::VALIDATOR:
 					break;
 				default:
-					if (isset($_POST[$key])) { $this->form_data[$key][1] = $_POST[$key]; }
+//					if (isset($_POST[$key])) { $this->form_data[$key][1] = $_POST[$key]; }
+					if (isset($_REQUEST[$key])) { $this->form_data[$key][1] = $_REQUEST[$key]; }
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
 			}
 			
 			# Setup required
-			if (!isset($data[self::REQUIRED]))
-			{
-				switch ($data[0])
-				{
-					case self::STRING:
-						$data[self::REQUIRED] = true;
-						break;
-				}
-			}
+//			if (!isset($data[self::REQUIRED]))
+//			{
+//				switch ($data[0])
+//				{
+//					case self::STRING:
+//						$data[self::REQUIRED] = true;
+//						break;
+//				}
+//			}
 		}
 		
-		$this->form_data[GWF_CSRF::TOKEN_NAME] = array(self::HIDDEN, GWF_CSRF::generateToken($this->getCSRFToken()));
+		if ($this->csrf_bit > self::CSRF_OFF)
+		{
+			$this->form_data[GWF_CSRF::TOKEN_NAME] = array(self::HIDDEN, GWF_CSRF::generateToken($this->getCSRFToken()));
+		}
 		
 		return $this->form_data;
 	}
@@ -268,6 +328,7 @@ class GWF_Form
 					$hash .= '_'.$k;
 			}
 		}
+		
 		return GWF_Password::getToken($hash);
 	}
 	
@@ -280,34 +341,34 @@ class GWF_Form
 		GWF_Session::remove(self::SESS_NEXT_CAPTCHA);
 		GWF_Session::remove('php_captcha');
 	}
+	
 	public function onSolvedCaptcha()
 	{
 		GWF_Session::set(self::SESS_NEXT_CAPTCHA, GWF_Session::get('php_captcha'));
 	}
+	
 	private function getCaptchaData()
 	{
 		return GWF_Session::getOrDefault(self::SESS_NEXT_CAPTCHA, '');
 	}
 	
-	############
-	### Date ###
-	############
-
-	
-	###################
-	### Convinience ###
-	###################
+	##############
+	### Render ###
+	##############
 	public static function start($action=true, $encoding=self::ENC_DEFAULT)
 	{
-		if (is_bool($action)) {
+		if (is_bool($action))
+		{
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		$action = GWF_HTML::display($action);
 		
-		if ($encoding !== self::ENC_DEFAULT && $encoding !== self::ENC_MULTIPART) {
+		if ($encoding !== self::ENC_DEFAULT && $encoding !== self::ENC_MULTIPART)
+		{
 			echo GWF_HTML::error('GWF_Form', 'Unknown Form Encoding 0815-F1');
 			$encoding = self::ENC_DEFAULT;
 		}
+		
 		return
 			'<div>'.PHP_EOL.
 			sprintf('<form action="%s" enctype="%s" method="post">', $action, $encoding).PHP_EOL.
@@ -352,7 +413,6 @@ class GWF_Form
 		$id = $id === '' ? '' : sprintf(' id="%s"', htmlspecialchars($id));
 		$name = htmlspecialchars($name);
 		$text = htmlspecialchars($text);
-		
 		return sprintf('<span><input%s type="submit" name="%s" value="%s" /></span>', $id, $name, $text);
 	}
 }

@@ -425,7 +425,8 @@ abstract class GDO
 			case self::ARRAY_A: return $db->fetchAssoc($result);
 			case self::ARRAY_N: return $db->fetchRow($result);
 			case self::ARRAY_O: return (false === ($row = $db->fetchAssoc($result))) ? false : $this->createObject($row);
-			default: die("Unknown fetch() r_type: $r_type in ".__METHOD__.' line '.__LINE__);				
+			default: return (false === ($row = $db->fetchAssoc($result))) ? false : $this->createObject($row, $r_type);
+//			default: die("Unknown fetch() r_type: $r_type in ".__METHOD__.' line '.__LINE__);				
 		}
 	}
 	
@@ -543,9 +544,9 @@ abstract class GDO
 		return " LEFT JOIN `$tablename` AS `$c` ON $cond";
 	}
 	
-	public function createObject($row)
+	public function createObject($row, $classname=true)
 	{
-		$classname = $this->getClassName();
+		$classname = is_string($classname) ? $classname : $this->getClassName();
 		$class = new $classname($row);
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
@@ -631,7 +632,7 @@ abstract class GDO
 	/**
 	 * Replace this object. Auto assign INSERT ID to object cache.
 	 * Enter description here ...
-	 * @param unknown_type $replace
+	 * @param boolean $replace
 	 */
 	public function replace($replace=true)
 	{
@@ -978,7 +979,7 @@ abstract class GDO
 				continue;
 			}
 //			echo "$c is ".$this->gdo_data[$c].'<br/>'.PHP_EOL;
-			$hash .= '::'.$this->gdo_data[$c];
+			$hash .= '::'.$c.'::'.$this->gdo_data[$c];
 		}
 //		var_dump($hash);
 		return substr(md5($hash.GWF_SECRET_SALT), 0, 12);
