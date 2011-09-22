@@ -312,15 +312,21 @@ abstract class GDO
 		return in_array($by, $whitelist, true) ? $by : $default;
 	}
 	
-	public function getWhitelistedBy($by, $default=false, $nested=true)
+	public function getWhitelistedBy($by, $default=false, $nested=true, array &$whitelist=NULL)
 	{
+		if ( ($whitelist !== NULL) && (self::getWhitelistedByS($by, $whitelist, 0) !== 0) )
+		{
+			return $by;
+		}
+		
 		$byp = $this->getWhitelistedByPrefix($by);
 		
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
 			if ( ($nested) && ( (($d[0] & self::OBJECT) === self::OBJECT) || (($d[0] & self::JOIN) === self::JOIN) ) )
 			{
-				if (false !== self::table($d[2][0])->getWhitelistedBy($byp)) {
+				if (false !== self::table($d[2][0])->getWhitelistedBy($byp))
+				{
 					return $by;
 				}
 			}
@@ -344,14 +350,14 @@ abstract class GDO
 		return $by;
 	}
 	
-	public function getMultiOrderby($by, $dir, $nested=true)
+	public function getMultiOrderby($by, $dir, $nested=true, array &$whitelist=NULL)
 	{
 		$back = '';
 		$by = explode(',', $by);
 		$dir = explode(',', $dir);
 		foreach ($by as $i => $b)
 		{
-			if (false !== ($b = $this->getWhitelistedBy($b, false, $nested)))
+			if (false !== ($b = $this->getWhitelistedBy($b, false, $nested, $whitelist)))
 			{
 				$back .= sprintf(',%s %s', $b, self::getWhitelistedDirS($dir[$i], 'ASC'));
 			}
