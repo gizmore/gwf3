@@ -257,7 +257,7 @@ final class GWF_VoteMulti extends GDO
 		if (false === ($name = $t->selectVar('vm_name', "vm_uid=$uid", 'vm_date DESC'))) {
 			$count = 1;
 		} else {
-			if (1 === preg_match('/^_(?:x|y)_.+_(\\d+)$/', $name, $matches)) {
+			if (1 === preg_match('/^_(?:x|y)_.+_(\\d+)$/D', $name, $matches)) {
 				$count = $matches[1]+1;
 			}
 			else {

@@ -10,7 +10,7 @@ final class GWF_Validator
 		if (Common::startsWith($url, '/')) {
 			return true;
 		}
-		return preg_match("/^[a-zA-Z]+[:\/\/]+[A-Za-z0-9\-_]+\\.+[A-Za-z0-9\.\/%&=\?\-_]+$/i", $url) === 1;
+		return preg_match("/^[a-zA-Z]+[:\/\/]+[A-Za-z0-9\-_]+\\.+[A-Za-z0-9\.\/%&=\?\-_]+$/iD", $url) === 1;
 	}
 	
 //	public static function filterURL($url, $maxlen=255)
@@ -48,11 +48,12 @@ final class GWF_Validator
 		//return preg_match('/^([a-zA-Z0-9])+([a-zA-Z\_ 0-9])$/' , $name);
 		// this one is more simple
 		$len = Common::strlen($name);
-		if ($len > $maxlength || $len < $minlength) {
+		if ($len > $maxlength || $len < $minlength)
+		{
 			return false; # check limits
 		}
 		# return a-z then a-z_0-9
-		return preg_match('/^[a-z][a-z0-9_'.$allowChars.']+$/i', $name) === 1;
+		return preg_match('/^[a-z][a-z0-9_'.$allowChars.']+$/iD', $name) === 1;
 	}
 	
 	/**
@@ -69,7 +70,7 @@ final class GWF_Validator
 	# returns true if the mobile looks valid
 	public static function isValidMobile(string $mobile)
 	{
-		return preg_match('#^[1-9]{1}[0-9]{8,12}$#', $mobile) > 0;
+		return preg_match('#^[1-9]{1}[0-9]{8,12}$#D', $mobile) > 0;
 	}
 	
 	/**
@@ -95,7 +96,7 @@ final class GWF_Validator
 	 * @return true if $string is 32 char md5. */
 //	public static function isMD5($string)
 //	{
-//		return preg_match('/^[a-f0-9]{32}$/i', $string) === 1;
+//		return preg_match('/^[a-f0-9]{32}$/iD', $string) === 1;
 //	}
 	
 //	public static function isValidDate($date, $allowBlank=false, $length=8)
@@ -105,26 +106,29 @@ final class GWF_Validator
 	
 	public static function isOctalNumber($string)
 	{
-		if (is_array($string) || is_object($string)) {
-			return false;
-		}
-		return preg_match('/^[0-7]+$/', $string) === 1;
+//		if (is_array($string) || is_object($string))
+//		{
+//			return false;
+//		}
+		return preg_match('/^[0-7]+$/D', $string) === 1;
 	}
 	
 	public static function isDecimalNumber($string)
 	{
-		if (is_array($string) || is_object($string)) {
-			return false;
-		}
-		return preg_match('/^\d+$/', $string) === 1;
+//		if (is_array($string) || is_object($string))
+//		{
+//			return false;
+//		}
+		return preg_match('/^\d+$/D', $string) === 1;
 	}
 	
 	public static function isHexNumber($string)
 	{
-		if (is_array($string) || is_object($string)) {
-			return false;
-		}
-		return preg_match('/^[0-9A-F+$/i', $string) === 1;
+//		if (is_array($string) || is_object($string))
+//		{
+//			return false;
+//		}
+		return preg_match('/^[0-9A-F+$/iD', $string) === 1;
 	}
 	
 	##########################
@@ -149,7 +153,7 @@ final class GWF_Validator
 	public static function validateFilename($m, $key, $arg, $unset=true, $max=63)
 	{
 		$_POST[$key] = $arg = trim($arg);
-		if (1 !== preg_match("/^[a-zA-Z0-9\.\-_ ]{1,$max}$/", $arg))
+		if (1 !== preg_match("/^[a-zA-Z0-9\.\-_ ]{1,$max}$/D", $arg))
 		{
 			switch ($unset)
 			{
@@ -166,8 +170,10 @@ final class GWF_Validator
 	{
 		$_POST[$key] = $arg = trim($arg);
 		$len = Common::strlen($arg);
-		if ($len < $min || $len > $max || 0 === preg_match('/^[a-zA-Z][A-Za-z_0-9]+$/', $arg)) {
-			if ($unset) {
+		if ($len < $min || $len > $max || 0 === preg_match('/^[a-zA-Z][A-Za-z_0-9]+$/D', $arg))
+		{
+			if ($unset)
+			{
 				$_POST[$key] = '';
 			}
 			return $m->lang('err_'.$key, array($min, $max));
@@ -357,7 +363,7 @@ final class GWF_Validator
 				continue;
 			}
 			
-			if (preg_match('/^[a-zA-Z]{1}[a-zA-Z0-9]{'.$min.','.$max.'}$/', $tag) !== 1)
+			if (preg_match('/^[a-zA-Z]{1}[a-zA-Z0-9]{'.$min.','.$max.'}$/D', $tag) !== 1)
 			{
 				return $m->lang('err_'.$key);
 			}

@@ -26,6 +26,8 @@ a img { border: none; }
 .ov { overflow: visible; }
 .fw { width: 100%; }
 .nowrap { white-space: nowrap; }
+.top { vertical-align: top; }
+.bot { vertical-align: bottom; }
 
 /* Buttons */
 .gwf_button span, .gwf_pm_icon {
@@ -176,10 +178,9 @@ textarea {
 	text-align: left;
 }
 
-/** Fancy Default Messages **/
 /** Fancy Default Error+MSG **/
 .gwf_errors, .gwf_messages {
-	float: left;
+/* 	float: left; */
 	margin: 28px 20px;
 	line-height: 18px;
 	padding: 0 10px 15px 10px;

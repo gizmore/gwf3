@@ -37,7 +37,7 @@ final class PM_Search extends GWF_Method
 			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), $module->lang('searchterm')),
 			'qsearch' => array(GWF_Form::SUBMIT, $module->lang('btn_search')),
 		);
-		return new GWF_Form($this, $data);
+		return new GWF_Form($this, $data, 'get', 0);
 	}
 	
 	private function onQuickSearch(Module_PM $module, $term)
@@ -130,7 +130,7 @@ final class PM_Search extends GWF_Method
 			$result = array();
 		}
 		$tVars = array(
-			'form_q' => $this->getFormQuick($module)->templateX($module->lang('ft_quicksearch'), GWF_WEB_ROOT.'index.php?mo=PM&me=Search', 'get'),
+			'form_q' => $this->getFormQuick($module)->templateX($module->lang('ft_quicksearch'), GWF_WEB_ROOT.'index.php?mo=PM&me=Search'),
 			'form_a' => $this->getFormAdv($module)->templateY($module->lang('ft_advsearch')),
 			'term' => '',
 			'pagemenu' => '',

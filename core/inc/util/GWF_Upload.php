@@ -70,7 +70,8 @@ final class GWF_Upload
 			'P'  => $f*$f*$f*$f*$f,
 		);
 		$bytes = floatval($human);
-		if (preg_match('#([KMGTP]?B?)$#si', $human, $matches) && !empty($units[$matches[1]])) {
+		if (preg_match('#([KMGTP]?B?)$#siD', $human, $matches) && !empty($units[$matches[1]]))
+		{
 			$bytes *= $units[$matches[1]];
 		}
 		$bytes = intval(round($bytes, 2));

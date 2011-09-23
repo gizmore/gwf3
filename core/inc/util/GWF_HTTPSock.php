@@ -186,7 +186,7 @@ class GWF_HTTPSock
 		{
 			if(!$c)
 			{
-				preg_match('#^HTTP/1\.1 (\d+?) ([\w ]+?)$#', $line, $arr);
+				preg_match('#^HTTP/1\.1 (\d+?) ([\w ]+?)$#D', $line, $arr);
 				$header['status_code'] = (int)$arr[1];
 				$header['status']      = $arr[2];
 			}

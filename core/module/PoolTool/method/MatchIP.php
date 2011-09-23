@@ -98,7 +98,8 @@ final class PoolTool_MatchIP extends GWF_Method
 	private function parseIPs($ips)
 	{
 		$ips = str_replace(',', ' ', $ips);
-		if (0 === preg_match_all('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/', $ips, $matches)) {
+		if (0 === preg_match_all('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/', $ips, $matches))
+		{
 			return array();
 		}
 		

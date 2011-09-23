@@ -59,7 +59,7 @@ final class Language_EditFiles extends GWF_Method
 			if (is_dir($fullpath)) {
 				$this->gatherFilesRec($fullpath);
 			}
-			elseif (1===preg_match('/_([a-z]{2})\.php$/', $entry, $matches)) {
+			elseif (1===preg_match('/_([a-z]{2})\.php$/D', $entry, $matches)) {
 				$iso = $matches[1];
 				$this->files[] = array($fullpath, $this->isBranched($fullpath), GWF_LangFile::getByPath($fullpath), $iso, $entry);
 			}

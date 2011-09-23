@@ -17,7 +17,7 @@ $server instanceof Lamb_Server;
 $modules = $bot->getModules();
 
 $b = chr(2);
-$timeout = 600;
+$timeout = 120;
 $username = $user->getName();
 
 global $LAMB_HELP_FLOOD;

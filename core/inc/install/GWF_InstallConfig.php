@@ -54,7 +54,8 @@ final class GWF_InstallConfig
 	
 	public static function check_GWF_CAPTCHA_COLOR_BG($arg)
 	{
-		if (preg_match('/^[a-f0-9A-F]{6}$/', $arg)) {
+		if (preg_match('/^[a-f0-9A-F]{6}$/D', $arg))
+		{
 			return false;
 		}
 		return 'Invalid captcha color.';

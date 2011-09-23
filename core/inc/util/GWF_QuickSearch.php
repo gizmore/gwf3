@@ -36,7 +36,8 @@ final class GWF_QuickSearch
 	
 	public static function getQuickSearchHighlights($term)
 	{
-		if (!is_string($term)) {
+		if (!is_string($term))
+		{
 			return '';
 		}
 		$term = trim(str_replace(array(',', '+'), ' ', $term));
@@ -47,7 +48,8 @@ final class GWF_QuickSearch
 	public static function search(GDO $gdo, array $fields, $term, $orderby='', $limit=-1, $from=0, $where='')
 	{
 		$where = $where === '' ? '' : ' AND ('.$where.')';
-		if (false === ($conditions = self::getQuickSearchConditions($gdo, $fields, $term))) {
+		if (false === ($conditions = self::getQuickSearchConditions($gdo, $fields, $term)))
+		{
 			return array();
 		}
 		$where = $conditions.$where;
@@ -56,12 +58,13 @@ final class GWF_QuickSearch
 	
 	public static function getQuickSearchConditions(GDO $gdo, array $fields, $term)
 	{
-//		echo $term."\n";
 		$term = trim($term);
-		if (false === ($tokens = self::search_tokenize($term))) {
+		if (false === ($tokens = self::search_tokenize($term)))
+		{
 			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
 			return false;
 		}
+		
 		# Whitelist fields
 		foreach ($fields as $field) { if (false === $gdo->getWhitelistedBy($field)) { echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__); return false; }}
 		
@@ -86,35 +89,33 @@ final class GWF_QuickSearch
 						case self::SEARCH_TERM:
 							$where[] = 'AND';
 //							break;
+
 						default:
 							$not = $prevnot ? ' NOT' : '';
 							$prevnot = false;
 							$where[] = sprintf('%s%s LIKE \'%%%s%%\'', $concat, $not, $gdo->escape($sql));
-
-							
-							foreach ($fields as $field)
-							{
-								
-							}
-							
 							break;
 					}
 					break;
+					
 				case self::SEARCH_NEAR:
 					echo "NEAR NOT SUPPORTED YET.";
 					break;
+					
 				case self::SEARCH_BRACKET_OPEN:
-					if ($prev[0] === self::SEARCH_TERM) {
+					if ($prev[0] === self::SEARCH_TERM)
+					{
 						$where[] = 'AND';
 					}
 					$where[] = $sql;
 					break;
-				# Fallthrough
+					
 				case self::SEARCH_BRACKET_CLOSE:
 				case self::SEARCH_OR:
 				case self::SEARCH_AND:
 					$where[] = $sql;
 					break;
+					
 				default:
 					if ($token[0] === self::SEARCH_NOT)
 					{
@@ -124,7 +125,9 @@ final class GWF_QuickSearch
 					break;
 					
 			}
-			if ($setprev === true) {
+			
+			if ($setprev === true)
+			{
 				$prev = $token;
 			}
 		}
@@ -155,42 +158,49 @@ final class GWF_QuickSearch
 					break;
 					
 				case ' ':
-					if (!$in_quote) {
-						if (false !== ($item = self::search_item($cur, $in_quote))) {
+					if (!$in_quote)
+					{
+						if (false !== ($item = self::search_item($cur, $in_quote)))
+						{
 							$back[] = $item;
 							$cur = '';
 						}
 					}
-					else {
+					else
+					{
 						$cur .= ' ';
 					}
 					break;
 					
 				case '(': $bracket += 2;
 				case ')': $bracket -= 1;
-	//				if ($cur !== ')' && $cur !== '(') {
-						if (false !== ($item = self::search_item($cur, $in_quote))) {
+	//				if ($cur !== ')' && $cur !== '(')
+//					{
+						if (false !== ($item = self::search_item($cur, $in_quote)))
+						{
 							$back[] = $item;
 						}
 	//				}
-					if (false !== ($item = self::search_item($term{$i}, $in_quote))) {
+					if (false !== ($item = self::search_item($term{$i}, $in_quote)))
+					{
 						$back[] = $item;
 					}
 					$cur = '';
 					break;
+					
 				default:
 					$cur .= $term{$i};
 					break;
 			}
 		}
-		if (false !== ($item = self::search_item($cur, $in_quote))) {
+		
+		if (false !== ($item = self::search_item($cur, $in_quote)))
+		{
 			$back[] = $item;
 		}
 		
-		if ($bracket !== 0) {
-			return false;
-		}
-		if ($in_quote) {
+		if ( ($bracket !== 0) || ($in_quote) )
+		{
 			return false;
 		}
 		
@@ -199,28 +209,36 @@ final class GWF_QuickSearch
 	
 	private static function search_item($txt, $in_quotes)
 	{
-		if ($in_quotes) {
+		if ($in_quotes)
+		{
 			return array(0, $txt);
 		}
+		
 		switch (strtolower($txt))
 		{
 			case '':
 				return false;
+				
 			case ')':
 				return array(self::SEARCH_BRACKET_CLOSE, $txt);
+				
 			case '(':
 				return array(self::SEARCH_BRACKET_OPEN, $txt);
+				
 			case 'not':
 				return array(self::SEARCH_NOT, strtoupper($txt));
+				
 			case 'near':
 				return array(self::SEARCH_NEAR, strtoupper($txt));
+				
 			case 'and':
 				return array(self::SEARCH_AND, strtoupper($txt));
+				
 			case 'or':
 				return array(self::SEARCH_OR, strtoupper($txt));
+				
 			default:
 				return array(self::SEARCH_TERM, $txt);
-				
 		}
 	}
 }

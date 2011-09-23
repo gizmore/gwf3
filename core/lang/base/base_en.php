@@ -97,10 +97,10 @@ $lang = array(
 	### Second: s:59
 	'df4' => 'Y', # 2009
 	'df6' => 'M Y', # January 2009
-	'df8' => 'D, M j, Y', # Tue, January 9, 2009
-	'df10' => 'M d, Y - H:00', # January 09, 2009 - 23:00
-	'df12' => 'M d, Y - H:i',  # January 09, 2009 - 23:59
-	'df14' => 'M d, Y - H:i:s',# January 09, 2009 - 23:59:59
+	'df8' => 'D, N j, Y', # Tue, January 9, 2009
+	'df10' => 'N d, Y - H:00', # January 09, 2009 - 23:00
+	'df12' => 'N d, Y - H:i',  # January 09, 2009 - 23:59
+	'df14' => 'N d, Y - H:i:s',# January 09, 2009 - 23:59:59
 
 	# The data from the 5 sections above, merged for faster access.
 	'datecache' => array(
@@ -108,7 +108,7 @@ $lang = array(
 		array('January','February','March','April','May','June','July','August','September','October','November','December'),
 		array('Sun','Mon','Tue','Wed','Thu','Fri','Sat'),
 		array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'),
-		array(4=>'Y', 6=>'M Y', 8=>'D, M j, Y', 10=>'M d, Y - H:00', 12=>'M d, Y - H:i', 14=>'M d, Y - H:i:s'),
+		array(4=>'Y', 6=>'M Y', 8=>'D, N j, Y', 10=>'N d, Y - H:00', 12=>'N d, Y - H:i', 14=>'N d, Y - H:i:s'),
 	),
 
 
@@ -196,5 +196,4 @@ $lang = array(
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
 	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
 );
-
 ?>

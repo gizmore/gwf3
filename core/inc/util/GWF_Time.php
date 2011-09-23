@@ -249,7 +249,7 @@ final class GWF_Time
 		if ( ($date === '' || $date == 0) && $allowBlank) {
 			return true;
 		}
-		if (preg_match('/^\d{'.$length.'}$/', $date) === 0) {
+		if (preg_match('/^\d{'.$length.'}$/D', $date) === 0) {
 			return false;
 		}
 		
@@ -322,7 +322,7 @@ final class GWF_Time
 	
 	public static function getTimestamp($gdo_date)
 	{
-		if (0 === preg_match('/^(\d{4})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?$/', $gdo_date, $matches)) {
+		if (0 === preg_match('/^(\d{4})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?$/D', $gdo_date, $matches)) {
 			return false;
 		}
 		return mktime(

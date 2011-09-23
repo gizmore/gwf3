@@ -161,7 +161,7 @@ final class WeChall_ChallEdit extends GWF_Method
 			if ($tag === '') {
 				continue;
 			}
-			if (1 !== preg_match('/^[a-zA-Z_0-9]+$/', $tag)) {
+			if (1 !== preg_match('/^[a-zA-Z_0-9]+$/D', $tag)) {
 				$back .= ', '.GWF_HTML::display($tag);
 			}
 		}

@@ -8,7 +8,7 @@ function install_get_core_tables()
 	$classnames = array();
 	foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
 	{
-		if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/i', $file, $matches))
+		if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/iD', $file, $matches))
 		{
 			$classname = $matches[1];
 			if (false === ($content = file_get_contents(GWF_CORE_PATH."inc/util/{$file}"))) {

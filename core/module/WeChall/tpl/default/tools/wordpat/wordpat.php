@@ -65,7 +65,7 @@ function wordpatValidatePattern($pattern) {
 	
 	$pattern = trim(strtoupper($pattern));
 	
-	if (0 === preg_match("/^[A-P0-9]{2,20}$/", $pattern)) {
+	if (0 === preg_match("/^[A-P0-9]{2,20}$/D", $pattern)) {
 		return htmlDisplayError("Invalid character set");
 	}
 	
@@ -113,7 +113,7 @@ function wordpatMatch($pattern) {
 	
 	$country = (int) Common::getPost("country", 2);
 	$iso = Common::getPost('iso', 'en');
-	if (!preg_match('/^[a-z]{2}$/', $iso)) {
+	if (!preg_match('/^[a-z]{2}$/D', $iso)) {
 		$iso = 'en';
 	}
 	

@@ -71,7 +71,7 @@ final class Common
 	 */
 	public static function getTLD($url)
 	{
-		return preg_match('/([^\\.]+\\.[a-z]{2,3})([\\/:].*|$)/', $url, $matches) ? $matches[1] : false;
+		return preg_match('/([^\\.]+\\.[a-z]{2,3})([\\/:].*|$)/D', $url, $matches) ? $matches[1] : false;
 	}
 	
 	##############
@@ -284,11 +284,7 @@ final class Common
 	 */
 	public static function regex($pattern, $s)
 	{
-		if (preg_match($pattern, $s, $matches))
-		{
-			return $matches[1];
-		}
-		return false;
+		return preg_match($pattern, $s, $matches) ? $matches[1] : false;
 	}
 }
 ?>

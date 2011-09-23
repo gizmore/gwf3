@@ -17,7 +17,8 @@ final class GWF_DownloadToken extends GDO
 	
 	public static function checkToken(Module_Download $module, GWF_Download $dl, $user, $token)
 	{
-		if (0 === preg_match('/^[a-z0-9_]{'.self::TOKEN_LEN.'}$/i', $token)) {
+		if (0 === preg_match('/^[a-z0-9_]{'.self::TOKEN_LEN.'}$/iD', $token))
+		{
 			return false;
 		}
 		

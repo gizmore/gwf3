@@ -64,7 +64,7 @@ final class Language_Bundle extends GWF_Method
 			elseif (is_dir($fullpath)) {
 				$this->getLanguageFilesR($iso, $fullpath, $files);
 			}
-			elseif (preg_match("/.+_$iso.php$/", $entry)) {
+			elseif (preg_match("/.+_$iso.php$/D", $entry)) {
 				$files[] = $fullpath;
 			}
 		}

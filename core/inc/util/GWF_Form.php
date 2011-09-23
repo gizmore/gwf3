@@ -87,7 +87,7 @@ class GWF_Form
 		{
 			return $default;
 		}
-		return count($_POST) > 0 ? $this->getPostVar($key, $default) : $this->getGetVar($key, $default);
+		return $this->method === self::METHOD_POST ? $this->getPostVar($key, $default) : $this->getGetVar($key, $default);
 	}
 	
 	private function getPostVar($key, $default)
@@ -277,6 +277,9 @@ class GWF_Form
 				case self::DIVIDER:
 				case self::CHECKBOX:
 				case self::VALIDATOR:
+					break;
+				case self::HIDDEN:
+					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
 				default:
 //					if (isset($_POST[$key])) { $this->form_data[$key][1] = $_POST[$key]; }

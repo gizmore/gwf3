@@ -38,7 +38,7 @@ final class Quest_Delaware_BS1 extends SR_Quest
 				$npc->reply("What do you think?");
 				break;
 			case 'yes':
-				$npc->reply('Alrgiht, great :)');
+				$npc->reply('Alright, great :)');
 				break;
 			case 'no':
 				$npc->reply('Oh, ok.');

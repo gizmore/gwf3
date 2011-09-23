@@ -49,7 +49,7 @@ final class Usergroups_Users extends GWF_Method
 		if ($letter === 'Num') {
 			return "SUBSTRING(user_name, 1, 1) BETWEEN '0' AND '9' AND user_options&$del=0";
 		}
-		elseif (preg_match('/^[A-Z]{1}$/', $letter) === 1) {
+		elseif (preg_match('/^[A-Z]{1}$/D', $letter) === 1) {
 			return "user_name LIKE '$letter%' AND user_options&$del=0";
 		} else {
 			return "user_options&$del=0";

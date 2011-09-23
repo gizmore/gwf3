@@ -122,7 +122,7 @@ final class GWF_CSRF
 	public static function validateToken()
 	{
 		# POST or GET?
-		if (count($_POST) > 0) {
+		if (count($_POST) > 1) { # Sometimes there is one var in the POST Oo
 			$array =& $_POST;
 		} else {
 			$array =& $_GET;

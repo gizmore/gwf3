@@ -10,18 +10,23 @@ final class WC_CryptoChall
 	
 	public static function generateSolution($random, $letters_only=false, $lowercase=false)
 	{
-		if (false === ($user = GWF_Session::getUser())) {
+		if (false === ($user = GWF_Session::getUser()))
+		{
 			$username = GWF_Session::getSessID();
 		}
-		else {
+		else
+		{
 			$username = $user->getVar('user_name');
 		}
+		
 		$md5 = strtoupper(md5($random.$random.$username.$random.$random));
-		if ($letters_only === true) {
+		if ($letters_only === true)
+		{
 			$md5 = str_replace(self::$SEARCH, self::$REPLACE, $md5);
 		}
 		
-		if ($lowercase === true) {
+		if ($lowercase === true)
+		{
 			$md5 = strtolower($md5);
 		}
 		
@@ -30,13 +35,18 @@ final class WC_CryptoChall
 	
 	public static function checkSolution(WC_Challenge $chall, $random, $letters_only=false, $lowercase=false)
 	{
-		if (false === ($answer = Common::getPost('answer'))) {
+		if (false === ($answer = Common::getPost('answer')))
+		{
 			return;
 		}
+		
 		$solution = self::generateSolution($random, $letters_only, $lowercase);
-		if ($lowercase) {
+		
+		if ($lowercase)
+		{
 			$answer = strtolower($answer);
 		}
+		
 		$chall->setVar('chall_solution', WC_Challenge::hashSolution($solution, $lowercase));
 		$chall->onSolve(GWF_Session::getUser(), $answer);
 	}
@@ -46,32 +56,44 @@ final class WC_CryptoChall
 		$back = '';
 		$len = strlen($ct);
 		$i = 0;
+		
 		for($i = 0; $i < $len; $i++)
 		{
 			$back .= sprintf('%02X', ord($ct{$i}));
-			if (($i % 16) === 15) {
+			if (($i % 16) === 15)
+			{
 				$back .= PHP_EOL;
-			} else {
+			}
+			else
+			{
 				$back .= ' ';
 			}
 		}
-		if (($i % 16) !== 15) {
+		
+		if (($i % 16) !== 15)
+		{
 			$back .= PHP_EOL;
 		}
+		
 		return "<pre style=\"font-family: monospace;\">\n".$back."\n</pre>\n";
 	}
 	
 	public static function checkPlaintext($pt, $lowercase=false, $check_utf8=true)
 	{
 		# Check if all needed letters occur in the plaintext. 
-		if ($lowercase === true) {
+		if ($lowercase === true)
+		{
 			$need = array('a','b','c','d','e','f','g','h','i','r','s','l','m','n','o','p');
-		} else {
+		}
+		else
+		{
 			$need = array('A','B','C','D','E','F','G','H','I','R','S','L','M','N','O','P');
 		}
+		
 		foreach ($need as $c)
 		{
-			if (false === strpos($pt, $c)) {
+			if (false === strpos($pt, $c))
+			{
 				echo GWF_HTML::error('WCCC', sprintf('The letter %s is missing!', $c), false);
 			}
 		}
@@ -79,7 +101,8 @@ final class WC_CryptoChall
 		# Check plaintext utf8 lengths
 		if ($check_utf8 === true)
 		{
-			if (mb_strlen($pt, 'UTF8') !== strlen($pt)) {
+			if (mb_strlen($pt, 'UTF8') !== strlen($pt))
+			{
 				echo GWF_HTML::error('WCCC', sprintf('Error: The plaintext is not extended ascii!'));
 			}
 		}

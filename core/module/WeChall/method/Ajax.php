@@ -4,7 +4,7 @@ final class WeChall_Ajax extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		$letter = strtolower(Common::getGetString('letter'));
-		if (!preg_match('/^[a-z]{1}$/', $letter)) {
+		if (!preg_match('/^[a-z]{1}$/D', $letter)) {
 			return '';
 		}
 		$db = gdo_db();

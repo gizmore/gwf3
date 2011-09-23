@@ -43,7 +43,7 @@ final class LambModule_Link extends Lamb_Module
 	#####################################
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
-		if (!preg_match_all('#(https?://[^\ ]+)#', $message, $matches)) {
+		if (!preg_match_all('#(https?://[^\ ]+)#D', $message, $matches)) {
 			return;
 		}
 		

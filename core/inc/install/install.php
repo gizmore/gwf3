@@ -9,9 +9,10 @@
 define('GWF_INSTALLATION', true);
 define('GWF_ERRORS_TO_SMARTY', true);
 define('GWF_MESSAGES_TO_SMARTY', true);
-define('GWF_WEB_ROOT_NO_LANG', '/GWF3/www/');
+//define('GWF_WEB_ROOT_NO_LANG', '/GWF3/www/');
+define('GWF_WEB_ROOT_NO_LANG', '/');
 
-require_once 'gwf3.class.php';
+require_once '../gwf3.class.php';
 
 $cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.example.php'));
 $lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));

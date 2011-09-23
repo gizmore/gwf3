@@ -118,7 +118,7 @@ final class GWF_Category extends GWF_Tree
 	{
 		$key = (string) $key;
 		$len = self::KEY_LENGTH;
-		return preg_match('/^[a-zA-Z0-9_]{1,'.$len.'}$/', $key) === 1;
+		return preg_match('/^[a-zA-Z0-9_]{1,'.$len.'}$/D', $key) === 1;
 	}
 	
 //	public function getGDOInput($key, $value)

@@ -84,7 +84,7 @@ final class GWF_Language extends GDO
 		# IN URL
 //		if (isset($_SERVER['REQUEST_URI']))
 //		{
-			$pattern = '#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})(/.*)?$#';
+			$pattern = '#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})(/.*)?$#D';
 			if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches))
 			{
 				$iso = $matches[1];
@@ -97,15 +97,15 @@ final class GWF_Language extends GDO
 //		}
 		
 		# Domain
-		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/', $_SERVER['HTTP_HOST'], $matches))
-		{
-			$iso = $matches[1];
-			if (false !== (self::$LANG = self::getByISO($iso)))
-			{
-				self::$ISO = $iso;
-				return true;
-			}
-		}
+//		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/D', $_SERVER['HTTP_HOST'], $matches))
+//		{
+//			$iso = $matches[1];
+//			if (false !== (self::$LANG = self::getByISO($iso)))
+//			{
+//				self::$ISO = $iso;
+//				return true;
+//			}
+//		}
 		
 		# Browser
 		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))

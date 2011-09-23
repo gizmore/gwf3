@@ -77,8 +77,7 @@ final class GWF_FormValidator
 	private static function validateMissingVars(GWF_Module $module, GWF_Form $form, $validator)
 	{
 		$errors = array();
-		$check_sent = count($_POST) > 0 ? $_POST : $_GET;
-//		$check_sent = $_POST;
+		$check_sent = $form->getMethod() === GWF_Form::METHOD_POST ? $_POST : $_GET;
 		$check_need = array();
 		
 		foreach ($form->getFormData() as $key => $data)

@@ -44,7 +44,7 @@ final class Quest_Delaware_BS3 extends SR_Quest
 				$npc->reply("Do you accept the quest?");
 				break;
 			case 'yes':
-				$npc->reply('Alrgiht, great :)');
+				$npc->reply('Alright, great :)');
 				break;
 			case 'no':
 				$npc->reply('Oh, ok.');

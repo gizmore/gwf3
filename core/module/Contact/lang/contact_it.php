@@ -51,6 +51,7 @@ $lang = array(
 	
 	# V2.01 (List Admins)
 	'list_admins' => 'Admins: %1%.',
+	'cfg_captcha_member' => 'Show captcha for members?',
 );
 
 ?>

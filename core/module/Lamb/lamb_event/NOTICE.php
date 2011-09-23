@@ -3,7 +3,7 @@ if (stripos($from, 'NickServ!') === 0)
 {
 	echo $args[1].PHP_EOL;
 	echo "1\n";
-	if (preg_match('/^STATUS ([^ ]+) ([0-9])$/', $args[1], $matches))
+	if (preg_match('/^STATUS ([^ ]+) ([0-9])$/D', $args[1], $matches))
 	{
 		$nickname = $matches[1];
 		echo "2 $nickname\n";

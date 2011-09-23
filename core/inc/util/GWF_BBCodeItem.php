@@ -278,9 +278,11 @@ final class GWF_BBCodeItem
 	
 	public function render_color($htmlspecial, $nl2br, $raw)
 	{
-		if (!empty($this->params['color'])) {
+		if (!empty($this->params['color']))
+		{
 			$color = $this->params['color'];
-			if ( (preg_match('/^[a-f0-9]{3}$/i', $color)) || (preg_match('/^[a-f0-9]{6}$/i', $color)) ) {
+			if ( (preg_match('/^[a-f0-9]{3}$/iD', $color)) || (preg_match('/^[a-f0-9]{6}$/iD', $color)) )
+			{
 				$the_color = $color;
 			}
 		}

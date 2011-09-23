@@ -170,7 +170,7 @@ final class Lamb_ScumGame
 		$this->cmdtime = time();
 		# Command
 		$message = strtoupper($message);
-		if (0 === preg_match('/^[ ,78910JQKA]+$/', $message)) {
+		if (0 === preg_match('/^[ ,78910JQKA]+$/D', $message)) {
 			return 'Error in play syntax!';
 		}
 		$cards = preg_split('/[, ]+/', $message);

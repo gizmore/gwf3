@@ -277,27 +277,26 @@ final class GWF_Session extends GDO
 		$userid = $user->getID();
 
 		# Keep only N sessions for one user
-		if (false === ($result = self::$SESSION->selectFirst('MIN(sess_id) min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER))) {
+		if (false === ($result = self::$SESSION->selectFirst('MIN(sess_id) min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER)))
+		{
 			$cut_id = '1';#return false;
 		} else {
 			$cut_id = $result[0];
 		}
-//		if ($cut_id === NULL) {
-//			$cut_id = 1;
-//		}
 		
-		if (false === self::$SESSION->deleteWhere("sess_user=$userid AND sess_id<$cut_id")) {
+		if (false === self::$SESSION->deleteWhere("sess_user=$userid AND sess_id<$cut_id"))
+		{
 			return false;
 		}
 		
 		# Update session 
-		$data = array(
-			'sess_user' => $userid,
-		);
-		if ($bind_to_ip) {
+		$data = array('sess_user' => $userid);
+		if ($bind_to_ip)
+		{
 			$data['sess_ip'] = GWF_IP6::getIP(GWF_IP_EXACT);
 		}
-		if (false === self::$SESSION->saveVars($data)) {
+		if (false === self::$SESSION->saveVars($data))
+		{
 			return false;
 		}
 		self::$SESSION->setVar('sess_user', $user);
@@ -305,7 +304,6 @@ final class GWF_Session extends GDO
 		# Set cookies
 		self::setCookies(self::$SESSION->getVar('sess_id'), $userid, self::$SESSION->getVar('sess_sid'));
 		self::$USER = $user;
-		
 
 		# Call hooks
 		return $with_hooks ? GWF_Hook::call(GWF_Hook::LOGIN, $user) : true;
