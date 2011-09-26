@@ -288,7 +288,7 @@ final class Lamb_IRC
 			
 			if ($to_read > $split_len)
 			{
-				$j = self::strrchr( $message, ' ', $i+$split_len);
+				$j = GWF_String::strrchr($message, ' ', $i+$split_len);
 				
 				if ($j <= $i) { $j = $i + $split_len; }
 				$m = substr($message, $i, $j-$i/*-1*/);
@@ -310,29 +310,5 @@ final class Lamb_IRC
 		}
 		return true;
 	}
-	
-	
-	/**
-	 * Return the last position of a char, counting backwards from offset.
-	 * This function is not binary safe!
-	 * @param string $s
-	 * @param char $c
-	 * @param int $offset
-	 */
-	private static function strrchr($s, $c, $offset=0)
-	{
-		$len = strlen($s);
-		$i = Common::clamp((int)$offset, 0, $len-1);
-		while ($i >= 0)
-		{
-			if ($s{$i} === $c)
-			{
-				return $i;
-			}
-			$i--;
-		}
-		return false;
-	}
-	
 }
 ?>

@@ -33,5 +33,27 @@ final class GWF_String
 		}
 		return $count;
 	}
+	
+	/**
+	 * Return the last position of a char, counting backwards from offset.
+	 * This function does not work with strings, only with a char as needle.
+	 * @param string $s
+	 * @param char $c
+	 * @param int $offset
+	 */
+	public static function strrchr($s, $c, $offset=0)
+	{
+		$len = strlen($s);
+		$i = Common::clamp((int)$offset, 0, $len-1);
+		while ($i >= 0)
+		{
+			if ($s{$i} === $c)
+			{
+				return $i;
+			}
+			$i--;
+		}
+		return false;
+	}
 }
 ?>
