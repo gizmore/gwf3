@@ -2,19 +2,19 @@
 	<div id="gwf_inst_main">
 		<div id="gwf_inst_logo">
 			<h1>GWF3</h1>
-			<span>Space & Gizmore Website Framework - Installation wizard - Step 0</span><br style="clear: both;">
+			<span>Space &amp; Gizmore Website Framework - Installation wizard - Step {$step}</span><br style="clear: both;">
 		</div>
 		<div id="gwf_inst_stepmenu">
 			<ol>
-				<li class="hover" id="step1">Status</li>
-				<li id="step2">Init Install</li>
-				<li id="step3">Create CoreDB</li>
-				<li id="step4">Languages</li>
-				<li id="step5">Modules</li>
-				<li id="step6">Admins</li>
-				<li id="step7">foo</li>
-				<li id="step8">htaccess</li>
-				<li id="step9">finish</li>
+				<li id="step1"><a href="?step=0">Status</a></li>
+				<li id="step1"><a href="?step=1">Create Config</a></li>
+				<li id="step2"><a href="?step=2">Test Config</a></li>
+				<li id="step3"><a href="?step=3">Create CoreDB</a></li>
+				<li id="step4"><a href="?step=4">Languages</a></li>
+				<li id="step5"><a href="?step=6">Modules</a></li>
+				<li id="step6"><a href="?step=8">Admins</a></li>
+				<li id="step9"><a href="?step=9">finish</a></li>
+				<li id="step8"><a href="?step=10">htaccess</a></li>
 			</ol>
 		</div>
 		<div id="gwf_inst_errors">

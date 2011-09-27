@@ -331,17 +331,10 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 }
 
 function copyExampleFiles() {
-	$index = true; $error = true;
 	if(!file_exists('index.php'))
 	{
-		$index = copy('index.example.php', 'index.php');
-	}
-	if(!file_exists('error.php'))
-	{
-		$error = copy('error.example.php', 'error.php');
-	}
-	
-	return (false !== $index) && (false !== $ce);
+		return copy('index.example.php', 'index.php');
+	}	
 }
 
 ?>

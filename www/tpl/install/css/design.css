@@ -70,6 +70,10 @@ div#gwf_inst_stepmenu ol li {
 	display: inline;
 	padding: 2px;
 }
+div#gwf_inst_stepmenu ol li a {
+	color: #e0e6ec;
+	text-decoration: none;
+}
 div#gwf_inst_stepmenu ol li.hover {
 	background-color: #0000ff;
 }

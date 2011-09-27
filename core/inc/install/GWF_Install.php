@@ -5,6 +5,7 @@ final class GWF_Install
 	public static $red = 0;
 	public static $gwfil = NULL;
 
+	## Set GWF Installatzion Language
 	public static function setGWFIL($v) {
 		self::$gwfil = $v;
 	}
@@ -39,8 +40,8 @@ final class GWF_Install
 
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_0_0')).PHP_EOL;
 
-		$back .= '<pre>'.PHP_EOL;
-		$back .= "CREATE USER 'username'@'localhost' IDENTIFIED BY 'password'\n";
+ 		$back .= '<pre>'.PHP_EOL;
+		$back .= "CREATE USER 'username'@'localhost' IDENTIFIED BY 'password;'\n";
 		$back .= "CREATE DATABASE `databasename`;\n";
 		$back .= "GRANT ALL ON databasename.* TO 'username'@'localhost' IDENTIFIED BY 'password';\n";
 		$back .= '</pre>'.PHP_EOL;
@@ -316,7 +317,7 @@ final class GWF_Install
 		$back .= self::$gwfil->lang('step_3_0').PHP_EOL;
 
 		$output = '';
-		if (false === self::core(false)) {
+		if (false === install_core(false)) {
 			return $output.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		$back .= $output;
@@ -330,7 +331,7 @@ final class GWF_Install
 	public static function wizard_4()
 	{
 		$back = self::wizard_h2('4');
-		self::createLanguage(true, true, false);
+		install_createLanguage(true, true, false);
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_0'));
 		$back .= self::wizard_btn('6');
 		$back .= self::wizard_btn('7');
@@ -341,7 +342,7 @@ final class GWF_Install
 	public static function wizard_5()
 	{
 		$back = self::wizard_h2('5');
-		self::createLanguage(true, true, true);
+		install_createLanguage(true, true, true);
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_0'));
 		$back .= self::wizard_btn('6');
 		$back .= self::wizard_btn('7');

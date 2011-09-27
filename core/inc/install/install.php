@@ -7,31 +7,44 @@
  */
 
 define('GWF_INSTALLATION', true);
-define('GWF_ERRORS_TO_SMARTY', true);
-define('GWF_MESSAGES_TO_SMARTY', true);
-//define('GWF_WEB_ROOT_NO_LANG', '/GWF3/www/');
-define('GWF_WEB_ROOT_NO_LANG', '/');
 
 require_once '../gwf3.class.php';
-
-$cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.example.php'));
-$lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
-
 require_once GWF_CORE_PATH.'inc/install/GWF_Install.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
-require_once $cpath;
+define('GWF_STEP', Common::getGetInt('step', 0));
+
+
+realpath(__DIR__.'../');
+if(GWF_STEP < 2) {
+
+	$webroot = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/')+1);
+	define('GWF_WEB_ROOT_NO_LANG', htmlspecialchars($webroot));
+
+	define('GWF_ERRORS_TO_SMARTY', true);
+	define('GWF_MESSAGES_TO_SMARTY', true);
+	if(!Common::isFile('protected/config.php'))
+		$cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.example.php'));
+	$lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
+} else {
+	$load_config = true;
+	$cpath = Common::defineConst('GWF_CONFIG_PATH', Common::getGet('configpath', './protected/config.php'));
+//	$lpath = Common::defineConst('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));	
+}
+
 
 GWF_Debug::setDieOnError(false);
 
 $gwf = new GWF3($dir, array(
+	'load_config' => true,
+	'start_debug' => true,
+	'ignore_user_abort' => false,
+	//'disallow_php_uploads' => true,
 	'website_init' => false,
 	'autoload_modules' => false,
 	'load_module' => false,
 	'get_user' => false,
-	'config_path' => $cpath,
-	'logging_path' => $lpath,
-	'do_logging' => true,
+	'do_logging' => false,
 	'no_session' => true
 ));
 
@@ -39,6 +52,7 @@ $gwf = new GWF3($dir, array(
 header('Content-Type: text/html; charset=UTF-8');
 GWF_Language::initEnglish();
 GWF_HTML::init();
+#GWF_Website::plaintext();
 
 # set Install Language
 GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
@@ -49,7 +63,10 @@ GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::includeJQuery();
-GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'wizard_banner' => GWF_Install::wizard_banner()));
+
+$progress = (int)(100 / 11 * GWF_STEP);
+
+GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH,'step' => GWF_STEP));
 
 $page = '';
 
@@ -65,16 +82,16 @@ elseif (false !== (Common::getPost('write_config'))) {
 elseif (false !== (Common::getPost('install_modules'))) {
 	$page .= GWF_Install::wizard_7a();
 }
-else switch(Common::getGetInt('step', 0))
+else switch(GWF_STEP)
 {
 	case 0: $page .= GWF_Install::wizard_0(); break; # List Status
-	case 1: $page .= GWF_Install::wizard_1(); break;
+	case 1: $page .= GWF_Install::wizard_1(); break; # Create Config
 	case 2: $page .= GWF_Install::wizard_2(); break; # Init Install
 	case 3: $page .= GWF_Install::wizard_3(); break; # Create CoreDB
 	case 4: $page .= GWF_Install::wizard_4(); break; # Language Small
 	case 5: $page .= GWF_Install::wizard_5(); break; # Language Big
 	case 6: $page .= GWF_Install::wizard_6(); break; # UserAgentMap
-	case 7: $page .= GWF_Install::wizard_7(); break; # All Modules
+	case 7: $page .= GWF_Install::wizard_7(); break; # All .exampleModules
 	case 8: $page .= GWF_Install::wizard_8(); break; # Admins
 	case 9: $page .= GWF_Install::wizard_9(); break; # Done
 	case 10: $page .= GWF_Install::wizard_10(); break; # htaccess

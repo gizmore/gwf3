@@ -210,9 +210,11 @@ final class GWF_InstallConfig
 		else
 		{
 			$domain = $_SERVER['HTTP_HOST'];
-			$self = Common::substrUntil($_SERVER['PHP_SELF'], 'protected/');
+			#$self = Common::substrUntil($_SERVER['PHP_SELF'], 'protected/');
+			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/')+1);
 		}
-		$path = Common::substrUntil(__FILE__, '/protected');
+//		$path = Common::substrUntil(__FILE__, '/protected');
+		$path = GWF_PATH;
 		$temp = array(
 			# Main
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
@@ -226,16 +228,16 @@ final class GWF_InstallConfig
 //			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc/3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# 3rd Party
-			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'/core/inc/3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'core/inc/3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# Smarty
-			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', 'extra/temp/smarty_cache/tpl', 'Path to smarty template directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', 'extra/temp/smarty_cache/tplc', 'Path to smarty caching directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', 'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', 'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', 'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
+			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', $path.'extra/temp/smarty_cache/tpl', 'Path to smarty template directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', $path.'extra/temp/smarty_cache/tplc', 'Path to smarty caching directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', $path.'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', $path.'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', $path.'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
                         array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
                         array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
 
