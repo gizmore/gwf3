@@ -88,7 +88,7 @@ function install_default_groups()
 		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		return false;
 	}
-	if (false === install_default_group(GWF_Group::MODRATOR)) {
+	if (false === install_default_group(GWF_Group::MODERATOR)) {
 		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		return false;
 	}
@@ -282,7 +282,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	# IP2Country
 	$max = 89323;
 	$now = 0;
-	$filename = "protected/install_data/ip-to-country.csv";
+	$filename = GWF_CORE_PATH."inc/install/data/ip-to-country.csv";
 
 	if (false === ($fp = fopen($filename, "r"))) {
 		echo GWF_HTML::err0('ERR_FILE_NOT_FOUND', array($filename));

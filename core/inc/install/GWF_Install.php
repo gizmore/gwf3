@@ -430,7 +430,7 @@ final class GWF_Install
 		$modules = GWF_ModuleLoader::loadModulesFS();
 		GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
 
-		$back .= self::modules($modules, false);
+		$back .= install_modules($modules, false);
 
 //		foreach ($modules as $module)
 //		{
@@ -487,9 +487,9 @@ final class GWF_Install
 			return GWF_HTML::error('Install Wizard', 'Invalid email.', false).self::wizard_8();
 		}
 
-		self::default_groups();
+		install_default_groups();
 
-		self::createAdmin($username, $password, $email, $back);
+		install_createAdmin($username, $password, $email, $back);
 
 		return
 			$back.
@@ -506,7 +506,8 @@ final class GWF_Install
 
 	public static function wizard_10()
 	{
-		if (false === GWF_HTAccess::protect(dirname(__FILE__).'/protected')) {
+//		if (false === GWF_HTAccess::protect(dirname(__FILE__).'/protected')) {
+		if (false === GWF_HTAccess::protect(GWF_PROTECTED_PATH)) {
 			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 
@@ -516,9 +517,9 @@ final class GWF_Install
 	public static function wizard_11()
 	{
 		if (false === copyExampleFiles()) {
-			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php and error.example.php => error.php now'));
+			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'));
 		} else { 
-			echo GWF_HTML::message('Install Wizard', 'Successfully created index.pp and error.php.', false);
+			echo GWF_HTML::message('Install Wizard', 'Successfully created index.php.', false);
 		}
 		return self::wizard_btn('10');
 	}

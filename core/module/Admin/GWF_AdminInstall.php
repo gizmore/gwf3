@@ -18,7 +18,8 @@ final class GWF_AdminInstall
 	
 	private static function installCoreClasses(Module_Admin $module)
 	{
-		require_once 'protected/install_scripts/install_functions.php';
+		//require_once 'protected/install_scripts/install_functions.php';
+		require_once GWF_CORE_PATH.'install/GWF_InstallFunctions.php'
 		foreach(install_get_core_tables() as $classname)
 		{
 			if (false === GDO::table($classname)->createTable(false))

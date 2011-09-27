@@ -36,7 +36,7 @@ final class GWF_AdminWebSpiders
 		
 		GDO::table('GWF_Webspider')->createTable(true);
 		
-		$filename = GWF_CORE_PATH.'module/GWF/'.self::SPIDER_FILE;
+		$filename = GWF_CORE_PATH.'module/Admin/'.self::SPIDER_FILE;
 		if (false === ($fh = fopen($filename, 'r'))) {
 			return GWF_HTML::err('ERR_FILE_NOT_FOUND', $filename);
 		}
