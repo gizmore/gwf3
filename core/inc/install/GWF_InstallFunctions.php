@@ -29,26 +29,27 @@ function install_core($drop=false)
 	$db = gdo_db();
 	$tables = install_get_core_tables();
 	$success = true;
+	$ret = '<br/><br/>';
 	foreach ($tables as $classname)
 	{
-		printf("Installing %s table ... ", $classname);
+		$ret .= sprintf("Installing %s table ... ", $classname);
 		if (false === ($result = GDO::table($classname)->createTable($drop))) {
 			#error
-			echo "FAILED!<br/>\n";
+			$ret .= '<b class="gwfinstallno">FAILED!<br/>'.PHP_EOL;
 			$success = false;
 		}
 		else {
 			#success
-			echo "OK<br/>\n";
+			$ret .= '<b class="gwfinstallyes">OK</b><br/>'.PHP_EOL;
 		}
 	}
-	
+	$ret .= '<br/>';
 	/** Try to set a birthdate **/
 	if (false === GWF_Settings::getSetting('gwf_site_birthday', false)) {
 		GWF_Settings::setSetting('gwf_site_birthday', date('Ymd'));
 	}
 	
-	return $success;
+	return $success ? $ret : $success;
 }
 
 ###############
@@ -69,6 +70,7 @@ function install_modules(array $modules, $dropTables=false)
 	$modules = GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
 	foreach ($modules as $module)
 	{
+		$back .= sprintf('Installing %s...<br/>', $module->getName());
 		$back .= GWF_ModuleLoader::installModule($module, $dropTables);
 	}
 	$back .= GWF_ModuleLoader::installHTAccess($modules);
@@ -145,7 +147,7 @@ function install_createAdmin($username, $password, $email, &$output)
 		return false;
 	}
 	
-	$output .= GWF_HTML::message('Install Wizard', sprintf('Added new admin user: %s - Password: %s', $username, $password));
+	$output .= GWF_HTML::message('Install Wizard', sprintf('Added new admin user: %s - Password: [censored]', $username));
 	
 	return true;
 }
@@ -156,7 +158,8 @@ function install_createAdmin($username, $password, $email, &$output)
 ############################################
 /**
  * Takes ages.
- * @return boolean
+ * @return string or false
+ * @todo integrate in design but do flushing
  */
 function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 {
@@ -166,11 +169,10 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 
 	$cache = array();
 	$cache2 = array();
-
 	# Language
 	$i = 1;
 	$linguas = install_get_languages();
-	echo 'Installing '.count($linguas).' Languages';
+	$ret = 'Installing '.count($linguas).' Languages';
 	flush();
 	
 	$lang_t = new GWF_Language();
@@ -178,7 +180,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	
 	foreach ($linguas as $lang)
 	{
-		echo '.';
+		$ret .= '.';
 		flush();
 
 		array_map('trim', $lang);
@@ -200,7 +202,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 				'lang_iso' => $iso,
 				'lang_options' => in_array($iso, $supported, true) ? GWF_Language::SUPPORTED : 0,
 			))) {
-				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+				$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				$success = false;
 				continue;
 			}
@@ -210,21 +212,21 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 		$cache[$short] = $i; #langrow['lang_id'];
 	}
 	
-	echo PHP_EOL;
+	$ret .= PHP_EOL;
 
 	# Country and Langmap
 	$countries = install_get_countries();
 	$country_t = new GWF_Country();
-	echo 'Installing '.count($countries).' Countries';
+	$ret .= 'Installing '.count($countries).' Countries';
 	flush();
 	
 	foreach ($countries as $cid => $c)
 	{
-		echo '.';
+		$ret .= '.';
 		flush();
 		
 		if (count($c) !== 5) {
-			echo GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
+			$ret .= GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
 		}
 		
 		array_map('trim', $c);
@@ -239,7 +241,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 				'country_tld' => $tld,
 				'country_pop' => $pop,
 			))) {
-				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+				$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
 				$success = false;
 				continue;
 			}
@@ -254,9 +256,9 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 			foreach ($langs as $langshort)
 			{
 				if (!isset($cache[$langshort])) {
-					echo GWF_HTML::error('', 'Unknown iso-3: '.$langshort.' in country '.$name, true, true);
+					$ret .= GWF_HTML::error('', 'Unknown iso-3: '.$langshort.' in country '.$name, true, true);
 					$success = false;
-	#				echo GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+	#				$ret .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 					continue;
 				}
 				$langid = $cache[$langshort];
@@ -264,20 +266,20 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 					'langmap_cid' => $cid,
 					'langmap_lid' => $langid,
 				)))) {
-					echo GWF_HTML::err('ERR_DATABASE', array( array(__FILE__, __LINE__)), true, true);
+					$ret .= GWF_HTML::err('ERR_DATABASE', array( array(__FILE__, __LINE__)), true, true);
 					$success = false;
 					continue;
 				}
 			}
 		}
 	}
-	echo PHP_EOL;
+	$ret .= PHP_EOL;
 	
 	if (!$__ipmap) {
 		return $success;
 	}
 
-	echo 'Installing ip2country'.PHP_EOL;
+	$ret .= 'Installing ip2country'.PHP_EOL;
 	
 	# IP2Country
 	$max = 89323;
@@ -285,7 +287,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	$filename = GWF_CORE_PATH."inc/install/data/ip-to-country.csv";
 
 	if (false === ($fp = fopen($filename, "r"))) {
-		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
+		$ret .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
 		return false;
 	}
 	
@@ -294,7 +296,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	while (false !== ($line = fgetcsv($fp, 2048)))
 	{
 		if (count($line) !== 5) {
-			echo GWF_HTML::error('', $filename.' is corrupt!', true, true);
+			$ret .= GWF_HTML::error('', $filename.' is corrupt!', true, true);
 			$success = false;
 			break;
 		}
@@ -303,8 +305,8 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 		$tld = strtolower($tld);
 			
 		if (!(isset($cache2[$tld]))) {
-			echo GWF_HTML::error('', 'Unknown TLD: '.$tld, true, true);
-			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			$ret .= GWF_HTML::error('', 'Unknown TLD: '.$tld, true, true);
+			$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
 			$success = false;
 			continue;
 		}
@@ -315,7 +317,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 			'ip2c_cid' => $cache2[$tld],
 		)))
 		{
-			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
 			$success = false;
 			continue;
 		}
@@ -323,11 +325,15 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 		$now++;
 		if (!($now % 2500)) {
 			$msg = sprintf('%d of %d...', $now, $max);
-			echo GWF_HTML::message('Progress', $msg, true, true);
+			$ret .= GWF_HTML::message('Progress', $msg, true, true);
 			flush();
 		}
 	}
-	return $success;
+	return $success ? $ret : $success;
+}
+
+function install_createUserAgents() {
+	return 'There are currently no UserAgents!';
 }
 
 function copyExampleFiles() {

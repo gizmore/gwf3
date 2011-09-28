@@ -317,8 +317,10 @@ final class GWF_Install
 		$back .= self::$gwfil->lang('step_3_0').PHP_EOL;
 
 		$output = '';
-		if (false === install_core(false)) {
+		if (false === ($core = install_core(false))) {
 			return $output.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
+		} else {
+			$back .= $core;
 		}
 		$back .= $output;
 		$back .= self::$gwfil->lang('step_3_1').PHP_EOL;
@@ -331,7 +333,7 @@ final class GWF_Install
 	public static function wizard_4()
 	{
 		$back = self::wizard_h2('4');
-		install_createLanguage(true, true, false);
+		$back .= install_createLanguage(true, true, false);
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_0'));
 		$back .= self::wizard_btn('6');
 		$back .= self::wizard_btn('7');
@@ -342,7 +344,7 @@ final class GWF_Install
 	public static function wizard_5()
 	{
 		$back = self::wizard_h2('5');
-		install_createLanguage(true, true, true);
+		$back .= install_createLanguage(true, true, true);
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_0'));
 		$back .= self::wizard_btn('6');
 		$back .= self::wizard_btn('7');
@@ -354,7 +356,7 @@ final class GWF_Install
 	{
 		$back = self::wizard_h2('6');
 		$back = '<h2>Step 6</h2><p>Installed the useragent map.</p>';
-		self::createUserAgents();
+		$back .= install_createUserAgents();
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_6_0'));
 		$back .= self::wizard_btn('7');
 		return $back;
@@ -479,7 +481,7 @@ final class GWF_Install
 
 		$password = Common::getPost('password', '');
 		if (!GWF_Validator::isValidPassword($password)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid password.', false, true).self::wizard_8();
+			return GWF_HTML::error('Install Wizard', 'Invalid password (minlength: 6).', false, true).self::wizard_8();
 		}
 
 		$email = Common::getPost('email', '');

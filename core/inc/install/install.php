@@ -60,6 +60,7 @@ GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::includeJQuery();
 GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH,'step' => GWF_STEP));
 
+echo $gwf->onDisplayHead();
 
 if (false !== (Common::getPost('create_admin'))) {
 	$page = GWF_Install::wizard_8a();
@@ -90,6 +91,6 @@ else switch(GWF_STEP)
 }
 
 # Display Page
-echo $gwf->onDisplayPage($page);
+echo $page . $gwf->onDisplayFoot();
 
 ?>
