@@ -44,6 +44,12 @@ final class Common
 		}
 		return constant($var);
 	}
+	/**
+	 * Return true if a constant is true.
+	 * @param $var constant
+	 * @return boolean
+	 */
+	public static function getConstBool($var) { return defined($var) && true === constant($var); }
 	
 	###########
 	### URL ###

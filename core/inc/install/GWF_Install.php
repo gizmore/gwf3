@@ -82,7 +82,7 @@ final class GWF_Install
 		}
 		if (!defined('GWF_WIZARD_COULD_WRITE_CFG_FILE') && !defined('GWF_WIZARD_HAS_CFG_FILE'))
 		{
-			$back .= GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang('err_create_config'), false);
+			$back .= GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang('err_create_config'), false, true);
 		}
 		$back .= '</div>';
 		return $back;
@@ -177,7 +177,7 @@ final class GWF_Install
 		{
 			if (function_exists($func))
 			{
-				echo GWF_HTML::error('Install Wizard', sprintf('Function %s is available!', $func), false);
+				echo GWF_HTML::error('Install Wizard', sprintf('Function %s is available!', $func), false, true);
 				$secure = false;
 			}
 		}
@@ -267,7 +267,7 @@ final class GWF_Install
 	###########################
 	public static function wizard_error($key, $param=array())
 	{
-		return GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false).PHP_EOL;
+		return GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
 	}
 
 	public static function wizard_2()
@@ -318,7 +318,7 @@ final class GWF_Install
 
 		$output = '';
 		if (false === install_core(false)) {
-			return $output.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return $output.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
 		}
 		$back .= $output;
 		$back .= self::$gwfil->lang('step_3_1').PHP_EOL;
@@ -374,7 +374,7 @@ final class GWF_Install
 	{
 		$back = self::wizard_h2('7');
 		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
 		}
 		$back .= self::wizard_7_form($modules);
 		return $back;
@@ -416,7 +416,7 @@ final class GWF_Install
 		foreach ($names as $name => $on)
 		{
 			if (false === ($module = GWF_ModuleLoader::loadModuleFS($name))) {
-				$back2 .= GWF_HTML::err('ERR_MODULE_MISSING', array(htmlspecialchars($name)));
+				$back2 .= GWF_HTML::err('ERR_MODULE_MISSING', array(htmlspecialchars($name)), true, true);
 				continue;
 			}
 			$modules[] = $module;
@@ -474,17 +474,17 @@ final class GWF_Install
 	{
 		$username = Common::getPost('username', '');
 		if (!GWF_Validator::isValidUsername($username)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid username.', false).self::wizard_8();
+			return GWF_HTML::error('Install Wizard', 'Invalid username.', false, true).self::wizard_8();
 		}
 
 		$password = Common::getPost('password', '');
 		if (!GWF_Validator::isValidPassword($password)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid password.', false).self::wizard_8();
+			return GWF_HTML::error('Install Wizard', 'Invalid password.', false, true).self::wizard_8();
 		}
 
 		$email = Common::getPost('email', '');
 		if (!GWF_Validator::isValidEmail($email)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid email.', false).self::wizard_8();
+			return GWF_HTML::error('Install Wizard', 'Invalid email.', false, true).self::wizard_8();
 		}
 
 		install_default_groups();
@@ -500,7 +500,7 @@ final class GWF_Install
 	public static function wizard_9()
 	{
 		return 
-			GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished. Please login as your admin account now. Also: <b>DO NOT FORGET TO .htaccess PROTECT THE FOLDER /protected</b>', false).
+			GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished. Please login as your admin account now. Also: <b>DO NOT FORGET TO .htaccess PROTECT THE FOLDER /protected</b>', false, true).
 			self::wizard_btn('11');
 	}
 
@@ -508,7 +508,7 @@ final class GWF_Install
 	{
 //		if (false === GWF_HTAccess::protect(dirname(__FILE__).'/protected')) {
 		if (false === GWF_HTAccess::protect(GWF_PROTECTED_PATH)) {
-			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
 		}
 
 		return GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished.', false);
@@ -517,9 +517,9 @@ final class GWF_Install
 	public static function wizard_11()
 	{
 		if (false === copyExampleFiles()) {
-			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'));
+			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'), true, true);
 		} else { 
-			echo GWF_HTML::message('Install Wizard', 'Successfully created index.php.', false);
+			echo GWF_HTML::message('Install Wizard', 'Successfully created index.php.', false, true);
 		}
 		return self::wizard_btn('10');
 	}
