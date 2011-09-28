@@ -396,6 +396,7 @@ final class GWF_Install
 			$name = $module->getName();
 			$back .= sprintf('<tr><td>%s</td><td><input name="mod[%s]" type="checkbox" checked="checked" /></td></tr>', $name, $name).PHP_EOL;
 		}
+		$back .= '<tr><td>Take care, because some Modules have Dependencies!</td></tr>';
 		$back .= '<tr><td><input type="submit" name="install_modules" value="Install Modules" /></td></tr>'.PHP_EOL;
 		$back .= '</form>'.PHP_EOL;
 		$back .= '</table></div>'.PHP_EOL;
@@ -429,7 +430,7 @@ final class GWF_Install
 		}
 
 
-		$modules = GWF_ModuleLoader::loadModulesFS();
+//		$modules = GWF_ModuleLoader::loadModulesFS();
 		GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
 
 		$back .= install_modules($modules, false);

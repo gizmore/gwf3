@@ -38,7 +38,8 @@ final class GWF_HTML
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if ($to_smarty === false || false === Common::getConst('GWF_ERRORS_TO_SMARTY', false))
+		# SpaceOne :D take care!
+		if (false === $to_smarty && false === Common::getConst('GWF_ERRORS_TO_SMARTY', false))
 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
 		}
@@ -80,7 +81,7 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if ($to_smarty === false || false === Common::getConst('GWF_MESSAGES_TO_SMARTY', false))
+		if (false === $to_smarty && false === Common::getConst('GWF_MESSAGES_TO_SMARTY', false))
 		{
 			return self::displayMessages(array('title' => $title, 'messages' => $messages));
 		}

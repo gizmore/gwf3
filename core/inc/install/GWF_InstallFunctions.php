@@ -49,7 +49,8 @@ function install_core($drop=false)
 		GWF_Settings::setSetting('gwf_site_birthday', date('Ymd'));
 	}
 	
-	return $success ? $ret : $success;
+//	return $success;
+	return $ret;
 }
 
 ###############
@@ -72,6 +73,7 @@ function install_modules(array $modules, $dropTables=false)
 	{
 		$back .= sprintf('Installing %s...<br/>', $module->getName());
 		$back .= GWF_ModuleLoader::installModule($module, $dropTables);
+		$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore
 	}
 	$back .= GWF_ModuleLoader::installHTAccess($modules);
 	return $back;
@@ -158,13 +160,13 @@ function install_createAdmin($username, $password, $email, &$output)
 ############################################
 /**
  * Takes ages.
- * @return string or false
- * @todo integrate in design but do flushing
+ * @return string
+ * @todo integrate in design but do flushing and error handling
  */
 function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 {
 	$success = true;
-	require_once 'protected/install_data/install_language.php';
+	require_once GWF_CORE_PATH.'inc/install/data/install_language.php';
 	set_time_limit(0); # This function takes ages!
 
 	$cache = array();
@@ -173,15 +175,15 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	$i = 1;
 	$linguas = install_get_languages();
 	$ret = 'Installing '.count($linguas).' Languages';
-	flush();
+//	flush();
 	
 	$lang_t = new GWF_Language();
 	$supported = explode(';', GWF_SUPPORTED_LANGS);
 	
 	foreach ($linguas as $lang)
 	{
-		$ret .= '.';
-		flush();
+//		$ret .= '.';
+//		flush();
 
 		array_map('trim', $lang);
 		
@@ -218,12 +220,12 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	$countries = install_get_countries();
 	$country_t = new GWF_Country();
 	$ret .= 'Installing '.count($countries).' Countries';
-	flush();
+//	flush();
 	
 	foreach ($countries as $cid => $c)
 	{
-		$ret .= '.';
-		flush();
+//		$ret .= '.';
+//		flush();
 		
 		if (count($c) !== 5) {
 			$ret .= GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
@@ -258,7 +260,7 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 				if (!isset($cache[$langshort])) {
 					$ret .= GWF_HTML::error('', 'Unknown iso-3: '.$langshort.' in country '.$name, true, true);
 					$success = false;
-	#				$ret .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+					$ret .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__), true, true);
 					continue;
 				}
 				$langid = $cache[$langshort];
@@ -276,7 +278,8 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	$ret .= PHP_EOL;
 	
 	if (!$__ipmap) {
-		return $success;
+//		return $success;
+		return $ret;
 	}
 
 	$ret .= 'Installing ip2country'.PHP_EOL;
@@ -288,7 +291,8 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 
 	if (false === ($fp = fopen($filename, "r"))) {
 		$ret .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
-		return false;
+//		return false;
+		return $ret;
 	}
 	
 	$ip2c = new GWF_IP2Country();
@@ -326,10 +330,10 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 		if (!($now % 2500)) {
 			$msg = sprintf('%d of %d...', $now, $max);
 			$ret .= GWF_HTML::message('Progress', $msg, true, true);
-			flush();
+//			flush();
 		}
 	}
-	return $success ? $ret : $success;
+	return $ret;
 }
 
 function install_createUserAgents() {
