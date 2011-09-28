@@ -30,7 +30,7 @@ final class Lamb_Install
 				'LAMB_TRIGGER' => array('.', 'script'),
 				'LAMB_LOGGING' => array('YES', 'bool'),
 				'LAMB_PING_TIMEOUT' => array('360', 'int', '30', '3600'),
-				'LAMB_CONNECT_TIMEOUT' => array('3', 'int', '5', '300'),
+				'LAMB_CONNECT_TIMEOUT' => array('3', 'int', '0', '300'),
 				'LAMB_SLEEP_MILLIS' => array('50', 'int', '5', '5000'),
 				'LAMB_NICKREPLY' => array('YES', 'bool'),
 				# Servers

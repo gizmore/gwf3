@@ -30,12 +30,12 @@ final class Module_GWF extends GWF_Module
 			'IconHeight' => array('16', 'int'),
 			'IconWidth' => array('16', 'int'),
 	//		'Design' => array(GWF_Template::getDesign(), 'text'),
-			'SuppressHTMLPreamble' => array(true, 'bool'),
-			'FoldersFirst' => array(true, 'bool'),
-			'ScanHTMLTitles' => array(true, 'bool'),
-			'HTMLTable' => array(false, 'bool'),
-			'SuppressDescription' => array(true, 'bool'),
-			'SuppressRules' => array(true, 'bool'),
+			'SuppressHTMLPreamble' => array('1', 'bool'),
+			'FoldersFirst' => array('1', 'bool'),
+			'ScanHTMLTitles' => array('1', 'bool'),
+			'HTMLTable' => array('0', 'bool'),
+			'SuppressDescription' => array('1', 'bool'),
+			'SuppressRules' => array('1', 'bool'),
 		));
 	}	
 	
