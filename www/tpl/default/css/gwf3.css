@@ -2,7 +2,7 @@
 
 /* Emptyness */
 * { margin: 0; padding: 0; text-decoration: none; }
-a img { border: none; }
+a img { border: none 0px; }
 
 /* COMMON */
 .gwf_num { font-family: monospace; text-align: right; padding-right: 3px; }
@@ -148,7 +148,7 @@ code {
 }
 textarea {
 	width: 100%;
-	min-height: 200px;
+/* 	min-height: 200px; */
 /* 	min-width: 640px; */
 }
 

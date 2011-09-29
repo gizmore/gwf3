@@ -3,25 +3,9 @@
 {$gwf->Website()->addJavascriptInline('$(document).ready(function() { konzertContactData(); } );')}
 <h1>{$lang->lang('contact_title')}</h1>
 
-{*
-<div class="box box_c">
-	<p>{$lang->lang('list_admins', array($admin_profiles))}</p>
-	<p>{$lang->lang('contact_info', array($email))}</p>
-</div>
-*}
-
-<div class="box box_c ce">
-	<h3>{$k->lang('name')}</h3>
-	<p id="email_mg">Sie benötigen javascript</p>
-	<p id="phone_mg">um weitere Informationen anzuzeigen</p>
-</div>
-
-<div class="box box_c">
-	<div class="fl mugshot_outer">
-		<a href="/tpl/konz/bild/131_large.jpg" class="fl mugshot"><img src="/tpl/konz/bild/131.jpg" title="{$k->lang('name')}" alt="{$k->lang('foto')}" class="mugshot" /></a>
-	</div>
-	<div>{$form}</div>
-</div>
+<div class="fr">{include file="{$core}module/Konzert/tpl/default/mugshot.tpl" small='/tpl/konz/bild/131.jpg' large='/tpl/konz/bild/131_large.jpg' title=$k->lang('name') alt=$k->lang('foto') text=''}</div>
+<div class="">{$form}</div>
+<div class="cb"></div>
 
 <hr/>
 

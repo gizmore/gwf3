@@ -79,7 +79,7 @@ final class Module_Chat extends GWF_Module
 	
 	public static function getMibbitURL($url)
 	{
-		if (1 !== preg_match('/^(ircs?):\/\/([^\\/:#]+):?(\\d+)?\/?(#.+)?$/', $url, $matches)) {
+		if (1 !== preg_match('/^(ircs?):\/\/([^\\/:#]+):?(\\d+)?\/?(#.+)?$/D', $url, $matches)) {
 			return false;
 		}
 		$ssl = $matches[1] === 'ircs';

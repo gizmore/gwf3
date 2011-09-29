@@ -6,12 +6,6 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 	public function getNPCPlayerName() { return 'Mogrid'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 0.00; }
 	public function canNPCMeet(SR_Party $party) { return false; }
-	public function getNPCLoot(SR_Player $player)
-	{
-		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson3');
-		return $quest->dropCollar($this, $player);
-	}
-	
 	public function getNPCEquipment()
 	{
 		return array(
@@ -36,7 +30,6 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 			'base_hp' => 14,
 		);
 	}
-	
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
@@ -69,6 +62,12 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 			case 'no':
 			default: $this->reply('Come buy hot stuff!');
 		}
+	}
+
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson3');
+		return $quest->dropCollar($this, $player);
 	}
 }
 ?>

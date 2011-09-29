@@ -30,5 +30,16 @@ final class Delaware_Troll extends SR_NPC
 			'legs' => 'Trousers',
 		);
 	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Delaware_DallasJ3');
+		if ($quest->isInQuest($player))
+		{
+			$quest->increaseAmount(1);
+			$player->message(sprintf('Now you killed %d of %d trolls for Mr.Johnson.', $quest->getAmount(), $quest->getNeededAmount()));
+		}
+		return array();
+	}
 }
 ?>
