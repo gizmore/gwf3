@@ -955,12 +955,17 @@ final class WC_Challenge extends GDO
 		return $score >= 1 && $score <= 10;
 	}
 	
-	public function onCheckSolution()
+	public function onCheckSolution($answer=true)
 	{
-		if (false !== ($answer = Common::getPostString('answer', false)))
+		if (!is_string($answer))
 		{
-			$this->onSolve(GWF_Session::getUser(), $answer);
+			if (false === ($answer = Common::getPostString('answer', false)))
+			{
+				return false;
+			}
 		}
+
+		$this->onSolve(GWF_Session::getUser(), $answer);
 	}
 }
 
