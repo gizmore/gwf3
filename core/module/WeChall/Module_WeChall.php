@@ -96,9 +96,7 @@ final class Module_WeChall extends GWF_Module
 		GWF_Website::setPageTitlePre('[WeChall] ');
 		GWF_Website::setMetaTags(WC_HTML::lang('mt_wechall'));
 		GWF_Website::setMetaDescr(WC_HTML::lang('md_wechall'));
-//		GWF_Website::includeJQuery();
-		GWF_Website::addJavascript('/tpl/module/WeChall/js/wc.js?v=4');
-//		GWF_Website::addJavascript($this->getModuleFilePath('js/wc.js?v=3'));
+		GWF_Website::addJavascript('/js/module/WeChall/wc.js?v=5');
 		GWF_Website::addJavascriptInline("$(document).ready(function() { wcjsProfileJQuery(); } );");
 	}
 	

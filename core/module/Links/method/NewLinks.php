@@ -13,7 +13,7 @@ final class Links_NewLinks extends GWF_Method
 		GWF_Website::setPageTitle($module->lang('pt_new_links'));
 		GWF_Website::setMetaTags($module->lang('mt_new_links'));
 		
-		GWF_Website::addJavascript($module->getModuleFilePath('js/gwf_links.js'));
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Links/gwf_links.js');
 		
 		if (Common::getGet('markread') !== false) {
 			return $this->onMarkAllRead($module).$this->templateNewLinks($module);

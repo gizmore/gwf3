@@ -35,7 +35,6 @@ final class WeChall_Sites extends GWF_Method
 	{
 		WC_HTML::$LEFT_PANEL = false;
 		WC_HTML::$RIGHT_PANEL = false;
-//		GWF_Website::addJavascript($module->getJSPath('wc.js'));
 		return $this->templateSites($module);
 	}
 	

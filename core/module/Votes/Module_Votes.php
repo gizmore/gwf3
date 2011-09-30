@@ -13,7 +13,7 @@ final class Module_Votes extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/voting'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Staff'); }
 	public function getClasses() { return array('GWF_VoteMulti', 'GWF_VoteMultiOpt', 'GWF_VoteMultiRow', 'GWF_VoteScore', 'GWF_VoteScoreRow'); }
-	public function onIncludeAjax() { GWF_Website::addJavascript(GWF_WEB_ROOT.'tpl/module/Votes/js/gwf_vote.js'); }
+	public function onIncludeAjax() { GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Votes/gwf_vote.js'); }
 	
 	public function onInstall($dropTable)
 	{

@@ -17,7 +17,6 @@ final class WeChall_RankingTag extends GWF_Method
 		if (false !== Common::getPost('quickjmp')) {
 			return $this->onQuickjump($module);
 		}
-//		GWF_Website::addJavascript($module->getJSPath('wc.js'));
 		return $this->templateRanking($module);
 	}
 	

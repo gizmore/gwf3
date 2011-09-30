@@ -63,7 +63,7 @@ final class Module_PM extends GWF_Module
 	
 	public function onRequest()
 	{
-		GWF_Website::addJavascript($this->getModulePath('js/gwf_pm.js'));
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/PM/gwf_pm.js');
 		$back = parent::onRequest();
 		return $back;
 	}

@@ -24,8 +24,8 @@ final class Links_Overview extends GWF_Method
 		if (false !== ($error = $this->sanitize($module))) {
 			return $error;
 		}
-		
-		GWF_Website::addJavascript($module->getModuleFilePath('js/gwf_links.js'));
+
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Links/gwf_links.js');
 		
 		return $this->overview($module);
 	}

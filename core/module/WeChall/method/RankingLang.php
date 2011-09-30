@@ -26,8 +26,6 @@ final class WeChall_RankingLang extends GWF_Method
 			}
 		}
 		
-//		GWF_Website::addJavascript($module->getJSPath('wc.js'));
-		
 		if (false !== ($username = Common::getGet('username'))) {
 			return $this->templateRankingFor($module, $lang, $username);
 		}

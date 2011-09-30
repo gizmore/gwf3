@@ -1,4 +1,4 @@
-<?php GWF_Website::addJavascript(GWF_WEB_ROOT.'tpl/module/Shoutbox/js/gwf_shoutbox.js'); ?>
+<?php GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Shoutbox/gwf_shoutbox.js'); ?>
 <div>
 	<form action="<?php echo $tVars['form_action']; ?>" method="post">
 		<?php echo GWF_CSRF::hiddenForm('SHOUTBOX'); ?>

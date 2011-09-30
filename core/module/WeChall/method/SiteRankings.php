@@ -14,13 +14,9 @@ final class WeChall_SiteRankings extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-//		GWF_Website::addJavascript($module->getJSPath('wc.js'));
-		
 		if (false !== (Common::getPost('quickjump'))) {
 			return $this->onQuickjump($module);
 		}
-		
-//		GWF_Website::addJavascript($module->getJSPath('wc.js'));
 		
 		return $this->templateRanking($module);
 	}

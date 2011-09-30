@@ -17,12 +17,13 @@ final class Chat_Page extends GWF_Method
 		GWF_Website::setPageTitle($module->lang('pt_chat'));
 		GWF_Website::setMetaTags($module->lang('mt_chat'));
 				
-		GWF_Website::addJavascript($module->getModuleFilePath('js/gwf_chat.js?v=3'));
-//		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/gwf_core.js?v=2');
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Chat/gwf_chat.js?v=4');
 		
-		if (false !== (Common::getPost('post'))) {
+		if (false !== (Common::getPost('post')))
+		{
 			return $this->onPost($module).$this->templatePage($module);
 		}
+		
 		return $this->templatePage($module);
 	}
 	

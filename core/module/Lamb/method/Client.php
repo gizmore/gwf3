@@ -11,12 +11,11 @@ final class Lamb_Client extends GWF_Method
 			$pid = 0;
 		} else {
 			GWF_Session::set('SL4_PID', $pid);
-//			GWF_Website::includeJQuery();
 			GWF_Website::addJavascriptInline("$(document).ready(function() { sl4Init($pid); } );");
 			Lamb_IRCTo::pushMessage($pid, 'helo');
 		}
 
-		GWF_Website::addJavascript($module->getModuleFilePath('js/shadowlamb.js'));
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
 		
 		return $this->templateClient($module, $player);
 	}

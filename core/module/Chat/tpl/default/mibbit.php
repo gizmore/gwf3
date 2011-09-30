@@ -1,7 +1,7 @@
 <?php
 #https://embed.mibbit.com/?server=storm.psych0tik.net%3A%2B6697&channel=%23hbh&forcePrompt=true
 
-GWF_Website::addJavascript($tVars['module']->getModuleFilePath('js/gwf_mibbit.js?v=1'));
+GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Chat/gwf_mibbit.js?v=1');
 GWF_Website::addJavascriptInline("window.onload=gwfMibbitInit; window.onresize=gwfMibbitInit;");
 ?>
 

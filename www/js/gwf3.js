@@ -63,7 +63,6 @@ function getAjaxObject()
 			}
 		}
 	}
-	
 	return xmlHttp;
 }
 
@@ -256,7 +255,7 @@ var sprintfWrapper = {
 
         for (i=0; i<matches.length; i++) {
 
-            if (matches[i].code == '%') { substitution = '%' }
+            if (matches[i].code == '%') { substitution = '%'; }
             else if (matches[i].code == 'b') {
                 matches[i].argument = String(Math.abs(parseInt(matches[i].argument)).toString(2));
                 substitution = sprintfWrapper.convert(matches[i], true);
@@ -278,7 +277,7 @@ var sprintfWrapper = {
                 substitution = sprintfWrapper.convert(matches[i]);
             }
             else if (matches[i].code == 's') {
-                matches[i].argument = matches[i].argument.substring(0, matches[i].precision ? matches[i].precision : matches[i].argument.length)
+                matches[i].argument = matches[i].argument.substring(0, matches[i].precision ? matches[i].precision : matches[i].argument.length);
                 substitution = sprintfWrapper.convert(matches[i], true);
             }
             else if (matches[i].code == 'x') {
@@ -325,7 +324,7 @@ var sprintfWrapper = {
             }
         }
     }
-}
+};
 var sprintf = sprintfWrapper.init;
 
 
@@ -585,7 +584,6 @@ function getDivPosX(el)
 	return y;
 }
 
-
 function getDivWidth(el)
 {
 	el.style.width = "auto";
@@ -599,9 +597,9 @@ function getDivHeight(el)
 }
 
 /** String Prototype Bindings **/
-String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'i')) !== null; }
-String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i')) !== null; }
-String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; }
+String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'i')) !== null; };
+String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i')) !== null; };
+String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; };
 String.prototype.substrUntil = function(s, d)
 {
 	var i = this.indexOf(s);
@@ -609,4 +607,20 @@ String.prototype.substrUntil = function(s, d)
 		return d;
 	}
 	return this.substring(0, i);
+};
+
+/** Javascript includes **/
+function Includer()
+{
+	this.once = new Array();
+	this.include_once = function(url) { return in_array(url, this.once) ? true : this.include(url); };
+	this.include = function(url)
+	{
+		alert(1);
+		var result = ajaxSync(url);
+		if (result === false) return false;
+		try { eval(result); } catch (e) { alert(e); return false; }
+		this.once.push(url);
+		return true;
+	};
 }
