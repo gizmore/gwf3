@@ -61,11 +61,12 @@ class GWF3
 		
 		self::onDefineWebRoot();
 
+		
 		if($config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
 		}
-		if(!$config['no_session'])
+		if(!($config['no_session']))
 		{
 			$this->onStartSession($config['blocking']);
 		}
@@ -86,8 +87,8 @@ class GWF3
 		{ 
 			$this->onLoadModule(); 
 		}
-//		if ($config['get_user']) 
-		if (!defined('GWF_INSTALLATION')) 
+		if ($config['get_user']) 
+//		if (!defined('GWF_INSTALLATION')) 
 		{		
 			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
@@ -95,7 +96,10 @@ class GWF3
 	
 	public function __destruct() 
 	{
-		$this->onSessionCommit(self::$CONFIG['store_last_url']);
+		if(!(self::$CONFIG['no_session']))
+		{
+			$this->onSessionCommit(self::$CONFIG['store_last_url']);
+		}
 	}
 		
 	/**
@@ -158,7 +162,8 @@ class GWF3
 		// User can decide for his instance
 		Common::defineConst('GWF_WEB_ROOT', $root);
 	}
-	public static function onStartSession($blocking=true) {
+	public static function onStartSession($blocking=true)
+	{
 		if (!GWF_Session::start($blocking))
 		{
 			die('GWF not installed?!');

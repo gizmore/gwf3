@@ -22,7 +22,7 @@
 			this.stop();
 			this.width(this.data('old_w')+'px');
 			this.height(this.data('old_h')+'px');
-			return $(this);
+			return this;
 		},
 		
 		'zoomIn': function(_zoom, _ms, _callback) {

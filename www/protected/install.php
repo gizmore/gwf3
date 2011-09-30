@@ -7,16 +7,26 @@ if (!is_readable('protected/config.php')) {
 	die('Try protected/install_wizard.php');
 }
 
-require_once '../gwf3.class.php'; 
 require_once 'protected/config.php';
-$gwf = new GWF3(getcwd());
-
-//GWF3::onLoadConfig(GWF_CONFIG_PATH);
+require_once '../gwf3.class.php'; 
+$gwf = new GWF3(getcwd(), array(
+	'website_init' => false,
+	'autoload_modules' => false,
+	'load_module' => false,
+	'load_config' => false,
+	'start_debug' => true,
+	'get_user' => false,
+	'do_logging' => false,
+	'blocking' => false,
+	'no_session' => true,
+	'store_last_url' => false,
+	'ignore_user_abort' => true,
+	'disallow_php_uploads' => true,
+));
 GWF_Language::initEnglish();
 GWF_HTML::init();
-GWF_Log::init(false, true, 'protected/logs');
+GWF_Log::init(false, true, GWF_WWW_PATH.'protected/logs');
 
-//GWF_HTML::init();
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 
 if (false !== Common::getPost('core')) {

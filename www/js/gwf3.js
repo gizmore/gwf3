@@ -610,17 +610,17 @@ String.prototype.substrUntil = function(s, d)
 };
 
 /** Javascript includes **/
-function Includer()
-{
-	this.once = new Array();
-	this.include_once = function(url) { return in_array(url, this.once) ? true : this.include(url); };
-	this.include = function(url)
-	{
-		alert(1);
-		var result = ajaxSync(url);
-		if (result === false) return false;
-		try { eval(result); } catch (e) { alert(e); return false; }
-		this.once.push(url);
-		return true;
-	};
-}
+//function Includer()
+//{
+//	this.once = new Array();
+//	this.include_once = function(url) { return in_array(url, this.once) ? true : this.include(url); };
+//	this.include = function(url)
+//	{
+//		alert(1);
+//		var result = ajaxSync(url);
+//		if (result === false) return false;
+//		try { eval(result); } catch (e) { alert(e); return false; }
+//		this.once.push(url);
+//		return true;
+//	};
+//}
