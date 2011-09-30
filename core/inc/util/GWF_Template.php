@@ -78,8 +78,10 @@ final class GWF_Template
 			$smarty->setCompileDir(GWF_SMARTY_COMPILE_DIR);
 			$smarty->setCacheDir(GWF_SMARTY_CACHE_DIR);
 			$smarty->setConfigDir(GWF_SMARTY_CONFIG_DIR);
-//			$smarty->plugins_dir[] = GWF_SMARTY_PLUGINS_DIR;
-			$smarty->plugins_dir[] = GWF_CORE_PATH.'inc/smartyplugins';
+			$smarty->addPluginsDir(GWF_CORE_PATH.'inc/smartyplugins');
+//			if (GWF_SMARTY_PLUGINS_DIR) {
+//				$smarty->addPluginsDir(GWF_SMARTY_PLUGINS_DIR);
+//			}
 			
 			# Assign common template vars
 //			$smarty->assign('db', gdo_db());

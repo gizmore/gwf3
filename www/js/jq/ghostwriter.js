@@ -21,7 +21,7 @@
 				'color_left': '#000000',
 				'color_right': '#000000',
 				'style_processed': '',
-				'style_unprocessed': 'zoom: 1; filter: alpha(opacity=5); opacity: 0.05;',
+				'style_unprocessed': 'zoom: 1; filter: alpha(opacity=7); opacity: 0.07;',
 				'callback': function(){},
 				// Speed
 				'group': 2,      // group*ngroups chars at once.
@@ -204,7 +204,7 @@
 		
 		// Next cycle
 		if (data['running'] === 4) {
-//			setTimeout(function(){p.html(text);}, data['interval']);
+			p.html(text);
 			setTimeout(data['callback'], 10);
 		} else {
 			setTimeout(function(){_render(p);}, data['interval']);

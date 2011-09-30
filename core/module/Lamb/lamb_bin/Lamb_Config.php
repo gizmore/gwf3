@@ -193,6 +193,14 @@ $LAMB_CFG = array
 			'channels' => '#wechall,#shadowlamb,#w3challs',
 			'admins' => 'gizmore',
 		),
+
+		array(
+			'host' => 'ircs://shell.tor.hu:7000',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb,#haxtor',
+			'admins' => 'gizmore',
+		),
 		
 //		array(
 //			'host' => '',

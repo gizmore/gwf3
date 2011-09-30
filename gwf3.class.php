@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.Aug.28');
+define('GWF_CORE_VERSION', '3.02-2011.Sep.30');
 
 /**
  * Welcome to GWF3
@@ -19,13 +19,14 @@ class GWF3
 		'load_module' => true,
 		'load_config' => false,
 		'start_debug' => true,
-		'get_user' => true,
+//		'get_user' => true,
 		'do_logging' => true,
 		'blocking' => true,
 		'no_session' => false,
 		'store_last_url' => true,
 		'ignore_user_abort' => true,
 		'disallow_php_uploads' => true,
+		'installing' => false,
 	);
 	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static function getConfig($key) { return self::$CONFIG[$key]; }
@@ -39,6 +40,9 @@ class GWF3
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
 
+		# Windows patch
+		$basepath = str_replace('\\', '/', $basepath);
+		
 		# Important definements...
 		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
 		Common::defineConst('GWF_PROTECTED_PATH', GWF_WWW_PATH.'protected/');
@@ -60,35 +64,38 @@ class GWF3
 		ignore_user_abort($config['ignore_user_abort']);
 		
 		self::onDefineWebRoot();
-
 		
 		if($config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
 		}
+		
 		if(!($config['no_session']))
 		{
 			$this->onStartSession($config['blocking']);
 		}
+		
 		if($config['do_logging'])
 		{
 			$this->onStartLogging($config['no_session']);
 		}
+		
 		if ($config['website_init']) 
 		{ 
-//			$this->onInit(); 
 			GWF_Website::init();
 		}
+		
 		if ($config['autoload_modules']) 
 		{ 
 			$this->onAutoloadModules(); 
 		}
+		
 		if ($config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
 		}
-		if ($config['get_user']) 
-//		if (!defined('GWF_INSTALLATION')) 
+		
+		if (!$config['installing']) 
 		{		
 			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
@@ -111,7 +118,8 @@ class GWF3
 		require_once 'core/inc/util/Common.php';
 		
 		#default definements
-		define('GWF_PATH', __DIR__.'/');
+//		define('GWF_PATH', __DIR__.'/');
+		define('GWF_PATH', str_replace('\\', '/', __DIR__).'/'); 
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
