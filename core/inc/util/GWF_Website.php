@@ -174,23 +174,27 @@ final class GWF_Website
 		return $back.self::displayJavascriptInline();
 	}
 	
+	### Raw javascript ###
 	private static $javascript_inline = '';
-	public static function addJavascriptInline($script_html)
-	{
-		self::$javascript_inline .= $script_html;
-	}
+	public static function addJavascriptInline($script_html) { self::$javascript_inline .= $script_html;}
 	public static function displayJavascriptInline()
 	{
-		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
-		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline);
-//		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\', GWF_DOMAIN = \'%s\';', GWF_WEB_ROOT, GWF_DOMAIN);
-//		return sprintf('<script type="text/javascript">$(document).ready(function(){ %s %s; });</script>', $inline_defines, self::$javascript_inline);
+		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\'; '.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
+		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline.self::displayJavascriptOnload());
+	}
+
+	### JQuery onload ###
+	private static $javascript_onload = '';
+	private static function addJavascriptOnload($script_html) { self::$javascript_onload .= $script_html; }
+	private static function displayJavascriptOnload()
+	{
+		return self::$javascript_onload ? sprintf('; $(document).ready(function(){ %s; });', self::$javascript_onload) : '';
 	}
 	
-	public static function includeJQuery()
-	{
-		self::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
-	}
+//	public static function includeJQuery()
+//	{
+//		self::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
+//	}
 	
 	#################
 	### Redirects ###
