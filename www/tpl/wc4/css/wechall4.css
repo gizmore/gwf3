@@ -627,8 +627,8 @@ h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5
 	overflow: auto;
 }
 
-.gwf_code pre, .gwf_code pre span {
-	font-family: monospace!important;
+.gwf_code pre, .gwf_code pre span, pre, pre a {
+	font-family: monospace;
 	white-space: pre;
 }
 

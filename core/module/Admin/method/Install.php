@@ -98,9 +98,10 @@ final class Admin_Install extends GWF_Method
 		if (false === GDO::table('GWF_ModuleVar')->deleteWhere('mv_mid='.$post_module->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
+		$post_module->loadVars();
 		return
 			$module->message('msg_defaults').
-			$module->getMethod('Install')->onInstall($module, $post_module->getName(), false);
+			$this->onInstall($module, $post_module->getName(), false);
 	}
 			
 	public function onInstallModuleSafe(Module_Admin $module, $dropTable)

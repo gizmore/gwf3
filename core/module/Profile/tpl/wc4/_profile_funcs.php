@@ -67,7 +67,7 @@ function wcProfileRegats(array $regats, $sort_url, $priv=false, $hide_score=fals
 			$score = $regat->getVar('regat_score');
 			$percent = $regat->displayPercent($site->getOnsiteScore());
 		}
-		echo GWF_Table::rowStart('color:#'.$color.';');
+		echo GWF_Table::rowStart(true, '', '', 'color:#'.$color.';');
 		echo sprintf('<td>%s</td>', $site->displayLink());
 		echo sprintf('<td class="gwf_num">%s</td>', $score);
 		echo sprintf('<td>%s</td>', $regat->displayOnsiteProfileLink($site));

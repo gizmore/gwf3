@@ -13,7 +13,7 @@ final class Language_Set extends GWF_Method
 		{
 			$module->setLanguage($iso);
 		}
-		GWF_Session::commit();
+//		GWF_Session::commit();
 		GWF_Website::redirectBack();
 		die();
 //		header(sprintf('Location: %s', GWF_Website::getRedirectURL()));

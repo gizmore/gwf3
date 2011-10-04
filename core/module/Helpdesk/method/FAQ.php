@@ -8,7 +8,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		$back = '';
 		
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Helpdesk/helpdesk.js');
-		GWF_Website::addJavascriptInline("$(document).ready(function() { helpdeskInit(); } );");
+		GWF_Website::addJavascriptOnload('helpdeskInit();');
 		
 		if (Common::getGetString('generate') === 'now') {
 			$back .= $this->onGenerate($module);

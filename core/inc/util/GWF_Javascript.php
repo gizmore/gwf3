@@ -114,8 +114,7 @@ final class GWF_Javascript
 		static $called = false;
 		if (!$called)
 		{
-			$focus_script = "window.onload = function() { var e = document.getElementById('$id'); (e !== null) { e.focus(); } }; ";
-			GWF_Website::addJavascriptInline($focus_script);
+			GWF_Website::addJavascriptOnload("var e = document.getElementById('$id'); (e !== null) { e.focus(); };");
 			$called = true;
 		}
 	}
@@ -131,13 +130,11 @@ final class GWF_Javascript
 		static $called = false;
 		if (!$called)
 		{
-			$focus_script = "window.onload = function() { var e = document.getElementsByName('$name'); if (e.length === 1) { e[0].focus(); } }; ";
-			GWF_Website::addJavascriptInline($focus_script);
+			$focus_script = "var e = document.getElementsByName('$name'); if (e.length === 1) { e[0].focus(); };";
+			GWF_Website::addJavascriptOnload($focus_script);
 			$called = true;
 		}
-		else { die('UGAH'); }
 	}
-	
 }
 
 ?>

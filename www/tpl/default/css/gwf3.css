@@ -24,10 +24,12 @@ a img { border: none 0px; }
 .oh { overflow: hidden; }
 .os { overflow: scroll; }
 .ov { overflow: visible; }
+.vb { vertical-align: bottom; }
+.vc { vertical-align: middle; }
+.vt { vertical-align: top; }
 .fw { width: 100%; }
+.fh { height: 100%; }
 .nowrap { white-space: nowrap; }
-.top { vertical-align: top; }
-.bot { vertical-align: bottom; }
 
 /* Buttons */
 .gwf_button span, .gwf_pm_icon {

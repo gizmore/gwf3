@@ -5,7 +5,6 @@ GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Chat/gwf_mibbit.js?v=1');
 GWF_Website::addJavascriptInline("window.onload=gwfMibbitInit; window.onresize=gwfMibbitInit;");
 ?>
 
-
 <h1><?php echo $tLang->lang('pt_irc_chat'). ' ( '.GWF_HTML::display($tVars['module']->cfgIRCURL()).' )'; ?></h1>
 
 <?php

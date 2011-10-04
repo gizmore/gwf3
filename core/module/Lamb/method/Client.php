@@ -11,7 +11,7 @@ final class Lamb_Client extends GWF_Method
 			$pid = 0;
 		} else {
 			GWF_Session::set('SL4_PID', $pid);
-			GWF_Website::addJavascriptInline("$(document).ready(function() { sl4Init($pid); } );");
+			GWF_Website::addJavascriptOnload("sl4Init($pid);");
 			Lamb_IRCTo::pushMessage($pid, 'helo');
 		}
 

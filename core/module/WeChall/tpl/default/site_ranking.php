@@ -1,6 +1,5 @@
 <?php
-$script_html = "$(document).ready(function() { wcjsLangRanking(); } );";
-GWF_Website::addJavascriptInline($script_html);
+GWF_Website::addJavascriptOnload('wcjsLangRanking();');
 ?>
 <?php
 $site = $tVars['site']; $site instanceof WC_Site;

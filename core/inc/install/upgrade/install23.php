@@ -42,7 +42,7 @@ echo "Module_PM changed a lot ... <br/>\n";
 if (false !== ($mod_pm = GWF_ModuleLoader::loadModuleFS('PM')))
 {
 	$mod_pm->onInclude();
-	require_once 'protected/install_upgrade/install23pm.php';
+	require_once 'install23pm.php';
 }
 
 echo "Module_Category changed a lot, but was unused.... reinstall wipe<br/>\n";

@@ -150,7 +150,7 @@ $lang = array(
 	'tt_challs_from' => '%3% %1% Challenges erstellt von %2%',
 
 	# Form Titles
-	'ft_solution' => 'Ihre Lösung %1%',
+	'ft_solution' => 'Ihre Lösung für %1%',
 	'ft_edit_chall' => 'Challenge bearbeiten',
 	'ft_link_site' => 'Eine Seite mit Ihrem Account verlinken',
 	'ft_linked_sites' => 'Ihre gelinkten Seiten',

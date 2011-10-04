@@ -97,7 +97,7 @@ final class Module_WeChall extends GWF_Module
 		GWF_Website::setMetaTags(WC_HTML::lang('mt_wechall'));
 		GWF_Website::setMetaDescr(WC_HTML::lang('md_wechall'));
 		GWF_Website::addJavascript('/js/module/WeChall/wc.js?v=5');
-		GWF_Website::addJavascriptInline("$(document).ready(function() { wcjsProfileJQuery(); } );");
+		GWF_Website::addJavascriptOnload('wcjsProfileJQuery();');
 	}
 	
 	public static function includeVotes()

@@ -52,14 +52,10 @@ final class WeChall_GraphStats extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-//		var_dump($_GET);
+		GWF3::setConfig('store_last_url', false);
 		
-		# POST wrapper
-//		if (false !== Common::getPost('display')) {
-//			$this->wrapPost($module);
-//		}
-		
-		if (false !== ($error = $this->validate($module))) {
+		if (false !== ($error = $this->validate($module)))
+		{
 			return $error;
 		}
 		

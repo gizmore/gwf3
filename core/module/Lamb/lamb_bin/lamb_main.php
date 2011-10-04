@@ -39,7 +39,7 @@ GWF_Language::initEnglish();
 GWF_HTML::init();
 //$gwf = new GWF3();
 //$gwf->onInit(getcwd(), false, true);
-//require_once 'core/inc/_gwf_include.php';
+//require_once 'core/_gwf_include.php';
 # Init it
 //GWF_HTML::init();
 # Init the logger

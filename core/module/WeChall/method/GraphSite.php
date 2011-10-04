@@ -12,6 +12,8 @@ final class WeChall_GraphSite extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
+		GWF3::setConfig('store_last_url', false);
+		
 		return $this->graph($module, Common::getGet('site'), Common::getGet('type'));
 	}
 	

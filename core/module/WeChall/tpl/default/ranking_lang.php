@@ -1,6 +1,6 @@
 <?php
-$script_html = "$(document).ready(function() { wcjsLangRanking(); } );";
-GWF_Website::addJavascriptInline($script_html);
+$script_html = 'wcjsLangRanking();';
+GWF_Website::addJavascriptOnload($script_html);
 
 echo GWF_Box::box($tLang->lang('pi_langrank', array($tVars['langname'])), $tLang->lang('pit_langrank', array($tVars['langname'])));
 

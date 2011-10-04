@@ -93,7 +93,7 @@ final class Admin_Module extends GWF_Method
 		$data['div2'] = array(GWF_Form::DIVIDER);
 		
 		# Actions
-		$data['btns'] = array(GWF_Form::SUBMITS, array('update'=>$m->lang('btn_update'), 'defaults'=>$m->lang('btn_defaults')));
+		$data['btns'] = array(GWF_Form::SUBMITS, array('update'=>$m->lang('btn_update')));#, 'defaults'=>$m->lang('btn_defaults')));
 		if ($mod->isEnabled()) {
 			$data['disable'] = array(GWF_Form::SUBMIT, $m->lang('btn_disable'), $m->lang('th_enabled'));
 		} else {

@@ -185,7 +185,7 @@ final class GWF_Website
 
 	### JQuery onload ###
 	private static $javascript_onload = '';
-	private static function addJavascriptOnload($script_html) { self::$javascript_onload .= $script_html; }
+	public static function addJavascriptOnload($script_html) { self::$javascript_onload .= $script_html; }
 	private static function displayJavascriptOnload()
 	{
 		return self::$javascript_onload ? sprintf('; $(document).ready(function(){ %s; });', self::$javascript_onload) : '';

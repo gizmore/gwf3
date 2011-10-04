@@ -154,7 +154,7 @@ final class WeChall_Stats extends GWF_Method
 		}
 		$this->setPageTitles($module);
 		
-		GWF_Website::addJavascriptInline("$(document).ready(function() { wcjsStatsJQuery(); } );");
+		GWF_Website::addJavascriptOnload('wcjsStatsJQuery();');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-ui-1.8.5.custom.min.js');
 		GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/wc4/css/ui-lightness/jquery-ui-1.8.5.custom.css');
 		

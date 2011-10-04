@@ -46,10 +46,15 @@ final class WeChall_GraphUser extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if ('totalscore' === ($type = Common::getGet('type'))) {
+		GWF3::setConfig('store_last_url', false);
+		
+		if ('totalscore' === ($type = Common::getGet('type')))
+		{
 			return $this->graphUserLevel($module, 'userhist_totalscore');
 		}
-		elseif ('rank' === ($type = Common::getGet('type'))) {
+		
+		if ('rank' === ($type = Common::getGet('type')))
+		{
 			return $this->graphUserLevel($module, 'userhist_rank');
 		}
 		

@@ -12,9 +12,13 @@ final class Votes_Button extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		GWF3::setConfig('store_last_url', false);
+		
+		if (false !== ($error = $this->sanitize($module)))
+		{
 			return $error;
 		}
+		
 		return $this->imageButton($module);
 	}
 
@@ -55,7 +59,6 @@ final class Votes_Button extends GWF_Method
 			default: return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 		imagedestroy($image);
-		GWF3::setConfig('store_last_url', false);
 		die(0);
 	}
 	

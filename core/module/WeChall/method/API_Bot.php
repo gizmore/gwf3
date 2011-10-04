@@ -47,11 +47,11 @@ final class WeChall_API_Bot extends GWF_Method
 			$this->showSite($module, $input);
 		}
 		else {
-			$this->showGlobal($module, $input);
+			die($this->showGlobal($module, $input));
 		}
 	}
 	
-	private function showGlobal(Module_WeChall $module, $input)
+	public function showGlobal(Module_WeChall $module, $input)
 	{
 		if (false !== ($user = GWF_User::getByName($input))) {
 			$rank = WC_RegAt::calcExactRank($user);
@@ -86,7 +86,7 @@ final class WeChall_API_Bot extends GWF_Method
 		}
 		
 		$infotxt = sprintf("$username is ranked $rank from $usercount, linked to $nSites sites with an average of %.02f%% solved. $username has a totalscore of $score. $rankuptxt", $average*100);
-		die($infotxt);
+		return $infotxt;
 	}
 	
 	private function showUsageSites()
@@ -238,7 +238,7 @@ final class WeChall_API_Bot extends GWF_Method
 	 * @param string $input
 	 * @return string
 	 */
-	private function wechallChalls(Module_WeChall $module, $input)
+	public function wechallChalls(Module_WeChall $module, $input)
 	{
 		if ($input === '') {
 			return sprintf('Try wechallchalls.php?userame=blub');

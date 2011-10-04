@@ -223,7 +223,8 @@ class GWF_Module extends GDO
 	{
 		$db = gdo_db();
 		$id = $this->getID();
-		if (false === ($result = self::table('GWF_ModuleVar')->select('mv_key,mv_val', "mv_mid=$id"))) {
+		if (false === ($result = self::table('GWF_ModuleVar')->select('mv_key,mv_val', "mv_mid=$id")))
+		{
 			return false;
 		}
 		$this->module_vars = array();

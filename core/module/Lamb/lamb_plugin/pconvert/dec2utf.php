@@ -25,6 +25,6 @@ foreach ($dec as $n)
 	}
 	$out .= ($c);
 }
-//$bot->reply($out);
-$server->sendPrivmsg($user->getName(), $out);
+$bot->reply($out);
+//$server->sendPrivmsg($user->getName(), $out);
 ?>

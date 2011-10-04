@@ -9,11 +9,12 @@
 $no_head = array(GWF_Form::HIDDEN, GWF_Form::SUBMIT);
 foreach ($tVars['data'] as $key => $data)
 {
-	if (in_array($data[0], $no_head, true)) {
-		echo '<th></th>'; 
-		continue;
+	$text = '';
+	if (!in_array($data[0], $no_head, true))
+	{
+		$text = isset($data[3]) ? $data[3] : '';
 	}
-	printf('<th>%s</th>', $key);
+	printf('<th>%s</th>', $text);
 }
 ?>
 			</tr>

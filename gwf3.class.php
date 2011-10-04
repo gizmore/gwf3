@@ -19,14 +19,13 @@ class GWF3
 		'load_module' => true,
 		'load_config' => false,
 		'start_debug' => true,
-//		'get_user' => true,
+		'get_user' => true,
 		'do_logging' => true,
 		'blocking' => true,
 		'no_session' => false,
 		'store_last_url' => true,
 		'ignore_user_abort' => true,
 		'disallow_php_uploads' => true,
-		'installing' => false,
 	);
 	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static function getConfig($key) { return self::$CONFIG[$key]; }
@@ -95,7 +94,7 @@ class GWF3
 			$this->onLoadModule(); 
 		}
 		
-		if (!$config['installing']) 
+		if ($config['get_user']) 
 		{		
 			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
@@ -119,7 +118,7 @@ class GWF3
 		
 		#default definements
 //		define('GWF_PATH', __DIR__.'/');
-		define('GWF_PATH', str_replace('\\', '/', __DIR__).'/'); 
+		define('GWF_PATH', str_replace('\\', '/', __DIR__).'/');
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
@@ -175,7 +174,6 @@ class GWF3
 		if (!GWF_Session::start($blocking))
 		{
 			die('GWF not installed?!');
-//			return false; # Not installed
 		}
 	}
 	public static function onStartLogging($no_session=false)
@@ -203,7 +201,8 @@ class GWF3
 	
 	public function onLoadModule()
 	{
-		if(defined('GWF_WEBSITE_DOWN')) return;
+		if(defined('GWF_WEBSITE_DOWN')) return $this;
+		
 		# Load the module
 		if (false === (self::$module = GWF_Module::loadModuleDB($_GET['mo']))) 
 		{
@@ -230,12 +229,11 @@ class GWF3
 			self::$page = GWF_HTML::err('ERR_MODULE_DISABLED', array(self::$module->display('module_name')));
 		}
 		return $this;
-
 	}
 
 	public function onSessionCommit($store_last_url=true) 
 	{
-		if(!defined('GWF_INSTALLATION'))
+		if (!self::$CONFIG['no_session'])
 		{
 			# Commit the session
 			if (false !== ($user = GWF_Session::getUser()))
@@ -285,7 +283,6 @@ class GWF3
 		$class = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT, GWF_HTML::lang(__CLASS__), GWF_HTML::lang(__CLASS__));
 		$method = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT.'index.php?mo='.$module.'&amp;me='.$method, $method, $method);
 		$module = sprintf('<a href="%s" title="%s">%s</a>', GWF_WEB_ROOT.'index.php?mo='.$module, $module, $module);
-
 		return $class.' &gt;&gt; '.$module.' &gt; '.$method;
 	}
 }
