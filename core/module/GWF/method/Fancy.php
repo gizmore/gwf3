@@ -1,55 +1,69 @@
 <?php
-
 /**
- * For Fancy Indexing
- * @author spaceone
+ * For Fancy Indexing.
+ * @author spaceone,gizmore
  * @see http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html
  */
 final class GWF_Fancy extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		#PHP workability; please add to your vhosts if AllowOverride All is deactivated!
-		$ret = 'AddType text/html .php'.PHP_EOL;
-		$ret .= '<Files "*.php">'.PHP_EOL;
-		$ret .= '    AddHandler application/x-httpd-php .php'.PHP_EOL;
-		$ret .= '</Files>'.PHP_EOL.PHP_EOL;
+		$module instanceof Module_GWF;
+		
+		# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
+		$ret =
+			'AddType text/html .php'.PHP_EOL.
+			'<Files "*.php">'.PHP_EOL.
+			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
+			'</Files>'.PHP_EOL.PHP_EOL;
 		
 		# The Fancy Options
-		$ret .= 'IndexOptions FancyIndexing'.PHP_EOL;
-		$ret .= 'IndexOptions';
-		$ret .= ' NameWidth='.$module->cfgNameWidth(); 
-		$ret .= ' DescriptionWidth='.$module->cfgDescriptionWidth();
-		$ret .= ' IconHeight='.$module->cfgIconHeight();
-		$ret .= ' IconWidth='.$module->cfgIconWidth().PHP_EOL;
-		
-		$ret .= 'IndexOptions ';
-		$ret .= $module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
-		$ret .= $module->cfgFoldersFirst() ? 'FoldersFirst ' : '';
-		$ret .= $module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
-		$ret .= $module->cfgHTMLTable() ? 'HTMLTable ' : '';
-		$ret .= $module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
-		$ret .= $module->cfgSuppressRules() ? 'SuppressRules '.PHP_EOL : PHP_EOL;
-	
-		# The Fancy URLs
-		$ret .= 'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head'.PHP_EOL;
-		$ret .= 'ReadmeName /index.php?mo=GWF&me=Fancy&fancy=foot'.PHP_EOL;
-		
+		if ($module->cfgFancyIndex())
+		{
+			$ret .= '# Fancy Index'.PHP_EOL;
+			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
+				'IndexOptions'.
+				' NameWidth='.$module->cfgNameWidth(). 
+				' DescriptionWidth='.$module->cfgDescriptionWidth().
+				' IconHeight='.$module->cfgIconHeight().
+				' IconWidth='.$module->cfgIconWidth().PHP_EOL;
+			$ret .= 'IndexOptions ';
+			$ret .= $module->cfgHTMLTable() ? 'HTMLTable ' : '';
+			$ret .= $module->cfgIgnoreClient() ? 'IgnoreClient ' : '';
+			$ret .= $module->cfgFoldersFirst() ? 'FoldersFirst ': '';
+			$ret .= $module->cfgIgnoreCase() ? 'IgnoreCase ' : '';
+			$ret .= $module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
+			$ret .= $module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
+			$ret .= $module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
+			$ret .= $module->cfgSuppressRules() ? 'SuppressRules ' : '';
+			$ret .= PHP_EOL.PHP_EOL;
+			# The Fancy URLs
+			$ret .=
+				'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
+				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%1'.PHP_EOL.
+				'ReadmeName /index.php?mo=GWF&me=Fancy&fancy=foot'.PHP_EOL;
+		}
 		return $ret.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module)
 	{
 		GWF3::setDesign($module->cfgDesign());
-		switch(Common::getGet('fancy', 'head'))
+		
+		switch(Common::getGetString('fancy'))
 		{
 			case 'head': 
 				GWF_Website::addCSS(sprintf('/tpl/%s/css/fancy.css', GWF3::getDesign()));
 				die(GWF3::onDisplayHead());
-			break;
-			case 'foot' : 
+				
+			case 'foot': 
 				die(GWF3::onDisplayFoot());
-			break;
+				
+			default:
+				var_dump($_GET);
+				GWF_HTML::err(ERR_PARAMETER, array(__FILE__, __LINE__, 'fancy'));
+				die();
 		}
 	}	
 }
+?>
