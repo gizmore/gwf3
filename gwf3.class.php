@@ -89,15 +89,15 @@ class GWF3
 			$this->onAutoloadModules(); 
 		}
 		
+		if ($config['get_user']) 
+		{		
+			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
+		}
 		if ($config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
 		}
 		
-		if ($config['get_user']) 
-		{		
-			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
-		}
 	}
 	
 	public function __destruct() 

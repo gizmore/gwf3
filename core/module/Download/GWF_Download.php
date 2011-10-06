@@ -60,7 +60,7 @@ final class GWF_Download extends GDO implements GWF_Orderable #implements GDO_Se
 	public function getVotes() { return $this->getVar('dl_voteid'); }
 	
 	public function getFileSize() { $path = $this->getDownloadPath(); return Common::isFile($path) ? filesize($path) : false; }
-	public function getDownloadPath() { return 'dbimg/dl/'.$this->getVar('dl_id'); }
+	public function getDownloadPath() { return GWF_WWW_PATH.'dbimg/dl/'.$this->getVar('dl_id'); }
 	public function getCustomDownloadPath() { return $this->custom_path === '' ? $this->getDownloadPath() : $this->custom_path; }
 	public function setCustomDownloadPath($path) { $this->custom_path = $path; }
 	public function getCustomDownloadName() { return $this->custom_name === '' ? $this->getVar('dl_filename') : $this->custom_name; }

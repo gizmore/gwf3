@@ -10,23 +10,27 @@ final class Baim_Hook_Dl
 		
 		$demo = $dlid === 2;
 		
-		if (false === ($row = BAIM_MC::generate($user, $demo))) {
+		if (false === ($row = BAIM_MC::generate($user, $demo)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
 		$mime = $dl->getVar('dl_mime');
 		$path = $dl->getDownloadPath();
-		$temp_path = 'extra/temp/baim/'.$user->getVar('user_id').'_'.$row->getToken();
+		$temp_path = GWF_PATH.'extra/temp/baim/'.$user->getVar('user_id').'_'.$row->getToken();
 		
-		if (Common::isFile($temp_path)) {
-			if (false === unlink($temp_path)) {
+		if (Common::isFile($temp_path))
+		{
+			if (false === unlink($temp_path))
+			{
 				return GWF_HTML::err('ERR_WRITE_FILE', array( $temp_path));
 			}
 		}
 		
 		if ($mime === 'application/zip')
 		{
-			if (false === copy($path, $temp_path)) {
+			if (false === copy($path, $temp_path))
+			{
 				return GWF_HTML::err('ERR_WRITE_FILE', array( $temp_path));
 			}
 			$have_zip = true;

@@ -9,7 +9,7 @@ final class Module_GWF extends GWF_Module
 {
 	public function getVersion() { return 3.01; }
 	
-	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
+//	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
 
 	# Fancy Config
 	public function cfgFancyIndex() { return $this->getModuleVar('FancyIndex', '1') === '1'; }
@@ -29,7 +29,7 @@ final class Module_GWF extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'Design' => array(GWF_Template::getDesign(), 'text'),
+//			'Design' => array(GWF_Template::getDesign(), 'text'),
 			# Fancy Config
 			'FancyIndex' => array('YES', 'bool'),
 			'NameWidth' => array('25', 'int'),

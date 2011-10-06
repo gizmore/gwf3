@@ -12,7 +12,25 @@ function changeLanguage(code)
 		window.location.href = window.location.href.replace(/change_language_to=[a-z]{3}/, "change_language_to="+code);
 	}
 }
-
+/* Browser Lang */
+var gwf_browser_language = false;
+function gwfGetBrowserLanguage()
+{
+	if (gwf_browser_language === false)
+	{
+		gwf_browser_language = ajaxSync(GWF_WEB_ROOT+'index.php?mo=Language&me=Get&ajax=true');
+	}
+	return gwf_browser_language;
+/*	if (navigator.appName == 'Netscape')
+	{
+		var language = navigator.language;
+	}
+	else
+	{
+		var language = navigator.browserLanguage;
+	}
+	return language.substr(0, 2);*/
+}
 /* Google Trans */
 function gwfGoogleTrans(id)
 {
@@ -24,12 +42,10 @@ function gwfGoogleTrans(id)
 		return false;
 	}
 	var text = e.innerHTML;
-	
 //	text = text.replace(/<[^>]+>.+<[^>]+>/g, '');
 //	text = text.replace(/<[^>]+>/g, '');
 //	text = text.replace('/&nbsp;/g', ' ');
 //	text = text.replace('/<br */?>/g', "\n");
-
 	google.language.detect(text, function(result) {
 		if (!result.error && result.language) {
 			google.language.translate(text, result.language, lang,
@@ -42,7 +58,10 @@ function gwfGoogleTrans(id)
 	});
 }
 
-/* Ajax */
+
+/*======*/
+/*= Ajax */
+/*======*/
 function getAjaxObject()
 {
 	var xmlHttp;
@@ -123,7 +142,9 @@ function ajaxSyncPost(url, data)
 	return false;
 }
 
-/* Selects and Options */
+/*=====================*/
+/*= Selects and Options */
+/*=====================*/
 function getSelectOptions(selectID)
 {
 	return document.getElementById(selectID).options;
@@ -184,7 +205,9 @@ function clearSelect(select)
 	}
 }
 
-/* Hide container */
+/* ============ */
+/* = GFX Util = */
+/* ============ */
 function toggleHidden(id)
 {
 	try {
@@ -200,6 +223,33 @@ function toggleHidden(id)
 	}
 }
 
+function getDivPosY(el)
+{
+	for (var y=0; el != null; y += el.offsetTop, el = el.offsetParent);
+	return y;
+}
+
+function getDivPosX(el)
+{
+	for (var y=0; el != null; y += el.offsetLeft, el = el.offsetParent);
+	return y;
+}
+
+function getDivWidth(el)
+{
+	el.style.width = "auto";
+	return el.offsetWidth;
+}
+
+function getDivHeight(el)
+{
+	el.style.height = "auto";
+	return el.offsetHeight;
+}
+
+/* =========== */
+/* String Util */
+/* =========== */
 /**
 *  Javascript sprintf
 *  http://www.webtoolkit.info/
@@ -324,60 +374,53 @@ var sprintfWrapper = {
             }
         }
     }
-};
-var sprintf = sprintfWrapper.init;
+}; var sprintf = sprintfWrapper.init;
 
-
-function setInnerHTML(id, html)
+String.prototype.ltrim = function(chars)
 {
-	$('#'+id).html(html);
-	return true;
-}
+	chars = chars || "\\s";
+	return str.replace(new RegExp("^[" + chars + "]+", "gD"), "");
+};
+String.prototype.rtrim = function(chars)
+{
+	chars = chars || "\\s";
+	return str.replace(new RegExp("[" + chars + "]+$", "gD"), "");
+};
+String.prototype.trim = function(chars)
+{
+	return str.rtrim(chars).ltrim(chars);
+};
+String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'i')) !== null; };
+String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i')) !== null; };
+String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; };
+String.prototype.substrUntil = function(s, d)
+{
+	var i = this.indexOf(s);
+	if (i === -1) {
+		return d;
+	}
+	return this.substring(0, i);
+};
 
-/** PHP to JS --- Stolen ! */
 function in_array (needle, haystack, argStrict)
 {
-	var key = '';
-	var strict = !!argStrict;
-	
-	if (strict) {
-		for (key in haystack) {
+	if (!!argStrict) {
+		for (var key in haystack) {
 			if (haystack[key] === needle) {
 				return true;
 			}
 		}
-	} else {
-		for (key in haystack) {
-			if (haystack[key] == needle) {
-				return true;
-			}
+	} else for (var key in haystack) {
+		if (haystack[key] == needle) {
+			return true;
 		}
 	}
 	return false;
 }
 
-/* Browser Lang */
-var gwf_browser_language = false;
-function gwfGetBrowserLanguage()
-{
-	if (gwf_browser_language === false)
-	{
-		gwf_browser_language = ajaxSync(GWF_WEB_ROOT+'index.php?mo=Language&me=Get&ajax=true');
-	}
-	return gwf_browser_language;
-	
-/*	if (navigator.appName == 'Netscape')
-	{
-		var language = navigator.language;
-	}
-	else
-	{
-		var language = navigator.browserLanguage;
-	}
-	return language.substr(0, 2);*/
-}
-
-/* GDO Error / MSG */
+/*-========-*/
+/* Ajax GDO */
+/*-========-*/
 function gwfIsSuccess(response)
 {
 	if (response === false)
@@ -386,14 +429,12 @@ function gwfIsSuccess(response)
 	}
 	return gwfNextToken(response, 0) > 0;
 }
-
 function gwfDisplayMessage(response)
 {
 	if (response === false) {
 		alert('GWF Response Error 1');
 		return;
 	}
-
 	var len = response.length;
 	var i = 0;
 	var message = '';
@@ -408,10 +449,8 @@ function gwfDisplayMessage(response)
 		message += "\n" + response.substr(i, dlen);
 		i += dlen + 1;
 	}
-	
 	alert(message.substr(1));
 }
-
 function gwfNextToken(response, i)
 {
 	var index = response.indexOf(":", i);
@@ -422,7 +461,11 @@ function gwfNextToken(response, i)
 	return response.substring(i, index);
 }
 
-/** BB **/
+/*-====-*/
+/*- BB -*/
+/*-====-*/
+var GWF_BB_CODE_LANGS = undefined;
+
 function bbReplace(start, end) {
 
 	alert(start+end);
@@ -482,7 +525,6 @@ function bbInsert(key, start, end)
 	return true;
 }
 
-var GWF_BB_CODE_LANGS = undefined;
 function bbInsertCode(key)
 {
 	if (false === bbInsertCodeInit(key)) {
@@ -552,75 +594,12 @@ function bbInsertURLInit(key)
 
 
 
-/** trim **/
-function trim(str, chars)
+function focusInput(selector)
 {
-	return ltrim(rtrim(str, chars), chars);
-}
-
-function ltrim(str, chars)
-{
-	chars = chars || "\\s";
-	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
-}
-function rtrim(str, chars)
-{
-	chars = chars || "\\s";
-	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
-}
-/** end of trim **/
-
-
-/** Position **/
-function getDivPosY(el)
-{
-	for (var y=0; el != null; y += el.offsetTop, el = el.offsetParent);
-	return y;
-}
-
-function getDivPosX(el)
-{
-	for (var y=0; el != null; y += el.offsetLeft, el = el.offsetParent);
-	return y;
-}
-
-function getDivWidth(el)
-{
-	el.style.width = "auto";
-	return el.offsetWidth;
-}
-
-function getDivHeight(el)
-{
-	el.style.height = "auto";
-	return el.offsetHeight;
-}
-
-/** String Prototype Bindings **/
-String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'i')) !== null; };
-String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i')) !== null; };
-String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; };
-String.prototype.substrUntil = function(s, d)
-{
-	var i = this.indexOf(s);
-	if (i === -1) {
-		return d;
+	var jq = $(selector);
+	if (!jq.length)
+	{
+		jq = $('input[type=text]').sort('top', 'ASC');
 	}
-	return this.substring(0, i);
-};
-
-/** Javascript includes **/
-//function Includer()
-//{
-//	this.once = new Array();
-//	this.include_once = function(url) { return in_array(url, this.once) ? true : this.include(url); };
-//	this.include = function(url)
-//	{
-//		alert(1);
-//		var result = ajaxSync(url);
-//		if (result === false) return false;
-//		try { eval(result); } catch (e) { alert(e); return false; }
-//		this.once.push(url);
-//		return true;
-//	};
-//}
+	jq[0].focus();
+}

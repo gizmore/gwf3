@@ -5,7 +5,7 @@
 <h1>{$lang->lang('contact_title')}</h1>
 
 <div id="contact">
-	<div class="contact_img">{include file="{$core}module/Konzert/tpl/default/mugshot.tpl" small='/tpl/konz/bild/131.jpg' large='/tpl/konz/bild/131_large.jpg' title=$k->lang('name') alt=$k->lang('foto') text=''}</div>
+	<div class="contact_img">{include file="{$core}module/Konzert/tpl/default/mugshot.tpl" small='/tpl/konz/bild/196.jpg' large='/tpl/konz/bild/196_large.jpg' title=$k->lang('name') alt=$k->lang('foto') text=''}</div>
 	<div class="contact">{$form}</div>
 	<div class="cb"></div>
 </div>

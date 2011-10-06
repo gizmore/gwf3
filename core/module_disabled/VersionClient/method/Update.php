@@ -173,7 +173,8 @@ final class VersionClient_Update extends GWF_Method
 			if ($entry === '.' || $entry === '..') {
 				continue;
 			}
-			if (1 === preg_match('/^upgrade_manifest_\d+_\d+.gwf_manifest$/', $entry)) {
+			if (1 === preg_match('/^upgrade_manifest_\d+_\d+.gwf_manifest$/D', $entry))
+			{
 				$fullpath = $manifestdir.'/'.$entry;
 				$back = $this->cacheManifestB($module, $fullpath);
 				break;
@@ -186,7 +187,7 @@ final class VersionClient_Update extends GWF_Method
 	{
 		$this->manifest = file($fullpath);
 		
-		if (1 !== preg_match('/^GWF2:DATESTAMP:(\d{'.GWF_Date::LEN_SECOND.'})$/', $this->manifest[0], $matches))
+		if (1 !== preg_match('/^GWF2:DATESTAMP:(\d{'.GWF_Date::LEN_SECOND.'})$/D', $this->manifest[0], $matches))
 		{
 			return $module->error('err_manifest2');
 		}

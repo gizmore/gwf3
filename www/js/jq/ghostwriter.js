@@ -57,7 +57,7 @@
 		{
 			return this.each(function(){
 				var $this = $(this);
-				var data = $.extend($this.data('ghostwriter'), options, {'running': false});
+				var data = $.extend($this.data('ghostwriter'), options, {'paused': true});
 				$this.data('ghostwriter', data);
 			});
 		},
@@ -66,7 +66,7 @@
 		{
 			return this.each(function(){
 				var $this = $(this);
-				var data = $.extend($this.data('ghostwriter'), options, {'running': true});
+				var data = $.extend($this.data('ghostwriter'), options, {'paused': false});
 				$this.data('ghostwriter', data);
 			});
 		}
@@ -97,12 +97,13 @@
 		while (pos < len)
 		{
 			c = text.charCodeAt(pos);
-			if (c === 32)
-			{
-				back += ' ';
-				pos++;
-			}
-			else if (c === 60)
+//			if (c === 32)
+//			{
+//				back += ' ';
+//				pos++;
+//			}
+//			else 
+			if (c === 60)
 			{
 				i = text.indexOf('>', pos);
 				if (i === -1)

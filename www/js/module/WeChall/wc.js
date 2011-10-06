@@ -103,7 +103,7 @@ function wcStatsRefreshURL()
 ////		alert('Can not find element wcstatvs.');
 //		return '';
 //	}
-//	var vs = trim(el.value);
+//	var vs = el.value.trim();
 //	if (vs === '') {
 //		return '';
 //	}

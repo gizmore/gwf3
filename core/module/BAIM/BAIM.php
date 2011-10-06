@@ -138,6 +138,10 @@ final class BAIM
 	
 	private static function menuPM(Module_BAIM $module)
 	{
+		if (!GWF_Session::isLoggedIn())
+		{
+			return '';
+		}
 		$sel = Common::getGet('mo') === 'PM';
 		$sel = $sel ? ' class="menu_sel"' : ''; 
 		$href = GWF_WEB_ROOT.'pm';

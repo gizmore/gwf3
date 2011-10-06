@@ -48,7 +48,8 @@ final class GWF_Fancy extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		GWF3::setDesign($module->cfgDesign());
+//		header('Content-Type: text/html; charset=utf8;');
+//		GWF3::setDesign($module->cfgDesign());
 		
 		switch(Common::getGetString('fancy'))
 		{

@@ -64,3 +64,12 @@
 	};
 })
 (jQuery);
+
+/**
+ * Make image anchors pop out a bit.
+ * @author gizmore
+ */
+$.fn.tinyzoom.tinyzoomanchors = function(jq)
+{
+	
+};

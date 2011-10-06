@@ -26,7 +26,7 @@ function Thumbnails() //id_div, class_img, displaycount, width, height, zoom, im
 		var c = parseInt(_count);
 		if (count < 1)
 		{
-			throw new Exception('Invalid value for setCount: '+_count);
+			throw 'Invalid value for setCount: '+_count;
 			return false;
 		}
 		count = _count;
@@ -38,7 +38,7 @@ function Thumbnails() //id_div, class_img, displaycount, width, height, zoom, im
 		div = $(_id_div);
 		if (!div.length)
 		{
-			throw new Exception('Cannot find element with the id: '+id_div);
+			throw 'Cannot find element with the id: '+id_div;
 			return false;
 		}
 		id_div = _id_div;

@@ -6,7 +6,7 @@ final class GWF_VersionFiles extends GDO
 	private static $size_unpacked = 0;
 	
 	private static $blacklist = array(
-		'#^core/module/WeChall/method/Convert.php$#',
+		'#^core/module/WeChall/method/Convert.php$#D',
 	);
 	
 //	private static $whitelist = array(
@@ -49,10 +49,10 @@ final class GWF_VersionFiles extends GDO
 	{
 		return array(
 			'vsf_id' => array(GDO::AUTO_INCREMENT), // ID
-			'vsf_dir' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
-			'vsf_module' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
-			'vsf_design' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
-			'vsf_path' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::UNIQUE, GDO::NOT_NULL, 255),
+			'vsf_dir' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
+			'vsf_module' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
+			'vsf_design' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 63),
+			'vsf_path' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL),
 			'vsf_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'vsf_size' => array(GDO::UINT, GDO::NOT_NULL),
 			'vsf_hash' => array(GDO::TOKEN, GDO::NOT_NULL, self::HASH_LEN),
@@ -81,7 +81,8 @@ final class GWF_VersionFiles extends GDO
 	
 	public static function populateFile($basedir, $fullpath, $modulename=true, $designname=true)
 	{
-		if (self::isBlacklisted($fullpath)) {
+		if (self::isBlacklisted($fullpath))
+		{
 			return true;
 		}
 		
@@ -101,7 +102,7 @@ final class GWF_VersionFiles extends GDO
 		# Get designname
 		if (is_string($designname)) { // keep
 		}
-		if (preg_match('#.*(^|/)tpl/([^/]+)/.+$#', $fullpath, $matches)) {
+		if (preg_match('#.*(^|/)tpl/([^/]+)/.+$#D', $fullpath, $matches)) {
 			$designname = $matches[2];
 		} else {
 			$designname = '';
@@ -166,17 +167,17 @@ final class GWF_VersionFiles extends GDO
 		
 		foreach (VersionServer_Zipper::$protected_files as $fullpath)
 		{
-			self::populateFile('protected', $fullpath);
+			self::populateFile(GWF_WWW_PATH.'protected', $fullpath);
 		}
 		
 		foreach (VersionServer_Zipper::$protected_dirs as $fullpath)
 		{
-			self::populateRec('protected', $fullpath);
+			self::populateRec(GWF_WWW_PATH.'protected', $fullpath);
 		}
 		
 		foreach (VersionServer_Zipper::$rootfiles as $fullpath)
 		{
-			self::populateFile('', $fullpath);
+			self::populateFile(GWF_PATH, GWF_PATH.$fullpath);
 		}
 
 //		foreach (self::$whitelist as $data)

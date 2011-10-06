@@ -15,42 +15,33 @@ final class VersionServer_Zipper extends GWF_Method
 	public function hasError() { return $this->has_error; }
 	
 	public static $rootfiles = array(
-		'error.php',
 		'gwf_cronjob.php',
-		'index.php',
-//		'robots.txt',
+		'gwf3.class.php',
+		'www/index.example.php',
+		'www/robots.txt',
 	);
 	
 	public static $protected_dirs = array(
-		'protected/install_css',
-		'protected/install_data',
-		'protected/install_lang',
-		'protected/install_scripts',
-		'protected/install_upgrade',
 	);
 	
 	public static $protected_files = array(
-//		'protected/gwf_install.css',
-//		'protected/install_config.php',
-//		'protected/install_functions.php',
-//		'protected/install_language.php',
-//		'protected/install_wizard.inc.php',
-		'protected/install_cli.php',
-		'protected/install_wizard.php',
-		'protected/install.php',
-//		'protected/ip-to-country.csv',
-//		'protected/uas_20091216-01.ini',
-		'protected/readme_install.txt',
-		'protected/temp_ban.php',
-		'protected/temp_down.php',
-		'protected/db_backup.sh',
+		'www/protected/config.example.php',
+		'www/protected/db_backup.sh',
+		'www/protected/index.php',
+		'www/protected/install_wizard.php',
+		'www/protected/install.php',
+		'www/protected/readme_install.txt',
+		'www/protected/temp_ban.lst.txt',
+		'www/protected/temp_ban.php',
+		'www/protected/temp_down.php',
 	);
 	
 	public static $tempdirs = array(
-		'cache', 'applet',
-		'temp', 'extra/temp/banner', 'extra/temp/offer', 'extra/temp/upload', 'extra/temp/gpg',
-		'dbimg/banner', 'dbimg/cover', 'dbimg/partner',
-		'protected/logs', 'protected/db_backups', 'protected/db_backups_old', 'protected/rawlog', 'protected/zipped',
+		'www/applet',
+		'www/dbimg/avatar', 'www/dbimg/content', 'www/dbimg/forum_attach', 'www/dbimg/gpg', 
+		'www/temp',
+		'www/protected/logs', 'www/protected/db_backups', 'www/protected/db_backups_old', 'www/protected/rawlog', 'www/protected/zipped',
+		'extra/temp/offer', 'extra/temp/upload', 'extra/temp/gpg',
 		'extra/temp/smarty_cache', 'extra/temp/smarty_cache/cache', 'extra/temp/smarty_cache/cfg', 'extra/temp/smarty_cache/tpl', 'extra/temp/smarty_cache/tplc',
 	);
 	
@@ -105,7 +96,7 @@ final class VersionServer_Zipper extends GWF_Method
 	private function getArchiveName()
 	{
 		if ($this->archiveName === false) {
-			return sprintf('protected/zipped/%s_%s.zip', GWF_Time::getDate(GWF_Date::LEN_SECOND), implode(',', $this->style));
+			return sprintf('www/protected/zipped/%s_%s.zip', GWF_Time::getDate(GWF_Date::LEN_SECOND), implode(',', $this->style));
 		}
 		else {
 			return $this->archiveName;
@@ -135,21 +126,27 @@ final class VersionServer_Zipper extends GWF_Method
 		$this->style = explode(',', Common::getPost('style', 'default'));
 		unset($_POST['style']);
 		unset($_POST['zipper']);
-		return $this->onZipC($module);
+		$back = $this->onZipC($module);
+		chdir(GWF_WWW_PATH);
+		return $back;
 	}
 	
 	public function onZipC(Module_VersionServer $module)
 	{
 		# Create ZIP
 		$archive = new GWF_ZipArchive();
+		
+		chdir(GWF_PATH);
+		
 		$archivename = $this->getArchiveName();
 		if (false === ($archive->open($archivename, ZipArchive::CREATE|ZipArchive::CM_REDUCE_4))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
+		
 		# ZIP STUFF
 		# Core
-		if (false === ($this->zipDir($archive, 'inc'))) {
+		if (false === ($this->zipDir($archive, 'core/inc'))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		# ZIP Module(Groups)
@@ -159,15 +156,15 @@ final class VersionServer_Zipper extends GWF_Method
 				continue;
 			}
 			# zip dir recursive, do not ignore style
-			if (false === ($this->zipDir($archive, GWF_CORE_PATH.'module/'.substr($group, 4), true, false))) {
+			if (false === ($this->zipDir($archive, 'core/module/'.substr($group, 4), true, false))) {
 				return $module->error('err_zip', array(__FILE__, __LINE__));
 			}
 		}
 		
 		# 3rd Party Core
-		if (false === ($this->zipDir($archive, 'inc3p'))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
-		}
+//		if (false === ($this->zipDir($archive, 'inc3p'))) {
+//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//		}
 		
 		# Smarty
 //		if (false === ($this->zipDir($archive, 'smarty_lib'))) {
@@ -176,43 +173,52 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		
 		# JS
-		if (false === ($this->zipDir($archive, 'js'))) {
+		if (false === ($this->zipDir($archive, 'www/js')))
+		{
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
+		
 		# Base Lang
-		if (false === ($this->zipDir($archive, 'lang'))) {
+		if (false === ($this->zipDir($archive, 'core/lang'))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
+		
 		# Images
-		if (false === ($this->zipDir($archive, 'img', false))) {
+		if (false === ($this->zipDir($archive, 'www/img', false))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
-		if (false === ($this->zipDir($archive, 'img/country', false))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
-		}
-		if (false === ($this->zipDir($archive, 'img/smile', false))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
-		}
+		
+//		if (false === ($this->zipDir($archive, 'img/country', false))) {
+//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//		}
+//		if (false === ($this->zipDir($archive, 'img/smile', false))) {
+//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//		}
+
 		# Temp
 		if (false === $this->addEmptyDirs($archive, self::$tempdirs)) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		# Fonts
-		if (false === ($this->zipDir($archive, 'font'))) {
+		if (false === ($this->zipDir($archive, 'extra/font'))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
+		
 		# Templates
-		if (false === ($this->zipDir($archive, 'tpl', true, false))) {
+		if (false === ($this->zipDir($archive, 'www/tpl', true, false))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
+		
 		# Root Files
 		if (false === ($this->addFiles($archive, self::$rootfiles))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
+		
 		# Protected Dirs
-		if (false === $this->zipDirs($archive, self::$protected_dirs)) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
-		}
+//		if (false === $this->zipDirs($archive, self::$protected_dirs)) {
+//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//		}
+		
 		# Protected Files
 		if (false === ($this->addFiles($archive, self::$protected_files))) {
 			return $module->error('err_zip', array(__FILE__, __LINE__));
@@ -227,6 +233,7 @@ final class VersionServer_Zipper extends GWF_Method
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
+//		chdir(GWF_WWW_PATH);
 		
 		$total_files = $archive->getTotalFilesCounter();
 
@@ -295,8 +302,16 @@ final class VersionServer_Zipper extends GWF_Method
 			if (!$this->isFileWanted($file)) {
 				continue;
 			}
+
+			if (!Common::isFile($file)) {
+				echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array( GWF_HTML::display($file)));
+				return false;
+			}
 			
-			if (false === $archive->addFile($file)) {
+			
+			
+			if (false === $archive->addFile($file))
+			{
 				echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array( GWF_HTML::display($file)));
 				return false;
 			}
@@ -330,7 +345,7 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		while(false !== ($entry = $dir->read()))
 		{
-			if ($entry === '.' || $entry === '..') {
+			if ($entry{0} === '.') {
 				continue;
 			}
 			
