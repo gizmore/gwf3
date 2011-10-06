@@ -4,7 +4,7 @@
 ############
 function install_get_core_tables()
 {
-	Common::defineConst('GWF_CORE_PATH', __DIR__.'/../../core/');
+	Common::defineConst('GWF_CORE_PATH', dirname(__FILE__).'/../../core/');
 	$classnames = array();
 	foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
 	{

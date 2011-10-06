@@ -5,7 +5,7 @@
 require_once 'protected/config.php';
 require_once '../gwf3.class.php'; # You might need to adjust this path.
 
-$gwf = new GWF3(__DIR__	, array(
+$gwf = new GWF3(dirname(__FILE__)	, array(
 ## DEFAULT VALUES!
 //      'website_init' => true,
 //      'autoload_modules' => true,

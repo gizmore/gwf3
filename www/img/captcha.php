@@ -2,7 +2,7 @@
 chdir("../");
 require_once 'protected/config.php';
 require_once '../gwf3.class.php';
-$gwf = new GWF3(__DIR__	, array(
+$gwf = new GWF3(dirname(__FILE__)	, array(
 	'website_init' => true,
 	'autoload_modules' => false,
 	'load_module' => false,

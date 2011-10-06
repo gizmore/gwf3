@@ -1,6 +1,6 @@
 <?php
 //die('Dont use it atm, its also not protected!-.-');
-$dir = __DIR__;
+$dir = dirname(__FILE__);
 $prefix = '../';
 
 require_once $prefix.'core/inc/install/install.php';

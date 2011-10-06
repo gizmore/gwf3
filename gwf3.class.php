@@ -32,7 +32,7 @@ class GWF3
  	
 	/**
 	 * @param array $config
-	 * @param $basepath = __DIR__
+	 * @param $basepath = dirname(__FILE__)
 	 * @return GWF3 
 	 */
 	public function __construct($basepath, array $config = array())
@@ -117,8 +117,8 @@ class GWF3
 		require_once 'core/inc/util/Common.php';
 		
 		#default definements
-//		define('GWF_PATH', __DIR__.'/');
-		define('GWF_PATH', str_replace('\\', '/', __DIR__).'/');
+//		define('GWF_PATH', dirname(__FILE__).'/');
+		define('GWF_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		

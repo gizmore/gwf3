@@ -8,7 +8,7 @@ if (isset($_SERVER['REMOTE_ADDR']))
 require_once 'gwf3.class.php';
 
 # Init
-$gwf = new GWF3(__DIR__); // WTF? may only load config?
+$gwf = new GWF3(dirname(__FILE__)); // WTF? may only load config?
 
 # Call Cronjobs
 GWF_ModuleLoader::cronjobs();

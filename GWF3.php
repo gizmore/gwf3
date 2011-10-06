@@ -10,7 +10,7 @@ class GWF3
 {
 	public static function init($basepath)
 	{
-		define('GWF_PATH', __DIR__.'/');
+		define('GWF_PATH', dirname(__FILE__).'/');
 		define('GWF_WWW_PATH', $basepath);
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		

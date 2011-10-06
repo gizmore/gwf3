@@ -12,8 +12,8 @@ class GWF_DebugInfo
 		$disk_total = $disk_free = 0;
 		if ($with_diskspace)
 		{
-			$disk_free = disk_free_space(__DIR__);
-			$disk_total = disk_total_space(__DIR__);
+			$disk_free = disk_free_space(dirname(__FILE__));
+			$disk_total = disk_total_space(dirname(__FILE__));
 		}
 		
 		return array(

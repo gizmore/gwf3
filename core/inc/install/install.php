@@ -16,7 +16,7 @@ define('GWF_INSTALLATION', true);
 define('GWF_STEP', Common::getGetInt('step', 0));
 define('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
 
-realpath(__DIR__.'../');
+realpath(dirname(__FILE__).'../');
 if(GWF_STEP < 2 && !Common::isFile('protected/config.php')) 
 {
 	$webroot = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/')+1);
