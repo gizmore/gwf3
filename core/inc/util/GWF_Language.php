@@ -82,8 +82,8 @@ final class GWF_Language extends GDO
 	public static function init()
 	{
 		# IN URL
-//		if (isset($_SERVER['REQUEST_URI']))
-//		{
+		if (isset($_SERVER['REQUEST_URI']))
+		{
 			$pattern = '#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})(/.*)?$#D';
 			if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches))
 			{
@@ -94,7 +94,7 @@ final class GWF_Language extends GDO
 					return true;
 				}
 			}
-//		}
+		}
 		
 		# Domain
 //		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/D', $_SERVER['HTTP_HOST'], $matches))

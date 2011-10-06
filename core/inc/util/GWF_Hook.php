@@ -47,10 +47,16 @@ final class GWF_Hook
 	 */
 	public static function add($name, $function)
 	{
-		if (!isset(self::$_write_hooks[$name])) {
+		if (!isset(self::$_write_hooks[$name]))
+		{
 			self::$_write_hooks[$name] = array();
 		}
-		self::$_write_hooks[$name][] = $function;
+		
+		if (!in_array($function, self::$_write_hooks[$name]))
+		{
+//			var_dump(__METHOD__, $name, $function);
+			self::$_write_hooks[$name][] = $function;
+		}
 	}
 	public static function writeHooks()
 	{
@@ -92,9 +98,8 @@ final class GWF_Hook
 		foreach (self::$HOOKS[$name] as $hook)
 		{
 			$modulename = Common::substrFrom($hook[0], '_');
-			if (false !== ($module = GWF_Module::loadModuleDB($modulename)))
+			if (false !== ($module = GWF_Module::loadModuleDB($modulename, true, true)))
 			{
-				$module->onInclude();
 				$output .= self::cleanResult($hook, call_user_func(array($module, $hook[1]), $user, $args));
 			}
 		}

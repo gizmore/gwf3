@@ -215,7 +215,11 @@ class GWF_Module extends GDO
 		{
 			return false;
 		}
-		$m->onStartup();
+		
+		if ($m->isEnabled())
+		{
+			$m->onStartup();
+		}
 		return $m;
 	}
 	

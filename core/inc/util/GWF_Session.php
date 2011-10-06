@@ -230,7 +230,8 @@ final class GWF_Session extends GDO
 			{
 				$domain = '.'.GWF_DOMAIN;
 			}
-			$secure = Common::getProtocol() === 'https';
+//			$secure = Common::getProtocol() === 'https';
+			$secure = true;
 			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, $domain, $secure, true);
 		}
 	}
@@ -277,7 +278,7 @@ final class GWF_Session extends GDO
 		$userid = $user->getID();
 
 		# Keep only N sessions for one user
-		if (false === ($result = self::$SESSION->selectFirst('MIN(sess_id) min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER)))
+		if (false === ($result = self::$SESSION->selectFirst('sess_id min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER-1)))
 		{
 			$cut_id = '1';#return false;
 		} else {
@@ -286,6 +287,7 @@ final class GWF_Session extends GDO
 		
 		if (false === self::$SESSION->deleteWhere("sess_user=$userid AND sess_id<$cut_id"))
 		{
+			GWF_HTML::err(ERR_DATABASE, array(__FILE__, __LINE__));
 			return false;
 		}
 		

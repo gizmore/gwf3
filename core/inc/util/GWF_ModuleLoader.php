@@ -68,9 +68,11 @@ final class GWF_ModuleLoader
 				continue;
 			}
 			
-			elseif (false !== ($module = self::loadModuleFS($name))) {
-				GWF_Module::$MODULES[$name] = $module;
+			if (false === ($module = self::loadModuleFS($name))) {
+				continue;
 			}
+			
+			GWF_Module::$MODULES[$name] = $module;
 		}
 		return GWF_Module::$MODULES;
 	}
@@ -115,7 +117,11 @@ final class GWF_ModuleLoader
 		$module->setGDOData($data);
 		$module->setOption(GWF_Module::AUTOLOAD, $module->getDefaultAutoLoad());
 		$module->loadVars();
-		$module->onStartup();
+		
+		if ($module->isEnabled())
+		{
+			$module->onStartup();
+		}
 		return $module;
 	}
 	
@@ -375,6 +381,7 @@ final class GWF_ModuleLoader
 	{
 		foreach ($modules as $module)
 		{
+			$module instanceof GWF_Module;
 			if ($module->isEnabled())
 			{
 				$module->onAddHooks();

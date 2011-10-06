@@ -103,6 +103,7 @@ final class Download_Edit extends GWF_Method
 		}
 		
 		$options = 0;
+		$options |= isset($_POST['enabled']) ? GWF_Download::ENABLED : 0;
 		$options |= isset($_POST['adult']) ? GWF_Download::ADULT : 0;
 		$options |= isset($_POST['huname']) ? GWF_Download::HIDE_UNAME : 0;
 		$options |= isset($_POST['guest_view']) ? GWF_Download::GUEST_VISIBLE : 0;
