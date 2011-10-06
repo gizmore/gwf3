@@ -12,12 +12,6 @@ final class GWF_HTAccess
 			'#############################'.PHP_EOL.
 			'### NICE LIMITS ###'.PHP_EOL.
 			'###################'.PHP_EOL. 
-//			'IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*'.PHP_EOL.
-//			'<Limit GET POST>'.PHP_EOL.
-//			'order deny,allow'.PHP_EOL.
-//			'deny from all'.PHP_EOL.
-//			'allow from all'.PHP_EOL.
-//			'</Limit>'.PHP_EOL.
 			'<Limit PUT DELETE CONNECT>'.PHP_EOL.
 			'order deny,allow'.PHP_EOL.
 			'deny from all'.PHP_EOL.
@@ -66,12 +60,10 @@ final class GWF_HTAccess
 			return false;
 		}
 		
-		$data =
-//			'<Limit GET POST PUT DELETE CONNECT>'.PHP_EOL.
-			'order deny,allow'.PHP_EOL.
-			'deny from all'.PHP_EOL;
-//			'</Limit>'.PHP_EOL;
-		if (false === file_put_contents($path, $data)) {
+		$data = 'order deny,allow'.PHP_EOL.'deny from all'.PHP_EOL;
+		
+		if (false === file_put_contents($path, $data))
+		{
 			GWF_Log::logCritical(sprintf('Cannot write to file %s in %s.', $path, __METHOD__));
 			return false;
 		}
