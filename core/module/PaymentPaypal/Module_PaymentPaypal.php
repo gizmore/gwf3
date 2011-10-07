@@ -68,7 +68,7 @@ final class Module_PaymentPaypal extends GWF_PaymentModule
 	{
 		$tVars = array(
 			'form_action' => GWF_WEB_ROOT.'index.php?mo=PaymentPaypal&me=InitCheckout',
-			'img_path' => GWF_WEB_ROOT.'img/'.GWF_ICON_SET.'buy_pp.png',
+			'img_path' => GWF_WEB_ROOT.'img/'.GWF_ICON_SET.'/buy_pp.png',
 			'form_hidden' => $this->getHiddenData($module, $order, $gdo, $user),
 		);
 		return $this->templatePHP('paybutton.php', $tVars);
@@ -83,7 +83,7 @@ final class Module_PaymentPaypal extends GWF_PaymentModule
 	{
 		$tVars = array(
 			'form_action' => GWF_WEB_ROOT.'index.php?mo=PaymentPaypal&me=ConfirmCheckout2',
-			'img_path' => GWF_WEB_ROOT.'img/'.GWF_ICON_SET.'buy_pp.png',
+			'img_path' => GWF_WEB_ROOT.'img/'.GWF_ICON_SET.'/buy_pp.png',
 			'form_hidden' => $this->getHiddenData($module, $order, $gdo, $user),
 		);
 		return $this->templatePHP('paybutton.php', $tVars);

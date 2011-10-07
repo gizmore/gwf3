@@ -168,7 +168,7 @@ final class Forum_EditPost extends GWF_Method
 		}
 		
 		$a = GWF_HTML::display($p->getShowHREF());
-		return $module->message('msg_post_edited', $a);
+		return $module->message('msg_post_edited', array($a));
 	}
 
 	public function onDelete(Module_Forum $module)

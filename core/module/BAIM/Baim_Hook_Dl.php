@@ -8,7 +8,7 @@ final class Baim_Hook_Dl
 			return true;
 		}
 		
-		$demo = $dlid === 2;
+		$demo = $dlid == 2;
 		
 		if (false === ($row = BAIM_MC::generate($user, $demo)))
 		{
@@ -64,19 +64,19 @@ final class Baim_Hook_Dl
 	
 	private static function getIniContent(BAIM_MC $row)
 	{
-		return Module_BAIM::getInstance()->lang('key.dat', $row->getVar('bmc_uid')+1000, $row->getVar('bmc_token'));
+		return Module_BAIM::getInstance()->lang('key.dat', array($row->getVar('bmc_uid')+1000, $row->getVar('bmc_token')));
 	}
 
 	private static function getReleaseNotes(BAIM_MC $row)
 	{
-		$s = Module_BAIM::getInstance()->lang('dl_info_b', GWF_Time::humanDurationEN(BAIM_MC::CHANGE_TIMEOUT));
+		$s = Module_BAIM::getInstance()->lang('dl_info_b', array(GWF_Time::humanDurationEN(BAIM_MC::CHANGE_TIMEOUT)));
 		return str_replace('<br/>', "\r\n", $s);
 	}
 
 	private static function getReadmeContent(BAIM_MC $row)
 	{
 		$user = GWF_User::getStaticOrGuest();
-		return Module_BAIM::getInstance()->lang('readme.txt', $user->getVar('user_name'));
+		return Module_BAIM::getInstance()->lang('readme.txt', array($user->getVar('user_name')));
 	}
 }
 ?>

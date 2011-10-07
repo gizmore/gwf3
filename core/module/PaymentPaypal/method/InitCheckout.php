@@ -7,15 +7,13 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 {
 	public function execute(GWF_Module $module)
 	{
-//		var_dump($_POST);
-		if (false === ($order = GWF_Order::getByToken(Common::getPost('gwf_token')))) {
+		if (false === ($order = GWF_Order::getByToken(Common::getPostString('gwf_token')))) {
 			return $module->error('err_order');
 		}
 		if (!$order->isCreated()) {
 			return $module->error('err_order');
 		}
-		
-		
+
 		$gdo = $order->getOrderData();
 		$user = $order->getOrderUser();# GWF_User::getStaticOrGuest();
 		
@@ -33,7 +31,7 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 		*/
 		$successURL = urlencode($this->get2ndStepURL($order, $gdo));
 		$cancelURL = urlencode(Common::getAbsoluteURL($gdo->getOrderCancelURL($user), false));
-		$shipping = $gdo->needsShipping($user) ? '1' : '0';
+		$shipping = $gdo->needsShipping($user) ? '0' : '1';
 		
 		 /* Construct the parameter string that describes the PayPal payment
 			the varialbes were set in the web form, and the resulting string
@@ -49,6 +47,7 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 		          "&CURRENCYCODE=$currencyCodeType".
 		          "&no_shipping=$shipping".
 				  "&LOCALECODE=".strtoupper(GWF_Language::getCurrentISO());
+//		var_dump($nvpstr);
 		
 		 /* Make the call to PayPal to set the Express Checkout token
 			If the API call succeded, then redirect the buyer to PayPal
@@ -56,6 +55,7 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 			resulting errors
 			*/
 		$resArray = Paypal_Util::hash_call('SetExpressCheckout', $nvpstr);
+//		var_dump($resArray);
 
 		$ack = strtoupper($resArray["ACK"]);
 		if($ack=="SUCCESS")
@@ -65,10 +65,10 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 			if (false === ($order->saveVar('order_xtoken', $token))) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			
 			$payPalURL = PAYPAL_URL.$token;
 			header("Location: ".$payPalURL);
-//			die();
+			echo 'The browser should redirect you to: '.$payPalURL.PHP_EOL;
+			die();
 		}
 		else {
 			return Paypal_Util::paypalError($resArray);

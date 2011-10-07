@@ -11,6 +11,12 @@ final class BAIM_SetMC extends GWF_Method
 			return $module->error('err_not_purchased');
 		}
 		
+		if ($this->row->isDemo()) {
+			return $module->error('err_not_purchased');
+		}
+		
+//		var_dump($this->row);
+		
 		$back = '';
 		if (false !== Common::getPost('set')) {
 			$back = $this->onSetMC($module, $this->row);

@@ -93,7 +93,7 @@ abstract class GWF_PaymentModule extends GWF_Module
 		$action = GWF_HTML::display($_SERVER['REQUEST_URI']);
 		$hidden = GWF_Form::hidden('paysite', $token);
 		$hidden .= $order_token === false ? '' : GWF_Form::hidden('gwf_order', $order_token);
-		$button = GWF_Form::buttonImage('on_order_'.$mode, sprintf('img/'.GWF_ICON_SET.'buy_%s.png', $token));
+		$button = GWF_Form::buttonImage('on_order_'.$mode, sprintf('img/'.GWF_ICON_SET.'/buy_%s.png', $token));
 		return sprintf('<div%s><form%saction="%s" method="post"><div%s>%s%s</div></form></div>', $i, $i, $action, $i, $hidden, $button);
 	}
 }

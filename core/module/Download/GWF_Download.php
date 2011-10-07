@@ -140,7 +140,7 @@ final class GWF_Download extends GDO implements GWF_Orderable #implements GDO_Se
 		$uid = $user->getID();
 		$level = $user->getLevel();
 		$ug = GWF_TABLE_PREFIX.'usergroup';
-		return "( dl_level<=$level AND dl_options=$enabled AND ((dl_gid=0) OR (SELECT 1 FROM $ug WHERE ug_userid=$uid AND ug_groupid=dl_gid)) )";
+		return "( dl_level<=$level AND dl_options&$enabled AND ((dl_gid=0) OR (SELECT 1 FROM $ug WHERE ug_userid=$uid AND ug_groupid=dl_gid)) )";
 	}
 	
 	###############

@@ -757,8 +757,16 @@ abstract class GDO
 		{
 			if ($this->gdo_data[$k] !== $v)
 			{
-				$set .= sprintf(",`%s`='%s'", $k, $this->escape($v));
 				$this->gdo_data[$k] = $v;
+				if ($v !== NULL)
+				{
+					$v = '\''.$this->escape($v).'\'';
+				}
+				else
+				{
+					$v = 'NULL';
+				}
+				$set .= sprintf(",`%s`=%s", $k, $v);
 			}
 		}
 		

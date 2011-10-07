@@ -231,7 +231,7 @@ final class GWF_Session extends GDO
 				$domain = '.'.GWF_DOMAIN;
 			}
 //			$secure = Common::getProtocol() === 'https';
-			$secure = true;
+			$secure = false;
 			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, $domain, $secure, true);
 		}
 	}

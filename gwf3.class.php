@@ -69,6 +69,11 @@ class GWF3
 			GWF_Debug::enableErrorHandler();
 		}
 		
+		if ($config['website_init']) 
+		{ 
+			GWF_Website::init();
+		}
+		
 		if(!($config['no_session']))
 		{
 			$this->onStartSession($config['blocking']);
@@ -77,11 +82,6 @@ class GWF3
 		if($config['do_logging'])
 		{
 			$this->onStartLogging($config['no_session']);
-		}
-		
-		if ($config['website_init']) 
-		{ 
-			GWF_Website::init();
 		}
 		
 		if ($config['autoload_modules']) 
