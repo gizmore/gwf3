@@ -128,4 +128,3 @@ $lang = array(
 		'The '.GWF_SITENAME.' script!',
 );
 ?>
-

@@ -5,7 +5,7 @@ $result = GWF_HTTP::getFromURL($url);
 $lines = preg_split('/\\n/', $result);
 
 $map = array(
-	'Revolution Elite' => '#RevolutionElite',
+	'Revolution Elite' => '#revolutionelite',
 	'Hacker.org' => '#hacker.org',
 	'Security Traps' => '#securitytraps',
 	'Rankk' => '#pyramid',
@@ -46,7 +46,11 @@ foreach ($lines as $line)
 				$c = array_shift($c);
 				$c instanceof Lamb_Channel;
 //				echo $c->getName().': '.$message.PHP_EOL;
-				$s->sendPrivmsg($c->getName(), $message);
+
+				if (stripos($s->getName(), 'idlemonkeys') === false)
+				{
+					$s->sendPrivmsg($c->getName(), $message);
+				}
 			}
 		}
 		

@@ -23,6 +23,9 @@ $gwf = new GWF3(getcwd(), array(
 	'ignore_user_abort' => true,
 	'disallow_php_uploads' => true,
 ));
+
+//GWF_Debug::setDieOnError(false);
+
 GWF_Language::initEnglish();
 GWF_HTML::init();
 GWF_Log::init(false, true, GWF_WWW_PATH.'protected/logs');

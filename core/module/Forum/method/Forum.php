@@ -22,7 +22,7 @@ final class Forum_Forum extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return
-			'RewriteRule ^forum$ index.php?mo=Forum&me=Forum&bid=1&page=1'.PHP_EOL.
+			'RewriteRule ^forum/?$ index.php?mo=Forum&me=Forum&bid=1&page=1'.PHP_EOL.
 			'RewriteRule ^forum-b(\d+)/[^/\-]+\.html/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=1'.PHP_EOL.
 			'RewriteRule ^forum-b(\d+)/tby/([^/]+)/([DEASC,]+)/[^/\-]+-p(\d+)\.html$ index.php?mo=Forum&me=Forum&bid=$1&tby=$2&tdir=$3&tpage=$4'.PHP_EOL.
 			'RewriteRule ^forum-b(\d+)/bby/([^/]+)/([DEASC,]+)/[^/\-]+-p(\d+)\.html$ index.php?mo=Forum&me=Forum&bid=$1&bby=$2&bdir=$3&bpage=$4'.PHP_EOL.

@@ -44,7 +44,7 @@
 				$this.data('ghostwriter', data);
 				if (_renderInit($this))
 				{
-					setTimeout(function(){ $this.show(); _render($this); }, data['delay']);
+					setTimeout(function(p){ p.css('opacity', 1.0); _render(p); }, data['delay'], $this);
 				}
 				else
 				{
@@ -70,11 +70,12 @@
 				$this.data('ghostwriter', data);
 			});
 		}
+		
 	};
 	
 	_renderInit = function(p)
 	{
-		p.hide();
+		p.css('opacity', 0.0);
 		p.data('ghostwriter', $.extend(p.data('ghostwriter'), {
 			'text': p.html(), // Original text.
 			'pos': 0, // Current pos.
@@ -127,6 +128,7 @@
 		var data = p.data('ghostwriter');
 		
 		var text = data['text'];
+		
 		var len = text.length;
 		var pos = data['pos'];
 		var alen = data['len'];
