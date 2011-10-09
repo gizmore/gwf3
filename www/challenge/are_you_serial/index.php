@@ -4,7 +4,7 @@ define('GWF_PAGE_TITLE', 'Are you serial');
 require_once('html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 4, 'challenge/are_you_serial/index.php');
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/are_you_serial/index.php');
 }
 $chall->showHeader();
 # -------------------------- #

@@ -8,14 +8,14 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
-# --- 8< --- 8< --- 8< --- 8< --- #
+# --- 8< --- 8< --- SNIP --- 8< --- 8< --- #
+# The new fast code!
 
-require_once 'insecure.inc.php'; # Include all the frameworks! \0=
-require_once 'but.not.too.insecure.php'; # And fix all the frameworks! \0=
+require_once 'insecure.inc.php';
+$form = new SERIAL_LoginForm();
+$form_logout = new SERIAL_LogoutForm();
 
-$form = new SERIAL_LoginForm(); # Use all the forms! =0/
-$form_logout = new SERIAL_LogoutForm(); # \0=
-
+### Action
 # Login all the users
 if (isset($_POST['login']))
 {
@@ -27,23 +27,16 @@ elseif (isset($_POST['logout']))
 	$form_logout->execute();
 }
 
-
+### Display
 # Logged in user
 if (false !== ($user = unserialize(Common::getCookie('serial_user'))))
 {
-	# Red Herring
-	if ($user->getUserlevel() >= 100)
-	{
-		$chall->onChallengeSolved(GWF_Session::getUserID());
-	}
-	
 	# Show welcome screen
 	echo GWF_HTML::message('Serial Challenger', $chall->lang('msg_wb', array(htmlspecialchars($user->getUsername()), $user->getPassword(), $user->getUserlevel())));
 	
 	# Show logout form
 	echo $form_logout->serial_formz()->templateY($chall->lang('ft_logout'));
 }
-
 # Guest
 else
 {
@@ -51,7 +44,7 @@ else
 	echo $form->serial_formz()->templateY($chall->lang('ft_login'));
 }
 
-# --- 8< --- 8< --- 8< --- 8< --- #
+# --- 8< --- 8< --- SNIP --- 8< --- 8< --- #
 
 echo $chall->copyrightFooter();
 require_once 'html_foot.php';

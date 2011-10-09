@@ -8,7 +8,7 @@ if (!GWF_User::isAdminS()) {
 }
 $title = GWF_PAGE_TITLE;
 $solution = false;
-$score = 4;
+$score = 2;
 $url = "challenge/are_you_serial/index.php";
 $creators = "Gizmore";
 $tags = 'PHP';
