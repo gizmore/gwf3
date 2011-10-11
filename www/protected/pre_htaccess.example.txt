@@ -1,0 +1,3 @@
+# Rename this file to pre_htaccess.txt and put required custom .htaccess rules in it.
+# Some cheap hosting servers sometimes require this :)
+ 
