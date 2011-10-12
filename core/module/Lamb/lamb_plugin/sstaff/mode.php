@@ -110,6 +110,10 @@ if (false === ($user_to_edit = $server->getUser($username))) {
 	return $bot->reply(sprintf('The user %s is unknown on this server.', $username));
 }
 
+if (!$user_to_edit->isRegistered()) {
+	return $bot->reply(sprintf('%s is not registered with Lamb!', $username));
+}
+
 if ($modebit === false)
 {
 	$opts = $user_to_edit->getOptions();

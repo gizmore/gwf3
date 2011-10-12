@@ -15,6 +15,8 @@ final class PasswordForgot_Change extends GWF_Method
 		if (false === ($userid = Common::getGet('userid'))) {
 			return $module->error('err_no_token');
 		}
+		
+		require_once GWF_CORE_PATH.'module/Account/GWF_AccountChange.php';
 		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'pass'))) {
 			return $module->error('err_no_token');
 		}
@@ -72,7 +74,8 @@ final class PasswordForgot_Change extends GWF_Method
 		
 		$ac->delete();
 		
-		if (false === $user->changePassword($password)) {
+		if (false === $user->saveVar('user_password', GWF_Password::hashPasswordS($password)))
+		{
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 

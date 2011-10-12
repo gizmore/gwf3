@@ -132,9 +132,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 		$back = '';
 		foreach ($_GET as $k => $v)
 		{
-			$back .= sprintf('&amp;%s=%s', urlencode($k), urlencode($v));
+			$back .= sprintf('&%s=%s', urlencode($k), urlencode($v));
 		}
-		return GWF_WEB_ROOT.'index.php?'.substr($back, 5).'&amp;page=%PAGE%';
+		return GWF_WEB_ROOT.'index.php?'.substr($back, 1).'&page=%PAGE%';
 	}
 	
 	private function getSortHREF()
@@ -145,9 +145,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 		$back = '';
 		foreach ($_GET as $k => $v)
 		{
-			$back .= sprintf('&amp;%s=%s', urlencode($k), urlencode($v));
+			$back .= sprintf('&%s=%s', urlencode($k), urlencode($v));
 		}
-		$back = GWF_WEB_ROOT.'index.php?'.substr($back, 5).'&amp;by=%BY%&amp;dir=%DIR%';
+		$back = GWF_WEB_ROOT.'index.php?'.substr($back, 1).'&by=%BY%&dir=%DIR%';
 		$_GET['by'] = $by; $_GET['dir'] = $dir;
 		return $back;
 	}

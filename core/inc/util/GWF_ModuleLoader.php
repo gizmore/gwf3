@@ -130,6 +130,7 @@ final class GWF_ModuleLoader
 	###############
 	public static function installModule(GWF_Module $module, $dropTables=false)
 	{
+		$module->onStartup();
 		$module->onLoadLanguage();
 		return
 			self::installModuleClasses($module, $dropTables).

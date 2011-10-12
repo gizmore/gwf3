@@ -153,15 +153,14 @@ final class GWF_VersionFiles extends GDO
 	
 	public static function populateAll()
 	{
+		chdir(GWF_PATH);
 		self::$size_unpacked = 0;
 		
-		self::populate(GWF_PATH.'extra/font');
-		self::populate(GWF_WWW_PATH.'img');
-		self::populate(GWF_PATH.'core/inc');
-		self::populate(GWF_WWW_PATH.'js');
-		self::populate(GWF_PATH.'core/lang');
-		self::populate(GWF_PATH.'core/module');
-		self::populate(GWF_WWW_PATH.'tpl');
+		self::populate('extra/font');
+		self::populate('core');
+		self::populate('www/js');
+		self::populate('www/tpl');
+		self::populate('www/img');
 		
 		GWF_Module::getModule('VersionServer')->getMethod('Zipper');
 		
@@ -185,6 +184,8 @@ final class GWF_VersionFiles extends GDO
 //			list($basedir, $modulename, $designname, $fullpath) = $data;
 //			self::populateFile($basedir, $fullpath, $modulename, $designname);
 //		}
+
+		chdir(GWF_WWW_PATH);
 	}
 	
 	public static function populate($basedir)

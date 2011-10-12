@@ -85,7 +85,7 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 			$message = GWF_Message::display($ts[$uselid]['newst_message'], true, false, false);
 			$username = GWF_HTML::display($rec->getUsername());
 			$unsign = $unsign = $rec->getUnsignAnchor();
-			$body = $module->langISO($iso, 'newsletter_wrap', $username, $unsign, $title, $message);
+			$body = $module->langISO($iso, 'newsletter_wrap', array($username, $unsign, $title, $message));
 			
 			$mail = new GWF_Mail();
 			$mail->setSender($sender_mail);

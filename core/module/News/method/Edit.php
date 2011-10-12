@@ -416,7 +416,7 @@ final class News_Edit extends GWF_Method
 
 		/// Create new board
 		$options = GWF_ForumBoard::GUEST_VIEW;
-		$descr = $module->langISO($lang->getISO(), 'board_lang_descr', $lang->displayName());
+		$descr = $module->langISO($lang->getISO(), 'board_lang_descr', array($lang->displayName()));
 		$board = GWF_ForumBoard::createBoard($title, $descr, $pid, $options);
 		
 		return $board;

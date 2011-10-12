@@ -11,11 +11,12 @@ final class GWF_Fancy extends GWF_Method
 		$module instanceof Module_GWF;
 		
 		# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
-//		$ret =
-//			'AddType text/html .php'.PHP_EOL.
-//			'<Files "*.php">'.PHP_EOL.
-//			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
-//			'</Files>'.PHP_EOL.PHP_EOL;
+		$ret = '';
+		$ret .=
+			'AddType text/html .php'.PHP_EOL.
+			'<Files "*.php">'.PHP_EOL.
+			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
+			'</Files>'.PHP_EOL.PHP_EOL;
 		
 		# The Fancy Options
 		if ($module->cfgFancyIndex())

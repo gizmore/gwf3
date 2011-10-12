@@ -130,9 +130,9 @@ class GWF3
 
 	}
 		
-	public static function onAutoloadClass($classname, $prefix='GWF_')
+	public static function onAutoloadClass($classname)
 	{
-		if (strpos($classname, $prefix) === 0)
+		if (strpos($classname, 'GWF_') === 0)
 		{
 			require_once GWF_CORE_PATH.'inc/util/'.$classname.'.php';
 		}

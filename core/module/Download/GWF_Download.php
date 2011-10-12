@@ -219,13 +219,13 @@ final class GWF_Download extends GDO implements GWF_Orderable #implements GDO_Se
 	
 	public function getOrderModuleName() { return 'Download'; }
 	public function getOrderPrice(GWF_User $user) { return floatval($this->getVar('dl_price')); }
-	public function getOrderItemName(GWF_Module $module, $lang_iso) { return $module->langISO($lang_iso, 'order_title', $this->getVar('dl_filename'), $this->getVar('your_token', 'ERR')); }
+	public function getOrderItemName(GWF_Module $module, $lang_iso) { return $module->langISO($lang_iso, 'order_title', array($this->getVar('dl_filename'), $this->getVar('your_token', 'ERR'))); }
 	public function getOrderDescr(GWF_Module $module, $lang_iso)
 	{
 		if ($this->expires()) {
-			return $module->langISO($lang_iso, 'order_descr', $this->getVar('dl_filename'), GWF_Time::humanDuration($this->getVar('dl_expire')), $this->getVar('your_token', 'ERR'));
+			return $module->langISO($lang_iso, 'order_descr', array($this->getVar('dl_filename'), GWF_Time::humanDuration($this->getVar('dl_expire')), $this->getVar('your_token', 'ERR')));
 		} else {
-			return $module->langISO($lang_iso, 'order_descr2', $this->getVar('dl_filename'), $this->getVar('your_token', 'ERR'));
+			return $module->langISO($lang_iso, 'order_descr2', array($this->getVar('dl_filename'), $this->getVar('your_token', 'ERR')));
 		}
 	}
 	public function getOrderStock(GWF_User $user) { return 1; }

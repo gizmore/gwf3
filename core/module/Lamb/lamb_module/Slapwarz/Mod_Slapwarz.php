@@ -228,7 +228,8 @@ final class LambModule_Slapwarz extends Lamb_Module
 			case 'dealt':
 				return $this->onTop5Dealt('lsh_slapper', 'dealt');
 			case 'taken':
-				return $this->onTop5Damage('lsh_target', 'taken');
+				return 'Not implemented yet';
+//				return $this->onTop5Count('lsh_target', 'taken');
 			case 'slaps':
 				return $this->onTop5Count('lsh_slapper', 'slaps');
 			case 'backslaps':

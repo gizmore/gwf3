@@ -84,7 +84,7 @@ $lang = array(
 
 	'site_dot_red' => 'Jelenleg nem működik',
 	'site_dot_green' => 'Él és virul',
-	'site_type_1' => 'Ranglistában szerepel',
+	'site_up' => 'Ranglistában szerepel',
 	'site_type_2' => 'Temető',
 	'site_type_3' => 'Hamarosan',
 	'site_type_4' => 'Nincs ranglistában',

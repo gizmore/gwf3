@@ -140,13 +140,13 @@ final class GWF_ForumInstall
 	private static function createLangBoard(Module_Forum $module, GWF_Language $lang, $parent)
 	{
 		$iso = $lang->getISO();
-		$title = $module->langISO($iso, 'lang_board_title', $lang->getVar('name'));
+		$title = $module->langISO($iso, 'lang_board_title', array($lang->getVar('name')));
 
 		if (false !== ($board = GWF_ForumBoard::getByTitle($title))) {
 			return '';
 		}
 		
-		$descr = $module->langISO($iso, 'lang_board_descr', $lang->getVar('lang_nativename'));
+		$descr = $module->langISO($iso, 'lang_board_descr', array($lang->getVar('lang_nativename')));
 		$options = GWF_ForumBoard::GUEST_VIEW|GWF_ForumBoard::ALLOW_THREADS;
 		
 		if (false === ($board = GWF_ForumBoard::createBoard($title, $descr, $parent, $options, 0))) {

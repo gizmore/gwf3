@@ -88,7 +88,7 @@ $lang = array(
 
 	'site_dot_red' => 'Indisponible Actuellement',
 	'site_dot_green' => 'En ligne et Fonctionnel',
-	'site_type_1' => 'Classé',
+	'site_up' => 'Classé',
 	'site_type_2' => 'Cimetière',
 	'site_type_3' => 'A venir',
 	'site_type_4' => 'Non Classé',

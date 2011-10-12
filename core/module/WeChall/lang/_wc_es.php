@@ -85,7 +85,7 @@ $lang = array(
 
 	'site_dot_red' => 'Actualmente caído',
 	'site_dot_green' => 'Funcionando',
-	'site_type_1' => 'Clasificado',
+	'site_up' => 'Clasificado',
 	'site_type_2' => 'Cementerio',
 	'site_type_3' => 'Muy pronto',
 	'site_type_4' => 'No clasificado',

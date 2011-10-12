@@ -85,7 +85,7 @@ $lang = array(
 
 	'site_dot_red' => 'Currently Down',
 	'site_dot_green' => 'Up and Running',
-	'site_type_1' => 'Ranked',
+	'site_up' => 'Ranked',
 	'site_type_2' => 'Graveyard',
 	'site_type_3' => 'Coming Soon',
 	'site_type_4' => 'Not Ranked',

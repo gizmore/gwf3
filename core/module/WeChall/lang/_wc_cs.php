@@ -85,7 +85,7 @@ $lang = array(
 
 	'site_dot_red' => 'Mimo provoz',
 	'site_dot_green' => 'Funkční',
-	'site_type_1' => 'Zahrnutá v žebříčku',
+	'site_up' => 'Zahrnutá v žebříčku',
 	'site_type_2' => 'Hřbitov',
 	'site_type_3' => 'Již brzy',
 	'site_type_4' => 'Nezahrnutá v žebříčku',

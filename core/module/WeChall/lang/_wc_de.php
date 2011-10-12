@@ -84,7 +84,7 @@ $lang = array(
 
 	'site_dot_red' => 'Temporär nicht Erreichbar',
 	'site_dot_green' => 'Erreichbar und Läuft',
-	'site_type_1' => 'Ranked',
+	'site_up' => 'Ranked',
 	'site_type_2' => 'Friedhof',
 	'site_type_3' => 'Kommt bald',
 	'site_type_4' => 'Not Ranked',

@@ -24,7 +24,7 @@ $gwf = new GWF3(getcwd(), array(
 	'disallow_php_uploads' => true,
 ));
 
-//GWF_Debug::setDieOnError(false);
+GWF_Debug::setDieOnError(false);
 
 GWF_Language::initEnglish();
 GWF_HTML::init();
