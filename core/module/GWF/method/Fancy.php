@@ -63,7 +63,7 @@ final class GWF_Fancy extends GWF_Method
 				
 			default:
 				var_dump($_GET);
-				GWF_HTML::err(ERR_PARAMETER, array(__FILE__, __LINE__, 'fancy'));
+				GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'fancy'));
 				die();
 		}
 	}	
