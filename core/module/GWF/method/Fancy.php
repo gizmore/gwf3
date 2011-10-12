@@ -52,7 +52,7 @@ final class GWF_Fancy extends GWF_Method
 //		header('Content-Type: text/html; charset=utf8;');
 //		GWF3::setDesign($module->cfgDesign());
 		
-		switch(Common::getGetString('fancy'))
+		switch(substr(Common::getGetString('fancy'), 0, 4))
 		{
 			case 'head': 
 				GWF_Website::addCSS(sprintf('/tpl/%s/css/fancy.css', GWF3::getDesign()));
