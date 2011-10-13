@@ -38,6 +38,7 @@ final class WeChall_SiteDetails extends GWF_Method
 			'latest_players_time' => GWF_Time::humanDuration($time),
 			'latest_players' => $this->getLatestPlayers($time, $site->getID()),
 			'jquery' => Common::getGet('ajax') !== false,
+			'can_vote' => $site->canVote(GWF_User::getStaticOrGuest()),
 		);
 		return $module->templatePHP('site_detail.php', $tVars);
 	}

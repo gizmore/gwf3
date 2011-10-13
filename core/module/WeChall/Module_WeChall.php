@@ -182,12 +182,17 @@ final class Module_WeChall extends GWF_Module
 	public function hookVoteScore(GWF_User $user, array $args)
 	{
 		$vsid = (int)$args[0];
-		if (false !== ($site = WC_Site::getByVSID($vsid))) {
+		if (false !== ($site = WC_Site::getByVSID($vsid)))
+		{
+			$this->includeVotes();
 			return $site->onRecalcVotes();
 		}
-		elseif (false !== ($chall = WC_Challenge::getByVSID($vsid))) {
+		elseif (false !== ($chall = WC_Challenge::getByVSID($vsid)))
+		{
 			return $chall->onRecalcVotes();
-		} else {
+		}
+		else
+		{
 			return true;
 		}
 	}

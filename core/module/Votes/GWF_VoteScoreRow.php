@@ -18,6 +18,9 @@ final class GWF_VoteScoreRow extends GDO
 			'vsr_ip' => GWF_IP6::gdoDefine(GWF_IP_QUICK, 0),
 			'vsr_time' => array(GDO::UINT, GDO::NOT_NULL),
 			'vsr_score' => array(GDO::INT, GDO::NOT_NULL),
+		
+			# Join user table
+			'users' => array(GDO::JOIN, GDO::NOT_NULL, array('GWF_User', 'vsr_uid', 'user_id')),
 		);
 	}
 	

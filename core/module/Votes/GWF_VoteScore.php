@@ -444,6 +444,23 @@ final class GWF_VoteScore extends GDO #implements GDO_Sortable, GDO_Editable
 		
 		return $this->delete();
 	}
+	
+	/**
+	 * Refresh the votescore from votescorerows.
+	 */
+	public function refreshCache()
+	{
+		$vsid = $this->getID();
+		if (false === ($result = GDO::table('GWF_VoteScoreRow')->selectFirst("AVG(vsr_score), SUM(vsr_score), COUNT(*)", "vsr_vsid={$vsid}", '', NULL, GDO::ARRAY_N)))
+		{
+			return false;
+		}
+		return $this->saveVars(array(
+			'vs_avg' => $result[0] === NULL ? $this->getInitialAvg() : $result[0],
+			'vs_sum' => $result[1],
+			'vs_count' => $result[2],
+		));
+	}
 }
 
 ?>

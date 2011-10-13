@@ -493,7 +493,7 @@ abstract class GDO
 	###############
 	### Private ###
 	###############
-	private function getJoins($joins)
+	private function getJoins($joins, $type='LEFT')
 	{
 		if ($joins === NULL)
 		{
@@ -507,7 +507,7 @@ abstract class GDO
 //			}
 			if (in_array($c, $joins, true))
 			{
-				$back .= $this->getJoin($c, $d[2]);
+				$back .= $this->getJoin($c, $d[2], $type);
 			}
 		}
 		return $back;
@@ -528,7 +528,7 @@ abstract class GDO
 		return $new_valid;
 	}
 	
-	private function getJoin($c, $valid)
+	private function getJoin($c, $valid, $type='LEFT')
 	{
 //		var_dump($c,$valid);
 		if (is_array($valid))
@@ -547,7 +547,7 @@ abstract class GDO
 			}
 			$cond = substr($cond, 5);
 		}
-		return " LEFT JOIN `$tablename` AS `$c` ON $cond";
+		return " {$type} JOIN `{$tablename}` AS `{$c}` ON {$cond}";
 	}
 	
 	public function createObject($row, $classname=true)
@@ -706,12 +706,12 @@ abstract class GDO
 	{
 		$db = gdo_db();
 		$tablename = $this->getTableName();
-		$join = $this->getJoins($joins);
+		$join = $this->getJoins($joins, 'INNER');
 		$where = $this->getWhere($where);
 		$groupby = $this->getGroupBy($groupby);
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
-		$query = "DELETE FROM `{$tablename}`".$join.$where.$groupby.$orderby.$limit;
+		$query = "DELETE t FROM `{$tablename}` t".$join.$where.$groupby.$orderby.$limit;
 		return $db->queryWrite($query);
 	}
 	

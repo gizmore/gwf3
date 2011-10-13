@@ -730,12 +730,41 @@ class WC_Site extends GDO
 	
 	public function onRecalcVotes()
 	{
+		$this->deleteInvalidVotes();
 		return $this->updateRow(self::getRecalcVoteQuery());
 	}
 	
 	public static function onRecalcAllVotes()
 	{
 		return GDO::table(__CLASS__)->update(self::getRecalcVoteQuery());
+	}
+
+	/**
+	 * Delete all votes that have less than 20% solved. (thx awe)
+	 */
+	private function deleteInvalidVotes()
+	{
+		$min_solved = 0.1;
+		
+		$sid = $this->getID();
+		$regat = GWF_TABLE_PREFIX.'wc_regat';
+		
+		$votes = $this->getVotesDif();
+		$vsid = $this->getVar('site_vote_dif');
+		GDO::table('GWF_VoteScoreRow')->deleteWhere("vsr_vsid=$vsid AND (SELECT 1 FROM $regat WHERE regat_sid=$sid AND regat_uid=vsr_uid AND regat_solved<$min_solved)", '', array('users'));
+		$votes->refreshCache();
+		
+		$votes = $this->getVotesFun();
+		$vsid = $this->getVar('site_vote_fun');
+		GDO::table('GWF_VoteScoreRow')->deleteWhere("vsr_vsid=$vsid AND (SELECT 1 FROM $regat WHERE regat_sid=$sid AND regat_uid=vsr_uid AND regat_solved<$min_solved)", '', array('users'));
+		$votes->refreshCache();
+		
+		return true;
+	}
+	
+	public function canVote(GWF_User $user)
+	{
+		return WC_RegAt::getRegatRow($user->getID(), $this->getID())->getVar('regat_solved') >= 0.1;
 	}
 	
 	########################

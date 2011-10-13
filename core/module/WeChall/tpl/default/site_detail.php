@@ -64,7 +64,8 @@ if ($user !== false) {
 		'<td><span id="gwf_vsba_'.$vdif->getID().'">'.$vdif->displayPercent().'</td>'.PHP_EOL.
 		GWF_Table::rowEnd();
 
-	if (GWF_Session::isLoggedIn()) {
+	if ($tVars['can_vote'])
+	{
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_dif'), $site->getVotesDif()->displayButtons());
 	}
 	
@@ -75,7 +76,8 @@ if ($user !== false) {
 		'<td><span id="gwf_vsba_'.$vfun->getID().'">'.$vfun->displayPercent().'</td>'.PHP_EOL.
 		GWF_Table::rowEnd();
 		
-	if (GWF_Session::isLoggedIn()) {
+	if ($tVars['can_vote'])
+	{
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_fun'), $site->getVotesFun()->displayButtons());
 	}
 
