@@ -13,10 +13,10 @@ final class GWF_Fancy extends GWF_Method
 		# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
 		$ret = '';
 		$ret .=
-			'AddType text/html .php'.PHP_EOL.
-			'<Files "*.php">'.PHP_EOL.
-			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
-			'</Files>'.PHP_EOL.PHP_EOL;
+			'AddType text/html .php'.PHP_EOL;
+//			'<Files "*.php">'.PHP_EOL.
+//			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
+//			'</Files>'.PHP_EOL.PHP_EOL;
 		
 		# The Fancy Options
 		if ($module->cfgFancyIndex())
@@ -49,9 +49,6 @@ final class GWF_Fancy extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-//		header('Content-Type: text/html; charset=utf8;');
-//		GWF3::setDesign($module->cfgDesign());
-		
 		switch(substr(Common::getGetString('fancy'), 0, 4))
 		{
 			case 'head': 
@@ -62,9 +59,7 @@ final class GWF_Fancy extends GWF_Method
 				die(GWF3::onDisplayFoot());
 				
 			default:
-				var_dump($_GET);
-				GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'fancy'));
-				die();
+				die(GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'fancy')));
 		}
 	}	
 }
