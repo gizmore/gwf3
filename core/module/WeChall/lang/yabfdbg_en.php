@@ -8,7 +8,8 @@ $lang = array(
 		'You will need at least gtk+ installed to run it, and gtkmm to compile it.<br/>'.
 		'You can get a <a href="%1%">windows exeuteable here</a>.<br/>'.
 		'<a href="%2%">Source is available here</a> and should compile under linux and windows (needs gtkmm).<br/>'.
-		'To compile it you may have to write a makefile yourself. Please send me a makefile when you have one :)',
+		'<br/>'.
+		'Thanks to <a href="/profile/awe">awe</a>, there is now a linux configure and makefile available. Thanks a lot man, this was awe-some from you :)',
 	'features' => 'Features',
 	'info_box_2' => 'Insert breakpoints by letter \'B\'.<br/>Trace, run and step a program.',
 );
