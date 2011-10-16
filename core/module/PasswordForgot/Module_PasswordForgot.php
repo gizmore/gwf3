@@ -9,6 +9,7 @@
 final class Module_PasswordForgot extends GWF_Module
 {
 	public function getVersion() { return 1.00; }
+	public function isCoreModule() { return true; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/pwrecover'); }
 	public function onInstall($dropTable)
 	{

@@ -41,6 +41,7 @@ $lang = array(
 	'err_group_view' => 'The Group Visibility is invalid.',
 	'err_group_join' => 'The Group Invitation is invalid.',
 	'err_in_group' => 'The User is already in that group.',
+	'err_disable_core_module' => 'You cannot disable this module, because it is part of the core.',
 
 	# Messages
 	'msg_update_var' => 'The value for &quot;%1%&quot; has been set to %2%.',

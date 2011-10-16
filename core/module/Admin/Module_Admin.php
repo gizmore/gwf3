@@ -14,6 +14,7 @@ final class Module_Admin extends GWF_Module
 	### Module ###
 	##############
 	public function getVersion() { return 1.01; }
+	public function isCoreModule() { return true; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/admin'); }
 //	public function getAdminSectionURL() { return $this->getMethodURL('BaseCFG'); }
 	

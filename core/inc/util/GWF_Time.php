@@ -29,7 +29,7 @@ final class GWF_Time
 	 * @param int $time or NULL
 	 * @return string gdo_date
 	 */
-	public static function getDate($len, $time=NULL)
+	public static function getDate($len=14, $time=NULL)
 	{
 		if ($time === NULL) { $time = time(); }
 		$dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis', 17=>'YmdHis000');

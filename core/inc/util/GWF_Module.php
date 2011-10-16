@@ -39,8 +39,11 @@ class GWF_Module extends GDO
 	public function getDefaultEnabled() { return true; }
 	public function getDefaultAutoLoad() { return false; }
 	public function getDefaultPriority() { return self::DEFAULT_PRIORITY; }
+	public function isCoreModule() { return false; }
+	public function getDependencies() { return array(); }
+	public function getOptionalDependencies() { return array(); }
 	public function getModuleVars() { return $this->module_vars; }
-	public function getModuleVar($var, $default) { return isset($this->module_vars[$var]) ? $this->module_vars[$var] : $default; }
+	public function getModuleVar($var, $default=false) { return isset($this->module_vars[$var]) ? $this->module_vars[$var] : $default; }
 	public function getClasses() { return array(); }
 	public function getMethodURL($method, $app='') { return GWF_WEB_ROOT.'index.php?mo='.$this->getName().'&me='.$method.$app; }
 	public function getAdminSectionURL() { return '#'; }

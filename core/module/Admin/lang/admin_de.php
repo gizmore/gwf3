@@ -40,6 +40,7 @@ $lang = array(
 	'err_group_view' => 'Die Gruppen-Sichtbarkeit ist ungültig.',
 	'err_group_join' => 'Die Gruppen-Einstellung zum Beitreten ist ungültig.',
 	'err_in_group' => 'Der Benutzer ist bereits in dieser Gruppe.',
+	'err_disable_core_module' => 'Sie können dieses Modul nicht deaktivieren, weil es ein Hauptbestandteil des Systems ist.',
 
 	# Messages
 	'msg_update_var' => 'Der Wert für &quot;%1%&quot; wurde auf %2% gesetzt.',

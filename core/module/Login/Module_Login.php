@@ -8,6 +8,7 @@ final class Module_Login extends GWF_Module
 	public function getVersion() { return 1.01; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/login'); }
 	public function getClasses() { return array('GWF_LoginCleared', 'GWF_LoginFailure', 'GWF_LoginHistory'); }
+	public function isCoreModule() { return true; }
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(

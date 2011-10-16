@@ -329,19 +329,23 @@ final class Admin_Module extends GWF_Method
 	##############
 	private function onEnable(Module_Admin $module, $enum)
 	{
-		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
+		if (false !== ($error = GWF_Form::validateCSRF_WeakS()))
+		{
 			return GWF_HTML::error('', $error);
 		}
 		
-		if (false === $this->mod->saveOption(GWF_Module::ENABLED, $enum==='enabled')) {
+		if ($this->mod->isCoreModule())
+		{
+			return $module->error('err_disable_core_module');
+		}
+		
+		if (false === $this->mod->saveOption(GWF_Module::ENABLED, $enum==='enabled'))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-//		if ($enum === 'enabled') { # Put to cache, so it`s in htaccess.
-//			GWF_Module::addToCache($this->mod);
-//		}
-		
-		if (false === GWF_ModuleLoader::installHTAccess(GWF_ModuleLoader::loadModulesFS())) {
+		if (false === GWF_ModuleLoader::installHTAccess(GWF_ModuleLoader::loadModulesFS()))
+		{
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 
