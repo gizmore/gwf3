@@ -5,11 +5,11 @@ final class Delaware_SecondHand extends SR_SecondHandStore
 	public function getNPCS(SR_Player $player)
 	{
 		$back = array();
-		$back[] = array('talk' => 'Delaware_SecondHandDwarf');
+		$back['talk'] = 'Delaware_SecondHandDwarf';
 		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
 		if ($quest->isDone($player))
 		{
-			$back[] = array('ttt' => 'Delaware_SecondHandTroll');
+			$back['ttt'] = 'Delaware_SecondHandTroll';
 		}
 		return $back;
 	}
