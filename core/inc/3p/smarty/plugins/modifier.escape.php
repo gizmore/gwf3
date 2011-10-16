@@ -1,46 +1,34 @@
 <?php
-/**
- * Smarty plugin
- *
- * @package Smarty
- * @subpackage PluginsModifier
- */
 
 /**
- * Smarty escape modifier plugin
- *
- * Type:     modifier<br>
- * Name:     escape<br>
- * Purpose:  escape string for output
- *
- * @link http://www.smarty.net/manual/en/language.modifier.count.characters.php count_characters (Smarty online manual)
- * @author Monte Ohrt <monte at ohrt dot com>
- * @param string  $string        input string
- * @param string  $esc_type      escape type
- * @param string  $char_set      character set, used for htmlspecialchars() or htmlentities()
- * @param boolean $double_encode encode already encoded entitites again, used for htmlspecialchars() or htmlentities()
- * @return string escaped input string
- */
-function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $double_encode = true)
+* Smarty plugin
+* 
+* @package Smarty
+* @subpackage PluginsModifier
+*/
+
+/**
+* Smarty escape modifier plugin
+* 
+* Type:     modifier<br>
+* Name:     escape<br>
+* Purpose:  escape string for output
+* 
+* @link http://smarty.php.net/manual/en/language.modifier.count.characters.php count_characters (Smarty online manual)
+* @author Monte Ohrt <monte at ohrt dot com> 
+* @param string $string input string
+* @param string $esc_type escape type
+* @param string $char_set character set
+* @return string escaped input string
+*/
+function smarty_modifier_escape($string, $esc_type = 'html', $char_set = SMARTY_RESOURCE_CHAR_SET)
 {
-    if (!$char_set) {
-        $char_set = SMARTY_RESOURCE_CHAR_SET;
-    }
-
     switch ($esc_type) {
         case 'html':
-            return htmlspecialchars($string, ENT_QUOTES, $char_set, $double_encode);
+            return htmlspecialchars($string, ENT_QUOTES, $char_set);
 
         case 'htmlall':
-            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
-                // mb_convert_encoding ignores htmlspecialchars()
-                $string = htmlspecialchars($string, ENT_QUOTES, $char_set, $double_encode);
-                // htmlentities() won't convert everything, so use mb_convert_encoding
-                return mb_convert_encoding($string, 'HTML-ENTITIES', $char_set);
-            }
-
-            // no MBString fallback
-            return htmlentities($string, ENT_QUOTES, $char_set, $double_encode);
+            return htmlentities($string, ENT_QUOTES, $char_set);
 
         case 'url':
             return rawurlencode($string);
@@ -48,96 +36,76 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = null, $
         case 'urlpathinfo':
             return str_replace('%2F', '/', rawurlencode($string));
 
-        case 'quotes':
+        case 'quotes': 
             // escape unescaped single quotes
             return preg_replace("%(?<!\\\\)'%", "\\'", $string);
 
-        case 'hex':
-            // escape every byte into hex
-            // Note that the UTF-8 encoded character ä will be represented as %c3%a4
+        case 'hex': 
+            // escape every character into hex
             $return = '';
-            $_length = strlen($string);
-            for ($x = 0; $x < $_length; $x++) {
+            for ($x = 0; $x < strlen($string); $x++) {
                 $return .= '%' . bin2hex($string[$x]);
-            }
+            } 
             return $return;
 
         case 'hexentity':
             $return = '';
-            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
-                require_once(SMARTY_PLUGINS_DIR . 'shared.mb_unicode.php');
-                $return = '';
-                foreach (smarty_mb_to_unicode($string, SMARTY_RESOURCE_CHAR_SET) as $unicode) {
-                    $return .= '&#x' . strtoupper(dechex($unicode)) . ';';
-                }
-                return $return;
-            }
-            // no MBString fallback
-            $_length = strlen($string);
-            for ($x = 0; $x < $_length; $x++) {
+            for ($x = 0; $x < strlen($string); $x++) {
                 $return .= '&#x' . bin2hex($string[$x]) . ';';
-            }
+            } 
             return $return;
 
         case 'decentity':
             $return = '';
-            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
-                require_once(SMARTY_PLUGINS_DIR . 'shared.mb_unicode.php');
-                $return = '';
-                foreach (smarty_mb_to_unicode($string, SMARTY_RESOURCE_CHAR_SET) as $unicode) {
-                    $return .= '&#' . $unicode . ';';
-                }
-                return $return;
-            }
-            // no MBString fallback
-            $_length = strlen($string);
-            for ($x = 0; $x < $_length; $x++) {
+            for ($x = 0; $x < strlen($string); $x++) {
                 $return .= '&#' . ord($string[$x]) . ';';
-            }
+            } 
             return $return;
 
-        case 'javascript':
+        case 'javascript': 
             // escape quotes and backslashes, newlines, etc.
             return strtr($string, array('\\' => '\\\\', "'" => "\\'", '"' => '\\"', "\r" => '\\r', "\n" => '\\n', '</' => '<\/'));
 
-        case 'mail':
-            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
-                require_once(SMARTY_PLUGINS_DIR . 'shared.mb_str_replace.php');
-                return smarty_mb_str_replace(array('@', '.'), array(' [AT] ', ' [DOT] '), $string);
-            }
-            // no MBString fallback
-            return str_replace(array('@', '.'), array(' [AT] ', ' [DOT] '), $string);
+        case 'mail': 
+            // safe way to display e-mail address on a web page
+            if ($smarty->has_mb) {
+                return mb_str_replace(array('@', '.'), array(' [AT] ', ' [DOT] '), $string);
+            } else {
+                return str_replace(array('@', '.'), array(' [AT] ', ' [DOT] '), $string);
+            } 
 
-        case 'nonstd':
+        case 'nonstd': 
             // escape non-standard chars, such as ms document quotes
-            $return = '';
-            if (SMARTY_MBSTRING /* ^phpunit */ && empty($_SERVER['SMARTY_PHPUNIT_DISABLE_MBSTRING'])/* phpunit$ */) {
-                require_once(SMARTY_PLUGINS_DIR . 'shared.mb_unicode.php');
-                foreach (smarty_mb_to_unicode($string, SMARTY_RESOURCE_CHAR_SET) as $unicode) {
-                    if ($unicode >= 126) {
-                        $return .= '&#' . $unicode . ';';
-                    } else {
-                        $return .= chr($unicode);
-                    }
-                }
-                return $return;
-            }
-
-            $_length = strlen($string);
-            for ($_i = 0; $_i < $_length; $_i++) {
-                $_ord = ord(substr($string, $_i, 1));
+            $_res = '';
+            for($_i = 0, $_len = strlen($string); $_i < $_len; $_i++) {
+                $_ord = ord(substr($string, $_i, 1)); 
                 // non-standard char, escape it
                 if ($_ord >= 126) {
-                    $return .= '&#' . $_ord . ';';
+                    $_res .= '&#' . $_ord . ';';
                 } else {
-                    $return .= substr($string, $_i, 1);
-                }
-            }
-            return $return;
+                    $_res .= substr($string, $_i, 1);
+                } 
+            } 
+            return $_res;
 
         default:
             return $string;
-    }
-}
+    } 
+    if (!function_exists("mb_str_replace")) {
+        // simulate the missing PHP mb_str_replace function
+        function mb_str_replace($needle, $replacement, $haystack)
+        {
+            $needle_len = mb_strlen($needle);
+            $replacement_len = mb_strlen($replacement);
+            $pos = mb_strpos($haystack, $needle, 0);
+            while ($pos !== false) {
+                $haystack = mb_substr($haystack, 0, $pos) . $replacement
+                 . mb_substr($haystack, $pos + $needle_len);
+                $pos = mb_strpos($haystack, $needle, $pos + $replacement_len);
+            } 
+            return $haystack;
+        } 
+    } 
+} 
 
 ?>

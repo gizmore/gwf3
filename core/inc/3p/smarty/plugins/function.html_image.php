@@ -1,43 +1,44 @@
 <?php
 /**
- * Smarty plugin
- * 
- * @package Smarty
- * @subpackage PluginsFunction
- */
+* Smarty plugin
+* 
+* @package Smarty
+* @subpackage PluginsFunction
+*/
 
 /**
- * Smarty {html_image} function plugin
- * 
- * Type:     function<br>
- * Name:     html_image<br>
- * Date:     Feb 24, 2003<br>
- * Purpose:  format HTML tags for the image<br>
- * Examples: {html_image file="/images/masthead.gif"}<br>
- * Output:   <img src="/images/masthead.gif" width=400 height=23><br>
- * Params:
- * <pre>
- * - file        - (required) - file (and path) of image
- * - height      - (optional) - image height (default actual height)
- * - width       - (optional) - image width (default actual width)
- * - basedir     - (optional) - base directory for absolute paths, default is environment variable DOCUMENT_ROOT
- * - path_prefix - prefix for path output (optional, default empty)
- * </pre>
- * 
- * @link http://www.smarty.net/manual/en/language.function.html.image.php {html_image}
- *      (Smarty online manual)
- * @author Monte Ohrt <monte at ohrt dot com> 
- * @author credits to Duda <duda@big.hu> 
- * @version 1.0
- * @param array                    $params   parameters
- * @param Smarty_Internal_Template $template template object
- * @return string 
- * @uses smarty_function_escape_special_chars()
- */
-function smarty_function_html_image($params, $template)
+* Smarty {html_image} function plugin
+* 
+* Type:     function<br>
+* Name:     html_image<br>
+* Date:     Feb 24, 2003<br>
+* Purpose:  format HTML tags for the image<br>
+* Examples: {html_image file="/images/masthead.gif"}
+* Output:   <img src="/images/masthead.gif" width=400 height=23>
+* 
+* @link http://smarty.php.net/manual/en/language.function.html.image.php {html_image}
+      (Smarty online manual)
+* @author Monte Ohrt <monte at ohrt dot com> 
+* @author credits to Duda <duda@big.hu> 
+* @version 1.0
+* @param array $params parameters
+* Input:<br>
+*          - file = file (and path) of image (required)
+*          - height = image height (optional, default actual height)
+*          - width = image width (optional, default actual width)
+*          - basedir = base directory for absolute paths, default
+*                      is environment variable DOCUMENT_ROOT
+*          - path_prefix = prefix for path output (optional, default empty)
+* @param object $smarty Smarty object
+* @param object $template template object
+* @return string 
+* @uses smarty_function_escape_special_chars()
+*/
+function smarty_function_html_image($params, $smarty, $template)
 {
     require_once(SMARTY_PLUGINS_DIR . 'shared.escape_special_chars.php');
- 
+    //$smarty->loadPlugin('Smarty_shared_escape_special_chars');
+
     $alt = '';
     $file = '';
     $height = '';
@@ -46,7 +47,7 @@ function smarty_function_html_image($params, $template)
     $prefix = '';
     $suffix = '';
     $path_prefix = '';
-    $server_vars = $_SERVER;
+    $server_vars = ($smarty->request_use_auto_globals) ? $_SERVER : $GLOBALS['HTTP_SERVER_VARS'];
     $basedir = isset($server_vars['DOCUMENT_ROOT']) ? $server_vars['DOCUMENT_ROOT'] : '';
     foreach($params as $_key => $_val) {
         switch ($_key) {
@@ -63,7 +64,7 @@ function smarty_function_html_image($params, $template)
                 if (!is_array($_val)) {
                     $$_key = smarty_function_escape_special_chars($_val);
                 } else {
-                    throw new SmartyException ("html_image: extra attribute '$_key' cannot be an array", E_USER_NOTICE);
+                    throw new Exception ("html_image: extra attribute '$_key' cannot be an array", E_USER_NOTICE);
                 } 
                 break;
 
@@ -77,14 +78,14 @@ function smarty_function_html_image($params, $template)
                 if (!is_array($_val)) {
                     $extra .= ' ' . $_key . '="' . smarty_function_escape_special_chars($_val) . '"';
                 } else {
-                    throw new SmartyException ("html_image: extra attribute '$_key' cannot be an array", E_USER_NOTICE);
+                    throw new Exception ("html_image: extra attribute '$_key' cannot be an array", E_USER_NOTICE);
                 } 
                 break;
         } 
     } 
 
     if (empty($file)) {
-        trigger_error("html_image: missing 'file' parameter", E_USER_NOTICE);
+        throw new Exception ("html_image: missing 'file' parameter", E_USER_NOTICE);
         return;
     } 
 
@@ -97,18 +98,18 @@ function smarty_function_html_image($params, $template)
     if (!isset($params['width']) || !isset($params['height'])) {
         if (!$_image_data = @getimagesize($_image_path)) {
             if (!file_exists($_image_path)) {
-                trigger_error("html_image: unable to find '$_image_path'", E_USER_NOTICE);
+                throw new Exception ("html_image: unable to find '$_image_path'", E_USER_NOTICE);
                 return;
             } else if (!is_readable($_image_path)) {
-                trigger_error("html_image: unable to read '$_image_path'", E_USER_NOTICE);
+                throw new Exception ("html_image: unable to read '$_image_path'", E_USER_NOTICE);
                 return;
             } else {
-                trigger_error("html_image: '$_image_path' is not a valid image file", E_USER_NOTICE);
+                throw new Exception ("html_image: '$_image_path' is not a valid image file", E_USER_NOTICE);
                 return;
             } 
         } 
-        if (isset($template->smarty->security_policy)) {
-            if (!$template->smarty->security_policy->isTrustedResourceDir($_image_path)) {
+        if ($template->security) {
+            if (!$smarty->security_handler->isTrustedResourceDir($_image_path)) {
                 return;
             } 
         } 

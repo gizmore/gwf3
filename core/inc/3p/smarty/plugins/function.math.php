@@ -7,25 +7,26 @@
  * @subpackage PluginsFunction
  */
 
+
 /**
  * Smarty {math} function plugin
  *
  * Type:     function<br>
  * Name:     math<br>
- * Purpose:  handle math computations in template
- *
- * @link http://www.smarty.net/manual/en/language.function.math.php {math}
+ * Purpose:  handle math computations in template<br>
+ * @link http://smarty.php.net/manual/en/language.function.math.php {math}
  *          (Smarty online manual)
  * @author   Monte Ohrt <monte at ohrt dot com>
- * @param array                    $params   parameters
- * @param Smarty_Internal_Template $template template object
+ * @param array $params parameters
+ * @param object $smarty Smarty object
+ * @param object $template template object
  * @return string|null
  */
-function smarty_function_math($params, $template)
+function smarty_function_math($params, $smarty, $template)
 {
     // be sure equation parameter is present
     if (empty($params['equation'])) {
-        trigger_error("math: missing equation parameter",E_USER_WARNING);
+        throw new Exception ("math: missing equation parameter");
         return;
     }
 
@@ -33,18 +34,18 @@ function smarty_function_math($params, $template)
 
     // make sure parenthesis are balanced
     if (substr_count($equation,"(") != substr_count($equation,")")) {
-        trigger_error("math: unbalanced parenthesis",E_USER_WARNING);
+        throw new Exception ("math: unbalanced parenthesis");
         return;
     }
 
     // match all vars in equation, make sure all are passed
-    preg_match_all("!(?:0x[a-fA-F0-9]+)|([a-zA-Z][a-zA-Z0-9_]*)!",$equation, $match);
+    preg_match_all("!(?:0x[a-fA-F0-9]+)|([a-zA-Z][a-zA-Z0-9_]+)!",$equation, $match);
     $allowed_funcs = array('int','abs','ceil','cos','exp','floor','log','log10',
                            'max','min','pi','pow','rand','round','sin','sqrt','srand','tan');
-
+    
     foreach($match[1] as $curr_var) {
         if ($curr_var && !in_array($curr_var, array_keys($params)) && !in_array($curr_var, $allowed_funcs)) {
-            trigger_error("math: function call $curr_var not allowed",E_USER_WARNING);
+            throw new Exception ("math: function call $curr_var not allowed");
             return;
         }
     }
@@ -53,17 +54,17 @@ function smarty_function_math($params, $template)
         if ($key != "equation" && $key != "format" && $key != "assign") {
             // make sure value is not empty
             if (strlen($val)==0) {
-                trigger_error("math: parameter $key is empty",E_USER_WARNING);
+                throw new Exception ("math: parameter $key is empty");
                 return;
             }
             if (!is_numeric($val)) {
-                trigger_error("math: parameter $key: is not numeric",E_USER_WARNING);
+                throw new Exception ("math: parameter $key: is not numeric");
                 return;
             }
             $equation = preg_replace("/\b$key\b/", " \$params['$key'] ", $equation);
         }
     }
-    $smarty_math_result = null;
+
     eval("\$smarty_math_result = ".$equation.";");
 
     if (empty($params['format'])) {
@@ -80,5 +81,4 @@ function smarty_function_math($params, $template)
         }
     }
 }
-
 ?>

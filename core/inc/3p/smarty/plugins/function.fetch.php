@@ -1,10 +1,10 @@
 <?php
 /**
  * Smarty plugin
- *
  * @package Smarty
  * @subpackage PluginsFunction
  */
+
 
 /**
  * Smarty {fetch} plugin
@@ -12,27 +12,28 @@
  * Type:     function<br>
  * Name:     fetch<br>
  * Purpose:  fetch file, web or ftp data and display results
- *
- * @link http://www.smarty.net/manual/en/language.function.fetch.php {fetch}
+ * @link http://smarty.php.net/manual/en/language.function.fetch.php {fetch}
  *       (Smarty online manual)
  * @author Monte Ohrt <monte at ohrt dot com>
- * @param array                    $params   parameters
- * @param Smarty_Internal_Template $template template object
- * @return string|null if the assign parameter is passed, Smarty assigns the result to a template variable
+ * @param array $params parameters
+ * @param object $smarty Smarty object
+ * @param object $template template object
+ * @return string|null if the assign parameter is passed, Smarty assigns the
+ *                     result to a template variable
  */
-function smarty_function_fetch($params, $template)
+function smarty_function_fetch($params, $smarty, $template)
 {
     if (empty($params['file'])) {
-        trigger_error("[plugin] fetch parameter 'file' cannot be empty",E_USER_NOTICE);
+        throw new Exception ("[plugin] fetch parameter 'file' cannot be empty");
         return;
     }
 
     $content = '';
-    if (isset($template->smarty->security_policy) && !preg_match('!^(http|ftp)://!i', $params['file'])) {
-        if(!$template->smarty->security_policy->isTrustedResourceDir($params['file'])) {
+    if ($template->security && !preg_match('!^(http|ftp)://!i', $params['file'])) {
+        if(!$smarty->security_handler->isTrustedResourceDir($params['file'])) {
             return;
         }
-
+        
         // fetch the file
         if($fp = @fopen($params['file'],'r')) {
             while(!feof($fp)) {
@@ -40,7 +41,7 @@ function smarty_function_fetch($params, $template)
             }
             fclose($fp);
         } else {
-            trigger_error('[plugin] fetch cannot read file \'' . $params['file'] . '\'',E_USER_NOTICE);
+            throw new Exception ('[plugin] fetch cannot read file \'' . $params['file'] . '\'');
             return;
         }
     } else {
@@ -52,7 +53,7 @@ function smarty_function_fetch($params, $template)
                 $host = $server_name = $uri_parts['host'];
                 $timeout = 30;
                 $accept = "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*";
-                $agent = "Smarty Template Engine ". Smarty::SMARTY_VERSION;
+                $agent = "Smarty Template Engine ".$smarty->_version;
                 $referer = "";
                 $uri = !empty($uri_parts['path']) ? $uri_parts['path'] : '/';
                 $uri .= !empty($uri_parts['query']) ? '?' . $uri_parts['query'] : '';
@@ -93,7 +94,7 @@ function smarty_function_fetch($params, $template)
                         case "header":
                             if(!empty($param_value)) {
                                 if(!preg_match('![\w\d-]+: .+!',$param_value)) {
-                                    trigger_error("[plugin] invalid header format '".$param_value."'",E_USER_NOTICE);
+                                    throw new Exception ("[plugin] invalid header format '".$param_value."'");
                                     return;
                                 } else {
                                     $extra_headers[] = $param_value;
@@ -109,7 +110,7 @@ function smarty_function_fetch($params, $template)
                             if(!preg_match('!\D!', $param_value)) {
                                 $proxy_port = (int) $param_value;
                             } else {
-                                trigger_error("[plugin] invalid value for attribute '".$param_key."'",E_USER_NOTICE);
+                                throw new Exception ("[plugin] invalid value for attribute '".$param_key."'");
                                 return;
                             }
                             break;
@@ -127,12 +128,12 @@ function smarty_function_fetch($params, $template)
                             if(!preg_match('!\D!', $param_value)) {
                                 $timeout = (int) $param_value;
                             } else {
-                                trigger_error("[plugin] invalid value for attribute '".$param_key."'",E_USER_NOTICE);
+                                throw new Exception ("[plugin] invalid value for attribute '".$param_key."'");
                                 return;
                             }
                             break;
                         default:
-                            trigger_error("[plugin] unrecognized attribute '".$param_key."'",E_USER_NOTICE);
+                            throw new Exception ("[plugin] unrecognized attribute '".$param_key."'");
                             return;
                     }
                 }
@@ -144,7 +145,7 @@ function smarty_function_fetch($params, $template)
                 }
 
                 if(!$fp) {
-                    trigger_error("[plugin] unable to fetch: $errstr ($errno)",E_USER_NOTICE);
+                    throw new Exception ("[plugin] unable to fetch: $errstr ($errno)");
                     return;
                 } else {
                     if($_is_proxy) {
@@ -187,7 +188,7 @@ function smarty_function_fetch($params, $template)
                     }
                 }
             } else {
-                trigger_error("[plugin fetch] unable to parse URL, check syntax",E_USER_NOTICE);
+                throw new Exception ("[plugin] unable to parse URL, check syntax");
                 return;
             }
         } else {
@@ -198,7 +199,7 @@ function smarty_function_fetch($params, $template)
                 }
                 fclose($fp);
             } else {
-                trigger_error('[plugin] fetch cannot read file \'' . $params['file'] .'\'',E_USER_NOTICE);
+                throw new Exception ('[plugin] fetch cannot read file \'' . $params['file'] .'\'');
                 return;
             }
         }
