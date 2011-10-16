@@ -7,6 +7,8 @@ if (!is_readable('protected/config.php')) {
 	die('Try protected/install_wizard.php');
 }
 
+set_time_limit(0);
+
 require_once 'protected/config.php';
 require_once '../gwf3.class.php'; 
 $gwf = new GWF3(getcwd(), array(
