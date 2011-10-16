@@ -12,7 +12,7 @@ final class Delaware_Doctor extends SR_TalkingNPC
 			case 'yes': case 'no':
 			case 'hand':
 				$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim1');
-				return $quest->onDoctorTalk($this, $player);
+				return $quest->onDoctorTalk($this, $player, $word);
 			
 			case 'heal':
 				$this->reply("We can heal you for some nuyen. Just use {$c}heal here.");
