@@ -1517,7 +1517,7 @@ class SR_Player extends GDO
 		$itemname = strtolower($itemname);
 		foreach (array_reverse($items) as $item)
 		{
-			if (strpos(strtolower($item->getItemName()), $itemname) === 0)
+			if (strpos(strtolower($item->getItemName()), $itemname) !== false)
 			{
 				return $item;
 			}
