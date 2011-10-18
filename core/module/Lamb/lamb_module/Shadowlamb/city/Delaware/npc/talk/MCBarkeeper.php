@@ -7,9 +7,14 @@ final class Delaware_MCBarkeeper extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if ($this->onNPCQuestTalk($player, $word))
+		{
+			return true;
+		}
+
 		switch ($word)
 		{
-			default: return $this->reply('Hello chummer, i am still unimplemented.');
+			default: return $this->reply('Welcome in MacLarens, best pub in Delaware!');
 		}
 	}
 }
