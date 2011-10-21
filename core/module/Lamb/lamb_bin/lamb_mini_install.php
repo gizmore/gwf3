@@ -4,12 +4,14 @@
 #########################################################################
 chdir('../../../');
 
-# CHANGE THIS! THEN IT MIGHT WORK!
-define('GWF_CONFIG_PATH', 'protected/config_lamb_dev.php');
-//die("CHANGE THIS!\n");
+# EDIT!
+# Change your protected/config.php location
+require_once 'protected/config_lamb_dev.php';
+# Change your gwf3.class.php location
+require_once '../gwf3.class.php'; 
+# End of EDIT!
 
-require_once 'gwf3.class.php'; 
-GWF3::onLoadConfig(GWF_CONFIG_PATH);
+
 require_once 'core/module/Lamb/Lamb_Install.php';
 
 # Args
