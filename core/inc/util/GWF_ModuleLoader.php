@@ -420,24 +420,32 @@ final class GWF_ModuleLoader
 		$name = $module->getName();
 		$path = GWF_CORE_PATH."module/{$name}/method";
 		
-		if (!Common::isDir($path)) {
+		if (!Common::isDir($path))
+		{
 			return array();
 		}
 		
-		if (false === ($dir = scandir($path))) {
+		if (false === ($dir = scandir($path)))
+		{
 			die('Cannot access '.$path.' in '.__METHOD__.' line '.__LINE__);
 		}
 		
 		foreach ($dir as $file)
 		{
-			if ($file{0} === '.') {
+			if ($file[0] === '.')
+			{
 				continue;
 			}
 			
-			if (false === ($method = $module->getMethod(substr($file, 0, -4)))) {
-				die('NO METHOD for '.$file);
+			$path2 = $path.'/'.$file;
+			if (Common::isFile($path2))
+			{
+				if (false === ($method = $module->getMethod(substr($file, 0, -4))))
+				{
+					die('NO METHOD for '.$file);
+				}
+				$back[] = $method;
 			}
-			$back[] = $method;
 		}
 		return $back;
 	}

@@ -63,7 +63,7 @@ final class SR_Tell extends GDO
 		
 		if ($rows > self::MAX_MSGS)
 		{
-			if (false === $table->deleteWhere($where, 'sr4tl_time ASC', NULL, $rows-self::MAX_MSGS))
+			if (false === $table->deleteWhere($where, 'sr4tl_time ASC', NULL, $rows-self::MAX_MSGS, 0))
 			{
 				return false;
 			}

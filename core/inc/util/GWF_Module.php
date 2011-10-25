@@ -99,6 +99,7 @@ class GWF_Module extends GDO
 	public function langAdmin($key, $args=NULL) { return $this->lang->langAdmin($key, $args); }
 	public function langUser(GWF_User $user, $key, $args=NULL) { return $this->lang->langUser($user, $key, $args); }
 	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
+	public function includeAjaxLang($iso=NULL) { GWF_Website::addJavascriptInline('var LANG_'.$this->getName().' = '.json_encode($this->getLang()->getTrans($iso)).';'); }
 	
 	################
 	### Template ###
@@ -246,6 +247,11 @@ class GWF_Module extends GDO
 	############
 	### Exec ###
 	############
+	/**
+	 * Execute a method. Arguments are given via $_GET and _$POST.
+	 * @param string $methodname
+	 * @return string html
+	 */
 	public function execute($methodname)
 	{
 		if (!$this->isEnabled())
@@ -265,13 +271,27 @@ class GWF_Module extends GDO
 		
 		return $method->execute($this);
 	}
-	
+
+	/**
+	 * Include all classes returned by $this->getClasses();
+	 * You can think of it as an autoloader ... this is lame :(
+	 */
 	public function onInclude()
 	{
 		foreach ($this->getClasses() as $class)
 		{
-			require_once GWF_CORE_PATH.'module/'.$this->getName().'/'.$class.'.php';
+			$this->includeClass($class);
 		}
+	}
+	
+	/**
+	 * Include a file in the modules directory.
+	 * This function is not sanitized!
+	 * @param string $class
+	 */
+	public function includeClass($class)
+	{
+		require_once GWF_CORE_PATH.'module/'.$this->getName().'/'.$class.'.php';
 	}
 	
 	/**

@@ -225,7 +225,7 @@ abstract class GDO
 			$this->primary_keys = array();
 			foreach ($this->getColumnDefcache() as $c => $d)
 			{
-				if ( ($d[0]&GDO::PRIMARY_KEY) === GDO::PRIMARY_KEY)
+				if ( ($d[0]&self::PRIMARY_KEY) === self::PRIMARY_KEY)
 				{
 					$this->primary_keys[] = $c;
 				}
@@ -711,7 +711,7 @@ abstract class GDO
 		$groupby = $this->getGroupBy($groupby);
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
-		$query = "DELETE t FROM `{$tablename}` t".$join.$where.$groupby.$orderby.$limit;
+		$query = "DELETE t.* FROM `{$tablename}` t".$join.$where.$groupby.$orderby.$limit;
 		return $db->queryWrite($query);
 	}
 	
@@ -846,11 +846,14 @@ abstract class GDO
 		{
 			return false;
 		}
+		
 		$where = '';
-		foreach ($keys as $i => $key) {
+		foreach ($keys as $i => $key)
+		{
 			$where .= sprintf(' AND `%s`=\'%s\'', $key, $this->escape($values[$i]));
 		}
 		$where = substr($where, 5);
+		
 		return $this->selectFirstObject('*', $where);
 	}
 	

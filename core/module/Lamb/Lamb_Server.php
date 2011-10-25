@@ -597,6 +597,26 @@ final class Lamb_Server extends GDO
 		return $this->getUserByNickname($username, $channel_name);
 	}
 	
+	public function getUserByAbbrevAndChannel($username, $channel_name)
+	{
+		if (false === ($channel = $this->getChannel($channel_name)))
+		{
+			return false;
+		}
+		
+		$users = $channel->getUsers();
+		
+		foreach ($users as $uname => $data)
+		{
+			if (strpos($uname, $username) !== false)
+			{
+				return $data[0];
+			}
+		}
+		
+		return false;
+	}
+	
 	public function isAdminUsername($username)
 	{
 		$u = strtolower($username);

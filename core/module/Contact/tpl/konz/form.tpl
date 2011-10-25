@@ -1,6 +1,7 @@
 {assign var='k' value=$gwf->Module()->loadModuleDB('Konzert', true, true)}
 {$gwf->Website()->addJavascript("{$root}tpl/konz/js/konzert.js")}
 {$gwf->Website()->addJavascriptOnload('konzertContactData();')}
+{$k->setNextHREF("{$root}impressum.html")}
 
 <h1>{$lang->lang('contact_title')}</h1>
 
@@ -24,3 +25,5 @@
 		<p id="phone_va">um weitere Informationen anzuzeigen</p>
 	</div>
 </div>
+
+<div class="cb"></div>

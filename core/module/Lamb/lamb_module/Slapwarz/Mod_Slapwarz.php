@@ -66,9 +66,16 @@ final class LambModule_Slapwarz extends Lamb_Module
 	############
 	### Slap ###
 	############
+	/**
+	 * Get the target user by username shortcut.
+	 * @param Lamb_Server $server
+	 * @param string $user_name
+	 * @param string $channel_name
+	 * @return Lamb_User
+	 */
 	private function getTarget(Lamb_Server $server, $user_name, $channel_name)
 	{
-		if (false === ($target = $server->getUserByNickAndChannel($user_name, $channel_name))) {
+		if (false === ($target = $server->getUserByAbbrevAndChannel($user_name, $channel_name))) {
 			return false;
 		}
 		return $target;
@@ -96,8 +103,6 @@ final class LambModule_Slapwarz extends Lamb_Module
 		
 		$target_name = Common::substrUntil($message, ' ');
 		
-		$message = sprintf('%s %s %s %s with %s %s.', $user->getVar('lusr_name'), $adverb, $verb, $target_name, $adjective, $item);
-		
 		# Check if a non record slap
 		$fake = false;
 		if (false === ($target = $this->getTarget($server, $target_name, $origin))) {
@@ -106,6 +111,9 @@ final class LambModule_Slapwarz extends Lamb_Module
 		elseif (true !== ($remain = Lamb_SlapHistory::maySlap($user->getID(), $target->getID()))) {
 			$fake = true;
 		}
+		
+		$message = sprintf('%s %s %s %s with %s %s.', $user->getVar('lusr_name'), $adverb, $verb, Lamb::softhyphe($target->getName()), $adjective, $item);
+		
 
 		# Insert slap
 		if ($fake === true)

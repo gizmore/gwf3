@@ -15,35 +15,34 @@ final class GWF_Obfuscate
 		'o' => "\xd0\xbe", 'p' => "\xd1\x80", 's' => "\xd1\x95", 'x' => "\xd1\x85", 'y' => "\xd1\x83"
 	);
 
-	public static function noHighlight($string)
+	public static function obfuscate($string)
 	{
-		if(false === $s = self::placeUnicode($nick))
+		if(false === $s = self::placeUnicode($string))
 		{
-			$s = self::placeSofthyphen($nick);
+			$s = self::placeSofthyphen($string);
 		}
-		return $newnick;
+		return $s;
 	}
 
-	private static function placeUnicode($nick)
+	private static function placeUnicode($s)
 	{
-		for($i=0;$i<mb_strlen($nick);$i++)
+		for($i=0;$i<mb_strlen($s);$i++)
 		{
-			$char = mb_substr($nick, $i, 1);
+			$char = mb_substr($s, $i, 1);
 
 			if(isset(self::$unicodeLookalikes[$char]))
 			{
-				return mb_substr($nick, 0, $i).self::$unicodeLookalikes[$char].mb_substr($nick, $i+1);
+				return mb_substr($s, 0, $i).self::$unicodeLookalikes[$char].mb_substr($s, $i+1);
 			}
 		}
 
 		return false;
 	}
 
-	private static function placeSofthyphen($nick)
+	private static function placeSofthyphen($s)
 	{
-		$pos = rand(1, mb_strlen($nick)-1);
-		$newnick = mb_substr($nick, 0, $pos)."\xC2\xAD".mb_substr($nick, $pos);
-		return $newnick;
+		$pos = rand(1, mb_strlen($s)-1);
+		return mb_substr($s, 0, $pos)."\xC2\xAD".mb_substr($s, $pos);
 	}	
 }
 ?>

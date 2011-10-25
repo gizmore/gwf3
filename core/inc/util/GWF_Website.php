@@ -179,7 +179,7 @@ final class GWF_Website
 	public static function addJavascriptInline($script_html) { self::$javascript_inline .= $script_html;}
 	public static function displayJavascriptInline()
 	{
-		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\'; '.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
+		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
 		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline.self::displayJavascriptOnload());
 	}
 
