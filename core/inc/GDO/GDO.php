@@ -917,7 +917,10 @@ abstract class GDO
 			return false;
 		}
 		$back = array();
-		while (false !== ($row = $this->fetch($result, GDO::ARRAY_A)))
+		
+		$r_type2 = $r_type === self::ARRAY_N ? self::ARRAY_N : self::ARRAY_A;
+		
+		while (false !== ($row = $this->fetch($result, $r_type2)))
 		{
 			if ($keyname === NULL) {
 				$key = $row[key($row)];
