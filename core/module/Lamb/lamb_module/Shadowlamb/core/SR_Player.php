@@ -2200,7 +2200,7 @@ class SR_Player extends GDO
 		
 		if ($karma > 0)
 		{
-			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}.", $this->getBase('karma'), $karma));
+			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", $this->getBase('karma'), $karma));
 		}
 		
 		if ( ($karma > 0) || ($level > 0) )
