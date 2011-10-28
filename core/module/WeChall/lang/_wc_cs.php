@@ -2,17 +2,17 @@
 
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1% dosáhl %2%% na %3%',
+	'li_last_active' => '%1$s dosáhl %2$s% na %3$s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
 	'md_wechall' => 'Přehled stránek s hádankami pro hackery a problémy k řešení. - wechall',
 
 	# TextHistory
-	'pt_texthis' => 'Historie pro %1%',
-	'pi_texthis' => 'Celková historie uživatele pro %1%.',
-	'mt_texthis' => 'WeChall, Historie, %1%, Textově',
-	'md_texthis' => 'Celková historie aktivit uživatele %1%.',
+	'pt_texthis' => 'Historie pro %1$s',
+	'pi_texthis' => 'Celková historie uživatele pro %1$s.',
+	'mt_texthis' => 'WeChall, Historie, %1$s, Textově',
+	'md_texthis' => 'Celková historie aktivit uživatele %1$s.',
 
 	# Country Ranking
 	'pt_csrank' => 'Žebříček států',
@@ -20,68 +20,68 @@ $lang = array(
 	'mt_csrank' => 'WeChall, Žebříček států, Celkový žebříček států, Hacker, Žebříček',
 	'md_csrank' => 'Nejlepší hackerské státy na světe na WeChall.net',
 
-	'pt_crank' => '%1% Žebříček - Strana %2%',
-	'pi_crank' => 'Nejlepší hackeři a řešitelé z %1%.',
-	'mt_crank' => 'WeChall, Žebříček států, %1%, %1% Žebříček',
-	'md_crank' => 'Seznam nejlepších hackerů v %1%.',
+	'pt_crank' => '%1$s Žebříček - Strana %2$s',
+	'pi_crank' => 'Nejlepší hackeři a řešitelé z %1$s.',
+	'mt_crank' => 'WeChall, Žebříček států, %1$s, %1$s Žebříček',
+	'md_crank' => 'Seznam nejlepších hackerů v %1$s.',
 
 
-	'solved_by_title' => '<a href="%2%">%1%</a> Hrdinové',
-	'solved_by_text' => 'Všichni lidé, kteří vyřešili %1%, seřazeno podle data vyřešení.',
+	'solved_by_title' => '<a href="%2$s">%1$s</a> Hrdinové',
+	'solved_by_text' => 'Všichni lidé, kteří vyřešili %1$s, seřazeno podle data vyřešení.',
 	'newsrow_linkt' => 'Dnes připojené účty',
-	'newsrow_link' => '%1% připojil svůj účet k %2% a má vyřešeno %3%%.',
+	'newsrow_link' => '%1$s připojil svůj účet k %2$s a má vyřešeno %3$s%.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Rychlý update',
 
 	# Cat Ranking
-	'pi_tagrank' => 'Nejlepší hráči v kategorii %1%.<br/>Všimni si, že se sčítají všechny stránky, které obsahují nějaké %1% hádanky, hodnota tedy není příliš vypovídající.',
-	'pt_tagrank' => '%1% žebříček',
-	'mt_tagrank' => GWF_SITENAME.', %1%, Žebříček, %1% Žebříček',
-	'md_tagrank' => '%1% žebříček na '.GWF_SITENAME.'. Strana %2% z %3%.',
+	'pi_tagrank' => 'Nejlepší hráči v kategorii %1$s.<br/>Všimni si, že se sčítají všechny stránky, které obsahují nějaké %1$s hádanky, hodnota tedy není příliš vypovídající.',
+	'pt_tagrank' => '%1$s žebříček',
+	'mt_tagrank' => GWF_SITENAME.', %1$s, Žebříček, %1$s Žebříček',
+	'md_tagrank' => '%1$s žebříček na '.GWF_SITENAME.'. Strana %2$s z %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1% vyřešil %2%% na %3%',
-	'pt_langrank' => '%1% žebříček - stránka %2%/%3%',
-	'pit_langrank' => '%1% žebříček',
-	'pi_langrank' => 'Nejlepší hráči na %1% stránkách.',
+	'logo2_hover' => '%1$s vyřešil %2$s% na %3$s',
+	'pt_langrank' => '%1$s žebříček - stránka %2$s/%3$s',
+	'pit_langrank' => '%1$s žebříček',
+	'pi_langrank' => 'Nejlepší hráči na %1$s stránkách.',
 	'pt_rankingc' => 'Žebříček států',
-	'mt_ranking_lang' => GWF_SITENAME.', Ranking, %1%, Challenge, Sites, List, Cross, Challenge, Site, Sites',
-	'md_ranking_lang' => 'Nejlepší hackeři na %1% stránkách, registrováno na '.GWF_SITENAME.'. Stránka %2% z %3%.',
+	'mt_ranking_lang' => GWF_SITENAME.', Ranking, %1$s, Challenge, Sites, List, Cross, Challenge, Site, Sites',
+	'md_ranking_lang' => 'Nejlepší hackeři na %1$s stránkách, registrováno na '.GWF_SITENAME.'. Stránka %2$s z %3$s.',
 
 	# User Graphs
 	'alt_challvotes' => 'Hlasování',
-	'alt_graph_rank' => 'Historie umístění pro %1%',
-	'alt_graph_rank_vs' => 'Historie umístění pro %1% vs. %2%',
-	'alt_graph_totalscore' => 'Graf celkového skóre pro %1%',
-	'alt_graph_totalscore_vs' => 'Graf celkového skóre pro %1% vs. %2%',
+	'alt_graph_rank' => 'Historie umístění pro %1$s',
+	'alt_graph_rank_vs' => 'Historie umístění pro %1$s vs. %2$s',
+	'alt_graph_totalscore' => 'Graf celkového skóre pro %1$s',
+	'alt_graph_totalscore_vs' => 'Graf celkového skóre pro %1$s vs. %2$s',
 
 	# Site graphs
-	'it_graph_sitescore' => 'Historie skóre na %1%',
-	'it_graph_siteusers' => 'Počet uživatelů na %1%',
-	'it_graph_sitechalls' => 'Počet hádanek na %1%',
+	'it_graph_sitescore' => 'Historie skóre na %1$s',
+	'it_graph_siteusers' => 'Počet uživatelů na %1$s',
+	'it_graph_sitechalls' => 'Počet hádanek na %1$s',
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster novinky',
-	'mnews_body' => 'Někteří hráči vyřešili 100% úloh na některé stránce. Výborně! :)'.PHP_EOL.'[url=%1%]Zde[/url] si můžeš prohlédnout všechny sitemaster uživatele.',
-	'mnews_item' => '[url=/profile/%1%]%1%[/url] vyřešil 100% na [url=%2%]%3%[/url] za %4% od připojení, začínal na %5%.',
+	'mnews_body' => 'Někteří hráči vyřešili 100% úloh na některé stránce. Výborně! :)'.PHP_EOL.'[url=%1$s]Zde[/url] si můžeš prohlédnout všechny sitemaster uživatele.',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] vyřešil 100% na [url=%2$s]%3$s[/url] za %4$s od připojení, začínal na %5$s.',
 
 	# Challenge News
 	'cnews_title' => 'Nové hádanky',
-	'cnews_body' => 'Na některé z tvých připojených stránek přibyli nové hádanky:'.PHP_EOL.'[url=%1%]Označ jako přečtené[/url]'.PHP_EOL.PHP_EOL,
-	'cnews_item' => 'Přibylo %1% nových hádanek na %2% (%3% celkem)',
+	'cnews_body' => 'Na některé z tvých připojených stránek přibyli nové hádanky:'.PHP_EOL.'[url=%1$s]Označ jako přečtené[/url]'.PHP_EOL.PHP_EOL,
+	'cnews_item' => 'Přibylo %1$s nových hádanek na %2$s (%3$s celkem)',
 
 	# Birthday News!
 	'bdnews_title' => 'Všechno nejlepší k narozeninám!',
-	'bdnews_body_init' => 'Tito uživatelé mají tento týden narozeniny:'.PHP_EOL.'[url=%1%]Označ jako přečtené[/url]'.PHP_EOL.PHP_EOL,
+	'bdnews_body_init' => 'Tito uživatelé mají tento týden narozeniny:'.PHP_EOL.'[url=%1$s]Označ jako přečtené[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Včera',
 	'Today' => 'Dnes',
 	'Yesterday' => 'Včera',
-	'OtherDay' => 'Tento %1%',
+	'OtherDay' => 'Tento %1$s',
 
-	'fav_links' => '%1% ma %2% oblíbených odkazů',
-	'own_links' => '%1% přidal %2% veřejných odkazů',
-	'logo_hover' => '%1% logo',
+	'fav_links' => '%1$s ma %2$s oblíbených odkazů',
+	'own_links' => '%1$s přidal %2$s veřejných odkazů',
+	'logo_hover' => '%1$s logo',
 
 	'site_dot_red' => 'Mimo provoz',
 	'site_dot_green' => 'Funkční',
@@ -98,22 +98,22 @@ $lang = array(
 	'pt_sites_2' => 'Hřbitov stránek',
 	'pt_sites_3' => 'Stránky, které se již brzy připojí',
 	'pt_sites_4' => 'Stránky nezahrnuté v žebřířku na WeChall',
-	'pt_site_ranking' => '%1% žebříček - Strana %2%',
-	'pt_ranking' => 'Celkový žebříček - Strana %1%',
+	'pt_site_ranking' => '%1$s žebříček - Strana %2$s',
+	'pt_ranking' => 'Celkový žebříček - Strana %1$s',
 
 	# Meta Description
-	'md_profile' => 'WeChall profil pro %1% | Umístění %2% | Hraje na %3% stránkách | The Hacker Challenge Sites',
+	'md_profile' => 'WeChall profil pro %1$s | Umístění %2$s | Hraje na %3$s stránkách | The Hacker Challenge Sites',
 
 	# Meta Tags
 	'mt_ranking' => 'a Global Ranking for Hacking Challenge Sites and Hacking Challenge Site Overview',
-	'mt_site_ranking' => 'WeChall, Site, Ranking, %1%, Page %2%',
-	'md_site_ranking' => 'WeChall user-rank table for %1% - page %2%',
-	'mt_challs' => '%1%, Computer, Hackit, Challenges, Challenge, Problems, WeChall, Non Simulated.',
-	'md_challs' => '%1% Challenges on WeChall.',
-	'mt_challs_for' => '%1%, Computer, Hackit, Challenge, Overview, %2%, WeChall',
-	'md_challs_for' => '%1% Challenge Overview for %2% on WeChall.',
-	'mt_challs_from' => '%1%, Computer, Hackit, Challenge, %2%, WeChall',
-	'md_challs_from' => 'Challenges made by %1% on WeChall.',
+	'mt_site_ranking' => 'WeChall, Site, Ranking, %1$s, Page %2$s',
+	'md_site_ranking' => 'WeChall user-rank table for %1$s - page %2$s',
+	'mt_challs' => '%1$s, Computer, Hackit, Challenges, Challenge, Problems, WeChall, Non Simulated.',
+	'md_challs' => '%1$s Challenges on WeChall.',
+	'mt_challs_for' => '%1$s, Computer, Hackit, Challenge, Overview, %2$s, WeChall',
+	'md_challs_for' => '%1$s Challenge Overview for %2$s on WeChall.',
+	'mt_challs_from' => '%1$s, Computer, Hackit, Challenge, %2$s, WeChall',
+	'md_challs_from' => 'Challenges made by %1$s on WeChall.',
 	'mt_sites_1' => 'WeChall, Participating, Active, Challenge, Sites',
 	'md_sites_1' => 'Participating and active challenge sites listed on WeChall.',
 	'mt_sites_2' => 'WeChall, Challenge, Site, Graveyard',
@@ -126,46 +126,46 @@ $lang = array(
 	# Info
 	'pt_graveyard' => 'Hřbitov',
 	'pi_graveyard' => 'Tyto stránky byly v minulosti aktivní, ale bohužel už nejsou provozovány.',
-	'pi_login_link' => '<a href="%1%">Klikni zde pro návrat na poslední lokaci: %1%</a>',
+	'pi_login_link' => '<a href="%1$s">Klikni zde pro návrat na poslední lokaci: %1$s</a>',
 	'pi_site_urls' => 'Url skriptů nahrazují %USERNAME%, %EMAIL% a %AUTHKEY%.',
-	'pi_ug_info' => '%1% je zakladatelem skupiny &quot;%2%&quot; která má %3% členů.',
-	'pi_ug_join' => 'Zde se můžeš <a href="%1%">připojit ke skupině</a>.',
-	'pi_ug_register' => 'Nejprve se musíš <a href="%1%">zaregistrovat</a> teprve potom se můžeš připojit ke skupině.',
+	'pi_ug_info' => '%1$s je zakladatelem skupiny &quot;%2$s&quot; která má %3$s členů.',
+	'pi_ug_join' => 'Zde se můžeš <a href="%1$s">připojit ke skupině</a>.',
+	'pi_ug_register' => 'Nejprve se musíš <a href="%1$s">zaregistrovat</a> teprve potom se můžeš připojit ke skupině.',
 	'pit_ranking' => 'Celkový žebříček',
 	'pi_ranking' => 'Nejlepší hackeři a řešitelé na světě (registrovaní na wechall)',
-	'pi_viewcount' => 'Tato stránka byla zobrazena %1% krát.',
+	'pi_viewcount' => 'Tato stránka byla zobrazena %1$s krát.',
 
 	# Header
-	'a_title' => 'Celkové skóre: %1%',
+	'a_title' => 'Celkové skóre: %1$s',
 	'head_sites' => 'Nové stránky',
-	'head_users' => '<a href="%1%">Noví uživatelé</a>',
-	'head_online' => '%1% Online',
+	'head_users' => '<a href="%1$s">Noví uživatelé</a>',
+	'head_online' => '%1$s Online',
 
 	# Challenge
-	'chall_solvecount' => 'Vyřešeno %1% lidmi',
+	'chall_solvecount' => 'Vyřešeno %1$s lidmi',
 	'chall_added' => 'od',
 
 	# Table Titles
-	'tt_challs' => '%1% Hádanky',
-	'tt_challs_for' => '%1% Přehled hádanek pro %2%',
-	'tt_challs_from' => '%3% %1% Hádanky vytvořené uživatelem %2%',
+	'tt_challs' => '%1$s Hádanky',
+	'tt_challs_for' => '%1$s Přehled hádanek pro %2$s',
+	'tt_challs_from' => '%3$s %1$s Hádanky vytvořené uživatelem %2$s',
 
 	# Form Titles
-	'ft_solution' => 'Tvoje řešení %1%',
+	'ft_solution' => 'Tvoje řešení %1$s',
 	'ft_edit_chall' => 'Edituj tuto hádanku',
 	'ft_link_site' => 'Přidej stránku ke svému účtu',
 	'ft_linked_sites' => 'Tvoje připojené stránky',
 	'ft_add_site' => 'Přidej novou stránku',
-	'ft_edit_site' => 'Edituj %1%',
-	'ft_edit_site_logo' => 'Edituj %1% Logo',
+	'ft_edit_site' => 'Edituj %1$s',
+	'ft_edit_site_logo' => 'Edituj %1$s Logo',
 	'ft_edit_site_admin' => 'Přidej nebo odeber administrátora stránky',
-	'ft_vote_chall' => 'Hlasuj pro %1% hádanku',
+	'ft_vote_chall' => 'Hlasuj pro %1$s hádanku',
 
 	# Graph Titles
-	'gt_site_sitehist_score' => 'Graf skóre pro %1%',
-	'gt_site_sitehist_usercount' => 'Počet uživatelů na %1%',
-	'gt_site_sitehist_challcount' => 'Počet hádanek na %1%',
-	'gt_user_level' => 'Graf celkového skóre pro %1%',
+	'gt_site_sitehist_score' => 'Graf skóre pro %1$s',
+	'gt_site_sitehist_usercount' => 'Počet uživatelů na %1$s',
+	'gt_site_sitehist_challcount' => 'Počet hádanek na %1$s',
+	'gt_user_level' => 'Graf celkového skóre pro %1$s',
 
 	# Menu
 	'menu_news' => 'Novinky',
@@ -184,26 +184,26 @@ $lang = array(
 	'menu_admin' => 'Admin',
 	# Right Panel
 	'rp_stats' => 'Statistiky',
-	'rp_sitecount' => '%1% Stránek',
-	'rp_challcount' => '%1% Hádanek',
-	'rp_postcount' => '%1% Příspěvků',
-	'rp_usercount' => '%1% Uživatelů',
-	'rp_sites' => '%1% Aktivních stránek',
-	'rp_topusers' => 'Top %1% Hráči',
-	'rp_last_active' => 'Posledních %1% Aktivit',
+	'rp_sitecount' => '%1$s Stránek',
+	'rp_challcount' => '%1$s Hádanek',
+	'rp_postcount' => '%1$s Příspěvků',
+	'rp_usercount' => '%1$s Uživatelů',
+	'rp_sites' => '%1$s Aktivních stránek',
+	'rp_topusers' => 'Top %1$s Hráči',
+	'rp_last_active' => 'Posledních %1$s Aktivit',
 	#Left Panel
-	'lp_last_online' => 'Online během %1%',
-	'lp_last_online2' => '<a href="%1%">%2% Uživatelů</a>',
+	'lp_last_online' => 'Online během %1$s',
+	'lp_last_online2' => '<a href="%1$s">%2$s Uživatelů</a>',
 	'lp_language' => 'Jazyk',
 
 	# Footer
 	'footer_1' => '©2008-2011 by wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">All code</a> runs under the terms of the <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a>; You can <a href="'.GWF_WEB_ROOT.'contact">contact us here</a>.',
-	'footer_2' => '%1% uživatelů bylo online %2% - %3% stránek bylo odesláno',
+	'footer_2' => '%1$s uživatelů bylo online %2$s - %3$s stránek bylo odesláno',
 
 
 	# Register
-	'register_tos' => 'Svou registrací na WeChall.net souhlasíš s naší <a href="%1%">licencí a podmínkami použití</a>.',
-	'register_forgot' => 'Pokud jsi zapomněl své heslo nebo ti nepřišel aktivační email, <a href="%1%">klikni zde</a>.',
+	'register_tos' => 'Svou registrací na WeChall.net souhlasíš s naší <a href="%1$s">licencí a podmínkami použití</a>.',
+	'register_forgot' => 'Pokud jsi zapomněl své heslo nebo ti nepřišel aktivační email, <a href="%1$s">klikni zde</a>.',
 
 	# Admin Config
 
@@ -261,7 +261,7 @@ $lang = array(
 	'th_regat_onsitename' => 'Uživatelské jméno',
 	'th_regat_onsitescore' => 'Procent',
 	'th_auto_update' => 'Auto Update',
-	'th_latest_players' => 'Posledních %1% aktivních hráčů, seřazeno podle času poslední aktualizace (%2%)',
+	'th_latest_players' => 'Posledních %1$s aktivních hráčů, seřazeno podle času poslední aktualizace (%2$s)',
 	'th_solution' => 'Odpověď',
 	'th_chall_votecount' => 'Hlasy',
 	'th_user_level' => 'Celkové skóre',
@@ -273,7 +273,7 @@ $lang = array(
 	'th_rank' => '#',
 	'th_rank2' => 'Celkové umístění',
 	'th_crank' => 'Umístění v zemi',
-	'th_last_activites' => 'Poslední aktualizace uživatele %1%',
+	'th_last_activites' => 'Poslední aktualizace uživatele %1$s',
 	'th_progress' => 'Pokrok',
 	'th_num_linked' => 'Stránky',
 	'th_favsites' => 'Oblíbené stránky',
@@ -288,45 +288,45 @@ $lang = array(
 	'th_top_player' => 'Top Hráči',
 
 	# Errors
-	'err_parse_stub' => 'Methoda parseStats() není implementována pro stránku %1%.<br/>Prosím nakóduj ji kámo!',
+	'err_parse_stub' => 'Methoda parseStats() není implementována pro stránku %1$s.<br/>Prosím nakóduj ji kámo!',
 	'err_password' => 'Tvoje heslo je špatné!',
 	'err_wrong' => 'Doh\', Tvoje odpověď není správná!',
 	'err_chall' => 'Neznámá hádanka.',
 	'err_chall_score' => 'Skóre pro hádanku musí být mezi 1 a 10.',
-	'err_chall_creator' => 'Neznámí tvůrci: %1%.',
-	'err_chall_tags' => 'Neplatné tagy: %1%.',
+	'err_chall_creator' => 'Neznámí tvůrci: %1$s.',
+	'err_chall_tags' => 'Neplatné tagy: %1$s.',
 	'err_chall_url' => 'Neplatné URL hádanky.',
-	'err_site_down' => 'Aktualizace selhala. Zdá se, že %1% je mimo provoz.',
+	'err_site_down' => 'Aktualizace selhala. Zdá se, že %1$s je mimo provoz.',
 	'err_site_dup' => 'Název stránky již existuje.',
 	'err_classname_dup' => 'Název stránky již existuje.',
 	'err_site' => 'Tato stránnka s hádankami je neznámá.',
-	'err_site_name' => 'Název stránky je nplatný. Název musí obsahovat mezi %1% a %2% znaky.',
-	'err_site_classname' => 'Název stránky je neplatný. Název musí obsahovat mezi %1% a %2% znaky.',
-	'err_not_linked' => 'Nejsi připojen k %1%.',
-	'err_site_basescore' => 'Základní skóre stránky musí být mezi %1% a %2%.',
-	'err_site_usercount' => 'Počet uživatelů stránky musí být mezi %1% a %2%.',
-	'err_site_challcount' => 'Počet hádanek na stránce musí být mezi %1% a %2%.',
+	'err_site_name' => 'Název stránky je nplatný. Název musí obsahovat mezi %1$s a %2$s znaky.',
+	'err_site_classname' => 'Název stránky je neplatný. Název musí obsahovat mezi %1$s a %2$s znaky.',
+	'err_not_linked' => 'Nejsi připojen k %1$s.',
+	'err_site_basescore' => 'Základní skóre stránky musí být mezi %1$s a %2$s.',
+	'err_site_usercount' => 'Počet uživatelů stránky musí být mezi %1$s a %2$s.',
+	'err_site_challcount' => 'Počet hádanek na stránce musí být mezi %1$s a %2$s.',
 	'err_site_joindate' => 'Neplatný datum připojení stránky.',
 	'err_site_launchdate' => 'Neplatný datum vzniku stránky.',
-	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2% chars long.',
-	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2% chars long.',
-	'err_site_url' => 'Nelatné URL stránky. URL musí mít od %1% do %2% znaků.',
-	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %1% to %2% chars long.',
-	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %1% to %2% chars long.',
-	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %1% to %2% chars long.',
-	'err_site_description' => 'The Site`s Description is invalid. Max %2% chars long.',
-	'err_site_irc'  => 'Neplatné IRC stránky. IRC musí být %1% až %2% znaků.',
+	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2$s chars long.',
+	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2$s chars long.',
+	'err_site_url' => 'Nelatné URL stránky. URL musí mít od %1$s do %2$s znaků.',
+	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %1$s to %2$s chars long.',
+	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %1$s to %2$s chars long.',
+	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %1$s to %2$s chars long.',
+	'err_site_description' => 'The Site`s Description is invalid. Max %2$s chars long.',
+	'err_site_irc'  => 'Neplatné IRC stránky. IRC musí být %1$s až %2$s znaků.',
 	'err_site_tags'  => 'Jeden nebo více tagů stráky je neplatný. (3-32 znaků - pouze písmena nebo číslice, začínat musí písmenem, case sensitive).',
-	'err_write_logo' => 'Není možné zapsat logo %1%.',
+	'err_write_logo' => 'Není možné zapsat logo %1$s.',
 	'err_no_logo' => 'Odeslaný soubor není obrázek.',
 	'err_email' => 'Neplatný email.',
-	'err_link_account' => 'Kombinace uživatelského jména a emailu neexistuje na %1%.',
-	'err_already_linked' => 'Už jsi připojený k %1%.',
-	'err_sitemin_dup' => 'Uživatel %1% je již administátorem na %2%.',
-	'err_onsitename' => 'Uživatelské jméno neexistuje na %1%.',
-	'err_response' => '<pre>%1%</pre> není platná odpověď %2%.',
-	'err_already_linked' => 'Už jsi připojený k %1%.',
-	'err_already_linked2' => 'Uživatel %1% je již připojen k %2%.',
+	'err_link_account' => 'Kombinace uživatelského jména a emailu neexistuje na %1$s.',
+	'err_already_linked' => 'Už jsi připojený k %1$s.',
+	'err_sitemin_dup' => 'Uživatel %1$s je již administátorem na %2$s.',
+	'err_onsitename' => 'Uživatelské jméno neexistuje na %1$s.',
+	'err_response' => '<pre>%1$s</pre> není platná odpověď %2$s.',
+	'err_already_linked' => 'Už jsi připojený k %1$s.',
+	'err_already_linked2' => 'Uživatel %1$s je již připojen k %2$s.',
 	'err_chall_vote' => 'Nejprve je třeba vyřešit hádanku.',
 	'err_dif' => 'Zadaná hodnota obtížnosti není platná (0-10).',
 	'err_edu' => 'Zadaná hodnota pro výuku není platná (0-10).',
@@ -347,36 +347,36 @@ $lang = array(
 	'site_state_coming_soon' => 'Už brzy',
 
 	# Messages
-	'msg_correct' => 'Tvoje odpověď je správná. Gratujujeme k vyřešení hádanky.<br/>Prosím <a href="%1%">hlasuj pro tuto hádanky</a>.<br/>Nyní máš přístup do <a href="%2%">fóra po vyřešení</a> pro tuto hádanku.',
+	'msg_correct' => 'Tvoje odpověď je správná. Gratujujeme k vyřešení hádanky.<br/>Prosím <a href="%1$s">hlasuj pro tuto hádanky</a>.<br/>Nyní máš přístup do <a href="%2$s">fóra po vyřešení</a> pro tuto hádanku.',
 	'msg_correct_alpha' => 'Tvoje odpověď je správná, ale hádanka ještě není instalována.',
-	'msg_correct_again' => 'Tvoje odpověď je správná, ale tuto hádanku už jsi vyřešil.<br/><a href="%1%">Hlasoval jsi pro tuto hádanku?</a>',
+	'msg_correct_again' => 'Tvoje odpověď je správná, ale tuto hádanku už jsi vyřešil.<br/><a href="%1$s">Hlasoval jsi pro tuto hádanku?</a>',
 	'msg_correct_guest' => 'Tvoje odpověď je správná. Aby se zaznamenával tvůj pokrok, tak se nejprve musíš registrovat.',
 	'msg_chall_edited' => 'Hádanka býla změněna.',
-	'msg_chall_installed' => 'Hádanka %1% byla nainstalována a je připravena k řešení :)',
+	'msg_chall_installed' => 'Hádanka %1$s byla nainstalována a je připravena k řešení :)',
 	'msg_chall_deleted' => 'Hádanka byla smazána.',
 	'msg_cached_ctags' => 'Hádanka Tag-Cloud byla znovu inicializována.',
 	'msg_site_added' => 'Nová stránka byla přidána.',
-	'msg_site_edited' => 'Stránka %1% byla změněna.',
-	'msg_site_recalc' => 'Přepočítávám všechna skóre pro %1%.',
+	'msg_site_edited' => 'Stránka %1$s byla změněna.',
+	'msg_site_recalc' => 'Přepočítávám všechna skóre pro %1$s.',
 	'msg_sites_recalc' => 'Přepočítávám všechna skóre.',
-	'msg_site_linked' => 'Tvůj %1% účet byl úspěšně připojen.',
-	'msg_site_unlinked' => 'Tvůj %1% účet byl úspěšně odpojen.',
-	'msg_hide_sitename_1' => 'Tvoje uživatelské jméno %1% je nyní skryté.',
-	'msg_hide_sitename_0' => 'Tvoje uživatelské jméno %1% se nyní zobrazuje.',
-	'msg_updating' => 'Aktualizace tvých statistik pro %1%.',
-	'msg_sitemin_add' => 'Přidán %1% jako adminstrátor pro %2%.',
-	'msg_sitemin_rem' => '%1% už není administrátor pro %2%.',
+	'msg_site_linked' => 'Tvůj %1$s účet byl úspěšně připojen.',
+	'msg_site_unlinked' => 'Tvůj %1$s účet byl úspěšně odpojen.',
+	'msg_hide_sitename_1' => 'Tvoje uživatelské jméno %1$s je nyní skryté.',
+	'msg_hide_sitename_0' => 'Tvoje uživatelské jméno %1$s se nyní zobrazuje.',
+	'msg_updating' => 'Aktualizace tvých statistik pro %1$s.',
+	'msg_sitemin_add' => 'Přidán %1$s jako adminstrátor pro %2$s.',
+	'msg_sitemin_rem' => '%1$s už není administrátor pro %2$s.',
 	'msg_no_change' => 'Žádné změny.',
 	'msg_chall_voted' => 'Děkujeme za tvůj hlas.',
-	'msg_created_gb' => 'Tvoje kniha hostů byla vytvořena. Konfigurovat <a href="%1%">ji můžeš zde</a>.',
+	'msg_created_gb' => 'Tvoje kniha hostů byla vytvořena. Konfigurovat <a href="%1$s">ji můžeš zde</a>.',
 	'msg_bd_marked' => 'Všechny narozeniny během tohoto týdne byly označené jako přečtené.',
 	'msg_challs_marked' => 'Nové hádanky byly označené jako přečtené.',
-	'msg_marked_fav' => '%1% je nyní jednou z tvých oblíbených stránek.',
-	'msg_unmarked_fav' => '%1% už není tvou oblíbenou stránkou.',
+	'msg_marked_fav' => '%1$s je nyní jednou z tvých oblíbených stránek.',
+	'msg_unmarked_fav' => '%1$s už není tvou oblíbenou stránkou.',
 
 	# Buttons
-	'btn_pm' => 'PM %1%',
-	'btn_email' => 'Odešli email %1%',
+	'btn_pm' => 'PM %1$s',
+	'btn_email' => 'Odešli email %1$s',
 	'btn_solve' => 'Odešli',
 	'btn_link' => 'Připoj stránku',
 	'btn_linked_sites' => 'Připojené stránky',
@@ -419,19 +419,19 @@ $lang = array(
 	'btn_view_groups' => 'Zobraz skupiny',
 
 	# Challenge->Forum
-	'chall_help_desc' => 'Nápověda k hádance %1%',
-	'chall_solution_desc' => 'Řešení pro hádanku %1%',
+	'chall_help_desc' => 'Nápověda k hádance %1$s',
+	'chall_solution_desc' => 'Řešení pro hádanku %1$s',
 
 	
 	# EMail on Link Site
-	'mail_link_subj' => GWF_SITENAME.': Připojení účtu k %1%',
+	'mail_link_subj' => GWF_SITENAME.': Připojení účtu k %1$s',
 	'mail_link_body' => 
-		'Ahoj %1%'.PHP_EOL.
+		'Ahoj %1$s'.PHP_EOL.
 		PHP_EOL.
-		'Zdá se že jsi připojil svůj účet %2% k '.GWF_SITENAME.'.'.PHP_EOL.
+		'Zdá se že jsi připojil svůj účet %2$s k '.GWF_SITENAME.'.'.PHP_EOL.
 		'Pro potvrzení, že jde o tvůj účet, prosím, klikni na odkaz dole.'.PHP_EOL.
 		PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'Pokud jsi nepožadoval připojení účtu, tak nás můžeš informovat odesláním emailu na '.GWF_ADMIN_EMAIL.', nebo tuto výzvu ignoruj.'.PHP_EOL.
 		PHP_EOL.
@@ -465,9 +465,9 @@ $lang = array(
 	'th_sel_favsite' => 'Vyber stránku',
 	'btn_add_favsite' => 'Přidej',
 	
-	'pt_site_detail' => '%1% detaily',
-	'mt_site_detail' => '%1%, Challenge, Site, Details, Overview, WeChall',
-	'md_site_detail' => 'Detail %1% stránky na WeChall',
+	'pt_site_detail' => '%1$s detaily',
+	'mt_site_detail' => '%1$s, Challenge, Site, Details, Overview, WeChall',
+	'md_site_detail' => 'Detail %1$s stránky na WeChall',
 	
 	# Statgraph
 	'err_end_date' => 'Koncový den není platný',
@@ -476,7 +476,7 @@ $lang = array(
 	# Join Box
 	'sites_join_t' => 'Jak přidat další stránku na WeChall',
 	'sites_join_b' => 
-		'Pokud jsi administrátor stránky s hádankami, prosím, čti <a href="%1%">join.php</a>.<br/>'.
+		'Pokud jsi administrátor stránky s hádankami, prosím, čti <a href="%1$s">join.php</a>.<br/>'.
 		'Pokud chceš, aby se tvoje oblíbená stránka připojila, tak zkus kontaktovat její administrátory.<br/>'.
 		'Prosím nepište o WeChall na jejich veřejném fóru, raději napište email nebo pm.',
 		
@@ -487,26 +487,26 @@ $lang = array(
 	
 	# v4.02 (Freeze)
 	'err_frozen' => 'Tvůj účet je zmrazný. Není možné odpojit stránky.',
-	'err_site_ban' => 'Jsi oficiálně zakázán na %1%. Nemůžeš se připojit.',
+	'err_site_ban' => 'Jsi oficiálně zakázán na %1$s. Nemůžeš se připojit.',
 	'ft_freeze' => 'Označ uživatele jako zakázaného na stránce',
 	'btn_freeze' => 'Freeze',
 	'btn_unfreeze' => 'Remove',
-	'msg_frozen' => 'Uživatel %1% je nyní označen jako zakázaný %2%.',
-	'msg_unfrozen' => 'Uživatel %1% už není zakázaný na %2%.',
+	'msg_frozen' => 'Uživatel %1$s je nyní označen jako zakázaný %2$s.',
+	'msg_unfrozen' => 'Uživatel %1$s už není zakázaný na %2$s.',
 	
 	# v4.03 (finish)
-	'scorefaq_box' => 'Jak se počítá <a href="%1%">skóre</a> na WeChall',
+	'scorefaq_box' => 'Jak se počítá <a href="%1$s">skóre</a> na WeChall',
 	'err_bot_challenge' => 'Boti nemohou řešit hádanky.',
 		
 	# v4.04 (fixes+stats)
 	'msg_linkmail_sent' => 'Email byl odeslán na emailovou adresu, která byla použitá při registraci na stránce. Pro přidání účtu, prosím, pokračuj instrukcemi v emailu.',
 	
-	'pt_stats' => 'Statistiky pro %1%',
-	'md_stats' => GWF_SITENAME.' statistiky pro %1%.',
-	'mt_stats' => GWF_SITENAME.', Stats, Statistiky, %1%, Graphs',
-	'pt_stats2' => 'Statistiky pro %1% vs %2%',
-	'md_stats2' => GWF_SITENAME.' statistiky pro %1% versus %2%.',
-	'mt_stats2' => GWF_SITENAME.', Stats, Statistics, %1%, versus, %2%, Graphs',
+	'pt_stats' => 'Statistiky pro %1$s',
+	'md_stats' => GWF_SITENAME.' statistiky pro %1$s.',
+	'mt_stats' => GWF_SITENAME.', Stats, Statistiky, %1$s, Graphs',
+	'pt_stats2' => 'Statistiky pro %1$s vs %2$s',
+	'md_stats2' => GWF_SITENAME.' statistiky pro %1$s versus %2$s.',
+	'mt_stats2' => GWF_SITENAME.', Stats, Statistics, %1$s, versus, %2$s, Graphs',
 	
 	'stat_high' => 'Vysoké hodnocení',
 	'stat_med' => 'Střední hodnocení',
@@ -520,9 +520,9 @@ $lang = array(
 	# v4.02
 	'btn_all_sites' => 'Všechny stránky',
 	'pt_sites_5' => 'Všechny stránky na '.GWF_SITENAME,
-	'pt_sites_5_tagged' => 'Stránky s %1% hádankami na '.GWF_SITENAME,
+	'pt_sites_5_tagged' => 'Stránky s %1$s hádankami na '.GWF_SITENAME,
 	'th_site_country_detail' => 'Země původu stránky',
-	'site_detail_uinfo' => '%1% má skóre %2%/%3% na %4% (%5%%). Pořadí %6% na '.GWF_SITENAME.', skóre %7% bodů.',
+	'site_detail_uinfo' => '%1$s má skóre %2$s/%3$s na %4$s (%5$s%). Pořadí %6$s na '.GWF_SITENAME.', skóre %7$s bodů.',
 		
 	# v4.03
 	'ft_signup' => 'Přihlášení',
@@ -530,14 +530,14 @@ $lang = array(
 	'th_bind_ip' => 'Omezení session na IP',
 	'btn_forgot_pw' => 'Zapoměl jsi heslo?',
 	'btn_login' => 'Přihlaš se',
-	'bd_over' => 'Poslední %1%',
-	'bd_soon' => 'Další %1%',
+	'bd_over' => 'Poslední %1$s',
+	'bd_soon' => 'Další %1$s',
 		
 	'btn_close' => 'Zavři',
 	'btn_guestbook' => 'Kniha hostů',
 		
 	# v4.04 
-	'err_site_down' => '%1% je mimo provoz.',
+	'err_site_down' => '%1$s je mimo provoz.',
 		
 	# v4.05 (Private History)
 	'ft_settings' => GWF_SITENAME.' nastavení',
@@ -549,13 +549,13 @@ $lang = array(
 	'msg_priv_hist_1' => 'Tvoje historie je nyní více soukromá a nezobrazuje datum posledních aktivit.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Připojený účet na %1% s %3%% (%2% bodů)',
-	'userhist_unlink' => 'Odpojený účet od %1% (%2% bodů)',
-	'userhist_gain' => 'Získáno %4%% na %1% (%2% bodů)',
-	'userhist_lost' => 'Ztraceno %4%% na %1% (%2% bodů)',
-	'userhist_ban' => 'Zakázán na %1% (%2% bodů)',
-	'userhist_unban' => 'Zrušen zákaz na %1%',
-	'userhist_unknown' => 'Aktualizace účtu na %1%',
+	'userhist_link' => 'Připojený účet na %1$s s %3$s% (%2$s bodů)',
+	'userhist_unlink' => 'Odpojený účet od %1$s (%2$s bodů)',
+	'userhist_gain' => 'Získáno %4$s% na %1$s (%2$s bodů)',
+	'userhist_lost' => 'Ztraceno %4$s% na %1$s (%2$s bodů)',
+	'userhist_ban' => 'Zakázán na %1$s (%2$s bodů)',
+	'userhist_unban' => 'Zrušen zákaz na %1$s',
+	'userhist_unknown' => 'Aktualizace účtu na %1$s',
 	
 	# v4.07 (More settings and join us)
 	'tt_no_xss' => 'Můžes se vyloučit z jistých dotazů prováděný přes WeChall API.',
@@ -577,23 +577,23 @@ $lang = array(
 	'btn_site_details' => 'Detaily',
 		
 	# v4.10 (hardlink)
-	'msg_hardlinked' => 'Uživatel %1% byl připojen %2% s tímto jménem na stránce %3%.',
-	'err_onsitename_taken' => 'Uživatelské jméno %1% na %2% je používáno uživatelem %3%.',
+	'msg_hardlinked' => 'Uživatel %1$s byl připojen %2$s s tímto jménem na stránce %3$s.',
+	'err_onsitename_taken' => 'Uživatelské jméno %1$s na %2$s je používáno uživatelem %3$s.',
 	
 	# v4.11
-	'err_solution_block' => 'Zadal jsi příliš mnoho odpovědí v příliš krátkém čase. Počkej %1% před odesláním další odpovědi.',
+	'err_solution_block' => 'Zadal jsi příliš mnoho odpovědí v příliš krátkém čase. Počkej %1$s před odesláním další odpovědi.',
 
-	'err_link_account_hts' => 'Kombinace uživatelského jména a emailu možná neexistuje na %1%.<br/>Na %1% je potřeba výslovně aktivovat wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'Kombinace uživatelského jména a emailu možná neexistuje na %1$s.<br/>Na %1$s je potřeba výslovně aktivovat wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 	
 	'th_spc' => 'SnO',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Tvoje řešení délky %1% bylo uloženo do databáze.<br/>Nyní se můžeš <a href="%2%">podívat na řešení</a> s délkou >= %1%.',
+	'msg_wmc_sol_inserted' => 'Tvoje řešení délky %1$s bylo uloženo do databáze.<br/>Nyní se můžeš <a href="%2$s">podívat na řešení</a> s délkou >= %1$s.',
 	'th_length' => 'Délka',
 	'err_token' => 'Tvůj token je neplatný.',
-	'pt_wmc_sol' => 'Řešení pro %1% s délkou >= %2%',
+	'pt_wmc_sol' => 'Řešení pro %1$s s délkou >= %2$s',
 	'menu_contact' => 'Kontakt',
-	'msg_wmc_solved' => 'Vyřešil jsi %1% hádanku. Zde si můžeš <a href="%2%">prohlédnout všechna řešení</a>.',
+	'msg_wmc_solved' => 'Vyřešil jsi %1$s hádanku. Zde si můžeš <a href="%2$s">prohlédnout všechna řešení</a>.',
 
 	# v4.13
 	'th_csolve_time_taken' => 'Čas',
@@ -607,7 +607,7 @@ $lang = array(
 	'btn_add_favcat' => 'Add category',
 	'th_cat' => 'Category',
 	'err_cat' => 'This category is unknown.',
-	'msg_add_favcat' => '%1% has been added as one of your favorite categories.',
+	'msg_add_favcat' => '%1$s has been added as one of your favorite categories.',
 	'th_favcats' => 'Favorite Categories',
 	'btn_site_history' => 'History',
 	'btn_site_rank' => 'Site Ranking',
@@ -625,15 +625,15 @@ $lang = array(
 	'btn_delete' => 'Delete',
 	'btn_set_default' => 'Make Default',
 	'ft_add_descr' => 'Add a description',
-	'ft_edit_descr' => 'Edit the description in %1%',
-	'err_descr' => 'Your description is invalid. It has to be %1%-%2% characters long.',
-	'err_descr_new' => 'Your description is invalid. It has to be %1%-%2% characters long.',
+	'ft_edit_descr' => 'Edit the description in %1$s',
+	'err_descr' => 'Your description is invalid. It has to be %1$s-%2$s characters long.',
+	'err_descr_new' => 'Your description is invalid. It has to be %1$s-%2$s characters long.',
 	'err_dup_descr' => 'A description in that language already exists. Please use the edit function.',
 	'err_del_default_descr' => 'You cannot delete the default description.',
 	'msg_edit_descr' => 'The description has been edited.',
 	'msg_del_descr' => 'The description has been deleted.',
 	'msg_add_descr' => 'The description has been added.',
-	'msg_def_descr' => 'The default description has been changed to %1%.',
+	'msg_def_descr' => 'The default description has been changed to %1$s.',
 	'btn_edit_site_descr' => 'Edit Site Descriptions',
 
 	# v4.17 (Hide ranking)
@@ -648,7 +648,7 @@ $lang = array(
 	'hidden' => 'Hidden',
 		
 	# v5.00 (fixes)
-	'msg_rem_favcat' => 'The category \'%1%\' got removed from your favorite categories.',
+	'msg_rem_favcat' => 'The category \'%1$s\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
 );
 ?>

@@ -4,14 +4,14 @@ $lang = array(
 	'err_manifest1' => 'Can not find manifest file in zip package.',
 	'err_manifest2' => 'Can not find magic bytes in manifest file.',
 	'err_manifest3' => 'The manifest timestamp is invalid.',
-	'err_package_broken' => 'A downloaded file is broken: %1%.',
-	'err_file_broken' => 'One of your installed files is broken: %1%.',
-	'err_update' => 'There are %1% errors unresolveable.<br/>The only thing you can try now is to reset your update-datestamp and reinstall all files (Clean Upgrade).',
+	'err_package_broken' => 'A downloaded file is broken: %1$s.',
+	'err_file_broken' => 'One of your installed files is broken: %1$s.',
+	'err_update' => 'There are %1$s errors unresolveable.<br/>The only thing you can try now is to reset your update-datestamp and reinstall all files (Clean Upgrade).',
 
-	'msg_update_archive_ok' => 'Downloaded update archive. Filesize: %1%.',
-	'msg_update_done' => 'Update finished. %1% Files were old and fine. %2% Files have been replaced.',
+	'msg_update_archive_ok' => 'Downloaded update archive. Filesize: %1$s.',
+	'msg_update_done' => 'Update finished. %1$s Files were old and fine. %2$s Files have been replaced.',
 	
-	'info_update' => 'Update GWF2 core files.<br>Your datestamp is %1% (server time).<br/>Your upgrade token is %2%.<br/>Server URL is %3%.<br/>Use Clean update to reset your update datestamp.',
+	'info_update' => 'Update GWF2 core files.<br>Your datestamp is %1$s (server time).<br/>Your upgrade token is %2$s.<br/>Server URL is %3$s.<br/>Use Clean update to reset your update datestamp.',
 
 	'ft_update' => 'Update GWF2 Files',
 

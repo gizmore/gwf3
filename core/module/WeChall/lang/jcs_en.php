@@ -7,6 +7,6 @@ $lang = array(
 		'Features:<br/>'.
 		'- apply a grid on the image, which pixels to grab<br/>'.
 		'- specify components and order of grabbing<br/><br/>'.
-		'get the program and source here: <a href="%1%">JCS.jar</a>.',
+		'get the program and source here: <a href="%1$s">JCS.jar</a>.',
 );
 ?>

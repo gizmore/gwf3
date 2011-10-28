@@ -7,7 +7,7 @@ $lang = array(
 		'WeChall on sivusto tietokone ongelmista ja muista vastaavista.<br/>',
 	'about_08' => 'Tietoa Wechall (vuonna 2008)',
 #	'about_10' => '(ja vuonna 2010)',
-	'about_08_title' => '%1%: Mikä on sivun tarkoitus?',
+	'about_08_title' => '%1$s: Mikä on sivun tarkoitus?',
 	'about_08' => array(
 		'Inferno' =>
 			'<p>Jotta ihmiset eivät tunne haaste sivustojen haaste sivusto on pääosin sivusto keskittyi tarjoamaan atk-ongelmia. Käyttäjät voivat rekisteröidä sellaisessa paikassa ja alkaa ratkaisemaan haasteita. On olemassa paljon erilaisia haasteita tyyppejä. Yleisimpiä niistä ovat seuraavat: <b> salausta, Crackit, Steganography, ohjelmointi, Logic ja Math / Tiede </b>. Vaikea näihin haasteisiin vaihtelevat sekä.</p>'.

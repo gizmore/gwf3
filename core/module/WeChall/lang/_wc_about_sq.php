@@ -7,7 +7,7 @@ $lang = array(
 		'WeChall është rreth Faqet që janë në lidhje me problemet lidhur me kompjuterat dhe sfidat.<br/>',
 	'about_08' => 'Rreth Wechall (në 2008)',
 #	'about_10' => '(and in 2010)',
-	'about_08_title' => '%1%: Cili është qëllimi i kësaj faqeje interneti?',
+	'about_08_title' => '%1$s: Cili është qëllimi i kësaj faqeje interneti?',
 	'about_08' => array(
 		'Inferno' =>
 			'<p>Për njerëzit që nuk e njohin me faqet sfidë, një vend sfidë është e fokusuar kryesisht në problemet që ofron një vend të lidhur me kompjuterin. Përdoruesit mund të regjistrohen në një vend të tillë dhe të fillojnë të zgjidhjes së sfidave të. Ekzistojnë shumë lloje të ndryshme sfidë. Ato më të zakonshmet janë: <b>Kriptografike, Crackit, Steganography, Programim, Logjikë and Matematiko / Shkencë</b>. Vështirësinë e këtyre sfidave të ndryshojnë.</p>'.

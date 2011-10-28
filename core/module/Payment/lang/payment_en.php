@@ -19,14 +19,14 @@ $lang = array(
 	'tt_currency' => 'Uppercase 3 letter ISO code',
 
 	# Errors
-	'err_country' => 'Your country is not supported by %1%.',
-	'err_currency' => 'This currency is not supported by %1%.',
+	'err_country' => 'Your country is not supported by %1$s.',
+	'err_currency' => 'This currency is not supported by %1$s.',
 	'err_can_order' => 'You are not allowed to order this.',
 	'err_paysite' => 'This Payment Processor is unknown.',
 	'err_order' => 'The Order could not been found.',
 	'err_token' => 'Your '.GWF_SITENAME.' token is invalid.',
-	'err_xtoken' => 'Your %1% token is invalid.',
-	'err_crit' => 'An error occured while we executed your order.<br/>Please contact the site admin and mention your order token: %1%.',
+	'err_xtoken' => 'Your %1$s token is invalid.',
+	'err_crit' => 'An error occured while we executed your order.<br/>Please contact the site admin and mention your order token: %1$s.',
 
 	# Messages
 	'msg_paid' => 'Thank you for your purchase. Your order has been executed successfully.',

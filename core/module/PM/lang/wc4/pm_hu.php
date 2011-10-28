@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Szép napot %1%',
+	'hello' => 'Szép napot %1$s',
 	'sel_username' => 'Válassz felhasználó nevet',
 	'sel_folder' => 'Válassz könyvtárat',
 
@@ -11,7 +11,7 @@ $lang = array(
 	'pi_trashcan' => 'Ez itt a szemetesed, üzeneteket nem tudsz törölni, de vissza tudod állítani őket.',
 	
 	# Buttons
-	'btn_ignore' => 'Tedd %1% -et a "figyelmen kívül hagyottak" listájára',
+	'btn_ignore' => 'Tedd %1$s -et a "figyelmen kívül hagyottak" listájára',
 	'btn_ignore2' => 'Hagyd figyelmen kívül',
 	'btn_save' => 'Beállítások mentése',
 	'btn_create' => 'Új privát üzenet',
@@ -33,45 +33,45 @@ $lang = array(
 	'err_perm_read' => 'Nem engedélyezett a számodra ezen privát üzenet olvasása.',
 	'err_perm_write' => 'Nem engedélyezett a számodra ezen privát üzenet szerkesztése.',
 	'err_no_title' => 'Elfelejtettél címet adni a privát üzenetedhez.',
-	'err_title_len' => 'Túl hosszúa címed. Maximum %1% karakter engedélyezett.',
+	'err_title_len' => 'Túl hosszúa címed. Maximum %1$s karakter engedélyezett.',
 	'err_no_msg' => 'Elfelejtettél üzenetet írni.',
-	'err_sig_len' => 'Túl hosszú az aláírásod. Maximum %1% karakter engedélyezett.',
-	'err_msg_len' => 'Túl hosszú az üzeneted. Maximum %1% karakter engedélyezett.',
+	'err_sig_len' => 'Túl hosszú az aláírásod. Maximum %1$s karakter engedélyezett.',
+	'err_msg_len' => 'Túl hosszú az üzeneted. Maximum %1$s karakter engedélyezett.',
 	'err_user_no_ppm' => 'Ez a felhasználó nem kíván privát üzenetet kapni vendégtől.',
 	'err_no_mail' => 'Nincs jóváhagyott e-mail cím a felhasználói fiókodhoz.',
 	'err_pmoaf' => 'Az automatikus mappákhoz rendelt érték érvénytelen.',
-	'err_limit' => 'Elérted a napi maximális privát üzenet limitedet. Maximum %1% privát üzenetet küldhetsz ennyi idő alatt: %2%.',
-	'err_ignored' => '%1% a tiltólistájára tett.',
+	'err_limit' => 'Elérted a napi maximális privát üzenet limitedet. Maximum %1$s privát üzenetet küldhetsz ennyi idő alatt: %2$s.',
+	'err_ignored' => '%1$s a tiltólistájára tett.',
 	'err_delete' => 'Hiba történt az üzenet törlése közben.',
 	'err_folder_exists' => 'A mappa már létezik.',
-	'err_folder_len' => 'A mappa hossza 1 - %1% karakter kell, hogy legyen.',
+	'err_folder_len' => 'A mappa hossza 1 - %1$s karakter kell, hogy legyen.',
 	'err_del_twice' => 'Már törölted ezt a privát üzenetet.',
 	'err_folder' => 'Ismeretlen mappa.',
 	'err_pm_read' => 'A privát üzenetedet már elolvasták, így már nem tudod módosítani azt.',
 
 	# Messages
 	'msg_sent' => 'A privát üzeneted sikeresen el lett küldve. Mindaddig szerkesztheted, amíg el nem olvassák.',
-	'msg_ignored' => 'Az alábbi felhasználót tetted a tiltólistára: %1% .',
-	'msg_unignored' => 'Az alábbi felhasználót vetted le a tiltólistáról: %1% .',
+	'msg_ignored' => 'Az alábbi felhasználót tetted a tiltólistára: %1$s .',
+	'msg_unignored' => 'Az alábbi felhasználót vetted le a tiltólistáról: %1$s .',
 	'msg_changed' => 'A beállításaid megváltoztak.',
-	'msg_deleted' => 'Sikeresen törölted %1% privát üzenetét.',
-	'msg_moved' => 'Sikeresen áthelyezted %1% privát üzenetét.',
+	'msg_deleted' => 'Sikeresen törölted %1$s privát üzenetét.',
+	'msg_moved' => 'Sikeresen áthelyezted %1$s privát üzenetét.',
 	'msg_edited' => 'A privát üzeneted szerkesztve.',
-	'msg_restored' => 'Sikeresen visszaállítva %1% privát üzenete.',
+	'msg_restored' => 'Sikeresen visszaállítva %1$s privát üzenete.',
 	'msg_auto_folder_off' => 'Az automatikus mappák nincsenek a számodra engedélyezve. A privát üzenet olvasottként lett megjelölve.',
-	'msg_auto_folder_none' => 'Csak %1% üzenet van a felhasználótól. Semmi sem került áthelyezésre. A privát üzenet olvasottként lett megjelölve.',
-	'msg_auto_folder_created' => 'A mappa létrehozva: %1%.',
-	'msg_auto_folder_moved' => ' %1% üzenet lett áthelyezve a(z) %2% mappába. A privát üzenetek olvasottként lettek megjelölve.',
+	'msg_auto_folder_none' => 'Csak %1$s üzenet van a felhasználótól. Semmi sem került áthelyezésre. A privát üzenet olvasottként lett megjelölve.',
+	'msg_auto_folder_created' => 'A mappa létrehozva: %1$s.',
+	'msg_auto_folder_moved' => ' %1$s üzenet lett áthelyezve a(z) %2$s mappába. A privát üzenetek olvasottként lettek megjelölve.',
 	'msg_auto_folder_done' => 'Automatikus mappák kész.',
 
 
 	# Titles
-	'ft_create' => '%1% részére új privát üzenet írása',
+	'ft_create' => '%1$s részére új privát üzenet írása',
 	'ft_preview' => 'Előnézet',
 	'ft_options' => 'Privát üzenet beállításaid',
 	'ft_ignore' => 'Tegyél fel valakit a tiltólistádra',
 	'ft_new_pm' => 'Új privát üzenet írása',
-	'ft_reply' => 'Válasz erre: %1%',
+	'ft_reply' => 'Válasz erre: %1$s',
 	'ft_edit' => 'Privát üzenet szerkesztése',
 	'ft_quicksearch' => 'Gyorskeresés',
 	'ft_advsearch' => 'Összetett keresés',
@@ -103,23 +103,23 @@ $lang = array(
 	# Welcome PM
 //	'wpm_title' => 'Üdvözlünk a(z) '.GWF_SITENAME.' oldalán',
 //	'wpm_message' => 
-//		'Kedves %1%'.PHP_EOL.
+//		'Kedves %1$s'.PHP_EOL.
 //		PHP_EOL.
 //		'Üdvözlünk a(z) '.GWF_SITENAME.' oldalán.'.PHP_EOL.
 //		PHP_EOL.
 //		'Reméljük tetszik az oldal, és sok örömet okoz majd.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.' Új privát üzeneted érkezett, melynek feladója: %1%',
+	'mail_subj' => GWF_SITENAME.' Új privát üzeneted érkezett, melynek feladója: %1$s',
 	'mail_body' =>
-		'Kedves %1%'.PHP_EOL.
+		'Kedves %1$s'.PHP_EOL.
 		PHP_EOL.
 		'Új privát üzeneted érkezett, feladója: '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'Feladó: %2%'.PHP_EOL.
-		'Cím: %3%'.PHP_EOL.
+		'Feladó: %2$s'.PHP_EOL.
+		'Cím: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -127,10 +127,10 @@ $lang = array(
 		PHP_EOL.
 		'Innen egyszerűen tudod:'.PHP_EOL.
 		'Automatikusan mappába helyezni az üzenetet:'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		'Törölni az üzenetet:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Baráti üdvözlettel,'.PHP_EOL.
 		'A(z) '.GWF_SITENAME.' levelező-programja.'.PHP_EOL,
@@ -158,7 +158,7 @@ $lang = array(
 	'btn_new_folder' => 'Új mappa',
 		
 	# v2.02
-	'msg_mail_sent' => 'Egy e-mailt küldtünk, címzett: %1% . A levél tartalmazza az eredeti üzenetedet.',
+	'msg_mail_sent' => 'Egy e-mailt küldtünk, címzett: %1$s . A levél tartalmazza az eredeti üzenetedet.',
 				
 	# v2.03 SEO
 	'pt_pm' => 'Privát Üzenet',
@@ -181,10 +181,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'Nem tudod magad letiltani.',
 	'err_folder_perm' => 'Ez nem a te mappád.',
-	'msg_folder_deleted' => 'A(z) %1% mappa és %2% üzenet a kukába került.',
+	'msg_folder_deleted' => 'A(z) %1$s mappa és %2$s üzenet a kukába került.',
 	'cfg_pm_delete' => 'Megengeded az azonnali üzenet törlését?',
 	'ft_empty' => 'Kuka ürítése',
-	'msg_empty' => 'A kukád (%1% üzenet) ki lett ürítve.<br/>%2% üzenet lett törölve az adatbázisból.<br/>%3% üzenet továbbra is az adatbázisban maradt a másik felhasználónál.',
+	'msg_empty' => 'A kukád (%1$s üzenet) ki lett ürítve.<br/>%2$s üzenet lett törölve az adatbázisból.<br/>%3$s üzenet továbbra is az adatbázisban maradt a másik felhasználónál.',
 		
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

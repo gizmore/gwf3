@@ -1,10 +1,10 @@
 <?php
 $lang = array(
 
-	'alt_flag' => '%1%',
+	'alt_flag' => '%1$s',
 
 	# Page Info
-	'pi_invited' => 'Sait kutsun <a href="%3%">liity %1%s käyttäjäryhmä &quot;%2%&quot;</a>.<br/><br/><br/>tai <a href="%4%">klikkaa tästä huvikseen</a>.',
+	'pi_invited' => 'Sait kutsun <a href="%3$s">liity %1$ss käyttäjäryhmä &quot;%2$s&quot;</a>.<br/><br/><br/>tai <a href="%4$s">klikkaa tästä huvikseen</a>.',
 
 	# Avatar Gallery
 	'pt_avatars' => 'Avatari Galleria.',
@@ -47,11 +47,11 @@ $lang = array(
 	'err_perm' => 'Sinulla ei ole oikeutta tehdä ryhmää.',
 	'err_join' => 'Liittyminen on virheellinen.',
 	'err_view' => 'Katsominen on virheellinen.',
-	'err_name' => 'Ryhmän nimi on virheellinen. Sen pitää olla %1% -> %2% merkkiä pitkä ja alkaa kirjaimella.',
+	'err_name' => 'Ryhmän nimi on virheellinen. Sen pitää olla %1$s -> %2$s merkkiä pitkä ja alkaa kirjaimella.',
 	'err_group_exists' => 'Sinulla on jo käyttäjäryhmä.',
 	'err_group' => 'Sinulla ei ole käyttäjäryhmää.',
 	'err_kick_leader' => 'Et voi potkia tekijää.',
-	'err_kick' => 'Käyttäjä %1% ei ole ryhmässä.',
+	'err_kick' => 'Käyttäjä %1$s ei ole ryhmässä.',
 	'err_unk_group' => 'Ryhmä on tuntematon.',
 	'err_no_join' => 'Et voi itse liittyä ryhmään.',
 	'err_join_twice' => 'Olet jo valmiiksi tässä ryhmässä.',
@@ -61,12 +61,12 @@ $lang = array(
 	# Messages
 	'msg_created' => 'Käyttäjäryhmä tehty.',
 	'msg_edited' => 'Käyttäjäryhmä muokattu.',
-	'msg_kicked' => '%1% potkittu.',
-	'msg_joined' => 'Lisäsit käyttäjän &quot;%1%&quot;.',
-	'msg_requested' => 'Halusit liittyä &quot;%1%&quot;.',
-	'msg_accepted' => 'Käyttäjä %1% on nyt jäsen käyttäjäryhmän &quot;%2%&quot;.',
-	'msg_invited' => 'Sinä kutsuit %1% ryhmääsi.',
-	'msg_refused' => 'Postit kutsun ryhmääsi käyttäjältä &quot;%1%&quot;.',
+	'msg_kicked' => '%1$s potkittu.',
+	'msg_joined' => 'Lisäsit käyttäjän &quot;%1$s&quot;.',
+	'msg_requested' => 'Halusit liittyä &quot;%1$s&quot;.',
+	'msg_accepted' => 'Käyttäjä %1$s on nyt jäsen käyttäjäryhmän &quot;%2$s&quot;.',
+	'msg_invited' => 'Sinä kutsuit %1$s ryhmääsi.',
+	'msg_refused' => 'Postit kutsun ryhmääsi käyttäjältä &quot;%1$s&quot;.',
 
 	# Selects
 	'sel_join_type' => 'Miten käyttäjät liittyvät ryhmääsi?',
@@ -88,14 +88,14 @@ $lang = array(
 //	'cfg_ug_bid' => 'Alokas palsta',
 
 	# EMails
-	'mail_subj_req' => GWF_SITENAME.': %1% haluaa liittyä ryhmääsi',
+	'mail_subj_req' => GWF_SITENAME.': %1$s haluaa liittyä ryhmääsi',
 	'mail_body_req' =>
-		'Dear %1%,'.PHP_EOL.
+		'Dear %1$s,'.PHP_EOL.
 		PHP_EOL.
-		'%2% haluaisi liittyä ryhmääsi &quot;%3%&quot;.'.PHP_EOL.
+		'%2$s haluaisi liittyä ryhmääsi &quot;%3$s&quot;.'.PHP_EOL.
 		'Hyväksyäksesi tämän klikkaa linkkiä alempana:'.PHP_EOL.
 		PHP_EOL.
-		'%4%',
+		'%4$s',
 		
 		
 	# V2.01 finish + your groups
@@ -115,40 +115,40 @@ $lang = array(
 	'btn_users' => 'Käyttäjät',
 		
 	# v2.04
-	'invite_title' => 'Kutsu %1%',
+	'invite_title' => 'Kutsu %1$s',
 	'invite_message' =>
-		'Hei %1%,'.PHP_EOL.
+		'Hei %1$s,'.PHP_EOL.
 		PHP_EOL.
-		'%2% juuri lisäsi kutsun käyttäjäryhmään \'%3%\'.'.PHP_EOL.
-		'Liittyäksesi ryhmään vieraile sivulla: %4%'.PHP_EOL.
+		'%2$s juuri lisäsi kutsun käyttäjäryhmään \'%3$s\'.'.PHP_EOL.
+		'Liittyäksesi ryhmään vieraile sivulla: %4$s'.PHP_EOL.
 		PHP_EOL.
-		'Jos et halua liittyä ryhmään niin voit tehdä jotain muuta järkevää josta en minä tiiä: %5%',
+		'Jos et halua liittyä ryhmään niin voit tehdä jotain muuta järkevää josta en minä tiiä: %5$s',
 		
 	# v2.05 (Jinx Edition)
-	'err_not_in_group' => 'Käyttäjä %1% ei ole ryhmässä.',
+	'err_not_in_group' => 'Käyttäjä %1$s ei ole ryhmässä.',
 	'btn_unco' => 'Co-johtaja',
 	'btn_co' => 'Ei Co-johtaja',
 	'btn_unhide' => 'Piilota',
 	'btn_hide' => 'Näytä',
 	'btn_unmod' => 'Moderaattori',
 	'btn_mod' => 'Ei Moderaattori',
-	'msg_ugf_2_0' => 'Käyttäjä %1% ei ole Co-johtaja enää.',
-	'msg_ugf_2_1' => 'Käyttäjä %1% on nyt Co-johtaja.',
-	'msg_ugf_4_0' => 'Käyttäjä %1% ei ole Moderaattori enää.',
-	'msg_ugf_4_1' => 'Käyttäjä %1% on nyt Moderaattori.',
-	'msg_ugf_8_0' => 'Käyttäjä %1% on nyt näkyvien käyttäjien listalla.',
-	'msg_ugf_8_1' => 'Käyttäjä nimeltä %1% On nyt piilotettujen jäsenten listalla.',
+	'msg_ugf_2_0' => 'Käyttäjä %1$s ei ole Co-johtaja enää.',
+	'msg_ugf_2_1' => 'Käyttäjä %1$s on nyt Co-johtaja.',
+	'msg_ugf_4_0' => 'Käyttäjä %1$s ei ole Moderaattori enää.',
+	'msg_ugf_4_1' => 'Käyttäjä %1$s on nyt Moderaattori.',
+	'msg_ugf_8_0' => 'Käyttäjä %1$s on nyt näkyvien käyttäjien listalla.',
+	'msg_ugf_8_1' => 'Käyttäjä nimeltä %1$s On nyt piilotettujen jäsenten listalla.',
 	'th_vis_grp' => 'Aina listaa ryhmät',
 	'th_vis_mem' => 'Aina listaa jäsenet',
 	'tt_vis_grp' => 'Jos tämä vaihtoehto on käytössä, ryhmä on aina näkyvissä ryhmäluettelon.',
 	'tt_vis_mem' => 'Jos tämä vaihtoehto on käytössä, päävalikko on aina käytettävissä. Huomaa, että voit piilottaa käyttäjien erikseen.',
 
 	# v2.06 (delete usergroup BAAL)
-	'ft_del_group' => 'Do you really want to delete the usergroup %1%?',
+	'ft_del_group' => 'Do you really want to delete the usergroup %1$s?',
 	'th_del_groupname' => 'Retype groupname',
 	'tt_del_groupname' => 'Please type the name of the group to confirm.',
-	'btn_del_group' => 'Yes, I want to delete the usergroup %1%!',
-	'msg_del_group' => 'The usergroup %1% has been deleted. %3% permissions have been revoked.',
+	'btn_del_group' => 'Yes, I want to delete the usergroup %1$s!',
+	'msg_del_group' => 'The usergroup %1$s has been deleted. %3$s permissions have been revoked.',
 		
 	# v2.07 (Adv Search)
 	'btn_adv_search' => 'Advanced Search',

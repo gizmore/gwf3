@@ -34,6 +34,6 @@ $lang = array(
 		'Administratoren können die Basispunktzahl von Seiten manuell anpassen.<br/>'.
 		'Es ist möglich, dass eine Seite mit vielen leichten Challenges eine kleinere Maximalpunktzahl bekommt als eine Seite mit wenigen, dafür aber schweren Challenges.<br/>'.
 		'<br/>'.
-		'Zögere nicht, im <a href="%1%">Forum</a> zu fragen, wenn etwas unklar sein sollte.<br/>',
+		'Zögere nicht, im <a href="%1$s">Forum</a> zu fragen, wenn etwas unklar sein sollte.<br/>',
 );
 ?>

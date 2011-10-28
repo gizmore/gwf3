@@ -4,6 +4,7 @@ final class Redmond_TrollsInn extends SR_Location
 	public function getNPCS(SR_Player $player) { return array('ttb' => 'Redmond_Barkeeper', 'ttj' => 'Redmond_Johnson', 'ttg' => 'Redmond_Reginald', 'tts' => 'Redmond_Soldier'); }
 	public function getFoundPercentage() { return 20.00; }
 	public function getFoundText(SR_Player $player) { return sprintf('In a small sidestreet you found a pub called Trolls_Inn. You have a bad feeling in this area.'); }
+	public function getEnterText(SR_Player $player) { return 'You are about to enter the TrollsInn ...'; }
 	public function isPVP() { return true; }
 	public function onEnter(SR_Player $player)
 	{

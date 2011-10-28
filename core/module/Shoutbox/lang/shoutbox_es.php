@@ -4,7 +4,7 @@ $lang = array(
 	'box_title' => GWF_SITENAME.' Shoutbox',
 
 	# History
-	'pt_history' => GWF_SITENAME.' Shoutbox Historia (Page %1% / %2%)',
+	'pt_history' => GWF_SITENAME.' Shoutbox Historia (Page %1$s / %2$s)',
 	'pi_history' => 'The '.GWF_SITENAME.' Shoutbox',
 	'mt_history' => GWF_SITENAME.', Shoutbox, Historia',
 	'md_history' => 'The '.GWF_SITENAME.' shoutbox es para pequeños mensajes que no valen hilo de un foro.',
@@ -12,10 +12,10 @@ $lang = array(
 	# Errors
 	'err_flood_time' => 'Por favor, espere antes de gritar de nuevo.',
 	'err_flood_limit' => 'Ha superado usted límite de mensajes al día.',
-	'err_message' => 'Usted mensaje tiene que ser entre %1% y el %2% caracteres de largo.',
+	'err_message' => 'Usted mensaje tiene que ser entre %1$s y el %2$s caracteres de largo.',
 	
 	# Messages
-	'msg_shouted' => 'Grito con éxito.<br/>Go back to <a href="%1%">%1%</a>.',
+	'msg_shouted' => 'Grito con éxito.<br/>Go back to <a href="%1$s">%1$s</a>.',
 	'msg_deleted' => 'Un mensaje ha sido borrado.',
 
 	# Table Heads
@@ -44,10 +44,10 @@ $lang = array(
 		''.PHP_EOL.
 		'There is a new entry in the shoutbox.'.PHP_EOL.
 		''.PHP_EOL.
-		'From: %1%'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'From: %1$s'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		''.PHP_EOL.
-		'You can delete it via %3%'.PHP_EOL.
+		'You can delete it via %3$s'.PHP_EOL.
 		''.PHP_EOL.
 		'Regards'.PHP_EOL.
 		'The GWF3 script',

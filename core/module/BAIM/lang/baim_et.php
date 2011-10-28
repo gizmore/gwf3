@@ -44,12 +44,12 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 	'menu_pm' => 'PS',
 	'ft_set_mc' => 'Lunasta B.AiM',
 	'msg_set_mc' => 'Sinu koopa on lunastatud. Käivita B.AiM.exe.',
-	'err_change_freq' => 'Sa oled hiljuti oma koopia lunastanud. Uuesti saad seda teha %1%.',
+	'err_change_freq' => 'Sa oled hiljuti oma koopia lunastanud. Uuesti saad seda teha %1$s.',
 
 ####
-	'key.dat' => '%1%-%2%',
+	'key.dat' => '%1$s-%2$s',
 	'readme.txt' =>
-		"Tere %1%\r\n\r\n".
+		"Tere %1$s\r\n\r\n".
 		"Aitäh ostmast B.AiM\r\n\r\n".
 		"Sissejuhatus:\r\n".
 		"Käivita B.AiM.exe. Liiguta akna laua kohal, nii paberisse vastet servad piljardilaud (Experiment natuke oma parima kogemus). Alternatiivina võid klõpsata Vaade-> Auto_Adjust Klõpsata aknad automaatselt. Niipea, kui oled pannud valge palli, liiguta hiirt eemal tabelis asukohad pallid laual. Pärast seda võite hakata eesmärk ja vajuta pallid. Soovitav on keelata varjude parem määr skaneerimine pallid!\r\n\r\n".
@@ -68,9 +68,9 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 	'dl_info_b' =>
 		'Mõned näpunäited B.AiM<br/>'.
 		'<br/>'.
-		'The official support will end on <b>%3%</b>.<br/>'.
+		'The official support will end on <b>%3$s</b>.<br/>'.
 		'Iga koopia on unikaalne, sa ei või seda jagada.<br/>'.
-		'Iga koopia töötab ühe arvutiga, vahetades arvutit saad selle lunastada uuesti, aga võid nii teha iga %1% järel.<br/>'.
+		'Iga koopia töötab ühe arvutiga, vahetades arvutit saad selle lunastada uuesti, aga võid nii teha iga %1$s järel.<br/>'.
 		'<br/>'.
 		'Hetkel saab osta ainult läbi <a href="https://www.paypal.com/en">PayPal</a> ExpressCheckout and <a href="http://www.paysafecard.com">PaySafeCard</a>.<br/>'.
 		'Et osta läbi Paypaly, vajuta nuppu 3 korda. 1) Choose PayPal, 2) GoTo Paypal, 3) Tule tagasi ja jälgi.<br/>'.
@@ -83,6 +83,6 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 
 	'err_no_mc' => 'Kasutajal pole MC set.',
 	'err_mc_cheater' => 'Kasutaja MC on dublant!',
-	'msg_new_demo' => 'Kasutaja  %1% demo lindistused on kustutatud. Ta peab demo uuesti tõmbama.',
+	'msg_new_demo' => 'Kasutaja  %1$s demo lindistused on kustutatud. Ta peab demo uuesti tõmbama.',
 );
 ?>

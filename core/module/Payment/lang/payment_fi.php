@@ -19,14 +19,14 @@ $lang = array(
 	'tt_currency' => 'Isoista kirjaimista koostuva 3-kirjaiminen ISO-koodi',
 
 	# Errors
-	'err_country' => 'Maasi ei ole %1% tukema.',
-	'err_currency' => 'Tätä valuuttaa ei tueta %1% toimesta.',
+	'err_country' => 'Maasi ei ole %1$s tukema.',
+	'err_currency' => 'Tätä valuuttaa ei tueta %1$s toimesta.',
 	'err_can_order' => 'Sinä et saa ostaa tätä.',
 	'err_paysite' => 'Tämä maksuprosessori on tuntematon.',
 	'err_order' => 'Ostosta ei löytynyt.',
 	'err_token' => 'Antamasi '.GWF_SITENAME.' sivunimi on epäkelpo.',
-	'err_xtoken' => 'Sinun %1% merkki on epäkelpo.',
-	'err_crit' => 'Tapahtui virhe käsiteltäessäsi ostostasi.<br/>Ole hyvä ja ota yhteyttä sivun ylläpitäjään ja kerro ostosi koodi: %1%.',
+	'err_xtoken' => 'Sinun %1$s merkki on epäkelpo.',
+	'err_crit' => 'Tapahtui virhe käsiteltäessäsi ostostasi.<br/>Ole hyvä ja ota yhteyttä sivun ylläpitäjään ja kerro ostosi koodi: %1$s.',
 
 	# Messages
 	'msg_paid' => 'Kiitos maksustasi. Ostotapahtumasi on käsitelty onnistuneesti',

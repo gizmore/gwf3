@@ -18,7 +18,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'Unohdit viestisi.',
-	'err_msg_long' => 'Viestisi ylittää suurimman sallitun pituuden %1%.',
+	'err_msg_long' => 'Viestisi ylittää suurimman sallitun pituuden %1$s.',
 	'err_private' => 'Yksityiset viestit ovat tällä hetkellä pois käytöstä.',
 	'err_guest_public' => 'Vieraat eivät voi lähettää mitään julkiselle kanavalle..',
 	'err_guest_private' => 'Vieraat eivät saa lähettää viestejä toisille käyttäjille.',

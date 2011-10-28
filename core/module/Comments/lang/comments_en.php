@@ -1,15 +1,15 @@
 <?php
 $lang = array(
-	'info_comments' => '<br/><a href="%1%">%2% comments ...</a>',
+	'info_comments' => '<br/><a href="%1$s">%2$s comments ...</a>',
 
-	'err_message' => 'Your message has to be between %1% and %2% characters in length.',
+	'err_message' => 'Your message has to be between %1$s and %2$s characters in length.',
 	'err_comment' => 'This comment does not exist.',
 	'err_comments' => 'These comments do not exist.',
 	'err_disabled' => 'The comments here are currently disabled.',
 	'err_hashcode' => 'Permission denied.',
 	'err_email' => 'Your email looks invalid.',
 	'err_www' => 'Your website looks invalid.',
-	'err_username' => 'Your username ist invalid and has to be %1% to %2% chars in length.',
+	'err_username' => 'Your username ist invalid and has to be %1$s to %2$s chars in length.',
 
 	'msg_commented' => 'Your comment has been added.',
 	'msg_commented_mod' => 'Your comment has been added, but has to be approved before it is shown.',
@@ -38,18 +38,18 @@ $lang = array(
 	# Moderation #
 	'subj_mod' => GWF_SITENAME.': New comment',
 	'body_mod' =>
-		'Hello %1%, '.PHP_EOL.
+		'Hello %1$s, '.PHP_EOL.
 		PHP_EOL.
 		'There has been posted a new comment on '.GWF_SITENAME.'.'.PHP_EOL.
-		'From: %2%'.PHP_EOL.
-		'Mail: %3%'.PHP_EOL.
-		'WWW: %4%'.PHP_EOL.
+		'From: %2$s'.PHP_EOL.
+		'Mail: %3$s'.PHP_EOL.
+		'WWW: %4$s'.PHP_EOL.
 		'Msg:'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
-		'You can quickly approve the comment: <a href="%6%">%6%</a>'.PHP_EOL.
+		'You can quickly approve the comment: <a href="%6$s">%6$s</a>'.PHP_EOL.
 		PHP_EOL.
-		'Or you can quickly delete it: <a href="%7%">%7%</a>'.PHP_EOL.
+		'Or you can quickly delete it: <a href="%7$s">%7$s</a>'.PHP_EOL.
 		PHP_EOL.
 		'Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script',
@@ -57,16 +57,16 @@ $lang = array(
 	# Notice #
 	'subj_cmt' => GWF_SITENAME.': New comment',
 	'body_mod' =>
-		'Hello %1%, '.PHP_EOL.
+		'Hello %1$s, '.PHP_EOL.
 		PHP_EOL.
 		'There has been posted a new comment on '.GWF_SITENAME.'.'.PHP_EOL.
-		'From: %2%'.PHP_EOL.
-		'Mail: %3%'.PHP_EOL.
-		'WWW: %4%'.PHP_EOL.
+		'From: %2$s'.PHP_EOL.
+		'Mail: %3$s'.PHP_EOL.
+		'WWW: %4$s'.PHP_EOL.
 		'Msg:'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
-		'You can quickly delete it, if desired: <a href="%6%">%6%</a>'.PHP_EOL.
+		'You can quickly delete it, if desired: <a href="%6$s">%6$s</a>'.PHP_EOL.
 		PHP_EOL.
 		'Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script',

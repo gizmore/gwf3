@@ -9,7 +9,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Ihr Nickname',
 	'th_email' => 'Kontakt EMail',
-	'th_demo' => 'Demographische Optionen - Diese können sie nur einmal alle %1% ändern.',
+	'th_demo' => 'Demographische Optionen - Diese können sie nur einmal alle %1$s ändern.',
 	'th_countryid' => 'Land',	
 	'th_langid' => 'Muttersprache',	
 	'th_langid2' => '1. Fremdsprache',
@@ -37,11 +37,11 @@ $lang = array(
 	'err_no_mail_to_approve' => 'Sie haben keine EMail zum Bestätigen angegeben.',
 	'err_already_approved' => 'Ihre EMail Adresse ist bereits bestätigt.',
 	'err_no_image' => 'Datei ist kein Bild, oder zu klein.',
-	'err_demo_wait' => 'Sie haben Ihre demographischen Einstellungen erst kürzlich geändert. Bitte warten sie %1%.',
+	'err_demo_wait' => 'Sie haben Ihre demographischen Einstellungen erst kürzlich geändert. Bitte warten sie %1$s.',
 	'err_birthdate' => 'Ihr Geburtsdatum ist ungültig.',
 
 	# Messages
-	'msg_mail_changed' => 'Ihre EMail Adresse wurde geändert und lautet nun <b>%1%</b>.',
+	'msg_mail_changed' => 'Ihre EMail Adresse wurde geändert und lautet nun <b>%1$s</b>.',
 	'msg_deleted_avatar' => 'Ihr Benutzerbild wurde gelöscht.',
 	'msg_avatar_saved' => 'Ihr neues Benutzerbild wurde gespeichert.',
 	'msg_demo_changed' => 'Ihre demographischen Einstellungen wurden erfolgreich geändert.',
@@ -71,13 +71,13 @@ $lang = array(
 	# CHANGE MAIL A
 	'chmaila_subj' => GWF_SITENAME.': EMail ändern',
 	'chmaila_body' => 
-		'Liebe/Lieber %1%,'.PHP_EOL.
+		'Liebe/Lieber %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Sie haben angefragt Ihre EMail auf '.GWF_SITENAME.' zu ändern.'.PHP_EOL.
 		'Um die Änderung abzuschließen, folgen sie bitte dem Link unterhalb dieses Textes.'.PHP_EOL.
 		'Falls sie die Änderung nicht selbst beantragt haben sollten, können sie diese Mail ignorieren, oder uns darüber informieren.'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Freundliche Grüße'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team',
@@ -85,10 +85,10 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': EMail bestätigen',
 	'chmailb_body' => 
-		'Liebe/Lieber %1%,'.PHP_EOL.
+		'Liebe/Lieber %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Um diese EMail als ihre Kontakt-Adresse zu verwenden, müssen sie dies noch bestätigen indem sie den folgenden Link aufrufen:'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Freundliche Grüße'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team',
@@ -96,19 +96,19 @@ $lang = array(
 	# CHANGE DEMO
 	'chdemo_subj' => GWF_SITENAME.': Demographische Einstellungen',
 	'chdemo_body' =>
-		'Liebe/Lieber %1%,'.PHP_EOL.
+		'Liebe/Lieber %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Sie haben angefragt ihre demographischen Einstellungen festzulegen oder zu ändern.'.PHP_EOL.
-		'Dies können sie nur einmal alle %2% ausführen, also stellen Sie bitte sicher, dass Ihre Angaben korrekt sind bevor sie fortfahren.'.PHP_EOL.
+		'Dies können sie nur einmal alle %2$s ausführen, also stellen Sie bitte sicher, dass Ihre Angaben korrekt sind bevor sie fortfahren.'.PHP_EOL.
 		PHP_EOL.
-		'Geschlecht: %3%'.PHP_EOL.
-		'Land: %4%'.PHP_EOL.
-		'Muttersprache: %5%'.PHP_EOL.
-		'Fremdsprache: %6%'.PHP_EOL.
-		'Geburtstag: %7%'.PHP_EOL.
+		'Geschlecht: %3$s'.PHP_EOL.
+		'Land: %4$s'.PHP_EOL.
+		'Muttersprache: %5$s'.PHP_EOL.
+		'Fremdsprache: %6$s'.PHP_EOL.
+		'Geburtstag: %7$s'.PHP_EOL.
 		PHP_EOL.
 		'Wenn Sie diese Einstellungen übernehmen möchten, rufen Sie bitte den folgenden Link auf:'.PHP_EOL.
-		'%8%'.
+		'%8$s'.
 		PHP_EOL.
 		'Freundliche Grüße'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team',
@@ -137,12 +137,12 @@ $lang = array(
 	'th_accrm_note' => 'Notiz',
 	'btn_accrm' => 'Konto Löschen',
 	'msg_accrm' => 'Ihr Konto wurde als gelöscht markiert. Alle Verweise wurden gelöscht.<br/>Sie wurden aus dem System ausgeloggt.',
-	'ms_accrm' => GWF_SITENAME.': %1% Konto gelöscht',
+	'ms_accrm' => GWF_SITENAME.': %1$s Konto gelöscht',
 	'mb_accrm' =>
 		'Liebes Team'.PHP_EOL.
 		''.PHP_EOL.
-		'Der Benutzer %1% hat soeben sein Konto gelöscht und diese Nachricht hinterlassen (kann leer sein):'.PHP_EOL.PHP_EOL.
-		'%2%',
+		'Der Benutzer %1$s hat soeben sein Konto gelöscht und diese Nachricht hinterlassen (kann leer sein):'.PHP_EOL.PHP_EOL.
+		'%2$s',
 		
 
 	# v2.03 Email Options
@@ -162,7 +162,7 @@ $lang = array(
 	'err_gpg_setup' => 'Sie müssen einen Schlüssel angeben.',
 	'err_gpg_key' => 'Ihr Schlüssel scheint ungültig zu sein.',
 	'err_gpg_token' => 'Ihr GPG Fingerabdruck passt nicht zu unseren Aufzeichnungen.',
-	'err_no_gpg_key' => 'Der Benutzer %1% hat noch keinen öffentlichen Schlüssel angegeben.',
+	'err_no_gpg_key' => 'Der Benutzer %1$s hat noch keinen öffentlichen Schlüssel angegeben.',
 	'err_no_mail' => 'Sie haben keine bestätigte Haupt-EMail-Adresse.',
 	'err_gpg_del' => 'Sie haben keinen bestätigten GPG Schlüssel der gelöscht werden könnte.',
 	'err_gpg_fine' => 'Sie haben bereits einen GPG Schlüssel. Bitte löschen Sie diesen zuerst.',
@@ -170,18 +170,18 @@ $lang = array(
 	'msg_setup_gpg' => 'Ihr GPG Schlüssel wurde gespeichert und ab jetzt verwendet.',
 	'mails_gpg' => GWF_SITENAME.': GPG Verschlüsselung einrichten',
 	'mailb_gpg' =>
-		'Liebe/Lieber %1%,'.PHP_EOL.
+		'Liebe/Lieber %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Sie wollen die GPG Verschlüsselung für unsere EMails aktivieren.'.PHP_EOL.
 		'Klicken Sie zum Bestätigen auf den folgenden Link:'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Freundliche Grüße'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team',
 
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1%">Passwort ändern</a>',
+	'th_change_pw' => '<a href="%1$s">Passwort ändern</a>',
 	'err_gpg_raw' => GWF_SITENAME.' unterstützt nur das ASCII Armor Format für GPG Schlüssel.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Account löschen',

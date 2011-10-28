@@ -13,17 +13,17 @@ $lang = array(
 	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Nome Utente sconosciuto',
-	'err_login2' => 'Passwort errato. Avete ancora %1% tentativo, prima che il Conto sarrà %2% bloccato.',
-	'err_blocked' => 'Attenda %1% prima di riprovare nuovamente.',
+	'err_login2' => 'Passwort errato. Avete ancora %1$s tentativo, prima che il Conto sarrà %2$s bloccato.',
+	'err_blocked' => 'Attenda %1$s prima di riprovare nuovamente.',
 
 	'welcome' => 
-		'Benvenuti su '.GWF_SITENAME.', %1%.<br/><br/>'.
+		'Benvenuti su '.GWF_SITENAME.', %1$s.<br/><br/>'.
 		'Auguriamo che piacia il nostro sito e buon sucesso nelle vostre sicerche.<br/>'.
 		'Se avete delle domande, non esiti di contattarci.',
 
 	'welcome_back' => 
-		'Benvenuti nuovamente su '.GWF_SITENAME.', %1%.<br/><br/>'.
-		'La vostra ultima attività era al %2% da qusto indirizzo IP: %3%.', 
+		'Benvenuti nuovamente su '.GWF_SITENAME.', %1$s.<br/><br/>'.
+		'La vostra ultima attività era al %2$s da qusto indirizzo IP: %3$s.', 
 
 	'logout_info' => 'Attualmente lei non si trova più nel Login.',
 
@@ -37,14 +37,14 @@ $lang = array(
 	'th_bind_ip' => 'Sitzung auf diese IP begrenzen',
 	'tt_bind_ip' => 'Eine Sicherheitsmassnahme um Cookie Diebstahl vorzubeugen.',
 
-	'err_failures' => 'Seit ihrem letzten Login wurde das Passwort %1% mal falsch eingegeben. Sie könnten Opfer einer misslungenen oder zukünftigen Attacke sein.',
+	'err_failures' => 'Seit ihrem letzten Login wurde das Passwort %1$s mal falsch eingegeben. Sie könnten Opfer einer misslungenen oder zukünftigen Attacke sein.',
 
 	# v1.01 (login failures)
 	'cfg_lf_cleanup_i' => 'Cleanup user failures after login?',
 	'cfg_lf_cleanup_t' => 'Cleanup old failures after time',
 
 	# v2.00 (login history)
-	'msg_last_login' => 'Your last login was %1% from %2% (%3%).<br/>You can also <a href="%4%">review your login history here</a>.',
+	'msg_last_login' => 'Your last login was %1$s from %2$s (%3$s).<br/>You can also <a href="%4$s">review your login history here</a>.',
 	'th_loghis_time' => 'Date',
 	'th_loghis_ip' => 'IP',
 	'th_hostname' => 'Hostname',
@@ -53,7 +53,7 @@ $lang = array(
 	'ft_clear' => 'Clear login history',
 	'btn_clear' => 'Clear',
 	'msg_cleared' => 'Your login history has been cleared.',
-	'info_cleared' => 'Your login history was last cleared at %1% from this IP: %2% / %3%',
+	'info_cleared' => 'Your login history was last cleared at %1$s from this IP: %2$s / %3$s',
 );
 
 ?>

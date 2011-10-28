@@ -7,9 +7,9 @@ $lang = array(
 			'General' => 'This document describes <i>Agreements and Licensing</i> of the site <i>WeChall</i>, which may be further titled as <i>the site</i>. Also you will find the <i>Terms of Use</i> and some notes about your <i>Privacy</i> on this page.',
 			'Sourcecode license' => 
 				'The sourcecode of this site is property of its author, Gizmore.<br/>'.
-				'WeChall4 is based on <a href="%1%">GWF2</a>, wheras you have also respect it`s particular copyright for the site`s core.<br/>'.
+				'WeChall4 is based on <a href="%1$s">GWF2</a>, wheras you have also respect it`s particular copyright for the site`s core.<br/>'.
 //				'WeChall4 is a GWF2 module, compatible with the GPL license. GWF2 core is available under a BSD like license.<br/>'.
-				'It is openly viewable to everyone <a href="%2%">here</a> (<a href="%3%">changelog</a>) and may be reused in parts, but not for the same <i>purpose</i>.<br/>'.
+				'It is openly viewable to everyone <a href="%2$s">here</a> (<a href="%3$s">changelog</a>) and may be reused in parts, but not for the same <i>purpose</i>.<br/>'.
 				'You may not start a simliar site with parts of the wechall code.<br/>'.
 				'We reserve the right to change the license or the provided source anytime, without notice anybody, also we may decide to exclude certain files of the sourcecode publishment.<br/>'.
 				'The sourcecode comes as is, and may harm your computer, try it out on your own risk.<br/>',

@@ -9,12 +9,12 @@ $lang = array(
 	# Errors
 	'err_gb' => 'A vendégkönyv nem létezik.',
 	'err_gbm' => 'A vendégkönyv bejegyzés nem működik.',
-	'err_gbm_username' => 'Érvénytelen felhasználói név. Minimum %1% és maximum %2% karakter hosszúságú lehet.',
-	'err_gbm_message' => 'Érvénytelen üzenet. Minimum %1% és maximum %2% karakter hosszúságú lehet.',
+	'err_gbm_username' => 'Érvénytelen felhasználói név. Minimum %1$s és maximum %2$s karakter hosszúságú lehet.',
+	'err_gbm_message' => 'Érvénytelen üzenet. Minimum %1$s és maximum %2$s karakter hosszúságú lehet.',
 	'err_gbm_url' => 'A weboldalad nem elérhető, vagy hibás az URL.',
 	'err_gbm_email' => 'Érvénytelen e-mail cím.',
-	'err_gb_title' => 'Érvénytelen cím. Minimum %1% és maximum %2% karakter hosszúságú lehet.',
-	'err_gb_descr' => 'Érvénytelen leírás. Minimum %1% és maximum %2% karakter hosszúságú lehet.',
+	'err_gb_title' => 'Érvénytelen cím. Minimum %1$s és maximum %2$s karakter hosszúságú lehet.',
+	'err_gb_descr' => 'Érvénytelen leírás. Minimum %1$s és maximum %2$s karakter hosszúságú lehet.',
 
 	# Messages
 	'msg_signed' => 'Sikeresen aláírtad a vendégkönyvet.',
@@ -50,15 +50,15 @@ $lang = array(
 	'tt_gb_locked' => 'Kattints ide, hogy ideiglenesen letiltsd a vendégkönyvet',
 
 	# Titles
-	'ft_sign' => 'Aláír %1%',
+	'ft_sign' => 'Aláír %1$s',
 	'ft_edit_gb' => 'Vendégkönyv szerkesztése',
 	'ft_edit_entry' => 'Vendégkönyv bejegyzés szerkesztése',
 
 	# Buttons
-	'btn_sign' => 'Aláír %1%',
+	'btn_sign' => 'Aláír %1$s',
 	'btn_edit_gb' => 'Vendégkönyv szerkesztése',
 	'btn_edit_entry' => 'Bejegyzés szerkesztése',
-	'btn_replyto' => 'Válasz neki: %1%',
+	'btn_replyto' => 'Válasz neki: %1$s',
 	'btn_public_hide' => 'Bejegyzés elrejtése a vendégek elől',
 	'btn_public_show' => 'Bejegyzés megjelenítése vendégek számára is',
 	'btn_moderate_no' => 'Bejegyzés megjelenítésének engedélyezése',
@@ -79,24 +79,24 @@ $lang = array(
 	'cfg_gb_level' => 'Minimum szint a vendégkönyv szerkesztéséhez',
 	'mails_signed' => GWF_SITENAME.': Vendégkönyv aláírva',
 	'mailb_signed' => 
-		'Kedves %1%'.PHP_EOL.
+		'Kedves %1$s'.PHP_EOL.
 		PHP_EOL.
-		'A %2% vendégkönyvet aláírta: %3% (%4%)'.PHP_EOL.
+		'A %2$s vendégkönyvet aláírta: %3$s (%4$s)'.PHP_EOL.
 		'Üzenet:'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		'Automatikusan meg tudod jeleníteni ezt a bejegyzést azáltal, hogy ráklikkelsz az alábbi linkre:'.PHP_EOL.
-		'%6%'.PHP_EOL,
+		'%6$s'.PHP_EOL,
 		
 	# v2.02 Mail on Sign
 	'th_mailonsign' => 'E-mail küldése új bejegyzés esetén?',
 	'mails2_signed' => GWF_SITENAME.': Vendégkönyv aláírva',
 	'mailb2_signed' => 
-		'Kedves %1%'.PHP_EOL.
+		'Kedves %1$s'.PHP_EOL.
 		PHP_EOL.
-		'A %2% vendégkönyv alá lett írva %3% (%4%)'.PHP_EOL.
+		'A %2$s vendégkönyv alá lett írva %3$s (%4$s)'.PHP_EOL.
 		'Üzenet:'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 		
 	# v2.03 (Delete entry)
 	'btn_del_entry' => 'Bejegyzés törlése',

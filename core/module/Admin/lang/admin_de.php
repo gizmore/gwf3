@@ -6,29 +6,29 @@ $lang = array(
 	'cfg_super_time' => 'Zeitspanne für eine Admin Session',
 
 	# Info
-	'install_info' => 'Einige Module benötigen ein Update. Sie können auch <a href="%1%">alle Module updaten und installieren</a>.',
-	'info_methods' => 'Prüfe %1% Funktionen dieses Moduls...',
+	'install_info' => 'Einige Module benötigen ein Update. Sie können auch <a href="%1$s">alle Module updaten und installieren</a>.',
+	'info_methods' => 'Prüfe %1$s Funktionen dieses Moduls...',
 	
 	# Select
 	'sel_group' => 'Benutzergruppe wählen',
 	
 	# Titles
-	'form_title' => '%1% konfigurieren',
+	'form_title' => '%1$s konfigurieren',
 	'ft_setup' => 'Superuser Passwort für das Admin-Modul festlegen',
 	'ft_prompt' => 'Bitte geben sie das Superuser Passwort ein',
 	'ft_login_as' => 'Als beliebiger User einloggen',
-	'ft_useredit' => 'Den Benutzer %1% editieren',
+	'ft_useredit' => 'Den Benutzer %1$s editieren',
 	'ft_search' => 'In der Benutzer Tabelle suchen.',
-	'ft_edit_group' => 'Benutzergruppe %1% bearbeiten',
+	'ft_edit_group' => 'Benutzergruppe %1$s bearbeiten',
 	'ft_add_to_group' => 'Einen Benutzer zu der Gruppe hinzufügen',
 
 	# Errors
 	'err_mod_not_installed' => 'Dieses Modul ist nicht installiert.',
-	'err_not_installed' => 'Das Modul %1% ist noch nicht installiert.',
-	'err_arg_script' => 'Sie können den Wert für &quot;%1%&quot; nicht manuell ändern.',
-	'err_arg_type' => 'Ungültiger Wert für &quot;%1%&quot;.',
-	'err_arg_range' => 'Der Wert für &quot;%1%&quot; muss zwischen %2% und %3% betragen.',
-	'err_arg_key' => 'Unbekannte Variable &quot;%1%&quot;.',
+	'err_not_installed' => 'Das Modul %1$s ist noch nicht installiert.',
+	'err_arg_script' => 'Sie können den Wert für &quot;%1$s&quot; nicht manuell ändern.',
+	'err_arg_type' => 'Ungültiger Wert für &quot;%1$s&quot;.',
+	'err_arg_range' => 'Der Wert für &quot;%1$s&quot; muss zwischen %2$s und %3$s betragen.',
+	'err_arg_key' => 'Unbekannte Variable &quot;%1$s&quot;.',
 	'err_update' => 'Ein Fehler ist während des Updates aufgetreten.',
 	'err_install' => 'Ein Fehler ist während des Installs aufgetreten.',
 	'err_check_pass' => 'Das Superuser Passwort ist falsch.',
@@ -43,20 +43,20 @@ $lang = array(
 	'err_disable_core_module' => 'Sie können dieses Modul nicht deaktivieren, weil es ein Hauptbestandteil des Systems ist.',
 
 	# Messages
-	'msg_update_var' => 'Der Wert für &quot;%1%&quot; wurde auf %2% gesetzt.',
+	'msg_update_var' => 'Der Wert für &quot;%1$s&quot; wurde auf %2$s gesetzt.',
 	'msg_update' => 'Das Modul wurde konfiguriert.',
-	'msg_install' => 'Das Modul %1% wurde (re)installiert. Führe Datenbank Updates aus...',
-	'msg_wipe_confirm' => 'Möchten sie wirklich die Datenbank für das Modul %1% löschen?',
-	'msg_wipe' => 'Das Modul %1% wurde aus der Datenbank entfernt. Alle Daten sind verloren und seine Tabelle(n) wurde(n) neu angelegt.',
-	'msg_installed' => 'Sie können nun fortfahren und <a href="%1%">das Modul %2% konfigurieren</a>.',
-	'msg_install_all' => 'Alle Module wurden installiert und auf den neuesten Stand gebracht.<br/><a href="%1%">Klicken Sie hier um zu der Modulübersicht zurückzukehren</a>.',
+	'msg_install' => 'Das Modul %1$s wurde (re)installiert. Führe Datenbank Updates aus...',
+	'msg_wipe_confirm' => 'Möchten sie wirklich die Datenbank für das Modul %1$s löschen?',
+	'msg_wipe' => 'Das Modul %1$s wurde aus der Datenbank entfernt. Alle Daten sind verloren und seine Tabelle(n) wurde(n) neu angelegt.',
+	'msg_installed' => 'Sie können nun fortfahren und <a href="%1$s">das Modul %2$s konfigurieren</a>.',
+	'msg_install_all' => 'Alle Module wurden installiert und auf den neuesten Stand gebracht.<br/><a href="%1$s">Klicken Sie hier um zu der Modulübersicht zurückzukehren</a>.',
 	'msg_enabled' => 'Das Modul wurde aktiviert.',
 	'msg_disabled' => 'Das Modul wurde deaktiviert.',
 	'msg_pass_cleared' => 'Das Superuser Passwort wurde gelöscht.',
-	'msg_pass_set' => 'Das Superuser Passwort lautet ab jetzt &quot;%1%&quot;<br/>Bewahren Sie dieses sicher auf, da sie es nicht einfach wiederherstellen oder löschen können.',
-	'msg_login_as' => 'Sie sind nun eingeloggt als %1%.',
-	'msg_userpass_changed' => 'Das Passwort für %1% lautet nun &quot;%2%&quot;.',
-	'msg_username_changed' => 'Der Benutzer %1% heisst nun %2%.',
+	'msg_pass_set' => 'Das Superuser Passwort lautet ab jetzt &quot;%1$s&quot;<br/>Bewahren Sie dieses sicher auf, da sie es nicht einfach wiederherstellen oder löschen können.',
+	'msg_login_as' => 'Sie sind nun eingeloggt als %1$s.',
+	'msg_userpass_changed' => 'Das Passwort für %1$s lautet nun &quot;%2$s&quot;.',
+	'msg_username_changed' => 'Der Benutzer %1$s heisst nun %2$s.',
 	'msg_user_edited' => 'Der Benutzer wurde erfolgreich editiert.',
 	'msg_deleted' => 'Der Benutzer wurde als gelöscht markiert.',
 	'msg_undeleted' => 'Der Benutzer wurde aktiviert.',
@@ -70,13 +70,13 @@ $lang = array(
 	'msg_online_1' => 'Der Online Status des Benutzers ist nun versteckt.',
 	'msg_approved_0' => 'Die EMail des Benutzers ist nun nicht mehr bestätigt.',
 	'msg_approved_1' => 'Die EMail des Benutzers ist nun bestätigt.',
-	'msg_module_enabled' => 'Das %1% Modul wurde aktiviert.',
-	'msg_module_disabled' => 'Das %1% Modul wurde deaktiviert.',
+	'msg_module_enabled' => 'Das %1$s Modul wurde aktiviert.',
+	'msg_module_disabled' => 'Das %1$s Modul wurde deaktiviert.',
 	'msg_new_path' => 'Der Modul-Pfad wurde erfolgreich geändert.',
-	'msg_new_name' => 'Das Modul wurde umbenannt zu %1%. <b>Warnung</b>: Das wird sicherlich alle URLs ungültig machen!',
+	'msg_new_name' => 'Das Modul wurde umbenannt zu %1$s. <b>Warnung</b>: Das wird sicherlich alle URLs ungültig machen!',
 	'msg_defaults' => 'Alle Modul-Variablen wurden auf Werkseinstellungen zurückgesetzt.',
-	'msg_removed_from_grp' => 'Der Benutzer %1% wurde aus der Gruppe %2% entfernt.',
-	'msg_added_to_grp' => 'Der Benutzer %1% wurde der Gruppe %2% hinzugefügt.',
+	'msg_removed_from_grp' => 'Der Benutzer %1$s wurde aus der Gruppe %2$s entfernt.',
+	'msg_added_to_grp' => 'Der Benutzer %1$s wurde der Gruppe %2$s hinzugefügt.',
 
 	# Table Headers
 	'th_modulename' => 'Modul',
@@ -110,7 +110,7 @@ $lang = array(
 	'th_want_adult' => 'Möchte Inhalt f.Erwachsene?',
 	'th_deleted' => 'Ist als gelöscht markiert?',
 	'th_birthdate' => 'Geburtsdatum',
-	'th_cfg_div' => '%1% Variablen',
+	'th_cfg_div' => '%1$s Variablen',
 	'th_group_name' => 'Benutzergruppe',
 	'th_group_sel_view' => 'Sichtbarkeit',
 	'th_group_sel_join' => 'Beitreten',
@@ -145,7 +145,7 @@ $lang = array(
 	'btn_users' => 'Benutzer',
 	'btn_groups' => 'Gruppen',
 	'btn_login_as' => 'Einloggen als',
-	'btn_login_as2' => 'Als %1% einloggen',
+	'btn_login_as2' => 'Als %1$s einloggen',
 	'btn_setup' => 'Neues Passwort setzen',
 	'btn_login' => 'Einloggen',
 	'btn_edit_user' => 'Benutzer editieren',
@@ -153,36 +153,36 @@ $lang = array(
 	'btn_defaults' => 'Reset',
 	'btn_add_to_group' => 'Zu Gruppe hinzufügen',
 	'btn_rem_from_group' => 'Aus Gruppe entfernen',
-	'btn_user_groups' => '%1%`s Gruppen editieren',
+	'btn_user_groups' => '%1$s`s Gruppen editieren',
 	'btn_add_to_grp' => 'Zu Gruppe hinzufügen',
 
 	# Tooltips
-	'tt_int' => 'Ganzzahl zwischen %1% und %2%.',
-	'tt_text' => 'Zeichenkette mit der Länge %1% bis %2%.',
+	'tt_int' => 'Ganzzahl zwischen %1$s und %2$s.',
+	'tt_text' => 'Zeichenkette mit der Länge %1$s bis %2$s.',
 	'tt_bool' => 'Boolescher Wert. Entweder 0 oder 1'.PHP_EOL.'Sie können auch YES,NO, ON,OFF verwenden.',
 	'tt_script' => 'Skript Wert welcher ausschließlich vom Modul kontrolliert wird.',
-	'tt_time' => 'Dauer zwischen %1% und %2%.<br/>Sie können auch Zeichenketten wie 1 year oder 1d 3m angeben.',
-	'tt_float' => 'Fließkommazahl zwischen %1% und %2%.',
+	'tt_time' => 'Dauer zwischen %1$s und %2$s.<br/>Sie können auch Zeichenketten wie 1 year oder 1d 3m angeben.',
+	'tt_float' => 'Fließkommazahl zwischen %1$s und %2$s.',
 
 	#v2.01 (Add Group)
 	'ft_add_group' => 'Eine Gruppe hinzufügen',
 	'btn_add_group' => 'Gruppe hinzufügen',
 	'msg_group_added' => 'Neue Gruppe wurde erzeugt.',
-	'err_groupname' => 'Der Gruppenname ist ungültig. Er muss zwischen %1% und %2% Zeichen lang sein.',
+	'err_groupname' => 'Der Gruppenname ist ungültig. Er muss zwischen %1$s und %2$s Zeichen lang sein.',
 
 	#v2.02 (refinish)
-	'pi_install' => 'Das Modul %1% hat %2% Datenbank Tabellen:<br/>%3%',
-	'ft_install' => 'Das %1% Modul installieren',
+	'pi_install' => 'Das Modul %1$s hat %2$s Datenbank Tabellen:<br/>%3$s',
+	'ft_install' => 'Das %1$s Modul installieren',
 	'th_reinstall' => 'Datenbank Löschen und Neu Installieren',
 	'err_no_admin_sect' => 'Dieses Modul hat keinen Admin Bereich.',
-	'err_module' => 'Das Modul %1% ist nicht vorhanden.',
+	'err_module' => 'Das Modul %1$s ist nicht vorhanden.',
 
 	#v2.03 (creds+level)
 	'th_user_credits' => '$',
 	'th_user_level' => 'Level ',
 
 	#v2.04 (drop wrapper)
-	'ft_reinstall' => 'Modul %1% neu installieren',
+	'ft_reinstall' => 'Modul %1$s neu installieren',
 	'th_reset' => 'Modul Variablen zurücksetzen',
 
 	#v2.05 (finish2)
@@ -190,7 +190,7 @@ $lang = array(
 
 	#v2.06 (GPG)
 	'err_gpg_key' => 'Ihre GPG Signatur scheint ungültig zu sein.',
-	'msg_gpg_key' => 'Bitte benutzen sie diesen Fingerprint in config.php: %1%',
+	'msg_gpg_key' => 'Bitte benutzen sie diesen Fingerprint in config.php: %1$s',
 
 	#v2.07 (fix)
 	'msg_edit_group' => 'Die Gruppe wurde bearbeitet.',

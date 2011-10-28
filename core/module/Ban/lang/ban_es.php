@@ -28,14 +28,14 @@ $lang = array(
 
 	# Messages
 	'msg_permbanned' => 'El usuario% 1% se vetó de manera permanente.',
-	'msg_tempbanned' => 'El usuario% 1% se veta hasta %2%',
-	'msg_warned' => 'El usuario %1% fue advertido.',
+	'msg_tempbanned' => 'El usuario% 1% se veta hasta %2$s',
+	'msg_warned' => 'El usuario %1$s fue advertido.',
 	'msg_marked_read' => 'El mensaje ha sido marcado como leído.',
 
 	# Info
-	'info_warning' => 'Has sido advertido!<br/>%1%<br/><a href="%2%">Clic aquí para marcarlo como leido</a>.',
-	'info_tempban' => 'Has sido vetado hasta %1%!<br/>%2%',
-	'info_permban' => 'Has sido vetado permanentemente:<br/>%1%',
+	'info_warning' => 'Has sido advertido!<br/>%1$s<br/><a href="%2$s">Clic aquí para marcarlo como leido</a>.',
+	'info_tempban' => 'Has sido vetado hasta %1$s!<br/>%2$s',
+	'info_permban' => 'Has sido vetado permanentemente:<br/>%1$s',
 	
 	# Admin Config
 	'cfg_ban_ipp' => 'Registros por página',

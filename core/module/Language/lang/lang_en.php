@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'ft_edit_file' => 'Edit file %1%',
+	'ft_edit_file' => 'Edit file %1$s',
 	'th_filename' => 'Filename',
 	'th_filesize' => 'Filesize',
 	'th_count' => '#Files',
@@ -26,8 +26,8 @@ $lang = array(
 	'ft_checker' => 'Check Language',
 	'ft_bundle' => 'Bundle Lang Files',
 
-	'msg_bundled' => 'Bundled language files in %1% (%2% files).',
+	'msg_bundled' => 'Bundled language files in %1$s (%2$s files).',
 
-	'err_zip' => 'An error occured in zip archive in %1% line %2%.',
+	'err_zip' => 'An error occured in zip archive in %1$s line %2$s.',
 );
 ?>

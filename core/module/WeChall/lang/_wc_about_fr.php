@@ -7,7 +7,7 @@ $lang = array(
 		'WeChall recense les Sites relatifs aux problèmes informatique et aux challenges.<br/>',
 	'about_08' => 'A propos de WeChall (en 2008, traduction à partir des citations anglaises)',
 #	'about_10' => '(and in 2010)',
-	'about_08_title' => '%1%: Quel est l\'objectif de ce site ?',
+	'about_08_title' => '%1$s: Quel est l\'objectif de ce site ?',
 	'about_08' => array(
 		'Inferno' =>
 			'<p>Pour les gens n\'étant pas familiers avec les sites de challenges, un site de challenges est un site proposant en particulier des problèmes relatifs à l\'informatique. Les utilisateurs peuvent s\'enregistrer sur de tels sites et commencer à résoudre les épreuves. Il existe de nombreux types de challenges. Les plus communs sont les suivants : <b>Cryptographie, Crackme, Stéganographie, Programmation, Logique et Maths/Science</b>. La difficulté de ces épreuves varie de même.</p>'.

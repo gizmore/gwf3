@@ -9,7 +9,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Sinu kasutajanimi',
 	'th_email' => 'Kontaktmeil',
-	'th_demo' => 'Demograafilised seaded - Saad neid muuta ainult korra %1% jooksul.',
+	'th_demo' => 'Demograafilised seaded - Saad neid muuta ainult korra %1$s jooksul.',
 	'th_countryid' => 'Riik',	
 	'th_langid' => 'Emakeel',	
 	'th_langid2' => 'Muu võõrkeel, mida oskad',
@@ -37,11 +37,11 @@ $lang = array(
 	'err_no_mail_to_approve' => 'Sa pole oma e-maili kirjutanud',
 	'err_already_approved' => 'Su e-mail on juba heakskiidetud.',
 	'err_no_image' => 'Sinu üleslaaditud fail pole pilt, või on liiga väike',
-	'err_demo_wait' => 'Sa muutsid oma demograafilisi seadeid hiljuti. Palun oota %1%.',
+	'err_demo_wait' => 'Sa muutsid oma demograafilisi seadeid hiljuti. Palun oota %1$s.',
 	'err_birthdate' => 'Su sünnipäev on vigane',
 
 	# Messages
-	'msg_mail_changed' => 'Sinu kontaktmeil peab olema muudetud <b>%1%</b>.',
+	'msg_mail_changed' => 'Sinu kontaktmeil peab olema muudetud <b>%1$s</b>.',
 	'msg_deleted_avatar' => 'Sinu avatari pilt on eemaldatud',
 	'msg_avatar_saved' => 'Sinu uus avatar on salvestatud.',
 	'msg_demo_changed' => 'Sinu demograafilised uuendused on muudetud.',
@@ -71,13 +71,13 @@ $lang = array(
 	# CHANGE MAIL A
 	'chmaila_subj' => GWF_SITENAME.': Muuda oma EMail',
 	'chmaila_body' => 
-		'Austatud %1%,'.PHP_EOL.
+		'Austatud %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Sa avaldasid soovi muuta oma e-mail '.GWF_SITENAME.'.'.PHP_EOL.
 		'Et seda teha, pead sa vajutama järgneval lingil.'.PHP_EOL.
 		'Juhul kui sa ei soovinud oma maili muuta, võid seda meili ignoreerida või meile teada anda.'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Parimate soovidega,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -85,10 +85,10 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': Kinnita oma Email',
 	'chmailb_body' => 
-		'Austatud %1%,'.PHP_EOL.
+		'Austatud %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Et kasutada seda meili kui oma põhilist meili, pead selle kinnitama vajutades alloleval lingil:'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Parimate soovidega'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -96,19 +96,19 @@ $lang = array(
 	# CHANGE DEMO
 	'chdemo_subj' => GWF_SITENAME.': Muuda demograafilisi seadeid',
 	'chdemo_body' =>
-		'Dear %1%'.PHP_EOL.
+		'Dear %1$s'.PHP_EOL.
 		PHP_EOL.
 		'Oled avaldanud soovi häälestada või muuta oma demograafilisi seadeid.'.PHP_EOL.
-		'Sa saad teha seda ainult %2% jooksul, seega palun ole kindel, et info on õige, enne kui jätkad.'.PHP_EOL.
+		'Sa saad teha seda ainult %2$s jooksul, seega palun ole kindel, et info on õige, enne kui jätkad.'.PHP_EOL.
 		PHP_EOL.
-		'Sugu: %3%'.PHP_EOL.
-		'Riik: %4%'.PHP_EOL.
-		'Emakeel: %5%'.PHP_EOL.
-		'Muu võõrkeel, mida oskad: %6%'.PHP_EOL.
-		'Sünnikuupäev: %7%'.PHP_EOL.
+		'Sugu: %3$s'.PHP_EOL.
+		'Riik: %4$s'.PHP_EOL.
+		'Emakeel: %5$s'.PHP_EOL.
+		'Muu võõrkeel, mida oskad: %6$s'.PHP_EOL.
+		'Sünnikuupäev: %7$s'.PHP_EOL.
 		PHP_EOL.
 		'Kui soovid neid seadistusi jätta, vajuta järgneval lingil:'.PHP_EOL.
-		'%8%'.
+		'%8$s'.
 		PHP_EOL.
 		'Parimate soovidega'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -137,12 +137,12 @@ $lang = array(
 	'th_accrm_note' => 'Märge',
 	'btn_accrm' => 'Kustuta kasutaja',
 	'msg_accrm' => 'Sinu kasutaja on märgitud kustutatuks ja kõik viited peaksid olema kustutatud.<br/>Oled välja logitud',
-	'ms_accrm' => GWF_SITENAME.': %1% kasutaja kustutamine',
+	'ms_accrm' => GWF_SITENAME.': %1$s kasutaja kustutamine',
 	'mb_accrm' =>
 		'Austatud staff'.PHP_EOL.
 		''.PHP_EOL.
-		'Kasutaja %1% kustutas just oma kasutaja ja jättis selle teate (may_be_empty):'.PHP_EOL.PHP_EOL.
-		'%2%',
+		'Kasutaja %1$s kustutas just oma kasutaja ja jättis selle teate (may_be_empty):'.PHP_EOL.PHP_EOL.
+		'%2$s',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferred EMail Format',
@@ -161,7 +161,7 @@ $lang = array(
 	'err_gpg_setup' => 'Either upload a file which contains your public key or paste your public key in the text area.',
 	'err_gpg_key' => 'Your public key seems invalid.',
 	'err_gpg_token' => 'Your gpg fingerprint token does not match our records.',
-	'err_no_gpg_key' => 'The user %1% did not submit a public key yet.',
+	'err_no_gpg_key' => 'The user %1$s did not submit a public key yet.',
 	'err_no_mail' => 'You don`t have an approved main contact email address.',
 	'err_gpg_del' => 'You don`t have a validated GPG key to delete.',
 	'err_gpg_fine' => 'You already have a GPG key. Please delete it first.',
@@ -169,18 +169,18 @@ $lang = array(
 	'msg_setup_gpg' => 'Your GPG has been stored and is in use now.',
 	'mails_gpg' => GWF_SITENAME.': Setup GPG Encryption',
 	'mailb_gpg' =>
-		'Dear %1%,'.PHP_EOL.
+		'Dear %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'You have decided to turn on gpg encryption for emails sent by this robot.'.PHP_EOL.
 		'To do so, follow the link below:'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1%">Change your password</a>',
+	'th_change_pw' => '<a href="%1$s">Change your password</a>',
 	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',

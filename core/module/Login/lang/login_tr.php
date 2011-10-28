@@ -11,16 +11,16 @@ $lang = array (
 	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Bilinmeyen Kullanıcı Adı',
-	'err_login2' => 'Yanlış Şifre. Artık %2% engellenmiş kadar %1% sol çalışır% var.',
-	'err_blocked' => 'Seni tekrar deneyin kadar %1% Lütfen bekleyiniz.',
+	'err_login2' => 'Yanlış Şifre. Artık %2$s engellenmiş kadar %1$s sol çalışır% var.',
+	'err_blocked' => 'Seni tekrar deneyin kadar %1$s Lütfen bekleyiniz.',
 	
 	'welcome' =>
-		'Hoşgeldiniz için '.GWF_SITENAME.', %1%.<br/><br/>'.
+		'Hoşgeldiniz için '.GWF_SITENAME.', %1$s.<br/><br/>'.
 		'Biz site gibi umut ve tarama yaparken eğlenin.<br/>'.
 		'Eğer bizimle irtibata geçmekten çekinmeyin sorularım var!',
 	'welcome_back' =>
-		'Geri'. GWF_SITENAME.' hoş geldiniz, %1%.<br/><br/>'.
-		'Son aktivitesi %2% bu IP adresinden oldu: %3%.',
+		'Geri'. GWF_SITENAME.' hoş geldiniz, %1$s.<br/><br/>'.
+		'Son aktivitesi %2$s bu IP adresinden oldu: %3$s.',
 	
 	'logout_info' => 'Şimdi çıktınız.',
 	
@@ -41,7 +41,7 @@ $lang = array (
 	'cfg_lf_cleanup_t' => 'Temizleme eski hataları defalarca',
 	
 	# V2.00 (giriş tarih)
-	'msg_last_login' => 'Son Girişiniz %1% %2% (%3%) değildi. Ayrıca <a href="%4%">burada </a> giriş tarihini gözden.<br/>',
+	'msg_last_login' => 'Son Girişiniz %1$s %2$s (%3$s) değildi. Ayrıca <a href="%4$s">burada </a> giriş tarihini gözden.<br/>',
 	'th_loghis_time' => 'Tarih',
 	'th_loghis_ip' => 'IP ',
 	'th_hostname' => 'Sunucu',
@@ -50,6 +50,6 @@ $lang = array (
 	'ft_clear' => 'Clear login history',
 	'btn_clear' => 'Clear',
 	'msg_cleared' => 'Your login history has been cleared.',
-	'info_cleared' => 'Your login history was last cleared at %1% from this IP: %2% / %3%',
+	'info_cleared' => 'Your login history was last cleared at %1$s from this IP: %2$s / %3$s',
 );
 ?>

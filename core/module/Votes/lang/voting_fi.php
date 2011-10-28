@@ -4,8 +4,8 @@ $lang = array(
 ## SCOREVOTE ##
 
 	# votebuttons.php
-	'alt_button' => 'Äänestä %1%',
-	'title_button' => 'Äänestä %1%',
+	'alt_button' => 'Äänestä %1$s',
+	'title_button' => 'Äänestä %1$s',
 
 	# Errors
 	'err_votescore' => 'Äänestyspöytää ei löytynyt tuolle kohteelle.',
@@ -14,8 +14,8 @@ $lang = array(
 	'err_disabled' => 'Tuon kohteen äänestys on tällä hetkellä pois käytöstä.',
 	'err_vote_ip' => 'Tätä kohdetta on jo äänestetty IP-osoitteestasi.',
 	'err_no_guest' => 'Vieraat eivät saa äänestää tätä kohdetta.',
-	'err_title' => 'Otsikon pituuden tulee olla %1% - %2% merkkiä.',
-	'err_options' => 'Äänestysvaihtoehtosi %1% on/ovat virheellisiä eivätkä luultavasti pituudeltaan %2% - %3% merkkiä.',
+	'err_title' => 'Otsikon pituuden tulee olla %1$s - %2$s merkkiä.',
+	'err_options' => 'Äänestysvaihtoehtosi %1$s on/ovat virheellisiä eivätkä luultavasti pituudeltaan %2$s - %3$s merkkiä.',
 	'err_no_options' => 'Et määrittänyt mitään vaihtoehtoja.',
 
 	# Messages
@@ -23,7 +23,7 @@ $lang = array(
 
 ## POLLS ##
 
-	'poll_votes' => '%1% ääntä',
+	'poll_votes' => '%1$s ääntä',
 	'votes' => 'äänet',
 	'voted' => 'äänestetty',
 	'vmview_never' => 'Ei koskaan',
@@ -34,7 +34,7 @@ $lang = array(
 	'th_votes' => 'Äänet',
 	'th_title' => 'Otsikko',
 	'th_multi' => 'Salli useita valintoja?',
-	'th_option' => 'Vaihtoehto %1%',
+	'th_option' => 'Vaihtoehto %1$s',
 	'th_guests' => 'Salli vieraiden äänestää?',
 	'th_mvview' => 'Näytä tulokset',
 	'th_vm_public' => 'Näytä sivupalkissa?',
@@ -57,8 +57,8 @@ $lang = array(
 	'err_multiview' => 'Tämän äänestyksen katsomislippu (view flag) on virheellinen.',
 	'err_poll' => 'Tuntematon äänestys.',
 	'err_global_poll' => 'Sinulla ei ole oikeuksia luoda globaalia äänestystä.',
-	'err_option_empty' => 'Vaihtoehto %1% on tyhjä.',
-	'err_option_twice' => 'Vaihtoehto %1% esiintyy useita kertoja.',
+	'err_option_empty' => 'Vaihtoehto %1$s on tyhjä.',
+	'err_option_twice' => 'Vaihtoehto %1$s esiintyy useita kertoja.',
 	'err_no_options' => 'Unohdit asettaa vaihtoehdon äänestyksellesi.',
 	'err_no_multi' => 'Voit valita vain yhden asetuksen.',
 	'err_poll_off' => 'Tämä äänestys on tällä hetkellä pois pääktä.',

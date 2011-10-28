@@ -50,23 +50,23 @@ $lang = array(
 	'err_token' => 'The token does not match.',
 	'err_not_open' => 'This ticket is not open.',
 	'err_ticket' => 'This ticket is unknown.',
-	'err_message' => 'Your message has to be between %1% and %2% chars long.',
+	'err_message' => 'Your message has to be between %1$s and %2$s chars long.',
 	'err_no_other' => 'Please specify an own title when selecting other title.',
-	'err_other_len' => 'Your title is too long. Max %1% chars are allowed.',
+	'err_other_len' => 'Your title is too long. Max %1$s chars are allowed.',
 	'err_title' => 'Please select a valid title or select Other problem: and specify your own.',
-	'err_priority' => 'The priority has to be between %1% and %2%.',
+	'err_priority' => 'The priority has to be between %1$s and %2$s.',
 	'err_tmsg' => 'The message for this ticket could not been found.',
 	'err_two_workers' => 'This ticket already has a worker assigned.',
 	'err_no_faq' => 'The user does not want the item beeing listed in the faq.',
-	'err_question' => 'The question has to be between %1% and %2% chars long.',
-	'err_answer' => 'The answer has to be between %1% and %2% chars long.',
+	'err_question' => 'The question has to be between %1$s and %2$s chars long.',
+	'err_answer' => 'The answer has to be between %1$s and %2$s chars long.',
 	'err_faq' => 'The FAQ entry could not been found.',
 	'err_confirm_delete' => 'Please checkmark the deletion box to confirm the deletion.',
 	
 	'msg_created' => 'Your ticket has been created.',
-	'msg_assigned' => 'Tickt #%1% is now assigned to %2%.',
-	'msg_raised' => 'The priority has been raised by %1%.',
-	'msg_lowered' => 'The priority has been lowered by %1%.',
+	'msg_assigned' => 'Tickt #%1$s is now assigned to %2$s.',
+	'msg_raised' => 'The priority has been raised by %1$s.',
+	'msg_lowered' => 'The priority has been lowered by %1$s.',
 	'msg_replied' => 'You have replied to the ticket.',
 	'msg_read' => 'The message has been marked as read.',
 	'msg_faq' => 'The ticket is now allowed to be listed in the faq.',
@@ -115,48 +115,48 @@ $lang = array(
 	'status_unsolved' => 'Unsolveable',
 	
 	### EMails ###
-	'subj_nt' => 'New '.GWF_SITENAME.' Ticket #%1%',
+	'subj_nt' => 'New '.GWF_SITENAME.' Ticket #%1$s',
 	'body_nt' =>
-		'Dear %1%, '.PHP_EOL.
+		'Dear %1$s, '.PHP_EOL.
 		PHP_EOL.
 		'A new helpdesk ticket has been created on '.GWF_SITENAME.'.'.PHP_EOL.
-		'From: %2%'.PHP_EOL.
-		'Title: %3%'.PHP_EOL.
+		'From: %2$s'.PHP_EOL.
+		'Title: %3$s'.PHP_EOL.
 		'Message:'.PHP_EOL.
-		'%4%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
 		PHP_EOL.
 		'You can immediately claim to work on this ticket by visiting this page:'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 		
-	'subj_nmu' => GWF_SITENAME.' Ticket #%1%',
+	'subj_nmu' => GWF_SITENAME.' Ticket #%1$s',
 	'body_nmu' =>
-		'Dear %1%, '.PHP_EOL.
+		'Dear %1$s, '.PHP_EOL.
 		PHP_EOL.
 		'There has been a reply to your helpdesk ticket.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2%'.PHP_EOL.
+		'From: %2$s'.PHP_EOL.
 		'Message:'.PHP_EOL.
 		PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'If your are happy with the answer and the problem is solved, please close the ticket by visiting:'.PHP_EOL.
-		'%4%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
 		PHP_EOL.
 		'Else, please mark the message as read by visiting this page:'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 
-	'subj_nms' => GWF_SITENAME.' Ticket #%1%',
+	'subj_nms' => GWF_SITENAME.' Ticket #%1$s',
 	'body_nms' =>
-		'Hello %1%, '.PHP_EOL.
+		'Hello %1$s, '.PHP_EOL.
 		PHP_EOL.
 		'There is a new reply to a Helpdesk ticket.'.PHP_EOL.
-		'From: %2%'.PHP_EOL.
+		'From: %2$s'.PHP_EOL.
 		'Message:'.PHP_EOL.
 		PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'Please mark the message as read by visiting this page:'.PHP_EOL.
-		'%4%'.PHP_EOL,
+		'%4$s'.PHP_EOL,
 		
 );
 ?>

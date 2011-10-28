@@ -10,7 +10,7 @@ $lang = array(
 	'th_birthdate' => 'Data e lindjes',
 	'th_countryid' => 'Vend',
 	'th_tos' => 'Unë pajtohem me kushtet',
-	'th_tos2' => 'Pajtohem ne <a href="%1%">bazen e Shërbimit </a>',
+	'th_tos2' => 'Pajtohem ne <a href="%1$s">bazen e Shërbimit </a>',
 	'th_register' => 'Regjistër',
 
 	'btn_register' => 'Regjistër',
@@ -30,15 +30,15 @@ $lang = array(
 
 	'regmail_subject' => GWF_SITENAME.': Aplikim',
 	'regmail_body' => 
-		'Përshëndetje %1%<br/>'.
+		'Përshëndetje %1$s<br/>'.
 		'<br/>'.
 		'Ju faleminderit per regjistrimin tuaj ne '.GWF_SITENAME.'.<br/>'.
 		'Për të mbaruar regjistrimin, llogaria juaj duhet të aktivizohet duke vizituar linkun e mëposhtëm.<br/>'.
 		'Nëse ata nuk janë edhe më '.GWF_SITENAME.' janë regjistruar, ju lutem injoroni kete email, ose të regjistroheni në këtë përmes një e-mail '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'<br/>'.
-		'%3%'.
+		'%3$s'.
 		'Te Mire,<br/>'.
 		''.GWF_SITENAME.' Teami.',
 
@@ -46,8 +46,8 @@ $lang = array(
 
 	'regmail_ptbody' => 
 		'Këtu përsëri fjalëkalimin tuaj:<br/><b>'.
-		'Emri i përdoruesit: %1%<br/>'.
-		'Fjalëkalim: %2%<br/>'.
+		'Emri i përdoruesit: %1$s<br/>'.
+		'Fjalëkalim: %2$s<br/>'.
 		'</b><br/>'.
 		'Kjo është një ide e mirë për të fshini kete e-mail dhe fjalëkalimin mbajtur të sigurt.<br/>'.
 		'Ne dyqan fjalëkalimin tuaj në tekst i qartë edhe nga, por ato mund të aplikohen në çdo kohë nëpërmjet këtij e-mail një të ri.<br/>'.
@@ -68,12 +68,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Afati i fundit për të kompletuar regjistrimin',
 
 	'err_birthdate' => 'ditëlindjen e juaj nuk është e vlefshme.',
-	'err_minage' => 'Ju nuk jeni të vjetër të mjaftueshme për të përshtatur për të '.GWF_SITENAME.' të regjistroheni. Ju duhet të jetë së paku %1% Vjeçare.',
+	'err_minage' => 'Ju nuk jeni të vjetër të mjaftueshme për të përshtatur për të '.GWF_SITENAME.' të regjistroheni. Ju duhet të jetë së paku %1$s Vjeçare.',
 	'err_ip_timeout' => 'Kjo IP ka krijuar kohët e fundit një llogari.',
 	'th_token' => 'Kod',
 	'th_timestamp' => 'Data e regjistrimit',
 	'th_ip' => 'IP e identifikimit',
-	'tt_username' => 'Emri i përdoruesit duhet të fillojë me një letër.'.PHP_EOL.'Ai duhet të përmbajë vetëm numrat, dhe _ Letra. Gjatësia e lejuara: 3 - %1% Shenjë.', 
+	'tt_username' => 'Emri i përdoruesit duhet të fillojë me një letër.'.PHP_EOL.'Ai duhet të përmbajë vetëm numrat, dhe _ Letra. Gjatësia e lejuara: 3 - %1$s Shenjë.', 
 	'tt_email' => 'Një email vlefshme është e nevojshme për aplikimin.',
 
 	'info_no_cookie' => 'Shfletuesi juaj nuk e përkrah cookie-t, ose nuk është i lejuar ato. Për të kyçeni këto janë të nevojshme, megjithatë.',

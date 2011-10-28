@@ -606,6 +606,8 @@ final class Lamb_Server extends GDO
 		
 		$users = $channel->getUsers();
 		
+		$username = strtolower($username);
+		
 		foreach ($users as $uname => $data)
 		{
 			if (strpos($uname, $username) !== false)

@@ -112,7 +112,12 @@ final class LambModule_Slapwarz extends Lamb_Module
 			$fake = true;
 		}
 		
-		$message = sprintf('%s %s %s %s with %s %s.', $user->getVar('lusr_name'), $adverb, $verb, Lamb::softhyphe($target->getName()), $adjective, $item);
+		if ($target instanceof Lamb_User)
+		{
+			$target_name = Lamb::softhyphe($target->getName());
+		}
+		
+		$message = sprintf('%s %s %s %s with %s %s.', $user->getVar('lusr_name'), $adverb, $verb, $target_name, $adjective, $item);
 		
 
 		# Insert slap

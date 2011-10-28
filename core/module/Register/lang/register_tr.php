@@ -10,7 +10,7 @@ $lang = array (
 'th_birthdate' => 'Doğum Günü',
 'th_countryid' => 'Ülke',
 'th_tos' => 'Ben kullanın Koşullarını kabul',
-'th_tos2' => 'I kullanın <a href="%1%">Şartlarını kabul ediyorum</a><br/>' ,
+'th_tos2' => 'I kullanın <a href="%1$s">Şartlarını kabul ediyorum</a><br/>' ,
 'th_register' => 'Kayıt',
 
 'btn_register' => 'Kayıt',
@@ -31,15 +31,15 @@ $lang = array (
 
 'regmail_subject' => 'Kayıt Ol güncellenmiştir '.GWF_SITENAME,
 'regmail_body' =>
-	'Merhaba %1%<br/>'.
+	'Merhaba %1$s<br/>'.
 	'<br/>'.
 	'Güncellenmiştir '.GWF_SITENAME.' kayıt için teşekkür ederiz.<br/>'.
 	'Kaydı tamamlamak için, var öncelikle aşağıdaki bağlantıyı ziyaret ederek hesabınızın etkinleştirin.<br/>'.
 	'Sen güncellenmiştir '.GWF_SITENAME.' kayıt etmediyseniz, Bu mail görmezden ya da güncellenmiştir '.GWF_SUPPORT_EMAIL.' lütfen bizi arayınız.<br/>'.
 	'<br/>'.
-	'%2%<br/>'.
+	'%2$s<br/>'.
 	'<br/>'.
-	'%3%'.
+	'%3$s'.
 	'Saygılarımızla<br/>'.
 	GWF_SITENAME.' Takım.',
 
@@ -47,8 +47,8 @@ $lang = array (
 
 'regmail_ptbody' =>
 	'Your Giriş Credentials şunlardır: <br/>'.
-	'Kullanıcı adı: %1%<br/>.',
-	'Parola: %2%<br/>.',
+	'Kullanıcı adı: %1$s<br/>.',
+	'Parola: %2$s<br/>.',
 	'<br/>'.
 	'Bu iyi bir fikir bu e-postayı silmek ve şifrenizi başka yerde mağazası.<br/>'.
 	'Biz düz yazı şifrenizi saklamiyoruz, yapmanız gerektiğine ya.<br/>'.
@@ -68,12 +68,12 @@ $lang = array (
 'cfg_ua_threshold' => 'tam kayıt zaman aşımı',
 
 'err_birthdate' => 'Kişisel doğum geçersizdir.',
-'err_minage' => 'Üzgünüz, ama yeterince kayıt eski değildir. En az %1% yaşında gerekir.',
+'err_minage' => 'Üzgünüz, ama yeterince kayıt eski değildir. En az %1$s yaşında gerekir.',
 'err_ip_timeout' => 'Biri son zamanlarda bu IP hesap kayıtlı.',
 'th_token' => 'Simgesi',
 'th_timestamp' => 'Kayıt Time',
 'th_ip' => 'Reg IP',
-'tt_username' => 'kullanıcı adı bir harf ile başlamalı.'.PHP_EOL.'Sadece harfler, rakamlar ve altçizgi içerebilir.'.PHP_EOL.'Süre 3 olmalı - %1% Karakter.',
+'tt_username' => 'kullanıcı adı bir harf ile başlamalı.'.PHP_EOL.'Sadece harfler, rakamlar ve altçizgi içerebilir.'.PHP_EOL.'Süre 3 olmalı - %1$s Karakter.',
 'tt_email' => 'Geçerli bir EMail kayıt için gereklidir.',
 
 'info_no_cookie' => 'Tarayıcınız veya çerezleri desteklemiyor için '. GWF_SITENAME.' onlara izin vermez, Ama aşçı giriş için gereklidir.',

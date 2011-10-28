@@ -8,7 +8,7 @@ $lang = array(
 	'contact_title' => 'Kontakt',
 	'contact_info' =>
 		'Siin saad meiega kontakteeruda läbi e-maili. Palun avalda meile õige e-mail, siis me saame vajaduse korral sulle vastata.<br/>'.
-		'Samuti võid saata sa meile ka meili <a href="mailto:%1%">%1%</a> mõne teise programmiga.',
+		'Samuti võid saata sa meile ka meili <a href="mailto:%1$s">%1$s</a> mõne teise programmiga.',
 	'form_title' => 'PEALKIRI',
 	'th_email' => 'Sinu e-mail',
 	'th_message' => 'Sinu sõnum',
@@ -17,12 +17,12 @@ $lang = array(
 	'mail_subj' => GWF_SITENAME.': Uus kiri',
 	'mail_body' => 
 		'Uus e-mail saadetud.<br/>'.
-		'Kellelt: %1%<br/>'.
+		'Kellelt: %1$s<br/>'.
 		'Sõnum:<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'',
 
-	'info_skype' => '<br/>Sa võid meiega ka ühendust võtta läbi Skype’i: %1%.',
+	'info_skype' => '<br/>Sa võid meiega ka ühendust võtta läbi Skype’i: %1$s.',
 
 	'err_email' => 'Vigane e-mail. Sa võid selle kasti tühjaks jätta.',
 	'err_message' => 'Sinu sõnum on liiga pikk või liiga lühike.',
@@ -36,21 +36,21 @@ $lang = array(
 
 	# Sendmail
 	'th_user_email' => 'Sinu e-maili aadress',
-	'ft_sendmail' => 'Saada %1% e-mail',
+	'ft_sendmail' => 'Saada %1$s e-mail',
 	'btn_sendmail' => 'Saada meil',
 	'err_no_mail' => 'See kasutaja ei taha saada e-maile.',
-	'msg_mailed' => 'E-mail on saadetud %1%.',
-	'mail_subj_mail' => GWF_SITENAME.': EMail from %1%',
+	'msg_mailed' => 'E-mail on saadetud %1$s.',
+	'mail_subj_mail' => GWF_SITENAME.': EMail from %1$s',
 	'mail_subj_body' => 
-		'Hello %1%'.PHP_EOL.
+		'Hello %1$s'.PHP_EOL.
 		PHP_EOL.
-		'Teile on sõnum %2% poolt leheküljelt '.GWF_SITENAME.' lehekülg:'.PHP_EOL.
+		'Teile on sõnum %2$s poolt leheküljelt '.GWF_SITENAME.' lehekülg:'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'%3%',
+		'%3$s',
 
 	# V2.01 (List Admins)
-	'list_admins' => 'Adminid: %1%.',
+	'list_admins' => 'Adminid: %1$s.',
 	'cfg_captcha_member' => 'Show captcha for members?',
 );
 

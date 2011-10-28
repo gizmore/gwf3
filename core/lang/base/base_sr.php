@@ -1,32 +1,32 @@
 <?php
 # translation by Bejker
 $lang = array(
-	'ERR_DATABASE' => 'База података има грешку у фајлу %1% Линија %2%.',
-	'ERR_FILE_NOT_FOUND' => 'Фајл није пронађен: %1%',
-	'ERR_MODULE_DISABLED' => 'Модул %1% је тренутно онемогућен.',
+	'ERR_DATABASE' => 'База података има грешку у фајлу %1$s Линија %2$s.',
+	'ERR_FILE_NOT_FOUND' => 'Фајл није пронађен: %1$s',
+	'ERR_MODULE_DISABLED' => 'Модул %1$s је тренутно онемогућен.',
 	'ERR_LOGIN_REQUIRED' => 'За ову функцију морате бити улоговани.',
 	'ERR_NO_PERMISSION' => 'Није дозвољено.',
 	'ERR_WRONG_CAPTCHA' => 'Морате укуцати слова са слике тачно.',
-	'ERR_MODULE_MISSING' => 'Модул %1% не може бити нађен.',
+	'ERR_MODULE_MISSING' => 'Модул %1$s не може бити нађен.',
 	'ERR_COOKIES_REQUIRED' => 'Време сесије је истекло или Вам нису подржани кукији у претраживачу.<br/>Молимо освежите страницу.',
 	'ERR_UNKNOWN_USER' => 'Корисник је непознат.',
 	'ERR_UNKNOWN_GROUP' => 'Група је непозната.',
 	'ERR_UNKNOWN_COUNTRY' => 'Држава је непозната.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Језик је непознат.',
-	'ERR_METHOD_MISSING' => 'Непознат метод: %1% у модулу %2%.',
-	'ERR_GENERAL' => 'Непозната грешка у %1% Линија %2%.',
-	'ERR_WRITE_FILE' => 'Не може се исписати фајл: %1%.',
-	'ERR_CLASS_NOT_FOUND' => 'Непозната класа: %1%.',
-	'ERR_MISSING_VAR' => 'Недостаје HTTP POST променљива: %1%.',
+	'ERR_METHOD_MISSING' => 'Непознат метод: %1$s у модулу %2$s.',
+	'ERR_GENERAL' => 'Непозната грешка у %1$s Линија %2$s.',
+	'ERR_WRITE_FILE' => 'Не може се исписати фајл: %1$s.',
+	'ERR_CLASS_NOT_FOUND' => 'Непозната класа: %1$s.',
+	'ERR_MISSING_VAR' => 'Недостаје HTTP POST променљива: %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Морате аплодовати фајл.',
 	'ERR_MAIL_SENT' => 'Појавила се грешка за време слања мејла.',
 	'ERR_CSRF' => 'Ваш токен формулара је невалидан. Можда сте покушали дуплирати текст, или је у међувремену истекла сесија.',
-	'ERR_HOOK' => 'A hook returned false: %1%.',
-	'ERR_PARAMETER' => 'Неисправан аргумент у %1% линија %2%. Аргумент функције %3% је невалидан.',
-	'ERR_DEPENDENCY' => 'Unresolved Dependency: core/module/%1%/method/%2% requires Module %3% v%4%.',
-	'ERR_SEARCH_TERM' => 'Термин за претрагу мора бити %1% - %2% карактера дугачак.',
-	'ERR_SEARCH_NO_MATCH' => 'Тражени термин &quot;%1%&quot; није пронађен.',
-	'ERR_POST_VAR' => 'Неочекивана POST променљива: %1%.',
+	'ERR_HOOK' => 'A hook returned false: %1$s.',
+	'ERR_PARAMETER' => 'Неисправан аргумент у %1$s линија %2$s. Аргумент функције %3$s је невалидан.',
+	'ERR_DEPENDENCY' => 'Unresolved Dependency: core/module/%1$s/method/%2$s requires Module %3$s v%4$s.',
+	'ERR_SEARCH_TERM' => 'Термин за претрагу мора бити %1$s - %2$s карактера дугачак.',
+	'ERR_SEARCH_NO_MATCH' => 'Тражени термин &quot;%1$s&quot; није пронађен.',
+	'ERR_POST_VAR' => 'Неочекивана POST променљива: %1$s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -79,10 +79,10 @@ $lang = array(
 	'd5' => 'Fri',
 	'd6' => 'Sat',
 
-	'ago_s' => '%1% seconds ago',
-	'ago_m' => '%1% minutes ago',
-	'ago_h' => '%1% hours ago',
-	'ago_d' => '%1% days ago',
+	'ago_s' => '%1$s seconds ago',
+	'ago_m' => '%1$s minutes ago',
+	'ago_h' => '%1$s hours ago',
+	'ago_d' => '%1$s days ago',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -130,7 +130,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Одабери Државу ',
 	'unknown_country' => 'Непозната Држава',
-	'alt_flag' => '%1%',
+	'alt_flag' => '%1$s',
 
 	# GWF_User#gender
 	'gender_male' => 'Мушко',
@@ -138,7 +138,7 @@ $lang = array(
 	'gender_no_gender' => 'Непознат Пол',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1%`s Avatar',
+	'alt_avatar' => '%1$s`s Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Одабери Корисничку Групу',
@@ -159,14 +159,14 @@ $lang = array(
 	'by' => 'by',
 	'and' => 'and',
 
-	'alt_flag' => '%1% Flag',
+	'alt_flag' => '%1$s Flag',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1% '.GWF_SITENAME.'. All rights reserved.',
+	'copy' => '&copy; %1$s '.GWF_SITENAME.'. All rights reserved.',
 	'copygwf' => GWF_SITENAME.' is using <a href="http://gwf.gizmore.org">GWF2</a>, the BSD-Like Website Framework.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1% Обавезно попунити.',
+	'form_required' => '%1$s Обавезно попунити.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'bold',
@@ -181,7 +181,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Invisible text that is shown with a click.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Quote from %1%',
+	'quote_from' => 'Quote from %1$s',
 	'code' => 'code',
 	'for' => 'for',
 
@@ -194,6 +194,6 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );
 ?>

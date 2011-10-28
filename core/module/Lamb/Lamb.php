@@ -970,9 +970,7 @@ final class Lamb
 	 */
 	public static function softhyphe($s)
 	{
-//		if ($s === '') { return ''; }
-		$pos = rand(1, strlen($s)-1);
-		return substr($s, 0, $pos)."\XC2\XAD".substr($s, $pos);
+		return GWF_Obfuscate::obfuscate($s);
 	}
 	
 	public function tryAutologin(Lamb_User $user)

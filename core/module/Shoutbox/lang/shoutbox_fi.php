@@ -4,18 +4,18 @@ $lang = array(
 	'box_title' => GWF_SITENAME.' Huutoloota',
 
 	# History
-	'pt_history' => GWF_SITENAME.' Huutoloodan historia (Sivu %1% / %2%)',
+	'pt_history' => GWF_SITENAME.' Huutoloodan historia (Sivu %1$s / %2$s)',
 	'pi_history' => ' '.GWF_SITENAME.' Huutoloota',
 	'mt_history' => GWF_SITENAME.', Huutoloota, Historia',
 	'md_history' => ''.GWF_SITENAME.' huutoloota on pienille viesteille mitkä eivät tarvitse foorumilla omaa aihetta.',
 
 	# Virheet
-	'err_flood_time' => 'Odota %1% ennen kuin huudat uudestaan.',
-	'err_flood_limit' => 'Olet ylittänyt rajasi %1% viestiä päivässä.',
-	'err_message' => 'Viestisi täytyy olla %1%:stä %2%:een merkkiä pitkä.',
+	'err_flood_time' => 'Odota %1$s ennen kuin huudat uudestaan.',
+	'err_flood_limit' => 'Olet ylittänyt rajasi %1$s viestiä päivässä.',
+	'err_message' => 'Viestisi täytyy olla %1$s:stä %2$s:een merkkiä pitkä.',
 	
 	# Viestit
-	'msg_shouted' => 'Huuto lähetetty.<br/>Go back to <a href="%1%">%1%</a>.',
+	'msg_shouted' => 'Huuto lähetetty.<br/>Go back to <a href="%1$s">%1$s</a>.',
 	'msg_deleted' => 'Viesti poistettu.',
 
 	# Pöydän päät
@@ -44,10 +44,10 @@ $lang = array(
 		''.PHP_EOL.
 		'There is a new entry in the shoutbox.'.PHP_EOL.
 		''.PHP_EOL.
-		'From: %1%'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'From: %1$s'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		''.PHP_EOL.
-		'You can delete it via %3%'.PHP_EOL.
+		'You can delete it via %3$s'.PHP_EOL.
 		''.PHP_EOL.
 		'Regards'.PHP_EOL.
 		'The GWF3 script',

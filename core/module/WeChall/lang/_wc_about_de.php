@@ -7,7 +7,7 @@ $lang = array(
 		'WeChall ist eine sammlung von Links und Webseiten, die sich Problemen aus der IT widmetis about Sites that are about computer related problems and challenges.<br>',
 	'about_08' => 'Über Wechall (in 2008)',
 #	'about_10' => '(and in 2010)',
-	'about_08_title' => '%1%: Was ist der Zweck dieser Webseite?',
+	'about_08_title' => '%1$s: Was ist der Zweck dieser Webseite?',
 	'about_08' => array(
 		'Inferno' =>
 

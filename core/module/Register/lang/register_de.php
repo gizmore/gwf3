@@ -10,7 +10,7 @@ $lang = array(
 	'th_birthdate' => 'Geburtsdatum',
 	'th_countryid' => 'Land',
 	'th_tos' => 'Ich stimme den Nutzungsbedingungen zu',
-	'th_tos2' => 'Ich stimme den <a href="%1%">Nutzungsbedingungen</a> zu',
+	'th_tos2' => 'Ich stimme den <a href="%1$s">Nutzungsbedingungen</a> zu',
 	'th_register' => 'Registrieren',
 
 	'btn_register' => 'Registrieren',
@@ -30,15 +30,15 @@ $lang = array(
 
 	'regmail_subject' => GWF_SITENAME.': Anmeldung',
 	'regmail_body' => 
-		'Hallo %1%<br/>'.
+		'Hallo %1$s<br/>'.
 		'<br/>'.
 		'Vielen Dank für ihre Registrierung auf '.GWF_SITENAME.'.<br/>'.
 		'Um die Registrierung abzuschliessen, muss ihr Konto noch aktiviert werden, indem sie den unteren Link aufrufen.<br/>'.
 		'Falls sie sich nicht selbst auf '.GWF_SITENAME.' registriert haben, ignorieren sie diese EMail bitte, oder melden diese durch eine EMail an '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'<br/>'.
-		'%3%'.
+		'%3$s'.
 		'Freundliche Grüße,<br/>'.
 		'Das '.GWF_SITENAME.' Team.',
 
@@ -46,8 +46,8 @@ $lang = array(
 
 	'regmail_ptbody' => 
 		'Hier nochmals Ihre Zugangsdaten:<br/><b>'.
-		'Nickname: %1%<br/>'.
-		'Passwort: %2%<br/>'.
+		'Nickname: %1$s<br/>'.
+		'Passwort: %2$s<br/>'.
 		'</b><br/>'.
 		'Es ist eine gute Idee diese Email zu löschen, und sich das Passwort sicherer aufzubewahren.<br/>'.
 		'Wir speichern ihr Passwort auch nicht im Klartext ab, sie können aber jederzeit über diese EMail ein neues beantragen.<br/>'.
@@ -68,12 +68,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Zeitlimit um die Anmeldung abzuschliessen',
 
 	'err_birthdate' => 'Ihr Geburtstag ist ungültig.',
-	'err_minage' => 'Sie sind nicht alt genug um sich auf '.GWF_SITENAME.' zu registrieren. Sie müssen mindestens %1% Jahre alt sein.',
+	'err_minage' => 'Sie sind nicht alt genug um sich auf '.GWF_SITENAME.' zu registrieren. Sie müssen mindestens %1$s Jahre alt sein.',
 	'err_ip_timeout' => 'Mit dieser IP wurde erst kürzlich ein Konto erstellt.',
 	'th_token' => 'Code',
 	'th_timestamp' => 'Anmelde-Datum',
 	'th_ip' => 'Anmelde IP',
-	'tt_username' => 'Der Nickname muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1% Zeichen.', 
+	'tt_username' => 'Der Nickname muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %1$s Zeichen.', 
 	'tt_email' => 'Eine gültige EMail ist für die Anmeldung erforderlich.',
 
 	'info_no_cookie' => 'Ihr Browser unterstützt keine cookies, oder erlaubt diese nicht. Zum einloggen werden diese aber benötigt.',

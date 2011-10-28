@@ -83,7 +83,7 @@ $lang = array(
 		'nyt voit painaa <b>Aim</b> tai <b>Shoot</b>. Aim asettaa hiiren oikeaanpaikkaan. sen jälkeen voit pitää hiirtä pohjassa päättääksesi voimakkuuden. Shoot lyö välittömästi pallon pussiin, maksimi voimalla. tämä saattaa olla tarkempaa, riippuu sinun taidoista hallita hiiri.',
 
 	# Matcher
-	'matches' => '%1% IPs on positiivinen ja sopii!',
+	'matches' => '%1$s IPs on positiivinen ja sopii!',
 	'ft_matcher' => 'sopivuus IPs',
 	'btn_match' => 'sopivuus',
 	'err_pass' => 'Antamasi salasana on virheellinen.',

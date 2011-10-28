@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Adatbázis hiba a(z) %1% állomány %2% sorában.',
-	'ERR_FILE_NOT_FOUND' => 'Az állomány nem található: %1%',
-	'ERR_MODULE_DISABLED' => 'A(z) %1% modul jelenleg le van tiltva.',
+	'ERR_DATABASE' => 'Adatbázis hiba a(z) %1$s állomány %2$s sorában.',
+	'ERR_FILE_NOT_FOUND' => 'Az állomány nem található: %1$s',
+	'ERR_MODULE_DISABLED' => 'A(z) %1$s modul jelenleg le van tiltva.',
 	'ERR_LOGIN_REQUIRED' => 'Ehhez a művelethez előbb jelentkezz be.',
 	'ERR_NO_PERMISSION' => 'Hozzáférés megtagadva.',
 	'ERR_WRONG_CAPTCHA' => 'Helyesen kell megadnod az alábbi képen szereplő betűket.',
-	'ERR_MODULE_MISSING' => 'A(z) %1% modul nem található.',
+	'ERR_MODULE_MISSING' => 'A(z) %1$s modul nem található.',
 	'ERR_COOKIES_REQUIRED' => 'A munkamenet lejárt vagy engedélyezned kell a sütiket a bőngésződben.<br/>Kérlek frissítsd az oldalt.',
 	'ERR_UNKNOWN_USER' => 'Ismeretlen felhasználó.',
 	'ERR_UNKNOWN_GROUP' => 'Ismeretlen csoport.',
 	'ERR_UNKNOWN_COUNTRY' => 'Ismeretlen ország.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Ismeretlen nyelv.',
-	'ERR_METHOD_MISSING' => 'Ismeretlen metódus: %1% a(z) %2% modulban.',
-	'ERR_GENERAL' => 'Nem meghatározott hiba: %1% a(z) %2% sorban.',
-	'ERR_WRITE_FILE' => 'Nem írható az állomány: %1%.',
-	'ERR_CLASS_NOT_FOUND' => 'Ismeretlen osztály: %1%.',
-	'ERR_MISSING_VAR' => 'Hiányzó HTTP POST változó: %1%.',
+	'ERR_METHOD_MISSING' => 'Ismeretlen metódus: %1$s a(z) %2$s modulban.',
+	'ERR_GENERAL' => 'Nem meghatározott hiba: %1$s a(z) %2$s sorban.',
+	'ERR_WRITE_FILE' => 'Nem írható az állomány: %1$s.',
+	'ERR_CLASS_NOT_FOUND' => 'Ismeretlen osztály: %1$s.',
+	'ERR_MISSING_VAR' => 'Hiányzó HTTP POST változó: %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Fel kell töltened egy állományt.',
 	'ERR_MAIL_SENT' => 'Hiba történt az elektronikus levél küldésekor.',
 	'ERR_CSRF' => 'Hibás CSRF token. Vagy kétszer próbáltál adatot küldeni, vagy lejárt a munkameneted időközben.',
-	'ERR_HOOK' => 'A hook hamissal tért vissza: %1%.',
-	'ERR_PARAMETER' => 'Hibás  in %1% line %2%. Function argument %3% is invalid.',
-	'ERR_DEPENDENCY' => 'Nem feloldható függőség: modulhoz/%1%/művelethez/%2% szükséges a(z) %3% v%4% modul.',
-	'ERR_SEARCH_TERM' => 'A keresési feltétel legalább mimimum %1% maximum %2% karakter hosszú lehet.',
-	'ERR_SEARCH_NO_MATCH' => 'A keresésed, &quot;%1%&quot; nem talált egyezést.',
-	'ERR_POST_VAR' => 'Váratlan POST változó: %1%.',
+	'ERR_HOOK' => 'A hook hamissal tért vissza: %1$s.',
+	'ERR_PARAMETER' => 'Hibás  in %1$s line %2$s. Function argument %3$s is invalid.',
+	'ERR_DEPENDENCY' => 'Nem feloldható függőség: modulhoz/%1$s/művelethez/%2$s szükséges a(z) %3$s v%4$s modul.',
+	'ERR_SEARCH_TERM' => 'A keresési feltétel legalább mimimum %1$s maximum %2$s karakter hosszú lehet.',
+	'ERR_SEARCH_NO_MATCH' => 'A keresésed, &quot;%1$s&quot; nem talált egyezést.',
+	'ERR_POST_VAR' => 'Váratlan POST változó: %1$s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'Pén',
 	'd6' => 'Szo',
 
-	'ago_s' => '%1% másodperce',
-	'ago_m' => '%1% perce',
-	'ago_h' => '%1% órája',
-	'ago_d' => '%1% napja',
+	'ago_s' => '%1$s másodperce',
+	'ago_m' => '%1$s perce',
+	'ago_h' => '%1$s órája',
+	'ago_d' => '%1$s napja',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -127,7 +127,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Válassz egy országot',
 	'unknown_country' => 'Ismeretlen ország',
-	'alt_flag' => '%1%',
+	'alt_flag' => '%1$s',
 
 	# GWF_User#gender
 	'gender_male' => 'Férfi',
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'Ismeretlen nem',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1% Avatárja',
+	'alt_avatar' => '%1$s Avatárja',
 
 	# GWF_Group
 	'sel_group' => 'Válassz egy felhasználói csoportot',
@@ -156,15 +156,15 @@ $lang = array(
 	'by' => 'által',
 	'and' => 'és',
 
-	'alt_flag' => '%1% zászló',
+	'alt_flag' => '%1$s zászló',
 
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1% '.GWF_SITENAME.'. Minden jog fenntartva.',
+	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Minden jog fenntartva.',
 	'copygwf' => 'A '.GWF_SITENAME.' <a href="http://gwf.gizmore.org">GWF</a>, BSD licenszhez hasonló Weboldal Keretrendszert használ.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1% jel azt jelent, kötelező mező.',
+	'form_required' => '%1$s jel azt jelent, kötelező mező.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'félkövér',
@@ -179,7 +179,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Láthatatlan szöveg, ami klikkelésre kinyílik.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Idézet tőle: %1%',
+	'quote_from' => 'Idézet tőle: %1$s',
 	'code' => 'kód',
 	'for' => 'részére',
 	
@@ -192,7 +192,7 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );
 
 ?>

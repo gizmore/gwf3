@@ -1,30 +1,30 @@
 <?php
 $lang = array (
-	'ERR_DATABASE' => 'Dosyası %1% satır Veritabanı hatası %2%.',
-	'ERR_FILE_NOT_FOUND' => 'Dosya bulunamadı: %1%',
-	'ERR_MODULE_DISABLED' => 'modülü %1% şu anda devre dışıdır.',
+	'ERR_DATABASE' => 'Dosyası %1$s satır Veritabanı hatası %2$s.',
+	'ERR_FILE_NOT_FOUND' => 'Dosya bulunamadı: %1$s',
+	'ERR_MODULE_DISABLED' => 'modülü %1$s şu anda devre dışıdır.',
 	'ERR_LOGIN_REQUIRED' => 'Bu işlev için sen oturum olması yeterlidir',
 	'ERR_NO_PERMISSION' => 'Erişim engellendi.',
 	'ERR_WRONG_CAPTCHA' => 'You tip Resimdeki harfleri doğru var.',
-	'ERR_MODULE_MISSING' => 'Modül %1% saptanmıştır olamazdı.',
+	'ERR_MODULE_MISSING' => 'Modül %1$s saptanmıştır olamazdı.',
 	'ERR_COOKIES_REQUIRED' => 'Oturumunuz zaman aşımına uğradı ya da tarayıcınızın çerezleri etkinleştirmeniz gerekir. <br/> Lütfen sayfayı yenilemek için çalışıyoruz.',
 	'ERR_UNKNOWN_USER' => 'Kullanıcı bilinmemektedir.',
 	'ERR_UNKNOWN_GROUP' => 'Grup bilinmemektedir.',
 	'ERR_UNKNOWN_COUNTRY' => 'Ülke bilinmemektedir.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Bu dil bilinmemektedir.',
-	'ERR_METHOD_MISSING' => 'Bilinmeyen Yöntem: %1% Modül %2%.',
-	'ERR_GENERAL' => '%1% Bilinmeyen hata. Hat %2%',
-	'ERR_WRITE_FILE' => 'dosyası yazılamıyor: %1%.',
-	'ERR_CLASS_NOT_FOUND' => 'Bilinmiyor Sınıf: %1%.',
-	'ERR_MISSING_VAR' => 'Eksik HTTP POST var: %1%.',
+	'ERR_METHOD_MISSING' => 'Bilinmeyen Yöntem: %1$s Modül %2$s.',
+	'ERR_GENERAL' => '%1$s Bilinmeyen hata. Hat %2$s',
+	'ERR_WRITE_FILE' => 'dosyası yazılamıyor: %1$s.',
+	'ERR_CLASS_NOT_FOUND' => 'Bilinmiyor Sınıf: %1$s.',
+	'ERR_MISSING_VAR' => 'Eksik HTTP POST var: %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Bir dosya yüklemek gerekiyor.', #Bir e-posta gönderirken  ????
 	'ERR_MAIL_SENT' => 'bir hata oluştu.',
 	'ERR_CSRF' => 'Sayfanızın kod geçersiz. Belki veya oturum sonrası çift çalıştım çıkış süresi ise bitti.',
-	'ERR_HOOK' => 'Çengel yanlış döndü: %1%.',
-	'ERR_PARAMETER' => '%1% çizgi %2% geçersiz argüman. Fonksiyon argüman %3% geçersiz.',
-	'ERR_DEPENDENCY' => 'Çözümlenmemiş Bağımlılık: Modülü %1%, yöntem %2% depends on Modülü %3% Version %4%.',
-	'ERR_SEARCH_TERM' => 'Arama Terimi %1% - %2% karakter uzunluğunda olmalıdır.',
-	'ERR_SEARCH_NO_MATCH' => 'Arama %1% bir eşleşme bulamadık.',
+	'ERR_HOOK' => 'Çengel yanlış döndü: %1$s.',
+	'ERR_PARAMETER' => '%1$s çizgi %2$s geçersiz argüman. Fonksiyon argüman %3$s geçersiz.',
+	'ERR_DEPENDENCY' => 'Çözümlenmemiş Bağımlılık: Modülü %1$s, yöntem %2$s depends on Modülü %3$s Version %4$s.',
+	'ERR_SEARCH_TERM' => 'Arama Terimi %1$s - %2$s karakter uzunluğunda olmalıdır.',
+	'ERR_SEARCH_NO_MATCH' => 'Arama %1$s bir eşleşme bulamadık.',
 	'ERR_POST_VAR' => 'Beklenmeyen POST var:% 1%.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 	
@@ -78,10 +78,10 @@ $lang = array (
 	'd5' => 'Cum',
 	'd6' => 'Sat',
 	
-	'ago_s'=> '%1% saniye önce',
-	'ago_m' => '%1% dakika önce',
-	'ago_h' => '%1% saat önce',
-	'ago_d' => '%1% gün önce',
+	'ago_s'=> '%1$s saniye önce',
+	'ago_m' => '%1$s dakika önce',
+	'ago_h' => '%1$s saat önce',
+	'ago_d' => '%1$s gün önce',
 	
 	# # #
 	# # # TODO: GWF_DateFormat, sorunlu, çünkü tr! = Tr [tr / gb]
@@ -127,7 +127,7 @@ $lang = array (
 	# GWF_Country
 	'sel_country' => 'Bir Ülke',
 	'unknown_country' => 'Bilinmeyen Ülke',
-	'alt_flag' => '%1% ',
+	'alt_flag' => '%1$s ',
 	
 	# GWF_User # cinsiyet
 	'gender_male' => 'erkek',
@@ -135,7 +135,7 @@ $lang = array (
 	'gender_no_gender' => 'Bilinmiyor Cinsiyet',
 	
 	# GWF_User # avatar
-	'alt_avatar' => '%1%`s Avatar',
+	'alt_avatar' => '%1$s`s Avatar',
 	
 	# GWF_Group
 	'sel_group' => 'Bir kullanıcı grubuna',
@@ -156,14 +156,14 @@ $lang = array (
 	'by' => 'Tarafından',
 	'and' => 've',
 	
-	'alt_flag' => '%1% Bayrağı',
+	'alt_flag' => '%1$s Bayrağı',
 	
 	# V2.01 (copyright)
-	'copy' => '©%1% '.GWF_SITENAME.'. Tüm hakları saklıdır.',
+	'copy' => '©%1$s '.GWF_SITENAME.'. Tüm hakları saklıdır.',
 	'copygwf' => GWF_SITENAME. ' <a href="http://gwf.gizmore.org"> GWF </ a> kullanıyorsa, BSD-Web Framework gibi.',
 	
 	# V2.02 (Tuttum + required_fields)
-	'form_required' => '%1% gereklidir anlamına gelir.',
+	'form_required' => '%1$s gereklidir anlamına gelir.',
 	
 	# V2.03 BBCode
 	'bbhelp_b' => 'bold',
@@ -178,7 +178,7 @@ $lang = array (
 	'bbhelp_spoiler' => 'Bir tıklama ile gösterilir Görünmez metin.',
 	
 	# V2.04 BBCode3
-	'quote_from' => '%1% alıntı',
+	'quote_from' => '%1$s alıntı',
 	'code' => 'kod',
 	'for' => 'için',
 	
@@ -191,6 +191,6 @@ $lang = array (
 	
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );
 ?>

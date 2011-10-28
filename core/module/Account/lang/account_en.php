@@ -9,7 +9,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Your Username',
 	'th_email' => 'Contact Email',
-	'th_demo' => 'Demographic Options - You can change these only once within %1%.',
+	'th_demo' => 'Demographic Options - You can change these only once within %1$s.',
 	'th_countryid' => 'Country',	
 	'th_langid' => 'Primary Language',	
 	'th_langid2' => 'Secondary Language',
@@ -37,11 +37,11 @@ $lang = array(
 	'err_no_mail_to_approve' => 'You don`t have an email set to approve.',
 	'err_already_approved' => 'Your email is already approved.',
 	'err_no_image' => 'Your uploaded file is not an image, or too small.',
-	'err_demo_wait' => 'You changed your demographic options recently. Please wait %1%.',
+	'err_demo_wait' => 'You changed your demographic options recently. Please wait %1$s.',
 	'err_birthdate' => 'Your birthdate seems invalid.',
 
 	# Messages
-	'msg_mail_changed' => 'Your contact email has been changed to <b>%1%</b>.',
+	'msg_mail_changed' => 'Your contact email has been changed to <b>%1$s</b>.',
 	'msg_deleted_avatar' => 'Your avatar image has been deleted.',
 	'msg_avatar_saved' => 'Your new Avatar image has been saved.',
 	'msg_demo_changed' => 'Your demographic options have been changed.',
@@ -71,13 +71,13 @@ $lang = array(
 	# CHANGE MAIL A
 	'chmaila_subj' => GWF_SITENAME.': Change your EMail',
 	'chmaila_body' => 
-		'Dear %1%,'.PHP_EOL.
+		'Dear %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'You requested to change your email on '.GWF_SITENAME.'.'.PHP_EOL.
 		'To do so, you have to visit the URL below.'.PHP_EOL.
 		'In case you did not request to change your email, you can ignore this mail or alert us about it.'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -85,10 +85,10 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': Confirm your EMail',
 	'chmailb_body' => 
-		'Dear %1%,'.PHP_EOL.
+		'Dear %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'To use this email address as your main contact address you have to confirm it by visiting the URL below:'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -96,19 +96,19 @@ $lang = array(
 	# CHANGE DEMO
 	'chdemo_subj' => GWF_SITENAME.': Change Demographic Settings',
 	'chdemo_body' =>
-		'Dear %1%'.PHP_EOL.
+		'Dear %1$s'.PHP_EOL.
 		PHP_EOL.
 		'You have requested to setup or change your demographic settings.'.PHP_EOL.
-		'You can do this only once within %2%, so please make sure the information is correct before you continue.'.PHP_EOL.
+		'You can do this only once within %2$s, so please make sure the information is correct before you continue.'.PHP_EOL.
 		PHP_EOL.
-		'Gender: %3%'.PHP_EOL.
-		'Country: %4%'.PHP_EOL.
-		'Primary Language: %5%'.PHP_EOL.
-		'Secondary Language: %6%'.PHP_EOL.
-		'Day of Birth: %7%'.PHP_EOL.
+		'Gender: %3$s'.PHP_EOL.
+		'Country: %4$s'.PHP_EOL.
+		'Primary Language: %5$s'.PHP_EOL.
+		'Secondary Language: %6$s'.PHP_EOL.
+		'Day of Birth: %7$s'.PHP_EOL.
 		PHP_EOL.
 		'If you want to keep these settings, please use the link below:'.PHP_EOL.
-		'%8%'.
+		'%8$s'.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
@@ -137,12 +137,12 @@ $lang = array(
 	'th_accrm_note' => 'Note',
 	'btn_accrm' => 'Delete Account',
 	'msg_accrm' => 'Your account got marked as deleted and all references should got deleted.<br/>You got logged out.',
-	'ms_accrm' => GWF_SITENAME.': %1% account deletion',
+	'ms_accrm' => GWF_SITENAME.': %1$s account deletion',
 	'mb_accrm' =>
 		'Dear Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'The user %1% has just deleted his account and left this note (may_be_empty):'.PHP_EOL.PHP_EOL.
-		'%2%',
+		'The user %1$s has just deleted his account and left this note (may_be_empty):'.PHP_EOL.PHP_EOL.
+		'%2$s',
 		
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferred EMail Format',
@@ -161,7 +161,7 @@ $lang = array(
 	'err_gpg_setup' => 'Either upload a file which contains your public key or paste your public key in the text area.',
 	'err_gpg_key' => 'Your public key seems invalid.',
 	'err_gpg_token' => 'Your gpg fingerprint token does not match our records.',
-	'err_no_gpg_key' => 'The user %1% did not submit a public key yet.',
+	'err_no_gpg_key' => 'The user %1$s did not submit a public key yet.',
 	'err_no_mail' => 'You don`t have an approved main contact email address.',
 	'err_gpg_del' => 'You don`t have a validated GPG key to delete.',
 	'err_gpg_fine' => 'You already have a GPG key. Please delete it first.',
@@ -169,18 +169,18 @@ $lang = array(
 	'msg_setup_gpg' => 'Your GPG has been stored and is in use now.',
 	'mails_gpg' => GWF_SITENAME.': Setup GPG Encryption',
 	'mailb_gpg' =>
-		'Dear %1%,'.PHP_EOL.
+		'Dear %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'You have decided to turn on gpg encryption for emails sent by this robot.'.PHP_EOL.
 		'To do so, follow the link below:'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1%">Change your password</a>',
+	'th_change_pw' => '<a href="%1$s">Change your password</a>',
 	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',

@@ -153,23 +153,27 @@ final class GWF_LangTrans
 	 */
 	private function replaceArgs($back, $args)
 	{
-		if (is_array($args))
-		{
-			$len = count($args);
-			$i = 0;
-			while ($i < $len)
-			{
-				$j = $i++;
-				$back = str_replace("%$i%", $args[$j], $back);
-			}
-## Gizmore: please decide: this algo is 'key' capable; maybe faster?
-//			foreach($args as $i =>$j)
+		## spaceone: better? :)
+		
+		return is_array($args) ? vsprintf($back, $args) : $back;
+		 
+//		if (is_array($args))
+//		{
+//			$len = count($args);
+//			$i = 0;
+//			while ($i < $len)
 //			{
-//				if(is_int($i)) { $i++; }
-//				$back = str_replace("%$i%", $j, $back);
+//				$j = $i++;
+//				$back = str_replace("%$i%", $args[$j], $back);
 //			}
-		}
-		return $back;
+//## Gizmore: please decide: this algo is 'key' capable; maybe faster?
+////			foreach($args as $i =>$j)
+////			{
+////				if(is_int($i)) { $i++; }
+////				$back = str_replace("%$i%", $j, $back);
+////			}
+//		}
+//		return $back;
 	}
 	
 	/**

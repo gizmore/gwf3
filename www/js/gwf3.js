@@ -603,3 +603,18 @@ function focusInput(selector)
 	}
 	jq[0].focus();
 }
+
+function clamp(num, min, max)
+{
+	if ( (min !== null) && (num < min) )
+	{
+		return min;
+	}
+
+	if ( (max !== null) && (num > max) )
+	{
+		return max;
+	}
+	
+	return num;
+}

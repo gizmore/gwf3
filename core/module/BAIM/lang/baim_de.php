@@ -46,13 +46,13 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 	'menu_news' => 'News',
 	'menu_pm' => 'PM',
 	'ft_set_mc' => 'B.AiM erneut Freischalten',
-	'err_change_freq' => 'Sie haben Ihre Kopie erst kürzlich neu freigeschaltet. Sie dürfen dies erst in %1% wiederholen.',
+	'err_change_freq' => 'Sie haben Ihre Kopie erst kürzlich neu freigeschaltet. Sie dürfen dies erst in %1$s wiederholen.',
 	'msg_set_mc' => 'Ihre Kopie wurde wieder freigeschaltet. Bitte starten sie B.AiM auf ihrem neuen Computer.',
 
 ####
-	'key.dat' => '%1%-%2%',
+	'key.dat' => '%1$s-%2$s',
 	'readme.txt' =>
-		"Hallo %1%\r\n\r\n".
+		"Hallo %1$s\r\n\r\n".
 		"Vielen Dank für den Kauf von B.AiM\r\n\r\n".
 		"Anleitung:\r\n".
 		"B.AiM.exe starten, das Fenster über den Tisch ziehen sodass die gestrichelte Linie an den inneren Kanten des Pool-Tisches abschließen (einfach ein bisschen versuchen was das beste für einen ist). Alternativ kann auch einfach unter View auf \"Auto Adjust\" geklickt werden dann sollte sich das Fenster automatisch positionieren. Sobald der weiße Ball platziert ist geht man mit der Maus einmal kurz vom Tisch sprich aus dem Fenster um die Positionen der Bälle zu laden. Anschließend kann man anfangen zu zielen und ein zu lochen. Die Schatten der Bälle sollten zur besseren Erkennung vorher noch deaktiviert werden!\r\n\r\n".
@@ -71,10 +71,10 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 	'dl_info_t' => 'B.AiM Download Info',
 	'dl_info_b' =>
 		'Einige Informationen vom aktuellen B.AiM Release<br/>'.
-		'Der offizielle Support läuft aus am <b>%3%</b>.<br/>'.
+		'Der offizielle Support läuft aus am <b>%3$s</b>.<br/>'.
 		'<br/>'.
 		'Jede Version von B.AiM ist einzigartig. Du darfst deine Kopie nicht weitergeben.<br/>'.
-		'Jede Kopie läuft nur auf einem Computer. Wenn du deinen Computer wechselst kannst du deine Kopie alle %1% neu freischalten.<br/>'.
+		'Jede Kopie läuft nur auf einem Computer. Wenn du deinen Computer wechselst kannst du deine Kopie alle %1$s neu freischalten.<br/>'.
 		'<br/>'.
 		'Zur Zeit kann man das Programm nur über <a href="http://www.paypal.de/de">PayPal</a> ExpressCheckout sowie <a href="http://www.paysafecard.com/de/">PaySafeCard</a> erwerben.<br/>'.
 		'Um mit PayPal zu zahlen, musst du den PayPal Knopf hier drei mal drücken. 1) PayPal auswählen, 2) Auf PayPal gehen, 3) Zur webseite zurückkehren, die Bestellung prüfen und die Transaktion ausführen.<br/>'.
@@ -86,7 +86,7 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 
 	'err_no_mc' => 'This user does not have an MC set.',
 	'err_mc_cheater' => 'The users MC has duplicates!',
-	'msg_new_demo' => 'The user %1% got his/her demo records deleted. He/She has to download the demo again.',
+	'msg_new_demo' => 'The user %1$s got his/her demo records deleted. He/She has to download the demo again.',
 );
 
 ?>

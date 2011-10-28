@@ -83,7 +83,7 @@ $lang = array(
 		'Nüüd sa saad vajutada <b>Aim</b> või <b>Shoot</b>. Aim paneb hiirekursori sinna, kust on parim valitud kuuli valitud auku lüüa. Siis sa saad ise vajutada hiirele ning valida löögijõu. Mida suurema kiirusega kuuli lööd, seda täpsemalt ka kuul auku läheb, kuid siis on võimalus, et valge pall satub samamoodi mõnda auku.',
 
 	# Matcher
-	'matches' => '%1% IP-el on positiivne vaste!',
+	'matches' => '%1$s IP-el on positiivne vaste!',
 	'ft_matcher' => 'Sobita IP-d',
 	'btn_match' => 'Sobita',
 	'err_pass' => 'Sisestad parool ei ole õige.',

@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Hola %1%',
+	'hello' => 'Hola %1$s',
 	'sel_username' => 'Elija usuario',
 	'sel_folder' => 'Elija carpeta',
 
@@ -11,7 +11,7 @@ $lang = array(
 	'pi_trashcan' => 'Esta es su papelera, no puede borrar mensajes completamente, pero puede restaurarlos.',
 	
 	# Buttons
-	'btn_ignore' => 'Poner a %1% en la Lista de Ignorados',
+	'btn_ignore' => 'Poner a %1$s en la Lista de Ignorados',
 	'btn_ignore2' => 'Ignorar',
 	'btn_save' => 'Guardar opciones',
 	'btn_create' => 'Nuevo PM',
@@ -33,45 +33,45 @@ $lang = array(
 	'err_perm_read' => 'No puede leer este PM.',
 	'err_perm_write' => 'No puede editar este PM.',
 	'err_no_title' => 'Olvidó el título de PM.',
-	'err_title_len' => 'Título muy largo. Se permiten %1% carácteres máximo.',
+	'err_title_len' => 'Título muy largo. Se permiten %1$s carácteres máximo.',
 	'err_no_msg' => 'Olvido escribir el mensaje.',
-	'err_sig_len' => 'Su firma es demasiado larga. Se permiten %1% carácteres máximo.',
-	'err_msg_len' => 'Su mensaje es demasiado largo. Se permiten %1% carácteres máximo.',
+	'err_sig_len' => 'Su firma es demasiado larga. Se permiten %1$s carácteres máximo.',
+	'err_msg_len' => 'Su mensaje es demasiado largo. Se permiten %1$s carácteres máximo.',
 	'err_user_no_ppm' => 'Este usuario no quiere recibir PMs.',
 	'err_no_mail' => 'No tiene un email aprobado asociado a su cuenta.',
 	'err_pmoaf' => 'El valor para autoarchivar no es válido.',
-	'err_limit' => 'Alcanzó su límite de PM hoy. Puede enviar un máximo de %1% PMs en %2%.',
-	'err_ignored' => '%1% se agregó a su Lista de Ignorados.',
+	'err_limit' => 'Alcanzó su límite de PM hoy. Puede enviar un máximo de %1$s PMs en %2$s.',
+	'err_ignored' => '%1$s se agregó a su Lista de Ignorados.',
 	'err_delete' => 'Ocurrió un error cuando se borraban sus mensajes.',
 	'err_folder_exists' => 'La carpeta ya existe.',
-	'err_folder_len' => 'La longitud del nombre de carpeta tiene que tener entre 1 y %1% carácteres.',
+	'err_folder_len' => 'La longitud del nombre de carpeta tiene que tener entre 1 y %1$s carácteres.',
 	'err_del_twice' => 'Ya ha borrado este PM.',
 	'err_folder' => 'Carpeta desconocida.',
 	'err_pm_read' => 'El PM ya ha sido borrado, así que ya no puedes editarlo.',
 
 	# Messages
 	'msg_sent' => 'Su PM fue enviado correctamente. Puede todavía editarlo, hasta que sea leído.',
-	'msg_ignored' => 'Puso a %1% en la Lista de Ignorados.',
-	'msg_unignored' => 'Eliminó a %1% de la Lista de Ignorados.',
+	'msg_ignored' => 'Puso a %1$s en la Lista de Ignorados.',
+	'msg_unignored' => 'Eliminó a %1$s de la Lista de Ignorados.',
 	'msg_changed' => 'Sus opciones han sido cambiadas.',
-	'msg_deleted' => 'Eliminó correctamente %1% PMs.',
-	'msg_moved' => 'Movió correctamente %1% PMs.',
+	'msg_deleted' => 'Eliminó correctamente %1$s PMs.',
+	'msg_moved' => 'Movió correctamente %1$s PMs.',
 	'msg_edited' => 'Su PM ha sido editado.',
-	'msg_restored' => 'Restauró correctamente %1% PMs.',
+	'msg_restored' => 'Restauró correctamente %1$s PMs.',
 	'msg_auto_folder_off' => 'No tiene autoarchivar activado. El PM ha sido marcado como leído.',
-	'msg_auto_folder_none' => 'Hay sólo %1% mensajes de/para este usuario. Nada movido. El PM ha sido marcado como leído.',
-	'msg_auto_folder_created' => 'Carpeta %1% creada.',
-	'msg_auto_folder_moved' => 'Movió %1% mensaje(s) a la carpeta %2%. Los PMs fueron marcados como leídos.',
+	'msg_auto_folder_none' => 'Hay sólo %1$s mensajes de/para este usuario. Nada movido. El PM ha sido marcado como leído.',
+	'msg_auto_folder_created' => 'Carpeta %1$s creada.',
+	'msg_auto_folder_moved' => 'Movió %1$s mensaje(s) a la carpeta %2$s. Los PMs fueron marcados como leídos.',
 	'msg_auto_folder_done' => 'Autoarchivado correctamente.',
 
 
 	# Titles
-	'ft_create' => 'Escribir a %1% un nuevo PM',
+	'ft_create' => 'Escribir a %1$s un nuevo PM',
 	'ft_preview' => 'Previsualizar',
 	'ft_options' => 'Sus opciones de PM',
 	'ft_ignore' => 'Poner a alguien en Lista de Ignorados',
 	'ft_new_pm' => 'Escribir nuevo PM',
-	'ft_reply' => 'Responder a %1%',
+	'ft_reply' => 'Responder a %1$s',
 	'ft_edit' => 'Editar PM',
 	'ft_quicksearch' => 'Búsqueda rápida',
 	'ft_advsearch' => 'Búsqueda avanzada',
@@ -103,23 +103,23 @@ $lang = array(
 	# Welcome PM
 //	'wpm_title' => 'Bienvenido/a a '.GWF_SITENAME,
 //	'wpm_message' => 
-//		'Estimado/a %1%'.PHP_EOL.
+//		'Estimado/a %1$s'.PHP_EOL.
 //		PHP_EOL.
 //		'Bienvenido/a a '.GWF_SITENAME.''.PHP_EOL.
 //		PHP_EOL.
 //		'Esperamos que le guste nuestro sitio y disfrute con él.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.'Nuevo PM de %1%',
+	'mail_subj' => GWF_SITENAME.'Nuevo PM de %1$s',
 	'mail_body' =>
-		'Hola %1%'.PHP_EOL.
+		'Hola %1$s'.PHP_EOL.
 		PHP_EOL.
 		'Hay un nuevo PM para ti en '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'De: %2%'.PHP_EOL.
-		'Título: %3%'.PHP_EOL.
+		'De: %2$s'.PHP_EOL.
+		'Título: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -127,10 +127,10 @@ $lang = array(
 		PHP_EOL.
 		'Usted puede rápidamente:'.PHP_EOL.
 		'Autoarchivar este PM:'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		'Borrar este PM:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Atentamente,'.PHP_EOL.
 		'El Robot de '.GWF_SITENAME.''.PHP_EOL,
@@ -158,7 +158,7 @@ $lang = array(
 	'btn_new_folder' => 'Nueva carpeta',
 
     # v2.02
-	'msg_mail_sent' => 'Un correo ha sido enviado a %1% con su mensaje original.',		
+	'msg_mail_sent' => 'Un correo ha sido enviado a %1$s con su mensaje original.',		
 		
 	# v2.03 SEO
 	'pt_pm' => 'PM ',
@@ -177,10 +177,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'No puedes ignorarte a ti mismo.',
 	'err_folder_perm' => 'Esta carpeta no es tuya.',
-	'msg_folder_deleted' => 'La carpeta %1% y %2% mensaje(s) se trasladó a la papelera.',
+	'msg_folder_deleted' => 'La carpeta %1$s y %2$s mensaje(s) se trasladó a la papelera.',
 	'cfg_pm_delete' => '¿Permitir borrar PM?',
 	'ft_empty' => 'Vaciar Papelera',
-	'msg_empty' => 'Tu Papelera (%1% mensajes) ha sido vaciada.<br/>%2% mensajes han sido borrados de nuestra base de datos.<br/>%3% mensajes estan aún en uso y no han sido borrados.',
+	'msg_empty' => 'Tu Papelera (%1$s mensajes) ha sido vaciada.<br/>%2$s mensajes han sido borrados de nuestra base de datos.<br/>%3$s mensajes estan aún en uso y no han sido borrados.',
 
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

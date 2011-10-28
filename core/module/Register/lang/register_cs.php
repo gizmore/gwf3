@@ -10,7 +10,7 @@ $lang = array(
 	'th_birthdate' => 'Datum narození',
 	'th_countryid' => 'Stát',
 	'th_tos' => 'Souhlasím s <br/>Podmínkami používání',
-	'th_tos2' => 'Souhlasím s <br/><a href="%1%">Podmínky používání</a>',
+	'th_tos2' => 'Souhlasím s <br/><a href="%1$s">Podmínky používání</a>',
 	'th_register' => 'Registrace',
 
 	'btn_register' => 'Registrovat',
@@ -31,23 +31,23 @@ $lang = array(
 
 	'regmail_subject' => 'Registrace na '.GWF_SITENAME,
 	'regmail_body' => 
-		'Ahoj %1%<br/>'.
+		'Ahoj %1$s<br/>'.
 		'<br/>'.
 		'Děkujeme za registraci na '.GWF_SITENAME.'.<br/>'.
 		'Pro dokončení registrace je potřeba aktivovat tvůj účet navštívením odkazu uvedeného níže.<br/>'.
 		'Pokud ses neregistroval na '.GWF_SITENAME.', tak tento email ignoruj nebo nás kontaktuj na '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'<br/>'.
-		'%3%'.
+		'%3$s'.
 		'S pozdravem,<br/>'.
 		GWF_SITENAME.' Team.',
 	'err_tos' => 'Je nutné souhlasit s EULA.',
 
 	'regmail_ptbody' => 
 		'Údaje pro přihlášení:<br/><b>'.
-		'Uživatelské jméno: %1%<br/>'.
-		'Heslo: %2%<br/>'.
+		'Uživatelské jméno: %1$s<br/>'.
+		'Heslo: %2$s<br/>'.
 		'</b><br/>'.
 		'Tento email je dobré smazat a uložit si heslo někde jinde.<br/>'.
 		'Hesla neukládáme v otevřené podobě, doporučujeme dělat to samé.<br/>'.
@@ -67,12 +67,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Timeout for completing registration',
 
 	'err_birthdate' => 'Zadaný datum narození je neplatný.',
-	'err_minage' => 'Je nám líto, ale nejsi dostatečně starý, aby ses mohl registrovat. Musíš být minimálně %1% let starý.',
+	'err_minage' => 'Je nám líto, ale nejsi dostatečně starý, aby ses mohl registrovat. Musíš být minimálně %1$s let starý.',
 	'err_ip_timeout' => 'Někdo se nedávno registroval z této IP.',
 	'th_token' => 'Token',
 	'th_timestamp' => 'Čas registrace',
 	'th_ip' => 'Reg IP',
-	'tt_username' => 'Uživatelské jméno musí začínat písmenem.'.PHP_EOL.'Může obsahovat jen písmena, číslice a podtržítko. Délka musí být 3 - %1% znaků.', 
+	'tt_username' => 'Uživatelské jméno musí začínat písmenem.'.PHP_EOL.'Může obsahovat jen písmena, číslice a podtržítko. Délka musí být 3 - %1$s znaků.', 
 	'tt_email' => 'Pro registraci je vyžadován platný email.',
 
 	'info_no_cookie' => 'Tvůj prohlížeč nepodporuje cookies nebo nejsou povoleny pro '.GWF_SITENAME.', cookies jsou potřeba pro přihlášení.',

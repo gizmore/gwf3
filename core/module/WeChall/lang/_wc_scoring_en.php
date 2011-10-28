@@ -33,6 +33,6 @@ $lang = array(
 		'The admins can manually adjust the base score for sites.<br/>'.
 		'It may be possible that a site with less or easier challenges may get a lower score than a site with lots of difficult challs.<br/>'.
 		'<br/>'.
-		'Don\'t hesitate to ask on the <a href="%1%">forum</a> if any of this is unclear to you.',
+		'Don\'t hesitate to ask on the <a href="%1$s">forum</a> if any of this is unclear to you.',
 );
 ?>

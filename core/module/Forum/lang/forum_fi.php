@@ -9,37 +9,37 @@ $lang = array(
 	'err_board_perm' => 'Sinulla ei ole oikeutta päästä tälle alueelle.',
 	'err_thread_perm' => 'Sinulla ei ole oikeutta päästä tähän aiheeseen.',
 	'err_post_perm' => 'Sinulla ei ole oikeutta lukea tätä viestiä.',
-	'err_reply_perm' => 'Sinulla ei ole oikeutta vastata tähän aiheeseen. <a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
+	'err_reply_perm' => 'Sinulla ei ole oikeutta vastata tähän aiheeseen. <a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
 	'err_no_thread_allowed' => 'Alueella ei ole sallittu aiheita.',
 	'err_no_guest_post' => 'Vieraat eivät saa kirjoittaa tälle foorumille.',
-	'err_msg_long' => 'Viestisi on liian pitkä. Merkkien enimmäismäärä on %1%.',
+	'err_msg_long' => 'Viestisi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
 	'err_msg_short' => 'Unohdit kirjoittaa viestin.',
-	'err_descr_long' => 'Kuvauksesi on liian pitkä. Merkkien enimmäismäärä on %1%.',
+	'err_descr_long' => 'Kuvauksesi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
 	'err_descr_short' => 'Unohdit kirjoittaa kuvauksen.',
-	'err_title_long' => 'Otsikkosi on liian pitkä. Merkkien enimmäismäärä on %1%.',
+	'err_title_long' => 'Otsikkosi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
 	'err_title_short' => 'Unohdit kirjoittaa otsikon.',
-	'err_sig_long' => 'Allekirjoituksesi on liian pitkä. Merkkien enimmäismäärä on %1%.',
+	'err_sig_long' => 'Allekirjoituksesi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
 	'err_subscr_mode' => 'Tuntematon ilmoituslista-moodi',
 	'err_no_valid_mail' => 'Sinulla ei ole hyväksyttyä sähköpostia liittyäksesi foorumin ilmoituslistalle.',
 	'err_token' => 'Virheellinen koodi.',
 	'err_in_mod' => 'Tätä aihetta moderoidaan parhaillaan.',
 	'err_board_locked' => 'Alue on tilapäisesti lukittu.',
-	'err_no_subscr' => 'Et voi liittyä manuaalisesti tämän aiheen ilmoituslistalle. <a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
-	'err_subscr' => 'Tapahtui virhe. <a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
-	'err_no_unsubscr' => 'Et voi poistaa itseäsi tämän aiheen ilmoituslistalta. <a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
-	'err_unsubscr' => 'Tapahtui virhe. <a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
+	'err_no_subscr' => 'Et voi liittyä manuaalisesti tämän aiheen ilmoituslistalle. <a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
+	'err_subscr' => 'Tapahtui virhe. <a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
+	'err_no_unsubscr' => 'Et voi poistaa itseäsi tämän aiheen ilmoituslistalta. <a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
+	'err_unsubscr' => 'Tapahtui virhe. <a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
 	'err_sub_by_global' => 'Et liittynyt tämän aiheen ilmoituslistalle manuaalisesti, vaan globaalien valintalippujen kautta.<br/><a href="/forum/options">Käytä Foorumin Asetuksia</a> muuttaaksesi lippujasi.',
 	'err_thank_twice' => 'Olet jo kiittänyt tästä viestistä.',
 	'err_thanks_off' => 'Tällä hetkellä ei ole mahdollista kiittää ihmisiä viesteistä.',
 	'err_votes_off' => 'Foorumin viestiäänestys on tällä hetkellä pois käytöstä.',
-	'err_better_edit' => 'Ole hyvä ja muokkaa viestiäsi tuplapostauksen sijaan. Voit käyttää &quot;Mark-Unread&quot; lippua mikäli teet merkittäviä muutoksia.<br/><a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
+	'err_better_edit' => 'Ole hyvä ja muokkaa viestiäsi tuplapostauksen sijaan. Voit käyttää &quot;Mark-Unread&quot; lippua mikäli teet merkittäviä muutoksia.<br/><a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
 
 	# Messages
-	'msg_posted' => 'Viestisi on lähetetty.<br/><a href="%1%">Paina tästä nähdäksesi viestisi</a>.',
-	'msg_posted_mod' => 'Viestisi on lähetetty, mutta se tarkastetaan ennen julkaisua.<br/><a href="%1%">Paina tästä palataksesi alueelle</a>.',
-	'msg_post_edited' => 'Viestiäsi on muokattu.<br/><a href="%1%">Paina tästä palataksesi viestiisi</a>.',
-	'msg_edited_board' => 'Aluetta on muokattu.<br/><a href="%1%">Paina tästä palataksesi alueelle</a>.',
-	'msg_board_added' => 'Uusi alue on lisätty onnistuneesti. <a href="%1%">Paina tästä siirtyäksesi alueelle</a>.',
+	'msg_posted' => 'Viestisi on lähetetty.<br/><a href="%1$s">Paina tästä nähdäksesi viestisi</a>.',
+	'msg_posted_mod' => 'Viestisi on lähetetty, mutta se tarkastetaan ennen julkaisua.<br/><a href="%1$s">Paina tästä palataksesi alueelle</a>.',
+	'msg_post_edited' => 'Viestiäsi on muokattu.<br/><a href="%1$s">Paina tästä palataksesi viestiisi</a>.',
+	'msg_edited_board' => 'Aluetta on muokattu.<br/><a href="%1$s">Paina tästä palataksesi alueelle</a>.',
+	'msg_board_added' => 'Uusi alue on lisätty onnistuneesti. <a href="%1$s">Paina tästä siirtyäksesi alueelle</a>.',
 	'msg_edited_thread' => 'Aihetta on muokattu onnistuneesti.',
 	'msg_options_changed' => 'Asetuksiasi on muokattu.',
 	'msg_thread_shown' => 'Aihe on hyväksytty ja on nyt näkyvissä.',
@@ -47,14 +47,14 @@ $lang = array(
 	'msg_thread_deleted' => 'Aihe on poistettu.',
 	'msg_post_deleted' => 'Viesti on poistettu.',
 	'msg_board_deleted' => 'Koko alue on poistettu!',
-	'msg_subscribed' => 'Olet lisännyt itsesi manuaalisesti aiheen ilmoituslistalle ja saat sähköpostiisi ilmoituksen uusista viesteistä.<br/><a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
-	'msg_unsubscribed' => 'Poistit itsesi aiheen ilmoituslistalta etkä saa enää sähköpostiisi ilmoituksia.<br/><a href="%1%">Paina tästä palataksesi aiheeseen</a>.',
+	'msg_subscribed' => 'Olet lisännyt itsesi manuaalisesti aiheen ilmoituslistalle ja saat sähköpostiisi ilmoituksen uusista viesteistä.<br/><a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
+	'msg_unsubscribed' => 'Poistit itsesi aiheen ilmoituslistalta etkä saa enää sähköpostiisi ilmoituksia.<br/><a href="%1$s">Paina tästä palataksesi aiheeseen</a>.',
 	'msg_unsub_all' => 'Olet poistanut sähköpostisi kaikkien aiheiden ilmoituslistalta.',
 	'msg_thanked_ajax' => 'Kiitoksesi on tallennettu.',
-	'msg_thanked' => 'Kiitoksesi on tallennettu.<br/><a href="%1%">Paina tästä palataksesi viestiin</a>.',
-	'msg_thread_moved' => 'Aihe %1% on siirretty alueelle %2%.',
+	'msg_thanked' => 'Kiitoksesi on tallennettu.<br/><a href="%1$s">Paina tästä palataksesi viestiin</a>.',
+	'msg_thread_moved' => 'Aihe %1$s on siirretty alueelle %2$s.',
 	'msg_voted' => 'Kiitos äänestäsi.',
-	'msg_marked_read' => 'Onnistuneesti merkitty %1% aihetta luetuiksi.',
+	'msg_marked_read' => 'Onnistuneesti merkitty %1$s aihetta luetuiksi.',
 
 	# Titles
 	'forum_title' => GWF_SITENAME.' Foorumit',
@@ -63,14 +63,14 @@ $lang = array(
 	'ft_edit_board' => 'Muokkaa olemassaolevaa aluetta',
 	'ft_edit_thread' => 'Muokkaa aihetta',
 	'ft_options' => 'Säädä foorumiasetuksesi',
-	'pt_thread' => '%2% ['.GWF_SITENAME.']->%1% ',
+	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s ',
 	'ft_reply' => 'Vastaa aiheeseen',
-	'pt_board' => '%1% ',
-//	'pt_board' => '%1% ['.GWF_SITENAME.']',
+	'pt_board' => '%1$s ',
+//	'pt_board' => '%1$s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Pikahaku',
 	'ft_edit_post' => 'Muokkaa viestiäsi',
-	'at_mailto' => 'Lähetä sähköpostia henkilölle %1%',
-	'last_edit_by' => 'Viimeksi muokannut %1% - %2%',
+	'at_mailto' => 'Lähetä sähköpostia henkilölle %1$s',
+	'last_edit_by' => 'Viimeksi muokannut %1$s - %2$s',
 
 	# Page Info
 	'pi_unread' => 'Aiheet, joita et ole lukenut',
@@ -163,8 +163,8 @@ $lang = array(
 	'online' => 'Käyttäjä on paikalla',
 	'offline' => 'Käyttäjä ei ole paikalla',
 	'registered' => 'Rekisteröitynyt',
-	'watchers' => '%1% ihmistä katsoo aihetta tällä hetkellä.',
-	'views' => 'Tätä aihetta on katsottu %1% kertaa.',
+	'watchers' => '%1$s ihmistä katsoo aihetta tällä hetkellä.',
+	'views' => 'Tätä aihetta on katsottu %1$s kertaa.',
 
 	# forum.php
 	'latest_threads' => 'Viimeisimmät aktiviteetit',
@@ -176,22 +176,22 @@ $lang = array(
 		PHP_EOL.
 		'Sivulla '.GWF_SITENAME. 'on uusi viesti tai aihe, joka tarvitsee moderointia.'.PHP_EOL.
 		PHP_EOL.
-		'Alue: %1%'.PHP_EOL.
-		'Aihe: %2%'.PHP_EOL.
-		'Mistä: %3%'.PHP_EOL.
+		'Alue: %1$s'.PHP_EOL.
+		'Aihe: %2$s'.PHP_EOL.
+		'Mistä: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Poistaaksesi viestin käytä tätä linkkiä:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Salliaksesi tämän viestin käytä tätä linkkiä:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'Viesti näytetään automaattisesti %8% jälkeen'.PHP_EOL.
+		'Viesti näytetään automaattisesti %8$s jälkeen'.PHP_EOL.
 		PHP_EOL.
 		'Terveiset'.PHP_EOL.
 		GWF_SITENAME.' Tiimi'.PHP_EOL,
@@ -199,45 +199,45 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Uusi viesti',
 	'submail_body' => 
-		'Hyvä %1%'.PHP_EOL.
+		'Hyvä %1$s'.PHP_EOL.
 		PHP_EOL.
-		GWF_SITENAME.' Forums, Sivulla on %2% uutta viestiä'.PHP_EOL.
+		GWF_SITENAME.' Forums, Sivulla on %2$s uutta viestiä'.PHP_EOL.
 		PHP_EOL.
-		'Alue: %3%'.PHP_EOL.
-		'Aihe: %4%'.PHP_EOL.
+		'Alue: %3$s'.PHP_EOL.
+		'Aihe: %4$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5%'.PHP_EOL. # Multiple msgs possible
+		'%5$s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'To view the thread please visit this page:'.PHP_EOL.
-		'%8%'.PHP_EOL.
+		'%8$s'.PHP_EOL.
 		PHP_EOL.
 		'Poistaaksesi itsesi tämän aiheen ilmoituslistalta käytä allaolevaa linkkiä:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Poistaaksesi itsesi koko alueen ilmoituslistalta käytä tätä linkkiä:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		'Terveisin'.PHP_EOL.
 		GWF_SITENAME.' Tiimi'.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5% above
-		'Lähettäjä: %1%'.PHP_EOL.
-		'Otsikko: %2%'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %5$s above
+		'Lähettäjä: %1$s'.PHP_EOL.
+		'Otsikko: %2$s'.PHP_EOL.
 		'Viesti:'.PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 		
 	# v2.01 (last seen)
-	'last_seen' => 'Viimeksi nähty: %1%',
+	'last_seen' => 'Viimeksi nähty: %1$s',
 
 	# v2.02 (Mark all read)
 	'btn_mark_read' => 'Merkitse kaikki luetuoksi',
-	'msg_mark_aread' => 'Merkitse %1% luetuksi.',
+	'msg_mark_aread' => 'Merkitse %1$s luetuksi.',
 
 	# v2.03 (Merge)
 	'msg_merged' => 'Aiheet on yhdistetty.',
@@ -261,7 +261,7 @@ $lang = array(
 	'cfg_doublepost' => 'Salli tönäisyt / tuplapostaukset?',
 	'cfg_watch_timeout' => 'Merkitse aihe katseltavaksi N sekunniksi',
 	'th_guest_view' => 'Vieraiden nähtävissä?',
-	'pt_history' => 'Foorumin historia - Sivu %1% / %2%',
+	'pt_history' => 'Foorumin historia - Sivu %1$s / %2$s',
 	'btn_unread' => 'Uusia aiheita',
 		
 	# v2.06 (Admin Area)
@@ -274,9 +274,9 @@ $lang = array(
 		
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Viestimäärä',
-	'msg_attach_added' => 'Liitteesi on lisätty. <a href="%1%">Klikkaa tästä palataksesi viestiisi.</a>',
-	'msg_attach_deleted' => 'Liitteesi on poistettu. <a href="%1%">Klikkaa tästä palataksesi viestiisi.</a>',
-	'msg_attach_edited' => 'Liitettäsi on muokattu. <a href="%1%">Klikkaa tästä palataksesi viestiisi.</a>',
+	'msg_attach_added' => 'Liitteesi on lisätty. <a href="%1$s">Klikkaa tästä palataksesi viestiisi.</a>',
+	'msg_attach_deleted' => 'Liitteesi on poistettu. <a href="%1$s">Klikkaa tästä palataksesi viestiisi.</a>',
+	'msg_attach_edited' => 'Liitettäsi on muokattu. <a href="%1$s">Klikkaa tästä palataksesi viestiisi.</a>',
 	'msg_reupload' => 'Liitteesi on korvattu.',
 	'btn_add_attach' => 'Lisää liite',
 	'btn_del_attach' => 'Poista liite',
@@ -292,15 +292,15 @@ $lang = array(
 		
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Luo lautoja kielelle',
-	'lang_board_title' => '%1% Lauta',
-	'lang_board_descr' => 'For %1% language',
+	'lang_board_title' => '%1$s Lauta',
+	'lang_board_descr' => 'For %1$s language',
 	'lang_root_title' => 'Ulkomaiset kielet',
 	'lang_root_descr' => 'Muut kuin englannin kieliset laudat',
-	'md_board' => GWF_SITENAME.' Foorumit. %1%',
+	'md_board' => GWF_SITENAME.' Foorumit. %1$s',
 	'mt_board' => GWF_SITENAME.', Foorumi, Viereiden vastaukset, Vaihtoehtoinen, Foorumi, Ohjelmisto',
 
 	# v2.10 subscribers
-	'subscribers' => '%1% on lisännyt aiheen seurantalistalle ja vastaanottaa sähköpostia uusista viesteistä.',
+	'subscribers' => '%1$s on lisännyt aiheen seurantalistalle ja vastaanottaa sähköpostia uusista viesteistä.',
 	'th_hide_subscr' => 'Piilota seurantalistasi?',
 
 	# v2.11 fixes11
@@ -310,17 +310,17 @@ $lang = array(
 
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1% threads and %2% posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1%&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1% boards.',
-	'subscr_threads' => 'You have manually subscribed to %1% threads.',
+	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
+	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
 );
 ?>

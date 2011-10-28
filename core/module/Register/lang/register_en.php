@@ -10,7 +10,7 @@ $lang = array(
 	'th_birthdate' => 'Birthdate',
 	'th_countryid' => 'Country',
 	'th_tos' => 'I agree to the<br/>Terms of Use',
-	'th_tos2' => 'I agree to the<br/><a href="%1%">Terms of Use</a>',
+	'th_tos2' => 'I agree to the<br/><a href="%1$s">Terms of Use</a>',
 	'th_register' => 'Register',
 
 	'btn_register' => 'Register',
@@ -31,23 +31,23 @@ $lang = array(
 
 	'regmail_subject' => 'Register at '.GWF_SITENAME,
 	'regmail_body' => 
-		'Hello %1%<br/>'.
+		'Hello %1$s<br/>'.
 		'<br/>'.
 		'Thank you for registering at '.GWF_SITENAME.'.<br/>'.
 		'To complete the registration, you have to activate your account first, by visiting the link below.<br/>'.
 		'If you did not register at '.GWF_SITENAME.', please ignore this mail, or contact us at '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'<br/>'.
-		'%3%'.
+		'%3$s'.
 		'Kind Regards,<br/>'.
 		'The '.GWF_SITENAME.' Team.',
 	'err_tos' => 'You have to agree to the EULA.',
 
 	'regmail_ptbody' => 
 		'Your Login Credentials are:<br/><b>'.
-		'Username: %1%<br/>'.
-		'Password: %2%<br/>'.
+		'Username: %1$s<br/>'.
+		'Password: %2$s<br/>'.
 		'</b><br/>'.
 		'It is a good idea to delete this email and store the password somewhere else.<br/>'.
 		'We do not store your password in plaintext, you should not do that either.<br/>'.
@@ -67,12 +67,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Timeout for completing registration',
 
 	'err_birthdate' => 'Your birthdate is invalid.',
-	'err_minage' => 'We are sorry, but you are not old enough to register. You need to be at least %1% years old.',
+	'err_minage' => 'We are sorry, but you are not old enough to register. You need to be at least %1$s years old.',
 	'err_ip_timeout' => 'Someone recently registered an account with this IP.',
 	'th_token' => 'Token',
 	'th_timestamp' => 'Register Time',
 	'th_ip' => 'Reg IP',
-	'tt_username' => 'The username has to start with a letter.'.PHP_EOL.'It may only contain letters, digits and the underscore. Length has to be 3 - %1% chars.', 
+	'tt_username' => 'The username has to start with a letter.'.PHP_EOL.'It may only contain letters, digits and the underscore. Length has to be 3 - %1$s chars.', 
 	'tt_email' => 'A valid EMail is required to register.',
 
 	'info_no_cookie' => 'Your Browser does not support cookies or does not allow them for '.GWF_SITENAME.', but cookies are required for login.',

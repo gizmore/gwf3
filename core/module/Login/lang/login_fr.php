@@ -14,17 +14,17 @@ $lang = array(
 	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Utilisateur Inconnu',
-	'err_login2' => 'Mauvais Password. Il vous reste %1% essais avant d\'être bloqué pour %2%.',
-	'err_blocked' => 'Merci d\'attendre %1% avant une nouvelle tentative.',
+	'err_login2' => 'Mauvais Password. Il vous reste %1$s essais avant d\'être bloqué pour %2$s.',
+	'err_blocked' => 'Merci d\'attendre %1$s avant une nouvelle tentative.',
 
 	'welcome' => 
-		'Bienvenue sur '.GWF_SITENAME.', %1%.<br/><br/>'.
+		'Bienvenue sur '.GWF_SITENAME.', %1$s.<br/><br/>'.
 		'Nous espérons que vous appréciez notre site et que vous vous amusez en naviguant.<br/>'.
 		'Si vous avez des questions, n\'hésitez pas à nous contacter!',
 
 	'welcome_back' => 
-		'Bon retour sur '.GWF_SITENAME.', %1%.<br/><br/>'.
-		'Votre dernière activité était le %2% avec l\'IP: %3%.',
+		'Bon retour sur '.GWF_SITENAME.', %1$s.<br/><br/>'.
+		'Votre dernière activité était le %2$s avec l\'IP: %3$s.',
 
 	'logout_info' => 'Vous êtes à présent déconnecté.',
 
@@ -38,13 +38,13 @@ $lang = array(
 	'th_bind_ip' => 'Restreindre la session à cette IP',
 	'tt_bind_ip' => 'Une mesure de sécurité pour prévenir le vol de cookie.',
 
-	'err_failures' => 'Il y a eu %1% erreurs de connexion, vous êtes peut être sujet d\'une tentative d\'attaque ratée ou en cours de préparation.',
+	'err_failures' => 'Il y a eu %1$s erreurs de connexion, vous êtes peut être sujet d\'une tentative d\'attaque ratée ou en cours de préparation.',
 	# v1.01 (login failures)
 	'cfg_lf_cleanup_i' => 'Cleanup user failures after login?',
 	'cfg_lf_cleanup_t' => 'Cleanup old failures after time',
 
 	# v2.00 (login history)
-	'msg_last_login' => 'Your last login was %1% from %2% (%3%).<br/>You can also <a href="%4%">review your login history here</a>.',
+	'msg_last_login' => 'Your last login was %1$s from %2$s (%3$s).<br/>You can also <a href="%4$s">review your login history here</a>.',
 	'th_loghis_time' => 'Date',
 	'th_loghis_ip' => 'IP',
 	'th_hostname' => 'Hostname',
@@ -53,6 +53,6 @@ $lang = array(
 	'ft_clear' => 'Clear login history',
 	'btn_clear' => 'Clear',
 	'msg_cleared' => 'Your login history has been cleared.',
-	'info_cleared' => 'Your login history was last cleared at %1% from this IP: %2% / %3%',
+	'info_cleared' => 'Your login history was last cleared at %1$s from this IP: %2$s / %3$s',
 );
 ?>

@@ -4,8 +4,8 @@ $lang = array(
 	
 	# Messages
 	'msg_news_added' => 'Die Nachrichten wurden hinzugefügt.',
-	'msg_translated' => 'Sie haben die Nachricht \'%1%\' in die Sprache %2% übersetzt.',
-	'msg_edited' => 'Die Nachricht \'%1%\' in %2% wurde bearbeitet.',
+	'msg_translated' => 'Sie haben die Nachricht \'%1$s\' in die Sprache %2$s übersetzt.',
+	'msg_edited' => 'Die Nachricht \'%1$s\' in %2$s wurde bearbeitet.',
 	'msg_hidden_1' => 'Die Nachricht ist nun versteckt.',
 	'msg_hidden_0' => 'Die Nachricht ist nun sichtbar.',
 	'msg_mailme_1' => 'Die Nachricht wurde in den mail-queue verschoben.',
@@ -23,16 +23,16 @@ $lang = array(
 	'err_langtrans' => 'Diese Sprache wird nicht unterstützt.',
 	'err_lang_src' => 'Die Original-Sprache ist unbekannt.',
 	'err_lang_dest' => 'Die Ziel-Sprache ist unbekannt.',
-	'err_equal_translang' => 'Die Quell und Ziel-Sprache sind gleich (%1%).',
+	'err_equal_translang' => 'Die Quell und Ziel-Sprache sind gleich (%1$s).',
 	'err_type' => 'Das Newsletter Format ist ungültig.',
 	'err_unsign' => 'Ein Fehler ist aufgetreten.',
 
 
 	# Main
 	'title' => 'Neuigkeiten',
-	'pt_news' => 'Neuigkeiten vom %1%',
-	'mt_news' => 'News, Neuigkeiten, '.GWF_SITENAME.', %1%',
-	'md_news' => 'Neues auf '.GWF_SITENAME.'. Seite %1% von %2%.',
+	'pt_news' => 'Neuigkeiten vom %1$s',
+	'mt_news' => 'News, Neuigkeiten, '.GWF_SITENAME.', %1$s',
+	'md_news' => 'Neues auf '.GWF_SITENAME.'. Seite %1$s von %2$s.',
 
 	# Table Headers
 	'th_email' => 'Ihre EMail',
@@ -49,7 +49,7 @@ $lang = array(
 	# Preview
 	'btn_preview_text' => 'als Text Version',
 	'btn_preview_html' => 'als HTML Version',
-	'preview_info' => 'Sie können die Vorschau hier ansehen:<br/>%1% und %2%.',
+	'preview_info' => 'Sie können die Vorschau hier ansehen:<br/>%1$s und %2$s.',
 
 	# Show 
 	'unknown_user' => 'Unbekannter Nutzer',
@@ -58,13 +58,13 @@ $lang = array(
 
 	# Newsletter
 	'newsletter_title' => GWF_SITENAME.': Newsletter',
-	'anrede' => 'Hallo %1%',
+	'anrede' => 'Hallo %1$s',
 	'newsletter_wrap' =>
-		'%1%, '.PHP_EOL.
+		'%1$s, '.PHP_EOL.
 		PHP_EOL.
 		'Du hast dich für den Newsletter auf '.GWF_SITENAME.' eingetragen, und es gibt Neuigkeiten.'.PHP_EOL.
 		'Um dich vom Newsletter auszutragen, rufe folgende Seite auf:'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
@@ -72,9 +72,9 @@ $lang = array(
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL,
+		'%4$s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Wählen sie ein Format',
@@ -92,7 +92,7 @@ $lang = array(
 	'btn_unsign' => 'Newsletter abbestellen',
 		
 	# Edit
-	'ft_edit' => 'News Bearbeiten (Sprache: %1%)',
+	'ft_edit' => 'News Bearbeiten (Sprache: %1$s)',
 	'btn_edit' => 'Speichern',
 	'btn_translate' => 'Übersetzen',
 	'th_transid' => 'Übersetzung',
@@ -118,7 +118,7 @@ $lang = array(
 		
 	# V2.03 (News + Forum)
 	'cfg_news_in_forum' => 'Nachrichten ins Forum posten',
-	'board_lang_descr' => 'Nachrichten in %1%',
+	'board_lang_descr' => 'Nachrichten in %1$s',
 	'btn_admin_section' => 'Admin Bereich',
 	'th_hidden' => 'Versteckt?',
 	'th_visible' => 'Sichtbar?',

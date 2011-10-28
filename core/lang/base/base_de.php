@@ -2,32 +2,32 @@
 
 $lang = array(
 
-	'ERR_DATABASE' => 'Datenbank Fehler in Datei %1% Zeile %2%.',
-	'ERR_FILE_NOT_FOUND' => 'Datei nicht gefunden: %1%',
-	'ERR_MODULE_DISABLED' => 'Das Modul %1% ist zur zeit deaktiviert.',
+	'ERR_DATABASE' => 'Datenbank Fehler in Datei %1$s Zeile %2$s.',
+	'ERR_FILE_NOT_FOUND' => 'Datei nicht gefunden: %1$s',
+	'ERR_MODULE_DISABLED' => 'Das Modul %1$s ist zur zeit deaktiviert.',
 	'ERR_LOGIN_REQUIRED' => 'Für diese Funktion müssen sie angemeldet sein.',
 	'ERR_NO_PERMISSION' => 'Zugriff Verweigert.',
 	'ERR_WRONG_CAPTCHA' => 'Sie müssen die Buchstaben aus dem Captcha Bild richtig abtippen.',
-	'ERR_MODULE_MISSING' => 'Modul %1% konnte nicht gefunden werden.',
+	'ERR_MODULE_MISSING' => 'Modul %1$s konnte nicht gefunden werden.',
 	'ERR_COOKIES_REQUIRED' => 'Ihre Sitzung ist abgelaufen. Bitte versuchen sie die Seite erneut zu laden.',
 	'ERR_UNKNOWN_USER' => 'Dieser Benutzer ist unbekannt.',
 	'ERR_UNKNOWN_COUNTRY' => 'Dieses Land ist unbekant.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Diese Sprache ist unbekant.',
 	'ERR_UNKNOWN_GROUP' => 'Unbekannte Benutzergruppe.',
-	'ERR_METHOD_MISSING' => 'Unbekannte Funktion %1% in Modul %2%.',
-	'ERR_GENERAL' => 'Undefinierter Fehler in %1% Zeile %2%.',
-	'ERR_WRITE_FILE' => 'Kann die Datei %1% nicht beschreiben.',
-	'ERR_CLASS_NOT_FOUND' => 'Unbekannte Klasse: %1%.',
-	'ERR_MISSING_VAR' => 'Fehlende Formular Daten für feld %1%.',
+	'ERR_METHOD_MISSING' => 'Unbekannte Funktion %1$s in Modul %2$s.',
+	'ERR_GENERAL' => 'Undefinierter Fehler in %1$s Zeile %2$s.',
+	'ERR_WRITE_FILE' => 'Kann die Datei %1$s nicht beschreiben.',
+	'ERR_CLASS_NOT_FOUND' => 'Unbekannte Klasse: %1$s.',
+	'ERR_MISSING_VAR' => 'Fehlende Formular Daten für feld %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Sie müssen eine Datei hochladen.',
 	'ERR_MAIL_SENT' => 'Es trat ein Fehler beim Senden der EMail auf.',
 	'ERR_CSRF' => 'Ihr gesendetes Formular ist ungültig. Wahrscheinlich haben sie ein Formular zwei mal gesendet, oder Ihre Sitzung ist abgelaufen.',
-	'ERR_HOOK' => 'Eine Erweiterung lieferte einen Fehler zurück: %1%.',
-	'ERR_PARAMETER' => 'Ungültiges argument in %1% Zeile %2%. Funktionsargument %3% ist ungültig.',
-	'ERR_DEPENDENCY' => 'Funktion benötigt ein fehlendes Modul: core/module/%1%/method/%2% benötigt Modul %3% v%4%.',
-	'ERR_SEARCH_TERM' => 'Der Suchbegriff muss %1% - %2% Zeichen lang sein.',
-	'ERR_SEARCH_NO_MATCH' => 'Ihre Suche nach &quot;%1%&quot; ergab keine Treffer.',
-	'ERR_POST_VAR' => 'Unerwartete Formulardaten: %1%.',
+	'ERR_HOOK' => 'Eine Erweiterung lieferte einen Fehler zurück: %1$s.',
+	'ERR_PARAMETER' => 'Ungültiges argument in %1$s Zeile %2$s. Funktionsargument %3$s ist ungültig.',
+	'ERR_DEPENDENCY' => 'Funktion benötigt ein fehlendes Modul: core/module/%1$s/method/%2$s benötigt Modul %3$s v%4$s.',
+	'ERR_SEARCH_TERM' => 'Der Suchbegriff muss %1$s - %2$s Zeichen lang sein.',
+	'ERR_SEARCH_NO_MATCH' => 'Ihre Suche nach &quot;%1$s&quot; ergab keine Treffer.',
+	'ERR_POST_VAR' => 'Unerwartete Formulardaten: %1$s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -80,10 +80,10 @@ $lang = array(
 	'd5' => 'Fr',
 	'd6' => 'Sa',
 
-	'ago_s' => 'vor %1% Sekunde(n)',
-	'ago_m' => 'vor %1% Minute(n)',
-	'ago_h' => 'vor %1% Stunde(n)',
-	'ago_d' => 'vor %1% Tage(n)',
+	'ago_s' => 'vor %1$s Sekunde(n)',
+	'ago_m' => 'vor %1$s Minute(n)',
+	'ago_h' => 'vor %1$s Stunde(n)',
+	'ago_d' => 'vor %1$s Tage(n)',
 
 	###
 	### GWF_DateFormat, is problematic, because en != en [us_gb]??
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'Unbekanntes Geschlecht',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1%`s Benutzerbild',
+	'alt_avatar' => '%1$s`s Benutzerbild',
 
 	# GWF_Group
 	'sel_group' => 'Wählen sie eine Benutzer-Gruppe',
@@ -156,14 +156,14 @@ $lang = array(
 	'and' => 'und',
 	'by' => 'von',
 
-	'alt_flag' => '%1% Flagge',
+	'alt_flag' => '%1$s Flagge',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1% '.GWF_SITENAME.'. Alle Rechte reserviert.',
+	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Alle Rechte reserviert.',
 	'copygwf' => GWF_SITENAME.' verwendet <a href="http://gwf.gizmore.org">GWF</a>, das Freie-Webseiten-Gerüst.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1% benötigtes Feld.',
+	'form_required' => '%1$s benötigtes Feld.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'Fett',
@@ -178,7 +178,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Unsichtbarer text. Durch Klick anzeigen.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Zitat von %1%',
+	'quote_from' => 'Zitat von %1$s',
 	'code' => 'Quelltext',
 	'for' => 'für',
 
@@ -191,7 +191,7 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );	
 
 ?>

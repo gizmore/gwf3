@@ -8,7 +8,7 @@ $lang = array(
 	'contact_title' => 'Contatto',
 	'contact_info' =>
 		'Qui potete contattarci via e-Mail. Vi preghiamo di inserire un e-Mail valido, così potremo rispondere alle vostre domande.<br/>'.
-		'Potete inviarci una e-mail da qualsiasi altro programma e-Mail al seguente indirizzo <a href="mailto:%1%">%1%</a> senden.',
+		'Potete inviarci una e-mail da qualsiasi altro programma e-Mail al seguente indirizzo <a href="mailto:%1$s">%1$s</a> senden.',
 	'form_title' => 'Contatto '.GWF_SITENAME,
 	'th_email' => 'La vostra e-Mail',
 	'th_message' => 'Il Vostro messaggio',
@@ -17,12 +17,12 @@ $lang = array(
 	'mail_subj' => GWF_SITENAME.': Nuovo messaggio di contatto',
 	'mail_body' => 
 		'È stata inviata una nuova e-Mail tramite il formulare di contatto.<br/>'.
-		'Invia: %1%<br/>'.
+		'Invia: %1$s<br/>'.
 		'Messaggio:<br/>'.
-		'%2%<br/>'.
+		'%2$s<br/>'.
 		'',
 
-	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %1%.',
+	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %1$s.',
 
 	'err_email' => 'Ihre EMail ist ungültig. Sie können diese Feld frei lassen wenn sie möchten.',
 	'err_message' => 'Ihre Nachricht ist zu kurz oder zu lang.',
@@ -36,21 +36,21 @@ $lang = array(
 
 	# Sendmail
 	'th_user_email' => 'Ihre EMail Addresse',
-	'ft_sendmail' => 'Eine EMail an %1% senden',
+	'ft_sendmail' => 'Eine EMail an %1$s senden',
 	'btn_sendmail' => 'EMail Senden',
 	'err_no_mail' => 'Dieser Benutzer möchte keine EMails empfangen.',
-	'msg_mailed' => 'Eine EMail wurde an %1% gesendet.',
-	'mail_subj_mail' => GWF_SITENAME.': EMail von %1%',
+	'msg_mailed' => 'Eine EMail wurde an %1$s gesendet.',
+	'mail_subj_mail' => GWF_SITENAME.': EMail von %1$s',
 	'mail_subj_body' => 
-		'Hallo %1%'.PHP_EOL.
+		'Hallo %1$s'.PHP_EOL.
 		PHP_EOL.
-		'Ihnen wurde eine EMail von %2% über die '.GWF_SITENAME.' Webseite zugesandt:'.PHP_EOL.
+		'Ihnen wurde eine EMail von %2$s über die '.GWF_SITENAME.' Webseite zugesandt:'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'%3%',
+		'%3$s',
 	
 	# V2.01 (List Admins)
-	'list_admins' => 'Admins: %1%.',
+	'list_admins' => 'Admins: %1$s.',
 	'cfg_captcha_member' => 'Show captcha for members?',
 );
 

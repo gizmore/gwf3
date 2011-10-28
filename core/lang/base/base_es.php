@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Error de la base de datos en el archivo %1% línea %2%.',
-	'ERR_FILE_NOT_FOUND' => 'Archivo no encontrado: %1%',
-	'ERR_MODULE_DISABLED' => 'El módulo %1% está actualmente deshabilitado.',
+	'ERR_DATABASE' => 'Error de la base de datos en el archivo %1$s línea %2$s.',
+	'ERR_FILE_NOT_FOUND' => 'Archivo no encontrado: %1$s',
+	'ERR_MODULE_DISABLED' => 'El módulo %1$s está actualmente deshabilitado.',
 	'ERR_LOGIN_REQUIRED' => 'Necesita acceder a su cuenta para ejecutar esta acción.',
 	'ERR_NO_PERMISSION' => 'Permiso denegado.',
 	'ERR_WRONG_CAPTCHA' => 'Tiene que escribir las letras de la imagen correctamente.',
-	'ERR_MODULE_MISSING' => 'No se pudo encontrar el módulo %1%.',
+	'ERR_MODULE_MISSING' => 'No se pudo encontrar el módulo %1$s.',
 	'ERR_COOKIES_REQUIRED' => 'El tiempo de su sesión expiró o necesita activar las cookies en su navegador.<br />Por favor, intente actualizar la página.',
 	'ERR_UNKNOWN_USER' => 'El usuario es desconocido.',
 	'ERR_UNKNOWN_GROUP' => 'El grupo es desconocido.',
 	'ERR_UNKNOWN_COUNTRY' => 'El país es desconocido.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Ese idioma es desconocido.',
-	'ERR_METHOD_MISSING' => 'Método desconocido: %1% en módulo %2%.',
-	'ERR_GENERAL' => 'Error indefinido en %1% línea %2%.',
-	'ERR_WRITE_FILE' => 'No se puede escribir archivo: %1%.',
-	'ERR_CLASS_NOT_FOUND' => 'Clase desconocida: %1%.',
-	'ERR_MISSING_VAR' => 'Variable HTTP POST perdida: %1%.',
+	'ERR_METHOD_MISSING' => 'Método desconocido: %1$s en módulo %2$s.',
+	'ERR_GENERAL' => 'Error indefinido en %1$s línea %2$s.',
+	'ERR_WRITE_FILE' => 'No se puede escribir archivo: %1$s.',
+	'ERR_CLASS_NOT_FOUND' => 'Clase desconocida: %1$s.',
+	'ERR_MISSING_VAR' => 'Variable HTTP POST perdida: %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Tiene que subir un archivo.',
 	'ERR_MAIL_SENT' => 'Ocurrió un error al enviarle un email.',
 	'ERR_CSRF' => 'Su token de formulario es incorrecto. Quizá lo envió dos veces, o durante el proceso se terminó el tiempo de su sesión.',
-	'ERR_HOOK' => 'Un gancho devolvió valor falso: %1%.',
-	'ERR_PARAMETER' => 'Argumento no válido en %1% línea %2%. El argumento de la función %3% no es válido.',
-	'ERR_DEPENDENCY' => 'Dependencia sin resolver: core/module/%1%/method/%2% requiere módulo %3% v%4%.',
-	'ERR_SEARCH_TERM' => 'El término de búsqueda debe tener entre %1% y %2% carácteres de longitud.',
-	'ERR_SEARCH_NO_MATCH' => 'Su búsqueda de "%1%" no encontró resultados.',
-	'ERR_POST_VAR' => 'Variable POST inesperada: %1%.',
+	'ERR_HOOK' => 'Un gancho devolvió valor falso: %1$s.',
+	'ERR_PARAMETER' => 'Argumento no válido en %1$s línea %2$s. El argumento de la función %3$s no es válido.',
+	'ERR_DEPENDENCY' => 'Dependencia sin resolver: core/module/%1$s/method/%2$s requiere módulo %3$s v%4$s.',
+	'ERR_SEARCH_TERM' => 'El término de búsqueda debe tener entre %1$s y %2$s carácteres de longitud.',
+	'ERR_SEARCH_NO_MATCH' => 'Su búsqueda de "%1$s" no encontró resultados.',
+	'ERR_POST_VAR' => 'Variable POST inesperada: %1$s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -73,10 +73,10 @@ $lang = array(
 	'd4' => 'Jue',
 	'd5' => 'Vie',
 	'd6' => 'Sab',
-	'ago_s' => 'hace %1% segundos',
-	'ago_m' => 'hace %1% minutos',
-	'ago_h' => 'hace %1% horas',
-	'ago_d' => 'hace %1% días', 
+	'ago_s' => 'hace %1$s segundos',
+	'ago_m' => 'hace %1$s minutos',
+	'ago_h' => 'hace %1$s horas',
+	'ago_d' => 'hace %1$s días', 
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -119,13 +119,13 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Seleccione un país',
 	'unknown_country' => 'País desconocido',
-	'alt_flag' => '%1%',
+	'alt_flag' => '%1$s',
 	# GWF_User#gender
 	'gender_male' => 'Masculino',
 	'gender_female' => 'Femenino',
 	'gender_no_gender' => 'Sexo desconocido',
 	# GWF_User#avatar
-	'alt_avatar' => 'Ávatar de %1%',
+	'alt_avatar' => 'Ávatar de %1$s',
 	# GWF_Group 
 	'sel_group' => 'Seleccione grupo de usuario',
 	# Date select 
@@ -143,14 +143,14 @@ $lang = array(
 	'by' => 'por',
 	'and' => 'y',
 	
-	'alt_flag' => 'Bandera de %1%',
+	'alt_flag' => 'Bandera de %1$s',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1% '.GWF_SITENAME.'. Todos los derechos reservados.',
+	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Todos los derechos reservados.',
 	'copygwf' => GWF_SITENAME.' está usando <a href="http://gwf.gizmore.org">GWF</a>, the BSD-Like Website Framework.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1% es requerido.',
+	'form_required' => '%1$s es requerido.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'negrilla',
@@ -165,7 +165,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Texto invisible que es mostrado con un clic.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Cita de %1%',
+	'quote_from' => 'Cita de %1$s',
 	'code' => 'código',
 	'for' => 'para',
 
@@ -178,6 +178,6 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );
 ?>

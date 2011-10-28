@@ -12,25 +12,31 @@ $("myobj").animate({path: path}, duration)
 */
 ;(function($)
 {
-  $.path = {};
-  var V = {
-    rotate: function(p, degrees) {
-      var radians = degrees * 3.141592654 / 180
-      var c = Math.cos(radians), s = Math.sin(radians)
-      return [c*p[0] - s*p[1], s*p[0] + c*p[1] ]
-    },
-    scale: function(p, n) {
-      return [n*p[0], n*p[1]]
-    },
-    add: function(a, b) {
-      return [a[0]+b[0], a[1]+b[1]]
-    },
-    minus: function(a, b) {
-      return [a[0]-b[0], a[1]-b[1]]
-    }
-  }
+
+	$.path = {};
+
+	var V = {
+		rotate: function(p, degrees) {
+			var radians = degrees * 3.141592654 / 180;
+			var c = Math.cos(radians), s = Math.sin(radians);
+			return [c*p[0] - s*p[1], s*p[0] + c*p[1]];
+		},
+    
+		scale: function(p, n) {
+			return [n*p[0], n*p[1]];
+		},
+
+		add: function(a, b) {
+			return [a[0]+b[0], a[1]+b[1]];
+		},
+
+		minus: function(a, b) {
+			return [a[0]-b[0], a[1]-b[1]];
+		}
+	};
    
-   $.path.bezier = function( params ) {
+	
+	$.path.bezier = function( params ) {
       params.start = $.extend({angle: 0, length: 0.3333}, params.start )
       params.end = $.extend({angle: 0, length: 0.3333}, params.end )
 

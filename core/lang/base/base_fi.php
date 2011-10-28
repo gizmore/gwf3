@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Tietokantavirhe tiedostossa %1% linjalla %2%.',
-	'ERR_FILE_NOT_FOUND' => 'Tiedostoa ei löytynyt: %1%',
-	'ERR_MODULE_DISABLED' => 'Moduuli %1% ei ole käytössä.',
+	'ERR_DATABASE' => 'Tietokantavirhe tiedostossa %1$s linjalla %2$s.',
+	'ERR_FILE_NOT_FOUND' => 'Tiedostoa ei löytynyt: %1$s',
+	'ERR_MODULE_DISABLED' => 'Moduuli %1$s ei ole käytössä.',
 	'ERR_LOGIN_REQUIRED' => 'Kirjaudu sisään käyttääksesi toimintoa.',
 	'ERR_NO_PERMISSION' => 'Ei käyttöoikeutta.',
 	'ERR_WRONG_CAPTCHA' => 'Kirjoita kuvan kirjaimet oikein.',
-	'ERR_MODULE_MISSING' => 'Moduulia %1% ei löytynyt.',
+	'ERR_MODULE_MISSING' => 'Moduulia %1$s ei löytynyt.',
 	'ERR_COOKIES_REQUIRED' => 'Istunto aikakatkaistiin tai sinun täytyy aktivoida cookiet selaimessasi.<br/>Yritä päivittää sivu.',
 	'ERR_UNKNOWN_USER' => 'Tuntematon käyttäjä.',
 	'ERR_UNKNOWN_GROUP' => 'Tuntematon ryhmä.',
 	'ERR_UNKNOWN_COUNTRY' => 'Tuntematon maa.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Tuntematon kieli.',
-	'ERR_METHOD_MISSING' => 'Tuntematon metodi: %1% moduulissa %2%.',
-	'ERR_GENERAL' => 'Määrittämätön virhe %1% linjalla %2%.',
-	'ERR_WRITE_FILE' => 'Ei voi kirjoittaa tiedostoon: %1%.',
-	'ERR_CLASS_NOT_FOUND' => 'Tuntematon luokka: %1%.',
-	'ERR_MISSING_VAR' => 'Puuttuva HTTP Post var: %1%.',
+	'ERR_METHOD_MISSING' => 'Tuntematon metodi: %1$s moduulissa %2$s.',
+	'ERR_GENERAL' => 'Määrittämätön virhe %1$s linjalla %2$s.',
+	'ERR_WRITE_FILE' => 'Ei voi kirjoittaa tiedostoon: %1$s.',
+	'ERR_CLASS_NOT_FOUND' => 'Tuntematon luokka: %1$s.',
+	'ERR_MISSING_VAR' => 'Puuttuva HTTP Post var: %1$s.',
 	'ERR_MISSING_UPLOAD' => 'Sinun täytyy lähettää tiedosto.',
 	'ERR_MAIL_SENT' => 'Virhe havaittiin lähetettäessä sinulle sähköpostia.',
 	'ERR_CSRF' => 'Formulaarinen merkkisi on vahingoittunut. Ehkä yritit tuplapostausta tai istuntosi aika loppui.',
-	'ERR_HOOK' => 'Koukku (hook) tuotti epätoden: %1%.',
-	'ERR_PARAMETER' => 'Virheellinen argumentti %1% linjalla %2%. Toimintoargumentti %3% on virheellinen.',
-	'ERR_DEPENDENCY' => 'Selvittämätön riippuvuus: core/module/%1%/method/%2% vaatii moduulin %3% v%4%.',
-	'ERR_SEARCH_TERM' => 'Hakusanan täytyy olla %1% - %2% merkkiä pitkä.',
-	'ERR_SEARCH_NO_MATCH' => 'Haullasi &quot;%1%&quot; ei löytynyt mitään.',
-	'ERR_POST_VAR' => 'Odottamaton POST var: %1%.',
+	'ERR_HOOK' => 'Koukku (hook) tuotti epätoden: %1$s.',
+	'ERR_PARAMETER' => 'Virheellinen argumentti %1$s linjalla %2$s. Toimintoargumentti %3$s on virheellinen.',
+	'ERR_DEPENDENCY' => 'Selvittämätön riippuvuus: core/module/%1$s/method/%2$s vaatii moduulin %3$s v%4$s.',
+	'ERR_SEARCH_TERM' => 'Hakusanan täytyy olla %1$s - %2$s merkkiä pitkä.',
+	'ERR_SEARCH_NO_MATCH' => 'Haullasi &quot;%1$s&quot; ei löytynyt mitään.',
+	'ERR_POST_VAR' => 'Odottamaton POST var: %1$s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'Per',
 	'd6' => 'Lau',
 
-	'ago_s' => '%1% sekuntia sitten',
-	'ago_m' => '%1% minuuttia sitten',
-	'ago_h' => '%1% tuntia sitten',
-	'ago_d' => '%1% päivää sitten',
+	'ago_s' => '%1$s sekuntia sitten',
+	'ago_m' => '%1$s minuuttia sitten',
+	'ago_h' => '%1$s tuntia sitten',
+	'ago_d' => '%1$s päivää sitten',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -127,7 +127,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Valitse maa',
 	'unknown_country' => 'Tuntematon maa',
-	'alt_flag' => '%1%',
+	'alt_flag' => '%1$s',
 
 	# GWF_User#gender
 	'gender_male' => 'Mies',
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'Tuntematon',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1%`n Avatar',
+	'alt_avatar' => '%1$s`n Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Valitse käyttäjäryhmä',
@@ -156,14 +156,14 @@ $lang = array(
 	'by' => ':llä',
 	'and' => 'ja',
 
-	'alt_flag' => '%1% Lippu',
+	'alt_flag' => '%1$s Lippu',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1% '.GWF_SITENAME.'. Kaikki oikeudet pidätetään.',
+	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Kaikki oikeudet pidätetään.',
 	'copygwf' => GWF_SITENAME.' käyttää <a href="http://gwf.gizmore.org">GWF</a>,:a BSD:n kaltaista web-sivukehikkoa.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1% pakollinen kenttä.',
+	'form_required' => '%1$s pakollinen kenttä.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'Lihavointi',
@@ -178,7 +178,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Näkymätön teksti, jonka saa esiin klikkaamalla.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Lainaus käyttäjältä %1%',
+	'quote_from' => 'Lainaus käyttäjältä %1$s',
 	'code' => 'code',
 	'for' => 'for',
 	
@@ -191,6 +191,6 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1% to see this content.',
+	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
 );
 ?>

@@ -11,37 +11,37 @@ $lang = array(
 	'err_board_perm' => 'Teil puudub ligipääs antud tahvlile.',
 	'err_thread_perm' => 'Teil puudub ligipääs sellele teemale.',
 	'err_post_perm' => 'Teil ei ole lubatud seda postitust lugeda.',
-	'err_reply_perm' => 'Teil ei ole lubatud sellele postitusele vastata. <a href="%1%">Vajuta siia, et minna tagasi teema juurde</a>.',
+	'err_reply_perm' => 'Teil ei ole lubatud sellele postitusele vastata. <a href="%1$s">Vajuta siia, et minna tagasi teema juurde</a>.',
 	'err_no_thread_allowed' => 'Sellel tahvlil ei ole teemad lubatud.',
 	'err_no_guest_post' => 'Külalised ei saa siia foorumisse postitada.',
-	'err_msg_long' => 'Teie postitus on liiga pikk. Maksimaalselt on lubatud %1% tähte.',
+	'err_msg_long' => 'Teie postitus on liiga pikk. Maksimaalselt on lubatud %1$s tähte.',
 	'err_msg_short' => 'Te unustasite oma sõnumi.',
-	'err_descr_long' => 'Teie kirjeldus on liiga pikk. Maksimaalselt on lubatud %1% tähte.',
+	'err_descr_long' => 'Teie kirjeldus on liiga pikk. Maksimaalselt on lubatud %1$s tähte.',
 	'err_descr_short' => 'Te unustasite kirjelduse.',
-	'err_title_long' => 'Teie pealkiri on liiga pikk. Maksimaalselt on lubatud %1% tähte.',
+	'err_title_long' => 'Teie pealkiri on liiga pikk. Maksimaalselt on lubatud %1$s tähte.',
 	'err_title_short' => 'Te unustasite pealkirja.',
-	'err_sig_long' => 'Teie signatuur on liiga pikk. Max % Maksimaalselt on lubatud %1% tähte.',
+	'err_sig_long' => 'Teie signatuur on liiga pikk. Max % Maksimaalselt on lubatud %1$s tähte.',
 	'err_subscr_mode' => 'Tundmatu tellimisviis.',
 	'err_no_valid_mail' => 'Teil pole kinnitatud e-maili et liituda foorumiga.',
 	'err_token' => 'Märk on vigane.',
 	'err_in_mod' => 'Hetkel seda teemat modereeritakse.',
 	'err_board_locked' => 'Tahvel on ajutiselt lukustatud.',
-	'err_no_subscr' => 'Te ei saa käsitsi selle teemaga liituda. <a href="%1%">Vajutage siia, et pöörduda tagasi teemasse</a>.',
-	'err_subscr' => 'Esines viga. <a href="%1%"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
-	'err_no_unsubscr' => 'Te ei saa sellest teemast lahkuda<a href="%1%"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
-	'err_unsubscr' => 'Esines viga. <a href="%1%"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'err_no_subscr' => 'Te ei saa käsitsi selle teemaga liituda. <a href="%1$s">Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'err_subscr' => 'Esines viga. <a href="%1$s"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'err_no_unsubscr' => 'Te ei saa sellest teemast lahkuda<a href="%1$s"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'err_unsubscr' => 'Esines viga. <a href="%1$s"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
 	'err_sub_by_global' => 'Te ei liitunud teemaga käsitsi, vaid globaalselt.<br/><a href="/forum/options">Kasuta foorumisätteid</a>, et muuta oma lippe.',
 	'err_thank_twice' => 'Te olete selle posti eest juba tänanud.',
 	'err_thanks_off' => 'Ajutiselt ei ole võimalik inimesi postituste eest tänada.',
 	'err_votes_off' => 'Foorumi postituste hääletamine on ajutiselt keelatud.',
-	'err_better_edit' => 'Palun muudke oma postitust ning ärge tehke kahte posti. Te saate vahetada &quot;Mark-Unread&quot; lippe juhul kui teete suuremaid muudatusi.<br/><a href="%1%"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'err_better_edit' => 'Palun muudke oma postitust ning ärge tehke kahte posti. Te saate vahetada &quot;Mark-Unread&quot; lippe juhul kui teete suuremaid muudatusi.<br/><a href="%1$s"> Vajutage siia, et pöörduda tagasi teemasse</a>.',
 
 	# Messages
-	'msg_posted' => 'Teie sõnum on postitatud.<br/><a href="%1%">Vajutage siia, et näha oma postitust </a>.',
-	'msg_posted_mod' => 'Teie postitus on postitatud, kuid see vaadatakse läbi enne avalikustamist.<br/><a href="%1%">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
-	'msg_post_edited' => 'Teie postitus sai muudetud.<br/><a href="%1%">Vajutage siia, et minna tagasi oma postitusse</a>.',
-	'msg_edited_board' => 'Tahvlit on muudetud.<br/><a href="%1%">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
-	'msg_board_added' => 'Uue tahvli lisamine õnnestus. <a href="%1%">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
+	'msg_posted' => 'Teie sõnum on postitatud.<br/><a href="%1$s">Vajutage siia, et näha oma postitust </a>.',
+	'msg_posted_mod' => 'Teie postitus on postitatud, kuid see vaadatakse läbi enne avalikustamist.<br/><a href="%1$s">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
+	'msg_post_edited' => 'Teie postitus sai muudetud.<br/><a href="%1$s">Vajutage siia, et minna tagasi oma postitusse</a>.',
+	'msg_edited_board' => 'Tahvlit on muudetud.<br/><a href="%1$s">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
+	'msg_board_added' => 'Uue tahvli lisamine õnnestus. <a href="%1$s">Vajutage siia, et pöörduda tagasi tahvlile</a>.',
 	'msg_edited_thread' => 'Teema muutmine õnnestus.',
 	'msg_options_changed' => 'Teie valikud on muudetud.',
 	'msg_thread_shown' => 'Teema on heakskiidetud ja nähtavaks tehtud.',
@@ -49,14 +49,14 @@ $lang = array(
 	'msg_thread_deleted' => 'Teema on kustutatud.',
 	'msg_post_deleted' => 'Postitus on kustutatud.',
 	'msg_board_deleted' => 'Kogu tahvel on kustutatud!',
-	'msg_subscribed' => 'Te liitusite teemaga ja saate uued postitused e-mailile.<br/><a href="%1%">Vajutage siia, et pöörduda tagasi teemasse</a>.',
-	'msg_unsubscribed' => 'Te lahkusite teemast ja ei saa edasisi sõnumeid e-mailile.<br/><a href="%1%">Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'msg_subscribed' => 'Te liitusite teemaga ja saate uued postitused e-mailile.<br/><a href="%1$s">Vajutage siia, et pöörduda tagasi teemasse</a>.',
+	'msg_unsubscribed' => 'Te lahkusite teemast ja ei saa edasisi sõnumeid e-mailile.<br/><a href="%1$s">Vajutage siia, et pöörduda tagasi teemasse</a>.',
 	'msg_unsub_all' => 'Te lahkusite oma e-mailiga kõikidest teemadest.',
 	'msg_thanked_ajax' => 'Teie tänuavaldus on salvestatud.',
-	'msg_thanked' => 'Teie tänuavaldus on salvestatud.<br/><a href="%1%">Vajutage siia, et pöörduda postitusse</a>.',
-	'msg_thread_moved' => 'Teema %1% on liigutatud %2%.',
+	'msg_thanked' => 'Teie tänuavaldus on salvestatud.<br/><a href="%1$s">Vajutage siia, et pöörduda postitusse</a>.',
+	'msg_thread_moved' => 'Teema %1$s on liigutatud %2$s.',
 	'msg_voted' => 'Täname hääle eest.',
-	'msg_marked_read' => 'Teema %1% märgiti õnnestunult loetuks.',
+	'msg_marked_read' => 'Teema %1$s märgiti õnnestunult loetuks.',
 
 	# Titles
 	'forum_title' => GWF_SITENAME.' Foorumid',
@@ -65,14 +65,14 @@ $lang = array(
 	'ft_edit_board' => 'Muuda olemasolevat tahvlit',
 	'ft_edit_thread' => 'Muuda teemat',
 	'ft_options' => 'Seadista oma foorumisätted',
-	'pt_thread' => '%2% ['.GWF_SITENAME.']->%1%',
+	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s',
 	'ft_reply' => 'Vasta teemale',
-	'pt_board' => '%1%',
-//	'pt_board' => '%1% ['.GWF_SITENAME.']',
+	'pt_board' => '%1$s',
+//	'pt_board' => '%1$s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Kiirotsing',
 	'ft_edit_post' => 'Muuda oma postitust',
-	'at_mailto' => 'Saada e-mail %1%',
-	'last_edit_by' => 'Viimati muudetud %1% - %2%',
+	'at_mailto' => 'Saada e-mail %1$s',
+	'last_edit_by' => 'Viimati muudetud %1$s - %2$s',
 
 	# Page Info
 	'pi_unread' => 'Lugemata teemad',
@@ -165,8 +165,8 @@ $lang = array(
 	'online' => 'Kasutaja on hetkel sees',
 	'offline' => 'Kasutaja on hetkel väljas',
 	'registered' => 'Registreeritud',
-	'watchers' => '%1% vaatavad hetkel seda teemat.',
-	'views' => 'Seda teemat on vaadatud %1% korda.',
+	'watchers' => '%1$s vaatavad hetkel seda teemat.',
+	'views' => 'Seda teemat on vaadatud %1$s korda.',
 
 	# forum.php
 	'latest_threads' => 'Viimased tegevused',
@@ -178,22 +178,22 @@ $lang = array(
 		PHP_EOL.
 		'Uus postitus või teema leheküljel '.GWF_SITENAME.' Foorumid, mis vajavad modereerimist.'.PHP_EOL.
 		PHP_EOL.
-		'Tahvel: %1%'.PHP_EOL.
-		'Teema: %2%'.PHP_EOL.
-		'Kellelt: %3%'.PHP_EOL.
+		'Tahvel: %1$s'.PHP_EOL.
+		'Teema: %2$s'.PHP_EOL.
+		'Kellelt: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Teema kustutamiseks kasuta seda linki:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Postituse lubamiseks kasuta seda linki:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'Postitust näidatakse automaatselt peale %8%'.PHP_EOL.
+		'Postitust näidatakse automaatselt peale %8$s'.PHP_EOL.
 		PHP_EOL.
 		'Siirad tervitused'.PHP_EOL.
 		'The '.GWF_SITENAME.' Meeskond'.PHP_EOL,
@@ -201,45 +201,45 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Uus postitus',
 	'submail_body' => 
-		'Lugupeetud %1%'.PHP_EOL.
+		'Lugupeetud %1$s'.PHP_EOL.
 		PHP_EOL.
-		'On %2% uut postitust '.GWF_SITENAME.' foorumis'.PHP_EOL.
+		'On %2$s uut postitust '.GWF_SITENAME.' foorumis'.PHP_EOL.
 		PHP_EOL.
-		'Tahvel: %3%'.PHP_EOL.
-		'Teema: %4%'.PHP_EOL.
+		'Tahvel: %3$s'.PHP_EOL.
+		'Teema: %4$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5%'.PHP_EOL. # Multiple msgs possible
+		'%5$s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'To view the thread please visit this page:'.PHP_EOL.
-		'%8%'.PHP_EOL.
+		'%8$s'.PHP_EOL.
 		PHP_EOL.
 		'Et lahkuda sellest teemast, vajuta sellele lingile:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Et lahkuda kogu tahvlist, vajuta sellele lingile:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		'Siirad tervitused'.PHP_EOL.
 		'The '.GWF_SITENAME.' Meeskond'.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5% above
-		'Kellelt: %1%'.PHP_EOL.
-		'Pealkiri: %2%'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %5$s above
+		'Kellelt: %1$s'.PHP_EOL.
+		'Pealkiri: %2$s'.PHP_EOL.
 		'Sõnum:'.PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 		
 	# v2.01 (last seen)
-	'last_seen' => 'Viimati nähtud: %1%',
+	'last_seen' => 'Viimati nähtud: %1$s',
 
 	# v2.02 (Mark all read)
 	'btn_mark_read' => 'Märgi kõik loetuks',
-	'msg_mark_aread' => 'Märgi %1% teemat loetuks.',
+	'msg_mark_aread' => 'Märgi %1$s teemat loetuks.',
 
 	# v2.03 (Merge)
 	'msg_merged' => 'Teemad on märgistatud.',
@@ -263,7 +263,7 @@ $lang = array(
 	'cfg_doublepost' => 'Luba tõsmised/topeltpostitused?',
 	'cfg_watch_timeout' => 'Märgi teema vaadatuks N sekundiks',
 	'th_guest_view' => 'Külalistele nähtav?',
-	'pt_history' => 'Foorumi ajalugu - lehekülg %1% / %2%',
+	'pt_history' => 'Foorumi ajalugu - lehekülg %1$s / %2$s',
 	'btn_unread' => 'Uued teemad',
 		
 	# v2.06 (Admin Area)
@@ -276,9 +276,9 @@ $lang = array(
 		
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Postcount',
-	'msg_attach_added' => 'Your attachment has been uploaded. <a href="%1%">Click here to return to your post.</a>',
-	'msg_attach_deleted' => 'Your attachment has been deleted. <a href="%1%">Click here to return to your post.</a>',
-	'msg_attach_edited' => 'Your attachment has been edited. <a href="%1%">Click here to return to your post.</a>',
+	'msg_attach_added' => 'Your attachment has been uploaded. <a href="%1$s">Click here to return to your post.</a>',
+	'msg_attach_deleted' => 'Your attachment has been deleted. <a href="%1$s">Click here to return to your post.</a>',
+	'msg_attach_edited' => 'Your attachment has been edited. <a href="%1$s">Click here to return to your post.</a>',
 	'msg_reupload' => 'Your attachment has been replaced.',
 	'btn_add_attach' => 'Add Attachment',
 	'btn_del_attach' => 'Delete Attachment',
@@ -294,15 +294,15 @@ $lang = array(
 
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Create language boards',
-	'lang_board_title' => '%1% Board',
-	'lang_board_descr' => 'For %1% language',
+	'lang_board_title' => '%1$s Board',
+	'lang_board_descr' => 'For %1$s language',
 	'lang_root_title' => 'Foreign language',
 	'lang_root_descr' => 'Non english boards',
-	'md_board' => GWF_SITENAME.' Forums. %1%',
+	'md_board' => GWF_SITENAME.' Forums. %1$s',
 	'mt_board' => GWF_SITENAME.', Forum, Guest Posts, Alternate, Forum, Software',
 
 	# v2.10 subscribers
-	'subscribers' => '%1% have subscribed to this thread and receive emails on new posts.',
+	'subscribers' => '%1$s have subscribed to this thread and receive emails on new posts.',
 	'th_hide_subscr' => 'Hide your subscriptions?',
 
 	# v2.11 fixes11
@@ -312,17 +312,17 @@ $lang = array(
 
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1% threads and %2% posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1%&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1% boards.',
-	'subscr_threads' => 'You have manually subscribed to %1% threads.',
+	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
+	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
 );
 ?>

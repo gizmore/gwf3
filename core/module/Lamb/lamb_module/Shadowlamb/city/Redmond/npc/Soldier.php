@@ -1,7 +1,7 @@
 <?php
 final class Redmond_Soldier extends SR_HireNPC
 {
-//	public function getName() { return $this->getPartyID() > 0 ? Shadowfunc::getRandomName($this) : 'The Soldier'; }
+	public function getName() { return $this->getPartyID() > 0 ? parent::getName() : 'The Soldier'; }
 
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
 		

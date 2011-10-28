@@ -4,9 +4,9 @@ $lang = array(
 	'cfg_vserv_sellmode' => 'Show in menu as &quot;Sell Engine&quot;',
 
 	# Errors / Messages
-	'err_zip' => 'An error occured in the ZIP extension in %1% Line %2%.',
+	'err_zip' => 'An error occured in the ZIP extension in %1$s Line %2$s.',
 	'err_no_zip' => 'The ZIP extension is not available. You need to recompile PHP.',
-	'msg_zipped' => 'The site has been bundled: %1%; Size %2% - %3% files.',
+	'msg_zipped' => 'The site has been bundled: %1$s; Size %2$s - %3$s files.',
 	
 	# zipper.php
 	'zipper_intro' => 'Zipper',
@@ -21,9 +21,9 @@ $lang = array(
 	'err_select_modules' => 'Please Select some modules.',
 
 	'msg_purchased' => 'You have purchased a gwf2 bundle. Please goto the "Purchase" page again, to download your software bundle.',
-	'msg_purged' => 'File database got repopulated. %1% files tracked. Total size: %2%.',
+	'msg_purged' => 'File database got repopulated. %1$s files tracked. Total size: %2$s.',
 
-	'info_purchased' => 'You already purchased the packages below. You can <a href="%1%">download your bundle here</a>. Your update token is <b>%2%</b>.<br/>Please use the following settings in your VersionClient configuration:',
+	'info_purchased' => 'You already purchased the packages below. You can <a href="%1$s">download your bundle here</a>. Your update token is <b>%2$s</b>.<br/>Please use the following settings in your VersionClient configuration:',
 
 	'ft_purge' => 'Purge all files',
 	

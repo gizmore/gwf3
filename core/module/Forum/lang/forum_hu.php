@@ -9,38 +9,38 @@ $lang = array(
 	'err_board_perm' => 'Nem engedélyezett ez a "board" a számodra.',
 	'err_thread_perm' => 'Nem engedélyezett ez a "thread" a számodra.',
 	'err_post_perm' => 'Nem olvashatod el ezt a posztot.',
-	'err_reply_perm' => 'Nincs jogod válaszolni erre a threadre. <a href="%1%">Kattints ide, hogy visszatérj a "threadre"</a>.',
+	'err_reply_perm' => 'Nincs jogod válaszolni erre a threadre. <a href="%1$s">Kattints ide, hogy visszatérj a "threadre"</a>.',
 	'err_no_thread_allowed' => 'Nem engedélyezettek a "threadek" ezen a "boardon".',
 	'err_no_guest_post' => 'A vendégeknek nincs joguk posztolni erre a fórumra.',
-	'err_msg_long' => 'Túl hosszú az üzeneted. Maximum %1% karakter engedélyezett.',
+	'err_msg_long' => 'Túl hosszú az üzeneted. Maximum %1$s karakter engedélyezett.',
 	'err_msg_short' => 'Elfelejtetted az üzenet mezõt kitölteni.',
-	'err_descr_long' => 'Túl hosszú a leírásod. Maximum %1% karakter engedélyezett.',
+	'err_descr_long' => 'Túl hosszú a leírásod. Maximum %1$s karakter engedélyezett.',
 	'err_descr_short' => 'Elfelejtetted a leírás mezõt kitölteni.',
-	'err_title_long' => 'Túl hosszú a cím. Maximum %1% karakter engedélyezett.',
+	'err_title_long' => 'Túl hosszú a cím. Maximum %1$s karakter engedélyezett.',
 	'err_title_short' => 'Elfelejtetted a cím mezõt kitölteni.',
-	'err_sig_long' => 'Túl hosszú az aláírásod. Maximum %1% karakter engedélyezett.',
+	'err_sig_long' => 'Túl hosszú az aláírásod. Maximum %1$s karakter engedélyezett.',
 	'err_subscr_mode' => 'Ismeretlen elõfizetési mód.',
 	'err_no_valid_mail' => 'Nincs ellenõrzött e-mail címed ahhoz, hogy feliratkozz a fórumra.',
 	'err_token' => 'Érvénytelen token.',
 	'err_in_mod' => 'Ez a "thread" moderálás alatt van.',
 	'err_board_locked' => 'A "board" ideiglenesen zárolva van.',
-	'err_no_subscr' => 'Nem lehet manuálisan feliratkozni erre a "threadre". <a href="%1%">Kattints ide, hogy visszatérj a "threadhez"</a>.',
-	'err_subscr' => 'Hiba történt. <a href="%1%">Kattints ide, hogy visszatérj a "threadhez</a>.',
-	'err_no_unsubscr' => 'Nem tudsz leiratkozni errõl a "threadrõl". <a href="%1%">Kattints ide, hogy visszatérj a "threadhez</a>.',
-	'err_unsubscr' => 'Hiba történt. <a href="%1%">Kattints ide, hogy visszatérj a "threadhez</a>.',
+	'err_no_subscr' => 'Nem lehet manuálisan feliratkozni erre a "threadre". <a href="%1$s">Kattints ide, hogy visszatérj a "threadhez"</a>.',
+	'err_subscr' => 'Hiba történt. <a href="%1$s">Kattints ide, hogy visszatérj a "threadhez</a>.',
+	'err_no_unsubscr' => 'Nem tudsz leiratkozni errõl a "threadrõl". <a href="%1$s">Kattints ide, hogy visszatérj a "threadhez</a>.',
+	'err_unsubscr' => 'Hiba történt. <a href="%1$s">Kattints ide, hogy visszatérj a "threadhez</a>.',
 	'err_sub_by_global' => 'Nem manuálisan iratkoztál fel a "threadre", hanem a globális beállítás által. <br/><a href="/forum/options">Használd a fórum beállításokat</a>, hogy meg tudd változtatni ezt a beállítást.',
 	'err_thank_twice' => 'Már megköszönted ezt a posztot.',
 	'err_thanks_off' => 'Jelenleg nem elérhető, hogy megköszönd mások posztjait.',
 	'err_votes_off' => 'A poszt szavazás jelenleg nem elérhető.',
-	'err_better_edit' => 'Kérlek szerkeszd a posztodat és ne posztolj duplán. Átkapcsolhatod a &quot;Jelöld-olvasatlannak&quot; kapcsolót abban az esetben ha jelentős változtatást végzel.<br/><a href="%1%">Kattints ide hogy visszatérj a thread-hez.</a>.',
+	'err_better_edit' => 'Kérlek szerkeszd a posztodat és ne posztolj duplán. Átkapcsolhatod a &quot;Jelöld-olvasatlannak&quot; kapcsolót abban az esetben ha jelentős változtatást végzel.<br/><a href="%1$s">Kattints ide hogy visszatérj a thread-hez.</a>.',
 
 
 	# Messages
-	'msg_posted' => 'Az üzeneted el lett küldve.<br/><a href="%1%">Kattints ide, hogy megnézd mit küldtél.</a>.',
-	'msg_posted_mod' => 'Az üzeneted el lett küldve, de valaki átnézi mielőtt publikálnánk.<br/><a href="%1%">Kattints ide hogy visszatérj a fórumhoz.</a>.',
-	'msg_post_edited' => 'A posztod meg lett változtatva.<br/><a href="%1%">Kattints ide, hogy megnézd mit küldtél</a>.',
-	'msg_edited_board' => 'Sikeresen szerkesztetted a fórumot.<br/><a href="%1%">Kattints ide hogy visszatérj a fórumhoz.</a>.',
-	'msg_board_added' => 'Az új fórum sikeresen létre lett hozva.<a href="%1%">Kattints ide hogy visszatérj a fórumhoz.</a>.',
+	'msg_posted' => 'Az üzeneted el lett küldve.<br/><a href="%1$s">Kattints ide, hogy megnézd mit küldtél.</a>.',
+	'msg_posted_mod' => 'Az üzeneted el lett küldve, de valaki átnézi mielőtt publikálnánk.<br/><a href="%1$s">Kattints ide hogy visszatérj a fórumhoz.</a>.',
+	'msg_post_edited' => 'A posztod meg lett változtatva.<br/><a href="%1$s">Kattints ide, hogy megnézd mit küldtél</a>.',
+	'msg_edited_board' => 'Sikeresen szerkesztetted a fórumot.<br/><a href="%1$s">Kattints ide hogy visszatérj a fórumhoz.</a>.',
+	'msg_board_added' => 'Az új fórum sikeresen létre lett hozva.<a href="%1$s">Kattints ide hogy visszatérj a fórumhoz.</a>.',
 	'msg_edited_thread' => 'Sikeresen szerkesztetted a beszélgetést.',
 	'msg_options_changed' => 'Megváltoztak a beállításaid.',
 	'msg_thread_shown' => 'A beszélgetés engedélyezve lett, így már meg is jelenik.',
@@ -48,14 +48,14 @@ $lang = array(
 	'msg_thread_deleted' => 'Beszélgetést törölték.',
 	'msg_post_deleted' => 'Az üzenetet törölték.',
 	'msg_board_deleted' => 'A teljes fórum törlésre került.',
-	'msg_subscribed' => 'Előfizettél a beszélgetésre, így minden új üzenetről e-mailt kapsz.<br/><a href="%1%">Kattints ide hogy visszatérj a beszélgetéshez.</a>.',
-	'msg_unsubscribed' => 'Lemondtad az előfizetést erről a beszélgetésről, így a jövőben nem kapsz üzeneteket erről.<br/><a href="%1%">Kattints ide hogy visszatérj a beszélgetéshez.</a>.',
+	'msg_subscribed' => 'Előfizettél a beszélgetésre, így minden új üzenetről e-mailt kapsz.<br/><a href="%1$s">Kattints ide hogy visszatérj a beszélgetéshez.</a>.',
+	'msg_unsubscribed' => 'Lemondtad az előfizetést erről a beszélgetésről, így a jövőben nem kapsz üzeneteket erről.<br/><a href="%1$s">Kattints ide hogy visszatérj a beszélgetéshez.</a>.',
 	'msg_unsub_all' => 'Leiratkoztál az összes beszélgetésről, így a jövőben nem kapsz e-maileket ezekről.',
 	'msg_thanked_ajax' => 'A köszönetedet rögzítettük.',
-	'msg_thanked' => 'A köszönetedet rögzítettük.<br/><a href="%1%">Kattints ide hogy visszatérj az üzenethez</a>.',
-	'msg_thread_moved' => 'Ez a beszélgetés (%1%) átköltözött ide:%2%.',
+	'msg_thanked' => 'A köszönetedet rögzítettük.<br/><a href="%1$s">Kattints ide hogy visszatérj az üzenethez</a>.',
+	'msg_thread_moved' => 'Ez a beszélgetés (%1$s) átköltözött ide:%2$s.',
 	'msg_voted' => 'Köszönjük, hogy szavaztál.',
-	'msg_marked_read' => 'Olvasottként jelölted a %1% beszélgetést.',
+	'msg_marked_read' => 'Olvasottként jelölted a %1$s beszélgetést.',
 
 	# Titles
 	'forum_title' => GWF_SITENAME.' Fórumok',
@@ -64,14 +64,14 @@ $lang = array(
 	'ft_edit_board' => 'Meglévő fórum csoport szerkesztése',
 	'ft_edit_thread' => 'Beszélgetés szerkesztése',
 	'ft_options' => 'Fórum beállítások',
-	'pt_thread' => '%2% ['.GWF_SITENAME.']->%1%',
+	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s',
 	'ft_reply' => 'Válasz a beszélgetésre',
-	'pt_board' => '%1%',
-//	'pt_board' => '%1% ['.GWF_SITENAME.']',
+	'pt_board' => '%1$s',
+//	'pt_board' => '%1$s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Gyors keresés',
 	'ft_edit_post' => 'Üzeneted szerkesztése',
-	'at_mailto' => 'E-mail küldése ide: %1%',
-	'last_edit_by' => 'Utoljára szerkesztette: %1% - %2%',
+	'at_mailto' => 'E-mail küldése ide: %1$s',
+	'last_edit_by' => 'Utoljára szerkesztette: %1$s - %2$s',
 
 	# Page Info
 	'pi_unread' => 'Olvasatlan beszélgetéseid',
@@ -164,8 +164,8 @@ $lang = array(
 	'online' => 'A felhasználó online',
 	'offline' => 'A felhasználó offline',
 	'registered' => 'Itt lett regisztrálva:',
-	'watchers' => '%1% darab ember nézegeti jelenleg ezt a beszélgetést.',
-	'views' => 'Ezt a beszélgetést %1%-szer jelenítettük meg.',
+	'watchers' => '%1$s darab ember nézegeti jelenleg ezt a beszélgetést.',
+	'views' => 'Ezt a beszélgetést %1$s-szer jelenítettük meg.',
 
 	# forum.php
 	'latest_threads' => 'Utolsó történések',
@@ -177,22 +177,22 @@ $lang = array(
 		PHP_EOL.
 		'Van egy új üzenet vagy beszélgetés, a '.GWF_SITENAME.' oldal fórumában, amit moderálni kellene.'.PHP_EOL.
 		PHP_EOL.
-		'Fórum csoport: %1%'.PHP_EOL.
-		'Beszélgetés: %2%'.PHP_EOL.
-		'Küldő: %3%'.PHP_EOL.
+		'Fórum csoport: %1$s'.PHP_EOL.
+		'Beszélgetés: %2$s'.PHP_EOL.
+		'Küldő: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Az üzenet törléséhez kattints ide:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Az üzenet engedélyezéséhez kattints ide:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'Ezt az üzenetet automatikusan megmutatjuk %8% idő után'.PHP_EOL.
+		'Ezt az üzenetet automatikusan megmutatjuk %8$s idő után'.PHP_EOL.
 		PHP_EOL.
 		'Üdvözlettel'.PHP_EOL.
 		'A '.GWF_SITENAME.' csapata'.PHP_EOL,
@@ -200,41 +200,41 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Új üzenet',
 	'submail_body' => 
-		'Kedves %1%'.PHP_EOL.
+		'Kedves %1$s'.PHP_EOL.
 		PHP_EOL.
-		'%2% darab új üzenet van a '.GWF_SITENAME.' fórumában'.PHP_EOL.
+		'%2$s darab új üzenet van a '.GWF_SITENAME.' fórumában'.PHP_EOL.
 		PHP_EOL.
-		'Fórum csoport: %3%'.PHP_EOL.
-		'Beszélgetés: %4%'.PHP_EOL.
+		'Fórum csoport: %3$s'.PHP_EOL.
+		'Beszélgetés: %4$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5%'.PHP_EOL. # Multiple msgs possible
+		'%5$s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'To view the thread please visit this page:'.PHP_EOL.
-		'%8%'.PHP_EOL.
+		'%8$s'.PHP_EOL.
 		PHP_EOL.
 		'Ha le szeretnél iratkozni erről a beszélgetésről, kattints ide:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Ha a teljes fórum csoportról szeretnél leiratkozni, kattints ide:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		'Üdvözlettel'.PHP_EOL.
 		'A '.GWF_SITENAME.' csapata'.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5% above
-		'Küldő: %1%'.PHP_EOL.
-		'Cím: %2%'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %5$s above
+		'Küldő: %1$s'.PHP_EOL.
+		'Cím: %2$s'.PHP_EOL.
 		'Üzenet:'.PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 		
 	# v2.01
-	'last_seen' => 'Utoljára it járt: %1%',
+	'last_seen' => 'Utoljára it járt: %1$s',
 
 	# v2.02
 	'btn_mark_read' => 'Jelöld mind olvasottnak',
@@ -262,7 +262,7 @@ $lang = array(
 	'cfg_doublepost' => 'bumps (???) / dupla küldések engedélyezése?',
 	'cfg_watch_timeout' => 'Beszélgetés megjelölése, hogy N másodpercig nézték',
 	'th_guest_view' => 'Látható a vendég?',
-	'pt_history' => 'Fórum történet - Oldal %1% / %2%',
+	'pt_history' => 'Fórum történet - Oldal %1$s / %2$s',
 	'btn_unread' => 'Új beszélgetések',
 		
 	# v2.06 (Admin Area)
@@ -275,9 +275,9 @@ $lang = array(
 		
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Üzenetek száma',
-	'msg_attach_added' => 'A csatolmányod sikeresen fel lett töltve. <a href="%1%">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
-	'msg_attach_deleted' => 'A csatolmányod sikeresen törölve lett. <a href="%1%">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
-	'msg_attach_edited' => 'A csatolmányod sikeresen szerkesztve lett. <a href="%1%">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
+	'msg_attach_added' => 'A csatolmányod sikeresen fel lett töltve. <a href="%1$s">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
+	'msg_attach_deleted' => 'A csatolmányod sikeresen törölve lett. <a href="%1$s">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
+	'msg_attach_edited' => 'A csatolmányod sikeresen szerkesztve lett. <a href="%1$s">Kattints ide, hogy visszatérj az üzenetedhez.</a>',
 	'msg_reupload' => 'A csatolmányod le lett cserélve.',
 	'btn_add_attach' => 'Csatolmány hozzáadása',
 	'btn_del_attach' => 'Csatolmány törlése',
@@ -293,15 +293,15 @@ $lang = array(
 
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Nyelvi üzenőfal létrehozása',
-	'lang_board_title' => '%1% Üzenőfal',
-	'lang_board_descr' => '%1% nyelvű',
+	'lang_board_title' => '%1$s Üzenőfal',
+	'lang_board_descr' => '%1$s nyelvű',
 	'lang_root_title' => 'Idegen nyelv',
 	'lang_root_descr' => 'Nem angol üzenőfalak',
-	'md_board' => GWF_SITENAME.' Fórumok. %1%',
+	'md_board' => GWF_SITENAME.' Fórumok. %1$s',
 	'mt_board' => GWF_SITENAME.', Fórum, Vendég üzenetek, Alternate, Fórum, Szoftver',
 
 	# v2.10 subscribers
-	'subscribers' => '%1% feliratkozott erre a beszélgetésre és automatikusan e-mailt kap új üzenet esetén.',
+	'subscribers' => '%1$s feliratkozott erre a beszélgetésre és automatikusan e-mailt kap új üzenet esetén.',
 	'th_hide_subscr' => 'Elõfizetések elrejtése?',
 
 	# v2.11 fixes11
@@ -311,17 +311,17 @@ $lang = array(
 
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1% threads and %2% posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1%&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1% boards.',
-	'subscr_threads' => 'You have manually subscribed to %1% threads.',
+	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
+	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
 );
 ?>

@@ -8,7 +8,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Felhasználói neved',
 	'th_email' => 'E-mail címed',
-	'th_demo' => 'Földrajzi beállítások - csak egyszer változtathatod meg %1% belül.',
+	'th_demo' => 'Földrajzi beállítások - csak egyszer változtathatod meg %1$s belül.',
 	'th_countryid' => 'Ország',	
 	'th_langid' => 'Elsődleges nyelv',	
 	'th_langid2' => 'Másodlagos nyelv',
@@ -36,11 +36,11 @@ $lang = array(
 	'err_no_mail_to_approve' => 'Nincs olyan e-mail cím, amit jóvá kellene hagyni.',
 	'err_already_approved' => 'Az e-mail címed már jóvá van hagyva.',
 	'err_no_image' => 'A feltöltött kép nem kép, vagy túl kicsi.',
-	'err_demo_wait' => 'Mostanában változtattad meg a földrajzi beállításodat. Várj %1%.',
+	'err_demo_wait' => 'Mostanában változtattad meg a földrajzi beállításodat. Várj %1$s.',
 	'err_birthdate' => 'Érvénytelen születési idő.',
 
 	# Messages
-	'msg_mail_changed' => 'A kapcsolattartó e-mail címed megváltozott erre változott: <b>%1%</b>',
+	'msg_mail_changed' => 'A kapcsolattartó e-mail címed megváltozott erre változott: <b>%1$s</b>',
 	'msg_deleted_avatar' => 'Az avatár képed törölve lett.',
 	'msg_avatar_saved' => 'Az új avatár képed mentésre került.',
 	'msg_demo_changed' => 'A földrajzi beállításaid megváltoztak.',
@@ -70,13 +70,13 @@ $lang = array(
 	# CHANGE MAIL A
 	'chmaila_subj' => GWF_SITENAME.': Változtass e-mail címet',
 	'chmaila_body' => 
-		'Kedves %1%,'.PHP_EOL.
+		'Kedves %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Kezdeményezted az e-mail címed változtatását a(z) '.GWF_SITENAME.' oldalon.'.PHP_EOL.
 		'Ehhez látogasd meg az alábbi URL-t: '.PHP_EOL.
 		'Amennyiben nem te kérted a változtatást, hagyd figyelmen kívül ezt az e-mail vagy értesítsd az oldal adminisztrátorait az eseményről.'.PHP_EOL.
 		PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Üdvözlettel'.PHP_EOL.
 		GWF_SITENAME.' csapata',
@@ -84,10 +84,10 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': E-mail cím megerősítése',
 	'chmailb_body' => 
-		'Kedves %1%,'.PHP_EOL.
+		'Kedves %1$s,'.PHP_EOL.
 		PHP_EOL.
 		'Ahhoz, hogy et az e-mail címet használhasd elsődleges címként, vissza kell igazolnod úgy, hogy meglátogatod az alábbi URl-t:'.PHP_EOL.
-		'%2%'.PHP_EOL.
+		'%2$s'.PHP_EOL.
 		PHP_EOL.
 		'Üdvözlettel'.PHP_EOL.
 		GWF_SITENAME.' csapata',
@@ -95,19 +95,19 @@ $lang = array(
 	# CHANGE DEMO
 	'chdemo_subj' => GWF_SITENAME.': Földrajzi beállítások megváltoztatása',
 	'chdemo_body' =>
-		'Kedves %1%'.PHP_EOL.
+		'Kedves %1$s'.PHP_EOL.
 		PHP_EOL.
 		'Kérted a földrajzi beállításod megváltoztatását.'.PHP_EOL.
-		'Ezt csak egyszer teheted meg %2%, így kérlek győzödj meg arról, hogy valóban ezt szeretnéd tenni.'.PHP_EOL.
+		'Ezt csak egyszer teheted meg %2$s, így kérlek győzödj meg arról, hogy valóban ezt szeretnéd tenni.'.PHP_EOL.
 		PHP_EOL.
-		'Nem: %3%'.PHP_EOL.
-		'Ország: %4%'.PHP_EOL.
-		'Elsődleges nyelv: %5%'.PHP_EOL.
-		'Másodlagos nyelv: %6%'.PHP_EOL.
-		'Születésnap: %7%'.PHP_EOL.
+		'Nem: %3$s'.PHP_EOL.
+		'Ország: %4$s'.PHP_EOL.
+		'Elsődleges nyelv: %5$s'.PHP_EOL.
+		'Másodlagos nyelv: %6$s'.PHP_EOL.
+		'Születésnap: %7$s'.PHP_EOL.
 		PHP_EOL.
 		'Ha szeretnéd megtartani ezeket a beállításokat, kérlek látogasd meg az alábbi URL-t:'.PHP_EOL.
-		'%8%'.
+		'%8$s'.
 		PHP_EOL.
 		'Üdvözlettel'.PHP_EOL.
 		GWF_SITENAME.' csapata',
@@ -132,12 +132,12 @@ $lang = array(
 	'th_accrm_note' => 'Jegyzet',
 	'btn_accrm' => 'Fiók törlése',
 	'msg_accrm' => 'A fiókod töröltként lett megjelölve, és minden hivatkozás törölve lett.<br/>Automatikusan ki lettél léptetve.',
-	'ms_accrm' => 'WeChall: %1% felhasználói fiók törlése',
+	'ms_accrm' => 'WeChall: %1$s felhasználói fiók törlése',
 	'mb_accrm' =>
 		'Kedves Admin'.PHP_EOL.
 		''.PHP_EOL.
-		'A(z) %1% felhasználó törölte a felhasználói fiókját és az alábbi üzenetet hagyta (lehet, hogy üres):'.PHP_EOL.PHP_EOL.
-		'%2%',
+		'A(z) %1$s felhasználó törölte a felhasználói fiókját és az alábbi üzenetet hagyta (lehet, hogy üres):'.PHP_EOL.PHP_EOL.
+		'%2$s',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferált e-mail formátum',
@@ -156,25 +156,25 @@ $lang = array(
 	'err_gpg_setup' => 'Ne felejtsd a GPG kulcsot.',
 	'err_gpg_key' => 'Érvénytelen GPG kulcs.',
 	'err_gpg_token' => 'A gpg ujjlenyomat nem egyezik az általunk rögzített értékkel.',
-	'err_no_gpg_key' => 'A %1%felhasználó még nem küldött be semmilyen GPG kulcsot.',
+	'err_no_gpg_key' => 'A %1$sfelhasználó még nem küldött be semmilyen GPG kulcsot.',
 	'err_no_mail' => 'Nincs elfogadott e-mail címed.',
 	'err_gpg_del' => 'Nincs gpg kulcs, amit törölhetnénk.',
 	'err_gpg_fine' => 'Már van GPG kulcsod.',
 	'msg_gpg_del' => 'GPG kulcs sikeresen törölve.',
 	'msg_setup_gpg' => 'GPG kulcs tárolva, használható.',
 	'mails_gpg' => 'WeChall: GPG rejtjelezés',
-	'mailb_gpg' => 'Kedves %1%,
+	'mailb_gpg' => 'Kedves %1$s,
 
 Úgy döntöttél, hogy bekapcsolod a rejtjelezést az e-mail-eidre.
 Ehhez kattints az alábbi linkre:
 
-%2%
+%2$s
 
 Üdvözlettel
 WeChall csapata',
 
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1%">Change your password</a>',
+	'th_change_pw' => '<a href="%1$s">Change your password</a>',
 	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',

@@ -9,12 +9,12 @@ $lang = array(
 	# Errors
 	'err_gb' => 'Külalisteraamatut ei ole.',
 	'err_gbm' => 'Külalisteraamatu sissekannet ei ole.',
-	'err_gbm_username' => 'Teie kasutajanimi on vigane. See peab olema %1% kuni %2% tähte pikk.',
-	'err_gbm_message' => 'Teie sõnum on vigane. See peab olema %1% kuni %2% tähte pikk.',
+	'err_gbm_username' => 'Teie kasutajanimi on vigane. See peab olema %1$s kuni %2$s tähte pikk.',
+	'err_gbm_message' => 'Teie sõnum on vigane. See peab olema %1$s kuni %2$s tähte pikk.',
 	'err_gbm_url' => 'Teie veebisait ei ole kättesaadav või on see vigane.',
 	'err_gbm_email' => 'Teie e-mail on vigane.',
-	'err_gb_title' => 'Teie pealkiri on vigane. See peab olema %1% kuni %2% tähte pikk.',
-	'err_gb_descr' => 'Teie kirjeldus on vigane. See peab olema %1% kuni %2% tähte pikk.',
+	'err_gb_title' => 'Teie pealkiri on vigane. See peab olema %1$s kuni %2$s tähte pikk.',
+	'err_gb_descr' => 'Teie kirjeldus on vigane. See peab olema %1$s kuni %2$s tähte pikk.',
 
 	# Messages
 	'msg_signed' => 'Olete edukalt teinud sissekande külalisteraamatusse.',
@@ -50,19 +50,19 @@ $lang = array(
 	'tt_gb_locked' => 'Jutumärgid, et ajutiselt sissekanne nähtamatuks muuta',
 
 	# Titles
-	'ft_sign' => 'Märgi %1%',
+	'ft_sign' => 'Märgi %1$s',
 	'ft_edit_gb' => 'Muuda külalisteraamatut',
 	'ft_edit_entry' => 'Muuda külalisteraamatu sissekannet',
 
 	# Buttons
-	'btn_sign' => 'Märgi %1%',
+	'btn_sign' => 'Märgi %1$s',
 	'btn_edit_gb' => 'Muuda külalisteraamatut',
 	'btn_edit_entry' => 'Muuda sissekannet',
 	'btn_public_hide' => 'Varja see sissekanne külaliste eest',
 	'btn_public_show' => 'Näita seda sissekannet kõigile',
 	'btn_moderate_no' => 'Luba seda kõigil näha',
 	'btn_moderate_yes' => 'Varja see postitus ja pane see modereerimis järjekorda',
-	'btn_replyto' => 'Vasta %1%',
+	'btn_replyto' => 'Vasta %1$s',
 
 	# Admin Config
 	'cfg_gb_allow_email' => 'Luba ja näita e-maile?',
@@ -81,22 +81,22 @@ $lang = array(
 	'mailb_signed' => 
 		'Kallis meeskond'.PHP_EOL.
 		PHP_EOL.
-		'%1% külalisteraamat sai märgistatud %2% poolt(%3%)'.PHP_EOL.
+		'%1$s külalisteraamat sai märgistatud %2$s poolt(%3$s)'.PHP_EOL.
 		'Sõnum:'.PHP_EOL.
-		'%4%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
 		PHP_EOL.
 		'Saad seda postitust automaatselt näidata, kui külastad:'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 
 	# v2.02 Mail on Sign
 	'th_mailonsign' => 'EMail on new entry?',
 	'mails2_signed' => GWF_SITENAME.': Guestbook signed',
 	'mailb2_signed' => 
-		'Dear %1%'.PHP_EOL.
+		'Dear %1$s'.PHP_EOL.
 		PHP_EOL.
-		'The %2% guestbook got signed by %3% (%4%)'.PHP_EOL.
+		'The %2$s guestbook got signed by %3$s (%4$s)'.PHP_EOL.
 		'Message:'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 
 	# v2.03 (Delete entry)
 	'btn_del_entry' => 'Delete entry',

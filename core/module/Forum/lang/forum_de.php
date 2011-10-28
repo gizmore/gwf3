@@ -11,38 +11,38 @@ $lang = array(
 	'err_board_perm' => 'Sie dürfen auf dieses Board nicht zugreifen.',
 	'err_thread_perm' => 'Sie dürfen auf dieses Thema nicht zugreifen.',
 	'err_post_perm' => 'Sie dürfen diese Nachricht nicht lesen.',
-	'err_reply_perm' => 'Sie dürfen auf dieses Thema nicht antworten. <a href="%1%">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
+	'err_reply_perm' => 'Sie dürfen auf dieses Thema nicht antworten. <a href="%1$s">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
 	'err_no_thread_allowed' => 'In diesem Board sind keine Themen erlaubt.',
 	'err_no_guest_post' => 'Gäste dürfen in diesem Board nicht schreiben.',
-	'err_msg_long' => 'Ihre Nachricht ist zu lang. Maximal erlaubt sind %1% Zeichen.',
+	'err_msg_long' => 'Ihre Nachricht ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
 	'err_msg_short' => 'Sie haben die Nachricht vergessen.',
-	'err_descr_long' => 'Ihre Beschreibung ist zu lang. Maximal erlaubt sind %1% Zeichen.',
+	'err_descr_long' => 'Ihre Beschreibung ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
 	'err_descr_short' => 'Sie haben die Beschreibung vergessen.',
-	'err_title_long' => 'Der Titel ist zu lang. Maximal erlaubt sind %1% Zeichen.',
+	'err_title_long' => 'Der Titel ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
 	'err_title_short' => 'Sie haben den Titel vergessen.',
-	'err_sig_long' => 'Ihre Signatur ist zu lang. Maximal erlaubt sind %1% Zeichen.',
+	'err_sig_long' => 'Ihre Signatur ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
 	'err_subscr_mode' => 'Unbekannter Forum Abonnement Modus.',
 	'err_no_valid_mail' => 'Sie haben keine bestätigte EMail um das Forum zu abonnieren.',
 	'err_token' => 'Das Token ist ungültig.',
 	'err_in_mod' => 'Dieses Thema befindet sich noch in der Moderation.',
 	'err_board_locked' => 'Dieses Board ist vorübergehend geschlossen.',
 
-	'err_no_subscr' => 'Sie können dieses Thema nicht extra abonnieren. <a href="%1%">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
-	'err_subscr' => 'Ein Fehler ist aufgetreten. <a href="%1%">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
-	'err_no_unsubscr' => 'Sie können das Abonnement zu diesem Thema nicht abstellen. <a href="%1%">Klicken Sie hier um zum Thema zurückzukehren</a>.',
-	'err_unsubscr' => 'Ein Fehler ist aufgetreten. <a href="%1%">Klicken Sie hier um zum Thema zurückzukehren</a>.',
+	'err_no_subscr' => 'Sie können dieses Thema nicht extra abonnieren. <a href="%1$s">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
+	'err_subscr' => 'Ein Fehler ist aufgetreten. <a href="%1$s">Klicken Sie hier um zum Thema zurück zu gelangen</a>.',
+	'err_no_unsubscr' => 'Sie können das Abonnement zu diesem Thema nicht abstellen. <a href="%1$s">Klicken Sie hier um zum Thema zurückzukehren</a>.',
+	'err_unsubscr' => 'Ein Fehler ist aufgetreten. <a href="%1$s">Klicken Sie hier um zum Thema zurückzukehren</a>.',
 	'err_sub_by_global' => 'Sie haben dieses Thema nicht extra abonniert, sondern durch ihre globalen Einstellungen.<br/>Benutzen Sie die <a href="/forum/options">Forum Einstellungen</a> um ihre Optionen zu ändern.',
 	'err_thank_twice' => 'Sie haben sich bereits für diese Nachricht bedankt.',
 	'err_thanks_off' => 'Es ist zur Zeit nicht möglich sich für Nachrichten zu bedanken.',
 	'err_votes_off' => 'Das Bewerten von Nachrichten ist zur Zeit deaktiviert.',
-	'err_better_edit' => 'Bitte editieren Sie ihre letzte Nachricht. Es ist nicht möglich zwei mal hintereinander eine Nachricht zu senden. Sie können &quot;Als Ungelesen markieren&quot;, falls Sie gravierende Änderungen an ihrer Nachricht vornehmen möchten.<br/><a href="%1%">Klicken Sie hier um zum Thema zurückzukehren</a>.',
+	'err_better_edit' => 'Bitte editieren Sie ihre letzte Nachricht. Es ist nicht möglich zwei mal hintereinander eine Nachricht zu senden. Sie können &quot;Als Ungelesen markieren&quot;, falls Sie gravierende Änderungen an ihrer Nachricht vornehmen möchten.<br/><a href="%1$s">Klicken Sie hier um zum Thema zurückzukehren</a>.',
 
 	# Messages
-	'msg_posted' => 'Ihre Nachricht wurde gesendet.<br/><a href="%1%">Klicken Sie hier um ihre Nachricht anzuzeigen</a>.',
-	'msg_posted_mod' => 'Ihre Nachricht wurde gesendet. Sie muss allerdings von einem Moderator vor dem Anzeigen geprüft werden.<br/><a href="%1%">Klicken Sie hier um zum Board zurück zu gelangen</a>.',
-	'msg_post_edited' => 'Ihre Nachricht wurde bearbeitet.<br/><a href="%1%">Klicken Sie hier um ihre Nachricht anzuzeigen</a>.',
-	'msg_edited_board' => 'Das Board wurde editiert.<br/><a href="%1%">Klicken Sie hier um zum Board zurückzukehren</a>.',
-	'msg_board_added' => 'Ein neues Board wurde hinzugefügt. <a href="%1%">Klicken Sie hier um zum Forum zurückzukehren</a>.',
+	'msg_posted' => 'Ihre Nachricht wurde gesendet.<br/><a href="%1$s">Klicken Sie hier um ihre Nachricht anzuzeigen</a>.',
+	'msg_posted_mod' => 'Ihre Nachricht wurde gesendet. Sie muss allerdings von einem Moderator vor dem Anzeigen geprüft werden.<br/><a href="%1$s">Klicken Sie hier um zum Board zurück zu gelangen</a>.',
+	'msg_post_edited' => 'Ihre Nachricht wurde bearbeitet.<br/><a href="%1$s">Klicken Sie hier um ihre Nachricht anzuzeigen</a>.',
+	'msg_edited_board' => 'Das Board wurde editiert.<br/><a href="%1$s">Klicken Sie hier um zum Board zurückzukehren</a>.',
+	'msg_board_added' => 'Ein neues Board wurde hinzugefügt. <a href="%1$s">Klicken Sie hier um zum Forum zurückzukehren</a>.',
 	'msg_edited_thread' => 'Das Thema wurde erfolgreich editiert.',
 	'msg_options_changed' => 'Ihre Optionen wurden geändert.',
 	'msg_thread_shown' => 'Das Thema wurde geprüft und wird ab sofort angezeigt.',
@@ -50,14 +50,14 @@ $lang = array(
 	'msg_thread_deleted' => 'Das Thema wurde gelöscht.',
 	'msg_post_deleted' => 'Die Nachricht wurde gelöscht.',
 	'msg_board_deleted' => 'Das gesamte Board wurde gelöscht!',
-	'msg_subscribed' => 'Sie haben dieses Thema abonniert und erhalten nun EMails bei einer neuen Nachricht.<br/><a href="%1%">Klicken Sie hier um zum Thema zurückzukehren</a>.',
-	'msg_unsubscribed' => 'Sie haben das Abonnement zu diesem Thema gekündigt und werden keine EMails mehr zu diesem Thema erhalten.<br/><a href="%1%">Klicken Sie hier um zum Thema zurückzukehren</a>.',
+	'msg_subscribed' => 'Sie haben dieses Thema abonniert und erhalten nun EMails bei einer neuen Nachricht.<br/><a href="%1$s">Klicken Sie hier um zum Thema zurückzukehren</a>.',
+	'msg_unsubscribed' => 'Sie haben das Abonnement zu diesem Thema gekündigt und werden keine EMails mehr zu diesem Thema erhalten.<br/><a href="%1$s">Klicken Sie hier um zum Thema zurückzukehren</a>.',
 	'msg_unsub_all' => 'Sie haben alle Abonnements gekündigt.',
 	'msg_thanked_ajax' => 'Ihr Danke-Schön wurde in der Datenbank vermerkt.',
-	'msg_thanked' => 'Ihr Danke-Schön wurde in der Datenbank vermerkt.<br/><a href="%1%">Klicken Sie hier um zur Nachricht zurückzukehren</a>.',
-	'msg_thread_moved' => 'Das Thema %1% wurde nach %2% verschoben.',
+	'msg_thanked' => 'Ihr Danke-Schön wurde in der Datenbank vermerkt.<br/><a href="%1$s">Klicken Sie hier um zur Nachricht zurückzukehren</a>.',
+	'msg_thread_moved' => 'Das Thema %1$s wurde nach %2$s verschoben.',
 	'msg_voted' => 'Vielen Dank für ihre Stimme.',
-	'msg_marked_read' => 'Es wurden %1% Themen als gelesen markiert.',
+	'msg_marked_read' => 'Es wurden %1$s Themen als gelesen markiert.',
 
 	# Titles
 	'forum_title' => GWF_SITENAME.' Forum',
@@ -66,14 +66,14 @@ $lang = array(
 	'ft_edit_board' => 'Board Editieren',
 	'ft_edit_thread' => 'Thema Editieren',
 	'ft_options' => 'Forum Optionen Einstellen',
-	'pt_thread' => '%2%  ['.GWF_SITENAME.']->%1%',
+	'pt_thread' => '%2$s  ['.GWF_SITENAME.']->%1$s',
 	'ft_reply' => 'Auf das Thema antworten',
-	'pt_board' => '%1% ',
-//	'pt_board' => '%1% ['.GWF_SITENAME.']',
+	'pt_board' => '%1$s ',
+//	'pt_board' => '%1$s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Schnellsuche',
 	'ft_edit_post' => 'Ihre Nachricht Bearbeiten',
-	'at_mailto' => 'Eine EMail an %1% senden',
-	'last_edit_by' => 'Zuletzt geändert von %1% - %2%',
+	'at_mailto' => 'Eine EMail an %1$s senden',
+	'last_edit_by' => 'Zuletzt geändert von %1$s - %2$s',
 
 	# Page Info
 	'pi_unread' => 'Ungelesene Themen',
@@ -166,8 +166,8 @@ $lang = array(
 	'online' => 'Der Benutzer ist Online',
 	'offline' => 'Der Benutzer ist Offline',
 	'registered' => 'Registriert am',
-	'watchers' => '%1% Personen sehen sich diese Thema gerade an.',
-	'views' => 'Dieses Thema wurde %1% mal angesehen.',
+	'watchers' => '%1$s Personen sehen sich diese Thema gerade an.',
+	'views' => 'Dieses Thema wurde %1$s mal angesehen.',
 
 	# forum.php
 	'latest_threads' => 'Die neuesten Themen',
@@ -179,22 +179,22 @@ $lang = array(
 		PHP_EOL.
 		'Es gibt eine neue Nachricht im '.GWF_SITENAME.' Forum das Moderation benötigt.'.PHP_EOL.
 		PHP_EOL.
-		'Board: %1%'.PHP_EOL.
-		'Thema: %2%'.PHP_EOL.
-		'Von: %3%'.PHP_EOL.
+		'Board: %1$s'.PHP_EOL.
+		'Thema: %2$s'.PHP_EOL.
+		'Von: %3$s'.PHP_EOL.
 		PHP_EOL.
-		'%4%'.PHP_EOL.
-		'%5%'.PHP_EOL.
+		'%4$s'.PHP_EOL.
+		'%5$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Um die Nachricht zu löschen rufen Sie diese Seite auf:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Um die Nachricht anzuzeigen rufen Sie diese Seite auf:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'Die Nachricht wird automatisch nach %8% angezeigt.'.PHP_EOL.
+		'Die Nachricht wird automatisch nach %8$s angezeigt.'.PHP_EOL.
 		PHP_EOL.
 		'Viele Grüße'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team'.PHP_EOL,
@@ -202,45 +202,45 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Neuer Forum-Post',
 	'submail_body' => 
-		'Hallo %1%'.PHP_EOL.
+		'Hallo %1$s'.PHP_EOL.
 		PHP_EOL.
-		'Es gibt %2% neue Nachricht(en) im '.GWF_SITENAME.' Forum'.PHP_EOL.
+		'Es gibt %2$s neue Nachricht(en) im '.GWF_SITENAME.' Forum'.PHP_EOL.
 		PHP_EOL.
-		'Board: %3%'.PHP_EOL.
-		'Thema: %4%'.PHP_EOL.
+		'Board: %3$s'.PHP_EOL.
+		'Thema: %4$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5%'.PHP_EOL. # Multiple msgs possible
+		'%5$s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'Um den Thread anzusehen rufen sie diese Seite auf:'.PHP_EOL.
-		'%8%'.PHP_EOL.
+		'%8$s'.PHP_EOL.
 		PHP_EOL.
 		'Um das Abonnement zu diesem Thema zu kündigen rufen Sie diese Seite auf:'.PHP_EOL.
-		'%6%'.PHP_EOL.
+		'%6$s'.PHP_EOL.
 		PHP_EOL.
 		'Um alle Abonnements zu kündigen, können Sie diese Seite aufrufen:'.PHP_EOL.
-		'%7%'.PHP_EOL.
+		'%7$s'.PHP_EOL.
 		PHP_EOL.
 		'Hochachtungsvoll,'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Team'.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5% above
-		'Von: %1%'.PHP_EOL.
-		'Titel: %2%'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %5$s above
+		'Von: %1$s'.PHP_EOL.
+		'Titel: %2$s'.PHP_EOL.
 		'Nachricht:'.PHP_EOL.
-		'%3%'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 		
 	# v2.01 (last seen)
-	'last_seen' => 'Zuletzt gesehen am: %1%',
+	'last_seen' => 'Zuletzt gesehen am: %1$s',
 
 	# v2.02 (Mark all read)
 	'btn_mark_read' => 'Alle als gelesen markieren',
-	'msg_mark_aread' => '%1% Thema/Themen wurden als gelesen markiert.',
+	'msg_mark_aread' => '%1$s Thema/Themen wurden als gelesen markiert.',
 
 	# v2.03 (Merge)
 	'msg_merged' => 'Die Themen wurden zusammengeführt.',
@@ -264,7 +264,7 @@ $lang = array(
 	'cfg_doublepost' => 'Doppel-Posts erlauben?',
 	'cfg_watch_timeout' => 'Thema als &quot;am lesen&quot; markieren für N Sekunden',
 	'th_guest_view' => 'Für Gäste sichtbar?',
-	'pt_history' => 'Ältere Themen im Forum - Seite %1% / %2%',
+	'pt_history' => 'Ältere Themen im Forum - Seite %1$s / %2$s',
 	'btn_unread' => 'Neue Themen',
 		
 	# v2.06 (Admin Area)
@@ -277,9 +277,9 @@ $lang = array(
 		
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Nachrichten Zähler',
-	'msg_attach_added' => 'Ihr Anhang wurde hochgeladen. <a href="%1%">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
-	'msg_attach_deleted' => 'Ihr Anhang wurde gelöscht. <a href="%1%">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
-	'msg_attach_edited' => 'Ihr Anhang wurde bearbeitet. <a href="%1%">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
+	'msg_attach_added' => 'Ihr Anhang wurde hochgeladen. <a href="%1$s">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
+	'msg_attach_deleted' => 'Ihr Anhang wurde gelöscht. <a href="%1$s">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
+	'msg_attach_edited' => 'Ihr Anhang wurde bearbeitet. <a href="%1$s">Klicken Sie hier um zu Ihrer Nachricht zurückzugelangen.</a>',
 	'msg_reupload' => 'Ihr Anhang wurde ausgetauscht.',
 	'btn_add_attach' => 'Anhang hinzufügen',
 	'btn_del_attach' => 'Anhang löschen',
@@ -295,15 +295,15 @@ $lang = array(
 
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Sprach-Boards erzeugen',
-	'lang_board_title' => '%1% Forum',
-	'lang_board_descr' => 'Für %1% Sprache',
+	'lang_board_title' => '%1$s Forum',
+	'lang_board_descr' => 'Für %1$s Sprache',
 	'lang_root_title' => 'Andere Sprachen',
 	'lang_root_descr' => 'Nicht englische Boards',
-	'md_board' => GWF_SITENAME.' Forum. %1%',
+	'md_board' => GWF_SITENAME.' Forum. %1$s',
 	'mt_board' => GWF_SITENAME.', Forum, Gäste Nachrichten, Alternative, Forum, Software',
 		
 	# v2.10 subscribers
-	'subscribers' => '%1% haben dieses Thema abonniert und erhalten EMails bei einer neuen Nachricht.',
+	'subscribers' => '%1$s haben dieses Thema abonniert und erhalten EMails bei einer neuen Nachricht.',
 	'th_hide_subscr' => 'Abonnements verstecken?',
 		
 	# v2.11 fixes11
@@ -313,18 +313,18 @@ $lang = array(
 	
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1% threads and %2% posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1%&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1% boards.',
-	'subscr_threads' => 'You have manually subscribed to %1% threads.',
+	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
+	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1%">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1%">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
 		
 );
 
