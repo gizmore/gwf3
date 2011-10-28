@@ -208,7 +208,7 @@ abstract class GDO
 			$this->auto_col = false;
 			foreach ($this->getColumnDefcache() as $c => $d)
 			{
-				if ( ($d[0]&GDO::AUTO_INCREMENT) === GDO::AUTO_INCREMENT)
+				if ( ($d[0]&self::AUTO_INCREMENT) === self::AUTO_INCREMENT)
 				{
 					$this->auto_col = $c;
 					break;
@@ -502,7 +502,7 @@ abstract class GDO
 		$back = '';
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
-//			if ( ($d[0] & GDO::OBJECT) === GDO::OBJECT ) {
+//			if ( ($d[0] & self::OBJECT) === self::OBJECT ) {
 //				$back .= $this->getJoin($this->object2join($d[2]));
 //			}
 			if (in_array($c, $joins, true))
@@ -557,11 +557,11 @@ abstract class GDO
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
 			$gdo = $d[0];
-			if (($gdo&GDO::OBJECT) === GDO::OBJECT)
+			if (($gdo&self::OBJECT) === self::OBJECT)
 			{
 				$class->setVar($c, new $d[2][0]($row));
 			}
-			elseif (($gdo&GDO::GDO_ARRAY) === GDO::GDO_ARRAY)
+			elseif (($gdo&self::GDO_ARRAY) === self::GDO_ARRAY)
 			{
 				$class->loadGDOArray($c, $d[2], $d[3]);
 			}
@@ -615,7 +615,7 @@ abstract class GDO
 		$con = array();
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
-			if (($d[0]&GDO::PRIMARY_KEY) === GDO::PRIMARY_KEY)
+			if (($d[0]&self::PRIMARY_KEY) === self::PRIMARY_KEY)
 			{
 				$con[] = sprintf("`%s`='%s'", $c, self::escape($this->getVar($c)));
 			}
@@ -877,7 +877,7 @@ abstract class GDO
 		$joins = array();
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
-			if ( ($d[0] & GDO::OBJECT) === GDO::OBJECT ) {
+			if ( ($d[0]&self::OBJECT) === self::OBJECT ) {
 				$joins[] = $c;
 			}
 		}
