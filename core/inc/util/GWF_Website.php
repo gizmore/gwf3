@@ -19,8 +19,10 @@ final class GWF_Website
 		
 		GWF_Language::init();
 		GWF_HTML::init();
+		self::$xhtml = (self::isHTML() ? '>' : ' />') . "\n\t";
 	}
-
+	
+	private static $xhtml = "/>\n\t";
 	public static function isHTML() { return strpos(GWF_DEFAULT_DOCTYPE, 'xhtml') === false; }
 	
 	#################
@@ -57,26 +59,23 @@ final class GWF_Website
 	public static function addMeta(array $meta, $aggressive = false)
 	{
 		if (array_key_exists($meta[0], self::$META) && !$aggressive) {
-			return true;
+			return;
 		}
 		self::$META[$meta[0]] = $meta;
-		return true;
 	}
 	public static function addMetaA(array $metas)
 	{
 		foreach($metas as $meta) {
 			self::addMeta($meta);
 		}
-		return true;
 	}
-	public static function displayMETA($html = false)
+	public static function displayMETA()
 	{
 		$back = '';
-		$xhtml = ($html ? '>' : ' />') . "\n\t";
 		foreach (self::$META as $meta)
 		{
 			$eq = ($meta[2] ? 'http-equiv' : 'name');
-			$back .= sprintf('<meta %s="%s" content="%s"%s', $eq, $meta[0], $meta[1], $xhtml);
+			$back .= sprintf('<meta %s="%s" content="%s"%s', $eq, $meta[0], $meta[1], self::$xhtml);
 		}
 		return $back;
 	}
@@ -85,15 +84,10 @@ final class GWF_Website
 	### Meta Tags ###
 	#################
 	private static $META_TAGS;
-	public static function setMetaTags($s)
+	public static function setMetaTags($s) { self::$META_TAGS = $s; }
+	public static function addMetaTags($s) { self::$META_TAGS .= $s; }
+	public static function displayMetaTags() 
 	{
-		self::$META_TAGS = $s;
-	}
-	public static function addMetaTags($s)
-	{
-		self::$META_TAGS .= $s;
-	}
-	public static function displayMetaTags() {
 		self::addMeta(array('keywords', self::$META_TAGS, false), true);
 		return self::$META_TAGS;
 	}
@@ -102,15 +96,10 @@ final class GWF_Website
 	### Meta Descr ###
 	##################
 	private static $META_DESCR;
-	public static function setMetaDescr($s)
+	public static function setMetaDescr($s) { self::$META_DESCR = $s; }
+	public static function addMetaDescr($s) { self::$META_DESCR .= $s; }
+	public static function displayMetaDescr() 
 	{
-		self::$META_DESCR = $s;
-	}
-	public static function addMetaDescr($s)
-	{
-		self::$META_DESCR .= $s;
-	}
-	public static function displayMetaDescr() {
 		self::addMeta(array('description', self::$META_DESCR, false), true);
 		return self::$META_DESCR;
 	}	
@@ -123,31 +112,28 @@ final class GWF_Website
 	{
 		if (is_array($path)) {
 			if (in_array($path, self::$CSS, true)) { 
-				return true; 
+				return; 
 			}
 			self::$CSS[] = $path;
 		} else {
 			if (in_array(array($path, $rel, $media), self::$CSS, true)) {
-				return true;
+				return;
 			}
 			self::$CSS[] = array($path, $rel, $media);
 		}
-		return true;
 	}
 	public static function addCSSA(array $paths, $pre = '', $after = '')
 	{
 		foreach($paths as $path) {
 			self::addCSS($pre.$path.$after);
 		}
-		return true;
 	}
-	public static function displayCSS($html = false)
+	public static function displayCSS()
 	{
 		$back = '';
-		$xhtml = ($html ? '>' : ' />') . "\n\t";
 		foreach (self::$CSS as $css)
 		{
-			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s',$css[1], $css[0], $xhtml);
+			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s',$css[1], $css[0], self::$xhtml);
 		}
 		return $back;
 	}
@@ -242,12 +228,12 @@ final class GWF_Website
 			'language' => GWF_Language::getCurrentISO(),
 			'meta_tags' => self::displayMetaTags(),
 			'meta_descr' => self::displayMetaDescr(),
-			'meta' => self::displayMETA(self::isHTML()), // important: must be under displayMetaDescr/Tags
+			'meta' => self::displayMETA(), // important: must be under displayMetaDescr/Tags
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
 			'feeds' => self::displayFeeds(),
 			'root' => GWF_WEB_ROOT,
 			'js' => self::displayJavascripts(),
-			'css' => self::displayCSS(self::isHTML()),
+			'css' => self::displayCSS(),
 		);
 		GWF_Template::addMainTvars(array('errors' => GWF_HTML::displayErrors(), 'messages' => GWF_HTML::displayMessages()));
 		
