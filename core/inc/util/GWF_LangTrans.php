@@ -7,19 +7,8 @@ final class GWF_LangTrans
 {
 	private $base_path = '';
 	private $trans = array();
-	
-	/**
-	 * Get the browser ISO.
-	 * @return string
-	 */
-	public static function getBrowserISO()
-	{
-		return GWF_Language::getCurrentISO();
-	}
-	
-	##############
-	### Public ###
-	##############
+	public static function getBrowserISO() { return GWF_Language::getCurrentISO(); }
+
 	
 	/**
 	 * Construct a langfile for a basepath.
@@ -30,6 +19,7 @@ final class GWF_LangTrans
 		$this->base_path = $path;
 		$this->loadLanguage(self::getBrowserISO());
 	}
+	
 	
 	/**
 	 * Get the whole lang file for an iso and basefile.
@@ -43,6 +33,7 @@ final class GWF_LangTrans
 		return $this->trans[$iso];
 	}
 	
+	
 	/**
 	 * Translate an item for the browser ISO.
 	 * @param string $key
@@ -52,6 +43,7 @@ final class GWF_LangTrans
 	{
 		return $this->translate(self::getBrowserISO(), $key, $args);
 	}
+	
 	
 	/**
 	 * Translate an key1[key2] for the browser ISO.
@@ -64,6 +56,7 @@ final class GWF_LangTrans
 		$back = $this->lang($var);
 		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $back.'['.$key.']';
 	}
+	
 	
 	/**
 	 * Get the translation for a user.
@@ -93,6 +86,7 @@ final class GWF_LangTrans
 		return $this->translate(self::getBrowserISO(), $key, $args);
 	}
 	
+	
 	/**
 	 * Get the translation for an ISO Language.
 	 * @param string $iso
@@ -108,6 +102,7 @@ final class GWF_LangTrans
 		}
 		return $this->translate($iso, $key, $args);
 	}
+	
 	
 	/**
 	 * Get the translation for the admin language.
@@ -125,9 +120,7 @@ final class GWF_LangTrans
 		return $this->translate(GWF_LANG_ADMIN, $key, $args);
 	}
 	
-	###############
-	### Private ###
-	###############
+
 	
 	/**
 	 * Translate an item.
@@ -146,6 +139,7 @@ final class GWF_LangTrans
 		return $this->replaceArgs($this->trans[$iso][$key], $args);
 	}
 	
+	
 	/**
 	 * Replace the item with values.
 	 * @param string $back
@@ -156,9 +150,9 @@ final class GWF_LangTrans
 		return $args === NULL ? $back : vsprintf($back, $args);
 	}
 	
+	
 	/**
-	 * Load a language for this basefile by ISO.+
-	 * TODO: Optimize more for speed.
+	 * Load a language for this basefile by ISO.
 	 * @param string $iso
 	 * @return boolean
 	 */
@@ -166,40 +160,36 @@ final class GWF_LangTrans
 	{
 		if (isset($this->trans[$iso]))
 		{
-			return true;
+			return true; // ISO Cache hit
 		}
 		
 		$path1 = $this->base_path.'_'.$iso.'.php';
 		if (Common::isFile($path1))
 		{
-			$path = $path1;
-			$success = true;
+			$path = $path1; // Load ISO
 		}
+		
 		elseif (isset($this->trans[GWF_DEFAULT_LANG]))
 		{
 			$this->trans[$iso] = $this->trans[GWF_DEFAULT_LANG];
-			return false;
+			return false; // Copy default cache
 		}
+		
 		else
 		{
+			// Load default
 			$path = $this->base_path.'_'.GWF_DEFAULT_LANG.'.php';
-			$success = false;
-		}
-
-
-		// Have success path?
-		if (!$success) //&& (!Common::isFile($path)) )
-		{
-//			$path = GWF_PATH.$path;
 			if (!Common::isFile($path))
 			{
 				die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
 			}
 		}
-		
+
+		// Load file
 		require $path;
 		$this->trans[$iso] = $lang;
-		return $success;
+		
+		return true;
 	}
 }
 ?>
