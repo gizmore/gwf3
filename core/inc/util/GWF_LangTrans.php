@@ -153,31 +153,12 @@ final class GWF_LangTrans
 	 */
 	private function replaceArgs($back, $args)
 	{
-		## spaceone: better? :)
-		
-		return is_array($args) ? vsprintf($back, $args) : $back;
-		 
-//		if (is_array($args))
-//		{
-//			$len = count($args);
-//			$i = 0;
-//			while ($i < $len)
-//			{
-//				$j = $i++;
-//				$back = str_replace("%$i%", $args[$j], $back);
-//			}
-//## Gizmore: please decide: this algo is 'key' capable; maybe faster?
-////			foreach($args as $i =>$j)
-////			{
-////				if(is_int($i)) { $i++; }
-////				$back = str_replace("%$i%", $j, $back);
-////			}
-//		}
-//		return $back;
+		return $args === NULL ? $back : vsprintf($back, $args);
 	}
 	
 	/**
-	 * Load a language for this basefile by ISO.
+	 * Load a language for this basefile by ISO.+
+	 * TODO: Optimize more for speed.
 	 * @param string $iso
 	 * @return boolean
 	 */
@@ -191,32 +172,28 @@ final class GWF_LangTrans
 		$path1 = $this->base_path.'_'.$iso.'.php';
 		if (Common::isFile($path1))
 		{
-			$success = true;
 			$path = $path1;
+			$success = true;
 		}
-		
 		elseif (isset($this->trans[GWF_DEFAULT_LANG]))
 		{
 			$this->trans[$iso] = $this->trans[GWF_DEFAULT_LANG];
 			return false;
 		}
-		
 		else
 		{
 			$path = $this->base_path.'_'.GWF_DEFAULT_LANG.'.php';
 			$success = false;
 		}
-		
-		
-		if (!Common::isFile($path))
+
+
+		// Have success path?
+		if (!$success) //&& (!Common::isFile($path)) )
 		{
-			if (!Common::isFile(GWF_PATH.$path))
+//			$path = GWF_PATH.$path;
+			if (!Common::isFile($path))
 			{
 				die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
-			}
-			else
-			{
-				$path = GWF_PATH.$path;
 			}
 		}
 		
