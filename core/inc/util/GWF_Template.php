@@ -109,7 +109,7 @@ final class GWF_Template
 	
 	public static function templateRaw($file, $tVars=NULL)
 	{
-		return self::template($file, $tVars, false);
+		return self::template(self::templatePath($file), $tVars, false);
 	}
 
 	public static function templateWC($file, $tVars=NULL)
