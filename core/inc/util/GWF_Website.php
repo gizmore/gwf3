@@ -242,7 +242,7 @@ final class GWF_Website
 	
 	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL)
 	{
-		return GWF_Template::template($path.'html_body.tpl', $tVars);
+		return GWF_Template::templateRaw($path.'html_body.tpl', $tVars);
 	}
 	
 	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/', $tVars = array())
@@ -251,7 +251,7 @@ final class GWF_Website
 			$tVars['timings'] = GWF_DebugInfo::getTimings();
 		}
 
-		return GWF_Template::template($path.'html_foot.tpl', $tVars);
+		return GWF_Template::templateRaw($path.'html_foot.tpl', $tVars);
 	}
 	
 	public static function getPagehead($path = 'tpl/%DESIGN%/')

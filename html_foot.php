@@ -6,5 +6,4 @@ define('WC_HTML_HEAD__DEFINED', true);
 
 GWF_Session::commit();
 echo '</div></div>';
-echo GWF_Template::template('tpl/wc4/chall_foot.tpl', array('wcfooter' => WC_HTML::displayFooter()) );
-#echo SF::getHTMLfoot();
+echo GWF_Template::templateWC('chall_foot.tpl', array('wcfooter' => WC_HTML::displayFooter()) );

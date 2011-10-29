@@ -7,7 +7,7 @@ require_once 'GWF_TemplateWrappers.php';
  * Smarty templates are usually faster and preferred.
  * There exist wrapper objects to call gwf stuff within smarty.
  * @todo Allow to switch designs on a per user basis.
- * @author gizmore
+ * @author gizmore, spaceone
  * @version 3.0
  * @since 1.0
  * @see GWF_TemplateWrappers
@@ -97,38 +97,59 @@ final class GWF_Template
 		return self::$_Smarty;
 	}
 
-	public static function addMainTvars($tVars = NULL)
+	public static function addMainTvars(array $tVars = array())
 	{
 		$smarty = self::getSmarty();
 		
-		if (is_array($tVars))
+		foreach ($tVars as $k => $v)
 		{
-			foreach ($tVars as $k => $v)
-			{
-				$smarty->assign($k, $v);
-			}
+			$smarty->assign($k, $v);
 		}
 	}
 	
+	public static function templateRaw($file, $tVars=NULL)
+	{
+		return self::template($file, $tVars, false);
+	}
+
+	public static function templateWC($file, $tVars=NULL)
+	{
+		return self::template(GWF_WWW_PATH.'tpl/wc4/'.$file, $tVars, false);
+	}
+
 	public static function templateMain($file, $tVars=NULL)
 	{
-		return self::template(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file, $tVars);
+		$path = self::templatePath(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file);
+		return self::template($path, $tVars, ($path ? true : false));
 	}
 	
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
 	{
 		$name = $module->getName();
-		return self::template(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}", $tVars);
+		if(false === ($path = self::templatePath(GWF_WWW_PATH.'tpl/module/{$name}/%DESIGN%/{$file}')))
+			$path = self::templatePath(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}");
+
+		return self::template($path, $tVars, ($path ? true : false));
 	}
-	
-	public static function template($path, $tVars=NULL)
+
+	public static function templatePath($path)
 	{
 //		var_dump('LOADING '.$path);
 		$smarty = self::getSmarty();
-		if($smarty->templateExists($path1 = str_replace('%DESIGN%', self::getDesign(), $path)) ){
-			$path2 = $path1;
-		} elseif($smarty->templateExists($path1 = str_replace('%DESIGN%', 'default', $path)) ){
-			$path2 = $path1;
+		if($smarty->templateExists( $path1 = str_replace('%DESIGN%', self::getDesign(), $path) ))
+			return $path1;
+		elseif($smarty->templateExists( $path1 = str_replace('%DESIGN%', 'default', $path) ))
+			return $path1;
+		else
+			return false;
+	}
+
+	private static function template($path, $tVars=NULL, $checked=true)
+	{
+		$smarty = self::getSmarty();
+		if($checked || $smarty->templateExists($path))
+		{
+			$path2 = $path;
 		} else {
 			return self::pathError($path);
 		}

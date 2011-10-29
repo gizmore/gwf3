@@ -1,0 +1,3523 @@
+------------------------------------------------------------------------
+r875 | Gizmore | 2011-10-29 00:34:08 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+GWF3: More GWF_LangTrans optimzation.
+------------------------------------------------------------------------
+r874 | spaceone | 2011-10-29 00:27:04 +0200 (Sa, 29. Okt 2011) | 2 Zeilen
+
+code cleanup in GWF_Website
+
+------------------------------------------------------------------------
+r873 | Gizmore | 2011-10-29 00:16:32 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+GWF3: Cleaned up GWF_LangTrans a bit.
+------------------------------------------------------------------------
+r872 | Gizmore | 2011-10-28 23:52:00 +0200 (Fr, 28. Okt 2011) | 1 Zeile
+
+GWF: The lang file handling is very different now, monster commit! We are now simply using vsprintf to replace the args in translation snippets.
+------------------------------------------------------------------------
+r871 | spaceone | 2011-10-28 18:07:37 +0200 (Fr, 28. Okt 2011) | 2 Zeilen
+
+GDO code cleanup
+
+------------------------------------------------------------------------
+r870 | Gizmore | 2011-10-27 16:21:40 +0200 (Do, 27. Okt 2011) | 1 Zeile
+
+Shadowlamb: Point out that you have to spend karma to lvlup. (thx RatHat)
+------------------------------------------------------------------------
+r869 | Gizmore | 2011-10-27 14:47:20 +0200 (Do, 27. Okt 2011) | 1 Zeile
+
+GDO: The selectArrayMap function can now handle numeric keys.
+------------------------------------------------------------------------
+r868 | Gizmore | 2011-10-25 23:18:46 +0200 (Di, 25. Okt 2011) | 1 Zeile
+
+GWF3: A couple of tiny fixes and comments.
+------------------------------------------------------------------------
+r867 | Gizmore | 2011-10-25 23:13:48 +0200 (Di, 25. Okt 2011) | 1 Zeile
+
+GWF3: New utility class GWF_Obfuscate. (thx noother)
+------------------------------------------------------------------------
+r866 | Gizmore | 2011-10-21 20:19:33 +0200 (Fr, 21. Okt 2011) | 1 Zeile
+
+Lamb3: The mini_install was outdated. You still need to patch two lines to use the mini installer. (thx FreeArtMan)
+------------------------------------------------------------------------
+r865 | jjk | 2011-10-18 19:03:40 +0200 (Di, 18. Okt 2011) | 1 Zeile
+
+ShadowLamb: fix McLarens bartender quest
+------------------------------------------------------------------------
+r864 | Gizmore | 2011-10-17 20:37:00 +0200 (Mo, 17. Okt 2011) | 1 Zeile
+
+GDO: I broke the selectArrayMap function... sorry for that :/
+------------------------------------------------------------------------
+r863 | jjk | 2011-10-16 21:35:28 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Doctor in Seraphim quest should be able to talk now.
+------------------------------------------------------------------------
+r862 | Gizmore | 2011-10-16 20:37:34 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Shadowlamb: The Seraphim challenges were not accessible either. (thx paipai and jjk)
+------------------------------------------------------------------------
+r861 | Gizmore | 2011-10-16 20:13:52 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Shadowlamb: The MCBartender quest could not get accepted. (thx jjk)
+------------------------------------------------------------------------
+r860 | Gizmore | 2011-10-16 19:56:34 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Shadowlamb: Item shortcuts can now be in the middle of the name, not only from beginning. (thx jjk)
+------------------------------------------------------------------------
+r859 | freeartman | 2011-10-16 19:37:59 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Thxwars directory
+------------------------------------------------------------------------
+r858 | Gizmore | 2011-10-16 19:20:06 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+GWF3: GWF_Module`s have 3 new methods: isCoreModule, getDependencies and getOptionalDependencies. Core modules cannot be disabled. (thx spaceone)
+------------------------------------------------------------------------
+r857 | Gizmore | 2011-10-16 18:43:53 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+GWF3: The install.php script may take a few minutes. I have added set_time_limit(0) officially. (thx rahat)
+------------------------------------------------------------------------
+r856 | Gizmore | 2011-10-16 18:07:17 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+WC5: thebackupbox now repsonds the onsiterank for a user. (thx epoch)
+------------------------------------------------------------------------
+r855 | spaceone | 2011-10-16 16:47:27 +0200 (So, 16. Okt 2011) | 2 Zeilen
+
+synced Smarty to stable rev3286
+
+------------------------------------------------------------------------
+r854 | Gizmore | 2011-10-16 15:57:26 +0200 (So, 16. Okt 2011) | 1 Zeile
+
+Shadowlamb: The blacksmith #break command has now confirmation functionality. (thx jjk)
+------------------------------------------------------------------------
+r853 | Gizmore | 2011-10-15 23:00:47 +0200 (Sa, 15. Okt 2011) | 1 Zeile
+
+WC5: The YaBFDbg tool now has a makefile and configure. (thx awe)
+------------------------------------------------------------------------
+r852 | Gizmore | 2011-10-13 03:44:25 +0200 (Do, 13. Okt 2011) | 1 Zeile
+
+GWF3: Cleanup and htaccess change for FancyIndex.
+------------------------------------------------------------------------
+r851 | Gizmore | 2011-10-13 03:33:02 +0200 (Do, 13. Okt 2011) | 1 Zeile
+
+WC5: You now need to solve 10% on a site to be allowed to vote for it. (thx awe)
+------------------------------------------------------------------------
+r850 | spaceone | 2011-10-12 20:53:03 +0200 (Mi, 12. Okt 2011) | 2 Zeilen
+
+little bugfix in Fancy, strange behavior of Apache?!
+
+------------------------------------------------------------------------
+r849 | Gizmore | 2011-10-12 20:14:04 +0200 (Mi, 12. Okt 2011) | 1 Zeile
+
+GWF3: Tiny error fixed in FancyIndexing error handling (thx spaceone)
+------------------------------------------------------------------------
+r848 | Gizmore | 2011-10-12 18:09:08 +0200 (Mi, 12. Okt 2011) | 1 Zeile
+
+GWF3: More tiny fixes, discoverd while running baim3 website.
+------------------------------------------------------------------------
+r847 | Gizmore | 2011-10-11 17:09:10 +0200 (Di, 11. Okt 2011) | 1 Zeile
+
+GWF3: It is now possible to prepend a file to the .htaccess, in case very custom rules are needed.
+------------------------------------------------------------------------
+r846 | Gizmore | 2011-10-09 09:33:05 +0200 (So, 09. Okt 2011) | 1 Zeile
+
+WC5: New Challenge - Are you serial (fixes)
+------------------------------------------------------------------------
+r845 | Gizmore | 2011-10-09 08:54:15 +0200 (So, 09. Okt 2011) | 1 Zeile
+
+WC5: New Challenge - Are you serial - by gizmore ;)
+------------------------------------------------------------------------
+r844 | Gizmore | 2011-10-08 23:48:12 +0200 (Sa, 08. Okt 2011) | 1 Zeile
+
+GWF3: More tiny fixes. Currently there are 2 sites running the gwf3 code :)
+------------------------------------------------------------------------
+r843 | Gizmore | 2011-10-07 16:26:03 +0200 (Fr, 07. Okt 2011) | 1 Zeile
+
+GWF3: Fixes for lot's of tiny problems.
+------------------------------------------------------------------------
+r842 | Gizmore | 2011-10-06 23:39:38 +0200 (Do, 06. Okt 2011) | 1 Zeile
+
+GWF3: Core fixes in hook engine.
+------------------------------------------------------------------------
+r841 | Gizmore | 2011-10-06 18:37:46 +0200 (Do, 06. Okt 2011) | 1 Zeile
+
+GWF3: The __DIR__ constant is not available in PHP5.2, and the major server is debian whatever ...
+------------------------------------------------------------------------
+r840 | Gizmore | 2011-10-06 16:35:55 +0200 (Do, 06. Okt 2011) | 1 Zeile
+
+GWF3: Module_VersionServer is partially working again (method zipper). Also synced everything again :)
+------------------------------------------------------------------------
+r839 | Gizmore | 2011-10-06 14:04:25 +0200 (Do, 06. Okt 2011) | 1 Zeile
+
+GWF3: Fixed a possible vulnerability in some .htaccess. See LimitedAccessToo challenge!
+------------------------------------------------------------------------
+r838 | Gizmore | 2011-10-06 13:44:22 +0200 (Do, 06. Okt 2011) | 1 Zeile
+
+GWF3: Fixed a possible vulnerability in core/extra/.htaccess. See LimitedAccessToo challenge!
+------------------------------------------------------------------------
+r837 | Gizmore | 2011-10-04 18:31:29 +0200 (Di, 04. Okt 2011) | 1 Zeile
+
+GWF3: Lot of tiny fixes. everything synced again
+------------------------------------------------------------------------
+r836 | Gizmore | 2011-10-04 18:29:48 +0200 (Di, 04. Okt 2011) | 1 Zeile
+
+GWF3: FancyIndexing now supports sorting.
+------------------------------------------------------------------------
+r835 | Gizmore | 2011-10-03 03:41:57 +0200 (Mo, 03. Okt 2011) | 1 Zeile
+
+GWF3: Profile meta descriptions were not working. (thx ynori7)
+------------------------------------------------------------------------
+r834 | Gizmore | 2011-10-02 16:32:51 +0200 (So, 02. Okt 2011) | 1 Zeile
+
+GWF3: Fixed a bug in GWF_DebugInfo for windows machines. Added new type of javascript startup code for jquery.
+------------------------------------------------------------------------
+r833 | Gizmore | 2011-09-30 21:31:47 +0200 (Fr, 30. Sep 2011) | 1 Zeile
+
+GWF3: Fixed an annoying thing in GWF_Template that also borked rahat 's install. The tiny "install.php" should work better now too. All is synced here!
+------------------------------------------------------------------------
+r832 | Gizmore | 2011-09-30 19:06:24 +0200 (Fr, 30. Sep 2011) | 1 Zeile
+
+GWF3: New jquery plugin: ghostwriter.
+------------------------------------------------------------------------
+r831 | Gizmore | 2011-09-30 13:07:10 +0200 (Fr, 30. Sep 2011) | 1 Zeile
+
+GWF3: Installer and JS fixes.
+------------------------------------------------------------------------
+r830 | Gizmore | 2011-09-30 07:28:36 +0200 (Fr, 30. Sep 2011) | 1 Zeile
+
+GWF3: Moved all the javascript around.
+------------------------------------------------------------------------
+r829 | Gizmore | 2011-09-30 01:14:50 +0200 (Fr, 30. Sep 2011) | 1 Zeile
+
+GWF3: Synced with everything. Moved installers back to www/protected.
+------------------------------------------------------------------------
+r828 | Gizmore | 2011-09-29 17:22:32 +0200 (Do, 29. Sep 2011) | 1 Zeile
+
+GWF3: Smarty plugin dir still weird.
+------------------------------------------------------------------------
+r827 | Gizmore | 2011-09-29 12:51:01 +0200 (Do, 29. Sep 2011) | 1 Zeile
+
+WC5: New challenge site wargame.kr
+------------------------------------------------------------------------
+r826 | spaceone | 2011-09-28 20:03:13 +0200 (Mi, 28. Sep 2011) | 1 Zeile
+
+i dont like bugs
+------------------------------------------------------------------------
+r825 | spaceone | 2011-09-28 18:58:51 +0200 (Mi, 28. Sep 2011) | 1 Zeile
+
+fixed GWF_Installer Part 2/3
+------------------------------------------------------------------------
+r824 | Gizmore | 2011-09-28 18:08:15 +0200 (Mi, 28. Sep 2011) | 1 Zeile
+
+GWF3: Fixed some module vars.
+------------------------------------------------------------------------
+r823 | spaceone | 2011-09-28 15:08:24 +0200 (Mi, 28. Sep 2011) | 1 Zeile
+
+some gwf installer things
+------------------------------------------------------------------------
+r822 | spaceone | 2011-09-28 00:20:54 +0200 (Mi, 28. Sep 2011) | 1 Zeile
+
+installer bugfixes
+------------------------------------------------------------------------
+r821 | spaceone | 2011-09-27 22:00:14 +0200 (Di, 27. Sep 2011) | 1 Zeile
+
+fixed Installer Part 1/3
+------------------------------------------------------------------------
+r820 | Gizmore | 2011-09-27 00:23:00 +0200 (Di, 27. Sep 2011) | 1 Zeile
+
+GWF3: New method GWF_String::strrchr to find the last occurance of a char.
+------------------------------------------------------------------------
+r819 | Gizmore | 2011-09-24 01:04:09 +0200 (Sa, 24. Sep 2011) | 1 Zeile
+
+Big Sync of everything. Also fixing the //D problem in all preg_matches. (thx ludde)
+------------------------------------------------------------------------
+r818 | Gizmore | 2011-09-23 22:23:32 +0200 (Fr, 23. Sep 2011) | 1 Zeile
+
+WC5: New challenge regex-mini (thx ludde)
+------------------------------------------------------------------------
+r817 | Gizmore | 2011-09-22 10:03:44 +0200 (Do, 22. Sep 2011) | 1 Zeile
+
+GDO: The auto-whitelisting in orderby functions can now have an additional whitelist as parameter.
+------------------------------------------------------------------------
+r816 | Gizmore | 2011-09-19 11:52:56 +0200 (Mo, 19. Sep 2011) | 1 Zeile
+
+GWF3: GWF_Form now supports the GET method. It is also easy to remove CSRF checks from forms.
+------------------------------------------------------------------------
+r815 | Gizmore | 2011-09-18 19:28:31 +0200 (So, 18. Sep 2011) | 1 Zeile
+
+WC5: Wording of crypto/digraph challenge fixed. (thx ludde)
+------------------------------------------------------------------------
+r814 | Gizmore | 2011-09-18 13:51:14 +0200 (So, 18. Sep 2011) | 1 Zeile
+
+GWF3: SVN Sync with latest local version.
+------------------------------------------------------------------------
+r813 | Gizmore | 2011-09-18 13:32:57 +0200 (So, 18. Sep 2011) | 1 Zeile
+
+Lamb: Sync SVN with latest local version.
+------------------------------------------------------------------------
+r812 | Gizmore | 2011-09-18 12:37:15 +0200 (So, 18. Sep 2011) | 1 Zeile
+
+Shadowlamb: Synced SVN with latest local version.
+------------------------------------------------------------------------
+r811 | Gizmore | 2011-09-16 20:47:21 +0200 (Fr, 16. Sep 2011) | 1 Zeile
+
+GWF3: Template fixes + new {$core} path in templates.
+------------------------------------------------------------------------
+r810 | Gizmore | 2011-09-16 19:58:08 +0200 (Fr, 16. Sep 2011) | 1 Zeile
+
+Shadowlamb: Item fixes.
+------------------------------------------------------------------------
+r809 | Gizmore | 2011-09-16 13:24:00 +0200 (Fr, 16. Sep 2011) | 1 Zeile
+
+GWF3 Security: It is now forbidden to upload files that contain the two magic bytes <? (thx sabretooth)
+------------------------------------------------------------------------
+r808 | Gizmore | 2011-09-16 08:31:53 +0200 (Fr, 16. Sep 2011) | 1 Zeile
+
+Shadowlamb: Two new experimental magic staffs. (thx somerandomnick)
+------------------------------------------------------------------------
+r807 | Gizmore | 2011-09-12 08:21:45 +0200 (Mo, 12. Sep 2011) | 1 Zeile
+
+GDO: Fixed the possibility to generate correct hashcodes for moderation mails.
+------------------------------------------------------------------------
+r806 | Gizmore | 2011-09-12 08:12:14 +0200 (Mo, 12. Sep 2011) | 1 Zeile
+
+GWF3: User uploads can now be moderated.
+------------------------------------------------------------------------
+r805 | Gizmore | 2011-09-10 14:48:48 +0200 (Sa, 10. Sep 2011) | 1 Zeile
+
+GWF3: Moved Votes javascript to www directory.
+------------------------------------------------------------------------
+r804 | Gizmore | 2011-09-09 07:50:58 +0200 (Fr, 09. Sep 2011) | 1 Zeile
+
+GWF: If you delete a user, his sessions are destroyed now, effectively logging him out.
+------------------------------------------------------------------------
+r803 | Gizmore | 2011-09-09 07:49:56 +0200 (Fr, 09. Sep 2011) | 1 Zeile
+
+GDO: Added a new autoform input type "time", which is a hh:ii select.
+------------------------------------------------------------------------
+r802 | Gizmore | 2011-09-05 03:32:58 +0200 (Mo, 05. Sep 2011) | 1 Zeile
+
+GDO: Possible SQL Injection in LIMIT clause by unsafe modules.
+------------------------------------------------------------------------
+r801 | Gizmore | 2011-09-04 14:54:42 +0200 (So, 04. Sep 2011) | 1 Zeile
+
+Shadowlamb: You can cast spells like #cast foo:0 to cast lower levels, but the MP reduced was maxlevel. This got fixed. (thx somerandomnick)
+------------------------------------------------------------------------
+r800 | Gizmore | 2011-09-03 04:55:31 +0200 (Sa, 03. Sep 2011) | 1 Zeile
+
+Shadowlamb: Three new wizard items.
+------------------------------------------------------------------------
+r799 | Gizmore | 2011-09-03 03:48:46 +0200 (Sa, 03. Sep 2011) | 1 Zeile
+
+Shadowlamb: Shortcuts for player and item names. Less maxdmg.
+------------------------------------------------------------------------
+r798 | Gizmore | 2011-09-02 20:36:44 +0200 (Fr, 02. Sep 2011) | 1 Zeile
+
+Shadowlamb: New quest in the Delaware MCLarens.
+------------------------------------------------------------------------
+r797 | Gizmore | 2011-09-01 07:55:27 +0200 (Do, 01. Sep 2011) | 1 Zeile
+
+Shadowlamb: There is now a Temple in Delaware, and new skills: "casting" and "orcas". (thx somerandomnick)
+------------------------------------------------------------------------
+r796 | Gizmore | 2011-09-01 06:19:52 +0200 (Do, 01. Sep 2011) | 1 Zeile
+
+Shadowlamb: 5 new quests in TrollHQ
+------------------------------------------------------------------------
+r795 | Gizmore | 2011-09-01 05:02:52 +0200 (Do, 01. Sep 2011) | 1 Zeile
+
+Shadowlamb: Better code for #lvlup and max values and fixed possible exploit of max values in a quest. (thx ynori7)
+------------------------------------------------------------------------
+r794 | spaceone | 2011-08-31 22:35:46 +0200 (Mi, 31. Aug 2011) | 1 Zeile
+
+small bugfix, code cleanup
+------------------------------------------------------------------------
+r793 | spaceone | 2011-08-30 12:33:19 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+pagebuilder things
+------------------------------------------------------------------------
+r792 | Gizmore | 2011-08-30 06:01:46 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+Lamb: trying to implement .quit_server
+------------------------------------------------------------------------
+r791 | spaceone | 2011-08-30 04:14:31 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+the goodnight-commit, just some code cleanup
+------------------------------------------------------------------------
+r790 | spaceone | 2011-08-30 03:59:32 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+better MoMe handling
+------------------------------------------------------------------------
+r789 | spaceone | 2011-08-30 03:25:20 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+fixed the gwf3class
+------------------------------------------------------------------------
+r788 | Gizmore | 2011-08-30 03:03:29 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+GWF3: Sorry for deleting stuff and mass commit :(
+------------------------------------------------------------------------
+r787 | Gizmore | 2011-08-30 02:58:50 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+GWF3: Session and Logging do not belong together.
+------------------------------------------------------------------------
+r786 | Gizmore | 2011-08-30 02:29:18 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+GWF3: Session and Logging do not belong together.
+------------------------------------------------------------------------
+r785 | spaceone | 2011-08-30 01:56:22 +0200 (Di, 30. Aug 2011) | 1 Zeile
+
+schönerer Aufbau für die gwf3-klasse
+------------------------------------------------------------------------
+r784 | spaceone | 2011-08-28 12:19:54 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+new Config Vars
+------------------------------------------------------------------------
+r783 | spaceone | 2011-08-28 11:59:34 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+[+] htaccess in core/ and extra/
+------------------------------------------------------------------------
+r782 | spaceone | 2011-08-28 11:45:20 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+removed lamb logs...
+------------------------------------------------------------------------
+r781 | spaceone | 2011-08-28 11:41:07 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+fixed captcha font path
+------------------------------------------------------------------------
+r780 | Gizmore | 2011-08-28 08:51:07 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+Attempt to commit Lamb as a whole (SVN problems)
+------------------------------------------------------------------------
+r779 | Gizmore | 2011-08-28 08:45:52 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+A lot of tiny fixes and changes.
+------------------------------------------------------------------------
+r778 | Gizmore | 2011-08-28 08:42:55 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+GWF3: There is now email moderation for the shoutbox.
+------------------------------------------------------------------------
+r777 | Gizmore | 2011-08-28 05:59:20 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+GWF3: The login module has now links to register and recovery.
+------------------------------------------------------------------------
+r776 | Gizmore | 2011-08-28 03:27:03 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+Changes to gwf3/extra/temp structure.
+------------------------------------------------------------------------
+r775 | Gizmore | 2011-08-28 01:25:58 +0200 (So, 28. Aug 2011) | 1 Zeile
+
+GWF3: The debug backtrace is now styled via css.
+------------------------------------------------------------------------
+r774 | Gizmore | 2011-08-27 23:45:21 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+GWF3: Fixed Admin edit user groups. (thx spaceone)
+------------------------------------------------------------------------
+r773 | Gizmore | 2011-08-27 23:06:22 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+GWF3: Fixes for Pagebuilder and Comments. (thx spaceone)
+------------------------------------------------------------------------
+r772 | Gizmore | 2011-08-27 22:09:41 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+Lamb: Backup sync to SVN. Some plugins have been abused and send their replies in query now.
+------------------------------------------------------------------------
+r771 | Gizmore | 2011-08-27 22:08:46 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+Shadowlamb: Backup sync to SVN. Note that the new AI is not working yet.
+------------------------------------------------------------------------
+r770 | Gizmore | 2011-08-27 21:54:54 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+GWF3: Module Category might be almost working now.
+------------------------------------------------------------------------
+r769 | Gizmore | 2011-08-27 19:05:33 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fixed a quirk in #give. (thx jjk)
+------------------------------------------------------------------------
+r768 | Gizmore | 2011-08-27 05:10:32 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+GWF3: Session locking is back. (thx jjk)
+------------------------------------------------------------------------
+r767 | Gizmore | 2011-08-27 05:01:04 +0200 (Sa, 27. Aug 2011) | 1 Zeile
+
+WC5: New challenge from noother. (thx noother)
+------------------------------------------------------------------------
+r766 | spaceone | 2011-08-25 22:07:28 +0200 (Do, 25. Aug 2011) | 1 Zeile
+
+shortform for GWF_Login
+------------------------------------------------------------------------
+r765 | spaceone | 2011-08-24 22:27:13 +0200 (Mi, 24. Aug 2011) | 1 Zeile
+
+fixed some broken things in GWF_Tree.php
+------------------------------------------------------------------------
+r764 | spaceone | 2011-08-24 21:40:19 +0200 (Mi, 24. Aug 2011) | 1 Zeile
+
+i am sorry... fixed a required commented line.. (shame on space)
+------------------------------------------------------------------------
+r763 | Gizmore | 2011-08-24 20:53:14 +0200 (Mi, 24. Aug 2011) | 1 Zeile
+
+GWF3: Pagebuilder pages now have a "sitemap" flag. (thx spaceone)
+------------------------------------------------------------------------
+r762 | Gizmore | 2011-08-24 20:11:08 +0200 (Mi, 24. Aug 2011) | 1 Zeile
+
+GWF3: GWF_Method::execute is now back and abstract. (thx spaceone)
+------------------------------------------------------------------------
+r761 | Gizmore | 2011-08-24 20:10:23 +0200 (Mi, 24. Aug 2011) | 1 Zeile
+
+GWF3: GWF_Method::execute is now back and abstract. (thx spaceone)
+------------------------------------------------------------------------
+r760 | spaceone | 2011-08-23 17:50:35 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+gwf-install-wizard-design
+------------------------------------------------------------------------
+r759 | spaceone | 2011-08-23 15:11:28 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+gwf-install-wizard
+------------------------------------------------------------------------
+r758 | spaceone | 2011-08-23 12:57:20 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+install, example config and gwf.class.php
+------------------------------------------------------------------------
+r757 | spaceone | 2011-08-23 01:32:38 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+disabled module VersionServer
+------------------------------------------------------------------------
+r756 | spaceone | 2011-08-23 01:27:45 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+inc3p/ => inc/3p/
+------------------------------------------------------------------------
+r755 | spaceone | 2011-08-23 01:17:52 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+GWF_Install things
+------------------------------------------------------------------------
+r754 | Gizmore | 2011-08-23 00:43:44 +0200 (Di, 23. Aug 2011) | 1 Zeile
+
+GWF3: Moved the protected folder to www/ (thx spaceone)
+------------------------------------------------------------------------
+r753 | Gizmore | 2011-08-22 23:52:42 +0200 (Mo, 22. Aug 2011) | 1 Zeile
+
+GWF3: The captcha now needs manual editing and has been renamed to captcha.example.php
+------------------------------------------------------------------------
+r752 | Gizmore | 2011-08-22 22:31:34 +0200 (Mo, 22. Aug 2011) | 1 Zeile
+
+GWF3: www and core can now be complete separate locations in the file system. (thx spaceone)
+------------------------------------------------------------------------
+r751 | Gizmore | 2011-08-22 22:09:45 +0200 (Mo, 22. Aug 2011) | 1 Zeile
+
+Lamb: Better nickname handling + autologin (thx somerandomnick)
+------------------------------------------------------------------------
+r750 | Gizmore | 2011-08-21 05:43:15 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Shadowlamb: Patched heal and calm spell.
+------------------------------------------------------------------------
+r749 | Gizmore | 2011-08-21 05:38:20 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Shadowlamb: Patched heal and calm spell.
+------------------------------------------------------------------------
+r748 | Gizmore | 2011-08-21 05:02:09 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Shadowlamb: New items: SmallAxe,Axe,LargeAxe,Hellebarde,DaneAxe,BattleAxe and KusariGama. (thx ynori7)
+------------------------------------------------------------------------
+r747 | Gizmore | 2011-08-21 04:58:06 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Shadowlamb: It is now possible to query #help <itemname>.
+------------------------------------------------------------------------
+r746 | Gizmore | 2011-08-21 03:45:08 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Lamb: Better autologin with probing available methods on server-startup. (thx noother)
+------------------------------------------------------------------------
+r745 | Gizmore | 2011-08-21 03:20:31 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Lamb: Moved .passwd to admin functions.
+------------------------------------------------------------------------
+r744 | Gizmore | 2011-08-21 00:01:31 +0200 (So, 21. Aug 2011) | 1 Zeile
+
+Lamb: More autologin
+------------------------------------------------------------------------
+r743 | Gizmore | 2011-08-20 19:23:58 +0200 (Sa, 20. Aug 2011) | 1 Zeile
+
+GWF3: New experimental HTTP request class by noother. (thx noother)
+------------------------------------------------------------------------
+r742 | Gizmore | 2011-08-20 19:19:15 +0200 (Sa, 20. Aug 2011) | 1 Zeile
+
+GWF3: Fixed a likely bug in GWF_Session when domain does not match server-name, resulting in an invalid prepended dot. (thx jjk)
+------------------------------------------------------------------------
+r741 | Gizmore | 2011-08-20 05:48:06 +0200 (Sa, 20. Aug 2011) | 1 Zeile
+
+Fixed a bug in #kick which did not copy party action properly. (thx ynori7)
+------------------------------------------------------------------------
+r740 | Gizmore | 2011-08-18 21:51:41 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Big Shadowlamb sync
+------------------------------------------------------------------------
+r739 | Gizmore | 2011-08-18 20:40:49 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: New command #parties. (thx ynori7)
+------------------------------------------------------------------------
+r738 | Gizmore | 2011-08-18 18:43:10 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fixed a small typo in bazar. (thx dloser)
+------------------------------------------------------------------------
+r737 | Gizmore | 2011-08-18 18:25:06 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: Additional quest description for Renraku I (thx CHItA)
+------------------------------------------------------------------------
+r736 | Gizmore | 2011-08-18 16:09:06 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: Now featuring auto-login again.
+------------------------------------------------------------------------
+r735 | Gizmore | 2011-08-18 15:36:57 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: The #players command does now show the levels. (thx ynori7)
+------------------------------------------------------------------------
+r734 | Gizmore | 2011-08-18 14:31:47 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: Better #help xp. (thx somerandomnick)
+------------------------------------------------------------------------
+r733 | Gizmore | 2011-08-18 13:57:59 +0200 (Do, 18. Aug 2011) | 1 Zeile
+
+Shadowlamb: New command #wb / #whisper_back (thx Geo)
+------------------------------------------------------------------------
+r732 | spaceone | 2011-08-17 12:54:48 +0200 (Mi, 17. Aug 2011) | 2 Zeilen
+
+gwf_template::getDesign to public
+[+]gwf_language::getAvailable()
+------------------------------------------------------------------------
+r731 | spaceone | 2011-08-17 12:12:00 +0200 (Mi, 17. Aug 2011) | 1 Zeile
+
+some new functions in GWF_SF_SurferInfos
+------------------------------------------------------------------------
+r730 | Gizmore | 2011-08-17 02:21:10 +0200 (Mi, 17. Aug 2011) | 1 Zeile
+
+JQuery updated to 1.6.2
+------------------------------------------------------------------------
+r729 | Gizmore | 2011-08-17 02:20:28 +0200 (Mi, 17. Aug 2011) | 1 Zeile
+
+GWF3 + spaceone
+------------------------------------------------------------------------
+r728 | Gizmore | 2011-08-17 00:23:00 +0200 (Mi, 17. Aug 2011) | 1 Zeile
+
+Complete Lamb Sync
+------------------------------------------------------------------------
+r727 | Gizmore | 2011-08-17 00:18:48 +0200 (Mi, 17. Aug 2011) | 1 Zeile
+
+Various GWF_Core patches :)
+------------------------------------------------------------------------
+r726 | Gizmore | 2011-08-16 23:55:58 +0200 (Di, 16. Aug 2011) | 1 Zeile
+
+Shadowlamb: The Blacksmith #simulate has been removed and more runes (thx somerandomnick)
+------------------------------------------------------------------------
+r725 | Gizmore | 2011-08-16 23:47:25 +0200 (Di, 16. Aug 2011) | 1 Zeile
+
+Shadowlamb: The Blacksmith #simulate has been removed.
+------------------------------------------------------------------------
+r724 | Gizmore | 2011-08-16 17:27:10 +0200 (Di, 16. Aug 2011) | 1 Zeile
+
+Tiny fix for Shrine quest. (thx Mart)
+------------------------------------------------------------------------
+r723 | Gizmore | 2011-08-16 17:24:20 +0200 (Di, 16. Aug 2011) | 1 Zeile
+
+Shadowlamb: It is now possible to transfer players.
+------------------------------------------------------------------------
+r722 | Gizmore | 2011-08-16 13:16:02 +0200 (Di, 16. Aug 2011) | 1 Zeile
+
+It is now possible to put email providers on blacklist for registration.
+------------------------------------------------------------------------
+r721 | Gizmore | 2011-08-14 23:57:48 +0200 (So, 14. Aug 2011) | 1 Zeile
+
+Forum: The default forum options returns the guest row now. (thx spaceone)
+------------------------------------------------------------------------
+r720 | spaceone | 2011-08-14 23:45:15 +0200 (So, 14. Aug 2011) | 1 Zeile
+
+module loader htaccess absolute path
+------------------------------------------------------------------------
+r719 | Gizmore | 2011-08-14 23:42:50 +0200 (So, 14. Aug 2011) | 1 Zeile
+
+WC5: More flexible URLs for interaction.
+------------------------------------------------------------------------
+r718 | spaceone | 2011-08-14 23:40:26 +0200 (So, 14. Aug 2011) | 1 Zeile
+
+baselayout.. hopefully that everythink is workin
+------------------------------------------------------------------------
+r717 | Gizmore | 2011-08-12 22:04:52 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fixed and re-checked Kill protection. (thx noother)
+------------------------------------------------------------------------
+r716 | spaceone | 2011-08-12 20:31:55 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+broken things
+------------------------------------------------------------------------
+r715 | Gizmore | 2011-08-12 20:01:26 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Shadowlamb: Enhanced the #help a tiny bit. (thx Teddy)
+------------------------------------------------------------------------
+r714 | Gizmore | 2011-08-12 16:35:33 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Big Shadowlamb sync
+------------------------------------------------------------------------
+r713 | Gizmore | 2011-08-12 16:31:33 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Shadowlamb: The NPC's max_mp are now fixed values, which makes it easier to balance. (thx XcrackX)
+------------------------------------------------------------------------
+r712 | Gizmore | 2011-08-12 15:16:47 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Shadowlamb: The freeze spell behaves quite differently now. (thx somerandomnick)
+------------------------------------------------------------------------
+r711 | Gizmore | 2011-08-12 13:41:19 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+The .seen command accepted utf8 usernames but in database they are ascii. (thx Geo)
+------------------------------------------------------------------------
+r710 | Gizmore | 2011-08-12 13:36:43 +0200 (Fr, 12. Aug 2011) | 1 Zeile
+
+Shadowlamb: Learning of Crypto and Stegano in Seattle_CSchool was broken. (thx XcrackX)
+------------------------------------------------------------------------
+r709 | Gizmore | 2011-08-11 01:13:16 +0200 (Do, 11. Aug 2011) | 1 Zeile
+
+Shadowlamb: Negotiation and Charisma now affect the prices. (thx ynorit7)
+------------------------------------------------------------------------
+r708 | Gizmore | 2011-08-11 00:42:03 +0200 (Do, 11. Aug 2011) | 1 Zeile
+
+Shadowlamb: Negotiation and Charisma now affect the prices. (thx ynorit7)
+------------------------------------------------------------------------
+r707 | Gizmore | 2011-08-11 00:11:27 +0200 (Do, 11. Aug 2011) | 1 Zeile
+
+Shadowlamb: Negotiation and Charisma now affect the prices. (thx ynorit7)
+------------------------------------------------------------------------
+r706 | Gizmore | 2011-08-10 19:54:07 +0200 (Mi, 10. Aug 2011) | 1 Zeile
+
+Shadowlamb: New characters will start with 0 nuyen now. (thx somerandomnick)
+------------------------------------------------------------------------
+r705 | Gizmore | 2011-08-10 16:41:29 +0200 (Mi, 10. Aug 2011) | 1 Zeile
+
+Shadowlamb: fixed the #join command to check for member limits.
+------------------------------------------------------------------------
+r704 | Gizmore | 2011-08-10 16:40:57 +0200 (Mi, 10. Aug 2011) | 1 Zeile
+
+Shadowlamb: 2 new firearms enemies in Delaware.
+------------------------------------------------------------------------
+r703 | Gizmore | 2011-08-10 16:38:41 +0200 (Mi, 10. Aug 2011) | 1 Zeile
+
+Shadowlamb: The delaware barkeeper quest was bugged. (thx noother)
+------------------------------------------------------------------------
+r702 | Gizmore | 2011-08-10 15:10:25 +0200 (Mi, 10. Aug 2011) | 1 Zeile
+
+Shadowlamb: spelldef and spellatk runes should work now.
+------------------------------------------------------------------------
+r701 | Gizmore | 2011-08-09 03:07:55 +0200 (Di, 09. Aug 2011) | 1 Zeile
+
+Shadowlamb: effective level patch (thx somerandomnick)
+------------------------------------------------------------------------
+r700 | Gizmore | 2011-08-09 01:43:49 +0200 (Di, 09. Aug 2011) | 1 Zeile
+
+Shadowlamb: effective level patch (thx somerandomnick)
+------------------------------------------------------------------------
+r699 | Gizmore | 2011-08-08 21:33:48 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+Shadowlamb: SR_Party getMin / getMax / getSum have now an optional $base parameter.
+------------------------------------------------------------------------
+r698 | Gizmore | 2011-08-08 21:20:21 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+Shadowlamb: #whisper was broken.
+------------------------------------------------------------------------
+r697 | digitalseraphim | 2011-08-08 20:27:55 +0200 (Mo, 08. Aug 2011) | 2 Zeilen
+
+Deleted Nysoft (lowercase s) as per gizmore's request
+
+------------------------------------------------------------------------
+r696 | Gizmore | 2011-08-08 19:42:34 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+Shadowlamb: A tiny fix in the #(l)vlup overview.
+------------------------------------------------------------------------
+r695 | Gizmore | 2011-08-08 19:38:21 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+Shadowlamb: The #bestbuy command in the Bazaar is now implemented. (thx noother)
+------------------------------------------------------------------------
+r694 | Gizmore | 2011-08-08 00:35:30 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+GWF3 core fixes
+------------------------------------------------------------------------
+r693 | Gizmore | 2011-08-08 00:25:18 +0200 (Mo, 08. Aug 2011) | 1 Zeile
+
+Shadowlamb: Ammo is now sellable.
+------------------------------------------------------------------------
+r692 | Gizmore | 2011-08-07 20:53:22 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: The whisper command is now implemented.
+------------------------------------------------------------------------
+r691 | Gizmore | 2011-08-07 20:29:46 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fixed a tiny typo in FirstAidKi(d|t)s. (thx Obee)
+------------------------------------------------------------------------
+r690 | Gizmore | 2011-08-07 20:06:02 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: The minum price for a bazaar item now matches the fee. (thx hiphisch)
+------------------------------------------------------------------------
+r689 | Gizmore | 2011-08-07 16:53:14 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: renamed Nysoft to NySoft consistently.
+------------------------------------------------------------------------
+r688 | Gizmore | 2011-08-07 16:44:32 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: Auto quest rewards did not reward you with nuyen or XP. (thx ynori7)
+------------------------------------------------------------------------
+r687 | Gizmore | 2011-08-07 15:28:52 +0200 (So, 07. Aug 2011) | 1 Zeile
+
+Shadowlamb: It was possible to cheat nuyen when creating chars. (thx jjk)
+------------------------------------------------------------------------
+r686 | Gizmore | 2011-08-06 18:45:11 +0200 (Sa, 06. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fix for spells and iExecAnyway behaviour. (thx jjk)
+------------------------------------------------------------------------
+r685 | Gizmore | 2011-08-06 18:38:58 +0200 (Sa, 06. Aug 2011) | 1 Zeile
+
+Shadowlamb: Fix for spells and iExecAnyway behaviour. (thx jjk)
+------------------------------------------------------------------------
+r684 | Gizmore | 2011-08-06 17:05:19 +0200 (Sa, 06. Aug 2011) | 1 Zeile
+
+Shadowlamb: the #party_loot settings are now visible to party members. (thx QoL)
+------------------------------------------------------------------------
+r683 | Gizmore | 2011-08-06 15:55:01 +0200 (Sa, 06. Aug 2011) | 1 Zeile
+
+Lamb: The big sync.
+------------------------------------------------------------------------
+r682 | Gizmore | 2011-08-06 15:52:50 +0200 (Sa, 06. Aug 2011) | 1 Zeile
+
+Shadowlamb: Beautified reload message. (thx jjk)
+------------------------------------------------------------------------
+r681 | Gizmore | 2011-08-05 00:46:15 +0200 (Fr, 05. Aug 2011) | 1 Zeile
+
+Shadowlamb: Big bug fixed on #sell items in store. (thx jjk)
+------------------------------------------------------------------------
+r680 | Gizmore | 2011-08-05 00:45:36 +0200 (Fr, 05. Aug 2011) | 1 Zeile
+
+Shadowlamb: The #drop command only confirms on ID now. (thx livinskull)
+------------------------------------------------------------------------
+r679 | Gizmore | 2011-08-03 17:23:18 +0200 (Mi, 03. Aug 2011) | 1 Zeile
+
+Fixed an evil bug in #drop that could have dropped the whole inventory. (thx XcrackX)
+------------------------------------------------------------------------
+r678 | Gizmore | 2011-08-02 23:49:42 +0200 (Di, 02. Aug 2011) | 1 Zeile
+
+Shadowlamb: Bows update
+------------------------------------------------------------------------
+r677 | Gizmore | 2011-08-02 21:50:05 +0200 (Di, 02. Aug 2011) | 1 Zeile
+
+A wedding ring
+------------------------------------------------------------------------
+r676 | Gizmore | 2011-08-02 20:47:20 +0200 (Di, 02. Aug 2011) | 1 Zeile
+
+Shadowlamb: 2 new bows.
+------------------------------------------------------------------------
+r675 | Gizmore | 2011-08-02 20:41:37 +0200 (Di, 02. Aug 2011) | 1 Zeile
+
+Shadowlamb: New ninja weapon for low levels.
+------------------------------------------------------------------------
+r674 | Gizmore | 2011-08-02 14:23:06 +0200 (Di, 02. Aug 2011) | 1 Zeile
+
+New challenge site: Hack-Me
+------------------------------------------------------------------------
+r673 | digitalseraphim | 2011-08-01 03:22:49 +0200 (Mo, 01. Aug 2011) | 1 Zeile
+
+fixed cyberware help text
+------------------------------------------------------------------------
+r672 | digitalseraphim | 2011-08-01 02:45:53 +0200 (Mo, 01. Aug 2011) | 1 Zeile
+
+added #(sw)ap and SR_Item->__toString
+------------------------------------------------------------------------
+r671 | Gizmore | 2011-07-31 20:52:21 +0200 (So, 31. Jul 2011) | 1 Zeile
+
+New challenge in a bit: Shadowlamb - Chapter I
+------------------------------------------------------------------------
+r670 | Gizmore | 2011-07-31 19:01:56 +0200 (So, 31. Jul 2011) | 1 Zeile
+
+Shadowlamb: you can now #drop <item> 12345678 to drop all of one item type. There is also a confirmation needed now. (thx ynori7)
+------------------------------------------------------------------------
+r669 | Gizmore | 2011-07-31 17:58:50 +0200 (So, 31. Jul 2011) | 1 Zeile
+
+Shadowlamb: New items for medival knights.
+------------------------------------------------------------------------
+r668 | Gizmore | 2011-07-31 15:00:31 +0200 (So, 31. Jul 2011) | 1 Zeile
+
+[+]Mini GWF3 loader
+------------------------------------------------------------------------
+r667 | spaceone | 2011-07-28 15:51:27 +0200 (Do, 28. Jul 2011) | 1 Zeile
+
+GWF_HTML::errorA/messageA
+------------------------------------------------------------------------
+r666 | spaceone | 2011-07-28 00:34:00 +0200 (Do, 28. Jul 2011) | 1 Zeile
+
+little bugfix, +plaintext
+------------------------------------------------------------------------
+r665 | Gizmore | 2011-07-27 23:26:18 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+Lamb Sync
+------------------------------------------------------------------------
+r664 | Gizmore | 2011-07-27 22:38:18 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+Shadowlamb: Auto bad_karma on #fight.
+------------------------------------------------------------------------
+r663 | Gizmore | 2011-07-27 21:48:58 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+Shadowlamb: New Moped(s)
+------------------------------------------------------------------------
+r662 | Gizmore | 2011-07-27 20:01:42 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+Shadowlamb: the #bye command should now work for human parties if called twice.
+------------------------------------------------------------------------
+r661 | Gizmore | 2011-07-27 17:54:15 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+Lamb: The .beer command is more realistic now.
+------------------------------------------------------------------------
+r660 | spaceone | 2011-07-27 01:53:50 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+fixes: Baim Install, GWF Install
+------------------------------------------------------------------------
+r659 | spaceone | 2011-07-27 00:48:23 +0200 (Mi, 27. Jul 2011) | 1 Zeile
+
+GWF_VersionFiles fix
+------------------------------------------------------------------------
+r658 | spaceone | 2011-07-26 20:01:37 +0200 (Di, 26. Jul 2011) | 1 Zeile
+
+[+]mo[GWF]&me[Fancy]
+------------------------------------------------------------------------
+r657 | Gizmore | 2011-07-26 19:53:50 +0200 (Di, 26. Jul 2011) | 1 Zeile
+
+Shadowlamb: $item->useAmount() did not trigger a $player->mofify(). (thx CPUKiller)
+------------------------------------------------------------------------
+r656 | spaceone | 2011-07-26 13:06:00 +0200 (Di, 26. Jul 2011) | 2 Zeilen
+
+better GWF_LangTrans
+[+] SF_de.php
+------------------------------------------------------------------------
+r655 | spaceone | 2011-07-26 11:26:33 +0200 (Di, 26. Jul 2011) | 1 Zeile
+
+langA bugfix
+------------------------------------------------------------------------
+r654 | Gizmore | 2011-07-25 19:20:26 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+Untested fix for GWF_Category. (thx spaceone)
+------------------------------------------------------------------------
+r653 | spaceone | 2011-07-25 18:19:31 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+better error
+------------------------------------------------------------------------
+r652 | Gizmore | 2011-07-25 17:32:03 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+New challenge by livinskull soon. (thx livinskull)
+------------------------------------------------------------------------
+r651 | spaceone | 2011-07-25 14:34:52 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+bugfix in gwf3.class.php
+------------------------------------------------------------------------
+r650 | spaceone | 2011-07-25 14:34:48 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+bugfix in gwf3.class.php
+------------------------------------------------------------------------
+r649 | spaceone | 2011-07-25 14:16:16 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+i'm sorry, but again baselayout
+------------------------------------------------------------------------
+r648 | spaceone | 2011-07-25 14:07:45 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+more for new baselayout
+------------------------------------------------------------------------
+r647 | spaceone | 2011-07-25 13:59:06 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+more for new baselayout
+------------------------------------------------------------------------
+r646 | spaceone | 2011-07-25 13:57:36 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+fixed a small bug (thx digitalseraphim)
+------------------------------------------------------------------------
+r645 | spaceone | 2011-07-25 13:51:57 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+more for new baselayout
+------------------------------------------------------------------------
+r644 | spaceone | 2011-07-25 13:45:57 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+more for new baselayout
+------------------------------------------------------------------------
+r643 | spaceone | 2011-07-25 13:20:11 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+fixed session commit
+------------------------------------------------------------------------
+r642 | spaceone | 2011-07-25 12:52:28 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+added meta 'robots' to PageBuilder->Show
+------------------------------------------------------------------------
+r641 | spaceone | 2011-07-25 12:51:58 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+added meta 'robots' to PageBuilder->Show
+------------------------------------------------------------------------
+r640 | Gizmore | 2011-07-25 12:36:44 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+Added page_menu_pos into GWF_Page table. (thx spaceone)
+------------------------------------------------------------------------
+r639 | Gizmore | 2011-07-25 12:29:08 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+Two new options for pagebuilder: index and follow. (thx spaceone)
+------------------------------------------------------------------------
+r638 | Gizmore | 2011-07-25 08:22:10 +0200 (Mo, 25. Jul 2011) | 1 Zeile
+
+Shadowlamb: Fixed a bug in #part that would cause your party beeing deleted. (thx somerandomnick)
+------------------------------------------------------------------------
+r637 | spaceone | 2011-07-25 01:14:32 +0200 (Mo, 25. Jul 2011) | 2 Zeilen
+
+[+] smartyplugin: function link
+[+] menu_page.tpl
+------------------------------------------------------------------------
+r636 | spaceone | 2011-07-24 23:54:39 +0200 (So, 24. Jul 2011) | 1 Zeile
+
+some baselayout fixes
+------------------------------------------------------------------------
+r635 | Gizmore | 2011-07-24 01:47:07 +0200 (So, 24. Jul 2011) | 1 Zeile
+
+WC4 to WC5 micro fixes.
+------------------------------------------------------------------------
+r634 | Gizmore | 2011-07-24 01:46:18 +0200 (So, 24. Jul 2011) | 1 Zeile
+
+overflow:auto;
+------------------------------------------------------------------------
+r633 | Gizmore | 2011-07-24 01:40:12 +0200 (So, 24. Jul 2011) | 1 Zeile
+
+Big Lamb + Shadowlamb Sync.
+------------------------------------------------------------------------
+r632 | Gizmore | 2011-07-23 19:51:51 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+WC5: New Challenge by XcrackX (thx XcrackX)
+------------------------------------------------------------------------
+r631 | Gizmore | 2011-07-23 16:56:06 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+Shadowlamb: New moded (DavyHasselhoff)
+------------------------------------------------------------------------
+r630 | Gizmore | 2011-07-23 16:33:37 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+Shadowlamb: Moped now extends RacingBike. (thx ynori7)
+------------------------------------------------------------------------
+r629 | Gizmore | 2011-07-23 09:22:44 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+Shadowlamb: OrkHQ Storage Room cannot be abused anymore to farm excessively. (thx CPUKiller)
+------------------------------------------------------------------------
+r628 | Gizmore | 2011-07-23 09:10:30 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+Shadowlamb: Hideout Room2 cannot be abused anymore to farm excessively. (thx CPUKiller)
+------------------------------------------------------------------------
+r627 | Gizmore | 2011-07-23 08:18:13 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+Fixed a bug in $player->getInvItems, which selected the lowest inv_ids, instead of the highest to prevent re-order of inventory. (thx Robin5)
+------------------------------------------------------------------------
+r626 | Gizmore | 2011-07-23 07:51:48 +0200 (Sa, 23. Jul 2011) | 1 Zeile
+
+New site: Enigmagroup joined. (thx EG)
+------------------------------------------------------------------------
+r625 | Gizmore | 2011-07-21 18:08:25 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+WeChall5: If you delete your account, all links are released.
+------------------------------------------------------------------------
+r624 | Gizmore | 2011-07-21 16:27:18 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+Count the number of occurances of a string within a string.
+------------------------------------------------------------------------
+r623 | Gizmore | 2011-07-21 14:48:38 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+GWF3-Core: Fixed the abusage of the special mysql LIKE _ character. big (thx Geo)
+------------------------------------------------------------------------
+r622 | Gizmore | 2011-07-21 14:38:24 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+GWF3-Core: Fixed the possibility to cause a database error in GWF_QuickSearch. (thx Geo)
+------------------------------------------------------------------------
+r621 | Gizmore | 2011-07-21 13:41:29 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+The #gm command does now work across networks. (thx somerandomnick)
+------------------------------------------------------------------------
+r620 | Gizmore | 2011-07-21 13:20:43 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+Shadowlamb: Added a new item - KevlarBoots. Awaiting comments from the alpha-players.
+------------------------------------------------------------------------
+r619 | Gizmore | 2011-07-21 13:10:37 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+Shadowlamb: Made Army- and Chainboots be a different level. (thx Geo)
+------------------------------------------------------------------------
+r618 | Gizmore | 2011-07-21 06:25:33 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+Fixed a bug in Seattle_Library_2 quest. (thx ch0wch0w)
+------------------------------------------------------------------------
+r617 | Gizmore | 2011-07-21 06:24:26 +0200 (Do, 21. Jul 2011) | 1 Zeile
+
+Seattle Blacksmith 3 quest now shows the needed amount correctly. (thx Geo)
+------------------------------------------------------------------------
+r616 | Gizmore | 2011-07-19 17:48:22 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Shadowlamb: Fixed sync of database and ingame for level related stuff. (thx somerandomnick)
+------------------------------------------------------------------------
+r615 | Gizmore | 2011-07-19 16:38:09 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Lamb: critical, fixed authentication exploit. (thx CPUKiller)
+------------------------------------------------------------------------
+r614 | Gizmore | 2011-07-19 14:21:58 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Fixed x/y coordinates for Flashbangs.
+------------------------------------------------------------------------
+r613 | Gizmore | 2011-07-19 13:26:44 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Shadowlamb: #bye is a leader command now. (thx Geo)
+------------------------------------------------------------------------
+r612 | Gizmore | 2011-07-19 13:13:42 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Shadowhelp does now show xp per level dynmically. (thx somerandomnick)
+------------------------------------------------------------------------
+r611 | Gizmore | 2011-07-19 12:56:12 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Yet another bug fixed in #give. Please do not try produce the flaw. thx.
+------------------------------------------------------------------------
+r610 | Gizmore | 2011-07-19 12:49:59 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+the #give command now handles the amount parameter correctly. (thx somerandomnick)
+------------------------------------------------------------------------
+r609 | Gizmore | 2011-07-19 12:37:47 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Fixed the new version of #sell to not change inventory ids on rare occasions. (thx Robin5)
+------------------------------------------------------------------------
+r608 | Gizmore | 2011-07-19 11:19:05 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Fixed random offensive target for spells. (thx somerandomnick)
+------------------------------------------------------------------------
+r607 | Gizmore | 2011-07-19 09:22:34 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Fixed the Soldier hireling in Redmond. (thx Geo)
+------------------------------------------------------------------------
+r606 | Gizmore | 2011-07-19 07:18:05 +0200 (Di, 19. Jul 2011) | 1 Zeile
+
+Fixed a bug in .join_server (thx Vutral)
+------------------------------------------------------------------------
+r605 | Gizmore | 2011-07-18 18:29:17 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Fixed the names of hirelings. (thx Geo)
+------------------------------------------------------------------------
+r604 | Gizmore | 2011-07-18 16:45:04 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Shadowlamb: ArmyBoots are a bit weaker now. (thx Geo)
+------------------------------------------------------------------------
+r603 | Gizmore | 2011-07-18 14:14:28 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Shadowlamb sync, nothing here, move along.
+------------------------------------------------------------------------
+r602 | Gizmore | 2011-07-18 14:06:16 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Shadowlamb: Firearms now adds a tiny bit of damage to your attacks, as stated in the help. (thx Geo)
+------------------------------------------------------------------------
+r601 | Gizmore | 2011-07-18 13:43:38 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Shadowlamb: The enumeration does not change within combat now. This fixes _a_lot_ of race conditions. Big Big (thx somerandomnick)
+------------------------------------------------------------------------
+r600 | Gizmore | 2011-07-18 12:18:30 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Shadowlamb: Fixed a possible race condition in SecondHandStores.
+------------------------------------------------------------------------
+r599 | Gizmore | 2011-07-18 12:05:53 +0200 (Mo, 18. Jul 2011) | 1 Zeile
+
+Searching users does not show deleted users anymore.
+------------------------------------------------------------------------
+r598 | Gizmore | 2011-07-17 12:22:48 +0200 (So, 17. Jul 2011) | 1 Zeile
+
+Shadowlamb: Kill by spell now respects new XP loot rules. (thx somerandomnick)
+------------------------------------------------------------------------
+r597 | Gizmore | 2011-07-17 09:42:01 +0200 (So, 17. Jul 2011) | 1 Zeile
+
+Fixed a bug when your hunting target joins your party. (thx ruokblah)
+------------------------------------------------------------------------
+r596 | Gizmore | 2011-07-17 08:50:37 +0200 (So, 17. Jul 2011) | 1 Zeile
+
+Fixed a bug in WC_RegAt::getUserByGlobalRank. It does now respect the non-rank flags. (thx noother)
+------------------------------------------------------------------------
+r595 | Gizmore | 2011-07-16 01:53:27 +0200 (Sa, 16. Jul 2011) | 1 Zeile
+
+Shadowlamb: Sleeping in hotel removes your effects now. (thx digitalseraphim)
+------------------------------------------------------------------------
+r594 | Gizmore | 2011-07-16 01:49:26 +0200 (Sa, 16. Jul 2011) | 1 Zeile
+
+Lamb synced again.
+------------------------------------------------------------------------
+r593 | Gizmore | 2011-07-16 01:45:26 +0200 (Sa, 16. Jul 2011) | 1 Zeile
+
+Another missing call to $player->modify. (thx somerandomnick)
+------------------------------------------------------------------------
+r592 | Gizmore | 2011-07-15 23:14:19 +0200 (Fr, 15. Jul 2011) | 1 Zeile
+
+New challs can be announced in different channels now via a map. (thx sabretooth)
+------------------------------------------------------------------------
+r591 | spaceone | 2011-07-15 14:16:44 +0200 (Fr, 15. Jul 2011) | 1 Zeile
+
+[+] GWF_Install
+------------------------------------------------------------------------
+r590 | spaceone | 2011-07-15 12:02:10 +0200 (Fr, 15. Jul 2011) | 1 Zeile
+
+GWF_Error
+------------------------------------------------------------------------
+r589 | spaceone | 2011-07-14 22:03:06 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+GWF_Template
+------------------------------------------------------------------------
+r588 | spaceone | 2011-07-14 21:19:42 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+again little error :D
+------------------------------------------------------------------------
+r587 | spaceone | 2011-07-14 21:06:41 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+update for config-load-files
+------------------------------------------------------------------------
+r586 | spaceone | 2011-07-14 21:04:38 +0200 (Do, 14. Jul 2011) | 3 Zeilen
+
+Big gwf3.class.php update; (2nd)best commit ever?
+[+] 100 new lines
+hopefully that i didn't forget something
+------------------------------------------------------------------------
+r585 | Gizmore | 2011-07-14 05:00:06 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Price patch done?
+------------------------------------------------------------------------
+r584 | Gizmore | 2011-07-14 04:21:04 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Shadowlamb: All items 50% off.
+------------------------------------------------------------------------
+r583 | Gizmore | 2011-07-14 03:53:01 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Shadowlamb: #fight is a leader command now. (thx somerandomnick)
+------------------------------------------------------------------------
+r582 | Gizmore | 2011-07-14 03:49:27 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Shadowlamb: iExecAnyway
+------------------------------------------------------------------------
+r581 | Gizmore | 2011-07-14 03:26:29 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Shadowlamb: All weapons %0.2f%% off!
+------------------------------------------------------------------------
+r580 | Gizmore | 2011-07-14 01:17:09 +0200 (Do, 14. Jul 2011) | 1 Zeile
+
+Seattle Blackops are everywhere :O
+------------------------------------------------------------------------
+r579 | Gizmore | 2011-07-13 23:39:31 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+Big Lamb update. (thx players)
+------------------------------------------------------------------------
+r578 | Gizmore | 2011-07-13 23:28:47 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+If you kill humans you won't loose or gain XP anymore. 
+------------------------------------------------------------------------
+r577 | Gizmore | 2011-07-13 23:28:21 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+You walk a bit faster now in combat. (thx somerandomnick)
+------------------------------------------------------------------------
+r576 | Gizmore | 2011-07-13 23:26:50 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+Patched an exploit for fireweapons. Reload times very slightly raised. (thx ynori7)
+------------------------------------------------------------------------
+r575 | Gizmore | 2011-07-13 19:34:04 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+More numeric helper functions + Permutation generator.
+------------------------------------------------------------------------
+r574 | spaceone | 2011-07-13 01:43:42 +0200 (Mi, 13. Jul 2011) | 1 Zeile
+
+[+] Common::Constants
+------------------------------------------------------------------------
+r573 | livinskull | 2011-07-11 00:46:18 +0200 (Mo, 11. Jul 2011) | 1 Zeile
+
+lamb challenge-solved announcer
+------------------------------------------------------------------------
+r572 | digitalseraphim | 2011-07-10 06:47:37 +0200 (So, 10. Jul 2011) | 2 Zeilen
+
+fixed some help, bugs/features in #l
+
+------------------------------------------------------------------------
+r571 | digitalseraphim | 2011-07-10 04:31:59 +0200 (So, 10. Jul 2011) | 2 Zeilen
+
+made #(l)vlup with no arguments show the list of things you can level up, the level they will go to, and how much karma is needed.  bolded karma values are ones you can "afford".
+
+------------------------------------------------------------------------
+r570 | Gizmore | 2011-07-10 02:12:00 +0200 (So, 10. Jul 2011) | 1 Zeile
+
+You can buy Ammo_11mm at Redmond_Ares now. (thx Andr3)
+------------------------------------------------------------------------
+r569 | Gizmore | 2011-07-10 01:56:14 +0200 (So, 10. Jul 2011) | 1 Zeile
+
+Fixed Redmond_Subway help. (thx Ihat)
+------------------------------------------------------------------------
+r568 | Gizmore | 2011-07-10 00:54:03 +0200 (So, 10. Jul 2011) | 1 Zeile
+
+Shadowlamb: Patched Ninja Swords.
+------------------------------------------------------------------------
+r567 | Gizmore | 2011-07-10 00:28:06 +0200 (So, 10. Jul 2011) | 1 Zeile
+
+Shadowhelp race does now output stats and race boni. (thx SlimTim10)
+------------------------------------------------------------------------
+r566 | Gizmore | 2011-07-10 00:07:39 +0200 (So, 10. Jul 2011) | 1 Zeile
+
+You can respawn in Seattle_Hotel now. (thx XCrackX)
+------------------------------------------------------------------------
+r565 | Gizmore | 2011-07-09 21:46:13 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Fixed bounty system. (thx noother)
+------------------------------------------------------------------------
+r564 | Gizmore | 2011-07-09 21:36:56 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Fixed bounty system. (thx noother)
+------------------------------------------------------------------------
+r563 | Gizmore | 2011-07-09 21:29:08 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Renamed displayPrice to displayNuyen.
+------------------------------------------------------------------------
+r562 | Gizmore | 2011-07-09 21:11:38 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Allow users to subscribe to whole boards manually + Simple Subscription management.
+------------------------------------------------------------------------
+r561 | Gizmore | 2011-07-09 21:11:04 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Fixed and tested GWF_Cronjob.
+------------------------------------------------------------------------
+r560 | Gizmore | 2011-07-09 21:10:08 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Fixed and tested GWF_Cronjob.
+------------------------------------------------------------------------
+r559 | livinskull | 2011-07-09 19:56:16 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+php manual plugin
+------------------------------------------------------------------------
+r558 | Gizmore | 2011-07-09 19:55:51 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Hidden API to request the latest solvers.
+------------------------------------------------------------------------
+r557 | Gizmore | 2011-07-09 18:53:26 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Shadowlamb synced.
+------------------------------------------------------------------------
+r556 | Gizmore | 2011-07-09 18:05:48 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+Shadowlamb: There is an alchemist in Seattle now, where you can buy ElvenStaff.
+------------------------------------------------------------------------
+r555 | spaceone | 2011-07-09 10:13:01 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+langA fix
+------------------------------------------------------------------------
+r554 | spaceone | 2011-07-09 10:10:08 +0200 (Sa, 09. Jul 2011) | 1 Zeile
+
+some new template wrappers in SF.class.php and little baselayout fixes
+------------------------------------------------------------------------
+r553 | digitalseraphim | 2011-07-09 04:16:50 +0200 (Sa, 09. Jul 2011) | 2 Zeilen
+
+added #kk/#known_knowledge command
+
+------------------------------------------------------------------------
+r552 | digitalseraphim | 2011-07-09 03:44:54 +0200 (Sa, 09. Jul 2011) | 2 Zeilen
+
+fixing bug in #cmp where min_dmg was 0 (didn't show dmg range) and added 'g' to weights
+
+------------------------------------------------------------------------
+r551 | spaceone | 2011-07-08 23:36:11 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+OMG... shame on space...
+------------------------------------------------------------------------
+r550 | spaceone | 2011-07-08 22:40:16 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+little SF changes, u can hide shell now ;)
+------------------------------------------------------------------------
+r549 | spaceone | 2011-07-08 21:57:59 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+added shortdetails to my wonderfull design...
+------------------------------------------------------------------------
+r548 | spaceone | 2011-07-08 21:19:21 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+SF-tpl and gwf3-class
+------------------------------------------------------------------------
+r547 | spaceone | 2011-07-08 19:46:02 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+SF fix
+------------------------------------------------------------------------
+r546 | spaceone | 2011-07-08 19:27:09 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+template wrappers for new baselayout
+------------------------------------------------------------------------
+r545 | spaceone | 2011-07-08 17:22:17 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+new baselayout fixes
+------------------------------------------------------------------------
+r544 | spaceone | 2011-07-08 14:07:56 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+SF fix?
+------------------------------------------------------------------------
+r543 | Gizmore | 2011-07-08 03:06:52 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Shadowlamb: new command: #(c)o(mp)are. Big (thx digitalseraphim)
+------------------------------------------------------------------------
+r542 | Gizmore | 2011-07-08 01:50:29 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Added info to #help quests. (thx Andr3)
+------------------------------------------------------------------------
+r541 | Gizmore | 2011-07-08 01:26:04 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Shadowlamb: the database backup script was not working.
+------------------------------------------------------------------------
+r540 | Gizmore | 2011-07-08 01:25:26 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Shadowlamb: new command: #(c)o(mp)are. Initial commit for that and big (thx digitalseraphim)
+------------------------------------------------------------------------
+r539 | Gizmore | 2011-07-08 01:24:41 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+The ares man was bugged when purchasing something. (thx CPUKiller)
+------------------------------------------------------------------------
+r538 | Gizmore | 2011-07-08 01:23:43 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Shadowlamb: new command: #(c)o(mp)are. Initial commit for that and big (thx digitalseraphim)
+------------------------------------------------------------------------
+r537 | spaceone | 2011-07-08 00:49:27 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+gwf3_autoload fix
+------------------------------------------------------------------------
+r536 | Gizmore | 2011-07-08 00:20:07 +0200 (Fr, 08. Jul 2011) | 1 Zeile
+
+Insufficient fix for the bbcode helper. Correct fix would be hooking form.submit. (thx livinskull) (thx hds)
+------------------------------------------------------------------------
+r535 | Gizmore | 2011-07-07 22:49:22 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Tiny baselayout fix for ModuleLoader.
+------------------------------------------------------------------------
+r534 | Gizmore | 2011-07-07 22:14:45 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Fixed #mount push weight check for splitted item stacks. (thx noother)
+------------------------------------------------------------------------
+r533 | spaceone | 2011-07-07 21:54:45 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+GWF_CONFIG_NAME => GWF_CONFIG_PATH; replaced _gwf_include.php; removed _gwf_autoload.php
+------------------------------------------------------------------------
+r532 | Gizmore | 2011-07-07 21:16:07 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Fixed bug in startup + Bug in logger.
+------------------------------------------------------------------------
+r531 | spaceone | 2011-07-07 20:40:56 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+possible?
+------------------------------------------------------------------------
+r530 | spaceone | 2011-07-07 19:01:17 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+$this->self::
+------------------------------------------------------------------------
+r529 | Gizmore | 2011-07-07 05:25:04 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Sync shadowlamb and good night :)
+------------------------------------------------------------------------
+r528 | Gizmore | 2011-07-07 05:22:01 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+New shorthands for several stats.
+------------------------------------------------------------------------
+r527 | Gizmore | 2011-07-07 04:24:24 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+fixed gwf3 calls. (thx digitalseraphim)
+------------------------------------------------------------------------
+r526 | Gizmore | 2011-07-07 04:09:15 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Enhanced SR_KillProtect. (thx noother)
+------------------------------------------------------------------------
+r525 | Gizmore | 2011-07-07 02:11:09 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Shadowlamb: #mount clean is now functional.
+------------------------------------------------------------------------
+r524 | Gizmore | 2011-07-07 01:29:48 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Shadowlamb: Show how much nuyen and xp you have lost on your death. (thx CPUKiller)
+------------------------------------------------------------------------
+r523 | Gizmore | 2011-07-07 01:09:03 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Forum thread subscription fixed. (thx paipai)
+------------------------------------------------------------------------
+r522 | Gizmore | 2011-07-07 01:07:55 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Lamb3 fixes for new GWF3 baselayout.
+------------------------------------------------------------------------
+r521 | Gizmore | 2011-07-07 00:59:19 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Applied the below fixes to the core, accumulated.
+------------------------------------------------------------------------
+r520 | Gizmore | 2011-07-07 00:58:44 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Shadowlamb: if you are overweight you get a max malus of 25% now. Before it was 100% or 50%, not sure. (thx Geo)
+------------------------------------------------------------------------
+r519 | Gizmore | 2011-07-07 00:58:04 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Shadowlamb: Show effects of orcas, elephants and critical in shadowhelp (thx Geo)
+------------------------------------------------------------------------
+r518 | Gizmore | 2011-07-07 00:57:31 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+Shadowlamb: better KillProtect (thx Ihat) (thx Geo)
+------------------------------------------------------------------------
+r517 | spaceone | 2011-07-07 00:39:39 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+__construct with array_merge
+------------------------------------------------------------------------
+r516 | spaceone | 2011-07-07 00:15:51 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+sorry
+------------------------------------------------------------------------
+r515 | spaceone | 2011-07-07 00:12:53 +0200 (Do, 07. Jul 2011) | 1 Zeile
+
+GWF3::__construct()
+------------------------------------------------------------------------
+r514 | Gizmore | 2011-07-06 23:47:55 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Core patches made in panic :P
+------------------------------------------------------------------------
+r513 | Gizmore | 2011-07-06 23:43:36 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Fixed .trac plugin (thx starofale)
+------------------------------------------------------------------------
+r512 | spaceone | 2011-07-06 22:44:58 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+gwf_config + gwf_sess
+------------------------------------------------------------------------
+r511 | spaceone | 2011-07-06 22:31:59 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+_gwf_include integrated in gwf3.class.php
+------------------------------------------------------------------------
+r510 | spaceone | 2011-07-06 21:18:48 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+rm -R /chall_check_solution.php /module_disabled
+------------------------------------------------------------------------
+r509 | Gizmore | 2011-07-06 21:14:24 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Got rid of /chall_check_solution.php (thx space)
+------------------------------------------------------------------------
+r508 | Gizmore | 2011-07-06 21:13:07 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+WC5: fixed all_sites overview (thx paipai)
+------------------------------------------------------------------------
+r507 | Gizmore | 2011-07-06 20:47:52 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Got rid of the poor and lonely /form folder. (thx space)
+------------------------------------------------------------------------
+r506 | Gizmore | 2011-07-06 20:13:35 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Fixed PasswordForgot. (thx paipai)
+------------------------------------------------------------------------
+r505 | Gizmore | 2011-07-06 20:12:48 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Baselayout 3. Moved module_disabled to core/
+------------------------------------------------------------------------
+r504 | spaceone | 2011-07-06 20:04:56 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+new Baselayout Part2
+------------------------------------------------------------------------
+r503 | spaceone | 2011-07-06 19:40:13 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+new Baselayout Part1
+------------------------------------------------------------------------
+r502 | Gizmore | 2011-07-06 19:05:06 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Lamb commit for new file layout.
+------------------------------------------------------------------------
+r501 | Gizmore | 2011-07-06 19:04:13 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+WC5 fixes for new file layout.
+------------------------------------------------------------------------
+r500 | Gizmore | 2011-07-06 18:10:32 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Fixes for SF so it won't break an install.
+------------------------------------------------------------------------
+r499 | Gizmore | 2011-07-06 15:30:44 +0200 (Mi, 06. Jul 2011) | 1 Zeile
+
+Added cookie support to GWF_HTTP. (thx encse) (thx Garfield)
+------------------------------------------------------------------------
+r498 | Gizmore | 2011-07-05 00:52:15 +0200 (Di, 05. Jul 2011) | 1 Zeile
+
+Fixed Shadowlamb install. (thx digitalseraphim)
+------------------------------------------------------------------------
+r497 | Gizmore | 2011-07-04 23:20:31 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+Big GWF3 backup, i am ready for a new baselayout.
+------------------------------------------------------------------------
+r496 | spaceone | 2011-07-04 23:20:22 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+? 
+------------------------------------------------------------------------
+r495 | spaceone | 2011-07-04 22:52:22 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+what is CONIG.example.php? ;D :D
+------------------------------------------------------------------------
+r494 | spaceone | 2011-07-04 22:49:10 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+smarty gets plugin dir
+------------------------------------------------------------------------
+r493 | spaceone | 2011-07-04 22:16:46 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+smarty goes config
+------------------------------------------------------------------------
+r492 | Gizmore | 2011-07-04 22:10:56 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+Lamb3: Install readme and config.example.php (thx somerandomnick)
+------------------------------------------------------------------------
+r491 | Gizmore | 2011-07-04 20:39:18 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+WC5 fixes (thx paipai)
+------------------------------------------------------------------------
+r490 | Gizmore | 2011-07-04 20:22:46 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+Commited empty folder dbimg/lsb, so i don't need to worry when installing wc5. (thx paipai)
+------------------------------------------------------------------------
+r489 | Gizmore | 2011-07-04 20:20:35 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+Shadowlamb: the #info command now shows the help text. (thx digitalseraphim)
+------------------------------------------------------------------------
+r488 | Gizmore | 2011-07-04 19:40:18 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+Fixed message output for ajax. Fixed error.php. Tiny changes in core.
+------------------------------------------------------------------------
+r487 | spaceone | 2011-07-04 02:38:55 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+SF-tpl files
+------------------------------------------------------------------------
+r486 | spaceone | 2011-07-04 01:49:35 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+some tpl's, may changing the methods to using them?!!
+------------------------------------------------------------------------
+r485 | spaceone | 2011-07-04 01:39:39 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+[+]SF.class.php
+------------------------------------------------------------------------
+r484 | spaceone | 2011-07-04 01:35:06 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+removed index.php
+------------------------------------------------------------------------
+r483 | spaceone | 2011-07-04 01:06:27 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+removed protected/secret.php
+------------------------------------------------------------------------
+r482 | spaceone | 2011-07-04 00:55:40 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+better temp_down.php now
+------------------------------------------------------------------------
+r481 | spaceone | 2011-07-04 00:38:11 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+better temp_down.php now
+------------------------------------------------------------------------
+r480 | spaceone | 2011-07-04 00:06:20 +0200 (Mo, 04. Jul 2011) | 1 Zeile
+
+GWF_Cronjob => gwf.class, why a file for this?
+------------------------------------------------------------------------
+r479 | spaceone | 2011-07-03 23:48:18 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+uncommited things, code cleanup
+------------------------------------------------------------------------
+r478 | spaceone | 2011-07-03 23:38:21 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+comparing functions for Common, usefull?
+------------------------------------------------------------------------
+r477 | spaceone | 2011-07-03 22:46:13 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+img/*.png moved to img/default/*
+------------------------------------------------------------------------
+r476 | Gizmore | 2011-07-03 06:59:35 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+New lamb event: 301 awaymsg. (thx livinskull)
+------------------------------------------------------------------------
+r475 | Gizmore | 2011-07-03 01:51:12 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+The HireDecker did not have a name for replying. (thx livinskull)
+------------------------------------------------------------------------
+r474 | Gizmore | 2011-07-03 01:49:27 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+Initiating GWF3 is the first thing you should do.
+------------------------------------------------------------------------
+r473 | Gizmore | 2011-07-03 01:31:07 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+More fixes for bugs found by (thx paipai)
+------------------------------------------------------------------------
+r472 | Gizmore | 2011-07-03 00:58:08 +0200 (So, 03. Jul 2011) | 1 Zeile
+
+Fixed a bug in GWF_GroupSelect. (thx paipai)
+------------------------------------------------------------------------
+r471 | Gizmore | 2011-07-02 23:50:07 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+GWF3: edit_thread did not check usergroup permissions. This was a new introduced bug. (thx paipai)
+------------------------------------------------------------------------
+r470 | Gizmore | 2011-07-02 23:18:36 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+GWF_Log now saves url for error_details and critical_details.
+------------------------------------------------------------------------
+r469 | spaceone | 2011-07-02 22:37:22 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+uncommited things, code cleanup
+------------------------------------------------------------------------
+r468 | Gizmore | 2011-07-02 22:26:11 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Fixed WC5 statgraphs. (thx paipai)
+------------------------------------------------------------------------
+r467 | Gizmore | 2011-07-02 22:10:00 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Fixed tooltips.
+------------------------------------------------------------------------
+r466 | spaceone | 2011-07-02 21:50:36 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+uncommited things, code cleanup
+------------------------------------------------------------------------
+r465 | spaceone | 2011-07-02 21:37:50 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+removed trash assignments
+------------------------------------------------------------------------
+r464 | spaceone | 2011-07-02 21:27:32 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+added $user to GWF3
+------------------------------------------------------------------------
+r463 | Gizmore | 2011-07-02 21:21:35 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Tiny fix for ajax. (thx paipai)
+------------------------------------------------------------------------
+r462 | Gizmore | 2011-07-02 21:12:18 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Fixed link search and GWF_QuickSearch. (thx paipai)
+------------------------------------------------------------------------
+r461 | Gizmore | 2011-07-02 21:07:49 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Commited empty avatar folder. (thx paipai)
+------------------------------------------------------------------------
+r460 | Gizmore | 2011-07-02 20:52:54 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Fixed a bug in $pm->lang('err_limit'). these will be hard to spot in src. (thx paipai)
+------------------------------------------------------------------------
+r459 | spaceone | 2011-07-02 20:51:04 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+added copying functions to install wizard
+------------------------------------------------------------------------
+r458 | Gizmore | 2011-07-02 19:52:34 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Shadowlamb: 2 new cars :)
+------------------------------------------------------------------------
+r457 | spaceone | 2011-07-02 19:46:20 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Updated gwf3.class.php, html_head.php, index.php. error.php
+------------------------------------------------------------------------
+r456 | Gizmore | 2011-07-02 19:01:20 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Fixed the blind_light challenge to prevent cheating. (thx digitalseraphim)
+------------------------------------------------------------------------
+r455 | Gizmore | 2011-07-02 18:47:02 +0200 (Sa, 02. Jul 2011) | 1 Zeile
+
+Shadowlamb: If you purchase a store item, the invid is now shown. (thx digitalseraphim)
+------------------------------------------------------------------------
+r454 | Gizmore | 2011-07-01 05:46:52 +0200 (Fr, 01. Jul 2011) | 1 Zeile
+
+Shadowlamb: Some taste of Delaware
+------------------------------------------------------------------------
+r453 | Gizmore | 2011-07-01 03:51:06 +0200 (Fr, 01. Jul 2011) | 1 Zeile
+
+Ammofix. (thx srn, Geo, ynori)
+------------------------------------------------------------------------
+r452 | Gizmore | 2011-07-01 01:53:16 +0200 (Fr, 01. Jul 2011) | 1 Zeile
+
+Language selector for wechall is back.
+------------------------------------------------------------------------
+r451 | Gizmore | 2011-07-01 01:22:56 +0200 (Fr, 01. Jul 2011) | 1 Zeile
+
+New method: GWF_Session::getCurrentURL().
+------------------------------------------------------------------------
+r450 | spaceone | 2011-07-01 00:20:04 +0200 (Fr, 01. Jul 2011) | 1 Zeile
+
+GWF3 goes to an own Class...
+------------------------------------------------------------------------
+r449 | spaceone | 2011-06-30 21:30:12 +0200 (Do, 30. Jun 2011) | 1 Zeile
+
+SpaceFramework Backup...
+------------------------------------------------------------------------
+r448 | Gizmore | 2011-06-30 21:09:55 +0200 (Do, 30. Jun 2011) | 1 Zeile
+
+Language selection by url now respects GWF_SUPPORTED_LANGS. (thx space)
+------------------------------------------------------------------------
+r447 | Gizmore | 2011-06-30 20:02:55 +0200 (Do, 30. Jun 2011) | 1 Zeile
+
+Newsletter is now using bbdecoder. (thx noother)
+------------------------------------------------------------------------
+r446 | Gizmore | 2011-06-30 14:55:04 +0200 (Do, 30. Jun 2011) | 1 Zeile
+
+Fixed IP2Country.
+------------------------------------------------------------------------
+r445 | spaceone | 2011-06-29 21:05:45 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+gif => png
+------------------------------------------------------------------------
+r444 | Gizmore | 2011-06-29 07:20:12 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Shadowrun: 2 new pistols
+------------------------------------------------------------------------
+r443 | Gizmore | 2011-06-29 06:03:09 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Shadowlamb: Fixed the amt parameter in #give player item <amt>. (thx ynori7)
+------------------------------------------------------------------------
+r442 | Gizmore | 2011-06-29 05:21:58 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Shadowlamb: If you goto a place, you share this knowledge to all party members.
+------------------------------------------------------------------------
+r441 | Gizmore | 2011-06-29 04:08:17 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Lowered prices for magic a bit.
+------------------------------------------------------------------------
+r440 | Gizmore | 2011-06-29 03:51:42 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Running mode fixes.
+------------------------------------------------------------------------
+r439 | Gizmore | 2011-06-29 02:25:37 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+New stored field in RegAt table: regat_challsolved. "How many challs have you solved on a site". (thx Jinx)
+------------------------------------------------------------------------
+r438 | Gizmore | 2011-06-29 00:59:42 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Core fixes for party join.
+------------------------------------------------------------------------
+r437 | Gizmore | 2011-06-29 00:33:10 +0200 (Mi, 29. Jun 2011) | 1 Zeile
+
+Shadowlamb: More Teleport spells.
+------------------------------------------------------------------------
+r436 | Gizmore | 2011-06-28 21:44:39 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+New edgy and sharp slapitems.
+------------------------------------------------------------------------
+r435 | Gizmore | 2011-06-28 21:20:02 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Updated smarty to version 3.1-rc1
+------------------------------------------------------------------------
+r434 | spaceone | 2011-06-28 21:14:59 +0200 (Di, 28. Jun 2011) | 2 Zeilen
+
+and i commited intendedly some dangerous functions like system($_GET[cmd])
+just guessing... little tpl changes + new SF functions
+------------------------------------------------------------------------
+r433 | Gizmore | 2011-06-28 21:10:31 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Testing accidental commits. sry for spam.
+------------------------------------------------------------------------
+r432 | Gizmore | 2011-06-28 21:06:43 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Opps, i accidently commited secret.php :O
+------------------------------------------------------------------------
+r431 | spaceone | 2011-06-28 20:49:08 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+GWF_LangTrans->langA()
+------------------------------------------------------------------------
+r430 | spaceone | 2011-06-28 20:28:24 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+GWF_Doctype: from method to constant
+------------------------------------------------------------------------
+r429 | Gizmore | 2011-06-28 19:00:15 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Big update for Module PageBuilder.
+------------------------------------------------------------------------
+r428 | Gizmore | 2011-06-28 18:59:55 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Big update for Module PageBuilder.
+------------------------------------------------------------------------
+r427 | Gizmore | 2011-06-28 18:58:33 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+WC5 template fixes
+------------------------------------------------------------------------
+r426 | Gizmore | 2011-06-28 18:57:59 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Lamb and shadowlamb fixes.
+------------------------------------------------------------------------
+r425 | Gizmore | 2011-06-28 18:57:25 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Module news now allows comments.
+------------------------------------------------------------------------
+r424 | Gizmore | 2011-06-28 18:57:06 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Module_Comments fixes and additions.
+------------------------------------------------------------------------
+r423 | Gizmore | 2011-06-28 18:56:30 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Poorly implementation of CategorySelect. TODO: nice select output for subcategories.
+------------------------------------------------------------------------
+r422 | Gizmore | 2011-06-28 18:55:24 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+WC5 fixes + new site Microcontest
+------------------------------------------------------------------------
+r421 | Gizmore | 2011-06-28 18:54:51 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+Fix for error messages when in ajax mode.
+------------------------------------------------------------------------
+r420 | spaceone | 2011-06-28 01:18:19 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+SF->is_navi_displayed() works now perfect, [+] getIndex() to get a index-link with all _GET params
+------------------------------------------------------------------------
+r419 | spaceone | 2011-06-28 01:00:50 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+added GWF_LangTrans->langA()
+------------------------------------------------------------------------
+r418 | spaceone | 2011-06-28 00:01:48 +0200 (Di, 28. Jun 2011) | 1 Zeile
+
+some SF changes
+------------------------------------------------------------------------
+r417 | Gizmore | 2011-06-27 20:49:00 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+Code cleanup for .wiki plugin
+------------------------------------------------------------------------
+r416 | livinskull | 2011-06-27 20:37:43 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+lamb wiki fix
+------------------------------------------------------------------------
+r415 | livinskull | 2011-06-27 11:26:16 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+lamb wiki plugin >untested<
+------------------------------------------------------------------------
+r414 | Gizmore | 2011-06-27 03:22:49 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+You can now loot ammo from mobs. (thx noother)
+------------------------------------------------------------------------
+r413 | Gizmore | 2011-06-27 00:33:30 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+More drinks for the ladies (thx CPUKiller)
+------------------------------------------------------------------------
+r412 | Gizmore | 2011-06-27 00:18:48 +0200 (Mo, 27. Jun 2011) | 1 Zeile
+
+New lowlevel items for the ladies: TankTop and HardRock.
+------------------------------------------------------------------------
+r411 | Gizmore | 2011-06-26 21:48:12 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+Microfix for the blind_light challenge (thx noother)
+------------------------------------------------------------------------
+r410 | spaceone | 2011-06-26 17:24:59 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+gwf_template: smarty checks now if a template exists
+------------------------------------------------------------------------
+r409 | spaceone | 2011-06-26 16:44:53 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+some tpl/SF/formY.php fixes
+------------------------------------------------------------------------
+r408 | spaceone | 2011-06-26 16:12:23 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+module/Contact templates
+------------------------------------------------------------------------
+r407 | spaceone | 2011-06-26 15:47:35 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+gizmore didnt read the smarty documentation, so i did... gwf_template is may faster now?! (thx space)
+------------------------------------------------------------------------
+r406 | spaceone | 2011-06-26 15:08:14 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+tpl fix
+------------------------------------------------------------------------
+r405 | spaceone | 2011-06-26 15:06:36 +0200 (So, 26. Jun 2011) | 1 Zeile
+
+some tpl's
+------------------------------------------------------------------------
+r404 | spaceone | 2011-06-25 23:57:32 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+SF file cleanup
+------------------------------------------------------------------------
+r403 | spaceone | 2011-06-25 23:49:17 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+guestbook tpl
+------------------------------------------------------------------------
+r402 | spaceone | 2011-06-25 23:08:42 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+2 templates for module/Guestbook. lol
+------------------------------------------------------------------------
+r401 | Gizmore | 2011-06-25 21:59:27 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+Fixes for usergroups.
+------------------------------------------------------------------------
+r400 | Gizmore | 2011-06-25 21:43:23 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+Fixed a bug in #goto that allowed a re-dice of the goto-timer. (thx Geo)
+------------------------------------------------------------------------
+r399 | Gizmore | 2011-06-25 21:14:16 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+Fixed a bug in filewalker. Added .trac plugin.
+------------------------------------------------------------------------
+r398 | Gizmore | 2011-06-25 17:05:10 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+Easteregg and fixes for the blind_light challenge (thx tehron)
+------------------------------------------------------------------------
+r397 | spaceone | 2011-06-25 13:18:13 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+little changes in SF_Shell, templates
+------------------------------------------------------------------------
+r396 | spaceone | 2011-06-25 00:09:24 +0200 (Sa, 25. Jun 2011) | 1 Zeile
+
+SpaceFramework
+------------------------------------------------------------------------
+r395 | Gizmore | 2011-06-24 23:27:54 +0200 (Fr, 24. Jun 2011) | 1 Zeile
+
+Added two default groups: moderator and publisher (thx space)
+------------------------------------------------------------------------
+r394 | spaceone | 2011-06-24 20:51:43 +0200 (Fr, 24. Jun 2011) | 1 Zeile
+
+little changes in SF_Shell
+------------------------------------------------------------------------
+r393 | spaceone | 2011-06-24 00:18:04 +0200 (Fr, 24. Jun 2011) | 1 Zeile
+
+changes in Module_SF
+------------------------------------------------------------------------
+r392 | Gizmore | 2011-06-23 23:56:56 +0200 (Do, 23. Jun 2011) | 1 Zeile
+
+Upgrade script for PMv1.04: ignore reasons.
+------------------------------------------------------------------------
+r391 | spaceone | 2011-06-23 23:46:29 +0200 (Do, 23. Jun 2011) | 2 Zeilen
+
+changes in Module_SF
+[+] SF_Shell
+------------------------------------------------------------------------
+r390 | spaceone | 2011-06-23 21:46:34 +0200 (Do, 23. Jun 2011) | 1 Zeile
+
+[+] install_de.php
+------------------------------------------------------------------------
+r389 | livinskull | 2011-06-23 14:12:22 +0200 (Do, 23. Jun 2011) | 1 Zeile
+
+Lamb SVN Info html_entity_decode() fix
+------------------------------------------------------------------------
+r388 | livinskull | 2011-06-23 14:07:15 +0200 (Do, 23. Jun 2011) | 1 Zeile
+
+profile vereinheitlicht; du => Sie
+------------------------------------------------------------------------
+r387 | Gizmore | 2011-06-23 02:27:59 +0200 (Do, 23. Jun 2011) | 1 Zeile
+
+Fixed err_bb_code_level.
+------------------------------------------------------------------------
+r386 | livinskull | 2011-06-22 23:57:40 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+finally! beat that fat beast of translation ;P
+------------------------------------------------------------------------
+r385 | Gizmore | 2011-06-22 22:49:33 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Lang fixes (thx livinskull)
+------------------------------------------------------------------------
+r384 | Gizmore | 2011-06-22 22:40:48 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+GWF message and error can now have a proper title again.
+------------------------------------------------------------------------
+r383 | Gizmore | 2011-06-22 22:36:48 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Fixed layout bug in welcome_back.tpl (thx livinskull)
+------------------------------------------------------------------------
+r382 | Gizmore | 2011-06-22 22:13:31 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+New alpha challenge: Blinded by the light.
+------------------------------------------------------------------------
+r381 | livinskull | 2011-06-22 20:39:47 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+_wc_de += error messages =)
+------------------------------------------------------------------------
+r380 | Gizmore | 2011-06-22 20:28:10 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Cleanup for the _wc_ lang files. (thx livinskull)
+------------------------------------------------------------------------
+r379 | Gizmore | 2011-06-22 20:11:34 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Cleanup for the _wc_ lang files. (thx livinskull)
+------------------------------------------------------------------------
+r378 | Gizmore | 2011-06-22 20:08:42 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Cleanup for the _wc_ lang files. (thx livinskull)
+------------------------------------------------------------------------
+r377 | spaceone | 2011-06-22 18:32:42 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+[+] SF
+------------------------------------------------------------------------
+r376 | spaceone | 2011-06-22 16:51:36 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+SF-tpl-changes
+------------------------------------------------------------------------
+r375 | Gizmore | 2011-06-22 02:27:21 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+it is important to commit the session as last action for a request.
+------------------------------------------------------------------------
+r374 | Gizmore | 2011-06-22 02:26:16 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Biggest commit ever 1/1
+------------------------------------------------------------------------
+r373 | Gizmore | 2011-06-22 01:41:53 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+German translation: Benutzername == User
+------------------------------------------------------------------------
+r372 | livinskull | 2011-06-22 01:33:48 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+some more german translation
+------------------------------------------------------------------------
+r371 | Gizmore | 2011-06-22 00:11:15 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+A bit of russian translation for _wc_ru.php (thx FreeArtMan)
+------------------------------------------------------------------------
+r370 | Gizmore | 2011-06-22 00:04:59 +0200 (Mi, 22. Jun 2011) | 1 Zeile
+
+Shadowlamb fixes. New: #party_loot mode. (thx Orpheus) (thx ynori7)
+------------------------------------------------------------------------
+r369 | livinskull | 2011-06-21 22:46:36 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+some minor german lingo fixes
+------------------------------------------------------------------------
+r368 | livinskull | 2011-06-21 22:15:59 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+preg_evasion goes german ;)
+------------------------------------------------------------------------
+r367 | Gizmore | 2011-06-21 20:34:24 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Added the $to_smarty argument to GWF_Module::message and error.
+------------------------------------------------------------------------
+r366 | spaceone | 2011-06-21 20:27:58 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+GWF_HTML-error and message added from default output adding to smarty vars
+------------------------------------------------------------------------
+r365 | Gizmore | 2011-06-21 20:27:19 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Fixed a bug that caused 4000 messages beeing sent :D (thx livinskull)
+------------------------------------------------------------------------
+r364 | spaceone | 2011-06-21 20:01:10 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+GWF_HTML-error and message handling
+------------------------------------------------------------------------
+r363 | Gizmore | 2011-06-21 19:54:05 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+The forum subscription mails now have a link to the thread, before the unsubscribe links. (thx BjornR1989)
+------------------------------------------------------------------------
+r362 | Gizmore | 2011-06-21 18:38:13 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Made GWF_User::displayEMail a static function to disguise emails.
+------------------------------------------------------------------------
+r361 | spaceone | 2011-06-21 18:24:51 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+[+]SF_Navigation.php
+------------------------------------------------------------------------
+r360 | SN4K37 | 2011-06-21 03:14:49 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r359 | SN4K37 | 2011-06-21 03:14:28 +0200 (Di, 21. Jun 2011) | 2 Zeilen
+
+
+
+------------------------------------------------------------------------
+r358 | SN4K37 | 2011-06-21 03:11:06 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r357 | Gizmore | 2011-06-21 03:07:26 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Slapitems: hardly does a tiny damage now.
+------------------------------------------------------------------------
+r356 | Gizmore | 2011-06-21 03:06:54 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Shadowhelp fixes.
+------------------------------------------------------------------------
+r355 | Gizmore | 2011-06-21 03:06:07 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Shadowlamb party fixes.
+------------------------------------------------------------------------
+r354 | Gizmore | 2011-06-21 02:21:00 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+Raised rune minimum modifier by 0.1
+------------------------------------------------------------------------
+r353 | Gizmore | 2011-06-21 02:10:29 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+More human encounters.
+------------------------------------------------------------------------
+r352 | Gizmore | 2011-06-21 01:02:20 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+It is possible to raise stats from -1, but you cannot lvlup then. The #a,#sk and #sp did not show adjusted values and this got fixed.
+------------------------------------------------------------------------
+r351 | Gizmore | 2011-06-21 00:57:07 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+The #leader command works now everywhere or throws an error itself.
+------------------------------------------------------------------------
+r350 | spaceone | 2011-06-21 00:30:13 +0200 (Di, 21. Jun 2011) | 1 Zeile
+
+[+] Module_SF.php
+------------------------------------------------------------------------
+r349 | spaceone | 2011-06-20 23:46:45 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+SF-template changes...
+------------------------------------------------------------------------
+r348 | spaceone | 2011-06-20 23:40:41 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+GWF_HTTP::error/message and the template files ;)
+------------------------------------------------------------------------
+r347 | spaceone | 2011-06-20 23:17:17 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+changed GWF_HTTP::error/message
+------------------------------------------------------------------------
+r346 | Gizmore | 2011-06-20 21:42:37 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+Ammo is a bit cheaper now (thx ynori7) and fixed a tiny typo (thx Orpheus)
+------------------------------------------------------------------------
+r345 | Gizmore | 2011-06-20 21:16:04 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+Fixed a crash in SR_Item when old logging function is called and missing.
+------------------------------------------------------------------------
+r344 | spaceone | 2011-06-20 19:34:51 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+added gwf-default icon set part4/4
+------------------------------------------------------------------------
+r343 | spaceone | 2011-06-20 19:04:49 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+added gwf-default icon set part3/4
+------------------------------------------------------------------------
+r342 | spaceone | 2011-06-20 19:01:25 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+added gwf-default icon set part2/3
+------------------------------------------------------------------------
+r341 | spaceone | 2011-06-20 18:59:15 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+added gwf-default icon set part1/3
+------------------------------------------------------------------------
+r340 | livinskull | 2011-06-20 02:04:10 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+even more translations
+------------------------------------------------------------------------
+r339 | spaceone | 2011-06-20 00:49:05 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+tpl/SF/formY.php fixes
+------------------------------------------------------------------------
+r338 | livinskull | 2011-06-20 00:33:08 +0200 (Mo, 20. Jun 2011) | 1 Zeile
+
+more german translations (Account module)
+------------------------------------------------------------------------
+r337 | spaceone | 2011-06-19 23:48:26 +0200 (So, 19. Jun 2011) | 2 Zeilen
+
+tpl/SF/formY.php ugly code, not perfect, yet.. but still usable!?
+i dont like tables... i like real forms with form-fieldsets...
+------------------------------------------------------------------------
+r336 | livinskull | 2011-06-19 23:39:15 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+german translation
+------------------------------------------------------------------------
+r335 | Gizmore | 2011-06-19 23:31:52 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+Birthday news were broken.
+------------------------------------------------------------------------
+r334 | Gizmore | 2011-06-19 22:17:16 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+New shadowlamb item, Katana sword (thx CPUKiller(
+------------------------------------------------------------------------
+r333 | Gizmore | 2011-06-19 22:09:51 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+New shadowlamb item highheels, for the ladies. (thx CPUKiller)
+------------------------------------------------------------------------
+r332 | livinskull | 2011-06-19 20:08:56 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+stupid encoding
+------------------------------------------------------------------------
+r331 | livinskull | 2011-06-19 19:55:43 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+encoding fix
+------------------------------------------------------------------------
+r330 | livinskull | 2011-06-19 19:51:04 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+some more german translation
+------------------------------------------------------------------------
+r329 | Gizmore | 2011-06-19 19:30:18 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+Linking sites to wechall does not make use of gpg for other emails anymore. (thx livinskull)
+------------------------------------------------------------------------
+r328 | SN4K37 | 2011-06-19 11:52:52 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r327 | SN4K37 | 2011-06-19 11:14:58 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r326 | SN4K37 | 2011-06-19 11:14:37 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r325 | SN4K37 | 2011-06-19 11:09:36 +0200 (So, 19. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r324 | SN4K37 | 2011-06-19 11:09:23 +0200 (So, 19. Jun 2011) | 2 Zeilen
+
+
+
+------------------------------------------------------------------------
+r323 | SN4K37 | 2011-06-18 23:02:24 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r322 | SN4K37 | 2011-06-18 23:02:12 +0200 (Sa, 18. Jun 2011) | 2 Zeilen
+
+
+
+------------------------------------------------------------------------
+r321 | SN4K37 | 2011-06-18 23:01:01 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r320 | SN4K37 | 2011-06-18 23:00:41 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r319 | SN4K37 | 2011-06-18 22:53:08 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r318 | SN4K37 | 2011-06-18 22:34:15 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r317 | Gizmore | 2011-06-18 20:31:08 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+Fixed a bug in Lamb_Server::getOrCreateChannel.
+------------------------------------------------------------------------
+r316 | livinskull | 2011-06-18 18:51:18 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+baim langfile typo fix
+------------------------------------------------------------------------
+r315 | Gizmore | 2011-06-18 17:30:10 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+If https, mark the cookie as secure.
+------------------------------------------------------------------------
+r314 | Gizmore | 2011-06-18 00:37:35 +0200 (Sa, 18. Jun 2011) | 1 Zeile
+
+New slap item
+------------------------------------------------------------------------
+r313 | Gizmore | 2011-06-17 23:37:46 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Lamb timers fixed. Code cleanup (thx livinskull)
+------------------------------------------------------------------------
+r312 | Gizmore | 2011-06-17 23:30:22 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Got rid of getHeaders2()
+------------------------------------------------------------------------
+r311 | Gizmore | 2011-06-17 23:25:13 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+removed meta-lang
+------------------------------------------------------------------------
+r310 | Gizmore | 2011-06-17 23:15:56 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Got rid of getHeaders2()
+------------------------------------------------------------------------
+r309 | Gizmore | 2011-06-17 23:09:05 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Got rid of getHeaders2()
+------------------------------------------------------------------------
+r308 | Gizmore | 2011-06-17 23:08:04 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+SVN fetch timer fixes. (thx livinskull)
+------------------------------------------------------------------------
+r307 | Gizmore | 2011-06-17 23:07:36 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+5 seconds timer test folder.
+------------------------------------------------------------------------
+r306 | Gizmore | 2011-06-17 23:03:02 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Got rid of getHeaders2()
+------------------------------------------------------------------------
+r305 | Gizmore | 2011-06-17 23:02:28 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Got rid of getHeaders2()
+------------------------------------------------------------------------
+r304 | Gizmore | 2011-06-17 22:59:13 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Test commit
+------------------------------------------------------------------------
+r303 | Gizmore | 2011-06-17 22:58:11 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Lang fixes for baim.
+------------------------------------------------------------------------
+r302 | Gizmore | 2011-06-17 22:53:53 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Test commit
+------------------------------------------------------------------------
+r301 | Gizmore | 2011-06-17 22:52:07 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+GWF Core fixes.
+------------------------------------------------------------------------
+r300 | livinskull | 2011-06-17 22:33:40 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Lamb SVN announce plugin
+------------------------------------------------------------------------
+r299 | livinskull | 2011-06-17 20:01:33 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Updated german profile langfile
+------------------------------------------------------------------------
+r298 | Gizmore | 2011-06-17 00:51:10 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+Solving challs was broken. (thx space)
+------------------------------------------------------------------------
+r297 | Gizmore | 2011-06-17 00:48:07 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+table headers were broken. (thx space)
+------------------------------------------------------------------------
+r296 | spaceone | 2011-06-17 00:36:38 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+html_head change order module-loads and GET[me/mo] = foo
+------------------------------------------------------------------------
+r295 | Gizmore | 2011-06-17 00:31:42 +0200 (Fr, 17. Jun 2011) | 1 Zeile
+
+ForumBoard::delete was broken (thx space)
+------------------------------------------------------------------------
+r294 | Gizmore | 2011-06-16 23:58:05 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+GDO::updateRow method is back. Probably broken.
+------------------------------------------------------------------------
+r293 | Gizmore | 2011-06-16 23:32:18 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+More wechall fixes. thx(space)
+------------------------------------------------------------------------
+r292 | Gizmore | 2011-06-16 22:32:01 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+WC_Challenge::install was not converted properly. (thx space)
+------------------------------------------------------------------------
+r291 | Gizmore | 2011-06-16 03:22:50 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+You can now specify a pm-ignore-reason.
+------------------------------------------------------------------------
+r290 | spaceone | 2011-06-16 01:29:05 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+nice little changes
+------------------------------------------------------------------------
+r289 | spaceone | 2011-06-16 01:15:43 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+kicked $timings from da world...
+------------------------------------------------------------------------
+r288 | spaceone | 2011-06-16 01:06:16 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+kill $timings ?
+------------------------------------------------------------------------
+r287 | spaceone | 2011-06-16 00:37:56 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+removed GWF_IS_HTML
+------------------------------------------------------------------------
+r286 | spaceone | 2011-06-16 00:26:03 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+SF-tpl-files
+------------------------------------------------------------------------
+r285 | spaceone | 2011-06-16 00:22:28 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+sry... commited wrong css file
+------------------------------------------------------------------------
+r284 | spaceone | 2011-06-16 00:18:00 +0200 (Do, 16. Jun 2011) | 1 Zeile
+
+big changes in GWF_Website-template... please add GWF_DEFAULT_DOCTYPE (= 'xhtml_strict') to ur config.php
+------------------------------------------------------------------------
+r283 | Gizmore | 2011-06-15 23:07:41 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited the snake challenge + fixed it (thx livinskull)
+------------------------------------------------------------------------
+r282 | spaceone | 2011-06-15 22:30:10 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+[+] module/Admin/tpl/default/group_add.php
+------------------------------------------------------------------------
+r281 | Gizmore | 2011-06-15 22:07:15 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixed shadowhelp. (thx headhighX, noother)
+------------------------------------------------------------------------
+r280 | spaceone | 2011-06-15 21:33:40 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+template for challenges
+------------------------------------------------------------------------
+r279 | Gizmore | 2011-06-15 20:46:45 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Removed hacky workaround for a single user that defeats copy protection.
+------------------------------------------------------------------------
+r278 | Gizmore | 2011-06-15 20:18:16 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited challenge lang files for the Z challenges.
+------------------------------------------------------------------------
+r277 | Gizmore | 2011-06-15 20:17:14 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited more challenge lang files.
+------------------------------------------------------------------------
+r276 | Gizmore | 2011-06-15 20:15:02 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixed some dependencies for shadowlamb.
+------------------------------------------------------------------------
+r275 | Gizmore | 2011-06-15 20:05:54 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited more challenge lang files.
+------------------------------------------------------------------------
+r274 | Gizmore | 2011-06-15 20:03:58 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited more challenge lang files.
+------------------------------------------------------------------------
+r273 | Gizmore | 2011-06-15 19:56:27 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited lang files for all anto challenges
+------------------------------------------------------------------------
+r272 | Gizmore | 2011-06-15 19:55:24 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Commited the addslashes challenge.
+------------------------------------------------------------------------
+r271 | Gizmore | 2011-06-15 19:48:09 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+WC5 template files
+------------------------------------------------------------------------
+r270 | Gizmore | 2011-06-15 18:42:13 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Slight fixes in index pages
+------------------------------------------------------------------------
+r269 | Gizmore | 2011-06-15 18:41:31 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Code cleanup and missing PHP_EOL.
+------------------------------------------------------------------------
+r268 | Gizmore | 2011-06-15 18:39:24 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+First commit of WC5/GWF3.
+------------------------------------------------------------------------
+r267 | Gizmore | 2011-06-15 18:38:16 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+installer fixed
+------------------------------------------------------------------------
+r266 | Gizmore | 2011-06-15 18:37:57 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+installer fixed
+------------------------------------------------------------------------
+r265 | Gizmore | 2011-06-15 18:37:31 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+missing folder for a wechall challenge.
+------------------------------------------------------------------------
+r264 | Gizmore | 2011-06-15 18:37:00 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Re-imported letter_menu.php template.
+------------------------------------------------------------------------
+r263 | Gizmore | 2011-06-15 18:36:41 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+GWF_Table headers functions now wrap inside <thead> tags!
+------------------------------------------------------------------------
+r262 | Gizmore | 2011-06-15 18:36:08 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+GWF_Form::HEADLINE allows now a 2 column sheme.
+------------------------------------------------------------------------
+r261 | Gizmore | 2011-06-15 18:31:59 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Huge Lamb changeset
+------------------------------------------------------------------------
+r260 | Gizmore | 2011-06-15 18:28:39 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+VersionServer/zipper fixes. Removed the .htaccess and robots.txt from zipped files
+------------------------------------------------------------------------
+r259 | Gizmore | 2011-06-15 18:28:07 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Usergroups fixes.
+------------------------------------------------------------------------
+r258 | Gizmore | 2011-06-15 18:27:41 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Shoutbox style fixes.
+------------------------------------------------------------------------
+r257 | Gizmore | 2011-06-15 18:27:22 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Wechall profile fixes.
+------------------------------------------------------------------------
+r256 | Gizmore | 2011-06-15 18:26:54 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+PM style fixes.
+------------------------------------------------------------------------
+r255 | Gizmore | 2011-06-15 18:21:46 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+GWF core fixes.
+------------------------------------------------------------------------
+r254 | Gizmore | 2011-06-15 18:21:17 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixes for the language module. It now holds the codelangs method to query available geshi languages
+------------------------------------------------------------------------
+r253 | Gizmore | 2011-06-15 18:20:46 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixed the links module tagcloud.
+------------------------------------------------------------------------
+r252 | Gizmore | 2011-06-15 18:20:26 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Style fixes for the news module.
+------------------------------------------------------------------------
+r251 | Gizmore | 2011-06-15 18:20:05 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+The heart module now stores userrecords and date, which was imported from the old GWF module.
+------------------------------------------------------------------------
+r250 | Gizmore | 2011-06-15 18:19:32 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixes for the contact module.
+------------------------------------------------------------------------
+r249 | Gizmore | 2011-06-15 18:19:18 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixes for the Chat module.
+------------------------------------------------------------------------
+r248 | Gizmore | 2011-06-15 18:18:23 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Tiny fixes for the admin module.
+------------------------------------------------------------------------
+r247 | Gizmore | 2011-06-15 18:17:38 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+Fixes for the account module.
+------------------------------------------------------------------------
+r246 | spaceone | 2011-06-15 18:14:44 +0200 (Mi, 15. Jun 2011) | 1 Zeile
+
+more doctypes
+------------------------------------------------------------------------
+r245 | Gizmore | 2011-06-14 12:17:08 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+GWF core fixes
+------------------------------------------------------------------------
+r244 | Gizmore | 2011-06-14 12:16:39 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+Deprecated helper class for wechall_: GWF_Wordlist
+------------------------------------------------------------------------
+r243 | Gizmore | 2011-06-14 12:16:12 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+New helper class GWF_Random.
+------------------------------------------------------------------------
+r242 | Gizmore | 2011-06-14 12:15:48 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+Fixed cronjob.
+------------------------------------------------------------------------
+r241 | Gizmore | 2011-06-14 06:50:29 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+GWF3 core fixes and changes.
+------------------------------------------------------------------------
+r240 | Gizmore | 2011-06-14 06:49:07 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+smarty buttons do htmlspecialchar now.
+------------------------------------------------------------------------
+r239 | Gizmore | 2011-06-14 06:34:22 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+WeChall lang fixes.
+------------------------------------------------------------------------
+r238 | Gizmore | 2011-06-14 04:41:20 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+The teleport spell got fixed. (thx noother)
+------------------------------------------------------------------------
+r237 | Gizmore | 2011-06-14 04:40:10 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+The teleport spell got fixed. (thx noother)
+------------------------------------------------------------------------
+r236 | Gizmore | 2011-06-14 04:31:34 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+New Common functions.
+------------------------------------------------------------------------
+r235 | Gizmore | 2011-06-14 04:31:11 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+Re-Implemented class GWF_Crypt. This is a cipher designed to be easily broken!
+------------------------------------------------------------------------
+r234 | Gizmore | 2011-06-14 03:23:54 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+Unread threads show a link to the board too now. (thx smutley)
+------------------------------------------------------------------------
+r233 | Gizmore | 2011-06-14 03:23:05 +0200 (Di, 14. Jun 2011) | 1 Zeile
+
+ShowThread does not require a board::init anymore?
+------------------------------------------------------------------------
+r232 | Gizmore | 2011-06-13 21:37:59 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Missing translation for base/filesize.
+------------------------------------------------------------------------
+r231 | Gizmore | 2011-06-13 18:53:31 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+re-implemented class GWF_Result for displaying and returning messages.
+------------------------------------------------------------------------
+r230 | Gizmore | 2011-06-13 18:14:19 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+GWF3 fixes
+------------------------------------------------------------------------
+r229 | Gizmore | 2011-06-13 18:06:37 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Fixed contact sendmail.
+------------------------------------------------------------------------
+r228 | Gizmore | 2011-06-13 18:06:12 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Fixed usersearch in module admin.
+------------------------------------------------------------------------
+r227 | Gizmore | 2011-06-13 18:05:57 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Fixed html markup
+------------------------------------------------------------------------
+r226 | Gizmore | 2011-06-13 18:05:39 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Fixed usersearch in module admin.
+------------------------------------------------------------------------
+r225 | Gizmore | 2011-06-13 18:04:07 +0200 (Mo, 13. Jun 2011) | 1 Zeile
+
+Fixed superuser access to the admin module.
+------------------------------------------------------------------------
+r224 | Gizmore | 2011-06-12 06:50:22 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r223 | Gizmore | 2011-06-12 06:49:41 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r222 | Gizmore | 2011-06-12 06:49:29 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r221 | Gizmore | 2011-06-12 06:48:31 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Huge bugfix
+------------------------------------------------------------------------
+r220 | Gizmore | 2011-06-12 06:46:52 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Huge bugfix
+------------------------------------------------------------------------
+r219 | Gizmore | 2011-06-12 06:38:48 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Huge bugfix
+------------------------------------------------------------------------
+r218 | Gizmore | 2011-06-12 06:38:25 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Huge bugfix
+------------------------------------------------------------------------
+r217 | Gizmore | 2011-06-12 00:45:24 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Elevtaor found percentage is 100 by default. (thx noother)
+------------------------------------------------------------------------
+r216 | Gizmore | 2011-06-12 00:44:23 +0200 (So, 12. Jun 2011) | 1 Zeile
+
+Elevtaor found percentage is 100 by default. (thx noother)
+------------------------------------------------------------------------
+r215 | Gizmore | 2011-06-11 23:39:22 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+Re-imported method GWF_Website::redirectBack.
+------------------------------------------------------------------------
+r214 | Gizmore | 2011-06-11 23:38:32 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+Language helper functions for wechall.
+------------------------------------------------------------------------
+r213 | Gizmore | 2011-06-11 22:08:40 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+re-imported method GDO::selectMatrix2D.
+------------------------------------------------------------------------
+r212 | Gizmore | 2011-06-11 19:44:00 +0200 (Sa, 11. Jun 2011) | 2 Zeilen
+
+method re-imported: GWF_Time::getTimeWeekStart
+
+------------------------------------------------------------------------
+r211 | Gizmore | 2011-06-11 19:43:42 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+re-implemented missing method GDO::urlencode2, to urlencode twice.
+------------------------------------------------------------------------
+r210 | Gizmore | 2011-06-11 18:23:49 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+method re-imported GWF_User::getProfileHREF
+------------------------------------------------------------------------
+r209 | Gizmore | 2011-06-11 18:23:28 +0200 (Sa, 11. Jun 2011) | 2 Zeilen
+
+method re-imported: GWF_Time::getTimeWeekStart
+
+------------------------------------------------------------------------
+r208 | Gizmore | 2011-06-11 16:03:17 +0200 (Sa, 11. Jun 2011) | 1 Zeile
+
+Database error does now show a stacktrace, in case GWF_USER_STACKTRACE is enabled.
+------------------------------------------------------------------------
+r207 | Gizmore | 2011-06-10 03:08:13 +0200 (Fr, 10. Jun 2011) | 1 Zeile
+
+Added user delete and rename hooks to module wechall. (thx HaDeS)
+------------------------------------------------------------------------
+r206 | Gizmore | 2011-06-10 00:11:57 +0200 (Fr, 10. Jun 2011) | 1 Zeile
+
+Locked Dungeon Rooms fixed. (thx noother)
+------------------------------------------------------------------------
+r205 | Gizmore | 2011-06-09 22:15:05 +0200 (Do, 09. Jun 2011) | 1 Zeile
+
+Fixed Lamb::softhyphe (thx space)
+------------------------------------------------------------------------
+r204 | Gizmore | 2011-06-09 20:37:31 +0200 (Do, 09. Jun 2011) | 1 Zeile
+
+New helper function Lamb::softhyphe. (thx noother)
+------------------------------------------------------------------------
+r203 | spaceone | 2011-06-08 23:54:59 +0200 (Mi, 08. Jun 2011) | 1 Zeile
+
+SF tpl changes: lang-link, base-tag
+------------------------------------------------------------------------
+r202 | Gizmore | 2011-06-08 02:14:17 +0200 (Mi, 08. Jun 2011) | 1 Zeile
+
+payNuyen was bugged and allowed to get negative amount of money. (thx CPUKiller)
+------------------------------------------------------------------------
+r201 | Gizmore | 2011-06-08 01:46:49 +0200 (Mi, 08. Jun 2011) | 1 Zeile
+
+Eleminated all sleeps in the whole bot.
+------------------------------------------------------------------------
+r200 | Gizmore | 2011-06-07 23:48:08 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+New lamb event 042: Unique userid info.
+------------------------------------------------------------------------
+r199 | Gizmore | 2011-06-07 23:42:45 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Lamb now respects throttle settings per server basis.
+------------------------------------------------------------------------
+r198 | Gizmore | 2011-06-07 23:42:19 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Lamb now allows "silence" mode. which makes it inresponsive to any command. (thx weekend)
+------------------------------------------------------------------------
+r197 | Gizmore | 2011-06-07 22:40:04 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+New lamb event 042: Unique userid info.
+------------------------------------------------------------------------
+r196 | spaceone | 2011-06-07 22:10:39 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+SF tpl changes
+------------------------------------------------------------------------
+r195 | Gizmore | 2011-06-07 19:54:22 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Fixed ForumSubscriptionSender. (thx space)
+------------------------------------------------------------------------
+r194 | Gizmore | 2011-06-07 19:46:55 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Hopefully fixed admin/tpl/usergroups.php
+------------------------------------------------------------------------
+r193 | Gizmore | 2011-06-07 19:45:39 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Fixed Admin/method/GroupAdd (thx space)
+------------------------------------------------------------------------
+r192 | Gizmore | 2011-06-07 19:35:16 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Hopefully fixed admin/tpl/usergroups.php
+------------------------------------------------------------------------
+r191 | Gizmore | 2011-06-07 19:29:15 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Fixed Admin/method/GroupEdit. (thx space)
+------------------------------------------------------------------------
+r190 | Gizmore | 2011-06-07 19:24:25 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+Fixed Admin/method/GroupEdit. (thx space)
+------------------------------------------------------------------------
+r189 | Gizmore | 2011-06-07 19:20:59 +0200 (Di, 07. Jun 2011) | 1 Zeile
+
+GWF_Log may logMessage and logWarning
+------------------------------------------------------------------------
+r188 | Gizmore | 2011-06-06 14:30:47 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Big Shadowlamb update.
+------------------------------------------------------------------------
+r187 | Gizmore | 2011-06-06 13:57:34 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r186 | Gizmore | 2011-06-06 13:56:23 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Better Logging
+------------------------------------------------------------------------
+r185 | Gizmore | 2011-06-06 13:54:47 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r184 | Gizmore | 2011-06-06 13:53:48 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+New plugins: flush_timers, logging, nocloak.
+------------------------------------------------------------------------
+r183 | Gizmore | 2011-06-06 13:48:22 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb_Server is now gdo. Lamb_Timer completely changed.
+------------------------------------------------------------------------
+r182 | Gizmore | 2011-06-06 13:36:09 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb_Log is nice now.
+------------------------------------------------------------------------
+r181 | Gizmore | 2011-06-06 13:23:22 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r180 | Gizmore | 2011-06-06 13:03:35 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb now support plugins for events. Experimental and can be disabled for performance reasons.
+------------------------------------------------------------------------
+r179 | Gizmore | 2011-06-06 13:01:56 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r178 | Gizmore | 2011-06-06 12:12:12 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb now knows when it has connected to a server and is logged into IRCD.
+------------------------------------------------------------------------
+r177 | Gizmore | 2011-06-06 12:06:52 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb now detects and saves IRCD version, usermodes and channelmodes.
+------------------------------------------------------------------------
+r176 | Gizmore | 2011-06-06 12:06:12 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+New IRC event: 328 = Channel info
+------------------------------------------------------------------------
+r175 | Gizmore | 2011-06-06 12:05:27 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb config changed. Also commited whole lamb_bin folder.
+------------------------------------------------------------------------
+r174 | Gizmore | 2011-06-06 12:03:03 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb mini installer is functional again, but still needs an option for gwf_config.php location.
+------------------------------------------------------------------------
+r173 | Gizmore | 2011-06-06 11:52:38 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+New abstract location: Elevator
+------------------------------------------------------------------------
+r172 | Gizmore | 2011-06-06 11:52:03 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r171 | Gizmore | 2011-06-06 11:51:35 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r170 | Gizmore | 2011-06-06 11:45:36 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb Timers completely changed!
+------------------------------------------------------------------------
+r169 | Gizmore | 2011-06-06 11:40:51 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Fixed PlayerVars.
+------------------------------------------------------------------------
+r168 | Gizmore | 2011-06-06 11:38:47 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Quests are now all pre-included.
+------------------------------------------------------------------------
+r167 | Gizmore | 2011-06-06 11:14:15 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r166 | Gizmore | 2011-06-06 11:13:42 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+GWF logging cleaned up.
+------------------------------------------------------------------------
+r165 | Gizmore | 2011-06-06 03:51:41 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r164 | Gizmore | 2011-06-06 03:51:26 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb_User and Channel are now case-insensitive.
+------------------------------------------------------------------------
+r163 | Gizmore | 2011-06-06 03:50:26 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+New class Lamb_Timer.
+------------------------------------------------------------------------
+r162 | Gizmore | 2011-06-06 03:39:22 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb_Module API changed. There are now 2 init functions.
+------------------------------------------------------------------------
+r161 | Gizmore | 2011-06-06 03:22:12 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Deleted Lamb_Module_Tell. It is now named "Note"
+------------------------------------------------------------------------
+r160 | Gizmore | 2011-06-06 03:12:45 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Lamb_Log now has more separate files.
+------------------------------------------------------------------------
+r159 | Gizmore | 2011-06-06 03:11:47 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+GWF_Hook now exports the method "callbackToName".
+------------------------------------------------------------------------
+r158 | Gizmore | 2011-06-06 03:11:07 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r157 | Gizmore | 2011-06-06 03:04:23 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup.
+------------------------------------------------------------------------
+r156 | Gizmore | 2011-06-06 00:08:18 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+Code cleanup for Lamb events.
+------------------------------------------------------------------------
+r155 | Gizmore | 2011-06-06 00:07:40 +0200 (Mo, 06. Jun 2011) | 1 Zeile
+
+New lamb irc event: 412 == No message to send
+------------------------------------------------------------------------
+r154 | Gizmore | 2011-06-05 21:50:02 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+GWF_HTTP now supports variable curl timeouts.
+------------------------------------------------------------------------
+r153 | Gizmore | 2011-06-05 21:49:25 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+Code cleanup
+------------------------------------------------------------------------
+r152 | Gizmore | 2011-06-05 21:25:30 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+Added a comment to Database::queryFirst()
+------------------------------------------------------------------------
+r151 | spaceone | 2011-06-05 21:08:01 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+fixed avatar bug
+------------------------------------------------------------------------
+r150 | spaceone | 2011-06-05 20:50:27 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+added some Linux-distros to GWF_SF_SurferInfos
+------------------------------------------------------------------------
+r149 | spaceone | 2011-06-05 20:29:53 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+added FF3,4,5 to GWF_SF_SurferInfos (thx gizmore)
+------------------------------------------------------------------------
+r148 | spaceone | 2011-06-05 18:48:04 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+fixed GWF_SF_Surferinfos-bug; fixed vertical-align-bug (thx gizmore)
+------------------------------------------------------------------------
+r147 | spaceone | 2011-06-05 18:06:12 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+changes in SF-design.css, GWF_Website::addCSSA has now $pre and $after, Login-Module/Form.php has now $token as tVar
+------------------------------------------------------------------------
+r146 | Gizmore | 2011-06-05 16:43:04 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+Added new GWF_Module::loadModuleDB() parameters. (thx space)
+------------------------------------------------------------------------
+r145 | Gizmore | 2011-06-05 16:17:54 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+added some getters to GWF_Form. Not tested yet.
+------------------------------------------------------------------------
+r144 | Gizmore | 2011-06-05 16:09:38 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+Fixed Module::onRequestMethodB
+------------------------------------------------------------------------
+r143 | Gizmore | 2011-06-05 16:07:09 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+New function GWF_File::getContents.
+------------------------------------------------------------------------
+r142 | spaceone | 2011-06-05 15:43:49 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+$smarty - tVars changes in tpl/SF 
+------------------------------------------------------------------------
+r141 | Gizmore | 2011-06-05 13:17:31 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+Fixed missing >
+------------------------------------------------------------------------
+r140 | spaceone | 2011-06-05 11:02:55 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+due to failing rm htacccess robots
+------------------------------------------------------------------------
+r139 | spaceone | 2011-06-05 10:48:50 +0200 (So, 05. Jun 2011) | 1 Zeile
+
+rm testphp htacccess robots
+------------------------------------------------------------------------
+r138 | spaceone | 2011-06-04 22:48:25 +0200 (Sa, 04. Jun 2011) | 1 Zeile
+
+rm
+------------------------------------------------------------------------
+r137 | spaceone | 2011-06-04 22:33:46 +0200 (Sa, 04. Jun 2011) | 1 Zeile
+
+rm block.geshi.php
+------------------------------------------------------------------------
+r136 | spaceone | 2011-06-04 21:53:23 +0200 (Sa, 04. Jun 2011) | 1 Zeile
+
+some tpl/SF changes....
+------------------------------------------------------------------------
+r135 | Gizmore | 2011-06-04 14:45:12 +0200 (Sa, 04. Jun 2011) | 1 Zeile
+
+Renraku fixes
+------------------------------------------------------------------------
+r134 | Gizmore | 2011-06-04 14:40:39 +0200 (Sa, 04. Jun 2011) | 1 Zeile
+
+Incresed GWF core version
+------------------------------------------------------------------------
+r133 | Gizmore | 2011-06-03 19:38:36 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+New Lamb plugin .db to print database stats
+------------------------------------------------------------------------
+r132 | Gizmore | 2011-06-03 19:38:22 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+New Lamb plugin: .notice to send a notice to arbitary targets.
+------------------------------------------------------------------------
+r131 | Gizmore | 2011-06-03 19:35:43 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+the .uptime plugin is now fixed for better performance
+------------------------------------------------------------------------
+r130 | Gizmore | 2011-06-03 19:35:00 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+removed verbose output
+------------------------------------------------------------------------
+r129 | Gizmore | 2011-06-03 19:25:02 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+Quest fixes + some new quests :)
+------------------------------------------------------------------------
+r128 | Gizmore | 2011-06-03 18:16:07 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+Cleaned up slapwarz slaps
+------------------------------------------------------------------------
+r127 | Gizmore | 2011-06-03 17:54:59 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+Magic Spell fixes (thx lookitsKB)
+------------------------------------------------------------------------
+r126 | Gizmore | 2011-06-03 17:54:21 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+New magic spell: teleport2
+------------------------------------------------------------------------
+r125 | Gizmore | 2011-06-03 17:37:07 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+New dungeon: Seattle_Harbor
+------------------------------------------------------------------------
+r124 | Gizmore | 2011-06-03 16:07:00 +0200 (Fr, 03. Jun 2011) | 1 Zeile
+
+GDO is now capable of "group by" clause.
+------------------------------------------------------------------------
+r123 | Gizmore | 2011-06-02 01:19:26 +0200 (Do, 02. Jun 2011) | 1 Zeile
+
+New cute bunny spells
+------------------------------------------------------------------------
+r122 | Gizmore | 2011-06-01 22:56:02 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+MMORPG: Big bugfix for the new overload attack formula
+------------------------------------------------------------------------
+r121 | Gizmore | 2011-06-01 21:48:33 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Shadowlamb #reset is not evil anymore (thx noother)
+------------------------------------------------------------------------
+r120 | spaceone | 2011-06-01 21:15:46 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+[+] PageBuilder show.tpl
+------------------------------------------------------------------------
+r119 | spaceone | 2011-06-01 20:53:30 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+removed old doctype
+------------------------------------------------------------------------
+r118 | Gizmore | 2011-06-01 20:30:08 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+The Arena Magician has nuyen now (thx noother)
+------------------------------------------------------------------------
+r117 | Gizmore | 2011-06-01 20:17:45 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+New abstract Exit location
+------------------------------------------------------------------------
+r116 | Gizmore | 2011-06-01 19:18:56 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+New enemy: Seattle_Headhunter
+------------------------------------------------------------------------
+r115 | Gizmore | 2011-06-01 19:18:37 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+New Item: KevlarHelmet
+------------------------------------------------------------------------
+r114 | Gizmore | 2011-06-01 19:18:18 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+You can now meet Halftroll inside OrkHQ
+------------------------------------------------------------------------
+r113 | Gizmore | 2011-06-01 18:39:42 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Lamb www update
+------------------------------------------------------------------------
+r112 | Gizmore | 2011-06-01 18:36:49 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Lamb www update
+------------------------------------------------------------------------
+r111 | Gizmore | 2011-06-01 18:20:31 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Yo dawg i commented the comment so you have comments in your comment and does not appear as html error
+------------------------------------------------------------------------
+r110 | Gizmore | 2011-06-01 18:01:00 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+More error.php fixes. (Slap space)
+------------------------------------------------------------------------
+r109 | Gizmore | 2011-06-01 17:53:12 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Big Shadowlamb update
+------------------------------------------------------------------------
+r108 | Gizmore | 2011-06-01 17:51:48 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Slapwarz fixes
+------------------------------------------------------------------------
+r107 | Gizmore | 2011-06-01 17:51:16 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Better Lamb debug events
+------------------------------------------------------------------------
+r106 | spaceone | 2011-06-01 17:49:10 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+debug infos
+------------------------------------------------------------------------
+r105 | Gizmore | 2011-06-01 17:47:27 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Fixes for the .help command
+------------------------------------------------------------------------
+r104 | Gizmore | 2011-06-01 17:40:36 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+fix for .seen plugin
+------------------------------------------------------------------------
+r103 | Gizmore | 2011-06-01 17:38:31 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Fixes for Lamb_Note module
+------------------------------------------------------------------------
+r102 | Gizmore | 2011-06-01 15:41:33 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+Commented code in GWF_Method.php
+------------------------------------------------------------------------
+r101 | Gizmore | 2011-06-01 15:40:50 +0200 (Mi, 01. Jun 2011) | 1 Zeile
+
+GDO::saveVar|s() might be faster now, no queryWrite on no-change.
+------------------------------------------------------------------------
+r100 | spaceone | 2011-05-31 15:46:16 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+jeahhh commit#100.... changes in GWF_Template... is it okay giZzZm0r3 ?
+------------------------------------------------------------------------
+r99 | Gizmore | 2011-05-31 09:01:04 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+2 new quests at the Seattle Blacksmith
+------------------------------------------------------------------------
+r98 | Gizmore | 2011-05-31 02:31:43 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+Shadowfunc::getTarget() and getRandomName() 
+------------------------------------------------------------------------
+r97 | spaceone | 2011-05-31 01:21:42 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+added GWF_DebugInfo
+------------------------------------------------------------------------
+r96 | Gizmore | 2011-05-31 01:10:53 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+GDO::saveVar|s() might be faster now, no queryWrite on no-change.
+------------------------------------------------------------------------
+r95 | spaceone | 2011-05-31 01:07:26 +0200 (Di, 31. Mai 2011) | 1 Zeile
+
+GWF_Debug::timings added hdd-space: free, total, used
+------------------------------------------------------------------------
+r94 | Gizmore | 2011-05-30 23:44:00 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+index.php tryouts
+------------------------------------------------------------------------
+r93 | spaceone | 2011-05-30 22:49:45 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+SpaceFramework template files
+------------------------------------------------------------------------
+r92 | Gizmore | 2011-05-30 21:28:39 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+GWF_Form shall support GWF_Form::SUBMIT_IMG(S) in future.
+------------------------------------------------------------------------
+r91 | Gizmore | 2011-05-30 19:11:42 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+Shadowcmd is now splitted in one file per command
+------------------------------------------------------------------------
+r90 | Gizmore | 2011-05-30 17:46:16 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+More estonian translation (thx Ace)
+------------------------------------------------------------------------
+r89 | spaceone | 2011-05-30 16:08:16 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+small but important changes in GWF_Website, install_config and html_head
+------------------------------------------------------------------------
+r88 | Gizmore | 2011-05-30 15:57:14 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+You may generate form without title now
+------------------------------------------------------------------------
+r87 | spaceone | 2011-05-30 15:31:49 +0200 (Mo, 30. Mai 2011) | 1 Zeile
+
+changes in GWF_Website
+------------------------------------------------------------------------
+r86 | spaceone | 2011-05-29 21:32:32 +0200 (So, 29. Mai 2011) | 1 Zeile
+
+added /inc/util/GWF_SF_SurferInfos.php
+------------------------------------------------------------------------
+r85 | Gizmore | 2011-05-27 10:13:03 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+Better Shadowhelp
+------------------------------------------------------------------------
+r84 | Gizmore | 2011-05-27 09:50:12 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+HumanDuration fix
+------------------------------------------------------------------------
+r83 | Gizmore | 2011-05-27 03:22:46 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+GWF_WEB_ROOT detect cleanup and comments
+------------------------------------------------------------------------
+r82 | Gizmore | 2011-05-27 03:16:55 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+GWF_WEB_ROOT detect cleanup
+------------------------------------------------------------------------
+r81 | Gizmore | 2011-05-27 03:04:53 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+some rare functions were broken. GDO API changed!
+------------------------------------------------------------------------
+r80 | Gizmore | 2011-05-27 03:04:25 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+some rare functions were broken. GDO API changed!
+------------------------------------------------------------------------
+r79 | Gizmore | 2011-05-27 03:03:38 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+Selects now support onchange script
+------------------------------------------------------------------------
+r78 | Gizmore | 2011-05-27 02:24:40 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+Elven/Ninja-Sword is now a ninja weapon (thx Q4)
+------------------------------------------------------------------------
+r77 | Gizmore | 2011-05-27 00:18:27 +0200 (Fr, 27. Mai 2011) | 1 Zeile
+
+Fixed a "could not install" bug ... shame on gizmore
+------------------------------------------------------------------------
+r76 | Gizmore | 2011-05-26 23:52:56 +0200 (Do, 26. Mai 2011) | 1 Zeile
+
+PageBuilder has a viewcount now (thx spaceone)
+------------------------------------------------------------------------
+r75 | Gizmore | 2011-05-25 08:42:49 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Big Shadowlamb update
+------------------------------------------------------------------------
+r74 | Gizmore | 2011-05-25 08:18:16 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Less .help traffic
+------------------------------------------------------------------------
+r73 | Gizmore | 2011-05-25 08:16:51 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Changed Lamb_Module::onJoin() API
+------------------------------------------------------------------------
+r72 | Gizmore | 2011-05-25 08:10:05 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Channel topic is now stored in database.
+------------------------------------------------------------------------
+r71 | Gizmore | 2011-05-25 06:31:20 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Experimental JOIN (commented code)
+------------------------------------------------------------------------
+r70 | Gizmore | 2011-05-25 06:30:35 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Lamb event 501: Unknown MODE flag
+------------------------------------------------------------------------
+r69 | Gizmore | 2011-05-25 05:15:08 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+More slapitems
+------------------------------------------------------------------------
+r68 | Gizmore | 2011-05-25 05:11:50 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+New: Channel Peak, JoinQuit records, Better Greetings
+------------------------------------------------------------------------
+r67 | Gizmore | 2011-05-25 05:11:15 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+dunno
+------------------------------------------------------------------------
+r66 | Gizmore | 2011-05-25 05:10:50 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+removed verbose output
+------------------------------------------------------------------------
+r65 | Gizmore | 2011-05-25 03:33:29 +0200 (Mi, 25. Mai 2011) | 1 Zeile
+
+Lamb 333 event
+------------------------------------------------------------------------
+r64 | Gizmore | 2011-05-22 21:45:36 +0200 (So, 22. Mai 2011) | 1 Zeile
+
+Typo fixed?
+------------------------------------------------------------------------
+r63 | Gizmore | 2011-05-22 21:44:42 +0200 (So, 22. Mai 2011) | 1 Zeile
+
+Fixed time and date support for milliseconds.
+------------------------------------------------------------------------
+r62 | Gizmore | 2011-05-22 21:42:54 +0200 (So, 22. Mai 2011) | 1 Zeile
+
+Added a few comments to GDO flags.
+------------------------------------------------------------------------
+r61 | spaceone | 2011-05-22 02:27:59 +0200 (So, 22. Mai 2011) | 1 Zeile
+
+geshi smarty plugin
+------------------------------------------------------------------------
+r60 | Gizmore | 2011-05-20 18:14:07 +0200 (Fr, 20. Mai 2011) | 1 Zeile
+
+Fix for serbian wechall language file. (thx Bejker)
+------------------------------------------------------------------------
+r59 | Gizmore | 2011-05-18 23:02:38 +0200 (Mi, 18. Mai 2011) | 1 Zeile
+
+Fixed Lamb .seen plugin
+------------------------------------------------------------------------
+r58 | Gizmore | 2011-05-16 23:54:43 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Added stubs for DB_Postgres (thx livinskull)
+------------------------------------------------------------------------
+r57 | Gizmore | 2011-05-16 23:22:06 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Quicksearch fix
+------------------------------------------------------------------------
+r56 | Gizmore | 2011-05-16 23:21:36 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Slight Lamb core fix, should not trigger on ./join anymore
+------------------------------------------------------------------------
+r55 | Gizmore | 2011-05-16 23:19:31 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Shadowlamb 3.02 big commit!
+------------------------------------------------------------------------
+r54 | Gizmore | 2011-05-16 23:18:07 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Lamb News support utf8 properly now
+------------------------------------------------------------------------
+r53 | Gizmore | 2011-05-16 23:17:48 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Fixed crash in Lamb .quote and .link (thx Geo)
+------------------------------------------------------------------------
+r52 | Gizmore | 2011-05-16 23:17:00 +0200 (Mo, 16. Mai 2011) | 1 Zeile
+
+Lamb will not greet itself anymore
+------------------------------------------------------------------------
+r51 | freeartman | 2011-05-15 01:34:27 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r50 | freeartman | 2011-05-15 01:33:31 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r49 | freeartman | 2011-05-15 01:30:21 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r48 | freeartman | 2011-05-15 01:27:28 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r47 | freeartman | 2011-05-15 01:25:17 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r46 | freeartman | 2011-05-15 01:22:40 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r45 | freeartman | 2011-05-15 01:21:14 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r44 | freeartman | 2011-05-15 01:18:33 +0200 (So, 15. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r43 | spaceone | 2011-05-14 19:44:30 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+added html-meta functions
+------------------------------------------------------------------------
+r42 | Gizmore | 2011-05-14 18:00:14 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+fixed a crash in smarty plugin for pagebuilder
+------------------------------------------------------------------------
+r41 | Gizmore | 2011-05-14 12:11:37 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+Fix for Admin/method/UserGroups
+------------------------------------------------------------------------
+r40 | Gizmore | 2011-05-14 11:57:25 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+validateClassname has moved to GWF_Validator
+------------------------------------------------------------------------
+r39 | Gizmore | 2011-05-14 11:44:10 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+pm was detected as language. The code in _gwf_include.php could need cleanup.
+------------------------------------------------------------------------
+r38 | spaceone | 2011-05-14 11:33:31 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+DIE BUG FIXED
+------------------------------------------------------------------------
+r37 | spaceone | 2011-05-14 01:03:13 +0200 (Sa, 14. Mai 2011) | 1 Zeile
+
+added some things to menu_top.tpl
+------------------------------------------------------------------------
+r36 | Gizmore | 2011-05-13 22:35:06 +0200 (Fr, 13. Mai 2011) | 1 Zeile
+
+PageBuilder still not 100% functional
+------------------------------------------------------------------------
+r35 | spaceone | 2011-05-13 18:33:34 +0200 (Fr, 13. Mai 2011) | 1 Zeile
+
+decide if [0] will be returnedin module_Forum_unread()
+------------------------------------------------------------------------
+r34 | spaceone | 2011-05-13 18:18:57 +0200 (Fr, 13. Mai 2011) | 1 Zeile
+
+you can format getModulesLoaded() yourself...
+------------------------------------------------------------------------
+r33 | spaceone | 2011-05-13 17:50:05 +0200 (Fr, 13. Mai 2011) | 1 Zeile
+
+you can format getModulesLoaded() yourself...
+------------------------------------------------------------------------
+r32 | Gizmore | 2011-05-13 06:23:28 +0200 (Fr, 13. Mai 2011) | 1 Zeile
+
+Huge Shadowlamb 4.1 update
+------------------------------------------------------------------------
+r31 | spaceone | 2011-05-12 18:15:52 +0200 (Do, 12. Mai 2011) | 1 Zeile
+
+html support for displayCSS()
+------------------------------------------------------------------------
+r30 | Gizmore | 2011-05-11 04:10:36 +0200 (Mi, 11. Mai 2011) | 1 Zeile
+
+Fairy does not suck that much anymore
+------------------------------------------------------------------------
+r29 | Gizmore | 2011-05-10 14:03:40 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+2 new Shadowlamb items: QuicknessElixir,QuicknessPotion
+------------------------------------------------------------------------
+r28 | Gizmore | 2011-05-10 13:15:25 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+Fixed a security issue in Lamb's .passwd command. Staff may not change Admin passwords anymore.
+------------------------------------------------------------------------
+r27 | Gizmore | 2011-05-10 13:14:48 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+Fixed Lambs .beer command
+------------------------------------------------------------------------
+r26 | Gizmore | 2011-05-10 11:09:37 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+New Item Broad Sword
+------------------------------------------------------------------------
+r25 | Gizmore | 2011-05-10 09:19:42 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+lang in url fix
+------------------------------------------------------------------------
+r24 | Gizmore | 2011-05-10 09:19:16 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+Serbian translation of wechall/_wc. (thx Bejker)
+------------------------------------------------------------------------
+r23 | Gizmore | 2011-05-10 09:18:44 +0200 (Di, 10. Mai 2011) | 1 Zeile
+
+Serbian translation of lang/base. (thx Bejker)
+------------------------------------------------------------------------
+r22 | Gizmore | 2011-05-08 23:16:11 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+gwf default menu had broken chat link
+------------------------------------------------------------------------
+r21 | Gizmore | 2011-05-08 14:21:03 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+Added Shadowlamb command #motd
+------------------------------------------------------------------------
+r20 | Gizmore | 2011-05-08 07:59:56 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+Lamb has now case-insensitve getUser stuff. Also it now sets the +bot flag for itself (thx Edge)
+------------------------------------------------------------------------
+r19 | Gizmore | 2011-05-08 07:58:55 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+The Lamb !seen command is now case-insensitive
+------------------------------------------------------------------------
+r18 | Gizmore | 2011-05-08 07:58:16 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+2 new lamb plugins: strlen and strlen8.
+------------------------------------------------------------------------
+r17 | Gizmore | 2011-05-08 07:57:40 +0200 (So, 08. Mai 2011) | 1 Zeile
+
+Added tiny help to LambModule_IRCLink
+------------------------------------------------------------------------
+r16 | Gizmore | 2011-05-06 15:43:24 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+PageBuilder next step. +Uploads +More Flags
+------------------------------------------------------------------------
+r15 | Gizmore | 2011-05-06 15:42:53 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+PageBuilder pages can now show author,modified_date and translations.
+------------------------------------------------------------------------
+r14 | Gizmore | 2011-05-06 14:23:40 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+World domination
+------------------------------------------------------------------------
+r13 | Gizmore | 2011-05-06 14:22:59 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+Added note for lamb3 config
+------------------------------------------------------------------------
+r12 | Gizmore | 2011-05-06 14:14:28 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+SR_Player::getPartyID() returns an integer now
+------------------------------------------------------------------------
+r11 | Gizmore | 2011-05-06 14:13:39 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+fixed an sql error in .quests command (thx Geo)
+------------------------------------------------------------------------
+r10 | Gizmore | 2011-05-06 14:13:10 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+Fixed a typo in Shadowhelp
+------------------------------------------------------------------------
+r9 | Gizmore | 2011-05-06 09:51:34 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+A loaded module from filesystem now respects the enabled bit from database.
+------------------------------------------------------------------------
+r8 | Gizmore | 2011-05-06 09:51:04 +0200 (Fr, 06. Mai 2011) | 1 Zeile
+
+GroupSelect::multi did not work with $own_groups_only argument
+------------------------------------------------------------------------
+r7 | Gizmore | 2011-05-05 00:45:27 +0200 (Do, 05. Mai 2011) | 1 Zeile
+
+Changed core version to MAY, 4th :) Installable!
+------------------------------------------------------------------------
+r6 | Gizmore | 2011-05-05 00:33:57 +0200 (Do, 05. Mai 2011) | 1 Zeile
+
+.file fix
+------------------------------------------------------------------------
+r5 | Gizmore | 2011-05-05 00:14:32 +0200 (Do, 05. Mai 2011) | 1 Zeile
+
+Module_Language should now install fine. Its purpose is to create lang bundles.
+------------------------------------------------------------------------
+r4 | Gizmore | 2011-05-05 00:13:27 +0200 (Do, 05. Mai 2011) | 1 Zeile
+
+Fixed a crash
+------------------------------------------------------------------------
+r3 | Gizmore | 2011-05-04 22:52:12 +0200 (Mi, 04. Mai 2011) | 1 Zeile
+
+Verbose error on quick install.php
+------------------------------------------------------------------------
+r2 | Gizmore | 2011-05-04 22:49:42 +0200 (Mi, 04. Mai 2011) | 1 Zeile
+
+
+------------------------------------------------------------------------
+r1 | root | 2011-05-04 21:33:00 +0200 (Mi, 04. Mai 2011) | 1 Zeile
+
+Intial import
+------------------------------------------------------------------------
