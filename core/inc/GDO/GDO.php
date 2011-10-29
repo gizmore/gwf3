@@ -45,60 +45,58 @@ function gdo_db_instance($host, $user, $pass, $database, $type='mysql', $charset
 # --- GDO --- #
 
 /**
- * A database table or row.
+ * A GDO object is both, a table and a row. Values are treated as string by default.
  * @author gizmore
  */
 abstract class GDO
 {
-	#32 bit power :)
-	# Sizes
+	###################
+	### 32 GDO Bits ###
+	###################
 	const TINY     = 0x00100000;
 	const MEDIUM   = 0x00200000;
 	const BIG      = 0x00400000;
-//	const FREE_1   = 0x00800000;
+//	const FREE_1   = 0x00800000; # Free1
 
-	# Types
 	const INT      = 0x01000000;  # No 3rd parameter.
-	const DECIMAL  = 0x02000000;  # The 3rd paramater is array(DIGITS_BEFORE, DIGITS_AFTER) the comma.
+	const DECIMAL  = 0x02000000;  # 3rd parameter is array(DIGITS_BEFORE, DIGITS_AFTER) the comma.
 	const TEXT     = 0x04000000;  # No 3rd parameter.
-	const CHAR     = 0x08000000;  # The 3rd parameter is the length of the char field.
+	const CHAR     = 0x08000000;  # 3rd parameter is number of chars.
 
-	const VARCHAR  = 0x10000000;  # The 3rd parameter is the length of the varchar field.
+	const VARCHAR  = 0x10000000;  # 3rd parameter is number of chars.
 	const BLOB     = 0x20000000;  # No 3rd parameter.
-	const ENUM     = 0x40000000;  # The 3rd parameter is an array of allowed options.
+	const ENUM     = 0x40000000;  # 3rd parameter is an array of options.
 //	const MSB_BROKEN = 0x80000000;# This bit does not work on 32 bit systems. 
-	
+
 	const MESSAGE  = 0x04041001;
-//	const RES_02   = 0x00000002;
-//	const RES_04   = 0x00000004;
-//	const RES_08   = 0x00000008;
+//	const RES_02   = 0x00000002;  # Reserved
+//	const RES_04   = 0x00000004;  # Reserved
+//	const RES_08   = 0x00000008;  # Reserved
+
 	
-	# Charsets
 	const BINARY   = 0x00010000;
 	const ASCII    = 0x00020000;
 	const UTF8     = 0x00040000;
-//	const FREE_2   = 0x00080000;
-	
+//	const FREE_2   = 0x00080000; # Free2
+
 	const CASE_I         = 0x00001000;
 	const CASE_S         = 0x00002000;
 	const UNSIGNED       = 0x00004000;
-	const AUTO_INCREMENT = 0x0100C400; #8
+	const AUTO_INCREMENT = 0x0100C400;
 	
-	# Flags
 	const INDEX       = 0x00000100;
 	const UNIQUE      = 0x00000200;
 	const PRIMARY_KEY = 0x00000400;
-//	const RES_0800    = 0x00000800;
-	
-	# Internal
+//	const RES_0800    = 0x00000800; # Free3
+
 	const JOIN      = 0x00000010;
 	const OBJECT    = 0x01004020;
 	const GDO_ARRAY = 0x00000040;
-//	const RES_80    = 0x00000080;
-	# End 32 bits
-	
-	
-	# Combined
+//	const RES_80    = 0x00000080; # Reserved
+
+	#####################
+	### Combined Bits ###
+	#####################
 	const TIME = 0x01004000;
 	const UINT = 0x01004000;
 	const DATE = 0x08022000;
@@ -108,14 +106,18 @@ abstract class GDO
 	const BIGINT = 0x01400000;
 	const URL = 0x04042000;
 	
-	# Default
-	const NULL = true;
+	#########################
+	### GDO default value ###
+	#########################
+	const NULL = true; 
 	const NOT_NULL = false;
-	
-	# Result Types
-	const ARRAY_N = 1;
-	const ARRAY_A = 2;
-	const ARRAY_O = 3;
+
+	####################
+	### Result Types ###
+	####################
+	const ARRAY_N = 1; # numeric 
+	const ARRAY_A = 2; # associative
+	const ARRAY_O = 3; # object
 	
 	# Lengths
 	const URL_LENGTH = 255;

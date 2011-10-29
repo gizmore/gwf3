@@ -1,5 +1,8 @@
 <?php
 /**
+ * Bootstrap PHP ini modes.
+ * Remove magic quotes.
+ * Unregister globals.
  * @author Gizmore
  * Usage: Just include this file :)
  */
@@ -40,16 +43,16 @@ final class GWF_Bootstrap
 	 * Unregister globals.
 	 * @return void
 	 */
-	public static function unregisterGlobals()
-	{
-		if (ini_get('register_globals') == 1)
-		{
-			if (is_array($_REQUEST)) foreach(array_keys($_REQUEST) as $v) unset($$v);
-			if (is_array($_SESSION)) foreach(array_keys($_SESSION) as $v) unset($$v);
-			if (is_array($_SERVER)) foreach(array_keys($_SERVER) as $v) unset($$v);
-			unset($v);
-		}
-	}
+//	public static function unregisterGlobals()
+//	{
+//		if (ini_get('register_globals') == 1)
+//		{
+//			if (is_array($_REQUEST)) foreach(array_keys($_REQUEST) as $v) unset($$v);
+//			if (is_array($_SESSION)) foreach(array_keys($_SESSION) as $v) unset($$v);
+//			if (is_array($_SERVER)) foreach(array_keys($_SERVER) as $v) unset($$v);
+//			unset($v);
+//		}
+//	}
 	
 	/**
 	 * @author gizmore
@@ -78,7 +81,7 @@ GWF_Bootstrap::unmagicquote(); # anti magic quotes
 //GWF_Bootstrap::unregisterGlobals(); # anti globals
 
 
-# PHP5.1
+# PHPv5.1 compatibility.
 if (!function_exists('inet_pton'))
 {
 	function inet_pton($ip)

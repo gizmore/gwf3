@@ -11,14 +11,17 @@ final class GWF_Website
 	############
 	public static function init()
 	{
-		if(isset($_GET['plain'])) {
+		if(isset($_GET['plain']))
+		{
 			self::plaintext();
-		} else {
+		}
+		else
+		{
 			header('Content-Type: text/html; charset=UTF-8');
 		}
-		
 		GWF_Language::init();
 		GWF_HTML::init();
+
 		self::$xhtml = (self::isHTML() ? '>' : ' />') . "\n\t";
 	}
 	
@@ -122,12 +125,15 @@ final class GWF_Website
 			self::$CSS[] = array($path, $rel, $media);
 		}
 	}
+	
 	public static function addCSSA(array $paths, $pre = '', $after = '')
 	{
-		foreach($paths as $path) {
+		foreach($paths as $path)
+		{
 			self::addCSS($pre.$path.$after);
 		}
 	}
+	
 	public static function displayCSS()
 	{
 		$back = '';
@@ -176,11 +182,6 @@ final class GWF_Website
 	{
 		return self::$javascript_onload ? sprintf('; $(document).ready(function(){ %s; });', self::$javascript_onload) : '';
 	}
-	
-//	public static function includeJQuery()
-//	{
-//		self::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
-//	}
 	
 	#################
 	### Redirects ###
@@ -242,16 +243,16 @@ final class GWF_Website
 	
 	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL)
 	{
-		return GWF_Template::templateRaw($path.'html_body.tpl', $tVars);
+		return GWF_Template::templateMain('html_body.tpl', $tVars);
 	}
 	
 	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/', $tVars = array())
 	{
-		if(!defined('GWF_INSTALLATION')) {
+		if(!defined('GWF_INSTALLATION'))
+		{
 			$tVars['timings'] = GWF_DebugInfo::getTimings();
 		}
-
-		return GWF_Template::templateRaw($path.'html_foot.tpl', $tVars);
+		return GWF_Template::templateMain('html_foot.tpl', $tVars);
 	}
 	
 	public static function getPagehead($path = 'tpl/%DESIGN%/')

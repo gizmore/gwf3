@@ -31,7 +31,7 @@ final class GWF_Log
 		self::$log_requests = $log_requests;
 		self::$basedir = $basedir;
 		
-		if ($log_requests)
+		if ( ($log_requests) && (isset($_SERVER['REMOTE_ADDR'])) )
 		{
 			self::logRequest();
 		}
@@ -45,7 +45,7 @@ final class GWF_Log
 	 */
 	private static function getRequest()
 	{
-		$back = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'CRON';
+		$back = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
 		$back .= isset($_SERVER['REQUEST_URI']) ? ' '.$_SERVER['REQUEST_URI'] : '';
 		
 		if (count($_POST) > 0)
@@ -82,7 +82,7 @@ final class GWF_Log
 	########################
 	### Default logfiles ###
 	########################
-	public static function logCron($message) { echo $message.PHP_EOL; return self::log('cron', $message, true); }
+	public static function logCron($message) { return self::log('cron', $message, true); }
 	public static function logError($message) { return self::log('error', $message) && self::log('error_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
 	public static function logMessage($message) { return self::log('message', $message); }
 	public static function logWarning($message) { return self::log('warning', $message); }
