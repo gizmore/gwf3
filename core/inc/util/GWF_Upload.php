@@ -32,10 +32,10 @@ final class GWF_Upload
 		$mu = ini_get('upload_max_size');
 		$mp = ini_get('post_max_size');
 		
-		if ($mu === '') {
+		if ($mu == false) {
 			$mu = 1000000000; # 1GB
 		}
-		if ($mp === '') {
+		if ($mp == false) {
 			$mp = 1000000000;
 		}
 		
@@ -43,7 +43,6 @@ final class GWF_Upload
 		$mp = self::iniToBytes($mp);
 		
 		return min(array($mu, $mp));
-//		return Common::min($mu, $mp);
 	}
 	
 	/**
@@ -335,7 +334,7 @@ final class GWF_Upload
 	
 	public static function humanFilesize($bytes, $factor='1024', $digits='2')
 	{
-//		var_dump($factor);
+//		var_dump($bytes, $factor, $digits);
 		$txt = GWF_HTML::lang('filesize');
 		$i = 0;
 		$rem = '0';
@@ -346,7 +345,7 @@ final class GWF_Upload
 			$i++;
 		}
 		return $i === 0
-			? sprintf("%d%s", $bytes, $txt[$i])
+			? sprintf("%s%s", $bytes, $txt[$i])
 			: sprintf("%.0{$digits}f%s", ($bytes+$rem/$factor), $txt[$i]);
 	}
 	

@@ -50,7 +50,7 @@ final class Download_Add extends GWF_Method
 		$data['filename'] = array(GWF_Form::STRING, $name, $module->lang('th_dl_filename'));
 		
 		if ($file === false) {
-			$data['file'] = array(GWF_Form::FILE, '', $module->lang('th_file'));
+			$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
 			if (GWF_User::isLoggedIn()) {
 				$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
 			}

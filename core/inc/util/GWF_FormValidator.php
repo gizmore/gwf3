@@ -5,7 +5,7 @@ final class GWF_FormValidator
 		GWF_Form::SUBMIT,
 		GWF_Form::SUBMIT_IMG,
 //		GWF_Form::SUBMITS,
-//		GWF_Form::SUBMIT_IMBS,
+//		GWF_Form::SUBMIT_IMGS,
 		GWF_Form::CHECKBOX,
 		GWF_Form::SSTRING,
 		GWF_Form::STRING_NO_CHECK,
@@ -80,6 +80,8 @@ final class GWF_FormValidator
 		$check_sent = $form->getMethod() === GWF_Form::METHOD_POST ? $_POST : $_GET;
 		$check_need = array();
 		
+//		var_dump($_POST);
+		
 		foreach ($form->getFormData() as $key => $data)
 		{
 			if (in_array($data[0], self::$SKIPPERS, true))
@@ -132,7 +134,7 @@ final class GWF_FormValidator
 				case GWF_Form::FILE:
 					if (false === GWF_Upload::getFile($key))
 					{
-						$check_need[$key] = '';#$key;
+						$check_need[] = $key;
 					}
 					break;
 					
@@ -153,6 +155,8 @@ final class GWF_FormValidator
 					break;
 			}
 		}
+		
+//		var_dump($check_need);
 		
 		foreach ($check_need as $key)
 		{

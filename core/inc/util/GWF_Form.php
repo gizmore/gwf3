@@ -258,15 +258,19 @@ class GWF_Form
 				case self::CAPTCHA:
 					$this->form_data[$key][1] = $this->getCaptchaData();
 					break;
+
 				case self::DATE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, false, false);
 					break;
+					
 				case self::DATE_FUTURE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, true, false);
 					break;
+					
 				case self::TIME:
 					$this->form_data[$key][1] = GWF_TimeSelect::select($key.'h', $key.'i', $data[1]);
 					break;
+					
 				case self::SELECT:
 				case self::SELECT_A:
 				case self::SUBMIT:
@@ -275,14 +279,18 @@ class GWF_Form
 				case self::SUBMIT_IMGS:
 				case self::HEADLINE:
 				case self::DIVIDER:
-				case self::CHECKBOX:
 				case self::VALIDATOR:
 					break;
+					
 				case self::HIDDEN:
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
+					
+				case self::CHECKBOX:
+					if (isset($_REQUEST[$key])) { $this->form_data[$key][1] = true; }
+					break;
+					
 				default:
-//					if (isset($_POST[$key])) { $this->form_data[$key][1] = $_POST[$key]; }
 					if (isset($_REQUEST[$key])) { $this->form_data[$key][1] = $_REQUEST[$key]; }
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
