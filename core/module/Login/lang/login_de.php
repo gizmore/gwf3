@@ -54,6 +54,18 @@ $lang = array(
 	'btn_clear' => 'Löschen',
 	'msg_cleared' => 'Ihre alten Logins wurden gelöscht.',
 	'info_cleared' => 'Ihre Login Aufzeichnung wurde zuletzt am %1$s gelöscht, von dieser IP: %2$s / %3$s',
+
+	# v2.02 (email alerts)
+	'alert_subj' => GWF_SITENAME.': Login failures',
+	'alert_body' =>
+		'Dear %s,'.PHP_EOL.
+		PHP_EOL.
+		'There was a failed login attempt from this IP: %s.'.PHP_EOL.
+		PHP_EOL.
+		'We just let you know.'.PHP_EOL.
+		PHP_EOL.
+		'Sincerly'.
+		'The '.GWF_SITENAME.' script',
 );
 
 ?>

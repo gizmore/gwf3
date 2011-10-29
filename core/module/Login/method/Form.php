@@ -120,6 +120,13 @@ final class Login_Form extends GWF_Method
 		$time = $module->cfgTryExceed();
 		$maxtries = $module->cfgMaxTries();
 		list($tries, $mintime) = GWF_LoginFailure::getFailedData($user, $time);
+		
+		// Send alert mail?
+		if ( ($tries === 1) && ($module->cfgAlerts()) )
+		{
+			$this->onSendAlertMail($module, $user);
+		}
+		
 		return $module->error('err_login2', array($maxtries-$tries, GWF_Time::humanDuration($time)));
 	}
 	
@@ -174,6 +181,22 @@ final class Login_Form extends GWF_Method
 			
 			GWF_Website::redirect(GWF_WEB_ROOT.'welcome');
 		}
+	}
+	
+	private function onSendAlertMail(Module_Login $module, GWF_User $user)
+	{
+		if ('' === ($to = $user->getValidMail()))
+		{
+			return;
+		}
+		
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver($to);
+		$mail->setSubject($module->langUser($user, 'alert_subj'));
+		$mail->setBody($module->langUser($user, 'alert_body', array($user->displayUsername(), $_SERVER['REMOTE_ADDR'])));
+		
+		return $mail->sendToUser($user);
 	}
 	
 	#################

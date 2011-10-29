@@ -43,10 +43,23 @@ $lang = array(
 
 	'th_loghis_ip' => 'IP ',
 	'th_hostname' => 'Nombre Host',
+	
 	# v2.01 (clear hist)
 	'ft_clear' => 'Limpiar historial de acceso',
 	'btn_clear' => 'Limpiar',
 	'msg_cleared' => 'Tu historial de acceso ha sido limpiado.',
 	'info_cleared' => 'Tu historial de acceso se borró por última vez el %1$s desde esta IP: %2$s / %3$s',
+
+	# v2.02 (email alerts)
+	'alert_subj' => GWF_SITENAME.': Login failures',
+	'alert_body' =>
+		'Dear %s,'.PHP_EOL.
+		PHP_EOL.
+		'There was a failed login attempt from this IP: %s.'.PHP_EOL.
+		PHP_EOL.
+		'We just let you know.'.PHP_EOL.
+		PHP_EOL.
+		'Sincerly'.
+		'The '.GWF_SITENAME.' script',
 );
 ?>

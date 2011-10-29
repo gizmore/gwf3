@@ -51,5 +51,17 @@ $lang = array(
 	'btn_clear' => 'Очистить',
 	'msg_cleared' => 'Ваша история сеансов была очищена.',
 	'info_cleared' => 'Ваша история сеансов последний раз была очищена %1$s с IP: %2$s / %3$s',
+
+	# v2.02 (email alerts)
+	'alert_subj' => GWF_SITENAME.': Login failures',
+	'alert_body' =>
+		'Dear %s,'.PHP_EOL.
+		PHP_EOL.
+		'There was a failed login attempt from this IP: %s.'.PHP_EOL.
+		PHP_EOL.
+		'We just let you know.'.PHP_EOL.
+		PHP_EOL.
+		'Sincerly'.
+		'The '.GWF_SITENAME.' script',
 );
 ?>
