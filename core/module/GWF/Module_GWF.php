@@ -7,7 +7,8 @@
  */
 final class Module_GWF extends GWF_Module
 {
-	public function getVersion() { return 3.01; }
+	public function getVersion() { return 3.03; }
+	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_Install.php'; return GWF_Install::onInstall($this, $dropTable); }
 	
 //	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
 
@@ -25,26 +26,8 @@ final class Module_GWF extends GWF_Module
 	public function cfgScanHTMLTitles() { return $this->getModuleVar('ScanHTMLTitles','1') === '1'; }
 	public function cfgSuppressDescription() { return $this->getModuleVar('SuppressDescription', '1') === '1'; }
 	public function cfgSuppressRules() { return $this->getModuleVar('SuppressRules', '1') === '1'; }
-
-	public function onInstall($dropTable)
-	{
-		return GWF_ModuleLoader::installVars($this, array(
-//			'Design' => array(GWF_Template::getDesign(), 'text'),
-			# Fancy Config
-			'FancyIndex' => array('YES', 'bool'),
-			'NameWidth' => array('25', 'int'),
-			'DescrWidth' => array('80', 'int'),
-			'IconWidth' => array('16', 'int'),
-			'IconHeight' => array('16', 'int'),
-			'HTMLTable' => array('NO', 'bool'),
-			'IgnoreClient' => array('NO', 'bool'),
-			'FoldersFirst' => array('YES', 'bool'),
-			'IgnoreCase' => array('YES', 'bool'),
-			'SuppressHTMLPreamble' => array('YES', 'bool'),
-			'ScanHTMLTitles' => array('YES', 'bool'),
-			'SuppressDescription' => array('YES', 'bool'),
-			'SuppressRules' => array('YES', 'bool'),
-		));
-	}	
+	public function cfgLog404() { return $this->getModuleVar('log_404') === '1'; }
+	public function cfgMail404() { return $this->getModuleVar('mail_404') === '1'; }
+	
 }
 ?>

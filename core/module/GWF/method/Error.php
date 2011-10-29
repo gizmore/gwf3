@@ -32,12 +32,30 @@ final class GWF_Error extends GWF_Method
 		else
 		{
 			header($_SERVER['SERVER_PROTOCOL']." 404 Not Found"); 
-			self::gwf_error_404_mail();
 		}
+		
+		
+		// Real 404 page?
+		if ($realcode === 404)
+		{
+			// Mail it?
+			if ($module->cfgMail404())
+			{
+				self::gwf_error_404_mail();
+			}
+			
+			// Log it?
+			if ($module->cfgLog404())
+			{
+				GWF_Log::log('404', self::get404Message(), true);
+			}
+		}
+		
+		$err_msg =  GWF_HTML::lang('ERR_FILE_NOT_FOUND', array(htmlspecialchars($_SERVER['REQUEST_URI'])));
 		
 		$tVars = array(
 			'code' => $realcode,
-			'file' => GWF_HTML::err(GWF_HTML::lang('ERR_FILE_NOT_FOUND', array(htmlspecialchars($_SERVER['REQUEST_URI'])))),
+			'file' => GWF_HTML::error(GWF_SITENAME, $err_msg, false),
 		);
 		
 		return $module->template('error.tpl', $tVars);
@@ -57,8 +75,13 @@ final class GWF_Error extends GWF_Method
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject(GWF_SITENAME.': 404 Error');
-		$mail->setBody(sprintf('The page %s threw a 404 error.', htmlspecialchars($_SERVER['REQUEST_URI'])));
+		$mail->setBody(self::get404Message());
 		$mail->sendAsText();
+	}
+	
+	private static function get404Message()
+	{
+		return sprintf('The page %s threw a 404 error.', htmlspecialchars($_SERVER['REQUEST_URI']));
 	}
 }
 ?>
