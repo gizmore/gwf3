@@ -30,7 +30,7 @@ foreach ($tVars['news'] as $news)
 	<div class="gwf_newsbox_title">
 		<div class="fr">
 			<div class="gwf_newsbox_date gwf_date"><?php echo GWF_Time::displayDate($news['news_date']); ?></div>
-			<div class="gwf_newsbox_author"><?php echo GWF_HTML::display($news['user_name']); ?></div>
+			<div class="gwf_newsbox_author"><?php echo GWF_HTML::anchor(GWF_WEB_ROOT.'profile/'.$news['user_name'], $news['user_name']); ?></div>
 		</div>
 		<h3><?php echo GWF_HTML::display($news['newst_title']); ?></h3>
 		<div class="cb"></div>

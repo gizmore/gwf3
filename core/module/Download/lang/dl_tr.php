@@ -17,8 +17,8 @@ $lang = array (
 	'err_file' => 'Bir dosya yüklemek gerekiyor.',
 	'err_filename' => 'Kişisel belirtilen dosya geçersiz. Max uzunluk %1$s dir. temel ascii karakter kullanmaya çalışın.',
 	'err_level' => 'kullanıcı seviyesi> = 0 olmalıdır.',
-	'err_descr' => 'açıklamasına 0 olmak zorundadır -%% 1 karakter uzunluğunda olmalıdır.',
-	'err_price' => 'fiyat% arasında% 1 ve% 2% olmalıdır.',
+	'err_descr' => 'açıklamasına olmak zorundadır %s-%s karakter uzunluğunda olmalıdır.',
+	'err_price' => 'fiyat arasında ve %s - %s olmalıdır.',
 	'err_dlid' => 'download bulunamadı.',
 	'err_token' => 'download token geçersiz senin.',
 	
@@ -86,8 +86,8 @@ $lang = array (
 	'ft_reup' => 'Yeniden yükle Dosya ',
 	'order_descr2' => 'im %1$s download için satın aldı. Simgesi: %2$s.',
 	'msg_purchased2' => 'Ödemeniz alındı ve bir indirme token eklenmiştir. Your token <br/>%1$s<br/><b>Yaz token aşağı hiçbir hesabınız varsa '.GWF_SITENAME.'!</b><br/>deki Else sadece <a href="%2$s">bu linki</a>izleyin.',
-	'err_group' => 'Siz% 1% olması gerekiyor grubunun bu dosyayı indirmek için.',
-	'err_level' => 'Siz% 1 bu dosyayı indirmek için% of userlevel ihtiyacım var.',
+	'err_group' => 'Siz olması gerekiyor grubunun bu dosyayı indirmek için.',
+	'err_level' => 'Siz bu dosyayı indirmek için %s of userlevel ihtiyacım var.',
 	'err_guest' => 'Misafirler bu dosyayı indirmek için izniniz yok.',
 	'err_adult' => 'Bu yetişkin içerik.',
 
@@ -121,7 +121,7 @@ $lang = array (
 		'%9$s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
-		'%10%'.PHP_EOL.
+		'%10$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.

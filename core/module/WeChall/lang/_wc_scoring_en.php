@@ -16,7 +16,7 @@ $lang = array(
 		'Example:<br/>'.
 		'Electrica\'s base score is 10000 (default value, adjustable by admins).<br/>'.
 		'Because it has 44 challenges a score of 25 * 44 = 1100 is added to that to get to 11100.'.
-		'On average our users have completed 42% on that site.<br/>'.
+		'On average our users have completed 42%% on that site.<br/>'.
 		'The score for that site then becomes base+base-avg*base, or<br/>'.
 		'11100 + 11100 - 4662 = 17538 points.<br/>'.
 		'So the harder a site is the more points it generates.<br/>'.
@@ -25,9 +25,9 @@ $lang = array(
 		'<br/>'.
 		'Example:<br/>'.
 		'Imagine Peter has got 30000 points on HackQuest, from a maximum of 100000 points.<br/>'.
-		'This means Peter has solved 30% on Hackquest.<br/>'.
+		'This means Peter has solved 30%% on Hackquest.<br/>'.
 		'This percentage is adjusted with a formula (p*p/100) that makes higher percentages relatively worth more than lower percentages.<br/>'.
-		'So on WeChall he gets 9% (30*30/100) of the HackQuest sitescore for that.<br/>'.
+		'So on WeChall he gets 9%% (30*30/100) of the HackQuest sitescore for that.<br/>'.
 		'HackQuest currently has a score of 19698, so Peter gets 1773 rankpoints.<br/>'.
 		'<br/>'.
 		'The admins can manually adjust the base score for sites.<br/>'.

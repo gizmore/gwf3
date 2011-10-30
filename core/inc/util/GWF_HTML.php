@@ -1,8 +1,12 @@
 <?php
+/**
+ * HTML markup helper class
+ * @author gizmore, spaceone
+ */
 final class GWF_HTML
 {
 	/**
-	 * Basic lang file instance
+	 * Base lang file instance from core/lang/base.
 	 * @var GWF_LangTrans
 	 */
 	private static $trans;
@@ -116,10 +120,12 @@ final class GWF_HTML
 	{
 		return self::element('div', $html, $class, $id, $style='');
 	}
+	
 	public static function span($html, $class='', $id='', $style='')
 	{
 		return self::element('span', $html, $class, $id, $style='');
 	}
+	
 	private static function element($name, $inner_html, $class='', $id='', $style='')
 	{
 		$id = $id === '' ? '' : ' id="'.$id.'"';
@@ -130,9 +136,11 @@ final class GWF_HTML
 	
 	public static function anchor($url, $text=NULL, $title=NULL)
 	{
-		if ($text === NULL) {
+		if ($text === NULL)
+		{
 			$text = $url;
 		}
+		
 		$url = htmlspecialchars($url);
 		$title = $title === NULL ? '' : ' title="'.htmlspecialchars($title).'"';
 		
@@ -153,6 +161,5 @@ final class GWF_HTML
 	{
 		return preg_replace('/< *br *\/?>/', $nl, $s);
 	}
-	
 }
 ?>

@@ -2,8 +2,8 @@
 $lang = array(
 
 	'cfgg_info' => '<b>Remove .sandbox from two urls for production settings.</b><br/>Or use sandbox settings:<br/>API ENDPOINT: https://api-3t.sandbox.paypal.com/nvp<br/>URL: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token= ',
-	'cfg_fee_buy' => 'Fee in % for purchases',	
-	'cfg_fee_sell' => 'Fee in % for sales',	
+	'cfg_fee_buy' => 'Fee in %% for purchases',	
+	'cfg_fee_sell' => 'Fee in %% for sales',	
 	'tt_cfg_PAYPAL_USE_PROXY' => 'Set this variable to TRUE to route all the API requests through proxy.',	
 	'tt_cfg_PAYPAL_PROXY_PORT' => 'Proxy Port in case a proxy is used.',	
 	'tt_cfg_PAYPAL_VERSION' => 'Version: this is the API version in the request. It is a mandatory parameter for each API request. The only supported value at this time is 2.3',

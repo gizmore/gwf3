@@ -2,7 +2,7 @@
 
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s достиг %2$s% на %3$s', 
+	'li_last_active' => '%1$s достиг %2$s%% на %3$s', 
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
@@ -41,7 +41,7 @@ $lang = array(
 	'md_tagrank' => '%1$s список лучшых на  '.GWF_SITENAME.'. Страница  %2$s из %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s решенно %2$s% на %3$s',
+	'logo2_hover' => '%1$s решенно %2$s%% на %3$s',
 	'pt_langrank' => '%1$s список лучшых - страница %2$s/%3$s',
 	'pit_langrank' => '%1$s список лучшых',
 	'pi_langrank' => 'Лучшие игроки на %1 сайтах.',
@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster News',
-	'mnews_body' => 'Some player(s) reached 100% on a challenge site. Very well done :)'.PHP_EOL.'You can [url=%1$s]see all site masters here[/url].',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] reached 100% on [url=%2$s]%3$s[/url] after %4$s of being linked, starting from %5$s.',
+	'mnews_body' => 'Some player(s) reached 100%% on a challenge site. Very well done :)'.PHP_EOL.'You can [url=%1$s]see all site masters here[/url].',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] reached 100%% on [url=%2$s]%3$s[/url] after %4$s of being linked, starting from %5$s.',
 
 	# Challenge News
 	'cnews_title' => 'There are new Challenges',
@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Graveyard',
 	'pi_graveyard' => 'These sites were active in the past and are unfortunately no longer with us.',
 	'pi_login_link' => '<a href="%1$s">Click here to return to your last location: %1$s</a>',
-	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL% and %AUTHKEY%.',
+	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL%% and %AUTHKEY%%.',
 	'pi_ug_info' => '%1$s is founder of the group &quot;%2$s&quot; which has %3$s members.',
 	'pi_ug_join' => 'You can <a href="%1$s">join the group by clicking here</a>.',
 	'pi_ug_register' => 'You need to <a href="%1$s">register</a> to join groups.',
@@ -549,10 +549,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Your history is now a bit more private and not showing dates of last activity.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Linked an account to %1$s with %3$s% (%2$s points)',
+	'userhist_link' => 'Linked an account to %1$s with %3$s%% (%2$s points)',
 	'userhist_unlink' => 'Unlinked an account from %1$s (%2$s points)',
-	'userhist_gain' => 'Gained %4$s% on %1$s (%2$s points)',
-	'userhist_lost' => 'Lost %4$s% on %1$s (%2$s points)',
+	'userhist_gain' => 'Gained %4$s%% on %1$s (%2$s points)',
+	'userhist_lost' => 'Lost %4$s%% on %1$s (%2$s points)',
 	'userhist_ban' => 'Got banned on %1$s (%2$s points)',
 	'userhist_unban' => 'Got unbanned from %1$s',
 	'userhist_unknown' => 'Updated his account on %1$s',

@@ -2,7 +2,7 @@
 
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s conseguido %2$s% en %3$s',
+	'li_last_active' => '%1$s conseguido %2$s%% en %3$s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
@@ -29,7 +29,7 @@ $lang = array(
 	'solved_by_title' => '<a href="%2$s">%1$s</a> Héroes',
 	'solved_by_text' => 'Toda la gente que ha resuelto %1$s, ordenado por fecha de resolución.',
 	'newsrow_linkt' => 'Cuentas vinculadas hoy',
-	'newsrow_link' => '%1$s vinculada tu cuenta a %2$s con %3$s% resuelto!.',
+	'newsrow_link' => '%1$s vinculada tu cuenta a %2$s con %3$s%% resuelto!.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Actualización rápida',
@@ -41,7 +41,7 @@ $lang = array(
 	'md_tagrank' => '%1$s clasificación en '.GWF_SITENAME.'. Página %2$s de %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s resuelto %2$s% en %3$s',
+	'logo2_hover' => '%1$s resuelto %2$s%% en %3$s',
 	'pt_langrank' => '%1$s clasificación - página %2$s/%3$s',
 	'pit_langrank' => '%1$s clasificación',
 	'pi_langrank' => 'Los mejores jugadores en %1$s sitios.',
@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Noticias de personas que han llegado al 100%',
-	'mnews_body' => 'Algun/Algunos jugador/es han alcanzado el 100% en algún sitio. Muy bien hecho :)'.PHP_EOL.'Puedes [url=%1$s]verlos a todos aquí[/url].',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] alcanzado 100% en [url=%2$s]%3$s[/url] después %4$s de ser vinculado, comenzado desde %5$s.',
+	'mnews_body' => 'Algun/Algunos jugador/es han alcanzado el 100%% en algún sitio. Muy bien hecho :)'.PHP_EOL.'Puedes [url=%1$s]verlos a todos aquí[/url].',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] alcanzado 100%% en [url=%2$s]%3$s[/url] después %4$s de ser vinculado, comenzado desde %5$s.',
 
 	# Challenge News
 	'cnews_title' => 'Hay nuevos Retos',
@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Cementerio',
 	'pi_graveyard' => 'Estos sitios estaban activos en el pasado, pero por desgracia, ya no estan con nosotros.',
 	'pi_login_link' => '<a href="%1$s">Haz click aquí para volver a tu última posición: %1$s</a>',
-	'pi_site_urls' => 'El script urls sustituye %USERNAME%, %EMAIL% y %AUTHKEY%.',
+	'pi_site_urls' => 'El script urls sustituye %USERNAME%, %EMAIL%% y %AUTHKEY%%.',
 	'pi_ug_info' => '%1$s es el fundador del grupo &quot;%2$s&quot; que tiene %3$s miembros.',
 	'pi_ug_join' => 'Puedes <a href="%1$s">entrar al grupo haciendo click aquí</a>.',
 	'pi_ug_register' => 'Necesitas <a href="%1$s">registrarte</a> para entrar a los grupos.',
@@ -547,10 +547,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Tu Historial es ahora un poquito mas privado y no muestra las fechas de la última actividad.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Vinculada una cuenta a %1$s con %3$s% (%2$s puntos)',
+	'userhist_link' => 'Vinculada una cuenta a %1$s con %3$s%% (%2$s puntos)',
 	'userhist_unlink' => 'Desvincular una cuenta de %1$s (%2$s puntos)',
-	'userhist_gain' => 'Ganas %4$s% en %1$s (%2$s puntos)',
-	'userhist_lost' => 'Pierdes %4$s% en %1$s (%2$s puntos)',
+	'userhist_gain' => 'Ganas %4$s%% en %1$s (%2$s puntos)',
+	'userhist_lost' => 'Pierdes %4$s%% en %1$s (%2$s puntos)',
 	'userhist_ban' => 'Se baneó en %1$s (%2$s puntos)',
 	'userhist_unban' => 'Se des-baneó de %1$s',
 	'userhist_unknown' => 'Actualizada tu cuenta en %1$s',

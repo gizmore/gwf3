@@ -3,8 +3,8 @@
 $lang = array(
 
 	'cfgg_info' => '<b>Eemalda .liivakast kahelt lingilt produtseerimisseadistused.</b><br/>Või kasuta liivakasti seadeid:<br/>API ENDPOINT: https://api-3t.sandbox.paypal.com/nvp<br/>URL: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token= ',
-	'cfg_fee_buy' => 'Teenustasu % ostul',	
-	'cfg_fee_sell' => 'Teenustasu % müügil',	
+	'cfg_fee_buy' => 'Teenustasu %% ostul',	
+	'cfg_fee_sell' => 'Teenustasu %% müügil',	
 	'tt_cfg_PAYPAL_USE_PROXY' => 'Vali siit TRUE, et liigutada kõik API palved läbi proxy.',	
 	'tt_cfg_PAYPAL_PROXY_PORT' => 'Proxy Port kui seda kasutatakse.',	
 	'tt_cfg_PAYPAL_VERSION' => 'Versioon: see on API versioon.See on parameeter igale API palvele. Ainuke toetatud parameeter on 2.3',

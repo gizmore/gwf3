@@ -58,7 +58,7 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 		"B.AiM.exe starten, das Fenster über den Tisch ziehen sodass die gestrichelte Linie an den inneren Kanten des Pool-Tisches abschließen (einfach ein bisschen versuchen was das beste für einen ist). Alternativ kann auch einfach unter View auf \"Auto Adjust\" geklickt werden dann sollte sich das Fenster automatisch positionieren. Sobald der weiße Ball platziert ist geht man mit der Maus einmal kurz vom Tisch sprich aus dem Fenster um die Positionen der Bälle zu laden. Anschließend kann man anfangen zu zielen und ein zu lochen. Die Schatten der Bälle sollten zur besseren Erkennung vorher noch deaktiviert werden!\r\n\r\n".
 		"Bekannte Bugs:\r\n".
 		"Auf manchen System kann es passieren das sich die Bälle nur noch sehr langsam bewegen bzw. das Spiel ruckelt. Das ist ein bekanntes Problem diverser Java Versionen und kein Fehler von B.AiM! Eine Lösung wäre eine andere Version von Java zu installieren.\r\n\r\n".
-		"Dieses Programm ist 100% Virenfrei! Falls dein AV-Scanner Alarm schlägt handelt es sich um einen Fehlalarm!\r\n\r\n".
+		"Dieses Programm ist 100%% Virenfrei! Falls dein AV-Scanner Alarm schlägt handelt es sich um einen Fehlalarm!\r\n\r\n".
 		"Falls du jedoch B.AiM aus einer anderen Quelle bezogen hast, solltest du jedoch vorsichtig sein.\r\n\r\n".
 		"Viel Spaß mit B.AiM\r\n". 
 		"- der Author -\r\n\r\n\r\n".

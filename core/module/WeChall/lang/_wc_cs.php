@@ -2,7 +2,7 @@
 
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s dosáhl %2$s% na %3$s',
+	'li_last_active' => '%1$s dosáhl %2$s%% na %3$s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
@@ -29,7 +29,7 @@ $lang = array(
 	'solved_by_title' => '<a href="%2$s">%1$s</a> Hrdinové',
 	'solved_by_text' => 'Všichni lidé, kteří vyřešili %1$s, seřazeno podle data vyřešení.',
 	'newsrow_linkt' => 'Dnes připojené účty',
-	'newsrow_link' => '%1$s připojil svůj účet k %2$s a má vyřešeno %3$s%.',
+	'newsrow_link' => '%1$s připojil svůj účet k %2$s a má vyřešeno %3$s%%.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Rychlý update',
@@ -41,7 +41,7 @@ $lang = array(
 	'md_tagrank' => '%1$s žebříček na '.GWF_SITENAME.'. Strana %2$s z %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s vyřešil %2$s% na %3$s',
+	'logo2_hover' => '%1$s vyřešil %2$s%% na %3$s',
 	'pt_langrank' => '%1$s žebříček - stránka %2$s/%3$s',
 	'pit_langrank' => '%1$s žebříček',
 	'pi_langrank' => 'Nejlepší hráči na %1$s stránkách.',
@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster novinky',
-	'mnews_body' => 'Někteří hráči vyřešili 100% úloh na některé stránce. Výborně! :)'.PHP_EOL.'[url=%1$s]Zde[/url] si můžeš prohlédnout všechny sitemaster uživatele.',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] vyřešil 100% na [url=%2$s]%3$s[/url] za %4$s od připojení, začínal na %5$s.',
+	'mnews_body' => 'Někteří hráči vyřešili 100%% úloh na některé stránce. Výborně! :)'.PHP_EOL.'[url=%1$s]Zde[/url] si můžeš prohlédnout všechny sitemaster uživatele.',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] vyřešil 100%% na [url=%2$s]%3$s[/url] za %4$s od připojení, začínal na %5$s.',
 
 	# Challenge News
 	'cnews_title' => 'Nové hádanky',
@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Hřbitov',
 	'pi_graveyard' => 'Tyto stránky byly v minulosti aktivní, ale bohužel už nejsou provozovány.',
 	'pi_login_link' => '<a href="%1$s">Klikni zde pro návrat na poslední lokaci: %1$s</a>',
-	'pi_site_urls' => 'Url skriptů nahrazují %USERNAME%, %EMAIL% a %AUTHKEY%.',
+	'pi_site_urls' => 'Url skriptů nahrazují %USERNAME%, %EMAIL%% a %AUTHKEY%%.',
 	'pi_ug_info' => '%1$s je zakladatelem skupiny &quot;%2$s&quot; která má %3$s členů.',
 	'pi_ug_join' => 'Zde se můžeš <a href="%1$s">připojit ke skupině</a>.',
 	'pi_ug_register' => 'Nejprve se musíš <a href="%1$s">zaregistrovat</a> teprve potom se můžeš připojit ke skupině.',
@@ -549,10 +549,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Tvoje historie je nyní více soukromá a nezobrazuje datum posledních aktivit.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Připojený účet na %1$s s %3$s% (%2$s bodů)',
+	'userhist_link' => 'Připojený účet na %1$s s %3$s%% (%2$s bodů)',
 	'userhist_unlink' => 'Odpojený účet od %1$s (%2$s bodů)',
-	'userhist_gain' => 'Získáno %4$s% na %1$s (%2$s bodů)',
-	'userhist_lost' => 'Ztraceno %4$s% na %1$s (%2$s bodů)',
+	'userhist_gain' => 'Získáno %4$s%% na %1$s (%2$s bodů)',
+	'userhist_lost' => 'Ztraceno %4$s%% na %1$s (%2$s bodů)',
 	'userhist_ban' => 'Zakázán na %1$s (%2$s bodů)',
 	'userhist_unban' => 'Zrušen zákaz na %1$s',
 	'userhist_unknown' => 'Aktualizace účtu na %1$s',

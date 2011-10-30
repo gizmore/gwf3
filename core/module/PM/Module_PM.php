@@ -136,7 +136,7 @@ final class Module_PM extends GWF_Module
 	############
 	public function getOptionsHREF()
 	{
-		return sprintf('%spm/options', GWF_WEB_ROOT);
+		return GWF_WEB_ROOT.'pm/options';
 	}
 	
 	public function getSearchHREF()

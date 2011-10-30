@@ -2,7 +2,7 @@
 # (big big thx livinskull)
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s erreichte %2$s% auf %3$s',
+	'li_last_active' => '%1$s erreichte %2$s%% auf %3$s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Webseite, Ranking, Rätsel, Herrausforderung, Computer, Knacken, Hacken, Cracken, Stegano, Cryptography, Exploit, Training',
@@ -41,7 +41,7 @@ $lang = array(
 	'md_tagrank' => '%1$s Rangliste auf '.GWF_SITENAME.'. Seite %2$s von %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s hat %2$s% auf %3$s gelöst.',
+	'logo2_hover' => '%1$s hat %2$s%% auf %3$s gelöst.',
 	'pt_langrank' => '%1$s Rangliste - Seite %2$s/%3$s',
 	'pit_langrank' => '%1$s Rangliste',
 	'pi_langrank' => 'Die besten Spieler auf %1$s Seiten.',
@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Site Master News',
-	'mnews_body' => 'Ein(ige) Spieler haben 100% auf einer Challengeseite erreicht. Gute Arbeit!'.PHP_EOL.'Alle [url=%1$s]Meister einer Seite ansehen[/url].',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] hat 100% auf [url=%2$s]%3$s[/url] erreicht. Das Konto war %4$s gelinkt, angefangen bei %5$s%.',
+	'mnews_body' => 'Ein(ige) Spieler haben 100%% auf einer Challengeseite erreicht. Gute Arbeit!'.PHP_EOL.'Alle [url=%1$s]Meister einer Seite ansehen[/url].',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] hat 100%% auf [url=%2$s]%3$s[/url] erreicht. Das Konto war %4$s gelinkt, angefangen bei %5$s%%.',
 
 	# Challenge News
 	'cnews_title' => 'Es gibt neue Challenges',
@@ -126,7 +126,7 @@ $lang = array(
 	'pt_graveyard' => 'Friedhof',
 	'pi_graveyard' => 'Diese Seiten weilen leider nicht mehr unter uns.',
 	'pi_login_link' => '<a href="%1$s">Hier klicken um zur vorherigen Seite zurückzukehren: %1$s</a>',
-	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL% and %AUTHKEY%.', # ??
+	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL%% and %AUTHKEY%%.', # ??
 	'pi_ug_info' => '%1$s hat die Gruppe &quot;%2$s&quot; mit aktuell  %3$s Mitgliedern erstellt.',
 	'pi_ug_join' => 'Sie können der Gruppe beitreten indem Sie <a href="%1$s">hier</a> klicken.',
 	'pi_ug_register' => 'Sie müssen sich <a href="%1$s">registrieren</a> um Gruppen beitreten zu können.',
@@ -552,10 +552,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Ihr Verlauf ist nun ein bisschen privater und die letzten Aktivitätszeiten werden nicht mehr angezeigt.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Hat sein Konto zu %1$s mit %3$s% (%2$s Punkte) verlinkt',
+	'userhist_link' => 'Hat sein Konto zu %1$s mit %3$s%% (%2$s Punkte) verlinkt',
 	'userhist_unlink' => 'Hat die Verlinkung mit %1$s (%2$s Punkte) entfernt',
-	'userhist_gain' => 'Hat %4$s% auf %1$s erhalten (%2$s Punkte)',
-	'userhist_lost' => 'Hat %4$s% auf %1$s verloren (%2$s Punkte)',
+	'userhist_gain' => 'Hat %4$s%% auf %1$s erhalten (%2$s Punkte)',
+	'userhist_lost' => 'Hat %4$s%% auf %1$s verloren (%2$s Punkte)',
 	'userhist_ban' => 'Wurde auf %1$s gebanned (%2$s Punkte)',
 	'userhist_unban' => 'Ban wurde aufgehoben auf %1$s',
 	'userhist_unknown' => 'Hat sein/ihr Konto auf %1$s aktualisiert',

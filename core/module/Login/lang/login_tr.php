@@ -11,7 +11,7 @@ $lang = array (
 	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Bilinmeyen Kullanıcı Adı',
-	'err_login2' => 'Yanlış Şifre. Artık %2$s engellenmiş kadar %1$s sol çalışır% var.',
+	'err_login2' => 'Yanlış Şifre. Artık %2$s engellenmiş kadar %1$s sol çalışır var.',
 	'err_blocked' => 'Seni tekrar deneyin kadar %1$s Lütfen bekleyiniz.',
 	
 	'welcome' =>
@@ -34,7 +34,7 @@ $lang = array (
 	'th_bind_ip' => 'için sınırla Session Bu IP',
 	'tt_bind_ip' => 'bir güvenlik ölçüm çerez hırsızlığı önlemek için.',
 	
-	'err_failures' => 'Bunun sebebi% 1% hatalı giriş ve başarısız bir veya gelecekteki saldırı konusu olabilir.',
+	'err_failures' => 'Bunun sebebi %1$s hatalı giriş ve başarısız bir veya gelecekteki saldırı konusu olabilir.',
 	
 	# V1.01 (hatalı giriş)
 	'cfg_lf_cleanup_i' => 'giriş yaptıktan sonra Temizleme kullanıcı hataları?',

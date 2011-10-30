@@ -21,6 +21,9 @@ class WC_Site extends GDO
 	const COMING_SOON = 'coming_soon'; # Site is coming soon
 	
 	public static $STATES = array('up','down','dead','wanted','refused','contacted','coming_soon');
+
+	# Min score for site votes. (thx awe)
+	const MIN_VOTE_SCORE = 700;
 	
 	###########
 	### GDO ###
@@ -744,7 +747,7 @@ class WC_Site extends GDO
 	 */
 	private function deleteInvalidVotes()
 	{
-		$min_score = 700;
+		$min_score = self::MIN_VOTE_SCORE;
 		
 		$sid = $this->getID();
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
@@ -764,7 +767,11 @@ class WC_Site extends GDO
 	
 	public function canVote(GWF_User $user)
 	{
-		return WC_RegAt::getRegatRow($user->getID(), $this->getID())->getVar('regat_solved') >= 0.1;
+		if (false === ($regat = WC_RegAt::getRegatRow($user->getID(), $this->getID())))
+		{
+			return false;
+		}
+		return $regat->getVar('regat_score') >= self::MIN_VOTE_SCORE;
 	}
 	
 	########################

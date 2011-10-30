@@ -42,7 +42,7 @@ foreach ($tVars['downloads'] as $dl)
 	echo sprintf('<td class="gwf_num"><a href="%s" onclick="%s">%s</a></td>', $href, $onclick, $dl->getVar('dl_count'));
 	echo sprintf('<td><a href="%s" onclick="%s" title="%s">%s</a></td>', $href, $onclick, $dl->display('dl_descr'), GWF_HTML::display(Common::stripMessage($dl->getVar('dl_descr'), 50)));
 	echo sprintf('<td class="gwf_num"><a id="gwf_vsba_%d" href="%s" onclick="%s">%.02f%%</a></td>', $v->getID(), $href, $onclick, $v->getAvgPercent());
-	echo sprintf('<td>%s</td>', $v->displayButtons());
+	echo sprintf('<td class="nowrap">%s</td>', $v->displayButtons());
 	echo GWF_Table::rowEnd();
 }
 echo GWF_Table::end();

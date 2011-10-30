@@ -27,8 +27,8 @@ $lang = array(
 	'err_ends' => 'La fecha de finalización es incorrecta.',
 
 	# Messages
-	'msg_permbanned' => 'El usuario% 1% se vetó de manera permanente.',
-	'msg_tempbanned' => 'El usuario% 1% se veta hasta %2$s',
+	'msg_permbanned' => 'El usuario %1$s se vetó de manera permanente.',
+	'msg_tempbanned' => 'El usuario %1$s se veta hasta %2$s',
 	'msg_warned' => 'El usuario %1$s fue advertido.',
 	'msg_marked_read' => 'El mensaje ha sido marcado como leído.',
 

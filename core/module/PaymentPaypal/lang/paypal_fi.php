@@ -2,8 +2,8 @@
 $lang = array(
 
 	'cfgg_info' => '<b>Poista .sandbox kahdesta URL-asetuksesta.</b><br/>Tai käytä sandbox asetuksia:<br/>API VIIMEISTELYPISTE: https://api-3t.sandbox.paypal.com/nvp<br/>URL: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token= ',
-	'cfg_fee_buy' => 'Maksu % ostoksille',	
-	'cfg_fee_sell' => 'Maksu % myynneistä',	
+	'cfg_fee_buy' => 'Maksu %% ostoksille',	
+	'cfg_fee_sell' => 'Maksu %% myynneistä',	
 	'tt_cfg_PAYPAL_USE_PROXY' => 'Laita tähän kohtaan TRUE estääkseen proxy-käyttäjät.',	
 	'tt_cfg_PAYPAL_PROXY_PORT' => 'Proxy portti on käytettävissä.',	
 	'tt_cfg_PAYPAL_VERSION' => 'Versio: tämä on API-versio vastaanottimesta. Se on tietokanta monelle moduulille. Ainoa hyväksyttävä arvo on 2.3',

@@ -195,6 +195,10 @@ final class GWF_Website
 		{
 			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL;
 		}
+		else
+		{
+			$url = GWF_WEB_ROOT.ltrim($url, '/');
+		}
 		self::redirect($url);
 	}
 
@@ -255,12 +259,12 @@ final class GWF_Website
 		return GWF_Template::templateMain('html_foot.tpl', $tVars);
 	}
 	
-	public static function getPagehead($path = 'tpl/%DESIGN%/')
+	public static function getPagehead($path='tpl/%DESIGN%/')
 	{
 		return self::getHTMLHead() . self::getHTMLbody_head($path);
 	}
 	
-	public static function getHTMLBody($page, $path = 'tpl/%DESIGN%/')
+	public static function getHTMLBody($page, $path='tpl/%DESIGN%/')
 	{
 		return self::getHTMLbody_head($path) . $page . self::getHTMLbody_foot($path);
 	}

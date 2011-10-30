@@ -30,7 +30,7 @@ $lang = array(
 	
 	'join_1t' => 'A script to validate that a user owns an account at your site.',
 	'join_1b' =>
-		'<i>validatemail.php?username=%USERNAME%&amp;email=%EMAIL%[&amp;authkey=%AUTHKEY%]</i><br/>'.
+		'<i>validatemail.php?username=%%USERNAME%%&amp;email=%%EMAIL%%[&amp;authkey=%%AUTHKEY%%]</i><br/>'.
 		'<br/>'.
 		'this script must return simply "1" OR "0",<br/>'.
 		'1:email/username combination exists.<br/>'.
@@ -64,7 +64,7 @@ $lang = array(
 		
 	'join_2t' => 'A script that returns the users score on your site.',
 	'join_2b' =>
-		'<i>userscore.php?username=%USERNAME%[&amp;authkey=%AUTHKEY%]</i><br/>'.
+		'<i>userscore.php?username=%%USERNAME%%[&amp;authkey=%%AUTHKEY%%]</i><br/>'.
 		'<br/>'.
 		'making use of authkey is optional here. If you have public accessible profiles you can just ignore it.<br/>'.
 		'<br/>'.
@@ -103,7 +103,7 @@ $lang = array(
 		'$usercount = mysite_get_usercount();'.PHP_EOL.
 		PHP_EOL.
 		'# Now output the data.'.PHP_EOL.
-		'die(sprintf(\'%s:%d:%d:%d:%d:%d:%d\', $_GET[\'username\'), $rank, $score, $maxscore, $challsolved, $challcount, $usercount));'.PHP_EOL.
+		'die(sprintf(\'%%s:%%d:%%d:%%d:%%d:%%d:%%d\', $_GET[\'username\'), $rank, $score, $maxscore, $challsolved, $challcount, $usercount));'.PHP_EOL.
 		'</pre></div>'.
 		PHP_EOL,
 		
@@ -117,28 +117,28 @@ $lang = array(
 		
 	'join_4t' => '[OPTIONAL] A page that shows your users profile.',
 	'join_4b' =>
-		'<i>profile.php?username=%USERNAME%</i><br/>'.
+		'<i>profile.php?username=%%USERNAME%%</i><br/>'.
 		'<br/>'.
 		'This is more part of your site, optional, and will show a (complete) profile of the user.<br/>'.
 		'If you like to support us with this script, make sure you dont need to login for that.<br/>'.
 		'Again, you can choose the filename and vars for your script freely.<br/>'.
-		'Profile scripts that use an URL like <i>profile/%USERNAME%.html</i> will work fine too.',
+		'Profile scripts that use an URL like <i>profile/%%USERNAME%%.html</i> will work fine too.',
 		
 	'join_5t' => '[OPTIONAL] Updating WeChall automatically',
 	'join_5b' =>
 		'There are two ways to automatically update your users scores on WeChall:<br/>'.
 		'<br/>'.
 		'- The first is to have your application make a request to<br/>'.
-		'<i>http://www.wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%</i><br/>'.
+		'<i>http://www.wechall.net/remoteupdate.php?sitename=%%SITENAME%%&amp;username=%%USERNAME%%</i><br/>'.
 		'whenever a user completes a challenge.<br/>'.
 		'This will return a text string with the result of the operation.<br/>'.
-		'<a href="%1$s" onclick="toggleHidden(\'example_5_1\'); return false;">Click here to view example code</a><br/>'.
-		'<div id="example_5_1" style="display: %2$s;">'.
+		'<a href="%s" onclick="toggleHidden(\'example_5_1\'); return false;">Click here to view example code</a><br/>'.
+		'<div id="example_5_1" style="display: %s;">'.
 		'Example: <br/>'.
 		'<br/>'.
 		'<div class="gwf_code">'.
 			'echo \'&lt;a href=&quot;http://www.wechall.net&quot;&gt;WeChall&lt;/a&gt; reports: \';<br/>'.
-			'echo file_get_contents(&quot;http://wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%&quot;);<br/>'.
+			'echo file_get_contents(&quot;http://wechall.net/remoteupdate.php?sitename=%%SITENAME%%&amp;username=%%USERNAME%%&quot;);<br/>'.
 		'</div>'.
 		'<br/>'.
 		'or<br/>'.
@@ -146,7 +146,7 @@ $lang = array(
 		'<div class="gwf_code">'.
 			'echo \'&lt;a href=&quot;http://www.wechall.net&quot;&gt;WeChall&lt;/a&gt; reports: \';<br/>'.
 			'$ch = curl_init();<br/>'.
-			'curl_setopt($ch, CURLOPT_URL, &quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%SITENAME%</b>&amp;username=<b>%USERNAME%</b>&quot;);<br/>'.
+			'curl_setopt($ch, CURLOPT_URL, &quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%%SITENAME%%</b>&amp;username=<b>%%USERNAME%%</b>&quot;);<br/>'.
 			'curl_setopt($ch, CURLOPT_HEADER, 0);<br/>'.
 			'curl_exec($ch);<br/>'.
 			'curl_close($ch);<br/>'.
@@ -155,13 +155,13 @@ $lang = array(
 		'</div>'.
 		'<br/>'.
 		'- The second is to put an image in the page a user gets when he/she solves a challenge.<br/>'.
-		'<i>http://www.wechall.net/remoteupdate.php?sitename=%SITENAME%&amp;username=%USERNAME%&amp;img=1</i><br/>'.
+		'<i>http://www.wechall.net/remoteupdate.php?sitename=%%SITENAME%%&amp;username=%%USERNAME%%&amp;img=1</i><br/>'.
 		'This will return an image with the result of the operation.<br/>'.
 		'<a href="%3$s" onclick="toggleHidden(\'example_5_2\'); return false;">Click here to view example code</a><br/>'.
 		'<div id="example_5_2" style="display: %4$s;">'.
 		'Example:<br/>'.
 		'<div class="gwf_code">'.
-			'&lt;a href=&quot;http://www.wechall.net&quot;&gt;&lt;img src=&quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%SITENAME%</b>&amp;username=<b>%USERNAME%</b>&amp;img=1&quot; alt=&quot;http://www.wechall.net&quot; border=0/&gt;&lt;/a&gt;<br/>'.
+			'&lt;a href=&quot;http://www.wechall.net&quot;&gt;&lt;img src=&quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%%SITENAME%%</b>&amp;username=<b>%%USERNAME%%</b>&amp;img=1&quot; alt=&quot;http://www.wechall.net&quot; border=0/&gt;&lt;/a&gt;<br/>'.
 		'</div>'.
 		'<br/>'.
 		'</div>'.
@@ -174,12 +174,12 @@ $lang = array(
 	'join_6b' => 
 		'A script that returns userstatus in form of a single text line. We use this bot on irc.idlemonkeys.net<br/>'.
 		'The content type has to be text/plain and the output has to be a single line, not exceeding 192 characters.<br/>'.
-		'The script has to be like yourscript.foo?username=%USERNAME%. Note that the GET parameter username can not be chosen freely.<br/>'.
+		'The script has to be like yourscript.foo?username=%%USERNAME%%. Note that the GET parameter username can not be chosen freely.<br/>'.
 		'It is also a nice feature to display the stats for rank #N with this script when an integer is given as username<br/>',
 		
 	'join_7t' => '[OPTIONAL] A script that can push the latest forum threads.',
 	'join_7b' =>
-		'<i>forum_news.php?datestamp=%NOW%&amp;limit=%LIMIT%</i><br/>'.
+		'<i>forum_news.php?datestamp=%%NOW%%&amp;limit=%%LIMIT%%</i><br/>'.
 		'<br/>'.
 		'Your script has to output the latest N forum threads newer or equal to a datestamp.<br/>'.
 		'The datestamp has to be in the format YYYYmmddhhiiss.<br/>'.
@@ -189,14 +189,14 @@ $lang = array(
 		'The columns are: threadid::datestamp::groupid::url::nickname::threadname<br/>'.
 		'It is optional if you output threads that have a groupid != 0.<br/>'.
 		'<br/>'.
-		'<a href="%1$s" onclick="toggleHidden(\'example_7_1\'); return false;">Click here for an example on the server side</a><br/>'.
-		'<pre class="gwf_code" style="display: %2$s;" id="example_7_1">'.
-		'%3$s'.
+		'<a href="%s" onclick="toggleHidden(\'example_7_1\'); return false;">Click here for an example on the server side</a><br/>'.
+		'<pre class="gwf_code" style="display: %s;" id="example_7_1">'.
+		'%s'.
 		'</pre>'.
 		'<br/>'.
-		'<a href="%4$s" onclick="toggleHidden(\'example_7_2\'); return false;">Click here for an example on the client side</a><br/>'.
-		'<pre class="gwf_code" style="display: %5$s;" id="example_7_2">'.
-		'%6$s'.
+		'<a href="%s" onclick="toggleHidden(\'example_7_2\'); return false;">Click here for an example on the client side</a><br/>'.
+		'<pre class="gwf_code" style="display: %s;" id="example_7_2">'.
+		'%s'.
 		'</pre>'.
 		'<br/>'.
 		'If you like to, i can implement this script for you, in case you use some known forum software, like phpbb.',

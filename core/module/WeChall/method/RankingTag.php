@@ -177,16 +177,19 @@ final class WeChall_RankingTag extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$sel = Common::getGet('tag', self::DEFAULT_TAG);
-		$selbit = 0;
+		$sel = Common::getGetString('tag', self::DEFAULT_TAG);
+		$selbit = '0';
 		$back = '';
 		$data = array();
 		while (false !== ($row = $db->fetchRow($result)))
 		{
-			$bit = (int) $row[0];
+			$bit = $row[0];
 			$tag = $row[1];
-			$data[] = array($tag, $bit);
-			if ($tag === $sel) {
+			
+			$data[] = array($bit, $tag);
+			
+			if ($tag === $sel)
+			{
 				$selbit = $bit;
 			}
 		}

@@ -2,7 +2,7 @@
 
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s %2$s% ért el a(z) %3$s oldalon',
+	'li_last_active' => '%1$s %2$s%% ért el a(z) %3$s oldalon',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
@@ -126,7 +126,7 @@ $lang = array(
 	'pt_graveyard' => 'Temető',
 	'pi_graveyard' => 'Az alábbi oldalak korábban aktívak voltak, de már sajnos nincsenek velünk.',
 	'pi_login_link' => '<a href="%1$s">Kattints ide, hogy visszatérj az előzőleg látogatott oldalra: %1$s</a>',
-	'pi_site_urls' => 'A szkript URL-ek behelyettesítik a %Felhasználó_név%, %EMAIL% and %AUTHKEY% szavakat.',
+	'pi_site_urls' => 'A szkript URL-ek behelyettesítik a %Felhasználó_név%, %EMAIL%% and %AUTHKEY%% szavakat.',
 	'pi_ug_info' => '%1$s az alapítója a &quot;%2$s&quot; csoportnak, amelynek %3$s tagja van.',
 	'pi_ug_join' => 'Itt <a href="%1$s">tudsz csatlakozni a csoporthoz</a>.',
 	'pi_ug_register' => '<a href="%1$s">Regisztrálnod kell ahhoz</a>, hogy csatlakozhass a csoporthoz.',
@@ -548,10 +548,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Your history is now a bit more private and not showing dates of last activity.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Linked an account to %1$s with %3$s% (%2$s points)',
+	'userhist_link' => 'Linked an account to %1$s with %3$s%% (%2$s points)',
 	'userhist_unlink' => 'Unlinked an account from %1$s (%2$s points)',
-	'userhist_gain' => 'Gained %4$s% on %1$s (%2$s points)',
-	'userhist_lost' => 'Lost %4$s% on %1$s (%2$s points)',
+	'userhist_gain' => 'Gained %4$s%% on %1$s (%2$s points)',
+	'userhist_lost' => 'Lost %4$s%% on %1$s (%2$s points)',
 	'userhist_ban' => 'Got banned on %1$s (%2$s points)',
 	'userhist_unban' => 'Got unbanned from %1$s',
 	'userhist_unknown' => 'Updated his account on %1$s',

@@ -6,10 +6,11 @@
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
 	<link rel="shortcut icon" href="{$favicon}" />
-	<link rel="stylesheet" type="text/css" href="{$root}tpl/default/css/gwf3.css?v=3" />
-	<link rel="stylesheet" type="text/css" href="{$root}tpl/wc4/css/wechall4.css?v=10" />
-	<script type="text/javascript" src="{$root}js/gwf3.js?v=1"></script>
+	<link rel="stylesheet" type="text/css" href="{$root}tpl/default/css/gwf3.css?v=31" />
+	<link rel="stylesheet" type="text/css" href="{$root}tpl/wc4/css/wechall4.css?v=50" />
 	<script type="text/javascript" src="{$root}js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="{$root}js/gwf3.js?v=31"></script>
+	<script type="text/javascript" src="{$root}js/sprintf.js?v=31"></script>
 	{$js}
 	{$css}
 	{$feeds}

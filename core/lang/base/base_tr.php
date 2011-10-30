@@ -25,7 +25,7 @@ $lang = array (
 	'ERR_DEPENDENCY' => 'Çözümlenmemiş Bağımlılık: Modülü %1$s, yöntem %2$s depends on Modülü %3$s Version %4$s.',
 	'ERR_SEARCH_TERM' => 'Arama Terimi %1$s - %2$s karakter uzunluğunda olmalıdır.',
 	'ERR_SEARCH_NO_MATCH' => 'Arama %1$s bir eşleşme bulamadık.',
-	'ERR_POST_VAR' => 'Beklenmeyen POST var:% 1%.',
+	'ERR_POST_VAR' => 'Beklenmeyen POST var: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 	
 	# GWF_Time

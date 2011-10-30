@@ -121,7 +121,7 @@ $lang = array(
 		'%9$s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
-		'%10%'.PHP_EOL.
+		'%10$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.

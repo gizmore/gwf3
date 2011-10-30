@@ -2,7 +2,7 @@
 # Translation by Bejker
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%1$s је достигао %2$s% на %3$s',
+	'li_last_active' => '%1$s је достигао %2$s%% на %3$s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
@@ -29,7 +29,7 @@ $lang = array(
 	'solved_by_title' => '<a href="%2$s">%1$s</a> Heroes',
 	'solved_by_text' => 'Сви који су решили %1$s, разврстано по датуму.',
 	'newsrow_linkt' => 'Данашња повезивања налога',
-	'newsrow_link' => '%1$s је повезао/повезала свој налог на %2$s са решених %3$s%.',
+	'newsrow_link' => '%1$s је повезао/повезала свој налог на %2$s са решених %3$s%%.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Quick Update',
@@ -41,7 +41,7 @@ $lang = array(
 	'md_tagrank' => '%1$s рангирање на '.GWF_SITENAME.'. Страна %2$s од %3$s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s решио/решила %2$s% на %3$s',
+	'logo2_hover' => '%1$s решио/решила %2$s%% на %3$s',
 	'pt_langrank' => '%1$s рангирање - страна %2$s/%3$s',
 	'pit_langrank' => '%1$s ранг',
 	'pi_langrank' => 'Најбољи играчи на %1$s сајтовима.',
@@ -63,8 +63,8 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster News',
-	'mnews_body' => 'Неки играчи су постигли 100% на challenge сајту. Одлично урађено :)'.PHP_EOL.'Овде[url=%1$s] можете видети све сајт Експерте [/url].',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] је достигао 100% на [url=%2$s]%3$s[/url] за време %4$s од повезивања,почевши од %5$s.',
+	'mnews_body' => 'Неки играчи су постигли 100%% на challenge сајту. Одлично урађено :)'.PHP_EOL.'Овде[url=%1$s] можете видети све сајт Експерте [/url].',
+	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] је достигао 100%% на [url=%2$s]%3$s[/url] за време %4$s од повезивања,почевши од %5$s.',
 
 	# Challenge News
 	'cnews_title' => 'There are new Challenges',
@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Неактивни Сајтови',
 	'pi_graveyard' => 'Ови сајтови су били активни у прошлости али нажалост нису више са нама.',
 	'pi_login_link' => '<a href="%1$s">Кликните овде да се вратите на почетну локацију: %1$s</a>',
-	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL% and %AUTHKEY%.',
+	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL%% and %AUTHKEY%%.',
 	'pi_ug_info' => '%1$s је оснивач групе &quot;%2$s&quot; која има %3$s чланова.',
 	'pi_ug_join' => 'Можете се <a href="%1$s">придружити групи ако кликнете овде</a>.',
 	'pi_ug_register' => 'Морате се <a href="%1$s">регистровати</a> да се придружите групи.',
@@ -549,10 +549,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Ваша историја је сада приватнија и не показује датум последње активности.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Повезан је налог на %1$s са %3$s% (%2$s поена)',
+	'userhist_link' => 'Повезан је налог на %1$s са %3$s%% (%2$s поена)',
 	'userhist_unlink' => 'Раскачен је налог са %1$s (%2$s поена)',
-	'userhist_gain' => 'Додато %4$s% на %1$s (%2$s Поена)',
-	'userhist_lost' => 'Изгубљено %4$s% на %1$s (%2$s поена)',
+	'userhist_gain' => 'Додато %4$s%% на %1$s (%2$s Поена)',
+	'userhist_lost' => 'Изгубљено %4$s%% на %1$s (%2$s поена)',
 	'userhist_ban' => 'Добијен бан на %1$s (%2$s поена)',
 	'userhist_unban' => 'Скинут бан са %1$s',
 	'userhist_unknown' => 'Налог је ажуриран на %1$s',

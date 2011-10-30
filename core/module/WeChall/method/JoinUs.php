@@ -14,7 +14,7 @@ final class WeChall_JoinUs extends GWF_Method
 		GWF_Website::setPageTitle($lang->lang('pt_joinus'));
 		GWF_Website::setMetaTags($lang->lang('mt_joinus'));
 		
-		$section = Common::getGet('section', 'join');
+		$section = Common::getGetString('section', 'join');
 		
 		switch($section)
 		{

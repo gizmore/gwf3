@@ -26,9 +26,12 @@ final class WeChall_SiteDetails extends GWF_Method
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php');
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
+		$module->includeVotes();
+//		$module->includeForums();
+		
 //		GWF_Module::loadModuleDB('Forum', true, true);
 //		GWF_ForumBoard::init(true, true);
-		GWF_Module::loadModuleDB('Votes', true);
+//		GWF_Module::loadModuleDB('Votes', true);
 		
 		$time = $module->cfgLastPlayersTime();
 		$tVars = array(
@@ -48,12 +51,6 @@ final class WeChall_SiteDetails extends GWF_Method
 		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$time);
 		$siteid = (int)$siteid;
 		return GDO::table('WC_RegAt')->selectColumn('user_name', "regat_lastdate>'{$cut}' AND regat_sid={$siteid}", '', array('user'));
-//		$db = gdo_db();
-//		$regat = GDO::table('WC_RegAt')->getTableName();
-//		$users = GDO::table('GWF_User')->getTableName();
-//		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$time);
-//		$query = "SELECT user_name FROM $regat JOIN $users AS u ON regat_uid=user_id WHERE regat_lastdate>'$cut' AND regat_sid=$siteid";
-//		return $db->queryAll($query);
 	}
 	
 	private function onQuickJump(Module_WeChall $module)
@@ -65,8 +62,6 @@ final class WeChall_SiteDetails extends GWF_Method
 		
 		foreach ($jumps as $key => $value)
 		{
-//			var_dump($key);
-//			var_dump($value);
 			if ($value === '0') {
 				continue;
 			}
