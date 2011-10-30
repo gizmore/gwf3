@@ -22,7 +22,7 @@ final class Register_Form extends GWF_Method
 			'password' => array(GWF_Form::PASSWORD, '', $module->lang('th_password'), $module->lang('tt_password')),
 		);
 		
-		if ($module->wantEmailAvtivation()) { 
+		if ($module->wantEmailActivation()) { 
 			$data['email'] = array(GWF_Form::STRING, '', $module->lang('th_email'), $module->lang('tt_email'));
 		}
 		
@@ -95,7 +95,7 @@ final class Register_Form extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateForm($module);
 		}
 
-		if ($module->wantEmailAvtivation()) {
+		if ($module->wantEmailActivation()) {
 			return $this->sendEmail($module, $username, $email, $token, $password);
 		}
 		else {

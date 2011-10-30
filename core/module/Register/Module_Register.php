@@ -25,7 +25,7 @@ final class Module_Register extends GWF_Module
 			'reg_detect_country' => array('YES', 'bool'),
 		));
 	}
-	public function wantEmailAvtivation() { return $this->getModuleVar('email_activation', '1') === '1'; }
+	public function wantEmailActivation() { return $this->getModuleVar('email_activation', '1') === '1'; }
 	public function wantAutoLogin() { return $this->getModuleVar('auto_login', '1') === '1'; }
 	public function wantCountrySelect() { return $this->getModuleVar('country_select', '0') === '1'; }
 	public function hasMinAge() { return $this->getModuleVar('min_age', 0) > 0; }
