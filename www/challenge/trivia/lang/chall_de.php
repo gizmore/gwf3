@@ -3,17 +3,17 @@ $lang = array(
 	'msg_solved' => 
 		"Heureka, du hast es gelöst!<br/>".
 		"Aber... du bist garnicht eingeloggt.<br/>".
-		"Naja... ich gebe dir den magischen Cheatcode: %1%.",
+		"Naja... ich gebe dir den magischen Cheatcode: %1$s.",
 
-	'box_title' => 'Frage %1%',
+	'box_title' => 'Frage %1$s',
 	'box_info' => 
-		'Zeitlimit: %1% Sekunden<br/>'.PHP_EOL.
-		'Kategorie: %2%<br/>'.PHP_EOL.
-		'Frage: %3%<br/>'.PHP_EOL.
+		'Zeitlimit: %1$s Sekunden<br/>'.PHP_EOL.
+		'Kategorie: %2$s<br/>'.PHP_EOL.
+		'Frage: %3$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Tip: %4%<br/>'.PHP_EOL.
+		'Tip: %4$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%5%'.PHP_EOL,
+		'%5$s'.PHP_EOL,
 
 	'err_timeout' => 'Die Zeit ist abgelaufen.',
 	'err_answer_missing' => 'Du musst eine Antwort senden.',
