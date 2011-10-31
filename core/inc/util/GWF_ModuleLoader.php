@@ -390,7 +390,7 @@ final class GWF_ModuleLoader
 		}
 		return GWF_Hook::writeHooks();
 	}
-	
+		
 	public static function installHTAccess2(array $modules)
 	{
 		$hta = '';
@@ -412,6 +412,31 @@ final class GWF_ModuleLoader
 		}
 		$hta = GWF_HTAccess::getHTAccess().$hta;
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
+	}
+	
+	public static function installPageMenu(array $modules)
+	{
+		if(false === ($navigation = GWF_Module::loadModuleDB('Navigation', false, false, true)) || $navigation->PMisLocked())
+		{
+			return false; //Module Navigation not enabled or cannot be modified!
+		}
+		$pml = array();
+		foreach ($modules as $module)
+		{
+			$module instanceof GWF_Module;
+			
+			if (!$module->isEnabled()) {
+				continue;
+			}
+			
+			$methods = self::getAllMethods($module);
+			foreach ($methods as $method)
+			{
+				if(false !== ($pmlinks = $method->getPageMenuLinks($module)))
+				$pml[] = $pmlinks;
+			}
+		}
+		return $navigation->installPageMenu($pml);
 	}
 	
 	public static function getAllMethods(GWF_Module $module)

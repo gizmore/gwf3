@@ -67,5 +67,16 @@ abstract class GWF_Method
 		list($mo, $me) = $this->getMoMe();
 		return sprintf('RewriteRule ^%s/%s/?$ index.php?mo=%s&me=%s', strtolower($mo), strtolower($me), $mo, $me).PHP_EOL;
 	}
+
+	################
+	### PageMenu ###
+	################
+	/**
+	 * Generate link(s) in PageMenu for this method.
+	 */
+	public function getPageMenuLinks()
+	{
+		return false;
+	}
 }
 ?>
