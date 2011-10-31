@@ -32,6 +32,8 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 		
 		$spark = $this->giveQuesties($player, $npc, 'SparklingWine', $spark, self::NEED_SPARK);
 		$alco = $this->giveQuesties($player, $npc, 'Alcopop', $alco, self::NEED_ALCO);
+		$data = array('S' => $spark, 'A' => $alco);
+		$this->saveQuestData($data);
 		
 		if ( ($spark >= self::NEED_SPARK) && ($alco >= self::NEED_ALCO) )
 		{
