@@ -10,10 +10,10 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 	public function getQuestName() { return 'Drank'; }
 	public function getQuestDescription()
 	{
-		list($spark, $alco) = $this->getDrinkData();
+		$data = $this->getDrinkData();
 		return sprintf('Bring %d / %d %s and %d / %d %s to the bartender in the MacLaren pub.',
-			$spark, self::NEED_SPARK, 'SparklingWine',
-			$alco,  self::NEED_ALCO, 'Alcopop');
+			$data['S'], self::NEED_SPARK, 'SparklingWine',
+			$data['A'], self::NEED_ALCO, 'Alcopop');
 	}
 	public function getNeededAmount() { return 5; }
 	public function getRewardNuyen() { return 1200; }
@@ -28,21 +28,19 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
-		list($spark, $alco) = $this->getDrinkData();
-		
-		$spark = $this->giveQuesties($player, $npc, 'SparklingWine', $spark, self::NEED_SPARK);
-		$alco = $this->giveQuesties($player, $npc, 'Alcopop', $alco, self::NEED_ALCO);
-		$data = array('S' => $spark, 'A' => $alco);
+		$data = $this->getDrinkData();
+		$data['A'] = $this->giveQuesties($player, $npc, 'Alcopop', $data['A'], self::NEED_ALCO);
+		$data['S'] = $this->giveQuesties($player, $npc, 'SparklingWine', $data['S'], self::NEED_SPARK);
 		$this->saveQuestData($data);
 		
-		if ( ($spark >= self::NEED_SPARK) && ($alco >= self::NEED_ALCO) )
+		if ( ($data['S'] >= self::NEED_SPARK) && ($data['A'] >= self::NEED_ALCO) )
 		{
 			$npc->reply('Thank you chummer.');
 			return $this->onSolve($player);
 		}
 		else
 		{
-			return $npc->reply(sprintf("I still need %d SparklingWine and %d Alcopops-", (self::NEED_SPARK-$spark), (self::NEED_ALCO-$alco)));
+			return $npc->reply(sprintf("I still need %d SparklingWine and %d Alcopops-", (self::NEED_SPARK-$data['S']), (self::NEED_ALCO-$data['A'])));
 		}
 	}
 	
