@@ -4,7 +4,7 @@ final class GWF_Website
 	####################
 	### Content-Type ###
 	####################
-	public static function plaintext() { header('Content-Type: text/plain'); }
+	public static function plaintext() { header('Content-Type: text/plain; charset=UTF-8'); }
 	
 	############
 	### Init ###

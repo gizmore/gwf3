@@ -110,13 +110,14 @@ class GWF3
 		
 	/**
 	 * This is always required!
+	 * We include all basic required files here. (optimize?)
 	 */
 	public static function _init()
 	{
-		# Require the util
+		# Require the util/Common.php (very common stuff)
 		require_once 'core/inc/util/Common.php';
 		
-		#default definements
+		# Default defines
 //		define('GWF_PATH', dirname(__FILE__).'/');
 		define('GWF_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
@@ -127,7 +128,6 @@ class GWF3
 		
 		# Require the Database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
-
 	}
 		
 	public static function onAutoloadClass($classname)
@@ -252,6 +252,7 @@ class GWF3
 		# Display the page
 		if (isset($_GET['ajax']))
 		{
+			GWF_Website::plaintext();
 			return self::$page;
 		}
 		else
