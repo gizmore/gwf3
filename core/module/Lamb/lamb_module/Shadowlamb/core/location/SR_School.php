@@ -66,10 +66,14 @@ abstract class SR_School extends SR_Store
 			$have = true;
 		}
 		
-		if ($player->getBase($field) < -1)
+		
+		if ($type !== 'spell')
 		{
-			$player->message(sprintf('Your character cannot learn %s.', $field));
-			return false;
+			if ($player->getBase($field) < -1)
+			{
+				$player->message(sprintf('Your character cannot learn %s.', $field));
+				return false;
+			}
 		}
 		
 		
