@@ -47,9 +47,10 @@ final class PM_Search extends GWF_Method
 		$dir = Common::getGet('dir', '');
 		$orderby = $pms->getMultiOrderby($by, $dir);
 		$ipp = $module->cfgPMPerPage();
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($pms, self::$fields, $term);
-		
-		if ($conditions === '') { $conditions = '0'; }
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($pms, self::$fields, $term)))
+		{
+			$conditions = '0';
+		}
 		$uid = GWF_Session::getUserID();
 		$conditions = "($conditions) AND (pm_owner=$uid)";
 		$nItems = $pms->countRows($conditions);

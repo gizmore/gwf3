@@ -139,7 +139,9 @@ if ($modebit === false)
 		}
 	}
 	
-	return $bot->reply(sprintf('Mode for %s on %s: %s', $username, $server->getHostname(), $optstr));
+	$whoisregged = $user_to_edit->isRegistered() ? ', who is regged,' : '';
+	
+	return $bot->reply(sprintf('Mode for %s%s on %s: %s', $username, $whoisregged, $server->getHostname(), $optstr));
 }
 else
 {

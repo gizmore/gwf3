@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#mo,#Mathematik',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#mo,#Mathematik,#ru',
 			'admins' => 'gizmore',
 		),
 		
@@ -78,7 +78,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://natalya.psych0tik.net:6697',
 			'nickname' => 'Lamb',
 			'password' => LAMB_PASSWORD2,
-			'channels' => '#shadowlamb,#hbh,#shadowlamb_bots',
+			'channels' => '#shadowlamb,#hbh,#shadowlamb_bots,#valhalla',
 			'admins' => 'gizmore',
 		),
 		

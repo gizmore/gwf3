@@ -75,7 +75,10 @@ final class Admin_UserSearch extends GWF_Method
 		$dir = Common::getGet('dir', self::DEFAULT_DIR);
 		$orderby = $users->getMultiOrderby($by, $dir);
 		
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($users, $fields, $term);
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($users, $fields, $term)))
+		{
+			return 'OOPS!';
+		}
 		
 		$hits = $users->countRows($conditions);
 		

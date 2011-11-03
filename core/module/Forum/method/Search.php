@@ -64,7 +64,11 @@ final class Forum_Search extends GWF_Method
 		$fields = $posts->getSearchableFields(GWF_User::getStaticOrGuest());
 		$_GET['term'] = $term = trim($term);
 //		$term = Common::getRequest('term', '');
-		$conditions = GWF_QuickSearch::getQuickSearchConditions($posts, $fields, $term);
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($posts, $fields, $term)))
+		{
+			return $this->templateSearch($module, array(), $term);
+		}
+		
 		$permQuery = GWF_ForumPost::getPermQuery();
 		$conditions .= ' AND ('.$permQuery.')';
 		$by = Common::getGet('by', 'post_date');
