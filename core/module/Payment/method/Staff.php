@@ -63,7 +63,7 @@ final class Payment_Staff extends GWF_Method
 		$sortURL = $this->getMethodHref('&'.$bit.'=1&by=%BY%&dir=%DIR%');
 		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($orders, $orders->getSearchableFields($user), Common::getRequest('term'))))
 		{
-			return 'OOPS22!';
+			$conditions = '0';
 		}
 //		var_dump($conditions);
 		return GWF_Table::displayGDO2($module, $orders, $user, $sortURL, $conditions, 25, true);

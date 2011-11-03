@@ -77,7 +77,7 @@ final class Admin_UserSearch extends GWF_Method
 		
 		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($users, $fields, $term)))
 		{
-			return 'OOPS!';
+			$conditions = '0';
 		}
 		
 		$hits = $users->countRows($conditions);
