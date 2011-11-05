@@ -11,9 +11,9 @@ if (!function_exists('exec'))
 	return;
 }
 
-//$ehost = escapeshellarg($host);
-//exec("ping -c 3 $ehost", $output);
-exec("uptime", $output);
+$ehost = escapeshellarg($host);
+exec("ping -c 3 $ehost", $output);
+//exec("uptime", $output);
 
 foreach ($output as $line)
 {

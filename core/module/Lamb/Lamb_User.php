@@ -214,5 +214,51 @@ final class Lamb_User extends GDO
 		static $map = array(self::VOICE=>'v', self::HALFOP=>'h', self::OPERATOR=>'o', self::STAFF=>'s', self::ADMIN=>'a');
 		return isset($map[$bit]) ? $map[$bit] : 'p';
 	}
+	
+	##############
+	### Anonet ###
+	##############
+	/**
+	 * Check if this user is on Anonet. (thx srn)
+	 * @return true|false 
+	 */
+	public function isOnAnonet()
+	{
+		return self::isOnAnonetS($this->getName());
+	}
+	
+	/**
+	 * Check if a nickname is on Anonet. (thx srn)
+	 * @param string $nickname
+	 * @return true|false 
+	 */
+	public static function isOnAnonetS($nickname)
+	{
+		return $nickname[0] === '/';
+	}
+	
+	/**
+	 * Get the user's anonet prefix. (thx srn)
+	 * @return string|false 
+	 */
+	public function getAnonetPrefix()
+	{
+		return self::getAnonetPrefixS($this->getName());
+	}
+	
+	
+	/**
+	 * Get an Anonet(tm) network prefix from a nickname. (thx srn)
+	 * @return string|false 
+	 */
+	public static function getAnonetPrefixS($nickname)
+	{
+		return self::isOnAnonetS($nickname) ? self::_getAnoPrefix($nickname) : false;
+	}
+	private static function _getAnoPrefix($nickname)
+	{
+		return Common::substrUntil(substr($nickname, 1), '/');
+	}
+	
 }
 ?>

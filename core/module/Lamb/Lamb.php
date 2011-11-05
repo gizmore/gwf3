@@ -746,14 +746,8 @@ final class Lamb
 	 * @param string $message
 	 * @return true|false
 	 */
-	public function onPrivmsg(Lamb_Server $server, $from, $origin, $message)
+	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
-		if (false === ($user = $server->getUserFromOrigin($from, $origin)))
-		{
-			Lamb_Log::logError(sprintf('Cannot getUserFromOrigin(%s, %s) onPrivmsg on server %s.', $from, $origin, $server->getHostname()));
-			return;
-		}
-		
 		if (false === $user->saveVars(array(
 			'lusr_last_channel' => $origin,
 			'lusr_last_message' => $message,
@@ -859,13 +853,8 @@ final class Lamb
 	 * @param string $origin
 	 * @param string $message
 	 */
-	public function onTrigger(Lamb_Server $server, $from, $origin, $message)
+	public function onTrigger(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
-		if ( (false === ($user = $server->getUserFromOrigin($from))) && (false === ($user = $server->getUserByNickname($from))) )
-		{
-			return Lamb_Log::logError(sprintf('In %s(%s, %s, %s, %s): getUserFromOrigin(%s) failed!', __METHOD__, $server->getHostname(), $from, $origin, $message, $from));
-		}
-		
 		if ( $user->isRegistered() && (!$user->isLoggedIn()) )
 		{
 			$this->tryAutologin($user);
