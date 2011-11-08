@@ -34,7 +34,7 @@ final class Forum_Move extends GWF_Method
 		
 		$cmp = $dir === 1 ? '>' : '<';
 		$orderby = $dir === 1 ? 'board_pos ASC' : 'board_pos DESC';
-		if (false === ($swap = $board->selectFirst("board_pid=$pid AND board_pos$cmp$myPos", $orderby))) {
+		if (false === ($swap = $board->selectFirst('1', "board_pid=$pid AND board_pos$cmp$myPos", $orderby))) {
 			return $module->requestMethodB('Forum');
 		}
 		

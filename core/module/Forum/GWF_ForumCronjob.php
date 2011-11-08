@@ -123,9 +123,18 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		$back = array();
 		foreach ($posts as $post)
 		{
+			$post instanceof GWF_ForumPost;
+			
 			$tid = $post->getThreadID();
-			if (!(isset($back[$tid]))) {
-				$back[$tid] = array($post->getThread(), '', 0);
+			
+			if (!(isset($back[$tid])))
+			{
+				if (false === ($t = $post->getThread()))
+				{
+					self::log('A post could not find it\'s thread!!');
+					continue; // OOps!!!
+				}
+				$back[$tid] = array($t, '', 0);
 			}
 			
 			$back[$tid][1] .=

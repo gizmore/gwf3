@@ -97,7 +97,7 @@ final class Forum_EditThread extends GWF_Method
 //			var_dump($bid);
 			return $this->onMove($module, $t, GWF_ForumBoard::getBoard($bid));
 		}
-		else if ($t->getID() !== ($tid = intval($form->getVar('merge')))) {
+		else if ($t->getID() !== ($tid = $form->getVar('merge'))) {
 			return $this->onMerge($module, $t, GWF_ForumThread::getThread($tid));
 		}
 		
