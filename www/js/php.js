@@ -1,3 +1,7 @@
+/*
+ * Code here is taken from http://phpjs.org
+ * See: http://phpjs.org/pages/license (MIT or GPLv2)
+ */
 function sprintf ()
 {
 // http://kevin.vanzonneveld.net
@@ -181,14 +185,40 @@ function sprintf ()
     return format.replace(regex, doFormat);
 }
 
+
 function vsprintf (format, args)
 {
-	// Return a formatted string  
-	// 
-	// version: 1109.2015
-	// discuss at: http://phpjs.org/functions/vsprintf    // +   original by: ejsanders
-	// -    depends on: sprintf
-	// *     example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1]);
-	// *     returns 1: '1988-08-01'
-	return this.sprintf.apply(this, [format].concat(args));
+	return sprintf.apply(this, [format].concat(args));
+}
+
+
+function in_array(needle, haystack, argStrict)
+{
+	if (!!argStrict) {
+		for (var key in haystack) {
+			if (haystack[key] === needle) {
+				return true;
+			}
+		}
+	} else for (var key in haystack) {
+		if (haystack[key] == needle) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function array_values (input)
+{
+	if (input && typeof input === 'object' && input.change_key_case)
+	{
+		return input.values();
+	}
+	
+	var tmp_arr = [];
+	for (var key in input)
+	{
+		tmp_arr[tmp_arr.length] = input[key];
+	}
+	return tmp_arr;
 }

@@ -151,7 +151,8 @@ $LAMB_CFG = array
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',
-			'admins' => '/NNN/gizmore',
+//			'admins' => '/NNN/gizmore',
+			'admins' => '/A2/gizmore',
 		),
 		
 //		array(

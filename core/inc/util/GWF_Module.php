@@ -70,17 +70,18 @@ class GWF_Module extends GDO
 	public function isAjax() { return isset($_REQUEST['ajax']); }
 	
 	/**
-	 * Save a module var the quick way. No validation is performed. 
-	 * Enter description here ...
-	 * @param unknown_type $key
-	 * @param unknown_type $value
+	 * Save a module var the quick way. No validation is performed.
+	 * @param string $key
+	 * @param string $value
+	 * @return true|false
 	 */
 	public function saveModuleVar($key, $value)
 	{
 		$id = $this->getID();
 		$key = self::escape($key);
 		$value = self::escape($value);
-		if (false === GDO::table('GWF_ModuleVar')->update("mv_val='$value', mv_value='$value'", "mv_mid=$id AND mv_key='$key'")) {
+		if (false === GDO::table('GWF_ModuleVar')->update("mv_val='{$value}', mv_value='{$value}'", "mv_mid={$id} AND mv_key='{$key}'"))
+		{
 			return false;
 		}
 		$this->module_vars[$key] = $value;

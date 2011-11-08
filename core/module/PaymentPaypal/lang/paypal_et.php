@@ -1,7 +1,6 @@
-﻿<?php
+<?php
 # Translation by Ace
 $lang = array(
-
 	'cfgg_info' => '<b>Eemalda .liivakast kahelt lingilt produtseerimisseadistused.</b><br/>Või kasuta liivakasti seadeid:<br/>API ENDPOINT: https://api-3t.sandbox.paypal.com/nvp<br/>URL: https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token= ',
 	'cfg_fee_buy' => 'Teenustasu %% ostul',	
 	'cfg_fee_sell' => 'Teenustasu %% müügil',	
