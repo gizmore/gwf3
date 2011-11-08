@@ -72,10 +72,19 @@ abstract class GWF_Method
 	### PageMenu ###
 	################
 	/**
+	 * @author spaceone
 	 * Generate link(s) in PageMenu for this method.
 	 */
-	public function getPageMenuLinks()
+	public function getPageMenuLinks($module)
 	{
+//		return array(
+//			'page_url' => '/',
+//			'page_title' => '',
+//			'page_cat' => $module->getPMCat(), 
+//			'page_meta_desc' => '', 
+//			'page_views' => 0,
+//			'page_options' => GWF_Page::ENABLED,
+//		);
 		return false;
 	}
 }

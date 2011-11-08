@@ -152,7 +152,11 @@ final class Common
 		return implode(', ', $array)." $and $last";
 	}
 	
-	
+	public static function get(array $array, $key, $default)
+	{
+		return isset($array[$key]) ? $array[$key] : $default;
+	}
+
 	#################
 	### File Util ###
 	#################

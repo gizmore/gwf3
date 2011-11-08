@@ -52,11 +52,14 @@ class GWF_Module extends GDO
 	public function isInstalled() { return $this->getVersionDB() > 0; }
 	public function getModuleFilePath($file) { return GWF_CORE_PATH.'module/'.$this->getName().'/'.$file; } // wont work in new baselayout!
 	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
-	public static function getModulesLoaded($format = false)
+	public static function getModulesLoaded($format=false)
 	{
-		if(false === $format) {
+		if(false === $format)
+		{
 			return sprintf('<a href="#" title="%s">%s</a>', implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
-		} else {
+		}
+		else
+		{
 			$format = str_replace('%mods%', implode(', ', array_keys(self::$MODULES)), $format);
 			$format = str_replace('%count%', count(self::$MODULES), $format);
 			return $format;
@@ -335,5 +338,13 @@ class GWF_Module extends GDO
 		return $this->getMethod($methodname)->execute($this);
 	}
 	
+	/**
+	 * The PageMenu Category for each Module
+	 * @author spaceone
+	 */
+//	public function getPMCat() 
+//	{
+//		//build new nav/cat; return ID
+//	}
 }
 ?>

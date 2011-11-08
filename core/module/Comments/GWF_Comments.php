@@ -129,12 +129,7 @@ final class GWF_Comments extends GDO
 	
 	public function canModerate($user)
 	{
-		if ($user === false)
-		{
-			return false;
-		}
-		
-		return $user->isStaff();
+		return $user === false ? false : $user->isStaff();
 	}
 	
 	public function displayReplyForm($href=NULL)

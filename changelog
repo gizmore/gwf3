@@ -1,4 +1,47 @@
 ------------------------------------------------------------------------
+r885 | spaceone | 2011-10-30 21:55:54 +0100 (So, 30. Okt 2011) | 2 Zeilen
+
+GWF3: fixed spelling mistake in module Register
+
+------------------------------------------------------------------------
+r884 | Gizmore | 2011-10-30 02:08:47 +0100 (So, 30. Okt 2011) | 1 Zeile
+
+GWF3: A lot of fixes for lang files since the new vsprintf change. Some tiny fixes to the WC5 module.
+------------------------------------------------------------------------
+r883 | Gizmore | 2011-10-30 02:59:40 +0200 (So, 30. Okt 2011) | 1 Zeile
+
+GWF3: GWF_Time helper class now supports custom dateformats. (thx nieu)
+------------------------------------------------------------------------
+r882 | Gizmore | 2011-10-30 01:05:34 +0200 (So, 30. Okt 2011) | 1 Zeile
+
+GWF3: Fixed 3 bugs. 1) GWF_Form::CHECKBOX did not copy user input. 2) GWF_FormValidator did not validate files nicely. 3) GWF_FormUpload failed to compute the max upload size.
+------------------------------------------------------------------------
+r881 | Gizmore | 2011-10-29 23:18:53 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+GWF3: Module GWF now has two new modulevars, log_404 and mail_404. 404 errors are now logged in a separate file too. (thx spaceone)
+------------------------------------------------------------------------
+r880 | spaceone | 2011-10-29 22:37:51 +0200 (Sa, 29. Okt 2011) | 2 Zeilen
+
+GWF3: GWF_Template::templateRaw() uses design-replacing now.
+
+------------------------------------------------------------------------
+r879 | Gizmore | 2011-10-29 22:07:08 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+GWF3: GWF_Website main templates are working again. Also synced all stuff.
+------------------------------------------------------------------------
+r878 | Gizmore | 2011-10-29 21:48:52 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+WC5: Voting for a site now requires a min-score on that site. (thx awe) (thx sabretooth)
+------------------------------------------------------------------------
+r877 | Gizmore | 2011-10-29 21:47:01 +0200 (Sa, 29. Okt 2011) | 1 Zeile
+
+GWF3: Module Login can now send email alerts on failed login attempts. (thx wannabe7331)
+------------------------------------------------------------------------
+r876 | spaceone | 2011-10-29 12:35:06 +0200 (Sa, 29. Okt 2011) | 2 Zeilen
+
+changed template handling for modules (Ticket #17)
+
+------------------------------------------------------------------------
 r875 | Gizmore | 2011-10-29 00:34:08 +0200 (Sa, 29. Okt 2011) | 1 Zeile
 
 GWF3: More GWF_LangTrans optimzation.
