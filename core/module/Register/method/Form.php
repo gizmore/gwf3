@@ -166,13 +166,13 @@ final class Register_Form extends GWF_Method
 	
 	public function validate_email(Module_Register $module, $arg)
 	{
+		if (!GWF_Validator::isValidEmail($arg)) {
+			return $module->lang('err_email_invalid');
+		}
 		if (!$module->isEMailAllowedTwice()) {
 			if (false !== (GWF_User::getByEmail($arg))) {
 				return $module->lang('err_email_taken');
 			}
-		}
-		if (!GWF_Validator::isValidEmail($arg)) {
-			return $module->lang('err_email_invalid');
 		}
 		if (GWF_BlackMail::isBlacklisted($arg))
 		{
