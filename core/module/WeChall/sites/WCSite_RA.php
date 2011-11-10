@@ -5,15 +5,18 @@ class WCSite_RA extends WC_Site
 {
 	public function parseStats($url)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
+		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 
 		$stats = explode(':', $result);
-		if (count($stats) !== 7) {
-			if ($result === '0') {
-				return array(0, 0);
-			}
+		if (count($stats) !== 7)
+		{
+//			if ($result === '0')
+//			{
+//				return array(0, 0);
+//			}
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
