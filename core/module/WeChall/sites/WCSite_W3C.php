@@ -10,9 +10,9 @@ final class WCSite_W3C extends WC_Site
 
 		$stats = explode(':', $result);
 		if (count($stats) !== 7) {
-			if ($result === '0') {
-				return array(0, 0);
-			}
+//			if ($result === '0') {
+//				return array(0, 0);
+//			}
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		

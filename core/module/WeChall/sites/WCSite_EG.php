@@ -15,9 +15,9 @@ class WCSite_EG extends WC_Site
 
 		$stats = explode(':', $result2);
 		if (count($stats) !== 7) {
-			if ($result2 === '0') {
-				return array(0, 0);
-			}
+//			if ($result2 === '0') {
+//				return array(0, 0);
+//			}
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
