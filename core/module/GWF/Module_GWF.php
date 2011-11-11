@@ -7,8 +7,8 @@
  */
 final class Module_GWF extends GWF_Module
 {
-	public function getVersion() { return 3.03; }
-	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_Install.php'; return GWF_Install::onInstall($this, $dropTable); }
+	public function getVersion() { return 3.05; }
+	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_InstallGWF.php'; return GWF_InstallGWF::onInstall($this, $dropTable); }
 	
 //	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
 

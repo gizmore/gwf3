@@ -1,7 +1,13 @@
 <?php
+/**
+ * Registration Module.
+ * To fight spammers it can help to set "ip_usetime" to 24h.
+ * @todo Moderation mode.
+ * @author gizmore
+ */
 final class Module_Register extends GWF_Module
 {
-	public function getVersion() { return 1.00; }
+	public function getVersion() { return 1.01; }
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function onCronjob() { require_once 'GWF_RegisterCronjob.php'; GWF_RegisterCronjob::onCronjob($this); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/register'); }
@@ -23,6 +29,7 @@ final class Module_Register extends GWF_Module
 			'ua_threshold' => array('24 hours', 'time', 60*15, 60*60*24*7),
 			'reg_toslink' => array(GWF_WEB_ROOT.'tos', 'text', 0 , 512),
 			'reg_detect_country' => array('YES', 'bool'),
+//			'signup_moderation' => array('NO', 'bool'),
 		));
 	}
 	public function wantEmailActivation() { return $this->getModuleVar('email_activation', '1') === '1'; }
@@ -39,6 +46,7 @@ final class Module_Register extends GWF_Module
 	public function getActivationThreshold() { return $this->getModuleVar('ua_threshold', 86400); }
 	public function cfgHrefTos() { return $this->getModuleVar('reg_toslink', GWF_WEB_ROOT.'tos'); }
 	public function cfgDetectCountry() { return $this->getModuleVar('reg_detect_country', '1') === '1'; }
+//	public function cfgModerated() { return $this->getModuleVar('signup_moderation', '0') === '1'; }
 	
 	public function hasIPActivatedRecently()
 	{

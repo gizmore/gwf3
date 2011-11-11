@@ -1,5 +1,5 @@
 <?php
-final class GWF_Install
+final class GWF_InstallGWF
 {
 	public static function onInstall(Module_GWF $module, $dropTables)
 	{

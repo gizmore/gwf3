@@ -1,5 +1,6 @@
 <?php
 /**
+ * User Activation table and row.
  * @author gizmore
  */
 final class GWF_UserActivation extends GDO
@@ -12,7 +13,7 @@ final class GWF_UserActivation extends GDO
 		return array(
 			'token' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S|GDO::PRIMARY_KEY, GDO::NOT_NULL, self::TOKEN_LENGTH),
 			'username' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, GDO::NOT_NULL, GWF_User::USERNAME_LENGTH),
-			'email' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '', 255),
+			'email' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, '', 255),
 			'birthdate' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, '19000101', GWF_Date::LEN_DAY),
 			'password' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 44),
 			'countryid' => array(GDO::UINT, 0),
