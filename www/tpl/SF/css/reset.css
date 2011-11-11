@@ -9,7 +9,8 @@ table {
 td {
 	vertical-align: top;
 }
-fieldset,img { 
+/*fieldset,*/
+img { 
 	border:0;
 }
 address,caption,cite,code,dfn,em,strong,th,var {

@@ -80,6 +80,10 @@ form.gwf_shortform {
 .gwf_btn_link { background: url(../../../img/SF/arrow_right.png); }
 .gwf_btn_prev { background: url(../../../img/SF/arrow_left.png); }
 .gwf_btn_next { background: url(../../../img/SF/arrow_right.png); }
+.gwf_btn_up { background: url(../../../img/SF/arrow_up.png); }
+.gwf_btn_up:hover { background: url(../../../img/SF/arrow_up_sel.png); }
+.gwf_btn_down { background: url(../../../img/SF/arrow_down.png); }
+.gwf_btn_down:hover { background: url(../../../img/SF/arrow_down_sel.png); }
 
 /** PM **/
 .gwf_pm_new { background: url(../../../img/default/bell.png); }
@@ -99,7 +103,7 @@ form.gwf_shortform {
 .gwf_th_desc { background: url(../../../img/SF/arrow_down.png) no-repeat; }
 .gwf_th_asc_sel { background: url(../../../img/SF/arrow_up_sel.png) no-repeat; }
 .gwf_th_desc_sel { background: url(../../../img/SF/arrow_down_sel.png) no-repeat; }
-
+.gwf_table tr td, .gwf_table tr th { border: 1px solid #fff; padding: 2px; }
 
 
 /** PageMenu **/
@@ -287,5 +291,8 @@ textarea[name=message] { background-image: url(../../../img/SF/comment.png); bac
 
 input {
 	background-size: 16px 16px;
+	webkit-background-size: 16px 16px; 
+	khtml-background-size: 16px 16px; 
+	o-background-size: 16px 16px;
 	background-repeat: no-repeat;
 }

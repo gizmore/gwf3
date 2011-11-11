@@ -8,6 +8,6 @@
 				<a href="{$root}credits/" class="footlink">Credits</a> | 
 				<a href="{$root}bugreport/" class="footlink">Report Bug</a> | 
 				<a href="{$root}todo/" class="footlink">TO-DO Liste</a> | 
-				<a href="http://trac.gwf3.gizmore.org/browser/SF.class.php" class="footlink">Space-Framework</a> | 
+				<a href="http://trac.gwf3.gizmore.org/browser/gwf3.class.php" class="footlink">Space-Framework</a> | 
 				<a href="#" class="footlink">Bookmark</a>
 			</p>

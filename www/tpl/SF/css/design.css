@@ -35,7 +35,7 @@ div#profile {
 }
 div#logo {
 /*	width: 100%;*/
-	height: 115px;
+	height: 129px;
 	line-height: 15px;
 	padding: 5px;
 	overflow: hidden;
@@ -128,4 +128,11 @@ div#footer {
 }
 p.bottom {
 	vertical-align: bottom;
+}
+div#profile fieldset.SF_formY * {
+	float: left!important;
+	display: inline!important;
+}
+div#profile fieldset.SF_formY {
+	
 }

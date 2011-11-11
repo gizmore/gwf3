@@ -220,3 +220,7 @@ div.inhalt p {
 	padding-left: 5px;
 	padding-right: 5px;
 }
+.SF_formY input[type=submit],
+.SF_formY input[type=text] {
+	padding: 2px;
+}
