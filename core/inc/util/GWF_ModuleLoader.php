@@ -224,7 +224,7 @@ final class GWF_ModuleLoader
 			$func = sprintf('Upgrade_%s_%s', $name, $vstr);
 			if (!function_exists($func))
 			{
-				return GWF_HTML::err(ERR_METHOD_MISSING, array($func, $module->display('module_name')));
+				return GWF_HTML::err('ERR_METHOD_MISSING', array($func, $module->display('module_name')));
 			}
 			
 			$result = call_user_func($func, $module);

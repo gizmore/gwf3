@@ -165,6 +165,7 @@ final class Download_Edit extends GWF_Method
 		}
 		
 		if (false === $dl->saveVars(array(
+			'dl_uid' => GWF_Session::getUserID(),
 			'dl_mime' => GWF_Upload::getMimeType($file['tmp_name']),
 			'dl_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		))) {
