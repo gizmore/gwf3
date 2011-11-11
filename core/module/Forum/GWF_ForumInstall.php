@@ -37,6 +37,7 @@ final class GWF_ForumInstall
 			'lang_boards' => array('NO', 'bool'),
 		
 			'post_timeout' => array('0', 'time', 0, '172800'),
+			'post_min_level' => array('0', 'int', 0, '1000000'),
 		)).
 		self::installForumDefaults($module);
 	}

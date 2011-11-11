@@ -154,6 +154,8 @@ final class Module_Forum extends GWF_Module
 	public function cfgDoublePost() { return $this->getModuleVar('doublepost', '1') === '1'; }
 	public function cfgLangBoards() { return $this->getModuleVar('lang_boards', '0') === '1'; }
 	public function cfgGuestCaptcha() { return $this->getModuleVar('guest_captcha') === '1'; }
+	public function cfgPostTimeout() { return $this->getModuleVar('post_timeout'); }
+	public function cfgPostMinLevel() { return $this->getModuleVar('post_min_level'); }
 	
 	
 	##################
@@ -315,6 +317,10 @@ final class Module_Forum extends GWF_Module
 	 */
 	public function isNewThreadAllowed()
 	{
+		if (false !== ($error = $this->isPostTimeout())) {
+			return $error;
+		}
+		
 		if (false === ($board = $this->getCurrentBoard())) {
 			return $this->error('err_board');
 		}
@@ -332,6 +338,13 @@ final class Module_Forum extends GWF_Module
 		}
 		
 		$user = GWF_Session::getUser();
+		
+		# Level
+		if ($user->getLevel() < $this->cfgPostMinLevel())
+		{
+			return $this->error('err_post_level', array($this->cfgPostMinLevel()));
+		}
+		
 		# Logged in?
 		if ($user !== false)
 		{
@@ -352,6 +365,37 @@ final class Module_Forum extends GWF_Module
 		}
 		
 		return false;
+	}
+	
+	private function isPostTimeout()
+	{
+		if (0 == ($timeout = $this->cfgPostTimeout()))
+		{
+			return false; # No limit 
+		}
+		$user = GWF_Session::getUser();
+		if (0 === ($lastpost = $this->getLastPostTime($user)))
+		{
+			return false; # No posts yet
+		}
+		
+		$elapsed = time() - $lastpost;
+		if ($elapsed >= $timeout)
+		{
+			return false; # In limit
+		}
+		
+		$wait = $timeout - $elapsed;
+		return $this->error('err_post_timeout', array(GWF_Time::humanDuration($wait)));
+	}
+	
+	private function getLastPostTime(GWF_User $user)
+	{
+		if (false === ($result = GDO::table('GWF_ForumPost')->selectVar('MAX(post_date')))
+		{
+			return 0;
+		}
+		return GWF_Time::getTimestamp($result);
 	}
 	
 	############################

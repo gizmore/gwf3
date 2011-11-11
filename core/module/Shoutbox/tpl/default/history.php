@@ -22,7 +22,7 @@ foreach ($tVars['data'] as $row)
 	$style = wcStyleForUser($user);
 //	$style = 'background: #'.$color.'!important;';
 	
-	echo GWF_Table::rowStart($style, '', false);
+	echo GWF_Table::rowStart(false, '', '', $style);
 	echo GWF_Table::column($row->displayDate());
 	echo GWF_Table::column($row->displayUsername());
 	echo GWF_Table::column($row->displayMessage());

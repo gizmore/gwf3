@@ -87,7 +87,7 @@ final class Download_Edit extends GWF_Method
 	public function validate_level(Module_Download $m, $arg) { return GWF_Validator::validateInt($m, 'level', $arg, 0, 3999999999, '0'); }
 	public function validate_descr(Module_Download $m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 0, $m->cfgMaxDescrLen(), false); }
 	public function validate_expire(Module_Download $m, $arg) { return GWF_Time::isValidDuration($arg, 0, GWF_Time::ONE_YEAR*10) ? false : $m->lang('err_dl_expire'); }
-	
+	public function validate_file(Module_Download $m, $arg) { return false; }
 	
 	private function onEdit(Module_Download $module, GWF_Download $dl)
 	{

@@ -417,7 +417,12 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		if (!$this->isInModeration())
 		{
 			$thread = $this->getThread();
+			
 			$thread->increase('thread_postcount', -1);
+			$thread->increase('thread_thanks', -$this->getInt('post_thanks'));
+			$thread->increase('thread_votes_up', -$this->getInt('post_votes_up'));
+			$thread->increase('thread_votes_down', -$this->getInt('post_votes_down'));
+			
 			$this->getBoard()->adjustCounters(0, -1);
 			
 			if ($thread->getPostCount() === '0')

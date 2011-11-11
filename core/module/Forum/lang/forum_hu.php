@@ -323,5 +323,11 @@ $lang = array(
 	'btn_subscriptions' => 'Manage Subscriptions',
 	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
 	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
+
+	# v1.06 (Post limits)
+	'err_post_timeout' => 'You have just recently posted. Please wait %s.',
+	'err_post_level' => 'You need a minimum userlevel of %s to post.',
+	'cfg_post_timeout' => 'Minimum time between two posts',
+	'cfg_post_min_level' => 'Minimum level to post',
 );
 ?>
