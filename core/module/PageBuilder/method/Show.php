@@ -69,25 +69,29 @@ final class PageBuilder_Show extends GWF_Method
 	
 	private function checkPermission(Module_PageBuilder $module, GWF_Page $page)
 	{
-		$user = GWF_Session::getUser();
-		if ($page->isLoginRequired() && ($user === false)) {
+		if ('' === ($groups = $page->getVar('page_groups')))
+		{
+			return true;
+		}
+		
+		if (false === ($user = GWF_Session::getUser()) && $page->isLoginRequired())
+		{
 			return false;
 		}
-		$gids = explode(',', $page->getVar('page_groups'));
-		foreach ($gids as $i => $gid) {
-			if ($gid === '' || $gid === '0') {
+
+		$gids = explode(',', $groups);
+		foreach ($gids as $i => $gid)
+		{
+			if ($user->isInGroupID($gid)) 
+			{
+				return true;
+			}
+			elseif($gid === '' || $gid === '0')
+			{
 				unset($gids[$i]);
 			}
 		}
 		if (count($gids) === 0) { return true; }
-		if ($user === false) { return false; }
-		foreach($gids as $gid)
-		{
-			if ($user->isInGroupID($gid))
-			{
-				return true;
-			}
-		}
 		return false;
 	}
 	
