@@ -25,7 +25,7 @@ class GWF3
 		'no_session' => false,
 		'store_last_url' => true,
 		'ignore_user_abort' => true,
-		'disallow_php_uploads' => true,
+		'disallow_php_uploads' => false,
 	);
 	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static function getConfig($key) { return self::$CONFIG[$key]; }

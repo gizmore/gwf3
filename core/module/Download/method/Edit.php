@@ -144,6 +144,11 @@ final class Download_Edit extends GWF_Method
 			return $err.$this->templateEdit($module, $dl);
 		}
 		
+		if (false === ($file = $form->getVar('file')))
+		{
+			return $module->error('err_file').$this->templateEdit($module, $dl);
+		}
+		
 		if (GWF3::getConfig('disallow_php_uploads') && GWF_Upload::isDangerous($file))
 		{
 			return GWF_HTML::err('ERR_DANGEROUS_UPLOAD');
@@ -152,10 +157,6 @@ final class Download_Edit extends GWF_Method
 		if ($module->isModerated($module))
 		{
 			return GWF_HTML::err('ERR_NO_PERMISSION').$this->templateEdit($module, $dl);
-		}
-		
-		if (false === ($file = $form->getVar('file'))) {
-			return $module->error('err_file').$this->templateEdit($module, $dl);
 		}
 		
 		$tempname = 'dbimg/dl/'.$dl->getVar('dl_id');
