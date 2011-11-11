@@ -45,27 +45,31 @@ final class GWF_HTAccess
 	###############
 	### Protect ###
 	###############
+	/**
+	 * Deny access to a directory via .hatccess
+	 * @param string $dir
+	 * @return true|false
+	 */
 	public static function protect($dir)
 	{
-		$dir = dirname($dir);
+		$dir = rtrim($dir, "\\/");
 		$path = $dir.'/.htaccess';
-		if (Common::isFile($path)) {
-			return true;
-		}
-		
-		if (!is_dir($dir)) {
+
+		if (!is_dir($dir))
+		{
 			GWF_Log::logCritical(sprintf('Supported arg is not a dir in %s.', __METHOD__));
 			return false;
 		}
 		
-		if (!is_writable($dir)) {
+		if (!is_writable($dir))
+		{
 			GWF_Log::logCritical(sprintf('Cannot write to directory %s in %s.', $dir, __METHOD__));
 			return false;
 		}
 		
-		$data = 'deny from all'.PHP_EOL;
+		$content = 'deny from all'.PHP_EOL;
 		
-		if (false === file_put_contents($path, $data))
+		if (false === file_put_contents($path, $content))
 		{
 			GWF_Log::logCritical(sprintf('Cannot write to file %s in %s.', $path, __METHOD__));
 			return false;

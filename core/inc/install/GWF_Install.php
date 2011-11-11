@@ -394,10 +394,10 @@ final class GWF_Install
 		foreach ($modules as $module)
 		{
 			$name = $module->getName();
-			$back .= sprintf('<tr><td>%s</td><td><input name="mod[%s]" type="checkbox" checked="checked" /></td></tr>', $name, $name).PHP_EOL;
+			$back .= sprintf('<tr><td><input name="mod[%s]" type="checkbox" checked="checked" /></td><td>%s</td></tr>', $name, $name).PHP_EOL;
 		}
-		$back .= '<tr><td>Take care, because some Modules have Dependencies!</td></tr>';
-		$back .= '<tr><td><input type="submit" name="install_modules" value="Install Modules" /></td></tr>'.PHP_EOL;
+		$back .= '<tr><td colspan="2">Take care, because some Modules have Dependencies!</td></tr>';
+		$back .= '<tr><td colspan="2"><input type="submit" name="install_modules" value="Install Modules" /></td></tr>'.PHP_EOL;
 		$back .= '</form>'.PHP_EOL;
 		$back .= '</table></div>'.PHP_EOL;
 
@@ -509,9 +509,9 @@ final class GWF_Install
 
 	public static function wizard_10()
 	{
-//		if (false === GWF_HTAccess::protect(dirname(__FILE__).'/protected')) {
-		if (false === GWF_HTAccess::protect(GWF_PROTECTED_PATH)) {
-			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
+		if (false === GWF_HTAccess::protect(GWF_PROTECTED_PATH))
+		{
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
 		}
 
 		return GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished.', false);

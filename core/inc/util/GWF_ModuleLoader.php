@@ -196,24 +196,24 @@ final class GWF_ModuleLoader
 	{
 		$back = '';
 		$name = $module->getName();
-		$vfs = round($module->getVersionFS(), 2);
 		$vdb = round($module->getVersionDB(), 2);
+		$vfs = round($module->getVersionFS(), 2);
+		
+		GWF_Log::logInstall(sprintf('Upgrading module %s from v%s to v%s.', $module->getName(), $vdb, $vfs));
 		
 		while ($vdb < $vfs)
 		{
-			$vdb += 0.01;
+			$vdb = round($vdb+0.01, 2);
 			$back .= self::upgradeModuleStep($module, $vdb);
 		}
-		
-//		if ($back === '') {
-//			$module->saveOption(GWF_Module::ENABLED, true);
-//		}
 		
 		return $back;
 	}
 	
 	private static function upgradeModuleStep(GWF_Module $module, $version)
 	{
+		GWF_Log::logInstall(sprintf('Upgrading module %s to v%.02f.', $module->getName(), $version));
+		
 		$name = $module->getName();
 		$vstr = str_replace('.', '_', sprintf('%.02f', $version));
 		$path = sprintf('%smodule/%s/Upgrade_%s_%s.php', GWF_CORE_PATH, $name, $name, $vstr);
@@ -222,8 +222,9 @@ final class GWF_ModuleLoader
 		{
 			require_once $path;
 			$func = sprintf('Upgrade_%s_%s', $name, $vstr);
-			if (!function_exists($func)) {
-				return  'Missing function in upgrade: '.$func;
+			if (!function_exists($func))
+			{
+				return GWF_HTML::err(ERR_METHOD_MISSING, array($func, $module->display('module_name')));
 			}
 			
 			$result = call_user_func($func, $module);
@@ -233,7 +234,7 @@ final class GWF_ModuleLoader
 			}
 			else
 			{
-				return $error;
+				return $result;
 			}
 		}
 
@@ -242,7 +243,9 @@ final class GWF_ModuleLoader
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		echo GWF_HTML::message('GWF', sprintf('Upgraded module to version %.02f.', $version));
+		$msg = sprintf('Upgraded module %s to version %.02f.', $module->getName(), $version);
+		GWF_Log::logInstall($msg);
+		echo GWF_HTML::message('GWF', $msg);
 		
 		return '';
 	}

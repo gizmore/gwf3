@@ -87,6 +87,7 @@ final class GWF_Log
 	public static function logMessage($message) { return self::log('message', $message); }
 	public static function logWarning($message) { return self::log('warning', $message); }
 	public static function logCritical($message) { return self::log('critical', $message) && self::log('critical_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
+	public static function logInstall($message) { return self::log('install', $message); }
 	
 	##############
 	### Helper ###

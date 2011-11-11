@@ -4,7 +4,7 @@
 ############
 function install_get_core_tables()
 {
-	Common::defineConst('GWF_CORE_PATH', dirname(__FILE__).'/../../core/');
+//	Common::defineConst('GWF_CORE_PATH', dirname(__FILE__).'/../../core/');
 	$classnames = array();
 	foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
 	{
@@ -45,7 +45,8 @@ function install_core($drop=false)
 	}
 	$ret .= '<br/>';
 	/** Try to set a birthdate **/
-	if (false === GWF_Settings::getSetting('gwf_site_birthday', false)) {
+	if (false === GWF_Settings::getSetting('gwf_site_birthday', false))
+	{
 		GWF_Settings::setSetting('gwf_site_birthday', date('Ymd'));
 	}
 	

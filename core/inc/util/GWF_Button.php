@@ -10,6 +10,9 @@ final class GWF_Button
 	private static $templateButtons = true;
 	private static $templateTooltip = true;
 	
+	/**
+	 * Preload button template.
+	 */
 	public static function init()
 	{
 		if (self::$templateButtons === true)
@@ -21,15 +24,17 @@ final class GWF_Button
 	
 	/**
 	 * Get a GWF HTML button. Type is 'generic'. Command is ''. 
-	 * @param unknown_type $text
-	 * @param unknown_type $href
-	 * @param unknown_type $type
-	 * @param unknown_type $command
-	 * @return unknown_type
+	 * @param string $text
+	 * @param string $href
+	 * @param string $type
+	 * @param string $command
+	 * @param boolean $selected
+	 * @param string $onclick
+	 * @return string
 	 */
-	public static function generic($text, $href, $type='generic', $command='', $sel=false, $onclick='')
+	public static function generic($text, $href, $type='generic', $command='', $selected=false, $onclick='')
 	{
-		$class = $sel === true ? ' gwf_btn_sel' : '';
+		$class = $selected ? ' gwf_btn_sel' : '';
 		$onclick = $onclick === '' ? '' : " onclick=\"$onclick\"";
 		return str_replace(
 			array('%TEXT%', '%HREF%', '%TYPE%', '%CMD%', '%CLASS%', '%ONCLICK%'),

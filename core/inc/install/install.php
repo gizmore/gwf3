@@ -7,7 +7,7 @@
  */
 
 # Load Install-Core
-require_once '../gwf3.class.php';
+//require_once '../gwf3.class.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_Install.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
@@ -31,17 +31,19 @@ if(GWF_STEP < 2 && !Common::isFile('protected/config.php'))
 $progress = (int)(100 / 11 * GWF_STEP);
 GWF_Debug::setDieOnError(false);
 
-$gwf = new GWF3($dir, array(
-	'load_config' => true,
-	'start_debug' => true,
-	'ignore_user_abort' => false,
-	//'disallow_php_uploads' => true,
+$gwf = new GWF3(getcwd(), array(
 	'website_init' => false,
 	'autoload_modules' => false,
 	'load_module' => false,
+	'load_config' => false,
+	'start_debug' => true,
 	'get_user' => false,
 	'do_logging' => false,
-	'no_session' => true
+	'blocking' => false,
+	'no_session' => true,
+	'store_last_url' => false,
+	'ignore_user_abort' => false,
+	'disallow_php_uploads' => true,
 ));
 
 # Website Init #Grr... cant have different languages atm
@@ -54,10 +56,10 @@ GWF_Install::setGWFIL(new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install'));
 
 # Design Init
 GWF3::setDesign('install');
-GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
-GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'../tpl/install/css/install.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'../tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
-GWF_Website::includeJQuery();
+GWF_Website::addJavascript('');
 GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH,'step' => GWF_STEP));
 
 if (false !== (Common::getPost('create_admin'))) {

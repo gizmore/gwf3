@@ -52,7 +52,7 @@ final class GWF_User extends GDO
 			'user_password' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 44),
 			'user_regdate' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'user_regip' => GWF_IP6::gdoDefine(GWF_IP_EXACT, GDO::NOT_NULL),
-			'user_email' => array(GDO::VARCHAR|GDO::CASE_I|GDO::ASCII, '', 255),
+			'user_email' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, '', 255),
 			'user_gender' => array(GDO::ENUM, 'no_gender', array('male', 'female', 'no_gender')),
 			'user_lastlogin' => array(GDO::UINT, 0),
 			'user_lastactivity' => array(GDO::UINT|GDO::INDEX, 0),

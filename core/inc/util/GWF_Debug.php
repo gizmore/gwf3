@@ -97,6 +97,11 @@ final class GWF_Debug
 	 */
 	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 	{
+		if (error_reporting() === 0)
+		{
+			return;
+		}
+		
 		# Log as critical!
 		if (class_exists('GWF_Log'))
 		{

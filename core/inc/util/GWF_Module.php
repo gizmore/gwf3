@@ -20,7 +20,7 @@ class GWF_Module extends GDO
 	{
 		return array(
 			'module_id' => array(GDO::AUTO_INCREMENT),
-			'module_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, false, 64),
+			'module_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::UNIQUE|GDO::INDEX, false, 64),
 			'module_priority' => array(GDO::UINT|GDO::INDEX, self::DEFAULT_PRIORITY),
 			'module_version' => array(GDO::DECIMAL, 1.00, array(2, 2)),
 			'module_options' => array(GDO::UINT|GDO::INDEX, self::ENABLED),

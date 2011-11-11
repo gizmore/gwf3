@@ -211,7 +211,7 @@ final class GWF_InstallConfig
 		{
 			$domain = $_SERVER['HTTP_HOST'];
 			#$self = Common::substrUntil($_SERVER['PHP_SELF'], 'protected/');
-			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/')+1);
+			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/protected')+1);
 		}
 //		$path = Common::substrUntil(__FILE__, '/protected');
 		$path = GWF_PATH;
@@ -220,7 +220,7 @@ final class GWF_InstallConfig
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
 			array('text',   'Main', 'GWF_SITENAME', 'Gizmore Website Framework', 'Your Site`s name. htmlspecialchars() it yourself.'),
 			array('text',   'Main', 'GWF_WEB_ROOT_NO_LANG', $self, 'Add trailing and leading slash. Example: \'/\' or \'/mywebdir/\'.'),
-			array('text',   'Main', 'GWF_DEFAULT_DOCTYPE', 'xhtml_strict', 'Set the default html-doctype for gwf. Modules can change it.'),
+			array('text',   'Main', 'GWF_DEFAULT_DOCTYPE', 'html5', 'Set the default html-doctype for gwf. Modules can change it.'),
 //			array('text',   'Main', 'GWF_SERVER_PATH', $path, 'Full path. Do NOT add trailing slash. Example: \'/home/foo/public_html\'.'),
 //			array('bool',   'Main', 'GWF_OUTPUT_BUFFERING', true, 'Enable output buffering. Example: true.'),
 //			array('bool',   'Main', 'GWF_WITH_GPL', false, 'Use GPL Licensed, 3rd party stuff? Example: false.'),
@@ -228,7 +228,7 @@ final class GWF_InstallConfig
 //			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc/3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# 3rd Party
-			array('text', '3rd Party', 'GWF_SMARTY_PATH', $path.'core/inc/3p/smarty/Smarty.class.php', 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
@@ -238,8 +238,8 @@ final class GWF_InstallConfig
 			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', $path.'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', $path.'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', $path.'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
-                        array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
-                        array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
+			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
+			array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
 
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_URL', 'about_gwf', '1st visit URL. Example: \'home\'.'),
@@ -275,7 +275,7 @@ final class GWF_InstallConfig
 			array('text', 'Database', 'GWF_DB_PASSWORD', '', 'Database password.'),
 			array('text', 'Database', 'GWF_DB_DATABASE', '', 'Database db-name.'),
 			array('text', 'Database', 'GWF_DB_TYPE', 'mysql', 'Database type. Currently only \'mysql\' is supported.'),
-			array('text', 'Database', 'GWF_DB_ENGINE', 'innoDB', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
+			array('text', 'Database', 'GWF_DB_ENGINE', 'myIsam', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
 //			array('bool', 'Database', 'GWF_DB_VERBOSE', true, 'Print database errors to screen. Example: false.'),
 			array('text', 'Database', 'GWF_TABLE_PREFIX', 'gwf_', 'Database table prefix. Example: \'gwf3_\'.'),
 			
