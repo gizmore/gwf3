@@ -25,10 +25,9 @@ final class GWF_HTAccess
 			'#############################'.PHP_EOL.
 			PHP_EOL.
 			'# Secure Limits'.PHP_EOL.
-			'deny from all'.PHP_EOL.
-			'<Limit GET POST>'.PHP_EOL.
-			'allow from all'.PHP_EOL.
-			'</Limit>'.PHP_EOL.
+			'<LimitExcept GET HEAD POST>'.PHP_EOL.
+			'Deny from all'.PHP_EOL.
+			'</LimitExcept>'.PHP_EOL.
 			PHP_EOL.
 			'# No dot files'.PHP_EOL.
 			'RedirectMatch 404 /\..*$'.PHP_EOL.
