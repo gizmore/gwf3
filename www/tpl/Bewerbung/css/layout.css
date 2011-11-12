@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+body {
+    background-color: #fff0d8;
+	background-attachment: fixed;
+	background-image: -moz-linear-gradient(top, #fff0d8 6%, #e0d0b8);
+	background-image: -o-linear-gradient(top, #fff0d8 6%, #e0d0b8);
+	background-image: -webkit-gradient(top, #fff0d8 6%, #e0d0b8);
+}
+div#margin {
+	box-shadow: 6px 6px 20px #000001;
+	border-style: solid;
+	border-color: #996644;
+	border-width: 10px 12px 12px 2px;
+	border-top-right-radius: 142px;
+	background-color: #996644;
+/*	background-color: #fff;*/
+}
+div#border {
+	height: 100%;
+	border-top-right-radius: 130px;
+	background-color: #fff;/*
+}
+div#logo, div#navigation, div#content {*/
+	border: 2px solid #fff0d8;
+	border-left: none;
+}
+div#logo {
+/*	border-top: thin solid #fff0d8;*/
+	background-color: #e0d0b8;
+	border-top-right-radius: 130px;
+/*	border-top-right-radius: 50px;*/
+}
+div#navigation {
+	background-color: #996644;
+	border-top: thin solid #fff0d8;
+	border-bottom: thin solid #fff0d8;
+}
+ul.navi li {
+	display: inline;
+	float: left;
+	height: 25px;
+	line-height: 23px;
+	vertical-align: middle;
+	width: 98px;
+	text-align: center;
+	border-left: thin solid #fff0d8;
+	border-right: thin solid #000;
+	border-right: thin solid #fff0d8;
+	padding: 0 3px;
+}
+ul.navi li.hover {
+	margin: auto 0;
+	height: 23px;
+	border-bottom: thin solid #fff0d8;
+	border-top: thin solid #fff0d8;	
+	background-color: #e0d0b8;
+}
+ul.navi li.hover a,
+ul.navi li:hover a {
+	color: #996644!important;
+}
+ul.navi {
+	height: 25px;
+	width: 650px;
+	display: block;
+	margin: 0 auto;
+/*	border-bottom: thin solid #fff0d8;*/
+}
+div#content {
+/*	border-bottom-left-radius: 23px;
+	border-bottom-right-radius: 23px;*/
+	background-color: #ffffff;
+/*	border-top: 2px solid #fff0d8;*/
+
+}
+div.copyright {
+	border-top: thick solid #fff0d8;
+	background-color: #e0d0b8;
+/*	background-color: #996644;*/
+}
+div#content table,
+div#content img {
+	border: thin solid #e0d0b8;
+}
+div#content p {
+	text-align: center;
+	margin: 0 auto;
+}
+
+body#anschreiben div#content > h3 {
+	display: none;
+}

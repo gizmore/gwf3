@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+body {
+	color: #fff;
+	font-family: 'Arial';
+}
+div#left a,
+div#left {
+	color: #fff;
+	text-decoration: none;
+}
+a, 
+div#content {
+	color: #2085F1;	
+}
+p.copyright {
+	color: #50B5EE;
+}
+h1 {
+	text-align: center;
+}
+ul.navi {
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	padding: 3px 0;
+	margin: 10px;
+	list-style-type:none;
+}

@@ -1,0 +1,27 @@
+@charset "utf-8";
+/*
+@page { size:21.0cm 14.85cm; margin-top:1.5cm; margin-bottom:2cm  }
+*/
+body#anschreiben div#content > h3,
+div.copyright,
+div#logo,
+div#navigation
+{ 
+    display: none;
+}
+h3 {
+	text-align: center;
+	font-size: 1.5em;
+}
+body#anschreiben h4 {
+	font-weight: normal!important;
+}
+body {
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 1.3em;
+	margin: 1cm;
+}
+table {
+	width: 100%;
+}
