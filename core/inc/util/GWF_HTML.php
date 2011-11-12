@@ -56,7 +56,7 @@ final class GWF_HTML
 		$errors = $errors === NULL ? self::$_ERRORS : array($errors); 
 		if(count($errors) === 0) return ''; 
 		
-		if (Common::getGet('ajax') !== false)
+		if (isset($_GET['ajax']))
 		{
 			$err = '';
 			foreach ($errors as $msg)

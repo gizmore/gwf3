@@ -25,28 +25,32 @@ MY_FILENAME="./""$MY_DATE""_db_backup""$MY_SALT"".sql.gz";
 ##################
 ### DB backups ###
 ##################
-# Delete all files older than 7 days
+echo "Doing the daily database backup.";
+echo "Deleting all backups older than 7 days.";
 find ./db_backups -name "*.sql.gz" -mtime +7 -exec rm {} \;
 
 # Back it up
+echo "Creating a new backup.";
 mysqldump --user=$MY_USER --password=$MY_PASS $MY_DB | gzip -9 > "db_backups/$MY_FILENAME"
 
 # Move the file if its a permanent backup 
 if [ "$MY_DAY" == 01 ] || [ "$MY_DAY" == 15 ]
 then
+	echo "Moving the backup to permanent backups.";
 	mv "db_backups/$MY_FILENAME" "db_backups_old/$MY_FILENAME"
 fi
 
 ################
 ### Logfiles ###
 ################
-# Compress old logfiles (24h ago)
 MY_DATE=`date +%y%m%d%H%M%S`
 MY_FILENAME="./zipped/""$MY_DATE""$MY_SALT""_logfiles.tar.gz";
-find ./logs -name "*.txt" -mmin +86401 | xargs tar --gzip -cf "$MY_FILENAME"
 
-# Remove old logfiles
-find ./logs -name *.txt -mmin +86401 -exec rm {} \;
+echo "Compressing old logfiles.";
+find ./logs/ -name "*.txt" -mmin +86401 | xargs tar --gzip -cf "$MY_FILENAME"
 
-# Remove empty logdirs
+echo "Removing old logfiles.";
+find ./logs -name "*.txt" -mmin +86401 -exec rm {} \;
+
+echo "Removing empty dirs.";
 find ./logs -depth -type d -empty -exec rmdir {} \;

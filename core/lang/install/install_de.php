@@ -12,9 +12,35 @@ $lang = array(
 	'err_bool' => 'Die var \'%1$s\' muss eon booleascher Wert sein (entweder true oder false).',
 	'err_script' => 'Die var \'%1$s\' hat einen ungültigen Standartwert.',
 	'err_no_smarty' => 'Konnte Smarty library nicht finden.',
+	'err_no_mods_selected' => 'Bitte wählen sie einige Module aus.',
+	'err_htaccess' => 'Die Wurzel-&quot;.htaccess&quot; Datei konnte nicht beschrieben werden.',
+	'err_copy' => 'Cannot copy to file %s.',
+
+	'msg_copy' => 'Succesfully made a copy of %s.',
+	'msg_copy_untouched' => 'Ihre Kopie von %s wurde nicht verändert.',
+	'msg_htaccess' => 'Die Wurzel &quot;.htaccess&quot; Datei wurde erfolgreich beschrieben.',
 
 	'pt_wizard' => 'GWF - Installations-Assistent',
-	
+	'mt_wizard' => 'GWF,Install,Wizard',
+	'md_wizard' => 'GWFv3  Installations-Assistent. You should not see me ;)',
+
+	'foot_progress' => 'Installationsfortschritt: %0.02f%%',
+
+	'menu_0' => 'Status',
+	'menu_1' => 'ConfigErzeugen',
+	'menu_2' => 'ConfigTesten',
+	'menu_3' => 'KernTabellen',
+	'menu_4' => 'Sprachen',
+	'menu_5' => 'WebRoboter',
+	'menu_6' => 'Module',
+	'menu_7' => 'Beispiele',
+	'menu_8' => 'HTAccess',
+	'menu_9' => 'Admins',
+	'menu_10' => 'Cache',
+
+	'title_long' => 'Space &amp; Gizmore Website Framework',
+	'title_step' => 'Installations-Assistent - Schritt %d',
+
 	'wizard' => 'Installations-Assistent',
 	'step' => 'Schritt %1$s',
 	'yes' => 'ja',
@@ -54,28 +80,30 @@ $lang = array(
 	'step_2' => 'Teste &quot;protected/config.php&quot;',
 	'step_2_0' => 'Ihre Konfiguration scheint stabil. Versuchen Sie nun die core Tabellen einzurichten.',
 
-	'step_3' => 'Installiere core Tabellen',
+	'step_3' => 'Kerntabellen installieren',
 	'create_table' => 'Erstelle Tabelle für class %1$s... ',
-	'step_3_0' => 'Wir werden jetzt die Tabellen für die core-Klassen erstellen.<br/>Sie finden diese im &quot;core/inc/&quot; Ordner.<br/>Jede Klasse besitzt eine Datenbanktabelle.',
-	'step_3_1' => 'Sie können jetzt entweder versuchen die Land/Sprach Tabellen mit oder ohne ip2country Mapping zu installieren.<br/>IP2country Mapping kann mehrere Minuten zum installieren benötigen.',
+	'step_3_0' => 'Wir werden jetzt die Tabellen für die core-Klassen erstellen.<br/>Sie finden diese im &quot;core/inc/&quot; Ordner.<br/>Jede dieser Klassen besitzt eine Datenbanktabelle.',
 
-	'step_4' => 'Installiere Land+Sprach Tabellen',
-	'step_4_0' => 'Sie können jetzt installieren oder die UserAgent Datenbank auslassen.<br/>Es wird empfohlen diesen Schritt auszulassen, da die UserAgent Datenbank zurzeit komplett unbenutzt ist.',
+	'step_4' => 'Länder und Sprachen installieren',
+	'step_4_0' => 'Sie können jetzt entweder versuchen die Land/Sprach Tabellen mit oder ohne ip2country Mapping zu installieren.<br/>IP2country Mapping kann mehrere Minuten zum installieren benötigen.',
+	'step_4_1' => 'Installiere Land- und Sprachtabellen',
+	'step_4_2' => 'Installiere Land+Sprach+ip2Land Tabellen',
 
-	'step_5' => 'Installiere Land+Sprach+ip2Land Tabellen',
-	'step_5_0' => 'Sie können jetzt installieren oder die UserAgent Datenbank auslassen.<br/>Es wird empfohlen diesen Schritt auszulassen, da die UserAgent Datenbank zurzeit komplett unbenutzt ist.',
+	'step_5' => 'Useragents installieren',
+	'step_5_0' => 'Sie können jetzt die UserAgent Datenbank installieren oder dies überspringen.<br/>Es wird empfohlen diesen Schritt auszulassen, da die UserAgent Datenbank zurzeit komplett unbenutzt ist.',
+	'step_5_1' => 'Installiere useragent map',
 
-	'step_6' => 'Installiere useragent map',
-	'step_6_0' => 'Sie sollten jetzt alle Module installieren, die in GWF3 mitgeliefert werden.',
+	'step_6' => 'Module installieren',
+	'step_6_0' => 'Wählen Sie die Module die sie installieren möchten',
+	'step_6_1' => 'Module installieren',
 
-	'step_7' => 'Installiere alle Module',
-	'step_7_0' => 'Sie sollten jetzt mindestens ein Admin Account erstellen.',
-	'step_7a' => 'Installierte Module',
-	
-	'step_8' => 'Eestelle ein Administrator Konto',
+	'step_7' => 'Beispieldateien kopieren',
 
-	'step_9' => 'Installation abschließen',
+	'step_8' => 'HTAccess erzeugen',
 
-	'step_10' => 'Schütze den &quot;protected/&quot; Ordner',
+	'step_9' => 'Administratoren erzeugen',
+
+	'step_10' => 'Cache leeren',
+	'step_10_0' => 'Die Installation ist abgeschlossen.<br/>Alle caches wurden geleert.<br/>Sie können sich nun einloggen.',
 );
 ?>

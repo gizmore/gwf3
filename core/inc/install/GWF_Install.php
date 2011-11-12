@@ -1,4 +1,8 @@
 <?php
+# Disable output buffering
+if (ob_get_level() > 0) ob_end_clean();
+apache_setenv('no-gzip', 1);
+ini_set('zlib.output_compression', 0);
 
 final class GWF_Install
 {
@@ -265,11 +269,16 @@ final class GWF_Install
 	### --- Step 2 --- ########
 	### --- Test Config --- ###
 	###########################
-	public static function wizard_error($key, $param=array())
+	public static function wizard_error($key, $param=NULL)
 	{
 		return GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
 	}
-
+		
+	public static function wizard_message($key, $param=NULL)
+	{
+		return GWF_HTML::message(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
+	}
+	
 	public static function wizard_2()
 	{
 		$back = self::wizard_h2('2');
@@ -296,96 +305,136 @@ final class GWF_Install
 	############################
 	public static function wizard_check_cfg_quick()
 	{
-		if (false === ($db = gdo_db())) {
+		if (false === ($db = gdo_db()))
+		{
 			return self::wizard_error('err_no_db');
 		}
 
-		if (!Common::isFile(GWF_SMARTY_PATH)) {
+		if (!Common::isFile(GWF_SMARTY_PATH))
+		{
 			return self::wizard_error('err_no_smarty');
 		}
 
 		return false;
 	}
 
+	/**
+	 * Install core on the fly ...
+	 */
 	public static function wizard_3()
 	{
 		$back = self::wizard_h2('3');
-		if (false !== ($error = self::wizard_check_cfg_quick())) {
+		
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
 			return $error;
 		}
 
 		$back .= self::$gwfil->lang('step_3_0').PHP_EOL;
 
-		$output = '';
-		if (false === ($core = install_core(false))) {
-			return $output.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
-		} else {
+		$success = true;
+		if (false === ($core = install_core(false, $success)))
+		{
+			return $core.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
+		}
+		else
+		{
 			$back .= $core;
 		}
-		$back .= $output;
-		$back .= self::$gwfil->lang('step_3_1').PHP_EOL;
-		$back .= self::wizard_btn('4');
+		
+		if ($success)
+		{
+			$back .= self::wizard_btn('4');
+		}
+		
+		return $back;
+	}
+
+	/**
+	 * Choose Lang+Country+IP2C 
+	 * Enter description here ...
+	 */
+	public static function wizard_4()
+	{
+		$back = self::wizard_h2('4');
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_0'));
+		$back .= self::wizard_btn('4_1');
+		$back .= self::wizard_btn('4_2');
+		return $back;
+	}
+	
+	/**
+	 * Install Language + Country
+	 */
+	public static function wizard_4_1()
+	{
+		$back = self::wizard_h2('4');
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_1'));
+		$back .= '<pre>';
+		$back .= install_createLanguage(true, true, false);
+		$back .= '</pre>';
 		$back .= self::wizard_btn('5');
 		return $back;
 	}
 
-	### Lang
-	public static function wizard_4()
+	/**
+	 * Install Language + Country + IP2Country
+	 */
+	public static function wizard_4_2()
 	{
 		$back = self::wizard_h2('4');
-		$back .= install_createLanguage(true, true, false);
-		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_0'));
-		$back .= self::wizard_btn('6');
-		$back .= self::wizard_btn('7');
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_2'));
+		$back .= '<pre>';
+		$back .= install_createLanguage(true, true, true);
+		$back .= '</pre>';
+		$back .= self::wizard_btn('5');
 		return $back;
 	}
-
-	### Lang + IP
+	
+	/**
+	 * Choose useragent.
+	 */
 	public static function wizard_5()
 	{
 		$back = self::wizard_h2('5');
-		$back .= install_createLanguage(true, true, true);
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_0'));
+		$back .= self::wizard_btn('5_1');
 		$back .= self::wizard_btn('6');
-		$back .= self::wizard_btn('7');
 		return $back;
 	}
 
-	### Useragent
+	/**
+	 * Install useragent.
+	 */
+	public static function wizard_5_1()
+	{
+		$back = self::wizard_h2('5');
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_1'));
+		$back .= '<pre>';
+		$back .= install_createUserAgents();
+		$back .= '</pre>';
+		$back .= self::wizard_btn('6');
+		return $back;
+		
+	}
+
+	/**
+	 * Choose modules.
+	 */
 	public static function wizard_6()
 	{
 		$back = self::wizard_h2('6');
-		$back = '<h2>Step 6</h2><p>Installed the useragent map.</p>';
-		$back .= install_createUserAgents();
-		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_6_0'));
-		$back .= self::wizard_btn('7');
-		return $back;
-	}
-
-	### Modules
-//	public static function wizard_7c()
-//	{
-//		$back = self::wizard_h2('7');
-//		self::all_modules(false);
-//		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_7_0'));
-//		$back .= self::wizard_btn('8');
-//		return $back;
-//	}
-
-	public static function wizard_7()
-	{
-		$back = self::wizard_h2('7');
 		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
 		}
-		$back .= self::wizard_7_form($modules);
+		$back .= self::wizard_modules_form($modules);
 		return $back;
 	}
 
-	public static function wizard_7_form(array $modules)
+	public static function wizard_modules_form(array $modules)
 	{
 		$back = '<div><table>';
-		$back .= '<form action="install_wizard.php?step=7a" method="post" id="form_install_modules" >'.PHP_EOL;
+		$back .= '<form action="install_wizard.php" method="post" id="form_install_modules" >'.PHP_EOL;
 
 //		$back .= sprintf('<tr><td></td><td><input name="toggle_all" type="checkbox" checked="checked" onclick="$(\'#form_install_modules\').find(\':checkbox\').attr(\'checked\', \'checked\'); return false;" /></td></tr>').PHP_EOL;
 
@@ -393,8 +442,13 @@ final class GWF_Install
 
 		foreach ($modules as $module)
 		{
+			$module instanceof GWF_Module;
+			$checked = $module->getDefaultAutoLoad() ? '' : ' checked="checked"';
+			$disabled = $module->isCoreModule() ? ' disabled="disabled"' : '';
 			$name = $module->getName();
-			$back .= sprintf('<tr><td><input name="mod[%s]" type="checkbox" checked="checked" /></td><td>%s</td></tr>', $name, $name).PHP_EOL;
+			$style = $disabled === '' ? '' : 'font-style:italic;';
+			$style.= $checked === '' ? 'font-weight:bold;' : '';
+			$back .= sprintf('<tr><td><input name="mod[%s]" type="checkbox"%s%s /></td><td style="%s">%s</td></tr>', $name, $checked, $disabled, $style, $name).PHP_EOL;
 		}
 		$back .= '<tr><td colspan="2">Take care, because some Modules have Dependencies!</td></tr>';
 		$back .= '<tr><td colspan="2"><input type="submit" name="install_modules" value="Install Modules" /></td></tr>'.PHP_EOL;
@@ -404,58 +458,74 @@ final class GWF_Install
 		return $back;
 	}
 
-	public static function wizard_7a()
+	public static function wizard_6_1()
 	{
-		$back = '';
 		$names = Common::getPostArray('mod', array());
-		if (count($names) === 0) {
-			return self::wizard_7();
-		}
-		$back = self::wizard_h2('7a');
-		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_7_0'));
-
-		$modules = array();
-		$back2 = '';
-		foreach ($names as $name => $on)
+		// Nothing to install Oo
+		if (count($names) === 0)
 		{
-			if (false === ($module = GWF_ModuleLoader::loadModuleFS($name))) {
-				$back2 .= GWF_HTML::err('ERR_MODULE_MISSING', array(htmlspecialchars($name)), true, true);
-				continue;
+			return self::wizard_error('err_no_mods_selected').self::wizard_6();
+		}
+		
+		$back = self::wizard_h2('6_1');
+//
+		$modules = GWF_ModuleLoader::loadModulesFS();
+		$names = Common::getPostArray('mod', array());
+		foreach ($modules as $id => $module)
+		{
+			$module instanceof GWF_Module;
+			
+			$name = $module->getName();
+			if ( (!isset($names[$name])) && (!$module->isCoreModule()) )
+			{
+				unset($modules[$id]);
 			}
-			$modules[] = $module;
 		}
 
-		if ($back2 !== '') {
-			return $back.$back2;
-		}
-
-
-//		$modules = GWF_ModuleLoader::loadModulesFS();
 		GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
 
 		$back .= install_modules($modules, false);
 
-//		foreach ($modules as $module)
-//		{
-//			$module instanceof GWF_Module;
-//			echo $module->getName().'<br/>';
-//			# TODO: Check dependencies. Quit on error.
-//			$back .= GWF_ModuleLoader::installModule($module, false);
-//		}
-//		
-//		GWF_ModuleLoader::i
-//		GWF_Module::installHTAccessModules($modules);
-
-		$back .= self::wizard_btn('8');
+		$back .= self::wizard_btn('7');
 
 		return $back;
 	}
 
-
-	### Admins
+	/**
+	 * Copy a few .example files
+	 */
+	public static function wizard_7()
+	{
+		$back = self::wizard_h2('7');
+		if (false === install_copyExampleFiles($back))
+		{
+			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'), true, true);
+			return $back;
+		}
+		return $back.self::wizard_btn('8');
+	}
+	
+	/**
+	 * Create .htaccess
+	 */
 	public static function wizard_8()
 	{
 		$back = self::wizard_h2('8');
+		
+		if (!GWF_ModuleLoader::reinstallHTAccess())
+		{
+			return self::wizard_error('err_htaccess');
+		}
+		
+		return self::wizard_message('msg_htaccess').self::wizard_btn('9');
+	}
+	
+	/**
+	 * Create admins
+	 */
+	public static function wizard_9()
+	{
+		$back = self::wizard_h2('9');
 		$back .= '<div>';
 		$back .= sprintf('<form method="post" action="install_wizard.php">');
 		$back .= '<div>Username:';
@@ -473,57 +543,57 @@ final class GWF_Install
 		return $back;
 	}
 
-	public static function wizard_8a()
+	/**
+	 * Add admin
+	 */
+	public static function wizard_9_1()
 	{
-		$username = Common::getPost('username', '');
-		if (!GWF_Validator::isValidUsername($username)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid username.', false, true).self::wizard_8();
+		$username = Common::getPostString('username', '');
+		if (!GWF_Validator::isValidUsername($username))
+		{
+			return GWF_HTML::error('Install Wizard', 'Invalid username.', false).self::wizard_8();
 		}
 
-		$password = Common::getPost('password', '');
-		if (!GWF_Validator::isValidPassword($password)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid password (minlength: 6).', false, true).self::wizard_8();
+		$password = Common::getPostString('password', '');
+		if (!GWF_Validator::isValidPassword($password))
+		{
+			return GWF_HTML::error('Install Wizard', 'Invalid password (minlength: 6).', false).self::wizard_8();
 		}
 
-		$email = Common::getPost('email', '');
-		if (!GWF_Validator::isValidEmail($email)) {
-			return GWF_HTML::error('Install Wizard', 'Invalid email.', false, true).self::wizard_8();
+		$email = Common::getPostString('email', '');
+		if (!GWF_Validator::isValidEmail($email))
+		{
+			return GWF_HTML::error('Install Wizard', 'Invalid email.', false).self::wizard_8();
 		}
-
-		install_default_groups();
-
-		install_createAdmin($username, $password, $email, $back);
+		
+		if (false === install_default_groups())
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		$back = '';
+		if (false === install_createAdmin($username, $password, $email, $back))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
 
 		return
 			$back.
-			self::wizard_btn('8').
-			self::wizard_btn('9');
+			self::wizard_btn('9').
+			self::wizard_btn('10');
 	}
 
-	public static function wizard_9()
-	{
-		return 
-			GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished. Please login as your admin account now. Also: <b>DO NOT FORGET TO .htaccess PROTECT THE FOLDER /protected</b>', false, true).
-			self::wizard_btn('11');
-	}
-
+	/**
+	 * Clear smarty cache.
+	 */
 	public static function wizard_10()
 	{
-		if (false === GWF_HTAccess::protect(GWF_PROTECTED_PATH))
-		{
-			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
-		}
-
-		return GWF_HTML::message('Install Wizard Completed', 'Install wizard has finished.', false);
+		$back = self::wizard_h2('10');
+		
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0'));
+		
+		return $back;
 	}
 
-	public static function wizard_11()
-	{
-		if (false === copyExampleFiles()) {
-			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'), true, true);
-		} else { 
-			echo GWF_HTML::message('Install Wizard', 'Successfully created index.php.', false, true);
-		}
-		return self::wizard_btn('10');
-	}
+
 }

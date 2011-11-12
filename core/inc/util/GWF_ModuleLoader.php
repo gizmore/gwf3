@@ -372,6 +372,11 @@ final class GWF_ModuleLoader
 		}
 		return true;
 	}
+	
+	public static function reinstallHTAccess()
+	{
+		return self::installHTAccess(self::loadModulesFS());
+	}
 
 //	public static function installHTMenu(array $modules)
 //	{
@@ -401,7 +406,8 @@ final class GWF_ModuleLoader
 		{
 			$module instanceof GWF_Module;
 			
-			if (!$module->isEnabled()) {
+			if (!$module->isEnabled())
+			{
 				continue;
 			}
 			

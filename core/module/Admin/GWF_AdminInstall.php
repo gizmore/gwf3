@@ -7,7 +7,7 @@ final class GWF_AdminInstall
 			'users_per_page' => array('50', 'int', '1', '500'),
 			'super_hash' => array('', 'script'),
 			'super_time' => array('10 minutes', 'time', 30, 7200),
-			'install_webspiders' => array('YES', 'bool'),
+			'install_webspiders' => array('NO', 'bool'),
 			'hide_web_spiders' => array('NO', 'bool'),
 //			'log_ip_guest' => array('YES', 'bool'),
 //			'log_ip_member' => array('YES', 'bool'),

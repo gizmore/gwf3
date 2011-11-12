@@ -67,7 +67,7 @@ div#gwf_inst_stepmenu ol li {
 	background-color: #000080;
 	color: #e0e6ec;
 	border: thin solid #0000ff;
-	display: inline;
+	display: inline-block;
 	padding: 2px;
 }
 div#gwf_inst_stepmenu ol li a {

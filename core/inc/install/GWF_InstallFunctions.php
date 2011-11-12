@@ -24,7 +24,7 @@ function install_get_core_tables()
 //	return array('GWF_Country','GWF_Group','GWF_IP2Country','GWF_LangMap','GWF_Language','GWF_Module','GWF_ModuleVar','GWF_PublicKey','GWF_Session','GWF_Settings','GWF_User','GWF_UserGroup');
 }
 
-function install_core($drop=false)
+function install_core($drop=false, &$success)
 {
 	$db = gdo_db();
 	$tables = install_get_core_tables();
@@ -44,13 +44,18 @@ function install_core($drop=false)
 		}
 	}
 	$ret .= '<br/>';
+	
 	/** Try to set a birthdate **/
 	if (false === GWF_Settings::getSetting('gwf_site_birthday', false))
 	{
-		GWF_Settings::setSetting('gwf_site_birthday', date('Ymd'));
+		$ret .= sprintf("Setting up a birthdate ... %s.", date('Ymd'));
+		if (false === GWF_Settings::setSetting('gwf_site_birthday', date('Ymd')))
+		{
+			$ret .= '<b class="gwfinstallno">Cannot set site birthdate.<br/>'.PHP_EOL;
+			$success = false;
+		}
 	}
 	
-//	return $success;
 	return $ret;
 }
 
@@ -112,7 +117,7 @@ function install_default_group($name)
 		'group_name' => $name,
 		'group_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 	));
-	return $group->insert();
+	return $group->replace();
 }
 #############
 ### Users ###
@@ -138,15 +143,21 @@ function install_createAdmin($username, $password, $email, &$output)
 			'user_regip' => GWF_IP6::getIP(GWF_IP_EXACT),
 			'user_lastactivity' => time(),
 		));
-		if (false === $user->insert()) {
+		if (false === $user->insert())
+		{
 			return false;
 		}
 	}
+	
 	$userid = $user->getID();
-	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::ADMIN)->getID())) {
+	
+	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::ADMIN)->getID()))
+	{
 		return false;
 	}
-	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::STAFF)->getID())) {
+	
+	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::STAFF)->getID()))
+	{
 		return false;
 	}
 	
@@ -337,15 +348,53 @@ function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
 	return $ret;
 }
 
-function install_createUserAgents() {
-	return 'There are currently no UserAgents!';
+function install_createUserAgents()
+{
+	return 'There are currently no UserAgents! (Not implemented)';
 }
 
-function copyExampleFiles() {
-	if(!file_exists('index.php'))
+function install_copyExampleFiles(&$output)
+{
+	$success = true;
+
+	if (false === installCopyExampleFile('index', $output))
 	{
-		return copy('index.example.php', 'index.php');
-	}	
+		$success = false;
+	}
+	
+	if (false === installCopyExampleFile('img/captcha', $output))
+	{
+		$success = false;
+	}
+	
+	return $success;
 }
 
+function installCopyExampleFile($path, &$output)
+{
+	$copied = $path.'.php';
+	if (!Common::isFile($copied))
+	{
+		if (!GWF_File::isWriteable($copied))
+		{
+			$output .= GWF_Install::wizard_error('err_copy', array($copied));
+			return false;
+		}
+		
+		$example = $path.'.example.php';
+		if (false === copy($example, $copied))
+		{
+			$output .= GWF_Install::wizard_error('err_copy', array($example));
+			return false;
+		}
+
+		$output .= GWF_Install::wizard_message('msg_copy', $copied);
+	}
+	else
+	{
+		$output .= GWF_Install::wizard_message('msg_copy_untouched', $copied);
+	}
+
+	return true;
+}
 ?>

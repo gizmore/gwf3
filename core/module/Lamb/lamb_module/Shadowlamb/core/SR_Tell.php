@@ -24,18 +24,24 @@ final class SR_Tell extends GDO
 		$pid = $player->getID();
 		$where = 'sr4tl_pid='.$pid;
 		$table = self::table(__CLASS__);
-		if (false === ($result = $table->select('sr4tl_time, sr4tl_msg', $where, 'sr4tl_time ASC')))
+		if (false === ($result = $table->selectAll('sr4tl_time, sr4tl_msg', $where, 'sr4tl_time DESC', NULL, 10)))
 		{
 			return false;
 		}
 		
-		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
+		foreach (array_reverse($result) as $row)
 		{
-//			$player->message('TELLv1: '.$row[1]);
-			$player->message($row[1]);
+			$player->message('OLD!MSG: '.$row[1]);
 		}
 		
-		$table->free($result);
+//		
+//		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
+//		{
+////			$player->message('TELLv1: '.$row[1]);
+//			$player->message($row[1]);
+//		}
+//		
+//		$table->free($result);
 		
 		return $table->deleteWhere($where);
 	}
@@ -63,14 +69,13 @@ final class SR_Tell extends GDO
 		
 		if ($rows > self::MAX_MSGS)
 		{
-			if (false === $table->deleteWhere($where, 'sr4tl_time ASC', NULL, $rows-self::MAX_MSGS, 0))
-			{
-				return false;
-			}
+// @todo: This is currently broken Oo
+//			if (false === $table->deleteWhere($where, 'sr4tl_time ASC', NULL, 5, 0))
+//			{
+//				return false;
+//			}
 			
 		}
-		
-		
 		return true;
 	}
 }

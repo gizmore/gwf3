@@ -28,9 +28,9 @@ final class VersionServer_Zipper extends GWF_Method
 		'www/protected/config.example.php',
 		'www/protected/db_backup.sh',
 		'www/protected/index.php',
-		'www/protected/install_wizard.php',
-		'www/protected/install.php',
-		'www/protected/readme_install.txt',
+//		'www/protected/install_wizard.php',
+//		'www/protected/install.php',
+//		'www/protected/readme_install.txt',
 		'www/protected/temp_ban.lst.txt',
 		'www/protected/temp_ban.php',
 		'www/protected/temp_down.php',
@@ -174,6 +174,12 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		# JS
 		if (false === ($this->zipDir($archive, 'www/js')))
+		{
+			return $module->error('err_zip', array(__FILE__, __LINE__));
+		}
+		
+		# Installer
+		if (false === ($this->zipDir($archive, 'www/install')))
 		{
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}

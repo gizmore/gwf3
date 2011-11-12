@@ -495,21 +495,17 @@ abstract class GDO
 	###############
 	### Private ###
 	###############
-	private function getJoins($joins, $type='LEFT')
+	private function getJoins($joins=NULL, $type='LEFT JOIN')
 	{
-		if ($joins === NULL)
-		{
-			return '';
-		}
 		$back = '';
-		foreach ($this->getColumnDefcache() as $c => $d)
+		if ($joins !== NULL)
 		{
-//			if ( ($d[0] & self::OBJECT) === self::OBJECT ) {
-//				$back .= $this->getJoin($this->object2join($d[2]));
-//			}
-			if (in_array($c, $joins, true))
+			foreach ($this->getColumnDefcache() as $c => $d)
 			{
-				$back .= $this->getJoin($c, $d[2], $type);
+				if (in_array($c, $joins, true))
+				{
+					$back .= $this->getJoin($c, $d[2], $type);
+				}
 			}
 		}
 		return $back;
@@ -530,7 +526,7 @@ abstract class GDO
 		return $new_valid;
 	}
 	
-	private function getJoin($c, $valid, $type='LEFT')
+	private function getJoin($c, $valid, $type='LEFT JOIN')
 	{
 //		var_dump($c,$valid);
 		if (is_array($valid))
@@ -549,7 +545,7 @@ abstract class GDO
 			}
 			$cond = substr($cond, 5);
 		}
-		return " {$type} JOIN `{$tablename}` AS `{$c}` ON {$cond}";
+		return " {$type} `{$tablename}` AS `{$c}` ON {$cond}";
 	}
 	
 	public function createObject($row, $classname=true)
@@ -708,7 +704,7 @@ abstract class GDO
 	{
 		$db = gdo_db();
 		$tablename = $this->getTableName();
-		$join = $this->getJoins($joins, 'INNER');
+		$join = $this->getJoins($joins, 'INNER JOIN');
 		$where = $this->getWhere($where);
 		$groupby = $this->getGroupBy($groupby);
 		$orderby = $this->getOrderBy($orderby);

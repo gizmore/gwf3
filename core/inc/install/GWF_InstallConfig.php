@@ -211,7 +211,7 @@ final class GWF_InstallConfig
 		{
 			$domain = $_SERVER['HTTP_HOST'];
 			#$self = Common::substrUntil($_SERVER['PHP_SELF'], 'protected/');
-			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/protected')+1);
+			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install')+1);
 		}
 //		$path = Common::substrUntil(__FILE__, '/protected');
 		$path = GWF_PATH;

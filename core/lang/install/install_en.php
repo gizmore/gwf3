@@ -12,8 +12,34 @@ $lang = array(
 	'err_bool' => 'The var \'%1$s\' has to be either true or false.',
 	'err_script' => 'The var \'%1$s\' has an invalid default value.',
 	'err_no_smarty' => 'Cannot find Smarty library.',
+	'err_no_mods_selected' => 'Please select some modules.',
+	'err_htaccess' => 'Could not write the root .htaccess file.',
+	'err_copy' => 'Cannot copy to file %s.',
 
+	'msg_copy' => 'Succesfully made a copy of %s.',
+	'msg_copy_untouched' => 'Your copy of %s has not been touched.',
+	'msg_htaccess' => 'I have successfully written the root .htaccess file.',
+	
 	'pt_wizard' => 'GWF - Install Wizard',
+	'mt_wizard' => 'GWF,Install,Wizard',
+	'md_wizard' => 'GWFv4 installation wizard. You should not see me ;)',
+
+	'foot_progress' => 'Install progress: %0.02f%%',
+
+	'menu_0' => 'Status',
+	'menu_1' => 'WriteConfig',
+	'menu_2' => 'TestConfig',
+	'menu_3' => 'CoreTables',
+	'menu_4' => 'Locales',
+	'menu_5' => 'Robots',
+	'menu_6' => 'Modules',
+	'menu_7' => 'Examples',
+	'menu_8' => 'HTAccess',
+	'menu_9' => 'Admins',
+	'menu_10' => 'Cache',
+
+	'title_long' => 'Space &amp; Gizmore Website Framework',
+	'title_step' => 'Installation wizard - Step %d',
 	
 	'wizard' => 'Install Wizard',
 	'step' => 'Step %1$s',
@@ -47,7 +73,6 @@ $lang = array(
 	'step_1a' => 'Test database connection',
 	'step_1a_0' => 'Looking for protected/config.php configuration file... %1$s.',
 	'step_1a_1' => 'Trying to connect to database... %1$s.',
-
 	'step_1b' => 'Write &quot;protected/config.php&quot;',
 	'step_1b_0' => 'Writing the configuration file... %1$s.',
 
@@ -57,25 +82,27 @@ $lang = array(
 	'step_3' => 'Install core tables',
 	'create_table' => 'Creating table for class %1$s... ',
 	'step_3_0' => 'We will now create the tables for the core classes.<br/>You can find these in the &quot;core/inc/&quot; directory.<br/>Every class takes care of one database table.',
-	'step_3_1' => 'You may now either install country/language tables with or without ip2country mapping.<br/>IP2country mapping may take several minutes to install.',
 
 	'step_4' => 'Install country+language tables',
-	'step_4_0' => 'You can now install or skip the useragent database.<br/>It is recommended to skip that part, as the useragent database is completely unused currently.',
+	'step_4_0' => 'You may now either install country/language tables with or without ip2country mapping.<br/>IP2country mapping may take several minutes to install.',
+	'step_4_1' => 'Install country+language tables',
+	'step_4_2' => 'Install country+language+ip2country tables',
 
-	'step_5' => 'Install country+language+ip2country tables',
+	'step_5' => 'Install useragent table',
 	'step_5_0' => 'You can now install or skip the useragent database.<br/>It is recommended to skip that part, as the useragent database is completely unused currently.',
+	'step_5_1' => 'Installing useragent map',
 
-	'step_6' => 'Install useragent map',
-	'step_6_0' => 'You should now install all modules that are shipped with your package of GWF3.',
+	'step_6' => 'Install modules',
+	'step_6_0' => 'You should now choose which modues you want to install.',
+	'step_6_1' => 'Installing modules',
 
-	'step_7' => 'Install all modules',
-	'step_7_0' => 'You should now create at least one admin account.',
-	'step_7a' => 'Installed modules',
-	
-	'step_8' => 'Create an admin account',
+	'step_7' => 'Copy dynamic example files',
 
-	'step_9' => 'Finish installation',
+	'step_8' => 'Create .htaccess',
 
-	'step_10' => 'Protecting the &quot;protected/&quot; folder',
+	'step_9' => 'Create admin account(s)',
+
+	'step_10' => 'Clear Caches',
+	'step_10_0' => 'Install has been finished.<br/>All caches have been cleared.<br/>You can login now.',
 );
 ?>

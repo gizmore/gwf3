@@ -67,18 +67,20 @@ final class GWF_Language extends GDO
 	############
 	### Init ###
 	############
-	private static $LANG = false;
+	private static $LANG = NULL;
 	private static $ISO = GWF_DEFAULT_LANG;
 	public static function getEnglish() { return new self(array('lang_id'=>'1','lang_name'=>'English','lang_nativename'=>'English','lang_short'=>'eng','lang_iso'=>'en','lang_options'=>'3')); }
 	public static function getCurrentID() { return self::$LANG->getID(); }
 	public static function getCurrentISO() { return self::$ISO; }
 	public static function getCurrentLanguage() { return self::$LANG; }
+	
 	public static function setCurrentLanguage(GWF_Language $lang, $refresh_lang_cache=false)
 	{
 		self::$LANG = $lang;
 		self::$ISO = $lang->getVar('lang_iso');
 		return true;
 	}
+	
 	public static function init()
 	{
 		# IN URL
@@ -95,17 +97,6 @@ final class GWF_Language extends GDO
 				}
 			}
 		}
-		
-		# Domain
-//		if (preg_match('/^([a-z]{2})\\.'.GWF_DOMAIN.'$/D', $_SERVER['HTTP_HOST'], $matches))
-//		{
-//			$iso = $matches[1];
-//			if (false !== (self::$LANG = self::getByISO($iso)))
-//			{
-//				self::$ISO = $iso;
-//				return true;
-//			}
-//		}
 		
 		# Browser
 		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
