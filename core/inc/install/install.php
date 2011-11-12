@@ -57,8 +57,8 @@ GWF_Install::setGWFIL($il);
 
 # Design Init
 GWF3::setDesign('install');
-GWF_Website::addCSS(GWF_WEB_ROOT.'../tpl/install/css/install.css');
-GWF_Website::addCSS(GWF_WEB_ROOT.'../tpl/install/css/design.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
+GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
 GWF_Website::addJavascript('');
 GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'step' => GWF_STEP, 'il' => $il));
