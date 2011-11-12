@@ -6,9 +6,12 @@ final class GWF_AutoConfig
 		ini_set('display_errors', 1);
 		error_reporting(0xffffffff);
 		
+		$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
+		
 		define('GWF_DOMAIN', $_SERVER['HTTP_HOST']);
 		define('GWF_SITENAME', 'GWF install script');
-
+		define('GWF_WEB_ROOT_NO_LANG', $self);
+		
 		define('GWF_DEFAULT_DOCTYPE', 'html5');
 		define('GWF_DEFAULT_URL', 'about_gwf');
 		define('GWF_DEFAULT_LANG', 'en');

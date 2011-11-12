@@ -3,6 +3,8 @@
 <?php
 chdir('../');
 
+$worker_ip = 'YOUR.IP.GOES.HERE';
+
 if (!is_readable('protected/config.php')) {
 	die('Try protected/install_wizard.php');
 }
@@ -26,11 +28,14 @@ $gwf = new GWF3(getcwd(), array(
 	'disallow_php_uploads' => true,
 ));
 
+######################
+### Security Check ###
+######################
 if (!GWF_IP6::isLocal()) 
 {
-	if ($_SERVER['REMOTE_ADDR'] !== 'your.ip.here')
+	if ($_SERVER['REMOTE_ADDR'] !== $worker_ip)
 	{
-		die(sprintf('You are not admin in %s line %s.', __FILE__, __LINE__));
+		die(sprintf('You have no valid $worker_ip in %s line %s.', __FILE__, __LINE__));
 	}
 }
 
@@ -43,7 +48,8 @@ GWF_Log::init(false, true, GWF_WWW_PATH.'protected/logs');
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 
 if (false !== Common::getPost('core')) {
-	install_core(false);
+	$success = true;
+	install_core(false, $success);
 }
 if (false !== Common::getPost('lang')) {
 	install_createLanguage(true, true, false);

@@ -1,6 +1,8 @@
 <?php
 chdir('../'); # to www
 
+$worker_ip = 'YOUR.IP.GOES.HERE';
+
 #####################################
 ### Try to find GWF automagically ###
 #####################################
@@ -19,18 +21,11 @@ if ($gwf_path === '')
 {
 	die('Cannot autodetect GWF location!');
 }
-else # We have core :)
-{
-	require_once $gwf_path.'gwf3.class.php';
-}
 
-if (!GWF_IP6::isLocal()) 
-{
-	if ($_SERVER['REMOTE_ADDR'] !== 'your.ip.here')
-	{
-		die(sprintf('You are not admin in %s line %s.', __FILE__, __LINE__));
-	}
-}
+########################
+### Include GWF core ###
+########################
+require_once $gwf_path.'gwf3.class.php';
 
 ###################################
 ### Try to load the config file ###
@@ -46,4 +41,20 @@ else # Or autoconfig
 	GWF_AutoConfig::configure();
 }
 
+
+######################
+### Security check ###
+######################
+if (!GWF_IP6::isLocal()) 
+{
+	if ($_SERVER['REMOTE_ADDR'] !== $worker_ip)
+	{
+		die(sprintf('You have no valid $worker_ip in %s line %s.', __FILE__, __LINE__));
+	}
+}
+
+######################
+### Call Installer ###
+######################
 require_once GWF_CORE_PATH.'inc/install/install.php';
+?>

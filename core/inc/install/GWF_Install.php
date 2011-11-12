@@ -10,7 +10,8 @@ final class GWF_Install
 	public static $gwfil = NULL;
 
 	## Set GWF Installatzion Language
-	public static function setGWFIL($v) {
+	public static function setGWFIL($v)
+	{
 		self::$gwfil = $v;
 	}
 	
@@ -22,25 +23,12 @@ final class GWF_Install
 		return
 		'<div id="gwfinstallbanner">'.PHP_EOL.
 		'<h1><a href="install_wizard.php">'.self::$gwfil->lang('pt_wizard').'</a></h1>'.PHP_EOL.
-//		'<p><a href="install_wizard.php?step=1">'.self::$gwfil->lang('step_1').'</a></p>'.PHP_EOL.
 		'</div>'.PHP_EOL;
-	//		'<ol>'.PHP_EOL.
-//		self::wizard_banner_step('1', 'Config').
-//		self::wizard_banner_step('3', 'Core').
-//		self::wizard_banner_step('4', 'Core').
-//		'<li><a href=</li>'.PHP_EOL.
-//		'</ol>'.PHP_EOL.
 	}
-//	public static function wizard_banner_step($step, $text)
-//	{
-//		return sprintf('<li><a href="install_wizard.php?step=%s">%s)%s</a></li>', $step, $step, $text).PHP_EOL;
-//	}
 
 	public static function wizard_0()
 	{
 		$back = '';
-
-//		$back = sprintf('<h2>%s</h2>', self::$gwfil->lang('pt_wizard')).PHP_EOL;
 
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_0_0')).PHP_EOL;
 
@@ -167,7 +155,8 @@ final class GWF_Install
 	public static function wizard_test_mime()
 	{
 		$b = function_exists('mime_content_type') || function_exists('finfo_open');
-		if (!$b) {
+		if (!$b)
+		{
 //			self::$red++;
 		}
 		return self::wizard_bool($b);
@@ -356,6 +345,11 @@ final class GWF_Install
 	 */
 	public static function wizard_4()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('4');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_0'));
 		$back .= self::wizard_btn('4_1');
@@ -396,6 +390,11 @@ final class GWF_Install
 	 */
 	public static function wizard_5()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('5');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_0'));
 		$back .= self::wizard_btn('5_1');
@@ -423,6 +422,11 @@ final class GWF_Install
 	 */
 	public static function wizard_6()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('6');
 		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
@@ -496,6 +500,11 @@ final class GWF_Install
 	 */
 	public static function wizard_7()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('7');
 		if (false === install_copyExampleFiles($back))
 		{
@@ -510,6 +519,11 @@ final class GWF_Install
 	 */
 	public static function wizard_8()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('8');
 		
 		if (!GWF_ModuleLoader::reinstallHTAccess())
@@ -525,6 +539,11 @@ final class GWF_Install
 	 */
 	public static function wizard_9()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('9');
 		$back .= '<div>';
 		$back .= sprintf('<form method="post" action="install_wizard.php">');
@@ -588,6 +607,11 @@ final class GWF_Install
 	 */
 	public static function wizard_10()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('10');
 		
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0'));

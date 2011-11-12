@@ -201,7 +201,6 @@ final class GWF_InstallConfig
 	 */
 	private static function getDefaults(GWF_LangTrans $lang)
 	{
-//		$domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 		if (PHP_SAPI === 'cli')
 		{
 			$domain = 'localhost';
@@ -210,22 +209,17 @@ final class GWF_InstallConfig
 		else
 		{
 			$domain = $_SERVER['HTTP_HOST'];
-			#$self = Common::substrUntil($_SERVER['PHP_SELF'], 'protected/');
-			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install')+1);
+			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
 		}
-//		$path = Common::substrUntil(__FILE__, '/protected');
+		
 		$path = GWF_PATH;
+		
 		$temp = array(
 			# Main
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
 			array('text',   'Main', 'GWF_SITENAME', 'Gizmore Website Framework', 'Your Site`s name. htmlspecialchars() it yourself.'),
 			array('text',   'Main', 'GWF_WEB_ROOT_NO_LANG', $self, 'Add trailing and leading slash. Example: \'/\' or \'/mywebdir/\'.'),
 			array('text',   'Main', 'GWF_DEFAULT_DOCTYPE', 'html5', 'Set the default html-doctype for gwf. Modules can change it.'),
-//			array('text',   'Main', 'GWF_SERVER_PATH', $path, 'Full path. Do NOT add trailing slash. Example: \'/home/foo/public_html\'.'),
-//			array('bool',   'Main', 'GWF_OUTPUT_BUFFERING', true, 'Enable output buffering. Example: true.'),
-//			array('bool',   'Main', 'GWF_WITH_GPL', false, 'Use GPL Licensed, 3rd party stuff? Example: false.'),
-//			array('script', 'Main', 'GWF_BSD_ONLY', '!GWF_WITH_GPL', 'Use BSD licensed code only? It`s the opposite of above.'),
-//			array('text',   'Main', 'GWF_GESHI_PATH', 'core/inc/3p/geshi/geshi.php', 'Path to geshi, if used. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# 3rd Party
 			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
@@ -259,13 +253,6 @@ final class GWF_InstallConfig
 			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 0, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
 			array('text',  'Various', 'GWF_CAPTCHA_COLOR_BG', 'FFFFFF', 'Captcha background color. 6 hex digits. Example: ffffff' ),
 			array('bool',  'Various', 'GWF_USER_STACKTRACE', true, 'Show stacktrace to the user on error? Example: true.' ),
-//			array('int10', 'Various', 'GWF_URL_LENGTH', 255, 'Maximum URL length. Example: 255.'),
-//			array('int10', 'Various', 'GWF_EMAIL_LENGTH', 255, 'Maximum EMail length. Example: 255.'),
-//			array('int10', 'Various', 'GWF_USERNAME_LENGTH', 28, 'Maximum username length. Example: 28.'),
-//			array('text',  'Various', 'GWF_SITE_BIRTHDAY', GWF_Time::getGDODate(GWF_DATE::LEN_DAY) , 'Site Launchdate. Format: YYYYMMDD'),
-//			array('bool',  'Various', 'GWF_EMAIL_ON_DATABASE_ERROR', true, 'Send email on database error? Example: true'),
-//			array('int10', 'Various', 'GWF_MIN_SEARCH_LEN', 3, 'Minimum search length.'),
-//			array('int10', 'Various', 'GWF_MAX_SEARCH_LEN', 64, 'Maximum search length.'),
 			
 			# Database
 			array('text', 'Database', 'GWF_SECRET_SALT', Common::randomKey(16, Common::ALPHANUMUPLOW), 'May not be changed after install!'),
@@ -276,13 +263,11 @@ final class GWF_InstallConfig
 			array('text', 'Database', 'GWF_DB_DATABASE', '', 'Database db-name.'),
 			array('text', 'Database', 'GWF_DB_TYPE', 'mysql', 'Database type. Currently only \'mysql\' is supported.'),
 			array('text', 'Database', 'GWF_DB_ENGINE', 'myIsam', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
-//			array('bool', 'Database', 'GWF_DB_VERBOSE', true, 'Print database errors to screen. Example: false.'),
 			array('text', 'Database', 'GWF_TABLE_PREFIX', 'gwf_', 'Database table prefix. Example: \'gwf3_\'.'),
 			
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
 			array('int10', 'Session', 'GWF_SESS_LIFETIME', 60*240, 'Session lifetime in seconds.'),
-//			array('bool',  'Session', 'GWF_SESS_HTTP_ONLY', true, 'Cookie is HTTP only? Should be true.'),
 			array('int10',  'Session', 'GWF_SESS_PER_USER', '1', 'Number of allowed simultanous sessions per user. Example: 1'),
 			
 			# IP

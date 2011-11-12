@@ -425,6 +425,12 @@ abstract class GDO
 		return $this->selectFirst($columns, $where, $orderby, $this->getAutoJoins(), self::ARRAY_O, -1, $groupby);
 	}
 	
+	/**
+	 * Fetch a row from a result set with a specified type. Type can be a GDO classname too.
+	 * @param resource $result
+	 * @param enum $r_type
+	 * @return GDO|array|false
+	 */
 	public function fetch($result, $r_type=self::ARRAY_A)
 	{
 		$db = gdo_db();
@@ -434,10 +440,17 @@ abstract class GDO
 			case self::ARRAY_N: return $db->fetchRow($result);
 			case self::ARRAY_O: return (false === ($row = $db->fetchAssoc($result))) ? false : $this->createObject($row);
 			default: return (false === ($row = $db->fetchAssoc($result))) ? false : $this->createObject($row, $r_type);
-//			default: die("Unknown fetch() r_type: $r_type in ".__METHOD__.' line '.__LINE__);				
 		}
 	}
 	
+	/**
+	 * Select a single var, the first column, from a result set.
+	 * @param string $column
+	 * @param string $where
+	 * @param string $orderby
+	 * @param NULL|array $joins
+	 * @param string $groupby
+	 */
 	public function selectVar($column, $where='', $orderby='', $joins=NULL, $groupby='')
 	{
 		if (false === ($result = $this->selectFirst($column, $where, $orderby, $joins, self::ARRAY_N, -1, $groupby)))
