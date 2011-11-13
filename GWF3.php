@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.Oct.25');
+define('GWF_CORE_VERSION', '3.02-2011.Nov.12');
 
 /**
  * Mini GWF3 loader.
@@ -39,12 +39,12 @@ class GWF3
 	
 	public static function getMo()
 	{
-		return $_GET['mo'];
+		return Common::getGetString('mo', GWF_DEFAULT_MODULE);
 	}
 	
 	public static function getMe()
 	{
-		return $_GET['me'];
+		return Common::getGetString('me', GWF_DEFAULT_METHOD);
 	}
 	
 	public static function onDefineWebRoot() 

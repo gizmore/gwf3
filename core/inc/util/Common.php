@@ -199,6 +199,17 @@ final class Common
 		return exp($b * log($a));
 	}
 	
+	/**
+	 * Test if a string is numeric. In addition to the php function is_numeric, this one can test on integer only.
+	 * @param string $s
+	 * @param boolean $allow_float
+	 * @return true|false
+	 */
+	public static function isNumeric($s, $allow_float=false)
+	{
+		return $allow_float ? is_numeric($s) : preg_match('/^[-+]?\d+$/D', $s) === 1;
+	}
+	
 	###################
 	### String Util ###
 	###################

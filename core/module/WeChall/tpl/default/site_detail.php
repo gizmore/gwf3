@@ -115,13 +115,13 @@ if ($count > 0)
 	$name = $site->displayName();
 ?>
 		<?php if ($site->getScore() > 0) { ?>
-			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphScore(); ?>" title="<?php echo $tLang->lang('it_graph_sitescore', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_sitescore'); ?>"></img></div>
+			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphScore(); ?>" title="<?php echo $tLang->lang('it_graph_sitescore', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_sitescore', array($name)); ?>"></img></div>
 		<?php }?>
 		<?php if ($site->getUsercount() > 0) { ?>
-			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphUsers(); ?>" title="<?php echo $tLang->lang('it_graph_siteusers', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_siteusers'); ?>"></img></div>
+			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphUsers(); ?>" title="<?php echo $tLang->lang('it_graph_siteusers', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_siteusers', array($name)); ?>"></img></div>
 		<?php }?>
 		<?php if ($site->getChallcount() > 0) { ?>
-			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphChalls(); ?>" title="<?php echo $tLang->lang('it_graph_sitechalls', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_sitechalls'); ?>"></img></div>
+			<div class="wc_graph fl"><img src="<?php echo $site->hrefGraphChalls(); ?>" title="<?php echo $tLang->lang('it_graph_sitechalls', array($name)); ?>" alt="<?php echo $tLang->lang('it_graph_sitechalls', array($name)); ?>"></img></div>
 		<?php }?>
 		<?php #} ?>
 	<div class="cl"></div>
