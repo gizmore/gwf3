@@ -59,6 +59,7 @@ final class GWF_BBCode
 		{
 			if($hl !== '')
 			{
+				$hl = preg_quote($hl, '/');
 				$text = preg_replace("/($hl)/i", '<span class="gwf_hl">$1</span>', $text);
 			}
 		}
