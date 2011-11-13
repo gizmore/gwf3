@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 $lang = array(
 	'mission_t' => 'Yourself PHP',
 	'mission_i' =>
-		'Votre mission est d\'injecter &lt;script&gt;alert(1);&lt;/script&gt; dans <a href="%1%">ce script</a>, et d\'obtenir un popup javascript.<br/>'.
+		'Votre mission est d\'injecter &lt;script&gt;alert(1);&lt;/script&gt; dans <a href="%1$s">ce script</a>, et d\'obtenir un popup javascript.<br/>'.
 		'La fonction checkit() teste votre chaîne de caractères injectée et validera seulement pour quelques solutions.<br/>'.
 		'SVP, essayez d\'utiliser le moins de caractère que possible et injectez suivant le même principe que la même chaine de caractères au dessus.<br/>'.
 		'<br/>'.
