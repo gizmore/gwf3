@@ -19,8 +19,6 @@ final class SR_Tell extends GDO
 	
 	public static function onTell(SR_Player $player)
 	{
-//		printf("ON TELL\n");
-//		return true;
 		$pid = $player->getID();
 		$where = 'sr4tl_pid='.$pid;
 		$table = self::table(__CLASS__);
@@ -34,22 +32,12 @@ final class SR_Tell extends GDO
 			$player->message('OldMessage: '.$row[1]);
 		}
 		
-//		
-//		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
-//		{
-////			$player->message('TELLv1: '.$row[1]);
-//			$player->message($row[1]);
-//		}
-//		
-//		$table->free($result);
-		
 		return $table->deleteWhere($where);
 	}
 	
 	public static function tell($pid, $msg)
 	{
-		print('TELL: '.$msg.PHP_EOL);
-//		return true;
+// 		print('TELL: '.$msg.PHP_EOL);
 
 		$pid = (int)$pid;
 		$table = self::table(__CLASS__);
@@ -74,7 +62,6 @@ final class SR_Tell extends GDO
 //			{
 //				return false;
 //			}
-			
 		}
 		return true;
 	}
