@@ -24,14 +24,14 @@ final class SR_Tell extends GDO
 		$pid = $player->getID();
 		$where = 'sr4tl_pid='.$pid;
 		$table = self::table(__CLASS__);
-		if (false === ($result = $table->selectAll('sr4tl_time, sr4tl_msg', $where, 'sr4tl_time DESC', NULL, 10)))
+		if (false === ($result = $table->selectAll('sr4tl_time, sr4tl_msg', $where, 'sr4tl_time DESC', NULL, 10, 0, GDO::ARRAY_N)))
 		{
 			return false;
 		}
 		
 		foreach (array_reverse($result) as $row)
 		{
-			$player->message('OLD!MSG: '.$row[1]);
+			$player->message('OldMessage: '.$row[1]);
 		}
 		
 //		
