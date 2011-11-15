@@ -61,7 +61,6 @@ define('GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;s
 ###############
 define('GWF_ONLINE_TIMEOUT', 60); # A request will mark you online for N seconds.
 define('GWF_CRONJOB_BY_WEB', 0); # Chance in permille to trigger cronjob by www clients (0-1000)
-define('GWF_CAPTCHA_COLOR_BG', 'FFFFFF'); # Captcha background color. 6 hex digits. Example: ffffff
 define('GWF_USER_STACKTRACE', true); # Show stacktrace to the user on error? Example: true.
 
 ################
