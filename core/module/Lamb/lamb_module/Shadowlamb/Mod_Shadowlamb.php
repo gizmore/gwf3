@@ -32,7 +32,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 		}
 		
 		# Location glob interlink (deprecated by #say)
-//		if ($origin{0} === '#' && self::WITH_INTERLINK)
+//		if ($origin[0] === '#' && self::WITH_INTERLINK)
 //		{
 //			if (false !== ($player = Shadowrun4::getPlayerByUID($user->getID())))
 //			{

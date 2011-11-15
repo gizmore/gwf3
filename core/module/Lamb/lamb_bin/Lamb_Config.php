@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#mo,#Mathematik,#ru',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#mo,#Mathematik,#ru,#wussow',
 			'admins' => 'gizmore',
 		),
 		
@@ -171,13 +171,13 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-		array(
-			'host' => 'ircs://irc.enigmagroup.org:6697',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-			'channels' => '#wechall,#shadowlamb',
-			'admins' => 'gizmore',
-		),
+// 		array(
+// 			'host' => 'ircs://irc.enigmagroup.org:6697',
+// 			'nickname' => 'Lamb3',
+// 			'password' => 'lamblamb',
+// 			'channels' => '#wechall,#shadowlamb',
+// 			'admins' => 'gizmore',
+// 		),
 		
 		array(
 			'host' => 'ircs://lanthanum.vutral.net:6667',

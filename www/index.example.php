@@ -1,26 +1,28 @@
 <?php
-/**
+/*
  * This is an example how your index.php could look like
  */
-require_once 'protected/config.php';
-require_once '../gwf3.class.php'; # You might need to adjust this path.
-
+# Load config
+require_once 'protected/config.php'; # You might need to adjust this path.
+# Init GDO and GWF core
+require_once '../gwf3.class.php'; # You might need to adjust this path too.
+# Init GWF
 $gwf = new GWF3(getcwd(), array(
-# Default values!
-//      'website_init' => true,
-//      'autoload_modules' => true,
-//      'load_module' => true,
-//      'load_config' => false,
-//      'start_debug' => true,
-//      'get_user' => true,
-//      'do_logging' => true,
-//      'blocking' => true,
-//      'no_session' => false,
-//      'store_last_url' => true,
-//      'ignore_user_abort' => true,
-//      'disallow_php_uploads' => true,
+# Default values
+// 	'bootstrap' => false,
+// 	'website_init' => true,
+// 	'autoload_modules' => true,
+// 	'load_module' => true,
+// 	'load_config' => false,
+// 	'start_debug' => true,
+// 	'get_user' => true,
+// 	'do_logging' => true,
+// 	'log_request' => true,
+// 	'blocking' => true,
+// 	'no_session' => false,
+// 	'store_last_url' => true,
+// 	'ignore_user_abort' => true,
 ));
-
-# Display Page
+# Display page
 echo $gwf->onDisplayPage();
 ?>

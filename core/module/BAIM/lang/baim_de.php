@@ -52,7 +52,7 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 ####
 	'key.dat' => '%1$s-%2$s',
 	'readme.txt' =>
-		"Hallo %1$s\r\n\r\n".
+		"Hallo %s\r\n\r\n".
 		"Vielen Dank für den Kauf von B.AiM\r\n\r\n".
 		"Anleitung:\r\n".
 		"B.AiM.exe starten, das Fenster über den Tisch ziehen sodass die gestrichelte Linie an den inneren Kanten des Pool-Tisches abschließen (einfach ein bisschen versuchen was das beste für einen ist). Alternativ kann auch einfach unter View auf \"Auto Adjust\" geklickt werden dann sollte sich das Fenster automatisch positionieren. Sobald der weiße Ball platziert ist geht man mit der Maus einmal kurz vom Tisch sprich aus dem Fenster um die Positionen der Bälle zu laden. Anschließend kann man anfangen zu zielen und ein zu lochen. Die Schatten der Bälle sollten zur besseren Erkennung vorher noch deaktiviert werden!\r\n\r\n".

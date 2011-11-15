@@ -35,7 +35,7 @@ final class Shadowcmd_whisper extends Shadowcmd
 	public static function onWhisper(SR_Player $from, SR_Player $to, $message)
 	{
 		self::onWhispered($from, $to);
-		return $to->message(sprintf('%s whisper: "%s"', $from->getName(), $message));
+		return $to->message(sprintf("\X02%s\X02 whispers: \"%s\"", $from->getName(), $message));
 	}
 	
 	/**

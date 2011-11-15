@@ -135,7 +135,7 @@ final class GWF_BBCode
 			return array(NULL, NULL, false);
 		}
 		
-		if ($full_tag{0} === '/') {
+		if ($full_tag[0] === '/') {
 			return array(substr($full_tag, 1), NULL, true);
 		}
 

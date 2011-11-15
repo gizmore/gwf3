@@ -49,7 +49,7 @@ Põhjusel, et Playray sai valitud oli puhas õnnetus. Ma ei teadnud, kohapeal en
 ####
 	'key.dat' => '%1$s-%2$s',
 	'readme.txt' =>
-		"Tere %1$s\r\n\r\n".
+		"Tere %s\r\n\r\n".
 		"Aitäh ostmast B.AiM\r\n\r\n".
 		"Sissejuhatus:\r\n".
 		"Käivita B.AiM.exe. Liiguta akna laua kohal, nii paberisse vastet servad piljardilaud (Experiment natuke oma parima kogemus). Alternatiivina võid klõpsata Vaade-> Auto_Adjust Klõpsata aknad automaatselt. Niipea, kui oled pannud valge palli, liiguta hiirt eemal tabelis asukohad pallid laual. Pärast seda võite hakata eesmärk ja vajuta pallid. Soovitav on keelata varjude parem määr skaneerimine pallid!\r\n\r\n".

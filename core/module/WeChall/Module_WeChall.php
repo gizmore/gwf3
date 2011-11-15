@@ -219,7 +219,12 @@ final class Module_WeChall extends GWF_Module
 		
 		# Let's start with unlinking all sites.
 		$userid = $user->getID();
-		WC_RegAt::unlinkAll($userid);
+		if (false === WC_RegAt::unlinkAll($userid))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		return true;
 	}
 	
 	#######################

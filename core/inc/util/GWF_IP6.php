@@ -433,25 +433,25 @@ final class GWF_IP6
 	
 	public static function int32Hash2ToIP($data)
 	{
-		if ((ord($data{0}) & 0x80) === 0x80)
+		if ((ord($data[0]) & 0x80) === 0x80)
 		{
 			return sprintf('UNKNOWN::IPv6::MD5::31bit'); #, self::bin2dec($data)&0x7fffffff);
 		}
 		else
 		{
-			return sprintf('%d|%d.%d.%d.%d', ord($data{0}), ord($data{0})|0x80, ord($data{1}), ord($data{2}), ord($data{3}));
+			return sprintf('%d|%d.%d.%d.%d', ord($data[0]), ord($data[0])|0x80, ord($data[1]), ord($data[2]), ord($data[3]));
 		}
 	}
 	
 	public static function int32Hash3ToIP($data)
 	{
-		if ((ord($data{3}) & 0x01))
+		if ((ord($data[3]) & 0x01))
 		{
 			return sprintf('UNKNOWN::IPv6::MD5::31bit');
 		}
 		else
 		{
-			return sprintf('%d|%d.%d.%d.%d', ord($data{1}), ord($data{0}), ord($data{1}), ord($data{2}), ord($data{3})|0x01);
+			return sprintf('%d|%d.%d.%d.%d', ord($data[1]), ord($data[0]), ord($data[1]), ord($data[2]), ord($data[3])|0x01);
 		}
 	}
 	

@@ -405,7 +405,7 @@ final class Lamb
 	 */
 	public function onOnline()
 	{
-		Lamb_Log::logDebug(__METHOD__);
+// 		Lamb_Log::logDebug(__METHOD__);
 		
 		foreach ($this->modules as $module)
 		{
@@ -550,19 +550,17 @@ final class Lamb
 //		{
 //			return true;
 //		}
-			
+
+		printf('%s << %s'.PHP_EOL, $server->getHostname(), $message);
+		
 		if ($server->isLogging())
 		{
 			Lamb_Log::logChat($server, $message);
 		}
-		elseif (LAMB_DEV)
-		{
-			echo $message.PHP_EOL;
-		}
 		
 		# NEW
 		$by_space = explode(' ', $message);
-		if ($message{0} === ':')
+		if ($message[0] === ':')
 		{
 			$from = ltrim(array_shift($by_space), ':');
 		}
@@ -577,7 +575,7 @@ final class Lamb
 		while (count($by_space) > 0)
 		{
 			$arg = array_shift($by_space);
-			if ($arg{0} === ':')
+			if ($arg[0] === ':')
 			{
 				# implode everything after :
 				$args[] = trim(substr($arg, 1).' '.implode(' ', $by_space));
@@ -600,28 +598,6 @@ final class Lamb
 		$back = $this->processCommand($server, $command, $from, $args);
 		
 		return $back;
-		
-		# OLD
-//		$by_colon = explode(':', $message, (($message{0} === ':') ? 3 : 2));
-//		if ($by_colon[0] === '')
-//		{
-//			$split = explode(' ', $by_colon[1]);
-//			if (isset($by_colon[2])) {
-//				$split[count($split)-1] = $by_colon[2];
-//			}
-//			$from = array_shift($split);
-//		}
-//		else
-//		{ 
-//			$split = explode(' ', $by_colon[0]);
-//			if (isset($by_colon[1])) {
-//				$split[count($split)-1] = $by_colon[1];
-//			}
-//			$from = $server->getConnection()->getHostname();
-//		}
-//		
-//		$command = array_shift($split);
-//		$args = $split;
 	}
 	
 	
@@ -878,7 +854,7 @@ final class Lamb
 		$message = preg_replace('/[ ]{2,}/', ' ', $message);
 		$message = ltrim($message, LAMB_TRIGGER);
 		
-		if ( ($message === '') || ($message{0} === '/') )
+		if ( ($message === '') || ($message[0] === '/') )
 		{
 			return;
 		}

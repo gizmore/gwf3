@@ -23,17 +23,11 @@ final class Admin_Cronjob extends GWF_Method
 	
 	private function onCronjob(Module_Admin $module)
 	{
-//		GWF_Logger::$ECHO_CRONJOBS = true;
-		
-//		if (false !== ($logger = GWF_Module::getModule('Logger'))) {
-//			$logger->triggerRotation();
-//		}
-		
-		return GWF_ModuleLoader::cronjobs();
-//		return GWF_Website::cronjobs();
-//		return GWF_Website::captureEcho(array('GWF_Website', 'cronjobs'));
+		ob_start();
+		GWF_ModuleLoader::cronjobs();
+		$back = ob_get_contents();
+		ob_end_clean();
+		return $back;
 	}
-	
 }
-
 ?>

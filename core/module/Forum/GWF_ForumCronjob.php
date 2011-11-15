@@ -149,9 +149,6 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		}
 		return $back;
 	}
-	
-	
-	
 }
 
 ?>

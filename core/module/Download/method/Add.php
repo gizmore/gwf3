@@ -96,13 +96,6 @@ final class Download_Add extends GWF_Method
 			$file = $form->getVar('file');
 		}
 		
-		if (GWF3::getConfig('disallow_php_uploads') && GWF_Upload::isDangerous($file))
-		{
-			return GWF_HTML::err('ERR_DANGEROUS_UPLOAD');
-		}
-		
-//		var_dump($file);
-		
 		$tempname = $file['tmp_name'];
 		if (!file_exists($tempname))
 		{

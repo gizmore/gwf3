@@ -1,0 +1,23 @@
+Welcome to GWFv3
+
+===========
+=== FAQ ===
+================================================================================
+
+Q) Is it secure?
+
+A) Nothing can be guaranteed to be secure.
+   GWFv3 has been developed with the focus on security, and has been in production for quite some time now.
+   If you want to pentest it you may want to disable csrf tokens.
+
+----------------------------------------
+
+Q) How fast is it?
+
+A) It compares good to other software, but don't expect wonders as it is serving highly dynamic content.
+   The memory usage is ok, for example i got very simple pages with 750kb memory peak, so it should scale well.
+   Sadly, this is currently not true for every page, especially the forum is still very slow.
+
+----------------------------------------
+
+================================================================================

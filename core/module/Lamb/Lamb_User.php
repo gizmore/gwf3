@@ -127,7 +127,7 @@ final class Lamb_User extends GDO
 		{
 			return '';
 		}
-		$char = $nickname{0};
+		$char = $nickname[0];
 		if (strpos(self::USERMODES, $char) === false) {
 			return '';
 		}

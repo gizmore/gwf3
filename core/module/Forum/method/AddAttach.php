@@ -61,11 +61,6 @@ final class Forum_AddAttach extends GWF_Method
 		$file = $form->getVar('file');
 		$tmp = $file['tmp_name'];
 		
-		if (GWF3::getConfig('disallow_php_uploads') && GWF_Upload::isDangerous($file))
-		{
-			return GWF_HTML::err('ERR_DANGEROUS_UPLOAD');
-		}
-		
 		$postid = $this->post->getID();
 		$userid = GWF_Session::getUserID();
 		

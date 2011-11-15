@@ -17,7 +17,7 @@ final class Shadowcmd_equip extends Shadowcmd
 		}
 		
 		$itemname = array_shift($args);
-		if (false === ($item = $player->getItem($itemname)))
+		if (false === ($item = $player->getInvItem($itemname)))
 		{
 			$player->message("You don't have that item.");
 			return false;

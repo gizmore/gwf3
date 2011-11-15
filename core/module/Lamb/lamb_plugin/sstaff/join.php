@@ -15,7 +15,7 @@ if ($channel === '')
 //else
 //{
 
-	if ($channel{0} === '#')
+	if ($channel[0] === '#')
 	{
 		$bot->reply('Attempt to join channel '.$channel.'...');
 		$server->join($channel);

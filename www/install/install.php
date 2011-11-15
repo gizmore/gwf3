@@ -21,11 +21,11 @@ $gwf = new GWF3(getcwd(), array(
 	'start_debug' => true,
 	'get_user' => false,
 	'do_logging' => false,
+	'log_request' => false,
 	'blocking' => false,
 	'no_session' => true,
 	'store_last_url' => false,
 	'ignore_user_abort' => true,
-	'disallow_php_uploads' => true,
 ));
 
 ######################

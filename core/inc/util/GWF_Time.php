@@ -270,9 +270,9 @@ final class GWF_Time
 		{
 			case 23: $convert['ns'] += intval(substr(20, 3), 10);
 			case 20: $convert['us'] += intval(substr(17, 3), 10);
-			case 17: $convert['ms'] += (int) $date{16};
-			case 16: $convert['ms'] += (int) $date{15} * 10;
-			case 15: $convert['ms'] += (int) $date{14} * 100;
+			case 17: $convert['ms'] += (int) $date[16];
+			case 16: $convert['ms'] += (int) $date[15] * 10;
+			case 15: $convert['ms'] += (int) $date[14] * 100;
 			case 14: 
 				$convert['s'] = intval(substr($date, 12, 2), 10);
 				if ($convert['s'] > 59) { return false; }

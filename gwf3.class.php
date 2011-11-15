@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.Nov.12');
+define('GWF_CORE_VERSION', '3.02-2011.Nov.14');
 
 /**
  * Welcome to GWF3
@@ -14,18 +14,19 @@ class GWF3
 	private static $design = 'default';
 	private static $module, $page, $user;
 	public static $CONFIG = array(
-		'website_init' => true,
-		'autoload_modules' => true,
-		'load_module' => true,
-		'load_config' => false,
-		'start_debug' => true,
-		'get_user' => true,
-		'do_logging' => true,
-		'blocking' => true,
-		'no_session' => false,
-		'store_last_url' => true,
-		'ignore_user_abort' => true,
-		'disallow_php_uploads' => false,
+		'bootstrap' => false, # Init GWF_Bootstrap?
+		'website_init' => true, # Init GWF_Website?
+		'autoload_modules' => true, # Load modules with autoload flag?
+		'load_module' => true, # Load the requested module?
+		'load_config' => false, # Load the config file? (DEPRECATED) # TODO: REMOVE
+		'start_debug' => true, # Init GWF_Debug?
+		'get_user' => true, # Put user into smarty templates?
+		'do_logging' => true, # Init the logger?
+		'log_request' => true, # Log the request?
+		'blocking' => true, # Lock the database, so we can request only one page by one?
+		'no_session' => false, # Suppress session creation?
+		'store_last_url' => true, # Save the current URL into session?
+		'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
 	);
 	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
 	public static function getConfig($key) { return self::$CONFIG[$key]; }
@@ -39,8 +40,14 @@ class GWF3
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
 
+		# Bootstrap
+		if ($config['bootstrap'])
+		{
+			GWF_Bootstrap::init();
+		}
+		
 		# Windows patch
-		$basepath = str_replace('\\', '/', $basepath);
+// 		$basepath = str_replace('\\', '/', $basepath);
 		
 		# Important definements...
 		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
@@ -89,10 +96,11 @@ class GWF3
 			$this->onAutoloadModules(); 
 		}
 		
-		if ($config['get_user']) 
+		if ($config['get_user'])
 		{		
 			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
+		
 		if ($config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
@@ -114,19 +122,19 @@ class GWF3
 	 */
 	public static function _init()
 	{
-		# Require the util/Common.php (very common stuff)
+		# Require the util/Common.php
 		require_once 'core/inc/util/Common.php';
 		
 		# Default defines
-//		define('GWF_PATH', dirname(__FILE__).'/');
-		define('GWF_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
+		define('GWF_PATH', dirname(__FILE__).'/');
+// 		define('GWF_PATH', str_replace('\\', '/', dirname(__FILE__)).'/'); # Windows patch
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
 		# The GWF autoloader
-		spl_autoload_register(array(__CLASS__,'onAutoloadClass'));
+		spl_autoload_register(array(__CLASS__, 'onAutoloadClass'));
 		
-		# Require the Database
+		# Require the database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 	}
 		
@@ -138,6 +146,11 @@ class GWF3
 		}
 	}
 	
+	/**
+	 * Load a config file.
+	 * @deprecated
+	 * @param string $config
+	 */
 	public static function onLoadConfig($config='protected/config.php') 
 	{
 		# Get the config
@@ -186,7 +199,7 @@ class GWF3
 				$username = $user->getVar('user_name');
 			}
 		}
-		GWF_Log::init($username, true, GWF_LOGGING_PATH);
+		GWF_Log::init($username, false, GWF_LOGGING_PATH);
 	}
 	
 	public function onAutoloadModules()
@@ -247,7 +260,15 @@ class GWF3
 	
 	public function onDisplayPage($content = NULL)
 	{
-		if(defined('GWF_WEBSITE_DOWN')) return GWF_WEBSITE_DOWN;
+		if (defined('GWF_WEBSITE_DOWN'))
+		{
+			return GWF_WEBSITE_DOWN;
+		}
+
+		if ( (self::$CONFIG['log_request']) && (class_exists('GWF_Log')) )
+		{
+			GWF_Log::logRequest();
+		}
 		
 		# Display the page
 		if (isset($_GET['ajax']))

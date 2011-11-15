@@ -143,7 +143,7 @@ abstract class SR_Elevator extends SR_Tower
 		{
 			return 0;
 		}
-		elseif ($floor{0} === 'C')
+		elseif ($floor[0] === 'C')
 		{
 			return -intval(substr($floor, 1), 10);
 		}
@@ -155,12 +155,12 @@ abstract class SR_Elevator extends SR_Tower
 	
 	private function getElevatorNFromArg(SR_Player $player, $arg)
 	{
-		if ( ($arg{0}==='E') || ($arg{0}==='e') || ($arg==='0') )
+		if ( ($arg[0]==='E') || ($arg[0]==='e') || ($arg==='0') )
 		{
 			return 0;
 		}
 		$multi = 1;
-		if ( ($arg{0}==='C') || ($arg{0}==='c') || ($arg{0}==='-') )
+		if ( ($arg[0]==='C') || ($arg[0]==='c') || ($arg[0]==='-') )
 		{
 			$arg = substr($arg, 1);
 			$multi = -1;

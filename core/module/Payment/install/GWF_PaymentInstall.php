@@ -30,17 +30,17 @@ final class GWF_PaymentInstall
 		while (false !== ($line = fgets($fh)))
 		{
 			$n++;
-			if ($line{0} === '#') {
+			if ($line[0] === '#')
+			{
 				continue;
 			}
 			$cols = explode("\t", $line);
 			$cols = array_map('trim', $cols);
-			if (count($cols) < 6) {
+			if (count($cols) < 6)
+			{
 				$errors[] = sprintf('Error in currency file %s line %d.', $path, $n);
 				continue;
 			}
-			
-//			var_dump($cols);
 			
 			list($countryname, $currency, $char, $iso, $fracname, $multi) = $cols;
 			if (false === ($c = GWF_Country::getByName(($countryname)))) {

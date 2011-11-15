@@ -35,8 +35,10 @@ final class Lamb_Log
 	
 	public static function logError($message)
 	{
+		$message = GWF_Debug::backtrace($message, false);
+		echo $message;
 		GWF_Log::log('lamb_error', $message, true);
-		GWF_Log::log('lamb_error_details', GWF_Debug::backtrace($message, false));
+// 		GWF_Log::log('lamb_error_details', GWF_Debug::backtrace($message, false));
 		return false;
 	}
 	
@@ -45,6 +47,7 @@ final class Lamb_Log
 	#############
 	public static function logDebug($message)
 	{
+		echo $message.PHP_EOL;
 		return GWF_Log::log('lamb_debug', $message, true);
 	}
 	

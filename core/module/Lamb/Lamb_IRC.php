@@ -163,6 +163,9 @@ final class Lamb_IRC
 	 */
 	public function send($message)
 	{
+		# Console out
+		printf('%s >> %s'.PHP_EOL, $this->host, $message);
+		
 		# On flood, put the message into queue.
 		if ($this->isFlooding())
 		{
@@ -205,6 +208,7 @@ final class Lamb_IRC
 		{
 			Lamb_Log::logChat($server, $message);
 		}
+		
 		return fflush($this->socket);
 	}
 	

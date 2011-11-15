@@ -37,9 +37,9 @@ final class Shadowhelp
 		
 		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
 		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
-		$xp = $player === NULL ? 0 : $player->getBase('xp');
-		$xpl = $player === NULL ? 0 : $player->getBase('xp_level');
-		$xpt = $player === NULL ? 0 : $player->getBase('xp_total');
+		$xp = $player === NULL ? 0 : round($player->getBase('xp'), 2);
+		$xpl = $player === NULL ? 0 : round($player->getBase('xp_level'), 2);
+		$xpt = $player === NULL ? 0 : round($player->getBase('xp_total'), 2);
 		
 		$ele = $player === NULL ? 0 : $player->get('elephants');
 		$ele_gain = $player === NULL ? 0 : $player->getHPGain();
@@ -97,6 +97,15 @@ final class Shadowhelp
 					'searching' => 'The searching skill will increase the dropchance on searches.',
 					'lockpicking' => 'The lockpicking skill will increase your chance on picking locks.',
 					'thief' => 'The thief skill will increase your chance on thieving items of shops and not getting caught. ',
+				),
+				
+				'knowledge' => 'Your character can gather special knowledge during the game (unused)',
+				array(
+					'math' => 'Math knowledge will be helpful in some quests.',
+					'crypto' => 'Advanced knowledge of cryptography will be helpful in some quests. All cryptograms can be solved by the players itself. A highlevel crypto character does not need to solve these by hand.',
+					'stegano' => 'Advanced knowledge of steganography makes you see things that are not there. Most useful when wearing a TinfoilCap.',
+					'indian_culture' => 'It will be useful to know about the amerindian culture in the 5th area.',
+					'indian_language' => 'It will be useful to know about the amerindian language in the 5th area.',
 				),
 				
 				'combat' => 'Combat topics',

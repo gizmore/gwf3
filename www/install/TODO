@@ -1,0 +1,28 @@
+###################################################################
+### This is the public todo list for GWF3 and featured modules. ###
+###################################################################
+
+--------------------------------------------------------------------------------
+
+Increase performance by not requireing a database for simple pages.
+
+--------------------------------------------------------------------------------
+
+Increase performance of slow pages by using smarty templates.
+Currently these pages are known to be very slow: "Forum".
+
+--------------------------------------------------------------------------------
+
+All lang files now use %1$s %2$s %3$s %4$s and so on.
+This could be changed to %s %s %s %s which might be faster and is more readable.
+
+--------------------------------------------------------------------------------
+
+Currently we are using Common::getGet() a lot, but Common::getGetString/Int/Array is more safe and appropiate.
+Keep in mind that getGetString returns empty string by default, compared to false for getGet.
+
+--------------------------------------------------------------------------------
+
+Own chat is broken (remove?)
+
+--------------------------------------------------------------------------------

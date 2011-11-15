@@ -78,8 +78,8 @@ final class Login_Form extends GWF_Method
 			}
 		}
 		
-		$username = Common::getPost('username');
-		$password = Common::getPost('password');
+		$username = Common::getPostString('username');
+		$password = Common::getPostString('password');
 		$users = GDO::table('GWF_User');
 		
 		if (false === ($user = $users->selectFirstObject('*', sprintf('user_name=\'%s\' AND user_options&%d=0', $users->escape($username), GWF_User::DELETED))))

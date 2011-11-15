@@ -15,22 +15,19 @@ final class VersionServer_Zipper extends GWF_Method
 	public function hasError() { return $this->has_error; }
 	
 	public static $rootfiles = array(
-		'www/gwf_cronjob.php',
+		'www/gwf_cronjob.example.php',
 		'gwf3.class.php',
 		'www/index.example.php',
 		'www/robots.txt',
 	);
 	
-	public static $protected_dirs = array(
-	);
+// 	public static $protected_dirs = array(
+// 	);
 	
 	public static $protected_files = array(
 		'www/protected/config.example.php',
-		'www/protected/db_backup.sh',
+		'www/protected/db_backup.example.sh',
 		'www/protected/index.php',
-//		'www/protected/install_wizard.php',
-//		'www/protected/install.php',
-//		'www/protected/readme_install.txt',
 		'www/protected/temp_ban.lst.txt',
 		'www/protected/temp_ban.php',
 		'www/protected/temp_down.php',
@@ -351,7 +348,8 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		while(false !== ($entry = $dir->read()))
 		{
-			if ($entry{0} === '.') {
+			if ($entry[0] === '.')
+			{
 				continue;
 			}
 			

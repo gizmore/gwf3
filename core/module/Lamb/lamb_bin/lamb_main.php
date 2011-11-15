@@ -16,14 +16,14 @@ $_GET['ajax'] = 'true'; # emulate ajax templates
 $gwfcfg = $argv[1];
 if (!file_exists($gwfcfg))
 {
-	die("Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.");
+	die("Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.\n");
 }
 define('GWF_CONFIG_PATH', $gwfcfg);
 
 # Lamb config
 if (!file_exists("core/module/Lamb/lamb_bin/{$argv[2]}"))
 {
-	die("Error: Lamb Config File not found.\nExample for the 2nd parameter: Lamb_Config.php\nThis is the Lamb3 config file.");
+	die("Error: Lamb Config File not found.\nExample for the 2nd parameter: Lamb_Config.php\nThis is the Lamb3 config file.\n");
 }
 define('LAMB_CONFIG_FILENAME', $argv[2]);
 //define('GWF_WWW_PATH', '');
@@ -31,6 +31,8 @@ define('LAMB_CONFIG_FILENAME', $argv[2]);
 require_once GWF_CONFIG_PATH;
 require_once 'GWF3.php';
 GWF3::init(dirname(__FILE__));
+GWF_Debug::enableErrorHandler();
+
 //require_once 'gwf3.class.php';
 //GWF3::onLoadConfig(GWF_CONFIG_PATH);
 //var_dump(GWF_CORE_PATH);
@@ -83,10 +85,13 @@ if (!$lamb->init())
 {
 	die('Could not init lamb!');
 }
+
 # No halt on warnings ...
 GWF_Debug::setDieOnError(false);
+
 # No halt on db errors ...
 gdo_db()->setDieOnError(false);
+
 # ... and go!
 $lamb->mainloop();
 ?>

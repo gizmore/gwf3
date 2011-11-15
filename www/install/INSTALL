@@ -1,0 +1,15 @@
+================================
+=== GWFv3 installation guide ===
+================================
+
+GWFv3 is split into two locations: The core and the www part.
+
+To run GWFv3 on a computer, please copy everything but www/ to a folder of your choice.
+Then copy the www/ folder to a directory served by an httpd.
+It is possible to serve multiple site installation with the same core.
+It is also possible to have everything in the same directory, simply copy the www folder one dir up. This _should_ not add any security issue.
+
+After you have copied your files, please execute /install/install_wizard.php with your browser and follow the instructions.
+
+Enjoy!
+gizmore and spaceone

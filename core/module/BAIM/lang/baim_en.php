@@ -51,7 +51,7 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 ####
 	'key.dat' => '%1$s-%2$s',
 	'readme.txt' =>
-		"Hello %1$s\r\n\r\n".
+		"Hello %s\r\n\r\n".
 		"Thank you very much for your purchase of B.AiM\r\n\r\n".
 		"Introduction:\r\n".
 		"Start B.AiM.exe. Move the window above the table, so the dotted line matches the edges of the pool table (Experiment a bit for your best experience). Alternatively you can click View->Auto_Adjust to snap the windows autmatically. As soon as you placed the white ball, move your mouse away from the table to locate the postion of the balls on table. Afterwards you can start to aim and hit balls. It is recommended to disable shadows for a better rate of scanning the balls!\r\n\r\n".

@@ -1128,7 +1128,7 @@ final class Shadowfunc
 			
 			if ($ny > 0 || $xp > 0)
 			{
-				$loot_out = sprintf('. You loot %s Nuyen and %s XP', $ny, $xp);
+				$loot_out = sprintf('. You loot %s and %.02f XP', Shadowfunc::displayNuyen($ny), $xp);
 				$member->giveNuyen($ny);
 				$member->giveXP($xp);
 			}

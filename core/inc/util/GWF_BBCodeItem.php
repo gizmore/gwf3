@@ -143,7 +143,7 @@ final class GWF_BBCodeItem
 			return false;
 		}
 		
-		if ($href{0}==='/') {
+		if ($href[0]==='/') {
 			return GWF_WEB_ROOT.substr($href, 1);
 		}
 		

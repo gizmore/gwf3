@@ -86,7 +86,11 @@ final class GWF_VersionFiles extends GDO
 			return true;
 		}
 		
-		$mtimeOld = GWF_Time::getDate(GWF_Date::LEN_SECOND, filemtime($fullpath));
+		if (false === ($mtimeOld = GWF_Time::getDate(GWF_Date::LEN_SECOND, @filemtime($fullpath))))
+		{
+			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($fullpath));
+			return false;
+		}
 		
 		# Get modulename
 		if (is_string($modulename)) { // keep
@@ -110,7 +114,8 @@ final class GWF_VersionFiles extends GDO
 		
 		self::$size_unpacked += filesize($fullpath);
 		
-		if (false === ($row = self::getByPath($fullpath))) {
+		if (false === ($row = self::getByPath($fullpath)))
+		{
 //			echo GWF_HTML::message('New File Detected', 'New File: '.$fullpath);
 			$row = new self(array(
 				'vsf_id' => 0,
@@ -126,7 +131,8 @@ final class GWF_VersionFiles extends GDO
 		}
 		
 		$mtimeDB = $row->getVar('vsf_date');
-		if ($mtimeOld != $mtimeDB) {
+		if ($mtimeOld != $mtimeDB)
+		{
 //			echo GWF_HTML::message('New File Detected', 'Updated: '.$fullpath. 'OLD='.$mtimeOld.' | DB='.$mtimeDB);
 			return $row->saveVars(array(
 				'vsf_hash' => self::hash(file_get_contents($fullpath)),
@@ -169,10 +175,10 @@ final class GWF_VersionFiles extends GDO
 			self::populateFile(GWF_WWW_PATH.'protected', $fullpath);
 		}
 		
-		foreach (VersionServer_Zipper::$protected_dirs as $fullpath)
-		{
-			self::populateRec(GWF_WWW_PATH.'protected', $fullpath);
-		}
+// 		foreach (VersionServer_Zipper::$protected_dirs as $fullpath)
+// 		{
+// 			self::populateRec(GWF_WWW_PATH.'protected', $fullpath);
+// 		}
 		
 		foreach (VersionServer_Zipper::$rootfiles as $fullpath)
 		{

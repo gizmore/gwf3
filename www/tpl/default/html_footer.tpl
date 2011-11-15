@@ -5,7 +5,7 @@
 <div id="gwf3_debug_foot">
 <div class="fl">
 	<div id="oos_gwf3">GWF-3</div>
-	<div>&nbsp;Logged in as {$user->display('user_name')}</div>
+	<div>Logged in as {$user->display('user_name')}</div>
 	<div>&copy;2009-2012 gizmore</div>
 </div>
 
