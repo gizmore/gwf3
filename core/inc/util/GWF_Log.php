@@ -1,5 +1,5 @@
 <?php
-Common::defineConst('GWF_CHMOD', '0777');
+Common::defineConst('GWF_CHMOD', '0777'); # Fallback
 
 /**
  * The GWF Logger
@@ -9,12 +9,11 @@ Common::defineConst('GWF_CHMOD', '0777');
  */
 final class GWF_Log
 {
+	const POST_DELIMITER = '.::.';
+	
 	private static $username = false;
 	private static $basedir = 'protected/logs';
 	private static $log_requests = true;
-	
-	private static $CRONJOB_MODE = false;
-	public static function outputLogMessages($bool=true) { self::$CRONJOB_MODE = true; }
 	
 	############
 	### Init ###
@@ -30,7 +29,6 @@ final class GWF_Log
 		self::$username = $username;
 		self::$log_requests = $log_requests;
 		self::$basedir = $basedir;
-		
 		if ( ($log_requests) && (isset($_SERVER['REMOTE_ADDR'])) )
 		{
 			self::logRequest();
@@ -42,22 +40,25 @@ final class GWF_Log
 	###############
 	/**
 	 * Get the whole request to log it. Censor passwords. 
+	 * @return string
 	 */
 	private static function getRequest()
 	{
 		$back = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
 		$back .= isset($_SERVER['REQUEST_URI']) ? ' '.$_SERVER['REQUEST_URI'] : '';
 		
+		$de = self::POST_DELIMITER;
+		
 		if (count($_POST) > 0)
 		{
-			$back .= "\nPOSTDATA:\n";
+			$back .= "{$de}POSTDATA";
 			foreach ($_POST as $k => $v)
 			{
 				if (stripos($k, 'pass') !== false)
 				{
-					$v = 'xxxxxxxx';
+					$v = 'xxxxx';
 				}
-				$back .= sprintf('%s => %s', $k, $v).PHP_EOL;
+				$back .= $de.$k.'=>'.$v;
 			}
 		}
 		return $back;
@@ -68,26 +69,27 @@ final class GWF_Log
 	 */
 	public static function logRequest()
 	{
-		$request = self::getRequest();
-		if (count($_POST) > 0)
-		{
-			return self::log('post', $request);
-		}
-		else
-		{
-			return self::log('get', $request);
-		}
+		self::log('request', self::getRequest());
+// 		$request = self::getRequest();
+// 		if (count($_POST) > 0)
+// 		{
+// 			return self::log('post', $request);
+// 		}
+// 		else
+// 		{
+// 			return self::log('get', $request);
+// 		}
 	}
 
 	########################
 	### Default logfiles ###
 	########################
-	public static function logCron($message) { return self::log('cron', $message, true); }
-	public static function logError($message) { return self::log('error', $message) && self::log('error_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
-	public static function logMessage($message) { return self::log('message', $message); }
-	public static function logWarning($message) { return self::log('warning', $message); }
-	public static function logCritical($message) { return self::log('critical', $message) && self::log('critical_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
-	public static function logInstall($message) { return self::log('install', $message); }
+	public static function logCron($message) { self::log('cron', $message, true); echo $message.PHP_EOL; }
+	public static function logError($message) { self::log('error', $message); }
+	public static function logMessage($message) { self::log('message', $message); }
+	public static function logWarning($message) { self::log('warning', $message); }
+	public static function logCritical($message) { self::log('critical', $message); self::log('critical_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
+	public static function logInstall($message) { self::log('install', $message); }
 	
 	##############
 	### Helper ###
@@ -121,10 +123,6 @@ final class GWF_Log
 			{
 				if (!is_dir($curr))
 				{
-//					if (!is_writable($curr))
-//					{
-//						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
-//					}
 					if (!@mkdir($curr))
 					{
 						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
@@ -149,7 +147,8 @@ final class GWF_Log
 	{
 		if (!is_file($filename))
 		{
-			if (!touch($filename))
+			# Default kill banner.
+			if (!file_put_contents($filename, '<?php die(2); ?>'.PHP_EOL))
 			{
 				return false;
 			}
@@ -165,28 +164,23 @@ final class GWF_Log
 	### Log ###
 	###########
 	/**
-	 * Log a message. In Cronjob mode we also echo. Log member messages twice.
+	 * Log a message.
 	 * @param string $filename short logname
 	 * @param string $message the message
 	 * @param boolean $raw
 	 */
 	public static function log($filename, $message, $raw=false)
 	{
-		if (!isset($_SERVER['REMOTE_ADDR']))
-		{
-			echo "$message\n";
-		}
-		
 		# Log member		
-		elseif (is_string(self::$username))
+		if (is_string(self::$username))
 		{
 			self::logB($filename, $message, $raw, self::$username);
 		}
-		
-		# Log
-		self::logB($filename, $message, $raw, false);
-		
-		return true;
+		# Log guest
+		else
+		{
+			self::logB($filename, $message, $raw, false);
+		}
 	}
 	
 	/**
