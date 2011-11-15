@@ -1,4 +1,38 @@
 <?php
 $lang = array(
+	
+//	'cfg_FancyIndex' => '',
+//	'cfg_NameWidth' => '',
+//	'cfg_DescrWidth' => '',
+//	'cfg_IconWidth' => '',
+//	'cfg_IconHeight' => '',
+//	'cfg_HTMLTable' => '',
+//	'cfg_IgnoreClient' => '',
+//	'cfg_FoldersFirst' => '',
+//	'cfg_IgnoreCase' => '',
+//	'cfg_SuppressHTMLPreamble' => '',
+//	'cfg_ScanHTMLTitles' => '',
+//	'cfg_SuppressDescription' => '',
+//	'cfg_SuppressRules' => '',
+//	'cfg_log_404' => '',
+//	'cfg_mail_404' => '',
+	'cfg_CaptchaBGColor' => 'Captcha BG Color',
+	
+//	'tt_FancyIndex' => '',
+//	'tt_NameWidth' => '',
+//	'tt_DescrWidth' => '',
+//	'tt_IconWidth' => '',
+//	'tt_IconHeight' => '',
+//	'tt_HTMLTable' => '',
+//	'tt_IgnoreClient' => '',
+//	'tt_FoldersFirst' => '',
+//	'tt_IgnoreCase' => '',
+//	'tt_SuppressHTMLPreamble' => '',
+//	'tt_ScanHTMLTitles' => '',
+//	'tt_SuppressDescription' => '',
+//	'tt_SuppressRules' => '',
+//	'tt_log_404' => '',
+//	'tt_mail_404' => '',
+	'tt_CaptchaBGColor' => 'Captcha background color. 6 hex digits. Example: ffffff',
 );
 ?>

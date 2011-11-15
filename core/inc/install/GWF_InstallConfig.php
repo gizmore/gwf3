@@ -251,7 +251,6 @@ final class GWF_InstallConfig
 			# Various
 			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 60, 'A request will mark you online for N seconds.'),
 			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 0, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
-			array('text',  'Various', 'GWF_CAPTCHA_COLOR_BG', 'FFFFFF', 'Captcha background color. 6 hex digits. Example: ffffff' ),
 			array('bool',  'Various', 'GWF_USER_STACKTRACE', true, 'Show stacktrace to the user on error? Example: true.' ),
 			
 			# Database

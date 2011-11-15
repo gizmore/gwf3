@@ -19,8 +19,11 @@ final class GWF_InstallGWF
 			'ScanHTMLTitles' => array('YES', 'bool'),
 			'SuppressDescription' => array('YES', 'bool'),
 			'SuppressRules' => array('YES', 'bool'),
+			# Error Config
 			'log_404' => array('YES', 'bool'),
 			'mail_404' => array('YES', 'bool'),
+			# Captcha Config
+			'CaptchaBGColor' => array('FFFFFF', 'text'),
 		));
 	}
 }

@@ -32,7 +32,6 @@ final class GWF_AutoConfig
 
 		define('GWF_ONLINE_TIMEOUT', 60);
 		define('GWF_CRONJOB_BY_WEB', 0);
-		define('GWF_CAPTCHA_COLOR_BG', 'FFFFFF');
 		define('GWF_USER_STACKTRACE', true);
 
 		define('GWF_SECRET_SALT', self::randomSalt());
