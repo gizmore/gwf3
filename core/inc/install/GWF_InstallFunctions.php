@@ -364,10 +364,6 @@ function install_copyExampleFiles(&$output)
 	{
 		$success = false;
 	}
-	if (false === installCopyExampleFile('img/captcha', $output))
-	{
-		$success = false;
-	}
 	if (false === installBackupScript($output))
 	{
 		$success = false;
