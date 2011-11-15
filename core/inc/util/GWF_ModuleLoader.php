@@ -1,4 +1,8 @@
 <?php
+/**
+ * This class is responsible to load modules from disk and install them.
+ * @author gizmore
+ */
 final class GWF_ModuleLoader
 {
 	############
@@ -53,22 +57,26 @@ final class GWF_ModuleLoader
 	###############
 	public static function loadModulesFS()
 	{
-		if (false == ($files = @scandir(GWF_CORE_PATH.'module'))) {
+		if (false == ($files = @scandir(GWF_CORE_PATH.'module')))
+		{
 			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array('core/module'));
 			return false;
 		}
 		$modules = array();
 		foreach ($files as $name)
 		{
-			if (Common::startsWith($name, '.')) {
+			if ($name[0] === '.')
+			{
 				continue;
 			}
 			
-			if (false !== ($module = GWF_Module::getModule($name))) {
+			if (false !== ($module = GWF_Module::getModule($name)))
+			{
 				continue;
 			}
 			
-			if (false === ($module = self::loadModuleFS($name))) {
+			if (false === ($module = self::loadModuleFS($name)))
+			{
 				continue;
 			}
 			
@@ -510,44 +518,57 @@ final class GWF_ModuleLoader
 	
 	###
 	
+	/**
+	 * Run the cronjob for all modules.
+	 * Stuff for the cron-logfile goes to stdout.
+	 * Errors are redirected to stderr.
+	 */
 	public static function cronjobs()
 	{
-//		GWF_Log::outputLogMessages(true);
-		ob_start();
+		GWF_Cronjob::notice('==============================');
+		GWF_Cronjob::notice('=== Starting GWFv3 cronjob ===');
+		GWF_Cronjob::notice('==============================');
+		GWF_Log::logCron('');
 		
+		# Core jobs
 		self::cronjobsCore();
 		
-		$back = '';
-		
-		$modules = self::loadModulesFS();
-		foreach ($modules as $module)
+		# Modules
+		foreach (self::loadModulesFS() as $module)
 		{
 			$module instanceof GWF_Module;
-			$module->onInclude();
-			$module->onLoadLanguage();
-			$back .= $module->onCronjob();
+			if ($module->isEnabled())
+			{
+				$module->onInclude();
+				$module->onLoadLanguage();
+				$module->onCronjob();
+			}
 		}
 		
-		$output = ob_get_contents();
-		ob_end_clean();
-		
-		return $output;
+		GWF_Cronjob::notice('==============================');
+		GWF_Cronjob::notice('=== Finished GWFv3 cronjob ===');
+		GWF_Cronjob::notice('==============================');
 	}
 	
 	private static function cronjobsCore()
 	{
-		GWF_Log::logCron("[Session]");
+		self::cronjobsSession();
+	}
+	
+	private static function cronjobsSession()
+	{
+		GWF_Cronjob::start('Session');
 		$table = GDO::table('GWF_Session');
 		$cut = time() - GWF_SESS_LIFETIME;
 		if (false === $table->deleteWhere("sess_time<{$cut}"))
 		{
-			GWF_Log::logCron(sprintf('ERROR!'));
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		else
+		elseif (0 < ($affected = $table->affectedRows()))
 		{
-			GWF_Log::logCron(sprintf('[NOTICE] Deleted %d sesssions.', $table->affectedRows()));
+			GWF_Cronjob::notice(sprintf('Deleted %s sesssions.', $affected));
 		}
-		GWF_Log::logCron("[Done]");
+		GWF_Cronjob::end('Session');
 	}
 	
 	##
@@ -568,12 +589,8 @@ final class GWF_ModuleLoader
 	public static function changeColumn(GDO $gdo, $old_columnname, $new_columnname)
 	{
 		$defs = $gdo->getColumnDefcache();
-//		if (isset($defs[$new_columnname])) {
-//			return true;
-//		}
 		$define = $defs[$new_columnname];
 		return gdo_db()->changeColumn($gdo->getTableName(), $old_columnname, $new_columnname, $define);
 	}
-	
 }
 ?>

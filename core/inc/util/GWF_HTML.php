@@ -157,9 +157,9 @@ final class GWF_HTML
 		return $bool ? ' checked="checked"' : '';
 	}
 	
-	public static function br2nl($s, $nl="\x0a")
+	public static function br2nl($s, $nl=PHP_EOL)
 	{
-		return preg_replace('/< *br *\/?>/', $nl, $s);
+		return preg_replace('/< *br *\/? *>/i', $nl, $s);
 	}
 }
 ?>

@@ -6,7 +6,6 @@
  * A good implementation of the Database object adds timing information.
  * @see GDO_DB_mysql as an example
  * @see GDO_DB_mysql_STRUCT as an example
- * @see GWF_DEBUG_EMAIL in protected/config.php
  * @author gizmore
  * @version 3.0
  */
@@ -81,6 +80,13 @@ abstract class GDO_Database
 	##############
 	### Errors ###
 	##############
+	private function getErrorMessage($query, $errno, $error, $html=true)
+	{
+		$br = $html ? '<br/>' : PHP_EOL;
+		$query = $html ? htmlspecialchars($query) : $query;
+		return sprintf("GDO Error(%s): %s{$br}%s", $errno, $error, $query);
+	}
+	
 	/**
 	 * A database error occured.
 	 * @param string $query
@@ -89,20 +95,38 @@ abstract class GDO_Database
 	 */
 	public function error($query, $errno, $error)
 	{
-		$message = sprintf("SQL Error(%s): %s<br/>\n%s<br/>\n", $errno, $error, htmlspecialchars($query));
+		$message_html = $this->getErrorMessage($query, $errno, $error, true);
+		$message_ajax = $this->getErrorMessage($query, $errno, $error, false);
 		
-		echo GWF_HTML::error('GDO', $message, $this->isLogging());
-		
-		if ($this->verbose)
+		# Log the error.
+		if ($this->isLogging() && class_exists('GWF_Log'))
 		{
-			echo GWF_Debug::backtrace($message, true);
+			GWF_Log::logCritical($message_ajax);
 		}
 		
+		# Output error
+		if (PHP_SAPI === 'cli')
+		{
+			file_put_contents('php://stderr', GWF_Debug::backtrace($message_ajax, false));
+		}
+		elseif ($this->verbose)
+		{
+			$message = isset($_GET['ajax']) ? $message_ajax : $message_html;
+			$message = GWF_Debug::backtrace($message, isset($_GET['ajax']));
+			echo GWF_HTML::error('GDO', $message, false);
+		}
+		else
+		{
+			echo GWF_HTML::error('GDO', $message, false);
+		}
+
+		# Send mail
 		if ($this->email)
 		{
-			$this->emailOnError($message);
+			$this->emailOnError($message_ajax);
 		}
 		
+		# Quit
 		if ($this->die)
 		{
 			die(1);
@@ -111,7 +135,6 @@ abstract class GDO_Database
 	
 	private function emailOnError($message)
 	{
-//		if ( (GWF_DEBUG_EMAIL & 1) && ($this->email) )
 		if (GWF_DEBUG_EMAIL & 1)
 		{
 			$message = GWF_HTML::br2nl($message).PHP_EOL.PHP_EOL;

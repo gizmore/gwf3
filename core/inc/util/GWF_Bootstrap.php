@@ -3,11 +3,20 @@
  * Bootstrap PHP ini modes.
  * Remove magic quotes.
  * Unregister globals.
+ * Some backwards compatibility with php5.2/5.1
  * @author Gizmore
- * Usage: Just include this file :)
  */
 final class GWF_Bootstrap
 {
+	public static function init()
+	{
+		# anti magic quotes
+		self::unmagicquote();
+
+		# anti register globals
+//		GWF_Bootstrap::unregisterGlobals();
+	}
+	
 	/**
 	 * Unmagicquote a variable.
 	 * This will recursively unmagicquote arrays and only touch strings.
@@ -28,7 +37,8 @@ final class GWF_Bootstrap
 	public static function unmagicquote()
 	{
 		# anti magic_quotes_gpc
-		if (get_magic_quotes_gpc() > 0) {
+		if (get_magic_quotes_gpc() > 0)
+		{
 			$callback = array(__CLASS__, 'unmagicquoteTypesafe');
 			$_GET = array_map($callback, $_GET);
 			$_POST = array_map($callback, $_POST);
@@ -47,41 +57,19 @@ final class GWF_Bootstrap
 //	{
 //		if (ini_get('register_globals') == 1)
 //		{
+// 			$_SESSION = array();
 //			if (is_array($_REQUEST)) foreach(array_keys($_REQUEST) as $v) unset($$v);
 //			if (is_array($_SESSION)) foreach(array_keys($_SESSION) as $v) unset($$v);
 //			if (is_array($_SERVER)) foreach(array_keys($_SERVER) as $v) unset($$v);
-//			unset($v);
 //		}
-//	}
-	
-	/**
-	 * @author gizmore
-	 * Get the maximum upload size limit from php.ini as integer
-	 * @return int number of bytes
-	 */
-//	public static function iniGetMaxUploadBytes()
-//	{
-//		$ini = trim(ini_get('post_max_size'));
-//		$last = strtolower(substr($ini, -1));
-//		$ini = (int) $ini;
-//		switch($last)
-//		{
-//			case 'g': $ini *= 1024;
-//			case 'm': $ini *= 1024;
-//			case 'k': $ini *= 1024;
-//		}
-//		return $ini;
 //	}
 }
 
-#$_SESSION = array(); # anti register_globals for session
-
-GWF_Bootstrap::unmagicquote(); # anti magic quotes
-
-//GWF_Bootstrap::unregisterGlobals(); # anti globals
 
 
-# PHPv5.1 compatibility.
+###
+### PHPv5.1 compatibility.
+###
 if (!function_exists('inet_pton'))
 {
 	function inet_pton($ip)

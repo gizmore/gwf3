@@ -252,10 +252,10 @@ final class GWF_Website
 	
 	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/', $tVars = array())
 	{
-		if(!defined('GWF_INSTALLATION'))
-		{
+// 		if(!defined('GWF_INSTALLATION'))
+// 		{
 			$tVars['timings'] = GWF_DebugInfo::getTimings();
-		}
+// 		}
 		return GWF_Template::templateMain('html_foot.tpl', $tVars);
 	}
 	

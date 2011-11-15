@@ -69,7 +69,7 @@ class GWF_Module extends GDO
 	public function onStartup() {}
 	public function onAddHooks() {}
 	public function onInstall($dropTable) { return ''; }
-	public function onCronjob() {}
+	public function onCronjob() {} # Output to stdout for debuglogs. Errors are redirected to stderr.
 	public function isAjax() { return isset($_REQUEST['ajax']); }
 	
 	/**

@@ -1,4 +1,17 @@
 <?php
+##
+### Autoconfigure constants in case not defined
+##
+// Common::defineConst('GWF_PATH', getcwd());
+// if (PHP_SAPI === 'cli')
+// {
+// 	Common::defineConst('GWF_WWW_PATH', getcwd());
+// }
+// else
+// {
+// 	Common::defineConst('GWF_WWW_PATH', $_SERVER['REQUEST_URI']);
+// }
+
 /**
  * Debug backtrace and error handler.
  * Can send email on PHP errors.
@@ -6,7 +19,7 @@
  * @example GWF_Debug::enableErrorHandler(); fatal_ooops();
  * @see GWF_DEBUG_EMAIL in protected/config.php
  * @author gizmore
- * @version 3.0
+ * @version 3.02
  */
 final class GWF_Debug
 {
@@ -15,8 +28,7 @@ final class GWF_Debug
 	################
 	### Settings ###
 	################
-	
-	public static function setDieOnError($bool)
+	public static function setDieOnError($bool=true)
 	{
 		if (is_bool($bool))
 		{
@@ -39,7 +51,6 @@ final class GWF_Debug
 		{
 			set_error_handler(array('GWF_Debug', 'error_handler'));
 			register_shutdown_function(array('GWF_DEBUG', 'shutdown_function'));
-//			ini_set('display_errors', 0);
 			self::$enabled = true;
 		}
 	}
@@ -54,6 +65,9 @@ final class GWF_Debug
 	##########
 	### GC ###
 	##########
+	/**
+	 * Call the garbage collector if exists.
+	 */
 	public static function collectGarbage()
 	{
 		if (function_exists('gc_collect_cycles'))
@@ -70,6 +84,9 @@ final class GWF_Debug
 		return false;
 	}
 	
+	/**
+	 * This one get's called on a fatal. No stacktrace available and some vars are messed up.
+	 */
 	public static function shutdown_function()
 	{
 		if (self::$enabled)
@@ -87,13 +104,13 @@ final class GWF_Debug
 	}
 	
 	/**
-	 * Error handler creates some html backtrace and dies on _every_ warning etc.
+	 * Error handler creates some html backtrace and can die on _every_ warning etc.
 	 * @param int $errno
 	 * @param string $errstr
 	 * @param string $errfile
 	 * @param int $errline
 	 * @param $errcontext
-	 * @return unknown_type
+	 * @return false
 	 */
 	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 	{
@@ -105,34 +122,38 @@ final class GWF_Debug
 		# Log as critical!
 		if (class_exists('GWF_Log'))
 		{
-			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline), false);
+			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline));
 		}
 		
 		switch($errno)
 		{
-			case 1: $errnostring = 'PHP Fatal Error'; break;
+			case 1: $errnostr = 'PHP Fatal Error'; break;
 			case 2:
 			case 8:
-			case E_USER_WARNING: $errnostring = 'PHP Warning'; break;
-			case E_USER_ERROR: $errnostring = 'PHP Error'; break;
-			case E_USER_NOTICE: $errnostring = 'PHP Notice'; break;
-			case 2048: $errnostring = 'PHP No Timezone'; break;
-			default: $errnostring = 'PHP Unknown Error'; break;
+			case E_USER_WARNING: $errnostr = 'PHP Warning'; break;
+			case E_USER_ERROR: $errnostr = 'PHP Error'; break;
+			case E_USER_NOTICE: $errnostr = 'PHP Notice'; break;
+			case 2048: $errnostr = 'PHP No Timezone'; break;
+			default: $errnostr = 'PHP Unknown Error'; break;
 		}
 
-		$is_html = isset($_SERVER['REMOTE_ADDR']);
+		$is_html = !isset($_GET['ajax']);
 
 		if ($is_html)
 		{
-			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
+			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostr, $errno, $errstr, $errfile, $errline).PHP_EOL;
 		}
 		else
 		{
-			$message = sprintf('%s(%s) %s in %s line %s.', $errnostring, $errno, $errstr, $errfile, $errline).PHP_EOL;
+			$message = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline).PHP_EOL;
 		}
 		
-		# Show error to user
-		if (GWF_USER_STACKTRACE)
+		# Output error
+		if (PHP_SAPI === 'cli')
+		{
+			file_put_contents('php://stderr', self::backtrace($message, false));
+		}
+		elseif (GWF_USER_STACKTRACE)
 		{
 			echo self::backtrace($message, $is_html).PHP_EOL;
 		}
@@ -147,21 +168,27 @@ final class GWF_Debug
 			self::sendDebugMail(self::backtrace($message, false));
 		}
 		
-		return self::$die ? die(1) : false;
+		if (self::$die)
+		{
+			die(1); # oops :)
+		}
+		
+		# Return false to populate php last error. TODO: Check if we want that.
+		return false; 
 	}
 
 	/**
-	 * Send a debug mail lvl 2
+	 * Send error report mail.
 	 * @param string $message
 	 */
 	public static function sendDebugMail($message)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setReceiver(GWF_BOT_EMAIL);
+		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject(GWF_SITENAME.': PHP Error');
 		$mail->setBody($message);
-		$mail->sendAsText();
+		return $mail->sendAsText();
 	}
 	
 	############################
@@ -229,10 +256,15 @@ final class GWF_Debug
 		return $back;
 	}
 	
+	/**
+	 * Strip full pathes so we don't have a full path disclosure.
+	 * @param string $path
+	 * @return string
+	 */
 	public static function shortpath($path)
 	{
 		$path = str_replace(GWF_PATH, '', $path);
-		$path = str_replace(GWF_WWW_PATH, '', $path); // if isn't a GWF3 instance, it could not be defined!
+		$path = str_replace(GWF_WWW_PATH, '', $path);
 		return trim($path, ' /');
 	}
 }

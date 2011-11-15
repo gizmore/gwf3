@@ -65,20 +65,11 @@ final class GWF_Log
 	}
 	
 	/**
-	 * Log the request first.
+	 * Log the request.
 	 */
 	public static function logRequest()
 	{
 		self::log('request', self::getRequest());
-// 		$request = self::getRequest();
-// 		if (count($_POST) > 0)
-// 		{
-// 			return self::log('post', $request);
-// 		}
-// 		else
-// 		{
-// 			return self::log('get', $request);
-// 		}
 	}
 
 	########################

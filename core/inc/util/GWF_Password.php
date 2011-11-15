@@ -5,11 +5,12 @@
  */
 final class GWF_Password
 {
-	const SECRET_SALT = GWF_SECRET_SALT; # any string will do. (this is just a lengthener, good length is maybe 8 or 12)
-	const SALTLEN = 4; // real random salt len
-	const SHA1LEN = 40; // hash len (currently sha1)
-	const HASHLEN = 44; // total hash len (hash+salt)
-	const TOKEN_LEN= 16;
+	const SECRET_SALT = GWF_SECRET_SALT; # Any string will do. This is just a lengthener. Good string has a length of maybe 8 or 12.
+	const SALTLEN = 4; # Real random salt len
+	const SHA1LEN = 40; # Hash length (sha1)
+	const HASHLEN = 44; # Total hash length (hash+salt)
+	const ROUNDS = 1; # Number of sha rounds.
+	const TOKEN_LEN = 16; # Length of a generic random token.
 	
 	################
 	### Password ###
@@ -25,6 +26,12 @@ final class GWF_Password
 		return self::hashSHA1(self::SECRET_SALT.$password.$salt.self::SECRET_SALT).$salt; 
 	}
 	
+	/**
+	 * Check if a password matches a hash.
+	 * @param string $password
+	 * @param string $hash
+	 * @return boolean
+	 */
 	public static function checkPasswordS($password, $hash)
 	{
 		$salt = substr($hash, -self::SALTLEN);
@@ -33,6 +40,11 @@ final class GWF_Password
 	
 	public static function hashSHA1($string)
 	{
+// 		for ($i = 0; $i < self::ROUNDS; $i++)
+// 		{
+// 			$string = hash('sha1', $string);
+// 		}
+// 		return $string;
 		return hash('sha1', $string);
 	}
 	
@@ -57,6 +69,10 @@ final class GWF_Password
 	###################
 	### ClearMemory ###
 	###################
+	/**
+	 * Clear the memory of a sent password.
+	 * @param string $key
+	 */
 	public static function clearMemory($key='password')
 	{
 		$clr = str_repeat('x', strlen($_REQUEST[$key]));
