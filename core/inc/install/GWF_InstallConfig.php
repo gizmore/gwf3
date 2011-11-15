@@ -509,19 +509,9 @@ final class GWF_InstallConfig
 	{
 		$t = "\t";
 		self::writeSectionHeader($fh, 'Website Down?');
-		fwrite($fh, "require_once 'protected/temp_ban.php';".PHP_EOL);
-		fwrite($fh, "require_once 'protected/temp_down.php';".PHP_EOL);
-//		fwrite($fh, '#$workerIP = \'192.168.0.5\'; # <-- Set Down here'.PHP_EOL);
-//		fwrite($fh, 'if (isset($workerIP))'.PHP_EOL);
-//		fwrite($fh, '{'.PHP_EOL);
-//		fwrite($fh, $t.'$ip = isset($_SERVER[\'REMOTE_ADDR\']) ? $_SERVER[\'REMOTE_ADDR\'] : false;'.PHP_EOL);
-//		fwrite($fh, $t.'if ($workerIP !== $ip) { '.PHP_EOL);
-//		fwrite($fh, $t.$t.'$msg = \'We have database troubles but should be back within 45 minutes.\';'.PHP_EOL);
-//		fwrite($fh, $t.$t.'# Use one of these:'.PHP_EOL);
-//		fwrite($fh, $t.$t.'#die(GWF_SITENAME.\' is down for maintainance.<br/>\'.$msg);'.PHP_EOL);
-//		fwrite($fh, $t.$t.'define(\'GWF_WEBSITE_DOWN\', $msg);'.PHP_EOL);
-//		fwrite($fh, $t.'}'.PHP_EOL);
-//		fwrite($fh, '}'.PHP_EOL.PHP_EOL);
+		fwrite($fh, "#require_once 'temp_ban.php';".PHP_EOL);
+		fwrite($fh, "#require_once 'temp_down.php';".PHP_EOL);
+		fwrite($fh, "#define('GWF_WORKER_IP', '127.0.0.1');".PHP_EOL);
 	}
 	
 	private static function writeFooter($fh)

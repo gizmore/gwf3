@@ -356,17 +356,22 @@ function install_createUserAgents()
 function install_copyExampleFiles(&$output)
 {
 	$success = true;
-
 	if (false === installCopyExampleFile('index', $output))
 	{
 		$success = false;
 	}
-	
+	if (false === installCopyExampleFile('gwf_cronjob', $output))
+	{
+		$success = false;
+	}
 	if (false === installCopyExampleFile('img/captcha', $output))
 	{
 		$success = false;
 	}
-	
+	if (false === installBackupScript($output))
+	{
+		$success = false;
+	}
 	return $success;
 }
 
@@ -387,14 +392,69 @@ function installCopyExampleFile($path, &$output)
 			$output .= GWF_Install::wizard_error('err_copy', array($example));
 			return false;
 		}
+		
+		if (false === chmod($copied, GWF_CHMOD))
+		{
+			$output .= GWF_Install::wizard_error('err_copy', array($example));
+			return false;
+		}
 
-		$output .= GWF_Install::wizard_message('msg_copy', $copied);
+		$output .= GWF_Install::wizard_message('msg_copy', array($copied));
 	}
 	else
 	{
-		$output .= GWF_Install::wizard_message('msg_copy_untouched', $copied);
+		$output .= GWF_Install::wizard_message('msg_copy_untouched', array($copied));
 	}
 
 	return true;
+}
+
+function installBackupScript(&$output)
+{
+	$path = 'protected/db_backup.sh';
+	if (Common::isFile($path))
+	{
+		$output .= GWF_Install::wizard_message('msg_copy_untouched', $path);
+		return true;
+	}
+	
+	$skel = 'protected/db_backup.example.sh';
+	if (false === ($content = file_get_contents($skel)))
+	{
+		$output .= GWF_Install::wizard_error('err_copy', array($skel));
+		return false;
+	}
+	
+	if (false === ($content = installReplaceBackupScript($content)))
+	{
+		$output .= GWF_Install::wizard_error('err_copy', array($skel));
+		return false;
+	}
+	
+	if (false === file_put_contents($path, $content))
+	{
+		$output .= GWF_Install::wizard_error('err_copy', array($skel));
+		return false;
+	}
+	
+	if (false === chmod($path, GWF_CHMOD))
+	{
+		$output .= GWF_Install::wizard_error('err_copy', array($path));
+		return false;
+	}
+	
+	$output .= GWF_Install::wizard_message('msg_copy', array($path));
+	return true;
+}
+
+function installReplaceBackupScript($content)
+{
+	$replace = array(
+		'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
+		'%%USER%%' => escapeshellarg(GWF_DB_USER),
+		'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
+		'%%SALT%%' => escapeshellarg(Common::randomKey(12)),
+	);
+	return str_replace(array_keys($replace), array_values($replace), $content);
 }
 ?>
