@@ -1,6 +1,7 @@
 <?php
 final class Harbor extends SR_Dungeon
 {
+	public function getCityLocation() { return 'Seattle_Harbor'; }
 	public function getImportNPCS() { return array('Redmond_Ueberpunk','Seattle_Ninja','Seattle_TrollDecker','Seattle_Robber','Seattle_Killer','Seattle_BlackOp'); }
 	public function getArriveText() { return 'You enter the Seattle Harbor. You see a lot of Depots and some bigger ships that are beeing loaded and unloaded.'; }
 	public function getSquareKM() { return 3; }

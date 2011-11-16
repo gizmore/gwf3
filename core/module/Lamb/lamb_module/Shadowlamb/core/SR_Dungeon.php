@@ -34,5 +34,11 @@ abstract class SR_Dungeon extends SR_City
 		$this->setAlert($party, 0);
 		parent::onCityEnter($party);
 	}
+	
+	/**
+	 * Get the city location for a dungeon.
+	 * @return string @example 'Redmond_Hotel'
+	 */
+	abstract public function getCityLocation();
 }
 ?>

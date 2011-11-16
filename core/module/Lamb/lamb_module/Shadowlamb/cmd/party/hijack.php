@@ -22,8 +22,16 @@ final class Shadowcmd_hijack extends Shadowcmd
 		foreach (Shadowrun4::getParties() as $pa)
 		{
 			$pa instanceof SR_Party;
-			$loc2 = $pa->getLocation('inside');
-			if ($loc === $loc2)
+			if (false === ($city = $pa->getCityClass()))
+			{
+				continue; # not even city
+			}
+
+			# Hax!
+			if (
+				($city->isDungeon()) && (($city->getCityLocation() === $loc)) ||
+				($pa->getLocation('inside') === $loc)
+			)
 			{
 				foreach ($pa->getMembers() as $pl)
 				{

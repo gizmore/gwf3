@@ -4,6 +4,13 @@ final class Shadowcmd_mounts extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$p = $player->getParty();
+		if (false !== ($city = $p->getCityClass()))
+		{
+			if ($city->isDungeon())
+			{
+				Shadowrap::instance($player)->reply('In dungeons you don\'t have mounts.');
+			}
+		}
 //		$i = 1;
 		$out = '';
 		$total = 0.0;

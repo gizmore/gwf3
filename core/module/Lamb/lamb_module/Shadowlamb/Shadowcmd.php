@@ -94,7 +94,7 @@ class Shadowcmd
 		'sleep' => array('stop'),
 		'talk' => array('kick','fight','bye'),
 		'fight' => array(),
-		'inside' => array('g','exp','hunt','kick','exit'),
+		'inside' => array('g','exp','hunt','kick'),
 		'outside' => array('g','exp','hunt','kick','en'),
 		'explore' => array('g','exp','hunt','kick','stop'),
 		'goto' => array('g','exp','hunt','kick','stop'),
@@ -145,9 +145,22 @@ class Shadowcmd
 		$commands = array_merge($commands, self::$CMDS[$action]);
 		if ($leader)
 		{
-			if ($show_hidden === true) {
+			if ($show_hidden === true)
+			{
 				$commands = array_merge($commands, self::$CMDS_LEADER_ALWAYS);
 			}
+			
+			# Have location?
+			if (false !== ($location === $party->getLocationClass('inside')))
+			{
+				# Not an exit?
+				if (!($location instanceof SR_Exit))
+				{
+					# We can exit
+					$commands[] = 'exit';
+				}
+			}
+			
 			$commands = array_merge($commands, self::$CMDS_LEADER[$action]);
 		}
 		

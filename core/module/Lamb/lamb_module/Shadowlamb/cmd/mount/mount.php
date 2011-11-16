@@ -4,6 +4,16 @@ final class Shadowcmd_mount extends Shadowcmd
 	# mount push cap 4
 	public static function execute(SR_Player $player, array $args)
 	{
+		$p = $player->getParty();
+		if (false !== ($city = $p->getCityClass()))
+		{
+			if ($city->isDungeon())
+			{
+				Shadowrap::instance($player)->reply('In dungeons you don\'t have mounts.');
+				return false;
+			}
+		}
+		
 		if ($player->isFighting())
 		{
 			$player->message('This command does not work in combat.');

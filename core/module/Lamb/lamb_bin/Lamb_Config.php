@@ -171,13 +171,13 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-// 		array(
-// 			'host' => 'ircs://irc.enigmagroup.org:6697',
-// 			'nickname' => 'Lamb3',
-// 			'password' => 'lamblamb',
-// 			'channels' => '#wechall,#shadowlamb',
-// 			'admins' => 'gizmore',
-// 		),
+		array(
+			'host' => 'ircs://irc.enigmagroup.org:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#wechall,#shadowlamb',
+			'admins' => 'gizmore',
+		),
 		
 		array(
 			'host' => 'ircs://lanthanum.vutral.net:6667',
