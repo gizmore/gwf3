@@ -151,7 +151,7 @@ class Shadowcmd
 			}
 			
 			# Have location?
-			if (false !== ($location === $party->getLocationClass('inside')))
+			if (false !== ($location = $party->getLocationClass('inside')))
 			{
 				# Not an exit?
 				if (!($location instanceof SR_Exit))

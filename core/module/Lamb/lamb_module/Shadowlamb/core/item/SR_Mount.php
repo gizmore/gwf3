@@ -2,15 +2,14 @@
 abstract class SR_Mount extends SR_Equipment
 {
 	# Times to hijack a mount, if time elapsed we roll a dice.
-	const HIJACK_TIME_MIN = 120; 
-	const HIJACK_TIME_MAX = 300;
-	const HIJACK_TIME_MAXLVL = 100; # And the level is a percentage in between like 280.
+	const HIJACK_TIME_MIN = 140; 
+	const HIJACK_TIME_MAX = 900;
+	const HIJACK_TIME_MAXLVL = 50; # And the level is a percentage in between like 1/50*900.
 	const HIJACK_TIME_BONUS = 20; # - 20 sec rand.
 	const HIJACK_TIME_ADD = 30; # And for every attemp we add N seconds ...
 	const HIJACK_TIME_MULTI = 1.5; # and afterwards multiply by N.
 	
 	# Hijack dice
-	
 	
 	######################
 	### Abstract Mount ###

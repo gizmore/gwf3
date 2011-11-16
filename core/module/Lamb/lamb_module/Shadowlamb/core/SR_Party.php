@@ -15,6 +15,7 @@ final class SR_Party extends GDO
 	const LOOT_BITS = 0xF0;
 	
 	public static $ACTIONS = array('delete','talk','fight','inside','outside','sleep','travel','explore','goto','hunt','hijack');
+	private static $ACTIONS_LEAVE = array('delete', 'fight','inside', 'outside', 'travel', 'explore', 'goto', 'hunt');
 	const ACTION_DELETE = 'delete';
 	const ACTION_TALK = 'talk';
 	const ACTION_FIGHT = 'fight';
@@ -116,17 +117,6 @@ final class SR_Party extends GDO
 	public function getEnum(SR_Player $player)
 	{
 		return $player->getEnum();
-//		$i = 1;
-//		$pid = $player->getID();
-//		foreach ($this->members as $m)
-//		{
-//			if ($m->getID() === $pid)
-//			{
-//				return $i;
-//			}
-//			$i++;
-//		}
-//		return false;
 	}
 	
 	public function getMemberByEnum($n)
@@ -141,12 +131,6 @@ final class SR_Party extends GDO
 			}
 		}
 		return false;
-//		if ( ($n < 1) || ($n > $this->getMemberCount()) )
-//		{
-//			return false;
-//		}
-//		$back = array_slice($this->members, $n-1, 1, false);
-//		return $back[0];
 	}
 	
 	/**
@@ -196,17 +180,6 @@ final class SR_Party extends GDO
 	{
 		$l = $this->getLocation();
 		return Common::substrUntil($l, '_', $l);
-//		
-//		if ($this->isFighting()||$this->isTalking()) {
-//			$c = $this->getVar('sr4pa_last_target');
-//		}
-//		elseif ($this->isHunting()) {
-//			return $this->getHuntTargetCity();
-//		}
-//		else {
-//			$c = $this->getTarget();
-//		}
-//		return Common::substrUntil($c, '_', $c);
 	}
 	/**
 	 * @return SR_City
@@ -308,15 +281,81 @@ final class SR_Party extends GDO
 		$this->timestamp = time();
 		
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
+
+		# Announce leaving a location.
+		if (in_array($action, self::$ACTIONS_LEAVE, true))
+		{
+			$this->onPartyLeft($action);
+		}
 		
-		return $this->saveVars(array(
+		# Save new vars
+		if (false === $this->saveVars(array(
 			'sr4pa_action' => $action,
 			'sr4pa_target' => $target,
 			'sr4pa_eta' => $eta,
 			'sr4pa_last_action' => $this->getAction(),
 			'sr4pa_last_target' => $this->getTarget(),
 			'sr4pa_last_eta' => $this->getETA(),
-		));
+		)))
+		{
+			return false;
+		}
+		
+		# Announce reaching a location.
+		if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
+		{
+			$this->onPartyArrived($action);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Announce when a party arrives somewhere.
+	 * @param string $action
+	 */
+	public function onPartyArrived($action)
+	{
+		return $this->onPartyArriveLeft(sprintf('arrived %s %s', $action, $this->getTarget()));
+	}
+	
+	/**
+	 * Announce when a party has left a location.
+	 */ 
+	public function onPartyLeft($action)
+	{
+		$this->onPartyArriveLeft(sprintf('left %s', $this->getTarget()));
+	}
+	
+	/**
+	 * Announce when a party leaves/enters a location.
+	 * @param string $text_snippet
+	 */
+	private function onPartyArriveLeft($text_snippet)
+	{
+		# Check all parties
+		foreach (Shadowrun4::getParties() as $p)
+		{
+			$p instanceof SR_Party;
+			if ($p->getID() !== $this->getID())
+			{
+				# Sharing the location for this event?
+				if ($this->sharesLocation($p))
+				{
+					# Output!
+					if (!isset($message))
+					{
+						$message = sprintf('%s %s.', $this->displayMembers(false, true), $text_snippet);
+					}
+					foreach ($p->getMembers() as $player)
+					{
+						$player instanceof SR_Player;
+						$player->message($message); 
+						$player->setOption(SR_Player::LOOK_DIRTY); # Clients refresh.
+					}
+				}
+			}
+		}
 	}
 	
 	public function popAction($announce=false)
@@ -786,22 +825,7 @@ final class SR_Party extends GDO
 	################
 	### Distance ###
 	################
-//	public function forward(SR_Player $player, $neg=1)
-//	{
-//		$d = (1.0 + $player->get('quickness')/2) * $neg;
-//		$old = $this->distance[$player->getID()];
-//		$this->distance[$player->getID()] += $d;
-//		$this->updateMembers();
-//		$busy = $player->busy(15);
-//		$name = $player->getName();
-//		$this->notice(sprintf('%s walks %.01f meters towards the enemy. %ds busy.', $name, $d, $busy));
-//		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards you.', $name, $d));
-//	}
-//	
-//	public function backward(SR_Player $player)
-//	{
-//		return $this->forward($player, -1);
-//	}
+
 	public function moveTowards(SR_Player $player, SR_Player $target)
 	{
 		$move = $player->getMovePerSecond();

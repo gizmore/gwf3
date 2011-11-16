@@ -59,7 +59,8 @@ class SR_Player extends GDO
 	const RESPONSE_ITEMS = 0x02000;
 	const RESPONSE_PLAYERS = 0x04000;
 	const MOUNT_DIRTY = 0x80000;
-	const DIRTY_FLAGS = 0x87fe0;
+	const LOOK_DIRTY = 0x100000;
+	const DIRTY_FLAGS = 0x187fe0;
 
 	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
