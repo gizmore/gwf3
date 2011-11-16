@@ -7,3 +7,4 @@ if (count($t) !== 2) {
 	return;
 }
 $server->sendPrivmsg($t[0], $t[1]);
+?>

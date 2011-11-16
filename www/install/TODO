@@ -4,6 +4,11 @@
 
 --------------------------------------------------------------------------------
 
+It is currently not possible to have two database instances because many GDO:: functions do a call to gdo_db().
+We might want to add an optional parameter to these functions, or re-think GDO / switch to PDO.
+
+--------------------------------------------------------------------------------
+
 Increase performance by not requireing a database for simple pages.
 
 --------------------------------------------------------------------------------
