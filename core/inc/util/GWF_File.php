@@ -32,12 +32,13 @@ final class GWF_File
 	}
 	
 	/**
-	 * Remove a dir recursively. Returns boolean, true on success. Prints error messages to stdout when verbose.
+	 * Remove a dir recursively. Returns boolean, true on success. Prints error messages when verbose. Can keep the affected dir if desired.
 	 * @param string $path
 	 * @param boolean $verbose
+	 * @param boolean $keep_dir
 	 * @return true|false
 	 */
-	public static function removeDir($path, $verbose=true)
+	public static function removeDir($path, $verbose=true, $keep_dir=false)
 	{
 		$success = true;
 		
@@ -64,7 +65,7 @@ final class GWF_File
 			$fullpath = $path.'/'.$entry;
 			if (is_dir($fullpath))
 			{ // dir
-				if (!self::removeDir($fullpath))
+				if (!self::removeDir($fullpath, $verbose, false))
 				{
 					$success = false;
 				}
@@ -83,13 +84,16 @@ final class GWF_File
 		}
 		
 		// current dir
-		if (!@rmdir($path))
+		if (!$keep_dir)
 		{
-			if ($verbose)
+			if (!@rmdir($path))
 			{
-				echo GWF_HTML::err('ERR_WRITE_FILE', htmlspecialchars($path));
+				if ($verbose)
+				{
+					echo GWF_HTML::err('ERR_WRITE_FILE', htmlspecialchars($path));
+				}
+				$success = false;
 			}
-			$success = false;
 		}
 		
 		return $success;

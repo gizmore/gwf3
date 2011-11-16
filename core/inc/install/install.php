@@ -12,7 +12,7 @@ require_once GWF_CORE_PATH.'inc/install/GWF_InstallWizardLanguage.php';
 
 // define('GWF_INSTALLATION', true);
 define('GWF_STEP', Common::getGetString('step', '0'));
-define('GWF_LOGGING_PATH', Common::getGet('loggingpath', './protected/installog'));
+define('GWF_LOGGING_PATH', getcwd().'/protected/installog');
 
 $gwf = new GWF3(getcwd(), array(
 	'website_init' => false,
@@ -45,7 +45,7 @@ GWF3::setDesign('install');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
-GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'step' => GWF_STEP, 'il' => $il));
+GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'step' => GWF_STEP, 'il' => $il, 'steps' => 11));
 
 if (false !== (Common::getPost('create_admin'))) {
 	$page = GWF_Install::wizard_9_1();
@@ -74,8 +74,9 @@ else switch(GWF_STEP)
 	case '7': $page = GWF_Install::wizard_7(); break; # Create index.php
 	case '8': $page = GWF_Install::wizard_8(); break; # Create htaccess
 	case '9': $page = GWF_Install::wizard_9(); break; # Create admins
-	case '10': $page = GWF_Install::wizard_10(); break; # Create admins
-
+	case '10': $page = GWF_Install::wizard_10(); break; # Clear Caches
+	case '11': $page = GWF_Install::wizard_11(); break; # Protect install folder
+	
 	default:
 	case '0': $page = GWF_Install::wizard_0(); break; # List Status
 }

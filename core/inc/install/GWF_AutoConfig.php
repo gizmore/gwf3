@@ -34,8 +34,8 @@ final class GWF_AutoConfig
 		define('GWF_CRONJOB_BY_WEB', 0);
 		define('GWF_USER_STACKTRACE', true);
 
-		define('GWF_SECRET_SALT', self::randomSalt());
-		define('GWF_CHMOD', 0700);
+		define('GWF_SECRET_SALT', 'is_set_later');
+		define('GWF_CHMOD', self::getCHMOD());
 		define('GWF_DB_HOST', 'localhost');
 		define('GWF_DB_USER', '');
 		define('GWF_DB_PASSWORD', '');
@@ -61,9 +61,37 @@ final class GWF_AutoConfig
 		define('GWF_STAFF_EMAILS', '');
 	}
 	
-	private static function randomSalt()
+	/**
+	 * Determine if we should use 0700 or 0777 as chmod for logfiles.
+	 * @return number
+	 */
+	private static function getCHMOD()
 	{
-		return 'ABCDABCDABCD';
+		return 0700;
+
+		# TODO: DOES NOT WORK :(
+// 		$filename = 'protected/chmodtest.txt';
+// 		if (!@touch($filename))
+// 		{
+// 			die('FATAL: Cannot probe for CHMOD mask in '.__CLASS__.'.');
+// 		}
+		
+// 		if (false !== ($chmod = fileperms($filename)))
+// 		{
+// 			var_dump($chmod);
+// 		}
+		
+// 		if (!@unlink($filename))
+// 		{
+// 			die('FATAL: Cannot unlink the CHMOD probe file in '.__CLASS__.'.');
+// 		}
+		
+// 		if ($chmod === false)
+// 		{
+// 			die('FATAL: The CHMOD probe mysteriously failed in '.__CLASS__.'.');
+// 		}
+		
+// 		return $chmod;
 	}
 }
 ?>

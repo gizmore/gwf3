@@ -2,10 +2,13 @@
 /*
  * This is an example how your index.php could look like
  */
+
 # Load config
-require_once 'protected/config.php'; # You might need to adjust this path.
+require_once 'protected/config.php'; # <-- You might need to adjust this path.
+
 # Init GDO and GWF core
-require_once '../gwf3.class.php'; # You might need to adjust this path too.
+require_once '%%GWFPATH%%gwf3.class.php';
+
 # Init GWF
 $gwf = new GWF3(getcwd(), array(
 # Default values

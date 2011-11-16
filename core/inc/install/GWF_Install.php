@@ -81,7 +81,9 @@ final class GWF_Install
 	}
 	public static function wizard_0_row($step, $value)
 	{
-		return sprintf('<tr><td>%s</td><td>%s</td></tr>', self::$gwfil->lang('step_0_'.$step), $value).PHP_EOL;
+		static $cycle = 1;
+		$cycle = 1 - $cycle;
+		return sprintf('<tr class="tr%d"><td>%s</td><td>%s</td></tr>', $cycle, self::$gwfil->lang('step_0_'.$step), $value).PHP_EOL;
 	}
 	public static function wizard_btn($step)
 	{
@@ -438,9 +440,11 @@ final class GWF_Install
 	public static function wizard_modules_form(array $modules)
 	{
 		$back = '<div><table>';
-		$back .= '<form action="install_wizard.php" method="post" id="form_install_modules" >'.PHP_EOL;
-
-//		$back .= sprintf('<tr><td></td><td><input name="toggle_all" type="checkbox" checked="checked" onclick="$(\'#form_install_modules\').find(\':checkbox\').attr(\'checked\', \'checked\'); return false;" /></td></tr>').PHP_EOL;
+		
+		$js = 'var c = $(\'input:checkbox\');  this.checked ? c.attr(\'checked\', \'checked\') : c.removeAttr(\'checked\');';
+		$back .= sprintf('<tr><td><input name="toggle_all" type="checkbox" checked="checked" onclick="%s" /></td><td></td></tr>', $js).PHP_EOL;
+		
+		$back .= '<form action="install_wizard.php?step=6" method="post" id="form_install_modules" >'.PHP_EOL;
 
 		GWF_ModuleLoader::sortModules($modules, 'module_name', 'ASC');
 
@@ -472,13 +476,12 @@ final class GWF_Install
 		}
 		
 		$back = self::wizard_h2('6_1');
-//
+
 		$modules = GWF_ModuleLoader::loadModulesFS();
 		$names = Common::getPostArray('mod', array());
 		foreach ($modules as $id => $module)
 		{
 			$module instanceof GWF_Module;
-			
 			$name = $module->getName();
 			if ( (!isset($names[$name])) && (!$module->isCoreModule()) )
 			{
@@ -546,7 +549,7 @@ final class GWF_Install
 		
 		$back = self::wizard_h2('9');
 		$back .= '<div>';
-		$back .= sprintf('<form method="post" action="install_wizard.php">');
+		$back .= sprintf('<form method="post" action="install_wizard.php?step=9">');
 		$back .= '<div>Username:';
 		$back .= sprintf('<input type="text" name="username" value="" />');
 		$back .= '</div>';
@@ -614,10 +617,36 @@ final class GWF_Install
 		
 		$back = self::wizard_h2('10');
 		
+		if (false === GWF_File::removeDir(GWF_SMARTY_COMPILE_DIR, true, true))
+		{
+			$back .= self::wizard_error('err_clear_smarty');
+		}
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0'));
-		
+		$back .= self::wizard_btn('11');
 		return $back;
 	}
 
-
+	/**
+	 * Protect install folder.
+	 */
+	public static function wizard_11()
+	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
+		$back = self::wizard_h2('11');
+		
+		if (false === GWF_HTAccess::protect404(GWF_WWW_PATH.'install'))
+		{
+			return $back . GWF_HTML::err('ERR_WRITE_FILE', array('install/.htaccess'));
+		}
+		
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_11_0'));
+		
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('msg_all_done'));
+		
+		return $back;
+	}
 }

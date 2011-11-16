@@ -69,9 +69,32 @@ final class GWF_HTAccess
 	 */
 	public static function protect($dir)
 	{
+		$content = 'deny from all'.PHP_EOL;
+		return self::protectB($dir, $content);
+	}
+	
+	
+	/**
+	 * Deny access to a directory via .htaccess and a fake 404 response.
+	 * @param string $dir
+	 * @return true|false
+	 */
+	public static function protect404($dir)
+	{
+		$content = 'RewriteEngine On'.PHP_EOL.'RewriteRule .* /index.php?mo=GWF&me=Error&code=404'.PHP_EOL;
+		return self::protectB($dir, $content);
+	}
+	
+	/**
+	 * HTA Writer.
+	 * @param string $dir
+	 * @param string $content
+	 */
+	private static function protectB($dir, $content)
+	{
 		$dir = rtrim($dir, "\\/");
 		$path = $dir.'/.htaccess';
-
+		
 		if (!is_dir($dir))
 		{
 			GWF_Log::logCritical(sprintf('Supported arg is not a dir in %s.', __METHOD__));
@@ -83,8 +106,6 @@ final class GWF_HTAccess
 			GWF_Log::logCritical(sprintf('Cannot write to directory %s in %s.', $dir, __METHOD__));
 			return false;
 		}
-		
-		$content = 'deny from all'.PHP_EOL;
 		
 		if (false === file_put_contents($path, $content))
 		{

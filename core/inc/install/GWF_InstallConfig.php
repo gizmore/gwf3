@@ -508,9 +508,10 @@ final class GWF_InstallConfig
 	{
 		$t = "\t";
 		self::writeSectionHeader($fh, 'Website Down?');
+		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
+		fwrite($fh, "#define('GWF_WORKER_IP', '{$ip}');".PHP_EOL);
 		fwrite($fh, "#require_once 'temp_ban.php';".PHP_EOL);
 		fwrite($fh, "#require_once 'temp_down.php';".PHP_EOL);
-		fwrite($fh, "#define('GWF_WORKER_IP', '127.0.0.1');".PHP_EOL);
 	}
 	
 	private static function writeFooter($fh)

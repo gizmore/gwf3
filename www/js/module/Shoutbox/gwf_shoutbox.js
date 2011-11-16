@@ -29,7 +29,6 @@ function gwfShout()
 
 function gwfShoutTimer()
 {
-	
 }
 
 function gwfShoutRefresh()

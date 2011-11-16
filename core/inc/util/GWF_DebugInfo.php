@@ -3,8 +3,12 @@ class GWF_DebugInfo
 {
 	public static function getTimings($with_diskspace=true)
 	{
-		$db = gdo_db();
-		$t_sql = $db->getQueryTime();
+		$t_sql = $queries = 0;
+		if (false !== ($db = gdo_db()))
+		{
+			$t_sql = $db->getQueryTime();
+			$queries = $db->getQueryCount();
+		}
 		$t_total = microtime(true) - GWF_DEBUG_TIME_START;
 		$mem_total = memory_get_peak_usage(true);
 		$mem_user = memory_get_peak_usage(false);
@@ -17,7 +21,7 @@ class GWF_DebugInfo
 		}
 		
 		return array(
-			'queries' => $db->getQueryCount(),
+			'queries' => $queries,
 			't_sql' => $t_sql,
 			't_php' => $t_total - $t_sql,
 			't_total' => $t_total,

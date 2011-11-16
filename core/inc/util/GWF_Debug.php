@@ -104,6 +104,17 @@ final class GWF_Debug
 	}
 	
 	/**
+	 * Throw a custom error.
+	 * @param string $message
+	 * @param string $file
+	 * @param string $line
+	 */
+// 	public static function throwError($message, $file='unknown', $line='???')
+// 	{
+// 		self::error_handler(-1, $message, $file, $line, NULL);
+// 	}
+	
+	/**
 	 * Error handler creates some html backtrace and can die on _every_ warning etc.
 	 * @param int $errno
 	 * @param string $errstr
@@ -127,13 +138,14 @@ final class GWF_Debug
 		
 		switch($errno)
 		{
-			case 1: $errnostr = 'PHP Fatal Error'; break;
-			case 2:
-			case 8:
-			case E_USER_WARNING: $errnostr = 'PHP Warning'; break;
+			case -1: $errnostr = 'GWF Error'; break;
+			
+			case E_ERROR: $errnostr = 'PHP Fatal Error'; break;
+			case E_WARNING: case E_USER_WARNING: $errnostr = 'PHP Warning'; break;
+			case E_USER_NOTICE: case E_NOTICE: $errnostr = 'PHP Notice'; break;
 			case E_USER_ERROR: $errnostr = 'PHP Error'; break;
-			case E_USER_NOTICE: $errnostr = 'PHP Notice'; break;
-			case 2048: $errnostr = 'PHP No Timezone'; break;
+			case E_STRICT: $errnostr = 'PHP Strict Error'; break;
+			
 			default: $errnostr = 'PHP Unknown Error'; break;
 		}
 

@@ -6,10 +6,7 @@ final class GDO_DB_mysql_STRUCT
 		$db = gdo_db();
 		$col_def = self::getColumnDefines($tablename, $defines);
 		$query = "CREATE TABLE IF NOT EXISTS `$tablename` ($col_def) ENGINE=".GWF_DB_ENGINE;
-		if (false === ($db->queryWrite($query))) {
-			return false;
-		}
-		return true;
+		return $db->queryWrite($query);
 	}
 	
 	public static function createColumn($tablename, $columname, array $define)
@@ -37,7 +34,8 @@ final class GDO_DB_mysql_STRUCT
 		$back = array();
 		foreach ($defines as $c => $d)
 		{
-			if (false !== ($def = self::getColumnDefine($tablename, $c, $d))) {
+			if (false !== ($def = self::getColumnDefine($tablename, $c, $d)))
+			{
 				$back[] = $def;
 			}
 		}
@@ -47,22 +45,27 @@ final class GDO_DB_mysql_STRUCT
 		$have_auto = false;
 		foreach ($defines as $c => $d)
 		{
-			if ($d[0] & GDO::INDEX) {
-				$back[] = "INDEX(`$c`)";
+			if ($d[0] & GDO::INDEX)
+			{
+				$back[] = "INDEX(`{$c}`)";
 			}
-			elseif ($d[0] & GDO::PRIMARY_KEY) {
-				$pks[] = "`$c`";
+			elseif ($d[0] & GDO::PRIMARY_KEY)
+			{
+				$pks[] = "`{$c}`";
 			}
-			elseif ( ($d[0] & GDO::AUTO_INCREMENT) === GDO::AUTO_INCREMENT ) {
+			elseif ( ($d[0] & GDO::AUTO_INCREMENT) === GDO::AUTO_INCREMENT )
+			{
 				$have_auto = true;
-				$pks[] = "`$c`";
+				$pks[] = "`{$c}`";
 			}
 		}
 		
 		# PK
-		if ($have_auto && count($pks) !== 1) {
+		if ($have_auto && count($pks) !== 1)
+		{
 			die(sprintf(__FILE__.' : table `%s` has an auto_increment column but more primary keys!', $tablename));
 		}
+		
 		if (count($pks) > 0)
 		{
 			$back[] = 'PRIMARY KEY('.implode(',',$pks).')';
@@ -73,7 +76,8 @@ final class GDO_DB_mysql_STRUCT
 	
 	private static function getColumnDefine($tablename, $columname, array $define)
 	{
-		if (false === ($define = self::getColumnDefineB($tablename, $columname, $define))) {
+		if (false === ($define = self::getColumnDefineB($tablename, $columname, $define)))
+		{
 			return false;
 		}
 		return "`$columname` $define";

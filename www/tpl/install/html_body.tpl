@@ -19,6 +19,7 @@
 					<li id="step8"><a href="?step=8">{$il->lang('menu_8')}</a></li>
 					<li id="step9"><a href="?step=9">{$il->lang('menu_9')}</a></li>
 					<li id="step10"><a href="?step=10">{$il->lang('menu_10')}</a></li>
+					<li id="step11"><a href="?step=11">{$il->lang('menu_11')}</a></li>
 				</ol>
 			</div>
 		</div>

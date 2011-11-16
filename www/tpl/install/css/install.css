@@ -114,3 +114,32 @@ body {
 	padding-left: 24px;
 	font-weight: bold;
 }
+
+.tr0 {
+	background: #ddf;
+}
+
+.tr1 {
+	background: #eef;
+}
+
+.tr0:HOVER, .tr1:HOVER {
+	background: #fff;
+}
+
+pre {
+	padding: 20px 20px 20px 20px;
+}
+
+h2 {
+	padding-bottom: 20px;
+}
+
+p {
+	padding-bottom: 10px;
+}
+
+.gwfinstallbtn {
+	padding: 6px;
+	text-decoration: underline;
+}

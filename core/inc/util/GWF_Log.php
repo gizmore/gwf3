@@ -29,10 +29,10 @@ final class GWF_Log
 		self::$username = $username;
 		self::$log_requests = $log_requests;
 		self::$basedir = $basedir;
-		if ( ($log_requests) && (isset($_SERVER['REMOTE_ADDR'])) )
-		{
-			self::logRequest();
-		}
+// 		if ( ($log_requests) && (isset($_SERVER['REMOTE_ADDR'])) )
+// 		{
+// 			self::logRequest();
+// 		}
 	}
 	
 	###############

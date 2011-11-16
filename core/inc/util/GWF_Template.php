@@ -134,7 +134,6 @@ final class GWF_Template
 
 	public static function templatePath($path)
 	{
-//		var_dump('LOADING '.$path);
 		$smarty = self::getSmarty();
 		if($smarty->templateExists( $path1 = str_replace('%DESIGN%', self::getDesign(), $path) ))
 			return $path1;

@@ -15,7 +15,8 @@ $lang = array(
 	'err_no_mods_selected' => 'Please select some modules.',
 	'err_htaccess' => 'Could not write the root .htaccess file.',
 	'err_copy' => 'Cannot copy to file %s.',
-
+	'err_clear_smarty' => 'Could not clear smarty cache.',
+		
 	'msg_copy' => 'Succesfully made a copy of %s.',
 	'msg_copy_untouched' => 'Your copy of %s has not been touched.',
 	'msg_htaccess' => 'I have successfully written the root .htaccess file.',
@@ -25,7 +26,8 @@ $lang = array(
 	'md_wizard' => 'GWFv4 installation wizard. You should not see me ;)',
 
 	'foot_progress' => 'Install progress: %0.02f%%',
-	'license' => 'GWF3 is &copy; by gizmore. GWF3 is currently unlicensed. MIT compatible licensed is planned. GWF3 shall be free as in beer.',
+	'license' => 'GWF3 is &copy; by gizmore.<br/>GWF3 is currently unlicensed. MIT compatible licensed is planned.<br/>GWF3 shall be free as in beer.',
+	'pagegen' => 'Page generated in %.03fs.',
 
 	'menu_0' => 'Status',
 	'menu_1' => 'WriteConfig',
@@ -38,6 +40,7 @@ $lang = array(
 	'menu_8' => 'HTAccess',
 	'menu_9' => 'Admins',
 	'menu_10' => 'Cache',
+	'menu_11' => 'Protect',
 
 	'title_long' => 'Space &amp; Gizmore Website Framework',
 	'title_step' => 'Installation wizard - Step %d',
@@ -104,6 +107,11 @@ $lang = array(
 	'step_9' => 'Create admin account(s)',
 
 	'step_10' => 'Clear Caches',
-	'step_10_0' => 'Install has been finished.<br/>All caches have been cleared.<br/>You can login now.',
+	'step_10_0' => 'Install has been finished.<br/>All caches have been cleared.<br/>You can login now or enhance the protection of your install folder.',
+		
+	'step_11' => 'Protect the install folder',
+	'step_11_0' => 'Your install folder should now be protected by throwing 404 errors.',
+	
+	'msg_all_done' => 'Congratulations, your installation is complete!<br/>Thank you for choosing GWF3<br/>We hope you will enjoy it.<br/><br/>gizmore and spaceone',
 );
 ?>

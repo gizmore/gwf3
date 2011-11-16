@@ -74,14 +74,16 @@ function install_all_modules($dropTables=false)
 function install_modules(array $modules, $dropTables=false)
 {
 	$back = '';
+	
 	$modules = GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
+	
 	foreach ($modules as $module)
 	{
 		$back .= sprintf('Installing %s...<br/>', $module->getName());
 		$back .= GWF_ModuleLoader::installModule($module, $dropTables);
 		$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore
 	}
-	$back .= GWF_ModuleLoader::installHTAccess($modules);
+	
 	return $back;
 }
 
@@ -382,13 +384,26 @@ function installCopyExampleFile($path, &$output)
 			return false;
 		}
 		
+		# Load skeleton.
 		$example = $path.'.example.php';
-		if (false === copy($example, $copied))
+		if (false === ($content = file_get_contents($example)))
 		{
-			$output .= GWF_Install::wizard_error('err_copy', array($example));
+			$output .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($example));
 			return false;
 		}
+
+		# Replace GWF path.
+		$replace = array(
+			'%%GWFPATH%%' => GWF_DETECT_PATH,
+		);
+		$content = str_replace(array_keys($replace), array_values($replace), $content);
 		
+		# Write custom file.
+		if (false === file_put_contents($copied, $content))
+		{
+			$output .= GWF_HTML::err('ERR_WRITE_FILE', array($copied));
+			return false;
+		}
 		if (false === chmod($copied, GWF_CHMOD))
 		{
 			$output .= GWF_Install::wizard_error('err_copy', array($example));

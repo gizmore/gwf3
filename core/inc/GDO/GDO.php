@@ -29,16 +29,24 @@ function gdo_db_instance($host, $user, $pass, $database, $type='mysql', $charset
 	$classname = 'GDO_DB_'.$type;
 	require_once GWF_CORE_PATH.'inc/GDO/db/GDO_Database.php';
 	require_once GWF_CORE_PATH.'inc/GDO/db/'.$classname.'.php';
+	
 	$db = new $classname();
-	if (false === $db->connect($host, $user, $pass, $database, $charset)) {
+	
+	if (false === $db->connect($host, $user, $pass, $database, $charset))
+	{
 		return false;
 	}
-	if (false === $db->useDatabase($database)) {
+	
+	if (false === $db->useDatabase($database))
+	{
 		return false;
 	}
-	if (false === $db->setCharset($charset))  {
+	
+	if (false === $db->setCharset($charset))
+	{
 		return false;
 	}
+	
 	return $db;
 }
 

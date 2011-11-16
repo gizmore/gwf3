@@ -28,6 +28,6 @@ final class GDO_DB_postgres extends GDO_Database
 	public function createColumn($tablename, $columnname, array $define) {}
 	public function renameTable($old_tablename, $new_tablename) {}
 	public function changeColumn($tablename, $old_columnname, $new_columnname, array $define) {}
-	public function lock($string) { return true; }
+	public function lock($string, $timeout=30) { return true; }
 }
 ?>

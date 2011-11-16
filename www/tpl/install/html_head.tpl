@@ -10,6 +10,6 @@
 		li#step{$step} {ldelim}background-color: #0000ff!important;{rdelim}
 	--></style>
 
-	{$js}
+{*	{$js}	*}
 	{$css}
 </head>

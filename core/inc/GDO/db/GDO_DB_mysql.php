@@ -1,38 +1,35 @@
 <?php
+/**
+ * GDO MySQL connector. 
+ * @author gizmore
+ * @version 3.00
+ * @see GDO_DB_mysql_STRUCT
+ */
 final class GDO_DB_mysql extends GDO_Database
 {
 	private $link;
 	
 	public function connect($host, $user, $pass)
 	{
-		if (false === ($this->link = mysql_connect($host, $user, $pass))) {
-			return false;
-		}
-		return true;
+		return (false !== ($this->link = mysql_connect($host, $user, $pass)));
 	}
 	
 	public function useDatabase($db)
 	{
-		if (false === mysql_select_db($db, $this->link)) {
-			return false;
-		}
-		return true;
+		return mysql_select_db($db, $this->link);
 	}
 	
 	public function setCharset($charset)
 	{
-		if (false === $this->queryWrite("SET NAMES '$charset'")) {
-			return false;
-		}
-		return true;
-		
+		return $this->queryWrite("SET NAMES '{$charset}'");
 	}
 	
 	public function queryRead($query)
 	{
 		$t = microtime(true);
 		
-		if (false === ($result = mysql_query($query, $this->link))) {
+		if (false === ($result = mysql_query($query, $this->link)))
+		{
 			$this->error($query, mysql_errno($this->link), mysql_error($this->link));
 			return false;
 		}
@@ -42,7 +39,8 @@ final class GDO_DB_mysql extends GDO_Database
 		$this->query_count++;
 		$this->queries_opened++;
 
-		if (GDO_Database::DEBUG) {
+		if (GDO_Database::DEBUG)
+		{
 			GWF_Log::log(self::DEBUG_PATH, sprintf('Q#%03d(%.03fs): %s', $this->query_count, $time, $query), true);
 		}
 		
@@ -51,7 +49,8 @@ final class GDO_DB_mysql extends GDO_Database
 	
 	public function queryWrite($query)
 	{
-		if (true === $this->queryRead($query)) {
+		if (true === $this->queryRead($query))
+		{
 			$this->queries_closed++;
 			return true;
 		}
@@ -106,23 +105,23 @@ final class GDO_DB_mysql extends GDO_Database
 
 	public function truncateTable($tablename)
 	{
-		return $this->queryWrite("TRUNCATE TABLE `$tablename`");
+		return $this->queryWrite("TRUNCATE TABLE `{$tablename}`");
 	}
 	
 	public function tableExists($tablename)
 	{
 		$tablename = $this->escape($tablename);
-		return $this->queryFirst("SHOW TABLES LIKE '$tablename'") !== false;
+		return $this->queryFirst("SHOW TABLES LIKE '{$tablename}'") !== false;
 	}
 	
 	public function dropTable($tablename)
 	{
-		return $this->queryWrite("DROP TABLE IF EXISTS `$tablename`");
+		return $this->queryWrite("DROP TABLE IF EXISTS `{$tablename}`");
 	}
 
 	public function dropColumn($tablename, $columnname)
 	{
-		return $this->queryWrite("ALTER TABLE `$tablename` DROP COLUMN `$columnname`");
+		return $this->queryWrite("ALTER TABLE `{$tablename}` DROP COLUMN `{$columnname}`");
 	}
 	
 	public function createTable($tablename, array $defines)
@@ -150,14 +149,16 @@ final class GDO_DB_mysql extends GDO_Database
 	}
 	
 	/**
-	 * Try to get a lock.
-	 * @return boolean true or false
-	 * */
-	public function lock($string)
+	 * Try to get a database lock.
+	 * (non-PHPdoc)
+	 * @param $string Lock name
+	 * @see GDO_Database::lock()
+	 * @return true|false
+	 */
+	public function lock($string, $timeout=30)
 	{
 		$string = self::escape($string);
-		$timeout = 30;
-		$query = "SELECT GET_LOCK('$string', $timeout) as L";
+		$query = "SELECT GET_LOCK('{$string}', {$timeout}) as L";
 		if (false === ($result = $this->queryFirst($query)))
 		{
 			return false;
