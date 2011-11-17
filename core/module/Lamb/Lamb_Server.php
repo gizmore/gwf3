@@ -607,10 +607,29 @@ final class Lamb_Server extends GDO
 		$users = $channel->getUsers();
 		
 		$username = strtolower($username);
-		
+
+		# Full name first
 		foreach ($users as $uname => $data)
 		{
-			if (strpos($uname, $username) !== false)
+			if (!strcasecmp($uname, $username))
+			{
+				return $data[0];
+			}
+		}
+		
+		# Beginning next
+		foreach ($users as $uname => $data)
+		{
+			if (stripos($uname, $username) === 0)
+			{
+				return $data[0];
+			}
+		}
+			
+		# Inside last
+		foreach ($users as $uname => $data)
+		{
+			if (stripos($uname, $username) !== false)
 			{
 				return $data[0];
 			}

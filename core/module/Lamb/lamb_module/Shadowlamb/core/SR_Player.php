@@ -1516,7 +1516,20 @@ class SR_Player extends GDO
 	public function getItemByShortNameB($itemname, array $items)
 	{
 		$itemname = strtolower($itemname);
-		foreach (array_reverse($items) as $item)
+		
+		$items = array_reverse($items);
+		
+		# Beginning is better than in the middle
+		foreach ($items as $item)
+		{
+			if (strpos(strtolower($item->getItemName()), $itemname) === 0)
+			{
+				return $item;
+			}
+		}
+		
+		# In the middle still works.
+		foreach ($items as $item)
 		{
 			if (strpos(strtolower($item->getItemName()), $itemname) !== false)
 			{
