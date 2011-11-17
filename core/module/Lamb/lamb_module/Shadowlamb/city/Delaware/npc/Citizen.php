@@ -129,7 +129,7 @@ final class Delaware_Citizen extends SR_HireNPC
 			return $this->reply('A job in the SecondHand? No thanks.');
 		}
 		
-		if ( ($race !== 'troll') || ($race !== 'halftroll') )
+		if ( ($race !== 'troll') && ($race !== 'halftroll') )
 		{
 			return $this->reply('A job in the SecondHand? .. as troll ... ok wtf? Oo');
 		}
