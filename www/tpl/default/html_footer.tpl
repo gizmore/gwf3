@@ -9,6 +9,7 @@
 	<div>&copy;2009-2012 gizmore</div>
 </div>
 
+{assign var="timings" value=GWF_DebugInfo::getTimings()}
 <div class="fl">
 	<div>SQL: {$timings['t_sql']|string_format:"%.03f"}s ({$timings['queries']} Queries)</div>
 	<div>PHP: {$timings['t_php']|string_format:"%.03f"}s</div>

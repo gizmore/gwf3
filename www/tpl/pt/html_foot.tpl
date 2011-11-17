@@ -9,6 +9,7 @@
 		<div id="gwf_footer_box">
 			<div>{$gwf->Copyright()->display()}</div>
 			<div>{$gwf->Copyright()->displayGWF()}</div>
+			{assign var="timings" value=GWF_DebugInfo::getTimings()}
 			<div>{{$timings['queries']}} queries in {$timings['t_sql']|string_format:"%.03f"} - PHP: {$timings['t_php']|string_format:"%.04f"}s - Total Time: {$timings['t_total']|string_format:"%.04f"}s - Memory: {$timings['mem_total']|filesize:"2":"1024"} - {$gwf->Module()->getModulesLoaded()} Modules Loaded</div>
 		</div>
 	</div>

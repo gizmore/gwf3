@@ -1,3 +1,4 @@
+{assign var="timings" value=GWF_DebugInfo::getTimings()}
 SQL: {$timings['t_sql']|string_format:"%.03f"}s ({$timings['queries']} Queries);
 PHP: {$timings['t_php']|string_format:"%.03f"}s;
 TOTAL: {$timings['t_total']|string_format:"%.03f"}s;<br/>

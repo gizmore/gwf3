@@ -22,6 +22,7 @@
 						alt="CSS3 ist valide!">
 				</a>
 				<span>
+					{assign var="timings" value=GWF_DebugInfo::getTimings()}
 					- PHP-Time: {$timings['t_total']|string_format:"%.03f"}s
 				</span>
 			</p>
