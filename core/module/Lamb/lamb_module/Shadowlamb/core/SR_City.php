@@ -231,7 +231,7 @@ abstract class SR_City
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $cityname, 0);
 		}
 		elseif (false === ($l = Shadowfunc::randomData($possible, $total, 500))) {
-			$party->notice(sprintf('You explored %s again, but can not find anything new.', $cityname));
+			$party->notice(sprintf('You explored %s again, but could not find anything new.', $cityname));
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $cityname, 0);
 		}
 		else {

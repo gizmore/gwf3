@@ -62,7 +62,7 @@ final class Delaware_Citizen extends SR_HireNPC
 				}
 				elseif ( ($this->hasTemp($key))  || (rand(0, 32)>($ch+$re)) )
 				{
-					$this->reply('You look not very skilled. I better follow my own way.');
+					$this->reply('You don\'t look very skilled. I better follow my own way.');
 					$this->setTemp($key, 1);
 				}
 				else

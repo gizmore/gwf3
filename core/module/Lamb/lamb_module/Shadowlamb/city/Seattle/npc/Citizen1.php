@@ -54,7 +54,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 				}
 				elseif ( ($this->hasTemp($key))  || (rand(0, 32)>($ch+$re)) )
 				{
-					$this->reply('You look not very skilled. I better follow my own way.');
+					$this->reply('You don\'t look very skilled. I better follow my own way.');
 					$this->setTemp($key, 1);
 				}
 				else

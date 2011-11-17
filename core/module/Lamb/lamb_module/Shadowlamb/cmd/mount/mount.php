@@ -65,7 +65,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			$weight = ', '.$weight;
 		}
-		$message = sprintf('Your %s(LOCK %s%s): ', $mount->getName(), $mount->getMountLockLevelB(), $weight);
+		$message = sprintf('Mount: %s(LOCK %s%s): ', $mount->getName(), $mount->getMountLockLevelB(), $weight);
 		return self::reply($player, $message.Shadowfunc::getMountInv($player).'.');
 	}
 

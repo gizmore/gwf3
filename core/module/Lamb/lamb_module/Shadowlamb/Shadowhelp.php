@@ -53,6 +53,8 @@ final class Shadowhelp
 		
 		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %s bad_karma.', $player->getBase('bad_karma'));
 		
+		$hjbk = SR_Mount::HIJACK_BAD_KARMA;
+		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
 			'root' => "Check out these topics",
