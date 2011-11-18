@@ -2,7 +2,6 @@
 ########################
 ### Not vuln install ###
 ########################
-
 /**
  * Get the database object.
  * @return GDO_Database
@@ -12,14 +11,14 @@ function blightDB()
 	static $db;
 	if (!isset($db))
 	{
-		if (false === ($db = gdo_db_instance('localhost', BLIGHT_USER, BLIGHT_PASS, BLIGHT_DB)))
+		if (false === ($db = gdo_db_instance('localhost', BLIGHT2_USER, BLIGHT2_PASS, BLIGHT2_DB)))
 		{
 			die('Cannot connect to db!');
 		}
 		$db->setVerbose(true);
 		$db->setLogging(false);
-		$db->setDieOnError(false);
 		$db->setEMailOnError(false);
+		$db->setDieOnError(false);
 	}
 	return $db;
 }
@@ -51,14 +50,14 @@ function blightInstall()
  */
 function blightVuln($password)
 {
-	# Do not mess with attemp counter or sessid!
-	if ( (strpos($password, '/*') !== false) || (stripos($password, 'attemp') !== false) || (stripos($password, 'sessid') !== false) )
+	# Do not mess with attemp counter!
+	if ( (strpos($password, '/*') !== false) || (stripos($password, 'attemp') !== false) )
 	{
 		return false;
 	}
-	
+		
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
+	$sessid = GWF_Session::getSessSID();
 	$query = "SELECT 1 FROM blight WHERE sessid=$sessid AND (password='$password')";
 	return $db->queryFirst($query) !== false;
 }
@@ -68,27 +67,26 @@ function blightVuln($password)
 ### Not vuln util ###
 #####################
 /**
- * Increase the attemp counter.
+ * Increase the attempt counter.
  * @return true|false
  */
 function blightCountUp()
 {
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
+	$sessid = GWF_Session::getSessSID();
 	$query = "UPDATE blight SET attemp=attemp+1 WHERE sessid=$sessid";
 	return $db->queryWrite($query);
 }
 
 /**
- * Set the attempt counter for a session.
- * @param int $attempt
+ * Set the attempt counter.
  * @return true|false
  */
 function blightSetAttempt($attempt)
 {
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
 	$attempt = (int)$attempt;
+	$sessid = GWF_Session::getSessSID();
 	$query = "UPDATE blight SET attemp=$attempt WHERE sessid=$sessid";
 	return $db->queryWrite($query);
 }
@@ -97,10 +95,20 @@ function blightSetAttempt($attempt)
  * Reset counter and password.
  * @return true|false
  */
-function blightReset()
+function blightReset($consec=true)
 {
+	if ($consec)
+	{
+		# Reset consecutive success counter.
+		blightFailed();
+	}
+	
+	# Take a timestamp.
+	GWF_Session::set('BLIGHT2_TIME_START', time());
+	
+	# Generate a new hash.
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
+	$sessid = GWF_Session::getSessSID();
 	$hash = Common::randomKey(32, 'ABCDEF0123456789');
 	$query = "REPLACE INTO blight VALUES($sessid, '$hash', 0)";
 	return $db->queryWrite($query);
@@ -113,9 +121,10 @@ function blightReset()
 function blightAttemp()
 {
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
+	$sessid = GWF_Session::getSessSID();
 	$query = "SELECT attemp FROM blight WHERE sessid=$sessid";
-	if (false === ($result = $db->queryFirst($query))) {
+	if (false === ($result = $db->queryFirst($query)))
+	{
 		return -1;
 	}
 	return (int)$result['attemp'];
@@ -131,9 +140,10 @@ function blightGetHash()
 	blightCountUp(); # 1 attemp
 	
 	$db = blightDB();
-	$sessid = GWF_Session::getSession()->getID();
+	$sessid = GWF_Session::getSessSID();
 	$query = "SELECT password FROM blight WHERE sessid=$sessid";
-	if (false === ($result = $db->queryFirst($query))) {
+	if (false === ($result = $db->queryFirst($query)))
+	{
 		return false;
 	}
 	return $result['password'];
@@ -148,8 +158,57 @@ function blightInit()
 	$attemp = blightAttemp();
 	if ($attemp < 0)
 	{
-		blightReset();
+		blightReset(false);
 	}
 }
 
+###########
+### NEW ###
+###########
+/**
+ * You successfully hacked it one time.
+ * But return false if you need a few more consecutive hacks to solve the chall.
+ * @return true|false
+ */
+function blightSolved()
+{
+	$solvecount = GWF_Session::getOrDefault('BLIGHT2_CONSECUTIVE', 0);
+	$solvecount++;
+	
+	blightReset(false);
+	
+	if ($solvecount >= BLIGHT2_CONSEC)
+	{
+		GWF_Session::remove('BLIGHT2_CONSECUTIVE');
+		return true;
+	}
+	
+	GWF_Session::set('BLIGHT2_CONSECUTIVE', $solvecount);
+	return false;
+}
+
+/**
+ * Reset consecutive success counter.
+ * @return void
+ */
+function blightFailed()
+{
+	GWF_Session::set('BLIGHT2_CONSECUTIVE', 0);
+}
+
+/**
+ * Check if you were too slow.
+ * @return true|false
+ */
+function blightTimeout()
+{
+	if (false === ($start = GWF_Session::getOrDefault('BLIGHT2_TIME_START', false)))
+	{
+		return true;
+	}
+	else
+	{
+		return (time() - $start) > BLIGHT2_TIME;
+	}
+}
 ?>

@@ -7,17 +7,21 @@ if (isset($_GET['show']))
 	die(file_get_contents('vuln.php'));
 }
 chdir('../../');
-define('GWF_PAGE_TITLE', 'Blinded by the light');
+define('GWF_PAGE_TITLE', 'Blinded by the lighter');
 require_once('html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 4, 'challenge/blind_light/index.php', false);
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 6, 'challenge/blind_lighter/index.php', false);
 }
 $chall->showHeader();
 
 if (Common::getGetString('reset') === 'me')
 {
-	blightReset();
+	if (false !== ($solution = blightGetHash()))
+	{
+		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('msg_old_pass', array($solution)));
+	}
+	blightReset(true);
 	echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('msg_reset'));
 }
 elseif (isset($_POST['mybutton']))
@@ -29,15 +33,28 @@ elseif (isset($_POST['mybutton']))
 	
 	if (!strcasecmp($answer, $solution))
 	{
-		if ($attemp > (BLIGHT_ATTEMPS+1) )
+		if ($attemp > (BLIGHT2_ATTEMPS+1) )
 		{
-			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attempt', array($attemp, (BLIGHT_ATTEMPS+1))));
+			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attemps', array($attemp, (BLIGHT2_ATTEMPS+1))));
+		}
+		elseif (blightTimeout())
+		{
+			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_too_slow'));
 		}
 		else
 		{
-			$chall->onChallengeSolved(GWF_Session::getUserID());
+			if (blightSolved())
+			{
+				$chall->onChallengeSolved(GWF_Session::getUserID());
+			}
+			else
+			{
+				$have = GWF_Session::getOrDefault('BLIGHT2_CONSECUTIVE', '1');
+				$need = BLIGHT2_CONSEC - $have;
+				echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('msg_consec_success', array($need)));
+			}
+			blightReset(false);
 		}
-		blightReset();
 	}
 	else
 	{
@@ -67,12 +84,22 @@ elseif (isset($_POST['inject']))
 $url1 = 'index.php?show=source';
 $url2 = 'index.php?highlight=christmas';
 $url3 = 'index.php?reset=me';
-$egg = '4970342d42344c5657636c3d763f68637461772f6d6f632e65627574756f792e7777772f2f3a70747468';
+$egg = 'On the run to the great gig.';
 $egg = '<span style="color: #eee;">'.$egg.'</span>';
-htmlTitleBox($chall->lang('title'), $chall->lang('info', array(BLIGHT_ATTEMPS, $url1, $url2, $url3, $egg)));
+if (false !== ($dloser = GWF_User::getByName('dloser')))
+{
+	$dloser = $dloser->displayProfileLink();
+}
+else
+{
+	$dloser = 'dloser';
+}
+
+$text = $chall->lang('info', array(BLIGHT2_ATTEMPS, BLIGHT2_CONSEC, $url1, $url2, $url3, $egg, $dloser));
+htmlTitleBox($chall->lang('title'), $text);
 if (Common::getGetString('highlight') === 'christmas')
 {
-	echo GWF_Message::display('[php title=vuln.php]'.file_get_contents('challenge/blind_light/vuln.php').'[/php]');
+	echo GWF_Message::display('[php title=vuln.php]'.file_get_contents('challenge/blind_lighter/vuln.php').'[/php]');
 }
 ?>
 <div class="box box_c">
