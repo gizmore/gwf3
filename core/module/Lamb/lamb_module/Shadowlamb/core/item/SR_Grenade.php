@@ -47,8 +47,8 @@ abstract class SR_Grenade extends SR_Usable
 		foreach ($members as $m)
 		{
 			$m instanceof SR_Player;
-			$y = $m->getDistance();
-			$x = SR_Party::X_COORD_INC * $m->getEnum();
+			$y = $m->getY();
+			$x = $m->getX();
 			$coords[$m->getID()] = array($x, $y);
 		}
 		

@@ -1020,10 +1020,10 @@ final class Shadowfunc
 	
 	public static function calcDistance(SR_Player $player, SR_Player $target)
 	{
-		$x1 = $player->getEnum() * SR_Party::X_COORD_INC;
-		$y1 = $player->getDistance();
-		$x2 = $target->getEnum() * SR_Party::X_COORD_INC;
-		$y2 = $target->getDistance();
+		$x1 = $player->getX();
+		$y1 = $player->getY();
+		$x2 = $target->getX(); 
+		$y2 = $target->getY();
 		return self::calcDistanceB($x1, $y1, $x2, $y2);
 	}
 

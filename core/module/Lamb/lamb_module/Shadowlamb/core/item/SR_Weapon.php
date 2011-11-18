@@ -21,7 +21,7 @@ abstract class SR_Weapon extends SR_Equipment
 		
 //		$player->combatPush("attack ".$target->getName());
 		
-		$d = abs($player->getDistance()-$target->getDistance());
+		$d = abs($player->getY()-$target->getY());
 		$d2 = Common::clamp($d-2, 0);
 		
 		if ($d > $this->getItemRange())

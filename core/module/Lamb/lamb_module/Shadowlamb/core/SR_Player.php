@@ -1,7 +1,7 @@
 <?php
 class SR_Player extends GDO
 {
-	const MAX_RANGE = 12.0;
+	const MAX_RANGE = 32.0;
 	const MAX_WEIGHT_MALUS = 0.25; # 25%
 		
 	const BASE_HP = 4;
@@ -240,6 +240,8 @@ class SR_Player extends GDO
 	public function needsEther() { return ($this->getMP() / $this->getMaxMP()) <= SR_NPC::NEED_ETHER_MULTI; }
 	public function canHack() { return ( ($this->getBase('computers') >= 0) && ($this->hasCyberdeck()) && ($this->hasHeadcomputer()) );}
 	public function isLocked() { return $this->isOptionEnabled(self::LOCKED); }
+	public function getX() { return $this->getEnum() * SR_Party::X_COORD_INC + SR_Party::X_COORD_INI;}
+	public function getY() { return $this->getDistance(); }
 	
 	############
 	### Enum ###

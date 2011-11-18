@@ -3,7 +3,8 @@ final class SR_Party extends GDO
 {
 	const MAX_MEMBERS = 7;
 	const XP_PER_LEVEL = 50;
-	const X_COORD_INC = 4; # increment x coord per member like 1, 2, 3
+	const X_COORD_INI = 2;
+	const X_COORD_INC = 4; # increment X coord per member enum, like X = 2, 6, 10, 14, and so on.
 	
 	const NPC_PARTY = 0x01;
 	const BAN_ALL = 0x02;
@@ -829,8 +830,8 @@ final class SR_Party extends GDO
 	public function moveTowards(SR_Player $player, SR_Player $target)
 	{
 		$move = $player->getMovePerSecond();
-		$d1 = $player->getDistance();
-		$d2 = $target->getDistance();
+		$d1 = $player->getY();
+		$d2 = $target->getY();
 		$dt = $d1 - $d2;
 		if ($dt < 0) {
 			$dt = -$dt;
@@ -843,9 +844,10 @@ final class SR_Party extends GDO
 				$move = $dt;
 			}
 		}
-		$this->distance[$player->getID()] -= $move;
-		$new_d = $this->distance[$player->getID()];
-		$this->updateMembers();
+		$pid = $player->getID();
+		$move = -$move;
+		$new_d = 0;
+		$this->movePlayerB($pid, $move, $new_d);
 		$busy = $player->busy(25);
 		$name = $player->getName();
 		$tn = $target->getName();
@@ -861,13 +863,12 @@ final class SR_Party extends GDO
 	public function backward(SR_Player $player, $busy=-1) { return $this->forwardB($player, -$this->direction, 'backwards', $busy); }
 	private function forwardB(SR_Player $player, $dir, $fwbw, $busy=-1)
 	{
-		$move = $dir * $player->getMovePerSecond();
-		$d = $this->distance[$player->getID()] + $move;
-		$this->distance[$player->getID()] = $d;
-		$this->updateMembers();
-		
-		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '';
-		$message = sprintf(' moves %sm %s and is now on position %.02fm%s.', $move, $fwbw, $d, $busy);
+		$by = $dir * $player->getMovePerSecond();
+		$pid = $player->getID();
+		$new_d = 0;
+		$this->movePlayerB($pid, $by, $new_d);
+		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '.';
+		$message = sprintf(' moves %.01fm %s and is now on position %.01fm%s', $by, $fwbw, $new_d, $busy);
 		$this->message($player, $message);
 		$this->getEnemyParty()->message($player, $message);
 		return true;
@@ -875,16 +876,20 @@ final class SR_Party extends GDO
 	
 	public function movePlayer(SR_Player $player, $forward=true, $metres=0)
 	{
-		if ( ($metres <= 0) )
-		{
-			return false;
-		} 
-		
 		$dir = $forward ? 1 : -1;
-		$move = $dir * $metres;
-		$d = $this->distance[$player->getID()] + $move;
-		$this->distance[$player->getID()] = $d;
-		$this->updateMembers();
+		$by = $dir * $metres;
+		$new_d = 0;
+		return $this->movePlayerB($player->getID(), $by, $new_d);
+	}
+	
+	private function movePlayerB($pid, &$by, &$new_d)
+	{
+		$max = SR_Player::MAX_RANGE;
+		$old = $this->distance[$pid];
+		$new_d = round(Common::clamp($old+$by, -$max, $max), 1);
+		$by = $new_d - $old;
+		$this->distance[$pid] = $new_d;
+		return $this->updateMembers();
 	}
 	
 	

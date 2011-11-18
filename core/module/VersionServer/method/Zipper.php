@@ -8,7 +8,7 @@ final class VersionServer_Zipper extends GWF_Method
 			'RewriteRule ^zipper/?$ index.php?mo=VersionServer&me=Zipper'.PHP_EOL;
 	}
 	
-	private $style = array('default');
+	private $style = array('');
 	private $num_files = 0;
 	
 	private $has_error = true;
@@ -120,7 +120,14 @@ final class VersionServer_Zipper extends GWF_Method
 //		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
 		# Post Vars
-		$this->style = explode(',', Common::getPost('style', 'default'));
+		if ('' === ($styles = Common::getPostString('style', '')))
+		{
+			return $module->error('err_no_design');
+		}
+		
+		$this->style = explode(',', $styles);
+		$this->style[] = 'default';
+		$this->style[] = 'install';
 		unset($_POST['style']);
 		unset($_POST['zipper']);
 		$back = $this->onZipC($module);
