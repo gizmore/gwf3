@@ -28,6 +28,7 @@ final class Shadowrap
 
 	/**
 	  * Reply to the current origin and user, display as a table
+	  * @todo Write a class that can display ascii art tables and stuff.
 	  * @author digitalseraphim
 	  * @since Shadowlamb 3.1
 	  * @param array $table where each entry is 'row label' => array(values)

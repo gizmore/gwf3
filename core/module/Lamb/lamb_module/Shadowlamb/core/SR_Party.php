@@ -674,14 +674,19 @@ final class SR_Party extends GDO
 	
 	public function initMembers()
 	{
-		foreach (explode(',',$this->getVar('sr4pa_members')) as $playerid)
+		$dist = explode(',', $this->getVar('sr4pa_distance'));
+		
+		foreach (explode(',', $this->getVar('sr4pa_members')) as $i => $playerid)
 		{
 			if (false !== ($player = Shadowrun4::getPlayerByPID($playerid)))
 			{
 				$this->addUser($player, false);
-			} 
+			}
+			$this->distance[$player->getID()] = $dist[$i];
 		}
-		if (false === $this->updateMembers()) {
+		
+		if (false === $this->updateMembers())
+		{
 			return false;
 		}
 		

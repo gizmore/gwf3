@@ -2,7 +2,7 @@
 /**
  * Often used stuff.
  * @author gizmore
- * @version 3.01
+ * @version 3.02
  * @since 1.0
  */
 final class Common
@@ -38,18 +38,15 @@ final class Common
 	## CONSTANTS ##
 	###############
 	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
-	public static function defineConst($var, $val) {
-		if (!defined($var)) {
-			define($var, $val);
-		}
-		return constant($var);
-	}
+	public static function defineConst($var, $val) { if (!defined($var)) define($var, $val); return constant($var); }
+	
 	/**
 	 * Return true if a constant is true.
+	 * @deprecated
 	 * @param $var constant
 	 * @return boolean
 	 */
-	public static function getConstBool($var) { return defined($var) && true === constant($var); }
+	public static function getConstBool($var) { return self::getConst($var) === true; }
 	
 	###########
 	### URL ###
@@ -71,11 +68,12 @@ final class Common
 	}
 	
 	/**
-	 * Get the domain.tld part of an url. (Not only TLD)
+	 * Get the 2nd level domain.tld part of an url.
+	 * @todo Move to a different file.
 	 * @param string $url
 	 * @return string|false
 	 */
-	public static function getTLD($url)
+	public static function getDomain($url)
 	{
 		return preg_match('/([^\\.]+\\.[a-z]{2,3})([\\/:].*|$)/D', $url, $matches) ? $matches[1] : false;
 	}
@@ -113,6 +111,7 @@ final class Common
 	##################
 	/**
 	 * Recursive implode. Code taken from php.net. Original code by: kromped@yahoo.com
+	 * @todo Move to other file.
 	 * @param string $glue
 	 * @param array $pieces
 	 * @return string
@@ -134,6 +133,7 @@ final class Common
 	/**
 	 * Implode an array like humans would do:
 	 * Example: 1, 2, 3 and last
+	 * @todo Move to other file. Make it recursive?
 	 * @param array $array
 	 * @return string
 	 */
@@ -152,6 +152,9 @@ final class Common
 		return implode(', ', $array)." $and $last";
 	}
 	
+	/**
+	 * @deprecated
+	 */
 	public static function get(array $array, $key, $default)
 	{
 		return isset($array[$key]) ? $array[$key] : $default;
@@ -215,6 +218,7 @@ final class Common
 	###################
 	/**
 	 * UTF8 strlen.
+	 * @deprecated
 	 * @param string $str
 	 * @return int
 	 */
@@ -222,6 +226,7 @@ final class Common
 	{
 		return mb_strlen($str, 'utf8');
 	}
+	
 	/**
 	 * Return true if a string ends with another string.
 	 * @param $str the string to test.
@@ -283,6 +288,7 @@ final class Common
 	/**
 	 * Cut a message by length.
 	 * Cut only at spaces, append a string as cutting replacement.
+	 * @todo Move to GWF_String
 	 * @param string $msg
 	 * @param int $limit
 	 * @param string $append
@@ -299,6 +305,8 @@ final class Common
 	
 	/**
 	 * Return the first match of capturing regex. Not safe. Do not use it!
+	 * @todo Move to another file?
+	 * @deprecated
 	 * @param string $pattern
 	 * @param string $s
 	 * @return string|false

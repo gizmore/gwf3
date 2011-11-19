@@ -15,7 +15,7 @@ if ($message === '')
 		$throttle = $s[2] == 0 ? '' : "({$b}T{$s[2]}{$b})";
 		$b = $bot->getServer($s[0]) === false ? '' : chr(2);
 		$b2 = $s[2] == 0 ? chr(2) : '';
-		$out .= sprintf(", {$b}%s{$b}-{$b2}%s{$b2}%s", $s[0], Common::getTLD($s[1]), $throttle);
+		$out .= sprintf(", {$b}%s{$b}-{$b2}%s{$b2}%s", $s[0], Common::getDomain($s[1]), $throttle);
 	}
 	$server->free($result);
 	

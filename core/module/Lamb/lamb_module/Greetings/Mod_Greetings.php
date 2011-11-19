@@ -219,7 +219,7 @@ final class LambModule_Greetings extends Lamb_Module
 		if (false === ($record = Lamb_QuitJoinChannel::getChannelRecord($channel))) {
 			return 'I do not have any quitjoin records for the '.$channel->getName().' channel yet.';
 		} else {
-			return sprintf('The shortest join ever on %s in %s was from %s: %.02fs.', $server->getTLD(), $channel->getName(), $record->displayUser(), $record->displayTime());
+			return sprintf('The shortest join ever on %s in %s was from %s: %.02fs.', $server->getDomain(), $channel->getName(), $record->displayUser(), $record->displayTime());
 		}
 	}
 	

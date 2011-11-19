@@ -161,7 +161,21 @@ final class Register_Form extends GWF_Method
 	
 	public function validate_password(Module_Register $module, $arg)
 	{
-		return GWF_Validator::isValidPassword($arg) ? false : $module->lang('err_pass_weak');
+		if ( ($this->isBadPassword($module, $arg)) || (!GWF_Validator::isValidPassword($arg)) )
+		{
+			return $module->lang('err_pass_weak');
+		}
+		return false;
+	}
+	
+	private function isBadPassword(Module_Register $module, $arg)
+	{
+		# Password contains username is bad!
+		if (stripos($pass, Common::getPostString('username')) !== false)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	public function validate_email(Module_Register $module, $arg)

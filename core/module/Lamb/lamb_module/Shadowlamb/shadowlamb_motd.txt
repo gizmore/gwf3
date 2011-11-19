@@ -1,1 +1,1 @@
-New: Blacksmith upgrade is much better now!
+New: SLEXI Game client. An own IRC client with UI for the game.

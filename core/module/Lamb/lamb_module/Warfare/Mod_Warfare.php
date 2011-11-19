@@ -144,7 +144,7 @@ final class LambModule_Warfare extends Lamb_Module
 			return "Cannot resolve hostname $message.";
 		}
 		$this->addIP($server, $ip);
-		return "Added $host / $ip  to the scanning queue (on IRC ".$server->getTLD().").";
+		return "Added $host / $ip  to the scanning queue (on IRC ".$server->getDomain().").";
 	}
 	
 	private function addIP(Lamb_Server $server, $ip, $host='localhost', $user='localhost')

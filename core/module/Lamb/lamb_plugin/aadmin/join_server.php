@@ -30,7 +30,7 @@ else
 {
 	$args = explode(' ', $message);
 	$hostname = $args[0];
-	$out .= ('Trying to connect to server '.Common::getTLD($hostname).'...');
+	$out .= ('Trying to connect to server '.Common::getDomain($hostname).'...');
 	$nickname = isset($args[1]) ? $args[1] : 'Lamb2';
 	$password = isset($args[2]) ? $args[2] : '';
 	$channels = isset($args[3]) ? $args[3] : '';

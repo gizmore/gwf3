@@ -71,7 +71,7 @@ final class Lamb_Server extends GDO
 	public function getUsers() { return $this->users; }
 	public function getChannels() { return $this->channels; }
 	public function getChannelcount() { return count($this->channels); }
-	public function getTLD() { return Common::getTLD($this->getHfull_hostname); }
+	public function getDomain() { return Common::getDomain($this->getHfull_hostname); }
 	public function getMaxUsers() { return $this->getVar('serv_maxusers'); }
 	public function getMaxChannels() { return $this->getVar('serv_maxchannels'); }
 	public function getFrom() { return $this->lm_from; }
@@ -123,7 +123,7 @@ final class Lamb_Server extends GDO
 	
 	public static function factory($host, $nicknames, $password, $channels, $admins)
 	{
-		if (false !== ($server = self::getByHost(Common::getTLD($host))))
+		if (false !== ($server = self::getByHost(Common::getDomain($host))))
 		{
 			return $server;
 		}
