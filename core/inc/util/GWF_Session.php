@@ -98,12 +98,11 @@ final class GWF_Session extends GDO
 			}
 		}
 		
-		# Lock if logged in and blocking is enabled.
-		if ( ($user->getID() > 0) && ($blocking) && (false === ($session->lock('GWF_SESS_'.$user->getID()))) )
+		# Lock the session if blocking.
+		if ( ($blocking) && (!$session->lock('GWF_SESS_'.$session->getVar('sess_id'))) )
 		{
-			die('The server is currently very busy. (or your cookie is broken)');
+			die('Your session is still executing another page. You may delete your cookie to create a new session.');
 		}
-		
 		
 		$session->setVar('sess_time', time()-1);
 		
