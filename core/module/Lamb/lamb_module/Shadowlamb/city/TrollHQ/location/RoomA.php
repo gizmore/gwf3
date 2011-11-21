@@ -5,6 +5,7 @@ final class TrollHQ_RoomA extends SR_SearchRoom
 	public function getFoundText(SR_Player $player) { return "You found another room. You hear noise from the inside, but it seems locked."; }
 	public function getLockLevel() { return 1.5; }
 	public function getSearchLevel() { return 9; }
+	public function getFoundPercentage() { return 50.00; }
 	
 	public function onEnter(SR_Player $player)
 	{

@@ -3,6 +3,7 @@ final class TrollHQ_Kitchen extends SR_SearchRoom
 {
 	public function getSearchLevel() { return 5; }
 	public function getSearchMaxAttemps() { return 2; }
+	public function getFoundPercentage() { return 50.00; }
 	
 	public function getSearchLoot(SR_Player $player)
 	{
