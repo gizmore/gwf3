@@ -13,7 +13,7 @@ final class Quest_Delaware_Seraphim2 extends SR_Quest
 		if (isset($data['WORKER']))
 		{
 			$name = $data['WORKER'];
-			$npc->reply(sprintf('Thank you so very very much. %s is doing a good job :)'));
+			$npc->reply(sprintf('Thank you so very very much. %s is doing a good job :)', $name));
 			$npc->reply(sprintf('He found a used Scanner_v4 too. I guess you can have it!'));
 			$this->onSolve($player);
 		}
