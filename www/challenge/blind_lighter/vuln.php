@@ -15,7 +15,7 @@ function blightDB()
 		{
 			die('Cannot connect to db!');
 		}
-		$db->setVerbose(true);
+// 		$db->setVerbose(false);
 		$db->setLogging(false);
 		$db->setEMailOnError(false);
 		$db->setDieOnError(false);
@@ -50,15 +50,15 @@ function blightInstall()
  */
 function blightVuln($password)
 {
-	# Do not mess with attemp counter!
-	if ( (strpos($password, '/*') !== false) || (stripos($password, 'attemp') !== false) )
+	# Do not mess with other sessions!
+	if ( (strpos($password, '/*') !== false) || (stripos($password, 'blight') !== false) )
 	{
 		return false;
 	}
 		
 	$db = blightDB();
 	$sessid = GWF_Session::getSessSID();
-	$query = "SELECT 1 FROM blight WHERE sessid=$sessid AND (password='$password')";
+	$query = "SELECT 1 FROM (SELECT password FROM blight WHERE sessid=$sessid) b WHERE password='$password'";
 	return $db->queryFirst($query) !== false;
 }
 

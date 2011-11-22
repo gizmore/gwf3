@@ -51,15 +51,15 @@ function blightInstall()
  */
 function blightVuln($password)
 {
-	# Do not mess with attemp counter or sessid!
-	if ( (strpos($password, '/*') !== false) || (stripos($password, 'attemp') !== false) || (stripos($password, 'sessid') !== false) )
+	# Do not mess with other sessions!
+	if ( (strpos($password, '/*') !== false) || (stripos($password, 'blight') !== false) )
 	{
 		return false;
 	}
 	
 	$db = blightDB();
 	$sessid = GWF_Session::getSession()->getID();
-	$query = "SELECT 1 FROM blight WHERE sessid=$sessid AND (password='$password')";
+	$query = "SELECT 1 FROM (SELECT password FROM blight WHERE sessid=$sessid) b WHERE password='$password'";
 	return $db->queryFirst($query) !== false;
 }
 
