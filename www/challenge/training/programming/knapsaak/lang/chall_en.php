@@ -18,26 +18,26 @@ $lang = array(
 		'<br/>'.
 		'An accepted answer would be: 2Chips3Eggs<br/>'.
 		'<br/>'.
-		'Visit <a href="%1%">%1%</a> to request a new problem.<br/>'.
-		'Send your answers to <a href="%2%">%2%?answer=[answer]</a> with the format NItemnameNItemname.<br/>'.
-		'You need to solve %3% problems and your timelimit for each problem is %4% seconds.<br/>'.
+		'Visit <a href="%1$s">%1$s</a> to request a new problem.<br/>'.
+		'Send your answers to <a href="%2$s">%2$s?answer=[answer]</a> with the format NItemnameNItemname.<br/>'.
+		'You need to solve %3$s problems and your timelimit for each problem is %4$s seconds.<br/>'.
 		'<br/>'.
 		'Good Luck!',
 
-	'err_item' => 'Unknown Item: %1%',
-	'err_price' => 'Your total price is %1% but you need %2%.',
-	'err_item_count' => 'Your response uses %1% known items but you need %2%.',
+	'err_item' => 'Unknown Item: %1$s',
+	'err_price' => 'Your total price is %1$s but you need %2$s.',
+	'err_item_count' => 'Your response uses %1$s known items but you need %2$s.',
 	'err_reset' => 'You restart at level 1.',
-	'err_timout' => 'You needed %1% seconds but you only have %2%.',
-	'err_item_num' => 'Your submitted amount for item %1% is invalid. It has to be >= 1.',
-	'err_item_stock' => 'You want to purchase %1% %2%`s, but there are only %3% %2%`s available.',
+	'err_timout' => 'You needed %1$s seconds but you only have %2$s.',
+	'err_item_num' => 'Your submitted amount for item %1$s is invalid. It has to be >= 1.',
+	'err_item_stock' => 'You want to purchase %1$s %2$s`s, but there are only %3$s %2$s`s available.',
 	'err_no_prob' => 'You did not request a problem. It might be that you did not send your cookie correctly.',
 	'err_format' => 'Your input format is invalid. Try ?answer=3Chicken4Coke.',
-	'err_timeout' => 'Your timelimit for one problem is %2% seconds, but you needed %1% seconds.',
-	'msg_next_level' => 'Correct. You are now on level %1%.',
+	'err_timeout' => 'Your timelimit for one problem is %2$s seconds, but you needed %1$s seconds.',
+	'msg_next_level' => 'Correct. You are now on level %1$s.',
 	'msg_solved' => 'Correct. You have solved the challenge.',
 
 	'credits_title' => 'Credits',
-	'credits_body' => 'Thanks go out to XKCD, the author of %1%.<br/>The comics there are a great inspiration.',
+	'credits_body' => 'Thanks go out to XKCD, the author of %1$s.<br/>The comics there are a great inspiration.',
 );
 ?>
