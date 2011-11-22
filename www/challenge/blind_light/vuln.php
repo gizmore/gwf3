@@ -16,7 +16,7 @@ function blightDB()
 		{
 			die('Cannot connect to db!');
 		}
-		$db->setVerbose(true);
+		$db->setVerbose(false);
 		$db->setLogging(false);
 		$db->setDieOnError(false);
 		$db->setEMailOnError(false);

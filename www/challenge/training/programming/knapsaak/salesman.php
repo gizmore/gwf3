@@ -75,11 +75,13 @@ function salesman_check_answer(WC_Challenge $chall, $answer)
 
 function salesman_check_answer_B(WC_Challenge $chall, $answer)
 {
-	if ($answer === 'cheat') {
-		return true;
-	}
+// 	if ($answer === 'cheat')
+// 	{
+// 		return true;
+// 	}
 	
-	if (0 === preg_match_all('/((\\d+)([A-Z]+))/i', $answer, $matches)) {
+	if (0 === preg_match_all('/((\\d+)([A-Z]+))/i', $answer, $matches))
+	{
 		echo $chall->lang('err_format').PHP_EOL;
 		return false;
 	}
