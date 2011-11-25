@@ -1,4 +1,94 @@
 ------------------------------------------------------------------------
+r955 | Gizmore | 2011-11-25 16:01:21 +0100 (Fr, 25. Nov 2011) | 1 Zeile
+
+Shadowlamb: When a new player does #start, the location arrival event is sent correctly.
+------------------------------------------------------------------------
+r954 | Gizmore | 2011-11-25 07:39:54 +0100 (Fr, 25. Nov 2011) | 1 Zeile
+
+Sync + TinyBugs. Also there was a wrong text in a shadowlamb quest. (thx Exidous)
+------------------------------------------------------------------------
+r953 | Gizmore | 2011-11-22 22:26:13 +0100 (Di, 22. Nov 2011) | 1 Zeile
+
+WC5: Tiny fixes for a few challenges. (thx kwisatz)
+------------------------------------------------------------------------
+r952 | Gizmore | 2011-11-22 20:05:14 +0100 (Di, 22. Nov 2011) | 1 Zeile
+
+WC5: Added the knapsaak challenge completely to the SVN.
+------------------------------------------------------------------------
+r951 | Gizmore | 2011-11-22 19:12:05 +0100 (Di, 22. Nov 2011) | 1 Zeile
+
+WC5: The "Blinded by the light" challenges should now be immune to cheating attempts by using two sessions. (thx dloser)
+------------------------------------------------------------------------
+r950 | jjk | 2011-11-21 19:21:44 +0100 (Mo, 21. Nov 2011) | 1 Zeile
+
+ShadowLamb: added getFoundPercentage() to TrollHQ locations so they can be found now
+------------------------------------------------------------------------
+r949 | jjk | 2011-11-21 17:33:35 +0100 (Mo, 21. Nov 2011) | 1 Zeile
+
+ShadowLamb: added missing name in FirstEmployee quest
+------------------------------------------------------------------------
+r948 | Gizmore | 2011-11-20 04:16:58 +0100 (So, 20. Nov 2011) | 1 Zeile
+
+GWF3: Guest sessions are now locking/blocking concurrent requests too. (thx noother)
+------------------------------------------------------------------------
+r947 | Gizmore | 2011-11-20 00:15:28 +0100 (So, 20. Nov 2011) | 1 Zeile
+
+GWF3: Having your username beeing part of your password is denied. Also synced with localhost. (thx kwisatz)
+------------------------------------------------------------------------
+r946 | Gizmore | 2011-11-18 19:56:54 +0100 (Fr, 18. Nov 2011) | 1 Zeile
+
+WC5: New great sequel challenge "Blinded by the lighter". Installers are now available for both challs as well. (thx kwisatz) (thx dloser)
+------------------------------------------------------------------------
+r945 | Gizmore | 2011-11-18 06:14:58 +0100 (Fr, 18. Nov 2011) | 1 Zeile
+
+Shadowlamb: The movement now has a clamped distance of 32.0m. Added a new command, #ehlo to retrieve some variables for the exi client. (thx Exidous)
+------------------------------------------------------------------------
+r944 | jjk | 2011-11-17 23:56:22 +0100 (Do, 17. Nov 2011) | 1 Zeile
+
+ShadowLamb: fixed FirstEmployee quest
+------------------------------------------------------------------------
+r943 | Gizmore | 2011-11-17 23:32:20 +0100 (Do, 17. Nov 2011) | 1 Zeile
+
+Shadowlamb: Fixed a bug in getItemByShortName, by having the shortcuts prefer the beginning of a match / strpos === 0. This got also fixed in Slapwarz. (thx Exidous)
+------------------------------------------------------------------------
+r942 | spaceone | 2011-11-17 23:08:58 +0100 (Do, 17. Nov 2011) | 2 Zeilen
+
+GWF3: Removed GWF_DebugInfo::getTimings() from GWF_Website and added it in each template because it needs Database connection (thx gizmore)
+
+------------------------------------------------------------------------
+r941 | Gizmore | 2011-11-17 22:14:10 +0100 (Do, 17. Nov 2011) | 1 Zeile
+
+Shadowlamb: Tiny english fixes and tiny change in mount output. (thx zid)
+------------------------------------------------------------------------
+r940 | Gizmore | 2011-11-16 19:22:54 +0100 (Mi, 16. Nov 2011) | 1 Zeile
+
+GWF3: The install wizard is much better again.
+------------------------------------------------------------------------
+r939 | Gizmore | 2011-11-16 08:46:38 +0100 (Mi, 16. Nov 2011) | 1 Zeile
+
+Shadowlamb: Reworked #hijack again. You now get 0.07 bad karma per hijack attempt. To hijack an Aygo1000 you should have at least +5 distributed evenly on lockpicking, thief and electronics. If you have really bad luck, you might encounter Polizia but that won't give additional bad karma. (thx somerandomnick)
+------------------------------------------------------------------------
+r938 | Gizmore | 2011-11-16 07:14:36 +0100 (Mi, 16. Nov 2011) | 1 Zeile
+
+Shadowlamb: There is now an event sent when a party enters or leaves a location.
+------------------------------------------------------------------------
+r937 | Gizmore | 2011-11-16 06:12:17 +0100 (Mi, 16. Nov 2011) | 1 Zeile
+
+Shadowlamb: You cannot use your mount inside dungeons anymore. If you are inside a dungeon, your mount can be hijacked.
+------------------------------------------------------------------------
+r936 | Gizmore | 2011-11-16 02:46:29 +0100 (Mi, 16. Nov 2011) | 1 Zeile
+
+GWF3: Added a new public TODO item.
+------------------------------------------------------------------------
+r935 | Gizmore | 2011-11-15 23:46:47 +0100 (Di, 15. Nov 2011) | 1 Zeile
+
+GWF3: Monster commit. PHP6 compatible. Removed the insecure_php_upload check. Added some readme files to /install.
+------------------------------------------------------------------------
+r934 | spaceone | 2011-11-15 22:28:12 +0100 (Di, 15. Nov 2011) | 2 Zeilen
+
+GWF3: delete some old files and changelog update
+
+------------------------------------------------------------------------
 r933 | Gizmore | 2011-11-15 22:11:26 +0100 (Di, 15. Nov 2011) | 1 Zeile
 
 GWF3: Core changes. Tiny smarty error. Improved error handling for CLI/Cronjob.
