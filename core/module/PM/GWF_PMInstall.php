@@ -6,7 +6,7 @@ final class GWF_PMInstall
 	{
 		return GWF_ModuleLoader::installVars($module, array(
 			'pm_re' => array('RE: ', 'text', '1', '64'),
-			'pm_limit' => array('6', 'int', '0', '100'),
+			'pm_limit' => array('6', 'int', '-1', '100'),
 			'pm_limit_timeout' => array('18 hours', 'time', '0', GWF_Time::ONE_WEEK),
 			'pm_maxfolders' => array('50', 'int', '0', '256'),
 			'pm_for_guests' => array('YES', 'bool'),

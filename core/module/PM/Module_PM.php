@@ -30,7 +30,7 @@ final class Module_PM extends GWF_Module
 	### Config ###
 	##############
 	public function cfgRE() { return $this->getModuleVar('pm_re', 'RE: '); }
-	public function cfgIsPMLimited() { return $this->cfgPMLimit() > 0; }
+	public function cfgIsPMLimited() { return $this->cfgPMLimit() >= 0; }
 	public function cfgPMLimit() { return (int) $this->getModuleVar('pm_limit', 6); }
 	public function cfgLimitTimeout() { return (int) $this->getModuleVar('pm_limit_timeout', 18*GWF_Time::ONE_HOUR); }
 	public function cfgMaxFolders() { return (int) $this->getModuleVar('pm_maxfolders', 50); }
