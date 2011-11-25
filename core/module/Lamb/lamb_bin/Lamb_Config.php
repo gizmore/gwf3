@@ -22,7 +22,7 @@ $LAMB_CFG = array
 	'logging' => true, # Default flag for logging.
 	'trigger' => '.',
 	'event_plugins' => false,
-	'sleep_millis' => 50,
+	'sleep_millis' => 60,
 	'ping_timeout' => 300,
 	'connect_timeout' => 4,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
@@ -146,14 +146,14 @@ $LAMB_CFG = array
 //			'admins' => '/sI2/gizmore',
 //		),
 		
-// 		array(
-// 			'host' => 'irc://irc.a2.ano:6667',
-// 			'nickname' => 'Lamb3',
-// 			'password' => 'lamblamb',
-// 			'channels' => '#shadowlamb',
-// //			'admins' => '/NNN/gizmore',
-// 			'admins' => '/A2/gizmore',
-// 		),
+		array(
+			'host' => 'irc://irc.a2.ano:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+//			'admins' => '/NNN/gizmore',
+			'admins' => '/A2/gizmore',
+		),
 		
 //		array(
 //			'host' => 'irc://irc.muffinnet.ano:6667',

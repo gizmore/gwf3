@@ -45,6 +45,9 @@ final class Shadowcmd_start extends Shadowcmd
 		$player->healHP(10000);
 		$player->healMP(10000);
 		
+		$p = $player->getParty();
+		$p->pushAction('inside', 'Redmond_Hotel');
+		
 		$player->message('You wake up in a bright room... it seems like it is past noon...looks like you are in a hotel room.');
 		$player->message('What happened... you can`t remember anything.... Gosh, you even forgot your name.');
 		$player->message("You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.");

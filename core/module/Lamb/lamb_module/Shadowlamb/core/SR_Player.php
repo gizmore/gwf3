@@ -412,6 +412,7 @@ class SR_Player extends GDO
 	{
 		if ($player === false)
 		{
+			Lamb_Log::logDebug('WARNING: Player is false!');
 			return false;
 		}
 		$player instanceof SR_Player;
@@ -546,25 +547,20 @@ class SR_Player extends GDO
 	
 	public static function createHuman(Lamb_User $user)
 	{
-		$human = self::createHumanB($user->getID(), $user->getName());
-		$human->setVar('sr4pl_uid', $user);
-		return $human;
-	}
-	public static function createHumanB($userid, $username)
-	{
-		$data = self::applyStartData(self::getPlayerData($userid));
-		$data['sr4pl_name'] = $username;
+		$data = self::applyStartData(self::getPlayerData($user->getID()));
+		$data['sr4pl_name'] = $user->getName();
 		$human = new self($data);
-		if (false === ($human->insert())) {
+		if (false === ($human->insert()))
+		{
 			return false;
 		}
-		$party = SR_Party::createParty();
-		$party->pushAction('inside', 'Redmond_Hotel', 0);
-		$party->addUser($human);
-		$human->saveVar('sr4pl_partyid', $party->getID());
 		$human = self::reloadPlayer($human);
+		$human->setVar('sr4pl_uid', $user);
 		$human->healHP(10000);
 		$human->healMP(10000);
+		$party = SR_Party::createParty();
+		$party->addUser($human);
+		$party->pushAction('outside', 'Redmond');
 		return $human;
 	}
 	
