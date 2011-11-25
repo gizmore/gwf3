@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.Nov.14');
+define('GWF_CORE_VERSION', '3.02-2011.Nov.25');
 
 /**
  * Welcome to GWF3
@@ -110,7 +110,7 @@ class GWF3
 	
 	public function __destruct() 
 	{
-		if(!(self::$CONFIG['no_session']))
+		if(!self::$CONFIG['no_session'])
 		{
 			$this->onSessionCommit(self::$CONFIG['store_last_url']);
 		}
@@ -246,15 +246,12 @@ class GWF3
 
 	public function onSessionCommit($store_last_url=true) 
 	{
-		if (!self::$CONFIG['no_session'])
+		# Commit the session
+		if (false !== ($user = GWF_Session::getUser()))
 		{
-			# Commit the session
-			if (false !== ($user = GWF_Session::getUser()))
-			{
-				$user->saveVar('user_lastactivity', time());
-			}
-			GWF_Session::commit($store_last_url);
+			$user->saveVar('user_lastactivity', time());
 		}
+		GWF_Session::commit($store_last_url);
 		return $this;
 	}
 	

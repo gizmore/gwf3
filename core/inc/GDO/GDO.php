@@ -134,7 +134,7 @@ abstract class GDO
 	protected $auto_col;
 	protected $primary_keys;
 	
-	public function __construct($data=false) { $this->gdo_data = $data; }
+	public function __construct($data=NULL) { $this->gdo_data = $data; }
 	public function getGDOData() { return $this->gdo_data; }
 	public function setGDOData($data) { $this->gdo_data = $data; }
 	public function hasVar($var) { return isset($this->gdo_data[$var]); }
@@ -192,6 +192,7 @@ abstract class GDO
 	### Table Cache ###
 	###################
 	private static $GDO_TABLES = array();
+	
 	/**
 	 * @param string $classname
 	 * @return GDO
@@ -255,10 +256,9 @@ abstract class GDO
 	{
 		$db = gdo_db();
 		$tablename = $this->getTableName();
-		if ($drop) {
-			if (false === $db->dropTable($tablename)) {
-				return false;
-			}
+		if ( ($drop) && (false === $db->dropTable($tablename)) )
+		{
+			return false;
 		}
 		return $db->createTable($tablename, $this->getColumnDefcache());
 	}
@@ -280,19 +280,24 @@ abstract class GDO
 	{
 		$limit = (int)$limit;
 		$from = (int)$from;
-		
-		if ($from === -1) {
-			if ($limit === -1) {
+		if ($from === -1)
+		{
+			if ($limit === -1)
+			{
 				return '';
-			} else {
-				return " LIMIT $limit";
+			}
+			else
+			{
+				return " LIMIT {$limit}";
 			}
 		}
-		else if ($limit === -1) {
-			return " LIMIT $from,";
+		else if ($limit === -1)
+		{
+			return " LIMIT {$from},";
 		}
-		else {
-			return " LIMIT $from,$limit";
+		else
+		{
+			return " LIMIT {$from},{$limit}";
 		}
 	}
 	
@@ -340,7 +345,8 @@ abstract class GDO
 					return $by;
 				}
 			}
-			elseif ($c === $byp) {
+			elseif ($c === $byp)
+			{
 				return $by;
 			}
 		}
@@ -354,7 +360,8 @@ abstract class GDO
 			return $by;
 		}
 		$cd = $this->getColumnDefcache();
-		if (isset($cd[$pre])) {
+		if (isset($cd[$pre]))
+		{
 			return Common::substrFrom($by, '.');
 		}
 		return $by;
@@ -406,7 +413,8 @@ abstract class GDO
 	 */
 	public function selectAll($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $r_type=self::ARRAY_A, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby)))
+		{
 			return false;
 		}
 		$back = array();
@@ -420,7 +428,8 @@ abstract class GDO
 	
 	public function selectFirst($columns='*', $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $from=-1, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, '1', $from, $groupby))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, '1', $from, $groupby)))
+		{
 			return false;
 		}
 		$row = $this->fetch($result, $r_type);
@@ -549,10 +558,8 @@ abstract class GDO
 	
 	private function getJoin($c, $valid, $type='LEFT JOIN')
 	{
-//		var_dump($c,$valid);
 		if (is_array($valid))
 		{
-//			var_dump('ADDJOIN!');
 			$class = self::table(array_shift($valid));
 			$tablename = $class->getTableName();
 			$cond = '';
@@ -599,8 +606,9 @@ abstract class GDO
 	
 	private function getWhereFromArray(array $a)
 	{
-		if (count($a) === 0) {
-			return'';
+		if (count($a) === 0)
+		{
+			return '';
 		}
 		$back = '';
 		$len = count($a);
@@ -613,17 +621,17 @@ abstract class GDO
 	
 	private function getWhere($where)
 	{
-		return $where === '' ? '' : " WHERE {$where}";
+		return $where === '' ? '' : ' WHERE '.$where;
 	}
 	
 	private function getOrderBy($orderby)
 	{
-		return $orderby === '' ? '' : " ORDER BY {$orderby}";
+		return $orderby === '' ? '' : ' ORDER BY '.$orderby;
 	}
 	
-	private function getGroupBy($groupby='')
+	private function getGroupBy($groupby)
 	{
-		return $groupby === '' ? '' : " GROUP BY {$groupby}";
+		return $groupby === '' ? '' : ' GROUP BY '.$groupby;
 	}
 	
 	/**
@@ -667,7 +675,7 @@ abstract class GDO
 		}
 		if (false !== ($col = $this->getAutoColName()))
 		{
-			$this->setVar($col, gdo_db()->insertID());
+			$this->setVar($col, (string)gdo_db()->insertID());
 		}
 		return true;
 	}
@@ -686,15 +694,10 @@ abstract class GDO
 		foreach ($data as $k => $v)
 		{
 			$keys .= ',`'.$k.'`';
-			
-			if ($v === NULL) {
-				$vals .= ',NULL';
-			} else {
-				$vals .= ',\''.$db->escape($v).'\'';
-			}
+			$vals .= $v === NULL ? ',NULL' : ',\''.$db->escape($v).'\'';
 		}
 		$type = $replace ? 'REPLACE' : 'INSERT';
-		$query = sprintf("%s INTO `$tablename` (%s) VALUES (%s)", $type, substr($keys,1), substr($vals,1));
+		$query = sprintf("%s INTO `{$tablename}` (%s) VALUES (%s)", $type, substr($keys,1), substr($vals,1));
 //		echo $query."<br/>\n";
 		return $db->queryWrite($query);
 	}
@@ -747,7 +750,7 @@ abstract class GDO
 		$db = gdo_db();
 		$table = $this->getTableName();
 		$where = $this->getPKWhere();
-		$query = "UPDATE `$table` SET {$set} WHERE {$where} LIMIT 1";
+		$query = "UPDATE `{$table}` SET {$set} WHERE {$where} LIMIT 1";
 		return $db->queryWrite($query);
 	}
 	
@@ -777,18 +780,10 @@ abstract class GDO
 			if ($this->gdo_data[$k] !== $v)
 			{
 				$this->gdo_data[$k] = $v;
-				if ($v !== NULL)
-				{
-					$v = '\''.$this->escape($v).'\'';
-				}
-				else
-				{
-					$v = 'NULL';
-				}
+				$v = $v === NULL ? 'NULL' : '\''.$this->escape($v).'\'';
 				$set .= sprintf(",`%s`=%s", $k, $v);
 			}
 		}
-		
 		return $set === '' ? true : $this->update(substr($set, 1), $this->getPKWhere(), NULL, 1);
 	}
 
@@ -833,7 +828,8 @@ abstract class GDO
 	 */
 	public function countRows($where='', $joins=NULL, $groupby='')
 	{
-		if (false === ($result = $this->selectFirst('COUNT(*)', $where, '', $joins, self::ARRAY_N, -1, $groupby))) {
+		if (false === ($result = $this->selectFirst('COUNT(*)', $where, '', $joins, self::ARRAY_N, -1, $groupby)))
+		{
 			return false;
 		}
 		return (int)$result[0];
@@ -861,7 +857,7 @@ abstract class GDO
 	{
 		$values = func_get_args();
 		$keys = $this->getPrimaryKeys();
-		if (count($keys) !== count($values) || count($keys) < 1)
+		if ( (count($keys) !== count($values)) || (count($keys) < 1) )
 		{
 			return false;
 		}
@@ -896,7 +892,8 @@ abstract class GDO
 		$joins = array();
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
-			if ( ($d[0]&self::OBJECT) === self::OBJECT ) {
+			if ( ($d[0]&self::OBJECT) === self::OBJECT )
+			{
 				$joins[] = $c;
 			}
 		}
@@ -908,8 +905,9 @@ abstract class GDO
 	################
 	public function increase($var, $inc=1)
 	{
-		$o = $inc >= '0' ? '+' : '';
-		if (false === $this->update("`$var`=`$var`$o$inc", $this->getPKWhere(), NULL)) {
+		$o = $inc >= 0 ? '+' : '';
+		if (false === $this->update("`{$var}`=`{$var}`{$o}{$inc}", $this->getPKWhere(), NULL))
+		{
 			return false;
 		}
 		$this->setVar($var, $this->getVar($var)+$inc);
@@ -932,27 +930,19 @@ abstract class GDO
 	 */
 	public function selectArrayMap($columns, $where='', $orderby='', $joins=NULL, $r_type=self::ARRAY_A, $limit=-1, $from=-1, $keyname=NULL, $groupby='')
 	{
-		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby))) {
+		if (false === ($result = $this->select($columns, $where, $orderby, $joins, $limit, $from, $groupby)))
+		{
 			return false;
 		}
+		
 		$back = array();
 		
 		$r_type2 = $r_type === self::ARRAY_N ? self::ARRAY_N : self::ARRAY_A;
 		
 		while (false !== ($row = $this->fetch($result, $r_type2)))
 		{
-			if ($keyname === NULL) {
-				$key = $row[key($row)];
-			} else {
-				$key = $row[$keyname];
-			}
-			
-			if ($r_type === self::ARRAY_O) {
-				$back[$key] = $this->createObject($row);
-			}
-			else {
-				$back[$key] = $row;
-			}
+			$key = $keyname === NULL ? $row[key($row)] : $row[$keyname];
+			$back[$key] = $r_type === self::ARRAY_O ? $this->createObject($row) : $row;
 		}
 		
 		$this->free($result);
@@ -974,7 +964,8 @@ abstract class GDO
 	 */
 	public function selectMatrix2D($col1, $col2, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		if (false === ($result = $this->select("{$col1}, {$col1}", $where, $orderby, $joins, $limit, $from, $groupby))) {
+		if (false === ($result = $this->select("{$col1}, {$col1}", $where, $orderby, $joins, $limit, $from, $groupby)))
+		{
 			return false;
 		}
 		$back = array();
@@ -1006,7 +997,8 @@ abstract class GDO
 		foreach ($cd as $c => $d)
 		{
 			$flags = (int)$d[0];
-//			if (($flags & self::PRIMARY_KEY) === self::PRIMARY_KEY) {
+//			if (($flags & self::PRIMARY_KEY) === self::PRIMARY_KEY)
+// 			{
 //				continue;
 //			}
 			if (($flags & self::OBJECT) === self::OBJECT)

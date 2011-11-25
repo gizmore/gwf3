@@ -359,10 +359,11 @@ final class Module_WeChall extends GWF_Module
 		$monday = $dates[0];
 		$sunday = $dates[6];
 		
-		
+
+		$deleted = GWF_User::DELETED;
 		$showbd = GWF_User::SHOW_BIRTHDAY;
 		$users = GWF_TABLE_PREFIX.'user';
-		$query = "SELECT user_name, user_birthdate, SUBSTR(user_birthdate, 5) AS bd FROM $users WHERE user_options&$showbd AND SUBSTR(user_birthdate, 5) BETWEEN $monday AND $sunday";
+		$query = "SELECT user_name, user_birthdate, SUBSTR(user_birthdate, 5) AS bd FROM $users WHERE user_options&$deleted=0 AND user_options&$showbd AND SUBSTR(user_birthdate, 5) BETWEEN $monday AND $sunday";
 		$db = gdo_db();
 		if (false === ($result = $db->queryRead($query))) {
 			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
