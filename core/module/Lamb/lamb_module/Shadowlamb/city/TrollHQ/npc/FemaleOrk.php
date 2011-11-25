@@ -36,8 +36,10 @@ final class TrollHQ_FemaleOrk extends SR_TalkingNPC
 	{
 		$player->message('The orks grunt.');
 		$this->reply("What the ...");
-		$ep = $player->getParty();
-		return $ep->fight($ep, true);
+		$p = $player->getParty();
+		$p->popAction(false);
+		$ep = $this->getParty();
+		return $ep->fight($p, true);
 	}
 }
 ?>

@@ -15,8 +15,9 @@ final class VersionServer_Zipper extends GWF_Method
 	public function hasError() { return $this->has_error; }
 	
 	public static $rootfiles = array(
-		'www/gwf_cronjob.example.php',
 		'gwf3.class.php',
+		'GWF3.php',
+		'www/gwf_cronjob.example.php',
 		'www/index.example.php',
 		'www/robots.txt',
 	);

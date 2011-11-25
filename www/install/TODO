@@ -31,3 +31,8 @@ Keep in mind that getGetString returns empty string by default, compared to fals
 Own chat is broken (remove?)
 
 --------------------------------------------------------------------------------
+
+Make the session handler optional.
+Introduce a new session handler GWF_Session.php.php
+Rename GWF_Session.php to GWF_Session.db.php
+Copy the desired version during install_wizard

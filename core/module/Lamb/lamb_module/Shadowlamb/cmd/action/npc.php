@@ -2,7 +2,7 @@
 require_once 'core/module/Lamb/lamb_module/Shadowlamb/cmd/gm/gmd.php';
 final class Shadowcmd_npc extends Shadowcmd_gmd
 {
-	public static $WHITELIST = array('u','ca','le','sell','buy','view','drop','eq','uq','x','fw','bw','#','i','q','ks');
+	public static $WHITELIST = array('u','ca','le','sell','buy','view','drop','eq','uq','x','fw','bw','#','i','q','ks','a','s','l');
 	
 	public static function execute(SR_Player $player, array $args)
 	{
@@ -11,7 +11,7 @@ final class Shadowcmd_npc extends Shadowcmd_gmd
 			$player->message(Shadowhelp::getHelp($player, 'npc'));
 			return false;
 		}
-		
+
 		$party = $player->getParty();
 		if (false === ($remote = $party->getMemberByArg(array_shift($args))))
 		{

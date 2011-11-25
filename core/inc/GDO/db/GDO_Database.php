@@ -112,12 +112,12 @@ abstract class GDO_Database
 		elseif ($this->verbose)
 		{
 			$message = isset($_GET['ajax']) ? $message_ajax : $message_html;
-			$message = GWF_Debug::backtrace($message, isset($_GET['ajax']));
+			$message = GWF_Debug::backtrace($message, !isset($_GET['ajax']));
 			echo GWF_HTML::error('GDO', $message, false);
 		}
 		else
 		{
-			echo GWF_HTML::error('GDO', $message, false);
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
 		# Send mail

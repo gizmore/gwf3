@@ -217,7 +217,7 @@ final class GWF_Session extends GDO
 	}
 	
 	
-	public static function setCookies($id, $uid, $sessid)
+	private static function setCookies($id, $uid, $sessid)
 	{
 		if (isset($_SERVER['REMOTE_ADDR']))
 		{

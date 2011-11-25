@@ -387,7 +387,7 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
-		$dice = $friendly ? 12 : 7;
+		$dice = $friendly ? 18 : 7;
 		if (rand(1, $dice) !== 1)
 		{
 			return false;

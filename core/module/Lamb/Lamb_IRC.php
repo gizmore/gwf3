@@ -276,7 +276,7 @@ final class Lamb_IRC
 	 * @param string $message The real message.
 	 * @param int $split_len The length for each chunk.
 	 */
-	private function sendSplitted($prefix, $message, $split_len=510)
+	private function sendSplitted($prefix, $message, $split_len=420)
 	{
 		$len = strlen($message);
 		

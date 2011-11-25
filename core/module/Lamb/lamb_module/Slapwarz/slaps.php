@@ -100,6 +100,7 @@ $slaps = array(
 	array('a bloody', 35),
 	array('a mysterious', 40),
 	array('a hot', 30),
+	array('a wild', 30),
 ),
 
 
@@ -175,6 +176,7 @@ $slaps = array(
 	array('horse', 30),
 	array('cactus', 22),
 	array('puppy', 18),
+	array('boar', 27),
 	
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),

@@ -153,7 +153,6 @@ final class Shadowfunc
 		
 		switch ($a)
 		{
-
 			case SR_Party::ACTION_TALK:
 			case SR_Party::ACTION_FIGHT:
 				// we can see enemy party

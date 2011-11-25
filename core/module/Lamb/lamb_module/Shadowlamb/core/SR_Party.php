@@ -576,6 +576,12 @@ final class SR_Party extends GDO
 	 */
 	public function fight(SR_Party $party, $announce=true)
 	{
+		if ($this->getID() === $party->getID())
+		{
+			Lamb_Log::logError('Party should not fight itself!');
+			return false;
+		}
+		
 		if ($party->getMemberCount() === 0)
 		{
 			Lamb_Log::logError('Cannot fight empty party!');

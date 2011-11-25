@@ -39,7 +39,7 @@ final class Quest_Delaware_Exams5 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("I totally need a simple amulet. Any one will do :)");
+				$npc->reply("I totally need some Auris now. Can you bring it to me?");
 				break;
 			case 'confirm':
 				$npc->reply("If you bring me some more stuff i will teach you something.");

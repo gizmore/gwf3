@@ -301,7 +301,7 @@ final class Shadowhelp
 						'weight' => "Player command. Usage: #(we)ight. Show how much stuff the party is carrying. You can increase your max_weight with strength.",
 						'lvlup' => "Player command. Usage: #lvlup [<skill|attribute|spell|knowledge>]. Increase your level for an attribute,skill,spell or knowledge by using karma. With no arguments show the list of things you can level up, the level they will go to, and how much karma is needed.  Bolded karma values are ones you can 'afford'. ",
 						'level' => NULL,
-						'party_level' => 'Player command. Usage: #(p)arty_(l)evel. Show the party level.',
+						'party_level' => 'A higher party level increases the drop chance for items.',
 					),
 					
 					'chat_cmds' => 'Commands for chat and talk',

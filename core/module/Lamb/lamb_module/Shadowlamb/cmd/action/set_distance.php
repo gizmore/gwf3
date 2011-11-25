@@ -27,7 +27,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 			return false;
 		}
 		$d = round(floatval($args[0]), 1);
-		if ($d < 0 || $d > SR_Player::MAX_RANGE) {
+		if ($d < 0 || $d > SR_Player::MAX_SD) {
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
 		}
