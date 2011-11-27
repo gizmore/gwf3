@@ -1,4 +1,8 @@
 <?php
+/**
+ * A simple HTML link.
+ * {link text="" url="" title="" class="" id="" onclick="" pre="" post=""}
+ */
 function smarty_function_link($params, $template)
 {
 	$class = empty($params['class']) ? '' : ' class="'.$params['class'].'"';

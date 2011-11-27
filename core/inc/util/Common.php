@@ -40,13 +40,10 @@ final class Common
 	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
 	public static function defineConst($var, $val) { if (!defined($var)) define($var, $val); return constant($var); }
 	
-	/**
-	 * Return true if a constant is true.
-	 * @deprecated
-	 * @param $var constant
-	 * @return boolean
-	 */
-	public static function getConstBool($var) { return self::getConst($var) === true; }
+	###########
+	## DEBUG ##
+	###########
+	public static function var_dump($var) { header('Content-Type: text/plain; charset=UTF-8'); die(var_dump($var)); }
 	
 	###########
 	### URL ###
