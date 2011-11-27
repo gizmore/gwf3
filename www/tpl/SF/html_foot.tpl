@@ -25,16 +25,14 @@
 				<a href="{$root}profile/space" title="space's profile">Florian Best</a> & 
 				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
 			</p>
-			<p style="text-align: left;" class="copyright">
 {if !$SF->isDisplayed('details')}
 <!-- SHORTDETAILS -->
 {include file="tpl/{$SF->getDesign()}/shortdetails.tpl"}
 {else}
-<span style="float:right;">
-<a href="{$SF->getIndex('details')}details=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[+]" title="Hide Details"></a>
-</span>
-{/if}
+			<p style="float:right;" class="copyright">
+				<a href="{$SF->getIndex('details')}details=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[+]" title="Hide Details"></a>
 			</p>
+{/if}
 		</div>
 {if $SF->isDisplayed('details')}
 <!-- DETAILS -->

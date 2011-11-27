@@ -7,7 +7,7 @@
  */
 final class Module_GWF extends GWF_Module
 {
-	public function getVersion() { return 3.06; }
+	public function getVersion() { return 3.07; }
 	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_InstallGWF.php'; return GWF_InstallGWF::onInstall($this, $dropTable); }
 	
 //	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
@@ -33,5 +33,8 @@ final class Module_GWF extends GWF_Module
 	
 	# Captcha Config
 	public function cfgCaptchaBG() { return $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); }
+	public function cfgCaptchaFont() { return explode(',', $this->getModuleVar('CaptchaFont', GWF_PATH.'extra/font/teen.ttf')); }
+	public function cfgCaptchaWidth() { return (int)$this->getModuleVar('CaptchaWidth', '210'); }
+	public function cfgCaptchaHeight() { return (int)$this->getModuleVar('CaptchaHeight', '42'); }
 }
 ?>

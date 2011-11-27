@@ -17,8 +17,11 @@ $lang = array(
 //	'cfg_log_404' => '',
 //	'cfg_mail_404' => '',
 	'cfg_CaptchaBGColor' => 'Captcha BG Color',
+	'cfg_CaptchaFont' => 'Captchafonts',
+//	'cfg_CaptchaWidth' => '',
+//	'cfg_CaptchaHeight' => '',
 	
-//	'tt_FancyIndex' => '',
+	'tt_FancyIndex' => 'Enable Apache Fancy Indexing?',
 //	'tt_NameWidth' => '',
 //	'tt_DescrWidth' => '',
 //	'tt_IconWidth' => '',
@@ -34,5 +37,8 @@ $lang = array(
 //	'tt_log_404' => '',
 //	'tt_mail_404' => '',
 	'tt_CaptchaBGColor' => 'Captcha background color. 6 hex digits. Example: ffffff',
+	'tt_CaptchaFont' => 'Fontpaths for the GWF_Captcha, seperated by ","',
+//	'tt_CaptchaWidth' => '',
+//	'tt_CaptchaHeight' => '',
 );
 ?>

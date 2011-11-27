@@ -23,9 +23,11 @@ class GWF_Captcha extends GWF_Method
 		GWF_HTTP::noCache();
 		
 		# Setup Font, Color, Size
-		$aFonts = array(GWF_PATH.'extra/font/teen.ttf');
+		$aFonts = $module->cfgCaptchaFont();
 		$rgbcolor = $module->cfgCaptchaBG();
-		$oVisualCaptcha = new PhpCaptcha($aFonts, 210, 42, $rgbcolor);
+		$width = $module->cfgCaptchaWidth();
+		$height = $module->cfgCaptchaHeight();
+		$oVisualCaptcha = new PhpCaptcha($aFonts, $width, $height, $rgbcolor);
 		
 		# Output the captcha
 		die($oVisualCaptcha->Create('', Common::getGetString('chars', true)));

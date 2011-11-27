@@ -24,6 +24,9 @@ final class GWF_InstallGWF
 			'mail_404' => array('YES', 'bool'),
 			# Captcha Config
 			'CaptchaBGColor' => array('FFFFFF', 'text'),
+			'CaptchaFont' => array(GWF_PATH.'extra/font/teen.ttf', 'text'),
+			'CaptchaWidth' => array('210', 'int'),
+			'CaptchaHeight' => array('42', 'int'),
 		));
 	}
 }
