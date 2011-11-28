@@ -287,11 +287,14 @@ class GWF_Form
 					break;
 					
 				case self::CHECKBOX:
-					if (isset($_REQUEST[$key])) { $this->form_data[$key][1] = true; }
+					$this->form_data[$key][1] = $this->getVar($key) ? true : false;
 					break;
 					
 				default:
-					if (isset($_REQUEST[$key])) { $this->form_data[$key][1] = $_REQUEST[$key]; }
+					if (false !== ($v = $this->getVar($key)))
+					{
+						$this->form_data[$key][1] = $v;
+					}
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
 			}
