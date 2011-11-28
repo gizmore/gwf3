@@ -29,36 +29,46 @@ final class Admin_Module extends GWF_Method
 		}
 		
 		$nav = $module->templateNav();
+		$back = '';
 		
 		# Enable
-		if (false !== (Common::getPost('enable'))) {
-			return $nav.$this->onEnable($module, 'enabled').$this->templateModule($module);
+		if (false !== (Common::getPost('enable')))
+		{
+			$back .= $this->onEnable($module, 'enabled');
 		}
-		if (false !== (Common::getPost('disable'))) {
-			return $nav.$this->onEnable($module, 'disabled').$this->templateModule($module);
+		elseif (false !== (Common::getPost('disable')))
+		{
+			$back .= $this->onEnable($module, 'disabled');
 		}
 		
 		# Defaults
-		if (false !== (Common::getPost('defaults'))) {
-			return $nav.$this->onDefaults($module);
+		elseif (false !== (Common::getPost('defaults')))
+		{
+			$back .= $this->onDefaults($module);
 		}
 		
 		# Change Config
-		if (false !== (Common::getPost('update'))) {
-			return $nav.$this->onUpdate($module).$this->templateModule($module);
+		elseif (false !== (Common::getPost('update')))
+		{
+			$back .= $this->onUpdate($module);
 		}
 		
 		# Admin Section Wrap
-		if (false !== Common::getPost('admin_sect')) {
-			if ($this->mod->hasAdminSection()) {
+		elseif (false !== Common::getPost('admin_sect'))
+		{
+			if ($this->mod->hasAdminSection())
+			{
 				GWF_Website::redirect($this->mod->getAdminSectionURL());
-			} else {
-				return $nav.$module->error('err_no_admin_sect').$this->templateModule($module);
+				return '';
+			}
+			else
+			{
+				$back .= $module->error('err_no_admin_sect');
 			}
 		}
 		
 		# Form
-		return $nav.$this->templateModule($module);
+		return $nav.$back.$this->templateModule($module);
 	}
 	
 	private function sanitize(Module_Admin $module)
@@ -112,14 +122,16 @@ final class Admin_Module extends GWF_Method
 		$back = array();
 		$mid = $mod->getID();
 		$vars = GWF_ModuleLoader::getModuleVars($mid);
-		if (count($vars) === 0) {
+		if (count($vars) === 0)
+		{
 			return $back;
 		}
 		$vars = GWF_ModuleLoader::sortVarsByType($vars);
 		$type = $vars[key($vars)]['mv_type'];
 		foreach ($vars as $var)
 		{
-			if ($var['mv_type'] !== $type){
+			if ($var['mv_type'] !== $type)
+			{
 				$back['div_'.$type] = array(GWF_Form::DIVIDER);
 				$type = $var['mv_type'];
 			}
@@ -250,11 +262,13 @@ final class Admin_Module extends GWF_Method
 			}
 		}
 		
-		if ($val == $varsa['mv_val']) {
+		if ($val == $varsa['mv_val'])
+		{
 			return '';
 		}
 		
-		if ($type === 'script') {
+		if ($type === 'script')
+		{
 			unset($_POST['mv_'.$key]);
 			return $module->lang('err_arg_script', array($transkey));
 		}
@@ -276,7 +290,8 @@ final class Admin_Module extends GWF_Method
 	private function onUpdate(Module_Admin $module)
 	{
 		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
+		if (false !== ($error = $form->validate($module)))
+		{
 			return $error;
 		}
 		
@@ -302,12 +317,15 @@ final class Admin_Module extends GWF_Method
 			}
 
 			
-			if (false !== ($error = $this->updateVar($module, $key, $newval, $vars, $row))) {
-				if ($error !== '') {
+			if (false !== ($error = $this->updateVar($module, $key, $newval, $vars, $row)))
+			{
+				if ($error !== '')
+				{
 					$errors[] = $error;
 				}
 			}
-			else {
+			else
+			{
 				$transkey = $this->mod->lang('cfg_'.$key);
 				$messages[] = $module->lang('msg_update_var', array($transkey, GWF_HTML::display($newval)));
 			}
@@ -315,10 +333,12 @@ final class Admin_Module extends GWF_Method
 		
 		$back = '';
 		$modname = $this->mod->display('module_name');
-		if (!empty($errors)) {
+		if (!empty($errors))
+		{
 			$back .= GWF_HTML::errorA($modname, $errors);
 		}
-		if (!empty($messages)) {
+		if (!empty($messages))
+		{
 			$back .= GWF_HTML::messageA($modname, $messages);
 		}
 		return $back;

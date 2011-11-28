@@ -287,7 +287,12 @@ class GWF_Form
 					break;
 					
 				case self::CHECKBOX:
-					$this->form_data[$key][1] = $this->getVar($key) ? true : false;
+					# TODO: Optimize for size. Tricky, as $this->getVar() is not always appropiate for overwriting, because bool=isset or notset.
+					$arr = $this->method === self::METHOD_GET ? $_GET : $_POST;
+					if (isset($arr[$key]))
+					{
+						$this->form_data[$key][1] = true;
+					} 
 					break;
 					
 				default:

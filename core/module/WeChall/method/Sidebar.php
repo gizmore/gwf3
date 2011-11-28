@@ -2,6 +2,7 @@
 /**
  * Toggle Panel visibility.
  * Show the panels. (moved from WC_HTML)
+ * @deprecated
  * @author gizmore
  * @version 1.0
  */

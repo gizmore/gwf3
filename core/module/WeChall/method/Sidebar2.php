@@ -156,8 +156,9 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$cut = $module->cfgLastActiveTime();
 		$users = GDO::table('GWF_User');
 		$hidden = GWF_User::HIDE_ONLINE;
+		$deleted = GWF_User::DELETED;
 		$cutt = time() - $cut;
-		$conditions = "user_lastactivity>$cutt AND user_options&$hidden=0";
+		$conditions = "user_lastactivity>$cutt AND user_options&$hidden=0 AND user_options&$deleted=0";
 		$count = $users->countRows($conditions);
 		$href = GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1';
 		

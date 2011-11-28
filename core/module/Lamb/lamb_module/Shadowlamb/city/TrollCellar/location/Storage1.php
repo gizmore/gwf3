@@ -13,8 +13,8 @@ final class TrollCellar_Storage1 extends SR_SearchRoom
 		{
 			return parent::getSearchLoot($player);
 		}
-		SR_PlayerVar::setVal($player, $key, $amt+1);
-		return array('Wine');
+		SR_PlayerVar::setVal($player, 'TR_CE_1', $amt+1);
+		return array(SR_Item::createByName('Wine'));
 	}
 	
 }
