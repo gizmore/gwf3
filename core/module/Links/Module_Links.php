@@ -39,7 +39,7 @@ final class Module_Links extends GWF_Module
 	public function cfgVoteMax() { return $this->getModuleVarInt('link_vote_max', 5); }
 	public function cfgShowPermitted() { return $this->getModuleVarBool('show_permitted', '1'); }
 	public function cfgWantCheck() { return $this->cfgCheckInterval() > 0; }
-	public function cfgCheckInterval() { return $this->getModuleVarInt('link_check_int', 0); }
+	public function cfgCheckInterval() { return $this->getModuleVar('link_check_int', 0); }
 	public function cfgCheckAmount() { return $this->getModuleVarInt('link_check_amt', 5); }
 	
 	public function saveModuleVar($key, $value)

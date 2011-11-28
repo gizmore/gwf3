@@ -25,7 +25,7 @@ final class Module_Admin extends GWF_Module
 	public function cfgUsersPerPage() { return $this->getModuleVarInt('users_per_page', 50); }
 	public function cfgSuperHash() { return $this->getModuleVar('super_hash', ''); }
 	public function cfgHasPassword() { return $this->cfgSuperHash() !== ''; }
-	public function cfgSuperTime() { return $this->getModuleVarInt('super_time', 600); }
+	public function cfgSuperTime() { return $this->getModuleVar('super_time', 600); }
 	public function cfgSaveSuperHash($hash) { return $this->saveModuleVar('super_hash', $hash); }
 	public function cfgInstallSpiders() { return $this->getModuleVarBool('install_webspiders', '0'); }
 	public function cfgHideSpiders() { return $this->getModuleVarBool('hide_web_spiders', '0'); }
