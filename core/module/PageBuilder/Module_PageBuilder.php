@@ -14,7 +14,7 @@ final class Module_PageBuilder extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/pagebuilder'); }
 	public function getDefaultPriority() { return 60; }
 	
-	public function cfgCommentsPerPage() { return $this->getModuleVar('ipp', '10'); }
+	public function cfgCommentsPerPage() { return $this->getModuleVarInt('ipp', '10'); }
 	
 	public function writeHTA()
 	{

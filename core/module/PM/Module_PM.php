@@ -31,25 +31,25 @@ final class Module_PM extends GWF_Module
 	##############
 	public function cfgRE() { return $this->getModuleVar('pm_re', 'RE: '); }
 	public function cfgIsPMLimited() { return $this->cfgPMLimit() >= 0; }
-	public function cfgPMLimit() { return (int) $this->getModuleVar('pm_limit', 6); }
-	public function cfgLimitTimeout() { return (int) $this->getModuleVar('pm_limit_timeout', 18*GWF_Time::ONE_HOUR); }
-	public function cfgMaxFolders() { return (int) $this->getModuleVar('pm_maxfolders', 50); }
+	public function cfgPMLimit() { return $this->getModuleVarInt('pm_limit', 6); }
+	public function cfgLimitTimeout() { return $this->getModuleVarInt('pm_limit_timeout', 18*GWF_Time::ONE_HOUR); }
+	public function cfgMaxFolders() { return $this->getModuleVarInt('pm_maxfolders', 50); }
 	public function cfgAllowOwnFolders() { return $this->cfgMaxFolders() > 0; }
-	public function cfgGuestPMs() { return $this->getModuleVar('pm_for_guests', '1') === '1'; }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('pm_captcha', '1') === '1'; }
-	public function cfgEmailOnPM() { return $this->getModuleVar('pm_causes_mail', '1') === '1'; }
+	public function cfgGuestPMs() { return $this->getModuleVarBool('pm_for_guests', '1'); }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('pm_captcha', '1'); }
+	public function cfgEmailOnPM() { return $this->getModuleVarBool('pm_causes_mail', '1'); }
 	public function cfgEmailSender() { return $this->getModuleVar('pm_mail_sender', GWF_BOT_EMAIL); }
 	public function cfgBotUserID() { return $this->getModuleVar('pm_bot_uid', '0'); }
 	public function cfgBotUser() { return GWF_User::getByID($this->cfgBotUserID()); }
-	public function cfgOwnBot() { return $this->getModuleVar('pm_own_bot', '1') === '1'; }
-	public function cfgPMPerPage() { return (int) $this->getModuleVar('pm_per_page', 25); }
-	public function cfgWelcomePM() { return $this->getModuleVar('pm_welcome', '1') === '1'; }
-	public function cfgMaxSigLen() { return (int) $this->getModuleVar('pm_sig_len', 255); }
-	public function cfgMaxMsgLen() { return (int) $this->getModuleVar('pm_msg_len', 2048); }
-	public function cfgMaxTitleLen() { return (int) $this->getModuleVar('pm_title_len', 64); }
-	public function cfgMaxFolderNameLen() { return (int) $this->getModuleVar('pm_fname_len', GWF_User::USERNAME_LENGTH+4); }
-	public function cfgAllowDelete() { return $this->getModuleVar('pm_delete', '1') === '1'; }
-	public function cfgLimitPerLevel() { return (int) $this->getModuleVar('pm_limit_per_level', 1000000); }
+	public function cfgOwnBot() { return $this->getModuleVarBool('pm_own_bot', '1'); }
+	public function cfgPMPerPage() { return $this->getModuleVarInt('pm_per_page', 25); }
+	public function cfgWelcomePM() { return $this->getModuleVarBool('pm_welcome', '1'); }
+	public function cfgMaxSigLen() { return $this->getModuleVarInt('pm_sig_len', 255); }
+	public function cfgMaxMsgLen() { return $this->getModuleVarInt('pm_msg_len', 2048); }
+	public function cfgMaxTitleLen() { return $this->getModuleVarInt('pm_title_len', 64); }
+	public function cfgMaxFolderNameLen() { return $this->getModuleVarInt('pm_fname_len', GWF_User::USERNAME_LENGTH+4); }
+	public function cfgAllowDelete() { return $this->getModuleVarBool('pm_delete', '1'); }
+	public function cfgLimitPerLevel() { return $this->getModuleVarInt('pm_limit_per_level', 1000000); }
 	
 	###############
 	### Startup ###

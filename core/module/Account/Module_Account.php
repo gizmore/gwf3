@@ -36,18 +36,18 @@ final class Module_Account extends GWF_Module
 	##################
 	### Convinient ###
 	##################
-	public function cfgUseEmail() { return $this->getModuleVar('use_email', '1') === '1'; }
-	public function cfgShowAdult() { return $this->getModuleVar('show_adult', '1') === '1'; }
-	public function cfgShowGender() { return $this->getModuleVar('show_gender', '1') === '1'; }
-	public function cfgChangeTime() { return (int) $this->getModuleVar('demo_changetime', 2592000*3); }
+	public function cfgUseEmail() { return $this->getModuleVarBool('use_email', '1'); }
+	public function cfgShowAdult() { return $this->getModuleVarBool('show_adult', '1'); }
+	public function cfgShowGender() { return $this->getModuleVarBool('show_gender', '1'); }
+	public function cfgChangeTime() { return $this->getModuleVarInt('demo_changetime', 2592000*3); }
 	public function cfgMailSender() { return $this->getModuleVar('mail_sender', GWF_BOT_EMAIL); }
-	public function cfgAdultAge() { return (int) $this->getModuleVar('adult_age', 21); }
-	public function cfgAvatarMinWidth() { return (int) $this->getModuleVar('avatar_min_x', 1); }
-	public function cfgAvatarMaxWidth() { return (int) $this->getModuleVar('avatar_max_x', 96); }
-	public function cfgAvatarMinHeight() { return (int) $this->getModuleVar('avatar_min_y', 1); }
-	public function cfgAvatarMaxHeight() { return (int) $this->getModuleVar('avatar_max_y', 96); }
-	public function cfgUseAvatar() { return $this->getModuleVar('show_avatar', '1') === '1'; }
-	public function cfgShowCheckboxes() { return $this->getModuleVar('show_checkboxes', '1') === '1'; }
+	public function cfgAdultAge() { return $this->getModuleVarInt('adult_age', 21); }
+	public function cfgAvatarMinWidth() { return $this->getModuleVarInt('avatar_min_x', 1); }
+	public function cfgAvatarMaxWidth() { return $this->getModuleVarInt('avatar_max_x', 96); }
+	public function cfgAvatarMinHeight() { return $this->getModuleVarInt('avatar_min_y', 1); }
+	public function cfgAvatarMaxHeight() { return $this->getModuleVarInt('avatar_max_y', 96); }
+	public function cfgUseAvatar() { return $this->getModuleVarBool('show_avatar', '1'); }
+	public function cfgShowCheckboxes() { return $this->getModuleVarBool('show_checkboxes', '1'); }
 }
 
 ?>

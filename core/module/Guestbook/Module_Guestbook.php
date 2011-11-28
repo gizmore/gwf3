@@ -17,17 +17,17 @@ final class Module_Guestbook extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgItemsPerPage() { return (int)$this->getModuleVar('gb_ipp', 10); }
-	public function cfgAllowURL() { return $this->getModuleVar('gb_allow_url', '1') === '1'; }
-	public function cfgAllowEMail() { return $this->getModuleVar('gb_allow_email', '1') === '1'; }
-	public function cfgAllowGuest() { return $this->getModuleVar('gb_allow_guest', '1' === '1'); }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('gb_captcha', '1') === '1'; }
-	public function cfgMaxUsernameLen() { return (int)$this->getModuleVar('gb_max_ulen', GWF_User::USERNAME_LENGTH); }
-	public function cfgMaxMessageLen() { return (int)$this->getModuleVar('gb_max_msglen', 1024); }
-	public function cfgMaxTitleLen() { return (int)$this->getModuleVar('gb_max_titlelen', 63); }
-	public function cfgMaxDescrLen() { return (int)$this->getModuleVar('gb_max_descrlen', 255); }
-	public function cfgLevel() { return (int)$this->getModuleVar('gb_level', 0); }
-	public function cfgNesting() { return $this->getModuleVar('gb_nesting', '1') === 'true'; }
+	public function cfgItemsPerPage() { return $this->getModuleVarInt('gb_ipp', 10); }
+	public function cfgAllowURL() { return $this->getModuleVarBool('gb_allow_url', '1'); }
+	public function cfgAllowEMail() { return $this->getModuleVarBool('gb_allow_email', '1'); }
+	public function cfgAllowGuest() { return $this->getModuleVarBool('gb_allow_guest', '1'); }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('gb_captcha', '1'); }
+	public function cfgMaxUsernameLen() { return $this->getModuleVarInt('gb_max_ulen', GWF_User::USERNAME_LENGTH); }
+	public function cfgMaxMessageLen() { return $this->getModuleVarInt('gb_max_msglen', 1024); }
+	public function cfgMaxTitleLen() { return $this->getModuleVarInt('gb_max_titlelen', 63); }
+	public function cfgMaxDescrLen() { return $this->getModuleVarInt('gb_max_descrlen', 255); }
+	public function cfgLevel() { return $this->getModuleVarInt('gb_level', 0); }
+	public function cfgNesting() { return $this->getModuleVarBool('gb_nesting', '1'); }
 	###############
 	### Upgrade ###
 	###############

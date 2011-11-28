@@ -18,7 +18,7 @@ final class Module_PasswordForgot extends GWF_Module
 			'mail_sender' => array(GWF_SUPPORT_EMAIL, 'text', '6', '128'),
 		));
 	}
-	public function wantCaptcha() { return $this->getModuleVar('captcha', '1') === '1'; }
+	public function wantCaptcha() { return $this->getModuleVarBool('captcha', '1'); }
 	public function getMailSender() { return $this->getModuleVar('mail_sender', GWF_SUPPORT_EMAIL); }
 }
 ?>

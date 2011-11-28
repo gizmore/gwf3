@@ -11,10 +11,10 @@ final class Module_Comments extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/comments'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Staff'); }
 	
-	public function cfgModerated() { return $this->getModuleVar('moderated', '1') === '1'; }
+	public function cfgModerated() { return $this->getModuleVarBool('moderated', '1'); }
 	public function cfgMaxMsgLen() { return $this->getModuleVar('max_msg_len', '2048'); }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('guest_captcha', '1') === '1'; }
-	public function cfgMemberCaptcha() { return $this->getModuleVar('member_captcha', '0') === '1'; }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('guest_captcha', '1'); }
+	public function cfgMemberCaptcha() { return $this->getModuleVarBool('member_captcha', '0'); }
 	public function cfgCaptcha($user) { return $user === false ? $this->cfgGuestCaptcha() : $this->cfgMemberCaptcha(); }
 	
 	public function validate_cmt_id($arg)

@@ -25,7 +25,7 @@ final class Module_Ban extends GWF_Module
 		));
 	}
 	
-	public function cfgItemsPerPage() { return $this->getModuleVar('ban_ipp', 50); }
+	public function cfgItemsPerPage() { return $this->getModuleVarInt('ban_ipp', 50); }
 	
 	###############
 	### Startup ###

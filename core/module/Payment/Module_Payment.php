@@ -51,14 +51,14 @@ final class Module_Payment extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgDonations() { return $this->getModuleVar('donations', '1') === '1'; }
+	public function cfgDonations() { return $this->getModuleVarBool('donations', '1'); }
 	public function cfgCurrency() { return $this->getModuleVar('currency', 'EUR'); }
 	public function cfgCurrencies() { return explode(':', $this->getModuleVar('currencies', array('EUR:USD'))); }
 //	public function cfgLocalFeeBuy() { return $this->getModuleVar('local_fee_buy', 1.0); }
 //	public function cfgLocalFeeSell() { return $this->getModuleVar('local_fee_sell', 2.0); }
 	public function cfgGlobalFeeBuy() { return (float)$this->getModuleVar('global_fee_buy', 4.0); }
 	public function cfgGlobalFeeSell() { return (float)$this->getModuleVar('global_fee_sell', 8.0); }
-	public function cfgOrdersPerPage() { return (int)$this->getModuleVar('orders_per_page', 50); }
+	public function cfgOrdersPerPage() { return $this->getModuleVarInt('orders_per_page', 50); }
 	
 	###################
 	### Convinience ###

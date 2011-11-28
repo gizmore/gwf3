@@ -53,23 +53,23 @@ final class Module_Chat extends GWF_Module
 			'gwf_chat' => array('NO', 'bool'),
 		));
 }
-	public function isPrivateAllowed() { return $this->getModuleVar('private', '1') === '1'; }
-	public function isPublicAllowedGuests() { return $this->getModuleVar('guest_public', '1') === '1'; }
-	public function isPrivateAllowedGuests() { return $this->getModuleVar('guest_private', '1') === '1'; }
-	public function isBBCodeAllowed() { return $this->getModuleVar('bbcode', '1') === '1'; }
+	public function isPrivateAllowed() { return $this->getModuleVarBool('private', '1'); }
+	public function isPublicAllowedGuests() { return $this->getModuleVarBool('guest_public', '1'); }
+	public function isPrivateAllowedGuests() { return $this->getModuleVarBool('guest_private', '1'); }
+	public function isBBCodeAllowed() { return $this->getModuleVarBool('bbcode', '1'); }
 	public static function isBBCodeAllowedS() { return GWF_Module::getModule('Chat')->isBBCodeAllowed(); }
-	public function getMaxMessageLength() { return (int)$this->getModuleVar('msg_len', 512); }
-	public function getOnlineTime() { return (int)$this->getModuleVar('online_time', 20); }
-	public function getMessagePeak() { return (int)$this->getModuleVar('message_peak', 60); }
-	public function getChanmsgPerPage() { return (int)$this->getModuleVar('chanmsg_per_page', 5); }
-	public function getPrivmsgPerPage() { return (int)$this->getModuleVar('privmsg_per_page', 5); }
-	public function getHistmsgPerPage() { return (int)$this->getModuleVar('histmsg_per_page', 50); }
-	public function cfgLagPing() { return (int)$this->getModuleVar('chat_lag_ping', 2); }
-	public function cfgMibbit() { return $this->getModuleVar('mibbit', '1') === '1'; }
+	public function getMaxMessageLength() { return $this->getModuleVarInt('msg_len', 512); }
+	public function getOnlineTime() { return $this->getModuleVarInt('online_time', 20); }
+	public function getMessagePeak() { return $this->getModuleVarInt('message_peak', 60); }
+	public function getChanmsgPerPage() { return $this->getModuleVarInt('chanmsg_per_page', 5); }
+	public function getPrivmsgPerPage() { return $this->getModuleVarInt('privmsg_per_page', 5); }
+	public function getHistmsgPerPage() { return $this->getModuleVarInt('histmsg_per_page', 50); }
+	public function cfgLagPing() { return $this->getModuleVarInt('chat_lag_ping', 2); }
+	public function cfgMibbit() { return $this->getModuleVarBool('mibbit', '1'); }
 	public function cfgMibbitPort() { return $this->getModuleVar('mibbit_port', '6667'); }
 	public function cfgMibbitServer() { return $this->getModuleVar('mibbit_server', 'irc.idlemonkeys.net'); }
 	public function cfgMibbitChannel() { return $this->getModuleVar('mibbit_channel', '#wechall'); }
-	public function cfgMibbitSSL() { return $this->getModuleVar('mibbit_ssl', '1') === '1'; }
+	public function cfgMibbitSSL() { return $this->getModuleVarBool('mibbit_ssl', '1'); }
 	
 	#https://embed.mibbit.com/?server=storm.psych0tik.net%3A%2B6697&channel=%23hbh&forcePrompt=true
 	public function cfgMibbitURL()
@@ -110,7 +110,7 @@ final class Module_Chat extends GWF_Module
 		);
 	}
 	
-	public function cfgGWFChat() { return $this->getModuleVar('gwf_chat', true); }
+	public function cfgGWFChat() { return $this->getModuleVar('gwf_chat', true); } //Bug ?!
 	public function cfgIRCURL()
 	{
 		$is_ssl = $this->cfgMibbitSSL();

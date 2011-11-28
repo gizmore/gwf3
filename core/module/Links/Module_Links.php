@@ -19,28 +19,28 @@ final class Module_Links extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgLongDescription() { return $this->getModuleVar('link_long_descr', '0') === '1'; }
-	public function cfgGuestLinks() { return $this->getModuleVar('link_guests', '1') === '1'; }
-	public function cfgGuestModerated() { return $this->getModuleVar('link_guests_mod', '1') === '1'; }
-	public function cfgGuestVotes() { return $this->getModuleVar('link_guests_votes', '0') === '1'; }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('link_guests_captcha', '1') === '1'; }
-	public function cfgGuestUnreadTime() { return (int)$this->getModuleVar('link_guests_unread', 604800); }
-	public function cfgLinksPerPage() { return (int)$this->getModuleVar('link_per_page', 50); }
-	public function cfgMinScore() { return (int)$this->getModuleVar('link_min_level', 0); }
-	public function cfgMinTagScore() { return (int)$this->getModuleVar('link_tag_min_level', 0); }
-	public function cfgScorePerLink() { return (int)$this->getModuleVar('link_cost', 0); }
-	public function cfgMaxTagLen() { return (int)$this->getModuleVar('link_max_tag_len', 32); }
-	public function cfgMaxUrlLen() { return (int)$this->getModuleVar('link_max_url_len', 255); }
-	public function cfgMinDescrLen() { return (int)$this->getModuleVar('link_min_descr_len', 8); }
-	public function cfgMaxDescrLen() { return (int)$this->getModuleVar('link_max_descr_len', 255); }
-	public function cfgMinDescr2Len() { return (int)$this->getModuleVar('link_min_descr2_len', 0); }
-	public function cfgMaxDescr2Len() { return (int)$this->getModuleVar('link_max_descr2_len', 512); }
-	public function cfgVoteMin() { return (int)$this->getModuleVar('link_vote_min', 1); }
-	public function cfgVoteMax() { return (int)$this->getModuleVar('link_vote_max', 5); }
-	public function cfgShowPermitted() { return $this->getModuleVar('show_permitted', '1') === '1'; }
+	public function cfgLongDescription() { return $this->getModuleVarBool('link_long_descr', '0'); }
+	public function cfgGuestLinks() { return $this->getModuleVarBool('link_guests', '1'); }
+	public function cfgGuestModerated() { return $this->getModuleVarBool('link_guests_mod', '1'); }
+	public function cfgGuestVotes() { return $this->getModuleVarBool('link_guests_votes', '0'); }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('link_guests_captcha', '1'); }
+	public function cfgGuestUnreadTime() { return $this->getModuleVarInt('link_guests_unread', 604800); }
+	public function cfgLinksPerPage() { return $this->getModuleVarInt('link_per_page', 50); }
+	public function cfgMinScore() { return $this->getModuleVarInt('link_min_level', 0); }
+	public function cfgMinTagScore() { return $this->getModuleVarInt('link_tag_min_level', 0); }
+	public function cfgScorePerLink() { return $this->getModuleVarInt('link_cost', 0); }
+	public function cfgMaxTagLen() { return $this->getModuleVarInt('link_max_tag_len', 32); }
+	public function cfgMaxUrlLen() { return $this->getModuleVarInt('link_max_url_len', 255); }
+	public function cfgMinDescrLen() { return $this->getModuleVarInt('link_min_descr_len', 8); }
+	public function cfgMaxDescrLen() { return $this->getModuleVarInt('link_max_descr_len', 255); }
+	public function cfgMinDescr2Len() { return $this->getModuleVarInt('link_min_descr2_len', 0); }
+	public function cfgMaxDescr2Len() { return $this->getModuleVarInt('link_max_descr2_len', 512); }
+	public function cfgVoteMin() { return $this->getModuleVarInt('link_vote_min', 1); }
+	public function cfgVoteMax() { return $this->getModuleVarInt('link_vote_max', 5); }
+	public function cfgShowPermitted() { return $this->getModuleVarBool('show_permitted', '1'); }
 	public function cfgWantCheck() { return $this->cfgCheckInterval() > 0; }
-	public function cfgCheckInterval() { return (int)$this->getModuleVar('link_check_int', 0); }
-	public function cfgCheckAmount() { return (int)$this->getModuleVar('link_check_amt', 5); }
+	public function cfgCheckInterval() { return $this->getModuleVarInt('link_check_int', 0); }
+	public function cfgCheckAmount() { return $this->getModuleVarInt('link_check_amt', 5); }
 	
 	public function saveModuleVar($key, $value)
 	{

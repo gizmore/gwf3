@@ -39,19 +39,19 @@ final class Module_Download extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgAnonUp() { return $this->getModuleVar('anon_upload', '0') === '1'; }
-	public function cfgAnonDown() { return $this->getModuleVar('anon_downld', '1') === '1'; }
-	public function cfgUserUp() { return $this->getModuleVar('user_upload', '1') === '1'; }
-	public function cfgMinDescrLen() { return $this->getModuleVar('dl_descr_minlen', 0); }
-	public function cfgMaxDescrLen() { return $this->getModuleVar('dl_descr_maxlen', 1024); }
-	public function cfgIPP() { return $this->getModuleVar('dl_ipp', 50); }
-	public function cfgMinVote() { return $this->getModuleVar('dl_minvote', 1); }
-	public function cfgMaxVote() { return $this->getModuleVar('dl_maxvote', 5); }
-	public function cfgGuestVote() { return $this->getModuleVar('dl_gvotes', '0') === '1'; }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('dl_gcaptcha', '1') === '1'; }
-	public function cfgModerated() { return $this->getModuleVar('dl_moderated', '1') === '1'; }
+	public function cfgAnonUp() { return $this->getModuleVarBool('anon_upload', '0'); }
+	public function cfgAnonDown() { return $this->getModuleVarBool('anon_downld', '1'); }
+	public function cfgUserUp() { return $this->getModuleVarBool('user_upload', '1'); }
+	public function cfgMinDescrLen() { return $this->getModuleVarInt('dl_descr_minlen', 0); }
+	public function cfgMaxDescrLen() { return $this->getModuleVarInt('dl_descr_maxlen', 1024); }
+	public function cfgIPP() { return $this->getModuleVarInt('dl_ipp', 50); }
+	public function cfgMinVote() { return $this->getModuleVarInt('dl_minvote', 1); }
+	public function cfgMaxVote() { return $this->getModuleVarInt('dl_maxvote', 5); }
+	public function cfgGuestVote() { return $this->getModuleVarBool('dl_gvotes', '0'); }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('dl_gcaptcha', '1'); }
+	public function cfgModerated() { return $this->getModuleVarBool('dl_moderated', '1'); }
 	public function cfgModerators() { return $this->getModuleVar('dl_moderators', 'moderator'); }
-	public function cfgMinLevel() { return (int)$this->getModuleVar('dl_min_level', 0); }
+	public function cfgMinLevel() { return (int)$this->getModuleVarInt('dl_min_level', 0); }
 	
 	public function saveModuleVar($key, $value)
 	{

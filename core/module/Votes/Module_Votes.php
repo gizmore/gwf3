@@ -32,14 +32,14 @@ final class Module_Votes extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgGuestVotes() { return $this->getModuleVar('vote_guests', '1') === '1'; }
-	public function cfgGuestTimeout() { return (int)$this->getModuleVar('vote_guests_timeout', 86400); }
-	public function cfgIconLimit() { return (int)$this->getModuleVar('vote_iconlimit', 10); }
-	public function cfgMinTitleLen() { return (int)$this->getModuleVar('vote_title_min', 1); }
-	public function cfgMaxTitleLen() { return (int)$this->getModuleVar('vote_title_max', 255); }
-	public function cfgMinOptionLen() { return (int)$this->getModuleVar('vote_option_min', 1); }
-	public function cfgMaxOptionLen() { return (int)$this->getModuleVar('vote_option_max', 255); }
-	public function cfgPollLevel() { (int)$this->getModuleVar('vote_poll_level', 0); }
+	public function cfgGuestVotes() { return $this->getModuleVarBool('vote_guests', '1'); }
+	public function cfgGuestTimeout() { return $this->getModuleVarInt('vote_guests_timeout', 86400); }
+	public function cfgIconLimit() { return $this->getModuleVarInt('vote_iconlimit', 10); }
+	public function cfgMinTitleLen() { return $this->getModuleVarInt('vote_title_min', 1); }
+	public function cfgMaxTitleLen() { return $this->getModuleVarInt('vote_title_max', 255); }
+	public function cfgMinOptionLen() { return $this->getModuleVarInt('vote_option_min', 1); }
+	public function cfgMaxOptionLen() { return $this->getModuleVarInt('vote_option_max', 255); }
+	public function cfgPollLevel() { $this->getModuleVarInt('vote_poll_level', 0); }
 	public function cfgPollGroup() { $this->getModuleVar('vote_poll_group', 'moderator'); }
 	
 	############

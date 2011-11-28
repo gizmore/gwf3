@@ -32,13 +32,13 @@ final class Module_SF extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'shell_is_enabled' => array(true, 'bool'),
+			'shell_is_enabled' => array('1', 'bool'),
 		));
 	}
 	##############
 	### Config ###
 	##############
-	public function cfgShellIsEnabled() { return $this->getModuleVar('shell_is_enabled', true); }
+	public function cfgShellIsEnabled() { return $this->getModuleVarBool('shell_is_enabled', '1'); }
 }
 
 ?>

@@ -53,14 +53,14 @@ final class Module_News extends GWF_Module
 //				'news_in_forum' => array('NO', 'bool'),
 			));
 	}
-	public function getNewsPerBox() { return (int)$this->getModuleVar('news_per_box', 4); }
-	public function getNewsPerPage() { return (int)$this->getModuleVar('news_per_page', 10); }
-	public function getNewsPerAdminPage() { return (int)$this->getModuleVar('news_per_adminpage', 20); }
-	public function isNewsletterForGuests() { return $this->getModuleVar('newsletter_guests', '0') === '1'; }
+	public function getNewsPerBox() { return $this->getModuleVarInt('news_per_box', 4); }
+	public function getNewsPerPage() { return $this->getModuleVarInt('news_per_page', 10); }
+	public function getNewsPerAdminPage() { return $this->getModuleVarInt('news_per_adminpage', 20); }
+	public function isNewsletterForGuests() { return $this->getModuleVarBool('newsletter_guests', '0'); }
 	public function cfgSender() { return $this->getModuleVar('newsletter_mail', GWF_SUPPORT_EMAIL); }
-	public function cfgSleepMillis() { return (int)$this->getModuleVar('newsletter_sleep', 250); }
-	public function cfgFeedItemcount() { return (int)$this->getModuleVar('news_per_feed', 6); }
-	public function cfgAllowComments() { return $this->getModuleVar('news_comments', '1') === '1'; }
+	public function cfgSleepMillis() { return $this->getModuleVarInt('newsletter_sleep', 250); }
+	public function cfgFeedItemcount() { return $this->getModuleVarInt('news_per_feed', 6); }
+	public function cfgAllowComments() { return $this->getModuleVarBool('news_comments', '1'); }
 //	public function cfgNewsInForum() { return ( (GWF_Module::getModule('Forum')!==false) && ($this->getModuleVar('news_in_forum', '0')) ); }
 	
 	public function onStartup()

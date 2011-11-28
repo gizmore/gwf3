@@ -24,17 +24,17 @@ final class Module_Shoutbox extends GWF_Module
 			'sb_email_moderation' => array('YES', 'bool'), 
 		));
 	}
-	public function cfgMaxlen() { return (int)$this->getModuleVar('sb_maxlen', 196); }
-	public function cfgIPP() { return (int)$this->getModuleVar('sb_ipp', 25); }
-	public function cfgIPPBox() { return (int)$this->getModuleVar('sb_ippbox', 6); }
-	public function cfgGuestShouts() { return $this->getModuleVar('sb_guests', '1') === '1'; }
+	public function cfgMaxlen() { return $this->getModuleVarInt('sb_maxlen', 196); }
+	public function cfgIPP() { return $this->getModuleVarInt('sb_ipp', 25); }
+	public function cfgIPPBox() { return $this->getModuleVarInt('sb_ippbox', 6); }
+	public function cfgGuestShouts() { return $this->getModuleVarBool('sb_guests', '1'); }
 	public function cfgCaptcha() { return GWF_User::isLoggedIn() ? $this->cfgMemberCaptcha() : $this->cfgGuestCaptcha(); }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('sb_guest_captcha', '0') === '1'; }
-	public function cfgMemberCaptcha() { return $this->getModuleVar('sb_member_captcha', '0') === '1'; }
-	public function cfgTimeout() { return (int)$this->getModuleVar('sb_timeout', 60); }
-	public function cfgMaxPerDayUser() { return (int)$this->getModuleVar('sb_maxdayu', 12); }
-	public function cfgMaxPerDayGuest() { return (int)$this->getModuleVar('sb_maxdayg', 6); }
-	public function cfgEMailModeration() { return $this->getModuleVar('sb_email_moderation', '1') === '1'; }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('sb_guest_captcha', '0'); }
+	public function cfgMemberCaptcha() { return $this->getModuleVarBool('sb_member_captcha', '0'); }
+	public function cfgTimeout() { return $this->getModuleVarInt('sb_timeout', 60); }
+	public function cfgMaxPerDayUser() { return $this->getModuleVarInt('sb_maxdayu', 12); }
+	public function cfgMaxPerDayGuest() { return $this->getModuleVarInt('sb_maxdayg', 6); }
+	public function cfgEMailModeration() { return $this->getModuleVarBool('sb_email_moderation', '1'); }
 	
 	############
 	### HREF ###

@@ -22,12 +22,12 @@ final class Module_Contact extends GWF_Module
 		));
 	}
 	# Config
-	public function cfgCaptchaGuest() { return $this->getModuleVar('captcha', '1') === '1'; }
-	public function cfgCaptchaMember() { return $this->getModuleVar('captcha_member', '0') === '1'; }
+	public function cfgCaptchaGuest() { return $this->getModuleVarBool('captcha', '1'); }
+	public function cfgCaptchaMember() { return $this->getModuleVarBool('captcha_member', '0'); }
 	public function isCaptchaEnabled() { return GWF_Session::isLoggedIn() ? $this->cfgCaptchaMember() : $this->cfgCaptchaGuest(); }
 	public function getContactEMail() { return $this->getModuleVar('email', GWF_SUPPORT_EMAIL); }
 	public function getContactICQ() { return $this->getModuleVar('icq', ''); }
 	public function getContactSkype() { return $this->getModuleVar('skype', ''); }
-	public function cfgMaxMsgLen() { return (int)$this->getModuleVar('maxmsglen', 1024); }
+	public function cfgMaxMsgLen() { return $this->getModuleVarInt('maxmsglen', 1024); }
 }
 ?>

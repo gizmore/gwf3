@@ -128,32 +128,32 @@ final class Module_Forum extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function getPostsPerThread() { return (int)$this->getModuleVar('posts_per_thread', 10); }
-	public function getThreadsPerPage() { return (int)$this->getModuleVar('threads_per_page', 20); }
-	public function getNumLatestThreads() { return (int)$this->getModuleVar('num_latest_threads', 8); }
-//	public function getNumLatestThreadsPP() { return (int)$this->getModuleVar('num_latest_threads_pp', 20); }
-	public function getMaxTitleLen() { return (int)$this->getModuleVar('max_title_len', 128); }
-	public function getMaxDescrLen() { return (int)$this->getModuleVar('max_descr_len', 255); }
-	public function getMaxMessageLen() { return (int)$this->getModuleVar('max_message_len', 16384); }
-	public function getMaxSignatureLen() { return (int)$this->getModuleVar('max_sig_len', 512); }
-	public function isGuestPostAllowed() { return $this->getModuleVar('guest_posts', '1') === '1'; }
+	public function getPostsPerThread() { return $this->getModuleVarInt('posts_per_thread', 10); }
+	public function getThreadsPerPage() { return $this->getModuleVarInt('threads_per_page', 20); }
+	public function getNumLatestThreads() { return $this->getModuleVarInt('num_latest_threads', 8); }
+//	public function getNumLatestThreadsPP() { return $this->getModuleVarInt('num_latest_threads_pp', 20); }
+	public function getMaxTitleLen() { return $this->getModuleVarInt('max_title_len', 128); }
+	public function getMaxDescrLen() { return $this->getModuleVarInt('max_descr_len', 255); }
+	public function getMaxMessageLen() { return $this->getModuleVarInt('max_message_len', 16384); }
+	public function getMaxSignatureLen() { return $this->getModuleVarInt('max_sig_len', 512); }
+	public function isGuestPostAllowed() { return $this->getModuleVarBool('guest_posts', '1'); }
 	public function isGuestPostModerated() { return true; }# $this->getModerationTime() > 0; }
-//	public function getModerationTime() { return (int)$this->getModuleVar('mod_guest_time', GWF_Time::ONE_DAY); }
-	public function isSearchAllowed() { return $this->getModuleVar('search', '1') === '1'; }
+//	public function getModerationTime() { return $this->getModuleVarInt('mod_guest_time', GWF_Time::ONE_DAY); }
+	public function isSearchAllowed() { return $this->getModuleVarBool('search', '1'); }
 	public function getLastPostsReply() { return $this->getPostsPerThread() - 1; }
 	public function getModerationSender() { return $this->getModuleVar('mod_sender', GWF_BOT_EMAIL); }
 	public function getModerationReceiver() { return $this->getModuleVar('mod_receiver', GWF_SUPPORT_EMAIL); }
-	public function isUnreadThreadsEnabled() { return $this->getModuleVar('unread', '1') === '1'; }
-	public function cfgUseGTranslate() { return $this->getModuleVar('gtranslate', '1') === '1'; }
+	public function isUnreadThreadsEnabled() { return $this->getModuleVarBool('unread', '1'); }
+	public function cfgUseGTranslate() { return $this->getModuleVarBool('gtranslate', '1'); }
 //	public function getSubscriptionSender() { return $this->getModuleVar('subscr_sender', GWF_BOT_EMAIL); }
 	public function cfgMailMicrosleep() { return 200000; }
-	public function cfgThanksEnabled() { return $this->getModuleVar('thanks', '1') === '1'; }
-	public function cfgVotesEnabled() { return $this->getModuleVar('votes', '1') === '1'; }
+	public function cfgThanksEnabled() { return $this->getModuleVarBool('thanks', '1'); }
+	public function cfgVotesEnabled() { return $this->getModuleVarBool('votes', '1'); }
 	public function cfgWatchTimeout() { return $this->getModuleVar('watch_timeout', 300); }
-	public function cfgPostCount() { return (int) $this->getModuleVar('postcount', 0); }
-	public function cfgDoublePost() { return $this->getModuleVar('doublepost', '1') === '1'; }
-	public function cfgLangBoards() { return $this->getModuleVar('lang_boards', '0') === '1'; }
-	public function cfgGuestCaptcha() { return $this->getModuleVar('guest_captcha') === '1'; }
+	public function cfgPostCount() { return $this->getModuleVarInt('postcount', 0); }
+	public function cfgDoublePost() { return $this->getModuleVarBool('doublepost', '1'); }
+	public function cfgLangBoards() { return $this->getModuleVarBool('lang_boards', '0'); }
+	public function cfgGuestCaptcha() { return $this->getModuleVarBool('guest_captcha'); }
 	public function cfgPostTimeout() { return $this->getModuleVar('post_timeout'); }
 	public function cfgPostMinLevel() { return $this->getModuleVar('post_min_level'); }
 	

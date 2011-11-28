@@ -22,13 +22,13 @@ final class Module_Admin extends GWF_Module
 	### Config / Install ###
 	########################
 	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/Admin/GWF_AdminInstall.php'; return GWF_AdminInstall::onInstall($this, $dropTable); }
-	public function cfgUsersPerPage() { return $this->getModuleVar('users_per_page', 50); }
+	public function cfgUsersPerPage() { return $this->getModuleVarInt('users_per_page', 50); }
 	public function cfgSuperHash() { return $this->getModuleVar('super_hash', ''); }
 	public function cfgHasPassword() { return $this->cfgSuperHash() !== ''; }
-	public function cfgSuperTime() { return $this->getModuleVar('super_time', 600); }
+	public function cfgSuperTime() { return $this->getModuleVarInt('super_time', 600); }
 	public function cfgSaveSuperHash($hash) { return $this->saveModuleVar('super_hash', $hash); }
-	public function cfgInstallSpiders() { return $this->getModuleVar('install_webspiders', '0') === '1'; }
-	public function cfgHideSpiders() { return $this->getModuleVar('hide_web_spiders', '0') === '1'; }
+	public function cfgInstallSpiders() { return $this->getModuleVarBool('install_webspiders', '0'); }
+	public function cfgHideSpiders() { return $this->getModuleVarBool('hide_web_spiders', '0'); }
 	
 	###############
 	### Startup ###

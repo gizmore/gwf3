@@ -18,8 +18,8 @@ final class Module_Profile extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgAllowHide() { return $this->getModuleVar('prof_hide', '1'); }
-	public function cfgMaxAboutLen() { return (int)$this->getModuleVar('prof_max_about', 512); }
-	public function cfgLevelGB() { return (int)$this->getModuleVar('prof_level_gb', 0); }
+	public function cfgAllowHide() { return $this->getModuleVarBool('prof_hide', '1'); }
+	public function cfgMaxAboutLen() { return $this->getModuleVarInt('prof_max_about', 512); }
+	public function cfgLevelGB() { return $this->getModuleVarInt('prof_level_gb', 0); }
 }
 ?>

@@ -20,12 +20,12 @@ final class Module_Login extends GWF_Module
 				'send_alerts' => array('YES', 'bool'),
 			));
 	}
-	public function cfgCaptcha() { return $this->getModuleVar('captcha', '1') === '1'; }
-	public function cfgMaxTries() { return $this->getModuleVar('max_tries', 6); } 
-	public function cfgTryExceed() { return $this->getModuleVar('try_exceed', 600); }
-	public function cfgCleanupTime() { return $this->getModuleVar('lf_cleanup_t', 2592000); }
-	public function cfgCleanupAlways() { return $this->getModuleVar('lf_cleanup_i', '1') === '1'; }
-	public function cfgAlerts() { return $this->getModuleVar('send_alerts') === '1'; }
+	public function cfgCaptcha() { return $this->getModuleVarBool('captcha', '1'); }
+	public function cfgMaxTries() { return $this->getModuleVarInt('max_tries', 6); } 
+	public function cfgTryExceed() { return $this->getModuleVarInt('try_exceed', 600); }
+	public function cfgCleanupTime() { return $this->getModuleVarInt('lf_cleanup_t', 2592000); }
+	public function cfgCleanupAlways() { return $this->getModuleVarBool('lf_cleanup_i', '1'); }
+	public function cfgAlerts() { return $this->getModuleVarBool('send_alerts'); }
 	
 	public function onCronjob() { GWF_LoginFailure::cleanupCron($this->cfgCleanupTime()); }
 }

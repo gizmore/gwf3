@@ -13,18 +13,18 @@ final class Module_Usergroups extends GWF_Module
 	##############
 	### Config ###
 	##############
-	public function cfgLevel() { return (int)$this->getModuleVar('ug_level', 0); }
-	public function cfgMinLen() { return (int)$this->getModuleVar('ug_minlen', 3); }
-	public function cfgMaxLen() { return (int)$this->getModuleVar('ug_maxlen', 48); }
+	public function cfgLevel() { return $this->getModuleVarInt('ug_level', 0); }
+	public function cfgMinLen() { return $this->getModuleVarInt('ug_minlen', 3); }
+	public function cfgMaxLen() { return $this->getModuleVarInt('ug_maxlen', 48); }
 //	public function cfgBID() { return intval($this->getModuleVar('ug_bid', 0)); }
-	public function cfgIPP() { return (int)$this->getModuleVar('ug_ipp', 25); }
-	public function cfgAvatarsX() { return (int)$this->getModuleVar('ug_ax', 5); }
-	public function cfgAvatarsY() { return (int)$this->getModuleVar('ug_ay', 5); }
+	public function cfgIPP() { return $this->getModuleVarInt('ug_ipp', 25); }
+	public function cfgAvatarsX() { return $this->getModuleVarInt('ug_ax', 5); }
+	public function cfgAvatarsY() { return $this->getModuleVarInt('ug_ay', 5); }
 //	public function cfgMenu() { return intval($this->getModuleVar('ug_menu', true)); }
 //	public function cfgSubMenu() { return intval($this->getModuleVar('ug_submenu', true)); }
 //	public function cfgSubMenuGroup() { return $this->getModuleVar('ug_submenugroup', 'members'); }
-	public function cfgMaxGroups() { return (int)$this->getModuleVar('ug_grp_per_usr', 1); }
-	public function cfgLevelPerGroup() { return (int)$this->getModuleVar('ug_lvl_per_grp', 0); }
+	public function cfgMaxGroups() { return $this->getModuleVarInt('ug_grp_per_usr', 1); }
+	public function cfgLevelPerGroup() { return $this->getModuleVarInt('ug_lvl_per_grp', 0); }
 	
 	public function onStartup()
 	{

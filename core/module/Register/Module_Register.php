@@ -32,21 +32,21 @@ final class Module_Register extends GWF_Module
 //			'signup_moderation' => array('NO', 'bool'),
 		));
 	}
-	public function wantEmailActivation() { return $this->getModuleVar('email_activation', '1') === '1'; }
-	public function wantAutoLogin() { return $this->getModuleVar('auto_login', '1') === '1'; }
-	public function wantCountrySelect() { return $this->getModuleVar('country_select', '0') === '1'; }
+	public function wantEmailActivation() { return $this->getModuleVarBool('email_activation', '1'); }
+	public function wantAutoLogin() { return $this->getModuleVarBool('auto_login', '1'); }
+	public function wantCountrySelect() { return $this->getModuleVarBool('country_select', '0'); }
 	public function hasMinAge() { return $this->getModuleVar('min_age', 0) > 0; }
-	public function getMinAge() { return (int) $this->getModuleVar('min_age', 0); }
-	public function isTOSForced() { return $this->getModuleVar('force_tos', '1') === '1'; }
-	public function wantCaptcha() { return $this->getModuleVar('captcha', '1') === '1'; }
-	public function isEMailAllowedTwice() { return $this->getModuleVar('email_twice', '0') === '1'; }
-	public function isPlaintextInEmail() { return $this->getModuleVar('plaintextpass', '0') === '1'; }
+	public function getMinAge() { return $this->getModuleVarInt('min_age', 0); }
+	public function isTOSForced() { return $this->getModuleVarBool('force_tos', '1'); }
+	public function wantCaptcha() { return $this->getModuleVarBool('captcha', '1'); }
+	public function isEMailAllowedTwice() { return $this->getModuleVarBool('email_twice', '0'); }
+	public function isPlaintextInEmail() { return $this->getModuleVarBool('plaintextpass', '0'); }
 	public function getIPTimeout() { return $this->getModuleVar('ip_usetime', 1); }
-	public function getActivationsPerPage() { return $this->getModuleVar('activation_pp', 50); }
+	public function getActivationsPerPage() { return $this->getModuleVarInt('activation_pp', 50); }
 	public function getActivationThreshold() { return $this->getModuleVar('ua_threshold', 86400); }
 	public function cfgHrefTos() { return $this->getModuleVar('reg_toslink', GWF_WEB_ROOT.'tos'); }
-	public function cfgDetectCountry() { return $this->getModuleVar('reg_detect_country', '1') === '1'; }
-//	public function cfgModerated() { return $this->getModuleVar('signup_moderation', '0') === '1'; }
+	public function cfgDetectCountry() { return $this->getModuleVarBool('reg_detect_country', '1'); }
+//	public function cfgModerated() { return $this->getModuleVarBool('signup_moderation', '0'); }
 	
 	public function hasIPActivatedRecently()
 	{
