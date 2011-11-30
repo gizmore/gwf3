@@ -19,7 +19,11 @@ final class TrollHQ_Kitchen extends SR_SearchRoom
 	
 	public function onEnter(SR_Player $player)
 	{
-		return SR_NPC::createEnemyParty('TrollHQ_ChiefCook')->fight($player->getParty());
+		if (parent::onEnter($player))
+		{
+			SR_NPC::createEnemyParty('TrollHQ_ChiefCook')->fight($player->getParty());
+		}
+		return true;
 	}
 }
 ?>

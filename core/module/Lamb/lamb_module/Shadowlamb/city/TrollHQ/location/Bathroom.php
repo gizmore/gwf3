@@ -20,11 +20,14 @@ final class TrollHQ_Bathroom extends SR_SearchRoom
 
 	public function onEnter(SR_Player $player)
 	{
-		$val = SR_PlayerVar::getVal($player, 'THQFEORK', 0);
-		if ($val == 0)
+		if (parent::onEnter($player))
 		{
-			$p = $player->getParty();
-			SR_NPC::createEnemyParty('TrollHQ_FemaleOrk','TrollHQ_FemaleOrk')->talk($p);
+			$val = SR_PlayerVar::getVal($player, 'THQFEORK', 0);
+			if ($val == 0)
+			{
+				$p = $player->getParty();
+				SR_NPC::createEnemyParty('TrollHQ_FemaleOrk','TrollHQ_FemaleOrk')->talk($p);
+			}
 		}
 		return true;
 	}
