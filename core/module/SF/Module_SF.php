@@ -11,9 +11,9 @@
  */
 final class Module_SF extends GWF_Module
 {
-	public function getVersion() { return 1.01; }
+	public function getVersion() { return 1.02; }
 	public function getDefaultPriority() { return 50; }
-	public function getDefaultAutoLoad() { return defined('GWF_SF') ? true : false; }
+	public function getDefaultAutoLoad() { return defined('GWF_SF'); }
 	public function getClasses() { 
 		$classes = array(); 
 //		if($this->cfgShellIsEnabled()) {
@@ -32,13 +32,15 @@ final class Module_SF extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'shell_is_enabled' => array('1', 'bool'),
+			'shell_enabled' => array('1', 'bool'),
+			'debug_enabled' => array('0', 'bool'),
 		));
 	}
 	##############
 	### Config ###
 	##############
-	public function cfgShellIsEnabled() { return $this->getModuleVarBool('shell_is_enabled', '1'); }
+	public function cfgShellIsEnabled() { return $this->getModuleVarBool('shell_enabled', '1'); }
+	public function cfgDebugEnabled() { return $this->getModuleVarBool('debug_enabled', '0'); }
 }
 
 ?>
