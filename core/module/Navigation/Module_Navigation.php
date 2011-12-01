@@ -129,7 +129,7 @@ final class Module_Navigation extends GWF_Module
 				'navi_nid' => '1', # the GWF_Navigations PageMenu navi_id
 				'navi_pbid' => $i, //$pbvars['page_id'] → both wont work because auto_increment_IDs
 				'navi_position' => $i,
-				'navi_options' => GWF_Navigation::VISIBLE,
+				'navi_options' => GWF_Navigation::ENABLED,
 			);
 			# add page_id to the page_vars // other direction? // add page_cat page_views page_options?
 			$array1 = array('page_id' => $i, 'page_views' => 0); # replacements

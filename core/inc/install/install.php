@@ -45,7 +45,15 @@ GWF3::setDesign('install');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/install.css');
 GWF_Website::addCSS(GWF_WEB_ROOT.'tpl/install/css/design.css');
 GWF_Website::setPageTitle('GWF Install Wizard');
-GWF_Template::addMainTvars(array('gwfpath'=> GWF_PATH, 'gwfwebpath' => GWF_WWW_PATH, 'step' => GWF_STEP, 'il' => $il, 'steps' => 11));
+$tVars = array(
+	'gwfpath'=> GWF_PATH, 
+	'gwfwebpath' => GWF_WWW_PATH, 
+	'step' => GWF_STEP, 
+	'il' => $il, 
+	'steps' => 11,
+	'timings' => GWF_DebugInfo::getTimings(),
+);
+GWF_Template::addMainTvars($tVars);
 
 if (false !== (Common::getPost('create_admin'))) {
 	$page = GWF_Install::wizard_9_1();

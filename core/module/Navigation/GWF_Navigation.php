@@ -18,7 +18,7 @@ final class GWF_Navigation extends GDO
 			'navi_nid' => array(GDO::UINT, GDO::NOT_NULL), # => navis_id
 			'navi_pbid' => array(GDO::UINT, GDO::NOT_NULL), # => page_id
 			'navi_position' => array(GDO::INT|GDO::INDEX, GDO::NOT_NULL), # '-1' ?
-			'navi_options' => array(GDO::UINT, self::ENABLED|self::VISIBLE),
+			'navi_options' => array(GDO::UINT, self::ENABLED),
 			'navi_pbvars' => array(GDO::JOIN, GDO::NULL, array('GWF_Page', 'navi_pbid', 'page_id')), # pagebuilder vars
 			'navi_vars' => array(GDO::JOIN, GDO::NULL, array('GWF_NaviPage', 'navi_pbid', 'page_id')), # page vars without PB e.g. for PageMenu
 		);

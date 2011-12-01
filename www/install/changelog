@@ -1,4 +1,63 @@
 ------------------------------------------------------------------------
+r968 | jjk | 2011-11-30 21:30:45 +0100 (Mi, 30. Nov 2011) | 1 Zeile
+
+ShadowLamb: stay in TrollHQ's rooms after #entering them
+------------------------------------------------------------------------
+r967 | spaceone | 2011-11-29 20:53:40 +0100 (Di, 29. Nov 2011) | 2 Zeilen
+
+GWF3: added core of new Module "Navigation"
+
+------------------------------------------------------------------------
+r966 | Gizmore | 2011-11-28 18:43:29 +0100 (Mo, 28. Nov 2011) | 1 Zeile
+
+GWF3: GWF_Form does now use $_GET/$_POST again for generating default values. This is more intuitive and less overhead than $_REQUEST. This fixed the Admin_Module method to change config vars. + SYNC + Shadowlamb fixes (thx jjk)
+------------------------------------------------------------------------
+r965 | Gizmore | 2011-11-28 18:15:54 +0100 (Mo, 28. Nov 2011) | 1 Zeile
+
+GWF3: GWF_Form does now use $_GET/$_POST again for generating default values. This is more intuitive and less overhead than $_REQUEST. This fixed the Admin_Module method to change config vars.
+------------------------------------------------------------------------
+r964 | spaceone | 2011-11-28 17:12:29 +0100 (Mo, 28. Nov 2011) | 2 Zeilen
+
+GWF3: ModuleVar fixes
+
+------------------------------------------------------------------------
+r963 | spaceone | 2011-11-28 16:38:35 +0100 (Mo, 28. Nov 2011) | 2 Zeilen
+
+GWF3: changed handling for ModuleVars
+
+------------------------------------------------------------------------
+r962 | Gizmore | 2011-11-28 16:14:31 +0100 (Mo, 28. Nov 2011) | 1 Zeile
+
+GWF3: Fixed Fancy Indexing?
+------------------------------------------------------------------------
+r961 | Gizmore | 2011-11-28 15:46:24 +0100 (Mo, 28. Nov 2011) | 1 Zeile
+
+GWF3: Added GWF_Module::getModuleVarString() and fixed one other var type for these new wrapper methods.
+------------------------------------------------------------------------
+r960 | spaceone | 2011-11-27 23:58:12 +0100 (So, 27. Nov 2011) | 2 Zeilen
+
+GWF3: Common: added debug section
+
+------------------------------------------------------------------------
+r959 | spaceone | 2011-11-27 23:24:59 +0100 (So, 27. Nov 2011) | 3 Zeilen
+
+GWF3: Captcha is now configurable by modulevars
+SF: little template Changes
+
+------------------------------------------------------------------------
+r958 | Gizmore | 2011-11-25 22:55:50 +0100 (Fr, 25. Nov 2011) | 1 Zeile
+
+GWF3: It is now possible to set a default limit of 0 PMs. (thx Kender)
+------------------------------------------------------------------------
+r957 | Gizmore | 2011-11-25 21:33:06 +0100 (Fr, 25. Nov 2011) | 1 Zeile
+
+GWF3: Code cleanup.
+------------------------------------------------------------------------
+r956 | spaceone | 2011-11-25 17:44:27 +0100 (Fr, 25. Nov 2011) | 2 Zeilen
+
+GWF3: deleted html_{head,foot}.php and updated changelog
+
+------------------------------------------------------------------------
 r955 | Gizmore | 2011-11-25 16:01:21 +0100 (Fr, 25. Nov 2011) | 1 Zeile
 
 Shadowlamb: When a new player does #start, the location arrival event is sent correctly.

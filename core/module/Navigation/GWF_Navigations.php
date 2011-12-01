@@ -111,8 +111,8 @@ final class GWF_Navigations extends GDO
 	 */
 	public static function deleteNavigation($nid)
 	{
-		$this = self::getByID($nid);
-		if(false === GWF_Navigation::onDelete($nid, $this->isnotPB()))
+		$navis = self::getByID($nid);
+		if(false === GWF_Navigation::onDelete($nid, $navis->isnotPB()))
 		{
 			return false;
 		}
