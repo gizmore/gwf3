@@ -33,7 +33,7 @@ final class GWF_Install
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_0_0')).PHP_EOL;
 
  		$back .= '<pre>'.PHP_EOL;
-		$back .= "CREATE USER 'username'@'localhost' IDENTIFIED BY 'password;'\n";
+		$back .= "CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';\n";
 		$back .= "CREATE DATABASE `databasename`;\n";
 		$back .= "GRANT ALL ON databasename.* TO 'username'@'localhost' IDENTIFIED BY 'password';\n";
 		$back .= '</pre>'.PHP_EOL;
