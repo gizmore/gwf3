@@ -199,6 +199,10 @@ final class GWF_Time
 	 */
 	public static function displayDateISO($gwf_date, $iso, $default_return='ERROR')
 	{
+		if ($gwf_date === '')
+		{
+			return $default_return;
+		}
 		$cache = self::getCache($iso);
 		return self::displayDateFormatB($gwf_date, $cache[4][strlen($gwf_date)], $default_return, $cache[0], $cache[1], $cache[2], $cache[3]);
 	}
