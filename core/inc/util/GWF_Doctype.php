@@ -22,6 +22,7 @@ final class GWF_Doctype
 			case 'html5' : self::$_Doctype = self::HTML5; break;
 			case 'xhtml' : self::$_Doctype = self::XHTML; break;
 			case 'xhtmlstrict' : self::$_Doctype = self::XHTMLSTRICT; break;
+			default: self::$_Doctype = self::HTML5; break;
 		}
 		return true;
 	}
