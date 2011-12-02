@@ -14,36 +14,37 @@ final class GWF_FormValidator
 		GWF_Form::FILE_OPT,
 	);
 	
-	public static function validate(GWF_Module $module, GWF_Form $form, $validator)
+	public static function validate($context, GWF_Form $form, $validator)
 	{
-		if (false === ($errors = self::validateB($module, $form, $validator)))
+		if (false === ($errors = self::validateB($context, $form, $validator)))
 		{
 			return false;
 		}
 		return $errors;
 	}
 	
-	private static function validateB(GWF_Module $module, GWF_Form $form, $validator)
-	{	
-		if (false !== ($error = self::validateCSRF($module, $form, $validator)))
+	private static function validateB($context, GWF_Form $form, $validator)
+	{
+		$name = method_exists($context, 'getName') ? $context->getName() : 'unknown Name';
+		if (false !== ($error = self::validateCSRF($context, $form, $validator)))
 		{
-			return GWF_HTML::error($module->getName(), $error, false);
+			return GWF_HTML::error($name, $error, false);
 		}
 		
-		if (false !== ($errors = self::validateMissingVars($module, $form, $validator)))
+		if (false !== ($errors = self::validateMissingVars($context, $form, $validator)))
 		{
-			return GWF_HTML::errorA($module->getName(), $errors, false);
+			return GWF_HTML::errorA($name, $errors, false);
 		}
 		
-		if (false !== ($errors = self::validateVars($module, $form, $validator)))
+		if (false !== ($errors = self::validateVars($context, $form, $validator)))
 		{
-			return GWF_HTML::errorA($module->getName(), $errors, false);
+			return GWF_HTML::errorA($name, $errors, false);
 		}
 		
 		return false;
 	}
 	
-	private static function validateCSRF(GWF_Module $module, GWF_Form $form, $validator)
+	private static function validateCSRF($context, GWF_Form $form, $validator)
 	{
 		if (GWF_Form::CSRF_OFF === ($level = $form->getCSRFLevel()))
 		{
@@ -62,7 +63,7 @@ final class GWF_FormValidator
 		return false;
 	}
 	
-	private static function validateCaptcha(GWF_Module $module, GWF_Form $form, $validator, $key)
+	private static function validateCaptcha($context, GWF_Form $form, $validator, $key)
 	{
 		if (GWF_Session::getOrDefault('php_captcha', false) !== strtoupper($form->getVar($key)))
 		{
@@ -74,7 +75,7 @@ final class GWF_FormValidator
 		return false;
 	}
 	
-	private static function validateMissingVars(GWF_Module $module, GWF_Form $form, $validator)
+	private static function validateMissingVars($context, GWF_Form $form, $validator)
 	{
 		$errors = array();
 		$check_sent = $form->getMethod() === GWF_Form::METHOD_POST ? $_POST : $_GET;
@@ -179,7 +180,7 @@ final class GWF_FormValidator
 		return count($errors) === 0 ? false : $errors;
 	}
 	
-	private static function validateVars(GWF_Module $module, GWF_Form $form, $validator)
+	private static function validateVars($context, GWF_Form $form, $validator)
 	{
 		$errors = array();
 		
@@ -196,7 +197,7 @@ final class GWF_FormValidator
 			# Captcha
 			if ($data[0] === GWF_Form::CAPTCHA)
 			{
-				if (false !== ($error = self::validateCaptcha($module, $form, $validator, $key)))
+				if (false !== ($error = self::validateCaptcha($context, $form, $validator, $key)))
 				{
 					$errors[] = $error;
 				}
@@ -220,7 +221,7 @@ final class GWF_FormValidator
 				$errors[] = GWF_HTML::lang('ERR_METHOD_MISSING', array($func_name, get_class($validator)));
 				continue;
 			}
-			if (false !== ($error = call_user_func($function, $module, $form->getVar($key))))
+			if (false !== ($error = call_user_func($function, $context, $form->getVar($key))))
 			{
 				$errors[] = $error;
 			}

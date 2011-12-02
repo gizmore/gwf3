@@ -182,9 +182,9 @@ class GWF_Form
 		return $back;
 	}
 	
-	public function validate(GWF_Module $module)
+	public function validate($context)
 	{
-		if (false !== ($error = GWF_FormValidator::validate($module, $this, $this->validator)))
+		if (false !== ($error = GWF_FormValidator::validate($context, $this, $this->validator)))
 		{
 			return $error;
 		}
