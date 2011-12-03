@@ -27,7 +27,6 @@ final class SF_Navigation extends GDO
 			'name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 30),
 			'title' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 50),
 			'short' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 20),
-			'parent_id' => array(GDO::UINT, GDO::NOT_NULL, 11),
 			'position' => array(GDO::INT, GDO::NOT_NULL, 11),
 			'options' => array(GDO::UINT, self::VISIBLE),
 		);
@@ -44,13 +43,15 @@ final class SF_Navigation extends GDO
 		);
 	}
 
-	public static function link($href, $content, $title='', $class='') 
+	public static function link($href, $content, $title='', $tab=0, $h2=false, $class='') 
 	{
-		return sprintf('<a href="%s"%s%s>%s</a>', 
+		return sprintf(self::tab($tab).'%s<a href="%s"%s%s>%s</a>%s',
+			($h2 ? '<h2>' : '' ),
 			GWF_WEB_ROOT.$href,
 			(!empty($class) ? ' class="'.$class.'"' : ''),
 			(!empty($title) ? ' title="'.$title.'"' : ''),
-			$content
+			$content,
+			($h2 ? '</h2>' : '' )
 		);
 	}
 	
