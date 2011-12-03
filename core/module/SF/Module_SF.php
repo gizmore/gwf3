@@ -21,8 +21,6 @@ final class Module_SF extends GWF_Module
 //		}
 		return $classes;
 	}
-	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }
-	public function getAdminSectionURL() { return $this->getMethodURL('Config'); }
 	public function getShellPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
 	public function onStartup() { if(defined('GWF_SF')) $this->onInclude(); }
 	public function onInstall($dropTable)

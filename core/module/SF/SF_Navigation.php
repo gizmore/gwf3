@@ -47,7 +47,7 @@ final class SF_Navigation extends GDO
 	{
 		return sprintf(self::tab($tab).'%s<a href="%s"%s%s>%s</a>%s',
 			($h2 ? '<h2>' : '' ),
-			GWF_WEB_ROOT.$href,
+			GWF_WEB_ROOT.'index.php?'.$href,
 			(!empty($class) ? ' class="'.$class.'"' : ''),
 			(!empty($title) ? ' title="'.$title.'"' : ''),
 			$content,
@@ -96,28 +96,28 @@ final class SF_Navigation extends GDO
 		foreach($secs as $sec)
 		{
 			$ret .= self::liste('sec', $sec['short'], 1) . 
-					self::link('index.php?sec='.$sec['short'].'#'.self::$idprefix.$sec['short'], $sec['name'], '', 2, true) .
+					self::link('sec='.$sec['short'].'#'.self::$idprefix.$sec['short'], $sec['name'], '', 2, true) .
 					"<ul>".PHP_EOL;
 
 			$seclinks = self::sql_seclinks($sec['ID']);
 			foreach($seclinks as $seclink) 
 			{
 				$ret .= self::liste('sec_link', '', 3) . 
-						self::link('index.php?sec=' . $sec['short'] . '&amp;site=' . $seclink['short'], $seclink['name'], $seclink['title'], 4) .
+						self::link('sec=' . $sec['short'] . '&amp;site=' . $seclink['short'], $seclink['name'], $seclink['title'], 4) .
 						self::tab(3) . "</li>".PHP_EOL ;
 			}
 			$cats = self::sql_cats($sec['ID']);
 			foreach($cats as $cat) 
 			{
 				$ret .= self::liste('cat', $sec['short'] . '_' . $cat['short'], 3) .
-						self::link('index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '#nav_' . $sec['short'] . '_' . $cat['short'], $cat['name'], '', 4 ,false ,'h2') . 
+						self::link('sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '#nav_' . $sec['short'] . '_' . $cat['short'], $cat['name'], '', 4 ,false ,'h2') . 
 						self::tab(4) . "<ul>".PHP_EOL;
 
 				$catlinks = self::sql_catlinks($cat['ID']);
 				foreach($catlinks as $catlink) 
 				{
 					$ret .= self::liste('cat_link' ,'', 5) . 
-							self::link('/index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;site=' . $catlink['short'], $catlink['name'], '',6) .
+							self::link('sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;site=' . $catlink['short'], $catlink['name'], '',6) .
 							self::tab(5) . '</li>' . "".PHP_EOL ;
 				}
 
@@ -125,14 +125,14 @@ final class SF_Navigation extends GDO
 				foreach($subs as $sub) 
 				{
 					$ret .= self::liste("subcat",$sec['short'] . '_' . $cat['short'] . '_' . $sub['short'], 5) .
-							self::link('/index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;subcat=' . $sub['short'] .'#nav_' . $sec['short'] . '_' . $cat['short'] /*. '_' . $sub['short'] */ , $sub['name'], '', 6) .
+							self::link('sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;subcat=' . $sub['short'] .'#nav_' . $sec['short'] . '_' . $cat['short'] /*. '_' . $sub['short'] */ , $sub['name'], '', 6) .
 							self::tab(6) . "<ul>".PHP_EOL ;
 
 					$sublinks = self::sql_sublinks($sub['ID']);
 					foreach($sublinks as $sublink) 
 					{
 						$ret .= self::liste('subcat_link', '', 7) .
-								self::link('index.php?sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;subcat=' . $sub['short'] . '&amp;site=' . $sublink['short'], $sublink['name'], '', 8) .
+								self::link('sec=' . $sec['short'] . '&amp;cat=' . $cat['short'] . '&amp;subcat=' . $sub['short'] . '&amp;site=' . $sublink['short'], $sublink['name'], '', 8) .
 								self::tab(7) . "</li>".PHP_EOL ;
 					}
 					$ret .= self::tab(6) . "</ul>".PHP_EOL . 
