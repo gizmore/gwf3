@@ -27,10 +27,6 @@ final class SF_Navigation extends GDO
 			'name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 30),
 			'title' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 50),
 			'short' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 20),
-			'side' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 8), //delete
-			'TID' => array(GDO::UINT, GDO::NOT_NULL, 11), //delete
-			'display_to' => array(GDO::INT, GDO::NOT_NULL, 2), //delete
-			'is_visible' => array(GDO::TINYINT, GDO::NOT_NULL, 1), //delete
 			'parent_id' => array(GDO::UINT, GDO::NOT_NULL, 11),
 			'position' => array(GDO::INT, GDO::NOT_NULL, 11),
 			'options' => array(GDO::UINT, self::VISIBLE),
@@ -64,19 +60,6 @@ final class SF_Navigation extends GDO
 	}
 	public static function sql_secs($side)
 	{
-		switch ($side)
-		{
-			case 'left': 
-				$side = self::SIDE_LEFT;
-				break;
-			case 'right': 
-				$side = self::SIDE_RIGHT;
-				break;
-			case 'other':
-			default:
-				$side = self::SIDE_OTHER;
-				break;
-		}
 #		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $side, $side, self::SECTIONS, self::SECTIONS), 'position');
 		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $side, $side, self::SECTIONS, self::SECTIONS), 'position');
 	}
@@ -92,18 +75,18 @@ final class SF_Navigation extends GDO
 	}
 	public static function sql_seclinks($secid)
 	{
-#			return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $secid, self::LINKS, self::LINKS, self::SIDE_SEC, self::SIDE_SEC), 'parent_id, position');
-			return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $secid, self::LINKS, self::LINKS, self::SIDE_SEC, self::SIDE_SEC), 'parent_id, position');
+#			return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $secid, self::LINKS, self::LINKS, self::SECLINK, self::SECLINK), 'parent_id, position');
+			return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', $secid, self::LINKS, self::LINKS, self::SECLINK, self::SECLINK), 'parent_id, position');
 	}
 	public static function sql_catlinks($catid)
 	{
-#		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SIDE_CAT, self::SIDE_CAT), 'parent_id, position');
-		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SIDE_CAT, self::SIDE_CAT), 'parent_id, position');
+#		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::CATLINK, self::CATLINK), 'parent_id, position');
+		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::CATLINK, self::CATLINK), 'parent_id, position');
 	}
 	public static function sql_sublinks($subid)
 	{
-#		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SIDE_SUB, self::SIDE_SUB), 'parent_id, position');
-		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SIDE_SUB, self::SIDE_SUB), 'parent_id, position');
+#		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SUBLINK, self::SUBLINK), 'parent_id, position');
+		return self::fetchAll(sprintf('options & %s = %s AND options & %s = %s', self::LINKS, self::LINKS, self::SUBLINK, self::SUBLINK), 'parent_id, position');
 	}
 	public static function display_navigation($side) 
 	{
