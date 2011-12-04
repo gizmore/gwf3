@@ -8,8 +8,8 @@
 			</p>
 			<p class="copyright" style="text-align: right; float: left; width: 50%;">
 {foreach $SF->getDesignColors() as $dc}
-				<a title="{$lang->lang('designcolor', $lang->lang($dc))}" href="{$SF->getIndex('layoutcolor')}layoutcolor={$dc}">
-					<img src="{$root}img/SF/circle_{$dc}.png" style="height: 20px; border: 0px;" alt="{$lang->lang('designcolor', $lang->lang($dc))}">
+				<a title="{$SF->lang('designcolor', $SF->lang($dc))}" href="{$SF->getIndex('layoutcolor')}layoutcolor={$dc}">
+					<img src="{$root}img/SF/circle_{$dc}.png" style="height: 20px; border: 0px;" alt="{$SF->lang('designcolor', $SF->lang($dc))}">
 				</a>
 {/foreach}
 				<a href="{$SF->getIndex('details')}details=shown">
