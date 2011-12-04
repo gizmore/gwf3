@@ -125,14 +125,14 @@ final class Lamb_IRC
 		# Return false on eof
 		if (feof($this->socket))
 		{
-			$this->disconnect('Lamb_IRC::getMessage() got "feof".');
+// 			$this->disconnect('Lamb_IRC::getMessage() got "feof".');
 			return false;
 		}
 		
 		# Peek message
 		if (false === ($msg = fgets($this->socket)))
 		{
-			return false;
+			return '';
 		}
 		
 		if ('' === ($msg = trim($msg)))
@@ -149,9 +149,9 @@ final class Lamb_IRC
 	
 	private function checkTimeout()
 	{
-		if ((time() - $this->timestamp) > LAMB_PING_TIMEOUT)
+		if ((time() - $this->timestamp) >= LAMB_PING_TIMEOUT)
 		{
-			$this->disconnect('Timed out!');
+// 			$this->disconnect('Timed out!');
 			return false; 
 		}
 		return '';

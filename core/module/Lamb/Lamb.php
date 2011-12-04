@@ -514,12 +514,24 @@ final class Lamb
 			while (true)
 			{
 				$server->getConnection()->sendQueue();
+
+				if (false === ($msg = $c->getMessage()))
+				{
+					$server->disconnect('Somethings wrong');
+					return false;
+				}
 				
-//				if ( ($msg === false) || ($msg === '') ) 
-				if ('' === ($msg = trim($c->getMessage())))
+				$msg = trim($msg);
+				
+				if ($msg === '')
 				{
 					return true;
 				}
+
+// 				if ('' === ($msg = trim($c->getMessage())))
+// 				{
+// 					return true;
+// 				}
 				
 				$this->is_idle = false;
 				$this->processMessage($server, $msg);

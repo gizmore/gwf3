@@ -67,7 +67,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		elseif ($word === 'renraku')
 		{
 			$this->reply('Geez, you don`t even remember what Renraku is?');
-			$this->reply('Check out this link: http://wiki.dumpshock.com/index.php/Renraku_Computer_Systems , chiphead.');
+			$this->reply('Check out these links: http://www.intercom.net/user/logan1/raku.htm and http://shadowrun.wikia.com/index.php/Renraku_Computer_Systems, chiphead.');
 		}
 		elseif ($word === 'chiphead')
 		{

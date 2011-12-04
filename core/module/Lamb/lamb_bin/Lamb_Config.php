@@ -146,14 +146,14 @@ $LAMB_CFG = array
 //			'admins' => '/sI2/gizmore',
 //		),
 		
-// 		array(
-// 			'host' => 'irc://irc.a2.ano:6667',
-// 			'nickname' => 'Lamb3',
-// 			'password' => 'lamblamb',
-// 			'channels' => '#shadowlamb',
-// //			'admins' => '/NNN/gizmore',
-// 			'admins' => '/A2/gizmore',
-// 		),
+		array(
+			'host' => 'irc://irc.a2.ano:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+//			'admins' => '/NNN/gizmore',
+			'admins' => '/A2/gizmore',
+		),
 		
 //		array(
 //			'host' => 'irc://irc.muffinnet.ano:6667',

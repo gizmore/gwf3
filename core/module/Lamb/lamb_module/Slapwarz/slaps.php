@@ -177,6 +177,7 @@ $slaps = array(
 	array('cactus', 22),
 	array('puppy', 18),
 	array('boar', 27),
+	array('parrot', 19),
 	
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),
