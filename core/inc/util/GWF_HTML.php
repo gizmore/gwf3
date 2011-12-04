@@ -67,7 +67,8 @@ final class GWF_HTML
 					$err .= sprintf('0:%d:%s', strlen($m2), $m2).PHP_EOL;
 				}
 			}
-			return GWF_Website::addDefaultOutput($err);
+			return $err;
+// 			return GWF_Website::addDefaultOutput($err);
 		}
 		return GWF_Template::templateMain('error.tpl', array('title'=>$errors[0]['title'], 'errors' => $errors));
 	}
@@ -108,7 +109,8 @@ final class GWF_HTML
 					$output .= sprintf('1:%d:%s', strlen($m2), $m2).PHP_EOL;
 				}
 			}
-			return GWF_Website::addDefaultOutput($output);
+			return $output;
+// 			return GWF_Website::addDefaultOutput($output);
 		}
 		return GWF_Template::templateMain('message.tpl', array('title'=>$messages[0]['title'], 'messages' => $messages));
 	}
