@@ -1,6 +1,6 @@
 			<p style="text-align: left; float: left; width: 50%;" class="copyright">
 				<a href="{$root}profile/{$user->displayUsername()}" title="{$user->displayUsername()}'s Profile">{$user->displayUsername()}</a>: 
-				{* TODO: Delete imgShit.. better was!!!*}
+				{* TODO: Delete imgShit.. better way!!!*}
 				{$SF->imgCountry()}{$SF->getIP()}; 
 				{$SF->imgOS()}{$SF->getOS()}; 
 				{$SF->imgBrowser()}{$SF->getBrowser()};

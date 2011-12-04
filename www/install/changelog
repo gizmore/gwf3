@@ -1,4 +1,57 @@
 ------------------------------------------------------------------------
+r979 | spaceone | 2011-12-03 13:15:26 +0100 (Sa, 03. Dez 2011) | 2 Zeilen
+
+SF: updated SF module, fixed typos in SF_Navigation
+
+------------------------------------------------------------------------
+r978 | spaceone | 2011-12-03 12:09:42 +0100 (Sa, 03. Dez 2011) | 2 Zeilen
+
+SF: updated SF_Navigation before deleting Part3
+
+------------------------------------------------------------------------
+r977 | spaceone | 2011-12-03 11:52:15 +0100 (Sa, 03. Dez 2011) | 2 Zeilen
+
+SF: updated SF_Navigation before deleting Part2
+
+------------------------------------------------------------------------
+r976 | spaceone | 2011-12-03 11:48:18 +0100 (Sa, 03. Dez 2011) | 2 Zeilen
+
+SF: Updated SF_Navigation before deleting Part1
+
+------------------------------------------------------------------------
+r975 | spaceone | 2011-12-02 17:39:20 +0100 (Fr, 02. Dez 2011) | 2 Zeilen
+
+GWF3: fixed default doctype error (thx wannabe7331)
+
+------------------------------------------------------------------------
+r974 | spaceone | 2011-12-02 13:19:31 +0100 (Fr, 02. Dez 2011) | 2 Zeilen
+
+GWF3: deleted core/inc/util/GWF_TimeOld.php
+
+------------------------------------------------------------------------
+r973 | Gizmore | 2011-12-02 13:17:24 +0100 (Fr, 02. Dez 2011) | 1 Zeile
+
+GWF3: The GWF_Time helper class now handles empty input on displayDate. (thx XcrackX)
+------------------------------------------------------------------------
+r972 | spaceone | 2011-12-02 12:29:08 +0100 (Fr, 02. Dez 2011) | 2 Zeilen
+
+GWF3: GWF_Form can now handle all classes instead of only GWF_Module
+
+------------------------------------------------------------------------
+r971 | Gizmore | 2011-12-02 11:31:39 +0100 (Fr, 02. Dez 2011) | 1 Zeile
+
+GWF3: Tiny typo in the install instruction. (thx XcrackX)
+------------------------------------------------------------------------
+r970 | spaceone | 2011-12-02 00:18:56 +0100 (Fr, 02. Dez 2011) | 2 Zeilen
+
+SF: added SF/Debug
+
+------------------------------------------------------------------------
+r969 | spaceone | 2011-12-01 15:37:00 +0100 (Do, 01. Dez 2011) | 2 Zeilen
+
+GWF3: Fixes in Module Navigation, Installer; Updated changelog
+
+------------------------------------------------------------------------
 r968 | jjk | 2011-11-30 21:30:45 +0100 (Mi, 30. Nov 2011) | 1 Zeile
 
 ShadowLamb: stay in TrollHQ's rooms after #entering them

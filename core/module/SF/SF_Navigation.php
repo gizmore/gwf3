@@ -39,7 +39,7 @@ final class SF_Navigation extends GDO
 
 	public static function link($href, $content, $title='', $tab=0, $h2=false, $class='') 
 	{
-		return sprintf(self::tab($tab).'%s<a href="%s"%s%s>%s</a>%s',
+		return sprintf(self::tab($tab).'%s<a href="%s"%s%s>%s</a>%s'.PHP_EOL,
 			($h2 ? '<h2>' : '' ),
 			GWF_WEB_ROOT.'index.php?'.$href,
 			(!empty($class) ? ' class="'.$class.'"' : ''),
@@ -118,9 +118,9 @@ final class SF_Navigation extends GDO
 				$ret .= self::tab(4) . "</ul>".PHP_EOL;
 				$ret .= self::tab(3) . "</li>".PHP_EOL;
 			}
-		} 
 		$ret .= self::tab(2) ."</ul>".PHP_EOL;
 		$ret .= self::tab(1) ."</li>".PHP_EOL;
+		}
 
 		return $ret;
 	}

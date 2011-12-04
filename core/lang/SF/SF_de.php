@@ -60,7 +60,7 @@ $lang = array(
 
 	'country' => 'Land',
 	'ip' => 'IP',
-	'ipaddr' => 'Ip-Adresse',
+	'ipaddr' => 'IP-Adresse',
 	'visitor' => 'Besucher',
 	'donations' => 'Spenden',
 	'server' => 'Server',
@@ -80,7 +80,7 @@ $lang = array(
 		'user_agent' => 'UserAgent: %1$s',
 		'country' => 'Land: %1$s %2$s',
 		'ip' => 'IP: %1$s',
-		'ipaddr' => 'Ip-Adresse: %1$s',
+		'ipaddr' => 'IP-Adresse: %1$s',
 		
 	),
 	

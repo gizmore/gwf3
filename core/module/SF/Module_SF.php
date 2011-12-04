@@ -1,17 +1,12 @@
 <?php
 /**
- * This module is the SpaceFramework::init.
- * It's the API to communicate to all SF-Classes.
  * @author SpaceOne
- * @copyright Florian Best
- * @version 1.03
  * @since 10.05.2011
  * @visit www.florianbest.de
- * @license none
  */
 final class Module_SF extends GWF_Module
 {
-	public function getVersion() { return 1.03; }
+	public function getVersion() { return 1.04; }
 	public function getDefaultPriority() { return 50; }
 	public function getDefaultAutoLoad() { return defined('GWF_SF'); }
 	public function getClasses() { 

@@ -9,7 +9,8 @@ final class SF_Shell extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL;
+		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL.
+			$this->getHTAccessMethod();
 	}
 	public function execute(GWF_Module $module)
 	{
