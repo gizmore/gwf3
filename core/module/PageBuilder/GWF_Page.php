@@ -53,7 +53,7 @@ final class GWF_Page extends GDO
 			'page_content' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'page_views' => array(GDO::UINT, 0),
 			'page_options' => array(GDO::UINT|GDO::INDEX, 0),
-			'page_menu_pos' => array(GDO::INT|GDO::INDEX, -1),
+			'page_inline_css' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NULL),
 		);
 	}
 	

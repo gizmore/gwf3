@@ -2,12 +2,12 @@
 /**
  * Create pages with static content.
  * @author gizmore
- * @version 1.0
+ * @version 1.01
  * @since 3.0
  */
 final class Module_PageBuilder extends GWF_Module
 {
-	public function getVersion() { return '1.00'; }
+	public function getVersion() { return '1.01'; }
 	public function getClasses() { return array('GWF_Page', 'GWF_PageGID', 'GWF_PageTags', 'GWF_PageType'); }
 	public function onInstall($dropTable) { require_once 'GWF_PB_Install.php'; return GWF_PB_Install::onInstall($this, $dropTable); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }

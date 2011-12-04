@@ -123,6 +123,7 @@ final class PageBuilder_Show extends GWF_Method
 		GWF_Website::setMetaDescr($page->getVar('page_meta_desc'));
 		GWF_Website::setMetaTags($page->getVar('page_meta_tags'));
 		GWF_Website::setPageTitle($page->getVar('page_title'));
+		GWF_Website::addInlineCSS($page->getVar('inline_css'));
 		
 		$tVars = array(
 			'page' => $page,

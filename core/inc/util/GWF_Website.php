@@ -133,13 +133,22 @@ final class GWF_Website
 			self::addCSS($pre.$path.$after);
 		}
 	}
+	private static $_INLINECSS = '';
+	public static function addInlineCSS($string)
+	{
+		self::$_INLINECSS .= $string;
+	}
 	
 	public static function displayCSS()
 	{
 		$back = '';
 		foreach (self::$CSS as $css)
 		{
-			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s',$css[1], $css[0], self::$xhtml);
+			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s'.PHP_EOL,$css[1], $css[0], self::$xhtml);
+		}
+		if('' !== self::$_INLINECSS)
+		{
+			$back .= sprintf("\n\t<style><!--\n\t%s\n\t--></style>", self::$_INLINECSS);
 		}
 		return $back;
 	}
