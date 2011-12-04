@@ -62,7 +62,7 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['show_comments'] = array(GWF_Form::CHECKBOX, $page->wantComments(), $module->lang('th_show_comments'));
 		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
 		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
-		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('inline_css'), $module->lang('th_inline_css'));
+		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_inline_css'), $module->lang('th_inline_css'));
 		$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content'));
  		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$module->lang('btn_edit'),'translate'=>$module->lang('btn_translate')));
  		return new GWF_Form($this, $data);
@@ -92,7 +92,7 @@ final class PageBuilder_Edit extends GWF_Method
 			'page_title' => $form->getVar('title'),
 			'page_meta_tags' => $tags,
 			'page_meta_desc' => $form->getVar('descr'),
-			'inline_css' => $form->getVar('inline_css'),
+			'page_inline_css' => $form->getVar('inline_css'),
 			'page_content' => $form->getVar('content'),
 //			'page_groups' => $gstring,
 //			'page_options' => $options,
@@ -130,7 +130,7 @@ final class PageBuilder_Edit extends GWF_Method
 	public function validate_descr($m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 4, 255, false); }
 	public function validate_tags($m, $arg) { return GWF_Validator::validateString($m, 'tags', $arg, 4, 255, false); }
 	public function validate_content($m, $arg) { return GWF_Validator::validateString($m, 'content', $arg, 4, 65536, false); }
-	public function validate_inline_css($m, $arg) { return true; }
+	public function validate_inline_css($m, $arg) { return false; }
 	public function validate_url($m, $arg) { return GWF_Validator::validateString($m, 'url', $arg, 4, 255, false); }
 //	public function validate_lang($m, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
 	public function validate_type($m, $arg) { return GWF_PageType::validateType($m, $arg); }

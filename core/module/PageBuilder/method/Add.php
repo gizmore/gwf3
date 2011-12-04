@@ -123,7 +123,6 @@ final class PageBuilder_Add extends GWF_Method
 			'page_title' => $form->getVar('title'),
 			'page_meta_tags' => $tags,
 			'page_meta_desc' => $form->getVar('descr'),
-			'inline_css' => $form->getVar('inline_css'),
 			'page_content' => $form->getVar('content'),
 			'page_views' => 0,
 			'page_options' => $options,
