@@ -9,7 +9,7 @@ final class TrollHQ_Kitchen extends SR_SearchRoom
 	{
 		if (rand(0,2))
 		{
-			return array('Bacon');
+			return array(SR_Item::createByName('Bacon'));
 		}
 		return parent::getSearchLoot($player);
 	}
