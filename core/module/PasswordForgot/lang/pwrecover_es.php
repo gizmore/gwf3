@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'msg_sent_mail' => 'Hemos enviado un email a %1$s. Por favor, siga las instrucciones que contiene.',
+	'msg_sent_mail' => 'Hemos enviado un email a %s. Por favor, siga las instrucciones que contiene.',
 	'err_not_found' => 'Usuario no encontrado. Por favor, introduzca su email o nombre de usuario.',
 	'err_not_same_user' => 'Usuario no encontrado. Por favor, introduzca su email o nombre de usuario.', 
 # same message! no spoiled connection from uname=>email 
@@ -10,7 +10,7 @@ $lang = array(
 	'pt_request' => 'Pedir nueva contraseña',
 	'pt_change' => 'Cambiar contraseña',
 	'info_request' => 'Aquí puede pedir una nueva contraseña para su cuenta.<br/>Introduzca su email <b>o</b> nombre de usuario y se le enviarán instrucciones detalladas por email.',
-	'info_change' => 'Puede introducir una nueva contraseña para su cuenta, %1$s.',
+	'info_change' => 'Puede introducir una nueva contraseña para su cuenta, %s.',
 	'title_request' => 'Pedir nueva contraseña',
 	'title_change' => 'Cambiar contraseña',
 	'btn_request' => 'Pedir',
@@ -22,19 +22,19 @@ $lang = array(
 	# The email
 	'mail_subj' => GWF_SITENAME.': Cambiar contraseña',
 	'mail_body' => 
-		'Estimado/a %1$s,'.PHP_EOL.
+		'Estimado/a %s,'.PHP_EOL.
 		''.PHP_EOL.
 		'Usted pidió un cambio de contraseña en '.GWF_SITENAME.'.'.PHP_EOL.
 		'Para llevarse a cabo, debe visitar el enlace que aparece más abajo.'.PHP_EOL.
-		'Si no pidió el cambio, ignore este mensaje o contáctenos en %2$s.'.PHP_EOL.
+		'Si no pidió el cambio, ignore este mensaje o contáctenos en %s.'.PHP_EOL.
 		''.PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		''.PHP_EOL.
 		'Atentamente,'.PHP_EOL.
 		'El personal de '.GWF_SITENAME.PHP_EOL.
 		'',
 
 	# v2.01 (fixes)
-	'err_weak_pass' => 'Tu contraseña es demasiado débil. El mínimo son %1$s caracteres.',
+	'err_weak_pass' => 'Tu contraseña es demasiado débil. El mínimo son %s caracteres.',
 );
 ?>

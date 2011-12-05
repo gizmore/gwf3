@@ -33,6 +33,6 @@ $lang = array(
 		'Les administrateurs peuvent ajuster manuellement le score de base pour chaque site.<br/>'.
 		'Il se peut qu\'un site ayant des épreuves moins nombreuses et moins difficilies obtienne un nombre de points plus élevé que celui d\'un site ayant de nombreuses épreuves difficiles.<br/>'.
 		'<br/>'.
-		'N\'hésitez pas à poser des questions sur le <a href="%1$s">forum</a> si quelque chose ne vous paraît pas clair.',
+		'N\'hésitez pas à poser des questions sur le <a href="%s">forum</a> si quelque chose ne vous paraît pas clair.',
 );
 ?>

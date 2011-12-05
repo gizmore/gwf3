@@ -46,11 +46,11 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 	'menu_news' => 'News',
 	'menu_pm' => 'PM',
 	'ft_set_mc' => 'B.AiM erneut Freischalten',
-	'err_change_freq' => 'Sie haben Ihre Kopie erst kürzlich neu freigeschaltet. Sie dürfen dies erst in %1$s wiederholen.',
+	'err_change_freq' => 'Sie haben Ihre Kopie erst kürzlich neu freigeschaltet. Sie dürfen dies erst in %s wiederholen.',
 	'msg_set_mc' => 'Ihre Kopie wurde wieder freigeschaltet. Bitte starten sie B.AiM auf ihrem neuen Computer.',
 
 ####
-	'key.dat' => '%1$s-%2$s',
+	'key.dat' => '%s-%s',
 	'readme.txt' =>
 		"Hallo %s\r\n\r\n".
 		"Vielen Dank für den Kauf von B.AiM\r\n\r\n".
@@ -71,10 +71,10 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 	'dl_info_t' => 'B.AiM Download Info',
 	'dl_info_b' =>
 		'Einige Informationen vom aktuellen B.AiM Release<br/>'.
-		'Der offizielle Support läuft aus am <b>%3$s</b>.<br/>'.
+		'Der offizielle Support läuft aus am <b>%s</b>.<br/>'.
 		'<br/>'.
 		'Jede Version von B.AiM ist einzigartig. Du darfst deine Kopie nicht weitergeben.<br/>'.
-		'Jede Kopie läuft nur auf einem Computer. Wenn du deinen Computer wechselst kannst du deine Kopie alle %1$s neu freischalten.<br/>'.
+		'Jede Kopie läuft nur auf einem Computer. Wenn du deinen Computer wechselst kannst du deine Kopie alle %s neu freischalten.<br/>'.
 		'<br/>'.
 		'Zur Zeit kann man das Programm nur über <a href="http://www.paypal.de/de">PayPal</a> ExpressCheckout sowie <a href="http://www.paysafecard.com/de/">PaySafeCard</a> erwerben.<br/>'.
 		'Um mit PayPal zu zahlen, musst du den PayPal Knopf hier drei mal drücken. 1) PayPal auswählen, 2) Auf PayPal gehen, 3) Zur webseite zurückkehren, die Bestellung prüfen und die Transaktion ausführen.<br/>'.
@@ -86,7 +86,7 @@ Das es Playray erwischt hat war also reiner Zufall. Ich selber kannte die Seite 
 
 	'err_no_mc' => 'This user does not have an MC set.',
 	'err_mc_cheater' => 'The users MC has duplicates!',
-	'msg_new_demo' => 'The user %1$s got his/her demo records deleted. He/She has to download the demo again.',
+	'msg_new_demo' => 'The user %s got his/her demo records deleted. He/She has to download the demo again.',
 );
 
 ?>

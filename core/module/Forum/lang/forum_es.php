@@ -11,38 +11,38 @@ $lang = array(
 	'err_board_perm' => 'No se le permite el acceso a este foro.',
 	'err_thread_perm' => 'No se le permite el acceso a este tema.',
 	'err_post_perm' => 'No se le permite la lectura de esta publicación.',
-	'err_reply_perm' => 'No se le permite responder a este tema. <a href="%1$s">Clic aquí para volver al tema</a>.',
+	'err_reply_perm' => 'No se le permite responder a este tema. <a href="%s">Clic aquí para volver al tema</a>.',
 	'err_no_thread_allowed' => 'No hay temas permitidos en este foro.',
 	'err_no_guest_post' => 'Invitados no pueden escribir en este foro.',
-	'err_msg_long' => 'Su mensaje es demasiado largo. Se permiten %1$s caracteres máximo.',
+	'err_msg_long' => 'Su mensaje es demasiado largo. Se permiten %s caracteres máximo.',
 	'err_msg_short' => 'Olvidó escribir el mensaje.',
-	'err_descr_long' => 'Su descripción es demasiado larga. Se permiten %1$s caracteres máximo.',
+	'err_descr_long' => 'Su descripción es demasiado larga. Se permiten %s caracteres máximo.',
 	'err_descr_short' => 'Olvidó escribir la descripción.',
-	'err_title_long' => 'Su título es demasiado largo. Se permiten %1$s caracteres máximo.',
+	'err_title_long' => 'Su título es demasiado largo. Se permiten %s caracteres máximo.',
 	'err_title_short' => 'Olvidó escribir el título.',
-	'err_sig_long' => 'Su firma es demasiado larga. Se permiten %1$s caracteres máximo.',
+	'err_sig_long' => 'Su firma es demasiado larga. Se permiten %s caracteres máximo.',
 	'err_subscr_mode' => 'Modo de suscripción desconocido.',
 	'err_no_valid_mail' => 'No tiene un email aprobado para suscribirse a los foros.',
 	'err_token' => 'El token no es válido.',
 	'err_in_mod' => 'Este tema está actualmente en moderación.',
 	'err_board_locked' => 'El foro está temporalmente bloqueado.',
-	'err_no_subscr' => 'No puede suscribirse manualmente a este tema. <a href="%1$s">Clic aquí para volver al tema</a>.',
-	'err_subscr' => 'Ocurrió un error. <a href="%1$s">Clic aquí para volver al tema</a>.',
-	'err_no_unsubscr' => 'No puede anular la suscripción a este tema. <a href="%1$s">Clic aquí para volver al tema</a>.',
-	'err_unsubscr' => 'Ocurrió un error. <a href="%1$s">Clic aquí para volver al tema</a>.',
+	'err_no_subscr' => 'No puede suscribirse manualmente a este tema. <a href="%s">Clic aquí para volver al tema</a>.',
+	'err_subscr' => 'Ocurrió un error. <a href="%s">Clic aquí para volver al tema</a>.',
+	'err_no_unsubscr' => 'No puede anular la suscripción a este tema. <a href="%s">Clic aquí para volver al tema</a>.',
+	'err_unsubscr' => 'Ocurrió un error. <a href="%s">Clic aquí para volver al tema</a>.',
 	'err_sub_by_global' => 'No se suscribió al tema manualmente, sino mediante opciones globales.<br/><a href="/forum/options">Use las opciones del foro</a> para cambiar sus preferencias.',
 	'err_thank_twice' => 'Ya agradeció este post.',
 	'err_thanks_off' => 'Actualmente no está disponible la opción de agradecer las entradas.',
 	'err_votes_off' => 'Los mensajes de votación están actualmente deshabilitados.',
-	'err_better_edit' => 'Por favor, edite su mensaje y no lo publique repetido. Puede activar la opción &quot;Marcar-NoLeido&quot; en caso de que haya hecho cambios significativos.<br/><a href="%1$s">Clic aquí para volver al tema</a>.',
+	'err_better_edit' => 'Por favor, edite su mensaje y no lo publique repetido. Puede activar la opción &quot;Marcar-NoLeido&quot; en caso de que haya hecho cambios significativos.<br/><a href="%s">Clic aquí para volver al tema</a>.',
 
 
 	# Messages
-	'msg_posted' => 'Su mensaje ha sido publicado.<br/><a href="%1$s">Clic aquí para ver su mensaje</a>.',
-	'msg_posted_mod' => 'Su mensaje ha sido publicado, pero será revisado antes de mostrarse.<br/><a href="%1$s">Clic aquí para volver al tablón</a>.',
-	'msg_post_edited' => 'Su entrada ha sido editada.<br/><a href="%1$s">Clic aquí para ver su mensaje</a>.',
-	'msg_edited_board' => 'El foro ha sido editado.<br/><a href="%1$s">Clic aquí para volver al foro</a>.',
-	'msg_board_added' => 'El nuevo foro ha sido añadido correctamente. <a href="%1$s">Clic aquí para volver al foro</a>.',
+	'msg_posted' => 'Su mensaje ha sido publicado.<br/><a href="%s">Clic aquí para ver su mensaje</a>.',
+	'msg_posted_mod' => 'Su mensaje ha sido publicado, pero será revisado antes de mostrarse.<br/><a href="%s">Clic aquí para volver al tablón</a>.',
+	'msg_post_edited' => 'Su entrada ha sido editada.<br/><a href="%s">Clic aquí para ver su mensaje</a>.',
+	'msg_edited_board' => 'El foro ha sido editado.<br/><a href="%s">Clic aquí para volver al foro</a>.',
+	'msg_board_added' => 'El nuevo foro ha sido añadido correctamente. <a href="%s">Clic aquí para volver al foro</a>.',
 	'msg_edited_thread' => 'El tema ha sido editado correctamente.',
 	'msg_options_changed' => 'Sus opciones han sido cambiadas.',
 	'msg_thread_shown' => 'El tema ha sido aprobado y ya es mostrado.',
@@ -50,14 +50,14 @@ $lang = array(
 	'msg_thread_deleted' => 'El tema ha sido borrado.',
 	'msg_post_deleted' => 'El mensaje ha sido borrado.',
 	'msg_board_deleted' => '¡El foro entero ha sido borrado!',
-	'msg_subscribed' => 'Se suscribió al tema y recibirá emails cuando haya nuevos mensajes.<br/><a href="%1$s">Clic aquí para volver al tema</a>.',
-	'msg_unsubscribed' => 'Anuló la suscripción para este tema y no recibirá más emails.<br/><a href="%1$s">Clic aquí para volver al tema</a>.',
+	'msg_subscribed' => 'Se suscribió al tema y recibirá emails cuando haya nuevos mensajes.<br/><a href="%s">Clic aquí para volver al tema</a>.',
+	'msg_unsubscribed' => 'Anuló la suscripción para este tema y no recibirá más emails.<br/><a href="%s">Clic aquí para volver al tema</a>.',
 	'msg_unsub_all' => 'Anuló la suscripción por email de todos los temas.',
 	'msg_thanked_ajax' => 'Su agradecimiento ha sido guardado.',
-	'msg_thanked' => 'Su agradecimiento ha sido guardado.<br/><a href="%1$s">Clic aquí para volver al mensaje</a>.',
-	'msg_thread_moved' => 'El tema %1$s ha sido movido a %2$s.',
+	'msg_thanked' => 'Su agradecimiento ha sido guardado.<br/><a href="%s">Clic aquí para volver al mensaje</a>.',
+	'msg_thread_moved' => 'El tema %s ha sido movido a %s.',
 	'msg_voted' => 'Gracias por su voto.',
-	'msg_marked_read' => '%1$s temas marcados como leídos satisfactoriamente.',
+	'msg_marked_read' => '%s temas marcados como leídos satisfactoriamente.',
 
 	# Titles
 	'forum_title' => 'Foro de '.GWF_SITENAME,
@@ -66,14 +66,14 @@ $lang = array(
 	'ft_edit_board' => 'Editar foro existente',
 	'ft_edit_thread' => 'Editar tema',
 	'ft_options' => 'Configurar opciones del foro',
-	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s',
+	'pt_thread' => '%s ['.GWF_SITENAME.']->%s',
 	'ft_reply' => 'Responder al tema',
-	'pt_board' => '%1$s',
-	//'pt_board' => '%1$s ['.GWF_SITENAME.']',
+	'pt_board' => '%s',
+	//'pt_board' => '%s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Búsqueda rápida',
 	'ft_edit_post' => 'Editar su mensaje',
-	'at_mailto' => 'Enviar email a %1$s',
-	'last_edit_by' => 'Última edición por %1$s - %2$s',
+	'at_mailto' => 'Enviar email a %s',
+	'last_edit_by' => 'Última edición por %s - %s',
 
 	# Page Info
 	'pi_unread' => 'Temas no leidos para usted',
@@ -166,8 +166,8 @@ $lang = array(
 	'online' => 'El usuario está conectado',
 	'offline' => 'El usuario está desconectado',
 	'registered' => 'Registrado el',
-	'watchers' => '%1$s personas están viendo el tema ahora mismo.',
-	'views' => 'Este tema ha sido visto %1$s veces.',
+	'watchers' => '%s personas están viendo el tema ahora mismo.',
+	'views' => 'Este tema ha sido visto %s veces.',
 
 	# forum.php
 	'latest_threads' => 'Últimas actividades',
@@ -179,22 +179,22 @@ $lang = array(
 		PHP_EOL.
 		'Hay un nuevo mensaje o tema en los foros de '.GWF_SITENAME.' que necesita moderación.'.PHP_EOL.
 		PHP_EOL.
-		'Foro: %1$s'.PHP_EOL.
-		'Tema: %2$s'.PHP_EOL.
-		'De: %3$s'.PHP_EOL.
+		'Foro: %s'.PHP_EOL.
+		'Tema: %s'.PHP_EOL.
+		'De: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'Para eliminar el mensaje use este enlace:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Para permitirlo use este enlace:'.PHP_EOL.
-		'%7$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'El mensaje será automaticamente mostrado en %8$s'.PHP_EOL.
+		'El mensaje será automaticamente mostrado en %s'.PHP_EOL.
 		PHP_EOL.
 		'Atentamente'.PHP_EOL.
 		'El equipo de '.GWF_SITENAME.''.PHP_EOL,
@@ -202,45 +202,45 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Nuevo mensaje',
 	'submail_body' => 
-		'Estimado/a %1$s'.PHP_EOL.
+		'Estimado/a %s'.PHP_EOL.
 		PHP_EOL.
-		'Hay %2$s nuevo(s) mensaje(s) en el foro de '.GWF_SITENAME.''.PHP_EOL.
+		'Hay %s nuevo(s) mensaje(s) en el foro de '.GWF_SITENAME.''.PHP_EOL.
 		PHP_EOL.
-		'Tablón: %3$s'.PHP_EOL.
-		'Tema: %4$s'.PHP_EOL.
+		'Tablón: %s'.PHP_EOL.
+		'Tema: %s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5$s'.PHP_EOL. # Multiple msgs possible
+		'%s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'To view the thread please visit this page:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Para anular la suscripción de este tema, siga el enlace siguiente:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Para anular la suscripción del tablón entero, siga el enlace siguiente:'.PHP_EOL.
-		'%7$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Atentamente'.PHP_EOL.
 		'El equipo de '.GWF_SITENAME.''.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5$s above
-		'De: %1$s'.PHP_EOL.
-		'Título: %2$s'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %s above
+		'De: %s'.PHP_EOL.
+		'Título: %s'.PHP_EOL.
 		'Mensaje:'.PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 
 	# v2.01
-	'last_seen' => 'Última vez visto: %1$s',
+	'last_seen' => 'Última vez visto: %s',
 
 	# v2.02
 	'btn_mark_read' => 'Marcar todo como leído',
-	'msg_mark_aread' => 'Marcó %1$s los temas como leídos',
+	'msg_mark_aread' => 'Marcó %s los temas como leídos',
 
 	# v2.03 (Merge)
 	'msg_merged' => 'Los temas han sido añadidos.',
@@ -264,7 +264,7 @@ $lang = array(
 	'cfg_watch_timeout' => 'Marcar tiempo de visionado de tema en N segundos',             
 	'th_hidden' => 'Está escondido',
 	'th_guest_view' => 'Es visible por anónimo',
-	'pt_history' => 'historia del foro - Página %1$s / %2$s',
+	'pt_history' => 'historia del foro - Página %s / %s',
 	'btn_unread' => 'Temas Nuevos',
 		
 	# v2.06 (Admin Area)
@@ -277,9 +277,9 @@ $lang = array(
 
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Contador de publicaciones',
-	'msg_attach_added' => 'Su adjunto ha sido subido. <a href="%1$s">Clic aquí para volver a su publicación.</a>',
-	'msg_attach_deleted' => 'Su adjunto ha sido borrado. <a href="%1$s">Clic aquí para volver a su publicación.</a>',
-	'msg_attach_edited' => 'Su adjunto ha sido editado. <a href="%1$s">Clic aquí para volver a su publicación.</a>',
+	'msg_attach_added' => 'Su adjunto ha sido subido. <a href="%s">Clic aquí para volver a su publicación.</a>',
+	'msg_attach_deleted' => 'Su adjunto ha sido borrado. <a href="%s">Clic aquí para volver a su publicación.</a>',
+	'msg_attach_edited' => 'Su adjunto ha sido editado. <a href="%s">Clic aquí para volver a su publicación.</a>',
 	'msg_reupload' => 'Su adjunto ha sido reemplazado.',
 	'btn_add_attach' => 'Agregar adjunto',
 	'btn_del_attach' => 'Borrar adjunto',
@@ -295,15 +295,15 @@ $lang = array(
 		
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Crear lenguaje de foros',
-	'lang_board_title' => 'Foro %1$s',
-	'lang_board_descr' => 'Para lenguaje %1$s',
+	'lang_board_title' => 'Foro %s',
+	'lang_board_descr' => 'Para lenguaje %s',
 	'lang_root_title' => 'Lenguaje extranjero',
 	'lang_root_descr' => 'Foros no ingleses',
-	'md_board' => 'Foros ' . GWF_SITENAME . '. %1$s',
+	'md_board' => 'Foros ' . GWF_SITENAME . '. %s',
 	'mt_board' => GWF_SITENAME.', Foros, Publicaciones de invitados, Alternar, Foro, Software',
 
 	# v2.10 subscribers
-	'subscribers' => '%1$s se suscribieron a este tema y reciben emails en nuevas publicaciones.',
+	'subscribers' => '%s se suscribieron a este tema y reciben emails en nuevas publicaciones.',
 	'th_hide_subscr' => 'Esconder tus suscripciones',
 
 	# v2.11 fixes11
@@ -313,18 +313,18 @@ $lang = array(
 
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %s threads and %s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
-	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
+	'subscr_boards' => 'Your have manually subscribed to %s boards.',
+	'subscr_threads' => 'You have manually subscribed to %s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%s">here to return to your subscription overview</a>.',
 
 	# v1.06 (Post limits)
 	'err_post_timeout' => 'You have just recently posted. Please wait %s.',

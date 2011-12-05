@@ -18,7 +18,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'Nie wpisałeś wiadomości.',
-	'err_msg_long' => 'Twoja wiadomość przekroczyła limit %1$s znaków.',
+	'err_msg_long' => 'Twoja wiadomość przekroczyła limit %s znaków.',
 	'err_private' => 'Prywatne wiadomości są obecnie wyłączone.',
 	'err_guest_public' => 'Goście nie mogą pisać na kanałach publicznych.',
 	'err_guest_private' => 'Goście nie mogą pisać do innych użytkowników.',

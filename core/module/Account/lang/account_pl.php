@@ -9,7 +9,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Twoja nazwa użytkownika',
 	'th_email' => 'Email kontaktowy',
-	'th_demo' => 'Ustawienia główne - Możesz je zmienić tylko raz na %1$s.',
+	'th_demo' => 'Ustawienia główne - Możesz je zmienić tylko raz na %s.',
 	'th_countryid' => 'Kraj',	
 	'th_langid' => 'Język główny',	
 	'th_langid2' => 'Język dodatkowy',
@@ -37,11 +37,11 @@ $lang = array(
 	'err_no_mail_to_approve' => 'Nie masz ustawionego emaila do zatwierdzenia.',
 	'err_already_approved' => 'Twój email jest już zatwierdzony.',
 	'err_no_image' => 'Wysłany przez ciebie plik nie jest obrazem lub jest za mały.',
-	'err_demo_wait' => 'Już zmieniłeś(aś) swoje główne ustawienia. Odczekaj %1$s.',
+	'err_demo_wait' => 'Już zmieniłeś(aś) swoje główne ustawienia. Odczekaj %s.',
 	'err_birthdate' => 'Twoja data urodzin jest niepoprawna.',
 
 	# Messages
-	'msg_mail_changed' => 'Twój email kontaktowy został zmieniony na <b>%1$s</b>.',
+	'msg_mail_changed' => 'Twój email kontaktowy został zmieniony na <b>%s</b>.',
 	'msg_deleted_avatar' => 'Twój awatar został usunięty.',
 	'msg_avatar_saved' => 'Twój nowy awatar został zapisany.',
 	'msg_demo_changed' => 'Twoje ustawienia główne zostały zmienione.',
@@ -71,13 +71,13 @@ $lang = array(
 	# CHANGE MAIL A
 	'chmaila_subj' => GWF_SITENAME.': Zmień adres email.',
 	'chmaila_body' => 
-		'Drogi %1$s,'.PHP_EOL.
+		'Drogi %s,'.PHP_EOL.
 		PHP_EOL.
 		'Zażądałeś zmiany adresu email na stronie '.GWF_SITENAME.','.PHP_EOL.
 		'aby to zrobić musisz odwiedzieć poniższy adres URL.'.PHP_EOL.
 		'Jeśli nie żądałeś zmiany adresu email możesz zignorować tą wiadomość lub poinformować nas o tym.'.PHP_EOL.
 		PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Pozdrawia'.PHP_EOL.
 		'Ekipa '.GWF_SITENAME,
@@ -85,11 +85,11 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': Potwierdź swój adres email',
 	'chmailb_body' => 
-		'Drogi %1$s,'.PHP_EOL.
+		'Drogi %s,'.PHP_EOL.
 		PHP_EOL.
 		
 		'Aby używać tego adresu email jako głównego adresu kontaktowego musisz potiwerdzić go odwiedzając poniższy adres URL:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Pozdrawia'.PHP_EOL.
 		'Ekipa '.GWF_SITENAME,
@@ -97,19 +97,19 @@ $lang = array(
 	# CHANGE DEMO
 	'chdemo_subj' => GWF_SITENAME.': Zmień ustawienia główne',
 	'chdemo_body' =>
-		'Drogi %1$s'.PHP_EOL.
+		'Drogi %s'.PHP_EOL.
 		PHP_EOL.
 		'Zażądałeś zmiany swoich ustawień głównych.'.PHP_EOL.
-		'Możesz to zrobić tylko raz w ciągu %2$s, więc przed kontynuacją sprawdź czy informacje są poprawne.'.PHP_EOL.
+		'Możesz to zrobić tylko raz w ciągu %s, więc przed kontynuacją sprawdź czy informacje są poprawne.'.PHP_EOL.
 		PHP_EOL.
-		'Płeć: %3$s'.PHP_EOL.
-		'Kraj: %4$s'.PHP_EOL.
-		'Główny język: %5$s'.PHP_EOL.
-		'Dodatkowy język: %6$s'.PHP_EOL.
-		'Data urodzin: %7$s'.PHP_EOL.
+		'Płeć: %s'.PHP_EOL.
+		'Kraj: %s'.PHP_EOL.
+		'Główny język: %s'.PHP_EOL.
+		'Dodatkowy język: %s'.PHP_EOL.
+		'Data urodzin: %s'.PHP_EOL.
 		PHP_EOL.
 		'Jeśli chcesz zachować te ustawienia, wejdź na poniższy adres URL:'.PHP_EOL.
-		'%8$s'.
+		'%s'.
 		PHP_EOL.
 		'Pozdrawia'.PHP_EOL.
 		'Ekipa '.GWF_SITENAME,
@@ -138,12 +138,12 @@ $lang = array(
 	'th_accrm_note' => 'Note',
 	'btn_accrm' => 'Delete Account',
 	'msg_accrm' => 'Your account got marked as deleted and all references should got deleted.<br/>You got logged out.',
-	'ms_accrm' => GWF_SITENAME.': %1$s account deletion',
+	'ms_accrm' => GWF_SITENAME.': %s account deletion',
 	'mb_accrm' =>
 		'Dear Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'The user %1$s has just deleted his account and left this note (may_be_empty):'.PHP_EOL.PHP_EOL.
-		'%2$s',
+		'The user %s has just deleted his account and left this note (may_be_empty):'.PHP_EOL.PHP_EOL.
+		'%s',
 		
 
 	# v2.03 Email Options
@@ -163,7 +163,7 @@ $lang = array(
 	'err_gpg_setup' => 'Either upload a file which contains your public key or paste your public key in the text area.',
 	'err_gpg_key' => 'Your public key seems invalid.',
 	'err_gpg_token' => 'Your gpg fingerprint token does not match our records.',
-	'err_no_gpg_key' => 'The user %1$s did not submit a public key yet.',
+	'err_no_gpg_key' => 'The user %s did not submit a public key yet.',
 	'err_no_mail' => 'You don`t have an approved main contact email address.',
 	'err_gpg_del' => 'You don`t have a validated GPG key to delete.',
 	'err_gpg_fine' => 'You already have a GPG key. Please delete it first.',
@@ -171,18 +171,18 @@ $lang = array(
 	'msg_setup_gpg' => 'Your GPG has been stored and is in use now.',
 	'mails_gpg' => GWF_SITENAME.': Setup GPG Encryption',
 	'mailb_gpg' =>
-		'Dear %1$s,'.PHP_EOL.
+		'Dear %s,'.PHP_EOL.
 		PHP_EOL.
 		'You have decided to turn on gpg encryption for emails sent by this robot.'.PHP_EOL.
 		'To do so, follow the link below:'.PHP_EOL.
 		PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1$s">Change your password</a>',
+	'th_change_pw' => '<a href="%s">Change your password</a>',
 	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',

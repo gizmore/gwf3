@@ -7,7 +7,7 @@ $lang = array(
 		'WeChall is about Sites that are about computer related problems and challenges.<br/>',
 	'about_08' => 'About Wechall (in 2008)',
 #	'about_10' => '(and in 2010)',
-	'about_08_title' => '%1$s: What is the purpose of this site?',
+	'about_08_title' => '%s: What is the purpose of this site?',
 	'about_08' => array(
 		'Inferno' =>
 			'<p>For the people not familiar with challenge sites, a challenge site is mainly a site focussed on offering computer-related problems. Users can register at such a site and start solving challenges. There exist lots of different challenge types. The most common ones are the following: <b>Cryptographic, Crackit, Steganography, Programming, Logic and Math/Science</b>. The difficulty of these challenges vary as well.</p>'.

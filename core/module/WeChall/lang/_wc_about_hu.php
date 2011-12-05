@@ -7,7 +7,7 @@ $lang = array(
 		'A WeChall-hoz olyan oldalakról szól, amelyek számítógéppel kapcsolatos problémákat és kihívásokat tartalmaznak.<br/>',
 	'about_08' => 'Pár szóban a WeChall-ról (2008)',
 #	'about_10' => '(and in 2010)',
-	'about_08_title' => '%1$s: Mi az oldal célja?',
+	'about_08_title' => '%s: Mi az oldal célja?',
 	'about_08' => array(
 		'Inferno' =>
 			'<p>Azon emberek, akik nem tudják, mi az a "challenge" oldal, álljon itt egy definíció: Egy "challenge" oldalak olyan weboldalak, amelyek elsõsorban számítástechnikával kapcsolatos problémákkal foglalkoznak. A felhasználók regisztrálnak az oldalon és elkezdenek mindenféle feladatokat, rejtvényeket megoldani. Nagyon sok különbözõ típusú rejtvény, feladat létezik. A leggyakoribbak: <b>Rejtjelezés, Cracking, Steganogáfia, Programozás, Logika and Matematika/Tudomány</b>. A rejtvények/feladatok nehézsége természetesen változhat.</p>'.

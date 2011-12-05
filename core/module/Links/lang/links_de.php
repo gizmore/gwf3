@@ -24,46 +24,46 @@ $lang = array(
 	# Info`s
 //	'pi_links' => '',
 	'info_tag' => 'Mindestens einen Tag angeben. Tags mit Kommas abtrennen. Liste bestehender Tags:',
-	'info_newlinks' => 'Es gibt %1$s neue Links für dich.',
-	'info_search_exceed' => 'Die Sucher ergab zu viele Treffer (maximal %1$s).',
+	'info_newlinks' => 'Es gibt %s neue Links für dich.',
+	'info_search_exceed' => 'Die Sucher ergab zu viele Treffer (maximal %s).',
 
 	# Titles
 	'ft_add' => 'Link hinzufügen',
 	'ft_edit' => 'Link bearbeiten',
 	'ft_search' => 'Links durchsuchen',
 	'pt_links' => 'Alle Links',
-	'pt_linksec' => '%1$s Links ',
+	'pt_linksec' => '%s Links ',
 	'pt_new_links' => 'Neue Links',
 	'mt_links' => GWF_SITENAME.', Link, Liste, Alle Links',
 	'md_links' => 'Alle Links auf '.GWF_SITENAME.'.',
-	'mt_linksec' => GWF_SITENAME.', Link, Liste, Links über %1$s',
-	'md_linksec' => '%1$s Links auf '.GWF_SITENAME.'.',
+	'mt_linksec' => GWF_SITENAME.', Link, Liste, Links über %s',
+	'md_linksec' => '%s Links auf '.GWF_SITENAME.'.',
 
 	# Errors
 	'err_gid' => 'Die Nutzergruppe ist ungültig.',
 	'err_score' => 'Ungültige Punktzahl angegeben.',
 	'err_no_tag' => 'Bitte mindestens einen Tag angeben.',
-	'err_tag' => 'Das Tag %1$s ist ungültig und wurde entfernt. Das Tag muss zwischen %2$s und %3$s Zeichen lang sein.',
+	'err_tag' => 'Das Tag %s ist ungültig und wurde entfernt. Das Tag muss zwischen %s und %s Zeichen lang sein.',
 	'err_url' => 'Die URL entspricht offenbar nicht dem üblichen Schema.',
 	'err_url_dup' => 'Die URL gibt es hier schon.',
 	'err_url_down' => 'Die URL kann nicht aufgerufen werden.',
-	'err_url_long' => 'Deine URL ist zu lang. Maximum sind %1$s Zeichen.',
-	'err_descr1_short' => 'Deine Beschreibung ist zu kurz. Minimum sind %1$s Zeichen.',
-	'err_descr1_long' => 'Deine Beschreibung ist zu lang. Maximum sind %1$s Zeichen.',
-	'err_descr2_short' => 'Deine ausführliche Beschreibung ist zu kurz. Minimum sind %1$s Zeichen.',
-	'err_descr2_long' => 'Deine ausführliche Beschreibung ist zu lang. Maximum sind %1$s Zeichen.',
+	'err_url_long' => 'Deine URL ist zu lang. Maximum sind %s Zeichen.',
+	'err_descr1_short' => 'Deine Beschreibung ist zu kurz. Minimum sind %s Zeichen.',
+	'err_descr1_long' => 'Deine Beschreibung ist zu lang. Maximum sind %s Zeichen.',
+	'err_descr2_short' => 'Deine ausführliche Beschreibung ist zu kurz. Minimum sind %s Zeichen.',
+	'err_descr2_long' => 'Deine ausführliche Beschreibung ist zu lang. Maximum sind %s Zeichen.',
 	'err_link' => 'Link konnte nicht gefunden werden.',
 	'err_add_perm' => 'Du darfst keinen Link hinzufügen.',
 	'err_edit_perm' => 'Du darfst diesen Link nicht bearbeiten.',
 	'err_view_perm' => 'Du darfst diesen Link nicht ansehen.',
 	'err_add_tags' => 'Du darfst keine Tags hinzufügen',
-	'err_score_tag' => 'Dein Benutzerlevel (%1$s) ist zu gering, um einen weiteren Tag hinzuzufügen. Benötigter Level ist %2$s.',
-	'err_score_link' => 'Dein Benutzerlevel (%1$s) ist zu gering, um einen weiteren Link hinzuzufügen. Benötigter Level ist %2$s.',
+	'err_score_tag' => 'Dein Benutzerlevel (%s) ist zu gering, um einen weiteren Tag hinzuzufügen. Benötigter Level ist %s.',
+	'err_score_link' => 'Dein Benutzerlevel (%s) ist zu gering, um einen weiteren Link hinzuzufügen. Benötigter Level ist %s.',
 	'err_approved' => 'Der Link wurde bereits akzeptiert. Bitte benutze die Moderationssektion um Änderungen durchzuführen.',
 	'err_token' => 'Das Token ist ungültig.',
 
 	# Messages
-//	'msg_redirecting' => 'Du wirst auf %1$s umgeleitet.',
+//	'msg_redirecting' => 'Du wirst auf %s umgeleitet.',
 	'msg_added' => 'Dein Link wurde der Datenbank hinzugefügt.',
 	'msg_added_mod' => 'Dein Link wurde der Datenbank hinzugefügt, jedoch muss dieser noch von einem Moderator geprüft werden.',
 	'msg_edited' => 'Der Link wurde bearbeitet.',
@@ -121,14 +121,14 @@ $lang = array(
 		PHP_EOL.
 		'Von einem Gast wurde ein Link hinzugefügt, welcher noch moderiert werden muss:'.PHP_EOL.
 		PHP_EOL.
-		'Beschreibung: %1$s'.PHP_EOL.
-		'erw. Beschr.: %2$s'.PHP_EOL.
-		'HREF / URL  : %3$s'.PHP_EOL.
+		'Beschreibung: %s'.PHP_EOL.
+		'erw. Beschr.: %s'.PHP_EOL.
+		'HREF / URL  : %s'.PHP_EOL.
 		PHP_EOL.
 		'Du kannst diesen Link entweder'.PHP_EOL.
-		'1) mit einem Klick auf %4$s akzeptieren'.PHP_EOL.
+		'1) mit einem Klick auf %s akzeptieren'.PHP_EOL.
 		'oder'.PHP_EOL.
-		'2) mit einem Klick auf %5$s löschen.'.PHP_EOL.
+		'2) mit einem Klick auf %s löschen.'.PHP_EOL.
 		PHP_EOL.
 		'Mit freundlichen Grüßen,'.PHP_EOL.
 		'Das '.GWF_SITENAME.'-Skript'.PHP_EOL,
@@ -140,9 +140,9 @@ $lang = array(
 		
 	# v2.02 (permitted)
 	'permtext_in_mod' => 'Dieser Link ist in der Moderationsphase',
-	'permtext_score' => 'Du brauchst einen Benutzerlevel von %1$s, um diesen Link ansehen zu können',
+	'permtext_score' => 'Du brauchst einen Benutzerlevel von %s, um diesen Link ansehen zu können',
 	'permtext_member' => 'Dieser Link ist nur für Mitglieder sichtbar',
-	'permtext_group' => 'Du musst in Gruppe %1$s sein, um diesen Link ansehen zu können',
+	'permtext_group' => 'Du musst in Gruppe %s sein, um diesen Link ansehen zu können',
 	'cfg_show_permitted' => 'Zeige Begründung für verweigerte Links?',
 		
 );

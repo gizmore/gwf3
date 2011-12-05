@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Descargas exclusivas en '.GWF_SITENAME.'.',
 
 	# Page Info
-	'pi_add' => 'Para mejor experiencia del usuario cargue su archivo primero, será almacenado en su sesión. Luego modifique las opciones.<br/>El tamaño máximo de archivo es %1$s.',
+	'pi_add' => 'Para mejor experiencia del usuario cargue su archivo primero, será almacenado en su sesión. Luego modifique las opciones.<br/>El tamaño máximo de archivo es %s.',
 
 	# Form Titles
 	'ft_add' => 'Subir un archivo',
@@ -15,10 +15,10 @@ $lang = array(
 
 	# Errors
 	'err_file' => 'Tiene que subir un archivo.',
-	'err_filename' => 'El nombre de archivo especificado no es válido. La longitud máxima es %1$s. Trate de usar caracteres ascii básicos.',
+	'err_filename' => 'El nombre de archivo especificado no es válido. La longitud máxima es %s. Trate de usar caracteres ascii básicos.',
 	'err_level' => 'El nivel de usuario tiene que ser >= 0.',
-	'err_descr' => 'La descripción tiene que estar entre 0 y %1$s caracteres de largo.',
-	'err_price' => 'El precio debe estar en el rango %1$s y %2$s.',
+	'err_descr' => 'La descripción tiene que estar entre 0 y %s caracteres de largo.',
+	'err_price' => 'El precio debe estar en el rango %s y %s.',
 	'err_dlid' => 'No se pudo encontrar la descarga.',
 	'err_token' => 'Su token de descarga no es válido.',
 
@@ -68,9 +68,9 @@ $lang = array(
 	'cfg_dl_minvote' => 'Min. puntaje de votación',
 
 	# Order
-	'order_title' => 'Descarga token para %1$s (Token: %2$s)',
-	'order_descr' => 'Token de descarga comprado para %1$s. Válido para %2$s. Token: %3$s',
-	'msg_purchased' => 'Su pago ha sido recibido y el token de descarga ha sido insertado.<br/>Su token es \'%1$s\' y es válida para %2$s.<br/><b>Escribe el token abajo si no tienes una cuenta en '.GWF_SITENAME.'!</b><br/>Sino, simplemente <a href="%3$s">siga este enlace</a>.',
+	'order_title' => 'Descarga token para %s (Token: %s)',
+	'order_descr' => 'Token de descarga comprado para %s. Válido para %s. Token: %s',
+	'msg_purchased' => 'Su pago ha sido recibido y el token de descarga ha sido insertado.<br/>Su token es \'%s\' y es válida para %s.<br/><b>Escribe el token abajo si no tienes una cuenta en '.GWF_SITENAME.'!</b><br/>Sino, simplemente <a href="%s">siga este enlace</a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Compras',
@@ -84,10 +84,10 @@ $lang = array(
 	'th_dl_guest_down' => 'Descargable por invitados',
 	'tt_dl_guest_down' => 'Los invitados pueden descargar este archivo',
 	'ft_reup' => 'Re-subir el archivo',
-	'order_descr2' => 'Token de descargas compradas para %1$s. Token: %2$s.',
-	'msg_purchased2' => 'Su pago ha sido recibido y el token de descarga ha sido insertado.<br/>Su token es \'%1$s\'.<br/><b>Escribe el token abajo si no tienes una cuenta en '.GWF_SITENAME.'!</b><br/>Sino, simplemente <a href="%2$s">siga este enlace</a>.',
-	'err_group' => 'Usted necesita estar en el grupo de usuarios %1$s para descargar este archivo.',
-	'err_level' => 'Necesitas un nivel de usuario %1$s para descargar este archivo.',
+	'order_descr2' => 'Token de descargas compradas para %s. Token: %s.',
+	'msg_purchased2' => 'Su pago ha sido recibido y el token de descarga ha sido insertado.<br/>Su token es \'%s\'.<br/><b>Escribe el token abajo si no tienes una cuenta en '.GWF_SITENAME.'!</b><br/>Sino, simplemente <a href="%s">siga este enlace</a>.',
+	'err_group' => 'Usted necesita estar en el grupo de usuarios %s para descargar este archivo.',
+	'err_level' => 'Necesitas un nivel de usuario %s para descargar este archivo.',
 	'err_guest' => 'Los invitados no podrán descargar este archivo.',
 	'err_adult' => 'Esto incluye contenido para adultos.',
 
@@ -104,21 +104,21 @@ $lang = array(
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

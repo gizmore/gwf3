@@ -19,7 +19,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'You forgot your message.',
-	'err_msg_long' => 'Your message exceeds the maximum length of %1$s.',
+	'err_msg_long' => 'Your message exceeds the maximum length of %s.',
 	'err_private' => 'Private messages are currently disabled.',
 	'err_guest_public' => 'Guests are not allowed to post into the public channel.',
 	'err_guest_private' => 'Guests are not allowed to post messages to other users.',

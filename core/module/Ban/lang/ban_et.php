@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'Lõppkuupäev on vigane.',
 
 	# Messages
-	'msg_permbanned' => 'Kasutaja %1$s sai alalise bänni.',
-	'msg_tempbanned' => 'Kasutaja %1$s on bännitud kuni %2$s.',
-	'msg_warned' => 'Kasutaja %1$s sai hoiatuse.',
+	'msg_permbanned' => 'Kasutaja %s sai alalise bänni.',
+	'msg_tempbanned' => 'Kasutaja %s on bännitud kuni %s.',
+	'msg_warned' => 'Kasutaja %s sai hoiatuse.',
 	'msg_marked_read' => 'Sõnum on märgitud loetuks.',
 	
 	# Info
-	'info_warning' => 'Said hoiatuse!<br/>%1$s<br/><a href="%2$s">Vajuta siia, et märkida see loetuks</a>.',
-	'info_tempban' => 'Sa said bäni kuni %1$s!<br/>%2$s',
-	'info_permban' => 'Oled alaliselt bänitud:<br/>%1$s',
+	'info_warning' => 'Said hoiatuse!<br/>%s<br/><a href="%s">Vajuta siia, et märkida see loetuks</a>.',
+	'info_tempban' => 'Sa said bäni kuni %s!<br/>%s',
+	'info_permban' => 'Oled alaliselt bänitud:<br/>%s',
 
 	# Admin Config
 	'cfg_ban_ipp' => 'Asju lehekülje kohta',

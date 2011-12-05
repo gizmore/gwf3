@@ -2,7 +2,7 @@
 $lang = array(
 	'mission_t' => 'Dein Self-PHP',
 	'mission_i' =>
-		'Deine Aufgabe ist es, &lt;script&gt;alert(1);&lt;/script&gt; in <a href="%1$s">dieses script</a> &quot;zu injecten&quot;, und ein javascript alert fenster aufpoppen zu lassen.<br/>'.
+		'Deine Aufgabe ist es, &lt;script&gt;alert(1);&lt;/script&gt; in <a href="%s">dieses script</a> &quot;zu injecten&quot;, und ein javascript alert fenster aufpoppen zu lassen.<br/>'.
 		'Die checkit() Funktion prüft deinen eingeschleusten Text auf ein paar feste Lösungen.<br/>'.
 		'Bitte benutze so wenig Zeichen wie möglich und schleuse den exakten Text von oben ein.<br/>'.
 		'<br/>'.

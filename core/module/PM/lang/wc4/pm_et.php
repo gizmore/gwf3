@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Tervist %1$s',
+	'hello' => 'Tervist %s',
 	'sel_username' => 'Vali kasutajanimi',
 	'sel_folder' => 'Vali kaust',
 
@@ -11,7 +11,7 @@ $lang = array(
 	'pi_trashcan' => 'See on sinu Prügikast, sa ei saa tegelikult sõnumeid kustutada, kuid saad neid taastada.',
 	
 	# Buttons
-	'btn_ignore' => 'Pane %1$s oma Block-listi',
+	'btn_ignore' => 'Pane %s oma Block-listi',
 	'btn_ignore2' => 'Ignoreeri',
 	'btn_save' => 'Salvestamise seaded',
 	'btn_create' => 'Uus PS',
@@ -33,45 +33,45 @@ $lang = array(
 	'err_perm_read' => 'Pole lubatud seda PS\'i lugeda.',
 	'err_perm_write' => 'Pole lubatud muuta seda PS\'i.',
 	'err_no_title' => 'Unustasid PS\'i pealkirja.',
-	'err_title_len' => 'Pealkiri on liiga pikk. Maksimum %1$s tähte on lubatud.',
+	'err_title_len' => 'Pealkiri on liiga pikk. Maksimum %s tähte on lubatud.',
 	'err_no_msg' => 'Unustasid oma sõnumi.',
-	'err_sig_len' => 'Su signatuur on liiga pikk. Maksimum %1$s tähte on lubatud.',
-	'err_msg_len' => 'Su sõnum on liiga pikk. Maksimum %1$s tähte on lubatud.',
+	'err_sig_len' => 'Su signatuur on liiga pikk. Maksimum %s tähte on lubatud.',
+	'err_msg_len' => 'Su sõnum on liiga pikk. Maksimum %s tähte on lubatud.',
 	'err_user_no_ppm' => 'See kasutaja ei soovi teiste PS\'e.',
 	'err_no_mail' => 'Sul pole heakskiidetud emaili sellel kasutajal.',
 	'err_pmoaf' => 'Auto-kaustade väärtus ei ole lubatud.',
-	'err_limit' => 'Su PS-limiit on käes. Sa saad saata maksimum %1$s PS-i %2$s jooksul.',
-	'err_ignored' => '%1$s on pannud sind oma block-listi.',
+	'err_limit' => 'Su PS-limiit on käes. Sa saad saata maksimum %s PS-i %s jooksul.',
+	'err_ignored' => '%s on pannud sind oma block-listi.',
 	'err_delete' => 'Viga avastatud sinu e-maile kustutades.',
 	'err_folder_exists' => 'Kaust on juba olemas.',
-	'err_folder_len' => 'Kaustanime pikkus peab olema 1 - %1$s tähte',
+	'err_folder_len' => 'Kaustanime pikkus peab olema 1 - %s tähte',
 	'err_del_twice' => 'Sa oled juba kustutanud selle PS\'i.',
 	'err_folder' => 'Kaust on tundmatu.',
 	'err_pm_read' => 'Sinu PS on juba saadetud, enam ei saa Sa seda muuta.',
 
 	# Messages
 	'msg_sent' => 'Su PS on edukalt saadetud. Sa saad seda muuta, kuni see pole veel loetud..',
-	'msg_ignored' => 'Sa paned %1$s oma ignore listi.',
-	'msg_unignored' => 'Sa eemaldasid %1$s oma ignore listist.',
+	'msg_ignored' => 'Sa paned %s oma ignore listi.',
+	'msg_unignored' => 'Sa eemaldasid %s oma ignore listist.',
 	'msg_changed' => 'Seaded on muudetud.',
-	'msg_deleted' => 'Edukalt kustutatud %1$s PS\'t.',
-	'msg_moved' => 'Edukalt liigutatud %1$s PS\'i.',
+	'msg_deleted' => 'Edukalt kustutatud %s PS\'t.',
+	'msg_moved' => 'Edukalt liigutatud %s PS\'i.',
 	'msg_edited' => 'Sinu PS on muudetud.',
-	'msg_restored' => 'Edukalt taastatud %1$s PS\'i.',
+	'msg_restored' => 'Edukalt taastatud %s PS\'i.',
 	'msg_auto_folder_off' => 'Sul pole auto-kaustad lubatud. PS on märgitud loetuks.',
-	'msg_auto_folder_none' => 'On ainult %1$s sõnumeid sellelt/le kasutajalt/le. Midagi pole liigutatud. PS on märgitud loetuks.',
-	'msg_auto_folder_created' => 'Loodud kaust %1$s.',
-	'msg_auto_folder_moved' => 'Liigutatud %1$s sõnumi(d) kausta %2$s. PS(\'id) on märgitud loetuks.',
+	'msg_auto_folder_none' => 'On ainult %s sõnumeid sellelt/le kasutajalt/le. Midagi pole liigutatud. PS on märgitud loetuks.',
+	'msg_auto_folder_created' => 'Loodud kaust %s.',
+	'msg_auto_folder_moved' => 'Liigutatud %s sõnumi(d) kausta %s. PS(\'id) on märgitud loetuks.',
 	'msg_auto_folder_done' => 'Auto-kaustad tehtud.',
 
 
 	# Titles
-	'ft_create' => 'Kirjuta %1$s uus PS',
+	'ft_create' => 'Kirjuta %s uus PS',
 	'ft_preview' => 'Eelvaade',
 	'ft_options' => 'Sinu PS seaded',
 	'ft_ignore' => 'Lisa kedagi enda ignore-listi',
 	'ft_new_pm' => 'Kirjuta uus PS',
-	'ft_reply' => 'Vasta %1$s',
+	'ft_reply' => 'Vasta %s',
 	'ft_edit' => 'Muuda oma PS',
 	'ft_quicksearch' => 'Kiirotsing',
 	'ft_advsearch' => 'Tavaotsing',
@@ -103,23 +103,23 @@ $lang = array(
 	# Welcome PM
 //	'wpm_title' => 'Teretulemast '.GWF_SITENAME,
 //	'wpm_message' => 
-//		'Lugupeetud %1$s'.PHP_EOL.
+//		'Lugupeetud %s'.PHP_EOL.
 //		PHP_EOL.
 //		'Teretulemast '.GWF_SITENAME.''.PHP_EOL.
 //		PHP_EOL.
 //		'Me loodame, et Sulle meeldib meie sait ja et Sul saab siin meeldiv olema.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.': Uus PS %1$s',
+	'mail_subj' => GWF_SITENAME.': Uus PS %s',
 	'mail_body' =>
-		'Tervist %1$s'.PHP_EOL.
+		'Tervist %s'.PHP_EOL.
 		PHP_EOL.
 		'Sulle on uus PS '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'Title: %3$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'Title: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -127,10 +127,10 @@ $lang = array(
 		PHP_EOL.
 		'Sa võid kiiresti:'.PHP_EOL.
 		'Auto-kausta panna sõnumi:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kustutada sõnumi:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Parimate soovidega,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Robot'.PHP_EOL,
@@ -158,7 +158,7 @@ $lang = array(
 	'btn_new_folder' => 'Uus kaust',
 		
 	# v2.02
-	'msg_mail_sent' => 'Email on saadetud %1$s sisaldades sinu esialgset sõnumit.',
+	'msg_mail_sent' => 'Email on saadetud %s sisaldades sinu esialgset sõnumit.',
 		
 	# v2.03 SEO
 	'pt_pm' => 'PS',
@@ -181,10 +181,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'You can not ignore yourself.',
 	'err_folder_perm' => 'This folder is not yours.',
-	'msg_folder_deleted' => 'The Folder %1$s and %2$s message(s) got moved into the trashcan.',
+	'msg_folder_deleted' => 'The Folder %s and %s message(s) got moved into the trashcan.',
 	'cfg_pm_delete' => 'Allow to delete PM?',
 	'ft_empty' => 'Empty your Trashcan',
-	'msg_empty' => 'Your trashcan (%1$s messages) has been cleaned up.<br/>%2$s messages has/have been deleted from the database.<br/>%3$s messages are still in use by the other user and have not been deleted.',
+	'msg_empty' => 'Your trashcan (%s messages) has been cleaned up.<br/>%s messages has/have been deleted from the database.<br/>%s messages are still in use by the other user and have not been deleted.',
 
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

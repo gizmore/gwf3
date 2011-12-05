@@ -6,7 +6,7 @@ $lang = array (
 	'md_list' => GWF_SITENAME.'üzerinde özel yüklemeler.',
 	
 	# Sayfa Bilgisi
-	'pi_add' => 'en iyi kullanıcı deneyimi için öncelikle dosya upload, o oturum içine saklanan alırsınız. Daha sonra seçenekleri değiştirmez. Maksimum yükleme boyutu <br/>%1$s olarak ayarlanır.',
+	'pi_add' => 'en iyi kullanıcı deneyimi için öncelikle dosya upload, o oturum içine saklanan alırsınız. Daha sonra seçenekleri değiştirmez. Maksimum yükleme boyutu <br/>%s olarak ayarlanır.',
 	
 	# Formu Başlıklar
 	'ft_add' => 'bir dosya Yükleme',
@@ -15,7 +15,7 @@ $lang = array (
 	
 	# Hataları
 	'err_file' => 'Bir dosya yüklemek gerekiyor.',
-	'err_filename' => 'Kişisel belirtilen dosya geçersiz. Max uzunluk %1$s dir. temel ascii karakter kullanmaya çalışın.',
+	'err_filename' => 'Kişisel belirtilen dosya geçersiz. Max uzunluk %s dir. temel ascii karakter kullanmaya çalışın.',
 	'err_level' => 'kullanıcı seviyesi> = 0 olmalıdır.',
 	'err_descr' => 'açıklamasına olmak zorundadır %s-%s karakter uzunluğunda olmalıdır.',
 	'err_price' => 'fiyat arasında ve %s - %s olmalıdır.',
@@ -43,7 +43,7 @@ $lang = array (
 	'th_huname' => 'gizle adı?',
 	'th_vs_avg' => 'Oy ver',
 	'th_dl_expires' => 'Ishal dışarı',
-	'th_dl_expiretime' => 'Download geçerli %1$s için mi',
+	'th_dl_expiretime' => 'Download geçerli %s için mi',
 	'th_paid_download' =>' Bir ödeme bu dosyayı indirmek için gerekli',
 	'th_token' => 'İndir Simgesi',
 	
@@ -68,9 +68,9 @@ $lang = array (
 	'cfg_dl_minvote' => 'Min. votescore',
 	
 	# Sipariş
-	'order_title' => 'İndir %1$s (Simgesi: %2$s için token)', 
-	'order_descr' => '%1$s işareti download satın aldı. Geçerli %2$s için. Simgesi: %3$s',
-	'msg_purchased' => 'Ödemeniz alındı ve bir indirme token eklenmiştir. Your token<br/>\'%1$s\' ve %2$s için geçerlidir.<br/><b>Yaz olduğu sen at '.GWF_SITENAME.'</b><br/>sadece <a href="%3$s">hiçbir hesabınız varsa aşağıya simge</a> bu linki izleyin.',
+	'order_title' => 'İndir %s (Simgesi: %s için token)', 
+	'order_descr' => '%s işareti download satın aldı. Geçerli %s için. Simgesi: %s',
+	'msg_purchased' => 'Ödemeniz alındı ve bir indirme token eklenmiştir. Your token<br/>\'%s\' ve %s için geçerlidir.<br/><b>Yaz olduğu sen at '.GWF_SITENAME.'</b><br/>sadece <a href="%s">hiçbir hesabınız varsa aşağıya simge</a> bu linki izleyin.',
 	
 	# V2.01 (+ col)
 	'th_purchases' => 'Alımlar',
@@ -84,8 +84,8 @@ $lang = array (
 	'th_dl_guest_down' => 'Konuk yüklenebilir?',
 	'tt_dl_guest_down' => 'Mayıs misafirler bu dosyayı download?',
 	'ft_reup' => 'Yeniden yükle Dosya ',
-	'order_descr2' => 'im %1$s download için satın aldı. Simgesi: %2$s.',
-	'msg_purchased2' => 'Ödemeniz alındı ve bir indirme token eklenmiştir. Your token <br/>%1$s<br/><b>Yaz token aşağı hiçbir hesabınız varsa '.GWF_SITENAME.'!</b><br/>deki Else sadece <a href="%2$s">bu linki</a>izleyin.',
+	'order_descr2' => 'im %s download için satın aldı. Simgesi: %s.',
+	'msg_purchased2' => 'Ödemeniz alındı ve bir indirme token eklenmiştir. Your token <br/>%s<br/><b>Yaz token aşağı hiçbir hesabınız varsa '.GWF_SITENAME.'!</b><br/>deki Else sadece <a href="%s">bu linki</a>izleyin.',
 	'err_group' => 'Siz olması gerekiyor grubunun bu dosyayı indirmek için.',
 	'err_level' => 'Siz bu dosyayı indirmek için %s of userlevel ihtiyacım var.',
 	'err_guest' => 'Misafirler bu dosyayı indirmek için izniniz yok.',
@@ -104,21 +104,21 @@ $lang = array (
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

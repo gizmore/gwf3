@@ -85,7 +85,7 @@ $lang = array(
 		'Nun kannst du <b>Aim(Zielen)</b> oder <b>Shoot(Stossen)</b> anklicken. <b>Aim</b> setzt deinen Mauszeiger auf den bestmöglichen Punkt um den berechneten stoss auszuführen, so dass du selbst klicken, und dadurch die Stoss-Stärke selber angeben kannst. <b>Shoot</b> führt einen Rechtsklick auf den berechneten Punkt aus, einen Stoss mit voller Stärke.',
 
 	# Matcher
-	'matches' => '%1$s IPs wurden gefunden!',
+	'matches' => '%s IPs wurden gefunden!',
 	'ft_matcher' => 'IPs abfragen',
 	'btn_match' => 'Abfragen',
 	'err_pass' => 'Das Passwort ist nicht korrekt.',

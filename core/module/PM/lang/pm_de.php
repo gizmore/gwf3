@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Hallo %1$s',
+	'hello' => 'Hallo %s',
 	'sel_username' => 'Wählen sie einen Benutzer',
 	'sel_folder' => 'Wählen sie einen Ordner',
 
@@ -12,7 +12,7 @@ $lang = array(
 	'pi_trashcan' => 'Hier ist ihr PN-Papierkorb. Nachrichten können nicht wirklich gelöscht werden. Sie können aber Nachrichten aus dem Papierkorb wiederherstellen.',
 	
 	# Buttons
-	'btn_ignore' => '%1$s ignorieren',
+	'btn_ignore' => '%s ignorieren',
 	'btn_ignore2' => 'Ignorieren',
 	'btn_save' => 'Einstellungen Speichern',
 	'btn_create' => 'Neue PN',
@@ -34,46 +34,46 @@ $lang = array(
 	'err_perm_read' => 'Sie dürfen diese Nachricht nicht lesen.',
 	'err_perm_write' => 'Sie dürfen diese Nachricht nicht bearbeiten.',
 	'err_no_title' => 'Sie haben den Titel vergessen.',
-	'err_title_len' => 'Ihr Titel ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
+	'err_title_len' => 'Ihr Titel ist zu lang. Maximal erlaubt sind %s Zeichen.',
 	'err_no_msg' => 'Sie haben die Nachricht vergessen.',
-	'err_sig_len' => 'Ihre Signatur ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
-	'err_msg_len' => 'Ihre Nachricht ist zu lang. Maximal erlaubt sind %1$s Zeichen.',
+	'err_sig_len' => 'Ihre Signatur ist zu lang. Maximal erlaubt sind %s Zeichen.',
+	'err_msg_len' => 'Ihre Nachricht ist zu lang. Maximal erlaubt sind %s Zeichen.',
 	'err_user_no_ppm' => 'Dieser Nutzer möchte keine Gäste-PN.',
 	'err_no_mail' => 'Sie haben keine bestätigte EMail für dieses Konto angegeben.',
 	'err_pmoaf' => 'Der Wert für automatische Ordner ist ungültig.',
-	'err_limit' => 'Sie haben ihr PN Limit für heute erreicht. Sie können maximal %1$s Nachricht(en) innerhalb von %2$s senden.',
+	'err_limit' => 'Sie haben ihr PN Limit für heute erreicht. Sie können maximal %s Nachricht(en) innerhalb von %s senden.',
 
-	'err_ignored' => '%1$s ignoriert sie.<br/>%2$s',
+	'err_ignored' => '%s ignoriert sie.<br/>%s',
 	'err_delete' => 'Ein Fehler trat beim löschen ihrer PN auf.',
 	'err_folder_exists' => 'Dieser Ordner existiert bereits.',
-	'err_folder_len' => 'Der Name des Ordners muss zwischen einem und %1$s Zeichen lang sein.',
+	'err_folder_len' => 'Der Name des Ordners muss zwischen einem und %s Zeichen lang sein.',
 	'err_del_twice' => 'Sie haben diese PN bereits gelöscht.',
 	'err_folder' => 'Der Ordner ist unbekannt.',
 	'err_pm_read' => 'Ihre Nachricht wurde bereits gelesen. Sie können diese nun nicht mehr ändern.',
 
 	# Messages
 	'msg_sent' => 'Ihre Nachricht wurde erfolgreich gesendet. Sie können diese immer noch bearbeiten, bis sie gelesen wurde.',
-	'msg_ignored' => 'Sie ignorieren ab sofort Nachrichten von %1$s.',
-	'msg_unignored' => 'Sie erlauben nun wieder Nachrichten von %1$s.',
+	'msg_ignored' => 'Sie ignorieren ab sofort Nachrichten von %s.',
+	'msg_unignored' => 'Sie erlauben nun wieder Nachrichten von %s.',
 	'msg_changed' => 'Ihre Einstellungen wurden gespeichert.',
-	'msg_deleted' => 'Es wurde(n) %1$s Nachricht(en) als gelöscht markiert.',
-	'msg_moved' => 'Es wurde(n) %1$s Nachricht(en) verschoben.',
+	'msg_deleted' => 'Es wurde(n) %s Nachricht(en) als gelöscht markiert.',
+	'msg_moved' => 'Es wurde(n) %s Nachricht(en) verschoben.',
 	'msg_edited' => 'Ihre Nachricht wurde geändert.',
-	'msg_restored' => 'Es wurde(n) %1$s Nachricht(en) wiederhergestellt.',
+	'msg_restored' => 'Es wurde(n) %s Nachricht(en) wiederhergestellt.',
 	'msg_auto_folder_off' => 'Sie haben keine Automatischen Ordner aktiviert. Die PN wurde(n) als gelesen markiert.',
-	'msg_auto_folder_none' => 'Es existieren nur %1$s PN mit diesem Benutzer. Es wurde(n) keine Nachricht(en) verschoben. Die Nachricht(en) wurde als gelesen markiert.',
-	'msg_auto_folder_created' => 'Es wurde der Ordner %1$s erstellt.',
-	'msg_auto_folder_moved' => 'Es wurden %1$s Nachricht(en) nach %2$s verschoben. Die Nachrichten wurden als gelesen markiert.',
+	'msg_auto_folder_none' => 'Es existieren nur %s PN mit diesem Benutzer. Es wurde(n) keine Nachricht(en) verschoben. Die Nachricht(en) wurde als gelesen markiert.',
+	'msg_auto_folder_created' => 'Es wurde der Ordner %s erstellt.',
+	'msg_auto_folder_moved' => 'Es wurden %s Nachricht(en) nach %s verschoben. Die Nachrichten wurden als gelesen markiert.',
 	'msg_auto_folder_done' => 'Automatische Ordner Sortierung wurde ausgeführt.',
 
 
 	# Titles
-	'ft_create' => 'Eine neue Nachricht an %1$s verfassen',
+	'ft_create' => 'Eine neue Nachricht an %s verfassen',
 	'ft_preview' => 'Vorschau',
 	'ft_options' => 'Ihre PN Einstellungen',
 	'ft_ignore' => 'Jemanden Ignorieren',
 	'ft_new_pm' => 'Neue Nachricht verfassen',
-	'ft_reply' => 'Antwort an %1$s',
+	'ft_reply' => 'Antwort an %s',
 	'ft_edit' => 'Nachricht bearbeiten',
 	'ft_quicksearch' => 'Schnellsuche',
 	'ft_advsearch' => 'Erweiterte Suchfunktion',
@@ -106,23 +106,23 @@ $lang = array(
 	# Welcome PM
 	'wpm_title' => 'Willkommen auf '.GWF_SITENAME,
 	'wpm_message' => 
-		'Hallo %1$s'.PHP_EOL.
+		'Hallo %s'.PHP_EOL.
 		PHP_EOL.
 		'Willkommen auf '.GWF_SITENAME.''.PHP_EOL.
 		PHP_EOL.
 		'Wir hoffen du magst unsere Webseite und hast Spaß damit.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.': PN von %1$s',
+	'mail_subj' => GWF_SITENAME.': PN von %s',
 	'mail_body' =>
-		'Hallo %1$s'.PHP_EOL.
+		'Hallo %s'.PHP_EOL.
 		PHP_EOL.
 		'Es gibt eine neue private Nachricht für dich auf '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'Von: %2$s'.PHP_EOL.
-		'Titel: %3$s'.PHP_EOL.
+		'Von: %s'.PHP_EOL.
+		'Titel: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -130,10 +130,10 @@ $lang = array(
 		PHP_EOL.
 		'Du kannst sofort...'.PHP_EOL.
 		'Diese Nachricht automatisch einsortieren:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Diese Nachricht löschen:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Hochachtungsvoll,'.PHP_EOL.
 		'Das '.GWF_SITENAME.' Script'.PHP_EOL,
@@ -161,7 +161,7 @@ $lang = array(
 	'btn_new_folder' => 'Neuer Ordner',
 		
 	# v2.02
-	'msg_mail_sent' => 'Eine EMail mit ihrer Original Nachricht wurde an %1$s gesendet.',
+	'msg_mail_sent' => 'Eine EMail mit ihrer Original Nachricht wurde an %s gesendet.',
 		
 	# v2.03 SEO
 	'pt_pm' => 'PN',
@@ -184,10 +184,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'Sie können sich nicht selbst ignorieren.',
 	'err_folder_perm' => 'Dieser Ordner gehört Ihnen nicht.',
-	'msg_folder_deleted' => 'Der Ordner %1$s und %2$s Nachricht(en) wurde(n) in den Papierkorb verschoben.',
+	'msg_folder_deleted' => 'Der Ordner %s und %s Nachricht(en) wurde(n) in den Papierkorb verschoben.',
 	'cfg_pm_delete' => 'Löschend von PN erlauben?',
 	'ft_empty' => 'Den Papierkorb leeren',
-	'msg_empty' => 'Ihr Papierkorb (%1$s Nachricht(en)) wurde aufgeräumt.<br/>%2$s Nachricht(en) wurde(n) aus der Datenbank gelöscht.<br/>%3$s Nachricht(en) konnten nicht gelöscht werden, da der Gegenüber die Nachricht noch archiviert hat.',
+	'msg_empty' => 'Ihr Papierkorb (%s Nachricht(en)) wurde aufgeräumt.<br/>%s Nachricht(en) wurde(n) aus der Datenbank gelöscht.<br/>%s Nachricht(en) konnten nicht gelöscht werden, da der Gegenüber die Nachricht noch archiviert hat.',
 
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

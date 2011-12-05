@@ -5,17 +5,17 @@
 $lang = array(
 
 	# New Left Sidebar
-	'li_last_active' => '%1$s a atteint %2$s%% sur %3$s',
+	'li_last_active' => '%s a atteint %s%% sur %s',
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problème, Enigme, WeChall, Global, Hacker, Website,  Classement',
 	'md_wechall' => 'Apperçu des sites de challenges de Hacking et d\'énigmes. - wechall',
 
 	# TextHistory
-	'pt_texthis' => 'Historique de %1$s',
-	'pi_texthis' => 'Historique complet de l\'utilisateur %1$s.',
-	'mt_texthis' => 'WeChall, Historique, %1$s, Textuel',
-	'md_texthis' => 'Historique complet des activités sur les sites de challenge de l\'utilisateur %1$s.',
+	'pt_texthis' => 'Historique de %s',
+	'pi_texthis' => 'Historique complet de l\'utilisateur %s.',
+	'mt_texthis' => 'WeChall, Historique, %s, Textuel',
+	'md_texthis' => 'Historique complet des activités sur les sites de challenge de l\'utilisateur %s.',
 
 	# Country Ranking
 	'pt_csrank' => 'Classement par pays',
@@ -23,68 +23,68 @@ $lang = array(
 	'mt_csrank' => 'WeChall, Classement par pays, Classement Général des Pays, Hacker, Classement',
 	'md_csrank' => 'Les meilleurs pays de hackers à travers le monde sur WeChall.net',
 
-	'pt_crank' => '%1$s Classement - Page %2$s',
-	'pi_crank' => 'Les meilleurs hackers et challengers de %1$s.',
-	'mt_crank' => 'WeChall, Classement par pays, %1$s, Classement %1$s',
-	'md_crank' => 'Une liste des meilleurs hackers en %1$s.',
+	'pt_crank' => '%s Classement - Page %s',
+	'pi_crank' => 'Les meilleurs hackers et challengers de %s.',
+	'mt_crank' => 'WeChall, Classement par pays, %s, Classement %s',
+	'md_crank' => 'Une liste des meilleurs hackers en %s.',
 
 
-	'solved_by_title' => '<a href="%2$s">%1$s</a> Heroes',
-	'solved_by_text' => 'Toutes les personnes ayant résolu %1$s, triés par date de résolution.',
+	'solved_by_title' => '<a href="%s">%s</a> Heroes',
+	'solved_by_text' => 'Toutes les personnes ayant résolu %s, triés par date de résolution.',
 	'newsrow_linkt' => 'Comptes liés Aujourd\'hui',
-	'newsrow_link' => '%1$s a rattaché son compte à %2$s avec %3$s%% résolus.',
+	'newsrow_link' => '%s a rattaché son compte à %s avec %s%% résolus.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Mise à jour rapide',
 
 	# Cat Ranking
-	'pi_tagrank' => 'Les meilleurs joueurs dans la catégorie %1$s.<br/>Remarquez que tous les sites résumés ici ont des épreuves de %1$s, ce n\'est donc pas très représentatif.',
-	'pt_tagrank' => 'Classement en %1$s',
-	'mt_tagrank' => GWF_SITENAME.', %1$s, Classement, %1$s Classement',
-	'md_tagrank' => 'Classement de %1$s sur '.GWF_SITENAME.'. Page %2$s sur %3$s.',
+	'pi_tagrank' => 'Les meilleurs joueurs dans la catégorie %s.<br/>Remarquez que tous les sites résumés ici ont des épreuves de %s, ce n\'est donc pas très représentatif.',
+	'pt_tagrank' => 'Classement en %s',
+	'mt_tagrank' => GWF_SITENAME.', %s, Classement, %s Classement',
+	'md_tagrank' => 'Classement de %s sur '.GWF_SITENAME.'. Page %s sur %s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%1$s à résolu %2$s%% sur %3$s',
-	'pt_langrank' => 'Classement de %1$s - page %2$s/%3$s',
-	'pit_langrank' => 'Classement de %1$s',
-	'pi_langrank' => 'Les meilleurs joueurs sur les sites %1$s.',
+	'logo2_hover' => '%s à résolu %s%% sur %s',
+	'pt_langrank' => 'Classement de %s - page %s/%s',
+	'pit_langrank' => 'Classement de %s',
+	'pi_langrank' => 'Les meilleurs joueurs sur les sites %s.',
 	'pt_rankingc' => 'Classement par pays',
-	'mt_ranking_lang' => GWF_SITENAME.', Classement, %1$s, Challenge, Sites, Liste, Croisement, Challenge, Site, Sites',
-	'md_ranking_lang' => 'Les meilleurs hackers sur les sites %1$s enregistrés sur '.GWF_SITENAME.'. Page %2$s sur %3$s.',
+	'mt_ranking_lang' => GWF_SITENAME.', Classement, %s, Challenge, Sites, Liste, Croisement, Challenge, Site, Sites',
+	'md_ranking_lang' => 'Les meilleurs hackers sur les sites %s enregistrés sur '.GWF_SITENAME.'. Page %s sur %s.',
 
 	# User Graphs
 	'alt_challvotes' => 'Votes des Challenges',
-	'alt_graph_rank' => 'Historique du Classement pour %1$s',
-	'alt_graph_rank_vs' => 'Historique du Classement pour %1$s contre %2$s',
-	'alt_graph_totalscore' => 'Graphe du Score Total pour %1$s',
-	'alt_graph_totalscore_vs' => 'Graphe du Score Total pour %1$s contre %2$s',
+	'alt_graph_rank' => 'Historique du Classement pour %s',
+	'alt_graph_rank_vs' => 'Historique du Classement pour %s contre %s',
+	'alt_graph_totalscore' => 'Graphe du Score Total pour %s',
+	'alt_graph_totalscore_vs' => 'Graphe du Score Total pour %s contre %s',
 
 	# Site graphs
-	'it_graph_sitescore' => 'Historique du score pour le site %1$s',
-	'it_graph_siteusers' => 'Nombre d\'Utilisateurs de %1$s',
-	'it_graph_sitechalls' => 'Nombre de Challenges sur %1$s',
+	'it_graph_sitescore' => 'Historique du score pour le site %s',
+	'it_graph_siteusers' => 'Nombre d\'Utilisateurs de %s',
+	'it_graph_sitechalls' => 'Nombre de Challenges sur %s',
 
 	# Sitemaster News
 	'mnews_title' => 'Sitemaster News',
-	'mnews_body' => 'Certains joueurs ont atteint 100%% sur un site de challenge. Félicitations :)'.PHP_EOL.'Vous pouvez [url=%1$s]voir les sitemasters ici[/url].',
-	'mnews_item' => '[url=/profile/%1$s]%1$s[/url] a atteint 100%% sur [url=%2$s]%3$s[/url] après %4$s de temps depuis la liaison, ayant commencé le %5$s.',
+	'mnews_body' => 'Certains joueurs ont atteint 100%% sur un site de challenge. Félicitations :)'.PHP_EOL.'Vous pouvez [url=%s]voir les sitemasters ici[/url].',
+	'mnews_item' => '[url=/profile/%s]%s[/url] a atteint 100%% sur [url=%s]%s[/url] après %s de temps depuis la liaison, ayant commencé le %s.',
 
 	# Challenge News
 	'cnews_title' => 'Il y a de nouveaux Challenges',
-	'cnews_body' => 'De nouveaux challenges sont disponibles sur certains sites pour lesquels vous êtes lié:'.PHP_EOL.'[url=%1$s]Cliquez ici pour marquer comme lu[/url]'.PHP_EOL.PHP_EOL,
-	'cnews_item' => 'Il y a %1$s nouveau(x) chall(s) sur %2$s (%3$s au total dorénavant)',
+	'cnews_body' => 'De nouveaux challenges sont disponibles sur certains sites pour lesquels vous êtes lié:'.PHP_EOL.'[url=%s]Cliquez ici pour marquer comme lu[/url]'.PHP_EOL.PHP_EOL,
+	'cnews_item' => 'Il y a %s nouveau(x) chall(s) sur %s (%s au total dorénavant)',
 
 	# Birthday News!
 	'bdnews_title' => 'Joyeux anniversaire!',
-	'bdnews_body_init' => 'Les utilisateurs suivants ont fêté leur anniversaire cette semaine:'.PHP_EOL.'[url=%1$s]Cliquez ici pour marquer comme lu[/url]'.PHP_EOL.PHP_EOL,
+	'bdnews_body_init' => 'Les utilisateurs suivants ont fêté leur anniversaire cette semaine:'.PHP_EOL.'[url=%s]Cliquez ici pour marquer comme lu[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Hier',
 	'Today' => 'Aujourd\'hui',
 	'Yesterday' => 'Hier',
-	'OtherDay' => 'Ce %1$s',
+	'OtherDay' => 'Ce %s',
 
-	'fav_links' => '%1$s a %2$s liens favoris',
-	'own_links' => '%1$s a proposé %2$s liens publiques',
-	'logo_hover' => 'Logo de %1$s',
+	'fav_links' => '%s a %s liens favoris',
+	'own_links' => '%s a proposé %s liens publiques',
+	'logo_hover' => 'Logo de %s',
 
 	'site_dot_red' => 'Indisponible Actuellement',
 	'site_dot_green' => 'En ligne et Fonctionnel',
@@ -101,22 +101,22 @@ $lang = array(
 	'pt_sites_2' => 'Cimetière des Sites de Challenges',
 	'pt_sites_3' => 'Sites de Challenges nous rejoignant bientôt',
 	'pt_sites_4' => 'Sites de Challenges non classés sur WeChall',
-	'pt_site_ranking' => 'Classement %1$s - Page %2$s',
-	'pt_ranking' => 'Classement Général - Page %1$s',
+	'pt_site_ranking' => 'Classement %s - Page %s',
+	'pt_ranking' => 'Classement Général - Page %s',
 
 	# Meta Description
-	'md_profile' => 'Profil WeChall de %1$s | Rang %2$s | Jouant sur %3$s Sites | Sites de Challenge pour Hackers',
+	'md_profile' => 'Profil WeChall de %s | Rang %s | Jouant sur %s Sites | Sites de Challenge pour Hackers',
 
 	# Meta Tags
 	'mt_ranking' => 'un Classment Général pour les Sites de Challenges de Hacking et leur apperçu',
-	'mt_site_ranking' => 'WeChall, Site, Classement, %1$s, Page %2$s',
-	'md_site_ranking' => 'WeChall - liste des classements d\'utilisateurs de %1$s - page %2$s',
-	'mt_challs' => '%1$s, Ordinateur, Hackit, Challenges, Challenge, Problèmes, WeChall, Non Simulé.',
-	'md_challs' => 'Challenges de %1$s sur WeChall.',
-	'mt_challs_for' => '%1$s, Ordinateur, Hackit, Challenge, Overview, %2$s, WeChall',
-	'md_challs_for' => 'Apperçu du Challenge %1$s pour %2$s sur WeChall.',
-	'mt_challs_from' => '%1$s, Ordinateur, Hackit, Challenge, %2$s, WeChall',
-	'md_challs_from' => 'Challenges créés par %1$s sur WeChall.',
+	'mt_site_ranking' => 'WeChall, Site, Classement, %s, Page %s',
+	'md_site_ranking' => 'WeChall - liste des classements d\'utilisateurs de %s - page %s',
+	'mt_challs' => '%s, Ordinateur, Hackit, Challenges, Challenge, Problèmes, WeChall, Non Simulé.',
+	'md_challs' => 'Challenges de %s sur WeChall.',
+	'mt_challs_for' => '%s, Ordinateur, Hackit, Challenge, Overview, %s, WeChall',
+	'md_challs_for' => 'Apperçu du Challenge %s pour %s sur WeChall.',
+	'mt_challs_from' => '%s, Ordinateur, Hackit, Challenge, %s, WeChall',
+	'md_challs_from' => 'Challenges créés par %s sur WeChall.',
 	'mt_sites_1' => 'WeChall, Participation, Actif, Challenge, Sites',
 	'md_sites_1' => 'Sites de challenges participants et actifs listés sur WeChall.',
 	'mt_sites_2' => 'WeChall, Challenge, Site, Cimetière',
@@ -129,46 +129,46 @@ $lang = array(
 	# Info
 	'pt_graveyard' => 'Cimetière',
 	'pi_graveyard' => 'Ces sites furent actifs mais ne sont malheureusement plus avec nous.',
-	'pi_login_link' => '<a href="%1$s">Cliquez ici pour retourner à votre dernier emplacement: %1$s</a>',
+	'pi_login_link' => '<a href="%s">Cliquez ici pour retourner à votre dernier emplacement: %s</a>',
 	'pi_site_urls' => 'Les urls du script remplacent %USERNAME%, %EMAIL%% et %AUTHKEY%%.',
-	'pi_ug_info' => '%1$s est le créateur du groupe &quot;%2$s&quot;, contenant %3$s membres.',
-	'pi_ug_join' => 'Vous pouvez <a href="%1$s">rejoindre un groupe en cliquant ici</a>.',
-	'pi_ug_register' => 'Vous devez vous <a href="%1$s">enregistrer</a> pour rejoindre des groupes.',
+	'pi_ug_info' => '%s est le créateur du groupe &quot;%s&quot;, contenant %s membres.',
+	'pi_ug_join' => 'Vous pouvez <a href="%s">rejoindre un groupe en cliquant ici</a>.',
+	'pi_ug_register' => 'Vous devez vous <a href="%s">enregistrer</a> pour rejoindre des groupes.',
 	'pit_ranking' => 'Classement Général',
 	'pi_ranking' => 'Les meilleurs hackers et amateurs de challenges à travers le monde (qui sont enregistrés sur wechall)',
-	'pi_viewcount' => 'Cette page a été visualisée %1$s fois.',
+	'pi_viewcount' => 'Cette page a été visualisée %s fois.',
 
 	# Header
-	'a_title' => 'Score Total: %1$s',
+	'a_title' => 'Score Total: %s',
 	'head_sites' => 'Derniers Sites',
-	'head_users' => '<a href="%1$s">Derniers Inscrits</a>',
-	'head_online' => '%1$s en Ligne',
+	'head_users' => '<a href="%s">Derniers Inscrits</a>',
+	'head_online' => '%s en Ligne',
 
 	# Challenge
-	'chall_solvecount' => 'Résolu par %1$s personnes',
+	'chall_solvecount' => 'Résolu par %s personnes',
 	'chall_added' => 'depuis',
 
 	# Table Titles
-	'tt_challs' => 'Challenges de %1$s',
-	'tt_challs_for' => 'Aperçu des challenges de %1$s pour %2$s',
-	'tt_challs_from' => 'Challenges de %3$s %1$s apportés par %2$s',
+	'tt_challs' => 'Challenges de %s',
+	'tt_challs_for' => 'Aperçu des challenges de %s pour %s',
+	'tt_challs_from' => 'Challenges de %s %s apportés par %s',
 
 	# Form Titles
-	'ft_solution' => 'Votre solution pour %1$s',
+	'ft_solution' => 'Votre solution pour %s',
 	'ft_edit_chall' => 'Editer ce Challenge',
 	'ft_link_site' => 'Associer un Site a votre Compte',
 	'ft_linked_sites' => 'Vos Sites Rattachés',
 	'ft_add_site' => 'Ajouter un nouveau site',
-	'ft_edit_site' => 'Editer %1$s',
-	'ft_edit_site_logo' => 'Editer le Logo de %1$s',
+	'ft_edit_site' => 'Editer %s',
+	'ft_edit_site_logo' => 'Editer le Logo de %s',
 	'ft_edit_site_admin' => 'Ajouter ou Supprimer un Admin',
-	'ft_vote_chall' => 'Vote pour l\'épreuve %1$s',
+	'ft_vote_chall' => 'Vote pour l\'épreuve %s',
 
 	# Graph Titles
-	'gt_site_sitehist_score' => 'Graphe des Points de %1$s',
-	'gt_site_sitehist_usercount' => 'Nombre d\'utilisateur sur %1$s',
-	'gt_site_sitehist_challcount' => 'Nombre d\'épreuves sur %1$s',
-	'gt_user_level' => 'Graphe du Total de Points de %1$s',
+	'gt_site_sitehist_score' => 'Graphe des Points de %s',
+	'gt_site_sitehist_usercount' => 'Nombre d\'utilisateur sur %s',
+	'gt_site_sitehist_challcount' => 'Nombre d\'épreuves sur %s',
+	'gt_user_level' => 'Graphe du Total de Points de %s',
 
 	# Menu
 	'menu_news' => 'News',
@@ -187,26 +187,26 @@ $lang = array(
 	'menu_admin' => 'Admin',
 	# Right Panel
 	'rp_stats' => 'Statistiques',
-	'rp_sitecount' => '%1$s Sites',
-	'rp_challcount' => '%1$s Challs',
-	'rp_postcount' => '%1$s Posts',
-	'rp_usercount' => '%1$s Utilisateurs',
-	'rp_sites' => '%1$s Sites Actifs',
-	'rp_topusers' => 'Top %1$s',
-	'rp_last_active' => 'Les %1$s Dernières Activités',
+	'rp_sitecount' => '%s Sites',
+	'rp_challcount' => '%s Challs',
+	'rp_postcount' => '%s Posts',
+	'rp_usercount' => '%s Utilisateurs',
+	'rp_sites' => '%s Sites Actifs',
+	'rp_topusers' => 'Top %s',
+	'rp_last_active' => 'Les %s Dernières Activités',
 	#Left Panel
-	'lp_last_online' => 'En ligne depuis %1$s',
-	'lp_last_online2' => '<a href="%1$s">%2$s Utilisateurs</a>',
+	'lp_last_online' => 'En ligne depuis %s',
+	'lp_last_online2' => '<a href="%s">%s Utilisateurs</a>',
 	'lp_language' => 'Langue',
 
 	# Footer
 	'footer_1' => '©2008-2011 wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Tout le code</a> est soumis aux conditions de la <a href="'.GWF_WEB_ROOT.'wechall_license">License Publique de WeChall</a>; Vous pouvez <a href="'.GWF_WEB_ROOT.'contact">nous contacter ici</a>.',
-	'footer_2' => '- Il y a eu %1$s utilisateurs en ligne le %2$s - %3$s pages ont été déservies jusqu\'à maintenant -',
+	'footer_2' => '- Il y a eu %s utilisateurs en ligne le %s - %s pages ont été déservies jusqu\'à maintenant -',
 
 
 	# Register
-	'register_tos' => 'En vous enregistrant sur WeChall.net vous acceptez la <a href="%1$s">license et les conditions d\'utilisation</a>.',
-	'register_forgot' => 'Si vous avez oublié votre mot de passe, ou que le mail d\'activation n\'est pas arrivé, <a href="%1$s">cliquez ici</a>.',
+	'register_tos' => 'En vous enregistrant sur WeChall.net vous acceptez la <a href="%s">license et les conditions d\'utilisation</a>.',
+	'register_forgot' => 'Si vous avez oublié votre mot de passe, ou que le mail d\'activation n\'est pas arrivé, <a href="%s">cliquez ici</a>.',
 
 	# Admin Config
 
@@ -264,7 +264,7 @@ $lang = array(
 	'th_regat_onsitename' => 'Nom d\'utilisateur',
 	'th_regat_onsitescore' => 'Pourcent',
 	'th_auto_update' => 'Mise à Jour Automatique',
-	'th_latest_players' => 'Les %1$s derniers joueurs actifs, triés par dernière mise à jour (%2$s)',
+	'th_latest_players' => 'Les %s derniers joueurs actifs, triés par dernière mise à jour (%s)',
 	'th_solution' => 'Réponse',
 	'th_chall_votecount' => 'Votes',
 	'th_user_level' => 'Score Total',
@@ -276,7 +276,7 @@ $lang = array(
 	'th_rank' => '#',
 	'th_rank2' => 'Classement Général',
 	'th_crank' => 'Classement par Pays',
-	'th_last_activites' => 'Dernières activités de %1$s',
+	'th_last_activites' => 'Dernières activités de %s',
 	'th_progress' => 'Progrès',
 	'th_num_linked' => 'Sites',
 	'th_favsites' => 'Sites préférés',
@@ -291,45 +291,45 @@ $lang = array(
 	'th_top_player' => 'Meilleurs Joueurs',
 
 	# Errors
-	'err_parse_stub' => 'La méthode parseStats() n\'est pas implémentée pour le Site %1$s.<br/>Implementez-la s\'il vous plaît, merci',
+	'err_parse_stub' => 'La méthode parseStats() n\'est pas implémentée pour le Site %s.<br/>Implementez-la s\'il vous plaît, merci',
 	'err_password' => 'Votre mot de passe est faux !',
 	'err_wrong' => 'Doh\', Votre réponse semble erronée !',
 	'err_chall' => 'Cette épreuve est inconnue.',
 	'err_chall_score' => 'Les points pour une épreuve doivent être compris entre 1 et 10.',
-	'err_chall_creator' => 'Les créateurs suivants sont inconnus: %1$s.',
-	'err_chall_tags' => 'Les tags suivants sont invalides: %1$s.',
+	'err_chall_creator' => 'Les créateurs suivants sont inconnus: %s.',
+	'err_chall_tags' => 'Les tags suivants sont invalides: %s.',
 	'err_chall_url' => 'L\URL de l\'épreuve est invalide.',
-	'err_site_down' => 'La mise à jour a échouée. %1$s semble mort.',
+	'err_site_down' => 'La mise à jour a échouée. %s semble mort.',
 	'err_site_dup' => 'Le nom de site existe déjà.',
 	'err_classname_dup' => 'Ce nom de classe existe déjà pour un site.',
 	'err_site' => 'Ce Site de Challenges est inconnu.',
-	'err_site_name' => 'Le nom du Site est invalide. Il doit contenir entre %1$s et %2$s caractères.',
-	'err_site_classname' => 'La Classe du Site est invalide. Elle doit contenir entre %1$s et %2$s caractères ascii.',
-	'err_not_linked' => 'Vous n\'êtes pas relié à %1$s.',
-	'err_site_basescore' => 'Le Score de Base du Site doit être entre %1$s et %2$s.',
-	'err_site_usercount' => 'Le nombre d\'utilisateurs du Site doit être entre %1$s et %2$s.',
-	'err_site_challcount' => 'Le nombre d\'épreuves du Site doit être entre %1$s et %2$s.',
+	'err_site_name' => 'Le nom du Site est invalide. Il doit contenir entre %s et %s caractères.',
+	'err_site_classname' => 'La Classe du Site est invalide. Elle doit contenir entre %s et %s caractères ascii.',
+	'err_not_linked' => 'Vous n\'êtes pas relié à %s.',
+	'err_site_basescore' => 'Le Score de Base du Site doit être entre %s et %s.',
+	'err_site_usercount' => 'Le nombre d\'utilisateurs du Site doit être entre %s et %s.',
+	'err_site_challcount' => 'Le nombre d\'épreuves du Site doit être entre %s et %s.',
 	'err_site_joindate' => 'La date de rattachement du Site est invalide.',
 	'err_site_launchdate' => 'La date de lancement du Site est invalide.',
-	'err_site_authkey' => 'La clé d\'authentification du Site est invalide. Max %2$s caractères de long.',
-	'err_site_xauthkey' => 'La X-Authkey est invalide. Max %2$s caractères de long.',
-	'err_site_url' => 'L\'URL du Site est invalide. Elle doit avoir entre %1$s et %2$s caractères.',
-	'err_site_url_mail' => 'L\'URL d\'authentification du Site est invalide. Elle doit avoir %1$s à %2$s caractères de long.',
-	'err_site_url_score' => 'L\'URL des Points du Site est invalide. Elle doit avoir entre %1$s et %2$s caractères de long.',
-	'err_site_url_profile' => 'L\'URL de Profil du Site est invalide. Elle doit avoir entre %1$s et %2$s caractères de long.',
-	'err_site_description' => 'La description du Site est invalide. Max %2$s caractères.',
-	'err_site_irc'  => 'Le serveur IRC du Site est invalide. Il doit avoir %1$s à %2$s caractères de long.',
+	'err_site_authkey' => 'La clé d\'authentification du Site est invalide. Max %s caractères de long.',
+	'err_site_xauthkey' => 'La X-Authkey est invalide. Max %s caractères de long.',
+	'err_site_url' => 'L\'URL du Site est invalide. Elle doit avoir entre %s et %s caractères.',
+	'err_site_url_mail' => 'L\'URL d\'authentification du Site est invalide. Elle doit avoir %s à %s caractères de long.',
+	'err_site_url_score' => 'L\'URL des Points du Site est invalide. Elle doit avoir entre %s et %s caractères de long.',
+	'err_site_url_profile' => 'L\'URL de Profil du Site est invalide. Elle doit avoir entre %s et %s caractères de long.',
+	'err_site_description' => 'La description du Site est invalide. Max %s caractères.',
+	'err_site_irc'  => 'Le serveur IRC du Site est invalide. Il doit avoir %s à %s caractères de long.',
 	'err_site_tags'  => 'Un ou plusieurs tags de site est/sont invalide(s). (3-32 caractères alphanumériques, commencant par une lettre, sensible à la casse).',
-	'err_write_logo' => 'Impossible d\'écrire le logo sur %1$s.',
+	'err_write_logo' => 'Impossible d\'écrire le logo sur %s.',
 	'err_no_logo' => 'Le fichier envoyé n\'est pas une image.',
 	'err_email' => 'Votre EMail semble invalide.',
-	'err_link_account' => 'La combinaison Utilisateur/EMail ne semble pas exister sur %1$s.',
-	'err_already_linked' => 'Vous êtes déjà relié à %1$s.',
-	'err_sitemin_dup' => 'L\'utilisateur %1$s est déjà administrateur sur %2$s.',
-	'err_onsitename' => 'Le nom d\'utilisateur n\'existe pas sur %1$s.',
-	'err_response' => '<pre>%1$s</pre> n\'est pas une réponse valide de %2$s.',
-	'err_already_linked' => 'Vous êtes déjà relié à %1$s.',
-	'err_already_linked2' => 'L\'utilisateur %1$s est déjà relié à %2$s.',
+	'err_link_account' => 'La combinaison Utilisateur/EMail ne semble pas exister sur %s.',
+	'err_already_linked' => 'Vous êtes déjà relié à %s.',
+	'err_sitemin_dup' => 'L\'utilisateur %s est déjà administrateur sur %s.',
+	'err_onsitename' => 'Le nom d\'utilisateur n\'existe pas sur %s.',
+	'err_response' => '<pre>%s</pre> n\'est pas une réponse valide de %s.',
+	'err_already_linked' => 'Vous êtes déjà relié à %s.',
+	'err_already_linked2' => 'L\'utilisateur %s est déjà relié à %s.',
 	'err_chall_vote' => 'Vous devez d\'abord résoudre l\'épreuve.',
 	'err_dif' => 'Votre valeur de difficulté est en dehors des limites (0-10).',
 	'err_edu' => 'Votre valeur pour la pédagogie est en dehors des limites (0-10).',
@@ -350,36 +350,36 @@ $lang = array(
 	'site_state_coming_soon' => 'A Venir',
 
 	# Messages
-	'msg_correct' => 'Votre réponse est correcte. Félicitations pour avoir réussi cette épreuve.<br/>Merci <a href="%1$s">de noter cette épreuve</a>.<br/>Tu dois acéder a <a href="%2$s">la solution</a> pour ce challenge.',
+	'msg_correct' => 'Votre réponse est correcte. Félicitations pour avoir réussi cette épreuve.<br/>Merci <a href="%s">de noter cette épreuve</a>.<br/>Tu dois acéder a <a href="%s">la solution</a> pour ce challenge.',
 	'msg_correct_alpha' => 'Votre réponse est correcte, mais l\'épreuve n\'est pas installée pour l\'instant.',
-	'msg_correct_again' => 'Votre réponse est correcte mais vous avez déjà résolu cette épreuve.<br/>Avez vous déjà <a href="%1$s">noté cette épreuve</a> ?',
+	'msg_correct_again' => 'Votre réponse est correcte mais vous avez déjà résolu cette épreuve.<br/>Avez vous déjà <a href="%s">noté cette épreuve</a> ?',
 	'msg_correct_guest' => 'Votre réponse est correcte. Pour garder une trace de votre progrès vous devez vous enregistrer.',
 	'msg_chall_edited' => 'L\'épreuve a été éditée.',
-	'msg_chall_installed' => 'L\'épreuve %1$s a été installée est est prête à être résolue :)',
+	'msg_chall_installed' => 'L\'épreuve %s a été installée est est prête à être résolue :)',
 	'msg_chall_deleted' => 'L\'épreuve a été supprimée.',
 	'msg_cached_ctags' => 'Le nuage de Tags de l\épreuve a été repopularisé.',
 	'msg_site_added' => 'Un nouveau site de challenges a été ajouté.',
-	'msg_site_edited' => 'Le Site %1$s a été édité.',
-	'msg_site_recalc' => 'Re-calcul de tous les Points pour %1$s.',
+	'msg_site_edited' => 'Le Site %s a été édité.',
+	'msg_site_recalc' => 'Re-calcul de tous les Points pour %s.',
 	'msg_sites_recalc' => 'Re-calcul de tous les Points.',
-	'msg_site_linked' => 'Votre compte sur %1$s a été rattaché à wechall avec succès.',
-	'msg_site_unlinked' => 'Votre compte sur %1$s a été détaché de wechall avec succès.',
-	'msg_hide_sitename_1' => 'Votre nom d\'utilisateur sur %1$s est maintenant caché.',
-	'msg_hide_sitename_0' => 'Votre nom d\'utilisateur sur %1$s est mainteant affiché.',
-	'msg_updating' => 'Mise à jour de vos stats de %1$s.',
-	'msg_sitemin_add' => '%1$s a été ajouté comme Administrateur du Site %2$s.',
-	'msg_sitemin_rem' => '%1$s n\'est plus administrateur du site %2$s.',
+	'msg_site_linked' => 'Votre compte sur %s a été rattaché à wechall avec succès.',
+	'msg_site_unlinked' => 'Votre compte sur %s a été détaché de wechall avec succès.',
+	'msg_hide_sitename_1' => 'Votre nom d\'utilisateur sur %s est maintenant caché.',
+	'msg_hide_sitename_0' => 'Votre nom d\'utilisateur sur %s est mainteant affiché.',
+	'msg_updating' => 'Mise à jour de vos stats de %s.',
+	'msg_sitemin_add' => '%s a été ajouté comme Administrateur du Site %s.',
+	'msg_sitemin_rem' => '%s n\'est plus administrateur du site %s.',
 	'msg_no_change' => 'Rien n\'a été modifié.',
 	'msg_chall_voted' => 'Merci d\'avoir voté.',
-	'msg_created_gb' => 'Votre livre d\'or a été créé. Vous pouvez <a href="%1$s">le configurer ici</a>.',
+	'msg_created_gb' => 'Votre livre d\'or a été créé. Vous pouvez <a href="%s">le configurer ici</a>.',
 	'msg_bd_marked' => 'Les anniversaires de cette semaine ont tous été marqués comme lus.',
 	'msg_challs_marked' => 'Les news de Challenges ont été marquées comme lues.',
-	'msg_marked_fav' => '%1$s est maintenant marqué comme un de vos sites favoris.',
-	'msg_unmarked_fav' => '%1$s n\'est plus un de vos sites favoris.',
+	'msg_marked_fav' => '%s est maintenant marqué comme un de vos sites favoris.',
+	'msg_unmarked_fav' => '%s n\'est plus un de vos sites favoris.',
 
 	# Buttons
-	'btn_pm' => 'PM %1$s',
-	'btn_email' => 'Envoyer l\'EMail à %1$s',
+	'btn_pm' => 'PM %s',
+	'btn_email' => 'Envoyer l\'EMail à %s',
 	'btn_solve' => 'Envoi',
 	'btn_link' => 'Lier un Site',
 	'btn_linked_sites' => 'Sites Liés',
@@ -422,20 +422,20 @@ $lang = array(
 	'btn_view_groups' => 'Afficher les groupes',
 
 	# Challenge->Forum
-	'chall_help_desc' => 'Aide pour l\'épreuve %1$s',
-	'chall_solution_desc' => 'Solutions de l\'épreuve %1$s',
+	'chall_help_desc' => 'Aide pour l\'épreuve %s',
+	'chall_solution_desc' => 'Solutions de l\'épreuve %s',
 
 	
 		
 	# EMail on Link Site
-	'mail_link_subj' => GWF_SITENAME.': Rattacher le compte à %1$s',
+	'mail_link_subj' => GWF_SITENAME.': Rattacher le compte à %s',
 	'mail_link_body' => 
-		'Bonjour %1$s'.PHP_EOL.
+		'Bonjour %s'.PHP_EOL.
 		PHP_EOL.
-		'Il semblerait que vous essayez de relier votre compte %2$s à '.GWF_SITENAME.'.'.PHP_EOL.
+		'Il semblerait que vous essayez de relier votre compte %s à '.GWF_SITENAME.'.'.PHP_EOL.
 		'Pour confirmer que vous êtes bien le propriétaire de ce compte, merci de visiter le lien suivant.'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Si vous n\'avez pas demandé de rattacher votre compte, vous pouvez nous le signaler en envoyant un mail à '.GWF_ADMIN_EMAIL.', ou simplement l\'ignorer.'.PHP_EOL.
 		PHP_EOL.
@@ -467,9 +467,9 @@ $lang = array(
 	'th_sel_favsite' => 'Sélectionner un site',
 	'btn_add_favsite' => 'Ajouter',
 	
-	'pt_site_detail' => '%1$s Détails',
-	'mt_site_detail' => '%1$s, Challenge, Site, Détails, Aperçu, WeChall',
-	'md_site_detail' => 'Détails du site de challenges %1$s sur WeChall',
+	'pt_site_detail' => '%s Détails',
+	'mt_site_detail' => '%s, Challenge, Site, Détails, Aperçu, WeChall',
+	'md_site_detail' => 'Détails du site de challenges %s sur WeChall',
 	
 	# Statgraph
 	'err_end_date' => 'La date de fin est invalide.',
@@ -478,7 +478,7 @@ $lang = array(
 	# Join Box
 	'sites_join_t' => 'Comment ajouter d\'autres sites à WeChall',
 	'sites_join_b' => 
-		'Si vous êtes administrateur d\'un site de challenges, merci de lire <a href="%1$s">join.php</a>.<br/>'.
+		'Si vous êtes administrateur d\'un site de challenges, merci de lire <a href="%s">join.php</a>.<br/>'.
 		'Si vous voulez que votre site favori soit ajouté vous pouvez tenter de contacter ses administrateurs.<br/>'.
 		'Merci de ne pas poster à propos de WeChall dans leurs forums publiques, rédigez leur plutôt un email ou un message privé.',
 		
@@ -489,26 +489,26 @@ $lang = array(
 	
 	# v4.02 (Freeze)
 	'err_frozen' => 'Votre compte est bloqué. Vous n\'êtes pas autorisé à vous dé-linker des sites.',
-	'err_site_ban' => 'Vous êtes officiellement banni de  %1$s. Vous ne devriez pas le linker.',
+	'err_site_ban' => 'Vous êtes officiellement banni de  %s. Vous ne devriez pas le linker.',
 	'ft_freeze' => 'Marquer un utilisateur banni sur un site',
 	'btn_freeze' => 'Bloquer',
 	'btn_unfreeze' => 'Supprimer',
-	'msg_frozen' => 'L\'utilisateur %1$s est maintenant marqué comme étant banni de %2$s.',
-	'msg_unfrozen' => 'L\'utilisateur %1$s a été débanni de %2$s.',
+	'msg_frozen' => 'L\'utilisateur %s est maintenant marqué comme étant banni de %s.',
+	'msg_unfrozen' => 'L\'utilisateur %s a été débanni de %s.',
 	
 	# v4.03 (finish)
 	'err_bot_challenge' => 'Les Bots ne sont pas autorisés à résoudre les challenges.',
-	'scorefaq_box' => 'Comment <a href="%1$s">le système des points</a> fonctionne-t-il sur WeChall',
+	'scorefaq_box' => 'Comment <a href="%s">le système des points</a> fonctionne-t-il sur WeChall',
 		
 	# v4.04 (fixes+stats)
 	'msg_linkmail_sent' => 'Un email a été envoyé à votre adresse mail. Veullez suivre les instructions afin de linker votre compte.',
 	
-	'pt_stats' => 'Stats pur %1$s',
-	'md_stats' => GWF_SITENAME.' statistiques pour %1$s.',
-	'mt_stats' => GWF_SITENAME.', Stats, Statistiques, %1$s, Graphes',
-	'pt_stats2' => 'Stats pour %1$s vs %2$s',
-	'md_stats2' => GWF_SITENAME.' statistiques pour %1$s versus %2$s.',
-	'mt_stats2' => GWF_SITENAME.', Stats, Statistiques, %1$s, versus, %2$s, Graphes',
+	'pt_stats' => 'Stats pur %s',
+	'md_stats' => GWF_SITENAME.' statistiques pour %s.',
+	'mt_stats' => GWF_SITENAME.', Stats, Statistiques, %s, Graphes',
+	'pt_stats2' => 'Stats pour %s vs %s',
+	'md_stats2' => GWF_SITENAME.' statistiques pour %s versus %s.',
+	'mt_stats2' => GWF_SITENAME.', Stats, Statistiques, %s, versus, %s, Graphes',
 	
 	'stat_high' => 'Haut classé',
 	'stat_med' => 'Moyennement classé',
@@ -522,9 +522,9 @@ $lang = array(
 	# v4.02
 	'btn_all_sites' => 'Tous les sites',
 	'pt_sites_5' => 'Tous les Sites sur '.GWF_SITENAME,
-	'pt_sites_5_tagged' => 'Sites avec %1$s challenges sur '.GWF_SITENAME,
+	'pt_sites_5_tagged' => 'Sites avec %s challenges sur '.GWF_SITENAME,
 	'th_site_country_detail' => 'Pays d\'origine des Sites',
-	'site_detail_uinfo' => '%1$s a un score de %2$s/%3$s sur %4$s (%5$s%). Classé %6$s au sein de '.GWF_SITENAME.', avec comme score %7$s points.', 
+	'site_detail_uinfo' => '%s a un score de %s/%s sur %s (%s%). Classé %s au sein de '.GWF_SITENAME.', avec comme score %s points.', 
 		
 	# v4.03
 	'ft_signup' => 'S\'enregistrer',
@@ -532,14 +532,14 @@ $lang = array(
 	'th_bind_ip' => 'Restreindre la session à cette IP',
 	'btn_forgot_pw' => 'Mot de passe oublié',
 	'btn_login' => 'Connexion',
-	'bd_over' => 'Dernière %1$s',
-	'bd_soon' => 'Suivant %1$s',
+	'bd_over' => 'Dernière %s',
+	'bd_soon' => 'Suivant %s',
 		
 	'btn_close' => 'Fermer',
 	'btn_guestbook' => 'Livre d\'or',
 		
 	# v4.04 
-	'err_site_down' => '%1$s est actuellement down.',
+	'err_site_down' => '%s est actuellement down.',
 
 	# v4.05 (Private History)
 	'ft_settings' => GWF_SITENAME.' Réglages',
@@ -551,13 +551,13 @@ $lang = array(
 	'msg_priv_hist_1' => 'Votre historique est maintenant un peu plus privé et n\'affiche pas les dates de votre dernière activité.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Compte linké à %1$s avec %3$s%% (%2$s points)',
-	'userhist_unlink' => 'Compte délinké de %1$s (%2$s points)',
-	'userhist_gain' => 'Gagné %4$s%% sur %1$s (%2$s points)',
-	'userhist_lost' => 'Perdu %4$s%% sur %1$s (%2$s points)',
-	'userhist_ban' => 'A été banni sur %1$s (%2$s points)',
-	'userhist_unban' => 'A été débanni de %1$s',
-	'userhist_unknown' => 'A mis à jour son compte sur %1$s',
+	'userhist_link' => 'Compte linké à %s avec %s%% (%s points)',
+	'userhist_unlink' => 'Compte délinké de %s (%s points)',
+	'userhist_gain' => 'Gagné %s%% sur %s (%s points)',
+	'userhist_lost' => 'Perdu %s%% sur %s (%s points)',
+	'userhist_ban' => 'A été banni sur %s (%s points)',
+	'userhist_unban' => 'A été débanni de %s',
+	'userhist_unknown' => 'A mis à jour son compte sur %s',
 
 	# v4.07 (More settings)
 	'tt_no_xss' => 'You can exclude yourself from certain cross-site-requests, done via the WeChall API.',
@@ -580,23 +580,23 @@ $lang = array(
 	'btn_site_details' => 'Details',
 
 	# v4.10 (hardlink)
-	'msg_hardlinked' => 'L\'utilisateur %1$s a été linké à  %2$s avec le pseudo %3$s.',
-	'err_onsitename_taken' => 'Le pseudo %1$s sur %2$s est déja utilisé par %3$s.',
+	'msg_hardlinked' => 'L\'utilisateur %s a été linké à  %s avec le pseudo %s.',
+	'err_onsitename_taken' => 'Le pseudo %s sur %s est déja utilisé par %s.',
 
 	# v4.11
-	'err_solution_block' => 'Vous avez entré trop de réponses dans un court laps de temps. Veuillez attendre %1$s jusqu\'a ce que vous entriez votre prochaine réponse.',
+	'err_solution_block' => 'Vous avez entré trop de réponses dans un court laps de temps. Veuillez attendre %s jusqu\'a ce que vous entriez votre prochaine réponse.',
 
-	'err_link_account_hts' => 'La combinaison Utilisateur/EMail ne semble pas exister sur %1$s.<br/>Pour HTS vous devez activer explicitement votre compte wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'La combinaison Utilisateur/EMail ne semble pas exister sur %s.<br/>Pour HTS vous devez activer explicitement votre compte wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 
 	'th_spc' => 'SpC',
 
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Votre solution de longueur %1$s a été insérée dans la base de données.<br/>Vous devriez <a href="%2$s">chercher des solutions</a> avec comme longueur >= %1$s maintenant.',
+	'msg_wmc_sol_inserted' => 'Votre solution de longueur %s a été insérée dans la base de données.<br/>Vous devriez <a href="%s">chercher des solutions</a> avec comme longueur >= %s maintenant.',
 	'th_length' => 'Longueur',
 	'err_token' => 'Votre jeton est invalide.',
-	'pt_wmc_sol' => 'Solutions pour %1$s avec comme longueur &gt;= %2$s',
+	'pt_wmc_sol' => 'Solutions pour %s avec comme longueur &gt;= %s',
 	'menu_contact' => 'Contact',
-	'msg_wmc_solved' => 'Vous avez résolu le %1$s challenge. Vous pouvez <a href="%2$s">regarder toutes les solutions</a>, si vous voulez.',
+	'msg_wmc_solved' => 'Vous avez résolu le %s challenge. Vous pouvez <a href="%s">regarder toutes les solutions</a>, si vous voulez.',
 
 	# v4.13
 	'th_csolve_time_taken' => 'Temps',
@@ -610,7 +610,7 @@ $lang = array(
 	'btn_add_favcat' => 'Ajouter une catégorie',
 	'th_cat' => 'Catégorie',
 	'err_cat' => 'Cette catégorie est inconnue .',
-	'msg_add_favcat' => '%1$s a été ajouté comme étant une de vos catégories favorites.',
+	'msg_add_favcat' => '%s a été ajouté comme étant une de vos catégories favorites.',
 	'th_favcats' => 'Catégorie favorites',
 	'btn_site_history' => 'Historique',
 	'btn_site_rank' => 'Classement du site',
@@ -628,15 +628,15 @@ $lang = array(
 	'btn_delete' => 'Delete',
 	'btn_set_default' => 'Make Default',
 	'ft_add_descr' => 'Add a description',
-	'ft_edit_descr' => 'Edit the description in %1$s',
-	'err_descr' => 'Your description is invalid. It has to be %1$s-%2$s characters long.',
-	'err_descr_new' => 'Your description is invalid. It has to be %1$s-%2$s characters long.',
+	'ft_edit_descr' => 'Edit the description in %s',
+	'err_descr' => 'Your description is invalid. It has to be %s-%s characters long.',
+	'err_descr_new' => 'Your description is invalid. It has to be %s-%s characters long.',
 	'err_dup_descr' => 'A description in that language already exists. Please use the edit function.',
 	'err_del_default_descr' => 'You cannot delete the default description.',
 	'msg_edit_descr' => 'The description has been edited.',
 	'msg_del_descr' => 'The description has been deleted.',
 	'msg_add_descr' => 'The description has been added.',
-	'msg_def_descr' => 'The default description has been changed to %1$s.',
+	'msg_def_descr' => 'The default description has been changed to %s.',
 	'btn_edit_site_descr' => 'Edit Site Descriptions',
 
 	# v4.17 (Hide ranking)
@@ -651,7 +651,7 @@ $lang = array(
 	'hidden' => 'Hidden',
 
 	# v5.00 (fixes)
-	'msg_rem_favcat' => 'The category \'%1$s\' got removed from your favorite categories.',
+	'msg_rem_favcat' => 'The category \'%s\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
 	'menu_download' => 'Downloads',
 );

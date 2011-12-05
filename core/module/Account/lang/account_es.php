@@ -6,7 +6,7 @@ $lang = array(
 	# Headers
 	'th_username' => 'Nombre de usuario',
 	'th_email' => 'Email de contacto',
-	'th_demo' => 'Opciones demográficas: Puede cambiarlas sólo una vez en %1$s.',
+	'th_demo' => 'Opciones demográficas: Puede cambiarlas sólo una vez en %s.',
 	'th_countryid' => 'País',
 	'th_langid' => 'Idioma principal',
 	'th_langid2' => 'Idioma secundario',
@@ -32,10 +32,10 @@ $lang = array(
 	'err_no_mail_to_approve' => 'No tiene email establecido para aprobar.',
 	'err_already_approved' => 'Su email ya está aprobado.',
 	'err_no_image' => 'Su archivo cargado no es una imagen o es muy pequeña.',
-	'err_demo_wait' => 'Cambió sus opciones demográficas recientemente. Por favor, espere %1$s.',
+	'err_demo_wait' => 'Cambió sus opciones demográficas recientemente. Por favor, espere %s.',
 	'err_birthdate' => 'Su fecha de nacimiento no es válida.',
 	# Messages
-	'msg_mail_changed' => 'Su email de contacto ha sido cambiado a <b>%1$s</b>.',
+	'msg_mail_changed' => 'Su email de contacto ha sido cambiado a <b>%s</b>.',
 	'msg_deleted_avatar' => 'Su imagen de ávatar ha sido eliminada.',
 	'msg_avatar_saved' => 'Su nueva imagen de ávatar ha sido guardada.',
 	'msg_demo_changed' => 'Sus opciones demográficas han sido cambiadas.',
@@ -63,13 +63,13 @@ $lang = array(
 	# CHANGE MAIL A 
 	'chmaila_subj' => GWF_SITENAME.': Cambio de email',
 	'chmaila_body' =>
-		'Estimado/a %1$s,'.PHP_EOL.
+		'Estimado/a %s,'.PHP_EOL.
 		PHP_EOL.
 		'Usted pidió cambiar su email en '.GWF_SITENAME.'.'.PHP_EOL.
 		'Para hacerlo, debe visitar el enlace que aparece a continuación.'.PHP_EOL.
 		'En caso de no haber solicitado el cambio de su dirección de email, puede ignorar este email o avisarnos sobre ello.'.PHP_EOL.
 		PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Atentamente'.PHP_EOL.
 		'El personal de '.GWF_SITENAME.
@@ -77,10 +77,10 @@ $lang = array(
 	# CHANGE MAIL B
 	'chmailb_subj' => GWF_SITENAME.': Confirmación de email',
 	'chmailb_body' =>
-		'Estimado/a %1$s,'.PHP_EOL.
+		'Estimado/a %s,'.PHP_EOL.
 		PHP_EOL.
 	'Para usar esta dirección de email como su principal dirección de contacto, deberá confirmarlo visitando el enlace de abajo:'.PHP_EOL.
-	'%2$s'.PHP_EOL.
+	'%s'.PHP_EOL.
 	PHP_EOL.
 	'Atentamente'.PHP_EOL.
 	'El personal de '.GWF_SITENAME.'', 
@@ -88,18 +88,18 @@ $lang = array(
 	# CHANGE DEMO 
 	'chdemo_subj' => GWF_SITENAME.': Cambio de configuración demográfica',
 	'chdemo_body' => 
-		'Estimado/a %1$s'.PHP_EOL.
+		'Estimado/a %s'.PHP_EOL.
 		PHP_EOL.'Ha pedido actualizar o cambiar su configuración demográfica.'.PHP_EOL.
-		'Puede hacerlo sólo una vez en %2$s, por lo tanto, por favor, asegúrese de que su configuración es correcta antes de continuar.'.PHP_EOL.
+		'Puede hacerlo sólo una vez en %s, por lo tanto, por favor, asegúrese de que su configuración es correcta antes de continuar.'.PHP_EOL.
 		PHP_EOL.
-		'Sexo: %3$s'.PHP_EOL.
-		'País: %4$s'.PHP_EOL.
-		'Idioma principal: %5$s'.PHP_EOL.
-		'Idioma secundario: %6$s'.PHP_EOL.
-		'Fecha de nacimiento: %7$s'.PHP_EOL.
+		'Sexo: %s'.PHP_EOL.
+		'País: %s'.PHP_EOL.
+		'Idioma principal: %s'.PHP_EOL.
+		'Idioma secundario: %s'.PHP_EOL.
+		'Fecha de nacimiento: %s'.PHP_EOL.
 		PHP_EOL.
 		'Si quiere mantener esta configuración, visite el siguiente enlace:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		'Atentamente'.PHP_EOL.
 		'El personal de '.GWF_SITENAME.'',
 
@@ -125,12 +125,12 @@ $lang = array(
 	'th_accrm_note' => 'Mensaje',
 	'btn_accrm' => 'Borrar cuenta',
 	'msg_accrm' => 'Su cuenta se marcó para la eliminación y todas las referencias serán borradas.<br/>Ha sido deslogeado.',
-	'ms_accrm' => GWF_SITENAME.': Borrado de cuenta de %1$s ',
+	'ms_accrm' => GWF_SITENAME.': Borrado de cuenta de %s ',
 	'mb_accrm' =>
 		'Estimado Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'El usuario %1$s acaba de borrar su cuenta y dejó esta nota (puede estar vacía):'.PHP_EOL.PHP_EOL.
-		'%2$s',
+		'El usuario %s acaba de borrar su cuenta y dejó esta nota (puede estar vacía):'.PHP_EOL.PHP_EOL.
+		'%s',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Formato de EMail preferido',
@@ -149,22 +149,22 @@ $lang = array(
 	'err_gpg_setup' => 'O sube un archivo que contenga su clave pública ó pega tu clave pública en el textbox.',
 	'err_gpg_key' => 'Tu clave pública parece que es inválida.',
 	'err_gpg_token' => 'Tu huella digital GPG no coincide con nuestros registros.',
-	'err_no_gpg_key' => 'El usuario %1$s no ha enviado una clave pública todavía.',
+	'err_no_gpg_key' => 'El usuario %s no ha enviado una clave pública todavía.',
 	'err_no_mail' => 'No tienes una direccion de email de contacto aprobada.',
 	'err_gpg_del' => 'No tienes una clave GPG valida para borrar.',
 	'err_gpg_fine' => 'Ya tienes una clave GPG. Por favor borrala primero.',
 	'msg_gpg_del' => 'Tu clave GPG ha sido borrada satisfactoriamente.',
 	'msg_setup_gpg' => 'Tu GPG has sido guardado y esta en uso ahora.',
 	'mails_gpg' => GWF_SITENAME.': Instalación Encriptación GPG',
-	'mailb_gpg' => 'Querido/a %1$s,
+	'mailb_gpg' => 'Querido/a %s,
 Has decidido activar la encriptación GPG para los emails enviados por este robot
 Para ello, sigue el siguiente enlace:
-%2$s
+%s
 Saludos 
 El personal de '.GWF_SITENAME,
 		
 	# 204
-	'th_change_pw' => '<a href="%1$s">Cambia tu contraseña</a>',
+	'th_change_pw' => '<a href="%s">Cambia tu contraseña</a>',
 	'err_gpg_raw' => 'WeChall solo soporta  el formato ASCII para tu clave pública GPG.',
 	# v2.05 (fixes)
 	'btn_delete' => 'Delete Account',

@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'فائل %1$s کی لائن %2$s میں ڈیٹابیس ایرر',
-	'ERR_FILE_NOT_FOUND' => 'فائل نہیں ملی: %1$s ۔',
-	'ERR_MODULE_DISABLED' => 'ماڈیول %1$s فی الحال ڈس ایبل ہے',
+	'ERR_DATABASE' => 'فائل %s کی لائن %s میں ڈیٹابیس ایرر',
+	'ERR_FILE_NOT_FOUND' => 'فائل نہیں ملی: %s ۔',
+	'ERR_MODULE_DISABLED' => 'ماڈیول %s فی الحال ڈس ایبل ہے',
 	'ERR_LOGIN_REQUIRED' => 'اس کام کے لئے آپ کو لاگ ان ہونا پڑے گا',
 	'ERR_NO_PERMISSION' => 'اجازت نہیں ہے',
 	'ERR_WRONG_CAPTCHA' => 'تصویر دیکھ اسکے مطابق درست الفاظ درج کیجئے',
-	'ERR_MODULE_MISSING' => 'ماڈیول %1$s نہیں مل سکا',
+	'ERR_MODULE_MISSING' => 'ماڈیول %s نہیں مل سکا',
 	'ERR_COOKIES_REQUIRED' => 'براہ مہربانی صفحہ کو ریفریش کیجئے۔<br/>یاآپ کا سیشن ایکسپائر ہو گیا ہے یا پھر آپ کو براوزر میں کوکیز کو بحال کرنا پڑے گا۔',
 	'ERR_UNKNOWN_USER' => 'نامعلوم استعمال کنندہ۔',
 	'ERR_UNKNOWN_GROUP' => 'نامعلوم گروپ۔',
 	'ERR_UNKNOWN_COUNTRY' => 'نامعلوم ملک۔',
 	'ERR_UNKNOWN_LANGUAGE' => 'یہ زبان نامعلوم ہے۔',
-	'ERR_METHOD_MISSING' => 'نامعلوم میتھڈ: ماڈیول %2$s میں %1$s ۔',
-	'ERR_GENERAL' => 'فائل %1$s کی لائن %2$s میں نامعلوم ایرر',
-	'ERR_WRITE_FILE' => 'Can not write file: %1$s.',
-	'ERR_CLASS_NOT_FOUND' => 'نامعلوم کلاس: %1$s ۔',
-	'ERR_MISSING_VAR' => 'ویری ایبل ناموجود: %1$s ۔ HTTP POST',
+	'ERR_METHOD_MISSING' => 'نامعلوم میتھڈ: ماڈیول %s میں %s ۔',
+	'ERR_GENERAL' => 'فائل %s کی لائن %s میں نامعلوم ایرر',
+	'ERR_WRITE_FILE' => 'Can not write file: %s.',
+	'ERR_CLASS_NOT_FOUND' => 'نامعلوم کلاس: %s ۔',
+	'ERR_MISSING_VAR' => 'ویری ایبل ناموجود: %s ۔ HTTP POST',
 	'ERR_MISSING_UPLOAD' => 'فائل اپ لوڈ کیجئے۔',
 	'ERR_MAIL_SENT' => 'آپ کو ای میل بھیجنے کے دوران ایک ایرر آگیا۔',
 	'ERR_CSRF' => 'آپ کا فورم ٹوکن ناقابل شناخت ہے، شاید آپ نے ایک ہی پوسٹ دوبارہ کرنے کی کوشش کی ہے یا پھر اس دوران آپ کا سیشن ایکسپائر ہو گیا ہے۔',
-	'ERR_HOOK' => 'A hook returned false: %1$s.',###TODO
-	'ERR_PARAMETER' => 'کی لائن %2$s  میں ناقابل شناخت آرگیومنٹ۔ فنکشن آرگیومنٹ %3$s  ناقابل شناخت ہے۔۔	%1$s',
-	'ERR_DEPENDENCY' => 'کمزور تابعیت: ماڈیول %1$s کے میتھڈ %2$s  کو %3$s اور %4$s ماڈیول چاہئیں۔',
-	'ERR_SEARCH_TERM' => ' %1$s - %2$s تلاش کے لئے دئیے گئے کم از کم الفاظ کی تعداد ',
-	'ERR_SEARCH_NO_MATCH' => 'کا کوئی نتیجہ نہیں نکلا &quot;%1$s&quot; آپکی تلاش برائے',
-	'ERR_POST_VAR' => 'ویری ایبل غیر متوقع: %1$s ۔ POST',
+	'ERR_HOOK' => 'A hook returned false: %s.',###TODO
+	'ERR_PARAMETER' => 'کی لائن %s  میں ناقابل شناخت آرگیومنٹ۔ فنکشن آرگیومنٹ %s  ناقابل شناخت ہے۔۔	%s',
+	'ERR_DEPENDENCY' => 'کمزور تابعیت: ماڈیول %s کے میتھڈ %s  کو %s اور %s ماڈیول چاہئیں۔',
+	'ERR_SEARCH_TERM' => ' %s - %s تلاش کے لئے دئیے گئے کم از کم الفاظ کی تعداد ',
+	'ERR_SEARCH_NO_MATCH' => 'کا کوئی نتیجہ نہیں نکلا &quot;%s&quot; آپکی تلاش برائے',
+	'ERR_POST_VAR' => 'ویری ایبل غیر متوقع: %s ۔ POST',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'جمعہ',
 	'd6' => 'ہفتہ',
 
-	'ago_s' => '%1$s seconds ago','سیکنڈ پہلے۔	%1$s',
-	'ago_m' => '%1$s minutes ago','منٹ پہلے۔	%1$s',
-	'ago_h' => '%1$s hours ago','گھنٹے پہلے۔	%1$s',
-	'ago_d' => '%1$s days ago','دن پہلے۔	%1$s',
+	'ago_s' => '%s seconds ago','سیکنڈ پہلے۔	%s',
+	'ago_m' => '%s minutes ago','منٹ پہلے۔	%s',
+	'ago_h' => '%s hours ago','گھنٹے پہلے۔	%s',
+	'ago_d' => '%s days ago','دن پہلے۔	%s',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -127,7 +127,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'ملک منتخب کیجئے',
 	'unknown_country' => 'نامعلوم ملک',
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# GWF_User#gender
 	'gender_male' => 'مذکر',
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'جنس نامعلوم',
 
 	# GWF_User#avatar
-	'alt_avatar' => 'کا اوتار	%1$s',
+	'alt_avatar' => 'کا اوتار	%s',
 
 	# GWF_Group
 	'sel_group' => 'ایک یوزر گروپ منتخب کیجئے',
@@ -156,14 +156,14 @@ $lang = array(
 	'by' => 'by',
 	'and' => 'اور',
 
-	'alt_flag' => '%1$s Flag',
+	'alt_flag' => '%s Flag',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. جملہ حقوق محفوظ',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. جملہ حقوق محفوظ',
 	'copygwf' => GWF_SITENAME.' استعمال کر رہا ہے <a href="http://gwf.gizmore.org">GWF</a>, کی طرح کا ویب سائیٹ فریم ورک BSD-Like',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => 'کا مطلب ہے، ضروری	%1$s',
+	'form_required' => 'کا مطلب ہے، ضروری	%s',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'دبیز تحریر',
@@ -178,7 +178,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'غیر مرئی تحریر جو کہ کلک کرنے سے نظر آئے گی۔',
 
 	# v2.04 BBCode3
-	'quote_from' => 'سے اقتباس	%1$s',
+	'quote_from' => 'سے اقتباس	%s',
 	'code' => 'کوڈ',
 	'for' => 'برائے',
 
@@ -191,5 +191,5 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );

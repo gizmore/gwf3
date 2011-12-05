@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Andmebaasi viga %1$s real %2$s.',
-	'ERR_FILE_NOT_FOUND' => 'Faili ei leitud: %1$s',
-	'ERR_MODULE_DISABLED' => 'Moodul %1$s on hetkel keelatud.',
+	'ERR_DATABASE' => 'Andmebaasi viga %s real %s.',
+	'ERR_FILE_NOT_FOUND' => 'Faili ei leitud: %s',
+	'ERR_MODULE_DISABLED' => 'Moodul %s on hetkel keelatud.',
 	'ERR_LOGIN_REQUIRED' => 'Selle funktsiooni kasutamiseks pead olema sisselogitud.',
 	'ERR_NO_PERMISSION' => 'Puudub luba.',
 	'ERR_WRONG_CAPTCHA' => 'Sa pead pildil olevad tähed õigesti sisestama.',
-	'ERR_MODULE_MISSING' => 'Moodulit %1$s ei leitud.',
+	'ERR_MODULE_MISSING' => 'Moodulit %s ei leitud.',
 	'ERR_COOKIES_REQUIRED' => 'Teie sessioon aegus või te peate lubama küpsised oma brauseris.<br/>Palun proovige lehekülge värskendada.',
 	'ERR_UNKNOWN_USER' => 'Kasutaja on tundmatu.',
 	'ERR_UNKNOWN_GROUP' => 'Grupp on tundmatu.',
 	'ERR_UNKNOWN_COUNTRY' => 'Riik on tundmatu.',
 	'ERR_UNKNOWN_LANGUAGE' => 'See keel on tundmatu.',
-	'ERR_METHOD_MISSING' => 'Teadmata meetod %1$s moodulis %2$s.',
-	'ERR_GENERAL' => 'Määramata viga %1$s real %2$s.',
-	'ERR_WRITE_FILE' => 'Ei saa kirjutada faili%1$s.',
-	'ERR_CLASS_NOT_FOUND' => 'Tundmatu klass: %1$s.',
-	'ERR_MISSING_VAR' => 'Puudub HTTP POST var: %1$s.',
+	'ERR_METHOD_MISSING' => 'Teadmata meetod %s moodulis %s.',
+	'ERR_GENERAL' => 'Määramata viga %s real %s.',
+	'ERR_WRITE_FILE' => 'Ei saa kirjutada faili%s.',
+	'ERR_CLASS_NOT_FOUND' => 'Tundmatu klass: %s.',
+	'ERR_MISSING_VAR' => 'Puudub HTTP POST var: %s.',
 	'ERR_MISSING_UPLOAD' => 'Sa pead faili üles laadima.',
 	'ERR_MAIL_SENT' => ' Teile e-maili saates esines viga..',
 	'ERR_CSRF' => 'Teie märk on kehtetu. Võib-olla püüdsite Te postitada kaks korda, või samalajal aegus teie sessioon.',
-	'ERR_HOOK' => 'A hook returned false: %1$s.',
-	'ERR_PARAMETER' => 'Vigane argument %1$s real %2$s. Funktsiooni argument %3$s on vigane.',
-	'ERR_DEPENDENCY' => 'Lahendanata sõltuvus: moodulid/%1$s/meetod/%2$s nõuab mooduleid %3$s v%4$s.',
-	'ERR_SEARCH_TERM' => 'Otsisõna peab olema %1$s - %2$s tähte pikk.',
-	'ERR_SEARCH_NO_MATCH' => 'Teie otsing &quot;%1$s&quote i andnud tulemusi.',
-	'ERR_POST_VAR' => 'Ootamatu POST var: %1$s.',
+	'ERR_HOOK' => 'A hook returned false: %s.',
+	'ERR_PARAMETER' => 'Vigane argument %s real %s. Funktsiooni argument %s on vigane.',
+	'ERR_DEPENDENCY' => 'Lahendanata sõltuvus: moodulid/%s/meetod/%s nõuab mooduleid %s v%s.',
+	'ERR_SEARCH_TERM' => 'Otsisõna peab olema %s - %s tähte pikk.',
+	'ERR_SEARCH_NO_MATCH' => 'Teie otsing &quot;%s&quote i andnud tulemusi.',
+	'ERR_POST_VAR' => 'Ootamatu POST var: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'R',
 	'd6' => 'L',
 
-	'ago_s' => '%1$s sekund(it) tagasi',
-	'ago_m' => '%1$s minut(it) tagasi',
-	'ago_h' => '%1$s tund(i) tagasi',
-	'ago_d' => '%1$s päev(a) tagasi',
+	'ago_s' => '%s sekund(it) tagasi',
+	'ago_m' => '%s minut(it) tagasi',
+	'ago_h' => '%s tund(i) tagasi',
+	'ago_d' => '%s päev(a) tagasi',
 
 	###
 	### TODO: GWF_DateFormat, on problemaatiline, kuna en != en [us/gb]
@@ -127,7 +127,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Vali riik',
 	'unknown_country' => 'Tundmatu riik',
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# GWF_User#gender
 	'gender_male' => 'Mees',
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'Tundmatu sugu',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1$s`s Avatar',
+	'alt_avatar' => '%s`s Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Vali kasutajagrupp',
@@ -156,14 +156,14 @@ $lang = array(
 	'by' => 'järgi',
 	'and' => 'ja',
 
-	'alt_flag' => '%1$s lipp',
+	'alt_flag' => '%s lipp',
 
 	# v2.01 (autoriõigus)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Kõik õigused reserveeritud.',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. Kõik õigused reserveeritud.',
 	'copygwf' => GWF_SITENAME.' kasutab <a href="http://gwf.gizmore.org">GWF</a>, the BSD-Like veebilehekülje raamistikku.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1$s vahendid vajalikud.',
+	'form_required' => '%s vahendid vajalikud.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'bold',
@@ -178,7 +178,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Invisible text that is shown with a click.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Quote from %1$s',
+	'quote_from' => 'Quote from %s',
 	'code' => 'code',
 	'for' => 'for',
 
@@ -191,7 +191,7 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );
 
 ?>

@@ -1,32 +1,32 @@
 <?php
 $lang = array(
 
-	'ERR_DATABASE' => 'Database error in file %1$s line %2$s.',
-	'ERR_FILE_NOT_FOUND' => 'File not found: %1$s',
-	'ERR_MODULE_DISABLED' => 'The module %1$s is currently disabled.',
+	'ERR_DATABASE' => 'Database error in file %s line %s.',
+	'ERR_FILE_NOT_FOUND' => 'File not found: %s',
+	'ERR_MODULE_DISABLED' => 'The module %s is currently disabled.',
 	'ERR_LOGIN_REQUIRED' => 'For this function you need to be logged in.',
 	'ERR_NO_PERMISSION' => 'Permission denied.',
 	'ERR_WRONG_CAPTCHA' => 'You have to type the letters from the picture correctly.',
-	'ERR_MODULE_MISSING' => 'Module %1$s could not been found.',
+	'ERR_MODULE_MISSING' => 'Module %s could not been found.',
 	'ERR_COOKIES_REQUIRED' => 'Your Session Timed Out or you need to enable cookies in your browser.<br/>Please try to refresh the page.',
 	'ERR_UNKNOWN_USER' => 'The User is unknown.',
 	'ERR_UNKNOWN_GROUP' => 'The Group is unknown.',
 	'ERR_UNKNOWN_COUNTRY' => 'The Country is unknown.',
 	'ERR_UNKNOWN_LANGUAGE' => 'This Language is unknown.',
-	'ERR_METHOD_MISSING' => 'Unknown Method: %1$s in Module %2$s.',
-	'ERR_GENERAL' => 'Undefined error in %1$s Line %2$s.',
-	'ERR_WRITE_FILE' => 'Can not write file: %1$s.',
-	'ERR_CLASS_NOT_FOUND' => 'Unknown Class: %1$s.',
-	'ERR_MISSING_VAR' => 'Missing HTTP POST var: %1$s.',
+	'ERR_METHOD_MISSING' => 'Unknown Method: %s in Module %s.',
+	'ERR_GENERAL' => 'Undefined error in %s Line %s.',
+	'ERR_WRITE_FILE' => 'Can not write file: %s.',
+	'ERR_CLASS_NOT_FOUND' => 'Unknown Class: %s.',
+	'ERR_MISSING_VAR' => 'Missing HTTP POST var: %s.',
 	'ERR_MISSING_UPLOAD' => 'You have to upload a file.',
 	'ERR_MAIL_SENT' => 'There occured an error while sending you an email.',
 	'ERR_CSRF' => 'Your formular token is invalid. Maybe you tried to double post, or your session ran out of time meanwhile.',
-	'ERR_HOOK' => 'A hook returned false: %1$s.',
-	'ERR_PARAMETER' => 'Invalid argument in %1$s line %2$s. Function argument %3$s is invalid.',
-	'ERR_DEPENDENCY' => 'Unresolved Dependency: core/module/%1$s/method/%2$s requires Module %3$s v%4$s.',
-	'ERR_SEARCH_TERM' => 'The Search Term has to be %1$s - %2$s characters long.',
-	'ERR_SEARCH_NO_MATCH' => 'Your search for &quot;%1$s&quot; did not find a match.',
-	'ERR_POST_VAR' => 'Unexpected POST var: %1$s.',
+	'ERR_HOOK' => 'A hook returned false: %s.',
+	'ERR_PARAMETER' => 'Invalid argument in %s line %s. Function argument %s is invalid.',
+	'ERR_DEPENDENCY' => 'Unresolved Dependency: core/module/%s/method/%s requires Module %s v%s.',
+	'ERR_SEARCH_TERM' => 'The Search Term has to be %s - %s characters long.',
+	'ERR_SEARCH_NO_MATCH' => 'Your search for &quot;%s&quot; did not find a match.',
+	'ERR_POST_VAR' => 'Unexpected POST var: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -79,10 +79,10 @@ $lang = array(
 	'd5' => 'Fri',
 	'd6' => 'Sat',
 
-	'ago_s' => '%1$s seconds ago',
-	'ago_m' => '%1$s minutes ago',
-	'ago_h' => '%1$s hours ago',
-	'ago_d' => '%1$s days ago',
+	'ago_s' => '%s seconds ago',
+	'ago_m' => '%s minutes ago',
+	'ago_h' => '%s hours ago',
+	'ago_d' => '%s days ago',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -130,7 +130,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Select a Country',
 	'unknown_country' => 'Unknown Country',
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# GWF_User#gender
 	'gender_male' => 'Male',
@@ -138,7 +138,7 @@ $lang = array(
 	'gender_no_gender' => 'Unknown Gender',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1$s`s Avatar',
+	'alt_avatar' => '%s`s Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Select a Usergroup',
@@ -159,14 +159,14 @@ $lang = array(
 	'by' => 'by',
 	'and' => 'and',
 
-	'alt_flag' => '%1$s Flag',
+	'alt_flag' => '%s Flag',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. All rights reserved.',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. All rights reserved.',
 	'copygwf' => GWF_SITENAME.' is using <a href="http://gwf.gizmore.org">GWF</a>, the BSD-Like Website Framework.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1$s means required.',
+	'form_required' => '%s means required.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'bold',
@@ -181,7 +181,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Invisible text that is shown with a click.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Quote from %1$s',
+	'quote_from' => 'Quote from %s',
 	'code' => 'code',
 	'for' => 'for',
 
@@ -194,6 +194,6 @@ $lang = array(
 	
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );
 ?>

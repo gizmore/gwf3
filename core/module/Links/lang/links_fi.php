@@ -24,46 +24,46 @@ $lang = array(
 	# Info`s
 //	'pi_links' => '',
 	'info_tag' => 'Määritä vähintään yksi Tag. Erilliset Tunnisteet pilkulla. Kokeile käyttää olemassa olevia tageja:',
-	'info_newlinks' => 'sinulle on %1$s uutta linkkiä.',
-	'info_search_exceed' => 'Haku ylitti tulos rajan %1$s.',
+	'info_newlinks' => 'sinulle on %s uutta linkkiä.',
+	'info_search_exceed' => 'Haku ylitti tulos rajan %s.',
 
 	# Titles
 	'ft_add' => 'Lisää Linkki',
 	'ft_edit' => 'Muokkaa Linkkiäsi',
 	'ft_search' => 'Etsi linkkejä',
 	'pt_links' => 'Kaikki linkit',
-	'pt_linksec' => '%1$s Linkit',
+	'pt_linksec' => '%s Linkit',
 	'pt_new_links' => 'uude linkit',
 	'mt_links' => GWF_SITENAME.', Linkki, Lista, kaikki Linkti',
 	'md_links' => 'Kaikki linkiit sivulla '.GWF_SITENAME.'.',
-	'mt_linksec' => GWF_SITENAME.', Linkki, Lista, Linkit %1$s',
-	'md_linksec' => '%1$s linkkiä sivulla '.GWF_SITENAME.'.',
+	'mt_linksec' => GWF_SITENAME.', Linkki, Lista, Linkit %s',
+	'md_linksec' => '%s linkkiä sivulla '.GWF_SITENAME.'.',
 
 	# Errors
 	'err_gid' => 'Käyttäjä ryhmä ei kelpaa.',
 	'err_score' => 'Virheelliset arvo pisteet.',
 	'err_no_tag' => 'Ilmoitathan ainakin yhden tagin.',
-	'err_tag' => 'Tagi %1$s ei kelvannut ja se poistettiin. The tag has to be %2$s - %3$s bytes.',
+	'err_tag' => 'Tagi %s ei kelvannut ja se poistettiin. The tag has to be %s - %s bytes.',
 	'err_url' => 'Sivun URL ei kelpaa.',
 	'err_url_dup' => 'URL onjo listattu tänne.',
 	'err_url_down' => 'URL ei ole etsittävissä.',
-	'err_url_long' => 'Sinun URL on liian pitkä. Maksimi %1$s bittiä.',
-	'err_descr1_short' => 'Sinun kuvaus on liian lyhyt. Minimi %1$s bittiä.',
-	'err_descr1_long' => 'Kuvauksesi on liian pitkä. Maksimi %1$s bittiä.',
-	'err_descr2_short' => 'Sinun yksityiskohtainen kuvaus on liian lyhyt. Minimi %1$s bittiä.',
-	'err_descr2_long' => 'yksityis koihtainen kuvaus on liian pitkä. Maximi %1$s bittiä.',
+	'err_url_long' => 'Sinun URL on liian pitkä. Maksimi %s bittiä.',
+	'err_descr1_short' => 'Sinun kuvaus on liian lyhyt. Minimi %s bittiä.',
+	'err_descr1_long' => 'Kuvauksesi on liian pitkä. Maksimi %s bittiä.',
+	'err_descr2_short' => 'Sinun yksityiskohtainen kuvaus on liian lyhyt. Minimi %s bittiä.',
+	'err_descr2_long' => 'yksityis koihtainen kuvaus on liian pitkä. Maximi %s bittiä.',
 	'err_link' => 'Linkkiä ei löytynyt.',
 	'err_add_perm' => 'Et saa lisätä linkkiä.',
 	'err_edit_perm' => 'Et saa muokata tätä linkkiä.',
 	'err_view_perm' => 'Et voi nähdä tätä linkkiä.',
 	'err_add_tags' => 'Sinun ei sallita lisäävän tageja.',
-	'err_score_tag' => 'sinun käyttäjälevel(%1$s) ei ole tarpeeksi suuri jotta voisit lisätä toisen tagin. tarttettu Level: %2$s.',
-	'err_score_link' => 'sinun käyttäjälevel(%1$s) ei ole taerpeeksi suuri jotta voisit lisätä uuden linkin. Needed Level: %2$s.',
+	'err_score_tag' => 'sinun käyttäjälevel(%s) ei ole tarpeeksi suuri jotta voisit lisätä toisen tagin. tarttettu Level: %s.',
+	'err_score_link' => 'sinun käyttäjälevel(%s) ei ole taerpeeksi suuri jotta voisit lisätä uuden linkin. Needed Level: %s.',
 	'err_approved' => 'Linkki on jo hyväksytty. Käyttäkää henkilöstön osa ryhtymään toimiin.',
 	'err_token' => 'Merkki ei kelpaa.',
 
 	# Messages
-//	'msg_redirecting' => 'Sinut ohjataan %1$s.',
+//	'msg_redirecting' => 'Sinut ohjataan %s.',
 	'msg_added' => 'Linkkisi on lisätty tietokantaan.',
 	'msg_added_mod' => 'linkkisi on lisätty tietokantaan mutta, moderaattorin pitää tutkia se ensin.',
 	'msg_edited' => 'Linkkiä on muokattu.',
@@ -121,14 +121,14 @@ $lang = array(
 		PHP_EOL.
 		'There has been posted a new Link from a guest that needs moderation:'.PHP_EOL.
 		PHP_EOL.
-		'Description: %1$s'.PHP_EOL.
-		'Detailed D.: %2$s'.PHP_EOL.
-		'HREF / URL : %3$s'.PHP_EOL.
+		'Description: %s'.PHP_EOL.
+		'Detailed D.: %s'.PHP_EOL.
+		'HREF / URL : %s'.PHP_EOL.
 		PHP_EOL.
 		'You can either: '.PHP_EOL.
-		'1) Approve this link by visiting %4$s'.PHP_EOL.
+		'1) Approve this link by visiting %s'.PHP_EOL.
 		'Or:'.PHP_EOL.
-		'2) Delete this link by visiting %5$s'.PHP_EOL.
+		'2) Delete this link by visiting %s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Script'.PHP_EOL,
@@ -140,9 +140,9 @@ $lang = array(
 		
 	# v2.02 (permitted)
 	'permtext_in_mod' => 'Tämä linkki on moderatiossa',
-	'permtext_score' => 'Tarvitset käyttäjä levelin %1$s nähdäksesi tämän linkin',
+	'permtext_score' => 'Tarvitset käyttäjä levelin %s nähdäksesi tämän linkin',
 	'permtext_member' => 'tämä linkki on vain käyttäjille',
-	'permtext_group' => 'sinun pitää olla %1$s ryhmässä nähdäksesi linkin',
+	'permtext_group' => 'sinun pitää olla %s ryhmässä nähdäksesi linkin',
 	'cfg_show_permitted' => 'Näytä kiellettyjen linkkejä syy?',
 		
 );

@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Exclusive downloads on '.GWF_SITENAME.'.',
 
 	# Page Info
-	'pi_add' => 'For best user experience upload your file first, it will get stored into your session. Afterwards alter the options.<br/>The maximum upload size is set to %1$s.',
+	'pi_add' => 'For best user experience upload your file first, it will get stored into your session. Afterwards alter the options.<br/>The maximum upload size is set to %s.',
 
 	# Form Titles
 	'ft_add' => 'Upload a file',
@@ -15,10 +15,10 @@ $lang = array(
 
 	# Errors
 	'err_file' => 'You have to upload a file.',
-	'err_filename' => 'Your specified filename is invalid. Max length is %1$s. Try to use basic ascii chars.',
+	'err_filename' => 'Your specified filename is invalid. Max length is %s. Try to use basic ascii chars.',
 	'err_level' => 'The user level has to be >= 0.',
-	'err_descr' => 'The description has to be 0-%1$s chars long.',
-	'err_price' => 'The price has to be between %1$s and %2$s.',
+	'err_descr' => 'The description has to be 0-%s chars long.',
+	'err_price' => 'The price has to be between %s and %s.',
 	'err_dlid' => 'The download could not be found.',
 	'err_token' => 'Your download token is invalid.',
 
@@ -68,9 +68,9 @@ $lang = array(
 	'cfg_dl_minvote' => 'Min. votescore',
 
 	# Order
-	'order_title' => 'Download token for %1$s (Token: %2$s)',
-	'order_descr' => 'Purchased download token for %1$s. Valid for %2$s. Token: %3$s',
-	'msg_purchased' => 'Your payment has been received and a download token has been inserted.<br/>Your token is \'%1$s\' and it is valid for %2$s.<br/><b>Write the token down if you have no account at '.GWF_SITENAME.'!</b><br/>Else simply <a href="%3$s">follow this link</a>.',
+	'order_title' => 'Download token for %s (Token: %s)',
+	'order_descr' => 'Purchased download token for %s. Valid for %s. Token: %s',
+	'msg_purchased' => 'Your payment has been received and a download token has been inserted.<br/>Your token is \'%s\' and it is valid for %s.<br/><b>Write the token down if you have no account at '.GWF_SITENAME.'!</b><br/>Else simply <a href="%s">follow this link</a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Purchases',
@@ -84,10 +84,10 @@ $lang = array(
 	'th_dl_guest_down' => 'Guest Downloadable?',
 	'tt_dl_guest_down' => 'May guests download this file?',
 	'ft_reup' => 'Re-Upload File',
-	'order_descr2' => 'Purchased download token for %1$s. Token: %2$s.',
-	'msg_purchased2' => 'Your payment has been received and a download token has been inserted.<br/>Your token is \'%1$s\'.<br/><b>Write the token down if you have no account at '.GWF_SITENAME.'!</b><br/>Else simply <a href="%2$s">follow this link</a>.',
-	'err_group' => 'You need to be in the %1$s usergroup to download this file.',
-	'err_level' => 'You need a userlevel of %1$s to download this file.',
+	'order_descr2' => 'Purchased download token for %s. Token: %s.',
+	'msg_purchased2' => 'Your payment has been received and a download token has been inserted.<br/>Your token is \'%s\'.<br/><b>Write the token down if you have no account at '.GWF_SITENAME.'!</b><br/>Else simply <a href="%s">follow this link</a>.',
+	'err_group' => 'You need to be in the %s usergroup to download this file.',
+	'err_level' => 'You need a userlevel of %s to download this file.',
 	'err_guest' => 'Guests are not allowed to download this file.',
 	'err_adult' => 'This is adult content.',
 
@@ -104,21 +104,21 @@ $lang = array(
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

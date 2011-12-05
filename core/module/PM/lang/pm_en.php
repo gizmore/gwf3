@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Hello %1$s',
+	'hello' => 'Hello %s',
 	'sel_username' => 'Choose Username',
 	'sel_folder' => 'Choose Folder',
 
@@ -11,7 +11,7 @@ $lang = array(
 	'pi_trashcan' => 'This is your Trashcan, you can not really delete messages, but you can restore them.',
 	
 	# Buttons
-	'btn_ignore' => 'Put %1$s on your Ignore List',
+	'btn_ignore' => 'Put %s on your Ignore List',
 	'btn_ignore2' => 'Ignore',
 	'btn_save' => 'Save Options',
 	'btn_create' => 'New PM',
@@ -33,45 +33,45 @@ $lang = array(
 	'err_perm_read' => 'You are not allowed to read this pm.',
 	'err_perm_write' => 'You are not allowed to edit this pm.',
 	'err_no_title' => 'You forgot the PM title.',
-	'err_title_len' => 'Your title is too long. Max %1$s chars are allowed.',
+	'err_title_len' => 'Your title is too long. Max %s chars are allowed.',
 	'err_no_msg' => 'You forgot your message.',
-	'err_sig_len' => 'Your signature is too long. Max %1$s chars are allowed.',
-	'err_msg_len' => 'Your message is too long. Max %1$s chars are allowed.',
+	'err_sig_len' => 'Your signature is too long. Max %s chars are allowed.',
+	'err_msg_len' => 'Your message is too long. Max %s chars are allowed.',
 	'err_user_no_ppm' => 'This User does not want public PMs.',
 	'err_no_mail' => 'You do not have an approved EMail associated with your account.',
 	'err_pmoaf' => 'The value for auto-folders is not valid.',
-	'err_limit' => 'You reached your PM limit for today. You can send max %1$s PMs within %2$s.',
-	'err_ignored' => '%1$s has put you on his ignore list:<br/>%2$s',
+	'err_limit' => 'You reached your PM limit for today. You can send max %s PMs within %s.',
+	'err_ignored' => '%s has put you on his ignore list:<br/>%s',
 	'err_delete' => 'An error occured while deleting your messages.',
 	'err_folder_exists' => 'The Folder already exists.',
-	'err_folder_len' => 'The FolderName`s length has to be 1 - %1$s chars.',
+	'err_folder_len' => 'The FolderName`s length has to be 1 - %s chars.',
 	'err_del_twice' => 'You already have deleted this PM.',
 	'err_folder' => 'The Folder is unknown.',
 	'err_pm_read' => 'Your PM has been read already, so you can not edit it anymore.',
 
 	# Messages
 	'msg_sent' => 'Your PM has been successfully sent. You can still edit it, until it has been read.',
-	'msg_ignored' => 'You put %1$s on you ignore list.',
-	'msg_unignored' => 'You removed %1$s from you ignore list.',
+	'msg_ignored' => 'You put %s on you ignore list.',
+	'msg_unignored' => 'You removed %s from you ignore list.',
 	'msg_changed' => 'Your options have been changed.',
-	'msg_deleted' => 'Successfully deleted %1$s PMs.',
-	'msg_moved' => 'Successfully moved %1$s PMs.',
+	'msg_deleted' => 'Successfully deleted %s PMs.',
+	'msg_moved' => 'Successfully moved %s PMs.',
 	'msg_edited' => 'Your PM has been edited.',
-	'msg_restored' => 'Successfully restored %1$s PMs.',
+	'msg_restored' => 'Successfully restored %s PMs.',
 	'msg_auto_folder_off' => 'You do not have Auto-Folders enabled. The PM has been marked as read.',
-	'msg_auto_folder_none' => 'There are only %1$s messages from/to this user. Nothing moved. The PM has been marked as read.',
-	'msg_auto_folder_created' => 'Created the folder %1$s.',
-	'msg_auto_folder_moved' => 'Moved %1$s message(s) to folder %2$s. The PM(s) have been marked as read.',
+	'msg_auto_folder_none' => 'There are only %s messages from/to this user. Nothing moved. The PM has been marked as read.',
+	'msg_auto_folder_created' => 'Created the folder %s.',
+	'msg_auto_folder_moved' => 'Moved %s message(s) to folder %s. The PM(s) have been marked as read.',
 	'msg_auto_folder_done' => 'Auto-Folders done.',
 
 
 	# Titles
-	'ft_create' => 'Write %1$s a new PM',
+	'ft_create' => 'Write %s a new PM',
 	'ft_preview' => 'Preview',
 	'ft_options' => 'Your PM Options',
 	'ft_ignore' => 'Put Someone onto Your Ignore List',
 	'ft_new_pm' => 'Write a new PM',
-	'ft_reply' => 'Reply to %1$s',
+	'ft_reply' => 'Reply to %s',
 	'ft_edit' => 'Edit your PM',
 	'ft_quicksearch' => 'Quicksearch',
 	'ft_advsearch' => 'Advanced Search',
@@ -103,23 +103,23 @@ $lang = array(
 	# Welcome PM
 	'wpm_title' => 'Welcome to '.GWF_SITENAME,
 	'wpm_message' => 
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'Welcome to '.GWF_SITENAME.''.PHP_EOL.
 		PHP_EOL.
 		'We hope you like our site and have fun with it.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.'New PM from %1$s',
+	'mail_subj' => GWF_SITENAME.'New PM from %s',
 	'mail_body' =>
-		'Hello %1$s'.PHP_EOL.
+		'Hello %s'.PHP_EOL.
 		PHP_EOL.
 		'There is a new PM for you on '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'Title: %3$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'Title: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -127,10 +127,10 @@ $lang = array(
 		PHP_EOL.
 		'You can quickly:'.PHP_EOL.
 		'Auto-Folder The Message:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Delete the message:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Robot'.PHP_EOL,
@@ -158,7 +158,7 @@ $lang = array(
 	'btn_new_folder' => 'New Folder',
 		
 	# v2.02
-	'msg_mail_sent' => 'An email has been sent to %1$s containing your original message.',
+	'msg_mail_sent' => 'An email has been sent to %s containing your original message.',
 		
 	# v2.03 SEO
 	'pt_pm' => 'PM',
@@ -181,10 +181,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'You can not ignore yourself.',
 	'err_folder_perm' => 'This folder is not yours.',
-	'msg_folder_deleted' => 'The Folder %1$s and %2$s message(s) got moved into the trashcan.',
+	'msg_folder_deleted' => 'The Folder %s and %s message(s) got moved into the trashcan.',
 	'cfg_pm_delete' => 'Allow to delete PM?',
 	'ft_empty' => 'Empty your Trashcan',
-	'msg_empty' => 'Your trashcan (%1$s messages) has been cleaned up.<br/>%2$s messages has/have been deleted from the database.<br/>%3$s messages are still in use by the other user and have not been deleted.',
+	'msg_empty' => 'Your trashcan (%s messages) has been cleaned up.<br/>%s messages has/have been deleted from the database.<br/>%s messages are still in use by the other user and have not been deleted.',
 		
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

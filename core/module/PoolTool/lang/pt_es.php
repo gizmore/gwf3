@@ -83,7 +83,7 @@ $lang = array(
 		'Ahora usted puede oprimir <b>Aim</b> o <b>Shoot</b>.AIM pone el puntero del ratón donde la pelota es la mejor opción para capturar los pozos seleccionados. A continuación, puede mantener pulsado el botón del ratón para especificar la fuerza lanzamientos. Dispara realiza un clic derecho en esa posición, un lanzamiento con plenos poderes. Esto puede ser más exactos, en función de su capacidad para manejar un ratón.',
 
 	# Matcher
-	'matches' => '%1$s IPs tener un partido positivo!',
+	'matches' => '%s IPs tener un partido positivo!',
 	'ft_matcher' => 'Partido IPs',
 	'btn_match' => 'Partido',
 	'err_pass' => 'La contraseña que ha proporcionado no es correcto.',

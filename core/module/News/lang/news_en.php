@@ -4,8 +4,8 @@ $lang = array(
 	
 	# Messages
 	'msg_news_added' => 'The news item has been added successfully.',
-	'msg_translated' => 'You translated the news item \'%1$s\' to %2$s. Well done.',
-	'msg_edited' => 'The news item \'%1$s\' in %2$s has been edited.',
+	'msg_translated' => 'You translated the news item \'%s\' to %s. Well done.',
+	'msg_edited' => 'The news item \'%s\' in %s has been edited.',
 	'msg_hidden_1' => 'The News item is now hidden.',
 	'msg_hidden_0' => 'The News item is now visible.',
 	'msg_mailme_1' => 'The News item has been put into mail queue.',
@@ -23,16 +23,16 @@ $lang = array(
 	'err_langtrans' => 'This language is not supported.',
 	'err_lang_src' => 'The source language is unknown.',
 	'err_lang_dest' => 'The destination language is unknown.',
-	'err_equal_translang' => 'The source and destination language are equal (Both %1$s).',
+	'err_equal_translang' => 'The source and destination language are equal (Both %s).',
 	'err_type' => 'The newsletter format is invalid.',
 	'err_unsign' => 'An error occured.',
 
 
 	# Main
 	'title' => 'News',
-	'pt_news' => 'News from %1$s',
-	'mt_news' => 'News, '.GWF_SITENAME.', %1$s',
-	'md_news' => GWF_SITENAME.' News, page %1$s of %2$s.',
+	'pt_news' => 'News from %s',
+	'mt_news' => 'News, '.GWF_SITENAME.', %s',
+	'md_news' => GWF_SITENAME.' News, page %s of %s.',
 
 	# Table Headers
 	'th_email' => 'Your email',
@@ -49,7 +49,7 @@ $lang = array(
 	# Preview
 	'btn_preview_text' => 'The Text Version',
 	'btn_preview_html' => 'The HTML Version',
-	'preview_info' => 'You can access the previews of the newsletter here:<br/>%1$s and %2$s.',
+	'preview_info' => 'You can access the previews of the newsletter here:<br/>%s and %s.',
 
 	# Show 
 	'unknown_user' => 'Unknown User',
@@ -58,13 +58,13 @@ $lang = array(
 
 	# Newsletter
 	'newsletter_title' => GWF_SITENAME.': News',
-	'anrede' => 'Dear %1$s',
+	'anrede' => 'Dear %s',
 	'newsletter_wrap' =>
-		'%1$s, '.PHP_EOL.
+		'%s, '.PHP_EOL.
 		PHP_EOL.
 		'You signed up for the '.GWF_SITENAME.' newsletter and there are some news for you.'.PHP_EOL.
 		'To unsubscribe from the newsletter visit the link below:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
@@ -72,9 +72,9 @@ $lang = array(
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Choose Format',
@@ -92,7 +92,7 @@ $lang = array(
 	'btn_unsign' => 'UnSubscribe Newsletter',
 		
 	# Edit
-	'ft_edit' => 'Edit News Item (in %1$s)',
+	'ft_edit' => 'Edit News Item (in %s)',
 	'btn_edit' => 'Edit',
 	'btn_translate' => 'Translate',
 	'th_transid' => 'Translation',
@@ -118,7 +118,7 @@ $lang = array(
 		
 	# V2.03 (News + Forum)
 	'cfg_news_in_forum' => 'Post news in forum',
-	'board_lang_descr' => 'News in %1$s',
+	'board_lang_descr' => 'News in %s',
 	'btn_admin_section' => 'Admin section',
 	'th_hidden' => 'Hidden',
 	'th_visible' => 'Visible',

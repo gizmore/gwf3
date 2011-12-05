@@ -10,7 +10,7 @@ $lang = array(
 
 	'join_0_t' => 'Introduction',
 	'join_0_b' =>
-		'These pages are for challenge site administrators. See <a href="%1$s">WeChall API section</a> for player scripts.<br/>'.
+		'These pages are for challenge site administrators. See <a href="%s">WeChall API section</a> for player scripts.<br/>'.
 		'If you are a player, and want your favorite site to get added: <b>Do not post in other site`s forums.</b> Contact the site admins in private.<br/>',
 
 	'join_1_t' => 'Why should we join WeChall',
@@ -43,8 +43,8 @@ $lang = array(
 		'We introduced the optional AUTHKEY variable to make it not publicy exploitable.<br/>'.
 		'You can choose your authkey freely.<br/>'.
 		'<br/>'.
-		'<a href="%1$s" onclick="toggleHidden(\'example_1_1\'); return false;">Click here to see an example implementation in PHP</a><br/>'.
-		'<div id="example_1_1" class="gwf_code" style="display: %2$s;"><pre>'.
+		'<a href="%s" onclick="toggleHidden(\'example_1_1\'); return false;">Click here to see an example implementation in PHP</a><br/>'.
+		'<div id="example_1_1" class="gwf_code" style="display: %s;"><pre>'.
 		'if (!isset($_GET[\'username\']) || !isset($_GET[\'email\']) || is_array($_GET[\'username\']) || is_array($_GET[\'email\']) ) { '.PHP_EOL.
 		'	die(\'0\'); '.PHP_EOL.
 		'}'.PHP_EOL.
@@ -76,8 +76,8 @@ $lang = array(
 		'WeChall is also capable of updating user and challenge count via this script.'.
 		'<br/><b>Perfect output for this script is: username:rank:score:maxscore:challssolved:challcount:usercount</b><br/>'.
 		'<br/>'.PHP_EOL.
-		'<a href="%1$s" onclick="toggleHidden(\'example_2_1\'); return false;">Click here to see an example implementation in PHP</a><br/>'.
-		'<div id="example_2_1" class="gwf_code" style="display: %2$s;"><pre>'.
+		'<a href="%s" onclick="toggleHidden(\'example_2_1\'); return false;">Click here to see an example implementation in PHP</a><br/>'.
+		'<div id="example_2_1" class="gwf_code" style="display: %s;"><pre>'.
 		'# return username:rank:score:maxscore:challssolved:challcount:usercount'.PHP_EOL.
 		'# but wechall can handle any output you like.'.PHP_EOL.
 		'if (!isset($_GET[\'username\']) || is_array($_GET[\'username\']) ) { '.PHP_EOL.
@@ -157,8 +157,8 @@ $lang = array(
 		'- The second is to put an image in the page a user gets when he/she solves a challenge.<br/>'.
 		'<i>http://www.wechall.net/remoteupdate.php?sitename=%%SITENAME%%&amp;username=%%USERNAME%%&amp;img=1</i><br/>'.
 		'This will return an image with the result of the operation.<br/>'.
-		'<a href="%3$s" onclick="toggleHidden(\'example_5_2\'); return false;">Click here to view example code</a><br/>'.
-		'<div id="example_5_2" style="display: %4$s;">'.
+		'<a href="%s" onclick="toggleHidden(\'example_5_2\'); return false;">Click here to view example code</a><br/>'.
+		'<div id="example_5_2" style="display: %s;">'.
 		'Example:<br/>'.
 		'<div class="gwf_code">'.
 			'&lt;a href=&quot;http://www.wechall.net&quot;&gt;&lt;img src=&quot;http://www.wechall.net/remoteupdate.php?sitename=<b>%%SITENAME%%</b>&amp;username=<b>%%USERNAME%%</b>&amp;img=1&quot; alt=&quot;http://www.wechall.net&quot; border=0/&gt;&lt;/a&gt;<br/>'.
@@ -203,37 +203,37 @@ $lang = array(
 		
 	'api_1t' => 'Poll the latest forum activity',
 	'api_1b' =>
-		'WeChall does implement the <a href="%1$s">optional script 7</a>.<br/>'.
+		'WeChall does implement the <a href="%s">optional script 7</a>.<br/>'.
 		'To poll the latest forum activity, you can call the following script to get them:<br/>'.
 		'<br/>'.
 		'<i><a href="https://www.wechall.net/nimda_forum.php?datestamp=20091231232359&amp;limit=10">https://www.wechall.net/nimda_forum.php?datestamp=20091231232359&amp;limit=10</a></i><br/>'.
 		'<br/>'.
-		'The output of this script is explained in the <a href="%1$s">optional join documentation</a>.',
+		'The output of this script is explained in the <a href="%s">optional join documentation</a>.',
 	
 	'api_2t' => 'Poll user statistics',
 	'api_2b' =>
-		'WeChall does implement an enhanced version for <a href="%1$s">optional script 6</a>.<br/>'.
+		'WeChall does implement an enhanced version for <a href="%s">optional script 6</a>.<br/>'.
 		'You are allowed to use it for your own means.<br/>'.
 		'<br/>'.
 		'Usage:<br/>'.
 		'<br/>'.
-		'<i><a href="%2$s">%2$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'Will output the general user ranking on wechall. Usage: username=&lt;username&gt;<br/>'.
 		'<br/>'.
-		'<i><a href="%3$s">%3$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'Will give an overview of all sites the user is linked to. Usage: username=!sites &lt;username&gt;<br/>'.
 		'<br/>'.
-		'<i><a href="%4$s">%4$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'Will give an overview of one particular site the user is playing. Usage: username="!&lt;site&gt; &lt;username&gt;<br/>'.
 		'<br/>'.
-		'To list all possible sites, use <a href="%5$s">%5$s</a>.<br/>',
+		'To list all possible sites, use <a href="%s">%s</a>.<br/>',
 		
 	'api_3t' => 'Poll latest activity',
 	'api_3b' =>
-		'<i><a href="%1$s">%1$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'<br/>'.
 		'You can poll the latest activities in a machine readable format by using this script.<br/>'.
-		'Usage: %1$s<br/>'.
+		'Usage: %s<br/>'.
 		'<br/>'.
 		'There are several input parameters for this script<br/>'.
 		'- datestamp [YYYYmmddhhiiss]: fetch only messages >= this datestamp.<br/>'.
@@ -253,7 +253,7 @@ $lang = array(
 		'OnSiteName::OnSiteRank::OnSiteScore::MaxOnSiteScore::OnSitePercent::GainOnsitePercent::<br/>'.
 		'Totalscore::GainTotalscore<br/>'.
 		'- EventDatestamp [YYYYmmddhhiiss]<br/>'.
-		'- EventType [one of %2$s]<br/>'.
+		'- EventType [one of %s]<br/>'.
 		'- WeChallUsername [The Wechall username]<br/>'.
 		'- Sitename [The Sitename or shortcut used on WeChall]<br/>'.
 		'- OnSiteName [The nickname used on the site]<br/>'.
@@ -266,7 +266,7 @@ $lang = array(
 		'- GainTotalscore [WeChall Totalscore gain/loss for update]<br/>'.
 		'<br/>'.
 		'Examples:<br/>'.
-		'%3$s<br/>'.
+		'%s<br/>'.
 		'<br/>'.
 		'Players can exclude themself from the api calls.<br/>'.
 		'Also players may obfuscate their onsitename and event dates with various settings.<br/>'.
@@ -285,19 +285,19 @@ $lang = array(
 	# v4.06
 	'api_4t' => 'User API',
 	'api_4b' =>
-		'<i><a href="%1$s">%1$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'<br/>'.
 		'You can query the UserAPI to get information about a user in a machine readable format.<br/>'.
 		'If you submit your private API password, the result will also include your newlinks-counter, unreadpm-counter and unreadthreads-counter.<br/>'.
 		'The output format is multiple rows in key:value pairs.<br/>'.
 		'<br/>'.
 		'Examples:<br/>'.
-		'%2$s<br/>'.
-		'%3$s<br/>',
+		'%s<br/>'.
+		'%s<br/>',
 	
 	'api_5t' => 'Site API and shortcuts',
 	'api_5b' =>
-		'<i><a href="%1$s">%1$s</a></i><br/>'.
+		'<i><a href="%s">%s</a></i><br/>'.
 		'<br/>'.
 		'You can query the site database with this API to retrieve data in a machine readable format.<br/>'.
 		'The output format is again in CSV, with :: as column and \\n as row seperator. : is escaped with \\: and \\n is escaped with \\\\n<br/>'.
@@ -305,6 +305,6 @@ $lang = array(
 		'Sitename::Classname::Status::URL::ProfileURL::Usercount::Linkcount::Challcount::Basescore::Average::Score<br/>'.
 		'<br/>'.
 		'Examples:<br/>'.
-		'%2$s<br/>'.
-		'%3$s<br/>',
+		'%s<br/>'.
+		'%s<br/>',
 );

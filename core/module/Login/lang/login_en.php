@@ -13,17 +13,17 @@ $lang = array(
 	'btn_recovery' => 'Recovery',
 
 	'err_login' => 'Unknown Username',
-	'err_login2' => 'Wrong Password. You now have %1$s tries left until you are blocked for %2$s.',
-	'err_blocked' => 'Please wait %1$s until you try again.',
+	'err_login2' => 'Wrong Password. You now have %s tries left until you are blocked for %s.',
+	'err_blocked' => 'Please wait %s until you try again.',
 
 	'welcome' => 
-		'Welcome to '.GWF_SITENAME.', %1$s.<br/><br/>'.
+		'Welcome to '.GWF_SITENAME.', %s.<br/><br/>'.
 		'We hope you like our site and have fun while browsing.<br/>'.
 		'In case you have questions, do not hesitate to contact us!',
 
 	'welcome_back' => 
-		'Welcome back to '.GWF_SITENAME.', %1$s.<br/><br/>'.
-		'Your last activity was %2$s from this IP: %3$s.',
+		'Welcome back to '.GWF_SITENAME.', %s.<br/><br/>'.
+		'Your last activity was %s from this IP: %s.',
 
 	'logout_info' => 'You are now logged out.',
 
@@ -37,14 +37,14 @@ $lang = array(
 	'th_bind_ip' => 'Restrict Session to this IP',
 	'tt_bind_ip' => 'A security measurement to prevent cookie theft.',
 
-	'err_failures' => 'There have been %1$s login failures and you might have been subject of an unsuccessful or future attack.',
+	'err_failures' => 'There have been %s login failures and you might have been subject of an unsuccessful or future attack.',
 
 	# v1.01 (login failures)
 	'cfg_lf_cleanup_i' => 'Cleanup user failures after login?',
 	'cfg_lf_cleanup_t' => 'Cleanup old failures after time',
 
 	# v2.00 (login history)
-	'msg_last_login' => 'Your last login was %1$s from %2$s (%3$s).<br/>You can also <a href="%4$s">review your login history here</a>.',
+	'msg_last_login' => 'Your last login was %s from %s (%s).<br/>You can also <a href="%s">review your login history here</a>.',
 	'th_loghis_time' => 'Date',
 	'th_loghis_ip' => 'IP',
 	'th_hostname' => 'Hostname',
@@ -53,7 +53,7 @@ $lang = array(
 	'ft_clear' => 'Clear login history',
 	'btn_clear' => 'Clear',
 	'msg_cleared' => 'Your login history has been cleared.',
-	'info_cleared' => 'Your login history was last cleared at %1$s from this IP: %2$s / %3$s',
+	'info_cleared' => 'Your login history was last cleared at %s from this IP: %s / %s',
 
 	# v2.02 (email alerts)
 	'alert_subj' => GWF_SITENAME.': Login failures',

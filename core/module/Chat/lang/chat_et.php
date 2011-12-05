@@ -19,7 +19,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'Unustasid sõnumi.',
-	'err_msg_long' => 'Sinu sõnum ületab maksimum pikkust, milleks on %1$s.',
+	'err_msg_long' => 'Sinu sõnum ületab maksimum pikkust, milleks on %s.',
 	'err_private' => 'Privaatsõnumid on hetkel keelatud.',
 	'err_guest_public' => 'Külalistel pole lubatud postitada siia kanalisse.',
 	'err_guest_private' => 'Külalistel pole lubatud kirjutada teistele kasutajatele.',

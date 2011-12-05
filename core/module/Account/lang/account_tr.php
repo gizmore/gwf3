@@ -6,7 +6,7 @@ $lang = array(
 # Başlıkları
 'th_username' => 'Kullanıcı adınız',
 'th_email' => 'İletişim E-posta',
-'th_demo' => 'Demografik Seçenekler – Sen %1$s bu yalnızca bir kez içinde değiştirebilirsiniz.',
+'th_demo' => 'Demografik Seçenekler – Sen %s bu yalnızca bir kez içinde değiştirebilirsiniz.',
 'th_countryid' => 'Ülke',
 'th_langid' => 'Ana dilinizde',
 'th_langid2' => 'Ortaöğretim Dil',
@@ -34,11 +34,11 @@ $lang = array(
 'err_no_mail_to_approve' => 'Bir e-posta onaylaması belirledik.',
 'err_already_approved' => 'E-posta adresiniz zaten onaylanmıştır.',
 'err_no_image' => 'Kişisel yüklenen dosya bir görüntü, ya da çok küçük değil.',
-'err_demo_wait' => 'Siz yakın zamanda demografik seçenekleri değiştirilemez. Lütfen %1$s bekleyin.',
+'err_demo_wait' => 'Siz yakın zamanda demografik seçenekleri değiştirilemez. Lütfen %s bekleyin.',
 'err_birthdate' => 'Kişisel doğum geçersiz görünüyor.',
 
 # Mesajlar
-'msg_mail_changed' => 'Kişisel e-posta iletişim <b>%1$s olarak değiştirildi </b>.',
+'msg_mail_changed' => 'Kişisel e-posta iletişim <b>%s olarak değiştirildi </b>.',
 'msg_deleted_avatar' => 'Kişisel avatar resim silindi.',
 'msg_avatar_saved' => 'Yeni Avatar görüntü kaydedildi.',
 'msg_demo_changed' => 'Kişisel demografik seçenekleri değiştirildi.',
@@ -69,13 +69,13 @@ $lang = array(
 #BURAYA ALINMIŞTIR 
 'chmaila_subj' => GWF_SITENAME. ': Değiştirin EMail',
 'chmaila_body' =>
-	'Sevgili %1$s'. PHP_EOL.
+	'Sevgili %s'. PHP_EOL.
 	PHP_EOL.
 	'Sen '.GWF_SITENAME.' e-postanıza değiştirmek istedi.'.PHP_EOL.
 	'Bunu yapmak için, ziyaret etmek için aşağıdaki adresi.'. PHP_EOL.
 	'Eğer, e-posta değişikliği talep etmedim, bu mail görmezden gelebilirsiniz ya da bu konuda bize uyarı.'.PHP_EOL.
 	PHP_EOL.
-	'%2$s'. PHP_EOL.
+	'%s'. PHP_EOL.
 	PHP_EOL.
 	'Saygılarımızla'.PHP_EOL.
 	''. GWF_SITENAME. ' personel',
@@ -83,11 +83,11 @@ $lang = array(
 # DEĞİŞİM MAIL B
 'chmailb_subj' => GWF_SITENAME. ': Onaylayın EMail',
 'chmailb_body' =>
-	'Sevgili %1$s'. PHP_EOL.
+	'Sevgili %s'. PHP_EOL.
 	PHP_EOL.
 	'Eğer aşağıdaki adresi ziyaret ederek onaylamak zorunda ana ulaşım adresi:'. PHP_EOL.
 	'Bu e-posta adresini kullanın.'.
-	'%2$s'. PHP_EOL.
+	'%s'. PHP_EOL.
 	PHP_EOL.
 	'Saygılarımızla'.PHP_EOL.
 	GWF_SITENAME.' personel',
@@ -95,19 +95,19 @@ $lang = array(
 # DEĞİŞİM DEMO
 'chdemo_subj' => GWF_SITENAME. ': Değişim Demografik Ayarlar',
 'chdemo_body' =>
-	'Sevgili %1$s'. PHP_EOL.
+	'Sevgili %s'. PHP_EOL.
 	PHP_EOL.
 	'You kurulum talep ettiniz veya demografik ayarlarını değiştirmek.'. PHP_EOL.
-	'You %2$s sadece bir kez içinde, bu nedenle bilgilerin doğru önce devam olduğundan emin olun bunu yapabilirsiniz.'.PHP_EOL.
+	'You %s sadece bir kez içinde, bu nedenle bilgilerin doğru önce devam olduğundan emin olun bunu yapabilirsiniz.'.PHP_EOL.
 	PHP_EOL.
-	'Cinsiyet: %3$s'.PHP_EOL.
-	'Ülke: %4$s'.PHP_EOL.
-	'Birincil Dil: %5$s'. PHP_EOL.
-	'Ortaöğretim Dil: %6$s'. PHP_EOL.
-	'Doğum Günü: %7$s'. PHP_EOL.
+	'Cinsiyet: %s'.PHP_EOL.
+	'Ülke: %s'.PHP_EOL.
+	'Birincil Dil: %s'. PHP_EOL.
+	'Ortaöğretim Dil: %s'. PHP_EOL.
+	'Doğum Günü: %s'. PHP_EOL.
 	PHP_EOL.
 	'Bu ayarları tutmak için, aşağıdaki bağlantıyı:'. PHP_EOL. ### ??? kullanmak istiyorsanız lütfen. ???
-	'%8$s'.
+	'%s'.
 	PHP_EOL.
 	'Saygılarımızla'. PHP_EOL.
 	GWF_SITENAME. ' personel ',
@@ -136,12 +136,12 @@ $lang = array(
 'th_accrm_note' => 'Not',
 'btn_accrm' => 'Sil Hesap',
 'msg_accrm' => 'Hesabınız olarak silinir ve tüm başvuruları silinmiş var gerektiğini işaretlenmiş var. Sen oturum var.<br/>',
-'ms_accrm' => GWF_SITENAME. ': %1$s hesap silinmesi',
+'ms_accrm' => GWF_SITENAME. ': %s hesap silinmesi',
 'mb_accrm' =>
 	'Sevgili Çalışanlar'. PHP_EOL.
 	PHP_EOL.
-	'Kullanıcı %1$s sadece onun silmiş olabilir ve bu notu:'. PHP_EOL.PHP_EOL.
-	'%2$s',
+	'Kullanıcı %s sadece onun silmiş olabilir ve bu notu:'. PHP_EOL.PHP_EOL.
+	'%s',
 
 	
 	# v2.03 Email Options
@@ -161,7 +161,7 @@ $lang = array(
 	'err_gpg_setup' => 'Either upload a file which contains your public key or paste your public key in the text area.',
 	'err_gpg_key' => 'Your public key seems invalid.',
 	'err_gpg_token' => 'Your gpg fingerprint token does not match our records.',
-	'err_no_gpg_key' => 'The user %1$s did not submit a public key yet.',
+	'err_no_gpg_key' => 'The user %s did not submit a public key yet.',
 	'err_no_mail' => 'You don`t have an approved main contact email address.',
 	'err_gpg_del' => 'You don`t have a validated GPG key to delete.',
 	'err_gpg_fine' => 'You already have a GPG key. Please delete it first.',
@@ -169,18 +169,18 @@ $lang = array(
 	'msg_setup_gpg' => 'Your GPG has been stored and is in use now.',
 	'mails_gpg' => GWF_SITENAME.': Setup GPG Encryption',
 	'mailb_gpg' =>
-		'Dear %1$s,'.PHP_EOL.
+		'Dear %s,'.PHP_EOL.
 		PHP_EOL.
 		'You have decided to turn on gpg encryption for emails sent by this robot.'.PHP_EOL.
 		'To do so, follow the link below:'.PHP_EOL.
 		PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# v2.04 Change Password
-	'th_change_pw' => '<a href="%1$s">Change your password</a>',
+	'th_change_pw' => '<a href="%s">Change your password</a>',
 		
 	'err_gpg_raw' => GWF_SITENAME.' does only support ascii armor format for your public GPG key.',
 	# v2.05 (fixes)

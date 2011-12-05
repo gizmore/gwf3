@@ -10,7 +10,7 @@ $lang = array(
 	'th_birthdate' => 'Születési dátum',
 	'th_countryid' => 'Ország',
 	'th_tos' => 'Elfogadom a<br/>felhasználási feltételeket',
-	'th_tos2' => 'Elfogadom a<br/><a href="%1$s">felhasználási feltételeket</a>',
+	'th_tos2' => 'Elfogadom a<br/><a href="%s">felhasználási feltételeket</a>',
 	'th_register' => 'Regisztrálás',
 
 	'btn_register' => 'Regisztrálás',
@@ -31,23 +31,23 @@ $lang = array(
 
 	'regmail_subject' => 'Regisztráció : '.GWF_SITENAME,
 	'regmail_body' => 
-		'Hello %1$s<br/>'.
+		'Hello %s<br/>'.
 		'<br/>'.
 		'Köszönjük hogy regisztráltál a(z) '.GWF_SITENAME.' oldalra.<br/>'.
 		'A regisztráció befejezéséhez először aktiválnod kell a fiókot. Ezt úgy teheted meg, hogy az alábbi URL-t meglátogatod.<br/>'.
 		'Ha nem regisztráltál a(z) '.GWF_SITENAME.' oldalon, hagyd figyelmen kívül vagy lépj kapcsolatba velünk: '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2$s<br/>'.
+		'%s<br/>'.
 		'<br/>'.
-		'%3$s'.
+		'%s'.
 		'Üdvözlettel,<br/>'.
 		'A(z) '.GWF_SITENAME.' csapata.',
 	'err_tos' => 'Hiba: Egyet kell értened az EULA-val a regisztrációhoz.',
 
 	'regmail_ptbody' => 
 		'A belépési adataid:<br/><b>'.
-		'Felhasználói név: %1$s<br/>'.
-		'Jelszó: %2$s<br/>'.
+		'Felhasználói név: %s<br/>'.
+		'Jelszó: %s<br/>'.
 		'</b><br/>'.
 		'Jó ötlet törölni ezt az e-mailt és a jelszót máshol tárolni.<br/>'.
 		'Mi sem tároljuk a jelszavad nyílt szöveges formában, így te se tedd ezt.<br/>'.
@@ -67,12 +67,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Félbeszakadt regisztráció befejezése ennyi idő után:',
 
 	'err_birthdate' => 'Érvénytelen születési dátum.',
-	'err_minage' => 'Sajnáljuk, de nem vagy elég idős ahhoz, hog regisztrálj. Legalább %1$s évesnek kell lenned.',
+	'err_minage' => 'Sajnáljuk, de nem vagy elég idős ahhoz, hog regisztrálj. Legalább %s évesnek kell lenned.',
 	'err_ip_timeout' => 'Valaki nemrég regisztrált egy fiókot ezzel az IP-vel.',
 	'th_token' => 'Token',
 	'th_timestamp' => 'Regisztráció ideje',
 	'th_ip' => 'Regisztrációs IP',
-	'tt_username' => 'A felhasználói névnek betűvel kell kezdődnie.'.PHP_EOL.'Csak betűt, számot és alulvonást tartalmazhat. Length has to be 3 - %1$s chars.', 
+	'tt_username' => 'A felhasználói névnek betűvel kell kezdődnie.'.PHP_EOL.'Csak betűt, számot és alulvonást tartalmazhat. Length has to be 3 - %s chars.', 
 	'tt_email' => 'Érvényes e-mail cím szükséges a regisztrációhoz.',
 
 	'info_no_cookie' => 'A böngésződ vagy nem támogatja a sütiket, nincs engedélyezve a(z) '.GWF_SITENAME.' oldal számára, pedig a sütik nélkül nem tudod használni az oldalt.',

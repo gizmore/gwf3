@@ -12,7 +12,7 @@ $lang = array(
 	'th_birthdate' => 'Naissance',
 	'th_countryid' => 'Pays',
 	'th_tos' => 'J\'accepte les <br/>Termes d\'Utilisation',
-	'th_tos2' => 'J\'accepte les <br/><a href="%1$s">Termes d\'Utilisation</a>',
+	'th_tos2' => 'J\'accepte les <br/><a href="%s">Termes d\'Utilisation</a>',
 	'th_register' => 'Enregistrer',
 
 	'btn_register' => 'Enregistrer',
@@ -33,23 +33,23 @@ $lang = array(
 
 	'regmail_subject' => 'Enregistrement sur '.GWF_SITENAME,
 	'regmail_body' => 
-		'Bonjour %1$s<br/>'.
+		'Bonjour %s<br/>'.
 		'<br/>'.
 		'Merci pour votre enregistrement sur '.GWF_SITENAME.'.<br/>'.
 		'Pour compléter votre enregistrement, vous devez d\'abord activer votre compte, en visitant le lien suivant.<br/>'.
 		'Si vous ne vous êtes pas enregistré sur '.GWF_SITENAME.', merci d\'ignorer ce mail, ou contactez nous à '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2$s<br/>'.
+		'%s<br/>'.
 		'<br/>'.
-		'%3$s'.
+		'%s'.
 		'Cordialement,<br/>'.
 		'L\'équipe '.GWF_SITENAME,
 	'err_tos' => 'Vous devez être d\'accord avec l\'EULA.',
 
 	'regmail_ptbody' => 
 		'Vos identifiants de connexion sont:<br/><b>'.
-		'Username: %1$s<br/>'.
-		'Password: %2$s<br/>'.
+		'Username: %s<br/>'.
+		'Password: %s<br/>'.
 		'</b><br/>'.
 		'Vous devriez détruire cet email et sauvegarder le mot de passe autrepart.<br/>'.
 		'Nous ne stockons pas votre mot de passe en clair, vous ne devriez pas le faire non plus.<br/>'.
@@ -69,12 +69,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Temps de repos pour compléter l\'enregistrement',
 
 	'err_birthdate' => 'Votre date de naissance est invalide.',
-	'err_minage' => 'Nous sommes désolés, mais vous n\'êtes pas assez âgé pour vous enregistrer. Vous devez avoir au moins %1$s ans.',
+	'err_minage' => 'Nous sommes désolés, mais vous n\'êtes pas assez âgé pour vous enregistrer. Vous devez avoir au moins %s ans.',
 	'err_ip_timeout' => 'Quelqu\'un a récemment enregistré un compte avec cette IP.',
 	'th_token' => 'Token ',
 	'th_timestamp' => 'Date d\'enregistrement',
 	'th_ip' => 'Enregistrer l\'IP',
-	'tt_username' => 'Le nom d\'utilisateur doit commencer avec la lettre.'.PHP_EOL.'Il doit contenir seulement des lettres, chiffres et l\'underscore. Length has to be 3 - %1$s chars.', 
+	'tt_username' => 'Le nom d\'utilisateur doit commencer avec la lettre.'.PHP_EOL.'Il doit contenir seulement des lettres, chiffres et l\'underscore. Length has to be 3 - %s chars.', 
 	'tt_email' => 'Un EMail valide est nécessaire pour s\'enregistrer.',
 
 	'info_no_cookie' => 'Votre navigateur ne supporte pas les cookies ou ne les autorise pas pour '.GWF_SITENAME.', mais les cookies sont nécessaires pour se connecter.',

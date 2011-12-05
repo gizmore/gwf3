@@ -2,15 +2,15 @@
 
 $lang = array(
 	# Page Titles
-	'pt_profile' => 'Profil %1$s',
+	'pt_profile' => 'Profil %s',
 	'pt_settings' => 'Ustawienia profilu',
 
 	# Meta Tags
-	'mt_profile' => 'Profil %1$s, '.GWF_SITENAME.', %1$s, Profil',
+	'mt_profile' => 'Profil %s, '.GWF_SITENAME.', %s, Profil',
 	'mt_settings' => GWF_SITENAME.', Profil, Ustawienia, Edycja, Kontakt, Dane',
 
 	# Meta Description
-	'md_profile' => 'Profil %1$s na stronie '.GWF_SITENAME.'.',
+	'md_profile' => 'Profil %s na stronie '.GWF_SITENAME.'.',
 	'md_settings' => 'Ustawienia profilu na stronie '.GWF_SITENAME.'.',
 
 	# Info
@@ -24,20 +24,20 @@ $lang = array(
 
 	# Errors
 	'err_hidden' => 'Widok profilu użytkownika jest ukryty.',
-	'err_firstname' => 'Wprowadzone imię jest nieprawidłowe. Maksymalna długość: %1$s znaków.',
-	'err_lastname' => 'Wprowadzone nazwisko jest nieprawidłowe. Maksymalna długość: %1$s znaków.',
-	'err_street' => 'Wprowadzona nazwa ulicy jest nieprawidłowa. Maksymalna długość: %1$s znaków.',
-	'err_zip' => 'Wprowadzony kod pocztowy jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_city' => 'Wprowadzona nazwa miasta jest nieprawidłowa. Maksymalna długość: %1$s znaków.',
-	'err_tel' => 'Wprowadzony numer telefonu stacjonarnego jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_mobile' => 'Wprowadzony numer telefonu komrórkowego jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_icq' => 'Wprowadzony numer ICQ-UIN jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_msn' => 'Wprowadzony numer MSN jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_jabber' => 'Wprowadzony identyfikator Jabber jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_skype' => 'Wprowadzona nazwa użytkownika Skype jest nieprawidłowa. Maksymalna długość: %1$s znaków.',
-	'err_yahoo' => 'Wprowadzony identyfikator Yahoo! jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_aim' => 'Wprowadzony numer AIM jest nieprawidłowy. Maksymalna długość: %1$s znaków.',
-	'err_about_me' => 'Twoja notatka &quot;O mnie&quot; jest nieprawidłowa. Maksymalna długość: %1$s znaków.',
+	'err_firstname' => 'Wprowadzone imię jest nieprawidłowe. Maksymalna długość: %s znaków.',
+	'err_lastname' => 'Wprowadzone nazwisko jest nieprawidłowe. Maksymalna długość: %s znaków.',
+	'err_street' => 'Wprowadzona nazwa ulicy jest nieprawidłowa. Maksymalna długość: %s znaków.',
+	'err_zip' => 'Wprowadzony kod pocztowy jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_city' => 'Wprowadzona nazwa miasta jest nieprawidłowa. Maksymalna długość: %s znaków.',
+	'err_tel' => 'Wprowadzony numer telefonu stacjonarnego jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_mobile' => 'Wprowadzony numer telefonu komrórkowego jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_icq' => 'Wprowadzony numer ICQ-UIN jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_msn' => 'Wprowadzony numer MSN jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_jabber' => 'Wprowadzony identyfikator Jabber jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_skype' => 'Wprowadzona nazwa użytkownika Skype jest nieprawidłowa. Maksymalna długość: %s znaków.',
+	'err_yahoo' => 'Wprowadzony identyfikator Yahoo! jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_aim' => 'Wprowadzony numer AIM jest nieprawidłowy. Maksymalna długość: %s znaków.',
+	'err_about_me' => 'Twoja notatka &quot;O mnie&quot; jest nieprawidłowa. Maksymalna długość: %s znaków.',
 	'err_website' => 'Twoja strona internetowa nie istnieje bądź nie można nawiazać z nią połączenia.',
 
 	# Messages
@@ -94,14 +94,14 @@ $lang = array(
 	'err_level_contact' => 'Your minimum user level to see your contact data is invalid.',
 
 	# v2.03 (fixes2)
-	'title_about_me' => 'About %1$s',
+	'title_about_me' => 'About %s',
 
 	# v2.04 (ext. profile)
 	'th_user_country' => 'Country',
 	'btn_pm' => 'PM',
 
 	# v2.05 (more fixes)
-	'at_mailto' => 'Send a mail to %1$s',
+	'at_mailto' => 'Send a mail to %s',
 	'th_email' => 'EMail',
 
 	# v2.06 (birthday)

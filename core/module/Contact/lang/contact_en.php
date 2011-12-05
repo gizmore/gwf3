@@ -8,7 +8,7 @@ $lang = array(
 	'contact_title' => 'Contact',
 	'contact_info' =>
 		'Here you can contact us by EMail. Please support us with a valid email, so we can send you a response, if desired.<br/>'.
-		'You could also send us a mail to <a href="mailto:%1$s">%1$s</a> with any other mail program.',
+		'You could also send us a mail to <a href="mailto:%s">%s</a> with any other mail program.',
 	'form_title' => 'Contact us',
 	'th_email' => 'Your EMail',
 	'th_message' => 'Your Message',
@@ -17,12 +17,12 @@ $lang = array(
 	'mail_subj' => GWF_SITENAME.': New Contact Mail',
 	'mail_body' => 
 		'A new Email has been sent by the contact form.<br/>'.
-		'From: %1$s<br/>'.
+		'From: %s<br/>'.
 		'Message:<br/>'.
-		'%2$s<br/>'.
+		'%s<br/>'.
 		'',
 
-	'info_skype' => '<br/>You can also contact us via skype: %1$s.',
+	'info_skype' => '<br/>You can also contact us via skype: %s.',
 
 	'err_email' => 'Your email is invalid. You can leave the field blank if you want.',
 	'err_message' => 'Your message is too short or too long.',
@@ -36,21 +36,21 @@ $lang = array(
 
 	# Sendmail
 	'th_user_email' => 'Your email address',
-	'ft_sendmail' => 'Send %1$s an email',
+	'ft_sendmail' => 'Send %s an email',
 	'btn_sendmail' => 'Send Mail',
 	'err_no_mail' => 'This user does not want to receive email.',
-	'msg_mailed' => 'An email has been sent to %1$s.',
-	'mail_subj_mail' => GWF_SITENAME.': EMail from %1$s',
+	'msg_mailed' => 'An email has been sent to %s.',
+	'mail_subj_mail' => GWF_SITENAME.': EMail from %s',
 	'mail_subj_body' => 
-		'Hello %1$s'.PHP_EOL.
+		'Hello %s'.PHP_EOL.
 		PHP_EOL.
-		'There has been an email sent to you from %2$s by the '.GWF_SITENAME.' website:'.PHP_EOL.
+		'There has been an email sent to you from %s by the '.GWF_SITENAME.' website:'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'%3$s',
+		'%s',
 
 	# V2.01 (List Admins)
-	'list_admins' => 'Admins: %1$s.',
+	'list_admins' => 'Admins: %s.',
 	
 	'cfg_captcha_member' => 'Show captcha for members?',
 );

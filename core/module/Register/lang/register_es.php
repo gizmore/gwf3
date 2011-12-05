@@ -8,7 +8,7 @@ $lang = array(
 	'th_birthdate' => 'Fecha de nacimiento',
 	'th_countryid' => 'País',
 	'th_tos' => 'Estoy de acuerdo con los<br/>Términos de Uso',
-	'th_tos2' => 'Estoy de acuerdo con los<br/><a href="%1$s">Términos de Uso</a>',
+	'th_tos2' => 'Estoy de acuerdo con los<br/><a href="%s">Términos de Uso</a>',
 	'th_register' => 'Registro',
 	'btn_register' => 'Registro',
 	'err_register' => 'Ocurrió un error durante el proceso de registro.',
@@ -25,14 +25,14 @@ $lang = array(
 
 	'regmail_subject' => 'Registro en '.GWF_SITENAME,
 	'regmail_body' =>
-		'Hola %1$s'.PHP_EOL.
+		'Hola %s'.PHP_EOL.
 	'Gracias por registrarse en '.GWF_SITENAME.'.'.PHP_EOL.
 	'Para completar el registro, tiene que activar la cuenta primero, visitando el siguiente enlace.'.PHP_EOL.
 	'Si no se registró en '.GWF_SITENAME.', por favor, ignore este email o contacte con nosotros en '.GWF_SUPPORT_EMAIL.'.'.PHP_EOL.
 	''.PHP_EOL.
-	'%2$s'.PHP_EOL.
+	'%s'.PHP_EOL.
 	''.PHP_EOL.
-	'%3$s'.PHP_EOL.
+	'%s'.PHP_EOL.
 	'Atentamente,'.PHP_EOL.
 	'El personal de '.GWF_SITENAME.'',
 	
@@ -40,8 +40,8 @@ $lang = array(
 
 	'regmail_ptbody' =>
 		'Sus datos de acceso son:'.PHP_EOL.
-		'<b>Nombre de usuario: %1$s'.PHP_EOL.
-		'Contraseña: %2$s</b>'.PHP_EOL.
+		'<b>Nombre de usuario: %s'.PHP_EOL.
+		'Contraseña: %s</b>'.PHP_EOL.
 		''.PHP_EOL.
 		'Es una buena idea borrar este email y guardar la contraseña en otro sitio.'.PHP_EOL.
 		'No guardamos su contraseña en texto plano, y usted tampoco debería.'.PHP_EOL,
@@ -59,13 +59,13 @@ $lang = array(
 	'cfg_activation_pp' => 'Activaciones por cada página de administración',
 	'cfg_ua_threshold' => 'Tiempo para completar registro',
 	'err_birthdate' => 'Fecha de nacimiento no válida.',
-	'err_minage' => 'Lo sentimos, pero no tiene edad suficiente para registrarse. Necesita tener al menos %1$s años.',
+	'err_minage' => 'Lo sentimos, pero no tiene edad suficiente para registrarse. Necesita tener al menos %s años.',
 	'err_ip_timeout' => 'Alguien registró una cuenta con esta IP recientemente.',
 	
 	'th_token' => 'Token',
 	'th_timestamp' => 'Tiempo de registro',
 	'th_ip' => 'Registrar IP',
-	'tt_username' => 'Nombre de usuario debe empezar por una letra.'.PHP_EOL.'Sólo puede contener letras, dígitos y guión bajo. Length has to be 3 - %1$s chars.',
+	'tt_username' => 'Nombre de usuario debe empezar por una letra.'.PHP_EOL.'Sólo puede contener letras, dígitos y guión bajo. Length has to be 3 - %s chars.',
 	'tt_email' => 'Se requiere un email válido para el registro.',
 	'info_no_cookie' => 'Su navegador no soporta cookies o no las permite para '.GWF_SITENAME.', pero las cookies son necesarias para acceder.', 
 

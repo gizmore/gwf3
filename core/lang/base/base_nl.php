@@ -1,31 +1,31 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Database fout in bestand %1$s op regel %2$s.',
-	'ERR_FILE_NOT_FOUND' => 'Bestand niet gevonden: %1$s',
-	'ERR_MODULE_DISABLED' => 'De module %1$s is correct uitgevinkt.',
+	'ERR_DATABASE' => 'Database fout in bestand %s op regel %s.',
+	'ERR_FILE_NOT_FOUND' => 'Bestand niet gevonden: %s',
+	'ERR_MODULE_DISABLED' => 'De module %s is correct uitgevinkt.',
 	'ERR_LOGIN_REQUIRED' => 'Voor deze functie moet je ingelogd zijn.',
 	'ERR_NO_PERMISSION' => 'Geen permissies.',
 	'ERR_WRONG_CAPTCHA' => 'Je moet de tekens op de afbeelding correct invoeren.',
-	'ERR_MODULE_MISSING' => 'Module %1$s kan niet gevonden worden.',
+	'ERR_MODULE_MISSING' => 'Module %s kan niet gevonden worden.',
 	'ERR_COOKIES_REQUIRED' => 'Je sessie is afgesloten,je moet je cookies toelaten.<br/>Probeer de pagina opnieuw te laden.',
 	'ERR_UNKNOWN_USER' => 'Deze gebruiker is niet bekend',
 	'ERR_UNKNOWN_GROUP' => 'Deze groep is niet bekend',
 	'ERR_UNKNOWN_COUNTRY' => 'Dit land is niet bekend',
 	'ERR_UNKNOWN_LANGUAGE' => 'Deze taal is niet bekend',
-	'ERR_METHOD_MISSING' => 'Onbekende methode: %1$s in Module %2$s.',
-	'ERR_GENERAL' => 'Onbekende fouten in%1$s op regel %2$s.',
-	'ERR_WRITE_FILE' => 'Kan het bestand niet beschrijven: %1$s.',
-	'ERR_CLASS_NOT_FOUND' => 'Onbekende class: %1$s.',
-	'ERR_MISSING_VAR' => 'Mist HTTP POST var: %1$s.',
+	'ERR_METHOD_MISSING' => 'Onbekende methode: %s in Module %s.',
+	'ERR_GENERAL' => 'Onbekende fouten in%s op regel %s.',
+	'ERR_WRITE_FILE' => 'Kan het bestand niet beschrijven: %s.',
+	'ERR_CLASS_NOT_FOUND' => 'Onbekende class: %s.',
+	'ERR_MISSING_VAR' => 'Mist HTTP POST var: %s.',
 	'ERR_MISSING_UPLOAD' => 'Je moet een bestand uploaden.',
 	'ERR_MAIL_SENT' => 'Er is een fout opgetreden tijdens het versturen van een email.',
 	'ERR_CSRF' => 'Een teken in het formulier is ongeldig, Misschien heb je een typefout gemaakt of je sessie is afgesloten.',
-	'ERR_HOOK' => 'Een terugkerende fout.: %1$s.',
-	'ERR_PARAMETER' => 'Foute invoer in %1$s op regel %2$s. Functie argument %3$s is fout.',
-	'ERR_DEPENDENCY' => 'Onopgeloste probleem in: core/module/%1$s/methode/%2$s verschillende Module %3$s v%4$s.',
-	'ERR_SEARCH_TERM' => 'De zoek term moet minimaal %1$s - %2$s characters lang zijn.',
-	'ERR_SEARCH_NO_MATCH' => 'Je zoekt voor &quot;%1$s&quot; Heeft geen resultaten gevonden.',
-	'ERR_POST_VAR' => 'Geen geaccepteerde post var: %1$s.',
+	'ERR_HOOK' => 'Een terugkerende fout.: %s.',
+	'ERR_PARAMETER' => 'Foute invoer in %s op regel %s. Functie argument %s is fout.',
+	'ERR_DEPENDENCY' => 'Onopgeloste probleem in: core/module/%s/methode/%s verschillende Module %s v%s.',
+	'ERR_SEARCH_TERM' => 'De zoek term moet minimaal %s - %s characters lang zijn.',
+	'ERR_SEARCH_NO_MATCH' => 'Je zoekt voor &quot;%s&quot; Heeft geen resultaten gevonden.',
+	'ERR_POST_VAR' => 'Geen geaccepteerde post var: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'Vrij',
 	'd6' => 'Za',
 
-	'ago_s' => '%1$s seconde geleden',
-	'ago_m' => '%1$s minuut geleden',
-	'ago_h' => '%1$s uur geleden',
-	'ago_d' => '%1$s dag geleden',
+	'ago_s' => '%s seconde geleden',
+	'ago_m' => '%s minuut geleden',
+	'ago_h' => '%s uur geleden',
+	'ago_d' => '%s dag geleden',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -127,7 +127,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Selecteer een Locatie',
 	'unknown_country' => 'Onbekende Locatie',
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# GWF_User#gender
 	'gender_male' => 'Man',
@@ -135,7 +135,7 @@ $lang = array(
 	'gender_no_gender' => 'Onbekend personage',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1$s`s Avatar',
+	'alt_avatar' => '%s`s Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Selecteer een groep',
@@ -156,14 +156,14 @@ $lang = array(
 	'by' => 'Door',
 	'and' => 'en',
 
-	'alt_flag' => '%1$s Flag',
+	'alt_flag' => '%s Flag',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. All rights reserved.',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. All rights reserved.',
 	'copygwf' => GWF_SITENAME.' Gebruikt <a href="http://gwf.gizmore.org">GWF</a>, de BSD-Like Website Framework.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1$s means required.',
+	'form_required' => '%s means required.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'Dik',
@@ -178,7 +178,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Invisible Tekst that is shown with a click.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Quote van %1$s',
+	'quote_from' => 'Quote van %s',
 	'code' => 'code',
 	'for' => 'voor',
 
@@ -191,7 +191,7 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );
 
 ?>

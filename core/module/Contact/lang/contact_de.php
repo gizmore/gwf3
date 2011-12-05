@@ -8,7 +8,7 @@ $lang = array(
 	'contact_title' => 'Kontakt',
 	'contact_info' =>
 		'Hier können Sie uns per E-Mail kontaktieren. Bitte geben Sie eine gültige E-Mail an, damit wir Ihnen antworten können.<br/>'.
-		'Sie können auch direkt eine E-Mail an <a href="mailto:%1$s">%1$s</a> senden.',
+		'Sie können auch direkt eine E-Mail an <a href="mailto:%s">%s</a> senden.',
 	'form_title' => 'Kontaktieren Sie uns',
 	'th_email' => 'Ihre E-Mail',
 	'th_message' => 'Ihre Nachricht',
@@ -17,12 +17,12 @@ $lang = array(
 	'mail_subj' => GWF_SITENAME.': Neue Kontakt Nachricht',
 	'mail_body' => 
 		'Eine neue E-Mail wurde durch das Kontakt-Formular gesendet.<br/>'.
-		'Sender: %1$s<br/>'.
+		'Sender: %s<br/>'.
 		'Nachricht:<br/>'.
-		'%2$s<br/>'.
+		'%s<br/>'.
 		'',
 
-	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %1$s.',
+	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %s.',
 
 	'err_email' => 'Ihre E-Mail ist ungültig. Sie können dieses Feld frei lassen wenn sie möchten.',
 	'err_message' => 'Ihre Nachricht ist zu kurz oder zu lang.',
@@ -36,21 +36,21 @@ $lang = array(
 
 	# Sendmail
 	'th_user_email' => 'Ihre E-Mail Adresse',
-	'ft_sendmail' => 'Eine E-Mail an %1$s senden',
+	'ft_sendmail' => 'Eine E-Mail an %s senden',
 	'btn_sendmail' => 'E-Mail Senden',
 	'err_no_mail' => 'Dieser Benutzer möchte keine E-Mails empfangen.',
-	'msg_mailed' => 'Eine E-Mail wurde an %1$s gesendet.',
-	'mail_subj_mail' => GWF_SITENAME.': E-Mail von %1$s',
+	'msg_mailed' => 'Eine E-Mail wurde an %s gesendet.',
+	'mail_subj_mail' => GWF_SITENAME.': E-Mail von %s',
 	'mail_subj_body' => 
-		'Hallo %1$s'.PHP_EOL.
+		'Hallo %s'.PHP_EOL.
 		PHP_EOL.
-		'Ihnen wurde eine E-Mail von %2$s über die '.GWF_SITENAME.' Webseite zugesandt:'.PHP_EOL.
+		'Ihnen wurde eine E-Mail von %s über die '.GWF_SITENAME.' Webseite zugesandt:'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'%3$s',
+		'%s',
 		
 	# V2.01 (List Admins)
-	'list_admins' => 'Administratoren: %1$s.',
+	'list_admins' => 'Administratoren: %s.',
 	'cfg_captcha_member' => 'Show captcha for members?',
 );
 

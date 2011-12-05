@@ -9,12 +9,12 @@ $lang = array(
 	# Errors
 	'err_gb' => 'The guestbook does not exist.',
 	'err_gbm' => 'The guestbook entry does not exist.',
-	'err_gbm_username' => 'Your username is invalid. It has to be %1$s to %2$s chars long.',
-	'err_gbm_message' => 'Your message is invalid. It has to be %1$s to %2$s chars long.',
+	'err_gbm_username' => 'Your username is invalid. It has to be %s to %s chars long.',
+	'err_gbm_message' => 'Your message is invalid. It has to be %s to %s chars long.',
 	'err_gbm_url' => 'Your Website is not reachable or the URL is invalid.',
 	'err_gbm_email' => 'Your EMail looks invalid.',
-	'err_gb_title' => 'Your Title is invalid. It has to be %1$s to %2$s chars long.',
-	'err_gb_descr' => 'Your Description is invalid. It has to be %1$s to %2$s chars long.',
+	'err_gb_title' => 'Your Title is invalid. It has to be %s to %s chars long.',
+	'err_gb_descr' => 'Your Description is invalid. It has to be %s to %s chars long.',
 
 	# Messages
 	'msg_signed' => 'You successfully signed the Guestbook.',
@@ -50,19 +50,19 @@ $lang = array(
 	'tt_gb_locked' => 'Checkmark to disable the guestbook temporarily.',
 
 	# Titles
-	'ft_sign' => 'Sign %1$s',
+	'ft_sign' => 'Sign %s',
 	'ft_edit_gb' => 'Edit Your Guestbook',
 	'ft_edit_entry' => 'Edit a Guestbook entry',
 
 	# Buttons
-	'btn_sign' => 'Sign %1$s',
+	'btn_sign' => 'Sign %s',
 	'btn_edit_gb' => 'Edit Guestbook',
 	'btn_edit_entry' => 'Edit Entry',
 	'btn_public_hide' => 'Hide this entry from guests',
 	'btn_public_show' => 'Show this entry to the public',
 	'btn_moderate_no' => 'Approve this entry to be shown',
 	'btn_moderate_yes' => 'Hide this post and put it into moderation queue',
-	'btn_replyto' => 'Reply to %1$s',
+	'btn_replyto' => 'Reply to %s',
 
 	# Admin Config
 	'cfg_gb_allow_email' => 'Allow and Show EMails?',
@@ -79,24 +79,24 @@ $lang = array(
 	'cfg_gb_level' => 'Min Level to create a guestbook',
 	'mails_signed' => GWF_SITENAME.': Guestbook signed',
 	'mailb_signed' => 
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
-		'The %2$s guestbook got signed by %3$s (%4$s)'.PHP_EOL.
+		'The %s guestbook got signed by %s (%s)'.PHP_EOL.
 		'Message:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can automagically show this entry by visiting:'.PHP_EOL.
-		'%6$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 		
 	# v2.02 Mail on Sign
 	'th_mailonsign' => 'EMail on new entry?',
 	'mails2_signed' => GWF_SITENAME.': Guestbook signed',
 	'mailb2_signed' => 
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
-		'The %2$s guestbook got signed by %3$s (%4$s)'.PHP_EOL.
+		'The %s guestbook got signed by %s (%s)'.PHP_EOL.
 		'Message:'.PHP_EOL.
-		'%5$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 		
 	# v2.03 (Delete entry)
 	'btn_del_entry' => 'Delete entry',

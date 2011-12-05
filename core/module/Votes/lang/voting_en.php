@@ -4,8 +4,8 @@ $lang = array(
 ## SCOREVOTE ##
 
 	# votebuttons.php
-	'alt_button' => 'Vote %1$s',
-	'title_button' => 'Vote %1$s',
+	'alt_button' => 'Vote %s',
+	'title_button' => 'Vote %s',
 
 	# Errors
 	'err_votescore' => 'Vote table not found for that item.',
@@ -14,16 +14,16 @@ $lang = array(
 	'err_disabled' => 'The votes for that item are currently disabled.',
 	'err_vote_ip' => 'This item has been voted by your IP already.',
 	'err_no_guest' => 'Guests are not allowed to vote this item.',
-	'err_title' => 'Your title has to be between %1$s and %2$s chars long.',
-	'err_options' => 'Your Poll Option(s) %1$s is/are errorneous and probably not within the limits of %2$s to %3$s chars.',
+	'err_title' => 'Your title has to be between %s and %s chars long.',
+	'err_options' => 'Your Poll Option(s) %s is/are errorneous and probably not within the limits of %s to %s chars.',
 	'err_no_options' => 'You did not specify any options.',
 
 	# Messages
-	'msg_voted' => 'Vote registered. <a href="%1$s">Click here to return to your last location.',
+	'msg_voted' => 'Vote registered. <a href="%s">Click here to return to your last location.',
 
 	## POLLS ##
 
-	'poll_votes' => '%1$s Votes',
+	'poll_votes' => '%s Votes',
 	'votes' => 'votes',
 	'voted' => 'voted',
 	'vmview_never' => 'Never',
@@ -34,7 +34,7 @@ $lang = array(
 	'th_votes' => 'Votes',
 	'th_title' => 'Title',
 	'th_multi' => 'Allow multiple choices?',
-	'th_option' => 'Option %1$s',
+	'th_option' => 'Option %s',
 	'th_guests' => 'Allow guest votes?',
 	'th_mvview' => 'Show result',
 	'th_vm_public' => 'Show in Sidebar?',
@@ -57,8 +57,8 @@ $lang = array(
 	'err_multiview' => 'The view-flag for this Poll is invalid.',
 	'err_poll' => 'The Poll is unknown.',
 	'err_global_poll' => 'You are not allowed to add a global poll.',
-	'err_option_empty' => 'Option %1$s is empty.',
-	'err_option_twice' => 'Option %1$s appears multiple times.',
+	'err_option_empty' => 'Option %s is empty.',
+	'err_option_twice' => 'Option %s appears multiple times.',
 	'err_no_options' => 'You forgot to specify an option for your poll.',
 	'err_no_multi' => 'You may only choose one option.',
 	'err_poll_off' => 'This poll is currently disabled.',

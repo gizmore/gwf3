@@ -4,8 +4,8 @@ $lang = array(
 ## SCOREVOTE ##
 
 	# votebuttons.php
-	'alt_button' => 'Hääleta %1$s',
-	'title_button' => 'Hääleta %1$s',
+	'alt_button' => 'Hääleta %s',
+	'title_button' => 'Hääleta %s',
 
 	# Errors
 	'err_votescore' => 'Hääletuslauda ei leitud.',
@@ -14,8 +14,8 @@ $lang = array(
 	'err_disabled' => 'Hääled on ajutiselt eemaldatud.',
 	'err_vote_ip' => 'Sinu IP-lt on juba hääletatud.',
 	'err_no_guest' => 'Külalistel pole lubatud hääletada.',
-	'err_title' => 'Sinu pealkiri peab olema %1$s ja %2$s tähe vahel.',
-	'err_options' => 'Sinu Polli seaded %1$s on vigased jailmselt ei ole  %2$s kuni %3$s tähtede vahel.',
+	'err_title' => 'Sinu pealkiri peab olema %s ja %s tähe vahel.',
+	'err_options' => 'Sinu Polli seaded %s on vigased jailmselt ei ole  %s kuni %s tähtede vahel.',
 	'err_no_options' => 'Sa ei täpsustanud seadeid.',
 
 	# Messages
@@ -23,7 +23,7 @@ $lang = array(
 
 ## POLLS ##
 
-	'poll_votes' => '%1$s Hääled',
+	'poll_votes' => '%s Hääled',
 	'votes' => 'hääled',
 	'voted' => 'hääletatud',
 	'vmview_never' => 'Ei iial',
@@ -34,7 +34,7 @@ $lang = array(
 	'th_votes' => 'Hääled',
 	'th_title' => 'Pealkiri',
 	'th_multi' => 'Luba arvukaid valikuid?',
-	'th_option' => 'Seade %1$s',
+	'th_option' => 'Seade %s',
 	'th_guests' => 'Luba külaliste hääli?',
 	'th_mvview' => 'Näita tulemust',
 	'th_vm_public' => 'Näita sideribal?',
@@ -57,8 +57,8 @@ $lang = array(
 	'err_multiview' => 'Vaatamise-lipp on vigane sellel pollil.',
 	'err_poll' => 'Poll on tundmatu.',
 	'err_global_poll' => 'Sul pole lube lisada globaalset polli.',
-	'err_option_empty' => 'Variant %1$s on tühi.',
-	'err_option_twice' => 'Variant %1$s ilmub mitmeid kordi.',
+	'err_option_empty' => 'Variant %s on tühi.',
+	'err_option_twice' => 'Variant %s ilmub mitmeid kordi.',
 	'err_no_options' => 'Unustasid täpsustada valikuid oma pollis.',
 	'err_no_multi' => 'Tohid valida ainult ühe variandi.',
 	'err_poll_off' => 'See poll on ajutiselt eemaldatud.',

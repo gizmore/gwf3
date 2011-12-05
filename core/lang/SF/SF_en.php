@@ -65,34 +65,34 @@ $lang = array(
 	'donations' => 'Donations',
 	'server' => 'Server',
 	'today' => 'Today',
-	'today_is_the' => 'Today is %1$s, the %2$s. %3$s (%4$s), %5$s.',
+	'today_is_the' => 'Today is %s, the %s. %s (%s), %s.',
 	'statistics' => 'Statistics',
 	'surfer_infos' => 'Surfer Infos',
 	'guest' => 'guest',
 	
 	'si' => array(
-		'operating_system' => 'Operatingsystem: %1$s %2$s',
-		'browser' => 'Browser: %1$s %2$s',
-		'provider' => 'Provider: %1$s %2$s',
-		'referer' => 'Referer: %1$s',
-		'host' => 'Host: %1$s',
-		'hostname' => 'Hostname: %1$s',
-		'user_agent' => 'UserAgent: %1$s',
-		'country' => 'Country: %1$s %2$s',
-		'ip' => 'IP: %1$s',
-		'ipaddr' => 'IP-Address: %1$s',
+		'operating_system' => 'Operatingsystem: %s %s',
+		'browser' => 'Browser: %s %s',
+		'provider' => 'Provider: %s %s',
+		'referer' => 'Referer: %s',
+		'host' => 'Host: %s',
+		'hostname' => 'Hostname: %s',
+		'user_agent' => 'UserAgent: %s',
+		'country' => 'Country: %s %s',
+		'ip' => 'IP: %s',
+		'ipaddr' => 'IP-Address: %s',
 		
 	),
 	
 	//COUNTER TODO: Array
-	'ct_vis_total' => 'Visitor total: %1$s',
-	'ct_vis_today' => 'Visitor today: %1$s',
-	'ct_vis_yesterday' => 'Visitor yesterday: %1$s',
+	'ct_vis_total' => 'Visitor total: %s',
+	'ct_vis_today' => 'Visitor today: %s',
+	'ct_vis_yesterday' => 'Visitor yesterday: %s',
 	
-	'ct_online_today' => 'Online today: %1$s',
-	'ct_online_total' => 'Online total: %1$s',
-	'ct_online_yesterday' => 'Online yesterday: %1$s',
-	'ct_online_atm' => 'Online: %1$s',
+	'ct_online_today' => 'Online today: %s',
+	'ct_online_total' => 'Online total: %s',
+	'ct_online_yesterday' => 'Online yesterday: %s',
+	'ct_online_atm' => 'Online: %s',
 
 //	// FORMS 
 //	# profile, account
@@ -180,7 +180,7 @@ $lang = array(
 	'donate_via_paypal' => 'donate via PayPal',
 
 	// CONTENT
-	'last_change' => 'Last actualisation on %1$s',
+	'last_change' => 'Last actualisation on %s',
 );
 
 ?>

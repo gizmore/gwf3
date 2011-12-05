@@ -2,15 +2,15 @@
 
 $lang = array(
 	# Page Titles
-	'pt_profile' => '%1$sn Profiili',
+	'pt_profile' => '%sn Profiili',
 	'pt_settings' => 'Profiilin asetukset',
 
 	# Meta Tags
-	'mt_profile' => '%1$sn profiili, '.GWF_SITENAME.', %1$s, Profiili',
+	'mt_profile' => '%sn profiili, '.GWF_SITENAME.', %s, Profiili',
 	'mt_settings' => GWF_SITENAME.', Profiili, Asetukset, Muokkaa, Ota yhteyttä, Data',
 
 	# Meta Description
-	'md_profile' => '%1$sn profiili on '.GWF_SITENAME.'.',
+	'md_profile' => '%sn profiili on '.GWF_SITENAME.'.',
 	'md_settings' => 'Profiilisi asetukset '.GWF_SITENAME.'.',
 
 	# Info
@@ -24,20 +24,20 @@ $lang = array(
 
 	# Errors
 	'err_hidden' => 'Käyttäjän profiili on piilotettu.',
-	'err_firstname' => 'Etunimesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_lastname' => 'Sukunimesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_street' => 'Lähiosoitteesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_zip' => 'Postinumerosi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_city' => 'Sinun kaupunkisi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
+	'err_firstname' => 'Etunimesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_lastname' => 'Sukunimesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_street' => 'Lähiosoitteesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_zip' => 'Postinumerosi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_city' => 'Sinun kaupunkisi on liian pitkä. Enimmäispituus: %s merkkiä.',
 	'err_tel' => 'Puhelinumerosi on liian pitkä. Enimmäispituus: 24 numeroa tai välilyöntiä.',
 	'err_mobile' => 'Puhelinnumerosi on epäkelpo.',
 	'err_icq' => 'ICQ-UIN-tunnuksesi on liian pitkä. Enimmäispituus: 16 numeroa.',
 	'err_msn' => 'MSN-tunnuksesi on epäkelpo.',
 	'err_jabber' => 'Jabber-tunnuksesi on epäkelpo.',
-	'err_skype' => 'Skype-nimesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_yahoo' => 'Yahoo!-tunnuksesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_aim' => 'AIM-tunnuksesi on liian pitkä. Enimmäispituus: %1$s merkkiä.',
-	'err_about_me' => 'Sinun &quot;Tietoja minusta&quot; on liian pitkä. Enimmäispituus: %1$s merkkiä.',
+	'err_skype' => 'Skype-nimesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_yahoo' => 'Yahoo!-tunnuksesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_aim' => 'AIM-tunnuksesi on liian pitkä. Enimmäispituus: %s merkkiä.',
+	'err_about_me' => 'Sinun &quot;Tietoja minusta&quot; on liian pitkä. Enimmäispituus: %s merkkiä.',
 	'err_website' => 'Websivusi ei ole käytettävissä tai ole olemassa.',
 
 	# Messages
@@ -94,14 +94,14 @@ $lang = array(
 	'err_level_contact' => 'Pienin käyttäjätaso jolla yhteystietosi näkee on epäkelpo.',
 
 	# v2.03 (fixes2)
-	'title_about_me' => 'Tietoja %1$s',
+	'title_about_me' => 'Tietoja %s',
 
 	# v2.04 (ext. profile)
 	'th_user_country' => 'Maa',
 	'btn_pm' => 'Yksityisviesti',
 
 	# v2.05 (more fixes)
-	'at_mailto' => 'Send a mail to %1$s',
+	'at_mailto' => 'Send a mail to %s',
 	'th_email' => 'EMail',
 
 	# v2.06 (birthday)

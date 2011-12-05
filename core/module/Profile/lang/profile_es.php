@@ -2,15 +2,15 @@
 
 $lang = array(
 	# Page Titles
-	'pt_profile' => '%1$s`s perfil',
+	'pt_profile' => '%s`s perfil',
 	'pt_settings' => 'Configuración del perfil',
 
 	# Meta Tags
-	'mt_profile' => '%1$s`s perfil, '.GWF_SITENAME.', %1$s, Perfil',
+	'mt_profile' => '%s`s perfil, '.GWF_SITENAME.', %s, Perfil',
 	'mt_settings' => GWF_SITENAME.', perfil, Configuracion, Editar, Contacto, Data',
 
 	# Meta Description
-	'md_profile' => '%1$s`s perfil en '.GWF_SITENAME.'.',
+	'md_profile' => '%s`s perfil en '.GWF_SITENAME.'.',
 	'md_settings' => 'Usted configuracion del perfil en'.GWF_SITENAME.'.',
 
 	# Info
@@ -24,20 +24,20 @@ $lang = array(
 
 	# Errors
 	'err_hidden' => 'El Usuario `s perfil está oculto.',
-	'err_firstname' => 'Usted llama no es válida. Longitud máxima: %1$s caracteres.',
-	'err_lastname' => 'Usted Nombre de última no es válida. Longitud máxima: %1$s caracteres.',
-	'err_street' => 'Usted calle no es válido. Longitud máxima: %1$s caracteres.',
-	'err_zip' => 'Usted código postal no es válida. Longitud máxima: %1$s caracteres.',
-	'err_city' => 'Usted ciudad no es válida. Longitud máxima: %1$s caracteres.',
-	'err_tel' => 'Usted número de teléfono no es válido. Longitud máxima: %1$s caracteres.',
+	'err_firstname' => 'Usted llama no es válida. Longitud máxima: %s caracteres.',
+	'err_lastname' => 'Usted Nombre de última no es válida. Longitud máxima: %s caracteres.',
+	'err_street' => 'Usted calle no es válido. Longitud máxima: %s caracteres.',
+	'err_zip' => 'Usted código postal no es válida. Longitud máxima: %s caracteres.',
+	'err_city' => 'Usted ciudad no es válida. Longitud máxima: %s caracteres.',
+	'err_tel' => 'Usted número de teléfono no es válido. Longitud máxima: %s caracteres.',
 	'err_mobile' => 'Usted Número de teléfono móvil no es válida.',
 	'err_icq' => 'Usted ICQ UIN no es válida. Longitud máxima: 16 números.',
 	'err_msn' => 'Usted MSN es válido.',
 	'err_jabber' => 'Usted Jabber no es válido.',
-	'err_skype' => 'Usted Skype nombre es válido. Longitud máxima: %1$s caracteres.',
-	'err_yahoo' => 'Usted Yahoo! no es válido. Longitud máxima: %1$s caracteres.',
-	'err_aim' => 'Usted AIM no es válida. Longitud máxima: %1$s caracteres.',
-	'err_about_me' => 'Usted &quot;About Me&quot; no es válido. Longitud máxima: %1$s caracteres.',
+	'err_skype' => 'Usted Skype nombre es válido. Longitud máxima: %s caracteres.',
+	'err_yahoo' => 'Usted Yahoo! no es válido. Longitud máxima: %s caracteres.',
+	'err_aim' => 'Usted AIM no es válida. Longitud máxima: %s caracteres.',
+	'err_about_me' => 'Usted &quot;About Me&quot; no es válido. Longitud máxima: %s caracteres.',
 	'err_website' => 'Usted sitio web es accesible o no existe.',
 
 	# Messages
@@ -93,12 +93,12 @@ $lang = array(
 	'err_level_all' => 'Tu nivel mínimo de usuario para ver tu perfil es inválido.',
 	'err_level_contact' => 'Tu nivle de usuario mínimo para ver tus datos de contacto es inválido.',
 	# v2.03 (fixes2)
-	'title_about_me' => 'Sobre %1$s',
+	'title_about_me' => 'Sobre %s',
 	# v2.04 (ext. profile)
 	'th_user_country' => 'País',
 	'btn_pm' => 'PM',
 	# v2.05 (more fixes)
-	'at_mailto' => 'Enviar email a %1$s',
+	'at_mailto' => 'Enviar email a %s',
 	'th_email' => 'EMail',
 	# v2.06 (birthday)
 	'th_age' => 'Edad',

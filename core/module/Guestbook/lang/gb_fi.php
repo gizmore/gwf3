@@ -9,12 +9,12 @@ $lang = array(
 	# Errors
 	'err_gb' => 'Vieraskirjaa ei ole.',
 	'err_gbm' => 'Vieraskirjamerkintää ei ole.',
-	'err_gbm_username' => 'Käyttäjänimesi on virheellinen. Käyttäjänimen pituuden tulee olla %1$s - %2$s merkkiä pitkä.',
-	'err_gbm_message' => 'Viestisi on virheellinen. Viestin pituuden tulee olla %1$s - %2$s merkkiä pitkä.',
+	'err_gbm_username' => 'Käyttäjänimesi on virheellinen. Käyttäjänimen pituuden tulee olla %s - %s merkkiä pitkä.',
+	'err_gbm_message' => 'Viestisi on virheellinen. Viestin pituuden tulee olla %s - %s merkkiä pitkä.',
 	'err_gbm_url' => 'Web-sivustosi ei ole tavoitettavissa tai URL on virheellinen.',
 	'err_gbm_email' => 'Sähköpostiosoitteesi näyttää virheelliseltä.',
-	'err_gb_title' => 'Otsikkosi on virheellinen. Otsikon tulee olla %1$s - %2$s merkkiä pitkä.',
-	'err_gb_descr' => 'Kuvauksesi on virheellinen. Kuvauksen tulee olla %1$s - %2$s merkkiä pitkä.',
+	'err_gb_title' => 'Otsikkosi on virheellinen. Otsikon tulee olla %s - %s merkkiä pitkä.',
+	'err_gb_descr' => 'Kuvauksesi on virheellinen. Kuvauksen tulee olla %s - %s merkkiä pitkä.',
 
 	# Messages
 	'msg_signed' => 'Kirjoitit onnistuneesti vieraskirjaan.',
@@ -50,19 +50,19 @@ $lang = array(
 	'tt_gb_locked' => 'Merkitse ottaaksesi vieraskirjan väliaikaisesti pois käytöstä',
 
 	# Titles
-	'ft_sign' => 'Kirjoita %1$s',
+	'ft_sign' => 'Kirjoita %s',
 	'ft_edit_gb' => 'Muokkaa vieraskirjaasi',
 	'ft_edit_entry' => 'Muokkaa vieraskirjamerkintää',
 
 	# Buttons
-	'btn_sign' => 'Kirjoita %1$s',
+	'btn_sign' => 'Kirjoita %s',
 	'btn_edit_gb' => 'Muokkaa vieraskirjaa',
 	'btn_edit_entry' => 'Muokkaa merkintää',
 	'btn_public_hide' => 'Piilota tämä merkintä vierailta',
 	'btn_public_show' => 'Näytä tämä merkintä julkisesti',
 	'btn_moderate_no' => 'Hyväksy tämä merkintä näytettäväksi',
 	'btn_moderate_yes' => 'Piilota ja laita tämä viesti moderointijonoon',
-	'btn_replyto' => 'Vastaa viestiin %1$s',
+	'btn_replyto' => 'Vastaa viestiin %s',
 
 	# Admin Config
 	'cfg_gb_allow_email' => 'Salli ja näytä sähköpostiosoitteet?',
@@ -79,24 +79,24 @@ $lang = array(
 	'cfg_gb_level' => 'Vieraskirjan luomiseen vaadittava vähimmäistaso',
 	'mails_signed' => GWF_SITENAME.': Vieraskirjaan kirjoitettu',
 	'mailb_signed' => 
-		'Hyvö %1$s'.PHP_EOL.
+		'Hyvö %s'.PHP_EOL.
 		PHP_EOL.
-		'%2$s vieraskirjaan tehtiin merkintä käyttäjän toimesta: %3$s (%4$s)'.PHP_EOL.
+		'%s vieraskirjaan tehtiin merkintä käyttäjän toimesta: %s (%s)'.PHP_EOL.
 		'Viesti:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Voit automaattisesti näyttää tämän merkinnän vierailemalla osoitteessa:'.PHP_EOL.
-		'%6$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 		
 	# v2.02 Mail on Sign
 	'th_mailonsign' => 'Sähköposti-ilmoitus uudesta merkinnästä?',
 	'mails2_signed' => GWF_SITENAME.': Vieraskirjaan kirjoitettu',
 	'mailb2_signed' => 
-		'Hyvä %1$s'.PHP_EOL.
+		'Hyvä %s'.PHP_EOL.
 		PHP_EOL.
-		'%2$s vieraskirjaan tehtiin merkintä käyttäjän toimesta: %3$s (%4$s)'.PHP_EOL.
+		'%s vieraskirjaan tehtiin merkintä käyttäjän toimesta: %s (%s)'.PHP_EOL.
 		'Viesti:'.PHP_EOL.
-		'%5$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 		
 	# v2.03 (Delete entry)
 	'btn_del_entry' => 'Poista merkintä',

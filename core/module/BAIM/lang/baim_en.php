@@ -46,10 +46,10 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 	'menu_pm' => 'PM',
 	'ft_set_mc' => 'Unlock B.AiM',
 	'msg_set_mc' => 'Your copy has been unlocked again. Please start B.AiM.exe now.',
-	'err_change_freq' => 'You unlocked your copy of B.AiM recently. You are allowed to do this again in %1$s.',
+	'err_change_freq' => 'You unlocked your copy of B.AiM recently. You are allowed to do this again in %s.',
 
 ####
-	'key.dat' => '%1$s-%2$s',
+	'key.dat' => '%s-%s',
 	'readme.txt' =>
 		"Hello %s\r\n\r\n".
 		"Thank you very much for your purchase of B.AiM\r\n\r\n".
@@ -70,9 +70,9 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 	'dl_info_b' =>
 		'Here are a few release notes for B.AiM<br/>'.
 		'<br/>'.
-		'The official support will end on <b>%3$s</b>.<br/>'.
+		'The official support will end on <b>%s</b>.<br/>'.
 		'Every version of B.AiM is unique. You may not redistribute or share your copy.<br/>'.
-		'Each copy is designed to run on a single computer only. When you change your computer, you can unlock your copy again, but may only do so every %1$s.<br/>'.
+		'Each copy is designed to run on a single computer only. When you change your computer, you can unlock your copy again, but may only do so every %s.<br/>'.
 		'<br/>'.
 		'Currently, you can only purchase via <a href="https://www.paypal.com/en">PayPal</a> ExpressCheckout and <a href="http://www.paysafecard.com">PaySafeCard</a>.<br/>'.
 		'To purchase via PayPal, click the paypal button three times here. 1) Choose PayPal, 2) GoTo Paypal, 3) Come back, confirm and do the transaction.<br/>'.
@@ -85,7 +85,7 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 
 	'err_no_mc' => 'This user does not have an MC set.',
 	'err_mc_cheater' => 'The users MC has duplicates!',
-	'msg_new_demo' => 'The user %1$s got his/her demo records deleted. He/She has to download the demo again.',
+	'msg_new_demo' => 'The user %s got his/her demo records deleted. He/She has to download the demo again.',
 	
 );
 

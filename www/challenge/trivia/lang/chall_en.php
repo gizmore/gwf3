@@ -4,18 +4,18 @@ $lang = array(
 		'Gosh, You did it!<br/>'.
 		'You solved the challenge.<br/>'.
 		'but... you are not logged in.<br/>'.
-		'Well...I\'ll give you the magic pass: %1$s.',
+		'Well...I\'ll give you the magic pass: %s.',
 
-	'box_title' => 'Question %1$s',
+	'box_title' => 'Question %s',
 	'box_info' => 
-		'Time Limit: %1$s seconds.<br/>'.PHP_EOL.
-		'Category: %2$s.<br/>'.PHP_EOL.
+		'Time Limit: %s seconds.<br/>'.PHP_EOL.
+		'Category: %s.<br/>'.PHP_EOL.
 		'Question:<br/>'.PHP_EOL.
-		'%3$s<br/>'.PHP_EOL.
+		'%s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Hint: %4$s<br/>'.PHP_EOL.
+		'Hint: %s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%5$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	'err_timeout' => 'Your time has run out.',
 	'err_answer_missing' => 'You need to submit an answer.',

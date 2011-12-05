@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Yksinoikeudelliset ladattavat sivulla '.GWF_SITENAME.'.',
 
 	# Page Info
-	'pi_add' => 'Saadaksesi parhaan käyttökokemuksen lähetä tiedostosi ensin, se varastoidaan istuntoosi. Muuta asetuksia jälkeenpäin.<br/>Lähetyksen maksimikoko on %1$s.',
+	'pi_add' => 'Saadaksesi parhaan käyttökokemuksen lähetä tiedostosi ensin, se varastoidaan istuntoosi. Muuta asetuksia jälkeenpäin.<br/>Lähetyksen maksimikoko on %s.',
 
 	# Form Titles
 	'ft_add' => 'Lähetä tiedosto',
@@ -15,10 +15,10 @@ $lang = array(
 
 	# Errors
 	'err_file' => 'Sinun täytyy lähettää tiedosto.',
-	'err_filename' => 'Määrittelemäsi tiedostonimi on virheellinen. Maksimipituus on %1$s. Käytä tavallisia ascii-merkkejä.',
+	'err_filename' => 'Määrittelemäsi tiedostonimi on virheellinen. Maksimipituus on %s. Käytä tavallisia ascii-merkkejä.',
 	'err_level' => 'Käyttäjätason täytyy olla >= 0.',
-	'err_descr' => 'Kuvauksen täytyy 0-%1$s merkkiä pitkä.',
-	'err_price' => 'Hinnan täytyy olla väliltä %1$s - %2$s.',
+	'err_descr' => 'Kuvauksen täytyy 0-%s merkkiä pitkä.',
+	'err_price' => 'Hinnan täytyy olla väliltä %s - %s.',
 	'err_dlid' => 'Lataamisen kohdetta ei löytynyt.',
 	'err_token' => 'Latauskoodisi on virheellinen.',
 
@@ -68,9 +68,9 @@ $lang = array(
 	'cfg_dl_minvote' => 'Äänestyksen minimipistemäärä',
 
 	# Order
-	'order_title' => 'Latauskoodi kohteelle %1$s (Koodi: %2$s)',
-	'order_descr' => 'Latauskoodi ostettu kohteelle %1$s. Voimassaoloaika %2$s. Koodi: %3$s',
-	'msg_purchased' => 'Maksusuorituksesi on vastaanotettu ja latauskoodi lisätty.<br/>Koodisi on \'%1$s\' ja voimassaoloaika %2$s.<br/><b>Kirjoita koodi muistiin, jos sinulla ei ole tunnusta palvelussa '.GWF_SITENAME.'!</b><br/>Muutoin <a href="%3$s">paina tästä</a>.',
+	'order_title' => 'Latauskoodi kohteelle %s (Koodi: %s)',
+	'order_descr' => 'Latauskoodi ostettu kohteelle %s. Voimassaoloaika %s. Koodi: %s',
+	'msg_purchased' => 'Maksusuorituksesi on vastaanotettu ja latauskoodi lisätty.<br/>Koodisi on \'%s\' ja voimassaoloaika %s.<br/><b>Kirjoita koodi muistiin, jos sinulla ei ole tunnusta palvelussa '.GWF_SITENAME.'!</b><br/>Muutoin <a href="%s">paina tästä</a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Ostot',
@@ -84,10 +84,10 @@ $lang = array(
 	'th_dl_guest_down' => 'Vieraiden ladattavissa?',
 	'tt_dl_guest_down' => 'Saavatko viearaat ladata tämän tiedoston??',
 	'ft_reup' => 'Uudelleenlähetä tiedosto',
-	'order_descr2' => 'Latauskoodi ostettu kohteelle %1$s. Koodi: %2$s.',
-	'msg_purchased2' => 'Maksusuorituksesi on vastaanotettu ja latauskoodi asetettu.<br/>Koodisi on \'%1$s\'.<br/><b>Kirjoita koodi muistiin, jos sinulla ei ole tunnusta palvelussa '.GWF_SITENAME.'!</b><br/>Muutoin <a href="%2$s">paina tästä</a>.',
-	'err_group' => 'Sinun täytyy kuulua käyttäjäryhmään %1$s ladataksesi tämän tiedoston.',
-	'err_level' => 'Käyttäjätasosi tulee olla %1$s ladataksesi tämän tiedoston.',
+	'order_descr2' => 'Latauskoodi ostettu kohteelle %s. Koodi: %s.',
+	'msg_purchased2' => 'Maksusuorituksesi on vastaanotettu ja latauskoodi asetettu.<br/>Koodisi on \'%s\'.<br/><b>Kirjoita koodi muistiin, jos sinulla ei ole tunnusta palvelussa '.GWF_SITENAME.'!</b><br/>Muutoin <a href="%s">paina tästä</a>.',
+	'err_group' => 'Sinun täytyy kuulua käyttäjäryhmään %s ladataksesi tämän tiedoston.',
+	'err_level' => 'Käyttäjätasosi tulee olla %s ladataksesi tämän tiedoston.',
 	'err_guest' => 'Vieraat eivät saa ladata tätä tiedostoa.',
 	'err_adult' => 'Tämä on aikuissisältöinen.',
 
@@ -104,21 +104,21 @@ $lang = array(
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

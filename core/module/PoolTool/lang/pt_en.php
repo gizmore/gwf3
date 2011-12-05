@@ -83,7 +83,7 @@ $lang = array(
 		'Now you can press <b>Aim</b> or <b>Shoot</b>. Aim sets the mouse to the calculated best shot. You can then hold the mouse button to specify the tosses strength. Shoot executes a rightclick at that position, a toss with full power. This may be more accurate, depending on your ability to handle a mouse.',
 
 	# Matcher
-	'matches' => '%1$s IPs have a positive match!',
+	'matches' => '%s IPs have a positive match!',
 	'ft_matcher' => 'Match IPs',
 	'btn_match' => 'Match',
 	'err_pass' => 'The password you provided is not correct.',

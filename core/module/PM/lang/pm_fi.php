@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Tervehdys, %1$s',
+	'hello' => 'Tervehdys, %s',
 	'sel_username' => 'Valitse käyttäjänimi',
 	'sel_folder' => 'Valitse kansio',
 
@@ -11,7 +11,7 @@ $lang = array(
 	'pi_trashcan' => 'Tämä on roskakorisi. Et voi oikeasti poistaa viestejä, mutta voit palauttaa ne',
 	
 	# Buttons
-	'btn_ignore' => 'Laita %1$s sivuutuslistallesi',
+	'btn_ignore' => 'Laita %s sivuutuslistallesi',
 	'btn_ignore2' => 'Sivuuta (jätä huomiotta)',
 	'btn_save' => 'Tallenna asetukset',
 	'btn_create' => 'Uusi yksityisviesti',
@@ -33,45 +33,45 @@ $lang = array(
 	'err_perm_read' => 'Sinulla ei ole valtuuksia lukea tätä yksityisviestiä.',
 	'err_perm_write' => 'Sinulla ei ole valtuuksia muokata tätä yksityisviestiä.',
 	'err_no_title' => 'Unohdit antaa yksityisviestille otsikon.',
-	'err_title_len' => 'Otsikkosi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
+	'err_title_len' => 'Otsikkosi on liian pitkä. Merkkien enimmäismäärä on %s.',
 	'err_no_msg' => 'Unohdit kirjoittaa viestin.',
-	'err_sig_len' => 'Allekirjoituksesi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
-	'err_msg_len' => 'Viestisi on liian pitkä. Merkkien enimmäismäärä on %1$s.',
+	'err_sig_len' => 'Allekirjoituksesi on liian pitkä. Merkkien enimmäismäärä on %s.',
+	'err_msg_len' => 'Viestisi on liian pitkä. Merkkien enimmäismäärä on %s.',
 	'err_user_no_ppm' => 'Tämä käyttäjä ei tahdo julkisia yksityiviestejä.',
 	'err_no_mail' => 'Tunnuksellasi ei ole hyväksyttyä sähköpostiosoitetta.',
 	'err_pmoaf' => 'Automaattisten kansioiden arvo ei kelpaa.',
-	'err_limit' => 'Saavutit yksityisviestin enimmäismäärän tälle päivälle. Voit lähettää enintään %1$s yksityisviestiä seuraavan ajan sisällä: %2$s.',
-	'err_ignored' => '%1$s on laittanut sinut sivuutuslistalleen.<br/>%2$s',
+	'err_limit' => 'Saavutit yksityisviestin enimmäismäärän tälle päivälle. Voit lähettää enintään %s yksityisviestiä seuraavan ajan sisällä: %s.',
+	'err_ignored' => '%s on laittanut sinut sivuutuslistalleen.<br/>%s',
 	'err_delete' => 'Viestiäsi poistettaessa tapahtui virhe.',
 	'err_folder_exists' => 'Kansio on jo olemassa.',
-	'err_folder_len' => 'Kansion nimen pituuden tulee olla 1 - %1$s merkkiä.',
+	'err_folder_len' => 'Kansion nimen pituuden tulee olla 1 - %s merkkiä.',
 	'err_del_twice' => 'Olet jo poistanut tämän yksityisviestin.',
 	'err_folder' => 'Tuntematon kansio.',
 	'err_pm_read' => 'Yksityisviesti on jo luettu, joten et voi enää muokata sitä.',
 
 	# Messages
 	'msg_sent' => 'Yksityisviestisi on lähetetty onnistuneesti. Voit vielä muokata sitä ennen kuin se luetaan.',
-	'msg_ignored' => 'Olet laittanut käyttäjän %1$s sivuutuslistallesi.',
-	'msg_unignored' => 'Poistit käyttäjän %1$s sivuutuslistaltasi.',
+	'msg_ignored' => 'Olet laittanut käyttäjän %s sivuutuslistallesi.',
+	'msg_unignored' => 'Poistit käyttäjän %s sivuutuslistaltasi.',
 	'msg_changed' => 'Asetuksiasi on muutettu.',
-	'msg_deleted' => 'Poistettiin onnistuneesti %1$s yksityisviestiä.',
-	'msg_moved' => 'Siirrettiin onnistuneesti %1$s yksityisviestiä.',
+	'msg_deleted' => 'Poistettiin onnistuneesti %s yksityisviestiä.',
+	'msg_moved' => 'Siirrettiin onnistuneesti %s yksityisviestiä.',
 	'msg_edited' => 'Yksityisviestiäsi on muokattu.',
-	'msg_restored' => 'Palautettiin onnistuneesti %1$s yksityisviestiä.',
+	'msg_restored' => 'Palautettiin onnistuneesti %s yksityisviestiä.',
 	'msg_auto_folder_off' => 'Et ole kytkenyt automaattisia kansioita päälle. Yksityisviesti on merkitty luetuksi.',
-	'msg_auto_folder_none' => 'Tältä käyttäjältä/ tälle käyttäjälle on vain %1$s viestiä. Mitään ei siirretty. Yksityisviesti on merkitty luetuksi.',
-	'msg_auto_folder_created' => 'Luotiin kansio %1$s.',
-	'msg_auto_folder_moved' => 'Siirrettiin %1$s viesti(ä) kansioon %2$s. Yksityisviesti(t) merkitty luetu(i)ksi.',
+	'msg_auto_folder_none' => 'Tältä käyttäjältä/ tälle käyttäjälle on vain %s viestiä. Mitään ei siirretty. Yksityisviesti on merkitty luetuksi.',
+	'msg_auto_folder_created' => 'Luotiin kansio %s.',
+	'msg_auto_folder_moved' => 'Siirrettiin %s viesti(ä) kansioon %s. Yksityisviesti(t) merkitty luetu(i)ksi.',
 	'msg_auto_folder_done' => 'Automaattiset kansiot tehty.',
 
 
 	# Titles
-	'ft_create' => 'Kirjoita %1$s:lle uusi yksityisviesti',
+	'ft_create' => 'Kirjoita %s:lle uusi yksityisviesti',
 	'ft_preview' => 'Esikatselu',
 	'ft_options' => 'Yksityisviestiasetuksesi',
 	'ft_ignore' => 'Laita joku sivuutuslistallesi',
 	'ft_new_pm' => 'Kirjoita uusi yksityisviesti',
-	'ft_reply' => 'Vastaa %1$s:lle',
+	'ft_reply' => 'Vastaa %s:lle',
 	'ft_edit' => 'Muokkaa yksityisviestiäsi',
 	'ft_quicksearch' => 'Pikahaku',
 	'ft_advsearch' => 'Tarkempi haku',
@@ -103,23 +103,23 @@ $lang = array(
 	# Welcome PM
 	'wpm_title' => 'Tervetuloa sivustolle '.GWF_SITENAME,
 	'wpm_message' => 
-		'Hyvä %1$s'.PHP_EOL.
+		'Hyvä %s'.PHP_EOL.
 		PHP_EOL.
 		'Tervetuloa sivustolle '.GWF_SITENAME.''.PHP_EOL.
 		PHP_EOL.
 		'Toivottavasti pidät sivuistamme ja viihdyt täällä.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.': Uusi yksityisviesti käyttäjältä %1$s',
+	'mail_subj' => GWF_SITENAME.': Uusi yksityisviesti käyttäjältä %s',
 	'mail_body' =>
-		'Tervehdys, %1$s'.PHP_EOL.
+		'Tervehdys, %s'.PHP_EOL.
 		PHP_EOL.
 		'Sinulle on uusi yksityisviesti sivustolla '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'Käyttäjältä: %2$s'.PHP_EOL.
-		'Otsikko: %3$s'.PHP_EOL.
+		'Käyttäjältä: %s'.PHP_EOL.
+		'Otsikko: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -127,10 +127,10 @@ $lang = array(
 		PHP_EOL.
 		'Voit nopeasti:'.PHP_EOL.
 		'Automaattikansioida viestin:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Poistaa viestin:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Terveisin,'.PHP_EOL.
 		GWF_SITENAME.' Robotti'.PHP_EOL,
@@ -158,7 +158,7 @@ $lang = array(
 	'btn_new_folder' => 'Uusi kansio',
 		
 	# v2.02
-	'msg_mail_sent' => 'Sähköpostiviesti lähetetty käyttäjälle %1$s sisältäen alkuperäisen viestisi.',
+	'msg_mail_sent' => 'Sähköpostiviesti lähetetty käyttäjälle %s sisältäen alkuperäisen viestisi.',
 		
 	# v2.03 SEO
 	'pt_pm' => 'Lähetä yksityisviesti',
@@ -181,10 +181,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'Et voi lisätä itseäsi sivuutuslistalle.',
 	'err_folder_perm' => 'Tämä kansio ei ole sinun.',
-	'msg_folder_deleted' => 'Kansio %1$s ja %2$s viesti(ä) siirrettiin roskakoriin.',
+	'msg_folder_deleted' => 'Kansio %s ja %s viesti(ä) siirrettiin roskakoriin.',
 	'cfg_pm_delete' => 'Hyväksy yksityisviestin poisto?',
 	'ft_empty' => 'Tyhjennä roskakorisi',
-	'msg_empty' => 'Roskakorisi (%1$s messages) on tyhjennetty.<br/>%2$s viesti(ä) on poistettu tietokannasta.<br/>%3$s viestiä ovat edelleen käytössä toisella käyttäjällä, eikä niitä poistettu.',
+	'msg_empty' => 'Roskakorisi (%s messages) on tyhjennetty.<br/>%s viesti(ä) on poistettu tietokannasta.<br/>%s viestiä ovat edelleen käytössä toisella käyttäjällä, eikä niitä poistettu.',
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
 );

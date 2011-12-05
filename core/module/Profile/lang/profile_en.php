@@ -2,15 +2,15 @@
 
 $lang = array(
 	# Page Titles
-	'pt_profile' => '%1$s`s Profile',
+	'pt_profile' => '%s`s Profile',
 	'pt_settings' => 'Profile settings',
 
 	# Meta Tags
-	'mt_profile' => '%1$s`s profile, '.GWF_SITENAME.', %1$s, Profile',
+	'mt_profile' => '%s`s profile, '.GWF_SITENAME.', %s, Profile',
 	'mt_settings' => GWF_SITENAME.', Profile, Settings, Edit, Contact, Data',
 
 	# Meta Description
-	'md_profile' => '%1$s`s profile on '.GWF_SITENAME.'.',
+	'md_profile' => '%s`s profile on '.GWF_SITENAME.'.',
 	'md_settings' => 'Your profile settings on '.GWF_SITENAME.'.',
 
 	# Info
@@ -24,20 +24,20 @@ $lang = array(
 
 	# Errors
 	'err_hidden' => 'The User`s Profile is hidden.',
-	'err_firstname' => 'Your First-Name is invalid. Maximum length: %1$s chars.',
-	'err_lastname' => 'Your Last-Name is invalid. Maximum length: %1$s chars.',
-	'err_street' => 'Your Street is invalid. Maximum length: %1$s chars.',
-	'err_zip' => 'Your ZIP-Code is invalid. Maximum length: %1$s chars.',
-	'err_city' => 'Your City is invalid. Maximum length: %1$s chars.',
+	'err_firstname' => 'Your First-Name is invalid. Maximum length: %s chars.',
+	'err_lastname' => 'Your Last-Name is invalid. Maximum length: %s chars.',
+	'err_street' => 'Your Street is invalid. Maximum length: %s chars.',
+	'err_zip' => 'Your ZIP-Code is invalid. Maximum length: %s chars.',
+	'err_city' => 'Your City is invalid. Maximum length: %s chars.',
 	'err_tel' => 'Your Telephone Number is invalid. Maximum length: 24 digits or spaces.',
 	'err_mobile' => 'Your Mobile Phone Number is invalid.',
 	'err_icq' => 'Your ICQ-UIN is invalid. Maximum length: 16 digits.',
 	'err_msn' => 'Your MSN is invalid.',
 	'err_jabber' => 'Your Jabber is invalid.',
-	'err_skype' => 'Your Skype Name is invalid. Maximum length: %1$s chars.',
-	'err_yahoo' => 'Your Yahoo! is invalid. Maximum length: %1$s chars.',
-	'err_aim' => 'Your AIM is invalid. Maximum length: %1$s chars.',
-	'err_about_me' => 'Your &quot;About Me&quot; is invalid. Maximum length: %1$s chars.',
+	'err_skype' => 'Your Skype Name is invalid. Maximum length: %s chars.',
+	'err_yahoo' => 'Your Yahoo! is invalid. Maximum length: %s chars.',
+	'err_aim' => 'Your AIM is invalid. Maximum length: %s chars.',
+	'err_about_me' => 'Your &quot;About Me&quot; is invalid. Maximum length: %s chars.',
 	'err_website' => 'Your website is unreachable or does not exist.',
 
 	# Messages
@@ -94,14 +94,14 @@ $lang = array(
 	'err_level_contact' => 'Your minimum user level to see your contact data is invalid.',
 
 	# v2.03 (fixes2)
-	'title_about_me' => 'About %1$s',
+	'title_about_me' => 'About %s',
 
 	# v2.04 (ext. profile)
 	'th_user_country' => 'Country',
 	'btn_pm' => 'PM',
 
 	# v2.05 (more fixes)
-	'at_mailto' => 'Send a mail to %1$s',
+	'at_mailto' => 'Send a mail to %s',
 	'th_email' => 'EMail',
 
 	# v2.06 (birthday)

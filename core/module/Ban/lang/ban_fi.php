@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'Päättymis ajankohta ei kelpaa.',
 
 	# Messages
-	'msg_permbanned' => 'Käyttäjä %1$s Kiellettiin pysyvästi.',
-	'msg_tempbanned' => 'Käyttäjä %1$s Kiellettään %2$s asti.',
-	'msg_warned' => 'Käyttäjää %1$s varoitettiin.',
+	'msg_permbanned' => 'Käyttäjä %s Kiellettiin pysyvästi.',
+	'msg_tempbanned' => 'Käyttäjä %s Kiellettään %s asti.',
+	'msg_warned' => 'Käyttäjää %s varoitettiin.',
 	'msg_marked_read' => 'Viesti merkitty luetuksi.',
 	
 	# Info
-	'info_warning' => 'Sait varoituksen!<br/>%1$s<br/><a href="%2$s">Clickaa luetuksi tästä</a>.',
-	'info_tempban' => 'Sinut kielto loppuu %1$s!<br/>%2$s',
-	'info_permban' => 'Olet kieletty ikuisesti:<br/>%1$s',
+	'info_warning' => 'Sait varoituksen!<br/>%s<br/><a href="%s">Clickaa luetuksi tästä</a>.',
+	'info_tempban' => 'Sinut kielto loppuu %s!<br/>%s',
+	'info_permban' => 'Olet kieletty ikuisesti:<br/>%s',
 
 	# Admin Config
 	'cfg_ban_ipp' => 'Tavaroita per sivu',

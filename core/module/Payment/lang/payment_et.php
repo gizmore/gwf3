@@ -20,14 +20,14 @@ $lang = array(
 	'tt_currency' => 'Trükitähed 3 tähte ISO kood',
 
 	# Errors
-	'err_country' => 'Sinu elukoht ei ole toetatud %1$s.',
-	'err_currency' => 'See valuuta pole toetatud %1$s.',
+	'err_country' => 'Sinu elukoht ei ole toetatud %s.',
+	'err_currency' => 'See valuuta pole toetatud %s.',
 	'err_can_order' => 'Sa ei tohi seda tellida.',
 	'err_paysite' => 'Makseviis on tundmatu.',
 	'err_order' => 'Makset ei leitud.',
 	'err_token' => 'Sinu '.GWF_SITENAME.' token on vigane.',
-	'err_xtoken' => 'Sinu %1$s token on vigane.',
-	'err_crit' => 'Ostu aeg ilmnes viga.<br/>Palun kontakteeru administraatoriga: %1$s.',
+	'err_xtoken' => 'Sinu %s token on vigane.',
+	'err_crit' => 'Ostu aeg ilmnes viga.<br/>Palun kontakteeru administraatoriga: %s.',
 
 	# Messages
 	'msg_paid' => 'Täname ostu eest.',

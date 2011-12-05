@@ -19,7 +19,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'Sie haben ihre Nachricht vergessen.',
-	'err_msg_long' => 'Ihre Nachricht ist zu lang. Maximal sind %1$s Zeichen erlaubt.',
+	'err_msg_long' => 'Ihre Nachricht ist zu lang. Maximal sind %s Zeichen erlaubt.',
 	'err_private' => 'Private Nachrichten sind zur zeit deaktiviert.',
 	'err_guest_public' => 'Gäste dürfen nicht öffentliche Nachrichten senden.',
 	'err_guest_private' => 'Gäste dürfen keine privaten Nachrichten senden.',
@@ -64,7 +64,7 @@ $lang = array(
 	'btn_ircchat' => 'IRC Chat',
 	'btn_ircchat_full' => 'IRC Vollbild',
 	'pt_irc_chat' => 'IRC Chat ',
-	'pi_irc_chat' => 'IRC WebChat, unterstützt von <a href="%1$s">Mibbit</a>.',
+	'pi_irc_chat' => 'IRC WebChat, unterstützt von <a href="%s">Mibbit</a>.',
 	'mt_irc_chat' => GWF_SITENAME.',IRC,Chat,WebChat,Mibbit,Vollbild',
 	'md_irc_chat' => 'Chatten mit '.GWF_SITENAME.' Benutzern und Besuchern.',
 	'err_iframe' => 'Ihr Browser unterstützt keine iframes.',

@@ -4,8 +4,8 @@ $lang = array(
 ## SCOREVOTE ##
 
 	# votebuttons.php
-	'alt_button' => 'Vergebe %1$s Punkte',
-	'title_button' => '%1$s Punkte vergeben',
+	'alt_button' => 'Vergebe %s Punkte',
+	'title_button' => '%s Punkte vergeben',
 
 	# Errors
 	'err_votescore' => 'Die Abstimmung wurde nicht gefunden.',
@@ -14,8 +14,8 @@ $lang = array(
 	'err_disabled' => 'Diese Abstimmung ist vorrübergehend deaktiviert.',
 	'err_vote_ip' => 'Du hast schon an dieser Abstimmung teilgenommen.',
 	'err_no_guest' => 'Gäste dürfen an dieser Abstimmung nicht teilnehmen.',
-	'err_title' => 'Der Titel muss zwischen %1$s und %2$s Zeichen lang sein.',
-	'err_options' => 'Deine Abstimmungs-Optionen %1$s sind/ist ungültig, und möglicherweise nicht zwischen %2$s und %3$s Zeichen lang.',
+	'err_title' => 'Der Titel muss zwischen %s und %s Zeichen lang sein.',
+	'err_options' => 'Deine Abstimmungs-Optionen %s sind/ist ungültig, und möglicherweise nicht zwischen %s und %s Zeichen lang.',
 	'err_no_options' => 'Sie haben keine Auswahlmöglichkeiten angegeben.',
 
 	# Messages
@@ -23,7 +23,7 @@ $lang = array(
 
 	## POLLS ##
 
-	'poll_votes' => '%1$s Stimmen',
+	'poll_votes' => '%s Stimmen',
 	'votes' => 'Stimmen',
 	'voted' => 'Stimmen für',
 	'vmview_never' => 'Niemals',
@@ -34,7 +34,7 @@ $lang = array(
 	'th_votes' => 'Stimmen',
 	'th_title' => 'Titel',
 	'th_multi' => 'Mehrfachauswahl / Multiple Choice?',
-	'th_option' => 'Auswahl %1$s',
+	'th_option' => 'Auswahl %s',
 	'th_guests' => 'Gast-Abstimmung erlauben?',
 	'th_mvview' => 'Ergebnis anzeigen',
 	'th_vm_public' => 'In der Sidebar anzeigen?',
@@ -57,8 +57,8 @@ $lang = array(
 	'err_multiview' => 'Die Ansicht-Option ist ungültig.',
 	'err_poll' => 'Diese Abstimmung existiert nicht.',
 	'err_global_poll' => 'Sie dürfen keine globale Abstimmung erzeugen.',
-	'err_option_empty' => 'Auswahl %1$s ist leer.',
-	'err_option_twice' => 'Die Auswahl %1$s kommt mehrmals vor.',
+	'err_option_empty' => 'Auswahl %s ist leer.',
+	'err_option_twice' => 'Die Auswahl %s kommt mehrmals vor.',
 	'err_no_options' => 'Sie haben keine einzige Auswahlmöglichkeit angegeben.',
 	'err_no_multi' => 'Sie dürfen nur eine der Möglichkeiten für ihre Stimme auswählen.',
 	'err_poll_off' => 'Diese Abstimmung ist zur zeit deaktiviert.',

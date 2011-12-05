@@ -1,10 +1,10 @@
 <?php
 $lang = array(
 
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# Page Info
-	'pi_invited' => 'You got invited to <a href="%3$s">join %1$ss usergroup &quot;%2$s&quot;</a>.<br/><br/><br/>Or <a href="%4$s">click here to refuse the request</a>.',
+	'pi_invited' => 'You got invited to <a href="%s">join %ss usergroup &quot;%s&quot;</a>.<br/><br/><br/>Or <a href="%s">click here to refuse the request</a>.',
 
 	# Avatar Gallery
 	'pt_avatars' => 'Avatar Gallery.',
@@ -47,11 +47,11 @@ $lang = array(
 	'err_perm' => 'You do not have permission to create a group.',
 	'err_join' => 'The Join Option is invalid.',
 	'err_view' => 'The View Option is invalid.',
-	'err_name' => 'The Group Name is invalid. It has to be %1$s to %2$s characters long and has to start with a letter.',
+	'err_name' => 'The Group Name is invalid. It has to be %s to %s characters long and has to start with a letter.',
 	'err_group_exists' => 'You already have a usergroup.',
 	'err_group' => 'You do not have a usergroup.',
 	'err_kick_leader' => 'You can not kick the group founder.',
-	'err_kick' => 'The user %1$s is not in the group.',
+	'err_kick' => 'The user %s is not in the group.',
 	'err_unk_group' => 'The group is unknown.',
 	'err_no_join' => 'You can not join this group by yourself.',
 	'err_join_twice' => 'You are already in this group.',
@@ -61,12 +61,12 @@ $lang = array(
 	# Messages
 	'msg_created' => 'Your Usergroup has been created.',
 	'msg_edited' => 'Your Usergroup has been edited.',
-	'msg_kicked' => '%1$s got kicked off your group.',
-	'msg_joined' => 'You joined the group &quot;%1$s&quot;.',
-	'msg_requested' => 'You requested to join &quot;%1$s&quot;.',
-	'msg_accepted' => 'The user %1$s is now member of the group &quot;%2$s&quot;.',
-	'msg_invited' => 'You invited %1$s to join your group.',
-	'msg_refused' => 'You refused to join the group &quot;%1$s&quot;.',
+	'msg_kicked' => '%s got kicked off your group.',
+	'msg_joined' => 'You joined the group &quot;%s&quot;.',
+	'msg_requested' => 'You requested to join &quot;%s&quot;.',
+	'msg_accepted' => 'The user %s is now member of the group &quot;%s&quot;.',
+	'msg_invited' => 'You invited %s to join your group.',
+	'msg_refused' => 'You refused to join the group &quot;%s&quot;.',
 
 	# Selects
 	'sel_join_type' => 'How can users join your group?',
@@ -88,14 +88,14 @@ $lang = array(
 //	'cfg_ug_bid' => 'Parent Board for Usergroup',
 
 	# EMails
-	'mail_subj_req' => GWF_SITENAME.': %1$s wants to join the group %2$s',
+	'mail_subj_req' => GWF_SITENAME.': %s wants to join the group %s',
 	'mail_body_req' =>
-		'Dear %1$s,'.PHP_EOL.
+		'Dear %s,'.PHP_EOL.
 		PHP_EOL.
-		'%2$s likes to join the usergroup &quot;%3$s&quot;.'.PHP_EOL.
+		'%s likes to join the usergroup &quot;%s&quot;.'.PHP_EOL.
 		'To accept this request you can visit the link below:'.PHP_EOL.
 		PHP_EOL.
-		'%4$s',
+		'%s',
 		
 		
 	# V2.01 finish + your groups
@@ -115,40 +115,40 @@ $lang = array(
 	'btn_users' => 'Users',
 		
 	# v2.04
-	'invite_title' => 'Invitation to %1$s',
+	'invite_title' => 'Invitation to %s',
 	'invite_message' =>
-		'Hello %1$s,'.PHP_EOL.
+		'Hello %s,'.PHP_EOL.
 		PHP_EOL.
-		'%2$s just invited you to join his usergroup \'%3$s\'.'.PHP_EOL.
-		'To join his group, you can visit this page: %4$s'.PHP_EOL.
+		'%s just invited you to join his usergroup \'%s\'.'.PHP_EOL.
+		'To join his group, you can visit this page: %s'.PHP_EOL.
 		PHP_EOL.
-		'If you don`t want to join the group, you can ignore this PM, or deny the request by visiting this page: %5$s',
+		'If you don`t want to join the group, you can ignore this PM, or deny the request by visiting this page: %s',
 		
 	# v2.05 (Jinx Edition)
-	'err_not_in_group' => 'The user %1$s is not in this group.',
+	'err_not_in_group' => 'The user %s is not in this group.',
 	'btn_unco' => 'Co-Leader',
 	'btn_co' => 'No Co-Leader',
 	'btn_unhide' => 'Hide',
 	'btn_hide' => 'Show',
 	'btn_unmod' => 'Moderator',
 	'btn_mod' => 'No Moderator',
-	'msg_ugf_2_0' => 'The user %1$s is not Co-Leader anymore.',
-	'msg_ugf_2_1' => 'The user %1$s is now Co-Leader.',
-	'msg_ugf_4_0' => 'The user %1$s is not Moderator anymore.',
-	'msg_ugf_4_1' => 'The user %1$s is now Moderator.',
-	'msg_ugf_8_0' => 'The user %1$s is now visible in the member list.',
-	'msg_ugf_8_1' => 'The user %1$s is now hidden in the member list.',
+	'msg_ugf_2_0' => 'The user %s is not Co-Leader anymore.',
+	'msg_ugf_2_1' => 'The user %s is now Co-Leader.',
+	'msg_ugf_4_0' => 'The user %s is not Moderator anymore.',
+	'msg_ugf_4_1' => 'The user %s is now Moderator.',
+	'msg_ugf_8_0' => 'The user %s is now visible in the member list.',
+	'msg_ugf_8_1' => 'The user %s is now hidden in the member list.',
 	'th_vis_grp' => 'Always list group',
 	'th_vis_mem' => 'Always list members',
 	'tt_vis_grp' => 'If this option is enabled, the group is always visible in the group list.',
 	'tt_vis_mem' => 'If this option is enabled, the memberlist is always accessible. Note that you can hide users separately.',
 		
 	# v2.06 (delete usergroup BAAL)
-	'ft_del_group' => 'Do you really want to delete the usergroup %1$s?',
+	'ft_del_group' => 'Do you really want to delete the usergroup %s?',
 	'th_del_groupname' => 'Retype groupname',
 	'tt_del_groupname' => 'Please type the name of the group to confirm.',
-	'btn_del_group' => 'Yes, I want to delete the usergroup %1$s!',
-	'msg_del_group' => 'The usergroup %1$s has been deleted. %3$s permissions have been revoked.',
+	'btn_del_group' => 'Yes, I want to delete the usergroup %s!',
+	'msg_del_group' => 'The usergroup %s has been deleted. %s permissions have been revoked.',
 		
 	# v2.07 (Adv Search)
 	'btn_adv_search' => 'Advanced Search',

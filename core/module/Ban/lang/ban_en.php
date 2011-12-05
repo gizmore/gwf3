@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'The end date is invalid.',
 
 	# Messages
-	'msg_permbanned' => 'The user %1$s got permanently banned.',
-	'msg_tempbanned' => 'The user %1$s got banned until %2$s.',
-	'msg_warned' => 'The user %1$s got warned.',
+	'msg_permbanned' => 'The user %s got permanently banned.',
+	'msg_tempbanned' => 'The user %s got banned until %s.',
+	'msg_warned' => 'The user %s got warned.',
 	'msg_marked_read' => 'The message has been marked as read.',
 	
 	# Info
-	'info_warning' => 'You got a warning!<br/>%1$s<br/><a href="%2$s">Click here to mark it read</a>.',
-	'info_tempban' => 'You got banned until %1$s!<br/>%2$s',
-	'info_permban' => 'You are permanently banned:<br/>%1$s',
+	'info_warning' => 'You got a warning!<br/>%s<br/><a href="%s">Click here to mark it read</a>.',
+	'info_tempban' => 'You got banned until %s!<br/>%s',
+	'info_permban' => 'You are permanently banned:<br/>%s',
 
 	# Admin Config
 	'cfg_ban_ipp' => 'Items Per Page',

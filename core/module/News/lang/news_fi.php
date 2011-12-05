@@ -2,8 +2,8 @@
 $lang = array(
 	# Messages
 	'msg_news_added' => 'Uutiset lisätty onnistuneesti.',
-	'msg_translated' => 'Käänsit uutiset kielestä \'%1$s\' -> %2$s. Hyvää työtä.',
-	'msg_edited' => 'Uutiset \'%1$s\' sisällä %2$s on muokattu onnistuneesti.',
+	'msg_translated' => 'Käänsit uutiset kielestä \'%s\' -> %s. Hyvää työtä.',
+	'msg_edited' => 'Uutiset \'%s\' sisällä %s on muokattu onnistuneesti.',
 	'msg_hidden_1' => 'Uutiset piiloitettu.',
 	'msg_hidden_0' => 'Uutiset näkyvissä.',
 	'msg_mailme_1' => 'Uutiset siirretty postiin.',
@@ -21,16 +21,16 @@ $lang = array(
 	'err_langtrans' => 'Kieltä ei löydy tietokannasta.',
 	'err_lang_src' => 'Koodin kieltä ei löydy tietokannasta.',
 	'err_lang_dest' => 'Kieltä ei löydy tietokannasta.',
-	'err_equal_translang' => 'The source and destination language are equal (Both %1$s).',
+	'err_equal_translang' => 'The source and destination language are equal (Both %s).',
 	'err_type' => 'Uutiskirjeen formaatti on väärä.',
 	'err_unsign' => 'Virhe.',
 
 
 	# Main
 	'title' => 'Uutiset',
-	'pt_news' => 'Uutiset %1$s',
-	'mt_news' => 'Uutiset, '.GWF_SITENAME.', %1$s',
-	'md_news' => GWF_SITENAME.' Uutiset, sivu %1$s / %2$s.',
+	'pt_news' => 'Uutiset %s',
+	'mt_news' => 'Uutiset, '.GWF_SITENAME.', %s',
+	'md_news' => GWF_SITENAME.' Uutiset, sivu %s / %s.',
 
 	# Table Headers
 	'th_email' => 'Sähköpostiosoitteesi',
@@ -46,7 +46,7 @@ $lang = array(
 
 	# Esikatselu	'btn_preview_text' => 'Tekstiversio',
 	'btn_preview_html' => 'HTML-versio',
-	'preview_info' => 'Voit katsella uutiskirjeen esikatselua täällä:<br/>%1$s ja %2$s.',
+	'preview_info' => 'Voit katsella uutiskirjeen esikatselua täällä:<br/>%s ja %s.',
 
 	# Show 
 	'unknown_user' => 'Tuntematon käyttäjä',
@@ -55,13 +55,13 @@ $lang = array(
 
 	# Uutiskirje
 	'newsletter_title' => GWF_SITENAME.': Uutiset',
-	'anrede' => 'Arvoisa %1$s',
+	'anrede' => 'Arvoisa %s',
 	'newsletter_wrap' =>
-		'%1$s, '.PHP_EOL.
+		'%s, '.PHP_EOL.
 		PHP_EOL.
 		'Kirjauidut sisään sivulle '.GWF_SITENAME.' uutiskirjeeseen ja tässä muutama tuore uutinen.'.PHP_EOL.
 		'Jos haluat erota uutiskirjeesta klikkaa:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
@@ -69,9 +69,9 @@ $lang = array(
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Valitse formaatti',
@@ -89,7 +89,7 @@ $lang = array(
 	'btn_unsign' => 'Eroa uutiskirjeestä',
 		
 	# Edit
-	'ft_edit' => 'Muokkaa uutisia (-> %1$s)',
+	'ft_edit' => 'Muokkaa uutisia (-> %s)',
 	'btn_edit' => 'Muokkaa',
 	'btn_translate' => 'Käännä',
 	'th_transid' => 'Käännös',
@@ -115,7 +115,7 @@ $lang = array(
 		
 	# V2.03 (Uutiset + Foorumi)
 	'cfg_news_in_forum' => 'Lähetä uutisia foorumille',
-	'board_lang_descr' => 'Uutisia -> %1$s',
+	'board_lang_descr' => 'Uutisia -> %s',
 	'btn_admin_section' => 'Ylläpitäjän sivu',
 	'th_hidden' => 'Piiloitettu',
 	'th_visible' => 'Näkyvissä',

@@ -11,9 +11,9 @@ $lang = array(
 	# Main
 	'title' => 'Noticias de '.GWF_SITENAME,
 	//'info' => 'Nuestra contribución a su éxito no debería limitarse sólo a los productos.<br/>Una parte de nuestro conocimiento está disponible aquí.<br/>Algunos artículos están sólo disponibles para usuarios registrados.',
-	'pt_news' => GWF_SITENAME.' Noticia de %1$s',
-	'mt_news' => 'Noticias, '.GWF_SITENAME.', %1$s',
-	'md_news' => 'Noticias '.GWF_SITENAME.', página %1$s de %2$s.',
+	'pt_news' => GWF_SITENAME.' Noticia de %s',
+	'mt_news' => 'Noticias, '.GWF_SITENAME.', %s',
+	'md_news' => 'Noticias '.GWF_SITENAME.', página %s de %s.',
 
 	# Table Headers
 	'th_email' => 'Email',
@@ -30,7 +30,7 @@ $lang = array(
 	# Preview
 	'btn_preview_text' => 'Previsualizar versión texto',
 	'btn_preview_html' => 'Previsualizar versión HTML',
-	'preview_info' => 'Puede previsualizar boletines aquí:<br/>%1$s y %2$s.',
+	'preview_info' => 'Puede previsualizar boletines aquí:<br/>%s y %s.',
 
 	# Show 
 	'unknown_user' => 'Usuario desconocido',
@@ -39,21 +39,21 @@ $lang = array(
 
 	# Newsletter
 	'newsletter_title' => GWF_SITENAME.': Noticias',
-	'anrede' => 'Estimado/a %1$s',
+	'anrede' => 'Estimado/a %s',
 	'newsletter_wrap' =>
-		'%1$s, '.PHP_EOL.
+		'%s, '.PHP_EOL.
 		PHP_EOL.
 		'Se inscribió al boletín informativo y hay noticias nuevas para usted.'.PHP_EOL.
 		'Para anular la suscripción al boletín, siga el enlace siguiente:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'El artículo del boletín es:'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Elegir formato',
@@ -79,8 +79,8 @@ $lang = array(
 	'cfg_newsletter_mail' => 'Enviar mail de boletín',
 
 # News v2.01 (refinish)
-	'msg_translated' => 'Tradujo la noticia de \'%1$s\' a %2$s. Bien hecho.',
-	'msg_edited' => 'La noticia \'%1$s\' de %2$s ha sido editada.',
+	'msg_translated' => 'Tradujo la noticia de \'%s\' a %s. Bien hecho.',
+	'msg_edited' => 'La noticia \'%s\' de %s ha sido editada.',
 	'msg_hidden_1' => 'La noticia está ahora oculta.',
 	'msg_hidden_0' => 'La noticia es ahora visible.',
 	'msg_mailme_1' => 'La noticia ha sido añadida a la cola de envíos de correo.',
@@ -98,7 +98,7 @@ $lang = array(
 
 		
 	# Edit
-	'ft_edit' => 'Editar noticias (en %1$s)',
+	'ft_edit' => 'Editar noticias (en %s)',
 	'btn_edit' => 'Editar',
 	'btn_translate' => 'Traducir',
 	'th_transid' => 'Traducción',
@@ -112,7 +112,7 @@ $lang = array(
 	'err_langtrans' => 'Este idioma no es soportado.',
 	'err_lang_src' => 'El idioma origen es desconocido.',
 	'err_lang_dest' => 'El idioma destino es desconocido.',
-	'err_equal_translang' => 'El idioma origen y destino es el mismo (Ambos %1$s).',
+	'err_equal_translang' => 'El idioma origen y destino es el mismo (Ambos %s).',
 	'err_type' => 'El formato del boletín no es válido.',
 	'err_unsign' => 'Ocurrió un error.',
 	'sign_info_login' => 'No esta identificado, así que no podemos confirmar si ya está suscrito al boletín.',
@@ -121,7 +121,7 @@ $lang = array(
 
 	# V2.03 (News + Forum)
 	'cfg_news_in_forum' => 'Publicar noticias en el foro',
-	'board_lang_descr' => 'Noticias en %1$s',
+	'board_lang_descr' => 'Noticias en %s',
 	'btn_admin_section' => 'Sección Admin',
 	'th_hidden' => 'Oculto',
 	'th_visible' => 'Visible',

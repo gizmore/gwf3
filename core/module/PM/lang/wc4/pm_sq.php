@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'hello' => 'Përshëndetje %1$s',
+	'hello' => 'Përshëndetje %s',
 	'sel_username' => 'Zgjidh një përdorues',
 	'sel_folder' => 'Zgjidhni një dosje',
 
@@ -12,7 +12,7 @@ $lang = array(
 	'pi_trashcan' => 'Këtu është PN-plehra. Mesazhet nuk mund te fshihet me të vërtetë. Megjithatë, ju mund të rivendosur mesazhe nga plehra.',
 	
 	# Buttons
-	'btn_ignore' => '%1$s injoro',
+	'btn_ignore' => '%s injoro',
 	'btn_ignore2' => 'Shpërfill',
 	'btn_save' => 'Ruaj Rregullimet',
 	'btn_create' => 'PN te ri',
@@ -34,46 +34,46 @@ $lang = array(
 	'err_perm_read' => 'Ju mund të lexoni këtë mesazh.',
 	'err_perm_write' => 'Ju nuk mund të modifikojnë këtë mesazh.',
 	'err_no_title' => 'Keni harruar titullin.',
-	'err_title_len' => 'Titulli i juaj është shumë i gjatë. Lejohet një maksimum %1$s Shenjë.',
+	'err_title_len' => 'Titulli i juaj është shumë i gjatë. Lejohet një maksimum %s Shenjë.',
 	'err_no_msg' => 'Ju keni harruar mesazhin.',
-	'err_sig_len' => 'Firma juaj është shumë i gjatë. lejohet një maksimum %1$s Shenjë.',
-	'err_msg_len' => 'Mesazhi juaj është shumë i gjatë. Lejohet një maksimum %1$s Shenjë.',
+	'err_sig_len' => 'Firma juaj është shumë i gjatë. lejohet një maksimum %s Shenjë.',
+	'err_msg_len' => 'Mesazhi juaj është shumë i gjatë. Lejohet një maksimum %s Shenjë.',
 	'err_user_no_ppm' => 'Ky përdorues nuk dëshiron vizitorëve-PN.',
 	'err_no_mail' => 'Nuk keni dhënë një email të konfirmuar për këtë llogari.',
 	'err_pmoaf' => 'Vlera për dosje automatike është i pavlefshëm.',
-	'err_limit' => 'Ju keni arritur kufirin e tyre për PN sot. Ju mund të hyjë deri %1$s Mesazh brenda %2$s dërgoj.',
+	'err_limit' => 'Ju keni arritur kufirin e tyre për PN sot. Ju mund të hyjë deri %s Mesazh brenda %s dërgoj.',
 
-	'err_ignored' => '%1$s injoruar ato.',
+	'err_ignored' => '%s injoruar ato.',
 	'err_delete' => 'Një gabim ndodhi gjatë fshini mbi PN e tyre.',
 	'err_folder_exists' => 'Kjo dosje tashmë ekziston.',
-	'err_folder_len' => 'Emri i dosjes duhet të jetë një deri në %1$s Figurë.',
+	'err_folder_len' => 'Emri i dosjes duhet të jetë një deri në %s Figurë.',
 	'err_del_twice' => 'Ju keni fshirë PN tashmë.',
 	'err_folder' => 'Dosje është i panjohur.',
 	'err_pm_read' => 'Mesazhi juaj u lexuar. Ju nuk mund të ndryshojë tani.',
 
 	# Messages
 	'msg_sent' => 'Mesazhi juaj është dërguar me sukses. Ju mund të redaktoni deri sa u lexuar.',
-	'msg_ignored' => 'Ata injorojë mesazhet nga tani %1$s.',
-	'msg_unignored' => 'Ato lejojnë mesazhe nga përsëri %1$s.',
+	'msg_ignored' => 'Ata injorojë mesazhet nga tani %s.',
+	'msg_unignored' => 'Ato lejojnë mesazhe nga përsëri %s.',
 	'msg_changed' => 'Cilësimet e tuaja janë ruajtur.',
-	'msg_deleted' => 'Ajo u %1$s Mesazh shënoi për fshirje.',
-	'msg_moved' => 'Ajo u %1$s Mesazh vonuar.',
+	'msg_deleted' => 'Ajo u %s Mesazh shënoi për fshirje.',
+	'msg_moved' => 'Ajo u %s Mesazh vonuar.',
 	'msg_edited' => 'Mesazhi i juaj është ndryshuar.',
-	'msg_restored' => 'Ajo u %1$s Mesazh restauruar.',
+	'msg_restored' => 'Ajo u %s Mesazh restauruar.',
 	'msg_auto_folder_off' => 'Ju nuk kanë bërë të mundur dosje automatike. PN është shënuar, si të lexuar.',
-	'msg_auto_folder_none' => 'Ka vetëm %1$s PN me këtë përdorues. Ajo ishte ishin nuk mesazh e vonuar. Mesazhi është shënuar si të lexuar.',
-	'msg_auto_folder_created' => 'Ajo u krijua %1$s.',
-	'msg_auto_folder_moved' => 'Ka qenë %1$s Mesazh për %2$s lëvizur. Mesazhet janë shënuar si të lexuar.',
+	'msg_auto_folder_none' => 'Ka vetëm %s PN me këtë përdorues. Ajo ishte ishin nuk mesazh e vonuar. Mesazhi është shënuar si të lexuar.',
+	'msg_auto_folder_created' => 'Ajo u krijua %s.',
+	'msg_auto_folder_moved' => 'Ka qenë %s Mesazh për %s lëvizur. Mesazhet janë shënuar si të lexuar.',
 	'msg_auto_folder_done' => 'Sorting automatik dosje ishte kryer.',
 
 
 	# Titles
-	'ft_create' => 'Një mesazh i ri per %1$s shkruaj',
+	'ft_create' => 'Një mesazh i ri per %s shkruaj',
 	'ft_preview' => 'Shoh',
 	'ft_options' => 'Parametrat e PN',
 	'ft_ignore' => 'Shpërfill dikush',
 	'ft_new_pm' => 'mesazh i ri',
-	'ft_reply' => 'Përgjigju %1$s',
+	'ft_reply' => 'Përgjigju %s',
 	'ft_edit' => 'puno Mesazh',
 	'ft_quicksearch' => 'Kërkim',
 	'ft_advsearch' => 'Kërkim zgjeruar',
@@ -106,23 +106,23 @@ $lang = array(
 	# Welcome PM
 //	'wpm_title' => 'Mirë se vini në '.GWF_SITENAME,
 //	'wpm_message' => 
-//		'Hallo %1$s'.PHP_EOL.
+//		'Hallo %s'.PHP_EOL.
 //		PHP_EOL.
 //		'Mirë se vini në '.GWF_SITENAME.''.PHP_EOL.
 //		PHP_EOL.
 //		'Ne shpresojmë që ju si faqen tonë të internetit dhe të argëtohen me të.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.': Të PN %1$s',
+	'mail_subj' => GWF_SITENAME.': Të PN %s',
 	'mail_body' =>
-		'Hallo %1$s'.PHP_EOL.
+		'Hallo %s'.PHP_EOL.
 		PHP_EOL.
 		'Nuk është një mesazh të ri privat në për ju '.GWF_SITENAME.'.'.PHP_EOL.
 		PHP_EOL.
-		'E: %2$s'.PHP_EOL.
-		'Titull: %3$s'.PHP_EOL.
+		'E: %s'.PHP_EOL.
+		'Titull: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'--------------------------------------------------------------------------'.
@@ -130,10 +130,10 @@ $lang = array(
 		PHP_EOL.
 		'Ju tani mund të ...'.PHP_EOL.
 		'Ky mesazh automatikisht do lloj:'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kjo fshini mesazh:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'I juaji sinqerisht,'.PHP_EOL.
 		''.GWF_SITENAME.' Dorëshkrim'.PHP_EOL,
@@ -161,7 +161,7 @@ $lang = array(
 	'btn_new_folder' => 'Re Dosja',
 		
 	# v2.02
-	'msg_mail_sent' => 'Një email me mesazhin e saj origjinal është dërguar %1$s dërguar.',
+	'msg_mail_sent' => 'Një email me mesazhin e saj origjinal është dërguar %s dërguar.',
 		
 	# v2.03 SEO
 	'pt_pm' => 'PN',
@@ -184,10 +184,10 @@ $lang = array(
 	# v2.07 (fixes)
 	'err_ignore_self' => 'Ju nuk mund të injorojë veten.',
 	'err_folder_perm' => 'Kjo dosje nuk i takon ti.',
-	'msg_folder_deleted' => 'Dosje %1$s dhe %2$s mesazh ishte te re në Shportë.',
+	'msg_folder_deleted' => 'Dosje %s dhe %s mesazh ishte te re në Shportë.',
 	'cfg_pm_delete' => 'Lejon fshirjen e të PN?',
 	'ft_empty' => 'Bosh plehra',
-	'msg_empty' => 'Plehra juaj (%1$s Mesazha) pastrohen.<br/>%2$s Mesazh ishte do të eleminohet nga database.<br/>%3$s Mesazh nuk mund të fshihet sepse e kundërta ka arkivuar mesazh akoma.',
+	'msg_empty' => 'Plehra juaj (%s Mesazha) pastrohen.<br/>%s Mesazh ishte do të eleminohet nga database.<br/>%s Mesazh nuk mund të fshihet sepse e kundërta ka arkivuar mesazh akoma.',
 
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',

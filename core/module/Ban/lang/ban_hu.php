@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'A lejárati idő érvénytelen.',
 
 	# Messages
-	'msg_permbanned' => 'A felhasználó: %1$s véglegesen ki lett titlva.',
-	'msg_tempbanned' => 'A felhasználó: %1$s ki lett tiltva eddig: %2$s.',
-	'msg_warned' => 'A %1$s felhasználó figyelmeztetve lett.',
+	'msg_permbanned' => 'A felhasználó: %s véglegesen ki lett titlva.',
+	'msg_tempbanned' => 'A felhasználó: %s ki lett tiltva eddig: %s.',
+	'msg_warned' => 'A %s felhasználó figyelmeztetve lett.',
 	'msg_marked_read' => 'Az üzenet olvasottnak lett megjelölve.',
 
 	# Info
-	'info_warning' => 'Kaptál egy figyelmeztetést!<br/>%1$s<br/><a href="%2$s">Kattints ide, hogy nyugtázd a figyelmeztetés olvasását.</a>.',
-	'info_tempban' => 'Ideiglenesen ki lettél tiltva, eddig: %1$s!<br/>%2$s',
-	'info_permban' => 'Véglegesen ki lettél tiltva:<br/>%1$s',
+	'info_warning' => 'Kaptál egy figyelmeztetést!<br/>%s<br/><a href="%s">Kattints ide, hogy nyugtázd a figyelmeztetés olvasását.</a>.',
+	'info_tempban' => 'Ideiglenesen ki lettél tiltva, eddig: %s!<br/>%s',
+	'info_permban' => 'Véglegesen ki lettél tiltva:<br/>%s',
 
 	# Admin Config
 	'cfg_ban_ipp' => 'Sor per oldal',

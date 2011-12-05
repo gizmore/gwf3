@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Exklusive Downloads auf '.GWF_SITENAME.'.',
 
 	# Page Info
-	'pi_add' => 'Am besten laden Sie zuerst Ihre Datei hoch. Diese wird dann in Ihrer Session gespeichert. Danach können Sie weiterhin Optionen ändern.<br/>Die maximale Dateigröße beträgt %1$s.',
+	'pi_add' => 'Am besten laden Sie zuerst Ihre Datei hoch. Diese wird dann in Ihrer Session gespeichert. Danach können Sie weiterhin Optionen ändern.<br/>Die maximale Dateigröße beträgt %s.',
 
 	# Form Titles
 	'ft_add' => 'Eine Datei hochladen',
@@ -15,10 +15,10 @@ $lang = array(
 
 	# Errors
 	'err_file' => 'Sie müssen eine Datei hochladen.',
-	'err_filename' => 'Der Dateiname ist ungültig. Die maximale Namenslänge beträgt %1$s Zeichen.',
+	'err_filename' => 'Der Dateiname ist ungültig. Die maximale Namenslänge beträgt %s Zeichen.',
 	'err_level' => 'Der Benutzer-Level muss >= 0 sein.',
-	'err_descr' => 'Die Beschreibung muss zwischen 0 und %1$s Zeichen lang sein.',
-	'err_price' => 'Der Preis muss zwischen %1$s und %2$s betragen.',
+	'err_descr' => 'Die Beschreibung muss zwischen 0 und %s Zeichen lang sein.',
+	'err_price' => 'Der Preis muss zwischen %s und %s betragen.',
 	'err_dlid' => 'Der Download wurde nicht gefunden.',
 	'err_token' => 'Ihr Download-Code ist ungültig.',
 
@@ -68,9 +68,9 @@ $lang = array(
 	'cfg_dl_minvote' => 'Min. Votescore',
 
 	# Order
-	'order_title' => 'Download-Code für %1$s (Code: %2$s)',
-	'order_descr' => 'Erworbenes Download-Token für %1$s. Gültig für %2$s. Code: %3$s',
-	'msg_purchased' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1$s\' und ist für %2$s gültig.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%3$s">rufen den Download-Link auf</a>.',
+	'order_title' => 'Download-Code für %s (Code: %s)',
+	'order_descr' => 'Erworbenes Download-Token für %s. Gültig für %s. Code: %s',
+	'msg_purchased' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%s\' und ist für %s gültig.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%s">rufen den Download-Link auf</a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Käufe',
@@ -84,10 +84,10 @@ $lang = array(
 	'th_dl_guest_down' => 'Gast Download?',
 	'tt_dl_guest_down' => 'Können Gäste den Download herunterladen?',
 	'ft_reup' => 'Datei neu hochladen',
-	'order_descr2' => 'Erworbener Download-Code für %1$s. Code: %2$s.',
-	'msg_purchased2' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%1$s\'.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%2$s">rufen den Download-Link auf</a>.',
-	'err_group' => 'Sie müssen sich in der Benutzergruppe &quot;%1$s&quot; befinden, um diese Datei herunterzuladen.',
-	'err_level' => 'Sie benötigen einen Benutzerlevel von %1$s, um diese Datei herunterzuladen.',
+	'order_descr2' => 'Erworbener Download-Code für %s. Code: %s.',
+	'msg_purchased2' => 'Wir haben ihre Zahlung erhalten und ein Download-Code wurde erzeugt.<br/>Ihr Code lautet \'%s\'.<br/><b>Schreiben Sie Ihren Code auf, falls Sie kein Konto auf '.GWF_SITENAME.' haben!</b><br/>Ansonsten loggen Sie sich bitte ein und <a href="%s">rufen den Download-Link auf</a>.',
+	'err_group' => 'Sie müssen sich in der Benutzergruppe &quot;%s&quot; befinden, um diese Datei herunterzuladen.',
+	'err_level' => 'Sie benötigen einen Benutzerlevel von %s, um diese Datei herunterzuladen.',
 	'err_guest' => 'Gäste dürfen diese Datei nicht herunterladen.',
 	'err_adult' => 'Dieser Inhalt ist für Erwachsene.',
 
@@ -104,21 +104,21 @@ $lang = array(
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

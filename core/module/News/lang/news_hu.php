@@ -4,8 +4,8 @@ $lang = array(
 	
 	# Messages
 	'msg_news_added' => 'A hír-ele, sikeresen hozzá lett adva.',
-	'msg_translated' => 'Lefordítottad a hírt erről a nyelvről: \'%1$s\' erre: %2$s. Szép munka.',
-	'msg_edited' => 'A hír: \'%1$s\' itt: %2$s szerkesztve lett.',
+	'msg_translated' => 'Lefordítottad a hírt erről a nyelvről: \'%s\' erre: %s. Szép munka.',
+	'msg_edited' => 'A hír: \'%s\' itt: %s szerkesztve lett.',
 	'msg_hidden_1' => 'A hír most már nem látható.',
 	'msg_hidden_0' => 'A hír most már látható.',
 	'msg_mailme_1' => 'A hír bekerült az e-mail küldési sorba.',
@@ -23,16 +23,16 @@ $lang = array(
 	'err_langtrans' => 'Ez a nyelv nem támogatott.',
 	'err_lang_src' => 'A forrás nyelv ismeretlen.',
 	'err_lang_dest' => 'A cél nyelv ismeretlen.',
-	'err_equal_translang' => 'A forrás és a cél nyelv azonos (Mindkettő %1$s).',
+	'err_equal_translang' => 'A forrás és a cél nyelv azonos (Mindkettő %s).',
 	'err_type' => 'A hírfolyam formátum ismeretlen.',
 	'err_unsign' => 'Hiba történt.',
 
 
 	# Main
 	'title' => GWF_SITENAME.' Hírek',
-	'pt_news' => GWF_SITENAME.' Hírek innen: %1$s',
-	'mt_news' => 'Hírek, '.GWF_SITENAME.', %1$s',
-	'md_news' => 'WeChall Hírek, Oldal: %1$s / %2$s.',
+	'pt_news' => GWF_SITENAME.' Hírek innen: %s',
+	'mt_news' => 'Hírek, '.GWF_SITENAME.', %s',
+	'md_news' => 'WeChall Hírek, Oldal: %s / %s.',
 
 	# Table Headers
 	'th_email' => 'E-mail címed',
@@ -49,7 +49,7 @@ $lang = array(
 	# Preview
 	'btn_preview_text' => 'Szöveg alapú',
 	'btn_preview_html' => 'HTML alapú',
-	'preview_info' => 'A hírújságok előnézetét itt tudod megtekinteni:<br/>%1$s és %2$s.',
+	'preview_info' => 'A hírújságok előnézetét itt tudod megtekinteni:<br/>%s és %s.',
 
 	# Show 
 	'unknown_user' => 'Ismeretlen felhasználói név',
@@ -58,21 +58,21 @@ $lang = array(
 
 	# Newsletter
 	'newsletter_title' => 'WeChall: Hírek',
-	'anrede' => 'Kedves %1$s',
+	'anrede' => 'Kedves %s',
 	'newsletter_wrap' =>
-		'%1$s, '.PHP_EOL.
+		'%s, '.PHP_EOL.
 		PHP_EOL.
 		'Feliratkoztál a hírújságra, és némi hír akad a számodra.'.PHP_EOL.
 		'A leiratkozáshoz kattints az alábbi linkre:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Az újság cikkek itt vannak felsorolva:'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Válassz formátumot',
@@ -90,7 +90,7 @@ $lang = array(
 	'btn_unsign' => 'Leiratkozás a hírlevelekről',
 		
 	# Edit
-	'ft_edit' => 'Hír szerkesztése (itt: %1$s)',
+	'ft_edit' => 'Hír szerkesztése (itt: %s)',
 	'btn_edit' => 'Szerkesztés',
 	'btn_translate' => 'Fordítás',
 	'th_transid' => 'Fordítás',
@@ -116,7 +116,7 @@ $lang = array(
 		
 	# V2.03 (News + Forum)
 	'cfg_news_in_forum' => 'Hírek küldése a fórumba',
-	'board_lang_descr' => 'Hírek itt: %1$s',
+	'board_lang_descr' => 'Hírek itt: %s',
 	'btn_admin_section' => 'Admin szekció',
 	'th_visible' => 'Látható',
 	'btn_forum' => 'Megbeszélés a fórumban',

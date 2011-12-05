@@ -9,12 +9,12 @@ $lang = array(
 	# Errors
 	'err_gb' => 'Das Gästebuch existiert nicht.',
 	'err_gbm' => 'Der Eintrag existiert nicht.',
-	'err_gbm_username' => 'Der Nickname ist ungültig und muss zwischen %1$s und %2$s Zeichen lang sein.',
-	'err_gbm_message' => 'Ihre Nachricht ist zu kurz oder zu lang. (%1$s bis %2$s Zeichen).',
+	'err_gbm_username' => 'Der Nickname ist ungültig und muss zwischen %s und %s Zeichen lang sein.',
+	'err_gbm_message' => 'Ihre Nachricht ist zu kurz oder zu lang. (%s bis %s Zeichen).',
 	'err_gbm_url' => 'Ihre Webseite ist nicht erreichbar oder die URL ist ungültig.',
 	'err_gbm_email' => 'Ihre EMail ist nicht gültig.',
-	'err_gb_title' => 'Der Gästebuchtitel ist ungültig und muss zwischen %1$s und %2$s Zeichen lang sein.',
-	'err_gb_descr' => 'Der Beschreibung ist ungültig und muss zwischen %1$s und %2$s Zeichen lang sein.',
+	'err_gb_title' => 'Der Gästebuchtitel ist ungültig und muss zwischen %s und %s Zeichen lang sein.',
+	'err_gb_descr' => 'Der Beschreibung ist ungültig und muss zwischen %s und %s Zeichen lang sein.',
 
 	# Messages
 	'msg_signed' => 'Sie haben erfolgreich einen Eintrag in das Gästebuch verfasst.',
@@ -50,19 +50,19 @@ $lang = array(
 	'tt_gb_locked' => 'Häkchen setzen um das Gästebuch vorübergehend zu deaktivieren.',
 
 	# Titles
-	'ft_sign' => '%1$s zeichnen',
+	'ft_sign' => '%s zeichnen',
 	'ft_edit_gb' => 'Gästebuch bearbeiten',
 	'ft_edit_entry' => 'Gästebucheintrag bearbeiten',
 
 	# Buttons
-	'btn_sign' => '%1$s zeichnen',
+	'btn_sign' => '%s zeichnen',
 	'btn_edit_gb' => 'Gästebuch bearbeiten',
 	'btn_edit_entry' => 'Gästebucheintrag bearbeiten',
 	'btn_public_hide' => 'Eintrag vor Gästen verstecken',
 	'btn_public_show' => 'Eintrag für Gäste anzeigen',
 	'btn_moderate_no' => 'Eintrag anzeigen',
 	'btn_moderate_yes' => 'Eintrag verstecken',
-	'btn_replyto' => 'Auf %1$s antworten',
+	'btn_replyto' => 'Auf %s antworten',
 
 	# Admin Config
 	'cfg_gb_allow_email' => 'Benutzer EMails erlauben?',
@@ -81,23 +81,23 @@ $lang = array(
 	'mailb_signed' => 
 		'Liebes Team'.PHP_EOL.
 		PHP_EOL.
-		'Das %1$s Gästebuch wurde von %2$s gezeichnet (%3)'.PHP_EOL.
+		'Das %s Gästebuch wurde von %s gezeichnet (%3)'.PHP_EOL.
 		'Nachricht:'.PHP_EOL.
-		'%4$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Sie können diesen Eintrag durch aufrufen des folgenden Links anzeigen lassen:'.PHP_EOL.
-		'%5$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# v2.02 Mail on Sign
 	'th_mailonsign' => 'E-Mail bei neuem Eintrag?',
 	'mails2_signed' => GWF_SITENAME.': Gästebucheintrag',
 	'mailb2_signed' => 
-		'Lieber %1$s'.PHP_EOL.
+		'Lieber %s'.PHP_EOL.
 		PHP_EOL.
-		'Ein neuer Eintrag in das %2$s Gästebuch wurde verfasst.'.
-		'Von: %3$s (%4$s)'.PHP_EOL.
+		'Ein neuer Eintrag in das %s Gästebuch wurde verfasst.'.
+		'Von: %s (%s)'.PHP_EOL.
 		'Nachricht:'.PHP_EOL.
-		'%5$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 		
 	# v2.03 (Delete entry)
 	'btn_del_entry' => 'Eintrag Löschen',

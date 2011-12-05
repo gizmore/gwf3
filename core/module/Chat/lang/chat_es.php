@@ -18,7 +18,7 @@ $lang = array(
 
 	# Errors
 	'err_msg_short' => 'Olvidó su mensaje.',
-	'err_msg_long' => 'Su mensaje excede la longitud máxima de %1$s.',
+	'err_msg_long' => 'Su mensaje excede la longitud máxima de %s.',
 	'err_private' => 'Los mensajes privados estan actualmente deshabilidatos.',
 	'err_guest_public' => 'Los invitados no tienen permiso para publicar en el canal público.',
 	'err_guest_private' => 'Los invitados no pueden enviar mensajes a otros usuarios.',

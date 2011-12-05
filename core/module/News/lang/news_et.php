@@ -4,8 +4,8 @@ $lang = array(
 	
 	# Messages
 	'msg_news_added' => 'Uudised on edukalt lisatud.',
-	'msg_translated' => 'Sa tõlkisid uudiste ühiku \'%1$s\'  %2$s lingiks. Tubli töö.',
-	'msg_edited' => 'Uudiste ühik \'%1$s\'  %2$s sees on muudetud.',
+	'msg_translated' => 'Sa tõlkisid uudiste ühiku \'%s\'  %s lingiks. Tubli töö.',
+	'msg_edited' => 'Uudiste ühik \'%s\'  %s sees on muudetud.',
 	'msg_hidden_1' => 'Uudiste ühik on nüüd peidetud.',
 	'msg_hidden_0' => 'Uudiste ühik on nüüd nähtav.',
 	'msg_mailme_1' => 'Uudiste ühik on nüüd pandud meilide järjekorda.',
@@ -23,7 +23,7 @@ $lang = array(
 	'err_langtrans' => 'Seda keelt ei toetata.',
 	'err_lang_src' => 'See keel on tundmatu.',
 	'err_lang_dest' => 'Soovitud keel on tundmatu.',
-	'err_equal_translang' => 'Allikas ja soovitud keel on võrdsed (Mõlemad %1$s).',
+	'err_equal_translang' => 'Allikas ja soovitud keel on võrdsed (Mõlemad %s).',
 	'err_type' => 'Uudistelehe formaat on vigane.',
 	'err_unsign' => 'Viga avastatud.',
 
@@ -31,9 +31,9 @@ $lang = array(
 	# Main
 	'title' => 'Uudised',
 //	'info' => 'Teie õnneks meie sissekanne ainult produktidele mõeldud.<br/>Üks osa meie teadmistest on teie käsutuses.<br/>Mõned artiklid on ainult registreerunutele mõeldud.',
-	'pt_news' => 'Uudised %1$s',
-	'mt_news' => 'Uudised, '.GWF_SITENAME.', %1$s',
-	'md_news' => GWF_SITENAME.' Uudised, leht %1$s of %2$s.',
+	'pt_news' => 'Uudised %s',
+	'mt_news' => 'Uudised, '.GWF_SITENAME.', %s',
+	'md_news' => GWF_SITENAME.' Uudised, leht %s of %s.',
 
 	# Table Headers
 	'th_email' => 'Sinu email',
@@ -50,7 +50,7 @@ $lang = array(
 	# Preview
 	'btn_preview_text' => 'Teksti versioon',
 	'btn_preview_html' => 'HTML versioon',
-	'preview_info' => 'Võid näha uudistelehtede eelvaateid siit:<br/>%1$s and %2$s.',
+	'preview_info' => 'Võid näha uudistelehtede eelvaateid siit:<br/>%s and %s.',
 
 	# Show 
 	'unknown_user' => 'Tundmatu kasutaja',
@@ -59,13 +59,13 @@ $lang = array(
 
 	# Newsletter
 	'newsletter_title' => GWF_SITENAME.': Uudised',
-	'anrede' => 'Dear %1$s',
+	'anrede' => 'Dear %s',
 	'newsletter_wrap' =>
-		'%1$s, '.PHP_EOL.
+		'%s, '.PHP_EOL.
 		PHP_EOL.
 		'Sa registreerisid '.GWF_SITENAME.' uudistelehele ja neil on sulle uudiseid.'.PHP_EOL.
 		'Et eemaldada ennast uudistelehest külasta järgnevat linki:'.PHP_EOL.
-		'%2$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
@@ -73,9 +73,9 @@ $lang = array(
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL,
+		'%s'.PHP_EOL,
 
 	# Types
 	'type_none' => 'Vali formaat',
@@ -93,7 +93,7 @@ $lang = array(
 	'btn_unsign' => 'Ära telli uudistelehte',
 		
 	# Edit
-	'ft_edit' => 'Muuda uudiste seadeid (in %1$s)',
+	'ft_edit' => 'Muuda uudiste seadeid (in %s)',
 	'btn_edit' => 'Muuda',
 	'btn_translate' => 'Tõlgi',
 	'th_transid' => 'Tõlge',
@@ -119,7 +119,7 @@ $lang = array(
 		
 	# V2.03 (News + Forum)
 	'cfg_news_in_forum' => 'Post news in forum',
-	'board_lang_descr' => 'News in %1$s',
+	'board_lang_descr' => 'News in %s',
 	'btn_admin_section' => 'Admin section',
 	'th_hidden' => 'Hidden',
 	'th_visible' => 'Visible',

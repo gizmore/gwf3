@@ -4,8 +4,8 @@ $lang = array(
 ## SCOREVOTE ##
 
 	# votebuttons.php
-	'alt_button' => 'votación %1$s',
-	'title_button' => 'votación %1$s',
+	'alt_button' => 'votación %s',
+	'title_button' => 'votación %s',
 
 	# Errors
 	'err_votescore' => 'Mesa de votación que no se encuentra para ese elemento.',
@@ -14,8 +14,8 @@ $lang = array(
 	'err_disabled' => 'Registro de votación está actualmente bloqueada.',
 	'err_vote_ip' => 'Este tema ya ha sido votada por usted IP.',
 	'err_no_guest' => 'Los invitados no pueden votar sobre este tema.',
-	'err_title' => 'El título tiene que ser entre %1$s y %2$s caracteres.',
-	'err_options' => 'Su opción de Encuesta(s) %1$s es / son errorneous y probablemente no dentro de los límites  %2$s de %3$s caracteres.',
+	'err_title' => 'El título tiene que ser entre %s y %s caracteres.',
+	'err_options' => 'Su opción de Encuesta(s) %s es / son errorneous y probablemente no dentro de los límites  %s de %s caracteres.',
 	'err_no_options' => 'Usted no ha indicado las opciones.',
 
 	# Messages
@@ -23,7 +23,7 @@ $lang = array(
 
 	## POLLS ##
 
-	'poll_votes' => '%1$s Votos',
+	'poll_votes' => '%s Votos',
 	'votes' => 'votos',
 	'voted' => 'votado',
 	'vmview_never' => 'Nunca',
@@ -34,7 +34,7 @@ $lang = array(
 	'th_votes' => 'Votos',
 	'th_title' => 'Título',
 	'th_multi' => '¿Permitir múltiples opciones?',
-	'th_option' => 'Opción %1$s',
+	'th_option' => 'Opción %s',
 	'th_guests' => '¿Invitado votos?',
 	'th_mvview' => 'Mostrar resultado',
 	'th_vm_public' => '¿Mostrar en la barra lateral?',

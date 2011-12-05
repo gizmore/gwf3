@@ -11,7 +11,7 @@ $lang = array(
 	'th_birthdate' => 'Sünniaeg',
 	'th_countryid' => 'Riik',
 	'th_tos' => 'Ma nõustun <br/>Kasutustingimustega',
-	'th_tos2' => 'Ma nõustun <br/><a href="%1$s">Kasutustingimustega</a>',
+	'th_tos2' => 'Ma nõustun <br/><a href="%s">Kasutustingimustega</a>',
 	'th_register' => 'Registreeri',
 
 	'btn_register' => 'Registreeri',
@@ -32,23 +32,23 @@ $lang = array(
 
 	'regmail_subject' => 'Registreeri '.GWF_SITENAME,
 	'regmail_body' => 
-		'Tere %1$s<br/>'.
+		'Tere %s<br/>'.
 		'<br/>'.
 		'Täname registreerimast '.GWF_SITENAME.'.<br/>'.
 		'Et lõpetada registreerimine, peate te oma kasutaja aktiveerima, külastades allolevat linki.<br/>'.
 		'Kui sa ei registreerinud leheküljel '.GWF_SITENAME.', palun ignoreeri seda kirja või kontakteeru meiega '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
-		'%2$s<br/>'.
+		'%s<br/>'.
 		'<br/>'.
-		'%3$s'.
+		'%s'.
 		'Siirad tervitused,<br/>'.
 		'The '.GWF_SITENAME.' Meeskond.',
 	'err_tos' => 'Te peate nõustuma EULA-ga.',
 
 	'regmail_ptbody' => 
 		'Teie sisselogimisandmed on:<br/><b>'.
-		'kasutajanimi: %1$s<br/>'.
-		'Salasõna: %2$s<br/>'.
+		'kasutajanimi: %s<br/>'.
+		'Salasõna: %s<br/>'.
 		'</b><br/>'.
 		'On hea mõte kustutada see e-mail ning salvestada oma parool teise kohta.<br/>'.
 		'Me ei salvesta oma paroole tekstina, ka teie ei tohiks seda teha.<br/>'.
@@ -68,12 +68,12 @@ $lang = array(
 	'cfg_ua_threshold' => 'Aegumine, et lõpetada registreerimineation',
 
 	'err_birthdate' => 'Teie sünnikuupäev on vigane.',
-	'err_minage' => 'Meil on kahju, kuid sa ei ole piisavalt vana, et registreerida. Sa pead olema vähemalt %1$s aastat vana.',
+	'err_minage' => 'Meil on kahju, kuid sa ei ole piisavalt vana, et registreerida. Sa pead olema vähemalt %s aastat vana.',
 	'err_ip_timeout' => 'Keegi on hiljuti sellelt IP-lt juba kasutaja registreerinud.',
 	'th_token' => 'Märk',
 	'th_timestamp' => 'Registreerimise aeg',
 	'th_ip' => 'Registreerimise IP',
-	'tt_username' => 'Kasutajanimi peab algama tähega.'.PHP_EOL.'See võib sisaldada ainult tähti, numbreid ning alljooni. Pikkus peab olema 3-%1$s tähte.', 
+	'tt_username' => 'Kasutajanimi peab algama tähega.'.PHP_EOL.'See võib sisaldada ainult tähti, numbreid ning alljooni. Pikkus peab olema 3-%s tähte.', 
 	'tt_email' => 'Registreerimiseks on vaja tõest e-maili.',
 
 	'info_no_cookie' => 'Teie brauser ei toeta küpsiseid või ei ole need lubatud '.GWF_SITENAME.' jaoks, kuid küpsised peavad olema sisselogimiseks lubatud.',

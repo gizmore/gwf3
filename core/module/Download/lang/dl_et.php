@@ -6,7 +6,7 @@ $lang = array(
 	'md_list' => 'Exclusive downloads on '.GWF_SITENAME.'.',
 
 	# Page info
-	'pi_add' => 'Saamaks parimat kogemust, lae oma fail kõigepealt üles, see pannakse sinu sessiooni. Hiljem muuda valikuid.<br/>Üleslaadimiste maksimum on %1$s.',
+	'pi_add' => 'Saamaks parimat kogemust, lae oma fail kõigepealt üles, see pannakse sinu sessiooni. Hiljem muuda valikuid.<br/>Üleslaadimiste maksimum on %s.',
 
 	# Form Titles
 	'ft_add' => 'Lae fail üles',
@@ -15,10 +15,10 @@ $lang = array(
 
 	# Errors
 	'err_file' => 'Sa pead faili üleslaadima.',
-	'err_filename' => 'Sinu sisestad failinimi on vigane. Suurim pikkus on %1$s. Proovi kasutada traditsioonilisi tähti.',
+	'err_filename' => 'Sinu sisestad failinimi on vigane. Suurim pikkus on %s. Proovi kasutada traditsioonilisi tähti.',
 	'err_level' => 'Kasutaja level peab olema >= 0.',
-	'err_descr' => 'Kirjeldus peab olema 0-%1$s tähte pikk.',
-	'err_price' => 'Hind peab olema vahemikus %1$s ja %2$s.',
+	'err_descr' => 'Kirjeldus peab olema 0-%s tähte pikk.',
+	'err_price' => 'Hind peab olema vahemikus %s ja %s.',
 	'err_dlid' => 'Allalaadimist ei leitud.',
 	'err_token' => 'Sinu tõmbamismärk on vigane.',
 
@@ -68,9 +68,9 @@ $lang = array(
 	'cfg_dl_minvote' => 'Minimaalne häältearv',
 
 	# Order
-	'order_title' => 'Tõmbamismärk %1$s eest (Token: %2$s)',
-	'order_descr' => 'Ostsite tõmbamismrgi %1$s eest. Kehtivusaeg %2$s. Märk: %3$s',
-	'msg_purchased' => 'Makse on laekunud ning tõmbamismärk on sisestatud.<br/>Sinu tõmbamismärk on\'%1$s\' ja see kehtib %2$s.<br/><b>Juhul kui sul pole kontot '.GWF_SITENAME.', kirjuta oma tõmbamismärk üles!</b><br/>Või siis mine sellele lingile <a href="%3$s"> </a>.',
+	'order_title' => 'Tõmbamismärk %s eest (Token: %s)',
+	'order_descr' => 'Ostsite tõmbamismrgi %s eest. Kehtivusaeg %s. Märk: %s',
+	'msg_purchased' => 'Makse on laekunud ning tõmbamismärk on sisestatud.<br/>Sinu tõmbamismärk on\'%s\' ja see kehtib %s.<br/><b>Juhul kui sul pole kontot '.GWF_SITENAME.', kirjuta oma tõmbamismärk üles!</b><br/>Või siis mine sellele lingile <a href="%s"> </a>.',
 
 	# v2.01 (+col)
 	'th_purchases' => 'Ostud',
@@ -84,10 +84,10 @@ $lang = array(
 	'th_dl_guest_down' => 'Külalistele tõmmatav?',
 	'tt_dl_guest_down' => 'Kas külalised tohivad seda faili tõmmata?',
 	'ft_reup' => 'Lae fail uuesti üles',
-	'order_descr2' => 'Tõmbamismärk ostetud %1$s eest. Tõmbamismärk: %2$s.',
-	'msg_purchased2' => 'Makse on laekunud ning tõmbamismärk on sisestatud.<br/>Sinu tõmbamismärk on\'%1$s\' ja see kehtib %2$s.<br/><b>Juhul kui sul pole kontot '.GWF_SITENAME.', kirjuta oma tõmbamismärk üles!</b><br/>Või siis mine sellele lingile <a href="%3$s"> </a>.',
-	'err_group' => 'Et tõmmata seda faili, pead olema kasutajagrupis %1$s.',
-	'err_level' => 'Sa pead olema kasutajatasemel %1$s, et seda faili tõmmata.',
+	'order_descr2' => 'Tõmbamismärk ostetud %s eest. Tõmbamismärk: %s.',
+	'msg_purchased2' => 'Makse on laekunud ning tõmbamismärk on sisestatud.<br/>Sinu tõmbamismärk on\'%s\' ja see kehtib %s.<br/><b>Juhul kui sul pole kontot '.GWF_SITENAME.', kirjuta oma tõmbamismärk üles!</b><br/>Või siis mine sellele lingile <a href="%s"> </a>.',
+	'err_group' => 'Et tõmmata seda faili, pead olema kasutajagrupis %s.',
+	'err_level' => 'Sa pead olema kasutajatasemel %s, et seda faili tõmmata.',
 	'err_guest' => 'Külalistele on selle faili tõmbamine keelatud.',
 	'err_adult' => 'Sisaldab täiskasvanute materjale.',
 
@@ -104,21 +104,21 @@ $lang = array(
 
 	'mod_mail_subj' => GWF_SITENAME.': Upload Moderation',
 	'mod_mail_body' =>
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
 		'There has been a new file uploaded to '.GWF_SITENAME.' which requires moderation.'.PHP_EOL.
 		PHP_EOL.
-		'From: %2$s'.PHP_EOL.
-		'File: %3$s (%4$s)'.PHP_EOL.
-		'Mime: %5$s'.PHP_EOL.
-		'Size: %6$s'.PHP_EOL.
-		'Desc: %7$s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
+		'File: %s (%s)'.PHP_EOL.
+		'Mime: %s'.PHP_EOL.
+		'Size: %s'.PHP_EOL.
+		'Desc: %s'.PHP_EOL.
 		PHP_EOL.
 		'You can download the file here:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can allow the download here:'.PHP_EOL.
-		'%9$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'You can delete the download here:'.PHP_EOL.
 		'%10$s'.PHP_EOL.

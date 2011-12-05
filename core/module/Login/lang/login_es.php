@@ -10,16 +10,16 @@ $lang = array(
 	'btn_register' => 'Register',
 	'btn_recovery' => 'Recovery',
 	'err_login' => 'Nombre de usuario desconocido.',
-	'err_login2' => 'Contraseña erronea. Le quedan %1$s para ser bloqueado por %2$s.',
-	'err_blocked' => 'Por favor, espere %1$s para intentarlo de nuevo.',
+	'err_login2' => 'Contraseña erronea. Le quedan %s para ser bloqueado por %s.',
+	'err_blocked' => 'Por favor, espere %s para intentarlo de nuevo.',
 	'welcome' =>
-		'Bienvenido a '.GWF_SITENAME.', %1$s.<br/><br/>'.
+		'Bienvenido a '.GWF_SITENAME.', %s.<br/><br/>'.
 		'Esperamos que le guste nuestra página y disfrute navegando por ella.<br/>'.
 		'En caso de que tenga preguntas, ¡no dude en contactar con nosotros!',
 
 	'welcome_back' =>
-		'Bienvenido de nuevo a '.GWF_SITENAME.', %1$s.<br/><br/>'.
-		'Su última actividad fue %2$s desde la IP: %3$s.',
+		'Bienvenido de nuevo a '.GWF_SITENAME.', %s.<br/><br/>'.
+		'Su última actividad fue %s desde la IP: %s.',
 		
 	'logout_info' => 'Está desconectado.',
 
@@ -33,12 +33,12 @@ $lang = array(
 	'tt_bind_ip' => 'Medida de seguridad para evitar robo de cookies.',
 
 	# v1.01 (login failures)
-	'err_failures' => 'Hay %1$s intentos fallidos de acceso y pudo haber sido sujeto de un ataque sin éxito.',
+	'err_failures' => 'Hay %s intentos fallidos de acceso y pudo haber sido sujeto de un ataque sin éxito.',
 	'cfg_lf_cleanup_i' => 'Limpiar intentos fallidos luego de acceder',
 	'cfg_lf_cleanup_t' => 'Limpiar viejos intentos fallidos al pasar el tiempo',
 
 	# v2.00 (login history)
-	'msg_last_login' => 'Su último inicio de sesión fue %1$s desde %2$s (%3$s).<br/>Puede también <a href="%4$s">revisar el historial de acceso desde aquí</a>.',
+	'msg_last_login' => 'Su último inicio de sesión fue %s desde %s (%s).<br/>Puede también <a href="%s">revisar el historial de acceso desde aquí</a>.',
 	'th_loghis_time' => 'Fecha',
 
 	'th_loghis_ip' => 'IP ',
@@ -48,7 +48,7 @@ $lang = array(
 	'ft_clear' => 'Limpiar historial de acceso',
 	'btn_clear' => 'Limpiar',
 	'msg_cleared' => 'Tu historial de acceso ha sido limpiado.',
-	'info_cleared' => 'Tu historial de acceso se borró por última vez el %1$s desde esta IP: %2$s / %3$s',
+	'info_cleared' => 'Tu historial de acceso se borró por última vez el %s desde esta IP: %s / %s',
 
 	# v2.02 (email alerts)
 	'alert_subj' => GWF_SITENAME.': Login failures',

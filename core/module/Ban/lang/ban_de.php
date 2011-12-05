@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'Das End-Datum ist ungültig.',
 
 	# Messages
-	'msg_permbanned' => 'Der Benutzer %1$s wurde permanent gebannt.',
-	'msg_tempbanned' => 'Der Benutzer %1$s wurde gebannt bis %2$s.',
-	'msg_warned' => 'Der Benutzer %1$s wurde verwarnt.',
+	'msg_permbanned' => 'Der Benutzer %s wurde permanent gebannt.',
+	'msg_tempbanned' => 'Der Benutzer %s wurde gebannt bis %s.',
+	'msg_warned' => 'Der Benutzer %s wurde verwarnt.',
 	'msg_marked_read' => 'Die Nachricht wurde als gelesen markiert.',
 	
 	# Info
-	'info_warning' => 'Sie wurden verwarnt!<br/>%1$s<br/><a href="%2$s">Klicken Sie hier um die Nachricht als gelesen zu markieren</a>.',
-	'info_tempban' => 'Ihr Benutzerkonto ist gesperrt bis %1$s!<br/>%2$s',
-	'info_permban' => 'Ihr Benutzerkonto wurden permanent gesperrt:<br/>%1$s',
+	'info_warning' => 'Sie wurden verwarnt!<br/>%s<br/><a href="%s">Klicken Sie hier um die Nachricht als gelesen zu markieren</a>.',
+	'info_tempban' => 'Ihr Benutzerkonto ist gesperrt bis %s!<br/>%s',
+	'info_permban' => 'Ihr Benutzerkonto wurden permanent gesperrt:<br/>%s',
 
 	# Admin Config
 	'cfg_ban_ipp' => 'Einträge pro Seite',

@@ -2,32 +2,32 @@
 
 $lang = array(
 
-	'ERR_DATABASE' => 'Chyba databáze v souboru %1$s řádka %2$s.',
-	'ERR_FILE_NOT_FOUND' => 'Soubor nenalezen: %1$s',
-	'ERR_MODULE_DISABLED' => 'Modul %1$s není aktivován.',
+	'ERR_DATABASE' => 'Chyba databáze v souboru %s řádka %s.',
+	'ERR_FILE_NOT_FOUND' => 'Soubor nenalezen: %s',
+	'ERR_MODULE_DISABLED' => 'Modul %s není aktivován.',
 	'ERR_LOGIN_REQUIRED' => 'Pro správné fungování musíte být nejprve přihlášeni.',
 	'ERR_NO_PERMISSION' => 'Přístup zakázán.',
 	'ERR_WRONG_CAPTCHA' => 'Písmena z obrázku nebyla opsána správně.',
-	'ERR_MODULE_MISSING' => 'Modul %1$s nebyl nalezen.',
+	'ERR_MODULE_MISSING' => 'Modul %s nebyl nalezen.',
 	'ERR_COOKIES_REQUIRED' => 'Tvoje session vypršela nebo nemáš aktivovaná cookie ve svém prohlížeci.<br/>Prosím zkus znovu načíst stránku.',
 	'ERR_UNKNOWN_USER' => 'Neznámý uživatel.',
 	'ERR_UNKNOWN_GROUP' => 'Neznámá skupina.',
 	'ERR_UNKNOWN_COUNTRY' => 'Neznámý stát.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Neznámý jazyk.',
-	'ERR_METHOD_MISSING' => 'Neznámá metoda: %1$s v modulu %2$s.',
-	'ERR_GENERAL' => 'Neznámá chyba v %1$s řádka %2$s.',
-	'ERR_WRITE_FILE' => 'Není možné zapsat do souboru: %1$s.',
-	'ERR_CLASS_NOT_FOUND' => 'Neznámá třída: %1$s.',
-	'ERR_MISSING_VAR' => 'Chybí HTTP POST var: %1$s.',
+	'ERR_METHOD_MISSING' => 'Neznámá metoda: %s v modulu %s.',
+	'ERR_GENERAL' => 'Neznámá chyba v %s řádka %s.',
+	'ERR_WRITE_FILE' => 'Není možné zapsat do souboru: %s.',
+	'ERR_CLASS_NOT_FOUND' => 'Neznámá třída: %s.',
+	'ERR_MISSING_VAR' => 'Chybí HTTP POST var: %s.',
 	'ERR_MISSING_UPLOAD' => 'Je třeba nahrát soubor.',
 	'ERR_MAIL_SENT' => 'Nastala chyba při odesílání emailu.',
 	'ERR_CSRF' => 'Tvůj formulářový token je neplatný. Možná jsi se ho pokoušel odeslat vícekrát nebo mezitím vypršela session.',
-	'ERR_HOOK' => 'Hook vrátil false: %1$s.',
-	'ERR_PARAMETER' => 'Neplatný parameter v %1$s řádka %2$s. Parametr funkce %3$s je neplatný.',
-	'ERR_DEPENDENCY' => 'Nevyřešená závislost: moduly/%1$s/metoda/%2$s vyžadují modul %3$s v%4$s.',
-	'ERR_SEARCH_TERM' => 'Vyhledávaný řetězec musí byt %1$s - %2$s znaků dlouhý.',
-	'ERR_SEARCH_NO_MATCH' => 'To co jsi hledal &quot;%1$s&quot; nebylo nalezeno.',
-	'ERR_POST_VAR' => 'Neočekávaná POST var: %1$s.',
+	'ERR_HOOK' => 'Hook vrátil false: %s.',
+	'ERR_PARAMETER' => 'Neplatný parameter v %s řádka %s. Parametr funkce %s je neplatný.',
+	'ERR_DEPENDENCY' => 'Nevyřešená závislost: moduly/%s/metoda/%s vyžadují modul %s v%s.',
+	'ERR_SEARCH_TERM' => 'Vyhledávaný řetězec musí byt %s - %s znaků dlouhý.',
+	'ERR_SEARCH_NO_MATCH' => 'To co jsi hledal &quot;%s&quot; nebylo nalezeno.',
+	'ERR_POST_VAR' => 'Neočekávaná POST var: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -80,10 +80,10 @@ $lang = array(
 	'd5' => 'Pá',
 	'd6' => 'So',
 
-	'ago_s' => 'před %1$s sekundami',
-	'ago_m' => 'před %1$s minutami',
-	'ago_h' => 'před %1$s hodinami',
-	'ago_d' => 'před %1$s dny',
+	'ago_s' => 'před %s sekundami',
+	'ago_m' => 'před %s minutami',
+	'ago_h' => 'před %s hodinami',
+	'ago_d' => 'před %s dny',
 
 	###
 	### TODO: GWF_DateFormat, is problematic, because en != en [us/gb]
@@ -131,7 +131,7 @@ $lang = array(
 	# GWF_Country
 	'sel_country' => 'Vyber stát',
 	'unknown_country' => 'Neznámý stát',
-	'alt_flag' => '%1$s',
+	'alt_flag' => '%s',
 
 	# GWF_User#gender
 	'gender_male' => 'Muž',
@@ -139,7 +139,7 @@ $lang = array(
 	'gender_no_gender' => 'Neuvedeno',
 
 	# GWF_User#avatar
-	'alt_avatar' => 'Avatar uživatele %1$s',
+	'alt_avatar' => 'Avatar uživatele %s',
 
 	# GWF_Group
 	'sel_group' => 'Vyber skupinu uživatelů',
@@ -160,14 +160,14 @@ $lang = array(
 	'by' => 'od',
 	'and' => 'a',
 
-	'alt_flag' => '%1$s vlajka',
+	'alt_flag' => '%s vlajka',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Všechna práva vyhražena.',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. Všechna práva vyhražena.',
 	'copygwf' => GWF_SITENAME.' používá <a href="http://gwf.gizmore.org">GWF</a>, the BSD-Like Website Framework.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1$s je povinné.',
+	'form_required' => '%s je povinné.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'tučné',
@@ -182,7 +182,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'Neviditelný text, který se zobrazí po klikninutí.',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Citát od %1$s',
+	'quote_from' => 'Citát od %s',
 	'code' => 'kód',
 	'for' => 'pro',
 
@@ -195,7 +195,7 @@ $lang = array(
 	
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );
 
 ?>

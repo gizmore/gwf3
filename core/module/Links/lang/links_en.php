@@ -24,46 +24,46 @@ $lang = array(
 	# Info`s
 //	'pi_links' => '',
 	'info_tag' => 'Specify at least one Tag. Separate Tags by comma. Try use existing tags:',
-	'info_newlinks' => 'There are %1$s new Links for you.',
-	'info_search_exceed' => 'Your search exceeded the result limit of %1$s.',
+	'info_newlinks' => 'There are %s new Links for you.',
+	'info_search_exceed' => 'Your search exceeded the result limit of %s.',
 
 	# Titles
 	'ft_add' => 'Add a Link',
 	'ft_edit' => 'Edit Link',
 	'ft_search' => 'Search the links',
 	'pt_links' => 'All Links',
-	'pt_linksec' => '%1$s Links',
+	'pt_linksec' => '%s Links',
 	'pt_new_links' => 'New Links',
 	'mt_links' => GWF_SITENAME.', Link, List, All Links',
 	'md_links' => 'All links on '.GWF_SITENAME.'.',
-	'mt_linksec' => GWF_SITENAME.', Link, List, Links about %1$s',
-	'md_linksec' => '%1$s links on '.GWF_SITENAME.'.',
+	'mt_linksec' => GWF_SITENAME.', Link, List, Links about %s',
+	'md_linksec' => '%s links on '.GWF_SITENAME.'.',
 
 	# Errors
 	'err_gid' => 'The UserGroup is invalid.',
 	'err_score' => 'Invalid value for score.',
 	'err_no_tag' => 'Please Specify at least one tag.',
-	'err_tag' => 'The Tag %1$s is invalid and got removed. The tag has to be %2$s - %3$s bytes.',
+	'err_tag' => 'The Tag %s is invalid and got removed. The tag has to be %s - %s bytes.',
 	'err_url' => 'The URL looks invalid.',
 	'err_url_dup' => 'The URL is alrady listed here.',
 	'err_url_down' => 'The URL is not reachable.',
-	'err_url_long' => 'Your URL is too long. Max %1$s bytes.',
-	'err_descr1_short' => 'Your description is too short. Min %1$s bytes.',
-	'err_descr1_long' => 'Your description is too long. Max %1$s bytes.',
-	'err_descr2_short' => 'Your detailed description is too short. Min %1$s bytes.',
-	'err_descr2_long' => 'Your detailed description is too long. Max %1$s bytes.',
+	'err_url_long' => 'Your URL is too long. Max %s bytes.',
+	'err_descr1_short' => 'Your description is too short. Min %s bytes.',
+	'err_descr1_long' => 'Your description is too long. Max %s bytes.',
+	'err_descr2_short' => 'Your detailed description is too short. Min %s bytes.',
+	'err_descr2_long' => 'Your detailed description is too long. Max %s bytes.',
 	'err_link' => 'Link not found.',
 	'err_add_perm' => 'You are not allowed to add a link.',
 	'err_edit_perm' => 'You are not allowed to edit this link.',
 	'err_view_perm' => 'You are not allowed to view this link.',
 	'err_add_tags' => 'You are not allowed to add new tags.',
-	'err_score_tag' => 'Your userlevel(%1$s) is not high enough to add another tag. Needed Level: %2$s.',
-	'err_score_link' => 'Your userlevel(%1$s) is not high enough to add another link. Needed Level: %2$s.',
+	'err_score_tag' => 'Your userlevel(%s) is not high enough to add another tag. Needed Level: %s.',
+	'err_score_link' => 'Your userlevel(%s) is not high enough to add another link. Needed Level: %s.',
 	'err_approved' => 'The link was already approved. Please use the staff section to take actions.',
 	'err_token' => 'The token is invalid.',
 
 	# Messages
-//	'msg_redirecting' => 'Redirecting you to %1$s.',
+//	'msg_redirecting' => 'Redirecting you to %s.',
 	'msg_added' => 'Your link has been added to the database.',
 	'msg_added_mod' => 'Your link has been added to the database, but a Moderator has to check it out first.',
 	'msg_edited' => 'The link has been edited.',
@@ -121,14 +121,14 @@ $lang = array(
 		PHP_EOL.
 		'There has been posted a new Link from a guest that needs moderation:'.PHP_EOL.
 		PHP_EOL.
-		'Description: %1$s'.PHP_EOL.
-		'Detailed D.: %2$s'.PHP_EOL.
-		'HREF / URL : %3$s'.PHP_EOL.
+		'Description: %s'.PHP_EOL.
+		'Detailed D.: %s'.PHP_EOL.
+		'HREF / URL : %s'.PHP_EOL.
 		PHP_EOL.
 		'You can either: '.PHP_EOL.
-		'1) Approve this link by visiting %4$s'.PHP_EOL.
+		'1) Approve this link by visiting %s'.PHP_EOL.
 		'Or:'.PHP_EOL.
-		'2) Delete this link by visiting %5$s'.PHP_EOL.
+		'2) Delete this link by visiting %s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Script'.PHP_EOL,
@@ -140,9 +140,9 @@ $lang = array(
 		
 	# v2.02 (permitted)
 	'permtext_in_mod' => 'This link is in moderation',
-	'permtext_score' => 'You need a userlevel of %1$s to see this link',
+	'permtext_score' => 'You need a userlevel of %s to see this link',
 	'permtext_member' => 'This link is only for members',
-	'permtext_group' => 'You need to be in the %1$s group to see this link',
+	'permtext_group' => 'You need to be in the %s group to see this link',
 	'cfg_show_permitted' => 'Show forbidden links reason?',
 		
 	# v3.00 (fixes)

@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'ERR_DATABASE' => 'Gabim bazës së të dhënave ne skedar %1$s Zeile %2$s.',
-	'ERR_FILE_NOT_FOUND' => 'Skedar nuk osht gjetur: %1$s',
-	'ERR_MODULE_DISABLED' => 'Moduli %1$s eshte ne moment me aftësi të kufizuara.',
+	'ERR_DATABASE' => 'Gabim bazës së të dhënave ne skedar %s Zeile %s.',
+	'ERR_FILE_NOT_FOUND' => 'Skedar nuk osht gjetur: %s',
+	'ERR_MODULE_DISABLED' => 'Moduli %s eshte ne moment me aftësi të kufizuara.',
 	'ERR_LOGIN_REQUIRED' => 'Funksionale për ta ata duhet të jenë të regjistruar.',
 	'ERR_NO_PERMISSION' => 'Refuzohet hyrja.',
 	'ERR_WRONG_CAPTCHA' => 'Ju duhet letra nga imazhi captcha saktë shtyp në makinë shkrimi.',
@@ -12,20 +12,20 @@ $lang = array(
 	'ERR_UNKNOWN_COUNTRY' => 'Ky vend është i panjohur.',
 	'ERR_UNKNOWN_LANGUAGE' => 'Kjo gjuhë është e panjohur.',
 	'ERR_UNKNOWN_GROUP' => 'Grupet Panjohur.',
-	'ERR_METHOD_MISSING' => 'Funksioni %1$s i panjohur në modulin %2$s.',
-	'ERR_GENERAL' => 'gabim papërcaktuara %1$s Linjë %2$s.',
-	'ERR_WRITE_FILE' => 'Nuk Mund file %1$s nuk e përshkruajnë.',
-	'ERR_CLASS_NOT_FOUND' => 'Klasës I Panjohur: %1$s.',
-	'ERR_MISSING_VAR' => 'Mungesa e të dhënave formë për fushën %1$s.',
+	'ERR_METHOD_MISSING' => 'Funksioni %s i panjohur në modulin %s.',
+	'ERR_GENERAL' => 'gabim papërcaktuara %s Linjë %s.',
+	'ERR_WRITE_FILE' => 'Nuk Mund file %s nuk e përshkruajnë.',
+	'ERR_CLASS_NOT_FOUND' => 'Klasës I Panjohur: %s.',
+	'ERR_MISSING_VAR' => 'Mungesa e të dhënave formë për fushën %s.',
 	'ERR_MISSING_UPLOAD' => 'Ju duhet të ngarkoni një skedar.',
 	'ERR_MAIL_SENT' => 'Pati një gabim duke dërguar një email tek.',
 	'ERR_CSRF' => 'Formë juaj postuar është i pavlefshëm. Ata ndoshta kanë dërguar një formë dy herë, apo sesionin tuaj ka skaduar.',
-	'ERR_HOOK' => 'Një zgjerim i dha përsëri një gabim: %1$s.',
-	'ERR_PARAMETER' => 'Invalid argument në %1$s Linjë %2$s. Argumenti Funksioni %3$s është i pavlefshëm.',
-	'ERR_DEPENDENCY' => 'Funksioni kërkon një modul të humbur: core/module/%1$s/method/%2$s Moduli i kërkuar %3$s v%4$s.',
-	'ERR_SEARCH_TERM' => 'Termi kërko duhet %1$s - %2$s Figurë.',
-	'ERR_SEARCH_NO_MATCH' => 'Kërkimi juaj për &quot;%1$s&quot; kthyer asnjë rezultat.',
-	'ERR_POST_VAR' => 'Të dhënat papritur formë: %1$s.',
+	'ERR_HOOK' => 'Një zgjerim i dha përsëri një gabim: %s.',
+	'ERR_PARAMETER' => 'Invalid argument në %s Linjë %s. Argumenti Funksioni %s është i pavlefshëm.',
+	'ERR_DEPENDENCY' => 'Funksioni kërkon një modul të humbur: core/module/%s/method/%s Moduli i kërkuar %s v%s.',
+	'ERR_SEARCH_TERM' => 'Termi kërko duhet %s - %s Figurë.',
+	'ERR_SEARCH_NO_MATCH' => 'Kërkimi juaj për &quot;%s&quot; kthyer asnjë rezultat.',
+	'ERR_POST_VAR' => 'Të dhënat papritur formë: %s.',
 	'ERR_DANGEROUS_UPLOAD' => 'Your uploaded file contains &quot;&lt;?&quot; which is considered dangerous and denied.',
 
 	# GWF_Time
@@ -78,10 +78,10 @@ $lang = array(
 	'd5' => 'pre',
 	'd6' => 'sht',
 
-	'ago_s' => 'para %1$s sekunda',
-	'ago_m' => 'para %1$s minuta',
-	'ago_h' => 'para %1$s ore',
-	'ago_d' => 'para %1$s dite',
+	'ago_s' => 'para %s sekunda',
+	'ago_m' => 'para %s minuta',
+	'ago_h' => 'para %s ore',
+	'ago_d' => 'para %s dite',
 
 	###
 	### GWF_DateFormat, is problematic, because en != en [us_gb]??
@@ -132,7 +132,7 @@ $lang = array(
 	'gender_no_gender' => 'Gjinia Panjohur',
 
 	# GWF_User#avatar
-	'alt_avatar' => '%1$s`s Avatar',
+	'alt_avatar' => '%s`s Avatar',
 
 	# GWF_Group
 	'sel_group' => 'Zgjidhni një Grupi User',
@@ -153,14 +153,14 @@ $lang = array(
 	'and' => 'dhe',
 	'by' => 'e',
 
-	'alt_flag' => '%1$s Flamur',
+	'alt_flag' => '%s Flamur',
 
 	# v2.01 (copyright)
-	'copy' => '&copy; %1$s '.GWF_SITENAME.'. Alle Rechte reserviert.',
+	'copy' => '&copy; %s '.GWF_SITENAME.'. Alle Rechte reserviert.',
 	'copygwf' => GWF_SITENAME.' verwendet <a href="http://gwf.gizmore.org">GWF</a>, das Freie-Webseiten-Gerüst.',
 
 	# v2.02 (recaptcha+required_fields)
-	'form_required' => '%1$s fushë e nevojshme.',
+	'form_required' => '%s fushë e nevojshme.',
 
 	# v2.03 BBCode
 	'bbhelp_b' => 'Yndyrë',
@@ -175,7 +175,7 @@ $lang = array(
 	'bbhelp_spoiler' => 'tekstin e padukshme. Duke klikuar tek anzeigen.estimmten Përdoruesi Niveli',
 
 	# v2.04 BBCode3
-	'quote_from' => 'Postuar nga %1$s',
+	'quote_from' => 'Postuar nga %s',
 	'code' => 'Shikoni tekstin',
 	'for' => 'per',
 
@@ -188,7 +188,7 @@ $lang = array(
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %1$s to see this content.',
+	'err_bb_level' => 'You need a userlevel of %s to see this content.',
 );	
 
 ?>

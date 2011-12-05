@@ -11,37 +11,37 @@ $lang = array(
 	'err_board_perm' => 'You are not allowed to access this board.',
 	'err_thread_perm' => 'You are not allowed to access this thread.',
 	'err_post_perm' => 'You are not allowed to read this post.',
-	'err_reply_perm' => 'You are not allowed to reply to this thread. <a href="%1$s">Click here to return to the thread</a>.',
+	'err_reply_perm' => 'You are not allowed to reply to this thread. <a href="%s">Click here to return to the thread</a>.',
 	'err_no_thread_allowed' => 'There are no threads allowed in this board.',
 	'err_no_guest_post' => 'Guests are not allowed to post to this forum.',
-	'err_msg_long' => 'Your message is too long. Max %1$s chars allowed.',
+	'err_msg_long' => 'Your message is too long. Max %s chars allowed.',
 	'err_msg_short' => 'You forgot your message.',
-	'err_descr_long' => 'Your description is too long. Max %1$s chars allowed.',
+	'err_descr_long' => 'Your description is too long. Max %s chars allowed.',
 	'err_descr_short' => 'You forgot your description.',
-	'err_title_long' => 'Your title is too long. Max %1$s chars allowed.',
+	'err_title_long' => 'Your title is too long. Max %s chars allowed.',
 	'err_title_short' => 'You forgot the title.',
-	'err_sig_long' => 'Your signature is too long. Max %1$s chars allowed.',
+	'err_sig_long' => 'Your signature is too long. Max %s chars allowed.',
 	'err_subscr_mode' => 'Unknown subscription mode.',
 	'err_no_valid_mail' => 'You don`t have an approved email to subscribe to the forums.',
 	'err_token' => 'The token is invalid.',
 	'err_in_mod' => 'This thread is currently in moderation.',
 	'err_board_locked' => 'The board is temporarily locked.',
-	'err_no_subscr' => 'You can not subscribe manually to this thread. <a href="%1$s">Click here to return to the thread</a>.',
-	'err_subscr' => 'An error occured. <a href="%1$s">Click here to return to the thread</a>.',
-	'err_no_unsubscr' => 'You can not unsubscribe from this thread. <a href="%1$s">Click here to return to the thread</a>.',
-	'err_unsubscr' => 'An error occured. <a href="%1$s">Click here to return to the thread</a>.',
+	'err_no_subscr' => 'You can not subscribe manually to this thread. <a href="%s">Click here to return to the thread</a>.',
+	'err_subscr' => 'An error occured. <a href="%s">Click here to return to the thread</a>.',
+	'err_no_unsubscr' => 'You can not unsubscribe from this thread. <a href="%s">Click here to return to the thread</a>.',
+	'err_unsubscr' => 'An error occured. <a href="%s">Click here to return to the thread</a>.',
 	'err_sub_by_global' => 'You did not subscribe to the thread manually, but by global option flags.<br/><a href="/forum/options">Use the ForumOptions</a> to change your flags.',
 	'err_thank_twice' => 'You already have thanked for this post.',
 	'err_thanks_off' => 'It is currently not possible to thank people for posts.',
 	'err_votes_off' => 'Forum Post Voting is currently disabled.',
-	'err_better_edit' => 'Please edit your post and do not double post. You can toggle a &quot;Mark-Unread&quot; Flag in case you do significant changes.<br/><a href="%1$s">Click here to return to the thread</a>.',
+	'err_better_edit' => 'Please edit your post and do not double post. You can toggle a &quot;Mark-Unread&quot; Flag in case you do significant changes.<br/><a href="%s">Click here to return to the thread</a>.',
 
 	# Messages
-	'msg_posted' => 'Your message has been posted.<br/><a href="%1$s">Click here to see your message</a>.',
-	'msg_posted_mod' => 'Your message has been posted, but will get reviewed before it is shown.<br/><a href="%1$s">Click here to return to the board</a>.',
-	'msg_post_edited' => 'Your Post has been edited.<br/><a href="%1$s">Click here to return to your post</a>.',
-	'msg_edited_board' => 'The board has been edited.<br/><a href="%1$s">Click here to return to the board</a>.',
-	'msg_board_added' => 'The new board has been added successfully. <a href="%1$s">Click here to go to the board</a>.',
+	'msg_posted' => 'Your message has been posted.<br/><a href="%s">Click here to see your message</a>.',
+	'msg_posted_mod' => 'Your message has been posted, but will get reviewed before it is shown.<br/><a href="%s">Click here to return to the board</a>.',
+	'msg_post_edited' => 'Your Post has been edited.<br/><a href="%s">Click here to return to your post</a>.',
+	'msg_edited_board' => 'The board has been edited.<br/><a href="%s">Click here to return to the board</a>.',
+	'msg_board_added' => 'The new board has been added successfully. <a href="%s">Click here to go to the board</a>.',
 	'msg_edited_thread' => 'The Thread has been edited successfully.',
 	'msg_options_changed' => 'Your options have been changed.',
 	'msg_thread_shown' => 'The thread has been approved and is now shown.',
@@ -49,14 +49,14 @@ $lang = array(
 	'msg_thread_deleted' => 'The thread has been deleted.',
 	'msg_post_deleted' => 'The post has been deleted.',
 	'msg_board_deleted' => 'The whole board has been deleted!',
-	'msg_subscribed' => 'You subscribed manually to the thread and receive mail on new posts.<br/><a href="%1$s">Click here to return to the thread</a>.',
-	'msg_unsubscribed' => 'You unsubscribed from the thread and will not receive emails any more.<br/><a href="%1$s">Click here to return to the thread</a>.',
+	'msg_subscribed' => 'You subscribed manually to the thread and receive mail on new posts.<br/><a href="%s">Click here to return to the thread</a>.',
+	'msg_unsubscribed' => 'You unsubscribed from the thread and will not receive emails any more.<br/><a href="%s">Click here to return to the thread</a>.',
 	'msg_unsub_all' => 'You have unsubscribed your email from all threads.',
 	'msg_thanked_ajax' => 'Your thanks have been recorded.',
-	'msg_thanked' => 'Your thanks have been recorded.<br/><a href="%1$s">Click here to return to the post</a>.',
-	'msg_thread_moved' => 'The Thread %1$s has been moved to %2$s.',
+	'msg_thanked' => 'Your thanks have been recorded.<br/><a href="%s">Click here to return to the post</a>.',
+	'msg_thread_moved' => 'The Thread %s has been moved to %s.',
 	'msg_voted' => 'Thank you for your vote.',
-	'msg_marked_read' => 'Successfully marked %1$s threads as read.',
+	'msg_marked_read' => 'Successfully marked %s threads as read.',
 
 	# Titles
 	'forum_title' => GWF_SITENAME.' Forums',
@@ -65,14 +65,14 @@ $lang = array(
 	'ft_edit_board' => 'Edit existing Board',
 	'ft_edit_thread' => 'Edit Thread',
 	'ft_options' => 'Setup your Forum options',
-	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s',
+	'pt_thread' => '%s ['.GWF_SITENAME.']->%s',
 	'ft_reply' => 'Reply to the Thread',
-	'pt_board' => '%1$s',
-//	'pt_board' => '%1$s ['.GWF_SITENAME.']',
+	'pt_board' => '%s',
+//	'pt_board' => '%s ['.GWF_SITENAME.']',
 	'ft_search_quick' => 'Quick-Search',
 	'ft_edit_post' => 'Edit your post',
-	'at_mailto' => 'Send EMail to %1$s',
-	'last_edit_by' => 'Last edited by %1$s - %2$s',
+	'at_mailto' => 'Send EMail to %s',
+	'last_edit_by' => 'Last edited by %s - %s',
 
 	# Page Info
 	'pi_unread' => 'Unread Threads for you',
@@ -165,8 +165,8 @@ $lang = array(
 	'online' => 'The User is Online',
 	'offline' => 'The User is Offline',
 	'registered' => 'Registered at',
-	'watchers' => '%1$s people are watching the thread at the moment.',
-	'views' => 'This thread has been viewed %1$s times.',
+	'watchers' => '%s people are watching the thread at the moment.',
+	'views' => 'This thread has been viewed %s times.',
 
 	# forum.php
 	'latest_threads' => 'Latest Activities',
@@ -178,22 +178,22 @@ $lang = array(
 		PHP_EOL.
 		'There is a new Post or Thread in the '.GWF_SITENAME.' Forums that needs moderation.'.PHP_EOL.
 		PHP_EOL.
-		'Board: %1$s'.PHP_EOL.
-		'Thread: %2$s'.PHP_EOL.
-		'From: %3$s'.PHP_EOL.
+		'Board: %s'.PHP_EOL.
+		'Thread: %s'.PHP_EOL.
+		'From: %s'.PHP_EOL.
 		PHP_EOL.
-		'%4$s'.PHP_EOL.
-		'%5$s'.PHP_EOL.
+		'%s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'To delete the post use this link:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'To allow this post use this link:'.PHP_EOL.
-		'%7$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'The post will get automatically shown after %8$s'.PHP_EOL.
+		'The post will get automatically shown after %s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,
@@ -201,45 +201,45 @@ $lang = array(
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': New Post',
 	'submail_body' => 
-		'Dear %1$s'.PHP_EOL.
+		'Dear %s'.PHP_EOL.
 		PHP_EOL.
-		'There are %2$s new Post(s) in the '.GWF_SITENAME.' Forums'.PHP_EOL.
+		'There are %s new Post(s) in the '.GWF_SITENAME.' Forums'.PHP_EOL.
 		PHP_EOL.
-		'Board: %3$s'.PHP_EOL.
-		'Thread: %4$s'.PHP_EOL.
+		'Board: %s'.PHP_EOL.
+		'Thread: %s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
-		'%5$s'.PHP_EOL. # Multiple msgs possible
+		'%s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
 		'To view the thread please visit this page:'.PHP_EOL.
-		'%8$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'To unsubscribe from this thread follow the link below:'.PHP_EOL.
-		'%6$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'To unsubscribe from the whole board, you can follow this link:'.PHP_EOL.
-		'%7$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Kind Regards'.PHP_EOL.
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,
 		
-	'submail_body_part' =>  # that`s the %5$s above
-		'From: %1$s'.PHP_EOL.
-		'Title: %2$s'.PHP_EOL.
+	'submail_body_part' =>  # that`s the %s above
+		'From: %s'.PHP_EOL.
+		'Title: %s'.PHP_EOL.
 		'Message:'.PHP_EOL.
-		'%3$s'.PHP_EOL.
+		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
 		
 	# v2.01 (last seen)
-	'last_seen' => 'Last Seen: %1$s',
+	'last_seen' => 'Last Seen: %s',
 
 	# v2.02 (Mark all read)
 	'btn_mark_read' => 'Mark all read',
-	'msg_mark_aread' => 'Marked %1$s threads as read.',
+	'msg_mark_aread' => 'Marked %s threads as read.',
 
 	# v2.03 (Merge)
 	'msg_merged' => 'The threads have been merged.',
@@ -263,7 +263,7 @@ $lang = array(
 	'cfg_doublepost' => 'Allow bumps / double posts?',
 	'cfg_watch_timeout' => 'Mark thread watching for N seconds',
 	'th_guest_view' => 'Guest Viewable?',
-	'pt_history' => 'Forum history - Page %1$s / %2$s',
+	'pt_history' => 'Forum history - Page %s / %s',
 	'btn_unread' => 'New Threads',
 		
 	# v2.06 (Admin Area)
@@ -276,9 +276,9 @@ $lang = array(
 		
 	# v2.08 (attachment)
 	'cfg_postcount' => 'Postcount',
-	'msg_attach_added' => 'Your attachment has been uploaded. <a href="%1$s">Click here to return to your post.</a>',
-	'msg_attach_deleted' => 'Your attachment has been deleted. <a href="%1$s">Click here to return to your post.</a>',
-	'msg_attach_edited' => 'Your attachment has been edited. <a href="%1$s">Click here to return to your post.</a>',
+	'msg_attach_added' => 'Your attachment has been uploaded. <a href="%s">Click here to return to your post.</a>',
+	'msg_attach_deleted' => 'Your attachment has been deleted. <a href="%s">Click here to return to your post.</a>',
+	'msg_attach_edited' => 'Your attachment has been edited. <a href="%s">Click here to return to your post.</a>',
 	'msg_reupload' => 'Your attachment has been replaced.',
 	'btn_add_attach' => 'Add Attachment',
 	'btn_del_attach' => 'Delete Attachment',
@@ -294,15 +294,15 @@ $lang = array(
 
 	# v2.09 Lang Boards
 	'cfg_lang_boards' => 'Create language boards',
-	'lang_board_title' => '%1$s Board',
-	'lang_board_descr' => 'For %1$s language',
+	'lang_board_title' => '%s Board',
+	'lang_board_descr' => 'For %s language',
 	'lang_root_title' => 'Foreign language',
 	'lang_root_descr' => 'Non english boards',
-	'md_board' => GWF_SITENAME.' Forums. %1$s',
+	'md_board' => GWF_SITENAME.' Forums. %s',
 	'mt_board' => GWF_SITENAME.', Forum, Guest Posts, Alternate, Forum, Software',
 		
 	# v2.10 subscribers
-	'subscribers' => '%1$s have subscribed to this thread and receive emails on new posts.',
+	'subscribers' => '%s have subscribed to this thread and receive emails on new posts.',
 	'th_hide_subscr' => 'Hide your subscriptions?',
 
 	# v2.11 fixes11
@@ -312,18 +312,18 @@ $lang = array(
 		
 	# v3.00 fixes 12
 	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %1$s threads and %2$s posts that have been in moderation.',
+	'msg_cleanup' => 'I have deleted %s threads and %s posts that have been in moderation.',
 		
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%1$s&quot;.',
+	'submode' => 'Your global subscription mode is set to: &quot;%s&quot;.',
 	'submode_all' => 'The whole board',
 	'submode_own' => 'Where you posted',
 	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %1$s boards.',
-	'subscr_threads' => 'You have manually subscribed to %1$s threads.',
+	'subscr_boards' => 'Your have manually subscribed to %s boards.',
+	'subscr_threads' => 'You have manually subscribed to %s threads.',
 	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%1$s">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%1$s">here to return to your subscription overview</a>.',
+	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%s">here to return to the board</a>.',
+	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%s">here to return to your subscription overview</a>.',
 		
 	# v1.06 (Post limits)
 	'err_post_timeout' => 'You have just recently posted. Please wait %s.',

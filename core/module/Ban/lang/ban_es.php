@@ -27,15 +27,15 @@ $lang = array(
 	'err_ends' => 'La fecha de finalización es incorrecta.',
 
 	# Messages
-	'msg_permbanned' => 'El usuario %1$s se vetó de manera permanente.',
-	'msg_tempbanned' => 'El usuario %1$s se veta hasta %2$s',
-	'msg_warned' => 'El usuario %1$s fue advertido.',
+	'msg_permbanned' => 'El usuario %s se vetó de manera permanente.',
+	'msg_tempbanned' => 'El usuario %s se veta hasta %s',
+	'msg_warned' => 'El usuario %s fue advertido.',
 	'msg_marked_read' => 'El mensaje ha sido marcado como leído.',
 
 	# Info
-	'info_warning' => 'Has sido advertido!<br/>%1$s<br/><a href="%2$s">Clic aquí para marcarlo como leido</a>.',
-	'info_tempban' => 'Has sido vetado hasta %1$s!<br/>%2$s',
-	'info_permban' => 'Has sido vetado permanentemente:<br/>%1$s',
+	'info_warning' => 'Has sido advertido!<br/>%s<br/><a href="%s">Clic aquí para marcarlo como leido</a>.',
+	'info_tempban' => 'Has sido vetado hasta %s!<br/>%s',
+	'info_permban' => 'Has sido vetado permanentemente:<br/>%s',
 	
 	# Admin Config
 	'cfg_ban_ipp' => 'Registros por página',

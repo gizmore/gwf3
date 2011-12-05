@@ -2,7 +2,7 @@
 $lang = array(
 	'mission_t' => 'Yourself PHP',
 	'mission_i' =>
-		'Your mission is to inject &lt;script&gt;alert(1);&lt;/script&gt; into <a href="%1$s">this script</a>, and make it popup a javascript alert.<br/>'.
+		'Your mission is to inject &lt;script&gt;alert(1);&lt;/script&gt; into <a href="%s">this script</a>, and make it popup a javascript alert.<br/>'.
 		'The checkit() function tests your injected string for a few static solutions.<br/>'.
 		'Please try to use as less characters as possible and inject the exact same string as above.<br/>'.
 		'<br/>'.

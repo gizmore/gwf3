@@ -2,15 +2,15 @@
 
 $lang = array(
 	# Page Titles
-	'pt_profile' => '%1$s`s Profil',
+	'pt_profile' => '%s`s Profil',
 	'pt_settings' => 'Profil Einstellungen',
 
 	# Meta Tags
-	'mt_profile' => '%1$s`s Profil, '.GWF_SITENAME.', %1$s, Profil',
+	'mt_profile' => '%s`s Profil, '.GWF_SITENAME.', %s, Profil',
 	'mt_settings' => GWF_SITENAME.', Profil, Einstellungen, Bearbeiten, Kontakt, Daten',
 
 	# Meta Description
-	'md_profile' => '%1$s`s Profil auf '.GWF_SITENAME.'.',
+	'md_profile' => '%s`s Profil auf '.GWF_SITENAME.'.',
 	'md_settings' => 'Ihre Profil Einstellungen auf '.GWF_SITENAME.'.',
 
 	# Info
@@ -24,20 +24,20 @@ $lang = array(
 
 	# Errors
 	'err_hidden' => 'Dieses Benutzerprofil ist nicht öffentlich einsehbar.',
-	'err_firstname' => 'Ihr Vorname ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_lastname' => 'Ihr Nachname ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_street' => 'Ihre Strasse ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_zip' => 'Ihre Postleitzahl ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_city' => 'Ihre Stadt ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
+	'err_firstname' => 'Ihr Vorname ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_lastname' => 'Ihr Nachname ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_street' => 'Ihre Strasse ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_zip' => 'Ihre Postleitzahl ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_city' => 'Ihre Stadt ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_tel' => 'Ihre Telefonnummer ist fehlerhaft. Maximale Länge: 24 Zahlen oder Leerstellen.',
 	'err_mobile' => 'Ihre Handynummer ist fehlerhaft.',
 	'err_icq' => 'Ihre ICQ-UIN ist fehlerhaft. Maximale Länge: 16 Zahlen.',
 	'err_msn' => 'Ihre MSN ist fehlerhaft.',
 	'err_jabber' => 'Ihre Jabber ist fehlerhaft.',
-	'err_skype' => 'Ihr Skype Name ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_yahoo' => 'Ihr Yahoo! ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_aim' => 'Ihr AIM ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
-	'err_about_me' => 'Ihre &quot;Über Mich&quot; ist fehlerhaft. Maximale Länge: %1$s Zeichen.',
+	'err_skype' => 'Ihr Skype Name ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_yahoo' => 'Ihr Yahoo! ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_aim' => 'Ihr AIM ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_about_me' => 'Ihre &quot;Über Mich&quot; ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_website' => 'Ihre Webseite ist nicht erreichbar oder existiert nicht.',
 
 	# Messages
@@ -94,14 +94,14 @@ $lang = array(
 	'err_level_contact' => 'Der minimale Benutzer-Level um ihre Kontaktdaten zu sehen ist fehlerhaft.',
 
 	# v2.03 (fixes2)
-	'title_about_me' => 'Über %1$s',
+	'title_about_me' => 'Über %s',
 
 	# v2.04 (ext. profile)
 	'th_user_country' => 'Land',
 	'btn_pm' => 'PM',
 
 	# v2.05 (more fixes)
-	'at_mailto' => 'Eine EMail an %1$s senden...',
+	'at_mailto' => 'Eine EMail an %s senden...',
 	'th_email' => 'EMail',
 
 	# v2.06 (birthday)
