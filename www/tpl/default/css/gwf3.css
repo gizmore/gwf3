@@ -127,7 +127,7 @@ a img { border: none 0px; }
 	font-style: italic;
 	background: #ffb;
 }
-code {
+code, .mono {
 	font-family: monospace;
 	white-space: pre;
 }
