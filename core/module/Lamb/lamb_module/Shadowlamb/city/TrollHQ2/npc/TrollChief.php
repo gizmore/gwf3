@@ -1,6 +1,7 @@
 <?php
 final class TrollHQ2_TrollChief extends SR_TalkingNPC
 {
+	public function getName() { return $this->getPartyID() > 0 ? parent::getName() : 'Larry'; }
 	public function getNPCPlayerName() { return 'Larry'; }
 	public function getNPCLevel() { return 16; }
 	public function canNPCMeet(SR_Party $party) { return false; }
