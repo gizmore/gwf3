@@ -18,21 +18,26 @@ Currently these pages are known to be very slow: "Forum".
 
 --------------------------------------------------------------------------------
 
-4# All lang files now use %1$s %2$s %3$s %4$s and so on.
+#4 All lang files now use %1$s %2$s %3$s %4$s and so on.
 This could be changed to %s %s %s %s which might be faster and is more readable.
 
 --------------------------------------------------------------------------------
 
-5# Currently we are using Common::getGet() a lot, but Common::getGetString/Int/Array is more safe and appropiate.
+#5 Currently we are using Common::getGet() a lot, but Common::getGetString/Int/Array is more safe and appropiate.
 Keep in mind that getGetString returns empty string by default, compared to false for getGet.
 
 --------------------------------------------------------------------------------
 
-6# Own chat is broken (remove?)
+#6 Own chat is broken (remove?)
 
 --------------------------------------------------------------------------------
 
-7# Make the session handler optional.
+#7 Make the session handler optional.
 Introduce a new session handler GWF_Session.php.php
 Rename GWF_Session.php to GWF_Session.db.php
 Copy the desired version during install_wizard
+
+--------------------------------------------------------------------------------
+
+#8 Convert templates to Smarty.
+
