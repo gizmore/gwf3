@@ -57,7 +57,7 @@ final class Guestbook_Moderate extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_edit_gb')),
 		);
-		return $module->templatePHP('edit_gb.php', $tVars);
+		return $module->template('edit_gb.tpl', $tVars);
 	}
 	
 	public function getForm(Module_Guestbook $module, GWF_Guestbook $gb)
@@ -157,7 +157,7 @@ final class Guestbook_Moderate extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_edit_entry')),
 		);
-		return $module->templatePHP('edit_gbm.php', $tVars);
+		return $module->template('edit_gbm.tpl', $tVars);
 	}
 
 	private function onEditEntry(Module_Guestbook $module, GWF_Guestbook $gb, $gbmid, $delete=false)

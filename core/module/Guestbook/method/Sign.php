@@ -49,7 +49,7 @@ final class Guestbook_Sign extends GWF_Method
 			'in_reply' => $gbe,
 			'form' => $form->templateY($module->lang('ft_sign', array( $gb->displayTitle()))),
 		);
-		return $module->templatePHP('sign.php', $tVars);
+		return $module->template('sign.tpl', $tVars);
 	}
 	
 	private function getForm(Module_Guestbook $module, GWF_Guestbook $gb, $gbe=false)
