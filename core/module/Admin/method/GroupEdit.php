@@ -163,10 +163,15 @@ final class Admin_GroupEdit extends GWF_Method
 	{
 		$uid = (int)$uid;
 		$gid = $this->group->getID();
-		if (false === GDO::table('GWF_UserGroup')->deleteWhere("ug_userid={$uid} AND ug_groupid={$gid}", '', NULL, 1))
+		if (false === GDO::table('GWF_UserGroup')->deleteWhere("ug_userid={$uid} AND ug_groupid={$gid}"))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
 		}
+		if (false === GWF_UserGroup::fixGroupMC())
+		{
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
+		}
+		
 		return $module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->display('group_name')));
 	}
 	
