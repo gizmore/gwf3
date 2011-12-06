@@ -82,7 +82,7 @@ final class Account_ChangeEmail extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('chmail_title')),
 		);
-		return $module->templatePHP('changemail.php', $tVars);
+		return $module->template('changemail.tpl', $tVars);
 	}
 	
 	private function onRequestB(Module_Account $module)

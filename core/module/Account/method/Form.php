@@ -52,7 +52,7 @@ final class Account_Form extends GWF_Method
 			$tVars['form_gpg'] = '';
 		}
 		
-		return $module->templatePHP('form.php', $tVars);
+		return $module->template('form.tpl', $tVars);
 	}
 	
 	################

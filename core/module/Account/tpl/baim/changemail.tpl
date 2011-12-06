@@ -1,0 +1,2 @@
+{BAIM::accountButtons()}
+{$form}

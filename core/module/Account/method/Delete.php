@@ -26,7 +26,7 @@ final class Account_Delete extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('pt_accrm')),
 		);
-		return $module->templatePHP('delete.php', $tVars);
+		return $module->template('delete.tpl', $tVars);
 	}
 	
 	private function getForm(Module_Account $module)
