@@ -346,7 +346,7 @@ final class Shadowhelp
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
 						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
-						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death. The instant death rule applies when killed by NPC or other Runners.",
+						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but permanent death. The permdeath rule applies only when killed by NPC or other Runners / RM Players.",
 					),
 					
 					'move_cmds' => 'Commands that change the party location or action',

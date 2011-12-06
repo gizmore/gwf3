@@ -35,7 +35,7 @@ class SR_Player extends GDO
 	const PRIVMSG = 0x00004;
 	const RUNNING_MODE = 0x00008;
 	const BOTTING = 0x10000;
-	const DEAD = 0x20000;
+	const DEAD = 0x20000; # PERM DEAD
 	const SILENCE = 0x40000;
 	const LOCKED = 0x100000;
 	const PLAYER_BOT = 0x200000;
