@@ -344,8 +344,8 @@ final class Shadowhelp
 					array(
 						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
-						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock>. Toggle user interface options for your player.',
-						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock>. Toggle user interface options for your player.',
+						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
+						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
 						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but instant death. The instant death rule applies when killed by NPC or other Runners.",
 					),
 					
@@ -458,7 +458,7 @@ final class Shadowhelp
 					'annoying' => 'Annoying stuff',
 					array(
 						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
-						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey.',
+						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey. If you use scripts, please #enable bot.',
 						'clones' => 'You are allowed to have multiple characters, aka. clones. For clones, the same rules as for bots apply.',
 						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
 					),

@@ -8,11 +8,11 @@ final class PC_RenrakuBOX4 extends SR_Computer
 	public function onHacked(SR_Player $player, $hits)
 	{
 		$party = $player->getParty();
-		$player->message(sprintf('This computer is able to activate the elevator to floor2.'));
+		$player->message(sprintf('This computer is able to activate the elevator to floor 2 and 3.'));
 		$elevator = Shadowrun4::getLocationByTarget('Renraku_Elevator');
 		$elevator instanceof Renraku_Elevator;
-		$elevator->setElevatorFlagsParty($party, 2, true);
-		$party->notice(sprintf('%s managed to unlock the elevator floor 2.', $player->getName()));
+		$elevator->setElevatorFlagsParty($party, 6, true);
+		$party->notice(sprintf('%s managed to unlock the elevator to floor 2 and 3.', $player->getName()));
 	}
 	
 }
