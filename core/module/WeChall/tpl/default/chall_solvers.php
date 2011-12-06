@@ -18,7 +18,7 @@ $chall->showHeader(true);
 
 $title = $chall->display('chall_title');
 $href = $chall->hrefChallenge();
-echo GWF_Box::box($tLang->lang('solved_by_text', array($title)), $tLang->lang('solved_by_title', array($title, $href)));
+echo GWF_Box::box($tLang->lang('solved_by_text', array($title)), $tLang->lang('solved_by_title', array($href, $title)));
 
 echo $tVars['pagemenu'];
 

@@ -47,9 +47,9 @@ $lang = array(
 		'Msg:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'You can quickly approve the comment: <a href="%s">%s</a>'.PHP_EOL.
+		'You can quickly approve the comment: <a href="%6$s">%6$s</a>'.PHP_EOL.
 		PHP_EOL.
-		'Or you can quickly delete it: <a href="%s">%s</a>'.PHP_EOL.
+		'Or you can quickly delete it: <a href="%7$s">%7$s</a>'.PHP_EOL.
 		PHP_EOL.
 		'Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script',
@@ -66,7 +66,7 @@ $lang = array(
 		'Msg:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'You can quickly delete it, if desired: <a href="%s">%s</a>'.PHP_EOL.
+		'You can quickly delete it, if desired: <a href="%6$s">%6$s</a>'.PHP_EOL.
 		PHP_EOL.
 		'Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script',

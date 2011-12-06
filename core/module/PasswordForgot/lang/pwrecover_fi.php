@@ -29,13 +29,13 @@ $lang = array(
 	# The email
 	'mail_subj' => GWF_SITENAME.': Salasanan vaihto',
 	'mail_body' => 
-		'Hyvä %s,<br/>'.PHP_EOL.
+		'Hyvä %1$s,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Olet pyytänyt salasanasi vaihtoa sivustolla '.GWF_SITENAME.'.<br/>'.PHP_EOL.
 		'Vaihtaaksesi salasanasi, vieraile allaolevassa linkissä.<br/>'.PHP_EOL.
-		'Jos et pyytänyt salasanasi vaihtoa, jätä tämä viesti huomiotta tai ota meihin yhteyttä: <a href="mailto:%s">%s</a>.<br/>'.PHP_EOL.
+		'Jos et pyytänyt salasanasi vaihtoa, jätä tämä viesti huomiotta tai ota meihin yhteyttä: <a href="mailto:%2$s">%2$s</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%s<br/>'.PHP_EOL.
+		'%3$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Terveisin<br/>'.PHP_EOL.
 		GWF_SITENAME.'-tiimi'.PHP_EOL,

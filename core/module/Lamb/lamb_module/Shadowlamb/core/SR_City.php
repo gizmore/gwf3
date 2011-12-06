@@ -340,7 +340,7 @@ abstract class SR_City
 	
 	private function partyContact(SR_Party $p)
 	{
-		if (rand(0, 20) > 0) # 0 ok, 1-4 fail
+		if (rand(0, 60) > 0) # 0 ok, 1-4 fail
 		{
 			return false; # fail
 		}

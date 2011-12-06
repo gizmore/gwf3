@@ -308,13 +308,13 @@ $lang = array(
 	'err_site_challcount' => 'Počet hádanek na stránce musí být mezi %s a %s.',
 	'err_site_joindate' => 'Neplatný datum připojení stránky.',
 	'err_site_launchdate' => 'Neplatný datum vzniku stránky.',
-	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %s chars long.',
-	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %s chars long.',
+	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2$s chars long.',
+	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2$s chars long.',
 	'err_site_url' => 'Nelatné URL stránky. URL musí mít od %s do %s znaků.',
 	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %s to %s chars long.',
 	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %s to %s chars long.',
 	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %s to %s chars long.',
-	'err_site_description' => 'The Site`s Description is invalid. Max %s chars long.',
+	'err_site_description' => 'The Site`s Description is invalid. Max %2$s chars long.',
 	'err_site_irc'  => 'Neplatné IRC stránky. IRC musí být %s až %s znaků.',
 	'err_site_tags'  => 'Jeden nebo více tagů stráky je neplatný. (3-32 znaků - pouze písmena nebo číslice, začínat musí písmenem, case sensitive).',
 	'err_write_logo' => 'Není možné zapsat logo %s.',
@@ -549,10 +549,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Tvoje historie je nyní více soukromá a nezobrazuje datum posledních aktivit.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Připojený účet na %s s %s%% (%s bodů)',
+	'userhist_link' => 'Připojený účet na %1$s s %3$s%% (%2$s bodů)',
 	'userhist_unlink' => 'Odpojený účet od %s (%s bodů)',
-	'userhist_gain' => 'Získáno %s%% na %s (%s bodů)',
-	'userhist_lost' => 'Ztraceno %s%% na %s (%s bodů)',
+	'userhist_gain' => 'Získáno %4$s%% na %1$s (%2$s bodů)',
+	'userhist_lost' => 'Ztraceno %4$s%% na %1$s (%2$s bodů)',
 	'userhist_ban' => 'Zakázán na %s (%s bodů)',
 	'userhist_unban' => 'Zrušen zákaz na %s',
 	'userhist_unknown' => 'Aktualizace účtu na %s',
@@ -583,12 +583,12 @@ $lang = array(
 	# v4.11
 	'err_solution_block' => 'Zadal jsi příliš mnoho odpovědí v příliš krátkém čase. Počkej %s před odesláním další odpovědi.',
 
-	'err_link_account_hts' => 'Kombinace uživatelského jména a emailu možná neexistuje na %s.<br/>Na %s je potřeba výslovně aktivovat wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'Kombinace uživatelského jména a emailu možná neexistuje na %1$s.<br/>Na %1$s je potřeba výslovně aktivovat wechall.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 	
 	'th_spc' => 'SnO',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Tvoje řešení délky %s bylo uloženo do databáze.<br/>Nyní se můžeš <a href="%s">podívat na řešení</a> s délkou >= %s.',
+	'msg_wmc_sol_inserted' => 'Tvoje řešení délky %s bylo uloženo do databáze.<br/>Nyní se můžeš <a href="%s">podívat na řešení</a> s délkou >= %1$s.',
 	'th_length' => 'Délka',
 	'err_token' => 'Tvůj token je neplatný.',
 	'pt_wmc_sol' => 'Řešení pro %s s délkou >= %s',

@@ -10,5 +10,14 @@ final class Hideout_Bathroom extends SR_Location
 		$party = $player->getParty();
 		SR_NPC::createEnemyParty('Redmond_Cyberpunk')->fight($party, true);
 	}
+	
+	public function getCommands(SR_Player $player) { return array('flush'); }
+	
+	public function on_flush(SR_Player $player, array $args)
+	{
+		$p = $player->getParty();
+		$p->notice(sprintf('%s flushed the toilet.', $player->displayName()));
+		return true;
+	}
 }
 ?>

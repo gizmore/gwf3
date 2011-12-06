@@ -29,13 +29,13 @@ $lang = array(
 	# The email
 	'mail_subj' => GWF_SITENAME.': Muuda parooli',
 	'mail_body' => 
-		'Dear %s,<br/>'.PHP_EOL.
+		'Dear %1$s,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Sa avaldasid soovi oma parooli muuta '.GWF_SITENAME.'.<br/>'.PHP_EOL.
 		'Et seda teha, pead külastama alljärgnevat linki.<br/>'.PHP_EOL.
-		'Kui sa ei avaldanud soovi, ignoreeri seda emaili või kontakteeru meiega: <a href="mailto:%s">%s</a>.<br/>'.PHP_EOL.
+		'Kui sa ei avaldanud soovi, ignoreeri seda emaili või kontakteeru meiega: <a href="mailto:%2$s">%2$s</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%s<br/>'.PHP_EOL.
+		'%3$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Parimate soovidega,<br/>'.PHP_EOL.
 		GWF_SITENAME.' Tiim'.PHP_EOL,

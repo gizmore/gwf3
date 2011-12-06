@@ -168,7 +168,7 @@ final class Register_Form extends GWF_Method
 		return false;
 	}
 	
-	private function isBadPassword(Module_Register $module, $arg)
+	private function isBadPassword(Module_Register $module, $pass)
 	{
 		# Password contains username is bad!
 		if (stripos($pass, Common::getPostString('username')) !== false)

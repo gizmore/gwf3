@@ -37,7 +37,8 @@ final class Shoutbox_Shout extends GWF_Method
 			$this->onEMailModeration($module, $user, $entry);
 		}
 
-		return $module->message('msg_shouted', array(htmlspecialchars(GWF_Session::getLastURL())));
+		$url = htmlspecialchars(GWF_Session::getLastURL());
+		return $module->message('msg_shouted', array($url, $url));
 	}
 	
 	public function isFlooding(Module_Shoutbox $module)

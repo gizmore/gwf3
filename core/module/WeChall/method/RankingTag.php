@@ -59,7 +59,7 @@ final class WeChall_RankingTag extends GWF_Method
 		$dtag = GWF_HTML::display($tag);
 		
 		GWF_Website::setPageTitle($module->lang('pt_tagrank', array($dtag)));
-		GWF_Website::setMetaTags($module->lang('mt_tagrank', array($dtag)));
+		GWF_Website::setMetaTags($module->lang('mt_tagrank', array($dtag, $dtag)));
 		GWF_Website::setMetaDescr($module->lang('md_tagrank', array($dtag, $page, $nPages)));
 		
 		$tVars = array(

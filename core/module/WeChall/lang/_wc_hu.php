@@ -307,13 +307,13 @@ $lang = array(
 	'err_site_challcount' => 'The Site`s Challcount has to be between %s and %s.',
 	'err_site_joindate' => 'The Site`s Joindate is invalid.',
 	'err_site_launchdate' => 'The Site`s Launchdate is invalid.',
-	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %s chars long.',
-	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %s chars long.',
+	'err_site_authkey' => 'The Site`s Authkey is invalid. Max %2$s chars long.',
+	'err_site_xauthkey' => 'The Site`s X-Authkey is invalid. Max %2$s chars long.',
 	'err_site_url' => 'The Site`s URL is invalid. It has to be %s to %s chars long.',
 	'err_site_url_mail' => 'The Site`s Auth-URL is invalid. It has to be %s to %s chars long.',
 	'err_site_url_score' => 'The Site`s Score-URL is invalid. It has to be %s to %s chars long.',
 	'err_site_url_profile' => 'The Site`s Profile-URL is invalid. It has to be %s to %s chars long.',
-	'err_site_description' => 'The Site`s Description is invalid. Max %s chars long.',
+	'err_site_description' => 'The Site`s Description is invalid. Max %2$s chars long.',
 	'err_site_irc'  => 'The Site`s IRC Server is invalid. It has to be %s to %s chars long.',
 	'err_site_tags'  => 'One or more site tags are invalid. (3-32 chars only letters or digits, start with a letter, case sensitive).',
 	'err_write_logo' => 'Can not write logo to %s.',
@@ -548,10 +548,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Your history is now a bit more private and not showing dates of last activity.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Linked an account to %s with %s%% (%s points)',
+	'userhist_link' => 'Linked an account to %1$s with %3$s%% (%2$s points)',
 	'userhist_unlink' => 'Unlinked an account from %s (%s points)',
-	'userhist_gain' => 'Gained %s%% on %s (%s points)',
-	'userhist_lost' => 'Lost %s%% on %s (%s points)',
+	'userhist_gain' => 'Gained %4$s%% on %1$s (%2$s points)',
+	'userhist_lost' => 'Lost %4$s%% on %1$s (%2$s points)',
 	'userhist_ban' => 'Got banned on %s (%s points)',
 	'userhist_unban' => 'Got unbanned from %s',
 	'userhist_unknown' => 'Updated his account on %s',
@@ -581,12 +581,12 @@ $lang = array(
 	# v4.11
 	'err_solution_block' => 'You have entered too much answers within a short amount of time. Please wait %s until you enter your next answer.',
 		
-	'err_link_account_hts' => 'The Username/EMail combination does not seem to exist on %s.<br/>On %s you need to enable wechall for your account explicitly.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'The Username/EMail combination does not seem to exist on %1$s.<br/>On %1$s you need to enable wechall for your account explicitly.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 
 	'th_spc' => 'PPL',
 
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Your solution of length %s has been inserted into the database.<br/>You may <a href="%s">look up solutions</a> with length >= %s now.',
+	'msg_wmc_sol_inserted' => 'Your solution of length %s has been inserted into the database.<br/>You may <a href="%s">look up solutions</a> with length >= %1$s now.',
 	'th_length' => 'Length',
 	'err_token' => 'Your token is invalid.',
 	'pt_wmc_sol' => 'Solutions for %s with length &gt;= %s',

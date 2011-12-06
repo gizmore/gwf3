@@ -308,13 +308,13 @@ $lang = array(
 	'err_site_challcount' => 'La cuenta de Retos del Sitio tiene que estar entre %s y %s.',
 	'err_site_joindate' => 'La fecha de entrada al sitio es invalida.',
 	'err_site_launchdate' => 'La fecha de cumpleaños del sitio es invalida.',
-	'err_site_authkey' => 'La Authkey del Sitio es invalida. Máximo %s carácteres de largo.',
-	'err_site_xauthkey' => 'La X-Authkey del Sitio es invalida. Maximo %s carácteres de largo.',
+	'err_site_authkey' => 'La Authkey del Sitio es invalida. Máximo %2$s carácteres de largo.',
+	'err_site_xauthkey' => 'La X-Authkey del Sitio es invalida. Maximo %2$s carácteres de largo.',
 	'err_site_url' => 'La URL del Sitio es invalida. Tiene que ser %s a %s carácteres de largo.',
 	'err_site_url_mail' => 'La Auth-URL del sitio es invalida. Tiene que ser %s a %s carácteres de largo.',
 	'err_site_url_score' => 'La URL-Puntuación del sitio es invalida. Tiene que ser %s a %s carácteres de largo.',
 	'err_site_url_profile' => 'El Perfil-URL del Sitio es invalido. Tiene que ser %s a %s carácteres de largo.',
-	'err_site_description' => 'La descripción del Sitio es invalida. Máximo %s carácteres de largo.',
+	'err_site_description' => 'La descripción del Sitio es invalida. Máximo %2$s carácteres de largo.',
 	'err_site_irc'  => 'El Servidor IRC del Sitio es invalido. tiene que ser %s a %s carácteres de largo.',
 	'err_site_tags'  => 'Uno o más tags site son invalidos. (3-32 carácteres solo letras ó numeros, comienza con una letra, sensible mayusculas-minisculas).',
 	'err_write_logo' => 'No puedo escribir el logo a %s.',
@@ -547,10 +547,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Tu Historial es ahora un poquito mas privado y no muestra las fechas de la última actividad.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Vinculada una cuenta a %s con %s%% (%s puntos)',
+	'userhist_link' => 'Vinculada una cuenta a %1$s con %3$s%% (%2$s puntos)',
 	'userhist_unlink' => 'Desvincular una cuenta de %s (%s puntos)',
-	'userhist_gain' => 'Ganas %s%% en %s (%s puntos)',
-	'userhist_lost' => 'Pierdes %s%% en %s (%s puntos)',
+	'userhist_gain' => 'Ganas %4$s%% en %1$s (%2$s puntos)',
+	'userhist_lost' => 'Pierdes %4$s%% en %1$s (%2$s puntos)',
 	'userhist_ban' => 'Se baneó en %s (%s puntos)',
 	'userhist_unban' => 'Se des-baneó de %s',
 	'userhist_unknown' => 'Actualizada tu cuenta en %s',
@@ -581,12 +581,12 @@ $lang = array(
 	# v4.11
 	'err_solution_block' => 'Has introducido demasiadas respuestas en muy poco tiempo. Por favor espera %s para poder introducir tu próxima respuesta.',
 
-	'err_link_account_hts' => 'La combinación Usuario/Email parece no existir en %s.<br/>En %s Necesitas habilitar tu cuenta wechall de forma explicita.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'La combinación Usuario/Email parece no existir en %1$s.<br/>En %1$s Necesitas habilitar tu cuenta wechall de forma explicita.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 
 	'th_spc' => 'Ppp',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Tu solucción de longitud %s ha sido insertada en la base de datos.<br/>Puedes <a href="%s">mirar las solucciones</a> con longitud >= %s ahora.',
+	'msg_wmc_sol_inserted' => 'Tu solucción de longitud %s ha sido insertada en la base de datos.<br/>Puedes <a href="%s">mirar las solucciones</a> con longitud >= %1$s ahora.',
 	'th_length' => 'Longitud',
 	'err_token' => 'Tu objeto es invalido.',
 	'pt_wmc_sol' => 'Solucciones para %s con longitud >= %s',

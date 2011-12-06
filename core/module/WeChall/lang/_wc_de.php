@@ -310,14 +310,14 @@ $lang = array(
 	'err_site_challcount' => 'Die Challengeanzahl der Seite muss zwischen %s und %s sein.',
 	'err_site_joindate' => 'Ungültiges Beitrittsdatum.',
 	'err_site_launchdate' => 'Ungültiges Startdatum.',
-	'err_site_authkey' => 'Ungültiger Authkey. Darf maximal %s Zeichen lang sein.',
-	'err_site_xauthkey' => 'Ungültiger X-Authkey. Darf maximal %s Zeichen lang sein.',
+	'err_site_authkey' => 'Ungültiger Authkey. Darf maximal %2$s Zeichen lang sein.',
+	'err_site_xauthkey' => 'Ungültiger X-Authkey. Darf maximal %2$s Zeichen lang sein.',
 	'err_site_irc' => 'Ungültiger IRC Server. Darf maximal %s Zeichen lang sein.',
 	'err_site_url' => 'Ungültige URL. Muss zwischen %s und %s Zeichen lang sein.',
 	'err_site_url_mail' => 'Ungültige Auth-URL. Muss zwischen %s und %s Zeichen lang sein.',
 	'err_site_url_score' => 'Ungültige Punkte-URL. Muss zwischen %s und %s Zeichen lang sein.',
 	'err_site_url_profile' => 'Ungültige Profil-URL. Muss zwischen %s und %s Zeichen lang sein.',
-	'err_site_description' => 'Ungültige Beschreibung. Max %s Buchstaben.',
+	'err_site_description' => 'Ungültige Beschreibung. Max %2$s Buchstaben.',
 	'err_site_status'  => 'Der Status der Seite ist ungültig. Muss zwischen %s und %s Zeichen lang sein.',
 	'err_site_tags'  => 'Ein oder mehrere der Tags sind ungültig. (3-32 alphanumerische Zeichen, Buchstabe am Anfang, case sensitive).',
 	'err_write_logo' => 'Kann Logo nicht speichern %s.',
@@ -552,10 +552,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Ihr Verlauf ist nun ein bisschen privater und die letzten Aktivitätszeiten werden nicht mehr angezeigt.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Hat sein Konto zu %s mit %s%% (%s Punkte) verlinkt',
+	'userhist_link' => 'Hat sein Konto zu %1$s mit %3$s%% (%2$s Punkte) verlinkt',
 	'userhist_unlink' => 'Hat die Verlinkung mit %s (%s Punkte) entfernt',
-	'userhist_gain' => 'Hat %s%% auf %s erhalten (%s Punkte)',
-	'userhist_lost' => 'Hat %s%% auf %s verloren (%s Punkte)',
+	'userhist_gain' => 'Hat %4$s%% auf %1$s erhalten (%2$s Punkte)',
+	'userhist_lost' => 'Hat %4$s%% auf %1$s verloren (%2$s Punkte)',
 	'userhist_ban' => 'Wurde auf %s gebanned (%s Punkte)',
 	'userhist_unban' => 'Ban wurde aufgehoben auf %s',
 	'userhist_unknown' => 'Hat sein/ihr Konto auf %s aktualisiert',
@@ -585,11 +585,11 @@ $lang = array(
 	
 	# v4.11
 	'err_solution_block' => 'Sie haben zu viele Antworten in zu kurzer Zeit eingegeben. Bitte warten Sie %s bis Sie es das nächste Mal versuchen.',
-	'err_link_account_hts' => 'Die Username/EMail Kombination scheint auf %s nicht zu existieren.<br/>Auf %s müssen Sie WeChall für Ihr Konto explizit aktivieren.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'Die Username/EMail Kombination scheint auf %1$s nicht zu existieren.<br/>Auf %1$s müssen Sie WeChall für Ihr Konto explizit aktivieren.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 	'th_spc' => 'SpC',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Ihre Lösung mit der Länge %s wurde in die Datenbank eingefügt.<br/>Sie können jetzt <a href="%s">alle Lösungen</a> länger als %s ansehen.',
+	'msg_wmc_sol_inserted' => 'Ihre Lösung mit der Länge %s wurde in die Datenbank eingefügt.<br/>Sie können jetzt <a href="%s">alle Lösungen</a> länger als %1$s ansehen.',
 	'th_length' => 'Länge',
 	'err_token' => 'Ihr token ist ungültig.', # meins auch....
 	'pt_wmc_sol' => 'Lösungen für %s mit Länge >= %s',

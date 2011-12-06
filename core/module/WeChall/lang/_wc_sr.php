@@ -308,13 +308,13 @@ $lang = array(
 	'err_site_challcount' => 'Број Изазова на сајту мора бити између %s и %s.',
 	'err_site_joindate' => 'Датум прикључивања сајта је погрешан.',
 	'err_site_launchdate' => 'Датум пуштања у рад сајта је погрешан.',
-	'err_site_authkey' => 'Authkey сајта је неисправан. Максимум %s карактера дужине.',
-	'err_site_xauthkey' => 'X-Authkey сајта је неисправан. Максимум %s карактера дужине.',
+	'err_site_authkey' => 'Authkey сајта је неисправан. Максимум %2$s карактера дужине.',
+	'err_site_xauthkey' => 'X-Authkey сајта је неисправан. Максимум %2$s карактера дужине.',
 	'err_site_url' => 'URL сајта је неисправан. Мора бити %s до %s катактера дугачак.',
 	'err_site_url_mail' => 'Auth-URL сајта је неисправан. Мора бити %s до %s карактера дугачак.',
 	'err_site_url_score' => 'Резултат-URL сајта је неисправан. Мора бити %s до %s карактера дугачак.',
 	'err_site_url_profile' => 'Профил-URL сајта је неисправан. Мора бити %s до %s карактера дугачак.',
-	'err_site_description' => 'Опис сајта је неисправан. Максимум %s карактера дужине.',
+	'err_site_description' => 'Опис сајта је неисправан. Максимум %2$s карактера дужине.',
 	'err_site_irc'  => 'IRC сервер сајта је неисправан. Мора бити %s до %s карактера дугачак.',
 	'err_site_tags'  => 'Један или више тагова сајта је неисправно. (3-32 карактера словима или бројевима, почиње словом, мала и велика слова се не третирају исто).',
 	'err_write_logo' => 'Не може се поставити лого на %s.',
@@ -549,10 +549,10 @@ $lang = array(
 	'msg_priv_hist_1' => 'Ваша историја је сада приватнија и не показује датум последње активности.',
 
 	# v4.06 (UserHistory Multi-Lang)
-	'userhist_link' => 'Повезан је налог на %s са %s%% (%s поена)',
+	'userhist_link' => 'Повезан је налог на %1$s са %3$s%% (%2$s поена)',
 	'userhist_unlink' => 'Раскачен је налог са %s (%s поена)',
-	'userhist_gain' => 'Додато %s%% на %s (%s Поена)',
-	'userhist_lost' => 'Изгубљено %s%% на %s (%s поена)',
+	'userhist_gain' => 'Додато %4$s%% на %1$s (%2$s Поена)',
+	'userhist_lost' => 'Изгубљено %4$s%% на %1$s (%2$s поена)',
 	'userhist_ban' => 'Добијен бан на %s (%s поена)',
 	'userhist_unban' => 'Скинут бан са %s',
 	'userhist_unknown' => 'Налог је ажуриран на %s',
@@ -583,12 +583,12 @@ $lang = array(
 	# v4.11
 	'err_solution_block' => 'Унели сте много одговора за кратко време. Молимо,сачекајте %s до следећег уноса.',
 
-	'err_link_account_hts' => 'Комбинација Username/EMail не постоји на сајту %s.<br/>На %s морате посредно потврдити wechall налог.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
+	'err_link_account_hts' => 'Комбинација Username/EMail не постоји на сајту %1$s.<br/>На %1$s морате посредно потврдити wechall налог.<br/><a href="http://www.hackthissite.org/pages/user/affiliate.php">http://www.hackthissite.org/pages/user/affiliate.php</a>',
 		
 	'th_spc' => 'SpC',
 		
 	# v4.12
-	'msg_wmc_sol_inserted' => 'Ваше решење дужине %s је унешено у базу.<br/>You may <a href="%s">look up solutions</a> with length >= %s now.',
+	'msg_wmc_sol_inserted' => 'Ваше решење дужине %s је унешено у базу.<br/>You may <a href="%s">look up solutions</a> with length >= %1$s now.',
 	'th_length' => 'Дужина',
 	'err_token' => 'Токен није исправан.',
 	'pt_wmc_sol' => 'Решење за %s дужине >= %s',

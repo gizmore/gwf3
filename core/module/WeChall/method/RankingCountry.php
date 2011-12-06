@@ -119,7 +119,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		$cname = $country->display('country_name');
 
 		GWF_Website::setPageTitle($module->lang('pt_crank', array($cname, $page)));
-		GWF_Website::setMetaTags($module->lang('mt_crank', array($cname, $page)));
+		GWF_Website::setMetaTags($module->lang('mt_crank', array($cname, $cname)));
 		GWF_Website::setMetaDescr($module->lang('md_crank', array($cname, $page)));
 		
 		$tVars = array(

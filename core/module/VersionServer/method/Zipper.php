@@ -19,7 +19,7 @@ final class VersionServer_Zipper extends GWF_Method
 		'GWF3.php',
 		'www/gwf_cronjob.example.php',
 		'www/index.example.php',
-		'www/robots.txt',
+// 		'www/robots.txt',
 	);
 	
 // 	public static $protected_dirs = array(

@@ -29,13 +29,13 @@ $lang = array(
 	# The email
 	'mail_subj' => GWF_SITENAME.': Zmiana hasła',
 	'mail_body' => 
-		'Drogi %s,<br/>'.PHP_EOL.
+		'Drogi %1$s,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Otrzymaliśmy prośbę o zmianę hasła na stronie '.GWF_SITENAME.'.<br/>'.PHP_EOL.
 		'Aby zmienić hasło kliknij w poniższy link.<br/>'.PHP_EOL.
-		'Jeśli nie prosiłeś o zmianę hasła zignoruj tego e-maila bądź skontaktuj się z nami <a href="mailto:%s">%s</a>.<br/>'.PHP_EOL.
+		'Jeśli nie prosiłeś o zmianę hasła zignoruj tego e-maila bądź skontaktuj się z nami <a href="mailto:%2$s">%2$s</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%s<br/>'.PHP_EOL.
+		'%3$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Z poważaniem<br/>'.PHP_EOL.
 		'Zespół '.GWF_SITENAME.'.'.PHP_EOL,

@@ -299,7 +299,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
 		$mail->setSubject($module->langUser($user, 'submail_subj'));
-		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $unsubLink, $unsubLinkAll, $showLink)));
+		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $showLink, $unsubLink, $unsubLinkAll)));
 		
 		if (false === $mail->sendToUser($user)) {
 			GWF_Log::logCron('[ERROR] Can not send mail to '.$username.'; EMail: '.$receiver);

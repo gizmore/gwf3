@@ -18,9 +18,9 @@ $lang = array(
 		'<br/>'.
 		'An accepted answer would be: 2Chips3Eggs<br/>'.
 		'<br/>'.
-		'Visit <a href="%s">%s</a> to request a new problem.<br/>'.
-		'Send your answers to <a href="%s">%s?answer=[answer]</a> with the format NItemnameNItemname.<br/>'.
-		'You need to solve %s problems and your timelimit for each problem is %s seconds.<br/>'.
+		'Visit <a href="%1$s">%1$s</a> to request a new problem.<br/>'.
+		'Send your answers to <a href="%2$s">%2$s?answer=[answer]</a> with the format NItemnameNItemname.<br/>'.
+		'You need to solve %3$s problems and your timelimit for each problem is %4$s seconds.<br/>'.
 		'<br/>'.
 		'Good Luck!',
 
@@ -30,10 +30,10 @@ $lang = array(
 	'err_reset' => 'You restart at level 1.',
 	'err_timout' => 'You needed %s seconds but you only have %s.',
 	'err_item_num' => 'Your submitted amount for item %s is invalid. It has to be >= 1.',
-	'err_item_stock' => 'You want to purchase %s %s`s, but there are only %s %s`s available.',
+	'err_item_stock' => 'You want to purchase %s %s`s, but there are only %s %2$s`s available.',
 	'err_no_prob' => 'You did not request a problem. It might be that you did not send your cookie correctly.',
 	'err_format' => 'Your input format is invalid. Try ?answer=3Chicken4Coke.',
-	'err_timeout' => 'Your timelimit for one problem is %s seconds, but you needed %s seconds.',
+	'err_timeout' => 'Your timelimit for one problem is %2$s seconds, but you needed %1$s seconds.',
 	'msg_next_level' => 'Correct. You are now on level %s.',
 	'msg_solved' => 'Correct. You have solved the challenge.',
 

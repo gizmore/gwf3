@@ -27,14 +27,14 @@ $lang = array (
 # E-posta
 'mail_subj' => GWF_SITENAME. ': Parolayı Değiştir',
 'mail_body' =>
-	'Sevgili %s'.PHP_EOL.
+	'Sevgili %1$s'.PHP_EOL.
 	PHP_EOL.
 	'Sen '.GWF_SITENAME.' Şifrenizi değiştirmek istedi.'.PHP_EOL.
 	'Bunu yapmak için, aşağıdaki linki.'.PHP_EOL.
 	'Ziyaret etmelisiniz.'.PHP_EOL.
-	'Eğer bir değişiklik talep etmediyseniz bu mail görmezden veya bize <a href="mailto:%s">%s</a>.'.PHP_EOL.
+	'Eğer bir değişiklik talep etmediyseniz bu mail görmezden veya bize <a href="mailto:%2$s">%2$s</a>.'.PHP_EOL.
 	PHP_EOL.
-	'%s'.PHP_EOL.
+	'%3$s'.PHP_EOL.
 	PHP_EOL.
 	'Saygılarımızla'.PHP_EOL.
 	GWF_SITENAME. 'Takım',

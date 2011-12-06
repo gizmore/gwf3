@@ -81,7 +81,7 @@ final class WeChall_Challs extends GWF_Method
 		if ($for_userid != 0) {
 			return $module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
 		} else if ($from_userid != 0) {
-			return $module->lang('tt_challs_from', array($dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername(), $challcount));
+			return $module->lang('tt_challs_from', array($challcount, $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername()));
 		} else {
 			return $module->lang('tt_challs', array($dtag));
 		}
