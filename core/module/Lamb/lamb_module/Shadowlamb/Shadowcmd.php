@@ -287,7 +287,7 @@ class Shadowcmd
 		$bot = Shadowrap::instance($player);
 		$c = Shadowrun4::SR_SHORTCUT;
 		
-		if ($player->isDead())
+		if ($player->isOptionEnabled(SR_Player::DEAD))
 		{
 			$player->message('You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.');
 			return false;

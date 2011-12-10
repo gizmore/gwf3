@@ -860,8 +860,8 @@ final class SR_Party extends GDO
 		$new_d = 0;
 		$this->movePlayerB($pid, $move, $new_d);
 		$busy = $player->busy(25);
-		$name = $player->displayName();
-		$tn = $target->displayName();
+		$name = $player->displayNameNB();
+		$tn = $target->displayNameNB();
 		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
 		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters.', $name, -$move, $tn, $new_d));
 		return true;

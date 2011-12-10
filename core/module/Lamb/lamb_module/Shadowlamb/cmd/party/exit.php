@@ -18,7 +18,7 @@ final class Shadowcmd_exit extends Shadowcmd
 		}
 		
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
-		$bot->reply(sprintf('You exit the %s.', $party->getLocation()));
+		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
 		
 		return true;
 	}

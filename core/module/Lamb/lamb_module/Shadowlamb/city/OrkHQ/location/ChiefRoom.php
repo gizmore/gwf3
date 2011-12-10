@@ -6,7 +6,11 @@ final class OrkHQ_ChiefRoom extends SR_Location
 	public function getEnterText(SR_Player $player) { return 'You enter the room and see some Orks eating. One of them looks like the big boss.'; }
 	public function onEnter(SR_Player $player)
 	{
-		parent::onEnter($player);
+		if (!parent::onEnter($player))
+		{
+			return false;
+		}
+		
 		$party = $player->getParty();
 		$orks = array();
 		foreach ($party->getMembers() as $member)

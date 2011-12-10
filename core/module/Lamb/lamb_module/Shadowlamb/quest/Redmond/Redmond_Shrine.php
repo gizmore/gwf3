@@ -3,7 +3,7 @@ final class Quest_Redmond_Shrine extends SR_Quest
 {
 	public function getQuestName() { return 'Monk(ey)s'; }
 	public function getQuestDescription() { return sprintf('Bring %d/%d WoodNunchaku to the monks in Redmond_Shrine.', $this->getAmount(), $this->getNeededAmount()); }
-	public function getNeededAmount() { return 4; }
+	public function getNeededAmount() { return 3; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		$need = $this->getNeededAmount();

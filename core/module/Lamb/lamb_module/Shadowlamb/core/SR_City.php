@@ -250,8 +250,6 @@ abstract class SR_City
 		$party->giveKnowledge('places', $target);
 		$party->pushAction(SR_Party::ACTION_OUTSIDE, $target);
 		$location->onEnter($party->getLeader());
-		
-		# TODO: Announce it!
 	}
 	
 	private function onLostHuntTarget(SR_Party $party)
