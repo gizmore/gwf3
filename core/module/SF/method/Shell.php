@@ -7,6 +7,8 @@
  */
 final class SF_Shell extends GWF_Method
 {
+	private $module;
+	
 	public function getHTAccess(GWF_Module $module)
 	{
 		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL.
@@ -14,127 +16,132 @@ final class SF_Shell extends GWF_Method
 	}
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateShell($module, $this->init(Common::getRequestString('cmd')), htmlspecialchars(Common::getRequestString('cmd')));
+		$this->module = $module;
+		$cmd = Common::getRequestString('cmd');
+		$output = $this->init($cmd);
+		return $this->templateShell($module, $output, htmlspecialchars($cmd));
 	}
-	private static $cmds = array(
-		'cat' => array('descr' => 'Quelltext anzeigen', 'args' => 1),
-		'ls' => array('descr' => 'Ordnerinhalt auflisten', 'args' => 1),
-		'cd' => array('descr' => 'Ordner wechseln', 'args' => 1),
-		'cp' => array('descr' => '', 'args' => 1),
-		'rm' => array('descr' => '', 'args' => 1),
-		'mv' => array('descr' => '', 'args' => 1),
-		'rm' => array('descr' => '', 'args' => 1),
-		'ln' => array('descr' => 'Link zur Linkliste hinzufügen', 'args' => 1),
-		'find' => array('descr' => 'Datei suchen', 'args' => 1),
-		'locate' => array('descr' => 'Artikel suchen', 'args' => 1),
-		'md5' => array('descr' => 'MD5 Summe eines Strings anzeigen', 'args' => 2),
-		'lp' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
-		'lpr' => array('descr' => 'Seite in Druckansicht anzeigen', 'args' => 1),
-		'pwd' => array('descr' => 'aktuellen Verzeichnis&amp;Dateinamen anzeigen', 'args' => 1),
-		'df' => array('descr' => 'Zeigt Speicherplatzinformationen des Servers an', 'args' => 1),
-		'diff' => array('descr' => '', 'args' => 1),
-		'free' => array('descr' => 'freien Arbeitsspeicher anzeigen', 'args' => 1),
-		'passwd' => array('descr' => 'Passwort ändern', 'args' => 1),
-		'alias' => array('descr' => 'Funktionen für SF_Shell vorschlagen', 'args' => 1),
-		'userdel' => array('descr' => 'Benutzerkonto löschen', 'args' => 1),
-		'useradd' => array('descr' => 'auf SF registrieren', 'args' => 1),
-		'adduser' => array('descr' => 'auf SF registrieren', 'args' => 1),
-		'w' => array('descr' => '', 'args' => 1),
-		'whoami' => array('descr' => 'zeigt Benutzerinformationen an', 'args' => 1),
-		'who' => array('descr' => 'zeigt eingeloggte Benutzer an', 'args' => 1),
-		'id' => array('descr' => 'zeigt Gruppenzugehörigkeiten an', 'args' => 1),
-		'uptime' => array('descr' => 'zeigt eingeloggte Zeit an', 'args' => 1),
-		'echo' => array('descr' => 'gibt Text aus', 'args' => 1),
-		'eval' => array('descr' => 'führt PHP-Befehle aus', 'args' => 1),
-		'exec' => array('descr' => 'führt Shell-Befehle aus', 'args' => 1),
-		'time' => array('descr' => 'zeigt aktuelle Uhrzeit an', 'args' => 1),
-		'date' => array('descr' => 'zeigt Datumsinformationen an', 'args' => 1),
-		'logout' => array('descr' => 'Ausloggen', 'args' => 1),
-		'login' => array('descr' => 'Einloggen', 'args' => 1),
-		'su' => array('descr' => 'Einloggen', 'args' => 1),
-		'system' => array('descr' => 'führt Shell-Befehle aus', 'args' => 1),
-		'exploit' => array('descr' => '', 'args' => 1),
-//		'' => array('descr' => '', 'args' => 1),
-//		'' => array('descr' => '', 'args' => 1),
-//		'' => array('descr' => '', 'args' => 1),
-//		'' => array('descr' => '', 'args' => 1),
-//		'' => array('descr' => '', 'args' => 1),
-	);
+
+	# deprecated
+//	private static $pipes = array(
+//		'more' => array(), # also do overflow:auto;
+//		'less' => array(), # also do overflow: scroll;
+//		'help' => array(),
+//	);
 	
-	private static $pipes = array(
-		'more' => array(), # also do overflow:auto;
-		'less' => array(), # also do overflow: scroll;
-		'help' => array(),
-	);
-	private $cmd = array();
 	public function init($cmdS) 
 	{
-		if($cmdS !== false && $cmdS != NULL)
+		$module = $this->module;
+
+		if($cmdS != NULL || $cmdS === false)
 		{
-//			$this->onPipe($cmdS);
-			
-			
-			// split that shit
-			// $this->cmd = array('cmd' => , 'options' => array(), 'pipes', 'params' => array())
-			
-			$cmdS = trim($cmdS);
-			$cmdS = explode(' ', $cmdS);
-			$cmd = strtolower($cmdS[0]);
-			unset($cmdS[0]);
-			
-			# hilfe befehl?
-			if($cmd === 'help') {
-				return (count($cmdS) > 0) ? $this->onHelp($cmdS) : $this->onHelp();
-			}
-			if($cmd === 'echo') {
-				return htmlspecialchars(implode(' ', $cmdS)); 
-			}
-			# existiert der befehl?
-			if(array_key_exists($cmd, self::$cmds)) {
-				# sind die mindestargumente angegeben?
-				if(count($cmdS) >= self::$cmds[$cmd]['args']-1) {
-					require_once GWF_CORE_PATH.'module/SF/SF_Shellfunctions.php';
-					$shfuncts = new SF_Shellfunctions;
-					return method_exists($shfuncts, $cmd) ? call_user_func($shfuncts->$cmd, $cmdS) : $this->onFunctionError($cmd);
-				} else {
-					return $this->onArgs($cmd);
-				}
-			} else {
-				return $this->onError($cmd);
-			}
-		} 
-		# no command given!
-		else {
-			return (array($_GET['mo'], $_GET['me']) == array('SF', 'Shell') ) ? $this->onNoCommand() : '';
-		}
-	}
-	public function onOptions() { return;}
-	public function onPipe() { return; }
-	public function onError($cmd = 'This') { return GWF_HTML::error(__CLASS__, $cmd.' isn\'t a command!'); }
-	public function onFunctionError($cmd) { return GWF_HTML::error(__CLASS__, 'the '.  htmlspecialchars($cmd).' Function is currently not programmed ;) But I\'m on it!'); }
-	public function onArgs($cmd) { return GWF_HTML::error(__CLASS__, 'You didn\'t give enough params!'); }
-	public function onNoCommand() { return GWF_HTML::error(__CLASS__, 'You didn\'t give me any command!'); }
-	public function onHelp($cmd = false) { 
-		// help for all commands?
-		if($cmd === false) {
-			$ret = '<ul class="shell_output">'.PHP_EOL;
-			foreach(self::$cmds as $key => $cmd) {
-				$ret .= '<li>'.$key.': '.$cmd['descr'].'</li>'.PHP_EOL;
-			}
-			$ret .= '</ul>'.PHP_EOL;
-			return $ret;
-		} 
-		// help for a single command
-		else {
-			return array_key_exists($cmd[0], self::$cmds) ? self::$cmds[$cmd[0]]['descr'] : $this->onError($cmd);
+			return $this->getMoMe() === array($_GET['mo'], $_GET['me']) ?
+				$module->error('err_no_command_given') : '';
 		}
 		
+		$cmdA = explode(' ', trim($cmdS));
+		$cmd = strtolower($cmdA[0]);
+		unset($cmdA[0]);
+		
+		if(strpos($cmdS, '|'))
+		{
+			return $this->onPipe($cmdS);
+		}
+
+		$cmdS = implode(' ', $cmdA);
+			
+		# help command?
+		if($cmd === 'help')
+		{
+			$foo = explode(' ', $cmdS);
+			$c = count($cmdA);
+			return $c > 0 ? $this->onHelp($foo[0]) : $this->onHelp();
+		}
+		elseif($cmd === 'echo')
+		{
+			return htmlspecialchars($cmdS); 
+		}
+		
+		require_once GWF_CORE_PATH.'module/SF/SF_Function.php';
+		
+		if(strpos('.', $cmd) || strpos('/', $cmd))
+		{
+			return $module->error('err_hacking_attemp');
+		}
+		
+		$file = GWF_CORE_PATH.'module/SF/SF_Function.php';
+		if(false === Common::isFile($file))
+		{
+			return $module->error('err_no_function');
+		}
+
+		require_once $file;
+		$class = 'SF_'.$cmd;
+
+		if(class_exists($class))
+		{
+			$obj = new $class($cmdA);
+			return $obj->execute();
+		}
+		else
+		{
+			$module->error('err_no_command', array($cmd));
+		}
+	}
+	public function onPipe($cmdS)
+	{
+		$cmdA = explode('|', $cmdS);
+		$c = count($cmdA);
+		$ret = $this->init($cmdA[0]);
+		
+		######################################
+		## TODO: test if error in thinking! ##
+		return $ret;                        ##
+		######################################
+		
+		for($i=1; $i<$c; $i++)
+		{
+			$ret = $this->init( trim($cmdA[$c].' '.$ret) );
+		}
+		
+		return $this->init($ret);
+	}
+	public function onHelp($cmd=false)
+	{
+		if($cmd === false)
+		{
+			$help = array();
+			$functions = scandir(GWF_CORE_PATH.'module/SF/functions/');
+			foreach($functions as $key => $function)
+			{
+				if(false === Common::startsWith($function, 'SF_'))
+				{
+					unset($functions[$key]);
+				}
+				else
+				{
+					$class = "SF_{$function}";
+					require_once GWF_CORE_PATH."module/SF/functions/{$class}.php";
+					$help[] = array($function, new $class->getHelp());
+				}
+			}
+			$tVars = array(
+				'functions' => $help,
+			);
+			return $module->template('shellhelp.tpl', $tVars);
+		}
+		else
+		{
+			return $this->init($cmd.' --help');
+		}
 	}
 	
 	private function templateShell(Module_SF $module, $output, $lastCMD)
 	{
-		$module->onLoadLanguage();
-		$tVars = array('output' => $output,'lastCMD' => $lastCMD);
+		$tVars = array(
+			'output' => $output,
+			'lastCMD' => $lastCMD
+		);
 		return $module->template('shell.tpl', $tVars);
 	}
 	

@@ -9,15 +9,8 @@ final class Module_SF extends GWF_Module
 	public function getVersion() { return 1.04; }
 	public function getDefaultPriority() { return 50; }
 	public function getDefaultAutoLoad() { return defined('GWF_SF'); }
-	public function getClasses() { 
-		$classes = array(); 
-//		if($this->cfgShellEnabled()) {
-//			$classes[] = 'SF_Shellfunctions';
-//		}
-		return $classes;
-	}
+
 	public function getShellPath() { return htmlspecialchars($_SERVER['SCRIPT_NAME']); }
-	public function onStartup() { if(defined('GWF_SF')) $this->onInclude(); }
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
