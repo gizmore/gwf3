@@ -2,7 +2,6 @@
 
 /**
  * This is a imitated LinuxShell
- * TODO: Language
  * @author spaceone
  */
 final class SF_Shell extends GWF_Method
@@ -21,13 +20,6 @@ final class SF_Shell extends GWF_Method
 		$output = $this->init($cmd);
 		return $this->templateShell($module, $output, htmlspecialchars($cmd));
 	}
-
-	# deprecated
-//	private static $pipes = array(
-//		'more' => array(), # also do overflow:auto;
-//		'less' => array(), # also do overflow: scroll;
-//		'help' => array(),
-//	);
 	
 	public function init($cmdS) 
 	{
@@ -110,29 +102,22 @@ final class SF_Shell extends GWF_Method
 	{
 		if($cmd === false)
 		{
-			$help = array();
 			$functions = scandir(GWF_CORE_PATH.'module/SF/functions/');
 			foreach($functions as $key => $function)
 			{
-				if(false === Common::startsWith($function, 'SF_'))
+				if(false === ($functions[$key] = Common::substrFrom(Common::substrUntil($function, '.php'), 'SF_', false)))
 				{
 					unset($functions[$key]);
 				}
-				else
-				{
-					$class = "SF_{$function}";
-					require_once GWF_CORE_PATH."module/SF/functions/{$class}.php";
-					$help[] = array($function, new $class->getHelp());
-				}
 			}
 			$tVars = array(
-				'functions' => $help,
+				'functions' => $functions,
 			);
 			return $module->template('shellhelp.tpl', $tVars);
 		}
 		else
 		{
-			return $this->init($cmd.' --help');
+			return $module->lang('tt_'.$cmd);
 		}
 	}
 	

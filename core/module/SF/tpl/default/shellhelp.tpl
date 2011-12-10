@@ -1,5 +1,5 @@
 <ul class="shell_output">
 {foreach $functions as $function}
-	<li>{$function[0]}:{$function[1]}</li>
+	<li>{$function}: {$module->lang("tt_{$function}")}</li>
 {/foreach}
 </ul>

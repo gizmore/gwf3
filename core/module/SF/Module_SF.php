@@ -18,6 +18,7 @@ final class Module_SF extends GWF_Module
 			'debug_enabled' => array('0', 'bool'),
 		));
 	}
+	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }
 
 	public function cfgShellEnabled() { return $this->getModuleVarBool('shell_enabled', '1'); }
 	public function cfgDebugEnabled() { return $this->getModuleVarBool('debug_enabled', '0'); }
