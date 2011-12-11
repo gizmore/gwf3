@@ -63,8 +63,15 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
 		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
 		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_inline_css'), $module->lang('th_inline_css'));
-		$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content'));
- 		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$module->lang('btn_edit'),'translate'=>$module->lang('btn_translate')));
+		if($page->getMode() === GWF_Page::BBCODE)
+		{
+			$data['content'] = array(GWF_Form::MESSAGE, $page->getVar('page_content'), $module->lang('th_content'));
+		}
+		else
+		{
+			$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content'));
+ 		}
+		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$module->lang('btn_edit'),'translate'=>$module->lang('btn_translate')));
  		return new GWF_Form($this, $data);
 	}
 	
@@ -123,7 +130,7 @@ final class PageBuilder_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $module->message('msg_edited');
+		return $module->message('msg_edited', $page->getVar('page_url'), $page->getVar('page_title'));
 	}
 	
 	public function validate_title($m, $arg) { return GWF_Validator::validateString($m, 'title', $arg, 4, 255, false); }

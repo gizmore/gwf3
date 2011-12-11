@@ -149,7 +149,7 @@ final class PageBuilder_Add extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $module->message('msg_added');
+		return $module->message('msg_added', $page->getVar('page_url'), $page->getVar('page_title'));
 	}
 
 	private function buildGroupString(Module_PageBuilder $module)

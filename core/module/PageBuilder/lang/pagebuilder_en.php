@@ -54,8 +54,8 @@ $lang = array(
 	'err_upload_exists' => 'A file with that name already exists.',
 	'err_type' => 'Your page type is invalid. It has to be either html, bbcode or smarty.',
 
-	'msg_added' => 'The page has been added successfully.',
-	'msg_edited' => 'The page has been edited successfully.',
+	'msg_added' => 'The <a href="%s" title="%s">page</a> has been added successfully.',
+	'msg_edited' => 'The <a href="%s" title="%s">page</a> has been edited successfully.',
 	'msg_trans' => 'A new page has been created, serving a translation for the current page.',
 	'msg_file_upped' => 'The file has been uploaded to %s.',
 	'msg_no_trans' => 'There are no available translations. If you like to, you can translate this page.',
