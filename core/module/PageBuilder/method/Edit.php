@@ -130,7 +130,7 @@ final class PageBuilder_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $module->message('msg_edited', $page->getVar('page_url'), $page->getVar('page_title'));
+		return $module->message('msg_edited', array(GWF_WEB_ROOT.$page->getVar('page_url'), $page->getVar('page_title')));
 	}
 	
 	public function validate_title($m, $arg) { return GWF_Validator::validateString($m, 'title', $arg, 4, 255, false); }

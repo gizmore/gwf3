@@ -62,7 +62,7 @@ final class PageBuilder_Add extends GWF_Method
 	public function validate_descr($m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 4, 255, false); }
 	public function validate_tags($m, $arg) { return GWF_Validator::validateString($m, 'tags', $arg, 4, 255, false); }
 	public function validate_content($m, $arg) { return GWF_Validator::validateString($m, 'content', $arg, 4, 65536, false); }
-	public function validate_inline_css($m, $arg) { return true; }
+	public function validate_inline_css($m, $arg) { return false; }
 	public function validate_url($m, $arg) { return GWF_Validator::validateString($m, 'url', $arg, 4, 255, false); }
 	public function validate_lang($m, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
 	public function validate_type($m, $arg) { return GWF_PageType::validateType($m, $arg); }
@@ -149,7 +149,7 @@ final class PageBuilder_Add extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $module->message('msg_added', $page->getVar('page_url'), $page->getVar('page_title'));
+		return $module->message('msg_added', array(GWF_WEB_ROOT.$page->getVar('page_url'), $page->getVar('page_title')));
 	}
 
 	private function buildGroupString(Module_PageBuilder $module)
