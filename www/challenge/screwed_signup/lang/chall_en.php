@@ -3,8 +3,8 @@ $lang = array(
 	'title' => 'Your mission',
 	'info' =>
 		'... is to login as Admin.<br/>'.
-		'You are given <a href="%1%">the source of login and register</a> scripts, also as <a href="%2%">highlighted version</a>.<br/>'.
-		'Not needed are the <a href="%3%">login.php</a> and <a href="%4%">register.php</a> scripts.',
+		'You are given <a href="%1$s">the source of login and register</a> scripts, also as <a href="%2$s">highlighted version</a>.<br/>'.
+		'Not needed are the <a href="%3$s">login.php</a> and <a href="%4$s">register.php</a> scripts.',
 
 	# Login
 	'login_title' => 'Screwed Signup - Login',

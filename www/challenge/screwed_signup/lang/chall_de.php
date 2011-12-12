@@ -3,8 +3,8 @@ $lang = array(
 	'title' => 'Deine Aufgabe',
 	'info' =>
 		'... ist es Dich mit Admin-Rechten anzumelden.<br/>'.
-		'Du kannst <a href="%1%">Den Quelltext der Anmeldung</a> einsehen, auch mit <a href="%2%">Syntax Highlighting</a>.<br/>'.
-		'Du benötigst nicht die Quelltexte von <a href="%3%">login.php</a> und <a href="%4%">register.php</a>.',
+		'Du kannst <a href="%1$s">Den Quelltext der Anmeldung</a> einsehen, auch mit <a href="%2$s">Syntax Highlighting</a>.<br/>'.
+		'Du benötigst nicht die Quelltexte von <a href="%3$s">login.php</a> und <a href="%4$s">register.php</a>.',
 
 	# Login
 	'login_title' => 'Screwed Signup - Anmeldung',

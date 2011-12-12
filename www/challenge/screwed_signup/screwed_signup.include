@@ -1,0 +1,114 @@
+<?php
+require_once 'ssqlSolved.php'; # Contains the solution message and cleans up the db. Only called upon successful exploitation.
+
+/**
+ * The whole stuff could be multi-lang too, but it`s maybe better with only english, as you can spot codepoints more easily.
+ * As always: "Code you see is code in use" :) 
+ * --- zip ---
+*/
+function screwed_signupCreateUserTable()
+{
+	$db = gdo_db();
+	
+	# Create user table
+	$query =
+		"CREATE TABLE IF NOT EXISTS `chall_sql1` ".
+		"(".
+		"`username` VARCHAR(24) NOT NULL, ".
+		"`password` VARCHAR(32) NOT NULL, ".
+		"`access_level` INT(10) UNSIGNED NOT NULL DEFAULT 0".
+		")";
+	$db->queryWrite($query);
+
+	# Create super user
+	$password = strtoupper(md5('xxxxxxxxxxxxxxxxxx')); # I blanked this out
+	$query = 
+		"INSERT INTO `chall_sql1` ".
+		"VALUES ( ".
+		"'Admin', '$password', 1337".
+		") ";
+	$db->queryWrite($query);
+}
+
+function screwed_signupLogin()
+{
+	$username = Common::getPostString('username');
+	$password = strtoupper(md5(Common::getPostString('password')));
+
+	if (!screwed_signupUserExists($username)) {
+		return htmlDisplayError('User does not exist');
+	}
+
+	if (!screwed_signupPasswordMatch($username, $password)) {
+		return htmlDisplayError('Login failed');
+	}
+
+	$user = screwed_signupGetUser($username);
+	$level = intval($user['access_level']);
+	$username = $user['username'];
+	htmlDisplayMessage('Hello '.htmlspecialchars($username, ENT_QUOTES).'. You would be logged in with an access_level of '.$level);
+	if ($level > 0) {
+		screwed_signupOnChallengeSolved($username, $password);
+	} else {
+		htmlDisplayMessage('Logged you out again.');
+	}
+}
+
+function screwed_signupUserExists($username)
+{
+	$db = gdo_db();
+	$username = $db->escape($username);
+	$query = "SELECT 1 FROM `chall_sql1` WHERE `username`='$username'";
+	return $db->queryFirst($query) !== false;
+}
+
+function screwed_signupPasswordMatch($username, $password)
+{
+	$db = gdo_db();
+	$username = $db->escape($username);
+	$query = "SELECT 1 FROM `chall_sql1` WHERE `username`='$username' AND `password`='$password'";
+	return $db->queryFirst($query) !== false;
+}
+
+function screwed_signupGetUser($username)
+{
+	$db = gdo_db();
+	$username = $db->escape($username);
+	$query = "SELECT * FROM `chall_sql1` WHERE `username`='$username'";
+	return $db->queryFirst($query);
+}
+
+function screwed_signupIsValidUsername($username)
+{
+	return preg_match('/^[a-z0-9A-Z ]{3,64}$/D', $username) === 1;
+}
+
+function screwed_signupRegister()
+{
+	$db = gdo_db();
+
+	$uname = trim(Common::getPostString('username')); # trim usernames
+	if ('' === ($pw = Common::getPostString('password', ''))) { # empty pass, allow pass with spaces and all characters
+		return htmlDisplayError('Please choose a rather strong password.');
+	}
+	elseif (strlen($pw) < 3) { # force secure password
+		return htmlDisplayError('Please choose a rather strong password.');
+	}
+	elseif (!screwed_signupIsValidUsername($uname)) { # match the username to be valid
+		return htmlDisplayError('Please choose a valid username');
+	}
+	if (screwed_signupUserExists($uname)) {
+		return htmlDisplayError('Username already taken');
+	}
+
+	# put into db
+	$uname = $db->escape($uname); # we preg_match the usernames too
+	$pw = strtoupper(md5($pw)); # no escape needed, uppercase is cool
+	$query = "INSERT IGNORE INTO `chall_sql1` VALUES ('$uname', '$pw', 0)";
+	$db->queryWrite($query);
+
+	htmlDisplayMessage('You have been registered successfully.');
+	echo '<div><a href="login.php">Go to Login</a></div>';
+}
+
+?>
