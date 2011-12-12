@@ -71,7 +71,7 @@ class GWF3
 		
 		self::onDefineWebRoot();
 		
-		if($config['start_debug'])
+		if ($config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
 		}
@@ -81,12 +81,12 @@ class GWF3
 			GWF_Website::init();
 		}
 		
-		if(!($config['no_session']))
+		if (!$config['no_session'])
 		{
 			$this->onStartSession($config['blocking']);
 		}
 		
-		if($config['do_logging'])
+		if ($config['do_logging'])
 		{
 			$this->onStartLogging($config['no_session']);
 		}
@@ -204,7 +204,7 @@ class GWF3
 	
 	public function onAutoloadModules()
 	{
-		if(defined('GWF_WEBSITE_DOWN')) return;
+		if(defined('GWF_WEBSITE_DOWN')) return $this;
 		# Autoload Modules
 		if (false === GWF_Module::autoloadModules()) {
 			die('Cannot autoload modules. GWF not installed?');
@@ -255,7 +255,7 @@ class GWF3
 		return $this;
 	}
 	
-	public function onDisplayPage($content = NULL)
+	public function onDisplayPage($content=NULL)
 	{
 		if (defined('GWF_WEBSITE_DOWN'))
 		{
@@ -280,12 +280,12 @@ class GWF3
 		}
 	}
 	
-	public static function onDisplayHead($path = 'tpl/%DESIGN%/') 
+	public static function onDisplayHead($path='tpl/%DESIGN%/') 
 	{
 		return GWF_Website::getPagehead($path);
 	}
 	
-	public static function onDisplayFoot($path = 'tpl/%DESIGN%/')
+	public static function onDisplayFoot($path='tpl/%DESIGN%/')
 	{
 		return GWF_Website::getHTMLbody_foot($path);
 	}
