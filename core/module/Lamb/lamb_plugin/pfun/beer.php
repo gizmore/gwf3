@@ -40,10 +40,6 @@ if ($DOTBEERLEFT < 0)
 $args = explode( ' ', $message );
 if ((count( $args ) === 1) && ( $args[0] != '') && ( $args[0] != $user->getName()))
 {
-	if ($user->getName === 'gizmore' )
-	{
-		$steal = '.';
-	}
 	$server->sendAction($origin, sprintf('and %s pass %d of %d bottles of cold beer around to %s%s', $user->getName(), 1, $DOTBEERLEFT, $args[0], $steal));
 } else 
 {
