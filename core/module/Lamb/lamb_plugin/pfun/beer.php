@@ -40,7 +40,7 @@ if ($DOTBEERLEFT < 0)
 $args = explode( ' ', $message );
 if ((count( $args ) === 1) && ( $args[0] != ''))
 {
-	$server->sendAction($origin, sprintf('passes %d of %d bottles of cold beer around to %s%s', 1, $DOTBEERLEFT, $args[0], $steal));
+	$server->sendAction($origin, sprintf(' and %s passes %d of %d bottles of cold beer around to %s%s', $user->getName(), 1, $DOTBEERLEFT, $args[0], $steal));
 } else 
 {
 	$server->sendAction($origin, sprintf('passes %d of %d bottles of cold beer around to %s%s', 1, $DOTBEERLEFT, $user->getName(), $steal));
