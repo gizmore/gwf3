@@ -1,4 +1,5 @@
 <?php
+require_once 'Moped.php';
 class Item_DavyHasselhoff extends Item_Moped
 {
 	public function getItemDescription() { return 'This motorbike is a David Hasselhoff themed Harley Davidson from the two-twenties.'; }
@@ -8,6 +9,5 @@ class Item_DavyHasselhoff extends Item_Moped
 	public function getMountPassengers() { return 2; }
 	public function getMountLockLevel() { return 2; }
 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.92; }
-	
 }
 ?>
