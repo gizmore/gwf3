@@ -140,6 +140,7 @@ $lang = array(
 	'req_field' => 'Pflichtfeld',
 
 	# Color switcher
+	'designcolor' => 'Designfarbe: %s',
 	'switch_color_of_layout' => 'Layoutfarbe wechseln',
 	'red' => 'Rot',
 	'green' => 'Grün',
