@@ -1,0 +1,72 @@
+#topmenu ul li {
+	display: inline;
+	
+}
+
+a {
+/* 	text-decoration: none; */
+	font-weight: bold;
+	outline: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+body {
+	font-family: verdana;
+	font-size: 12px;
+}
+
+th {
+	text-align: left;
+}
+
+input[type="text"] {
+	width: 300px;
+}
+
+textarea {
+	width: 300px;
+	height: 100px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+table {
+	background-color:#fff;
+	text-align:left;
+	border: none;
+	border-spacing: 0px;
+/* 	width: 100%; */
+}
+table thead tr th, table.table tfoot tr th {
+	background-color:#fff;
+	border-bottom: 1px dotted #c1beb7;
+	font-size:9pt;
+	height: 23px;
+	padding: 5px;
+	text-shadow:1px 1px 1px #FFFFFF;
+}
+table tbody tr:last-child td {
+	border-bottom: none !important;
+}
+table tbody tr:hover {
+	background-color: #F5FAFF;
+}
+table tbody td table tr td {
+	border: none;
+}
+table tbody td {
+	vertical-align: middle;
+	border-bottom: 1px dotted #D3D3D3;
+	padding: 5px;
+	background: transparent;
+}
+table tbody td, table.table tbody td a {
+	color:#3D3D3D;
+}
