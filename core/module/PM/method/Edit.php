@@ -65,7 +65,7 @@ final class PM_Edit extends GWF_Method
 			'form' => $form->templateY($module->lang('ft_edit')),
 			'preview' => $preview,
 		);
-		return $module->templatePHP('edit.php', $tVars);
+		return $module->template('edit.tpl', $tVars);
 	}
 	
 	private function onPreview(Module_PM $module)

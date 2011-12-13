@@ -79,7 +79,7 @@ final class PM_Overview extends GWF_Method
 		$tVars = array(
 			'new_pm' => $this->getNewPMFormGuest($module),
 		);
-		return $module->templatePHP('overview_guests.php', $tVars);
+		return $module->template('overview_guests.tpl', $tVars);
 	}
 	
 	################
