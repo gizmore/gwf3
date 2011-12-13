@@ -17,7 +17,7 @@ final class Admin_GroupAdd extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_add_group')),
 		);
-		return $module->templatePHP('group_add.php', $tVars);
+		return $module->template('group_add.tpl', $tVars);
 	}
 	
 	private function getForm(Module_Admin $module)

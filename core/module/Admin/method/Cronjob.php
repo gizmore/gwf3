@@ -18,7 +18,7 @@ final class Admin_Cronjob extends GWF_Method
 		$tVars = array(
 			'cron_output' => $this->onCronjob($module),
 		);
-		return $module->templatePHP('cronjob.php', $tVars);
+		return $module->template('cronjob.tpl', $tVars);
 	}
 	
 	private function onCronjob(Module_Admin $module)
