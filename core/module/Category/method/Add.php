@@ -37,7 +37,7 @@ final class Category_Add extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_add')),
 		);
-		return $module->templatePHP('add.php', $tVars);
+		return $module->template('add.tpl', $tVars);
 	}
 	
 	public function validate_key(Module_Category $module, $key)
