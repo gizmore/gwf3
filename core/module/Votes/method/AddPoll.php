@@ -66,7 +66,7 @@ final class Votes_AddPoll extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_create')),
 		);
-		return $module->templatePHP('add_poll.php', $tVars);
+		return $module->template('add_poll.tpl', $tVars);
 	}
 	
 	public function onAddOption(Module_Votes $module, $add_new=true)

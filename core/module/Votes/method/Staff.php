@@ -66,7 +66,7 @@ final class Votes_Staff extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_edit_vs')),
 		);
-		return $module->templatePHP('edit_vs.php', $tVars);
+		return $module->template('edit_vs.tpl', $tVars);
 	}
 }
 ?>

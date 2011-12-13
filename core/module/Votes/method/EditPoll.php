@@ -27,7 +27,7 @@ final class Votes_EditPoll extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_edit')),
 		);
-		return $module->templatePHP('edit_poll.php', $tVars);
+		return $module->template('edit_poll.tpl', $tVars);
 	}
 	
 	private function getForm(Module_Votes $module, GWF_VoteMulti $poll, GWF_User $user)
