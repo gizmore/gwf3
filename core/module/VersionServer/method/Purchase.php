@@ -111,7 +111,7 @@ final class VersionServer_Purchase extends GWF_Method
 			'order' => Module_Payment::displayOrderS($module, $order, $user),
 		);
 		
-		return $module->templatePHP('order.php', $tVars);
+		return $module->template('order.tpl', $tVars);
 	}
 	
 	private function onZip(GWF_Module $module)

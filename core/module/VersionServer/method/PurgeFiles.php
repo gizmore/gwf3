@@ -24,7 +24,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateX($module->lang('ft_purge')),
 		);
-		return $module->templatePHP('purge.php', $tVars);
+		return $module->template('purge.tpl', $tVars);
 	}
 
 	private function onPurge(Module_VersionServer $module)

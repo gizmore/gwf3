@@ -82,7 +82,7 @@ final class VersionServer_Zipper extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_zipper')),
 		);
-		return $module->templatePHP('zipper.php', $tVars);
+		return $module->template('zipper.tpl', $tVars);
 	}
 	
 	private $archiveName = false;
