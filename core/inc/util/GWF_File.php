@@ -31,6 +31,33 @@ final class GWF_File
 		return is_dir($dir) && is_writable($dir);
 	}
 	
+	public static function createDir($path)
+	{
+		if (Common::isDir($path))
+		{
+			return true;
+		}
+		return @mkdir($path, GWF_CHMOD, true);
+	}
+	
+	public static function touch($filename)
+	{
+		if (false === ($fh = @fopen($filename, 'w')))
+		{
+			return false;
+		}
+		if (false === @fclose($fh))
+		{
+			return false;
+		}
+		if (false === @chmod($filename, GWF_CHMOD&0666))
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	
 	/**
 	 * Remove a dir recursively. Returns boolean, true on success. Prints error messages when verbose. Can keep the affected dir if desired.
 	 * @param string $path

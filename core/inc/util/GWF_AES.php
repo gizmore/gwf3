@@ -39,8 +39,7 @@ final class GWF_AES
 	 */
 	public static function decrypt($data, $key)
 	{
-		$iv = 'MaryHasALittleLamb';
-		return self::decrypt4($data, $key, $iv);
+		return self::decrypt4($data, $key, self::IV);
 	}
 	
 	/**
