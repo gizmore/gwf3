@@ -18,10 +18,13 @@ if (false !== ($user = GWF_Session::getUser()))
 {
 	if ($user->getLevel() >= $score_needed)
 	{
-		$pre = $_POST['answer'];
-		identity_filter($chall);
-		$chall->onCheckSolution();
-		$_POST['answer'] = $pre;
+		if (isset($_POST['answer']))
+		{
+			$pre = $_POST['answer'];
+			identity_filter($chall);
+			$chall->onCheckSolution();
+			$_POST['answer'] = $pre;
+		}
 		
 		$gizmore = GWF_User::getByName('gizmore');
 		$profile = $gizmore->displayProfileLink();
