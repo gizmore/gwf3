@@ -1,16 +1,16 @@
 <?php
 chdir('../../../');
-define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter I');
+define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter II');
 require_once('html_head.php');
 require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/lamb/shadowlamb1/index.php');
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 3, 'challenge/lamb/shadowlamb2/index.php');
 }
 $chall->showHeader();
 if (false !== ($answer = Common::getPostString('answer', false)))
 {
 	require_once 'challenge/lamb/shadowlamb1/WC5Lamb_Solution.php';
-	shadowlamb1solver($chall, $answer);
+	shadowlamb2solver($chall, $answer);
 }
 echo GWF_Box::box($chall->lang('info', array('client.php')), $chall->lang('title'));
 echo formSolutionbox($chall);
@@ -18,10 +18,10 @@ echo $chall->copyrightFooter();
 require_once('html_foot.php');
 ?>
 <?php
-function shadowlamb1solver(WC_Challenge $chall, $answer)
+function shadowlamb2solver(WC_Challenge $chall, $answer)
 {
 //	$wechall = Module_WeChall::instance();
-	$code = WC5Lamb_Solution::validateSolution1($answer, GWF_Session::getUserID());
+	$code = WC5Lamb_Solution::validateSolution2($answer, GWF_Session::getUserID());
 	switch ($code)
 	{
 		case 1:

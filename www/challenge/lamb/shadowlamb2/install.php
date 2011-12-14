@@ -1,14 +1,14 @@
 <?php
 chdir("../../../");
 require_once("html_head.php");
-define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter I');
+define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter II');
 html_head("Install: ".GWF_PAGE_TITLE);
 if (!GWF_User::isAdminS()) {
 	return htmlSendToLogin("Better be admin !");
 }
 $solution = false;
-$score = 2;
-$url = "challenge/lamb/shadowlamb1/index.php";
+$score = 3;
+$url = "challenge/lamb/shadowlamb2/index.php";
 $creators = "Gizmore";
 $tags = 'Fun';
 
