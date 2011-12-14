@@ -21,6 +21,12 @@ final class GWF_PolyROT
 		$clen = strlen($charset);
 		for ($i = 0; $i < $len; $i++)
 		{
+			if ($message[$i] === ' ')
+			{
+				$back .= ' ';
+				continue;
+			}
+			
 			$j = strpos($charset, $message[$i]);
 			$k = strpos($charset, $key[$i%$klen]);
 			$back .= $charset[($j+$k)%$clen]; 
@@ -44,9 +50,13 @@ final class GWF_PolyROT
 		$clen = strlen($charset);
 		for ($i = 0; $i < $len; $i++)
 		{
+			if ($message[$i] === ' ')
+			{
+				$back .= ' ';
+				continue;
+			}
 			$j = strpos($charset, $message[$i]);
 			$k = strpos($charset, $key[$i%$klen]);
-			
 			$j -= $k;
 			while ($j < 0)
 			{
