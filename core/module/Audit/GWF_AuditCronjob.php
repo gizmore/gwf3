@@ -1,4 +1,9 @@
 <?php
+/**
+ * This cronjob runs as client on gizmore.org
+ * @author gizmore
+ *
+ */
 final class GWF_AuditCronjob extends GWF_Cronjob
 {
 	const DEBUG = false;

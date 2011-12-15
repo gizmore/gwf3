@@ -1,5 +1,6 @@
 function alLog(script, times, console_selector)
 {
+	this.speed = 1;
 	this.script = script;
 	this.times = times;
 	this.id = console_selector;
@@ -13,6 +14,11 @@ function alLog(script, times, console_selector)
 		alert('Somethings horribly wrong.');
 		return null;
 	}
+	
+	this.increaseSpeed = function(by)
+	{
+		this.speed = clamp(this.speed+by, 1, 10000);
+	};
 	
 	this.replay = function()
 	{
@@ -69,7 +75,7 @@ function alLog(script, times, console_selector)
 
 		if ( (this.times !== '') || (this.script !== '') )
 		{
-			time = clamp(Math.round(1000*time), 5, 1000);
+			time = clamp(Math.round(1000*time/this.speed), 5, 1000);
 			setTimeout(function(log){log.replayB();}, time, this);
 		}
 		else
@@ -80,7 +86,7 @@ function alLog(script, times, console_selector)
 	
 	this.onAppend = function(append)
 	{
-		append = this.shellDecode(append);
+		append = this.shellDecode(append.htmlspecialchars());
 		console.log(append);
 		this.e.append(append);
 		return '';
