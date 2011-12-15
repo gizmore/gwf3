@@ -2,12 +2,12 @@
 
 $lang = array(
 	'hello' => 'Hallo %s',
-	'sel_username' => 'Wählen sie einen Benutzer',
-	'sel_folder' => 'Wählen sie einen Ordner',
+	'sel_username' => 'Wählen Sie einen Benutzer',
+	'sel_folder' => 'Wählen Sie einen Ordner',
 
 	# Info
 	'pt_guest' => GWF_SITENAME.' Gäste PN',
-	'pi_guest' => 'Auf '.GWF_SITENAME.' könnenSie auch als Gast eine PN senden. Der Benutzer muss dies explizit erlauben, außerdem kann er ihnen keine Antwort schreiben. Dennoch kann es benutzt werden um schnell einen Fehler zu melden.',
+	'pi_guest' => 'Auf '.GWF_SITENAME.' können Sie auch als Gast eine PN senden. Der Benutzer muss dies explizit erlauben, außerdem kann er Ihnen keine Antwort schreiben. Dennoch kann es benutzt werden um schnell einen Fehler zu melden.',
 
 	'pi_trashcan' => 'Hier ist ihr PN-Papierkorb. Nachrichten können nicht wirklich gelöscht werden. Sie können aber Nachrichten aus dem Papierkorb wiederherstellen.',
 	

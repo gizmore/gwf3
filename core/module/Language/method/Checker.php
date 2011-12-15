@@ -57,10 +57,10 @@ final class Language_Checker extends GWF_Method
 	
 	private function onCheckB(Module_Language $module)
 	{
-		$this->onCheckRecursive('lang');
-		$this->onCheckRecursive('modules');
+		$this->onCheckRecursive(GWF_CORE_PATH.'lang');
+		$this->onCheckRecursive(GWF_CORE_PATH.'module');
 		
-		return GWF_HTML::message('LangChecker', sprintf('%s language files contain %d errors and %d warnings. %d files missing.', $this->lang->getName(), $this->errors, $this->warnings, $this->missing), false);
+		return GWF_HTML::message('LangChecker', sprintf('%s language files contain %d errors and %d warnings. %d files missing.', $module->getName(), $this->errors, $this->warnings, $this->missing), false);
 	}
 
 	private function onCheckRecursive($path)
