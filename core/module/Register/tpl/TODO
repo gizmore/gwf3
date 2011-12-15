@@ -1,0 +1,9 @@
+these files have been copied from templates/ to tpl/
+TODO: check if they are useable, convert to Smarty.
+./wc
+./wc/register.php
+./default
+./default/admin.php
+./default/register.php
+./ssy
+./ssy/register.php
