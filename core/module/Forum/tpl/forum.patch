@@ -1,0 +1,517 @@
+Only in template/default: Copy of show_post.php
+Only in template/default: Copy of show_thread.php
+diff -ur template/default/add_board.php tpl/default/add_board.php
+--- template/default/add_board.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/add_board.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,2 +1,2 @@
+ <div class="gwf_board_quicktree"><?php echo Module_Forum::getNavTree(); ?></div>
+-<?php echo $tVars['form'] ?>
++<?php echo $tVars['form']; ?>
+diff -ur template/default/add_thread.php tpl/default/add_thread.php
+--- template/default/add_thread.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/add_thread.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,5 +1,4 @@
+ <?php if ($tVars['nav']) { ?>
+-	<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+ 	<div class="gwf_board_quicktree"><?php echo Module_Forum::getNavTree(); ?></div>
+ <?php } ?>
+ <?php echo $tVars['form']; ?>
+diff -ur template/default/admin.php tpl/default/admin.php
+--- template/default/admin.php	2011-06-12 06:46:52.000000000 +0200
++++ tpl/default/admin.php	2011-06-17 23:03:02.000000000 +0200
+@@ -1,6 +1,7 @@
+ <?php
+ echo '<div class="gwf_buttons">'.PHP_EOL;
+ echo GWF_Button::generic($tLang->lang('Fix Counters'), $tVars['href_fix_counters']);
++echo GWF_Button::generic($tLang->lang('btn_cleanup'), $tVars['href_cleanup']);
+ echo '</div>'.PHP_EOL;
+ 
+ 
+@@ -17,8 +18,8 @@
+ 		array($tLang->lang('th_approve')),
+ 		array($tLang->lang('th_delete')),
+ 	);
+-	echo '<table>';
+-	echo GWF_Table::displayHeaders2($headers, $tVars['sort_url_mod'], 'mby', 'mdir');
++	echo GWF_Table::start();
++	echo GWF_Table::displayHeaders1($headers, $tVars['sort_url_mod'], '', '', 'mby', 'mdir');
+ 	
+ 	$txt_yes = $tLang->lang('th_approve');
+ 	$txt_no = $tLang->lang('th_delete');
+@@ -48,7 +49,7 @@
+ 		echo GWF_Table::rowEnd();
+ 	}
+ 	
+-	echo '</table>';
++	echo GWF_Table::end();
+ }
+ 
+ ?>
+\ No newline at end of file
+diff -ur template/default/edit_attach.php tpl/default/edit_attach.php
+--- template/default/edit_attach.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/edit_attach.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,3 +1 @@
+-<?php
+-echo $tVars['form'];
+-?>
++<?php echo $tVars['form']; ?>
+diff -ur template/default/edit_post.php tpl/default/edit_post.php
+--- template/default/edit_post.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/edit_post.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,3 +1 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+ <div class="gwf_full_width"><?php echo $tVars['form']; ?></div>
+\ No newline at end of file
+diff -ur template/default/edit_thread.php tpl/default/edit_thread.php
+--- template/default/edit_thread.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/edit_thread.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,8 +1,6 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+-
+-<?php echo $tVars['form']; ?>
+-
+-<?php if (!$tVars['thread']->hasPoll()) {
++<?php
++echo $tVars['form'];
++if (!$tVars['thread']->hasPoll()) {
+ 	echo GWF_Button::generic($tLang->lang('btn_add_poll'), $tVars['href_add_poll']);
+-}?>
+\ No newline at end of file
++}
++?>
+diff -ur template/default/forum.php tpl/default/forum.php
+--- template/default/forum.php	2011-06-12 06:46:52.000000000 +0200
++++ tpl/default/forum.php	2011-07-09 21:11:38.000000000 +0200
+@@ -2,10 +2,6 @@
+ <?php $user = GWF_Session::getUser(); ?>
+ <?php $is_mod = GWF_User::isInGroupS('moderator'); ?>
+ 
+-
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+-
+ <!-- Title -->
+ <?php $options = $user !== false ? GWF_Button::options($tVars['href_options'], $tLang->lang('btn_options')) : ''; ?>
+ <?php $newthreads = $tVars['unread_threads'] > 0 ? (GWF_Button::bell($tVars['href_unread'], $tLang->lang('btn_unread')).'['.$tVars['unread_threads'].']') : ''; ?>
+@@ -89,14 +85,10 @@
+ 	array($tLang->lang('th_postcount'), 'board_postcount'), # 2 btns
+ 	
+ );
+-//$board_headers = GWF_Table::getHeaders2($board_headers, $tVars['board_sort_url'], 'bby', 'bdir');
+-
+ echo GWF_Table::start('fl ri');
+ $raw = '<tr><th class="ri" colspan="5">'.$b->display('board_descr').'</th></tr>';
+-echo GWF_Table::displayHeaders2($board_headers, $tVars['board_sort_url'], '', '', 'bby', 'bdir', $raw);
+-?>
+-
+-<?php foreach ($childs as $i => $c) { $c instanceof GWF_ForumBoard; echo GWF_Table::rowStart(); ?>
++echo GWF_Table::displayHeaders1($board_headers, $tVars['board_sort_url'], 'board_pos', 'ASC', 'bby', 'bdir');
++foreach ($childs as $i => $c) { $c instanceof GWF_ForumBoard; echo GWF_Table::rowStart(); ?>
+ 		<td>
+ 			<div><a href="<?php echo $c->getShowBoardHREF(); ?>">
+ 				<span class="gwf_board_title"><?php echo $c->display('board_title'); ?></span>
+@@ -118,11 +110,10 @@
+ <?php echo GWF_Table::end(); ?>
+ <?php } ?>
+ 
+-
+ <?php # SHOUTBOX
+ if ($b->isRoot())
+ {
+-	if (false !== ($mod_shout = GWF_Module::getModule('Shoutbox'))) {
++	if (false !== ($mod_shout = GWF_Module::loadModuleDB('Shoutbox'))) {
+ 		echo GWF_HTML::div(Module_Shoutbox::templateBoxS(), 'gwf_forum_shoutbox fl');
+ 	}
+ } ?>
+@@ -145,10 +136,12 @@
+ 	array($tLang->lang('th_votes_up'), 'thread_votes_up'),
+ 	array($tLang->lang('th_thread_viewcount'), 'thread_viewcount'),
+ );
++?>
+ 
++<?php
+ echo $tVars['pagemenu_threads'];
+ echo GWF_Table::start('ri');
+-echo GWF_Table::displayHeaders2($t_headers, $tVars['thread_sort_url'], 'th_lastdate', 'DESC', 'tby', 'tdir');
++echo GWF_Table::displayHeaders1($t_headers, $tVars['thread_sort_url'], '', 'ASC', 'tby', 'tdir');
+ 
+ foreach ($tVars['threads'] as $t) { $t instanceof GWF_ForumThread;
+ 	$edit = $t->hasEditPermission() ? GWF_Button::edit($t->getEditHREF(), $tLang->lang('btn_edit')) : '';
+@@ -173,15 +166,26 @@
+ ?>
+ 
+ <!-- Board Actions -->
+-<?php if ($tVars['new_thread_allowed']) {
+-	echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
+-//	echo GWF_Button::add($tLang->lang('btn_add_thread'), $b->getAddThreadHREF());
++<?php
++echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
++if ($tVars['new_thread_allowed'])
++{
+ 	echo GWF_Button::generic($tLang->lang('btn_add_thread'), $b->getAddThreadHREF());
+-	echo '</div></div>'.PHP_EOL;
+ }
++if (!$b->isRoot())
++{
++	if ($b->canSubscribe())
++	{
++		echo GWF_Button::generic($tLang->lang('btn_subscribe'), $b->getSubscribeHREF());
++	}
++	if ($b->canUnSubscribe())
++	{
++		echo GWF_Button::generic($tLang->lang('btn_unsubscribe'), $b->getUnSubscribeHREF());
++	}
++}
++echo '</div></div>'.PHP_EOL;
+ ?>
+ 
+-
+ <!-- Admin Control -->
+ <?php if (GWF_User::isAdminS()) { ?>
+ 	<div class="gwf_buttons_outer">
+diff -ur template/default/history.php tpl/default/history.php
+--- template/default/history.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/history.php	2011-06-17 23:03:02.000000000 +0200
+@@ -1,7 +1,6 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+ 
+ <div class="gwf_board_quicktree"><?php echo Module_Forum::getNavTree(); ?></div>
++
+ <?php
+ $headers = array(
+ 	array($tLang->lang('th_title'), 'thread_title'),
+@@ -13,10 +12,10 @@
+ 	array($tLang->lang('th_thread_votes_up'), 'thread_votes_up'),
+ 	array($tLang->lang('th_thread_viewcount'), 'thread_viewcount'),
+ );
+-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
++
+ echo $tVars['pagemenu'];
+ echo GWF_Table::start();
+-echo GWF_Table::displayHeaders($headers);
++echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+ foreach ($tVars['threads'] as $t)
+ {
+ 	$t instanceof GWF_ForumThread;
+diff -ur template/default/options.php tpl/default/options.php
+--- template/default/options.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/options.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,4 +1,2 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+ <div class="gwf_board_quicktree"><?php echo Module_Forum::getNavTree(); ?></div>
+ <?php echo $tVars['form']; ?>
+\ No newline at end of file
+Only in tpl/default: options.tpl
+Only in tpl/default: reply.tpl
+diff -ur template/default/search.php tpl/default/search.php
+--- template/default/search.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/search.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,14 +1,10 @@
+ <?php
+ GWF_Javascript::focusElementByName('term');
+-
+ echo $tVars['form_quick'];
+ #echo $tVars['form_adv'];
+-
+ if (count($tVars['result']) > 0)
+ {
+ 	echo $tVars['pagemenu'];
+-	
+-	
+ 	$headers = array(
+ 		array($tLang->lang('th_post_date'), 'post_date', 'DESC'),
+ 		array($tLang->lang('th_user_name'), 'user_name', 'ASC'),
+@@ -16,23 +12,22 @@
+ 		array($tLang->lang('th_thanks'), 'post_thanks', 'DESC'),
+ 		array($tLang->lang('th_votes_up'), 'post_votes_up', 'DESC'),
+ 	);
+-	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+-	
+-	$data = array();
++	echo GWF_Table::start();
++	echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+ 	foreach ($tVars['result'] as $post)
+ 	{
++		echo GWF_Table::rowStart();
+ 		$post instanceof GWF_ForumPost;
+ 		$hrefPost = $post->getShowHREF($tVars['term']);
+ 		$hrefProfile = $post->getUser()->getProfileHREF();
+-		$data[] = array(
+-			GWF_HTML::anchor($hrefPost, $post->displayPostDate()),
+-			GWF_HTML::anchor($hrefProfile, $post->getUser()->displayUsername()),
+-			GWF_HTML::anchor($hrefPost, $post->getVar('post_title')),
+-			$post->getVar('post_thanks'),
+-			$post->getVar('post_votes_up'),
+-		);
++		echo GWF_Table::column(GWF_HTML::anchor($hrefPost, $post->displayPostDate()));
++		echo GWF_Table::column(GWF_HTML::anchor($hrefProfile, $post->getUser()->displayUsername()));
++		echo GWF_Table::column(GWF_HTML::anchor($hrefPost, $post->getVar('post_title')));
++		echo GWF_Table::column($post->getVar('post_thanks'), 'gwf_num');
++		echo GWF_Table::column($post->getVar('post_votes_up'), 'gwf_num');
++		echo GWF_Table::rowEnd();
+ 	}
+-	
+-	echo GWF_Table::display2($headers, $data, $tVars['sort_url']);
++	echo GWF_Table::end();
++	echo $tVars['pagemenu'];
+ }
+-?>
+\ No newline at end of file
++?>
+diff -ur template/default/show_post.php tpl/default/show_post.php
+--- template/default/show_post.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/show_post.php	2011-07-04 20:39:18.000000000 +0200
+@@ -5,9 +5,11 @@
+ 	$can_edit = $post->hasEditPermission();
+ 	$post instanceof GWF_ForumPost;
+ 	$user = $post->getUser();
++//	var_dump($user);
+ 	$opts = $post->getUserOptions(true);
+ 	$pid = (string)$post->getID();
+-	$trd = GWF_HTML::flipColorID();
++	
++	$trd = isset($trd) ? 1-$trd : 1;
+ 	$term = '';
+ 	
+ 	if (!is_array($tVars['term'])) {
+@@ -19,23 +21,23 @@
+ <div class="gwf_post">
+ 	<a name="post<?php echo $post->getID(); ?>"></a>
+ 
+-	<div class="gwf_post_uinfo gwf_tr_<?php echo $trd; ?>">
++	<div class="gwf_post_uinfo gwf_<?php echo $trd?'odd':'even'; ?>">
+ 		<?php echo GWF_HTML::div('<span>'.$user->displayCountryFlag().$user->displayProfileLink().'</span>'); ?>
+ 		<?php echo GWF_HTML::div($tLang->lang('th_postcount').':&nbsp;'. $opts->getPostcount()); ?>
+ 		<?php #echo GWF_HTML::div($tLang->lang('th_user_regdate').':&nbsp;'. $user->displayRegdate()); ?>
+ 		<?php echo GWF_HTML::div($tLang->lang('th_user_regdate').':&nbsp;'. GWF_Time::displayAge($user->getVar('user_regdate'))); ?>
+ 		<?php echo GWF_HTML::div($user->displayAvatar()); ?>
+ 		<?php echo GWF_HTML::div($user->displayTitle()); ?>
+-		<?php echo GWF_HTML::div($user->isOnlineHidden()) ? '' : sprintf('<div>%s</div>', $tLang->lang('last_seen', GWF_Time::displayAgeTS($user->getLastActivity()))); ?>
++		<?php echo GWF_HTML::div($user->isOptionEnabled(GWF_User::HIDE_ONLINE) ? '' : sprintf('<div>%s</div>', $tLang->lang('last_seen', array(GWF_Time::displayAgeTS($user->getVar('user_lastactivity')))))); ?>
+ 		<?php echo GWF_HTML::div($user->isOnline() ? $tLang->lang('online') : $tLang->lang('offline')); ?>
+ <?php
+ 		$buttons = '';
+ 		if ('' !== ($email = $user->getValidMail())) {
+-			$txt = $tLang->lang('at_mailto', $user->displayUsername());
+-			if ($user->isEmailPublic()) {
++			$txt = $tLang->lang('at_mailto', array($user->displayUsername()));
++			if ($user->isOptionEnabled(GWF_User::SHOW_EMAIL)) {
+ 				$buttons .= GWF_Button::mail('mailto:'.$email, $txt);
+ 			}
+-			elseif ($user->isEmailAllowed()) {
++			elseif ($user->isOptionEnabled(GWF_User::ALLOW_EMAIL)) {
+ 				$buttons .= GWF_Button::mail(GWF_WEB_ROOT.'send/email/to/'.$user->urlencode('user_name'));
+ 			}
+ 		}
+@@ -54,15 +56,15 @@
+ $toolbar = '';
+ if ($actions) {
+ 	$toolbar .= GWF_Button::translate($post->getTranslateHREF(), $tLang->lang('btn_translate'), '', $post->getTranslateOnClick());
+-	if (GWF_Session::isLoggedIn())
+-	{
++//	if (GWF_Session::isLoggedIn())
++//	{
+ 		$toolbar .= sprintf('<span id="gwf_post_thx_%s">%s</span>', $pid, $post->getVar('post_thanks')).GWF_Button::thankYou($post->getThanksHREF(), $tLang->lang('btn_thanks'), '', $post->getThanksOnClick());
+ 		$toolbar .= sprintf('<span id="gwf_post_up_%s">%s</span>', $pid, $post->getVar('post_votes_up')).GWF_Button::thumbsUp($post->getVoteUpHREF(), $tLang->lang('btn_vote_up'), '', $post->getVoteUpOnClick());
+ 		$toolbar .= sprintf('<span id="gwf_post_down_%s">%s</span>', $pid, $post->getVar('post_votes_down')).GWF_Button::thumbsDown($post->getVoteDownHREF(), $tLang->lang('btn_vote_down'), '', $post->getVoteDownOnClick());
+-	}
++//	}
+ }
+ ?>
+-	<div class="gwf_post_body gwf_tr_<?php echo $trd; ?>">
++	<div class="gwf_post_body gwf_<?php echo $trd?'odd':'even'; ?>">
+ 		<div class="gwf_post_head">
+ 			<div>
+ 				<span class="ib">
+@@ -90,7 +92,8 @@
+ 			{
+ 				$a instanceof GWF_ForumAttachment;
+ 				if (!$a->canSee(GWF_Session::getUser())) {
+-					$attach .= "<div>CANNOT DOWNLOAD!</div>";
++					$attach .= '<p>'.$tLang->lang('info_hidden_attach_guest');
++					continue;
+ 				}
+ 				$edit = GWF_Button::edit($a->hrefEdit(), $tLang->lang('btn_edit_attach'));
+ 				$att_name = $a->display('fatt_filename');
+diff -ur template/default/show_thread.php tpl/default/show_thread.php
+--- template/default/show_thread.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/show_thread.php	2011-07-07 01:09:03.000000000 +0200
+@@ -1,8 +1,3 @@
+-<!-- Banner Ads -->
+-<?php if ($tVars['nav']) { ?>
+-	<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+-<?php } ?>
+-
+ <?php $t = $tVars['thread']; $t instanceof GWF_ForumThread; $actions = $tVars['actions']; $title = $tVars['title']; ?>
+ <?php $pc = $tLang->lang('posts');  ?>
+ 
+@@ -12,10 +7,10 @@
+ 
+ 
+ <?php # Highlighter
+-	if (GWF_Browser::isReferredBySearchEngine())
+-	{
+-		$tVars['term'] = GWF_Browser::getSearchEngineTerm();
+-	}
++//	if (GWF_Browser::isReferredBySearchEngine())
++//	{
++//		$tVars['term'] = GWF_Browser::getSearchEngineTerm();
++//	}
+ ?>
+ 
+ <div class="gwf_thread">
+@@ -34,15 +29,17 @@
+ 		$buttons .= GWF_Button::prev($href, $prev->getVar('thread_title'));
+ 	}
+ 	
+-	if ($tVars['page'] === 1) {
++//	if ($tVars['page'] === 1) {
+ 		if ($t->hasPoll()) {
+-			if (false !== ($mod_votes = GWF_Module::getModule('Votes'))) {
++			if (false !== ($mod_votes = GWF_Module::loadModuleDB('Votes'))) {
+ 				$mod_votes->onInclude();
+ 				$buttons .= $t->getPoll()->showResults();	
+ 			}			
+ 		}
+-	}
+-	elseif ($t->mayAddPoll(GWF_Session::getUser())) {
++//	}
++	
++//	else
++	if ($t->mayAddPoll(GWF_Session::getUser())) {
+ 		$buttons .= GWF_Button::generic($tLang->lang('btn_add_poll'), $tVars['href_add_poll']);
+ 	}
+ 
+@@ -53,10 +50,7 @@
+ 		
+ 	if ($buttons !== '')
+ 	{
+-		echo '<div class="gwf_buttons_outer">'.PHP_EOL.
+-			'<div class="gwf_buttons">'.PHP_EOL.
+-			$buttons.
+-			'</div></div>';
++		echo GWF_Button::wrap($buttons);
+ 	}
+ }
+ 
+@@ -82,6 +76,9 @@
+ 	if ($t->canSubscribe()) {
+ 		$buttons .= GWF_Button::generic($tLang->lang('btn_subscribe'), $t->getSubscribeHREF());
+ 	}
++	if ($t->canUnSubscribe()) {
++		$buttons .= GWF_Button::generic($tLang->lang('btn_unsubscribe'), $t->getUnSubscribeHREF());
++	}
+ 	if ($t->hasEditPermission(GWF_Session::getUser())) {
+ 		$buttons .= GWF_Button::generic($tLang->lang('btn_edit'), $tVars['href_edit']);
+ 	}
+@@ -93,9 +90,10 @@
+ <?php echo $tVars['pagemenu']; ?>
+ 
+ <?php if ($tVars['nav'] === true) { ?>
+-
+ <div class="box box_c">
+ <?php
++if ($tVars['actions'])
++{
+ 	$subs = GWF_ForumSubscription::getSubscriptions($t, false);
+ //	var_dump($subs);
+ 	$back = '';
+@@ -103,11 +101,12 @@
+ 		foreach ($subs as $sub) {
+ 			$back .= ', '.$sub->displayProfileLink();
+ 		}
+-		echo $tLang->lang('subscribers', substr($back, 2)).'<br/>'.PHP_EOL;
++		echo $tLang->lang('subscribers', array(substr($back, 2))).'<br/>'.PHP_EOL;
+ 	}
+-	echo $tLang->lang('watchers', $t->getVar('thread_watchers')).PHP_EOL;
++	echo $tLang->lang('watchers', array($t->getVar('thread_watchers'))).PHP_EOL;
+ 	echo '<br/>'.PHP_EOL;
+-	echo $tLang->lang('views', $t->getVar('thread_viewcount')).PHP_EOL;
++	echo $tLang->lang('views', array($t->getVar('thread_viewcount'))).PHP_EOL;
++}
+ ?>
+ </div>
+ <?php } ?>
+Only in tpl/default: subscriptions.tpl
+diff -ur template/default/unread.php tpl/default/unread.php
+--- template/default/unread.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/unread.php	2011-06-14 03:23:54.000000000 +0200
+@@ -1,5 +1,3 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+ <!-- Nav Tree -->
+ <?php $b = $tVars['board']; $b instanceof GWF_ForumBoard; ?>
+ <?php if (!$b->isRoot()) { ?>
+@@ -9,9 +7,9 @@
+ <h2><?php echo $tLang->lang('pi_unread'); ?></h2>
+ <h3><?php echo GWF_Button::generic($tLang->lang('btn_mark_read'), GWF_WEB_ROOT.'index.php?mo=Forum&me=MarkRead'); ?></h3>
+ 
+-<?php echo $tVars['pagemenu']; ?>
++<?php
++echo $tVars['pagemenu'];
+ 
+-<?php 
+ $headers = array(
+ 	array($tLang->lang('th_title'), 'thread_title', 'ASC'),
+ 	array($tLang->lang('th_firstposter'), 'thread_firstposter', 'ASC'),
+@@ -21,22 +19,25 @@
+ 	array($tLang->lang('th_thread_thanks'), 'thread_thanks', 'DESC'),
+ 	array($tLang->lang('th_thread_votes_up'), 'thread_votes_up', 'DESC'),
+ );
+-
+-$data = array();
++echo GWF_Table::start();
++echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+ foreach ($tVars['threads'] as $t)
+ {
+ 	$t instanceof GWF_ForumThread;
+-	$data[] = array(
+-		GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title')),
+-		$t->getFirstPosterLink(),
+-		$t->getPostCount(),
+-		$t->getLastPosterLink(),
+-		GWF_HTML::anchor($t->getLastPageHREF(), $t->displayLastDate()),
+-		$t->getVar('thread_thanks'),
+-		$t->getVar('thread_votes_up'),
+-	);
++	$b = $t->getBoard();
++	echo GWF_Table::rowStart();
++	$boardlink = GWF_HTML::anchor($b->getShowBoardHREF(), $b->getVar('board_title'));
++	$threadlink = GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title'));
++	echo GWF_Table::column("{$boardlink}<br/>{$threadlink}");
++	echo GWF_Table::column($t->getFirstPosterLink());
++	echo GWF_Table::column($t->getPostCount(), 'gwf_num');
++	echo GWF_Table::column($t->getLastPosterLink());
++	echo GWF_Table::column(GWF_HTML::anchor($t->getLastPageHREF(), $t->displayLastDate()));
++	echo GWF_Table::column($t->getVar('thread_thanks'), 'gwf_num');
++	echo GWF_Table::column($t->getVar('thread_votes_up'), 'gwf_num');
++	echo GWF_Table::rowEnd();
+ }
++echo GWF_Table::end();
+ 
+-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+-echo GWF_Table::display2($headers, $data, $tVars['sort_url']);
++echo $tVars['pagemenu'];
+ ?>
+\ No newline at end of file
+Only in tpl: wc
+diff -ur template/wc4/options.php tpl/wc4/options.php
+--- template/wc4/options.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/wc4/options.php	2011-06-12 06:46:52.000000000 +0200
+@@ -1,5 +1,5 @@
+-<!-- Banner Ads -->
+-<?php echo GWF_Website::getBanners('forum', 'forum'); ?>
+-<?php echo WC_HTML::accountButtons(); ?>
++<?php
++echo WC_HTML::accountButtons();
++?>
+ <div class="gwf_board_quicktree"><?php echo Module_Forum::getNavTree(); ?></div>
+ <?php echo $tVars['form']; ?>
+\ No newline at end of file
+Only in template/wc4: show_post.php
+Only in template/wc4: show_thread.php

@@ -1,0 +1,287 @@
+Only in tpl: baim
+diff -ur template/default/add.php tpl/default/add.php
+--- template/default/add.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/add.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,3 +1,3 @@
+-<div class="gwf_full_width">
+-<?php echo $tVars['form']; ?>
+-</div>
++<?php
++echo $tVars['form'];
++?>
+\ No newline at end of file
+diff -ur template/default/admin.php tpl/default/admin.php
+--- template/default/admin.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/admin.php	2011-05-04 21:33:00.000000000 +0200
+@@ -12,41 +12,37 @@
+ 
+ echo $tVars['page_menu'];
+ 
+-echo GWF_Table::start();
+-echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+ $icon_hidden = GWF_Button::sub($tLang->lang('th_hidden'));
+ $icon_visible = GWF_Button::add(true, $tLang->lang('th_visible'));
++echo GWF_Table::start();
+ foreach ($tVars['news'] as $item)
+ {
+-	
+ 	$item instanceof GWF_News;
+ 	
+ 	$newsid = $item->getID();
+ 	$trans = $item->getTranslations();
+-	$date = $item->displayDate();
+ 	$author = $item->displayAuthor();
+ 	$cat = $item->displayCategory();
++	$date = $item->displayDate();
+ 	
+ 	foreach ($trans as $langid => $t)
+ 	{
+-		var_dump($langid, $t);
+ 		echo GWF_Table::rowStart();
++		echo GWF_Table::column($date, 'gwf_date');
++		echo GWF_Table::column($author);
++		echo GWF_Table::column($cat);
++		echo GWF_Table::column(GWF_Language::getByID($langid)->display('lang_nativename'));
+ 		$title = $t['newst_title'];
+-		$data[] = array(
+-			$date,
+-			$author,
+-			$cat,
+-			GWF_Language::getByID($langid)->display('lang_nativename'),
+-			sprintf('<a href="%snews/edit/%d-%s/langid-%d">%s</a>', GWF_WEB_ROOT, $newsid, Common::urlencodeSEO($title), $langid, $title),
+-			$item->isHidden() ? $icon_hidden : $icon_visible, 
+-		);
++		$href = GWF_WEB_ROOT.sprintf('news/edit/%d-%s/langid-%d', $newsid, Common::urlencodeSEO($title), $langid);
++		echo GWF_Table::column(sprintf('<a href="%s">%s</a>', $href, htmlspecialchars($title)));
++		echo GWF_Table::column($item->isHidden() ? $icon_hidden : $icon_visible);
+ 		echo GWF_Table::rowEnd();
+ 	}
+-	
+ }
+ echo GWF_Table::end();
+ 
+ echo $tVars['page_menu'];
+ 
+-echo GWF_Button::wrap(GWF_Button::add($tLang->lang('btn_add'), GWF_WEB_ROOT.'news/add'));
++$buttons = GWF_Button::add($tLang->lang('btn_add'), GWF_WEB_ROOT.'news/add');
++echo GWF_Button::wrap($buttons);
+ ?>
+Only in template/default: box.php
+Only in tpl/default: box.tpl
+Only in tpl/default: comments.tpl
+diff -ur template/default/edit.php tpl/default/edit.php
+--- template/default/edit.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/edit.php	2011-05-04 21:33:00.000000000 +0200
+@@ -1,3 +1,3 @@
+-<div class="gwf_full_width">
+-<?php echo $tVars['form']; ?>
+-</div>
++<?php
++echo $tVars['form'];
++?>
+\ No newline at end of file
+diff -ur template/default/feed.php tpl/default/feed.php
+--- template/default/feed.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/feed.php	2011-05-04 21:33:00.000000000 +0200
+@@ -5,7 +5,7 @@
+ 		<description><?php echo $tLang->lang('rss_title'); ?></description>
+ 		<language><?php echo $tVars['language']; ?></language>
+ 		<lastBuildDate><?php echo $tVars['build_date']; ?></lastBuildDate>
+-        <pubDate><?php echo $tVars['pub_date']; ?></pubDate>
++		<pubDate><?php echo $tVars['pub_date']; ?></pubDate>
+ 		<image>
+ 			<title><?php echo $tLang->lang('rss_img_title'); ?></title>
+ 			<url><?php echo $tVars['image_url']?></url>
+@@ -13,7 +13,6 @@
+ 			<width><?php echo $tVars['image_width']?></width>
+ 			<height><?php echo $tVars['image_height']?></height>
+ 		</image>
+-		
+ <?php foreach ($tVars['items'] as $item) { $item instanceof GWF_News; ?>
+ 		<item>
+ 			<title><![CDATA[<?php echo $item['title']; ?>]]></title>
+@@ -21,9 +20,7 @@
+ 			<description><![CDATA[<?php echo $item['descr']; ?>]]></description>
+ 			<guid><?php echo $item['guid']; ?></guid>
+ 			<pubDate><?php echo $item['pub_date']; ?></pubDate>
+-			
+ 		</item>
+ <?php } ?>
+-
+ 	</channel>
+ </rss>
+diff -ur template/default/show.php tpl/default/show.php
+--- template/default/show.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/show.php	2011-08-28 08:45:52.000000000 +0200
+@@ -1,49 +1,23 @@
+ <?php
+ $is_staff = $tVars['may_add'];
+-$id = 1;
+ ?>
++<?php $id = 1; ?>
++<div class="gwf_newsbox">
+ 
+-<div class="fl"><?php echo $tVars['page_menu']; ?></div>
+ <?php
+ if ($tVars['can_sign']) {
+-	echo '<div class="gwf_buttons_outer fr"><div class="gwf_buttons">'.GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']).'</div></div>';
++	echo GWF_Button::wrap(GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']));
+ }
+-?>
+-<div class="cb"></div>
+ 
+-<div class="gwf_news_titles">
+-<?php # TITLE SELECT
+-$headers = array(
+-	array($tLang->lang('th_title')),
+-);
+-$data = array();
+-$iso = GWF_Language::getCurrentISO();
+-foreach ($tVars['titles'] as $d)
+-{
+-	$newsid = $d[0];
+-	$title = $d[1];
+-	$catid = 0;
+-	$cat = 'FOO';
+-//	$catid = (int) $d[1];
+-//	$cat = $catid === 0 ? GWF_HTML::lang('no_category') : $d[2];
+-//	$cat = Common::urlencodeSEO($cat);
+-	$url = sprintf(GWF_WEB_ROOT.'news/%s/%d/%s/%s/%s#newsid%s', $iso, $catid, urlencode($cat), $newsid, Common::urlencodeSEO($title), $newsid);
+-	$data[] = array(
+-		sprintf('<a href="%s">%s</a>', $url, $title),
+-	);
+-}
+-echo GWF_Table::display($headers, '', $data, 'date', 'DESC');
+-?>
+-</div>
++echo $tVars['page_menu'];
+ 
++echo '<div class="cb"></div>'.PHP_EOL;
+ 
+-<div class="gwf_newsbox">
+-<?php
+ foreach ($tVars['news'] as $news)
+ {
+ ?>
+-<div class="gwf_newsbox_item gwf_tr_<?php $id=1-$id; echo $id; ?>">
+-	<div><a name="newsid<?php echo $news['news_id']; ?>"></a></div>
++<div class="gwf_newsbox_item">
++	<div><a name="newsid_<?php echo $news['news_id']; ?>"></a></div>
+ 	
+ 	<div class="gwf_newsbox_title">
+ 		<div class="fr">
+@@ -56,7 +30,28 @@
+ 
+ 	<?php #if ($is_staff) { echo '<div class="gwf_newsbox_translate">'.$news->getTranslateSelect().'</div>'; } ?>
+ 
+-	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']); ?></div>
++	<?php
++	$more = '';
++	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true, true)))
++	{
++		$comments instanceof Module_Comments;
++		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
++		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'], 0, $gid)));
++		{
++			$c instanceof GWF_Comments;
++//			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
++//			$more .= '<br/>'.$c->displayTopComments();
++//			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
++			$more .= '<br/>'.$c->displayMore();
++			$more .= '<br/>'.$c->displayTopComments();
++			$more .= '<br/>'.$c->displayReplyForm();
++		}
++	} 
++	?>
++
++	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']) . $more; ?></div>
++	
++	
+ 	
+ 	<?php
+ //	$tid = intval($t['newst_threadid']);
+@@ -91,6 +86,6 @@
+ 	$buttons = '';
+ 	$buttons .= GWF_Button::add($tLang->lang('btn_add'), $tVars['href_add']);
+ 	$buttons .= GWF_Button::generic($tLang->lang('btn_admin_section'), $tVars['module']->getAdminSectionUrl());
+-	echo GWF_HTML::div($buttons, 'gwf_buttons');
++	echo GWF_Button::wrap($buttons);
+ }
+ ?>
+Only in template/default: translate.php
+Only in template: ssy
+Only in template: wc
+Only in template/wc4: box.php
+Only in tpl/wc4: box.tpl
+diff -ur template/wc4/show.php tpl/wc4/show.php
+--- template/wc4/show.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/wc4/show.php	2011-10-30 02:08:47.000000000 +0100
+@@ -1,21 +1,20 @@
+ <?php
+ $is_staff = $tVars['may_add'];
+ ?>
+-
+ <?php $id = 1; ?>
+ <div class="gwf_newsbox">
+ 
+ <?php
+ if ($tVars['can_sign']) {
+-	echo '<div class="gwf_buttons_outer fr"><div class="gwf_buttons">'.GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']).'</div></div>';
++	echo GWF_Button::wrap(GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']));
+ }
++
+ echo $tVars['page_menu'];
+ 
+ echo '<div class="cb"></div>'.PHP_EOL;
+ 
+ if ($tVars['page'] === 1) {
+-	$wc = GWF_Module::getModule('WeChall');
+-	$wc instanceof Module_WeChall;
++	$wc = Module_WeChall::instance();
+ 	echo $wc->showBirthdayNews();
+ 	echo $wc->showChallengeNews();
+ 	echo $wc->showSiteMasterNews();
+@@ -31,15 +30,33 @@
+ 	<div class="gwf_newsbox_title">
+ 		<div class="fr">
+ 			<div class="gwf_newsbox_date gwf_date"><?php echo GWF_Time::displayDate($news['news_date']); ?></div>
+-			<div class="gwf_newsbox_author"><?php echo GWF_HTML::display($news['user_name']); ?></div>
++			<div class="gwf_newsbox_author"><?php echo GWF_HTML::anchor(GWF_WEB_ROOT.'profile/'.$news['user_name'], $news['user_name']); ?></div>
+ 		</div>
+ 		<h3><?php echo GWF_HTML::display($news['newst_title']); ?></h3>
+ 		<div class="cb"></div>
+ 	</div>
+ 
+ 	<?php #if ($is_staff) { echo '<div class="gwf_newsbox_translate">'.$news->getTranslateSelect().'</div>'; } ?>
++	<?php
++	$more = '';
++	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true)))
++	{
++		$comments instanceof Module_Comments;
++		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
++		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'], 0, $gid)));
++		{
++			$c instanceof GWF_Comments;
++//			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
++//			$more .= '<br/>'.$c->displayTopComments();
++//			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
++			$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.htmlspecialchars($news['newst_title']).'-page-1.html');
++//			$more .= '<br/>'.$c->displayTopComments();
++//			$more .= '<br/>'.$c->displayReplyForm();
++		}
++	} 
++	?>
+ 
+-	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']); ?></div>
++	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']).$more; ?></div>
+ 	
+ 	<?php
+ //	$tid = intval($t['newst_threadid']);
+@@ -74,6 +91,6 @@
+ 	$buttons = '';
+ 	$buttons .= GWF_Button::add($tLang->lang('btn_add'), $tVars['href_add']);
+ 	$buttons .= GWF_Button::generic($tLang->lang('btn_admin_section'), $tVars['module']->getAdminSectionUrl());
+-	echo GWF_HTML::div($buttons, 'gwf_buttons');
++	echo GWF_Button::wrap($buttons);
+ }
+ ?>

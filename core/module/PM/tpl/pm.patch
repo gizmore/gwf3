@@ -1,0 +1,236 @@
+Only in template/default: edit.php
+Only in tpl/default: edit.tpl
+diff -ur template/default/folders.php tpl/default/folders.php
+--- template/default/folders.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/folders.php	2011-06-17 23:30:22.000000000 +0200
+@@ -4,7 +4,6 @@
+ 	array($tLang->lang('th_pmf_count'), 'pmf_count', 'DESC'),
+ 	array(),
+ );
+-//$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+ echo GWF_Form::start($tVars['folder_action']);
+ echo GWF_CSRF::hiddenForm('PM_REM_FOLDER');
+ echo GWF_Table::start();
+diff -ur template/default/options.php tpl/default/options.php
+--- template/default/options.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/options.php	2011-06-16 03:22:50.000000000 +0200
+@@ -1,29 +1,30 @@
+-<?php echo GWF_Button::generic($tLang->lang('btn_auto_folder'), $tVars['href_auto_folder']); ?>
+-
+ <?php
++echo GWF_Button::wrapStart();
++echo GWF_Button::generic($tLang->lang('btn_auto_folder'), $tVars['href_auto_folder']);
++echo GWF_Button::wrapEnd();
++
+ echo $tVars['form'];
+-?>
+ 
+-<?php
+ if (count($tVars['ignores']) > 0)
+ {
+-$headers = array(
+-	array($tLang->lang('th_user_name')),#, 'user_name', 'ASC'),
+-	array($tLang->lang('th_actions')),
+-);
+-
+-$data = array();
+-foreach ($tVars['ignores'] as $uname)
+-{
+-	$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($uname);
+-	$data[] = array(
+-		GWF_HTML::display($uname),
+-		GWF_Button::delete($del_href),
++	$headers = array(
++		array($tLang->lang('th_user_name')),#, 'user_name', 'ASC'),
++		array($tLang->lang('th_reason')),#, 'pmi_reason', 'ASC'),
++		array($tLang->lang('th_actions')),
+ 	);
++	echo GWF_Table::start();
++	echo GWF_Table::displayHeaders1($headers);
++	foreach ($tVars['ignores'] as $row)
++	{
++		echo GWF_Table::rowStart();
++		$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($row[0]);
++		echo GWF_Table::column(GWF_HTML::display($row[0]));
++		echo GWF_Table::column(GWF_HTML::display($row[1]));
++		echo GWF_Table::column(GWF_Button::delete($del_href));
++		echo GWF_Table::rowEnd();
++	}
++	echo GWF_Table::end();
+ }
+-$headers = GWF_Table::getHeaders2($headers, '');
+-echo GWF_Table::display2($headers, $data, '');
+-}
+-?>
+ 
+-<?php echo $tVars['form_ignore']; ?>
++echo $tVars['form_ignore'];
++?>
+diff -ur template/default/overview.php tpl/default/overview.php
+--- template/default/overview.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/overview.php	2011-06-17 23:30:22.000000000 +0200
+@@ -25,7 +25,6 @@
+ 	array($tLang->lang('th_pm_title'), 'pm_title', 'ASC'),
+ 	array('<input type="checkbox" onclick="gwfPMToggleAll(this.checked);"/>'),
+ );
+-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+ $uid = GWF_Session::getUserID();
+ 
+ if (count($tVars['pms']) > 0)
+@@ -39,16 +38,16 @@
+ 		$pm instanceof GWF_PM;
+ 		echo GWF_Table::rowStart();
+ 		$reply = GWF_Button::reply($pm->getReplyHREF(), $tLang->lang('btn_reply'));
+-		$fromid = $pm->getFromID();
+-		$toid = $pm->getToID();
+-		$own = $fromid===$toid ? GWF_Session::getUser()->displayProfileLink() : '';
++//		$fromid = $pm->getFromID();
++//		$toid = $pm->getToID();
++//		$own = $fromid===$toid ? GWF_Session::getUser()->displayProfileLink() : '';
+ 		$href = $pm->getDisplayHREF();
+ 		$html_class = $pm->getHTMLClass();
+ 		$icon = sprintf('<a href="%s" class="gwf_pm_icon %s" title="%s" ></a>', $href, $html_class, $tLang->lang($html_class));
+ //		echo GWF_Table::column();
+ 		echo GWF_Table::column(sprintf('<a href="%s">%s</a>', $href, GWF_Time::displayDate($pm->getVar('pm_date'))), 'gwf_date');
+-		echo GWF_Table::column($uid === $fromid ? $own : $reply.sprintf('%s', $pm->getSender()->displayProfileLink()));
+-		echo GWF_Table::column($uid === $toid ? $own : $reply.sprintf('%s', $pm->getReceiver()->displayProfileLink()));
++		echo GWF_Table::column($pm->isRecipient() ? $reply.sprintf('%s', $pm->getSender()->displayProfileLink()) : '');
++		echo GWF_Table::column($pm->isSender() ? $reply.sprintf('%s', $pm->getReceiver()->displayProfileLink()) : '');
+ 		echo GWF_Table::column("$icon ".GWF_HTML::anchor($href, $pm->getVar('pm_title')));
+ 		echo GWF_Table::column(sprintf('<input type="checkbox" name="pm[%s]" />', $pm->getID()));
+ 		echo GWF_Table::rowEnd();
+@@ -56,7 +55,6 @@
+ 	echo GWF_Table::rowStart();
+ 	echo GWF_Table::column(sprintf('<input type="checkbox" name="toggle" onclick="gwfPMToggleAll(this.checked);" />'), 'ri', 5);
+ 	echo GWF_Table::rowEnd();
+-	$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+ 	$btns =
+ 		'<input type="submit" name="delete" value="Delete" />'.
+ 		$tVars['folder_select'].
+Only in template/default: overview_guests.php
+Only in tpl/default: overview_guests.tpl
+diff -ur template/default/search.php tpl/default/search.php
+--- template/default/search.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/search.php	2011-06-17 23:30:22.000000000 +0200
+@@ -16,14 +16,13 @@
+ 	array('<input type="checkbox" onclick="gwfPmToggleAll"/>'),
+ );
+ $uid = GWF_Session::getUserID();
+-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+ 
+ echo $tVars['pagemenu'];
+ 
+ echo sprintf('<form id="gwf_pm_form" method="post" action="%s">', $tVars['form_action']);
+ 
+ echo GWF_Table::start();
+-echo GWF_Table::displayHeaders($headers);
++echo GWF_Table::displayHeaders2($headers, $tVars['sort_url']);
+ foreach ($tVars['pms'] as $pm)
+ {
+ 	$pm instanceof GWF_PM;
+Only in tpl/default: show.tpl
+diff -ur template/default/trashcan.php tpl/default/trashcan.php
+--- template/default/trashcan.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/default/trashcan.php	2011-06-17 23:30:22.000000000 +0200
+@@ -12,29 +12,34 @@
+ $data = array();
+ $uid = GWF_Session::getUserID();
+ echo sprintf('<form id="gwf_pm_form" method="post" action="%s">', $tVars['form_action']);
+-//echo sprintf('<table>');
++echo GWF_Table::start();
++echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
+ foreach ($tVars['pms'] as $pm)
+ {
+ 	$pm instanceof GWF_PM;
++	echo GWF_Table::rowStart();
++	echo GWF_Table::column('<span class="'.$pm->getHTMLClass().'" ></span>');
++	echo GWF_Table::column(GWF_Time::displayDate($pm->getVar('pm_date')));
++	echo GWF_Table::column($pm->getSender()->display('user_name'));
++	echo GWF_Table::column($pm->getReceiver()->display('user_name'));
++	echo GWF_Table::column(GWF_HTML::anchor($pm->getDisplayHREF(), $pm->getVar('pm_title')));
++	echo GWF_Table::column(sprintf('<input type="checkbox" name="pm[%s]" />', $pm->getID()));
+ //	$is_read = $pm->isOptionEnabled(GWF_PM::READ);
+ //	$is_sender = $pm->getSender()->getID() === $uid;
+ //	$is_deleted = $pm->getReceiver()->
+ //	$class =  $is_sender ? ($is_read ? 'gwf_pm_read' : 'gwf_pm_unread') : ($is_read ? 'gwf_pm_new' : 'gwf_pm_old');
+ 	
+-	$data[] = array(
+-		sprintf('<span class="%s" />', $pm->getHTMLClass()),
+-		sprintf('%s', GWF_Time::displayDate($pm->getVar('pm_date'))),
+-		sprintf('%s', $pm->getSender()->display('user_name')),
+-		sprintf('%s', $pm->getReceiver()->display('user_name')),
+-		sprintf('%s', GWF_HTML::anchor($pm->getDisplayHREF(), $pm->getVar('pm_title'))),
+-		sprintf('<input type="checkbox" name="pm[%s]" />', $pm->getID()),
+-	);
++//	$data[] = array(
++//		sprintf('<span class="%s" />', $pm->getHTMLClass()),
++//		sprintf('%s', GWF_Time::displayDate($pm->getVar('pm_date'))),
++//		sprintf('%s', $pm->getSender()->display('user_name')),
++//		sprintf('%s', $pm->getReceiver()->display('user_name')),
++//		sprintf('%s', GWF_HTML::anchor($pm->getDisplayHREF(), $pm->getVar('pm_title'))),
++//		sprintf('<input type="checkbox" name="pm[%s]" />', $pm->getID()),
++//	);
+ }
+-$headers = GWF_Table::getHeaders2($headers, $tVars['sort_url']);
+-$btns = '<input type="submit" name="restore" value="'.$tLang->lang('btn_restore').'" />';
+-$raw_body = '<tr><td colspan="4"></td><td class="ri">'.$btns.'</td><td>'.'<input type="checkbox" onclick="gwfPMToggleAll(this.checked);"/>'.'</td></tr>';
+-echo GWF_Table::display2($headers, $data, $tVars['sort_url'], '', $raw_body);
+-//echo sprintf('</table>');
++echo GWF_Table::end();
++
+ echo sprintf('</form>');
+ 
+ echo $tVars['form_empty'];
+Only in tpl: wc
+diff -ur template/wc4/options.php tpl/wc4/options.php
+--- template/wc4/options.php	2011-05-04 21:33:00.000000000 +0200
++++ tpl/wc4/options.php	2011-06-12 06:46:52.000000000 +0200
+@@ -1,25 +1,30 @@
+-<?php echo WC_HTML::accountButtons(); ?>
+-<?php echo GWF_Button::generic($tLang->lang('btn_auto_folder'), $tVars['href_auto_folder']); ?>
+-<?php echo $tVars['form']; ?>
+-
+ <?php
+-$headers = array(
+-	array($tLang->lang('th_user_name')),#, 'user_name', 'ASC'),
+-	array($tLang->lang('th_actions')),
+-);
++echo WC_HTML::accountButtons();
++
++echo GWF_Button::wrapStart();
++echo GWF_Button::generic($tLang->lang('btn_auto_folder'), $tVars['href_auto_folder']);
++echo GWF_Button::wrapEnd();
+ 
+-$data = array();
++echo $tVars['form'];
+ 
+-foreach ($tVars['ignores'] as $uname)
++if (count($tVars['ignores']) > 0)
+ {
+-	$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($uname);
+-	$data[] = array(
+-		GWF_HTML::display($uname),
+-		GWF_Button::delete($del_href),
++	$headers = array(
++		array($tLang->lang('th_user_name')),#, 'user_name', 'ASC'),
++		array($tLang->lang('th_actions')),
+ 	);
++	echo GWF_Table::start();
++	echo GWF_Table::displayHeaders1($headers);
++	foreach ($tVars['ignores'] as $uname)
++	{
++		echo GWF_Table::rowStart();
++		$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($uname);
++		echo GWF_Table::column(GWF_HTML::display($uname));
++		echo GWF_Table::column(GWF_Button::delete($del_href));
++		echo GWF_Table::rowEnd();
++	}
++	echo GWF_Table::end();
+ }
+-$headers = GWF_Table::getHeaders2($headers, '');
+-echo GWF_Table::display2($headers, $data, '');
+-?>
+ 
+-<?php echo $tVars['form_ignore']; ?>
++echo $tVars['form_ignore'];
++?>
