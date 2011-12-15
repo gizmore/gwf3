@@ -7,14 +7,14 @@
 <div class="gwf_table"><table>
 {$headers}
 
+	{assign var="gid" value={$group->getID()}}
 {foreach $userids as $userid}
-	{if false === GWF_User::getByID($userid)}
-		{assign var="u" value="{GWF_Guest::getGuest()}"}
-	{else}
-		{assign var="u" value="{GWF_User::getByID($userid)}"}
-	{/if}
 	<tr>
-	{GWF_Table::column($u->displayProfileLink())}
+	{if false === GWF_User::getByID($userid)}
+		{GWF_Table::column(GWF_Guest::getGuest()->displayProfileLink())}
+	{else}
+		{GWF_Table::column(GWF_User::getByID($userid)->displayProfileLink())}
+	{/if}
 	{GWF_Table::column(GWF_Button::delete( $module->getMethodURL('GroupEdit', "&rem={$userid}&gid={$gid}"), $lang->lang('btn_rem_from_group') ))}
 	</tr>
 {/foreach}

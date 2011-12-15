@@ -116,7 +116,7 @@ final class Admin_GroupEdit extends GWF_Method
 			'sort_url' => '',
 			'headers' => GWF_Table::displayHeaders1(array(array($module->lang('th_user_name')),array(''),), ''),
 		);
-		return $module->templatePHP('groupedit.php', $tVars);
+		return $module->template('groupedit.tpl', $tVars);
 	}
 	
 	###############
