@@ -42,7 +42,7 @@ $lang = array(
 
 	'err_page' => 'Unknown page.',
 	'err_404' => 'The page you are looking for does not exist.',
-	'err_url' => 'Your url looks invalid or exceeds 255 characters.',
+	'err_url' => 'Your url looks invalid or exceeds 255 characters. It may not begin with /.',
 	'err_groups' => 'Your selected groups are invalid.',
 	'err_title' => 'Your page title is invalid. It has to be between %s and %s chars long.',
 	'err_descr' => 'Your meta description is invalid. It has to be between %s and %s chars long.',

@@ -11,8 +11,8 @@
 	{/if}
 	<div>{$lang->lang('th_status')}: {$ticket->displayStatus()}</div>
 	{if !$ticket->isClosed()}
-	<div>{button url=$href_solve title=$lang->lang('btn_close') text=$lang->lang('btn_close')}</div>
-	<div>{button url=$href_unsolve title=$lang->lang('btn_unsolve') text=$lang->lang('btn_unsolve')}</div>
+	<div class="gwf_buttons gwf_buttons_outer">{button url=$href_solve title=$lang->lang('btn_close') text=$lang->lang('btn_close')}</div>
+	<div class="gwf_buttons gwf_buttons_outer">{button url=$href_unsolve title=$lang->lang('btn_unsolve') text=$lang->lang('btn_unsolve')}</div>
 	{/if}
 	{if $ticket->isFAQ()}
 	<div>{$lang->lang('info_ticket_faq')} {button url=$href_nofaq text=$lang->lang('btn_nofaq') title=$lang->lang('btn_nofaq')}</div>
@@ -35,7 +35,7 @@
 	<div>{$msg->displayAuthor()}</div>
 	<div>{$msg->displayDate()}</div>
 	<div>{$msg->displayMessage()}</div>
-	<div>
+	<div class="gwf_buttons gwf_buttons_outer">
 	{if $is_admin && $ticket->isInFAQ()}
 		{if $msg->isFAQ()}
 		{$lang->lang('info_msg_faq')} {button url=$msg->hrefFaq('0') text=$lang->lang('btn_noinfaq') title=$lang->lang('btn_noinfaq')}

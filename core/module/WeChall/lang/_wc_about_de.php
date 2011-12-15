@@ -40,7 +40,7 @@ $lang = array(
 	'Gizmore' =>
 		'Das Ziel ist es ein Globales Ranking für Challenger zu erstellen.<br/>'.
 		'Auch möchten wir eine Übersicht der aktiven und populären Seiten anbieten, und Spieler motivieren diese auszuprobieren.<br/>'.
-		'WeChall ist ausserdem mein &quot;Spielplatz zum Programmieren&quot; :)',
+		'WeChall ist außerdem mein &quot;Spielplatz zum Programmieren&quot; :)',
 	'Kender' =>
 		'Naja, ich hatte diesen Server im Datencenter, der nicht viel zu tun hatte... :)<br/>'.
 		'Und wie eine menge Leute dachte ich über eine übergreifende Statistikseite für Challengeseiten nach.<br/>'.

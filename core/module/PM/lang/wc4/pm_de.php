@@ -7,7 +7,7 @@ $lang = array(
 
 	# Info
 	'pt_guest' => GWF_SITENAME.' Gäste PN',
-	'pi_guest' => 'Auf '.GWF_SITENAME.' können sie auch als Gast eine PN senden. Der Benutzer muss dies explizit erlauben, ausserdem kann er ihnen keine Antwort schreiben. Dennoch kann es benutzt werden um schnell einen Fehler zu melden.',
+	'pi_guest' => 'Auf '.GWF_SITENAME.' können sie auch als Gast eine PN senden. Der Benutzer muss dies explizit erlauben, ußerdem kann er ihnen keine Antwort schreiben. Dennoch kann es benutzt werden um schnell einen Fehler zu melden.',
 
 	'pi_trashcan' => 'Hier ist ihr PN-Papierkorb. Nachrichten können nicht wirklich gelöscht werden. Sie können aber Nachrichten aus dem Papierkorb wiederherstellen.',
 	

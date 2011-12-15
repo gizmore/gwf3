@@ -63,7 +63,7 @@ final class PageBuilder_Add extends GWF_Method
 	public function validate_tags($m, $arg) { return GWF_Validator::validateString($m, 'tags', $arg, 4, 255, false); }
 	public function validate_content($m, $arg) { return GWF_Validator::validateString($m, 'content', $arg, 4, 65536, false); }
 	public function validate_inline_css($m, $arg) { return false; }
-	public function validate_url($m, $arg) { return GWF_Validator::validateString($m, 'url', $arg, 4, 255, false); }
+	public function validate_url($m, $arg) { return $arg[0] !== '/' ? GWF_Validator::validateString($m, 'url', $arg, 4, 255, false): true; }
 	public function validate_lang($m, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
 	public function validate_type($m, $arg) { return GWF_PageType::validateType($m, $arg); }
 	public function validate_cat($m, $arg) { return GWF_CategorySelect::validateCat($arg, true); }
