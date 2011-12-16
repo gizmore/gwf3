@@ -28,18 +28,17 @@ if (false === ($result = $db->queryRead($query)))
 }
 while (false !== ($row = $db->fetchAssoc($result)))
 {
-	
 	$username = $row['username'];
 	if (false === ($uid = getUID($username)))
 	{
-		$nextuid = file_get_contents($uidfile);
+		$nextuid = trim(file_get_contents($uidfile));
 		$nextuid++;
 		$uid = $nextuid;
 		file_put_contents($uidfile, $uid);
 	}
 	system("/root/wechall/adduser.sh {$uid} {$username} {$row['password']}");
-	GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, $username);
-	
+	GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
+	chmod("/home/user/{$username}/level", 0705);
 }
 
 $db->free($result);
