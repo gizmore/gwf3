@@ -42,7 +42,7 @@ final class GWF_BBCode
 	
 	public static function replaceSmileys($text)
 	{
-		return str_replace(array_keys(self::$smileysReplace), array_values(self::$smileysReplace), $text);
+		return self::$allowSmileys ? str_replace(array_keys(self::$smileysReplace), array_values(self::$smileysReplace), $text): $text;
 	}
 	
 	########################
