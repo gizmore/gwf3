@@ -11,7 +11,7 @@ function setup_chall($entry, $fullpath, $username)
 function getUID($username)
 {
 	$susername = escapeshellarg($username);
-	$uid = exec("id {$susername}");
+	$uid = exec("id \"{$susername}\"");
 	$pusername = preg_quote($username);
 	if (1 !== preg_match("/(\\d+)\\({$pusername}\\)/", $uid, $matches))
 	{
@@ -36,9 +36,14 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		$uid = $nextuid;
 		file_put_contents($uidfile, $uid);
 	}
-	system("/root/wechall/adduser.sh {$uid} {$username} {$row['password']}");
-	GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
-	chmod("/home/user/{$username}/level", 0705);
+	if ($uid > 3000)
+	{
+		$eusername = escapeshellarg($row['username']);
+		$epassword = escapeshellarg($row['password']);
+		system("/root/wechall/adduser.sh \"{$uid}\" \"{$eusername}\" \"{$epassword}\"");
+		GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
+		chmod("/home/user/{$username}/level", 0705);
+	}
 }
 
 $db->free($result);
