@@ -1,9 +1,12 @@
 <?php
 $dirname = $home.'/level/5';
-if (!GWF_File::createDir($dirname))
+if (!Common::isDir($dirname))
 {
-	echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
-	return;
+	if (@mkdir($dirname, 00705))
+	{
+		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
+		return;
+	}
 }
 
 $filename = $home.'/level/5/README.txt';

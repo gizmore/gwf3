@@ -40,9 +40,18 @@ while (false !== ($row = $db->fetchAssoc($result)))
 	{
 		$eusername = escapeshellarg($row['username']);
 		$epassword = escapeshellarg($row['password']);
-		system("/root/wechall/adduser.sh \"{$uid}\" \"{$eusername}\" \"{$epassword}\"");
+		system("/root/wechall/adduser.sh {$uid} {$eusername} {$epassword}");
 		GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
-		chmod("/home/user/{$username}/level", 0705);
+		
+		$dirname = "/home/user/{$username}/level";
+		chmod($dirname, 0705);
+		chown($dirname, $username);
+		chgrp($dirname, $username);
+
+		$dirname = "/home/user/{$username}";
+		chmod($dirname, 0700);
+		chown($dirname, $username);
+		chgrp($dirname, $username);
 	}
 }
 
