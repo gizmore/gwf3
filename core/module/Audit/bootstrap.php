@@ -5,7 +5,7 @@ require_once '/opt/php/gwf3/gwf3.class.php';
 # Init
 $gwf = new GWF3(getcwd(), array(
 		'bootstrap' => false,
-		'website_init' => true,
+		'website_init' => false,
 		'autoload_modules' => false,
 		'load_module' => false,
 		'load_config' => false,

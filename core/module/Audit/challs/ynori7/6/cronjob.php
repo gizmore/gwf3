@@ -5,16 +5,16 @@ function cron_level_6($entry, $fullpath, $args=NULL)
 	$home = $fullpath;
 	$username = $entry;
 	
-	$filename = $home.'/level/6/solution.txt';
+	$solution = $home.'/level/6/solution.txt';
 	if (Common::isFile($filename))
 	{
 		$solution = $home.'/level/6/real_solution.txt';
 		if (!Common::isFile($solution))
 		{
 			file_put_contents($solution, 'The solution to level 6 is "SymbolicFlag".');
-			chmod($filename, '0700');
-			chown($filename, $solution);
-			chgrp($filename, $solution);
+			chmod($solution, '0700');
+			chown($solution, $username);
+			chgrp($solution, $username);
 		}
 	}
 }
