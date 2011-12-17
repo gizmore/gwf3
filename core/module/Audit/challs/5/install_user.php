@@ -2,7 +2,7 @@
 $dirname = $home.'/level/5';
 if (!Common::isDir($dirname))
 {
-	if (@mkdir($dirname, 00705))
+	if (!@mkdir($dirname, 0705, true))
 	{
 		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
 		return;
