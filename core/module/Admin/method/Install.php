@@ -131,7 +131,7 @@ final class Admin_Install extends GWF_Method
 		$errors = GWF_ModuleLoader::installModule($install, $dropTable);
 		
 		if ($errors !== '') {
-			return $errors.$module->message('err_install').$module->requestMethodB('Modules');
+			return $errors.$module->error('err_install').$module->requestMethodB('Modules');
 		}
 		
 //		if (false === ($install->saveOption(GWF_Module::ENABLED, true))) {

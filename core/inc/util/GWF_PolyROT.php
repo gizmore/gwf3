@@ -5,12 +5,14 @@
  */
 final class GWF_PolyROT
 {
+	const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	
 	public static function encrypt($message, $key)
 	{
-		$charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$message = strtoupper($message);
-		$key = strtoupper($key);
-		if (false === self::checkArgs($message, $key))
+		$charset = self::CHARSET;
+		$message = trim(strtoupper($message));
+		$key = trim(strtoupper($key));
+		if (!self::checkArgs($message, $key))
 		{
 			return false;
 		}
@@ -36,9 +38,9 @@ final class GWF_PolyROT
 
 	public static function decrypt($message, $key)
 	{
-		$charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$message = strtoupper($message);
-		$key = strtoupper($key);
+		$charset = self::CHARSET;
+		$message = trim(strtoupper($message));
+		$key = trim(strtoupper($key));
 		if (false === self::checkArgs($message, $key))
 		{
 			return false;
@@ -47,7 +49,7 @@ final class GWF_PolyROT
 		$back = '';
 		$len = strlen($message);
 		$klen = strlen($key);
-		$clen = strlen($charset);
+		$clen = strlen(self::CHARSET);
 		for ($i = 0; $i < $len; $i++)
 		{
 			if ($message[$i] === ' ')
@@ -76,11 +78,13 @@ final class GWF_PolyROT
 		
 		if (!preg_match('/^[A-Z ]+$/D', $message))
 		{
+			echo "ERRMSG";
 			return false;
 		}
 
 		if (!preg_match('/^[A-Z]+$/D', $key))
 		{
+			echo "ERRKEY: $key\n";
 			return false;
 		}
 		

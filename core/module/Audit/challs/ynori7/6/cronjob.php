@@ -5,7 +5,7 @@ function cron_level_6($entry, $fullpath, $args=NULL)
 	$home = $fullpath;
 	$username = $entry;
 	
-	$solution = $home.'/level/6/solution.txt';
+	$filename = $home.'/level/6/solution.txt';
 	if (Common::isFile($filename))
 	{
 		$solution = $home.'/level/6/real_solution.txt';

@@ -7,6 +7,7 @@ if (!Common::isDir($dirname))
 		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
 		return;
 	}
+	chmod($dirname, 0705);
 }
 
 $filename = $home.'/level/4/README.txt';

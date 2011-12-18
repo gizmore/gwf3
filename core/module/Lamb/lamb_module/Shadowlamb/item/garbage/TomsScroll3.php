@@ -13,13 +13,11 @@ final class Item_TomsScroll3 extends SR_QuestItem
 	
 	private function getCiphertext(SR_Player $player)
 	{
-		$ct = base64_decode('C9RJy1K5IXpZkCXs/IpuY5+Yb3QlYjGwdmeLH/uddAXyA/hJSYt3HiubjWMe7NxikFPX9Hs9CaqE4X4C1j8HqXh3XI7BrKM12afqX5QCAlkfWd5nLajkrcAbck8AZ115');
+		$ct = base64_decode('C9RJy1K5IXpZkCXs/IpuY5+Yb3QlYjGwdmeLH/uddAXyA/hJSYt3HiubjWMe7NxikFPX9Hs9CaqE4X4C1j8HqSEs6IJz23nV0eRbfjgHbCoFKYr/J04DvZ9VoTmkYYCI');
 		$ct = GWF_AES::decrypt4($ct, LAMB_PASSWORD2, LAMB_PASSWORD2);
 		$ct .= $this->getSolution($player);
 		$ct = preg_replace('/[^A-Z ]/i', '', $ct);
 		$pw = GWF_AES::decrypt4(base64_decode('PXa5vs9yDDi5reJlkUVLGFxldG+VjXJ6s18KFIWTlqE='), LAMB_PASSWORD2, LAMB_PASSWORD2);
-		var_dump($player->getName());
-		var_dump($ct);
 		return GWF_PolyROT::encrypt($ct, $pw);
 	}
 	

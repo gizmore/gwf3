@@ -66,21 +66,21 @@ class GWF_Message {
     );
     
     private static $bbSmileyPath;
-    public function bbSmileyPath()
+    public static function bbSmileyPath()
     {
     	if(!isset(self::$bbSmileyPath))
-	{
-		$path = sprintf('img/%s/smile/', GWF_ICON_SET);
-		if(is_dir(GWF_WWW_PATH.$path))
 		{
-			self::$bbSmileyPath = $path;
+			$path = sprintf('img/%s/smile/', GWF_ICON_SET);
+			if(is_dir(GWF_WWW_PATH.$path))
+			{
+				self::$bbSmileyPath = $path;
+			}
+			else
+			{
+				self::$bbSmileyPath = 'img/default/smile/';
+			}
 		}
-		else
-		{
-			self::$bbSmileyPath = 'img/default/smile/';
-		}
-	}
-	return self::$bbSmileyPath;
+		return self::$bbSmileyPath;
     }
 
     private static $bbSmileys = array(
