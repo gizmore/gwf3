@@ -1,54 +1,54 @@
 <!-- GWF3 BB CODE BAR  -->
 <div class="gwf3_bb_code_bar">
 <div>
-	<img src="{$root}img/bb/b.png"
+	<img src="{$root}img/{$iconset}/bb/b.png"
 		alt="[b]{$gwfl->bbhelp_b()}[/b]"
 		title="[b]{$gwfl->bbhelp_b()}[/b]"
 		onclick="return bbInsert('{$key}', '[b]', '[/b]')" />
 		
-	<img src="{$root}img/bb/i.png"
+	<img src="{$root}img/{$iconset}/bb/i.png"
 		alt="[i]{$gwfl->bbhelp_i()}[/i]"
 		title="[i]{$gwfl->bbhelp_i()}[/i]"
 		onclick="return bbInsert('{$key}', '[i]', '[/i]')" />
 		
-	<img src="{$root}img/bb/u.png"
+	<img src="{$root}img/{$iconset}/bb/u.png"
 		alt="[u]{$gwfl->bbhelp_u()}[/u]"
 		title="[u]{$gwfl->bbhelp_u()}[/u]"
 		onclick="return bbInsert('{$key}', '[u]', '[/u]')" />
 	
-	<img src="{$root}img/bb/code.png"
+	<img src="{$root}img/{$iconset}/bb/code.png"
 		alt="[code=lang]{$gwfl->bbhelp_code()}[/code]"
 		title="[code=lang]{$gwfl->bbhelp_code()}[/code]"
 		onclick="return bbInsertCode('{$key}');" />
 	
-	<img src="{$root}img/bb/quote.png" 
+	<img src="{$root}img/{$iconset}/bb/quote.png" 
 		alt="[quote=username]{$gwfl->bbhelp_quote()}[/quote]" 
 		title="[quote=username]{$gwfl->bbhelp_quote()}[/quote]" 
 		onclick="return bbInsert('{$key}', '[quote=Unknown]', '[/quote]')" />
 
-	<img src="{$root}img/bb/url.png" 
+	<img src="{$root}img/{$iconset}/bb/url.png" 
 		alt="[url=url]{$gwfl->bbhelp_url()}[/url] or [url]url[/url]" 
 		title="[url=url]{$gwfl->bbhelp_url()}[/url] or [url]url[/url]" 
 		onclick="return bbInsertURL('{$key}')" />
 
-	<img src="{$root}img/bb/email.png"
+	<img src="{$root}img/{$iconset}/bb/email.png"
 		alt="[email=email@url]{$gwfl->bbhelp_email()}[/email] or [email]email[/email]" 
 		title="[email=email@url]{$gwfl->bbhelp_email()}[/email] or [email]email[/email]" 
 		onclick="return bbInsert('{$key}', '[email]', '[/email]')" />
 	
-	<img src="{$root}img/bb/noparse.png"
+	<img src="{$root}img/{$iconset}/bb/noparse.png"
 		alt="[noparse]{$gwfl->bbhelp_noparse()}[/noparse]"
 		title="[noparse]{$gwfl->bbhelp_noparse()}[/noparse]"
 		onclick="return bbInsert('{$key}', '[noparse]', '[/noparse]')"
 	/>
 	
-	<img src="{$root}img/bb/score.png"
+	<img src="{$root}img/{$iconset}/bb/score.png"
 		alt="[score=5]{$gwfl->bbhelp_level()}[/score]"
 		title="[score=5]{$gwfl->bbhelp_level()}[/score]"
 		onclick="return bbInsert('{$key}', '[score=5]', '[/score]')"
 	/>
 	
-	<img src="{$root}img/bb/spoiler.png" 
+	<img src="{$root}img/{$iconset}/bb/spoiler.png" 
 		alt="[spoiler]{$gwfl->bbhelp_spoiler()}[/spoiler]"
 		title="[spoiler]{$gwfl->bbhelp_spoiler()}[/spoiler]"
 		onclick="return bbInsert('{$key}', '[spoiler]', '[/spoiler]')"

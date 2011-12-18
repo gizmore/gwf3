@@ -199,10 +199,10 @@ final class VersionServer_Zipper extends GWF_Method
 			return $module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
-//		if (false === ($this->zipDir($archive, 'img/country', false))) {
+//		if (false === ($this->zipDir($archive, 'img/default/country', false))) {
 //			return $module->error('err_zip', array(__FILE__, __LINE__));
 //		}
-//		if (false === ($this->zipDir($archive, 'img/smile', false))) {
+//		if (false === ($this->zipDir($archive, 'img/default/smile', false))) {
 //			return $module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 

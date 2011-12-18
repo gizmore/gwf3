@@ -65,7 +65,24 @@ class GWF_Message {
     	),
     );
     
-    private static $bbSmileyPath = 'img/smile/';
+    private static $bbSmileyPath;
+    public function bbSmileyPath()
+    {
+    	if(!isset(self::$bbSmileyPath))
+	{
+		$path = sprintf('img/%s/smile/', GWF_ICON_SET);
+		if(is_dir(GWF_WWW_PATH.$path))
+		{
+			self::$bbSmileyPath = $path;
+		}
+		else
+		{
+			self::$bbSmileyPath = 'img/default/smile/';
+		}
+	}
+	return self::$bbSmileyPath;
+    }
+
     private static $bbSmileys = array(
     	'=D' => array('002_biggrin.gif', 'Yay'),
     	
@@ -207,7 +224,7 @@ class GWF_Message {
 
 		self::init($allowSmiley, $highlight);
 		
-//    	ubbsetsmileys(self::$bbSmileys, GWF_WEB_ROOT.self::$bbSmileyPath, $allowIMG, $allowSmiley);
+//    	ubbsetsmileys(self::$bbSmileys, GWF_WEB_ROOT.self::bbSmileyPath(), $allowIMG, $allowSmiley);
     	
 //		self::$parser->setHighlight($highlight);
 		
@@ -218,9 +235,9 @@ class GWF_Message {
     
     private static function init($allowSmiley, $highlight)
     {
-    	GWF_BBCode::initSmileys(self::$bbSmileys, self::$bbSmileyPath, $allowSmiley);
+    	GWF_BBCode::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
     	GWF_BBCode::initHighlighter($highlight);
-//    	GWF_BB3::initSmileys(self::$bbSmileys, self::$bbSmileyPath, $allowSmiley);
+//    	GWF_BB3::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
 //    	GWF_BB3::initHighlighter($highlight);
     }
     
@@ -263,7 +280,7 @@ class GWF_Message {
 			$showsmiley = $user->isOptionEnabled(USER_OPTION_SHOW_SMILEYS);
 		}
 		
-		ubbsetsmileys(self::$bbSmileys, self::$bbSmileyPath, $showimgs, $showsmiley);
+		ubbsetsmileys(self::$bbSmileys, self::bbSmileyPath(), $showimgs, $showsmiley);
 		#echo $this->message;
 		
 		return '<div class="quickerubb">'.$parser->parse($this->message).'</div>';

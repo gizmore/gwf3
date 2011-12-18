@@ -67,14 +67,14 @@ final class GWF_Country extends GDO
 	{
 		return self::displayFlagS2($this->getID(), $this->getVar('country_name'));
 //		$id = $this->getID();
-//		$path = GWF_WEB_ROOT.'img/country/'.$id;
+//		$path = sprintf('%simg/%s/country/%s',GWF_WEB_ROOT, GWF_ICON_SET, $id);
 //		$t = $this->display('country_name');
 //		return sprintf('<img src="%s" width="30" height="18" alt="%s" title="%s" />', $path, $t, $t).PHP_EOL;
 	}
 	
 	public static function displayFlagS2($countryid, $countryname)
 	{
-		$path = GWF_WEB_ROOT.'img/country/'.$countryid;
+		$path = sprintf('%simg/%s/country/%s',GWF_WEB_ROOT, GWF_ICON_SET, $countryid);
 		$t = htmlspecialchars($countryname);
 		return sprintf('<img src="%s" width="30" height="18" title="%s" alt="%s" />', $path, $t, $t).PHP_EOL;
 	}
