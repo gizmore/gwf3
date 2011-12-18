@@ -17,8 +17,8 @@ final class GWF_Button
 	{
 		if (self::$templateButtons === true)
 		{
-			self::$templateButtons = GWF_Template::templatePHPMain('buttons.php');
-			self::$templateTooltip = GWF_Template::templatePHPMain('tooltip.php');
+			self::$templateButtons = GWF_Template::templateMain('buttons.tpl');
+			self::$templateTooltip = GWF_Template::templateMain('tooltip.tpl');
 		}
 	}
 	
