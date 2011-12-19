@@ -71,7 +71,7 @@ class SR_Player extends GDO
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
 //	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
-	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief','orc'=>'orcas','ele'=>'elephants','sat'=>'spellatk','sde'=>'spelldef','cas'=>'casting');
+	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief','orc'=>'orcas','ele'=>'elephants','sat'=>'spellatk','sde'=>'spelldef','cas'=>'casting','alc'=>'alchemy');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
 	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
 	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Magic','Redmond','Seattle','Delaware');
@@ -1428,12 +1428,12 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getInvItem($invid)
+	public function getInvItem($arg)
 	{
-		if (is_numeric($invid)) {
-			return $this->getItemByID($this->getInventorySorted(), $invid, $this->sr4_inventory);
+		if (is_numeric($arg)) {
+			return $this->getItemByID($this->getInventorySorted(), $arg, $this->sr4_inventory);
 		} else {
-			return $this->getInvItemByName($invid);
+			return $this->getInvItemByName($arg);
 		}
 	}
 	

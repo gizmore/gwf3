@@ -685,16 +685,19 @@ final class SR_Party extends GDO
 		if (false !== ($location = $this->getLocationClass()))
 		{
 			$this->max_dist = $location->getAreaSize();
+			printf("SR_Party::setupMaxDist() with location %s = %s.\n", $location->getName(), $this->max_dist);
 		}
 		elseif (false !== ($city = $this->getCityClass()))
 		{
 			$this->max_dist = $city->getAreaSize();
+			printf("SR_Party::setupMaxDist() with city %s = %s.\n", $city->getName(), $this->max_dist);
 		}
 		else
 		{
-			$this->max_dist = 14;
+			$this->max_dist = 15.0;
+			printf("SR_Party::setupMaxDist() with default%s.\n", $this->max_dist);
 		}
-		$this->max_dist = Common::clamp(round($this->max_dist/2, 1), 1, 99999);
+		$this->max_dist = Common::clamp(round($this->max_dist/2, 1), 1.0, 99999.9);
 	}
 	
 	##############

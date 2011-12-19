@@ -14,13 +14,13 @@ abstract class SR_Consumable extends SR_Usable
 //		}
 
 		# Consume it
-		$this->onConsume($player);
-		$this->increase('sr4it_amount', -1);
-		if ($this->getAmount() === 0) {
-			$this->deleteItem($player);
+		if ($this->useAmount($player, 1))
+		{
+			$this->onConsume($player);
 		}
 		
-		if ($busy > 0) {
+		if ($busy > 0)
+		{
 			$busy = $player->busy($busy);
 		}
 		
@@ -62,6 +62,7 @@ abstract class SR_Potion extends SR_Drink
 		parent::onItemUse($player, $args);
 		$empty_bottle = SR_Item::createByName('EmptyBottle');
 		$player->giveItems(array($empty_bottle));
+		
 	}
 }
 

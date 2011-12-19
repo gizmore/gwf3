@@ -16,6 +16,11 @@ abstract class SR_Spell
 	public abstract function getCastTime($level);
 	public abstract function getManaCost(SR_Player $player, $level);
 	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
+	
+	const MODE_SPELL = 0;
+	const MODE_POTION = 1; 
+	private $mode = self::MODE_SPELL;
+	public function setMode($mode) { $this->mode = $mode; }
 
 	##############
 	### Loader ###
@@ -117,15 +122,20 @@ abstract class SR_Spell
 	{
 		return $this->getManaCost($player, $level) <= $player->getMP();
 	}
-	
+
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
-		if ($this->isOffensive()) {
-			if (!$player->isFighting()) {
+		if ($this->isOffensive())
+		{
+			if ($this->mode === self::MODE_POTION)
+			{
+			}
+			elseif (!$player->isFighting())
+			{
 				$player->message(sprintf('The spell %s works in combat only.', $this->getName()));
 				return false;
 			}
-			if (count($args) === 0) {
+			elseif (count($args) === 0) {
 				$members = $player->getEnemyParty()->getMembers();
 				$member = $members[array_rand($members)];
 				$args[] = $member->getEnum();
@@ -135,18 +145,28 @@ abstract class SR_Spell
 		
 		else
 		{
-			if (count($args) === 0) {
+			if (count($args) === 0)
+			{
 				$args[] = $player->getName();
 			}
 		}
 		
-		if (false === ($target = $this->getTarget($player, $args))) {
+		if ($this->mode === self::MODE_POTION)
+		{
+			$target = $player;
+		}
+		elseif (false === ($target = $this->getTarget($player, $args)))
+		{
 			return false;
 		}
 		
 		$level = $this->getLevel($player);
 		
-		if ($wanted_level !== true)
+		if ($this->mode === self::MODE_POTION)
+		{
+			$level = $wanted_level;
+		}
+		elseif ($wanted_level !== true)
 		{
 			$wanted_level = (int)$wanted_level;
 			if ($wanted_level < 0)
@@ -165,14 +185,17 @@ abstract class SR_Spell
 			}
 		}
 		
-		$need = $this->getManaCost($player, $level);
+		$mp_faktor = $this->mode === self::MODE_POTION ? 1.5 : 1.0;
+		
+		$need = round($this->getManaCost($player, $level)*$mp_faktor, 1);
+		$need = Common::clamp($need, 1, 1000000);
 		$have = $player->getMP();
 		
-		if ($need > $have) {
+		if ($need > $have)
+		{
 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
 			return false;
 		}
-		
 		
 		$hits = $this->dice($player, $target, $level);
 		
@@ -186,17 +209,20 @@ abstract class SR_Spell
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);
 			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
-			return true;
+			return false;
 		}
 		
 		$player->healMP(-$need);
 		
-		#
+		if ($this->mode === self::MODE_POTION)
+		{
+			return true;
+		}
 		
 		return $this->cast($player, $target, $level, $hits);
 	}
 	
-	protected function dice(SR_Player $player, SR_Player $target, $level)
+	public function dice(SR_Player $player, SR_Player $target, $level)
 	{
 		return $this->isOffensive() ? $this->diceOffensive($player, $target, $level) : $this->diceDefensive($player, $target, $level);
 	}
@@ -238,7 +264,14 @@ abstract class SR_Spell
 	################
 	public function getAnnounceMessage(SR_Player $player, SR_Player $target, $level)
 	{
-		return sprintf('%s-%s casts a level %s %s on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
+		if ($this->mode === self::MODE_POTION)
+		{
+			return sprintf('%s-%s uses a level %s %s potion on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
+		}
+		else
+		{
+			return sprintf('%s-%s casts a level %s %s on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
+		}
 	}
 
 	public function announceADV(SR_Player $player, SR_Player $target, $level, $append='', $append_ep='')
@@ -246,7 +279,8 @@ abstract class SR_Spell
 		$msg = $this->getAnnounceMessage($player, $target, $level);
 		$p = $player->getParty();
 		$p->notice($msg.$append.'.');
-		if ($p->isFighting()) {
+		if ($p->isFighting())
+		{
 			$p->getEnemyParty()->notice($msg.$append_ep.'.');
 		}
 	}

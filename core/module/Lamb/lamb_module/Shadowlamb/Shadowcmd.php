@@ -13,6 +13,7 @@ class Shadowcmd
 	public static $CMD_SHORTCUTS = array(
 		'#' => 'attack',
 		'a' => 'attributes',
+		'br' => 'brew',
 		'bw' => 'backward',
 		'c' => 'commands',
 		'ca' => 'spell',
@@ -123,6 +124,11 @@ class Shadowcmd
 		if (false !== $scanner = $player->getInvItemByName('Scanner_v6'))
 		{
 			$commands = array_merge(array('spy'), $commands);
+		}
+		
+		if ($player->get('alchemy') >= 0)
+		{
+			$commands = array_merge(array('br'), $commands);
 		}
 		
 		if ($show_hidden) {

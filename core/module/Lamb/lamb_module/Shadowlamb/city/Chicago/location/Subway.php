@@ -1,14 +1,13 @@
 <?php
-final class Delaware_Subway extends SR_Subway
+final class Chicago_Subway extends SR_Subway
 {
-	public function getNPCS(SR_Player $player) { return array('talk'=>'Delaware_Passenger'); }
+	public function getNPCS(SR_Player $player) { return array('talk'=>'Chicago_SubwayGuy'); }
 	public function getFoundPercentage() { return 100.00; }
 	public function getFoundText(SR_Player $player) { return 'You found the Subway. You can travel to other cities from here.'; }
 	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
-			array('Seattle_Subway', 200, Seattle::TIME_TO_DELAWARE, 8),
-			array('Chicago_Subway', 400, Delaware::TIME_TO_CHICAGO, 21),
+			array('Delaware_Subway', 400, Delaware::TIME_TO_CHICAGO, 14),
 		);
 	}
 	

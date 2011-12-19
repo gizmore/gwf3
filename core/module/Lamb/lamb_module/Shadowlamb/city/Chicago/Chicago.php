@@ -1,17 +1,22 @@
 <?php
-final class Delaware extends SR_City
+final class Chicago extends SR_City
 {
-	const TIME_TO_CHICAGO = 600;
-	
 	public function getImportNPCS()
 	{
 		return
 			array(
-				'Redmond_Ork','Redmond_Ueberpunk',
-				'Seattle_Cop','Seattle_Ninja','Seattle_BlackOp','Seattle_TrollDecker'
+				'Redmond_OrkLeader','Redmond_Ueberpunk',
+
+				'Seattle_Cop','Seattle_BlackOp',
+				'Seattle_Ninja','Seattle_TrollDecker','Seattle_Samurai','Seattle_Shaolin','Seattle_Headhunter',
+					
+				'Delaware_Goblin','Delaware_Ork','Delaware_Troll',
+				'Delaware_Hipster','Delaware_Goth','Delaware_Emo',
+				'Delaware_Assassin', 'Delaware_Commando', 'Delaware_Headhunter', 'Delaware_Killer',
 			);
+			
 	}
-	public function getArriveText() { return 'You arrive in Delaware. Meanwhile it\'s known for it\'s automobile industry.'; }
+	public function getArriveText() { return 'You arrive in Chicago. After the racewars only slums are left.'; }
 	public function getSquareKM() { return 12; }
 	public function onEvents(SR_Party $party)
 	{
@@ -21,13 +26,13 @@ final class Delaware extends SR_City
 	
 	public function getRespawnLocation(SR_Player $player)
 	{
-		if ( ($player->getNuyen() > 200) && ($player->hasKnowledge('places', 'Delaware_Hotel')) )
+		if ( ($player->getNuyen() > 300) && ($player->hasKnowledge('places', 'Chicago_Hotel')) )
 		{
-			return 'Delaware_Hotel';
+			return 'Chicago_Hotel';
 		}
 		else
 		{
-			return Shadowrun4::getCity('Seattle')->getRespawnLocation($player);
+			return Shadowrun4::getCity('Delaware')->getRespawnLocation($player);
 		}
 	}
 	
