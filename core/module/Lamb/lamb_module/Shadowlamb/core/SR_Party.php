@@ -1216,6 +1216,10 @@ final class SR_Party extends GDO
 		if ($done === true)
 		{
 			$this->pushAction(self::ACTION_INSIDE);
+			if ($this->getLocation() instanceof SR_Exit)
+			{
+				$this->pushAction(self::ACTION_OUTSIDE);
+			}
 			$this->giveKnowledge('places', $this->getLocation());
 			$this->getCityClass()->onArrive($this);
 		}
