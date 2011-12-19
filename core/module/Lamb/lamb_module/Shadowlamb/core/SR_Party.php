@@ -37,6 +37,7 @@ final class SR_Party extends GDO
 	
 	private $timestamp = 0; # last event.
 	private $direction = 1; # forward
+	private $max_dist = 0; # combat max dist
 	
 	###########
 	### GDO ###
@@ -212,6 +213,7 @@ final class SR_Party extends GDO
 			case 'travel':
 				return Common::substrUntil($this->getVar('sr4pa_last_target'), '_', false);
 			case 'delete':
+				return false;
 			default:
 				return false;
 		}
@@ -588,6 +590,15 @@ final class SR_Party extends GDO
 			return false;
 		}
 		
+		if ($party->getAction() === self::ACTION_DELETE)
+		{
+			$party->cloneAction($this);
+		}
+		elseif ($this->getAction() === self::ACTION_DELETE)
+		{
+			$this->cloneAction($party);
+		}
+		
 		$this->pushAction(self::ACTION_FIGHT, $party->getID(), 0);
 		$party->pushAction(self::ACTION_FIGHT, $this->getID(), 0);
 		$this->initFightBusy(1);
@@ -660,7 +671,28 @@ final class SR_Party extends GDO
 			$pid = $member->getID();
 			$member->busy(SR_Player::FIGHT_INIT_BUSY);
 			$member->combatPush('');
-			$this->distance[$pid] = $neg * $member->getBase('distance');
+			$this->setupMaxDist();
+			$dist = Common::clamp($neg * $member->getBase('distance'), 0, $this->max_dist);
+			$this->distance[$pid] = $dist;
+		}
+	}
+
+	/**
+	 * Setup max-distance when fighting
+	 */
+	private function setupMaxDist()
+	{
+		if (false !== ($location = $this->getLocationClass()))
+		{
+			$this->max_dist = $location->getAreaSize();
+		}
+		elseif (false !== ($city = $this->getCityClass()))
+		{
+			$this->max_dist = $city->getAreaSize();
+		}
+		else
+		{
+			$this->max_dist = 7;
 		}
 	}
 	
@@ -697,6 +729,8 @@ final class SR_Party extends GDO
 		}
 		
 		$this->recomputeEnums();
+		
+		$this->setupMaxDist();
 		
 		return true;
 	}
@@ -895,7 +929,7 @@ final class SR_Party extends GDO
 	
 	private function movePlayerB($pid, &$by, &$new_d)
 	{
-		$max = SR_Player::MAX_RANGE;
+		$max = $this->max_dist;
 		$old = $this->distance[$pid];
 		$new_d = round(Common::clamp($old+$by, -$max, $max), 1);
 		$by = $new_d - $old;

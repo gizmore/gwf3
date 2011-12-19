@@ -37,6 +37,7 @@ abstract class SR_Location
 	public function hasATM() { return !$this->getCityClass()->isDungeon(); }
 	public function onCityEnter(SR_Party $party) { $this->onCleanComputers($party); }
 	public function isHijackable() { return true; }
+	public function getAreaSize() { return 16; }
 	
 	/**
 	 * We enter the location and are inside after we message the members.

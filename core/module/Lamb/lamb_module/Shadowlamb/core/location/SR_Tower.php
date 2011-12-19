@@ -9,6 +9,7 @@ abstract class SR_Tower extends SR_Location
 	################
 	### Location ###
 	################
+	public function getAreaSize() { return 3; }
 	public function isPVP() { return true; }
 	public function hasATM() { return false; }
 	

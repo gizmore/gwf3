@@ -12,8 +12,8 @@ final class Shadowcmd_ehlo extends Shadowcmd
 			'version' => '3.04',
 			'x_ini' => SR_Party::X_COORD_INI,
 			'x_inc' => SR_Party::X_COORD_INC,
-			'y_max' => SR_Player::MAX_RANGE,
-			'max_members' => SR_Party::MAX_MEMBERS+1, # (+1 hireling)
+			'y_max' => SR_Player::MAX_SD,
+			'max_members' => SR_Party::MAX_MEMBERS+2, # (+2 hireling)
 		);
 		
 		# You can tell me any other output format.

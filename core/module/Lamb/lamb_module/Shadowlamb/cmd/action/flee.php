@@ -27,6 +27,10 @@ final class Shadowcmd_flee extends Shadowcmd
 		$np->cloneAction($party);
 		$np->clonePreviousAction($party);
 		$np->popAction(true);
+		if ($np->isInsideLocation())
+		{
+			$party->pushAction(SR_Party::ACTION_OUTSIDE);
+		}
 	}
 }
 ?>

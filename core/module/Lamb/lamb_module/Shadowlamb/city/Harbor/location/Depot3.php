@@ -1,6 +1,7 @@
 <?php
 final class Harbor_Depot3 extends SR_SearchRoom
 {
+	public function getAreaSize() { return 80; }
 	public function getEnterText(SR_Player $player) { return 'You enter the depot. You see a lot of big crates in the hall.'; }
 	public function getFoundText(SR_Player $player) { return 'You found a big Depot labeled "Depot3".'; }
 	public function getFoundPercentage() { return 50.0; }

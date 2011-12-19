@@ -1,6 +1,7 @@
 <?php
 final class OrkHQ_ChiefRoom extends SR_Location
 {
+	public function getAreaSize() { return 32; }
 	public function getFoundPercentage() { return 70; }
 	public function getFoundText(SR_Player $player) { return 'You locate a room with an ork emblem. You hear noises from the inside...'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the room and see some Orks eating. One of them looks like the big boss.'; }

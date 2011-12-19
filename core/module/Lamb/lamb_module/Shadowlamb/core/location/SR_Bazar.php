@@ -48,6 +48,11 @@ class SR_Bazar extends SR_Location
 		return "You enter the bazar. You see {$shops} shops with a total of {$items} items.";
 	}
 	
+	public function getAreaSize()
+	{
+		return 600;
+	}
+	
 	############
 	### View ###
 	############

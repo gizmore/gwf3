@@ -3,6 +3,7 @@ final class TrollCellar_HeatRoom extends SR_SearchRoom
 {
 	const KEY = 'troll_heat';
 	
+	public function getAreaSize() { return 14; }
 	public function getFoundText(SR_Player $player) { return "You found a room that seems to contain the houses heating equipment."; }
 	public function getEnterText(SR_Player $player) { return "You enter the heating room. The air is warm and try and it smells old."; }
 	public function getFoundPercentage() { return 50.00; }

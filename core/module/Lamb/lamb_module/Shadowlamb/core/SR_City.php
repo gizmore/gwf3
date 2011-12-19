@@ -18,6 +18,7 @@ abstract class SR_City
 	public function getGotoETA(SR_Party $party) { return $this->calcETA($party, $this->getGotoTime()); }
 	public function getExploreTime() { return $this->getSquareKM() * 45; }
 	public function getExploreETA(SR_Party $party) { return $this->calcETA($party, $this->getExploreTime()); }
+	public function getAreaSize() { return 99999.9; }
 	
 	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{

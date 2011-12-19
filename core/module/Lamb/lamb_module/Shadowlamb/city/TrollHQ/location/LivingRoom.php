@@ -1,6 +1,7 @@
 <?php
 final class TrollHQ_LivingRoom extends SR_SearchRoom
 {
+	public function getAreaSize() { return 22; }
 	public function getFoundText(SR_Player $player) { return "You locate a room with a big door. You think you hear a tv, so it might be a living room."; }
 	public function getFoundPercentage() { return 50.00; }
 	public function getEnterText(SR_Player $player)

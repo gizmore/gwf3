@@ -1,6 +1,7 @@
 <?php
 final class OrkHQ_ConferenceRoom extends SR_SearchRoom
 {
+	public function getAreaSize() { return 48; }
 	public function getSearchLevel() { return 8; }
 	public function getFoundPercentage() { return 65.00; }
 	public function getFoundText(SR_Player $player) { return 'You locate a room with an open door. Looks like a conference room.'; }

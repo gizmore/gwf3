@@ -11,6 +11,7 @@ require_once 'SR_City.php';
 abstract class SR_Dungeon extends SR_City
 {
 	public function isDungeon() { return true; }
+	public function getAreaSize() { return 100; }
 	
 	#############
 	### Alert ###

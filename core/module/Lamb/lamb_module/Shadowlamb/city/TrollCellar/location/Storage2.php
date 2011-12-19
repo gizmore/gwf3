@@ -1,6 +1,7 @@
 <?php
 final class TrollCellar_Storage2 extends SR_SearchRoom
 {
+	public function getAreaSize() { return 12; }
 	public function getEnterText(SR_Player $player) {}
 	public function getSearchLevel() { return 8; }
 	public function getSearchMaxAttemps() { return 1; }

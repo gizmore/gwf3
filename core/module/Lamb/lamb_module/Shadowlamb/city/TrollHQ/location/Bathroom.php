@@ -1,6 +1,8 @@
 <?php
 final class TrollHQ_Bathroom extends SR_SearchRoom
 {
+	public function getAreaSize() { return 14; }
+	
 	public function getSearchLevel() { return 4; }
 
 	public function getEnterText(SR_Player $player)

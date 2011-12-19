@@ -59,6 +59,7 @@ abstract class SR_Elevator extends SR_Tower
 	################
 	### Location ###
 	################
+	public function getAreaSize() { return 6; }
 	public function isPVP() { return false; }
 	public function getFoundPercentage() { return 100.0; }
 	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }

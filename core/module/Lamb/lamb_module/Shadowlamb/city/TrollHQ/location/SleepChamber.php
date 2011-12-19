@@ -1,6 +1,7 @@
 <?php
 final class TrollHQ_SleepChamber extends SR_SearchRoom
 {
+	public function getAreaSize() { return 18; }
 	public function getEnterText(SR_Player $player) { return "You enter the room and see various creatures sleeping."; }
 	public function getFoundText(SR_Player $player) { return "You found a door that has \"Do not disturb\" engraved."; }
 	public function getLockLevel() { return 0; }

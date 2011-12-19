@@ -1,6 +1,7 @@
 <?php
 final class Hideout_HiddenStorage extends SR_SearchRoom
 {
+	public function getAreaSize() { return 8; }
 	public function getSearchLevel() { return 6; }
 	public function getFoundPercentage() { return 15.00; }
 	public function getFoundText(SR_Player $player) { return 'What is that... you found the entrance to a hidden storage room!'; }

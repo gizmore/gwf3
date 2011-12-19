@@ -1,6 +1,7 @@
 <?php
 final class Hideout_Room2 extends SR_Location
 {
+	public function getAreaSize() { return 12; }
 	public function getFoundPercentage() { return 100; }
 	public function getFoundText(SR_Player $player) { return 'You found another room. It seems to be quiet in there.'; }
 	public function getEnterText(SR_Player $player) { return 'You see three Lamers sleeping.'; }

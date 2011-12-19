@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Bank extends SR_Location
 {
+	public function getAreaSize() { return 48; }
+	
 	public function getTransactionPrice() { return 0; }
 	
 	public function getCommands(SR_Player $player) { return array('pushi', 'popi', 'pushy', 'popy'); }

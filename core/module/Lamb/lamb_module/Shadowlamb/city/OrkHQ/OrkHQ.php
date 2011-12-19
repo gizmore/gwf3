@@ -7,5 +7,6 @@ final class OrkHQ extends SR_Dungeon
 	public function getSquareKM() { return 0.4; }
 	public function getExploreTime() { return 60; }
 	public function getGotoTime() { return 50; }
+	public function getAreaSize() { return 100; }
 }
 ?>

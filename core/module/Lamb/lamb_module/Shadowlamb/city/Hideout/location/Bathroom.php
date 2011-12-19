@@ -1,6 +1,8 @@
 <?php
 final class Hideout_Bathroom extends SR_Location
 {
+	public function getAreaSize() { return 6; }
+	
 	public function getFoundPercentage() { return 100; }
 	public function getFoundText(SR_Player $player) { return 'You locate the bathroom.'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the bathroom and suprise a punk taking a crap.'; }

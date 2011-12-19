@@ -2,7 +2,6 @@
 class SR_Player extends GDO
 {
 	const MAX_SD = 20.0;
-	const MAX_RANGE = 999999.9; // 999km
 	const MAX_WEIGHT_MALUS = 0.25; # 25%
 		
 	const BASE_HP = 4;

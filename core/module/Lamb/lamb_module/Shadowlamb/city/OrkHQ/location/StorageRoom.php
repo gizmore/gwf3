@@ -1,6 +1,7 @@
 <?php
 final class OrkHQ_StorageRoom extends SR_SearchRoom
 {
+	public function getAreaSize() { return 18; }
 	public function getSearchLevel() { return 6; }
 	public function getFoundPercentage() { return 80; }
 	public function getFoundText(SR_Player $player) { return 'You found another room. You smell rotten meat from the inside.'; }
