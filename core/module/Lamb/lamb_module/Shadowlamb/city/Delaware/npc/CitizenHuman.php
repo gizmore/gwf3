@@ -82,7 +82,7 @@ final class Delaware_CitizenHuman extends SR_HireNPC
 				
 				switch ($this->getTemp($key2))
 				{
-					case 1: $this->reply('Yeah, I am already invited. thanks.'); break;
+					case 1: $this->reply('Yeah, I am already invited. Thanks.'); break;
 					case 2: $this->reply('No, I am not interested.'); break;
 					case 3: $this->reply('Better get a job, chummer'); break;
 					case 4:

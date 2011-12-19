@@ -47,8 +47,8 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 				else
 				{
 					$npc->reply('Oh you want to help me again? That is very kind of you :)');
-					$npc->reply('Well ... to be honest I am short on nuyen, and I need to hire a decker to get me into level2 of the Renraku office.');
-					$npc->reply(sprintf('If you could give me %s, so I can continue my research ... what do you think?', $this->displayNuyen()));
+					$npc->reply('Well ... To be honest I am short on nuyen, and I need to hire a decker to get me into level2 of the Renraku office.');
+					$npc->reply(sprintf('If you could give me %s, so I can continue my research ... What do you think?', $this->displayNuyen()));
 				}
 				break;
 			case 'confirm':

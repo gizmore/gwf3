@@ -126,7 +126,7 @@ final class LambModule_Scum extends Lamb_Module
 	private function scumHelp($topic='')
 	{
 		$help = array(
-			'scum' => 'Scum is a cardgame. Check out the rules at wikipedia: http://en.wikipedia.org/wiki/Asshole_%28game%29. try .scum help commands', 
+			'scum' => 'Scum is a cardgame. Check out the rules at wikipedia: http://en.wikipedia.org/wiki/Asshole_%28game%29. Try .scum help commands', 
 			'help' => 'Use '.LAMB_TRIGGER.'scum help <command> to get a description for the specified command. Commands: help, init, join, start, abort | cards, pass, <cards to play>',
 			'commands' => LAMB_TRIGGER.'scum <commands>: init, join, start, help, cards, turn, deck, top5, stats, abort OR <cards to play>. Type scum help <command> to get more help',
 			'init' => LAMB_TRIGGER.'scum init will initiate a new game. Type '.LAMB_TRIGGER.'scum join to join the game.',

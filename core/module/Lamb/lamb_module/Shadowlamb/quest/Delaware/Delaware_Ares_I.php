@@ -19,7 +19,7 @@ final class Quest_Delaware_Ares_I extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply('Bring me the gun so I can give it to Mr... err put it in my collection.');
+			return $npc->reply('Bring me the gun so I can give it to Mr... Err put it in my collection.');
 		}
 	}
 	

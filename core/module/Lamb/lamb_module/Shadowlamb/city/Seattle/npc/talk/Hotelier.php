@@ -37,7 +37,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 					if (!$player->hasTemp(self::TEMP_WORD2)) {
 						$player->setTemp(self::TEMP_WORD1, 1);
 						$player->setTemp(self::TEMP_WORDN, 1);
-						$this->reply('If you like to, I can teach it to you for ... let\'s say '.$this->calcNegPrice($player).' Nuyen. What do you say?');
+						$this->reply('If you like to, I can teach it to you for ... Let\'s say '.$this->calcNegPrice($player).' Nuyen. What do you say?');
 					}
 				}
 				return;
@@ -59,14 +59,14 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 					$this->reply('Ok, then not.');
 				} elseif ($player->hasTemp(self::TEMP_WORD1)) {
 					if ($player->getTemp(self::TEMP_WORDN) >= self::MAX_NO) {
-						$this->reply('Ok ok ... you are the boss.');
+						$this->reply('Ok ok ... You are the boss.');
 						$player->unsetTemp(self::TEMP_WORD1);
 						$player->unsetTemp(self::TEMP_WORDN);
 						$player->setTemp(self::TEMP_WORD2, 1);
 					}
 					else {
 						$player->increaseTemp(self::TEMP_WORDN, 1);
-						$this->reply(sprintf('Hmm ok... how about %s Nuyen then?', $this->calcNegPrice($player)));
+						$this->reply(sprintf('Hmm ok... How about %s Nuyen then?', $this->calcNegPrice($player)));
 					}
 				} else {
 					$this->reply('Please come back later.');

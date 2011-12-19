@@ -39,7 +39,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 				if ($player->hasTemp($bm)) {
 					$player->unsetTemp($bm);
 				}
-				$msg = "If life gives you lemons... you might be interested in a few fireweapons.";
+				$msg = "If life gives you lemons... You might be interested in a few fireweapons.";
 				break;
 				
 			default: $msg = "Good day sir. How can I help you?"; break;

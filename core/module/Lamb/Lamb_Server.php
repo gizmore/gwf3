@@ -10,7 +10,7 @@ require_once 'Lamb_IRC.php';
 final class Lamb_Server extends GDO
 {
 	# Connect retry
-	const RETRY_MAX_TRY = 1000; # Try forever... kinda
+	const RETRY_MAX_TRY = 1000; # Try forever... Kinda
 	const RETRY_MIN_WAIT = 5;   # 5 seconds min wait
 	const RETRY_WAIT_INC = 5;   # 5 seconds increase
 	const RETRY_MAX_WAIT = 600; # 10 minutes max wait

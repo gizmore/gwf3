@@ -37,7 +37,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 				break;
 				
 			case 'renraku':
-				$this->reply('Rarely the Renraku Inc. consults me to get dirty work done. It\'s not a secret. But mostly they have their own special forces to deal with problems.');
+				$this->reply('Rarely the Renraku Inc. Consults me to get dirty work done. It\'s not a secret. But mostly they have their own special forces to deal with problems.');
 				break;
 				
 			case 'cyberware':

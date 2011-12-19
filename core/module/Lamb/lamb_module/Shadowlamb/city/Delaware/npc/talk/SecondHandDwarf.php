@@ -15,7 +15,7 @@ final class Delaware_SecondHandDwarf extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'negotiation':
-				return $this->reply('Of course we can argue about the price a bit... but not too much.');
+				return $this->reply('Of course we can argue about the price a bit... But not too much.');
 				
 			case 'yes':
 				return $this->reply("Yes, please use {$c}view to see what we have in stock.");

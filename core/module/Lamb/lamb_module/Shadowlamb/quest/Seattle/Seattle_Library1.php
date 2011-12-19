@@ -14,7 +14,7 @@ final class Quest_Seattle_Library1 extends SR_Quest
 		
 		if ($have >= $need)
 		{
-			$npc->reply('Oh Pringles ... my favorite snack. How did you know?');
+			$npc->reply('Oh Pringles ... My favorite snack. How did you know?');
 			$player->message('The gnome returns to work.');
 			return $this->onSolve($player);
 		}

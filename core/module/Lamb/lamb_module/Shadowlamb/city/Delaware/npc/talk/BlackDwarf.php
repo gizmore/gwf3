@@ -21,7 +21,7 @@ final class Delaware_BlackDwarf extends SR_TalkingNPC
 				return $this->reply("Yes yes, you can make your equipment better with \X02runes\X02.");
 				
 			case 'hello':
-				return $this->reply("Hello hello ... come in and buy a sword or \X02runecraft\X02 your equipment.");
+				return $this->reply("Hello hello ... Come in and buy a sword or \X02runecraft\X02 your equipment.");
 				
 			default:
 				return $this->reply("I don't know anything about $word.");

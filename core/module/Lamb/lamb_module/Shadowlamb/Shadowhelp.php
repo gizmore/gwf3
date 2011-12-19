@@ -62,7 +62,7 @@ final class Shadowhelp
 			
 				'beginners' => 'First steps',
 				array(
-					'get_started' => 'First you should #talk to the hotelier. then you should #equip clothes. Then you should #party up with players and #join their parties. Then you should #explore the first city.',
+					'get_started' => 'First you should #talk to the hotelier. Then you should #equip clothes. Then you should #party up with players and #join their parties. Then you should #explore the first city.',
 					'where_am_i' => 'You begin in the Redmond Hotel. Check your party status with #(p)arty. Check your #known_places with #(kp). Find new places with #(exp)lore. Do not forget to check your #e(q)uipment and cleanup your #(i)nventory.',
 					'what_is_it' => "Shadowlamb is a full featured mmorpg. You can #(j)oin parties, solve #(qu)ests, runecraft your items and learn magic spells. It combines multiple irc networks into a single gameworld, and thus is unique among all irc games.",
 				),
@@ -214,7 +214,7 @@ final class Shadowhelp
 				
 //					'www_cmds' => 'Wrapper Commands for the WWW',
 //					array(
-//						'helo' => 'Will make the www client join the irc network ... kinda',
+//						'helo' => 'Will make the www client join the irc network ... Kinda',
 //					),
 //					
 //					'debug_cmds' => 'Debugging commands',
@@ -356,7 +356,7 @@ final class Shadowhelp
 						'explore' => 'Leader command. Usage: #(exp)lore. Start to explore the current city. When the explore time is over, you find a new #kp. When you have found a new known_place, you are outside of it. Use #(en)ter to enter it.',
 						'goto' => "Leader command. Usage: #(g)oto <kp_id|place>. Goto another place in your current city.",
 						'hunt' => "Leader command. Usage: #hunt <player>. Hunt another human party.",
-						'enter' => 'Leader command. Usage: #(en)ter. Enter a location. Check your current location with #kp. find new locations with #(exp)lore.',
+						'enter' => 'Leader command. Usage: #(en)ter. Enter a location. Check your current location with #kp. Find new locations with #(exp)lore.',
 						'exit' => 'Leader command. Usage: #exit. Exit a location and return outside of it in the same city. To leave a dungeon, use #leave in the dungeons exit.',
 						'sleep' => "Leader command. Usage: #sleep. In Hotels and some other locations, you can sleep to rest and restore your HP and MP.",
 						'stop' => "Leader command. Usage: #stop. The leader can interrupt a moving party with the stop command. Your #(exp)lore and #(g)oto timers will reset.",
@@ -461,7 +461,7 @@ final class Shadowhelp
 					array(
 						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
 						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey. If you use scripts, please #enable bot.',
-						'clones' => 'You are allowed to have multiple characters, aka. clones. For clones, the same rules as for bots apply.',
+						'clones' => 'You are allowed to have multiple characters, aka. Clones. For clones, the same rules as for bots apply.',
 						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
 					),
 					
@@ -484,7 +484,7 @@ final class Shadowhelp
 					'xp' => "Collect {$xp}/{$xppk} XP and gain 1 Karma. With Karma you can #(l)vlup. Collect {$xpl}/{$xppl} XP and gain one level. In total you have collected {$xpt} XP.",
 					'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
-					'enum' => "To choose targets with items and spells, you can use enumeration. like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
+					'enum' => "To choose targets with items and spells, you can use enumeration. Like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
 					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
 					'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
 					

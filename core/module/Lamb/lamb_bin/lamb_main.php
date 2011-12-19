@@ -92,6 +92,6 @@ GWF_Debug::setDieOnError(false);
 # No halt on db errors ...
 gdo_db()->setDieOnError(false);
 
-# ... and go!
+# ... And go!
 $lamb->mainloop();
 ?>

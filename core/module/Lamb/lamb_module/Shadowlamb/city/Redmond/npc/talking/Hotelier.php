@@ -53,7 +53,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 			$this->reply('You are another victim of Renraku?');
 			$player->giveKnowledge('words', 'Hello', 'Renraku');
 //			sleep(1);
-			$this->reply('You were saying something about Renraku... Don`t ask me why ... but ... take this... and maybe wear some clothes... :S');
+			$this->reply('You were saying something about Renraku... Don`t ask me why ... But ... Take this... And maybe wear some clothes... :S');
 			
 			$items = array(SR_Item::createByName('FirstAid'), SR_Item::createByName('Clothes'), SR_Item::createByName('Trousers'), SR_Item::createByName('Shoes'));
 			$player->giveItems($items, $this->getName());
@@ -75,7 +75,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		}
 		elseif ($word === 'headcomputer')
 		{
-			$this->reply('Chummer, you must be really confused... a headcomputer is an interface to connect you to computer terminals... maybe get some '.$c.'sleep.');
+			$this->reply('Chummer, you must be really confused... A headcomputer is an interface to connect you to computer terminals... Maybe get some '.$c.'sleep.');
 		}
 		elseif ($word === 'hello')
 		{

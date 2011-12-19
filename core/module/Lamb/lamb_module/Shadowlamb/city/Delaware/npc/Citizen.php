@@ -92,7 +92,7 @@ final class Delaware_Citizen extends SR_HireNPC
 				
 				switch ($this->getTemp($key2))
 				{
-					case 1: $this->reply('Yeah, I am already invited. thanks.'); break;
+					case 1: $this->reply('Yeah, I am already invited. Thanks.'); break;
 					case 2: $this->reply('No, I am not interested.'); break;
 					case 3: $this->reply('Better get a job, chummer'); break;
 					case 4:
@@ -131,7 +131,7 @@ final class Delaware_Citizen extends SR_HireNPC
 		
 		if ( ($race !== 'troll') && ($race !== 'halftroll') )
 		{
-			return $this->reply('A job in the SecondHand? .. as troll ... ok wtf? Oo');
+			return $this->reply('A job in the SecondHand? .. As troll ... Ok wtf? Oo');
 		}
 		
 		switch (rand(1,3))

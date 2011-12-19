@@ -59,7 +59,7 @@ final class Redmond_Barkeeper extends SR_TalkingNPC
 				else
 				{
 					$this->reply('So you are a runner? Very doubtful...');
-					$this->reply('Well... actually you could do me a favor.');
+					$this->reply('Well... Actually you could do me a favor.');
 					$this->reply('There is a party next weekend, and it seems to be impossible to get any booze.');
 					$this->reply("There is no {$b}blackmarket{$b} here in Redmond, so I have no idea how to get some beer and stuff...");
 					$this->reply(sprintf('Could you please bring me %d SmallBeer, %d LargeBeer and %d Booze?', $ns, $nl, $nb));

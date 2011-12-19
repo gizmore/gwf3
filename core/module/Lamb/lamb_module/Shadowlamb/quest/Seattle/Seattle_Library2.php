@@ -12,7 +12,7 @@ final class Quest_Seattle_Library2 extends SR_Quest
 		$this->saveAmount($have);
 		if ($have >= $need)
 		{
-			$npc->reply('MMmm bacon ... my favorite snack. How did you know?');
+			$npc->reply('MMmm bacon ... My favorite snack. How did you know?');
 			$player->message('The gnome returns to work.');
 			$this->onSolve($player);
 		}

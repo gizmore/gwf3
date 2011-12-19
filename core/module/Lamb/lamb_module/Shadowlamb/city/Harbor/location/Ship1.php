@@ -11,7 +11,7 @@ final class Harbor_Ship1 extends SR_Tower
 	{
 		$party = $player->getParty();
 		
-		$player->message('You cannot find any open entrance to the ship ... yet.');
+		$player->message('You cannot find any open entrance to the ship ... Yet.');
 		
 		return false;
 	}

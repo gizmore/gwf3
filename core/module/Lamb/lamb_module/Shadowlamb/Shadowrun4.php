@@ -186,7 +186,7 @@ final class Shadowrun4
 	}
 	
 	/**
-	 * Get a player By Shortname from memory. returns false when not found. returns -1 when ambigious.
+	 * Get a player By Shortname from memory. Returns false when not found. Returns -1 when ambigious.
 	 * @param string $name
 	 * @return SR_Player|false|-1
 	 */

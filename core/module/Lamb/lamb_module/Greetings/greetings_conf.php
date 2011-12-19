@@ -5,7 +5,7 @@ $greet_conf = array(
 		'#sr' => 'Welcome to my localhost, hacker!',
 	),
 	'idlemonkeys' => array(
-		'#sr' => 'Welcome to #sr, the irc mmorpg. type #start to start your journey. type #help get_started for your next steps. If you are here for baim send a PM or be patient!',
+		'#sr' => 'Welcome to #sr, the irc mmorpg. Type #start to start your journey. Type #help get_started for your next steps. If you are here for baim send a PM or be patient!',
 //		'#wechall' => 'Welcome to #wechall! Enjoy your stay :)',
 	),
 	'german-elite' => array(

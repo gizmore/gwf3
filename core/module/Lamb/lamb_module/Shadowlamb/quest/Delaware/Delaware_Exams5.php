@@ -24,7 +24,7 @@ final class Quest_Delaware_Exams5 extends SR_Quest
 		$player->message('You hand the pot of fluid Auris to the gnome ...');
 		
 		$npc->reply('Wow. Thank you so very very much.');
-		$npc->reply('You surely earned a special reward now ... let me think ...');
+		$npc->reply('You surely earned a special reward now ... Let me think ...');
 		$npc->reply('Right ... I will teach you the teleportii spell. It is quite powerful!');
 		$player->levelupSpell('teleportii');
 		$player->message('You learned a new spell: teleportii');

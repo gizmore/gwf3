@@ -17,7 +17,7 @@ final class Hideout_Room2 extends SR_Location
 		{
 			$player->setTemp('HIDE_R2_ONCE', 1);
 			$party = $player->getParty();
-			$party->notice('You wake the three lamers kindly... as they realize what`s happening they attack.');
+			$party->notice('You wake the three lamers kindly... As they realize what`s happening they attack.');
 			SR_NPC::createEnemyParty('Redmond_Lamer','Redmond_Lamer','Redmond_Lamer')->fight($party, true);
 		}
 		else

@@ -12,7 +12,7 @@ final class Redmond_Reginald extends SR_TalkingNPC
 		{
 			if ($word === 'shadowrun')
 			{
-				$this->reply("I am sorry but I don`t have another job for you... maybe ask Mr.Johnson over there ;)");
+				$this->reply("I am sorry but I don`t have another job for you... Maybe ask Mr.Johnson over there ;)");
 			}
 			else
 			{
@@ -62,7 +62,7 @@ final class Redmond_Reginald extends SR_TalkingNPC
 			}
 			elseif ($word === 'no')
 			{
-				$this->reply("Aww... I need a shadowrunner to get a job done. I would pay well... what do you say?");
+				$this->reply("Aww... I need a shadowrunner to get a job done. I would pay well... What do you say?");
 			}
 			elseif ($word === 'shadowrun')
 			{

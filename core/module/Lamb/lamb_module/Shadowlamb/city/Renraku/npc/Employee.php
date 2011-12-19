@@ -61,7 +61,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 				}
 				else
 				{
-					$this->reply('Hey, I don\'t know you ... can I help?');
+					$this->reply('Hey, I don\'t know you ... Can I help?');
 					$this->setTemp($help);
 				}
 				break;

@@ -3,7 +3,7 @@ $bot instanceof Lamb;
 
 if ($message === '0^0')
 {
-	return $bot->reply('1 ... no ... 0 ... no ... UNDEFINED!');
+	return $bot->reply('1 ... No ... 0 ... No ... UNDEFINED!');
 }
 
 $path = 'core/inc/3p/EvalMath.php';

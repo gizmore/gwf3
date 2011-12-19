@@ -66,7 +66,7 @@ class SR_SearchRoom extends SR_Tower
 		}
 		else
 		{
-			$player->message(sprintf('You search the %s... but find nothing.', $this->getName()));
+			$player->message(sprintf('You search the %s... But find nothing.', $this->getName()));
 		}
 	}
 	

@@ -43,7 +43,7 @@ final class Seattle_TomRiddle extends SR_TalkingNPC
 			case 'hummingbird':
 				return $this->onQuestSolved($player, $word, $args);
 			case 'phoenix':
-				return $this->reply('Yeah this rings a bell ... let me try ... darn wrong!');
+				return $this->reply('Yeah this rings a bell ... Let me try ... Darn wrong!');
 			default:
 				return $this->reply('Sweet let me try it on my safe ... Darn wrong.');
 		}
@@ -57,7 +57,7 @@ final class Seattle_TomRiddle extends SR_TalkingNPC
 			return $this->reply('Thank you. I will never forget the password again.');
 		}
 		
-		$this->reply('Let me try it ... Oh gosh ... it works! Thank you so much ... take this:');
+		$this->reply('Let me try it ... Oh gosh ... It works! Thank you so much ... Take this:');
 		
 		SR_PlayerVar::setVal($player, 'TOMRIDDLE', '1');
 		$nuyen = 300;

@@ -49,7 +49,7 @@ final class Redmond_Helldrinker extends SR_TalkingNPC
 						}
 						else
 						{
-							$this->reply("So you are a runner? Well... if you could kill {$amt} punks I would give you permission to wear our BikerJacket. What do you say?");
+							$this->reply("So you are a runner? Well... If you could kill {$amt} punks I would give you permission to wear our BikerJacket. What do you say?");
 							$player->setTemp(self::TEMP_WORD, 2);
 						}
 						break;

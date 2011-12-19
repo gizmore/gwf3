@@ -34,7 +34,7 @@ final class Quest_Delaware_MCGuest32 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("God I hate emos ... kill {$need} of em and I pay {$dp}?");
+				$npc->reply("God I hate emos ... Kill {$need} of em and I pay {$dp}?");
 				break;
 			case 'confirm':
 				$npc->reply("God, Just kill em all.");

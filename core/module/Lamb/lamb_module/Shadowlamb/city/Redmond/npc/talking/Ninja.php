@@ -11,8 +11,8 @@ final class Redmond_Ninja extends SR_TalkingNPC
 			return true;
 		}
 		
-		$this->reply('MMMh... you are unsure about your path...');
-		$player->message('The monk strengthens your self confidence... you have learned the melee skill!');
+		$this->reply('MMMh... You are unsure about your path...');
+		$player->message('The monk strengthens your self confidence... You have learned the melee skill!');
 		$player->updateField('melee', 0);
 		$player->modify();
 		return false;
@@ -70,7 +70,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 					$quest->checkQuest($this, $player);
 				}
 				else {
-					$this->reply("Humm, the blackmarket is in {$b}Seattle{$b}... which is troublesome for us ... we could need some stuff from the blackmarket.");
+					$this->reply("Humm, the blackmarket is in {$b}Seattle{$b}... Which is troublesome for us ... We could need some stuff from the blackmarket.");
 					$this->reply('In fact we could need some weapons to help us defending the Orks, they keep attacking us for no reason.');
 					$this->reply("Maybe you can bring us $amt Nunchakus so we can protect us better from their attacks? We will reward you very well.");
 					$player->giveKnowledge('words', 'Yes','No','Seattle');

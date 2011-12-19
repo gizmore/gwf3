@@ -781,7 +781,7 @@ final class Lamb
 			case "finger":
 				break;
 			case 'version':
-				return $server->sendCTCPReply($user->getName(), sprintf('VERSION Lamb v%s. http://lamb.gizmore.org', LAMB_VERSION));
+				return $server->sendCTCPReply($user->getName(), sprintf('VERSION Lamb v%s. Http://lamb.gizmore.org', LAMB_VERSION));
 		}
 		
 		foreach ($this->modules as $module)

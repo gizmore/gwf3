@@ -6,7 +6,7 @@ final class Item_Axe extends SR_MeleeWeapon
 	public function getItemWeight() { return 1850; }
 	public function getItemPrice() { return 95; }
 	public function getItemRange() { return 1.8; }
-	public function getItemDescription() { return 'A medium sized axe. looks good with a Skimask.'; }
+	public function getItemDescription() { return 'A medium sized axe. Looks good with a Skimask.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(

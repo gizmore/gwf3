@@ -1,7 +1,7 @@
 <?php
 final class Renraku02_Cafeteria extends SR_SearchRoom
 {
-	public function getEnterText(SR_Player $player) { return 'You enter the cafeteria ... and suprise four Renraku guards having a break.'; }
+	public function getEnterText(SR_Player $player) { return 'You enter the cafeteria ... And suprise four Renraku guards having a break.'; }
 	public function getFoundText(SR_Player $player) { return 'You found a room labelled "Cafeteria".'; }
 	public function getSearchLevel() { return 5; }
 	

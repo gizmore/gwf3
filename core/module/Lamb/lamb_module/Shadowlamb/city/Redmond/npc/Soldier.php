@@ -39,7 +39,7 @@ final class Redmond_Soldier extends SR_HireNPC
 		switch ($word)
 		{
 			case 'renraku': $msg = "I like their {$b}hardware{$b}, but they have too much influence to the market."; break;
-			case 'hardware': $msg = "Yeah... hardware and stuff. You don't know Renraku? Are you a crackhead?"; break;
+			case 'hardware': $msg = "Yeah... Hardware and stuff. You don't know Renraku? Are you a crackhead?"; break;
 			case 'shadowrun': $msg = "You need to {$b}hire{$b} a runner?"; break;
 			case 'gizmore': $msg = "If you are here for a special quest, I can only say I have no idea. Is there a city full of you?"; break;			
 			case 'hire':
@@ -49,7 +49,7 @@ final class Redmond_Soldier extends SR_HireNPC
 				}
 				else
 				{
-					$msg = "I will follow you for a while for... let's say... {$price} bucks.";
+					$msg = "I will follow you for a while for... Let's say... {$price} bucks.";
 					$player->setTemp($t, 1);
 				}
 				break;

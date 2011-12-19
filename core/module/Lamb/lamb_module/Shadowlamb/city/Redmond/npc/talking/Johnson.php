@@ -67,7 +67,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 					$this->reply('Do you accept your mission, fellow runner?');
 				}
 				elseif ($i === 0) {
-					$this->reply('Shhh... you wanna become a real runner?');
+					$this->reply('Shhh... You wanna become a real runner?');
 					$this->reply('You should first proof that you are worth of getting important jobs from me.');
 					$this->reply('As a starter you could kill 10 Lamers for me, agreed?');
 					$player->setTemp(self::TEMP_WORD, true);
@@ -80,7 +80,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 					$player->setTemp(self::TEMP_WORD, true);
 				}
 				elseif ($i === 2) {
-					$this->reply('Now this mission is really important: Please deliver a package to the Hotelier in Seattle.');
+					$this->reply('Now this mission is really important: please deliver a package to the Hotelier in Seattle.');
 					$this->reply('Do you accept the mission?');
 					$player->setTemp(self::TEMP_WORD, true);
 				}

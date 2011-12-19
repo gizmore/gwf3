@@ -41,7 +41,7 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 				if ($quest->isInQuest($player))
 				{
 					$this->reply('What? You want money for Mr.Johnson?! ... ');
-					$this->reply('Well ... give him that from me:');
+					$this->reply('Well ... Give him that from me:');
 					SR_NPC::createEnemyParty('Seattle_BMGuy')->fight($player->getParty(), true);
 				}
 				else

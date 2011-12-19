@@ -4,7 +4,7 @@ $channel = Common::substrUntil($message, ' ');
 $channels = $server->getChannels();
 if (!isset($channels[$channel]))
 {
-	$bot->reply('I am not on this channel... not in my memories...');
+	$bot->reply('I am not on this channel... Not in my memories...');
 }
 else
 {

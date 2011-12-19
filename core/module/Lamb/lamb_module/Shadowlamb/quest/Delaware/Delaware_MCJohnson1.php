@@ -58,7 +58,7 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 				{
 					return $this->onAnswer($npc, $player, $args[0]);
 				}
-				$npc->reply("Lol these scene people are funny ... everyone hates everyone.");
+				$npc->reply("Lol these scene people are funny ... Everyone hates everyone.");
 				$npc->reply("There are three groups of scene people: Goth, Emo and Hipster.");
 				$npc->reply("Every group wants to get $kn of every other group killed.");
 				$npc->reply("How many kills are requested in total?");
@@ -82,7 +82,7 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 	{
 		if ($player->get('math') > 0)
 		{
-			$npc->reply('Haha ... with your insane math skills you don\'t even need to answer. Do you accept the job?');
+			$npc->reply('Haha ... With your insane math skills you don\'t even need to answer. Do you accept the job?');
 			return true;
 		}
 		

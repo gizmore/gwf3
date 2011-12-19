@@ -41,7 +41,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 				break;
 
 			case 'no':
-				$this->reply("Sure, you are not a runner... though you look like a runner to me.");
+				$this->reply("Sure, you are not a runner... Though you look like a runner to me.");
 				break;
 				
 			case 'hire':
@@ -84,7 +84,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 				
 				switch ($this->getTemp($key2))
 				{
-					case 1: $this->reply('Yeah, I am already invited. thanks.'); break;
+					case 1: $this->reply('Yeah, I am already invited. Thanks.'); break;
 					case 2: $this->reply('No, I am not interested.'); break;
 					case 3: $this->reply('Better get a job, chummer'); break;
 					case 4:

@@ -56,7 +56,7 @@ final class Quest_Seattle_GJohnson3 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Yo chummer, I could need you to deliver a package to the Renraku office ... you know ... the Cardgame.');
+				$npc->reply('Yo chummer, I could need you to deliver a package to the Renraku office ... You know ... The Cardgame.');
 				$npc->reply('Do you accept?');
 				break;
 			

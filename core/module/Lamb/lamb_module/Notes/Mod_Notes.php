@@ -120,7 +120,7 @@ final class LambModule_Notes extends Lamb_Module
 		}
 		
 		if (false !== $server->getUserByNickAndChannel($nickname, $origin)) {
-			return "$nickname is in this channel ... maybe leave him/her a privmsg.";
+			return "$nickname is in this channel ... Maybe leave him/her a privmsg.";
 		}
 		
 		if (false === Lamb_Note::insertNote($user, $user_to, $message)) {

@@ -41,7 +41,7 @@ final class Quest_Seattle_BD2 extends SR_Quest
 		}
 		else
 		{
-			$npc->reply(sprintf('You gave me %s of %s Runes... give me a few more and I will reward you greatly :)', $have, $need));
+			$npc->reply(sprintf('You gave me %s of %s Runes... Give me a few more and I will reward you greatly :)', $have, $need));
 		}
 	}
 	

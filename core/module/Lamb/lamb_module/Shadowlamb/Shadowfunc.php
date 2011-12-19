@@ -760,7 +760,7 @@ final class Shadowfunc
 	### Requirements ###
 	####################
 	/**
-	 * Check if player mets the requirements. return error message or false.
+	 * Check if player mets the requirements. Return error message or false.
 	 * @param SR_Player $player
 	 * @param array $requirements
 	 * @return error message or false on success

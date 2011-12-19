@@ -9,7 +9,7 @@ final class Item_Uzi extends SR_SMG
 	public function getItemLevel() { return 16; }
 	public function getItemWeight() { return 1750; }
 	public function getItemPrice() { return 1000; }
-	public function getItemDescription() { return 'A light submachine gun. good price for good firepower.'; }
+	public function getItemDescription() { return 'A light submachine gun. Good price for good firepower.'; }
 	public function getItemRequirements() { return array('firearms'=>4,'smgs'=>1); }
 	public function getItemModifiersA(SR_Player $player)
 	{

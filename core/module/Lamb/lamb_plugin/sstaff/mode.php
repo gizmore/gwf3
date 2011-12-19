@@ -1,4 +1,4 @@
-<?php # Usage: %CMD% <username> <modebit>. Set the server-global mode for a username. bits: asohvpb (admin staff op halfop voice public bot). A user can have only one bit set.
+<?php # Usage: %CMD% <username> <modebit>. Set the server-global mode for a username. Bits: asohvpb (admin staff op halfop voice public bot). A user can have only one bit set.
 $bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;

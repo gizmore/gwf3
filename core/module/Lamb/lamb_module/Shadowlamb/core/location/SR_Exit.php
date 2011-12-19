@@ -2,7 +2,7 @@
 abstract class SR_Exit extends SR_Tower
 {
 	/**
-	 * Get the exit location. eg: Redmond_Hotel
+	 * Get the exit location. Eg: Redmond_Hotel
 	 */
 	public abstract function getExitLocation();
 //	public function getExitAction() { return SR_Party::ACTION_INSIDE; }

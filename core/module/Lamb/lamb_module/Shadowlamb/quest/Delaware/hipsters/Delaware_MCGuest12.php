@@ -34,7 +34,7 @@ final class Quest_Delaware_MCGuest12 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("God I hate hipsters ... kill {$need} of em and I pay {$dp}?");
+				$npc->reply("God I hate hipsters ... Kill {$need} of em and I pay {$dp}?");
 				break;
 			case 'confirm':
 				$npc->reply("God, Just kill em all.");

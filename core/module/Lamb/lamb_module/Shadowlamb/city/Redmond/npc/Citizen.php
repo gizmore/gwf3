@@ -39,7 +39,7 @@ final class Redmond_Citizen extends SR_HireNPC
 				break;
 
 			case 'no':
-				$this->reply("Sure, you are not a runner... though you look like a runner to me.");
+				$this->reply("Sure, you are not a runner... Though you look like a runner to me.");
 				break;
 				
 			case 'hire':

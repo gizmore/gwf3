@@ -1,4 +1,4 @@
-* f p block 0 2304086 86400 Spamming_users_with_an_mIRC_trojan._Type_'/unload_-rs_newb'_to_remove_the_trojan. hub.irc.hackthissite.org ://write \$decode\(.+=.?,m\) \| \.load -rs \$decode\(.+=.?,m\)
+* f p block 0 2304086 86400 Spamming_users_with_an_mIRC_trojan._Type_'/unload_-rs_newb'_to_remove_the_trojan. Hub.irc.hackthissite.org ://write \$decode\(.+=.?,m\) \| \.load -rs \$decode\(.+=.?,m\)
 * f c block 0 2304086 86400 $decode_exploit hub.irc.hackthissite.org :LOL! //echo -a \$\(\$decode\(.+,m\),[0-9]\)
 * f p block 0 2304086 86400 Unknown_virus._Site_causes_Backdoor.Delf.lq_infection hub.irc.hackthissite.org :Free porn pic.? and movies (www\.sexymovies\.da\.ru|www\.girlporn\.org)
 * f pq block 0 2304086 86400 Infected_by_Gaggle_worm hub.irc.hackthissite.org :http://.+\.lycos\..+/[iy]server[0-9]/[a-z]{4,11}\.(gif|jpg|avi|txt)

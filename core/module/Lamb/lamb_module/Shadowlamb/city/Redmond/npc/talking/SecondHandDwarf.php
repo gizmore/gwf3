@@ -8,7 +8,7 @@ final class Redmond_SecondHandDwarf extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'negotiation':
-				$this->reply('Of course we can argue about the price a bit... but not too much.');
+				$this->reply('Of course we can argue about the price a bit... But not too much.');
 				break;
 				
 			case 'yes':
