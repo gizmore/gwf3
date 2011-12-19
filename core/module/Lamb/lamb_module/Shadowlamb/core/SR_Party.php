@@ -692,8 +692,9 @@ final class SR_Party extends GDO
 		}
 		else
 		{
-			$this->max_dist = 7;
+			$this->max_dist = 14;
 		}
+		$this->max_dist = Common::clamp(round($this->max_dist/2, 1), 1, 99999);
 	}
 	
 	##############
