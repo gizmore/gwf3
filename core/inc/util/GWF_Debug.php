@@ -50,7 +50,7 @@ final class GWF_Debug
 		if (self::$enabled === false)
 		{
 			set_error_handler(array('GWF_Debug', 'error_handler'));
-			register_shutdown_function(array('GWF_DEBUG', 'shutdown_function'));
+			register_shutdown_function(array('GWF_Debug', 'shutdown_function'));
 			self::$enabled = true;
 		}
 	}
