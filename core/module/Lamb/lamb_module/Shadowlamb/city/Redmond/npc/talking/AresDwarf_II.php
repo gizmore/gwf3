@@ -37,7 +37,7 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 			else {
 				$this->reply('You are looking for a job, chummer?');
 				$this->reply('As you might know we regulary get robbed by the cyberpunks.');
-				$this->reply("It is payback time! Bring me $num Cyberpunk Scalps and i will happliy reward you. What do you say?");
+				$this->reply("It is payback time! Bring me $num Cyberpunk Scalps and I will happliy reward you. What do you say?");
 				$player->setTemp('Redmond_AresDwarf_II_sr', true);
 			}
 		}

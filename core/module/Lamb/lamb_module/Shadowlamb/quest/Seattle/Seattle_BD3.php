@@ -78,8 +78,8 @@ final class Quest_Seattle_BD3 extends SR_Quest
 				$npc->reply('It would be so great if you could help me again, yes?');
 				break;
 			case 'shadowrun':
-				$npc->reply('Thanks to you i have some runes now, and the customers are already coming.');
-				$npc->reply('However, i need Chain armory for the Arena and i have no time to smith it.');
+				$npc->reply('Thanks to you I have some runes now, and the customers are already coming.');
+				$npc->reply('However, I need Chain armory for the Arena and I have no time to smith it.');
 				$npc->reply(sprintf('Could you bring me %s ChainLegs, %s ChainBodies and %s ChainHelmets?', self::NEED_LEG, self::NEED_ARMOR, self::NEED_HELMET));
 				$npc->reply(sprintf('I can pay you %s for that job! Yes?', Shadowfunc::displayNuyen(self::REWARD_NUYEN)));
 				break;

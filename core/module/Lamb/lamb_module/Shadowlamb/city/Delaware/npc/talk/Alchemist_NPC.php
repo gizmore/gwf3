@@ -14,7 +14,7 @@ final class Delaware_Alchemist_NPC extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'magic':
-				return $this->reply('Yeah, i even sell some magic potions and elixirs.');
+				return $this->reply('Yeah, I even sell some magic potions and elixirs.');
 			
 			case 'chemistry':
 				$this->reply("You can buy similar things here for chemistry or even {$b}magic{$b} potions.");
@@ -22,7 +22,7 @@ final class Delaware_Alchemist_NPC extends SR_TalkingNPC
 				return true;
 			
 			case 'hello':
-				return $this->reply("Hello, my name is ".$this->getName()." and i sell items for {$b}chemistry{$b} and similar stuff.");
+				return $this->reply("Hello, my name is ".$this->getName()." and I sell items for {$b}chemistry{$b} and similar stuff.");
 				
 			case 'gizmore':
 			case 'somerandomnick':

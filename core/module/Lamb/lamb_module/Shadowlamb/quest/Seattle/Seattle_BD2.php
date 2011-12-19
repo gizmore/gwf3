@@ -34,14 +34,14 @@ final class Quest_Seattle_BD2 extends SR_Quest
 		
 		if ($have >= $need)
 		{
-			$npc->reply('Thank you very much my friend. Now i can also craft some equipment again.');
+			$npc->reply('Thank you very much my friend. Now I can also craft some equipment again.');
 			$this->onSolve($player);
-			$npc->reply('As a reward i let you create '.self::REWARD_RUNES.' new runes via #reward.');
+			$npc->reply('As a reward I let you create '.self::REWARD_RUNES.' new runes via #reward.');
 			$player->increaseConst(Seattle_Blacksmith::REWARD_RUNES, self::REWARD_RUNES);
 		}
 		else
 		{
-			$npc->reply(sprintf('You gave me %s of %s Runes... give me a few more and i will reward you greatly :)', $have, $need));
+			$npc->reply(sprintf('You gave me %s of %s Runes... give me a few more and I will reward you greatly :)', $have, $need));
 		}
 	}
 	
@@ -53,8 +53,8 @@ final class Quest_Seattle_BD2 extends SR_Quest
 				$npc->reply('Could you please help me again?');
 				break;
 			case 'shadowrun':
-				$npc->reply('Now i have some clean swords, nice for keeping up the business.');
-				$npc->reply('Next i could really need a few Runes.');
+				$npc->reply('Now I have some clean swords, nice for keeping up the business.');
+				$npc->reply('Next I could really need a few Runes.');
 				$npc->reply('Could you please bring me '.$this->getNeededAmount().' runes? I can reward you with some special runes for your help :)');
 				break;
 			case 'yes':

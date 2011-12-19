@@ -40,7 +40,7 @@ final class Redmond_Ninja extends SR_TalkingNPC
 				break;
 			
 			case 'donate': case 'donation': case 'donating':
-				$this->reply("It would be really kind from you if you donate a few Nuyen. For ".Shadowfunc::displayNuyen($price)." i would teach you the {$b}ninja{$b} skill.");
+				$this->reply("It would be really kind from you if you donate a few Nuyen. For ".Shadowfunc::displayNuyen($price)." I would teach you the {$b}ninja{$b} skill.");
 				break;
 			
 			case 'yes':

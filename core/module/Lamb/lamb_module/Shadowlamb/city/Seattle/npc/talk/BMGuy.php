@@ -46,7 +46,7 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 				}
 				else
 				{
-					$this->reply('Yeah, i have heard from you. I have nothing todo though.');
+					$this->reply('Yeah, I have heard from you. I have nothing todo though.');
 				}
 				return;				
 

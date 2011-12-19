@@ -58,7 +58,7 @@ final class Delaware_Citizen extends SR_HireNPC
 				$re = $player->get('reputation');
 				
 				if ($player->getParty()->hasHireling()) {
-					$this->reply('You already have a hireling. So i say no anway.');
+					$this->reply('You already have a hireling. So I say no anway.');
 				}
 				elseif ( ($this->hasTemp($key))  || (rand(0, 32)>($ch+$re)) )
 				{
@@ -92,8 +92,8 @@ final class Delaware_Citizen extends SR_HireNPC
 				
 				switch ($this->getTemp($key2))
 				{
-					case 1: $this->reply('Yeah, i am already invited. thanks.'); break;
-					case 2: $this->reply('No, i am not interested.'); break;
+					case 1: $this->reply('Yeah, I am already invited. thanks.'); break;
+					case 2: $this->reply('No, I am not interested.'); break;
 					case 3: $this->reply('Better get a job, chummer'); break;
 					case 4:
 						$this->reply('An invitation for a big party? Sure me and my friends are in. Thank you!');

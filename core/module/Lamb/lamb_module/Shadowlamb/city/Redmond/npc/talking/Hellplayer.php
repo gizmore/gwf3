@@ -29,7 +29,7 @@ final class Redmond_Hellplayer extends SR_TalkingNPC
 					case 0: $this->reply('Yes, what?'); break;
 					case 1:
 					case 2: $this->isReallyPissed($player); break;
-					case 3: $this->reply('Ok, bring me the Ueberpunks head and i will give you the reward.'); $quest->accept($player); break;
+					case 3: $this->reply('Ok, bring me the Ueberpunks head and I will give you the reward.'); $quest->accept($player); break;
 				}
 				$player->unsetTemp($t);
 				break;
@@ -70,7 +70,7 @@ final class Redmond_Hellplayer extends SR_TalkingNPC
 				}
 				else
 				{
-					$this->reply('Oh yo must have heard of our problem with the punks. If you kill their leader i will give you a reward.');
+					$this->reply('Oh yo must have heard of our problem with the punks. If you kill their leader I will give you a reward.');
 					$this->reply('Would you accept this mission, fellow runner?');
 					$player->setTemp(self::TEMP_WORD, 3);
 				}

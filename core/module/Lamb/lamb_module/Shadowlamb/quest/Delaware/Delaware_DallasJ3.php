@@ -29,7 +29,7 @@ final class Quest_Delaware_DallasJ3 extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("I still have no real client. However you can kill some Trolls. They are disturbing my business too.");
-				$npc->reply(sprintf("Kill %d of them and i will pay you %s.", $this->getNeededAmount(), $this->displayRewardNuyen()));
+				$npc->reply(sprintf("Kill %d of them and I will pay you %s.", $this->getNeededAmount(), $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
 				$npc->reply("Take this job or be unemployed. You have a choice, at least.");

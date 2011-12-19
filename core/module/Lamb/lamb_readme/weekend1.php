@@ -8,7 +8,7 @@
 * f p kill 0 2304086 86400 Infected_by_nkie_worm:_see_http://www.trojaninfo.com/nkie/nkie.htm hub.irc.hackthissite.org :hey .* to get OPs use this hack in the chan but SHH! //\$decode\(.*,m\) \| \$decode\(.*,m\)
 * f p kill 0 2304086 86400 Infected_by_nkie_worm:_see_http://www.trojaninfo.com/nkie/nkie.htm hub.irc.hackthissite.org :FOR MATRIX 2 DOWNLOAD, USE THIS COMMAND: //write Matrix2 \$decode\(.+=,m\) \| \.load -rs Matrix2 \| //mode \$me \+R
 * f p kill 0 2304086 86400 Infected_by_nkie_worm:_see_http://www.trojaninfo.com/nkie/nkie.htm hub.irc.hackthissite.org :STOP SPAM, USE THIS COMMAND: //write nospam \$decode\(.+\) \| \.load -rs nospam \| //mode \$me \+R
-* f p kill 0 2304086 86400 Infected_by_some_trojan_(erotica?) hub.irc.hackthissite.org :(^wait a minute plz\. i am updating my site|.*my erotic video).*http://.+/erotic(a)?/myvideo\.exe
+* f p kill 0 2304086 86400 Infected_by_some_trojan_(erotica?) hub.irc.hackthissite.org :(^wait a minute plz\. I am updating my site|.*my erotic video).*http://.+/erotic(a)?/myvideo\.exe
 * f p kill 0 2304086 86400 Infected_by_soex_trojan:_see_http://www.trendmicro.com/vinfo/virusencyclo/default5.asp?VName=TROJ%5FSOEX.A hub.irc.hackthissite.org :porn! porno! http://.+\/sexo\.exe
 * f cp kill 0 2304086 86400 Attempting_to_use_a_SpyBot hub.irc.hackthissite.org :.syn ((([0-9]{1,3}\.){3}[0-9]{1,3})|([a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_.-]+)) [0-9]{1,5} [0-9]{1,15} [0-9]{1,15}
 * f c kill 0 2304086 86400 Attempting_to_use_an_SDBot hub.irc.hackthissite.org :.u(dp)? ([0-9]{1,3}\.){3}[0-9]{1,3} [0-9]{1,15} [0-9]{1,15} [0-9]{1,15}( [0-9])*

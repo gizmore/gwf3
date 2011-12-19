@@ -18,7 +18,7 @@ final class Quest_Delaware_DallasJ1 extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply('Bring me the gun so i can give it to our client.');
+			return $npc->reply('Bring me the gun so I can give it to our client.');
 		}
 	}
 	
@@ -30,10 +30,10 @@ final class Quest_Delaware_DallasJ1 extends SR_Quest
 			case 'shadowrun':
 				$npc->reply("Yo chummer. A client requested to organize AresViper11 pistols.");
 				$npc->reply("There are rumors that one of them has been used in a crime scene.");
-				$npc->reply(sprintf("Bring me one and i will pay you %s.", $this->displayRewardNuyen()));
+				$npc->reply(sprintf("Bring me one and I will pay you %s.", $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
-				$npc->reply("If i get one gun from some runners we should find the right gun.");
+				$npc->reply("If I get one gun from some runners we should find the right gun.");
 				break;
 			case 'yes':
 				$npc->reply('Yeah?');

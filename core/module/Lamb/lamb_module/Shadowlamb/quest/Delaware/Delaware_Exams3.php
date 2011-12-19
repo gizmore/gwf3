@@ -21,7 +21,7 @@ final class Quest_Delaware_Exams3 extends SR_Quest
 		
 		if ($have >= $need)
 		{
-			$npc->reply("Tell you what. If you can bring me some more stuff i am gonna teach you a magic spell afterwards! :)");
+			$npc->reply("Tell you what. If you can bring me some more stuff I am gonna teach you a magic spell afterwards! :)");
 			$this->onSolve($player);
 		}
 		else

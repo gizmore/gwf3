@@ -18,7 +18,7 @@ final class Renraku_OfficeWorker extends SR_TalkingNPC
 				}
 				else
 				{
-					return $this->reply('How can i help you?');
+					return $this->reply('How can I help you?');
 				}
 		}
 		

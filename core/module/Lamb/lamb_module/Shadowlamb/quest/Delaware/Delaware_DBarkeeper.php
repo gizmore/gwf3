@@ -32,14 +32,14 @@ final class Quest_Delaware_DBarkeeper extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("Haha, you are looking for a job? I suppose you don't mean to stand behind the bar, right?");
-				$npc->reply("Hmm, well, My latest delivery of wine got stolen by the Trolls, but i need some bottles urgently.");
-				$npc->reply("If you bring me $nw bottles, i will reward you with $dp. What do you think?");
+				$npc->reply("Hmm, well, My latest delivery of wine got stolen by the Trolls, but I need some bottles urgently.");
+				$npc->reply("If you bring me $nw bottles, I will reward you with $dp. What do you think?");
 				break;
 			case 'confirm':
 				$npc->reply("Can you organize this stuff?");
 				break;
 			case 'yes':
-				$npc->reply('Thank you i am awaiting your delivery.');
+				$npc->reply('Thank you I am awaiting your delivery.');
 				break;
 			case 'no':
 				$npc->reply('Ok chummer.');

@@ -31,8 +31,8 @@ final class Quest_Delaware_BS1 extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("You are looking for a job?");
-				$npc->reply("Well, as you can #view i have a nice pile of swords, but no other melee weapons.");
-				$npc->reply(sprintf("Maybe you could bring me %d Mace and i will reward you with %s?", $need, $this->displayRewardNuyen()));
+				$npc->reply("Well, as you can #view I have a nice pile of swords, but no other melee weapons.");
+				$npc->reply(sprintf("Maybe you could bring me %d Mace and I will reward you with %s?", $need, $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
 				$npc->reply("What do you think?");

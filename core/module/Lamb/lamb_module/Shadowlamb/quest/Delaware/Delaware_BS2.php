@@ -31,7 +31,7 @@ final class Quest_Delaware_BS2 extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("Still looking for a job?");
-				$npc->reply(sprintf("Hmm ... if you could bring me %d Pikes i would pay %s. What do you think?", $need, $this->displayRewardNuyen()));
+				$npc->reply(sprintf("Hmm ... if you could bring me %d Pikes I would pay %s. What do you think?", $need, $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
 				$npc->reply("Do you accept the quest?");

@@ -23,7 +23,7 @@ final class Shadowcmd_whisper_back extends Shadowcmd
 		}
 		elseif ($target === -2)
 		{
-			$player->message('Multiple players whispered you, so i quit with this message.');
+			$player->message('Multiple players whispered you, so I quit with this message.');
 			return false;
 		}
 		

@@ -19,7 +19,7 @@ final class Quest_Delaware_Ares_I extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply('Bring me the gun so i can give it to Mr... err put it in my collection.');
+			return $npc->reply('Bring me the gun so I can give it to Mr... err put it in my collection.');
 		}
 	}
 	
@@ -30,11 +30,11 @@ final class Quest_Delaware_Ares_I extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("You are looking for a job? Well ...");
-				$npc->reply("I am a collector of fireweapons, and i still need an AresViper eleven.");
-				$npc->reply(sprintf("If you bring me one and i will pay you %s.", $this->displayRewardNuyen()));
+				$npc->reply("I am a collector of fireweapons, and I still need an AresViper eleven.");
+				$npc->reply(sprintf("If you bring me one and I will pay you %s.", $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
-				$npc->reply("If i get one gun from some runners we should find the right gun.");
+				$npc->reply("If I get one gun from some runners we should find the right gun.");
 				break;
 			case 'yes':
 				$npc->reply('Thank you, chummer. I hope you can organize one soon!');

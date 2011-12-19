@@ -30,12 +30,12 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'invite':
-				$this->reply('I have no time for parties, i have to study the powers of magic.');
+				$this->reply('I have no time for parties, I have to study the powers of magic.');
 				$player->giveKnowledge('words', 'Magic');
 				break;
 				
 			case 'magic':
-				$this->reply('I am studying the powers of magic for a long time. If you help me out with some stuff i will teach you my most powerful spell.');
+				$this->reply('I am studying the powers of magic for a long time. If you help me out with some stuff I will teach you my most powerful spell.');
 				break;
 				
 			case 'cyberware':
@@ -48,7 +48,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 				
 			case 'seattle':
 			case 'blackmarket':
-				$this->reply('Could you please stop asking useless questions? Can\'t you see i am busy?');
+				$this->reply('Could you please stop asking useless questions? Can\'t you see I am busy?');
 				break;
 			
 			case 'yes':
@@ -81,7 +81,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 					$this->reply('Could you please bring me the items? I will teach you a cool magic spell as reward.');
 				}
 				elseif ($i === 0) {
-					$this->reply('Oh yes i have an important job for you. I have not eaten anything for days. Could you please bring me '.$q->getNeededAmount().' Pringles?');
+					$this->reply('Oh yes I have an important job for you. I have not eaten anything for days. Could you please bring me '.$q->getNeededAmount().' Pringles?');
 					$this->reply('I will teach you a great magic spell then. What do you think?');
 					$player->setTemp(self::TEMP_WORD, true);
 				}
@@ -90,7 +90,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 					$player->setTemp(self::TEMP_WORD, true);
 				}
 				elseif ($i === 2) {
-					$this->reply('Magic spell? I never said that. But i will teach you one if you bring me '.$q->getNeededAmount().' ElvenStaffs. Accept?');
+					$this->reply('Magic spell? I never said that. But I will teach you one if you bring me '.$q->getNeededAmount().' ElvenStaffs. Accept?');
 					$player->setTemp(self::TEMP_WORD, true);
 				}
 				break;
@@ -104,7 +104,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 					$q->checkQuest($this, $player);
 				}
 				else {
-					$this->reply(sprintf('Hello chummer. My name is %s. As you can see i am busy. Also be quiet here!', $this->getName()));
+					$this->reply(sprintf('Hello chummer. My name is %s. As you can see I am busy. Also be quiet here!', $this->getName()));
 				}
 				break;
 				

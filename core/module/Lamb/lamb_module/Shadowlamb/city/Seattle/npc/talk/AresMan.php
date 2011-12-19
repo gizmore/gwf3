@@ -21,7 +21,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 				}
 				else
 				{
-					$msg = "Hmm yes, i know the guys in the blackmarket. If you like i can give you a life-long permission for $this->price Nuyen, {$b}yes{$b}?";
+					$msg = "Hmm yes, I know the guys in the blackmarket. If you like I can give you a life-long permission for $this->price Nuyen, {$b}yes{$b}?";
 					$player->setTemp($bm, 1);
 				}
 			case 'yes':
@@ -42,7 +42,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 				$msg = "If life gives you lemons... you might be interested in a few fireweapons.";
 				break;
 				
-			default: $msg = "Good day sir. How can i help you?"; break;
+			default: $msg = "Good day sir. How can I help you?"; break;
 		}
 		$this->reply($msg);
 	}

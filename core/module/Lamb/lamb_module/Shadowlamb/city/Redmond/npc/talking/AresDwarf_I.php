@@ -13,7 +13,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 		{
 			if ($word === 'yes')
 			{
-				$this->reply('Haha ok chummer... i will wait for your delivery');
+				$this->reply('Haha ok chummer... I will wait for your delivery');
 				$quest1->accept($player);
 				$player->unsetTemp('Redmond_AresDwarf_I_sr');
 				return;
@@ -37,7 +37,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 			else {
 				$this->reply('You are a newbie runner, eh?');
 				$this->reply('Chummer... listen... we regulary get robbed by the cyberpunks.');
-				$this->reply("The worst thing is they keep robbing even cheap things, like unstatted knifes. If you can help us and bring me $num unstatted knifes i would be very happy, as i plan to master the skill of knife-throwing.");
+				$this->reply("The worst thing is they keep robbing even cheap things, like unstatted knifes. If you can help us and bring me $num unstatted knifes I would be very happy, as I plan to master the skill of knife-throwing.");
 				$this->reply("You can remove stats from an item at the local blacksmith.");
 				$this->reply('If you could help help us we will reward you gracefully.');
 				$player->setTemp('Redmond_AresDwarf_I_sr', true);

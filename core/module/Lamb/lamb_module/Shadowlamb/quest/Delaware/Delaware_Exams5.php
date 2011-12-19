@@ -42,7 +42,7 @@ final class Quest_Delaware_Exams5 extends SR_Quest
 				$npc->reply("I totally need some Auris now. Can you bring it to me?");
 				break;
 			case 'confirm':
-				$npc->reply("If you bring me some more stuff i will teach you something.");
+				$npc->reply("If you bring me some more stuff I will teach you something.");
 				break;
 			case 'yes':
 				$npc->reply('Please.');

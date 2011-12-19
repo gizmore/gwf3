@@ -18,7 +18,7 @@ function htb_spamfilter($sentence, $chan, $me)
         $t_pm[1] = '^hey .* to get OPs use this hack in the chan but SHH! //\$decode\(.*,m\) \| \$decode\(.*,m\)$';
         $t_pm[2] = '^FOR MATRIX 2 DOWNLOAD, USE THIS COMMAND: //write Matrix2 \$decode\(.+=,m\) \| \.load -rs Matrix2 \| //mode \$me \+R$';
         $t_pm[3] = '^STOP SPAM, USE THIS COMMAND: //write nospam \$decode\(.+\) \| \.load -rs nospam \| //mode \$me \+R$';
-        $t_pm[4] = '(^wait a minute plz\. i am updating my site|.*my erotic video).*http://.+/erotic(a)?/myvideo\.exe$';
+        $t_pm[4] = '(^wait a minute plz\. I am updating my site|.*my erotic video).*http://.+/erotic(a)?/myvideo\.exe$';
         $t_pm[5] = '^porn! porno! http://.+\/sexo\.exe';
         $t_pm[6] = '^'.chr(1).'DCC (SEND|RESUME).{225}';
         $t_pm[7] = '^'.chr(1).'DCC (SEND|RESUME)[ ]+\"(.+ ){20}';

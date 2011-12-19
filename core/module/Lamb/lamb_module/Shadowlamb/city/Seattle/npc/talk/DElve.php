@@ -37,7 +37,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 			case 'shadowrun':
 				if (!$quest->isAccepted($player))
 				{
-					$msg = "You are a runner? ... Thank god, i could need one, as i have some problems involving {$b}Renraku{$b}.";
+					$msg = "You are a runner? ... Thank god, I could need one, as I have some problems involving {$b}Renraku{$b}.";
 					$player->giveKnowledge('words', 'Renraku');
 				}
 				else
@@ -72,7 +72,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 				break;
 
 			case 'magic':
-				$msg = 'Magic... i almost lost all my essence due to the Renraku experiments. It was hard to recover from that.';
+				$msg = 'Magic... I almost lost all my essence due to the Renraku experiments. It was hard to recover from that.';
 				break;
 			
 			default:

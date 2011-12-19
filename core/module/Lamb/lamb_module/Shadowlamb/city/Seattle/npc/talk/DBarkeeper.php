@@ -25,7 +25,7 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				} elseif ($quest->isInQuest($player)) {
 					$msg = 'Please invite more citizens to our party!';
 				} elseif (!$player->hasTemp(self::TEMP_WORD)) {
-					$this->reply('Haha, a runner... Everybody keeps asking me for jobs. Well... i have a job for you!');
+					$this->reply('Haha, a runner... Everybody keeps asking me for jobs. Well... I have a job for you!');
 					$this->reply("We have a big party here next weekend, but we need way more guests. Could you please invite {$need} random citizens to the party?");
 					$player->giveKnowledge('words', 'invite');
 					$player->setTemp(self::TEMP_WORD, 1);
@@ -37,7 +37,7 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				break;
 				
 			case 'blackmarket': $msg = 'I don\'t talk about illegal stuff. Order a drink and enjoy the evening please.'; break;
-			case 'renraku': $msg = 'One of our guests keeps telling weird stories about Renraku, but i doubt the facts. Maybe you like to talk to the elve over there.'; break;
+			case 'renraku': $msg = 'One of our guests keeps telling weird stories about Renraku, but I doubt the facts. Maybe you like to talk to the elve over there.'; break;
 			case 'magic': $msg = 'My drinks are magic :) You should try the "Disconnector". It is really explosive'; break;
 			case 'yes': 
 				if ($player->hasTemp(self::TEMP_WORD)) {

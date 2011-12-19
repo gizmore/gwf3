@@ -37,7 +37,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 					if (!$player->hasTemp(self::TEMP_WORD2)) {
 						$player->setTemp(self::TEMP_WORD1, 1);
 						$player->setTemp(self::TEMP_WORDN, 1);
-						$this->reply('If you like to, i can teach it to you for ... let\'s say '.$this->calcNegPrice($player).' Nuyen. What do you say?');
+						$this->reply('If you like to, I can teach it to you for ... let\'s say '.$this->calcNegPrice($player).' Nuyen. What do you say?');
 					}
 				}
 				return;
@@ -88,7 +88,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 		$have = $player->getNuyen();
 		if ($price > $have)
 		{
-			$this->reply(sprintf('Chummer, i want %s but you only have %s Nuyen.', $price, $have));
+			$this->reply(sprintf('Chummer, I want %s but you only have %s Nuyen.', $price, $have));
 			return;
 		}
 		

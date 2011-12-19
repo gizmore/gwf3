@@ -40,7 +40,7 @@ final class Quest_Delaware_Exams1 extends SR_Quest
 				$player->giveKnowledge('words', 'Alchemy');
 				break;
 			case 'confirm':
-				$npc->reply("Yes i need {$need} empty bottles. Accept the 'quest'?");
+				$npc->reply("Yes I need {$need} empty bottles. Accept the 'quest'?");
 				break;
 			case 'yes':
 				$npc->reply('What?');

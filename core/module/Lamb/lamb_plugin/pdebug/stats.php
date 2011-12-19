@@ -13,5 +13,5 @@ foreach ($servers as $s)
 		$usercount += count($s->getUsers());
 	}
 }
-$bot->reply(sprintf('Currently i am online on %d servers and %d channels, seeing %d users.', $servercount, $chancount, $usercount));
+$bot->reply(sprintf('Currently I am online on %d servers and %d channels, seeing %d users.', $servercount, $chancount, $usercount));
 ?>

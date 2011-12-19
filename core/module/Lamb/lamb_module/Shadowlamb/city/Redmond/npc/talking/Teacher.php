@@ -20,7 +20,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 			case "hawkeye": $msg = 'The hawkeye spell will raise your attack for fireweapons.'; break;
 			case 'firebolt': $msg = 'The firebolt spell will do damage to a single target.'; break;
 			case 'fireball': $msg = 'The fireball spell will do good damage to multiple targets.'; break;
-			case 'gizmore': $msg = 'The last time i saw gizmore he fled from the Punks. Rumors say he is with the brothers in Amerindian now.'; break;
+			case 'gizmore': $msg = 'The last time I saw gizmore he fled from the Punks. Rumors say he is with the brothers in Amerindian now.'; break;
 			case 'quangntenemy': $msg = 'Master quangntenemy is having a sheep bbq.'; break;
 			case 'negotiation': $msg = 'If you think you can price a skill, you should rather ask the bird or the fish.'; break;
 			case 'shadowrun':

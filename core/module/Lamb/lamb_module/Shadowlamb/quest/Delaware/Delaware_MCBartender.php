@@ -52,14 +52,14 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Yeah, i have heard from you you ^^");
-				$npc->reply("Actually i am out of some liquids. Bring me {$ns} SparklingWine and {$na} Alcopops and i will pay you {$dp}.");
+				$npc->reply("Yeah, I have heard from you you ^^");
+				$npc->reply("Actually I am out of some liquids. Bring me {$ns} SparklingWine and {$na} Alcopops and I will pay you {$dp}.");
 				break;
 			case 'confirm':
 				$npc->reply("I really could need the drinks.");
 				break;
 			case 'yes':
-				$npc->reply('Thank you i am awaiting your delivery.');
+				$npc->reply('Thank you I am awaiting your delivery.');
 				break;
 			case 'no':
 				$npc->reply('Ok chummer.');

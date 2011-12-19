@@ -23,14 +23,14 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 		{
 			$player->message(sprintf('You hand Malois %s ...', $this->displayNuyen()));
 			$player->giveNuyen(-$ny);
-			$npc->reply('Thank you very much my friend. I think i can find out more now.');
+			$npc->reply('Thank you very much my friend. I think I can find out more now.');
 			$player->giveXP(self::REWARD_XP);
 			$this->onSolve($player);
 			return true;
 		}
 		else
 		{
-			$npc->reply('Oh, i see you don\'t have enough money :(');
+			$npc->reply('Oh, I see you don\'t have enough money :(');
 			return true;
 		}
 	}
@@ -47,8 +47,8 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 				else
 				{
 					$npc->reply('Oh you want to help me again? That is very kind of you :)');
-					$npc->reply('Well ... to be honest i am short on nuyen, and i need to hire a decker to get me into level2 of the Renraku office.');
-					$npc->reply(sprintf('If you could give me %s, so i can continue my research ... what do you think?', $this->displayNuyen()));
+					$npc->reply('Well ... to be honest I am short on nuyen, and I need to hire a decker to get me into level2 of the Renraku office.');
+					$npc->reply(sprintf('If you could give me %s, so I can continue my research ... what do you think?', $this->displayNuyen()));
 				}
 				break;
 			case 'confirm':

@@ -14,7 +14,7 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'magic':
-				$this->reply('Yeah, i even sell some magic potions and elixirs.');
+				$this->reply('Yeah, I even sell some magic potions and elixirs.');
 				break;
 			
 			case 'chemistry':
@@ -23,7 +23,7 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 				break;
 			
 			case 'hello':
-				$this->reply("Hello, my name is carsten and i sell items for {$b}chemistry{$b} and similar stuff.");
+				$this->reply("Hello, my name is carsten and I sell items for {$b}chemistry{$b} and similar stuff.");
 				break;
 				
 			default:

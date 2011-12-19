@@ -61,7 +61,7 @@ final class Redmond_Barkeeper extends SR_TalkingNPC
 					$this->reply('So you are a runner? Very doubtful...');
 					$this->reply('Well... actually you could do me a favor.');
 					$this->reply('There is a party next weekend, and it seems to be impossible to get any booze.');
-					$this->reply("There is no {$b}blackmarket{$b} here in Redmond, so i have no idea how to get some beer and stuff...");
+					$this->reply("There is no {$b}blackmarket{$b} here in Redmond, so I have no idea how to get some beer and stuff...");
 					$this->reply(sprintf('Could you please bring me %d SmallBeer, %d LargeBeer and %d Booze?', $ns, $nl, $nb));
 					$player->giveKnowledge('words', 'Blackmarket', 'Yes', 'No');
 					$player->setTemp(self::TEMP_WORD, true);
@@ -75,7 +75,7 @@ final class Redmond_Barkeeper extends SR_TalkingNPC
 				}
 				else
 				{
-					$this->reply('Hello my friend. How may i serve you?');
+					$this->reply('Hello my friend. How may I serve you?');
 				}
 				break;
 		}

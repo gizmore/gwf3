@@ -23,7 +23,7 @@ final class Seattle_BlackDwarf extends SR_TalkingNPC
 			case 'no':
 				return $this->reply('We know all of it.');
 			default:
-				return $this->reply("Hello. I know my shop looks wasted, but i am still in business! All my {$b}Runes{$b} are gone!");
+				return $this->reply("Hello. I know my shop looks wasted, but I am still in business! All my {$b}Runes{$b} are gone!");
 		}
 	}
 }

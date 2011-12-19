@@ -34,7 +34,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 				if ($this->hasTemp($help))
 				{
 					$this->setTemp($helpyes);
-					$this->reply('May i see your ID card please?');
+					$this->reply('May I see your ID card please?');
 				}
 				else
 				{
@@ -61,7 +61,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 				}
 				else
 				{
-					$this->reply('Hey, i don\'t know you ... can i help?');
+					$this->reply('Hey, I don\'t know you ... can I help?');
 					$this->setTemp($help);
 				}
 				break;

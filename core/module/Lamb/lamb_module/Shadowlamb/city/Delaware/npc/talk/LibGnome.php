@@ -25,7 +25,7 @@ final class Delaware_LibGnome extends SR_TalkingNPC
 				return $this->reply("I don't trust on magic. Some good potion can be better than any spell.");
 				
 			case 'invite':
-				$this->reply("I have no time for parties, i have to study the powers of {$b}alchemy{$b}.");
+				$this->reply("I have no time for parties, I have to study the powers of {$b}alchemy{$b}.");
 				$player->giveKnowledge('words', 'Alchemy');
 				return true;
 				
@@ -39,10 +39,10 @@ final class Delaware_LibGnome extends SR_TalkingNPC
 			case 'gizmore':
 			case 'seattle':
 			case 'blackmarket':
-				return $this->reply('Could you please stop asking useless questions? Can\'t you see i am busy?');
+				return $this->reply('Could you please stop asking useless questions? Can\'t you see I am busy?');
 			
 			default:
-				return $this->reply(sprintf('Hello chummer. My name is %s. As you can see i am busy. Also be quiet here!', $this->getName()));
+				return $this->reply(sprintf('Hello chummer. My name is %s. As you can see I am busy. Also be quiet here!', $this->getName()));
 		}
 	}
 }

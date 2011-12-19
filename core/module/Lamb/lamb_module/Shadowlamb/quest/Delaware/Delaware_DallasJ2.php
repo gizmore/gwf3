@@ -28,8 +28,8 @@ final class Quest_Delaware_DallasJ2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Hey chummer... Currently i have no client, but you could kill some Goblins. They are disturbing my business.");
-				$npc->reply(sprintf("Kill %d of them and i will pay you %s.", $this->getNeededAmount(), $this->displayRewardNuyen()));
+				$npc->reply("Hey chummer... Currently I have no client, but you could kill some Goblins. They are disturbing my business.");
+				$npc->reply(sprintf("Kill %d of them and I will pay you %s.", $this->getNeededAmount(), $this->displayRewardNuyen()));
 				break;
 			case 'confirm':
 				$npc->reply("Take this job or be unemployed. You have a choice, at least.");

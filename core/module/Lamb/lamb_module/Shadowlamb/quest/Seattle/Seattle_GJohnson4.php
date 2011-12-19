@@ -65,7 +65,7 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Yo chummer, i have another important mission for you.');
+				$npc->reply('Yo chummer, I have another important mission for you.');
 				$npc->reply('A contractor needs to get some ElectronicParts stolen from a ship delivery in the harbor.)');
 				$npc->reply(sprintf('You would need to bring me %s ElectronicParts to get the job done. What do you say?', $this->getNeededAmount()));
 				break;

@@ -46,7 +46,7 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 			$this->onSolve($player);
 		}
 		else {
-			$npc->reply(sprintf('Listen chummer, i still need %d SmallBeer, %d LargeBeer and %d Booze.', self::NEED_SMALL_BEER-$have_s, self::NEED_LARGE_BEER-$have_l, self::NEED_BOOZE-$have_b));
+			$npc->reply(sprintf('Listen chummer, I still need %d SmallBeer, %d LargeBeer and %d Booze.', self::NEED_SMALL_BEER-$have_s, self::NEED_LARGE_BEER-$have_l, self::NEED_BOOZE-$have_b));
 		}
 	}
 	

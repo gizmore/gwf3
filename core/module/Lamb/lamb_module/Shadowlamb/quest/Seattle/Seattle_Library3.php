@@ -13,7 +13,7 @@ final class Quest_Seattle_Library3 extends SR_Quest
 		
 		if ($have >= $need)
 		{
-			$npc->reply('Thank you so much. Now i can test my spells with new powerful elven staffs.');
+			$npc->reply('Thank you so much. Now I can test my spells with new powerful elven staffs.');
 			$player->message('The gnome returns to work.');
 //			sleep(2);
 			$player->message('You tap the gnome on his shoulder and remind him of a reward...');

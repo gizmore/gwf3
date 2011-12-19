@@ -24,9 +24,9 @@ final class Quest_Seattle_BD1 extends SR_Quest
 		
 		if ( ($hl >= $nl) && ($hb >= $nb) && ($hs >= $ns) )
 		{
-			$npc->reply('Thank you so much, now i can carry on with my business.');
+			$npc->reply('Thank you so much, now I can carry on with my business.');
 			$this->onSolve($player);
-			$npc->reply('Here, i have saved these items from beeing plundered.');
+			$npc->reply('Here, I have saved these items from beeing plundered.');
 			$player->giveItems($this->getReward($player), $npc->getName());
 		}
 		else
@@ -45,7 +45,7 @@ final class Quest_Seattle_BD1 extends SR_Quest
 			case 'shadowrun':
 				$npc->reply('I have been robbed by a horde of AngryElves and Orks. Again. There is not much left.');
 //				sleep(2);
-				$npc->reply('If you could only organize me some unstatted swords to get back in business, i could only spare a few rare items, though.');
+				$npc->reply('If you could only organize me some unstatted swords to get back in business, I could only spare a few rare items, though.');
 				$player->message($npc->getName().' looks at you questioning.');
 				break;
 			case 'yes':

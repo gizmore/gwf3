@@ -79,7 +79,7 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		}
 		elseif ($word === 'hello')
 		{
-			$this->reply('Yeah, hello. Do you need a Hotel room? Somehow i like you chummer, so you don`t need to pay.');
+			$this->reply('Yeah, hello. Do you need a Hotel room? Somehow I like you chummer, so you don`t need to pay.');
 			$player->giveKnowledge('words', 'Yes');
 			$player->giveKnowledge('words', 'No');
 		}
@@ -91,11 +91,11 @@ final class Redmond_Hotelier extends SR_TalkingNPC
 		elseif ($word === 'no')
 		{
 			$player->giveKnowledge('words', 'No');
-			$this->reply('Oh, allright, if you don`t need a room now. You can come back anytime.');
+			$this->reply('Oh, alright, if you don`t need a room now. You can come back anytime.');
 		}
 		else
 		{
-			$this->reply('Hello, chummer, i hope you are allright now?');
+			$this->reply('Hello, chummer, I hope you are alright now?');
 		}
 	}
 	

@@ -49,7 +49,7 @@ final class Redmond_Helldrinker extends SR_TalkingNPC
 						}
 						else
 						{
-							$this->reply("So you are a runner? Well... if you could kill {$amt} punks i would give you permission to wear our BikerJacket. What do you say?");
+							$this->reply("So you are a runner? Well... if you could kill {$amt} punks I would give you permission to wear our BikerJacket. What do you say?");
 							$player->setTemp(self::TEMP_WORD, 2);
 						}
 						break;
@@ -72,7 +72,7 @@ final class Redmond_Helldrinker extends SR_TalkingNPC
 						$player->setTemp(self::TEMP_WORD, 1);
 						break;
 					case 1:
-						$this->reply('Well, as you can see i am one.');
+						$this->reply('Well, as you can see I am one.');
 						$player->unsetTemp(self::TEMP_WORD);
 						break;
 					case 2:

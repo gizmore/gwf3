@@ -42,7 +42,7 @@ final class Quest_Delaware_Seraphim2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Hehe chummer ... i think i can not take care of the shop all alone.");
+				$npc->reply("Hehe chummer ... I think I can not take care of the shop all alone.");
 				$npc->reply("If you could maybe find a troll that would work for me?");
 				$npc->reply("Just ask him about \X02shadowrun\X02.");
 				break;

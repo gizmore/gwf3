@@ -38,7 +38,7 @@ final class Quest_Delaware_MCJohnson3 extends SR_Quest
 				$npc->reply("I will pay you $dp.");
 				break;
 			case 'yes':
-				$npc->reply("Great, i will await you back soon.");
+				$npc->reply("Great, I will await you back soon.");
 				break;
 			case 'no':
 				$npc->reply('Ok.');

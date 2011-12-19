@@ -9,13 +9,13 @@ final class Quest_Redmond_Blacksmith extends SR_Quest
 			$this->onSolve($player);
 		}
 		else {
-			$npc->reply('Oh i already see you don`t have the SmithHammer for me... I hope you can get it soon.');
+			$npc->reply('Oh I already see you don`t have the SmithHammer for me... I hope you can get it soon.');
 		}
 	}
 	
 	public function onQuestSolve(SR_Player $player)
 	{
-		$player->message('The dwarf cheers: "Thank you very much. Now i can get back to work!"');
+		$player->message('The dwarf cheers: "Thank you very much. Now I can get back to work!"');
 		$player->message('"Take this as a special reward", the dwarf says. (He hands you 200 nuyen)');
 		$player->giveNuyen(200);
 	}

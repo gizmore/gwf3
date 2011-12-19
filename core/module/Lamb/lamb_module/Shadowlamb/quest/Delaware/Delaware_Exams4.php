@@ -41,7 +41,7 @@ final class Quest_Delaware_Exams4 extends SR_Quest
 				$npc->reply("I totally need a simple amulet. Any one will do :)");
 				break;
 			case 'confirm':
-				$npc->reply("If you bring me some more stuff i will teach you something.");
+				$npc->reply("If you bring me some more stuff I will teach you something.");
 				break;
 			case 'yes':
 				$npc->reply('Please.');

@@ -15,7 +15,7 @@ final class Delaware_BlackDwarf extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'rune': case 'runes':
-				return $this->reply("Yes yes, i also sell some nice runes here.");
+				return $this->reply("Yes yes, I also sell some nice runes here.");
 				
 			case 'runecraft': case 'runecrafting': case 'craft': case 'crafting':
 				return $this->reply("Yes yes, you can make your equipment better with \X02runes\X02.");

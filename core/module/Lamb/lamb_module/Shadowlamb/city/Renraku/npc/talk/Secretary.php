@@ -11,7 +11,7 @@ final class Renraku_Secretary extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'employee': case 'employees':
-				return $this->reply('Ìf you are not an employee you are supposed to leave. Else, how can i help you?');
+				return $this->reply('Ìf you are not an employee you are supposed to leave. Else, how can I help you?');
 			
 			case 'renraku':
 				return $this->reply("The office is only for {$b}employee{$b}.");
@@ -25,7 +25,7 @@ final class Renraku_Secretary extends SR_TalkingNPC
 				}
 				else
 				{
-					return $this->reply('Hello, how can i help you.');
+					return $this->reply('Hello, how can I help you.');
 				}
 		}
 	}

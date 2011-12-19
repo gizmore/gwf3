@@ -30,11 +30,11 @@ final class Redmond_Johnson extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'seattle':
-				$this->reply('If you think Redmond is a dangerous place i would not go there.');
+				$this->reply('If you think Redmond is a dangerous place I would not go there.');
 				break;
 
 			case 'blackmarket':
-				$this->reply('Listen, there is no blackmarket in Redmond. And i never heard of a blackmarket anyway.');
+				$this->reply('Listen, there is no blackmarket in Redmond. And I never heard of a blackmarket anyway.');
 				break;
 			
 			case 'yes':
@@ -52,7 +52,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 					$this->reply('Come back when you are ready for a real run.');
 					$player->unsetTemp(self::TEMP_WORD);
 				} else {
-					$this->reply('Yes i am. No` get outta my smoke scumbag.');
+					$this->reply('Yes I am. No` get outta my smoke scumbag.');
 				}
 				break;
 				
@@ -74,7 +74,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 				}
 				elseif ($i === 1) {
 					$this->reply('Ok my friend, I need some equipment for another job regarding the punks.');
-					$this->reply('A fellow runner will be contracted to infiltrate their Hideout, but i need some of their usual equipment.');
+					$this->reply('A fellow runner will be contracted to infiltrate their Hideout, but I need some of their usual equipment.');
 					$this->reply('Please bring me a BikerJacket and a BikerHelmet as soon as possible.');
 					$this->reply('Can you do that for me?');
 					$player->setTemp(self::TEMP_WORD, true);
@@ -95,7 +95,7 @@ final class Redmond_Johnson extends SR_TalkingNPC
 					$q->checkQuest($this, $player);
 				}
 				else {
-					$this->reply('What`s up chummer? Can`t you see i am busy?');
+					$this->reply('What`s up chummer? Can`t you see I am busy?');
 				}
 				break;
 		}

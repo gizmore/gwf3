@@ -30,7 +30,7 @@ final class Quest_Troll_Support extends SR_Quest
 			case 'shadowrun':
 				$npc->reply("Haha, you are a good boy ...");
 				$npc->reply('There are headhunter killing trolls and orks. You kill them back!');
-				$npc->reply('Kill %d and i pay %s.', $this->getNeededAmount(), $dp);
+				$npc->reply('Kill %d and I pay %s.', $this->getNeededAmount(), $dp);
 				break;
 			case 'confirm':
 				$npc->reply("Go!");

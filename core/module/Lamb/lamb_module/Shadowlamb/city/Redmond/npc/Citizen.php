@@ -48,7 +48,7 @@ final class Redmond_Citizen extends SR_HireNPC
 				$re = $player->get('reputation');
 				
 				if ($player->getParty()->hasHireling()) {
-					$this->reply('You already have a hireling. So i say no anway.');
+					$this->reply('You already have a hireling. So I say no anway.');
 				}
 				elseif ( ($this->hasTemp($key))  || (rand(0, 32)>($ch+$re)) )
 				{

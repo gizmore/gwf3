@@ -30,7 +30,7 @@ final class Quest_Seattle_BD4 extends SR_Quest
 			$player->giveXP($xp);
 			$this->onSolve($player);
 //			sleep(2);
-			$npc->reply('You know what ... i will teach you how to use lockpicking.');
+			$npc->reply('You know what ... I will teach you how to use lockpicking.');
 			$player->alterField('lockpicking', 1);
 			$player->message(sprintf('Your lockpicking skill has increased by 1.'));
 		}
@@ -46,12 +46,12 @@ final class Quest_Seattle_BD4 extends SR_Quest
 		switch ($word)
 		{
 			case 'confirm':
-				$npc->reply('I promise i will reward you well this time. Ok?');
+				$npc->reply('I promise I will reward you well this time. Ok?');
 				break;
 			case 'shadowrun':
-				$npc->reply('Thanks to you i am back in business.');
+				$npc->reply('Thanks to you I am back in business.');
 				$npc->reply('If you really want a run, go kill all those Ninjas who robbed me and get me '.$this->getNeededAmount().' Tenugui.');
-				$npc->reply('I promise i will reward you well this time. Ok?');
+				$npc->reply('I promise I will reward you well this time. Ok?');
 				break;
 			case 'yes':
 				$npc->reply(sprintf('Yay! I await you back!'));

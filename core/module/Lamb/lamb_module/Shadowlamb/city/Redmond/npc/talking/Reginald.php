@@ -12,7 +12,7 @@ final class Redmond_Reginald extends SR_TalkingNPC
 		{
 			if ($word === 'shadowrun')
 			{
-				$this->reply("I am sorry but i don`t have another job for you... maybe ask Mr.Johnson over there ;)");
+				$this->reply("I am sorry but I don`t have another job for you... maybe ask Mr.Johnson over there ;)");
 			}
 			else
 			{
@@ -54,15 +54,15 @@ final class Redmond_Reginald extends SR_TalkingNPC
 		{
 			if ($word === 'yes')
 			{
-				$this->reply('Great, i have a delicate problem...');
-				$this->reply('A few days ago our family got robbed by orks. They also stole my wifes bracelett... It is payback time and i want you to kill their leader.');
+				$this->reply('Great, I have a delicate problem...');
+				$this->reply('A few days ago our family got robbed by orks. They also stole my wifes bracelett... It is payback time and I want you to kill their leader.');
 				$this->reply('As a proof of your success, you have to bring me the bracelett back. I will pay you well.');
 				$this->reply('What do you say, chummer?');
 				$player->setTemp('reginald_yes', true);
 			}
 			elseif ($word === 'no')
 			{
-				$this->reply("Aww... i need a shadowrunner to get a job done. I would pay well... what do you say?");
+				$this->reply("Aww... I need a shadowrunner to get a job done. I would pay well... what do you say?");
 			}
 			elseif ($word === 'shadowrun')
 			{

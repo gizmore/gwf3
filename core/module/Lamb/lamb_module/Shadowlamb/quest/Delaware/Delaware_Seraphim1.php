@@ -26,9 +26,9 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("Hello chummer :( You want to hear about my problems?");
-				$npc->reply("I got robbed by Trolls and Goblins, and i lost my FirstHand ...");
+				$npc->reply("I got robbed by Trolls and Goblins, and I lost my FirstHand ...");
 				$npc->reply("I wanted to get a new HandL3 implanted, but the doctor says it's illegal.");
-				$npc->reply("If you could convince him todo it anyway i would be very thankful.");
+				$npc->reply("If you could convince him todo it anyway I would be very thankful.");
 				$npc->reply("Just ask him about \X02hand\X02.");
 				break;
 			case 'confirm':
@@ -59,7 +59,7 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 		if ($nuyen < $price)
 		{
 			$player->setTemp($key, 1);
-			return $npc->reply(sprintf("For %s i would do it.", $dp));
+			return $npc->reply(sprintf("For %s I would do it.", $dp));
 		}
 		
 		$player->message(sprintf("You pay %s and the doctor smiles.", $dp));

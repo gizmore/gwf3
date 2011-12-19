@@ -28,7 +28,7 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'invite':
-				$this->reply('Yes i know about the party.');
+				$this->reply('Yes I know about the party.');
 				break;
 				
 			case 'magic':
@@ -72,13 +72,13 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 					$this->reply('Come back when you are ready for a real run.');
 					$player->unsetTemp(self::TEMP_WORD);
 				} else {
-					$this->reply('Yes i am. No` get outta my smoke scumbag.');
+					$this->reply('Yes I am. No` get outta my smoke scumbag.');
 				}
 				break;
 				
 			case 'shadowrun':
 				if ($q === false) {
-					$this->reply('Currently i have no job for you. Sorry chummer.');
+					$this->reply('Currently I have no job for you. Sorry chummer.');
 				}
 				elseif ($has === true) {
 					$q->checkQuest($this, $player);

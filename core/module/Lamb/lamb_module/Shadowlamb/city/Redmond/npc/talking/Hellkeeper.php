@@ -25,7 +25,7 @@ final class Redmond_Hellkeeper extends SR_TalkingNPC
 			case 'hello':
 				return $this->reply("Hello chummer. Better don`t annoy the bikers. They are pissed because of the {$b}punks{$b}");
 			default:
-				$msg = array('anything new?', 'the usual stuff?', 'how can i serve you?');
+				$msg = array('anything new?', 'the usual stuff?', 'how can I serve you?');
 				return $this->reply('Hello chummer, '.Shadowfunc::randomListItem($msg));
 		}
 		return false;

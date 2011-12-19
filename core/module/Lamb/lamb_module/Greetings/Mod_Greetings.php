@@ -313,7 +313,7 @@ final class LambModule_Greetings extends Lamb_Module
 		
 		$dropped = Lamb_Greeting::dropChannel($channel->getID());
 		
-		return sprintf('Ok, i have dropped %d delivered greetings. I will annoy them again!', $dropped);
+		return sprintf('Ok, I have dropped %d delivered greetings. I will annoy them again!', $dropped);
 	}
 }
 ?>

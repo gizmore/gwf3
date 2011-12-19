@@ -43,10 +43,10 @@ final class Quest_Seattle_GJohnson2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Yo chummer, i have an important application from a big contractor.');
+				$npc->reply('Yo chummer, I have an important application from a big contractor.');
 				$npc->reply('The Renraku coorparation got a security breach and needs to collect their stolen IDCards ... "lol" right?');
 				$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
-				$npc->reply(sprintf('Please bring me %s IDCards and i will pay you %s.', $this->getNeededAmount(), $ny));
+				$npc->reply(sprintf('Please bring me %s IDCards and I will pay you %s.', $this->getNeededAmount(), $ny));
 				$npc->reply('Do you accept?');
 				break;
 			

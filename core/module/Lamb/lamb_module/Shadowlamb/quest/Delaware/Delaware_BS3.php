@@ -35,8 +35,8 @@ final class Quest_Delaware_BS3 extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("Wow you must be eager to solve problems.");
-				$npc->reply("There is actually one thing you could do for me which i would really appreciate.");
-				$npc->reply("Please bring me {$need} Runes, and i will reward you greatly.");
+				$npc->reply("There is actually one thing you could do for me which I would really appreciate.");
+				$npc->reply("Please bring me {$need} Runes, and I will reward you greatly.");
 				$npc->reply("What do you say?");
 				$player->message('Beware: The smith will take any runes you might carry!');
 				break;

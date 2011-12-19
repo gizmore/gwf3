@@ -29,7 +29,7 @@ final class Quest_Seattle_GJohnson3 extends SR_Quest
 		
 		if ($this->getAmount() > 0)
 		{
-			$npc->reply('Yes i confirm you have delivered the package. Good job. Here is your reward and a small bonus.');
+			$npc->reply('Yes I confirm you have delivered the package. Good job. Here is your reward and a small bonus.');
 			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
 			$player->message(sprintf('Mr.Johnson hands you a couvert with %s. You also gain %s XP.', $ny, $xp));
@@ -56,7 +56,7 @@ final class Quest_Seattle_GJohnson3 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Yo chummer, i could need you to deliver a package to the Renraku office ... you know ... the Cardgame.');
+				$npc->reply('Yo chummer, I could need you to deliver a package to the Renraku office ... you know ... the Cardgame.');
 				$npc->reply('Do you accept?');
 				break;
 			

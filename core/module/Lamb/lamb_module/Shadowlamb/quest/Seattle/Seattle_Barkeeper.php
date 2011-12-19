@@ -21,7 +21,7 @@ final class Quest_Seattle_Barkeeper extends SR_Quest
 		}
 		else
 		{
-			$npc->reply('Please invite more guests. The party is on friday. Which rockband should i take?');
+			$npc->reply('Please invite more guests. The party is on friday. Which rockband should I take?');
 		}
 	}
 	
