@@ -6,13 +6,13 @@
  */
 final class GWF_ClientInfo
 {
-        #################
-        ### Lang File ###
-        #################
+		#################
+		### Lang File ###
+		#################
 	private static $trans;
-        public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/client/client'); }
-        public static function &getLang() { return self::$trans; }
-        public static function lang($key, $args=NULL) { return self::$trans->lang($key, $args); }
+		public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/client/client'); }
+		public static function &getLang() { return self::$trans; }
+		public static function lang($key, $args=NULL) { return self::$trans->lang($key, $args); }
 
 	public static $_provider = array(
 		'alicedsl.de',

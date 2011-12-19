@@ -8,7 +8,7 @@ class GWF_Wordlist
 {
 	# return random words out of a wordlist, dont return the same word more than once.
 	# @Args: path to wordlist
-	#        number of words
+	#		number of words
 	# @Back: array of strings
 	public static function getRandomWords($wordlistPath, $amount)
 	{

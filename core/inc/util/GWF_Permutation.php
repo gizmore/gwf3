@@ -40,130 +40,130 @@ class GWF_Permutation
 	private $a;
 	private $numLeft;
 	private $total;
-//    private int[] a;
-//    private BigInteger numLeft;
-//    private BigInteger total;
+//	private int[] a;
+//	private BigInteger numLeft;
+//	private BigInteger total;
 
-    //-----------------------------------------------------------
-    // Constructor. WARNING: Don't make n too large.
-    // Recall that the number of permutations is n!
-    // which can be very large, even when n is as small as 20 --
-    // 20! = 2,432,902,008,176,640,000 and
-    // 21! is too big to fit into a Java long, which is
-    // why we use BigInteger instead.
-    //----------------------------------------------------------
-    public function __construct($n)
-    {
-        if ($n < 1)
-        {
-        	throw new Exception('IllegalArgumentException', -1);
-        }
-        $this->n = $n;
-        $this->a = array();
-        $this->total = self::getFactorial($n);
-        $this->reset();
-    }
+	//-----------------------------------------------------------
+	// Constructor. WARNING: Don't make n too large.
+	// Recall that the number of permutations is n!
+	// which can be very large, even when n is as small as 20 --
+	// 20! = 2,432,902,008,176,640,000 and
+	// 21! is too big to fit into a Java long, which is
+	// why we use BigInteger instead.
+	//----------------------------------------------------------
+	public function __construct($n)
+	{
+		if ($n < 1)
+		{
+			throw new Exception('IllegalArgumentException', -1);
+		}
+		$this->n = $n;
+		$this->a = array();
+		$this->total = self::getFactorial($n);
+		$this->reset();
+	}
 
-    //------
-    // Reset
-    //------
-    public function reset()
-    {
-    	for ($i = 0; $i < $this->n; $i++)
-    	{
-    		$this->a[$i] = $i;
-    	}
-    	$this->numLeft = $this->total;
-    }
+	//------
+	// Reset
+	//------
+	public function reset()
+	{
+		for ($i = 0; $i < $this->n; $i++)
+		{
+			$this->a[$i] = $i;
+		}
+		$this->numLeft = $this->total;
+	}
 
-    //------------------------------------------------
-    // Return number of permutations not yet generated
-    //------------------------------------------------
+	//------------------------------------------------
+	// Return number of permutations not yet generated
+	//------------------------------------------------
 
-    public function getNumLeft()
-    {
-        return $this->numLeft;
-    }
+	public function getNumLeft()
+	{
+		return $this->numLeft;
+	}
 
-    //------------------------------------
-    // Return total number of permutations
-    //------------------------------------
+	//------------------------------------
+	// Return total number of permutations
+	//------------------------------------
 
-    public function getTotal()
-    {
-        return $this->total;
-    }
+	public function getTotal()
+	{
+		return $this->total;
+	}
 
-    //-----------------------------
-    // Are there more permutations?
-    //-----------------------------
+	//-----------------------------
+	// Are there more permutations?
+	//-----------------------------
 
-    public function hasMore()
-    {
-    	return bccomp($this->numLeft, '0') === 1;
-    }
+	public function hasMore()
+	{
+		return bccomp($this->numLeft, '0') === 1;
+	}
 
-    //------------------
-    // Compute factorial
-    //------------------
+	//------------------
+	// Compute factorial
+	//------------------
 
-    public static function getFactorial($n)
-    {
-    	$result = '1';
-        for ($i = $n; $i > 1; $i--)
-        {
-        	$result = bcmul($result, $i);
-        }
-        return $result;
-    }
+	public static function getFactorial($n)
+	{
+		$result = '1';
+		for ($i = $n; $i > 1; $i--)
+		{
+			$result = bcmul($result, $i);
+		}
+		return $result;
+	}
 
-    //--------------------------------------------------------
-    // Generate next permutation (algorithm from Rosen p. 284)
-    //--------------------------------------------------------
+	//--------------------------------------------------------
+	// Generate next permutation (algorithm from Rosen p. 284)
+	//--------------------------------------------------------
 
-    public function getNext()
-    {
-        if ($this->numLeft === $this->total)
-        {
-        	$this->numLeft = bcsub($this->numLeft, '1');
-        	return $this->a;
-        }
+	public function getNext()
+	{
+		if ($this->numLeft === $this->total)
+		{
+			$this->numLeft = bcsub($this->numLeft, '1');
+			return $this->a;
+		}
 
-        // Find largest index j with a[j] < a[j+1]
-        $j = count($this->a) - 2;
-        while ($this->a[$j] > $this->a[$j + 1])
-        {
-            $j--;
-        }
+		// Find largest index j with a[j] < a[j+1]
+		$j = count($this->a) - 2;
+		while ($this->a[$j] > $this->a[$j + 1])
+		{
+			$j--;
+		}
 
-        // Find index k such that a[k] is smallest integer
-        // greater than a[j] to the right of a[j]
-        $k = count($this->a) - 1;
-        while ($this->a[$j] > $this->a[$k])
-        {
-            $k--;
-        }
+		// Find index k such that a[k] is smallest integer
+		// greater than a[j] to the right of a[j]
+		$k = count($this->a) - 1;
+		while ($this->a[$j] > $this->a[$k])
+		{
+			$k--;
+		}
 
-        // Interchange a[j] and a[k]
-        $temp = $this->a[$k];
-        $this->a[$k] = $this->a[$j];
-        $this->a[$j] = $temp;
+		// Interchange a[j] and a[k]
+		$temp = $this->a[$k];
+		$this->a[$k] = $this->a[$j];
+		$this->a[$j] = $temp;
 
-        // Put tail end of permutation after jth position in increasing order
-        $r = count($this->a) - 1;
-        $s = $j + 1;
+		// Put tail end of permutation after jth position in increasing order
+		$r = count($this->a) - 1;
+		$s = $j + 1;
 
-        while ($r > $s)
-        {
-            $temp = $this->a[$s];
-            $this->a[$s] = $this->a[$r];
-            $this->a[$r] = $temp;
-            $r--;
-            $s++;
-        }
+		while ($r > $s)
+		{
+			$temp = $this->a[$s];
+			$this->a[$s] = $this->a[$r];
+			$this->a[$r] = $temp;
+			$r--;
+			$s++;
+		}
 
-        $this->numLeft = bcsub($this->numLeft, '1');
-        return $this->a;
-    }
+		$this->numLeft = bcsub($this->numLeft, '1');
+		return $this->a;
+	}
 }
 ?>

@@ -58,7 +58,7 @@ final class Common
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
 	{
-		static $search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '-', '@',    '&',     '%');
+		static $search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '-', '@',	'&',	 '%');
 		static $replace = array('_', '_', '_', '_', '_', '_', '_', '',  '',  '',  '',  '',  '',  '',  '',  '',  '_', '_at_', '_and_', '_');
 		$back = str_replace($search, $replace, $string);
 		return $back === '' ? '_Title_' : $back;
@@ -266,7 +266,7 @@ final class Common
 	/**
 	 * return a substring of string from a specified character sequence.
 	 * @param $string  - string the string to work on
-	 * @param $from    - string trim string until this sequence occurs
+	 * @param $from	- string trim string until this sequence occurs
 	 * @param $default - string [optional] the default return value if $from is not found. The default is an empty string.
 	 * @return string the $string from $from.
 	 * @example substrFrom('AhhFooBar', 'Foo') returns 'Bar'

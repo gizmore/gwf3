@@ -6,14 +6,14 @@
 class GWF_HTTPSock {
 	
 	private $socket = false;
-	private $ip     = false;
+	private $ip	 = false;
 	private $host;
 	private $port;
 	private $cookies   = array();
 	private $userAgent = false;
 	private $settings = array(
-		'auto-follow'         => true,
-		'accept-cookies'      => true,
+		'auto-follow'		 => true,
+		'accept-cookies'	  => true,
 		'unstable-connection' => false
 	);
 	
@@ -176,7 +176,7 @@ class GWF_HTTPSock {
 			if(!$c) {
 				preg_match('#^HTTP/1\.(?:1|0) (\d+?) ([\w ]+?)$#', $line, $arr);
 				$header['status_code'] = (int)$arr[1];
-				$header['status']      = $arr[2];
+				$header['status']	  = $arr[2];
 			} else {
 				$tmp = explode(': ', $line, 2);
 				if(!isset($tmp[1])) $tmp[1] = '';
@@ -204,7 +204,7 @@ class GWF_HTTPSock {
 	}
 	
 	private function _getBody($content_length, $chunked) {
-		$body     = '';
+		$body	 = '';
 		while(strlen($body) < $content_length) {
 			$body.= fgets($this->socket);
 		}

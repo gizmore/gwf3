@@ -74,20 +74,20 @@ if (!function_exists('inet_pton'))
 {
 	function inet_pton($ip)
 	{
-	    # ipv4
-	    if (strpos($ip, '.') !== FALSE) {
-	        return pack('N',ip2long($ip));
-	    }
-	    # ipv6
-	    elseif (strpos($ip, ':') !== FALSE) {
-	        $ip = explode(':', $ip);
-	        $res = str_pad('', (4*(8-count($ip))), '0000', STR_PAD_LEFT);
-	        foreach ($ip as $seg) {
-	            $res .= str_pad($seg, 4, '0', STR_PAD_LEFT);
-	        }
-	        return pack('H'.strlen($res), $res);
-	    }
-	    return false;
+		# ipv4
+		if (strpos($ip, '.') !== FALSE) {
+			return pack('N',ip2long($ip));
+		}
+		# ipv6
+		elseif (strpos($ip, ':') !== FALSE) {
+			$ip = explode(':', $ip);
+			$res = str_pad('', (4*(8-count($ip))), '0000', STR_PAD_LEFT);
+			foreach ($ip as $seg) {
+				$res .= str_pad($seg, 4, '0', STR_PAD_LEFT);
+			}
+			return pack('H'.strlen($res), $res);
+		}
+		return false;
 	}
 }
 ?>

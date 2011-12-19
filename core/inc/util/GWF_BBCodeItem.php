@@ -216,7 +216,7 @@ final class GWF_BBCodeItem
 //			$geshi->start_line_numbers_at(1);
 //			$geshi->enable_classes();
 			
-    		$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
+			$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
 			$pre = '<div class="gwf_code">';
 			$pre .= sprintf('<div>%s%s</div>', $geshi_a, $head);
 			$after = '</div>';

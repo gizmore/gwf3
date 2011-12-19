@@ -64,10 +64,10 @@ final class GWF_Javascript
 		if (ob_get_length())
 		{
 			ob_flush();
-        	flush();
-        	ob_end_flush();
+			flush();
+			ob_end_flush();
 		}
-    	ob_start();
+		ob_start();
 	}
 	
 	############

@@ -14,19 +14,19 @@
 final class GWF_IP6
 {
 	# Types
-	const INT_32 = 'int_32';         # 4 byte, IPv6 not supported
-	const UINT_32 = 'uint_32';       # 4 byte, IPv6 not supported
-	const HASH_32_1 = 'hash_32_1';   # 4 byte, Very Lossy on IPv6. IPv6: (24 bit) 0.1%, IPv4 100% ; Maps IPv6 to loopbacks.
-	const HASH_32_2 = 'hash_32_2';   # 4 byte, Both Lossy. IPv6: (31 bit) 1%, IPv4: (31 bit) 50% ; maps 50% of v4 (MSB) to v6
-	const HASH_32_3 = 'hash_32_3';   # 4 byte, Both Lossy. IPv6: (31 bit) 1%, IPv4: (31 bit) 50% ; maps 50% of v4 (LSB) to v6
-	const HASH_64   = 'hash_64';     # 8 byte, Lossy on IPv6 (63 bit) 2%, IPv4: 100%
-	const HEX_32_128 = 'hex_32_128'; # 8 or 32 byte, Losless: Both 100%
-	const HEX_128 = 'hex_128';       # 32 byte, Losless: Both 100%
-	const BIN_32_128 = 'bin_32_128'; # 4 or 16 byte, Losless: Both 100%
-	const BIN_128 = 'bin_128';       # 16 byte, Losless: Both 100%
-	const AS_IS = 'as_is';           # 3-39 byte, Losless: Both 100% 2-24 byte
-	const PACK_1 = 'pack_1';         # 2-24 byte, Losless: Both 100% (not implemented) using 1111==16 bits per char
-	const PACK_2 = 'pack_2';         # 2-?? byte, Losless: Both 100% (not implemented) using 3rd party compression
+	const INT_32 = 'int_32';		# 4 byte, IPv6 not supported
+	const UINT_32 = 'uint_32';		# 4 byte, IPv6 not supported
+	const HASH_32_1 = 'hash_32_1';		# 4 byte, Very Lossy on IPv6. IPv6: (24 bit) 0.1%, IPv4 100% ; Maps IPv6 to loopbacks.
+	const HASH_32_2 = 'hash_32_2';		# 4 byte, Both Lossy. IPv6: (31 bit) 1%, IPv4: (31 bit) 50% ; maps 50% of v4 (MSB) to v6
+	const HASH_32_3 = 'hash_32_3';		# 4 byte, Both Lossy. IPv6: (31 bit) 1%, IPv4: (31 bit) 50% ; maps 50% of v4 (LSB) to v6
+	const HASH_64   = 'hash_64';		# 8 byte, Lossy on IPv6 (63 bit) 2%, IPv4: 100%
+	const HEX_32_128 = 'hex_32_128';	# 8 or 32 byte, Losless: Both 100%
+	const HEX_128 = 'hex_128';		# 32 byte, Losless: Both 100%
+	const BIN_32_128 = 'bin_32_128';	# 4 or 16 byte, Losless: Both 100%
+	const BIN_128 = 'bin_128';		# 16 byte, Losless: Both 100%
+	const AS_IS = 'as_is';			# 3-39 byte, Losless: Both 100% 2-24 byte
+	const PACK_1 = 'pack_1';		# 2-24 byte, Losless: Both 100% (not implemented) using 1111==16 bits per char
+	const PACK_2 = 'pack_2';		# 2-?? byte, Losless: Both 100% (not implemented) using 3rd party compression
 	
 	# UserAgent/IP hash
 	const UA_HASH = 'ua_hash';
@@ -484,20 +484,20 @@ if (!function_exists('inet_pton'))
 {
 	function inet_pton($ip)
 	{
-	    # ipv4
-	    if (strpos($ip, '.') !== false) {
-	        return pack('N',ip2long($ip));
-	    }
-	    # ipv6
-	    elseif (strpos($ip, ':') !== false) {
-	        $ip = explode(':', $ip);
-	        $res = str_pad('', (4*(8-count($ip))), '0000', STR_PAD_LEFT);
-	        foreach ($ip as $seg) {
-	            $res .= str_pad($seg, 4, '0', STR_PAD_LEFT);
-	        }
-	        return pack('H'.strlen($res), $res);
-	    }
-	    return false;
+		# ipv4
+		if (strpos($ip, '.') !== false) {
+			return pack('N',ip2long($ip));
+		}
+		# ipv6
+		elseif (strpos($ip, ':') !== false) {
+			$ip = explode(':', $ip);
+			$res = str_pad('', (4*(8-count($ip))), '0000', STR_PAD_LEFT);
+			foreach ($ip as $seg) {
+				$res .= str_pad($seg, 4, '0', STR_PAD_LEFT);
+			}
+			return pack('H'.strlen($res), $res);
+		}
+		return false;
 	}
 }
 

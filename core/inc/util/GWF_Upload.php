@@ -61,10 +61,10 @@ final class GWF_Upload
 			'K'  => $f,
 			'MB' => $f*$f,
 			'M'  => $f*$f,
-        	'GB' => $f*$f*$f,
+			'GB' => $f*$f*$f,
 			'G'  => $f*$f*$f,
-        	'TB' => $f*$f*$f*$f,
-        	'T'  => $f*$f*$f*$f,
+			'TB' => $f*$f*$f*$f,
+			'T'  => $f*$f*$f*$f,
 			'PB' => $f*$f*$f*$f*$f,
 			'P'  => $f*$f*$f*$f*$f,
 		);
