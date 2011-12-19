@@ -8,67 +8,67 @@ class GWF_Message {
 	/*
 	 * BB Replacements
 	 */
-    private static $bbReplaceNew = array(
-    
-    	'b' => array(
-    		'score' => 0,
-    		'help' => '[b]<b>bold</b>[/b]',
-    		'script' => 'bbInsert(\'[b]\', \'[/b]\')',
-    	),
-    	
-    	'i' => array(
-    		'score' => 0,
-    		'help' => '[i]<em>italic</em>[/i]',
-    		'script' => 'bbInsert(\'[i]\', \'[/i]\')',
-    	),
-    	
-    	'u' => array(
-    		'score' => 0,
-    		'help' => '[u]<u>underlined</u>[/u]',
-    		'script' => "bbInsert('[u]', '[/u]')",
-    	),
-    	
-    	'code' => array(
-    		'score' => 0,
-    		'help' => '[code=lang]Mark text as code[/code]',
-    		'script' => "bbInsert('[code]', '[/code]')",
-    	),
-    	
-    	'quote' => array(
-    		'score' => 0,
-    		'help' => '[quote=username]quote someone[/quote]',
-    		'script' => "bbInsert('[quote=Unknown]', '[/quote]')",
-    	),
-    	
-    	'url' => array(
-    		"score" => 0,
-    		"help" => "[url=url]link_text[/url] or [url]url[/url]",
-    		"script" => "bbInsert('[url=http://]', '[/url]')",
-    	),
-    	
-    	"email" => array(
-    		"score" => 0,
-    		"help" => "[email=email@url]link_text[/email] or [email]email[/email]",
-    		"script" => "bbInsert('[email]', '[/email]')",
-    	),
-    	
-    	"noparse" => array(
-    		"score" => 0,
-    		"help" => "[noparse]disable bb-decoding[/noparse]",
-    		"script" => "bbInsert('[noparse]', '[/noparse]')",
-    	),
+	private static $bbReplaceNew = array(
+	
+		'b' => array(
+			'score' => 0,
+			'help' => '[b]<b>bold</b>[/b]',
+			'script' => 'bbInsert(\'[b]\', \'[/b]\')',
+		),
+		
+		'i' => array(
+			'score' => 0,
+			'help' => '[i]<em>italic</em>[/i]',
+			'script' => 'bbInsert(\'[i]\', \'[/i]\')',
+		),
+		
+		'u' => array(
+			'score' => 0,
+			'help' => '[u]<u>underlined</u>[/u]',
+			'script' => "bbInsert('[u]', '[/u]')",
+		),
+		
+		'code' => array(
+			'score' => 0,
+			'help' => '[code=lang]Mark text as code[/code]',
+			'script' => "bbInsert('[code]', '[/code]')",
+		),
+		
+		'quote' => array(
+			'score' => 0,
+			'help' => '[quote=username]quote someone[/quote]',
+			'script' => "bbInsert('[quote=Unknown]', '[/quote]')",
+		),
+		
+		'url' => array(
+			"score" => 0,
+			"help" => "[url=url]link_text[/url] or [url]url[/url]",
+			"script" => "bbInsert('[url=http://]', '[/url]')",
+		),
+		
+		"email" => array(
+			"score" => 0,
+			"help" => "[email=email@url]link_text[/email] or [email]email[/email]",
+			"script" => "bbInsert('[email]', '[/email]')",
+		),
+		
+		"noparse" => array(
+			"score" => 0,
+			"help" => "[noparse]disable bb-decoding[/noparse]",
+			"script" => "bbInsert('[noparse]', '[/noparse]')",
+		),
   	
-    	'spoiler' => array(
-    		'score' => 0,
-    		'help' => '[spoiler]Invisible text that is shown with a click[/spoiler]',
-    		"script" => "bbInsert('[spoiler]', '[/spoiler]')",
-    	),
-    );
-    
-    private static $bbSmileyPath;
-    public static function bbSmileyPath()
-    {
-    	if(!isset(self::$bbSmileyPath))
+		'spoiler' => array(
+			'score' => 0,
+			'help' => '[spoiler]Invisible text that is shown with a click[/spoiler]',
+			"script" => "bbInsert('[spoiler]', '[/spoiler]')",
+		),
+	);
+	
+	private static $bbSmileyPath;
+	public static function bbSmileyPath()
+	{
+		if(!isset(self::$bbSmileyPath))
 		{
 			$path = sprintf('img/%s/smile/', GWF_ICON_SET);
 			if(is_dir(GWF_WWW_PATH.$path))
@@ -81,52 +81,52 @@ class GWF_Message {
 			}
 		}
 		return self::$bbSmileyPath;
-    }
+	}
 
-    private static $bbSmileys = array(
-    	'=D' => array('002_biggrin.gif', 'Yay'),
-    	
-    	'o-o' => array('002_sconfused.gif', 'Confused'),
-    	'O-O' => array('002_sconfused.gif', 'Confused'),
+	private static $bbSmileys = array(
+		'=D' => array('002_biggrin.gif', 'Yay'),
+		
+		'o-o' => array('002_sconfused.gif', 'Confused'),
+		'O-O' => array('002_sconfused.gif', 'Confused'),
 
-    	'B)' => array('002_scool.gif', 'Cool'),
-    	'B-)' => array('002_scool.gif', 'Cool'),
-    	
+		'B)' => array('002_scool.gif', 'Cool'),
+		'B-)' => array('002_scool.gif', 'Cool'),
+		
 		":'(" => array('002_scry.gif', 'Cry'),
-    	
-    	':P' => array('002_sdrool.gif', 'Drool'),
-    	':-P' => array('002_sdrool.gif', 'Drool'),
-    	':p' => array('002_sdrool.gif', 'Drool'),
-    	':-p' => array('002_sdrool.gif', 'Drool'),
+		
+		':P' => array('002_sdrool.gif', 'Drool'),
+		':-P' => array('002_sdrool.gif', 'Drool'),
+		':p' => array('002_sdrool.gif', 'Drool'),
+		':-p' => array('002_sdrool.gif', 'Drool'),
 
-    	':D' => array('002_shappy.gif', 'Happy'),
-    	':-D' => array('002_shappy.gif', 'Happy'),
-    
-    	'>:-(' => array('002_smad.gif', 'Mad'),
-    	'>:-/' => array('002_smad.gif', 'Mad'),
-    	
-    	':-(' => array('002_ssad.gif', 'Sad'),
-    	':(' => array('002_ssad.gif', 'Sad'),
+		':D' => array('002_shappy.gif', 'Happy'),
+		':-D' => array('002_shappy.gif', 'Happy'),
+	
+		'>:-(' => array('002_smad.gif', 'Mad'),
+		'>:-/' => array('002_smad.gif', 'Mad'),
+		
+		':-(' => array('002_ssad.gif', 'Sad'),
+		':(' => array('002_ssad.gif', 'Sad'),
 
-    	'oO' => array('002_ssleepy.gif', 'Euh'),
-    	'o-O' => array('002_ssleepy.gif', 'Euh'),
-    	'Oo' => array('002_ssleepy.gif', 'Euh'),
-    	'O-o' => array('002_ssleepy.gif', 'Euh'),
-    
-    	':)' => array('002_ssmile.gif', 'Smile'),
-    	':-)' => array('002_ssmile.gif', 'Smile'),
-    
-    	':O' => array('002_ssuprised.gif', 'Woot'),
-    	':-O' => array('002_ssuprised.gif', 'Woot'),
-    	':o' => array('002_ssuprised.gif', 'Woot'),
-        ':-o' => array('002_ssuprised.gif', 'Woot'),
-    );
-    
-    #----- end of static -----#
-    
-    private $message;
+		'oO' => array('002_ssleepy.gif', 'Euh'),
+		'o-O' => array('002_ssleepy.gif', 'Euh'),
+		'Oo' => array('002_ssleepy.gif', 'Euh'),
+		'O-o' => array('002_ssleepy.gif', 'Euh'),
+	
+		':)' => array('002_ssmile.gif', 'Smile'),
+		':-)' => array('002_ssmile.gif', 'Smile'),
+	
+		':O' => array('002_ssuprised.gif', 'Woot'),
+		':-O' => array('002_ssuprised.gif', 'Woot'),
+		':o' => array('002_ssuprised.gif', 'Woot'),
+		':-o' => array('002_ssuprised.gif', 'Woot'),
+	);
+	
+	#----- end of static -----#
+	
+	private $message;
 
-    /**
+	/**
 	 * constructor
 	 * @param: string message
 	 */
@@ -134,7 +134,7 @@ class GWF_Message {
 	{
 		$this->message = $message;
 	}
-    
+	
 	/**
 	 * return a form input field, containing the message + the editing bar
 	*/
@@ -159,93 +159,93 @@ class GWF_Message {
 	 * Get a replacement javascript bar, to aid in editing
 	 */
 //	public function getBBReplaceBar() {
-//    	
-//    	require_once("script/bbreplace.php");
-//    	
-//    	$userscore = User::isLoggedIn() ? $_SESSION["user"]->getVar("totalscore") : 0;
-//    	
-//    	$back = '<div class="bb_replace_bar">';
-//    	
-//    	foreach (self::$bbReplaceNew as $code => $data) {
-//    		
-//    		$score = $data["score"];
-//    		$script = $data["script"];
-//    		$alt = $data["help"];
+//		
+//		require_once("script/bbreplace.php");
+//		
+//		$userscore = User::isLoggedIn() ? $_SESSION["user"]->getVar("totalscore") : 0;
+//		
+//		$back = '<div class="bb_replace_bar">';
+//		
+//		foreach (self::$bbReplaceNew as $code => $data) {
+//			
+//			$score = $data["score"];
+//			$script = $data["script"];
+//			$alt = $data["help"];
 //
-//    		if ($script === false) {
-//    			continue;
-//    		}
-//    		
-//    		if ($userscore < $score) {
-//    			continue;
-//    		}
-//    		
-//    		$onclick = $script == "" ? "" : "onclick=\"return $script\"";
-//    		$back .= '<div class="bb_replace">';
-//    		$alt = htmlspecialchars($alt);
-//    		$back .= "<img src=\"/image/button/bb/$code.png\" alt=\"$alt\" title=\"$alt\" $onclick />";
-//    		$back .= "</div>";
-//    		
-//    	}
-//    	
-//    	$back .= "</div>\n";
-//    	
-//    	return $back;
-//    	
-//    }
+//			if ($script === false) {
+//				continue;
+//			}
+//			
+//			if ($userscore < $score) {
+//				continue;
+//			}
+//			
+//			$onclick = $script == "" ? "" : "onclick=\"return $script\"";
+//			$back .= '<div class="bb_replace">';
+//			$alt = htmlspecialchars($alt);
+//			$back .= "<img src=\"/image/button/bb/$code.png\" alt=\"$alt\" title=\"$alt\" $onclick />";
+//			$back .= "</div>";
+//			
+//		}
+//		
+//		$back .= "</div>\n";
+//		
+//		return $back;
+//		
+//	}
 
-//    private static $parser = false;
-//    private static function init()
-//    {
-//    	static $inited = false;
-//    	if (!$inited)
-//    	{
+//	private static $parser = false;
+//	private static function init()
+//	{
+//		static $inited = false;
+//		if (!$inited)
+//		{
 //			require_once 'core/inc/3p/quickerubb.php';
 //			self::$parser = new ubbParser();
-//    	}
-//    }
-    
-    /**
-     * Display a message bb decoded.
-     * @param string $message the message
-     * @param boolean $allowBB allow bbcode
-     * @param boolean $allowSmiley allow smileys
-     * @param boolean $allowIMG allow external img
-     * @param array $highlight highlight strings
-     * @return string html
-     */
-    public static function display($message, $allowBB=true, $allowSmiley=true, $allowIMG=false, array $highlight=array())
-    {
-//    	$message = self::wordwrap($message);
-    	
-    	if (!$allowBB) {
-    		$message = sprintf('[noparse]%s[/noparse]', $message);
-    	}
+//		}
+//	}
+	
+	/**
+	 * Display a message bb decoded.
+	 * @param string $message the message
+	 * @param boolean $allowBB allow bbcode
+	 * @param boolean $allowSmiley allow smileys
+	 * @param boolean $allowIMG allow external img
+	 * @param array $highlight highlight strings
+	 * @return string html
+	 */
+	public static function display($message, $allowBB=true, $allowSmiley=true, $allowIMG=false, array $highlight=array())
+	{
+//		$message = self::wordwrap($message);
+		
+		if (!$allowBB) {
+			$message = sprintf('[noparse]%s[/noparse]', $message);
+		}
 
 		self::init($allowSmiley, $highlight);
 		
-//    	ubbsetsmileys(self::$bbSmileys, GWF_WEB_ROOT.self::bbSmileyPath(), $allowIMG, $allowSmiley);
-    	
+//		ubbsetsmileys(self::$bbSmileys, GWF_WEB_ROOT.self::bbSmileyPath(), $allowIMG, $allowSmiley);
+		
 //		self::$parser->setHighlight($highlight);
 		
 		return GWF_BBCode::decode($message);
 //		return GWF_BB3::decode($message);
 //		return self::$parser->parse($message);
-    }
-    
-    private static function init($allowSmiley, $highlight)
-    {
-    	GWF_BBCode::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
-    	GWF_BBCode::initHighlighter($highlight);
-//    	GWF_BB3::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
-//    	GWF_BB3::initHighlighter($highlight);
-    }
-    
-    private static function wordwrap($string, $maxlen=72, $break="\n")
-    {
+	}
+	
+	private static function init($allowSmiley, $highlight)
+	{
+		GWF_BBCode::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
+		GWF_BBCode::initHighlighter($highlight);
+//		GWF_BB3::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
+//		GWF_BB3::initHighlighter($highlight);
+	}
+	
+	private static function wordwrap($string, $maxlen=72, $break="\n")
+	{
 		return preg_replace('#(\S{'.$maxlen.',})#e', "chunk_split('$1', ".$maxlen.", '".$break."')", $string); 
-    }
-    
+	}
+	
 	/**
 	 * return the message bb-replaced.
 	 * the user is the poster, and thus different replacements can be taken for different skilled users.

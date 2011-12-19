@@ -95,9 +95,10 @@ final class GWF_Debug
 
 			if ($error['type'] != 0)
 			{
-				require_once dirname(__FILE__).'/GWF_Log.php';
-				require_once dirname(__FILE__).'/GWF_IP6.php';
-				require_once dirname(__FILE__).'/GWF_Mail.php';
+				$dirname = dirname(__FILE__);
+				require_once $dirname.'/GWF_Log.php';
+				require_once $dirname.'/GWF_IP6.php';
+				require_once $dirname.'/GWF_Mail.php';
 				self::error_handler(1, $error['message'], self::shortpath($error['file']), $error['line'], NULL);
 			}
 		}
@@ -145,6 +146,7 @@ final class GWF_Debug
 			case E_USER_NOTICE: case E_NOTICE: $errnostr = 'PHP Notice'; break;
 			case E_USER_ERROR: $errnostr = 'PHP Error'; break;
 			case E_STRICT: $errnostr = 'PHP Strict Error'; break;
+			case E_DEPRECATED: case E_USER_DEPRECATED: $errnostr = 'PHP Deprecated'; break;
 			
 			default: $errnostr = 'PHP Unknown Error'; break;
 		}
@@ -185,7 +187,7 @@ final class GWF_Debug
 			die(1); # oops :)
 		}
 		
-		# Return false to populate php last error. TODO: Check if we want that.
+		# Return false to populate php last error. TODO: Check if we want that. (spaceone: Yes we want that!)
 		return false; 
 	}
 
@@ -239,7 +241,7 @@ final class GWF_Debug
 		{
 			if ($i++ > 0)
 			{
-				$function = sprintf('%s%s()', isset($row['class']) ? $row['class'].'::' : '', $row['function']);
+				$function = sprintf('%s%s()', isset($row['class']) ? $row['class'].$row['type'} : '', $row['function']);
 				$implode[] = array(
 					$function,
 					$prefile,
