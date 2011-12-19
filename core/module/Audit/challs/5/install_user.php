@@ -2,11 +2,14 @@
 $dirname = $home.'/level/5';
 if (!Common::isDir($dirname))
 {
-	if (!@mkdir($dirname, 0705, true))
+	if (!@mkdir($dirname, 0700, true))
 	{
 		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
 		return;
 	}
+	chmod($dirname, 0700);
+	chown($dirname, $username);
+	chgrp($dirname, $username);
 }
 
 $filename = $home.'/level/5/README.txt';
