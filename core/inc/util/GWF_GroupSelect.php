@@ -38,21 +38,25 @@ final class GWF_GroupSelect
 	{
 		$user = GWF_User::getStaticOrGuest();
 		
-		if (false === ($groups = GDO::table('GWF_Group')->select('group_id, group_name'))) {
+		if (false === ($groups = GDO::table('GWF_Group')->select('group_id, group_name')))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if ($selected === true) {
+		if ($selected === true)
+		{
 			$selected = Common::getPostArray($name, array());
 		}
 		
 		$data = array();
-		if ($allow_empty) {
+		if ($allow_empty)
+		{
 			$data[] = array('0', GWF_HTML::lang('sel_group'));
 		}
 		while (false !== ($group = GDO::table('GWF_Group')->fetch($groups, GDO::ARRAY_N)))
 		{
-			if ($own_groups_only && (!$user->isInGroupName($group[1]))) {
+			if ($own_groups_only && !$user->isInGroupName($group[1]))
+			{
 				continue;
 			}
 			$data[] = $group;

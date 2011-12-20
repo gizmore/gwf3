@@ -84,42 +84,42 @@ class GWF_Message {
 	}
 
 	private static $bbSmileys = array(
-		'=D' => array('002_biggrin.gif', 'Yay'),
+		'=D' => array('biggrin.png', 'Yay'),
 		
-		'o-o' => array('002_sconfused.gif', 'Confused'),
-		'O-O' => array('002_sconfused.gif', 'Confused'),
+		'o-o' => array('sconfused.png', 'Confused'),
+		'O-O' => array('sconfused.png', 'Confused'),
 
-		'B)' => array('002_scool.gif', 'Cool'),
-		'B-)' => array('002_scool.gif', 'Cool'),
+		'B)' => array('scool.png', 'Cool'),
+		'B-)' => array('scool.png', 'Cool'),
 		
-		":'(" => array('002_scry.gif', 'Cry'),
+		":'(" => array('scry.png', 'Cry'),
 		
-		':P' => array('002_sdrool.gif', 'Drool'),
-		':-P' => array('002_sdrool.gif', 'Drool'),
-		':p' => array('002_sdrool.gif', 'Drool'),
-		':-p' => array('002_sdrool.gif', 'Drool'),
+		':P' => array('sdrool.png', 'Drool'),
+		':-P' => array('sdrool.png', 'Drool'),
+		':p' => array('sdrool.png', 'Drool'),
+		':-p' => array('sdrool.png', 'Drool'),
 
-		':D' => array('002_shappy.gif', 'Happy'),
-		':-D' => array('002_shappy.gif', 'Happy'),
+		':D' => array('shappy.png', 'Happy'),
+		':-D' => array('shappy.png', 'Happy'),
 	
-		'>:-(' => array('002_smad.gif', 'Mad'),
-		'>:-/' => array('002_smad.gif', 'Mad'),
+		'>:-(' => array('smad.png', 'Mad'),
+		'>:-/' => array('smad.png', 'Mad'),
 		
-		':-(' => array('002_ssad.gif', 'Sad'),
-		':(' => array('002_ssad.gif', 'Sad'),
+		':-(' => array('ssad.png', 'Sad'),
+		':(' => array('ssad.png', 'Sad'),
 
-		'oO' => array('002_ssleepy.gif', 'Euh'),
-		'o-O' => array('002_ssleepy.gif', 'Euh'),
-		'Oo' => array('002_ssleepy.gif', 'Euh'),
-		'O-o' => array('002_ssleepy.gif', 'Euh'),
+		'oO' => array('ssleepy.png', 'Euh'),
+		'o-O' => array('ssleepy.png', 'Euh'),
+		'Oo' => array('ssleepy.png', 'Euh'),
+		'O-o' => array('ssleepy.png', 'Euh'),
 	
-		':)' => array('002_ssmile.gif', 'Smile'),
-		':-)' => array('002_ssmile.gif', 'Smile'),
+		':)' => array('ssmile.png', 'Smile'),
+		':-)' => array('ssmile.png', 'Smile'),
 	
-		':O' => array('002_ssuprised.gif', 'Woot'),
-		':-O' => array('002_ssuprised.gif', 'Woot'),
-		':o' => array('002_ssuprised.gif', 'Woot'),
-		':-o' => array('002_ssuprised.gif', 'Woot'),
+		':O' => array('ssuprised.png', 'Woot'),
+		':-O' => array('ssuprised.png', 'Woot'),
+		':o' => array('ssuprised.png', 'Woot'),
+		':-o' => array('ssuprised.png', 'Woot'),
 	);
 	
 	#----- end of static -----#
