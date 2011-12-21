@@ -7,7 +7,7 @@ define('GWF_CORE_VERSION', '3.02-2011.Nov.25');
  * @author spaceone, gizmore
  * @version 1.03
  * @since 01.07.2011
- * @todo better GWF_WEBSITE_DOWN
+ * @todo better design handling
  */
 class GWF3 
 {
@@ -72,12 +72,24 @@ class GWF3
 		
 		self::onDefineWebRoot();
 
+		// TODO: remove
 		$this->init();
 	}
 
 	public function init()
 	{
-		$config = self::$_config;
+		if(true === defined('GWF_WEBSITE_DOWN'))
+		{
+			$this->setConfig('load_module', false);
+			$this->setConfig('autoload_modules', false);
+			# log_request ?
+
+			$this->init();
+
+			die( $this->onDisplayPage(GWF_WEBSITE_DOWN) );
+		}
+
+		$config = &self::$_config;
 		
 		if (true === $config['start_debug'])
 		{
@@ -123,9 +135,9 @@ class GWF3
 	
 	public function __destruct() 
 	{
-		if(!self::$CONFIG['no_session'])
+		if(false === self::getConfig('no_session'))
 		{
-			$this->onSessionCommit(self::$CONFIG['store_last_url']);
+			$this->onSessionCommit(self::getConfig('store_last_url'));
 		}
 	}
 		
@@ -167,9 +179,9 @@ class GWF3
 	public static function onLoadConfig($config='protected/config.php') 
 	{
 		# Get the config
-		if (!defined('GWF_HAVE_CONFIG'))
+		if (false === defined('GWF_HAVE_CONFIG'))
 		{
-			if(!file_exists($config))
+			if(false === file_exists($config))
 			{			
 				die('GWF3 couldnt load the config: file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
 			}
@@ -182,7 +194,7 @@ class GWF3
 	{
 		# Web Root
 		$root = GWF_WEB_ROOT_NO_LANG;
-		if (isset($_SERVER['REQUEST_URI'])) # Non CLI?
+		if (true === isset($_SERVER['REQUEST_URI'])) # Non CLI?
 		{
 			if (preg_match('#^'.GWF_WEB_ROOT_NO_LANG.'([a-z]{2})/#', $_SERVER['REQUEST_URI'], $matches)) # Match lang from url.
 			{
@@ -197,7 +209,7 @@ class GWF3
 	}
 	public static function onStartSession($blocking=true)
 	{
-		if (!GWF_Session::start($blocking))
+		if (false === GWF_Session::start($blocking))
 		{
 			die('GWF not installed?!');
 		}
@@ -205,7 +217,7 @@ class GWF3
 	public static function onStartLogging($no_session=false)
 	{
 		$username = false;
-		if (!$no_session)
+		if (false === $no_session)
 		{
 			if (false !== ($user = GWF_Session::getUser()))
 			{
@@ -217,9 +229,9 @@ class GWF3
 	
 	public function onAutoloadModules()
 	{
-		if(defined('GWF_WEBSITE_DOWN')) return $this;
 		# Autoload Modules
-		if (false === GWF_Module::autoloadModules()) {
+		if (false === GWF_Module::autoloadModules())
+		{
 			die('Cannot autoload modules. GWF not installed?');
 		}
 		return $this;
@@ -227,8 +239,6 @@ class GWF3
 	
 	public function onLoadModule()
 	{
-		if(defined('GWF_WEBSITE_DOWN')) return $this;
-		
 		# Load the module
 		if (false === (self::$module = GWF_Module::loadModuleDB($_GET['mo']))) 
 		{
@@ -239,13 +249,13 @@ class GWF3
 			$_GET['me'] = GWF_DEFAULT_METHOD;
 		}
 
-		if (self::$module->isEnabled())
+		if (true === self::$module->isEnabled())
 		{
 			# Execute the method
 			self::$module->onInclude();
 			self::$module->onLoadLanguage();
 			self::$page = self::$module->execute($_GET['me']);
-			if (isset($_GET['ajax']))
+			if (true === isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
 			}
@@ -270,18 +280,13 @@ class GWF3
 	
 	public function onDisplayPage($content=NULL)
 	{
-		if (defined('GWF_WEBSITE_DOWN'))
-		{
-			return GWF_WEBSITE_DOWN;
-		}
-
-		if ( (self::$CONFIG['log_request']) && (class_exists('GWF_Log')) )
+		if ( (true === self::getConfig('log_request')) && (class_exists('GWF_Log')) )
 		{
 			GWF_Log::logRequest();
 		}
 		
 		# Display the page
-		if (isset($_GET['ajax']))
+		if (true === isset($_GET['ajax']))
 		{
 			GWF_Website::plaintext();
 			return self::$page;
