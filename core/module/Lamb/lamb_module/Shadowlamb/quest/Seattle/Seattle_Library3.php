@@ -20,8 +20,14 @@ final class Quest_Seattle_Library3 extends SR_Quest
 			$npc->reply('What? Oh yes, the magic spell. I remember now ... ');
 			$player->message('The gnome teaches you a new magic spell: teleport.');
 			$player->levelupSpell('teleport');
-			$this->onSolve($player);
+			return $this->onSolve($player);
+		}
+		
+		else {
+			$npc->reply(sprintf('I still need %d of %d ElvenStaffs ... come back later.', $have, $need));
+			return false;
 		}
 	}
+	
 }
 ?>
