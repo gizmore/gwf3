@@ -73,7 +73,14 @@ final class SF_Shell extends GWF_Method
 		if(class_exists($class))
 		{
 			$obj = new $class($cmdA);
-			return $obj->execute();
+			if(false === ($clone = $obj->isClone()))
+			{
+				return $obj->execute();
+			}
+			else
+			{
+				// TODO
+			}
 		}
 		else
 		{
