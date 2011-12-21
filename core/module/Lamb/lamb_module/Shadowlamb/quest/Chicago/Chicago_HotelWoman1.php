@@ -21,7 +21,7 @@ final class Quest_Chicago_HotelWoman1 extends SR_Quest
 	{
 		switch ($word)
 		{
-			case 'renraku':
+			case 'shadowrun':
 				$npc->reply("Oh my husband was working for Renraku, but he got lost. Maybe you have heard from him?");
 				$npc->reply("He was last seen in Seattle and was not officially working for them ... so don't get into trouble.");
 				$npc->reply("His name is Malois Peltzer. Can you please look for him?");

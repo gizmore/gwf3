@@ -22,7 +22,7 @@ final class Item_Pringles extends SR_Food
 			$busy = $this->getItemUsetime();
 			$player->busy($busy);
 			$busytext = sprintf(' %s busy.', GWF_Time::humanDuration($busy));
-			$p->message($player, sprintf(' eats %s chip from his roll of Pringles: %s.%s', $last, $gainmsg, $busytext));
+			$p->message($player, sprintf(' eats %s potatoe chip from his roll of Pringles: %s.%s', $last, $gainmsg, $busytext));
 			$p->getEnemyParty()->message($player, sprintf(' eats %s chip from his roll of Pringles.', $last));
 		}
 		else

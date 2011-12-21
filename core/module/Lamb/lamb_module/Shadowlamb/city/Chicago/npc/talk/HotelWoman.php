@@ -11,7 +11,7 @@ final class Chicago_HotelWoman extends SR_TalkingNPC
 		}
 		switch ($word)
 		{
-// 			case 'renraku': return $this->reply('We have not heard anything bad from Renraku lately.');
+			case 'renraku': return $this->reply('I hate renraku ... they are responsible for much bad things lately.');
 // 			case 'shadowrun': return $this->reply('I am not into illegal stuff.');
 			case 'cyberware': return $this->reply('Most of my friends don\'t use a headcomputer.');
 			case 'magic': return $this->reply('Most of my friends are not from a magic race.');

@@ -2,8 +2,8 @@
 final class Item_AlchemicPotion extends SR_Usable
 {
 	public function displayType() { return 'Potion'; }
-	public function getItemWeight() { return 450; }
-	public function getItemPrice() { return 32.95; }
+	public function getItemWeight() { return 650; }
+	public function getItemPrice() { return 31.95; }
 	
 	public static function alchemicFactory($spellname, $level)
 	{
