@@ -13,9 +13,10 @@ class GWF3
 {
 	private static $design = 'default';
 	private static $module, $page, $user;
-	public static $CONFIG = array(
+	private static $_config = array(
 		'bootstrap' => false, # Init GWF_Bootstrap?
 		'website_init' => true, # Init GWF_Website?
+		'client_info' => true, # Init GWF_ClientInfo Langfile?
 		'autoload_modules' => true, # Load modules with autoload flag?
 		'load_module' => true, # Load the requested module?
 		'load_config' => false, # Load the config file? (DEPRECATED) # TODO: REMOVE
@@ -28,8 +29,8 @@ class GWF3
 		'store_last_url' => true, # Save the current URL into session?
 		'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
 	);
-	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
-	public static function getConfig($key) { return self::$CONFIG[$key]; }
+	public static function setConfig($key, $v) { self::$_config[$key] = $v; }
+	public static function getConfig($key) { return self::$_config[$key]; }
  	
 	/**
 	 * @param array $config
@@ -38,10 +39,10 @@ class GWF3
 	 */
 	public function __construct($basepath, array $config = array())
 	{
-		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
+		self::$_config = ($config = array_merge(self::$_config, $config));
 
 		# Bootstrap
-		if ($config['bootstrap'])
+		if (true === $config['bootstrap'])
 		{
 			GWF_Bootstrap::init();
 		}
@@ -55,7 +56,7 @@ class GWF3
 		Common::defineConst('GWF_CONFIG_PATH', GWF_PROTECTED_PATH.'config.php');
 		Common::defineConst('GWF_LOGGING_PATH', GWF_PROTECTED_PATH.'logs');
 
-		if($config['load_config'])
+		if (true === $config['load_config'])
 		{
 			$this->onLoadConfig(GWF_CONFIG_PATH);
 		}
@@ -70,38 +71,50 @@ class GWF3
 		ignore_user_abort($config['ignore_user_abort']);
 		
 		self::onDefineWebRoot();
+
+		$this->init();
+	}
+
+	public function init()
+	{
+		$config = self::$_config;
 		
-		if ($config['start_debug'])
+		if (true === $config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
 		}
-		
-		if ($config['website_init']) 
+			
+		if (true === $config['website_init']) 
 		{ 
 			GWF_Website::init();
 		}
+			
+		if (true === $config['client_info']) 
+		{ 
+			GWF_ClientInfo::init();
+		}
 		
-		if (!$config['no_session'])
+		if (false === $config['no_session'])
 		{
 			$this->onStartSession($config['blocking']);
 		}
 		
-		if ($config['do_logging'])
+		if (true === $config['do_logging'])
 		{
 			$this->onStartLogging($config['no_session']);
 		}
 		
-		if ($config['autoload_modules']) 
+		if (true === $config['autoload_modules']) 
 		{ 
 			$this->onAutoloadModules(); 
 		}
 		
-		if ($config['get_user'])
+		if (true === $config['get_user'])
 		{		
 			GWF_Template::addMainTvars(array('user' => (self::$user = GWF_User::getStaticOrGuest())));
 		}
 		
-		if ($config['load_module']) 
+		if (true === $config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
 		}

@@ -144,7 +144,7 @@ class GWF_Module extends GDO
 	 */
 	public static function loadModuleDB($modulename, $include=false, $load_lang=false, $check_enabled=false)
 	{
-		if (!isset(self::$MODULES[$modulename]))
+		if (false === isset(self::$MODULES[$modulename]))
 		{
 			$enabled = $check_enabled ? ' AND module_options&'.self::ENABLED : '';
 			if (false === ($data = self::table(__CLASS__)->selectFirst('*', 'module_name=\''.self::escape($modulename).'\''.$enabled)))
@@ -162,18 +162,18 @@ class GWF_Module extends GDO
 			$module = self::$MODULES[$modulename];
 		}
 		
-//		if (!$module->isEnabled())
+//		if (false === $module->isEnabled())
 //		{
 //			return false;
 //		}
 		
 		
-		if ($include)
+		if (true === $include)
 		{
 			$module->onInclude();
 		}
 		
-		if ($load_lang)
+		if (true === $load_lang)
 		{
 			$module->onLoadLanguage();
 		}
@@ -183,19 +183,23 @@ class GWF_Module extends GDO
 	
 	/**
 	 * Autoload modules with autoload flag.
+	 * @return NULL
 	 */
 	public static function autoloadModules()
 	{
-		if (false === ($modules = self::table(__CLASS__)->selectAll('*', 'module_options&3=3', 'module_priority ASC'))) {
+		if (false === ($modules = self::table(__CLASS__)->selectAll('*', 'module_options&3=3', 'module_priority ASC')))
+		{
 			return;
 		}
 		foreach ($modules as $data)
 		{
 			$modulename = $data['module_name'];
-			if (isset(self::$MODULES[$modulename])) {
+			if (true === isset(self::$MODULES[$modulename]))
+			{
 				continue;
 			}
-			if (false === ($module = self::initModuleB($modulename, $data))) {
+			if (false === ($module = self::initModuleB($modulename, $data)))
+			{
 				continue;
 			}
 		}
@@ -212,11 +216,15 @@ class GWF_Module extends GDO
 		$classname = "Module_$modulename";
 		$path = GWF_CORE_PATH."module/{$modulename}/{$classname}.php";
 		# for using modules which aren't in include_path
-		if (!Common::isFile($path)) {
+		if (false === Common::isFile($path))
+		{
 			# required if GWF is in include_path
-			if (!Common::isFile(GWF_PATH.$path)) {
+			if (false === Common::isFile(GWF_PATH.$path))
+			{
 				return false;
-			} else {
+			}
+			else
+			{
 				$path = GWF_PATH.$path;
 			}
 		}
@@ -227,7 +235,7 @@ class GWF_Module extends GDO
 			return false;
 		}
 		
-		if ($m->isEnabled())
+		if (true === $m->isEnabled())
 		{
 			$m->onStartup();
 		}
@@ -261,7 +269,7 @@ class GWF_Module extends GDO
 	 */
 	public function execute($methodname)
 	{
-		if (!$this->isEnabled())
+		if (false === $this->isEnabled())
 		{
 			return '';
 		}
@@ -310,16 +318,20 @@ class GWF_Module extends GDO
 		$name = $this->getName();
 		$methodname = str_replace('/', '', $methodname); # LFI
 		$path = GWF_CORE_PATH."module/$name/method/$methodname.php";
-		if (!Common::isFile($path)) {
-			if (!Common::isFile(GWF_PATH.$path)) {
+		if (false === Common::isFile($path))
+		{
+			if (false === Common::isFile(GWF_PATH.$path))
+			{
 				return false;
-			} else {
+			} else
+			{
 				$path = GWF_PATH.$path;
 			}
 		}
 		require_once $path;
 		$classname = $name.'_'.$methodname;
-		if (!class_exists($classname)) {
+		if (!class_exists($classname))
+		{
 			return false;
 		}
 		return new $classname();
