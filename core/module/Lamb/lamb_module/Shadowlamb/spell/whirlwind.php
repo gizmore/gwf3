@@ -9,7 +9,6 @@ final class Spell_whirlwind extends SR_CombatSpell
 	public function getRange() { return 8.0; }
 	public function getManaCost(SR_Player $player, $level)
 	{
-//		return 7 + $this->getLevel($player);
 		return 7 + $level;
 	}
 	

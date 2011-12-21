@@ -1,6 +1,7 @@
 <?php
 final class Spell_blow extends SR_CombatSpell
 {
+	public function getSpellLevel() { return 1; }
 	public function getHelp() { return 'Blow an enemy away to increase his distance.'; }
 	public function getCastTime($level) { return 45; }
 	public function getRequirements() { return array('magic'=>2); }

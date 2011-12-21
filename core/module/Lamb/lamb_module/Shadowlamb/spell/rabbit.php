@@ -1,7 +1,7 @@
 <?php
 final class Spell_rabbit extends SR_SupportSpell
 {
-	public function getSpellLevel() { return 1; }
+	public function getSpellLevel() { return 3; }
 	
 	public function getHelp() { return 'Make a party member #flee a combat.'; }
 	public function getRequirements() { return array('magic'=>2); }

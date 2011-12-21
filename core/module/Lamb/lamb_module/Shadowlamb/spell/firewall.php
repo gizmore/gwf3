@@ -1,6 +1,8 @@
 <?php
 final class Spell_firewall extends SR_CombatSpell
 {
+	public function getSpellLevel() { return 3; }
+	
 	public function getHelp() { return 'Cast a firebolt against an enemy. Does some damage.'; }
 	
 	public function getRequirements() { return array('magic'=>2); }

@@ -1,6 +1,8 @@
 <?php
 final class Spell_hummingbird extends SR_SupportSpell
 {
+	public function getSpellLevel() { return 2; }
+	
 	public function isOffensive() { return false; }
 	
 	public function getHelp() { return 'Temporarily increases the quickness of a friendly target.'; }

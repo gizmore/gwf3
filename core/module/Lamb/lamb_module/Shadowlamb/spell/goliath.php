@@ -1,6 +1,8 @@
 <?php
 final class Spell_goliath extends SR_SupportSpell
 {
+	public function getSpellLevel() { return 2; }
+	
 	public function getHelp() { return 'Temporarily raises the strength of a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>2); }

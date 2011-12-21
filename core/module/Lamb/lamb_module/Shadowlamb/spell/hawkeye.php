@@ -1,6 +1,8 @@
 <?php
 final class Spell_hawkeye extends SR_SupportSpell
 {
+	public function getSpellLevel() { return 2; }
+	
 	public function getHelp() { return 'Will raise the firearms skill for a friendly target.'; }
 	
 	public function getRequirements() { return array('magic'=>3); }

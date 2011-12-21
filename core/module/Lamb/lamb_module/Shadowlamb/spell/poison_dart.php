@@ -1,6 +1,8 @@
 <?php
 final class Spell_poison_dart extends SR_CombatSpell
 {
+	public function getSpellLevel() { return 2; }
+	
 	public function isOffensive() { return true; }
 
 	public function getHelp() { return 'Poisons an enemy and does some instant damage.'; }
