@@ -144,7 +144,7 @@ final class GWF_Website
 		$back = '';
 		foreach (self::$CSS as $css)
 		{
-			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s'.PHP_EOL,$css[1], $css[0], self::$xhtml);
+			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s', $css[1], $css[0], self::$xhtml);
 		}
 		if('' !== self::$_INLINECSS)
 		{

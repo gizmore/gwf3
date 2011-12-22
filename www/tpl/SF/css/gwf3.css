@@ -27,6 +27,10 @@ a img { border: none; }
 .nowrap { white-space: nowrap; }
 
 /* Buttons */
+.gwf_icon {
+	height: 20px;
+}
+
 .gwf_button span, .gwf_pm_icon {
 	background-repeat: no-repeat;
 	display: inline-block;

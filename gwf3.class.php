@@ -83,10 +83,6 @@ class GWF3
 			$this->setConfig('load_module', false);
 			$this->setConfig('autoload_modules', false);
 			# log_request ?
-
-			$this->init();
-
-			die( $this->onDisplayPage(GWF_WEBSITE_DOWN) );
 		}
 
 		$config = &self::$_config;
@@ -129,6 +125,11 @@ class GWF3
 		if (true === $config['load_module']) 
 		{ 
 			$this->onLoadModule(); 
+		}
+
+		if(true === defined('GWF_WEBSITE_DOWN'))
+		{
+			die( $this->onDisplayPage(GWF_WEBSITE_DOWN) );
 		}
 		
 	}

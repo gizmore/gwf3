@@ -74,7 +74,7 @@ div#left.navigation, div#right.navigation {
 	width: 190px;
 }
 div#middle {
-	display: table-cell; /* DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
+/*     display: table-cell;*/ /* DISABLED BECAUSE OF WIDTH ERROR WHICH DESTROYS RIGHT NAVI /// DOES NOT WORK IN IE < 8, FIXING WITH EXTERN CSS!*/
 	vertical-align: top; /* IMPORTANT */
 	margin-top: 0;
 /*	margin: 0 auto; */

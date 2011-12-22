@@ -6,7 +6,7 @@
 				<a href="{$root}roadmap/" class="footlink">Roadmap</a> | 
 				<a href="{$root}changelog/" class="footlink">Changelog</a> | 
 				<a href="{$root}credits/" class="footlink">Credits</a> | 
-				<a href="{$root}bugreport/" class="footlink">Report Bug</a> | 
+				<a href="{$root}helpdesk/" class="footlink">Report Bug</a> | 
 				<a href="{$root}todo/" class="footlink">TO-DO Liste</a> | 
 				<a href="http://trac.gwf3.gizmore.org/browser/gwf3.class.php" class="footlink">Space-Framework</a> | 
 				<a href="#" class="footlink">Bookmark</a>
