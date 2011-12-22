@@ -13,9 +13,10 @@ final class Seattle_ArenaGuy extends SR_TalkingNPC
 			case 'blackmarket': $msg = 'Some of our best fighters buy their equipment there.'; break;
 			case 'renraku': $msg = 'I was a security employee for Renraku a while ago. I got fired. Now I have my own small business.'; break;
 			case 'challenge': $msg = "Come on, just try {$c}challenge!"; break;
+			case 'malois': $msg = 'Challengers come and challengers go.'; break;
 			default: $msg = "Hello chummer. Interested in a {$b}fight{$b}? We pay well. Try {$c}challenge."; break;
 		}
-		$this->reply($msg);
+		return $this->reply($msg);
 	}
 }
 ?>

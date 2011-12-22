@@ -27,6 +27,11 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 		
 		switch ($word)
 		{
+			case 'malois': 
+				$this->reply("Listen chummer, if i were you, i would stop to worry about guys like him. You don\'t want to end as {$b}bribe{$b}, do you?");
+				$player->giveKnowledge('words', 'Bribe');
+				break;
+			
 			case 'invite':
 				$this->reply('Yes I know about the party.');
 				break;
@@ -120,6 +125,8 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 				}
 				break;
 		}
+		
+		return true;
 	}
 }
 ?>

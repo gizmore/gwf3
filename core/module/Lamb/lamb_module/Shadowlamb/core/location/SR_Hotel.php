@@ -25,16 +25,19 @@ abstract class SR_Hotel extends SR_Location
 		$party = $player->getParty();
 		$price = $this->calcPrice($player);
 		
-		if (!$party->needsToRest()) {
+		if (!$party->needsToRest())
+		{
 			return $bot->reply('You don`t need to rest.');
 		}
 		
 		
-		if (false === ($player->pay($price))) {
-			return $bot->reply(sprintf('To rent a room for your party, you need %s nuyen. You only got %s!', $price, $player->getNuyen()));
+		if (false === ($player->pay($price)))
+		{
+			return $bot->reply(sprintf('To rent a room for your party, you need %s. You only got %s!', Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 		}
 		
-		if ($price > 0) {
+		if ($price > 0)
+		{
 			$player->message(sprintf('You pay %s nuyen.', $price));
 		}
 

@@ -42,9 +42,11 @@ final class Seattle_AresMan extends SR_TalkingNPC
 				$msg = "If life gives you lemons... You might be interested in a few fireweapons.";
 				break;
 				
+			case 'malois': $msg = 'Never heard of that.'; break;
+				
 			default: $msg = "Good day sir. How can I help you?"; break;
 		}
-		$this->reply($msg);
+		return $this->reply($msg);
 	}
 	
 	private function buyPermission (SR_Player $player)

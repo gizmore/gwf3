@@ -10,6 +10,8 @@ final class Seattle_TomRiddle extends SR_TalkingNPC
 //		}
 		switch ($word)
 		{
+			case 'malois':
+				return $this->reply('He is one of them ... one of them!'); 
 			case 'crypto':
 				return $this->onSolveCrypto($player, $word, $args);
 			case 'hello':

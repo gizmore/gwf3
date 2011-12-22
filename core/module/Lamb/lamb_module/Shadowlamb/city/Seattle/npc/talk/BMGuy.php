@@ -43,24 +43,25 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 					$this->reply('What? You want money for Mr.Johnson?! ... ');
 					$this->reply('Well ... Give him that from me:');
 					SR_NPC::createEnemyParty('Seattle_BMGuy')->fight($player->getParty(), true);
+					return true;
 				}
 				else
 				{
-					$this->reply('Yeah, I have heard from you. I have nothing todo though.');
+					return $this->reply('Yeah, I have heard from you. I have nothing todo though.');
 				}
-				return;				
 
-			case 'magic': $this->reply('There is no magic in a good weapon.'); break;
-			case 'renraku': $this->reply('You don\'t have trouble with renraku, do you?'); break;
-			case 'blackmarket': $this->reply('I\'d call it graymarket.'); break;
+			case 'magic': return $this->reply('There is no magic in a good weapon.'); break;
+			case 'renraku': return $this->reply('You don\'t have trouble with renraku, do you?'); break;
+			case 'blackmarket': return $this->reply('I\'d call it graymarket.'); break;
 				
-			case 'negotiation':
-				$this->reply('Yes, all want to negotiate nowadays.');
-				return;
+			case 'negotiation': return $this->reply('Yes, all want to negotiate nowadays.');
 			
+			case 'malois': return $this->reply('Hm hm no idea man.');
+				
 			case 'yes':
 			case 'no':
-			default: $this->reply('Come buy hot stuff!');
+				
+			default: return $this->reply('Come buy hot stuff!');
 		}
 	}
 

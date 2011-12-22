@@ -19,6 +19,8 @@ final class Seattle_GJohnson extends SR_TalkingNPC
 					return true;
 				}
 				return $this->reply('Yeah, become a bountyhunter!');
+			
+			case 'malois': return $this->reply('I am very busy this evening.');
 				
 			default:
 				$this->reply("Hello chummer. Looking for a job? Maybe you wanna become a {$b}bounty{$b}hunter");

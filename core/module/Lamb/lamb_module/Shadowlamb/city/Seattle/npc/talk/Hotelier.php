@@ -26,6 +26,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 		
 		switch ($word)
 		{
+			case 'malois': return $this->reply('Are you a friend of Malois? He owes me money.');
 			case 'renraku': $msg = "Oh, you are here to visit the Renraku building? You better have the permission to do so."; break;
 			case 'shadowrun': $msg = "Hmm, when you look for a job, you should visit the local pubs."; break;
 			case 'negotiation':

@@ -62,6 +62,7 @@ final class Seattle_Archer extends SR_TalkingNPC
 				else { return; }
 				break;
 				
+			case 'malois': $msg = 'What are you talking about?'; break;
 				
 			default: $msg = "Hello, welcome to the seattle archery. Have fun with the range. Also feel free to visit our shop or {$b}learn{$b} the skill of {$b}bow{$b}."; break;
 		}

@@ -50,6 +50,8 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				}
 				break;
 				
+			case 'malois': $msg = 'Yeah, i think i have seen that elve lately. Why?'; break; 
+				
 			case 'no':
 				$player->unsetTemp(self::TEMP_WORD);
 				$msg = 'Oh, ok.';
@@ -57,7 +59,7 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				
 			default: $msg = 'Good evening. Welcome to the Deckers.'; break;
 		}
-		$this->reply($msg);
+		return $this->reply($msg);
 	}
 }
 ?>
