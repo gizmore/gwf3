@@ -9,12 +9,13 @@ final class Seattle_Store extends SR_Store
 		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
 		if ($quest->isDone($player))
 		{
-			return array('talk'=>'Seattle_DElve2');
+			$quest2 = SR_Quest::getQuest($player, 'Quest_Chicago_HotelWoman1');
+			if ( (!$quest2->isAccepted($player)) && (!$quest2->isDone($player)) )
+			{
+				return array('talk'=>'Seattle_DElve2');
+			}
 		}
-		else
-		{
-			return parent::getNPCS($player);
-		}
+		return parent::getNPCS($player);
 	}
 	public function getEnterText(SR_Player $player)
 	{
