@@ -267,12 +267,16 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 			switch ($mode)
 			{
 				case 1: self::sendMailGo($module, $user, $log); break;
-				case 2: self::sendMailDone($module, $user, $log); break;
+				case 2:
+					self::sendMailDone($module, $user, $log);
+					self::sendMailDoneUser($module, $log);
+					break;
 			}
 			
 		}
 		
 		$users->free($result);
+		
 		return true;
 	}
 	
@@ -306,6 +310,20 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		return $mail->sendToUser($user);
 	}
 	
+	private static function sendMailDoneUser(Module_Audit $module, GWF_AuditLog $log)
+	{
+		if (false === ($email = GWF_AuditMails::getEMail($log)))
+		{
+			return;
+		}
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver($email);
+		$mail->setSubject(self::getMailSubjUser($module, $log));
+		$mail->setBody(self::getMailBodyUser($module, $log));
+		return $mail->sendAsHTML();
+	}
+	
 	private static function getMailSubjGo(Module_Audit $module, GWF_User $user, GWF_AuditLog $log)
 	{
 		return sprintf('Warchall Audit %d GO: %s_%s', $log->getID(), $log->getVar('al_eusername'), $log->getVar('al_username'));
@@ -314,6 +332,11 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	private static function getMailSubjDone(Module_Audit $module, GWF_User $user, GWF_AuditLog $log)
 	{
 		return sprintf('Warchall Audit %d DONE: %s_%s', $log->getID(), $log->getVar('al_eusername'), $log->getVar('al_username'));
+	}
+	
+	private static function getMailSubjUser(Module_Audit $module, GWF_User $user, GWF_AuditLog $log)
+	{
+		return sprintf('Warchall logfile %d', $log->getID());
 	}
 	
 	private static function getMailBodyGo(Module_Audit $module, GWF_User $user, GWF_AuditLog $log)
@@ -340,6 +363,19 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 			$link,
 			$log->getVar('al_eusername'), $log->getVar('al_username'), $log->displayDate()
 		);
+	}
+
+	private static function getMailBodyUser(Module_Audit $module, GWF_AuditLog $log)
+	{
+		$url = Common::getAbsoluteURL($log->hrefReplay(), false);
+		$link = GWF_HTML::anchor($url, $url);
+		
+		return sprintf(
+				"Hello %s\n\nTo review or share your logfiles on warchall, you may use these links:\nReplay: %s\n\nFrom: %s-%s (%s)\n",
+				$log->getVar('al_eusername'),
+				$link,
+				$log->getVar('al_eusername'), $log->getVar('al_username'), $log->displayDate());
+		
 	}
 }
 ?>

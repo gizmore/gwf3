@@ -11,7 +11,7 @@ function cron_level_5($entry, $fullpath, $args=NULL)
 		return;
 	}
 	$chmod = $stat['mode'];
-	if ($chmod & 07)
+	if ($chmod & 04)
 	{
 		return;
 	}
