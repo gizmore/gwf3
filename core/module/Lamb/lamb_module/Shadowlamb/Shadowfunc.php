@@ -488,6 +488,7 @@ final class Shadowfunc
 		{
 			$now = $player->get($field);
 			$base = $player->getBase($field);
+			
 //			if ($base < 0 && $now < 0)
 			if ($now >= 0)
 			{

@@ -8,8 +8,8 @@ final class Chicago_Alchemist extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('EmptyBottle', 100.0, 25.49),
-			array('WaterBottle', 100.0, 35.49),
+			array('EmptyBottle', 100.0, 9.95),
+			array('WaterBottle', 100.0, 99.95),
 			array('NinjaPotion', 100.0, 500),
 			array('StrengthElixir', 100.0, 600),
 			array('QuicknessPotion', 100.0, 400),

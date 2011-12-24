@@ -1,5 +1,5 @@
 <?php
-final class Quest_Delaware_Exams5 extends SR_Quest
+class Quest_Delaware_Exams5 extends SR_Quest
 {
 	public function getQuestName() { return 'ExamsFinals'; }
 	public function getQuestDescription() { return sprintf('Bring a fluid Auris to the gnome in the Delaware_Library. You can get a pot of Auris from the gnome in the Seattle library by asking for Auris.'); }
@@ -54,19 +54,17 @@ final class Quest_Delaware_Exams5 extends SR_Quest
 		return true;
 	}
 	
-	private function rightInTime(SR_Player $player)
+	public function rightInTime(SR_Player $player)
 	{
-		$data = $this->getQuestData();
-		$eta = $data['eta'];
+		$eta = $player->getConst('__AURIS_TIMEOUT');
+		$player->unsetConst('__AURIS_TIMEOUT');
 		return Shadowrun4::getTime() < $eta;
 	}
 	
 	public function resetTimer(SR_Player $player)
 	{
-		$data = $this->getQuestData();
 		$time = Seattle::TIME_TO_DELAWARE + 60;
-		$data['eta'] = Shadowrun4::getTime() + $time;
-		$this->saveQuestData($data);
+		$player->setConst('__AURIS_TIMEOUT', Shadowrun4::getTime() + $time);
 		$player->message(sprintf("Your pot of Auris is fluid for %s.", GWF_Time::humanDuration($time)));
 		return true;
 	}

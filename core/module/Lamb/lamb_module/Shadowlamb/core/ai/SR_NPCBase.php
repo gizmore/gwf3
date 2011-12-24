@@ -68,7 +68,11 @@ abstract class SR_NPCBase extends SR_Player
 	public function getNPCModifiersB() { return array(); }
 	public function getNPCSpells() { return array(); }
 	public function getNPCCyberware() { return array(); }
-	public function onNPCTalk(SR_Player $player, $word, array $args) {}
+	
+	public function onNPCTalk(SR_Player $player, $word, array $args)
+	{
+	}
+	
 	public function onNPCTalkA(SR_Player $player, $word, array $args)
 	{
 		if (empty($word)) {
@@ -201,6 +205,46 @@ abstract class SR_NPCBase extends SR_Player
 		$party->recomputeEnums();
 		
 		return $party;
+	}
+	
+	/**
+	 * Create a single NPC, optionally make it join a party. Else create blank party.
+	 * @param string $classname
+	 * @param NULL|SR_Party $party
+	 * @return SR_NPC
+	 */
+	public static function createEnemyNPC($classname, $party=NULL)
+	{
+		if (false === ($npc = Shadowrun4::getNPC($classname)))
+		{
+			return Lamb_Log::logError('Unknown NPC classname in createEnemyNPC: '.$classname);
+		}
+		
+		if ($party === NULL)
+		{
+			if (false === ($party = SR_Party::createParty()))
+			{
+				return Lamb_Log::logError('Cannot create party in createEnemyNPC.');
+			}
+		}
+		elseif (!($party instanceof SR_Party))
+		{
+			return Lamb_Log::logError('WRONG ARG IN in createEnemyNPC: '.$party);
+		}
+		
+		if (false === $npc->spawn($party))
+		{
+			return Lamb_Log::logError('Failed to spawn NPC: '.$npc->getNPCClassName());
+		}
+		
+		if (false === $party->updateMembers())
+		{
+			return Lamb_Log::logError('DB ERROR IN in createEnemyNPC.');
+		}
+		
+		$party->recomputeEnums();
+
+		return $npc;
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 <?php
 final class Seattle_HireMagician extends SR_HireNPC
 {
+	public function getName() { return $this->getPartyID() > 0 ? parent::getName() : 'The magician'; }
 	public function getNPCLevel() { return 8; }
 	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
 	public function canNPCMeet(SR_Party $party) { return false; }

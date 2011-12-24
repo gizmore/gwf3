@@ -284,6 +284,7 @@ class SR_Player extends GDO
 	public function hasTemp($key) { return isset($this->sr4_temp_vars[$key]); }
 	public function setTemp($key, $value=1) { $this->sr4_temp_vars[$key] = $value; }
 	public function unsetTemp($key) { unset($this->sr4_temp_vars[$key]); }
+	public function unsetTemps($keys) { foreach ($keys as $key) $this->unsetTemp($key); }
 	public function increaseTemp($key, $by) { $this->setTemp($key, $this->getTemp($key,0)+$by); }
 	
 	##################
@@ -656,6 +657,8 @@ class SR_Player extends GDO
 	 */
 	public function getParty() { return Shadowrun4::getParty($this->getPartyID()); }
 	public function getPartyID() { return $this->getInt('sr4pl_partyid'); }
+	public function hasParty() { return $this->hasVar('sr4pl_partyid') && ($this->getPartyID() > 0); }
+	
 	/**
 	 * @return SR_Party
 	 */

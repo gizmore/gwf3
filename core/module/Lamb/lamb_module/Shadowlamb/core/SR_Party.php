@@ -136,6 +136,23 @@ final class SR_Party extends GDO
 	}
 	
 	/**
+	 * Get an NPC by classname.
+	 * @param string $classname
+	 * @return SR_NPC
+	 */
+	public function getNPCMemberByClassname($classname)
+	{
+		foreach ($this->members as $member)
+		{
+			if ($member instanceof $classname)
+			{
+				return $member;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Get a party member by argument.
 	 * @param string $arg
 	 * @return SR_Player
@@ -272,14 +289,12 @@ final class SR_Party extends GDO
 	
 	public function pushAction($action, $target=NULL, $eta=-1)
 	{
-		if ($target === NULL) {
+		if ($target === NULL)
+		{
 			$target = $this->getTarget();
 		}
-		if ($eta >= 0) {
-			$eta = round(Shadowrun4::getTime() + $eta);
-		} else {
-			$eta = 0;
-		}
+		
+		$eta = $eta >= 0 ? round(Shadowrun4::getTime() + $eta) : 0;
 		
 		$this->timestamp = time();
 		
@@ -290,6 +305,9 @@ final class SR_Party extends GDO
 		{
 			$this->onPartyLeft($action);
 		}
+		
+		
+		$oldcity = $this->getCityClass();
 		
 		# Save new vars
 		if (false === $this->saveVars(array(
@@ -308,6 +326,19 @@ final class SR_Party extends GDO
 		if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
 		{
 			$this->onPartyArrived($action);
+		}
+		
+		# Fire city left events
+		if ($oldcity !== false)
+		{
+			if (false !== ($newcity = $this->getCityClass()))
+			{
+				echo "New city is: ".$newcity->getName().PHP_EOL;
+				if ($oldcity->getName() !== $newcity->getName())
+				{
+					$oldcity->onCityExit($this);
+				}
+			}
 		}
 		
 		return true;
@@ -824,6 +855,131 @@ final class SR_Party extends GDO
 			}
 		}
 		return true;
+	}
+	
+	#################
+	### Quest NPC ###
+	#################
+	public function hasNPCNamed($name)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->isNPC())
+			{
+				if ($member->getName() === $name)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public function hasNPCClassed($classname)
+	{
+		foreach ($this->members as $member)
+		{
+			if (get_class($member) === $classname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	#################
+	### Temp Vars ###
+	#################
+	public function setTemp($key, $value)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			$member->setTemp($key, $value);
+		}
+	}
+	
+	public function unsetTemp($key)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			$member->unsetTemp($key);
+		}
+	}
+	
+	public function hasTemp($key)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->hasTemp($key))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function getTemp($key, $default=false)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->hasTemp($key))
+			{
+				return $member->getTemp($key, $default);
+			}
+		}
+		return $default;
+	}
+	
+	##################
+	### Const Vars ###
+	##################
+	public function setConst($key, $value)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			$member->setConst($key, $value);
+		}
+	}
+	
+	public function unsetConst($key)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			$member->unsetConst($key);
+		}
+	}
+	
+	public function hasConst($key)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->hasConst($key))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function getConst($key, $default=false)
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->hasConst($key))
+			{
+				return $member->getConst($key);
+			} 
+		}
+		return $default;
 	}
 	
 	#############

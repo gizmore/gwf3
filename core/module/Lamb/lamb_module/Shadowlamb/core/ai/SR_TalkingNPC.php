@@ -14,6 +14,11 @@ abstract class SR_TalkingNPC extends SR_NPC
 	################
 	### NPC Talk ###
 	################
+	public function onNPCTalk(SR_Player $player, $word, array $args)
+	{
+		return $this->reply('I am not implemented yet. If you want you can implement me :)');
+	}
+	
 	public function reply($message)
 	{
 		$b = chr(2);

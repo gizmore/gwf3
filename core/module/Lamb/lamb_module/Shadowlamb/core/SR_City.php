@@ -22,9 +22,12 @@ abstract class SR_City
 	
 	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{
-		$mount = $party->getBestMount();
-		$eta = $mount->getMountTime($eta);
-		$eta -= ($mount->getMountTuneup() * 10);
+		if (!$this->isDungeon())
+		{
+			$mount = $party->getBestMount();
+			$eta = $mount->getMountTime($eta);
+			$eta -= ($mount->getMountTuneup() * 10);
+		}
 		$eta += rand(0, $randtime);
 		$eta = Common::clamp(round($eta), $mintime);
 		return $eta;
@@ -37,7 +40,7 @@ abstract class SR_City
 		Lamb_Log::logDebug("Loading NPC $classname...");
 		SR_NPC::$NPC_COUNTER++;
 		require_once $fullpath;
-		$npc = new $classname(false);
+		$npc = new $classname(NULL);
 		$npc->setNPCClassName($classname);
 		$this->npcs[$classname] = $npc;
 		$this->checkNPCEquipment($npc);
@@ -121,6 +124,10 @@ abstract class SR_City
 	{
 		$party->notice($this->getArriveText());
 		$this->onCityEnter($party);
+		if (false !== ($location = $party->getLocationClass('inside')))
+		{
+			$location->onEnter($party->getLeader());
+		}
 	}
 	
 	public function onCityEnter(SR_Party $party)
@@ -129,6 +136,16 @@ abstract class SR_City
 		{
 			$location instanceof SR_Location;
 			$location->onCityEnter($party);
+		}
+	}
+	
+	public function onCityExit(SR_Party $party)
+	{
+		echo "ON CITY EXIT!\n";
+		foreach ($this->locations as $location)
+		{
+			$location instanceof SR_Location;
+			$location->onCityExit($party);
 		}
 	}
 	
@@ -250,7 +267,10 @@ abstract class SR_City
 		$location = $this->getLocation($target);
 		$party->giveKnowledge('places', $target);
 		$party->pushAction(SR_Party::ACTION_OUTSIDE, $target);
-		$location->onEnter($party->getLeader());
+		if ($location->isEnterAllowedParty($party))
+		{
+			$location->onEnter($party->getLeader());
+		}
 	}
 	
 	private function onLostHuntTarget(SR_Party $party)

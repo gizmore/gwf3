@@ -8,7 +8,8 @@ final class Delaware extends SR_City
 		return
 			array(
 				'Redmond_Ork','Redmond_Ueberpunk',
-				'Seattle_Cop','Seattle_Ninja','Seattle_BlackOp','Seattle_TrollDecker'
+				'Seattle_Cop','Seattle_Ninja','Seattle_BlackOp','Seattle_TrollDecker',
+				'Prison_GrayOp',
 			);
 	}
 	public function getArriveText() { return 'You arrive in Delaware. Meanwhile it\'s known for it\'s automobile industry.'; }

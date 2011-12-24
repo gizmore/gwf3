@@ -13,7 +13,6 @@ final class Spell_turtle extends SR_SupportSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-//		$level = $this->getLevel($player);
 		return $level + 6;
 	}
 

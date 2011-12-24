@@ -36,8 +36,13 @@ abstract class SR_Location
 	public function getCityClass() { return Shadowrun4::getCity($this->getCity()); }
 	public function hasATM() { return !$this->getCityClass()->isDungeon(); }
 	public function onCityEnter(SR_Party $party) { $this->onCleanComputers($party); }
+	public function onCityExit(SR_Party $party) {}
 	public function isHijackable() { return true; }
 	public function getAreaSize() { return 16; }
+	public function isEnterAllowed(SR_Player $player) { return true; }
+	public function isExitAllowed(SR_Player $player) { return true; }
+	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isEnterAllowed($m))) return false; return true; }
+	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isExitAllowed($m))) return false; return true; }
 	
 	/**
 	 * We enter the location and are inside after we message the members.
@@ -94,7 +99,7 @@ abstract class SR_Location
 		$player = array_shift($args);
 		$args = array_shift($args);;
 		$npcs = $this->getNPCS($player);
-		$word = array_shift($args);
+		$word = count($args) > 0 ? array_shift($args) : '';
 		if (isset($npcs[$name]))
 		{
 			if (false !== ($npc = Shadowrun4::getNPC($npcs[$name])))

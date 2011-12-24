@@ -13,6 +13,8 @@ final class Chicago extends SR_City
 				'Delaware_Goblin','Delaware_Ork','Delaware_Troll',
 				'Delaware_Hipster','Delaware_Goth','Delaware_Emo',
 				'Delaware_Assassin', 'Delaware_Commando', 'Delaware_Headhunter', 'Delaware_Killer',
+
+				'Prison_GrayOp',
 			);
 			
 	}

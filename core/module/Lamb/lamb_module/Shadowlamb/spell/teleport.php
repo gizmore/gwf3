@@ -66,7 +66,7 @@ final class Spell_teleport extends SR_Spell
 			return false;
 		}
 		
-		$need = $this->getManaCost($player);
+		$need = $this->getManaCost($player, $need_level);
 		$have = $player->getMP();
 		if ($need > $have) {
 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));

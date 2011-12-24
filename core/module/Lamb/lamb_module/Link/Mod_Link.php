@@ -170,6 +170,7 @@ final class LambModule_Link extends Lamb_Module
 			$data[] = array($row[0], $row[1]);
 			$total += $row[1];
 		}
+		$db->free($result);
 		return self::randomData($data, $total);
 	}
 	

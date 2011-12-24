@@ -42,7 +42,7 @@ final class Shadowrun4
 	
 	/**
 	 * @param string $name
-	 * @return SR_City
+	 * @return SR_Dungeon
 	 */
 	public static function getCity($name)
 	{

@@ -1,7 +1,7 @@
 <?php
 final class Chicago_WhiteTemple extends SR_School
 {
-	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_TempleShamane'); }
+	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_WhiteTempleShamane'); }
 	public function getFoundPercentage() { return 20.00; }
 	public function getFoundText(SR_Player $player) { return 'You think you located the local temple. You think you may #enter.'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the Temple. You see a shamane in a white robe approaching.'; }
@@ -11,9 +11,10 @@ final class Chicago_WhiteTemple extends SR_School
 	{
 		return array(
 			array('EmptyBottle', 100.0, 25.49),
-			array('WaterBottle', 100.0, 35.49),
+			array('WaterBottle', 100.0, 89.95),
 			array('Stimpatch', 100.0, 1500),
 			array('Ether', 100.0, 3500),
+			array('AlchemicPotion_of_heal:2', 100.0, 3500),
 		);
 	}
 	
@@ -25,7 +26,7 @@ final class Chicago_WhiteTemple extends SR_School
 	{
 		$p = $player->getTemp(Seattle_Shamane::TEMP_PISSED, 0) * 250;
 		return array(
-// 			array('berzerk', 3500+$p),
+//G			array('berzerk', 3500+$p),
 //G			array('blow', 2500+$p),
 			array('bunny', 2500+$p),
 			array('calm', 2500+$p),

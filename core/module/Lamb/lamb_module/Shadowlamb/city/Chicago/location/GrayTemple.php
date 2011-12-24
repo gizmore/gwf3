@@ -1,7 +1,7 @@
 <?php
 final class Chicago_GrayTemple extends SR_School
 {
-	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_TempleShamane'); }
+	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_GrayTempleShamane'); }
 	public function getFoundPercentage() { return 20.00; }
 	public function getFoundText(SR_Player $player) { return 'You think you located the local temple. You think you may #enter.'; }
 	public function getEnterText(SR_Player $player) { return 'You enter the Temple. You see a shamane in a gray robe approaching.'; }
@@ -23,7 +23,7 @@ final class Chicago_GrayTemple extends SR_School
 	{
 		$p = $player->getTemp(Seattle_Shamane::TEMP_PISSED, 0) * 250;
 		return array(
-// 			array('berzerk', 3500+$p),
+			array('berzerk', 3500+$p),
 			array('blow', 2500+$p),
 //W			array('bunny', 2500+$p),
 //W			array('calm', 2500+$p),

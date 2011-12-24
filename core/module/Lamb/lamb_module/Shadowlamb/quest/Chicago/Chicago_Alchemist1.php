@@ -2,7 +2,7 @@
 final class Quest_Chicago_Alchemist1 extends SR_Quest
 {
 	public function getQuestName() { return 'Chemistry1'; }
-	public function getNeededAmount() { return 3; }
+	public function getNeededAmount() { return 2; }
 	public function getQuestDescription() { return sprintf('Bring %d/%d Fairy Staffs to the Chicago Alchemist', $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 6; }
 	public function getRewardNuyen() { return 600; }
@@ -50,10 +50,10 @@ final class Quest_Chicago_Alchemist1 extends SR_Quest
 				$npc->reply("Alright chummer?");
 				break;
 			case 'confirm':
-				$npc->reply("So?");
+				$npc->reply("Ok?");
 				break;
 			case 'yes':
-				$npc->reply('Ok so?');
+				$npc->reply('It\'s a fair trade, isn\'t it?');
 				break;
 			case 'no':
 				$npc->reply('Ok');

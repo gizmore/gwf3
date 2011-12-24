@@ -95,6 +95,9 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 				}
 				break;
 				
+			case 'auris':
+				return $this->onTalkAuris($player);
+				
 			default:
 			case 'hello':
 				if ($q === false) {
@@ -108,8 +111,6 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 				}
 				break;
 				
-			case 'auris':
-				return $this->onTalkAuris($player);
 		}
 	}
 	
@@ -117,10 +118,10 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 	{
 		$quest = SR_Quest::getQuest($player, 'Delaware_Exams5');
 		$quest instanceof Quest_Delaware_Exams5;
-		if (!$quest->isInQuest($player))
-		{
-			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tommorow.');
-		}
+// 		if (!$quest->isInQuest($player))
+// 		{
+// 			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tommorow.');
+// 		}
 		
 		$auris = $player->getInvItemByName('Auris');
 		

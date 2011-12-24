@@ -16,23 +16,28 @@ abstract class SR_Dungeon extends SR_City
 	#############
 	### Alert ###
 	#############
-	private $alert = array();
+	public function getAlertKey(SR_Party $party)
+	{
+		return sprintf('__dung_%s_alert_%s', get_class($this), $party->getID());
+	}
 	
 	public function isAlert(SR_Party $party)
 	{
-		$pid = $party->getID();
-		return isset($this->alert[$pid]) && $this->alert[$pid] > Shadowrun4::getTime();
+		return $party->setTemp($this->getAlertKey($party), 0) > Shadowrun4::getTime();
 	}
 	
-	public function setAlert(SR_Party $party, $duration=600)
+	public function setAlert(SR_Party $party, $duration=600, $announce=true)
 	{
-		$pid = $party->getID();
-		$this->alert[$pid] = Shadowrun4::getTime() + $duration;
+		$party->setTemp($this->getAlertKey($party), Shadowrun4::getTime() + $duration);
+		if ($announce)
+		{
+			$party->notice(sprintf('You hear the alarm sound!'));
+		}
 	}
 	
 	public function onCityEnter(SR_Party $party)
 	{
-		$this->setAlert($party, 0);
+		$party->unsetTemp($this->getAlertKey($party));
 		parent::onCityEnter($party);
 	}
 	

@@ -14,5 +14,5 @@ final class Item_Blouse extends SR_Armor
 			'charisma' => 0.2,
 		);
 	}
-	
 }
+?>

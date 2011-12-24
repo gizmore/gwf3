@@ -8,11 +8,7 @@ final class Chicago_SecurityDrone extends SR_NPC
 	{
 		return array(
 			'weapon' => 'Uzi',
-			'armor' => '',
-			'legs' => '',
-			'boots' => '',
-			'helmet' => '',
-			'shield' => 'KevlarShield',
+			'armor' => 'DroneArmor_of_marm:4,farm:4',
 		);
 	}
 
@@ -34,22 +30,13 @@ final class Chicago_SecurityDrone extends SR_NPC
 		);
 	}
 	
-// 	public function getNPCLoot(SR_Player $player)
-// 	{
-// 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
-// 		return array();
-// 	}
-	
-//	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson1');
-//		if ($quest->isInQuest($player))
-//		{
-//			$quest->increase('sr4qu_amount', 1);
-//			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
-//		}
-//		return array();
-//	}
+	public function getNPCLoot(SR_Player $player)
+	{
+		if (rand(0,1))
+		{
+			return array('ElectricParts');
+		}
+		return array();
+	}
 }
 ?>

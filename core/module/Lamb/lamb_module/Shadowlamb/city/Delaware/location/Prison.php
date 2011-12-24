@@ -6,7 +6,8 @@ final class Delaware_Prison extends SR_Tower
 	public function getEnterText(SR_Player $player) { return ""; }
 	public function onEnter(SR_Player $player)
 	{
-		
+		$player->getParty()->notice('You enter the prison ...');
+		$this->teleport($player, 'Prison_Exit');
 	}
 }
 ?>
