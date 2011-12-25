@@ -66,7 +66,7 @@ GWF_ModuleLoader::changeColumn($counter, 'value', 'count_value');
 
 
 echo "Installing all modules... some might be gone.<br/>\n";
-install_all_modules();
+GWF_InstallFunctions::all_modules();
 
 echo "WHOHO!<br/>\n";
 ?>

@@ -35,9 +35,35 @@ Keep in mind that getGetString returns empty string by default, compared to fals
 #7 Make the session handler optional.
 Introduce a new session handler GWF_Session.php.php
 Rename GWF_Session.php to GWF_Session.db.php
-Copy the desired version during install_wizard
+Copy the desired version during install_wizard?
+Select the Session handler by config variable
 
 --------------------------------------------------------------------------------
 
 #8 Convert templates to Smarty.
 
+--------------------------------------------------------------------------------
+
+#9 The GWF Installer could use GWF_Result
+Some installer functions could be private!
+
+--------------------------------------------------------------------------------
+
+#10 Enhancements in module PageBuilder:
+make a page downloadable as PDF
+make it possible to add a Shoutbox to each page
+
+--------------------------------------------------------------------------------
+
+#11 Rename default template to simple/etc.
+Create a new default template which represent GWF. We need someone with graphic skills.
+
+--------------------------------------------------------------------------------
+
+#12 better way for including the config.php dynamically
+
+--------------------------------------------------------------------------------
+
+#13 GWF should have some JavaScript but there should be an nonJS mode
+
+--------------------------------------------------------------------------------

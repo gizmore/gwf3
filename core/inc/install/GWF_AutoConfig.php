@@ -1,4 +1,8 @@
 <?php
+/**
+ * 
+ * @author gizmore
+ */
 final class GWF_AutoConfig
 {
 	public static function configure()

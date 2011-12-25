@@ -3,8 +3,11 @@
 if (ob_get_level() > 0) ob_end_clean();
 apache_setenv('no-gzip', 1);
 ini_set('zlib.output_compression', 0);
-
-final class GWF_Install
+/**
+ * Functions for the GWF Installation Wizard
+ * @author gizmore, spaceone
+ */
+final class GWF_InstallWizard
 {
 	public static $red = 0;
 	public static $gwfil = NULL;
@@ -324,7 +327,7 @@ final class GWF_Install
 		$back .= self::$gwfil->lang('step_3_0').PHP_EOL;
 
 		$success = true;
-		if (false === ($core = install_core(false, $success)))
+		if (false === ($core = GWF_InstallFunctions::core(false, $success)))
 		{
 			return $core.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
 		}
@@ -367,7 +370,7 @@ final class GWF_Install
 		$back = self::wizard_h2('4');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_1'));
 		$back .= '<pre>';
-		$back .= install_createLanguage(true, true, false);
+		$back .= GWF_InstallFunctions::createLanguage(true, true, false);
 		$back .= '</pre>';
 		$back .= self::wizard_btn('5');
 		return $back;
@@ -381,7 +384,7 @@ final class GWF_Install
 		$back = self::wizard_h2('4');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_2'));
 		$back .= '<pre>';
-		$back .= install_createLanguage(true, true, true);
+		$back .= GWF_InstallFunctions::createLanguage(true, true, true);
 		$back .= '</pre>';
 		$back .= self::wizard_btn('5');
 		return $back;
@@ -412,7 +415,7 @@ final class GWF_Install
 		$back = self::wizard_h2('5');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_5_1'));
 		$back .= '<pre>';
-		$back .= install_createUserAgents();
+		$back .= GWF_InstallFunctions::createUserAgents();
 		$back .= '</pre>';
 		$back .= self::wizard_btn('6');
 		return $back;
@@ -491,7 +494,7 @@ final class GWF_Install
 
 		GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
 
-		$back .= install_modules($modules, false);
+		$back .= GWF_InstallFunctions::modules($modules, false);
 
 		$back .= self::wizard_btn('7');
 
@@ -509,7 +512,7 @@ final class GWF_Install
 		}
 		
 		$back = self::wizard_h2('7');
-		if (false === install_copyExampleFiles($back))
+		if (false === GWF_InstallFunctions::copyExampleFiles($back))
 		{
 			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'), true, true);
 			return $back;
@@ -588,13 +591,13 @@ final class GWF_Install
 			return GWF_HTML::error('Install Wizard', 'Invalid email.', false).self::wizard_8();
 		}
 		
-		if (false === install_default_groups())
+		if (false === GWF_InstallFunctions::default_groups())
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$back = '';
-		if (false === install_createAdmin($username, $password, $email, $back))
+		if (false === GWF_InstallFunctions::createAdmin($username, $password, $email, $back))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}

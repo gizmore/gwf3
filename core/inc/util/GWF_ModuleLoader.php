@@ -378,6 +378,10 @@ final class GWF_ModuleLoader
 		if (false === self::installHTAccess2($modules)) {
 			return false;
 		}
+		# wrong place? move to GWF_InstallWizard:539 ?
+		if (false === GWF_HTAccess::installCountryRewrites()) {
+			return false;
+		}
 		return true;
 	}
 	
@@ -386,14 +390,6 @@ final class GWF_ModuleLoader
 		return self::installHTAccess(self::loadModulesFS());
 	}
 
-//	public static function installHTMenu(array $modules)
-//	{
-//		foreach ($modules as $module)
-//		{
-//			$module->onAddToMenu();
-//		}
-//	}
-	
 	public static function installHTHooks(array $modules)
 	{
 		foreach ($modules as $module)
@@ -431,9 +427,9 @@ final class GWF_ModuleLoader
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
 	}
 	
-	public static function installPageMenu(array $modules)
+	public static function installHTMenu(array $modules)
 	{
-		if(false === ($navigation = GWF_Module::loadModuleDB('Navigation', false, false, true)) || $navigation->PMisLocked())
+		if(false === ($navigation = GWF_Module::loadModuleDB('Navigation', false, false, true)) || false === $navigation->isEnabled() || false === $navigation->PMisLocked())
 		{
 			return false; //Module Navigation not enabled or cannot be modified!
 		}
@@ -445,12 +441,23 @@ final class GWF_ModuleLoader
 			if (!$module->isEnabled()) {
 				continue;
 			}
-			
+
+			$c = 5; # page_url(*), page_title(*), page_meta_descr, page_views, page_options, page_cat
+			$name = $module->getName();
+			$pml[$name] = array();
+
 			$methods = self::getAllMethods($module);
 			foreach ($methods as $method)
 			{
-				if(false !== ($pmlinks = $method->getPageMenuLinks($module)))
-				$pml[] = $pmlinks;
+				$mname = $method->getName();
+				if(true === is_array($pmlinks = $method->getPageMenuLinks($module)))
+				{
+					foreach($pmlinks as $k => $a)
+					{
+						if(false === is_array($) || count($) < 3) unset($pmlinks[$k];
+					}
+					$pml[$name][$mname] = $pmlinks;
+				}
 			}
 		}
 		return $navigation->installPageMenu($pml);
@@ -474,6 +481,7 @@ final class GWF_ModuleLoader
 		
 		foreach ($dir as $file)
 		{
+			# starts with .
 			if ($file[0] === '.')
 			{
 				continue;

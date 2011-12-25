@@ -1,0 +1,249 @@
+RewriteEngine On
+RewriteRule ^(.*/country)/Afghanistan(.png|/)?$ $1/100
+RewriteRule ^(.*/country)/Aland Islands(.png|/)?$ $1/301
+RewriteRule ^(.*/country)/Albania(.png|/)?$ $1/69
+RewriteRule ^(.*/country)/Alderney(.png|/)?$ $1/307
+RewriteRule ^(.*/country)/Algeria(.png|/)?$ $1/79
+RewriteRule ^(.*/country)/American Samoa(.png|/)?$ $1/101
+RewriteRule ^(.*/country)/Andorra(.png|/)?$ $1/71
+RewriteRule ^(.*/country)/Angola(.png|/)?$ $1/102
+RewriteRule ^(.*/country)/Anguilla(.png|/)?$ $1/103
+RewriteRule ^(.*/country)/Antarctica(.png|/)?$ $1/104
+RewriteRule ^(.*/country)/Antigua And Barbuda(.png|/)?$ $1/105
+RewriteRule ^(.*/country)/Argentina(.png|/)?$ $1/29
+RewriteRule ^(.*/country)/Armenia(.png|/)?$ $1/36
+RewriteRule ^(.*/country)/Aruba(.png|/)?$ $1/106
+RewriteRule ^(.*/country)/Ascension Island(.png|/)?$ $1/308
+RewriteRule ^(.*/country)/Australia(.png|/)?$ $1/26
+RewriteRule ^(.*/country)/Austria(.png|/)?$ $1/22
+RewriteRule ^(.*/country)/Azerbaijan(.png|/)?$ $1/46
+RewriteRule ^(.*/country)/Bahamas(.png|/)?$ $1/107
+RewriteRule ^(.*/country)/Bahrain(.png|/)?$ $1/108
+RewriteRule ^(.*/country)/Bangladesh(.png|/)?$ $1/75
+RewriteRule ^(.*/country)/Barbados(.png|/)?$ $1/109
+RewriteRule ^(.*/country)/Belarus(.png|/)?$ $1/110
+RewriteRule ^(.*/country)/Belgium(.png|/)?$ $1/23
+RewriteRule ^(.*/country)/Belize(.png|/)?$ $1/111
+RewriteRule ^(.*/country)/Benin(.png|/)?$ $1/112
+RewriteRule ^(.*/country)/Bermuda(.png|/)?$ $1/113
+RewriteRule ^(.*/country)/Bhutan(.png|/)?$ $1/114
+RewriteRule ^(.*/country)/Bolivia(.png|/)?$ $1/115
+RewriteRule ^(.*/country)/Bosnia Herzegovina(.png|/)?$ $1/82
+RewriteRule ^(.*/country)/Botswana(.png|/)?$ $1/116
+RewriteRule ^(.*/country)/Bouvet Island(.png|/)?$ $1/117
+RewriteRule ^(.*/country)/Brazil(.png|/)?$ $1/38
+RewriteRule ^(.*/country)/British Indian Ocean Territory(.png|/)?$ $1/118
+RewriteRule ^(.*/country)/Brunei Darussalam(.png|/)?$ $1/119
+RewriteRule ^(.*/country)/Bulgaria(.png|/)?$ $1/37
+RewriteRule ^(.*/country)/Burkina Faso(.png|/)?$ $1/120
+RewriteRule ^(.*/country)/Burundi(.png|/)?$ $1/121
+RewriteRule ^(.*/country)/Cambodia(.png|/)?$ $1/122
+RewriteRule ^(.*/country)/Cameroon(.png|/)?$ $1/123
+RewriteRule ^(.*/country)/Canada(.png|/)?$ $1/19
+RewriteRule ^(.*/country)/Cape Verde(.png|/)?$ $1/124
+RewriteRule ^(.*/country)/Cayman Islands(.png|/)?$ $1/125
+RewriteRule ^(.*/country)/Central African Republic(.png|/)?$ $1/126
+RewriteRule ^(.*/country)/Chad(.png|/)?$ $1/127
+RewriteRule ^(.*/country)/Chile(.png|/)?$ $1/63
+RewriteRule ^(.*/country)/China(.png|/)?$ $1/47
+RewriteRule ^(.*/country)/Christmas Islands(.png|/)?$ $1/128
+RewriteRule ^(.*/country)/Cocos (Keeling) Islands(.png|/)?$ $1/129
+RewriteRule ^(.*/country)/Colombia(.png|/)?$ $1/31
+RewriteRule ^(.*/country)/Comoros(.png|/)?$ $1/130
+RewriteRule ^(.*/country)/Congo(.png|/)?$ $1/131
+RewriteRule ^(.*/country)/Congo, The Democratic Republic Of The(.png|/)?$ $1/132
+RewriteRule ^(.*/country)/Cook Islands(.png|/)?$ $1/133
+RewriteRule ^(.*/country)/Costa Rica(.png|/)?$ $1/83
+RewriteRule ^(.*/country)/Côte d’Ivoire(.png|/)?$ $1/134
+RewriteRule ^(.*/country)/Croatia(.png|/)?$ $1/48
+RewriteRule ^(.*/country)/Cuba(.png|/)?$ $1/62
+RewriteRule ^(.*/country)/Cyprus(.png|/)?$ $1/76
+RewriteRule ^(.*/country)/Czech Republic(.png|/)?$ $1/20
+RewriteRule ^(.*/country)/Denmark(.png|/)?$ $1/21
+RewriteRule ^(.*/country)/Djibouti(.png|/)?$ $1/135
+RewriteRule ^(.*/country)/Dominica(.png|/)?$ $1/136
+RewriteRule ^(.*/country)/Dominican Republic(.png|/)?$ $1/60
+RewriteRule ^(.*/country)/East Timor(.png|/)?$ $1/309
+RewriteRule ^(.*/country)/Ecuador(.png|/)?$ $1/77
+RewriteRule ^(.*/country)/Egypt(.png|/)?$ $1/14
+RewriteRule ^(.*/country)/El Salvador(.png|/)?$ $1/137
+RewriteRule ^(.*/country)/Equatorial Guinea(.png|/)?$ $1/138
+RewriteRule ^(.*/country)/Eritrea(.png|/)?$ $1/139
+RewriteRule ^(.*/country)/Estonia(.png|/)?$ $1/140
+RewriteRule ^(.*/country)/Ethiopia(.png|/)?$ $1/141
+RewriteRule ^(.*/country)/Falkland Islands (Malvinas)(.png|/)?$ $1/142
+RewriteRule ^(.*/country)/Faroe Islands(.png|/)?$ $1/143
+RewriteRule ^(.*/country)/Fiji(.png|/)?$ $1/144
+RewriteRule ^(.*/country)/Finland(.png|/)?$ $1/15
+RewriteRule ^(.*/country)/France(.png|/)?$ $1/16
+RewriteRule ^(.*/country)/French Guiana(.png|/)?$ $1/146
+RewriteRule ^(.*/country)/French Polynesia(.png|/)?$ $1/147
+RewriteRule ^(.*/country)/French Southern Territories(.png|/)?$ $1/148
+RewriteRule ^(.*/country)/Gabon(.png|/)?$ $1/149
+RewriteRule ^(.*/country)/Gambia(.png|/)?$ $1/150
+RewriteRule ^(.*/country)/Georgia(.png|/)?$ $1/151
+RewriteRule ^(.*/country)/Germany(.png|/)?$ $1/17
+RewriteRule ^(.*/country)/Ghana(.png|/)?$ $1/152
+RewriteRule ^(.*/country)/Gibraltar(.png|/)?$ $1/153
+RewriteRule ^(.*/country)/Greece(.png|/)?$ $1/44
+RewriteRule ^(.*/country)/Greenland(.png|/)?$ $1/154
+RewriteRule ^(.*/country)/Grenada(.png|/)?$ $1/155
+RewriteRule ^(.*/country)/Guadeloupe(.png|/)?$ $1/156
+RewriteRule ^(.*/country)/Guam(.png|/)?$ $1/157
+RewriteRule ^(.*/country)/Guatemala(.png|/)?$ $1/18
+RewriteRule ^(.*/country)/Guernsey(.png|/)?$ $1/310
+RewriteRule ^(.*/country)/Guinea(.png|/)?$ $1/158
+RewriteRule ^(.*/country)/Guinea-Bissau(.png|/)?$ $1/159
+RewriteRule ^(.*/country)/Guyana(.png|/)?$ $1/160
+RewriteRule ^(.*/country)/Haiti(.png|/)?$ $1/161
+RewriteRule ^(.*/country)/Holy See (Vatican City State)(.png|/)?$ $1/163
+RewriteRule ^(.*/country)/Honduras(.png|/)?$ $1/66
+RewriteRule ^(.*/country)/Hong Kong(.png|/)?$ $1/164
+RewriteRule ^(.*/country)/Hungary(.png|/)?$ $1/9
+RewriteRule ^(.*/country)/Iceland(.png|/)?$ $1/10
+RewriteRule ^(.*/country)/India(.png|/)?$ $1/33
+RewriteRule ^(.*/country)/Indonesia(.png|/)?$ $1/165
+RewriteRule ^(.*/country)/Iran(.png|/)?$ $1/55
+RewriteRule ^(.*/country)/Iraq(.png|/)?$ $1/166
+RewriteRule ^(.*/country)/Ireland(.png|/)?$ $1/11
+RewriteRule ^(.*/country)/Isle of Man(.png|/)?$ $1/304
+RewriteRule ^(.*/country)/Israel(.png|/)?$ $1/35
+RewriteRule ^(.*/country)/Italy(.png|/)?$ $1/12
+RewriteRule ^(.*/country)/Jamaica(.png|/)?$ $1/56
+RewriteRule ^(.*/country)/Japan(.png|/)?$ $1/13
+RewriteRule ^(.*/country)/Jersey(.png|/)?$ $1/303
+RewriteRule ^(.*/country)/Jordan(.png|/)?$ $1/167
+RewriteRule ^(.*/country)/Kazakhstan(.png|/)?$ $1/168
+RewriteRule ^(.*/country)/Kenya(.png|/)?$ $1/169
+RewriteRule ^(.*/country)/Kiribati(.png|/)?$ $1/170
+RewriteRule ^(.*/country)/Korea, Democratic People's Republic Of(.png|/)?$ $1/171
+RewriteRule ^(.*/country)/Korea, Republic Of(.png|/)?$ $1/172
+RewriteRule ^(.*/country)/Kosovo(.png|/)?$ $1/311
+RewriteRule ^(.*/country)/Kuwait(.png|/)?$ $1/173
+RewriteRule ^(.*/country)/Kyrgyzstan(.png|/)?$ $1/174
+RewriteRule ^(.*/country)/Lao People's Democratic Republic(.png|/)?$ $1/175
+RewriteRule ^(.*/country)/Latvia(.png|/)?$ $1/28
+RewriteRule ^(.*/country)/Lebanon(.png|/)?$ $1/40
+RewriteRule ^(.*/country)/Lesotho(.png|/)?$ $1/176
+RewriteRule ^(.*/country)/Liberia(.png|/)?$ $1/177
+RewriteRule ^(.*/country)/Libya(.png|/)?$ $1/178
+RewriteRule ^(.*/country)/Liechtenstein(.png|/)?$ $1/179
+RewriteRule ^(.*/country)/Lithuania(.png|/)?$ $1/30
+RewriteRule ^(.*/country)/Luxembourg(.png|/)?$ $1/53
+RewriteRule ^(.*/country)/Macau(.png|/)?$ $1/180
+RewriteRule ^(.*/country)/Macedonia, Republic of(.png|/)?$ $1/64
+RewriteRule ^(.*/country)/Madagascar(.png|/)?$ $1/181
+RewriteRule ^(.*/country)/Malawi(.png|/)?$ $1/182
+RewriteRule ^(.*/country)/Malaysia(.png|/)?$ $1/73
+RewriteRule ^(.*/country)/Maldives(.png|/)?$ $1/78
+RewriteRule ^(.*/country)/Mali(.png|/)?$ $1/183
+RewriteRule ^(.*/country)/Malta(.png|/)?$ $1/184
+RewriteRule ^(.*/country)/Marshall Islands(.png|/)?$ $1/185
+RewriteRule ^(.*/country)/Martinique(.png|/)?$ $1/186
+RewriteRule ^(.*/country)/Mauritania(.png|/)?$ $1/187
+RewriteRule ^(.*/country)/Mauritius(.png|/)?$ $1/188
+RewriteRule ^(.*/country)/Mayotte(.png|/)?$ $1/189
+RewriteRule ^(.*/country)/Mexico(.png|/)?$ $1/42
+RewriteRule ^(.*/country)/Micronesia, Federated States Of(.png|/)?$ $1/190
+RewriteRule ^(.*/country)/Moldova, Republic Of(.png|/)?$ $1/191
+RewriteRule ^(.*/country)/Monaco(.png|/)?$ $1/192
+RewriteRule ^(.*/country)/Montenegro(.png|/)?$ $1/80
+RewriteRule ^(.*/country)/Mongolia(.png|/)?$ $1/193
+RewriteRule ^(.*/country)/Montserrat(.png|/)?$ $1/194
+RewriteRule ^(.*/country)/Morocco(.png|/)?$ $1/74
+RewriteRule ^(.*/country)/Mozambique(.png|/)?$ $1/195
+RewriteRule ^(.*/country)/Myanmar(.png|/)?$ $1/196
+RewriteRule ^(.*/country)/Namibia(.png|/)?$ $1/197
+RewriteRule ^(.*/country)/Nauru(.png|/)?$ $1/198
+RewriteRule ^(.*/country)/Nepal(.png|/)?$ $1/199
+RewriteRule ^(.*/country)/Netherlands, The(.png|/)?$ $1/25
+RewriteRule ^(.*/country)/Netherlands Antilles(.png|/)?$ $1/200
+RewriteRule ^(.*/country)/New Caledonia(.png|/)?$ $1/201
+RewriteRule ^(.*/country)/New Zealand(.png|/)?$ $1/39
+RewriteRule ^(.*/country)/Nicaragua(.png|/)?$ $1/202
+RewriteRule ^(.*/country)/Niger(.png|/)?$ $1/203
+RewriteRule ^(.*/country)/Nigeria(.png|/)?$ $1/204
+RewriteRule ^(.*/country)/Niue(.png|/)?$ $1/205
+RewriteRule ^(.*/country)/Norfolk Island(.png|/)?$ $1/206
+RewriteRule ^(.*/country)/Northern Mariana Islands(.png|/)?$ $1/207
+RewriteRule ^(.*/country)/Norway(.png|/)?$ $1/6
+RewriteRule ^(.*/country)/Oman(.png|/)?$ $1/208
+RewriteRule ^(.*/country)/Pakistan(.png|/)?$ $1/209
+RewriteRule ^(.*/country)/Palau(.png|/)?$ $1/210
+RewriteRule ^(.*/country)/Palestinian Territory, Occupied(.png|/)?$ $1/211
+RewriteRule ^(.*/country)/Panama(.png|/)?$ $1/45
+RewriteRule ^(.*/country)/Papua New Guinea(.png|/)?$ $1/212
+RewriteRule ^(.*/country)/Paraguay(.png|/)?$ $1/213
+RewriteRule ^(.*/country)/Peru(.png|/)?$ $1/67
+RewriteRule ^(.*/country)/Philippines, The(.png|/)?$ $1/54
+RewriteRule ^(.*/country)/Pitcairn Islands(.png|/)?$ $1/214
+RewriteRule ^(.*/country)/Poland(.png|/)?$ $1/7
+RewriteRule ^(.*/country)/Portugal(.png|/)?$ $1/8
+RewriteRule ^(.*/country)/Puerto Rico(.png|/)?$ $1/215
+RewriteRule ^(.*/country)/Qatar(.png|/)?$ $1/216
+RewriteRule ^(.*/country)/Reunion(.png|/)?$ $1/217
+RewriteRule ^(.*/country)/Romania(.png|/)?$ $1/27
+RewriteRule ^(.*/country)/Russian Federation(.png|/)?$ $1/32
+RewriteRule ^(.*/country)/Rwanda(.png|/)?$ $1/218
+RewriteRule ^(.*/country)/Saint Kitts And Nevis(.png|/)?$ $1/219
+RewriteRule ^(.*/country)/Saint Lucia(.png|/)?$ $1/220
+RewriteRule ^(.*/country)/Saint Vincent And The Grenadines(.png|/)?$ $1/221
+RewriteRule ^(.*/country)/Samoa(.png|/)?$ $1/222
+RewriteRule ^(.*/country)/San Marino(.png|/)?$ $1/223
+RewriteRule ^(.*/country)/Sao Tome And Principe(.png|/)?$ $1/224
+RewriteRule ^(.*/country)/Saudi Arabia(.png|/)?$ $1/59
+RewriteRule ^(.*/country)/Senegal(.png|/)?$ $1/225
+RewriteRule ^(.*/country)/Serbia(.png|/)?$ $1/81
+RewriteRule ^(.*/country)/Serbia and Montenegro(.png|/)?$ $1/312
+RewriteRule ^(.*/country)/Seychelles(.png|/)?$ $1/226
+RewriteRule ^(.*/country)/Sierra Leone(.png|/)?$ $1/227
+RewriteRule ^(.*/country)/Singapore(.png|/)?$ $1/52
+RewriteRule ^(.*/country)/Slovakia(.png|/)?$ $1/4
+RewriteRule ^(.*/country)/Slovenia(.png|/)?$ $1/41
+RewriteRule ^(.*/country)/Solomon Islands(.png|/)?$ $1/228
+RewriteRule ^(.*/country)/Somalia(.png|/)?$ $1/229
+RewriteRule ^(.*/country)/South Africa(.png|/)?$ $1/3
+RewriteRule ^(.*/country)/South Georgia and the South Sandwich Islands(.png|/)?$ $1/313
+RewriteRule ^(.*/country)/Spain(.png|/)?$ $1/5
+RewriteRule ^(.*/country)/Sri Lanka(.png|/)?$ $1/230
+RewriteRule ^(.*/country)/St. Helena(.png|/)?$ $1/231
+RewriteRule ^(.*/country)/St. Pierre And Miquelon(.png|/)?$ $1/232
+RewriteRule ^(.*/country)/Sudan(.png|/)?$ $1/233
+RewriteRule ^(.*/country)/Suriname(.png|/)?$ $1/235
+RewriteRule ^(.*/country)/Swaziland(.png|/)?$ $1/237
+RewriteRule ^(.*/country)/Sweden(.png|/)?$ $1/24
+RewriteRule ^(.*/country)/Switzerland(.png|/)?$ $1/43
+RewriteRule ^(.*/country)/Syrian Arab Republic(.png|/)?$ $1/240
+RewriteRule ^(.*/country)/Taiwan(.png|/)?$ $1/300
+RewriteRule ^(.*/country)/Tajikistan(.png|/)?$ $1/241
+RewriteRule ^(.*/country)/Tanzania, United Republic Of(.png|/)?$ $1/242
+RewriteRule ^(.*/country)/Thailand(.png|/)?$ $1/65
+RewriteRule ^(.*/country)/Timor-Leste(.png|/)?$ $1/243
+RewriteRule ^(.*/country)/Togo(.png|/)?$ $1/244
+RewriteRule ^(.*/country)/Tokelau(.png|/)?$ $1/245
+RewriteRule ^(.*/country)/Tonga(.png|/)?$ $1/246
+RewriteRule ^(.*/country)/Trinidad & Tobago(.png|/)?$ $1/34
+RewriteRule ^(.*/country)/Tristan da Cunha(.png|/)?$ $1/320
+RewriteRule ^(.*/country)/Tunisia(.png|/)?$ $1/70
+RewriteRule ^(.*/country)/Turkey(.png|/)?$ $1/61
+RewriteRule ^(.*/country)/Turkmenistan(.png|/)?$ $1/247
+RewriteRule ^(.*/country)/Turks And Caicos Islands(.png|/)?$ $1/248
+RewriteRule ^(.*/country)/Tuvalu(.png|/)?$ $1/249
+RewriteRule ^(.*/country)/Uganda(.png|/)?$ $1/250
+RewriteRule ^(.*/country)/Ukraine(.png|/)?$ $1/58
+RewriteRule ^(.*/country)/United Arab Emirates(.png|/)?$ $1/251
+RewriteRule ^(.*/country)/United Kingdom(.png|/)?$ $1/2
+RewriteRule ^(.*/country)/United States(.png|/)?$ $1/1
+RewriteRule ^(.*/country)/United States Minor Outlying Islands(.png|/)?$ $1/252
+RewriteRule ^(.*/country)/Uruguay(.png|/)?$ $1/68
+RewriteRule ^(.*/country)/Uzbekistan(.png|/)?$ $1/253
+RewriteRule ^(.*/country)/Vanuatu(.png|/)?$ $1/254
+RewriteRule ^(.*/country)/Venezuela(.png|/)?$ $1/49
+RewriteRule ^(.*/country)/Vietnam(.png|/)?$ $1/50
+RewriteRule ^(.*/country)/Virgin Islands (British)(.png|/)?$ $1/255
+RewriteRule ^(.*/country)/Virgin Islands (U.S.)(.png|/)?$ $1/256
+RewriteRule ^(.*/country)/Wallis And Futuna Islands(.png|/)?$ $1/257
+RewriteRule ^(.*/country)/Western Sahara(.png|/)?$ $1/258
+RewriteRule ^(.*/country)/Yemen(.png|/)?$ $1/259
+RewriteRule ^(.*/country)/Zambia(.png|/)?$ $1/260
+RewriteRule ^(.*/country)/Zimbabwe(.png|/)?$ $1/270

@@ -1,7 +1,7 @@
 <?php
 /**
- * Config file generator. Config Vars are an array of array($type, $section, $varname, $varvalue, $comment), ....
- * Types are: 'int10', 'int8', 'text', 'bool', 'script'. 
+ * Config file generator. Config Vars are an array of array($type, $section, $varname, $varvalue, $comment)
+ * Types are: 'int10', 'int8', 'text', 'bool', 'script'.
  * @author gizmore
  * @version 3.0
  * @since 2.0
@@ -50,15 +50,6 @@ final class GWF_InstallConfig
 			return false;
 		}
 		return 'Invalid IP type.';
-	}
-	
-	public static function check_GWF_CAPTCHA_COLOR_BG($arg)
-	{
-		if (preg_match('/^[a-f0-9A-F]{6}$/D', $arg))
-		{
-			return false;
-		}
-		return 'Invalid captcha color.';
 	}
 	
 	################
@@ -126,7 +117,7 @@ final class GWF_InstallConfig
 	
 	private static function isBoolean($value)
 	{
-		return $value === 'true' || $value === 'false';
+		return $value === 'true' || $value === 'false'; # 0,1,yes,no ?
 	}
 	
 //	private static function isDefaultValue($varname, $value)

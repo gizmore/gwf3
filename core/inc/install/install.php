@@ -2,10 +2,9 @@
 /**
  * The GWF-Installation-Wizard
  * @author spaceone, gizmore
- * @todo use this script with cli? $_GET[ajax]
  */
 # Load Install-Core
-require_once GWF_CORE_PATH.'inc/install/GWF_Install.php';
+require_once GWF_CORE_PATH.'inc/install/GWF_InstallWizard.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallWizardLanguage.php';
@@ -38,7 +37,7 @@ GWF_HTML::init();
 
 # Set install language
 $il = new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install');
-GWF_Install::setGWFIL($il);
+GWF_InstallWizard::setGWFIL($il);
 
 # Design init
 GWF3::setDesign('install');
@@ -56,37 +55,37 @@ $tVars = array(
 GWF_Template::addMainTvars($tVars);
 
 if (false !== (Common::getPost('create_admin'))) {
-	$page = GWF_Install::wizard_9_1();
+	$page = GWF_InstallWizard::wizard_9_1();
 }
 elseif (false !== (Common::getPost('test_db'))) {
-	$page = GWF_Install::wizard_1a();
+	$page = GWF_InstallWizard::wizard_1a();
 }
 elseif (false !== (Common::getPost('write_config'))) {
-	$page = GWF_Install::wizard_1b();
+	$page = GWF_InstallWizard::wizard_1b();
 }
 elseif (false !== (Common::getPost('install_modules'))) {
-	$page = GWF_Install::wizard_6_1();
+	$page = GWF_InstallWizard::wizard_6_1();
 }
 else switch(GWF_STEP)
 {
-	case '1': $page = GWF_Install::wizard_1(); break; # Create Config
-	case '2': $page = GWF_Install::wizard_2(); break; # Init Install
-	case '3': $page = GWF_Install::wizard_3(); break; # Install CoreDB
-	case '4': $page = GWF_Install::wizard_4(); break; # Choose Language
-	case '4_1': $page = GWF_Install::wizard_4_1(); break; # Install Language
-	case '4_2': $page = GWF_Install::wizard_4_2(); break; # Install Language+IP2C 
-	case '5': $page = GWF_Install::wizard_5(); break; # Choose UA
-	case '5_1': $page = GWF_Install::wizard_5_1(); break; # Install UA
-	case '5_2': $page = GWF_Install::wizard_5_2(); break; # Skip UA
-	case '6': $page = GWF_Install::wizard_6(); break; # Choose modules
-	case '7': $page = GWF_Install::wizard_7(); break; # Create index.php
-	case '8': $page = GWF_Install::wizard_8(); break; # Create htaccess
-	case '9': $page = GWF_Install::wizard_9(); break; # Create admins
-	case '10': $page = GWF_Install::wizard_10(); break; # Clear Caches
-	case '11': $page = GWF_Install::wizard_11(); break; # Protect install folder
+	case '1': $page = GWF_InstallWizard::wizard_1(); break; # Create Config
+	case '2': $page = GWF_InstallWizard::wizard_2(); break; # Init Install
+	case '3': $page = GWF_InstallWizard::wizard_3(); break; # Install CoreDB
+	case '4': $page = GWF_InstallWizard::wizard_4(); break; # Choose Language
+	case '4_1': $page = GWF_InstallWizard::wizard_4_1(); break; # Install Language
+	case '4_2': $page = GWF_InstallWizard::wizard_4_2(); break; # Install Language+IP2C 
+	case '5': $page = GWF_InstallWizard::wizard_5(); break; # Choose UA
+	case '5_1': $page = GWF_InstallWizard::wizard_5_1(); break; # Install UA
+	case '5_2': $page = GWF_InstallWizard::wizard_5_2(); break; # Skip UA
+	case '6': $page = GWF_InstallWizard::wizard_6(); break; # Choose modules
+	case '7': $page = GWF_InstallWizard::wizard_7(); break; # Create index.php
+	case '8': $page = GWF_InstallWizard::wizard_8(); break; # Create htaccess
+	case '9': $page = GWF_InstallWizard::wizard_9(); break; # Create admins
+	case '10': $page = GWF_InstallWizard::wizard_10(); break; # Clear Caches
+	case '11': $page = GWF_InstallWizard::wizard_11(); break; # Protect install folder
 	
 	default:
-	case '0': $page = GWF_Install::wizard_0(); break; # List Status
+	case '0': $page = GWF_InstallWizard::wizard_0(); break; # List Status
 }
 
 # Display page

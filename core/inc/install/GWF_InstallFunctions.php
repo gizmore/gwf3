@@ -1,471 +1,479 @@
 <?php
-############
-### Core ###
-############
-function install_get_core_tables()
-{
-//	Common::defineConst('GWF_CORE_PATH', dirname(__FILE__).'/../../core/');
-	$classnames = array();
-	foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
+/**
+ * Functions for the GWF Installer
+ * @todo declare some functions as private
+ * @todo use GWF_Result
+ * @author gizmore, spaceone
+ */
+final class GWF_InstallFunctions
+	############
+	### Core ###
+	############
+	public static function get_core_tables()
 	{
-		if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/iD', $file, $matches))
+	//	Common::defineConst('GWF_CORE_PATH', dirname(__FILE__).'/../../core/');
+		$classnames = array();
+		foreach (scandir(GWF_CORE_PATH.'inc/util') as $file)
 		{
-			$classname = $matches[1];
-			if (false === ($content = file_get_contents(GWF_CORE_PATH."inc/util/{$file}"))) {
-				continue;
-			}
-			if ( (strpos($content, ' extends GDO') !== false) && (strpos($content, 'abstract class') === false) )
+			if (preg_match('/^GWF_([a-z0-9_]+)\\.php$/iD', $file, $matches))
 			{
-				$classnames[] = 'GWF_'.$classname;
+				$classname = $matches[1];
+				if (false === ($content = file_get_contents(GWF_CORE_PATH."inc/util/{$file}"))) {
+					continue;
+				}
+				if ( (strpos($content, ' extends GDO') !== false) && (strpos($content, 'abstract class') === false) )
+				{
+					$classnames[] = 'GWF_'.$classname;
+				}
 			}
 		}
+		return $classnames;
+	//	return array('GWF_Country','GWF_Group','GWF_IP2Country','GWF_LangMap','GWF_Language','GWF_Module','GWF_ModuleVar','GWF_PublicKey','GWF_Session','GWF_Settings','GWF_User','GWF_UserGroup');
 	}
-	return $classnames;
-//	return array('GWF_Country','GWF_Group','GWF_IP2Country','GWF_LangMap','GWF_Language','GWF_Module','GWF_ModuleVar','GWF_PublicKey','GWF_Session','GWF_Settings','GWF_User','GWF_UserGroup');
-}
 
-function install_core($drop=false, &$success)
-{
-	$db = gdo_db();
-	$tables = install_get_core_tables();
-	$success = true;
-	$ret = '<br/><br/>';
-	foreach ($tables as $classname)
+	public static function core($drop=false, &$success)
 	{
-		$ret .= sprintf("Installing %s table ... ", $classname);
-		if (false === ($result = GDO::table($classname)->createTable($drop))) {
-			#error
-			$ret .= '<b class="gwfinstallno">FAILED!<br/>'.PHP_EOL;
-			$success = false;
-		}
-		else {
-			#success
-			$ret .= '<b class="gwfinstallyes">OK</b><br/>'.PHP_EOL;
-		}
-	}
-	$ret .= '<br/>';
-	
-	/** Try to set a birthdate **/
-	if (false === GWF_Settings::getSetting('gwf_site_birthday', false))
-	{
-		$ret .= sprintf("Setting up a birthdate ... %s.", date('Ymd'));
-		if (false === GWF_Settings::setSetting('gwf_site_birthday', date('Ymd')))
+		$db = gdo_db();
+		$tables = self::get_core_tables();
+		$success = true;
+		$ret = '<br/><br/>';
+		foreach ($tables as $classname)
 		{
-			$ret .= '<b class="gwfinstallno">Cannot set site birthdate.<br/>'.PHP_EOL;
-			$success = false;
+			$ret .= sprintf("Installing %s table ... ", $classname);
+			if (false === ($result = GDO::table($classname)->createTable($drop))) {
+				#error
+				$ret .= '<b class="gwfinstallno">FAILED!<br/>'.PHP_EOL;
+				$success = false;
+			}
+			else {
+				#success
+				$ret .= '<b class="gwfinstallyes">OK</b><br/>'.PHP_EOL;
+			}
 		}
+		$ret .= '<br/>';
+		
+		/** Try to set a birthdate **/
+		if (false === GWF_Settings::getSetting('gwf_site_birthday', false))
+		{
+			$ret .= sprintf("Setting up a birthdate ... %s.", date('Ymd'));
+			if (false === GWF_Settings::setSetting('gwf_site_birthday', date('Ymd')))
+			{
+				$ret .= '<b class="gwfinstallno">Cannot set site birthdate.<br/>'.PHP_EOL;
+				$success = false;
+			}
+		}
+		
+		return $ret;
 	}
-	
-	return $ret;
-}
 
-###############
-### Modules ###
-###############
-function install_all_modules($dropTables=false)
-{
-	if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
-		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
-	}
-	
-	return install_modules($modules, $dropTables);
-}
-
-function install_modules(array $modules, $dropTables=false)
-{
-	$back = '';
-	
-	$modules = GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
-	
-	foreach ($modules as $module)
+	###############
+	### Modules ###
+	###############
+	public static function all_modules($dropTables=false)
 	{
-		$back .= sprintf('Installing %s...<br/>', $module->getName());
-		$back .= GWF_ModuleLoader::installModule($module, $dropTables);
-		$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore
+		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true, true);
+		}
+		
+		return self::modules($modules, $dropTables);
 	}
-	
-	return $back;
-}
 
-##############
-### Groups ###
-##############
-function install_default_groups()
-{
-	if (false === install_default_group(GWF_Group::ADMIN)) {
-		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-		return false;
+	public static function modules(array $modules, $dropTables=false)
+	{
+		$back = '';
+		
+		$modules = GWF_ModuleLoader::sortModules($modules, 'module_priority', 'ASC');
+		
+		foreach ($modules as $module)
+		{
+			$back .= sprintf('Installing %s...<br/>', $module->getName());
+			$back .= GWF_ModuleLoader::installModule($module, $dropTables);
+			$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore
+		}
+		
+		return $back;
 	}
-	if (false === install_default_group(GWF_Group::STAFF)) {
-		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-		return false;
-	}
-	if (false === install_default_group(GWF_Group::MODERATOR)) {
-		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-		return false;
-	}
-	if (false === install_default_group(GWF_Group::PUBLISHER)) {
-		echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-		return false;
-	}
-	return true;
-}
-function install_default_group($name)
-{
-	if (false !== GWF_Group::getByName($name)) {
+
+	##############
+	### Groups ###
+	##############
+	public static function default_groups()
+	{
+		if (false === self::default_group(GWF_Group::ADMIN)) {
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			return false;
+		}
+		if (false === self::default_group(GWF_Group::STAFF)) {
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			return false;
+		}
+		if (false === self::default_group(GWF_Group::MODERATOR)) {
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			return false;
+		}
+		if (false === self::default_group(GWF_Group::PUBLISHER)) {
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+			return false;
+		}
 		return true;
 	}
-	$group = new GWF_Group(array(
-		'group_name' => $name,
-		'group_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
-	));
-	return $group->replace();
-}
-#############
-### Users ###
-#############
-
-function install_default_users()
-{
-	if (false === install_default_groups()) {
-		return false;
-	}
-	install_createAdmin('Admin', '11111111', sprintf('admin@%s', GWF_DOMAIN), $out);
-}
-
-function install_createAdmin($username, $password, $email, &$output)
-{
-	if (false === ($user = GWF_User::getByName($username)))
+	public static function default_group($name)
 	{
-		$user = new GWF_User(array(
-			'user_name' => $username,
-			'user_email' => $email,
-			'user_password' => GWF_Password::hashPasswordS($password),
-			'user_regdate' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
-			'user_regip' => GWF_IP6::getIP(GWF_IP_EXACT),
-			'user_lastactivity' => time(),
+		if (false !== GWF_Group::getByName($name)) {
+			return true;
+		}
+		$group = new GWF_Group(array(
+			'group_name' => $name,
+			'group_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		));
-		if (false === $user->insert())
+		return $group->replace();
+	}
+	#############
+	### Users ###
+	#############
+
+	public static function default_users()
+	{
+		if (false === self::default_groups()) {
+			return false;
+		}
+		self::createAdmin('Admin', '11111111', sprintf('admin@%s', GWF_DOMAIN), $out);
+	}
+
+	public static function createAdmin($username, $password, $email, &$output)
+	{
+		if (false === ($user = GWF_User::getByName($username)))
+		{
+			$user = new GWF_User(array(
+				'user_name' => $username,
+				'user_email' => $email,
+				'user_password' => GWF_Password::hashPasswordS($password),
+				'user_regdate' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+				'user_regip' => GWF_IP6::getIP(GWF_IP_EXACT),
+				'user_lastactivity' => time(),
+			));
+			if (false === $user->insert())
+			{
+				return false;
+			}
+		}
+		
+		$userid = $user->getID();
+		
+		if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::ADMIN)->getID()))
 		{
 			return false;
 		}
-	}
-	
-	$userid = $user->getID();
-	
-	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::ADMIN)->getID()))
-	{
-		return false;
-	}
-	
-	if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::STAFF)->getID()))
-	{
-		return false;
-	}
-	
-	$output .= GWF_HTML::message('Install Wizard', sprintf('Added new admin user: %s - Password: [censored]', $username));
-	
-	return true;
-}
-
-
-############################################
-### Language / Country / IPMap / LangMap ###
-############################################
-/**
- * Takes ages.
- * @return string
- * @todo integrate in design but do flushing and error handling
- */
-function install_createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
-{
-	$success = true;
-	require_once GWF_CORE_PATH.'inc/install/data/install_language.php';
-	set_time_limit(0); # This function takes ages!
-
-	$cache = array();
-	$cache2 = array();
-	# Language
-	$i = 1;
-	$linguas = install_get_languages();
-	$ret = 'Installing '.count($linguas).' Languages';
-//	flush();
-	
-	$lang_t = new GWF_Language();
-	$supported = explode(';', GWF_SUPPORTED_LANGS);
-	
-	foreach ($linguas as $lang)
-	{
-//		$ret .= '.';
-//		flush();
-
-		array_map('trim', $lang);
 		
-		list($name, $native, $short, $iso) = $lang;
-
-		if (false !== ($langrow = $lang_t->selectFirst('lang_id', "lang_short='$short'"))) { #GWF_Language::getByShort($short))) {
-			$cache[$short] = $langrow['lang_id']; #->getID();
-			continue;
+		if (false === GWF_UserGroup::addToGroup($userid, GWF_Group::getByName(GWF_Group::STAFF)->getID()))
+		{
+			return false;
 		}
 		
-		if ($__langs)
+		$output .= GWF_HTML::message('Install Wizard', sprintf('Added new admin user: %s - Password: [censored]', $username));
+		
+		return true;
+	}
+
+
+	############################################
+	### Language / Country / IPMap / LangMap ###
+	############################################
+	/**
+	* Takes ages.
+	* @return string
+	* @todo integrate in design but do flushing and error handling
+	*/
+	public static function createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
+	{
+		$success = true;
+		require_once GWF_CORE_PATH.'inc/install/data/GWF_LanguageData.php';
+		set_time_limit(0); # This function takes ages!
+
+		$cache = array();
+		$cache2 = array();
+		# Language
+		$i = 1;
+		$linguas = GWF_LanguageData::getLanguages();
+		$ret = 'Installing '.count($linguas).' Languages';
+	//	flush();
+		
+		$lang_t = new GWF_Language();
+		$supported = explode(';', GWF_SUPPORTED_LANGS);
+		
+		foreach ($linguas as $lang)
 		{
-			if (false === $lang_t->insertAssoc(array(
-				'lang_id' => $i,
-				'lang_name' => $name,
-				'lang_nativename' => $native,
-				'lang_short' => $short,
-				'lang_iso' => $iso,
-				'lang_options' => in_array($iso, $supported, true) ? GWF_Language::SUPPORTED : 0,
-			))) {
-				$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-				$success = false;
+	//		$ret .= '.';
+	//		flush();
+
+			array_map('trim', $lang);
+			
+			list($name, $native, $short, $iso) = $lang;
+
+			if (false !== ($langrow = $lang_t->selectFirst('lang_id', "lang_short='$short'"))) { #GWF_Language::getByShort($short))) {
+				$cache[$short] = $langrow['lang_id']; #->getID();
 				continue;
 			}
-		}
-		$i++;
-		
-		$cache[$short] = $i; #langrow['lang_id'];
-	}
-	
-	$ret .= PHP_EOL;
-
-	# Country and Langmap
-	$countries = install_get_countries();
-	$country_t = new GWF_Country();
-	$ret .= 'Installing '.count($countries).' Countries';
-//	flush();
-	
-	foreach ($countries as $cid => $c)
-	{
-//		$ret .= '.';
-//		flush();
-		
-		if (count($c) !== 5) {
-			$ret .= GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
+			
+			if ($__langs)
+			{
+				if (false === $lang_t->insertAssoc(array(
+					'lang_id' => $i,
+					'lang_name' => $name,
+					'lang_nativename' => $native,
+					'lang_short' => $short,
+					'lang_iso' => $iso,
+					'lang_options' => in_array($iso, $supported, true) ? GWF_Language::SUPPORTED : 0,
+				))) {
+					$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+					$success = false;
+					continue;
+				}
+			}
+			$i++;
+			
+			$cache[$short] = $i; #langrow['lang_id'];
 		}
 		
-		array_map('trim', $c);
-		list($name, $langs, $region, $tld, $pop) = $c;
-		$tld = strtolower($tld);
+		$ret .= PHP_EOL;
 
-		if ($__cunts)
+		# Country and Langmap
+		$countries = GWF_LanguageData::getCountries();
+		$country_t = new GWF_Country();
+		$ret .= 'Installing '.count($countries).' Countries';
+	//	flush();
+		
+		foreach ($countries as $cid => $c)
 		{
-			if (false === $country_t->insertAssoc(array(
-				'country_id' => $cid,
-				'country_name' => $name,
-				'country_tld' => $tld,
-				'country_pop' => $pop,
-			))) {
+	//		$ret .= '.';
+	//		flush();
+			
+			if (count($c) !== 5) {
+				$ret .= GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
+			}
+			
+			array_map('trim', $c);
+			list($name, $langs, $region, $tld, $pop) = $c;
+			$tld = strtolower($tld);
+
+			if ($__cunts)
+			{
+				if (false === $country_t->insertAssoc(array(
+					'country_id' => $cid,
+					'country_name' => $name,
+					'country_tld' => $tld,
+					'country_pop' => $pop,
+				))) {
+					$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+					$success = false;
+					continue;
+				}
+			}
+
+			$cache2[$tld] = $cid;
+
+			$langmap_t = new GWF_LangMap();
+			if ($__cunts)
+			{
+				$langs = explode(':', $langs);
+				foreach ($langs as $langshort)
+				{
+					if (!isset($cache[$langshort])) {
+						$ret .= GWF_HTML::error('', 'Unknown iso-3: '.$langshort.' in country '.$name, true, true);
+						$success = false;
+						$ret .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__), true, true);
+						continue;
+					}
+					$langid = $cache[$langshort];
+					if (false === ($langmap_t->insertAssoc(array(
+						'langmap_cid' => $cid,
+						'langmap_lid' => $langid,
+					)))) {
+						$ret .= GWF_HTML::err('ERR_DATABASE', array( array(__FILE__, __LINE__)), true, true);
+						$success = false;
+						continue;
+					}
+				}
+			}
+		}
+		$ret .= PHP_EOL;
+		
+		if (!$__ipmap) {
+	//		return $success;
+			return $ret;
+		}
+
+		$ret .= 'Installing ip2country'.PHP_EOL;
+		
+		# IP2Country
+		$max = 89323;
+		$now = 0;
+		$filename = GWF_CORE_PATH."inc/install/data/ip-to-country.csv";
+
+		if (false === ($fp = fopen($filename, "r"))) {
+			$ret .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
+	//		return false;
+			return $ret;
+		}
+		
+		$ip2c = new GWF_IP2Country();
+
+		while (false !== ($line = fgetcsv($fp, 2048)))
+		{
+			if (count($line) !== 5) {
+				$ret .= GWF_HTML::error('', $filename.' is corrupt!', true, true);
+				$success = false;
+				break;
+			}
+
+			list($ipstart, $ipend, $tld, $ccode2, $cname) = $line;
+			$tld = strtolower($tld);
+				
+			if (!(isset($cache2[$tld]))) {
+				$ret .= GWF_HTML::error('', 'Unknown TLD: '.$tld, true, true);
 				$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
 				$success = false;
 				continue;
 			}
-		}
-
-		$cache2[$tld] = $cid;
-
-		$langmap_t = new GWF_LangMap();
-		if ($__cunts)
-		{
-			$langs = explode(':', $langs);
-			foreach ($langs as $langshort)
+			
+			if (false === $ip2c->insertAssoc(array(
+				'ip2c_start' => $ipstart,
+				'ip2c_end' => $ipend,
+				'ip2c_cid' => $cache2[$tld],
+			)))
 			{
-				if (!isset($cache[$langshort])) {
-					$ret .= GWF_HTML::error('', 'Unknown iso-3: '.$langshort.' in country '.$name, true, true);
-					$success = false;
-					$ret .= GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__), true, true);
-					continue;
-				}
-				$langid = $cache[$langshort];
-				if (false === ($langmap_t->insertAssoc(array(
-					'langmap_cid' => $cid,
-					'langmap_lid' => $langid,
-				)))) {
-					$ret .= GWF_HTML::err('ERR_DATABASE', array( array(__FILE__, __LINE__)), true, true);
-					$success = false;
-					continue;
-				}
+				$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
+				$success = false;
+				continue;
+			}
+			
+			$now++;
+			if (!($now % 2500)) {
+				$msg = sprintf('%d of %d...', $now, $max);
+				$ret .= GWF_HTML::message('Progress', $msg, true, true);
+	//			flush();
 			}
 		}
-	}
-	$ret .= PHP_EOL;
-	
-	if (!$__ipmap) {
-//		return $success;
 		return $ret;
 	}
 
-	$ret .= 'Installing ip2country'.PHP_EOL;
-	
-	# IP2Country
-	$max = 89323;
-	$now = 0;
-	$filename = GWF_CORE_PATH."inc/install/data/ip-to-country.csv";
-
-	if (false === ($fp = fopen($filename, "r"))) {
-		$ret .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
-//		return false;
-		return $ret;
-	}
-	
-	$ip2c = new GWF_IP2Country();
-
-	while (false !== ($line = fgetcsv($fp, 2048)))
+	public static function createUserAgents()
 	{
-		if (count($line) !== 5) {
-			$ret .= GWF_HTML::error('', $filename.' is corrupt!', true, true);
-			$success = false;
-			break;
-		}
+		return 'There are currently no UserAgents! (Not implemented)';
+	}
 
-		list($ipstart, $ipend, $tld, $ccode2, $cname) = $line;
-		$tld = strtolower($tld);
+	public static function copyExampleFiles(&$output)
+	{
+		$success = true;
+		if (false === self::CopyExampleFile('index', $output))
+		{
+			$success = false;
+		}
+		if (false === self::CopyExampleFile('gwf_cronjob', $output))
+		{
+			$success = false;
+		}
+		if (false === self::BackupScript($output))
+		{
+			$success = false;
+		}
+		return $success;
+	}
+
+	public static function CopyExampleFile($path, &$output)
+	{
+		$copied = $path.'.php';
+		if (!Common::isFile($copied))
+		{
+			if (!GWF_File::isWriteable($copied))
+			{
+				$output .= GWF_InstallWizard::wizard_error('err_copy', array($copied));
+				return false;
+			}
 			
-		if (!(isset($cache2[$tld]))) {
-			$ret .= GWF_HTML::error('', 'Unknown TLD: '.$tld, true, true);
-			$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-			$success = false;
-			continue;
+			# Load skeleton.
+			$example = $path.'.example.php';
+			if (false === ($content = file_get_contents($example)))
+			{
+				$output .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($example));
+				return false;
+			}
+
+			# Replace GWF path.
+			$replace = array(
+				'%%GWFPATH%%' => GWF_DETECT_PATH,
+			);
+			$content = str_replace(array_keys($replace), array_values($replace), $content);
+			
+			# Write custom file.
+			if (false === file_put_contents($copied, $content))
+			{
+				$output .= GWF_HTML::err('ERR_WRITE_FILE', array($copied));
+				return false;
+			}
+			if (false === chmod($copied, GWF_CHMOD))
+			{
+				$output .= GWF_InstallWizard::wizard_error('err_copy', array($example));
+				return false;
+			}
+
+			$output .= GWF_InstallWizard::wizard_message('msg_copy', array($copied));
 		}
-		
-		if (false === $ip2c->insertAssoc(array(
-			'ip2c_start' => $ipstart,
-			'ip2c_end' => $ipend,
-			'ip2c_cid' => $cache2[$tld],
-		)))
+		else
 		{
-			$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true, true);
-			$success = false;
-			continue;
-		}
-		
-		$now++;
-		if (!($now % 2500)) {
-			$msg = sprintf('%d of %d...', $now, $max);
-			$ret .= GWF_HTML::message('Progress', $msg, true, true);
-//			flush();
-		}
-	}
-	return $ret;
-}
-
-function install_createUserAgents()
-{
-	return 'There are currently no UserAgents! (Not implemented)';
-}
-
-function install_copyExampleFiles(&$output)
-{
-	$success = true;
-	if (false === installCopyExampleFile('index', $output))
-	{
-		$success = false;
-	}
-	if (false === installCopyExampleFile('gwf_cronjob', $output))
-	{
-		$success = false;
-	}
-	if (false === installBackupScript($output))
-	{
-		$success = false;
-	}
-	return $success;
-}
-
-function installCopyExampleFile($path, &$output)
-{
-	$copied = $path.'.php';
-	if (!Common::isFile($copied))
-	{
-		if (!GWF_File::isWriteable($copied))
-		{
-			$output .= GWF_Install::wizard_error('err_copy', array($copied));
-			return false;
-		}
-		
-		# Load skeleton.
-		$example = $path.'.example.php';
-		if (false === ($content = file_get_contents($example)))
-		{
-			$output .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($example));
-			return false;
+			$output .= GWF_InstallWizard::wizard_message('msg_copy_untouched', array($copied));
 		}
 
-		# Replace GWF path.
-		$replace = array(
-			'%%GWFPATH%%' => GWF_DETECT_PATH,
-		);
-		$content = str_replace(array_keys($replace), array_values($replace), $content);
-		
-		# Write custom file.
-		if (false === file_put_contents($copied, $content))
-		{
-			$output .= GWF_HTML::err('ERR_WRITE_FILE', array($copied));
-			return false;
-		}
-		if (false === chmod($copied, GWF_CHMOD))
-		{
-			$output .= GWF_Install::wizard_error('err_copy', array($example));
-			return false;
-		}
-
-		$output .= GWF_Install::wizard_message('msg_copy', array($copied));
-	}
-	else
-	{
-		$output .= GWF_Install::wizard_message('msg_copy_untouched', array($copied));
-	}
-
-	return true;
-}
-
-function installBackupScript(&$output)
-{
-	$path = 'protected/db_backup.sh';
-	if (Common::isFile($path))
-	{
-		$output .= GWF_Install::wizard_message('msg_copy_untouched', $path);
 		return true;
 	}
-	
-	$skel = 'protected/db_backup.example.sh';
-	if (false === ($content = file_get_contents($skel)))
-	{
-		$output .= GWF_Install::wizard_error('err_copy', array($skel));
-		return false;
-	}
-	
-	if (false === ($content = installReplaceBackupScript($content)))
-	{
-		$output .= GWF_Install::wizard_error('err_copy', array($skel));
-		return false;
-	}
-	
-	if (false === file_put_contents($path, $content))
-	{
-		$output .= GWF_Install::wizard_error('err_copy', array($skel));
-		return false;
-	}
-	
-	if (false === chmod($path, GWF_CHMOD))
-	{
-		$output .= GWF_Install::wizard_error('err_copy', array($path));
-		return false;
-	}
-	
-	$output .= GWF_Install::wizard_message('msg_copy', array($path));
-	return true;
-}
 
-function installReplaceBackupScript($content)
-{
-	$replace = array(
-		'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
-		'%%USER%%' => escapeshellarg(GWF_DB_USER),
-		'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
-		'%%SALT%%' => escapeshellarg(Common::randomKey(12)),
-	);
-	return str_replace(array_keys($replace), array_values($replace), $content);
+	public static function BackupScript(&$output)
+	{
+		$path = 'protected/db_backup.sh';
+		if (Common::isFile($path))
+		{
+			$output .= GWF_InstallWizard::wizard_message('msg_copy_untouched', $path);
+			return true;
+		}
+		
+		$skel = 'protected/db_backup.example.sh';
+		if (false === ($content = file_get_contents($skel)))
+		{
+			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
+			return false;
+		}
+		
+		if (false === ($content = self::ReplaceBackupScript($content)))
+		{
+			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
+			return false;
+		}
+		
+		if (false === file_put_contents($path, $content))
+		{
+			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
+			return false;
+		}
+		
+		if (false === chmod($path, GWF_CHMOD))
+		{
+			$output .= GWF_InstallWizard::wizard_error('err_copy', array($path));
+			return false;
+		}
+		
+		$output .= GWF_InstallWizard::wizard_message('msg_copy', array($path));
+		return true;
+	}
+
+	public static function ReplaceBackupScript($content)
+	{
+		$replace = array(
+			'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
+			'%%USER%%' => escapeshellarg(GWF_DB_USER),
+			'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
+			'%%SALT%%' => escapeshellarg(Common::randomKey(12)),
+		);
+		return str_replace(array_keys($replace), array_values($replace), $content);
+	}
 }
 ?>

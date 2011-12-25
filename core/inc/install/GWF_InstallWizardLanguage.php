@@ -1,6 +1,6 @@
 <?php
 /**
- * Setup the correct language from /data/install_language.php
+ * Setup the correct language from /data/GWF_LanguageData.php
  * Of course it's inefficient to load language from this file.
  * @author gizmore
  */
@@ -27,10 +27,10 @@ final class GWF_InstallWizardLanguage
 	
 	private static function getByISO($iso)
 	{
-		require_once GWF_CORE_PATH.'inc/install/data/install_language.php';
+		require_once GWF_CORE_PATH.'inc/install/data/GWF_LanguageData.php';
 		
 		$i = 0;
-		foreach (install_get_languages() as $lang)
+		foreach (GWF_LanguageData::getLanguages() as $lang)
 		{
 			$i++;
 			if ( (isset($lang[3])) && ($lang[3] === $iso) )

@@ -9,7 +9,7 @@ final class GWF_HTAccess
 		$custom_hta = GWF_WWW_PATH.'protected/pre_htaccess.txt';
 		$custom = Common::isFile($custom_hta) ? (file_get_contents($custom_hta).PHP_EOL) : '';
 		
-		if ($custom === '')
+		if ($custom !== '')
 		{
 			$custom = 
 				'##################################'.PHP_EOL.
@@ -46,9 +46,9 @@ final class GWF_HTAccess
 	private static function getLangRewrites()
 	{
 		$back = '';
-		$back .= '############'.PHP_EOL;
-		$back .= '### /de/ ###'.PHP_EOL;
-		$back .= '############'.PHP_EOL;
+		$back .= '#################'.PHP_EOL;
+		$back .= '### languages ###'.PHP_EOL;
+		$back .= '#################'.PHP_EOL;
 		foreach (preg_split('/[;,]+/', GWF_SUPPORTED_LANGS) as $iso)
 		{
 			if (false !== GWF_Language::getByISO($iso))
@@ -58,12 +58,23 @@ final class GWF_HTAccess
 		}
 		return $back;
 	}
+
+	public static function installCountryRewrites()
+	{
+		require_once GWF_CORE_PATH.'inc/install/data/GWF_LanguageData.php';
+		$content = 'RewriteEngine On'.PHP_EOL;
+		foreach(GWF_LanguageData::getCountries() as $id => $a)
+		{
+			$content .= sprintf('RewriteRule ^(.*/country)/%s(.png|/)?$ $1/%s'.PHP_EOL, $a[0], $id );
+		}
+		return self::protectB(GWF_WWW_PATH.'img' ,$content);
+	}
 	
 	###############
 	### Protect ###
 	###############
 	/**
-	 * Deny access to a directory via .hatccess
+	 * Deny access to a directory via .htaccess
 	 * @param string $dir
 	 * @return true|false
 	 */
@@ -92,7 +103,7 @@ final class GWF_HTAccess
 	 */
 	private static function protectB($dir, $content)
 	{
-		$dir = rtrim($dir, "\\/");
+		$dir = rtrim($dir, '\/');
 		$path = $dir.'/.htaccess';
 		
 		if (!is_dir($dir))
