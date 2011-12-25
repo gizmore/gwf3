@@ -3,6 +3,8 @@ final class Chicago_BlackSmithSmith extends SR_TalkingNPC
 {
 	public function getName() { return 'The blacksmith'; }
 	
+	public function getNPCQuests(SR_Player $player) { return array('Chicago_BlackSmith1'); }
+	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2); # bold

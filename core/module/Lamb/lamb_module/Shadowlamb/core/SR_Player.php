@@ -243,7 +243,8 @@ class SR_Player extends GDO
 	public function isLocked() { return $this->isOptionEnabled(self::LOCKED); }
 	public function getX() { return $this->getEnum() * SR_Party::X_COORD_INC + SR_Party::X_COORD_INI;}
 	public function getY() { return $this->getDistance(); }
-	
+	public function hasSolvedQuest($name) { return SR_Quest::getQuest($this, $name)->isDone($this); }
+		
 	############
 	### Enum ###
 	############
@@ -2485,5 +2486,6 @@ class SR_Player extends GDO
 		$this->combat_stack = '';
 		return true;
 	}
+	
 }
 ?>

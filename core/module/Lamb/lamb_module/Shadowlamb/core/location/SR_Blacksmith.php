@@ -5,12 +5,12 @@ abstract class SR_Blacksmith extends SR_Store
 	public abstract function getUpgradePrice();
 	public abstract function getUpgradePercentPrice();
 
-	public function getBreakPrice() { return 50; }
-	public function getBreakPercentPrice() { return 10.00; }
-	public function getCleanPrice() { return 500; }
-	public function getCleanPercentPrice() { return 40.00; }
-	public function getSplitPrice() { return 200; }
-	public function getSplitPercentPrice() { return 35.00; }
+	public function getBreakPrice(SR_Player $player) { return 50; }
+	public function getBreakPercentPrice(SR_Player $player) { return 10.00; }
+	public function getCleanPrice(SR_Player $player) { return 500; }
+	public function getCleanPercentPrice(SR_Player $player) { return 40.00; }
+	public function getSplitPrice(SR_Player $player) { return 200; }
+	public function getSplitPercentPrice(SR_Player $player) { return 35.00; }
 
 	public function getCommands(SR_Player $player) { return array('view','buy','sell','clean','break','split'/*,'simulate'*/,'upgrade'); }
 	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
@@ -29,17 +29,17 @@ abstract class SR_Blacksmith extends SR_Store
 
 	public function calcBreakPrice(SR_Player $player, $item_price)
 	{
-		return Shadowfunc::calcBuyPrice(($item_price*($this->getBreakPercentPrice()/100))+$this->getBreakPrice(), $player);
+		return Shadowfunc::calcBuyPrice(($item_price*($this->getBreakPercentPrice($player)/100))+$this->getBreakPrice($player), $player);
 	}
 
 	public function calcCleanPrice(SR_Player $player, $item_price)
 	{
-		return Shadowfunc::calcBuyPrice(($item_price*($this->getCleanPercentPrice()/100))+$this->getCleanPrice(), $player);
+		return Shadowfunc::calcBuyPrice(($item_price*($this->getCleanPercentPrice($player)/100))+$this->getCleanPrice($player), $player);
 	}
 
 	public function calcSplitPrice(SR_Player $player, $item_price)
 	{
-		return Shadowfunc::calcBuyPrice(($item_price*($this->getSplitPercentPrice()/100))+$this->getSplitPrice(), $player);
+		return Shadowfunc::calcBuyPrice(($item_price*($this->getSplitPercentPrice($player)/100))+$this->getSplitPrice($player), $player);
 	}
 
 	#############
