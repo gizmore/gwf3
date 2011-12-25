@@ -1,37 +1,35 @@
 <?php
-final class Chicago_Commando extends SR_NPC
+final class Chicago_Samurai extends SR_NPC
 {
-	public function getNPCLevel() { return 21; }
-	public function getNPCPlayerName() { return 'Commando'; }
+	public function getNPCLevel() { return 22; }
+	public function getNPCPlayerName() { return 'Samurai'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'M16',
+			'weapon' => 'Katana',
 			'armor' => 'KevlarVest',
 			'legs' => 'KevlarLegs',
 			'boots' => 'ArmyBoots',
-			'helmet' => 'ArmyHelmet',
-			'shield' => 'KevlarShield',
+			'helmet' => 'SamuraiMask',
+			'amulet' => 'LO_Amulet_of_attack:10',
 		);
 	}
 
-	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Knife', 'Stimpatch'); }
+	public function getNPCInventory() { return array('Stimpatch'); }
 	
 	public function getNPCModifiers()
 	{
 		return array(
-			'race' => 'human',
+			'race' => 'halfork',
 			'gender' => 'male',
-			'melee' => '4',
-			'strength' => rand(2, 4),
-			'quickness' => rand(3, 5),
-			'distance' => rand(8, 14),
-			'hmgs' => rand(4, 5),
-			'firearms' => rand(4, 5),
+			'melee' => '7',
+			'strength' => rand(6, 8),
+			'quickness' => rand(2, 5),
+			'distance' => rand(2, 4),
 			'sharpshooter' => rand(3, 5),
-			'nuyen' => rand(50, 90),
-			'base_hp' => rand(18, 24),
+			'nuyen' => rand(20, 60),
+			'base_hp' => rand(22, 28),
 		);
 	}
 	

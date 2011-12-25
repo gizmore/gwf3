@@ -1,9 +1,9 @@
 <?php
-final class Chicago_Commando extends SR_NPC
+final class Chicago_Sniper extends SR_NPC
 {
-	public function getNPCLevel() { return 21; }
-	public function getNPCPlayerName() { return 'Commando'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
+	public function getNPCLevel() { return 23; }
+	public function getNPCPlayerName() { return 'Sniper'; }
+	public function getNPCMeetPercent(SR_Party $party) { return 16.00; }
 	public function getNPCEquipment()
 	{
 		return array(
@@ -11,8 +11,7 @@ final class Chicago_Commando extends SR_NPC
 			'armor' => 'KevlarVest',
 			'legs' => 'KevlarLegs',
 			'boots' => 'ArmyBoots',
-			'helmet' => 'ArmyHelmet',
-			'shield' => 'KevlarShield',
+			'helmet' => 'CombatHelmet',
 		);
 	}
 
@@ -24,13 +23,13 @@ final class Chicago_Commando extends SR_NPC
 			'race' => 'human',
 			'gender' => 'male',
 			'melee' => '4',
-			'strength' => rand(2, 4),
-			'quickness' => rand(3, 5),
-			'distance' => rand(8, 14),
-			'hmgs' => rand(4, 5),
-			'firearms' => rand(4, 5),
-			'sharpshooter' => rand(3, 5),
-			'nuyen' => rand(50, 90),
+			'strength' => rand(3, 4),
+			'quickness' => rand(4, 5),
+			'distance' => rand(20, 40),
+			'hmgs' => rand(8, 12),
+			'firearms' => rand(8, 12),
+			'sharpshooter' => rand(8, 12),
+			'nuyen' => rand(80, 120),
 			'base_hp' => rand(18, 24),
 		);
 	}

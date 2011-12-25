@@ -3,7 +3,7 @@ final class Chicago_SecurityDrone extends SR_NPC
 {
 	public function getNPCLevel() { return 17; }
 	public function getNPCPlayerName() { return 'Drone'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 30.00; }
 	public function getNPCEquipment()
 	{
 		return array(

@@ -1,13 +1,13 @@
 <?php
-final class Chicago_Commando extends SR_NPC
+final class Chicago_DarkPriest extends SR_NPC
 {
 	public function getNPCLevel() { return 21; }
-	public function getNPCPlayerName() { return 'Commando'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
+	public function getNPCPlayerName() { return 'DarkPriest'; }
+	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'M16',
+			'weapon' => 'ArchStaff',
 			'armor' => 'KevlarVest',
 			'legs' => 'KevlarLegs',
 			'boots' => 'ArmyBoots',
@@ -16,13 +16,14 @@ final class Chicago_Commando extends SR_NPC
 		);
 	}
 
-	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Knife', 'Stimpatch'); }
+	public function getNPCInventory() { return array('FirstAid'); }
 	
 	public function getNPCModifiers()
 	{
 		return array(
-			'race' => 'human',
+			'race' => 'elve',
 			'gender' => 'male',
+			'magic' => '5',
 			'melee' => '4',
 			'strength' => rand(2, 4),
 			'quickness' => rand(3, 5),
@@ -31,7 +32,16 @@ final class Chicago_Commando extends SR_NPC
 			'firearms' => rand(4, 5),
 			'sharpshooter' => rand(3, 5),
 			'nuyen' => rand(50, 90),
-			'base_hp' => rand(18, 24),
+			'base_hp' => rand(14, 20),
+			'base_mp' => rand(20, 30),
+		);
+	}
+	
+	public function getNPCSpells()
+	{
+		return array(
+			'firebolt' => 3,
+			'freeze' => 3,
 		);
 	}
 	

@@ -1,5 +1,5 @@
 <?php
-final class Quest_Chicago_SaleSmith1 extends SR_Quest
+final class Quest_Chicago_BlackSmith1 extends SR_Quest
 {
 	public function getQuestName() { return 'Blades'; }
 	public function getNeededAmount() { return 4; }

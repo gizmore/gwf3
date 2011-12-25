@@ -1384,7 +1384,8 @@ class SR_Player extends GDO
 	public function getItemByID(array $items, $id, array $items2)
 	{
 		$id = (int)$id;
-		if ($id > count($items) || $id < 1) {
+		if ($id > count($items) || $id < 1)
+		{
 			return false;
 		}
 		$back = array_slice($items, $id-1, 1);
@@ -1466,7 +1467,8 @@ class SR_Player extends GDO
 		# Collect by itemname
 		foreach (array_reverse($this->sr4_inventory) as $item)
 		{
-			if (stristr($item->getItemName(), $arg) === false)
+			$item instanceof SR_Item;
+			if (!strcasecmp($item->getItemName(), $arg))
 			{
 				$back[] = $item;
 				if (count($back) >= $max)

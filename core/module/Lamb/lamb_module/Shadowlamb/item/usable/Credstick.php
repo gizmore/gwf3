@@ -29,7 +29,7 @@ class Item_Credstick extends SR_Usable
 		# Show balance
 		if (count($args) !== 2)
 		{
-			return $this->itemUsePop($player, 0);
+			return $this->onItemUsePop($player, 0);
 		}
 		
 		# Book money

@@ -7,12 +7,14 @@ final class Shadowcmd_drop extends Shadowcmd
 	{
 		$bot = Shadowrap::instance($player);
 		
-		if ( (count($args) < 1) || (count($args) > 2) ) {
+		if ( (count($args) < 1) || (count($args) > 2) )
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'drop'));
 			return false;
 		}
 		
-		if (false === ($item = $player->getInvItem($args[0]))) {
+		if (false === ($item = $player->getInvItem($args[0])))
+		{
 			$bot->reply('You don`t have that item.');
 			return false;
 		}

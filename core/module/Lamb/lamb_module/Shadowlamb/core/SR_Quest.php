@@ -18,11 +18,11 @@ class SR_Quest extends GDO
 	const STATUS_BITS = 0x0FF;
 	const PARTY_QUEST = 0x100;
 	public static $QUEST_FLAGS = array(
-		'accepted' => array(self::STATUS_BITS, self::ACCEPTED),
-		'rejected' => array(self::REJECTED, self::REJECTED),
+		'open' => array(self::STATUS_BITS, self::ACCEPTED),
+		'deny' => array(self::REJECTED, self::REJECTED),
 		'done' => array(self::DONE, self::DONE),
-		'failed' => array(self::FAILED, self::FAILED),
-		'aborted' => array(self::ABORTED, self::ABORTED),
+		'fail' => array(self::FAILED, self::FAILED),
+		'abort' => array(self::ABORTED, self::ABORTED),
 	);
 	
 	###########
@@ -47,8 +47,8 @@ class SR_Quest extends GDO
 	#############
 	### Quest ###
 	#############
+// 	public function getAllQuests(SR_Player $player) { return self::table(__CLASS__)->selectAll('')}
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
-	
 	public function getName() { return $this->getVar('sr4qu_name'); }
 	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
 	public function getAmount() { return $this->getVar('sr4qu_amount'); }
@@ -190,7 +190,7 @@ class SR_Quest extends GDO
 		$bits_out = self::$QUEST_FLAGS[$section][1];
 		$uid = $player->getID();
 		$table = self::table(__CLASS__);
-		if (false === ($result = $table->select('*', "sr4qu_uid=$uid AND sr4qu_options&$bits_in=$bits_out", 'sr4qu_date ASC'))) {
+		if (false === ($result = $table->select('*', "sr4qu_uid=$uid AND sr4qu_3options&$bits_in=$bits_out", 'sr4qu_date ASC'))) {
 			return false;
 		}
 		$back = array();
@@ -198,6 +198,25 @@ class SR_Quest extends GDO
 		{
 			$classname = 'Quest_'.$row['sr4qu_name'];
 			$quest = new $classname($row); 
+			$back[] = $quest;
+		}
+		$table->free($result);
+		return $back;
+	}
+	
+	public static function getAllQuests(SR_Player $player)
+	{
+		$uid = $player->getID();
+		$table = self::table(__CLASS__);
+		if (false === ($result = $table->select('*', "sr4qu_uid=$uid", 'sr4qu_date ASC')))
+		{
+			return false;
+		}
+		$back = array();
+		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
+		{
+			$classname = 'Quest_'.$row['sr4qu_name'];
+			$quest = new $classname($row);
 			$back[] = $quest;
 		}
 		$table->free($result);

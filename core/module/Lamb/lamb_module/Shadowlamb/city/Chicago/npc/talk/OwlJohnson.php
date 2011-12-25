@@ -1,11 +1,11 @@
 <?php
-final class Chicago_RazorJohnson extends SR_TalkingNPC
+final class Chicago_OwlJohnson extends SR_TalkingNPC
 {
 	public function getName() { return 'Mr. Johnson'; }
 	
 	public function getNPCQuests(SR_Player $player)
 	{
-		return array('Chicago_RazorJohnson1','Chicago_RazorJohnson2');
+		return array('Chicago_OwlJohnson1');
 	}
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
