@@ -18,6 +18,6 @@
 {/if}
 	<a href="{$SF->getIndex('print')}print"><img src="{$root}img/SF/printer.png" alt="Druckansicht" title="Druckansicht"></a>
 	<a href="{$SF->getIndex('plain')}plain"><img src="{$root}img/SF/paper.png" alt="HTML-Quelltext" title="Quelltext anzeigen"></a>
-	<a href="de/"><img src="{$root}img/{$iconset}/country/German.png" alt="[DE]" title="{$SF->lang('change_language')}"></a>
+	<a href="de/"><img src="{$root}img/{$iconset}/country/Germany.png" alt="[DE]" title="{$SF->lang('change_language')}"></a>
 	<a href="en/"><img src="{$root}img/{$iconset}/country/UnitedStates.png" alt="[EN]" title="{$SF->lang('change_language')}"></a>
 </p>

@@ -65,7 +65,7 @@ final class GWF_HTAccess
 		$content = 'RewriteEngine On'.PHP_EOL;
 		foreach(GWF_LanguageData::getCountries() as $id => $a)
 		{
-			$content .= sprintf('RewriteRule ^(.*/country)/%s(.png|/)?$ $1/%s'.PHP_EOL, str_replace(' ', ' ?', $a[0]), $id );
+			$content .= sprintf('RewriteRule ^(.*/country)/%s(.png|/)?$ $1/%s'.PHP_EOL, str_replace(' ', '\s?', $a[0]), $id );
 		}
 		return self::protectB(GWF_WWW_PATH.'img' ,$content);
 	}
