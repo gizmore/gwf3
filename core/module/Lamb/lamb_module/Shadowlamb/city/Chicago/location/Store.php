@@ -15,6 +15,8 @@ final class Chicago_Store extends SR_Store
 			array('Knife', 100.0, 200),
 			array('Scanner_v3', 100.0, 2000),
 			array('Scanner_v4', 100.0, 8000),
+			array('Credstick', 100.0, 129.95),
+			array('Holostick', 100.0, 995.95),
 		);
 	}
 	

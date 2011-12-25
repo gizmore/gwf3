@@ -367,6 +367,11 @@ final class SR_Party extends GDO
 	 */
 	private function onPartyArriveLeft($text_snippet)
 	{
+		if (!$this->isHuman())
+		{
+			return;
+		}
+		
 		# Check all parties
 		foreach (Shadowrun4::getParties() as $p)
 		{

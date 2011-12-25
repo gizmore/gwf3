@@ -35,6 +35,11 @@ abstract class SR_Tower extends SR_Location
 		return true;
 	}
 	
+	public function teleportInstant(SR_Player $player, $target, $action=SR_Party::ACTION_INSIDE)
+	{
+		return $this->beam($player, $target, $action);
+	}
+	
 	/**
 	 * Beam a party to a target location.
 	 * @param SR_Player $player
@@ -54,12 +59,20 @@ abstract class SR_Tower extends SR_Location
 
 		# City changed?
 		$oldcity = $party->getCity();
-		$party->pushAction($action, $target, $eta);
+		$party->pushAction($action, $target);
 		$newcity = $party->getCity();
 		if ($oldcity !== $newcity)
 		{
 			$city = $party->getCityClass();
 			$city->onCityEnter($party);
+		}
+		
+		if ($action === 'inside')
+		{
+			foreach ($party->getMembers() as $member)
+			{
+				$member->message($location->getEnterText($member));
+			}
 		}
 		
 		return true;

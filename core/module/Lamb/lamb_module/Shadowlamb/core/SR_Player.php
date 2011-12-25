@@ -1465,7 +1465,7 @@ class SR_Player extends GDO
 		# Collect by itemname
 		foreach (array_reverse($this->sr4_inventory) as $item)
 		{
-			if ($item->getItemName() === $arg)
+			if (stristr($item->getItemName(), $arg) === false)
 			{
 				$back[] = $item;
 				if (count($back) >= $max)

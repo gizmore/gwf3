@@ -124,10 +124,10 @@ abstract class SR_City
 	{
 		$party->notice($this->getArriveText());
 		$this->onCityEnter($party);
-		if (false !== ($location = $party->getLocationClass('inside')))
-		{
-			$location->onEnter($party->getLeader());
-		}
+// 		if (false !== ($location = $party->getLocationClass('inside')))
+// 		{
+// 			$location->onEnter($party->getLeader());
+// 		}
 	}
 	
 	public function onCityEnter(SR_Party $party)

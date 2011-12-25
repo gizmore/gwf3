@@ -27,6 +27,7 @@ final class PrisonB2 extends SR_Dungeon
 		{
 			$party->notice('Malois says: "Hurry, we have to hurry!"');
 		}
+		parent::onCityExit($party);
 	}
 }
 ?>

@@ -334,11 +334,6 @@ class SR_Item extends GDO
 		return true;
 	}
 	
-	public function getItemWeightStacked()
-	{
-		return $this->getItemWeight() * $this->getAmount();
-	}
-	
 	public function getItemModifiers(SR_Player $player)
 	{
 		$weight = $this->getItemWeightStacked();
@@ -524,6 +519,8 @@ class SR_Item extends GDO
 	public function getItemSubType() { return 'item'; }
 	public function getItemPrice() { return -1; }
 	public function getItemWeight() { return -1; }
+	public function getItemWeightStacked() { return $this->getItemWeight() * $this->getAmount(); }
+	public function getItemPriceStacked() { return $this->getItemPrice() * $this->getAmount(); }
 	public function getItemUsetime() { return 60; }
 	public function getItemDuration() { return self::IMMORTAL; }
 	public function getItemDescription() { return 'ITEM DESCRIPTION'; }

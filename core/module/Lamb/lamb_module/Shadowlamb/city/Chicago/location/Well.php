@@ -4,7 +4,7 @@ final class Chicago_Well extends SR_Location
 	public function getFoundText(SR_Player $player) { return "You found a well in a marketplace. Some people are doing their shopping around here."; }
 	public function getFoundPercentage() { return 40; }
 	public function getEnterText(SR_Player $player) { return "You approach the well."; }
-	public function getHelpText(SR_Player $player) { return "You can use #fill <amt> here to fill WaterBottles with Water."; }
+	public function getHelpText(SR_Player $player) { return "You can use #fill <amt> here to fill EmptyBottles with Water."; }
 	public function getCommands(SR_Player $player) { return array('fill'); }
 	
 	public function on_fill(SR_Player $player, array $args)
@@ -33,6 +33,5 @@ final class Chicago_Well extends SR_Location
 		
 		return $player->giveItems(array(SR_Item::createByName('WaterBottle', $amt)), 'the well');
 	}
-	
 }
 ?>

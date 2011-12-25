@@ -13,7 +13,7 @@ final class PrisonB3_Exit extends SR_Tower
 	
 	public function onEnter(SR_Player $player)
 	{
-		return $this->teleport($player, 'Prison_Block3', 1);
+		return $this->teleportInstant($player, 'Prison_Block3', SR_Party::ACTION_OUTSIDE);
 	}
 }
 ?>

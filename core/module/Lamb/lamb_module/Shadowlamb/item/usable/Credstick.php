@@ -24,16 +24,12 @@ class Item_Credstick extends SR_Usable
 	
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		$b = chr(2);
-		$have = $player->getNuyen();
-		$bank = $player->getBankNuyen();
 //		$cost = $this->getTransactionCost();
 		
 		# Show balance
 		if (count($args) !== 2)
 		{
-			$message = sprintf("Your bank account is {$b}%s Nuyen{$b}. You carry %s Nuyen. In total you have %s Nuyen.", $bank, $have, $bank+$have);
-			return $this->reply($player, $message);
+			return $this->itemUsePop($player, 0);
 		}
 		
 		# Book money
@@ -57,10 +53,17 @@ class Item_Credstick extends SR_Usable
 		}
 	}
 	
-	private function onItemUsePop(SR_Player $player, $amount)
+	public function onItemUsePop(SR_Player $player, $amount)
 	{
+		$b = chr(2);
 		$have = $player->getNuyen();
 		$bank = $player->getBankNuyen();
+		if ($amount <= 0)
+		{
+			$message = sprintf("Your bank account is {$b}%s Nuyen{$b}. You carry %s Nuyen. In total you have %s Nuyen.", $bank, $have, $bank+$have);
+			return $this->reply($player, $message);
+		}
+		
 		$cost = $this->getTransactionCost();
 		$need = $amount + $cost;
 		
@@ -75,7 +78,7 @@ class Item_Credstick extends SR_Usable
 		$this->reply($player, sprintf("You booked %s(+%s)=%s Nuyen from your bank account (%s left). You now carry %s.", $amount, $cost, $need, $player->getBankNuyen(), $player->displayNuyen()));
 	}
 	
-	private function onItemUsePush(SR_Player $player, $amount)
+	public function onItemUsePush(SR_Player $player, $amount)
 	{
 		$have = $player->getNuyen();
 		$cost = $this->getTransactionCost();
