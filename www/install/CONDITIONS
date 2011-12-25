@@ -1,0 +1,65 @@
+GWF Coding Conditions
+
+General:
+We want to have clean Code.
+GWF wants to be fast and secure!
+Small Code is cool Code.
+small code !== foo(bar(baz(asdf(qwertz(blah(blub()))))));
+Code should be readable!
+
+Constants:
+Name has to be UPPERCASE
+Name has to start with GWF_
+
+Classes:
+have to start with GWF_
+first letter after GWF_ must be capitalized
+have to get an own file
+filename have to be the GWF_Classname.php
+right: require_once 'GWF_Classname.php';
+wrong: include("GWF_Classname.php");
+use __construct() not Classname as constructor
+
+Functions:
+do not shorten functionname!
+functionnames must _NOT_ contain underscore (_)
+right: function thisIsAFunction()
+wrong: function this_is_a_func()
+
+Methods:
+see Functions
+always write the access modifiers (public, protected, private)
+(public|protected|private) static? methodname()
+
+Comments:
+are very welcome
+use # for short comments (e.g. for the step)
+use // for commenting out codelines
+use /** for descriptions of functions/methods
+/* */ is not very well seen for commenting out code
+####################
+## use for blocks ##
+####################
+
+Code indentation:
+with tabs
+lineendings === \n !=== \r\n?
+
+Style:
+Strings without containing variables has to be in 'singlequotes'
+Strings containing variables: "foo{$bar}baz"
+right:
+function()
+{
+wrong: function() {\n
+right: foo( bar() ) || foo($bar)
+wrong: foo(bar())
+right: if(foo())
+wrong if($foo == 'bar'); if($bar)
+right: if($foo === 'bar'); if(true === $bar)
+
+Return:
+use $back for strings
+use $ret for bool/int
+
+2011/12/24

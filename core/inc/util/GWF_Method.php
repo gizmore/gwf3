@@ -49,7 +49,12 @@ abstract class GWF_Method
 		list($mo, $me) = $this->getMoMe();
 		return GWF_WEB_ROOT.'index.php?mo='.$mo.'&me='.$me.$app;
 	}
-	
+
+	public function getName()
+	{
+		return Common::substrFrom(get_class($this), '_');
+	}
+
 	public function getMoMe()
 	{
 		$class = get_class($this);
@@ -74,16 +79,17 @@ abstract class GWF_Method
 	/**
 	 * @author spaceone
 	 * Generate link(s) in PageMenu for this method.
+	 * @return false|array = GWF_Page ColumnDefines array
 	 */
 	public function getPageMenuLinks($module)
 	{
 //		return array(
-//			'page_url' => '/',
-//			'page_title' => '',
-//			'page_cat' => $module->getPMCat(), 
-//			'page_meta_desc' => '', 
-//			'page_views' => 0,
-//			'page_options' => GWF_Page::ENABLED,
+//			array(
+//				'page_url' => '/',
+//				'page_title' => '',
+//				'page_meta_desc' => '',
+//				[...]
+//			),[...]
 //		);
 		return false;
 	}

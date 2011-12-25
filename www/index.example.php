@@ -12,8 +12,10 @@ require_once '%%GWFPATH%%gwf3.class.php';
 # Init GWF
 $gwf = new GWF3(getcwd(), array(
 # Default values
+//	'init' => true,
 // 	'bootstrap' => false,
 // 	'website_init' => true,
+//	'client_info' => false,
 // 	'autoload_modules' => true,
 // 	'load_module' => true,
 // 	'load_config' => false,

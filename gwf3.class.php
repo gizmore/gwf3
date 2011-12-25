@@ -1,11 +1,11 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.02-2011.Nov.25');
+define('GWF_CORE_VERSION', '3.03-2011.Dec.24');
 
 /**
  * Welcome to GWF3
  * @author spaceone, gizmore
- * @version 1.03
+ * @version 1.04
  * @since 01.07.2011
  * @todo better design handling
  */
@@ -14,6 +14,7 @@ class GWF3
 	private static $design = 'default';
 	private static $module, $page, $user;
 	private static $_config = array(
+		'init' => true, # Init?
 		'bootstrap' => false, # Init GWF_Bootstrap?
 		'website_init' => true, # Init GWF_Website?
 		'client_info' => true, # Init GWF_ClientInfo Langfile?
@@ -72,10 +73,18 @@ class GWF3
 		
 		self::onDefineWebRoot();
 
-		// TODO: remove
-		$this->init();
+		if(true === $config['init'])
+		{
+			$this->init();
+		}
+
+		return $this;
 	}
 
+	/**
+	 * Initialize by ConfigOptions
+	 * @return GWF3 
+	 */
 	public function init()
 	{
 		if(true === defined('GWF_WEBSITE_DOWN'))
@@ -131,9 +140,14 @@ class GWF3
 		{
 			die( $this->onDisplayPage(GWF_WEBSITE_DOWN) );
 		}
-		
+
+		return $this;
 	}
-	
+
+	/**
+	 * commits the session if allowed
+	 * @return NULL
+	 */
 	public function __destruct() 
 	{
 		if(false === self::getConfig('no_session'))
@@ -163,7 +177,25 @@ class GWF3
 		# Require the database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 	}
-		
+
+	/**
+	 * Log a message as critical, then die()
+	 * @return NULL 
+	 */
+	public static function die($msg='')
+	{
+		if(true === self::getConfig('do_logging'))
+		{
+			GWF_Log::logCritical($msg);
+		}
+		die(htmlspecialchars($msg));
+	}
+
+	/**
+	 * require an inc/util/ class
+	 * This is used by the GWF_AutoLoader
+	 * @param string $classname 
+	 */
 	public static function onAutoloadClass($classname)
 	{
 		if (strpos($classname, 'GWF_') === 0)
@@ -190,7 +222,11 @@ class GWF3
 			define('GWF_HAVE_CONFIG', 1);
 		}
 	}
-	
+
+	/**
+	 * define the GWF_WEB_ROOT
+	 * @return NULL
+	 */
 	public static function onDefineWebRoot() 
 	{
 		# Web Root
@@ -205,9 +241,14 @@ class GWF3
 				}
 			}
 		}
-		// User can decide for his instance
+		# You can pre define your GWF_WEB_ROOT
 		Common::defineConst('GWF_WEB_ROOT', $root);
 	}
+
+	/**
+	 * start a SQL based Session 
+	 * @param boolean $blocking 
+	 */
 	public static function onStartSession($blocking=true)
 	{
 		if (false === GWF_Session::start($blocking))
@@ -215,6 +256,11 @@ class GWF3
 			die('GWF not installed?!');
 		}
 	}
+
+	/**
+	 * Initialize the GWF_Log
+	 * @param boolean $no_session 
+	 */
 	public static function onStartLogging($no_session=false)
 	{
 		$username = false;
@@ -227,17 +273,25 @@ class GWF3
 		}
 		GWF_Log::init($username, false, GWF_LOGGING_PATH);
 	}
-	
+
+	/**
+	 * Load modules which are autoload flagged 
+	 * @return GWF3 
+	 */
 	public function onAutoloadModules()
 	{
 		# Autoload Modules
 		if (false === GWF_Module::autoloadModules())
 		{
-			die('Cannot autoload modules. GWF not installed?');
+			die('Can not autoload modules. GWF not installed OR problems with database?');
 		}
 		return $this;
 	}
-	
+
+	/**
+	 * Load the $_GET['mo'] or GWF_DEFAULT_MODULE and execute it
+	 * @return GWF3 
+	 */
 	public function onLoadModule()
 	{
 		# Load the module
@@ -250,6 +304,7 @@ class GWF3
 			$_GET['me'] = GWF_DEFAULT_METHOD;
 		}
 
+		# Module is enabled?
 		if (true === self::$module->isEnabled())
 		{
 			# Execute the method
@@ -268,6 +323,11 @@ class GWF3
 		return $this;
 	}
 
+	/**
+	 * Commit the Session
+	 * @param type $store_last_url
+	 * @return GWF3 
+	 */
 	public function onSessionCommit($store_last_url=true) 
 	{
 		# Commit the session
@@ -278,7 +338,13 @@ class GWF3
 		GWF_Session::commit($store_last_url);
 		return $this;
 	}
-	
+
+	/**
+	 * Display the page with layout
+	 * If ajax is enabled it returns only the module content
+	 * @param string|NULL $content replace page content
+	 * @return string
+	 */
 	public function onDisplayPage($content=NULL)
 	{
 		if ( (true === self::getConfig('log_request')) && (class_exists('GWF_Log')) )
@@ -298,12 +364,22 @@ class GWF3
 			return GWF_Website::displayPage($page);
 		}
 	}
-	
+
+	/**
+	 * Display the template head
+	 * @param string $path = template path @deprecated?
+	 * @return string
+	 */
 	public static function onDisplayHead($path='tpl/%DESIGN%/') 
 	{
 		return GWF_Website::getPagehead($path);
 	}
-	
+
+	/**
+	 * Display the template foot
+	 * @param string $path = template path @deprecated?
+	 * @return string
+	 */
 	public static function onDisplayFoot($path='tpl/%DESIGN%/')
 	{
 		return GWF_Website::getHTMLbody_foot($path);

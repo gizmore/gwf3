@@ -38,7 +38,7 @@ final class Common
 	## CONSTANTS ##
 	###############
 	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
-	public static function defineConst($var, $val) { if (!defined($var)) define($var, $val); return constant($var); }
+	public static function defineConst($var, $val) { if (false === defined($var)) define($var, $val); return constant($var); }
 	
 	###########
 	## DEBUG ##
@@ -146,7 +146,7 @@ final class Common
 		}
 		if ($and === NULL) { $and = GWF_HTML::lang('and'); }
 		$last = array_pop($array);
-		return implode(', ', $array)." $and $last";
+		return implode(', ', $array)." {$and} {$last}";
 	}
 	
 	/**
@@ -251,8 +251,8 @@ final class Common
 	 * @param $string  - the string to cut
 	 * @param $until   - keep string until this sequence occurs
 	 * @return the $string until $until occurs.
-	 * @example substrUntil('FooBar', 'Bar') returns 'Foo'
-	 * @example substrUntil('FooBag', 'Bar') returns 'FooBag'
+	 * @example substrUntil('AhhFooBar', 'Foo') returns 'Ahh'
+	 * @example substrUntil('AhhFogBar', 'Foo') returns $default(='AhhFogBar')
 	 * */
 	public static function substrUntil($string, $until, $default=NULL)
 	{
