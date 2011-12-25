@@ -1,6 +1,22 @@
 <?php
 
 $lang = array(
+
+	'link_contact' => 'Kontakt',
+	'link_impress' => 'Impressum',
+	'link_disclaimer' => 'Disclaimer',
+	'link_sitemap' => 'Sitemap',
+	'link_roadmap' => 'Roadmap',
+	'link_changelog' => 'Changelog',
+	'link_credits' => 'Credits',
+	'link_helpdesk' => 'Report Bug',
+	'link_todo' => 'TODO Liste',
+	'link_project' => 'Space-Framework',
+	'link_bookmark' => 'Bookmark',
+
+	###########
+	## month ##
+	###########
 	'monthnames' => array(
 		1 => 'Januar',
 		2 => 'Februar',
@@ -15,6 +31,9 @@ $lang = array(
 		11 => 'November',
 		12 => 'Dezember',
 	),
+	##########
+	## days ##
+	##########
 	'daynames' => array(
 		0 => 'Sonntag',
 		1 => 'Montag',

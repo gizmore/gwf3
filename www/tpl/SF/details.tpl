@@ -1,10 +1,10 @@
 <table>
 	<tr>
-		<th>{strtoupper($SF->lang('visitor'))}</th>
-		<th>{strtoupper($SF->lang('surfer_infos'))}</th>
-		{*<th>{strtoupper($SF->lang('statistics'))}</th>
-<th>{strtoupper($SF->lang('server'))}</th>
-		<th>{strtoupper($SF->lang('donations'))}</th>*}
+		<th>{$SF->lang('visitor')|upper}</th>
+		<th>{$SF->lang('surfer_infos')|upper}</th>
+		{*<th>{$SF->lang('statistics')|upper}</th>
+<th>{$SF->lang('server')|upper}</th>
+		<th>{$SF->lang('donations')|upper}</th>*}
 	</tr>
 	<tr>
 		<td>

@@ -3,15 +3,15 @@
 <head>
 	<title>{$page_title}</title>
 {if $SF->isDisplayed('base')}
-	<base href="http://{$smarty.server['SERVER_NAME']}">
+	<base href="http://{$smarty.server['SERVER_NAME']|escape}">
 {/if}
 	{$meta}
-	<link rel="shortcut icon" href="/templates/{$SF->getDesign()}/{$SF->getLayout()}/images/favicon.ico">
-	<link rel="alternate stylesheet" href="/templates/{$SF->getDesign()}/css/print.css" title="PrintView" type="text/css">
-	<link rel="stylesheet" href="/templates/{$SF->getDesign()}/css/print.css" type="text/css" media="print">
+	<link rel="shortcut icon" href="{$root}tpl/{$design}/{$SF->getLayout()}/img/favicon.ico">
+	<link rel="icon" href="{$root}tpl/{$design}/{$SF->getLayout()}/img/favicon.ico">
+	<link rel="alternate stylesheet" href="{$root}tpl/{$design}/css/print.css" title="PrintView" type="text/css">
+	<link rel="stylesheet" href="{$root}tpl/{$design}/css/print.css" type="text/css" media="print">
 	{$css}
 	<!--[if lt IE 8]>
-		<link rel="stylesheet" type="text/css" href="/templates/{$SF->getDesign()}/css/ie.css" />
+		<link rel="stylesheet" type="text/css" href="{$root}tpl/{$design}/css/ie.css" />
 	<![endif]-->
-
 </head>

@@ -124,10 +124,7 @@ p.top, p.bottom {
 	text-align: right;
 }
 
-.GWF_FTW table {
-	
-}
-.GWF_FTW textarea {
+div.inhalt textarea {
 	width: 100%;
 }
 
@@ -181,7 +178,7 @@ div.inhalt {
 	overflow: hidden;
 }
 ol.navi a,
-div#footer a.footlink {
+div#footer a {
 	color: #ffffff;
 	font-family: 'Times New Roman';
 	font-size: 15px;
@@ -191,14 +188,19 @@ div#footer a.footlink {
 	text-decoration: none;
 	line-height: 15px;
 	vertical-align: middle;
+	border-right: thin solid #000000;
+}
+div#footer a:after {
+	content: " | ";
+}
+dif#footer a:last, dif#footer a.last {
+	border: 0 none;
 }
 div.navigation > ol.navi h2:first-letter,
-div.GWF_FTW > p:first-letter,
 div.pb_content > p:first-letter,
 div.inhalt > p:first-letter { 
 	font-weight: bold; font-size: 20px; 
 }
-div.GWF_FTW > p:hover,
 div.pb_content > p:hover,
 div.inhalt > p:hover { 
 	background-color: #1c1c1c;

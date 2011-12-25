@@ -1,4 +1,4 @@
-			<p style="text-align: left; float: left; width: 50%;" class="copyright">
+			<p class="copyright fl" style="text-align: left; width: 50%;">
 				<a href="{$root}profile/{$user->displayUsername()}" title="{$user->displayUsername()}'s Profile">{$user->displayUsername()}</a>: 
 				{* TODO: Delete imgShit.. better way!!!*}
 				{$SF->imgCountry()}{$SF->getIP()}; 
@@ -6,7 +6,7 @@
 				{$SF->imgBrowser()}{$SF->getBrowser()};
 				{$SF->imgProvider()}{$SF->getProvider()}
 			</p>
-			<p class="copyright" style="text-align: right; float: left; width: 50%;">
+			<p class="copyright fl" style="text-align: right; width: 50%;">
 {foreach $SF->getDesignColors() as $dc}
 				<a title="{$SF->lang('designcolor', $SF->lang($dc))}" href="{$SF->getIndex('layoutcolor')}layoutcolor={$dc}">
 					<img src="{$root}img/SF/circle_{$dc}.png" style="height: 20px; border: 0px;" alt="{$SF->lang('designcolor', $SF->lang($dc))}">

@@ -1,6 +1,6 @@
 <ul id="sitenav">
 <li>
-    <a id="home" href="/">
+    <a id="home" href="{$root}">
      <img alt="" src="{$SITENAVPFAD}home.png">
      <span>Home</span>
     </a>
@@ -26,7 +26,7 @@
 <li>
     <a id="guestbook" href="index.php?site=gb">
      <img alt="" src="{$SITENAVPFAD}guestbook.png">
-     <span>GÃ¤stebuch</span>
+     <span>Gästebuch</span>
     </a>
 </li>
 <li>
