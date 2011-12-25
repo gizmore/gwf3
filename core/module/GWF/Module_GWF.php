@@ -32,9 +32,23 @@ final class Module_GWF extends GWF_Module
 	public function cfgMail404() { return $this->getModuleVarBool('mail_404'); }
 	
 	# Captcha Config
-	public function cfgCaptchaBG() { return $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); }
-	public function cfgCaptchaFont() { return explode(',', $this->getModuleVar('CaptchaFont', GWF_PATH.'extra/font/teen.ttf')); }
+	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
+	public function cfgCaptchaFont()
+	{
+		$default = GWF_PATH.'extra/font/teen.ttf';
+		$paths = explode(',', $this->getModuleVar('CaptchaFont', $default));
+		return false === $this->validate_CaptchaFont($paths) ? $default : $paths;
+	}
 	public function cfgCaptchaWidth() { return (int)$this->getModuleVar('CaptchaWidth', '210'); }
 	public function cfgCaptchaHeight() { return (int)$this->getModuleVar('CaptchaHeight', '42'); }
+
+	public static function validate_CaptchaColor($color) { return preg_match('/^[a-f0-9A-F]{6}$/D', $color) ? $color : false; }
+	public static function validate_CaptchaFont(array $paths)
+	{
+		foreach($paths as $path)
+			if(false === is_file( realpath($path) ))
+				return false;
+		return $paths;
+	}
 }
 ?>

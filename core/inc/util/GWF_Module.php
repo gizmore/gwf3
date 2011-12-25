@@ -183,14 +183,16 @@ class GWF_Module extends GDO
 	
 	/**
 	 * Autoload modules with autoload flag.
-	 * @return NULL
+	 * @todo GWF_Result or return integer / modules which could not be loaded
+	 * @return boolean
 	 */
 	public static function autoloadModules()
 	{
 		if (false === ($modules = self::table(__CLASS__)->selectAll('*', 'module_options&3=3', 'module_priority ASC')))
 		{
-			return;
+			return false; # Database Problem
 		}
+		$ret = true;
 		foreach ($modules as $data)
 		{
 			$modulename = $data['module_name'];
@@ -200,9 +202,11 @@ class GWF_Module extends GDO
 			}
 			if (false === ($module = self::initModuleB($modulename, $data)))
 			{
-				continue;
+				GWF_Log::logError('Could not autoload module '.$modulename);
+				// $ret = false; # die in GWF3 if one module could not be loaded?
 			}
 		}
+		return $ret;
 	}
 	
 	/**
@@ -214,21 +218,22 @@ class GWF_Module extends GDO
 	private static function initModuleB($modulename, array $data)
 	{
 		$classname = "Module_$modulename";
-		$path = GWF_CORE_PATH."module/{$modulename}/{$classname}.php";
+		$pre = GWF_CORE_PATH;
+		$path = "module/{$modulename}/{$classname}.php";
 		# for using modules which aren't in include_path
-		if (false === Common::isFile($path))
+		if (false === Common::isFile($pre.$path))
 		{
 			# required if GWF is in include_path
-			if (false === Common::isFile(GWF_PATH.$path))
+			if (false === Common::isFile(GWF_WWW_PATH.$path))
 			{
 				return false;
 			}
 			else
 			{
-				$path = GWF_PATH.$path;
+				$pre = GWF_WWW_PATH;
 			}
 		}
-		require_once $path;
+		require_once $pre.$path;
 		self::$MODULES[$modulename] = $m = new $classname($data);
 		if (false === $m->loadVars())
 		{
@@ -352,14 +357,5 @@ class GWF_Module extends GDO
 		}
 		return $this->getMethod($methodname)->execute($this);
 	}
-	
-	/**
-	 * The PageMenu Category for each Module
-	 * @author spaceone
-	 */
-//	public function getPMCat() 
-//	{
-//		//build new nav/cat; return ID
-//	}
 }
 ?>
