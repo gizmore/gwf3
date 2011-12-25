@@ -182,7 +182,7 @@ class GWF3
 	 * Log a message as critical, then die()
 	 * @return NULL 
 	 */
-	public static function die($msg='')
+	public static function logDie($msg='')
 	{
 		if(true === self::getConfig('do_logging'))
 		{
@@ -216,7 +216,7 @@ class GWF3
 		{
 			if(false === file_exists($config))
 			{			
-				die('GWF3 couldnt load the config: file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
+				self::logDie('GWF3 couldnt load the config: '.$config.'file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
 			}
 			require_once $config;
 			define('GWF_HAVE_CONFIG', 1);
@@ -253,7 +253,7 @@ class GWF3
 	{
 		if (false === GWF_Session::start($blocking))
 		{
-			die('GWF not installed?!');
+			self::logDie('GWF not installed?!');
 		}
 	}
 
@@ -283,7 +283,7 @@ class GWF3
 		# Autoload Modules
 		if (false === GWF_Module::autoloadModules())
 		{
-			die('Can not autoload modules. GWF not installed OR problems with database?');
+			self::logDie('Can not autoload modules. GWF not installed OR problems with database?');
 		}
 		return $this;
 	}
@@ -299,7 +299,7 @@ class GWF3
 		{
 			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
 			{
-				die('No module found.');
+				self::logDie('No module found.');
 			}
 			$_GET['me'] = GWF_DEFAULT_METHOD;
 		}

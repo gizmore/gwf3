@@ -56,7 +56,7 @@ foreach ($tVars['data'] as $key => $data)
 //			break;
 			
 		default:
-			die(sprintf('Your '.__FILE__.' is missing datatype %d', $data[0]));
+			GWF3::logDie(sprintf('Your '.__FILE__.' is missing datatype %d', $data[0]));
 		
 	}
 	echo '</td>';

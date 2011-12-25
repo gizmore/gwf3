@@ -106,7 +106,7 @@
 				
 			default:
 				var_dump($data);
-				die(sprintf('Your tpl/formY.php is missing datatype %d', $data[0]));
+				GWF3::logDie(sprintf('Your tpl/formY.php is missing datatype %d', $data[0]));
 		}
 		?>
 		<?php } ?>

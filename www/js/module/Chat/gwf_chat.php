@@ -14,7 +14,7 @@ $modules = GWF_Module::loadModulesDB();
 
 # Start session
 if (false === GWF_Session::start(false)) {
-	die('Session error. GWF not installed?');
+	GWF3::LogDie('Session error. GWF not installed?');
 }
 
 # Init core templates and stuff
@@ -26,7 +26,7 @@ GWF_Javascript::streamHeader();
 
 # Call Chat::AjaxStream
 if (false === ($module = GWF_Module::getModule('Chat'))) {
-	die('MISSING MODULE');
+	GWF3:logDie('MISSING MODULE');
 }
 $module->onLoadLanguage();
 $module->onInclude();

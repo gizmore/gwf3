@@ -53,7 +53,7 @@ if (!GWF_IP6::isLocal())
 {
 	if ($_SERVER['REMOTE_ADDR'] !== $worker_ip)
 	{
-		die(sprintf('You have no valid $worker_ip in %s line %s.', __FILE__, __LINE__));
+		GWF3::logDie(sprintf('You have no valid $worker_ip in %s line %s.', __FILE__, __LINE__));
 	}
 }
 
