@@ -186,15 +186,16 @@ div#footer a {
 	font-variant: normal;
 	font-weight: normal;
 	text-decoration: none;
+}
+div#footer a {
 	line-height: 15px;
 	vertical-align: middle;
-	border-right: thin solid #000000;
 }
 div#footer a:after {
 	content: " | ";
 }
-dif#footer a:last, dif#footer a.last {
-	border: 0 none;
+div#footer a.last:after {
+	content: '';
 }
 div.navigation > ol.navi h2:first-letter,
 div.pb_content > p:first-letter,

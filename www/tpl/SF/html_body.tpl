@@ -3,7 +3,8 @@
 	<div id="margin">
 <!-- @start profile -->
 		<div id="profile">
-{include file="tpl/{$design}/menu_profile.tpl"}
+{include file="tpl/{$design}/menu_profile.tpl" assign='menu_profile'}
+{$menu_profile|indent:3:"\t"}
 		</div>
 <!-- @end profile -->
 <!-- @start logo -->
@@ -15,7 +16,8 @@
 <!-- @end logo -->
 <!-- @start headnavi -->
 		<div id="headnavi">
-{include file="tpl/{$design}/menu_top.tpl"}
+{include file="tpl/{$design}/menu_top.tpl" assign='menu_top'}
+{$menu_top|indent:3:"\t"}
 		</div>
 <!-- @end headnavi -->
 <!-- @start body -->
@@ -23,7 +25,8 @@
 <!--@start left -->
 {if true === $SF->isDisplayed('navileft')}
 			<div id="left" class="navigation">
-{include file="tpl/{$design}/navi_left.tpl"}
+{include file="tpl/{$design}/navi_left.tpl" assign='navi_left' side='navileft' navigation="$SF->displayNavi('left')"}
+{$navi_left|indent:4:"\t"}
 			</div>
 {else}
 			<div id="left">
@@ -39,7 +42,8 @@
 					<span class="fr">
 						<a href="{$SF->getIndex('shell')}shell=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Shell"></a>
 					</span><br>
-{include file="{$SF->getGWFPath()}core/module/SF/tpl/SF/shortshell.tpl"}
+{include file="{$SF->getGWFPath()}core/module/SF/tpl/SF/shortshell.tpl" assign='shortshell'}
+{$shortshell|indent:5:"\t"}
 				</div>
 <!-- @end shell -->
 {else}

@@ -1,7 +1,7 @@
 <ol class="navi">
 {if $user->isLoggedIn()}
 	<li class="sec">
-		<h2><a href="{$root}profile/{$user->display('user_name')}">[{$user->display('user_name')}]</a></h2>
+		<h2><a href="{$user->getProfileHREF()}">[{$user->display('user_name')}]</a></h2>
 		<ul>
 			<li class="cat"><h2>Settings:</h2></li>
 			<li class="cat"><h2><a href="{$root}account">Account</a></h2></li>

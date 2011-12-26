@@ -139,3 +139,9 @@ div#profile fieldset.SF_formY * {
 div#profile fieldset.SF_formY {
 	
 }
+div#profile > p {
+	vertical-align: middle;
+	line-height: 25px;
+	height: 25px;
+}
+

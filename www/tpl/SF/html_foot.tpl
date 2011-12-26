@@ -12,7 +12,8 @@
 <!-- @start right -->
 {if $SF->isDisplayed('naviright')}
 			<div id="right" class="navigation">
-{include file="tpl/{$design}/navi_right.tpl"}
+{include file="tpl/{$design}/navi_right.tpl" assign='navi_right' side='naviright' navigation="$SF->displayNavi('right')"}
+{$navi_right|indent:4:"\t"}
 			</div>
 {else}
 			<div id="right">
@@ -31,7 +32,8 @@
 			</p>
 {if false === $SF->isDisplayed('details')}
 <!-- @start shortdetails -->
-{include file="tpl/{$design}/shortdetails.tpl"}
+{include file="tpl/{$design}/shortdetails.tpl" assign='shortdetails'}
+{$shortdetails|indent:3:"\t"}
 {else}
 			<p class="copyright fr">
 				<a href="{$SF->getIndex('details')}details=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[+]" title="Hide Details"></a>
@@ -42,13 +44,14 @@
 {if $SF->isDisplayed('details')}
 <!-- @start details -->
 		<div id="details">
-{include file="tpl/{$design}/details.tpl"}
+{include file="tpl/{$design}/details.tpl" assign='details'}
+{$details|indent:3:"\t"}
 		</div>
 {/if}
 <!-- @end details -->
 <!-- @start footer -->
 		<div id="footer">
-			<hr style="margin: 0;">
+			<hr style="margin: 0;"/>
 			<a href="{$root}contact/">{$SF->lang('contact')}</a>
 			<a href="{$root}impress/">{$SF->lang('impress')}</a>
 			<a href="{$root}disclaimer/">{$SF->lang('disclaimer')}</a>
@@ -66,7 +69,8 @@
 <!-- @end margin -->
 <!-- @start debug-->
 	<p style="text-align: center;">
-{include file="tpl/{$design}/debug_time.tpl"}<br/>
+{include file="tpl/{$design}/debug_time.tpl" assign='debug_time'}<br/>
+{$debug_time|indent:2:"\t"}<br/>
 		Valid <a href="http://validator.w3.org/check?uri=referer">HTML5</a> and <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a>
 	</p>
 <!-- @end debug -->
