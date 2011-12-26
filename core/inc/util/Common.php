@@ -49,12 +49,8 @@ final class Common
 	### URL ###
 	###########
 	public static function getHost() { return true === isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : GWF_DOMAIN; }
-	public static function getProtocol() { return (true === isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off') ? 'https' : 'http'; }
-	public static function getAbsoluteURL($url, $with_root=true) { $root = $with_root ? GWF_WEB_ROOT : ''; return sprintf('%s://%s%s%s', self::getProtocol(), self::getHost(), $root, $url); }
-	public static function getCurrentURL() { return $_SERVER['REQUEST_URI']; }
-	public static function getRelativeURL($url) { return GWF_WEB_ROOT.$url; }
-	public static function getAbsolutePath($file) { return self::SERVER_PATH.'/'.$file; } //<- gizmore: BUG
-	public static function getRelativePath($file) { return $file; }
+	public static function getProtocol() { return (true === isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off')) ? 'https' : 'http'; }
+	public static function getAbsoluteURL($url, $root=true) { return sprintf('%s://%s%s%s', self::getProtocol(), self::getHost(), $root ? GWF_WEB_ROOT : '', $url); }
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
 	{
@@ -102,53 +98,7 @@ final class Common
 		}
 		return $key;
 	}
-	
-	##################
-	### Array Util ###
-	##################
-	/**
-	 * Recursive implode. Code taken from php.net. Original code by: kromped@yahoo.com
-	 * @todo Move to other file.
-	 * @param string $glue
-	 * @param array $pieces
-	 * @return string
-	 */
-	public static function implode($glue, $pieces)
-	{
-		foreach($pieces as $r_pieces)
-		{
-			if (is_array($r_pieces)) {
-				$retVal[] = self::implode($glue, $r_pieces);
-			}
-			else {
-				$retVal[] = $r_pieces;
-			}
-		}
-		return implode($glue, $retVal);
-	}
-	
-	/**
-	 * Implode an array like humans would do:
-	 * Example: 1, 2, 3 and last
-	 * @todo Move to other file. Make it recursive?
-	 * @param array $array
-	 * @return string
-	 */
-	public static function implodeHuman(array $array)
-	{
-		static $and = NULL;
-		$cnt = count($array);
-		if ($cnt <= 0) {
-			return '';
-		}
-		elseif ($cnt === 1) {
-			return $array[0];
-		}
-		if ($and === NULL) { $and = GWF_HTML::lang('and'); }
-		$last = array_pop($array);
-		return implode(', ', $array)." {$and} {$last}";
-	}
-	
+
 	/**
 	 * @deprecated
 	 */
@@ -213,16 +163,6 @@ final class Common
 	###################
 	### String Util ###
 	###################
-	/**
-	 * UTF8 strlen.
-	 * @deprecated
-	 * @param string $str
-	 * @return int
-	 */
-	public static function strlen($str)
-	{
-		return mb_strlen($str, 'utf8');
-	}
 	
 	/**
 	 * Return true if a string ends with another string.

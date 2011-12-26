@@ -38,7 +38,7 @@ final class GWF_HelpdeskTitle
 	
 	public static function validate_other(Module_Helpdesk $m, $arg)
 	{
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		if ($len < 2) {
 			return $m->lang('err_no_other');
 		}

@@ -152,7 +152,7 @@ final class Votes_AddPoll extends GWF_Method
 //			# XSS/SQLI escape! 
 //			if (!is_numeric($i)) { $i = GWF_HTML::display($i); }
 			
-			$len = Common::strlen($op);
+			$len = GWF_String::strlen($op);
 			if ($len < $min || $len > $max)
 			{
 				$err .= ', '.$i;

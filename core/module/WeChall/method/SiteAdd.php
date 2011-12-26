@@ -107,7 +107,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		if (false !== WC_Site::getByName($arg)) {
 			return $m->lang('err_site_dup');
 		}
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $m->cfgMaxSitenameLen();
 		if ($len < 1 || $len > $max) {
 			return $m->lang('err_site_name', array(1, $max));
@@ -127,7 +127,7 @@ final class WeChall_SiteAdd extends GWF_Method
 			return $m->lang('err_site_classname', array(1, $max));
 		}
 		
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		if ($len < 1 || $len > $max) {
 			return $m->lang('err_site_classname', array(1, $max));
 		}

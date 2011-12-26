@@ -85,7 +85,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function validate_title(Module_Guestbook $module, $arg)
 	{
 		$arg = $_POST['title'] = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $module->cfgMaxTitleLen();
 		if ($len < 1 || $len > $max) {
 			return $module->lang('err_gb_title', array( 1, $max));
@@ -96,7 +96,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function validate_descr(Module_Guestbook $module, $arg)
 	{
 		$arg = $_POST['descr'] = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $module->cfgMaxDescrLen();
 		if ($len < 1 || $len > $max) {
 			return $module->lang('err_gb_descr', array( 1, $max));
@@ -197,7 +197,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function validate_message(Module_Guestbook $m, $arg)
 	{
 		$arg = $_POST['message'] = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $m->cfgMaxMessageLen();
 		if ($len < 1 || $len > $max) {
 			return $m->lang('err_gbm_message', 1, $max);

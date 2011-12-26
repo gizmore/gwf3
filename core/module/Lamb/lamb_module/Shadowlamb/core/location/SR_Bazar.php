@@ -748,7 +748,7 @@ class SR_Bazar extends SR_Location
 			SR_BazarShop::createShop($pname);
 		}
 
-		if (Common::strlen($new_slogan) > SR_BazarShop::MAX_SLOGAN_LEN)
+		if (GWF_String::strlen($new_slogan) > SR_BazarShop::MAX_SLOGAN_LEN)
 		{
 			$player->message(sprintf('Your new slogan exceeds the max length of %d characters.', SR_BazarShop::MAX_SLOGAN_LEN));
 			return false;

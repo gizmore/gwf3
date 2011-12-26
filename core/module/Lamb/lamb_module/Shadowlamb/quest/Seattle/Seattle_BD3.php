@@ -65,7 +65,7 @@ final class Quest_Seattle_BD3 extends SR_Quest
 		}
 		else
 		{
-			$npc->reply(sprintf('I still need %s.', Common::implodeHuman(array_keys($need))));
+			$npc->reply(sprintf('I still need %s.', GWF_Array::implodeHuman(array_keys($need))));
 		}
 		return true;
 	}

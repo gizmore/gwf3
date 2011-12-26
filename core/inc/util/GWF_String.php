@@ -9,6 +9,16 @@
 final class GWF_String
 {
 	/**
+	 * UTF8 strlen.
+	 * @param string $str
+	 * @return int
+	 */
+	public static function strlen($str)
+	{
+		return mb_strlen($str, 'utf8');
+	}
+
+	/**
 	 * Check if a character is [a-zA-Z0-9]
 	 * @param $c
 	 * @return true|false

@@ -158,7 +158,7 @@ final class Module_PM extends GWF_Module
 		$max = $this->cfgMaxTitleLen();
 		if ($arg === '') {
 			return $this->lang('err_no_title');
-		} elseif (Common::strlen($arg) > $max) {
+		} elseif (GWF_String::strlen($arg) > $max) {
 			return $this->lang('err_title_len', $max);
 		} else {
 			return false;
@@ -171,7 +171,7 @@ final class Module_PM extends GWF_Module
 		$max = $this->cfgMaxMsgLen();
 		if ($arg === '') {
 			return $this->lang('err_no_msg');
-		} elseif (Common::strlen($arg) > $max) {
+		} elseif (GWF_String::strlen($arg) > $max) {
 			return $this->lang('err_msg_len', $max);
 		} else {
 			return false;
@@ -237,7 +237,7 @@ final class Module_PM extends GWF_Module
 	{
 		$_POST['pmo_signature'] = $arg = trim($arg);
 		$max = $this->cfgMaxSigLen();
-		if (Common::strlen($arg) > $max) {
+		if (GWF_String::strlen($arg) > $max) {
 			return $this->lang('err_sig_len', $max);
 		} else {
 			return false;
@@ -250,7 +250,7 @@ final class Module_PM extends GWF_Module
 		if (false !== GWF_PMFolder::getByName($arg)) {
 			return $this->lang('err_folder_exists');
 		}
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $this->cfgMaxFolderNameLen();
 		if ($len < 1 || $len > $max) {
 			return $this->lang('err_folder_len', $max);

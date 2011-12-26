@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is a imitated LinuxShell
+ * This is an imitated LinuxShell
  * @author spaceone
  */
 final class SF_Shell extends GWF_Method

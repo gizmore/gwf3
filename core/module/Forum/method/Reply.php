@@ -135,11 +135,8 @@ final class Forum_Reply extends GWF_Method
 	private function templateReply(Module_Forum $module, $preview=false)
 	{
 		$form = $this->getForm($module);
-		
-		$url = Common::getCurrentURL();
-		if (!Common::endsWith($url, '#form')) {
-			$url .= '#form';
-		}
+
+		$url = $_SERVER['REQUEST_URI'].'#form';
 		
 		$tVars = array(
 			'form' => $form->templateY($module->lang('ft_reply'), $url),

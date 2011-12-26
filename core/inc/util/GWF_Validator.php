@@ -47,7 +47,7 @@ final class GWF_Validator
 		//this one returns true is the username starts with at least 1 [a-zA-Z0-9] and ends with a single [a-zA-Z\_ 0-9]  
 		//return preg_match('/^([a-zA-Z0-9])+([a-zA-Z\_ 0-9])$/' , $name);
 		// this one is more simple
-		$len = Common::strlen($name);
+		$len = GWF_String::strlen($name);
 		if ($len > $maxlength || $len < $minlength)
 		{
 			return false; # check limits
@@ -137,7 +137,7 @@ final class GWF_Validator
 	public static function validateString($m, $key, $arg, $min=0, $max=63, $unset=true)
 	{
 		$_POST[$key] = $arg = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		if ($len < $min || $len > $max) {
 			
 			if ($unset === true) {
@@ -169,7 +169,7 @@ final class GWF_Validator
 	public static function validateClassname($m, $key, $arg, $min=0, $max=63, $unset=true)
 	{
 		$_POST[$key] = $arg = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		if ($len < $min || $len > $max || 0 === preg_match('/^[a-zA-Z][A-Za-z_0-9]+$/D', $arg))
 		{
 			if ($unset)

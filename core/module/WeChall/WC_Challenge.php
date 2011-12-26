@@ -198,7 +198,7 @@ final class WC_Challenge extends GDO
 				$creators[] = "<a href=\"".GWF_WEB_ROOT."profile/$c\">$c</a>";# GWF_HTML::anchor(GWF_WEB_ROOT.'profile/'.urlencode($c), $c);
 			}
 		}
-		return Common::implodeHuman($creators);
+		return GWF_Array::implodeHuman($creators);
 	}
 	
 	public function displayAge()
@@ -917,7 +917,7 @@ final class WC_Challenge extends GDO
 			$arr[] = $y;
 		}
 
-		return '<div class="box box_c">&copy;&nbsp;'.Common::implodeHuman($arr).'&nbsp;'.WC_HTML::lang('by').'&nbsp;'.$this->displayCreators().'</div>';
+		return '<div class="box box_c">&copy;&nbsp;'.GWF_Array::implodeHuman($arr).'&nbsp;'.WC_HTML::lang('by').'&nbsp;'.$this->displayCreators().'</div>';
 	}
 	
 	##############################

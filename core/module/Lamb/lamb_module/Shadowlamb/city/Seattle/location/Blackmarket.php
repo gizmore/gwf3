@@ -45,7 +45,7 @@ final class Seattle_Blackmarket extends SR_Store
 			return;
 		}
 
-		$p->notice(sprintf('One of the guards come to you. Seems like %s lack(s) the permission to enter. You decide to turn around and leave.', Common::implodeHuman($names)));
+		$p->notice(sprintf('One of the guards come to you. Seems like %s lack(s) the permission to enter. You decide to turn around and leave.', GWF_Array::implodeHuman($names)));
 	}
 }
 ?>

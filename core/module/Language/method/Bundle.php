@@ -188,7 +188,7 @@ final class Language_Bundle extends GWF_Method
 		foreach ($lang_en as $key => $value)
 		{
 			if (is_array($value)) {
-				$valueE2 = Common::implode('[,]', $value);
+				$valueE2 = GWF_Array::implode('[,]', $value);
 			} else {
 				$valueE2 = $value;
 			}
@@ -196,7 +196,7 @@ final class Language_Bundle extends GWF_Method
 			if (isset($lang2[$key])) {
 				$valueO = $lang2[$key];
 				if (is_array($valueO)) {
-					$valueO = Common::implode('[,]', $valueO);
+					$valueO = GWF_Array::implode('[,]', $valueO);
 				}
 			}
 			else {

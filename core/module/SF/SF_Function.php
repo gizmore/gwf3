@@ -20,7 +20,7 @@ abstract class SF_Function
 	/**
 	* A simple Option Parser
 	*/
-	public function parseArgs()
+	protected final function parseArgs()
 	{
 		$args = $this->getOptions();
 		$cmdA = $this->cmdA;
@@ -29,7 +29,7 @@ abstract class SF_Function
 	/**
 	* return String
 	*/
-	public function execute() { die(__CLASS__.': method execute have to be overwritten! '); }
+	public function execute() { GWF3::logDie(__CLASS__.': method execute have to be overwritten! '); }
 
 	public function redirect($url) { header(sprintf('Location: http://%s', $_SERVER['SERVER_NAME'].GWF_WEB_ROOT.$url)); }
 

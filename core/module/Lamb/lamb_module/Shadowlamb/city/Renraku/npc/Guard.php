@@ -56,7 +56,7 @@ final class Renraku_Guard extends SR_TalkingNPC
 		
 		if (count($names) > 0)
 		{
-			$p->notice(sprintf("It seems like %s is/are missing an IDCard.", Common::implodeHuman($names)));
+			$p->notice(sprintf("It seems like %s is/are missing an IDCard.", GWF_Array::implodeHuman($names)));
 			$this->reply('Every person needs an own ID card. Move along.');
 			return;
 		}

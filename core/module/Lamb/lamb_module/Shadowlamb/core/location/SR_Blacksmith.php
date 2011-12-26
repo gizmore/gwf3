@@ -424,7 +424,7 @@ public function on_split(SR_Player $player, array $args)
 		return false;
 	}
 
-	return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, Common::implodeHuman($names)));
+	return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 }
 
 }

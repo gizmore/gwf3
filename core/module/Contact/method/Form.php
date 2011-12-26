@@ -114,7 +114,7 @@ final class Contact_Form extends GWF_Method
 			$send_to[] = $user->displayUsername();
 		}
 		
-		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $module->message('msg_mailed', array(Common::implodeHuman($send_to)));
+		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $module->message('msg_mailed', array(GWF_Array::implodeHuman($send_to)));
 	}
 	
 	private function onSendC(Module_Contact $module, $email, $message, GWF_User $user)

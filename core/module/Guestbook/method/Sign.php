@@ -223,7 +223,7 @@ final class Guestbook_Sign extends GWF_Method
 	{
 		$arg = $_POST['username'] = trim($arg);
 		$max = $m->cfgMaxUsernameLen();
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		if ($len < 1 || $len > $max) {
 			return $m->lang('err_gbm_username', array(1, $max));
 		}
@@ -257,7 +257,7 @@ final class Guestbook_Sign extends GWF_Method
 	public function validate_message(Module_Guestbook $m, $arg)
 	{
 		$arg = $_POST['message'] = trim($arg);
-		$len = Common::strlen($arg);
+		$len = GWF_String::strlen($arg);
 		$max = $m->cfgMaxMessageLen();
 		if ($len < 1 || $len > $max)
 		{
