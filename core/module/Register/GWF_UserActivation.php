@@ -24,7 +24,7 @@ final class GWF_UserActivation extends GDO
 	
 	public static function generateToken()
 	{
-		$token = Common::randomKey(self::TOKEN_LENGTH);
+		$token = GWF_Random::randomKey(self::TOKEN_LENGTH);
 		$ua = new self(false);
 		if (false !== ($ua->selectFirst('1', sprintf('token=\'%s\'', $ua->escape($token))))) {
 			return self::generateToken();

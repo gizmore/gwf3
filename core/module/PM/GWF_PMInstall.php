@@ -78,7 +78,7 @@ final class GWF_PMInstall
 	{
 		$user = new GWF_User(array(
 			'user_name' => '_GWF_PM_BOT_',
-			'user_password' => 'x',#GWF_Password::hashPasswordS(Common::randomKey(16)),
+			'user_password' => 'x',#GWF_Password::hashPasswordS(GWF_Random::randomKey(16)),
 			'user_regdate' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 			'user_regip' => GWF_IP6::getIP(GWF_IP_EXACT, '127.0.0.1'),
 			'user_email' => GWF_BOT_EMAIL,

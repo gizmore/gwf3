@@ -43,7 +43,7 @@ final class GWF_CSRF
 		
 		$a = &GWF_Session::get(self::TOKEN_NAME);
 		
-		$token = Common::randomKey(self::TOKEN_ENTROPY);
+		$token = GWF_Random::randomKey(self::TOKEN_ENTROPY);
 		
 		$a[$token] = array(time(), $userdata);
 		

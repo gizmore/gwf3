@@ -246,7 +246,7 @@ final class GWF_Order extends GDO # implements GDO_Sortable, GDO_Searchable
 	{
 		do
 		{
-			$token = Common::randomKey(self::TOKEN_LEN);
+			$token = GWF_Random::randomKey(self::TOKEN_LEN);
 		}
 		while (self::getByToken($token)!==false);
 		

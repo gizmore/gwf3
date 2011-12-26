@@ -16,7 +16,7 @@ function Upgrade_WeChall_1_01(Module_WeChall $module)
 	while (false !== ($row = $db->fetchRow($result)))
 	{
 		$id = $row[0];
-		$token = Common::randomKey(8);
+		$token = GWF_Random::randomKey(8);
 		if (false === ($db->queryWrite("UPDATE $challs SET chall_token='$token' WHERE chall_id=$id"))) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}

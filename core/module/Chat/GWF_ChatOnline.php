@@ -58,7 +58,7 @@ final class GWF_ChatOnline extends GDO
 			else if ($row->getVar('chaton_name') !== $nick)
 			{
 				$row->saveVars(array(
-//					'chaton_sessid' => 'x'.$sessid, # Common::randomKey(rand(1, 15)), # High entropy, but never a sessid
+//					'chaton_sessid' => 'x'.$sessid, # GWF_Random::randomKey(rand(1, 15)), # High entropy, but never a sessid
 					'chaton_timeleft' => $time, # and quit me
 				));
 				$row = new self(array(

@@ -46,7 +46,7 @@ final class GWF_AccountChange extends GDO
 	 */
 	public static function createToken($userid, $type, $data=false)
 	{
-		$token = Common::randomKey(self::TOKEN_LENGTH);
+		$token = GWF_Random::randomKey(self::TOKEN_LENGTH);
 		
 		$gdodata = array(
 			'userid' => $userid,

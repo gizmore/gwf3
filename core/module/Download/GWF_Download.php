@@ -99,7 +99,7 @@ final class GWF_Download extends GDO implements GWF_Orderable #implements GDO_Se
 	 */
 	public static function generateToken()
 	{
-		return Common::randomKey(self::TOKEN_LENGTH, Common::ALPHANUMUPLOW);
+		return GWF_Random::randomKey(self::TOKEN_LENGTH, GWF_Random::ALPHANUMUPLOW);
 	}
 
 	/**

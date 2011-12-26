@@ -22,7 +22,7 @@ final class GWF_Password
 	 */
 	public static function hashPasswordS($password)
 	{
-		$salt = Common::randomKey(self::SALTLEN); // Generate random salt.
+		$salt = GWF_Random::randomKey(self::SALTLEN); // Generate random salt.
 		return self::hashSHA1(self::SECRET_SALT.$password.$salt.self::SECRET_SALT).$salt; 
 	}
 	

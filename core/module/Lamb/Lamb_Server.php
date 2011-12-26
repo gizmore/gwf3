@@ -317,7 +317,7 @@ final class Lamb_Server extends GDO
 		if ($this->nickname_id >= count($nicks))
 		{
 			$this->nickname_id = -1;
-			$this->current_nick = $nicks[0].Common::randomKey(4, '123456789');
+			$this->current_nick = $nicks[0].GWF_Random::randomKey(4, '123456789');
 		}
 		else
 		{

@@ -135,7 +135,7 @@ final class BAIM_MC extends GDO
 		$row = new self(array(
 			'bmc_uid' => $userid,
 			'bmc_date' => NULL,
-			'bmc_token' => Common::randomKey(self::TOKEN_LEN, Common::ALPHANUMUPLOW),
+			'bmc_token' => GWF_Random::randomKey(self::TOKEN_LEN, GWF_Random::ALPHANUMUPLOW),
 			'bmc_mc' => NULL,
 			'bmc_expires' => NULL, #GWF_Time::getDate(GWF_Date::LEN_SECOND, time()+self::DEMO_TIMEOUT),
 			'bmc_options' => $options,

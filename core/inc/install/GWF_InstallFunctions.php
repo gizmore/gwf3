@@ -471,7 +471,7 @@ final class GWF_InstallFunctions
 			'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
 			'%%USER%%' => escapeshellarg(GWF_DB_USER),
 			'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
-			'%%SALT%%' => escapeshellarg(Common::randomKey(12)),
+			'%%SALT%%' => escapeshellarg(GWF_Random::randomKey(12)),
 		);
 		return str_replace(array_keys($replace), array_values($replace), $content);
 	}

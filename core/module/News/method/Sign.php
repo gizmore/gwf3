@@ -118,7 +118,7 @@ final class News_Sign extends GWF_Method
 			'nl_email' => $email,
 			'nl_userid' => GWF_Session::getUserID(),
 			'nl_options' => $type,
-			'nl_unsign' => Common::randomKey(16),
+			'nl_unsign' => GWF_Random::randomKey(16),
 			'nl_langid' => $langid,
 			'nl_mailed_ids' => ':',
 		));

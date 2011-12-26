@@ -78,7 +78,7 @@ final class GWF_Client extends GDO
 	{
 		do
 		{
-			$token = Common::randomKey(self::TOKEN_LEN);
+			$token = GWF_Random::randomKey(self::TOKEN_LEN);
 		}
 		while (false !== self::getByToken($token));
 		

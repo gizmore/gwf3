@@ -154,7 +154,7 @@ final class GWF_Session extends GDO
 	
 	private static function createSession($create_etag=false)
 	{
-		$sessid = Common::randomKey(self::SESS_ENTROPY);
+		$sessid = GWF_Random::randomKey(self::SESS_ENTROPY);
 		
 		$session = new self(array(
 			'sess_id' => 0,

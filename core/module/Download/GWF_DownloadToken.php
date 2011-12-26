@@ -31,7 +31,7 @@ final class GWF_DownloadToken extends GDO
 	
 	public static function generateToken()
 	{
-		return Common::randomKey(self::TOKEN_LEN);
+		return GWF_Random::randomKey(self::TOKEN_LEN);
 	}
 	
 	public static function insertToken(Module_Download $module, GWF_Download $dl, $user, $token)

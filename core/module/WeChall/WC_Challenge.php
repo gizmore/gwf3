@@ -357,7 +357,7 @@ final class WC_Challenge extends GDO
 			'chall_sboard' => false,
 			'chall_votecount' => 0,
 			'chall_options' => $options,
-			'chall_token' => Common::randomKey(8),
+			'chall_token' => GWF_Random::randomKey(8),
 		));
 		
 		if (false === $chall->insertChallenge(0, $creators, true, $verbose)) {

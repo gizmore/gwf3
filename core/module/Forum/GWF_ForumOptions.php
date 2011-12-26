@@ -27,7 +27,7 @@ final class GWF_ForumOptions extends GDO
 	{
 		return array(
 			'fopt_uid' => array(GDO::UINT|GDO::PRIMARY_KEY, true),
-			'fopt_token' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, true, Common::TOKEN_LEN),
+			'fopt_token' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, true, GWF_Random::TOKEN_LEN),
 			'fopt_subscr' => array(GDO::ENUM, self::SUBSCRIBE_NONE, self::$SUBSCR_MODES),
 			'fopt_signature' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'fopt_options' => array(GDO::UINT, 0),
@@ -112,7 +112,7 @@ final class GWF_ForumOptions extends GDO
 	{
 		$row = new self(array(
 			'fopt_uid' => $userid,
-			'fopt_token' => Common::randomKey(Common::TOKEN_LEN),
+			'fopt_token' => GWF_Random::randomKey(GWF_Random::TOKEN_LEN),
 			'fopt_subscr' => self::SUBSCRIBE_NONE,
 			'fopt_signature' => '',
 			'fopt_options' => 0,

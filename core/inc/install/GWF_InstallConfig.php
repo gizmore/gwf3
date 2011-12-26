@@ -245,7 +245,7 @@ final class GWF_InstallConfig
 			array('bool',  'Various', 'GWF_USER_STACKTRACE', true, 'Show stacktrace to the user on error? Example: true.' ),
 			
 			# Database
-			array('text', 'Database', 'GWF_SECRET_SALT', Common::randomKey(16, Common::ALPHANUMUPLOW), 'May not be changed after install!'),
+			array('text', 'Database', 'GWF_SECRET_SALT', GWF_Random::randomKey(16, GWF_Random::ALPHANUMUPLOW), 'May not be changed after install!'),
 			array('int8', 'Database', 'GWF_CHMOD', 0700, 'CHMOD mask for file creation. 0700 for mpm-itk env. 0777 in worst case.'),
 			array('text', 'Database', 'GWF_DB_HOST', 'localhost', 'Database host. Usually localhost.'),
 			array('text', 'Database', 'GWF_DB_USER', '', 'Database username. Example: \'some_sql_username\'.'),
