@@ -47,7 +47,7 @@ final class Module_Navigation extends GWF_Module
 				'page_url' => '/foo',
 				'page_title' => 'foo',
 				'page_lang' => '0',
-				'page_cat' => '',#$module->getPMCat(), 
+				'page_cat' => '', 
 				'page_meta_desc' => 'foofoo', 
 				'page_views' => '0',
 				'page_options' => GWF_Page::ENABLED,
@@ -57,7 +57,7 @@ final class Module_Navigation extends GWF_Module
 				'page_url' => '/bar',
 				'page_title' => 'bar',
 				'page_lang' => '0',
-				'page_cat' => '',#$module->getPMCat(), 
+				'page_cat' => '', 
 				'page_meta_desc' => 'barbar', 
 				'page_views' => '0',
 				'page_options' => GWF_Page::ENABLED,
@@ -116,30 +116,90 @@ final class Module_Navigation extends GWF_Module
 				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
 			}
 		}
+
+		$categories = array();
 		
-		# insert new entries
-		$i = 0;
-		foreach($pmdata as $pbvars)
+		if(false === ($categories['Modules'] = GWF_Category::getByKey('Modules')))
 		{
-			if(!is_array($pbvars)) {
-				continue;
-			}
-			$navi2 = array(
-				'navi_id' => ++$i,
-				'navi_nid' => '1', # the GWF_Navigations PageMenu navi_id
-				'navi_pbid' => $i, //$pbvars['page_id'] → both wont work because auto_increment_IDs
-				'navi_position' => $i,
-				'navi_options' => GWF_Navigation::ENABLED,
-			);
-			# add page_id to the page_vars // other direction? // add page_cat page_views page_options?
-			$array1 = array('page_id' => $i, 'page_views' => 0); # replacements
-			$array3 = array('page_cat' => '', 'page_options' => GWF_Page::ENABLED); # overwritable
-			//$pbvars = array_merge($pbvars, array());
-			$pbvars = $array3 + $pbvars + $array1;
-			if(false === $pagevars->insertAssoc($pbvars) || false === $navigation->insertAssoc($navi2)) 
+			# TODO: Create GWF_Category: Modules
+		}
+
+		# insert new entries
+		$count = 0;
+		foreach($pmdata as $modulename => $pbmodule)
+		{
+			#TODO: create GWF_Category for each module
+			$catid = 0;
+			
+			#TODO: create GWF_Navigations for each Module
+			$nid = '1';
+			
+			$i = 0;			
+			foreach($pbmodule as $methodname => $pbvars)
 			{
-				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+				#TODO: Create Category for each Method?
+				
+				#TODO: create GWF_Navigations for each Method
+
+				if(false === is_array($pbvars) || false === isset($pbvars['page_url']) || false === isset($pbvars['page_title']))
+				{
+					continue; # required entries does not exists
+				}
+				unset($pbvars['page_id']);
+
+				# entries that need to exist
+				$overwritable = array(
+					'page_cat' => $catid,
+					'page_views' => '0',
+					'page_meta_desc' => '',
+					'page_options' => GWF_Page::ENABLED
+				);
+				$pbvars = array_merge($overwritable, $pbvars);
+
+				if(false === $pagevars->insertAssoc($pbvars)) 
+				{
+					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+				}
+
+				if(false === ($pb = $pagevars->selectFirst('page_id', 'page_url='.$pbvars['page_url'])))
+				{
+					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+				}
+				$pbid = $pb['page_id']; # Check: No such page, impossible
+
+				$navi = array(
+					//'navi_id' => ++$i, # AUTO INCREMENT
+					'navi_nid' => $nid, # the GWF_Navigations PageMenu navi_id
+					'navi_pbid' => $pbid,
+					'navi_position' => ++$i,
+					'navi_options' => GWF_Navigation::ENABLED,
+				);
+				if(false === $navigation->insertAssoc($navi))
+				{
+					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+				}
 			}
+			
+			$count++;
+			
+			
+			# The Module row for GWF_Navigations
+			$pm = array(
+				'navis_id' => $i, # TODO: Overwrite old Navi (getByName) #AUTO INCREMENT
+				'navis_name' => $modulename,
+				'navis_pid' => '1', # PageMenu ID
+				'navi_position' => $i,
+	//			'navis_gid' => '', # create groupid for PageMenuNavigation?
+				'navis_count' => $count,
+				'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
+			);
+
+			# Replace the GWF_Navigations PageMenu row
+			if(false === $navigations->insertAssoc($pm))
+			{
+					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
+			}
+			
 		}
 		
 		# The PageMenu row for GWF_Navigations
@@ -147,9 +207,9 @@ final class Module_Navigation extends GWF_Module
 			'navis_id' => '1',
 			'navis_name' => 'PageMenu',
 			'navis_pid' => '0', # dont have parent Navigation
-//			'navi_position' => '0'
+//			'navi_position' => '0',
 //			'navis_gid' => '', # create groupid for PageMenuNavigation?
-			'navis_count' => $i,
+			'navis_count' => $count,
 			'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
 		);
 		

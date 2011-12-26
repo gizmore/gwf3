@@ -11,11 +11,11 @@ final class GWF_Category extends GWF_Tree
 	public function getColumnDefines()
 	{
 		return array_merge(parent::getColumnDefines(), 
-		array(
-			'cat_group' => array(GDO::INDEX|GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', self::KEY_LENGTH),
-			'translations' => array(GDO::GDO_ARRAY, GDO::NOT_NULL, array('GWF_CategoryTranslation', 'cl_langid', 'cl_catid', 'cat_tree_id'), array('cats')),
-			'trans' => array(GDO::JOIN, true, array('GWF_CategoryTranslation', 'cat_tree_id', 'cl_catid')),
-		));
+			array(
+				'cat_group' => array(GDO::INDEX|GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', self::KEY_LENGTH),
+				'translations' => array(GDO::GDO_ARRAY, GDO::NOT_NULL, array('GWF_CategoryTranslation', 'cl_langid', 'cl_catid', 'cat_tree_id'), array('cats')),
+				'trans' => array(GDO::JOIN, true, array('GWF_CategoryTranslation', 'cat_tree_id', 'cl_catid')),
+			));
 	}
 //	public function getColumnDefines()
 //	{
@@ -35,8 +35,8 @@ final class GWF_Category extends GWF_Tree
 	
 	public static function getAllCategoriesCached($orderby='cat_tree_key ASC', $group='')
 	{
-		static $cats = true;
-		if ($cats === true)
+		static $cats;
+		if (false === isset($cats))
 		{
 			$cats = self::getAllCategories($orderby);
 		}

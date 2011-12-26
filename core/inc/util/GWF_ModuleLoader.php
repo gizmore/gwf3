@@ -426,7 +426,12 @@ final class GWF_ModuleLoader
 		$hta = GWF_HTAccess::getHTAccess().$hta;
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
 	}
-	
+
+	/**
+	 * Install the PageMenu
+	 * @todo GWF_Result
+	 * @author spaceone
+	 */
 	public static function installHTMenu(array $modules)
 	{
 		if(false === ($navigation = GWF_Module::loadModuleDB('Navigation', false, false, true)) || false === $navigation->isEnabled() || false === $navigation->PMisLocked())
@@ -434,15 +439,15 @@ final class GWF_ModuleLoader
 			return false; //Module Navigation not enabled or cannot be modified!
 		}
 		$pml = array();
+		$c = 3; # page_url, page_title
 		foreach ($modules as $module)
 		{
 			$module instanceof GWF_Module;
 			
-			if (!$module->isEnabled()) {
+			if (false === $module->isEnabled()) {
 				continue;
 			}
 
-			$c = 5; # page_url(*), page_title(*), page_meta_descr, page_views, page_options, page_cat
 			$name = $module->getName();
 			$pml[$name] = array();
 
@@ -450,14 +455,32 @@ final class GWF_ModuleLoader
 			foreach ($methods as $method)
 			{
 				$mname = $method->getName();
+				$pml[$name][$mname] = array();
 				if(true === is_array($pmlinks = $method->getPageMenuLinks($module)))
 				{
 					foreach($pmlinks as $k => $a)
 					{
-						if(false === is_array($) || count($) < 3) unset($pmlinks[$k];
+						if(false === is_array($a) || count($a) < $c)
+						{
+							unset($pmlinks[$k];
+						}
+					//	else
+					//	{
+					//		$pml[$name][$mname][] = $a;
+					//	}
 					}
 					$pml[$name][$mname] = $pmlinks;
 				}
+				# Method does not have PageMenu Links?
+				if($pml[$name][$mname] === array())
+				{
+					unset($pml[$name][$mname]);
+				}
+			}
+			# Module does not have PageMenu Links?
+			if($pml[$name] === array())
+			{
+				unset($pml[$name][$mname]);
 			}
 		}
 		return $navigation->installPageMenu($pml);
