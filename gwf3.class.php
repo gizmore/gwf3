@@ -48,7 +48,10 @@ class GWF3
 		}
 		
 		# Windows patch
-// 		$basepath = str_replace('\\', '/', $basepath);
+//		if(GWF_ServerInfo::isWindows())
+//		{
+// 			$basepath = str_replace('\\', '/', $basepath);
+//		}
 		
 		# Important definements...
 		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
@@ -56,6 +59,7 @@ class GWF3
 		Common::defineConst('GWF_CONFIG_PATH', GWF_PROTECTED_PATH.'config.php');
 		Common::defineConst('GWF_LOGGING_PATH', GWF_PROTECTED_PATH.'logs');
 
+		# Load config
 		if (true === $config['load_config'])
 		{
 			$this->onLoadConfig(GWF_CONFIG_PATH);
@@ -68,10 +72,13 @@ class GWF3
 		# Setting the Design... TODO...
 		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
 
+		# abort script execution on user disconnect?
 		ignore_user_abort($config['ignore_user_abort']);
-		
+
+		# define GWF_WEB_ROOT
 		self::onDefineWebRoot();
 
+		# Init the config?
 		if(true === $config['init'])
 		{
 			$this->init();

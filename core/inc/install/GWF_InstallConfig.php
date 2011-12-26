@@ -267,7 +267,7 @@ final class GWF_InstallConfig
 			# EMail
 			array('int10', 'EMail', 'GWF_DEBUG_EMAIL', 15, 'Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP_ERRORS, 4=404, 8=403, 16=MailToScreen)'),
 			array('text',  'EMail', 'GWF_BOT_EMAIL', 'robot@'.$domain, 'Robot sender email. Example: robot@www.site.com.'),
-			array('text',  'EMail', 'GWF_ADMIN_EMAIL', 'admin@'.$domain, 'Hardcoded admin mail. Example: admin@www.site.com.'),
+			array('text',  'EMail', 'GWF_ADMIN_EMAIL', isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : 'admin@'.$domain, 'Hardcoded admin mail. Example: admin@www.site.com.'),
 			array('text',  'EMail', 'GWF_SUPPORT_EMAIL', 'support@'.$domain, 'Support email. Example: support@www.site.com.'),
 			array('text',  'EMail', 'GWF_STAFF_EMAILS', '', 'CC staff emails seperated by comma. Example: \'staff@foo.bar,staff2@blub.org\'.'),
 //			array('text',  'EMail', 'GWF_EMAIL_GPG_SIG', '', 'EMail signature for mails sent by GWF2'),

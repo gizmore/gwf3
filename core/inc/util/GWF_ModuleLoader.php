@@ -480,7 +480,7 @@ final class GWF_ModuleLoader
 			# Module does not have PageMenu Links?
 			if($pml[$name] === array())
 			{
-				unset($pml[$name][$mname]);
+				unset($pml[$name]);
 			}
 		}
 		return $navigation->installPageMenu($pml);

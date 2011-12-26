@@ -10,29 +10,29 @@ final class Common
 	###########
 	### GPC ###
 	###########
-	public static function getGet($var, $default=false) { return isset($_GET[$var]) ? $_GET[$var] : $default; }
+	public static function getGet($var, $default=false) { return true === isset($_GET[$var]) ? $_GET[$var] : $default; }
 	public static function cmpGet($var, $cmp, $default=false) { return $cmp === self::getGet($var, $default) ? true : $default; }
-	public static function getGetInt($var, $default=0) { return isset($_GET[$var]) ? ((int)$_GET[$var]) : $default; }
-	public static function getGetString($var, $default='') { return (isset($_GET[$var]) ? (string)$_GET[$var] : $default); }
-	public static function getGetArray($var, $default=false) { return (isset($_GET[$var]) && is_array($_GET[$var])) ? $_GET[$var] : $default; }
-	public static function displayGet($var, $default='') { return isset($_GET[$var]) ? htmlspecialchars($_GET[$var], ENT_QUOTES) : $default; }
+	public static function getGetInt($var, $default=0) { return true === isset($_GET[$var]) ? ((int)$_GET[$var]) : $default; }
+	public static function getGetString($var, $default='') { return true === isset($_GET[$var]) ? (string)$_GET[$var] : $default; }
+	public static function getGetArray($var, $default=false) { return (true === isset($_GET[$var]) && is_array($_GET[$var])) ? $_GET[$var] : $default; }
+	public static function displayGet($var, $default='') { return true === isset($_GET[$var]) ? htmlspecialchars($_GET[$var], ENT_QUOTES) : $default; }
 	
-	public static function getPost($var, $default=false) { return isset($_POST[$var]) ? ($_POST[$var]) : $default; }
+	public static function getPost($var, $default=false) { return true === isset($_POST[$var]) ? ($_POST[$var]) : $default; }
 	public static function cmpPost($var, $cmp, $default=false) { return $cmp === self::getPost($var, $default) ? true : $default; }
-	public static function getPostInt($var, $default=0) { return isset($_POST[$var]) ? ((int)$_POST[$var]) : $default; }
-	public static function getPostString($var, $default='') { return (isset($_POST[$var]) ? (string)$_POST[$var] : $default); }
-	public static function getPostArray($var, $default=false) { return (isset($_POST[$var]) && is_array($_POST[$var])) ? $_POST[$var] : $default; }
-	public static function displayPost($var, $default='') { return isset($_POST[$var]) ? htmlspecialchars($_POST[$var], ENT_QUOTES) : $default; }
+	public static function getPostInt($var, $default=0) { return true === isset($_POST[$var]) ? ((int)$_POST[$var]) : $default; }
+	public static function getPostString($var, $default='') { return true === isset($_POST[$var]) ? (string)$_POST[$var] : $default; }
+	public static function getPostArray($var, $default=false) { return (true === isset($_POST[$var]) && is_array($_POST[$var])) ? $_POST[$var] : $default; }
+	public static function displayPost($var, $default='') { return true === isset($_POST[$var]) ? htmlspecialchars($_POST[$var], ENT_QUOTES) : $default; }
 	
-	public static function getRequest($var, $default=false) { return isset($_REQUEST[$var]) ? ($_REQUEST[$var]) : $default; }
+	public static function getRequest($var, $default=false) { return true === isset($_REQUEST[$var]) ? ($_REQUEST[$var]) : $default; }
 	public static function cmpRequest($var, $cmp, $default=false) { return $cmp === self::getRequest($var, $default) ? true : $default; }
-	public static function getRequestInt($var, $default=0) { return isset($_REQUEST[$var]) ? ((int)$_REQUEST[$var]) : $default; }
-	public static function getRequestString($var, $default='') { return isset($_REQUEST[$var]) ? (string)$_REQUEST[$var] : $default; }
-	public static function getRequestArray($var, $default=false) { return (isset($_REQUEST[$var]) && is_array($_REQUEST[$var])) ? $_REQUEST[$var] : $default; }
+	public static function getRequestInt($var, $default=0) { return true === isset($_REQUEST[$var]) ? ((int)$_REQUEST[$var]) : $default; }
+	public static function getRequestString($var, $default='') { return true === isset($_REQUEST[$var]) ? (string)$_REQUEST[$var] : $default; }
+	public static function getRequestArray($var, $default=false) { return (true === isset($_REQUEST[$var]) && is_array($_REQUEST[$var])) ? $_REQUEST[$var] : $default; }
 	
-	public static function getCookie($var, $default=NULL) { return (isset($_COOKIE[$var]) ? (string)$_COOKIE[$var] : $default); }
+	public static function getCookie($var, $default=NULL) { return (true === isset($_COOKIE[$var]) ? (string)$_COOKIE[$var] : $default); }
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
-	public static function displayCookie($var, $default='') { return isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
+	public static function displayCookie($var, $default='') { return true === isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
 	
 	###############
 	## CONSTANTS ##
@@ -48,12 +48,12 @@ final class Common
 	###########
 	### URL ###
 	###########
-	public static function getHost() { return isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : GWF_DOMAIN; }
-	public static function getProtocol() { return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off') ? 'https' : 'http';  }
+	public static function getHost() { return true === isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : GWF_DOMAIN; }
+	public static function getProtocol() { return (true === isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']!=='off') ? 'https' : 'http'; }
 	public static function getAbsoluteURL($url, $with_root=true) { $root = $with_root ? GWF_WEB_ROOT : ''; return sprintf('%s://%s%s%s', self::getProtocol(), self::getHost(), $root, $url); }
 	public static function getCurrentURL() { return $_SERVER['REQUEST_URI']; }
-	public static function getRelativeURL($url) { return self::WEB_ROOT.$url; }
-	public static function getAbsolutePath($file) { return self::SERVER_PATH.'/'.$file; }
+	public static function getRelativeURL($url) { return GWF_WEB_ROOT.$url; }
+	public static function getAbsolutePath($file) { return self::SERVER_PATH.'/'.$file; } //<- gizmore: BUG
 	public static function getRelativePath($file) { return $file; }
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
@@ -154,7 +154,7 @@ final class Common
 	 */
 	public static function get(array $array, $key, $default)
 	{
-		return isset($array[$key]) ? $array[$key] : $default;
+		return true === isset($array[$key]) ? $array[$key] : $default;
 	}
 
 	#################
