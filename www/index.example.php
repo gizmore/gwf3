@@ -15,7 +15,6 @@ $gwf = new GWF3(getcwd(), array(
 //	'init' => true,
 // 	'bootstrap' => false,
 // 	'website_init' => true,
-//	'client_info' => false,
 // 	'autoload_modules' => true,
 // 	'load_module' => true,
 // 	'load_config' => false,

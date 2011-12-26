@@ -17,7 +17,6 @@ class GWF3
 		'init' => true, # Init?
 		'bootstrap' => false, # Init GWF_Bootstrap?
 		'website_init' => true, # Init GWF_Website?
-		'client_info' => true, # Init GWF_ClientInfo Langfile?
 		'autoload_modules' => true, # Load modules with autoload flag?
 		'load_module' => true, # Load the requested module?
 		'load_config' => false, # Load the config file? (DEPRECATED) # TODO: REMOVE

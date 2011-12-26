@@ -2,17 +2,24 @@
 /**
  * Some functions to get Infos like browser, OS, provider about the Surfer
  * @author spaceone
- * @version 1.1
+ * @version 1.2
  */
 final class GWF_ClientInfo
 {
-		#################
-		### Lang File ###
-		#################
+	#################
+	### Lang File ###
+	#################
 	private static $trans;
-		public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/client/client'); }
-		public static function &getLang() { return self::$trans; }
-		public static function lang($key, $args=NULL) { return self::$trans->lang($key, $args); }
+	public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/client/client'); }
+	public static function &getLang() { return self::$trans; }
+	public static function lang($key, $args=NULL)
+	{
+		if(false === isset(self::$trans))
+		{
+			self::init();
+		}
+		return self::$trans->lang($key, $args);
+	}
 
 	public static $_provider = array(
 		'alicedsl.de',
@@ -153,72 +160,56 @@ final class GWF_ClientInfo
 
 	public static function getHostname($default=false)
 	{
-		return isset($_SERVER['REMOTE_ADDR']) ? htmlspecialchars(getHostByAddr($_SERVER['REMOTE_ADDR'])) : $default;
+		return true === isset($_SERVER['REMOTE_ADDR']) ? htmlspecialchars(getHostByAddr($_SERVER['REMOTE_ADDR'])) : $default;
 	}
 	public static function getUserAgent($default=false)
 	{
-		return isset($_SERVER['HTTP_USER_AGENT']) ? htmlspecialchars($_SERVER['HTTP_USER_AGENT']) : $default;
+		return true === isset($_SERVER['HTTP_USER_AGENT']) ? htmlspecialchars($_SERVER['HTTP_USER_AGENT']) : $default;
 	}
 	public static function getIPAddress($default='127.0.0.1')
 	{
-		return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : $default;
+		return true === isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : $default;
 	}
 	public static function getReferer($default=false)
 	{
-		return isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : $default;
+		return true === isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : $default;
 	}
 
-	public static function getProvider($cmp=NULL)
+	public static function getProvider()
 	{
 		static $detail;
-		if(!isset($detail))
+		if(false === isset($detail))
 		{
 			$detail = self::getDetails(self::getHostname(), self::$_provider);
 		}
-		return $cmp === NULL ? $detail : $cmp === $detail;
+		return $detail;
 	}
 
-	public static function getOperatingSystem($cmp=NULL)
+	public static function getOperatingSystem()
 	{
 		static $detail;
-		if(!isset($detail))
+		if(false === isset($detail))
 		{
 			$detail = self::getDetails(self::getUseragent(), self::$_system);
 		}
-		return $cmp === NULL ? $detail : $cmp === $detail;
+		return $detail;
 	}
 
-	public static function getBrowser($cmp=NULL)
+	public static function getBrowser()
 	{
 		static $detail;
-		if(!isset($detail))
+		if(false === isset($detail))
 		{
 			$detail = self::getDetails(self::getUseragent(), self::$_browser);
 		}
-		return $cmp === NULL ? $detail : $cmp === $detail;
+		return $detail;
 	}
 
-	public static function getRenderingEngine($cmp=NULL)
-	{
-		$detail = self::getDetails(self::getUseragent(), self::$_engines);
-		return $cmp === NULL ? $detail : $cmp === $detail;
-	}
+	public static function getRenderingEngine() { return self::getDetails(self::getUseragent(), self::$_engines); }
 
-	public static function displayBrowser()
-	{
-		$browser = self::getBrowser();
-		return self::lang($browser);
-	}
-	public static function displayOperatingSystem()
-	{
-		$os = self::getOperatingSystem();
-		return self::lang($os);
-	}
-	public static function displayProvider()
-	{
-		$provider = self::getProvider();
-		return self::lang($provider);
-	}
+	public static function displayBrowser() { return self::lang(self::getBrowser()); }
+	public static function displayOperatingSystem() { return self::lang(self::getOperatingSystem()); }
+	public static function displayProvider() { return self::lang(self::getProvider()); }
 
 	public static function validateImgPath($path)
 	{
@@ -235,17 +226,13 @@ final class GWF_ClientInfo
 		$path = sprintf('img/%s/%s.png', GWF_ICON_SET, $path . self::validateImgPath($name));
 		return ( !$check || is_file(GWF_WWW_PATH.$path) ) ? sprintf('<img src="%s" title="%s" alt="%s" class="gwf_icon">', GWF_WEB_ROOT.$path, self::lang($name), self::lang($name)) : '';
 	}
-	public static function imgBrowser($path='client/')
-	{
-		return self::image( self::getBrowser(), $path );
-	}
-	public static function imgOperatingSystem($path='client/')
-	{
-		return self::image( self::getOperatingSystem(), $path );
-	}
-	public static function imgProvider($path='client/')
-	{
-		return self::image( self::getProvider(), $path );
-	}
-
+	public static function imgBrowser($path='client/') { return self::image( self::getBrowser(), $path ); }
+	public static function imgOperatingSystem($path='client/') { return self::image( self::getOperatingSystem(), $path ); }
+	public static function imgProvider($path='client/') { return self::image( self::getProvider(), $path ); }
+	
+	public static function cmpBrowser($cmp) { return $cmp === self::getBrowser(); }
+	public static function cmpOperatingSystem($cmp) { return $cmp === self::getOperatingSystem(); }
+	public static function cmpProvider($cmp) { return $cmp === self::getProvider(); }
+	public static function cmpRenderingEngine($cmp) { return $cmp === self::getRenderingEngine(); }
+	public static function cmpIPAddress($cmp) { return $cmp === self::getIPAddress(); }
 }
