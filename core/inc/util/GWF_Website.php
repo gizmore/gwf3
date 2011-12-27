@@ -138,11 +138,11 @@ final class GWF_Website
 	 */
 	public static function addMeta(array $metaA, $overwrite=false)
 	{
-		if((false === $overwrite) && (isset(self::$_meta[$meta[0]]) === true))
+		if((false === $overwrite) && (isset(self::$_meta[$metaA[0]]) === true))
 		{
 			return false;
 		}
-		self::$_meta[$meta[0]] = $meta;
+		self::$_meta[$meta[0]] = $metaA;
 		return true;
 	}
 
