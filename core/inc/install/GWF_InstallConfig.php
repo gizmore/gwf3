@@ -218,7 +218,7 @@ final class GWF_InstallConfig
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# Smarty
-			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', $path.'extra/temp/smarty_cache/tpl', 'Path to smarty template directory.'),
+			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', GWF_WWW_PATH.'www/', 'Path to smarty template directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', $path.'extra/temp/smarty_cache/tplc', 'Path to smarty caching directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', $path.'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
 			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', $path.'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),

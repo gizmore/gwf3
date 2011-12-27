@@ -25,7 +25,7 @@ final class GWF_AutoConfig
 		define('GWF_ICON_SET', 'default');
 		
 		define('GWF_SMARTY_PATH', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php');
-		define('GWF_SMARTY_TPL_DIR', GWF_PATH.'extra/temp/smarty_cache/tpl');
+		define('GWF_SMARTY_TPL_DIR', GWF_WWW_PATH.'tpl');
 		define('GWF_SMARTY_COMPILE_DIR', GWF_PATH.'extra/temp/smarty_cache/tplc');
 		define('GWF_SMARTY_CACHE_DIR', GWF_PATH.'extra/temp/smarty_cache/cache');
 		define('GWF_SMARTY_CONFIG_DIR', GWF_PATH.'extra/temp/smarty_cache/cfg');
