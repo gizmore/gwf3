@@ -68,13 +68,13 @@ final class GWF_Website
 	public static function addJavascriptInline($script_html) { self::$_javascript_inline .= $script_html;} # Raw JavaScript
 	public static function addJavascriptOnload($script_html) { self::$_javascript_onload .= $script_html; }
 	public static function addInlineCSS($css) { self::$_inline_css .= $css; }
-	public static function addMetaDescr($s) { self::$_meta_descr['description'] .= $s; }
-	public static function addMetaTags($s) { self::$_meta_tags['keywords'] .= $s; }
+	public static function addMetaDescr($s) { self::$_meta['description'] .= $s; }
+	public static function addMetaTags($s) { self::$_meta['keywords'] .= $s; }
 	public static function addFeed($href, $title, $media=0) { self::addLink($href, 'application/rss+xml', 'alternate', $media, $title); }
 	public static function addCSS($path, $media=0) { self::addLink($path, 'text/css', 'stylesheet', $media); }
 
-	public static function setMetaTags($s) { self::$_meta_tags['keywords'] = $s; }
-	public static function setMetaDescr($s) { self::$_meta_descr['description'] = $s; }
+	public static function setMetaTags($s) { self::$_meta['keywords'] = $s; }
+	public static function setMetaDescr($s) { self::$_meta['description'] = $s; }
 	public static function setPageTitle($title) { self::$_page_title = $title; }
 	public static function setPageTitlePre($title) { self::$_page_title_pre = $title; }
 	public static function setPageTitleAfter($title) { self::$_page_title_post = $title; }
@@ -89,7 +89,7 @@ final class GWF_Website
 	 */
 	public static function addLink($href, $type, $rel, $media=0, $title='')
 	{
-		self::$_links[] = array(urlencode($href), $type, $rel, (int)$media, htmlspecialchars($title));
+		self::$_links[] = array(htmlspecialchars($href), $type, $rel, (int)$media, htmlspecialchars($title));
 	}
 
 	/**
@@ -99,7 +99,7 @@ final class GWF_Website
 	public static function displayLink()
 	{
 		$back = '';
-		foreach($self::$_links as $link)
+		foreach(self::$_links as $link)
 		{
 			list($href, $type, $rel, $media, $title) = $link;
 			$media = self::$_media[$media];
@@ -142,7 +142,7 @@ final class GWF_Website
 		{
 			return false;
 		}
-		self::$_meta[$meta[0]] = $metaA;
+		self::$_meta[$metaA[0]] = $metaA;
 		return true;
 	}
 
