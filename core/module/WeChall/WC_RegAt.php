@@ -230,7 +230,10 @@ final class WC_RegAt extends GDO
 		$userid = $user->getVar('user_id');
 		$siteid = (int)$siteid;
 		$table = GDO::table('WC_RegAt');
-		$myscore = $table->selectVar('regat_solved', "regat_sid=$siteid AND regat_uid=$userid");
+		if (false === ($myscore = $table->selectVar('regat_solved', "regat_sid=$siteid AND regat_uid=$userid")))
+		{
+			$myscore = '0';
+		}
 		return $table->countRows("(regat_options&4=0) AND (regat_sid=$siteid ) AND ( (regat_solved>$myscore) OR (regat_solved=$myscore AND regat_uid<$userid) )") + 1;
 	}
 	

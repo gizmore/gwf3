@@ -11,7 +11,7 @@ final class GWF_AuditMails extends GDO
 		);
 	}
 	
-	public function getEMail(GWF_AuditLog $log)
+	public static function getEMail(GWF_AuditLog $log)
 	{
 		$username = GDO::escape($log->getVar('al_eusername'));
 		return self::table(__CLASS__)->selectVar('am_email', "am_username='$username'");

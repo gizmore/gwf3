@@ -6,21 +6,30 @@ final class Seattle_Store extends SR_Store
 	
 	public function getNPCS(SR_Player $player)
 	{
-		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
-		if ($quest->isDone($player))
+		if ($this->isMaloisHere($player))
 		{
-			$quest2 = SR_Quest::getQuest($player, 'Quest_Chicago_HotelWoman1');
-			if ( (!$quest2->isAccepted($player)) && (!$quest2->isDone($player)) )
-			{
-				return array('talk'=>'Seattle_DElve2');
-			}
+			return array('talk'=>'Seattle_DElve2');
 		}
 		return parent::getNPCS($player);
 	}
-	public function getEnterText(SR_Player $player)
+	
+	private function isMaloisHere(SR_Player $player)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
 		if ($quest->isDone($player))
+		{
+			$quest2 = SR_Quest::getQuest($player, 'Chicago_HotelWoman1');
+			if ( (!$quest2->isAccepted($player)) && (!$quest2->isDone($player)) )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public function getEnterText(SR_Player $player)
+	{
+		if ($this->isMaloisHere($player))
 		{
 			return 'You enter the Seattle Store. No employees are around. In front of a slot machine you see Malois.';
 		}
@@ -32,9 +41,7 @@ final class Seattle_Store extends SR_Store
 	}
 	public function getHelpText(SR_Player $player)
 	{
-		$c = Shadowrun4::SR_SHORTCUT; 
-		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
-		if ($quest->isDone($player))
+		if ($this->isMaloisHere($player))
 		{
 			return parent::getHelpText($player)." Use {$c}talk to talk to Malois.";
 		}

@@ -334,7 +334,7 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		return sprintf('Warchall Audit %d DONE: %s_%s', $log->getID(), $log->getVar('al_eusername'), $log->getVar('al_username'));
 	}
 	
-	private static function getMailSubjUser(Module_Audit $module, GWF_User $user, GWF_AuditLog $log)
+	private static function getMailSubjUser(Module_Audit $module, GWF_AuditLog $log)
 	{
 		return sprintf('Warchall logfile %d', $log->getID());
 	}

@@ -6,7 +6,7 @@ function cron_level_5($entry, $fullpath, $args=NULL)
 	$username = $entry;
 	
 	$dir = $fullpath.'/level';
-	if (false === ($stat = stat($dir)))
+	if (false === ($stat = @stat($dir)))
 	{
 		return;
 	}
