@@ -6,6 +6,7 @@
  * @author gizmore, spaceone
  */
 final class GWF_InstallFunctions
+{
 	############
 	### Core ###
 	############

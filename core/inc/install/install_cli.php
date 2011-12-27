@@ -15,7 +15,7 @@ if (PHP_SAPI !== 'cli')
 chdir('../../../');
 require_once 'gwf3.class.php'; 
 
-if(!defined('GWF_CONFIG_PATH')
+if(!defined('GWF_CONFIG_PATH'))
 {
 	define('GWF_CONFIG_PATH', realpath(GWF_PATH.'www/protected/config.php')); #TODO
 }
