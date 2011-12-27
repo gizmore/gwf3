@@ -162,7 +162,15 @@ final class GWF_Template
 			}
 		}
 
-		return $smarty->fetch($path2);
+		try
+		{
+			return $smarty->fetch($path2);
+		}
+		catch (Exception $e)
+		{
+			return 'SMARTY ERROR: TODO';
+		}
+		
 	}
 }
 ?>

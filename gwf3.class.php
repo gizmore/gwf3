@@ -112,11 +112,6 @@ class GWF3
 		{ 
 			GWF_Website::init();
 		}
-			
-		if (true === $config['client_info']) 
-		{ 
-			GWF_ClientInfo::init();
-		}
 		
 		if (false === $config['no_session'])
 		{

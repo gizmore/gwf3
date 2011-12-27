@@ -87,9 +87,9 @@ final class GWF_Website
 	 * @param string $href URL
 	 * @see http://www.w3schools.com/tags/tag_link.asp
 	 */
-	public static function addLink($href, $type, $rel, int $media=0, $title='')
+	public static function addLink($href, $type, $rel, $media=0, $title='')
 	{
-		self::$_links[] = array(urlencode($href), $type, $rel, $media, htmlspecialchars($title));
+		self::$_links[] = array(urlencode($href), $type, $rel, (int)$media, htmlspecialchars($title));
 	}
 
 	/**
