@@ -12,7 +12,7 @@
 <!-- @start right -->
 {if $SF->isDisplayed('naviright')}
 			<div id="right" class="navigation">
-{include file="tpl/{$design}/navi_right.tpl" assign='navi_right' side='naviright' navigation="$SF->displayNavi('right')"}
+{include file="tpl/{$design}/navi.tpl" assign='navi_right' side='naviright' navigation="{$SF->displayNavi('right')}"}
 {$navi_right|indent:4:"\t"}
 			</div>
 {else}

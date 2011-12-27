@@ -15,6 +15,9 @@ abstract class GWF_Method
 	public function isLoginRequired() { return false; }
 	public function checkDependencies() { return false; }
 	public function getHTAccess(GWF_Module $module) { return ''; }
+	public function getMetaKeywords() { return false; }
+	public function getMetaDescription() { return false; }
+	public function getPageTitle() { return false; }
 	
 	##################
 	### Permission ###
@@ -24,10 +27,12 @@ abstract class GWF_Method
 		$user = GWF_Session::getUser();
 		$groups = $this->getUserGroups();
 		$need_login = $this->isLoginRequired() || $groups !== NULL;
-		if ($need_login && ($user === false)) {
+		if (($need_login === true) && ($user === false))
+		{
 			return false;
 		}
-		if ($groups === NULL) {
+		if ($groups === NULL)
+		{
 			return true;
 		}
 		if (is_string($groups)) { $groups = array($groups); }

@@ -93,12 +93,12 @@ final class GWF_ModuleLoader
 		
 		$modulename = "Module_$name";
 		$filename = GWF_CORE_PATH."module/$name/$modulename.php";
-		if (!Common::isFile($filename)) {
+		if (false === Common::isFile($filename)) {
 			return false;
 		}
 		require_once $filename;
 		
-		if (!class_exists($modulename)) {
+		if (false === class_exists($modulename)) {
 			return false;
 		}
 		$module = new $modulename();
@@ -126,7 +126,7 @@ final class GWF_ModuleLoader
 		$module->setOption(GWF_Module::AUTOLOAD, $module->getDefaultAutoLoad());
 		$module->loadVars();
 		
-		if ($module->isEnabled())
+		if (true === $module->isEnabled())
 		{
 			$module->onStartup();
 		}
@@ -316,7 +316,7 @@ final class GWF_ModuleLoader
 				# Fallthrough
 			
 			case 'int':
-				if (!is_numeric($value)) { return false; }
+				if (false === is_numeric($value)) { return false; }
 				if ( ($min !== NULL) && ($value < $min) ) { $exceed = 1; return false; }
 				if ( ($max !== NULL) && ($value > $max) ) { $exceed = 1; return false; }
 				return (string)intval($value);
@@ -405,12 +405,12 @@ final class GWF_ModuleLoader
 		
 	public static function installHTAccess2(array $modules)
 	{
-		$hta = '';
+		$hta = GWF_HTAccess::getHTAccess();
 		foreach ($modules as $module)
 		{
 			$module instanceof GWF_Module;
 			
-			if (!$module->isEnabled())
+			if (false === $module->isEnabled())
 			{
 				continue;
 			}
@@ -423,7 +423,6 @@ final class GWF_ModuleLoader
 			}
 			$hta .= PHP_EOL;
 		}
-		$hta = GWF_HTAccess::getHTAccess().$hta;
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
 	}
 
@@ -462,7 +461,7 @@ final class GWF_ModuleLoader
 					{
 						if(false === is_array($a) || count($a) < $c)
 						{
-							unset($pmlinks[$k];
+							unset($pmlinks[$k]);
 						}
 					//	else
 					//	{
@@ -499,7 +498,7 @@ final class GWF_ModuleLoader
 		
 		if (false === ($dir = scandir($path)))
 		{
-			die('Cannot access '.$path.' in '.__METHOD__.' line '.__LINE__);
+			GWF3::logDie('Cannot access '.$path.' in '.__METHOD__.' line '.__LINE__);
 		}
 		
 		foreach ($dir as $file)
@@ -515,7 +514,7 @@ final class GWF_ModuleLoader
 			{
 				if (false === ($method = $module->getMethod(substr($file, 0, -4))))
 				{
-					die('NO METHOD for '.$file);
+					GWF3::logDie('NO METHOD for '.$file);
 				}
 				$back[] = $method;
 			}

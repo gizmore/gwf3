@@ -74,7 +74,7 @@ final class SF_Navigation extends GDO
 		{
 			$ret .= self::liste('sec', $sec['short'], 1) . 
 					self::link('sec='.$sec['short'].'#'.self::$idprefix.$sec['short'], $sec['name'], '', 2, true) .
-					"<ul>".PHP_EOL;
+					self::tab(2) . "<ul>".PHP_EOL;
 
 			$seclinks = self::sql_links($sec['ID']);
 			foreach($seclinks as $seclink) 
@@ -118,8 +118,8 @@ final class SF_Navigation extends GDO
 				$ret .= self::tab(4) . "</ul>".PHP_EOL;
 				$ret .= self::tab(3) . "</li>".PHP_EOL;
 			}
-		$ret .= self::tab(2) ."</ul>".PHP_EOL;
-		$ret .= self::tab(1) ."</li>".PHP_EOL;
+			$ret .= self::tab(2) ."</ul>".PHP_EOL;
+			$ret .= self::tab(1) ."</li>".PHP_EOL;
 		}
 
 		return $ret;

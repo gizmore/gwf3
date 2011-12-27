@@ -1,14 +1,26 @@
 <?php
+/**
+ * 
+ * @author spaceone, gizmore
+ */
 final class GWF_Website
 {
-	####################
-	### Content-Type ###
-	####################
-	public static function plaintext() { header('Content-Type: text/plain; charset=UTF-8'); }
-	
-	############
-	### Init ###
-	############
+	private static $_page_title = GWF_SITENAME;
+	private static $_page_title_pre = '';
+	private static $_page_title_post = '';
+
+	private static $_feeds = array();
+	private static $_meta = array();
+	private static $_css = array();
+
+	private static $_inline_css = '';
+	private static $_output = '';
+	private static $xhtml = "/>\n\t";
+
+	private static $_javascripts = array();
+	private static $_javascript_inline = '';
+	private static $_javascript_onload = '';
+
 	public static function init()
 	{
 		if(isset($_GET['plain']))
@@ -24,185 +36,18 @@ final class GWF_Website
 
 		self::$xhtml = (self::isHTML() ? '>' : ' />') . "\n\t";
 	}
-	
-	private static $xhtml = "/>\n\t";
-	public static function isHTML() { return strpos(GWF_DEFAULT_DOCTYPE, 'xhtml') === false; }
-	
-	#################
-	### Birthdate ###
-	#################
-	public static function getBirthdate() { return GWF_Settings::getSetting('gwf_site_birthdate', date('Ymd')); }
-	
-	######################
-	### Default Output ###
-	######################
-	private static $OUTPUT = '';
-	public static function addDefaultOutput($html) { self::$OUTPUT .= $html; }
-	public static function getDefaultOutput() { return self::$OUTPUT; }
-	
-	##################
-	### Page Title ###
-	##################
-	private static $PAGE_TITLE = GWF_SITENAME;
-	public static function setPageTitle($text) { self::$PAGE_TITLE = $text; }
-	private static $PAGE_TITLE_PRE = '';
-	public static function setPageTitlePre($text) { self::$PAGE_TITLE_PRE = $text; }
-	private static $PAGE_TITLE_AFTER = '';
-	public static function setPageTitleAfter($text) { self::$PAGE_TITLE_AFTER = $text; }
-	public static function displayPageTitle() { return htmlspecialchars(self::$PAGE_TITLE_PRE.self::$PAGE_TITLE.self::$PAGE_TITLE_AFTER); }
-	
-	############
-	### Meta ###
-	############
-	private static $META = array();
-	/**
-	 * @param $meta = array($name, $content, $equiv(?));
-	 * @param $aggressive
-	 */
-	public static function addMeta(array $meta, $aggressive = false)
-	{
-		if (array_key_exists($meta[0], self::$META) && !$aggressive) {
-			return;
-		}
-		self::$META[$meta[0]] = $meta;
-	}
-	public static function addMetaA(array $metas)
-	{
-		foreach($metas as $meta) {
-			self::addMeta($meta);
-		}
-	}
-	public static function displayMETA()
-	{
-		$back = '';
-		foreach (self::$META as $meta)
-		{
-			$eq = ($meta[2] ? 'http-equiv' : 'name');
-			$back .= sprintf('<meta %s="%s" content="%s"%s', $eq, $meta[0], $meta[1], self::$xhtml);
-		}
-		return $back;
-	}
 
-	#################
-	### Meta Tags ###
-	#################
-	private static $META_TAGS;
-	public static function setMetaTags($s) { self::$META_TAGS = $s; }
-	public static function addMetaTags($s) { self::$META_TAGS .= $s; }
-	public static function displayMetaTags() 
-	{
-		self::addMeta(array('keywords', self::$META_TAGS, false), true);
-		return self::$META_TAGS;
-	}
+	public static function plaintext() { header('Content-Type: text/plain; charset=UTF-8'); }
+	public static function isHTML() { return false === strpos(GWF_DEFAULT_DOCTYPE, 'xhtml'); }
+	public static function getBirthdate() { return GWF_Settings::getSetting('gwf_site_birthdate', date('Ymd')); } //TODO: move to other file
 
-	##################
-	### Meta Descr ###
-	##################
-	private static $META_DESCR;
-	public static function setMetaDescr($s) { self::$META_DESCR = $s; }
-	public static function addMetaDescr($s) { self::$META_DESCR .= $s; }
-	public static function displayMetaDescr() 
-	{
-		self::addMeta(array('description', self::$META_DESCR, false), true);
-		return self::$META_DESCR;
-	}	
-			
-	###########
-	### CSS ###
-	###########
-	private static $CSS = array();
-	public static function addCSS($path, $rel = 'stylesheet', $media = false)
-	{
-		if (is_array($path)) {
-			if (in_array($path, self::$CSS, true)) { 
-				return; 
-			}
-			self::$CSS[] = $path;
-		} else {
-			if (in_array(array($path, $rel, $media), self::$CSS, true)) {
-				return;
-			}
-			self::$CSS[] = array($path, $rel, $media);
-		}
-	}
-	
-	public static function addCSSA(array $paths, $pre = '', $after = '')
-	{
-		foreach($paths as $path)
-		{
-			self::addCSS($pre.$path.$after);
-		}
-	}
-	private static $_INLINECSS = '';
-	public static function addInlineCSS($string)
-	{
-		self::$_INLINECSS .= $string;
-	}
-	
-	public static function displayCSS()
-	{
-		$back = '';
-		foreach (self::$CSS as $css)
-		{
-			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s', $css[1], $css[0], self::$xhtml);
-		}
-		if('' !== self::$_INLINECSS)
-		{
-			$back .= sprintf("\n\t<style><!--\n\t%s\n\t--></style>", self::$_INLINECSS);
-		}
-		return $back;
-	}
-
-	##################
-	### Javascript ###
-	##################
-	private static $javascripts = array();
-	public static function addJavascript($path)
-	{
-		if (!in_array($path, self::$javascripts, true))
-		{
-			self::$javascripts[] = $path;
-		}
-	}
-
-	public static function displayJavascripts()
-	{
-		$back = '';
-		foreach (self::$javascripts as $js)
-		{
-			$back .= sprintf('<script type="text/javascript" src="%s"></script>', htmlspecialchars($js));
-		}
-		return $back.self::displayJavascriptInline();
-	}
-	
-	### Raw javascript ###
-	private static $javascript_inline = '';
-	public static function addJavascriptInline($script_html) { self::$javascript_inline .= $script_html;}
-	public static function displayJavascriptInline()
-	{
-		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
-		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$javascript_inline.self::displayJavascriptOnload());
-	}
-
-	### JQuery onload ###
-	private static $javascript_onload = '';
-	public static function addJavascriptOnload($script_html) { self::$javascript_onload .= $script_html; }
-	private static function displayJavascriptOnload()
-	{
-		return self::$javascript_onload ? sprintf('; $(document).ready(function(){ %s; });', self::$javascript_onload) : '';
-	}
-	
-	#################
-	### Redirects ###
-	#################
-//	public static function redirectHome() { self::redirect(GWF_WEB_ROOT.GWF_DEFAULT_URL); }
+	public static function redirect($url) { header('Location: ' . $url); }
 	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d; url=%s', $seconds, $url)); }
-	public static function redirect($url) { header(sprintf('Location: %s', $url)); }
 	public static function redirectBack()
 	{
 		if (false === ($url = GWF_Session::getLastURL()))
 		{
-			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL;
+			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL; //@deprecated
 		}
 		else
 		{
@@ -211,19 +56,129 @@ final class GWF_Website
 		self::redirect($url);
 	}
 
-	#############
-	### Feeds ###
-	#############
-	private static $FEEDS = array();
-	public static function addFeed($url, $title)
+	public static function addDefaultOutput($html) { self::$_output .= $html; }
+	public static function addJavascriptInline($script_html) { self::$_javascript_inline .= $script_html;} # Raw JavaScript
+	public static function addJavascriptOnload($script_html) { self::$_javascript_onload .= $script_html; }
+	public static function addInlineCSS($css) { self::$_inline_css .= $css; }
+	public static function addMetaDescr($s) { self::$_meta_descr['description'] .= $s; }
+	public static function addMetaTags($s) { self::$_meta_tags['keywords'] .= $s; }
+	public static function addFeed($url, $title) { self::$_feeds[] = func_get_args(); }
+
+	public static function setMetaTags($s) { self::$_meta_tags['keywords'] = $s; }
+	public static function setMetaDescr($s) { self::$_meta_descr['description'] = $s; }
+	public static function setPageTitle($title) { self::$_page_title = $title; }
+	public static function setPageTitlePre($title) { self::$_page_title_pre = $title; }
+	public static function setPageTitleAfter($title) { self::$_page_title_post = $title; }
+
+	public static function addMetaA(array $metaA)
 	{
-		self::$FEEDS[] = func_get_args();
+		foreach($metaA as $meta)
+		{
+			self::addMeta($meta);
+		}
+	}
+	public static function addCSSA(array $paths, $pre='', $after='')
+	{
+		foreach($paths as $path)
+		{
+			self::addCSS($pre.$path.$after);
+		}
+	}
+
+	/**
+	 * @param $meta = array($name, $content, $http-equiv(?));
+	 * @param $overwrite overwrite key if exist?
+	 * @return boolean false if metakey was not overwritten, otherwise true
+	 * @todo possible without key but same functionality?
+	 */
+	public static function addMeta(array $meta, $overwrite=false)
+	{
+		if((false === $overwrite) && (isset(self::$_meta[$meta[0]]) === true))
+		{
+			return false;
+		}
+		self::$_meta[$meta[0]] = $meta;
+		return true;
+	}
+
+	public static function addCSS($path, $rel='stylesheet', $media=false)
+	{
+		if (is_array($path)) {
+			if (in_array($path, self::$_css, true)) { 
+				return; 
+			}
+			self::$_css[] = $path;
+		} else {
+			if (in_array(array($path, $rel, $media), self::$_css, true)) {
+				return;
+			}
+			self::$_css[] = array($path, $rel, $media);
+		}
+	}
+
+	public static function addJavascript($path)
+	{
+		if (false === in_array($path, self::$_javascripts, true))
+		{
+			self::$_javascripts[] = $path;
+		}
+	}
+
+	public static function getDefaultOutput() { return self::$_output; }
+	public static function displayPageTitle() { return htmlspecialchars(self::$_page_title_pre.self::$_page_title.self::$_page_title_post); }
+	
+	public static function displayMETA()
+	{
+		$back = '';
+		foreach (self::$_meta as $meta)
+		{
+			$eq = ($meta[2] ? 'http-equiv' : 'name');
+			$back .= sprintf('<meta %s="%s" content="%s"%s', $eq, $meta[0], $meta[1], self::$xhtml);
+		}
+		return $back;
+	}
+
+	public static function displayCSS()
+	{
+		$back = '';
+		foreach (self::$_css as $css)
+		{
+			$back .= sprintf('<link rel="%s" type="text/css" href="%s"%s', $css[1], $css[0], self::$xhtml);
+		}
+		if('' !== self::$_inline_css)
+		{
+			$back .= sprintf("\n\t<style><!--\n\t%s\n\t--></style>", self::$_inline_css);
+		}
+		return $back;
+	}
+
+	public static function displayJavascripts()
+	{
+		$back = '';
+		foreach (self::$_javascripts as $js)
+		{
+			$back .= sprintf('<script type="text/javascript" src="%s"></script>', htmlspecialchars($js));
+		}
+		return $back.self::displayJavascriptInline();
 	}
 	
+	### Raw javascript ###
+	public static function displayJavascriptInline()
+	{
+		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
+		return sprintf('<script type="text/javascript">%s</script>', $inline_defines.self::$_javascript_inline.self::displayJavascriptOnload());
+	}
+
+	### JQuery onload ###
+	private static function displayJavascriptOnload()
+	{
+		return self::$_javascript_onload ? sprintf('; $(document).ready(function(){ %s; });', self::$_javascript_onload) : '';
+	}
+
 	public static function displayFeeds()
 	{
 		$back = '';
-		foreach (self::$FEEDS as $data)
+		foreach (self::$_feeds as $data)
 		{
 			list($href, $title) = array_map('htmlspecialchars', $data);
 			$back .= sprintf('<link rel="alternate" type="application/rss+xml" title="%s" href="%s" />', $title, $href);
@@ -234,15 +189,12 @@ final class GWF_Website
 	####################
 	### Display Page ###
 	####################
-
 	public static function getHTMLHead()
 	{
 		$tVars = array(
 			'page_title' => self::displayPageTitle(),
 			'language' => GWF_Language::getCurrentISO(),
-			'meta_tags' => self::displayMetaTags(),
-			'meta_descr' => self::displayMetaDescr(),
-			'meta' => self::displayMETA(), // important: must be under displayMetaDescr/Tags
+			'meta' => self::displayMETA(),
 			'favicon' => GWF_WEB_ROOT.'favicon.ico',
 			'feeds' => self::displayFeeds(),
 			'root' => GWF_WEB_ROOT,
@@ -254,12 +206,12 @@ final class GWF_Website
 		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
 	
-	public static function getHTMLbody_head($path = 'tpl/%DESIGN%/', $tVars = NULL)
+	public static function getHTMLbody_head($path='tpl/%DESIGN%/', $tVars=NULL)
 	{
 		return GWF_Template::templateMain('html_body.tpl', $tVars);
 	}
 	
-	public static function getHTMLbody_foot($path = 'tpl/%DESIGN%/', $tVars = array())
+	public static function getHTMLbody_foot($path='tpl/%DESIGN%/', $tVars=array())
 	{
 		return GWF_Template::templateMain('html_foot.tpl', $tVars);
 	}

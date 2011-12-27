@@ -34,7 +34,8 @@ class GWF3
  	
 	/**
 	 * @param array $config
-	 * @param $basepath = dirname(__FILE__)
+	 * @param string $basepath = dirname(__FILE__)
+	 * $basepath is the GWF_WWW_PATH without trailing slash 
 	 * @return GWF3 
 	 */
 	public function __construct($basepath, array $config = array())
@@ -165,15 +166,21 @@ class GWF3
 	/**
 	 * This is always required!
 	 * We include all basic required files here. (optimize?)
+	 * GWF_PATH will be defined here
 	 */
 	public static function _init()
 	{
 		# Require the util/Common.php
 		require_once 'core/inc/util/Common.php';
 		
+//		$path = dirname(__FILE__).'/';		
+//		if(true === GWF_ServerInfo::isWindows()) // needs to be includet... replace by original code!?
+//		{
+//			$path = str_replace('\\', '/', $path); # Windows patch
+//		}
+
 		# Default defines
 		define('GWF_PATH', dirname(__FILE__).'/');
-// 		define('GWF_PATH', str_replace('\\', '/', dirname(__FILE__)).'/'); # Windows patch
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
