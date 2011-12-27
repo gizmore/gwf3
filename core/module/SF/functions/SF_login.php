@@ -13,7 +13,7 @@ final class SF_login extends SF_Function
 	{
 		// TODO: CSFR, user/pass args
 		$args = $this->parseArgs();
-		if(isset($args['username'] && isset($args['password']))
+		if(isset($args['username']) && isset($args['password']))
 		{
 			return; // TODO
 		}

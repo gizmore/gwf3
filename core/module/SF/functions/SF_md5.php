@@ -6,6 +6,6 @@ final class SF_md5 extends SF_Function
 	{
 		$args = $this->parseArgs();
 		// The md5Sum for %s is %s.
-		return $lang->lang('md5', htmlspecialchars($args[0]), $md5($args[0]);
+		return $lang->lang('md5', htmlspecialchars($args[0]), $md5($args[0]));
 	}
 }
