@@ -4,5 +4,5 @@
 	<base href="http://{$smarty.server['SERVER_NAME']}">
 	{$meta}
 	<!--<link rel="shortcut icon" href="/tpl/Bewerbung/images/favicon.ico">-->
-	{$css}
+	{$head_links}
 </head>

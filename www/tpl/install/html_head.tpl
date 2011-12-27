@@ -11,5 +11,5 @@
 	--></style>
 
 {*	{$js}	*}
-	{$css}
+	{$head_links}
 </head>

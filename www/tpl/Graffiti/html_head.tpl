@@ -6,5 +6,5 @@
 {/if}
 	{$meta}
 	<link rel="shortcut icon" href="/templates/Graffiti/images/favicon.ico">
-	{$css}
+	{$head_links}
 </head>

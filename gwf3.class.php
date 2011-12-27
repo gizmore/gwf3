@@ -380,22 +380,20 @@ class GWF3
 
 	/**
 	 * Display the template head
-	 * @param string $path = template path @deprecated?
 	 * @return string
 	 */
-	public static function onDisplayHead($path='tpl/%DESIGN%/') 
+	public static function onDisplayHead() 
 	{
-		return GWF_Website::getPagehead($path);
+		return GWF_Website::getPagehead();
 	}
 
 	/**
 	 * Display the template foot
-	 * @param string $path = template path @deprecated?
 	 * @return string
 	 */
-	public static function onDisplayFoot($path='tpl/%DESIGN%/')
+	public static function onDisplayFoot()
 	{
-		return GWF_Website::getHTMLbody_foot($path);
+		return GWF_Website::getHTMLbody_foot();
 	}
 
 	public static function getModule() { return self::$module; }

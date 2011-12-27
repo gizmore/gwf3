@@ -10,7 +10,7 @@
 	<link rel="icon" href="{$root}tpl/{$design}/{$layout}/img/favicon.ico">
 	<link rel="alternate stylesheet" href="{$root}tpl/{$design}/css/print.css" title="PrintView" type="text/css">
 	<link rel="stylesheet" href="{$root}tpl/{$design}/css/print.css" type="text/css" media="print">
-	{$css}
+	{$head_links}
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" type="text/css" href="{$root}tpl/{$design}/css/ie.css" />
 	<![endif]-->

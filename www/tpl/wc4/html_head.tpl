@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>{$page_title}</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="robots" content="index, follow" />
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
@@ -13,6 +12,5 @@
 	<script type="text/javascript" src="{$root}js/gwf3.js?v=50"></script>
 	<script type="text/javascript" src="{$root}js/gwf3bb.js?v=50"></script>
 	{$js}
-	{$css}
-	{$feeds}
+	{$head_links}
 </head>
