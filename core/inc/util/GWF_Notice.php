@@ -27,7 +27,7 @@ final class GWF_Notice
 		{
 			return '';
 		}
-		return module_Links_unread($user, $default);
+		return module_Links_unread(array($user), $default);
 	}
 	public static function getUnreadForum(GWF_User $user, $default='[0]')
 	{
@@ -35,7 +35,7 @@ final class GWF_Notice
 		{
 			return '';
 		}
-		return module_Forum_unread($user, $default);
+		return module_Forum_unread(array($user), $default);
 	}
 	public static function getUnreadPM(GWF_User $user, $default='[0]')
 	{
@@ -43,7 +43,7 @@ final class GWF_Notice
 		{
 			return '';
 		}
-		return module_PM_unread($user, $default);
+		return module_PM_unread(array($user), $default);
 	}
 	public static function getUnreadNews(GWF_User $user, $default='[0]')
 	{
@@ -51,7 +51,7 @@ final class GWF_Notice
 		{
 			return '';
 		}
-		return module_News_unread($user, $default);
+		return module_News_unread(array($user), $default);
 	}
 	public static function getUnreadChallenges(GWF_User $user) { return ''; }
 	public static function getUnreadPageBuilder(GWF_User $user) { return ''; }
