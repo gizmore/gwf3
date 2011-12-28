@@ -9,7 +9,7 @@ final class Forum_Subscribe extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		$c = COMMON::TOKEN_LEN;
+		$c = GWF_Random::TOKEN_LEN;
 		return
 			'RewriteRule ^forum/subscribe/to/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&tid=$1&sub=me'.PHP_EOL.
 			'RewriteRule ^forum/unsubscribe/from/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Subscribe&tid=$1&unsub=me'.PHP_EOL.

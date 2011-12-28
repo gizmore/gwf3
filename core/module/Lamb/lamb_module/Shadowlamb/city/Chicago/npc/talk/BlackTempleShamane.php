@@ -1,13 +1,13 @@
 <?php
 final class Chicago_BlackTempleShamane extends SR_TalkingNPC
 {
-	public function getName() { return 'The shamane'; }
+	public function getName() { return 'The black wizard'; }
 	
 	public function getNPCQuests(SR_Player $player) { return array('Chicago_TempleB', 'Chicago_BlackMagic'); }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
-		if (true === self::onNPCQuestTalk($player, $word, $args))
+		if (self::onNPCQuestTalk($player, $word, $args))
 		{
 			return true;
 		}

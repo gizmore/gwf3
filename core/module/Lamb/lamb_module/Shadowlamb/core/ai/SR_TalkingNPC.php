@@ -135,6 +135,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	{
 		if (false === ($q = $this->getNPCQuest($player)))
 		{
+			Lamb_Log::logDebug('No more auto-quests.');
 			return false;
 		}
 		

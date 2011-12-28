@@ -161,7 +161,8 @@ final class GWF_Website
 		foreach (self::$_meta as $meta)
 		{
 			list($name, $content, $equiv) = $meta;
-			$equiv = $mode[$equiv];
+// 			var_dump($meta);
+// 			$equiv = $mode[$equiv];
 			$back .= sprintf('<meta %s="%s" content="%s"%s', $equiv, $name, $content, self::$xhtml);
 		}
 		return $back;

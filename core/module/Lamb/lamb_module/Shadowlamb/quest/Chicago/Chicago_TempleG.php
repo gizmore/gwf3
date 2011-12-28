@@ -3,7 +3,7 @@ final class Quest_Chicago_TempleG extends SR_Quest
 {
 	public function getQuestName() { return 'Quartz'; }
 	public function getRewardNuyen() { return 300; }
-	public function getNeededAmount() { return 3; }
+	public function getNeededAmount() { return 6; }
 	public function getRewardXP() { return 6; }
 	public function getQuestDescription() { return sprintf('Bring %d/%d Quartz to the GrayTemple in Chicago.', $this->getAmount(), $this->getNeededAmount()); }
 
@@ -39,7 +39,7 @@ final class Quest_Chicago_TempleG extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("We will help you on your quest, but you have to pay a price. Bring us %d Quartz.");
+				$npc->reply("We will help you on your quest, but you have to pay a price. Bring us {$need} Quartz.");
 				break;
 			case 'confirm':
 				$npc->reply("One hand washes the other.");

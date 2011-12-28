@@ -1,12 +1,17 @@
 <?php
 final class Chicago_WhiteTempleShamane extends SR_TalkingNPC
 {
-	public function getName() { return 'The shamane'; }
+	public function getName() { return 'The white shamane'; }
 	
 	public function getNPCQuests(SR_Player $player) { return array('Chicago_TempleW'); }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (self::onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$b = chr(2); # bold
 		switch ($word)
 		{

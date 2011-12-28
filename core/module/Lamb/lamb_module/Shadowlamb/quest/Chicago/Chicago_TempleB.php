@@ -3,7 +3,7 @@ final class Quest_Chicago_TempleB extends SR_Quest
 {
 	public function getQuestName() { return 'Hematites'; }
 	public function getRewardNuyen() { return 300; }
-	public function getNeededAmount() { return 3; }
+	public function getNeededAmount() { return 6; }
 	public function getRewardXP() { return 6; }
 	public function getQuestDescription() { return sprintf('Bring %d/%d Hematites to the BlackTemple in Chicago.', $this->getAmount(), $this->getNeededAmount()); }
 
@@ -39,7 +39,7 @@ final class Quest_Chicago_TempleB extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("We will help you on your quest, but you have to pay a price. Bring us %d Hematite.");
+				$npc->reply("We will help you on your quest, but you have to pay a price. Bring us {$need} Hematite.");
 				break;
 			case 'confirm':
 				$npc->reply("One hand washes the other.");
