@@ -14,8 +14,10 @@
  * @todo Method: LinkParser for Links like CMS/(<sec>.*)/(<cat>.*)/link
  * @TODO: policy and module settings for the PageMenu Order... Maybe in this module
  * @decide allow to edit PageMenu? only copy it for editing? only do it via modulecars?
-// TODO: gwf_buttons actions: edit, delete, show, hide, up, down (left, right?), visible, hidden, add
-// TODO: convert FormY to smarty
+ * @todo: gwf_buttons actions: edit, delete, show, hide, up, down (left, right?), visible, hidden, add
+ * @todo: convert FormY to smarty
+ * @todo: A module file is mostly 20 lines not 300
+ * @todo: Make general menu editing module?
  * @author spaceone
  * @since 01.11.2011
  * @version 0.06
@@ -134,7 +136,9 @@ final class Module_Navigation extends GWF_Module
 			#TODO: create GWF_Navigations for each Module
 			$nid = '1';
 			
-			$i = 0;			
+			$i = 0;
+
+			if (is_array($pbmodule)) # TODO: spaceone fix this. 
 			foreach($pbmodule as $methodname => $pbvars)
 			{
 				#TODO: Create Category for each Method?
@@ -188,7 +192,7 @@ final class Module_Navigation extends GWF_Module
 				'navis_id' => $i, # TODO: Overwrite old Navi (getByName) #AUTO INCREMENT
 				'navis_name' => $modulename,
 				'navis_pid' => '1', # PageMenu ID
-				'navi_position' => $i,
+// 				'navi_position' => $i,
 	//			'navis_gid' => '', # create groupid for PageMenuNavigation?
 				'navis_count' => $count,
 				'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
