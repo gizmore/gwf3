@@ -44,7 +44,7 @@ final class Module_Navigation extends GWF_Module
 
 	public static function debugPM()
 	{
-		return array(
+		return array('foomodule' => array(
 			array(
 				'page_url' => '/foo',
 				'page_title' => 'foo',
@@ -64,7 +64,7 @@ final class Module_Navigation extends GWF_Module
 				'page_views' => '0',
 				'page_options' => GWF_Page::ENABLED,
 			),
-		);
+		));
 	}
 	
 	public function cfgLockedPageMenu() { return $this->getModuleVarBool('lockedPM'); }
@@ -138,7 +138,7 @@ final class Module_Navigation extends GWF_Module
 			
 			$i = 0;
 
-			if (is_array($pbmodule)) # TODO: spaceone fix this. 
+			if (is_array($pbmodule)) # TODO: spaceone fix this. gizmore: fixed ;) 
 			foreach($pbmodule as $methodname => $pbvars)
 			{
 				#TODO: Create Category for each Method?
@@ -192,7 +192,7 @@ final class Module_Navigation extends GWF_Module
 				'navis_id' => $i, # TODO: Overwrite old Navi (getByName) #AUTO INCREMENT
 				'navis_name' => $modulename,
 				'navis_pid' => '1', # PageMenu ID
-// 				'navi_position' => $i,
+// 				'navi_position' => $i, ## TODO: $count ?
 	//			'navis_gid' => '', # create groupid for PageMenuNavigation?
 				'navis_count' => $count,
 				'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
