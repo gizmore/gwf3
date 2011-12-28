@@ -55,21 +55,6 @@ GWF_SmartyUtil::init();
 
 
 /**
- * Get a translation bit from the HTML base lang file.
- * @example {$gwfl->err_database(array(1, 'file'))}
- * @deprecated you can use {GWF_HTML::lang()}; only used in default/bb_codebar.tpl; you also could assign $lang :D lol omfg rofl
- * find -type d -name tpl -exec grep -r \$gwfl {} \;
- * @author gizmore
- */
-final class GWF_SmartyHTMLLang
-{
-	private static $instance; public static function init() { self::$instance = new self(); } public static function instance() { return self::$instance; }
-	public function __call($name, $args) { return GWF_HTML::lang($name, $args); }
-}
-GWF_SmartyHTMLLang::init();
-
-
-/**
  * Execute a module method.
  * @author gizmore
  */

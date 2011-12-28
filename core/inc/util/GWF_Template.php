@@ -87,7 +87,6 @@ final class GWF_Template
 //			$smarty->assign('db', gdo_db());
 			$smarty->assign('gwf', GWF_SmartyUtil::instance());
 			$smarty->assign('gwff', GWF_SmartyFile::instance());
-			$smarty->assign('gwfl', GWF_SmartyHTMLLang::instance());
 			$smarty->assign('gwmm', GWF_SmartyModuleMethod::instance());
 			$smarty->assign('root', GWF_WEB_ROOT);
 			$smarty->assign('core', GWF_CORE_PATH);
@@ -166,9 +165,9 @@ final class GWF_Template
 		{
 			return $smarty->fetch($path2);
 		}
-		catch (Exception $e)
+		catch (Exception $e) // SmartyException
 		{
-			return 'SMARTY ERROR: TODO';
+			return 'SMARTY ERROR: TODO'.print_r($e, true);
 		}
 		
 	}
