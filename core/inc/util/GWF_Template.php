@@ -144,7 +144,7 @@ final class GWF_Template
 			return false;
 	}
 
-	private static function template($path, $tVars=NULL, $checked=true)
+	public static function template($path, $tVars=NULL, $checked=true)
 	{
 		$smarty = self::getSmarty();
 		if($checked || $smarty->templateExists($path))

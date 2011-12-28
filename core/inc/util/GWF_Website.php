@@ -10,7 +10,10 @@ final class GWF_Website
 	private static $_page_title_post = '';
 
 	private static $_links = array();
-	private static $_meta = array();
+	private static $_meta = array(
+		'keywords' => '',
+		'description' => '',
+	);
 
 	private static $_inline_css = '';
 	private static $_output = '';
