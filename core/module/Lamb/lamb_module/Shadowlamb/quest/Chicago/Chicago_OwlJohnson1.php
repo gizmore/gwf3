@@ -28,5 +28,29 @@ final class Quest_Chicago_OwlJohnson1 extends SR_Quest
 			return $npc->reply(sprintf('Sup chipper?', $need-$have));
 		}
 	}
+
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
+	{
+		$need = $this->getNeededAmount();
+		$ny = $this->getRewardNuyen();
+		$dny = Shadowfunc::displayNuyen($ny);
+		
+		switch ($word)
+		{
+			case 'shadowrun':
+				$npc->reply("We need *cough* NySoftBackup *cough*.");
+				break;
+			case 'confirm':
+				$npc->reply("*cough* NySoftBackup *cough*");
+				break;
+			case 'yes':
+				$npc->reply('*cough* laters chummer *cough*.');
+				break;
+			case 'no':
+				$npc->reply('Laters. *cough*');
+				break;
+		}
+		return true;
+	}
 }
 ?>

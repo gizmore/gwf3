@@ -8,16 +8,26 @@ final class PrisonB2_ExitGuard extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'bribe':
-				return $this->bribingTheGuard($player, $word, $args);
+				if ($this->knowsAboutMalois($player))
+				{
+					return $this->bribingTheGuard($player, $word, $args);					
+				}
+				
 			default:
 				return $this->reply("You are not allowed to be here. Please leave.");
 		}
 	}
-
+		
+	private function knowsAboutMalois(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Chicago_HotelWoman1');
+		return $quest->isDone($player);
+	}
+	
 	private function bribingTheGuard(SR_Player $player, $word, array $args)
 	{
 		$b = chr(2);
-		$price = rand(2000, 6000);
+		$price = rand(2000, 8000);
 		$price = Shadowfunc::calcBuyPrice($price, $player);
 		
 		if (!isset($args[0]))

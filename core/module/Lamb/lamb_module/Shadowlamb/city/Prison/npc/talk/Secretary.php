@@ -22,7 +22,10 @@ final class Prison_Secretary extends SR_TalkingNPC
 			case 'alchemy': return $this->reply("Alchemy is forbidden inside the prison. Some people try to smuggle WatterBottles, but thats easy to detect.");
 			case 'invite': return $this->reply("I have no time this weekend.");
 			case 'malois':
-// 				if ($this)
+				if (!$this->knowsAboutMalois($player))
+				{
+					return $this->reply("How may i help you?");
+				}
 				
 				$player->setTemp(self::TEMP_ID, 1);
 				return $this->reply("Oh you want to visit a prisoner? May i see your ID Card then?");
@@ -58,6 +61,12 @@ final class Prison_Secretary extends SR_TalkingNPC
 		{
 			return $this->reply("Oh ... only family members may visit imprisoners ... unless you have a {$b}fakeid{$b} ^^ just kidding.");
 		}
+	}
+	
+	private function knowsAboutMalois(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Chicago_HotelWoman1');
+		return $quest->isDone($player);
 	}
 }
 ?>

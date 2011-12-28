@@ -8,7 +8,7 @@ final class Prison_GrayOp extends SR_NPC
 	{
 		if ($this->getNPCCityClass()->isAlert($party))
 		{
-			return 100;
+			return 300;
 		}
 
 		$bad_karma = $party->getSum('bad_karma', true);

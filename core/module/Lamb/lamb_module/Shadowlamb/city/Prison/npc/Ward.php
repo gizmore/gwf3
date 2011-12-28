@@ -6,7 +6,7 @@ final class Prison_Ward extends SR_NPC
 	public function isNPCDropping(SR_Party $party) { return false; }
 	public function getNPCMeetPercent(SR_Party $party)
 	{
-		$this->getNPCCityClass()->isAlert($party) ? 100 : 0;
+		$this->getNPCCityClass()->isAlert($party) ? 300 : 0;
 	}
 	
 	public function getNPCEquipment()
