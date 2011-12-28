@@ -3,7 +3,7 @@
 		<h1>GWF v{$smarty.const.GWF_CORE_VERSION}</h1>
 	</div>
 	<div class="fl">
-{*		<p>{$gwff->module_Heart_beat()}</p> *}
+{*		<p>{GWF_Notice::getOnlineUsers()}</p> *}
 	</div>
 	<div class="cl"></div>
 </div>

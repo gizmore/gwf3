@@ -239,7 +239,7 @@ final class WC_HTML
 //	private static function displayHeaderOnline(Module_WeChall $module, $max=20)
 //	{
 //		$back = '<div class="wc_head_bigbox" style="max-width:30%;">';
-//		$back .= GWF_SmartyFile::instance()->__call('module_Heart_beat', array());
+//		$back .= GWF_Notice::getOnlineUsers();
 //		$back .= '</div>';
 //		
 //	}

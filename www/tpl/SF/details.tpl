@@ -8,7 +8,7 @@
 	</tr>
 	<tr>
 		<td>
-			{$SF->lang('ct_online_atm', array($SF->getOnlineUsers()))}<br>
+			{$SF->lang('ct_online_atm', array(GWF_Notice::getOnlineUsers()))}<br>
 			{$SF->lang('ct_vis_total')}<br>
 			{$SF->lang('ct_vis_today')}<br>
 			{$SF->lang('ct_vis_yesterday')}<br>
@@ -25,17 +25,10 @@
 			<span class="color">{$SF->langA('si', 'hostname', array(GWF_ClientInfo::getHostname()))}</span><br/>
 			<span class="color">{$SF->langA('si', 'referer', array(GWF_ClientInfo::getReferer()))}</span><br/>
 			<span class="color">{$SF->langA('si', 'user_agent', array(GWF_ClientInfo::getUserAgent()))}</span>
-		</td>{*
-		<td>
-			There are 5 new Challenges:<br/>
-			3 in Cryptography<br/>
-			2 in Steganography<br/>
 		</td>
-		<td>
-			No Donators, yet...<br/>
-{include file='tpl/Form/donate.tpl'}
-		</td
-Designswitch
->*}
+{*TODO: challenges*}
+{*TODO: switch Design*}
+{*TODO: statistics *}
+{*TODO: new layout *}
 	</tr>
 </table>

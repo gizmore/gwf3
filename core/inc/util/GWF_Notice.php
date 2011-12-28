@@ -4,7 +4,6 @@
  * ATM this class is trash but useable
  * @author spaceone
  * @todo this class could be usefull for Admin notifications
- * @todo import Heart_beat also?
  * @todo langfile
  * @todo rename (GWF_Notifications ?)
  */
@@ -88,7 +87,7 @@ final class GWF_Notice
 		if (false === $user->isGuest())
 		{
 			$read = GWF_PM::READ;
-			$count = GDO::table('GWF_PM')->countRows("pm_owner=$userid AND pm_to=$userid AND pm_options&$read=0");
+			$count = GDO::table('GWF_PM')->countRows("pm_owner={$userid} AND pm_to={$userid} AND pm_options&{$read}=0");
 			if ((int)$count > 0)
 			{
 				return sprintf($pattern, $count);
@@ -108,5 +107,14 @@ final class GWF_Notice
 	public static function getUnreadAudit(GWF_User $user) { return ''; }
 	public static function getUnreadComments(GWF_User $user) { return ''; }
 //	public static function getUnread(GWF_User $user) { return ''; } # Template
+	
+	public static function getOnlineUsers($pattern='<span id="gwf_heartbeat">%s</span>', $default='0')
+	{
+		if (false !== ($heart = GWF_Module::loadModuleDB('Heart', false, false, true)))
+		{
+			return sprintf($pattern, $heart->execute('Beat'));
+		}
+		return $default;
+	}
 
 }
