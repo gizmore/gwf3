@@ -3,11 +3,10 @@
  * This class will get information about unread things for a User
  * ATM this class is trash but useable
  * @author spaceone
- * @todo WTF delete those fucking foo_bar_baz.php shit
- * @todo remove files and import here..
  * @todo this class could be usefull for Admin notifications
  * @todo import Heart_beat also?
  * @todo langfile
+ * @todo rename (GWF_Notifications ?)
  */
 final class GWF_Notice
 {
@@ -21,43 +20,99 @@ final class GWF_Notice
 		require_once $path;
 	}
 
-	public static function getUnreadLinks(GWF_User $user, $default='[0]')
+	public static function getUnreadLinks(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
-		if( false === self::loadModuleClass('Links', 'unread.php') )
+		if( false === self::loadModuleClass('Links', 'GWF_Links.php') )
 		{
 			return '';
 		}
-		return module_Links_unread(array($user), $default);
+
+		if (false === $user->isGuest())
+		{
+			$links = GWF_Module::loadModuleDB('Links');
+			$links instanceof Module_Links;
+
+			if (0 < ((int)$unread = $links->countUnread($user)))
+			{
+				return sprintf($pattern, $unread);
+			}
+		}
+		return $default;
 	}
+
+	/**
+	 * Get Forum Unread Counter - Quickhook for topmenu.
+	 * @param array(GWF_User $user)
+	 * @return string the counter enclosed in [counter]
+	 * @todo create countUnread()
+	 */
 	public static function getUnreadForum(GWF_User $user, $default='[0]')
 	{
-		if( false === self::loadModuleClass('Forum', 'unread.php') )
+		if( false === self::loadModuleClass('Forum', 'GWF_ForumThread.php') )
 		{
 			return '';
 		}
-		return module_Forum_unread(array($user), $default);
+
+		if ((true === $user->isGuest()) || (true === $user->isWebspider()))
+		{
+			return $default;
+		}
+
+		$uid = $user->getID();
+		$data = $user->getUserData();
+		$grp = GWF_TABLE_PREFIX.'usergroup';
+		$permquery = "(thread_gid=0 OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=thread_gid))";
+		$stamp = isset($data['GWF_FORUM_STAMP']) ? $data['GWF_FORUM_STAMP'] : $user->getVar('user_regdate');
+		$regtimequery = sprintf('thread_lastdate>=\'%s\'', $stamp);
+		$conditions = "( (thread_postcount>0) AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0) )";
+		if (false === ($count = GDO::table('GWF_ForumThread')->selectVar('COUNT(*)', $conditions)))
+		{
+			return ''; # DB Error
+		}
+		return $count === '0' ? $default : sprintf($pattern, $count);
 	}
-	public static function getUnreadPM(GWF_User $user, $default='[0]')
+
+	/**
+	 * @todo create countUnread()
+	 * @param GWF_User $user
+	 * @param string $pattern
+	 * @param string $default
+	 * @return String
+	 */
+	public static function getUnreadPM(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
-		if( false === self::loadModuleClass('PM', 'unread.php') )
+		if( false === self::loadModuleClass('PM', 'GWF_PM.php') )
 		{
 			return '';
 		}
-		return module_PM_unread(array($user), $default);
+		if (false === $user->isGuest())
+		{
+			$read = GWF_PM::READ;
+			$count = GDO::table('GWF_PM')->countRows("pm_owner=$userid AND pm_to=$userid AND pm_options&$read=0");
+			if ((int)$count > 0)
+			{
+				return sprintf($pattern, $count);
+			}
+		}
+		return $default;
 	}
+
 	public static function getUnreadNews(GWF_User $user, $default='[0]')
 	{
+		return $default; # doesnt exists ATM
+		
 		if( false === self::loadModuleClass('News', 'unread.php') )
 		{
 			return '';
 		}
 		return module_News_unread(array($user), $default);
 	}
+
 	public static function getUnreadChallenges(GWF_User $user) { return ''; }
 	public static function getUnreadPageBuilder(GWF_User $user) { return ''; }
 	public static function getUnreadShoutbox(GWF_User $user) { return ''; }
 	public static function getUnreadAudit(GWF_User $user) { return ''; }
 	public static function getUnreadComments(GWF_User $user) { return ''; }
-	public static function getUnread(GWF_User $user) { return ''; }
+//	public static function getUnread(GWF_User $user) { return ''; } # Template
 
 }
