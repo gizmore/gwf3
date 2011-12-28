@@ -21,6 +21,11 @@ class SR_Bazar extends SR_Location
 	################
 	### Location ###
 	################
+	public function getFoundPercentage()
+	{
+		return 50.0;
+	}
+	
 	public function getHelpText(SR_Player $player)
 	{
 		return "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.";

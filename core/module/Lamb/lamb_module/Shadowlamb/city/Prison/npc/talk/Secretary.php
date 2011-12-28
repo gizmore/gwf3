@@ -22,6 +22,8 @@ final class Prison_Secretary extends SR_TalkingNPC
 			case 'alchemy': return $this->reply("Alchemy is forbidden inside the prison. Some people try to smuggle WatterBottles, but thats easy to detect.");
 			case 'invite': return $this->reply("I have no time this weekend.");
 			case 'malois':
+// 				if ($this)
+				
 				$player->setTemp(self::TEMP_ID, 1);
 				return $this->reply("Oh you want to visit a prisoner? May i see your ID Card then?");
 				
