@@ -4,6 +4,7 @@ abstract class SR_SecondHandStore extends SR_Store
 	public function getMaxItems() { return 23; }
 	public function getStoreSettingsName() { return 'SR_SHS_'.$this->getName(); }
 	public function getStoreSettings() { return GWF_Settings::getSetting($this->getStoreSettingsName(), NULL); }
+	public function getHelpText(SR_Player $player) { return 'You can sell statted items to higher prices here. The statted items that get sold here will stay in the shop.'; }
 	
 	private function saveStoreSettings(array $data)
 	{

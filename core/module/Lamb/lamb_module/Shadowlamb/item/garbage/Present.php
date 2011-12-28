@@ -12,10 +12,8 @@ final class Item_Present extends SR_Item
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$player->message(sprintf('You open your present ... '));
-		$this->deleteItem($player);
-		
+		$this->useAmount($player, 1);
 		$items = array();
-		
 		while (count($items) === 0)
 		{
 			$items = Shadowfunc::randLoot($player, 99999);
