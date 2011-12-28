@@ -2,10 +2,10 @@
 <p class="fl">
 	Hi {$user->displayProfileLink()}; 
 	unseen: 
-	<a href="{$root}pm">MSG's: {$SF->getUnreadPM($user)}</a>,
-	<a href="{$root}news">News: {$SF->getUnreadNews($user)}</a>, 
-	<a href="{$root}forum">Forum: {$SF->getUnreadForum($user, true)}</a>, 
-	<a href="{$root}links">Links{$SF->getUnreadLinks($user)}</a>
+	<a href="{$root}pm">MSG's: {GWF_Notice::getUnreadPM($user)}</a>,
+	<a href="{$root}news">News: {GWF_Notice::getUnreadNews($user)}</a>, 
+	<a href="{$root}forum">Forum: {GWF_Notice::getUnreadForum($user, true)}</a>, 
+	<a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user)}</a>
 	{*Answers: 3; Articles: 3, Changes: 0, *};
 	<p class="fr">
 		Last Login: <span class="color">{GWF_Time::displayTimestamp($user->getVar('user_lastlogin'))}</span>

@@ -11,7 +11,7 @@
 <div id="topmenu">
 	<ul>
 		{* Both *}
-{*		<li><a href="{$root}news">News{$gwff->module_News_unread($user)}</a></li> *}
+{*		<li><a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a></li> *}
 		
 		{* Member *}
 		{if $user->isLoggedIn()}

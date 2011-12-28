@@ -25,18 +25,18 @@
 	<li class="sec">
 		<h2><a href="{$root}nanny">[Modules]</a></h2>
 		<ul>
-			<li class="cat"><h2><a href="{$root}links">Links{$SF->getUnreadLinks($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user)}</a></h2></li>
 			<li class="cat"><h2><a href="{$root}index.php?mo=Links&amp;me=Add&amp;tag=">Link hinzufügen</a></h2></li>
-			<li class="cat"><h2><a href="{$root}forum">Forum{$SF->getUnreadForum($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}forum">Forum{GWF_Notice::getUnreadForum($user)}</a></h2></li>
 			<li class="cat"><h2><a href="{$root}index.php?mo=Forum&amp;me=Unread">ungelesene</a></h2></li>
-			<li class="cat"><h2><a href="{$root}pm">PM{$SF->getUnreadPM($user)}</a></h2></li>
-			<li class="cat"><h2><a href="{$root}news">News{$SF->getUnreadNews($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user)}</a></h2></li>
+			<li class="cat"><h2><a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a></h2></li>
 		</ul>
 	</li>
 	<li class="sec"><h2><a href="{$root}logout">Logout</a></h2></li>
 
 {else}{* Guest *}
-	<li class="sec"><h2><a href="{$root}news">News{$SF->getUnreadNews($user)}</a></h2></li>
+	<li class="sec"><h2><a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a></h2></li>
 	<li class="sec"><h2><a href="{$root}links">Links</a></h2></li>
 	<li class="sec"><h2><a href="{$root}forum">Forum</a></h2></li>
 	<li class="sec"><h2><a href="{$root}register">Register</a></h2></li>

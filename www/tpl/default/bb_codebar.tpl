@@ -65,7 +65,7 @@
 		<option value="/">{$smarty.const.GWF_SITENAME}</option>
 		<option value="http://">HTTP</option> 
 		<option value="https://">HTTPS</option> 
-		<option value="">{GWF_HTML::lang('other', '3', 2, 1)}</option> 
+		<option value="">{GWF_HTML::lang('other', array('3', 2, 1))}</option> 
 	</select>
 	<input id="bb_url_href_{$key}" type="text" value="google.de" />
 	<input type="image" onclick="" alt="Add URL" />

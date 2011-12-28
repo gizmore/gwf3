@@ -11,15 +11,15 @@
 <div class="gwf3_topmenu">
 	<ul>
 		{* Both *}
-		<li><a href="{$root}news">News{$gwff->module_News_unread($user)}</a></li>
+		<li><a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a></li>
 		<li><a href="{$root}about_gwf">About</a></li>
 		
 		{* Member *}
 		{if $user->isLoggedIn()}
-		<li><a href="{$root}links">Links{$gwff->module_Links_unread($user)}</a></li>
-		<li><a href="{$root}forum">Forum{$gwff->module_Forum_unread($user)}</a></li>
+		<li><a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user)}</a></li>
+		<li><a href="{$root}forum">Forum{GWF_Notice::getUnreadForum($user)}</a></li>
 		<li><a href="{$root}irc_chat">Chat</a></li>
-		<li><a href="{$root}pm">PM{$gwff->module_PM_unread($user)}</a></li>
+		<li><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user)}</a></li>
 		<li><a href="{$root}account">Account</a></li>
 		<li><a href="{$root}profile_settings">Profile</a></li>
 		{if $user->isAdmin()}
