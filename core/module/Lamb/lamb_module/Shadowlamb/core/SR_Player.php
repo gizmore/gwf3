@@ -2259,6 +2259,11 @@ class SR_Player extends GDO
 		return true;
 	}
 	
+	public function increaseField($field, $by=1)
+	{
+		return $this->increase('sr4pl_'.$field, $by);
+	}
+	
 	##############
 	### Combat ###
 	##############
