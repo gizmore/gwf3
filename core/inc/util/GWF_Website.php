@@ -11,8 +11,8 @@ final class GWF_Website
 
 	private static $_links = array();
 	private static $_meta = array(
-		'keywords' => '',
-		'description' => '',
+		'keywords' => array('keywords', '', 0),
+		'description' => array('description', '', 0),
 	);
 
 	private static $_inline_css = '';
@@ -71,13 +71,13 @@ final class GWF_Website
 	public static function addJavascriptInline($script_html) { self::$_javascript_inline .= $script_html;} # Raw JavaScript
 	public static function addJavascriptOnload($script_html) { self::$_javascript_onload .= $script_html; }
 	public static function addInlineCSS($css) { self::$_inline_css .= $css; }
-	public static function addMetaDescr($s) { self::$_meta['description'] .= $s; }
-	public static function addMetaTags($s) { self::$_meta['keywords'] .= $s; }
+	public static function addMetaDescr($s) { self::$_meta['description'][1] .= $s; }
+	public static function addMetaTags($s) { self::$_meta['keywords'][1] .= $s; }
 	public static function addFeed($href, $title, $media=0) { self::addLink($href, 'application/rss+xml', 'alternate', $media, $title); }
 	public static function addCSS($path, $media=0) { self::addLink($path, 'text/css', 'stylesheet', $media); }
 
-	public static function setMetaTags($s) { self::$_meta['keywords'] = $s; }
-	public static function setMetaDescr($s) { self::$_meta['description'] = $s; }
+	public static function setMetaTags($s) { self::$_meta['keywords'][1] = $s; }
+	public static function setMetaDescr($s) { self::$_meta['description'][1] = $s; }
 	public static function setPageTitle($title) { self::$_page_title = $title; }
 	public static function setPageTitlePre($title) { self::$_page_title_pre = $title; }
 	public static function setPageTitleAfter($title) { self::$_page_title_post = $title; }
@@ -134,10 +134,12 @@ final class GWF_Website
 	}
 
 	/**
-	 * @param $meta = array($name, $content, 0=>name;1=>http-equiv);
-	 * @param $overwrite overwrite key if exist?
+	 * add an html <meta> tag
+	 * @param array $meta = array($name, $content, 0=>name;1=>http-equiv);
+	 * @param boolean $overwrite overwrite key if exist?
 	 * @return boolean false if metakey was not overwritten, otherwise true
 	 * @todo possible without key but same functionality?
+	 * @todo strings as params? addMeta($name, $content, $mode, $overwrite)
 	 */
 	public static function addMeta(array $metaA, $overwrite=false)
 	{
@@ -146,6 +148,7 @@ final class GWF_Website
 			return false;
 		}
 		self::$_meta[$metaA[0]] = $metaA;
+		//self::$_meta[$name] = array($name, $content, $mode);
 		return true;
 	}
 
@@ -157,6 +160,10 @@ final class GWF_Website
 		}
 	}
 
+	/**
+	 *
+	 * @see addMeta()
+	 */
 	public static function displayMeta()
 	{
 		$back = '';
@@ -164,8 +171,7 @@ final class GWF_Website
 		foreach (self::$_meta as $meta)
 		{
 			list($name, $content, $equiv) = $meta;
-// 			var_dump($meta);
-// 			$equiv = $mode[$equiv];
+ 			$equiv = $mode[$equiv];
 			$back .= sprintf('<meta %s="%s" content="%s"%s', $equiv, $name, $content, self::$xhtml);
 		}
 		return $back;

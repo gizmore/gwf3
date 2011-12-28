@@ -40,9 +40,9 @@
 	</div>
 {/if}
 </div>
-<hr/>
 
 {if $page->isOptionEnabled(GWF_Page::COMMENTS)}
+<hr/>
 {$pagemenu}
 
 {$comments}
