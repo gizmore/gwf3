@@ -251,4 +251,3 @@ final class GWF_Website
 		return self::getHTMLHead() . self::getHTMLBody($page) . PHP_EOL.'</html>';
 	}
 }
-?>

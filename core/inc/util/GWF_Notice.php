@@ -46,7 +46,7 @@ final class GWF_Notice
 	 * @return string the counter enclosed in [counter]
 	 * @todo create countUnread()
 	 */
-	public static function getUnreadForum(GWF_User $user, $default='[0]')
+	public static function getUnreadForum(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
 		if( false === self::loadModuleClass('Forum', 'GWF_ForumThread.php') )
 		{
@@ -97,15 +97,9 @@ final class GWF_Notice
 		return $default;
 	}
 
-	public static function getUnreadNews(GWF_User $user, $default='[0]')
+	public static function getUnreadNews(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
 		return $default; # doesnt exists ATM
-		
-		if( false === self::loadModuleClass('News', 'unread.php') )
-		{
-			return '';
-		}
-		return module_News_unread(array($user), $default);
 	}
 
 	public static function getUnreadChallenges(GWF_User $user) { return ''; }
