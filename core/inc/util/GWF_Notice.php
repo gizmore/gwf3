@@ -35,8 +35,9 @@ final class GWF_Notice
 			{
 				return sprintf($pattern, $unread);
 			}
+			return $default;
 		}
-		return $default;
+		return '';
 	}
 
 	/**
@@ -54,16 +55,16 @@ final class GWF_Notice
 
 		if ((true === $user->isGuest()) || (true === $user->isWebspider()))
 		{
-			return $default;
+			return '';
 		}
 
 		$uid = $user->getID();
 		$data = $user->getUserData();
 		$grp = GWF_TABLE_PREFIX.'usergroup';
-		$permquery = "(thread_gid=0 OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=thread_gid))";
+		$permquery = "(thread_gid=0 OR (SELECT 1 FROM {$grp} WHERE ug_userid={$uid} AND ug_groupid=thread_gid))";
 		$stamp = isset($data['GWF_FORUM_STAMP']) ? $data['GWF_FORUM_STAMP'] : $user->getVar('user_regdate');
 		$regtimequery = sprintf('thread_lastdate>=\'%s\'', $stamp);
-		$conditions = "( (thread_postcount>0) AND ($permquery) AND ($regtimequery OR thread_force_unread LIKE '%:$uid:%') AND (thread_unread NOT LIKE '%:$uid:%') AND (thread_options&4=0) )";
+		$conditions = "( (thread_postcount>0) AND ({$permquery}) AND ({$regtimequery} OR thread_force_unread LIKE '%:{$uid}:%') AND (thread_unread NOT LIKE '%:{$uid}:%') AND (thread_options&4=0) )";
 		if (false === ($count = GDO::table('GWF_ForumThread')->selectVar('COUNT(*)', $conditions)))
 		{
 			return ''; # DB Error
@@ -87,18 +88,19 @@ final class GWF_Notice
 		if (false === $user->isGuest())
 		{
 			$read = GWF_PM::READ;
+			$userid = $user->getID();
 			$count = GDO::table('GWF_PM')->countRows("pm_owner={$userid} AND pm_to={$userid} AND pm_options&{$read}=0");
 			if ((int)$count > 0)
 			{
 				return sprintf($pattern, $count);
 			}
 		}
-		return $default;
+		return '';
 	}
 
 	public static function getUnreadNews(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
-		return $default; # doesnt exists ATM
+		return ''; # doesnt exists ATM
 	}
 
 	public static function getUnreadChallenges(GWF_User $user) { return ''; }
