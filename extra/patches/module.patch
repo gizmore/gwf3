@@ -1,0 +1,29 @@
+Index: core/inc/util/GWF_Module.php
+===================================================================
+--- core/inc/util/GWF_Module.php	(Revision 1121)
++++ core/inc/util/GWF_Module.php	(Arbeitskopie)
+@@ -291,6 +286,24 @@
+ 		
+ 		return $method->execute($this);
+ 	}
++	
++	public function onAddWebsiteData(GWF_Method $method)
++	{
++		if(false !== ($keywords = $method->getMetaKeywords()))
++		{
++			GWF_Website::setMetaTags($keywords);
++		}
++		
++		if(false !== ($description = $method->getMetaDescription()))
++		{
++			GWF_Website::setMetaTags($description);
++		}
++		
++		if(false !== ($title = $method->getPageTitle()))
++		{
++			GWF_Website::setPageTitle($title);
++		}
++	}
+ 
+ 	/**
+ 	 * Include all classes returned by $this->getClasses();
