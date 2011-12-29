@@ -170,6 +170,10 @@ final class GWF_Website
 		$mode = array('name', 'http-equiv');
 		foreach (self::$_meta as $meta)
 		{
+			if (!is_array($meta))
+			{
+				continue; # TODO: spaceone fix.
+			}
 			list($name, $content, $equiv) = $meta;
  			$equiv = $mode[$equiv];
 			$back .= sprintf('<meta %s="%s" content="%s"%s', $equiv, $name, $content, self::$xhtml);

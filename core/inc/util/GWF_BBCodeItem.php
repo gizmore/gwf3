@@ -206,8 +206,8 @@ final class GWF_BBCodeItem
 //			$type = GESHI_HEADER_DIV;
 //			$type = GESHI_HEADER_PRE;
 //			$type = GESHI_HEADER_PRE_VALID;
-			$type = GESHI_HEADER_PRE_TABLE;
-			$geshi->set_header_type($type);
+// 			$type = GESHI_HEADER_PRE_TABLE;
+// 			$geshi->set_header_type($type);
 			
 			$flag = GESHI_NORMAL_LINE_NUMBERS;
 //			$flag = GESHI_FANCY_LINE_NUMBERS;

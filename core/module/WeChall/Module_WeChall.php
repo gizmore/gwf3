@@ -219,7 +219,7 @@ final class Module_WeChall extends GWF_Module
 		# TODO: delete a lot of stuff.
 		
 		# Let's start with unlinking all sites.
-		$this->includeClass('WC_Regat');
+		$this->includeClass('WC_RegAt');
 		$userid = $user->getID();
 		if (false === WC_RegAt::unlinkAll($userid))
 		{
