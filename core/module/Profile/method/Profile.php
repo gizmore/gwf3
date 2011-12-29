@@ -17,9 +17,9 @@ final class Profile_Profile extends GWF_Method
 		}
 		
 		$uname = $user->displayUsername();
-		GWF_Website::setPageTitle($module->lang('pt_profile', array($uname)));
-		GWF_Website::setMetaTags($module->lang('mt_profile', array($uname)));
-		GWF_Website::setMetaDescr($module->lang('md_profile', array($uname)));
+		GWF_Website::setPageTitle($module->lang('pt_profile', array($uname, $uname)));
+		GWF_Website::setMetaTags($module->lang('mt_profile', array($uname, $uname)));
+		GWF_Website::setMetaDescr($module->lang('md_profile', array($uname, $uname)));
 
 		return $this->profile($module, $user);
 	}
