@@ -165,7 +165,7 @@ final class Module_Navigation extends GWF_Module
 					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
 				}
 
-				if(false === ($pb = $pagevars->selectFirst('page_id', 'page_url='.$pbvars['page_url'])))
+				if(false === ($pb = $pagevars->selectFirst('page_id', "page_url='".$pbvars['page_url']."'")))
 				{
 					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
 				}
