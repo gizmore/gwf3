@@ -12,19 +12,19 @@ final class GWF_Fancy extends GWF_Method
 		
 		# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
 		$ret = '';
-// 		$ret .=
-// 			'AddType text/html .php'.PHP_EOL; # TODO: This rule breaks any server setup i have dealt with, so far.
-//			                                  #     : Please make this optional and default disabled.
-//			'<Files "*.php">'.PHP_EOL.        # TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
-//			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
-//			'</Files>'.PHP_EOL.PHP_EOL;
+		$ret .=
+			'AddType text/html .php'.PHP_EOL. # TODO: This rule breaks any server setup i have dealt with, so far.
+			                                  #     : Please make this optional and default disabled.
+			'<Files "*.php">'.PHP_EOL.        # TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
+			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
+			'</Files>'.PHP_EOL.PHP_EOL;
 		###################
 		## SpaceOne TODO ##
 		###################
 		if(true === GWF_ServerInfo::isApache())
 		{
  			$ret .=
- 				'AddType text/html .php'.PHP_EOL;.
+ 				'AddType text/html .php'.PHP_EOL.
 				'<Files "*.php">'.PHP_EOL. 
 				'    AddHandler application/x-httpd-php .php'.PHP_EOL.
 				'</Files>'.PHP_EOL.PHP_EOL;
