@@ -1,9 +1,10 @@
 <body>
 	<div id="page_wrap">
-		{$gwff->module_WeChall_topmenu()}
-		{$gwff->module_WeChall_header()}
+		{GWF_Notce::loadModuleClass('WeChall', 'WC_HTML.php')}
+		{WC_HTML::displayMenu()}
+		{WC_HTML::displayHeader()}
 		<div id="wc_banner_space"></div>
-		{$gwff->module_WeChall_sidebar()}
+		{WC_HTML::displaySidebar2()}
 		<div id="page">
 {$messages}
 {$errors}

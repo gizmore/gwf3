@@ -1,6 +1,6 @@
 		</div>
 		<div id="page_footer_space"></div>
 	</div>
-	{$gwff->module_WeChall_footer()}
+	{WC_HTML::displayFooter(true)}
 	<div id="wc_profile_slide" ></div>
 </body>

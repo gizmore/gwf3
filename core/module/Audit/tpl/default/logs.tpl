@@ -1,8 +1,8 @@
 {$pagemenu}
 
-{$gwf->Table()->start()}
+{GWF_Table::start()}
 
-{$gwf->Table()->displayHeaders1(array(
+{GWF_Table::displayHeaders1(array(
 array('ID'),
 array($lang->lang('th_eusername'), 'al_eusername'),
 array($lang->lang('th_username'), 'al_username'),
@@ -15,25 +15,25 @@ array('T')
 ), $sort_url)}
 
 {foreach from=$logs item=log}
-{$gwf->Table()->rowStart()}
-{$gwf->Table()->column($log[0])}
-{$gwf->Table()->column($log[1])}
-{$gwf->Table()->column($log[2])}
-{$gwf->Table()->column($log[6]|filesize, 'ri')}
-{$gwf->Table()->column("<a href=\"{$root}warplay/{$log[1]|urlencode}_{$log[2]|urlencode}_{$log[0]}_{$log[5]}.html\"> {$log[3]|timestamp}", 'gwf_date')}
+{GWF_Table::rowStart()}
+{GWF_Table::column($log[0])}
+{GWF_Table::column($log[1])}
+{GWF_Table::column($log[2])}
+{GWF_Table::column($log[6]|filesize, 'ri')}
+{GWF_Table::column("<a href=\"{$root}warplay/{$log[1]|urlencode}_{$log[2]|urlencode}_{$log[0]}_{$log[5]}.html\"> {$log[3]|timestamp}", 'gwf_date')}
 {if !$log[4]}
-{$gwf->Table()->column('')}
+{GWF_Table::column('')}
 {else}
-{$gwf->Table()->column({$log[4]|timestamp}, 'gwf_date')}
+{GWF_Table::column({$log[4]|timestamp}, 'gwf_date')}
 {/if}
 
-{$gwf->Table()->column($log[5], 'mono')}
-{$gwf->Table()->column("<a href=\"{$root}rawscript/{$log[7]}.log\">S</a>")}
-{$gwf->Table()->column("<a href=\"{$root}rawscript/{$log[8]}.log\">T</a>")}
+{GWF_Table::column($log[5], 'mono')}
+{GWF_Table::column("<a href=\"{$root}rawscript/{$log[7]}.log\">S</a>")}
+{GWF_Table::column("<a href=\"{$root}rawscript/{$log[8]}.log\">T</a>")}
 
-{$gwf->Table()->rowEnd()}
+{GWF_Table::rowEnd()}
 {/foreach}
 
-{$gwf->Table()->end()}
+{GWF_Table::end()}
 
 {$pagemenu}

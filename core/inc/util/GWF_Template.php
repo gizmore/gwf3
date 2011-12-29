@@ -85,7 +85,6 @@ final class GWF_Template
 			
 			# Assign common template vars
 //			$smarty->assign('db', gdo_db());
-			$smarty->assign('gwf', GWF_SmartyUtil::instance());
 			$smarty->assign('gwff', GWF_SmartyFile::instance());
 			$smarty->assign('gwmm', GWF_SmartyModuleMethod::instance());
 			$smarty->assign('root', GWF_WEB_ROOT);

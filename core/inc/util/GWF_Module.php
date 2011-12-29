@@ -53,20 +53,16 @@ class GWF_Module extends GDO
 	public function hasAdminSection() { return $this->getAdminSectionURL() !== '#'; }
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
 	public function isInstalled() { return $this->getVersionDB() > 0; }
-	public function getModuleFilePath($file) { return GWF_CORE_PATH.'module/'.$this->getName().'/'.$file; } // wont work in new baselayout!
+	public function getModuleFilePath($file) { return GWF_CORE_PATH.'module/'.$this->getName().'/'.$file; }
 	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
-	public static function getModulesLoaded($format=false)
+
+	/**
+	 * Returns a formated String within loaded modules
+	 * @param string $pattern %1$=modules seperated by comata, %2$=number of loaded modules
+	 */
+	public static function getModulesLoaded($pattern='<a href="#" title="%s">%s</a>')
 	{
-		if(false === $format)
-		{
-			return sprintf('<a href="#" title="%s">%s</a>', implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
-		}
-		else
-		{
-			$format = str_replace('%mods%', implode(', ', array_keys(self::$MODULES)), $format);
-			$format = str_replace('%count%', count(self::$MODULES), $format);
-			return $format;
-		}
+		return sprintf('<a href="#" title="%s">%s</a>', implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
 	}
 	
 	public function onStartup() {}

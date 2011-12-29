@@ -27,12 +27,12 @@
 	<div>SQL_OPENED: {$db->getQueriesOpened()}</div>
 	<div>SQL_CLOSED: {$db->getQueriesClosed()}</div>
 *}
-	<div>MODULES LOADED: {$gwf->Module()->getModulesLoaded()}</div>
+	<div>MODULES LOADED: {GWF_Module::getModulesLoaded()}</div>
 </div>
 {* COMMENT
 <div class="fl">
 	<div>PAGE SIZE: Unknown</div>
-	<div>PAGES SERVED: {$gwf->Counter()->getAndCount(gwf3_pagecount)}</div>
+	<div>PAGES SERVED: {GWF_Counter::getAndCount(gwf3_pagecount)}</div>
 </div>
 *}
 

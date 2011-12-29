@@ -1,6 +1,6 @@
-{assign var='k' value=$gwf->Module()->loadModuleDB('Konzert', true, true)}
-{$gwf->Website()->addJavascript("{$root}tpl/konz/js/konzert.js")}
-{$gwf->Website()->addJavascriptOnload('konzertContactData();')}
+{assign var='k' value={GWF_Module::loadModuleDB('Konzert', true, true)}}
+{GWF_Website::addJavascript("{$root}tpl/konz/js/konzert.js")}
+{GWF_Website::addJavascriptOnload('konzertContactData();')}
 {$k->setNextHREF("{$root}impressum.html")}
 
 <h1>{$lang->lang('contact_title')}</h1>

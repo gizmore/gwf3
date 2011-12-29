@@ -33,28 +33,6 @@ GWF_SmartyFile::init();
 
 
 /**
- * Call a static core/inc/util function via smarty.
- * @example smartyhtml: {$gwf->Time()->getDate()}
- * @deprecated use {GWF_Foo::bar()}
- * find -type d -name tpl -exec grep -r '$gwf->' {} \;
- * @author gizmore
- */
-final class GWF_SmartyUtil
-{
-	private static $instance; public static function init() { self::$instance = new self(); } public static function instance() { return self::$instance; }
-	public function __call($name, $args)
-	{
-		$name = 'GWF_'.$name;
-		if (false === class_exists($name)) {
-			return GWF_HTML::err('ERR_CLASS_NOT_FOUND', array(htmlspecialchars($name)));
-		}
-		return new $name();
-	}
-}
-GWF_SmartyUtil::init();
-
-
-/**
  * Execute a module method.
  * @author gizmore
  */

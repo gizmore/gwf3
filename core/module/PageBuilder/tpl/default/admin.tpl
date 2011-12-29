@@ -6,8 +6,8 @@
 {button url=$href_disableds text=$lang->lang('btn_show_disableds') title=$lang->lang('btn_show_disableds')}
 </div>
 
-{$gwf->Table()->start()}
-{$gwf->Table()->displayHeaders1(array(
+{GWF_Table::start()}
+{GWF_Table::displayHeaders1(array(
 	array($lang->lang('th_id'), 'page_id', 'DESC'),
 	array($lang->lang('th_otherid'), 'page_otherid', 'ASC'),
 	array($lang->lang('th_lang'), 'page_lang', 'ASC'),
@@ -16,15 +16,15 @@
 ), $sort_url)}
 
 {foreach $pages as $page}
-{$gwf->Table()->rowStart()}
-{$gwf->Table()->column($page->getID(), 'gwf_num')}
-{$gwf->Table()->column($page->getOtherID(), 'gwf_num')}
-{$gwf->Table()->column($page->displayLang())}
-{$gwf->Table()->column({button url=$page->hrefShow() title=$page->display('page_title') text=$page->display('page_title')})}
-{$gwf->Table()->column({button type='edit' url=$page->hrefEdit() title=$lang->lang('btn_edit')})}
-{$gwf->Table()->rowEnd()}
+{GWF_Table::rowStart()}
+{GWF_Table::column($page->getID(), 'gwf_num')}
+{GWF_Table::column($page->getOtherID(), 'gwf_num')}
+{GWF_Table::column($page->displayLang())}
+{GWF_Table::column({button url=$page->hrefShow() title=$page->display('page_title') text=$page->display('page_title')})}
+{GWF_Table::column({button type='edit' url=$page->hrefEdit() title=$lang->lang('btn_edit')})}
+{GWF_Table::rowEnd()}
 {/foreach}
-{$gwf->Table()->end()}
+{GWF_Table::end()}
 
 {$pagemenu}
 

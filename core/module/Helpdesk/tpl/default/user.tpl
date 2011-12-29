@@ -1,8 +1,8 @@
 {$pagemenu}
 
 
-{$gwf->Table()->start()}
-{$gwf->Table()->displayHeaders1(array(
+{GWF_Table::start()}
+{GWF_Table::displayHeaders1(array(
 	array($lang->lang('th_tid'), 'hdt_id', 'DESC'), 
 	array($lang->lang('th_prio'), 'hdt_priority', 'DESC'),
 	array($lang->lang('th_worker'), 'worker.user_name', 'ASC'),
@@ -11,19 +11,19 @@
 	array({button type='bell' title=$lang->lang('th_unread') url='#'})
 ), $sort_url)}
 {foreach $tickets as $ticket}
-{$gwf->Table()->rowStart()}
-{$gwf->Table()->column($ticket->displayShowLink($ticket->getID()), 'gwf_num')}
-{$gwf->Table()->column($ticket->displayShowLink($ticket->getPriority()), 'gwf_num')}
-{$gwf->Table()->column($gwf->User()->displayProfileLinkS($ticket->getVar('worker_name')))}
-{$gwf->Table()->column($ticket->displayShowLink($ticket->displayTitle($user)))}
-{$gwf->Table()->column($ticket->displayShowLink($ticket->displayStatus()))}
+{GWF_Table::rowStart()}
+{GWF_Table::column($ticket->displayShowLink($ticket->getID()), 'gwf_num')}
+{GWF_Table::column($ticket->displayShowLink($ticket->getPriority()), 'gwf_num')}
+{GWF_Table::column(GWF_User::displayProfileLinkS($ticket->getVar('worker_name')))}
+{GWF_Table::column($ticket->displayShowLink($ticket->displayTitle($user)))}
+{GWF_Table::column($ticket->displayShowLink($ticket->displayStatus()))}
 {if $ticket->hasUserRead()}
-{$gwf->Table()->column()}
+{GWF_Table::column()}
 {else}
-{$gwf->Table()->column({button type='bell' title=$lang->lang('th_unread') url='#'})}
+{GWF_Table::column({button type='bell' title=$lang->lang('th_unread') url='#'})}
 {/if}
-{$gwf->Table()->rowEnd()}
+{GWF_Table::rowEnd()}
 {/foreach}
-{$gwf->Table()->end()}
+{GWF_Table::end()}
 
 {$pagemenu}
