@@ -8,7 +8,7 @@ final class Chicago_Arena extends SR_Arena
 	
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_ArenaGuy'); }
 	
-// 	public function getCommands(SR_Player $player) { return array('view', 'buy', 'challenge'); }
+	public function getCommands(SR_Player $player) { return array('view', 'buy', 'challenge'); }
 	
 	public function getArenaEnemies(SR_Player $player)
 	{
@@ -20,12 +20,12 @@ final class Chicago_Arena extends SR_Arena
 		);
 	}
 	
-// 	public function getStoreItems(SR_Player $player)
-// 	{
-// 		return array(
-// 			array('Aygo1000'),
-// 		);
-		
-// 	}
+	public function getStoreItems(SR_Player $player)
+	{
+		return array(
+			array('KnightsSword', 100.0, 8900),
+			array('KnightsArmor', 100.0, 47000),
+		);
+	}
 }
 ?>
