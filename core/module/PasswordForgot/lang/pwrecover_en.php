@@ -29,13 +29,13 @@ $lang = array(
 	# The email (beware %s is twice. It`s an email. thats correct!)
 	'mail_subj' => GWF_SITENAME.': Change Password',
 	'mail_body' => 
-		'Dear %$1s,<br/>'.PHP_EOL.
+		'Dear %1$s,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'You requested to change your password on '.GWF_SITENAME.'.<br/>'.PHP_EOL.
 		'To do so, you have to visit the link below.<br/>'.PHP_EOL.
-		'If you did not request a change, ignore this mail or contact us by <a href="mailto:%$2s">%$2s</a>.<br/>'.PHP_EOL.
+		'If you did not request a change, ignore this mail or contact us by <a href="mailto:%2$s">%2$s</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'%$3s<br/>'.PHP_EOL.
+		'%3$s<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Kind Regards<br/>'.PHP_EOL.
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,

@@ -22,13 +22,13 @@ $lang = array(
 	# The email
 	'mail_subj' => GWF_SITENAME.': Cambiar contraseña',
 	'mail_body' => 
-		'Estimado/a %$1s,'.PHP_EOL.
+		'Estimado/a %1$s,'.PHP_EOL.
 		''.PHP_EOL.
 		'Usted pidió un cambio de contraseña en '.GWF_SITENAME.'.'.PHP_EOL.
 		'Para llevarse a cabo, debe visitar el enlace que aparece más abajo.'.PHP_EOL.
-		'Si no pidió el cambio, ignore este mensaje o contáctenos en %$2s.'.PHP_EOL.
+		'Si no pidió el cambio, ignore este mensaje o contáctenos en %2$s.'.PHP_EOL.
 		''.PHP_EOL.
-		'%$3s'.PHP_EOL.
+		'%3$s'.PHP_EOL.
 		''.PHP_EOL.
 		'Atentamente,'.PHP_EOL.
 		'El personal de '.GWF_SITENAME.PHP_EOL.
