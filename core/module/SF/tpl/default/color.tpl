@@ -11,6 +11,9 @@ div#logo {ldelim}
 	background: #131313 url('/templates/{$tpl['design']}{$tpl['layout']}/images/{$color['base_color']}/header.png') no-repeat center right; 
 	border-top: thin groove {$color['design_dark']};
 {rdelim}
+div#logo span {ldelim}
+	background-color: {color['design_light']};
+{rdelim}
 /*div#footer*/
 div#profile,
 div#body {ldelim}

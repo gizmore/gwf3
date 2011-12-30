@@ -51,7 +51,7 @@ foreach ($tVars['data'] as $key => $data)
 			break;
 			
 //		case GWF_Form::CAPTCHA:
-//			printf('<tr><td>%s</td><td>%s</td><td><img src="%simg/captcha.php" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, GWF_WEB_ROOT);
+//			printf('<tr><td>%s</td><td>%s</td><td><img src="%sCaptcha/" onclick="this.src=\'%sCaptcha/?\'+(new Date()).getTime();" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, GWF_WEB_ROOT);
 //			printf('<tr><td>%s</td><td>%s</td><td><input type="text" name="%s" value="%s" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 //			break;
 			

@@ -414,7 +414,7 @@ class GWF_Form
 	public static function captcha()
 	{
 		return
-			sprintf('<img src="%simg/captcha.php%s" onclick="this.src=\'%simg/captcha.php?\'+(new Date()).getTime();" />'.PHP_EOL, 
+			sprintf('<img src="%sCaptcha/%s" onclick="this.src=\'%sCaptcha/?\'+(new Date()).getTime();" />'.PHP_EOL, 
 			GWF_WEB_ROOT, '?v='.time(), GWF_WEB_ROOT);
 	}
 	

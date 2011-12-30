@@ -14,7 +14,7 @@ final class GWF_Bootstrap
 		self::unmagicquote();
 
 		# anti register globals
-//		GWF_Bootstrap::unregisterGlobals();
+//		self::unregisterGlobals();
 	}
 	
 	/**
