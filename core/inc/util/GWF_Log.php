@@ -54,11 +54,14 @@ final class GWF_Log
 			$back .= "{$de}POSTDATA";
 			foreach ($_POST as $k => $v)
 			{
-				if (stripos($k, 'pass') !== false)
+				if (is_string($v)) # TODO: implode recursive which got moved to GWF_Array
 				{
-					$v = 'xxxxx';
+					if (stripos($k, 'pass') !== false)
+					{
+						$v = 'xxxxx';
+					}
+					$back .= $de.$k.'=>'.$v;
 				}
-				$back .= $de.$k.'=>'.$v;
 			}
 		}
 		return $back;
