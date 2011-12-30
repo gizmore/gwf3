@@ -235,8 +235,7 @@ final class WeChall_GraphUser extends GWF_Method
 		// Display the graph
 //		$graph->img->SetAntiAliasing();
 		$graph->Stroke();
-		die(0);
-		
+		die();
 	}
 	
 }

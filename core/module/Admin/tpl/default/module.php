@@ -38,14 +38,11 @@ if (count($methods) > 0)
 }
 ?>
 <?php
-
 if ('cfgg_info' !== ($general = $module->lang('cfgg_info'))) {
 	echo sprintf('<div>%s</div>', $general);
 }
 ?>
-
 <?php echo $tVars['form']; ?>
 <?php echo $tVars['form_install']; ?>
-
 </div>
 <div class="cl"></div>

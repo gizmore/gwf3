@@ -13,7 +13,7 @@ echo '</div></div>'.PHP_EOL;
 # API 1)
 $href_opt_7 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional#join_7';
 echo '<a name="api_1"></a>'.PHP_EOL;
-echo GWF_Box::box($l->lang('api_1b', array($href_opt_7)), $l->lang('api_1t'));
+echo GWF_Box::box($l->lang('api_1b', array($href_opt_7, $href_opt_7)), $l->lang('api_1t'));
 
 # API 2)
 $example_6_1 = 'https://www.wechall.net/wechall.php?username='.$uname;

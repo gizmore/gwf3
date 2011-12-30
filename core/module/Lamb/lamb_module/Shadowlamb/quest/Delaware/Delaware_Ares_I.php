@@ -47,4 +47,3 @@ final class Quest_Delaware_Ares_I extends SR_Quest
 	}
 }
 ?>
-

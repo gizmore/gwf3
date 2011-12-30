@@ -22,7 +22,3 @@ final class WeChall_DomainRedirect extends GWF_Method
 	
 }
 ?>
-
-
-
-
