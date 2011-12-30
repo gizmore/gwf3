@@ -393,7 +393,7 @@ abstract class SR_NPCBase extends SR_Player
 			return array();
 		}
 		list($bit, $key) = explode(':', $this->arena_key);
-		$bits = SR_PlayerVar::getVal($player, $key, 0);
+		$bits = (int)SR_PlayerVar::getVal($player, $key, 0);
 		$bits |= $bit;
 		SR_PlayerVar::setVal($player, $key, $bits);
 		return array();
