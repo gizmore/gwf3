@@ -54,14 +54,11 @@ final class GWF_Log
 			$back .= "{$de}POSTDATA";
 			foreach ($_POST as $k => $v)
 			{
-				if (is_string($v)) # TODO: implode recursive which got moved to GWF_Array
+				if (stripos($k, 'pass') !== false)
 				{
-					if (stripos($k, 'pass') !== false)
-					{
-						$v = 'xxxxx';
-					}
-					$back .= $de.$k.'=>'.$v;
+					$v = 'xxxxx';
 				}
+				$back .= $de.$k.'=>'.Common::implodeR(',', $v);
 			}
 		}
 		return $back;

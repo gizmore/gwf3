@@ -224,5 +224,14 @@ final class Common
 	{
 		return preg_match($pattern, $s, $matches) ? $matches[1] : false;
 	}
+
+	public static function implodeR($glue, $pieces)
+	{
+		foreach($pieces as $r_pieces)
+		{
+			$retVal[] = is_array($r_pieces) ? self::implodeR($glue, $pieces) : $r_pieces;
+		}		
+		return implode($glue, $retVal);
+	}
 }
 ?>
