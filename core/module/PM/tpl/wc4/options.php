@@ -15,9 +15,11 @@ if (count($tVars['ignores']) > 0)
 	);
 	echo GWF_Table::start();
 	echo GWF_Table::displayHeaders1($headers);
-	foreach ($tVars['ignores'] as $uname)
+	foreach ($tVars['ignores'] as $data)
 	{
 		echo GWF_Table::rowStart();
+		$uname = $data[0];
+		$reason = $data[1];
 		$del_href = GWF_WEB_ROOT.'index.php?mo=PM&me=Options&unignore='.urlencode($uname);
 		echo GWF_Table::column(GWF_HTML::display($uname));
 		echo GWF_Table::column(GWF_Button::delete($del_href));

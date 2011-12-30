@@ -22,21 +22,24 @@ abstract class SR_Bank extends SR_Location
 		return Shadowfunc::calcBuyPrice($base, $player);
 	}
 	
-	public function checkAfford(SR_Player $player)
+	public function checkAfford(SR_Player $player, $sendmoney=0)
 	{
-		if (0 >= ($price = $this->calcPrice($player))) {
+		if (0 >= ($price = $this->calcPrice($player)))
+		{
 			return false;
 		}
 		$nuyen = $player->getNuyen();
-		if ($nuyen < $price) {
-			return sprintf('You can not afford to use the bank. This cost %s nuyen and you only have %s.', $price, $nuyen);
+		if ($nuyen < ($price+$sendmoney))
+		{
+			return sprintf('You can not afford to use the bank. This cost %s and you only have %s to spare.', Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($nuyen-$sendmoney));
 		}
 		return false;
 	}
 	
 	private function pay(SR_Player $player)
 	{
-		if (0 >= ($price = $this->calcPrice($player))) {
+		if (0 >= ($price = $this->calcPrice($player)))
+		{
 			return '';
 		}
 		$player->pay($price);
@@ -322,19 +325,24 @@ abstract class SR_Bank extends SR_Location
 	public function on_pushy(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1) {
+		if (count($args) !== 1)
+		{
 			$this->showNuyen($player);
 			return true;
 		}
-		if (false !== ($error = $this->checkAfford($player))) {
+		
+		if (0 >= ($want = round(floatval($args[0]), 2)))
+		{
+			$bot->reply(sprintf('Please push a positive amount of nuyen.'));
+			return false;
+		}
+		
+		if (false !== ($error = $this->checkAfford($player, $want)))
+		{
 			$bot->reply($error);
 			return false;
 		}
 		
-		if (0 >= ($want = round(floatval($args[0]), 2))) {
-			$bot->reply(sprintf('Please push a positive amount of nuyen.'));
-			return false;
-		}
 		
 		$have = $player->getNuyen();
 		if ($want > $have) {

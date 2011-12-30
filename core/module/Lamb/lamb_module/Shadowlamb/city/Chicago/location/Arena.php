@@ -13,10 +13,10 @@ final class Chicago_Arena extends SR_Arena
 	public function getArenaEnemies(SR_Player $player)
 	{
 		return array(
-			array(0x01, 'Chicago_SmallDrone', 'A small combat drone.', 250),
-			array(0x02, 'Chicago_MediumDrone', 'A medium combat drone.', 500),
-			array(0x04, 'Chicago_LargeDrone', 'A large combat drone.', 2000),
-			array(0x08, 'Chicago_KillBot', 'A military comabat drone.', 5000),
+			array(0x01, 'Chicago_ASmallDrone',  'A small combat drone.', 250),
+			array(0x02, 'Chicago_AMediumDrone', 'A medium combat drone.', 500),
+			array(0x04, 'Chicago_ALargeDrone',  'A large combat drone.', 2000),
+			array(0x08, 'Chicago_AKillBot',     'A military comabat drone.', 5000),
 		);
 	}
 	

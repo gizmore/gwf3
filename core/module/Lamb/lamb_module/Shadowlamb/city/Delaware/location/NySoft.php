@@ -6,6 +6,7 @@ final class Delaware_NySoft extends SR_Tower
 	
 	public function onEnter(SR_Player $player)
 	{
+		$party = $player->getParty();
 		$party->notice('Nice, their business is open.');
 		$this->teleportInstant($player, 'NySoft_Exit', 'inside');
 	}

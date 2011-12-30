@@ -1,8 +1,10 @@
 <?php
-require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
-require_once GWF_CORE_PATH.'module/WeChall/WC_SiteFavorites.php';
-require_once GWF_CORE_PATH.'module/Profile/tpl/wc4/_profile_funcs.php';
 $wechall = Module_WeChall::instance();
+$wechall->includeClass('WC_RegAt');
+$wechall->includeClass('WC_SiteFavorites');
+$wechall->includeClass('WC_SiteDescr');
+require_once GWF_CORE_PATH.'module/Profile/tpl/wc4/_profile_funcs.php';
+
 $u = $tVars['user']; $u instanceof GWF_User;
 $p = $tVars['profile']; $p instanceof GWF_Profile;
 $user = GWF_User::getStaticOrGuest();

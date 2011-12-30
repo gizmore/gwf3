@@ -292,7 +292,7 @@ final class Shadowhelp
 						'examine' => 'Player command. Usage: #(ex)amine <inv_id|'.$eqs.'|itemname>. Examine your items.',
 						'show' => 'Player command. Usage: #show [<player>] <inv_id|'.$eqs.'|itemname>. Show another player the examine string of your items, or behave like #examine.',
 						'known_knowledge' => "Player command. Usage: #known_knowledge|#kk. List your known knowledge. Knowledge can help you on some quests but it is not required.",
-						'known_places' => "Player command. Usage: #known_places|#kp. List your known places in your current city. You can go to them with #(g)oto. Use #(exp)lore to find new places.",
+						'known_places' => "Player command. Usage: #known_places|#kp <[city]>. List your known places in your current or specified city. You can go to them with #(g)oto. Use #(exp)lore to find new places.",
 						'known_words' => "Player command. Usage: #known_words|#kw. List some useful words you have learned, which you can enumerate with #talk and #say.",
 						'known_spells' => 'Player command. Usage: #known_spells|#ks <[ks_id|spell_name]>. List your known magic spells or examine a spell.',
 						'quests' => 'Player command. Usage: #(qu)ests [<open|done|deny|fail|abort>] [<id>]. Shows info about your quests. To get quests you need to talk to the npc. Most often, the trigger is #talk shadowrun and #talk yes to get them.',

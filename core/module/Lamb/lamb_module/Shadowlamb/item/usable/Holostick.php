@@ -119,11 +119,11 @@ class Item_Holostick extends Item_Credstick
 		}
 		
 		
-		if (false !== ($this->confirm()))
-		{
-			$this->reply($player, sprintf('You are about to transfer %s %s to your bank. Cost: %s. Retype to confirm.'));
-			return true;
-		}
+// 		if (false !== ($this->confirm()))
+// 		{
+// 			$this->reply($player, sprintf('You are about to transfer %s %s to your bank. Cost: %s. Retype to confirm.'));
+// 			return true;
+// 		}
 
 		# Transfer to bank
 		$need_amt = $want_amt;
