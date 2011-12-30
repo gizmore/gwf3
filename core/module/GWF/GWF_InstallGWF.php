@@ -6,7 +6,7 @@ final class GWF_InstallGWF
 		return GWF_ModuleLoader::installVars($module, array(
 //			'Design' => array(GWF_Template::getDesign(), 'text'),
 			# Fancy Config
-			'FancyIndex' => array('YES', 'bool'),
+			'FancyIndex' => array('NO', 'bool'),
 			'NameWidth' => array('25', 'int'),
 			'DescrWidth' => array('80', 'int'),
 			'IconWidth' => array('16', 'int'),

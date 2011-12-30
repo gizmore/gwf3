@@ -10,29 +10,30 @@ final class GWF_Fancy extends GWF_Method
 	{
 		$module instanceof Module_GWF;
 		
-		# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
 		$ret = '';
-		$ret .=
-			'AddType text/html .php'.PHP_EOL. # TODO: This rule breaks any server setup i have dealt with, so far.
-			                                  #     : Please make this optional and default disabled.
-			'<Files "*.php">'.PHP_EOL.        # TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
-			'    AddHandler application/x-httpd-php .php'.PHP_EOL.
-			'</Files>'.PHP_EOL.PHP_EOL;
-		###################
-		## SpaceOne TODO ##
-		###################
-		if(true === GWF_ServerInfo::isApache())
-		{
- 			$ret .=
- 				'AddType text/html .php'.PHP_EOL.
-				'<Files "*.php">'.PHP_EOL. 
-				'    AddHandler application/x-httpd-php .php'.PHP_EOL.
-				'</Files>'.PHP_EOL.PHP_EOL;
-		}
-		
+
 		# The Fancy Options
-		if ($module->cfgFancyIndex())
+		if (true === $module->cfgFancyIndex())
 		{
+			if(false === GWF_ServerInfo::isApache())
+			{
+				return '';
+			}
+
+			# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
+			# TODO: can we check if AllowOverride is on?
+
+			# TODO: This rule breaks any server setup i have dealt with, so far.
+			#     : Please make this optional and default disabled.
+			$ret .= 'AddType text/html .php'.PHP_EOL;
+
+			$ret .= '<Files "*.php">'.PHP_EOL;
+
+			# TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
+			$ret .= '    AddHandler application/x-httpd-php .php'.PHP_EOL.
+
+			$ret .= '</Files>'.PHP_EOL.PHP_EOL;
+
 			$ret .= '# Fancy Index'.PHP_EOL;
 			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
 				'IndexOptions'.

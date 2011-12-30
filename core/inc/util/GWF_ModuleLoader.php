@@ -378,10 +378,6 @@ final class GWF_ModuleLoader
 		if (false === self::installHTAccess2($modules)) {
 			return false;
 		}
-		# wrong place? move to GWF_InstallWizard:539 ?
-		if (false === GWF_HTAccess::installCountryRewrites()) {
-			return false;
-		}
 		return true;
 	}
 	

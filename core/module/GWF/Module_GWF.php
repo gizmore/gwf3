@@ -13,7 +13,7 @@ final class Module_GWF extends GWF_Module
 //	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
 
 	# Fancy Config
-	public function cfgFancyIndex() { return $this->getModuleVarBool('FancyIndex', '1'); }
+	public function cfgFancyIndex() { return $this->getModuleVarBool('FancyIndex', '0'); }
 	public function cfgNameWidth() { return $this->getModuleVar('NameWidth', '25'); }
 	public function cfgDescriptionWidth() { return $this->getModuleVar('DescrWidth', '80'); }
 	public function cfgIconWidth() { return $this->getModuleVar('IconWidth', '16'); }

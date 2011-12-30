@@ -532,12 +532,12 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('8');
 		
-		if (!GWF_ModuleLoader::reinstallHTAccess())
+		if ( (false !== GWF_ModuleLoader::reinstallHTAccess()) && (false !== GWF_HTAccess::installCountryRewrites()) )
 		{
-			return self::wizard_error('err_htaccess');
+			return self::wizard_message('msg_htaccess').self::wizard_btn('9');
 		}
 		
-		return self::wizard_message('msg_htaccess').self::wizard_btn('9');
+		return self::wizard_error('err_htaccess');
 	}
 	
 	/**

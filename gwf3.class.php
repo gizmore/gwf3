@@ -165,11 +165,14 @@ class GWF3
 	 */
 	public static function _init()
 	{
+		# The GWF autoloader
+		spl_autoload_register(array(__CLASS__, 'onAutoloadClass'));
+		
 		# Require the util/Common.php
 		require_once 'core/inc/util/Common.php';
 		
 //		$path = dirname(__FILE__).'/';		
-//		if(true === GWF_ServerInfo::isWindows()) // needs to be includet... replace by original code!?
+//		if(true === GWF_ServerInfo::isWindows()) // replace by original code!?
 //		{
 //			$path = str_replace('\\', '/', $path); # Windows patch
 //		}
@@ -178,10 +181,7 @@ class GWF3
 		define('GWF_PATH', dirname(__FILE__).'/');
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
-		
-		# The GWF autoloader
-		spl_autoload_register(array(__CLASS__, 'onAutoloadClass'));
-		
+	
 		# Require the database
 		require_once GWF_CORE_PATH.'inc/GDO/GDO.php';
 	}
