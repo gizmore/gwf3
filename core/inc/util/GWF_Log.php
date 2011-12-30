@@ -58,7 +58,11 @@ final class GWF_Log
 				{
 					$v = 'xxxxx';
 				}
-				$back .= $de.$k.'=>'.Common::implodeR(',', $v);
+				elseif(is_array($v) === true)
+				{
+					$v = GWF_Array::implode(',', $v);
+				}
+				$back .= $de.$k.'=>'.$v;
 			}
 		}
 		return $back;

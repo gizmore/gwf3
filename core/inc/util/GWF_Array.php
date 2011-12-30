@@ -25,21 +25,15 @@ final class GWF_Array
 
 	/**
 	 * Recursive implode. Code taken from php.net. Original code by: kromped@yahoo.com
-	 * @todo Move to other file.
 	 * @param string $glue
 	 * @param array $pieces
 	 * @return string
 	 */
-	public static function implode($glue, $pieces)
+	public static function implode($glue, array $pieces, array $retVal=array())
 	{
 		foreach($pieces as $r_pieces)
 		{
-			if (is_array($r_pieces)) {
-				$retVal[] = self::implode($glue, $r_pieces);
-			}
-			else {
-				$retVal[] = $r_pieces;
-			}
+			$retVal[] = (true === is_array($r_pieces)) ? '['.self::implode($glue, $r_pieces).']' : $r_pieces;
 		}
 		return implode($glue, $retVal);
 	}
