@@ -227,6 +227,7 @@ final class Common
 
 	public static function implodeR($glue, $pieces)
 	{
+		$retVal = array();
 		foreach($pieces as $r_pieces)
 		{
 			$retVal[] = is_array($r_pieces) ? self::implodeR($glue, $pieces) : $r_pieces;
