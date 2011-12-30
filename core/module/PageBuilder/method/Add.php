@@ -41,6 +41,7 @@ final class PageBuilder_Add extends GWF_Method
 		$data['show_modified'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_modified'));
 		$data['show_trans'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_trans'));
 		$data['show_comments'] = array(GWF_Form::CHECKBOX, true, $module->lang('th_show_comments'));
+		$data['home_page'] = array(GWF_Form::CHECKBOX, false, $module->lang('th_home_page'));
 		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
 		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
 		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, '', $module->lang('th_inline_css'));
@@ -105,7 +106,7 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['follow']) ? GWF_Page::FOLLOW : 0;
 		$options |= isset($_POST['sitemap']) ? GWF_Page::IN_SITEMAP : 0;
 		$options |= $form->getVar('type');
-		
+
 		$gstring = $this->buildGroupString($module);
 		$tags = ','.trim($form->getVar('tags'), ' ,').',';
 		
@@ -144,7 +145,12 @@ final class PageBuilder_Add extends GWF_Method
 		if (false === GWF_PageTags::updateTags($page, $tags)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__,__LINE__));
 		}
-		
+
+		if(true === isset($_POST['home_page']))
+		{
+			$module->setHomePage($page->getID());
+		}
+
 		if (false === $module->writeHTA()) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}

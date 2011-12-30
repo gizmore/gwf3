@@ -60,6 +60,7 @@ final class PageBuilder_Edit extends GWF_Method
 		$data['show_modified'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED), $module->lang('th_show_modified'));
 		$data['show_trans'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_TRANS), $module->lang('th_show_trans'));
 		$data['show_comments'] = array(GWF_Form::CHECKBOX, $page->wantComments(), $module->lang('th_show_comments'));
+		$data['home_page'] = array(GWF_Form::CHECKBOX, ($module->cfgHomePage() === $page->getID()), $module->lang('th_home_page'));
 		$data['file'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_file'));
 		$data['upload'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
 		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_inline_css'), $module->lang('th_inline_css'));
@@ -108,6 +109,11 @@ final class PageBuilder_Edit extends GWF_Method
 //			$data['page_groups'] = $this->buildGroupString($module);
 //		}
 //		$data['page_options'] = $options;
+
+		if (true === isset($_POST['home_page']))
+		{
+			$module->setHomePage($page->getID());
+		}
 		
 		if (false === ($page->saveVars($data))) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));

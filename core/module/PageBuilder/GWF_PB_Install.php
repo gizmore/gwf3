@@ -5,6 +5,7 @@ final class GWF_PB_Install
 	{
 		return GWF_ModuleLoader::installVars($module, array(
 			'ipp' => array('10', 'int', '1', '100'),
+			'home_page' => array('0', 'int'),
 		)).
 		self::installDirs($module, $dropTable);
 	}

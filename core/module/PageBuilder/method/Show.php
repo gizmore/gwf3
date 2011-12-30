@@ -10,6 +10,12 @@ final class PageBuilder_Show extends GWF_Method
 		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
 		$pages = GDO::table('GWF_Page')->selectAll('page_id, page_url', 'page_options&1', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '';
+
+		if (0 !== ($hpid = $module->cfgHomePage()))
+		{
+			$back .= "RewriteRule ^$ index.php?mo=PageBuilder&me=Show&pageid={$hpid}".PHP_EOL;
+		}
+
 		foreach ($pages as $page)
 		{
 			$url = $this->replaceRewriteURL($page[1]);

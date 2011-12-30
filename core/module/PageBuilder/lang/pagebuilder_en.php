@@ -26,6 +26,7 @@ $lang = array(
 	'th_show_modified' => 'Show Modified Date',
 	'th_show_trans' => 'Show Available Translations',
 	'th_show_comments' => 'Allow comments',
+	'th_home_page' => 'Set this page as GWF HomePage',
 	'th_index' => 'Allow indexing',
 	'th_follow' => 'Allow following',
 	'th_in_sitemap' => 'List in sitemap',
@@ -73,5 +74,7 @@ $lang = array(
 	'similar_pages' => 'Similiar pages',
 	'page_views' => 'Views',
 
+	'cfg_home_page' => 'PageID of the GWF HomePage or 0 for None',
+//	'cfg_ipp' => '',
 );
 ?>
