@@ -3,7 +3,7 @@
 $lang = array(
 	'title' => 'PHP 0815 Challenge',
 	'info' => 
-	'I have <a href="%1%">this script</a> and its prone to sql injection.<br/>Your mission is to provide me with a fix.<br/>'.
+	'I have <a href="%1$s">this script</a> and its prone to sql injection.<br/>Your mission is to provide me with a fix.<br/>'.
 	'The solution is the fix with the least effort (The shortest way to fix at some logic position), and guarantee the script does still work.<br/>'.
 	'if you think <i>&quot;urldecode()&quot;</i> will fix the script you simply enter it as solution.<br/>'.
 	'The solution has to contain all chars that you need to type.<br/>'.

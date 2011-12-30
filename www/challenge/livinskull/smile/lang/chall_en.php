@@ -4,13 +4,13 @@ $lang = array(
 	'info' =>
 		'We are working hard on a better WeChall, and ask for your help.<br/>'.
 		'In particular we want new smileys beeing added to the bb_decoder.<br/>'.
-		'To add cool smileys, we have coded up a <a href="%5%">small form</a> to submit them.<br/>'.
+		'To add cool smileys, we have coded up a <a href="%5$s">small form</a> to submit them.<br/>'.
 		'<br/>'.
 		'Would be cool if you could add a few smileys and replacing rules for us!<br/>'.
 		'<br/>'.
 		'Oh ... again you are given the sourcecode.<br/>'.
-		'There are two files: <a href="%1%">smile.php</a> (<a href="%2%">highlighted</a>)<br/>'.
-		'And: <a href="%3%">Livin_Smile.php</a> (<a href="%4%">highlighted</a>)',
+		'There are two files: <a href="%1$s">smile.php</a> (<a href="%2$s">highlighted</a>)<br/>'.
+		'And: <a href="%3$s">Livin_Smile.php</a> (<a href="%4$s">highlighted</a>)',
 
 	# Form
 	'ft_add' => 'Add a smiley',
@@ -36,6 +36,6 @@ $lang = array(
 	'err_xss' => 'Your smiley path seems to contain dangerous input.',
 
 	'msg_rule_added' => 'Thank you for adding another smiley rule!',
-	'msg_uploaded' => 'Thank you for uploading a smiley. Use this as replacement for your patterns: %1%',
+	'msg_uploaded' => 'Thank you for uploading a smiley. Use this as replacement for your patterns: %1$s',
 );
 ?>

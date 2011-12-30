@@ -7,6 +7,6 @@ $lang = array(
 		'Die Zeichen sind wieder einmal begrenzt auf A-Z... aber ich glaube, dass ich auch eine 256 Zeichen-Variante erstellen kann.<br/>'.
 		'<br/>'.
 		'Viel Spass!',
- 	'plaintext' => 'Beim allmaechtigen Gott. Du kannst das lesen! Ich bin beeindruckt. Sehr gut gemacht. Deine persoenliche Loesung lautet wie folgt: %1%.',
+ 	'plaintext' => 'Beim allmaechtigen Gott. Du kannst das lesen! Ich bin beeindruckt. Sehr gut gemacht. Deine persoenliche Loesung lautet wie folgt: %1$s.',
 );
 ?>

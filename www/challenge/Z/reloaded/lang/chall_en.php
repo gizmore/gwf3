@@ -7,7 +7,7 @@ $lang = array(
 		'because later in the challenge it is likely that you will need them again.<br/>'.
 		'Especially if you see passwords in the narrator box.<br/>'.
 		'<br/>'.
-		'<a href="%1%" title="Start the challenge">Start the challenge</a>',
+		'<a href="%1$s" title="Start the challenge">Start the challenge</a>',
 
 	### Narrator ###
 	'narr_1' => 'In this challenge you play the role of Trinity, from the famous movie Matrix: Reloaded. In the beginning of this challenge, your mission is the same as in the movie: Power down the whole city. To begin the hack, you have to do a stealth verbose nmap scan against 10.2.2.2 .<br/><br/>You can reset the challenge anytime by typing \'reset\'.',

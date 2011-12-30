@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Bacon Returns',
 	'info' =>
-		'Mr. <a href="%1%">Bacon</a> is back and wants to challenge you again.<br/>'.
+		'Mr. <a href="%1$s">Bacon</a> is back and wants to challenge you again.<br/>'.
 		'This time it is harder to decode but still classic bacon.<br/>'.
 		'<br/>'.
 		'Note one: We still use a full 26 character encoding.<br/>'.
@@ -19,6 +19,6 @@ $lang = array(
 		'Any method of writing the message that allows two distinct representations for each character can be used for the Bacon Cipher. Bacon himself prepared a Biliteral Alphabet[2] for handwritten capital and small letters with each having two alternative forms, one to be used as A and the other as B. This was published as an illustrated plate in his De Augmentis Scientiarum (The Advancement of Learning).'.PHP_EOL.
 		'Because any message of the right length can be used to carry the encoding, the secret message is effectively hidden in plain sight. The false message can be on any topic and thus can distract a person seeking to find the real message.',
 
-	'hidden' => 'You can read the hidden message so i will tell you the solution which is twelve random letters %1%',
+	'hidden' => 'You can read the hidden message so i will tell you the solution which is twelve random letters %1$s',
 );
 ?>

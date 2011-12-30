@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'WWW-IPv6 (Level %1%)',
+	'title' => 'WWW-IPv6 (Level %1$s)',
 	'info_1' => 'Welcome to a very small IP6 challenge.<br/><br/>As a warmup, please answer a few questions:<br/><br/>1) How many localhost IPs are reserved in IPv6?',
 	'info_2' => 'You are right. And how many total addresses are available?',
 	'info_3' => 'Correct :)<br/>Could you please support me with an http link to your localhost on port 8080?<br/>Only the shortest solution gets accepted.',
@@ -11,6 +11,6 @@ $lang = array(
 
 	'info_8' => 'Ok... Could you please connect to this page via IPv6 now?',
 
-	'msg_correct' => 'Your answer is correct... You are now on IPv6 level %1%.',
+	'msg_correct' => 'Your answer is correct... You are now on IPv6 level %1$s.',
 );
 ?>

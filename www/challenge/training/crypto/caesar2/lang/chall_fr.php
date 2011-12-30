@@ -13,6 +13,6 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 
-	'plaintext' => 'Bon travail, vous avez resolu un challenge de plus dans votre journee. Celui-la etait simple a cracker. N\'est-ce pas? 127 caracteres est un espace assez petit, donc ca ne devrait pas vous prendre trop longtemps pour decrypter ce message. Bien joue, la solution est %1%.',
+	'plaintext' => 'Bon travail, vous avez resolu un challenge de plus dans votre journee. Celui-la etait simple a cracker. N\'est-ce pas? 127 caracteres est un espace assez petit, donc ca ne devrait pas vous prendre trop longtemps pour decrypter ce message. Bien joue, la solution est %1$s.',
 );
 ?>

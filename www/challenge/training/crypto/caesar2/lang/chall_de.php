@@ -12,6 +12,6 @@ $lang = array(
 		'<br/>'.
 		'Viel Spaß!',
 	
-	'plaintext' => 'Gute Arbeit. Du hast jetzt ein weiteres Challenge geloest. Diese Nachricht war immer noch einfach zu knacken, oder nicht? Ein Keyspace von 128 Schluesseln ist einfach zu wenig, also sollte das entschluesseln nicht lange gedauert haben. Deine Loesung lautet %1%.',
+	'plaintext' => 'Gute Arbeit. Du hast jetzt ein weiteres Challenge geloest. Diese Nachricht war immer noch einfach zu knacken, oder nicht? Ein Keyspace von 128 Schluesseln ist einfach zu wenig, also sollte das entschluesseln nicht lange gedauert haben. Deine Loesung lautet %1$s.',
 );
 ?>

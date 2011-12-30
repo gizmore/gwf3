@@ -4,7 +4,7 @@ $lang = array(
 	'info' =>
 		'One of our agents (codename Larry) was able to sniff Oracle network traffic deep in the Russian network.<br/>'.
 		'First Larry obtained some traffic when users authenticated to the database, this traffic you can find<br/>'.
-		'<a href="%1%">here</a><br/>'.
+		'<a href="%1$s">here</a><br/>'.
 		'<br/>'.
 		'Afterwards, Larry sniffed some traffic when the database made some network backup.<br/>'.
 		'When he realized how important this could be, the agent immediatly forwarded the traffic<br/>'.
@@ -13,7 +13,7 @@ $lang = array(
 		'<br/>'.
 		'Our experts already analyzed this traffic, and were able to<br/>'.
 		'restore the beginning of a database file, which you can find<br/>'.
-		'<a href="%2%">here</a>.<br/>'.
+		'<a href="%2$s">here</a>.<br/>'.
 		'<br/>'.
 		'Your goal is to obtain a valid username - password - connect identifier in the following form<br/>'.
 		'<br/>'.
@@ -23,11 +23,11 @@ $lang = array(
 		'After you have found the tool, you need a lot of oracle dll\'s.<br/>'.
 		'You can download it from Oracle official site (Oracle Database Client),<br/>'.
 		'but I made a small client for this challenge, you can download it here:<br/>'.
-		'<a href="%3%">Oracle DLLs</a><br/>'.
+		'<a href="%3$s">Oracle DLLs</a><br/>'.
 		'<br/>'.
 		'On the headquarter you found some analyzed Oracle traffic, maybe it will help you to understand<br/>'.
 		'more Oracle TNS traffic. You can download it here:<br/>'.
-		'<a href="%4%">example.txt</a>.<br/>'.
+		'<a href="%4$s">example.txt</a>.<br/>'.
 		'<br/>'.
 		'And the last information for you, is that the clients were connecting to the<br/>'.
 		'database via IP tunneling, but the traffic was captured after the tunneling was terminated.<br/>'.

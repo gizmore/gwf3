@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Beschreibung',
 	'info' =>
-		'Deine Aufgabe ist es, <b><a href="%1%">solution.php</a></b> durch das Exploiten des <a href="%2%">Highlighter Scripts</a> zu lesen.<br/>'.
+		'Deine Aufgabe ist es, <b><a href="%1$s">solution.php</a></b> durch das Exploiten des <a href="%2$s">Highlighter Scripts</a> zu lesen.<br/>'.
 		'Wieder einmal kannst du den Quelltext des Scripts einsehen, der auch in Benutzung ist.<br/>'.
 		'Hier unten befinden sich drei Links, welche zeigen wie das Highlightscript benutzt wird.<br/>'.
 		'Viel Erfolg.<br/>',

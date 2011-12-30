@@ -1,13 +1,13 @@
 <?php
 $lang = array(
-	'title' => 'Regex harjoitus haaste (Taso %1%)',
+	'title' => 'Regex harjoitus haaste (Taso %1$s)',
 
 	'err_wrong' => 'Sinun vastauksesi on väärä, tai kysymykseen löytyy lyhyempikin ratkaisu.',
-	'err_no_match' => 'Sinun kaavasi ei vastaa&quot;%1%&quot;a.',
-	'err_matching' => 'Sinun kaavasi vastaa&quot;%1%&quot;, Vaikkasen ei kuuluisi vastata sitä.',
+	'err_no_match' => 'Sinun kaavasi ei vastaa&quot;%1$s&quot;a.',
+	'err_matching' => 'Sinun kaavasi vastaa&quot;%1$s&quot;, Vaikkasen ei kuuluisi vastata sitä.',
 	'err_capturing' => 'Sinun kaavasi kyllä kaappasi jonon, mutta sitä ei tässä tilanteessa kaivattu. Käytä kaappaamatonta koodiryhmää.',
 	'err_not_capturing' => 'Sinun kaavasi ei vangitse haluttua merkkijonoa oikein.',
-	'err_too_long' => 'Sinun kaavasi on pidempi kuin suositeltu ratkaisu, %1%:llä merkillä.',
+	'err_too_long' => 'Sinun kaavasi on pidempi kuin suositeltu ratkaisu, %1$s:llä merkillä.',
 
 	'msg_next_level' => 'Oikein, katsotaan löydätkö oikean ratkaisun myös seuraavaan ongelmaan.',
 	'msg_solved' => 'Hyvin tehty, tämä riittää hyvin ensimmäiseksi oppitunniksi säännöllisiä lausekkeita. Tehtävä suoritettu.',

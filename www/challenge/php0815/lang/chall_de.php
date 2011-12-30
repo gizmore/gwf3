@@ -3,7 +3,7 @@
 $lang = array(
 	'title' => 'PHP 0815',
 	'info' =>
-	'Ich habe <a href="%1%">dieses Script</a> geschrieben, aber es ist anfällig für SQL Injection.<br/>'. 
+	'Ich habe <a href="%1$s">dieses Script</a> geschrieben, aber es ist anfällig für SQL Injection.<br/>'. 
 	'Deine Aufgabe ist es eine fehlerbereinigte Version zu senden.<br/>'.
 	'Die Lösung ist "der Fix/Patch" mit dem geringsten Schreibaufwand, welcher sicherstellt das das Script auch weiterhin funktioniert.<br/>'.
 	'Wenn du denkst, <i>&quot;urldecode()&quot;</i> würde das Script reparieren, gebe es einfach als Lösung ein.<br/>'.

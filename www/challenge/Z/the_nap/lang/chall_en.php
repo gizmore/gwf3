@@ -25,7 +25,7 @@ $lang = array(
 		'After the conversation you realise that the keys for today were partially destroyed.<br/>'.PHP_EOL.
 		'You imagine how angry your superior will be after returning,<br/>'.PHP_EOL.
 		'if you dont decrypt the message immediatly.<br/>'.PHP_EOL.
-		'The wasted codebook is here: <a href="%1%">codebook</a>;<br/>'.PHP_EOL.
+		'The wasted codebook is here: <a href="%1$s">codebook</a>;<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Your job is to decipher the encrypted message, and the solution is<br/>'.PHP_EOL.
 		'the last original german word in lowercase concatenated with<br/>'.PHP_EOL.

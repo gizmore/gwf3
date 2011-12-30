@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'err_timeout' => 'Your time had run out.<br/>Time taken: %1% seconds.',
+	'err_timeout' => 'Your time had run out.<br/>Time taken: %1$s seconds.',
 'err_no_question' => 'There has been no question asked to you.',
-	'err_wrong' => 'Wrong. Correct would have been %1%.',
+	'err_wrong' => 'Wrong. Correct would have been %1$s.',
 
 	'task' => 'The task',
 	'info' =>
@@ -12,10 +12,10 @@ $lang = array(
 		'Base N means the base is using the first N chars from the charset.<br/>',
 
 	'problem' => 
-		'Charset: %1%<br/>'.
-		'Input Base: %2%<br/>'.
-		'Solution Base: %3%<br/>'.
-		'Timelimit: %4% seconds<br/>',
+		'Charset: %1$s<br/>'.
+		'Input Base: %2$s<br/>'.
+		'Solution Base: %3$s<br/>'.
+		'Timelimit: %4$s seconds<br/>',
 
 	'params' => 'Parameters',
 	'equation' => 'Equation',

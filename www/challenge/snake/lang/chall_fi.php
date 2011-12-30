@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Snake 4 Poors',
 	'info' =>
-		'Sinun tehtäväsi on saavuttaa tarkalleen %1%-pistettä. Voit <a href="%2%"> katsella huipputulos taulukkoa tästä.</a>.<br/>'.
+		'Sinun tehtäväsi on saavuttaa tarkalleen %1$s-pistettä. Voit <a href="%2$s"> katsella huipputulos taulukkoa tästä.</a>.<br/>'.
 		'<br/>'.
 		'<b>Peli ohjeet</b>:<br/>'.
 		'- Klikkaa applet keskittyä, paina P tai F4.<br/>'.
@@ -16,7 +16,7 @@ $lang = array(
 		'<br/>'.
 		'<b>Huomioitavaa</b>:<br/>'.
 		'- Peli tunnistaa, jos olet huijannut oman huipputulos merkintäsi. Sinun tehtäväsi on myös kukistaa huijaus tunnistus.<br/>'.
-		'- Jos tiedät jo <a href="%3%"> vanhan appletin </ a>: huijaaminen havaitseminen on viisaampi tässä. Mutta voit silti yrittää hakata <a href="%4%"> vanha huipputulos </ a>, ja helpompi versio.<br/>'.
+		'- Jos tiedät jo <a href="%3$s"> vanhan appletin </ a>: huijaaminen havaitseminen on viisaampi tässä. Mutta voit silti yrittää hakata <a href="%4$s"> vanha huipputulos </ a>, ja helpompi versio.<br/>'.
 		'- Ei ole SQL Injection tai muut todelliset virhe, vain huijausta havaitsemista.<br/>'.
 		'- Huumeiden käyttöä ei ole hyväksi mielenterveydelle.<br/>'.
 		'<br/>'.
@@ -34,11 +34,11 @@ $lang = array(
 	'th_length' => 'Length',
 
 	'hs_title' => 'Snake Highscore',
-	'hs_info' => 'The snake highscore.<br/>Päivän sankari: <b>%1%</b>.<br/>Postaaksesi kaikki huijarit, <a href="%2%">paina tästä napista</a>.',
+	'hs_info' => 'The snake highscore.<br/>Päivän sankari: <b>%1$s</b>.<br/>Postaaksesi kaikki huijarit, <a href="%2$s">paina tästä napista</a>.',
 
 	'solved_note' => 'Erittäin hyvin tehty! Poistan nyt tuloksesi, koska pisteesi voisivat paljastaa sen muille! Älä luo avauksia foorumeille, tai muuten kerro muille, säilyttäksesi haasteen muillekin.',
 
-	'msg_del_cheaters' => 'Onnistuneesti poistettu %1% huijaria!',
+	'msg_del_cheaters' => 'Onnistuneesti poistettu %1$s huijaria!',
 
 	'alt_bananas' => 'Banaanit',
 	'alt_cherries' => 'Kirsikat',

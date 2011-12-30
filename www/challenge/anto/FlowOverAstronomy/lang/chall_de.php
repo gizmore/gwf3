@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'err_timeout' => 'Deine Zeit ist abgelaufen.<br/>Benötigte Zeit: %1% Sekunden.',
+	'err_timeout' => 'Deine Zeit ist abgelaufen.<br/>Benötigte Zeit: %1$s Sekunden.',
 	'err_no_question' => 'Dir wurde keine Aufgabe zu diesem Challenge gestellt.',
-	'err_wrong' => 'Falsch. Die richtige Antwort wäre<br/>%1%<br/>gewesen.',
+	'err_wrong' => 'Falsch. Die richtige Antwort wäre<br/>%1$s<br/>gewesen.',
 
 	'task' => 'Deine Aufgabe',
 	'info' =>
@@ -12,10 +12,10 @@ $lang = array(
 		'Basis N bedeuted das die ersten N Zeichen des Zeichensatzes benutzt werden.<br/>',
 
 	'problem' => 
-		'Zeichensatz: %1%<br/>'.
-		'Eingangs Basis: %2%<br/>'.
-		'Lösungs Basis: %3%<br/>'.
-		'Zeitlimit: %4% Sekunden<br/>',
+		'Zeichensatz: %1$s<br/>'.
+		'Eingangs Basis: %2$s<br/>'.
+		'Lösungs Basis: %3$s<br/>'.
+		'Zeitlimit: %4$s Sekunden<br/>',
 
 	'params' => 'Parameter',
 	'equation' => 'Ausdruck',

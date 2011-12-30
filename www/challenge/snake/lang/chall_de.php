@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Snake Für Arme',
 	'info' =>
-		'Deine Aufgabe ist es, genau %1% Punkte zu erreichen. Du kannst <a href="%2%">hier die Höchstpunktzahlen einsehen</a>.<br/>'.
+		'Deine Aufgabe ist es, genau %1$s Punkte zu erreichen. Du kannst <a href="%2$s">hier die Höchstpunktzahlen einsehen</a>.<br/>'.
 		'<br/>'.
 		'<b>Spielanleitung</b>:<br/>'.
 		'- Klicke auf das Applet zum fokussieren. Danach drücke P oder F4 um das Spiel zu starten.<br/>'.
@@ -16,7 +16,7 @@ $lang = array(
 		'<br/>'.
 		'<b>Notizen</b>:<br/>'.
 		'- Das Spiel bemerkt wenn du versuchst zu schummeln. Deine Aufgabe beinhaltet auch, dies zu umgehen.<br/>'.
-		'- Falls du <a href="%3%">das alte Snake Applet</a> schon kennst: Die \'Schummel-Erkennung\' ist hier recht clever. Du kannst aber auch <a href="%4%">erstmal dein Glück mit der alten Highscore versuchen</a>, für leichtere Bedingungen.<br/>'.
+		'- Falls du <a href="%3$s">das alte Snake Applet</a> schon kennst: Die \'Schummel-Erkennung\' ist hier recht clever. Du kannst aber auch <a href="%4$s">erstmal dein Glück mit der alten Highscore versuchen</a>, für leichtere Bedingungen.<br/>'.
 		'- Hier geht es nicht um eine SQL-Injection oder ähnliche Fehler, nur die \'Schummel-Erkennung\'.<br/>'.
 		'- Drogen missbrauchen ist nicht gut für Dein geistiges Wohlbefinden.<br/>'.
 		'<br/>'.
@@ -34,11 +34,11 @@ $lang = array(
 	'th_length' => 'Länge',
 
 	'hs_title' => 'Snake Höchstpunktzahlen',
-	'hs_info' => 'Die Snake Highscore.<br/>Held des Tages: <b>%1%</b>.<br/>Um alle Schummler zu löschen, <a href="%2%">klicke hier</a>.',
+	'hs_info' => 'Die Snake Highscore.<br/>Held des Tages: <b>%1$s</b>.<br/>Um alle Schummler zu löschen, <a href="%2$s">klicke hier</a>.',
 
 	'solved_note' => 'Sehr gut gemacht! Ich lösche deinen Eintrag nun, weil er zuviel von der Challenge verrät. Bitte erzeuge keine Einträge die Rückschlüsse auf die Lösung erlauben, um das Challenge möglichst schwierig zu erhalten.',
 
-	'msg_del_cheaters' => 'Es wurden erfolgreich %1% Schummler gelöscht!',
+	'msg_del_cheaters' => 'Es wurden erfolgreich %1$s Schummler gelöscht!',
 
 	'alt_bananas' => 'Bananen',
 	'alt_cherries' => 'Kirschen',

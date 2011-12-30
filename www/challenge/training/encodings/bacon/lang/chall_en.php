@@ -19,6 +19,6 @@ $lang = array(
 		'Any method of writing the message that allows two distinct representations for each character can be used for the Bacon Cipher. Bacon himself prepared a Biliteral Alphabet[2] for handwritten capital and small letters with each having two alternative forms, one to be used as A and the other as B. This was published as an illustrated plate in his De Augmentis Scientiarum (The Advancement of Learning).'.PHP_EOL.
 		'Because any message of the right length can be used to carry the encoding, the secret message is effectively hidden in plain sight. The false message can be on any topic and thus can distract a person seeking to find the real message.',
 
-	'hidden' => 'Very well done fellow hacker the secret keyword is %1%',
+	'hidden' => 'Very well done fellow hacker the secret keyword is %1$s',
 );
 ?>

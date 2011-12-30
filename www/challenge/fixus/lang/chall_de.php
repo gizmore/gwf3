@@ -9,20 +9,20 @@ $lang = array(
 		'Gizmore hat gute Arbeit geleistet um XSS und CSRF unschädlich zu machen, also musst du einen anderen Weg finden, um dich als Z auszugeben.<br/>'.
 		'Während du den WeChall Quelltext durchsuchst, findest du ein geheimes Login Panel für die Z Lösung-Boards...<br/>'.
 		'<br/>'.
-		'<a href="%1%">Einloggen</a><br/>'.
+		'<a href="%1$s">Einloggen</a><br/>'.
 		'<br/>'.
-		'<a href="%2%">Zum Geheimen Forum</a><br/>',
+		'<a href="%2$s">Zum Geheimen Forum</a><br/>',
 	'send_to_z' => 'Einen Link an Z senden',
 	'err_bad' => 'So funktioniert das nicht!',
 	'err_screwed' => 'Das funktioniert nicht, jetzt hast du alles kaputt gemacht!!',
 	'msg_sent' => 'Der Link wurde erfolgreich gesendet. Hoffentlich klickt er ihn und muss sich dann einloggen ;D',
 	'go_back' => 'Gehe zurück zur Aufgabe',
 	'btn_login' => 'In den Admin-Bereich einloggen',
-	'hello' => 'Hallo %1%<br/><br/>',
-	'hello_z' => 'Sie dürfen nun <a href="%1%">das geheime Forum</a> betreten.<br/>',
+	'hello' => 'Hallo %1$s<br/><br/>',
+	'hello_z' => 'Sie dürfen nun <a href="%1$s">das geheime Forum</a> betreten.<br/>',
 	'hello_other' => 'Leider können sie hier nichts machen, da Ihre Rechte nicht ausreichend sind.<br/>',
-	'pls_login' => 'Bitte %1% um auf das geheime Forum zuzugreifen.',
-	'no_perm' => 'Deine Rechte sind nicht ausreichend, um dieses Forum zu betreten.<br/>%1%',
+	'pls_login' => 'Bitte %1$s um auf das geheime Forum zuzugreifen.',
+	'no_perm' => 'Deine Rechte sind nicht ausreichend, um dieses Forum zu betreten.<br/>%1$s',
 	'solved' => 'Gut gemacht, Challenge gelöst!<br/>Du hast nun Zugang zu dem Lösungs-Board für dieses Challenge :)',
 );
 ?>

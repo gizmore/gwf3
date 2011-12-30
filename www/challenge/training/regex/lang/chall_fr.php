@@ -1,14 +1,14 @@
 <?php
 # (thx SN4K37)
 $lang = array(
-	'title' => 'Regex Training Challenge (Level %1%)',
+	'title' => 'Regex Training Challenge (Level %1$s)',
 
 	'err_wrong' => 'Votre réponse est fausse, ou bien il y a une réponse plus courte au problème.',
-	'err_no_match' => 'Votre pattern ne correspondrait pas &quot;%1%&quot;.',
-	'err_matching' => 'Votre pattern correspondrait à &quot;%1%&quot;, mais il ne devrait pas correspondre à ça.',
+	'err_no_match' => 'Votre pattern ne correspondrait pas &quot;%1$s&quot;.',
+	'err_matching' => 'Votre pattern correspondrait à &quot;%1$s&quot;, mais il ne devrait pas correspondre à ça.',
 	'err_capturing' => 'Votre pattern capturerait une chaîne, mais ce n\'est pas demandé. Please use a non capturing group.',
 	'err_not_capturing' => 'Votre pattern ne capture pas la chaîne recherchée corectement.',
-	'err_too_long' => 'Votre pattern est plus long que la solution de référence: %1% caractères.',
+	'err_too_long' => 'Votre pattern est plus long que la solution de référence: %1$s caractères.',
 
 	'msg_next_level' => 'Correcte. Allons voir si vous pouvez monter avec un pattern pour le problème suivant.',
 	'msg_solved' => 'Bien joué, c\'est assez pour une toute première leçon sur les expressions régulières. Mission accomplie.',

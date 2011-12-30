@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'thanks' => 'Thanks go out to %1% and %2% for beta-testing the challenge.',
+	'thanks' => 'Thanks go out to %1$s and %2$s for beta-testing the challenge.',
 	'index_info' =>
 		'You are in the role of a secret hacker. As always.<br/>'.
 		'Your next job is the following:<br/>'.
@@ -21,7 +21,7 @@ $lang = array(
 		'The SoftMicro\'s network is 207.46.197.0  <br/>'.
 		'Your public IP is 17.149.160.49 <br/>'.
 		'<br/>'.
-		'Anderson\'s main page is <a href="%1%">Anderson</a><br/>'.
+		'Anderson\'s main page is <a href="%1$s">Anderson</a><br/>'.
 		'<br/>'.
 		'As you make progress on the challenge, you will get six pieces of a secret code, which is the proof that you have solved the challenge.<br/>'.
 		'So, don\'t forget to write down those secret code pieces.<br/>',
@@ -60,9 +60,9 @@ $lang = array(
 	'err_upload_grbge' => 'Error: The files are not doing what they should do.<br/>',
 	'msg_uploaded_collision' =>
 		'Good job.<br/>'.
-		'2nd part of the secret string: %1%<br/>'.
+		'2nd part of the secret string: %1$s<br/>'.
 		'<br/>'.
 		'Your journey continues here:<br/>'.
-		'<a href="%2%">Fingerprinting</a>',
+		'<a href="%2$s">Fingerprinting</a>',
 );
 ?>

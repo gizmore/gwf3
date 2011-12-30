@@ -1,13 +1,13 @@
 <?php
 $lang = array(
-	'title' => 'Regex Training Challenge (Level %1%)',
+	'title' => 'Regex Training Challenge (Level %1$s)',
 
 	'err_wrong' => 'Your answer is wrong, or there is a shorter solution to the problem.',
-	'err_no_match' => 'Your pattern would not match &quot;%1%&quot;.',
-	'err_matching' => 'Your pattern would match &quot;%1%&quot;, but it should not match it.',
+	'err_no_match' => 'Your pattern would not match &quot;%1$s&quot;.',
+	'err_matching' => 'Your pattern would match &quot;%1$s&quot;, but it should not match it.',
 	'err_capturing' => 'Your pattern would capture a string, but this is not wanted. Please use a non capturing group.',
 	'err_not_capturing' => 'Your pattern does not capture the wanted string correctly.',
-	'err_too_long' => 'Your pattern is longer than the reference solution with %1% chars.',
+	'err_too_long' => 'Your pattern is longer than the reference solution with %1$s chars.',
 
 	'msg_next_level' => 'Correct, let`s see if you can come up with a pattern for the next problem.',
 	'msg_solved' => 'Well done, this is enough for a very first lesson of regular expressions. Mission accomplished.',

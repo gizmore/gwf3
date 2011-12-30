@@ -8,6 +8,6 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 
-	'plaintext' => 'By the almighty god you can read this, my friend. I am impressed. Very well done. Your solution key is: %1%.',
+	'plaintext' => 'By the almighty god you can read this, my friend. I am impressed. Very well done. Your solution key is: %1$s.',
 );
 ?>

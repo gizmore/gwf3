@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Snake 4 Poors',
 	'info' =>
-		'Your mission is to reach exactly %1% points. You can <a href="%2%">watch the highscore table here</a>.<br/>'.
+		'Your mission is to reach exactly %1$s points. You can <a href="%2$s">watch the highscore table here</a>.<br/>'.
 		'<br/>'.
 		'<b>Game instructions</b>:<br/>'.
 		'- Click the applet to focus, then press P or F4.<br/>'.
@@ -16,7 +16,7 @@ $lang = array(
 		'<br/>'.
 		'<b>Notes</b>:<br/>'.
 		'- The game will detect if you have cheated your highscore entry. Your mission is to defeat the cheater detection as well.<br/>'.
-		'- In case you already know <a href="%3%">the old applet</a>: The cheating detection is more clever here. But you can still try to hack the <a href="%4%">old highscore</a>, for an easier version.<br/>'.
+		'- In case you already know <a href="%3$s">the old applet</a>: The cheating detection is more clever here. But you can still try to hack the <a href="%4$s">old highscore</a>, for an easier version.<br/>'.
 		'- There is no sql injection or any other real flaw, just a cheating detection.<br/>'.
 		'- (Ab)using drugs is not good for your mental health.<br/>'.
 		'<br/>'.
@@ -34,11 +34,11 @@ $lang = array(
 	'th_length' => 'Length',
 
 	'hs_title' => 'Snake Highscore',
-	'hs_info' => 'The snake highscore.<br/>Hero of the day: <b>%1%</b>.<br/>To delete all cheaters, <a href="%2%">press this button</a>.',
+	'hs_info' => 'The snake highscore.<br/>Hero of the day: <b>%1$s</b>.<br/>To delete all cheaters, <a href="%2$s">press this button</a>.',
 
 	'solved_note' => 'Very well done! I will delete your entry now, because your values might spoil it! Please do not create spoiling cheating entries, to keep it more difficult.',
 
-	'msg_del_cheaters' => 'Succesfully deleted %1% cheaters!',
+	'msg_del_cheaters' => 'Succesfully deleted %1$s cheaters!',
 
 	'alt_bananas' => 'Bananas',
 	'alt_cherries' => 'Cherries',

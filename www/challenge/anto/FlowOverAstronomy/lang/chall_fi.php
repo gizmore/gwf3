@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'err_timeout' => 'Aikasi on loppunut.<br/>Aikaa meni: %1% sekunttia.',
+	'err_timeout' => 'Aikasi on loppunut.<br/>Aikaa meni: %1$s sekunttia.',
 	'err_no_question' => 'Sinulta ei ole kysytty kysymystä.',
-	'err_wrong' => 'Väärin. Oikea vastaus olisi ollut %1%.',
+	'err_wrong' => 'Väärin. Oikea vastaus olisi ollut %1$s.',
 
 	'task' => 'Tehtävä',
 	'info' =>
@@ -12,10 +12,10 @@ $lang = array(
 		'Kanta N tarkoittaa, että kanta käyttää ensimmäistä N merkkiä merkistöstä.<br/>',
 
 	'problem' => 
-		'Merkistö: %1%<br/>'.
-		'Syöttö kanta: %2%<br/>'.
-		'Vastaus kanta: %3%<br/>'.
-		'Aikaraja: %4% sekunttia<br/>',
+		'Merkistö: %1$s<br/>'.
+		'Syöttö kanta: %2$s<br/>'.
+		'Vastaus kanta: %3$s<br/>'.
+		'Aikaraja: %4$s sekunttia<br/>',
 
 	'params' => 'Parameters',
 	'equation' => 'Equation',

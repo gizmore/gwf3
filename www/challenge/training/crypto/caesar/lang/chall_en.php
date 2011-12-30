@@ -8,7 +8,7 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 	
-	'plaintext' => 'The quick brown fox jumps over the lazy dog of caesar and your unique solution is %1%.',
+	'plaintext' => 'The quick brown fox jumps over the lazy dog of caesar and your unique solution is %1$s.',
 );
 	
 ?>

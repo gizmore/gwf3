@@ -4,7 +4,7 @@ $lang = array(
 	'info' =>
 		'This one is the classic mysql injection challenge.<br/>'.
 		'Your mission is easy: Login yourself as admin.<br/>'.
-		'Again you are given the <a href="%1%">sourcecode</a>, also as <a href="%2%">highlighted version</a>.<br/>'.
+		'Again you are given the <a href="%1$s">sourcecode</a>, also as <a href="%2$s">highlighted version</a>.<br/>'.
 		'<br/>'.
 		'Enjoy!',
 
@@ -13,6 +13,6 @@ $lang = array(
 	'btn_login' => 'Login',
 
 	'err_unknown' => 'This username:password combination is unknown.',
-	'msg_welcome_back' => 'Welcome back, %1%!',
+	'msg_welcome_back' => 'Welcome back, %1$s!',
 );
 ?>

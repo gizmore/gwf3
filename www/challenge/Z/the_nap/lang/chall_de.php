@@ -25,7 +25,7 @@ $lang = array(
 		'Nach dem Aufzeichnen, bemerkst du das die Schlüssel für heute teilweise zerstört wurden.<br/>'.PHP_EOL.
 		'Du kannst dir vorstellen das dein Vorgesetzter sehr wütend sein wird, wenn er zurückkehrt.,<br/>'.PHP_EOL.
 		'falls du es nicht schaffst die Nachricht davor zu entschlüsseln.<br/>'.PHP_EOL.
-		'Das versaute Codebuch ist hier: <a href="%1%">Codebuch</a>;<br/>'.PHP_EOL.
+		'Das versaute Codebuch ist hier: <a href="%1$s">Codebuch</a>;<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Deine Aufgae ist die Nachricht zu entschlüsseln, und die Lösung<br/>'.PHP_EOL.
 		'ist das letzte Deutsche Wort, kleingeschrieben, und Angehängt,<br/>'.PHP_EOL.

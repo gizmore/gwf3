@@ -22,7 +22,7 @@ To solve this challenge, you have to create this forum.html, publish it anywhere
 <br/>
 Good luck :)<br/>',
 
-'thanks' => 'Many Thanks to %1% and %2% for their effort in BetaTesting.',
+'thanks' => 'Many Thanks to %1$s and %2$s for their effort in BetaTesting.',
 
 );
 ?>

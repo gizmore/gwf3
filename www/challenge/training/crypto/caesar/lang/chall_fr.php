@@ -9,7 +9,7 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 		
-	'plaintext' => 'Salut ici snake je vous dis le mot pour passer le gros chien du fameux cesar %1%.',
+	'plaintext' => 'Salut ici snake je vous dis le mot pour passer le gros chien du fameux cesar %1$s.',
 );
 	
 ?>

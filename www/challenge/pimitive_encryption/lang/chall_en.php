@@ -4,7 +4,7 @@ $lang = array(
 	'info' =>
 		'This challenge was planned to get released on net-force, but it seems to take ages to get it released there.<br/>'.
 		'So i decided to put it online on wechall.<br/>'.
-		'Thanks go out to %2% for testing the challenge!<br/>'.
+		'Thanks go out to %2$s for testing the challenge!<br/>'.
 		'<br/>'.
 		'And here is your mission:<br/>'.
 		'<br/>'.
@@ -16,7 +16,7 @@ $lang = array(
 		'<b>Type of Encryption</b>: XOR One-Time-Pad'.PHP_EOL.
 		'</pre>'.
 		'<br/>'.
-		'<a href="%1%" title="The encrypted file">download the encrypted file</a><br/>'.
+		'<a href="%1$s" title="The encrypted file">download the encrypted file</a><br/>'.
 		'<br/>'.
 		'Enjoy!',
 );

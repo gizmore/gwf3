@@ -7,5 +7,5 @@ $lang = array(
 		'Ich begrüße dich zu den Trainings-Aufgaben im Stil von WeChall :)<br/>'.
 		'<br/>'.
 		'Viel Spaß!',
-	'plaintext' => 'Der schnelle braune Fuchs springt mit einem Satz ueber den faulen Hund von Caesar und deine einzigartige Loesung lautet %1%.',
+	'plaintext' => 'Der schnelle braune Fuchs springt mit einem Satz ueber den faulen Hund von Caesar und deine einzigartige Loesung lautet %1$s.',
 );

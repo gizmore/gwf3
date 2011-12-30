@@ -10,7 +10,7 @@ $lang = array(
 		'Good luck!',
 
 	'plaintext' => 
-		'Congratulations. You decrypted this message successfully. Was not too difficult either, was it? Well, good job. Enter this keyword as solution: %1%.',
+		'Congratulations. You decrypted this message successfully. Was not too difficult either, was it? Well, good job. Enter this keyword as solution: %1$s.',
 
 );
 ?>           

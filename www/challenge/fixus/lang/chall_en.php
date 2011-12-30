@@ -9,20 +9,20 @@ $lang = array(
 		'Gizmore did a good job against XSS and CSRF, so you have to find another flaw to log in.<br/>'.
 		'After examining the WeChall source code, you found a hidden login page for the Z solution boards.<br/>'.
 		'<br/>'.
-		'<a href="%1%">Goto Login</a><br/>'.
+		'<a href="%1$s">Goto Login</a><br/>'.
 		'<br/>'.
-		'<a href="%2%">Goto Secret Forum</a><br/>',
+		'<a href="%2$s">Goto Secret Forum</a><br/>',
 	'send_to_z' => 'Send a link to Z',
 	'err_bad' => 'This won\'t work!',
 	'err_screwed' => 'This won\'t work, you screwed it all up, buddy!!!',
 	'msg_sent' => 'Link Send. Hopefully he will click it and has to login ;D',
 	'go_back' => 'Go back to the task',
 	'btn_login' => 'Login To Admin Panel',
-	'hello' => 'Hello %1%<br/><br/>',
-	'hello_z' => 'You may now access <a href="%1%">the Forum</a>.<br/>',
+	'hello' => 'Hello %1$s<br/><br/>',
+	'hello_z' => 'You may now access <a href="%1$s">the Forum</a>.<br/>',
 	'hello_other' => 'You may not access anything here since your rights are not sufficient.<br/>',
-	'pls_login' => 'Please %1% to Access the Secret Admin Forum.', # %1%==Login<A>nchor
-	'no_perm' => 'Your rights are not sufficient to see this board.<br/>%1%',
+	'pls_login' => 'Please %1$s to Access the Secret Admin Forum.', # %1$s==Login<A>nchor
+	'no_perm' => 'Your rights are not sufficient to see this board.<br/>%1$s',
 	'solved' => 'Well done. Challenge solved.<br/>You now have access to the solutionboard for this challenge :)',
 );
 ?>

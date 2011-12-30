@@ -3,7 +3,7 @@
 $lang = array(
 	'title' => 'PHP 0815 skrypt',
 
-	'Mam <a href="%1%">skrypt</a>, który jest podatny na SQL Injection.<br/>'.
+	'Mam <a href="%1$s">skrypt</a>, który jest podatny na SQL Injection.<br/>'.
 	'Twoim zadaniem jest wskazanie sposobu na jego naprawę.<br/>'.
 	'Rozwiązaniem jest najktórsza zmiana, gwarantująca, że skrypt nadal będzie działać.<br/>'.
 	'Jeśli myślisz, że <i>&quot;urldecode()&quot;</i> naprawi problem, po prostu wpisz to jako rozwiązanie.<br/>'.

@@ -5,6 +5,6 @@ $lang = array(
 	'wanted' => 'WANTED ALIVE!',
 
 	# english only! (do not translate)
-	'msg_egg' => 'Yes the zebra is %1% You won an internet.',
+	'msg_egg' => 'Yes the zebra is %1$s You won an internet.',
 );
 ?>
