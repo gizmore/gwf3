@@ -502,7 +502,8 @@ final class Module_WeChall extends GWF_Module
 		{
 			$row instanceof WC_SiteMaster;
 			$site = $row->getSite();
-			$text .= $this->lang('mnews_item', array($row->getUser()->displayUsername(), $site->getURL(), $site->getVar('site_name'), $row->displayTrackTime(), $row->displayStartPerc())).PHP_EOL;
+			$uname = $row->getUser()->displayUsername();
+			$text .= $this->lang('mnews_item', array($uname, $uname, $site->getURL(), $site->getVar('site_name'), $row->displayTrackTime(), $row->displayStartPerc())).PHP_EOL;
 		}
 		
 		if (false === ($wcu = $this->cfgWeChallUser())) {
