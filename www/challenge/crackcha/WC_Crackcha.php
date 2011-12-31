@@ -26,7 +26,7 @@ final class WC_Crackcha extends GDO
 		$entry = new self(array(
 			'wccc_id' => 0,
 			'wccc_uid' => $uid,
-			'wccc_start' => GWF_Time::getGDODate(GWF_DATE::LEN_SECOND, intval($start)),
+			'wccc_start' => GWF_Time::getDate(GWF_DATE::LEN_SECOND, intval($start)),
 			'wccc_time' => intval(round($time)),
 			'wccc_rate' => round($rate, 2),
 			'wccc_count' => $count,

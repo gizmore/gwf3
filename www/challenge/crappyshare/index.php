@@ -1,7 +1,7 @@
 <?php
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Crappyshare');
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle('Crappyshare'))) {
 	$chall = WC_Challenge::dummyChallenge('Crappyshare', 4, '/challenge/crappyshare/index.php', false);
@@ -22,5 +22,5 @@ if ('code' === Common::getGet('show'))
 formSolutionbox($chall);
 
 echo $chall->copyrightFooter();
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>
