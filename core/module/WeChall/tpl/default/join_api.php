@@ -22,7 +22,7 @@ $example_6_3 = 'https://www.wechall.net/wechall.php?username=!TBS%20'.$uname;
 $example_6_4 = 'https://www.wechall.net/wechall.php?username=!sites';
 $href_opt_6 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional#join_6';
 echo '<a name="api_2"></a>'.PHP_EOL;
-echo GWF_Box::box($l->lang('api_2b', array($href_opt_6, $example_6_1, $example_6_2, $example_6_3, $example_6_4)), $l->lang('api_2t'));
+echo GWF_Box::box($l->lang('api_2b', array($href_opt_6, $example_6_1, $example_6_1, $example_6_2, $example_6_2, $example_6_3, $example_6_3, $example_6_4, $example_6_4)), $l->lang('api_2t'));
 
 # API 3)
 $xss_url = sprintf('%s://%s%sindex.php?mo=WeChall&me=API_History&no_session=1&', Common::getProtocol(), GWF_DOMAIN, GWF_WEB_ROOT);
