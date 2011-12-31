@@ -48,8 +48,8 @@
 				break;
 				
 			case GWF_Form::CAPTCHA:
-				$foo = empty($data[1]) ? '' : '?chars='.$data[1];
-				printf('<tr><td>%s</td><td>%s</td><td><img src="%sCaptcha/%s" onclick="this.src=\'%sCaptcha/?\'+(new Date()).getTime();" alt="Captcha" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
+				$foo = empty($data[1]) ? '' : '/'.$data[1];
+				printf('<tr><td>%s</td><td>%s</td><td><img src="%sCaptcha%s" onclick="this.src=\'%sCaptcha/?\'+(new Date()).getTime();" alt="Captcha" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha1'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha1')), GWF_WEB_ROOT, $foo, GWF_WEB_ROOT);
 				printf('<tr><td>%s</td><td>%s</td><td><input type="text" name="%s" value="%s" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 				break;
 			

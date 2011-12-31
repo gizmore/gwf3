@@ -9,8 +9,9 @@ class GWF_Captcha extends GWF_Method
 	public function getHTAccess(GWF_Module $module) {
 		return
 			'RewriteRule ^Captcha/?$ index.php?mo=GWF&me=Captcha'.PHP_EOL.
-			'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
-			'RewriteRule ^img/captcha(?:\.php)?$ index.php?mo=GWF&me=Captcha&%1'.PHP_EOL;
+			'RewriteRule ^Captcha/([^/]+)$ index.php?mo=GWF&me=Captcha&chars=$1'.PHP_EOL;
+// 			'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
+// 			'RewriteRule ^img/default/captcha(?:\.php)?$ index.php?mo=GWF&me=Captcha&%1'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module) 
