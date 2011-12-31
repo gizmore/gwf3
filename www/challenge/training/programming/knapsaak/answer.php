@@ -2,7 +2,7 @@
 header('Content-Type: text/plain');
 chdir('../../../../');
 define('GWF_PAGE_TITLE', 'The Travelling Customer');
-require_once '_gwf_include.php';
+require_once 'challenge/gwf_include.php';
 GWF_Website::init(getcwd());
 
 require_once 'challenge/training/programming/knapsaak/salesman.php';

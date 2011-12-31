@@ -1,7 +1,7 @@
 <?php
 chdir('../../../../');
 define('GWF_PAGE_TITLE', 'The Travelling Customer');
-require_once 'html_head.php';
+require_once 'challenge/html_head.php';
 require_once 'challenge/training/programming/knapsaak/salesman.php';
 
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
@@ -18,5 +18,5 @@ $url2 = GWF_HTML::anchor($url2, $url2);
 echo GWF_Box::box($chall->lang('credits_body', array($url1, $url2)), $chall->lang('credits_title'));
 
 echo $chall->copyrightFooter();
-require_once 'html_foot.php';
+require_once 'challenge/html_foot.php';
 ?>

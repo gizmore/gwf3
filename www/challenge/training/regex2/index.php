@@ -10,8 +10,7 @@ if (isset($_GET['show']))
 # Header
 chdir('../../../');
 define('GWF_PAGE_TITLE', 'Training: RegexMini');
-require_once('html_head.php');
-require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/training/regex2/index.php', false);
 }
@@ -20,6 +19,7 @@ $chall->showHeader();
 # Info box
 echo GWF_Box::box($chall->lang('info', array('index.php?show=source', 'index.php?highlight=christmas')), $chall->lang('title'));
 
+# Show highlighted src
 if (isset($_GET['highlight']))
 {
 	$source = '[PHP title=regex2/index.php]'.file_get_contents('challenge/training/regex2/index.php').'[/PHP]';
@@ -91,5 +91,5 @@ function ludde_is_satisfied(WC_Challenge $chall)
 <?php
 # Copyright + Footer
 echo $chall->copyrightFooter();
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>

@@ -1,7 +1,7 @@
 <?php
 chdir("../../../");
 define('GWF_PAGE_TITLE', 'Training: RegexMini');
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 if (!GWF_User::isAdminS()) {
 	echo GWF_HTML::err('ERR_NO_PERMISSION');
 	return;
@@ -14,5 +14,5 @@ $creators = "ludde";
 $tags = 'Training,Regex';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>

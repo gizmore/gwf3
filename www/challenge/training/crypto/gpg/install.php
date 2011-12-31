@@ -1,19 +1,16 @@
 <?php
 chdir("../../../../");
 require_once("challenge/html_head.php");
-$title = 'The Travelling Customer';
-
-html_head("Install: $title");
 if (!GWF_User::isAdminS()) {
-	return htmlSendToLogin("Better be admin !");
+	echo GWF_HTML::err('ERR_NO_PERMISSION');
+	return;
 }
+$title = "Training: GPG";
 $solution = false;
-$score = 5;
-$url = "challenge/training/programming/knapsaak/index.php";
+$score = 2;
+$url = "challenge/training/crypto/gpg/index.php";
 $creators = "Gizmore";
-$tags = 'Coding,Training';
-
+$tags = 'Crypto,Training';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
-
 require_once("challenge/html_foot.php");
 ?>

@@ -3,7 +3,7 @@ $lang = array(
 	'title' => 'Bacon Returns',
 	'info' =>
 		'Mr. <a href="%1$s">Bacon</a> is back and wants to challenge you again.<br/>'.
-		'This time it is harder to decode but still classic bacon.<br/>'.
+		'This time it is way harder to decode. I have changed the encoder after researching the baconian chiffre on the interwebs.<br/>'.
 		'<br/>'.
 		'Note one: We still use a full 26 character encoding.<br/>'.
 		'Note two: X means space as a word separator.<br/>'.

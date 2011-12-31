@@ -8,6 +8,7 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 
-	'plaintext' => 'By the almighty god you can read this, my friend. I am impressed. Very well done. Your solution key is: %1$s.',
+	# Only a-zA-Z!
+	'plaintext' => 'By the almighty god you can read this, my friend. I am impressed. Very well done. Your solution key is: %s. This little challenge was not too hard, was it?',
 );
 ?>

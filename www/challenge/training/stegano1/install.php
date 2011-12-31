@@ -1,19 +1,20 @@
 <?php
-chdir("../../../../");
+chdir("../../../");
 require_once("challenge/html_head.php");
-$title = 'The Travelling Customer';
 
-html_head("Install: $title");
 if (!GWF_User::isAdminS()) {
 	return htmlSendToLogin("Better be admin !");
 }
-$solution = false;
-$score = 5;
-$url = "challenge/training/programming/knapsaak/index.php";
+
+$title = "Training: Stegano I";
+$solution = "steganoI";
+$score = 1;
+$url = "challenge/training/stegano1/index.php";
 $creators = "Gizmore";
-$tags = 'Coding,Training';
+$tags = 'Stegano';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
 require_once("challenge/html_foot.php");
+
 ?>

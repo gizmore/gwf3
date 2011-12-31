@@ -4,7 +4,7 @@ $lang = array(
 	'info' =>
 		'We are trying hard to make a secure site.<br/>'.PHP_EOL.
 		'So far, we got a secure definition of a username.<br/>'.PHP_EOL.
-		'Unless you proof otherwise.<br/>'.PHP_EOL.
+		'Unless you prove otherwise.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Again you are given <a href="%1$s">the source</a>, also as <a href="%2$s">highlighted version</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
