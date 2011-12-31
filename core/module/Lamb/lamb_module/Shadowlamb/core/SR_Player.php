@@ -1340,7 +1340,7 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getItem($itemname)
+	public function getItem($itemname, $shortcuts=true)
 	{
 		$itemname = strtolower($itemname);
 		
@@ -1363,7 +1363,7 @@ class SR_Player extends GDO
 			} 
 		}
 		
-		return $this->getItemByName($itemname);
+		return $this->getItemByName($itemname, $shortcuts);
 	}
 	
 	public function getBankItemByID($id)
@@ -1414,9 +1414,9 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getItemByName($itemname)
+	public function getItemByName($itemname, $shortcuts=true)
 	{
-		return $this->getItemByNameB($itemname, $this->getAllItems());
+		return $this->getItemByNameB($itemname, $this->getAllItems(), $shortcuts);
 	}
 	
 	public function getBankItemByName($itemname)
@@ -1779,7 +1779,7 @@ class SR_Player extends GDO
 	{
 		if ($item->isItemStackable())
 		{
-			if (false !== ($other = $this->getItem($item->getItemName())))
+			if (false !== ($other = $this->getItem($item->getItemName(), false)))
 			{
 				$other->increase('sr4it_amount', $item->getAmount());
 				$item->delete();
