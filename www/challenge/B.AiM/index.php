@@ -1,7 +1,7 @@
 <?php
 chdir('../../'); # chroot to web root
 define('GWF_PAGE_TITLE', 'B.AiM'); # Wrapper hack
-require_once('html_head.php'); # output start of website
+require_once('challenge/html_head.php'); # output start of website
 # Get the challenge
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 7, 'challenge/B.AiM/index.php');
@@ -35,5 +35,5 @@ if (WC_BaimForms::hasPermission()) {
 }
 
 echo $chall->copyrightFooter();
-require_once('html_foot.php'); # output start of website
+require_once('challenge/html_foot.php'); # output start of website
 ?>

@@ -8,7 +8,7 @@ if (isset($_GET['show']))
 }
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Blinded by the light');
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 4, 'challenge/blind_light/index.php', false);
@@ -90,5 +90,5 @@ if (Common::getGetString('highlight') === 'christmas')
 </div>
 <?php
 echo $chall->copyrightFooter();
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>

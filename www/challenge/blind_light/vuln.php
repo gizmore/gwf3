@@ -101,7 +101,7 @@ function blightReset()
 {
 	$db = blightDB();
 	$sessid = GWF_Session::getSession()->getID();
-	$hash = Common::randomKey(32, 'ABCDEF0123456789');
+	$hash = GWF_Random::randomKey(32, 'ABCDEF0123456789');
 	$query = "REPLACE INTO blight VALUES($sessid, '$hash', 0)";
 	return $db->queryWrite($query);
 }

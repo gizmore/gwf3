@@ -3,7 +3,7 @@ require_once 'settings.php';
 require_once 'vuln.php';
 
 chdir("../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 $title = 'Blinded by the lighter';
 html_head("Install: $title");
 if (!GWF_User::isAdminS()) {
@@ -22,6 +22,6 @@ if (false === blightInstall())
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 
 ?>
