@@ -1,6 +1,6 @@
 <?php
 # <username>:<rank>:<points>:<max-points>:<num-of-solved-tasks>:<num-of-tasks>:<num-of-players>
-class WCSite_WGKR extends WC_Site
+class WCSite_SO extends WC_Site
 {
 	public function parseStats($url)
 	{
