@@ -9,6 +9,5 @@ $lang = array(
 	'err_wrong' => 'Vastaus on väärä: %1$s<br/>Oikea vastaus olisi ollut: \'%2$s\'<br/>Aikaa meni: %3$s',
 	'err_slow' => 'Aikasi on loppunut.<br/>Sinulla on %1$sa ja sinulla meni %2$sa.',
 	'msg_correct' => 'Oikein %1$s sekuntin jälkeen.',
-
 );
 ?>

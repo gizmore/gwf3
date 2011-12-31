@@ -9,6 +9,5 @@ $lang = array(
 	'err_wrong' => 'Deine Lösung ist falsch: %1$s<br/>Korrekt wäre: \'%2$s\'<br/>Benötigte Zeit: %3$s',
 	'err_slow' => 'Die Zeit ist abgelaufen.<br/>Du hast %1$ss und benötigt wurden %2$ss.',
 	'msg_correct' => 'Absolut richtig nach %1$s Sekunden.',
-
 );
 ?>
