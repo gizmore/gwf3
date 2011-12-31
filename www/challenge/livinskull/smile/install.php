@@ -1,6 +1,6 @@
 <?php
 chdir("../../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 $title = 'Smile';
 html_head("Install: $title");
 if (!GWF_User::isAdminS()) {
@@ -20,5 +20,5 @@ if (false === GDO::table('LIVIN_Smile')->createTable(true))
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>

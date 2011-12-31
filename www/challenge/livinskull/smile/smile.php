@@ -1,11 +1,12 @@
 <?php
 chdir('../../../');
 define('GWF_PAGE_TITLE', 'Smile');
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 4, 'challenge/livinskull/smile/index.php', false);
 }
+$chall->showHeader();
 
 # Table and Helper :)
 require_once 'challenge/livinskull/smile/LIVIN_Smile.php';
@@ -34,7 +35,7 @@ class LivinForm
 		{
 			return $this->chall->lang('err_pattern');
 		}
-		if ($arg{0} !== '/')
+		if ($arg[0] !== '/')
 		{
 			$_POST['pattern'] = "/{$arg}/";
 		}
@@ -74,6 +75,10 @@ class LivinForm
 				unset($dir[$i]);
 			}
 		}
+		if (count($dir) === 0)
+		{
+			return '';
+		}
 		$file = $dir[array_rand($dir)];
 		return "<img src=\"/$directory/$file\" />";
 	}
@@ -99,6 +104,7 @@ class LivinForm
 		
 		$whitelist = array(
 			'.jpg',
+			'.jpeg',
 			'.gif',
 			'.png',
 		);
@@ -193,5 +199,7 @@ echo $form->getForm($chall)->templateY($chall->lang('ft_add'));
 # Show all smileys =)
 echo LIVIN_Smile::showAllSmiles($chall);
 
-require_once('html_foot.php');
+echo $chall->copyrightFooter();
+
+require_once('challenge/html_foot.php');
 ?>

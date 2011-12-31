@@ -10,7 +10,9 @@ $lang = array(
 		'<br/>'.
 		'Oh ... again you are given the sourcecode.<br/>'.
 		'There are two files: <a href="%1$s">smile.php</a> (<a href="%2$s">highlighted</a>)<br/>'.
-		'And: <a href="%3$s">Livin_Smile.php</a> (<a href="%4$s">highlighted</a>)',
+		'And: <a href="%3$s">Livin_Smile.php</a> (<a href="%4$s">highlighted</a>)'.
+		'<br/>',
+//		'Shouts go out to haxx.se ',
 
 	# Form
 	'ft_add' => 'Add a smiley',
@@ -18,7 +20,7 @@ $lang = array(
 	'th_pattern' => 'Smiley pattern',
 	'tt_pattern' => 'Example patterns: /:\\\\)/ or /:o/i',
 	'th_filename' => 'Smiley image',
-	'tt_filename' => 'Example filename: challenge/livinskull/smile/smiles/lol.jpg',
+	'tt_filename' => 'Example filename: /challenge/livinskull/smile/smiles/lol.jpg',
 	'th_upload' => 'Upload smiley',
 	'btn_upload' => 'Upload',
 	
