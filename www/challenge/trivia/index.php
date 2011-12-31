@@ -1,7 +1,7 @@
 <?php
 chdir("../../");
 define('GWF_PAGE_TITLE', 'Trivia');
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 /*
  * Session usage: 
  */
@@ -315,5 +315,5 @@ class Trivia {
 }
 
 echo $chall->copyrightFooter();
-require_once 'html_foot.php';
+require_once 'challenge/html_foot.php';
 ?>

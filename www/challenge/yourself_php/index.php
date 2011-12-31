@@ -3,7 +3,7 @@ require 'checkit.php'; # required to check your solution/injection
 
 chdir('../../'); # chroot to web root
 define('GWF_PAGE_TITLE', 'Yourself PHP'); # Wrapper hack
-require_once('html_head.php'); # output start of website
+require_once('challenge/html_head.php'); # output start of website
 
 # Get the challenge
 if (false === ($chall = WC_Challenge::getByTitle('Yourself PHP'))) {
@@ -50,5 +50,5 @@ echo '</div>'.PHP_EOL;
 # Print Challenge Footer
 echo $chall->copyrightFooter();
 # Print end of website
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>

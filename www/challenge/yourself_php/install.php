@@ -1,6 +1,6 @@
 <?php
 chdir("../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 if (!GWF_User::isAdminS()) {
 	echo GWF_HTML::err('ERR_NO_PERMISSION');
 	return;
@@ -15,5 +15,5 @@ $tags = 'PHP,Exploit,XSS';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags);
 
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>
