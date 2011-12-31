@@ -84,19 +84,20 @@ final class WC_RegAt extends GDO
 	}
 	
 	/**
-	 * 
-	 * @param unknown_type $onsitename
-	 * @param unknown_type $siteid
+	 * Get a user for a site by onsitename.
+	 * @param string $onsitename
+	 * @param int $siteid
 	 * @return GWF_User
 	 */
 	public static function getUserByOnsiteName($onsitename, $siteid)
 	{
-		$siteid = (int) $siteid;
+		$siteid = (int)$siteid;
 		$onsitename = self::escape($onsitename);
-		if (false === ($regat = self::table(__CLASS__)->selectFirstObject('*', "regat_sid=$siteid AND regat_onsitename='$onsitename'"))) {
+		if (false === ($userid = self::table(__CLASS__)->selectVar('regat_uid', "regat_sid=$siteid AND regat_onsitename='$onsitename'")))
+		{
 			return false;
 		}
-		return GWF_User::getByID($regat->getVar('regat_uid'));
+		return GWF_User::getByID($userid);
 	}
 	
 	##############
