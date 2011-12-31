@@ -9,6 +9,7 @@ final class Language_Set extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
+		$module instanceof Module_Language;
 		if (false !== ($iso = Common::getGet('iso')))
 		{
 			$module->setLanguage($iso);

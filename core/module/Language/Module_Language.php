@@ -34,7 +34,8 @@ final class Module_Language extends GWF_Module
 		if (false === ($lang = GWF_Language::getByISO($iso))) {
 			return false;
 		}
-		GWF_Language::setBrowserLang($lang);
+		GWF_Language::setCurrentLanguage($lang);
+// 		GWF_Language::setBrowserLang($lang);
 		return true;
 	}
 	
