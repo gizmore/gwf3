@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $lang = array(
 	'thanks' => 'Mes remerciements vont à %1$s et %2$s pour avoir beta-testé le challenge.',
 	'index_info' =>

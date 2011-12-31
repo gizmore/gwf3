@@ -4,7 +4,6 @@ if(defined('WC_HTML_HEAD__DEFINED')) { return; }
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
 
-// chdir('../');
 require_once 'protected/config.php';
 require_once '../gwf3.class.php';
 $gwf = new GWF3(dirname(dirname(__FILE__).'../'), array(
