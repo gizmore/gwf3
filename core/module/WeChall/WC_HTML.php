@@ -262,6 +262,10 @@ final class WC_HTML
 			$sess instanceof GWF_Session;
 			if (NULL !== ($user = $sess->getVar('sess_user', false)))
 			{
+				if (!$user instanceof GWF_User)
+				{
+					continue;
+				}
 				if ( ($user->getID() === NULL) || ($user->isOptionEnabled(GWF_User::HIDE_ONLINE)) )
 				{
 					continue;
