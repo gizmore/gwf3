@@ -7,7 +7,7 @@
 function my_autoloader($classname)
 {
 	chdir('challenge/are_you_serial');
-	require_once './'.$classname.'.php';
+	require_once './'.str_replace('.', '', $classname).'.php';
 	chdir('../../');
 }
 

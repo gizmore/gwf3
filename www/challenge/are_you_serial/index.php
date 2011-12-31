@@ -1,7 +1,7 @@
 <?php
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Are you serial');
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/are_you_serial/index.php');
@@ -34,7 +34,7 @@ if (in_array($file, $files, true))
 
 # -------------------------- #
 echo $chall->copyrightFooter();
-require_once 'html_foot.php';
+require_once 'challenge/html_foot.php';
 
 function codeanchor($file)
 {
