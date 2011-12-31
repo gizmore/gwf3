@@ -2,7 +2,7 @@
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Snake');
 define('CHEAT_SNAKE_SCORE', 300000);
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 4, 'challenge/snake/index.php', false);
 }
@@ -15,5 +15,5 @@ echo '<applet code="SnakeApplet.class" archive="snake.jar?v=1.06" width="500" he
 echo '</div>'.PHP_EOL;
 
 echo $chall->copyrightFooter();
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>

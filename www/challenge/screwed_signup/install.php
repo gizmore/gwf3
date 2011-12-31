@@ -1,6 +1,6 @@
 <?php
 chdir("../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 html_head("Install Screwed Signup");
 if (!GWF_User::isAdminS()) {
 	return htmlSendToLogin("Better be admin !");
@@ -22,5 +22,5 @@ $tags = 'Exploit,PHP,MySQL';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>

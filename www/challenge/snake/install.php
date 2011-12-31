@@ -1,6 +1,6 @@
 <?php
 chdir("../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 if (!GWF_User::isAdminS()) {
 	echo GWF_HTML::err('ERR_NO_PERMISSION');
 	return;
@@ -17,5 +17,5 @@ require_once 'CGI_Highscore.php';
 GDO::table('Snake_row')->createTable(true);
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>

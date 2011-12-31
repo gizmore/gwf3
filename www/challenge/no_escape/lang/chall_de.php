@@ -7,8 +7,6 @@ $lang = array(
 		'Um das Gegenteil zu beweisen, setze den Votecounter für einen Kandidaten auf 111. Bei 100 habe ich ein Reset eingebaut.<br/>'.
 		'Wieder einmal kannst du dir den <a href="%1$s">Quelltext ansehen</a>, auch als <a href="%2$s">&quot;Highlighted Version&quot;</a>.<br/>'.
 		'<br/>'.
-		'Hinweis: &lt;!--Die get- und post-parameter werden mit trim() behandelt.--&gt;<br/>'.
-		'<br/>'.
 		'Viel Erfolg!',
 
 	'th_name' => 'Kandidat',

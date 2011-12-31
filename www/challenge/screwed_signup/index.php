@@ -1,7 +1,7 @@
 <?php
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Screwed Signup');
-require_once('html_head.php');
+require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle('Screwed Signup'))) {
 	$chall = WC_Challenge::dummyChallenge('Screwed Signup', 7, 'challenge/screwed_signup/index.php', false);
 }
@@ -29,5 +29,5 @@ htmlTitleBox($chall->lang('title'), $chall->lang('info', array('screwed_signup.i
 </div>
 <?php
 echo $chall->copyrightFooter();
-require_once('html_foot.php');
+require_once('challenge/html_foot.php');
 ?>

@@ -7,8 +7,6 @@ $lang = array(
 		'To prove me wrong you have to set the votecount for at least one of the candidates to 111. There is a reset at 100.<br/>'.
 		'Again you are given <a href="%1$s">the sourcecode</a>, also as <a href="%2$s">highlighted version</a>.<br/>'.
 		'<br/>'.
-		'Note: &lt;!--there might be a trim() for get and post vars. --&gt;<br/>'.
-		'<br/>'.
 		'Good Luck!',
 	
 	'th_name' => 'Candidate',
