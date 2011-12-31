@@ -8,7 +8,9 @@ $lang = array(
 		'Then enter the 6 solutions to level 0-5 seperated by comma.<br/>'.PHP_EOL.
 		'Example: bitwarrior,Solution1,Solution2,Solution3,Solution4,Solution5<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'<b>Proudly presented by the The Warchall(tm) Staff</b><br/>'.PHP_EOL,
+		'Proudly presented by the The Warchall(tm) Staff<br/>'.PHP_EOL.
+		'<b>Thanks and shouts to xd-- from <a href="crazycoders.com">crazycoders.com</a> for idea, motivation and inspiration!</b><br/>'.PHP_EOL.
+		'',
 
 	'err_login' => 'You need to be logged in to create an SSH account for this challenge.',
 	'err_score' => 'You only have %1% points, but to create an SSH account you need %2% points.',
