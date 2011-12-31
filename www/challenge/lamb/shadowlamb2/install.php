@@ -1,6 +1,6 @@
 <?php
 chdir("../../../");
-require_once("html_head.php");
+require_once("challenge/html_head.php");
 define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter II');
 html_head("Install: ".GWF_PAGE_TITLE);
 if (!GWF_User::isAdminS()) {
@@ -20,5 +20,5 @@ if (false === GDO::table('WC5Lamb_Solution')->createTable(false))
 
 WC_Challenge::installChallenge(GWF_PAGE_TITLE, $solution, $score, $url, $creators, $tags, true);
 
-require_once("html_foot.php");
+require_once("challenge/html_foot.php");
 ?>

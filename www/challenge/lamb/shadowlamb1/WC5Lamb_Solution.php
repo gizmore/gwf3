@@ -91,7 +91,7 @@ final class WC5Lamb_Solution extends GDO
 		
 		$table = GDO::table(__CLASS__);
 		
-		$epname = GDO::escapeS($playername);
+		$epname = GDO::escape($playername);
 		if (false !== ($row = $table->selectFirst('1', "csl_player='$epname' AND csl_cnum=2")))
 		{
 			return -2;
@@ -100,7 +100,7 @@ final class WC5Lamb_Solution extends GDO
 		if (false === $table->insertAssoc(array(
 			'csl_player' => $playername,
 			'csl_cnum' => 2,
-			'csl_date' => GWF_Time::getGDODate(GWF_Date::LEN_SECOND),
+			'csl_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		)))
 		{
 			return -3;
