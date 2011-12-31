@@ -117,7 +117,7 @@ final class LIVIN_Smile extends GDO
 	
 	private static function genSolution()
 	{
-		$solution = GWF_Random::randomKey(32, Common::ALPHANUMUPLOW);
+		$solution = GWF_Random::randomKey(32, GWF_Random::ALPHANUMUPLOW);
 		GWF_Session::set('LIV_SMI_SOL', $solution);
 		return $solution;
 	}
