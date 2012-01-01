@@ -12,6 +12,7 @@ final class GWF_FormValidator
 		GWF_Form::DIVIDER,
 		GWF_Form::HEADLINE,
 		GWF_Form::FILE_OPT,
+		GWF_Form::FILE,
 	);
 	
 	public static function validate($context, GWF_Form $form, $validator)

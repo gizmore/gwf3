@@ -240,6 +240,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function validate_site_spc(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'site_spc', $arg, 0, 100, true); }
 	public function validate_site_powarg(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'site_powarg', $arg, 0, 10000, true); }
 	public function validate_site_color(Module_WeChall $m, $arg) { return preg_match('/^[a-z0-9]{6}$/iD', $arg) ? false : $m->lang('err_site_color'); }
+// 	public function validate_new_logo($m, $arg) { return false; }
 	##############
 	### OnEdit ###
 	##############
