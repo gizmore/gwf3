@@ -4,9 +4,9 @@ final class WeChall_HistoryText extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return
-			'RewriteRule ^history/for/([^/]+)$ index.php?mo=WeChall&me=HistoryText&username=$1'.PHP_EOL.
-			'RewriteRule ^history/for/([^/]+)/by/page-(\d+)$ index.php?mo=WeChall&me=HistoryText&username=$1&page=$2'.PHP_EOL.
-			'RewriteRule ^history/for/([^/]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=HistoryText&username=$1&by=$2&dir=$3&page=$4'.PHP_EOL;
+			'RewriteRule ^history/for/([^/]+)/?$ index.php?mo=WeChall&me=HistoryText&username=$1'.PHP_EOL.
+			'RewriteRule ^history/for/([^/]+)/by/page-(\d+)/?$ index.php?mo=WeChall&me=HistoryText&username=$1&page=$2'.PHP_EOL.
+			'RewriteRule ^history/for/([^/]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)/?$ index.php?mo=WeChall&me=HistoryText&username=$1&by=$2&dir=$3&page=$4'.PHP_EOL;
 	}
 
 	public function execute(GWF_Module $module)

@@ -80,7 +80,7 @@ final class Spell_teleportii extends SR_Spell
 		}
 		
 		# Imprisoned
-		if (false !== ($loc = $p->getLocation('inside')))
+		if (false !== ($loc = $p->getLocationClass('inside')))
 		{
 			if (!$loc->isExitAllowed($player))
 			{

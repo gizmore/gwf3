@@ -1,7 +1,7 @@
 <?php
 $external_href = "http://pajhome.org.uk/crypt/wordpat.html";
-$wordlist_href = GWF_WEB_ROOT.'tools/wordlists';
-$patterns_href = GWF_WEB_ROOT.'core/module/WeChall/tpl/default/tools/wordpat';
+$wordlist_href = GWF_WEB_ROOT.'applet/wordlists';
+$patterns_href = GWF_WEB_ROOT.'applet/patterns';
 echo GWF_Box::box($tVars['lang2']->lang('page_info', array($external_href, $wordlist_href, $patterns_href)), $tVars['lang2']->lang('page_title'));
 
 if (false !== Common::getPost('wordpat'))
@@ -117,7 +117,7 @@ function wordpatMatch($pattern) {
 		$iso = 'en';
 	}
 	
-	$filename = 'core/module/WeChall/tpl/default/tools/wordpat/patterns/'.$iso.'/'.$len.'.wl';
+	$filename = GWF_WWW_PATH.'applet/patterns/'.$iso.'/'.$len.'.wl';
 //	$filename = "tools/Wordpat/patterns/$country/$len.wl";
 	if (!file_exists($filename)) {
 		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array(GWF_HTML::display($filename)));
@@ -196,7 +196,7 @@ function wordpat_getLangSelect()
 
 ?>
 <div>
-	<form method="post" action="<?php GWF_WEB_ROOT.'tools/wordpat'; ?>">
+	<form method="post" action="wordpad.php">
 		<div>
 			<?php echo wordpat_getLangSelect(); ?>
 			<input type="text" name="pattern" value="" />
