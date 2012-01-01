@@ -27,7 +27,8 @@ final class WeChall_Sites extends GWF_Method
 			'RewriteRule ^graveyard/by/([^/]+)/([DEASC,]+)$ index.php?mo=WeChall&me=Sites&which=2&langiso=all'.PHP_EOL.
 		
 			'RewriteRule ^not_ranked$ index.php?mo=WeChall&me=Sites&which=4&langiso=all'.PHP_EOL.
-		
+			'RewriteRule ^not_ranked/by/([^/]+)/([DEASC,]+)/?$ index.php?mo=WeChall&me=Sites&which=4&by=$1&dir=$2&page=1&langiso=all'.PHP_EOL.
+			
 			'RewriteRule ^coming_soon$ index.php?mo=WeChall&me=Sites&which=3&langiso=all'.PHP_EOL;
 	}
 
