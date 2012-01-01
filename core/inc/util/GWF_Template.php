@@ -130,7 +130,7 @@ final class GWF_Template
 //		if(false === ($path = self::templatePath(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}")))
 //			$path = self::templatePath(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}");
 
-		return self::template($path, $tVars, $path !== false));
+		return self::template($path, $tVars, $path !== false);
 	}
 
 	public static function templatePath($path)
