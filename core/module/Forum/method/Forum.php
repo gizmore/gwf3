@@ -25,15 +25,17 @@ final class Forum_Forum extends GWF_Method
 		if ($module->cfgOldURLS())
 		{
 			$back .=
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bby/([^/]+)/([DEASC,]+)/bpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bby=$2&bdir=$3&bpage=$4'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bby/bpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tby/to/tpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tby/([^/]+)/to/([DEASC,]+)/tpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3&tby=$4&tdir=$5'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/tby/([^/]+)/to/([DEASC,]+)/tpage-(\d+)/?$ index.php?mo=Forum&me=Forum&bid=$1&tpage=$4&tby=$2&tdir=$3'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)/tby/to/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
-			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)/tby/([^/]+)/to/([^/]+)/?$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3&tby=$4&tdir=$5'.PHP_EOL;
+// 			'RewriteRule ^forum$ index.php?mo=Forum&me=Forum&bid=1&page=1'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+$ index.php?mo=Forum&me=Forum&bid=$1&bpage=1'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bby/([^/]+)/([DEASC,]+)/bpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bby=$2&bdir=$3&bpage=$4'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bby/bpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tby/to/tpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tby/([^/]+)/to/([DEASC,]+)/tpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3&tby=$4&tdir=$5'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/tby/([^/]+)/to/([DEASC,]+)/tpage-(\d+)$ index.php?mo=Forum&me=Forum&bid=$1&tpage=$4&tby=$2&tdir=$3'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)/tby/to/$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3'.PHP_EOL.
+			'RewriteRule ^forum/board/(\d+)/[^/]+/bpage-(\d+)/tpage-(\d+)/tby/([^/]+)/to/([^/]+)$ index.php?mo=Forum&me=Forum&bid=$1&bpage=$2&tpage=$3&tby=$4&tdir=$5'.PHP_EOL;
 		}		
 		return
 			$back.
