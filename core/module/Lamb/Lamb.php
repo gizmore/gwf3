@@ -736,6 +736,21 @@ final class Lamb
 	 */
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
+		# Replace multiple paces with a single space. 
+		$message = preg_replace('/[ ]{2,}/', ' ', $message);
+		
+		# CTCP
+		$x01 = "\x01";
+		if ( (Common::startsWith($message, $x01)) && (Common::endsWith($message, $x01)) )
+		{
+			$back = $this->onCTCP($server, $user, $from, $origin, substr($message, 1, -1));
+		}
+		else
+		{
+			return $this->onPrivmsgModules($server, $user, $from, $origin, $message);
+		}
+
+		# Save last message.
 		if (false === $user->saveVars(array(
 			'lusr_last_channel' => $origin,
 			'lusr_last_message' => $message,
@@ -743,18 +758,6 @@ final class Lamb
 		)))
 		{
 			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-		}
-		
-		$message = preg_replace('/[ ]{2,}/', ' ', $message);
-		
-		$x01 = "\x01";
-		if ( (Common::startsWith($message, $x01)) && (Common::endsWith($message, $x01)) )
-		{
-			return $this->onCTCP($server, $user, $from, $origin, substr($message, 1, -1));
-		}
-		else
-		{
-			return $this->onPrivmsgModules($server, $user, $from, $origin, $message);
 		}
 	}
 	
