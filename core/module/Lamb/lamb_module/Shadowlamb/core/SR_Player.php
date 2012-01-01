@@ -690,6 +690,8 @@ class SR_Player extends GDO
 		$new_party->pushAction(SR_Party::ACTION_INSIDE, $location);
 		$this->updateField('partyid', $new_party->getID());
 		$this->message(sprintf('You respawn at %s.', $location));
+		$this->heal('hp', 20);
+		$this->heal('mp', 10);
 	}
 	
 	##############
