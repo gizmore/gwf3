@@ -16,7 +16,7 @@ final class Forum_ShowThread extends GWF_Method
 		{
 			$back .=
 			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
-			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/page-([0-9]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.
+			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/page-([0-9]+)/?$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.
 			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/page-([0-9]+)/(.+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2&term=$3'.PHP_EOL;
 		}
 		return
