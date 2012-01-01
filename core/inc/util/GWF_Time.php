@@ -199,7 +199,7 @@ final class GWF_Time
 	 */
 	public static function displayDateISO($gwf_date, $iso, $default_return='ERROR')
 	{
-		if ($gwf_date === '')
+		if ( ($gwf_date === '') || ($gwf_date == 0) )
 		{
 			return $default_return;
 		}
