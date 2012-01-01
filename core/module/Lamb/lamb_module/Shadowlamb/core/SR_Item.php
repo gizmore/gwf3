@@ -304,11 +304,16 @@ class SR_Item extends GDO
 		return $this->saveVar('sr4it_modifiers', $modstring);		
 	}
 	
-	
+	/**
+	 * Get full item name including modifiers.
+	 * @example Foo_of_bar:1,foobar:2
+	 * @return string
+	 */
 	public function getItemName()
 	{
 		$back = $this->getName();
-		if ($this->modifiers === NULL) {
+		if ($this->modifiers === NULL)
+		{
 			return $back;
 		}
 		$mod = '';
