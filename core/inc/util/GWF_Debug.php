@@ -182,7 +182,10 @@ final class GWF_Debug
 		# Send error to admin
 		if (GWF_DEBUG_EMAIL & 2)
 		{
-			$message = htmlspecialchars($_SERVER['REQUEST_URI']).PHP_EOL.PHP_EOL.$message;
+			if (true === isset($_SERVER['REQUEST_URI']))
+			{
+				$message = htmlspecialchars($_SERVER['REQUEST_URI']).PHP_EOL.PHP_EOL.$message;
+			}
 			self::sendDebugMail(self::backtrace($message, false));
 		}
 		
