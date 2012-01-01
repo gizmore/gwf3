@@ -220,32 +220,46 @@ final class GWF_ForumThread extends GDO
 	public function hasReplyPermission($user, Module_Forum $module)
 	{
 		# Closed
-		if ($this->isClosed()) {
+		if ($this->isClosed())
+		{
 			return false;
 		}
 
 		# Still in moderation
-		if ($this->isInModeration()) {
+		if ($this->isInModeration())
+		{
 			return false;
 		}
 
 		# Not even read
-		if (!$this->hasPermission($user)) {
+		if (!$this->hasPermission($user))
+		{
 			return false;
 		}
-
+		
 		# No guest posts
 		if ($user === false)
 		{
-			if (!$module->isGuestPostAllowed()) {
+			if (!$module->isGuestPostAllowed())
+			{
 				return false;
 			}
-			if (!$this->getBoard()->isGuestPostAllowed()) {
+			if (!$this->getBoard()->isGuestPostAllowed())
+			{
 				return false;
 			}
 		}
-		elseif ($user->isWebspider()) {
-			return false;
+		else
+		{
+			$user instanceof GWF_User;
+			if ($user->isWebspider())
+			{
+				return false;
+			}
+			if ($user->getLevel() < $module->cfgPostMinLevel())
+			{
+				return false;
+			}
 		}
 
 		return true;
