@@ -7,7 +7,6 @@ require_once 'GWF_TemplateWrappers.php';
  * Smarty templates are usually faster and preferred.
  * There exist wrapper objects to call gwf stuff within smarty.
  * @todo Allow to switch designs on a per user basis.
- * @todo rethink about template dirs and path checking, remove some constants?
  * @author gizmore, spaceone
  * @version 3.0
  * @since 1.0
@@ -23,11 +22,13 @@ final class GWF_Template
 	private static function getPath($path)
 	{
 		$path1 = str_replace('%DESIGN%', self::getDesign(), $path);
-		if (file_exists($path1)) {
+		if (file_exists($path1))
+		{
 			return $path1;
 		}
 		$path1 = str_replace('%DESIGN%', 'default', $path);
-		if (file_exists($path1)) {
+		if (file_exists($path1))
+		{
 			return $path1;
 		}
 		return false;
@@ -41,17 +42,20 @@ final class GWF_Template
 		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN%/{$file}", $tVars);
 	}
 
-	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
+	public static function templatePHPModule($name, $file, array $tVars)
 	{
-		$name = $module->getName();
-		return self::templatePHP(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars, $module->getLang());
+		return self::templatePHP(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars);
 	}
 	
-	private static function templatePHP($path, $tVars=NULL, $tLang=NULL)
+	private static function templatePHP($path, $tVars=NULL)
 	{
-		if (false === ($path2 = self::getPath($path))) {
+		if (false === ($path2 = self::getPath($path)))
+		{
 			return self::pathError($path);
 		}
+
+		$tLang = isset($tVars['lang']) === true ? $tVars['lang'] : NULL;
+
 		ob_start();
 		include $path2;
 		$back = ob_get_contents();
@@ -97,7 +101,7 @@ final class GWF_Template
 		return self::$_Smarty;
 	}
 
-	public static function addMainTvars(array $tVars = array())
+	public static function addMainTvars(array $tVars=array())
 	{
 		$smarty = self::getSmarty();
 		
@@ -107,50 +111,48 @@ final class GWF_Template
 		}
 	}
 	
-	public static function templateRaw($file, $tVars=NULL)
+	public static function templateRaw($path, $tVars=NULL)
 	{
-		return self::template(self::templatePath($file), $tVars, false);
+		return self::template($path, $tVars);
 	}
 
 	public static function templateWC($file, $tVars=NULL)
 	{
-		return self::template(GWF_WWW_PATH.'tpl/wc4/'.$file, $tVars, false);
+		return self::template(GWF_WWW_PATH.'tpl/wc4/'.$file, $tVars);
 	}
 
 	public static function templateMain($file, $tVars=NULL)
 	{
-		$path = self::templatePath(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file);
-		return self::template($path, $tVars, $path !== false);
+		return self::template(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file, $tVars);
 	}
 	
-	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
+	public static function templateModule($name, $file, $tVars=NULL)
 	{
-		$name = $module->getName();
-		$path = self::templatePath(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}");
-//		if(false === ($path = self::templatePath(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}")))
-//			$path = self::templatePath(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}");
-
-		return self::template($path, $tVars, $path !== false);
+		return self::template(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars);
 	}
 
 	public static function templatePath($path)
 	{
 		$smarty = self::getSmarty();
 		if($smarty->templateExists( $path1 = str_replace('%DESIGN%', self::getDesign(), $path) ))
+		{
 			return $path1;
+		}
 		elseif($smarty->templateExists( $path1 = str_replace('%DESIGN%', 'default', $path) ))
+		{
 			return $path1;
+		}
 		else
+		{
 			return false;
+		}
 	}
 
-	public static function template($path, $tVars=NULL, $checked=true)
+	public static function template($path, $tVars=NULL)
 	{
 		$smarty = self::getSmarty();
-		if($checked || $smarty->templateExists($path))
+		if(false === ($path2 = self::templatePath($path)))
 		{
-			$path2 = $path;
-		} else {
 			return self::pathError($path);
 		}
 		

@@ -111,13 +111,13 @@ class GWF_Module extends GDO
 	{
 		$tVars['lang'] = $this->lang;
 		$tVars['module'] = $this;
-		return GWF_Template::templateModule($this, $filename, $tVars);
+		return GWF_Template::templateModule($this->getName(), $filename, $tVars);
 	}
 	public function templatePHP($filename, $tVars=array())
 	{
 		$tVars['lang'] = $this->lang;
 		$tVars['module'] = $this;
-		return GWF_Template::templatePHPModule($this, $filename, $tVars);
+		return GWF_Template::templatePHPModule($this->getName(), $filename, $tVars);
 	}
 	
 	##############
