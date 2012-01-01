@@ -242,6 +242,14 @@ final class Shadowcmd_mount extends Shadowcmd
 				return false;
 			}
 			
+			if ($item->getAmount() <= 0)
+			{
+				if (false !== $player->removeFromMountInv($item2))
+				{
+					$bot->reply(sprintf('Cannot remove from mount inv in %s line %s.', __FILE__, __LINE__));
+				}
+			}
+			
 			$player->giveItem($item2);
 			$collected = $amt;
 		}
