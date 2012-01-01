@@ -4,10 +4,26 @@ final class Shadowcmd_gml extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 3)
+		if ( (count($args) < 3) || (count($args) > 4) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'gml'));
 			return false;
+		}
+		
+		$action = SR_Party::ACTION_OUTSIDE;
+		
+		if (count($args) > 3)
+		{
+			switch ($args[3])
+			{
+				case SR_Party::ACTION_INSIDE:
+				case SR_Party::ACTION_OUTSIDE:
+					$action = $args[3];
+					break;
+				default:
+					$bot->reply(Shadowhelp::getHelp($player, 'gml'));
+					return false;
+			}
 		}
 		
 //		$server = $player->getUser()->getServer();
@@ -57,7 +73,7 @@ final class Shadowcmd_gml extends Shadowcmd
 		
 		$cl = $loc->getName();
 		$city->onCityEnter($p);
-		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
+		$p->pushAction($action, $cl);
 // 		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
 		$bot->reply(sprintf('The party is now outside of %s.', $cl));
 		$p->giveKnowledge('places', $cl);
