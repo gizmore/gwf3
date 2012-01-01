@@ -1347,20 +1347,26 @@ class SR_Player extends GDO
 		$itemname = strtolower($itemname);
 		
 		# ex 1
-		if (is_numeric($itemname)) {
+		if (is_numeric($itemname))
+		{
 			return $this->getItemByInvID($itemname);
 		}
 		
-		# ex eq
-		if (array_key_exists($itemname, self::$EQUIPMENT)) {
+		# ex ar
+		elseif (array_key_exists($itemname, self::$EQUIPMENT))
+		{
 			$itemname = self::$EQUIPMENT[$itemname];
 		}
 		
-		if (in_array($itemname, self::$EQUIPMENT, true)) {
-			if ($this->hasEquipment($itemname)) {
+		# ex armor
+		elseif (in_array($itemname, self::$EQUIPMENT, true))
+		{
+			if ($this->hasEquipment($itemname))
+			{
 				return $this->getEquipment($itemname);
 			}
-			elseif ($itemname === 'weapon') {
+			elseif ($itemname === 'weapon')
+			{
 				return Item_Fists::staticFists();
 			} 
 		}
@@ -1423,12 +1429,12 @@ class SR_Player extends GDO
 	
 	public function getBankItemByName($itemname)
 	{
-		return $this->getItemByNameB($itemname, $this->getBankItems());
+		return $this->getItemByNameB($itemname, $this->getBankItems(), false);
 	}
 	
 	public function getMountInvItemByName($itemname)
 	{
-		return $this->getItemByNameB($itemname, $this->getMountInvItems());
+		return $this->getItemByNameB($itemname, $this->getMountInvItems(), false);
 	}
 	
 	/**
@@ -1510,7 +1516,7 @@ class SR_Player extends GDO
 			$shortcuts = false;
 		}
 		
-		return $shortcuts
+		return $shortcuts === true
 			? $this->getItemByShortNameB($itemname, $items)
 			: false;
 	}
