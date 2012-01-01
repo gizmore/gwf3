@@ -21,7 +21,7 @@ final class Prison_Block1 extends SR_Location
 		
 		# Check idle time.
 		$last = $user->getVar('lusr_timestamp');
-		if (($last+self::BAN_TIME) < time())
+		if (($last+self::BAN_TIME) > time())
 		{
 			return false;
 		}

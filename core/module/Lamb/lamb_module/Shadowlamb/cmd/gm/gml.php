@@ -75,7 +75,7 @@ final class Shadowcmd_gml extends Shadowcmd
 		$city->onCityEnter($p);
 		$p->pushAction($action, $cl);
 // 		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
-		$bot->reply(sprintf('The party is now outside of %s.', $cl));
+		$bot->reply(sprintf('The party is now %s of %s.', $action, $cl));
 		$p->giveKnowledge('places', $cl);
 		
 		return true;
