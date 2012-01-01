@@ -7,6 +7,7 @@ require_once 'GWF_TemplateWrappers.php';
  * Smarty templates are usually faster and preferred.
  * There exist wrapper objects to call gwf stuff within smarty.
  * @todo Allow to switch designs on a per user basis.
+ * @todo rethink about template dirs and path checking, remove some constants?
  * @author gizmore, spaceone
  * @version 3.0
  * @since 1.0
@@ -43,7 +44,7 @@ final class GWF_Template
 	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
 	{
 		$name = $module->getName();
-		return self::templatePHP(GWF_CORE_PATH."module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
+		return self::templatePHP(GWF_WWW_PATH."tpl/module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
 	}
 	
 	private static function templatePHP($path, $tVars=NULL, $tLang=NULL)
@@ -125,10 +126,11 @@ final class GWF_Template
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
 	{
 		$name = $module->getName();
-		if(false === ($path = self::templatePath(GWF_WWW_PATH.'tpl/module/{$name}/%DESIGN%/{$file}')))
-			$path = self::templatePath(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}");
+		$path = self::templatePath(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}");
+//		if(false === ($path = self::templatePath(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}")))
+//			$path = self::templatePath(GWF_CORE_PATH."module/{$name}/tpl/%DESIGN%/{$file}");
 
-		return self::template($path, $tVars, ($path ? true : false));
+		return self::template($path, $tVars, $path !== false));
 	}
 
 	public static function templatePath($path)
