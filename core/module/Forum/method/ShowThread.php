@@ -10,7 +10,17 @@ final class Forum_ShowThread extends GWF_Method
 	################
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 
+		$module instanceof Module_Forum;
+		$back = '';
+		if ($module->cfgOldURLS())
+		{
+			$back .=
+			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
+			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/page-([0-9]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.
+			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/page-([0-9]+)/(.+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2&term=$3'.PHP_EOL;
+		}
+		return
+			$back. 
 			'RewriteRule ^forum-t([0-9]+)/[^/\-]+\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
 			'RewriteRule ^forum-t([0-9]+)/[^/\-]+\.html-([^/]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1&term=$2'.PHP_EOL.
 			'RewriteRule ^forum-t([0-9]+)/[^/\-]+-p([0-9]+)\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.

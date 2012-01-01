@@ -38,6 +38,8 @@ final class GWF_ForumInstall
 		
 			'post_timeout' => array('0', 'time', 0, '172800'),
 			'post_min_level' => array('0', 'int', 0, '1000000'),
+				
+			'gwf2_rewrites' => array('NO', 'bool'), # wc4/oldurl sheme
 		)).
 		self::installForumDefaults($module);
 	}

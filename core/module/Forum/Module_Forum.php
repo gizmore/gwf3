@@ -58,7 +58,7 @@ final class Module_Forum extends GWF_Module
 	##############
 	### Module ###
 	##############
-	public function getVersion() { return 1.06; }
+	public function getVersion() { return 1.07; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/forum'); }
 	public function getAdminSectionURL() { return GWF_WEB_ROOT.'forum/admin'; }
 	public function onCronjob() { require_once 'GWF_ForumCronjob.php'; return GWF_ForumCronjob::onCronjob($this); }
@@ -156,7 +156,7 @@ final class Module_Forum extends GWF_Module
 	public function cfgGuestCaptcha() { return $this->getModuleVarBool('guest_captcha'); }
 	public function cfgPostTimeout() { return $this->getModuleVar('post_timeout'); }
 	public function cfgPostMinLevel() { return $this->getModuleVar('post_min_level'); }
-	
+	public function cfgOldURLS() { return $this->getModuleVarBool('gwf2_rewrites', false); }
 	
 	##################
 	### On Request ###
