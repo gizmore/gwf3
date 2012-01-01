@@ -61,7 +61,7 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 			$player->setTemp($key, 1);
 			return $npc->reply(sprintf("For %s I would do it.", $dp));
 		}
-		
+		$player->giveNuyen(-$price);
 		$player->message(sprintf("You pay %s and the doctor smiles.", $dp));
 		return $this->onConvinced($npc, $player);
 	}
