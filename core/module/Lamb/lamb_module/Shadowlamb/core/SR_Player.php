@@ -1353,13 +1353,13 @@ class SR_Player extends GDO
 		}
 		
 		# ex ar
-		elseif (array_key_exists($itemname, self::$EQUIPMENT))
+		if (array_key_exists($itemname, self::$EQUIPMENT))
 		{
 			$itemname = self::$EQUIPMENT[$itemname];
 		}
 		
 		# ex armor
-		elseif (in_array($itemname, self::$EQUIPMENT, true))
+		if (in_array($itemname, self::$EQUIPMENT, true))
 		{
 			if ($this->hasEquipment($itemname))
 			{
