@@ -1505,7 +1505,7 @@ class SR_Player extends GDO
 		
 		foreach (array_reverse($items) as $item)
 		{
-			if (strtolower($item->getItemName() === $itemname))
+			if (strtolower($item->getItemName()) === $itemname)
 			{
 				return $item;
 			}
