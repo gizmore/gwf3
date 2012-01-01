@@ -12,7 +12,7 @@ div#logo {ldelim}
 	border-top: thin groove {$color['design_dark']};
 {rdelim}
 div#logo span {ldelim}
-	background-color: {color['design_light']};
+	background-color: {$color['design_light']};
 {rdelim}
 /*div#footer*/
 div#profile,

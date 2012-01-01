@@ -38,13 +38,13 @@ final class GWF_Template
 	####################
 	public static function templatePHPMain($file, $tVars=NULL)
 	{
-		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN%/$file", $tVars);
+		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN%/{$file}", $tVars);
 	}
 
 	public static function templatePHPModule(GWF_Module $module, $file, array $tVars)
 	{
 		$name = $module->getName();
-		return self::templatePHP(GWF_WWW_PATH."tpl/module/$name/tpl/%DESIGN%/$file", $tVars, $module->getLang());
+		return self::templatePHP(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars, $module->getLang());
 	}
 	
 	private static function templatePHP($path, $tVars=NULL, $tLang=NULL)
@@ -120,7 +120,7 @@ final class GWF_Template
 	public static function templateMain($file, $tVars=NULL)
 	{
 		$path = self::templatePath(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file);
-		return self::template($path, $tVars, ($path ? true : false));
+		return self::template($path, $tVars, $path !== false);
 	}
 	
 	public static function templateModule(GWF_Module $module, $file, $tVars=NULL)
