@@ -56,6 +56,16 @@ final class Spell_teleport extends SR_Spell
 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
 		}
+
+		# Imprisoned
+		if (false !== ($loc = $p->getLocation('inside')))
+		{
+			if (!$loc->isExitAllowed($player))
+			{
+				$bot->reply('You cannot cast teleport inside this lcoation.');
+				return false;
+			}
+		}
 		
 		$level = $this->getLevel($player);
 		

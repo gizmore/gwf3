@@ -73,6 +73,16 @@ final class Spell_teleportiii extends SR_Spell
 			return false;
 		}
 		
+		# Imprisoned
+		if (false !== ($loc = $p->getLocation('inside')))
+		{
+			if (!$loc->isExitAllowed($player))
+			{
+				$bot->reply('You cannot cast teleport inside this lcoation.');
+				return false;
+			}
+		}
+		
 		$level = $this->getLevel($player);
 		
 		$mc = $p->getMemberCount();

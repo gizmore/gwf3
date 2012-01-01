@@ -208,7 +208,7 @@ final class SR_Party extends GDO
 	/**
 	 * Get the current location Full_Name.
 	 * @param string $action
-	 * @return
+	 * @return SR_Location
 	 */
 	public function getLocation($action=NULL)
 	{
