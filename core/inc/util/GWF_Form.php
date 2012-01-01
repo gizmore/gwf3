@@ -295,6 +295,10 @@ class GWF_Form
 					} 
 					break;
 					
+				case self::FILE:
+				case self::FILE_OPT:
+					break;
+					
 				default:
 					if (false !== ($v = $this->getVar($key)))
 					{
