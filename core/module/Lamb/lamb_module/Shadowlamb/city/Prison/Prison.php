@@ -4,6 +4,7 @@ final class Prison extends SR_Dungeon
 	public function getCityLocation() { return 'Delaware_Prison'; }
 	public function getArriveText() { return 'You enter the prison.'; }
 	public function getImportNPCS() { return array('Seattle_BlackOp'); }
+	public function getRespawnLocation(SR_Player $player) { return 'Prison_Block1'; }
 	
 	public function onCityEnter(SR_Party $party)
 	{
@@ -32,5 +33,6 @@ final class Prison extends SR_Dungeon
 			$party->fight(SR_NPC::createEnemyParty('Prison_GrayOp','Prison_GrayOp','Seattle_BlackOp'));
 		}
 	}
+
 }
 ?>
