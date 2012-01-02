@@ -391,43 +391,58 @@ final class GWF_InstallFunctions
 	public static function copyExampleFiles(&$output)
 	{
 		$success = true;
-		if (false === self::CopyExampleFile('index', $output))
+		if (false === self::CopyExampleFile('index', GWF_WWW_PATH, '.php', $output))
 		{
 			$success = false;
 		}
-		if (false === self::CopyExampleFile('gwf_cronjob', $output))
+		if (false === self::CopyExampleFile('gwf_cronjob', GWF_WWW_PATH, '.php', $output))
 		{
 			$success = false;
 		}
-		if (false === self::BackupScript($output))
+//		if (false === self::CopyExampleFile('pre_htaccess', GWF_PROTECTED_PATH, '.txt', $output))
+//		{
+//			$success = false;
+//		}
+		if (false === self::CopyExampleFile('db_backup', GWF_PROTECTED_PATH, '.sh', $output))
 		{
 			$success = false;
 		}
 		return $success;
 	}
 
-	public static function CopyExampleFile($path, &$output)
+	/**
+	 * Copy .example files and replace Variables
+	 * Example files have to be in GWF_CORE_PATH/inc/install/data
+	 * @param string $file the filename without extension
+	 * @param string $path the destination path
+	 * @param string $ext file extension (e.g. .php)
+	 */
+	public static function CopyExampleFile($file, $path, $ext='.php', &$output)
 	{
-		$copied = $path.'.php';
-		if (!Common::isFile($copied))
+		$copied = $path.$file.$ext;
+		if (false === Common::isFile($copied))
 		{
-			if (!GWF_File::isWriteable($copied))
+			if (false === GWF_File::isWriteable($copied))
 			{
 				$output .= GWF_InstallWizard::wizard_error('err_copy', array($copied));
 				return false;
 			}
 			
 			# Load skeleton.
-			$example = $path.'.example.php';
+			$example = GWF_CORE_PATH.'inc/install/data/'.$file.'.example'.$ext;
 			if (false === ($content = file_get_contents($example)))
 			{
 				$output .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($example));
 				return false;
 			}
 
-			# Replace GWF path.
+			# Replacements
 			$replace = array(
 				'%%GWFPATH%%' => GWF_DETECT_PATH,
+				'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
+				'%%USER%%' => escapeshellarg(GWF_DB_USER),
+				'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
+				'%%SALT%%' => escapeshellarg(GWF_Random::randomKey(12)),
 			);
 			$content = str_replace(array_keys($replace), array_values($replace), $content);
 			
@@ -452,55 +467,4 @@ final class GWF_InstallFunctions
 
 		return true;
 	}
-
-	public static function BackupScript(&$output)
-	{
-		$path = 'protected/db_backup.sh';
-		if (Common::isFile($path))
-		{
-			$output .= GWF_InstallWizard::wizard_message('msg_copy_untouched', $path);
-			return true;
-		}
-		
-		$skel = 'protected/db_backup.example.sh';
-		if (false === ($content = file_get_contents($skel)))
-		{
-			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
-			return false;
-		}
-		
-		if (false === ($content = self::ReplaceBackupScript($content)))
-		{
-			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
-			return false;
-		}
-		
-		if (false === file_put_contents($path, $content))
-		{
-			$output .= GWF_InstallWizard::wizard_error('err_copy', array($skel));
-			return false;
-		}
-		
-		if (false === chmod($path, GWF_CHMOD))
-		{
-			$output .= GWF_InstallWizard::wizard_error('err_copy', array($path));
-			return false;
-		}
-		
-		$output .= GWF_InstallWizard::wizard_message('msg_copy', array($path));
-		return true;
-	}
-
-	public static function ReplaceBackupScript($content)
-	{
-		$replace = array(
-			'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
-			'%%USER%%' => escapeshellarg(GWF_DB_USER),
-			'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
-			'%%SALT%%' => escapeshellarg(GWF_Random::randomKey(12)),
-		);
-		return str_replace(array_keys($replace), array_values($replace), $content);
-	}
 }
-?>
-

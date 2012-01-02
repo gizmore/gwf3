@@ -67,3 +67,8 @@ Create a new default template which represent GWF. We need someone with graphic 
 #13 GWF should have some JavaScript but there should be an nonJS mode
 
 --------------------------------------------------------------------------------
+
+#14 list of unused files:
+core/module/Guestbook/tpl/default/_entry.php
+
+--------------------------------------------------------------------------------
