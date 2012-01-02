@@ -276,13 +276,13 @@ fieldset.gwf3_formY{margin:0; padding:0; border:0;}
 
 .gwf3_formY ul{margin:0; padding:0; list-style:none!important;}
 .gwf3_formY ul li{list-style:none!important; padding:0; margin: 10px 0;}
-.gwf_formY ul li.required { border-bottom:0; }
+.gwf3_formY ul li.required { border-bottom:0; }
 .form_hr {margin: 5px 0;}
 /*
-.gwf_formY .text{width:188px; padding:3px 3px 3px 22px; border:1px solid #fff; border-top:1px solid #b3c3e3; border-left:1px solid #b3c3e3; height:15px; background:#fff url(name_icon.png) 2px 3px no-repeat;}
-.gwf_formY input#email{background:#fff url(email_icon.png) 3px 3px no-repeat;}
-.gwf_formY textarea.text{height:100px;background:#fff url(nachricht_icon.png) 3px 3px no-repeat;}
-.gwf_formY input.submit{width:90px; height:23px; cursor:pointer; border:0; background:url(button2.png) no-repeat; color:#69c; font-weight:bold; margin-left:65px;}
+.gwf3_formY .text{width:188px; padding:3px 3px 3px 22px; border:1px solid #fff; border-top:1px solid #b3c3e3; border-left:1px solid #b3c3e3; height:15px; background:#fff url(name_icon.png) 2px 3px no-repeat;}
+.gwf3_formY input#email{background:#fff url(email_icon.png) 3px 3px no-repeat;}
+.gwf3_formY textarea.text{height:100px;background:#fff url(nachricht_icon.png) 3px 3px no-repeat;}
+.gwf3_formY input.submit{width:90px; height:23px; cursor:pointer; border:0; background:url(button2.png) no-repeat; color:#69c; font-weight:bold; margin-left:65px;}
 */
 
 input[name=email] { background-image: url(../../../img/SF/email.png); background-repeat: no-repeat; padding-left: 24px!important;}
