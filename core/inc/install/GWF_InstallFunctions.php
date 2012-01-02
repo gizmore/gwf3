@@ -358,6 +358,31 @@ final class GWF_InstallFunctions
 		return $ret;
 	}
 
+	public static function createLangBar()
+	{
+		$back = '<div class="gwf_langbar">';
+		foreach( GWF_Language::getAvailable() as $iso )
+		{
+			if('' !== $iso)
+			{
+				if( false === ($lang = GWF_Language::getByISO($iso)))
+				{
+					continue;
+				}
+
+				$flag = ''; // TODO: get Country by Language ISO
+				$alt = '['.strtoupper($iso).']';
+				$title = $lang->displayName();
+				$id = 'gwf_langbar_'.$iso;
+
+				$back .= sprintf('	<a href="{$root}%s/" id="%s" title="%s"><img src="{$root}img/{$iconset}/%s" alt="%s"/></a>'.PHP_EOL, $iso, $id, $title, $flag, $alt);
+			}
+		}
+		$back .= '</div>';
+
+		return file_put_contents(GWF_WWW_PATH.'tpl/default/langbar.tpl', $back);
+	}
+
 	public static function createUserAgents()
 	{
 		return 'There are currently no UserAgents! (Not implemented)';
@@ -478,3 +503,4 @@ final class GWF_InstallFunctions
 	}
 }
 ?>
+

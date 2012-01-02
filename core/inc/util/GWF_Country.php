@@ -72,11 +72,11 @@ final class GWF_Country extends GDO
 //		return sprintf('<img src="%s" width="30" height="18" alt="%s" title="%s" />', $path, $t, $t).PHP_EOL;
 	}
 	
-	public static function displayFlagS2($countryid, $countryname)
+	public static function displayFlagS2($countryid, $countryname, $pattern='<img src="%s" width="30" height="18" title="%s" alt="%s" />')
 	{
 		$path = sprintf('%simg/%s/country/%s',GWF_WEB_ROOT, GWF_ICON_SET, $countryid);
 		$t = htmlspecialchars($countryname);
-		return sprintf('<img src="%s" width="30" height="18" title="%s" alt="%s" />', $path, $t, $t).PHP_EOL;
+		return sprintf($pattern, $path, $t, $t).PHP_EOL;
 	}
 	
 	#################

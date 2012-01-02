@@ -18,9 +18,6 @@ final class GWF_InstallWizard
 		self::$gwfil = $v;
 	}
 	
-	#################
-	### Functions ###
-	#################
 	public static function wizard_banner()
 	{
 		return

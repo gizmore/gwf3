@@ -7,6 +7,7 @@ final class GWF_LanguageData
 {
 	public static function getCountries()
 	{
+		# id => name, langs (iso639-3), region, tld, pop
 		# MAX ID is 313 atm
 		return array(
 	//		'0' => array('Unknown Country', 'eng', '--', '--'),
