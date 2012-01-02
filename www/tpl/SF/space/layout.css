@@ -17,6 +17,8 @@ div#profile {
 div#middle,
 div#logo {
 	background-color: #131313;
+}
+div#logo {
 	text-align: right;
 }
 div#logo span {

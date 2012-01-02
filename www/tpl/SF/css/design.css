@@ -132,11 +132,11 @@ div#footer {
 p.bottom {
 	vertical-align: bottom;
 }
-div#profile fieldset.SF_formY * {
+div#profile fieldset.gwf3_formY * {
 	float: left!important;
 	display: inline!important;
 }
-div#profile fieldset.SF_formY {
+div#profile fieldset.gwf_formY {
 	
 }
 div#profile > p {

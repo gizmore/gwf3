@@ -51,7 +51,7 @@
 <!-- @end details -->
 <!-- @start footer -->
 		<div id="footer">
-			<hr style="margin: 0;"/>
+			<hr style="margin: 0 auto;"/>
 			<a href="{$root}contact/">{$SF->lang('contact')}</a>
 			<a href="{$root}impress/">{$SF->lang('impress')}</a>
 			<a href="{$root}disclaimer/">{$SF->lang('disclaimer')}</a>
