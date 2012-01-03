@@ -42,7 +42,7 @@
 					<span class="fr">
 						<a href="{$SF->getIndex('shell')}shell=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Shell"></a>
 					</span><br>
-{include file="tpl/module/SF/SF/shortshell.tpl" assign='shortshell'}
+{include file="tpl/SF/module/SF/shortshell.tpl" assign='shortshell'}
 {$shortshell|indent:5:"\t"}
 				</div>
 <!-- @end shell -->

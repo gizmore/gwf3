@@ -3,7 +3,7 @@ $wechall = Module_WeChall::instance();
 $wechall->includeClass('WC_RegAt');
 $wechall->includeClass('WC_SiteFavorites');
 $wechall->includeClass('WC_SiteDescr');
-require_once GWF_WWW_PATH.'tpl/module/Profile/wc4/_profile_funcs.php';
+require_once GWF_WWW_PATH.'tpl/wc4/module/Profile/_profile_funcs.php';
 
 $u = $tVars['user']; $u instanceof GWF_User;
 $p = $tVars['profile']; $p instanceof GWF_Profile;

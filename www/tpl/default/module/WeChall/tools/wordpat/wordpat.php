@@ -1,7 +1,7 @@
 <?php
 $external_href = "http://pajhome.org.uk/crypt/wordpat.html";
-$wordlist_href = GWF_WEB_ROOT.'tpl/module/WeChall/applet/wordlists';
-$patterns_href = GWF_WEB_ROOT.'tpl/module/WeChall/applet/patterns';
+$wordlist_href = GWF_WEB_ROOT.'tpl/default/module/WeChall/applet/wordlists';
+$patterns_href = GWF_WEB_ROOT.'tpl/default/module/WeChall/applet/patterns';
 echo GWF_Box::box($tVars['lang2']->lang('page_info', array($external_href, $wordlist_href, $patterns_href)), $tVars['lang2']->lang('page_title'));
 
 if (false !== Common::getPost('wordpat'))
@@ -117,7 +117,7 @@ function wordpatMatch($pattern) {
 		$iso = 'en';
 	}
 	
-	$filename = GWF_WWW_PATH.'tpl/module/WeChall/applet/patterns/'.$iso.'/'.$len.'.wl';
+	$filename = GWF_WWW_PATH.'tpl/default/module/WeChall/applet/patterns/'.$iso.'/'.$len.'.wl';
 //	$filename = "tools/Wordpat/patterns/$country/$len.wl";
 	if (!file_exists($filename)) {
 		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array(GWF_HTML::display($filename)));
