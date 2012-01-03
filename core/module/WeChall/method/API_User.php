@@ -3,6 +3,7 @@ final class WeChall_API_User extends GWF_Method
 {
 	public function execute(GWF_Module $module)
 	{
+		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();
 		
 		if (false === (Common::getGet('no_session'))) {
