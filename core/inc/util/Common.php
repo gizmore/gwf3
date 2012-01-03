@@ -188,7 +188,7 @@ final class Common
 	public static function substrFrom($string, $from, $default="", $reverse=false)
 	{
 		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
-		$pos = $sos($string, $from);
+		$pos = $spos($string, $from);
 		if ($pos === false) {
 			return $default;
 		}

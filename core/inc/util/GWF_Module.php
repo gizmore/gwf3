@@ -98,18 +98,11 @@ class GWF_Module extends GDO
 	{
 		if ($this->lang === NULL)
 		{
-			$path = sprintf('module/%s/%s', $this->getName(), $path);
-			if(true === file_exists(GWF_WWW_PATH.'lang/'.Common::substrUntil('/', $path, NULL, true)))
-			{
-				$path = GWF_WWW_PATH.'lang/'.$path;
-			}
-			else
-			{
-				$path = GWF_CORE_PATH.$path;
-			}
-			$this->lang = new GWF_LangTrans($path);
+			$this->lang = new GWF_LangTrans(GWF_CORE_PATH.sprintf('module/%s/%s', $this->getName(), $path));
 		}
+		return $this->lang;
 	}
+	
 	public function onLoadLanguage() { $this->lang = GWF_HTML::getLang(); }
 	public function error($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
 	public function message($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
