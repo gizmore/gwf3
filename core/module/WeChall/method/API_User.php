@@ -45,7 +45,7 @@ final class WeChall_API_User extends GWF_Method
 			$cname = $unknown;
 			$crank = $unknown;
 		} else {
-			$country = $user->getCountry();
+			$country = GWF_Country::getByID($countryid);
 			$cname = $country->getName();
 			$crank = WC_RegAt::calcExactCountryRank($user);
 		}

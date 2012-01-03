@@ -1,12 +1,13 @@
 <?php
 chdir('../../');
 define('GWF_PAGE_TITLE', 'Are you serial');
-require_once('challenge/html_head.php');
+require_once('challenge/gwf_include.php');
+GWF_Module::loadModuleDB('WeChall', true, true);
+GWF_Module::loadModuleDB('Forum', true, true);
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 3, 'challenge/are_you_serial/index.php');
 }
-$chall->showHeader();
 
 # --- 8< --- 8< --- SNIP --- 8< --- 8< --- #
 # The new fast code!
@@ -28,6 +29,9 @@ elseif (isset($_POST['logout']))
 }
 
 ### Display
+echo $gwf->onDisplayHead();
+$chall->showHeader();
+
 # Logged in user
 if (false !== ($user = unserialize(Common::getCookie('serial_user'))))
 {
