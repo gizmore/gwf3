@@ -98,7 +98,18 @@ class GWF_Module extends GDO
 	{
 		if ($this->lang === NULL)
 		{
-			$this->lang = new GWF_LangTrans(GWF_CORE_PATH.sprintf('module/%s/%s', $this->getName(), $path));
+			$path2 = sprintf('module/%s/%s', $this->getName(), $path);
+			if(true === is_dir(GWF_WWW_PATH.'lang/' . Common::substrUntil($path2, '/', NULL, true)))
+//			if(true === is_file(sprintf('%slang/%s_%s.php', GWF_WWW_PATH, $path2, GWF_DEFAULT_LANG))) // replace GWF_DEFAULT_LANG by getCurrentISO
+			{
+				$path3 = GWF_WWW_PATH.'lang/'.$path2;
+			}
+			else
+			{
+				$path3 = GWF_CORE_PATH.$path2;
+			}
+
+			$this->lang = new GWF_LangTrans($path3);
 		}
 		return $this->lang;
 	}
