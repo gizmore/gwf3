@@ -96,7 +96,7 @@ function crackcha_answer(WC_Challenge $chall)
 		
 		if (crackcha_solved())
 		{
-			GWF_Module::loadModuleDB('Forum');
+			GWF_Module::loadModuleDB('Forum', true, true);
 			Module_WeChall::includeForums();
 			$chall->onChallengeSolved(GWF_Session::getUserID());
 		}
