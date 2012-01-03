@@ -26,6 +26,7 @@ final class Delaware_MCJohnson extends SR_TalkingNPC
 				return $this->reply('You want to become a bountyhunter?');
 				
 			case 'malois':
+				$key = '_SLQCHW1';
 				if (SR_PlayerVar::getVal($player, $key))
 				{
 					return $this->reply('This is all i know, and i shouldn\'t have told you that.');

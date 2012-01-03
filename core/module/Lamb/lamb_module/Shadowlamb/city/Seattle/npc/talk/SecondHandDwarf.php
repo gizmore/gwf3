@@ -8,7 +8,6 @@ final class Seattle_SecondHandDwarf extends SR_TalkingNPC
 		$b = chr(2); # bold
 		switch ($word)
 		{
-			case 'malois': return $this->reply('We are only interested in equipment'); 
 			case 'seattle': return $this->reply("You know where you are. Well done");
 			case 'shadowrun': return $this->reply("Oh yes, a shadowrunner. Well I have all the equipment you need");
 			case 'cyberware': return $this->reply("I am just a humble salesman");
