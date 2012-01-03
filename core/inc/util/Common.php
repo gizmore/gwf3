@@ -166,9 +166,10 @@ final class Common
 	 * @example substrUntil('AhhFooBar', 'Foo') returns 'Ahh'
 	 * @example substrUntil('AhhFogBar', 'Foo') returns $default(='AhhFogBar')
 	 * */
-	public static function substrUntil($string, $until, $default=NULL)
+	public static function substrUntil($string, $until, $default=NULL, $reverse=false)
 	{
-		if (false === ($pos = strpos($string, $until)))
+		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
+		if (false === ($pos = $spos($string, $until)))
 		{
 			return $default === NULL ? $string : $default;
 		}
@@ -184,9 +185,10 @@ final class Common
 	 * @example substrFrom('AhhFooBar', 'Foo') returns 'Bar'
 	 * @example substrFrom('AhhFooBar', 'Fog') returns $default
 	 * */
-	public static function substrFrom($string, $from, $default="")
+	public static function substrFrom($string, $from, $default="", $reverse=false)
 	{
-		$pos = strpos($string, $from);
+		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
+		$pos = $sos($string, $from);
 		if ($pos === false) {
 			return $default;
 		}
