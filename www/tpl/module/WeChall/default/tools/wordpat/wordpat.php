@@ -196,7 +196,7 @@ function wordpat_getLangSelect()
 
 ?>
 <div>
-	<form method="post" action="wordpad.php">
+	<form method="post" action="/tools/Wordpat">
 		<div>
 			<?php echo wordpat_getLangSelect(); ?>
 			<input type="text" name="pattern" value="" />
