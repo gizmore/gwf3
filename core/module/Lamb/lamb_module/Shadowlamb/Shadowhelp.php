@@ -488,6 +488,7 @@ final class Shadowhelp
 					'enum' => "To choose targets with items and spells, you can use enumeration. Like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
 					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
 					'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
+					'pvp' => 'PVP, or Player Vs Player, means attacking other humans. Most locations are non pvp, and you cannot #fight there. Dungeons usually have pvp enabled. Please note that outside of locations, pvp generally works.',
 					
 					'slang' => 'Terms',
 					array(
