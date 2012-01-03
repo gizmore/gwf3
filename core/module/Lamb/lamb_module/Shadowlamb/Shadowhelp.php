@@ -51,7 +51,7 @@ final class Shadowhelp
 		
 		$crit = $player === NULL ? 0 : sprintf('%.03f', $player->getCritPermille()/1000);
 		
-		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %s bad_karma.', $player->getBase('bad_karma'));
+		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %.02f bad_karma.', $player->getBase('bad_karma')+SR_PlayerVar::getVal($player, '__SLBADKARMA', 0.00));
 		
 		$hjbk = SR_Mount::HIJACK_BAD_KARMA;
 		
