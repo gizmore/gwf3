@@ -2,9 +2,22 @@
 final class Chicago_ShrineMonk extends SR_TalkingNPC
 {
 	public function getName() { return 'The monk'; }
+
+	public function getNPCQuests(SR_Player $player)
+	{
+		return array(
+			'Chicago_ShrineMonksRevenge',
+			'Chicago_ShrineMonksEquip',	
+		);
+	}
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$b = chr(2); # bold
 		switch ($word)
 		{

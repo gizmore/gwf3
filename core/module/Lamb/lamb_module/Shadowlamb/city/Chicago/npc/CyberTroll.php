@@ -37,6 +37,14 @@ final class Chicago_CyberTroll extends SR_NPC
 		);
 	}
 	
-	
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Chicago_ShrineMonksRevenge');
+		if ($quest->isInQuest($player))
+		{
+			$quest->onKilled($player, 3);
+		}
+		return array();
+	}
 }
 ?>
