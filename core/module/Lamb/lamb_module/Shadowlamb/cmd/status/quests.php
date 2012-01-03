@@ -117,13 +117,16 @@ final class Shadowcmd_quests extends Shadowcmd
 		{
 			$quest instanceof SR_Quest;
 			
-			if (stripos($quest->getQuestName(), $args[0]) !== false)
+			if ( ($quest->isAccepted($player)) || ($quest->isDone($player)) || ($quest->isDeclined($player)) )
 			{
-				$filtered[$i] = $quest;
-			}
-			elseif (stripos($quest->getQuestDescription(), $args[0]) !== false)
-			{
-				$filtered[$i] = $quest;
+				if (stripos($quest->getQuestName(), $args[0]) !== false)
+				{
+					$filtered[$i] = $quest;
+				}
+				elseif (stripos($quest->getQuestDescription(), $args[0]) !== false)
+				{
+					$filtered[$i] = $quest;
+				}
 			}
 			
 			$i++;
