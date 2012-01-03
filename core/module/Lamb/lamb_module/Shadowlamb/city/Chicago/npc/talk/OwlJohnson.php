@@ -22,22 +22,22 @@ final class Chicago_OwlJohnson extends SR_TalkingNPC
 		$b = chr(2); # bold
 		switch ($word)
 		{
-			case 'seattle': return $this->reply("");
-			case 'shadowrun': return $this->reply("");
-			case 'cyberware': return $this->reply("");
-			case 'magic': return $this->reply("");
-			case 'hire': return $this->reply("");
-			case 'blackmarket': return $this->reply("");
-			case 'bounty': return $this->reply("");
-			case 'alchemy': return $this->reply("");
-			case 'invite': return $this->reply("");
-			case 'renraku': return $this->reply("");
-			case 'malois': return $this->reply("");
-			case 'bribe': return $this->reply("");
-			case 'yes': return $this->reply("");
-			case 'no': return $this->reply("");
-			case 'negotiation': return $this->reply("");
-			case 'hello': return $this->reply("");
+			case 'seattle': return $this->reply("I have been to Seattle a lot ... but not lately.");
+			case 'shadowrun': return $this->reply("Yo chummer.");
+			case 'cyberware': return $this->reply("I don't trust cyberware. You better don't as well.");
+			case 'magic': return $this->reply("I don't trust magicians.");
+			case 'hire': return $this->reply("Heh ... _YOU_ want to hire _ME_? thehe.");
+			case 'blackmarket': return $this->reply("Maybe i have connections, maybe i don't.");
+			case 'bounty': return $this->reply("There is a bounty on you?");
+			case 'alchemy': return $this->reply("I don't trust alchemists.");
+			case 'invite': return $this->reply("I don't party anymore.");
+			case 'renraku': return $this->reply("I don't trust them.");
+			case 'malois': return $this->reply("You better don't ask stupid questions.");
+			case 'bribe': return $this->reply("You cannot bribe me.");
+			case 'yes': return $this->reply("Yes");
+			case 'no': return $this->reply("No");
+			case 'negotiation': return $this->reply("I don't negotiate.");
+			case 'hello': return $this->reply("Yo chummer.");
 			default:
 				return $this->reply("I do not know anything about $word.");
 		}
