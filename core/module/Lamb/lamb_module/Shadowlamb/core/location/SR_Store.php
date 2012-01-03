@@ -1,8 +1,11 @@
 <?php
 abstract class SR_Store extends SR_Location
 {
-	public function getCommands(SR_Player $player) { return array('view','buy','sell'); }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "In shops you can use {$c}view, {$c}buy and {$c}sell."; }
+	const BAD_KARMA_STEAL_PRISON = 0.4;
+	const BAD_KARMA_STEAL_COMBAT = 0.2;
+	
+	public function getCommands(SR_Player $player) { return array('view','buy','sell','steal'); }
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal."; }
 	
 	/**
 	 * Get the items available at the store.
@@ -361,5 +364,148 @@ abstract class SR_Store extends SR_Location
 		return true;
 	}
 	
+	################
+	### Stealing ###
+	################
+	
+	
+	public function on_steal(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		
+		if (count($args) !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'steal'));
+			return false;
+		}
+		
+		if (false === ($item = $this->getStoreItem($player, $args[0])))
+		{
+			$bot->reply('There is no such item here.');
+			return false;
+		}
+		$itemname = $item->getItemName();
+		
+		if ($player->getBase('thief') < 0)
+		{
+			$bot->reply('You are missing the thief skill.');
+			return false;
+		}
+		
+		# Steal difficulty
+		$difficulty = $item->getItemLevel();
+		
+		# Your skill
+		$qu = $player->get('quickness');
+		$th = $player->get('thief');
+		$skill = $qu/2 + $th*2;
+		
+		# Dice diff
+		$min = $difficulty + 1;
+		$max = $min * 2;
+		$dice_diff = Shadowfunc::diceFloat($min, $max, 2);
+		
+		# Dice skill
+		$min = 1;
+		$max = $min + $skill;
+		$dice_skill = Shadowfunc::diceFloat($min, $max, 2);
+		
+		$bot->reply(sprintf('You attempt to steal %s...', $item->getItemName()));
+		
+		# On succes we have a negative value.
+		$difference = $dice_diff - $dice_skill;
+		
+		if ($difference < (-$difficulty))
+		{
+			# Yay!
+			return $this->onStealSuccess($player, $itemname);
+		}
+		elseif ($difference < 1)
+		{
+			# Nuts!
+			return $this->onStealNothing($player, $itemname);
+		}
+		elseif ($difference > $difficulty*2)
+		{
+			# Prison!
+			return $this->onStealPrisoned($player, $itemname);
+		}
+		elseif ($difference > $difficulty)
+		{
+			# Police!
+			return $this->onStealCombat($player, $itemname);
+		}
+		else
+		{
+			# Oops im beeing watched! :)
+			return $this->onStealOops($player, $itemname);
+		}
+		
+		$bot->reply('WRONG CODE IS WRONG!');
+		return false;
+	}
+	
+	private function onStealSuccess(SR_Player $player, $itemname)
+	{
+		$bot = Shadowrap::instance($player);
+		
+		if (false === ($item = SR_Item::createByName($itemname)))
+		{
+			return $bot->reply('DB ERROR!');
+		}
+		
+		$bot->reply(sprintf('You were lucky and able to steal %s.', $itemname));
+		
+		if (false === $player->giveItems(array($item), 'stealing'))
+		{
+			return $bot->reply('DB ERROR 2!');
+		}
+		
+		return true;
+	}
+	
+	private function onStealNothing(SR_Player $player, $itemname)
+	{
+		$bot = Shadowrap::instance($player);
+		return $bot->reply('You cannot find the right moment to steal something.');
+	}
+
+	private function onStealPrisoned(SR_Player $player, $itemname)
+	{
+		$bot = Shadowrap::instance($player);
+		$bot->reply('You are out of luck ... the shop owner silently called the cops and you are put into Delaware Prison.');
+		SR_BadKarma::addBadKarma($player, self::BAD_KARMA_STEAL_PRISON);
+		
+		$p = $player->getParty();
+		$p->kickUser($player);
+		$np = SR_Party::createParty();
+		$np->addUser($player, true);
+		$np->cloneAction($p);
+		$np->clonePreviousAction($p);
+		$np->pushAction(SR_Party::ACTION_INSIDE, 'Prison_Block1');
+		return true;
+	}
+
+	private function onStealCombat(SR_Player $player, $itemname)
+	{
+		$bot = Shadowrap::instance($player);
+		$bot->reply('You are out of luck ... the shop owner silently called the cops ...');
+		SR_BadKarma::addBadKarma($player, self::BAD_KARMA_STEAL_COMBAT);
+		
+		$p = $player->getParty();
+		$p->kickUser($player);
+		$np = SR_Party::createParty();
+		$np->addUser($player, true);
+		$np->cloneAction($p);
+		$np->clonePreviousAction($p);
+		$np->fight(SR_NPC::createEnemyParty('Prison_GrayOp', 'Prison_GrayOp', 'Prison_GrayOp'));
+		return true;
+	}
+
+	private function onStealOops(SR_Player $player, $itemname)
+	{
+		$bot = Shadowrap::instance($player);
+		return $bot->reply('The shop owner is watching ... you better wait a bit.');
+	}
 }
 ?>
