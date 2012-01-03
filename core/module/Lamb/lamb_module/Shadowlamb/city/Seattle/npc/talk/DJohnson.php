@@ -5,6 +5,11 @@ final class Seattle_DJohnson extends SR_TalkingNPC
 	public function getName() { return 'Mr. Johnson'; }
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === SR_Quest::getQuest($player, 'Chicago_OwlJohnsonRoundtrip')->onRoundtripShow($player, $this))
+		{
+			return true;
+		}
+		
 		$b = chr(2);
 		$quests = array(
 			SR_Quest::getQuest($player, 'Seattle_Johnson1'),

@@ -5,6 +5,11 @@ final class Delaware_MCJohnson extends SR_TalkingNPC
 	public function getNPCQuests(SR_Player $player) { return array('Delaware_MCJohnson1','Delaware_MCJohnson2','Delaware_MCJohnson3'); }
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === SR_Quest::getQuest($player, 'Chicago_OwlJohnsonRoundtrip')->onRoundtripShow($player, $this))
+		{
+			return true;
+		}
+		
 		if ($this->onNPCQuestTalk($player, $word, $args))
 		{
 			return true;
