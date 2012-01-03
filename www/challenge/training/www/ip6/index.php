@@ -39,12 +39,7 @@ function wcc_ip6_check_answer(WC_Challenge $chall, $answer, $level)
 {
 	require_once 'solutions.php';
 	
-	if ($level === 7)
-	{
-		return 1 === preg_match('/^2002:7B2D:4359:[0-9A-Z]{1,4}:[0-9A-Z]{1,4}:[0-9A-Z]{1,4}:[0-9A-Z]{1,4}:[0-9A-Z]{1,4}$/i', $answer);
-	}
-		
-	if ($level === 8)
+	if ($level === count($solutions))
 	{
 		$ip = $_SERVER['REMOTE_ADDR'];
 		if (GWF_IP6::isV6($ip))
