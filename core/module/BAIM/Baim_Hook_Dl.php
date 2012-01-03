@@ -74,7 +74,8 @@ final class Baim_Hook_Dl
 
 	private static function getReleaseNotes(BAIM_MC $row)
 	{
-		$s = Module_BAIM::getInstance()->lang('dl_info_b', array(GWF_Time::humanDurationEN(BAIM_MC::CHANGE_TIMEOUT)));
+		$user = GWF_Session::getUser();
+		$s = Module_BAIM::getInstance()->lang('dl_info_b', array('1.Jan.2012', GWF_Time::humanDurationEN(BAIM_MC::CHANGE_TIMEOUT)));
 		return str_replace('<br/>', "\r\n", $s);
 	}
 
