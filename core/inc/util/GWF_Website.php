@@ -56,13 +56,10 @@ final class GWF_Website
 	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d; url=%s', $seconds, $url)); }
 	public static function redirectBack()
 	{
-		if (false === ($url = GWF_Session::getLastURL()))
+		$url = GWF_WEB_ROOT;
+		if (false !== ($url2 = GWF_Session::getLastURL()))
 		{
-			$url = GWF_WEB_ROOT.GWF_DEFAULT_URL; //@deprecated
-		}
-		else
-		{
-			$url = GWF_WEB_ROOT.ltrim($url, '/');
+			$url = GWF_WEB_ROOT.ltrim($url2, '/');
 		}
 		self::redirect($url);
 	}

@@ -25,7 +25,7 @@ final class Login_Welcome extends GWF_Method
 		}
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginHistory.php';
 		
-		GWF_Hook::call(GWF_Hook::LOGIN_AFTER, $user, array(GWF_Session::getOrDefault('GWF_LOGIN_BACK', GWF_WEB_ROOT.GWF_DEFAULT_URL)));
+		GWF_Hook::call(GWF_Hook::LOGIN_AFTER, $user, array(GWF_Session::getOrDefault('GWF_LOGIN_BACK', GWF_WEB_ROOT)));
 		
 		$fails = GWF_Session::getOrDefault('GWF_LOGIN_FAILS', 0);
 		GWF_Session::remove('GWF_LOGIN_FAILS');

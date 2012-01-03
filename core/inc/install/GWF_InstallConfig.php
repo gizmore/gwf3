@@ -218,16 +218,11 @@ final class GWF_InstallConfig
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# Smarty
-			array('text', 'Smarty', 'GWF_SMARTY_TPL_DIR', GWF_WWW_PATH.'tpl/', 'Path to smarty template directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_COMPILE_DIR', $path.'extra/temp/smarty_cache/tplc', 'Path to smarty caching directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_CACHE_DIR', $path.'extra/temp/smarty_cache/cache', 'Path to smarty cache directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_CONFIG_DIR', $path.'extra/temp/smarty_cache/cfg', 'Path to smarty config directory.'),
-			array('text', 'Smarty', 'GWF_SMARTY_PLUGINS_DIR', $path.'core/inc/smartyplugins', 'Path to the gwf smarty plugins.'),
+			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
 			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
 			array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
 
 			# Defaults
-			array('text', 'Defaults', 'GWF_DEFAULT_URL', 'about_gwf', '1st visit URL. Example: \'home\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_LANG', 'en', 'Fallback language. Should be \'en\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_MODULE', 'GWF', '1st visit module. Example: \'MyModule\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_METHOD', 'About', '1st visit method. Example: \'Home\'.'),

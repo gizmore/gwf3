@@ -31,18 +31,13 @@ define('GWF_GESHI_PATH', '/opt/php/geshi/geshi.php'); # Path to geshi.php. GeSHi
 ##############
 ### Smarty ###
 ##############
-define('GWF_SMARTY_TPL_DIR', '/data/_ProjectPDT6/GWF35/extra/temp/smarty_cache/tpl'); # Path to smarty template directory.
-define('GWF_SMARTY_COMPILE_DIR', '/data/_ProjectPDT6/GWF35/extra/temp/smarty_cache/tplc'); # Path to smarty caching directory.
-define('GWF_SMARTY_CACHE_DIR', '/data/_ProjectPDT6/GWF35/extra/temp/smarty_cache/cache'); # Path to smarty cache directory.
-define('GWF_SMARTY_CONFIG_DIR', '/data/_ProjectPDT6/GWF35/extra/temp/smarty_cache/cfg'); # Path to smarty config directory.
-define('GWF_SMARTY_PLUGINS_DIR', '/data/_ProjectPDT6/GWF35/core/inc/smartyplugins'); # Path to the gwf smarty plugins.
+define('GWF_SMARTY_DIRS', '/data/_ProjectPDT6/GWF35/extra/temp/smarty/'); # Path to smarty cache/compile/config directories.
 define('GWF_ERRORS_TO_SMARTY', false); # Group all Error and display them in one Box?
 define('GWF_MESSAGES_TO_SMARTY', false); # Same as above with success-messages
 
 ################
 ### Defaults ###
 ################
-define('GWF_DEFAULT_URL', 'about_gwf'); # 1st visit URL. Example: 'home'.
 define('GWF_DEFAULT_LANG', 'en'); # Fallback language. Should be 'en'.
 define('GWF_DEFAULT_MODULE', 'GWF'); # 1st visit module. Example: 'MyModule'.
 define('GWF_DEFAULT_METHOD', 'About'); # 1st visit method. Example: 'Home'.

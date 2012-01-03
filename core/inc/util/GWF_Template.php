@@ -79,14 +79,11 @@ final class GWF_Template
 			# Setup smarty config
 			require_once GWF_SMARTY_PATH;
 			$smarty = new Smarty();
-			$smarty->setTemplateDir(GWF_SMARTY_TPL_DIR);
-			$smarty->setCompileDir(GWF_SMARTY_COMPILE_DIR);
-			$smarty->setCacheDir(GWF_SMARTY_CACHE_DIR);
-			$smarty->setConfigDir(GWF_SMARTY_CONFIG_DIR);
+			$smarty->setTemplateDir(GWF_WWW_PATH.'tpl/');
+			$smarty->setCompileDir(GWF_SMARTY_DIRS.'tplc');
+			$smarty->setCacheDir(GWF_SMARTY_DIRS.'cache');
+			$smarty->setConfigDir(GWF_SMARTY_DIRS.'cfg');
 			$smarty->addPluginsDir(GWF_CORE_PATH.'inc/smartyplugins');
-//			if (GWF_SMARTY_PLUGINS_DIR) {
-//				$smarty->addPluginsDir(GWF_SMARTY_PLUGINS_DIR);
-//			}
 			
 			# Assign common template vars
 //			$smarty->assign('db', gdo_db());
@@ -156,7 +153,7 @@ final class GWF_Template
 			return self::pathError($path);
 		}
 		
-		if (is_array($tVars))
+		if (true === is_array($tVars))
 		{
 			foreach ($tVars as $k => $v)
 			{
