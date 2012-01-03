@@ -313,7 +313,7 @@ abstract class SR_Spell
 		$target->dealDamage($damage);
 		if ($target->isDead())
 		{
-			$append = $append_ep = ' and kills him with '.$damage.' damage';
+			$append = $append_ep = ' and kills them with '.$damage.' damage';
 			$this->announceADV($player, $target, $level, $append, $append_ep);
 
 			# Loot him!

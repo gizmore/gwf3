@@ -13,6 +13,21 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	################
 	public function onInstall() { Shadowrun4::init(); require_once 'SR_Install.php'; SR_Install::onInstall(false); }
 	public function onInitTimers() { Shadowrun4::initTimers(); }
+	
+	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args)
+	{
+		
+		if ($event === 'QUIT')
+		{
+			if (false === ($user = $server->getUserFromOrigin($from)))
+			{
+				echo "CANNOT GET USER in onEvent quit!\n";
+				return;
+			}
+			Shadowrun4::onQuit($server, $user, $args);
+		}
+	}
+	
 	public function onPrivmsg(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
 		if ($user->isBot())

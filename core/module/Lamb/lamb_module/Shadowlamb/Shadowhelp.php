@@ -687,7 +687,10 @@ final class Shadowhelp
 		unset($out['age']);
 		unset($out['bmi']);
 		
-		$back = '';
+		$erace = GDO::escape($race);
+		$pop = GDO::table('SR_Player')->selectVar('COUNT(*)', "sr4pl_race='$erace'");
+		
+		$back = sprintf(', Population(%d)', $pop);
 		foreach ($out as $k => $data)
 		{
 			$back .= sprintf(', %s: %s(%s)', $k, $data[0], $data[1]);

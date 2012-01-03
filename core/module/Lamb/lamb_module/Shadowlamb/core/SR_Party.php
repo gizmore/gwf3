@@ -832,11 +832,16 @@ final class SR_Party extends GDO
 		return true;
 	}
 	
-	public function notice($message)
+	public function notice($message, $but=NULL)
 	{
+		$butid = $but === NULL ? 0 : $but->getID();
 		foreach ($this->members as $player)
 		{
-			$player->message($message);
+			$player instanceof SR_Player;
+			if ($player->getID() !== $butid)
+			{
+				$player->message($message);
+			}
 		}
 		return true;
 	}

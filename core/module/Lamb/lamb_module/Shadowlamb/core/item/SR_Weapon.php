@@ -120,7 +120,7 @@ abstract class SR_Weapon extends SR_Equipment
 				
 //				$lootmsg = sprintf(' You loot %s and %.02f XP.', Shadowfunc::displayNuyen($nuyen/$mc), $xp/$mc);
 //				$p->giveLoot($xp, $nuyen);
-				$msg .= sprintf(' and kills him%s with %s damage!', $crit, $damage);
+				$msg .= sprintf(' and kills them%s with %s damage!', $crit, $damage);
 			}
 			else
 			{
