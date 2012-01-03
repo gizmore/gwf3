@@ -337,7 +337,7 @@ final class Module_Chat extends GWF_Module
 		$ipp = $this->getHistmsgPerPage();
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$conditions = $this->getHistoryCondition($channel);
-		return $msgs->select($conditions, 'chatmsg_time ASC', $ipp, $from);
+		return $msgs->selectAll('*', $conditions, 'chatmsg_time ASC', NULL, $ipp, $from, GDO::ARRAY_O);
 	}
 	
 	#####################

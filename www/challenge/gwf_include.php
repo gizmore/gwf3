@@ -17,4 +17,5 @@ $gwf = new GWF3(dirname(dirname(__FILE__).'../'), array(
 		'store_last_url' => true, # Save the current URL into session?
 		'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
 ));
+// $gwf->init();
 ?>

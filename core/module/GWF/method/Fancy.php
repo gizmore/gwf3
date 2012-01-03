@@ -15,10 +15,11 @@ final class GWF_Fancy extends GWF_Method
 		# The Fancy Options
 		if (true === $module->cfgFancyIndex())
 		{
-			if(false === GWF_ServerInfo::isApache())
-			{
-				return '';
-			}
+			# TODO: This check does not seem to work on WC5 server.
+// 			if (false === GWF_ServerInfo::isApache())
+// 			{
+// 				return '';
+// 			}
 
 			# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
 			# TODO: can we check if AllowOverride is on?

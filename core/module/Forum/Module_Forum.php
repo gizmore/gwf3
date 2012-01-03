@@ -339,18 +339,20 @@ final class Module_Forum extends GWF_Module
 		
 		$user = GWF_Session::getUser();
 		
-		# Level
-		if ($user->getLevel() < $this->cfgPostMinLevel())
-		{
-			return $this->error('err_post_level', array($this->cfgPostMinLevel()));
-		}
-		
 		# Logged in?
 		if ($user !== false)
 		{
-			if ($user->isWebspider()) {
+			# Level
+			if ($user->getLevel() < $this->cfgPostMinLevel())
+			{
+				return $this->error('err_post_level', array($this->cfgPostMinLevel()));
+			}
+			elseif ($user->isWebspider())
+			{
 				return GWF_HTML::err('ERR_NO_PERMISSION');
-			} else {
+			}
+			else
+			{
 				return false;
 			}
 		}
