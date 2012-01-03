@@ -395,13 +395,21 @@ abstract class SR_Store extends SR_Location
 		# Steal difficulty
 		$difficulty = $item->getItemLevel();
 		
+		if ($difficulty < 0)
+		{
+			return $this->onStealOops($player, $itemname);
+		}
+		
 		# Your skill
 		$qu = $player->get('quickness');
 		$th = $player->get('thief');
 		$skill = $qu/2 + $th*2;
 		
+		# DEBUG
+		printf('Dicing DIFF %.02f against SKILL %.02f ...', $difficulty, $skill);
+		
 		# Dice diff
-		$min = $difficulty + 1;
+		$min = $difficulty + 3;
 		$max = $min * 2;
 		$dice_diff = Shadowfunc::diceFloat($min, $max, 2);
 		
