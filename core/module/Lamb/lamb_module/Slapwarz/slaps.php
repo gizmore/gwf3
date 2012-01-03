@@ -130,6 +130,7 @@ $slaps = array(
 	array('P5 microprocessor', 11),
 	array('hadron collider', 50),
 	array('hammer', 32),
+	array('smithhammer', 38),
 	array('pneumatic drill', 35),
 	array('screwdriver', 24),
 	array('mini elevator', 14),
