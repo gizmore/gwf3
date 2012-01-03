@@ -244,7 +244,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			
 			if ($item->getAmount() <= 0)
 			{
-				if (false !== $player->removeFromMountInv($item))
+				if (false === $player->removeFromMountInv($item))
 				{
 					$bot->reply(sprintf('Cannot remove from mount inventory in %s line %s.', __FILE__, __LINE__));
 				}
