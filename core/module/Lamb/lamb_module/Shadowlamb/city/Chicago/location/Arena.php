@@ -25,6 +25,9 @@ final class Chicago_Arena extends SR_Arena
 		return array(
 			array('KnightsSword', 100.0, 8900),
 			array('KnightsArmor', 100.0, 47000),
+			array('ChainLegs', 100.0, 7500),
+			array('ChainBody', 100.0, 35000),
+			array('ChainHelmet', 100.0, 11500),
 		);
 	}
 }
