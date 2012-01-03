@@ -40,7 +40,7 @@ $lang = array(
 	'md_tagrank' => '%s ranglista '.GWF_SITENAME.'. Oldal %s/%s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%s megoldott %s%-ot a(z) %s oldalon',
+	'logo2_hover' => '%s megoldott %s%%-ot a(z) %s oldalon',
 	'pt_langrank' => '%s ranglista - oldal %s/%s',
 	'pit_langrank' => '%s ranglista',
 	'pi_langrank' => 'A legjobb játékosok a(z) %s oldalon.',
