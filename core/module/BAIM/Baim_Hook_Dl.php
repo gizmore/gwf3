@@ -19,6 +19,11 @@ final class Baim_Hook_Dl
 		$path = $dl->getDownloadPath();
 		$temp_path = GWF_PATH.'extra/temp/baim/'.$user->getVar('user_id').'_'.$row->getToken();
 		
+		if (!Common::isFile($path))
+		{
+			return GWF_HTML::err('ERR_FILE_NOT_FOUND', htmlspecialchars($path));
+		}
+		
 		if (Common::isFile($temp_path))
 		{
 			if (false === unlink($temp_path))
