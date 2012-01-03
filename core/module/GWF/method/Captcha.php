@@ -1,21 +1,22 @@
 <?php
-
 /**
- * Create and display an Captcha
+ * Create and display a captcha.
  * @author gizmore, spaceone
  */
 class GWF_Captcha extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module) {
+	public function getHTAccess(GWF_Module $module)
+	{
 		return
 			'RewriteRule ^Captcha/?$ index.php?mo=GWF&me=Captcha'.PHP_EOL.
 			'RewriteRule ^Captcha/([^/]+)$ index.php?mo=GWF&me=Captcha&chars=$1'.PHP_EOL;
-// 			'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
-// 			'RewriteRule ^img/default/captcha(?:\.php)?$ index.php?mo=GWF&me=Captcha&%1'.PHP_EOL;
 	}
 	
 	public function execute(GWF_Module $module) 
 	{
+		# Don't store this url.
+		GWF3::setConfig('store_last_url', false);
+		
 		# Load the Captcha class
 		require(GWF_CORE_PATH.'inc/3p/Class_Captcha.php');
 		
@@ -36,5 +37,4 @@ class GWF_Captcha extends GWF_Method
 		die($oVisualCaptcha->Create('', Common::getGetString('chars', true)));
 	}
 }
-
 ?>
