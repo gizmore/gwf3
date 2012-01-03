@@ -49,7 +49,7 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 	
 	public function onGetFile($player)
 	{
-		
+		return $this->saveAmount($this->getNeededAmount());
 	}
 
 }
