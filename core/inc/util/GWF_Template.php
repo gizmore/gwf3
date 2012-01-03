@@ -22,12 +22,12 @@ final class GWF_Template
 	private static function getPath($path)
 	{
 		$path1 = str_replace('%DESIGN%', self::getDesign(), $path);
-		if (file_exists($path1))
+		if (true === file_exists($path1))
 		{
 			return $path1;
 		}
 		$path1 = str_replace('%DESIGN%', 'default', $path);
-		if (file_exists($path1))
+		if (true === file_exists($path1))
 		{
 			return $path1;
 		}
@@ -44,7 +44,7 @@ final class GWF_Template
 
 	public static function templatePHPModule($name, $file, array $tVars)
 	{
-		return self::templatePHP(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars);
+		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN/module/{$name}/{$file}", $tVars);
 	}
 	
 	private static function templatePHP($path, $tVars=NULL)
@@ -128,7 +128,7 @@ final class GWF_Template
 	
 	public static function templateModule($name, $file, $tVars=NULL)
 	{
-		return self::template(GWF_WWW_PATH."tpl/module/{$name}/%DESIGN%/{$file}", $tVars);
+		return self::template(GWF_WWW_PATH."tpl/%DESIGN%/module/{$name}/{$file}", $tVars);
 	}
 
 	public static function templatePath($path)
