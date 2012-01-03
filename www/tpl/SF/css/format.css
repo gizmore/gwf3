@@ -124,10 +124,6 @@ p.top, p.bottom {
 	text-align: right;
 }
 
-div.inhalt textarea {
-	width: 100%;
-}
-
 span.shell_dir {
 	color:#0000CD;
 }

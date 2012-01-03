@@ -155,10 +155,10 @@ code {
 .bb_replace {
 	display: inline;
 }
-/*textarea {
+textarea {
 	min-height: 200px;
 	min-width: 640px;
-}*/
+}
 
 /** Chat **/
 #gwf_mibbit {
@@ -269,7 +269,7 @@ table.fl tr td {
 }
 
 /** Forms **/
-fieldset.gwf3_formY{margin:0; padding:0; border:0;}
+fieldset.gwf3_formY{margin:0; padding:0;}
 .gwf3_formY label{display:block; float:left; width:55px; text-align:right; padding-right:5px; margin:0 0 0 5px;}
 
 .gwf3_formY {width:310px; margin:5px; padding:0;}
