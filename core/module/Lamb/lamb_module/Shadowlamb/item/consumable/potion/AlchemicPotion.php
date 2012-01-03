@@ -4,6 +4,7 @@ final class Item_AlchemicPotion extends SR_Usable
 	public function displayType() { return 'Potion'; }
 	public function getItemWeight() { return 650; }
 	public function getItemPrice() { return 31.95; }
+	public function getItemDescription() { return 'A magic potion that will cast a magic spell.'; }
 	
 	public static function alchemicFactory($spellname, $level)
 	{

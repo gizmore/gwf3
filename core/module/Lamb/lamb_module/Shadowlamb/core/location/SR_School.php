@@ -8,8 +8,19 @@ abstract class SR_School extends SR_Store
 	public abstract function getFields(SR_Player $player);
 
 	public function getStoreItems(SR_Player $player) { return array(); }
-	
-	public function getCommands(SR_Player $player) { return array('learn', 'courses'); }
+	public function hasStoreItems(SR_Player $player) { return count($this->getStoreItems($player)) > 0; }
+		
+	public function getCommands(SR_Player $player)
+	{
+		if ($this->hasStoreItems($player))
+		{
+			return array('view', 'buy', 'steal', 'learn', 'courses');
+		}
+		else
+		{
+			return array('learn', 'courses');
+		}
+	}
 	
 	public function on_courses(SR_Player $player, array $args)
 	{

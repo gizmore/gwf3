@@ -1,7 +1,7 @@
 <?php
 final class Seattle_Archery extends SR_School
 {
-	public function getCommands(SR_Player $player) { return array('learn', 'courses', 'view', 'buy'); }
+// 	public function getCommands(SR_Player $player) { return array('learn', 'courses', 'view', 'buy'); }
 	public function getFoundPercentage() { return 50.00; }
 	public function getFoundText(SR_Player $player) { return "You find a big place with a sign: \"Seattle Archery\". It looks a bit like a golf club."; }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Seattle_Archer'); }

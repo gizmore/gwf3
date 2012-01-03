@@ -2,7 +2,7 @@
 final class Quest_Delaware_Seraphim1 extends SR_Quest
 {
 	public function getQuestName() { return 'FirstHand'; }
-	public function getQuestDescription() { return sprintf('Convince the Delaware Doctor to implant Seraphim a new hand.'); }
+	public function getQuestDescription() { return sprintf('Convince the Delaware Doctor to agree to Seraphim\'s implant request by asking him about hand.'); }
 	public function getRewardXP() { return 8; }
 	public function getRewardNuyen() { return 1000; }
 

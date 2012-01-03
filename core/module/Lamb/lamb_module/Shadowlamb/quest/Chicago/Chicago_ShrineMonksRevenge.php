@@ -7,30 +7,7 @@ final class Quest_Chicago_ShrineMonksRevenge extends SR_Quest
 	public function getQuestName() { return 'MonkeyRevenge'; }
 	public function getRewardXP() { return 8; }
 	public function getRewardNuyen() { return 800; }
-	
-	public function checkQuest(SR_NPC $npc, SR_Player $player)
-	{
-		$have_before = $this->getAmount();
-		$need = $this->getNeededAmount();
-		$have = $this->giveQuesties($player, $npc, 'ElectricParts', $have_before, $need);
-		
-		if ($have > $have_before)
-		{
-			$npc->reply('Good job, chummer.');
-			$this->saveAmount($have);
-		}
-		
-		if ($have >= $need)
-		{
-			$npc->reply('Excellent. Here is a compensation for your time.');
-			$player->message('Mr. Johnson hands you a letter.');
-			return $this->onSolve($player);
-		}
-		else
-		{
-			return $npc->reply(sprintf('We could still need %d ElectricPart(s).', $need-$have));
-		}
-	}
+
 	public function getQuestDescription()
 	{
 		$data = $this->getKillData();
@@ -51,9 +28,9 @@ final class Quest_Chicago_ShrineMonksRevenge extends SR_Quest
 		$data = $this->getKillData();
 		list($hg, $ho, $ht) = $data;
 		
-		$ng = self::NEED_GOBLINS - $hg;
-		$no = self::NEED_ORKS - $ho;
-		$nt = self::NEED_TROLLS - $ht;
+		$ng = self::$NEED[0] - $hg;
+		$no = self::$NEED[1] - $ho;
+		$nt = self::$NEED[2] - $ht;
 		
 		if ( ($ng <= 0) && ($no <= 0) && ($nt <= 0) )
 		{
@@ -93,7 +70,7 @@ final class Quest_Chicago_ShrineMonksRevenge extends SR_Quest
 		$data = $this->getKillData();
 		$data[$type] += 1;
 		$this->saveQuestData($data);
-		return $player->message(sprintf('Now you killed %d/%d %s for the monks revenge quest.', $data[$type], self::$NEED[$type], self::$NAME[$type]));
+		return $player->message(sprintf('Now you killed %d/%d %s for the monks revenge quest.', $data[$type], self::$NEED[$type], self::$NAMES[$type]));
 	}
 	
 }

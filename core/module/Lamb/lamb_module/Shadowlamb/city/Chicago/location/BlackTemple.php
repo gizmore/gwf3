@@ -13,11 +13,7 @@ final class Chicago_BlackTemple extends SR_School
 			array('AlchemicPotion_of_fireball:6', 100.0, 19999.0),
 		);
 	}
-	
-	public function getCommands(SR_Player $player) {
-		return array('learn', 'courses', 'view', 'buy');
-	}
-	
+
 	public function getFields(SR_Player $player)
 	{
 		$p = $player->getTemp(Seattle_Shamane::TEMP_PISSED, 0) * 250;

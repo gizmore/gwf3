@@ -1,7 +1,6 @@
 <?php
 final class Chicago_Archery extends SR_School
 {
-	public function getCommands(SR_Player $player) { return array('learn', 'courses', 'view', 'buy'); }
 	public function getFoundPercentage() { return 10.00; }
 	public function getFoundText(SR_Player $player) { return "You find a small archery."; }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_Archer'); }

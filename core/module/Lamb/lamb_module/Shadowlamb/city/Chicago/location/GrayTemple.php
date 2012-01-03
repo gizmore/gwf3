@@ -15,10 +15,6 @@ final class Chicago_GrayTemple extends SR_School
 		);
 	}
 	
-	public function getCommands(SR_Player $player) {
-		return array('learn', 'courses', 'view', 'buy');
-	}
-	
 	public function getFields(SR_Player $player)
 	{
 		$p = $player->getTemp(Seattle_Shamane::TEMP_PISSED, 0) * 250;

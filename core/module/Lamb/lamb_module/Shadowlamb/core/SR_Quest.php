@@ -251,7 +251,8 @@ class SR_Quest extends GDO
 	##################
 	public function getQuestData()
 	{
-		if (NULL === ($data = $this->getVar('sr4qu_data'))) {
+		if (NULL === ($data = $this->getVar('sr4qu_data')))
+		{
 			return array();
 		}
 		return unserialize($data);

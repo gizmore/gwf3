@@ -6,7 +6,6 @@ final class Chicago_Shrine extends SR_School
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_ShrineMonk'); }
 	public function getEnterText(SR_Player $player) { return "You enter the shrine. A monk i brown robe approaches."; }
 // 	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "You can use {$c}talk, {$c}learn, {$c}courses, {$c}view and {$c}buy here."; }
-	public function getCommands(SR_Player $player) { return array('view', 'buy', 'sell', 'learn', 'courses'); }
 	public function getFields(SR_Player $player)
 	{
 		return array(
@@ -16,14 +15,14 @@ final class Chicago_Shrine extends SR_School
 		);
 	}
 	
-// 	public function getStoreItems(SR_Player $player)
-// 	{
-// 		return array(
-// 			array('AT1024'),
-// 			array('DG442'),
-// 			array('GN4884'),
-// 			array('NIA62'),
-// 		);
-// 	}
+	public function getStoreItems(SR_Player $player)
+	{
+		return array(
+			array('MasterScroll_of_reputation:1', 100.0, 50000),
+			array('MasterScroll_of_strength:1', 100.0, 100000),
+			array('MasterScroll_of_body:1', 100.0, 150000),
+			array('MasterScroll_of_quickness:1', 100.0, 200000),
+		);
+	}
 }
 ?>
