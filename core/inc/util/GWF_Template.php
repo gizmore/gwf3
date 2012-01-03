@@ -44,7 +44,7 @@ final class GWF_Template
 
 	public static function templatePHPModule($name, $file, array $tVars)
 	{
-		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN/module/{$name}/{$file}", $tVars);
+		return self::templatePHP(GWF_WWW_PATH."tpl/%DESIGN%/module/{$name}/{$file}", $tVars);
 	}
 	
 	private static function templatePHP($path, $tVars=NULL)
