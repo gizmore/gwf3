@@ -125,7 +125,7 @@ final class PageBuilder_Show extends GWF_Method
 		
 		$robot = ($page->isOptionEnabled(GWF_PAGE::INDEX)) ? 'index,' : 'noindex,';
 		$robot .= ($page->isOptionEnabled(GWF_PAGE::FOLLOW)) ? 'follow' : 'nofollow';
-		GWF_Website::addMeta(array('robots', $robot, 1), true);
+		GWF_Website::addMeta(array('robots', $robot, 0), true);
 		GWF_Website::setMetaDescr($page->getVar('page_meta_desc'));
 		GWF_Website::setMetaTags($page->getVar('page_meta_tags'));
 		GWF_Website::setPageTitle($page->getVar('page_title'));
