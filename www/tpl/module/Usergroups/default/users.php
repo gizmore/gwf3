@@ -28,7 +28,7 @@ foreach ($tVars['users'] as $user)
 		<td><?php echo $user->displayCountryFlag(); ?></td>
 		<td><a href="<?php echo GWF_WEB_ROOT.'profile/'.$user->urlencode('user_name'); ?>"><?php echo $user->displayUsername(); ?></a></td>
 		<td class="gwf_num"><?php echo $user->getVar('user_level'); ?></td>
-		<td><?php echo $user->isEmailPublic() ? $user->displayEMailLink() : ''; ?></td>
+		<td><?php echo $user->isEmailPublic() ? $user->displayEMail() : ''; ?></td>
 		<td class="gwf_date"><?php echo $user->displayRegdate(); ?></td>
 		<td class="gwf_date"><?php $user->isBirthdayShown() ? $user->displayBirthday() : ''; ?></td>
 		<td class="gwf_date"><?php echo $user->isOnlineHidden() ? GWF_HTML::lang('unknown') : GWF_Time::displayAge(GWF_Time::getDate(GWF_Date::LEN_SECOND, $user->getVar('user_lastactivity'))); ?></td>
