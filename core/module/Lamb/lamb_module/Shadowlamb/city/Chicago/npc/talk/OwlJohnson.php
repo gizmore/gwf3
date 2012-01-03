@@ -5,11 +5,20 @@ final class Chicago_OwlJohnson extends SR_TalkingNPC
 	
 	public function getNPCQuests(SR_Player $player)
 	{
-		return array('Chicago_OwlJohnson1');
+		return array(
+			'Chicago_OwlJohnsonRoundtrip',
+			'Chicago_OwlJohnsonHourglass',
+			'Chicago_OwlJohnsonBackup',
+		);
 	}
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$b = chr(2); # bold
 		switch ($word)
 		{

@@ -23,11 +23,11 @@ final class Chicago_Arena extends SR_Arena
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('KnightsSword', 100.0, 8900),
-			array('KnightsArmor', 100.0, 47000),
-			array('ChainLegs', 100.0, 7500),
-			array('ChainBody', 100.0, 35000),
-			array('ChainHelmet', 100.0, 11500),
+			array('KnightsSword', 100.0, 11900),
+			array('KnightsArmor', 100.0, 52000),
+			array('ChainLegs', 100.0, 9500),
+			array('ChainBody', 100.0, 41000),
+			array('ChainHelmet', 100.0, 13500),
 		);
 	}
 }

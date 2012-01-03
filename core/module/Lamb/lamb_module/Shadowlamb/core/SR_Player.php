@@ -1494,9 +1494,9 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getInvItemByName($itemname)
+	public function getInvItemByName($itemname, $shortcuts=true)
 	{
-		return $this->getItemByNameB($itemname, $this->sr4_inventory);
+		return $this->getItemByNameB($itemname, $this->sr4_inventory, $shortcuts);
 	}
 	
 	public function getItemByNameB($itemname, array $items, $shortcuts=true)

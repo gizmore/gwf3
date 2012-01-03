@@ -7,6 +7,11 @@ final class Redmond_Johnson extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === SR_Quest::getQuest($player, 'Chicago_OwlJohnsonRoundtrip')->onRoundtripShow($player, $this))
+		{
+			return true;
+		}
+		
 		$quests = array(
 			SR_Quest::getQuest($player, 'Redmond_Johnson_1'),
 			SR_Quest::getQuest($player, 'Redmond_Johnson_2'),

@@ -1,5 +1,5 @@
 <?php
-final class Quest_Chicago_OwlJohnson1 extends SR_Quest
+final class Quest_Chicago_OwlJohnsonBackup extends SR_Quest
 {
 	public function getQuestName() { return 'Taped'; }
 	public function getNeededAmount() { return 1; }
