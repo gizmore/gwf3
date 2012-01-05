@@ -542,6 +542,7 @@ class SR_Item extends GDO
 	public function isItemDropable() { return true; }
 	public function isItemFriendly() { return false; }
 	public function isItemOffensive() { return false; }
+	public function isItemLootable() { return true; }
 	public function getItemModifiersA(SR_Player $player) { return array(); }
 	public function getItemLevel() { return -1; }
 	public function getItemRange() { return 0.0; }

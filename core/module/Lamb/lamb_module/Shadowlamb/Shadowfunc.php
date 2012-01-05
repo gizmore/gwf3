@@ -864,10 +864,11 @@ final class Shadowfunc
 		{
 			$item instanceof SR_Item;
 			$il = $item->getItemLevel();
-			if ($il > $level || $il < 0)
+			if ( ($il > $level) || ($il < 0) || (!$item->isItemLootable()) )
 			{
 				continue;
 			}
+			
 			$chance = 100;
 //			$chance += round($player->get('luck')/2);
 			if (in_array($item->getItemName(), $high_chance))

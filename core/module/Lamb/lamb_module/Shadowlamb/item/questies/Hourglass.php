@@ -7,5 +7,6 @@ final class Item_Hourglass extends SR_QuestItem
 	public function getItemDescription() { return 'A sandy hourglass ... quite fun to watch the time goes by when you are on LSD, but no fun for real runners!'; }
 	public function isItemDropable() { return false; }
 	public function isItemTradeable() { return true; }
+	public function isItemLootable() { return false; }
 }
 ?>
