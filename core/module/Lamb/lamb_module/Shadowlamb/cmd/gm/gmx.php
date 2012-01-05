@@ -59,6 +59,12 @@ final class Shadowcmd_gmx extends Shadowcmd
 		$u1 = $p1->getUser();
 		$u2 = $p2->getUser();
 		
+		# Names to convert bazar items. (thx tehron)
+		$oldname = $p1->getName();
+		$newname = $p2->getName();
+		$eoldname = GDO::escape($oldname);
+		$enewname = GDO::escape($newname);
+		
 		if (false === $p1->saveVar('sr4pl_uid', $u2->getID()))
 		{
 			$player->message('Database error 1');
@@ -72,6 +78,36 @@ final class Shadowcmd_gmx extends Shadowcmd
 			return false;
 		}
 		$p2->setVar('sr4pl_uid', $u1);
+		
+		
+		
+		# Exchange shops (thx tehron)
+		if (false === GDO::table('SR_BazarShop')->update("sr4bs_pname='__GMX_TEMP__'", "sr4bs_pname='$eoldname'"))
+		{
+			$player->message('Cannot move bazar shop 1!');
+		}
+		if (false === GDO::table('SR_BazarShop')->update("sr4bs_pname='$eoldname'", "sr4bs_pname='$enewname'"))
+		{
+			$player->message('Cannot move bazar shop 2!');
+		}
+		if (false === GDO::table('SR_BazarShop')->update("sr4bs_pname='$enewname'", "sr4bs_pname='__GMX_TEMP__'"))
+		{
+			$player->message('Cannot move bazar shop 3!');
+		}
+		# Exchange shop items (thx tehron)
+		if (false === GDO::table('SR_BazarItem')->update("sr4ba_pname='__GMX_TEMP__'", "sr4ba_pname='$eoldname'"))
+		{
+			$player->message('Cannot move bazar items 1!');
+		}
+		if (false === GDO::table('SR_BazarItem')->update("sr4ba_pname='$eoldname'", "sr4ba_pname='$enewname'"))
+		{
+			$player->message('Cannot move bazar items 2!');
+		}
+		if (false === GDO::table('SR_BazarItem')->update("sr4ba_pname='$enewname'", "sr4ba_pname='__GMX_TEMP__'"))
+		{
+			$player->message('Cannot move bazar items 3!');
+		}
+		
 		
 		$player->message(sprintf('Switched players!'));
 		return true;
