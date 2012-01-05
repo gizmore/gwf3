@@ -121,8 +121,23 @@ final class Delaware_Citizen extends SR_HireNPC
 	public function seraphimQuest(SR_Player $player, $word, array $args)
 	{
 		$race = $this->getRace();
+		$gender = $this->getGender();
 		
 		$player->message('You offer the citizen a job as troll in the SecondHand ...');
+
+		// someone said yes already, but you haven't told Seraphim yet to complete the quest
+		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
+		if ($quest->isWorkerFound())
+		{
+			// TODO
+			/*
+			if ($quest->getWorkerName() === $this->getName())
+			{
+				return $this->reply("I said 'yes' already. Go tell Seraphim, damnit!");
+			}
+			 */
+			return $this->reply("You found someone already. Go tell Seraphim, damnit!");
+		}
 		
 		if ($gender === 'female')
 		{
