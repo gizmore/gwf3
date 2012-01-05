@@ -24,7 +24,7 @@ final class GWF_PageMenu
 	 */
 	public static function getPageForPos($pos, $ipp)
 	{
-		return intval($pos-1) / intval($ipp) + 1;
+		return (int)((($pos-1)/((int)$ipp)) + 1);
 	}
 	
 	public static function getPageFor(GDO $gdo, $condition, $orderby, $ipp, $joins=NULL)
