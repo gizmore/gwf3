@@ -14,7 +14,7 @@ if ( ('' !== ($username = Common::getPostString('username'))) && (false !== ($pa
 
 /**
  * Get the database for this challenge.
- * @return GWF_Database
+ * @return GDO_Database
  */
 function auth2_db()
 {
