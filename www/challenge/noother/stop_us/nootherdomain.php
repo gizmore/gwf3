@@ -12,6 +12,7 @@ chdir('../../../');
 $_GET['mo'] = 'WeChall';
 $_GET['me'] = 'Challenge';
 $cwd = getcwd();
+require_once 'protected/config.php';
 require_once '../gwf3.class.php';
 $gwf = new GWF3($cwd, array(
 	'website_init' => true,
@@ -52,8 +53,8 @@ noothtable::initNoothworks($sid); # init domain stuff.
 	<meta name="keywords" content="wechall, challenge, stopus, stop us, stop_us" />
 	<meta name="description" content="noother-domain.com is a fictional service selling .xyz domains. It is a hacking challenge on wechall." />
 	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/template/default/css/default.css?v=9" />
-	<link rel="stylesheet" type="text/css" href="/template/wc4/css/wechall4.css?v=9a" />
+	<link rel="stylesheet" type="text/css" href="/tpl/default/css/default.css?v=9" />
+	<link rel="stylesheet" type="text/css" href="/tpl/wc4/css/wechall4.css?v=9a" />
 </head>
 <body>
 	<h1><a href="nootherdomain.php">noother-domains.com</a> (powered by <a href="/challenge/noother/stop_us/index.php">WeChall</a>)</h1>
