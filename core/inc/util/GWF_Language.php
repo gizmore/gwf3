@@ -83,6 +83,16 @@ final class GWF_Language extends GDO
 	
 	public static function init()
 	{
+		# By account setting.
+		if (false !== ($user = GWF_Session::getUser()))
+		{
+			if (false !== (self::$LANG = $user->getLanguage()))
+			{
+				self::$ISO = self::$LANG->getISO();
+				return true;
+			}
+		}
+		
 		# IN URL
 		if (isset($_SERVER['REQUEST_URI']))
 		{

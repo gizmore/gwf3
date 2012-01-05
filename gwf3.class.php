@@ -108,14 +108,14 @@ class GWF3
 			GWF_Debug::enableErrorHandler();
 		}
 			
-		if (true === $config['website_init']) 
-		{ 
-			GWF_Website::init();
-		}
-		
 		if (false === $config['no_session'])
 		{
 			$this->onStartSession($config['blocking']);
+		}
+		
+		if (true === $config['website_init']) 
+		{ 
+			GWF_Website::init();
 		}
 		
 		if (true === $config['do_logging'])
