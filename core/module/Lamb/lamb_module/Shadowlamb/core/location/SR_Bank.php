@@ -66,23 +66,23 @@ abstract class SR_Bank extends SR_Location
 			$bot->reply($error);
 			return false;
 		}
-		if (false === ($item = $player->getItem($args[0])))
+		if (false === ($item = $player->getInvItem($args[0])))
 		{
-			$bot->reply('You don`t have that item.');
+			$bot->reply('You don`t have that item in your inventory.');
 			return false;
 		}
 		
 		# Equipped?
-		if ($item->isEquipped($player))
-		{
-			$player->unequip($item);
-			$player->removeFromInventory($item);
-			$player->putInBank($item);
-			$stored = 1;
-		}
+// 		if ($item->isEquipped($player))
+// 		{
+// 			$player->unequip($item);
+// 			$player->removeFromInventory($item);
+// 			$player->putInBank($item);
+// 			$stored = 1;
+// 		}
 		
 		# A stackable?
-		elseif ($item->isItemStackable())
+		if ($item->isItemStackable())
 		{
 			$have_amt = $item->getAmount();
 			
