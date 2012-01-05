@@ -41,11 +41,11 @@ span {}
 input[type=text] {
 	padding: 0 2px;
 }
-#content legend {
+div#content legend {
 	text-transform: uppercase;
 	padding: 5px;
 }
-#content label {
+div#content label {
 	float: left;
 	clear: left;
 	width: 45%;
@@ -53,12 +53,12 @@ input[type=text] {
 	margin-right: 10px;
 /*	margin-bottom: 7px;*/
 }
-#content fieldset input {
+div#content fieldset input {
 	display: block;
 /*	margin-bottom: 7px;
 	width: 20%;*/
 }
-#content fieldset {
+div#content fieldset {
 	padding: 5px;
 	width: 90%;
 	margin: auto;
@@ -168,7 +168,7 @@ p.copyright {
 	line-height: 25px;
 	margin: 0;
 }
-div.inhalt {
+div#content {
 	text-align: justify;
 	padding: 10px;
 	overflow: hidden;
@@ -195,27 +195,27 @@ div#footer a.last:after {
 }
 div.navigation > ol.navi h2:first-letter,
 div.pb_content > p:first-letter,
-div.inhalt > p:first-letter { 
+div#content > p:first-letter { 
 	font-weight: bold; font-size: 20px; 
 }
 div.pb_content > p:hover,
-div.inhalt > p:hover { 
+div#content > p:hover { 
 	background-color: #1c1c1c;
 }
-div.inhalt a:hover {
+div#content a:hover {
 	text-decoration: underline;
 }
-div.inhalt p li {
+div#content p li {
 	list-style-type: square;
 	list-style-position: inside;
 	padding-left: 10px;
 }
-div.inhalt li > ul > li {
+div#content li > ul > li {
 	list-style-type: disc;
 	list-style-position: inside;
 	padding-left: 10px;
 }
-div.inhalt p {
+div#content p {
 	padding-left: 5px;
 	padding-right: 5px;
 }

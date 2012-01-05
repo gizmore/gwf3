@@ -1,12 +1,9 @@
-						<br/>
-					</div>
-					<hr/>
-<!-- @end page -->
-					<p class="bottom">
-						<a class="backbutton" href="{$SF->getLastURL()}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({$SF->getLastURL()})</a>
-					</p>
 				</div>
 <!-- @end content -->
+				<hr/>
+				<p class="bottom">
+					<a class="backbutton" href="{$SF->getLastURL()}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({$SF->getLastURL()})</a>
+				</p>
 			</div>
 <!-- @end middle -->
 <!-- @start right -->
@@ -27,7 +24,7 @@
 		<div id="copyright">
 			<p class="copyright">
 				SPACE-Framework is copyright by 
-				<a href="{$root}profile/space" title="space's profile">Florian Best</a> & 
+				<a href="{$root}profile/space" title="space's profile">Florian Best</a> &amp; 
 				<a href="http://wechall.net" title="GWF"><span title="Gizmore Website Framework">GWF</span> &copy; under <span title="Wechall Public License">WPL</span></a>
 			</p>
 {if false === $SF->isDisplayed('details')}
@@ -69,8 +66,9 @@
 <!-- @end margin -->
 <!-- @start debug-->
 	<p style="text-align: center;">
-{include file="tpl/{$design}/debug_time.tpl" assign='debug_time'}<br/>
-{$debug_time|indent:2:"\t"}<br/>
+{include file="tpl/{$design}/debug_time.tpl" assign='debug_time'}
+{$debug_time|indent:2:"\t"}
+		<br/>
 		Valid <a href="http://validator.w3.org/check?uri=referer">HTML5</a> and <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a>
 	</p>
 <!-- @end debug -->

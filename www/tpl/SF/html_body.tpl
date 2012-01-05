@@ -52,9 +52,7 @@
 				</span>
 {/if}
 <!-- @start content -->
-				<div id="content">
-<!-- @begin page -->
-					<div class="inhalt {if $SF->getMoMe('SF_Shell')}shell" id="largeshell{/if}">
+				<div id="content" class="inhalt {if $SF->getMoMe('SF_Shell')}shell" id="largeshell{/if}">
 <!-- @begin error/success messages -->
 {$messages}
 {$errors}
