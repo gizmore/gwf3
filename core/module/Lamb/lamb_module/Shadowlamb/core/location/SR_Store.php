@@ -406,16 +406,16 @@ abstract class SR_Store extends SR_Location
 		$skill = $qu/2 + $th*2;
 		
 		# DEBUG
-		printf('Dicing DIFF %.02f against SKILL %.02f ...', $difficulty, $skill);
+		printf("Dicing DIFF %.02f against SKILL %.02f ...\n", $difficulty, $skill);
 		
 		# Dice diff
-		$min = $difficulty + 3;
+		$min = $difficulty + 2;
 		$max = $min * 2;
 		$dice_diff = Shadowfunc::diceFloat($min, $max, 2);
 		
 		# Dice skill
 		$min = 1;
-		$max = $min + $skill;
+		$max = $min + $skill + 1;
 		$dice_skill = Shadowfunc::diceFloat($min, $max, 2);
 		
 		$bot->reply(sprintf('You attempt to steal %s...', $item->getItemName()));
