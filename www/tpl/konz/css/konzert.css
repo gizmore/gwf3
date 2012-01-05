@@ -1,0 +1,398 @@
+html, body {
+	min-height: 100%;
+	min-width: 1024px;
+	height: 100%;
+	width: 100%;
+}
+
+#gwf3_page {
+	height: 85%;
+}
+
+.content_space {
+	height: 15%;
+	width: 100%;
+	margin-top: 20px;
+}
+
+#pagewrap {
+	height: 100%;
+	background-color: #000;
+}
+
+/** MENU **/
+
+#konzert_top {
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background-image: url(/tpl/konz/img/Vorhang_Oben3.png);
+	background-repeat: repeat-x;
+	background-size: 363px 100%;
+	background-color: transparent;
+	height: 15%;
+	position: absolute;
+	z-index: 20;
+}
+
+#konzert_menutop {
+}
+
+#gwf3_topmenu ul {
+}
+
+#konzert_top a {
+	font-family: 'Leckerli One', cursive;
+	text-shadow: 0px 1px 1px #121212;
+   	filter: dropshadow(color=#121212, offx=0, offy=1);
+	color: #fff;
+}
+
+#gwf3_topmenu{
+}
+
+#gwf3_topmenu li {
+	display: inline;
+}
+
+/** Bottom Stage **/
+
+#stage {
+	margin-top: -4%;
+}
+
+#stage_bg {
+	height: 8%;
+	background: url(/tpl/konz/img/stage.jpg) transparent;
+	background-size: 98px 100%;
+	position: relative;
+	z-index: 6;
+}
+
+#konzert_sitze {
+	background: url(/tpl/konz/img/sitze4.png) transparent;
+	position: relative;
+	z-index: 7;
+	height: 9%;
+	margin-top: -2%;
+	background-size: 298px 100%;
+}
+
+/** Page **/
+
+#vhbg_left, #vhbg_right {
+	position: absolute;
+	z-index: 1;
+	background-image: url(/tpl/konz/img/bgvorhang2_2.jpg);
+	background-repeat: repeat-x;
+	width: 200px;
+	height: 92%;
+	background-size: 490px 100%;
+}
+#vhbg_left {
+}
+#vhbg_right {
+	right: 0px;
+}
+
+#vhfg_left, #vhfg_right {
+	position: relative;
+	width: 240px;
+	height: 85%;
+	z-index: 5;
+}
+
+#vhfg_left {
+	background: url(/tpl/konz/img/Vorhang_Links3.png) no-repeat;
+	background-size: 240px 100%; 
+	float: left;
+}
+
+#vhfg_right {
+	float: right;
+	margin-left: auto;
+	margin-right: 0px;
+	background: url(/tpl/konz/img/Vorhang_Rechts3.png) no-repeat;
+	background-size: 240px 100%; 
+}
+
+#content {
+	color: #fff;
+	background-position: top right;
+	position: relative;
+	z-index: 7;
+	overflow: auto;
+	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, th, .mugshot_text, .inline_head, h2 a, h3 a {
+	text-align: center;
+	margin: auto;
+	font-family: 'Rochester', cursive!important;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+span.inline_head {
+}
+b.inline_head, h2 a {
+	font-size: 24px!important;
+	font-weight: bolder!important;
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	margin-bottom: 30px;
+}
+
+h3 a {
+	font-size: 18px!important;
+	font-weight: bold!important;
+}
+
+
+p {
+	padding: 15px;
+}
+
+p, #content li, td, .gwf_date, p > span, #content a {
+/* 	font-family: 'Reenie Beanie', times; */
+	font-family: 'Merienda One', times;
+	font-size: 15px;
+	font-weight: 400;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+#content a {
+	text-decoration: underline;
+}
+
+
+.audio_proba {
+	margin-top: 30px;
+	text-align: center;
+}
+
+audio {
+	margin-top: 20px;
+}
+
+.gwf_messages, .gwf_errors {
+	float: none;
+}
+
+
+#content ul, #content ol {
+	margin: 15px;
+	margin-left: 34px;
+	padding: 0;
+}
+
+li {
+	list-style: circle;
+}
+
+#content a {
+	color: #fff;
+}
+
+.fw table {
+	width: 100%;
+}
+
+table {
+	margin: 15px;
+}
+
+textarea {
+	min-width: 100px;
+}
+
+.impressum_table td {
+	padding: 0 10px;
+}
+
+.impressum_table th {
+	text-align: right;
+}
+
+#kt_table td {
+	padding: 20px 10px;
+}
+
+
+div.gwf_pagemenu > span > a {
+	text-decoration: none!important;
+	font-size: 20px;
+}
+
+
+/**************/
+/** MUGSHOTS **/
+/**************/
+#mugshot {
+	position: absolute;
+	z-index: 15;
+	display: none;
+}
+.mugshot_outer {
+	margin: 5px 15px;
+}
+.mugshot_top { background-image: url(../img/bilderrahmen_o.png); }
+.mugshot_bottom{ background-image: url(../img/bilderrahmen_u.png); }
+.mugshot_top, .mugshot_bottom {
+	height: 42px;
+	background-size: 100% 42px;
+	background-repeat: no-repeat;
+}
+
+.mugshot_bottom {
+	clear: both;
+}
+
+.mugshot_middle {
+	display: block;
+}
+
+.mugshot_left, .mugshot_right {
+	display: block;
+	background-repeat: no-repeat;
+	background-size: 48px 100%;
+	margin: 0;
+}
+
+a.mugshot, img.mugshot_img {
+	text-decoration: none!important;
+	text-shadow: none!important;
+	display: block;
+}
+
+
+.mugshot_left {
+	padding-left: 48px;
+	background-image: url(../img/bilderrahmen_l.png);
+	margin-left: -1px;
+}
+.mugshot_right {
+	padding-right: 48px;
+	background-image: url(../img/bilderrahmen_r.png);
+	background-position: right;
+	margin-right: -2px;
+}
+
+.mugshot_right {
+	float: right;
+}
+
+.mugshot_text {
+	font-size: 20px;
+	margin-top: 6px;
+	text-align: center;
+}
+
+/** Thumnnails **/
+#thumbnails img {
+	height: 150px;
+}
+
+
+/** Contact **/
+#contact_form {
+	height: 100%;
+}
+
+div.contact {
+	position: relative;
+	width: inherit;
+	float: left;
+	height: 100%;
+	display: block;
+}
+
+.contact form {
+	width: 100%;
+	height: 100%;
+}
+
+.contact table, .contact {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+table {
+	margin: 0;
+}
+
+.contact textarea {
+	height: 100%;
+ 	outline: none;
+ 	border: none;
+}
+.contact_img {
+	float: right;
+}
+
+.thumbs_left, .thumbs_right {
+	cursor: pointer;
+}
+
+
+#thumbnails a {
+	float: left;
+	margin: 10px;
+	display: inline-block;
+}
+
+#thumbnails img {
+	display: inline-block;
+}
+
+.red {
+	color: red!important;
+}
+
+.gwf_pagemenu_sel {
+	font-size: 24px!important;
+}
+
+
+/** FIXES **/
+.gwf_errors, .gwf_messages {
+	padding: 5px;
+	margin: 10px;
+}
+
+.gwf_messages {
+	background: #3C3;
+}
+
+.gwf_msg_t {
+	background: #3D3;
+}
+
+.ghost_intro {
+	font-size: 32px;
+}
+
+#next_page {
+/* 	position: relative; */
+	text-align: right;
+	margin-top: 15px;
+	margin-right: 30px;
+/* 	margin-top: 12px; */
+/* 	margin-right: 300px; */
+/* 	margin-bottom: -32px; */
+/* 	z-index: 10; */
+/* 	line-height: 20px; */
+}
+#next_page a {
+	color: #fff!important;
+	text-decoration: underline;
+/* 	line-height: 20px; */
+}

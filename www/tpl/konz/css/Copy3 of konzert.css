@@ -1,0 +1,396 @@
+html, body {
+	min-height: 100%;
+	min-width: 1024px;
+	height: 100%;
+	width: 100%;
+}
+
+#gwf3_page {
+	height: 85%;
+}
+
+.content_space {
+	height: 15%;
+	width: 100%;
+}
+
+#pagewrap {
+/* 	margin-top: 15%; */
+	height: 100%;
+	background-color: #000;
+/* 	padding: 0 -250px; */
+}
+
+/** MENU **/
+
+#konzert_top {
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background-image: url(/tpl/konz/img/Vorhang_Oben3.png);
+	background-repeat: repeat-x;
+	background-size: 363px 100%;
+	background-color: transparent;
+/* 	height: 145px; */
+	height: 15%;
+/* 	padding-top: 10px; */
+	position: absolute;
+/* 	position: relative; */
+	z-index: 20;
+/* 	margin: 0 -250px; */
+}
+
+#konzert_menutop {
+/* 	border-top-left-radius: 30px 10px; */
+/* 	border-top-right-radius: 30px 10px; */
+/* 	margin: 0 -250px; */
+}
+
+#gwf3_topmenu ul {
+/* 	margin: 0 -250px; */
+}
+
+#konzert_top a {
+	font-family: 'Leckerli One', cursive;
+	text-shadow: 0px 1px 1px #121212;
+   	filter: dropshadow(color=#121212, offx=0, offy=1);
+	color: #fff;
+}
+
+#gwf3_topmenu{
+/* 	white-space: nowrap; */
+}
+
+#gwf3_topmenu li {
+	display: inline;
+}
+
+/** Bottom Stage **/
+
+#stage {
+	margin-top: -4%;
+/* 	margin-top: -10px; */
+}
+
+#stage_bg {
+	height: 8%;
+	background: url(/tpl/konz/img/stage.jpg) transparent;
+	background-size: 98px 100%;
+/* 	height: 125px; */
+	position: relative;
+	z-index: 6;
+}
+
+#konzert_sitze {
+/* 	height: 121px; */
+/* 	height: 140px; */
+	background: url(/tpl/konz/img/sitze4.png) transparent;
+/* 	margin-top: -40px; */
+	position: relative;
+	z-index: 7;
+	height: 9%;
+	margin-top: -2%;
+	background-size: 298px 100%;
+/* 	margin-top: -4%; */
+/* 	height: 54%; */
+}
+
+/** Page **/
+
+#vhbg_left, #vhbg_right {
+	position: absolute;
+/* 	position: relative; */
+	z-index: 1;
+	background-image: url(/tpl/konz/img/bgvorhang2_2.jpg);
+	background-repeat: repeat-x;
+/* 	width: 50%; */
+	width: 200px;
+/* 	width: 100%; */
+	height: 92%;
+/* 	background-position: 0px -90px; */
+	background-size: 490px 100%;
+/* 	margin-top: 50px; */
+/* 	background-size: 70%; */
+/* 	background-size: 100% 100%; */
+/* 	min-height: 882px; */
+/* 	padding: 0 -250px; */
+}
+#vhbg_left {
+/* 	float: left; */
+/* 	margin-left: 0; */
+}
+#vhbg_right {
+/* 	position: fixed; */
+/* 	float: right; */
+/* 	width: 0; */
+/* 	margin-right: 0; */
+/* 	margin-left: auto; */
+	right: 0px;
+}
+
+#vhfg_left, #vhfg_right {
+/* 	position: absolute; */
+	position: relative;
+	width: 240px;
+	height: 85%;
+/* 	height: 800px; */
+/* 	top: 50px; */
+	z-index: 5;
+/* 	margin-top: -100px; */
+	
+}
+
+#vhfg_left {
+	background: url(/tpl/konz/img/Vorhang_Links3.png) no-repeat;
+	background-size: 240px 100%; 
+	float: left;
+}
+
+#vhfg_right {
+/* 	right: 0px; */
+	float: right;
+	margin-left: auto;
+	margin-right: 0px;
+	background: url(/tpl/konz/img/Vorhang_Rechts3.png) no-repeat;
+	background-size: 240px 100%; 
+}
+
+#content {
+/* 	padding-top: 100px; */
+	color: #fff;
+/* 	background: url(/tpl/konz/img/Vorhang_Rechts2.png) no-repeat; */
+/* 	background: url(/tpl/konz/img/Vorhang_Rechts3.png) no-repeat; */
+	background-position: top right;
+/* 	padding-left: 250px; */
+/* 	padding-right: 250px; */
+/* 	min-height: 750px; */
+	position: relative;
+	z-index: 7;
+	overflow: auto;
+/* 	height: 750px; */
+/* 	margin-top: -15%; */
+	height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, th, .mugshot_text, .inline_head {
+	text-align: center;
+	margin: auto;
+	font-family: 'Rochester', cursive;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+span.inline_head {
+}
+b.inline_head {
+	font-size: 24px;
+}
+
+/* .inline_head:first-letter { */
+/* 	font-size: 24px; */
+		
+/* } */
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	margin-bottom: 30px;
+}
+
+
+p {
+	padding: 15px;
+}
+
+p, #content li, td, .gwf_date, p > span, #content a {
+/* 	font-family: 'Reenie Beanie', times; */
+	font-family: 'Merienda One', times;
+	font-size: 15px;
+	font-weight: 400;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+#content a {
+	text-decoration: underline;
+}
+
+
+.audio_proba {
+	margin-top: 30px;
+	text-align: center;
+}
+
+audio {
+	margin-top: 20px;
+}
+
+.gwf_messages, .gwf_errors {
+	float: none;
+}
+
+
+#content ul, #content ol {
+	margin: 15px;
+	margin-left: 34px;
+	padding: 0;
+}
+
+li {
+	list-style: circle;
+}
+
+#content a {
+	color: #fff;
+}
+
+.fw table {
+	width: 100%;
+}
+
+.gwf_table, table {
+/* 	width: 100%; */
+}
+
+table {
+	margin: 15px;
+}
+
+th, td {
+/* 	text-align: center; */
+}
+
+textarea {
+	min-width: 100px;
+}
+
+.impressum_table td {
+	padding: 0 10px;
+}
+
+.impressum_table th {
+	text-align: right;
+}
+
+#kt_table td {
+	padding: 20px 10px;
+}
+
+
+div.gwf_pagemenu > span > a {
+	text-decoration: none!important;
+	font-size: 20px;
+}
+
+
+/**************/
+/** MUGSHOTS **/
+/**************/
+#mugshot {
+	position: absolute;
+/* 	width: 100%; */
+/* 	height: 100%; */
+	z-index: 15;
+	display: none;
+}
+.mugshot_outer {
+	margin: 5px 15px;
+}
+.mugshot_top { background-image: url(../img/bilderrahmen_o.png); }
+.mugshot_bottom{ background-image: url(../img/bilderrahmen_u.png); }
+.mugshot_top, .mugshot_bottom {
+	display: block;
+/* 	width: 100%; */
+	height: 44px;
+/* 	height: 60px; */
+	background-size: 100% 44px;
+/* 	background-size: 100% 60px; */
+	background-repeat: no-repeat;
+}
+
+.mugshot_middle {
+	display: block;
+}
+
+.mugshot_left, .mugshot_right {
+	display: block;
+/* 	height: 100%; */
+	background-repeat: no-repeat;
+/* 	background-size: 64px 100%; */
+	background-size: 48px 100%;
+}
+
+.mugshot_left {
+	margin-top: -2px;
+	margin-left: -2px;
+/* 	padding-left: 64px; */
+	padding-left: 48px;
+	background-image: url(../img/bilderrahmen_l.png);
+}
+.mugshot_right {
+	margin-right: -3px;
+/* 	padding-right: 64px; */
+	padding-right: 48px;
+	background-image: url(../img/bilderrahmen_r.png);
+	background-position: right;
+}
+
+.mugshot_text {
+/* 	font-weight: bolder; */
+	font-size: 20px;
+	margin-top: 6px;
+	text-align: center;
+}
+
+/** Thumnnails **/
+#thumbnails img {
+	height: 150px;
+/* 	white-space: nowrap; */
+}
+
+
+/** Contact **/
+#contact_form {
+	height: 100%;
+}
+
+div.contact {
+	position: relative;
+	width: inherit;
+	float: left;
+	height: 100%;
+	display: block;
+/* 	overflow: auto; */
+}
+
+.contact form {
+	width: 100%;
+	height: 100%;
+}
+
+.contact table, .contact {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+table {
+	margin: 0;
+}
+
+.contact textarea {
+	height: 100%;
+ 	outline: none;
+ 	border: none;
+}
+.contact_img {
+	float: right;
+/* 	height: 100%; */
+}
+
+.thumbs_left, .thumbs_right {
+	cursor: pointer;
+}

@@ -1,0 +1,348 @@
+* {
+	font-family: Serif;
+/* 	font-family: Verdana; */
+}
+
+html, body {
+	min-height: 100%;
+	min-width: 1024px;
+/* 	width: 100%; */
+}
+
+#pagewrap {
+/* 	margin: 10px; */
+	background-color: #000;
+/* 	width: 100%; */
+/* 	z-index: 5; */
+}
+
+#konzert_menutop {
+	border-top-left-radius: 30px 10px;
+	border-top-right-radius: 30px 10px;
+	background-color: #f00;
+/* 	z-index: 20; */
+}
+#konzert_top {
+/* 	background: #000; */
+	text-align: center;
+	color: #fff;
+/* 	padding: 10px 30px; */
+/* 	background-image: url(/tpl/konz/img/vorhangU.jpg); */
+	background-image: url(/tpl/konz/img/Vorhang_Oben3.png);
+	background-repeat: repeat-x;
+/* 	background-color: #000; */
+/* 	background-position: bottom; */
+	height: 145px;
+	padding-top: 10px;
+/* 	margin-bottom: -144px; */
+/* 	padding-bottom: 50px; */
+	position: relative;
+	z-index: 20;
+}
+
+#konzert_top a {
+	font-family: 'Leckerli One', cursive;
+	text-shadow: 0px 1px 1px #121212;
+   	filter: dropshadow(color=#121212, offx=0, offy=1);
+	color: #fff;
+}
+
+#gwf3_topmenu li {
+/* 	list-style-type: none; */
+	display: inline;
+}
+
+#konzert_sitze {
+/* 	width: 100%; */
+	height: 121px;
+	height: 140px;
+/* 	background: url(/tpl/konz/img/sitze2.jpg); */
+	background: url(/tpl/konz/img/sitze4.png);
+/* 	margin-top: -120px; */
+/* 	margin-top: -40px; */
+}
+
+#stage {
+	margin-top: -40px;
+/* 	position: relative; */
+/* 	z-index: 20; */
+}
+
+
+#stage_bg {
+	background: url(/tpl/konz/img/stage.jpg);
+	height: 125px;
+/* 	width: 100%; */
+/* 	margin-top: -40px; */
+	position: relative;
+	z-index: 6;
+}
+
+/* #stage_bg { */
+/* 	background: url(/tpl/konz/img/stage2.jpg); */
+/* 	height: 190px; */
+/* 	width: 100%; */
+/* 	margin-top: -80px; */
+/* } */
+
+/* #stage { */
+/* 	position: relative; */
+/* 	z-index: 10; */
+/* } */
+
+/* p { */
+/* 	position: relative; */
+/* 	z-index: 50; */
+/* } */
+
+#buehne_bg {
+}
+
+/* #buehne_vl { */
+/* 	background: url(/tpl/konz/img/vorhang_repeat.jpg); */
+/* 	background: #0f0; */
+/* 	width: 50%; */
+/* } */
+/* #buehne_vr { */
+/* 	background: #00f; */
+/* 	float: right; */
+/* 	width: 50%; */
+/* } */
+
+
+#gwf3_page {
+/* 	margin-top: -80px; */
+/*	margin-top: -60px;
+	padding-top: 40px; */
+/*	background-image: url(/tpl/konz/img/bgvorhang2_2.jpg);
+	background-repeat: repeat-x;
+	background-position: 0px -100px;*/
+/* 	width: 100%; */
+/* 	padding-left: -250px; */
+	
+/* 	background-size: 100%; */
+/* 	min-height: 800px; */
+/* 	position: relative; */
+/* 	z-index: 30; */
+}
+
+#vhbg_left, #vhbg_right {
+	position: absolute;
+	z-index: 1;
+	background-image: url(/tpl/konz/img/bgvorhang2_2.jpg);
+	background-repeat: repeat-x;
+/* 	width: 50%; */
+/* 	width: 200px; */
+	width: 100%;
+	height: 100%;
+	min-height: 882px;
+}
+#vhbg_right {
+	right: 0px;
+}
+
+#content {
+	padding-top: 100px;
+	color: #fff;
+	background: url(/tpl/konz/img/Vorhang_Rechts2.png) no-repeat;
+	background-position: top right;
+	
+/* 	margin-right: 250px; */
+	
+/* 	background-attachment: inherit; */
+	padding-left: 250px;
+	padding-right: 250px;
+	
+/* 	background: url(/tpl/konz/img/Vorhang_Links2.png) no-repeat; */
+/* 	background-position: right; */
+/* 	padding-right: 250px; */
+/* 	min-height: 750px; */
+/* 	width: 100%; */
+/* 	z-index: 0; */
+/* 	position: relative; */
+	
+/* 	margin: 0 250px; */
+/* 	margin: 0 250px; */
+	min-height: 750px;
+	position: relative;
+	z-index: 0;
+}
+
+#buehne_left {
+/* 	background: url(/tpl/konz/img/vorhang_outerL.jpg) no-repeat; */
+	background: url(/tpl/konz/img/Vorhang_Links2.png) no-repeat;
+	background-position: 250px 0px;
+/* 	float: left; */
+	padding-left: 250px;
+	width: 100%;
+	margin-left: -250px;
+	position: relative;
+	z-index: 10;
+}
+
+#buehne_right {
+/* 	background: url(/tpl/konz/img/Vorhang_Rechts2.png) no-repeat; */
+/* 	float: right; */
+/* 	padding-right: 250px; */
+/* 	min-height: 750px; */
+/* 	padding-right: -250px; */
+}
+
+#buehne_right, #buehne_left {
+/* 	background-size:100%; */
+/* 	width: 10%; */
+/* 	min-width: 250px; */
+	
+	
+/* 	height: 100%; */
+/* 	min-height: 700px; */
+	position: relative;
+/* 	z-index: 31; */
+	margin-top: -90px;
+}
+
+/* #notenst { */
+/* 	background: url(/tpl/konz/img/notenstaender.jpg); */
+/* 	width: 175px; */
+/* 	height: 379px; */
+/* 	margin: auto; */
+/* } */
+
+/* #notenbu { */
+/* 	background: url(/tpl/konz/img/buch.gif) no-repeat; */
+/* 	margin: auto; */
+/* 	width: 210px; */
+/* 	height: 200px; */
+/* 	margin-left: -20px; */
+/* 	background-size: 100%; */
+/* } */
+
+/* #notenbu { */
+/* 	width: 175px; */
+/* 	height: 379px; */
+/* } */
+
+/* #gwf3_page { */
+/* 	overflow: auto; */
+/* 	min-height: 80%; */
+/* } */
+
+h1, h2, h3, h4, h5, h6, th {
+	text-align: center;
+	margin: auto;
+	font-family: 'Rochester', cursive;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+h2 {
+	margin-bottom: 8px;
+}
+
+img.mugshot, img.mugshotl {
+	margin: 12px;
+	position: relative;
+	z-index: 10;
+}
+/* img.mugshotl { */
+/* 	position: relative; */
+/* 	z-index: 10; */
+/* } */
+
+/* img.mugshot { */
+/* 	margin: 12px; */
+/* } */
+
+p {
+	margin: 15px;
+}
+
+p, #content li, #content a, td, .gwf_date {
+	font-family: 'Reenie Beanie', cursive;
+	font-size: 26px;
+	font-weight: 400;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+#content a {
+	text-decoration: underline;
+}
+
+#mugshot {
+	position: absolute;
+}
+
+.audio_proba {
+	margin-top: 30px;
+	text-align: center;
+}
+
+audio {
+	margin-top: 20px;
+}
+
+.gwf_messages, .gwf_errors {
+	float: none;
+}
+
+.mugshot_outer {
+	text-align: center;
+	margin: 0 20px 20px 0;
+}
+
+
+#content ul, #content ol {
+/* 	list-style-type: circle!important; */
+	margin: 15px;
+	margin-left: 34px;
+	padding: 0;
+}
+
+li {
+	list-style: circle;
+}
+
+#content a {
+	color: #fff;
+}
+
+.fw table {
+	width: 100%;
+}
+
+.gwf_table, table {
+/* 	width: 100%; */
+}
+
+th, td {
+/* 	text-align: center; */
+}
+
+textarea {
+	min-width: 100px;
+/* 	min-width: 320px; */
+/* 	width: auto; */
+}
+
+h1 {
+	margin-bottom: 30px;
+}
+
+#kt_table td {
+	padding: 20px 10px;
+}
+
+
+div.gwf_pagemenu > span > a {
+	text-decoration: none!important;
+	font-size: 20px;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+h2 {
+	margin-bottom: 30px;
+}

@@ -1,0 +1,229 @@
+* {
+	font-family: serif;
+}
+
+html, body {
+	min-height: 100%;
+	min-width: 1024px;
+}
+
+#pagewrap {
+	background-color: #000;
+}
+
+/** MENU **/
+
+#konzert_top {
+	text-align: center;
+	color: #fff;
+	background-image: url(/tpl/konz/img/Vorhang_Oben3.png);
+	background-repeat: repeat-x;
+	height: 145px;
+	padding-top: 10px;
+	position: relative;
+	z-index: 20;
+}
+
+#konzert_menutop {
+	border-top-left-radius: 30px 10px;
+	border-top-right-radius: 30px 10px;
+	background-color: #f00;
+}
+
+#konzert_top a {
+	font-family: 'Leckerli One', cursive;
+	text-shadow: 0px 1px 1px #121212;
+   	filter: dropshadow(color=#121212, offx=0, offy=1);
+	color: #fff;
+}
+
+#gwf3_topmenu{
+	white-space: nowrap;
+}
+
+#gwf3_topmenu li {
+	display: inline;
+}
+
+/** Bottom Stage **/
+
+#stage {
+	margin-top: -20px;
+}
+
+#stage_bg {
+	background: url(/tpl/konz/img/stage.jpg);
+	height: 125px;
+	position: relative;
+	z-index: 6;
+}
+
+#konzert_sitze {
+	height: 121px;
+	height: 140px;
+	background: url(/tpl/konz/img/sitze4.png);
+	margin-top: -40px;
+	position: relative;
+	z-index: 7;
+}
+
+/** Page **/
+
+#vhbg_left, #vhbg_right {
+	position: absolute;
+	z-index: 1;
+	background-image: url(/tpl/konz/img/bgvorhang2_2.jpg);
+	background-repeat: repeat-x;
+/* 	width: 50%; */
+/* 	width: 200px; */
+	width: 100%;
+	height: 100%;
+	min-height: 882px;
+}
+#vhbg_right {
+	right: 0px;
+}
+
+#content {
+	padding-top: 100px;
+	color: #fff;
+/* 	background: url(/tpl/konz/img/Vorhang_Rechts2.png) no-repeat; */
+	background: url(/tpl/konz/img/Vorhang_Rechts3.png) no-repeat;
+	background-position: top right;
+	padding-left: 250px;
+	padding-right: 250px;
+	min-height: 750px;
+	position: relative;
+	z-index: 0;
+}
+
+#buehne_left {
+/* 	background: url(/tpl/konz/img/Vorhang_Links2.png) no-repeat; */
+	background: url(/tpl/konz/img/Vorhang_Links3.png) no-repeat;
+	background-position: 250px 0px;
+/* 	float: left; */
+	padding-left: 250px;
+	width: 100%;
+	margin-left: -250px;
+	position: relative;
+	z-index: 10;
+}
+
+#buehne_right {
+/* 	background: url(/tpl/konz/img/Vorhang_Rechts2.png) no-repeat; */
+/* 	float: right; */
+/* 	padding-right: 250px; */
+/* 	min-height: 750px; */
+/* 	padding-right: -250px; */
+}
+
+#buehne_right, #buehne_left {
+	margin-top: -90px;
+	position: relative;
+/* 	z-index: 31; */
+}
+
+h1, h2, h3, h4, h5, h6, th {
+	text-align: center;
+	margin: auto;
+	font-family: 'Rochester', cursive;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	margin-bottom: 30px;
+}
+
+#mugshot {
+	position: absolute;
+}
+
+img.mugshot, img.mugshotl {
+	margin: 12px;
+	position: relative;
+	z-index: 10;
+}
+
+p {
+	margin: 15px;
+}
+
+p, #content li, #content a, td, .gwf_date {
+	font-family: 'Reenie Beanie', cursive;
+	font-size: 26px;
+	font-weight: 400;
+	text-shadow: 0px 1px 1px #121212;
+	filter: dropshadow(color=#121212, offx=0, offy=1);
+}
+
+#content a {
+	text-decoration: underline;
+}
+
+
+.audio_proba {
+	margin-top: 30px;
+	text-align: center;
+}
+
+audio {
+	margin-top: 20px;
+}
+
+.gwf_messages, .gwf_errors {
+	float: none;
+}
+
+.mugshot_outer {
+	text-align: center;
+	margin: 0 20px 20px 0;
+}
+
+
+#content ul, #content ol {
+/* 	list-style-type: circle!important; */
+	margin: 15px;
+	margin-left: 34px;
+	padding: 0;
+}
+
+li {
+	list-style: circle;
+}
+
+#content a {
+	color: #fff;
+}
+
+.fw table {
+	width: 100%;
+}
+
+.gwf_table, table {
+/* 	width: 100%; */
+}
+
+th, td {
+/* 	text-align: center; */
+}
+
+textarea {
+	min-width: 100px;
+}
+
+#kt_table td {
+	padding: 20px 10px;
+}
+
+
+div.gwf_pagemenu > span > a {
+	text-decoration: none!important;
+	font-size: 20px;
+}
+
