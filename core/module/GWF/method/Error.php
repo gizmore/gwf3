@@ -75,8 +75,14 @@ final class GWF_Error extends GWF_Method
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject(GWF_SITENAME.': 404 Error');
-		$mail->setBody(self::get404Message());
+		$mail->setBody(self::get404MailMessage());
 		$mail->sendAsText();
+	}
+	
+	private static function get404MailMessage()
+	{
+		$referrer = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
+		return $referrer.PHP_EOL.PHP_EOL.self::get404Message();
 	}
 	
 	private static function get404Message()
