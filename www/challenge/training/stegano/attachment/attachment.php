@@ -27,7 +27,7 @@ $jpg_file = file_get_contents($jpg_path);
 
 $solution = WC_CryptoChall::generateSolution('YouLikeAttachmentEh', true, false);
 
-$zip_path = GWF_WWW_PATH.'temp/steganoattach/'.GWF_Session::getSessID().'.zip';
+$zip_path = GWF_PATH.'extra/temp/steganoattach/'.GWF_Session::getSessID().'.zip';
 $zip = new GWF_ZipArchive();
 if (false === $zip->open($zip_path, GWF_ZipArchive::CREATE)) {
 	die('zip error 1');
