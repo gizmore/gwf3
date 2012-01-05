@@ -525,7 +525,7 @@ $lang = array(
 	'pt_sites_5' => 'Alle Seiten auf '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Seiten mit %s Challenges auf '.GWF_SITENAME,
 	'th_site_country_detail' => 'Sites origin country',	# ?
-	'site_detail_uinfo' => '%s hat eine Punktzahl von  %s/%s auf %s (%s%). Rang %s auf '.GWF_SITENAME.', mit %s Punkten.',
+	'site_detail_uinfo' => '%s hat eine Punktzahl von  %s/%s auf %s (%s%%). Rang %s auf '.GWF_SITENAME.', mit %s Punkten.',
 		
 	# v4.03
 	'ft_signup' => 'Registrieren',

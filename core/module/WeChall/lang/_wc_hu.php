@@ -521,7 +521,7 @@ $lang = array(
 	'pt_sites_5' => 'Minden oldal itt: '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Oldalak %s típusú rejtvényekkel '.GWF_SITENAME,
 	'th_site_country_detail' => 'Oldal eredeti országa',
-	'site_detail_uinfo' => '%s -nak %s/%s pontja van a %s (%s%). Ranglistán %s '.GWF_SITENAME.', összesen %s pont.',
+	'site_detail_uinfo' => '%s -nak %s/%s pontja van a %s (%s%%). Ranglistán %s '.GWF_SITENAME.', összesen %s pont.',
 		
 	# v4.03
 	'ft_signup' => 'Bejelentkezés',

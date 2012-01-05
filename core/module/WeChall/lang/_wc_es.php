@@ -520,7 +520,7 @@ $lang = array(
 	'pt_sites_5' => 'Todos los sitios que aparecen en '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Sitios con %s retos en '.GWF_SITENAME,
 	'th_site_country_detail' => 'País de origen del sitio',
-	'site_detail_uinfo' => '%s tiene una puntuación de %s/%s en %s (%s%). Clasificado %s dentro de '.GWF_SITENAME.', puntuando %s puntos.',
+	'site_detail_uinfo' => '%s tiene una puntuación de %s/%s en %s (%s%%). Clasificado %s dentro de '.GWF_SITENAME.', puntuando %s puntos.',
 		
 	# v4.03
 	'ft_signup' => 'Registro',
