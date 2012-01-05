@@ -1331,10 +1331,17 @@ final class SR_Party extends GDO
 	
 	public function onFightDone()
 	{
-		$this->popAction(true);
-		$this->setContactEta(rand(15,25));
-		$this->iExecAnyway();
-		$this->recomputeEnums();
+		if ($this->isHuman())
+		{
+			$this->popAction(true);
+			$this->setContactEta(rand(15,25));
+			$this->iExecAnyway();
+			$this->recomputeEnums();
+		}
+		else
+		{
+			$this->deleteParty();
+		}
 	}
 	
 	private function iExecAnyway()
