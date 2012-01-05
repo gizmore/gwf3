@@ -747,7 +747,7 @@ final class Lamb
 		}
 		else
 		{
-			return $this->onPrivmsgModules($server, $user, $from, $origin, $message);
+			$this->onPrivmsgModules($server, $user, $from, $origin, $message);
 		}
 
 		# Save last message.

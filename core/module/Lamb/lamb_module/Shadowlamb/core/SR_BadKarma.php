@@ -78,7 +78,7 @@ final class SR_BadKarma
 		}
 		
 		# Save fraction
-		return SR_PlayerVar::setVal($player, '', round($fraction, 2));
+		return SR_PlayerVar::setVal($player, '__SLBADKARMA', round($fraction, 2));
 	}
 	
 	public static function displayBadKarmaParty(SR_Party $party)

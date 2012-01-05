@@ -23,7 +23,7 @@ final class Quest_Chicago_OwlJohnsonRoundtrip extends SR_Quest
 	{
 		$data = $this->getQuestData();
 		
-		if (count($data) === 6)
+		if (count($data) === 5)
 		{
 			$npc->reply('I have your quest confirmed, well done. Here is your payment.');
 			return $this->onSolve($player);

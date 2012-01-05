@@ -1,7 +1,7 @@
 <?php
 final class Prison_Block1 extends SR_Location
 {
-	const BAN_TIME = 600; # 10 min;
+	const BAN_TIME = 300; # 5 min;
 	
 	public function getFoundPercentage() { return 100.00; }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Prison_Prisoner'); }
