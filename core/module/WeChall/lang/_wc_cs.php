@@ -522,7 +522,7 @@ $lang = array(
 	'pt_sites_5' => 'Všechny stránky na '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Stránky s %s hádankami na '.GWF_SITENAME,
 	'th_site_country_detail' => 'Země původu stránky',
-	'site_detail_uinfo' => '%s má skóre %s/%s na %s (%s%). Pořadí %s na '.GWF_SITENAME.', skóre %s bodů.',
+	'site_detail_uinfo' => '%s má skóre %s/%s na %s (%s%%). Pořadí %s na '.GWF_SITENAME.', skóre %s bodů.',
 		
 	# v4.03
 	'ft_signup' => 'Přihlášení',
