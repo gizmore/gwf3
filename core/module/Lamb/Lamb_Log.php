@@ -20,7 +20,8 @@ final class Lamb_Log
 			$name = preg_replace('/[^a-z_0-9]/i', '', $name);
 			GWF_Log::log("lamb/lamb_chat_{$host}_{$name}", $message, true);
 		}
-		elseif (false !== ($chan = $bot->getCurrentChannel()))
+		
+		if (false !== ($chan = $bot->getCurrentChannel()))
 		{
 			$name = $chan->getName();
 			GWF_Log::log("lamb/lamb_chat_{$host}_{$name}", $message, true);
