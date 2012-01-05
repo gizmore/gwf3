@@ -34,10 +34,10 @@ final class Module_Navigation extends GWF_Module
 		require_once GWF_CORE_PATH.'module/Navigation/GWF_NaviInstall.php';
 		$ret = GWF_NaviInstall::onInstall($this, $dropTable);
 		
-		if(false !== ($foo = $this->installPageMenu(self::debugPM())))
-		{
-			Common::var_dump($foo);
-		}
+//		if(false !== ($foo = $this->installPageMenu(self::debugPM())))
+//		{
+//			Common::var_dump($foo);
+//		}
 		return $ret;
 	}
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
