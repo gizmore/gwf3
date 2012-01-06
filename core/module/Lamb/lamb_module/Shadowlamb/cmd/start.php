@@ -57,6 +57,9 @@ final class Shadowcmd_start extends Shadowcmd
 		$player->giveKnowledge('words', 'Renraku');
 		$player->giveKnowledge('words', 'Shadowrun');
 		$player->giveKnowledge('places', 'Redmond_Hotel');
+		
+		Shadowcmd_gmm::sendGlobalMessage(sprintf('Welcome a new player: %s the %s %s.', $player->getName(), $player->getGender(), $player->getRace()));
+		
 		return true;
 	}
 	
