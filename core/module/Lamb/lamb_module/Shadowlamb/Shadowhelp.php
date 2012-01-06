@@ -348,7 +348,7 @@ final class Shadowhelp
 					array(
 						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
-						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
+						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot|norl>. Toggle player and interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
 						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but permanent death. The permdeath rule applies only when killed by NPC or other Runners / RM Players.",
 					),
@@ -506,6 +506,16 @@ final class Shadowhelp
 						'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
 						'digitalseraphim' => 'digitalseraphim is the founder of the School of Alchemy in Delaware.',
 					),
+					
+					'options' => 'Player and interface options:',
+					array(
+						'help_option' => 'You can dis/enable this option to receive some basic help messages or not.',
+						'notice_option' => 'You can toggle your lamb reply type to NOTICE with #enable notice.',
+						'privmsg_option' => 'You can toggle your lamb reply type to PRIVMSG with #enable privmsg.',
+						'lock_option' => 'Dis/enable equipment lock, which determines how your (effective) level is computed. When you lock your equipment you cannot change it in combat.',
+						'bot_option' => 'Dis/enable the bot flag for your player. This has no effect on the game, just that [BOT] is shown behind your playername as information.',
+						'norl_option' => 'You can dis/enable this option to specify if it is allowed to steal your leadership with the #rl command.',
+					)
 				),
 			),
 		);

@@ -23,10 +23,16 @@ final class Shadowcmd_request_leader extends Shadowcmd
 		$last = $user->getVar('lusr_timestamp');
 		$wait = ($last+self::RL_TIME) - time();
 		
+		if ($leader->isOptionEnabled(SR_Player::NO_RL))
+		{
+			return $bot->reply('Your leader does not allow to takeover the leadership.');
+		}
+		
 		if ($wait > 0)
 		{
 			return $bot->reply(sprintf('Please wait %s and try again.', GWF_Time::humanDuration($wait)));
 		}
+		
 		
 		if (false === $party->setLeader($player))
 		{
