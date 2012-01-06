@@ -9,7 +9,14 @@ final class Register_Form extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		GWF_Website::setPageTitle($module->lang('pt_register'));
-		if (false !== (Common::getPost('register'))) {
+
+		if (false !== GWF_Session::getUser())
+		{
+			return $module->error('ERR_ALREADY_REDISTERED');
+		}
+
+		if (false !== (Common::getPost('register')))
+		{
 			return $this->onRegister($module);
 		}
 		return $this->templateForm($module);

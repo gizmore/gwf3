@@ -16,7 +16,13 @@ final class Login_Form extends GWF_Method
 	{
 		GWF_Website::setPageTitle($module->lang('pt_login'));
 		
-		if (false !== Common::getPost('login')) {
+		if (false !== GWF_Session::getUser())
+		{
+			return $module->error('ERR_ALREADY_LOGGED_IN');
+		}
+
+		if (false !== Common::getPost('login'))
+		{
 			return $this->onLogin($module);
 		}
 		return $this->form($module);

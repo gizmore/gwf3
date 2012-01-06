@@ -13,7 +13,13 @@ final class Login_Logout extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false === GWF_Session::onLogout()) {
+		if (false === GWF_Session::getUser())
+		{
+			return $module->error('ERR_ALREADY_LOGGED_OUT');
+		}
+
+		if (false === GWF_Session::onLogout())
+		{
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		$tVars = array(
