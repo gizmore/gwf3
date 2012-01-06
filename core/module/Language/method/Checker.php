@@ -145,11 +145,14 @@ final class Language_Checker extends GWF_Method
 				continue;
 			}
 			
-			if (!isset($lang2[$key])) {
+			if (!isset($lang2[$key]))
+			{
 				$errs[] = sprintf('Missing key %s', $key);
 			}
-			elseif ($lang2[$key] === $lang1[$key]) {
-				$warn[] = sprintf('Key `%s` is not translated in %s: (%s)', $key, $path2, $lang2[$key]);
+			elseif ($lang2[$key] === $lang1[$key])
+			{
+				$out = is_array($lang2[$key]) ? 'ARRAY' : $lang2[$key];
+				$warn[] = sprintf('Key `%s` is not translated in %s: (%s)', $key, $path2, $out);
 			}
 		}
 		

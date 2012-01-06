@@ -1,5 +1,4 @@
 <?php
-
 final class Language_Edit extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::STAFF; }
@@ -9,5 +8,4 @@ final class Language_Edit extends GWF_Method
 		return GWF_Language::getCurrentISO();
 	}
 }
-
 ?>
