@@ -13,14 +13,28 @@ final class GWF_LangMap extends GDO
 	
 	public static function getPrimaryLangID($countryid)
 	{
-		if (0 === ($countryid = (int) $countryid)) {
+		if (0 === ($countryid = (int) $countryid))
+		{
 			return 0;
 		}
-		if (false === ($result = self::table(__CLASS__)->selectVar('langmap_lid', 'langmap_cid='.$countryid, 'langmap_lid ASC'))) {
+		if (false === ($result = self::table(__CLASS__)->selectVar('langmap_lid', 'langmap_cid='.$countryid, 'langmap_lid ASC')))
+		{
 			return 0;
 		}
 		return $result;
 	}
-	
+
+	public static function getPrimaryCountryID($langid)
+	{
+		if (0 === ($langid = (int) $langid))
+		{
+			return 0;
+		}
+		if (false === ($result = self::table(__CLASS__)->selectVar('langmap_cid', 'langmap_lid='.$langid, 'langmap_cid ASC')))
+		{
+			return 0;
+		}
+		return $result;
+	}
 }
 ?>

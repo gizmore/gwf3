@@ -207,9 +207,17 @@ final class GWF_ClientInfo
 
 	public static function getRenderingEngine() { return self::getDetails(self::getUseragent(), self::$_engines); }
 
+	public static function getLanguageISO() { return substr(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])?$_SERVER['HTTP_ACCEPT_LANGUAGE']:GWF_DEFAULT_LANG, 0, 2); }
+	public static function getLanguage() { return GWF_Language::getByISO(self::getLanguageISO()); }
+	public static function getLanguageID() { return (false !== ($lang = self::getLanguage())) ? $lang->getID() : 0; }
+	public static function getCountryID() { return GWF_LangMap::getPrimaryCountryID(self::getLanguageID()); }
+	public static function getCountry() { return GWF_Country::getByIDOrUnknown(self::getCountryID()); }
+	
 	public static function displayBrowser() { return self::lang(self::getBrowser()); }
 	public static function displayOperatingSystem() { return self::lang(self::getOperatingSystem()); }
 	public static function displayProvider() { return self::lang(self::getProvider()); }
+	public static function displayLanguage() { return (false !== ($lang = self::getLanguage())) ? $lang->displayName() : 'unknown'; }
+	public static function displayCountry() { return (false !== ($country = self::getCountry())) ? $country->displayName() : 'unknown'; }
 
 	public static function validateImgPath($path)
 	{
@@ -229,6 +237,7 @@ final class GWF_ClientInfo
 	public static function imgBrowser($path='client/') { return self::image( self::getBrowser(), $path ); }
 	public static function imgOperatingSystem($path='client/') { return self::image( self::getOperatingSystem(), $path ); }
 	public static function imgProvider($path='client/') { return self::image( self::getProvider(), $path ); }
+	public static function imgCountry() { return GWF_Country::displayFlagS(self::getCountryID()); }
 	
 	public static function cmpBrowser($cmp) { return $cmp === self::getBrowser(); }
 	public static function cmpOperatingSystem($cmp) { return $cmp === self::getOperatingSystem(); }
