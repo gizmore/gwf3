@@ -1,6 +1,6 @@
 <p class="copyright fl" style="text-align: left; width: 50%;">
 	{$user->displayProfileLink()}
-	{$SF->imgCountry()}{GWF_ClientInfo::getIPAddress()}; 
+	{GWF_ClientInfo::imgCountry()}{GWF_ClientInfo::getIPAddress()}; 
 	{GWF_ClientInfo::imgOperatingSystem()}{GWF_ClientInfo::displayOperatingSystem()}; 
 	{GWF_ClientInfo::imgBrowser()}{GWF_ClientInfo::displayBrowser()};
 	{GWF_ClientInfo::imgProvider()}{GWF_ClientInfo::displayProvider()}

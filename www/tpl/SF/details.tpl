@@ -17,7 +17,7 @@
 		</td>
 		<td>
             {*$lang['screen_resolution']}: <span class="color"><script language="JavaScript"> <!-- document.write(screen.width+'x'+screen.height) //--> </script> Pixel</span><br> {*}
-			<span class="color">{$SF->langA('si', 'country', array(GWF_ClientInfo::imgCountry(), GWF_ClientInfo::displayCountry()))}</span><br/>
+			<span class="color">{$SF->langA('si', 'country', array(GWF_ClientInfo::imgCountryByIP(), GWF_ClientInfo::displayCountryByIP()))}</span><br/>
 			<span class="color">{$SF->langA('si', 'ip', array(GWF_ClientInfo::getIPAddress()))}</span><br/>
 			<span class="color">{$SF->langA('si', 'operating_system', array(GWF_ClientInfo::imgOperatingSystem(), GWF_ClientInfo::displayOperatingSystem()))}</span><br/>
 			<span class="color">{$SF->langA('si', 'browser', array(GWF_ClientInfo::imgBrowser(), GWF_ClientInfo::displayBrowser()))}</span><br/>
