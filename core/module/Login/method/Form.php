@@ -4,7 +4,7 @@
  */
 final class Login_Form extends GWF_Method
 {
-	private $_tpl = 'login.tpl';
+	protected $_tpl = 'login.tpl';
 //	public function isCSRFProtected() { return false; }
 	
 	public function getHTAccess(GWF_Module $module)

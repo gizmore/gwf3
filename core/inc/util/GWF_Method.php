@@ -9,7 +9,7 @@
  */
 abstract class GWF_Method
 {
-	private $_tpl = '';
+	protected $_tpl = '';
 	public abstract function execute(GWF_Module $module);
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
