@@ -212,12 +212,15 @@ final class GWF_ClientInfo
 	public static function getLanguageID() { return (false !== ($lang = self::getLanguage())) ? $lang->getID() : 0; }
 	public static function getCountryID() { return GWF_LangMap::getPrimaryCountryID(self::getLanguageID()); }
 	public static function getCountry() { return GWF_Country::getByIDOrUnknown(self::getCountryID()); }
+	public static function getCountryIDbyIP() { return GWF_IP2Country::detectCountryID(); }
+	public static function getCountryByIP() { return GWF_IP2Country::detectCountry(); }
 	
 	public static function displayBrowser() { return self::lang(self::getBrowser()); }
 	public static function displayOperatingSystem() { return self::lang(self::getOperatingSystem()); }
 	public static function displayProvider() { return self::lang(self::getProvider()); }
 	public static function displayLanguage() { return (false !== ($lang = self::getLanguage())) ? $lang->displayName() : 'unknown'; }
 	public static function displayCountry() { return (false !== ($country = self::getCountry())) ? $country->displayName() : 'unknown'; }
+	public static function displayCountryByIP() { return (false !== ($country = self::getCountryByIP())) ? $country->displayName() : 'unknown'; }
 
 	public static function validateImgPath($path)
 	{
@@ -238,6 +241,7 @@ final class GWF_ClientInfo
 	public static function imgOperatingSystem($path='client/') { return self::image( self::getOperatingSystem(), $path ); }
 	public static function imgProvider($path='client/') { return self::image( self::getProvider(), $path ); }
 	public static function imgCountry() { return GWF_Country::displayFlagS(self::getCountryID()); }
+	public static function imgCountryByIP() { return GWF_Country::displayFlagS(self::getCountryIDbyIP()); }
 	
 	public static function cmpBrowser($cmp) { return $cmp === self::getBrowser(); }
 	public static function cmpOperatingSystem($cmp) { return $cmp === self::getOperatingSystem(); }
