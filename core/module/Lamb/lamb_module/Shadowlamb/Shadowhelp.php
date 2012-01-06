@@ -247,6 +247,7 @@ final class Shadowhelp
 						#'gmk' => 'GM command. Usage: #gmk <username> <field> <knowledge>',
 						'gml' => "GM command. Usage: #gml <username> <city> <location>. Teleport a party to a location.",
 						'gmm' => "GM command. Usage: #gmm <the message>. Send a hyperglobal message to all Shadowlamb channels.",
+						'gmn' => "GM command. Usage: #gmn <the message>. Send a hyperglobal message to all Shadowlamb players.",
 						'gms' => "GM command. Usage: #gms <player>. Print a lot of status of a player.",
 						'gmsp' => "GM command. Usage: #gmsp <player> <spell> <level>. Adjust the spell for a player.",
 						'gmt' => "GM command. Usage: #gmt <username> <enemy,enemy,...>. Attack a party with enemies for debugging purposes.",
@@ -392,6 +393,7 @@ final class Shadowhelp
 						array(
 							'buy' => 'Location command. Usage: #buy <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #sell <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
+							'steal' => 'Location command. Usage: #view [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
 							'view' => 'Location command. Usage: #view [<view_id>]. In shops you can view the shops items or examine a shop item with this command.',
 						),
 						
