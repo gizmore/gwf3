@@ -13,7 +13,7 @@ final class Shadowcmd_gmn extends Shadowcmd
 			return false;
 		}
 		
-		$message = '[Shadowlamb] '.implode(' ', $args);
+		$message = "\X02[Shadowlamb]\X02 ".implode(' ', $args);
 		
 		foreach (Shadowrun4::getPlayers() as $player)
 		{

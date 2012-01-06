@@ -38,6 +38,7 @@ class SR_Player extends GDO
 	const SILENCE = 0x40000;
 	const LOCKED = 0x100000;
 	const PLAYER_BOT = 0x200000;
+	const NO_RL = 0x400000; # No RequestLeader
 	
 	# Timing
 	const FIGHT_INIT_BUSY = 12;

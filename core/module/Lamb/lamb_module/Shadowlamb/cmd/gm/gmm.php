@@ -12,7 +12,7 @@ final class Shadowcmd_gmm extends Shadowcmd
 			Shadowrap::instance($player)->reply(Shadowhelp::getHelp($player, 'gmm'));
 			return false;
 		}
-		return self::sendGlobalMessage('[Shadowlamb] '.implode(' ', $args));
+		return self::sendGlobalMessage("\X02[Shadowlamb]\X02 ".implode(' ', $args));
 	}
 	
 	public static function sendGlobalMessage($message)
