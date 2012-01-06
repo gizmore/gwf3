@@ -8,6 +8,7 @@ final class PageBuilder_Show extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
+		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_PB_Rewrites.php';
 		$pages = GDO::table('GWF_Page')->selectAll('page_id, page_url', 'page_options&1', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '';
 
@@ -18,17 +19,10 @@ final class PageBuilder_Show extends GWF_Method
 
 		foreach ($pages as $page)
 		{
-			$url = $this->replaceRewriteURL($page[1]);
+			$url = GWF_PB_Rewrites::replaceRewriteURL($page[1]);
 			$back .= "RewriteRule ^{$url}/?$ index.php?mo=PageBuilder&me=Show&pageid={$page[0]}".PHP_EOL;
 		}
 		return $back;
-	}
-	
-	private function replaceRewriteURL($url)
-	{
-		$search = array(   '.',   '*',   '[',   ']',   '?',   '+',   '{',   '}',   '^',   '$');
-		$replace = array('\\.', '\\*', '\\[', '\\]', '\\?', '\\+', '\\{', '\\}', '\\^', '\\$');
-		return str_replace($search, $replace, $url);
 	}
 
 	private $mod_c = false;

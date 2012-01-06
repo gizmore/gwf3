@@ -36,7 +36,9 @@ $lang = array(
 	'type_bbcode' => 'BBCode',
 	'type_smarty' => 'Smarty',
 
-	'btn_add' => 'Add Page',
+	'btn_add_page' => 'Add Page',
+	'btn_add_link' => 'Add Link',
+	'btn_add' => 'Add Page', // @deprecated
 	'btn_edit' => 'Edit',
 	'btn_translate' => 'Translate',
 	'btn_upload' => 'Upload',

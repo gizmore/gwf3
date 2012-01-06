@@ -2,13 +2,13 @@
 /**
  * Create pages with static content.
  * @author gizmore, spaceone
- * @version 1.01
+ * @version 1.03
  * @since 3.0
  */
 final class Module_PageBuilder extends GWF_Module
 {
-	public function getVersion() { return '1.02'; }
-	public function getClasses() { return array('GWF_Page', 'GWF_PageGID', 'GWF_PageTags', 'GWF_PageType'); }
+	public function getVersion() { return '1.03'; }
+	public function getClasses() { return array('GWF_Page', 'GWF_PageGID', 'GWF_PageTags', 'GWF_PageType', 'GWF_PageLinks'); }
 	public function onInstall($dropTable) { require_once 'GWF_PB_Install.php'; return GWF_PB_Install::onInstall($this, $dropTable); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/pagebuilder'); }
