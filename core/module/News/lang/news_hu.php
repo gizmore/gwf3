@@ -120,8 +120,9 @@ $lang = array(
 	'btn_admin_section' => 'Admin szekció',
 	'th_visible' => 'Látható',
 	'btn_forum' => 'Megbeszélés a fórumban',
+
+	# V3.00 (fixes)
+	'rss_img_title' => GWF_SITENAME.' Logo',
+	'cfg_news_comments' => 'Enable comments',
 );
-
-
-
 ?>

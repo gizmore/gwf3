@@ -126,6 +126,7 @@ $lang = array(
 		
 	# V3.00 (fixes)
 	'rss_img_title' => GWF_SITENAME.' Logo',
+	'cfg_news_comments' => 'Enable comments',
 );
 
 ?>

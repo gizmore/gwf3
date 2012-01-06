@@ -123,6 +123,10 @@ $lang = array(
 	'th_hidden' => 'Versteckt?',
 	'th_visible' => 'Sichtbar?',
 	'btn_forum' => 'Im Forum diskutieren',
+		
+	# V3.00 (fixes)
+	'rss_img_title' => GWF_SITENAME.'  Logo',
+	'cfg_news_comments' => 'Kommentare aktivieren',
 );
 
 ?>

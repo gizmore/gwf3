@@ -120,5 +120,9 @@ $lang = array(
 	'th_hidden' => 'Piiloitettu',
 	'th_visible' => 'Näkyvissä',
 	'btn_forum' => 'Juttele foorumilla',
+		
+	# V3.00 (fixes)
+	'rss_img_title' => GWF_SITENAME.' Logo',
+	'cfg_news_comments' => 'Enable comments',
 );
 ?>
