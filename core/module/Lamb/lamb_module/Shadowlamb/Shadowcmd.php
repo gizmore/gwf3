@@ -74,20 +74,20 @@ class Shadowcmd
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmload','gmm','gmn','gms','gmsp','gmt','gmns','gmx');
-	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','r','say','sw');
+	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw');
 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','wb','sd','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
 		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say'),
-		'fight' => array('fl','eq','uq','gi','fw','bw','u','ca','#'),
-		'inside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
-		'outside' => array('j','part','u','ca','eq','uq','gi','drop','look','info'),
-		'explore' => array('u','ca','eq','uq','part','gi','drop'),
-		'goto' => array('u','ca','eq','uq','gi','drop','part'),
-		'hunt' => array('u','ca','eq','uq','gi','drop','part'),
-		'travel' => array('u','ca','eq','uq','gi','drop'),
-		'hijack' => array('u','ca','eq','uq','gi','drop','part'),
+		'fight' => array('fl','eq','uq','gi','fw','bw','u','r','ca','#'),
+		'inside' => array('j','part','u','r','ca','eq','uq','gi','drop','look','info'),
+		'outside' => array('j','part','u','r','ca','eq','uq','gi','drop','look','info'),
+		'explore' => array('u','r','ca','eq','uq','part','gi','drop'),
+		'goto' => array('u','r','ca','eq','uq','gi','drop','part'),
+		'hunt' => array('u','r','ca','eq','uq','gi','drop','part'),
+		'travel' => array('u','r','ca','eq','uq','gi','drop'),
+		'hijack' => array('u','r','ca','eq','uq','gi','drop','part'),
 	);
 	public static $CMDS_LEADER_ALWAYS = array('le','npc','ban','unban');
 	public static $CMDS_LEADER = array(
