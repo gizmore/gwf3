@@ -75,7 +75,8 @@ final class GWF_Template
 		try { return $smarty->fetch($path2); }
 		catch (SmartyException $e)
 		{
-			return 'SMARTY ERROR: TODO'.print_r($e, true);
+			// TODO: Adminmail, GWF_Debug
+			return $e->getMessage();
 		}
 	}
 
