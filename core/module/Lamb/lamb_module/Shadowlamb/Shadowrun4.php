@@ -380,14 +380,12 @@ final class Shadowrun4
 	
 	public static function onQuit(Lamb_Server $server, Lamb_User $user, $message)
 	{
-		if (false === ($player = self::getPlayerForUser($user)))
+		if (false === ($player = self::getPlayerByUID($user->getID())))
 		{
-			printf('Can not get Player for user '.$user->getName().".\n");
+// 			printf('Can not get Player for user '.$user->getName().".\n");
 			return;
 		}
-
 		$p = $player->getParty();
-		
 		$p->notice(sprintf('%s just quit his irc server.', $player->displayNameNB()), $player);
 	}
 	
