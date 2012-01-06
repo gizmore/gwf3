@@ -145,7 +145,7 @@ final class GWF_LangTrans
 	 * @param string $back
 	 * @param null|array $args
 	 */
-	private function replaceArgs($back, $args)
+	private function replaceArgs($back, $args=NULL)
 	{
 		return $args === NULL ? $back : vsprintf($back, $args);
 	}

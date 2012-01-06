@@ -9,6 +9,7 @@
  */
 abstract class GWF_Method
 {
+	private $_tpl = '';
 	public abstract function execute(GWF_Module $module);
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
@@ -18,10 +19,12 @@ abstract class GWF_Method
 	public function getMetaKeywords() { return false; }
 	public function getMetaDescription() { return false; }
 	public function getPageTitle() { return false; }
-	
-	##################
-	### Permission ###
-	##################
+	public function setTemplate($tpl) { $this->_tpl = $tpl; return $this; }
+
+	/**
+	 * Check if user has permission to execute this method
+	 * @see GWF_Module->execute()
+	 */
 	public function hasPermission()
 	{
 		$user = GWF_Session::getUser();

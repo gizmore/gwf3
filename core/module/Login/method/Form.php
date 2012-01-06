@@ -4,6 +4,7 @@
  */
 final class Login_Form extends GWF_Method
 {
+	private $_tpl = 'login.tpl';
 //	public function isCSRFProtected() { return false; }
 	
 	public function getHTAccess(GWF_Module $module)
@@ -32,22 +33,10 @@ final class Login_Form extends GWF_Method
 			'register' => GWF_Module::loadModuleDB('Register', false, false, true) !== false,
 			'recovery' => GWF_Module::loadModuleDB('PasswordForgot', false, false, true) !== false,
 		);
-		return $module->template('login.tpl', $tVars);
-	}
-	
-	public function shortform(Module_Login $module)
-	{
-		$form = $this->getForm($module);
-		$tVars = array(
-			'form' => $form->templateY($module->lang('title_login')),
-			'have_cookies' => GWF_Session::haveCookies(),
-			'token' => $form->getFormCSRFToken(),
-			'tooltip' => $form->getTooltipText('bind_ip'),
-		);
-		return $module->template('shortlogin.tpl', $tVars);
+		return $module->template($this->_tpl, $tVars);
 	}
 
-		/**
+	/**
 	 * @param Module_Login $module
 	 * @return GWF_Form
 	 */
