@@ -75,9 +75,23 @@ final class GWF_Template
 		try { return $smarty->fetch($path2); }
 		catch (SmartyException $e)
 		{
-			// TODO: Adminmail, GWF_Debug
-			return $e->getMessage();
+			$msg = $e->getMessage();
+			if (GWF_DEBUG_EMAIL & 2)
+			{
+				self::sendErrorMail($path, $msg);
+			}
+			return $msg;
 		}
+	}
+	
+	private static function sendErrorMail($path, $msg)
+	{
+		$mail = new GWF_Mail();
+		$mail->setSender(GWF_BOT_EMAIL);
+		$mail->setReceiver(GWF_ADMIN_EMAIL);
+		$mail->setSubject(GWF_SITENAME.': Smarty Error!');
+		$mail->setBody(GWF_Debug::backtrace($msg, false));
+		return $mail->sendAsText();
 	}
 
 	/**

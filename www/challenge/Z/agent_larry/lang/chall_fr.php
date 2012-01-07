@@ -35,6 +35,6 @@ $lang = array(
 		'Vous avez peu de temps pour résoudre ceci, donc vous pensez que le bruteforce n\'est pas la bonne solution...<br/>'.
 		'<br/>'.
 		'Si vous ne trouvez pas l\'outil, pas d\'inquiétude, vous le trouverez<br />'.
-		'"Sooner or Later", comme on dit en anglais :)<br/>'.
+		'"Sooner or Later", comme on dit en anglais :)<br/>',
 );
 ?>
