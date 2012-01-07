@@ -1,6 +1,6 @@
 <h1>{$lang->lang('pt_lyrics', array($song->display('ss_artist'), $song->display('ss_title')))}</h1>
 
-{include file="{$core}module/Slaytags/tpl/default/songbox.tpl" song=$song playing=false left=-1}
+{include file="tpl/default/module/Slaytags/songbox.tpl" song=$song playing=false left=-1}
 
 <hr/>
 
