@@ -286,7 +286,7 @@ final class WC_Challenge extends GDO
 	public static function repairSolveCount()
 	{
 		$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
-		return self::table(__CLASS__)->update("chall_solvecount=(SELECT COUNT(*) FROM $solved WHERE csolve_cid=chall_id)");
+		return self::table(__CLASS__)->update("chall_solvecount=(SELECT COUNT(*) FROM $solved WHERE csolve_cid=chall_id AND csolve_date!='')");
 	}
 	
 	
@@ -743,8 +743,6 @@ final class WC_Challenge extends GDO
 			return true;
 		}
 		
-		$this->increase('chall_solvecount');
-		
 		$row->markSolved();
 		
 		if (false !== ($user = GWF_User::getByID($userid)))
@@ -765,9 +763,15 @@ final class WC_Challenge extends GDO
 		
 		echo WC_HTML::message('msg_correct', array($this->hrefVotes(), $href_sb));
 		
-		if (false !== ($wechall = WC_Site::getWeChall())) {
+		if (false !== ($wechall = WC_Site::getWeChall()))
+		{
 			echo $wechall->onUpdateUser($user)->display('WeChall');
 		}
+
+		# Increase solvecount.
+		$cid = $this->getID();
+		$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
+		$this->updateRow("chall_solvecount=(SELECT COUNT(*) FROM {$solved} WHERE csolve_cid={$cid} AND csolve_date!='')");
 		
 		return true;
 	}
