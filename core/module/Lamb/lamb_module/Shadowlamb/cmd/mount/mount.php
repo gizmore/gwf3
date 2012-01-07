@@ -275,7 +275,16 @@ final class Shadowcmd_mount extends Shadowcmd
 		
 		$player->updateInventory();
 		
-		return $bot->reply(sprintf('You collect %d %s from your %s and put it into your inventory.', $collected, $itemname, $mount->getName()));
+		$reply = sprintf('You collect %d %s from your %s and put it into your inventory.', $collected, $itemname);
+
+		// append inventory id if it can be determined
+		$invItem = $player->getInvItemByName($itemname);
+		if ($invItem !== false)
+		{
+			$reply .= sprintf(' Inventory ID: %d.', $invItem->getInventoryID());
+		}
+		
+		return $bot->reply($reply);
 		/*
 		# Whole stack or single
 		if (count($args) === 1)
