@@ -7,7 +7,7 @@ $lang = array(
 		'<br/>'.PHP_EOL.
 		'The solution is Firstname,Lastname,Street,House,ZIP,City,HomePhone separated by commas.<br/>'.PHP_EOL.
 		'Example: Maria,Mustermann,Musterstraße,14,12345,Musterstadt,04915112345678<br/>'.PHP_EOL.
-		'<span style="color:#eee">We suppose it might be a good start to know that the domain gizmore.org and the server are owned by gizmore himself.</span><br/>'.PHP_EOL.
+		'<span style="color:#eee">We suppose it might be a good start to know that the domain gizmore.org and the servers are owned by gizmore himself.</span><br/>'.PHP_EOL.
 		'We await your success!'.PHP_EOL,
 		
 	'err_login' => 'This challenge is about identities. Without beeing logged in, you don\'t have one, so please login.',
