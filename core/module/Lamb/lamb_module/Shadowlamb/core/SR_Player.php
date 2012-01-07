@@ -1112,6 +1112,9 @@ class SR_Player extends GDO
 	#################
 	### Equipment ###
 	#################
+	/**
+	 * @return SR_Weapon
+	 */
 	public function getWeapon()
 	{
 		return isset($this->sr4_equipment['weapon']) ? $this->sr4_equipment['weapon'] : Item_Fists::staticFists();

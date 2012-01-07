@@ -403,14 +403,14 @@ abstract class SR_Store extends SR_Location
 		# Your skill
 		$qu = $player->get('quickness');
 		$th = $player->get('thief');
-		$skill = $qu/2 + $th*2;
+		$skill = $qu + $th*2;
 		
 		# DEBUG
 		printf("Dicing DIFF %.02f against SKILL %.02f ...\n", $difficulty, $skill);
 		
 		# Dice diff
 		$min = $difficulty + 2;
-		$max = $min * 2;
+		$max = $min * 2 + 1;
 		$dice_diff = Shadowfunc::diceFloat($min, $max, 2);
 		
 		# Dice skill

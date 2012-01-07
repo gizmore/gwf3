@@ -85,14 +85,17 @@ abstract class SR_FireWeapon extends SR_Weapon
 	
 	public function onAttack(SR_Player $player, $arg)
 	{
-		if (!$this->isLoaded()) {
+		if (!$this->isLoaded())
+		{
 			$this->onReload($player);
 			return true;
 		}
 		
-		if (false === $this->onAttackB($player, $arg, 'farm')) {
+		if (false === $this->onAttackB($player, $arg, 'farm'))
+		{
 			return false;
 		}
+		
 		$this->increase('sr4it_ammo', -$this->getBulletsPerShot());
 		return true;
 	}
