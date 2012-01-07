@@ -96,7 +96,6 @@ abstract class SR_FireWeapon extends SR_Weapon
 			return false;
 		}
 		
-		$this->increase('sr4it_ammo', -$this->getBulletsPerShot());
 		return true;
 	}
 }

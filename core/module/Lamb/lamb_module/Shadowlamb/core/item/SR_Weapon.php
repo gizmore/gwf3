@@ -30,6 +30,11 @@ abstract class SR_Weapon extends SR_Equipment
 			return true;
 		}
 		
+		if ($this instanceof SR_FireWeapon)
+		{
+			$this->increase('sr4it_ammo', -$this->getBulletsPerShot());
+		}
+		
 		# Bows are great for distance
 		if ($this instanceof SR_Bow)
 		{
