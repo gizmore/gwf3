@@ -3,7 +3,7 @@
 		<h1>GWF v{$smarty.const.GWF_CORE_VERSION}</h1>
 	</div>
 	<div class="fl">
-		<p>{$gwff->module_Heart_beat()}</p>
+		<p>{GWF_Notice::getOnlineUsers()}</p>
 	</div>
 	<div class="cl"></div>
 </div>
@@ -22,7 +22,7 @@
 		{if $user->isLoggedIn()}
 		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=MyTags">MyTags</a>↶↶</li>
 		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=MyPlaylist">MyPlaylist</a>↶↶</li>
-		<li><a href="{$root}pm">PM{$gwff->module_PM_unread($user)}</a></li>
+		<li><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user)}</a></li>
 		<li><a href="{$root}account">Account</a></li>
 		<li><a href="{$root}profile_settings">Profile</a></li>
 		{if $user->isAdmin()}

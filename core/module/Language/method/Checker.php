@@ -136,12 +136,14 @@ final class Language_Checker extends GWF_Method
 		
 		foreach ($lang1 as $key => $value)
 		{
-			if ($key === '') {
+			if ($key === '')
+			{
 				$errs[] = sprintf('Language file contains empty key: %s', $path1);
 				continue;
 			}
 			
-			if ($lang2 === false) {
+			if ($lang2 === false)
+			{
 				continue;
 			}
 			
@@ -151,7 +153,7 @@ final class Language_Checker extends GWF_Method
 			}
 			elseif ($lang2[$key] === $lang1[$key])
 			{
-				$out = is_array($lang2[$key]) ? 'ARRAY' : $lang2[$key];
+				$out = is_array($lang2[$key]) ? 'ARRAY' : htmlspecialchars($lang2[$key]);
 				$warn[] = sprintf('Key `%s` is not translated in %s: (%s)', $key, $path2, $out);
 			}
 		}

@@ -12,6 +12,7 @@ final class PageBuilder_Links extends GWF_Method
 	public function getUserGroups() { return 'admin'; }
 	public function getHTAccess(GWF_Module $module)
 	{
+		$module->includeClass('GWF_PageLinks');
 		$links = GDO::table('GWF_PageLinks')->selectAll('link_url, link_href', '', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '## Links ##'.PHP_EOL;
 		$back .= 'RewriteRule ^PageBuilder/Links/delete/(.*?)$ index.php?mo=PageBuilder&me=Links&delete=$1'.PHP_EOL;

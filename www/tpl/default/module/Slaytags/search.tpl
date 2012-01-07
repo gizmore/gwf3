@@ -9,10 +9,10 @@
 	{$form}
 	{if $matches}
 		{$pagemenu}
-		{$gwf->Table()->start()}
-		{$gwf->Table()->displayHeaders2($headers, $sort_url)}
+		{GWF_Table::start()}
+		{GWF_Table::displayHeaders2($headers, $sort_url)}
 		{foreach from=$matches item=s}
-			{$gwf->Table()->rowStart()}
+			{GWF_Table::rowStart()}
 			{* ID *}
 			<td>{if $is_admin}{button type='edit' url=$s->hrefEdit()}{/if}</td>
 			{* LTDS *}
@@ -27,9 +27,9 @@
 			{if $singletag}<td>{$s->getVar('sst_average')|intpercent}</td>{/if}
 			{* Tag Cache *}
 			<td>{$s->getVar('ss_tag_cache')}</td>
-			{$gwf->Table()->rowEnd()}
+			{GWF_Table::rowEnd()}
 		{/foreach}
-		{$gwf->Table()->end()}
+		{GWF_Table::end()}
 		{$pagemenu}
 	{/if}
 {/if}
