@@ -161,7 +161,7 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			$luck = $player->get('luck');
 			$luck = Common::clamp($luck, 0, 20);
-			$min_multi = 0.40 + $luck * 0.01;
+			$min_multi = 0.45 + $luck * 0.01;
 			$min = round($v * $min_multi, 1);
 			$max = round($v-0.1, 1);
 			$v = Shadowfunc::diceFloat($min, $max, 1);

@@ -189,6 +189,7 @@ final class Shadowhelp
 					
 					'special_stats' => 'There are some special stats too:',
 					array(
+						'casting' => 'Similar to the magic attribute, this skill increases your MP, but does not increase your MP refreshing.',
 						'spellatk' => 'Increases your magic attack. This is also affected by essence and intelligence.',
 						'spelldef' => 'Increases your magic defense. This is also affected by essence and intelligence.',
 						'orcas' => "Increases your MP refreshening. This is also affected by the magic attribute. Your current orcas level is {$orca} and you gain {$orca_gain} every {$orca_time}.",

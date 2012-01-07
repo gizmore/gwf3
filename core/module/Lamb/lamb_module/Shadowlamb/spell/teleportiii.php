@@ -93,7 +93,7 @@ final class Spell_teleportiii extends SR_Spell
 			return false;
 		}
 		
-		$need = $this->getManaCost($player);
+		$need = $this->getManaCost($player, $need_level);
 		$have = $player->getMP();
 		if ($need > $have)
 		{
