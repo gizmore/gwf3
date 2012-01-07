@@ -129,13 +129,10 @@ final class Delaware_Citizen extends SR_HireNPC
 		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
 		if ($quest->isWorkerFound())
 		{
-			// TODO
-			/*
 			if ($quest->getWorkerName() === $this->getName())
 			{
 				return $this->reply("I said 'yes' already. Go tell Seraphim, damnit!");
 			}
-			 */
 			return $this->reply("You found someone already. Go tell Seraphim, damnit!");
 		}
 		

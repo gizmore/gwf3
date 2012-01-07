@@ -28,6 +28,16 @@ final class Quest_Delaware_Seraphim2 extends SR_Quest
 		$data = $this->getQuestData();
 		return isset($data['WORKER']);
 	}
+        
+	public function getWorkerName()
+	{
+		$data = $this->getQuestData();
+		if (isset($data['WORKER']))
+		{
+			return $data['WORKER'];
+		}
+		return null;
+	}
 
 	public function setWorkerFound($name)
 	{
