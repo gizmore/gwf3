@@ -17,7 +17,7 @@
 	<div>{$lang->lang('th_taggers')}: {$song->getVar('ss_taggers')}</div>
 	<div>{$lang->lang('th_lyrics')}: {$song->getVar('ss_lyrics')}</div>
 {if $playing}
-	<div id="st_left">{$left}</div>
+	<div id="st_left">{$lang->lang('seconds_left')}: {$left}</div>
 {/if}
 </div>
 
