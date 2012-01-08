@@ -30,7 +30,7 @@ final class Quest_Troll_Forever extends SR_Quest
 			case 'shadowrun':
 				$npc->reply("Listen chummer, now Commando is hunts us.");
 				$npc->reply('We cannot let it happen, they disgust us. Please kill some of them!');
-				$npc->reply('Kill %d Commando and I pay %s.', $this->getNeededAmount(), $dp);
+				$npc->reply(sprintf('Kill %d Commando and I pay %s.', $this->getNeededAmount(), $dp));
 				break;
 			case 'confirm':
 				$npc->reply("Go!");
