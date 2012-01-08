@@ -49,6 +49,8 @@ final class Lamb
 	 * @var array(serverid => Lamb_Server)
 	 */
 	private $servers = array();
+	
+	public $seed = 0;
 
 	##############
 	### Getter ###
@@ -359,6 +361,10 @@ final class Lamb
 			if ($this->is_idle)
 			{
 				usleep(LAMB_SLEEP_MILLIS * 1000);
+			}
+			else
+			{
+				$this->seed += rand();
 			}
 		}
 	}
