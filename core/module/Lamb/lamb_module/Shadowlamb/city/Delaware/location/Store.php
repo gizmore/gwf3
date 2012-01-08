@@ -18,6 +18,7 @@ final class Delaware_Store extends SR_Store
 			array('Scanner_v3', 100.0, 2000),
 			array('Credstick', 100.0, 129.95),
 			array('Holostick', 100.0, 995.95),
+			array('Chalk', 100.0, 49.95),
 		);
 	}
 }

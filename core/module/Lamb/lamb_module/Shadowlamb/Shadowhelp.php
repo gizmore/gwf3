@@ -19,6 +19,7 @@ final class Shadowhelp
 //			'ca' => 'cast'
 //			'casting' => 'cast',
 			'bmi' => 'body_mass',
+			'die' => 'death',
 		);
 		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
 		
