@@ -114,7 +114,10 @@ class Shadowcmd
 			return self::$CMDS_ALWAYS_CREATE;
 		}
 		
-		$party = $player->getParty();
+		if (false === ($party = $player->getParty()))
+		{
+			return array();
+		}
 		$action = $party->getAction();
 		$leader = $player->isLeader();
 		

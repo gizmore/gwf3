@@ -399,6 +399,11 @@ final class SR_Party extends GDO
 	
 	public function popAction($announce=false)
 	{
+		if (!$this->isHuman())
+		{
+			return $this->deleteParty();
+		}
+		
 		if ('0' === ($last_eta = $this->getVar('sr4pa_last_eta'))) {
 			$new_eta = 0;
 		} else {
@@ -813,7 +818,10 @@ final class SR_Party extends GDO
 		foreach ($this->members as $member)
 		{
 			$member instanceof SR_Player;
-			$member->deletePlayer();
+			if ($member->isHuman())
+			{
+				$member->deletePlayer();
+			}
 		}
 		$this->delete();
 		Shadowrun4::removeParty($this);

@@ -35,9 +35,19 @@ final class Prison_Block1 extends SR_Location
 		$player->message('Seems like you are screwed.');
 	}
 	
-	public function on_leave(SR_Player $player, array $args)
+	public function on_read(SR_Player $player, array $args)
 	{
 		
+	}
+
+	public function on_write(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		if (false === ($pen = $player->getInvItemByName('Pen', false)))
+		{
+			$bot->reply('You don\'t have a pen, chummer.');
+			return false;
+		}
 	}
 }
 ?>
