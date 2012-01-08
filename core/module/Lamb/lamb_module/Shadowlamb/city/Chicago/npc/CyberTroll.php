@@ -17,6 +17,15 @@ final class Chicago_CyberTroll extends SR_NPC
 		);
 	}
 	
+	public function getNPCCyberware()
+	{
+		return array(
+			'DermalPlates',
+			'Cybermuscles',
+			'WiredReflexes',
+		);
+	}
+	
 	public function getNPCInventory() { return array('Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Ammo_7mm', 'Stimpatch'); }
 	
 	public function getNPCModifiers()

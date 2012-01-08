@@ -10,7 +10,7 @@ final class Quest_Chicago_OwlJohnsonRoundtrip extends SR_Quest
 	);
 	
 	public function getQuestName() { return 'Roundtrip'; }
-	public function getQuestDescription() { return sprintf('Show the DataCrystal to all Mr.Johnson\'s in Redmond, Seattle and Delaware.'); }
+	public function getQuestDescription() { return sprintf('Show the DataCrystal to all Mr.Johnson\'s in Redmond, Seattle and Delaware. Then return to Mr.Johnson in the Owls Club.'); }
 	public function getRewardXP() { return 3; }
 	public function getRewardNuyen() { return 450; }
 

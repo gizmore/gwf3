@@ -17,6 +17,13 @@ final class Chicago_CyberGoblin extends SR_NPC
 		);
 	}
 	
+	public function getNPCCyberware()
+	{
+		return array(
+			'DermalPlates',
+		);
+	}
+	
 	public function getNPCInventory() { return array('Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Stimpatch'); }
 	
 	public function getNPCModifiers()
@@ -46,6 +53,5 @@ final class Chicago_CyberGoblin extends SR_NPC
 		}
 		return array();
 	}
-	
 }
 ?>

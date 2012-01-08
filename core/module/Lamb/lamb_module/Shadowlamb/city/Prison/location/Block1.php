@@ -9,6 +9,7 @@ final class Prison_Block1 extends SR_Location
 	public function getAreaSize() { return 150; }
 	public function getEnterText(SR_Player $player) { return 'You enter cell block 1.'; }
 	public function getFoundText(SR_Player $player) { return 'You found cell block 1, whatever that means.'; }
+	public function getCommands(SR_Player $player) { return array('read','write'); }
 	
 	public function isEnterAllowed(SR_Player $player) { return false; }
 	public function isExitAllowed(SR_Player $player)
@@ -32,6 +33,11 @@ final class Prison_Block1 extends SR_Location
 	public function onEnter(SR_Player $player)
 	{
 		$player->message('Seems like you are screwed.');
+	}
+	
+	public function on_leave(SR_Player $player, array $args)
+	{
+		
 	}
 }
 ?>

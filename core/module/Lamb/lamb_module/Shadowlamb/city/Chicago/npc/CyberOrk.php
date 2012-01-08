@@ -17,6 +17,14 @@ final class Chicago_CyberOrk extends SR_NPC
 		);
 	}
 	
+	public function getNPCCyberware()
+	{
+		return array(
+			'DermalPlates',
+			'Cybermuscles',
+		);
+	}
+	
 	public function getNPCInventory() { return array('Ammo_Shotgun', 'Ammo_Shotgun', 'Ammo_Shotgun', 'Ammo_Shotgun', 'Ammo_Shotgun', 'Stimpatch'); }
 	
 	public function getNPCModifiers()
