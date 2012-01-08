@@ -1,6 +1,8 @@
 <?php
 final class Quest_Redmond_Johnson_1 extends SR_Quest
 {
+	public function getRewardNuyen() { return 350; }
+	public function getRewardXP() { return 3; }
 	public function getQuestName() { return 'Lame'; }
 	public function getQuestDescription() { return sprintf('Kill %s/%s Lamers and return to Mr.Johnson in the Redmond_TrollsInn.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getNeededAmount() { return 10; }
@@ -18,8 +20,8 @@ final class Quest_Redmond_Johnson_1 extends SR_Quest
 	
 	public function onQuestSolve(SR_Player $player)
 	{
-		$ny = 350;
-		$xp = 3;
+		$ny = $this->getRewardXP();
+		$xp = $this->getRewardXP();
 		$player->message('Mr.Johnson looks pleased. "Well done", he says. As a reward take this...');
 		$player->message(sprintf('Mr.Johnson hands you %s. You also gained %d XP.', Shadowfunc::displayNuyen($ny), $xp));
 	}
