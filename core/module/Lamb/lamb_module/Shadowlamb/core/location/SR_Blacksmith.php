@@ -29,7 +29,8 @@ abstract class SR_Blacksmith extends SR_Store
 
 	public function calcBreakPrice(SR_Player $player, $item_price)
 	{
-		return Shadowfunc::calcBuyPrice(($item_price*($this->getBreakPercentPrice($player)/100))+$this->getBreakPrice($player), $player);
+		$price = ($item_price*($this->getBreakPercentPrice($player)/100)) + $this->getBreakPrice($player);
+		return Shadowfunc::calcBuyPrice($price, $player);
 	}
 
 	public function calcCleanPrice(SR_Player $player, $item_price)
@@ -232,8 +233,13 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 
 		$mods = SR_Item::mergeModifiers($item->getItemModifiersB(), $rune->getItemModifiersB());
-		$fail = SR_Rune::calcFailChance($mods)/10;
-		$break = SR_Rune::calcBreakChance($mods)/10;
+		
+		$luck = $player->get('luck');
+		$luck = Common::clamp($luck, 0, 30);
+		$luckmod = 0.35;
+		$luckmod -= $luck * 0.01;
+		$fail = SR_Rune::calcFailChance($mods)*$luckmod;
+		$break = SR_Rune::calcBreakChance($mods)*$luckmod;
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
 		$dpu = Shadowfunc::displayNuyen($price_u);
 
