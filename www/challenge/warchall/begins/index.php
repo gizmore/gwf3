@@ -1,4 +1,5 @@
 <?php
+require_once 'warconfig.php';
 chdir('../../../');
 define('GWF_PAGE_TITLE', 'Training: Warchall - The Beginning');
 require_once('challenge/html_head.php');
@@ -108,7 +109,7 @@ function warchall1createAccount(WC_Challenge $chall)
 	
 	# Form2
 	$f2 = new WCA_FormSetupMail();
-	if (false === ($db2 = gdo_db_instance('localhost', 'warchall', 'IAMWARCHALL!', 'warchall')))
+	if (false === ($db2 = gdo_db_instance(WARGIZ_DB_HOST, WARGIZ_DB_USER, WARGIZ_DB_PASS, WARGIZ_DB_DB)))
 	{
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
@@ -147,7 +148,7 @@ function warchall1createAccount(WC_Challenge $chall)
 
 function warchall1createAccountB(WC_Challenge $chall)
 {
-	if (false === ($db = gdo_db_instance('warchall.net:21212', 'warchall', 'ThreeLittlePonies', 'warchall')))
+	if (false === ($db = gdo_db_instance(WARBOX_DB_HOST, WARBOX_DB_USER, WARBOX_DB_PASS, WARBOX_DB_DB)))
 	{
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
