@@ -13,7 +13,7 @@ $lang = array(
 		'',
 
 	'err_login' => 'You need to be logged in to create an SSH account for this challenge.',
-	'err_score' => 'You only have %1% points, but to create an SSH account you need %2% points.',
+	'err_score' => 'You only have %s points, but to create an SSH account you need %s points.',
 	'err_unix_username' => 'Your wechall username can not get converted into a unix username for warchall.<br/>Only a-zA-Z is allowed. :(',
 	'err_retype' => 'You did not retype your password correctly.',
 	
@@ -23,7 +23,7 @@ $lang = array(
 	'btn_submit' => 'Go!',
 
 	'msg_creating_account' =>
-		'Ok Challenger, in about 1 minute you should be able to login via ssh -p 19198 %1%@warchall.net<br/>Use the password you entered in the form.<br/><br/>Happy Challenging!<br/>The warchall team',
+		'Ok Challenger, in about 1 minute you should be able to login via ssh -p 19198 %s@warchall.net<br/>Use the password you entered in the form.<br/><br/>Happy Challenging!<br/>The warchall team',
 	
 	'ft_setup_email' => 'Enable logfile EMails',
 	'btn_setmail' => 'Toggle',

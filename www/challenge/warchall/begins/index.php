@@ -114,7 +114,7 @@ function warchall1createAccount(WC_Challenge $chall)
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
 	$email = '';
-	if (false !== ($result = $db2->queryFirst("SELECT am_email FROM war_audit_mails WHERE am_username='$eusername'", true)))
+	if (false !== ($result = $db2->queryFirst("SELECT am_email FROM gwf_audit_mails WHERE am_username='$eusername'", true)))
 	{
 		$email = $result['am_email'];
 	}
@@ -166,7 +166,7 @@ function warchall1createAccountB(WC_Challenge $chall)
 
 function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusername)
 {
-	if (false === ($db2->queryWrite("DELETE FROM war_audit_mails WHERE am_username='$eusername'")))
+	if (false === ($db2->queryWrite("DELETE FROM gwf_audit_mails WHERE am_username='$eusername'")))
 	{
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
@@ -181,7 +181,7 @@ function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusernam
 		return GWF_HTML::error('Warchall', $chall->lang('err_no_mail'));
 	}
 	$eemail = GDO::escape($email);
-	if (false === ($db2->queryWrite("REPLACE INTO war_audit_mails VALUES('$eusername', '$eemail')")))
+	if (false === ($db2->queryWrite("REPLACE INTO gwf_audit_mails VALUES('$eusername', '$eemail')")))
 	{
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
