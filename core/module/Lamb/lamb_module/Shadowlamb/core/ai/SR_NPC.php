@@ -39,6 +39,10 @@ abstract class SR_NPC extends SR_NPCBase
 	 */
 	private function combatAI()
 	{
+		if ($this->getParty() === false)
+		{
+			return;
+		}
 //		echo __METHOD__.PHP_EOL;
 		
 		if ($this->combatAIHeal()) {

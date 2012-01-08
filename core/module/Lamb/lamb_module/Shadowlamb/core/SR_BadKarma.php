@@ -69,7 +69,7 @@ final class SR_BadKarma
 		$fraction -= $abk;
 
 		# Full int?
-		if ($abk > 1)
+		if ($abk >= 1)
 		{
 			# Save new int bad karma
 			$bk = $player->getBase('bad_karma');

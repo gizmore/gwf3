@@ -16,7 +16,7 @@ final class Spell_firewall extends SR_CombatSpell
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
-		echo "Casting Firewall with level $level and $hits hits.\n";
+// 		echo "Casting Firewall with level $level and $hits hits.\n";
 		
 		$line = $target->getY();
 		$damage = array();
@@ -25,6 +25,7 @@ final class Spell_firewall extends SR_CombatSpell
 		{
 			$t instanceof SR_Player;
 			$d = abs($line - $t->getY());
+// 			echo "Distance to target is $d\n";
 			$l = $level - $d;
 			if ($l > 0)
 			{
@@ -40,8 +41,9 @@ final class Spell_firewall extends SR_CombatSpell
 	
 	private function calcFirewallDamage(SR_Player $player, SR_Player $target, $level, $hits)
 	{
+// 		echo "Calc damage with $hits hits\n";
 		$min = $level + 1;
-		$max = $min + $hits * 0.2;
+		$max = $min + $hits * 0.4;
 		return Shadowfunc::diceFloat($min, $max);
 	}
 }
