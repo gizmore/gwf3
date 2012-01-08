@@ -12,8 +12,7 @@ final class GWF_PageLinks extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-//			'link_url' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I|GDO::UNIQUE),
-			'link_url' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::UNIQUE, GDO::NOT_NULL, 255), # TODO: gizmore please correct it...
+			'link_url' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::PRIMARY_KEY, GDO::NOT_NULL, 255),
 			'link_href' => self::getURLDefine(GDO::NOT_NULL),
 		);
 	}
@@ -33,6 +32,6 @@ final class GWF_PageLinks extends GDO
 		{
 			return false;
 		}
-		return $link->delete(); # TODO: doesnt work because of column defines?
+		return $link->delete();
 	}
 }
