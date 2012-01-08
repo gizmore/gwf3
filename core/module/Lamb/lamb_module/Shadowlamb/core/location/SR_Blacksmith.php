@@ -236,8 +236,8 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		$luck = $player->get('luck');
 		$luck = Common::clamp($luck, 0, 30);
-		$luckmod = 0.35;
-		$luckmod -= $luck * 0.01;
+		$luckmod = 0.20;
+		$luckmod -= $luck * 0.005;
 		$fail = SR_Rune::calcFailChance($mods)*$luckmod;
 		$break = SR_Rune::calcBreakChance($mods)*$luckmod;
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());

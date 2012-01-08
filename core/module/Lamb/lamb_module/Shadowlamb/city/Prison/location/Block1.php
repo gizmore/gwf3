@@ -43,12 +43,18 @@ final class Prison_Block1 extends SR_Location
 		
 		$table = GDO::table('SR_PlayerVar');
 		$key = $table->escape(self::KEY_WRITE);
-		if (false === ($result = $table->selectRandom('sr4pv_val', "sr4pv_key='{$key}'")))
+		if (false === ($result = $table->selectRandom('sr4pv_val', "sr4pv_key='{$key}'", 1, NULL, GDO::ARRAY_N)))
+		{
+			$bot->reply('DB ERROR 1');
+			return false;
+		}
+		
+		if (count($result) === 0)
 		{
 			return $bot->reply('The walls are clear and white. Very esthetic, even for a prison block.');
 		}
 		
-		return $bot->reply(sprintf('You randomly read the prison walls: "%s"', $result['sr4pv_val']));
+		return $bot->reply(sprintf('You randomly read the prison walls: "%s"', $result[0][0]));
 	}
 
 	public function on_write(SR_Player $player, array $args)

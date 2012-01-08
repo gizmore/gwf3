@@ -399,10 +399,10 @@ final class SR_Party extends GDO
 	
 	public function popAction($announce=false)
 	{
-		if (!$this->isHuman())
-		{
-			return $this->deleteParty();
-		}
+// 		if (!$this->isHuman())
+// 		{
+// 			return $this->deleteParty();
+// 		}
 		
 		if ('0' === ($last_eta = $this->getVar('sr4pa_last_eta'))) {
 			$new_eta = 0;
