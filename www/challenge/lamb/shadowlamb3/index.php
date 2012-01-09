@@ -10,7 +10,7 @@ $chall->showHeader();
 if (false !== ($answer = Common::getPostString('answer', false)))
 {
 	require_once 'challenge/lamb/shadowlamb1/WC5Lamb_Solution.php';
-	shadowlamb2solver($chall, $answer);
+	shadowlamb3solver($chall, $answer);
 }
 echo GWF_Box::box($chall->lang('info', array('client.php')), $chall->lang('title'));
 echo formSolutionbox($chall);
@@ -18,10 +18,10 @@ echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');
 ?>
 <?php
-function shadowlamb2solver(WC_Challenge $chall, $answer)
+function shadowlamb3solver(WC_Challenge $chall, $answer)
 {
 //	$wechall = Module_WeChall::instance();
-	$code = WC5Lamb_Solution::validateSolution2($answer, GWF_Session::getUserID());
+	$code = WC5Lamb_Solution::validateSolution3($answer, GWF_Session::getUserID());
 	switch ($code)
 	{
 		case 1:

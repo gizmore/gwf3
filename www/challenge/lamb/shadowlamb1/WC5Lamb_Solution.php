@@ -106,23 +106,23 @@ final class WC5Lamb_Solution extends GDO
 		
 		return 1;
 	}
-	
-	
 
 	public static function getSolution3($playername)
 	{
-		$hash = substr(md5(LAMB_PASSWORD2.md5($playername).LAMB_PASSWORD2), 2, 16);
-		return sprintf('%s!%s!gunda', $playername, $hash);
+		$pname = strtolower($playername);
+		$hash = substr(md5(LAMB_PASSWORD2.md5($pname).LAMB_PASSWORD2), 2, 16);
+		return sprintf('%s!%s!gunda', $pname, $hash);
 	}
+	
 	public static function validateSolution3($code)
 	{
 		$code = strtolower($code);
-		if (false === ($playername = Common::substrUntil($code, ':', false)))
+		if (false === ($playername = Common::substrUntil($code, '!', false)))
 		{
 			return -1;
 		}
 		
-		$solution = self::getSolution2($playername);
+		$solution = self::getSolution3($playername);
 		if ($code !== $solution)
 		{
 			return 0;
@@ -131,14 +131,14 @@ final class WC5Lamb_Solution extends GDO
 		$table = GDO::table(__CLASS__);
 		
 		$epname = GDO::escape($playername);
-		if (false !== ($row = $table->selectFirst('1', "csl_player='$epname' AND csl_cnum=2")))
+		if (false !== ($row = $table->selectFirst('1', "csl_player='$epname' AND csl_cnum=3")))
 		{
 			return -2;
 		}
 		
 		if (false === $table->insertAssoc(array(
 			'csl_player' => $playername,
-			'csl_cnum' => 2,
+			'csl_cnum' => 3,
 			'csl_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		)))
 		{
