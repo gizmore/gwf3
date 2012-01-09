@@ -3,7 +3,6 @@ final class Renraku02 extends SR_Dungeon
 {
 	public function getCityLocation() { return 'Seattle_Renraku'; }
 	public function getArriveText() { return 'The elevator stops at Renraku floor 2.'; }
-	public function isDungeon() { return true; }
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 
