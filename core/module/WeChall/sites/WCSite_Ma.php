@@ -15,7 +15,7 @@ class WCSite_MA extends WC_Site
 		
 		$rank = intval($stats[0]);
 		$onsitescore = intval($stats[1]);
-		$onsitescore = Common::clamp($onsitescore, 0, false);
+		$onsitescore = Common::clamp($onsitescore, 0);
 		$maxscore = intval($stats[2]);
 		$usercount = intval($stats[3]);
 		$challcount = $maxscore;
