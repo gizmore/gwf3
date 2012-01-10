@@ -12,8 +12,8 @@ class SR_Player extends GDO
 	const MP_PER_CASTING = 5;
 	const HP_REFRESH_MULTI = 0.03;
 	const MP_REFRESH_MULTI = 0.02;
-	const HP_REFRESH_TIMER = 200;
-	const MP_REFRESH_TIMER = 180;
+	const HP_REFRESH_TIMER = 300;
+	const MP_REFRESH_TIMER = 300;
 	
 	const XP_PER_KARMA = 4;
 	const XP_PER_KARMA_RAISE = 0.5;

@@ -156,7 +156,10 @@ abstract class SR_Bank extends SR_Location
 		if ('' === ($paymsg = $this->pay($player))) {
 			$paymsg .= 'You ';
 		}
-		$paymsg .= sprintf('put %d of your %s into your bank account.', $stored, $item->getItemName());
+		$paymsg .= sprintf('put %d of your %s into your bank account. You now carry %s/%s.',
+			$stored, $item->getItemName(),
+			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+		);
 		# Out
 		$player->modify();
 		$bot->reply($paymsg);
@@ -305,7 +308,10 @@ abstract class SR_Bank extends SR_Location
 		if ('' === ($paymsg = $this->pay($player))) {
 			$paymsg .= 'You ';
 		}
-		$paymsg .= sprintf('remove %d %s from your bank account and put it into your inventory.', $collected, $item->getItemName());
+		$paymsg .= sprintf('remove %d %s from your bank account and put it into your inventory. You now carry %s/%s.',
+			$collected, $item->getItemName(),
+			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+		);
 		$bot->reply($paymsg);
 		return true;
 	}

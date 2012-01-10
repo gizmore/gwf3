@@ -10,7 +10,7 @@ final class Shadowrun4
 	const SR4_ALPHA = false; # iS BETA?
 	
 	const SR_SHORTCUT = '#';
-	const KICK_IDLE_TIMEOUT = 3600; # 1h
+	const KICK_IDLE_TIMEOUT = 1800; # 30min
 	const SECONDS_PER_TICK = 1.0;
 	
 	####################
