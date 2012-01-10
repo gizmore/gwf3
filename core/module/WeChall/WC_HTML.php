@@ -251,7 +251,7 @@ final class WC_HTML
 		$back = '';
 		$back = '';
 // 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
-		$back .= '<div class="wc_head_bigbox">';
+		$back .= '<div class="wc_head_bigbox" style="float:none;">';
 		$back .= '<div class="wc_head_title"><a href="'.GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1">'.$module->lang('head_online', array(count($sessions))).'</a></div>';
 		$back .= '<div class="wc_head_online">';
 
