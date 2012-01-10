@@ -59,6 +59,7 @@ final class Seattle_Store extends SR_Store
 			array('AimWater', 100.0, 500),
 			array('StrengthPotion', 100.0, 300),
 			array('QuicknessElixir', 100.0, 400),
+			array('Roses', 100.0, 499.95),
 			array('Scanner_v2', 100.0, 349.95),
 			array('Credstick', 100.0, 129.95),
 			array('Backpack', 100.0, 350),

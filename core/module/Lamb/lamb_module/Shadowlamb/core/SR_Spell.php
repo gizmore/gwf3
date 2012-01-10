@@ -199,6 +199,7 @@ abstract class SR_Spell
 		
 		$hits = $this->dice($player, $target, $level);
 		
+		$busy = '';
 		if ($player->isFighting())
 		{
 			$busy = Shadowfunc::displayBusy($player->busy($this->getCastTime($level)));
