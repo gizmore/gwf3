@@ -20,7 +20,11 @@ require_once('challenge/html_foot.php');
 <?php
 function shadowlamb1solver(WC_Challenge $chall, $answer)
 {
-//	$wechall = Module_WeChall::instance();
+	if (!GWF_Session::isLoggedIn())
+	{
+		echo GWF_HTML::error('Shadowlamb', 'Better login first!');
+		return;
+	}
 	$code = WC5Lamb_Solution::validateSolution1($answer, GWF_Session::getUserID());
 	switch ($code)
 	{
