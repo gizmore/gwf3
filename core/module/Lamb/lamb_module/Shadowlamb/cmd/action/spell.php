@@ -19,7 +19,7 @@ final class Shadowcmd_spell extends Shadowcmd
 			$player->message(sprintf('You don\'t know the %s spell.', $sn));
 			return false;
 		}
-		
+		$spell->setMode(SR_Spell::MODE_SPELL);
 		return $spell->onCast($player, $args, $wanted_level);
 	}
 }
