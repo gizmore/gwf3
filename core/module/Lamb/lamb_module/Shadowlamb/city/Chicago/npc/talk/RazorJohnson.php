@@ -7,7 +7,7 @@ final class Chicago_RazorJohnson extends SR_TalkingNPC
 	{
 		return array(
 			'Chicago_RazorJohnson1',
-// 			'Chicago_RazorJohnson2',
+			'Chicago_RazorJohnson2',
 		);
 	}
 	
