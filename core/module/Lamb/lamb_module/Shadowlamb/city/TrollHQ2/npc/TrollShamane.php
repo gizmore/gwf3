@@ -1,6 +1,7 @@
 <?php
 final class TrollHQ2_TrollShamane extends SR_TalkingNPC
 {
+	public function getName() { return $this->getPartyID() > 0 ? parent::getName() : 'Marok'; }
 	public function getNPCPlayerName() { return 'Marok'; }
 	public function getNPCLevel() { return 14; }
 	public function canNPCMeet(SR_Party $party) { return false; }
