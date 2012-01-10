@@ -5,7 +5,18 @@ abstract class SR_Store extends SR_Location
 	const BAD_KARMA_STEAL_COMBAT = 0.2;
 	
 	public function getCommands(SR_Player $player) { return array('view','buy','sell','steal'); }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal."; }
+	public function getHelpText(SR_Player $player)
+	{
+		$c = Shadowrun4::SR_SHORTCUT; 
+		if ($player->getBase('thief') > 0)
+		{
+			return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal.";
+		}
+		else
+		{
+			return "In shops you can use {$c}view, {$c}buy and {$c}sell.";
+		}
+	}
 	
 	/**
 	 * Get the items available at the store.
@@ -27,6 +38,12 @@ abstract class SR_Store extends SR_Location
 		
 		$rep = Common::clamp($player->get('reputation'), 0, 25) * 0.5;
 		$items = $this->getStoreItems($player);
+		
+		if (!is_array($items))
+		{
+			return array();
+		}
+		
 		$back = array();
 		$unique = false;
 		foreach ($items as $i => $data)
@@ -276,7 +293,10 @@ abstract class SR_Store extends SR_Location
 		
 		$player->giveNuyen($total);
 				
-		$bot->reply(sprintf('You sold %d of your %s for %s.', $amt, $item->getItemName(), Shadowfunc::displayNuyen($total)));
+		$bot->reply(sprintf('You sold %d of your %s for %s. You now carry %s/%s.',
+			$amt, $item->getItemName(), Shadowfunc::displayNuyen($total),
+			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+		));
 		return true;
 //		
 //		$inv = $player->getInventorySorted();
