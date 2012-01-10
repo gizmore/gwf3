@@ -5,7 +5,7 @@ final class Quest_Seattle_BD4 extends SR_Quest
 	const REWARD_NUYEN = 2000;
 	
 	public function getQuestName() { return 'PoorSmithRevenge'; }
-	public function getNeededAmount() { return 10; }
+	public function getNeededAmount() { return 7; }
 	public function getQuestDescription() { return sprintf('Bring %s/%s Tenugui to the Seattle Blacksmith.', $this->getAmount(), $this->getNeededAmount()); }
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
