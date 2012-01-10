@@ -9,7 +9,7 @@ final class GWF_HTTP
 	const DEFAULT_TIMEOUT_CONNECT = 10;
 	const USERAGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0';
 	const COOKIE_PREFIX = 'cookie';
-	const COOKIE_PATH = 'extra/temp/gwfhttp';
+	const COOKIE_PATH = 'extra/temp/gwfhttp/';
 
 	private static $TIMEOUT = self::DEFAULT_TIMEOUT;
 	private static $TIMEOUT_CONNECT = self::DEFAULT_TIMEOUT_CONNECT;
@@ -261,7 +261,6 @@ final class GWF_HTTP
 
 	/**
 	 * Removes all cookies in a directory
-	 * Cookies have to start with 'cookie'
 	 * @param int $time one week
 	 * @param string $path
 	 * @author spaceone
