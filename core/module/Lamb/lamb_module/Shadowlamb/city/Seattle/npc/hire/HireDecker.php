@@ -14,7 +14,7 @@ final class Seattle_HireDecker extends SR_HireNPC
 			'legs' => 'Trousers',
 			'helmet' => 'Cap',
 			'boots' => 'ArmyBoots',
-			'earring' => 'Earring_of_maxhp:2',
+			'earring' => 'Earring_of_max_hp:2',
 			'shield' => 'ElvenShield',
 		);
 	}
