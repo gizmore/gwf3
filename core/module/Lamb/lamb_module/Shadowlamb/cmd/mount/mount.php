@@ -22,7 +22,9 @@ final class Shadowcmd_mount extends Shadowcmd
 		
 		if (0 === ($cnt = count($args)))
 		{
-			return self::on_show($player, $args);
+			return self::on_show_page($player, 1);
+			return false;
+// 			return self::on_show($player, $args);
 		}
 		
 		$command = array_shift($args);
@@ -35,8 +37,80 @@ final class Shadowcmd_mount extends Shadowcmd
 			case 'pop': return self::on_pop($player, $args);
 			case 'clean': return self::on_clean($player, $args);
 			
-			default: self::on_help($player, $args); return false;
+			default:
+				if (Common::isNumeric($command))
+				{
+					return self::on_show_page($player, $command);
+				}
+				else
+				{
+					return self::on_search($player, $command, $args); 
+				}
+// 				self::on_help($player, $args); return false;
 		}
+	}
+
+	/**
+	 * Show a full mount page
+	 */ 
+	private static function on_show_page(SR_Player $player, $page)
+	{
+		$bot = Shadowrap::instance($player);
+		$ipp = 10;
+		$page = (int)$page;
+		$items = $player->getMountInvSorted();
+		$nItems = count($items);
+		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
+		if ( ($page < 1) || ($page > $nPages) )
+		{
+			$bot->reply('This mount page is empty.');
+			return false;
+		}
+		$from = GWF_PageMenu::getFrom($page, $ipp);
+		$items = array_slice($items, $from, $ipp, true);
+		return $bot->reply(sprintf('Your mount page %s/%s: %s.', $page, $nPages, Shadowfunc::getItemsSorted($player, $items, $from)));
+	}
+	
+	private static function on_search(SR_Player $player, $term, array $args)
+	{
+		$b = chr(2);
+		$bot = Shadowrap::instance($player);
+		
+		if (strlen($term) < 3)
+		{
+			$bot->reply('In Shadowlamb, most shortcuts require at least 3 chars. This applies also to searchterm lengths.');
+			return false;
+		}
+		
+		$i = 1;
+		$ipp = 10;
+		
+		$items = $player->getMountInvSorted();
+		$matches = array();
+		
+		foreach ($items as $itemname => $data)
+		{
+			if (false !== stristr($itemname, $term))
+			{
+				$count = $data[0];
+				$itemid = $data[1];
+				$count = $count > 1 ? "($count)" : '';
+				$matches[] = sprintf('%s-%s%s', $b.($i++).$b, $itemname, $count);
+			}
+			$i++;
+		}
+		
+		$page = isset($args[0]) ? (int)$args[0] : 1;
+		$nItems = count($matches);
+		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
+		if ( ($page < 1) || ($page > $nPages) )
+		{
+			$bot->reply('This mount page is empty.');
+			return false;
+		}
+		$from = GWF_PageMenu::getFrom($page, $ipp);
+		$items = array_slice($matches, $from, $ipp);
+		return $bot->reply(sprintf('Matches in your mount page %s/%s: %s.', $page, $nPages, implode(', ', $items)));
 	}
 	
 	/**
