@@ -124,12 +124,12 @@ abstract class SR_SecondHandStore extends SR_Store
 		$player->removeFromInventory($item);
 		if ($item->isItemStatted())
 		{
-			$statmsg = ' The salesman smiles and put`s the item in the shop window.';
+			$statmsg = ' The salesman smiles and puts the item in the shop window.';
 			$this->addSecondHandItem($player, $item, $price);
 		}
 		else
 		{
-			$statmsg = ' The salesman put`s the item into the storage room.';
+			$statmsg = ' The salesman puts the item into the storage room.';
 		}
 		$item->delete();
 
