@@ -13,25 +13,28 @@ final class Seattle_HireDecker extends SR_HireNPC
 			'armor' => 'KevlarVest',
 			'legs' => 'Trousers',
 			'helmet' => 'Cap',
+			'boots' => 'ArmyBoots',
+			'earring' => 'Earring_of_maxhp:2',
+			'shield' => 'ElvenShield',
 		);
 	}
 	public function getNPCInventory() { return array('AT1024','Ammo_9mm', 'Ammo_9mm', 'Ammo_9mm', 'Ammo_9mm', 'Ammo_9mm', 'Ammo_9mm', 'Ammo_9mm'); }
 	public function getNPCCyberware() { return array('Headcomputer'); }
 	public function getNPCModifiers() {
 		return array(
-			'race' => 'human',
+			'race' => 'darkelve',
 			'gender' => 'male',
-			'strength' => rand(2, 3),
-			'pistols' => rand(2, 3),
-			'firearms' => rand(2, 3),
-			'body' => rand(3, 4),
-			'quickness' => rand(4, 5),
-			'distance' => rand(6, 8),
-			'nuyen' => rand(80, 140),
-			'base_hp' => rand(6, 12),
-			'intelligence' => rand(5, 6),
-			'wisdom' => rand(4, 5),
-			'computers' => rand(4, 5),
+			'strength' => rand(4, 6),
+			'pistols' => rand(4, 6),
+			'firearms' => rand(4, 6),
+			'body' => rand(4, 6),
+			'quickness' => rand(6, 8),
+			'distance' => rand(6, 14),
+			'nuyen' => rand(20, 120),
+			'base_hp' => rand(16, 28),
+			'intelligence' => rand(4, 8),
+			'wisdom' => rand(4, 8),
+			'computers' => rand(4, 8),
 		);
 	}
 	
