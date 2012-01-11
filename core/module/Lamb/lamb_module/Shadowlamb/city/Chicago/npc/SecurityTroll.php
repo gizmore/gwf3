@@ -34,22 +34,13 @@ final class Chicago_SecurityTroll extends SR_NPC
 		);
 	}
 	
-// 	public function getNPCLoot(SR_Player $player)
-// 	{
-// 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
-// 		return array();
-// 	}
-	
-//	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson1');
-//		if ($quest->isInQuest($player))
-//		{
-//			$quest->increase('sr4qu_amount', 1);
-//			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
-//		}
-//		return array();
-//	}
+	public function getNPCLoot(SR_Player $player)
+	{
+		if (0 === rand(0, 4))
+		{
+			return array('ID4Card');
+		}
+		return array();
+	}
 }
 ?>

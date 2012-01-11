@@ -601,7 +601,7 @@ final class Shadowfunc
 		return self::getItemsSorted($player, $player->getInventorySorted());
 	}
 	
-	private static function getItemsSorted(SR_Player $player, array $items)
+	public static function getItemsSorted(SR_Player $player, array $items, $i=1)
 	{
 		$b = chr(2);
 		$back = '';
