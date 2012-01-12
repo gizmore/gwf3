@@ -98,6 +98,11 @@ abstract class SR_Bank extends SR_Location
 			else
 			{
 				$amt = (int) $args[1];
+				if ($amt < 1)
+				{
+					$bot->reply('Please push a positive amount of items.');
+					return false;
+				}
 				if ($amt > $have_amt)
 				{
 					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
@@ -125,7 +130,7 @@ abstract class SR_Bank extends SR_Location
 			else
 			{
 				$amt = (int)$args[1];
-				if ($amt <= 0)
+				if ($amt < 1)
 				{
 					$bot->reply('Please push a larger amount than zero.');
 					return false;
