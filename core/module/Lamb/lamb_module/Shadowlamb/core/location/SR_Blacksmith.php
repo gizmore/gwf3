@@ -231,6 +231,19 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply('This item can not get this rune applied to it.');
 			return false;
 		}
+		
+		# Check if equipped mount is loaded with items. (thx tehron)
+		if ($item instanceof SR_Mount)
+		{
+			if ($item->isEquipped($player))
+			{
+				if (count($player->getMountInvSorted()) !== 0)
+				{
+					$bot->reply('Please #mount clean before you upgrade it.');
+					return false;
+				}
+			}
+		}
 
 		$mods = SR_Item::mergeModifiers($item->getItemModifiersB(), $rune->getItemModifiersB());
 		
@@ -305,136 +318,136 @@ abstract class SR_Blacksmith extends SR_Store
 				
 			return true;
 		}
-}
-
-private function checkCombination(SR_Player $player, SR_Item $item, SR_Rune $rune)
-{
-	if ($rune->isMixedRune())
-	{
-		$player->message('The rune has mixed mount and equipment modifiers. You have to split it first.');
-		return false;
 	}
-
-	$mr = $rune->isMountRune();
-
-	if ($rune->isMountRune())
+	
+	private function checkCombination(SR_Player $player, SR_Item $item, SR_Rune $rune)
 	{
-		if (!($item instanceof SR_Mount))
+		if ($rune->isMixedRune())
 		{
-			$player->message('This rune can only applied to mounts.');
+			$player->message('The rune has mixed mount and equipment modifiers. You have to split it first.');
 			return false;
 		}
-	}
-	else
-	{
-		if (!$item->isItemStattable())
+	
+		$mr = $rune->isMountRune();
+	
+		if ($rune->isMountRune())
 		{
-			$player->message('This rune can only be applied to equipment.');
+			if (!($item instanceof SR_Mount))
+			{
+				$player->message('This rune can only applied to mounts.');
+				return false;
+			}
+		}
+		else
+		{
+			if (!$item->isItemStattable())
+			{
+				$player->message('This rune can only be applied to equipment.');
+				return false;
+			}
+		}
+	
+		return true;
+	}
+	
+	#############
+	### Split ###
+	#############
+	public function on_split(SR_Player $player, array $args)
+	{
+		static $confirm = array();
+	
+		# Bailout
+		$bot = Shadowrap::instance($player);
+		if (count($args) !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'split'));
 			return false;
 		}
-	}
-
-	return true;
-}
-
-#############
-### Split ###
-#############
-public function on_split(SR_Player $player, array $args)
-{
-	static $confirm = array();
-
-	# Bailout
-	$bot = Shadowrap::instance($player);
-	if (count($args) !== 1)
-	{
-		$bot->reply(Shadowhelp::getHelp($player, 'split'));
-		return false;
-	}
-
-	# Get Item
-	if (false === ($rune = $player->getItem($args[0])))
-	{
-		$bot->reply('You don`t have that item.');
-		return false;
-	}
-	$pid = $player->getID();
-	$itemname = $rune->getItemName();
-	$confirmed = ( (isset($confirm[$pid])) && ($confirm[$pid]===$rune->getID()) );
-	unset($confirm[$pid]);
-
-	if (!($rune instanceof SR_Rune))
-	{
-		$bot->reply('You can only split runes.');
-		return false;
-	}
-	$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
-	if (count($mods) < 2)
-	{
-		$bot->reply('This rune has only one modifier.');
-		return false;
-	}
-
-	# Check price
-	$price = $this->calcSplitPrice($player, $rune->getItemPriceStatted());
-	$dp = Shadowfunc::displayNuyen($price);
-	if (!$player->hasNuyen($price))
-	{
-		$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));
-		return false;
-	}
-
-	# Confirm?
-	if (!$confirmed)
-	{
-		$confirm[$pid] = $rune->getID();
-		$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
-		return true;
-	}
-
-	$runes = array();
-	$names = array();
-	$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
-	foreach ($mods as $k => $v)
-	{
-		$v /= 2;
-		$v += Shadowfunc::diceFloat(0.0, $v/2, 1);
-		$v = round($v, 1);
-			
-		if ($v >= 0.1)
+	
+		# Get Item
+		if (false === ($rune = $player->getItem($args[0])))
 		{
-			$name = "Rune_of_{$k}:{$v}";
-			$runes[] = SR_Item::createByName($name);
-			$names[] = $name;
+			$bot->reply('You don`t have that item.');
+			return false;
 		}
+		$pid = $player->getID();
+		$itemname = $rune->getItemName();
+		$confirmed = ( (isset($confirm[$pid])) && ($confirm[$pid]===$rune->getID()) );
+		unset($confirm[$pid]);
+	
+		if (!($rune instanceof SR_Rune))
+		{
+			$bot->reply('You can only split runes.');
+			return false;
+		}
+		$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
+		if (count($mods) < 2)
+		{
+			$bot->reply('This rune has only one modifier.');
+			return false;
+		}
+	
+		# Check price
+		$price = $this->calcSplitPrice($player, $rune->getItemPriceStatted());
+		$dp = Shadowfunc::displayNuyen($price);
+		if (!$player->hasNuyen($price))
+		{
+			$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));
+			return false;
+		}
+	
+		# Confirm?
+		if (!$confirmed)
+		{
+			$confirm[$pid] = $rune->getID();
+			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
+			return true;
+		}
+	
+		$runes = array();
+		$names = array();
+		$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
+		foreach ($mods as $k => $v)
+		{
+			$v /= 2;
+			$v += Shadowfunc::diceFloat(0.0, $v/2, 1);
+			$v = round($v, 1);
+				
+			if ($v >= 0.1)
+			{
+				$name = "Rune_of_{$k}:{$v}";
+				$runes[] = SR_Item::createByName($name);
+				$names[] = $name;
+			}
+		}
+	
+		if (false === $rune->deleteItem($player))
+		{
+			$bot->reply(sprintf('Cannot delete rune in %s line %s.', __FILE__, __LINE__));
+			return false;
+		}
+	
+		if (count($runes) === 0)
+		{
+			$bot->reply(sprintf('The rune burned into dust while splitting it. You don\'t need to pay.'));
+			return true;
+		}
+	
+		if (false === $player->giveItems($runes))
+		{
+			$bot->reply(sprintf('Cannot give items in %s line %s.', __FILE__, __LINE__));
+			return false;
+		}
+	
+		if (false === $player->pay($price))
+		{
+			$bot->reply(sprintf('Cannot pay price in %s line %s.', __FILE__, __LINE__));
+			return false;
+		}
+	
+		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 	}
-
-	if (false === $rune->deleteItem($player))
-	{
-		$bot->reply(sprintf('Cannot delete rune in %s line %s.', __FILE__, __LINE__));
-		return false;
-	}
-
-	if (count($runes) === 0)
-	{
-		$bot->reply(sprintf('The rune burned into dust while splitting it. You don\'t need to pay.'));
-		return true;
-	}
-
-	if (false === $player->giveItems($runes))
-	{
-		$bot->reply(sprintf('Cannot give items in %s line %s.', __FILE__, __LINE__));
-		return false;
-	}
-
-	if (false === $player->pay($price))
-	{
-		$bot->reply(sprintf('Cannot pay price in %s line %s.', __FILE__, __LINE__));
-		return false;
-	}
-
-	return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
-}
 
 }
 ?>
