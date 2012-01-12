@@ -137,6 +137,12 @@ final class Shadowcmd_quests extends Shadowcmd
 	
 	private static function onDisplayQuest(SR_Player $player, SR_Quest $quest, $id)
 	{
+		if ($quest->isUnknown())
+		{
+			return self::reply($player, 'This quest is unknown to you.');
+		}
+			
+		
 		$message = sprintf('%d: %s - %s', $id, $quest->getQuestName(), $quest->getQuestDescription());
 		return self::reply($player, $message);
 	}
