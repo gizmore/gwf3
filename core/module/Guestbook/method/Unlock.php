@@ -7,7 +7,7 @@
  */
 final class Guestbook_Unlock extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGetString('gbid')))) {
 			return $this->_module->error('err_gb');

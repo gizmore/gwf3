@@ -1,12 +1,12 @@
 <?php
 final class News_ShowComments extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^news-comments-(\\d+)-[^/]+-page-(\\d+)\\.html$ index.php?mo=News&me=ShowComments&newsid=$1&cpage=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($mod_c = GWF_Module::loadModuleDB('Comments', true, true)))
 		{

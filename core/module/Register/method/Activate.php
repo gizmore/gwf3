@@ -6,14 +6,14 @@
  */
 final class Register_Activate extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^activate/([a-zA-Z0-9]+)$ index.php?mo=Register&me=Activate&token=$1&mail=yes'.PHP_EOL.
 			'RewriteRule ^quick_activate/([a-zA-Z0-9]+)$ index.php?mo=Register&me=Activate&token=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if ('' !== ($token = Common::getGetString('token')))
 		{

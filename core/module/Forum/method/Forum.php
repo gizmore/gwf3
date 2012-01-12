@@ -19,7 +19,7 @@ final class Forum_Forum extends GWF_Method
 	private $nThreads = 0;
 	private $tpp = 1;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		$back = '';
 		if ($this->_module->cfgOldURLS())
@@ -46,7 +46,7 @@ final class Forum_Forum extends GWF_Method
 			'RewriteRule ^forum-b(\d+)/bby/([^/]+)/([DEASC,]+)/bp-(\d+)/tby/([^/]+)/([DEASC,]+)/[^/\-]+-p(\d+)\.html$ index.php?mo=Forum&me=Forum&bid=$1&bby=$2&bdir=$3&bpage=$4&tby=$5&tdir=$6&tpage=$7'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

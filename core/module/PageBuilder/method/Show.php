@@ -5,7 +5,7 @@
  */
 final class PageBuilder_Show extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
 		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_PB_Rewrites.php';
@@ -28,7 +28,7 @@ final class PageBuilder_Show extends GWF_Method
 	private $mod_c = false;
 	private $comments = NULL;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Page exists?
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid'))))

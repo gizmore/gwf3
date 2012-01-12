@@ -1,12 +1,12 @@
 <?php
 final class Profile_Profile extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^profile/([^/]+)/?$ index.php?mo=Profile&me=Profile&username=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_User::getByName(Common::getGet('username')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

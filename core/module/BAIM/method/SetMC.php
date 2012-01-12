@@ -5,7 +5,7 @@ final class BAIM_SetMC extends GWF_Method
 	
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($this->row = BAIM_MC::getByUID(GWF_Session::getUserID()))) {
 			return $this->_module->error('err_not_purchased');

@@ -1,7 +1,7 @@
 <?php
 final class Shoutbox_Moderate extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($entry = GWF_Shoutbox::getByID(Common::getGetString('shoutid'))))
 		{

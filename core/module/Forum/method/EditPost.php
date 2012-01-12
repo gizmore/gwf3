@@ -17,12 +17,12 @@ final class Forum_EditPost extends GWF_Method
 	##############
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/edit/post/([0-9]+)/ index.php?mo=Forum&me=EditPost&pid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

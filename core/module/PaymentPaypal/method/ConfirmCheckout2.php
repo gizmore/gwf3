@@ -1,7 +1,7 @@
 <?php
 final class PaymentPaypal_ConfirmCheckout2 extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$mp = Module_Payment::instance();
 		

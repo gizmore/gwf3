@@ -9,7 +9,7 @@
 */
 final class PaymentPaypal_ConfirmCheckout extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$gwf_token = Common::getGet('gwf_token');
 		if (false === ($order = GWF_Order::getByToken($gwf_token))) {

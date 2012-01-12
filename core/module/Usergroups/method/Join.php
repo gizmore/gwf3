@@ -4,7 +4,7 @@ final class Usergroups_Join extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($gid = Common::getGet('deny'))) {
 			return $this->onRefuse($this->_module, $gid);

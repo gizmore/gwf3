@@ -9,7 +9,7 @@ final class News_Show extends GWF_Method
 	private $nPages = 1;
 	private $numNews = 0;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 //		http://giz.org/news/1/news_1/1/BREAKING%20NEWS%20%C3%9C%C3%9C%22%27
 		return 
@@ -29,7 +29,7 @@ final class News_Show extends GWF_Method
 			'';
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		// Pre Sanatizer / Convert
 		if (false !== ($newsid = Common::getGet('newsid'))) {

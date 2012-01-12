@@ -7,7 +7,7 @@ final class Ban_MarkRead extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($ban = GWF_Ban::getByID(Common::getGet('bid')))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));

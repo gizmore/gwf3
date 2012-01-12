@@ -7,7 +7,7 @@ final class Lamb_Account extends GWF_Method
 	
 	public function isLoginRequired() { return true; }
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->_module->initShadowlamb();
 		

@@ -3,7 +3,7 @@ final class Ban_Admin extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('addban'))) {
 			return $this->onAddBan($this->_module).$this->templateAdmin($this->_module);

@@ -1,7 +1,7 @@
 <?php
 final class Usergroups_SearchAdv extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getGet('search')) {
 			return $this->onSearchB($this->_module);

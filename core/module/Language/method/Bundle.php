@@ -8,7 +8,7 @@ final class Language_Bundle extends GWF_Method
 	
 	private $missing_bits = array();
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		error_reporting(0);
 		if (false !== Common::getPost('bundle')) {

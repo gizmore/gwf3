@@ -6,12 +6,12 @@
  */
 final class WeChall_About extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^about_wechall$ index.php?mo=WeChall&me=About'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/_wc_about');
 		GWF_Website::setPageTitle($lang->lang('about_pagetitle'));

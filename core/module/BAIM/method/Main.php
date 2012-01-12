@@ -1,12 +1,12 @@
 <?php
 final class BAIM_Main extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^about_baim$ index.php?mo=BAIM&me=Main'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_main'));
 //		GWF_Website::setMetaTags($this->_module->lang('mt_main'));

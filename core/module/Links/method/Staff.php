@@ -8,7 +8,7 @@ final class Links_Staff extends GWF_Method
 	const DEFAULT_BY = 'link_id';
 	const DEFAULT_DIR = 'DESC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($lid = Common::getGet('approve'))) {
 			return $this->onApprove($this->_module, $lid, true);

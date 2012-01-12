@@ -4,12 +4,12 @@ final class Slaytags_CrossLogin extends GWF_Method
 	const SITE_SLAY = 1;
 	private function slayradioHash($userid) { return slayradio_cross_login_hash($userid); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^slayradio/cross/login/(\\d+)/([^/]+)/?$ index.php?mo=Slaytags&me=CrossLogin&site=1&uid=$1&token=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/Slaytags/slay_secrets.php';
 		

@@ -7,7 +7,7 @@
  */
 final class Forum_Subscribe extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		$c = GWF_Random::TOKEN_LEN;
 		return
@@ -22,7 +22,7 @@ final class Forum_Subscribe extends GWF_Method
 	 */
 	private $thread;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Not sane ext_all
 		if (false !== ($token = Common::getGet('ext_all'))) {

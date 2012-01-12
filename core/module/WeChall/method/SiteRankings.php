@@ -5,14 +5,14 @@
  */
 final class WeChall_SiteRankings extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^site/ranking/for/(\d+)/[^/]+$ index.php?mo=WeChall&me=SiteRankings&sid=$1'.PHP_EOL.
 			'RewriteRule ^site/ranking/for/(\d+)/[^/]+/page-(\d+)$ index.php?mo=WeChall&me=SiteRankings&sid=$1&page=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('quickjump'))) {
 			return $this->onQuickjump($this->_module);

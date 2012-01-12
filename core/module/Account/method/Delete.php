@@ -6,12 +6,12 @@
 final class Account_Delete extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^account/delete$ index.php?mo=Account&me=Delete'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('delete')) {
 			return $this->onDelete($this->_module);

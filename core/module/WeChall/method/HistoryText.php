@@ -1,7 +1,7 @@
 <?php
 final class WeChall_HistoryText extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^history/for/([^/]+)/?$ index.php?mo=WeChall&me=HistoryText&username=$1'.PHP_EOL.
@@ -9,7 +9,7 @@ final class WeChall_HistoryText extends GWF_Method
 			'RewriteRule ^history/for/([^/]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)/?$ index.php?mo=WeChall&me=HistoryText&username=$1&by=$2&dir=$3&page=$4'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_User::getByName(Common::getGet('username')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

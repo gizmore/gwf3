@@ -2,7 +2,7 @@
 
 final class News_Sign extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^newsletter/subscribe$ index.php?mo=News&me=Sign&sign=sign'.PHP_EOL.
@@ -10,7 +10,7 @@ final class News_Sign extends GWF_Method
 			'RewriteRule ^newsletter/unsubscribe/([a-zA-Z0-9\._@\+\-]+)/([a-zA-Z0-9]+)$ index.php?mo=News&me=Sign&unsign=$2&email=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($token = Common::getGet('unsign'))) {
 			return $this->onUnsign($this->_module, Common::getGet('email', ''), $token);

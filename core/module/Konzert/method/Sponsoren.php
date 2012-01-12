@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Sponsoren extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^sponsoren.html$ index.php?mo=Konzert&me=Sponsoren'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateSponsoren($this->_module);
 	}

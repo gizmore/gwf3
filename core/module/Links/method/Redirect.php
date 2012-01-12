@@ -2,12 +2,12 @@
 
 final class Links_Redirect extends GWF_Method
 {
-//	public function getHTAccess(GWF_Module $module)
+//	public function getHTAccess()
 //	{
 ////		return 'RewriteRule ^links/redirect/([0-9]+)/? index.php?mo=Links&me=Redirect&lid=$1'.PHP_EOL;
 //	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($link = GWF_Links::getByID(Common::getGet('lid')))) {
 			return $this->_module->error('err_link');

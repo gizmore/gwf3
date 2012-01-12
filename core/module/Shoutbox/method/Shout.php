@@ -1,7 +1,7 @@
 <?php
 final class Shoutbox_Shout extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if ( (false === ($user = GWF_Session::getUser())) && (!$this->_module->cfgGuestShouts()) ) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');

@@ -12,7 +12,7 @@ final class WeChall_Sidebar extends GWF_Method
 	 * toggle panels
 	 * @see core/inc/GWF_Method#execute($this->_module)
 	 */
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($state = Common::getGet('leftpanel'))) {
 			GWF_Session::set('WC_LEFT_PANEL', $state > 0);

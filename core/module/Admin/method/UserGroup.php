@@ -8,7 +8,7 @@ final class Admin_UserGroup extends GWF_Method
 	public function isLoginRequired() { return true; }
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_User::getByID(intval(Common::getGet('uid', '0'))))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

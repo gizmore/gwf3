@@ -3,7 +3,7 @@ final class PageBuilder_Edit extends GWF_Method
 {
 	public function getUserGroups() { return array('admin'); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid')))) {
 			return $this->_module->lang('err_page');

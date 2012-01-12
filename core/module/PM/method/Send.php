@@ -6,7 +6,7 @@
  */
 final class PM_Send extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^pm/create$ index.php?mo=PM&me=Send'.PHP_EOL.
@@ -15,7 +15,7 @@ final class PM_Send extends GWF_Method
 			'RewriteRule ^pm/send/to/([^/]+)$ index.php?mo=PM&me=Send&to=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('create'))) {
 			return $this->create($this->_module);

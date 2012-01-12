@@ -3,7 +3,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->onMarkRead($this->_module);
 	}

@@ -5,7 +5,7 @@
  */
 final class WeChall_RankingLang extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^lang_ranking/([a-z]{2})$ index.php?mo=WeChall&me=RankingLang&iso=$1'.PHP_EOL.
@@ -13,7 +13,7 @@ final class WeChall_RankingLang extends GWF_Method
 			'RewriteRule ^lang_ranking/([a-z]{2})/page-(\d+)$ index.php?mo=WeChall&me=RankingLang&iso=$1&page=$2'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($iso = Common::getPost('iso'))) {
 			GWF_Website::redirect(GWF_WEB_ROOT.'lang_ranking/'.$iso);

@@ -3,7 +3,7 @@ final class Download_Add extends GWF_Method
 {
 	const SESS_FILE = 'GWF_DL_TFILE';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === $this->_module->mayUpload(GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');

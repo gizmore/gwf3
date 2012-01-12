@@ -4,7 +4,7 @@ final class Chat_Ajax extends GWF_Method
 {
 	private static $SESS_LAGGY_AJAX = 'GWF_AJAX_CHAT';
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($target = Common::getGet('postto'))) {
 			$back = $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));

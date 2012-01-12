@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Intro extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^startseite.html$ index.php?mo=Konzert&me=Intro'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/color.js');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');

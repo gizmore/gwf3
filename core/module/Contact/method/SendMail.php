@@ -5,12 +5,12 @@
  */
 final class Contact_SendMail extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^send/email/to/([^/]+)$ index.php?mo=Contact&me=SendMail&username=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_User::getByName(Common::getGet('username')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

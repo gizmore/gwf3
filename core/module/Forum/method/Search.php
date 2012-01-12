@@ -11,12 +11,12 @@ final class Forum_Search extends GWF_Method
 	##############
 	### Module ###
 	##############
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return $this->getHTAccessMethod($this->_module);
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->pagemenu = '';
 		$this->sortURL = '';

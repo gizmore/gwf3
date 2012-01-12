@@ -3,7 +3,7 @@ final class Konzert_Admin extends GWF_Method
 {
 	public function getUserGroups() { return array('admin','staff'); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateAdmin($this->_module);
 	}

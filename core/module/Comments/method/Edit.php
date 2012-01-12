@@ -4,7 +4,7 @@ final class Comments_Edit extends GWF_Method
 	private $comment;
 	private $comments;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

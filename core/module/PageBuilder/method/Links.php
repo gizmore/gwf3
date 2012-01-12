@@ -10,7 +10,7 @@ final class PageBuilder_Links extends GWF_Method
 	protected $_tpl = 'links.tpl';
 
 	public function getUserGroups() { return 'admin'; }
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		$this->_module->includeClass('GWF_PageLinks');
 		$links = GDO::table('GWF_PageLinks')->selectAll('link_url, link_href', '', '', NULL, -1, -1, GDO::ARRAY_N);
@@ -27,7 +27,7 @@ final class PageBuilder_Links extends GWF_Method
 		return $back;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$back = '';
 		$write = false;

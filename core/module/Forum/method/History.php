@@ -5,7 +5,7 @@ final class Forum_History extends GWF_Method
 	##################
 	### GWF_Method ###
 	##################
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^forum/history/by/page-(\d+)$ index.php?mo=Forum&me=History&by=&dir=&page=$1'.PHP_EOL.
@@ -13,7 +13,7 @@ final class Forum_History extends GWF_Method
 			'RewriteRule ^forum/history$ index.php?mo=Forum&me=History&by=thread_lastdate&dir=ASC'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($error = $this->sanitize($this->_module))) {
 			return $error;

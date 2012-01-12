@@ -7,12 +7,12 @@ final class News_Add extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
 
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^news/add$ index.php?mo=News&me=Add'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('add'))) {
 			return $this->onAdd($this->_module);

@@ -1,7 +1,7 @@
 <?php
 final class Votes_Polls extends GWF_Method 
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^show_poll/(\d+)/[^/]+$ index.php?mo=Votes&me=Polls&show=$1'.PHP_EOL.
@@ -9,7 +9,7 @@ final class Votes_Polls extends GWF_Method
 			'RewriteRule ^poll_overview/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Votes&me=Polls&by=$1&dir=$2&page=$3'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($pollid = Common::getGet('show'))) {
 			return $this->templatePoll($this->_module, $pollid);

@@ -1,7 +1,7 @@
 <?php
 final class Account_SetupGPGKey extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_User::getByID(Common::getGet('userid'))))
 		{

@@ -3,7 +3,7 @@ final class Forum_Subscriptions extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateSubscription($this->_module);
 	}

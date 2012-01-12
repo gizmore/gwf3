@@ -1,7 +1,7 @@
 <?php
 final class WeChall_API_User extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();

@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Presse extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^presseberichte.html$ index.php?mo=Konzert&me=Presse'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/thumbnails.js');
 		GWF_Website::addJavascriptOnload('konzInitPresse();');

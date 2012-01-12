@@ -8,7 +8,7 @@ final class Forum_ShowThread extends GWF_Method
 	################
 	### HTAccess ### 
 	################
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		$back = '';
 		if ($this->_module->cfgOldURLS())
@@ -44,7 +44,7 @@ final class Forum_ShowThread extends GWF_Method
 	##############
 	### Method ###
 	##############
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_ForumBoard::init(true);
 		

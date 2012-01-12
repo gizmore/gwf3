@@ -4,7 +4,7 @@ final class PM_Show extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^pm/show/(\d+)/[^/]+$ index.php?mo=PM&me=Show&pmid=$1'.PHP_EOL.
@@ -12,7 +12,7 @@ final class PM_Show extends GWF_Method
 			'RewriteRule ^pm/show_translated/(\d+)/[^/]+$ index.php?mo=PM&me=Show&pmid=$1&translate=please'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

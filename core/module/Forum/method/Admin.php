@@ -12,12 +12,12 @@ final class Forum_Admin extends GWF_Method
 	
 	public function getUserGroups() { return array(GWF_Group::ADMIN, GWF_Group::STAFF); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/admin$ index.php?mo=Forum&me=Admin'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getGet('fixcounters')) {
 			return $this->onFixCounters($this->_module).$this->templateAdmin($this->_module);

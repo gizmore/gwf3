@@ -5,12 +5,12 @@ final class Usergroups_Edit extends GWF_Method
 	private $group;
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^edit_usergroup/(\d+)/[^/]+$ index.php?mo=Usergroups&me=Edit&gid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$user = GWF_Session::getUser();
 		

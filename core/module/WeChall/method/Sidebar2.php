@@ -1,7 +1,7 @@
 <?php
 final class WeChall_Sidebar2 extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($state = Common::getGet('rightpanel'))) {
 			GWF_Session::set('WC_RIGHT_PANEL', $state > 0);

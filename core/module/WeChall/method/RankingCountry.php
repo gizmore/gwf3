@@ -2,7 +2,7 @@
 
 final class WeChall_RankingCountry extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^country_ranking$ index.php?mo=WeChall&me=RankingCountry'.PHP_EOL.
@@ -12,7 +12,7 @@ final class WeChall_RankingCountry extends GWF_Method
 			'RewriteRule ^country_ranking/player/([^/]+)$ index.php?mo=WeChall&me=RankingCountry&username=$1'.PHP_EOL.
 			'';
 	}
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($username = Common::getGet('username'))) {
 			return $this->templateSingleU($this->_module, $username);

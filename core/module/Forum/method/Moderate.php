@@ -2,12 +2,12 @@
 
 final class Forum_Moderate extends GWF_Method
 {
-//	public function getHTAccess(GWF_Module $module)
+//	public function getHTAccess()
 //	{
 //		return ''
 //	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($token = Common::getGet('token'))) {
 			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);

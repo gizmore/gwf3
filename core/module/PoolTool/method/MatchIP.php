@@ -4,12 +4,12 @@ final class PoolTool_MatchIP extends GWF_Method
 //	public function isLoginRequired() { return true; }
 //	public function getUserGroups() { return array('league'); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^pray\.php$ index.php?mo=PoolTool&me=MatchIP'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('match'))) {
 			return $this->onMatch($this->_module);

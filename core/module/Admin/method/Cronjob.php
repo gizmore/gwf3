@@ -8,7 +8,7 @@ final class Admin_Cronjob extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->_module->templateNav().$this->templateCronjob($this->_module);
 	}

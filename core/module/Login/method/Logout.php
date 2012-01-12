@@ -4,14 +4,14 @@
  */
 final class Login_Logout extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^logout$ index.php?mo=Login&me=Logout'.PHP_EOL;
 //			'RewriteRule ^ausloggen$ index.php?mo=Login&me=Logout'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === GWF_Session::getUser())
 		{

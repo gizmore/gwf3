@@ -9,12 +9,12 @@ final class Forum_AddBoard extends GWF_Method
 
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/add/board/([0-9]+)/[^/]+ index.php?mo=Forum&me=AddBoard&bid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

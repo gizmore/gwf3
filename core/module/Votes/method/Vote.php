@@ -2,12 +2,12 @@
 
 final class Votes_Vote extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^vote/([0-9]+)/with/(\-?[0-9]+)$ index.php?mo=Votes&me=Vote&vsid=$1&score=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

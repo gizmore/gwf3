@@ -10,7 +10,7 @@ final class Register_Admin extends GWF_Method
 	### GWF_Method ###
 	##################
 	public function getUserGroups() { return GWF_Group::STAFF; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($errors = $this->sanitize($this->_module))) {
 			return $errors;

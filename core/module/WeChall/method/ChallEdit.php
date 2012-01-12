@@ -7,12 +7,12 @@ final class WeChall_ChallEdit extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^chall/edit/(\d+)/? index.php?mo=WeChall&me=ChallEdit&cid=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid')))) {
 			return $this->_module->error('err_chall');

@@ -2,7 +2,7 @@
 
 final class VersionServer_PurgeFiles extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('purge')) {
 			return $this->onPurge($this->_module);

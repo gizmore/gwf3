@@ -1,7 +1,7 @@
 <?php
 final class Chat_MibbitCustom extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateMibbit($this->_module);
 	}

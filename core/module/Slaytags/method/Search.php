@@ -5,7 +5,7 @@ final class Slaytags_Search extends GWF_Method
 	const BY = 'ss_id';
 	const DIR = 'ASC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/Slaytags/Slay_TagSelect.php';
 

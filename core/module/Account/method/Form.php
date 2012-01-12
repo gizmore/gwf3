@@ -8,12 +8,12 @@ final class Account_Form extends GWF_Method
 	public function __construct() { return parent::__construct($module); }
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^account/?$ index.php?mo=Account&me=Form'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (isset($_POST['delete'])) {
 			die(GWF_Website::redirect($this->_module->getMethodURL('Delete')));

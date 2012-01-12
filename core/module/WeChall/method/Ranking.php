@@ -6,7 +6,7 @@
  */
 final class WeChall_Ranking extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^ranking$ index.php?mo=WeChall&me=Ranking'.PHP_EOL.
@@ -14,7 +14,7 @@ final class WeChall_Ranking extends GWF_Method
 			'RewriteRule ^ranking/page-(\d+)$ index.php?mo=WeChall&me=Ranking&page=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($username = Common::getGet('username'))) {
 			return $this->templateRankingU($this->_module, $username);

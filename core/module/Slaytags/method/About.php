@@ -1,12 +1,12 @@
 <?php
 final class Slaytags_About extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^about_slaytags.html$ index.php?mo=Slaytags&me=About'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateAbout($this->_module);
 	}

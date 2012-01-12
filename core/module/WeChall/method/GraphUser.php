@@ -34,7 +34,7 @@ final class WeChall_GraphUser extends GWF_Method
 		return - $label;
 	}
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^graph/wc_totalscore\.([^/\.]+)\.'.self::IMAGE_TYPE.'$ index.php?mo=WeChall&me=GraphUser&username=$1&type=totalscore&no_session=true'.PHP_EOL.
@@ -44,7 +44,7 @@ final class WeChall_GraphUser extends GWF_Method
 			'';
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF3::setConfig('store_last_url', false);
 		

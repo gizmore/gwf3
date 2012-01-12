@@ -9,7 +9,7 @@ final class PM_Overview extends GWF_Method
 	##################
 	### GWF_Method ###
 	##################
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^pm$ index.php?mo=PM&me=Overview&by=pm_date&dir=DESC&page=1'.PHP_EOL.
@@ -18,7 +18,7 @@ final class PM_Overview extends GWF_Method
 			'RewriteRule ^pm/folders/(\d+)/[^/]+/by/([^/]+)/([ADESC,]{0,})/page-([0-9]+)$ index.php?mo=PM&me=Overview&folder=$1&fby=$2&fdir=$3&fpage=$4'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return $this->templateGuests($this->_module);

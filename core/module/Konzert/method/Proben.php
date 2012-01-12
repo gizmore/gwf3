@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Proben extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^hoehrproben.html$ index.php?mo=Konzert&me=Proben'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'exklusiv.html');
 		return $this->templateProben($this->_module);

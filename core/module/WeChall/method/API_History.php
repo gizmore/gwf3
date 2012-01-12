@@ -14,7 +14,7 @@ final class WeChall_API_History extends GWF_Method
 	private $limit = 20;
 	private $time = false;
 	
-//	public function getHTAccess(GWF_Module $module)
+//	public function getHTAccess()
 //	{
 //		return
 ////			'^api/history/([^/]+)$ index.php?mo=WeChall&me=API_History&username=$1&no_session=true'.PHP_EOL.
@@ -22,7 +22,7 @@ final class WeChall_API_History extends GWF_Method
 ////			'^api/history$ index.php?mo=WeChall&me=API_History&no_session=true'.PHP_EOL;
 //	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();

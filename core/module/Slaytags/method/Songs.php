@@ -5,7 +5,7 @@ final class Slaytags_Songs extends GWF_Method
 	const BY = 'ss_id';
 	const DIR = 'ASC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateSongs($this->_module);
 	}

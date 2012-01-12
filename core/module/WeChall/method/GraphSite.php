@@ -2,7 +2,7 @@
 
 final class WeChall_GraphSite extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^usercount_graph/for/([^/]+)$ index.php?mo=WeChall&me=GraphSite&site=$1&type=sitehist_usercount&no_session=true'.PHP_EOL.
@@ -10,7 +10,7 @@ final class WeChall_GraphSite extends GWF_Method
 			'RewriteRule ^score_graph/for/([^/]+)$ index.php?mo=WeChall&me=GraphSite&site=$1&type=sitehist_score&no_session=true'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF3::setConfig('store_last_url', false);
 		

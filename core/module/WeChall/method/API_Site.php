@@ -1,7 +1,7 @@
 <?php
 final class WeChall_API_Site extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::plaintext();
 		

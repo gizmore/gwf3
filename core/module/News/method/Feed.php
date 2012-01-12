@@ -2,14 +2,14 @@
 
 final class News_Feed extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^news/feed$ index.php?mo=News&me=Feed'.PHP_EOL.
 			'RewriteRule ^news/feed/([a-zA-Z]{2})$ index.php?mo=News&me=Feed&iso=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 //		$iso = Common::getGet('iso', 'en');
 //		if (false === ($lang = GWF_Language::getByISO($iso))) {

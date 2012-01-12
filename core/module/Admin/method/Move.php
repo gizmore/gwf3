@@ -14,12 +14,12 @@ final class Admin_Move extends GWF_Method
 		return $a->getPriority() - $b->getPriority();
 	}
 
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return sprintf('RewriteRule ^%s/move/(up|down|first|last)/([a-zA-Z]+)$ index.php?mo=Admin&me=Move&$1=now&modulename=$2'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$gdo = new GWF_Module(false);
 		$by = $gdo->getWhitelistedBy(Common::getGet('by', 'module_name'));

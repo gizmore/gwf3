@@ -4,7 +4,7 @@ final class Forum_EditThread extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^forum/edit/thread/([0-9]+)/[^/]+$ index.php?mo=Forum&me=EditThread&tid=$1'.PHP_EOL;
@@ -15,7 +15,7 @@ final class Forum_EditThread extends GWF_Method
 	 */
 	private $thread;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($this->thread = $this->_module->getCurrentThread())) {
 			return $this->_module->error('err_thread');

@@ -4,7 +4,7 @@ final class WeChall_RankingTag extends GWF_Method
 {
 	const DEFAULT_TAG = 'Exploit';
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^category_ranking$ index.php?mo=WeChall&me=RankingTag'.PHP_EOL.
@@ -12,7 +12,7 @@ final class WeChall_RankingTag extends GWF_Method
 			'RewriteRule ^category_ranking/([^/]+)/page-(\d+)$ index.php?mo=WeChall&me=RankingTag&tag=$1&page=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('quickjmp')) {
 			return $this->onQuickjump($this->_module);

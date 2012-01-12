@@ -3,12 +3,12 @@ final class Audit_Grab extends GWF_Method
 {
 	public function getUserGroups() { return array('staff'); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^rawscript/(\\d+)\\.log$ index.php?mo=Audit&me=Grab&id=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($id = Common::getGetInt('id', false)))
 		{

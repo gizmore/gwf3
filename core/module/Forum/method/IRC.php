@@ -1,14 +1,14 @@
 <?php
 final class Forum_IRC extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteCond %{QUERY_STRING} datestamp=([^&]+)&limit=([^&]+)'.PHP_EOL.
 			'RewriteRule ^nimda_forum.php$ index.php?mo=Forum&me=IRC&datestamp=%1&limit=%2&no_session=true&ajax=true'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::plaintext();
 		

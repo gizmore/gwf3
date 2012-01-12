@@ -3,12 +3,12 @@ final class Helpdesk_Helpdesk extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^helpdesk/?$ index.php?mo=Helpdesk&me=Helpdesk'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateHelpdesk($this->_module);
 	}

@@ -4,7 +4,7 @@
  */
 final class Login_Welcome extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 //			'RewriteRule ^welcome_back$ index.php?mo=Login&me=Welcome'.PHP_EOL.
@@ -13,7 +13,7 @@ final class Login_Welcome extends GWF_Method
 //			'RewriteRule ^willkommen_zurück$ index.php?mo=Login&me=Welcome&activated=true'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->welcome($this->_module, Common::getGet('activated') !== false);
 	}

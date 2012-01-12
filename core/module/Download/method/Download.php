@@ -6,14 +6,14 @@
  */
 final class Download_Download extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^download/(\d+)/[^/]+$ index.php?mo=Download&me=Download&id=$1'.PHP_EOL.
 			'RewriteRule ^download/(\d+)/[^/]+/([a-zA-Z0-9]+)$ index.php?mo=Download&me=Download&id=$1&token=$2'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($dl = GWF_Download::getByID(Common::getGet('id')))) {
 			return $this->_module->error('err_dlid');

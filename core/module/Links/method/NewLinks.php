@@ -8,7 +8,7 @@ final class Links_NewLinks extends GWF_Method
 	const DEFAULT_BY = 'link_date';
 	const DEFAULT_DIR = 'ASC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_new_links'));
 		GWF_Website::setMetaTags($this->_module->lang('mt_new_links'));

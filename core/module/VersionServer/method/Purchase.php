@@ -5,7 +5,7 @@ final class VersionServer_Purchase extends GWF_Method
 	
 	private $modules;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($mod_pay = GWF_Module::getModule('Payment'))) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array( 'Payment'));

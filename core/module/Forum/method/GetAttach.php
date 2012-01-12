@@ -1,12 +1,12 @@
 <?php
 final class Forum_GetAttach extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/attachment/(\d+)$ index.php?mo=Forum&me=GetAttach&aid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($attach = GWF_ForumAttachment::getByID(Common::getGet('aid')))) {
 			return $this->_module->error('err_attach');

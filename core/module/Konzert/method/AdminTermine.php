@@ -7,7 +7,7 @@ final class Konzert_AdminTermine extends GWF_Method
 	
 	public function getUserGroups() { return array('admin','staff'); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateTermine($this->_module);
 	}

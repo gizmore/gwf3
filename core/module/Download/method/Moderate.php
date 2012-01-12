@@ -5,7 +5,7 @@
  */
 final class Download_Moderate extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($dl = GWF_Download::getByID(Common::getGetString('dlid'))))
 		{

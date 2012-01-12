@@ -1,12 +1,12 @@
 <?php
 final class WeChall_ScoringFAQ extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^scoring_faq$ index.php?mo=WeChall&me=ScoringFAQ'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_scorefaq'));
 		GWF_Website::setMetaTags($this->_module->lang('mt_scorefaq'));

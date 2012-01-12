@@ -1,14 +1,14 @@
 <?php
 final class WeChall_JoinUs extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^join_us$ index.php?mo=WeChall&me=JoinUs'.PHP_EOL.
 			'RewriteRule ^join.php$ index.php?mo=WeChall&me=JoinUs'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/_wc_join');
 		GWF_Website::setPageTitle($lang->lang('pt_joinus'));

@@ -2,12 +2,12 @@
 
 final class Language_Set extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^lang-to-([a-z]{2})/?$ index.php?mo=Language&me=Set&iso=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($iso = Common::getGet('iso')))
 		{

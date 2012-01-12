@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Impressum extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^impressum.html$ index.php?mo=Konzert&me=Impressum'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'sponsoren.html');
 		return $this->templateImpressum($this->_module);

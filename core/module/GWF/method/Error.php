@@ -5,12 +5,12 @@
  */
 final class GWF_Error extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^error/(.*?)$ index.php?mo=GWF&me=Error&code=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Do not remember this "non 200" page
 		GWF3::setConfig('store_last_url', false);

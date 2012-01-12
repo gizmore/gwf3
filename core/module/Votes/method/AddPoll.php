@@ -4,12 +4,12 @@ final class Votes_AddPoll extends GWF_Method
 {
 	const SESS_OPTIONS = 'GWF_VM_OPT';
 
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^poll/add$ index.php?mo=Votes&me=AddPoll'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('add_opt')) {
 			return $this->onAddOption($this->_module).$this->templateAddPoll($this->_module);

@@ -3,7 +3,7 @@ final class Audit_EditLog extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateEditLog($this->_module);
 	}

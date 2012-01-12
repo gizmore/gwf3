@@ -4,7 +4,7 @@ final class BAIM_ValidateMC extends GWF_Method
 	const SHA512_LEN = 128;
 	const SHARED_SECRET = 'isgX93$4t7.dgh84t';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::plaintext();
 		

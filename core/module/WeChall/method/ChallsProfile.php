@@ -4,7 +4,7 @@ final class WeChall_ChallsProfile extends GWF_Method
 	const DEFAULT_BY = 'chall_score';
 	const DEFAULT_DIR = 'ASC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateChalls($this->_module, $user);
 	}

@@ -5,7 +5,7 @@
  */
 final class Votes_Ajax extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($vsid = Common::getGet('vsid'))) {
 			return $this->statsVoteScore($this->_module, $vsid);

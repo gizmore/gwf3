@@ -4,7 +4,7 @@ final class WeChall_MathSolutions extends GWF_Method
 	const DEFAULT_BY = 'wmc_date';
 	const DEFAULT_DIR = 'ASC';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGetString('cid')))) {
 			return $this->_module->error('err_chall');

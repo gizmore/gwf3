@@ -4,14 +4,14 @@ final class Admin_Modules extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			sprintf('RewriteRule ^%s$ index.php?mo=Admin&me=Modules&by=module_name&dir=ASC'.PHP_EOL, Module_Admin::ADMIN_URL_NAME).
 			sprintf('RewriteRule ^%s/modules/by/([a-z_]+)/(DESC|ASC)$ index.php?mo=Admin&me=Modules&by=$1&dir=$2'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 			
 	}
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->_module->templateNav().$this->templateModules($this->_module);
 	}

@@ -3,12 +3,12 @@ class Audit_ViewLog extends GWF_Method
 {
 	protected $log = NULL;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^warscript/([^/_]+)_([^/_]+)_(\\d+)_([a-zA-Z0-9]+)\.html$ index.php?mo=Audit&me=ViewLog&euser=$1&user=$2&id=$3&token=$4'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module)))
 		{
@@ -17,7 +17,7 @@ class Audit_ViewLog extends GWF_Method
 		return $this->templateViewLog($this->_module, $this->log);
 	}
 	
-	public function sanitize(GWF_Module $module)
+	public function sanitize()
 	{
 		if ('' === ($eusername = Common::getGetString('euser')))
 		{

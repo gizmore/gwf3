@@ -7,12 +7,12 @@ final class WeChall_SiteAdd extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^site/add$ index.php?mo=WeChall&me=SiteAdd'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('add_site')) {
 			return $this->onAddSite($this->_module);

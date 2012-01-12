@@ -13,12 +13,12 @@ abstract class GWF_Method
 	protected $_module = NULL;
 
 	public function __construct(GWF_Module $module) { $this->_module = $module; return $this; }
-	public abstract function execute(GWF_Module $module);
+	public abstract function execute();
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
 	public function isLoginRequired() { return false; }
 	public function checkDependencies() { return false; }
-	public function getHTAccess(GWF_Module $module) { return ''; }
+	public function getHTAccess() { return ''; }
 	public function getMetaKeywords() { return false; }
 	public function getMetaDescription() { return false; }
 	public function getPageTitle() { return false; }

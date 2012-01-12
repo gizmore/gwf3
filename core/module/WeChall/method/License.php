@@ -5,12 +5,12 @@
  */
 final class WeChall_License extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^wechall_license$ index.php?mo=WeChall&me=License'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateLicense($this->_module);
 	}

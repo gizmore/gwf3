@@ -4,7 +4,7 @@ final class WeChall_Challs extends GWF_Method
 {
 	const DEFAULT_BY = 'chall_score,chall_date';
 	const DEFAULT_DIR = 'ASC,ASC';
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^challs/?$ index.php?mo=WeChall&me=Challs'.PHP_EOL.
@@ -18,7 +18,7 @@ final class WeChall_Challs extends GWF_Method
 			'';
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		Module_WeChall::includeForums();
 		

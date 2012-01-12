@@ -7,7 +7,7 @@ final class Helpdesk_FAQEdit extends GWF_Method
 	public function validate_answer($m, $arg) { return GWF_Validator::validateString($m, 'answer', $arg, 8, $m->cfgMaxMessageLen(), false); }
 	public function validate_delete_confirm_v($m, $arg) { return (!isset($_POST['delete'])) ? false : (isset($_POST['delete_confirm'])?false:$m->lang('err_confirm_delete')); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($faq = GWF_HelpdeskFAQ::getByID(Common::getGetString('faqid')))) {
 			return $this->_module->error('err_faq');

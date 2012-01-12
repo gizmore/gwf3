@@ -4,12 +4,12 @@ final class Profile_Form extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^profile_settings$ index.php?mo=Profile&me=Form'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('edit')) {
 			return $this->onEditSettings($this->_module).$this->templateSettings($this->_module);

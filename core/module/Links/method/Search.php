@@ -2,14 +2,14 @@
 
 final class Links_Search extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^link/search$ index.php?mo=Links&me=Search'.PHP_EOL.
 			'RewriteRule ^link/search/([^/]+)$ index.php?mo=Links&me=Search&term=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('search_quick')) {
 			return $this->onSearch($this->_module, false);

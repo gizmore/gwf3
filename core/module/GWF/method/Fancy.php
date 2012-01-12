@@ -6,7 +6,7 @@
  */
 final class GWF_Fancy extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		$ret = '';
 
@@ -59,7 +59,7 @@ final class GWF_Fancy extends GWF_Method
 		return $ret.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		switch(substr(Common::getGetString('fancy'), 0, 4))
 		{

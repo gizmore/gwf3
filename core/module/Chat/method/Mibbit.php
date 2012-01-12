@@ -5,14 +5,14 @@
  */
 final class Chat_Mibbit extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^irc_chat/?$ index.php?mo=Chat&me=Mibbit'.PHP_EOL.
 			'RewriteRule ^irc_chat_fullscreen/?$ index.php?mo=Chat&me=Mibbit&fullscreen=yes'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateMibbit($this->_module);
 	}

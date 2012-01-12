@@ -1,14 +1,14 @@
 <?php
 final class WeChall_SiteHistory extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^site/history/([^/]+)$ index.php?mo=WeChall&me=SiteHistory&site=$1'.PHP_EOL.
 			'RewriteRule ^site/history/([^/]+)/page/(\\d+)$ index.php?mo=WeChall&me=SiteHistory&site=$1&page=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('quickjump'))) {
 			return $this->onQuickjump($this->_module);

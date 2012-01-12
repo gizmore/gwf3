@@ -7,7 +7,7 @@ final class WeChall_Sites extends GWF_Method
 {
 	private $pageTitle = '';
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^sites.php$ index.php?mo=WeChall&me=Sites&which=1&langiso=all'.PHP_EOL.
@@ -32,7 +32,7 @@ final class WeChall_Sites extends GWF_Method
 			'RewriteRule ^coming_soon$ index.php?mo=WeChall&me=Sites&which=3&langiso=all'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		WC_HTML::$LEFT_PANEL = false;
 		WC_HTML::$RIGHT_PANEL = false;

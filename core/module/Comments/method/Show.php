@@ -3,7 +3,7 @@ final class Comments_Show extends GWF_Method
 {
 	private $comments;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module)))
 		{

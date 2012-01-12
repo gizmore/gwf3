@@ -7,12 +7,12 @@
  */
 final class Forum_GTrans extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/google/translate/post/([0-9]+)$ index.php?mo=Forum&me=GTrans&pid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->gTranslate($this->_module);
 	}

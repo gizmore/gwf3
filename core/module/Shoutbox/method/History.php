@@ -1,7 +1,7 @@
 <?php
 final class Shoutbox_History extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^shoutbox/history$ index.php?mo=Shoutbox&me=History'.PHP_EOL.
@@ -10,7 +10,7 @@ final class Shoutbox_History extends GWF_Method
 			'';
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($array = Common::getPost('delete'))) {
 			return $this->onDelete($this->_module, $array);

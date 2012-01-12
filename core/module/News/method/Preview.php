@@ -4,7 +4,7 @@ final class News_Preview extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^newsletter/preview/text$ index.php?mo=News&me=Preview&mode=text'.PHP_EOL.
@@ -16,7 +16,7 @@ final class News_Preview extends GWF_Method
 	 */
 	private $news;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($this->news = Module_News::getSavedPreview())) {
 			return $this->_module->error('err_no_preview');

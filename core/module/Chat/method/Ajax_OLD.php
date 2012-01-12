@@ -5,7 +5,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 	private static $SESS_AJAX_PUB = 'GWF_CHAT_AJAX1';
 	private static $SESS_AJAX_PRIV = 'GWF_CHAT_AJAX2';
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getGet('stream')) {
 			return $this->startStream($this->_module);

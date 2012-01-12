@@ -2,7 +2,7 @@
 
 final class PM_AutoFolder extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($token = Common::getGet('token'))) {
 			return $this->autoFolderB($this->_module, $token, Common::getGet('pmid'), Common::getGet('uid'));

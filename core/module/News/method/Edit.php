@@ -4,7 +4,7 @@ final class News_Edit extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^news/edit$ index.php?mo=News&me=Edit'.PHP_EOL.
@@ -20,7 +20,7 @@ final class News_Edit extends GWF_Method
 	 */
 	private $lang;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($mod_forum = GWF_Module::getModule('Forum', true))) {
 			$mod_forum->onInclude();

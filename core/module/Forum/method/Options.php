@@ -7,12 +7,12 @@ final class Forum_Options extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/options/?$ index.php?mo=Forum&me=Options'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('change')) {
 			return $this->onChange($this->_module).$this->templateOptions($this->_module);

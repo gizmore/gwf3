@@ -1,12 +1,12 @@
 <?php
 final class Lamb_Shadowlamb extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^shadowlamb/?$ index.php?mo=Lamb&me=Shadowlamb'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once 'core/module/Lamb/Lamb_User.php';
 		require_once 'core/module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';

@@ -7,7 +7,7 @@ final class PM_Search extends GWF_Method
 	# Need Login
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 //		if (false !== ($errors = $this->sanitize($this->_module))) {
 //			return $errors;

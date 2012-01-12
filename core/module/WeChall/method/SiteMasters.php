@@ -5,7 +5,7 @@
  */
 final class WeChall_SiteMasters extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^site_masters$ index.php?mo=WeChall&me=SiteMasters'.PHP_EOL.
@@ -16,7 +16,7 @@ final class WeChall_SiteMasters extends GWF_Method
 			'RewriteRule ^old_site_masters/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=SiteMasters&by=$1&dir=$2&page=$3&old=1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		return $this->masterTable($this->_module, Common::getGet('old')==='1');

@@ -3,12 +3,12 @@ require_once 'ViewLog.php';
 
 final class Audit_Replay extends Audit_ViewLog
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^warplay/([^/_]+)_([^/_]+)_(\\d+)_([a-zA-Z0-9]+)\.html$ index.php?mo=Audit&me=Replay&user=$1&euser=$2&id=$3&token=$4'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module)))
 		{

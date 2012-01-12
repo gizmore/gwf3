@@ -8,7 +8,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	private $client;
 	private $datestamp;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->validate($this->_module))) {
 			return $error;

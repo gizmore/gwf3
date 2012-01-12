@@ -1,7 +1,7 @@
 <?php
 final class PM_FolderAction extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$back = '';
 		if (false !== (Common::getPost('delete_folder'))) {

@@ -10,7 +10,7 @@ final class Comments_Moderate extends GWF_Method
 {
 	private $comment;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($cmt_id = Common::getGetString('show', false)))
 		{

@@ -1,7 +1,7 @@
 <?php
 final class Helpdesk_MarkSolved extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($ticket = GWF_HelpdeskTicket::getByID(Common::getGetString('ticket')))) {
 			return $this->_module->error('err_ticket');

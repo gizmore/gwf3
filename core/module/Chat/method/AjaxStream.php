@@ -2,12 +2,12 @@
 
 final class Chat_AjaxStream extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^gwf_chat.php$ core/module/Chat/gwf_chat.php'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->stream($this->_module);
 	}

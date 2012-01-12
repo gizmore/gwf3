@@ -5,7 +5,7 @@
  */
 final class Usergroups_Users extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^users$ index.php?mo=Usergroups&me=Users'.PHP_EOL.
@@ -16,7 +16,7 @@ final class Usergroups_Users extends GWF_Method
 //			'RewriteRule ^users/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Usergroups&me=Users&by=$1&dir=$2&page=$3'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateUsers($this->_module);
 	}

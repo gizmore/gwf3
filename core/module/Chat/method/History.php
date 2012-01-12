@@ -2,7 +2,7 @@
 
 final class Chat_History extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^chat/history/for/([^/]+)/page-([0-9]+)$ index.php?mo=Chat&me=History&channel=$1&page=$2'.PHP_EOL.
@@ -11,7 +11,7 @@ final class Chat_History extends GWF_Method
 			'RewriteRule ^chat/history$ index.php?mo=Chat&me=History'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->sanitize($this->_module);
 		

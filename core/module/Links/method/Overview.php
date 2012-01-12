@@ -6,7 +6,7 @@ final class Links_Overview extends GWF_Method
 	const DEFAULT_DIR = 'DESC';
 //	const DEFAULT_ORDERBY = '';
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^links$ index.php?mo=Links&me=Overview'.PHP_EOL.
@@ -17,7 +17,7 @@ final class Links_Overview extends GWF_Method
 			'RewriteRule ^links/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Links&me=Overview&by=$1&dir=$2&page=$3'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Module::loadModuleDB('Votes')->onInclude();
 		

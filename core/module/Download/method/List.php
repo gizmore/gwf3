@@ -1,7 +1,7 @@
 <?php
 final class Download_List extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^downloads$ index.php?mo=Download&me=List'.PHP_EOL.
@@ -10,7 +10,7 @@ final class Download_List extends GWF_Method
 			'';
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# SEO
 		GWF_Website::setMetaTags($this->_module->lang('mt_list'));

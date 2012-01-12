@@ -4,12 +4,12 @@ final class Forum_Thanks extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/thanks/for/post/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Thanks&pid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->onThanks($this->_module);
 	}

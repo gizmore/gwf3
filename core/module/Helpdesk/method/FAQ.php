@@ -3,7 +3,7 @@ final class Helpdesk_FAQ extends GWF_Method
 {
 	private function onGenerate() { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($this->_module); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$back = '';
 		

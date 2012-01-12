@@ -3,7 +3,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 {
 	public function isLoginRequired() { return false; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^users_in_group/(\d+)/[^/]+$ index.php?mo=Usergroups&me=ShowUsers&gid=$1'.PHP_EOL.
@@ -12,7 +12,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 			'';
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($group = GWF_Group::getByID(Common::getGet('gid')))) {
 			return $this->_module->error('err_unk_group');

@@ -5,14 +5,14 @@
  */
 final class WeChall_RemoteUpdate extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
 			'RewriteRule ^remoteupdate.php$ index.php?mo=WeChall&me=RemoteUpdate&%1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$syntax = 'syntax: ' . Common::getAbsoluteURL('remoteupdate.php'). '?sitename=FOO&username=BAR';
 		$server = htmlspecialchars($_SERVER['SERVER_NAME'], ENT_QUOTES);

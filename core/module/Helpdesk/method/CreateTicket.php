@@ -3,7 +3,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/Helpdesk/GWF_HelpdeskTitle.php';
 		

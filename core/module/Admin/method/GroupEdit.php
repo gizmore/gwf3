@@ -13,7 +13,7 @@ final class Admin_GroupEdit extends GWF_Method
 	### GWF_Method ###
 	##################
 	public function getUserGroups() { return GWF_Group::ADMIN; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

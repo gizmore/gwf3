@@ -3,7 +3,7 @@ final class Helpdesk_Ticket extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($ticket = GWF_HelpdeskTicket::getByID(Common::getGet('ticket')))) {
 			return $this->_module->error('err_ticket');

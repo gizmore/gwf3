@@ -13,7 +13,7 @@ final class Forum_EditAttach extends GWF_Method
 	
 	public function isLoginRequired() { return true; }
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($this->attach = GWF_ForumAttachment::getByID(Common::getGet('aid', 0)))) {
 			return $this->_module->error('err_attach');

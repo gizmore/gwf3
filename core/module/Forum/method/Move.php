@@ -7,7 +7,7 @@ final class Forum_Move extends GWF_Method
 {
 	public function getUserGroups() { return 'moderator'; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($bid = Common::getGet('up'))) {
 			return $this->move($this->_module, -1, $bid);

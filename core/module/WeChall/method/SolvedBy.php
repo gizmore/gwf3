@@ -1,7 +1,7 @@
 <?php
 final class WeChall_SolvedBy extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^challenge_solvers_for/(\d+)/[^/]+$ index.php?mo=WeChall&me=SolvedBy&cid=$1'.PHP_EOL.
@@ -9,7 +9,7 @@ final class WeChall_SolvedBy extends GWF_Method
 		
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid')))) {
 			return $this->_module->error('err_challenge');

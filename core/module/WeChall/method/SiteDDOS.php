@@ -8,7 +8,7 @@ final class WeChall_SiteDDOS extends GWF_Method
 {
 	public function getUserGroups() { return 'admin'; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($site = WC_Site::getByID(Common::getGet('siteid')))) {
 			return $this->_module->error('err_site');

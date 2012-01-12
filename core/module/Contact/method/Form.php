@@ -5,12 +5,12 @@
  */
 final class Contact_Form extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^contact/?$ index.php?mo=Contact&me=Form'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('page_title'));
 		GWF_Website::setMetaTags($this->_module->lang('page_meta'));

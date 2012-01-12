@@ -8,12 +8,12 @@ final class Forum_AddThread extends GWF_Method
 	private $board = false;
 	
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/add/thread/([0-9]+)/[^/]+$ index.php?mo=Forum&me=AddThread&bid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

@@ -1,7 +1,7 @@
 <?php
 final class Lamb_Ajax extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($player_id = GWF_Session::getOrDefault('SL4_PID', false))) {
 			return 'NO PLAYER SELECTED';

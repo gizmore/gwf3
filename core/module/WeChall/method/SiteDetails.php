@@ -2,12 +2,12 @@
 
 final class WeChall_SiteDetails extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^site/details/(\d+)/.*$ index.php?mo=WeChall&me=SiteDetails&sid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('quickjump')) {
 			return $this->onQuickJump($this->_module);

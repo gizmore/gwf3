@@ -4,7 +4,7 @@ final class WeChall_SiteDescr extends GWF_Method
 	private $site;
 	
 	public function isLoginRequired() { return true; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($errors = $this->sanitize($this->_module))) {
 			return GWF_HTML::errorA('WC4', $errors, true);

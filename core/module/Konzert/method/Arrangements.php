@@ -1,12 +1,12 @@
 <?php
 final class Konzert_Arrangements extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^arrangements.html$ index.php?mo=Konzert&me=Arrangements'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'konzerttermine.html');
 		return $this->templateArrangements($this->_module);

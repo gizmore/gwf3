@@ -3,7 +3,7 @@ final class Payment_StaffOrder extends GWF_Method
 {
 	public function getUserGroups() { return 'staff'; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($order = GWF_Order::getByID(Common::getGet('oid')))) {
 			return $this->_module->error('err_order');

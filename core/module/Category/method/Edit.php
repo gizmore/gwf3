@@ -6,12 +6,12 @@ final class Category_Edit extends GWF_Method
 	
 	private static $cat = false;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^category/edit/([0-9]+)/? index.php?mo=Category&me=Edit&catid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($cat = GWF_Category::getByID(Common::getGet('catid')))) {
 			return $this->_module->error('err_cat');

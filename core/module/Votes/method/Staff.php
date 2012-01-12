@@ -6,7 +6,7 @@
 final class Votes_Staff extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::STAFF; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		// Single
 		if (false !== ($vsid = Common::getGet('editvs')))

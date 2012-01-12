@@ -5,7 +5,7 @@ final class BAIM_Admin extends GWF_Method
 	
 	public function getUserGroups() { return 'admin'; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('newdemo')) {
 			return $this->onNewDemo($this->_module).$this->templateAdmin($this->_module);

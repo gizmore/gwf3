@@ -5,7 +5,7 @@
  */
 final class PaymentPaypal_InitCheckout extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($order = GWF_Order::getByToken(Common::getPostString('gwf_token')))) {
 			return $this->_module->error('err_order');

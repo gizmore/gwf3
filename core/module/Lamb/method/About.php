@@ -1,12 +1,12 @@
 <?php
 final class Lamb_About extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^about_lamb$ index.php?mo=Lamb&me=About'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$tVars = array(
 		);

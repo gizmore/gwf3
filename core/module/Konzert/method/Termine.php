@@ -5,12 +5,12 @@ final class Konzert_Termine extends GWF_Method
 	const DEFAULT_DIR = 'ASC';
 	const IPP = 5;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^konzerttermine.html$ index.php?mo=Konzert&me=Termine'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::addJavascriptOnload('konzertInitTermine();');
 		

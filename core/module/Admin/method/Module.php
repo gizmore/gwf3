@@ -18,11 +18,11 @@ final class Admin_Module extends GWF_Method
 	### GWF_Method ###
 	##################
 	public function getUserGroups() { return GWF_Group::ADMIN; }
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return sprintf('RewriteRule ^%s/configure/([a-zA-Z]+)$ index.php?mo=Admin&me=Module&module=$1'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 	}
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

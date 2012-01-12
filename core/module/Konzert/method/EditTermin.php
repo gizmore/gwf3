@@ -3,7 +3,7 @@ final class Konzert_EditTermin extends GWF_Method
 {
 	public function getUserGroups() { return array('admin','staff'); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($termin = Konzert_Termin::getByID(Common::getGetString('ktid'))))
 		{

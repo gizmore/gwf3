@@ -4,14 +4,14 @@ final class Forum_AddPoll extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^thread_add_poll/(\d+)/[^/]+$ index.php?mo=Forum&me=AddPoll&tid=$1'.PHP_EOL;
 	}
 	
 	private $thread;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($mod_votes = GWF_Module::loadModuleDB('Votes'))) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array('Votes'));

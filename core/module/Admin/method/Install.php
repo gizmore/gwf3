@@ -4,7 +4,7 @@ final class Admin_Install extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			sprintf('RewriteRule ^%s/install_all$ index.php?mo=Admin&me=Install&all=true'.PHP_EOL, Module_Admin::ADMIN_URL_NAME).
@@ -12,7 +12,7 @@ final class Admin_Install extends GWF_Method
 			sprintf('RewriteRule ^%s/wipe/([a-zA-Z]+)$ index.php?mo=Admin&me=Install&module=$1&drop=1'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$nav = $this->_module->templateNav();
 		

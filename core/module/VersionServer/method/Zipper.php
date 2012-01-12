@@ -2,7 +2,7 @@
 final class VersionServer_Zipper extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^zipper/?$ index.php?mo=VersionServer&me=Zipper'.PHP_EOL;
@@ -43,7 +43,7 @@ final class VersionServer_Zipper extends GWF_Method
 		'extra/temp/smarty_cache', 'extra/temp/smarty_cache/cache', 'extra/temp/smarty_cache/cfg', 'extra/temp/smarty_cache/tpl', 'extra/temp/smarty_cache/tplc',
 	);
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('zipper'))) {
 			return $this->onZipB($this->_module);

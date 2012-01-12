@@ -1,7 +1,7 @@
 <?php
 final class Slaytags_ShowLyrics extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($song = Slay_Song::getByID(Common::getGetString('stid'))))
 		{

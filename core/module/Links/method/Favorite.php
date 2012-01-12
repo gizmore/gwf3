@@ -4,7 +4,7 @@ final class Links_Favorite extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($link = GWF_Links::getByID(Common::getGet('lid')))) {
 			return $this->_module->error('err_link');

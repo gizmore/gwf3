@@ -10,14 +10,14 @@ final class News_Admin extends GWF_Method
 	
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^news/admin$ index.php?mo=News&me=Admin&page=1&by=date&dir=DESC'.PHP_EOL.
 			'RewriteRule ^news/admin/page/([0-9]+)/by/([a-zA-Z_,]+)/([DEASC,]+)$ index.php?mo=News&me=Admin&page=$1&by=$2&dir=$3'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$this->sanitize($this->_module);
 		

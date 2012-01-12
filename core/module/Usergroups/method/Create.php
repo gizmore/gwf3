@@ -4,7 +4,7 @@ final class Usergroups_Create extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$user = GWF_Session::getUser();
 		

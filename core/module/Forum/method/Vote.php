@@ -4,13 +4,13 @@ final class Forum_Vote extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/vote/(up|down)/post/([0-9]+)/? index.php?mo=Forum&me=Vote&dir=$1&pid=$2'.PHP_EOL;
 		
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($post = $this->_module->getCurrentPost())) {
 			return $this->_module->error('err_post');

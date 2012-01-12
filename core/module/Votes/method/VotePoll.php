@@ -1,11 +1,11 @@
 <?php
 final class Votes_VotePoll extends GWF_Method
 {
-//	public function getHTAccess(GWF_Module $module)
+//	public function getHTAccess()
 //	{
 //	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID(Common::getPost('vmid')))) {
 			return $this->_module->error('err_poll');

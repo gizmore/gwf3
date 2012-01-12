@@ -2,7 +2,7 @@
 
 final class Usergroups_Accept extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($token = Common::getGet('token'))) {
 			$back = $this->acceptByToken($this->_module, $token);

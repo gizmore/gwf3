@@ -3,7 +3,7 @@ final class Votes_EditPoll extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID(Common::getGet('vmid')))) {
 			return $this->_module->error('err_poll');

@@ -1,7 +1,7 @@
 <?php
 final class Language_CodeLangs extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_GESHI_PATH;
 		$geshi = new GeSHi();

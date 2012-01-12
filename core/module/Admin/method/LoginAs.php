@@ -6,7 +6,7 @@ final class Admin_LoginAs extends GWF_Method
 	### Method ###
 	##############
 	public function getUserGroups() { return GWF_Group::ADMIN; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$nav = $this->_module->templateNav();
 		

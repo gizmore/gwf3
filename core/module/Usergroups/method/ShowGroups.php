@@ -3,12 +3,12 @@ final class Usergroups_ShowGroups extends GWF_Method
 {
 	public function isLoginRequired() { return false; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^my_groups$ index.php?mo=Usergroups&me=ShowGroups'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Module::loadModuleDB('Forum',true);
 		

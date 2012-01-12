@@ -7,13 +7,13 @@ final class Category_Add extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^category/add/?$ index.php?mo=Category&me=Add'.PHP_EOL;
 //		return $this->getHTAccessMethod($this->_module);
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== (Common::getPost('add'))) {
 			return $this->onAdd($this->_module);

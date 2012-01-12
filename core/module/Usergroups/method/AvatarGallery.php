@@ -6,7 +6,7 @@
  */
 final class Usergroups_AvatarGallery extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^avatar/gallery$ index.php?mo=Usergroups&me=AvatarGallery'.PHP_EOL.
@@ -14,7 +14,7 @@ final class Usergroups_AvatarGallery extends GWF_Method
 			'RewriteRule ^avatar/gallery/page-(\d+)$ index.php?mo=Usergroups&me=AvatarGallery&page=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($userid = Common::getGet('show'))) {
 			return $this->onShowAvatar((int)$userid);

@@ -7,7 +7,7 @@ final class WeChall_API_ChallSolved extends GWF_Method
 {
 	const MAX_OUT = 10;
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$_GET['ajax'] = 1;
 		header('Content-Type: text/plain');

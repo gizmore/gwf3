@@ -18,7 +18,7 @@ final class Forum_Reply extends GWF_Method
 	##############
 	### Method ###
 	##############
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^forum/quote/post/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Reply&pid=$1&quote=yes'.PHP_EOL.
@@ -26,7 +26,7 @@ final class Forum_Reply extends GWF_Method
 			'RewriteRule ^forum/reply/to/thread/([0-9]+)/[^/]+$ index.php?mo=Forum&me=Reply&tid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;

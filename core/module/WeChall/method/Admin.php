@@ -3,7 +3,7 @@ final class WeChall_Admin extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (Common::getGet('recalc') === 'all') {
 			return $this->onRecalcEverything($this->_module);

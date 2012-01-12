@@ -1,12 +1,12 @@
 <?php
 final class PasswordForgot_Change extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^change_password/([0-9]+)/([0-9A-Za-z]+)$ index.php?mo=PasswordForgot&me=Change&token=$2&userid=$1'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Check token
 		if (false === ($token = Common::getGet('token'))) {

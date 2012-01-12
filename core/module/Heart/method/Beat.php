@@ -2,7 +2,7 @@
 /** Show online sessions **/
 final class Heart_Beat extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		$_GET['ajax'] = 1;
 		$cut = time()-GWF_ONLINE_TIMEOUT;

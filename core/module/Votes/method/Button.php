@@ -5,12 +5,12 @@
  */
 final class Votes_Button extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^votes/button/([0-9]+)/([0-9]+)/of/([0-9]+)\.(gif|jpg|png)$ index.php?mo=Votes&me=Button&size=$1&num=$2&of=$3&ext=$4&no_session=true'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF3::setConfig('store_last_url', false);
 		

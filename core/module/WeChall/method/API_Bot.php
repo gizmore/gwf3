@@ -5,7 +5,7 @@
  */
 final class WeChall_API_Bot extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteCond %{QUERY_STRING} username=([^&]+)'.PHP_EOL.
@@ -16,7 +16,7 @@ final class WeChall_API_Bot extends GWF_Method
 //			'RewriteRule ^wechallonsite.php$ index.php?mo=WeChall&me=Bot&onsite=%1&no_session=true'.PHP_EOL	;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::plaintext();
 		

@@ -7,7 +7,7 @@ final class Audit_Logs extends GWF_Method
 	
 	public function getUserGroups() { return array(GWF_Group::STAFF); }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		return $this->templateLogs($this->_module);
 	}

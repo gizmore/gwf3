@@ -7,12 +7,12 @@ final class Login_Form extends GWF_Method
 	protected $_tpl = 'login.tpl';
 //	public function isCSRFProtected() { return false; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^login/?$ index.php?mo=Login&me=Form'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_login'));
 		

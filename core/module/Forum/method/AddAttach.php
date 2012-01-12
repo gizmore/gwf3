@@ -8,12 +8,12 @@ final class Forum_AddAttach extends GWF_Method
 	
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^forum/add/attachment/to/post/(\d+)/[^/]+$ index.php?mo=Forum&me=AddAttach&pid=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($this->post = GWF_ForumPost::getPost(Common::getGet('pid', 0)))) {
 			return $this->_module->error('err_post');

@@ -12,7 +12,7 @@ final class WeChall_GraphStats extends GWF_Method
 	const MIN_WIDTH = 320;  const MIN_HEIGHT = 240;
 	const MAX_WIDTH = 1024; const MAX_HEIGHT = 768;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 //			'RewriteRule ^wechall\.stats\.(\d{4})\.(\d\d)\.(\d\d)\.\.([0-9,]*|all)\.(\d+)\.(\d+)\.([a-zA-Z_]+)\.jpg$ index.php?mo=WeChall&me=GraphStats&y=$1&m=$2&d=$3&opt=$4&sites=&w=$6&h=$7&user1=$8&no_session=true'.PHP_EOL.
@@ -50,7 +50,7 @@ final class WeChall_GraphStats extends GWF_Method
 	private $height;
 	
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		GWF3::setConfig('store_last_url', false);
 		

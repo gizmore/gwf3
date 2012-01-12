@@ -8,12 +8,12 @@ final class Guestbook_Moderate extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 'RewriteRule ^guestbook/edit/(\d+)$ index.php?mo=Guestbook&me=Moderate&gbid=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Permissions
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {

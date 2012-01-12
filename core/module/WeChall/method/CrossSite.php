@@ -6,7 +6,7 @@
  */
 final class WeChall_CrossSite extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($username = Common::getGet('score'))) {
 			$this->outputScore($this->_module, $username);

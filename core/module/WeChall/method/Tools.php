@@ -5,7 +5,7 @@
  */
 final class WeChall_Tools extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^tools/?$ index.php?mo=WeChall&me=Tools&list=1'.PHP_EOL.
@@ -24,7 +24,7 @@ final class WeChall_Tools extends GWF_Method
 			'';
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (Common::getGetString('list', '0') === '1')
 		{

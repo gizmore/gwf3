@@ -10,14 +10,14 @@ final class WeChall_LinkedSites extends GWF_Method
 	
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^linked_sites$ index.php?mo=WeChall&me=LinkedSites'.PHP_EOL.
 			'RewriteRule ^link_site/(\d+)/[^/]+/to/(\d+)/as/([^/]+)/([^/]+)$ index.php?mo=WeChall&me=LinkedSites&site=$1&userid=$2&onsitename=$3&link=$4'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';

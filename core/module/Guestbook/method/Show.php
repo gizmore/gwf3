@@ -5,7 +5,7 @@
  */
 final class Guestbook_Show extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^guestbook$ index.php?mo=Guestbook&me=Show&gbid=1'.PHP_EOL.
@@ -14,7 +14,7 @@ final class Guestbook_Show extends GWF_Method
 			'RewriteRule ^guestbook/show/(\d+)/page-(\d+)$ index.php?mo=Guestbook&me=Show&gbid=$1&page=$2'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		# Get GB
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {

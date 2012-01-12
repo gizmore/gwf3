@@ -3,7 +3,7 @@ final class Download_Edit extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($dl = GWF_Download::getByID(Common::getGet('id')))) {
 			return $this->_module->error('err_dlid');

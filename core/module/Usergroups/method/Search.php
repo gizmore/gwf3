@@ -1,7 +1,7 @@
 <?php
 final class Usergroups_Search extends GWF_Method
 {
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== ($term = Common::getRequest('term'))) {
 			return $this->templateUsers($this->_module, trim($term));

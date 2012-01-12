@@ -6,7 +6,7 @@ final class WeChall_Stats extends GWF_Method
 	private $sel;
 	private $months = 0;
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^stats$ index.php?mo=WeChall&me=Stats'.PHP_EOL.
@@ -14,7 +14,7 @@ final class WeChall_Stats extends GWF_Method
 			'RewriteRule ^stats/([^/]+)/vs/([^/]+)$ index.php?mo=WeChall&me=Stats&user1=$1&user2=$2'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		

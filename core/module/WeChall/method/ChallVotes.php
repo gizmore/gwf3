@@ -2,13 +2,13 @@
 
 final class WeChall_ChallVotes extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return 
 			'RewriteRule ^challvotes/(\d+)/[^/]+$ index.php?mo=WeChall&me=ChallVotes&cid=$1'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($mod_votes = GWF_Module::loadModuleDB('Votes', true))) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array('Votes'));

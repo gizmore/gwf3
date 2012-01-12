@@ -4,14 +4,14 @@ final class WeChall_WeChallSettings extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^wechall_settings$ index.php?mo=WeChall&me=WeChallSettings'.PHP_EOL.
 			'RewriteRule ^favorite_sites/remove/(\d+)$ index.php?mo=WeChall&me=WeChallSettings&remove=$1'.PHP_EOL;
 	}
 	
-//	public function getHTAccess(GWF_Module $module)
+//	public function getHTAccess()
 //	{
 //		return
 //			'RewriteRule ^favorite_sites/remove/(\d+)$ index.php?mo=WeChall&me=FavoriteSites&remove=$1'.PHP_EOL.
@@ -19,7 +19,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 //			'RewriteRule ^favorite_sites/by/([^/]+)/([DEASC,]+)$ index.php?mo=WeChall&me=FavoriteSites&by=$1&dir=$2'.PHP_EOL;
 //	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteFavorites.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_FavCats.php';

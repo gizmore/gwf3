@@ -10,7 +10,7 @@ final class Language_Checker extends GWF_Method
 	
 	
 	public function getUserGroups() { return 'admin'; }
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false !== Common::getPost('check')) {
 			return $this->onCheck($this->_module);

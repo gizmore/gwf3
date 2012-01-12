@@ -2,14 +2,14 @@
 
 final class Guestbook_Sign extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $module)
+	public function getHTAccess()
 	{
 		return
 			'RewriteRule ^guestbook/sign/(\d+)$ index.php?mo=Guestbook&me=Sign&gbid=$1'.PHP_EOL.
 			'RewriteRule ^guestbook/sign/(\d+)/in/reply/to/(\d+)$ index.php?mo=Guestbook&me=Sign&gbid=$1&msgid=$2'.PHP_EOL;
 	}
 
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {
 			return $this->_module->error('err_gb');
