@@ -29,7 +29,7 @@ $lang = array(
 	'solved_by_title' => '<a href="%s">%s</a> Hősök',
 	'solved_by_text' => 'Mindenki, aki megoldotta a %s, megoldási dátum szerint rendezve.',
 	'newsrow_linkt' => 'Mai profil kapcsolatok',
-	'newsrow_link' => '%s hozzákapcsolta a profilját a %s oldalhoz, ahol %s%-ot oldott meg eddig.',
+	'newsrow_link' => '%s hozzákapcsolta a profilját a %s oldalhoz, ahol %s%%-ot oldott meg eddig.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Gyors frissítés',

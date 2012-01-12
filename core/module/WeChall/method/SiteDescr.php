@@ -69,7 +69,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		$back = array();
 		foreach ($descr as $langid => $desc)
 		{
-			$langname = GWF_Language::getByID($langid)->getName();
+			$langname = GWF_Language::getByID($langid)->getVar('lang_name');
 			$form = $this->getFormEdit($module, $langid, $desc);
 			$back[] = $form->templateY($module->Lang('ft_edit_descr', $langname));
 		}
