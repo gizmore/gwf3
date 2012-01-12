@@ -1,9 +1,9 @@
 <?php
 # Change dir to web root
 chdir('../../../../');
-require_once GWF_CORE_PATH.'inc/3p/EvalMath.php';
 define('GWF_PAGE_TITLE', 'Training: Math Pyramid');
 require_once('challenge/html_head.php');
+require_once GWF_CORE_PATH.'inc/3p/EvalMath.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/training/math/pyramid/index.php', false);
 }
