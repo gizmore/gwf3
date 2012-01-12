@@ -14,16 +14,16 @@ final class VersionServer_Purchase extends GWF_Method
 		// INIT
 		$isAdmin = GWF_User::isAdminS();
 		$modules = GWF_Module::loadModulesFS();
-		foreach ($this->_modules as $i => $m)
+		foreach ($modules as $i => $m)
 		{
 			if (!$isAdmin)
 			{
 				if ($m->getPrice() > 100000) {
-					unset($this->_modules[$i]);
+					unset($modules[$i]);
 				}
 			}
 		}
-		GWF_Module::sortModules($this->_modules, 'module_name', 'asc');
+		GWF_Module::sortModules($modules, 'module_name', 'asc');
 		
 		$this->modules = $modules;
 		// Modules to purchase

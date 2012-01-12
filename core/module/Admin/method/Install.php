@@ -38,7 +38,7 @@ final class Admin_Install extends GWF_Method
 			return $nav.$this->onDeleteModule($this->_module);
 		}
 		
-		if (false !== ($this->_modulename = Common::getGetString('module'))) {
+		if (false !== ($modulename = Common::getGetString('module'))) {
 			return $nav.$this->onInstall($this->_module, $modulename, false);
 		}
 		
@@ -119,11 +119,11 @@ final class Admin_Install extends GWF_Method
 	
 	public function onInstall(Module_Admin $module, $modulename, $dropTable)
 	{
-		if (false === ($this->_modules = GWF_ModuleLoader::loadModulesFS())) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', array(GWF_HTML::display($this->_modulename)));
+		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
+			return GWF_HTML::err('ERR_MODULE_MISSING', array(GWF_HTML::display($modulename)));
 		}
-		if (!isset($this->_modules[$modulename])) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', array(GWF_HTML::display($this->_modulename)));
+		if (!isset($modules[$modulename])) {
+			return GWF_HTML::err('ERR_MODULE_MISSING', array(GWF_HTML::display($modulename)));
 		}
 		$install = $modules[$modulename];
 		$install instanceof GWF_Module;
@@ -140,26 +140,26 @@ final class Admin_Install extends GWF_Method
 //				$this->_module->message('err_install').$this->_module->requestMethodB('Modules');
 //		}
 		
-		GWF_ModuleLoader::installHTAccess($this->_modules);
+		GWF_ModuleLoader::installHTAccess($modules);
 		
 		$msg = $dropTable === true ? 'msg_wipe' : 'msg_install';
 		
 		return 
-			$this->_module->message($msg, array(GWF_HTML::display($this->_modulename))).
-			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($this->_modulename), GWF_HTML::display($this->_modulename)));
+			$this->_module->message($msg, array(GWF_HTML::display($modulename))).
+			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($this->_modulename)));
 	}
 
 	public function onInstallAll(Module_Admin $module)
 	{
 		$back = '';
 		$modules = GWF_ModuleLoader::loadModulesFS();
-		foreach ($this->_modules as $m)
+		foreach ($modules as $m)
 		{
 			$m instanceof GWF_Module;
 			$back .= GWF_ModuleLoader::installModule($m, false);
 		}
 		
-		GWF_ModuleLoader::installHTAccess($this->_modules);
+		GWF_ModuleLoader::installHTAccess($modules);
 		
 		return $this->_module->message('msg_install_all', array($this->_module->getMethodURL('Modules'))).$back;
 	}

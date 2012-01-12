@@ -67,7 +67,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	{
 		$haveError = false;
 		$modules = GWF_Module::loadModulesFS();
-		GWF_Module::sortModules($this->_modules, 'module_name', 'asc');
+		GWF_Module::sortModules($modules, 'module_name', 'asc');
 		
 		# No ZIP extension?
 		if (!class_exists('ZipArchive', false)) {

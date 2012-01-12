@@ -35,7 +35,7 @@ final class Admin_Modules extends GWF_Method
 		
 		# Need install?
 		$install_all = '';
-		foreach ($this->_modules as $name => $d) {
+		foreach ($modules as $name => $d) {
 			if (!$d['enabled']) {
 				continue;
 			}

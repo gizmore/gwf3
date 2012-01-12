@@ -16,8 +16,7 @@ final class Admin_Move extends GWF_Method
 
 	public function getHTAccess(GWF_Module $module)
 	{
-		return 
-			sprintf('RewriteRule ^%s/move/(up|down|first|last)/([a-zA-Z]+)$ index.php?mo=Admin&me=Move&$1=now&modulename=$2'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
+		return sprintf('RewriteRule ^%s/move/(up|down|first|last)/([a-zA-Z]+)$ index.php?mo=Admin&me=Move&$1=now&modulename=$2'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 	}
 	
 	public function execute(GWF_Module $module)
@@ -32,11 +31,11 @@ final class Admin_Move extends GWF_Method
 	private function onMove(Module_Admin $module, $modulename)
 	{
 		$modules = GWF_Module::getModules();
-		usort($this->_modules, array(__CLASS__, 'sortByPriority'));
+		usort($modules, array(__CLASS__, 'sortByPriority'));
 		
 		$mode = $this->getMoveMode();
 		
-		if (false === ($current = GWF_Module::getModule($this->_modulename))) {
+		if (false === ($current = GWF_Module::getModule($modulename))) {
 			return $this->_module->error('err_mod_not_installed');
 		}
 		
@@ -52,7 +51,7 @@ final class Admin_Move extends GWF_Method
 		$prev = $current;
 		$realprev = false;
 		$priority = 1;
-		foreach ($this->_modules as $m)
+		foreach ($modules as $m)
 		{
 			if ($order['first'] === false) {
 				$order['first'] = $m;

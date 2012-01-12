@@ -61,9 +61,9 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		$modules = GWF_ModuleLoader::loadModulesFS();
 		
-		GWF_ModuleLoader::sortModules($this->_modules, 'module_name', 'ASC');
+		GWF_ModuleLoader::sortModules($modules, 'module_name', 'ASC');
 		
-		foreach ($this->_modules as $m)
+		foreach ($modules as $m)
 		{
 			#$m instanceof GWF_Module;
 			$name = $m->getName();
@@ -104,7 +104,7 @@ final class VersionServer_Zipper extends GWF_Method
 	public function onZip(Module_VersionServer $module, $modules, $design)
 	{
 		$_POST = array();
-		foreach ($this->_modules as $modulename)
+		foreach ($modules as $modulename)
 		{
 			$_POST['mod_'.$modulename] = 'yes';
 		}
