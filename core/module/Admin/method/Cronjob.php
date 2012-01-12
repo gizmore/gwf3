@@ -10,15 +10,15 @@ final class Admin_Cronjob extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $module->templateNav().$this->templateCronjob($module);
+		return $this->_module->templateNav().$this->templateCronjob($this->_module);
 	}
 	
 	private function templateCronjob(Module_Admin $module)
 	{
 		$tVars = array(
-			'cron_output' => $this->onCronjob($module),
+			'cron_output' => $this->onCronjob($this->_module),
 		);
-		return $module->template('cronjob.tpl', $tVars);
+		return $this->_module->template('cronjob.tpl', $tVars);
 	}
 	
 	private function onCronjob(Module_Admin $module)

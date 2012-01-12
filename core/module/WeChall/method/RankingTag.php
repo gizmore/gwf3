@@ -15,9 +15,9 @@ final class WeChall_RankingTag extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getPost('quickjmp')) {
-			return $this->onQuickjump($module);
+			return $this->onQuickjump($this->_module);
 		}
-		return $this->templateRanking($module);
+		return $this->templateRanking($this->_module);
 	}
 	
 	private function onQuickjump(Module_WeChall $module)
@@ -58,9 +58,9 @@ final class WeChall_RankingTag extends GWF_Method
 		
 		$dtag = GWF_HTML::display($tag);
 		
-		GWF_Website::setPageTitle($module->lang('pt_tagrank', array($dtag)));
-		GWF_Website::setMetaTags($module->lang('mt_tagrank', array($dtag, $dtag)));
-		GWF_Website::setMetaDescr($module->lang('md_tagrank', array($dtag, $page, $nPages)));
+		GWF_Website::setPageTitle($this->_module->lang('pt_tagrank', array($dtag)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_tagrank', array($dtag, $dtag)));
+		GWF_Website::setMetaDescr($this->_module->lang('md_tagrank', array($dtag, $page, $nPages)));
 		
 		$tVars = array(
 			'rank' => $rank,
@@ -70,9 +70,9 @@ final class WeChall_RankingTag extends GWF_Method
 			'tag' => $dtag,
 			'form_action' => GWF_WEB_ROOT.'category_ranking',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('category_ranking/%s/page-%%PAGE%%', urlencode($tag))),
-			'select' => $this->getTagSelect($module),
+			'select' => $this->getTagSelect($this->_module),
 		);
-		return $module->templatePHP('ranking_tag.php', $tVars);
+		return $this->_module->templatePHP('ranking_tag.php', $tVars);
 	}
 	
 	private function getPageNum($ipp, $bit)

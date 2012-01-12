@@ -12,14 +12,14 @@ final class Guestbook_EditGB extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gb')))) {
-			return $module->error('err_gb');
+			return $this->_module->error('err_gb');
 		}
 		
 		if (false === $gb->canModerate(GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateModerate($module);
+		return $this->templateModerate($this->_module);
 	}
 
 	public function templateModerate(Module_Guestbook $module)

@@ -19,16 +19,16 @@ final class News_Admin extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		$this->sanitize($module);
+		$this->sanitize($this->_module);
 		
-		return $this->templateOverview($module);
+		return $this->templateOverview($this->_module);
 	}
 	
 	private function sanitize(Module_News $module)
 	{
 		$news = GDO::table('GWF_News');
 		$this->nItems = $news->countRows();
-		$this->ipp = $module->getNewsPerAdminPage();
+		$this->ipp = $this->_module->getNewsPerAdminPage();
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp(Common::getGet('page', 1), 1, $this->nPages);;
 		$this->by = $news->getWhitelistedBy(Common::getGet('by', 'news_date'), 'news_date', false);
@@ -39,13 +39,13 @@ final class News_Admin extends GWF_Method
 	private function templateOverview(Module_News $module)
 	{
 		$tVars = array(
-			'news' => GWF_News::getNews($module->getNewsPerAdminPage(), 0, $this->page, $this->orderby, true),
+			'news' => GWF_News::getNews($this->_module->getNewsPerAdminPage(), 0, $this->page, $this->orderby, true),
 			'orderby' => $this->by,
 			'orderdir' => $this->dir,
 			'orderurl' => GWF_WEB_ROOT.'news/admin/page/1/by/%BY%/%DIR%',
-			'page_menu' => $this->getPageMenu($module),
+			'page_menu' => $this->getPageMenu($this->_module),
 		);
-		return $module->templatePHP('admin.php', $tVars);
+		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function getPageMenu(Module_News $module)

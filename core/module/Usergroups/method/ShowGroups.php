@@ -13,9 +13,9 @@ final class Usergroups_ShowGroups extends GWF_Method
 		GWF_Module::loadModuleDB('Forum',true);
 		
 		if (false !== ($array = Common::getPost('part'))) {
-			return $this->onPart($module, $array).$this->templateGroups($module);
+			return $this->onPart($this->_module, $array).$this->templateGroups($this->_module);
 		}
-		return $this->templateGroups($module);
+		return $this->templateGroups($this->_module);
 	}
 	
 	private function templateGroups(Module_Usergroups $module)
@@ -39,10 +39,10 @@ final class Usergroups_ShowGroups extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&amp;by=%BY%&dir=%DIR%&page=1',
 			'form_action' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&by='.urlencode($by).'&dir='.urlencode($dir).'&page='.$page,
-			'href_add_group' => $module->getMethodURL('Create'),
-			'href_edit_group' => $module->getMethodURL('Edit'),
+			'href_add_group' => $this->_module->getMethodURL('Create'),
+			'href_edit_group' => $this->_module->getMethodURL('Edit'),
 		);
-		return $module->templatePHP('groups.php', $tVars);
+		return $this->_module->templatePHP('groups.php', $tVars);
 	}
 
 	private function onPart(Module_Usergroups $module, $array)
@@ -55,11 +55,11 @@ final class Usergroups_ShowGroups extends GWF_Method
 //		foreach ($array as $gid => $stub) { break; }
 		
 		if (false === ($group = GWF_Group::getByID($gid))) {
-			return $module->error('err_unk_group');
+			return $this->_module->error('err_unk_group');
 		}
 		
 		if ($group->getFounder()->getID() === GWF_Session::getUserID()) {
-			return $module->error('err_kick_leader');
+			return $this->_module->error('err_kick_leader');
 		}
 		
 		$gid = $group->getID();

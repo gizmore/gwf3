@@ -18,35 +18,35 @@ final class PM_Send extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('create'))) {
-			return $this->create($module);
+			return $this->create($this->_module);
 		}
 		
 		# IE Oo
 		if (false !== (Common::getPost('username'))) {
-			return $this->create($module);
+			return $this->create($this->_module);
 		}
 		
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 
 		if (false !== (Common::getPost('preview'))) {
-			return $this->preview($module);
+			return $this->preview($this->_module);
 		}
 		if (false !== (Common::getPost('send'))) {
-			return $this->send($module);
+			return $this->send($this->_module);
 		}
 		
 		if (false !== ($pmid = Common::getGet('reply'))) {
-			return $this->reply($module, $pmid, false);
+			return $this->reply($this->_module, $pmid, false);
 		}
 		if (false !== ($pmid = Common::getGet('quote'))) {
-			return $this->reply($module, $pmid, true);
+			return $this->reply($this->_module, $pmid, true);
 		}
 		
 		if (false !== ($username = Common::getGet('to'))) {
-			return $this->create2($module, $username);
+			return $this->create2($this->_module, $username);
 		}
 		
 		return GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'me'));
@@ -58,18 +58,18 @@ final class PM_Send extends GWF_Method
 	private $user;
 	private function sanitize(Module_PM $module)
 	{
-		if (!GWF_User::isLoggedIn() && !$module->cfgGuestPMs()) {
+		if (!GWF_User::isLoggedIn() && !$this->_module->cfgGuestPMs()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		$this->user = GWF_User::getStaticOrGuest();
 		
-		if (false !== ($error = $module->validate_limits())) {
+		if (false !== ($error = $this->_module->validate_limits())) {
 			return GWF_HTML::error('PM', $error);
 		}
 		
 		
 		if ($this->user->isBot()) {
-			return $module->error('err_bot');
+			return $this->_module->error('err_bot');
 		}
 		
 		if (false !== ($uname = Common::getGet('to'))) {
@@ -80,14 +80,14 @@ final class PM_Send extends GWF_Method
 				(!GWF_PMOptions::getPMOptions($this->rec)->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM)) 
 				&& (!GWF_User::isLoggedIn())
 				) {
-				return $module->error('err_user_no_ppm');
+				return $this->_module->error('err_user_no_ppm');
 			}
 		}
 		
 		if ($this->rec === false)
 		{
 			$pmid = max(Common::getGetInt('reply'), Common::getGetInt('quote'));
-			if (false !== ($error = $this->sanitizePM($module, $pmid))) {
+			if (false !== ($error = $this->sanitizePM($this->_module, $pmid))) {
 				return $error;
 			}
 		}
@@ -102,10 +102,10 @@ final class PM_Send extends GWF_Method
 	private function sanitizePM(Module_PM $module, $pmid)
 	{
 		if (false === ($this->pm = GWF_PM::getByID($pmid))) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
 		if (!$this->pm->canRead($this->user)) {
-			return $module->error('err_perm_read');
+			return $this->_module->error('err_perm_read');
 		}
 		
 		$this->rec = $this->pm->getSender();
@@ -123,7 +123,7 @@ final class PM_Send extends GWF_Method
 	private function create(Module_PM $module)
 	{
 		if ( (false === ($this->rec = GWF_User::getByName(Common::getPost('username')))) && (false === ($this->rec = GWF_User::getByName(Common::getPost('username_sel')))) ) {
-			return GWF_HTML::err('ERR_UNKNOWN_USER').$module->requestMethodB('Overview');
+			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->_module->requestMethodB('Overview');
 		}
 		GWF_Website::redirect(GWF_WEB_ROOT.'pm/send/to/'.$this->rec->urlencode('user_name'));
 		die();
@@ -131,32 +131,32 @@ final class PM_Send extends GWF_Method
 	private function create2(Module_PM $module)
 	{
 		if (false === ($this->rec = GWF_User::getByName(Common::getGet('to')))) {
-			return GWF_HTML::err('ERR_UNKNOWN_USER').$module->requestMethodB('Overview');
+			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->_module->requestMethodB('Overview');
 		}
-		return $this->templateSend($module);
+		return $this->templateSend($this->_module);
 	}
 
 	
 	private function reply(Module_PM $module, $pmid)
 	{
-		if (false !== ($error = $this->sanitizePM($module, $pmid))) {
+		if (false !== ($error = $this->sanitizePM($this->_module, $pmid))) {
 			return $error;
 		}
-		return $this->templateSend($module);
+		return $this->templateSend($this->_module);
 	}
 	
 	private function getForm(Module_PM $module)
 	{
 		$data = array(
-			'title' => array(GWF_Form::STRING, $this->getFormTitle($module), $module->lang('th_pm_title')),
-			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage($module), $module->lang('th_pm_message')),
+			'title' => array(GWF_Form::STRING, $this->getFormTitle($this->_module), $this->_module->lang('th_pm_title')),
+			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage($this->_module), $this->_module->lang('th_pm_message')),
 			'ignore' => array(GWF_Form::VALIDATOR),
 			'limits' => array(GWF_Form::VALIDATOR)
 		);
-		if (!GWF_User::isLoggedIn() && $module->cfgGuestCaptcha()) {
+		if (!GWF_User::isLoggedIn() && $this->_module->cfgGuestCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['cmds'] = array(GWF_Form::SUBMITS, array('preview'=>$module->lang('btn_preview'),'send'=>$module->lang('btn_send')));
+		$data['cmds'] = array(GWF_Form::SUBMITS, array('preview'=>$this->_module->lang('btn_preview'),'send'=>$this->_module->lang('btn_send')));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -168,7 +168,7 @@ final class PM_Send extends GWF_Method
 		}
 		else
 		{
-			$re = $module->cfgRE();
+			$re = $this->_module->cfgRE();
 			$old = $this->pm->getVar('pm_title');
 			return (Common::startsWith($old, $re)) ? $old : $re.$old;
 		}
@@ -198,18 +198,18 @@ final class PM_Send extends GWF_Method
 	{ 
 		if ($this->pm === false)
 		{
-			return $module->lang('ft_create', array( $this->rec->display('user_name')));
+			return $this->_module->lang('ft_create', array( $this->rec->display('user_name')));
 		}
 		else
 		{
-			return $module->lang('ft_reply', array( $this->rec->display('user_name')));
+			return $this->_module->lang('ft_reply', array( $this->rec->display('user_name')));
 			
 		}
 	}
 	
 	private function templateSend(Module_PM $module, $preview='')
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		if ($this->pm !== false) {
 			$this->pm->markRead(GWF_Session::getUser());
 		}
@@ -222,11 +222,11 @@ final class PM_Send extends GWF_Method
 		}
 		
 		$tVars = array(
-			'reply_to' => $this->pm === false ? '' : $this->templatePM($module, $this->pm),
-			'form' => $form->templateY($this->getSEOTitle($module)),
+			'reply_to' => $this->pm === false ? '' : $this->templatePM($this->_module, $this->pm),
+			'form' => $form->templateY($this->getSEOTitle($this->_module)),
 			'preview' => $preview,
 		);
-		return $module->templatePHP('send.php', $tVars);
+		return $this->_module->templatePHP('send.php', $tVars);
 	}
 	
 	private function templatePM(Module_PM $module, GWF_PM $pm)
@@ -238,24 +238,24 @@ final class PM_Send extends GWF_Method
 			'unread' => array(),
 			'translated' => '',
 		);
-		return $module->templatePHP('show.php', $tVars);
+		return $this->_module->templatePHP('show.php', $tVars);
 	}
 	
 	private function preview(Module_PM $module)
 	{
-		$form = $this->getForm($module);
-		$errors = $form->validate($module);
+		$form = $this->getForm($this->_module);
+		$errors = $form->validate($this->_module);
 		
 		$preview = $this->createNewPM($form);
 		$tVars = array(
 			'pm' => $preview,
 			'actions' => false,
-			'title' => $preview->display('pm_title').' ('.$module->lang('ft_preview').')',
-			'unread' => array(),#GWF_PM::getUnreadPMs($module, GWF_Session::getUserID()),
+			'title' => $preview->display('pm_title').' ('.$this->_module->lang('ft_preview').')',
+			'unread' => array(),#GWF_PM::getUnreadPMs($this->_module, GWF_Session::getUserID()),
 			'translated' => '',
 		);
-		$preview_t = $module->templatePHP('show.php', $tVars);
-		return $errors.$this->templateSend($module, $preview_t);
+		$preview_t = $this->_module->templatePHP('show.php', $tVars);
+		return $errors.$this->templateSend($this->_module, $preview_t);
 	}
 	
 	public function getReceiver()
@@ -270,9 +270,9 @@ final class PM_Send extends GWF_Method
 	
 	private function send(Module_PM $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateSend($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateSend($this->_module);
 		}
 		
 		# Get reply to field
@@ -289,13 +289,13 @@ final class PM_Send extends GWF_Method
 				}
 			}
 		}
-		$result = $module->deliver($this->user->getID(), $this->getReceiver()->getID(), $form->getVar('title'), $form->getVar('message'), $parent1, $parent2);
+		$result = $this->_module->deliver($this->user->getID(), $this->getReceiver()->getID(), $form->getVar('title'), $form->getVar('message'), $parent1, $parent2);
 		
 		$mail = '';
 		switch ($result)
 		{
 			case '1':
-				return $module->message('msg_mail_sent', array($this->getReceiver()->display('user_name')));
+				return $this->_module->message('msg_mail_sent', array($this->getReceiver()->display('user_name')));
 			case '0':
 				break;
 			case '-4':
@@ -304,16 +304,16 @@ final class PM_Send extends GWF_Method
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__.' - Code: '.$result));
 		}
 		
-		return $mail.$module->message('msg_sent');
+		return $mail.$this->_module->message('msg_sent');
 	}
 	
 	##################
 	### Validators ###
 	##################
-	public function validate_limits(Module_PM $module, $arg) { return $module->validate_limits($arg); }
-	public function validate_ignore(Module_PM $module, $arg) { return $module->validate_ignore($this->rec); }
-	public function validate_title(Module_PM $module, $arg) { return $module->validate_title($arg); }
-	public function validate_message(Module_PM $module, $arg) { return $module->validate_message($arg); }
+	public function validate_limits(Module_PM $module, $arg) { return $this->_module->validate_limits($arg); }
+	public function validate_ignore(Module_PM $module, $arg) { return $this->_module->validate_ignore($this->rec); }
+	public function validate_title(Module_PM $module, $arg) { return $this->_module->validate_title($arg); }
+	public function validate_message(Module_PM $module, $arg) { return $this->_module->validate_message($arg); }
 }
 
 ?>

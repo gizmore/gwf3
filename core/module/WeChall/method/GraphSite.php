@@ -14,13 +14,13 @@ final class WeChall_GraphSite extends GWF_Method
 	{
 		GWF3::setConfig('store_last_url', false);
 		
-		return $this->graph($module, Common::getGet('site'), Common::getGet('type'));
+		return $this->graph($this->_module, Common::getGet('site'), Common::getGet('type'));
 	}
 	
 	private function graph(Module_WeChall $module, $sitename, $type)
 	{
 		if (false === ($site = WC_Site::getByName($sitename))) {
-			return $module->error('err_site');
+			return $this->_module->error('err_site');
 		}
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistorySite.php';
 		if (false === GDO::table('WC_HistorySite')->getWhitelistedBy($type, false)) {
@@ -33,12 +33,12 @@ final class WeChall_GraphSite extends GWF_Method
 		require_once $dir.'jpgraph_line.php';
 		require_once $dir.'jpgraph_plotline.php';
 		
-		return $this->graphB($module, $site, $type);
+		return $this->graphB($this->_module, $site, $type);
 	}
 	
 	private function graphB(Module_WeChall $module, WC_Site $site, $field)
 	{
-		$graphtitle = $module->lang('gt_site_'.$field, array($site->getVar('site_name')));
+		$graphtitle = $this->_module->lang('gt_site_'.$field, array($site->getVar('site_name')));
 		$siteid = $site->getID();
 		$history = GDO::table('WC_HistorySite');
 		if (false === ($result = $history->select("sitehist_date, {$field}", 'sitehist_sid='.$siteid, 'sitehist_date ASC')))
@@ -84,9 +84,9 @@ final class WeChall_GraphSite extends GWF_Method
 		
 		
 		if ($highestvalue === 0) {
-			$graph = new Graph($module->cfgGraphWidth(), $module->cfgGraphHeight());
+			$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
 			$graph->SetScale('intlin', 1, 2, 1, 2);
-			$caption = new Text($module->lang('err_graph_empty'), 0.1, 0.8);
+			$caption = new Text($this->_module->lang('err_graph_empty'), 0.1, 0.8);
 //			$caption->SetFont(FS_BOLD);
 			$graph->AddText($caption);
 			$graph->stroke();
@@ -99,7 +99,7 @@ final class WeChall_GraphSite extends GWF_Method
 		$datemargin = strlen(date($dateformat)) * 11; 
 		
 		//define the graph
-		$graph = new Graph($module->cfgGraphWidth(), $module->cfgGraphHeight());
+		$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
 		
 		$graph->SetScale('datlin', 0, 1.05 * $highestvalue);
 		$graph->title->Set($graphtitle);

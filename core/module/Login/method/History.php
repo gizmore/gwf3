@@ -8,9 +8,9 @@ final class Login_History extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginCleared.php';
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginHistory.php';
 		if (false !== Common::getPost('clear')) {
-			return $this->onClear($module).$this->templateHistory($module);
+			return $this->onClear($this->_module).$this->templateHistory($this->_module);
 		}
-		return $this->templateHistory($module);
+		return $this->templateHistory($this->_module);
 	}
 	
 	private function templateHistory(Module_Login $module)
@@ -26,16 +26,16 @@ final class Login_History extends GWF_Method
 		$by = Common::getGet('by');
 		$dir = Common::getGet('dir');
 		$orderby = $history->getMultiOrderby($by, $dir);
-		$form = $this->formDelete($module);
+		$form = $this->formDelete($this->_module);
 		
 		$headers = array(
-			array($module->lang('th_loghis_time'), 'loghis_time'),
-			array($module->lang('th_loghis_ip'), 'loghis_ip'),
-			array($module->lang('th_hostname')),
+			array($this->_module->lang('th_loghis_time'), 'loghis_time'),
+			array($this->_module->lang('th_loghis_ip'), 'loghis_ip'),
+			array($this->_module->lang('th_hostname')),
 		);
 		
 		if (false !== ($c = GWF_LoginCleared::getCleared($userid))) {
-			$cleared = $module->lang('info_cleared', array($c->displayDate(), $c->displayIP(), $c->displayHost()));
+			$cleared = $this->_module->lang('info_cleared', array($c->displayDate(), $c->displayIP(), $c->displayHost()));
 		} else {
 			$cleared = '';
 		}
@@ -44,26 +44,26 @@ final class Login_History extends GWF_Method
 		$tVars = array(
 			'tablehead' => GWF_Table::displayHeaders2($headers),
 			'history' => $history->selectObjects('*', $conditions, $orderby, $ipp, $from),
-//			'sort_url' => $module->getMethodURL('History', '&by=%BY%&dir=%DIR%&page=1'),
-			'pagemenu' => GWF_PageMenu::display($page, $nPages, $module->getMethodURL('History', '&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%')),
-			'form' => $form->templateX($module->lang('ft_clear')),
+//			'sort_url' => $this->_module->getMethodURL('History', '&by=%BY%&dir=%DIR%&page=1'),
+			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->_module->getMethodURL('History', '&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%')),
+			'form' => $form->templateX($this->_module->lang('ft_clear')),
 			'cleared' => $cleared,
 		);
-		return $module->template('history.tpl', $tVars);
+		return $this->_module->template('history.tpl', $tVars);
 	}
 	
 	private function formDelete(Module_Login $module)
 	{
 		$data = array(
-			'clear' => array(GWF_Form::SUBMIT, $module->lang('btn_clear')),
+			'clear' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_clear')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
 	private function onClear(Module_Login $module)
 	{
-		$form = $this->formDelete($module);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->formDelete($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -77,7 +77,7 @@ final class Login_History extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_cleared');
+		return $this->_module->message('msg_cleared');
 	}
 }
 ?>

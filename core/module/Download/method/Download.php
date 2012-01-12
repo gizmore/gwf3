@@ -18,32 +18,32 @@ final class Download_Download extends GWF_Method
 		$module instanceof Module_Download;
 		
 		if (false === ($dl = GWF_Download::getByID(Common::getGet('id')))) {
-			return $module->error('err_dlid');
+			return $this->_module->error('err_dlid');
 		}
 		
 		$user = GWF_Session::getUser();
 		
-		if (false !== ($error = $module->mayDownload($user, $dl))) {
+		if (false !== ($error = $this->_module->mayDownload($user, $dl))) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('dl_token')) {
-			return $this->onDownloadByToken($module, $dl, Common::getPost('token'));
+			return $this->onDownloadByToken($this->_module, $dl, Common::getPost('token'));
 		}
 		
 		if (false !== Common::getPost('on_order_2_x')) {
-			return $this->onOrder($module, $dl);
+			return $this->onOrder($this->_module, $dl);
 		}
 		
 		if (false !== ($token = Common::getGet('token'))) {
-			return $this->templateOnDownload($module, $dl, $token);
+			return $this->templateOnDownload($this->_module, $dl, $token);
 		}
 		
-		if ($dl->isPaidContent() && !GWF_DownloadToken::checkUser($module, $dl, $user)) {
-			return $this->templatePay($module, $dl);
+		if ($dl->isPaidContent() && !GWF_DownloadToken::checkUser($this->_module, $dl, $user)) {
+			return $this->templatePay($this->_module, $dl);
 		}
 		
-		return $this->templateOnDownload($module, $dl);
+		return $this->templateOnDownload($this->_module, $dl);
 	}
 	
 	public function templateOnDownload(GWF_Module $module, GWF_Download $dl, $token=false)
@@ -58,7 +58,7 @@ final class Download_Download extends GWF_Method
 		$user = GWF_User::getStaticOrGuest();
 		if ($dl->isPaidContent())
 		{
-			if ( (false === GWF_DownloadToken::checkUser($module, $dl, $user)) && (false === GWF_DownloadToken::checkToken($module, $dl, $user, $token)) ) {
+			if ( (false === GWF_DownloadToken::checkUser($this->_module, $dl, $user)) && (false === GWF_DownloadToken::checkToken($this->_module, $dl, $user, $token)) ) {
 				return GWF_HTML::err('ERR_NO_PERMISSION');
 			}
 		}
@@ -68,7 +68,7 @@ final class Download_Download extends GWF_Method
 		# Downloaded one more time
 		$dl->increase('dl_count', 1);
 		
-		$this->sendTheFile($module, $dl);
+		$this->sendTheFile($this->_module, $dl);
 	}
 	
 	public function sendTheFile(GWF_Module $module, GWF_Download $dl)
@@ -98,22 +98,22 @@ final class Download_Download extends GWF_Method
 		}
 		
 		$user = GWF_User::getStaticOrGuest();
-		$form = $this->getTokenForm($module, $dl);
+		$form = $this->getTokenForm($this->_module, $dl);
 		
 		$tVars = array(
-			'form' => $form->templateX($module->lang('ft_token')),
-			'order' => Module_Payment::displayOrderS($module, $dl, $user),
+			'form' => $form->templateX($this->_module->lang('ft_token')),
+			'order' => Module_Payment::displayOrderS($this->_module, $dl, $user),
 		);
 		
-		return $module->templatePHP('paid_content.php', $tVars);
+		return $this->_module->templatePHP('paid_content.php', $tVars);
 	}
 	
 	private function getTokenForm(GWF_Module $module, GWF_Download $dl)
 	{
 		$data = array(
-			'name'=> array(GWF_Form::SSTRING, $dl->getVar('dl_filename', ''), $module->lang('th_dl_filename')),
-			'token' => array(GWF_Form::STRING, '', $module->lang('th_token')),
-			'dl_token' => array(GWF_Form::SUBMIT, $module->lang('btn_download')),
+			'name'=> array(GWF_Form::SSTRING, $dl->getVar('dl_filename', ''), $this->_module->lang('th_dl_filename')),
+			'token' => array(GWF_Form::STRING, '', $this->_module->lang('th_token')),
+			'dl_token' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_download')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -130,7 +130,7 @@ final class Download_Download extends GWF_Method
 		
 		$dl->setVar('your_token', GWF_DownloadToken::generateToken());
 		
-		return Module_Payment::displayOrder2S($module, $dl, $user, $paysite);
+		return Module_Payment::displayOrder2S($this->_module, $dl, $user, $paysite);
 	}
 	
 
@@ -149,11 +149,11 @@ final class Download_Download extends GWF_Method
 	private function onDownloadByToken(GWF_Module $module, GWF_Download $dl, $token)
 	{
 		$this->dl = $dl;
-		$form = $this->getTokenForm($module, $dl);
-		if (false !== ($errors = $form->validate($module))) {
-			return $errors.$module->requestMethodB('List');
+		$form = $this->getTokenForm($this->_module, $dl);
+		if (false !== ($errors = $form->validate($this->_module))) {
+			return $errors.$this->_module->requestMethodB('List');
 		}
-		return $this->templateOnDownload($module, $dl, $token);
+		return $this->templateOnDownload($this->_module, $dl, $token);
 	}
 }
 ?>

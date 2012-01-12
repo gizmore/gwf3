@@ -15,14 +15,14 @@ final class News_ShowComments extends GWF_Method
 		
 		if (false === ($news = GWF_News::getByID(Common::getGetString('newsid'))))
 		{
-			return $module->error('err_news');
+			return $this->_module->error('err_news');
 		}
 		
 		$key = $news->getCommentsKey();
 		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
 		if (false === ($comments = GWF_Comments::getOrCreateComments($key, 0, $gid)))
 		{
-			return $module->error('err_news');
+			return $this->_module->error('err_news');
 		}
 		
 		$_REQUEST['cmts_id'] = $comments->getID();
@@ -30,10 +30,10 @@ final class News_ShowComments extends GWF_Method
 		$back = '';
 		if (isset($_POST['reply']))
 		{
-			return $this->onReply($module, $mod_c, $news, $comments);
+			return $this->onReply($this->_module, $mod_c, $news, $comments);
 		}
 		
-		return $back . $this->templateComments($module, $mod_c, $news, $comments);
+		return $back . $this->templateComments($this->_module, $mod_c, $news, $comments);
 	}
 	
 	public function templateComments(Module_News $module, Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)
@@ -59,7 +59,7 @@ final class News_ShowComments extends GWF_Method
 			'comments' => $comments->displayComments($c, $href),
 			'form' => $me->templateReply($mod_c, $href),
 		);
-		return $module->template('comments.tpl', $tVars);
+		return $this->_module->template('comments.tpl', $tVars);
 	}
 	
 	private function onReply(Module_News $module, Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)

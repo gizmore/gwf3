@@ -26,18 +26,18 @@ final class Admin_Move extends GWF_Method
 		$by = $gdo->getWhitelistedBy(Common::getGet('by', 'module_name'));
 		$dir = $gdo->getWhitelistedDir(Common::getGet('dir', 'ASC'));
 		
-		return $this->onMove($module, Common::getGet('modulename'));
+		return $this->onMove($this->_module, Common::getGet('modulename'));
 	}
 	
 	private function onMove(Module_Admin $module, $modulename)
 	{
 		$modules = GWF_Module::getModules();
-		usort($modules, array(__CLASS__, 'sortByPriority'));
+		usort($this->_modules, array(__CLASS__, 'sortByPriority'));
 		
 		$mode = $this->getMoveMode();
 		
-		if (false === ($current = GWF_Module::getModule($modulename))) {
-			return $module->error('err_mod_not_installed');
+		if (false === ($current = GWF_Module::getModule($this->_modulename))) {
+			return $this->_module->error('err_mod_not_installed');
 		}
 		
 		$order = array(
@@ -52,7 +52,7 @@ final class Admin_Move extends GWF_Method
 		$prev = $current;
 		$realprev = false;
 		$priority = 1;
-		foreach ($modules as $m)
+		foreach ($this->_modules as $m)
 		{
 			if ($order['first'] === false) {
 				$order['first'] = $m;
@@ -96,7 +96,7 @@ final class Admin_Move extends GWF_Method
 		$_GET['by'] = 'module_priority';
 		$_GET['dir'] = 'ASC';
 		
-		return $module->requestMethodB('Modules');
+		return $this->_module->requestMethodB('Modules');
 	}
 	
 	private function switchPriority(GWF_Module $current, GWF_Module $exchange)

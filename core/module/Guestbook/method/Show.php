@@ -18,7 +18,7 @@ final class Guestbook_Show extends GWF_Method
 	{
 		# Get GB
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {
-			return $module->error('err_gb');
+			return $this->_module->error('err_gb');
 		}
 
 		# SEO
@@ -30,7 +30,7 @@ final class Guestbook_Show extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateShow($module, $gb);
+		return $this->templateShow($this->_module, $gb);
 	}
 
 	public function templateShow(Module_Guestbook $module, GWF_Guestbook $gb)
@@ -38,7 +38,7 @@ final class Guestbook_Show extends GWF_Method
 		$nested = $gb->isNestingAllowed();
 		
 		if ($nested) {
-			return $this->templateNested($module, $gb);
+			return $this->templateNested($this->_module, $gb);
 		}
 		
 		$user = GWF_Session::getUser();
@@ -53,7 +53,7 @@ final class Guestbook_Show extends GWF_Method
 		$orderby = 'gbm_date ASC';
 		
 		$msgs = GDO::table('GWF_GuestbookMSG');
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$nItems = $msgs->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', $nPages)), 1, $nPages);
@@ -68,22 +68,22 @@ final class Guestbook_Show extends GWF_Method
 			'href_sign' => GWF_WEB_ROOT.'guestbook/sign/'.$gbid,
 			'href_moderate' => GWF_WEB_ROOT.'guestbook/edit/'.$gbid,
 			'can_moderate' => $can_moderate, 
-			'can_sign' => $gb->canSign(GWF_Session::getUser(), $module->cfgAllowGuest()),
-			'allow_url' => $module->cfgAllowURL(),
-			'allow_email' => $module->cfgAllowEMail(),
-			'btn_edit' => $can_moderate ? GWF_Button::options(GWF_WEB_ROOT.'guestbook/edit/'.$gbid, $module->lang('btn_edit_gb')) : '',
+			'can_sign' => $gb->canSign(GWF_Session::getUser(), $this->_module->cfgAllowGuest()),
+			'allow_url' => $this->_module->cfgAllowURL(),
+			'allow_email' => $this->_module->cfgAllowEMail(),
+			'btn_edit' => $can_moderate ? GWF_Button::options(GWF_WEB_ROOT.'guestbook/edit/'.$gbid, $this->_module->lang('btn_edit_gb')) : '',
 		);
 		
 		$filename = 'show.tpl';
 //		$filename = $nested ? 'show_nested.php' : 'show.php';
 		
-		return $module->template($filename, $tVars);
+		return $this->_module->template($filename, $tVars);
 	}
 
 	public function templateNested(Module_Guestbook $module, GWF_Guestbook $gb)
 	{
 		$gbid = $gb->getID();
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$user = GWF_Session::getUser();
 		$can_moderate = $gb->canModerate($user);
 		$mod = GWF_GuestbookMSG::IN_MODERATION;
@@ -99,14 +99,14 @@ final class Guestbook_Show extends GWF_Method
 		
 		$tVars = array(
 			'gb' => $gb,
-			'entries' => $this->getNestedEntries($module, $gb, $msgs, $conditions, $ipp, $from),
+			'entries' => $this->getNestedEntries($this->_module, $gb, $msgs, $conditions, $ipp, $from),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'guestbook/show'.$gbid_app.'/page-%PAGE%'),
 			'href_sign' => GWF_WEB_ROOT.'guestbook/sign/'.$gbid,
 			'href_moderate' => GWF_WEB_ROOT.'guestbook/edit/'.$gbid,
 			'can_moderate' => $can_moderate, 
 		);
 		
-		return $module->templatePHP('show_nested.php', $tVars);
+		return $this->_module->templatePHP('show_nested.php', $tVars);
 	}
 	
 	private function getNestedEntries(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $msgs, $conditions, $ipp, $from)

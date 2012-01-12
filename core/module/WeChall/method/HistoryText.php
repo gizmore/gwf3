@@ -15,7 +15,7 @@ final class WeChall_HistoryText extends GWF_Method
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		return $this->templateHistory($module, $user);
+		return $this->templateHistory($this->_module, $user);
 	}
 
 	private function templateHistory(GWF_Module $module, GWF_User $user)
@@ -35,9 +35,9 @@ final class WeChall_HistoryText extends GWF_Method
 		
 		$uuname = $user->urlencode2('user_name');
 		$duname = $user->displayUsername();
-		GWF_Website::setPageTitle($module->lang('pt_texthis', array($duname)));
-		GWF_Website::setMetaDescr($module->lang('md_texthis', array($duname)));
-		GWF_Website::setMetaTags($module->lang('mt_texthis', array($duname)));
+		GWF_Website::setPageTitle($this->_module->lang('pt_texthis', array($duname)));
+		GWF_Website::setMetaDescr($this->_module->lang('md_texthis', array($duname)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_texthis', array($duname)));
 		
 		$tVars = array(
 			'user' => $user,
@@ -48,7 +48,7 @@ final class WeChall_HistoryText extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.'history/for/'.$uuname.'/by/%BY%/%DIR%/page-1',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'history/for/'.$uuname.'/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
 		);
-		return $module->templatePHP('text_history.php', $tVars);
+		return $this->_module->templatePHP('text_history.php', $tVars);
 	}
 }
 ?>

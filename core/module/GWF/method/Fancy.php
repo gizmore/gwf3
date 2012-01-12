@@ -13,7 +13,7 @@ final class GWF_Fancy extends GWF_Method
 		$ret = '';
 
 		# The Fancy Options
-		if (true === $module->cfgFancyIndex())
+		if (true === $this->_module->cfgFancyIndex())
 		{
 			# TODO: This check does not seem to work on WC5 server.
 // 			if (false === GWF_ServerInfo::isApache())
@@ -38,19 +38,19 @@ final class GWF_Fancy extends GWF_Method
 			$ret .= '# Fancy Index'.PHP_EOL;
 			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
 				'IndexOptions'.
-				' NameWidth='.$module->cfgNameWidth(). 
-				' DescriptionWidth='.$module->cfgDescriptionWidth().
-				' IconHeight='.$module->cfgIconHeight().
-				' IconWidth='.$module->cfgIconWidth().PHP_EOL;
+				' NameWidth='.$this->_module->cfgNameWidth(). 
+				' DescriptionWidth='.$this->_module->cfgDescriptionWidth().
+				' IconHeight='.$this->_module->cfgIconHeight().
+				' IconWidth='.$this->_module->cfgIconWidth().PHP_EOL;
 			$ret .= 'IndexOptions ';
-			$ret .= $module->cfgHTMLTable() ? 'HTMLTable ' : '';
-			$ret .= $module->cfgIgnoreClient() ? 'IgnoreClient ' : '';
-			$ret .= $module->cfgFoldersFirst() ? 'FoldersFirst ': '';
-			$ret .= $module->cfgIgnoreCase() ? 'IgnoreCase ' : '';
-			$ret .= $module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
-			$ret .= $module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
-			$ret .= $module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
-			$ret .= $module->cfgSuppressRules() ? 'SuppressRules ' : '';
+			$ret .= $this->_module->cfgHTMLTable() ? 'HTMLTable ' : '';
+			$ret .= $this->_module->cfgIgnoreClient() ? 'IgnoreClient ' : '';
+			$ret .= $this->_module->cfgFoldersFirst() ? 'FoldersFirst ': '';
+			$ret .= $this->_module->cfgIgnoreCase() ? 'IgnoreCase ' : '';
+			$ret .= $this->_module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
+			$ret .= $this->_module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
+			$ret .= $this->_module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
+			$ret .= $this->_module->cfgSuppressRules() ? 'SuppressRules ' : '';
 			$ret .= PHP_EOL.PHP_EOL;
 			# The Fancy URLs
 			$ret .=

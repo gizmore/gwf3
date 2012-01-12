@@ -5,7 +5,7 @@ final class Helpdesk_Staff extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateStaff($module);
+		return $this->templateStaff($this->_module);
 	}
 	
 	private function templateStaff(Module_Helpdesk $module)
@@ -35,7 +35,7 @@ final class Helpdesk_Staff extends GWF_Method
 			'href_closed' => $this->getMethodHREF('&mode=closed'),
 			'href_unsolved' => $this->getMethodHREF('&mode=unsolved'),
 		);
-		return $module->template('staff.tpl', $tVars);
+		return $this->_module->template('staff.tpl', $tVars);
 	}
 
 	private function getMode()

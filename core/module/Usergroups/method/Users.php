@@ -18,14 +18,14 @@ final class Usergroups_Users extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateUsers($module);
+		return $this->templateUsers($this->_module);
 	}
 	
 	public function templateUsers(Module_Usergroups $module)
 	{
 		$letter = Common::getGet('with', 'All');
 		$conditions = $this->getConditions($letter);
-		$ipp = $module->cfgIPP();
+		$ipp = $this->_module->cfgIPP();
 		$users = GDO::table('GWF_User');
 		$nUsers = $users->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nUsers);
@@ -40,7 +40,7 @@ final class Usergroups_Users extends GWF_Method
 			'lettermenu' => GWF_PageMenu::displayLetterMenu($letter, GWF_WEB_ROOT.'users/with/%LETTER%/page-1'),
 			'sort_url' => GWF_WEB_ROOT.'users/with/'.urlencode($letter).'/by/%BY%/%DIR%/page-1',
 		);
-		return $module->templatePHP('users.php', $tVars);
+		return $this->_module->templatePHP('users.php', $tVars);
 	}
 	
 	private function getConditions($letter)

@@ -4,44 +4,44 @@ final class Usergroups_SearchAdv extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getGet('search')) {
-			return $this->onSearchB($module);
+			return $this->onSearchB($this->_module);
 		}
 		if (false !== Common::getPost('search')) {
-			return $this->onSearch($module);
+			return $this->onSearch($this->_module);
 		}
-		return $this->templateForm($module);
+		return $this->templateForm($this->_module);
 	}
 	
 	private function templateForm(Module_Usergroups $module)
 	{
-		$form = $this->formSearch($module);
+		$form = $this->formSearch($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_search_adv'), $module->getMethodURL('SearchAdv')),
+			'form' => $form->templateY($this->_module->lang('ft_search_adv'), $this->_module->getMethodURL('SearchAdv')),
 			'pagemenu' => '',
 			'result' => array(),
 			'sort_url' => '',
 		);
-		return $module->templatePHP('search_adv.php', $tVars);
+		return $this->_module->templatePHP('search_adv.php', $tVars);
 	}
 	
 	private function formSearch(Module_Usergroups $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
-			'minlevel' => array(GWF_Form::INT, 0, $module->lang('th_user_level')),
-			'email' => array(GWF_Form::STRING, '', $module->lang('th_user_email')),
-			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', Common::getPost('country')), $module->lang('th_country')),
-			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $module->lang('th_language')),
-			'gender' => array(GWF_Form::SELECT, GWF_Gender::select('gender', Common::getPost('gender')), $module->lang('th_gender')),
-			'hasmail' => array(GWF_Form::CHECKBOX, false, $module->lang('th_hasmail')),
-			'haswww' => array(GWF_Form::CHECKBOX, false, $module->lang('th_haswww')),
-			'icq' => array(GWF_Form::CHECKBOX, false, $module->lang('th_icq')),
-			'msn' => array(GWF_Form::CHECKBOX, false, $module->lang('th_msn')),
-			'jabber' => array(GWF_Form::CHECKBOX, false, $module->lang('th_jabber')),
-			'skype' => array(GWF_Form::CHECKBOX, false, $module->lang('th_skype')),
-			'yahoo' => array(GWF_Form::CHECKBOX, false, $module->lang('th_yahoo')),
-			'aim' => array(GWF_Form::CHECKBOX, false, $module->lang('th_aim')),
-			'search' => array(GWF_Form::SUBMIT, $module->lang('btn_search')),
+			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
+			'minlevel' => array(GWF_Form::INT, 0, $this->_module->lang('th_user_level')),
+			'email' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_email')),
+			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', Common::getPost('country')), $this->_module->lang('th_country')),
+			'language' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'language', Common::getPost('language')), $this->_module->lang('th_language')),
+			'gender' => array(GWF_Form::SELECT, GWF_Gender::select('gender', Common::getPost('gender')), $this->_module->lang('th_gender')),
+			'hasmail' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_hasmail')),
+			'haswww' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_haswww')),
+			'icq' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_icq')),
+			'msn' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_msn')),
+			'jabber' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_jabber')),
+			'skype' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_skype')),
+			'yahoo' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_yahoo')),
+			'aim' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_aim')),
+			'search' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_search')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -55,9 +55,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 	
 	private function onSearch(Module_Usergroups $module)
 	{
-		$form = $this->formSearch($module);
-		if (false !== ($errors = $form->validate($module))) {
-			return $errors.$this->templateForm($module);
+		$form = $this->formSearch($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
+			return $errors.$this->templateForm($this->_module);
 		}
 		
 		# Copy to get
@@ -78,7 +78,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		if (isset($_POST['haswww'])) { $_GET['haswww'] = 1; }
 		
 		
-		return $this->onSearchB($module);
+		return $this->onSearchB($this->_module);
 	}
 
 	private function onSearchB(Module_Usergroups $module)
@@ -89,7 +89,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		
 		$db = gdo_db();
 		
-		if ('' === ($where = $this->getWhereQuery($module))) {
+		if ('' === ($where = $this->getWhereQuery($this->_module))) {
 			$where = "'1'='0'";
 		}
 		
@@ -116,14 +116,14 @@ final class Usergroups_SearchAdv extends GWF_Method
 		
 		$query = "SELECT u.*, p.* FROM $users u LEFT JOIN $profiles p ON prof_uid=user_id WHERE $where ORDER BY $by $dir $limit";
 		
-		$form = $this->formSearch($module);
+		$form = $this->formSearch($this->_module);
 		$tVars = array(
 			'result' => $db->queryAll($query, true),
-			'form' => $form->templateY($module->lang('ft_search_adv'), $module->getMethodURL('SearchAdv')),
+			'form' => $form->templateY($this->_module->lang('ft_search_adv'), $this->_module->getMethodURL('SearchAdv')),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->getPageMenuHREF()),
 			'sort_url' => $this->getSortHREF(),
 		);
-		return $module->templatePHP('search_adv.php', $tVars);
+		return $this->_module->templatePHP('search_adv.php', $tVars);
 	}
 	
 	private function getPageMenuHREF()

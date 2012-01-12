@@ -3,7 +3,7 @@ final class Slaytags_History extends GWF_Method
 {
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateHistory($module);
+		return $this->templateHistory($this->_module);
 	}
 	
 	private function templateHistory(Module_Slaytags $module)
@@ -22,7 +22,7 @@ final class Slaytags_History extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Slaytags&me=History&page=%PAGE%'),
 			'history' => $table->selectAll('*', $where, 'sph_date ASC', array('songs'), $ipp, $from, 'Slay_Song'),
 		);
-		return $module->template('history.tpl', $tVars);
+		return $this->_module->template('history.tpl', $tVars);
 	}
 }
 ?>

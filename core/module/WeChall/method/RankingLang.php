@@ -27,10 +27,10 @@ final class WeChall_RankingLang extends GWF_Method
 		}
 		
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateRankingFor($module, $lang, $username);
+			return $this->templateRankingFor($this->_module, $lang, $username);
 		}
 		
-		return $this->templateRanking($module, $lang, GWF_Session::getUser());
+		return $this->templateRanking($this->_module, $lang, GWF_Session::getUser());
 	}
 	
 	private function templateRankingFor(Module_WeChall $module, GWF_Language $lang, $username)
@@ -38,7 +38,7 @@ final class WeChall_RankingLang extends GWF_Method
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateRanking($module, $lang, $user);
+		return $this->templateRanking($this->_module, $lang, $user);
 	}
 	
 	private function templateRanking(Module_WeChall $module, GWF_Language $lang, $user)
@@ -61,9 +61,9 @@ final class WeChall_RankingLang extends GWF_Method
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		list($page, $hl_rank) = $this->getPageRank($langid, $ipp, $user);
 		
-		GWF_Website::setPageTitle($module->lang('pt_langrank', array($lang->displayName(), $page, $nPages)));
-		GWF_Website::setMetaTags($module->lang('mt_ranking_lang', array($lang->displayName())));
-		GWF_Website::setMetaDescr($module->lang('md_ranking_lang', array($lang->displayName(), $page, $nPages)));
+		GWF_Website::setPageTitle($this->_module->lang('pt_langrank', array($lang->displayName(), $page, $nPages)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_ranking_lang', array($lang->displayName())));
+		GWF_Website::setMetaDescr($this->_module->lang('md_ranking_lang', array($lang->displayName(), $page, $nPages)));
 		
 //		echo 'PAGE:';
 //		var_dump($page);
@@ -111,7 +111,7 @@ final class WeChall_RankingLang extends GWF_Method
 			'form_action' => $this->getMethodHref(),
 			'iso' => $lang->getISO(),
 		);
-		return $module->templatePHP('ranking_lang.php', $tVars);
+		return $this->_module->templatePHP('ranking_lang.php', $tVars);
 	}
 	
 	private function getPageRank($langid, $ipp, $user)

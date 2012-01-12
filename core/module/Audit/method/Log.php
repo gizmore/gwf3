@@ -21,7 +21,7 @@ final class Audit_Log extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		$this->sendLog($module, $log);
+		$this->sendLog($this->_module, $log);
 		return 'THX!';
 	}
 	
@@ -32,8 +32,8 @@ final class Audit_Log extends GWF_Method
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject('WarChall audit log');
-		$mail->setBody($this->getMailBody($module, $log));
-		$mail->sendAsText($module->cfgAuditCC());
+		$mail->setBody($this->getMailBody($this->_module, $log));
+		$mail->sendAsText($this->_module->cfgAuditCC());
 	}
 }
 ?>

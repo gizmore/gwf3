@@ -8,30 +8,30 @@ final class Slaytags_AddTag extends GWF_Method
 		$user = GWF_Session::getUser();
 		if (!Slay_Tag::mayAddTag($user))
 		{
-			return $module->error('err_add_tag');
+			return $this->_module->error('err_add_tag');
 		}
 		
 		if (isset($_POST['add']))
 		{
-			return $this->onAddTag($module);
+			return $this->onAddTag($this->_module);
 		}
-		return $this->templateAddTag($module);
+		return $this->templateAddTag($this->_module);
 	}
 	
 	private function templateAddTag(Module_Slaytags $module)
 	{
-		$form = $this->formAddTag($module);
+		$form = $this->formAddTag($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_add_tag')),
+			'form' => $form->templateY($this->_module->lang('ft_add_tag')),
 		);
-		return $module->template('add_tag.tpl', $tVars);
+		return $this->_module->template('add_tag.tpl', $tVars);
 	}
 	
 	private function formAddTag(Module_Slaytags $module)
 	{
 		$data = array(
-			'tag' => array(GWF_Form::STRING, '', $module->lang('th_tag')),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
+			'tag' => array(GWF_Form::STRING, '', $this->_module->lang('th_tag')),
+			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -47,10 +47,10 @@ final class Slaytags_AddTag extends GWF_Method
 	
 	private function onAddTag(Module_Slaytags $module)
 	{
-		$form = $this->formAddTag($module);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->formAddTag($this->_module);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateAddTag($module);
+			return $error.$this->templateAddTag($this->_module);
 		}
 		
 		$user = GWF_Session::getUser();
@@ -64,8 +64,8 @@ final class Slaytags_AddTag extends GWF_Method
 		), false);
 		
 		
-		$href = $module->getMethodURL('Tag', '&stid='.Common::getGetInt('stid', '0'));
-		return $module->message('msg_tag_added', array($href));
+		$href = $this->_module->getMethodURL('Tag', '&stid='.Common::getGetInt('stid', '0'));
+		return $this->_module->message('msg_tag_added', array($href));
 	}
 	
 }

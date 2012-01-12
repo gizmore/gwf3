@@ -10,7 +10,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->validate($module))) {
+		if (false !== ($error = $this->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -23,21 +23,21 @@ final class VersionServer_Upgrade extends GWF_Method
 //		}
 //		
 //		if (false !== Common::getGet('update_versions')) {
-//			return $this->templateVersions($module);
+//			return $this->templateVersions($this->_module);
 //		}
 		
-		return $this->templateUpgrade($module);
+		return $this->templateUpgrade($this->_module);
 	}
 
 	private function validate(Module_VersionServer $module)
 	{
 		if (false === ($this->client = GWF_Client::getByToken(Common::getGet('token')))) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		
 		$datestamp = Common::getGet('datestamp', '');
 		if (!GWF_Time::isValidDate($datestamp, true, GWF_Date::LEN_SECOND)) {
-			return $module->error('err_datestamp');
+			return $this->_module->error('err_datestamp');
 		}
 		$this->datestamp = $datestamp;
 		
@@ -67,11 +67,11 @@ final class VersionServer_Upgrade extends GWF_Method
 	{
 		$haveError = false;
 		$modules = GWF_Module::loadModulesFS();
-		GWF_Module::sortModules($modules, 'module_name', 'asc');
+		GWF_Module::sortModules($this->_modules, 'module_name', 'asc');
 		
 		# No ZIP extension?
 		if (!class_exists('ZipArchive', false)) {
-			return $module->error('err_no_zip');
+			return $this->_module->error('err_no_zip');
 		}
 //		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
@@ -90,7 +90,7 @@ final class VersionServer_Upgrade extends GWF_Method
 		$archivename = sprintf('extra/temp/upgrade_%s_%s.zip', $this->client->getVar('vsc_uid'), $this->datestamp);
 		if (false === ($archive->open($archivename, ZipArchive::CREATE|ZipArchive::CM_REDUCE_4))) {
 			fclose($fhManifest);
-			return $module->error('err_zip', __FILE__, __LINE__);
+			return $this->_module->error('err_zip', __FILE__, __LINE__);
 		}
 		
 		

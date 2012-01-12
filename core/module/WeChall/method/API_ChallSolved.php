@@ -24,7 +24,7 @@ final class WeChall_API_ChallSolved extends GWF_Method
 
 		$amt = Common::clamp(Common::getGetInt('amt', 5), 1, self::MAX_OUT);
 		
-		return $this->templateOutput($module, $date, $amt);
+		return $this->templateOutput($this->_module, $date, $amt);
 	}
 	
 	public function templateOutput(Module_WeChall $module, $date, $amt)

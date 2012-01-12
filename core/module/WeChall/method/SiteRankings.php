@@ -15,10 +15,10 @@ final class WeChall_SiteRankings extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('quickjump'))) {
-			return $this->onQuickjump($module);
+			return $this->onQuickjump($this->_module);
 		}
 		
-		return $this->templateRanking($module);
+		return $this->templateRanking($this->_module);
 	}
 	
 	private function getLinkcountUnranked($siteid)
@@ -31,32 +31,32 @@ final class WeChall_SiteRankings extends GWF_Method
 	public function templateRanking(Module_WeChall $module)
 	{
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
-			return $module->error('err_site');
+			return $this->_module->error('err_site');
 		}
 		
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$nItems = $site->getLinkcount() - $this->getLinkcountUnranked($site->getID());
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 
 		$args = array($site->displayName(), $page);
-		$title = $module->lang('pt_site_ranking', $args);
+		$title = $this->_module->lang('pt_site_ranking', $args);
 		
 		GWF_Website::setPageTitle($title);
-		GWF_Website::setMetaTags($module->lang('mt_site_ranking', $args));
-		GWF_Website::setMetaDescr($module->lang('md_site_ranking', $args));
+		GWF_Website::setMetaTags($this->_module->lang('mt_site_ranking', $args));
+		GWF_Website::setMetaDescr($this->_module->lang('md_site_ranking', $args));
 		
 		$tVars = array(
-			'userdata' => $this->getRankedUsers($module, $site, $from, $ipp),
+			'userdata' => $this->getRankedUsers($this->_module, $site, $from, $ipp),
 			'site' => $site,
 			'sites' => $site->getSimilarSites(),
-			'site_quickjump' => $module->templateSiteQuickjumpRanking(),
+			'site_quickjump' => $this->_module->templateSiteQuickjumpRanking(),
 			'rank' => $from+1,
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'site/ranking/for/'.$site->getID().'/'.$site->urlencodeSEO('site_name').'/page-%PAGE%'),
 			'page_title' => $title,
 		);
-		return $module->templatePHP('site_ranking.php', $tVars);
+		return $this->_module->templatePHP('site_ranking.php', $tVars);
 	}
 	
 //	private function getRankedUsersOLD(Module_WeChall $module, WC_Site $site, $from, $ipp)
@@ -160,7 +160,7 @@ final class WeChall_SiteRankings extends GWF_Method
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {
-			return $module->error('err_site').'1';
+			return $this->_module->error('err_site').'1';
 		}
 		
 		foreach ($jumps as $key => $value)
@@ -170,7 +170,7 @@ final class WeChall_SiteRankings extends GWF_Method
 			}
 			
 			if (false === ($site = WC_Site::getByID($value))) {
-				return $module->error('err_site').'2';
+				return $this->_module->error('err_site').'2';
 			}
 
 			$sid = $site->getVar('site_id');
@@ -178,7 +178,7 @@ final class WeChall_SiteRankings extends GWF_Method
 			return '';
 		}
 
-		return $module->error('err_site').'3';
+		return $this->_module->error('err_site').'3';
 	}
 }
 

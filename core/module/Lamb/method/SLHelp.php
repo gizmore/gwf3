@@ -8,14 +8,14 @@ final class Lamb_SLHelp extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateShadowhelp($module);		
+		return $this->templateShadowhelp($this->_module);		
 	}
 	
 	private function templateShadowhelp(Module_Lamb $module)
 	{
 		$tVars = array(
 		);
-		return $module->template('shadowhelp.php', $tVars);
+		return $this->_module->template('shadowhelp.php', $tVars);
 	}
 }
 ?>

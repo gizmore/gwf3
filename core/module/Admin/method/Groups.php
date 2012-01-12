@@ -17,11 +17,11 @@ final class Admin_Groups extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute(GWF_Module $module)
 	{
-//		if (false !== ($error = $this->sanitize($module))) {
+//		if (false !== ($error = $this->sanitize($this->_module))) {
 //			return $error;
 //		}
 //		
-		return $module->templateNav().$this->templateGroups($module);
+		return $this->_module->templateNav().$this->templateGroups($this->_module);
 	}
 	
 	################
@@ -42,7 +42,7 @@ final class Admin_Groups extends GWF_Method
 		$dir = Common::getGet('dir', 'ASC');
 		$orderby = $grps->getMultiOrderby($by, $dir);
 		$page = intval(Common::getGet('page', 1));
-		$ipp = $module->cfgUsersPerPage();
+		$ipp = $this->_module->cfgUsersPerPage();
 		$nItems = $grps->countRows();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp($page, 1, $nPages);
@@ -52,9 +52,9 @@ final class Admin_Groups extends GWF_Method
 			'groups' => $grps->selectObjects('*', '', $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Admin&me=Groups&by=%BY%&dir=%DIR%&page=1',
 			'href_add' => GWF_WEB_ROOT.'index.php?mo=Admin&me=GroupAdd',
-//			'table' => GWF_Table::displayGDO($module, GDO::table('GWF_Group'), GWF_Session::getUser(), $this->getMethodHref()),
+//			'table' => GWF_Table::displayGDO($this->_module, GDO::table('GWF_Group'), GWF_Session::getUser(), $this->getMethodHref()),
 		);
-		return $module->templatePHP('groups.php', $tVars);
+		return $this->_module->templatePHP('groups.php', $tVars);
 	}
 	
 }

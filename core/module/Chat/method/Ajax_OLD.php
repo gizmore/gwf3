@@ -8,26 +8,26 @@ final class Chat_Ajax_OLD extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getGet('stream')) {
-			return $this->startStream($module);
+			return $this->startStream($this->_module);
 		}
 		
 		if (false !== (Common::getGet('newprivmsg'))) {
-			return $this->onNewPrivmsg($module);
+			return $this->onNewPrivmsg($this->_module);
 		}
 		if (false !== ($timestamp = Common::getGet('newpubmsg'))) {
-			return $this->onNewPubmsg($module, intval($timestamp/1000));
+			return $this->onNewPubmsg($this->_module, intval($timestamp/1000));
 		}
 		if (false !== ($target = Common::getGet('postto'))) {
-			return $this->onPost($module, Common::getGet('nickname'), $target, Common::getGet('message'));
+			return $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== (Common::getGet('online'))) {
-			return $this->onGetOnline($module);
+			return $this->onGetOnline($this->_module);
 		}
 	}
 	
 	private function onNewPrivmsg(Module_Chat $module)
 	{
-		if (false === ($nick = $module->getNickname())) {
+		if (false === ($nick = $this->_module->getNickname())) {
 			return;
 		}
 		
@@ -191,7 +191,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			}
 			
 			# Get Private Messages
-			if (false !== ($nick = $module->getNickname())) {
+			if (false !== ($nick = $this->_module->getNickname())) {
 				$last = $times[3];
 				$privmsg = $msgs->select("(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
 				if (count($privmsg) > 0)
@@ -205,7 +205,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 //			if (!$stuff_sent)
 //			{
 //				usleep(1000000);
-				GWF_ChatOnline::setSessOnline($module);
+				GWF_ChatOnline::setSessOnline($this->_module);
 //			}
 //			else
 //			{
@@ -221,7 +221,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			sleep(1);
 		}
 		
-		GWF_ChatOnline::setSessOffline($module);
+		GWF_ChatOnline::setSessOffline($this->_module);
 		
 		die();
 	}

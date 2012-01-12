@@ -24,22 +24,22 @@ final class Forum_EditPost extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($module);
+			return $this->onPreview($this->_module);
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($module);
+			return $this->onEdit($this->_module);
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($module);
+			return $this->onDelete($this->_module);
 		}
 		
-		return $this->templateEdit($module);
+		return $this->templateEdit($this->_module);
 	}
 	
 	################
@@ -47,11 +47,11 @@ final class Forum_EditPost extends GWF_Method
 	################
 	private function sanitize(Module_Forum $module)
 	{
-		if (false === ($this->post = $module->getCurrentPost())) {
-			return $module->error('err_post');
+		if (false === ($this->post = $this->_module->getCurrentPost())) {
+			return $this->_module->error('err_post');
 		}
-		if (false === ($this->thread = $module->getCurrentThread())) {
-			return $module->error('err_thread');
+		if (false === ($this->thread = $this->_module->getCurrentThread())) {
+			return $this->_module->error('err_thread');
 		}
 		if (!$this->post->hasEditPermission()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -62,22 +62,22 @@ final class Forum_EditPost extends GWF_Method
 	############
 	### Form ###
 	############
-	public function validate_title(Module_Forum $module, $arg) { return $module->validate_title($arg); }
-	public function validate_message(Module_Forum $module, $arg) { return $module->validate_message($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
+	public function validate_message(Module_Forum $module, $arg) { return $this->_module->validate_message($arg); }
 	public function getForm(Module_Forum $module)
 	{
 		$p = $this->post;
 		$buttons = array(
-			'preview' => $module->lang('btn_preview'),
-			'edit' => $module->lang('btn_edit'),
-			'delete' => $module->lang('th_delete'),
+			'preview' => $this->_module->lang('btn_preview'),
+			'edit' => $this->_module->lang('btn_edit'),
+			'delete' => $this->_module->lang('th_delete'),
 		);
 		$data = array(
-			'title' => array(GWF_Form::STRING, $p->getVar('post_title'), $module->lang('th_title')),
-			'message' => array(GWF_Form::MESSAGE, $p->getVar('post_message'), $module->lang('th_message')),
-			'smileys' => array(GWF_Form::CHECKBOX, false, $module->lang('th_smileys')),
-			'bbcode' => array(GWF_Form::CHECKBOX, false, $module->lang('th_bbcode')),
-			'unread' => array(GWF_Form::CHECKBOX, true, $module->lang('th_unread_again')),
+			'title' => array(GWF_Form::STRING, $p->getVar('post_title'), $this->_module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, $p->getVar('post_message'), $this->_module->lang('th_message')),
+			'smileys' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_smileys')),
+			'bbcode' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_bbcode')),
+			'unread' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_unread_again')),
 			'cmds' => array(GWF_Form::SUBMITS, $buttons,),
 		);
 		return new GWF_Form($this, $data);
@@ -88,11 +88,11 @@ final class Forum_EditPost extends GWF_Method
 	################
 	public function templateEdit(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit_post')),
+			'form' => $form->templateY($this->_module->lang('ft_edit_post')),
 		);
-		return $module->templatePHP('edit_post.php', $tVars);
+		return $this->_module->templatePHP('edit_post.php', $tVars);
 	}
 	
 	###############
@@ -100,9 +100,9 @@ final class Forum_EditPost extends GWF_Method
 	###############
 	public function onPreview(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
-		$errors = $form->validate($module);
+		$errors = $form->validate($this->_module);
 		
 //		$user = GWF_Session::getUser();
 		$user = $this->post->getUser(true);
@@ -125,10 +125,10 @@ final class Forum_EditPost extends GWF_Method
 			'page' => 0,
 			'href_edit' => '',
 		);
-		$preview = $module->templatePHP('show_thread.php', $tVars);
+		$preview = $this->_module->templatePHP('show_thread.php', $tVars);
 		
 		
-		return $errors.$preview.$this->templateEdit($module);
+		return $errors.$preview.$this->templateEdit($this->_module);
 	}
 	
 	############
@@ -137,9 +137,9 @@ final class Forum_EditPost extends GWF_Method
 	public function onEdit(Module_Forum $module)
 	{
 		$p = $this->post;
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateEdit($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateEdit($this->_module);
 		}
 		
 		if (false === GWF_ForumPostHistory::pushPost($p)) {
@@ -168,24 +168,24 @@ final class Forum_EditPost extends GWF_Method
 		}
 		
 		$a = GWF_HTML::display($p->getShowHREF());
-		return $module->message('msg_post_edited', array($a));
+		return $this->_module->message('msg_post_edited', array($a));
 	}
 
 	public function onDelete(Module_Forum $module)
 	{
 		$p = $this->post;
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateEdit($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateEdit($this->_module);
 		}
 		
 		if (false === $p->deletePost()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateEdit($module);
+			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateEdit($this->_module);
 		}
 		
-		$module->cachePostcount();
+		$this->_module->cachePostcount();
 		
-		return $module->message('msg_post_deleted');
+		return $this->_module->message('msg_post_deleted');
 	}
 }
 

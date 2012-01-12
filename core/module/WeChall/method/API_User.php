@@ -18,16 +18,16 @@ final class WeChall_API_User extends GWF_Method
 			die(GWF_HTML::lang('ERR_UNKNOWN_USER'));			
 		}
 		
-		die($this->showUser($module, $user, Common::getGet('apikey')));
+		die($this->showUser($this->_module, $user, Common::getGet('apikey')));
 	}
 	
 	private function showUser(Module_WeChall $module, GWF_User $user, $api_key)
 	{
-		if (false !== ($error = $module->isExcludedFromAPI($user, $api_key))) {
+		if (false !== ($error = $this->_module->isExcludedFromAPI($user, $api_key))) {
 			return $error;
 		}
 		
-		$private_mode = $module->isAPIKeyCorrect($user, $api_key);
+		$private_mode = $this->_module->isAPIKeyCorrect($user, $api_key);
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		if (false === ($regats = WC_RegAt::getRegats($user->getID(), 'regat_solved ASC'))) {
@@ -57,14 +57,14 @@ final class WeChall_API_User extends GWF_Method
 		$back .= 'Totalscore:'.$user->getVar('user_level').PHP_EOL;
 		$back .= 'GlobalRank:'.WC_RegAt::calcExactRank($user).PHP_EOL;
 		$back .= 'CountryRank:'.$crank.PHP_EOL;
-		$back .= $this->contactData($module, $user);
+		$back .= $this->contactData($this->_module, $user);
 		$back .= 'ForumPosts:'.$fopts->getVar('fopt_posts').PHP_EOL;
 		$back .= 'ForumThanks:'.$fopts->getVar('fopt_thanks').PHP_EOL;
 		$back .= 'ForumVoteUp:'.$fopts->getVar('fopt_upvotes').PHP_EOL;
 		$back .= 'ForumVoteDown:'.$fopts->getVar('fopt_downvotes').PHP_EOL;
-		$back .= $this->regatData($module, $user, $regats);
+		$back .= $this->regatData($this->_module, $user, $regats);
 		if ($private_mode === true) {
-			$back .= $this->privateData($module, $user);
+			$back .= $this->privateData($this->_module, $user);
 		}
 		return $back;
 	}

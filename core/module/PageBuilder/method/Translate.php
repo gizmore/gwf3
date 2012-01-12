@@ -12,42 +12,42 @@ final class PageBuilder_Translate extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($this->page = GWF_Page::getByID(Common::getGetString('pageid')))) {
-			return $module->lang('err_page');
+			return $this->_module->lang('err_page');
 		}
 		
 		$back = '';
 		
 		if (isset($_POST['translate'])) {
-			$back .= $this->onTranslate($module, $this->page);
+			$back .= $this->onTranslate($this->_module, $this->page);
 		}
 		
-		return $back.$this->templateTranslate($module, $this->page);
+		return $back.$this->templateTranslate($this->_module, $this->page);
 	}
 	
 	private function templateTranslate(Module_PageBuilder $module, GWF_Page $page)
 	{
-		$form = $this->formTranslate($module, $page);
+		$form = $this->formTranslate($this->_module, $page);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_translate')),
+			'form' => $form->templateY($this->_module->lang('ft_translate')),
 		);
-		return $module->template('translate.tpl', $tVars);
+		return $this->_module->template('translate.tpl', $tVars);
 	}
 	
 	private function formTranslate(Module_PageBuilder $module, GWF_Page $page)
 	{
 		$data = array(
-			'url' => array(GWF_Form::STRING, $page->getVar('page_url'), $module->lang('th_url')),
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $module->lang('th_lang')),
-//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($module, $page), true, true), $module->lang('th_groups')),
-//			'noguests' => array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $module->lang('th_noguests')),
-//			'enabled' => array(GWF_Form::CHECKBOX, $page->isEnabled(), $module->lang('th_enabled')),
-			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $module->lang('th_title')),
-			'descr' => array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $module->lang('th_descr')),
-			'tags' => array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $module->lang('th_tags')),
-			'file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_file')),
-			'upload' => array(GWF_Form::SUBMIT, $module->lang('btn_upload')),
-			'content' => array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $module->lang('th_content')),
-			'translate' => array(GWF_Form::SUBMIT, $module->lang('btn_translate')),
+			'url' => array(GWF_Form::STRING, $page->getVar('page_url'), $this->_module->lang('th_url')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $this->_module->lang('th_lang')),
+//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($this->_module, $page), true, true), $this->_module->lang('th_groups')),
+//			'noguests' => array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->_module->lang('th_noguests')),
+//			'enabled' => array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->_module->lang('th_enabled')),
+			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $this->_module->lang('th_title')),
+			'descr' => array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $this->_module->lang('th_descr')),
+			'tags' => array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $this->_module->lang('th_tags')),
+			'file' => array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_file')),
+			'upload' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_upload')),
+			'content' => array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $this->_module->lang('th_content')),
+			'translate' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_translate')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -74,8 +74,8 @@ final class PageBuilder_Translate extends GWF_Method
 	
 	private function onTranslate(Module_PageBuilder $module, GWF_Page $page)
 	{
-		$form = $this->formTranslate($module, $page);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->formTranslate($this->_module, $page);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -114,11 +114,11 @@ final class PageBuilder_Translate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__,__LINE__));
 		}
 		
-		if (false === $module->writeHTA()) {
+		if (false === $this->_module->writeHTA()) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $module->message('msg_trans');
+		return $this->_module->message('msg_trans');
 	}
 }
 ?>

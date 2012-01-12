@@ -6,7 +6,7 @@ final class Download_Edit extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($dl = GWF_Download::getByID(Common::getGet('id')))) {
-			return $module->error('err_dlid');
+			return $this->_module->error('err_dlid');
 		}
 		
 		if (!$dl->mayEdit(GWF_Session::getUser())) {
@@ -14,41 +14,41 @@ final class Download_Edit extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($module, $dl);
+			return $this->onEdit($this->_module, $dl);
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($module, $dl);
+			return $this->onDelete($this->_module, $dl);
 		}
 		if (false !== (Common::getPost('reup'))) {
-			return $this->onReup($module, $dl);
+			return $this->onReup($this->_module, $dl);
 		}
 		
-		return $this->templateEdit($module, $dl);
+		return $this->templateEdit($this->_module, $dl);
 	}
 	
 	private function templateEdit(Module_Download $module, GWF_Download $dl)
 	{
-		$form = $this->getForm($module, $dl);
+		$form = $this->getForm($this->_module, $dl);
 		
 		$form_reup = '';
-		if (!$module->isModerated($module))
+		if (!$this->_module->isModerated($this->_module))
 		{
-			$form_reup = $this->getFormReup($module, $dl);
-			$form_reup = $form_reup->templateY($module->lang('ft_reup'));
+			$form_reup = $this->getFormReup($this->_module, $dl);
+			$form_reup = $form_reup->templateY($this->_module->lang('ft_reup'));
 		}
 		
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit')),
+			'form' => $form->templateY($this->_module->lang('ft_edit')),
 			'form_reup' => $form_reup,
 		);
-		return $module->templatePHP('edit.php', $tVars);
+		return $this->_module->templatePHP('edit.php', $tVars);
 	}
 	
 	private function getFormReup(Module_Download $module, GWF_Download $dl)
 	{
 		$data = array();
-		$data['file'] = array(GWF_Form::FILE, '', $module->lang('th_file'));
-		$data['reup'] = array(GWF_Form::SUBMIT, $module->lang('btn_upload'));
+		$data['file'] = array(GWF_Form::FILE, '', $this->_module->lang('th_file'));
+		$data['reup'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_upload'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -56,24 +56,24 @@ final class Download_Edit extends GWF_Method
 	{
 		$data = array();
 		
-		$data['filename'] = array(GWF_Form::STRING, $dl->getVar('dl_filename'), $module->lang('th_dl_filename'));
-		$data['group'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('group', $dl->getVar('dl_gid')), $module->lang('th_dl_gid'));
-		$data['level'] = array(GWF_Form::INT, $dl->getVar('dl_level'), $module->lang('th_dl_level'));
+		$data['filename'] = array(GWF_Form::STRING, $dl->getVar('dl_filename'), $this->_module->lang('th_dl_filename'));
+		$data['group'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('group', $dl->getVar('dl_gid')), $this->_module->lang('th_dl_gid'));
+		$data['level'] = array(GWF_Form::INT, $dl->getVar('dl_level'), $this->_module->lang('th_dl_level'));
 		if (GWF_User::isAdminS())
 		{
-			$data['price'] = array(GWF_Form::FLOAT, $dl->getVar('dl_price'), $module->lang('th_dl_price'));
+			$data['price'] = array(GWF_Form::FLOAT, $dl->getVar('dl_price'), $this->_module->lang('th_dl_price'));
 		}
 		
-		$data['expire'] = array(GWF_Form::STRING, GWF_Time::humanDuration($dl->getVar('dl_expire')), $module->lang('th_dl_expire'), $module->lang('tt_dl_expire'));
-		$data['guest_view'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_VISIBLE), $module->lang('th_dl_guest_view'), $module->lang('tt_dl_guest_view'));
-		$data['guest_down'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_DOWNLOAD), $module->lang('th_dl_guest_down'), $module->lang('tt_dl_guest_down'));
-		$data['adult'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::ADULT), $module->lang('th_adult'));
-		$data['huname'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::HIDE_UNAME), $module->lang('th_huname'));
-		$data['enabled'] = array(GWF_Form::CHECKBOX, $dl->isEnabled(), $module->lang('th_enabled'));
+		$data['expire'] = array(GWF_Form::STRING, GWF_Time::humanDuration($dl->getVar('dl_expire')), $this->_module->lang('th_dl_expire'), $this->_module->lang('tt_dl_expire'));
+		$data['guest_view'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_VISIBLE), $this->_module->lang('th_dl_guest_view'), $this->_module->lang('tt_dl_guest_view'));
+		$data['guest_down'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::GUEST_DOWNLOAD), $this->_module->lang('th_dl_guest_down'), $this->_module->lang('tt_dl_guest_down'));
+		$data['adult'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::ADULT), $this->_module->lang('th_adult'));
+		$data['huname'] = array(GWF_Form::CHECKBOX, $dl->isOptionEnabled(GWF_Download::HIDE_UNAME), $this->_module->lang('th_huname'));
+		$data['enabled'] = array(GWF_Form::CHECKBOX, $dl->isEnabled(), $this->_module->lang('th_enabled'));
 		
-		$data['descr'] = array(GWF_Form::MESSAGE, $dl->getVar('dl_descr'), $module->lang('th_dl_descr'));
+		$data['descr'] = array(GWF_Form::MESSAGE, $dl->getVar('dl_descr'), $this->_module->lang('th_dl_descr'));
 		
-		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$module->lang('btn_edit'),'delete'=>$module->lang('btn_delete')));
+		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$this->_module->lang('btn_edit'),'delete'=>$this->_module->lang('btn_delete')));
 
 		return new GWF_Form($this, $data);
 	}
@@ -91,14 +91,14 @@ final class Download_Edit extends GWF_Method
 	
 	private function onEdit(Module_Download $module, GWF_Download $dl)
 	{
-		$form = $this->getForm($module, $dl);
-		if (false !== ($err = $form->validate($module))) {
-			return $err.$this->templateEdit($module, $dl);
+		$form = $this->getForm($this->_module, $dl);
+		if (false !== ($err = $form->validate($this->_module))) {
+			return $err.$this->templateEdit($this->_module, $dl);
 		}
 
 		if (GWF_User::isAdminS()) {
 			if (false === $dl->saveVar('dl_price', $form->getVar('price'))) {
-				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($module, $dl);
+				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($this->_module, $dl);
 			}
 		}
 		
@@ -118,10 +118,10 @@ final class Download_Edit extends GWF_Method
 			'dl_expire' => GWF_TimeConvert::humanToSeconds($form->getVar('expire')),
 		)))
 		{
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($module, $dl);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($this->_module, $dl);
 		}
 
-		return $module->message('msg_edited').$this->templateEdit($module, $dl);
+		return $this->_module->message('msg_edited').$this->templateEdit($this->_module, $dl);
 	}
 
 	private function onDelete(Module_Download $module, GWF_Download $dl)
@@ -134,29 +134,29 @@ final class Download_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_deleted');
+		return $this->_module->message('msg_deleted');
 	}
 	
 	private function onReup(Module_Download $module, GWF_Download $dl)
 	{
-		$form = $this->getFormReup($module, $dl);
-		if (false !== ($err = $form->validate($module))) {
-			return $err.$this->templateEdit($module, $dl);
+		$form = $this->getFormReup($this->_module, $dl);
+		if (false !== ($err = $form->validate($this->_module))) {
+			return $err.$this->templateEdit($this->_module, $dl);
 		}
 		
 		if (false === ($file = $form->getVar('file')))
 		{
-			return $module->error('err_file').$this->templateEdit($module, $dl);
+			return $this->_module->error('err_file').$this->templateEdit($this->_module, $dl);
 		}
 		
-		if ($module->isModerated($module))
+		if ($this->_module->isModerated($this->_module))
 		{
-			return GWF_HTML::err('ERR_NO_PERMISSION').$this->templateEdit($module, $dl);
+			return GWF_HTML::err('ERR_NO_PERMISSION').$this->templateEdit($this->_module, $dl);
 		}
 		
 		$tempname = 'dbimg/dl/'.$dl->getVar('dl_id');
 		if (false === ($file = GWF_Upload::moveTo($file, $tempname))) {
-			return GWF_HTML::err('ERR_WRITE_FILE', array( $tempname)).$this->templateEdit($module, $dl);
+			return GWF_HTML::err('ERR_WRITE_FILE', array( $tempname)).$this->templateEdit($this->_module, $dl);
 		}
 		
 		if (false === $dl->saveVars(array(
@@ -167,7 +167,7 @@ final class Download_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_uploaded').$this->templateEdit($module, $dl);
+		return $this->_module->message('msg_uploaded').$this->templateEdit($this->_module, $dl);
 	}
 	
 }

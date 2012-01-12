@@ -14,17 +14,17 @@ final class Forum_Moderate extends GWF_Method
 		}
 		
 		if (false !== ($tid = Common::getGet('yes_thread'))) {
-			return $this->approveThread($module, $tid, $token);
+			return $this->approveThread($this->_module, $tid, $token);
 		}
 		if (false !== ($tid = Common::getGet('no_thread'))) {
-			return $this->deleteThread($module, $tid, $token);
+			return $this->deleteThread($this->_module, $tid, $token);
 		}
 		
 		if (false !== ($pid = Common::getGet('yes_post'))) {
-			return $this->approvePost($module, $pid, $token);
+			return $this->approvePost($this->_module, $pid, $token);
 		}
 		if (false !== ($pid = Common::getGet('no_post'))) {
-			return $this->deletePost($module, $pid, $token);
+			return $this->deletePost($this->_module, $pid, $token);
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
@@ -33,15 +33,15 @@ final class Forum_Moderate extends GWF_Method
 	private function approveThread(Module_Forum $module, $tid, $token)
 	{
 		if (false === ($thread = GWF_ForumThread::getThread($tid))) {
-			return $module->error('err_thread');
+			return $this->_module->error('err_thread');
 		}
 		
 		if (false === ($board = $thread->getBoard())) {
-			return $module->error('err_board');
+			return $this->_module->error('err_board');
 		}
 		
 		if ($token !== $thread->getToken()) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 
 		if (false === $thread->onApprove()) {
@@ -56,59 +56,59 @@ final class Forum_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 
-		$module->cachePostcount();
+		$this->_module->cachePostcount();
 		
-		return $module->message('msg_thread_shown');
+		return $this->_module->message('msg_thread_shown');
 	}
 	
 	private function deleteThread(Module_Forum $module, $tid, $token)
 	{
 		if (false === ($thread = GWF_ForumThread::getThread($tid))) {
-			return $module->error('err_thread');
+			return $this->_module->error('err_thread');
 		}
 		if ($token !== $thread->getToken()) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 
 		if (false === $thread->deleteThread()) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		return $module->message('msg_thread_deleted');
+		return $this->_module->message('msg_thread_deleted');
 	}
 	
 	private function approvePost(Module_Forum $module, $pid, $token)
 	{
 		if (false === ($post = GWF_ForumPost::getPost($pid))) {
-			return $module->error('err_post');
+			return $this->_module->error('err_post');
 		}
 		if ($token !== $post->getToken()) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		
-		if (false === $post->onApprove($module)) {
+		if (false === $post->onApprove($this->_module)) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 
-		$module->cachePostcount();
+		$this->_module->cachePostcount();
 		
-		return $module->message('msg_post_shown');
+		return $this->_module->message('msg_post_shown');
 	}
 
 	private function deletePost(Module_Forum $module, $pid, $token)
 	{
 		if (false === ($post = GWF_ForumPost::getPost($pid))) {
-			return $module->error('err_post');
+			return $this->_module->error('err_post');
 		}
 		if ($token !== $post->getToken()) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		
 		if (false === ($post->deletePost())) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		return $module->message('msg_post_deleted');
+		return $this->_module->message('msg_post_deleted');
 	}
 }
 

@@ -13,16 +13,16 @@ final class PaymentPaypal_ConfirmCheckout extends GWF_Method
 	{
 		$gwf_token = Common::getGet('gwf_token');
 		if (false === ($order = GWF_Order::getByToken($gwf_token))) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		if (!$order->isCreated()) {
-			return $module->error('err_order');
+			return $this->_module->error('err_order');
 		}
 		if (false === ($paypaltoken = Common::getGet("token"))) {
-			return Module_Payment::instance()->error("err_xtoken", array(GWF_HTML::display($module->getSiteName())));
+			return Module_Payment::instance()->error("err_xtoken", array(GWF_HTML::display($this->_module->getSiteName())));
 		}
 		if ($order->getOrderXToken() !== $paypaltoken) {
-			return Module_Payment::instance()->error("err_xtoken", array(GWF_HTML::display($module->getSiteName())));
+			return Module_Payment::instance()->error("err_xtoken", array(GWF_HTML::display($this->_module->getSiteName())));
 		}
 		
 		/* Build a second API request to PayPal, using the token as the
@@ -44,8 +44,8 @@ final class PaymentPaypal_ConfirmCheckout extends GWF_Method
 			$module2->onLoadLanguage();
 			$gdo = $order->getOrderData();
 			$user = $order->getOrderUser();
-			$button = $module->displayPaysiteButton3($module2, $order, $gdo, $user);
-			return Module_Payment::displayOrder3S($module2, $order, $gdo, $user, $order->getOrderPaySite(), $button);
+			$button = $this->_module->displayPaysiteButton3($this->_module2, $order, $gdo, $user);
+			return Module_Payment::displayOrder3S($this->_module2, $order, $gdo, $user, $order->getOrderPaySite(), $button);
 		}
 		else {
 			return Paypal_Util::paypalError($resArray);

@@ -50,12 +50,12 @@ final class WeChall_GraphUser extends GWF_Method
 		
 		if ('totalscore' === ($type = Common::getGet('type')))
 		{
-			return $this->graphUserLevel($module, 'userhist_totalscore');
+			return $this->graphUserLevel($this->_module, 'userhist_totalscore');
 		}
 		
 		if ('rank' === ($type = Common::getGet('type')))
 		{
-			return $this->graphUserLevel($module, 'userhist_rank');
+			return $this->graphUserLevel($this->_module, 'userhist_rank');
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
@@ -92,9 +92,9 @@ final class WeChall_GraphUser extends GWF_Method
 		}
 		
 		if ($vs === false) {
-			$graphtitle = $module->lang('alt_graph_'.$type2, array($user->displayUsername()));
+			$graphtitle = $this->_module->lang('alt_graph_'.$type2, array($user->displayUsername()));
 		} else {
-			$graphtitle = $module->lang('alt_graph_'.$type2.'_vs', array($user->displayUsername(), $vs->displayUsername()));
+			$graphtitle = $this->_module->lang('alt_graph_'.$type2.'_vs', array($user->displayUsername(), $vs->displayUsername()));
 		}
 		
 		$db = gdo_db();
@@ -187,7 +187,7 @@ final class WeChall_GraphUser extends GWF_Method
 		$datemargin = strlen(date($dateformat)) * 11; 
 
 		//define the graph
-		$graph = new Graph($module->cfgGraphWidth(), $module->cfgGraphHeight());
+		$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
 		if ($invert) {
 			$graph->SetScale('datlin', -$highestValue, -1);
 		}

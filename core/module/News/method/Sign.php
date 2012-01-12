@@ -13,18 +13,18 @@ final class News_Sign extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($token = Common::getGet('unsign'))) {
-			return $this->onUnsign($module, Common::getGet('email', ''), $token);
+			return $this->onUnsign($this->_module, Common::getGet('email', ''), $token);
 		}
 		
-		if (!$module->isNewsletterForGuests() && !GWF_User::isLoggedIn()) {
+		if (!$this->_module->isNewsletterForGuests() && !GWF_User::isLoggedIn()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
 		if (false !== (Common::getPost('sign'))) {
-			return $this->onSign($module);
+			return $this->onSign($this->_module);
 		}
 		
-		return $this->templateSign($module); 
+		return $this->templateSign($this->_module); 
 	}
 	
 	private function getForm(Module_News $module)
@@ -36,37 +36,37 @@ final class News_Sign extends GWF_Method
 		}
 		
 		$data = array(
-			'email' => array(GWF_Form::STRING, $email, $module->lang('th_email')),
-			'type' => array(GWF_Form::SELECT, GWF_Newsletter::getTypeSelect($module, 'type'), $module->lang('th_type')),
+			'email' => array(GWF_Form::STRING, $email, $this->_module->lang('th_email')),
+			'type' => array(GWF_Form::SELECT, GWF_Newsletter::getTypeSelect($this->_module, 'type'), $this->_module->lang('th_type')),
 		);
 		
 //		if (!GWF_User::isLoggedIn()) {
 //			GWF_Language::setShowSupported(true);
-			$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid'), $module->lang('th_langid'));
+			$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid'), $this->_module->lang('th_langid'));
 //		}
 
-		$data['sign'] = array(GWF_Form::SUBMIT, $module->lang('btn_sign'), '');
+		$data['sign'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_sign'), '');
 		return new GWF_Form(GDO::table('GWF_Newsletter'), $data);
 	}
 	
 	private function templateSign(Module_News $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$user = GWF_Session::getUser();
 		$row = GWF_Newsletter::getRowForUser($user);
 		$tVars = array(
-			'info' => $this->getSignInfo($module),
-			'form' => $form->templateY($module->lang('ft_sign')),
+			'info' => $this->getSignInfo($this->_module),
+			'form' => $form->templateY($this->_module->lang('ft_sign')),
 			'subscribed' => $row !== false,
 			'href_unsign' => $row !== false ? $row->getUnsignHREF() : false,
 		);
-		return $module->templatePHP('sign.php', $tVars);
+		return $this->_module->templatePHP('sign.php', $tVars);
 	}
 	
 	private function getSignInfo(Module_News $module)
 	{
 		if (false === ($user = GWF_Session::getUser())) {
-			return $module->lang('sign_info_login');
+			return $this->_module->lang('sign_info_login');
 		}
 		$type = GWF_Newsletter::getEmailTypeForUser($user);
 		switch ($type)
@@ -76,19 +76,19 @@ final class News_Sign extends GWF_Method
 			case GWF_Newsletter::WANT_TEXT: $key = 'sign_info_text'; break;
 			default: return GWF_HTML::lang('ERR_GENERAL', array( __FILE__, __LINE__)); 
 		}
-		return $module->lang($key);
+		return $this->_module->lang($key);
 	}
 	
 	private function onSign(Module_News $module)
 	{
-		if (!$module->isNewsletterForGuests() && !GWF_Session::isLoggedIn()) {
+		if (!$this->_module->isNewsletterForGuests() && !GWF_Session::isLoggedIn()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateSign($module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateSign($this->_module);
 		}
 		
 		$email = $form->getVar('email');
@@ -97,19 +97,19 @@ final class News_Sign extends GWF_Method
 		
 		$newsletter = new GWF_Newsletter(false);
 		if (false === ($row = $newsletter->getRow($email))) {
-			return $this->onNewSign($module, $email, $type, $langid).$this->templateSign($module);
+			return $this->onNewSign($this->_module, $email, $type, $langid).$this->templateSign($this->_module);
 		}
 		
 		$back = '';
 		if ($langid !== $row->getVar('nl_langid')) {
-			$back .= $module->message('msg_changed_lang');
+			$back .= $this->_module->message('msg_changed_lang');
 			$row->saveVar('nl_langid', $langid);
 		}
 		if ($row->getType() !== $type) {
-			$back .= $module->message('msg_changed_type');
+			$back .= $this->_module->message('msg_changed_type');
 			$row->saveType($type);
 		}
-		return $back.$this->templateSign($module);
+		return $back.$this->templateSign($this->_module);
 	}
 	
 	private function onNewSign(Module_News $module, $email, $type, $langid)
@@ -125,23 +125,23 @@ final class News_Sign extends GWF_Method
 		if (false === $subscribe->replace()) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		return $module->message('msg_signed');
+		return $this->_module->message('msg_signed');
 	}
 
 	private function onUnsign(Module_News $module, $email, $token)
 	{
 		$nl = new GWF_Newsletter(false);
 		if (false === ($nl = $nl->getRow($email))) {
-			return $module->error('err_unsign');
+			return $this->_module->error('err_unsign');
 		}
 		
 		if ($nl->getVar('nl_unsign') !== $token) {
-			return $module->error('err_unsign');
+			return $this->_module->error('err_unsign');
 		}
 		
 		$nl->delete();
 		
-		return $module->message('msg_unsigned');
+		return $this->_module->message('msg_unsigned');
 	}
 	
 }

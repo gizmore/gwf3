@@ -5,7 +5,7 @@ final class PM_AutoFolder extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($token = Common::getGet('token'))) {
-			return $this->autoFolderB($module, $token, Common::getGet('pmid'), Common::getGet('uid'));
+			return $this->autoFolderB($this->_module, $token, Common::getGet('pmid'), Common::getGet('uid'));
 		}
 
 		if (!GWF_User::isLoggedIn()) {
@@ -13,7 +13,7 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (false !== ($pmid = Common::getGet('pmid'))) {
-			return $this->autoFolder($module, $pmid);
+			return $this->autoFolder($this->_module, $pmid);
 		}
 
 	}
@@ -24,9 +24,9 @@ final class PM_AutoFolder extends GWF_Method
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
-		return $this->autoFolderB($module, $pm->getHashcode(), $pm->getID(), $user->getID());
+		return $this->autoFolderB($this->_module, $pm->getHashcode(), $pm->getID(), $user->getID());
 	}
 
 	/**
@@ -40,11 +40,11 @@ final class PM_AutoFolder extends GWF_Method
 	public function autoFolderB(Module_PM $module, $token, $pmid, $uid)
 	{
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
 		
 		if ($token !== ($pm->getHashcode())) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
 		
 		if (false === ($user = GWF_User::getByID($uid))) {
@@ -52,7 +52,7 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (!$pm->canRead($user)) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
 		
 		if (false === ($pmo = GWF_PMOptions::getPMOptions($user))) {
@@ -64,7 +64,7 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (0 >= ($peak = $pmo->getAutoFolderValue())) {
-			return $module->message('msg_auto_folder_off');
+			return $this->_module->message('msg_auto_folder_off');
 		}
 		
 		if (false === ($other_user = $pm->getOtherUser($user))) {
@@ -80,7 +80,7 @@ final class PM_AutoFolder extends GWF_Method
 		$count = GDO::table('GWF_PM')->countRows($conditions);
 		
 		if ($count < $peak) {
-			return $module->message('msg_auto_folder_none', array($count));
+			return $this->_module->message('msg_auto_folder_none', array($count));
 		}
 		
 		$foldername = $other_user->getVar('user_name');
@@ -90,7 +90,7 @@ final class PM_AutoFolder extends GWF_Method
 			if (false === ($folder->insert())) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			$back .= $module->message('msg_auto_folder_created', array($other_user->displayUsername()));
+			$back .= $this->_module->message('msg_auto_folder_created', array($other_user->displayUsername()));
 		}
 		
 		$pms = GDO::table('GWF_PM')->selectObjects('*', $conditions);
@@ -104,7 +104,7 @@ final class PM_AutoFolder extends GWF_Method
 			}
 		}
 		
-		return $back.$module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
+		return $back.$this->_module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
 	}
 }
 

@@ -14,19 +14,19 @@ final class Forum_GTrans extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->gTranslate($module);
+		return $this->gTranslate($this->_module);
 	}
 	
 	private function gTranslate(Module_Forum $module)
 	{
-		if (false === ($post = $module->getCurrentPost())) {
-			return $module->error('err_post');
+		if (false === ($post = $this->_module->getCurrentPost())) {
+			return $this->_module->error('err_post');
 		}
 		if (false === ($thread = $post->getThread())) {
-			return $module->error('err_post');
+			return $this->_module->error('err_post');
 		}
 		if (false === ($thread->hasPermission(GWF_Session::getUser()))) {
-			return $module->error('err_post_perm');
+			return $this->_module->error('err_post_perm');
 		}
 
 		$text = $post->displayTitle().PHP_EOL.PHP_EOL.$post->displayMessage();

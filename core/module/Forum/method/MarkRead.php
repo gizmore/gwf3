@@ -29,7 +29,7 @@ final class Forum_MarkRead extends GWF_Method
 
 		$cnt = $threads->affectedRows();
 		
-		return $module->message('msg_mark_aread', array($cnt));
+		return $this->_module->message('msg_mark_aread', array($cnt));
 	}
 }
 ?>

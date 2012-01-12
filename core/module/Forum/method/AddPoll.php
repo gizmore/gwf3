@@ -19,7 +19,7 @@ final class Forum_AddPoll extends GWF_Method
 		$mod_votes->onInclude();
 		
 		if (!($this->thread = GWF_ForumThread::getThread(Common::getGet('tid')))) {
-			return $module->error('err_thread');
+			return $this->_module->error('err_thread');
 		}
 		
 		$this->user = GWF_Session::getUser();
@@ -29,28 +29,28 @@ final class Forum_AddPoll extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('assign')) {
-			return $this->onAssign($module).$this->template($module);
+			return $this->onAssign($this->_module).$this->template($this->_module);
 		}
 		
-		return $this->template($module);
+		return $this->template($this->_module);
 	}
 	
 	private function template(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
 			'may_add_poll' => Module_Votes::mayAddPoll($this->user),
 			'href_add' => Module_Votes::hrefAddPoll(),
-			'form' => $form->templateY($module->lang('ft_add_poll')),
+			'form' => $form->templateY($this->_module->lang('ft_add_poll')),
 		);
-		return $module->templatePHP('add_poll.php', $tVars);
+		return $this->_module->templatePHP('add_poll.php', $tVars);
 	}
 	
 	private function getForm(Module_Forum $module)
 	{
 		$data = array(
-			'pollid' => array(GWF_Form::SELECT, $this->getPollSelect($module), $module->lang('th_thread_pollid')),
-			'assign' => array(GWF_Form::SUBMIT, $module->lang('btn_assign')),
+			'pollid' => array(GWF_Form::SELECT, $this->getPollSelect($this->_module), $this->_module->lang('th_thread_pollid')),
+			'assign' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_assign')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -69,7 +69,7 @@ final class Forum_AddPoll extends GWF_Method
 		$polls = $polltable->selectAll('vm_id, vm_title', "vm_uid=$uid", 'vm_title ASC', NULL, -1, -1, GDO::ARRAY_N);
 		
 		$data = array(
-			array('0', $module->lang('sel_poll')),
+			array('0', $this->_module->lang('sel_poll')),
 		);
 		
 		
@@ -99,8 +99,8 @@ final class Forum_AddPoll extends GWF_Method
 	
 	private function onAssign(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
@@ -108,7 +108,7 @@ final class Forum_AddPoll extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_poll_assigned');
+		return $this->_module->message('msg_poll_assigned');
 	}
 }
 ?>

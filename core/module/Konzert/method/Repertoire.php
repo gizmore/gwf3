@@ -12,14 +12,14 @@ final class Konzert_Repertoire extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initRepertoireSlideshow(); initGhostwriter();');
 		
-		$module->setNextHREF(GWF_WEB_ROOT.'arrangements.html');
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'arrangements.html');
 		
-		return $this->templateRepertoire($module);
+		return $this->templateRepertoire($this->_module);
 	}
 	
 	private function templateRepertoire(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/repertoire'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/repertoire'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -29,7 +29,7 @@ final class Konzert_Repertoire extends GWF_Method
 			't1' => $l->lang('t1'),
 			'altimg' => $l->lang('altimg'),
 		);
-		return $module->template('repertoire.tpl', $tVars);
+		return $this->_module->template('repertoire.tpl', $tVars);
 	}
 }
 ?>

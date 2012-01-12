@@ -9,7 +9,7 @@ final class WeChall_ChallNewsRead extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->onMarkRead($module);
+		return $this->onMarkRead($this->_module);
 	}
 	
 	private function onMarkRead(Module_WeChall $module)
@@ -23,7 +23,7 @@ final class WeChall_ChallNewsRead extends GWF_Method
 		if (false === $db->queryWrite($query)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return $module->message('msg_challs_marked');
+		return $this->_module->message('msg_challs_marked');
 	}
 }
 ?>

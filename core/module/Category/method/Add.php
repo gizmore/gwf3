@@ -10,44 +10,44 @@ final class Category_Add extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return 'RewriteRule ^category/add/?$ index.php?mo=Category&me=Add'.PHP_EOL;
-//		return $this->getHTAccessMethod($module);
+//		return $this->getHTAccessMethod($this->_module);
 	}
 	
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('add'))) {
-			return $this->onAdd($module);
+			return $this->onAdd($this->_module);
 		}
-		return $this->templateAdd($module);
+		return $this->templateAdd($this->_module);
 	}
 	
 	private function getForm(Module_Category $module)
 	{
 		$data = array(
-			'key' => array(GWF_Form::STRING, '', $module->lang('th_key')),
-			'group' => array(GWF_Form::STRING, '', $module->lang('th_group')),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add')),
+			'key' => array(GWF_Form::STRING, '', $this->_module->lang('th_key')),
+			'group' => array(GWF_Form::STRING, '', $this->_module->lang('th_group')),
+			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
 	private function templateAdd(Module_Category $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_add')),
+			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
-		return $module->template('add.tpl', $tVars);
+		return $this->_module->template('add.tpl', $tVars);
 	}
 	
 	public function validate_key(Module_Category $module, $key)
 	{
 		$key = (string) $key;
 		if (($key === '') || (strlen($key) > GWF_Category::KEY_LENGTH)) {
-			return $module->lang('err_invalid_key', array( GWF_Category::KEY_LENGTH));
+			return $this->_module->lang('err_invalid_key', array( GWF_Category::KEY_LENGTH));
 		}
 		if (GWF_Category::keyExists($key)) {
-			return $module->lang('err_dup_key');
+			return $this->_module->lang('err_dup_key');
 		}
 		return false;
 	}
@@ -59,9 +59,9 @@ final class Category_Add extends GWF_Method
 	
 	private function onAdd(Module_Category $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
-			return $errors.$this->templateAdd($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
+			return $errors.$this->templateAdd($this->_module);
 		}
 		$cat = new GWF_Category(array(
 			'cat_tree_id' => 0,
@@ -72,12 +72,12 @@ final class Category_Add extends GWF_Method
 			'cat_group' => $form->getVar('group'),
 		));
 		if (false === ($cat->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
 		}
 		
 		$cat->rebuildFullTree();
 		
-		return $module->message('msg_added');
+		return $this->_module->message('msg_added');
 	}
 }
 

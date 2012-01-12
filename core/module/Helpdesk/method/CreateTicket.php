@@ -8,30 +8,30 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Helpdesk/GWF_HelpdeskTitle.php';
 		
 		if (false !== Common::getPost('create')) {
-			return $this->onCreate($module);
+			return $this->onCreate($this->_module);
 		}
 		
-		return $this->templateCT($module);
+		return $this->templateCT($this->_module);
 	}
 	
 	private function templateCT(Module_Helpdesk $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_new_ticket')),
+			'form' => $form->templateY($this->_module->lang('ft_new_ticket')),
 		);
-		return $module->template('new_ticket.tpl', $tVars);
+		return $this->_module->template('new_ticket.tpl', $tVars);
 	}
 	
 	private function getForm(Module_Helpdesk $module)
 	{
 		$data = array(
-			'title' => array(GWF_Form::SELECT, GWF_HelpdeskTitle::select('title', Common::getPostString('title')), $module->lang('th_title')),
-			'other' => array(GWF_Form::STRING, '', $module->lang('th_other')),
-			'message' => array(GWF_Form::MESSAGE, '', $module->lang('th_message')),
-			'faq' => array(GWF_Form::CHECKBOX, false, $module->lang('th_allow_faq'), $module->lang('tt_allow_faq')),
-			'email' => array(GWF_Form::CHECKBOX, true, $module->lang('th_email_me')),
-			'create' => array(GWF_Form::SUBMIT, $module->lang('btn_new_ticket')),
+			'title' => array(GWF_Form::SELECT, GWF_HelpdeskTitle::select('title', Common::getPostString('title')), $this->_module->lang('th_title')),
+			'other' => array(GWF_Form::STRING, '', $this->_module->lang('th_other')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
+			'faq' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_allow_faq'), $this->_module->lang('tt_allow_faq')),
+			'email' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_email_me')),
+			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_new_ticket')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -42,9 +42,9 @@ final class Helpdesk_CreateTicket extends GWF_Method
 	
 	private function onCreate(Module_Helpdesk $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateCT($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateCT($this->_module);
 		}
 		
 		$options = GWF_HelpdeskTicket::USER_READ;
@@ -63,7 +63,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 			'hdt_options' => $options,
 		));
 		if (false === $ticket->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($this->_module);
 		}
 		$ticket->setVar('hdt_uid', GWF_Session::getUser());
 		
@@ -76,13 +76,13 @@ final class Helpdesk_CreateTicket extends GWF_Method
 			'hdm_options' => '0',
 		));
 		if (false === $message->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($this->_module);
 		}
 		$message->setVar('hdm_uid', GWF_Session::getUser());
 		
-		$this->onMailTicket($module, $ticket, $message);
+		$this->onMailTicket($this->_module, $ticket, $message);
 		
-		return $module->message('msg_created');
+		return $this->_module->message('msg_created');
 	}
 	
 	private function onMailTicket(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
@@ -94,7 +94,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		{
 			if (false !== ($user = GWF_User::getByID($userid)))
 			{
-				$this->onMailTicketB($module, $ticket, $message, $user);
+				$this->onMailTicketB($this->_module, $ticket, $message, $user);
 			}
 		}
 	}
@@ -107,9 +107,9 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($rec);
-		$mail->setSubject($module->langUser($user, 'subj_nt', array($ticket->getID())));
-		$href_work = Common::getAbsoluteURL($module->getMethodURL('AssignWork', '&ticket='.$ticket->getID().'&worker='.$user->getID().'&token='.$ticket->getHashcode()), false);
-		$mail->setBody($module->langUser($user, 'body_nt', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $ticket->displayTitle($user), $message->displayMessage(), $href_work)));
+		$mail->setSubject($this->_module->langUser($user, 'subj_nt', array($ticket->getID())));
+		$href_work = Common::getAbsoluteURL($this->_module->getMethodURL('AssignWork', '&ticket='.$ticket->getID().'&worker='.$user->getID().'&token='.$ticket->getHashcode()), false);
+		$mail->setBody($this->_module->langUser($user, 'body_nt', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $ticket->displayTitle($user), $message->displayMessage(), $href_work)));
 		return $mail->sendToUser($user);
 	}
 }

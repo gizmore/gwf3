@@ -12,14 +12,14 @@ final class Profile_Form extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getPost('edit')) {
-			return $this->onEditSettings($module).$this->templateSettings($module);
+			return $this->onEditSettings($this->_module).$this->templateSettings($this->_module);
 		}
 
-		GWF_Website::setPageTitle($module->lang('pt_settings'));
-		GWF_Website::setMetaTags($module->lang('mt_settings'));
-		GWF_Website::setMetaTags($module->lang('md_settings'));
+		GWF_Website::setPageTitle($this->_module->lang('pt_settings'));
+		GWF_Website::setMetaTags($this->_module->lang('mt_settings'));
+		GWF_Website::setMetaTags($this->_module->lang('md_settings'));
 		
-		return $this->templateSettings($module);
+		return $this->templateSettings($this->_module);
 	}
 	
 	private function getProfile()
@@ -30,34 +30,34 @@ final class Profile_Form extends GWF_Method
 	private function getForm(Module_Profile $module, GWF_Profile $profile)
 	{
 		$data = array(
-			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $module->lang('th_firstname'), '', 32, false),
-			'lastname' => array(GWF_Form::STRING, $profile->getVar('prof_lastname'), $module->lang('th_lastname'), '', 32, false),
-			'street' => array(GWF_Form::STRING, $profile->getVar('prof_street'), $module->lang('th_street'), '', 32, false),
-			'zip' => array(GWF_Form::STRING, $profile->getVar('prof_zip'), $module->lang('th_zip'), '', 6, false),
-			'city' => array(GWF_Form::STRING, $profile->getVar('prof_city'), $module->lang('th_city'), '', 32, false),
+			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $this->_module->lang('th_firstname'), '', 32, false),
+			'lastname' => array(GWF_Form::STRING, $profile->getVar('prof_lastname'), $this->_module->lang('th_lastname'), '', 32, false),
+			'street' => array(GWF_Form::STRING, $profile->getVar('prof_street'), $this->_module->lang('th_street'), '', 32, false),
+			'zip' => array(GWF_Form::STRING, $profile->getVar('prof_zip'), $this->_module->lang('th_zip'), '', 6, false),
+			'city' => array(GWF_Form::STRING, $profile->getVar('prof_city'), $this->_module->lang('th_city'), '', 32, false),
 			'div1' => array(GWF_Form::DIVIDER),
-			'tel' => array(GWF_Form::STRING, $profile->getVar('prof_tel'), $module->lang('th_tel'), '', 16, false),
-			'mobile' => array(GWF_Form::STRING, $profile->getVar('prof_mobile'), $module->lang('th_mobile'), '', 16, false),
+			'tel' => array(GWF_Form::STRING, $profile->getVar('prof_tel'), $this->_module->lang('th_tel'), '', 16, false),
+			'mobile' => array(GWF_Form::STRING, $profile->getVar('prof_mobile'), $this->_module->lang('th_mobile'), '', 16, false),
 			'div2' => array(GWF_Form::DIVIDER),
-			'website' => array(GWF_Form::STRING, $profile->getVar('prof_website'), $module->lang('th_website'), '', 32, false),
-			'icq' => array(GWF_Form::STRING, $profile->getVar('prof_icq'), $module->lang('th_icq'), '', 16, false),
-			'msn' => array(GWF_Form::STRING, $profile->getVar('prof_msn'), $module->lang('th_msn'), '', 32, false),
-			'jabber' => array(GWF_Form::STRING, $profile->getVar('prof_jabber'), $module->lang('th_jabber'), '', 32, false),
-			'skype' => array(GWF_Form::STRING, $profile->getVar('prof_skype'), $module->lang('th_skype'), '', 32, false),
-			'yahoo' => array(GWF_Form::STRING, $profile->getVar('prof_yahoo'), $module->lang('th_yahoo'), '', 32, false),
-			'aim' => array(GWF_Form::STRING, $profile->getVar('prof_aim'), $module->lang('th_aim'), '', 32, false),
-			'irc' => array(GWF_Form::STRING, $profile->getVar('prof_irc'), $module->lang('th_irc'), '', 32, false),
+			'website' => array(GWF_Form::STRING, $profile->getVar('prof_website'), $this->_module->lang('th_website'), '', 32, false),
+			'icq' => array(GWF_Form::STRING, $profile->getVar('prof_icq'), $this->_module->lang('th_icq'), '', 16, false),
+			'msn' => array(GWF_Form::STRING, $profile->getVar('prof_msn'), $this->_module->lang('th_msn'), '', 32, false),
+			'jabber' => array(GWF_Form::STRING, $profile->getVar('prof_jabber'), $this->_module->lang('th_jabber'), '', 32, false),
+			'skype' => array(GWF_Form::STRING, $profile->getVar('prof_skype'), $this->_module->lang('th_skype'), '', 32, false),
+			'yahoo' => array(GWF_Form::STRING, $profile->getVar('prof_yahoo'), $this->_module->lang('th_yahoo'), '', 32, false),
+			'aim' => array(GWF_Form::STRING, $profile->getVar('prof_aim'), $this->_module->lang('th_aim'), '', 32, false),
+			'irc' => array(GWF_Form::STRING, $profile->getVar('prof_irc'), $this->_module->lang('th_irc'), '', 32, false),
 			'div3' => array(GWF_Form::DIVIDER),
-			'about_me' => array(GWF_Form::MESSAGE, $profile->getVar('prof_about_me'), $module->lang('th_about_me'), '', 0, false),
-//			'showbday' => array(GWF_Form::CHECKBOX, !$profile->isBirthdayHidden(), $module->lang('th_showbday')),
-			'hidecountry' => array(GWF_Form::CHECKBOX, $profile->isCountryHidden(), $module->lang('th_hidecountry')),
-			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $module->lang('th_hidemail')),
-			'hideguests' => array(GWF_Form::CHECKBOX, $profile->isGuestHidden(), $module->lang('th_hideguest')),
-			'hiderobots' => array(GWF_Form::CHECKBOX, $profile->isRobotHidden(), $module->lang('th_hiderobot'), $module->lang('tt_hiderobot')),
-//			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $module->lang('th_hidden')),
-			'level_all' => array(GWF_Form::INT, $profile->getVar('prof_level_all'), $module->lang('th_level_all'), $module->lang('tt_level_all'), 5, true),
-			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $module->lang('th_level_contact'), $module->lang('tt_level_contact'), 5, true),
-			'edit' => array(GWF_Form::SUBMIT, $module->lang('btn_edit')),
+			'about_me' => array(GWF_Form::MESSAGE, $profile->getVar('prof_about_me'), $this->_module->lang('th_about_me'), '', 0, false),
+//			'showbday' => array(GWF_Form::CHECKBOX, !$profile->isBirthdayHidden(), $this->_module->lang('th_showbday')),
+			'hidecountry' => array(GWF_Form::CHECKBOX, $profile->isCountryHidden(), $this->_module->lang('th_hidecountry')),
+			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $this->_module->lang('th_hidemail')),
+			'hideguests' => array(GWF_Form::CHECKBOX, $profile->isGuestHidden(), $this->_module->lang('th_hideguest')),
+			'hiderobots' => array(GWF_Form::CHECKBOX, $profile->isRobotHidden(), $this->_module->lang('th_hiderobot'), $this->_module->lang('tt_hiderobot')),
+//			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $this->_module->lang('th_hidden')),
+			'level_all' => array(GWF_Form::INT, $profile->getVar('prof_level_all'), $this->_module->lang('th_level_all'), $this->_module->lang('tt_level_all'), 5, true),
+			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $this->_module->lang('th_level_contact'), $this->_module->lang('tt_level_contact'), 5, true),
+			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -65,18 +65,18 @@ final class Profile_Form extends GWF_Method
 	private function templateSettings(Module_Profile $module)
 	{
 		$profile = $this->getProfile();
-		$form = $this->getForm($module, $profile);
+		$form = $this->getForm($this->_module, $profile);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_settings')),
+			'form' => $form->templateY($this->_module->lang('ft_settings')),
 		);
-		return $module->templatePHP('settings.php', $tVars);
+		return $this->_module->templatePHP('settings.php', $tVars);
 	}
 
 	private function onEditSettings(Module_Profile $module)
 	{
 		$profile = $this->getProfile();
-		$form = $this->getForm($module, $profile);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module, $profile);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
@@ -111,7 +111,7 @@ final class Profile_Form extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 				
-		return $module->message('msg_edited');
+		return $this->_module->message('msg_edited');
 	}
 	
 	##################

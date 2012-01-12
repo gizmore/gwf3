@@ -12,7 +12,7 @@ final class WeChall_License extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateLicense($module);
+		return $this->templateLicense($this->_module);
 	}
 	
 	private function templateLicense(Module_WeChall $module)
@@ -23,7 +23,7 @@ final class WeChall_License extends GWF_Method
 		$tVars = array(
 			'license' => $lang,
 		);
-		return $module->templatePHP('license.php', $tVars);
+		return $this->_module->templatePHP('license.php', $tVars);
 	}
 }
 

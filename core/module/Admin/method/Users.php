@@ -12,17 +12,17 @@ final class Admin_Users extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
-		return $module->templateNav().$this->templateUserTable($module);
+		return $this->_module->templateNav().$this->templateUserTable($this->_module);
 	}
 	
 	private function sanitize(Module_Admin $module)
 	{
 		$users = GDO::table('GWF_User');
-		$this->upp = $module->cfgUsersPerPage();
+		$this->upp = $this->_module->cfgUsersPerPage();
 		$this->nUsers = $users->countRows();
 //		$this->by = $users->getWhitelistedBy(Common::getGet('by'), 'user_regdate');
 //		$this->dir = $users->getWhitelistedDir(Common::getGet('dir'), 'DESC');
@@ -39,14 +39,14 @@ final class Admin_Users extends GWF_Method
 		$href = GWF_WEB_ROOT.sprintf('index.php?mo=Admin&me=Users&by=%s&dir=%s&page=%%PAGE%%', urlencode(Common::getGet('by')), urlencode(Common::getGet('dir')));
 //		$href = '';
 		$tVars = array(
-			'users' => $this->getUsers($module),
+			'users' => $this->getUsers($this->_module),
 			'pagemenu' => GWF_PageMenu::display($this->page, $this->nPages, $href),
 //			'by' => $this->by,
 //			'dir' => $this->dir,
 			'sort_url' => $this->getTableSortURL(),
-			'search_form' => $this->getSearchForm($module)->templateX($module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
+			'search_form' => $this->getSearchForm($this->_module)->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
 		);
-		return $module->templatePHP('users.php', $tVars);
+		return $this->_module->templatePHP('users.php', $tVars);
 	}
 
 	private function getUsers(Module_Admin $module)

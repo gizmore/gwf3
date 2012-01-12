@@ -11,21 +11,21 @@ final class Links_Staff extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($lid = Common::getGet('approve'))) {
-			return $this->onApprove($module, $lid, true);
+			return $this->onApprove($this->_module, $lid, true);
 		}
 		if (false !== ($lid = Common::getGet('disapprove'))) {
-			return $this->onApprove($module, $lid, false);
+			return $this->onApprove($this->_module, $lid, false);
 		}
 		
 		if (!GWF_User::isStaffS()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
-		return $this->overview($module);
+		return $this->overview($this->_module);
 	}
 	
 	private function sanitize(Module_Links $module)
@@ -35,7 +35,7 @@ final class Links_Staff extends GWF_Method
 		$this->by = $links->getWhitelistedBy(Common::getGetString('by'), self::DEFAULT_BY);
 		$this->dir =  GDO::getWhitelistedDirS(Common::getGetString('dir'), self::DEFAULT_DIR);
 		$this->orderby = $this->by.' '.$this->dir;
-		$this->ipp = $module->cfgLinksPerPage();
+		$this->ipp = $this->_module->cfgLinksPerPage();
 		$this->nItems = $links->countRows();
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp(intval(Common::getGet('page', 1)), 1, $this->nPages);
@@ -50,27 +50,27 @@ final class Links_Staff extends GWF_Method
 	private function overview(Module_Links $module)
 	{
 		$tVars = array(
-			'links' => $module->templateLinks($this->links, $this->sort_url, $this->by, $this->dir, false, true, true),
+			'links' => $this->_module->templateLinks($this->links, $this->sort_url, $this->by, $this->dir, false, true, true),
 		);
-		return $module->templatePHP('staff.php', $tVars);
+		return $this->_module->templatePHP('staff.php', $tVars);
 	}
 	
 	private function onApprove(Module_Links $module, $lid, $approve)
 	{
 		if (false === ($link = GWF_Links::getByID($lid))) {
-			return $module->error('err_link');
+			return $this->_module->error('err_link');
 		}
 		
 		if (!$link->isInModeration()) {
-			return $module->error('err_approved');
+			return $this->_module->error('err_approved');
 		}
 		
 		if ($link->getToken() !== Common::getGet('token')) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		
 		if ($approve) {
-			if (false !== ($error = $link->insertTags($module))) {
+			if (false !== ($error = $link->insertTags($this->_module))) {
 				return $error;
 			}
 			if (false === $link->saveOption(GWF_Links::IN_MODERATION, false)) {
@@ -81,12 +81,12 @@ final class Links_Staff extends GWF_Method
 			}
 		}
 		else {
-			if (false !== ($error = $link->deleteLink($module))) {
+			if (false !== ($error = $link->deleteLink($this->_module))) {
 				return $error;
 			}
 		}
 		
-		return $module->message($approve ? 'msg_approved' : 'msg_deleted');
+		return $this->_module->message($approve ? 'msg_approved' : 'msg_deleted');
 	}
 }
 

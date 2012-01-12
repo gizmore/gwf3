@@ -10,7 +10,7 @@ final class Lamb_About extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $module->template('about.php', NULL, $tVars);
+		return $this->_module->template('about.php', NULL, $tVars);
 	}
 }
 ?>

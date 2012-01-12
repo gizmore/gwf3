@@ -19,7 +19,7 @@ final class WeChall_About extends GWF_Method
 		$tVars = array(
 			'about_08' => $lang->lang('about_08'),
 		);
-		return $module->template('about.tpl', $tVars);
+		return $this->_module->template('about.tpl', $tVars);
 	}
 }
 

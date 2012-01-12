@@ -7,20 +7,20 @@ final class Slaytags_Tag extends GWF_Method
 	{
 		if (false === ($song = Slay_Song::getByID(Common::getGetString('stid'))))
 		{
-			return $module->error('err_song');
+			return $this->_module->error('err_song');
 		}
 		
 //		if ( (!$song->isPlaying()) || (!$song->recentlyPlayed(5)) )
 //		{
-//			return $module->error('err_cannot_tag_recent_song');
+//			return $this->_module->error('err_cannot_tag_recent_song');
 //		}
 		
 		if (isset($_POST['doit']))
 		{
-			return $this->onTag($module, $song).$this->templateTag($module, $song);
+			return $this->onTag($this->_module, $song).$this->templateTag($this->_module, $song);
 		}
 		
-		return $this->templateTag($module, $song);
+		return $this->templateTag($this->_module, $song);
 	}
 	
 	private function templateTag(Module_Slaytags $module, Slay_Song $song)
@@ -28,14 +28,14 @@ final class Slaytags_Tag extends GWF_Method
 		$user = GWF_Session::getUser();
 		$has_tagged = Slay_TagVote::hasVoted($song, $user);
 		$may_add_tag = Slay_Tag::mayAddTag($user);
-		$form = $this->formTag($module, $song);
+		$form = $this->formTag($this->_module, $song);
 		$tVars = array(
 			'song' => $song,
 			'has_tagged' => $has_tagged,
-			'form' => $form->templateY($module->lang('ft_tag')),
-			'href_add_tag' => $module->getMethodURL('AddTag', '&stid='.$song->getID()),
+			'form' => $form->templateY($this->_module->lang('ft_tag')),
+			'href_add_tag' => $this->_module->getMethodURL('AddTag', '&stid='.$song->getID()),
 		);
-		return $module->template('tag.tpl', $tVars);
+		return $this->_module->template('tag.tpl', $tVars);
 	}
 	
 	private function formTag(Module_Slaytags $module, Slay_Song $song)
@@ -48,18 +48,18 @@ final class Slaytags_Tag extends GWF_Method
 		foreach (Slay_Tag::getTagNames() as $tag)
 		{
 			$checked = in_array($tag, $votes, true);
-			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
 		}
 		
-		$data['doit'] = array(GWF_Form::SUBMIT, $module->lang('btn_tag'));
+		$data['doit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_tag'));
 		
 		return new GWF_Form($this, $data);
 	}
 	
 	private function onTag(Module_Slaytags $module, Slay_Song $song)
 	{
-		$form = $this->formTag($module, $song);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->formTag($this->_module, $song);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
 		}
@@ -74,7 +74,7 @@ final class Slaytags_Tag extends GWF_Method
 				$k = substr($k, 4);
 				if (Slay_Tag::getByName($k) === false)
 				{
-					$errors[] = $module->lang('err_tag_uk');
+					$errors[] = $this->_module->lang('err_tag_uk');
 				}
 				else
 				{
@@ -105,7 +105,7 @@ final class Slaytags_Tag extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_tagged');
+		return $this->_module->message('msg_tagged');
 	}
 }
 ?>

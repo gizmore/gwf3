@@ -9,12 +9,12 @@ final class WeChall_API_Site extends GWF_Method
 			die('The mandatory parameter \'no_session\' is not set. Try \'&no_session=1\'.');
 		}
 		if (false === ($sitename = Common::getGet('sitename'))) {
-			die($this->showAllSites($module));
+			die($this->showAllSites($this->_module));
 		}
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
-			die($module->lang('err_site'));
+			die($this->_module->lang('err_site'));
 		}
-		die($this->showSite($module, $site));
+		die($this->showSite($this->_module, $site));
 	}
 	
 	private function showAllSites(Module_WeChall $module)
@@ -26,7 +26,7 @@ final class WeChall_API_Site extends GWF_Method
 		$back = '';
 		foreach ($sites as $site)
 		{
-			$back .= $this->showSite($module, $site);
+			$back .= $this->showSite($this->_module, $site);
 		}
 		return $back;
 	}

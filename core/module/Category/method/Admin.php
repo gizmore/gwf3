@@ -7,12 +7,12 @@ final class Category_Admin extends GWF_Method
 	public function getHTAccess(GWF_Module $module)
 	{
 		return 'RewriteRule ^category/admin/?$ index.php?mo=Category&me=Admin'.PHP_EOL;
-//		return $this->getHTAccessMethod($module);
+//		return $this->getHTAccessMethod($this->_module);
 	}
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 	
 	public function templateAdmin(Module_Category $module)
@@ -24,7 +24,7 @@ final class Category_Admin extends GWF_Method
 			'sort_url' => '',
 			'url_new' => GWF_WEB_ROOT.'category/add',
 		);
-		return $module->templatePHP('admin.php', $tVars);
+		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 }
 

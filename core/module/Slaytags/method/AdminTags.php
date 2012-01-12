@@ -5,14 +5,14 @@ final class Slaytags_AdminTags extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateAdminTags($module);
+		return $this->templateAdminTags($this->_module);
 	}
 	
 	private function templateAdminTags(Module_Slaytags $module)
 	{
 		$tVars = array(
 		);
-		return $module->template('admin_tags.tpl', $tVars);
+		return $this->_module->template('admin_tags.tpl', $tVars);
 	}
 }
 ?>

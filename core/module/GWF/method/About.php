@@ -8,14 +8,14 @@ final class GWF_About extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateAbout($module);
+		return $this->templateAbout($this->_module);
 	}
 	
 	private function templateAbout(Module_GWF $module)
 	{
 		$tVars = array(
 		);
-		return $module->template('about.tpl', $tVars);
+		return $this->_module->template('about.tpl', $tVars);
 	}
 }
 ?>

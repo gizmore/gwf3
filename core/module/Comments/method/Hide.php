@@ -5,12 +5,12 @@ final class Comments_Hide extends GWF_Method
 	{
 		if (false === ($comment = GWF_Comment::getByID(Common::getGetString('cmt_id'))))
 		{
-			return $module->error('err_comment');
+			return $this->_module->error('err_comment');
 		}
 
 		if (false === ($comments = $comment->getComments()))
 		{
-			return $module->error('err_comments');
+			return $this->_module->error('err_comments');
 		}
 		
 		if (!$comments->canModerate(GWF_Session::getUser()))
@@ -23,7 +23,7 @@ final class Comments_Hide extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_hide');
+		return $this->_module->message('msg_hide');
 	}
 }
 ?>

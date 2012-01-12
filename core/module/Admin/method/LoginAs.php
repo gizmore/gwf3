@@ -8,13 +8,13 @@ final class Admin_LoginAs extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute(GWF_Module $module)
 	{
-		$nav = $module->templateNav();
+		$nav = $this->_module->templateNav();
 		
 		if (false !== Common::getPost('login')) {
-			return $nav.$this->onLoginAs($module);
+			return $nav.$this->onLoginAs($this->_module);
 		}
 		
-		return $nav.$this->templateLoginAs($module);
+		return $nav.$this->templateLoginAs($this->_module);
 	}
 	
 	################
@@ -25,26 +25,26 @@ final class Admin_LoginAs extends GWF_Method
 	public function getForm(Module_Admin $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, Common::getGet('username', ''), $module->lang('th_user_name')),
-			'login' => array(GWF_Form::SUBMIT, $module->lang('btn_login'), ''),
+			'username' => array(GWF_Form::STRING, Common::getGet('username', ''), $this->_module->lang('th_user_name')),
+			'login' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_login'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
 	public function templateLoginAs(Module_Admin $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_login_as')),
+			'form' => $form->templateY($this->_module->lang('ft_login_as')),
 		);
-		return $module->template('login_as.tpl', $tVars);
+		return $this->_module->template('login_as.tpl', $tVars);
 	}
 	
 	public function onLoginAs(Module_Admin $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateLoginAs($module);
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateLoginAs($this->_module);
 		}
 		
 		if (false === ($user = GWF_User::getByName($form->getVar('username')))) {
@@ -53,7 +53,7 @@ final class Admin_LoginAs extends GWF_Method
 		
 		GWF_Session::onLogin($user);
 		
-		return $module->message('msg_login_as', array($user->displayUsername()));
+		return $this->_module->message('msg_login_as', array($user->displayUsername()));
 	}
 	
 		

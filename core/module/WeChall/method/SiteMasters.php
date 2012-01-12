@@ -19,7 +19,7 @@ final class WeChall_SiteMasters extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
-		return $this->masterTable($module, Common::getGet('old')==='1');
+		return $this->masterTable($this->_module, Common::getGet('old')==='1');
 	}
 	
 	public function masterTable(Module_WeChall $module, $old)
@@ -28,7 +28,7 @@ final class WeChall_SiteMasters extends GWF_Method
 		$conditions = $old===true ? 'sitemas_options&1=0' : 'sitemas_options&1=1';
 		$pre = $old===true?'old_':'';
 		$nItems = $masters->countRows($conditions);
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = (int) Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
@@ -41,7 +41,7 @@ final class WeChall_SiteMasters extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.$pre.'site_masters/by/%BY%/%DIR%/page-1',
 			'old' => $old,
 		);
-		return $module->templatePHP('site_masters.php', $tVars);
+		return $this->_module->templatePHP('site_masters.php', $tVars);
 	}
 }
 

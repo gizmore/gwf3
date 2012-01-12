@@ -13,7 +13,7 @@ final class Admin_Modules extends GWF_Method
 	}
 	public function execute(GWF_Module $module)
 	{
-		return $module->templateNav().$this->templateModules($module);
+		return $this->_module->templateNav().$this->templateModules($this->_module);
 	}
 	
 	private function templateModules(Module_Admin $module)
@@ -22,25 +22,25 @@ final class Admin_Modules extends GWF_Method
 		$by = $gdo->getWhitelistedBy(Common::getGetString('by'), 'module_name');
 		$dir = GDO::getWhitelistedDirS(Common::getGetString('dir', 'ASC'));
 		$headers = array(
-			array($module->lang('th_priority'), 'module_priority', 'ASC'),
-			array($module->lang('th_move')),
-			array($module->lang('th_name'), 'module_name', 'ASC'),
-			array($module->lang('th_version_db')),
-			array($module->lang('th_version_hd')),
-			array($module->lang('th_install')),
-			array($module->lang('th_basic')),
-			array($module->lang('th_adv')),
+			array($this->_module->lang('th_priority'), 'module_priority', 'ASC'),
+			array($this->_module->lang('th_move')),
+			array($this->_module->lang('th_name'), 'module_name', 'ASC'),
+			array($this->_module->lang('th_version_db')),
+			array($this->_module->lang('th_version_hd')),
+			array($this->_module->lang('th_install')),
+			array($this->_module->lang('th_basic')),
+			array($this->_module->lang('th_adv')),
 		);
-		$modules = $module->getAllModules($by, $dir);
+		$modules = $this->_module->getAllModules($by, $dir);
 		
 		# Need install?
 		$install_all = '';
-		foreach ($modules as $name => $d) {
+		foreach ($this->_modules as $name => $d) {
 			if (!$d['enabled']) {
 				continue;
 			}
 			if ($d['vdb'] < $d['vfs']) {
-				$install_all = $module->lang('install_info', array(Module_Admin::getInstallAllURL()));
+				$install_all = $this->_module->lang('install_info', array(Module_Admin::getInstallAllURL()));
 				break;
 			}
 		}
@@ -50,12 +50,12 @@ final class Admin_Modules extends GWF_Method
 			'install_all' => $install_all,
 			'tablehead' => GWF_Table::displayHeaders1($headers, Module_Admin::getSortURL('%BY%', '%DIR%'), 'module_name', 'ASC'),
 		
-			'install' => $module->lang('btn_install'),
-			'configure' => $module->lang('btn_config'),
-			'adminsect' => $module->lang('btn_admin_section'),
+			'install' => $this->_module->lang('btn_install'),
+			'configure' => $this->_module->lang('btn_config'),
+			'adminsect' => $this->_module->lang('btn_admin_section'),
 		);
 		
-		return $module->template('modules.tpl', $tVars);
+		return $this->_module->template('modules.tpl', $tVars);
 	}
 }
 

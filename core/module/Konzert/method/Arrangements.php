@@ -8,13 +8,13 @@ final class Konzert_Arrangements extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		$module->setNextHREF(GWF_WEB_ROOT.'konzerttermine.html');
-		return $this->templateArrangements($module);
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'konzerttermine.html');
+		return $this->templateArrangements($this->_module);
 	}
 	
 	private function templateArrangements(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/arrangements'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/arrangements'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -29,7 +29,7 @@ final class Konzert_Arrangements extends GWF_Method
 			'title2' => $l->lang('title2'),
 			'text2' => $l->lang('text2'),
 		);
-		return $module->template('arrangements.tpl', $tVars);
+		return $this->_module->template('arrangements.tpl', $tVars);
 	}
 }
 ?>

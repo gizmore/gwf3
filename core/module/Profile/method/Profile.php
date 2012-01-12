@@ -17,11 +17,11 @@ final class Profile_Profile extends GWF_Method
 		}
 		
 		$uname = $user->displayUsername();
-		GWF_Website::setPageTitle($module->lang('pt_profile', array($uname, $uname)));
-		GWF_Website::setMetaTags($module->lang('mt_profile', array($uname, $uname)));
-		GWF_Website::setMetaDescr($module->lang('md_profile', array($uname, $uname)));
+		GWF_Website::setPageTitle($this->_module->lang('pt_profile', array($uname, $uname)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_profile', array($uname, $uname)));
+		GWF_Website::setMetaDescr($this->_module->lang('md_profile', array($uname, $uname)));
 
-		return $this->profile($module, $user);
+		return $this->profile($this->_module, $user);
 	}
 	
 	private function profile(Module_Profile $module, GWF_User $user)
@@ -32,7 +32,7 @@ final class Profile_Profile extends GWF_Method
 		
 		$watcher = GWF_User::getStaticOrGuest();
 		if ($profile->isRobotHidden() && $watcher->isWebspider()) {
-			return $module->error('err_no_spiders');
+			return $this->_module->error('err_no_spiders');
 		}
 		
 		if (false === ($prof_view = GWF_Session::getOrDefault('prof_view', false))) {
@@ -54,7 +54,7 @@ final class Profile_Profile extends GWF_Method
 			'profile' => $profile,
 			'jquery' => Common::getGet('ajax') !== false,
 		);
-		return $module->templatePHP('profile.php', $tVars);
+		return $this->_module->templatePHP('profile.php', $tVars);
 	}
 }
 

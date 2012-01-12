@@ -6,7 +6,7 @@ final class Helpdesk_Ticket extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($ticket = GWF_HelpdeskTicket::getByID(Common::getGet('ticket')))) {
-			return $module->error('err_ticket');
+			return $this->_module->error('err_ticket');
 		}
 		if (!$ticket->hasPermission(GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -16,55 +16,55 @@ final class Helpdesk_Ticket extends GWF_Method
 		
 		## Post
 		if (isset($_POST['reply'])) {
-			$back .= $this->onReply($module, $ticket);
+			$back .= $this->onReply($this->_module, $ticket);
 		}
 		
 		## Get
 		
 		if (isset($_GET['work'])) {
-			$back .= $this->onWork($module, $ticket);
+			$back .= $this->onWork($this->_module, $ticket);
 		}
 		
 		if (Common::getGetString('faq') === '1') {
-			$back .= $this->onFaq($module, $ticket, true);
+			$back .= $this->onFaq($this->_module, $ticket, true);
 		}
 		elseif (Common::getGetString('faq') === '0') {
-			$back .= $this->onFaq($module, $ticket, false);
+			$back .= $this->onFaq($this->_module, $ticket, false);
 		}
 		
 		if (Common::getGetString('infaq') === '1') {
-			$back .= $this->onInFaq($module, $ticket, true);
+			$back .= $this->onInFaq($this->_module, $ticket, true);
 		}
 		elseif (Common::getGetString('infaq') === '0') {
-			$back .= $this->onInFaq($module, $ticket, false);
+			$back .= $this->onInFaq($this->_module, $ticket, false);
 		}
 		
 		if (Common::getGetString('msgfaq') === '1') {
-			$back .= $this->onMsgFAQ($module, $ticket, true);
+			$back .= $this->onMsgFAQ($this->_module, $ticket, true);
 		}
 		elseif (Common::getGetString('msgfaq') === '0') {
-			$back .= $this->onMsgFAQ($module, $ticket, false);
+			$back .= $this->onMsgFAQ($this->_module, $ticket, false);
 		}
 		
 		if (Common::getGetString('solve') === '1') {
-			$back .= $this->onSolve($module, $ticket, 'solved');
+			$back .= $this->onSolve($this->_module, $ticket, 'solved');
 		}
 		elseif (Common::getGetString('solve') === '0') {
-			$back .= $this->onSolve($module, $ticket, 'unsolved');
+			$back .= $this->onSolve($this->_module, $ticket, 'unsolved');
 		}
 		
 		if (isset($_GET['raise'])) {
-			$back .= $this->onRaisePrio($module, $ticket, 1);
+			$back .= $this->onRaisePrio($this->_module, $ticket, 1);
 		}
 		elseif (isset($_GET['lower'])) {
-			$back .= $this->onRaisePrio($module, $ticket, -1);
+			$back .= $this->onRaisePrio($this->_module, $ticket, -1);
 		}
 		
 		if (isset($_GET['reply'])) {
-			return $back.$this->templateTicketReply($module, $ticket);
+			return $back.$this->templateTicketReply($this->_module, $ticket);
 		}
 		
-		return $back.$this->templateTicket($module, $ticket);
+		return $back.$this->templateTicket($this->_module, $ticket);
 	}
 	
 	public function validate_message(Module_Helpdesk $m, $arg) { return $m->validate_message($arg); } 
@@ -74,19 +74,19 @@ final class Helpdesk_Ticket extends GWF_Method
 		$back = '';
 		if ($ticket->getCreatorID() !== GWF_Session::getUserID()) {
 			if ($ticket->getWorkerID() === '0') {
-				$back .= $this->onWork($module, $ticket);
+				$back .= $this->onWork($this->_module, $ticket);
 			}
 		}
 		
-		$form = $this->formReply($module, $ticket);
-		return $back.$this->templateTicket($module, $ticket, $form->templateY($module->lang('ft_reply')));
+		$form = $this->formReply($this->_module, $ticket);
+		return $back.$this->templateTicket($this->_module, $ticket, $form->templateY($this->_module->lang('ft_reply')));
 	}
 	
 	private function templateTicket(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $form='')
 	{
 		$tid = $ticket->getID();
 		
-		if (false === $this->markRead($module, $ticket)) {
+		if (false === $this->markRead($this->_module, $ticket)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -111,7 +111,7 @@ final class Helpdesk_Ticket extends GWF_Method
 			'is_admin' => GWF_User::isAdminS(),
 			'form' => $form,
 		);
-		return $module->template('ticket.tpl', $tVars);
+		return $this->_module->template('ticket.tpl', $tVars);
 	}
 	
 	private function markRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
@@ -122,15 +122,15 @@ final class Helpdesk_Ticket extends GWF_Method
 		if (false === GDO::table('GWF_HelpdeskMsg')->update("hdm_options=hdm_options|$read", "hdm_tid=$tid AND hdm_uid!=$uid")) {
 			return false;
 		}
-		$this->markTicketRead($module, $ticket, true);
+		$this->markTicketRead($this->_module, $ticket, true);
 		return true;
 	}
 	
 	private function formReply(Module_Helpdesk $module)
 	{
 		$data = array(
-			'message' => array(GWF_Form::MESSAGE, '', $module->lang('th_message')),
-			'reply' => array(GWF_Form::SUBMIT, $module->lang('btn_reply')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
+			'reply' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_reply')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -141,15 +141,15 @@ final class Helpdesk_Ticket extends GWF_Method
 		if ( (!$user->isAdmin()) && (!$user->isStaff()) ) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
-		if (false === ($method = $module->getMethod('AssignWork'))) {
+		if (false === ($method = $this->_module->getMethod('AssignWork'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array('AssignWork'));
 		}
 		
 		if ($ticket->getWorker() !== false) {
-			return $module->error('err_two_workers');
+			return $this->_module->error('err_two_workers');
 		}
 		
-		return $method->onAssign($module, $ticket, $user);
+		return $method->onAssign($this->_module, $ticket, $user);
 	}
 	
 	private function onFaq(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
@@ -163,7 +163,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		$key = $bool ? 'msg_faq' : 'msg_nofaq';
-		return $module->message($key);
+		return $this->_module->message($key);
 	}
 	
 	private function onInFaq(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
@@ -173,7 +173,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		if (!$ticket->isFAQ()) {
-			return $module->error('err_no_faq');
+			return $this->_module->error('err_no_faq');
 		}
 		
 		if (false === $ticket->saveOption(GWF_HelpdeskTicket::VISIBLE_FAQ, $bool)) {
@@ -181,7 +181,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		$key = $bool ? 'msg_infaq' : 'msg_noinfaq';
-		return $module->message($key);
+		return $this->_module->message($key);
 	}
 	
 	private function onMsgFAQ(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
@@ -189,7 +189,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		$tid = $ticket->getID();
 		$mid = Common::getGetInt('message');
 		if (false === ($message = GDO::table('GWF_HelpdeskMsg')->selectFirstObject('*', "hdm_tid=$tid AND hdm_id=$mid"))) {
-			return $module->error('err_tmsg');
+			return $this->_module->error('err_tmsg');
 		}
 		
 		if (false === $message->saveOption(GWF_HelpdeskMsg::FAQ, $bool)) {
@@ -197,7 +197,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		$key = $bool ? 'msg_mfaq_1' : 'msg_mfaq_0';
-		return $module->message($key);
+		return $this->_module->message($key);
 	}
 	
 	private function onSolve(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $status)
@@ -205,7 +205,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		if (false === $ticket->saveVar('hdt_status', $status)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return $module->message('msg_solve_'.$status);
+		return $this->_module->message('msg_solve_'.$status);
 	}
 	
 	
@@ -222,13 +222,13 @@ final class Helpdesk_Ticket extends GWF_Method
 		if ($add > 0)
 		{
 			if ($old+$add > 20) {
-				return $module->error('err_priority', array(0, 20));
+				return $this->_module->error('err_priority', array(0, 20));
 			}
 		}
 		else
 		{
 			if ($old+$add < 0) {
-				return $module->error('err_priority', array(0, 20));
+				return $this->_module->error('err_priority', array(0, 20));
 			}
 		}
 		
@@ -239,17 +239,17 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 
 		if ($add > 0) {
-			return $module->message('msg_raised', array($add));
+			return $this->_module->message('msg_raised', array($add));
 		}
 		else {
-			return $module->message('msg_lowered', array(-$add));
+			return $this->_module->message('msg_lowered', array(-$add));
 		}
 	}
 	
 	private function onReply(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
 	{
-		$form = $this->formReply($module);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->formReply($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -268,13 +268,13 @@ final class Helpdesk_Ticket extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$this->markTicketUnread($module, $ticket, false);
+		$this->markTicketUnread($this->_module, $ticket, false);
 		
-		$this->sendReplyMail($module, $ticket, $message);
+		$this->sendReplyMail($this->_module, $ticket, $message);
 		
 		unset($_GET['reply']);
 		
-		return $module->message('msg_replied');
+		return $this->_module->message('msg_replied');
 	}
 	
 	private function markTicketRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
@@ -310,7 +310,7 @@ final class Helpdesk_Ticket extends GWF_Method
 			{
 				if ($ticket->isOptionEnabled(GWF_HelpdeskTicket::EMAIL_ME))
 				{
-					$this->sendReplyMailUser($module, $ticket, $message, $user);
+					$this->sendReplyMailUser($this->_module, $ticket, $message, $user);
 				}
 			}
 		}
@@ -319,7 +319,7 @@ final class Helpdesk_Ticket extends GWF_Method
 			$user = $ticket->getWorker();
 			if ('' !== ($rec = $user->getValidMail()))
 			{
-				$this->sendReplyMailStaff($module, $ticket, $message, $user);
+				$this->sendReplyMailStaff($this->_module, $ticket, $message, $user);
 			}
 		}
 	}
@@ -329,10 +329,10 @@ final class Helpdesk_Ticket extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
-		$mail->setSubject($module->langUser($user, 'subj_nmu', array($ticket->getID())));
-		$link_solved = Common::getAbsoluteURL($module->getMethodURL('MarkSolved', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
-		$link_read = Common::getAbsoluteURL($module->getMethodURL('MarkRead', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
-		$mail->setBody($module->langUser($user, 'body_nmu', array($user->displayUsername(), $ticket->getWorker()->displayUsername(), $message->displayMessage(), $link_solved, $link_read)));
+		$mail->setSubject($this->_module->langUser($user, 'subj_nmu', array($ticket->getID())));
+		$link_solved = Common::getAbsoluteURL($this->_module->getMethodURL('MarkSolved', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
+		$link_read = Common::getAbsoluteURL($this->_module->getMethodURL('MarkRead', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
+		$mail->setBody($this->_module->langUser($user, 'body_nmu', array($user->displayUsername(), $ticket->getWorker()->displayUsername(), $message->displayMessage(), $link_solved, $link_read)));
 		$mail->sendToUser($user);
 	}
 	
@@ -341,9 +341,9 @@ final class Helpdesk_Ticket extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
-		$mail->setSubject($module->langUser($user, 'subj_nms', array($ticket->getID())));
-		$link_read = Common::getAbsoluteURL($module->getMethodURL('MarkRead', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
-		$mail->setBody($module->langUser($user, 'body_nms', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $message->displayMessage(), $link_read)));
+		$mail->setSubject($this->_module->langUser($user, 'subj_nms', array($ticket->getID())));
+		$link_read = Common::getAbsoluteURL($this->_module->getMethodURL('MarkRead', sprintf('&ticket=%s&message=%s&token=%s', $ticket->getID(), $message->getID(), $message->getHashcode())));
+		$mail->setBody($this->_module->langUser($user, 'body_nms', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $message->displayMessage(), $link_read)));
 		$mail->sendToUser($user);
 	}
 }

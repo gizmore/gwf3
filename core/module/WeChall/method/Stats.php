@@ -19,27 +19,27 @@ final class WeChall_Stats extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
 		if (false !== Common::getPost('clear')) {
-			return $this->onClear($module);
+			return $this->onClear($this->_module);
 		}
 		if (false !== Common::getPost('display')) {
-			return $this->onDisplay($module);
+			return $this->onDisplay($this->_module);
 		}
 		if (false !== Common::getPost('displayall')) {
-			return $this->onDisplayAll($module, true);
+			return $this->onDisplayAll($this->_module, true);
 		}
 		if (false !== Common::getPost('displaynone')) {
-			return $this->onDisplayAll($module, false);
+			return $this->onDisplayAll($this->_module, false);
 		}
 		
-		return $this->templateStats($module);
+		return $this->templateStats($this->_module);
 	}
 	
 	private function setPageTitles(Module_WeChall $module)
 	{
 		if ($this->user1 === false) {
-			GWF_Website::setPageTitle($module->lang('pt_stats', array('Unknown')));
-			GWF_Website::setMetaTags($module->lang('mt_stats', array('Unknown')));
-			GWF_Website::setMetaDescr($module->lang('md_stats', array('Unknown')));
+			GWF_Website::setPageTitle($this->_module->lang('pt_stats', array('Unknown')));
+			GWF_Website::setMetaTags($this->_module->lang('mt_stats', array('Unknown')));
+			GWF_Website::setMetaDescr($this->_module->lang('md_stats', array('Unknown')));
 			return;
 		}
 		
@@ -49,16 +49,16 @@ final class WeChall_Stats extends GWF_Method
 		if ($name2 === '')
 		{
 			$args = array($name1);
-			GWF_Website::setPageTitle($module->lang('pt_stats', $args));
-			GWF_Website::setMetaTags($module->lang('mt_stats', $args));
-			GWF_Website::setMetaDescr($module->lang('md_stats', $args));
+			GWF_Website::setPageTitle($this->_module->lang('pt_stats', $args));
+			GWF_Website::setMetaTags($this->_module->lang('mt_stats', $args));
+			GWF_Website::setMetaDescr($this->_module->lang('md_stats', $args));
 		}
 		else
 		{
 			$args = array($name1, $name2);
-			GWF_Website::setPageTitle($module->lang('pt_stats2', $args));
-			GWF_Website::setMetaTags($module->lang('mt_stats2', $args));
-			GWF_Website::setMetaDescr($module->lang('md_stats2', $args));
+			GWF_Website::setPageTitle($this->_module->lang('pt_stats2', $args));
+			GWF_Website::setMetaTags($this->_module->lang('mt_stats2', $args));
+			GWF_Website::setMetaDescr($this->_module->lang('md_stats2', $args));
 		}
 	}
 
@@ -92,7 +92,7 @@ final class WeChall_Stats extends GWF_Method
 		}
 
 //		if ($score1 <= 0 && $score2 <= 0) {
-//			return $module->error('err_graph_empty');
+//			return $this->_module->error('err_graph_empty');
 //		}
 		
 		$sel = Common::getRequest('site', false);
@@ -102,10 +102,10 @@ final class WeChall_Stats extends GWF_Method
 //		var_dump($sel);
 		
 		if ($sel === false) {
-			$sel = $this->getSelDefault($module, false);
+			$sel = $this->getSelDefault($this->_module, false);
 		}
 		elseif ($sel === 'all') {
-			$sel = $this->getSelDefault($module, true);
+			$sel = $this->getSelDefault($this->_module, true);
 		}
 		if (!is_array($sel)) {
 			$sel = trim($sel);
@@ -149,10 +149,10 @@ final class WeChall_Stats extends GWF_Method
 	
 	private function templateStats(Module_WeChall $module)
 	{
-		if (false !== ($errors = $this->validate($module))) {
+		if (false !== ($errors = $this->validate($this->_module))) {
 			return $errors;
 		}
-		$this->setPageTitles($module);
+		$this->setPageTitles($this->_module);
 		
 		GWF_Website::addJavascriptOnload('wcjsStatsJQuery();');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-ui-1.8.5.custom.min.js');
@@ -169,16 +169,16 @@ final class WeChall_Stats extends GWF_Method
 			'user1' => $this->user1,
 			'user2' => $this->user2,
 			'form_action' => $form_action,
-			'sites' => $this->getSites($module),
-			'img_src' => $this->getImgSrc($module),
-			'img_alt' => $this->getImgTitle($module),
+			'sites' => $this->getSites($this->_module),
+			'img_src' => $this->getImgSrc($this->_module),
+			'img_alt' => $this->getImgTitle($this->_module),
 			'icons' => isset($_POST['icons']),
 			'values' => isset($_POST['values']),
 			'zoom' => isset($_POST['zoom']),
 			'months' => $this->months===0?'':$this->months,
 		);
 		
-		return $module->templatePHP('stats.php', $tVars);
+		return $this->_module->templatePHP('stats.php', $tVars);
 	}
 	
 	private function getSites(Module_WeChall $module)
@@ -316,13 +316,13 @@ final class WeChall_Stats extends GWF_Method
 		
 		$this->months = $this->getMonths();
 		
-		return $this->templateStats($module);
+		return $this->templateStats($this->_module);
 	}
 	
 	private function onClear(Module_WeChall $module)
 	{
 		$_REQUEST['site'] = array();
-		return $this->onDisplay($module);
+		return $this->onDisplay($this->_module);
 	}
 	
 	private function onDisplayAll(Module_WeChall $module, $bool)
@@ -332,7 +332,7 @@ final class WeChall_Stats extends GWF_Method
 		} else {
 			$_REQUEST['site'] = 0;
 		}
-		return $this->onDisplay($module);
+		return $this->onDisplay($this->_module);
 	}
 	
 }

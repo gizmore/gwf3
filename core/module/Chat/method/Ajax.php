@@ -7,14 +7,14 @@ final class Chat_Ajax extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($target = Common::getGet('postto'))) {
-			$back = $this->onPost($module, Common::getGet('nickname'), $target, Common::getGet('message'));
+			$back = $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== ($laggy = Common::getGet('browser'))) {
-			$back = $this->onAjaxUpdate($module);
+			$back = $this->onAjaxUpdate($this->_module);
 		}
 
 		# Update Nickname
-		GWF_ChatOnline::onRequest($module);
+		GWF_ChatOnline::onRequest($this->_module);
 		
 		return $back;
 	}
@@ -22,25 +22,25 @@ final class Chat_Ajax extends GWF_Method
 	private function onPost(Module_Chat $module, $nickname, $target, $message)
 	{
 		# Validate the crap!
-		if (false !== ($error = GWF_ChatValidator::validate_yournick($module, $nickname))) {
+		if (false !== ($error = GWF_ChatValidator::validate_yournick($this->_module, $nickname))) {
 			return $error;
 		}
-		if (false !== ($error = GWF_ChatValidator::validate_target($module, $target))) {
+		if (false !== ($error = GWF_ChatValidator::validate_target($this->_module, $target))) {
 			$error;
 		}
-		if (false !== ($error = GWF_ChatValidator::validate_message($module, $message))) {
+		if (false !== ($error = GWF_ChatValidator::validate_message($this->_module, $message))) {
 			return $error;
 		}
 		
 		# Post it!
-		$oldnick = $module->getNickname();
+		$oldnick = $this->_module->getNickname();
 		$sender = Common::getPost('yournick', $oldnick);
 		$target = trim($target);
 		$message = str_replace("\n", '<br/>', Common::getPost('message'));
 
 		if ($oldnick === false) {
-			$sender = $module->getGuestPrefixed($sender);
-			$module->setGuestNick($sender);
+			$sender = $this->_module->getGuestPrefixed($sender);
+			$this->_module->setGuestNick($sender);
 		} else {
 			$sender = $oldnick;
 		}
@@ -54,9 +54,9 @@ final class Chat_Ajax extends GWF_Method
 	
 	private function onAjaxUpdate(Module_Chat $module)
 	{
-		GWF_ChatOnline::onRequest($module);
+		GWF_ChatOnline::onRequest($this->_module);
 		$times = $this->getAjaxTimes();
-		$back = $module->getAjaxUpdates($times);
+		$back = $this->_module->getAjaxUpdates($times);
 		self::saveAjaxTimes($times);
 		return $back;
 	}

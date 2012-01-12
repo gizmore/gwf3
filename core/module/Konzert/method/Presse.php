@@ -10,13 +10,13 @@ final class Konzert_Presse extends GWF_Method
 	{
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/thumbnails.js');
 		GWF_Website::addJavascriptOnload('konzInitPresse();');
-		$module->setNextHREF(GWF_WEB_ROOT.'hoehrproben.html');
-		return $this->templatePresse($module);
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'hoehrproben.html');
+		return $this->templatePresse($this->_module);
 	}
 	
 	private function templatePresse(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/presse'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/presse'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -31,7 +31,7 @@ final class Konzert_Presse extends GWF_Method
 			't4' => $l->lang('t4'),
 			't5' => $l->lang('t5'),
 		);
-		return $module->template('presse.tpl', $tVars);
+		return $this->_module->template('presse.tpl', $tVars);
 	}
 }
 ?>

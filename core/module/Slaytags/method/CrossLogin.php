@@ -30,7 +30,7 @@ final class Slaytags_CrossLogin extends GWF_Method
 
 		if ($site === 1)
 		{
-			return $this->onCrossLoginSlayradio($module, $userid, $token);
+			return $this->onCrossLoginSlayradio($this->_module, $userid, $token);
 		}
 		else
 		{
@@ -43,25 +43,25 @@ final class Slaytags_CrossLogin extends GWF_Method
 	{
 		if ($token !== $this->slayradioHash($userid))
 		{
-//			return $module->error('err_cross_login');
+//			return $this->_module->error('err_cross_login');
 		}
 		
 		$username = "1_{$userid}";
 		
-		return $this->onCrossLogin($module, $username);
+		return $this->onCrossLogin($this->_module, $username);
 	}
 	
 	private function onCrossLogin(Module_Slaytags $module, $username)
 	{
 		if (false === ($user = GWF_User::getByName($username)))
 		{
-			if (false === ($user = $this->onCrossRegister($module, $username)))
+			if (false === ($user = $this->onCrossRegister($this->_module, $username)))
 			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
-		return $this->onCrossLoginB($module, $user);
+		return $this->onCrossLoginB($this->_module, $user);
 	}
 	
 	private function onCrossRegister(Module_Slaytags $module, $username)
@@ -110,10 +110,10 @@ final class Slaytags_CrossLogin extends GWF_Method
 		
 		if (false === GWF_Session::onLogin($user, false, true))
 		{
-			return $module->error('ERR_GENERAL', array(__FILE__, __LINE__));
+			return $this->_module->error('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_cross_login');
+		return $this->_module->message('msg_cross_login');
 	}
 }
 ?>

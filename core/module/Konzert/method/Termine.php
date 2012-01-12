@@ -14,14 +14,14 @@ final class Konzert_Termine extends GWF_Method
 	{
 		GWF_Website::addJavascriptOnload('konzertInitTermine();');
 		
-		$module->setNextHREF(GWF_WEB_ROOT.'ensemble.html');
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'ensemble.html');
 		
-		return $this->templateTermine($module);
+		return $this->templateTermine($this->_module);
 	}
 	
 	private function templateTermine(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/termine'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/termine'));
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
 		$termine = GDO::table('Konzert_Termin');
@@ -39,13 +39,13 @@ final class Konzert_Termine extends GWF_Method
 		
 		$tVars = array(
 			'l' => $l,
-			'href_admin' => $module->getMethodURL('AdminTermine'),
+			'href_admin' => $this->_module->getMethodURL('AdminTermine'),
 			'user' => GWF_User::getStaticOrGuest(),
 			'termine' => $termine->selectObjects('*', $where, $orderby, self::IPP, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Konzert&me=Termine&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Konzert&me=Termine&by=%BY%&dir=%DIR%&page=1',
 		);
-		return $module->template('termine.tpl', $tVars);
+		return $this->_module->template('termine.tpl', $tVars);
 	}
 }
 ?>

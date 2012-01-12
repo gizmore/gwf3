@@ -15,21 +15,21 @@ final class Admin_GroupEdit extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if (false !== ($uid = Common::getGet('rem'))) {
-			return $module->templateNav().$this->onRemFromGroup($module, $uid).$this->templateEdit($module);
+			return $this->_module->templateNav().$this->onRemFromGroup($this->_module, $uid).$this->templateEdit($this->_module);
 		}
 		if (false !== (Common::getPost('edit'))) {
-			return $module->templateNav().$this->onEditGroup($module).$this->templateEdit($module);
+			return $this->_module->templateNav().$this->onEditGroup($this->_module).$this->templateEdit($this->_module);
 		}
 		if (false !== (Common::getPost('add_to_group'))) {
-			return $module->templateNav().$this->onAddToGroup($module).$this->templateEdit($module);
+			return $this->_module->templateNav().$this->onAddToGroup($this->_module).$this->templateEdit($this->_module);
 		}
 		
-		return $module->templateNav().$this->templateEdit($module);
+		return $this->_module->templateNav().$this->templateEdit($this->_module);
 	}
 	
 	################
@@ -38,7 +38,7 @@ final class Admin_GroupEdit extends GWF_Method
 	private function sanitize(Module_Admin $module)
 	{
 		if (false === ($this->group = GWF_Group::getByID(Common::getGetString('gid')))) {
-			return $module->error('err_group');
+			return $this->_module->error('err_group');
 		}
 		return false;
 	}
@@ -49,10 +49,10 @@ final class Admin_GroupEdit extends GWF_Method
 	public function getGroupViewSelect(Module_Admin $module, $selected, $name)
 	{
 		$data = array(
-			array((string)0x100, $module->lang('th_group_options&'.((string)0x100))),
-			array((string)0x200, $module->lang('th_group_options&'.((string)0x200))),
-			array((string)0x400, $module->lang('th_group_options&'.((string)0x400))),
-			array((string)0x800, $module->lang('th_group_options&'.((string)0x800))),
+			array((string)0x100, $this->_module->lang('th_group_options&'.((string)0x100))),
+			array((string)0x200, $this->_module->lang('th_group_options&'.((string)0x200))),
+			array((string)0x400, $this->_module->lang('th_group_options&'.((string)0x400))),
+			array((string)0x800, $this->_module->lang('th_group_options&'.((string)0x800))),
 		);
 		return GWF_Select::display($name, $data, $selected);
 	}
@@ -60,11 +60,11 @@ final class Admin_GroupEdit extends GWF_Method
 	public function getGroupInviteSelect(Module_Admin $module, $selected, $name)
 	{
 		$data = array(
-			array((string)0x01, $module->lang('th_group_options&'.((string)0x01))),
-			array((string)0x02, $module->lang('th_group_options&'.((string)0x02))),
-			array((string)0x04, $module->lang('th_group_options&'.((string)0x04))),
-			array((string)0x08, $module->lang('th_group_options&'.((string)0x08))),
-			array((string)0x10, $module->lang('th_group_options&'.((string)0x10))),
+			array((string)0x01, $this->_module->lang('th_group_options&'.((string)0x01))),
+			array((string)0x02, $this->_module->lang('th_group_options&'.((string)0x02))),
+			array((string)0x04, $this->_module->lang('th_group_options&'.((string)0x04))),
+			array((string)0x08, $this->_module->lang('th_group_options&'.((string)0x08))),
+			array((string)0x10, $this->_module->lang('th_group_options&'.((string)0x10))),
 		);
 		return GWF_Select::display($name, $data, $selected);
 	}
@@ -75,13 +75,13 @@ final class Admin_GroupEdit extends GWF_Method
 	{
 		$g = $this->group;
 		$data = array(
-			'group_name' => array(GWF_Form::STRING, $g->getVar('group_name'), $module->lang('th_group_name')),
-			'view' => array(GWF_Form::SELECT, $this->getGroupViewSelect($module, $g->getVisibleMode(), 'view'), $module->lang('th_group_sel_view')),
-			'join' => array(GWF_Form::SELECT, $this->getGroupInviteSelect($module, $g->getJoinMode(), 'join'), $module->lang('th_group_sel_join')),
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang', $g->getVar('group_lang')), $module->lang('th_group_lang')),
-			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', $g->getVar('group_country')), $module->lang('th_group_country')),
-			'founder' => array(GWF_Form::STRING, $g->getFounder()->getVar('user_name'), $module->lang('th_group_founder')),
-			'edit' => array(GWF_Form::SUBMIT, $module->lang('btn_edit')),
+			'group_name' => array(GWF_Form::STRING, $g->getVar('group_name'), $this->_module->lang('th_group_name')),
+			'view' => array(GWF_Form::SELECT, $this->getGroupViewSelect($this->_module, $g->getVisibleMode(), 'view'), $this->_module->lang('th_group_sel_view')),
+			'join' => array(GWF_Form::SELECT, $this->getGroupInviteSelect($this->_module, $g->getJoinMode(), 'join'), $this->_module->lang('th_group_sel_join')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang', $g->getVar('group_lang')), $this->_module->lang('th_group_lang')),
+			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', $g->getVar('group_country')), $this->_module->lang('th_group_country')),
+			'founder' => array(GWF_Form::STRING, $g->getFounder()->getVar('user_name'), $this->_module->lang('th_group_founder')),
+			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -89,8 +89,8 @@ final class Admin_GroupEdit extends GWF_Method
 	private function getFormAdd(Module_Admin $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
-			'add_to_group' => array(GWF_Form::SUBMIT, $module->lang('btn_add_to_group')),
+			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
+			'add_to_group' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_to_group')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -100,7 +100,7 @@ final class Admin_GroupEdit extends GWF_Method
 		$groups = GDO::table('GWF_UserGroup');
 		$gid = $this->group->getID();
 		$conditions = "ug_groupid=$gid";
-		$ipp = $module->cfgUsersPerPage();
+		$ipp = $this->_module->cfgUsersPerPage();
 		$nItems = $groups->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(Common::getGet('page', 1), 1, $nPages);
@@ -108,15 +108,15 @@ final class Admin_GroupEdit extends GWF_Method
 		
 		$tVars = array(
 			'group' => $this->group,
-			'form' => $this->getForm($module)->templateY($module->lang('ft_edit_group', array($this->group->display('group_name')))),
-			'form_add' => $this->getFormAdd($module)->templateX($module->lang('ft_add_to_group'),$this->getMethodHREF('&gid='.$gid)),
+			'form' => $this->getForm($this->_module)->templateY($this->_module->lang('ft_edit_group', array($this->group->display('group_name')))),
+			'form_add' => $this->getFormAdd($this->_module)->templateX($this->_module->lang('ft_add_to_group'),$this->getMethodHREF('&gid='.$gid)),
 //			'users' => $groups->selectColumn('ug_userid', $conditions),
 			'userids' => $groups->selectColumn('ug_userid', $conditions, '', NULL, $ipp, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->getMethodHref(sprintf('&gid=%d&page=%%PAGE%%', $gid))),
 			'sort_url' => '',
-			'headers' => GWF_Table::displayHeaders1(array(array($module->lang('th_user_name')),array(''),), ''),
+			'headers' => GWF_Table::displayHeaders1(array(array($this->_module->lang('th_user_name')),array(''),), ''),
 		);
-		return $module->template('groupedit.tpl', $tVars);
+		return $this->_module->template('groupedit.tpl', $tVars);
 	}
 	
 	###############
@@ -124,8 +124,8 @@ final class Admin_GroupEdit extends GWF_Method
 	###############
 	private function onEditGroup(Module_Admin $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 
@@ -137,7 +137,7 @@ final class Admin_GroupEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_edit_group');
+		return $this->_module->message('msg_edit_group');
 	}
 	
 	#######################+
@@ -145,8 +145,8 @@ final class Admin_GroupEdit extends GWF_Method
 	#######################
 	private function onAddToGroup(Module_Admin $module)
 	{
-		$form = $this->getFormAdd($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getFormAdd($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
@@ -156,7 +156,7 @@ final class Admin_GroupEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
 		}
 		
-		return $module->message('msg_added_to_grp', array($user->displayUsername(), $this->group->display('group_name')));
+		return $this->_module->message('msg_added_to_grp', array($user->displayUsername(), $this->group->display('group_name')));
 	}
 	
 	public function onRemFromGroup(Module_Admin $module, $uid)
@@ -172,7 +172,7 @@ final class Admin_GroupEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__,  __LINE__));
 		}
 		
-		return $module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->display('group_name')));
+		return $this->_module->message('msg_removed_from_grp', array(GWF_User::getByID($uid)->displayUsername(), $this->group->display('group_name')));
 	}
 	
 	##################

@@ -7,30 +7,30 @@ final class Konzert_AddTermin extends GWF_Method
 	{
 		if (isset($_POST['add']))
 		{
-			return $this->onAdd($module);
+			return $this->onAdd($this->_module);
 		}
-		return $this->templateAdd($module);
+		return $this->templateAdd($this->_module);
 	}
 	
 	private function templateAdd(Module_Konzert $module)
 	{
-		$form = $this->formAdd($module);
+		$form = $this->formAdd($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_add')),
+			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
-		return $module->template('at_add.tpl', $tVars);
+		return $this->_module->template('at_add.tpl', $tVars);
 	}
 	
 	private function formAdd(Module_Konzert $module)
 	{
 		$data = array();
-		$data['date'] = array(GWF_Form::DATE_FUTURE, '', $module->lang('th_date'), '', GWF_Date::LEN_DAY);
-		$data['time'] = array(GWF_Form::TIME, '', $module->lang('th_time'));
-		$data['prog'] = array(GWF_Form::STRING, '', $module->lang('th_prog'));
-		$data['city'] = array(GWF_Form::STRING, '', $module->lang('th_city'));
-		$data['location'] = array(GWF_Form::STRING, '', $module->lang('th_location'));
-		$data['tickets'] = array(GWF_Form::STRING, '', $module->lang('th_tickets'));
-		$data['add'] = array(GWF_Form::SUBMIT, $module->lang('btn_add'));
+		$data['date'] = array(GWF_Form::DATE_FUTURE, '', $this->_module->lang('th_date'), '', GWF_Date::LEN_DAY);
+		$data['time'] = array(GWF_Form::TIME, '', $this->_module->lang('th_time'));
+		$data['prog'] = array(GWF_Form::STRING, '', $this->_module->lang('th_prog'));
+		$data['city'] = array(GWF_Form::STRING, '', $this->_module->lang('th_city'));
+		$data['location'] = array(GWF_Form::STRING, '', $this->_module->lang('th_location'));
+		$data['tickets'] = array(GWF_Form::STRING, '', $this->_module->lang('th_tickets'));
+		$data['add'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_add'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -43,10 +43,10 @@ final class Konzert_AddTermin extends GWF_Method
 	
 	private function onAdd(Module_Konzert $module)
 	{
-		$form = $this->formAdd($module);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->formAdd($this->_module);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateAdd($module);
+			return $error.$this->templateAdd($this->_module);
 		}
 		
 		$termin = new Konzert_Termin(array(
@@ -62,10 +62,10 @@ final class Konzert_AddTermin extends GWF_Method
 		
 		if (false === $termin->insert())
 		{
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($this->_module);
 		}
 		
-		return $module->message('msg_t_added');
+		return $this->_module->message('msg_t_added');
 	}
 }
 ?>

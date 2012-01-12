@@ -15,26 +15,26 @@ final class PM_Options extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if ('all' === Common::getGet('auto_folder')) {
-			return $this->onAutoFolder($module).$this->templateOptions($module);
+			return $this->onAutoFolder($this->_module).$this->templateOptions($this->_module);
 		}
 		
 		if (false !== (Common::getPost('ignore'))) {
-			return $this->onIgnore($module).$this->templateOptions($module);
+			return $this->onIgnore($this->_module).$this->templateOptions($this->_module);
 		}
 		if (false !== ($username = Common::getGet('unignore'))) {
-			return $this->onUnIgnore($module, $username).$this->templateOptions($module);
+			return $this->onUnIgnore($this->_module, $username).$this->templateOptions($this->_module);
 		}
 		
 		if (false !== Common::getPost('change')) {
-			return $this->onChange($module).$this->templateOptions($module);
+			return $this->onChange($this->_module).$this->templateOptions($this->_module);
 		}
 		
-		return $this->templateOptions($module);
+		return $this->templateOptions($this->_module);
 	}
 	
 	public function sanitize(Module_PM $module)
@@ -47,19 +47,19 @@ final class PM_Options extends GWF_Method
 	
 	public function getForm(Module_PM $module)
 	{
-		$data = GWF_FormGDO::dataFromGDOExclusive($module, $this->options, array('pmo_uid', 'pmo_options'));
-		$data['email'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::EMAIL_ON_PM), $module->lang('th_pmo_options&'.GWF_PMOptions::EMAIL_ON_PM));
-		$data['guestpm'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM), $module->lang('th_pmo_options&'.GWF_PMOptions::ALLOW_GUEST_PM));
-		$data['change'] = array(GWF_Form::SUBMIT, $module->lang('btn_save'));
+		$data = GWF_FormGDO::dataFromGDOExclusive($this->_module, $this->options, array('pmo_uid', 'pmo_options'));
+		$data['email'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::EMAIL_ON_PM), $this->_module->lang('th_pmo_options&'.GWF_PMOptions::EMAIL_ON_PM));
+		$data['guestpm'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM), $this->_module->lang('th_pmo_options&'.GWF_PMOptions::ALLOW_GUEST_PM));
+		$data['change'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_save'));
 		return new GWF_Form($this, $data);
 	}
 	
 	public function getFormIgnore(Module_PM $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
-			'reason' => array(GWF_Form::STRING, '', $module->lang('th_reason')),
-			'ignore' => array(GWF_Form::SUBMIT, $module->lang('btn_ignore2')),
+			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
+			'reason' => array(GWF_Form::STRING, '', $this->_module->lang('th_reason')),
+			'ignore' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_ignore2')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -67,22 +67,22 @@ final class PM_Options extends GWF_Method
 	public function templateOptions(Module_PM $module)
 	{
 		$uid = GWF_Session::getUserID();
-		$form = $this->getForm($module);
-		$form2 = $this->getFormIgnore($module);
+		$form = $this->getForm($this->_module);
+		$form2 = $this->getFormIgnore($this->_module);
 		$action = GWF_WEB_ROOT.'pm/options';
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_options'), $action),
-			'form_ignore' => $form2->templateX($module->lang('ft_ignore'), $action),
+			'form' => $form->templateY($this->_module->lang('ft_options'), $action),
+			'form_ignore' => $form2->templateX($this->_module->lang('ft_ignore'), $action),
 			'ignores' => GDO::table('GWF_PMIgnore')->selectAll('user_name, pmi_reason', "pmi_uid=$uid", 'user_name ASC', array('pmi_iuser'), -1, -1, GDO::ARRAY_N),
 			'href_auto_folder' => $this->getMethodHref('&auto_folder=all'),
 		);
-		return $module->templatePHP('options.php', $tVars);
+		return $this->_module->templatePHP('options.php', $tVars);
 	}
 	
 	private function onChange(Module_PM $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
@@ -101,22 +101,22 @@ final class PM_Options extends GWF_Method
 		if ($email && !GWF_Session::getUser()->hasValidMail()) {
 			$email = false;
 			unset($_POST['email']);
-			return $module->error('err_no_mail');
+			return $this->_module->error('err_no_mail');
 		}
 		
 		if (false === $this->options->saveOption(GWF_PMOptions::EMAIL_ON_PM, $email)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_changed');
+		return $this->_module->message('msg_changed');
 	}
 
-	public function validate_pmo_auto_folder(Module_PM $module, $arg) { return $module->validate_pmo_auto_folder($arg); }
-	public function validate_pmo_signature(Module_PM $module, $arg) { return $module->validate_pmo_signature($arg); }
+	public function validate_pmo_auto_folder(Module_PM $module, $arg) { return $this->_module->validate_pmo_auto_folder($arg); }
+	public function validate_pmo_signature(Module_PM $module, $arg) { return $this->_module->validate_pmo_signature($arg); }
 	
 	private function onIgnore(Module_PM $module)
 	{
-		if (false === ($method = $module->getMethod('Ignore'))) {
+		if (false === ($method = $this->_module->getMethod('Ignore'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
 		}
 		
@@ -125,12 +125,12 @@ final class PM_Options extends GWF_Method
 		}
 		
 		$method instanceof PM_Ignore;
-		return $method->onIgnore($module, 'do', $user->getID(), Common::getPostString('reason'));
+		return $method->onIgnore($this->_module, 'do', $user->getID(), Common::getPostString('reason'));
 	}
 
 	private function onUnIgnore(Module_PM $module, $username)
 	{
-		if (false === ($method = $module->getMethod('Ignore'))) {
+		if (false === ($method = $this->_module->getMethod('Ignore'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
 		}
 		
@@ -139,7 +139,7 @@ final class PM_Options extends GWF_Method
 		}
 		
 		#$method instanceof PM_Ignore;
-		return $method->onIgnore($module, 'do_not', $user->getID());
+		return $method->onIgnore($this->_module, 'do_not', $user->getID());
 	}
 	
 	/**
@@ -156,7 +156,7 @@ final class PM_Options extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		if (0 >= ($peak = $pmo->getAutoFolderValue())) {
-			return $module->message('msg_auto_folder_off');
+			return $this->_module->message('msg_auto_folder_off');
 		}
 		
 		$del = GWF_PM::OWNER_DELETED;
@@ -199,7 +199,7 @@ final class PM_Options extends GWF_Method
 				if (false === ($folder->insert())) {
 					return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 				}
-				$back .= $module->message('msg_auto_folder_created', array($other_user->displayUsername()));
+				$back .= $this->_module->message('msg_auto_folder_created', array($other_user->displayUsername()));
 			}
 			
 			$moved = 0;
@@ -211,11 +211,11 @@ final class PM_Options extends GWF_Method
 				}
 			}
 			if ($moved > 0) {
-				$back .= $module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
+				$back .= $this->_module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
 			}
 		}
 		
-		return $back.$module->message('msg_auto_folder_done');
+		return $back.$this->_module->message('msg_auto_folder_done');
 	}
 }
 

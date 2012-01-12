@@ -12,7 +12,7 @@ final class PageBuilder_Show extends GWF_Method
 		$pages = GDO::table('GWF_Page')->selectAll('page_id, page_url', 'page_options&1', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '';
 
-		if (0 !== ($hpid = $module->cfgHomePage()))
+		if (0 !== ($hpid = $this->_module->cfgHomePage()))
 		{
 			$back .= "RewriteRule ^$ index.php?mo=PageBuilder&me=Show&pageid={$hpid}".PHP_EOL;
 		}
@@ -34,11 +34,11 @@ final class PageBuilder_Show extends GWF_Method
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid'))))
 		{
 			header($_SERVER['SERVER_PROTOCOL']." 404 Not Found"); 
-			return $module->error('err_404');
+			return $this->_module->error('err_404');
 		}
 		
 		# Have permission to see?
-		if (!$this->checkPermission($module, $page))
+		if (!$this->checkPermission($this->_module, $page))
 		{
 			header($_SERVER['SERVER_PROTOCOL']." 403 Forbidden"); 
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -61,10 +61,10 @@ final class PageBuilder_Show extends GWF_Method
 
 		if (isset($_POST['reply']))
 		{
-			$back = $this->onReply($module, $page);
+			$back = $this->onReply($this->_module, $page);
 		}
 		
-		return $this->showPage($module, $page) . $back;
+		return $this->showPage($this->_module, $page) . $back;
 	}
 	
 	private function checkPermission(Module_PageBuilder $module, GWF_Page $page)
@@ -132,14 +132,14 @@ final class PageBuilder_Show extends GWF_Method
 			'author' => $page->display('page_author_name'),
 			'created' => GWF_Time::displayDate($page->getVar('page_create_date')),
 			'modified' => GWF_Time::displayDate($page->getVar('page_date')),
-			'content' => $this->getPageContent($module, $page),
-			'comments' => $this->getPageComments($module, $page),
-			'form_reply' => $this->getPageCommentsForm($module, $page),
-			'pagemenu' => $this->getPagemenuComments($module, $page),
-			'translations' => $this->getPageTranslations($module, $page),
-			'similar' => $this->getSimilarPages($module, $page),
+			'content' => $this->getPageContent($this->_module, $page),
+			'comments' => $this->getPageComments($this->_module, $page),
+			'form_reply' => $this->getPageCommentsForm($this->_module, $page),
+			'pagemenu' => $this->getPagemenuComments($this->_module, $page),
+			'translations' => $this->getPageTranslations($this->_module, $page),
+			'similar' => $this->getSimilarPages($this->_module, $page),
 		);
-		return $module->template('show_page.tpl', $tVars);
+		return $this->_module->template('show_page.tpl', $tVars);
 	}
 
 	private function getPageContent(Module_PageBuilder $module, GWF_Page $page)
@@ -148,7 +148,7 @@ final class PageBuilder_Show extends GWF_Method
 		{
 			case GWF_Page::HTML: return $page->getVar('page_content');
 			case GWF_Page::BBCODE: return GWF_Message::display($page->getVar('page_content'));
-			case GWF_Page::SMARTY: return $this->getPageContentSmarty($module, $page);
+			case GWF_Page::SMARTY: return $this->getPageContentSmarty($this->_module, $page);
 			default: return 'ERROR 0915';
 		}
 	}
@@ -168,7 +168,7 @@ final class PageBuilder_Show extends GWF_Method
 		}
 		$comments = $this->comments;
 		
-		$ipp = $module->cfgCommentsPerPage();
+		$ipp = $this->_module->cfgCommentsPerPage();
 		$cid = $comments->getID();
 		$visible = GWF_Comment::VISIBLE;
 		$where = "cmt_cid={$cid} AND cmt_options&{$visible}";
@@ -192,7 +192,7 @@ final class PageBuilder_Show extends GWF_Method
 			return '';
 		}
 		$comments = $this->comments;
-		$ipp = $module->cfgCommentsPerPage();
+		$ipp = $this->_module->cfgCommentsPerPage();
 		$cid = $comments->getID();
 		$visible = GWF_Comment::VISIBLE;
 		$where = "cmt_cid={$cid} AND cmt_options&{$visible}";

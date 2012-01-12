@@ -9,11 +9,11 @@ final class Votes_Vote extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
-		return $this->onVote($module);
+		return $this->onVote($this->_module);
 	}
 	
 	/**
@@ -25,27 +25,27 @@ final class Votes_Vote extends GWF_Method
 	private function sanitize(Module_Votes $module)
 	{
 		if (false === ($this->votescore = GWF_VoteScore::getByID(Common::getGet('vsid')))) {
-			return $module->error('err_votescore');
+			return $this->_module->error('err_votescore');
 		}
 		
 		if ($this->votescore->isIrreversible() && $this->votescore->hasVoted(GWF_Session::getUser())) {
-			return $module->error('err_irreversible');
+			return $this->_module->error('err_irreversible');
 		}
 		
 		if (false === ($this->score = Common::getGet('score'))) {
-			return $module->error('err_score');
+			return $this->_module->error('err_score');
 		}
 		
 		if (!$this->votescore->isInRange($this->score)) {
-			return $module->error('err_score');
+			return $this->_module->error('err_score');
 		}
 		
 		if ($this->votescore->isExpired()) {
-			return $module->error('err_expired');
+			return $this->_module->error('err_expired');
 		}
 		
 		if ($this->votescore->isDisabled()) {
-			return $module->error('err_disabled');
+			return $this->_module->error('err_disabled');
 		}
 		
 		return false;
@@ -54,20 +54,20 @@ final class Votes_Vote extends GWF_Method
 	private function onVote(Module_Votes $module)
 	{
 		if (false === ($user = GWF_Session::getUser())) {
-			return $this->onGuestVote($module);
+			return $this->onGuestVote($this->_module);
 		}
 		elseif ($user->isWebspider()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		else {
-			return $this->onUserVote($module, $user);
+			return $this->onUserVote($this->_module, $user);
 		}
 	}
 
 	private function onGuestVote(Module_Votes $module)
 	{
 		if (!$this->votescore->isGuestVote()) {
-			return $module->error('err_no_guest');
+			return $this->_module->error('err_no_guest');
 		}
 		
 		$ip = GWF_IP6::getIP(GWF_IP_QUICK);
@@ -76,21 +76,21 @@ final class Votes_Vote extends GWF_Method
 			if (false === $this->votescore->onGuestVote($this->score, $ip)) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			return $this->onVoted($module, false);
+			return $this->onVoted($this->_module, false);
 		}
 		else
 		{
 			if ($vsr->isUserVote()) {
-				return $module->message('err_vote_ip');
+				return $this->_module->message('err_vote_ip');
 			}
-			if (!$vsr->isGuestVoteExpired($module->cfgGuestTimeout())) {
+			if (!$vsr->isGuestVoteExpired($this->_module->cfgGuestTimeout())) {
 				$this->votescore->revertVote($vsr, $ip, 0);
 			}
 			if (false === $this->votescore->onGuestVote($this->score, $ip)) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 			
-			return $this->onVoted($module, false);
+			return $this->onVoted($this->_module, false);
 		}
 	}
 	
@@ -98,7 +98,7 @@ final class Votes_Vote extends GWF_Method
 	{
 		GWF_Hook::call(GWF_Hook::VOTED_SCORE, $user, array($this->votescore->getID(), $this->score));
 		
-		return isset($_GET['ajax']) ? $module->message('msg_voted_ajax') : $module->message('msg_voted', array(GWF_Session::getLastURL()));
+		return isset($_GET['ajax']) ? $this->_module->message('msg_voted_ajax') : $this->_module->message('msg_voted', array(GWF_Session::getLastURL()));
 	}
 	
 	private function onUserVote(Module_Votes $module, GWF_User $user)
@@ -106,7 +106,7 @@ final class Votes_Vote extends GWF_Method
 		if (false !== ($err = $this->votescore->onUserVoteSafe($this->score, $user->getID()))) {
 			return $err;
 		}
-		return $this->onVoted($module, $user);
+		return $this->onVoted($this->_module, $user);
 	}
 	
 	

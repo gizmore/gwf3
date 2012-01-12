@@ -15,37 +15,37 @@ final class WeChall_ChallEdit extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid')))) {
-			return $module->error('err_chall');
+			return $this->_module->error('err_chall');
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($module, $chall).$this->templateEdit($module, $chall);
+			return $this->onEdit($this->_module, $chall).$this->templateEdit($this->_module, $chall);
 		}
 		if (false !== Common::getPost('reset')) {
-			return $this->onReset($module, $chall).$this->templateEdit($module, $chall);
+			return $this->onReset($this->_module, $chall).$this->templateEdit($this->_module, $chall);
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($module, $chall);
+			return $this->onDelete($this->_module, $chall);
 		}
 		
-		return $this->templateEdit($module, $chall);
+		return $this->templateEdit($this->_module, $chall);
 	}
 	
 	private function getForm(Module_WeChall $module, WC_Challenge $chall)
 	{
 		$buttons = array(
-			'edit' => $module->lang('btn_edit'),
-			'reset' => $module->lang('btn_reset'),
-			'delete' => $module->lang('btn_delete'),
+			'edit' => $this->_module->lang('btn_edit'),
+			'reset' => $this->_module->lang('btn_reset'),
+			'delete' => $this->_module->lang('btn_delete'),
 		);
 		$data = array(
-			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $module->lang('th_chall_score')),
-			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $module->lang('th_chall_title')),
-			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $module->lang('th_chall_tags')),
-			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $module->lang('th_chall_url')),
-			'solution' => array(GWF_Form::STRING, '', $module->lang('th_chall_solution')),
-			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $module->lang('th_chall_creator_name')),
-			'case_i' => array(GWF_Form::CHECKBOX, $chall->isCaseI(), $module->lang('th_chall_case_i')),
+			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $this->_module->lang('th_chall_score')),
+			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $this->_module->lang('th_chall_title')),
+			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $this->_module->lang('th_chall_tags')),
+			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $this->_module->lang('th_chall_url')),
+			'solution' => array(GWF_Form::STRING, '', $this->_module->lang('th_chall_solution')),
+			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $this->_module->lang('th_chall_creator_name')),
+			'case_i' => array(GWF_Form::CHECKBOX, $chall->isCaseI(), $this->_module->lang('th_chall_case_i')),
 			'cmd' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -53,17 +53,17 @@ final class WeChall_ChallEdit extends GWF_Method
 	
 	private function templateEdit(Module_WeChall $module, WC_Challenge $chall)
 	{
-		$form = $this->getForm($module, $chall);
+		$form = $this->getForm($this->_module, $chall);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit_chall')),
+			'form' => $form->templateY($this->_module->lang('ft_edit_chall')),
 		);
-		return $module->templatePHP('chall_edit.php', $tVars);
+		return $this->_module->templatePHP('chall_edit.php', $tVars);
 	}
 
 	private function onEdit(Module_WeChall $module, WC_Challenge $chall)
 	{
-		$form = $this->getForm($module, $chall);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->getForm($this->_module, $chall);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 
@@ -93,7 +93,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$old_score = $chall->getVar('chall_score');
 		if ($new_score !== $old_score) {
 			if (!WC_Challenge::isValidScore($new_score)) {
-				$msgs .= $module->error('err_chall_score', array($new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE));
+				$msgs .= $this->_module->error('err_chall_score', array($new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE));
 			}
 			
 			if (false === ($chall->saveVar('chall_score', $new_score))) {
@@ -130,7 +130,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		Module_WeChall::instance()->cacheChallTags();
 		
 		# Done
-		return $msgs.$module->message('msg_chall_edited');
+		return $msgs.$this->_module->message('msg_chall_edited');
 	}
 
 	private function onDelete(Module_WeChall $module, WC_Challenge $chall)
@@ -142,7 +142,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$wc = WC_Site::getWeChall();
 		$wc->recalcSite();
 		
-		return $module->message('msg_chall_deleted');
+		return $this->_module->message('msg_chall_deleted');
 	}
 	
 	##################

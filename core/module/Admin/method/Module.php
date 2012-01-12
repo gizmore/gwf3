@@ -24,33 +24,33 @@ final class Admin_Module extends GWF_Method
 	}
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
-		$nav = $module->templateNav();
+		$nav = $this->_module->templateNav();
 		$back = '';
 		
 		# Enable
 		if (false !== (Common::getPost('enable')))
 		{
-			$back .= $this->onEnable($module, 'enabled');
+			$back .= $this->onEnable($this->_module, 'enabled');
 		}
 		elseif (false !== (Common::getPost('disable')))
 		{
-			$back .= $this->onEnable($module, 'disabled');
+			$back .= $this->onEnable($this->_module, 'disabled');
 		}
 		
 		# Defaults
 		elseif (false !== (Common::getPost('defaults')))
 		{
-			$back .= $this->onDefaults($module);
+			$back .= $this->onDefaults($this->_module);
 		}
 		
 		# Change Config
 		elseif (false !== (Common::getPost('update')))
 		{
-			$back .= $this->onUpdate($module);
+			$back .= $this->onUpdate($this->_module);
 		}
 		
 		# Admin Section Wrap
@@ -63,12 +63,12 @@ final class Admin_Module extends GWF_Method
 			}
 			else
 			{
-				$back .= $module->error('err_no_admin_sect');
+				$back .= $this->_module->error('err_no_admin_sect');
 			}
 		}
 		
 		# Form
-		return $nav.$back.$this->templateModule($module);
+		return $nav.$back.$this->templateModule($this->_module);
 	}
 	
 	private function sanitize(Module_Admin $module)
@@ -99,7 +99,7 @@ final class Admin_Module extends GWF_Method
 		);
 		
 		# Modulevars
-		$data = array_merge($data, $this->getFormModuleVars($module, $mod));
+		$data = array_merge($data, $this->getFormModuleVars($this->_module, $mod));
 		$data['div2'] = array(GWF_Form::DIVIDER);
 		
 		# Actions
@@ -137,7 +137,7 @@ final class Admin_Module extends GWF_Method
 			}
 			$name = $var['mv_key'];
 			$getkey = sprintf('mv_%s', $name);
-			$back[$getkey] = $this->getFormModuleVar($module, $mod, $name, $var);
+			$back[$getkey] = $this->getFormModuleVar($this->_module, $mod, $name, $var);
 		}
 		return $back;
 	}
@@ -148,18 +148,18 @@ final class Admin_Module extends GWF_Method
 	 */
 	private function getFormInstall(Module_Admin $module)
 	{
-		if (false === ($method = $module->getMethod('Install'))) {
+		if (false === ($method = $this->_module->getMethod('Install'))) {
 			echo GWF_HTML::err('ERR_METHOD_MISSING', array( 'Install'));
 			return false; 
 		} $method instanceof Admin_Install;
 		
-		return $method->formInstall($module, $this->mod);
+		return $method->formInstall($this->_module, $this->mod);
 	}
 	
 	
 	private function getFormModuleVar(Module_Admin $module, GWF_Module $mod, $name, array $def)
 	{
-		$tooltip = $this->getTooltip($module, $mod, $name, $def);
+		$tooltip = $this->getTooltip($this->_module, $mod, $name, $def);
 		$helpkey = sprintf('cfg_%s', $name);
 		switch ($def['mv_type'])
 		{
@@ -177,24 +177,24 @@ final class Admin_Module extends GWF_Method
 		switch($var['mv_type'])
 		{
 			case 'int':
-				$default_txt = $module->lang('tt_int', array($var['mv_min'], $var['mv_max']));
+				$default_txt = $this->_module->lang('tt_int', array($var['mv_min'], $var['mv_max']));
 				break;
 			case 'text':
-				$default_txt = $module->lang('tt_text', array( $var['mv_min'], $var['mv_max']));
+				$default_txt = $this->_module->lang('tt_text', array( $var['mv_min'], $var['mv_max']));
 				break;
 			case 'bool':
-				$default_txt = $module->lang('tt_bool');
+				$default_txt = $this->_module->lang('tt_bool');
 				break;
 			case 'script':
-				$default_txt = $module->lang('tt_script');
+				$default_txt = $this->_module->lang('tt_script');
 				break;
 			case 'time':
 				$min = GWF_TimeConvert::humanDuration((int)$var['mv_min']);
 				$max = GWF_TimeConvert::humanDuration((int)$var['mv_max']);
-				$default_txt = $module->lang('tt_time', array( $min, $max));
+				$default_txt = $this->_module->lang('tt_time', array( $min, $max));
 				break;
 			case 'float':
-				$default_txt = $module->lang('tt_float', array( $var['mv_min'], $var['mv_max']));
+				$default_txt = $this->_module->lang('tt_float', array( $var['mv_min'], $var['mv_max']));
 				break;
 		}
 		$extkey = 'tt_cfg_'.$varname;
@@ -212,21 +212,21 @@ final class Admin_Module extends GWF_Method
 	################
 	private function templateModule(Module_Admin $module)
 	{
-		$form = $this->getForm($module);
-		$form_install = $this->getFormInstall($module);
+		$form = $this->getForm($this->_module);
+		$form_install = $this->getFormInstall($this->_module);
 		$seoname = $this->mod->urlencodeSEO('module_name');
 		$modname = $this->mod->display('module_name');
-		$install_action = $module->getMethodURL('Install');
+		$install_action = $this->_module->getMethodURL('Install');
 		$tVars = array(
 			'cfgmodule' => $this->mod,
-			'modules' => $module->getAllModules(),
-			'form' => $form->templateY($module->lang('form_title', array($modname))),
-			'form_install' => $form_install->templateY($module->lang('ft_install', array($modname)), $install_action),
+			'modules' => $this->_module->getAllModules(),
+			'form' => $form->templateY($this->_module->lang('form_title', array($modname))),
+			'form_install' => $form_install->templateY($this->_module->lang('ft_install', array($modname)), $install_action),
 //			'url_install' => sprintf('%s%s/install/%s', GWF_WEB_ROOT, Module_Admin::ADMIN_URL_NAME, $seoname),
 //			'url_reinstall' => sprintf('%s%s/wipe/%s', GWF_WEB_ROOT, Module_Admin::ADMIN_URL_NAME, $seoname),
 		
 		);
-		return $module->templatePHP('module.php', $tVars);
+		return $this->_module->templatePHP('module.php', $tVars);
 	}
 	
 	##############
@@ -254,11 +254,11 @@ final class Admin_Module extends GWF_Method
 		if (false === ($val = GWF_ModuleLoader::getVarValue($value, $type, $min, $max, $ex))) {
 			if ($ex) {
 				unset($_POST['mv_'.$key]);
-				return $module->lang('err_arg_range', array($transkey, $min, $max));
+				return $this->_module->lang('err_arg_range', array($transkey, $min, $max));
 			}
 			else {
 				unset($_POST['mv_'.$key]);
-				return $module->lang('err_arg_type', array($transkey));
+				return $this->_module->lang('err_arg_type', array($transkey));
 			}
 		}
 		
@@ -270,7 +270,7 @@ final class Admin_Module extends GWF_Method
 		if ($type === 'script')
 		{
 			unset($_POST['mv_'.$key]);
-			return $module->lang('err_arg_script', array($transkey));
+			return $this->_module->lang('err_arg_script', array($transkey));
 		}
 		
 		if (false === GDO::table('GWF_ModuleVar')->insertAssoc(array(
@@ -289,15 +289,15 @@ final class Admin_Module extends GWF_Method
 	
 	private function onUpdate(Module_Admin $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->getForm($this->_module);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
 		}
 		
 		$moduleid = $this->mod->getID();
 		$errors = $messages = array();
-		$vars = GWF_ModuleLoader::getModuleVars($moduleid);
+		$vars = GWF_ModuleLoader::getModuleVars($this->_moduleid);
 		foreach ($vars as $row) 
 		{
 			$key = $row['mv_key'];
@@ -317,7 +317,7 @@ final class Admin_Module extends GWF_Method
 			}
 
 			
-			if (false !== ($error = $this->updateVar($module, $key, $newval, $vars, $row)))
+			if (false !== ($error = $this->updateVar($this->_module, $key, $newval, $vars, $row)))
 			{
 				if ($error !== '')
 				{
@@ -327,7 +327,7 @@ final class Admin_Module extends GWF_Method
 			else
 			{
 				$transkey = $this->mod->lang('cfg_'.$key);
-				$messages[] = $module->lang('msg_update_var', array($transkey, GWF_HTML::display($newval)));
+				$messages[] = $this->_module->lang('msg_update_var', array($transkey, GWF_HTML::display($newval)));
 			}
 		}
 		
@@ -356,7 +356,7 @@ final class Admin_Module extends GWF_Method
 		
 		if ($this->mod->isCoreModule())
 		{
-			return $module->error('err_disable_core_module');
+			return $this->_module->error('err_disable_core_module');
 		}
 		
 		if (false === $this->mod->saveOption(GWF_Module::ENABLED, $enum==='enabled'))
@@ -369,14 +369,14 @@ final class Admin_Module extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 
-		return $module->message('msg_module_'.$enum, array($this->mod->display('module_name')));
+		return $this->_module->message('msg_module_'.$enum, array($this->mod->display('module_name')));
 	}
 	
 	private function onDefaults(Module_Admin $module)
 	{
 		$_POST['reinstall'] = true;
 		$_POST['modulename'] = $this->mod->getName();
-		$module->execute('Install');
+		$this->_module->execute('Install');
 	}
 
 }

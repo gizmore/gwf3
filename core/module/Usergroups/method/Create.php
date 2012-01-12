@@ -8,53 +8,53 @@ final class Usergroups_Create extends GWF_Method
 	{
 		$user = GWF_Session::getUser();
 		
-//		if (false !== ($group = $module->getGroup($user))) {
-//			return GWF_Website::redirect($module->hrefEdit());
+//		if (false !== ($group = $this->_module->getGroup($user))) {
+//			return GWF_Website::redirect($this->_module->hrefEdit());
 //		}
 		
-		if (!$module->canCreateGroup($user)) {
-			return $module->error('err_perm');
+		if (!$this->_module->canCreateGroup($user)) {
+			return $this->_module->error('err_perm');
 		}
 		
-//		if ($module->hasGroup($user)) {
-//			return $module->error('err_group_exists');
+//		if ($this->_module->hasGroup($user)) {
+//			return $this->_module->error('err_group_exists');
 //		}
 		
 		if (false !== Common::getPost('create')) {
-			return $this->onCreate($module).$module->requestMethodB('ShowGroups');
+			return $this->onCreate($this->_module).$this->_module->requestMethodB('ShowGroups');
 		}
-		return $this->templateCreate($module);
+		return $this->templateCreate($this->_module);
 	}
 	
 	private function templateCreate(Module_Usergroups $module)
 	{
 		
-		$form = $this->formCreate($module);
+		$form = $this->formCreate($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_create')),
+			'form' => $form->templateY($this->_module->lang('ft_create')),
 		);
-		return $module->templatePHP('create.php', $tVars);
+		return $this->_module->templatePHP('create.php', $tVars);
 	}
 	
 	private function formCreate(Module_Usergroups $module)
 	{
 		$data = array(
-			'name' => array(GWF_Form::STRING, '', $module->lang('th_name')),
-			'join' => array(GWF_Form::SELECT, $module->selectJoinType(Common::getPost('join')), $module->lang('th_join')),
-			'view' => array(GWF_Form::SELECT, $module->selectViewType(Common::getPost('view')), $module->lang('th_view')),
-			'create' => array(GWF_Form::SUBMIT, $module->lang('btn_create')),
+			'name' => array(GWF_Form::STRING, '', $this->_module->lang('th_name')),
+			'join' => array(GWF_Form::SELECT, $this->_module->selectJoinType(Common::getPost('join')), $this->_module->lang('th_join')),
+			'view' => array(GWF_Form::SELECT, $this->_module->selectViewType(Common::getPost('view')), $this->_module->lang('th_view')),
+			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
-	public function validate_name(Module_Usergroups $module, $arg) { return $module->validate_name($arg); }
-	public function validate_join(Module_Usergroups $module, $arg) { return $module->validate_join($arg); }
-	public function validate_view(Module_Usergroups $module, $arg) { return $module->validate_view($arg); }
+	public function validate_name(Module_Usergroups $module, $arg) { return $this->_module->validate_name($arg); }
+	public function validate_join(Module_Usergroups $module, $arg) { return $this->_module->validate_join($arg); }
+	public function validate_view(Module_Usergroups $module, $arg) { return $this->_module->validate_view($arg); }
 	private function onCreate(Module_Usergroups $module)
 	{
-		$form = $this->formCreate($module);
-		if (false !== ($errors = $form->validate($module))) {
-			return $errors.$this->templateCreate($module);
+		$form = $this->formCreate($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
+			return $errors.$this->templateCreate($this->_module);
 		}
 		
 		$user = GWF_Session::getUser();
@@ -86,19 +86,19 @@ final class Usergroups_Create extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false !== ($error = $this->createBoard($module, $group))) {
+		if (false !== ($error = $this->createBoard($this->_module, $group))) {
 			return $error;
 		}
 		
-		return $module->message('msg_created');
+		return $this->_module->message('msg_created');
 	}
 	
 	private function createBoard(Module_Usergroups $module, GWF_Group $group)
 	{
 		$name = $group->getName();
 		
-		$pid = $module->getForumBoard()->getID();
-//		$pid = Common::clamp($module->cfgBID(), 1);
+		$pid = $this->_module->getForumBoard()->getID();
+//		$pid = Common::clamp($this->_module->cfgBID(), 1);
 		
 		if (false === GWF_ForumBoard::getByID($pid)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
@@ -114,7 +114,7 @@ final class Usergroups_Create extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false !== ($error = $module->adjustFlags($group))) {
+		if (false !== ($error = $this->_module->adjustFlags($group))) {
 			return $error;
 		}
 		

@@ -5,7 +5,7 @@ final class Helpdesk_ShowTickets extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateTickets($module);
+		return $this->templateTickets($this->_module);
 	}
 	
 	private function templateTickets(Module_Helpdesk $module)
@@ -30,7 +30,7 @@ final class Helpdesk_ShowTickets extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by=%BY%&dir=%DIR%',
 		);
-		return $module->template('user.tpl', $tVars);
+		return $this->_module->template('user.tpl', $tVars);
 	}
 }
 ?>

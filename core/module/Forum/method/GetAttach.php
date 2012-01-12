@@ -9,11 +9,11 @@ final class Forum_GetAttach extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($attach = GWF_ForumAttachment::getByID(Common::getGet('aid')))) {
-			return $module->error('err_attach');
+			return $this->_module->error('err_attach');
 		}
 		
 		if (false === ($post = $attach->getPost())) {
-			return $module->error('err_post');
+			return $this->_module->error('err_post');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -26,7 +26,7 @@ final class Forum_GetAttach extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateAttach($module, $attach, $post, $user);
+		return $this->templateAttach($this->_module, $attach, $post, $user);
 	}
 	
 	private function templateAttach(Module_Forum $module, GWF_ForumAttachment $attach, GWF_ForumPost $post, $user)

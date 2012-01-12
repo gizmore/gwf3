@@ -15,28 +15,28 @@ final class Forum_AddThread extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($module);
+			return $this->onPreview($this->_module);
 		}
 		
 		if (false !== (Common::getPost('add_thread'))) {
-			return $this->onAddThread($module);
+			return $this->onAddThread($this->_module);
 		}
 		
-		return $this->templateAddThread($module);
+		return $this->templateAddThread($this->_module);
 	}
 	
 	private function sanitize(Module_Forum $module)
 	{
-		if (false !== ($error = $module->isNewThreadAllowed())) {
+		if (false !== ($error = $this->_module->isNewThreadAllowed())) {
 			return $error;
 		}
 		
-		$this->board = $module->getCurrentBoard();
+		$this->board = $this->_module->getCurrentBoard();
 		
 		return false;
 	}
@@ -44,16 +44,16 @@ final class Forum_AddThread extends GWF_Method
 	private function getForm(Module_Forum $module)
 	{
 		$buttons = array(
-			'add_thread' => $module->lang('btn_add_thread'),
-			'preview' => $module->lang('btn_preview'),
+			'add_thread' => $this->_module->lang('btn_add_thread'),
+			'preview' => $this->_module->lang('btn_preview'),
 		);
 		$b = $this->board;
 		$data = array(
-			'title' => array(GWF_Form::STRING, '', $module->lang('th_title')),
-			'message' => array(GWF_Form::MESSAGE, '', $module->lang('th_message')),
-			'smileys' => array(GWF_Form::CHECKBOX, false, $module->lang('th_smileys')),
-//			'guest_view' => array(GWF_Form::CHECKBOX, $b->isGuestView(), $module->lang('th_guest_view')),
-			'bbcode' => array(GWF_Form::CHECKBOX, false, $module->lang('th_bbcode')),
+			'title' => array(GWF_Form::STRING, '', $this->_module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
+			'smileys' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_smileys')),
+//			'guest_view' => array(GWF_Form::CHECKBOX, $b->isGuestView(), $this->_module->lang('th_guest_view')),
+			'bbcode' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_bbcode')),
 			'submit' => array(GWF_Form::SUBMITS, $buttons, ''),
 		);
 		return new GWF_Form($this, $data);
@@ -61,19 +61,19 @@ final class Forum_AddThread extends GWF_Method
 	
 	private function templateAddThread(Module_Forum $module, $nav=true)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
 			'nav' => $nav,
-			'form' => $form->templateY($module->lang('ft_add_thread')),
+			'form' => $form->templateY($this->_module->lang('ft_add_thread')),
 		);
-		return $module->templatePHP('add_thread.php', $tVars);
+		return $this->_module->templatePHP('add_thread.php', $tVars);
 	}
 	
 	##################
 	### Validators ###
 	##################
-	public function validate_title(Module_Forum $module, $arg) { return $module->validate_title($arg); }
-	public function validate_message(Module_Forum $module, $arg) { return $module->validate_message($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
+	public function validate_message(Module_Forum $module, $arg) { return $this->_module->validate_message($arg); }
 	
 	###############
 	### Preview ###
@@ -82,9 +82,9 @@ final class Forum_AddThread extends GWF_Method
 	{
 		$user = GWF_Session::getUser();
 		
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
-		$errors = $form->validate($module);
+		$errors = $form->validate($this->_module);
 		
 		$title = $form->getVar('title');
 		$message = $form->getVar('message');
@@ -102,19 +102,19 @@ final class Forum_AddThread extends GWF_Method
 			'term' => '',
 		);
 		
-		return $errors.$module->templatePHP('show_thread.php', $tVars).$this->templateAddThread($module, false);
+		return $errors.$this->_module->templatePHP('show_thread.php', $tVars).$this->templateAddThread($this->_module, false);
 	}
 	
 	private function onAddThread(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateAddThread($module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateAddThread($this->_module);
 		}
 		
 		$user = GWF_Session::getUser();
-		$is_mod = $user === false && $module->isGuestPostModerated();
+		$is_mod = $user === false && $this->_module->isGuestPostModerated();
 		
 		$title = $form->getVar('title');
 		$message = $form->getVar('message');
@@ -146,13 +146,13 @@ final class Forum_AddThread extends GWF_Method
 		if (!$is_mod)
 		{
 			$thread->onApprove();
-//			$module->cachePostcoun();
-			return $module->message('msg_posted', array($thread->getLastPageHREF()));
+//			$this->_module->cachePostcoun();
+			return $this->_module->message('msg_posted', array($thread->getLastPageHREF()));
 		}
 		else
 		{
-			GWF_ForumSubscription::sendModerateThread($module, $thread, $message);
-			return $module->message('msg_posted_mod', array($this->board->getShowBoardHREF()));
+			GWF_ForumSubscription::sendModerateThread($this->_module, $thread, $message);
+			return $this->_module->message('msg_posted_mod', array($this->board->getShowBoardHREF()));
 		}
 	}
 }

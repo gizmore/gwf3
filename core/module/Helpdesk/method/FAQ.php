@@ -1,7 +1,7 @@
 <?php
 final class Helpdesk_FAQ extends GWF_Method
 {
-	private function onGenerate(Module_Helpdesk $module) { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($module); }
+	private function onGenerate(Module_Helpdesk $module) { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($this->_module); }
 	
 	public function execute(GWF_Module $module)
 	{
@@ -11,20 +11,20 @@ final class Helpdesk_FAQ extends GWF_Method
 		GWF_Website::addJavascriptOnload('helpdeskInit();');
 		
 		if (Common::getGetString('generate') === 'now') {
-			$back .= $this->onGenerate($module);
+			$back .= $this->onGenerate($this->_module);
 		}
 		
-		return $back.$this->templateFAQ($module);
+		return $back.$this->templateFAQ($this->_module);
 	}
 	
 	public function templateFAQ(Module_Helpdesk $module)
 	{
 		$tVars = array(
-			'href_add' => $module->getMethodURL('FAQAdd'),
+			'href_add' => $this->_module->getMethodURL('FAQAdd'),
 			'href_generate' => $this->getMethodHREF('&generate=now'),
-			'faq' => $this->buildFAQ($module),
+			'faq' => $this->buildFAQ($this->_module),
 		);
-		return $module->template('faq.tpl', $tVars);
+		return $this->_module->template('faq.tpl', $tVars);
 	}
 	
 	private function buildFAQ(Module_Helpdesk $module)
@@ -41,7 +41,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		
 		while (false !== ($row = $faq->fetch($result, GDO::ARRAY_A)))
 		{
-			$back[] = $this->buildFAQRow($module, $row);
+			$back[] = $this->buildFAQRow($this->_module, $row);
 		}
 		
 		$faq->free($result);
@@ -70,7 +70,7 @@ final class Helpdesk_FAQ extends GWF_Method
 			$back['q'] = $row['hdf_question'];
 			$back['a'] = array(GWF_Message::display($row['hdf_answer']));
 		}
-		$back['href_edit'] = $module->getMethodURL('FAQEdit', '&faqid='.$row['hdf_id']);
+		$back['href_edit'] = $this->_module->getMethodURL('FAQEdit', '&faqid='.$row['hdf_id']);
 		return $back;
 	}
 }

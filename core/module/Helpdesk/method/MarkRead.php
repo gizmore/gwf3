@@ -4,18 +4,18 @@ final class Helpdesk_MarkRead extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($ticket = GWF_HelpdeskTicket::getByID(Common::getGetString('ticket')))) {
-			return $module->error('err_ticket');
+			return $this->_module->error('err_ticket');
 		}
 		
 		if (false === ($message = GWF_HelpdeskMsg::getByID(Common::getGetString('message')))) {
-			return $module->error('err_tmsg');
+			return $this->_module->error('err_tmsg');
 		}
 		
 		if ($message->getHashcode() !== Common::getGetString('token')) {
-			return $module->error('err_token');
+			return $this->_module->error('err_token');
 		}
 		
-		return $this->onMarkRead($module, $ticket, $message);
+		return $this->onMarkRead($this->_module, $ticket, $message);
 	}
 	
 	public function onMarkRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
@@ -36,7 +36,7 @@ final class Helpdesk_MarkRead extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_read');
+		return $this->_module->message('msg_read');
 	}
 }
 ?>

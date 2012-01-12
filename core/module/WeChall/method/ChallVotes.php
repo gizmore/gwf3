@@ -15,16 +15,16 @@ final class WeChall_ChallVotes extends GWF_Method
 		}
 		
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid', 0)))) {
-			return $module->error('err_chall');
+			return $this->_module->error('err_chall');
 		}
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		
 		if (false !== (Common::getPost('vote'))) {
-			return $this->onVote($module, $chall).$this->templateVotes($module, $chall);
+			return $this->onVote($this->_module, $chall).$this->templateVotes($this->_module, $chall);
 		}
 		
-		return $this->templateVotes($module, $chall);
+		return $this->templateVotes($this->_module, $chall);
 	}
 
 	public function templateVotes(Module_WeChall $module, WC_Challenge $chall)
@@ -36,14 +36,14 @@ final class WeChall_ChallVotes extends GWF_Method
 
 		Module_WeChall::includeForums();
 		
-		$form_vote = $this->getFormVote($module, $chall, $has_solved, $userid);
+		$form_vote = $this->getFormVote($this->_module, $chall, $has_solved, $userid);
 		
 		$tVars = array(
 			'chall' => $chall,
 			'has_solved' => $has_solved,
-			'form_vote' => $form_vote->templateX($module->lang('ft_vote_chall', array($chall->display('chall_title')))),
+			'form_vote' => $form_vote->templateX($this->_module->lang('ft_vote_chall', array($chall->display('chall_title')))),
 		);
-		return $module->templatePHP('chall_votes.php', $tVars);
+		return $this->_module->templatePHP('chall_votes.php', $tVars);
 	}
 	
 	private function getFormVote(Module_WeChall $module, WC_Challenge $chall, $has_solved, $userid)
@@ -63,10 +63,10 @@ final class WeChall_ChallVotes extends GWF_Method
 		}
 		
 		$data = array(
-			'dif' => array(GWF_Form::INT, $dif, $module->lang('th_dif'), '', 2),
-			'edu' => array(GWF_Form::INT, $edu, $module->lang('th_edu'), '', 2),
-			'fun' => array(GWF_Form::INT, $fun, $module->lang('th_fun'), '', 2),
-			'vote' => array(GWF_Form::SUBMIT, $module->lang('btn_vote')),
+			'dif' => array(GWF_Form::INT, $dif, $this->_module->lang('th_dif'), '', 2),
+			'edu' => array(GWF_Form::INT, $edu, $this->_module->lang('th_edu'), '', 2),
+			'fun' => array(GWF_Form::INT, $fun, $this->_module->lang('th_fun'), '', 2),
+			'vote' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_vote')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -81,11 +81,11 @@ final class WeChall_ChallVotes extends GWF_Method
 		}
 
 		if (!WC_ChallSolved::hasSolved($userid, $chall->getID())) {
-			return $module->error('err_chall_vote');
+			return $this->_module->error('err_chall_vote');
 		}
 		
-		$form = $this->getFormVote($module, $chall, false, $userid);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->getFormVote($this->_module, $chall, false, $userid);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -108,7 +108,7 @@ final class WeChall_ChallVotes extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_chall_voted');
+		return $this->_module->message('msg_chall_voted');
 	}
 	
 }

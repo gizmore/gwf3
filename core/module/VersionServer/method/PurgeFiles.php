@@ -5,33 +5,33 @@ final class VersionServer_PurgeFiles extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getPost('purge')) {
-			return $this->onPurge($module);
+			return $this->onPurge($this->_module);
 		}
-		return $this->templatePurge($module);
+		return $this->templatePurge($this->_module);
 	}
 	
 	private function formPurge(Module_VersionServer $module)
 	{
 		$data = array(
-			'purge' => array(GWF_Form::SUBMIT, $module->lang('btn_purge')),
+			'purge' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_purge')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
 	private function templatePurge(Module_VersionServer $module)
 	{
-		$form = $this->formPurge($module);
+		$form = $this->formPurge($this->_module);
 		$tVars = array(
-			'form' => $form->templateX($module->lang('ft_purge')),
+			'form' => $form->templateX($this->_module->lang('ft_purge')),
 		);
-		return $module->template('purge.tpl', $tVars);
+		return $this->_module->template('purge.tpl', $tVars);
 	}
 
 	private function onPurge(Module_VersionServer $module)
 	{
-		$form = $this->formPurge($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templatePurge($module);
+		$form = $this->formPurge($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templatePurge($this->_module);
 		}
 		
 		$table = GDO::table('GWF_VersionFiles');
@@ -41,7 +41,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		
 		GWF_VersionFiles::populateAll();
 		
-		return $module->message('msg_purged', array($table->countRows(), GWF_Upload::humanFilesize(GWF_VersionFiles::getSizeUnpacked())));
+		return $this->_module->message('msg_purged', array($table->countRows(), GWF_Upload::humanFilesize(GWF_VersionFiles::getSizeUnpacked())));
 	}
 	
 }

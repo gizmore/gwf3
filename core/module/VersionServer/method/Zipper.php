@@ -46,43 +46,43 @@ final class VersionServer_Zipper extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('zipper'))) {
-			return $this->onZipB($module);
+			return $this->onZipB($this->_module);
 		}
-		return $this->templateZipper($module);
+		return $this->templateZipper($this->_module);
 	}
 	
 	public function getForm(Module_VersionServer $module)
 	{
 		$data = array();
 		
-		$data['style'] = array(GWF_Form::STRING, 'default', $module->lang('style'));
+		$data['style'] = array(GWF_Form::STRING, 'default', $this->_module->lang('style'));
 		
-		$data['div'] = array(GWF_Form::HEADLINE, '', $module->lang('ft_zipper'));
+		$data['div'] = array(GWF_Form::HEADLINE, '', $this->_module->lang('ft_zipper'));
 		
 		$modules = GWF_ModuleLoader::loadModulesFS();
 		
-		GWF_ModuleLoader::sortModules($modules, 'module_name', 'ASC');
+		GWF_ModuleLoader::sortModules($this->_modules, 'module_name', 'ASC');
 		
-		foreach ($modules as $m)
+		foreach ($this->_modules as $m)
 		{
 			#$m instanceof GWF_Module;
 			$name = $m->getName();
 			$key = sprintf('mod_%s', $name);
 			$data[$key] = array(GWF_Form::CHECKBOX, $m->isEnabled(), $name);
 		}
-		$data['zipper'] = array(GWF_Form::SUBMIT, $module->lang('btn_zip'));
+		$data['zipper'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_zip'));
 		
 		return new GWF_Form($this, $data);
 	}
 	
 	private function templateZipper(Module_VersionServer $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_zipper')),
+			'form' => $form->templateY($this->_module->lang('ft_zipper')),
 		);
-		return $module->template('zipper.tpl', $tVars);
+		return $this->_module->template('zipper.tpl', $tVars);
 	}
 	
 	private $archiveName = false;
@@ -104,26 +104,26 @@ final class VersionServer_Zipper extends GWF_Method
 	public function onZip(Module_VersionServer $module, $modules, $design)
 	{
 		$_POST = array();
-		foreach ($modules as $modulename)
+		foreach ($this->_modules as $modulename)
 		{
 			$_POST['mod_'.$modulename] = 'yes';
 		}
 		$_POST['style'] = $design;
-		return $this->onZipB($module);
+		return $this->onZipB($this->_module);
 	}
 	
 	public function onZipB(Module_VersionServer $module)
 	{
 		# No ZIP extension?
 		if (!class_exists('ZipArchive', false)) {
-			return $module->error('err_no_zip');
+			return $this->_module->error('err_no_zip');
 		}
 //		require_once 'core/inc/util/GWF_ZipArchive.php';
 		
 		# Post Vars
 		if ('' === ($styles = Common::getPostString('style', '')))
 		{
-			return $module->error('err_no_design');
+			return $this->_module->error('err_no_design');
 		}
 		
 		$this->style = explode(',', $styles);
@@ -131,7 +131,7 @@ final class VersionServer_Zipper extends GWF_Method
 		$this->style[] = 'install';
 		unset($_POST['style']);
 		unset($_POST['zipper']);
-		$back = $this->onZipC($module);
+		$back = $this->onZipC($this->_module);
 		chdir(GWF_WWW_PATH);
 		return $back;
 	}
@@ -145,14 +145,14 @@ final class VersionServer_Zipper extends GWF_Method
 		
 		$archivename = $this->getArchiveName();
 		if (false === ($archive->open($archivename, ZipArchive::CREATE|ZipArchive::CM_REDUCE_4))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		
 		# ZIP STUFF
 		# Core
 		if (false === ($this->zipDir($archive, 'core/inc'))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		# ZIP Module(Groups)
 		foreach ($_POST as $group => $checked)
@@ -162,86 +162,86 @@ final class VersionServer_Zipper extends GWF_Method
 			}
 			# zip dir recursive, do not ignore style
 			if (false === ($this->zipDir($archive, 'core/module/'.substr($group, 4), true, false))) {
-				return $module->error('err_zip', array(__FILE__, __LINE__));
+				return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 			}
 		}
 		
 		# 3rd Party Core
 //		if (false === ($this->zipDir($archive, 'inc3p'))) {
-//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 		
 		# Smarty
 //		if (false === ($this->zipDir($archive, 'smarty_lib'))) {
-//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 		
 		
 		# JS
 		if (false === ($this->zipDir($archive, 'www/js')))
 		{
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Installer
 		if (false === ($this->zipDir($archive, 'www/install')))
 		{
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Base Lang
 		if (false === ($this->zipDir($archive, 'core/lang'))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Images
 		if (false === ($this->zipDir($archive, 'www/img', false))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 //		if (false === ($this->zipDir($archive, 'img/default/country', false))) {
-//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 //		if (false === ($this->zipDir($archive, 'img/default/smile', false))) {
-//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 
 		# Temp
 		if (false === $this->addEmptyDirs($archive, self::$tempdirs)) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		# Fonts
 		if (false === ($this->zipDir($archive, 'extra/font'))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Templates
 		if (false === ($this->zipDir($archive, 'www/tpl', true, false))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Root Files
 		if (false === ($this->addFiles($archive, self::$rootfiles))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Protected Dirs
 //		if (false === $this->zipDirs($archive, self::$protected_dirs)) {
-//			return $module->error('err_zip', array(__FILE__, __LINE__));
+//			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 //		}
 		
 		# Protected Files
 		if (false === ($this->addFiles($archive, self::$protected_files))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		# Module Extra Files and Dirs
 		if (false === $this->zipDirs($archive, $this->getModuleExtraDirs())) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		if (false === ($this->addFiles($archive, $this->getModuleExtraFiles()))) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 //		chdir(GWF_WWW_PATH);
@@ -249,12 +249,12 @@ final class VersionServer_Zipper extends GWF_Method
 		$total_files = $archive->getTotalFilesCounter();
 
 		if (false === $archive->close()) {
-			return $module->error('err_zip', array(__FILE__, __LINE__));
+			return $this->_module->error('err_zip', array(__FILE__, __LINE__));
 		}
 		
 		$this->has_error = false;
 		
-		return $module->message('msg_zipped', array($archivename, GWF_Upload::humanFilesize(filesize($archivename)), $total_files));
+		return $this->_module->message('msg_zipped', array($archivename, GWF_Upload::humanFilesize(filesize($archivename)), $total_files));
 	}
 	
 	private function getModuleExtraDirs()

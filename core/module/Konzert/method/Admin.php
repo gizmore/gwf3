@@ -5,14 +5,14 @@ final class Konzert_Admin extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 	
 	private function templateAdmin(Module_Konzert $module)
 	{
 		$tVars = array(
 		);
-		return $module->template('admin.tpl', $tVars);
+		return $this->_module->template('admin.tpl', $tVars);
 	}
 }
 ?>

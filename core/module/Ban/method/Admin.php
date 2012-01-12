@@ -6,9 +6,9 @@ final class Ban_Admin extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('addban'))) {
-			return $this->onAddBan($module).$this->templateAdmin($module);
+			return $this->onAddBan($this->_module).$this->templateAdmin($this->_module);
 		}
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 	
 	private function templateAdmin(Module_Ban $module)
@@ -16,7 +16,7 @@ final class Ban_Admin extends GWF_Method
 		$bans = GDO::table('GWF_Ban');
 		
 		$nItems = $bans->countRows();
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		
@@ -24,34 +24,34 @@ final class Ban_Admin extends GWF_Method
 		$dir = Common::getGet('dir', 'DESC');
 		$orderby = $bans->getMultiOrderby($by, $dir);
 		
-		$form = $this->getFormBan($module);
+		$form = $this->getFormBan($this->_module);
 		
 		$tVars = array(
-			'form_ban' => $form->templateY($module->lang('ft_add_ban')),
+			'form_ban' => $form->templateY($this->_module->lang('ft_add_ban')),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Ban&me=Admin&by=%BY%&dir=%DIR%',
 			'bans' => $bans->selectObjects('*', '', $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Ban&me=Admin&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 		);
-		return $module->templatePHP('admin.php', $tVars);
+		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function getFormBan(Module_Ban $module)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $module->lang('th_user_name')),
-			'msg' => array(GWF_Form::MESSAGE, '', $module->lang('th_ban_msg')),
-			'ends' => array(GWF_Form::DATE_FUTURE, '20110101235959', $module->lang('th_ban_ends'), $module->lang('tt_ban_ends'), GWF_Date::LEN_SECOND, false),
-			'perm' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_perm'), $module->lang('tt_ban_perm')),
-			'type' => array(GWF_Form::CHECKBOX, false, $module->lang('th_ban_type2'), $module->lang('tt_ban_type')),
-			'addban' => array(GWF_Form::SUBMIT, $module->lang('btn_add_ban')),
+			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
+			'msg' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_ban_msg')),
+			'ends' => array(GWF_Form::DATE_FUTURE, '20110101235959', $this->_module->lang('th_ban_ends'), $this->_module->lang('tt_ban_ends'), GWF_Date::LEN_SECOND, false),
+			'perm' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_ban_perm'), $this->_module->lang('tt_ban_perm')),
+			'type' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_ban_type2'), $this->_module->lang('tt_ban_type')),
+			'addban' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_ban')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
 	private function onAddBan(Module_Ban $module)
 	{
-		$form = $this->getFormBan($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getFormBan($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
@@ -66,22 +66,22 @@ final class Ban_Admin extends GWF_Method
 				$ends = '';
 			}
 			elseif ($ends === '') {
-				return $module->error('err_perm_or_date');
+				return $this->_module->error('err_perm_or_date');
 			}
 			elseif ($ends < date('YmdHis')) {
-				return $module->error('err_future_is_past');
+				return $this->_module->error('err_future_is_past');
 			}
 			
 			
 			GWF_Ban::insertBan($userid, $ends, $msg);
 			if ($ends === '') {
-				return $module->message('msg_permbanned', array($this->user->displayUsername()));
+				return $this->_module->message('msg_permbanned', array($this->user->displayUsername()));
 			} else {
-				return $module->message('msg_tempbanned', array($this->user->displayUsername(), GWF_Time::displayDate($ends)));
+				return $this->_module->message('msg_tempbanned', array($this->user->displayUsername(), GWF_Time::displayDate($ends)));
 			}
 		} else {
 			GWF_Ban::insertWarning($userid, $msg);
-			return $module->message('msg_warned', array($this->user->displayUsername()));
+			return $this->_module->message('msg_warned', array($this->user->displayUsername()));
 		}
 	}
 	

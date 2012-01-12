@@ -11,10 +11,10 @@ final class WeChall_SiteDDOS extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($site = WC_Site::getByID(Common::getGet('siteid')))) {
-			return $module->error('err_site');
+			return $this->_module->error('err_site');
 		}
 		
-		return $this->templateDDOS($module, $site);
+		return $this->templateDDOS($this->_module, $site);
 	}
 	
 	private function templateDDOS(Module_WeChall $module, WC_Site $site)

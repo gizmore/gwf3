@@ -6,7 +6,7 @@ final class Comments_Edit extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
@@ -14,26 +14,26 @@ final class Comments_Edit extends GWF_Method
 		
 		if (isset($_POST['editcmt']))
 		{
-			$back = $this->onEditComment($module);
+			$back = $this->onEditComment($this->_module);
 		}
 		elseif (isset($_POST['editcmts']))
 		{
-			$back = $this->onEditComments($module);
+			$back = $this->onEditComments($this->_module);
 		}
 		
-		return $back . $this->templateEdit($module);
+		return $back . $this->templateEdit($this->_module);
 	}
 	
 	public function sanitize(Module_Comments $module)
 	{
 		if (false === ($c = GWF_Comment::getByID(Common::getGetString('cmt_id'))))
 		{
-			return $module->error('err_comment');
+			return $this->_module->error('err_comment');
 		}
 		
 		if (false === ($c2 = $c->getComments()))
 		{
-			return $module->error('err_comments');
+			return $this->_module->error('err_comments');
 		}
 		
 		if (false === $c2->canModerate(GWF_Session::getUser()))
@@ -49,25 +49,25 @@ final class Comments_Edit extends GWF_Method
 	
 	public function templateEdit(Module_Comments $module)
 	{
-		$formComment = $this->formComment($module);
-		$formComments = $this->formComments($module);
+		$formComment = $this->formComment($this->_module);
+		$formComments = $this->formComments($this->_module);
 		
 		$tVars = array(
-			'form_cmt' => $formComment->templateY($module->lang('ft_edit_cmt')),
-			'form_cmts' => $formComments->templateY($module->lang('ft_edit_cmts')),
+			'form_cmt' => $formComment->templateY($this->_module->lang('ft_edit_cmt')),
+			'form_cmts' => $formComments->templateY($this->_module->lang('ft_edit_cmts')),
 		);
 		
-		return $module->template('edit.tpl', $tVars);
+		return $this->_module->template('edit.tpl', $tVars);
 	}
 	
 	public function formComment(Module_Comments $module)
 	{
 		$c = $this->comment;
 		
-		$buttons = array('editcmt' => $module->lang('btn_edit'));
+		$buttons = array('editcmt' => $this->_module->lang('btn_edit'));
 		
 		$data = array(
-			'message' => array(GWF_Form::MESSAGE, $this->comment->getVar('cmt_message'), $module->lang('th_message')),
+			'message' => array(GWF_Form::MESSAGE, $this->comment->getVar('cmt_message'), $this->_module->lang('th_message')),
 			'btns' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -75,7 +75,7 @@ final class Comments_Edit extends GWF_Method
 
 	public function formComments(Module_Comments $module)
 	{
-		$buttons = array('editcmts' => $module->lang('btn_edit'));
+		$buttons = array('editcmts' => $this->_module->lang('btn_edit'));
 		$data = array(
 			'btns' => array(GWF_Form::SUBMITS, $buttons),
 		);
@@ -86,8 +86,8 @@ final class Comments_Edit extends GWF_Method
 	
 	public function onEditComment(Module_Comments $module)
 	{
-		$formComment = $this->formComment($module);
-		if (false !== ($error = $formComment->validate($module)))
+		$formComment = $this->formComment($this->_module);
+		if (false !== ($error = $formComment->validate($this->_module)))
 		{
 			return $error;
 		}
@@ -98,17 +98,17 @@ final class Comments_Edit extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return $module->message('msg_edited');
+		return $this->_module->message('msg_edited');
 	}
 
 	public function onEditComments(Module_Comments $module)
 	{
-		$formComments = $this->formComments($module);
-		if (false !== ($error = $formComments->validate($module)))
+		$formComments = $this->formComments($this->_module);
+		if (false !== ($error = $formComments->validate($this->_module)))
 		{
 			return $error;
 		}
-		return $module->message('msg_edited');
+		return $this->_module->message('msg_edited');
 	}
 }
 ?>

@@ -6,7 +6,7 @@ final class PageBuilder_Admin extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 	
 	private function templateAdmin(Module_PageBuilder $module)
@@ -29,13 +29,13 @@ final class PageBuilder_Admin extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Admin&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'pages' => $pages->selectAll('*', $where, $orderby, NULL, $ipp, $from, GDO::ARRAY_O),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Admin&by=%BY%&dir=%DIR%',
-			'href_add' => $module->getMethodURL('Add'),
+			'href_add' => $this->_module->getMethodURL('Add'),
 			'href_published' => '',
 			'href_revisions' => '',
 			'href_disableds' => '',
 		);
 		
-		return $module->template('admin.tpl', $tVars);
+		return $this->_module->template('admin.tpl', $tVars);
 	}
 }
 ?>

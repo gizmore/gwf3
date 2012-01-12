@@ -13,20 +13,20 @@ final class Votes_Staff extends GWF_Method
 		{
 			// Validate
 			if (false === ($vs = GWF_VoteScore::getByID($vsid))) {
-				return $module->error('err_votescore');
+				return $this->_module->error('err_votescore');
 			}
 
 			// Edit
 			if (false !== Common::getPost('editvs')) {
-				return $this->onEdit($module, $vs);
+				return $this->onEdit($this->_module, $vs);
 			}
 			
 			// Single Template
-			return $this->templateEdit($module, $vs);
+			return $this->templateEdit($this->_module, $vs);
 		}
 		
 		// Table
-		return $this->templateVotes($module);
+		return $this->templateVotes($this->_module);
 	}
 	
 	private function templateVotes(Module_Votes $module)
@@ -48,25 +48,25 @@ final class Votes_Staff extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Votes&me=Staff&by=%BY%&dir=%DIR%',
 		);
 		
-		return $module->templatePHP('staff.php', $tVars);
+		return $this->_module->templatePHP('staff.php', $tVars);
 	}
 	
 	private function formEdit(Module_Votes $module, GWF_VoteScore $vs)
 	{
 		$data = array();
 		
-		$data['editvs'] = array(GWF_Form::SUBMIT, $module->lang('btn_edit'));
+		$data['editvs'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit'));
 		
 		return new GWF_Form($this, $data);
 	}
 	
 	private function templateEdit(Module_Votes $module, GWF_VoteScore $vs)
 	{
-		$form = $this->formEdit($module, $vs);
+		$form = $this->formEdit($this->_module, $vs);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit_vs')),
+			'form' => $form->templateY($this->_module->lang('ft_edit_vs')),
 		);
-		return $module->template('edit_vs.tpl', $tVars);
+		return $this->_module->template('edit_vs.tpl', $tVars);
 	}
 }
 ?>

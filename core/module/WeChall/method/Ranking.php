@@ -17,10 +17,10 @@ final class WeChall_Ranking extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateRankingU($module, $username);
+			return $this->templateRankingU($this->_module, $username);
 		}
 		
-		return $this->templateRanking($module, GWF_Session::getUser());
+		return $this->templateRanking($this->_module, GWF_Session::getUser());
 	}
 	
 	private function templateRankingU(Module_WeChall $module, $username)
@@ -28,14 +28,14 @@ final class WeChall_Ranking extends GWF_Method
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateRanking($module, $user);
+		return $this->templateRanking($this->_module, $user);
 	}
 	
 	private function templateRanking(Module_WeChall $module, $user)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		$users = GDO::table('GWF_User');
-		$ipp = $module->cfgItemsPerPage();
+		$ipp = $this->_module->cfgItemsPerPage();
 		$nItems = $users->countRows("user_level>0");
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		
@@ -52,8 +52,8 @@ final class WeChall_Ranking extends GWF_Method
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$href = GWF_WEB_ROOT.'ranking/page-%PAGE%';
 		
-		GWF_Website::setPageTitle($module->lang('pt_ranking', array($page)));
-		GWF_Website::setMetaTags($module->lang('mt_ranking'));
+		GWF_Website::setPageTitle($this->_module->lang('pt_ranking', array($page)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_ranking'));
 		
 		$userdata = $this->selectUsers($ipp, $from);
 		
@@ -65,7 +65,7 @@ final class WeChall_Ranking extends GWF_Method
 			'userdata' => $userdata,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 		);
-		return $module->templatePHP('ranking.php', $tVars);
+		return $this->_module->templatePHP('ranking.php', $tVars);
 	}
 	
 	public function getPageForSession($ipp, $user)

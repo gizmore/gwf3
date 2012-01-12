@@ -15,7 +15,7 @@ final class GWF_Error extends GWF_Method
 		# Do not remember this "non 200" page
 		GWF3::setConfig('store_last_url', false);
 		
-		return $this->templateError($module);
+		return $this->templateError($this->_module);
 	}
 	
 	private function templateError(Module_GWF $module)
@@ -39,13 +39,13 @@ final class GWF_Error extends GWF_Method
 		if ($realcode === 404)
 		{
 			// Mail it?
-			if ($module->cfgMail404())
+			if ($this->_module->cfgMail404())
 			{
 				self::gwf_error_404_mail();
 			}
 			
 			// Log it?
-			if ($module->cfgLog404())
+			if ($this->_module->cfgLog404())
 			{
 				GWF_Log::log('404', self::get404Message(), true);
 			}
@@ -58,7 +58,7 @@ final class GWF_Error extends GWF_Method
 			'file' => GWF_HTML::error(GWF_SITENAME, $err_msg, false),
 		);
 		
-		return $module->template('error.tpl', $tVars);
+		return $this->_module->template('error.tpl', $tVars);
 	}
 	
 	public static function gwf_error_404_mail()

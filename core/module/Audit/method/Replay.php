@@ -10,11 +10,11 @@ final class Audit_Replay extends Audit_ViewLog
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module)))
+		if (false !== ($error = $this->sanitize($this->_module)))
 		{
 			return $error;
 		}
-		return $this->templateReplay($module, $this->log);
+		return $this->templateReplay($this->_module, $this->log);
 	}
 	
 	public function templateReplay(Module_Audit $module, GWF_AuditLog $log)
@@ -26,7 +26,7 @@ final class Audit_Replay extends Audit_ViewLog
 		$tVars = array(
 			'log' => $log,
 		);
-		return $module->template('replay.tpl', $tVars);
+		return $this->_module->template('replay.tpl', $tVars);
 	}
 }
 ?>

@@ -5,9 +5,9 @@ final class Slaytags_ShowLyrics extends GWF_Method
 	{
 		if (false === ($song = Slay_Song::getByID(Common::getGetString('stid'))))
 		{
-			return $module->error('err_song');
+			return $this->_module->error('err_song');
 		}
-		return $this->templateShowLyrics($module, $song);
+		return $this->templateShowLyrics($this->_module, $song);
 	}
 
 	private function templateShowLyrics(Module_Slaytags $module, Slay_Song $song)
@@ -23,7 +23,7 @@ final class Slaytags_ShowLyrics extends GWF_Method
 			'lyrics' => $table->selectAll('*', $where, 'ssl_date ASC', array('user'), -1, -1, GDO::ARRAY_O),
 			'is_admin' => $staff,
 		);
-		return $module->template('lyrics.tpl', $tVars);
+		return $this->_module->template('lyrics.tpl', $tVars);
 	}
 }
 ?>

@@ -13,12 +13,12 @@ final class SF_Debug extends GWF_Method
 
 	public function execute(GWF_Module $module) 
 	{
-		if(!$module->cfgDebugEnabled())
+		if(!$this->_module->cfgDebugEnabled())
 		{
-			return $module->error('ERR_DISABLED');
+			return $this->_module->error('ERR_DISABLED');
 		}
 
-		$form = $this->debugForm($module);
+		$form = $this->debugForm($this->_module);
 		# gizmore: TODO: validate should work without GWF_Module $module
 		//$form->validate($this);
 
@@ -47,7 +47,7 @@ final class SF_Debug extends GWF_Method
 			'debug' => array(GWF_Form::SUBMIT, 'Evaluate'),
 		);
 		
-		return new GWF_Form($module, $data, GWF_Form::METHOD_POST, GWF_FORM::CSRF_STRONG);
+		return new GWF_Form($this->_module, $data, GWF_Form::METHOD_POST, GWF_FORM::CSRF_STRONG);
 	}
 	public function validate_phpcode($phpcode)
 	{

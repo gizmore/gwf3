@@ -6,22 +6,22 @@ final class PM_Trashcan extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('empty')) {
-			return $this->onEmpty($module).$this->trashcan($module);
+			return $this->onEmpty($this->_module).$this->trashcan($this->_module);
 		}
 		
 		if (false !== (Common::getPost('restore'))) {
-			return $this->onRestore($module, Common::getPost('pm')).$this->trashcan($module);
+			return $this->onRestore($this->_module, Common::getPost('pm')).$this->trashcan($this->_module);
 		}
 		if (false !== ($pmid = Common::getGet('undelete'))) {
-			return $this->onRestore($module, array($pmid=>'on')).$this->trashcan($module);
+			return $this->onRestore($this->_module, array($pmid=>'on')).$this->trashcan($this->_module);
 		}
 		
-		return $this->trashcan($module);
+		return $this->trashcan($this->_module);
 	}
 	
 	private function sanitize(Module_PM $module)
@@ -31,7 +31,7 @@ final class PM_Trashcan extends GWF_Method
 		$del = GWF_PM::OWNER_DELETED;
 		$conditions = "(pm_owner=$uid AND pm_options&$del)";
 		$nItems = $pms->countRows($conditions);
-		$ipp = $module->cfgPMPerPage();
+		$ipp = $this->_module->cfgPMPerPage();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		
@@ -51,8 +51,8 @@ final class PM_Trashcan extends GWF_Method
 	
 	private function trashcan(Module_PM $module)
 	{
-		if ($module->cfgAllowDelete()) {
-			$form_empty = $this->formEmpty($module)->templateX($module->lang('ft_empty'), false);
+		if ($this->_module->cfgAllowDelete()) {
+			$form_empty = $this->formEmpty($this->_module)->templateX($this->_module->lang('ft_empty'), false);
 		} else {
 			$form_empty = '';
 		}
@@ -64,13 +64,13 @@ final class PM_Trashcan extends GWF_Method
 			'sort_url' => $this->sortURL,
 			'form_empty' => $form_empty,
 		);
-		return $module->templatePHP('trashcan.php', $tVars);
+		return $this->_module->templatePHP('trashcan.php', $tVars);
 	}
 	
 	private function onRestore(Module_PM $module, $ids)
 	{
 		if (!(is_array($ids))) {
-			return ''; #$module->error('err_delete');
+			return ''; #$this->_module->error('err_delete');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -89,9 +89,9 @@ final class PM_Trashcan extends GWF_Method
 			$count++;
 		}
 		
-		$this->sanitize($module);
+		$this->sanitize($this->_module);
 		
-		return $module->message('msg_restored', array($count));
+		return $this->_module->message('msg_restored', array($count));
 		
 	}
 	
@@ -101,22 +101,22 @@ final class PM_Trashcan extends GWF_Method
 	private function formEmpty(Module_PM $module)
 	{
 		$data = array(
-			'empty' => array(GWF_Form::SUBMIT, $module->lang('btn_delete')),
+			'empty' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
 	private function onEmpty(Module_PM $module)
 	{
-		if (!$module->cfgAllowDelete()) {
+		if (!$this->_module->cfgAllowDelete()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
 		$user = GWF_Session::getUser();
 		$uid = $user->getVar('user_id');
 		
-		$form = $this->formEmpty($module);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->formEmpty($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -131,7 +131,7 @@ final class PM_Trashcan extends GWF_Method
 //			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 //		}
 		$deleted = $pms->affectedRows($result);
-		return $module->message('msg_empty', array($deleted, $deleted, $deleted-$deleted));
+		return $this->_module->message('msg_empty', array($deleted, $deleted, $deleted-$deleted));
 	}
 }
 

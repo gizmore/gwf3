@@ -9,7 +9,7 @@ final class Slaytags_MyTags extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateMyTags($module);
+		return $this->templateMyTags($this->_module);
 	}
 	
 	private function templateMyTags(Module_Slaytags $module)
@@ -35,7 +35,7 @@ final class Slaytags_MyTags extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('index.php?mo=Slaytags&me=MyTags&by=%s&dir=%s&page=%%PAGE%%', urlencode($by), urlencode($dir))),
 			'songs' => $songs,
 		);
-		return $module->template('mytags.tpl', $tVars);
+		return $this->_module->template('mytags.tpl', $tVars);
 	}
 }
 ?>

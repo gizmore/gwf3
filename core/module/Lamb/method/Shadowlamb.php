@@ -13,14 +13,14 @@ final class Lamb_Shadowlamb extends GWF_Method
 		
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
 		
-		return $this->templateShadowlamb($module);
+		return $this->templateShadowlamb($this->_module);
 	}
 	
 	private function templateShadowlamb(Module_Lamb $module)
 	{
 		$tVars = array(
-			'account_select' => $module->getMethod('Client')->selectAccounts($module),
+			'account_select' => $this->_module->getMethod('Client')->selectAccounts($this->_module),
 		);
-		return $module->templatePHP('shadowlamb.php', $tVars);
+		return $this->_module->templatePHP('shadowlamb.php', $tVars);
 	}
 }

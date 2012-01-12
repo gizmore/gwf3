@@ -18,7 +18,7 @@ final class SF_Shell extends GWF_Method
 		$this->module = $module;
 		$cmd = Common::getRequestString('cmd');
 		$output = $this->init($cmd);
-		return $this->templateShell($module, $output, htmlspecialchars($cmd));
+		return $this->templateShell($this->_module, $output, htmlspecialchars($cmd));
 	}
 	
 	public function init($cmdS) 
@@ -28,7 +28,7 @@ final class SF_Shell extends GWF_Method
 		if($cmdS != NULL || $cmdS === false)
 		{
 			return $this->getMoMe() === array($_GET['mo'], $_GET['me']) ?
-				$module->error('err_no_command_given') : '';
+				$this->_module->error('err_no_command_given') : '';
 		}
 		
 		$cmdA = explode(' ', trim($cmdS));
@@ -58,13 +58,13 @@ final class SF_Shell extends GWF_Method
 		
 		if(strpos('.', $cmd) || strpos('/', $cmd))
 		{
-			return $module->error('err_hacking_attemp');
+			return $this->_module->error('err_hacking_attemp');
 		}
 		
 		$file = GWF_CORE_PATH.'module/SF/SF_Function.php';
 		if(false === Common::isFile($file))
 		{
-			return $module->error('err_no_function');
+			return $this->_module->error('err_no_function');
 		}
 
 		require_once $file;
@@ -84,7 +84,7 @@ final class SF_Shell extends GWF_Method
 		}
 		else
 		{
-			$module->error('err_no_command', array($cmd));
+			$this->_module->error('err_no_command', array($cmd));
 		}
 	}
 	public function onPipe($cmdS)
@@ -120,11 +120,11 @@ final class SF_Shell extends GWF_Method
 			$tVars = array(
 				'functions' => $functions,
 			);
-			return $module->template('shellhelp.tpl', $tVars);
+			return $this->_module->template('shellhelp.tpl', $tVars);
 		}
 		else
 		{
-			return $module->lang('tt_'.$cmd);
+			return $this->_module->lang('tt_'.$cmd);
 		}
 	}
 	
@@ -134,7 +134,7 @@ final class SF_Shell extends GWF_Method
 			'output' => $output,
 			'lastCMD' => $lastCMD
 		);
-		return $module->template('shell.tpl', $tVars);
+		return $this->_module->template('shell.tpl', $tVars);
 	}
 	
 }

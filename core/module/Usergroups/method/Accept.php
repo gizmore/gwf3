@@ -5,7 +5,7 @@ final class Usergroups_Accept extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($token = Common::getGet('token'))) {
-			$back = $this->acceptByToken($module, $token);
+			$back = $this->acceptByToken($this->_module, $token);
 		}
 		
 		if (!GWF_User::isLoggedIn()) {
@@ -37,7 +37,7 @@ final class Usergroups_Accept extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_joined', array($group->getName()));
+		return $this->_module->message('msg_joined', array($group->getName()));
 		
 	}
 }

@@ -9,10 +9,10 @@ final class WeChall_CrossSite extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($username = Common::getGet('score'))) {
-			$this->outputScore($module, $username);
+			$this->outputScore($this->_module, $username);
 		}
 		if (false !== ($username = Common::getGet('link'))) {
-			$this->outputLink($module, $username, trim(Common::getGet('email')));
+			$this->outputLink($this->_module, $username, trim(Common::getGet('email')));
 		}
 	}
 	

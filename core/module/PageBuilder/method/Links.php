@@ -12,7 +12,7 @@ final class PageBuilder_Links extends GWF_Method
 	public function getUserGroups() { return 'admin'; }
 	public function getHTAccess(GWF_Module $module)
 	{
-		$module->includeClass('GWF_PageLinks');
+		$this->_module->includeClass('GWF_PageLinks');
 		$links = GDO::table('GWF_PageLinks')->selectAll('link_url, link_href', '', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '## Links ##'.PHP_EOL;
 		$back .= 'RewriteRule ^PageBuilder/Links/delete/(.*?)$ index.php?mo=PageBuilder&me=Links&delete=$1'.PHP_EOL;
@@ -37,7 +37,7 @@ final class PageBuilder_Links extends GWF_Method
 			$write = true;
 			if(false === GWF_PageLinks::deleteLink($_GET['delete']))
 			{
-				$back .= $module->error('err_deleting_failed');
+				$back .= $this->_module->error('err_deleting_failed');
 			}
 		}
 
@@ -55,7 +55,7 @@ final class PageBuilder_Links extends GWF_Method
 				
 				if(true === GWF_PB_Rewrites::matchURL(Common::substrUntil(GWF_PB_Rewrites::replaceRewriteURL($url), '/')))
 				{
-					$back .= $module->error('err_url_exists');
+					$back .= $this->_module->error('err_url_exists');
 				}
 				else
 				{
@@ -65,16 +65,16 @@ final class PageBuilder_Links extends GWF_Method
 			}
 			else
 			{
-				$back .= $module->error('err_parame');
+				$back .= $this->_module->error('err_parame');
 			}
 		}
 		
-		if(true === $write && false === $module->writeHTA())
+		if(true === $write && false === $this->_module->writeHTA())
 		{
-				$back .= $module->error('err_htaccess_writing');
+				$back .= $this->_module->error('err_htaccess_writing');
 		}
 		
-		return $back.$this->templateLinks($module);
+		return $back.$this->templateLinks($this->_module);
 	}
 
 	public function formLinks(Module_PageBuilder $module)
@@ -82,7 +82,7 @@ final class PageBuilder_Links extends GWF_Method
 		$data = array(
 			'url' => array(GWF_Form::STRING, '', 'URL: '),
 			'href' => array(GWF_Form::STRING, '', 'HREF: '),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add_link'), ''),
+			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_link'), ''),
 		);
 		
 		return new GWF_Form($this, $data);
@@ -95,8 +95,8 @@ final class PageBuilder_Links extends GWF_Method
 			$links = array();
 		}
 		
-		$tVars = array('links' => $links, 'form' => $this->formLinks($module));
+		$tVars = array('links' => $links, 'form' => $this->formLinks($this->_module));
 		
-		return $module->template($this->_tpl, $tVars);
+		return $this->_module->template($this->_tpl, $tVars);
 	}
 }

@@ -20,18 +20,18 @@ final class Forum_Admin extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getGet('fixcounters')) {
-			return $this->onFixCounters($module).$this->templateAdmin($module);
+			return $this->onFixCounters($this->_module).$this->templateAdmin($this->_module);
 		}
 		if (false !== Common::getGet('cleanup')) {
-			return $this->onCleanup($module).$this->templateAdmin($module);
+			return $this->onCleanup($this->_module).$this->templateAdmin($this->_module);
 		}
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 	
 	private function templateAdmin(Module_Forum $module)
 	{
 		$posts = GDO::table('GWF_ForumPost');
-		$ipp = $module->getPostsPerThread();
+		$ipp = $this->_module->getPostsPerThread();
 
 		# In Moderation
 		$mconditions = 'post_options&'.GWF_ForumPost::IN_MODERATION;
@@ -52,7 +52,7 @@ final class Forum_Admin extends GWF_Method
 			'href_cleanup' => $this->getMethodHref('&cleanup=now'),
 		
 		);
-		return $module->templatePHP('admin.php', $tVars);
+		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function onCleanup(Module_Forum $module)
@@ -71,7 +71,7 @@ final class Forum_Admin extends GWF_Method
 		}
 		$dp = $posts->affectedRows();
 		
-		return $module->message('msg_cleanup', array($dt, $dp));
+		return $this->_module->message('msg_cleanup', array($dt, $dp));
 	}
 
 	private function onFixCounters(Module_Forum $module)

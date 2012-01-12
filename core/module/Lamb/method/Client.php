@@ -3,7 +3,7 @@ final class Lamb_Client extends GWF_Method
 {
 	public function execute(GWF_Module $module)
 	{
-		$module->initShadowlamb();
+		$this->_module->initShadowlamb();
 		
 		$pid = intval(Common::getGet('pid', 0));
 		$player = false;
@@ -17,25 +17,25 @@ final class Lamb_Client extends GWF_Method
 
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
 		
-		return $this->templateClient($module, $player);
+		return $this->templateClient($this->_module, $player);
 	}
 	
 	private function templateClient(Module_Lamb $module, $player)
 	{
-		$ajax = $module->getMethod('Ajax');
+		$ajax = $this->_module->getMethod('Ajax');
 		
 		$tVars = array(
 			'player' => $player,
-			'select_account' => self::selectAccounts($module, $player->getID()),
-			'inventory' => $ajax->getInventory($module, $player),
-			'equipment' => $ajax->getEquipment($module, $player),
-			'cyberware' => $ajax->getCyberware($module, $player),
-			'commands' => $ajax->getCommands($module, $player),
-			'stats' => $ajax->getStats($module, $player),
-			'party' => $ajax->getParty($module, $player),
-			'locations' => $ajax->getLocations($module, $player),
+			'select_account' => self::selectAccounts($this->_module, $player->getID()),
+			'inventory' => $ajax->getInventory($this->_module, $player),
+			'equipment' => $ajax->getEquipment($this->_module, $player),
+			'cyberware' => $ajax->getCyberware($this->_module, $player),
+			'commands' => $ajax->getCommands($this->_module, $player),
+			'stats' => $ajax->getStats($this->_module, $player),
+			'party' => $ajax->getParty($this->_module, $player),
+			'locations' => $ajax->getLocations($this->_module, $player),
 		);
-		return $module->template('client.php', NULL, $tVars);
+		return $this->_module->template('client.php', NULL, $tVars);
 	}
 	
 	public function selectAccounts(Module_Lamb $module, $selected='0')
@@ -48,7 +48,7 @@ final class Lamb_Client extends GWF_Method
 		}
 
 		$onchange = 'sl4SwitchAccount(this.value);';
-		$data = array(array('0', $module->lang('sel_account')));
+		$data = array(array('0', $this->_module->lang('sel_account')));
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
 			$data[] = array($row['sr4pl_id'], sprintf('%s{%s}', $row['lusr_name'], $row['lusr_sid']));

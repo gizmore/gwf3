@@ -8,13 +8,13 @@ final class PoolTool_Tutorial extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		GWF_Website::setPageTitle($module->lang('pt_tut'));
-		GWF_Website::setMetaTags($module->lang('mt_tut'));
-		GWF_Website::setMetaDescr($module->lang('md_tut'));
+		GWF_Website::setPageTitle($this->_module->lang('pt_tut'));
+		GWF_Website::setMetaTags($this->_module->lang('mt_tut'));
+		GWF_Website::setMetaDescr($this->_module->lang('md_tut'));
 		
 		$tVars = array(
 		);
-		return $module->templatePHP('tutorial.php', $tVars);
+		return $this->_module->templatePHP('tutorial.php', $tVars);
 	}
 }
 ?>

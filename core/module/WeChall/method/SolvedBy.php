@@ -12,7 +12,7 @@ final class WeChall_SolvedBy extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid')))) {
-			return $module->error('err_challenge');
+			return $this->_module->error('err_challenge');
 		}
 		
 		$ipp = 50;
@@ -21,12 +21,12 @@ final class WeChall_SolvedBy extends GWF_Method
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$tVars = array(
-			'users' => $this->getSolvers($module, $chall, $from, $ipp),
+			'users' => $this->getSolvers($this->_module, $chall, $from, $ipp),
 			'chall' => $chall,
 			'sort_url' => '',
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'challenge_solvers_for/'.$chall->getVar('chall_id').'/'.$chall->urlencode('chall_title').'/page-%PAGE%'),
 		);
-		return $module->templatePHP('chall_solvers.php', $tVars);
+		return $this->_module->templatePHP('chall_solvers.php', $tVars);
 	}
 
 	public function getSolvers(GWF_Module $module, WC_Challenge $chall, $from, $ipp)

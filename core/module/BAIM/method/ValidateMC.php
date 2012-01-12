@@ -18,7 +18,7 @@ final class BAIM_ValidateMC extends GWF_Method
 			return $this->garbage();
 		}
 		
-		return $this->validate($module, $uid, $token, $mc);
+		return $this->validate($this->_module, $uid, $token, $mc);
 	}
 	
 	private function garbage($real_token='???', $real_mc='???', $ext_msg='somethings wrong')
@@ -56,7 +56,7 @@ final class BAIM_ValidateMC extends GWF_Method
 			return $this->garbage($real_token, $real_mc, 'wrong MC');
 		}
 		
-		return $this->hash($module, $row);
+		return $this->hash($this->_module, $row);
 	}
 	
 	private function hash(Module_BAIM $module, BAIM_MC $row)

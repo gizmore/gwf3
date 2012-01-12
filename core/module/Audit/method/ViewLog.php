@@ -10,11 +10,11 @@ class Audit_ViewLog extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module)))
+		if (false !== ($error = $this->sanitize($this->_module)))
 		{
 			return $error;
 		}
-		return $this->templateViewLog($module, $this->log);
+		return $this->templateViewLog($this->_module, $this->log);
 	}
 	
 	public function sanitize(GWF_Module $module)
@@ -36,7 +36,7 @@ class Audit_ViewLog extends GWF_Method
 			return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'token'));
 		}
 		
-		if (false !== ($error = $this->validateAccess($module, $eusername, $id, $rand)))
+		if (false !== ($error = $this->validateAccess($this->_module, $eusername, $id, $rand)))
 		{
 			return $error;
 		}
@@ -47,7 +47,7 @@ class Audit_ViewLog extends GWF_Method
 	{
 		if (false === ($log = GWF_AuditLog::getByID($id)))
 		{
-			return $module->error('err_log');
+			return $this->_module->error('err_log');
 		}
 		
 		if ( ($log->getVar('al_eusername') !== $eusername) || ($log->getVar('al_rand') !== $rand) )
@@ -65,7 +65,7 @@ class Audit_ViewLog extends GWF_Method
 		$tVars = array(
 			'log' => $log,
 		);
-		return $module->template('log.tpl', $tVars);
+		return $this->_module->template('log.tpl', $tVars);
 	}
 }
 ?>

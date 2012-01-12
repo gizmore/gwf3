@@ -14,12 +14,12 @@ final class Votes_Button extends GWF_Method
 	{
 		GWF3::setConfig('store_last_url', false);
 		
-		if (false !== ($error = $this->sanitize($module)))
+		if (false !== ($error = $this->sanitize($this->_module)))
 		{
 			return $error;
 		}
 		
-		return $this->imageButton($module);
+		return $this->imageButton($this->_module);
 	}
 
 	private function sanitize(Module_Votes $module)
@@ -45,7 +45,7 @@ final class Votes_Button extends GWF_Method
 		imagealphablending($image, true);
 		$background = imagecolorallocatealpha($image, 0x00, 0x00, 0x00, 0x00);
 		imagecolortransparent($image, $background);
-		$color = $this->getColor($module, $image);
+		$color = $this->getColor($this->_module, $image);
 		$white = imagecolorallocate($image, 0xff, 0xff, 0xff);
 		imagefilledellipse($image, $cx, $cy, $cs, $cs, $white);
 		imagefilledellipse($image, $cx, $cy, $cs-1, $cs-1, $color);

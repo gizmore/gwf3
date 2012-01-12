@@ -15,7 +15,7 @@ final class Login_Logout extends GWF_Method
 	{
 		if (false === GWF_Session::getUser())
 		{
-			return $module->error('ERR_ALREADY_LOGGED_OUT');
+			return $this->_module->error('ERR_ALREADY_LOGGED_OUT');
 		}
 
 		if (false === GWF_Session::onLogout())
@@ -23,10 +23,10 @@ final class Login_Logout extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		$tVars = array(
-			'title' => $module->lang('Logout'),
-			'info' => $module->lang('logout_info'),
+			'title' => $this->_module->lang('Logout'),
+			'info' => $this->_module->lang('logout_info'),
 		);
-		return $module->template('logout.tpl', $tVars);
+		return $this->_module->template('logout.tpl', $tVars);
 	}
 }
 

@@ -13,12 +13,12 @@ final class Download_List extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		# SEO
-		GWF_Website::setMetaTags($module->lang('mt_list'));
-		GWF_Website::setMetaDescr($module->lang('md_list'));
-		GWF_Website::setPageTitle($module->lang('pt_list'));
+		GWF_Website::setMetaTags($this->_module->lang('mt_list'));
+		GWF_Website::setMetaDescr($this->_module->lang('md_list'));
+		GWF_Website::setPageTitle($this->_module->lang('pt_list'));
 		$user = GWF_Session::getUser();
 		# Permission
-//		if ((false === ($user = GWF_Session::getUser())) && (!$module->cfgAnonDown())) {
+//		if ((false === ($user = GWF_Session::getUser())) && (!$this->_module->cfgAnonDown())) {
 //			return GWF_HTML::err('ERR_NO_PERMISSION');
 //		}
 		
@@ -26,7 +26,7 @@ final class Download_List extends GWF_Method
 			$mod_pay->onInclude();
 		}
 		
-		return $this->templateList($module, $user);
+		return $this->templateList($this->_module, $user);
 	}
 	
 	private function templateList(Module_Download $module, $user)
@@ -34,7 +34,7 @@ final class Download_List extends GWF_Method
 		$dl = GDO::table('GWF_Download');
 		$permquery = GWF_Download::getPermissionQueryList($user);
 		
-		$ipp = $module->cfgIPP();
+		$ipp = $this->_module->cfgIPP();
 		$nItems = $dl->countRows($permquery);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
@@ -45,13 +45,13 @@ final class Download_List extends GWF_Method
 		$orderby = $dl->getMultiOrderby($by, $dir);
 		
 		$tVars = array(
-			'href_add' => $module->hrefAdd(),
-			'may_upload' => $module->mayUpload($user),
+			'href_add' => $this->_module->hrefAdd(),
+			'may_upload' => $this->_module->mayUpload($user),
 			'sort_url' => GWF_WEB_ROOT.'downloads/by/%BY%/%DIR%/page-1',
 			'downloads' => $dl->selectObjects('*', $permquery, $orderby, $ipp, $from),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('downloads/by/%s/%s/page-%%PAGE%%', urlencode($by), urlencode($dir))),
 		);
-		return $module->templatePHP('list.php', $tVars);
+		return $this->_module->templatePHP('list.php', $tVars);
 	}
 }
 ?>

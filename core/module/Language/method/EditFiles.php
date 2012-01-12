@@ -9,15 +9,15 @@ final class Language_EditFiles extends GWF_Method
 	{
 		if (false !== ($filename = Common::getGetString('filename', false)))
 		{
-			return $this->templateFile($module, $filename);
+			return $this->templateFile($this->_module, $filename);
 		}
 		
 		if (false !== Common::getPost('save_file'))
 		{
-			return $this->onSaveFile($module);
+			return $this->onSaveFile($this->_module);
 		}
 		
-		return $this->templateFiles($module);
+		return $this->templateFiles($this->_module);
 	}
 	
 	/**
@@ -92,10 +92,10 @@ final class Language_EditFiles extends GWF_Method
 		
 		$tVars = array(
 			'files' => $this->files,
-			'href_checker' => $module->getMethodURL('Checker'),
-			'href_bundle' => $module->getMethodURL('Bundle'),
+			'href_checker' => $this->_module->getMethodURL('Checker'),
+			'href_bundle' => $this->_module->getMethodURL('Bundle'),
 		);
-		return $module->templatePHP('files.php', $tVars);
+		return $this->_module->templatePHP('files.php', $tVars);
 	}
 
 	private function templateFile(Module_Language $module, $filename)
@@ -106,22 +106,22 @@ final class Language_EditFiles extends GWF_Method
 		}
 		
 		$fileclass = GWF_LangFile::getByPath($file[0]);
-		$form = $this->getFileForm($module, $file);
+		$form = $this->getFileForm($this->_module, $file);
 		
 		$tVars = array(
 			'file' => $file,
 			'class' => $fileclass,
-			'form' => $form->templateY($module->lang('ft_edit_file', array(GWF_HTML::display($filename)))),
+			'form' => $form->templateY($this->_module->lang('ft_edit_file', array(GWF_HTML::display($filename)))),
 		);
-		return $module->templatePHP('file.php', $tVars);
+		return $this->_module->templatePHP('file.php', $tVars);
 	}
 
 	private function getFileForm(Module_Language $module, array $file)
 	{
 		$class = $file[2];
 		$data = array();
-		$data['text'] = array(GWF_Form::MESSAGE, $class->getVar('lf_data'), $module->lang('th_lf_data'));
-		$data['cmds'] = array(GWF_Form::SUBMITS, array('check_syntax'=>$module->lang('btn_chksyn'),'save_file'=>$module->lang('btn_edit') ) );
+		$data['text'] = array(GWF_Form::MESSAGE, $class->getVar('lf_data'), $this->_module->lang('th_lf_data'));
+		$data['cmds'] = array(GWF_Form::SUBMITS, array('check_syntax'=>$this->_module->lang('btn_chksyn'),'save_file'=>$this->_module->lang('btn_edit') ) );
 		return new GWF_Form($this, $data);
 	}
 }

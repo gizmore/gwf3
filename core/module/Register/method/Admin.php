@@ -12,11 +12,11 @@ final class Register_Admin extends GWF_Method
 	public function getUserGroups() { return GWF_Group::STAFF; }
 	public function execute(GWF_Module $module)
 	{
-		if (false === ($errors = $this->sanitize($module))) {
+		if (false === ($errors = $this->sanitize($this->_module))) {
 			return $errors;
 		}
 		
-		return $this->templateAdmin($module);
+		return $this->templateAdmin($this->_module);
 	}
 
 	################
@@ -32,7 +32,7 @@ final class Register_Admin extends GWF_Method
 	private function sanitize(Module_Register $module)
 	{
 		$this->table = new GWF_UserActivation(false);
-		$this->ipp = $module->getActivationsPerPage();
+		$this->ipp = $this->_module->getActivationsPerPage();
 		$this->nItems = $this->table->countRows();
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp((int)Common::getGet('page', 1), 1, $this->nPages);
@@ -47,13 +47,13 @@ final class Register_Admin extends GWF_Method
 	private function templateAdmin(Module_Register $module)
 	{
 		$headers = array(
-			array($module->lang('th_username'), 'username', 'ASC'),
-			array($module->lang('th_token'), 'token', 'ASC'),
-			array($module->lang('th_email'), 'email', 'ASC'),
-			array($module->lang('th_birthdate'), 'birthdate', 'ASC'),
-			array($module->lang('th_countryid'), 'countryid', 'ASC'),
-			array($module->lang('th_timestamp'), 'timestamp', 'ASC'),
-			array($module->lang('th_ip'), 'ip', 'ASC'),
+			array($this->_module->lang('th_username'), 'username', 'ASC'),
+			array($this->_module->lang('th_token'), 'token', 'ASC'),
+			array($this->_module->lang('th_email'), 'email', 'ASC'),
+			array($this->_module->lang('th_birthdate'), 'birthdate', 'ASC'),
+			array($this->_module->lang('th_countryid'), 'countryid', 'ASC'),
+			array($this->_module->lang('th_timestamp'), 'timestamp', 'ASC'),
+			array($this->_module->lang('th_ip'), 'ip', 'ASC'),
 		);
 		$tVars = array(
 //			'by' => $this->by,
@@ -63,7 +63,7 @@ final class Register_Admin extends GWF_Method
 			'activations' => $this->table->selectAll('*', '', $this->orderby, NULL, $this->ipp, GWF_PageMenu::getFrom($this->page, $this->ipp)),
 			'pagemenu' => $this->getPageMenu(),
 		);
-		return $module->template('admin.tpl', $tVars);
+		return $this->_module->template('admin.tpl', $tVars);
 	}
 	
 	private function getPageMenu()

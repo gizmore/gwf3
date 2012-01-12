@@ -16,24 +16,24 @@ final class Forum_EditBoard extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('delete_board'))) {
-			return $this->onDeleteBoard($module);
+			return $this->onDeleteBoard($this->_module);
 		}
 		if (false !== (Common::getPost('edit_board'))) {
-			return $this->onEditBoard($module).$this->templateEditBoard($module);
+			return $this->onEditBoard($this->_module).$this->templateEditBoard($this->_module);
 		}
 		
-		return $this->templateEditBoard($module);
+		return $this->templateEditBoard($this->_module);
 	}
 	
 	private function sanitize(Module_Forum $module)
 	{
-		if (false === ($this->board = $module->getCurrentBoard())) {
-			return $module->error('err_board');
+		if (false === ($this->board = $this->_module->getCurrentBoard())) {
+			return $this->_module->error('err_board');
 		}
 		return false;
 	}
@@ -41,21 +41,21 @@ final class Forum_EditBoard extends GWF_Method
 	private function getForm(Module_Forum $module)
 	{
 		$buttons = array(
-			'edit_board' => $module->lang('btn_edit_board'),
-			'delete_board' => $module->lang('btn_rem_board'),
+			'edit_board' => $this->_module->lang('btn_edit_board'),
+			'delete_board' => $this->_module->lang('btn_rem_board'),
 		);
 		$data = array(
-			'groupid' => array(GWF_Form::SELECT, $module->getGroupSelect($this->board->getGroupID()), $module->lang('th_groupid')),
-			'title' => array(GWF_Form::STRING, $this->board->display('board_title'), $module->lang('th_title')),
-			'descr' => array(GWF_Form::STRING, $this->board->display('board_descr'), $module->lang('th_descr')),
-			'allow_threads' => array(GWF_Form::CHECKBOX, $this->board->isThreadAllowed(), $module->lang('th_thread_allowed')),
-			'guest_view' => array(GWF_Form::CHECKBOX, $this->board->isGuestView(), $module->lang('th_guest_view')),
-			'is_locked' => array(GWF_Form::CHECKBOX, $this->board->isLocked(), $module->lang('th_locked')),
-			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $module->lang('th_guests')),
+			'groupid' => array(GWF_Form::SELECT, $this->_module->getGroupSelect($this->board->getGroupID()), $this->_module->lang('th_groupid')),
+			'title' => array(GWF_Form::STRING, $this->board->display('board_title'), $this->_module->lang('th_title')),
+			'descr' => array(GWF_Form::STRING, $this->board->display('board_descr'), $this->_module->lang('th_descr')),
+			'allow_threads' => array(GWF_Form::CHECKBOX, $this->board->isThreadAllowed(), $this->_module->lang('th_thread_allowed')),
+			'guest_view' => array(GWF_Form::CHECKBOX, $this->board->isGuestView(), $this->_module->lang('th_guest_view')),
+			'is_locked' => array(GWF_Form::CHECKBOX, $this->board->isLocked(), $this->_module->lang('th_locked')),
+			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $this->_module->lang('th_guests')),
 		);
 		
 //		if (!$this->board->isRoot()) {
-//			$data['moveboard'] = array(GWF_Form::SELECT, $this->board->getBoardSelect(), $module->lang('th_move_board'), 0, 'GWF_ForumBoard');
+//			$data['moveboard'] = array(GWF_Form::SELECT, $this->board->getBoardSelect(), $this->_module->lang('th_move_board'), 0, 'GWF_ForumBoard');
 //		} 
 		$data['submit'] = array(GWF_Form::SUBMITS, $buttons, '');
 		return new GWF_Form($this, $data);
@@ -63,18 +63,18 @@ final class Forum_EditBoard extends GWF_Method
 
 	private function templateEditBoard(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit_board')),
+			'form' => $form->templateY($this->_module->lang('ft_edit_board')),
 		);
-		return $module->templatePHP('edit_board.php', $tVars);
+		return $this->_module->templatePHP('edit_board.php', $tVars);
 	}
 
 	private function onEditBoard(Module_Forum $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
-		if (false !== ($error = $form->validate($module))) {
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -107,16 +107,16 @@ final class Forum_EditBoard extends GWF_Method
 //		}
 		
 		
-		return $module->message('msg_edited_board', array($this->board->getShowBoardHREF()));
+		return $this->_module->message('msg_edited_board', array($this->board->getShowBoardHREF()));
 	}
 	
 	##################
 	### Validators ###
 	##################
-	public function validate_title(Module_Forum $module, $arg) { return $module->validate_title($arg); }
-	public function validate_descr(Module_Forum $module, $arg) { return $module->validate_descr($arg); }
-	public function validate_groupid(Module_Forum $module, $arg) { return $module->validate_groupid($arg); }
-	public function validate_moveboard(Module_Forum $module, $arg) { return $module->validate_parentid($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
+	public function validate_descr(Module_Forum $module, $arg) { return $this->_module->validate_descr($arg); }
+	public function validate_groupid(Module_Forum $module, $arg) { return $this->_module->validate_groupid($arg); }
+	public function validate_moveboard(Module_Forum $module, $arg) { return $this->_module->validate_parentid($arg); }
 	
 	##############
 	### Delete ###
@@ -127,7 +127,7 @@ final class Forum_EditBoard extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		return $module->message('msg_board_deleted');
+		return $this->_module->message('msg_board_deleted');
 	}
 }
 

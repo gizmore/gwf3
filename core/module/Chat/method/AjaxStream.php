@@ -9,7 +9,7 @@ final class Chat_AjaxStream extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->stream($module);
+		return $this->stream($this->_module);
 	}
 	
 	private function stream(Module_Chat $module)
@@ -22,10 +22,10 @@ final class Chat_AjaxStream extends GWF_Method
 		
 		while (true)
 		{
-			GWF_ChatOnline::setSessOnline($module);
+			GWF_ChatOnline::setSessOnline($this->_module);
 //			GWF_Session::updateLastActivity();
 			
-			$page = $module->getAjaxUpdates($times);
+			$page = $this->_module->getAjaxUpdates($times);
 			# --- Anything happened?
 			if ($page !== '')
 			{

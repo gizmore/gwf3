@@ -13,9 +13,9 @@ final class Chat_History extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		$this->sanitize($module);
+		$this->sanitize($this->_module);
 		
-		return $this->templateHistory($module);
+		return $this->templateHistory($this->_module);
 	}
 	
 	private $channel = '';
@@ -25,15 +25,15 @@ final class Chat_History extends GWF_Method
 	private $ipp = 1;
 	private function sanitize(Module_Chat $module)
 	{
-		$this->ipp = $module->getHistmsgPerPage();
+		$this->ipp = $this->_module->getHistmsgPerPage();
 		
 		$channel = Common::getGet('channel', '');
 		if (Common::startsWith($channel, 'G-')) {
 			$channel = 'G#'.substr($channel, 2);
 		}
 		
-		$this->channel = $module->getWhitelistedChannel($channel);
-		$this->nItems = $module->countHistoryMessages($this->channel);
+		$this->channel = $this->_module->getWhitelistedChannel($channel);
+		$this->nItems = $this->_module->countHistoryMessages($this->channel);
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp((int)Common::getGet('page', $this->nPages), 1, $this->nPages);
 	}
@@ -43,13 +43,13 @@ final class Chat_History extends GWF_Method
 		$pagemenuHREF = $this->channel === '' ? 'chat/history/page-%PAGE%' : 'chat/history/for/'.$this->channel.'/page-%PAGE%';
 		$pagemenuHREF = GWF_WEB_ROOT.$pagemenuHREF;
 		$tVars = array(
-			'friends' => $module->getFriends(),
-			'history' => $module->getHistoryMessages($this->channel, $this->page),
+			'friends' => $this->_module->getFriends(),
+			'history' => $this->_module->getHistoryMessages($this->channel, $this->page),
 			'pagemenu' => GWF_PageMenu::display($this->page, $this->nPages, $pagemenuHREF),
 			'prevpage' => GWF_PageMenu::prevPage($this->page, $this->nPages, $pagemenuHREF),
 			'nextpage' => GWF_PageMenu::nextPage($this->page, $this->nPages, $pagemenuHREF),
 		);
-		return $module->templatePHP('history.php', $tVars);
+		return $this->_module->templatePHP('history.php', $tVars);
 	}
 }
 

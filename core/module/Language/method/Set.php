@@ -12,7 +12,7 @@ final class Language_Set extends GWF_Method
 		$module instanceof Module_Language;
 		if (false !== ($iso = Common::getGet('iso')))
 		{
-			$module->setLanguage($iso);
+			$this->_module->setLanguage($iso);
 		}
 //		GWF_Session::commit();
 		GWF_Website::redirectBack();

@@ -15,7 +15,7 @@ final class Login_Welcome extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->welcome($module, Common::getGet('activated') !== false);
+		return $this->welcome($this->_module, Common::getGet('activated') !== false);
 	}
 	
 	private function welcome(Module_Login $module, $first_time)
@@ -32,22 +32,22 @@ final class Login_Welcome extends GWF_Method
 
 		if ($fails > 0)
 		{
-			$fails = $module->lang('err_failures', array( $fails));
+			$fails = $this->_module->lang('err_failures', array( $fails));
 		}
 		else 
 		{
 			$fails = '';
 		}
 		
-		$href_hist = $module->getMethodURL('History');
+		$href_hist = $this->_module->getMethodURL('History');
 		$username = $user->display('user_name');
 		
 		if (false !== ($ll = GWF_LoginHistory::getLastLogin($user->getID()))) {
-			$last_login = $module->lang('msg_last_login', array($ll->displayDate(), $ll->displayIP(), $ll->displayHostname(), $href_hist));
-			$welcome = $module->lang('welcome_back', array($username, $ll->displayDate(), $ll->displayIP()));
+			$last_login = $this->_module->lang('msg_last_login', array($ll->displayDate(), $ll->displayIP(), $ll->displayHostname(), $href_hist));
+			$welcome = $this->_module->lang('welcome_back', array($username, $ll->displayDate(), $ll->displayIP()));
 		} else {
 			$last_login = '';
-			$welcome = $module->lang('welcome', array($username));
+			$welcome = $this->_module->lang('welcome', array($username));
 		}
 		
 		$tVars = array(
@@ -58,7 +58,7 @@ final class Login_Welcome extends GWF_Method
 			'last_login' => $last_login,
 			'href_history' => $href_hist,
 		);
-		return $module->template('welcome.tpl', $tVars);
+		return $this->_module->template('welcome.tpl', $tVars);
 	}
 }
 ?>

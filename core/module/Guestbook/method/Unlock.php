@@ -10,11 +10,11 @@ final class Guestbook_Unlock extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGetString('gbid')))) {
-			return $module->error('err_gb');
+			return $this->_module->error('err_gb');
 		}
 		
 		if (false === ($gbm = GWF_GuestbookMSG::getByID(Common::getGetString('gbmid')))) {
-			return $module->error('err_gbm');
+			return $this->_module->error('err_gbm');
 		}
 		
 		if ($gbm->getHashcode() !== Common::getGetString('gbmtoken')) {
@@ -23,7 +23,7 @@ final class Guestbook_Unlock extends GWF_Method
 		
 		if (isset($_GET['set_moderation']))
 		{
-			return $this->toggleModeration($module, $gb, $gbm, Common::getGetString('set_moderation'));
+			return $this->toggleModeration($this->_module, $gb, $gbm, Common::getGetString('set_moderation'));
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
@@ -36,7 +36,7 @@ final class Guestbook_Unlock extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-		return $module->message('msg_gbm_mod_'.($state ? '1' : '0'));
+		return $this->_module->message('msg_gbm_mod_'.($state ? '1' : '0'));
 		
 	}
 }

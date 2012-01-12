@@ -11,16 +11,16 @@ final class WeChall_SiteHistory extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== (Common::getPost('quickjump'))) {
-			return $this->onQuickjump($module);
+			return $this->onQuickjump($this->_module);
 		}
 		
 		if (false === ($site = WC_Site::getByName(Common::getGetString('site', NULL)))) {
-			return $module->error('err_unknown_site');
+			return $this->_module->error('err_unknown_site');
 		}
 		
 		$_GET['sid'] = $site->getID();
 		
-		return $this->templateHistory($module, $site);
+		return $this->templateHistory($this->_module, $site);
 	}
 	
 	private function templateHistory(Module_WeChall $module, WC_Site $site)
@@ -40,16 +40,16 @@ final class WeChall_SiteHistory extends GWF_Method
 		$tVars = array(
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),
 			'result' => $rows,
-			'site_quickjump' => $module->templateSiteQuickjumpHistory(),
+			'site_quickjump' => $this->_module->templateSiteQuickjumpHistory(),
 		);
-		return $module->templatePHP('site_history.php', $tVars);
+		return $this->_module->templatePHP('site_history.php', $tVars);
 	}
 	
 	private function onQuickjump(Module_WeChall $module)
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {
-			return $module->error('err_site').'1';
+			return $this->_module->error('err_site').'1';
 		}
 		
 		foreach ($jumps as $key => $value)
@@ -59,7 +59,7 @@ final class WeChall_SiteHistory extends GWF_Method
 			}
 			
 			if (false === ($site = WC_Site::getByID($value))) {
-				return $module->error('err_site').'2';
+				return $this->_module->error('err_site').'2';
 			}
 
 			$sid = $site->getVar('site_id');
@@ -67,7 +67,7 @@ final class WeChall_SiteHistory extends GWF_Method
 			return '';
 		}
 
-		return $module->error('err_site').'3';
+		return $this->_module->error('err_site').'3';
 	}
 	
 }

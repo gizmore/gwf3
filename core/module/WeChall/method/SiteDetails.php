@@ -10,14 +10,14 @@ final class WeChall_SiteDetails extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== Common::getPost('quickjump')) {
-			return $this->onQuickJump($module);
+			return $this->onQuickJump($this->_module);
 		}
 		
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
-			return $module->error('err_site');
+			return $this->_module->error('err_site');
 		}
 		
-		return $this->templateSiteDetail($module, $site);
+		return $this->templateSiteDetail($this->_module, $site);
 	}
 	
 	public function templateSiteDetail(Module_WeChall $module, WC_Site $site)
@@ -26,24 +26,24 @@ final class WeChall_SiteDetails extends GWF_Method
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php');
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
-		$module->includeVotes();
-//		$module->includeForums();
+		$this->_module->includeVotes();
+//		$this->_module->includeForums();
 		
 //		GWF_Module::loadModuleDB('Forum', true, true);
 //		GWF_ForumBoard::init(true, true);
 //		GWF_Module::loadModuleDB('Votes', true);
 		
-		$time = $module->cfgLastPlayersTime();
+		$time = $this->_module->cfgLastPlayersTime();
 		$tVars = array(
 			'site' => $site,
 			'descr' => WC_SiteDescr::getDescription($site->getID()),
-			'site_quickjump' => $module->templateSiteQuickjumpDetail(),
+			'site_quickjump' => $this->_module->templateSiteQuickjumpDetail(),
 			'latest_players_time' => GWF_Time::humanDuration($time),
 			'latest_players' => $this->getLatestPlayers($time, $site->getID()),
 			'jquery' => Common::getGet('ajax') !== false,
 			'can_vote' => $site->canVote(GWF_User::getStaticOrGuest()),
 		);
-		return $module->templatePHP('site_detail.php', $tVars);
+		return $this->_module->templatePHP('site_detail.php', $tVars);
 	}
 	
 	private function getLatestPlayers($time, $siteid)
@@ -57,7 +57,7 @@ final class WeChall_SiteDetails extends GWF_Method
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {
-			return $module->error('err_site').'1';
+			return $this->_module->error('err_site').'1';
 		}
 		
 		foreach ($jumps as $key => $value)
@@ -67,7 +67,7 @@ final class WeChall_SiteDetails extends GWF_Method
 			}
 			
 			if (false === ($site = WC_Site::getByID($value))) {
-				return $module->error('err_site').'2';
+				return $this->_module->error('err_site').'2';
 			}
 
 			$sid = $site->getVar('site_id');
@@ -75,7 +75,7 @@ final class WeChall_SiteDetails extends GWF_Method
 			return '';
 		}
 
-		return $module->error('err_site').'3';
+		return $this->_module->error('err_site').'3';
 	}
 }
 

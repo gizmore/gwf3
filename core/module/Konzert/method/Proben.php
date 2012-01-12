@@ -8,18 +8,18 @@ final class Konzert_Proben extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		$module->setNextHREF(GWF_WEB_ROOT.'exklusiv.html');
-		return $this->templateProben($module);
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'exklusiv.html');
+		return $this->templateProben($this->_module);
 	}
 	
 	private function templateProben(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/hoehrproben'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/hoehrproben'));
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		$tVars = array(
 			'l' => $l,
 		);
-		return $module->template('proben.tpl', $tVars);
+		return $this->_module->template('proben.tpl', $tVars);
 	}
 	
 }

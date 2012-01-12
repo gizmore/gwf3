@@ -14,7 +14,7 @@ final class PM_Show extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			return $error;
 		}
 		
@@ -23,7 +23,7 @@ final class PM_Show extends GWF_Method
 		
 		GWF_Website::setPageTitle($this->pm->display('pm_title'));
 		
-		return $this->templateShow($module, Common::getGet('translate')!==false);
+		return $this->templateShow($this->_module, Common::getGet('translate')!==false);
 	}
 	
 	/**
@@ -34,10 +34,10 @@ final class PM_Show extends GWF_Method
 	private function sanitize(Module_PM $module)
 	{
 		if (false === ($this->pm = GWF_PM::getByID(Common::getGet('pmid')))) {
-			return $module->error('err_pm');
+			return $this->_module->error('err_pm');
 		}
 		if (false === ($this->pm->canRead(GWF_Session::getUser()))) {
-			return $module->error('err_perm_read');
+			return $this->_module->error('err_perm_read');
 		}
 		
 //		$this->term = Common::getGet('term', '');
@@ -52,8 +52,8 @@ final class PM_Show extends GWF_Method
 		$pm->markRead(GWF_Session::getUser());
 		
 		
-		$sender = $module->lang('th_pm_from').'&nbsp;'.$pm->getSender()->displayProfileLink();
-		$receiver = $module->lang('th_pm_to').'&nbsp;'.$pm->getReceiver()->displayProfileLink();
+		$sender = $this->_module->lang('th_pm_from').'&nbsp;'.$pm->getSender()->displayProfileLink();
+		$receiver = $this->_module->lang('th_pm_to').'&nbsp;'.$pm->getReceiver()->displayProfileLink();
 		
 		if ('' === ($translated = $this->getTranslated($translate))) {
 			$translated = $pm->displayMessage();
@@ -63,16 +63,16 @@ final class PM_Show extends GWF_Method
 			'pm' => $this->pm,
 			'actions' => true,
 			'title' => $this->pm->display('pm_title'),
-			'unread' => GWF_PM::getUnreadPMs($module, GWF_Session::getUserID()),
+			'unread' => GWF_PM::getUnreadPMs($this->_module, GWF_Session::getUserID()),
 			'translated' => $translated,
 			'sender' => $sender,
 			'receiver' => $receiver,
 			'sendrec' => $pm->isRecipient() ? $sender : $receiver,
 //			'term' => $this->term,
 			'transid' => 'pm_trans_'.$pm->getID(),
-			'buttons' => $this->getButtons($module, $this->pm),
+			'buttons' => $this->getButtons($this->_module, $this->pm),
 		);
-		return $module->template('show.tpl', $tVars);
+		return $this->_module->template('show.tpl', $tVars);
 	}
 	
 	private function getButtons(Module_PM $module, GWF_PM $pm)
@@ -82,31 +82,31 @@ final class PM_Show extends GWF_Method
 		$buttons = '';
 		if (false !== ($prevs = $pm->getReplyToPrev())) {
 			foreach ($prevs as $prev) {
-				$buttons .= GWF_Button::prev($prev->getDisplayHREF(), $module->lang('btn_prev'));
+				$buttons .= GWF_Button::prev($prev->getDisplayHREF(), $this->_module->lang('btn_prev'));
 			}
 		}
 		
 		if (!$pm->hasDeleted($u)) {
-			$buttons .= GWF_Button::delete($pm->getDeleteHREF($u->getID()), $module->lang('btn_delete'));
+			$buttons .= GWF_Button::delete($pm->getDeleteHREF($u->getID()), $this->_module->lang('btn_delete'));
 		}
 		else {
-			$buttons .= GWF_Button::restore($pm->getRestoreHREF(), $module->lang('btn_restore'));
+			$buttons .= GWF_Button::restore($pm->getRestoreHREF(), $this->_module->lang('btn_restore'));
 		}
 		if ($pm->canEdit($u)) {
-			$buttons .= GWF_Button::edit($pm->getEditHREF(), $module->lang('btn_edit'));
+			$buttons .= GWF_Button::edit($pm->getEditHREF(), $this->_module->lang('btn_edit'));
 		}
-		$buttons .= GWF_Button::options($pm->getAutoFolderHREF(), $module->lang('btn_autofolder'));
+		$buttons .= GWF_Button::options($pm->getAutoFolderHREF(), $this->_module->lang('btn_autofolder'));
 		if (!$pm->isGuestPM()) {
-			$buttons .= GWF_Button::reply($pm->getReplyHREF(), $module->lang('btn_reply')).PHP_EOL.GWF_Button::quote($pm->getQuoteHREF(), $module->lang('btn_quote'));
+			$buttons .= GWF_Button::reply($pm->getReplyHREF(), $this->_module->lang('btn_reply')).PHP_EOL.GWF_Button::quote($pm->getQuoteHREF(), $this->_module->lang('btn_quote'));
 		}
 		$u2 = $pm->getOtherUser($u);
-		$buttons .= GWF_Button::ignore($pm->getIgnoreHREF($pm->getOtherUser($u)), $module->lang('btn_ignore', array( $u2->display('user_name'))));
+		$buttons .= GWF_Button::ignore($pm->getIgnoreHREF($pm->getOtherUser($u)), $this->_module->lang('btn_ignore', array( $u2->display('user_name'))));
 		
-		$buttons .= GWF_Button::translate($pm->getTranslateHREF(), $module->lang('btn_translate'), '', 'gwfGoogleTrans(\''.$transid.'\'); return false;');
+		$buttons .= GWF_Button::translate($pm->getTranslateHREF(), $this->_module->lang('btn_translate'), '', 'gwfGoogleTrans(\''.$transid.'\'); return false;');
 		
 		if (false !== ($nexts = $pm->getReplyToNext())) {
 			foreach ($nexts as $next) {
-				$buttons .= GWF_Button::next($next->getDisplayHREF(), $module->lang('btn_next'));
+				$buttons .= GWF_Button::next($next->getDisplayHREF(), $this->_module->lang('btn_next'));
 			}
 		}
 		return $buttons;

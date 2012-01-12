@@ -12,11 +12,11 @@ final class Forum_SubscribeBoard extends GWF_Method
 	{
 		if (false !== ($bid = Common::getGetInt('subscribe', false)))
 		{
-			return $this->onSubscribe($module, $bid);
+			return $this->onSubscribe($this->_module, $bid);
 		}
 		elseif (false !== ($bid = Common::getGetInt('unsubscribe', false)))
 		{
-			return $this->onUnSubscribe($module, $bid);
+			return $this->onUnSubscribe($this->_module, $bid);
 		}
 		else
 		{
@@ -30,7 +30,7 @@ final class Forum_SubscribeBoard extends GWF_Method
 	{
 		if (false === ($this->board = GWF_ForumBoard::getBoard($boardid)))
 		{
-			return $module->error('err_board');
+			return $this->_module->error('err_board');
 		}
 		
 		if (!$this->board->hasPermissionS())
@@ -43,7 +43,7 @@ final class Forum_SubscribeBoard extends GWF_Method
 	
 	private function onSubscribe(Module_Forum $module, $boardid)
 	{
-		if (false !== ($error = $this->sanitize($module, $boardid)))
+		if (false !== ($error = $this->sanitize($this->_module, $boardid)))
 		{
 			return $error;
 		}
@@ -55,12 +55,12 @@ final class Forum_SubscribeBoard extends GWF_Method
 		}
 		
 		$href = htmlspecialchars($this->board->getShowBoardHREF());
-		return $module->message('msg_subscrboard', array($href));
+		return $this->_module->message('msg_subscrboard', array($href));
 	}
 
 	private function onUnSubscribe(Module_Forum $module, $boardid)
 	{
-		if (false !== ($error = $this->sanitize($module, $boardid)))
+		if (false !== ($error = $this->sanitize($this->_module, $boardid)))
 		{
 			return $error;
 		}
@@ -71,8 +71,8 @@ final class Forum_SubscribeBoard extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$href = htmlspecialchars($module->getMethodURL('Subscriptions'));
-		return $module->message('msg_unsubscrboard', array($href));
+		$href = htmlspecialchars($this->_module->getMethodURL('Subscriptions'));
+		return $this->_module->message('msg_unsubscrboard', array($href));
 	}
 }
 ?>

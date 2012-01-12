@@ -12,14 +12,14 @@ final class Konzert_Ensemble extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter();');
 
-		$module->setNextHREF(GWF_WEB_ROOT.'presseberichte.html');
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'presseberichte.html');
 		
-		return $this->templateEnsemble($module);
+		return $this->templateEnsemble($this->_module);
 	}
 	
 	private function templateEnsemble(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/ensemble'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/ensemble'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -34,7 +34,7 @@ final class Konzert_Ensemble extends GWF_Method
 			'altimg1' => $l->lang('altimg1'),
 			'altimg2' => $l->lang('altimg2'),
 		);
-		return $module->template('ensemble.tpl', $tVars);
+		return $this->_module->template('ensemble.tpl', $tVars);
 	}
 }
 ?>

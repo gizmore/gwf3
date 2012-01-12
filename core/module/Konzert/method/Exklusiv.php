@@ -11,20 +11,20 @@ final class Konzert_Exklusiv extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/color.js');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter();');
-		$module->setNextHREF(GWF_WEB_ROOT.'kontakt.html');
-		return $this->templateExklusiv($module);
+		$this->_module->setNextHREF(GWF_WEB_ROOT.'kontakt.html');
+		return $this->templateExklusiv($this->_module);
 	}
 	
 	private function templateExklusiv(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/exklusiv'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/exklusiv'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
 		$tVars = array(
 			'l' => $l,
 		);
-		return $module->template('exklusiv.tpl', $tVars);
+		return $this->_module->template('exklusiv.tpl', $tVars);
 	}
 }
 ?>

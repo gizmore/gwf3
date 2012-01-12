@@ -17,17 +17,17 @@ final class Admin_UserGroup extends GWF_Method
 		$user->loadGroups();
 		
 		if (false !== Common::getPost('add_to_group')) {
-			return $this->onAddToGroup($module, $user).$this->showGroups($module, $user);
+			return $this->onAddToGroup($this->_module, $user).$this->showGroups($this->_module, $user);
 		}
 		
-		return $this->showGroups($module, $user);
+		return $this->showGroups($this->_module, $user);
 	}
 
 	public function validate_groups(Module_Admin $module, $arg) { return false; }
 	public function onAddToGroup(Module_Admin $module, GWF_User $user)
 	{
-		$form = $this->getFormAdd($module, $user);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->getFormAdd($this->_module, $user);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -35,12 +35,12 @@ final class Admin_UserGroup extends GWF_Method
 		
 		if (false === ($group = GWF_Group::getByID($form->getVar('groups'))))
 		{
-			return $module->error('err_group');
+			return $this->_module->error('err_group');
 		}
 		
 		if ($user->isInGroupName($group->getName()))
 		{
-			return $module->error('err_in_group');
+			return $this->_module->error('err_in_group');
 		}
 		
 		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
@@ -48,28 +48,28 @@ final class Admin_UserGroup extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_added_to_grp', array($user->displayUsername(), $group->display('group_name')));
+		return $this->_module->message('msg_added_to_grp', array($user->displayUsername(), $group->display('group_name')));
 	}
 	
 	public function showGroups(Module_Admin $module, GWF_User $user)
 	{
 		
-		$form = $this->getFormAdd($module, $user);
+		$form = $this->getFormAdd($this->_module, $user);
 		
 		$tVars = array(
 			'form_action' => $this->getMethodHref('&uid='.$user->getID()),
-			'form_add' => $form->templateX($module->lang('ft_add_to_group')),
+			'form_add' => $form->templateX($this->_module->lang('ft_add_to_group')),
 			'user' => $user,
 			'groups' => $user->getGroups(), 
 		);
-		return $module->templatePHP('usergroup.php', $tVars);
+		return $this->_module->templatePHP('usergroup.php', $tVars);
 	}
 	
 	private function getFormAdd(Module_Admin $module, GWF_User $user)
 	{
 		$data = array(
-			'groups' => array(GWF_Form::SELECT, $this->getGroupSelect($module, $user), $module->lang('th_group_name')),
-			'add_to_group' => array(GWF_Form::SUBMIT, $module->lang('btn_add_to_grp')),
+			'groups' => array(GWF_Form::SELECT, $this->getGroupSelect($this->_module, $user), $this->_module->lang('th_group_name')),
+			'add_to_group' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_to_grp')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -78,7 +78,7 @@ final class Admin_UserGroup extends GWF_Method
 	{
 		$groups = GDO::table('GWF_Group')->selectAll('group_id, group_name');
 		$data = array();
-		$data[] = array('0', $module->lang('sel_group'));
+		$data[] = array('0', $this->_module->lang('sel_group'));
 		foreach ($groups as $group)
 		{
 			if (!$user->isInGroupID($group['group_id']))

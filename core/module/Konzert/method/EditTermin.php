@@ -7,37 +7,37 @@ final class Konzert_EditTermin extends GWF_Method
 	{
 		if (false === ($termin = Konzert_Termin::getByID(Common::getGetString('ktid'))))
 		{
-			return $module->error('err_termin');
+			return $this->_module->error('err_termin');
 		}
 		
 		if (isset($_POST['edit']))
 		{
-			return $this->onEdit($module, $termin).$this->templateEdit($module, $termin);
+			return $this->onEdit($this->_module, $termin).$this->templateEdit($this->_module, $termin);
 		}
 		
-		return $this->templateEdit($module, $termin);
+		return $this->templateEdit($this->_module, $termin);
 	}
 	
 	private function templateEdit(Module_Konzert $module, Konzert_Termin $termin)
 	{
-		$form = $this->formEdit($module, $termin);
+		$form = $this->formEdit($this->_module, $termin);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_edit')),
+			'form' => $form->templateY($this->_module->lang('ft_edit')),
 		);
-		return $module->template('at_edit.tpl', $tVars);
+		return $this->_module->template('at_edit.tpl', $tVars);
 	}
 	
 	private function formEdit(Module_Konzert $module, Konzert_Termin $termin)
 	{
 		$data = array();
-		$data['date'] = array(GWF_Form::DATE_FUTURE, $termin->getVar('kt_date'), $module->lang('th_date'), '', GWF_Date::LEN_DAY);
-		$data['time'] = array(GWF_Form::TIME, $termin->getVar('kt_time'), $module->lang('th_time'));
-		$data['prog'] = array(GWF_Form::STRING, $termin->getVar('kt_prog'), $module->lang('th_prog'));
-		$data['city'] = array(GWF_Form::STRING, $termin->getVar('kt_city'), $module->lang('th_city'));
-		$data['location'] = array(GWF_Form::STRING, $termin->getVar('kt_location'), $module->lang('th_location'));
-		$data['tickets'] = array(GWF_Form::STRING, $termin->getVar('kt_tickets'), $module->lang('th_tickets'));
-		$data['enabled'] = array(GWF_Form::CHECKBOX, $termin->isEnabled(), $module->lang('th_enabled'));
-		$data['edit'] = array(GWF_Form::SUBMIT, $module->lang('btn_edit'));
+		$data['date'] = array(GWF_Form::DATE_FUTURE, $termin->getVar('kt_date'), $this->_module->lang('th_date'), '', GWF_Date::LEN_DAY);
+		$data['time'] = array(GWF_Form::TIME, $termin->getVar('kt_time'), $this->_module->lang('th_time'));
+		$data['prog'] = array(GWF_Form::STRING, $termin->getVar('kt_prog'), $this->_module->lang('th_prog'));
+		$data['city'] = array(GWF_Form::STRING, $termin->getVar('kt_city'), $this->_module->lang('th_city'));
+		$data['location'] = array(GWF_Form::STRING, $termin->getVar('kt_location'), $this->_module->lang('th_location'));
+		$data['tickets'] = array(GWF_Form::STRING, $termin->getVar('kt_tickets'), $this->_module->lang('th_tickets'));
+		$data['enabled'] = array(GWF_Form::CHECKBOX, $termin->isEnabled(), $this->_module->lang('th_enabled'));
+		$data['edit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -50,8 +50,8 @@ final class Konzert_EditTermin extends GWF_Method
 	
 	private function onEdit(Module_Konzert $module, Konzert_Termin $termin)
 	{
-		$form = $this->formEdit($module, $termin);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->formEdit($this->_module, $termin);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
 		}
@@ -72,7 +72,7 @@ final class Konzert_EditTermin extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_t_edited');
+		return $this->_module->message('msg_t_edited');
 	}
 }
 ?>

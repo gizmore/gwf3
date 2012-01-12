@@ -12,31 +12,31 @@ final class Language_Bundle extends GWF_Method
 	{
 		error_reporting(0);
 		if (false !== Common::getPost('bundle')) {
-			return $this->onBundle($module).$this->templateBundle($module);
+			return $this->onBundle($this->_module).$this->templateBundle($this->_module);
 		}
 		elseif (false !== Common::getPost('missing')) {
-			return $this->onCreateMissing($module).$this->templateBundle($module);
+			return $this->onCreateMissing($this->_module).$this->templateBundle($this->_module);
 		}
 		
-		return $this->templateBundle($module);
+		return $this->templateBundle($this->_module);
 	}
 	
 	private function templateBundle(Module_Language $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_bundle')),
+			'form' => $form->templateY($this->_module->lang('ft_bundle')),
 		);
-		return $module->templatePHP('bundle.php', $tVars);
+		return $this->_module->templatePHP('bundle.php', $tVars);
 	}
 
 	private function getForm(Module_Language $module)
 	{
 		$data = array(
-			'target' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'target', Common::getPost('target')), $module->lang('th_target')),
-			'all_targets' => array(GWF_Form::CHECKBOX, false, $module->lang('th_all_targets')),
-			'missing' => array(GWF_Form::SUBMIT, $module->lang('btn_missing')),
-			'bundle' => array(GWF_Form::SUBMIT, $module->lang('btn_bundle')),
+			'target' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'target', Common::getPost('target')), $this->_module->lang('th_target')),
+			'all_targets' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_all_targets')),
+			'missing' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_missing')),
+			'bundle' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_bundle')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -117,21 +117,21 @@ final class Language_Bundle extends GWF_Method
 	###############
 	private function onCreateMissing(Module_Language $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
 		# No ZIP?
 		if (!class_exists('ZipArchive', false)) {
-			return $module->error('err_no_zip');
+			return $this->_module->error('err_no_zip');
 		}
 
 		# Create ZIP?
 		$archive = new GWF_ZipArchive();
 		$archivename = $this->getArchiveName('missing');
 		if (false === ($archive->open($archivename, ZipArchive::CREATE))) {
-			return $module->error('err_zip', __FILE__, __LINE__);
+			return $this->_module->error('err_zip', __FILE__, __LINE__);
 		}
 		
 		$files = $this->getLanguageFiles('en');
@@ -163,10 +163,10 @@ final class Language_Bundle extends GWF_Method
 		}
 		
 		if (false === $archive->close()) {
-			return $module->error('err_zip', __FILE__, __LINE__);
+			return $this->_module->error('err_zip', __FILE__, __LINE__);
 		}
 		
-		return $module->message('msg_bundled', array($archivename, $archive->getTotalFilesCounter()));
+		return $this->_module->message('msg_bundled', array($archivename, $archive->getTotalFilesCounter()));
 	}
 	
 	private function getLangFilename($filename, $iso)
@@ -268,20 +268,20 @@ final class Language_Bundle extends GWF_Method
 	##############
 	private function onBundle(Module_Language $module)
 	{
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		# No ZIP?
 		if (!class_exists('ZipArchive', false)) {
-			return $module->error('err_no_zip');
+			return $this->_module->error('err_no_zip');
 		}
 		
 		$back = '';
 		$targets = $this->getTargets();
 		foreach ($targets as $target)
 		{
-			$back .= $this->onBundleTarget($module, $target);
+			$back .= $this->onBundleTarget($this->_module, $target);
 		}
 		return $back;
 	}
@@ -292,7 +292,7 @@ final class Language_Bundle extends GWF_Method
 		$archive = new GWF_ZipArchive();
 		$archivename = sprintf('protected/zipped/language_bundle_%s.zip', $target);
 		if (false === ($archive->open($archivename, ZipArchive::CREATE))) {
-			return $module->error('err_zip', __FILE__, __LINE__);
+			return $this->_module->error('err_zip', __FILE__, __LINE__);
 		}
 		
 		$files = $this->getLanguageFiles($target);
@@ -302,10 +302,10 @@ final class Language_Bundle extends GWF_Method
 		}
 		
 		if (false === $archive->close()) {
-			return $module->error('err_zip', __FILE__, __LINE__);
+			return $this->_module->error('err_zip', __FILE__, __LINE__);
 		}
 		
-		return $module->message('msg_bundled', array($archivename, $archive->getTotalFilesCounter()));
+		return $this->_module->message('msg_bundled', array($archivename, $archive->getTotalFilesCounter()));
 	}
 	
 }

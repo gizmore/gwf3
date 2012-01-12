@@ -27,11 +27,11 @@ final class WeChall_API_History extends GWF_Method
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();
 		
-		if (false !== ($error = $this->sanitize($module))) {
+		if (false !== ($error = $this->sanitize($this->_module))) {
 			die ($error);
 		}
 
-		die($this->history($module));
+		die($this->history($this->_module));
 	}
 	
 	private function sanitize(Module_WeChall $module)
@@ -55,7 +55,7 @@ final class WeChall_API_History extends GWF_Method
 			if (false === ($this->user = GWF_User::getByName($username))) {
 				return GWF_HTML::err('ERR_UNKNOWN_USER');
 			}
-			if (false !== ($error = $module->isExcludedFromAPI($this->user, Common::getGet('password')))) {
+			if (false !== ($error = $this->_module->isExcludedFromAPI($this->user, Common::getGet('password')))) {
 				return $error;
 			}
 		}
@@ -64,7 +64,7 @@ final class WeChall_API_History extends GWF_Method
 		if (false !== ($sitename = Common::getGet('sitename')))
 		{
 			if ( (false === ($this->site = WC_Site::getByName($sitename))) && (false === ($this->site = WC_Site::getByClassName($sitename))) ) {
-				return $module->error('err_site');
+				return $this->_module->error('err_site');
 			}
 		}
 
@@ -89,7 +89,7 @@ final class WeChall_API_History extends GWF_Method
 //			require_once 'core/module/WeChall/WC_API_Block.php';
 //			if (WC_API_Block::isBlocked())
 //			{
-//				return $module->error('err_api_block');
+//				return $this->_module->error('err_api_block');
 //			}
 //		}
 		

@@ -6,27 +6,27 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (isset($_POST['add'])) {
-			return $this->onAdd($module);
+			return $this->onAdd($this->_module);
 		}
-		return $this->templateAdd($module);
+		return $this->templateAdd($this->_module);
 	}
 
 	private function templateAdd(Module_Helpdesk $module)
 	{
-		$form = $this->formAdd($module);
+		$form = $this->formAdd($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('ft_add_faq')),
+			'form' => $form->templateY($this->_module->lang('ft_add_faq')),
 		);
-		return $module->template('faq_add.tpl', $tVars);
+		return $this->_module->template('faq_add.tpl', $tVars);
 	}
 	
 	private function formAdd(Module_Helpdesk $module)
 	{
 		$data = array(
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', Common::getPostString('lang')), $module->lang('th_lang'), $module->lang('tt_lang')),
-			'question' => array(GWF_Form::STRING, '', $module->lang('th_question')),
-			'answer' => array(GWF_Form::MESSAGE, '', $module->lang('th_answer')),
-			'add' => array(GWF_Form::SUBMIT, $module->lang('btn_add_faq')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', Common::getPostString('lang')), $this->_module->lang('th_lang'), $this->_module->lang('tt_lang')),
+			'question' => array(GWF_Form::STRING, '', $this->_module->lang('th_question')),
+			'answer' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_answer')),
+			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_faq')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -37,9 +37,9 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	
 	private function onAdd(Module_Helpdesk $module)
 	{
-		$form = $this->formAdd($module);
-		if (false !== ($error = $form->validate($module))) {
-			return $error.$this->templateAdd($module);
+		$form = $this->formAdd($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
+			return $error.$this->templateAdd($this->_module);
 		}
 		
 		$faq = new GWF_HelpdeskFAQ(array(
@@ -51,10 +51,10 @@ final class Helpdesk_FAQAdd extends GWF_Method
 		));
 		
 		if (false === ($faq->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($this->_module);
 		}
 		
-		return $module->message('msg_faq_add');
+		return $this->_module->message('msg_faq_add');
 	}
 }
 ?>

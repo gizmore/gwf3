@@ -12,10 +12,10 @@ final class Votes_Polls extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($pollid = Common::getGet('show'))) {
-			return $this->templatePoll($module, $pollid);
+			return $this->templatePoll($this->_module, $pollid);
 		}
 		
-		return $this->templatePolls($module);
+		return $this->templatePolls($this->_module);
 	}
 	
 	private function templatePolls(Module_Votes $module)
@@ -47,13 +47,13 @@ final class Votes_Polls extends GWF_Method
 			'may_add_poll' => Module_Votes::mayAddPoll($user),
 			'href_add_poll' => GWF_WEB_ROOT.'poll/add',
 		);
-		return $module->templatePHP('polls.php', $tVars);
+		return $this->_module->templatePHP('polls.php', $tVars);
 	}
 
 	private function templatePoll(Module_Votes $module, $pollid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($pollid))) {
-			return $module->error('err_poll').$this->templatePolls($module);
+			return $this->_module->error('err_poll').$this->templatePolls($this->_module);
 		}
 		
 		return $poll->showResults(300);

@@ -8,12 +8,12 @@ final class Konzert_Sponsoren extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateSponsoren($module);
+		return $this->templateSponsoren($this->_module);
 	}
 	
 	private function templateSponsoren(Module_Konzert $module)
 	{
-		$l = new GWF_LangTrans($module->getModuleFilePath('lang/sponsoren'));
+		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/sponsoren'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -21,7 +21,7 @@ final class Konzert_Sponsoren extends GWF_Method
 			'title' => $l->lang('title'),
 			'subtitle' => $l->lang('subtitle'),
 		);
-		return $module->template('sponsoren.tpl', $tVars);
+		return $this->_module->template('sponsoren.tpl', $tVars);
 	}
 }
 ?>

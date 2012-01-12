@@ -15,16 +15,16 @@ final class WeChall_RankingCountry extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateSingleU($module, $username);
+			return $this->templateSingleU($this->_module, $username);
 		}
 		if (false !== ($cid = Common::getGet('cid'))) {
-			return $this->templateSingle($module, $cid, GWF_Session::getUser());
+			return $this->templateSingle($this->_module, $cid, GWF_Session::getUser());
 		}
 		
-		GWF_Website::setPageTitle($module->lang('pt_csrank'));
-		GWF_Website::setMetaTags($module->lang('mt_csrank'));
-		GWF_Website::setMetaDescr($module->lang('md_csrank'));
-		return $this->templateRanking($module);
+		GWF_Website::setPageTitle($this->_module->lang('pt_csrank'));
+		GWF_Website::setMetaTags($this->_module->lang('mt_csrank'));
+		GWF_Website::setMetaDescr($this->_module->lang('md_csrank'));
+		return $this->templateRanking($this->_module);
 	}
 	
 	private function templateRanking(Module_WeChall $module)
@@ -69,7 +69,7 @@ final class WeChall_RankingCountry extends GWF_Method
 			'data' => $result,
 			'sort_url' => GWF_WEB_ROOT.'country_ranking/by/%BY%/%DIR%/page-1',
 		);
-		return $module->templatePHP('ranking_countries.php', $tVars);
+		return $this->_module->templatePHP('ranking_countries.php', $tVars);
 	}
 	
 	private function getHighlightCountry()
@@ -95,7 +95,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateSingle($module, $user->getCountryID(), $user);
+		return $this->templateSingle($this->_module, $user->getCountryID(), $user);
 	}
 	
 	private function templateSingle(Module_WeChall $module, $cid, $user)
@@ -118,9 +118,9 @@ final class WeChall_RankingCountry extends GWF_Method
 		
 		$cname = $country->display('country_name');
 
-		GWF_Website::setPageTitle($module->lang('pt_crank', array($cname, $page)));
-		GWF_Website::setMetaTags($module->lang('mt_crank', array($cname, $cname)));
-		GWF_Website::setMetaDescr($module->lang('md_crank', array($cname, $page)));
+		GWF_Website::setPageTitle($this->_module->lang('pt_crank', array($cname, $page)));
+		GWF_Website::setMetaTags($this->_module->lang('mt_crank', array($cname, $cname)));
+		GWF_Website::setMetaDescr($this->_module->lang('md_crank', array($cname, $page)));
 		
 		$tVars = array(
 			'country' => $country,
@@ -132,7 +132,7 @@ final class WeChall_RankingCountry extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'country_ranking/for/'.$cid.'/'.$country->urlencodeSEO('country_name').'/page-%PAGE%'),
 			'data' => $this->getDataForCountry($country, $ipp, $from),
 		);
-		return $module->templatePHP('ranking_country.php', $tVars);
+		return $this->_module->templatePHP('ranking_country.php', $tVars);
 	}
 	
 	private function getDataForCountry(GWF_Country $country, $ipp, $from)

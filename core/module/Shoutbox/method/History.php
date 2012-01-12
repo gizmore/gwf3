@@ -13,14 +13,14 @@ final class Shoutbox_History extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false !== ($array = Common::getPost('delete'))) {
-			return $this->onDelete($module, $array);
+			return $this->onDelete($this->_module, $array);
 		}
-		return $this->templatePage($module);
+		return $this->templatePage($this->_module);
 	}
 
 	private function templatePage(Module_Shoutbox $module)
 	{
-		$ipp = $module->cfgIPP();
+		$ipp = $this->_module->cfgIPP();
 		$shouts = GDO::table('GWF_Shoutbox');
 		$by = Common::getGet('by', 'shout_date');
 		$dir = Common::getGet('dir', 'ASC');
@@ -31,18 +31,18 @@ final class Shoutbox_History extends GWF_Method
 		$page = Common::clamp(intval(Common::getGet('page', $nPages)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		
-		GWF_Website::setPageTitle($module->lang('pt_history', array( $page, $nPages)));
-		GWF_Website::setMetaDescr($module->lang('md_history'));
-		GWF_Website::setMetaTags($module->lang('mt_history'));
+		GWF_Website::setPageTitle($this->_module->lang('pt_history', array( $page, $nPages)));
+		GWF_Website::setMetaDescr($this->_module->lang('md_history'));
+		GWF_Website::setMetaTags($this->_module->lang('mt_history'));
 		
 		$tVars = array(
 			'data' => $shouts->selectAll('*', '', $orderby, array('shout_uid'), $ipp, $from, GDO::ARRAY_O),
 			'sort_url' => GWF_WEB_ROOT.'shoutbox/history/by/%BY%/%DIR%/page-1',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'shoutbox/history/by/'.urlencode($by).'/'.urlencode($dir).'/page-%PAGE%'),
-			'form_action' => $module->hrefShout(),
+			'form_action' => $this->_module->hrefShout(),
 		);
 		
-		return $module->templatePHP('history.php', $tVars);
+		return $this->_module->templatePHP('history.php', $tVars);
 	}
 	
 	private function onDelete(Module_Shoutbox $module, $array)
@@ -69,7 +69,7 @@ final class Shoutbox_History extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_deleted');
+		return $this->_module->message('msg_deleted');
 	}
 }
 ?>

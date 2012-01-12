@@ -8,13 +8,13 @@ final class Comments_Staff extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->templateStaff($module);
+		return $this->templateStaff($this->_module);
 	}
 	
 	private function templateStaff(Module_Comments $module)
 	{
 		$table = GDO::table('GWF_Comments');
-		$where = $this->getWhere($module);
+		$where = $this->getWhere($this->_module);
 		$ipp = 25;
 		$nItems = $table->countRows($where);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
@@ -31,7 +31,7 @@ final class Comments_Staff extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $hrefp),
 			'comments' => $table->selectObjects('*', $where, $orderby, $ipp, $from),
 		);
-		return $module->template('staff.tpl', $tVars);
+		return $this->_module->template('staff.tpl', $tVars);
 	}
 	
 	private function getWhere(Module_Comments $module)

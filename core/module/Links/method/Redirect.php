@@ -10,11 +10,11 @@ final class Links_Redirect extends GWF_Method
 	public function execute(GWF_Module $module)
 	{
 		if (false === ($link = GWF_Links::getByID(Common::getGet('lid')))) {
-			return $module->error('err_link');
+			return $this->_module->error('err_link');
 		}
 		
 		if (!$link->mayView(GWF_Session::getUser())) {
-			return $module->error('err_view_perm');
+			return $this->_module->error('err_view_perm');
 		}
 		
 		if (false === $link->increase('link_clicks', 1)) {
@@ -27,9 +27,9 @@ final class Links_Redirect extends GWF_Method
 		
 //		$link->markRead(GWF_Session::getUser());
 		
-		return $module->message('msg_counted_visit');
+		return $this->_module->message('msg_counted_visit');
 		
 //		header('Location: '.$link->getVar('link_href'));
-//		return $module->message('msg_redirecting', array($link->display('link_href')));
+//		return $this->_module->message('msg_redirecting', array($link->display('link_href')));
 	}
 }

@@ -11,17 +11,17 @@ final class Forum_Thanks extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		return $this->onThanks($module);
+		return $this->onThanks($this->_module);
 	}
 	
 	private function onThanks(Module_Forum $module)
 	{
-		if (false === ($post = $module->getCurrentPost())) {
-			return $module->error('err_post');
+		if (false === ($post = $this->_module->getCurrentPost())) {
+			return $this->_module->error('err_post');
 		}
 		
-		if (false === $module->cfgThanksEnabled()) {
-			return $module->error('err_thanks_off');
+		if (false === $this->_module->cfgThanksEnabled()) {
+			return $this->_module->error('err_thanks_off');
 		}
 		
 		if (false === ($user = GWF_Session::getUser())) {
@@ -29,23 +29,23 @@ final class Forum_Thanks extends GWF_Method
 		}
 		
 		if ($post->hasThanked($user)) {
-			return $module->error('err_thank_twice');
+			return $this->_module->error('err_thank_twice');
 		}
 		
 		if ($post->getUserID() === $user->getID()) {
-			return $module->error('err_thank_self');
+			return $this->_module->error('err_thank_self');
 		}
 
-		if (false === $post->onThanks($module, $user)) {
+		if (false === $post->onThanks($this->_module, $user)) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		if ($module->isAjax())
+		if ($this->_module->isAjax())
 		{
 			return '1:'.$post->getThanksCount();
 		} else
 		{
-			return $module->message('msg_thanked', $post->getShowHREF());
+			return $this->_module->message('msg_thanked', $post->getShowHREF());
 		}
 	}
 }

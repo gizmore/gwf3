@@ -11,17 +11,17 @@ final class Slaytags_Search extends GWF_Method
 
 		if (isset($_GET['searchterm']))
 		{
-			return $this->onSearch($module);
+			return $this->onSearch($this->_module);
 		}
 		
-		return $this->templateSearch($module);
+		return $this->templateSearch($this->_module);
 	}
 
 	private function templateSearch(Module_Slaytags $module)
 	{
-		$form = $this->formSearch($module);
+		$form = $this->formSearch($this->_module);
 		$tVars = array(
-			'form' => $form->templateX($module->lang('ft_search'), GWF_WEB_ROOT.'index.php'),
+			'form' => $form->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php'),
 			'pagemenu' => '',
 			'matches' => array(),
 			'sort_url' => '',
@@ -30,7 +30,7 @@ final class Slaytags_Search extends GWF_Method
 			'singletag' => NULL,
 			'no_match' => false,
 		);
-		return $module->template('search.tpl', $tVars);
+		return $this->_module->template('search.tpl', $tVars);
 	}
 	
 	private function formSearch(Module_Slaytags $module)
@@ -38,9 +38,9 @@ final class Slaytags_Search extends GWF_Method
 		$data = array();
 		$data['mo'] = array(GWF_Form::HIDDEN, 'Slaytags');
 		$data['me'] = array(GWF_Form::HIDDEN, 'Search');
-		$data['searchtag'] = array(GWF_Form::SELECT, Slay_TagSelect::singleSelect('searchtag'), $module->lang('th_searchtag'));
-		$data['searchterm'] = array(GWF_Form::STRING, '', $module->lang('th_searchterm'));
-		$data['search'] = array(GWF_Form::SUBMIT, $module->lang('btn_search'));
+		$data['searchtag'] = array(GWF_Form::SELECT, Slay_TagSelect::singleSelect('searchtag'), $this->_module->lang('th_searchtag'));
+		$data['searchterm'] = array(GWF_Form::STRING, '', $this->_module->lang('th_searchterm'));
+		$data['search'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_search'));
 		$data['by'] = array(GWF_Form::HIDDEN, self::BY);
 		$data['dir'] = array(GWF_Form::HIDDEN, self::DIR);
 		$data['page'] = array(GWF_Form::HIDDEN, 1);
@@ -55,10 +55,10 @@ final class Slaytags_Search extends GWF_Method
 		
 	private function onSearch(Module_Slaytags $module)
 	{
-		$form = $this->formSearch($module);
-		if (false !== ($error = $form->validate($module)))
+		$form = $this->formSearch($this->_module);
+		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateSearch($module);
+			return $error.$this->templateSearch($this->_module);
 		}
 		
 		$ipp = self::IPP;
@@ -69,7 +69,7 @@ final class Slaytags_Search extends GWF_Method
 		$joins = array('lyrics');
 		if (false === ($where = GWF_QuickSearch::getQuickSearchConditions($table, array('ss_artist', 'ss_title', 'ss_composer'), $term)))
 		{
-			return GWF_HTML::err('ERR_SEARCH_TERM').$this->templateSearch($module);
+			return GWF_HTML::err('ERR_SEARCH_TERM').$this->templateSearch($this->_module);
 		}
 		$term2 = GDO::escape($term);
 //		$term2 = str_replace(array('%', '_'), array('\\%', '\\_'), $term);
@@ -96,22 +96,22 @@ final class Slaytags_Search extends GWF_Method
 		
 		$headers = array(
 			array(),
-			array($module->lang('L'), '(ss_lyrics>0)'),
-			array($module->lang('T'), 'ss_taggers'),
-			array($module->lang('D'), '(ss_options&1)'),
-//			array($module->lang('S'), '(ss_sid_path!=NULL)'),
-			array($module->lang('th_artist'), 'ss_artist'),
-			array($module->lang('th_title'), 'ss_title'),
-			array($module->lang('th_duration'), 'ss_duration'),
+			array($this->_module->lang('L'), '(ss_lyrics>0)'),
+			array($this->_module->lang('T'), 'ss_taggers'),
+			array($this->_module->lang('D'), '(ss_options&1)'),
+//			array($this->_module->lang('S'), '(ss_sid_path!=NULL)'),
+			array($this->_module->lang('th_artist'), 'ss_artist'),
+			array($this->_module->lang('th_title'), 'ss_title'),
+			array($this->_module->lang('th_duration'), 'ss_duration'),
 		);
 		if ($tag > 0)
 		{
-			$headers[] = array($module->lang(Slay_Tag::getNameByID($tag)), 'sst_count');
+			$headers[] = array($this->_module->lang(Slay_Tag::getNameByID($tag)), 'sst_count');
 		}
-		$headers[] = array($module->lang('th_tags'));
+		$headers[] = array($this->_module->lang('th_tags'));
 		
 		$tVars = array(
-			'form' => $form->templateX($module->lang('ft_search'), GWF_WEB_ROOT.'index.php'),
+			'form' => $form->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php'),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('index.php?mo=Slaytags&me=Search&searchterm=%s&searchtag=%s&by=%s&dir=%s&page=%%PAGE%%', urlencode($term), $tag, urlencode($by), urlencode($dir))),
 			'matches' => $matches,
 			'sort_url' => GWF_WEB_ROOT.sprintf('index.php?mo=Slaytags&me=Search&searchterm=%s&searchtag=%s&by=%%BY%%&dir=%%DIR%%&page=1', urlencode($term), $tag),
@@ -121,7 +121,7 @@ final class Slaytags_Search extends GWF_Method
 			'no_match' => (count($matches)===0),
 		);
 		
-		return $module->template('search.tpl', $tVars);
+		return $this->_module->template('search.tpl', $tVars);
 	}
 	
 }
