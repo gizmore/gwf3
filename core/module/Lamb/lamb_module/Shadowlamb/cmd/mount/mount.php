@@ -103,7 +103,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		$page = isset($args[0]) ? (int)$args[0] : 1;
 		$nItems = count($matches);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
-		if ( ($page < 1) || ($page > $nPages) )
+		if ( ($page < 1) || ($page > $nPages) || (count($matches)===0) )
 		{
 			$bot->reply('This mount page is empty.');
 			return false;

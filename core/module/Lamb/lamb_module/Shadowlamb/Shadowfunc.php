@@ -605,7 +605,7 @@ final class Shadowfunc
 	{
 		$b = chr(2);
 		$back = '';
-		$i = 1;
+// 		$i = 1;
 		foreach ($items as $itemname => $data)
 		{
 			$count = $data[0];

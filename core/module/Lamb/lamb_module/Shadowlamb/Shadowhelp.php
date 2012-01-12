@@ -323,7 +323,7 @@ final class Shadowhelp
 					array(
 						'forward' => "Combat command. Usage: #forward|#fw. Move forward in distance.",
 						'backward' => "Combat command. Usage: #backward|#bw. Move backwards in distance.",
-						'flee' => "Combat command. Usage: #(fl)ee. Try to flee from the enemy. If successful you will #part the current #(p)arty.",
+						'flee' => "Combat command. Usage: #(fl)ee. Try to flee from the enemy. If successful you will #part the current #(p)arty. You will also loose some XP.",
 						'attack' => "Combat command. Usage: #attack|## [<enemy_name|enemy_enum>]. Select your target to attack with your weapon. Attack will lock your target, so you don't need to type attack all the time. See #help busytime and #help combat.",
 						'set_distance' => 'Player command. Usage: #(s)et_(d)istance/#sd <meters>. Set your default combat distance. The max distance is '.SR_Player::MAX_SD.'.',
 					),

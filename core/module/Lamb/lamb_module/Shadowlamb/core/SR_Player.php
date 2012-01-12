@@ -13,7 +13,7 @@ class SR_Player extends GDO
 	const HP_REFRESH_MULTI = 0.03;
 	const MP_REFRESH_MULTI = 0.02;
 	const HP_REFRESH_TIMER = 300;
-	const MP_REFRESH_TIMER = 300;
+	const MP_REFRESH_TIMER = 240;
 	
 	const XP_PER_KARMA = 4;
 	const XP_PER_KARMA_RAISE = 0.5;
@@ -2007,7 +2007,7 @@ class SR_Player extends GDO
 	#############
 	public function hasNuyen($ny)
 	{
-		return $this->getBase('nuyen') >= $ny;
+		return $ny < 0 ? false : $this->getBase('nuyen') >= $ny;
 	}
 	
 	public function pay($nuyen)
