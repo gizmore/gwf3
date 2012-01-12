@@ -12,7 +12,7 @@ final class Account_Form extends GWF_Method
 		return 'RewriteRule ^account/?$ index.php?mo=Account&me=Form'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (isset($_POST['delete'])) {
 			die(GWF_Website::redirect($this->_module->getMethodURL('Delete')));
