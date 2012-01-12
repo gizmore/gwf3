@@ -42,7 +42,7 @@ final class Quest_Chicago_SaleSmith1 extends SR_Quest
 			$npc->reply('Thanks!');
 		}
 	
-		if ( ($hl >= $nl) && ($hb >= $nb) && ($hs >= $ns) )
+		if ( ($h1 >= $n1) && ($h2 >= $n2) && ($hc >= $nc) )
 		{
 			$npc->reply('Thank you ... Here, i can only compensate you with a few items.');
 			$this->onSolve($player);
