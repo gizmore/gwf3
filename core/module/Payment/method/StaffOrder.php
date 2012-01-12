@@ -38,7 +38,7 @@ final class Payment_StaffOrder extends GWF_Method
 		
 		$tVars = array(
 			'order' => $order,
-			'display' => $gdo->displayOrder($this->_module2),
+			'display' => $gdo->displayOrder($module2),
 			'href_paid' => GWF_WEB_ROOT.'index.php?mo=Payment&me=StaffOrder&oid='.$oid.'&mark_paid=true',
 			'form_exec' => $form_exec->templateX(false, false),
 			'form_edit' => $form_edit->templateY($this->_module->lang('ft_edit_order')),
@@ -73,7 +73,7 @@ final class Payment_StaffOrder extends GWF_Method
 		$module2->onInclude();
 		$module2->onLoadLanguage();
 
-		return Module_Payment::onExecuteOrderS($this->_module2, $order);
+		return Module_Payment::onExecuteOrderS($module2, $order);
 	}
 	
 }

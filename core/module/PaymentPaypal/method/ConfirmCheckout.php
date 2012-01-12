@@ -44,8 +44,8 @@ final class PaymentPaypal_ConfirmCheckout extends GWF_Method
 			$module2->onLoadLanguage();
 			$gdo = $order->getOrderData();
 			$user = $order->getOrderUser();
-			$button = $this->_module->displayPaysiteButton3($this->_module2, $order, $gdo, $user);
-			return Module_Payment::displayOrder3S($this->_module2, $order, $gdo, $user, $order->getOrderPaySite(), $button);
+			$button = $this->_module->displayPaysiteButton3($module2, $order, $gdo, $user);
+			return Module_Payment::displayOrder3S($module2, $order, $gdo, $user, $order->getOrderPaySite(), $button);
 		}
 		else {
 			return Paypal_Util::paypalError($resArray);

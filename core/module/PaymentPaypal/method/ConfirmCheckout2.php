@@ -64,10 +64,10 @@ final class PaymentPaypal_ConfirmCheckout2 extends GWF_Method
 		
 		$status = strtoupper($resArray['PAYMENTSTATUS']);
 		if ($status === 'COMPLETED') {
-			return $mp->onExecuteOrder($this->_module2, $order);
+			return $mp->onExecuteOrder($module2, $order);
 		}
 		else {
-			return $mp->onPendingOrder($this->_module2, $order);
+			return $mp->onPendingOrder($module2, $order);
 		}
 	}
 }

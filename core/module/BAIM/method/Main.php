@@ -20,10 +20,10 @@ final class BAIM_Main extends GWF_Method
 	
 	private function getNews()
 	{
-		if (false === ($this->_module = Module::getModule('News'))) {
+		if (false === ($newsmodule = Module::getModule('News'))) {
 			return '';
 		}
-		return $this->_module->getNewsBox(1);
+		return $newsmodule->getNewsBox(1);
 	}
 }
 

@@ -297,7 +297,7 @@ final class Admin_Module extends GWF_Method
 		
 		$moduleid = $this->mod->getID();
 		$errors = $messages = array();
-		$vars = GWF_ModuleLoader::getModuleVars($this->_moduleid);
+		$vars = GWF_ModuleLoader::getModuleVars($moduleid);
 		foreach ($vars as $row) 
 		{
 			$key = $row['mv_key'];
