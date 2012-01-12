@@ -3,8 +3,15 @@ final class Chicago_RazorBarkeeper extends SR_TalkingNPC
 {
 	public function getName() { return 'The barkeeper'; }
 	
+	public function getNPCQuests(SR_Player $player) { return array('Chicago_RazorBaarkeeper1'); }
+	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$b = chr(2); # bold
 		switch ($word)
 		{

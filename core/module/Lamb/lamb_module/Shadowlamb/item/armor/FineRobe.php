@@ -1,7 +1,7 @@
 <?php
 final class Item_FineRobe extends SR_Armor
 {
-	public function getItemLevel() { return Shadowrun4::SR4_ALPHA ? 8 : 4; }
+	public function getItemLevel() { return 8; }
 	public function getItemPrice() { return 800; }
 	public function getItemWeight() { return 450; }
 	public function getItemDescription() { return 'A fine black robe for magicians or those who wanna be.'; }

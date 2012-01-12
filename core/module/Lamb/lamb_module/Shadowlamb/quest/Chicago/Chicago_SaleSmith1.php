@@ -7,7 +7,7 @@ final class Quest_Chicago_SaleSmith1 extends SR_Quest
 	public function getQuestName() { return 'Inventory'; }
 	public function getRewardXP() { return 3; }
 	public function getRewardNuyen() { return 0; }
-	public function getRewardItems() { return array('Holostick','Scanner_v3'); }
+	public function getRewardItems() { return array('Holostick','Scanner_v4'); }
 	public function getTheQuestData()
 	{
 		$data = $this->getQuestData();

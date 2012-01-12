@@ -9,15 +9,12 @@ final class Chicago_Blacksmith extends SR_Blacksmith
 	
 	public function getStoreItems(SR_Player $player)
 	{
-		if (Shadowrun4::SR4_ALPHA)
-		{
-			return array(
-				array('ShortSword', 100.0, 1000),
-				array('BroadSword', 100.0, 1500),
-				array('LongSword', 100.0, 2000),
-				array('Katana', 100.0, 4000),
-			);
-		}
+		return array(
+			array('ShortSword', 100.0, 1000),
+			array('BroadSword', 100.0, 1500),
+			array('LongSword', 100.0, 2000),
+			array('Katana', 100.0, 4000),
+		);
 	}
 
 	public function getSimulationPrice() { return 175; }

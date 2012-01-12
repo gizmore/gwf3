@@ -25,7 +25,7 @@ final class Chicago_OwlBarkeeper extends SR_TalkingNPC
 			case 'hire': return $this->reply("I don't want to follow you, geez.");
 			case 'blackmarket': return $this->reply("I don't trust the guys at the blackmarket.");
 			case 'bounty': return $this->reply("There is a bounty on you?");
-			case 'alchemy': return $this->reply("Don\'t confuse bartenders with alchemists, chummer ^^");
+			case 'alchemy': return $this->reply("Don't confuse bartenders with alchemists, chummer ^^");
 			case 'invite': return $this->reply("I have to work next weekend.");
 			case 'renraku': return $this->reply("I don't like Renraku much. But i don't hate them either.");
 			case 'malois': return $this->reply("Never heard of him.");

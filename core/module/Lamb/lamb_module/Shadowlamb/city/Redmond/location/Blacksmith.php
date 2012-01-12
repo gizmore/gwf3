@@ -13,15 +13,7 @@ final class Redmond_Blacksmith extends SR_Blacksmith
 	
 	public function getStoreItems(SR_Player $player)
 	{
-		if (Shadowrun4::SR4_ALPHA)
-		{
-			return array();
-		}
-		
-		return array(
-			array('Rune_of_strength:0.4', 100.0, 1200),
-			array('Rune_of_melee:0.2', 100.0, 2400),
-		);
+		return array();
 	}
 
 	public function getSimulationPrice() { return 125; }
