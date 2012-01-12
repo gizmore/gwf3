@@ -2346,7 +2346,7 @@ class SR_Player extends GDO
 		
 		if ($this->combat_stack === '')
 		{
-			$this->combat_stack = $this->cmdAttackRandom();
+			$this->combat_stack = $this->old_combat_stack =$this->cmdAttackRandom();
 		}
 		
 		# We will execute this one.
