@@ -5,6 +5,7 @@
  */
 final class Account_Form extends GWF_Method
 {
+	public function __construct(Module_Account $module) { return parent::__construct($this->_module); }
 	public function isLoginRequired() { return true; }
 	
 	public function getHTAccess(GWF_Module $module)
@@ -12,119 +13,119 @@ final class Account_Form extends GWF_Method
 		return 'RewriteRule ^account/?$ index.php?mo=Account&me=Form'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $module)
+	public function execute()
 	{
 		if (isset($_POST['delete'])) {
-			die(GWF_Website::redirect($module->getMethodURL('Delete')));
+			die(GWF_Website::redirect($this->_module->getMethodURL('Delete')));
 		}
 		if (false !== (Common::getPost('drop_avatar'))) {
-			return $this->onDeleteAvatar($module).$this->templateForm($module);
+			return $this->onDeleteAvatar($this->_module).$this->templateForm($this->_module);
 		}
 		if (false !== (Common::getPost('change'))) {
-			return $this->onChange($module).$this->templateForm($module);
+			return $this->onChange($this->_module).$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('approvemail')) {
-			return $this->onApproveMail($module).$this->templateForm($module);
+			return $this->onApproveMail($this->_module).$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('setup_gpg')) {
-			return $this->onSetupGPG($module).$this->templateForm($module);
+			return $this->onSetupGPG($this->_module).$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('remove_gpg')) {
-			return $this->onRemoveGPG($module).$this->templateForm($module);
+			return $this->onRemoveGPG($this->_module).$this->templateForm($this->_module);
 		}
-		return $this->templateForm($module);
+		return $this->templateForm($this->_module);
 	}
 	
-	private function templateForm(Module_Account $module)
+	private function templateForm()
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		$tVars = array(
-			'form' => $form->templateY($module->lang('form_title')),
+			'form' => $form->templateY($this->_module->lang('form_title')),
 		);
 		
 		if (function_exists('gnupg_init'))
 		{
-			$formGPG = $this->getFormGPG($module);
-			$tVars['form_gpg'] = $formGPG->templateY($module->lang('ft_gpg'));
+			$formGPG = $this->getFormGPG($this->_module);
+			$tVars['form_gpg'] = $formGPG->templateY($this->_module->lang('ft_gpg'));
 		}
 		else
 		{
 			$tVars['form_gpg'] = '';
 		}
 		
-		return $module->template('form.tpl', $tVars);
+		return $this->_module->template('form.tpl', $tVars);
 	}
 	
 	################
 	### The Form ###
 	################
-	public function getForm(Module_Account $module)
+	public function getForm()
 	{
 		$user = GWF_Session::getUser();
 		$user_email = $user->getVar('user_email');
 		
 		# SECURITY
 		$data = array(
-			'username' => array(GWF_Form::SSTRING, $user->getVar('user_name'), $module->lang('th_username')),
-			'email' => array(GWF_Form::STRING, $user_email, $module->lang('th_email')),
+			'username' => array(GWF_Form::SSTRING, $user->getVar('user_name'), $this->_module->lang('th_username')),
+			'email' => array(GWF_Form::STRING, $user_email, $this->_module->lang('th_email')),
 		);
 		
 		### Email set but not approved.
 		if ($user_email !== '' && !$user->hasValidMail()) {
-			$data['approvemail'] = array(GWF_Form::SUBMIT, $module->lang('btn_approvemail'), $module->lang('th_approvemail'));
+			$data['approvemail'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_approvemail'), $this->_module->lang('th_approvemail'));
 		}
 		
 		// DEMOGRAPHICS
-		$data['div1'] = array(GWF_Form::HEADLINE, $module->lang('th_demo', array(GWF_Time::humanDuration($module->cfgChangeTime()), 1)));
-		$data['countryid'] = array(GWF_Form::SELECT, $user->getCountrySelect('countryid'), $module->lang('th_countryid'));
-		$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid', Common::getPostString('langid', $user->getVar('user_langid'))), $module->lang('th_langid'));
-		$data['langid2'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid2', Common::getPostString('langid2', $user->getVar('user_langid2'))), $module->lang('th_langid2'));
-		$data['birthdate'] = array(GWF_Form::DATE, $user->getVar('user_birthdate'), $module->lang('th_birthdate'), '', GWF_Date::LEN_DAY);
-		if ($module->cfgShowGender())
+		$data['div1'] = array(GWF_Form::HEADLINE, $this->_module->lang('th_demo', array(GWF_Time::humanDuration($this->_module->cfgChangeTime()), 1)));
+		$data['countryid'] = array(GWF_Form::SELECT, $user->getCountrySelect('countryid'), $this->_module->lang('th_countryid'));
+		$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid', Common::getPostString('langid', $user->getVar('user_langid'))), $this->_module->lang('th_langid'));
+		$data['langid2'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid2', Common::getPostString('langid2', $user->getVar('user_langid2'))), $this->_module->lang('th_langid2'));
+		$data['birthdate'] = array(GWF_Form::DATE, $user->getVar('user_birthdate'), $this->_module->lang('th_birthdate'), '', GWF_Date::LEN_DAY);
+		if ($this->_module->cfgShowGender())
 		{
-			$data['gender'] = array(GWF_Form::SELECT, $user->getGenderSelect(), $module->lang('th_gender'));
+			$data['gender'] = array(GWF_Form::SELECT, $user->getGenderSelect(), $this->_module->lang('th_gender'));
 		}
 		// OPTIONS
-		$data['div2'] = array(GWF_Form::HEADLINE, $module->lang('th_flags'));
+		$data['div2'] = array(GWF_Form::HEADLINE, $this->_module->lang('th_flags'));
 		
-		$data['email_fmt'] = array(GWF_Form::SELECT, $this->selectEMailFormat($module, $user), $module->lang('th_email_fmt'));
+		$data['email_fmt'] = array(GWF_Form::SELECT, $this->selectEMailFormat($this->_module, $user), $this->_module->lang('th_email_fmt'));
 		
-		if ($module->cfgShowCheckboxes())
+		if ($this->_module->cfgShowCheckboxes())
 		{
-			$data['online'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::HIDE_ONLINE), $module->lang('th_online'));
-			$data['show_bday'] = array(GWF_Form::CHECKBOX,  $user->isOptionEnabled(GWF_User::SHOW_BIRTHDAY), $module->lang('th_show_bday'));
-			$data['show_obday'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_OTHER_BIRTHDAYS), $module->lang('th_show_obday'));
-			$data['show_email'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_EMAIL), $module->lang('th_show_email'));
-			$data['allow_email'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALLOW_EMAIL), $module->lang('th_allow_email'));
+			$data['online'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::HIDE_ONLINE), $this->_module->lang('th_online'));
+			$data['show_bday'] = array(GWF_Form::CHECKBOX,  $user->isOptionEnabled(GWF_User::SHOW_BIRTHDAY), $this->_module->lang('th_show_bday'));
+			$data['show_obday'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_OTHER_BIRTHDAYS), $this->_module->lang('th_show_obday'));
+			$data['show_email'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_EMAIL), $this->_module->lang('th_show_email'));
+			$data['allow_email'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALLOW_EMAIL), $this->_module->lang('th_allow_email'));
 		}
 		
 		
-		if ($module->cfgShowAdult())
+		if ($this->_module->cfgShowAdult())
 		{
-			if (GWF_Time::getAge($user->getVar('user_birthdate')) >= $module->cfgAdultAge()) {
-				$data['adult'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::WANTS_ADULT), $module->lang('th_adult'));
+			if (GWF_Time::getAge($user->getVar('user_birthdate')) >= $this->_module->cfgAdultAge()) {
+				$data['adult'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::WANTS_ADULT), $this->_module->lang('th_adult'));
 			}
 		}
 				
-		if ($module->cfgUseAvatar())
+		if ($this->_module->cfgUseAvatar())
 		{
 			// Avatar
 			if ($user->isOptionEnabled(GWF_User::HAS_AVATAR))
 			{
-				$data['avatar'] = array(GWF_Form::HEADLINE, $user->displayAvatar(), $module->lang('th_avatar'));
-				$data['drop_avatar'] = array(GWF_Form::SUBMIT, $module->lang('btn_drop_avatar'), '');
+				$data['avatar'] = array(GWF_Form::HEADLINE, $user->displayAvatar(), $this->_module->lang('th_avatar'));
+				$data['drop_avatar'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_drop_avatar'), '');
 			}
 			else
 			{
-				$data['avatar'] = array(GWF_Form::FILE_OPT, '', $module->lang('th_avatar'));
+				$data['avatar'] = array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_avatar'));
 			}
 		}
 		
-		$data['divpw'] = array(GWF_Form::HEADLINE, $module->lang('th_change_pw', array( 'recovery')));
+		$data['divpw'] = array(GWF_Form::HEADLINE, $this->_module->lang('th_change_pw', array( 'recovery')));
 		
 		// BTN
-		$buttons = array('change'=>$module->lang('btn_submit'),'delete'=>$module->lang('btn_delete'));
-//		$data['change'] = array(GWF_Form::SUBMIT, $module->lang('btn_submit'), '');
+		$buttons = array('change'=>$this->_module->lang('btn_submit'),'delete'=>$this->_module->lang('btn_delete'));
+//		$data['change'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_submit'), '');
 		$data['buttons'] = array(GWF_Form::SUBMITS, $buttons);		
 		return new GWF_Form($this, $data);
 	}
@@ -135,38 +136,38 @@ final class Account_Form extends GWF_Method
 	private function selectEMailFormat(Module_Account $module, GWF_User $user)
 	{
 		$data = array(
-			array(GWF_User::EMAIL_HTML, $module->lang('email_fmt_html')),
-			array(GWF_User::EMAIL_TEXT, $module->lang('email_fmt_text')),
+			array(GWF_User::EMAIL_HTML, $this->_module->lang('email_fmt_html')),
+			array(GWF_User::EMAIL_TEXT, $this->_module->lang('email_fmt_text')),
 		);
 		$selected = $user->isOptionEnabled(GWF_User::EMAIL_TEXT) ? GWF_User::EMAIL_TEXT : 0;
 		return GWF_Select::display('email_fmt', $data, $selected);
 	}
 	
-	private function onChange(Module_Account $module)
+	private function onChange()
 	{
 		$back = '';
 		$user = GWF_Session::getUser();
-		$form = $this->getForm($module);
-		if (false !== ($errors = $form->validate($module))) {
+		$form = $this->getForm($this->_module);
+		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
 		
 		# Upload Avatar
 		if (false !== ($file = $form->getVar('avatar'))) {
-			$back .= $this->saveAvatar($module, $file);
+			$back .= $this->saveAvatar($this->_module, $file);
 			Common::unlink($file['tmp_name']);
 		}
 
 		
 		# Flags
-		if ($module->cfgShowAdult() && GWF_Time::getAge($user->getVar('user_birthdate')) > $module->cfgAdultAge()) {
-			$back .= $this->changeFlag($module, $user, 'adult', GWF_USER::WANTS_ADULT);
+		if ($this->_module->cfgShowAdult() && GWF_Time::getAge($user->getVar('user_birthdate')) > $this->_module->cfgAdultAge()) {
+			$back .= $this->changeFlag($this->_module, $user, 'adult', GWF_USER::WANTS_ADULT);
 		}
-		$back .= $this->changeFlag($module, $user, 'online', GWF_USER::HIDE_ONLINE);
-		$back .= $this->changeFlag($module, $user, 'show_bday', GWF_USER::SHOW_BIRTHDAY);
-		$back .= $this->changeFlag($module, $user, 'show_obday', GWF_USER::SHOW_OTHER_BIRTHDAYS);
-		$back .= $this->changeFlag($module, $user, 'show_email', GWF_USER::SHOW_EMAIL);
-		$back .= $this->changeFlag($module, $user, 'allow_email', GWF_USER::ALLOW_EMAIL);
+		$back .= $this->changeFlag($this->_module, $user, 'online', GWF_USER::HIDE_ONLINE);
+		$back .= $this->changeFlag($this->_module, $user, 'show_bday', GWF_USER::SHOW_BIRTHDAY);
+		$back .= $this->changeFlag($this->_module, $user, 'show_obday', GWF_USER::SHOW_OTHER_BIRTHDAYS);
+		$back .= $this->changeFlag($this->_module, $user, 'show_email', GWF_USER::SHOW_EMAIL);
+		$back .= $this->changeFlag($this->_module, $user, 'allow_email', GWF_USER::ALLOW_EMAIL);
 		
 		
 		# Email Format
@@ -174,7 +175,7 @@ final class Account_Form extends GWF_Method
 		$oldfmt = $user->isOptionEnabled(GWF_User::EMAIL_TEXT) ? GWF_User::EMAIL_TEXT : 0;
 		if ($newfmt !== $oldfmt) {
 			$user->saveOption(GWF_User::EMAIL_TEXT, $newfmt > 0);
-			$back .= $module->message('msg_email_fmt_'.$newfmt);
+			$back .= $this->_module->message('msg_email_fmt_'.$newfmt);
 		}
 		
 		# Change EMAIL
@@ -182,7 +183,7 @@ final class Account_Form extends GWF_Method
 		$oldmail = $user->getVar('user_email');
 		if ($newmail !== $oldmail) {
 			require_once 'ChangeEmail.php';
-			$back .= Account_ChangeEmail::changeEmail($module, $user, $newmail);
+			$back .= Account_ChangeEmail::changeEmail($this->_module, $user, $newmail);
 		}
 		
 		
@@ -216,7 +217,7 @@ final class Account_Form extends GWF_Method
 				'user_birthdate' => $newbirthdate,
 			);
 			require_once 'ChangeDemo.php';
-			$back .= Account_ChangeDemo::requestChange($module, $user, $data);
+			$back .= Account_ChangeDemo::requestChange($this->_module, $user, $data);
 		}
 		
 		return $back;
@@ -230,13 +231,13 @@ final class Account_Form extends GWF_Method
 		if (false === $user->saveOption($bits, $newFlag)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		return $module->message('msg_'.$flagname.($newFlag?'_on':'_off'));
+		return $this->_module->message('msg_'.$flagname.($newFlag?'_on':'_off'));
 	}
 	
 	##############
 	### Avatar ###
 	##############
-	private function onDeleteAvatar(Module_Account $module)
+	private function onDeleteAvatar()
 	{
 		$user = GWF_Session::getUser();
 		$path = sprintf('dbimg/avatar/%d', $user->getID());
@@ -245,36 +246,36 @@ final class Account_Form extends GWF_Method
 		{
 			if (false === (@unlink($path)))
 			{
-				return $module->error('err_delete_avatar');
+				return $this->_module->error('err_delete_avatar');
 			}
 		}
 		
 		$user->saveOption(GWF_User::HAS_AVATAR, false);
 		
-		return $module->message('msg_deleted_avatar');
+		return $this->_module->message('msg_deleted_avatar');
 	}
 	
 	private function saveAvatar(Module_Account $module, array $file)
 	{
 		if (!GWF_Upload::isImageFile($file)) {
-			return $module->error('err_no_image');
+			return $this->_module->error('err_no_image');
 		}
 		
-		if (false === GWF_Upload::resizeImage($file, $module->cfgAvatarMaxWidth(), $module->cfgAvatarMaxHeight(), $module->cfgAvatarMinWidth(), $module->cfgAvatarMinHeight())) {
-			return $module->error('err_no_image');
+		if (false === GWF_Upload::resizeImage($file, $this->_module->cfgAvatarMaxWidth(), $this->_module->cfgAvatarMaxHeight(), $this->_module->cfgAvatarMinWidth(), $this->_module->cfgAvatarMinHeight())) {
+			return $this->_module->error('err_no_image');
 		}
 		
 		$user = GWF_Session::getUser();
 		$uid = $user->getID();
 		
 		if (false === ($file = GWF_Upload::moveTo($file, 'dbimg/avatar/'.$uid))) {
-			return $module->error('err_write_avatar');
+			return $this->_module->error('err_write_avatar');
 		}
 		
 		$user->saveOption(GWF_User::HAS_AVATAR, true);
 		$user->increase('user_avatar_v', 1);
 		
-		return $module->message('msg_avatar_saved');
+		return $this->_module->message('msg_avatar_saved');
 	}
 	
 	##################
@@ -291,12 +292,12 @@ final class Account_Form extends GWF_Method
 		
 		if (!GWF_Validator::isValidEmail($arg))
 		{
-			return $module->lang('err_email_invalid');
+			return $this->_module->lang('err_email_invalid');
 		}
 		
 		if (GWF_User::getByEmail($arg) !== false)
 		{
-			return $module->lang('err_email_taken');
+			return $this->_module->lang('err_email_taken');
 		}
 		
 		return false;		
@@ -310,7 +311,7 @@ final class Account_Form extends GWF_Method
 	public function validate_langid(Module_Account $module, $arg)
 	{
 		if (false === GWF_LangSelect::isValidLanguage($arg, true)) {
-			return $module->lang('err_lang1');
+			return $this->_module->lang('err_lang1');
 		}
 		return false;
 	}
@@ -318,7 +319,7 @@ final class Account_Form extends GWF_Method
 	public function validate_langid2(Module_Account $module, $arg)
 	{
 		if (false === GWF_LangSelect::isValidLanguage($arg, true)) {
-			return $module->lang('err_lang2');
+			return $this->_module->lang('err_lang2');
 		}
 		return false;
 	}
@@ -326,7 +327,7 @@ final class Account_Form extends GWF_Method
 	public function validate_birthdate(Module_Account $module, $arg)
 	{
 		if (false === GWF_Time::isValidDate($arg, true, 8)) {
-			return $module->lang('err_birthdate');
+			return $this->_module->lang('err_birthdate');
 		}
 		return false;
 	}
@@ -334,7 +335,7 @@ final class Account_Form extends GWF_Method
 	public function validate_gender(Module_Account $module, $arg)
 	{
 		if (false === (GWF_Gender::isValidGender($arg))) {
-			return $module->lang('err_gender');
+			return $this->_module->lang('err_gender');
 		}
 		return false;
 	}
@@ -343,26 +344,26 @@ final class Account_Form extends GWF_Method
 	{
 		$v = (int) $arg;
 		if (!is_numeric($arg) || ($v !== GWF_User::EMAIL_TEXT && $v !== GWF_User::EMAIL_HTML) ) {
-			return $module->lang('err_email_fmt');
+			return $this->_module->lang('err_email_fmt');
 		}
 		return false;
 	}
 	
 	private function onApproveMail(Module_Account $module)
 	{
-		$form = $this->getForm($module);
+		$form = $this->getForm($this->_module);
 		
 		$user = GWF_Session::getUser();
 		if ('' === ($email = $user->getVar('user_email'))) {
-			return $module->error('err_no_mail_to_approve');
+			return $this->_module->error('err_no_mail_to_approve');
 		}
 		
 		if ($user->hasValidMail()) {
-			return $module->error('err_already_approved');
+			return $this->_module->error('err_already_approved');
 		}
 
 		require_once 'ChangeEmail.php';
-		return Account_ChangeEmail::changeEmail($module, $user, $email);
+		return Account_ChangeEmail::changeEmail($this->_module, $user, $email);
 	}
 	
 	public function validate_gpg_paste(Module_Account $module, $arg) { return false; }
@@ -376,10 +377,10 @@ final class Account_Form extends GWF_Method
 			$old_key = '';
 		}
 		
-		$buttons = array('setup_gpg'=>$module->lang('btn_setup_gpg'), 'remove_gpg'=>$module->lang('btn_remove_gpg'));
+		$buttons = array('setup_gpg'=>$this->_module->lang('btn_setup_gpg'), 'remove_gpg'=>$this->_module->lang('btn_remove_gpg'));
 		$data = array(
-			'gpg_file' => array(GWF_Form::FILE_OPT, '', $module->lang('th_gpg_key'), $module->lang('tt_gpg_key')),
-			'gpg_paste' => array(GWF_Form::MESSAGE_NOBB, $old_key, $module->lang('th_gpg_key2'), $module->lang('tt_gpg_key2')),
+			'gpg_file' => array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_gpg_key'), $this->_module->lang('tt_gpg_key')),
+			'gpg_paste' => array(GWF_Form::MESSAGE_NOBB, $old_key, $this->_module->lang('th_gpg_key2'), $this->_module->lang('tt_gpg_key2')),
 			'buttons' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -387,8 +388,8 @@ final class Account_Form extends GWF_Method
 	
 	private function onSetupGPG(Module_Account $module)
 	{
-		$form = $this->getFormGPG($module);
-		if (false !== ($error = $form->validate($module))) {
+		$form = $this->getFormGPG($this->_module);
+		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 		
@@ -399,7 +400,7 @@ final class Account_Form extends GWF_Method
 //		}
 		
 		if (false !== ($row = GWF_PublicKey::getKeyForUser($user))) {
-			return $module->error('err_gpg_fine');
+			return $this->_module->error('err_gpg_fine');
 		}
 		
 		$file_content = '';
@@ -414,11 +415,11 @@ final class Account_Form extends GWF_Method
 		$file_content = trim($file_content);
 		
 //		if ($file_content === '') {
-//			return $module->error('err_gpg_setup');
+//			return $this->_module->error('err_gpg_setup');
 //		}
 		
 		if (strpos($file_content, '-----BEGIN ') !== 0) {
-			return $module->error('err_gpg_raw');
+			return $this->_module->error('err_gpg_raw');
 		}
 		
 		if (false === file_put_contents($outfile, $file_content, GWF_CHMOD)) {
@@ -426,34 +427,34 @@ final class Account_Form extends GWF_Method
 		}
 		
 		if (false === ($fingerprint = GWF_PublicKey::grabFingerprint($file_content))) {
-			return $module->error('err_gpg_key');
+			return $this->_module->error('err_gpg_key');
 		}
 		
-		return $this->sendGPGMail($module, $user, $fingerprint);
+		return $this->sendGPGMail($this->_module, $user, $fingerprint);
 	}
 	
 	private function sendGPGMail(Module_Account $module, GWF_User $user, $fingerprint)
 	{
 		if ('' === ($email = $user->getValidMail())) {
-			return $module->error('err_no_mail');
+			return $this->_module->error('err_no_mail');
 		}
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($email);
 		$mail->setGPGKey($fingerprint);
-		$mail->setSubject($module->langUser($user, 'mails_gpg'));
-		$mail->setBody($this->getGPGMailBody($module, $user, $fingerprint));
+		$mail->setSubject($this->_module->langUser($user, 'mails_gpg'));
+		$mail->setBody($this->getGPGMailBody($this->_module, $user, $fingerprint));
 		if (false === $mail->sendToUser($user)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
-		return $module->message('msg_mail_sent');
+		return $this->_module->message('msg_mail_sent');
 	}
 	
 	private function getGPGMailBody(Module_Account $module, GWF_User $user, $fingerprint)
 	{
 		$href = Common::getAbsoluteURL(sprintf('index.php?mo=Account&me=SetupGPGKey&userid=%s&token=%s', $user->getVar('user_id'), $fingerprint), true);
 		$link = GWF_HTML::anchor($href, $href);
-		return $module->langUser($user, 'mailb_gpg', array($user->displayUsername(), $link));
+		return $this->_module->langUser($user, 'mailb_gpg', array($user->displayUsername(), $link));
 	}
 	
 	private function onRemoveGPG(Module_Account $module)
@@ -464,7 +465,7 @@ final class Account_Form extends GWF_Method
 		$userid = $user->getID();
 		
 		if (false === GWF_PublicKey::getKeyForUID($userid)) {
-			return $module->error('err_gpg_del');
+			return $this->_module->error('err_gpg_del');
 		}
 		
 		if (false === GWF_PublicKey::removeKey($userid)) {
@@ -475,7 +476,7 @@ final class Account_Form extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $module->message('msg_gpg_del');
+		return $this->_module->message('msg_gpg_del');
 	}
 }
 
