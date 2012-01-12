@@ -13,7 +13,7 @@ class Item_Holostick extends Item_Credstick
 {
 	public static $CONFIRM_ITEMS = NULL;
 	
-	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|pushi>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
+	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|pushi|popi>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
 	public function getItemPrice() { return 179.95; }
 	public function getItemUsetime() { return 20; } 
 	public function getItemWeight() { return 200; }
