@@ -90,7 +90,7 @@ final class News_Show extends GWF_Method
 		return true;
 	}
 	
-	public function templateShow(Module_News $module)
+	public function templateShow()
 	{
 		if (false === ($news = GWF_News::getNewsQuick($this->_module->getNewsPerPage(), $this->catid, $this->page, GWF_Language::getCurrentID()))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));

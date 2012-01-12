@@ -22,7 +22,7 @@ final class Guestbook_EditGB extends GWF_Method
 		return $this->templateModerate($this->_module);
 	}
 
-	public function templateModerate(Module_Guestbook $module)
+	public function templateModerate()
 	{
 		
 	}

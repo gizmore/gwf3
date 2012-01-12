@@ -8,8 +8,6 @@ final class GWF_Fancy extends GWF_Method
 {
 	public function getHTAccess(GWF_Module $module)
 	{
-		$module instanceof Module_GWF;
-		
 		$ret = '';
 
 		# The Fancy Options

@@ -51,7 +51,7 @@ final class VersionServer_Zipper extends GWF_Method
 		return $this->templateZipper($this->_module);
 	}
 	
-	public function getForm(Module_VersionServer $module)
+	public function getForm()
 	{
 		$data = array();
 		
@@ -112,7 +112,7 @@ final class VersionServer_Zipper extends GWF_Method
 		return $this->onZipB($this->_module);
 	}
 	
-	public function onZipB(Module_VersionServer $module)
+	public function onZipB()
 	{
 		# No ZIP extension?
 		if (!class_exists('ZipArchive', false)) {
@@ -136,7 +136,7 @@ final class VersionServer_Zipper extends GWF_Method
 		return $back;
 	}
 	
-	public function onZipC(Module_VersionServer $module)
+	public function onZipC()
 	{
 		# Create ZIP
 		$archive = new GWF_ZipArchive();

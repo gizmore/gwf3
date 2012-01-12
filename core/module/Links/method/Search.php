@@ -37,12 +37,12 @@ final class Links_Search extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateAdvSearch(Module_Links $module)
+	public function templateAdvSearch()
 	{
 		return $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_search'));
 	}
 	
-	public function templateQuickSearch(Module_Links $module)
+	public function templateQuickSearch()
 	{
 		$form = $this->getFormQuick($this->_module);
 		$tVars = array(

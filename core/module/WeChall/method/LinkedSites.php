@@ -63,7 +63,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	################
 	### Template ###
 	################
-	public function templateSites(Module_WeChall $module)
+	public function templateSites()
 	{
 		$whitelist = array('site_name', 'site_challcount', 'regat_score', 'site_score', 'regat_solved', 'regat_lastdate', 'regat_onsitename');
 		
@@ -98,7 +98,7 @@ final class WeChall_LinkedSites extends GWF_Method
 //		return $db->queryAll($query, true);
 	}
 
-	public function getFormLink(Module_WeChall $module)
+	public function getFormLink()
 	{
 		if (false === ($this->not_linked = WC_Site::getUnlinkedSites(GWF_Session::getUserID()))) {
 			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -135,7 +135,7 @@ final class WeChall_LinkedSites extends GWF_Method
 //		return $back;
 	}
 
-	public function getFormAll(Module_WeChall $module)
+	public function getFormAll()
 	{
 		$data = array(
 			'update_all' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_update_all_sites')),

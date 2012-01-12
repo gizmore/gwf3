@@ -32,12 +32,12 @@ final class Forum_Search extends GWF_Method
 	#############
 	### Forms ###
 	#############
-//	public function getFormAdv(Module_Forum $module)
+//	public function getFormAdv()
 //	{
 //		return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_ForumPost'), GWF_User::getStaticOrGuest(), true);
 //	}
 	
-	public function getFormQuick(Module_Forum $module)
+	public function getFormQuick()
 	{
 		return GWF_QuickSearch::getQuickSearchForm($this->_module, $this);
 	}

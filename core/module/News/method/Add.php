@@ -25,7 +25,7 @@ final class News_Add extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	public function getForm(Module_News $module)
+	public function getForm()
 	{
 		$langid = Common::getPostString('langid', GWF_Language::getEnglish()->getID());
 		
@@ -49,7 +49,7 @@ final class News_Add extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateAdd(Module_News $module)
+	public function templateAdd()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(

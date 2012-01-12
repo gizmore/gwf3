@@ -85,7 +85,7 @@ final class Admin_Install extends GWF_Method
 	}
 	
 	
-	public function onResetModule(Module_Admin $module)
+	public function onResetModule()
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
@@ -149,7 +149,7 @@ final class Admin_Install extends GWF_Method
 			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($this->_modulename)));
 	}
 
-	public function onInstallAll(Module_Admin $module)
+	public function onInstallAll()
 	{
 		$back = '';
 		$modules = GWF_ModuleLoader::loadModulesFS();
@@ -164,7 +164,7 @@ final class Admin_Install extends GWF_Method
 		return $this->_module->message('msg_install_all', array($this->_module->getMethodURL('Modules'))).$back;
 	}
 	
-	public function onDeleteModule(Module_Admin $module)
+	public function onDeleteModule()
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {

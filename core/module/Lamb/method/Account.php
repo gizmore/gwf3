@@ -9,7 +9,6 @@ final class Lamb_Account extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		$module instanceof Module_Lamb;
 		$this->_module->initShadowlamb();
 		
 		if (false !== ($error = $this->initPlayers($this->_module))) {

@@ -20,7 +20,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		return $this->templateSiteAdd($this->_module);
 	}
 
-	public function templateSiteAdd(Module_WeChall $module)
+	public function templateSiteAdd()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -29,7 +29,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		return $this->_module->templatePHP('site_add.php', $tVars);
 	}
 
-	public function getForm(Module_WeChall $module)
+	public function getForm()
 	{
 		$data = array(
 			'site_name' => array(GWF_Form::STRING, '', $this->_module->lang('th_site_name')),
@@ -39,7 +39,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	public function onAddSite(Module_WeChall $module)
+	public function onAddSite()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

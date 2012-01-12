@@ -17,7 +17,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		return $back.$this->templateFAQ($this->_module);
 	}
 	
-	public function templateFAQ(Module_Helpdesk $module)
+	public function templateFAQ()
 	{
 		$tVars = array(
 			'href_add' => $this->_module->getMethodURL('FAQAdd'),

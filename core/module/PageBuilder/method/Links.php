@@ -77,7 +77,7 @@ final class PageBuilder_Links extends GWF_Method
 		return $back.$this->templateLinks($this->_module);
 	}
 
-	public function formLinks(Module_PageBuilder $module)
+	public function formLinks()
 	{
 		$data = array(
 			'url' => array(GWF_Form::STRING, '', 'URL: '),
@@ -88,7 +88,7 @@ final class PageBuilder_Links extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	public function templateLinks(Module_PageBuilder $module)
+	public function templateLinks()
 	{
 		if(false === ($links = GDO::table('GWF_PageLinks')->selectAll()))
 		{

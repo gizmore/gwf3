@@ -9,7 +9,7 @@ final class Forum_Unread extends GWF_Method
 		return $this->templateUnread($this->_module);
 	}
 	
-	public function templateUnread(Module_Forum $module)
+	public function templateUnread()
 	{
 		$by = Common::getGet('by', 'thread_lastdate');
 		$dir = Common::getGet('dir', 'DESC');

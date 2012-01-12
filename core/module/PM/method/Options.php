@@ -37,7 +37,7 @@ final class PM_Options extends GWF_Method
 		return $this->templateOptions($this->_module);
 	}
 	
-	public function sanitize(Module_PM $module)
+	public function sanitize()
 	{
 		if (false === ($this->options = GWF_PMOptions::getPMOptionsS())) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
@@ -45,7 +45,7 @@ final class PM_Options extends GWF_Method
 		return false;
 	}
 	
-	public function getForm(Module_PM $module)
+	public function getForm()
 	{
 		$data = GWF_FormGDO::dataFromGDOExclusive($this->_module, $this->options, array('pmo_uid', 'pmo_options'));
 		$data['email'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::EMAIL_ON_PM), $this->_module->lang('th_pmo_options&'.GWF_PMOptions::EMAIL_ON_PM));
@@ -54,7 +54,7 @@ final class PM_Options extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function getFormIgnore(Module_PM $module)
+	public function getFormIgnore()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -64,7 +64,7 @@ final class PM_Options extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateOptions(Module_PM $module)
+	public function templateOptions()
 	{
 		$uid = GWF_Session::getUserID();
 		$form = $this->getForm($this->_module);

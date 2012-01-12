@@ -24,7 +24,7 @@ final class Comments_Edit extends GWF_Method
 		return $back . $this->templateEdit($this->_module);
 	}
 	
-	public function sanitize(Module_Comments $module)
+	public function sanitize()
 	{
 		if (false === ($c = GWF_Comment::getByID(Common::getGetString('cmt_id'))))
 		{
@@ -47,7 +47,7 @@ final class Comments_Edit extends GWF_Method
 		return false;
 	}
 	
-	public function templateEdit(Module_Comments $module)
+	public function templateEdit()
 	{
 		$formComment = $this->formComment($this->_module);
 		$formComments = $this->formComments($this->_module);
@@ -60,7 +60,7 @@ final class Comments_Edit extends GWF_Method
 		return $this->_module->template('edit.tpl', $tVars);
 	}
 	
-	public function formComment(Module_Comments $module)
+	public function formComment()
 	{
 		$c = $this->comment;
 		
@@ -73,7 +73,7 @@ final class Comments_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	public function formComments(Module_Comments $module)
+	public function formComments()
 	{
 		$buttons = array('editcmts' => $this->_module->lang('btn_edit'));
 		$data = array(
@@ -84,7 +84,7 @@ final class Comments_Edit extends GWF_Method
 	
 	public function validate_message($m, $arg) { return GWF_Validator::validateString($m, 'message', $arg, 8, $m->cfgMaxMsgLen(), false); }
 	
-	public function onEditComment(Module_Comments $module)
+	public function onEditComment()
 	{
 		$formComment = $this->formComment($this->_module);
 		if (false !== ($error = $formComment->validate($this->_module)))
@@ -101,7 +101,7 @@ final class Comments_Edit extends GWF_Method
 		return $this->_module->message('msg_edited');
 	}
 
-	public function onEditComments(Module_Comments $module)
+	public function onEditComments()
 	{
 		$formComments = $this->formComments($this->_module);
 		if (false !== ($error = $formComments->validate($this->_module)))

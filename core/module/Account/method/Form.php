@@ -5,7 +5,7 @@
  */
 final class Account_Form extends GWF_Method
 {
-	public function __construct(Module_Account $module) { return parent::__construct($module); }
+	public function __construct() { return parent::__construct($module); }
 	public function isLoginRequired() { return true; }
 	
 	public function getHTAccess(GWF_Module $module)

@@ -15,8 +15,6 @@ final class Download_Download extends GWF_Method
 
 	public function execute(GWF_Module $module)
 	{
-		$module instanceof Module_Download;
-		
 		if (false === ($dl = GWF_Download::getByID(Common::getGet('id')))) {
 			return $this->_module->error('err_dlid');
 		}

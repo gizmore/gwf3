@@ -64,7 +64,7 @@ final class Forum_EditPost extends GWF_Method
 	############
 	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
 	public function validate_message(Module_Forum $module, $arg) { return $this->_module->validate_message($arg); }
-	public function getForm(Module_Forum $module)
+	public function getForm()
 	{
 		$p = $this->post;
 		$buttons = array(
@@ -86,7 +86,7 @@ final class Forum_EditPost extends GWF_Method
 	################
 	### Template ###
 	################
-	public function templateEdit(Module_Forum $module)
+	public function templateEdit()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -98,7 +98,7 @@ final class Forum_EditPost extends GWF_Method
 	###############
 	### Preview ###
 	###############
-	public function onPreview(Module_Forum $module)
+	public function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -134,7 +134,7 @@ final class Forum_EditPost extends GWF_Method
 	############
 	### Edit ###
 	############
-	public function onEdit(Module_Forum $module)
+	public function onEdit()
 	{
 		$p = $this->post;
 		$form = $this->getForm($this->_module);
@@ -171,7 +171,7 @@ final class Forum_EditPost extends GWF_Method
 		return $this->_module->message('msg_post_edited', array($a));
 	}
 
-	public function onDelete(Module_Forum $module)
+	public function onDelete()
 	{
 		$p = $this->post;
 		$form = $this->getForm($this->_module);

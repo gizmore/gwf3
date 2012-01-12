@@ -41,7 +41,7 @@ final class Shoutbox_Shout extends GWF_Method
 		return $this->_module->message('msg_shouted', array($url, $url));
 	}
 	
-	public function isFlooding(Module_Shoutbox $module)
+	public function isFlooding()
 	{
 		$uid = GWF_Session::getUserID();
 		$uname = GWF_Shoutbox::generateUsername();

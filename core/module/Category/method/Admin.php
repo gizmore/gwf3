@@ -15,7 +15,7 @@ final class Category_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	public function templateAdmin(Module_Category $module)
+	public function templateAdmin()
 	{
 		$tVars = array(
 			'cats' => GWF_Category::getAllCategoriesCached(),

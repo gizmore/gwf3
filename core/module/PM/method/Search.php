@@ -24,7 +24,7 @@ final class PM_Search extends GWF_Method
 		return $this->templateAdvSearch($this->_module);
 	}
 	
-//	public function sanitize(Module_PM $module)
+//	public function sanitize()
 //	{
 //		return false;
 //	}

@@ -21,7 +21,7 @@ final class Usergroups_Users extends GWF_Method
 		return $this->templateUsers($this->_module);
 	}
 	
-	public function templateUsers(Module_Usergroups $module)
+	public function templateUsers()
 	{
 		$letter = Common::getGet('with', 'All');
 		$conditions = $this->getConditions($letter);

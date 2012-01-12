@@ -6,8 +6,6 @@
  */
 final class SF_Shell extends GWF_Method
 {
-	private $module;
-	
 	public function getHTAccess(GWF_Module $module)
 	{
 		return 'RewriteRule ^Shell/(.*+)$ index.php?mo=SF&me=Shell&cmd=$1'.PHP_EOL.
@@ -15,7 +13,6 @@ final class SF_Shell extends GWF_Method
 	}
 	public function execute(GWF_Module $module)
 	{
-		$this->module = $module;
 		$cmd = Common::getRequestString('cmd');
 		$output = $this->init($cmd);
 		return $this->templateShell($this->_module, $output, htmlspecialchars($cmd));
@@ -23,8 +20,6 @@ final class SF_Shell extends GWF_Method
 	
 	public function init($cmdS) 
 	{
-		$module = $this->module;
-
 		if($cmdS != NULL || $cmdS === false)
 		{
 			return $this->getMoMe() === array($_GET['mo'], $_GET['me']) ?

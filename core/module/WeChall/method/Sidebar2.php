@@ -9,12 +9,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 		}
 	}
 	
-	public function displayShowButton(Module_WeChall $module)
+	public function displayShowButton()
 	{
 		return GWF_Button::add();
 	}
 	
-	public function display(Module_WeChall $module)
+	public function display()
 	{
 		$this->_module->onInclude();
 		return

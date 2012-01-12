@@ -112,7 +112,7 @@ final class PM_Overview extends GWF_Method
 		return $this->_module->templatePHP('overview.php', $tVars);
 	}
 
-	public function folderTable(Module_PM $module)
+	public function folderTable()
 	{
 		$folders = GWF_PMFolder::getFolders(GWF_Session::getUserID());
 		
@@ -244,7 +244,7 @@ final class PM_Overview extends GWF_Method
 	### New Folder ###
 	##################
 	public function validate_foldername(Module_PM $module, $arg) { return $this->_module->validate_foldername($arg); }
-	public function onCreateFolder(Module_PM $module)
+	public function onCreateFolder()
 	{
 		$form = $this->getFormNewFolder($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

@@ -29,7 +29,7 @@ final class WeChall_Sidebar extends GWF_Method
 	 * @param Module_WeChall $module
 	 * @return string html
 	 */
-	public function displayRight(Module_WeChall $module)
+	public function displayRight()
 	{
 		return
 			$this->rightPanelStats($this->_module).PHP_EOL.
@@ -75,7 +75,7 @@ final class WeChall_Sidebar extends GWF_Method
 	 * @param Module_WeChall $module
 	 * @return string html
 	 */
-	public function displayLeft(Module_WeChall $module)
+	public function displayLeft()
 	{
 		return
 			$this->leftPanelLanguage($this->_module).PHP_EOL.

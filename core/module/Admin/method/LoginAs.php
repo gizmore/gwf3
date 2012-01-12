@@ -22,7 +22,7 @@ final class Admin_LoginAs extends GWF_Method
 	################
 	public function validate_username(Module_Admin $module, $arg) { return false; }
 	
-	public function getForm(Module_Admin $module)
+	public function getForm()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, Common::getGet('username', ''), $this->_module->lang('th_user_name')),
@@ -31,7 +31,7 @@ final class Admin_LoginAs extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateLoginAs(Module_Admin $module)
+	public function templateLoginAs()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -40,7 +40,7 @@ final class Admin_LoginAs extends GWF_Method
 		return $this->_module->template('login_as.tpl', $tVars);
 	}
 	
-	public function onLoginAs(Module_Admin $module)
+	public function onLoginAs()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

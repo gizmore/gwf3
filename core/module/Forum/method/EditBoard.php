@@ -121,7 +121,7 @@ final class Forum_EditBoard extends GWF_Method
 	##############
 	### Delete ###
 	##############
-	public function onDeleteBoard(Module_Forum $module)
+	public function onDeleteBoard()
 	{
 		if (false === ($this->board->deleteBoard())) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);

@@ -10,7 +10,6 @@ final class Forum_ShowThread extends GWF_Method
 	################
 	public function getHTAccess(GWF_Module $module)
 	{
-		$module instanceof Module_Forum;
 		$back = '';
 		if ($this->_module->cfgOldURLS())
 		{
@@ -109,7 +108,7 @@ final class Forum_ShowThread extends GWF_Method
 			'pagemenu' => $this->getPageMenu($this->_module),
 			'actions' => true,
 			'title' => true,
-			'reply' => $this->thread->hasReplyPermission(GWF_Session::getUser(), $module),
+			'reply' => $this->thread->hasReplyPermission(GWF_Session::getUser(), $this->_module),
 			'nav' => true,
 			'can_vote' => $user === false ? false : $this->_module->cfgVotesEnabled(),
 			'can_thank' => $user === false ? false : $this->_module->cfgThanksEnabled(),

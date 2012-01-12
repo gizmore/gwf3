@@ -63,7 +63,7 @@ final class Forum_Forum extends GWF_Method
 		return $this->templateForum($this->_module);
 	}
 	
-	public function sanitize(Module_Forum $module)
+	public function sanitize()
 	{
 		if (false === ($this->board = $this->_module->getCurrentBoard())) {
 			return $this->_module->error('err_board');
@@ -82,7 +82,7 @@ final class Forum_Forum extends GWF_Method
 		return false;
 	}
 
-	public function templateForum(Module_Forum $module)
+	public function templateForum()
 	{
 		$by = urlencode(Common::getGetString('tby', 'thread_lastdate'));
 		$dir = urlencode(Common::getGetString('tdir', 'DESC'));

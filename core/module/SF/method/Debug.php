@@ -40,7 +40,7 @@ final class SF_Debug extends GWF_Method
 		return eval($phpcode);
 	}
 
-	public function debugForm(Module_Admin $module)
+	public function debugForm()
 	{
 		$data = array(
 			'phpcode' => array(GWF_Form::MESSAGE_NOBB, '', 'PHP-Code', '', NULL, true),

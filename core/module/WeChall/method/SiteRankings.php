@@ -28,7 +28,7 @@ final class WeChall_SiteRankings extends GWF_Method
 		return GDO::table('WC_RegAt')->countRows("regat_sid={$siteid} AND regat_options&4=1");
 	}
 	
-	public function templateRanking(Module_WeChall $module)
+	public function templateRanking()
 	{
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
 			return $this->_module->error('err_site');

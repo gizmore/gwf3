@@ -17,7 +17,7 @@ final class Admin_UserSearch extends GWF_Method
 		return $nav.$this->templateSearch($this->_module);
 	}
 	
-	public function getForm(Module_Admin $module)
+	public function getForm()
 	{
 		$data = array(
 			'term' => array(GWF_Form::STRING, Common::getRequest('term', ''), GWF_HTML::lang('term')),
@@ -26,7 +26,7 @@ final class Admin_UserSearch extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateSearch(Module_Admin $module)
+	public function templateSearch()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -54,7 +54,7 @@ final class Admin_UserSearch extends GWF_Method
 		return false;
 	}
 	
-	public function onSearch(Module_Admin $module)
+	public function onSearch()
 	{
 		$form = $this->getForm($this->_module);
 //		if (false !== ($error = $form->validate($this->_module))) {

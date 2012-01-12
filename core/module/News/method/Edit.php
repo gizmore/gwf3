@@ -366,7 +366,7 @@ final class News_Edit extends GWF_Method
 	 * @param Module_News $module
 	 * @return GWF_ForumBoard
 	 */
-	public function getNewsForumRoot(Module_News $module)
+	public function getNewsForumRoot()
 	{
 		$title = "News";
 		if (false !== ($board = GWF_ForumBoard::getByTitle($title))) {

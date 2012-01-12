@@ -28,7 +28,7 @@ final class Login_Form extends GWF_Method
 		return $this->form($this->_module);
 	}
 	
-	public function form(Module_Login $module)
+	public function form()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -46,7 +46,7 @@ final class Login_Form extends GWF_Method
 	 * @param Module_Login $module
 	 * @return GWF_Form
 	 */
-	public function getForm(Module_Login $module)
+	public function getForm()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username')),
@@ -60,7 +60,7 @@ final class Login_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function onLogin(Module_Login $module)
+	public function onLogin()
 	{
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);

@@ -14,8 +14,8 @@ final class Payment_Staff extends GWF_Method
 	}
 	
 	### Search Templates
-	public function templateAdvSearch(Module_Payment $module) { return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
-	public function templateQuickSearch(Module_Payment $module) { return GWF_FormGDO::getQuickSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
+	public function templateAdvSearch() { return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
+	public function templateQuickSearch() { return GWF_FormGDO::getQuickSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
 
 	private function getTable()
 	{
@@ -31,7 +31,7 @@ final class Payment_Staff extends GWF_Method
 		return GWF_Table::displayGDO2($this->_module, $orders, GWF_Session::getUser(), $sortURL, $conditions, 25, true);
 	}
 	
-	public function templateStaff(Module_Payment $module)
+	public function templateStaff()
 	{
 		$tVars = array(
 			'quicksearch' => $this->templateQuickSearch($this->_module)->templateX($this->_module->lang('ft_search')),

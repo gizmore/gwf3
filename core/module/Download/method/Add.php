@@ -5,8 +5,6 @@ final class Download_Add extends GWF_Method
 	
 	public function execute(GWF_Module $module)
 	{
-		$module instanceof Module_Download;
-
 		if (false === $this->_module->mayUpload(GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}

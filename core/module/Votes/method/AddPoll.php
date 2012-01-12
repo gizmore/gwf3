@@ -24,7 +24,7 @@ final class Votes_AddPoll extends GWF_Method
 		return $this->templateAddPoll($this->_module);
 	}
 	
-	public function getForm(Module_Votes $module)
+	public function getForm()
 	{
 		$data = array(
 			'opt' => array(GWF_Form::VALIDATOR),
@@ -60,7 +60,7 @@ final class Votes_AddPoll extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function templateAddPoll(Module_Votes $module)
+	public function templateAddPoll()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -91,13 +91,13 @@ final class Votes_AddPoll extends GWF_Method
 		return '';
 	}
 	
-	public function onRemOptions(Module_Votes $module)
+	public function onRemOptions()
 	{
 		GWF_Session::set(self::SESS_OPTIONS, array());
 		return '';
 	}
 	
-//	public function onCreate(Module_Votes $module)
+//	public function onCreate()
 //	{
 //		$form = $this->getForm($this->_module);
 //		if (false !== ($errors = $form->validate($this->_module))) {
