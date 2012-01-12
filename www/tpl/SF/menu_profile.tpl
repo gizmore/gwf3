@@ -6,13 +6,13 @@
 	<a href="{$root}news">News: {GWF_Notice::getUnreadNews($user)}</a>, 
 	<a href="{$root}forum">Forum: {GWF_Notice::getUnreadForum($user, true)}</a>, 
 	<a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user)}</a>
-	{*Answers: 3; Articles: 3, Changes: 0, *};
-	<p class="fr">
-		Last Login: <span class="color">{GWF_Time::displayTimestamp($user->getVar('user_lastlogin'))}</span>
-	</p>
+	<a href="{$root}chall">Challenges: {GWF_Notice::getUnreadChallenges($user)}</a>
+	<a href="{$root}pagebuilder/news">Articles: {GWF_Notice::getUnreadPageBuilder($user)}</a>
+	<a href="{$root}comments/news">Comments: {GWF_Notice::getUnreadComments($user)}</a>
+	<p class="fr">Last Login: <span class="color">{GWF_Time::displayTimestamp($user->getVar('user_lastlogin'))}</span></p>
 </p>
 {else}
-{$SF->getLoginForm()}
+{GWF_Module::loadModuleDB('Login', true, true)->getMethod('Form')->setTemplate('shortlogin.tpl')->execute()}
 {/if}
 
 <p class="fr" style="width: auto;">

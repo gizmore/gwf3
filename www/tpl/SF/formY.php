@@ -5,10 +5,9 @@
 <?php 
 foreach ($tVars['data'] as $key => $data)
 {
-	$tt = '';
-	if (!empty($data[3]))
+	if (NULL != ($tt = $data[3]))
 	{
-		$tt = GWF_Button::tooltip($data[3]);
+		$tt = GWF_Button::tooltip($tt);
 	}
 	#$data[4] === LEN??
 	$req = '';
@@ -56,10 +55,13 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::DATE_FUTURE:
 		case GWF_Form::SELECT:
 		case GWF_Form::SELECT_A:
-		case GWF_Form::SSTRING:
 			printf('<li class="form_"><label for="lf_'.$key.'">%s%s%s</label><span id="lf_'.$key.'">%s</span></li>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
 			break;
-			
+
+		case GWF_Form::SSTRING:
+			echo $data[2], $data1;
+			break;
+
 		case GWF_Form::DIVIDER:
 			echo '<hr class="form_hr">'.PHP_EOL;
 			break;

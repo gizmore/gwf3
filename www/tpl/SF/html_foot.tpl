@@ -2,14 +2,14 @@
 <!-- @end content -->
 				<hr/>
 				<p class="bottom">
-					<a class="backbutton" href="{$SF->getLastURL()}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({$SF->getLastURL()})</a>
+					<a class="backbutton" href="{GWF_Session::getLastURL()|escape}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({GWF_Session::getLastURL()|escape})</a>
 				</p>
 			</div>
 <!-- @end middle -->
 <!-- @start right -->
 {if $SF->isDisplayed('naviright')}
 			<div id="right" class="navigation">
-{include file="tpl/{$design}/navi.tpl" assign='navi_right' side='naviright' navigation="{$SF->displayNavi('right')}"}
+{include file="tpl/{$design}/navi.tpl" assign='navi_right' side='naviright' navigation="{SF_Navigation::display_navigation(SF_Navigation::SIDE_LEFT)}"}
 {$navi_right|indent:4:"\t"}
 			</div>
 {else}

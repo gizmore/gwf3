@@ -9,15 +9,16 @@
 <!-- @end profile -->
 <!-- @start logo -->
 		<div id="logo">
-			<span style="background-color: {$SF->getLayoutcolor('design_light')};">
-			 - the perfection of WebApplication -
-			</span>
+{include file="tpl/{$design}/logo.tpl" assign='logo'}
+{$logo|indent:3}
 		</div>
 <!-- @end logo -->
 <!-- @start headnavi -->
 		<div id="headnavi">
 {include file="tpl/{$design}/menu_top.tpl" assign='menu_top'}
 {$menu_top|indent:3:"\t"}
+{*GWF_Navigation::getPageMenu()|indent:3:"\t"*}
+{*GWF_Module::loadModuleDB('Navigation')->execute()->getPageMenu()|indent:3:"\t"*}
 		</div>
 <!-- @end headnavi -->
 <!-- @start body -->
@@ -25,7 +26,7 @@
 <!--@start left -->
 {if true === $SF->isDisplayed('navileft')}
 			<div id="left" class="navigation">
-{include file="tpl/{$design}/navi.tpl" assign='navi_left' side='navileft' navigation="{$SF->displayNavi('left')}"}
+{include file="tpl/{$design}/navi.tpl" assign='navi_left' side='navileft' navigation="{SF_Navigation::display_navigation(SF_Navigation::SIDE_LEFT)}"}
 {$navi_left|indent:4:"\t"}
 			</div>
 {else}
@@ -42,7 +43,9 @@
 					<span class="fr">
 						<a href="{$SF->getIndex('shell')}shell=hidden"><img style="margin: 10px 0; height: 10px;" src="{$root}img/{$iconset}/sub.png" alt="[-]" title="Hide Shell"></a>
 					</span><br>
+{include file="tpl/{$design}/greeting.tpl" assign='greeting'}
 {include file="tpl/SF/module/SF/shortshell.tpl" assign='shortshell'}
+{$greeting|indent:5:"\t"}
 {$shortshell|indent:5:"\t"}
 				</div>
 <!-- @end shell -->
