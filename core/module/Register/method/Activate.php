@@ -26,12 +26,12 @@ final class Register_Activate extends GWF_Method
 		$ua = GDO::table('GWF_UserActivation');
 		if (false === ($row = $ua->getBy('token', $token)))
 		{
-			return $this->_module->error('err_activate');
+			return $module->error('err_activate');
 		}
 
-		if ($this->_module->hasIPActivatedRecently())
+		if ($module->hasIPActivatedRecently())
 		{
-			return $this->_module->error('err_ip_timeout');
+			return $module->error('err_ip_timeout');
 		}
 		
 		$options = $byEmail === true ? GWF_User::MAIL_APPROVED : 0;
@@ -70,7 +70,7 @@ final class Register_Activate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return self::onActivated($this->_module, $user);
+		return self::onActivated($module, $user);
 	}
 	
 	private static function onActivated(Module_Register $module, GWF_User $user)
@@ -80,7 +80,7 @@ final class Register_Activate extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		if ($this->_module->wantAutoLogin())
+		if ($module->wantAutoLogin())
 		{
 			if (false === GWF_Session::onLogin($user))
 			{
@@ -90,7 +90,7 @@ final class Register_Activate extends GWF_Method
 		}
 		else
 		{
-			return $this->_module->message('msg_activated');
+			return $module->message('msg_activated');
 		}
 	}
 }

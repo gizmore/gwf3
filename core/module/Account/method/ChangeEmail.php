@@ -19,13 +19,13 @@ final class Account_ChangeEmail extends GWF_Method
 	
 	public static function changeEmail(Module_Account $module, GWF_User $user, $newMail)
 	{
-		if ($this->_module->cfgUseEmail() && $user->hasValidMail())
+		if ($module->cfgUseEmail() && $user->hasValidMail())
 		{
-			return self::sendEmail($this->_module, $user, $newMail);
+			return self::sendEmail($module, $user, $newMail);
 		}
 		else
 		{
-			return self::sendEmailB($this->_module, $user->getID(), $newMail);
+			return self::sendEmailB($module, $user->getID(), $newMail);
 		}
 	}
 	
@@ -33,14 +33,14 @@ final class Account_ChangeEmail extends GWF_Method
 	{
 		$mail = new GWF_Mail();
 		$mail->setReceiver($user->getVar('user_email'));
-		$mail->setSender($this->_module->cfgMailSender());
-		$mail->setSubject($this->_module->lang('chmaila_subj'));
+		$mail->setSender($module->cfgMailSender());
+		$mail->setSubject($module->lang('chmaila_subj'));
 		$newmail = trim(Common::getPost('email'));
-		$link = self::createLink($this->_module, $user, $newMail);
-		$mail->setBody($this->_module->lang('chmaila_body', array( $user->display('user_name'), $link)));
+		$link = self::createLink($module, $user, $newMail);
+		$mail->setBody($module->lang('chmaila_body', array( $user->display('user_name'), $link)));
 		
 		if ($mail->sendToUser($user)) {
-			return $this->_module->message('msg_mail_sent');
+			return $module->message('msg_mail_sent');
 		} else {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
@@ -119,23 +119,23 @@ final class Account_ChangeEmail extends GWF_Method
 		$token = GWF_AccountChange::createToken($userid, 'email2', $email);
 		
 		$mail = new GWF_Mail();
-		$mail->setSender($this->_module->cfgMailSender());
+		$mail->setSender($module->cfgMailSender());
 		$mail->setReceiver($email);
-		$mail->setSubject($this->_module->lang('chmailb_subj'));
+		$mail->setSubject($module->lang('chmailb_subj'));
 		
 		if (false === ($user = GWF_User::getByID($userid))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
 		$link = self::getLinkB($token, $userid);
-		$body = $this->_module->lang('chmailb_body', array( $user->display('user_name'), $link));
+		$body = $module->lang('chmailb_body', array( $user->display('user_name'), $link));
 		$mail->setBody($body);
 
 		if (!$mail->sendToUser($user)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
 		
-		return $this->_module->message('msg_mail_sent', array(htmlspecialchars($email)));
+		return $module->message('msg_mail_sent', array(htmlspecialchars($email)));
 	}
 	
 	private static function getLinkB($token, $userid)

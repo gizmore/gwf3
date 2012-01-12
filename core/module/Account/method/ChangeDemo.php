@@ -10,19 +10,19 @@ final class Account_ChangeDemo extends GWF_Method
 	
 	public static function requestChange(Module_Account $module, GWF_User $user, array $data)
 	{
-		if (true !== ($error = self::mayChange($this->_module, $user))) {
+		if (true !== ($error = self::mayChange($module, $user))) {
 			$_POST = array();
 			return $error;
 		}
 		
-		if ($this->_module->cfgUseEmail() && $user->hasValidMail())
+		if ($module->cfgUseEmail() && $user->hasValidMail())
 		{
-			return self::sendMail($this->_module, $user, $data);
+			return self::sendMail($module, $user, $data);
 		}
 		else
 		{
 			unset($_POST['change']);
-			return self::change($this->_module, $user, $data);
+			return self::change($module, $user, $data);
 		}
 	}
 	
@@ -32,11 +32,11 @@ final class Account_ChangeDemo extends GWF_Method
 		{
 			$last = $row->getVar('timestamp');
 			$elapsed = time() - $last;
-			$min_wait = $this->_module->cfgChangeTime();
+			$min_wait = $module->cfgChangeTime();
 			if ($elapsed < $min_wait)
 			{
 				$wait = $min_wait - $elapsed;
-				return $this->_module->error('err_demo_wait', array(GWF_Time::humanDuration($wait)));
+				return $module->error('err_demo_wait', array(GWF_Time::humanDuration($wait)));
 			}
 		}
 		return true;
@@ -50,7 +50,7 @@ final class Account_ChangeDemo extends GWF_Method
 		
 		GWF_AccountChange::createToken($user->getID(), 'demo_lock');
 		
-		return $this->_module->message('msg_demo_changed');
+		return $module->message('msg_demo_changed');
 	}
 	
 	private static function sendMail(Module_Account $module, GWF_User $user, array $data)
@@ -58,12 +58,12 @@ final class Account_ChangeDemo extends GWF_Method
 		$token = GWF_AccountChange::createToken($user->getID(), 'demo', serialize($data));
 		
 		$mail = new GWF_Mail();
-		$mail->setSender($this->_module->cfgMailSender());
+		$mail->setSender($module->cfgMailSender());
 		$mail->setReceiver($user->getVar('user_email'));
-		$mail->setSubject($this->_module->lang('chdemo_subj'));
+		$mail->setSubject($module->lang('chdemo_subj'));
 		
 		$username = $user->display('user_name');
-		$timeout = GWF_Time::humanDuration($this->_module->cfgChangeTime());
+		$timeout = GWF_Time::humanDuration($module->cfgChangeTime());
 		
 		$gender = GWF_HTML::display($user->getVar('user_gender'));
 		$country = GWF_Country::getByIDOrUnknown($data['user_countryid'])->display('country_name');
@@ -73,9 +73,9 @@ final class Account_ChangeDemo extends GWF_Method
 		
 		$birthdate = $data['user_birthdate'] > 0 ? GWF_Time::displayDate($data['user_birthdate'], true, 1) : GWF_HTML::lang('unknown');
 		$link = self::getChangeLink($user->getID(), $token);
-		$mail->setBody($this->_module->lang('chdemo_body', array( $username, $timeout, $gender, $country, $lang1, $lang2, $birthdate, $link)));
+		$mail->setBody($module->lang('chdemo_body', array( $username, $timeout, $gender, $country, $lang1, $lang2, $birthdate, $link)));
 		
-		return $mail->sendToUser($user) ? $this->_module->message('msg_mail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
+		return $mail->sendToUser($user) ? $module->message('msg_mail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
 	}
 	
 	private static function getChangeLink($userid, $token)
