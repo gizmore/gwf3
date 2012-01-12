@@ -356,7 +356,7 @@ class GWF_Module extends GDO
 		{
 			return false;
 		}
-		return new $classname();
+		return new $classname($this);
 	}
 	
 	public function requestMethodB($methodname, $get=NULL, $post=NULL)

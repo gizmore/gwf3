@@ -2,14 +2,17 @@
 /**
  * A method called via index.php?mo=Module&me=Method.
  * The methods classname name has to be Module_Method.
- * The methods path has to be core/module/Module/method/Method.
+ * The methods path has to be core/module/$Module/method/$Method.
  * The method has to support a method named "execute".
  * @author gizmore
  * @see GWF_Module
  */
 abstract class GWF_Method
 {
-	protected $_tpl = '';
+	protected $_tpl = NULL;
+	protected $_module = NULL;
+
+	public function __construct(GWF_Module $module) { $this->_module = $module; return $this; }
 	public abstract function execute(GWF_Module $module);
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
@@ -38,7 +41,8 @@ abstract class GWF_Method
 		{
 			return true;
 		}
-		if (is_string($groups)) { $groups = array($groups); }
+//		if (is_string($groups)) { $groups = array($groups); }
+		$groups = (array)$groups;
 		foreach ($groups as $groupname)
 		{
 			if ($user->isInGroupName($groupname))
@@ -48,10 +52,11 @@ abstract class GWF_Method
 		}
 		return false;
 	}
-	
-	#############
-	### HREFs ###
-	#############
+
+	/**
+	 * Get the method Link
+	 * @param string $app 
+	 */
 	public function getMethodHREF($app='')
 	{
 		list($mo, $me) = $this->getMoMe();
@@ -69,9 +74,6 @@ abstract class GWF_Method
 		return array(Common::substrUntil($class, '_'), Common::substrFrom($class, '_'));
 	}
 	
-	################
-	### HTAccess ###
-	################
 	/**
 	 * Generate htaccess rule for this method. Simply ^module/method$. 
 	 */
@@ -81,15 +83,12 @@ abstract class GWF_Method
 		return sprintf('RewriteRule ^%s/%s/?$ index.php?mo=%s&me=%s', strtolower($mo), strtolower($me), $mo, $me).PHP_EOL;
 	}
 
-	################
-	### PageMenu ###
-	################
 	/**
 	 * @author spaceone
 	 * Generate link(s) in PageMenu for this method.
 	 * @return false|array = GWF_Page ColumnDefines array
 	 */
-	public function getPageMenuLinks($module)
+	public function getPageMenuLinks()
 	{
 //		return array(
 //			array(
