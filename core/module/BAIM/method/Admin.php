@@ -8,10 +8,10 @@ final class BAIM_Admin extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('newdemo')) {
-			return $this->onNewDemo().$this->templateAdmin($this->_module);
+			return $this->onNewDemo().$this->templateAdmin();
 		}
 		if (false !== Common::getPost('flushdemo')) {
-			return $this->onFlushDemo().$this->templateAdmin($this->_module);
+			return $this->onFlushDemo().$this->templateAdmin();
 		}
 		return $this->templateAdmin();
 	}

@@ -19,19 +19,19 @@ final class Account_Form extends GWF_Method
 			die(GWF_Website::redirect($this->_module->getMethodURL('Delete')));
 		}
 		if (false !== (Common::getPost('drop_avatar'))) {
-			return $this->onDeleteAvatar().$this->templateForm($this->_module);
+			return $this->onDeleteAvatar().$this->templateForm();
 		}
 		if (false !== (Common::getPost('change'))) {
-			return $this->onChange().$this->templateForm($this->_module);
+			return $this->onChange().$this->templateForm();
 		}
 		if (false !== Common::getPost('approvemail')) {
-			return $this->onApproveMail().$this->templateForm($this->_module);
+			return $this->onApproveMail().$this->templateForm();
 		}
 		if (false !== Common::getPost('setup_gpg')) {
-			return $this->onSetupGPG().$this->templateForm($this->_module);
+			return $this->onSetupGPG().$this->templateForm();
 		}
 		if (false !== Common::getPost('remove_gpg')) {
-			return $this->onRemoveGPG().$this->templateForm($this->_module);
+			return $this->onRemoveGPG().$this->templateForm();
 		}
 		return $this->templateForm();
 	}

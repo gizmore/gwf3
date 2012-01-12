@@ -23,10 +23,10 @@ final class Admin_GroupEdit extends GWF_Method
 			return $this->_module->templateNav().$this->onRemFromGroup($this->_module, $uid).$this->templateEdit();
 		}
 		if (false !== (Common::getPost('edit'))) {
-			return $this->_module->templateNav().$this->onEditGroup().$this->templateEdit($this->_module);
+			return $this->_module->templateNav().$this->onEditGroup().$this->templateEdit();
 		}
 		if (false !== (Common::getPost('add_to_group'))) {
-			return $this->_module->templateNav().$this->onAddToGroup().$this->templateEdit($this->_module);
+			return $this->_module->templateNav().$this->onAddToGroup().$this->templateEdit();
 		}
 		
 		return $this->_module->templateNav().$this->templateEdit();

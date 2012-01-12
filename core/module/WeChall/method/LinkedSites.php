@@ -40,7 +40,7 @@ final class WeChall_LinkedSites extends GWF_Method
 
 		# Link and UnLink
 		if (false !== (Common::getPost('link'))) {
-			return $this->onLinkSite().$this->templateSites($this->_module);
+			return $this->onLinkSite().$this->templateSites();
 		}
 		if (false !== ($array = Common::getPost('unlink'))) {
 			return $this->onUnLinkSite($this->_module, $array).$this->templateSites();
@@ -51,7 +51,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->onUpdate($this->_module, $array).$this->templateSites();
 		}
 		if (false !== (Common::getPost('update_all'))) {
-			return $this->onUpdateAll().$this->templateSites($this->_module);
+			return $this->onUpdateAll().$this->templateSites();
 		}
 		if (false !== ($siteid = Common::getGet('quick_update'))) {
 			return $this->onQuickUpdate($this->_module, $siteid);

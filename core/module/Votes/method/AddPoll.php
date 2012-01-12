@@ -12,10 +12,10 @@ final class Votes_AddPoll extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('add_opt')) {
-			return $this->onAddOption().$this->templateAddPoll($this->_module);
+			return $this->onAddOption().$this->templateAddPoll();
 		}
 		if (false !== Common::getPost('rem_opts')) {
-			return $this->onRemOptions().$this->templateAddPoll($this->_module);
+			return $this->onRemOptions().$this->templateAddPoll();
 		}
 		if (false !== Common::getPost('create')) {
 			return $this->onAddPoll();

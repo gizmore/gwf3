@@ -7,7 +7,7 @@ final class Slaytags_Admin extends GWF_Method
 	{
 		if (isset($_POST['recalc']))
 		{
-			$this->onRecalcTags().$this->templateAdmin($this->_module);
+			$this->onRecalcTags().$this->templateAdmin();
 		}
 		
 		return $this->templateAdmin();

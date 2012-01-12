@@ -28,7 +28,7 @@ final class Forum_EditThread extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Forum/GWF_ForumBoardSelect.php';
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit().$this->templateEditThread($this->_module);
+			return $this->onEdit().$this->templateEditThread();
 		}
 		
 		if (false !== Common::getPost('delete')) {

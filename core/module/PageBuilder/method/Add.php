@@ -10,7 +10,7 @@ final class PageBuilder_Add extends GWF_Method
 		}
 		
 		if (isset($_POST['upload'])) {
-			return $this->onUpload().$this->templateAdd($this->_module);
+			return $this->onUpload().$this->templateAdd();
 		}
 		
 		return $this->templateAdd();

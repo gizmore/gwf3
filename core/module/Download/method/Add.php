@@ -13,10 +13,10 @@ final class Download_Add extends GWF_Method
 			return $this->onAdd();
 		}
 		if (false !== (Common::getPost('upload'))) {
-			return $this->onUpload().$this->templateAdd($this->_module);
+			return $this->onUpload().$this->templateAdd();
 		}
 		if (false !== (Common::getPost('remove'))) {
-			return $this->onRemove().$this->templateAdd($this->_module);
+			return $this->onRemove().$this->templateAdd();
 		}
 		
 		return $this->templateAdd();

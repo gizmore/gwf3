@@ -13,16 +13,16 @@ final class WeChall_SiteDescr extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
 		if (false !== Common::getPost('add'))  {
-			return $this->onAdd().$this->templateDescr($this->_module);
+			return $this->onAdd().$this->templateDescr();
 		}
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit().$this->templateDescr($this->_module);
+			return $this->onEdit().$this->templateDescr();
 		}
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete().$this->templateDescr($this->_module);
+			return $this->onDelete().$this->templateDescr();
 		}
 		if (false !== Common::getPost('default')) {
-			return $this->onDefault().$this->templateDescr($this->_module);
+			return $this->onDefault().$this->templateDescr();
 		}
 		
 		return $this->templateDescr();

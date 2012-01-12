@@ -24,7 +24,7 @@ final class Forum_EditBoard extends GWF_Method
 			return $this->onDeleteBoard();
 		}
 		if (false !== (Common::getPost('edit_board'))) {
-			return $this->onEditBoard().$this->templateEditBoard($this->_module);
+			return $this->onEditBoard().$this->templateEditBoard();
 		}
 		
 		return $this->templateEditBoard();

@@ -20,18 +20,18 @@ final class PM_Options extends GWF_Method
 		}
 		
 		if ('all' === Common::getGet('auto_folder')) {
-			return $this->onAutoFolder().$this->templateOptions($this->_module);
+			return $this->onAutoFolder().$this->templateOptions();
 		}
 		
 		if (false !== (Common::getPost('ignore'))) {
-			return $this->onIgnore().$this->templateOptions($this->_module);
+			return $this->onIgnore().$this->templateOptions();
 		}
 		if (false !== ($username = Common::getGet('unignore'))) {
 			return $this->onUnIgnore($this->_module, $username).$this->templateOptions();
 		}
 		
 		if (false !== Common::getPost('change')) {
-			return $this->onChange().$this->templateOptions($this->_module);
+			return $this->onChange().$this->templateOptions();
 		}
 		
 		return $this->templateOptions();

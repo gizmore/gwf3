@@ -12,10 +12,10 @@ final class Language_Bundle extends GWF_Method
 	{
 		error_reporting(0);
 		if (false !== Common::getPost('bundle')) {
-			return $this->onBundle().$this->templateBundle($this->_module);
+			return $this->onBundle().$this->templateBundle();
 		}
 		elseif (false !== Common::getPost('missing')) {
-			return $this->onCreateMissing().$this->templateBundle($this->_module);
+			return $this->onCreateMissing().$this->templateBundle();
 		}
 		
 		return $this->templateBundle();

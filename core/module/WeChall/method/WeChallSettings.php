@@ -25,11 +25,11 @@ final class WeChall_WeChallSettings extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_FavCats.php';
 		
 		if (false !== (Common::getPost('add_fav'))) {
-			return $this->onMarkFavorite().$this->templateFavSites($this->_module);
+			return $this->onMarkFavorite().$this->templateFavSites();
 		}
 		
 		if (false !== Common::getPost('add_favcat')) {
-			return $this->onAddFavCat().$this->templateFavSites($this->_module);
+			return $this->onAddFavCat().$this->templateFavSites();
 		}
 		
 		if (false !== ($sid = Common::getPost('quickjump'))) {

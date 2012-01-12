@@ -29,7 +29,7 @@ final class Forum_AddPoll extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('assign')) {
-			return $this->onAssign().$this->template($this->_module);
+			return $this->onAssign().$this->template();
 		}
 		
 		return $this->template();

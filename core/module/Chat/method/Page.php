@@ -21,7 +21,7 @@ final class Chat_Page extends GWF_Method
 		
 		if (false !== (Common::getPost('post')))
 		{
-			return $this->onPost().$this->templatePage($this->_module);
+			return $this->onPost().$this->templatePage();
 		}
 		
 		return $this->templatePage();

@@ -29,14 +29,14 @@ final class PM_Overview extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('newfolder'))) {
-			return $this->onCreateFolder().$this->templateOverview($this->_module);
+			return $this->onCreateFolder().$this->templateOverview();
 		}
 		
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete().$this->templateOverview($this->_module);
+			return $this->onDelete().$this->templateOverview();
 		}
 		if (false !== (Common::getPost('move'))) {
-			return $this->onMove().$this->templateOverview($this->_module);
+			return $this->onMove().$this->templateOverview();
 		}
 		
 		return $this->templateOverview();

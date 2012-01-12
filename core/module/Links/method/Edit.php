@@ -19,7 +19,7 @@ final class Links_Edit extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit().$this->templateEdit($this->_module);
+			return $this->onEdit().$this->templateEdit();
 		}
 		
 		if (false !== Common::getPost('delete')) {

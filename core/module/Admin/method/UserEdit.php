@@ -18,7 +18,7 @@ final class Admin_UserEdit extends GWF_Method
 		$nav = $this->_module->templateNav();
 		
 		if (false !== Common::getPost('edit')) {
-			return $nav.$this->onEdit().$this->templateUserEdit($this->_module);
+			return $nav.$this->onEdit().$this->templateUserEdit();
 		}
 		
 		return $nav.$this->templateUserEdit();

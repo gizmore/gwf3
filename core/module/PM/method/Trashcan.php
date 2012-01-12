@@ -11,7 +11,7 @@ final class PM_Trashcan extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('empty')) {
-			return $this->onEmpty().$this->trashcan($this->_module);
+			return $this->onEmpty().$this->trashcan();
 		}
 		
 		if (false !== (Common::getPost('restore'))) {

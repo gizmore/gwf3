@@ -5,7 +5,7 @@ final class Admin_BaseCFG extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('gpg_create')) {
-			return $this->onGPGSig().$this->templateBase($this->_module);
+			return $this->onGPGSig().$this->templateBase();
 		}
 		return $this->templateBase();
 	}

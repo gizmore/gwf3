@@ -67,7 +67,7 @@ final class Links_Search extends GWF_Method
 	
 	public function onSearch(Module_Links $module, $adv)
 	{
-		$form = $adv ? $this->getFormAdv() : $this->getFormQuick($this->_module);
+		$form = $adv ? $this->getFormAdv() : $this->getFormQuick();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error.$this->templateSearch($this->_module, array(), $adv ? '' : $_REQUEST['term']);
 		}

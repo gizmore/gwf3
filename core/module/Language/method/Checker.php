@@ -52,7 +52,7 @@ final class Language_Checker extends GWF_Method
 		
 		$this->show_warns = isset($_POST['warns']);
 		
-		return $this->onCheckB().$this->templateChecker($this->_module);
+		return $this->onCheckB().$this->templateChecker();
 	}
 	
 	private function onCheckB()

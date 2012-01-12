@@ -6,7 +6,7 @@ final class Ban_Admin extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('addban'))) {
-			return $this->onAddBan().$this->templateAdmin($this->_module);
+			return $this->onAddBan().$this->templateAdmin();
 		}
 		return $this->templateAdmin();
 	}

@@ -51,7 +51,7 @@ final class News_Edit extends GWF_Method
 		$this->lang = $lang;
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit().$this->templateEdit($this->_module);
+			return $this->onEdit().$this->templateEdit();
 		}
 		if (false !== (Common::getPost('translate'))) {
 			return $this->onTranslate();

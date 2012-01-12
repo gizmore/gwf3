@@ -13,7 +13,7 @@ final class WeChall_Freeze extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		if (false !== Common::getPost('freeze')) {
-			return $this->onFreeze().$this->templateFreeze($this->_module);
+			return $this->onFreeze().$this->templateFreeze();
 		}
 		
 		if (false !== ($data = Common::getPost('unfreeze'))) {

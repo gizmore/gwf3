@@ -40,7 +40,7 @@ final class Forum_Reply extends GWF_Method
 			return $this->onReply();
 		}
 		
-		return $this->templateLastPosts().$this->templateReply($this->_module);
+		return $this->templateLastPosts().$this->templateReply();
 	}
 	
 	################

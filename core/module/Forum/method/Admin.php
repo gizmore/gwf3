@@ -20,10 +20,10 @@ final class Forum_Admin extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getGet('fixcounters')) {
-			return $this->onFixCounters().$this->templateAdmin($this->_module);
+			return $this->onFixCounters().$this->templateAdmin();
 		}
 		if (false !== Common::getGet('cleanup')) {
-			return $this->onCleanup().$this->templateAdmin($this->_module);
+			return $this->onCleanup().$this->templateAdmin();
 		}
 		return $this->templateAdmin();
 	}

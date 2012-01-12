@@ -57,7 +57,7 @@ final class Forum_Forum extends GWF_Method
 		GWF_Website::setMetaTags($this->_module->lang('mt_board'));
 		
 		if (false !== (Common::getGet('mark_all_read'))) {
-			return $this->markAllRead().$this->templateForum($this->_module);
+			return $this->markAllRead().$this->templateForum();
 		}
 		
 		return $this->templateForum();

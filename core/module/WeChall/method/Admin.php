@@ -33,7 +33,7 @@ final class WeChall_Admin extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('hardlink')) {
-			return $this->onHardlink().$this->templateAdmin($this->_module);
+			return $this->onHardlink().$this->templateAdmin();
 		}
 		
 		return $this->templateAdmin();

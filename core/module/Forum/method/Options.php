@@ -15,7 +15,7 @@ final class Forum_Options extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('change')) {
-			return $this->onChange().$this->templateOptions($this->_module);
+			return $this->onChange().$this->templateOptions();
 		}
 		return $this->templateOptions();
 	}
