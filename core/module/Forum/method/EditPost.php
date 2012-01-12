@@ -45,7 +45,7 @@ final class Forum_EditPost extends GWF_Method
 	################
 	### Sanitize ###
 	################
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		if (false === ($this->post = $this->_module->getCurrentPost())) {
 			return $this->_module->error('err_post');

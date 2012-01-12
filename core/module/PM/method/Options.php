@@ -79,7 +79,7 @@ final class PM_Options extends GWF_Method
 		return $this->_module->templatePHP('options.php', $tVars);
 	}
 	
-	private function onChange(Module_PM $module)
+	private function onChange()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -114,7 +114,7 @@ final class PM_Options extends GWF_Method
 	public function validate_pmo_auto_folder(Module_PM $module, $arg) { return $this->_module->validate_pmo_auto_folder($arg); }
 	public function validate_pmo_signature(Module_PM $module, $arg) { return $this->_module->validate_pmo_signature($arg); }
 	
-	private function onIgnore(Module_PM $module)
+	private function onIgnore()
 	{
 		if (false === ($method = $this->_module->getMethod('Ignore'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
@@ -147,7 +147,7 @@ final class PM_Options extends GWF_Method
 	 * @param Module_PM $module
 	 * @return string
 	 */
-	private function onAutoFolder(Module_PM $module)
+	private function onAutoFolder()
 	{
 		$user = GWF_Session::getUser();
 		$userid = GWF_Session::getUserID();

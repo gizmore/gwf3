@@ -14,7 +14,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		return $this->templateCT($this->_module);
 	}
 	
-	private function templateCT(Module_Helpdesk $module)
+	private function templateCT()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -23,7 +23,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		return $this->_module->template('new_ticket.tpl', $tVars);
 	}
 	
-	private function getForm(Module_Helpdesk $module)
+	private function getForm()
 	{
 		$data = array(
 			'title' => array(GWF_Form::SELECT, GWF_HelpdeskTitle::select('title', Common::getPostString('title')), $this->_module->lang('th_title')),
@@ -40,7 +40,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
     public function validate_other($m, $arg) { return false; }
     public function validate_message($m, $arg) { return $m->validate_message($arg); }
 	
-	private function onCreate(Module_Helpdesk $module)
+	private function onCreate()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

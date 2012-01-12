@@ -7,7 +7,7 @@ final class Slaytags_Main extends GWF_Method
 		return $this->templateMain($this->_module);
 	}
 	
-	private function templateMain(Module_Slaytags $module)
+	private function templateMain()
 	{
 		$left = Slay_PNow::getTimeLeft();
 		

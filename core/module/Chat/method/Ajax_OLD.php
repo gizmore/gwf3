@@ -25,7 +25,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		}
 	}
 	
-	private function onNewPrivmsg(Module_Chat $module)
+	private function onNewPrivmsg()
 	{
 		if (false === ($nick = $this->_module->getNickname())) {
 			return;
@@ -95,7 +95,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		GWF_Session::set(self::$SESS_AJAX_PUB, time());
 	}
 	
-	private function onGetOnline(Module_Chat $module)
+	private function onGetOnline()
 	{
 		GWF_Javascript::streamHeader();
 
@@ -134,7 +134,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		}
 	}
 	
-	private function startStream(Module_Chat $module)
+	private function startStream()
 	{
 		#GWF_ChatOnline::setSessOnline();
 		

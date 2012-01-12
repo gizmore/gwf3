@@ -10,7 +10,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		return $this->templatePurge($this->_module);
 	}
 	
-	private function formPurge(Module_VersionServer $module)
+	private function formPurge()
 	{
 		$data = array(
 			'purge' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_purge')),
@@ -18,7 +18,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templatePurge(Module_VersionServer $module)
+	private function templatePurge()
 	{
 		$form = $this->formPurge($this->_module);
 		$tVars = array(
@@ -27,7 +27,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		return $this->_module->template('purge.tpl', $tVars);
 	}
 
-	private function onPurge(Module_VersionServer $module)
+	private function onPurge()
 	{
 		$form = $this->formPurge($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

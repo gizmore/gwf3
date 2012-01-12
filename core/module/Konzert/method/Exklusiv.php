@@ -15,7 +15,7 @@ final class Konzert_Exklusiv extends GWF_Method
 		return $this->templateExklusiv($this->_module);
 	}
 	
-	private function templateExklusiv(Module_Konzert $module)
+	private function templateExklusiv()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/exklusiv'));
 		

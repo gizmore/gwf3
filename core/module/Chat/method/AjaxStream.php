@@ -12,7 +12,7 @@ final class Chat_AjaxStream extends GWF_Method
 		return $this->stream($this->_module);
 	}
 	
-	private function stream(Module_Chat $module)
+	private function stream()
 	{
 		set_time_limit(0);
 		$t = time();

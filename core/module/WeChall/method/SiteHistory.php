@@ -45,7 +45,7 @@ final class WeChall_SiteHistory extends GWF_Method
 		return $this->_module->templatePHP('site_history.php', $tVars);
 	}
 	
-	private function onQuickjump(Module_WeChall $module)
+	private function onQuickjump()
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {

@@ -28,7 +28,7 @@ final class Links_Staff extends GWF_Method
 		return $this->overview($this->_module);
 	}
 	
-	private function sanitize(Module_Links $module)
+	private function sanitize()
 	{
 		$links = GDO::table('GWF_Links');
 		$this->user = GWF_Session::getUser();
@@ -47,7 +47,7 @@ final class Links_Staff extends GWF_Method
 		return false;
 	}
 	
-	private function overview(Module_Links $module)
+	private function overview()
 	{
 		$tVars = array(
 			'links' => $this->_module->templateLinks($this->links, $this->sort_url, $this->by, $this->dir, false, true, true),

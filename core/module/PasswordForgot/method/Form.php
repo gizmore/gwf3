@@ -26,7 +26,7 @@ final class PasswordForgot_Form extends GWF_Method
 		return $this->form($this->_module);
 	}
 	
-	private function getForm(Module_PasswordForgot $module)
+	private function getForm()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username')),
@@ -39,7 +39,7 @@ final class PasswordForgot_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function form(Module_PasswordForgot $module)
+	private function form()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -51,7 +51,7 @@ final class PasswordForgot_Form extends GWF_Method
 	public function validate_email(Module_PasswordForgot $module, $email) { return false; }
 	public function validate_username(Module_PasswordForgot $module, $username) { return false; }
 	
-	private function onRequest(Module_PasswordForgot $module)
+	private function onRequest()
 	{
 		$form = $this->getForm($this->_module);
 		

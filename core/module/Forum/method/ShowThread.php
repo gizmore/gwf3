@@ -67,7 +67,7 @@ final class Forum_ShowThread extends GWF_Method
 	#########################
 	### Sanitize Get Vars ###
 	#########################
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		if (false === ($this->thread = GWF_ForumThread::getByID(Common::getGetString('tid')))) {
 			return $this->_module->error('err_thread');
@@ -93,7 +93,7 @@ final class Forum_ShowThread extends GWF_Method
 	###################
 	### Show a page ###
 	###################
-	private function templateThread(Module_Forum $module)
+	private function templateThread()
 	{
 		$this->thread->increase('thread_viewcount', 1);
 		
@@ -122,7 +122,7 @@ final class Forum_ShowThread extends GWF_Method
 		return $this->_module->templatePHP('show_thread.php', $tVars);
 	}
 	
-	private function getPageMenu(Module_Forum $module)
+	private function getPageMenu()
 	{
 		$href = GWF_WEB_ROOT.sprintf('forum-t%s/%s-p%%PAGE%%.html', $this->thread->getID(), $this->thread->urlencodeSEO('thread_title'));
 		return GWF_PageMenu::display($this->page, $this->nPages, $href);

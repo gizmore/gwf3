@@ -12,7 +12,7 @@ final class Konzert_Impressum extends GWF_Method
 		return $this->templateImpressum($this->_module);
 	}
 	
-	private function templateImpressum(Module_Konzert $module)
+	private function templateImpressum()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/impressum'));
 		

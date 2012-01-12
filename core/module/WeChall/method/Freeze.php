@@ -23,7 +23,7 @@ final class WeChall_Freeze extends GWF_Method
 		return $this->templateFreeze($this->_module);
 	}
 	
-	private function formFreeze(Module_WeChall $module)
+	private function formFreeze()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -51,7 +51,7 @@ final class WeChall_Freeze extends GWF_Method
 		return false;
 	}
 	
-	private function getSiteSelect(Module_WeChall $module)
+	private function getSiteSelect()
 	{
 		$selected = intval(Common::getPost('siteid', 0));
 		$data = array();
@@ -65,7 +65,7 @@ final class WeChall_Freeze extends GWF_Method
 		return GWF_Select::display('siteid', $data, $selected);
 	}
 	
-	private function templateFreeze(Module_WeChall $module)
+	private function templateFreeze()
 	{
 		$freezes = GDO::table('WC_Freeze');
 		$ipp = $this->_module->cfgItemsPerPage();
@@ -98,7 +98,7 @@ final class WeChall_Freeze extends GWF_Method
 		return $this->_module->templatePHP('freeze.php', $tVars);
 	}
 	
-	private function onFreeze(Module_WeChall $module)
+	private function onFreeze()
 	{
 		$form = $this->formFreeze($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

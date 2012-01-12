@@ -112,7 +112,7 @@ final class WeChall_Challs extends GWF_Method
 	}
 	
 	
-	private function getTags(Module_WeChall $module)
+	private function getTags()
 	{
 		$tags = explode(':', $this->_module->cfgChallTags());
 		$back = array();

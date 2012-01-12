@@ -28,7 +28,7 @@ final class Forum_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_Forum $module)
+	private function templateAdmin()
 	{
 		$posts = GDO::table('GWF_ForumPost');
 		$ipp = $this->_module->getPostsPerThread();
@@ -55,7 +55,7 @@ final class Forum_Admin extends GWF_Method
 		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
-	private function onCleanup(Module_Forum $module)
+	private function onCleanup()
 	{
 		$threads = GDO::table('GWF_ForumThread');
 		$mod = GWF_ForumThread::IN_MODERATION;
@@ -74,7 +74,7 @@ final class Forum_Admin extends GWF_Method
 		return $this->_module->message('msg_cleanup', array($dt, $dp));
 	}
 
-	private function onFixCounters(Module_Forum $module)
+	private function onFixCounters()
 	{
 		
 	}

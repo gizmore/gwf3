@@ -39,7 +39,7 @@ final class WeChall_Sites extends GWF_Method
 		return $this->templateSites($this->_module);
 	}
 	
-	private function templateSites(Module_WeChall $module)
+	private function templateSites()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';

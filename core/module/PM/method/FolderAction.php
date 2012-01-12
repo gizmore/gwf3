@@ -52,7 +52,7 @@ final class PM_FolderAction extends GWF_Method
 	}
 	
 	##
-	private function onDeleteFolders(Module_PM $module)
+	private function onDeleteFolders()
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('PM', $error, false);

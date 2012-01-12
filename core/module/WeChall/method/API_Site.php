@@ -17,7 +17,7 @@ final class WeChall_API_Site extends GWF_Method
 		die($this->showSite($this->_module, $site));
 	}
 	
-	private function showAllSites(Module_WeChall $module)
+	private function showAllSites()
 	{
 		if (false === ($sites = WC_Site::getSites('site_name ASC'))) {
 			return GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__));

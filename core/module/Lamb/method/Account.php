@@ -37,7 +37,7 @@ final class Lamb_Account extends GWF_Method
 		return false;
 	}
 	
-	private function formLink(Module_Lamb $module)
+	private function formLink()
 	{
 		$data = array(
 			'player_name' => array(GWF_Form::STRING, '', $this->_module->lang('th_player_name'), $this->_module->lang('tt_player_name')),
@@ -47,7 +47,7 @@ final class Lamb_Account extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function formCreate(Module_Lamb $module)
+	private function formCreate()
 	{
 		$user = GWF_Session::getUser();
 		$default_name = $user->getVar('user_name');
@@ -59,7 +59,7 @@ final class Lamb_Account extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAccounts(Module_Lamb $module)
+	private function templateAccounts()
 	{
 		$formLink = $this->formLink($this->_module);
 		$formCreate = $this->formCreate($this->_module);
@@ -115,7 +115,7 @@ final class Lamb_Account extends GWF_Method
 		return false;
 	}
 	
-	private function onLink(Module_Lamb $module)
+	private function onLink()
 	{
 		$form = $this->formLink($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -129,7 +129,7 @@ final class Lamb_Account extends GWF_Method
 		return $this->_module->message('msg_char_linked');
 	}
 
-	private function onCreate(Module_Lamb $module)
+	private function onCreate()
 	{
 		$form = $this->formCreate($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

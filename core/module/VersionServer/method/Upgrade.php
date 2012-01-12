@@ -29,7 +29,7 @@ final class VersionServer_Upgrade extends GWF_Method
 		return $this->templateUpgrade($this->_module);
 	}
 
-	private function validate(Module_VersionServer $module)
+	private function validate()
 	{
 		if (false === ($this->client = GWF_Client::getByToken(Common::getGet('token')))) {
 			return $this->_module->error('err_token');
@@ -50,7 +50,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	 * @param Module_VersionServer $module
 	 * @return unknown_type
 	 */
-	private function templateVersions(Module_VersionServer $module)
+	private function templateVersions()
 	{
 		$out = '';
 		$modules = GWF_Module::loadModulesFS();
@@ -63,7 +63,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	
 	
 	
-	private function templateUpgrade(Module_VersionServer $module)
+	private function templateUpgrade()
 	{
 		$haveError = false;
 		$modules = GWF_Module::loadModulesFS();

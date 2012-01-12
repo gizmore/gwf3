@@ -30,7 +30,7 @@ final class PM_Edit extends GWF_Method
 	 * @var GWF_PM
 	 */
 	private $pm;
-	private function sanitize(Module_PM $module)
+	private function sanitize()
 	{
 		if (false === ($this->pm = GWF_PM::getByID(Common::getGet('pmid')))) {
 			return $this->_module->error('err_pm');
@@ -44,7 +44,7 @@ final class PM_Edit extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_PM $module)
+	private function getForm()
 	{
 		$buttons = array(
 			'preview' => $this->_module->lang('btn_preview'),
@@ -68,7 +68,7 @@ final class PM_Edit extends GWF_Method
 		return $this->_module->template('edit.tpl', $tVars);
 	}
 	
-	private function onPreview(Module_PM $module)
+	private function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		$errors = $form->validate($this->_module);
@@ -87,7 +87,7 @@ final class PM_Edit extends GWF_Method
 		return $this->_module->templatePHP('show.php', $tVars);
 	}
 
-	private function onEdit(Module_PM $module)
+	private function onEdit()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

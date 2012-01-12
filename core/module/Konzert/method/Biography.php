@@ -17,7 +17,7 @@ final class Konzert_Biography extends GWF_Method
 		return $this->templateBiography($this->_module);
 	}
 	
-	private function templateBiography(Module_Konzert $module)
+	private function templateBiography()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/biography'));
 		

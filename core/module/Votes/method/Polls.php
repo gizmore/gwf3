@@ -18,7 +18,7 @@ final class Votes_Polls extends GWF_Method
 		return $this->templatePolls($this->_module);
 	}
 	
-	private function templatePolls(Module_Votes $module)
+	private function templatePolls()
 	{
 		$ipp = 25;
 		$t = GDO::table('GWF_VoteMulti');

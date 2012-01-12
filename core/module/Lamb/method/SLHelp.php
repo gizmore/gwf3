@@ -11,7 +11,7 @@ final class Lamb_SLHelp extends GWF_Method
 		return $this->templateShadowhelp($this->_module);		
 	}
 	
-	private function templateShadowhelp(Module_Lamb $module)
+	private function templateShadowhelp()
 	{
 		$tVars = array(
 		);

@@ -43,7 +43,7 @@ final class News_Show extends GWF_Method
 		return $this->templateShow($this->_module);
 	}
 	
-	private function sanitize(Module_News $module)
+	private function sanitize()
 	{
 		if (false === ($this->cat = GWF_Category::getByID(Common::getGet('catid', 0)))) {
 			$this->catid = 0;

@@ -14,7 +14,7 @@ final class Konzert_Presse extends GWF_Method
 		return $this->templatePresse($this->_module);
 	}
 	
-	private function templatePresse(Module_Konzert $module)
+	private function templatePresse()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/presse'));
 		

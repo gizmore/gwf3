@@ -12,7 +12,7 @@ final class Konzert_Arrangements extends GWF_Method
 		return $this->templateArrangements($this->_module);
 	}
 	
-	private function templateArrangements(Module_Konzert $module)
+	private function templateArrangements()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/arrangements'));
 		

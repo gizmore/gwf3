@@ -10,7 +10,7 @@ final class Admin_GroupAdd extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function templateAdd(Module_Admin $module)
+	private function templateAdd()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -20,7 +20,7 @@ final class Admin_GroupAdd extends GWF_Method
 		return $this->_module->template('group_add.tpl', $tVars);
 	}
 	
-	private function getForm(Module_Admin $module)
+	private function getForm()
 	{
 		$data = array(
 			'groupname' => array(GWF_Form::STRING, '', $this->_module->lang('th_group_name')),
@@ -30,7 +30,7 @@ final class Admin_GroupAdd extends GWF_Method
 	}
 	
 	public function validate_groupname(Module_Admin $m, $arg) { return GWF_Validator::validateClassname($m, 'groupname', $arg, 3, 24, true); }
-	private function onAdd(Module_Admin $module)
+	private function onAdd()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($err = $form->validate($this->_module))) {

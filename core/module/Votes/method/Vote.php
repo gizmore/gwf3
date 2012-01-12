@@ -22,7 +22,7 @@ final class Votes_Vote extends GWF_Method
 	private $votescore;
 	private $score;
 	
-	private function sanitize(Module_Votes $module)
+	private function sanitize()
 	{
 		if (false === ($this->votescore = GWF_VoteScore::getByID(Common::getGet('vsid')))) {
 			return $this->_module->error('err_votescore');
@@ -51,7 +51,7 @@ final class Votes_Vote extends GWF_Method
 		return false;
 	}
 	
-	private function onVote(Module_Votes $module)
+	private function onVote()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return $this->onGuestVote($this->_module);
@@ -64,7 +64,7 @@ final class Votes_Vote extends GWF_Method
 		}
 	}
 
-	private function onGuestVote(Module_Votes $module)
+	private function onGuestVote()
 	{
 		if (!$this->votescore->isGuestVote()) {
 			return $this->_module->error('err_no_guest');

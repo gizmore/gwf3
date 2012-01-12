@@ -62,7 +62,7 @@ final class News_Edit extends GWF_Method
 		return $this->templateEdit($this->_module);
 	}
 	
-	private function getForm(Module_News $module)
+	private function getForm()
 	{
 		$langid = $this->lang->getID();
 		$t = $this->news->getTranslationB($langid);
@@ -84,7 +84,7 @@ final class News_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 		
-	private function templateEdit(Module_News $module)
+	private function templateEdit()
 	{
 		$form = $this->getForm($this->_module);
 		$form_title = $this->_module->lang('ft_edit', array( $this->lang->displayName()));
@@ -125,7 +125,7 @@ final class News_Edit extends GWF_Method
 	###############
 	### Preview ###
 	###############
-	private function onPreview(Module_News $module)
+	private function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -158,7 +158,7 @@ final class News_Edit extends GWF_Method
 	############
 	### Edit ###
 	############
-	private function onEdit(Module_news $module)
+	private function onEdit()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) { #, array('langid', 'title', 'message')))) {
@@ -203,7 +203,7 @@ final class News_Edit extends GWF_Method
 	#################
 	### Translate ###
 	#################
-	private function onQuickTranslate(Module_News $module)
+	private function onQuickTranslate()
 	{
 		$newsid = (int) Common::getPost('newsid', 0);
 		if (false === ($news = GWF_News::getByID($newsid))) {
@@ -222,7 +222,7 @@ final class News_Edit extends GWF_Method
 		die();
 	}
 	
-	private function onTranslate(Module_News $module)
+	private function onTranslate()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) { #, array('transid', 'langid', 'title', 'message')))) {

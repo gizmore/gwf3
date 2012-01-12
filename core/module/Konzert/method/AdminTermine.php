@@ -12,7 +12,7 @@ final class Konzert_AdminTermine extends GWF_Method
 		return $this->templateTermine($this->_module);
 	}
 	
-	private function templateTermine(Module_Konzert $module)
+	private function templateTermine()
 	{
 		$termine = GDO::table('Konzert_Termin');
 		

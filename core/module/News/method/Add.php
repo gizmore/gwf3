@@ -94,7 +94,7 @@ final class News_Add extends GWF_Method
 		return false;
 	}
 	
-	private function onAdd(Module_News $module)
+	private function onAdd()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -127,7 +127,7 @@ final class News_Add extends GWF_Method
 		return $this->_module->message('msg_news_added');
 	}
 
-	private function onPreview(Module_News $module)
+	private function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		

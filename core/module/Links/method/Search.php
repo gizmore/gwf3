@@ -23,12 +23,12 @@ final class Links_Search extends GWF_Method
 		return $this->templateSearch($this->_module, array(), '');
 	}
 	
-	private function getFormAdv(Module_Links $module)
+	private function getFormAdv()
 	{
 		return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_Links'), GWF_Session::getUser(), $this->_module->lang('ft_search'));
 	}
 	
-	private function getFormQuick(Module_Links $module)
+	private function getFormQuick()
 	{
 		$data = array(
 			'term' => array(GWF_Form::STRING, '', GWF_HTML::lang('term')),

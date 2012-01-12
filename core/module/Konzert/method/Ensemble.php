@@ -17,7 +17,7 @@ final class Konzert_Ensemble extends GWF_Method
 		return $this->templateEnsemble($this->_module);
 	}
 	
-	private function templateEnsemble(Module_Konzert $module)
+	private function templateEnsemble()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/ensemble'));
 		

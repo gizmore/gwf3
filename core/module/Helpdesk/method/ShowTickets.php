@@ -8,7 +8,7 @@ final class Helpdesk_ShowTickets extends GWF_Method
 		return $this->templateTickets($this->_module);
 	}
 	
-	private function templateTickets(Module_Helpdesk $module)
+	private function templateTickets()
 	{
 		$limit = 25;
 		

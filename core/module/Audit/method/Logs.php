@@ -12,7 +12,7 @@ final class Audit_Logs extends GWF_Method
 		return $this->templateLogs($this->_module);
 	}
 	
-	private function templateLogs(Module_Audit $module)
+	private function templateLogs()
 	{
 		$ipp = self::IPP;
 		$where = "al_type='script'";

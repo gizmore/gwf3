@@ -38,7 +38,7 @@ final class Usergroups_AvatarGallery extends GWF_Method
 		return "Redirecting...";
 	}
 	
-	private function page(Module_Usergroups $module)
+	private function page()
 	{
 		$db = gdo_db();
 		$users = GWF_TABLE_PREFIX.'user';

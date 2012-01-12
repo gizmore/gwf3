@@ -34,7 +34,7 @@ final class WeChall_Stats extends GWF_Method
 		return $this->templateStats($this->_module);
 	}
 	
-	private function setPageTitles(Module_WeChall $module)
+	private function setPageTitles()
 	{
 		if ($this->user1 === false) {
 			GWF_Website::setPageTitle($this->_module->lang('pt_stats', array('Unknown')));
@@ -62,7 +62,7 @@ final class WeChall_Stats extends GWF_Method
 		}
 	}
 
-	private function validate(Module_WeChall $module)
+	private function validate()
 	{
 		if (false !== ($this->user1 = GWF_User::getByName(Common::getPost('wc_stat_user1')))) {
 			#nice
@@ -147,7 +147,7 @@ final class WeChall_Stats extends GWF_Method
 		return $back;
 	}
 	
-	private function templateStats(Module_WeChall $module)
+	private function templateStats()
 	{
 		if (false !== ($errors = $this->validate($this->_module))) {
 			return $errors;
@@ -181,7 +181,7 @@ final class WeChall_Stats extends GWF_Method
 		return $this->_module->templatePHP('stats.php', $tVars);
 	}
 	
-	private function getSites(Module_WeChall $module)
+	private function getSites()
 	{
 		$sitesLow = $sitesMed = $sitesHigh = $sitesNull = $sitesVersus = $sitesHave = array();
 
@@ -237,7 +237,7 @@ final class WeChall_Stats extends GWF_Method
 		);
 	}
 	
-	private function getImgSrc(Module_WeChall $module)
+	private function getImgSrc()
 	{
 		if ($this->user1 === false) {
 			return '#';
@@ -282,7 +282,7 @@ final class WeChall_Stats extends GWF_Method
 //		var_dump($_POST);
 	}
 	
-	private function getImgTitle(Module_WeChall $module)
+	private function getImgTitle()
 	{
 		return 'STUB TITLE';
 	}
@@ -306,7 +306,7 @@ final class WeChall_Stats extends GWF_Method
 		return Common::clamp(intval(Common::getPost('months', 0)), 0, 1024);
 	}
 	
-	private function onDisplay(Module_WeChall $module)
+	private function onDisplay()
 	{
 //		var_dump($_POST);
 
@@ -319,7 +319,7 @@ final class WeChall_Stats extends GWF_Method
 		return $this->templateStats($this->_module);
 	}
 	
-	private function onClear(Module_WeChall $module)
+	private function onClear()
 	{
 		$_REQUEST['site'] = array();
 		return $this->onDisplay($this->_module);

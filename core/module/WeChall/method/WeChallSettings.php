@@ -55,7 +55,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	#################
 	### Fav Sites ###
 	#################
-	private function templateFavSites(Module_WeChall $module)
+	private function templateFavSites()
 	{
 		$userid = GWF_Session::getUserID();
 		$form = $this->getForm($this->_module, $userid);
@@ -124,7 +124,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return false;
 	}
 	
-	private function onMarkFavorite(Module_WeChall $module)
+	private function onMarkFavorite()
 	{
 		$userid = GWF_Session::getUserID();
 		$form = $this->getForm($this->_module, $userid);
@@ -162,7 +162,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	########################
 	### WeChall Settings ###
 	########################
-	private function formWCSettings(Module_WeChall $module)
+	private function formWCSettings()
 	{
 		$user = GWF_Session::getUser();
 		$data = $user->getUserData();
@@ -180,7 +180,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateWeChallSettings(Module_WeChall $module)
+	private function templateWeChallSettings()
 	{
 		$form = $this->formWCSettings($this->_module);
 		return $form->templateY($this->_module->lang('ft_settings'));
@@ -191,7 +191,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return false;
 	}
 	
-	private function onSetSettings(Module_WeChall $module)
+	private function onSetSettings()
 	{
 		$form = $this->formWCSettings($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -310,7 +310,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	}
 	
 	public function validate_favcat($m, $v) { return WC_SiteCats::isValidCatName($v) ? false : $m->lang('err_cat'); }
-	private function onAddFavCat(Module_WeChall $module)
+	private function onAddFavCat()
 	{
 		$userid = GWF_Session::getUserID();
 		$form = $this->getFormFavcat($this->_module, $userid);

@@ -11,7 +11,7 @@ final class Slaytags_About extends GWF_Method
 		return $this->templateAbout($this->_module);
 	}
 	
-	private function templateAbout(Module_Slaytags $module)
+	private function templateAbout()
 	{
 		$tVars = array(
 		);

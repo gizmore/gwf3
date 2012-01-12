@@ -13,7 +13,7 @@ final class Admin_Cronjob extends GWF_Method
 		return $this->_module->templateNav().$this->templateCronjob($this->_module);
 	}
 	
-	private function templateCronjob(Module_Admin $module)
+	private function templateCronjob()
 	{
 		$tVars = array(
 			'cron_output' => $this->onCronjob($this->_module),
@@ -21,7 +21,7 @@ final class Admin_Cronjob extends GWF_Method
 		return $this->_module->template('cronjob.tpl', $tVars);
 	}
 	
-	private function onCronjob(Module_Admin $module)
+	private function onCronjob()
 	{
 		ob_start();
 		GWF_ModuleLoader::cronjobs();

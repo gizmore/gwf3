@@ -29,7 +29,7 @@ final class Votes_Staff extends GWF_Method
 		return $this->templateVotes($this->_module);
 	}
 	
-	private function templateVotes(Module_Votes $module)
+	private function templateVotes()
 	{
 		$votes = GDO::table('GWF_VoteScore');
 		$ipp = 50;

@@ -9,7 +9,7 @@ final class PageBuilder_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_PageBuilder $module)
+	private function templateAdmin()
 	{
 		$ipp = 50;
 		$pages = GDO::table('GWF_Page');

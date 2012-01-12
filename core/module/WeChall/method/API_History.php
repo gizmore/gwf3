@@ -34,7 +34,7 @@ final class WeChall_API_History extends GWF_Method
 		die($this->history($this->_module));
 	}
 	
-	private function sanitize(Module_WeChall $module)
+	private function sanitize()
 	{
 		if (false === Common::getGet('no_session')) {
 			return 'The mandatory parameter \'no_session\' is not set. Try \'&no_session=1\'.';
@@ -96,7 +96,7 @@ final class WeChall_API_History extends GWF_Method
 		return false;
 	}
 	
-	private function history(Module_WeChall $module)
+	private function history()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		$conditions = array();

@@ -20,7 +20,7 @@ final class Forum_Options extends GWF_Method
 		return $this->templateOptions($this->_module);
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$user = GWF_Session::getUser();
 		$row = GWF_ForumOptions::getUserOptions($user);
@@ -33,7 +33,7 @@ final class Forum_Options extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateOptions(Module_Forum $module)
+	private function templateOptions()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -43,7 +43,7 @@ final class Forum_Options extends GWF_Method
 		return $this->_module->template('options.tpl', $tVars);
 	}
 	
-	private function onChange(Module_Forum $module)
+	private function onChange()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

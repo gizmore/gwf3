@@ -158,7 +158,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	 * @param Module_WeChall $module
 	 * @return unknown_type
 	 */
-	private function onLinkSite(Module_WeChall $module)
+	private function onLinkSite()
 	{
 		$form = $this->getFormLink($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -399,7 +399,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		return $back.$result->display('WeChall');
 	}
 	
-	private function onUpdateAll(Module_WeChall $module)
+	private function onUpdateAll()
 	{
 		$form = $this->getFormAll($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

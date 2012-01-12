@@ -18,7 +18,7 @@ final class Konzert_Intro extends GWF_Method
 		return $this->templateIntro($this->_module);
 	}
 	
-	private function templateIntro(Module_Konzert $module)
+	private function templateIntro()
 	{
 //		$intro = GWF_Session::getOrDefault('konz_intro', true);
 //		GWF_Session::set('konz_intro', false);

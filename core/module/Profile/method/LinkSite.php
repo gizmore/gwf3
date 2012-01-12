@@ -14,12 +14,12 @@ final class Profile_LinkSite extends GWF_Method
 		return $this->templateLink($this->_module);
 	}
 	
-	private function getForm(Module_Profile $module)
+	private function getForm()
 	{
 		
 	}
 	
-	private function templateLink(Module_Profile $module)
+	private function templateLink()
 	{
 		
 	}

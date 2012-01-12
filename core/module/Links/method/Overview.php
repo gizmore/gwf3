@@ -46,7 +46,7 @@ final class Links_Overview extends GWF_Method
 	private $hrefAdd;
 	private $add_link_text;
 	
-	private function sanitize(Module_Links $module)
+	private function sanitize()
 	{
 		$this->user = GWF_Session::getUser();
 		$links = GDO::table('GWF_Links');
@@ -116,7 +116,7 @@ final class Links_Overview extends GWF_Method
 		return false;
 	}
 	
-	private function overview(Module_Links $module)
+	private function overview()
 	{
 		if ($this->tag === '') {
 			$tag_title = $this->_module->lang('pt_links');

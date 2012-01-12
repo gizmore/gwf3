@@ -10,7 +10,7 @@ final class Slaytags_Songs extends GWF_Method
 		return $this->templateSongs($this->_module);
 	}
 	
-	private function templateSongs(Module_Slaytags $module)
+	private function templateSongs()
 	{
 //		$user = GWF_Session::getUser();
 //		$uid = $user->getID();

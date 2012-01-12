@@ -20,7 +20,7 @@ final class WeChall_RankingTag extends GWF_Method
 		return $this->templateRanking($this->_module);
 	}
 	
-	private function onQuickjump(Module_WeChall $module)
+	private function onQuickjump()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';
 		if (false === ($cat = WC_SiteCats::getCatForBit(Common::getPost('category')))) {
@@ -33,7 +33,7 @@ final class WeChall_RankingTag extends GWF_Method
 		return '';
 	}
 	
-	private function templateRanking(Module_WeChall $module)
+	private function templateRanking()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';
 		

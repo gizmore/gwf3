@@ -16,7 +16,7 @@ final class Admin_Modules extends GWF_Method
 		return $this->_module->templateNav().$this->templateModules($this->_module);
 	}
 	
-	private function templateModules(Module_Admin $module)
+	private function templateModules()
 	{
 		$gdo = GDO::table('GWF_Module');
 		$by = $gdo->getWhitelistedBy(Common::getGetString('by'), 'module_name');

@@ -19,7 +19,7 @@ final class Admin_Users extends GWF_Method
 		return $this->_module->templateNav().$this->templateUserTable($this->_module);
 	}
 	
-	private function sanitize(Module_Admin $module)
+	private function sanitize()
 	{
 		$users = GDO::table('GWF_User');
 		$this->upp = $this->_module->cfgUsersPerPage();
@@ -33,7 +33,7 @@ final class Admin_Users extends GWF_Method
 		return false;
 	}
 	
-	private function templateUserTable(Module_Admin $module)
+	private function templateUserTable()
 	{
 //		$href = sprintf('%s/users/by/%s/%s/page-%%PAGE%%', Module_Admin::ADMIN_URL_NAME, $this->by, $this->dir);
 		$href = GWF_WEB_ROOT.sprintf('index.php?mo=Admin&me=Users&by=%s&dir=%s&page=%%PAGE%%', urlencode(Common::getGet('by')), urlencode(Common::getGet('dir')));
@@ -49,7 +49,7 @@ final class Admin_Users extends GWF_Method
 		return $this->_module->templatePHP('users.php', $tVars);
 	}
 
-	private function getUsers(Module_Admin $module)
+	private function getUsers()
 	{
 		$users = GDO::table('GWF_User');
 //		$by = $this->by.' '.$this->dir;
@@ -61,7 +61,7 @@ final class Admin_Users extends GWF_Method
 		return GWF_WEB_ROOT.'index.php?mo=Admin&me=Users&by=%BY%&dir=%DIR%&page=1';
 	}
 	
-	private function getSearchForm(Module_Admin $module)
+	private function getSearchForm()
 	{
 		require 'UserSearch.php';
 		$data = array(

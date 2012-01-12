@@ -11,7 +11,7 @@ final class Konzert_Sponsoren extends GWF_Method
 		return $this->templateSponsoren($this->_module);
 	}
 	
-	private function templateSponsoren(Module_Konzert $module)
+	private function templateSponsoren()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/sponsoren'));
 		

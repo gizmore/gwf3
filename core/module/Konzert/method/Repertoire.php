@@ -17,7 +17,7 @@ final class Konzert_Repertoire extends GWF_Method
 		return $this->templateRepertoire($this->_module);
 	}
 	
-	private function templateRepertoire(Module_Konzert $module)
+	private function templateRepertoire()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/repertoire'));
 		

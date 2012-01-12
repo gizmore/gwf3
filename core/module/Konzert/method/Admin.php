@@ -8,7 +8,7 @@ final class Konzert_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_Konzert $module)
+	private function templateAdmin()
 	{
 		$tVars = array(
 		);

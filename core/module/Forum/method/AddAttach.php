@@ -29,7 +29,7 @@ final class Forum_AddAttach extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function formAdd(Module_Forum $module)
+	private function formAdd()
 	{
 		$is_guest = $this->post->isOptionEnabled(GWF_ForumPost::GUEST_VIEW);
 		$data = array();
@@ -40,7 +40,7 @@ final class Forum_AddAttach extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAdd(Module_Forum $module)
+	private function templateAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		$tVars = array(
@@ -51,7 +51,7 @@ final class Forum_AddAttach extends GWF_Method
 	
 	public function validate_file($module, $arg) { return false; }
 
-	private function onAdd(Module_Forum $module)
+	private function onAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

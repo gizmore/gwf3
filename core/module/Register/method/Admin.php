@@ -29,7 +29,7 @@ final class Register_Admin extends GWF_Method
 	private $by;
 	private $dir;
 	private $orderby;
-	private function sanitize(Module_Register $module)
+	private function sanitize()
 	{
 		$this->table = new GWF_UserActivation(false);
 		$this->ipp = $this->_module->getActivationsPerPage();
@@ -44,7 +44,7 @@ final class Register_Admin extends GWF_Method
 	################
 	### Template ###
 	################
-	private function templateAdmin(Module_Register $module)
+	private function templateAdmin()
 	{
 		$headers = array(
 			array($this->_module->lang('th_username'), 'username', 'ASC'),

@@ -28,7 +28,7 @@ final class PoolTool_MatchIP extends GWF_Method
 		return $this->_module->templatePHP('matcher.php', $tVars);
 	}	
 
-	private function getForm(Module_PoolTool $module)
+	private function getForm()
 	{
 		if (!(isset($_POST['dated']))) {
 			$_POST['dated'] = date('d');
@@ -62,7 +62,7 @@ final class PoolTool_MatchIP extends GWF_Method
 		return GWF_Select::display($name, $data, $selected);
 	}
 	
-	private function onMatch(Module_PoolTool $module)
+	private function onMatch()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

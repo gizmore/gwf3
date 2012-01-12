@@ -17,7 +17,7 @@ final class Konzert_AboutMelanie extends GWF_Method
 		return $this->templateAbout($this->_module);
 	}
 	
-	private function templateAbout(Module_Konzert $module)
+	private function templateAbout()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/about_meli'));
 		GWF_Website::setPageTitle($l->lang('page_title'));

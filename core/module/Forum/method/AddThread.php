@@ -30,7 +30,7 @@ final class Forum_AddThread extends GWF_Method
 		return $this->templateAddThread($this->_module);
 	}
 	
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		if (false !== ($error = $this->_module->isNewThreadAllowed())) {
 			return $error;
@@ -41,7 +41,7 @@ final class Forum_AddThread extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$buttons = array(
 			'add_thread' => $this->_module->lang('btn_add_thread'),
@@ -78,7 +78,7 @@ final class Forum_AddThread extends GWF_Method
 	###############
 	### Preview ###
 	###############
-	private function onPreview(Module_Forum $module)
+	private function onPreview()
 	{
 		$user = GWF_Session::getUser();
 		
@@ -105,7 +105,7 @@ final class Forum_AddThread extends GWF_Method
 		return $errors.$this->_module->templatePHP('show_thread.php', $tVars).$this->templateAddThread($this->_module, false);
 	}
 	
-	private function onAddThread(Module_Forum $module)
+	private function onAddThread()
 	{
 		$form = $this->getForm($this->_module);
 		

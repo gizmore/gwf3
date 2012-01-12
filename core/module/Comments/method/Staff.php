@@ -11,7 +11,7 @@ final class Comments_Staff extends GWF_Method
 		return $this->templateStaff($this->_module);
 	}
 	
-	private function templateStaff(Module_Comments $module)
+	private function templateStaff()
 	{
 		$table = GDO::table('GWF_Comments');
 		$where = $this->getWhere($this->_module);
@@ -34,7 +34,7 @@ final class Comments_Staff extends GWF_Method
 		return $this->_module->template('staff.tpl', $tVars);
 	}
 	
-	private function getWhere(Module_Comments $module)
+	private function getWhere()
 	{
 		switch (Common::getGetString('mode'))
 		{

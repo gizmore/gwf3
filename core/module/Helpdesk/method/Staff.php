@@ -8,7 +8,7 @@ final class Helpdesk_Staff extends GWF_Method
 		return $this->templateStaff($this->_module);
 	}
 	
-	private function templateStaff(Module_Helpdesk $module)
+	private function templateStaff()
 	{
 		$tickets = GDO::table('GWF_HelpdeskTicket');
 		

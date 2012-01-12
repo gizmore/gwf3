@@ -8,7 +8,7 @@ final class Slaytags_MyPlaylist extends GWF_Method
 		return $this->templateMyPlaylist($this->_module);
 	}
 	
-	private function templateMyPlaylist(Module_Slaytags $module)
+	private function templateMyPlaylist()
 	{
 		$tVars = array(
 		);

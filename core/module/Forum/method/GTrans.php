@@ -17,7 +17,7 @@ final class Forum_GTrans extends GWF_Method
 		return $this->gTranslate($this->_module);
 	}
 	
-	private function gTranslate(Module_Forum $module)
+	private function gTranslate()
 	{
 		if (false === ($post = $this->_module->getCurrentPost())) {
 			return $this->_module->error('err_post');

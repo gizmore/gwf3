@@ -62,14 +62,14 @@ final class WeChall_GraphStats extends GWF_Method
 		return $this->templateGraph($this->_module);
 	}
 	
-	private function validateDimension(Module_WeChall $module)
+	private function validateDimension()
 	{
 		$this->width = Common::clamp(intval(Common::getGet('w', 0)), self::MIN_WIDTH, self::MAX_WIDTH);
 		$this->height = Common::clamp(intval(Common::getGet('h', 0)), self::MIN_HEIGHT, self::MAX_HEIGHT);
 	}
 	
 
-	private function validate(Module_WeChall $module)
+	private function validate()
 	{
 		$this->validateDimension($this->_module);
 		
@@ -162,7 +162,7 @@ final class WeChall_GraphStats extends GWF_Method
 		return $back;
 	}
 
-	private function templateGraph(Module_WeChall $module)
+	private function templateGraph()
 	{
 		$sites2 = $this->getSites2();
 		
@@ -405,7 +405,7 @@ final class WeChall_GraphStats extends GWF_Method
 		return $used[$siteid];
 	}
 	
-	private function getGraphTitle(Module_WeChall $module)
+	private function getGraphTitle()
 	{
 		if ($this->user2 === false) {
 			return $this->_module->lang('pt_stats', array($this->user1->getVar('user_name')));

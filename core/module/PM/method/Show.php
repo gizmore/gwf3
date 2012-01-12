@@ -31,7 +31,7 @@ final class PM_Show extends GWF_Method
 	 */
 	private $pm;
 	
-	private function sanitize(Module_PM $module)
+	private function sanitize()
 	{
 		if (false === ($this->pm = GWF_PM::getByID(Common::getGet('pmid')))) {
 			return $this->_module->error('err_pm');

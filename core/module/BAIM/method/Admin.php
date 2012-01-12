@@ -16,7 +16,7 @@ final class BAIM_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_BAIM $module)
+	private function templateAdmin()
 	{
 		$form_flush = $this->formFlushDemo($this->_module);
 		$form_new_demo = $this->formNewDemo($this->_module);
@@ -28,7 +28,7 @@ final class BAIM_Admin extends GWF_Method
 	}
 	
 	### More Demo
-	private function formNewDemo(Module_BAIM $module)
+	private function formNewDemo()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -45,7 +45,7 @@ final class BAIM_Admin extends GWF_Method
 		return false;
 	}
 	
-	private function onNewDemo(Module_BAIM $module)
+	private function onNewDemo()
 	{
 		$form_new_demo = $this->formNewDemo($this->_module);
 		if (false !== ($error = $form_new_demo->validate($this->_module))) {
@@ -75,7 +75,7 @@ final class BAIM_Admin extends GWF_Method
 	}
 	
 	### Flush all demo
-	private function formFlushDemo(Module_BAIM $module)
+	private function formFlushDemo()
 	{
 		$data = array(
 			'flushdemo' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_flush_demo')),

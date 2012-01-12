@@ -38,7 +38,7 @@ final class Forum_EditThread extends GWF_Method
 		return $this->templateEditThread($this->_module);
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$t = $this->thread;
 		$data = array(
@@ -57,7 +57,7 @@ final class Forum_EditThread extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEditThread(Module_Forum $module)
+	private function templateEditThread()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -75,7 +75,7 @@ final class Forum_EditThread extends GWF_Method
 	public function validate_merge(Module_Forum $module, $arg) { return $this->_module->validate_thread($arg); }
 	public function validate_move(Module_Forum $module, $arg) { return $this->_module->validate_parentid($arg); }
 	
-	private function onEdit(Module_Forum $module)
+	private function onEdit()
 	{
 		$t = $this->thread;
 		$form = $this->getForm($this->_module);
@@ -104,7 +104,7 @@ final class Forum_EditThread extends GWF_Method
 		return $this->_module->message('msg_edited_thread');
 	}
 	
-	private function onDelete(Module_Forum $module)
+	private function onDelete()
 	{
 		$t = $this->thread;
 		$form = $this->getForm($this->_module);

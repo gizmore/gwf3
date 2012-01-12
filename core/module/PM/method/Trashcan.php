@@ -24,7 +24,7 @@ final class PM_Trashcan extends GWF_Method
 		return $this->trashcan($this->_module);
 	}
 	
-	private function sanitize(Module_PM $module)
+	private function sanitize()
 	{
 		$pms = GDO::table('GWF_PM');
 		$uid = GWF_Session::getUserID();
@@ -49,7 +49,7 @@ final class PM_Trashcan extends GWF_Method
 		return false;
 	}
 	
-	private function trashcan(Module_PM $module)
+	private function trashcan()
 	{
 		if ($this->_module->cfgAllowDelete()) {
 			$form_empty = $this->formEmpty($this->_module)->templateX($this->_module->lang('ft_empty'), false);
@@ -98,7 +98,7 @@ final class PM_Trashcan extends GWF_Method
 	#############
 	### Empty ###
 	#############
-	private function formEmpty(Module_PM $module)
+	private function formEmpty()
 	{
 		$data = array(
 			'empty' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_delete')),
@@ -106,7 +106,7 @@ final class PM_Trashcan extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function onEmpty(Module_PM $module)
+	private function onEmpty()
 	{
 		if (!$this->_module->cfgAllowDelete()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');

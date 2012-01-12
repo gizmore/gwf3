@@ -126,7 +126,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return true;
 	}
 	
-	private function formReply(Module_Helpdesk $module)
+	private function formReply()
 	{
 		$data = array(
 			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),

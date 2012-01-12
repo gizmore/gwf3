@@ -22,7 +22,7 @@ final class Register_Form extends GWF_Method
 		return $this->templateForm($this->_module);
 	}
 	
-	private function getForm(Module_Register $module)
+	private function getForm()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username'), $this->_module->lang('tt_username', array(GWF_User::USERNAME_LENGTH))),
@@ -60,7 +60,7 @@ final class Register_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateForm(Module_Register $module)
+	private function templateForm()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -70,7 +70,7 @@ final class Register_Form extends GWF_Method
 		return $this->_module->template('register.tpl', $tVars);
 	}
 	
-	private function onRegister(Module_Register $module)
+	private function onRegister()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -117,7 +117,7 @@ final class Register_Form extends GWF_Method
 	 * @param Module_Register $module
 	 * @return mixed
 	 */
-	private function onRegisterB(Module_Register $module)
+	private function onRegisterB()
 	{
 		$errors = array();
 		

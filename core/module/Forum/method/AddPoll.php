@@ -35,7 +35,7 @@ final class Forum_AddPoll extends GWF_Method
 		return $this->template($this->_module);
 	}
 	
-	private function template(Module_Forum $module)
+	private function template()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -46,7 +46,7 @@ final class Forum_AddPoll extends GWF_Method
 		return $this->_module->templatePHP('add_poll.php', $tVars);
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$data = array(
 			'pollid' => array(GWF_Form::SELECT, $this->getPollSelect($this->_module), $this->_module->lang('th_thread_pollid')),
@@ -55,7 +55,7 @@ final class Forum_AddPoll extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function getPollSelect(Module_Forum $module)
+	private function getPollSelect()
 	{
 		if (false === ($mv = GWF_Module::getModule('Votes'))) {
 			return GWF_HTML::lang('ERR_MODULE_MISSING', array('Votes'));
@@ -97,7 +97,7 @@ final class Forum_AddPoll extends GWF_Method
 		return false;
 	}
 	
-	private function onAssign(Module_Forum $module)
+	private function onAssign()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

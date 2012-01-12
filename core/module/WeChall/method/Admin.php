@@ -39,7 +39,7 @@ final class WeChall_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_WeChall $module)
+	private function templateAdmin()
 	{
 		$formHardlink = $this->formHardlink($this->_module);
 		$tVars = array(
@@ -58,14 +58,14 @@ final class WeChall_Admin extends GWF_Method
 		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
-	private function onCacheChallTags(Module_WeChall $module)
+	private function onCacheChallTags()
 	{
 		$this->_module->cacheChallTags();
 		return $this->_module->message('msg_cached_ctags').
 		$this->templateAdmin($this->_module);
 	}
 	
-	private function onCacheSiteTags(Module_WeChall $module)
+	private function onCacheSiteTags()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';
 		WC_SiteCats::fixCatBits();
@@ -73,7 +73,7 @@ final class WeChall_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function fixFavCats(Module_WeChall $module)
+	private function fixFavCats()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_FavCats.php';
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';
@@ -86,7 +86,7 @@ final class WeChall_Admin extends GWF_Method
 		echo GWF_HTML::message('WC', sprintf('Deleted %d invalid favcat links!', $num_deleted));
 	}
 	
-	private function onRecalcEverything(Module_WeChall $module)
+	private function onRecalcEverything()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		WC_Site::recalcAllSites();
@@ -95,7 +95,7 @@ final class WeChall_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 
-	private function onFixChalls(Module_WeChall $module)
+	private function onFixChalls()
 	{
 		$table = GDO::table('WC_Challenge');
 		$solved = GWF_TABLE_PREFIX.'wc_chall_solved';
@@ -133,7 +133,7 @@ final class WeChall_Admin extends GWF_Method
 		return ",$s,";
 	}
 	
-	private function onFixIRC(Module_WeChall $module)
+	private function onFixIRC()
 	{
 		if (false === ($sites = GDO::table('WC_Site')->selectObjects())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($this->_module);
@@ -188,7 +188,7 @@ final class WeChall_Admin extends GWF_Method
 		}
 		return false;
 	}
-	private function formHardlink(Module_WeChall $module)
+	private function formHardlink()
 	{
 		$data = array(
 			'site' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->_module->lang('th_site_name')),
@@ -208,7 +208,7 @@ final class WeChall_Admin extends GWF_Method
 		$selected = (int)Common::getPost('site', 0);
 		return GWF_Select::display('site', $data, $selected);
 	}
-	private function onHardlink(Module_WeChall $module)
+	private function onHardlink()
 	{
 		$form = $this->formHardlink($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

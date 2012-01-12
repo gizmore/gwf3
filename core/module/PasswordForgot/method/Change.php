@@ -28,7 +28,7 @@ final class PasswordForgot_Change extends GWF_Method
 		return $this->templateChange($this->_module, $ac);
 	}
 	
-	private function getForm(Module_PasswordForgot $module)
+	private function getForm()
 	{
 		$data = array(
 			'password' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_password')),

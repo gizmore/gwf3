@@ -47,7 +47,7 @@ final class PM_Overview extends GWF_Method
 	 */
 	private $folder;
 	
-	private function sanitize(Module_PM $module)
+	private function sanitize()
 	{
 		if (false === ($this->folder = GWF_PMFolder::getByID(Common::getGet('folder', GWF_PM::INBOX)))) {
 			if (false === ($this->folder = GWF_PMFolder::getInBox())) {
@@ -72,7 +72,7 @@ final class PM_Overview extends GWF_Method
 	##############
 	### Guests ###
 	##############
-	private function templateGuests(Module_PM $module)
+	private function templateGuests()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_guest'));
 		
@@ -85,7 +85,7 @@ final class PM_Overview extends GWF_Method
 	################
 	### Sanitize ###
 	################
-	private function templateOverview(Module_PM $module)
+	private function templateOverview()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_pm'));
 		
@@ -133,7 +133,7 @@ final class PM_Overview extends GWF_Method
 		return $this->_module->templatePHP('folders.php', $tVars);
 	}
 	
-	private function getFormNewFolder(Module_PM $module)
+	private function getFormNewFolder()
 	{
 		$data = array(
 			'foldername' => array(GWF_Form::STRING, '', $this->_module->lang('th_pmf_name')),
@@ -142,7 +142,7 @@ final class PM_Overview extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function pmTable(Module_PM $module)
+	private function pmTable()
 	{
 		$uid = GWF_Session::getUserID();
 		$fid = $this->folder->getID();
@@ -151,7 +151,7 @@ final class PM_Overview extends GWF_Method
 		return GWF_Table::displayGDO2($this->_module, GDO::table('GWF_PM'), GWF_Session::getUser(), $sortURL, $conditions, $this->_module->cfgPMPerPage());
 	}
 	
-	private function getNewPMForm(Module_PM $module)
+	private function getNewPMForm()
 	{
 		$data = array(
 			#'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->_module, $this->getCorrespondence(), 'username_sel')),
@@ -162,7 +162,7 @@ final class PM_Overview extends GWF_Method
 		return $form->templateX($this->_module->lang('ft_new_pm'), GWF_PM::getNewPMHref());
 	}
 
-	private function getNewPMFormGuest(Module_PM $module)
+	private function getNewPMFormGuest()
 	{
 		$data = array(
 			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->_module, $this->getUsernamesPPM(), 'username_sel')),
@@ -212,7 +212,7 @@ final class PM_Overview extends GWF_Method
 	##############
 	### Delete ###
 	##############
-	private function onDelete(Module_PM $module)
+	private function onDelete()
 	{
 		$ids = Common::getPost('pm');
 		if (!(is_array($ids))) {

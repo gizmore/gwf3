@@ -24,7 +24,7 @@ final class Admin_UserEdit extends GWF_Method
 		return $nav.$this->templateUserEdit($this->_module);
 	}
 	
-	private function sanitize(Module_Admin $module)
+	private function sanitize()
 	{
 		if (false === ($this->user = GWF_User::getByID(Common::getGet('uid')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
@@ -32,7 +32,7 @@ final class Admin_UserEdit extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_Admin $module)
+	private function getForm()
 	{
 		$u = $this->user;
 		$data = array(
@@ -59,7 +59,7 @@ final class Admin_UserEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateUserEdit(Module_Admin $module)
+	private function templateUserEdit()
 	{
 		$u = $this->user;
 		$form = $this->getForm($this->_module);
@@ -112,7 +112,7 @@ final class Admin_UserEdit extends GWF_Method
 	###############
 	### On Edit ###
 	###############
-	private function onEdit(Module_Admin $module)
+	private function onEdit()
 	{
 		$u = $this->user;
 		$form = $this->getForm($this->_module);

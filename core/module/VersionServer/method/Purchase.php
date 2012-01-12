@@ -45,7 +45,7 @@ final class VersionServer_Purchase extends GWF_Method
 		return $this->templatePurchase($this->_module);
 	}
 	
-	private function templatePurchase(Module_VersionServer $module)
+	private function templatePurchase()
 	{
 		$designs = GWF_Design::getDesigns();
 		$langs = GWF_Language::getSupportedLanguages();
@@ -59,7 +59,7 @@ final class VersionServer_Purchase extends GWF_Method
 		return $this->_module->templatePHP('purchase.php', $tVars);
 	}
 	
-	private function onPurchase(Module_VersionServer $module)
+	private function onPurchase()
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('Purchase GWF Modules', $error).$this->templatePurchase($this->_module);

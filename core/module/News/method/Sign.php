@@ -27,7 +27,7 @@ final class News_Sign extends GWF_Method
 		return $this->templateSign($this->_module); 
 	}
 	
-	private function getForm(Module_News $module)
+	private function getForm()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			$email = Common::getPost('email', '');
@@ -49,7 +49,7 @@ final class News_Sign extends GWF_Method
 		return new GWF_Form(GDO::table('GWF_Newsletter'), $data);
 	}
 	
-	private function templateSign(Module_News $module)
+	private function templateSign()
 	{
 		$form = $this->getForm($this->_module);
 		$user = GWF_Session::getUser();
@@ -63,7 +63,7 @@ final class News_Sign extends GWF_Method
 		return $this->_module->templatePHP('sign.php', $tVars);
 	}
 	
-	private function getSignInfo(Module_News $module)
+	private function getSignInfo()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return $this->_module->lang('sign_info_login');
@@ -79,7 +79,7 @@ final class News_Sign extends GWF_Method
 		return $this->_module->lang($key);
 	}
 	
-	private function onSign(Module_News $module)
+	private function onSign()
 	{
 		if (!$this->_module->isNewsletterForGuests() && !GWF_Session::isLoggedIn()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');

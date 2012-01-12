@@ -36,7 +36,7 @@ final class WeChall_Sidebar extends GWF_Method
 			$this->rightPanelSites($this->_module).PHP_EOL;
 	}
 
-	private function rightPanelStats(Module_WeChall $module)
+	private function rightPanelStats()
 	{
 		$mod_forum = GWF_Module::getModule('Forum');
 		
@@ -51,7 +51,7 @@ final class WeChall_Sidebar extends GWF_Method
 		return $back;
 	}
 	
-	private function rightPanelSites(Module_WeChall $module)
+	private function rightPanelSites()
 	{
 		$sites = WC_Site::getActiveSites();
 //		$sites = GDO::table('WC_Site')->select("site_status='up' OR site_status='down'");
@@ -85,7 +85,7 @@ final class WeChall_Sidebar extends GWF_Method
 			'';
 	}
 	
-	private function leftPanelTop10(Module_WeChall $module)
+	private function leftPanelTop10()
 	{
 		$hideBTN = GWF_Button::delete($this->getMethodHref('&leftpanel=0'), $this->_module->lang('btn_sidebar_on'));
 		
@@ -160,7 +160,7 @@ final class WeChall_Sidebar extends GWF_Method
 		return $back;
 	}
 	
-	private function leftPanelOnline(Module_WeChall $module)
+	private function leftPanelOnline()
 	{
 		$back = '';
 		
@@ -177,7 +177,7 @@ final class WeChall_Sidebar extends GWF_Method
 		return $back;
 	}
 	
-	private function leftPanelLanguage(Module_WeChall $module)
+	private function leftPanelLanguage()
 	{
 		if (false === ($ml = GWF_Module::getModule('Language'))) {
 			return '';

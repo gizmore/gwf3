@@ -71,7 +71,7 @@ final class Admin_Module extends GWF_Method
 		return $nav.$back.$this->templateModule($this->_module);
 	}
 	
-	private function sanitize(Module_Admin $module)
+	private function sanitize()
 	{
 		if (false === ($this->mod = GWF_Module::loadModuleDB(Common::getGet('module')))) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array(Common::displayGet('module')));
@@ -86,7 +86,7 @@ final class Admin_Module extends GWF_Method
 	###################
 	### Config Form ###
 	###################
-	private function getForm(Module_Admin $module)
+	private function getForm()
 	{
 		$mod = $this->mod; $m = $module;
 		
@@ -146,7 +146,7 @@ final class Admin_Module extends GWF_Method
 	 * @param Module_Admin $module
 	 * @return GWF_Form
 	 */
-	private function getFormInstall(Module_Admin $module)
+	private function getFormInstall()
 	{
 		if (false === ($method = $this->_module->getMethod('Install'))) {
 			echo GWF_HTML::err('ERR_METHOD_MISSING', array( 'Install'));
@@ -210,7 +210,7 @@ final class Admin_Module extends GWF_Method
 	################
 	### Template ###
 	################
-	private function templateModule(Module_Admin $module)
+	private function templateModule()
 	{
 		$form = $this->getForm($this->_module);
 		$form_install = $this->getFormInstall($this->_module);
@@ -287,7 +287,7 @@ final class Admin_Module extends GWF_Method
 		return false;
 	}
 	
-	private function onUpdate(Module_Admin $module)
+	private function onUpdate()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module)))
@@ -372,7 +372,7 @@ final class Admin_Module extends GWF_Method
 		return $this->_module->message('msg_module_'.$enum, array($this->mod->display('module_name')));
 	}
 	
-	private function onDefaults(Module_Admin $module)
+	private function onDefaults()
 	{
 		$_POST['reinstall'] = true;
 		$_POST['modulename'] = $this->mod->getName();

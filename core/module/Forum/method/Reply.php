@@ -46,7 +46,7 @@ final class Forum_Reply extends GWF_Method
 	################
 	### Sanitize ###
 	################
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		$this->quoted = Common::getGet('quote') !== false;
 		
@@ -92,7 +92,7 @@ final class Forum_Reply extends GWF_Method
 	############
 	### Form ###
 	############
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$msg = $this->quoted === true ? $this->getQuotedMessage() : '';
 		$buttons = array(
@@ -145,7 +145,7 @@ final class Forum_Reply extends GWF_Method
 		return $this->_module->templatePHP('reply.php', $tVars);
 	}
 	
-	private function templateLastPosts(Module_Forum $module)
+	private function templateLastPosts()
 	{
 		$tVars = array(
 			'thread' => $this->thread,
@@ -171,7 +171,7 @@ final class Forum_Reply extends GWF_Method
 	###############
 	### Preview ###
 	###############
-	private function onPreview(Module_Forum $module)
+	private function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		$error = $form->validate($this->_module);
@@ -207,7 +207,7 @@ final class Forum_Reply extends GWF_Method
 	#############
 	### Reply ###
 	#############
-	private function onReply(Module_Forum $module)
+	private function onReply()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

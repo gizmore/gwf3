@@ -18,7 +18,7 @@ final class Usergroups_ShowGroups extends GWF_Method
 		return $this->templateGroups($this->_module);
 	}
 	
-	private function templateGroups(Module_Usergroups $module)
+	private function templateGroups()
 	{
 		$ipp = 20;
 		$table = GDO::table('GWF_Group');

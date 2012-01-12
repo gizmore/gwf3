@@ -12,7 +12,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		return $this->templateForm($this->_module);
 	}
 	
-	private function templateForm(Module_Usergroups $module)
+	private function templateForm()
 	{
 		$form = $this->formSearch($this->_module);
 		$tVars = array(
@@ -24,7 +24,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		return $this->_module->templatePHP('search_adv.php', $tVars);
 	}
 	
-	private function formSearch(Module_Usergroups $module)
+	private function formSearch()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -53,7 +53,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 	public static function validate_country(Module_Usergroups $m, $v) { return GWF_CountrySelect::validate_countryid($v, true); }
 	public static function validate_language(Module_Usergroups $m, $v) { return GWF_LangSelect::validate_langid($v, true); }
 	
-	private function onSearch(Module_Usergroups $module)
+	private function onSearch()
 	{
 		$form = $this->formSearch($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -81,7 +81,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		return $this->onSearchB($this->_module);
 	}
 
-	private function onSearchB(Module_Usergroups $module)
+	private function onSearchB()
 	{
 		$whitelist = array('user_name', 'user_countryid', 'prof_icq', 'prof_msn', 'prof_jabber', 'prof_skype', 'prof_yahoo', 'prof_aim');
 		
@@ -152,7 +152,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		return $back;
 	}
 	
-	private function getWhereQuery(Module_Usergroups $module)
+	private function getWhereQuery()
 	{
 		$where = '';
 		

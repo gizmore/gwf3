@@ -62,7 +62,7 @@ final class Profile_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateSettings(Module_Profile $module)
+	private function templateSettings()
 	{
 		$profile = $this->getProfile();
 		$form = $this->getForm($this->_module, $profile);
@@ -72,7 +72,7 @@ final class Profile_Form extends GWF_Method
 		return $this->_module->templatePHP('settings.php', $tVars);
 	}
 
-	private function onEditSettings(Module_Profile $module)
+	private function onEditSettings()
 	{
 		$profile = $this->getProfile();
 		$form = $this->getForm($this->_module, $profile);

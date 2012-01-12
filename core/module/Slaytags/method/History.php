@@ -6,7 +6,7 @@ final class Slaytags_History extends GWF_Method
 		return $this->templateHistory($this->_module);
 	}
 	
-	private function templateHistory(Module_Slaytags $module)
+	private function templateHistory()
 	{
 		$table = GDO::table('Slay_PlayHistory');
 		$ipp = Slay_PlayHistory::IPP;

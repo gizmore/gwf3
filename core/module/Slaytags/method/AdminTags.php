@@ -8,7 +8,7 @@ final class Slaytags_AdminTags extends GWF_Method
 		return $this->templateAdminTags($this->_module);
 	}
 	
-	private function templateAdminTags(Module_Slaytags $module)
+	private function templateAdminTags()
 	{
 		$tVars = array(
 		);

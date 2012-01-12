@@ -22,7 +22,7 @@ final class Links_NewLinks extends GWF_Method
 		return $this->templateNewLinks($this->_module);
 	}
 	
-	private function templateNewLinks(Module_Links $module)
+	private function templateNewLinks()
 	{
 		$user = GWF_Session::getUser();
 		$links = GDO::table('GWF_Links');
@@ -47,7 +47,7 @@ final class Links_NewLinks extends GWF_Method
 		return $this->_module->templatePHP('new_links.php', $tVars);
 	}
 	
-	private function onMarkAllRead(Module_Links $module)
+	private function onMarkAllRead()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return '';

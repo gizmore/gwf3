@@ -30,7 +30,7 @@ final class Forum_EditBoard extends GWF_Method
 		return $this->templateEditBoard($this->_module);
 	}
 	
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		if (false === ($this->board = $this->_module->getCurrentBoard())) {
 			return $this->_module->error('err_board');
@@ -38,7 +38,7 @@ final class Forum_EditBoard extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$buttons = array(
 			'edit_board' => $this->_module->lang('btn_edit_board'),
@@ -61,7 +61,7 @@ final class Forum_EditBoard extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateEditBoard(Module_Forum $module)
+	private function templateEditBoard()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -70,7 +70,7 @@ final class Forum_EditBoard extends GWF_Method
 		return $this->_module->templatePHP('edit_board.php', $tVars);
 	}
 
-	private function onEditBoard(Module_Forum $module)
+	private function onEditBoard()
 	{
 		$form = $this->getForm($this->_module);
 		

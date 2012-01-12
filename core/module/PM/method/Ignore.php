@@ -26,7 +26,7 @@ final class PM_Ignore extends GWF_Method
 		return $this->templateIgnore($this->_module);
 	}
 	
-	private function templateIgnore(Module_PM $module)
+	private function templateIgnore()
 	{
 		return $this->_module->requestMethodB('Overview');
 	}

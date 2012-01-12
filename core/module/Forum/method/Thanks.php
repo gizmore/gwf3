@@ -14,7 +14,7 @@ final class Forum_Thanks extends GWF_Method
 		return $this->onThanks($this->_module);
 	}
 	
-	private function onThanks(Module_Forum $module)
+	private function onThanks()
 	{
 		if (false === ($post = $this->_module->getCurrentPost())) {
 			return $this->_module->error('err_post');

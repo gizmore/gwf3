@@ -9,7 +9,7 @@ final class Usergroups_Search extends GWF_Method
 		return $this->templateUsers($this->_module);
 	}
 	
-	private function getFormQuick(Module_Usergroups $module)
+	private function getFormQuick()
 	{
 		$data = array(
 			'term' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),

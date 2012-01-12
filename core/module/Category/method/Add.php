@@ -21,7 +21,7 @@ final class Category_Add extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function getForm(Module_Category $module)
+	private function getForm()
 	{
 		$data = array(
 			'key' => array(GWF_Form::STRING, '', $this->_module->lang('th_key')),
@@ -31,7 +31,7 @@ final class Category_Add extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAdd(Module_Category $module)
+	private function templateAdd()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -57,7 +57,7 @@ final class Category_Add extends GWF_Method
 		return false;
 	}
 	
-	private function onAdd(Module_Category $module)
+	private function onAdd()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

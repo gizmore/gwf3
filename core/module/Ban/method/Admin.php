@@ -11,7 +11,7 @@ final class Ban_Admin extends GWF_Method
 		return $this->templateAdmin($this->_module);
 	}
 	
-	private function templateAdmin(Module_Ban $module)
+	private function templateAdmin()
 	{
 		$bans = GDO::table('GWF_Ban');
 		
@@ -35,7 +35,7 @@ final class Ban_Admin extends GWF_Method
 		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
-	private function getFormBan(Module_Ban $module)
+	private function getFormBan()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -48,7 +48,7 @@ final class Ban_Admin extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onAddBan(Module_Ban $module)
+	private function onAddBan()
 	{
 		$form = $this->getFormBan($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

@@ -12,7 +12,7 @@ final class Slaytags_MyTags extends GWF_Method
 		return $this->templateMyTags($this->_module);
 	}
 	
-	private function templateMyTags(Module_Slaytags $module)
+	private function templateMyTags()
 	{
 		$user = GWF_Session::getUser();
 		$uid = $user->getID();

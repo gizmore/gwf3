@@ -24,7 +24,7 @@ final class Download_Add extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function templateAdd(Module_Download $module)
+	private function templateAdd()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -35,7 +35,7 @@ final class Download_Add extends GWF_Method
 		return $this->_module->templatePHP('add.php', $tVars);
 	}
 	
-	private function getForm(Module_Download $module)
+	private function getForm()
 	{
 		$data = array();
 		
@@ -82,7 +82,7 @@ final class Download_Add extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onAdd(Module_Download $module)
+	private function onAdd()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module)))
@@ -177,17 +177,17 @@ final class Download_Add extends GWF_Method
 		GWF_Session::set(self::SESS_FILE, $file);
 	}
 	
-	private function clearFile(Module_Download $module)
+	private function clearFile()
 	{
 		GWF_Session::remove(self::SESS_FILE);
 	}
 	
-	private function getFile(Module_Download $module)
+	private function getFile()
 	{
 		return GWF_Session::getOrDefault(self::SESS_FILE, false);
 	}
 	
-	private function onUpload(Module_Download $module)
+	private function onUpload()
 	{
 		$form = $this->getForm($this->_module);
 		if (false === ($file = $form->getVar('file'))) {
@@ -196,7 +196,7 @@ final class Download_Add extends GWF_Method
 		$this->uploadedFile($this->_module, $form);
 	}
 	
-	private function onRemove(Module_Download $module)
+	private function onRemove()
 	{
 		$this->clearFile($this->_module);
 	}

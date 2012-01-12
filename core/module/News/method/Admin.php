@@ -24,7 +24,7 @@ final class News_Admin extends GWF_Method
 		return $this->templateOverview($this->_module);
 	}
 	
-	private function sanitize(Module_News $module)
+	private function sanitize()
 	{
 		$news = GDO::table('GWF_News');
 		$this->nItems = $news->countRows();
@@ -36,7 +36,7 @@ final class News_Admin extends GWF_Method
 		$this->orderby = $news->getMultiOrderby($this->by, $this->dir);
 	}
 	
-	private function templateOverview(Module_News $module)
+	private function templateOverview()
 	{
 		$tVars = array(
 			'news' => GWF_News::getNews($this->_module->getNewsPerAdminPage(), 0, $this->page, $this->orderby, true),
@@ -48,7 +48,7 @@ final class News_Admin extends GWF_Method
 		return $this->_module->templatePHP('admin.php', $tVars);
 	}
 	
-	private function getPageMenu(Module_News $module)
+	private function getPageMenu()
 	{
 		$href = sprintf(GWF_WEB_ROOT.'news/admin/page/%%PAGE%%/by/%s/%s', $this->by, $this->dir);
 		return GWF_PageMenu::display($this->page, $this->nPages, $href);

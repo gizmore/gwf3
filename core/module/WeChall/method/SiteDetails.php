@@ -53,7 +53,7 @@ final class WeChall_SiteDetails extends GWF_Method
 		return GDO::table('WC_RegAt')->selectColumn('user_name', "regat_lastdate>'{$cut}' AND regat_sid={$siteid}", '', array('user'));
 	}
 	
-	private function onQuickJump(Module_WeChall $module)
+	private function onQuickJump()
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {

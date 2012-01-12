@@ -33,7 +33,7 @@ final class Contact_Form extends GWF_Method
 		return strlen($arg) < 5 ? $this->_module->lang('err_message') : false;
 	}
 
-	private function getForm(Module_Contact $module)
+	private function getForm()
 	{
 		$user = GWF_Session::getUser();
 		$default_email = $user === false ? '' : $user->getVar('user_email');
@@ -49,7 +49,7 @@ final class Contact_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateForm(Module_Contact $module)
+	private function templateForm()
 	{
 		$form = $this->getForm($this->_module);
 		$skype = $this->_module->getContactSkype();
@@ -62,7 +62,7 @@ final class Contact_Form extends GWF_Method
 		return $this->_module->template('form.tpl', $tVars);
 	}
 
-	private function getAdminProfiles(Module_Contact $module)
+	private function getAdminProfiles()
 	{
 		$admin = GWF_Group::getByName('admin')->getID();
 		$u = GWF_TABLE_PREFIX.'user';
@@ -82,7 +82,7 @@ final class Contact_Form extends GWF_Method
 		return substr($back, 2);
 	}
 
-	private function onSend(Module_Contact $module)
+	private function onSend()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

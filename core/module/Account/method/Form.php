@@ -349,7 +349,7 @@ final class Account_Form extends GWF_Method
 		return false;
 	}
 	
-	private function onApproveMail(Module_Account $module)
+	private function onApproveMail()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -371,7 +371,7 @@ final class Account_Form extends GWF_Method
 	###########
 	### GPG ###
 	###########
-	private function getFormGPG(Module_Account $module)
+	private function getFormGPG()
 	{
 		if (false === ($old_key = GWF_PublicKey::getKeyForUID(GWF_Session::getUserID()))) {
 			$old_key = '';
@@ -386,7 +386,7 @@ final class Account_Form extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onSetupGPG(Module_Account $module)
+	private function onSetupGPG()
 	{
 		$form = $this->getFormGPG($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -457,7 +457,7 @@ final class Account_Form extends GWF_Method
 		return $this->_module->langUser($user, 'mailb_gpg', array($user->displayUsername(), $link));
 	}
 	
-	private function onRemoveGPG(Module_Account $module)
+	private function onRemoveGPG()
 	{
 		$_POST = array();
 		

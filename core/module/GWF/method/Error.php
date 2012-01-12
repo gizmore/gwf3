@@ -18,7 +18,7 @@ final class GWF_Error extends GWF_Method
 		return $this->templateError($this->_module);
 	}
 	
-	private function templateError(Module_GWF $module)
+	private function templateError()
 	{
 		# Get the error page
 		$errors = array(403, 404);

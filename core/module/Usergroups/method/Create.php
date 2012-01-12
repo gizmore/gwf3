@@ -26,7 +26,7 @@ final class Usergroups_Create extends GWF_Method
 		return $this->templateCreate($this->_module);
 	}
 	
-	private function templateCreate(Module_Usergroups $module)
+	private function templateCreate()
 	{
 		
 		$form = $this->formCreate($this->_module);
@@ -36,7 +36,7 @@ final class Usergroups_Create extends GWF_Method
 		return $this->_module->templatePHP('create.php', $tVars);
 	}
 	
-	private function formCreate(Module_Usergroups $module)
+	private function formCreate()
 	{
 		$data = array(
 			'name' => array(GWF_Form::STRING, '', $this->_module->lang('th_name')),
@@ -50,7 +50,7 @@ final class Usergroups_Create extends GWF_Method
 	public function validate_name(Module_Usergroups $module, $arg) { return $this->_module->validate_name($arg); }
 	public function validate_join(Module_Usergroups $module, $arg) { return $this->_module->validate_join($arg); }
 	public function validate_view(Module_Usergroups $module, $arg) { return $this->_module->validate_view($arg); }
-	private function onCreate(Module_Usergroups $module)
+	private function onCreate()
 	{
 		$form = $this->formCreate($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

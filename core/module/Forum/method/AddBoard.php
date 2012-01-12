@@ -27,7 +27,7 @@ final class Forum_AddBoard extends GWF_Method
 		return $this->templateAddBoard($this->_module);
 	}
 	
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		$table = GDO::table('GWF_ForumBoard');
 		if (false === ($this->board = $table->getRow($this->_module->getBoardID()))) {
@@ -36,7 +36,7 @@ final class Forum_AddBoard extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_Forum $module)
+	private function getForm()
 	{
 		$parent = $this->_module->getCurrentBoard();
 		
@@ -54,7 +54,7 @@ final class Forum_AddBoard extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAddBoard(Module_Forum $module)
+	private function templateAddBoard()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -74,7 +74,7 @@ final class Forum_AddBoard extends GWF_Method
 	#################
 	### Add Board ###
 	#################
-	private function onAddBoard(Module_Forum $module)
+	private function onAddBoard()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

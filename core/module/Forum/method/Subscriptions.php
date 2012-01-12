@@ -8,7 +8,7 @@ final class Forum_Subscriptions extends GWF_Method
 		return $this->templateSubscription($this->_module);
 	}
 	
-	private function templateSubscription(Module_Forum $module)
+	private function templateSubscription()
 	{
 		$tsub = GDO::table('GWF_ForumSubscription');
 		$bsub = GDO::table('GWF_ForumSubscrBoard');

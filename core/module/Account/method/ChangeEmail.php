@@ -85,7 +85,7 @@ final class Account_ChangeEmail extends GWF_Method
 		return $this->_module->template('changemail.tpl', $tVars);
 	}
 	
-	private function onRequestB(Module_Account $module)
+	private function onRequestB()
 	{
 		$token = Common::getPost('token');
 		$userid = (int) Common::getPost('userid');

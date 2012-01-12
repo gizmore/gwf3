@@ -27,7 +27,7 @@ final class Chat_Page extends GWF_Method
 		return $this->templatePage($this->_module);
 	}
 	
-	private function getForm(Module_Chat $module)
+	private function getForm()
 	{
 		$data = array();
 		if (false === ($nick = $this->_module->getNickname())) {
@@ -41,7 +41,7 @@ final class Chat_Page extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templatePage(Module_Chat $module)
+	private function templatePage()
 	{
 		$form = $this->getForm($this->_module);
 		
@@ -79,7 +79,7 @@ final class Chat_Page extends GWF_Method
 	public function validate_target(Module_Chat $module, $arg) { return GWF_ChatValidator::validate_target($this->_module, $arg); }
 	public function validate_message(Module_Chat $module, $arg) { return GWF_ChatValidator::validate_message($this->_module, $arg); }
 	
-	private function onPost(Module_Chat $module)
+	private function onPost()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

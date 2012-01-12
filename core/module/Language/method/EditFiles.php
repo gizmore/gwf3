@@ -86,7 +86,7 @@ final class Language_EditFiles extends GWF_Method
 		return is_file($fullpath.'../'.$filename);
 	}
 	
-	private function templateFiles(Module_Language $module)
+	private function templateFiles()
 	{
 		$this->gatherFiles();
 		

@@ -156,7 +156,7 @@ final class WeChall_SiteRankings extends GWF_Method
 	}
 
 	### Quickjump
-	private function onQuickjump(Module_WeChall $module)
+	private function onQuickjump()
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {

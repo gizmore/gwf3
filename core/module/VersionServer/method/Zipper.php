@@ -75,7 +75,7 @@ final class VersionServer_Zipper extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateZipper(Module_VersionServer $module)
+	private function templateZipper()
 	{
 		$form = $this->getForm($this->_module);
 		

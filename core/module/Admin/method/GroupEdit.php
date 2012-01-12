@@ -35,7 +35,7 @@ final class Admin_GroupEdit extends GWF_Method
 	################
 	### Sanitize ###
 	################
-	private function sanitize(Module_Admin $module)
+	private function sanitize()
 	{
 		if (false === ($this->group = GWF_Group::getByID(Common::getGetString('gid')))) {
 			return $this->_module->error('err_group');
@@ -71,7 +71,7 @@ final class Admin_GroupEdit extends GWF_Method
 	################
 	### Template ###
 	################
-	private function getForm(Module_Admin $module)
+	private function getForm()
 	{
 		$g = $this->group;
 		$data = array(
@@ -86,7 +86,7 @@ final class Admin_GroupEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormAdd(Module_Admin $module)
+	private function getFormAdd()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -95,7 +95,7 @@ final class Admin_GroupEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEdit(Module_Admin $module)
+	private function templateEdit()
 	{
 		$groups = GDO::table('GWF_UserGroup');
 		$gid = $this->group->getID();
@@ -122,7 +122,7 @@ final class Admin_GroupEdit extends GWF_Method
 	###############
 	### On Edit ###
 	###############
-	private function onEditGroup(Module_Admin $module)
+	private function onEditGroup()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -143,7 +143,7 @@ final class Admin_GroupEdit extends GWF_Method
 	#######################+
 	### On Add To Group ###
 	#######################
-	private function onAddToGroup(Module_Admin $module)
+	private function onAddToGroup()
 	{
 		$form = $this->getFormAdd($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

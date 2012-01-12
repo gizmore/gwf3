@@ -8,7 +8,7 @@ final class Audit_EditLog extends GWF_Method
 		return $this->templateEditLog($this->_module);
 	}
 	
-	private function templateEditLog(Module_Audit $module)
+	private function templateEditLog()
 	{
 		return 'NOT IMPLEMENTED';
 	}

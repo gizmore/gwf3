@@ -28,7 +28,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		return $this->templateDescr($this->_module);
 	}
 	
-	private function sanitize(Module_WeChall $module)
+	private function sanitize()
 	{
 		if (false === ($this->site = WC_Site::getByID(Common::getGetInt('siteid', 0)))) {
 			return array($this->_module->lang('err_site'));
@@ -41,7 +41,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		return false;
 	}
 	
-	private function templateDescr(Module_WeChall $module)
+	private function templateDescr()
 	{
 		$descr = WC_SiteDescr::getDescriptions($this->site->getID());
 		$form_new = $this->getFormNew($this->_module, $descr);
@@ -101,7 +101,7 @@ final class WeChall_SiteDescr extends GWF_Method
 	public function validate_descr(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'descr', $arg, 12, 4096); } 
 	public function validate_descr_new(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'descr_new', $arg, 12, 4096); } 
 	
-	private function onAdd(Module_WeChall $module)
+	private function onAdd()
 	{
 		$descr = WC_SiteDescr::getDescriptions($this->site->getID());
 		$form = $this->getFormNew($this->_module, $descr);
@@ -135,7 +135,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		return (int)$lid;
 	}
 		
-	private function onEdit(Module_WeChall $module)
+	private function onEdit()
 	{
 		if (false === ($langid = $this->getPostLangID('edit'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
@@ -152,7 +152,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		return $this->_module->message('msg_edit_descr');
 	}
 
-	private function onDelete(Module_WeChall $module)
+	private function onDelete()
 	{
 		if (false === ($langid = $this->getPostLangID('delete'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
@@ -171,7 +171,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		return $this->_module->message('msg_del_descr');
 	}
 	
-	private function onDefault(Module_WeChall $module)
+	private function onDefault()
 	{
 		if (false === ($langid = $this->getPostLangID('default'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');

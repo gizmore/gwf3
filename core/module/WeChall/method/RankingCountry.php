@@ -27,7 +27,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		return $this->templateRanking($this->_module);
 	}
 	
-	private function templateRanking(Module_WeChall $module)
+	private function templateRanking()
 	{
 		$whitelist = array('countryname','totalscore','users','avg','top3','topuser','spc');
 		$by = GDO::getWhitelistedByS(Common::getGet('by', 'avg'), $whitelist, 'avg');

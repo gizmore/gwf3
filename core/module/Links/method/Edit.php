@@ -30,7 +30,7 @@ final class Links_Edit extends GWF_Method
 	}
 	
 	### Sane
-	private function sanitize(Module_Links $module)
+	private function sanitize()
 	{
 		if (false === ($this->link = GWF_Links::getByID(Common::getGet('lid')))) {
 			return $this->_module->error('err_link');
@@ -44,7 +44,7 @@ final class Links_Edit extends GWF_Method
 	}
 	
 	### Form
-	private function getForm(Module_Links $module)
+	private function getForm()
 	{
 		$l = $this->link;
 		$data = array(
@@ -73,7 +73,7 @@ final class Links_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function collectTags(Module_Links $module)
+	private function collectTags()
 	{
 		$back = array();
 		$tags = GWF_LinksTag::getCloud();
@@ -85,7 +85,7 @@ final class Links_Edit extends GWF_Method
 	}
 	
 	### Template
-	private function templateEdit(Module_Links $module)
+	private function templateEdit()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -95,7 +95,7 @@ final class Links_Edit extends GWF_Method
 	}
 	
 	### Action
-	private function onDelete(Module_Links $module)
+	private function onDelete()
 	{
 		if (false !== ($error = $this->link->deleteLink($this->_module))) {
 			return $error;
@@ -103,7 +103,7 @@ final class Links_Edit extends GWF_Method
 		return $this->_module->message('msg_deleted');
 	}
 	
-	private function onEdit(Module_Links $module)
+	private function onEdit()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

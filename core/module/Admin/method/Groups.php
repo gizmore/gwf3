@@ -27,7 +27,7 @@ final class Admin_Groups extends GWF_Method
 	################
 	### Sanitize ###
 	################
-//	private function sanitize(Module_Admin $module)
+//	private function sanitize()
 //	{
 //		return false;
 //	}
@@ -35,7 +35,7 @@ final class Admin_Groups extends GWF_Method
 	##############
 	### Groups ###
 	##############
-	private function templateGroups(Module_Admin $module)
+	private function templateGroups()
 	{
 		$grps = GDO::table('GWF_Group');
 		$by = Common::getGet('by', 'group_id');

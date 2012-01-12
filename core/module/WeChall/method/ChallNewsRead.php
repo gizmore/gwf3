@@ -12,7 +12,7 @@ final class WeChall_ChallNewsRead extends GWF_Method
 		return $this->onMarkRead($this->_module);
 	}
 	
-	private function onMarkRead(Module_WeChall $module)
+	private function onMarkRead()
 	{
 		$user = GWF_Session::getUser();
 		$userid = $user->getID();

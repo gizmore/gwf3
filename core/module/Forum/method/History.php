@@ -35,7 +35,7 @@ final class Forum_History extends GWF_Method
 	private $orderby;
 	private $conditions;
 	
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		$this->threads = GDO::table('GWF_ForumThread');
 		$this->conditions = sprintf('thread_postcount>0 AND (%s) AND thread_options&%d=0', GWF_ForumThread::getPermQuery(), GWF_ForumThread::IN_MODERATION|GWF_ForumThread::INVISIBLE);
@@ -48,7 +48,7 @@ final class Forum_History extends GWF_Method
 		$this->orderby = $this->threads->getMultiOrderby($this->by, $this->dir);
 	}
 	
-	private function templateLatest(Module_Forum $module)
+	private function templateLatest()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_history', array($this->page, $this->nPages)));
 		

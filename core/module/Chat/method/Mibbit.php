@@ -17,7 +17,7 @@ final class Chat_Mibbit extends GWF_Method
 		return $this->templateMibbit($this->_module);
 	}
 	
-	private function templateMibbit(Module_Chat $module)
+	private function templateMibbit()
 	{
 		if (!$this->_module->cfgMibbit()) {
 			return GWF_HTML::err('ERR_MODULE_DISABLED', array( 'Chat_Mibbit'));

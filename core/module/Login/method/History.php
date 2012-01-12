@@ -13,7 +13,7 @@ final class Login_History extends GWF_Method
 		return $this->templateHistory($this->_module);
 	}
 	
-	private function templateHistory(Module_Login $module)
+	private function templateHistory()
 	{
 		$userid = GWF_Session::getUser()->getID();
 		$history = GDO::table('GWF_LoginHistory');
@@ -52,7 +52,7 @@ final class Login_History extends GWF_Method
 		return $this->_module->template('history.tpl', $tVars);
 	}
 	
-	private function formDelete(Module_Login $module)
+	private function formDelete()
 	{
 		$data = array(
 			'clear' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_clear')),
@@ -60,7 +60,7 @@ final class Login_History extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function onClear(Module_Login $module)
+	private function onClear()
 	{
 		$form = $this->formDelete($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

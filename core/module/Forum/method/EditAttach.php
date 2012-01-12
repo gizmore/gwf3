@@ -38,7 +38,7 @@ final class Forum_EditAttach extends GWF_Method
 		return $this->templateEdit($this->_module);
 	}
 
-	private function formEdit(Module_Forum $module)
+	private function formEdit()
 	{
 		$buttons = array('edit'=>$this->_module->lang('btn_edit_attach'), 'delete'=>$this->_module->lang('btn_del_attach'));
 		$data = array();
@@ -49,7 +49,7 @@ final class Forum_EditAttach extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEdit(Module_Forum $module)
+	private function templateEdit()
 	{
 		$form = $this->formEdit($this->_module);
 		$tVars = array(
@@ -58,7 +58,7 @@ final class Forum_EditAttach extends GWF_Method
 		return $this->_module->templatePHP('edit_attach.php', $tVars);
 	}
 	
-	private function onDelete(Module_Forum $module)
+	private function onDelete()
 	{
 		$form = $this->formEdit($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -74,7 +74,7 @@ final class Forum_EditAttach extends GWF_Method
 		return $this->_module->message('msg_attach_deleted', array($this->post->getShowHREF()));
 	}
 	
-	private function onEdit(Module_Forum $module)
+	private function onEdit()
 	{
 		$form = $this->formEdit($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

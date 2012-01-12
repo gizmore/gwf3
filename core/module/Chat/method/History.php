@@ -23,7 +23,7 @@ final class Chat_History extends GWF_Method
 	private $nPages = 1;
 	private $nItems = 0;
 	private $ipp = 1;
-	private function sanitize(Module_Chat $module)
+	private function sanitize()
 	{
 		$this->ipp = $this->_module->getHistmsgPerPage();
 		
@@ -38,7 +38,7 @@ final class Chat_History extends GWF_Method
 		$this->page = Common::clamp((int)Common::getGet('page', $this->nPages), 1, $this->nPages);
 	}
 	
-	private function templateHistory(Module_Chat $module)
+	private function templateHistory()
 	{
 		$pagemenuHREF = $this->channel === '' ? 'chat/history/page-%PAGE%' : 'chat/history/for/'.$this->channel.'/page-%PAGE%';
 		$pagemenuHREF = GWF_WEB_ROOT.$pagemenuHREF;

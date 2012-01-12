@@ -24,7 +24,7 @@ final class Links_Add extends GWF_Method
 	 */
 	private $user;
 	
-	private function sanitize(Module_Links $module)
+	private function sanitize()
 	{
 		$this->user = GWF_Session::getUser();
 		
@@ -34,7 +34,7 @@ final class Links_Add extends GWF_Method
 		return false;
 	}
 	
-	private function getForm(Module_Links $module)
+	private function getForm()
 	{
 		$tags = Common::getPostString('link_tags', Common::getGet('tag'));
 		$data = array(
@@ -65,7 +65,7 @@ final class Links_Add extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function collectTags(Module_Links $module)
+	private function collectTags()
 	{
 		$back = array();
 		$tags = GWF_LinksTag::getCloud();
@@ -76,7 +76,7 @@ final class Links_Add extends GWF_Method
 		return implode(', ', $back);
 	}
 	
-	private function templateAdd(Module_Links $module)
+	private function templateAdd()
 	{
 		GWF_Website::setPageTitle($this->_module->lang('ft_add'));
 		
@@ -88,7 +88,7 @@ final class Links_Add extends GWF_Method
 		return $this->_module->templatePHP('add.php', $tVars);
 	}
 	
-	private function onPreview(Module_Links $module)
+	private function onPreview()
 	{
 		$form = $this->getForm($this->_module);
 		$errors = $form->validate($this->_module);
@@ -119,7 +119,7 @@ final class Links_Add extends GWF_Method
 	public function validate_link_descr(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr1($this->_module, $arg); }
 	public function validate_link_descr2(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr2($this->_module, $arg); }
 	
-	private function onAdd(Module_Links $module)
+	private function onAdd()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

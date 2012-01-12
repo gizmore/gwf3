@@ -29,7 +29,7 @@ final class PM_Search extends GWF_Method
 //		return false;
 //	}
 
-	private function getFormQuick(Module_PM $module)
+	private function getFormQuick()
 	{
 		$data = array(
 			'mo' => array(GWF_Form::HIDDEN, 'PM'),
@@ -84,7 +84,7 @@ final class PM_Search extends GWF_Method
 //		return $this->_module->templatePHP('search.php', $tVars);
 //	}
 
-	private function getFormAdv(Module_PM $module)
+	private function getFormAdv()
 	{
 		$data = array(
 			'from' => array(GWF_Form::STRING, '', $this->_module->lang('from')),
@@ -96,7 +96,7 @@ final class PM_Search extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onAdvSearch(Module_PM $module)
+	private function onAdvSearch()
 	{
 //		GDO::table('GWF_PM')->searchAdv(GWF_Session::getUser(), $_POST, $orderby, $ipp, GWF_PageMenu::getFrom(Common::get))
 	}

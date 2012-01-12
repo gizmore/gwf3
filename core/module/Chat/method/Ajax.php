@@ -52,7 +52,7 @@ final class Chat_Ajax extends GWF_Method
 		return '1';
 	}
 	
-	private function onAjaxUpdate(Module_Chat $module)
+	private function onAjaxUpdate()
 	{
 		GWF_ChatOnline::onRequest($this->_module);
 		$times = $this->getAjaxTimes();

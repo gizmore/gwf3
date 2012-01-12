@@ -10,7 +10,7 @@ final class Admin_BaseCFG extends GWF_Method
 		return $this->templateBase($this->_module);
 	}
 	
-	private function templateBase(Module_Admin $module)
+	private function templateBase()
 	{
 		$form = $this->formGPGSig($this->_module);
 		$tVars = array(
@@ -31,7 +31,7 @@ final class Admin_BaseCFG extends GWF_Method
 		return false;
 	}
 	
-	private function formGPGSig(Module_Admin $module)
+	private function formGPGSig()
 	{
 		$data = array(
 			'gpg_paste' =>  array(GWF_Form::MESSAGE_NOBB, '', $this->_module->lang('th_gpg_key')),
@@ -40,7 +40,7 @@ final class Admin_BaseCFG extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onGPGSig(Module_Admin $module)
+	private function onGPGSig()
 	{
 		$form = $this->formGPGSig($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

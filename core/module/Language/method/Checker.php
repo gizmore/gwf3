@@ -18,7 +18,7 @@ final class Language_Checker extends GWF_Method
 		return $this->templateChecker($this->_module);
 	}
 	
-	private function templateChecker(Module_Language $module)
+	private function templateChecker()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -27,7 +27,7 @@ final class Language_Checker extends GWF_Method
 		return $this->_module->templatePHP('checker.php', $tVars);
 	}
 	
-	private function getForm(Module_Language $module)
+	private function getForm()
 	{
 		$data = array(
 			'langs' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langs', Common::getPost('langs', 'en'), true), $this->_module->lang('th_langs')),
@@ -39,7 +39,7 @@ final class Language_Checker extends GWF_Method
 	
 	public function validate_langs(Module_Language $module, $arg) { return false; }
 	
-	private function onCheck(Module_Language $module)
+	private function onCheck()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -55,7 +55,7 @@ final class Language_Checker extends GWF_Method
 		return $this->onCheckB($this->_module).$this->templateChecker($this->_module);
 	}
 	
-	private function onCheckB(Module_Language $module)
+	private function onCheckB()
 	{
 		$this->onCheckRecursive(GWF_CORE_PATH.'lang');
 		$this->onCheckRecursive(GWF_CORE_PATH.'module');

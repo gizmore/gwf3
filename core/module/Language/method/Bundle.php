@@ -21,7 +21,7 @@ final class Language_Bundle extends GWF_Method
 		return $this->templateBundle($this->_module);
 	}
 	
-	private function templateBundle(Module_Language $module)
+	private function templateBundle()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -30,7 +30,7 @@ final class Language_Bundle extends GWF_Method
 		return $this->_module->templatePHP('bundle.php', $tVars);
 	}
 
-	private function getForm(Module_Language $module)
+	private function getForm()
 	{
 		$data = array(
 			'target' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'target', Common::getPost('target')), $this->_module->lang('th_target')),
@@ -115,7 +115,7 @@ final class Language_Bundle extends GWF_Method
 	###############
 	### Missing ###
 	###############
-	private function onCreateMissing(Module_Language $module)
+	private function onCreateMissing()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {
@@ -266,7 +266,7 @@ final class Language_Bundle extends GWF_Method
 	##############
 	### Bundle ###
 	##############
-	private function onBundle(Module_Language $module)
+	private function onBundle()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

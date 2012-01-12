@@ -8,7 +8,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 		return $this->onMarkRead($this->_module);
 	}
 	
-	private function onMarkRead(Module_WeChall $module)
+	private function onMarkRead()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));

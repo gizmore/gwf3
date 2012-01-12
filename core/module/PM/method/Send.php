@@ -56,7 +56,7 @@ final class PM_Send extends GWF_Method
 	 * @var GWF_User
 	 */
 	private $user;
-	private function sanitize(Module_PM $module)
+	private function sanitize()
 	{
 		if (!GWF_User::isLoggedIn() && !$this->_module->cfgGuestPMs()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
@@ -120,7 +120,7 @@ final class PM_Send extends GWF_Method
 	 * @var GWF_User
 	 */
 	private $rec = false;
-	private function create(Module_PM $module)
+	private function create()
 	{
 		if ( (false === ($this->rec = GWF_User::getByName(Common::getPost('username')))) && (false === ($this->rec = GWF_User::getByName(Common::getPost('username_sel')))) ) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->_module->requestMethodB('Overview');
@@ -128,7 +128,7 @@ final class PM_Send extends GWF_Method
 		GWF_Website::redirect(GWF_WEB_ROOT.'pm/send/to/'.$this->rec->urlencode('user_name'));
 		die();
 	}
-	private function create2(Module_PM $module)
+	private function create2()
 	{
 		if (false === ($this->rec = GWF_User::getByName(Common::getGet('to')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->_module->requestMethodB('Overview');
@@ -145,7 +145,7 @@ final class PM_Send extends GWF_Method
 		return $this->templateSend($this->_module);
 	}
 	
-	private function getForm(Module_PM $module)
+	private function getForm()
 	{
 		$data = array(
 			'title' => array(GWF_Form::STRING, $this->getFormTitle($this->_module), $this->_module->lang('th_pm_title')),
@@ -160,7 +160,7 @@ final class PM_Send extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormTitle(Module_PM $module)
+	private function getFormTitle()
 	{
 		if ($this->pm === false)
 		{
@@ -174,7 +174,7 @@ final class PM_Send extends GWF_Method
 		}
 	}
 	
-	private function getFormMessage(Module_PM $module)
+	private function getFormMessage()
 	{
 		if ($this->pm === false)
 		{
@@ -194,7 +194,7 @@ final class PM_Send extends GWF_Method
 		}
 	}
 	
-	private function getSEOTitle(Module_PM $module)
+	private function getSEOTitle()
 	{ 
 		if ($this->pm === false)
 		{
@@ -241,7 +241,7 @@ final class PM_Send extends GWF_Method
 		return $this->_module->templatePHP('show.php', $tVars);
 	}
 	
-	private function preview(Module_PM $module)
+	private function preview()
 	{
 		$form = $this->getForm($this->_module);
 		$errors = $form->validate($this->_module);
@@ -268,7 +268,7 @@ final class PM_Send extends GWF_Method
 		return GWF_PM::fakePM($this->user->getID(), $this->getReceiver()->getID(), $form->getVar('title'), $form->getVar('message'));
 	}
 	
-	private function send(Module_PM $module)
+	private function send()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

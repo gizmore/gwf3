@@ -17,7 +17,7 @@ final class Slaytags_Search extends GWF_Method
 		return $this->templateSearch($this->_module);
 	}
 
-	private function templateSearch(Module_Slaytags $module)
+	private function templateSearch()
 	{
 		$form = $this->formSearch($this->_module);
 		$tVars = array(
@@ -33,7 +33,7 @@ final class Slaytags_Search extends GWF_Method
 		return $this->_module->template('search.tpl', $tVars);
 	}
 	
-	private function formSearch(Module_Slaytags $module)
+	private function formSearch()
 	{
 		$data = array();
 		$data['mo'] = array(GWF_Form::HIDDEN, 'Slaytags');
@@ -53,7 +53,7 @@ final class Slaytags_Search extends GWF_Method
 	public function validate_dir($m, $arg) { return false; }
 	public function validate_page($m, $arg) { return false; }
 		
-	private function onSearch(Module_Slaytags $module)
+	private function onSearch()
 	{
 		$form = $this->formSearch($this->_module);
 		if (false !== ($error = $form->validate($this->_module)))

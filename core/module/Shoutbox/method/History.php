@@ -18,7 +18,7 @@ final class Shoutbox_History extends GWF_Method
 		return $this->templatePage($this->_module);
 	}
 
-	private function templatePage(Module_Shoutbox $module)
+	private function templatePage()
 	{
 		$ipp = $this->_module->cfgIPP();
 		$shouts = GDO::table('GWF_Shoutbox');

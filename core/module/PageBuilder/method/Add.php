@@ -16,7 +16,7 @@ final class PageBuilder_Add extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function formAdd(Module_PageBuilder $module)
+	private function formAdd()
 	{
 		$mod_cat = GWF_Module::loadModuleDB('Category', true, true);
 		
@@ -50,7 +50,7 @@ final class PageBuilder_Add extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAdd(Module_PageBuilder $module)
+	private function templateAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		$tVars = array(
@@ -87,7 +87,7 @@ final class PageBuilder_Add extends GWF_Method
 		return false;
 	}
 	
-	private function onAdd(Module_PageBuilder $module)
+	private function onAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -158,7 +158,7 @@ final class PageBuilder_Add extends GWF_Method
 		return $this->_module->message('msg_added', array(GWF_WEB_ROOT.$page->getVar('page_url'), $page->getVar('page_title')));
 	}
 
-	private function buildGroupString(Module_PageBuilder $module)
+	private function buildGroupString()
 	{
 		if (!isset($_POST['groups'])) {
 			return '';
@@ -177,7 +177,7 @@ final class PageBuilder_Add extends GWF_Method
 	####################
 	### File uploads ###
 	####################
-	private function onUpload(Module_PageBuilder $module)
+	private function onUpload()
 	{
 		require_once GWF_CORE_PATH.'module/PageBuilder/PB_Uploader.php';
 		return PB_Uploader::onUpload($this->_module);

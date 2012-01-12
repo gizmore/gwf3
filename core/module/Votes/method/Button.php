@@ -22,7 +22,7 @@ final class Votes_Button extends GWF_Method
 		return $this->imageButton($this->_module);
 	}
 
-	private function sanitize(Module_Votes $module)
+	private function sanitize()
 	{
 		static $valid = array('gif', 'jpg', 'png');
 		$this->size = Common::clamp(Common::getGet('size', 1), 16, 64);
@@ -35,7 +35,7 @@ final class Votes_Button extends GWF_Method
 		return false;
 	}
 	
-	private function imageButton(Module_Votes $module)
+	private function imageButton()
 	{
 		$cs = $this->size;
 		$cx = $cy = round($this->size/2);

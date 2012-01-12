@@ -12,7 +12,7 @@ final class Konzert_AddTermin extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 	
-	private function templateAdd(Module_Konzert $module)
+	private function templateAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		$tVars = array(
@@ -21,7 +21,7 @@ final class Konzert_AddTermin extends GWF_Method
 		return $this->_module->template('at_add.tpl', $tVars);
 	}
 	
-	private function formAdd(Module_Konzert $module)
+	private function formAdd()
 	{
 		$data = array();
 		$data['date'] = array(GWF_Form::DATE_FUTURE, '', $this->_module->lang('th_date'), '', GWF_Date::LEN_DAY);
@@ -41,7 +41,7 @@ final class Konzert_AddTermin extends GWF_Method
 	public function validate_location($m, $arg) { return GWF_Validator::validateString($m, 'location', $arg, 2, 128); }
 	public function validate_tickets($m, $arg) { return GWF_Validator::validateString($m, 'tickets', $arg, 2, 128); }
 	
-	private function onAdd(Module_Konzert $module)
+	private function onAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		if (false !== ($error = $form->validate($this->_module)))

@@ -56,7 +56,7 @@ final class Forum_Subscribe extends GWF_Method
 		
 	}
 	
-	private function sanitize(Module_Forum $module)
+	private function sanitize()
 	{
 		if (false === ($this->thread = $this->_module->getCurrentThread())) {
 			return $this->_module->error('err_thread');
@@ -67,7 +67,7 @@ final class Forum_Subscribe extends GWF_Method
 		return false;
 	}
 	
-	private function onSubscribe(Module_Forum $module)
+	private function onSubscribe()
 	{
 		$back = $this->thread->getLastPageHREF();
 		
@@ -82,7 +82,7 @@ final class Forum_Subscribe extends GWF_Method
 		return $this->_module->message('msg_subscribed', array($back));
 	}
 
-	private function onUnSubscribe(Module_Forum $module)
+	private function onUnSubscribe()
 	{
 		$back = $this->thread->getLastPageHREF();
 		

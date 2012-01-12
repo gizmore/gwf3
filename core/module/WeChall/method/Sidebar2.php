@@ -39,7 +39,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			'</div>'.PHP_EOL;
 	}
 	
-	private function displayLogin(Module_WeChall $module)
+	private function displayLogin()
 	{
 		if (GWF_Session::isLoggedIn()) {
 			return '';
@@ -75,12 +75,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 		return $this->sidebox($this->_module->lang('ft_signup').$this->getHideButton($this->_module), $box);
 	}
 	
-	private function getHideButton(Module_WeChall $module)
+	private function getHideButton()
 	{
 		return '<span class="">'.GWF_Button::delete($this->getMethodHref('&rightpanel=0'), $this->_module->lang('btn_sidebar_on')).'</span>';
 	}
 	
-	private function displayStats(Module_WeChall $module)
+	private function displayStats()
 	{
 		$db = gdo_db();
 		$posts = GWF_TABLE_PREFIX.'forumpost';
@@ -98,7 +98,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			$this->sidebox($this->_module->lang('rp_stats').$btn, $box);
 	}
 	
-	private function displaySites(Module_WeChall $module)
+	private function displaySites()
 	{
 		$sites = array_reverse(WC_Site::getActiveSites());
 		

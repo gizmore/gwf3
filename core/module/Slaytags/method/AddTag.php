@@ -18,7 +18,7 @@ final class Slaytags_AddTag extends GWF_Method
 		return $this->templateAddTag($this->_module);
 	}
 	
-	private function templateAddTag(Module_Slaytags $module)
+	private function templateAddTag()
 	{
 		$form = $this->formAddTag($this->_module);
 		$tVars = array(
@@ -27,7 +27,7 @@ final class Slaytags_AddTag extends GWF_Method
 		return $this->_module->template('add_tag.tpl', $tVars);
 	}
 	
-	private function formAddTag(Module_Slaytags $module)
+	private function formAddTag()
 	{
 		$data = array(
 			'tag' => array(GWF_Form::STRING, '', $this->_module->lang('th_tag')),
@@ -45,7 +45,7 @@ final class Slaytags_AddTag extends GWF_Method
 		return GWF_Validator::validateString($m, 'tag', $arg, 1, 63, true);
 	}
 	
-	private function onAddTag(Module_Slaytags $module)
+	private function onAddTag()
 	{
 		$form = $this->formAddTag($this->_module);
 		if (false !== ($error = $form->validate($this->_module)))

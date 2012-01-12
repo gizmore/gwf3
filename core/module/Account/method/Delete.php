@@ -20,7 +20,7 @@ final class Account_Delete extends GWF_Method
 		return $this->templateDelete($this->_module);
 	}
 	
-	private function templateDelete(Module_Account $module)
+	private function templateDelete()
 	{
 		$form = $this->getForm($this->_module);
 		$tVars = array(
@@ -29,7 +29,7 @@ final class Account_Delete extends GWF_Method
 		return $this->_module->template('delete.tpl', $tVars);
 	}
 	
-	private function getForm(Module_Account $module)
+	private function getForm()
 	{
 		$data = array(
 			'note' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_accrm_note')),
@@ -39,7 +39,7 @@ final class Account_Delete extends GWF_Method
 	}
 	
 	public function validate_note(Module_Account $m, $arg) { return GWF_Validator::validateString($m, 'note', $arg, 0, 4096, false); }
-	private function onDelete(Module_Account $module)
+	private function onDelete()
 	{
 		$form = $this->getForm($this->_module);
 		if (false !== ($errors = $form->validate($this->_module))) {

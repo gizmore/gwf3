@@ -19,7 +19,7 @@ final class Konzert_Termine extends GWF_Method
 		return $this->templateTermine($this->_module);
 	}
 	
-	private function templateTermine(Module_Konzert $module)
+	private function templateTermine()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/termine'));
 		GWF_Website::setPageTitle($l->lang('page_title'));

@@ -12,7 +12,7 @@ final class Konzert_Proben extends GWF_Method
 		return $this->templateProben($this->_module);
 	}
 	
-	private function templateProben(Module_Konzert $module)
+	private function templateProben()
 	{
 		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/hoehrproben'));
 		GWF_Website::setPageTitle($l->lang('page_title'));

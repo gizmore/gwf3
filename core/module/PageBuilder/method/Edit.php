@@ -167,7 +167,7 @@ final class PageBuilder_Edit extends GWF_Method
 		return false;
 	}
 	
-	private function buildGroupString(Module_PageBuilder $module)
+	private function buildGroupString()
 	{
 		if (!isset($_POST['groups'])) {
 			return '';

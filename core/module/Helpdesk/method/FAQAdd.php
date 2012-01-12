@@ -11,7 +11,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 		return $this->templateAdd($this->_module);
 	}
 
-	private function templateAdd(Module_Helpdesk $module)
+	private function templateAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		$tVars = array(
@@ -20,7 +20,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 		return $this->_module->template('faq_add.tpl', $tVars);
 	}
 	
-	private function formAdd(Module_Helpdesk $module)
+	private function formAdd()
 	{
 		$data = array(
 			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', Common::getPostString('lang')), $this->_module->lang('th_lang'), $this->_module->lang('tt_lang')),
@@ -35,7 +35,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	public function validate_question($m, $arg) { return GWF_Validator::validateString($m, 'question', $arg, 4, $m->cfgMaxTitleLen(), false); }
 	public function validate_answer($m, $arg) { return GWF_Validator::validateString($m, 'answer', $arg, 8, $m->cfgMaxMessageLen(), false); }
 	
-	private function onAdd(Module_Helpdesk $module)
+	private function onAdd()
 	{
 		$form = $this->formAdd($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {

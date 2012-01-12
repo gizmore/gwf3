@@ -13,7 +13,7 @@ final class Helpdesk_Helpdesk extends GWF_Method
 		return $this->templateHelpdesk($this->_module);
 	}
 	
-	private function templateHelpdesk(Module_Helpdesk $module)
+	private function templateHelpdesk()
 	{
 		$tVars = array(
 			'href_new_ticket' => $this->_module->getMethodURL('CreateTicket'),
@@ -26,7 +26,7 @@ final class Helpdesk_Helpdesk extends GWF_Method
 		return $this->_module->template('helpdesk.tpl', $tVars);
 	}
 	
-	private function getTicketCount(Module_Helpdesk $module)
+	private function getTicketCount()
 	{
 		$uid = GWF_Session::getUserID();
 		$read = GWF_HelpdeskTicket::USER_READ;
@@ -36,7 +36,7 @@ final class Helpdesk_Helpdesk extends GWF_Method
 		return "[$c]";
 	}
 
-	private function getTicketCountStaff(Module_Helpdesk $module)
+	private function getTicketCountStaff()
 	{
 		$uid = GWF_Session::getUserID();
 		$read = GWF_HelpdeskTicket::STAFF_READ;
