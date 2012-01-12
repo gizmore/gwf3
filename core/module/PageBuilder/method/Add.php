@@ -6,14 +6,14 @@ final class PageBuilder_Add extends GWF_Method
 	public function execute()
 	{
 		if (isset($_POST['add'])) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
 		
 		if (isset($_POST['upload'])) {
-			return $this->onUpload($this->_module).$this->templateAdd($this->_module);
+			return $this->onUpload().$this->templateAdd($this->_module);
 		}
 		
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function formAdd()
@@ -52,7 +52,7 @@ final class PageBuilder_Add extends GWF_Method
 	
 	private function templateAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
@@ -89,9 +89,9 @@ final class PageBuilder_Add extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateAdd($this->_module);
+			return $error.$this->templateAdd();
 		}
 		
 		$options = 0;
@@ -107,7 +107,7 @@ final class PageBuilder_Add extends GWF_Method
 		$options |= isset($_POST['sitemap']) ? GWF_Page::IN_SITEMAP : 0;
 		$options |= $form->getVar('type');
 
-		$gstring = $this->buildGroupString($this->_module);
+		$gstring = $this->buildGroupString();
 		$tags = ','.trim($form->getVar('tags'), ' ,').',';
 		
 		$page = new GWF_Page(array(

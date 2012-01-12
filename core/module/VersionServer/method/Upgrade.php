@@ -10,7 +10,7 @@ final class VersionServer_Upgrade extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->validate($this->_module))) {
+		if (false !== ($error = $this->validate())) {
 			return $error;
 		}
 		
@@ -23,10 +23,10 @@ final class VersionServer_Upgrade extends GWF_Method
 //		}
 //		
 //		if (false !== Common::getGet('update_versions')) {
-//			return $this->templateVersions($this->_module);
+//			return $this->templateVersions();
 //		}
 		
-		return $this->templateUpgrade($this->_module);
+		return $this->templateUpgrade();
 	}
 
 	private function validate()

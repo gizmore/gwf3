@@ -28,19 +28,19 @@ final class Forum_Reply extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('submit_preview'))) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
 		
 		if (false !== (Common::getPost('submit_reply'))) {
-			return $this->onReply($this->_module);
+			return $this->onReply();
 		}
 		
-		return $this->templateLastPosts($this->_module).$this->templateReply($this->_module);
+		return $this->templateLastPosts().$this->templateReply($this->_module);
 	}
 	
 	################
@@ -134,7 +134,7 @@ final class Forum_Reply extends GWF_Method
 	################
 	private function templateReply(Module_Forum $module, $preview=false)
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 
 		$url = $_SERVER['REQUEST_URI'].'#form';
 		
@@ -173,7 +173,7 @@ final class Forum_Reply extends GWF_Method
 	###############
 	private function onPreview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$error = $form->validate($this->_module);
 
 		$user = GWF_Session::getUser();
@@ -198,7 +198,7 @@ final class Forum_Reply extends GWF_Method
 		);
 		
 		return $error.
-			$this->templateLastPosts($this->_module).
+			$this->templateLastPosts().
 			'<a name="form"></a>'.
 			$this->_module->templatePHP('show_thread.php', $tVars).
 			$this->templateReply($this->_module, true);
@@ -209,9 +209,9 @@ final class Forum_Reply extends GWF_Method
 	#############
 	private function onReply()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateReply($this->_module);
+			return $error.$this->templateReply();
 		}
 		
 		# Gather vars

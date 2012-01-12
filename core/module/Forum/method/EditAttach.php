@@ -28,14 +28,14 @@ final class Forum_EditAttach extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module).$this->templateEdit($this->_module);
+			return $this->onEdit().$this->templateEdit($this->_module);
 		}
 		
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module);
+			return $this->onDelete();
 		}
 		
-		return $this->templateEdit($this->_module);
+		return $this->templateEdit();
 	}
 
 	private function formEdit()
@@ -51,7 +51,7 @@ final class Forum_EditAttach extends GWF_Method
 	
 	private function templateEdit()
 	{
-		$form = $this->formEdit($this->_module);
+		$form = $this->formEdit();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_attach')),
 		);
@@ -60,7 +60,7 @@ final class Forum_EditAttach extends GWF_Method
 	
 	private function onDelete()
 	{
-		$form = $this->formEdit($this->_module);
+		$form = $this->formEdit();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -76,7 +76,7 @@ final class Forum_EditAttach extends GWF_Method
 	
 	private function onEdit()
 	{
-		$form = $this->formEdit($this->_module);
+		$form = $this->formEdit();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

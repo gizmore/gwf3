@@ -5,7 +5,7 @@ final class Audit_EditLog extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateEditLog($this->_module);
+		return $this->templateEditLog();
 	}
 	
 	private function templateEditLog()

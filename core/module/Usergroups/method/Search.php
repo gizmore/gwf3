@@ -6,7 +6,7 @@ final class Usergroups_Search extends GWF_Method
 		if (false !== ($term = Common::getRequest('term'))) {
 			return $this->templateUsers($this->_module, trim($term));
 		}
-		return $this->templateUsers($this->_module);
+		return $this->templateUsers();
 	}
 	
 	private function getFormQuick()
@@ -21,7 +21,7 @@ final class Usergroups_Search extends GWF_Method
 	private function templateUsers(Module_Usergroups $module, $term='')
 	{
 		$ipp = $this->_module->cfgIPP();
-		$form = $this->getFormQuick($this->_module);
+		$form = $this->getFormQuick();
 		$usertable = GDO::table('GWF_User');
 		$by = Common::getGet('by', '');
 		$dir = Common::getGet('dir', '');

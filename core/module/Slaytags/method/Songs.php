@@ -7,7 +7,7 @@ final class Slaytags_Songs extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateSongs($this->_module);
+		return $this->templateSongs();
 	}
 	
 	private function templateSongs()

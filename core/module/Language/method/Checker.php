@@ -13,14 +13,14 @@ final class Language_Checker extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('check')) {
-			return $this->onCheck($this->_module);
+			return $this->onCheck();
 		}
-		return $this->templateChecker($this->_module);
+		return $this->templateChecker();
 	}
 	
 	private function templateChecker()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_checker')),
 		);
@@ -41,18 +41,18 @@ final class Language_Checker extends GWF_Method
 	
 	private function onCheck()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateChecker($this->_module);
+			return $errors.$this->templateChecker();
 		}
 		
 		if (false === ($this->lang = GWF_Language::getByID(Common::getPost('langs')))) {
-			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE').$this->templateChecker($this->_module);
+			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE').$this->templateChecker();
 		}
 		
 		$this->show_warns = isset($_POST['warns']);
 		
-		return $this->onCheckB($this->_module).$this->templateChecker($this->_module);
+		return $this->onCheckB().$this->templateChecker($this->_module);
 	}
 	
 	private function onCheckB()

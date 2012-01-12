@@ -16,10 +16,10 @@ final class Links_NewLinks extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Links/gwf_links.js');
 		
 		if (Common::getGet('markread') !== false) {
-			return $this->onMarkAllRead($this->_module).$this->templateNewLinks($this->_module);
+			return $this->onMarkAllRead().$this->templateNewLinks($this->_module);
 		}
 		
-		return $this->templateNewLinks($this->_module);
+		return $this->templateNewLinks();
 	}
 	
 	private function templateNewLinks()

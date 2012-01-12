@@ -10,7 +10,7 @@ final class Audit_Replay extends Audit_ViewLog
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module)))
+		if (false !== ($error = $this->sanitize()))
 		{
 			return $error;
 		}

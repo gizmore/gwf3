@@ -6,22 +6,22 @@ final class PM_Trashcan extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('empty')) {
-			return $this->onEmpty($this->_module).$this->trashcan($this->_module);
+			return $this->onEmpty().$this->trashcan($this->_module);
 		}
 		
 		if (false !== (Common::getPost('restore'))) {
-			return $this->onRestore($this->_module, Common::getPost('pm')).$this->trashcan($this->_module);
+			return $this->onRestore($this->_module, Common::getPost('pm')).$this->trashcan();
 		}
 		if (false !== ($pmid = Common::getGet('undelete'))) {
-			return $this->onRestore($this->_module, array($pmid=>'on')).$this->trashcan($this->_module);
+			return $this->onRestore($this->_module, array($pmid=>'on')).$this->trashcan();
 		}
 		
-		return $this->trashcan($this->_module);
+		return $this->trashcan();
 	}
 	
 	private function sanitize()
@@ -52,7 +52,7 @@ final class PM_Trashcan extends GWF_Method
 	private function trashcan()
 	{
 		if ($this->_module->cfgAllowDelete()) {
-			$form_empty = $this->formEmpty($this->_module)->templateX($this->_module->lang('ft_empty'), false);
+			$form_empty = $this->formEmpty()->templateX($this->_module->lang('ft_empty'), false);
 		} else {
 			$form_empty = '';
 		}
@@ -89,7 +89,7 @@ final class PM_Trashcan extends GWF_Method
 			$count++;
 		}
 		
-		$this->sanitize($this->_module);
+		$this->sanitize();
 		
 		return $this->_module->message('msg_restored', array($count));
 		
@@ -115,7 +115,7 @@ final class PM_Trashcan extends GWF_Method
 		$user = GWF_Session::getUser();
 		$uid = $user->getVar('user_id');
 		
-		$form = $this->formEmpty($this->_module);
+		$form = $this->formEmpty();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

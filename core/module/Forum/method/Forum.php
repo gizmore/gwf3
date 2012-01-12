@@ -48,7 +48,7 @@ final class Forum_Forum extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
@@ -57,10 +57,10 @@ final class Forum_Forum extends GWF_Method
 		GWF_Website::setMetaTags($this->_module->lang('mt_board'));
 		
 		if (false !== (Common::getGet('mark_all_read'))) {
-			return $this->markAllRead($this->_module).$this->templateForum($this->_module);
+			return $this->markAllRead().$this->templateForum($this->_module);
 		}
 		
-		return $this->templateForum($this->_module);
+		return $this->templateForum();
 	}
 	
 	public function sanitize()

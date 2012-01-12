@@ -11,15 +11,15 @@ final class Slaytags_Search extends GWF_Method
 
 		if (isset($_GET['searchterm']))
 		{
-			return $this->onSearch($this->_module);
+			return $this->onSearch();
 		}
 		
-		return $this->templateSearch($this->_module);
+		return $this->templateSearch();
 	}
 
 	private function templateSearch()
 	{
-		$form = $this->formSearch($this->_module);
+		$form = $this->formSearch();
 		$tVars = array(
 			'form' => $form->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php'),
 			'pagemenu' => '',
@@ -55,10 +55,10 @@ final class Slaytags_Search extends GWF_Method
 		
 	private function onSearch()
 	{
-		$form = $this->formSearch($this->_module);
+		$form = $this->formSearch();
 		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateSearch($this->_module);
+			return $error.$this->templateSearch();
 		}
 		
 		$ipp = self::IPP;
@@ -69,7 +69,7 @@ final class Slaytags_Search extends GWF_Method
 		$joins = array('lyrics');
 		if (false === ($where = GWF_QuickSearch::getQuickSearchConditions($table, array('ss_artist', 'ss_title', 'ss_composer'), $term)))
 		{
-			return GWF_HTML::err('ERR_SEARCH_TERM').$this->templateSearch($this->_module);
+			return GWF_HTML::err('ERR_SEARCH_TERM').$this->templateSearch();
 		}
 		$term2 = GDO::escape($term);
 //		$term2 = str_replace(array('%', '_'), array('\\%', '\\_'), $term);

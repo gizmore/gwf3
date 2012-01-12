@@ -5,14 +5,14 @@ final class Admin_GroupAdd extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('add')) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function templateAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_group')),
@@ -32,9 +32,9 @@ final class Admin_GroupAdd extends GWF_Method
 	public function validate_groupname(Module_Admin $m, $arg) { return GWF_Validator::validateClassname($m, 'groupname', $arg, 3, 24, true); }
 	private function onAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($err = $form->validate($this->_module))) {
-			return $err.$this->templateAdd($this->_module);
+			return $err.$this->templateAdd();
 		}
 		
 		$group = new GWF_Group(array(
@@ -51,7 +51,7 @@ final class Admin_GroupAdd extends GWF_Method
 		
 		if (false === ($group->insert()))
 		{
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 		
 		return $this->_module->message('msg_group_added');

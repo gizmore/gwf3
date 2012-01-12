@@ -6,9 +6,9 @@ final class Ban_Admin extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('addban'))) {
-			return $this->onAddBan($this->_module).$this->templateAdmin($this->_module);
+			return $this->onAddBan().$this->templateAdmin($this->_module);
 		}
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function templateAdmin()
@@ -24,7 +24,7 @@ final class Ban_Admin extends GWF_Method
 		$dir = Common::getGet('dir', 'DESC');
 		$orderby = $bans->getMultiOrderby($by, $dir);
 		
-		$form = $this->getFormBan($this->_module);
+		$form = $this->getFormBan();
 		
 		$tVars = array(
 			'form_ban' => $form->templateY($this->_module->lang('ft_add_ban')),
@@ -50,7 +50,7 @@ final class Ban_Admin extends GWF_Method
 	
 	private function onAddBan()
 	{
-		$form = $this->getFormBan($this->_module);
+		$form = $this->getFormBan();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

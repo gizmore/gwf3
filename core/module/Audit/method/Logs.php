@@ -9,7 +9,7 @@ final class Audit_Logs extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateLogs($this->_module);
+		return $this->templateLogs();
 	}
 	
 	private function templateLogs()

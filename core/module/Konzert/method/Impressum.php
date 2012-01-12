@@ -9,7 +9,7 @@ final class Konzert_Impressum extends GWF_Method
 	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'sponsoren.html');
-		return $this->templateImpressum($this->_module);
+		return $this->templateImpressum();
 	}
 	
 	private function templateImpressum()

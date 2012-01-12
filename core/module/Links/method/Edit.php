@@ -14,19 +14,19 @@ final class Links_Edit extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module).$this->templateEdit($this->_module);
+			return $this->onEdit().$this->templateEdit($this->_module);
 		}
 		
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module);
+			return $this->onDelete();
 		}
 		
-		return $this->templateEdit($this->_module);
+		return $this->templateEdit();
 	}
 	
 	### Sane
@@ -51,7 +51,7 @@ final class Links_Edit extends GWF_Method
 			'link_score' => array(GWF_Form::STRING, $l->getVar('link_score'), $this->_module->lang('th_link_score'), $this->_module->lang('tt_link_score')),
 			'link_gid' => array(GWF_Form::SELECT, GWF_GroupSelect::single('link_gid', $l->getGroupID(), true, true), $this->_module->lang('th_link_gid'), $this->_module->lang('tt_link_gid')),
 			'tag_info' => array(GWF_Form::HEADLINE, '', $this->_module->lang('info_tag')),
-			'known_tags' => array(GWF_Form::HEADLINE, '', $this->collectTags($this->_module)),
+			'known_tags' => array(GWF_Form::HEADLINE, '', $this->collectTags()),
 			'link_tags' => array(GWF_Form::STRING, $l->getVar('link_tags'), $this->_module->lang('th_link_tags')),
 			'div1' => array(GWF_Form::DIVIDER),
 			'link_href' => array(GWF_Form::STRING, $l->getVar('link_href'), $this->_module->lang('th_link_href'), $this->_module->lang('tt_link_href')),
@@ -87,7 +87,7 @@ final class Links_Edit extends GWF_Method
 	### Template
 	private function templateEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit')),
 		);
@@ -105,7 +105,7 @@ final class Links_Edit extends GWF_Method
 	
 	private function onEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

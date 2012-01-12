@@ -15,9 +15,9 @@ final class Forum_Options extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('change')) {
-			return $this->onChange($this->_module).$this->templateOptions($this->_module);
+			return $this->onChange().$this->templateOptions($this->_module);
 		}
-		return $this->templateOptions($this->_module);
+		return $this->templateOptions();
 	}
 	
 	private function getForm()
@@ -35,7 +35,7 @@ final class Forum_Options extends GWF_Method
 	
 	private function templateOptions()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_options')),
 			'href_subscr' => $this->_module->getMethodURL('Subscriptions'),
@@ -45,7 +45,7 @@ final class Forum_Options extends GWF_Method
 	
 	private function onChange()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

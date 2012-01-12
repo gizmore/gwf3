@@ -14,7 +14,7 @@ final class Chat_Mibbit extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateMibbit($this->_module);
+		return $this->templateMibbit();
 	}
 	
 	private function templateMibbit()

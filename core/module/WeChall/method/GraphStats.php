@@ -54,12 +54,12 @@ final class WeChall_GraphStats extends GWF_Method
 	{
 		GWF3::setConfig('store_last_url', false);
 		
-		if (false !== ($error = $this->validate($this->_module)))
+		if (false !== ($error = $this->validate()))
 		{
 			return $error;
 		}
 		
-		return $this->templateGraph($this->_module);
+		return $this->templateGraph();
 	}
 	
 	private function validateDimension()
@@ -71,7 +71,7 @@ final class WeChall_GraphStats extends GWF_Method
 
 	private function validate()
 	{
-		$this->validateDimension($this->_module);
+		$this->validateDimension();
 		
 		if (false === ($this->user1 = GWF_User::getByName(Common::getRequest('user1', '')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
@@ -306,7 +306,7 @@ final class WeChall_GraphStats extends GWF_Method
 		}
 		$graph->SetColor(array(238, 238, 238));
 		$graph->SetMarginColor(array(208, 211, 237));
-		$graph->title->Set($this->getGraphTitle($this->_module));
+		$graph->title->Set($this->getGraphTitle());
 		$graph->yaxis->title->Set($this->_module->lang('percentage'));
 		$graph->SetShadow();
 		$graph->xaxis->SetLabelAngle(90);

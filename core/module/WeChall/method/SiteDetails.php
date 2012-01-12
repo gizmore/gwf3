@@ -10,7 +10,7 @@ final class WeChall_SiteDetails extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('quickjump')) {
-			return $this->onQuickJump($this->_module);
+			return $this->onQuickJump();
 		}
 		
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {

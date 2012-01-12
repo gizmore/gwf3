@@ -66,7 +66,7 @@ final class WeChall_Challs extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.'challs/'.$tag_2.'by/%BY%/%DIR%/page-1',
 //			'challs' => $challs->select($conditions, $orderby),
 			'challs' => $challs->selectObjects('*', $conditions, $orderby),
-			'tags' => $show_cloud ? $this->getTags($this->_module) : '',
+			'tags' => $show_cloud ? $this->getTags() : '',
 			'solved_bits' => $solved_bits,
 			'table_title' => $this->getTableTitle($this->_module, $for_userid, $from_userid, $tag, $count),
 			'by' => $by,

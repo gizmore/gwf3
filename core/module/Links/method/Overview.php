@@ -21,13 +21,13 @@ final class Links_Overview extends GWF_Method
 	{
 		GWF_Module::loadModuleDB('Votes')->onInclude();
 		
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Links/gwf_links.js');
 		
-		return $this->overview($this->_module);
+		return $this->overview();
 	}
 	
 	private $user;

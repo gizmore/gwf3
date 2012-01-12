@@ -11,7 +11,7 @@ final class Profile_LinkSite extends GWF_Method
 
 	public function execute()
 	{
-		return $this->templateLink($this->_module);
+		return $this->templateLink();
 	}
 	
 	private function getForm()

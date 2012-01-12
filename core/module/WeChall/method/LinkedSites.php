@@ -32,32 +32,32 @@ final class WeChall_LinkedSites extends GWF_Method
 
 		# Hide and Show
 		if (false !== ($array = Common::getPost('showname'))) {
-			return $this->onHide($this->_module, $array, 0).$this->templateSites($this->_module);
+			return $this->onHide($this->_module, $array, 0).$this->templateSites();
 		}
 		if (false !== ($array = Common::getPost('hidename'))) {
-			return $this->onHide($this->_module, $array, 1).$this->templateSites($this->_module);
+			return $this->onHide($this->_module, $array, 1).$this->templateSites();
 		}
 
 		# Link and UnLink
 		if (false !== (Common::getPost('link'))) {
-			return $this->onLinkSite($this->_module).$this->templateSites($this->_module);
+			return $this->onLinkSite().$this->templateSites($this->_module);
 		}
 		if (false !== ($array = Common::getPost('unlink'))) {
-			return $this->onUnLinkSite($this->_module, $array).$this->templateSites($this->_module);
+			return $this->onUnLinkSite($this->_module, $array).$this->templateSites();
 		}
 		
 		# Update
 		if (false !== ($array = Common::getPost('update'))) {
-			return $this->onUpdate($this->_module, $array).$this->templateSites($this->_module);
+			return $this->onUpdate($this->_module, $array).$this->templateSites();
 		}
 		if (false !== (Common::getPost('update_all'))) {
-			return $this->onUpdateAll($this->_module).$this->templateSites($this->_module);
+			return $this->onUpdateAll().$this->templateSites($this->_module);
 		}
 		if (false !== ($siteid = Common::getGet('quick_update'))) {
 			return $this->onQuickUpdate($this->_module, $siteid);
 		}
 		
-		return $this->templateSites($this->_module);
+		return $this->templateSites();
 	}
 
 	################
@@ -67,8 +67,8 @@ final class WeChall_LinkedSites extends GWF_Method
 	{
 		$whitelist = array('site_name', 'site_challcount', 'regat_score', 'site_score', 'regat_solved', 'regat_lastdate', 'regat_onsitename');
 		
-		$form_link = $this->getFormLink($this->_module);
-		$form_all = $this->getFormAll($this->_module);
+		$form_link = $this->getFormLink();
+		$form_all = $this->getFormAll();
 		
 		$by = Common::getGet('by', 'site_name');
 		$dir = Common::getGet('dir', 'ASC');
@@ -160,7 +160,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	 */
 	private function onLinkSite()
 	{
-		$form = $this->getFormLink($this->_module);
+		$form = $this->getFormLink();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -401,7 +401,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	
 	private function onUpdateAll()
 	{
-		$form = $this->getFormAll($this->_module);
+		$form = $this->getFormAll();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

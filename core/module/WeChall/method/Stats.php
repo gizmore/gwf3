@@ -19,10 +19,10 @@ final class WeChall_Stats extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
 		if (false !== Common::getPost('clear')) {
-			return $this->onClear($this->_module);
+			return $this->onClear();
 		}
 		if (false !== Common::getPost('display')) {
-			return $this->onDisplay($this->_module);
+			return $this->onDisplay();
 		}
 		if (false !== Common::getPost('displayall')) {
 			return $this->onDisplayAll($this->_module, true);
@@ -31,7 +31,7 @@ final class WeChall_Stats extends GWF_Method
 			return $this->onDisplayAll($this->_module, false);
 		}
 		
-		return $this->templateStats($this->_module);
+		return $this->templateStats();
 	}
 	
 	private function setPageTitles()
@@ -149,10 +149,10 @@ final class WeChall_Stats extends GWF_Method
 	
 	private function templateStats()
 	{
-		if (false !== ($errors = $this->validate($this->_module))) {
+		if (false !== ($errors = $this->validate())) {
 			return $errors;
 		}
-		$this->setPageTitles($this->_module);
+		$this->setPageTitles();
 		
 		GWF_Website::addJavascriptOnload('wcjsStatsJQuery();');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-ui-1.8.5.custom.min.js');
@@ -169,9 +169,9 @@ final class WeChall_Stats extends GWF_Method
 			'user1' => $this->user1,
 			'user2' => $this->user2,
 			'form_action' => $form_action,
-			'sites' => $this->getSites($this->_module),
-			'img_src' => $this->getImgSrc($this->_module),
-			'img_alt' => $this->getImgTitle($this->_module),
+			'sites' => $this->getSites(),
+			'img_src' => $this->getImgSrc(),
+			'img_alt' => $this->getImgTitle(),
 			'icons' => isset($_POST['icons']),
 			'values' => isset($_POST['values']),
 			'zoom' => isset($_POST['zoom']),
@@ -316,13 +316,13 @@ final class WeChall_Stats extends GWF_Method
 		
 		$this->months = $this->getMonths();
 		
-		return $this->templateStats($this->_module);
+		return $this->templateStats();
 	}
 	
 	private function onClear()
 	{
 		$_REQUEST['site'] = array();
-		return $this->onDisplay($this->_module);
+		return $this->onDisplay();
 	}
 	
 	private function onDisplayAll(Module_WeChall $module, $bool)
@@ -332,7 +332,7 @@ final class WeChall_Stats extends GWF_Method
 		} else {
 			$_REQUEST['site'] = 0;
 		}
-		return $this->onDisplay($this->_module);
+		return $this->onDisplay();
 	}
 	
 }

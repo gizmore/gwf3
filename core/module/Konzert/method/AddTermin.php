@@ -7,14 +7,14 @@ final class Konzert_AddTermin extends GWF_Method
 	{
 		if (isset($_POST['add']))
 		{
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function templateAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
@@ -43,10 +43,10 @@ final class Konzert_AddTermin extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateAdd($this->_module);
+			return $error.$this->templateAdd();
 		}
 		
 		$termin = new Konzert_Termin(array(
@@ -62,7 +62,7 @@ final class Konzert_AddTermin extends GWF_Method
 		
 		if (false === $termin->insert())
 		{
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd();
 		}
 		
 		return $this->_module->message('msg_t_added');

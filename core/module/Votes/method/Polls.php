@@ -15,7 +15,7 @@ final class Votes_Polls extends GWF_Method
 			return $this->templatePoll($this->_module, $pollid);
 		}
 		
-		return $this->templatePolls($this->_module);
+		return $this->templatePolls();
 	}
 	
 	private function templatePolls()
@@ -53,7 +53,7 @@ final class Votes_Polls extends GWF_Method
 	private function templatePoll(Module_Votes $module, $pollid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($pollid))) {
-			return $this->_module->error('err_poll').$this->templatePolls($this->_module);
+			return $this->_module->error('err_poll').$this->templatePolls();
 		}
 		
 		return $poll->showResults(300);

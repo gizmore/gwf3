@@ -29,15 +29,15 @@ final class Forum_AddPoll extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('assign')) {
-			return $this->onAssign($this->_module).$this->template($this->_module);
+			return $this->onAssign().$this->template($this->_module);
 		}
 		
-		return $this->template($this->_module);
+		return $this->template();
 	}
 	
 	private function template()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'may_add_poll' => Module_Votes::mayAddPoll($this->user),
 			'href_add' => Module_Votes::hrefAddPoll(),
@@ -49,7 +49,7 @@ final class Forum_AddPoll extends GWF_Method
 	private function getForm()
 	{
 		$data = array(
-			'pollid' => array(GWF_Form::SELECT, $this->getPollSelect($this->_module), $this->_module->lang('th_thread_pollid')),
+			'pollid' => array(GWF_Form::SELECT, $this->getPollSelect(), $this->_module->lang('th_thread_pollid')),
 			'assign' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_assign')),
 		);
 		return new GWF_Form($this, $data);
@@ -99,7 +99,7 @@ final class Forum_AddPoll extends GWF_Method
 	
 	private function onAssign()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

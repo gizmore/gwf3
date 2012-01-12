@@ -36,7 +36,7 @@ final class WeChall_Sites extends GWF_Method
 	{
 		WC_HTML::$LEFT_PANEL = false;
 		WC_HTML::$RIGHT_PANEL = false;
-		return $this->templateSites($this->_module);
+		return $this->templateSites();
 	}
 	
 	private function templateSites()

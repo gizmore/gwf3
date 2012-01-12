@@ -8,18 +8,18 @@ final class BAIM_Admin extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('newdemo')) {
-			return $this->onNewDemo($this->_module).$this->templateAdmin($this->_module);
+			return $this->onNewDemo().$this->templateAdmin($this->_module);
 		}
 		if (false !== Common::getPost('flushdemo')) {
-			return $this->onFlushDemo($this->_module).$this->templateAdmin($this->_module);
+			return $this->onFlushDemo().$this->templateAdmin($this->_module);
 		}
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function templateAdmin()
 	{
-		$form_flush = $this->formFlushDemo($this->_module);
-		$form_new_demo = $this->formNewDemo($this->_module);
+		$form_flush = $this->formFlushDemo();
+		$form_new_demo = $this->formNewDemo();
 		$tVars = array(
 			'form_flush' => $form_flush->templateY($this->_module->lang('ft_flush_demo')),
 			'form_new_demo' => $form_new_demo->templateY($this->_module->lang('ft_new_demo')),
@@ -47,7 +47,7 @@ final class BAIM_Admin extends GWF_Method
 	
 	private function onNewDemo()
 	{
-		$form_new_demo = $this->formNewDemo($this->_module);
+		$form_new_demo = $this->formNewDemo();
 		if (false !== ($error = $form_new_demo->validate($this->_module))) {
 			return $error;
 		}

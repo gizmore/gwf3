@@ -18,7 +18,7 @@ final class SF_Debug extends GWF_Method
 			return $this->_module->error('ERR_DISABLED');
 		}
 
-		$form = $this->debugForm($this->_module);
+		$form = $this->debugForm();
 		# gizmore: TODO: validate should work without GWF_Module $module
 		//$form->validate($this);
 

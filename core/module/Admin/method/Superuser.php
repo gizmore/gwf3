@@ -12,16 +12,16 @@ final class Admin_Superuser extends GWF_Method
 		
 		# Setup / Change Password
 		if (Common::getPost('setup') !== false) {
-			return $nav.$this->onSetup($this->_module);
+			return $nav.$this->onSetup();
 		}
 		if (Common::getGet('setup') !== false) {
-			return $nav.$this->templateSetup($this->_module);
+			return $nav.$this->templateSetup();
 		}
 		# Prompt & Login		
 		if (Common::getPost('login') !== false) {
-			return $this->onLogin($this->_module);
+			return $this->onLogin();
 		}
-		return $this->templatePrompt($this->_module);
+		return $this->templatePrompt();
 	}
 	
 	##############
@@ -43,7 +43,7 @@ final class Admin_Superuser extends GWF_Method
 	
 	public function templatePrompt()
 	{
-		$form = $this->getFormPrompt($this->_module);
+		$form = $this->getFormPrompt();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_prompt')),
 		);
@@ -52,9 +52,9 @@ final class Admin_Superuser extends GWF_Method
 	
 	public function onLogin()
 	{
-		$form = $this->getFormPrompt($this->_module);
+		$form = $this->getFormPrompt();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templatePrompt($this->_module);
+			return $error.$this->templatePrompt();
 		}
 		
 		$this->_module->onEnteredHash();
@@ -77,7 +77,7 @@ final class Admin_Superuser extends GWF_Method
 	
 	public function templateSetup()
 	{
-		$form = $this->getFormSetup($this->_module);
+		$form = $this->getFormSetup();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_setup')),
 		);
@@ -86,9 +86,9 @@ final class Admin_Superuser extends GWF_Method
 	
 	public function onSetup()
 	{
-		$form = $this->getFormSetup($this->_module);
+		$form = $this->getFormSetup();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templatePrompt($this->_module);
+			return $error.$this->templatePrompt();
 		}
 		
 		$plain = $newpass = $form->getVar('new_pass');

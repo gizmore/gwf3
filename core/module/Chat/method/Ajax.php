@@ -10,7 +10,7 @@ final class Chat_Ajax extends GWF_Method
 			$back = $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== ($laggy = Common::getGet('browser'))) {
-			$back = $this->onAjaxUpdate($this->_module);
+			$back = $this->onAjaxUpdate();
 		}
 
 		# Update Nickname

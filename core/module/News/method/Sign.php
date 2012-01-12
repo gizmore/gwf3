@@ -21,10 +21,10 @@ final class News_Sign extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('sign'))) {
-			return $this->onSign($this->_module);
+			return $this->onSign();
 		}
 		
-		return $this->templateSign($this->_module); 
+		return $this->templateSign(); 
 	}
 	
 	private function getForm()
@@ -51,11 +51,11 @@ final class News_Sign extends GWF_Method
 	
 	private function templateSign()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$user = GWF_Session::getUser();
 		$row = GWF_Newsletter::getRowForUser($user);
 		$tVars = array(
-			'info' => $this->getSignInfo($this->_module),
+			'info' => $this->getSignInfo(),
 			'form' => $form->templateY($this->_module->lang('ft_sign')),
 			'subscribed' => $row !== false,
 			'href_unsign' => $row !== false ? $row->getUnsignHREF() : false,
@@ -85,10 +85,10 @@ final class News_Sign extends GWF_Method
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateSign($this->_module);
+			return $error.$this->templateSign();
 		}
 		
 		$email = $form->getVar('email');
@@ -97,7 +97,7 @@ final class News_Sign extends GWF_Method
 		
 		$newsletter = new GWF_Newsletter(false);
 		if (false === ($row = $newsletter->getRow($email))) {
-			return $this->onNewSign($this->_module, $email, $type, $langid).$this->templateSign($this->_module);
+			return $this->onNewSign($this->_module, $email, $type, $langid).$this->templateSign();
 		}
 		
 		$back = '';
@@ -109,7 +109,7 @@ final class News_Sign extends GWF_Method
 			$back .= $this->_module->message('msg_changed_type');
 			$row->saveType($type);
 		}
-		return $back.$this->templateSign($this->_module);
+		return $back.$this->templateSign();
 	}
 	
 	private function onNewSign(Module_News $module, $email, $type, $langid)

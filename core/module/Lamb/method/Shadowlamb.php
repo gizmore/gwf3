@@ -13,7 +13,7 @@ final class Lamb_Shadowlamb extends GWF_Method
 		
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
 		
-		return $this->templateShadowlamb($this->_module);
+		return $this->templateShadowlamb();
 	}
 	
 	private function templateShadowlamb()

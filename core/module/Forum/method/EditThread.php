@@ -28,14 +28,14 @@ final class Forum_EditThread extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Forum/GWF_ForumBoardSelect.php';
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module).$this->templateEditThread($this->_module);
+			return $this->onEdit().$this->templateEditThread($this->_module);
 		}
 		
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module);
+			return $this->onDelete();
 		}
 		
-		return $this->templateEditThread($this->_module);
+		return $this->templateEditThread();
 	}
 	
 	private function getForm()
@@ -59,7 +59,7 @@ final class Forum_EditThread extends GWF_Method
 	
 	private function templateEditThread()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'thread' => $this->thread,
 			'href_add_poll' => $this->thread->hrefAddPoll(),
@@ -78,7 +78,7 @@ final class Forum_EditThread extends GWF_Method
 	private function onEdit()
 	{
 		$t = $this->thread;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
@@ -107,14 +107,14 @@ final class Forum_EditThread extends GWF_Method
 	private function onDelete()
 	{
 		$t = $this->thread;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateEditThread($this->_module);
+			return $error.$this->templateEditThread();
 		}
 		
 		if (false === $t->deleteThread()) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEditThread($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEditThread();
 		}
 		
 		$this->_module->cachePostcount();

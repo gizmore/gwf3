@@ -14,7 +14,7 @@ final class PM_Show extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		

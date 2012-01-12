@@ -5,7 +5,7 @@ final class Helpdesk_Staff extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateStaff($this->_module);
+		return $this->templateStaff();
 	}
 	
 	private function templateStaff()

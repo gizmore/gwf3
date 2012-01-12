@@ -9,7 +9,7 @@ final class Chat_AjaxStream extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->stream($this->_module);
+		return $this->stream();
 	}
 	
 	private function stream()

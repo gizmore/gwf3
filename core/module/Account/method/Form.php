@@ -19,33 +19,33 @@ final class Account_Form extends GWF_Method
 			die(GWF_Website::redirect($this->_module->getMethodURL('Delete')));
 		}
 		if (false !== (Common::getPost('drop_avatar'))) {
-			return $this->onDeleteAvatar($this->_module).$this->templateForm($this->_module);
+			return $this->onDeleteAvatar().$this->templateForm($this->_module);
 		}
 		if (false !== (Common::getPost('change'))) {
-			return $this->onChange($this->_module).$this->templateForm($this->_module);
+			return $this->onChange().$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('approvemail')) {
-			return $this->onApproveMail($this->_module).$this->templateForm($this->_module);
+			return $this->onApproveMail().$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('setup_gpg')) {
-			return $this->onSetupGPG($this->_module).$this->templateForm($this->_module);
+			return $this->onSetupGPG().$this->templateForm($this->_module);
 		}
 		if (false !== Common::getPost('remove_gpg')) {
-			return $this->onRemoveGPG($this->_module).$this->templateForm($this->_module);
+			return $this->onRemoveGPG().$this->templateForm($this->_module);
 		}
-		return $this->templateForm($this->_module);
+		return $this->templateForm();
 	}
 	
 	private function templateForm()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('form_title')),
 		);
 		
 		if (function_exists('gnupg_init'))
 		{
-			$formGPG = $this->getFormGPG($this->_module);
+			$formGPG = $this->getFormGPG();
 			$tVars['form_gpg'] = $formGPG->templateY($this->_module->lang('ft_gpg'));
 		}
 		else
@@ -147,7 +147,7 @@ final class Account_Form extends GWF_Method
 	{
 		$back = '';
 		$user = GWF_Session::getUser();
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -351,7 +351,7 @@ final class Account_Form extends GWF_Method
 	
 	private function onApproveMail()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$user = GWF_Session::getUser();
 		if ('' === ($email = $user->getVar('user_email'))) {
@@ -388,7 +388,7 @@ final class Account_Form extends GWF_Method
 	
 	private function onSetupGPG()
 	{
-		$form = $this->getFormGPG($this->_module);
+		$form = $this->getFormGPG();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

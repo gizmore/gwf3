@@ -40,7 +40,7 @@ final class PasswordForgot_Change extends GWF_Method
 	
 	private function templateChange(Module_PasswordForgot $module, GWF_AccountChange $ac)
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('title_change')),
 			'username' => $ac->getUser()->displayUsername(),
@@ -62,7 +62,7 @@ final class PasswordForgot_Change extends GWF_Method
 	
 	private function onChangePass(Module_PasswordForgot $module, GWF_AccountChange $ac)
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors.$this->templateChange($this->_module, $ac);
 		}

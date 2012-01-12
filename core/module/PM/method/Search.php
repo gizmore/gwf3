@@ -9,7 +9,7 @@ final class PM_Search extends GWF_Method
 	
 	public function execute()
 	{
-//		if (false !== ($errors = $this->sanitize($this->_module))) {
+//		if (false !== ($errors = $this->sanitize())) {
 //			return $errors;
 //		}
 
@@ -21,7 +21,7 @@ final class PM_Search extends GWF_Method
 			return $this->templateAdvSearch($this->_module, true);
 		}
 		
-		return $this->templateAdvSearch($this->_module);
+		return $this->templateAdvSearch();
 	}
 	
 //	public function sanitize()
@@ -60,8 +60,8 @@ final class PM_Search extends GWF_Method
 		$result = $pms->selectObjects('*', $conditions, $orderby, $ipp, $from);# search(self::$fields, $term, $orderby, $ipp, $from);
 		$href = GWF_WEB_ROOT.'index.php?mo=PM&amp;me=Search&amp;term='.urlencode($term).'&amp;page=%PAGE%&amp;by='.urlencode($by).'&amp;dir='.urlencode($dir);
 		$tVars = array(
-			'form_q' => $this->getFormQuick($this->_module)->templateX($this->_module->lang('ft_quicksearch'), false, GWF_WEB_ROOT.'index.php?mo=PM&me=Search'),
-//			'form_a' => $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_advsearch')),
+			'form_q' => $this->getFormQuick()->templateX($this->_module->lang('ft_quicksearch'), false, GWF_WEB_ROOT.'index.php?mo=PM&me=Search'),
+//			'form_a' => $this->getFormAdv()->templateY($this->_module->lang('ft_advsearch')),
 			'term' => $term,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 			'pms' => $result,
@@ -74,8 +74,8 @@ final class PM_Search extends GWF_Method
 //	private function templateSearch(Module_PM $module, array $pms)
 //	{
 //		$tVars = array(
-//			'form_q' => $this->getFormQuick($this->_module)->templateX($this->_module->lang('ft_quicksearch'), false),
-//			'form_a' => $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_advsearch')),
+//			'form_q' => $this->getFormQuick()->templateX($this->_module->lang('ft_quicksearch'), false),
+//			'form_a' => $this->getFormAdv()->templateY($this->_module->lang('ft_advsearch')),
 //			'term' => $term,
 //			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 //			'pms' => $pms,
@@ -131,8 +131,8 @@ final class PM_Search extends GWF_Method
 			$result = array();
 		}
 		$tVars = array(
-			'form_q' => $this->getFormQuick($this->_module)->templateX($this->_module->lang('ft_quicksearch'), GWF_WEB_ROOT.'index.php?mo=PM&me=Search'),
-			'form_a' => $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_advsearch')),
+			'form_q' => $this->getFormQuick()->templateX($this->_module->lang('ft_quicksearch'), GWF_WEB_ROOT.'index.php?mo=PM&me=Search'),
+			'form_a' => $this->getFormAdv()->templateY($this->_module->lang('ft_advsearch')),
 			'term' => '',
 			'pagemenu' => '',
 			'pms' => $result,

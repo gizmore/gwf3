@@ -4,17 +4,17 @@ final class Usergroups_SearchAdv extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getGet('search')) {
-			return $this->onSearchB($this->_module);
+			return $this->onSearchB();
 		}
 		if (false !== Common::getPost('search')) {
-			return $this->onSearch($this->_module);
+			return $this->onSearch();
 		}
-		return $this->templateForm($this->_module);
+		return $this->templateForm();
 	}
 	
 	private function templateForm()
 	{
-		$form = $this->formSearch($this->_module);
+		$form = $this->formSearch();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_search_adv'), $this->_module->getMethodURL('SearchAdv')),
 			'pagemenu' => '',
@@ -55,9 +55,9 @@ final class Usergroups_SearchAdv extends GWF_Method
 	
 	private function onSearch()
 	{
-		$form = $this->formSearch($this->_module);
+		$form = $this->formSearch();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateForm($this->_module);
+			return $errors.$this->templateForm();
 		}
 		
 		# Copy to get
@@ -78,7 +78,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		if (isset($_POST['haswww'])) { $_GET['haswww'] = 1; }
 		
 		
-		return $this->onSearchB($this->_module);
+		return $this->onSearchB();
 	}
 
 	private function onSearchB()
@@ -89,7 +89,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		
 		$db = gdo_db();
 		
-		if ('' === ($where = $this->getWhereQuery($this->_module))) {
+		if ('' === ($where = $this->getWhereQuery())) {
 			$where = "'1'='0'";
 		}
 		
@@ -116,7 +116,7 @@ final class Usergroups_SearchAdv extends GWF_Method
 		
 		$query = "SELECT u.*, p.* FROM $users u LEFT JOIN $profiles p ON prof_uid=user_id WHERE $where ORDER BY $by $dir $limit";
 		
-		$form = $this->formSearch($this->_module);
+		$form = $this->formSearch();
 		$tVars = array(
 			'result' => $db->queryAll($query, true),
 			'form' => $form->templateY($this->_module->lang('ft_search_adv'), $this->_module->getMethodURL('SearchAdv')),

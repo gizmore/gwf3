@@ -16,18 +16,18 @@ final class Forum_EditBoard extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('delete_board'))) {
-			return $this->onDeleteBoard($this->_module);
+			return $this->onDeleteBoard();
 		}
 		if (false !== (Common::getPost('edit_board'))) {
-			return $this->onEditBoard($this->_module).$this->templateEditBoard($this->_module);
+			return $this->onEditBoard().$this->templateEditBoard($this->_module);
 		}
 		
-		return $this->templateEditBoard($this->_module);
+		return $this->templateEditBoard();
 	}
 	
 	private function sanitize()
@@ -63,7 +63,7 @@ final class Forum_EditBoard extends GWF_Method
 
 	private function templateEditBoard()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_board')),
 		);
@@ -72,7 +72,7 @@ final class Forum_EditBoard extends GWF_Method
 
 	private function onEditBoard()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;

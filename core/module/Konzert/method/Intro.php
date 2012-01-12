@@ -15,7 +15,7 @@ final class Konzert_Intro extends GWF_Method
 		
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'melanie_gobbo.html');
 		
-		return $this->templateIntro($this->_module);
+		return $this->templateIntro();
 	}
 	
 	private function templateIntro()

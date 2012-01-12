@@ -12,7 +12,7 @@ final class Konzert_Exklusiv extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter();');
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'kontakt.html');
-		return $this->templateExklusiv($this->_module);
+		return $this->templateExklusiv();
 	}
 	
 	private function templateExklusiv()

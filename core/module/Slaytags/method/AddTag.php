@@ -13,14 +13,14 @@ final class Slaytags_AddTag extends GWF_Method
 		
 		if (isset($_POST['add']))
 		{
-			return $this->onAddTag($this->_module);
+			return $this->onAddTag();
 		}
-		return $this->templateAddTag($this->_module);
+		return $this->templateAddTag();
 	}
 	
 	private function templateAddTag()
 	{
-		$form = $this->formAddTag($this->_module);
+		$form = $this->formAddTag();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_tag')),
 		);
@@ -47,10 +47,10 @@ final class Slaytags_AddTag extends GWF_Method
 	
 	private function onAddTag()
 	{
-		$form = $this->formAddTag($this->_module);
+		$form = $this->formAddTag();
 		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error.$this->templateAddTag($this->_module);
+			return $error.$this->templateAddTag();
 		}
 		
 		$user = GWF_Session::getUser();

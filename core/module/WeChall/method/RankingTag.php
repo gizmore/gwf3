@@ -15,9 +15,9 @@ final class WeChall_RankingTag extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('quickjmp')) {
-			return $this->onQuickjump($this->_module);
+			return $this->onQuickjump();
 		}
-		return $this->templateRanking($this->_module);
+		return $this->templateRanking();
 	}
 	
 	private function onQuickjump()
@@ -70,7 +70,7 @@ final class WeChall_RankingTag extends GWF_Method
 			'tag' => $dtag,
 			'form_action' => GWF_WEB_ROOT.'category_ranking',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('category_ranking/%s/page-%%PAGE%%', urlencode($tag))),
-			'select' => $this->getTagSelect($this->_module),
+			'select' => $this->getTagSelect(),
 		);
 		return $this->_module->templatePHP('ranking_tag.php', $tVars);
 	}

@@ -15,9 +15,9 @@ final class Contact_Form extends GWF_Method
 		GWF_Website::setPageTitle($this->_module->lang('page_title'));
 		GWF_Website::setMetaTags($this->_module->lang('page_meta'));
 		if (false !== (Common::getPost('contact'))) {
-			return $this->onSend($this->_module);
+			return $this->onSend();
 		}
-		return $this->templateForm($this->_module);
+		return $this->templateForm();
 	}
 
 	public function validate_email(GWF_Module $module, $arg)
@@ -51,13 +51,13 @@ final class Contact_Form extends GWF_Method
 
 	private function templateForm()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$skype = $this->_module->getContactSkype();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('form_title')),
 			'email' => $this->_module->getContactEMail(),
 			'skype' => $skype === '' ? '' : $this->_module->lang('info_skype', array( $skype)),
-			'admin_profiles' => $this->getAdminProfiles($this->_module),
+			'admin_profiles' => $this->getAdminProfiles(),
 		);
 		return $this->_module->template('form.tpl', $tVars);
 	}
@@ -84,9 +84,9 @@ final class Contact_Form extends GWF_Method
 
 	private function onSend()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateForm($this->_module);
+			return $error.$this->templateForm();
 		}
 
 		return $this->onSendB($this->_module, $form->getVar('email'), $form->getVar('message'));

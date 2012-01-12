@@ -21,15 +21,15 @@ final class Usergroups_Create extends GWF_Method
 //		}
 		
 		if (false !== Common::getPost('create')) {
-			return $this->onCreate($this->_module).$this->_module->requestMethodB('ShowGroups');
+			return $this->onCreate().$this->_module->requestMethodB('ShowGroups');
 		}
-		return $this->templateCreate($this->_module);
+		return $this->templateCreate();
 	}
 	
 	private function templateCreate()
 	{
 		
-		$form = $this->formCreate($this->_module);
+		$form = $this->formCreate();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_create')),
 		);
@@ -52,9 +52,9 @@ final class Usergroups_Create extends GWF_Method
 	public function validate_view(Module_Usergroups $module, $arg) { return $this->_module->validate_view($arg); }
 	private function onCreate()
 	{
-		$form = $this->formCreate($this->_module);
+		$form = $this->formCreate();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateCreate($this->_module);
+			return $errors.$this->templateCreate();
 		}
 		
 		$user = GWF_Session::getUser();

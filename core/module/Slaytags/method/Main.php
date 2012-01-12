@@ -4,7 +4,7 @@ final class Slaytags_Main extends GWF_Method
 	public function execute()
 	{
 		require GWF_CORE_PATH.'module/Slaytags/Slay_PNow.php';
-		return $this->templateMain($this->_module);
+		return $this->templateMain();
 	}
 	
 	private function templateMain()

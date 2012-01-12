@@ -9,7 +9,7 @@ final class Konzert_Proben extends GWF_Method
 	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'exklusiv.html');
-		return $this->templateProben($this->_module);
+		return $this->templateProben();
 	}
 	
 	private function templateProben()

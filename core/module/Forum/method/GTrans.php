@@ -14,7 +14,7 @@ final class Forum_GTrans extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->gTranslate($this->_module);
+		return $this->gTranslate();
 	}
 	
 	private function gTranslate()

@@ -27,11 +27,11 @@ final class WeChall_API_History extends GWF_Method
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();
 		
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			die ($error);
 		}
 
-		die($this->history($this->_module));
+		die($this->history());
 	}
 	
 	private function sanitize()

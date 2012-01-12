@@ -39,12 +39,12 @@ final class Links_Search extends GWF_Method
 	
 	public function templateAdvSearch()
 	{
-		return $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_search'));
+		return $this->getFormAdv()->templateY($this->_module->lang('ft_search'));
 	}
 	
 	public function templateQuickSearch()
 	{
-		$form = $this->getFormQuick($this->_module);
+		$form = $this->getFormQuick();
 		$tVars = array(
 			'form' => $form->templateX($this->_module->lang('ft_search'), false, $this->_module->hrefSearch()),
 		);
@@ -59,7 +59,7 @@ final class Links_Search extends GWF_Method
 		$tVars = array(
 			'cloud' => $this->_module->templateCloud(),
 			'matches' => $this->_module->templateLinks($matches, '#', '', ''),
-			'form' => $this->templateQuickSearch($this->_module),
+			'form' => $this->templateQuickSearch(),
 			'term' => $term,
 		);
 		return $this->_module->templatePHP('search.php', $tVars);
@@ -67,7 +67,7 @@ final class Links_Search extends GWF_Method
 	
 	public function onSearch(Module_Links $module, $adv)
 	{
-		$form = $adv ? $this->getFormAdv($this->_module) : $this->getFormQuick($this->_module);
+		$form = $adv ? $this->getFormAdv() : $this->getFormQuick($this->_module);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error.$this->templateSearch($this->_module, array(), $adv ? '' : $_REQUEST['term']);
 		}

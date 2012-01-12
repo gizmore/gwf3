@@ -18,7 +18,7 @@ final class Usergroups_Users extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateUsers($this->_module);
+		return $this->templateUsers();
 	}
 	
 	public function templateUsers()

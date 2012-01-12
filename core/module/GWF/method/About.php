@@ -8,7 +8,7 @@ final class GWF_About extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateAbout($this->_module);
+		return $this->templateAbout();
 	}
 	
 	private function templateAbout()

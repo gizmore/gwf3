@@ -46,9 +46,9 @@ final class VersionServer_Zipper extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('zipper'))) {
-			return $this->onZipB($this->_module);
+			return $this->onZipB();
 		}
-		return $this->templateZipper($this->_module);
+		return $this->templateZipper();
 	}
 	
 	public function getForm()
@@ -77,7 +77,7 @@ final class VersionServer_Zipper extends GWF_Method
 	
 	private function templateZipper()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_zipper')),
@@ -109,7 +109,7 @@ final class VersionServer_Zipper extends GWF_Method
 			$_POST['mod_'.$modulename] = 'yes';
 		}
 		$_POST['style'] = $design;
-		return $this->onZipB($this->_module);
+		return $this->onZipB();
 	}
 	
 	public function onZipB()
@@ -131,7 +131,7 @@ final class VersionServer_Zipper extends GWF_Method
 		$this->style[] = 'install';
 		unset($_POST['style']);
 		unset($_POST['zipper']);
-		$back = $this->onZipC($this->_module);
+		$back = $this->onZipC();
 		chdir(GWF_WWW_PATH);
 		return $back;
 	}

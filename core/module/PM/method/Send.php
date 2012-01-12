@@ -18,24 +18,24 @@ final class PM_Send extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('create'))) {
-			return $this->create($this->_module);
+			return $this->create();
 		}
 		
 		# IE Oo
 		if (false !== (Common::getPost('username'))) {
-			return $this->create($this->_module);
+			return $this->create();
 		}
 		
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 
 		if (false !== (Common::getPost('preview'))) {
-			return $this->preview($this->_module);
+			return $this->preview();
 		}
 		if (false !== (Common::getPost('send'))) {
-			return $this->send($this->_module);
+			return $this->send();
 		}
 		
 		if (false !== ($pmid = Common::getGet('reply'))) {
@@ -133,7 +133,7 @@ final class PM_Send extends GWF_Method
 		if (false === ($this->rec = GWF_User::getByName(Common::getGet('to')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->_module->requestMethodB('Overview');
 		}
-		return $this->templateSend($this->_module);
+		return $this->templateSend();
 	}
 
 	
@@ -142,14 +142,14 @@ final class PM_Send extends GWF_Method
 		if (false !== ($error = $this->sanitizePM($this->_module, $pmid))) {
 			return $error;
 		}
-		return $this->templateSend($this->_module);
+		return $this->templateSend();
 	}
 	
 	private function getForm()
 	{
 		$data = array(
-			'title' => array(GWF_Form::STRING, $this->getFormTitle($this->_module), $this->_module->lang('th_pm_title')),
-			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage($this->_module), $this->_module->lang('th_pm_message')),
+			'title' => array(GWF_Form::STRING, $this->getFormTitle(), $this->_module->lang('th_pm_title')),
+			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage(), $this->_module->lang('th_pm_message')),
 			'ignore' => array(GWF_Form::VALIDATOR),
 			'limits' => array(GWF_Form::VALIDATOR)
 		);
@@ -209,7 +209,7 @@ final class PM_Send extends GWF_Method
 	
 	private function templateSend(Module_PM $module, $preview='')
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if ($this->pm !== false) {
 			$this->pm->markRead(GWF_Session::getUser());
 		}
@@ -223,7 +223,7 @@ final class PM_Send extends GWF_Method
 		
 		$tVars = array(
 			'reply_to' => $this->pm === false ? '' : $this->templatePM($this->_module, $this->pm),
-			'form' => $form->templateY($this->getSEOTitle($this->_module)),
+			'form' => $form->templateY($this->getSEOTitle()),
 			'preview' => $preview,
 		);
 		return $this->_module->templatePHP('send.php', $tVars);
@@ -243,7 +243,7 @@ final class PM_Send extends GWF_Method
 	
 	private function preview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$errors = $form->validate($this->_module);
 		
 		$preview = $this->createNewPM($form);
@@ -270,9 +270,9 @@ final class PM_Send extends GWF_Method
 	
 	private function send()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateSend($this->_module);
+			return $error.$this->templateSend();
 		}
 		
 		# Get reply to field

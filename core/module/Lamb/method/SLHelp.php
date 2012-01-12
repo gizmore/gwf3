@@ -8,7 +8,7 @@ final class Lamb_SLHelp extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateShadowhelp($this->_module);		
+		return $this->templateShadowhelp();		
 	}
 	
 	private function templateShadowhelp()

@@ -17,9 +17,9 @@ final class Register_Form extends GWF_Method
 
 		if (false !== (Common::getPost('register')))
 		{
-			return $this->onRegister($this->_module);
+			return $this->onRegister();
 		}
-		return $this->templateForm($this->_module);
+		return $this->templateForm();
 	}
 	
 	private function getForm()
@@ -62,7 +62,7 @@ final class Register_Form extends GWF_Method
 	
 	private function templateForm()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('title_register'), GWF_WEB_ROOT.'register'),
 			'cookie_info' => GWF_Session::haveCookies() ? '' : GWF_HTML::err('ERR_COOKIES_REQUIRED', NULL, false),
@@ -72,11 +72,11 @@ final class Register_Form extends GWF_Method
 	
 	private function onRegister()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$errorsA = $errorsB = '';
-		if ( (false !== ($errorsA = $form->validate($this->_module))) || (false !== ($errorsB = $this->onRegisterB($this->_module))) ) {
-			return $errorsA.$errorsB.$this->templateForm($this->_module);
+		if ( (false !== ($errorsA = $form->validate($this->_module))) || (false !== ($errorsB = $this->onRegisterB())) ) {
+			return $errorsA.$errorsB.$this->templateForm();
 		}
 		
 		$username = Common::getPost('username');
@@ -99,7 +99,7 @@ final class Register_Form extends GWF_Method
 		));
 		
 		if (false === ($ua->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateForm($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateForm();
 		}
 
 		if ($this->_module->wantEmailActivation()) {

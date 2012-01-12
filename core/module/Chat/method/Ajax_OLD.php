@@ -8,11 +8,11 @@ final class Chat_Ajax_OLD extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getGet('stream')) {
-			return $this->startStream($this->_module);
+			return $this->startStream();
 		}
 		
 		if (false !== (Common::getGet('newprivmsg'))) {
-			return $this->onNewPrivmsg($this->_module);
+			return $this->onNewPrivmsg();
 		}
 		if (false !== ($timestamp = Common::getGet('newpubmsg'))) {
 			return $this->onNewPubmsg($this->_module, intval($timestamp/1000));
@@ -21,7 +21,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			return $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== (Common::getGet('online'))) {
-			return $this->onGetOnline($this->_module);
+			return $this->onGetOnline();
 		}
 	}
 	

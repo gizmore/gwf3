@@ -15,7 +15,7 @@ final class GWF_Error extends GWF_Method
 		# Do not remember this "non 200" page
 		GWF3::setConfig('store_last_url', false);
 		
-		return $this->templateError($this->_module);
+		return $this->templateError();
 	}
 	
 	private function templateError()

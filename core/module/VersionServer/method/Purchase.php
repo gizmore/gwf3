@@ -29,20 +29,20 @@ final class VersionServer_Purchase extends GWF_Method
 		// Modules to purchase
 		
 		if (false !== Common::getPost('on_order_2_x')) {
-			return $this->onOrder($this->_module);
+			return $this->onOrder();
 		}
 		
 		// Actions
 		if (Common::getPost('purchase')) {
-			return $this->onPurchase($this->_module);
+			return $this->onPurchase();
 		}
 		
 		if (false !== Common::getGet('zipper')) {
-			return $this->onZip($this->_module);
+			return $this->onZip();
 		}
 		
 		
-		return $this->templatePurchase($this->_module);
+		return $this->templatePurchase();
 	}
 	
 	private function templatePurchase()
@@ -62,12 +62,12 @@ final class VersionServer_Purchase extends GWF_Method
 	private function onPurchase()
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
-			return GWF_HTML::error('Purchase GWF Modules', $error).$this->templatePurchase($this->_module);
+			return GWF_HTML::error('Purchase GWF Modules', $error).$this->templatePurchase();
 		}
 		
 		if ( (!(isset($_POST['mod']))) || (!is_array($_POST['mod'])) ) {
-			return $this->_module->error('err_select_modules').$this->templatePurchase($this->_module);
-//			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__)).$this->templatePurchase($this->_module);
+			return $this->_module->error('err_select_modules').$this->templatePurchase();
+//			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__)).$this->templatePurchase();
 		}
 		 
 		$purchased_modules = array();
@@ -79,7 +79,7 @@ final class VersionServer_Purchase extends GWF_Method
 			}
 		}
 		if (count($purchased_modules) === 0) {
-			return $this->_module->error('err_select_modules').$this->templatePurchase($this->_module);
+			return $this->_module->error('err_select_modules').$this->templatePurchase();
 		}
 		
 		$designs = GWF_Design::getDesigns();
@@ -96,7 +96,7 @@ final class VersionServer_Purchase extends GWF_Method
 		$userid = GWF_Session::getUserID();
 		
 		if (false === ($client = GWF_Client::getClient($userid))) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templatePurchase($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templatePurchase();
 		}
 		
 		$order = new GWF_ClientOrder(array(
@@ -142,7 +142,7 @@ final class VersionServer_Purchase extends GWF_Method
 //		var_dump(GWF_Session::getSessData());
 		
 		if (false === ($order = Module_Payment::getTempOrder())) {
-			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__)).$this->templatePurchase($this->_module);
+			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__)).$this->templatePurchase();
 		}
 		Module_Payment::dropTempOrder();
 		

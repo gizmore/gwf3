@@ -15,11 +15,11 @@ final class Forum_History extends GWF_Method
 	
 	public function execute()
 	{
-		if (false === ($error = $this->sanitize($this->_module))) {
+		if (false === ($error = $this->sanitize())) {
 			return $error;
 		}
 		
-		return $this->templateLatest($this->_module);
+		return $this->templateLatest();
 	}
 	
 	######################

@@ -15,14 +15,14 @@ final class WeChall_SiteAdd extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('add_site')) {
-			return $this->onAddSite($this->_module);
+			return $this->onAddSite();
 		}
-		return $this->templateSiteAdd($this->_module);
+		return $this->templateSiteAdd();
 	}
 
 	public function templateSiteAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_site')),
 		);
@@ -41,9 +41,9 @@ final class WeChall_SiteAdd extends GWF_Method
 
 	public function onAddSite()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateSiteAdd($this->_module);
+			return $error.$this->templateSiteAdd();
 		}
 		
 		$site = new WC_Site(array(

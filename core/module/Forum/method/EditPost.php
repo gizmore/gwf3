@@ -24,22 +24,22 @@ final class Forum_EditPost extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module);
+			return $this->onEdit();
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($this->_module);
+			return $this->onDelete();
 		}
 		
-		return $this->templateEdit($this->_module);
+		return $this->templateEdit();
 	}
 	
 	################
@@ -88,7 +88,7 @@ final class Forum_EditPost extends GWF_Method
 	################
 	public function templateEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_post')),
 		);
@@ -100,7 +100,7 @@ final class Forum_EditPost extends GWF_Method
 	###############
 	public function onPreview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$errors = $form->validate($this->_module);
 		
@@ -128,7 +128,7 @@ final class Forum_EditPost extends GWF_Method
 		$preview = $this->_module->templatePHP('show_thread.php', $tVars);
 		
 		
-		return $errors.$preview.$this->templateEdit($this->_module);
+		return $errors.$preview.$this->templateEdit();
 	}
 	
 	############
@@ -137,9 +137,9 @@ final class Forum_EditPost extends GWF_Method
 	public function onEdit()
 	{
 		$p = $this->post;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateEdit($this->_module);
+			return $error.$this->templateEdit();
 		}
 		
 		if (false === GWF_ForumPostHistory::pushPost($p)) {
@@ -174,13 +174,13 @@ final class Forum_EditPost extends GWF_Method
 	public function onDelete()
 	{
 		$p = $this->post;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateEdit($this->_module);
+			return $error.$this->templateEdit();
 		}
 		
 		if (false === $p->deletePost()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateEdit($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__).$this->templateEdit();
 		}
 		
 		$this->_module->cachePostcount();

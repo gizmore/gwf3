@@ -13,9 +13,9 @@ final class Usergroups_ShowGroups extends GWF_Method
 		GWF_Module::loadModuleDB('Forum',true);
 		
 		if (false !== ($array = Common::getPost('part'))) {
-			return $this->onPart($this->_module, $array).$this->templateGroups($this->_module);
+			return $this->onPart($this->_module, $array).$this->templateGroups();
 		}
-		return $this->templateGroups($this->_module);
+		return $this->templateGroups();
 	}
 	
 	private function templateGroups()

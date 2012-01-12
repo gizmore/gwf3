@@ -11,7 +11,7 @@ final class Konzert_Presse extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/thumbnails.js');
 		GWF_Website::addJavascriptOnload('konzInitPresse();');
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'hoehrproben.html');
-		return $this->templatePresse($this->_module);
+		return $this->templatePresse();
 	}
 	
 	private function templatePresse()

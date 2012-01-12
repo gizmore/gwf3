@@ -9,7 +9,7 @@ final class Konzert_AdminTermine extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateTermine($this->_module);
+		return $this->templateTermine();
 	}
 	
 	private function templateTermine()

@@ -11,10 +11,10 @@ final class Helpdesk_FAQ extends GWF_Method
 		GWF_Website::addJavascriptOnload('helpdeskInit();');
 		
 		if (Common::getGetString('generate') === 'now') {
-			$back .= $this->onGenerate($this->_module);
+			$back .= $this->onGenerate();
 		}
 		
-		return $back.$this->templateFAQ($this->_module);
+		return $back.$this->templateFAQ();
 	}
 	
 	public function templateFAQ()
@@ -22,7 +22,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		$tVars = array(
 			'href_add' => $this->_module->getMethodURL('FAQAdd'),
 			'href_generate' => $this->getMethodHREF('&generate=now'),
-			'faq' => $this->buildFAQ($this->_module),
+			'faq' => $this->buildFAQ(),
 		);
 		return $this->_module->template('faq.tpl', $tVars);
 	}

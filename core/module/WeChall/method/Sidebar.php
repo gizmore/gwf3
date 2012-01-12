@@ -32,8 +32,8 @@ final class WeChall_Sidebar extends GWF_Method
 	public function displayRight()
 	{
 		return
-			$this->rightPanelStats($this->_module).PHP_EOL.
-			$this->rightPanelSites($this->_module).PHP_EOL;
+			$this->rightPanelStats().PHP_EOL.
+			$this->rightPanelSites().PHP_EOL;
 	}
 
 	private function rightPanelStats()
@@ -78,10 +78,10 @@ final class WeChall_Sidebar extends GWF_Method
 	public function displayLeft()
 	{
 		return
-			$this->leftPanelLanguage($this->_module).PHP_EOL.
-			$this->leftPanelTop10($this->_module).PHP_EOL.
-			$this->leftPanelLastActive($this->_module).PHP_EOL.
-			$this->leftPanelOnline($this->_module).PHP_EOL.
+			$this->leftPanelLanguage().PHP_EOL.
+			$this->leftPanelTop10().PHP_EOL.
+			$this->leftPanelLastActive().PHP_EOL.
+			$this->leftPanelOnline().PHP_EOL.
 			'';
 	}
 	

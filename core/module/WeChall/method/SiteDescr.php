@@ -6,26 +6,26 @@ final class WeChall_SiteDescr extends GWF_Method
 	public function isLoginRequired() { return true; }
 	public function execute()
 	{
-		if (false !== ($errors = $this->sanitize($this->_module))) {
+		if (false !== ($errors = $this->sanitize())) {
 			return GWF_HTML::errorA('WC4', $errors, true);
 		}
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
 		if (false !== Common::getPost('add'))  {
-			return $this->onAdd($this->_module).$this->templateDescr($this->_module);
+			return $this->onAdd().$this->templateDescr($this->_module);
 		}
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module).$this->templateDescr($this->_module);
+			return $this->onEdit().$this->templateDescr($this->_module);
 		}
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module).$this->templateDescr($this->_module);
+			return $this->onDelete().$this->templateDescr($this->_module);
 		}
 		if (false !== Common::getPost('default')) {
-			return $this->onDefault($this->_module).$this->templateDescr($this->_module);
+			return $this->onDefault().$this->templateDescr($this->_module);
 		}
 		
-		return $this->templateDescr($this->_module);
+		return $this->templateDescr();
 	}
 	
 	private function sanitize()

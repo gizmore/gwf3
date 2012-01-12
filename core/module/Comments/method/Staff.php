@@ -8,13 +8,13 @@ final class Comments_Staff extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateStaff($this->_module);
+		return $this->templateStaff();
 	}
 	
 	private function templateStaff()
 	{
 		$table = GDO::table('GWF_Comments');
-		$where = $this->getWhere($this->_module);
+		$where = $this->getWhere();
 		$ipp = 25;
 		$nItems = $table->countRows($where);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);

@@ -9,7 +9,7 @@ final class WeChall_API_Site extends GWF_Method
 			die('The mandatory parameter \'no_session\' is not set. Try \'&no_session=1\'.');
 		}
 		if (false === ($sitename = Common::getGet('sitename'))) {
-			die($this->showAllSites($this->_module));
+			die($this->showAllSites());
 		}
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
 			die($this->_module->lang('err_site'));

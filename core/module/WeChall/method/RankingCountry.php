@@ -24,7 +24,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		GWF_Website::setPageTitle($this->_module->lang('pt_csrank'));
 		GWF_Website::setMetaTags($this->_module->lang('mt_csrank'));
 		GWF_Website::setMetaDescr($this->_module->lang('md_csrank'));
-		return $this->templateRanking($this->_module);
+		return $this->templateRanking();
 	}
 	
 	private function templateRanking()

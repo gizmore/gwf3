@@ -7,15 +7,15 @@ final class Slaytags_Admin extends GWF_Method
 	{
 		if (isset($_POST['recalc']))
 		{
-			$this->onRecalcTags($this->_module).$this->templateAdmin($this->_module);
+			$this->onRecalcTags().$this->templateAdmin($this->_module);
 		}
 		
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function templateAdmin()
 	{
-		$form_actions = $this->formActions($this->_module);
+		$form_actions = $this->formActions();
 		$tVars = array(
 			'form_actions' => $form_actions->templateY('Actions'),
 		);
@@ -32,7 +32,7 @@ final class Slaytags_Admin extends GWF_Method
 	
 	private function onRecalcTags()
 	{
-		$form_actions = $this->formActions($this->_module);
+		$form_actions = $this->formActions();
 		if (false !== ($error = $form_actions->validate($this->_module)))
 		{
 			return $error;

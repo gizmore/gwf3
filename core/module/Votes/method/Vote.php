@@ -9,11 +9,11 @@ final class Votes_Vote extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
-		return $this->onVote($this->_module);
+		return $this->onVote();
 	}
 	
 	/**
@@ -54,7 +54,7 @@ final class Votes_Vote extends GWF_Method
 	private function onVote()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
-			return $this->onGuestVote($this->_module);
+			return $this->onGuestVote();
 		}
 		elseif ($user->isWebspider()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');

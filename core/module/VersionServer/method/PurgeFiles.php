@@ -5,9 +5,9 @@ final class VersionServer_PurgeFiles extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('purge')) {
-			return $this->onPurge($this->_module);
+			return $this->onPurge();
 		}
-		return $this->templatePurge($this->_module);
+		return $this->templatePurge();
 	}
 	
 	private function formPurge()
@@ -20,7 +20,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 
 	private function templatePurge()
 	{
-		$form = $this->formPurge($this->_module);
+		$form = $this->formPurge();
 		$tVars = array(
 			'form' => $form->templateX($this->_module->lang('ft_purge')),
 		);
@@ -29,9 +29,9 @@ final class VersionServer_PurgeFiles extends GWF_Method
 
 	private function onPurge()
 	{
-		$form = $this->formPurge($this->_module);
+		$form = $this->formPurge();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templatePurge($this->_module);
+			return $error.$this->templatePurge();
 		}
 		
 		$table = GDO::table('GWF_VersionFiles');

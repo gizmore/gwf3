@@ -15,7 +15,7 @@ final class Shoutbox_History extends GWF_Method
 		if (false !== ($array = Common::getPost('delete'))) {
 			return $this->onDelete($this->_module, $array);
 		}
-		return $this->templatePage($this->_module);
+		return $this->templatePage();
 	}
 
 	private function templatePage()

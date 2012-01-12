@@ -8,7 +8,7 @@ final class Konzert_Sponsoren extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateSponsoren($this->_module);
+		return $this->templateSponsoren();
 	}
 	
 	private function templateSponsoren()

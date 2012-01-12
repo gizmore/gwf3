@@ -14,12 +14,12 @@ final class Votes_Button extends GWF_Method
 	{
 		GWF3::setConfig('store_last_url', false);
 		
-		if (false !== ($error = $this->sanitize($this->_module)))
+		if (false !== ($error = $this->sanitize()))
 		{
 			return $error;
 		}
 		
-		return $this->imageButton($this->_module);
+		return $this->imageButton();
 	}
 
 	private function sanitize()

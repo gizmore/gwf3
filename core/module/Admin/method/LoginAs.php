@@ -11,10 +11,10 @@ final class Admin_LoginAs extends GWF_Method
 		$nav = $this->_module->templateNav();
 		
 		if (false !== Common::getPost('login')) {
-			return $nav.$this->onLoginAs($this->_module);
+			return $nav.$this->onLoginAs();
 		}
 		
-		return $nav.$this->templateLoginAs($this->_module);
+		return $nav.$this->templateLoginAs();
 	}
 	
 	################
@@ -33,7 +33,7 @@ final class Admin_LoginAs extends GWF_Method
 	
 	public function templateLoginAs()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_login_as')),
 		);
@@ -42,9 +42,9 @@ final class Admin_LoginAs extends GWF_Method
 	
 	public function onLoginAs()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateLoginAs($this->_module);
+			return $error.$this->templateLoginAs();
 		}
 		
 		if (false === ($user = GWF_User::getByName($form->getVar('username')))) {

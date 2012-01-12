@@ -5,7 +5,7 @@ final class PM_FolderAction extends GWF_Method
 	{
 		$back = '';
 		if (false !== (Common::getPost('delete_folder'))) {
-			$back .= $this->onDeleteFolders($this->_module);
+			$back .= $this->onDeleteFolders();
 		}
 
 		return $back.$this->_module->requestMethodB('Overview');

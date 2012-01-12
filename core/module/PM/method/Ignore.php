@@ -20,10 +20,10 @@ final class PM_Ignore extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($mode = Common::getGet('mode'))) {
-			return $this->onIgnore($this->_module, $mode, Common::getGetString('uid'), Common::getGetString('reason')).$this->templateIgnore($this->_module);
+			return $this->onIgnore($this->_module, $mode, Common::getGetString('uid'), Common::getGetString('reason')).$this->templateIgnore();
 		}
 		
-		return $this->templateIgnore($this->_module);
+		return $this->templateIgnore();
 	}
 	
 	private function templateIgnore()

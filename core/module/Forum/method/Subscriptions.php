@@ -5,7 +5,7 @@ final class Forum_Subscriptions extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateSubscription($this->_module);
+		return $this->templateSubscription();
 	}
 	
 	private function templateSubscription()

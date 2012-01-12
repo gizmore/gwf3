@@ -8,9 +8,9 @@ final class Login_History extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginCleared.php';
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginHistory.php';
 		if (false !== Common::getPost('clear')) {
-			return $this->onClear($this->_module).$this->templateHistory($this->_module);
+			return $this->onClear().$this->templateHistory($this->_module);
 		}
-		return $this->templateHistory($this->_module);
+		return $this->templateHistory();
 	}
 	
 	private function templateHistory()
@@ -26,7 +26,7 @@ final class Login_History extends GWF_Method
 		$by = Common::getGet('by');
 		$dir = Common::getGet('dir');
 		$orderby = $history->getMultiOrderby($by, $dir);
-		$form = $this->formDelete($this->_module);
+		$form = $this->formDelete();
 		
 		$headers = array(
 			array($this->_module->lang('th_loghis_time'), 'loghis_time'),
@@ -62,7 +62,7 @@ final class Login_History extends GWF_Method
 
 	private function onClear()
 	{
-		$form = $this->formDelete($this->_module);
+		$form = $this->formDelete();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

@@ -3,7 +3,7 @@ final class Slaytags_History extends GWF_Method
 {
 	public function execute()
 	{
-		return $this->templateHistory($this->_module);
+		return $this->templateHistory();
 	}
 	
 	private function templateHistory()

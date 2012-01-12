@@ -21,11 +21,11 @@ final class Links_Staff extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
-		return $this->overview($this->_module);
+		return $this->overview();
 	}
 	
 	private function sanitize()

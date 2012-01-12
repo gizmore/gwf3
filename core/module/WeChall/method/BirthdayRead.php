@@ -5,7 +5,7 @@ final class WeChall_BirthdayRead extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->onMarkRead($this->_module);
+		return $this->onMarkRead();
 	}
 	
 	private function onMarkRead()

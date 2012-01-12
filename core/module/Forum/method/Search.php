@@ -13,7 +13,7 @@ final class Forum_Search extends GWF_Method
 	##############
 	public function getHTAccess()
 	{
-		return $this->getHTAccessMethod($this->_module);
+		return $this->getHTAccessMethod();
 	}
 
 	public function execute()
@@ -26,7 +26,7 @@ final class Forum_Search extends GWF_Method
 		if (false !== ($term = Common::getGet('term'))) {
 			return $this->onQuickSearch($this->_module, $term);
 		}
-		return $this->templateSearch($this->_module);
+		return $this->templateSearch();
 	}
 
 	#############
@@ -45,8 +45,8 @@ final class Forum_Search extends GWF_Method
 	public function templateSearch(Module_Forum $module, $result=array(), $term='')
 	{
 		$tVars = array(
-			'form_quick' => $this->getFormQuick($this->_module)->templateX($this->_module->lang('ft_search_quick'), false),
-//			'form_adv' => $this->getFormAdv($this->_module)->templateY($this->_module->lang('ft_search_adv')),
+			'form_quick' => $this->getFormQuick()->templateX($this->_module->lang('ft_search_quick'), false),
+//			'form_adv' => $this->getFormAdv()->templateY($this->_module->lang('ft_search_adv')),
 			'pagemenu' => $this->pagemenu,
 			'sort_url' => $this->sortURL,
 			'result' => $result,

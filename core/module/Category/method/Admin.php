@@ -7,12 +7,12 @@ final class Category_Admin extends GWF_Method
 	public function getHTAccess()
 	{
 		return 'RewriteRule ^category/admin/?$ index.php?mo=Category&me=Admin'.PHP_EOL;
-//		return $this->getHTAccessMethod($this->_module);
+//		return $this->getHTAccessMethod();
 	}
 	
 	public function execute()
 	{
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	public function templateAdmin()

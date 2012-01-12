@@ -14,15 +14,15 @@ final class Account_Delete extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module);
+			return $this->onDelete();
 		}
 		
-		return $this->templateDelete($this->_module);
+		return $this->templateDelete();
 	}
 	
 	private function templateDelete()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('pt_accrm')),
 		);
@@ -41,9 +41,9 @@ final class Account_Delete extends GWF_Method
 	public function validate_note(Module_Account $m, $arg) { return GWF_Validator::validateString($m, 'note', $arg, 0, 4096, false); }
 	private function onDelete()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateDelete($this->_module);
+			return $errors.$this->templateDelete();
 		}
 		
 		$user = GWF_Session::getUser();

@@ -5,7 +5,7 @@ final class Konzert_Admin extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function templateAdmin()

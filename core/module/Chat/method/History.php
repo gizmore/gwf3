@@ -13,9 +13,9 @@ final class Chat_History extends GWF_Method
 	
 	public function execute()
 	{
-		$this->sanitize($this->_module);
+		$this->sanitize();
 		
-		return $this->templateHistory($this->_module);
+		return $this->templateHistory();
 	}
 	
 	private $channel = '';

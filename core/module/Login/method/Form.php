@@ -23,14 +23,14 @@ final class Login_Form extends GWF_Method
 
 		if (false !== Common::getPost('login'))
 		{
-			return $this->onLogin($this->_module);
+			return $this->onLogin();
 		}
-		return $this->form($this->_module);
+		return $this->form();
 	}
 	
 	public function form()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('title_login')),
 			'have_cookies' => GWF_Session::haveCookies(),
@@ -64,12 +64,12 @@ final class Login_Form extends GWF_Method
 	{
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module, $isAjax))) {
 			if ($isAjax) {
 				return $errors;
 			} else {
-				return $errors.$this->form($this->_module);
+				return $errors.$this->form();
 			}
 		}
 		
@@ -82,14 +82,14 @@ final class Login_Form extends GWF_Method
 			if ($isAjax) {
 				return $this->_module->error('err_login');
 			} else {
-				return $this->_module->error('err_login').$this->form($this->_module);
+				return $this->_module->error('err_login').$this->form();
 			}
 		}
 		elseif (true !== ($error = $this->checkBruteforce($this->_module, $user, $isAjax))) {
 			if ($isAjax) {
 				return $error;
 			} else {
-				return $error.$this->form($this->_module);
+				return $error.$this->form();
 			}
 		}
 		elseif (false === GWF_Hook::call(GWF_HOOK::LOGIN_PRE, $user, array($password, ''))) {
@@ -100,7 +100,7 @@ final class Login_Form extends GWF_Method
 				return $this->onLoginFailed($this->_module, $user, $isAjax);
 			}
 			else { 
-				return $this->onLoginFailed($this->_module, $user, $isAjax).$this->form($this->_module);
+				return $this->onLoginFailed($this->_module, $user, $isAjax).$this->form();
 			}
 		}
 		

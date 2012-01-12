@@ -24,7 +24,7 @@ final class Admin_Module extends GWF_Method
 	}
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
@@ -44,13 +44,13 @@ final class Admin_Module extends GWF_Method
 		# Defaults
 		elseif (false !== (Common::getPost('defaults')))
 		{
-			$back .= $this->onDefaults($this->_module);
+			$back .= $this->onDefaults();
 		}
 		
 		# Change Config
 		elseif (false !== (Common::getPost('update')))
 		{
-			$back .= $this->onUpdate($this->_module);
+			$back .= $this->onUpdate();
 		}
 		
 		# Admin Section Wrap
@@ -68,7 +68,7 @@ final class Admin_Module extends GWF_Method
 		}
 		
 		# Form
-		return $nav.$back.$this->templateModule($this->_module);
+		return $nav.$back.$this->templateModule();
 	}
 	
 	private function sanitize()
@@ -212,8 +212,8 @@ final class Admin_Module extends GWF_Method
 	################
 	private function templateModule()
 	{
-		$form = $this->getForm($this->_module);
-		$form_install = $this->getFormInstall($this->_module);
+		$form = $this->getForm();
+		$form_install = $this->getFormInstall();
 		$seoname = $this->mod->urlencodeSEO('module_name');
 		$modname = $this->mod->display('module_name');
 		$install_action = $this->_module->getMethodURL('Install');
@@ -289,7 +289,7 @@ final class Admin_Module extends GWF_Method
 	
 	private function onUpdate()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;

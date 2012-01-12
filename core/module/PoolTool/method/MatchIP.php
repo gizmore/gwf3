@@ -12,15 +12,15 @@ final class PoolTool_MatchIP extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('match'))) {
-			return $this->onMatch($this->_module);
+			return $this->onMatch();
 		}
 		
-		return $this->templateMatcher($this->_module);
+		return $this->templateMatcher();
 	}
 	
 	private function templateMatcher(Module_PoolTool $module, $matches = array())
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_matcher')),
 			'matches' => $matches,
@@ -64,9 +64,9 @@ final class PoolTool_MatchIP extends GWF_Method
 	
 	private function onMatch()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateMatcher($this->_module);
+			return $errors.$this->templateMatcher();
 		}
 		
 		$date = $form->getVar('date');

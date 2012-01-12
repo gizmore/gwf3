@@ -23,10 +23,10 @@ final class Forum_AddAttach extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('add')) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
 		
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function formAdd()
@@ -42,7 +42,7 @@ final class Forum_AddAttach extends GWF_Method
 	
 	private function templateAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_attach')),
 		);
@@ -53,9 +53,9 @@ final class Forum_AddAttach extends GWF_Method
 
 	private function onAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateAdd($this->_module);
+			return $error.$this->templateAdd();
 		}
 		
 		$file = $form->getVar('file');

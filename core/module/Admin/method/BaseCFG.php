@@ -5,14 +5,14 @@ final class Admin_BaseCFG extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('gpg_create')) {
-			return $this->onGPGSig($this->_module).$this->templateBase($this->_module);
+			return $this->onGPGSig().$this->templateBase($this->_module);
 		}
-		return $this->templateBase($this->_module);
+		return $this->templateBase();
 	}
 	
 	private function templateBase()
 	{
-		$form = $this->formGPGSig($this->_module);
+		$form = $this->formGPGSig();
 		$tVars = array(
 			'form_gpg' => $form->templateY($this->_module->lang('ft_gpg')),
 		);
@@ -42,7 +42,7 @@ final class Admin_BaseCFG extends GWF_Method
 	
 	private function onGPGSig()
 	{
-		$form = $this->formGPGSig($this->_module);
+		$form = $this->formGPGSig();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

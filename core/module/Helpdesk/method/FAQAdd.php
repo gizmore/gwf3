@@ -6,14 +6,14 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	public function execute()
 	{
 		if (isset($_POST['add'])) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 
 	private function templateAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_faq')),
 		);
@@ -37,9 +37,9 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->formAdd($this->_module);
+		$form = $this->formAdd();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateAdd($this->_module);
+			return $error.$this->templateAdd();
 		}
 		
 		$faq = new GWF_HelpdeskFAQ(array(
@@ -51,7 +51,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 		));
 		
 		if (false === ($faq->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd();
 		}
 		
 		return $this->_module->message('msg_faq_add');

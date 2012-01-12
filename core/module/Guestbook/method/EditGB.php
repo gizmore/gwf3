@@ -19,7 +19,7 @@ final class Guestbook_EditGB extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateModerate($this->_module);
+		return $this->templateModerate();
 	}
 
 	public function templateModerate()

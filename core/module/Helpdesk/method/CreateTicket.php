@@ -8,15 +8,15 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Helpdesk/GWF_HelpdeskTitle.php';
 		
 		if (false !== Common::getPost('create')) {
-			return $this->onCreate($this->_module);
+			return $this->onCreate();
 		}
 		
-		return $this->templateCT($this->_module);
+		return $this->templateCT();
 	}
 	
 	private function templateCT()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_new_ticket')),
 		);
@@ -42,9 +42,9 @@ final class Helpdesk_CreateTicket extends GWF_Method
 	
 	private function onCreate()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateCT($this->_module);
+			return $error.$this->templateCT();
 		}
 		
 		$options = GWF_HelpdeskTicket::USER_READ;
@@ -63,7 +63,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 			'hdt_options' => $options,
 		));
 		if (false === $ticket->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT();
 		}
 		$ticket->setVar('hdt_uid', GWF_Session::getUser());
 		
@@ -76,7 +76,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 			'hdm_options' => '0',
 		));
 		if (false === $message->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateCT();
 		}
 		$message->setVar('hdm_uid', GWF_Session::getUser());
 		

@@ -306,7 +306,7 @@ class GWF_Module extends GDO
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $method->execute($this);
+		return $method->execute();
 	}
 
 	/**

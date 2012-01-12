@@ -13,7 +13,7 @@ final class Admin_Modules extends GWF_Method
 	}
 	public function execute()
 	{
-		return $this->_module->templateNav().$this->templateModules($this->_module);
+		return $this->_module->templateNav().$this->templateModules();
 	}
 	
 	private function templateModules()

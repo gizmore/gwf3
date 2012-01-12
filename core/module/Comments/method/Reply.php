@@ -7,10 +7,10 @@ final class Comments_Reply extends GWF_Method
 		{
 //			unset($_POST['x']);
 //			unset($_POST['y']);
-			return $this->onReply($this->_module);
+			return $this->onReply();
 		}
 		
-		return $this->templateReply($this->_module);
+		return $this->templateReply();
 	}
 	
 	public function templateReply(Module_Comments $module, $href=NULL)

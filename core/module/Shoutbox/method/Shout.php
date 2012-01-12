@@ -11,7 +11,7 @@ final class Shoutbox_Shout extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		if (false !== ($error = $this->isFlooding($this->_module))) {
+		if (false !== ($error = $this->isFlooding())) {
 			return $error;
 		}
 		

@@ -15,19 +15,19 @@ final class Forum_AddThread extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
 		
 		if (false !== (Common::getPost('add_thread'))) {
-			return $this->onAddThread($this->_module);
+			return $this->onAddThread();
 		}
 		
-		return $this->templateAddThread($this->_module);
+		return $this->templateAddThread();
 	}
 	
 	private function sanitize()
@@ -61,7 +61,7 @@ final class Forum_AddThread extends GWF_Method
 	
 	private function templateAddThread(Module_Forum $module, $nav=true)
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'nav' => $nav,
 			'form' => $form->templateY($this->_module->lang('ft_add_thread')),
@@ -82,7 +82,7 @@ final class Forum_AddThread extends GWF_Method
 	{
 		$user = GWF_Session::getUser();
 		
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		$errors = $form->validate($this->_module);
 		
@@ -107,10 +107,10 @@ final class Forum_AddThread extends GWF_Method
 	
 	private function onAddThread()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateAddThread($this->_module);
+			return $error.$this->templateAddThread();
 		}
 		
 		$user = GWF_Session::getUser();

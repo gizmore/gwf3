@@ -10,21 +10,21 @@ final class Download_Add extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('add'))) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
 		if (false !== (Common::getPost('upload'))) {
-			return $this->onUpload($this->_module).$this->templateAdd($this->_module);
+			return $this->onUpload().$this->templateAdd($this->_module);
 		}
 		if (false !== (Common::getPost('remove'))) {
-			return $this->onRemove($this->_module).$this->templateAdd($this->_module);
+			return $this->onRemove().$this->templateAdd($this->_module);
 		}
 		
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function templateAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add')),
 			'max_size' => GWF_Upload::getMaxUploadSize(),
@@ -37,7 +37,7 @@ final class Download_Add extends GWF_Method
 	{
 		$data = array();
 		
-		if (false === ($file = $this->getFile($this->_module))) {
+		if (false === ($file = $this->getFile())) {
 			$name = '';
 			$size = '';
 		} else {
@@ -82,13 +82,13 @@ final class Download_Add extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module)))
 		{
-			return $errors.$this->templateAdd($this->_module);
+			return $errors.$this->templateAdd();
 		}
 
-		if (false === ($file = $this->getFile($this->_module)))
+		if (false === ($file = $this->getFile()))
 		{
 			$this->uploadedFile($this->_module, $form);
 			$file = $form->getVar('file');
@@ -97,7 +97,7 @@ final class Download_Add extends GWF_Method
 		$tempname = $file['tmp_name'];
 		if (!file_exists($tempname))
 		{
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 
 		$mod = $this->_module->isModerated($this->_module);
@@ -129,7 +129,7 @@ final class Download_Add extends GWF_Method
 			'dl_expire' => GWF_TimeConvert::humanToSeconds($form->getVar('expire')),
 		));
 		if (false === $dl->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 		
 		$dlid = $dl->getID();
@@ -137,20 +137,20 @@ final class Download_Add extends GWF_Method
 		
 		if (false === GWF_Upload::moveTo($file, $filename))
 		{
-			return GWF_HTML::err('ERR_WRITE_FILE', array( $filename)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_WRITE_FILE', array( $filename)).$this->templateAdd();
 		}
 		
 		if (false === @unlink($tempname))
 		{
-			return GWF_HTML::err('ERR_WRITE_FILE', array( $tempname)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_WRITE_FILE', array( $tempname)).$this->templateAdd();
 		}
 		
 		if (false === $dl->createVotes($this->_module))
 		{
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 		
-		$this->clearFile($this->_module);
+		$this->clearFile();
 		
 		if ($mod)
 		{
@@ -187,7 +187,7 @@ final class Download_Add extends GWF_Method
 	
 	private function onUpload()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false === ($file = $form->getVar('file'))) {
 			return GWF_HTML::err('ERR_MISSING_UPLOAD');
 		}
@@ -196,7 +196,7 @@ final class Download_Add extends GWF_Method
 	
 	private function onRemove()
 	{
-		$this->clearFile($this->_module);
+		$this->clearFile();
 	}
 	
 	##################

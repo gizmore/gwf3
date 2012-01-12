@@ -13,21 +13,21 @@ final class WeChall_Freeze extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		if (false !== Common::getPost('freeze')) {
-			return $this->onFreeze($this->_module).$this->templateFreeze($this->_module);
+			return $this->onFreeze().$this->templateFreeze($this->_module);
 		}
 		
 		if (false !== ($data = Common::getPost('unfreeze'))) {
-			return $this->onUnFreeze($this->_module, $data).$this->templateFreeze($this->_module);
+			return $this->onUnFreeze($this->_module, $data).$this->templateFreeze();
 		}
 		
-		return $this->templateFreeze($this->_module);
+		return $this->templateFreeze();
 	}
 	
 	private function formFreeze()
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
-			'siteid' => array(GWF_Form::SELECT, $this->getSiteSelect($this->_module), $this->_module->lang('th_site_name')),
+			'siteid' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->_module->lang('th_site_name')),
 			'freeze' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_freeze')),
 		);
 		return new GWF_Form($this, $data);
@@ -78,7 +78,7 @@ final class WeChall_Freeze extends GWF_Method
 		$dir = Common::getGet('dir', '');
 		$orderby = $freezes->getMultiOrderby($by, $dir);
 		
-		$form = $this->formFreeze($this->_module);
+		$form = $this->formFreeze();
 		
 		$tVars = array(
 //			'frozen' => $freezes->selectAll($orderby, $ipp, $from),
@@ -100,7 +100,7 @@ final class WeChall_Freeze extends GWF_Method
 	
 	private function onFreeze()
 	{
-		$form = $this->formFreeze($this->_module);
+		$form = $this->formFreeze();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

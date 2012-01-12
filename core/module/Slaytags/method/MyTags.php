@@ -9,7 +9,7 @@ final class Slaytags_MyTags extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateMyTags($this->_module);
+		return $this->templateMyTags();
 	}
 	
 	private function templateMyTags()

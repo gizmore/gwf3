@@ -30,7 +30,7 @@ final class Forum_Subscribe extends GWF_Method
 		}
 		
 		# Sanitize
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
@@ -46,11 +46,11 @@ final class Forum_Subscribe extends GWF_Method
 		
 		# Subscribe
 		if (Common::getGet('sub') !== false) {
-			return $this->onSubscribe($this->_module);
+			return $this->onSubscribe();
 		}
 
 		if (Common::getGet('unsub') !== false) {
-			return $this->onUnSubscribe($this->_module);
+			return $this->onUnSubscribe();
 		}
 		
 		

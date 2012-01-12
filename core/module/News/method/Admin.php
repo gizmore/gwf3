@@ -19,9 +19,9 @@ final class News_Admin extends GWF_Method
 	
 	public function execute()
 	{
-		$this->sanitize($this->_module);
+		$this->sanitize();
 		
-		return $this->templateOverview($this->_module);
+		return $this->templateOverview();
 	}
 	
 	private function sanitize()
@@ -43,7 +43,7 @@ final class News_Admin extends GWF_Method
 			'orderby' => $this->by,
 			'orderdir' => $this->dir,
 			'orderurl' => GWF_WEB_ROOT.'news/admin/page/1/by/%BY%/%DIR%',
-			'page_menu' => $this->getPageMenu($this->_module),
+			'page_menu' => $this->getPageMenu(),
 		);
 		return $this->_module->templatePHP('admin.php', $tVars);
 	}

@@ -20,7 +20,7 @@ final class Usergroups_AvatarGallery extends GWF_Method
 			return $this->onShowAvatar((int)$userid);
 		}
 		
-		return $this->page($this->_module);
+		return $this->page();
 	}
 	
 	private function onShowAvatar($userid)

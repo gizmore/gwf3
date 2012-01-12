@@ -10,15 +10,15 @@ final class Category_Add extends GWF_Method
 	public function getHTAccess()
 	{
 		return 'RewriteRule ^category/add/?$ index.php?mo=Category&me=Add'.PHP_EOL;
-//		return $this->getHTAccessMethod($this->_module);
+//		return $this->getHTAccessMethod();
 	}
 	
 	public function execute()
 	{
 		if (false !== (Common::getPost('add'))) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	private function getForm()
@@ -33,7 +33,7 @@ final class Category_Add extends GWF_Method
 	
 	private function templateAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
@@ -59,9 +59,9 @@ final class Category_Add extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateAdd($this->_module);
+			return $errors.$this->templateAdd();
 		}
 		$cat = new GWF_Category(array(
 			'cat_tree_id' => 0,
@@ -72,7 +72,7 @@ final class Category_Add extends GWF_Method
 			'cat_group' => $form->getVar('group'),
 		));
 		if (false === ($cat->insert())) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 		
 		$cat->rebuildFullTree();

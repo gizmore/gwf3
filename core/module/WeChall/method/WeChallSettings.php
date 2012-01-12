@@ -25,11 +25,11 @@ final class WeChall_WeChallSettings extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_FavCats.php';
 		
 		if (false !== (Common::getPost('add_fav'))) {
-			return $this->onMarkFavorite($this->_module).$this->templateFavSites($this->_module);
+			return $this->onMarkFavorite().$this->templateFavSites($this->_module);
 		}
 		
 		if (false !== Common::getPost('add_favcat')) {
-			return $this->onAddFavCat($this->_module).$this->templateFavSites($this->_module);
+			return $this->onAddFavCat().$this->templateFavSites($this->_module);
 		}
 		
 		if (false !== ($sid = Common::getPost('quickjump'))) {
@@ -37,19 +37,19 @@ final class WeChall_WeChallSettings extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('set_settings')) {
-			return $this->onSetSettings($this->_module);
+			return $this->onSetSettings();
 		}
 		
 		if (false !== ($cat = Common::getGetString('remcat', false))) {
-			return $this->onRemFavCat($this->_module, $cat).$this->templateFavSites($this->_module);
+			return $this->onRemFavCat($this->_module, $cat).$this->templateFavSites();
 		}
 		
 		if (false !== ($sid = Common::getGet('remove'))) {
-			return $this->onRemoveFavorite($this->_module, $sid).$this->templateFavSites($this->_module);
+			return $this->onRemoveFavorite($this->_module, $sid).$this->templateFavSites();
 		}
 		
 		return
-			$this->templateFavSites($this->_module);
+			$this->templateFavSites();
 	}
 
 	#################
@@ -68,7 +68,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 //			'sort_url' => GWF_WEB_ROOT.'favorite_sites/by/%BY%/%DIR%',
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WeChallSettings',
 		);
-		return $this->_module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings($this->_module);
+		return $this->_module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings();
 	}
 
 	private function getForm(Module_WeChall $module, $userid)
@@ -182,7 +182,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	
 	private function templateWeChallSettings()
 	{
-		$form = $this->formWCSettings($this->_module);
+		$form = $this->formWCSettings();
 		return $form->templateY($this->_module->lang('ft_settings'));
 	}
 
@@ -193,9 +193,9 @@ final class WeChall_WeChallSettings extends GWF_Method
 	
 	private function onSetSettings()
 	{
-		$form = $this->formWCSettings($this->_module);
+		$form = $this->formWCSettings();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateFavSites($this->_module);
+			return $error.$this->templateFavSites();
 		}
 		
 		$back = '';
@@ -306,7 +306,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 			}
 		}
 		
-		return $back.$this->templateFavSites($this->_module);
+		return $back.$this->templateFavSites();
 	}
 	
 	public function validate_favcat($m, $v) { return WC_SiteCats::isValidCatName($v) ? false : $m->lang('err_cat'); }

@@ -14,7 +14,7 @@ final class Konzert_AboutMelanie extends GWF_Method
 		
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'biography.html');
 		
-		return $this->templateAbout($this->_module);
+		return $this->templateAbout();
 	}
 	
 	private function templateAbout()

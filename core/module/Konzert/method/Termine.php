@@ -16,7 +16,7 @@ final class Konzert_Termine extends GWF_Method
 		
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'ensemble.html');
 		
-		return $this->templateTermine($this->_module);
+		return $this->templateTermine();
 	}
 	
 	private function templateTermine()

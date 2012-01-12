@@ -19,12 +19,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$this->_module->onInclude();
 		return
 			'<div id="wc_sidebar">'.PHP_EOL.
-			$this->displayLogin($this->_module).
-			$this->displayStats($this->_module).
-			$this->displaySites($this->_module).
-			$this->displayTopTen($this->_module).
-			$this->displayActive($this->_module).
-			$this->displayOnline($this->_module).
+			$this->displayLogin().
+			$this->displayStats().
+			$this->displaySites().
+			$this->displayTopTen().
+			$this->displayActive().
+			$this->displayOnline().
 			'</div>'.PHP_EOL;
 	}
 	
@@ -72,7 +72,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 //			GWF_Table::end().
 			'</form>'.PHP_EOL;
 //			'</div>'.PHP_EOL;
-		return $this->sidebox($this->_module->lang('ft_signup').$this->getHideButton($this->_module), $box);
+		return $this->sidebox($this->_module->lang('ft_signup').$this->getHideButton(), $box);
 	}
 	
 	private function getHideButton()
@@ -87,7 +87,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$postcount = $db->queryFirst("SELECT COUNT(*) c FROM $posts");
 		$postcount = $postcount['c'];
 		
-		$btn = GWF_Session::isLoggedIn() ? $this->getHideButton($this->_module) : '';
+		$btn = GWF_Session::isLoggedIn() ? $this->getHideButton() : '';
 
 		$box = 
 			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$this->_module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></div>'.PHP_EOL.

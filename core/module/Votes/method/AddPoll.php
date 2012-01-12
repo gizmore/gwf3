@@ -12,16 +12,16 @@ final class Votes_AddPoll extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('add_opt')) {
-			return $this->onAddOption($this->_module).$this->templateAddPoll($this->_module);
+			return $this->onAddOption().$this->templateAddPoll($this->_module);
 		}
 		if (false !== Common::getPost('rem_opts')) {
-			return $this->onRemOptions($this->_module).$this->templateAddPoll($this->_module);
+			return $this->onRemOptions().$this->templateAddPoll($this->_module);
 		}
 		if (false !== Common::getPost('create')) {
-			return $this->onAddPoll($this->_module);
+			return $this->onAddPoll();
 		}
 		
-		return $this->templateAddPoll($this->_module);
+		return $this->templateAddPoll();
 	}
 	
 	public function getForm()
@@ -62,7 +62,7 @@ final class Votes_AddPoll extends GWF_Method
 	
 	public function templateAddPoll()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_create')),
 		);
@@ -99,9 +99,9 @@ final class Votes_AddPoll extends GWF_Method
 	
 //	public function onCreate()
 //	{
-//		$form = $this->getForm($this->_module);
+//		$form = $this->getForm();
 //		if (false !== ($errors = $form->validate($this->_module))) {
-//			return $errors.$this->templateCreate($this->_module);
+//			return $errors.$this->templateCreate();
 //		}
 //		
 //		$opts = Common::getPost('opt', array());
@@ -178,14 +178,14 @@ final class Votes_AddPoll extends GWF_Method
 	
 	private function onAddPoll()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateAddPoll($this->_module);
+			return $errors.$this->templateAddPoll();
 		}
 		
 		$opts = Common::getPostArray('opt', array());
 		if (count($opts) === 0) {
-			return $this->_module->error('err_no_options').$this->templateAddPoll($this->_module);
+			return $this->_module->error('err_no_options').$this->templateAddPoll();
 		}
 		
 		$user = GWF_Session::getUser();
@@ -199,7 +199,7 @@ final class Votes_AddPoll extends GWF_Method
 		$is_public = isset($_POST['public']);
 		$result = (int)$form->getVar('view');
 		if ($is_public && !$this->_module->mayAddGlobalPoll($user)) {
-			return $this->_module->error('err_global_poll').$this->templateAddPoll($this->_module);
+			return $this->_module->error('err_global_poll').$this->templateAddPoll();
 		}
 		
 		GWF_Session::remove(self::SESS_OPTIONS);

@@ -74,7 +74,7 @@ final class PageBuilder_Links extends GWF_Method
 				$back .= $this->_module->error('err_htaccess_writing');
 		}
 		
-		return $back.$this->templateLinks($this->_module);
+		return $back.$this->templateLinks();
 	}
 
 	public function formLinks()
@@ -95,7 +95,7 @@ final class PageBuilder_Links extends GWF_Method
 			$links = array();
 		}
 		
-		$tVars = array('links' => $links, 'form' => $this->formLinks($this->_module));
+		$tVars = array('links' => $links, 'form' => $this->formLinks());
 		
 		return $this->_module->template($this->_tpl, $tVars);
 	}

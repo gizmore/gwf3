@@ -28,7 +28,7 @@ final class News_Edit extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('quicktranslate'))) {
-			return $this->onQuickTranslate($this->_module);
+			return $this->onQuickTranslate();
 		}
 		
 		$newsid = (int) Common::getGet('newsid', '0');
@@ -51,15 +51,15 @@ final class News_Edit extends GWF_Method
 		$this->lang = $lang;
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module).$this->templateEdit($this->_module);
+			return $this->onEdit().$this->templateEdit($this->_module);
 		}
 		if (false !== (Common::getPost('translate'))) {
-			return $this->onTranslate($this->_module);
+			return $this->onTranslate();
 		}
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
-		return $this->templateEdit($this->_module);
+		return $this->templateEdit();
 	}
 	
 	private function getForm()
@@ -86,7 +86,7 @@ final class News_Edit extends GWF_Method
 		
 	private function templateEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$form_title = $this->_module->lang('ft_edit', array( $this->lang->displayName()));
 		$action = $this->news->hrefEdit($this->lang);
 		$tVars = array(
@@ -127,10 +127,10 @@ final class News_Edit extends GWF_Method
 	###############
 	private function onPreview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateEdit($this->_module);
+			return $errors.$this->templateEdit();
 		}
 		
 		$news = GWF_News::preview(
@@ -144,7 +144,7 @@ final class News_Edit extends GWF_Method
 		
 		$preview = $this->previewNewsletter($this->_module, $news).Module_News::displayPreview($news);
 		
-		return $preview.$this->templateEdit($this->_module);
+		return $preview.$this->templateEdit();
 	}
 	
 	private function previewNewsletter(Module_News $module, GWF_News $news)
@@ -160,7 +160,7 @@ final class News_Edit extends GWF_Method
 	############
 	private function onEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) { #, array('langid', 'title', 'message')))) {
 			return $error;
 		}
@@ -224,22 +224,22 @@ final class News_Edit extends GWF_Method
 	
 	private function onTranslate()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) { #, array('transid', 'langid', 'title', 'message')))) {
-			return $error.$this->templateEdit($this->_module);
+			return $error.$this->templateEdit();
 		}
 		
 		$transid = $form->getVar('transid');
 		if (false === ($lang = GWF_Language::getByID($transid))) {
-			return $this->_module->error('err_lang_dest').$this->templateEdit($this->_module);
+			return $this->_module->error('err_lang_dest').$this->templateEdit();
 		}
 		
 		if ($form->getVar('langid') === $transid) {
-			return $this->_module->error('err_equal_translang', array($this->lang->displayName())).$this->templateEdit($this->_module);
+			return $this->_module->error('err_equal_translang', array($this->lang->displayName())).$this->templateEdit();
 		}
 		
 		if (false === ($this->news->saveTranslation($transid, $form->getVar('title'), $form->getVar('message')))) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit();
 		}
 		
 		$this->lang = $lang;
@@ -250,7 +250,7 @@ final class News_Edit extends GWF_Method
 //			$back = $this->newsToForum($this->_module, $this->news);
 //		}
 		
-		return $back.$this->_module->message('msg_translated', array($this->news->displayTitle(), $lang->displayName())).$this->templateEdit($this->_module);
+		return $back.$this->_module->message('msg_translated', array($this->news->displayTitle(), $lang->displayName())).$this->templateEdit();
 	}
 	
 	##################
@@ -282,7 +282,7 @@ final class News_Edit extends GWF_Method
 		}
 		
 		// Get News root.
-		if (false === ($news_root = $this->getNewsForumRoot($this->_module))) {
+		if (false === ($news_root = $this->getNewsForumRoot())) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		$root_id = $news_root->getID();

@@ -9,7 +9,7 @@ final class Konzert_Arrangements extends GWF_Method
 	public function execute()
 	{
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'konzerttermine.html');
-		return $this->templateArrangements($this->_module);
+		return $this->templateArrangements();
 	}
 	
 	private function templateArrangements()

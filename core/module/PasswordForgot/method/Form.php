@@ -21,9 +21,9 @@ final class PasswordForgot_Form extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('request'))) {
-			return $this->onRequest($this->_module);
+			return $this->onRequest();
 		}
-		return $this->form($this->_module);
+		return $this->form();
 	}
 	
 	private function getForm()
@@ -41,7 +41,7 @@ final class PasswordForgot_Form extends GWF_Method
 	
 	private function form()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('title_request'))
 		);
@@ -53,10 +53,10 @@ final class PasswordForgot_Form extends GWF_Method
 	
 	private function onRequest()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->form($this->_module);
+			return $errors.$this->form();
 		}
 		
 		$email = Common::getPost('email', '');
@@ -66,12 +66,12 @@ final class PasswordForgot_Form extends GWF_Method
 
 		# nothing found
 		if ($user1 === false && $user2 === false) {
-			return $this->_module->error('err_not_found').$this->form($this->_module);
+			return $this->_module->error('err_not_found').$this->form();
 		}
 		
 		# Two different users
 		if ($user1 !== false && $user2 !== false && ($user1->getID() !== $user2->getID())) {
-			return $this->_module->error('err_not_same_user').$this->form($this->_module);
+			return $this->_module->error('err_not_same_user').$this->form();
 		}
 
 		# pick the user and send him mail

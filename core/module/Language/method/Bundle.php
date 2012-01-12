@@ -12,18 +12,18 @@ final class Language_Bundle extends GWF_Method
 	{
 		error_reporting(0);
 		if (false !== Common::getPost('bundle')) {
-			return $this->onBundle($this->_module).$this->templateBundle($this->_module);
+			return $this->onBundle().$this->templateBundle($this->_module);
 		}
 		elseif (false !== Common::getPost('missing')) {
-			return $this->onCreateMissing($this->_module).$this->templateBundle($this->_module);
+			return $this->onCreateMissing().$this->templateBundle($this->_module);
 		}
 		
-		return $this->templateBundle($this->_module);
+		return $this->templateBundle();
 	}
 	
 	private function templateBundle()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_bundle')),
 		);
@@ -117,7 +117,7 @@ final class Language_Bundle extends GWF_Method
 	###############
 	private function onCreateMissing()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -268,7 +268,7 @@ final class Language_Bundle extends GWF_Method
 	##############
 	private function onBundle()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

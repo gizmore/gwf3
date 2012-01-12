@@ -15,26 +15,26 @@ final class PM_Options extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if ('all' === Common::getGet('auto_folder')) {
-			return $this->onAutoFolder($this->_module).$this->templateOptions($this->_module);
+			return $this->onAutoFolder().$this->templateOptions($this->_module);
 		}
 		
 		if (false !== (Common::getPost('ignore'))) {
-			return $this->onIgnore($this->_module).$this->templateOptions($this->_module);
+			return $this->onIgnore().$this->templateOptions($this->_module);
 		}
 		if (false !== ($username = Common::getGet('unignore'))) {
-			return $this->onUnIgnore($this->_module, $username).$this->templateOptions($this->_module);
+			return $this->onUnIgnore($this->_module, $username).$this->templateOptions();
 		}
 		
 		if (false !== Common::getPost('change')) {
-			return $this->onChange($this->_module).$this->templateOptions($this->_module);
+			return $this->onChange().$this->templateOptions($this->_module);
 		}
 		
-		return $this->templateOptions($this->_module);
+		return $this->templateOptions();
 	}
 	
 	public function sanitize()
@@ -67,8 +67,8 @@ final class PM_Options extends GWF_Method
 	public function templateOptions()
 	{
 		$uid = GWF_Session::getUserID();
-		$form = $this->getForm($this->_module);
-		$form2 = $this->getFormIgnore($this->_module);
+		$form = $this->getForm();
+		$form2 = $this->getFormIgnore();
 		$action = GWF_WEB_ROOT.'pm/options';
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_options'), $action),
@@ -81,7 +81,7 @@ final class PM_Options extends GWF_Method
 	
 	private function onChange()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

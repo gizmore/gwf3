@@ -17,7 +17,7 @@ final class Admin_Install extends GWF_Method
 		$nav = $this->_module->templateNav();
 		
 		if ('true' === Common::getGetString('all')) {
-			return $nav.$this->onInstallAll($this->_module);
+			return $nav.$this->onInstallAll();
 		}
 		if (false !== Common::getPost('install')) {
 			return $nav.$this->onInstallModuleSafe($this->_module, false);
@@ -29,13 +29,13 @@ final class Admin_Install extends GWF_Method
 			return $nav.$this->onInstallModuleSafe($this->_module, true);
 		}
 		if (false !== Common::getPost('resetvars2')) {
-			return $nav.$this->onResetModule($this->_module);
+			return $nav.$this->onResetModule();
 		}
 		if (false !== Common::getPost('delete')) {
 			return $nav.$this->onTemplateReinstall($this->_module, false);
 		}
 		if (false !== Common::getPost('delete2')) {
-			return $nav.$this->onDeleteModule($this->_module);
+			return $nav.$this->onDeleteModule();
 		}
 		
 		if (false !== ($modulename = Common::getGetString('module'))) {

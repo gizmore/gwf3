@@ -15,14 +15,14 @@ final class News_Add extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('add'))) {
-			return $this->onAdd($this->_module);
+			return $this->onAdd();
 		}
 		
 		if (false !== (Common::getPost('preview'))) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
 		
-		return $this->templateAdd($this->_module);
+		return $this->templateAdd();
 	}
 	
 	public function getForm()
@@ -51,7 +51,7 @@ final class News_Add extends GWF_Method
 	
 	public function templateAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add')),
 		);
@@ -96,10 +96,10 @@ final class News_Add extends GWF_Method
 	
 	private function onAdd()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateAdd($this->_module);
+			return $errors.$this->templateAdd();
 		}
 		
 		$langid = $form->getVar('langid');
@@ -129,10 +129,10 @@ final class News_Add extends GWF_Method
 
 	private function onPreview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateAdd($this->_module);
+			return $errors.$this->templateAdd();
 		}
 		
 		$news = GWF_News::preview(
@@ -150,7 +150,7 @@ final class News_Add extends GWF_Method
 			$preview = $this->previewNewsletter($this->_module, $news).$preview;
 //		}
 		
-		return $preview.$this->templateAdd($this->_module);
+		return $preview.$this->templateAdd();
 	}
 	
 //	private function getNewsletterMessage(Module_News $module, $message, $email)

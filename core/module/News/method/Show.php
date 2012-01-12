@@ -38,9 +38,9 @@ final class News_Show extends GWF_Method
 			}
 		}
 
-		$this->sanitize($this->_module);
+		$this->sanitize();
 		
-		return $this->templateShow($this->_module);
+		return $this->templateShow();
 	}
 	
 	private function sanitize()

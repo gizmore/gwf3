@@ -12,7 +12,7 @@ final class WeChall_License extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateLicense($this->_module);
+		return $this->templateLicense();
 	}
 	
 	private function templateLicense()

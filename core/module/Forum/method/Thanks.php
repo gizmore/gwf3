@@ -11,7 +11,7 @@ final class Forum_Thanks extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->onThanks($this->_module);
+		return $this->onThanks();
 	}
 	
 	private function onThanks()

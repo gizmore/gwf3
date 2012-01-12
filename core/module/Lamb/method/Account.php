@@ -11,20 +11,20 @@ final class Lamb_Account extends GWF_Method
 	{
 		$this->_module->initShadowlamb();
 		
-		if (false !== ($error = $this->initPlayers($this->_module))) {
+		if (false !== ($error = $this->initPlayers())) {
 			return $error;
 		}
 		
 		$back = '';
 		
 		if (false !== Common::getPost('link_player')) {
-			$back = $this->onLink($this->_module);
+			$back = $this->onLink();
 		}
 		elseif (false !== Common::getPost('create_player')) {
-			$back = $this->onCreate($this->_module);
+			$back = $this->onCreate();
 		}
 		
-		return $back.$this->templateAccounts($this->_module);
+		return $back.$this->templateAccounts();
 	}
 	
 	private function initPlayers()
@@ -60,8 +60,8 @@ final class Lamb_Account extends GWF_Method
 	
 	private function templateAccounts()
 	{
-		$formLink = $this->formLink($this->_module);
-		$formCreate = $this->formCreate($this->_module);
+		$formLink = $this->formLink();
+		$formCreate = $this->formCreate();
 		$tVars = array(
 			'form_link' => $formLink->templateX($this->_module->lang('ft_link')),
 			'form_create' => $formCreate->templateX(),
@@ -116,7 +116,7 @@ final class Lamb_Account extends GWF_Method
 	
 	private function onLink()
 	{
-		$form = $this->formLink($this->_module);
+		$form = $this->formLink();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -130,7 +130,7 @@ final class Lamb_Account extends GWF_Method
 
 	private function onCreate()
 	{
-		$form = $this->formCreate($this->_module);
+		$form = $this->formCreate();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

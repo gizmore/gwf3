@@ -6,7 +6,7 @@ final class Comments_Edit extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
@@ -14,14 +14,14 @@ final class Comments_Edit extends GWF_Method
 		
 		if (isset($_POST['editcmt']))
 		{
-			$back = $this->onEditComment($this->_module);
+			$back = $this->onEditComment();
 		}
 		elseif (isset($_POST['editcmts']))
 		{
-			$back = $this->onEditComments($this->_module);
+			$back = $this->onEditComments();
 		}
 		
-		return $back . $this->templateEdit($this->_module);
+		return $back . $this->templateEdit();
 	}
 	
 	public function sanitize()
@@ -49,8 +49,8 @@ final class Comments_Edit extends GWF_Method
 	
 	public function templateEdit()
 	{
-		$formComment = $this->formComment($this->_module);
-		$formComments = $this->formComments($this->_module);
+		$formComment = $this->formComment();
+		$formComments = $this->formComments();
 		
 		$tVars = array(
 			'form_cmt' => $formComment->templateY($this->_module->lang('ft_edit_cmt')),
@@ -86,7 +86,7 @@ final class Comments_Edit extends GWF_Method
 	
 	public function onEditComment()
 	{
-		$formComment = $this->formComment($this->_module);
+		$formComment = $this->formComment();
 		if (false !== ($error = $formComment->validate($this->_module)))
 		{
 			return $error;
@@ -103,7 +103,7 @@ final class Comments_Edit extends GWF_Method
 
 	public function onEditComments()
 	{
-		$formComments = $this->formComments($this->_module);
+		$formComments = $this->formComments();
 		if (false !== ($error = $formComments->validate($this->_module)))
 		{
 			return $error;

@@ -22,7 +22,7 @@ final class News_Preview extends GWF_Method
 			return $this->_module->error('err_no_preview');
 		}
 		
-		if (false === ($mail = $this->getPreviewMail($this->_module))) {
+		if (false === ($mail = $this->getPreviewMail())) {
 			return $this->_module->error('err_no_preview');
 		}
 		

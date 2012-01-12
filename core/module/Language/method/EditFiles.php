@@ -14,10 +14,10 @@ final class Language_EditFiles extends GWF_Method
 		
 		if (false !== Common::getPost('save_file'))
 		{
-			return $this->onSaveFile($this->_module);
+			return $this->onSaveFile();
 		}
 		
-		return $this->templateFiles($this->_module);
+		return $this->templateFiles();
 	}
 	
 	/**

@@ -17,11 +17,11 @@ final class Admin_Groups extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute()
 	{
-//		if (false !== ($error = $this->sanitize($this->_module))) {
+//		if (false !== ($error = $this->sanitize())) {
 //			return $error;
 //		}
 //		
-		return $this->_module->templateNav().$this->templateGroups($this->_module);
+		return $this->_module->templateNav().$this->templateGroups();
 	}
 	
 	################

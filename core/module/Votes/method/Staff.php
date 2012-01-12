@@ -26,7 +26,7 @@ final class Votes_Staff extends GWF_Method
 		}
 		
 		// Table
-		return $this->templateVotes($this->_module);
+		return $this->templateVotes();
 	}
 	
 	private function templateVotes()

@@ -11,19 +11,19 @@ final class PM_Edit extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module);
+			return $this->onEdit();
 		}
 		
 		if (false !== Common::getPost('preview')) {
-			return $this->onPreview($this->_module);
+			return $this->onPreview();
 		}
 		
-		return $this->templateEdit($this->_module);
+		return $this->templateEdit();
 	}
 	
 	/**
@@ -60,7 +60,7 @@ final class PM_Edit extends GWF_Method
 
 	private function templateEdit(Module_PM $module, $preview='')
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit')),
 			'preview' => $preview,
@@ -70,7 +70,7 @@ final class PM_Edit extends GWF_Method
 	
 	private function onPreview()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$errors = $form->validate($this->_module);
 		$preview = $this->templatePreview($this->_module, $form);
 		return $errors.$this->templateEdit($this->_module, $preview);
@@ -89,9 +89,9 @@ final class PM_Edit extends GWF_Method
 
 	private function onEdit()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateEdit($this->_module);
+			return $errors.$this->templateEdit();
 		}
 		
 		$data = array(

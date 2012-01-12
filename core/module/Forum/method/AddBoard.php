@@ -16,15 +16,15 @@ final class Forum_AddBoard extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== Common::getPost('add_board')) {
-			return $this->onAddBoard($this->_module);
+			return $this->onAddBoard();
 		}
 		
-		return $this->templateAddBoard($this->_module);
+		return $this->templateAddBoard();
 	}
 	
 	private function sanitize()
@@ -56,7 +56,7 @@ final class Forum_AddBoard extends GWF_Method
 	
 	private function templateAddBoard()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_board')),
 		);
@@ -76,9 +76,9 @@ final class Forum_AddBoard extends GWF_Method
 	#################
 	private function onAddBoard()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateAddBoard($this->_module);
+			return $error.$this->templateAddBoard();
 		}
 		
 		$title = $form->getVar('title');

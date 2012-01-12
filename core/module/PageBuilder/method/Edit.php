@@ -87,7 +87,7 @@ final class PageBuilder_Edit extends GWF_Method
 //		$options |= isset($_POST['enabled']) ? GWF_Page::ENABLED : 0;
 //		$options |= isset($_POST['noguests']) ? GWF_Page::LOGIN_REQUIRED : 0;
 		
-		$gstring = $this->buildGroupString($this->_module);
+		$gstring = $this->buildGroupString();
 		$tags = ','.trim($form->getVar('tags'), ' ,').',';
 		
 		$data = array(
@@ -106,7 +106,7 @@ final class PageBuilder_Edit extends GWF_Method
 //			'page_options' => $options,
 		);
 //		if ($page->isRoot()) {
-//			$data['page_groups'] = $this->buildGroupString($this->_module);
+//			$data['page_groups'] = $this->buildGroupString();
 //		}
 //		$data['page_options'] = $options;
 

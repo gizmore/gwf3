@@ -6,7 +6,7 @@ final class Forum_Unread extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateUnread($this->_module);
+		return $this->templateUnread();
 	}
 	
 	public function templateUnread()

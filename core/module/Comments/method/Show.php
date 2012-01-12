@@ -5,12 +5,12 @@ final class Comments_Show extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module)))
+		if (false !== ($error = $this->sanitize()))
 		{
 			return $error;
 		}
 		
-		return $this->templateShow($this->_module);
+		return $this->templateShow();
 	}
 	
 	public function sanitize(Module_Comments $module, $check_enabled=true)

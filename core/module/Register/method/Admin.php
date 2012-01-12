@@ -12,11 +12,11 @@ final class Register_Admin extends GWF_Method
 	public function getUserGroups() { return GWF_Group::STAFF; }
 	public function execute()
 	{
-		if (false === ($errors = $this->sanitize($this->_module))) {
+		if (false === ($errors = $this->sanitize())) {
 			return $errors;
 		}
 		
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 
 	################

@@ -12,14 +12,14 @@ final class Profile_Form extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('edit')) {
-			return $this->onEditSettings($this->_module).$this->templateSettings($this->_module);
+			return $this->onEditSettings().$this->templateSettings($this->_module);
 		}
 
 		GWF_Website::setPageTitle($this->_module->lang('pt_settings'));
 		GWF_Website::setMetaTags($this->_module->lang('mt_settings'));
 		GWF_Website::setMetaTags($this->_module->lang('md_settings'));
 		
-		return $this->templateSettings($this->_module);
+		return $this->templateSettings();
 	}
 	
 	private function getProfile()

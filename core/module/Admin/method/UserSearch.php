@@ -12,9 +12,9 @@ final class Admin_UserSearch extends GWF_Method
 		$nav = $this->_module->templateNav();
 		
 		if (false !== Common::getPost('search') || false !== Common::getGet('term')) {
-			return $nav.$this->onSearch($this->_module);
+			return $nav.$this->onSearch();
 		}
-		return $nav.$this->templateSearch($this->_module);
+		return $nav.$this->templateSearch();
 	}
 	
 	public function getForm()
@@ -28,7 +28,7 @@ final class Admin_UserSearch extends GWF_Method
 	
 	public function templateSearch()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'searched' => false,
 			'form' => $form->templateX($this->_module->lang('ft_search'), false),
@@ -56,9 +56,9 @@ final class Admin_UserSearch extends GWF_Method
 	
 	public function onSearch()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 //		if (false !== ($error = $form->validate($this->_module))) {
-//			return $error.$this->templateSearch($this->_module);
+//			return $error.$this->templateSearch();
 //		}
 		
 		$users = GDO::table('GWF_User');

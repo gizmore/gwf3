@@ -248,7 +248,7 @@ final class Helpdesk_Ticket extends GWF_Method
 	
 	private function onReply(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
 	{
-		$form = $this->formReply($this->_module);
+		$form = $this->formReply();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

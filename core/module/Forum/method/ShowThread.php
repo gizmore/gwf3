@@ -48,7 +48,7 @@ final class Forum_ShowThread extends GWF_Method
 	{
 		GWF_ForumBoard::init(true);
 		
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
@@ -61,7 +61,7 @@ final class Forum_ShowThread extends GWF_Method
 		
 		GWF_Website::setPageTitle($this->_module->lang('pt_thread', array($this->thread->getBoard()->getVar('board_title'), $this->thread->getVar('thread_title'))));
 		
-		return $this->templateThread($this->_module);
+		return $this->templateThread();
 	}
 	#########################
 	### Sanitize Get Vars ###
@@ -105,7 +105,7 @@ final class Forum_ShowThread extends GWF_Method
 		$tVars = array(
 			'thread' => $this->thread,
 			'posts' => $this->thread->getPostPage($this->ppt, $this->page),
-			'pagemenu' => $this->getPageMenu($this->_module),
+			'pagemenu' => $this->getPageMenu(),
 			'actions' => true,
 			'title' => true,
 			'reply' => $this->thread->hasReplyPermission(GWF_Session::getUser(), $this->_module),

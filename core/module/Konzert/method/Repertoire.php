@@ -14,7 +14,7 @@ final class Konzert_Repertoire extends GWF_Method
 		
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'arrangements.html');
 		
-		return $this->templateRepertoire($this->_module);
+		return $this->templateRepertoire();
 	}
 	
 	private function templateRepertoire()

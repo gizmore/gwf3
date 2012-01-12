@@ -15,21 +15,21 @@ final class Admin_GroupEdit extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		if (false !== ($uid = Common::getGet('rem'))) {
-			return $this->_module->templateNav().$this->onRemFromGroup($this->_module, $uid).$this->templateEdit($this->_module);
+			return $this->_module->templateNav().$this->onRemFromGroup($this->_module, $uid).$this->templateEdit();
 		}
 		if (false !== (Common::getPost('edit'))) {
-			return $this->_module->templateNav().$this->onEditGroup($this->_module).$this->templateEdit($this->_module);
+			return $this->_module->templateNav().$this->onEditGroup().$this->templateEdit($this->_module);
 		}
 		if (false !== (Common::getPost('add_to_group'))) {
-			return $this->_module->templateNav().$this->onAddToGroup($this->_module).$this->templateEdit($this->_module);
+			return $this->_module->templateNav().$this->onAddToGroup().$this->templateEdit($this->_module);
 		}
 		
-		return $this->_module->templateNav().$this->templateEdit($this->_module);
+		return $this->_module->templateNav().$this->templateEdit();
 	}
 	
 	################
@@ -108,8 +108,8 @@ final class Admin_GroupEdit extends GWF_Method
 		
 		$tVars = array(
 			'group' => $this->group,
-			'form' => $this->getForm($this->_module)->templateY($this->_module->lang('ft_edit_group', array($this->group->display('group_name')))),
-			'form_add' => $this->getFormAdd($this->_module)->templateX($this->_module->lang('ft_add_to_group'),$this->getMethodHREF('&gid='.$gid)),
+			'form' => $this->getForm()->templateY($this->_module->lang('ft_edit_group', array($this->group->display('group_name')))),
+			'form_add' => $this->getFormAdd()->templateX($this->_module->lang('ft_add_to_group'),$this->getMethodHREF('&gid='.$gid)),
 //			'users' => $groups->selectColumn('ug_userid', $conditions),
 			'userids' => $groups->selectColumn('ug_userid', $conditions, '', NULL, $ipp, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->getMethodHref(sprintf('&gid=%d&page=%%PAGE%%', $gid))),
@@ -124,7 +124,7 @@ final class Admin_GroupEdit extends GWF_Method
 	###############
 	private function onEditGroup()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -145,7 +145,7 @@ final class Admin_GroupEdit extends GWF_Method
 	#######################
 	private function onAddToGroup()
 	{
-		$form = $this->getFormAdd($this->_module);
+		$form = $this->getFormAdd();
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

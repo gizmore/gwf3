@@ -21,10 +21,10 @@ final class Chat_Page extends GWF_Method
 		
 		if (false !== (Common::getPost('post')))
 		{
-			return $this->onPost($this->_module).$this->templatePage($this->_module);
+			return $this->onPost().$this->templatePage($this->_module);
 		}
 		
-		return $this->templatePage($this->_module);
+		return $this->templatePage();
 	}
 	
 	private function getForm()
@@ -43,7 +43,7 @@ final class Chat_Page extends GWF_Method
 	
 	private function templatePage()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		
 		if (false === ($nick = $this->_module->getNickname())) {
 			$nick = '';
@@ -81,7 +81,7 @@ final class Chat_Page extends GWF_Method
 	
 	private function onPost()
 	{
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

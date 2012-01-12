@@ -14,7 +14,7 @@ final class Konzert_Biography extends GWF_Method
 		
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'repertoire.html');
 		
-		return $this->templateBiography($this->_module);
+		return $this->templateBiography();
 	}
 	
 	private function templateBiography()

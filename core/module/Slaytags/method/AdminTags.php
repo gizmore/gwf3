@@ -5,7 +5,7 @@ final class Slaytags_AdminTags extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateAdminTags($this->_module);
+		return $this->templateAdminTags();
 	}
 	
 	private function templateAdminTags()

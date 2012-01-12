@@ -7,10 +7,10 @@ final class Payment_Staff extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('qsearch'))) {
-			return $this->onQuickSearch($this->_module);
+			return $this->onQuickSearch();
 		}
 		
-		return $this->templateStaff($this->_module);
+		return $this->templateStaff();
 	}
 	
 	### Search Templates
@@ -34,8 +34,8 @@ final class Payment_Staff extends GWF_Method
 	public function templateStaff()
 	{
 		$tVars = array(
-			'quicksearch' => $this->templateQuickSearch($this->_module)->templateX($this->_module->lang('ft_search')),
-			'table' => $this->getTable($this->_module),
+			'quicksearch' => $this->templateQuickSearch()->templateX($this->_module->lang('ft_search')),
+			'table' => $this->getTable(),
 			'href_orders' => $this->getMethodHref(sprintf('&o=1&by=order_id&dir=DESC&page=1')),
 			'href_transactions' => $this->getMethodHref(sprintf('&t=1&by=order_id&dir=DESC&page=1')),
 		);
@@ -45,8 +45,8 @@ final class Payment_Staff extends GWF_Method
 	private function onQuickSearch()
 	{
 		$tVars = array(
-			'quicksearch' => $this->templateQuickSearch($this->_module)->templateX($this->_module->lang('ft_search')),
-			'table' => $this->getQuickSearchTable($this->_module),
+			'quicksearch' => $this->templateQuickSearch()->templateX($this->_module->lang('ft_search')),
+			'table' => $this->getQuickSearchTable(),
 			'href_orders' => $this->getMethodHref(sprintf('&o=1&by=order_id&dir=DESC&page=1')),
 			'href_transactions' => $this->getMethodHref(sprintf('&t=1&by=order_id&dir=DESC&page=1')),
 		);

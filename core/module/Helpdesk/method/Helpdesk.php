@@ -10,7 +10,7 @@ final class Helpdesk_Helpdesk extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateHelpdesk($this->_module);
+		return $this->templateHelpdesk();
 	}
 	
 	private function templateHelpdesk()
@@ -20,8 +20,8 @@ final class Helpdesk_Helpdesk extends GWF_Method
 			'href_my_tickets' => $this->_module->getMethodURL('ShowTickets'),
 			'href_staffdesk' => $this->_module->getMethodURL('Staff'),
 			'href_faq' => $this->_module->getMethodURL('FAQ'),
-			'ticketcount' => $this->getTicketCount($this->_module),
-			'stafftickets' => $this->getTicketCountStaff($this->_module),
+			'ticketcount' => $this->getTicketCount(),
+			'stafftickets' => $this->getTicketCountStaff(),
 		);
 		return $this->_module->template('helpdesk.tpl', $tVars);
 	}

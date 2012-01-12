@@ -11,17 +11,17 @@ final class Admin_UserEdit extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
 		$nav = $this->_module->templateNav();
 		
 		if (false !== Common::getPost('edit')) {
-			return $nav.$this->onEdit($this->_module).$this->templateUserEdit($this->_module);
+			return $nav.$this->onEdit().$this->templateUserEdit($this->_module);
 		}
 		
-		return $nav.$this->templateUserEdit($this->_module);
+		return $nav.$this->templateUserEdit();
 	}
 	
 	private function sanitize()
@@ -62,7 +62,7 @@ final class Admin_UserEdit extends GWF_Method
 	private function templateUserEdit()
 	{
 		$u = $this->user;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_useredit', array( $u->displayUsername()))),
 			'href_login_as' => Module_Admin::getLoginAsURL($u->urlencode('user_name')),
@@ -115,7 +115,7 @@ final class Admin_UserEdit extends GWF_Method
 	private function onEdit()
 	{
 		$u = $this->user;
-		$form = $this->getForm($this->_module);
+		$form = $this->getForm();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

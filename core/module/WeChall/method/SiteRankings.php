@@ -15,10 +15,10 @@ final class WeChall_SiteRankings extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('quickjump'))) {
-			return $this->onQuickjump($this->_module);
+			return $this->onQuickjump();
 		}
 		
-		return $this->templateRanking($this->_module);
+		return $this->templateRanking();
 	}
 	
 	private function getLinkcountUnranked($siteid)

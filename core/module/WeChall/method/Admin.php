@@ -6,42 +6,42 @@ final class WeChall_Admin extends GWF_Method
 	public function execute()
 	{
 		if (Common::getGet('recalc') === 'all') {
-			return $this->onRecalcEverything($this->_module);
+			return $this->onRecalcEverything();
 		}
 		
 		if (false !== Common::getGet('fix_challs')) {
-			return $this->onFixChalls($this->_module);
+			return $this->onFixChalls();
 		}
 		if (false !== Common::getGet('fix_irc')) {
-			return $this->onFixIRC($this->_module);
+			return $this->onFixIRC();
 		}
 		
 		if (false !== Common::getGet('chall_cache')) {
-			return $this->onCacheChallTags($this->_module);
+			return $this->onCacheChallTags();
 		}
 		
 		if (false !== Common::getGet('sitetags')) {
-			return $this->onCacheSiteTags($this->_module);
+			return $this->onCacheSiteTags();
 		}
 		
 		if (false !== Common::getGet('remote_update')) {
-			return $this->templateRemoteUpdate($this->_module);
+			return $this->templateRemoteUpdate();
 		}
 		
 		if (false !== Common::getPost('remote_update')) {
-			return $this->onRemoteUpdate($this->_module);
+			return $this->onRemoteUpdate();
 		}
 		
 		if (false !== Common::getPost('hardlink')) {
-			return $this->onHardlink($this->_module).$this->templateAdmin($this->_module);
+			return $this->onHardlink().$this->templateAdmin($this->_module);
 		}
 		
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function templateAdmin()
 	{
-		$formHardlink = $this->formHardlink($this->_module);
+		$formHardlink = $this->formHardlink();
 		$tVars = array(
 			'href_ddos' => $this->_module->getMethodURL('UpdateAll'),
 			'href_convert' => $this->_module->getMethodURL('Convert'),
@@ -62,15 +62,15 @@ final class WeChall_Admin extends GWF_Method
 	{
 		$this->_module->cacheChallTags();
 		return $this->_module->message('msg_cached_ctags').
-		$this->templateAdmin($this->_module);
+		$this->templateAdmin();
 	}
 	
 	private function onCacheSiteTags()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';
 		WC_SiteCats::fixCatBits();
-		$this->fixFavCats($this->_module);
-		return $this->templateAdmin($this->_module);
+		$this->fixFavCats();
+		return $this->templateAdmin();
 	}
 	
 	private function fixFavCats()
@@ -92,7 +92,7 @@ final class WeChall_Admin extends GWF_Method
 		WC_Site::recalcAllSites();
 		WC_RegAt::calcTotalscores();
 		
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 
 	private function onFixChalls()
@@ -103,7 +103,7 @@ final class WeChall_Admin extends GWF_Method
 		if (false === ($challs = $table->selectObjects('*')))
 //		if (false === ($challs = $table->selectAll()))
 		{
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin();
 		}
 		
 		foreach ($challs as $chall)
@@ -114,15 +114,15 @@ final class WeChall_Admin extends GWF_Method
 				'chall_creator_name' => $this->fixComma($chall->getVar('chall_creator_name')),
 				'chall_tags' => $this->fixComma($chall->getVar('chall_tags')),
 			))) {
-				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($this->_module);
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin();
 			}
 		}
 		
 		if (false === $table->update("chall_solvecount=(SELECT COUNT(*) FROM $solved WHERE csolve_cid=chall_id AND csolve_date!='')")) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin();
 		}
 		
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function fixComma($s)
@@ -136,14 +136,14 @@ final class WeChall_Admin extends GWF_Method
 	private function onFixIRC()
 	{
 		if (false === ($sites = GDO::table('WC_Site')->selectObjects())) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin($this->_module);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdmin();
 		}
 		foreach ($sites as $site)
 		{
 			$site instanceof WC_Site;
 			$site->saveVar('site_irc', $this->fixIRC($site->getVar('site_irc')));
 		}
-		return $this->templateAdmin($this->_module);
+		return $this->templateAdmin();
 	}
 	
 	private function fixIRC($url)
@@ -210,7 +210,7 @@ final class WeChall_Admin extends GWF_Method
 	}
 	private function onHardlink()
 	{
-		$form = $this->formHardlink($this->_module);
+		$form = $this->formHardlink();
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

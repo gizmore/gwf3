@@ -5,7 +5,7 @@ final class Account_ChangeEmail extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('changemail'))) {
-			return $this->onRequestB($this->_module);
+			return $this->onRequestB();
 		}
 		
 		if (false !== ($token = Common::getGet('token'))) {

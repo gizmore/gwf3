@@ -14,7 +14,7 @@ final class Konzert_Ensemble extends GWF_Method
 
 		$this->_module->setNextHREF(GWF_WEB_ROOT.'presseberichte.html');
 		
-		return $this->templateEnsemble($this->_module);
+		return $this->templateEnsemble();
 	}
 	
 	private function templateEnsemble()

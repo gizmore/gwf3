@@ -11,7 +11,7 @@ final class WeChall_SiteHistory extends GWF_Method
 	public function execute()
 	{
 		if (false !== (Common::getPost('quickjump'))) {
-			return $this->onQuickjump($this->_module);
+			return $this->onQuickjump();
 		}
 		
 		if (false === ($site = WC_Site::getByName(Common::getGetString('site', NULL)))) {

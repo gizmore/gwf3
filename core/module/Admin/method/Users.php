@@ -12,11 +12,11 @@ final class Admin_Users extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize($this->_module))) {
+		if (false !== ($error = $this->sanitize())) {
 			return $error;
 		}
 		
-		return $this->_module->templateNav().$this->templateUserTable($this->_module);
+		return $this->_module->templateNav().$this->templateUserTable();
 	}
 	
 	private function sanitize()
@@ -39,12 +39,12 @@ final class Admin_Users extends GWF_Method
 		$href = GWF_WEB_ROOT.sprintf('index.php?mo=Admin&me=Users&by=%s&dir=%s&page=%%PAGE%%', urlencode(Common::getGet('by')), urlencode(Common::getGet('dir')));
 //		$href = '';
 		$tVars = array(
-			'users' => $this->getUsers($this->_module),
+			'users' => $this->getUsers(),
 			'pagemenu' => GWF_PageMenu::display($this->page, $this->nPages, $href),
 //			'by' => $this->by,
 //			'dir' => $this->dir,
 			'sort_url' => $this->getTableSortURL(),
-			'search_form' => $this->getSearchForm($this->_module)->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
+			'search_form' => $this->getSearchForm()->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
 		);
 		return $this->_module->templatePHP('users.php', $tVars);
 	}
