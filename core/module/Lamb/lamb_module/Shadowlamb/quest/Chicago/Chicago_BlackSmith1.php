@@ -39,7 +39,7 @@ final class Quest_Chicago_BlackSmith1 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Chummer i propose you a deal. Bring me %d NinjaSwords and i will #break all items for free for you.");
+				$npc->reply(sprintf("Chummer i propose you a deal. Bring me %d NinjaSwords and i will #break all items for free for you.", $this->getNeededAmount()));
 				break;
 			case 'confirm':
 				$npc->reply("What do you say?");
