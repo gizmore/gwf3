@@ -68,7 +68,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		}
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$items = array_slice($items, $from, $ipp, true);
-		return $bot->reply(sprintf('Your mount page %s/%s: %s.', $page, $nPages, Shadowfunc::getItemsSorted($player, $items, $from)));
+		return $bot->reply(sprintf('Your mount page %s/%s: %s.', $page, $nPages, Shadowfunc::getItemsSorted($player, $items, $from+1)));
 	}
 	
 	private static function on_search(SR_Player $player, $term, array $args)
@@ -95,7 +95,7 @@ final class Shadowcmd_mount extends Shadowcmd
 				$count = $data[0];
 				$itemid = $data[1];
 				$count = $count > 1 ? "($count)" : '';
-				$matches[] = sprintf('%s-%s%s', $b.($i++).$b, $itemname, $count);
+				$matches[] = sprintf('%s-%s%s', $b.($i).$b, $itemname, $count);
 			}
 			$i++;
 		}
@@ -157,7 +157,7 @@ final class Shadowcmd_mount extends Shadowcmd
 
 		# Item
 		$itemname = array_shift($args);
-		if (false === ($item = $player->getItem($itemname)))
+		if (false === ($item = $player->getInvItem($itemname)))
 		{
 			$bot->reply('You don\'t have that item.');
 			return false;
