@@ -2282,6 +2282,7 @@ class SR_Player extends GDO
 	
 	private $combat_eta = 0;
 	private $combat_stack = '';
+	private $old_combat_stack = '';
 	private $combat_target = 0;
 	
 	public function calcBusyTime($seconds)
@@ -2345,7 +2346,7 @@ class SR_Player extends GDO
 		$stack = $this->combat_stack;
 		if (!$this->keepCombatStack(true, $stack))
 		{
-			$this->combat_stack = '';
+			$this->combat_stack = $this->old_combat_stack;
 //			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
 		}
 		
@@ -2353,8 +2354,10 @@ class SR_Player extends GDO
 		$result = Shadowcmd::onExecute($this, $stack);
 		if (!$this->keepCombatStack($result, $stack))
 		{
-			$this->combat_stack = '';
+			$this->combat_stack = $this->old_combat_stack;
 //			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
+		} else {
+			$this->old_combat_stack = $this->combat_stack;
 		}
 		return $result;
 	}
@@ -2503,6 +2506,7 @@ class SR_Player extends GDO
 			return Shadowcmd::onExecute($this, $this->combat_stack);
 		}
 		$this->combat_stack = '';
+		$this->old_combat_stack = '';
 		return true;
 	}
 	
