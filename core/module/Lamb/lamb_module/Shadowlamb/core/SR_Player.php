@@ -2316,10 +2316,10 @@ class SR_Player extends GDO
 	
 	protected function cmdAttackRandom()
 	{
-		if (false === ($ep = $this->getEnemyParty())) {
+		if (false === ($ep = $this->getEnemyParty()))
+		{
 			return '# 1';
 		}
-		
 		$targets = $ep->getMembers();
 		$target = $targets[array_rand($targets)];
 		return '# '.$target->getEnum();
@@ -2329,6 +2329,12 @@ class SR_Player extends GDO
 	{
 //		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
 		$this->combat_stack = $message;
+		
+		# Push on keeper stack?
+		if ($this->isLockingCommand($message))
+		{
+			$this->old_combat_stack = $message;
+		}
 	}
 		
 	public function combatTimer()
@@ -2343,46 +2349,65 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
+		# We will execute this one.
 		$stack = $this->combat_stack;
+		
+		# Is not a keeper, so we clear stack.
 		if (!$this->keepCombatStack(true, $stack))
 		{
-			$this->combat_stack = $this->old_combat_stack;
-//			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
+			$this->combat_stack = '';
 		}
 		
-//		printf('Executing %s\'s combat stack: "%s".'.PHP_EOL, $this->getName(), $stack);
 		$result = Shadowcmd::onExecute($this, $stack);
+		
+
+		# Don't keep depending on result?
 		if (!$this->keepCombatStack($result, $stack))
 		{
-			$this->combat_stack = $this->old_combat_stack;
-//			echo sprintf('cleared %s combat stack.', $this->getName()).PHP_EOL;
-		} else {
-			$this->old_combat_stack = $this->combat_stack;
+			# Do we have an old keeper?
+			if ($this->old_combat_stack !== '')
+			{
+				$this->combat_stack = $this->old_combat_stack;
+				$this->old_combat_stack = '';
+			}
+			# All cleared
+			else
+			{
+				$this->combat_stack = '';
+			}
 		}
 		return $result;
 	}
 	
+	private function isLockingCommand($command)
+	{
+		$c = strtolower($command);
+		if (Common::startsWith($c, '#'))
+		{
+			return true;
+		}
+		if (Common::startsWith($c, 'attack'))
+		{
+			return true;
+		}
+		if (Common::startsWith($c, 'fl'))
+		{
+			return true;
+		}
+		if (Common::startsWith($c, 'flee'))
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	private function keepCombatStack($bool, $stack)
 	{
-//		var_dump($stack);
 		if ($bool === false)
 		{
 			return false;
 		}
-		$c = strtolower($stack);
-		if (Common::startsWith($c, '#')) {
-			return true;
-		}
-		if (Common::startsWith($c, 'attack')) {
-			return true;
-		}
-		if (Common::startsWith($c, 'fl')) {
-			return true;
-		}
-		if (Common::startsWith($c, 'flee')) {
-			return true;
-		}
-		return false;
+		return $this->isLockingCommand($stack);
 	}
 	
 	public function getLootXP()
