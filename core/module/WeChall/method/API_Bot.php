@@ -309,7 +309,7 @@ final class WeChall_API_Bot extends GWF_Method
 		return $msg;
 	}
 	
-	private function showSiteDetail($this->_module, $input)
+	private function showSiteDetail($module, $input)
 	{
 		$classname = trim(Common::substrFrom($input, ' ', ''));
 		if (false === ($site = WC_Site::getByClassName($classname))) {

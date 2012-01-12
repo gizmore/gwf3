@@ -49,7 +49,7 @@ final class Forum_AddAttach extends GWF_Method
 		return $this->_module->templatePHP('add_attach.php', $tVars);
 	}
 	
-	public function validate_file($this->_module, $arg) { return false; }
+	public function validate_file($module, $arg) { return false; }
 
 	private function onAdd(Module_Forum $module)
 	{
