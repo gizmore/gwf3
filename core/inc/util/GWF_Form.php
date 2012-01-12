@@ -304,7 +304,16 @@ class GWF_Form
 					{
 						$this->form_data[$key][1] = $v;
 					}
-					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
+					
+					if (true === is_array($this->form_data[$key][1]))
+					{
+						# TODO: array_map htmlspecialchars!!!!
+						# TODO: lesson for spaceone
+					}
+					else
+					{
+						$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
+					}
 					break;
 			}
 			

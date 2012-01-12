@@ -71,7 +71,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		{
 			$langname = GWF_Language::getByID($langid)->getVar('lang_name');
 			$form = $this->getFormEdit($this->_module, $langid, $desc);
-			$back[] = $form->templateY($this->_module->Lang('ft_edit_descr', $langname));
+			$back[] = $form->templateY($this->_module->lang('ft_edit_descr', array($langname)));
 		}
 		return $back;
 	}
@@ -86,7 +86,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		
 		$default = $this->site->getVar('site_descr_lid');
 		$is_def = $default == $langid ? GWF_HTML::lang('yes') : GWF_HTML::lang('no');
-		$langname = GWF_Language::getByID($langid)->getNativeName();
+		$langname = GWF_Language::getByID($langid)->displayName();
 		$data = array(
 			'default' => array(GWF_Form::HEADLINE, $is_def, $this->_module->lang('th_is_default')),
 			'langid' => array(GWF_Form::HEADLINE, $langname, $this->_module->lang('th_site_language')),
