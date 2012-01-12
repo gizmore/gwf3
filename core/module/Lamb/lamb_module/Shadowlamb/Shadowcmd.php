@@ -16,7 +16,7 @@ class Shadowcmd
 		'br' => 'brew',
 		'bw' => 'backward',
 		'c' => 'commands',
-		'ca' => 'spell',
+		'ca' => 'cast',
 		'cast' => 'spell',
 		'cc' => 'ccommands',
 		'cmp' => 'compare',

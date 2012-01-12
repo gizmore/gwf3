@@ -1,5 +1,5 @@
 <?php
-final class Shadowcmd_spell extends Shadowcmd
+final class Shadowcmd_cast extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
