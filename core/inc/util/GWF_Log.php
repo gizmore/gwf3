@@ -71,10 +71,7 @@ final class GWF_Log
 	/**
 	 * Log the request.
 	 */
-	public static function logRequest()
-	{
-		self::log('request', self::getRequest());
-	}
+	public static function logRequest() { self::log('request', self::getRequest()); }
 
 	########################
 	### Default logfiles ###
@@ -154,43 +151,20 @@ final class GWF_Log
 		}
 		return fopen($filename, 'a+');
 	}
-	
-	###########
-	### Log ###
-	###########
+
 	/**
 	 * Log a message.
+	 * The core logging function.
+	 * Raw mode will not write any datestamps or IP/username.
+	 * If this function fails it dies.
 	 * @param string $filename short logname
 	 * @param string $message the message
 	 * @param boolean $raw
 	 */
 	public static function log($filename, $message, $raw=false)
 	{
-		# Log member		
-		if (is_string(self::$username))
-		{
-			self::logB($filename, $message, $raw, self::$username);
-		}
-		# Log guest
-		else
-		{
-			self::logB($filename, $message, $raw, false);
-		}
-	}
-	
-	/**
-	 * The core logging function.
-	 * Raw mode will not write any datestamps or IP/username.
-	 * If this function fails it dies.
-	 * @param string $filename
-	 * @param string $message
-	 * @param boolean $raw
-	 * @param string $username
-	 */
-	private static function logB($filename, $message, $raw, $username)
-	{
 		# Get the file
-		$filename = self::getFullPath($filename, $username);
+		$filename = self::getFullPath($filename, self::$username);
 		if (false === self::createLogDir($filename))
 		{
 			die('Can not create logdir '.$filename);
@@ -205,8 +179,8 @@ final class GWF_Log
 		{		
 			$time = date('H:i');
 			$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'localhost';
-			$username = self::$username === false ? 'Unknown' : self::$username;
-			fprintf($fh, '%s [%s] [%s] - %s'.PHP_EOL, $time, $ip, $username, $message);
+			$username = self::$username === false ? '' : ':'.self::$username;
+			fprintf($fh, '%s [%s%s] - %s'.PHP_EOL, $time, $ip, $username, $message);
 		}
 		else
 		{
@@ -220,4 +194,3 @@ final class GWF_Log
 		}
 	}
 }
-?>

@@ -62,7 +62,7 @@ class GWF_Module extends GDO
 	 */
 	public static function getModulesLoaded($pattern='<a href="#" title="%s">%s</a>')
 	{
-		return sprintf('<a href="#" title="%s">%s</a>', implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
+		return sprintf($pattern, implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
 	}
 	
 	public function onStartup() {}
