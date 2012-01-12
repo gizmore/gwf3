@@ -106,7 +106,7 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply(Shadowhelp::getHelp($player, 'break'));
 			return false;
 		}
-		if (false === ($item = $player->getItem($args[0]))) {
+		if (false === ($item = $player->getInvItem($args[0]))) {
 			$bot->reply('You don`t have that item.');
 			return false;
 		}
@@ -239,7 +239,7 @@ abstract class SR_Blacksmith extends SR_Store
 			{
 				if (count($player->getMountInvSorted()) !== 0)
 				{
-					$bot->reply('Please #mount clean before you upgrade it.');
+					$bot->reply("Please '#mount clean' before you '#upgrade' it.");
 					return false;
 				}
 			}
