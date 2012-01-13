@@ -3,6 +3,7 @@ final class Item_Roses extends SR_Item
 {
 	public function getItemLevel() { return 10; }
 	public function getItemPrice() { return 20; }
+	public function getItemWeight() { return 200; }
 	public function getItemDescription() { return "Red roses, for the romantic runners."; }
 	public function isItemDropable() { return false; }
 	public function isItemSellable() { return true; }

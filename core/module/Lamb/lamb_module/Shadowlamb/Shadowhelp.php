@@ -121,7 +121,7 @@ final class Shadowhelp
 					'range' => 'In combat you have a range and position. Party A has positive position and Party B has negative postition. You need to be in range for weapons and spells.',
 					'range2' => 'Spells and weapons have a minimum range. A range of 2m has no malus in combat / is considered 0.',
 					'distance' => "Imagine the combat as a line. +10 +8 +6 +4 +2 +0 -2 -4 -6 -8 -10. One party starts in the positive, the other in the negative. You can set your default distance with #sd.",
-					'death' => "When you die you might loose a random item. Also you will loose XP and nuyen you might have in your pocket. You will resapwn in your nearest respawn location which is mostly a Hotel.",
+					'death' => "When you die you might loose a random item. Also you will loose XP and nuyen you might have in your pocket. You will respawn in your nearest respawn location which is mostly a Hotel.",
 				),
 				
 				'your_status' => 'Your character status',
