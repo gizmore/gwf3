@@ -14,6 +14,8 @@ abstract class GWF_Method
 
 	public function __construct(GWF_Module $module) { $this->_module = $module; return $this; }
 	public abstract function execute();
+	public function getModule() { return $this->_module; }
+	public function getLang() { return $this->_module->getLang(); }
 	public function getUserGroups() { return NULL; }
 	public function isCSRFProtected() { return true; }
 	public function isLoginRequired() { return false; }

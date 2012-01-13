@@ -415,7 +415,7 @@ final class GWF_ModuleLoader
 			$methods = self::getAllMethods($module);
 			foreach ($methods as $method)
 			{
-				$hta .= $method->getHTAccess($module);
+				$hta .= $method->getHTAccess();
 			}
 			$hta .= PHP_EOL;
 		}
@@ -596,9 +596,6 @@ final class GWF_ModuleLoader
 		}
 		GWF_Cronjob::end('Session');
 	}
-	
-	##
-	## 
 	
 	public static function addColumn(GDO $gdo, $columnname)
 	{
