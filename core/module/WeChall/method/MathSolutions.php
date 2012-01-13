@@ -38,8 +38,8 @@ final class WeChall_MathSolutions extends GWF_Method
 		$users = GWF_TABLE_PREFIX.'user';
 		$where = "wmc_cid=$cid AND wmc_length>=$length";
 		$db = gdo_db();
-		$result = $db->queryFirst("SELECT COUNT(*) FROM $wmc WHERE $where", false);
-		$nRows = (int)$result[0];
+		$result = $db->queryFirst("SELECT COUNT(*) c FROM $wmc WHERE $where");
+		$nRows = (int)$result['c'];
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nRows);
 		$page = Common::clamp(Common::getGetInt('page', 1), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);

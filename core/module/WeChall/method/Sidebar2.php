@@ -114,7 +114,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		return $this->sidebox($this->_module->lang('rp_sites', array($count)), $box);
 	}
 
-	private function displayTopTen(Module_WeChall $module, $amount=10)
+	private function displayTopTen($amount=10)
 	{
 		$users = GDO::table('GWF_User')->selectObjects('*', 'user_options&0x10000000=0', 'user_level DESC', $amount);
 		if (count($users) === 0) {
@@ -128,7 +128,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		return $this->sidebox($this->_module->lang('rp_topusers', array($amount)), $box);
 	}
 	
-	private function displayActive(Module_WeChall $module, $amount=20)
+	private function displayActive($amount=20)
 	{
 		$db = gdo_db();
 		$amount = (int) $amount;
@@ -151,7 +151,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		return $this->sidebox($this->_module->lang('rp_last_active', array($amount)), $box);
 	}
 	
-	private function displayOnline(Module_WeChall $module, $max=20)
+	private function displayOnline($max=20)
 	{
 		$cut = $this->_module->cfgLastActiveTime();
 		$users = GDO::table('GWF_User');
