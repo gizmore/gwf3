@@ -32,7 +32,7 @@ final class WeChall_MathSolutions extends GWF_Method
 		$cid = $chall->getID();
 		$length = (int) $length;
 		$whitelist = array('user_name', 'wmc_date', 'wmc_length', 'wmc_solution');
-		$by = GDO::getWhitelistedByS(Common::getGetString('by'), self::DEFAULT_BY, $whitelist);
+		$by = GDO::getWhitelistedByS(Common::getGetString('by'), $whitelist, self::DEFAULT_BY);
 		$dir = GDO::getWhitelistedDirS(Common::getGetString('dir'), self::DEFAULT_DIR);
 		$wmc = GWF_TABLE_PREFIX.'wc_math_chall';
 		$users = GWF_TABLE_PREFIX.'user';
