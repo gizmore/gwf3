@@ -75,7 +75,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			$data['site_color'] = array(GWF_Form::STRING, $site->getVar('site_color'), $this->_module->lang('th_site_color'));
 		}
 		
-		$data['site_status'] = array(GWF_Form::SELECT, $this->getStatusSelect($this->_module, $site), $this->_module->lang('th_site_status'));
+		$data['site_status'] = array(GWF_Form::SELECT, $this->getStatusSelect($site), $this->_module->lang('th_site_status'));
 		
 		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->_module->lang('th_autoupdate'));
 		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->_module->lang('th_site_has_osr'));
@@ -120,7 +120,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getStatusSelect(Module_WeChall $module, WC_Site $site, $name='site_status')
+	private function getStatusSelect(WC_Site $site, $name='site_status')
 	{
 		$back = sprintf('<select name="%s">', $name);
 		foreach (WC_Site::$STATES as $state)

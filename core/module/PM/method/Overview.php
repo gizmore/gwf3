@@ -154,7 +154,7 @@ final class PM_Overview extends GWF_Method
 	private function getNewPMForm()
 	{
 		$data = array(
-			#'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->_module, $this->getCorrespondence(), 'username_sel')),
+			#'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->getCorrespondence(), 'username_sel')),
 			'username' => array(GWF_Form::STRING, ''),
 			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
 		);
@@ -165,7 +165,7 @@ final class PM_Overview extends GWF_Method
 	private function getNewPMFormGuest()
 	{
 		$data = array(
-			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->_module, $this->getUsernamesPPM(), 'username_sel')),
+			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->getUsernamesPPM(), 'username_sel')),
 			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
 			'username' => array(GWF_Form::STRING, ''),
 		);
@@ -196,7 +196,7 @@ final class PM_Overview extends GWF_Method
 		return GDO::table('GWF_PMOptions')->selectColumn('user_name', "pmo_options&$ppm", "user_name DESC", array('pmo_user'));
 	}
 
-	private function getUsernameSelect(Module_PM $module, array $usernames, $name='username')
+	private function getUsernameSelect(array $usernames, $name='username')
 	{
 		$back = sprintf('<select name="%s">', $name);
 		$back .= sprintf('<option value="0">%s</option>', $this->_module->lang('sel_username'));
@@ -268,7 +268,7 @@ final class PM_Overview extends GWF_Method
 	############
 	### Move ###
 	############
-	private function onMove(Module_PM $module, $ids=NULL)
+	private function onMove($ids=NULL)
 	{
 		$ids = Common::getPost('pm');
 		if (!(is_array($ids))) {

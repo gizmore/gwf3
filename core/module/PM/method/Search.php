@@ -18,7 +18,7 @@ final class PM_Search extends GWF_Method
 		}
 		
 		if (false !== ($term = Common::getPost('search'))) {
-			return $this->templateAdvSearch($this->_module, true);
+			return $this->templateAdvSearch(true);
 		}
 		
 		return $this->templateAdvSearch();
@@ -71,7 +71,7 @@ final class PM_Search extends GWF_Method
 		return $this->_module->templatePHP('search.php', $tVars);
 	}
 	
-//	private function templateSearch(Module_PM $module, array $pms)
+//	private function templateSearch(array $pms)
 //	{
 //		$tVars = array(
 //			'form_q' => $this->getFormQuick()->templateX($this->_module->lang('ft_quicksearch'), false),
@@ -101,7 +101,7 @@ final class PM_Search extends GWF_Method
 //		GDO::table('GWF_PM')->searchAdv(GWF_Session::getUser(), $_POST, $orderby, $ipp, GWF_PageMenu::getFrom(Common::get))
 	}
 	
-	private function templateAdvSearch(Module_PM $module, $onSearch=false)
+	private function templateAdvSearch($onSearch=false)
 	{
 		$pms = GDO::table('GWF_PM');
 		if ($onSearch)

@@ -240,7 +240,7 @@ final class PageBuilder_Show extends GWF_Method
 		$reply = $this->mod_c->getMethod('Reply');
 		$reply instanceof Comments_Reply;
 		$href = $this->getMethodHREF('&pageid='.$page->getID());
-		return $reply->onReply($this->mod_c, $href);
+		return $reply->onReply($href);
 	}
 
 	private function getPageCommentsForm(Module_PageBuilder $module, GWF_Page $page)
@@ -252,7 +252,7 @@ final class PageBuilder_Show extends GWF_Method
 		$reply = $this->mod_c->getMethod('Reply');
 		$reply instanceof Comments_Reply;
 		$href = $this->getMethodHREF('&pageid='.$page->getID());
-		return $reply->templateReply($this->mod_c, $href);
+		return $reply->templateReply($href);
 	}
 }
 ?>

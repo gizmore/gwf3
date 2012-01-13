@@ -139,7 +139,7 @@ final class GWF_Comments extends GDO
 		$reply instanceof Comments_Reply;
 		$_POST['cmt_id'] = 0;
 		$_POST['cmts_id'] = $this->getID();
-		return $reply->templateReply($module, $href);
+		return $reply->templateReply($href);
 	}
 }
 ?>

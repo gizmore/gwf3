@@ -42,7 +42,7 @@ final class Forum_Search extends GWF_Method
 		return GWF_QuickSearch::getQuickSearchForm($this->_module, $this);
 	}
 	
-	public function templateSearch(Module_Forum $module, $result=array(), $term='')
+	public function templateSearch($result=array(), $term='')
 	{
 		$tVars = array(
 			'form_quick' => $this->getFormQuick()->templateX($this->_module->lang('ft_search_quick'), false),
@@ -82,7 +82,7 @@ final class Forum_Search extends GWF_Method
 		$this->pagemenu = GWF_PageMenu::display($page, $nPages, $href);
 		$result = GWF_QuickSearch::search($posts, $fields, $term, $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp), $permQuery);
 		$this->sortURL = $this->getMethodHref(sprintf('&term=%s&by=%%BY%%&dir=%%DIR%%&page=1', urlencode($term)));
-		return $this->templateSearch($this->_module, $result, $term);
+		return $this->templateSearch($result, $term);
 	}
 }
 

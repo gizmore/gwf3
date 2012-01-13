@@ -19,7 +19,7 @@ final class Lamb_Shadowlamb extends GWF_Method
 	private function templateShadowlamb()
 	{
 		$tVars = array(
-			'account_select' => $this->_module->getMethod('Client')->selectAccounts($this->_module),
+			'account_select' => $this->_module->getMethod('Client')->selectAccounts(),
 		);
 		return $this->_module->templatePHP('shadowlamb.php', $tVars);
 	}

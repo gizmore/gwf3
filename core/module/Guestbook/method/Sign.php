@@ -29,14 +29,14 @@ final class Guestbook_Sign extends GWF_Method
 				return GWF_HTML::err('ERR_NO_PERMISSION');
 			}
 			if (false !== Common::getPost('sign')) {
-				return $this->onSign($this->_module, $gb, $gbe);
+				return $this->onSign($gb, $gbe);
 			}
 			return $this->templateReply($this->_module, $gb, $gbe);
 		}
 		
 
 		if (false !== Common::getPost('sign')) {
-			return $this->onSign($this->_module, $gb);
+			return $this->onSign($gb);
 		}
 		
 		return $this->templateSign($this->_module, $gb);
@@ -44,7 +44,7 @@ final class Guestbook_Sign extends GWF_Method
 	
 	private function templateReply(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbe)
 	{
-		$form = $this->getForm($this->_module, $gb, $gbe);
+		$form = $this->getForm($gb, $gbe);
 		$tVars = array(
 			'in_reply' => $gbe,
 			'form' => $form->templateY($this->_module->lang('ft_sign', array( $gb->displayTitle()))),
@@ -52,7 +52,7 @@ final class Guestbook_Sign extends GWF_Method
 		return $this->_module->template('sign.tpl', $tVars);
 	}
 	
-	private function getForm(Module_Guestbook $module, GWF_Guestbook $gb, $gbe=false)
+	private function getForm(GWF_Guestbook $gb, $gbe=false)
 	{
 		$data = array();
 		
@@ -90,7 +90,7 @@ final class Guestbook_Sign extends GWF_Method
 
 	private function templateSign(Module_Guestbook $module, GWF_Guestbook $gb)
 	{
-		$form = $this->getForm($this->_module, $gb);
+		$form = $this->getForm($gb);
 		$tVars = array(
 			'can_mod' => $gb->canModerate(GWF_Session::getUser()),
 			'form' => $form->templateY($this->_module->lang('ft_sign', array( $gb->displayTitle()))),
@@ -98,9 +98,9 @@ final class Guestbook_Sign extends GWF_Method
 		return $this->_module->templatePHP('sign.php', $tVars);
 	}
 
-	private function onSign(Module_Guestbook $module, GWF_Guestbook $gb, $gbe=false)
+	private function onSign(GWF_Guestbook $gb, $gbe=false)
 	{
-		$form = $this->getForm($this->_module, $gb);
+		$form = $this->getForm($gb);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors.$this->templateSign($this->_module, $gb);
 		}

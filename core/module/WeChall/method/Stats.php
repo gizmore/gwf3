@@ -102,10 +102,10 @@ final class WeChall_Stats extends GWF_Method
 //		var_dump($sel);
 		
 		if ($sel === false) {
-			$sel = $this->getSelDefault($this->_module, false);
+			$sel = $this->getSelDefault(false);
 		}
 		elseif ($sel === 'all') {
-			$sel = $this->getSelDefault($this->_module, true);
+			$sel = $this->getSelDefault(true);
 		}
 		if (!is_array($sel)) {
 			$sel = trim($sel);
@@ -130,7 +130,7 @@ final class WeChall_Stats extends GWF_Method
 		return false;
 	}
 	
-	private function getSelDefault(Module_WeChall $module, $all=false)
+	private function getSelDefault($all=false)
 	{
 		$back = array();
 		if ($this->user1 === false) {

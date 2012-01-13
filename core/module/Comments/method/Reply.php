@@ -13,9 +13,9 @@ final class Comments_Reply extends GWF_Method
 		return $this->templateReply();
 	}
 	
-	public function templateReply(Module_Comments $module, $href=NULL)
+	public function templateReply($href=NULL)
 	{
-		$form = $this->formReply($this->_module, $href);
+		$form = $this->formReply($href);
 		$action = $href === NULL ? $this->getMethodHREF() : $href;
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_reply'), $action),
@@ -23,7 +23,7 @@ final class Comments_Reply extends GWF_Method
 		return $this->_module->template('reply.tpl', $tVars);
 	}
 	
-	public function formReply(Module_Comments $module, $href=NULL)
+	public function formReply($href=NULL)
 	{
 		$user = GWF_Session::getUser();
 		$data = array();
@@ -59,12 +59,12 @@ final class Comments_Reply extends GWF_Method
 	public function validate_email($m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg, false, true); }
 	public function validate_username($m, $arg) { return GWF_Validator::validateUsername($m, 'username', $arg, false); }
 	
-	public function onReply(Module_Comments $module, $href=NULL)
+	public function onReply($href=NULL)
 	{
-		$form = $this->formReply($this->_module, $href);
+		$form = $this->formReply($href);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
-			return $error . $this->templateReply($this->_module, $href);
+			return $error . $this->templateReply($href);
 		}
 		
 		$user = GWF_Session::getUser();

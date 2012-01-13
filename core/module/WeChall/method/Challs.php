@@ -33,10 +33,10 @@ final class WeChall_Challs extends GWF_Method
 		$tag = Common::getGetString('tag', '');
 		$by = Common::getGetString('by', self::DEFAULT_BY);
 		$dir = Common::getGetString('dir', self::DEFAULT_DIR);
-		return $this->templateChalls($this->_module, $for_userid, $from_userid, $tag, $by, $dir);
+		return $this->templateChalls($for_userid, $from_userid, $tag, $by, $dir);
 	}
 	
-	public function templateChalls(Module_WeChall $module, $for_userid=false, $from_userid=false, $tag='', $by='', $dir='', $show_cloud=true, $show_empty=true)
+	public function templateChalls($for_userid=false, $from_userid=false, $tag='', $by='', $dir='', $show_cloud=true, $show_empty=true)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		$challs = GDO::table('WC_Challenge');

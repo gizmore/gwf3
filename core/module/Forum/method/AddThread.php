@@ -59,7 +59,7 @@ final class Forum_AddThread extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateAddThread(Module_Forum $module, $nav=true)
+	private function templateAddThread($nav=true)
 	{
 		$form = $this->getForm();
 		$tVars = array(
@@ -102,7 +102,7 @@ final class Forum_AddThread extends GWF_Method
 			'term' => '',
 		);
 		
-		return $errors.$this->_module->templatePHP('show_thread.php', $tVars).$this->templateAddThread($this->_module, false);
+		return $errors.$this->_module->templatePHP('show_thread.php', $tVars).$this->templateAddThread(false);
 	}
 	
 	private function onAddThread()

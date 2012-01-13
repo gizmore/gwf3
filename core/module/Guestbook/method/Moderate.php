@@ -39,10 +39,10 @@ final class Guestbook_Moderate extends GWF_Method
 		
 		# Edit Single Entry
 		if (false !== (Common::getPost('edit_entry'))) {
-			return $this->onEditEntry($this->_module, $gb, Common::getGet('gbmid', 0), false);
+			return $this->onEditEntry($gb, Common::getGet('gbmid', 0), false);
 		}
 		if (false !== (Common::getPost('del_entry'))) {
-			return $this->onEditEntry($this->_module, $gb, Common::getGet('gbmid', 0), true);
+			return $this->onEditEntry($gb, Common::getGet('gbmid', 0), true);
 		}
 		if (false !== (Common::getGet('edit_entry'))) {
 			return $this->templateEditEntry($this->_module, $gb, Common::getGet('gbmid', 0));
@@ -160,7 +160,7 @@ final class Guestbook_Moderate extends GWF_Method
 		return $this->_module->template('edit_gbm.tpl', $tVars);
 	}
 
-	private function onEditEntry(Module_Guestbook $module, GWF_Guestbook $gb, $gbmid, $delete=false)
+	private function onEditEntry(GWF_Guestbook $gb, $gbmid, $delete=false)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
 			return $this->_module->error('err_gbm');

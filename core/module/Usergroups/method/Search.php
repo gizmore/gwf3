@@ -4,7 +4,7 @@ final class Usergroups_Search extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($term = Common::getRequest('term'))) {
-			return $this->templateUsers($this->_module, trim($term));
+			return $this->templateUsers(trim($term));
 		}
 		return $this->templateUsers();
 	}
@@ -18,7 +18,7 @@ final class Usergroups_Search extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateUsers(Module_Usergroups $module, $term='')
+	private function templateUsers($term='')
 	{
 		$ipp = $this->_module->cfgIPP();
 		$form = $this->getFormQuick();

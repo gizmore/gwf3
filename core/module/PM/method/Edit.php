@@ -58,7 +58,7 @@ final class PM_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateEdit(Module_PM $module, $preview='')
+	private function templateEdit($preview='')
 	{
 		$form = $this->getForm();
 		$tVars = array(
@@ -73,7 +73,7 @@ final class PM_Edit extends GWF_Method
 		$form = $this->getForm();
 		$errors = $form->validate($this->_module);
 		$preview = $this->templatePreview($this->_module, $form);
-		return $errors.$this->templateEdit($this->_module, $preview);
+		return $errors.$this->templateEdit($preview);
 	}
 	
 	private function templatePreview(Module_PM $module, GWF_Form $form)

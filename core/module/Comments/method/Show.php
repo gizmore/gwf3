@@ -38,7 +38,7 @@ final class Comments_Show extends GWF_Method
 		return false;
 	}
 	
-	public function templateShow(Module_Comments $module, $href=NULL)
+	public function templateShow($href=NULL)
 	{
 		$nItems = $this->comments->getVar('cmts_count');
 		$nPages = GWF_PageMenu::getPagecount($this->_module->cfgIPP(), $nItems);

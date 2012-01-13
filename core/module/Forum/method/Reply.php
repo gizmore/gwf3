@@ -132,7 +132,7 @@ final class Forum_Reply extends GWF_Method
 	################
 	### Template ###
 	################
-	private function templateReply(Module_Forum $module, $preview=false)
+	private function templateReply($preview=false)
 	{
 		$form = $this->getForm();
 
@@ -201,7 +201,7 @@ final class Forum_Reply extends GWF_Method
 			$this->templateLastPosts().
 			'<a name="form"></a>'.
 			$this->_module->templatePHP('show_thread.php', $tVars).
-			$this->templateReply($this->_module, true);
+			$this->templateReply(true);
 	}
 	
 	#############

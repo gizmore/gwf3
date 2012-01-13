@@ -69,7 +69,7 @@ final class Votes_AddPoll extends GWF_Method
 		return $this->_module->template('add_poll.tpl', $tVars);
 	}
 	
-	public function onAddOption(Module_Votes $module, $add_new=true)
+	public function onAddOption($add_new=true)
 	{
 		$options = GWF_Session::getOrDefault(self::SESS_OPTIONS, array());
 		$posted = Common::getPostArray('opt', array());
@@ -164,7 +164,7 @@ final class Votes_AddPoll extends GWF_Method
 		
 		$_POST['opt'] = $post;
 		
-		$this->onAddOption($this->_module, false);
+		$this->onAddOption(false);
 		
 		if ($err === '') {
 			return false;

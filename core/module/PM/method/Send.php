@@ -207,7 +207,7 @@ final class PM_Send extends GWF_Method
 		}
 	}
 	
-	private function templateSend(Module_PM $module, $preview='')
+	private function templateSend($preview='')
 	{
 		$form = $this->getForm();
 		if ($this->pm !== false) {
@@ -255,7 +255,7 @@ final class PM_Send extends GWF_Method
 			'translated' => '',
 		);
 		$preview_t = $this->_module->templatePHP('show.php', $tVars);
-		return $errors.$this->templateSend($this->_module, $preview_t);
+		return $errors.$this->templateSend($preview_t);
 	}
 	
 	public function getReceiver()

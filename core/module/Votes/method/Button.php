@@ -45,7 +45,7 @@ final class Votes_Button extends GWF_Method
 		imagealphablending($image, true);
 		$background = imagecolorallocatealpha($image, 0x00, 0x00, 0x00, 0x00);
 		imagecolortransparent($image, $background);
-		$color = $this->getColor($this->_module, $image);
+		$color = $this->getColor($image);
 		$white = imagecolorallocate($image, 0xff, 0xff, 0xff);
 		imagefilledellipse($image, $cx, $cy, $cs, $cs, $white);
 		imagefilledellipse($image, $cx, $cy, $cs-1, $cs-1, $color);
@@ -62,7 +62,7 @@ final class Votes_Button extends GWF_Method
 		die(0);
 	}
 	
-	private function getColor(Module_Votes $module, $image, $mincolor=0xffff0000, $maxcolor=0xff00ff00)
+	private function getColor($image, $mincolor=0xffff0000, $maxcolor=0xff00ff00)
 	{
 		return GWF_Color::interpolateBound($image, 1, $this->of, $this->num, $mincolor, $maxcolor); #, $max, $value)
 	}

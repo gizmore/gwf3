@@ -26,7 +26,7 @@ final class Lamb_Client extends GWF_Method
 		
 		$tVars = array(
 			'player' => $player,
-			'select_account' => self::selectAccounts($this->_module, $player->getID()),
+			'select_account' => self::selectAccounts($player->getID()),
 			'inventory' => $ajax->getInventory($this->_module, $player),
 			'equipment' => $ajax->getEquipment($this->_module, $player),
 			'cyberware' => $ajax->getCyberware($this->_module, $player),
@@ -38,7 +38,7 @@ final class Lamb_Client extends GWF_Method
 		return $this->_module->template('client.php', NULL, $tVars);
 	}
 	
-	public function selectAccounts(Module_Lamb $module, $selected='0')
+	public function selectAccounts($selected='0')
 	{
 		$userid = GWF_Session::getUserID();
 		$table = GDO::table('Lamb_Players');

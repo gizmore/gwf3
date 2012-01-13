@@ -104,7 +104,7 @@ final class WeChall_Sidebar extends GWF_Method
 		return $back;
 	}
 	
-	private function leftPanelLastActiveOLD(Module_WeChall $module, $amount = 20)
+	private function leftPanelLastActiveOLD($amount=20)
 	{
 		$db = gdo_db();
 		$amount = (int) $amount;
@@ -131,7 +131,7 @@ final class WeChall_Sidebar extends GWF_Method
 		return $back;
 	}
 	
-	private function leftPanelLastActive(Module_WeChall $module, $amount = 20)
+	private function leftPanelLastActive($amount=20)
 	{
 		$db = gdo_db();
 		$amount = (int) $amount;

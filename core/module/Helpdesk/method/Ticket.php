@@ -54,22 +54,22 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		if (isset($_GET['raise'])) {
-			$back .= $this->onRaisePrio($this->_module, $ticket, 1);
+			$back .= $this->onRaisePrio($ticket, 1);
 		}
 		elseif (isset($_GET['lower'])) {
-			$back .= $this->onRaisePrio($this->_module, $ticket, -1);
+			$back .= $this->onRaisePrio($ticket, -1);
 		}
 		
 		if (isset($_GET['reply'])) {
-			return $back.$this->templateTicketReply($this->_module, $ticket);
+			return $back.$this->templateTicketReply($ticket);
 		}
 		
-		return $back.$this->templateTicket($this->_module, $ticket);
+		return $back.$this->templateTicket($ticket);
 	}
 	
 	public function validate_message(Module_Helpdesk $m, $arg) { return $m->validate_message($arg); } 
 	
-	private function templateTicketReply(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
+	private function templateTicketReply(GWF_HelpdeskTicket $ticket)
 	{
 		$back = '';
 		if ($ticket->getCreatorID() !== GWF_Session::getUserID()) {
@@ -79,10 +79,10 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 		
 		$form = $this->formReply($this->_module, $ticket);
-		return $back.$this->templateTicket($this->_module, $ticket, $form->templateY($this->_module->lang('ft_reply')));
+		return $back.$this->templateTicket($ticket, $form->templateY($this->_module->lang('ft_reply')));
 	}
 	
-	private function templateTicket(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $form='')
+	private function templateTicket(GWF_HelpdeskTicket $ticket, $form='')
 	{
 		$tid = $ticket->getID();
 		
@@ -209,7 +209,7 @@ final class Helpdesk_Ticket extends GWF_Method
 	}
 	
 	
-	private function onRaisePrio(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $add=1)
+	private function onRaisePrio(GWF_HelpdeskTicket $ticket, $add=1)
 	{
 		$add = (int) $add;
 		

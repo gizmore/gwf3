@@ -18,13 +18,13 @@ final class Forum_Vote extends GWF_Method
 		
 		switch(Common::getGet('dir'))
 		{
-			case 'up': return $this->onVote($this->_module, $post, 1);
-			case 'down': return $this->onVote($this->_module, $post, 0);
+			case 'up': return $this->onVote($post, 1);
+			case 'down': return $this->onVote($post, 0);
 			default: return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, '$_GET[dir]'));
 		}
 	}
 	
-	private function onVote(Module_Forum $module, GWF_ForumPost $post, $up=1)
+	private function onVote(GWF_ForumPost $post, $up=1)
 	{
 		if (!$this->_module->cfgVotesEnabled()) {
 			return $this->_module->error('err_votes_off');

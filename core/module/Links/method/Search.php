@@ -20,7 +20,7 @@ final class Links_Search extends GWF_Method
 		if (false !== Common::getPost('search_adv')) {
 			return $this->onSearch($this->_module, true);
 		}
-		return $this->templateSearch($this->_module, array(), '');
+		return $this->templateSearch(array(), '');
 	}
 	
 	private function getFormAdv()
@@ -51,7 +51,7 @@ final class Links_Search extends GWF_Method
 		return $this->_module->templatePHP('_search.php', $tVars);
 	}
 	
-	public function templateSearch(Module_Links $module, array $matches, $term)
+	public function templateSearch(array $matches, $term)
 	{
 		GWF_Website::setPageTitle($this->_module->lang('pt_search'));
 		GWF_Website::setMetaTags($this->_module->lang('mt_search'));
@@ -69,7 +69,7 @@ final class Links_Search extends GWF_Method
 	{
 		$form = $adv ? $this->getFormAdv() : $this->getFormQuick();
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateSearch($this->_module, array(), $adv ? '' : $_REQUEST['term']);
+			return $error.$this->templateSearch(array(), $adv ? '' : $_REQUEST['term']);
 		}
 		if ($adv === true)
 		{
@@ -94,18 +94,18 @@ final class Links_Search extends GWF_Method
 		$limit = 50;
 		$from = 0;
 		if (false === ($matches = GWF_QuickSearch::search($links, $fields, $term, "$by $dir", $limit, $from, $conditions))) {
-			return $this->templateSearch($this->_module, array(), '');
+			return $this->templateSearch(array(), '');
 		}
-		return $this->templateSearch($this->_module, $matches, $term);
+		return $this->templateSearch($matches, $term);
 	}
 	
 	private function onAdvSearch(Module_Links $module, GWF_Form $form)
 	{
 		$table = GDO::table('GWF_Links');
 		if (false === ($matches = $table->searchAdv(GWF_Session::getUser(), $form->getVars()))) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateSearch($this->_module, array(), '');
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateSearch(array(), '');
 		}
-		return $this->templateSearch($this->_module, $matches, '');
+		return $this->templateSearch($matches, '');
 	}
 	##################
 	### Validators ###

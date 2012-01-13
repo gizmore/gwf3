@@ -57,7 +57,7 @@ final class News_ShowComments extends GWF_Method
 			'newsitem' => Module_News::displayBoxB(array($news)),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $hrefp),
 			'comments' => $comments->displayComments($c, $href),
-			'form' => $me->templateReply($mod_c, $href),
+			'form' => $me->templateReply($href),
 		);
 		return $this->_module->template('comments.tpl', $tVars);
 	}
@@ -72,7 +72,7 @@ final class News_ShowComments extends GWF_Method
 		
 		$me = $mod_c->getMethod('Reply');
 		$me instanceof Comments_Reply;
-		return $me->onReply($mod_c, $href);
+		return $me->onReply($href);
 	}
 }
 ?>

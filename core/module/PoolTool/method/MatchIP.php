@@ -18,7 +18,7 @@ final class PoolTool_MatchIP extends GWF_Method
 		return $this->templateMatcher();
 	}
 	
-	private function templateMatcher(Module_PoolTool $module, $matches = array())
+	private function templateMatcher($matches = array())
 	{
 		$form = $this->getForm();
 		$tVars = array(
@@ -92,7 +92,7 @@ final class PoolTool_MatchIP extends GWF_Method
 			}
 		}
 		
-		return $this->templateMatcher($this->_module, $matches);
+		return $this->templateMatcher($matches);
 	}
 	
 	private function parseIPs($ips)
