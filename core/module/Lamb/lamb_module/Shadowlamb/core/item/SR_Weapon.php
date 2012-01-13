@@ -40,6 +40,10 @@ abstract class SR_Weapon extends SR_Equipment
 		{
 			$d2 /= 4;
 		}
+		elseif ($this instanceof SR_MeleeWeapon)
+		{
+			$d2 = 0;
+		}
 		
 		$player->busy($this->getAttackTime());
 		
