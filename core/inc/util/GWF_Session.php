@@ -59,7 +59,7 @@ final class GWF_Session extends GDO
 	public static function start($blocking=true)
 	{
 		if ( (NULL === ($cookie = Common::getCookie(GWF_SESS_NAME)))
-		  || (!self::reload($cookie, $blocking)) )
+		  || (false === self::reload($cookie, $blocking)) )
 		{
 			return self::create();
 		}
@@ -216,7 +216,6 @@ final class GWF_Session extends GDO
 		return true;
 	}
 	
-	
 	private static function setCookies($id, $uid, $sessid)
 	{
 		if (isset($_SERVER['REMOTE_ADDR']))
@@ -254,7 +253,7 @@ final class GWF_Session extends GDO
 		}
 		
 		# Save new last url
-		if ( $store_last_url && (!isset($_GET['ajax'])) )
+		if ( $store_last_url && (false === isset($_GET['ajax'])) )
 		{
 			$data['sess_lasturl'] = self::getCurrentURL();
 		}

@@ -1,10 +1,33 @@
 <?php
 /**
  * PHP session handler.
+ * @decide use $_SESSION or $SESSDATA?
+ * @decide self::$SESSION = new GDO???
+ * ATM it is crap
  * @author gizmore
  */
 final class GWF_Session
 {
+
+	private static $SESSION = NULL;
+	private static $USER = false;
+	private static $SESSDATA;
+
+	private static $template = array(
+		'sess_id' => '',
+		'sess_sid' => '',
+		'sess_user' => self::$USER,
+		'sess_data' => '',
+		'sess_ip' => '',
+		'sess_lasturl' => '',
+		'user' => '',
+	);
+
+	public function __construct($data)
+	{
+		self::$SESSDATA = $data;
+	}
+
 	/**
 	 * @return GWF_User
 	 */
@@ -32,7 +55,7 @@ final class GWF_Session
 	public static function remove($var) {
 		unset(self::$SESSDATA[$var]);
 	}
-	public static function &get($var) {
+	public static function &getVar($var) {
 		return self::$SESSDATA[$var];
 	}
 	public static function getOrDefault($var, $default=false) {
@@ -54,12 +77,26 @@ final class GWF_Session
 	
 	public static function start($blocking=true)
 	{
-		
+		$ret = self::create();
+		self::$SESSDATA = $_SESSION;
+		return $ret;
+	}
+
+	public static function create()
+	{
+		session_name(GWF_SESS_NAME);
+		return session_start();
 	}
 
 	public static function commit($store_last_url=true)
 	{
-		
+		$_SESSION = self::$SESSDATA; # OMG
+		if(false === $store_last_url)
+		{
+			# omg
+			unset($_SESSION['last_url']);
+		}
+		return session_commit();
 	}
 	
 	public static function onLogin(GWF_User $user, $bind_to_ip=true, $with_hooks=true)
