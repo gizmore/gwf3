@@ -62,6 +62,7 @@ class SR_Quest extends GDO
 	public function isInQuest(SR_Player $player) { return (!$this->isDone($player)) && ($this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
 	public function isDeclined(SR_Player $player) { return $this->isOptionEnabled(self::REJECTED); }
+	public function isFailed(SR_Player $player) { return $this->isOptionEnabled(self::FAILED); }
 	public function isUnknown(SR_Player $player) { return $this->getOptions() === 0; }
 	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL) { return $this->onNPCQuestTalkB($npc, $player, $word, $args); }
 	public function onAccept(SR_Player $player) {}

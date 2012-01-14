@@ -2331,7 +2331,7 @@ class SR_Player extends GDO
 		$this->combat_stack = $message;
 		
 		# Push on keeper stack?
-		if ($this->isLockingCommand($message))
+		if (true === $this->isLockingCommand($message))
 		{
 			$this->old_combat_stack = $message;
 		}
@@ -2346,14 +2346,14 @@ class SR_Player extends GDO
 		
 		if ($this->combat_stack === '')
 		{
-			$this->combat_stack = $this->old_combat_stack =$this->cmdAttackRandom();
+			$this->combat_stack = $this->old_combat_stack = $this->cmdAttackRandom();
 		}
 		
 		# We will execute this one.
 		$stack = $this->combat_stack;
 		
 		# Is not a keeper, so we clear stack.
-		if (!$this->keepCombatStack(true, $stack))
+		if (false === $this->keepCombatStack(true, $stack))
 		{
 			$this->combat_stack = '';
 		}
@@ -2362,7 +2362,7 @@ class SR_Player extends GDO
 		
 
 		# Don't keep depending on result?
-		if (!$this->keepCombatStack($result, $stack))
+		if (false === $this->keepCombatStack($result, $stack))
 		{
 			# Do we have an old keeper?
 			if ($this->old_combat_stack !== '')
@@ -2394,10 +2394,10 @@ class SR_Player extends GDO
 		{
 			return true;
 		}
-		if (Common::startsWith($c, 'flee'))
-		{
-			return true;
-		}
+// 		if (Common::startsWith($c, 'flee'))
+// 		{
+// 			return true;
+// 		}
 		return false;
 	}
 	

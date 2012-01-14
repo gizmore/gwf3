@@ -28,6 +28,8 @@ final class Shadowcmd_quests extends Shadowcmd
 			case 'fail':
 			case 'abort':
 				return self::displaySection($player, $quests, $args[0], $args);
+			case 'stats':
+				return self::displayStats($player, $quests);
 			default:
 				if (Common::isNumeric($args[0]))
 				{
@@ -35,6 +37,47 @@ final class Shadowcmd_quests extends Shadowcmd
 				}
 				return self::onSearchQuests($player, $quests, $args);
 		}
+	}
+	
+	private static function displayStats(SR_Player $player, array $quests)
+	{
+		$done = 0;
+		$open = 0;
+		$failed = 0;
+		$unknown = 0;
+		$declined = 0;
+		
+		foreach ($quests as $quest)
+		{
+			$quest instanceof SR_Quest;
+			if ($quest->isInQuest($player) === true)
+			{
+				$open++;
+			}
+			elseif ($quest->isDone($player) === true)
+			{
+				$done++;
+			}
+			elseif ($quest->isDeclined($player) === true)
+			{
+				$declined++;
+			}
+			elseif ($quest->isUnknown($player) === true)
+			{
+				$unknown++;
+			}
+			elseif ($quest->isFailed($player) === true)
+			{
+				$failed++;
+			}
+		}
+		
+		$message = sprintf(
+			'Quest stats: %d open, %d accomplished, %d rejected, %d failed, %d unknown from a total of %d.',
+			$open, $done, $declined, $failed, $unknown, SR_Quest::getTotalQuestCount()
+		);
+		
+		return self::reply($player, $message);
 	}
 
 	private static function displaySection(SR_Player $player, array $quests, $section, array $args)
