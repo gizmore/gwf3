@@ -50,6 +50,7 @@ class GWF_Form
 	const SUBMIT_IMGS = 24;
 	const TIME = 25;
 //	const HIDDEN_NO_CHECK = 26;
+	const HTML = 27;
 	
 	# CSRF protection levels.
 	const CSRF_OFF = 0;
@@ -297,6 +298,7 @@ class GWF_Form
 					
 				case self::FILE:
 				case self::FILE_OPT:
+				case self::HTML:
 					break;
 					
 				default:

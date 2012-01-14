@@ -103,7 +103,9 @@
 			case GWF_Form::FILE_OPT:
 				printf('<tr><td>%s%s</td><td>%s</td><td><input type="file" name="%s" /></td></tr>'.PHP_EOL, $req, $data[2], $tt, $key);
 				break;
-				
+			case GWF_Form::HTML:
+				echo $data[1].PHP_EOL;
+				break;
 			default:
 				var_dump($data);
 				GWF3::logDie(sprintf('Your tpl/formY.php is missing datatype %d', $data[0]));

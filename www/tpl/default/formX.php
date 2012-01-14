@@ -47,6 +47,7 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::DATE:
 		case GWF_Form::SELECT:
 		case GWF_Form::SSTRING:
+		case GWF_Form::HTML:
 			printf('%s'.PHP_EOL, $data[1]);
 			break;
 			

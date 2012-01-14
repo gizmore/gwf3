@@ -55,11 +55,8 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::DATE_FUTURE:
 		case GWF_Form::SELECT:
 		case GWF_Form::SELECT_A:
-			printf('<li class="form_"><label for="lf_'.$key.'">%s%s%s</label><span id="lf_'.$key.'">%s</span></li>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
-			break;
-
 		case GWF_Form::SSTRING:
-			echo $data[2], $data1;
+			printf('<li class="form_"><label for="lf_'.$key.'">%s%s%s</label><span id="lf_'.$key.'">%s</span></li>'.PHP_EOL, $req, $data[2], $tt, $data[1]);
 			break;
 
 		case GWF_Form::DIVIDER:
@@ -98,6 +95,9 @@ foreach ($tVars['data'] as $key => $data)
 		case GWF_Form::FILE:
 		case GWF_Form::FILE_OPT:
 			printf('<li class="form_file"><label for="lf_'.$key.'">%s%s%s</label><input id="lf_'.$key.'" type="file" name="%s" value="%s"></li>'.PHP_EOL, $req, $data[2], $tt, $key, $data[1]);
+			break;
+		case GWF_Form::HTML:
+			echo $data[1].PHP_EOL;
 			break;
 				
 		default:

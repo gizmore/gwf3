@@ -78,6 +78,7 @@ final class GWF_Template
 			$msg = $e->getMessage();
 			if (GWF_DEBUG_EMAIL & 2)
 			{
+				$msg .= $e->getTraceAsString();
 				self::sendErrorMail($path, $msg);
 			}
 			return $msg;
