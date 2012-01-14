@@ -76,3 +76,7 @@ core/module/Guestbook/tpl/default/_entry.php
 #15 reimplement: show failures on login; show cookie warning on login
 
 --------------------------------------------------------------------------------
+
+#16: use more private in methods
+
+--------------------------------------------------------------------------------

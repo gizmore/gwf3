@@ -62,4 +62,10 @@ Return:
 use $back for strings
 use $ret for bool/int
 
-2011/12/24
+SVN COMMIT CONDITIONS:
+please use a prefix in the commit message: (SF:, WC5:, GWF3:, Lamb:, Shadowlamb:)
+than descripe where changes has been made if not Lamb/Shadowlamb (e.g. News/Show for module News method Show)
+add a short description of the type of changes (e.g. fixed typo in..., corrections in italian language file)
+maybe add desciption of new behavior if important changes have been made
+
+2012/01/14
