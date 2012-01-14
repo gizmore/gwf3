@@ -307,8 +307,12 @@ class GWF_Form
 					
 					if (true === is_array($this->form_data[$key][1]))
 					{
-						# TODO: array_map htmlspecialchars!!!!
-						# TODO: lesson for spaceone
+					# recursion needet?
+					// 	function(&$a) : $a =  htmlspecialchars($a);
+					//	function(&$b) : $b =  is_array($b) ? self::arrayescape($b) : htmlspecialchars($b);
+
+					//	array_walk_recursive($this->form_data[$key][$1], array('GWF_Form', 'arrayescape'));
+					//	array_map(array('GWF_Form', 'arrayescape'), $this->form_data[$key][1]);
 					}
 					else
 					{
