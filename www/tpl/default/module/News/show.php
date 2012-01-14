@@ -1,10 +1,8 @@
+<div class="gwf_newsbox">
 <?php
 $is_staff = $tVars['may_add'];
-?>
-<?php $id = 1; ?>
-<div class="gwf_newsbox">
+$id = 1;
 
-<?php
 if ($tVars['can_sign']) {
 	echo GWF_Button::wrap(GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']));
 }
@@ -14,6 +12,7 @@ echo $tVars['page_menu'];
 echo '<div class="cb"></div>'.PHP_EOL;
 
 foreach ($tVars['news'] as $news)
+if($news['newst_message'] !== NULL)
 {
 ?>
 <div class="gwf_newsbox_item">
@@ -51,8 +50,6 @@ foreach ($tVars['news'] as $news)
 
 	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']) . $more; ?></div>
 	
-	
-	
 	<?php
 //	$tid = intval($t['newst_threadid']);
 //	if ($tVars['with_forum'] && $tid > 0)
@@ -64,8 +61,10 @@ foreach ($tVars['news'] as $news)
 	?>
 	
 </div>
-<?php } ?>	
-<?php echo $tVars['page_menu']; ?>
+<hr>
+<?php
+}
+echo $tVars['page_menu']; ?>
 </div>
 
 <div class="cb"></div>
@@ -83,8 +82,7 @@ if (count($tVars['cats'])) { ?>
 <?php
 if ($is_staff)
 {
-	$buttons = '';
-	$buttons .= GWF_Button::add($tLang->lang('btn_add'), $tVars['href_add']);
+	$buttons = GWF_Button::add($tLang->lang('btn_add'), $tVars['href_add']);
 	$buttons .= GWF_Button::generic($tLang->lang('btn_admin_section'), $tVars['module']->getAdminSectionUrl());
 	echo GWF_Button::wrap($buttons);
 }
