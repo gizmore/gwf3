@@ -88,7 +88,8 @@ final class Admin_Module extends GWF_Method
 	###################
 	private function getForm()
 	{
-		$mod = $this->mod; $m = $module;
+		$mod = $this->mod;
+		$m = $this->_module;
 		
 		$data = array(
 			'modulename' => array(GWF_Form::SSTRING, $mod->getName(), $m->lang('th_modulename')),

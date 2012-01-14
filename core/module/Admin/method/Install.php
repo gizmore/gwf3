@@ -146,7 +146,7 @@ final class Admin_Install extends GWF_Method
 		
 		return 
 			$this->_module->message($msg, array(GWF_HTML::display($modulename))).
-			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($this->_modulename)));
+			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($modulename)));
 	}
 
 	public function onInstallAll()
