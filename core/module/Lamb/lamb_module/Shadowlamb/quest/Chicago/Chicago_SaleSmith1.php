@@ -31,7 +31,7 @@ final class Quest_Chicago_SaleSmith1 extends SR_Quest
 	
 		$h1 = $this->giveQuesties($player, $npc, 'Scanner_v1', $h1, $n1);
 		$h2 = $this->giveQuesties($player, $npc, 'Scanner_v2', $h2, $n2);
-		$hc = $this->giveQuesties($player, $npc, 'ShortSword', $hc, $nc);
+		$hc = $this->giveQuesties($player, $npc, 'Credstick', $hc, $nc);
 	
 		$have_after = $h1 + $h2 + $hc;
 		
