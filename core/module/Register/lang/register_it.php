@@ -25,7 +25,7 @@ $lang = array(
 		'err_email_taken' => 'La Vostra E-Mail è già stata utilizzata da un altro utente.',
 		'err_activate' => 'C\'è stato un errore nella registrazione.',
 
-		'msg_activated' => 'L\'account è stato attivato con successo. E' ora possibile effettuale l'accesso.',
+		'msg_activated' => 'L\'account è stato attivato con successo. E\' ora possibile effettuale l\'accesso.',
 		'msg_registered' => 'Grazie per esserti registrato.',
 
 		'regmail_subject' => 'Registrato su '.GWF_SITENAME,
@@ -51,7 +51,7 @@ $lang = array(
 		'</b><br/>'.
 		'Ti consigliamo di salvare la tua password e cancellare questa E-Mail.<br/>'.
 		'Per ragioni di sicurezza, non dovresti mai lasciare la tua password in chiaro.<br/>'.
-		'Per quanto detto, su questo sito le password sono criptate.<br/>'
+		'Per quanto detto, su questo sito le password sono criptate.<br/>'.
 		'<br/>',
 		#TODO: 
 		### Admin Config ###
