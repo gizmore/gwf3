@@ -84,7 +84,8 @@ class Shadowcmd
 		'goto' => array('u','r','ca','eq','uq','gi','drop','part'),
 		'hunt' => array('u','r','ca','eq','uq','gi','drop','part'),
 		'travel' => array('u','r','ca','eq','uq','gi','drop'),
-		'hijack' => array('u','r','ca','eq','uq','gi','drop','part'),
+// 		'hijack' => array('u','r','ca','eq','uq','gi','drop','part'),
+		'hijack' => array(),
 	);
 	public static $CMDS_LEADER_ALWAYS = array('le','npc','ban','unban');
 	public static $CMDS_LEADER = array(
@@ -98,7 +99,7 @@ class Shadowcmd
 		'goto' => array('g','exp','hunt','kick','stop'),
 		'hunt' => array('g','exp','hunt','kick','stop'), 
 		'travel' => array(),
-		'hijack' => array('g','exp','hunt','en','stop'),
+		'hijack' => array(),
 	);
 	
 	##########################

@@ -16,8 +16,8 @@ final class Seattle_Archery extends SR_School
 			array('Ammo_Arrow', 100.0, 150, 30),
 			array('Ammo_Arrow', 100.0, 250, 75),
 			
-			array('Rune_of_bows:0.1', 100.0, 800),
-			array('Rune_of_attack:0.1', 100.0, 1500),
+// 			array('Rune_of_bows:0.1', 100.0, 800),
+// 			array('Rune_of_attack:0.1', 100.0, 1500),
 			
 			array('Horse', 100.0, 16000),
 		);

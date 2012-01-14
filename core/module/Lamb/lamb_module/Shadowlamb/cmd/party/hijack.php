@@ -67,7 +67,15 @@ final class Shadowcmd_hijack extends Shadowcmd
 			return false;
 		}
 		
-		return $target->getMount()->initHijackBy($player);
+		$mount = $target->getMount();
+		
+		if ($mount->getMountWeight() === 0)
+		{
+			$player->message('This mount cannot store anything.');
+			return false;
+		}
+		
+		return $mount->initHijackBy($player);
 	}
 }
 ?>

@@ -117,7 +117,7 @@ abstract class SR_Mount extends SR_Equipment
 	{
 // 		$player->setConst('_SL4_HIJACK', 0);
 		$eta = $this->calcHijackTime($player);
-		$player->message(sprintf('You start to to crack the lock on %s\'s %s. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
+		$player->message(sprintf('You start to to crack the lock on %s\'s %s. Time penalty: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
 		return $this->hijackBy($player, $eta);
 	}
 	
@@ -138,14 +138,14 @@ abstract class SR_Mount extends SR_Equipment
 		{
 			return false;
 		}
+		
+		$this->onHijackAttempt($player);
+		
+		$eta = $this->calcHijackTime($player);
 		return $party->pushAction(SR_Party::ACTION_HIJACK, $this->getOwner()->getName().' at '.$loc, $eta);
 	}
 	
-	/**
-	 * Do one hijack attempt.
-	 * @param SR_Player $player
-	 */
-	public function onHijack(SR_Player $player)
+	private function onHijackAttempt(SR_Player $player)
 	{
 		# The bro has to master 3 skills.
 		$thief = max(array($player->get('thief'), 0));
@@ -154,7 +154,7 @@ abstract class SR_Mount extends SR_Equipment
 		
 		# The mounts LOCK level + cracking attempt.
 		$lock = $this->getMountLockLevelB();
-// 		$attempt = $player->getConst('_SL4_HIJACK') + 1;
+		// 		$attempt = $player->getConst('_SL4_HIJACK') + 1;
 		
 		# Dice!
 		$atkmin = 0;     $atkmax = $locpic + $elec + $thief;
@@ -171,10 +171,19 @@ abstract class SR_Mount extends SR_Equipment
 			{
 				return; # Polizia!
 			}
-			$eta = $this->calcHijackTime($player);
-			$player->message(sprintf('You failed to crack the lock on %s\'s %s. You try again. ETA: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
-			$this->hijackBy($player, $eta);
+			$player->message(sprintf('You failed to crack the lock on %s\'s %s.', $this->getOwner()->getName(), $this->getName()));
+// 			$this->hijackBy($player, $eta);
 		}
+	}
+	
+	/**
+	 * Do one hijack attempt.
+	 * @param SR_Player $player
+	 */
+	public function onHijack(SR_Player $player)
+	{
+		$p = $player->getParty();
+		return $p->notice("You are done with cracking your target's lock.");
 	}
 	
 	/**

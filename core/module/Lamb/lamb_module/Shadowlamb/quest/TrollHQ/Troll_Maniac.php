@@ -14,7 +14,7 @@ final class Quest_Troll_Maniac extends SR_Quest
 		$data = $this->getTrollManiacData();
 		return
 			sprintf('Bring %d/%d SmallShield, %d/%d LargeShield, %d/%d ElvenShield and %d/%d KevlarShield to Larry, your Troll chief.',
-				$data['S'], self::NEED_SMALL, $data['L'], self::NEED_LARGE, $data['E'], self::NEED_KEVLAR, $data['K'], self::NEED_KEVLAR
+				$data['S'], self::NEED_SMALL, $data['L'], self::NEED_LARGE, $data['E'], self::NEED_ELVEN, $data['K'], self::NEED_KEVLAR
 			);
 	}
 	
@@ -96,7 +96,7 @@ final class Quest_Troll_Maniac extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("You are the best. If you can help us an last time we will help you big.");
-				$npc->reply(sprintf('Bring %d SmallShield, %d ElvenShield and %d Kevlar Shield, so I can create better army.'));
+				$npc->reply(sprintf('Bring %d SmallShield, %d ElvenShield and %d Kevlar Shield, so I can create better army.', self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR));
 				$npc->reply('Shamane will reward you well!');
 				break;
 			case 'confirm':
