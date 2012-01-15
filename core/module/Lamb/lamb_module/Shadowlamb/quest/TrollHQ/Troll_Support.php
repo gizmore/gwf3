@@ -50,7 +50,7 @@ final class Quest_Troll_Support extends SR_Quest
 		if ($this->isInQuest($player))
 		{
 			$this->increaseAmount(1);
-			$player->message(sprintf('Now you killed %d Headhunters for Larry, the Troll chief.', $this->getAmount()));
+			$player->message(sprintf('Now you killed %d of %d Headhunters for Larry, the Troll chief.', $this->getAmount(), $this->getNeededAmount()));
 		}
 		return true;
 	}
