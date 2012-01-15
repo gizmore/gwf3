@@ -8,17 +8,17 @@ final class Votes_Ajax extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($vsid = Common::getGet('vsid'))) {
-			return $this->statsVoteScore($this->_module, $vsid);
+			return $this->statsVoteScore($vsid);
 		}
 
 		if (false !== ($vmid = Common::getGet('vmid'))) {
-			return $this->statsVoteMulti($this->_module, $vmid);
+			return $this->statsVoteMulti($vmid);
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 	}
 	
-	private function statsVoteScore(Module_Votes $module, $vsid)
+	private function statsVoteScore($vsid)
 	{
 		if (false === ($votescore = GWF_VoteScore::getByID($vsid))) {
 			return $this->_module->error('err_votescore');
@@ -31,7 +31,7 @@ final class Votes_Ajax extends GWF_Method
 		return sprintf('1:%s:%s:%s:%s:%s', $cnt, $avg, $sum, $min, $max);
 	}
 
-	private function statsVoteMulti(Module_Votes $module, $vmid)
+	private function statsVoteMulti($vmid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($vmid))) {
 			return $this->_module->error('err_poll');

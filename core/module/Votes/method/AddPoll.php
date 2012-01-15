@@ -131,7 +131,7 @@ final class Votes_AddPoll extends GWF_Method
 	public function validate_title(Module_Votes $m, $arg) { return GWF_Validator::validateString($m, 'title', $arg, $m->cfgMinTitleLen(), $m->cfgMaxTitleLen(), false); }
 
 	private $checked_opt = false;
-	public function validate_opt(Module_Votes $module, $arg)
+	public function validate_opt(Module_Votes $m, $arg)
 	{
 		if ($this->checked_opt) {
 			return false;

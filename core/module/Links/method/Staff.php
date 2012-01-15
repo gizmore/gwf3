@@ -11,10 +11,10 @@ final class Links_Staff extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($lid = Common::getGet('approve'))) {
-			return $this->onApprove($this->_module, $lid, true);
+			return $this->onApprove($lid, true);
 		}
 		if (false !== ($lid = Common::getGet('disapprove'))) {
-			return $this->onApprove($this->_module, $lid, false);
+			return $this->onApprove($lid, false);
 		}
 		
 		if (!GWF_User::isStaffS()) {
@@ -55,7 +55,7 @@ final class Links_Staff extends GWF_Method
 		return $this->_module->templatePHP('staff.php', $tVars);
 	}
 	
-	private function onApprove(Module_Links $module, $lid, $approve)
+	private function onApprove($lid, $approve)
 	{
 		if (false === ($link = GWF_Links::getByID($lid))) {
 			return $this->_module->error('err_link');

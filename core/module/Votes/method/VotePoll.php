@@ -13,7 +13,7 @@ final class Votes_VotePoll extends GWF_Method
 		
 		$user = GWF_Session::getUser();
 		
-		if (false !== ($error = $this->checkReversible($this->_module, $poll, $user))) {
+		if (false !== ($error = $this->checkReversible($poll, $user))) {
 			return $error;
 		}
 		
@@ -25,10 +25,10 @@ final class Votes_VotePoll extends GWF_Method
 			return $this->_module->error('err_poll_off');
 		}
 		
-		return $this->onVote($this->_module, $poll, $user);
+		return $this->onVote($poll, $user);
 	}
 	
-	private function checkReversible(Module_Votes $module, GWF_VoteMulti $poll, $user)
+	private function checkReversible(GWF_VoteMulti $poll, $user)
 	{
 		if ($poll->isIrreversible() && $poll->hasVoted($user)) {
 			return $this->_module->error('err_irreversible');
@@ -36,7 +36,7 @@ final class Votes_VotePoll extends GWF_Method
 		return false;
 	}
 	
-	private function onVote(Module_Votes $module, GWF_VoteMulti $poll, $user)
+	private function onVote(GWF_VoteMulti $poll, $user)
 	{
 		$opts = Common::getPostArray('opt', array());
 		$taken = array();

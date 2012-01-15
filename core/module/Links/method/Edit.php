@@ -139,7 +139,7 @@ final class Links_Edit extends GWF_Method
 		{
 			$this->link->saveOption(GWF_Links::STICKY, isset($_POST['link_options&'.GWF_Links::STICKY]));
 			
-			if (false === $this->link->toggleModeration($this->_module, isset($_POST['link_options&'.GWF_Links::IN_MODERATION]))) {
+			if (false === $this->link->toggleModeration(isset($_POST['link_options&'.GWF_Links::IN_MODERATION]))) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 		}
@@ -150,12 +150,12 @@ final class Links_Edit extends GWF_Method
 	##################
 	### Validators ###
 	##################
-	public function validate_link_gid(Module_Links $module, $arg) { return GWF_LinksValidator::validate_gid($this->_module, $arg); }
-	public function validate_link_score(Module_Links $module, $arg) { return GWF_LinksValidator::validate_score($this->_module, $arg); }
-	public function validate_link_tags(Module_Links $module, $arg) { return GWF_LinksValidator::validate_tags($this->_module, $arg); }
-	public function validate_link_href(Module_Links $module, $arg) { return GWF_LinksValidator::validate_href($this->_module, $arg, false); }
-	public function validate_link_descr(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr1($this->_module, $arg); }
-	public function validate_link_descr2(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr2($this->_module, $arg); }
+	public function validate_link_gid(Module_Links $m, $arg) { return GWF_LinksValidator::validate_gid($arg); }
+	public function validate_link_score(Module_Links $m, $arg) { return GWF_LinksValidator::validate_score($arg); }
+	public function validate_link_tags(Module_Links $m, $arg) { return GWF_LinksValidator::validate_tags($arg); }
+	public function validate_link_href(Module_Links $m, $arg) { return GWF_LinksValidator::validate_href($arg, false); }
+	public function validate_link_descr(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr1($arg); }
+	public function validate_link_descr2(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr2($arg); }
 		
 }
 

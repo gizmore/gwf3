@@ -112,12 +112,12 @@ final class Links_Add extends GWF_Method
 		return $errors.$this->_module->templatePHP('add.php', $tVars);
 	}
 	
-	public function validate_link_gid(Module_Links $module, $arg) { return GWF_LinksValidator::validate_gid($this->_module, $arg); }
-	public function validate_link_score(Module_Links $module, $arg) { return GWF_LinksValidator::validate_score($this->_module, $arg); }
-	public function validate_link_tags(Module_Links $module, $arg) { return GWF_LinksValidator::validate_tags($this->_module, $arg); }
-	public function validate_link_href(Module_Links $module, $arg) { return GWF_LinksValidator::validate_href($this->_module, $arg, true); }
-	public function validate_link_descr(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr1($this->_module, $arg); }
-	public function validate_link_descr2(Module_Links $module, $arg) { return GWF_LinksValidator::validate_descr2($this->_module, $arg); }
+	public function validate_link_gid(Module_Links $m, $arg) { return GWF_LinksValidator::validate_gid($arg); }
+	public function validate_link_score(Module_Links $m, $arg) { return GWF_LinksValidator::validate_score($arg); }
+	public function validate_link_tags(Module_Links $m, $arg) { return GWF_LinksValidator::validate_tags($arg); }
+	public function validate_link_href(Module_Links $m, $arg) { return GWF_LinksValidator::validate_href($arg, true); }
+	public function validate_link_descr(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr1($arg); }
+	public function validate_link_descr2(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr2($arg); }
 	
 	private function onAdd()
 	{
@@ -146,13 +146,13 @@ final class Links_Add extends GWF_Method
 		
 		if ($in_moderation) {
 			$link->setVotesEnabled(false);
-			$this->sendModMail($this->_module, $link);
+			$this->sendModMail($link);
 		}
 		
 		return $this->_module->message('msg_added'.($in_moderation?'_mod':'')).$this->_module->requestMethodB('Overview');
 	}
 	
-	private function sendModMail(Module_Links $module, GWF_Links $link)
+	private function sendModMail(GWF_Links $link)
 	{
 		$link = GWF_Links::getByID($link->getID());
 		

@@ -15,22 +15,22 @@ final class Votes_EditPoll extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module, $poll, $user).$this->templateEdit($this->_module, $poll, $user);
+			return $this->onEdit($poll, $user).$this->templateEdit($poll, $user);
 		}
 		
-		return $this->templateEdit($this->_module, $poll, $user);
+		return $this->templateEdit($poll, $user);
 	}
 	
-	private function templateEdit(Module_Votes $module, GWF_VoteMulti $poll, GWF_User $user)
+	private function templateEdit(GWF_VoteMulti $poll, GWF_User $user)
 	{
-		$form = $this->getForm($this->_module, $poll, $user);
+		$form = $this->getForm($poll, $user);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit')),
 		);
 		return $this->_module->template('edit_poll.tpl', $tVars);
 	}
 	
-	private function getForm(Module_Votes $module, GWF_VoteMulti $poll, GWF_User $user)
+	private function getForm(GWF_VoteMulti $poll, GWF_User $user)
 	{
 		$data = array();
 		$data['title'] = array(GWF_Form::STRING, $poll->getVar('vm_title'), $this->_module->lang('th_title'));
@@ -41,7 +41,7 @@ final class Votes_EditPoll extends GWF_Method
 			$data['public'] = array(GWF_Form::CHECKBOX, $poll->isGlobal(), $this->_module->lang('th_vm_public'));
 		}
 		
-		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->_module, 'view', $poll->getViewFlag()), $this->_module->lang('th_mvview'));
+		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect('view', $poll->getViewFlag()), $this->_module->lang('th_mvview'));
 		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', $poll->getGroupID(), true, true), $this->_module->lang('th_vm_gid'));
 		$data['level'] = array(GWF_Form::INT, $poll->getLevel(), $this->_module->lang('th_vm_level'));
 		
@@ -54,9 +54,9 @@ final class Votes_EditPoll extends GWF_Method
 	public function validate_gid(Module_Votes $m, $arg) { return GWF_Validator::validateGroupID($m, 'gid', $arg, false, true); }
 	public function validate_level(Module_Votes $m, $arg) { return GWF_Validator::validateInt($m, 'level', $arg, 0, PHP_INT_MAX, '0'); }
 	public function validate_title(Module_Votes $m, $arg) { return GWF_Validator::validateString($m, 'title', $arg, $m->cfgMinTitleLen(), $m->cfgMaxTitleLen(), false); }
-	public function onEdit(Module_Votes $module, GWF_VoteMulti $poll, GWF_User $user)
+	public function onEdit(GWF_VoteMulti $poll, GWF_User $user)
 	{
-		$form = $this->getForm($this->_module, $poll, $user);
+		$form = $this->getForm($poll, $user);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

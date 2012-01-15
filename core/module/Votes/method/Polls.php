@@ -12,7 +12,7 @@ final class Votes_Polls extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($pollid = Common::getGet('show'))) {
-			return $this->templatePoll($this->_module, $pollid);
+			return $this->templatePoll($pollid);
 		}
 		
 		return $this->templatePolls();
@@ -50,7 +50,7 @@ final class Votes_Polls extends GWF_Method
 		return $this->_module->templatePHP('polls.php', $tVars);
 	}
 
-	private function templatePoll(Module_Votes $module, $pollid)
+	private function templatePoll($pollid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($pollid))) {
 			return $this->_module->error('err_poll').$this->templatePolls();

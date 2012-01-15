@@ -12,13 +12,13 @@ final class Links_Search extends GWF_Method
 	public function execute()
 	{
 		if (false !== Common::getPost('search_quick')) {
-			return $this->onSearch($this->_module, false);
+			return $this->onSearch(false);
 		}
 		if (false !== Common::getGet('term')) {
-			return $this->onSearch($this->_module, false);
+			return $this->onSearch(false);
 		}
 		if (false !== Common::getPost('search_adv')) {
-			return $this->onSearch($this->_module, true);
+			return $this->onSearch(true);
 		}
 		return $this->templateSearch(array(), '');
 	}
@@ -65,7 +65,7 @@ final class Links_Search extends GWF_Method
 		return $this->_module->templatePHP('search.php', $tVars);
 	}
 	
-	public function onSearch(Module_Links $module, $adv)
+	public function onSearch($adv)
 	{
 		$form = $adv ? $this->getFormAdv() : $this->getFormQuick();
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -73,15 +73,15 @@ final class Links_Search extends GWF_Method
 		}
 		if ($adv === true)
 		{
-			return $this->onAdvSearch($this->_module, $form);
+			return $this->onAdvSearch($form);
 		}
 		else
 		{
-			return $this->onQuickSearch($this->_module, $_REQUEST['term']);
+			return $this->onQuickSearch($_REQUEST['term']);
 		}
 	}
 	
-	private function onQuickSearch(Module_Links $module, $term)
+	private function onQuickSearch($term)
 	{
 		$fields = array('link_href', 'link_descr');
 		if ($this->_module->cfgLongDescription()) {
@@ -99,7 +99,7 @@ final class Links_Search extends GWF_Method
 		return $this->templateSearch($matches, $term);
 	}
 	
-	private function onAdvSearch(Module_Links $module, GWF_Form $form)
+	private function onAdvSearch(GWF_Form $form)
 	{
 		$table = GDO::table('GWF_Links');
 		if (false === ($matches = $table->searchAdv(GWF_Session::getUser(), $form->getVars()))) {
@@ -110,13 +110,13 @@ final class Links_Search extends GWF_Method
 	##################
 	### Validators ###
 	##################
-	public function validate_term(Module_Links $module, $arg) { return false; }
-	public function validate_link_descr(Module_Links $module, $arg) { return false; }
-	public function validate_link_descr2(Module_Links $module, $arg) { return false; }
-	public function validate_link_href(Module_Links $module, $arg) { return false; }
-	public function validate_link_date(Module_Links $module, $arg) { return false; }
-	public function validate_user_name(Module_Links $module, $arg) { return false; }
-	public function validate_vs_avg(Module_Links $module, $arg) { return false; }
+	public function validate_term(Module_Links $m, $arg) { return false; }
+	public function validate_link_descr(Module_Links $m, $arg) { return false; }
+	public function validate_link_descr2(Module_Links $m, $arg) { return false; }
+	public function validate_link_href(Module_Links $m, $arg) { return false; }
+	public function validate_link_date(Module_Links $m, $arg) { return false; }
+	public function validate_user_name(Module_Links $m, $arg) { return false; }
+	public function validate_vs_avg(Module_Links $m, $arg) { return false; }
 	
 		
 }

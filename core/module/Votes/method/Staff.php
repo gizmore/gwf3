@@ -18,11 +18,11 @@ final class Votes_Staff extends GWF_Method
 
 			// Edit
 			if (false !== Common::getPost('editvs')) {
-				return $this->onEdit($this->_module, $vs);
+				return $this->onEdit($vs); # TODO: gizmore fix it: missing method
 			}
 			
 			// Single Template
-			return $this->templateEdit($this->_module, $vs);
+			return $this->templateEdit($vs);
 		}
 		
 		// Table
@@ -51,7 +51,7 @@ final class Votes_Staff extends GWF_Method
 		return $this->_module->templatePHP('staff.php', $tVars);
 	}
 	
-	private function formEdit(Module_Votes $module, GWF_VoteScore $vs)
+	private function formEdit(GWF_VoteScore $vs)
 	{
 		$data = array();
 		
@@ -60,9 +60,9 @@ final class Votes_Staff extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEdit(Module_Votes $module, GWF_VoteScore $vs)
+	private function templateEdit(GWF_VoteScore $vs)
 	{
-		$form = $this->formEdit($this->_module, $vs);
+		$form = $this->formEdit($vs);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_vs')),
 		);
