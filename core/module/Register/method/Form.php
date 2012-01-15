@@ -103,7 +103,7 @@ final class Register_Form extends GWF_Method
 		}
 
 		if ($this->_module->wantEmailActivation()) {
-			return $this->sendEmail($this->_module, $username, $email, $token, $password);
+			return $this->sendEmail($username, $email, $token, $password);
 		}
 		else {
 			GWF_Website::redirect(GWF_WEB_ROOT.'quick_activate/'.$token);
@@ -134,7 +134,7 @@ final class Register_Form extends GWF_Method
 		return count($errors) === 0 ? false : GWF_HTML::errorA($this->_module->getName(), $errors);
 	}
 	
-	private function sendEmail(Module_Register $module, $username, $email, $token, $password)
+	private function sendEmail($username, $email, $token, $password)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
@@ -168,14 +168,14 @@ final class Register_Form extends GWF_Method
 	
 	public function validate_password(Module_Register $module, $arg)
 	{
-		if ( ($this->isBadPassword($this->_module, $arg)) || (!GWF_Validator::isValidPassword($arg)) )
+		if ( ($this->isBadPassword($arg)) || (!GWF_Validator::isValidPassword($arg)) )
 		{
 			return $this->_module->lang('err_pass_weak');
 		}
 		return false;
 	}
 	
-	private function isBadPassword(Module_Register $module, $pass)
+	private function isBadPassword($pass)
 	{
 		# Password contains username is bad!
 		if (stripos($pass, Common::getPostString('username')) !== false)
