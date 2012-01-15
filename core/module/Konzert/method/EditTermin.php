@@ -12,22 +12,22 @@ final class Konzert_EditTermin extends GWF_Method
 		
 		if (isset($_POST['edit']))
 		{
-			return $this->onEdit($this->_module, $termin).$this->templateEdit($this->_module, $termin);
+			return $this->onEdit($termin).$this->templateEdit($termin);
 		}
 		
-		return $this->templateEdit($this->_module, $termin);
+		return $this->templateEdit($termin);
 	}
 	
-	private function templateEdit(Module_Konzert $module, Konzert_Termin $termin)
+	private function templateEdit(Konzert_Termin $termin)
 	{
-		$form = $this->formEdit($this->_module, $termin);
+		$form = $this->formEdit($termin);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit')),
 		);
 		return $this->_module->template('at_edit.tpl', $tVars);
 	}
 	
-	private function formEdit(Module_Konzert $module, Konzert_Termin $termin)
+	private function formEdit(Konzert_Termin $termin)
 	{
 		$data = array();
 		$data['date'] = array(GWF_Form::DATE_FUTURE, $termin->getVar('kt_date'), $this->_module->lang('th_date'), '', GWF_Date::LEN_DAY);
@@ -48,9 +48,9 @@ final class Konzert_EditTermin extends GWF_Method
 	public function validate_location($m, $arg) { return GWF_Validator::validateString($m, 'location', $arg, 2, 128); }
 	public function validate_tickets($m, $arg) { return GWF_Validator::validateString($m, 'tickets', $arg, 2, 128); }
 	
-	private function onEdit(Module_Konzert $module, Konzert_Termin $termin)
+	private function onEdit(Konzert_Termin $termin)
 	{
-		$form = $this->formEdit($this->_module, $termin);
+		$form = $this->formEdit($termin);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
