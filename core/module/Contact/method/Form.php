@@ -89,10 +89,10 @@ final class Contact_Form extends GWF_Method
 			return $error.$this->templateForm();
 		}
 
-		return $this->onSendB($this->_module, $form->getVar('email'), $form->getVar('message'));
+		return $this->onSendB($form->getVar('email'), $form->getVar('message'));
 	}
 	
-	private function onSendB(Module_Contact $module, $email, $message)
+	private function onSendB($email, $message)
 	{
 		$admin = GWF_Group::ADMIN;
 		if (false === ($adminids = GDO::table('GWF_UserGroup')->selectColumn('ug_userid', "group_name='$admin'", '', array('group')))) {
@@ -108,7 +108,7 @@ final class Contact_Form extends GWF_Method
 			if (false === ($user->hasValidMail())) {
 				continue;
 			}
-			if (false === $this->onSendC($this->_module, $email, $message, $user)) {
+			if (false === $this->onSendC($email, $message, $user)) {
 				continue;
 			}
 			$send_to[] = $user->displayUsername();
@@ -117,7 +117,7 @@ final class Contact_Form extends GWF_Method
 		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $this->_module->message('msg_mailed', array(GWF_Array::implodeHuman($send_to)));
 	}
 	
-	private function onSendC(Module_Contact $module, $email, $message, GWF_User $user)
+	private function onSendC($email, $message, GWF_User $user)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);

@@ -21,15 +21,15 @@ final class Contact_SendMail extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('send')) {
-			return $this->send($this->_module, $user);
+			return $this->send($user);
 		}
 		
-		return $this->template($this->_module, $user);
+		return $this->template($user);
 	}
 	
-	private function template(Module_Contact $module, GWF_User $user)
+	private function template(GWF_User $user)
 	{
-		$form = $this->form($this->_module, $user);
+		$form = $this->form($user);
 		$tVars = array(
 //			'href_mailto' => sprintf('mailto:'.$user->getValidMail()),
 			'form' => $form->templateY($this->_module->lang('ft_sendmail', array( $user->displayUsername()))),
@@ -38,11 +38,11 @@ final class Contact_SendMail extends GWF_Method
 		return $this->_module->template('sendmail.tpl', $tVars);
 	}
 	
-	private function send(Module_Contact $module, GWF_User $user)
+	private function send(GWF_User $user)
 	{
-		$form = $this->form($this->_module, $user);
+		$form = $this->form($user);
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->template($this->_module, $user);
+			return $errors.$this->template($user);
 		}
 		
 		$u = GWF_User::getStaticOrGuest();
@@ -64,7 +64,7 @@ final class Contact_SendMail extends GWF_Method
 
 	public function validate_email(Module_Contact $m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg, true, true); }
 	public function validate_message(Module_Contact $m, $arg) { return GWF_Validator::validateString($m, 'message', $arg, 16, $m->cfgMaxMsgLen(), false); }
-	private function form(Module_Contact $module, GWF_User $user)
+	private function form(GWF_User $user)
 	{
 		$u = GWF_User::getStaticOrGuest();
 		
