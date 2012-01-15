@@ -11,7 +11,7 @@ final class PageBuilder_Edit extends GWF_Method
 		
 		$back = '';
 		if (isset($_POST['edit'])) {
-			$back .= $this->onEdit($this->_module, $page);
+			$back .= $this->onEdit($page);
 		}
 		elseif (isset($_POST['translate'])) {
 			GWF_Website::redirect($this->_module->getMethodURL('Translate', '&pageid='.$page->getID()));
@@ -22,26 +22,26 @@ final class PageBuilder_Edit extends GWF_Method
 			$back .= PB_Uploader::onUpload($this->_module);
 		}
 		
-		return $back.$this->templateEdit($this->_module, $page);
+		return $back.$this->templateEdit($page);
 	}
 	
-	private function templateEdit(Module_PageBuilder $module, GWF_Page $page)
+	private function templateEdit(GWF_Page $page)
 	{
-		$form = $this->formEdit($this->_module, $page);
+		$form = $this->formEdit($page);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit')),
 		);
 		return $this->_module->template('edit.tpl', $tVars);
 	}
 
-	private function formEdit(Module_PageBuilder $module, GWF_Page $page)
+	private function formEdit(GWF_Page $page)
 	{
 		$mod_cat = GWF_Module::loadModuleDB('Category', true, true);
 		
 		$data = array();
 		$data['url'] = array(GWF_Form::STRING, $page->getVar('page_url'), $this->_module->lang('th_url'));
 		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($this->_module, $page->getMode()), $this->_module->lang('th_type'));
-		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($this->_module, $page), true, true), $this->_module->lang('th_groups'));
+		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->_module->lang('th_groups'));
 		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->_module->lang('th_noguests'));
 		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $this->_module->lang('th_index'));
 		$data['follow'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::FOLLOW), $this->_module->lang('th_follow'));
@@ -76,9 +76,9 @@ final class PageBuilder_Edit extends GWF_Method
  		return new GWF_Form($this, $data);
 	}
 	
-	private function onEdit(Module_PageBuilder $module, GWF_Page $page)
+	private function onEdit(GWF_Page $page)
 	{
-		$form = $this->formEdit($this->_module, $page);
+		$form = $this->formEdit($page);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -183,7 +183,7 @@ final class PageBuilder_Edit extends GWF_Method
 		return $back === '' ? $back : substr($back, 1);
 	}
 	
-	private function getSelectedGroups(Module_PageBuilder $module, GWF_Page $page)
+	private function getSelectedGroups(GWF_Page $page)
 	{
 		return explode(',', $page->getVar('page_groups'));
 	}

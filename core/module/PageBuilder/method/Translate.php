@@ -18,27 +18,27 @@ final class PageBuilder_Translate extends GWF_Method
 		$back = '';
 		
 		if (isset($_POST['translate'])) {
-			$back .= $this->onTranslate($this->_module, $this->page);
+			$back .= $this->onTranslate($this->page);
 		}
 		
-		return $back.$this->templateTranslate($this->_module, $this->page);
+		return $back.$this->templateTranslate($this->page);
 	}
 	
-	private function templateTranslate(Module_PageBuilder $module, GWF_Page $page)
+	private function templateTranslate(GWF_Page $page)
 	{
-		$form = $this->formTranslate($this->_module, $page);
+		$form = $this->formTranslate($page);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_translate')),
 		);
 		return $this->_module->template('translate.tpl', $tVars);
 	}
 	
-	private function formTranslate(Module_PageBuilder $module, GWF_Page $page)
+	private function formTranslate(GWF_Page $page)
 	{
 		$data = array(
 			'url' => array(GWF_Form::STRING, $page->getVar('page_url'), $this->_module->lang('th_url')),
 			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $this->_module->lang('th_lang')),
-//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($this->_module, $page), true, true), $this->_module->lang('th_groups')),
+//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->_module->lang('th_groups')),
 //			'noguests' => array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->_module->lang('th_noguests')),
 //			'enabled' => array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->_module->lang('th_enabled')),
 			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $this->_module->lang('th_title')),
@@ -72,9 +72,9 @@ final class PageBuilder_Translate extends GWF_Method
 		return $m->lang('err_dup_lid');
 	}
 	
-	private function onTranslate(Module_PageBuilder $module, GWF_Page $page)
+	private function onTranslate(GWF_Page $page)
 	{
-		$form = $this->formTranslate($this->_module, $page);
+		$form = $this->formTranslate($page);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

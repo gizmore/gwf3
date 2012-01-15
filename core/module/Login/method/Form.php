@@ -65,7 +65,7 @@ final class Login_Form extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($isAjax))) {
+		if (false !== ($errors = $form->validate($this->_module, $isAjax))) {
 			if ($isAjax) {
 				return $errors;
 			} else {
@@ -197,8 +197,8 @@ final class Login_Form extends GWF_Method
 	#################
 	### Validator ###
 	#################
-	public function validate_username($arg) { return false; }
-	public function validate_password($arg) { return false; } 
+	public function validate_username(Module_Login $module, $arg) { return false; }
+	public function validate_password(Module_Login $module, $arg) { return false; } 
 }
 
 ?>

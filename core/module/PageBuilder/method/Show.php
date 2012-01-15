@@ -38,7 +38,7 @@ final class PageBuilder_Show extends GWF_Method
 		}
 		
 		# Have permission to see?
-		if (!$this->checkPermission($this->_module, $page))
+		if (!$this->checkPermission($page))
 		{
 			header($_SERVER['SERVER_PROTOCOL']." 403 Forbidden"); 
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -61,13 +61,13 @@ final class PageBuilder_Show extends GWF_Method
 
 		if (isset($_POST['reply']))
 		{
-			$back = $this->onReply($this->_module, $page);
+			$back = $this->onReply($page);
 		}
 		
-		return $this->showPage($this->_module, $page) . $back;
+		return $this->showPage($page) . $back;
 	}
 	
-	private function checkPermission(Module_PageBuilder $module, GWF_Page $page)
+	private function checkPermission(GWF_Page $page)
 	{
 		if ('' === ($groups = $page->getVar('page_groups')))
 		{
@@ -95,7 +95,7 @@ final class PageBuilder_Show extends GWF_Method
 		return false;
 	}
 	
-	private function showPageOLD(Module_PageBuilder $module, GWF_Page $page)
+	private function showPageOLD(GWF_Page $page)
 	{
 		$page->increase('page_views', 1);
 		
@@ -113,7 +113,7 @@ final class PageBuilder_Show extends GWF_Method
 		return $back;
 	}
 
-	private function showPage(Module_PageBuilder $module, GWF_Page $page)
+	private function showPage(GWF_Page $page)
 	{
 		$page->increase('page_views', 1);
 		
@@ -132,35 +132,35 @@ final class PageBuilder_Show extends GWF_Method
 			'author' => $page->display('page_author_name'),
 			'created' => GWF_Time::displayDate($page->getVar('page_create_date')),
 			'modified' => GWF_Time::displayDate($page->getVar('page_date')),
-			'content' => $this->getPageContent($this->_module, $page),
-			'comments' => $this->getPageComments($this->_module, $page),
-			'form_reply' => $this->getPageCommentsForm($this->_module, $page),
-			'pagemenu' => $this->getPagemenuComments($this->_module, $page),
-			'translations' => $this->getPageTranslations($this->_module, $page),
-			'similar' => $this->getSimilarPages($this->_module, $page),
+			'content' => $this->getPageContent($page),
+			'comments' => $this->getPageComments($page),
+			'form_reply' => $this->getPageCommentsForm($page),
+			'pagemenu' => $this->getPagemenuComments($page),
+			'translations' => $this->getPageTranslations($page),
+			'similar' => $this->getSimilarPages($page),
 		);
 		return $this->_module->template('show_page.tpl', $tVars);
 	}
 
-	private function getPageContent(Module_PageBuilder $module, GWF_Page $page)
+	private function getPageContent(GWF_Page $page)
 	{
 		switch ($page->getMode())
 		{
 			case GWF_Page::HTML: return $page->getVar('page_content');
 			case GWF_Page::BBCODE: return GWF_Message::display($page->getVar('page_content'));
-			case GWF_Page::SMARTY: return $this->getPageContentSmarty($this->_module, $page);
+			case GWF_Page::SMARTY: return $this->getPageContentSmarty($page);
 			default: return 'ERROR 0915';
 		}
 	}
 	
-	private function getPageContentSmarty(Module_PageBuilder $module, GWF_Page $page)
+	private function getPageContentSmarty(GWF_Page $page)
 	{
 		$smarty = GWF_Template::getSmarty();
 //		$smarty->assign('user', GWF_User::getStaticOrGuest());
 		return $smarty->fetch('db:'.$page->getID());
 	}
 
-	private function getPageComments(Module_PageBuilder $module, GWF_Page $thePage)
+	private function getPageComments(GWF_Page $thePage)
 	{
 		if ($this->comments === NULL)
 		{
@@ -185,7 +185,7 @@ final class PageBuilder_Show extends GWF_Method
 		return $comments->displayComments($c, $href);
 	}
 	
-	private function getPagemenuComments(Module_PageBuilder $module, GWF_Page $thePage)
+	private function getPagemenuComments(GWF_Page $thePage)
 	{
 		if ($this->comments === NULL)
 		{
@@ -207,7 +207,7 @@ final class PageBuilder_Show extends GWF_Method
 		return GWF_PageMenu::display($page, $nPages, $href);
 	}
 	
-	private function getSimilarPages(Module_PageBuilder $module, GWF_Page $page)
+	private function getSimilarPages(GWF_Page $page)
 	{
 		if (!$page->isOptionEnabled(GWF_Page::SHOW_SIMILAR))
 		{
@@ -217,7 +217,7 @@ final class PageBuilder_Show extends GWF_Method
 		return array();
 	}
 	
-	private function getPageTranslations(Module_PageBuilder $module, GWF_Page $page)
+	private function getPageTranslations(GWF_Page $page)
 	{
 		if (!$page->isOptionEnabled(GWF_Page::SHOW_TRANS))
 		{
@@ -235,7 +235,7 @@ final class PageBuilder_Show extends GWF_Method
 		return $result;
 	}
 	
-	private function onReply(Module_PageBuilder $module, GWF_Page $page)
+	private function onReply(GWF_Page $page)
 	{
 		$reply = $this->mod_c->getMethod('Reply');
 		$reply instanceof Comments_Reply;
@@ -243,7 +243,7 @@ final class PageBuilder_Show extends GWF_Method
 		return $reply->onReply($href);
 	}
 
-	private function getPageCommentsForm(Module_PageBuilder $module, GWF_Page $page)
+	private function getPageCommentsForm(GWF_Page $page)
 	{
 		if (isset($_POST['reply']) || !$page->isOptionEnabled(GWF_Page::COMMENTS))
 		{
