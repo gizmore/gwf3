@@ -9,7 +9,7 @@ final class Language_EditFiles extends GWF_Method
 	{
 		if (false !== ($filename = Common::getGetString('filename', false)))
 		{
-			return $this->templateFile($this->_module, $filename);
+			return $this->templateFile($filename);
 		}
 		
 		if (false !== Common::getPost('save_file'))
@@ -98,7 +98,7 @@ final class Language_EditFiles extends GWF_Method
 		return $this->_module->templatePHP('files.php', $tVars);
 	}
 
-	private function templateFile(Module_Language $module, $filename)
+	private function templateFile($filename)
 	{
 		if (false === ($file = $this->gatherFile($filename)))
 		{
@@ -106,7 +106,7 @@ final class Language_EditFiles extends GWF_Method
 		}
 		
 		$fileclass = GWF_LangFile::getByPath($file[0]);
-		$form = $this->getFileForm($this->_module, $file);
+		$form = $this->getFileForm($file);
 		
 		$tVars = array(
 			'file' => $file,
@@ -116,7 +116,7 @@ final class Language_EditFiles extends GWF_Method
 		return $this->_module->templatePHP('file.php', $tVars);
 	}
 
-	private function getFileForm(Module_Language $module, array $file)
+	private function getFileForm(array $file)
 	{
 		$class = $file[2];
 		$data = array();

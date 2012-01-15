@@ -281,12 +281,12 @@ final class Language_Bundle extends GWF_Method
 		$targets = $this->getTargets();
 		foreach ($targets as $target)
 		{
-			$back .= $this->onBundleTarget($this->_module, $target);
+			$back .= $this->onBundleTarget($target);
 		}
 		return $back;
 	}
 	
-	private function onBundleTarget(Module_Language $module, $target)
+	private function onBundleTarget($target)
 	{
 		# Create ZIP
 		$archive = new GWF_ZipArchive();
