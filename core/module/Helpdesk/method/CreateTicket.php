@@ -80,12 +80,12 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		}
 		$message->setVar('hdm_uid', GWF_Session::getUser());
 		
-		$this->onMailTicket($this->_module, $ticket, $message);
+		$this->onMailTicket($ticket, $message);
 		
 		return $this->_module->message('msg_created');
 	}
 	
-	private function onMailTicket(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
+	private function onMailTicket(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
 	{
 		$admin = GWF_Group::ADMIN;
 		$staff = GWF_Group::STAFF;
@@ -94,12 +94,12 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		{
 			if (false !== ($user = GWF_User::getByID($userid)))
 			{
-				$this->onMailTicketB($this->_module, $ticket, $message, $user);
+				$this->onMailTicketB($ticket, $message, $user);
 			}
 		}
 	}
 	
-	private function onMailTicketB(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
+	private function onMailTicketB(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
 	{
 		if ('' === ($rec = $user->getValidMail())) {
 			return;

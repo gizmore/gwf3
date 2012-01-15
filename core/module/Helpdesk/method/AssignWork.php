@@ -28,10 +28,10 @@ final class Helpdesk_AssignWork extends GWF_Method
 			return $this->_module->error('err_token');
 		}
 		
-		return $this->onAssign($this->_module, $ticket, $user);
+		return $this->onAssign($ticket, $user);
 	}
 	
-	public function onAssign(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_User $user)
+	public function onAssign(GWF_HelpdeskTicket $ticket, GWF_User $user)
 	{
 		if (false === $ticket->saveVars(array(
 			'hdt_worker' => $user->getID(),

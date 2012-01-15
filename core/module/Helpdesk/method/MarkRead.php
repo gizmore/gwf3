@@ -15,10 +15,10 @@ final class Helpdesk_MarkRead extends GWF_Method
 			return $this->_module->error('err_token');
 		}
 		
-		return $this->onMarkRead($this->_module, $ticket, $message);
+		return $this->onMarkRead($ticket, $message);
 	}
 	
-	public function onMarkRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
+	public function onMarkRead(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
 	{
 		if (false === $message->saveOption(GWF_HelpdeskMsg::READ, true)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));

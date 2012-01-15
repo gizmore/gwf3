@@ -14,25 +14,25 @@ final class Helpdesk_FAQEdit extends GWF_Method
 		}
 		
 		if (isset($_POST['edit'])) {
-			return $this->onEdit($this->_module, $faq);
+			return $this->onEdit($faq);
 		}
 		if (isset($_POST['delete'])) {
-			return $this->onDelete($this->_module, $faq);
+			return $this->onDelete($faq);
 		}
 		
-		return $this->templateEdit($this->_module, $faq);
+		return $this->templateEdit($faq);
 	}
 	
-	private function templateEdit(Module_Helpdesk $module, GWF_HelpdeskFAQ $faq)
+	private function templateEdit(GWF_HelpdeskFAQ $faq)
 	{
-		$form = $this->formEdit($this->_module, $faq);
+		$form = $this->formEdit($faq);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_faq')),
 		);
 		return $this->_module->template('faq_edit.tpl', $tVars);
 	}
 
-	private function formEdit(Module_Helpdesk $module, GWF_HelpdeskFAQ $faq)
+	private function formEdit(GWF_HelpdeskFAQ $faq)
 	{
 		$data = array(
 			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $faq->getVar('hdf_langid')), $this->_module->lang('th_lang'), $this->_module->lang('tt_lang')),
@@ -45,11 +45,11 @@ final class Helpdesk_FAQEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onEdit(Module_Helpdesk $module, GWF_HelpdeskFAQ $faq)
+	private function onEdit(GWF_HelpdeskFAQ $faq)
 	{
-		$form = $this->formEdit($this->_module, $faq);
+		$form = $this->formEdit($faq);
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateEdit($this->_module, $faq);
+			return $error.$this->templateEdit($faq);
 		}
 		
 		if (false === $faq->saveVars(array(
@@ -60,14 +60,14 @@ final class Helpdesk_FAQEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_faq_edit').$this->templateEdit($this->_module, $faq);
+		return $this->_module->message('msg_faq_edit').$this->templateEdit($faq);
 	}
 	
-	private function onDelete(Module_Helpdesk $module, GWF_HelpdeskFAQ $faq)
+	private function onDelete(GWF_HelpdeskFAQ $faq)
 	{
-		$form = $this->formEdit($this->_module, $faq);
+		$form = $this->formEdit($faq);
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->templateEdit($this->_module, $faq);
+			return $error.$this->templateEdit($faq);
 		}
 		
 		return $this->_module->message('msg_faq_del').$this->_module->execute('FAQ');

@@ -15,10 +15,10 @@ final class Helpdesk_MarkSolved extends GWF_Method
 			return $this->_module->error('err_token');
 		}
 		
-		return $this->onMarkSolved($this->_module, $ticket, $message);
+		return $this->onMarkSolved($ticket, $message);
 	}
 	
-	public function onMarkSolved(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
+	public function onMarkSolved(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
 	{
 		if (false === $ticket->saveVars(array(
 			'hdt_status' => 'solved',

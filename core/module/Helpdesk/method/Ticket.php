@@ -16,41 +16,41 @@ final class Helpdesk_Ticket extends GWF_Method
 		
 		## Post
 		if (isset($_POST['reply'])) {
-			$back .= $this->onReply($this->_module, $ticket);
+			$back .= $this->onReply($ticket);
 		}
 		
 		## Get
 		
 		if (isset($_GET['work'])) {
-			$back .= $this->onWork($this->_module, $ticket);
+			$back .= $this->onWork($ticket);
 		}
 		
 		if (Common::getGetString('faq') === '1') {
-			$back .= $this->onFaq($this->_module, $ticket, true);
+			$back .= $this->onFaq($ticket, true);
 		}
 		elseif (Common::getGetString('faq') === '0') {
-			$back .= $this->onFaq($this->_module, $ticket, false);
+			$back .= $this->onFaq($ticket, false);
 		}
 		
 		if (Common::getGetString('infaq') === '1') {
-			$back .= $this->onInFaq($this->_module, $ticket, true);
+			$back .= $this->onInFaq($ticket, true);
 		}
 		elseif (Common::getGetString('infaq') === '0') {
-			$back .= $this->onInFaq($this->_module, $ticket, false);
+			$back .= $this->onInFaq($ticket, false);
 		}
 		
 		if (Common::getGetString('msgfaq') === '1') {
-			$back .= $this->onMsgFAQ($this->_module, $ticket, true);
+			$back .= $this->onMsgFAQ($ticket, true);
 		}
 		elseif (Common::getGetString('msgfaq') === '0') {
-			$back .= $this->onMsgFAQ($this->_module, $ticket, false);
+			$back .= $this->onMsgFAQ($ticket, false);
 		}
 		
 		if (Common::getGetString('solve') === '1') {
-			$back .= $this->onSolve($this->_module, $ticket, 'solved');
+			$back .= $this->onSolve($ticket, 'solved');
 		}
 		elseif (Common::getGetString('solve') === '0') {
-			$back .= $this->onSolve($this->_module, $ticket, 'unsolved');
+			$back .= $this->onSolve($ticket, 'unsolved');
 		}
 		
 		if (isset($_GET['raise'])) {
@@ -74,11 +74,11 @@ final class Helpdesk_Ticket extends GWF_Method
 		$back = '';
 		if ($ticket->getCreatorID() !== GWF_Session::getUserID()) {
 			if ($ticket->getWorkerID() === '0') {
-				$back .= $this->onWork($this->_module, $ticket);
+				$back .= $this->onWork($ticket);
 			}
 		}
 		
-		$form = $this->formReply($this->_module, $ticket);
+		$form = $this->formReply($ticket);
 		return $back.$this->templateTicket($ticket, $form->templateY($this->_module->lang('ft_reply')));
 	}
 	
@@ -86,7 +86,7 @@ final class Helpdesk_Ticket extends GWF_Method
 	{
 		$tid = $ticket->getID();
 		
-		if (false === $this->markRead($this->_module, $ticket)) {
+		if (false === $this->markRead($ticket)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -114,7 +114,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return $this->_module->template('ticket.tpl', $tVars);
 	}
 	
-	private function markRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
+	private function markRead(GWF_HelpdeskTicket $ticket)
 	{
 		$read = GWF_HelpdeskMsg::READ;
 		$tid = $ticket->getID();
@@ -122,7 +122,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		if (false === GDO::table('GWF_HelpdeskMsg')->update("hdm_options=hdm_options|$read", "hdm_tid=$tid AND hdm_uid!=$uid")) {
 			return false;
 		}
-		$this->markTicketRead($this->_module, $ticket, true);
+		$this->markTicketRead($ticket, true);
 		return true;
 	}
 	
@@ -135,7 +135,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onWork(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
+	private function onWork(GWF_HelpdeskTicket $ticket)
 	{
 		$user = GWF_Session::getUser();
 		if ( (!$user->isAdmin()) && (!$user->isStaff()) ) {
@@ -149,10 +149,10 @@ final class Helpdesk_Ticket extends GWF_Method
 			return $this->_module->error('err_two_workers');
 		}
 		
-		return $method->onAssign($this->_module, $ticket, $user);
+		return $method->onAssign($ticket, $user);
 	}
 	
-	private function onFaq(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
+	private function onFaq(GWF_HelpdeskTicket $ticket, $bool)
 	{
 		if (GWF_Session::getUserID() !== $ticket->getCreatorID()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -166,7 +166,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return $this->_module->message($key);
 	}
 	
-	private function onInFaq(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
+	private function onInFaq(GWF_HelpdeskTicket $ticket, $bool)
 	{
 		if (!GWF_User::isAdminS()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -184,7 +184,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return $this->_module->message($key);
 	}
 	
-	private function onMsgFAQ(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
+	private function onMsgFAQ(GWF_HelpdeskTicket $ticket, $bool)
 	{
 		$tid = $ticket->getID();
 		$mid = Common::getGetInt('message');
@@ -200,7 +200,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		return $this->_module->message($key);
 	}
 	
-	private function onSolve(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $status)
+	private function onSolve(GWF_HelpdeskTicket $ticket, $status)
 	{
 		if (false === $ticket->saveVar('hdt_status', $status)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -246,7 +246,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		}
 	}
 	
-	private function onReply(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket)
+	private function onReply(GWF_HelpdeskTicket $ticket)
 	{
 		$form = $this->formReply();
 		if (false !== ($error = $form->validate($this->_module))) {
@@ -268,16 +268,16 @@ final class Helpdesk_Ticket extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$this->markTicketUnread($this->_module, $ticket, false);
+		$this->markTicketUnread($ticket, false);
 		
-		$this->sendReplyMail($this->_module, $ticket, $message);
+		$this->sendReplyMail($ticket, $message);
 		
 		unset($_GET['reply']);
 		
 		return $this->_module->message('msg_replied');
 	}
 	
-	private function markTicketRead(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
+	private function markTicketRead(GWF_HelpdeskTicket $ticket, $bool)
 	{
 		$bit = 0;
 		if (GWF_Session::getUserID() == $ticket->getWorkerID()) {
@@ -289,7 +289,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		$ticket->saveOption($bit, $bool);
 	}
 	
-	private function markTicketUnread(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, $bool)
+	private function markTicketUnread(GWF_HelpdeskTicket $ticket, $bool)
 	{
 		$bit = 0;
 		if (GWF_Session::getUserID() == $ticket->getWorkerID()) {
@@ -301,7 +301,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		$ticket->saveOption($bit, $bool);
 	}
 	
-	private function sendReplyMail(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
+	private function sendReplyMail(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
 	{
 		if (GWF_Session::getUserID() == $ticket->getWorkerID())
 		{
@@ -310,7 +310,7 @@ final class Helpdesk_Ticket extends GWF_Method
 			{
 				if ($ticket->isOptionEnabled(GWF_HelpdeskTicket::EMAIL_ME))
 				{
-					$this->sendReplyMailUser($this->_module, $ticket, $message, $user);
+					$this->sendReplyMailUser($ticket, $message, $user);
 				}
 			}
 		}
@@ -319,12 +319,12 @@ final class Helpdesk_Ticket extends GWF_Method
 			$user = $ticket->getWorker();
 			if ('' !== ($rec = $user->getValidMail()))
 			{
-				$this->sendReplyMailStaff($this->_module, $ticket, $message, $user);
+				$this->sendReplyMailStaff($ticket, $message, $user);
 			}
 		}
 	}
 
-	private function sendReplyMailUser(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
+	private function sendReplyMailUser(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
@@ -336,7 +336,7 @@ final class Helpdesk_Ticket extends GWF_Method
 		$mail->sendToUser($user);
 	}
 	
-	private function sendReplyMailStaff(Module_Helpdesk $module, GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
+	private function sendReplyMailStaff(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message, GWF_User $user)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);

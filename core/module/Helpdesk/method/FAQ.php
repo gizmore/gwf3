@@ -41,7 +41,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		
 		while (false !== ($row = $faq->fetch($result, GDO::ARRAY_A)))
 		{
-			$back[] = $this->buildFAQRow($this->_module, $row);
+			$back[] = $this->buildFAQRow($row);
 		}
 		
 		$faq->free($result);
@@ -49,7 +49,7 @@ final class Helpdesk_FAQ extends GWF_Method
 		return $back;
 	}
 	
-	private function buildFAQRow(Module_Helpdesk $module, $row)
+	private function buildFAQRow($row)
 	{
 		$back = array();
 		$back['id'] = $row['hdf_id'];
