@@ -7,10 +7,10 @@ final class Slaytags_ShowLyrics extends GWF_Method
 		{
 			return $this->_module->error('err_song');
 		}
-		return $this->templateShowLyrics($this->_module, $song);
+		return $this->templateShowLyrics($song);
 	}
 
-	private function templateShowLyrics(Module_Slaytags $module, Slay_Song $song)
+	private function templateShowLyrics(Slay_Song $song)
 	{
 		$sid = $song->getID();
 		$user = GWF_Session::getUser();

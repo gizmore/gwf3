@@ -12,20 +12,20 @@ final class Slaytags_EditSong extends GWF_Method
 		
 		if (isset($_POST['edit']))
 		{
-			return $this->onEdit($this->_module, $song).$this->templateEdit($this->_module, $song);
+			return $this->onEdit($song).$this->templateEdit($song);
 		}
 		
 		if (isset($_POST['flush_tags']))
 		{
-			return $this->onFlushTagsA($this->_module, $song).$this->templateEdit($this->_module, $song);
+			return $this->onFlushTagsA($song).$this->templateEdit($song);
 		}
 		
-		return $this->templateEdit($this->_module, $song);
+		return $this->templateEdit($song);
 	}
 
-	private function templateEdit(Module_Slaytags $module, Slay_Song $song)
+	private function templateEdit(Slay_Song $song)
 	{
-		$form = $this->formEdit($this->_module, $song);
+		$form = $this->formEdit($song);
 		$tVars = array(
 			'song' => $song,
 			'form' => $form->templateY($this->_module->lang('ft_edit_song')),
@@ -33,7 +33,7 @@ final class Slaytags_EditSong extends GWF_Method
 		return $this->_module->template('edit_song.tpl', $tVars);
 	}
 
-	private function formEdit(Module_Slaytags $module, Slay_Song $song)
+	private function formEdit(Slay_Song $song)
 	{
 		$data = array(
 			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
@@ -42,9 +42,9 @@ final class Slaytags_EditSong extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onEdit(Module_Slaytags $module, Slay_Song $song)
+	private function onEdit(Slay_Song $song)
 	{
-		$form = $this->formEdit($this->_module, $song);
+		$form = $this->formEdit($song);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
@@ -53,15 +53,15 @@ final class Slaytags_EditSong extends GWF_Method
 		return $this->_module->message('msg_song_edit');
 	}
 		
-	private function onFlushTagsA(Module_Slaytags $module, Slay_Song $song)
+	private function onFlushTagsA(Slay_Song $song)
 	{
-		$form = $this->formEdit($this->_module, $song);
+		$form = $this->formEdit($song);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
 		}
 		
-		if (false !== ($error = self::onFlushTags($this->_module, $song)))
+		if (false !== ($error = self::onFlushTags($song)))
 		{
 			return $error;
 		}
@@ -69,7 +69,7 @@ final class Slaytags_EditSong extends GWF_Method
 		return $this->_module->message('msg_tags_flushed');
 	}
 	
-	public static function onFlushTags(Module_Slaytags $module, Slay_Song $song)
+	public static function onFlushTags(Slay_Song $song)
 	{
 		$sid = $song->getID();
 		

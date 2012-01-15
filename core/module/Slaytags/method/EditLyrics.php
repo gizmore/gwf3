@@ -10,12 +10,12 @@ final class Slaytags_EditLyrics extends GWF_Method
 			return $this->_module->error('err_lyrics_unk');
 		}
 		
-		return $this->templateEditLyrics($this->_module, $lyrics);
+		return $this->templateEditLyrics($lyrics);
 	}
 	
-	private function templateEditLyrics(Module_Slaytags $module, Slay_Lyrics $lyrics)
+	private function templateEditLyrics(Slay_Lyrics $lyrics)
 	{
-		$form = $this->formEditLyrics($this->_module, $lyrics);
+		$form = $this->formEditLyrics($lyrics);
 		
 		$tVars = array(
 		);
@@ -23,7 +23,7 @@ final class Slaytags_EditLyrics extends GWF_Method
 		return $this->_module->template('edit_lyrics', $tVars);
 	}
 	
-	private function formEditLyrics(Module_Slaytags $module, Slay_Lyrics $lyrics)
+	private function formEditLyrics(Slay_Lyrics $lyrics)
 	{
 		$data = array(
 			'lyrics' => array(GWF_Form::MESSAGE_NOBB, $lyrics->getVar('ssl_lyrics'), $this->_module->lang('th_lyrics')),

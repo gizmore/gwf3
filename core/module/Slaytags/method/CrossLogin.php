@@ -30,7 +30,7 @@ final class Slaytags_CrossLogin extends GWF_Method
 
 		if ($site === 1)
 		{
-			return $this->onCrossLoginSlayradio($this->_module, $userid, $token);
+			return $this->onCrossLoginSlayradio($userid, $token);
 		}
 		else
 		{
@@ -39,7 +39,7 @@ final class Slaytags_CrossLogin extends GWF_Method
 	}
 	
 	
-	private function onCrossLoginSlayradio(Module_Slaytags $module, $userid, $token)
+	private function onCrossLoginSlayradio($userid, $token)
 	{
 		if ($token !== $this->slayradioHash($userid))
 		{
@@ -48,23 +48,23 @@ final class Slaytags_CrossLogin extends GWF_Method
 		
 		$username = "1_{$userid}";
 		
-		return $this->onCrossLogin($this->_module, $username);
+		return $this->onCrossLogin($username);
 	}
 	
-	private function onCrossLogin(Module_Slaytags $module, $username)
+	private function onCrossLogin($username)
 	{
 		if (false === ($user = GWF_User::getByName($username)))
 		{
-			if (false === ($user = $this->onCrossRegister($this->_module, $username)))
+			if (false === ($user = $this->onCrossRegister($username)))
 			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
-		return $this->onCrossLoginB($this->_module, $user);
+		return $this->onCrossLoginB($user);
 	}
 	
-	private function onCrossRegister(Module_Slaytags $module, $username)
+	private function onCrossRegister($username)
 	{
 		$options = 0;
 		
@@ -101,7 +101,7 @@ final class Slaytags_CrossLogin extends GWF_Method
 		return true;
 	}
 
-	private function onCrossLoginB(Module_Slaytags $module, GWF_User $user)
+	private function onCrossLoginB(GWF_User $user)
 	{
 		if ($user->isDeleted())
 		{

@@ -12,22 +12,22 @@ final class Slaytags_AddLyrics extends GWF_Method
 		
 		if (isset($_POST['add']))
 		{
-			return $this->onAddLyrics($this->_module, $song).$this->templateAddLyrics($this->_module, $song);
+			return $this->onAddLyrics($song).$this->templateAddLyrics($song);
 		}
 		
-		return $this->templateAddLyrics($this->_module, $song);
+		return $this->templateAddLyrics($song);
 	}
 	
-	private function templateAddLyrics(Module_Slaytags $module, Slay_Song $song)
+	private function templateAddLyrics(Slay_Song $song)
 	{
-		$form = $this->formAddLyrics($this->_module, $song);
+		$form = $this->formAddLyrics($song);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_add_lyrics')),
 		);
 		return $this->_module->template('add_lyrics.tpl', $tVars);
 	}
 
-	private function formAddLyrics(Module_Slaytags $module, Slay_Song $song)
+	private function formAddLyrics(Slay_Song $song)
 	{
 		$user = GWF_Session::getUser();
 		$data = array(
@@ -40,9 +40,9 @@ final class Slaytags_AddLyrics extends GWF_Method
 
 	public function validate_lyrics($m, $arg) { return GWF_Validator::validateString($m, 'lyrics', $arg, 32, Slay_Lyrics::MAX_LENGTH); }
 	
-	private function onAddLyrics(Module_Slaytags $module, Slay_Song $song)
+	private function onAddLyrics(Slay_Song $song)
 	{
-		$form = $this->formAddLyrics($this->_module, $song);
+		$form = $this->formAddLyrics($song);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;

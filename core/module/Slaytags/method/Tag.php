@@ -17,18 +17,18 @@ final class Slaytags_Tag extends GWF_Method
 		
 		if (isset($_POST['doit']))
 		{
-			return $this->onTag($this->_module, $song).$this->templateTag($this->_module, $song);
+			return $this->onTag($song).$this->templateTag($song);
 		}
 		
-		return $this->templateTag($this->_module, $song);
+		return $this->templateTag($song);
 	}
 	
-	private function templateTag(Module_Slaytags $module, Slay_Song $song)
+	private function templateTag(Slay_Song $song)
 	{
 		$user = GWF_Session::getUser();
 		$has_tagged = Slay_TagVote::hasVoted($song, $user);
 		$may_add_tag = Slay_Tag::mayAddTag($user);
-		$form = $this->formTag($this->_module, $song);
+		$form = $this->formTag($song);
 		$tVars = array(
 			'song' => $song,
 			'has_tagged' => $has_tagged,
@@ -38,7 +38,7 @@ final class Slaytags_Tag extends GWF_Method
 		return $this->_module->template('tag.tpl', $tVars);
 	}
 	
-	private function formTag(Module_Slaytags $module, Slay_Song $song)
+	private function formTag(Slay_Song $song)
 	{
 		$data = array();
 		
@@ -56,9 +56,9 @@ final class Slaytags_Tag extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onTag(Module_Slaytags $module, Slay_Song $song)
+	private function onTag(Slay_Song $song)
 	{
-		$form = $this->formTag($this->_module, $song);
+		$form = $this->formTag($song);
 		if (false !== ($error = $form->validate($this->_module)))
 		{
 			return $error;
