@@ -28,6 +28,7 @@ class GWF3
 		'no_session' => false, # Suppress session creation?
 		'store_last_url' => true, # Save the current URL into session?
 		'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
+		'kick_banned_ip' => true, # Kick banned IP adress by temp_ban file?
 	);
 	public static function setConfig($key, $v) { self::$_config[$key] = $v; }
 	public static function getConfig($key) { return self::$_config[$key]; }
@@ -65,7 +66,13 @@ class GWF3
 		{
 			$this->onLoadConfig(GWF_CONFIG_PATH);
 		}
-		
+
+		# WebSite is down?
+		if (true === defined('GWF_WORKER_IP') && (GWF_WORKER_IP !== (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '')))
+		{
+			die(GWF_SITENAME.' is down for maintainance.<br/>'.GWF_DOWN_REASON);
+		}
+	
 		# Set valid mo/me
 		$_GET['mo'] = Common::getGetString('mo', GWF_DEFAULT_MODULE);
 		$_GET['me'] = Common::getGetString('me', GWF_DEFAULT_METHOD);
@@ -102,7 +109,12 @@ class GWF3
 		}
 
 		$config = &self::$_config;
-		
+
+		if (true === $config['kick_banned_ip'])
+		{
+			$this->onKickBannedIP();
+		}
+
 		if (true === $config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
@@ -228,6 +240,36 @@ class GWF3
 			}
 			require_once $config;
 			define('GWF_HAVE_CONFIG', 1);
+		}
+	}
+
+	/**
+	 * Kick Client if he has a banned IP
+	 * IPs from protected/temp_ban.lst.txt file
+	 * You can ban webspider IPs
+	 */
+	public static function onKickBannedIP()
+	{
+		if (false === isset($_SERVER['REMOTE_ADDR']))
+		{
+			return;
+		}
+		if ('' === ($bans = file_get_contents(GWF_PROTECTED_PATH.'temp_ban.lst.txt')))
+		{
+			return;
+		}
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$bans = explode("\n", $bans);
+		foreach ($bans as $i => $ban)
+		{
+			$ban = explode(':', $ban);
+			if (count($ban) === 2)
+			{
+				if ($ban[1] === $ip && $ban[0] > time())
+				{
+					die('You are banned until '.date('Y-m-d H:i:s', $ban[0]).'+UGZ.');
+				}
+			}
 		}
 	}
 
@@ -409,3 +451,4 @@ class GWF3
 
 GWF3::_init();
 ?>
+
