@@ -20,13 +20,13 @@ final class Category_Edit extends GWF_Method
 		self::$cat = $cat;
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module, $cat).$this->templateEdit($this->_module, $cat);
+			return $this->onEdit($cat).$this->templateEdit($cat);
 		}
 		
-		return $this->templateEdit($this->_module, $cat);
+		return $this->templateEdit($cat);
 	}
 	
-	public function getForm(Module_Category $module, GWF_Category $cat)
+	public function getForm(GWF_Category $cat)
 	{
 //		static $form = true;
 //		if ($form === true)
@@ -37,7 +37,7 @@ final class Category_Edit extends GWF_Method
 				'key' => array(GWF_Form::STRING, $cat->getKey(), $this->_module->lang('th_key')),
 				'div1' => array(GWF_Form::DIVIDER),
 			);
-			$data += $this->getFormLangs($this->_module, $cat);
+			$data += $this->getFormLangs($cat);
 			$data['div2'] = array(GWF_Form::DIVIDER);
 			$data['new_trans'] = array(GWF_Form::HEADLINE, '', $this->_module->lang('th_new_trans'));
 			$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'langid'), $this->_module->lang('th_langid'));
@@ -48,7 +48,7 @@ final class Category_Edit extends GWF_Method
 		return $form;
 	}
 	
-	private function getFormLangs(Module_Category $module, GWF_Category $cat)
+	private function getFormLangs(GWF_Category $cat)
 	{
 		$back = array();
 		$trans = $cat->getVar('translations');
@@ -62,9 +62,9 @@ final class Category_Edit extends GWF_Method
 		return $back;
 	}
 	
-	public function templateEdit(Module_Category $module, GWF_Category $cat)
+	public function templateEdit(GWF_Category $cat)
 	{
-		$form = $this->getForm($this->_module, $cat);
+		$form = $this->getForm($cat);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit', array( $cat->display('cat_tree_key')))),
 			'cat' => $cat,
@@ -116,15 +116,15 @@ final class Category_Edit extends GWF_Method
 		return false;
 	}
 	
-	public function onEdit(Module_Category $module, GWF_Category $cat)
+	public function onEdit(GWF_Category $cat)
 	{
 		$keyOld = $cat->getKey();
-		$form = $this->getForm($this->_module, $cat);
+		$form = $this->getForm($cat);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
 
-//		if ('' !== ($error = $form->validateVars($this->_module, array('key', 'langid')))) {
+//		if ('' !== ($error = $form->validateVars(array('key', 'langid')))) {
 //			return $error;
 //		}
 		

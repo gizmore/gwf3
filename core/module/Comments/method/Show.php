@@ -13,7 +13,7 @@ final class Comments_Show extends GWF_Method
 		return $this->templateShow();
 	}
 	
-	public function sanitize(Module_Comments $module, $check_enabled=true)
+	public function sanitize($check_enabled=true)
 	{
 		if ('' === ($cmts_id = Common::getGetString('cmts_id')))
 		{

@@ -23,9 +23,9 @@ final class PasswordForgot_Change extends GWF_Method
 		
 		# Do stuff
 		if (false !== (Common::getPost('change'))) {
-			return $this->onChangePass($this->_module, $ac);
+			return $this->onChangePass($ac);
 		}
-		return $this->templateChange($this->_module, $ac);
+		return $this->templateChange($ac);
 	}
 	
 	private function getForm()
@@ -38,7 +38,7 @@ final class PasswordForgot_Change extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateChange(Module_PasswordForgot $module, GWF_AccountChange $ac)
+	private function templateChange(GWF_AccountChange $ac)
 	{
 		$form = $this->getForm();
 		$tVars = array(
@@ -60,11 +60,11 @@ final class PasswordForgot_Change extends GWF_Method
 		}
 	}
 	
-	private function onChangePass(Module_PasswordForgot $module, GWF_AccountChange $ac)
+	private function onChangePass(GWF_AccountChange $ac)
 	{
 		$form = $this->getForm();
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateChange($this->_module, $ac);
+			return $errors.$this->templateChange($ac);
 		}
 		
 		$user = $ac->getUser();

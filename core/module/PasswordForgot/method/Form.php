@@ -10,7 +10,7 @@ final class PasswordForgot_Form extends GWF_Method
 	{
 		return 'RewriteRule ^recovery$ index.php?mo=PasswordForgot&me=Form'.PHP_EOL;
 //		$rewrites = array('recovery', 'passwort_vergessen', 'Dimenticati_il_Password');
-//		return $this->getHTAccessMethods($this->_module, $rewrites);
+//		return $this->getHTAccessMethods($rewrites);
 	}
 	
 	public function execute()
@@ -84,10 +84,10 @@ final class PasswordForgot_Form extends GWF_Method
 		elseif ($user2 !== false) {
 			$user = $user2;
 		}
-		return $this->sendMail($this->_module, $user);
+		return $this->sendMail($user);
 	}
 
-	private function sendMail(Module_PasswordForgot $module, GWF_User $user)
+	private function sendMail(GWF_User $user)
 	{
 		if ('' === ($email = $user->getValidMail()))
 		{
@@ -96,7 +96,7 @@ final class PasswordForgot_Form extends GWF_Method
 
 		$sender = $this->_module->getMailSender();
 		$username = $user->displayUsername();
-		$link = $this->getRequestLink($this->_module, $user);
+		$link = $this->getRequestLink($user);
 		$body = $this->_module->lang('mail_body', array( $username, $sender, $link));
 		
 		$mail = new GWF_Mail();
@@ -108,7 +108,7 @@ final class PasswordForgot_Form extends GWF_Method
 		return $mail->sendToUser($user) ? $this->_module->message('msg_sent_mail', array('<em>'.GWF_HTML::display(GWF_HTML::lang('unknown')).'</em>')) : GWF_HTML::err('ERR_MAIL_SENT'); 
 	}
 	
-	private function getRequestLink(Module_PasswordForgot $module, GWF_User $user)
+	private function getRequestLink(GWF_User $user)
 	{
 		$userid = $user->getID();
 		

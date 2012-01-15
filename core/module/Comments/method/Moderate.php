@@ -14,18 +14,18 @@ final class Comments_Moderate extends GWF_Method
 	{
 		if (false !== ($cmt_id = Common::getGetString('show', false)))
 		{
-			return $this->onShow($this->_module, $cmt_id);
+			return $this->onShow($cmt_id);
 		}
 		
 		if (false !== ($cmt_id = Common::getGetString('delete', false)))
 		{
-			return $this->onDelete($this->_module, $cmt_id);
+			return $this->onDelete($cmt_id);
 		}
 		
 		return GWF_HTML::err('ERR_PARAMETER', array());
 	}
 	
-	private function sanitize(Module_Comments $module, $cmt_id)
+	private function sanitize($cmt_id)
 	{
 		if (false === ($c = GWF_Comment::getByID($cmt_id)))
 		{
@@ -42,9 +42,9 @@ final class Comments_Moderate extends GWF_Method
 		return false;
 	}
 	
-	private function onShow(Module_Comments $module, $cmt_id)
+	private function onShow($cmt_id)
 	{
-		if (false !== ($error = $this->sanitize($this->_module, $cmt_id)))
+		if (false !== ($error = $this->sanitize($cmt_id)))
 		{
 			return $error;
 		}
@@ -57,9 +57,9 @@ final class Comments_Moderate extends GWF_Method
 		return $this->_module->message('msg_visible');
 	}
 
-	private function onDelete(Module_Comments $module, $cmt_id)
+	private function onDelete($cmt_id)
 	{
-		if (false !== ($error = $this->sanitize($this->_module, $cmt_id)))
+		if (false !== ($error = $this->sanitize($cmt_id)))
 		{
 			return $error;
 		}

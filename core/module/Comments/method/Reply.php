@@ -97,7 +97,7 @@ final class Comments_Reply extends GWF_Method
 		
 		if ($this->_module->cfgModerated())
 		{
-			return $this->onSendModerateMail($this->_module, $user, $comment);
+			return $this->onSendModerateMail($user, $comment);
 		}
 		else
 		{
@@ -105,7 +105,7 @@ final class Comments_Reply extends GWF_Method
 			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
-			return $this->onSendCommentedMail($this->_module, $user, $comment);
+			return $this->onSendCommentedMail($user, $comment);
 		}
 	}
 	
@@ -122,20 +122,20 @@ final class Comments_Reply extends GWF_Method
 	#######################
 	### Moderation Mail ###
 	#######################
-	private function onSendModerateMail(Module_Comments $module, $user, GWF_Comment $comment)
+	private function onSendModerateMail($user, GWF_Comment $comment)
 	{
 		foreach ($this->getStaffIDs() as $admin_id)
 		{
 			if (false !== ($admin = GWF_User::getByID($admin_id)))
 			{
-				$this->onSendModerateMailB($this->_module, $user, $comment, $admin);
+				$this->onSendModerateMailB($user, $comment, $admin);
 			}
 		}
 		
 		return $this->_module->message('msg_commented_mod');
 	}
 	
-	private function onSendModerateMailB(Module_Comments $module, $user, GWF_Comment $comment, GWF_User $admin)
+	private function onSendModerateMailB($user, GWF_Comment $comment, GWF_User $admin)
 	{
 		if ('' === ($rec = $admin->getValidMail()))
 		{
@@ -162,20 +162,20 @@ final class Comments_Reply extends GWF_Method
 	###################
 	### Notice Mail ###
 	###################
-	private function onSendCommentedMail(Module_Comments $module, $user, GWF_Comment $comment)
+	private function onSendCommentedMail($user, GWF_Comment $comment)
 	{
 		foreach ($this->getStaffIDs() as $admin_id)
 		{
 			if (false !== ($admin = GWF_User::getByID($admin_id)))
 			{
-				$this->onSendCommentedMailB($this->_module, $user, $comment, $admin);
+				$this->onSendCommentedMailB($user, $comment, $admin);
 			}
 		}
 		
 		return $this->_module->message('msg_commented');
 	}
 	
-	private function onSendCommentedMailB(Module_Comments $module, $user, GWF_Comment $comment, GWF_User $admin)
+	private function onSendCommentedMailB($user, GWF_Comment $comment, GWF_User $admin)
 	{
 		if ('' === ($rec = $admin->getValidMail()))
 		{

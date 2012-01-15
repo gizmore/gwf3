@@ -10,24 +10,24 @@ final class Payment_StaffOrder extends GWF_Method
 		}
 		
 		if (false !== (Common::getGet('mark_paid'))) {
-			return $this->onMarkPaid($this->_module, $order).$this->templateOrder($this->_module, $order);
+			return $this->onMarkPaid($order).$this->templateOrder($order); #TODO: gizmore fix it: method does not exists
 		}
 
 		if (false !== Common::getPost('exec')) {
-			return $this->onExecute($this->_module, $order).$this->templateOrder($this->_module, $order);
+			return $this->onExecute($order).$this->templateOrder($order);
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module, $order).$this->templateOrder($this->_module, $order);
+			return $this->onEdit($order).$this->templateOrder($order);
 		}
 		
-		return $this->templateOrder($this->_module, $order);
+		return $this->templateOrder($order);
 	}
 	
-	private function templateOrder(Module_Payment $module, GWF_Order $order)
+	private function templateOrder(GWF_Order $order)
 	{
-		$form_exec = $this->getFormExec($this->_module, $order); 
-		$form_edit = $this->getFormEdit($this->_module, $order); 
+		$form_exec = $this->getFormExec($order); 
+		$form_edit = $this->getFormEdit($order); 
 		
 		$oid = $order->getID();
 		
@@ -46,7 +46,7 @@ final class Payment_StaffOrder extends GWF_Method
 		return $this->_module->templatePHP('staff_order.php', $tVars);
 	}
 	
-	private function getFormExec(Module_Payment $module, GWF_Order $order)
+	private function getFormExec(GWF_Order $order)
 	{
 		$data = array(
 			'exec' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_execute')),
@@ -54,7 +54,7 @@ final class Payment_StaffOrder extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormEdit(Module_Payment $module, GWF_Order $order)
+	private function getFormEdit(GWF_Order $order)
 	{
 		$data = array(
 			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
@@ -62,9 +62,9 @@ final class Payment_StaffOrder extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onExecute(Module_Payment $module, GWF_Order $order)
+	private function onExecute(GWF_Order $order)
 	{
-		$form_exec = $this->getFormExec($this->_module, $order);
+		$form_exec = $this->getFormExec($order);
 		if (false !== ($errors = $form_exec->validate($this->_module))) {
 			return $errors;
 		}
