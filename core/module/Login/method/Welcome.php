@@ -15,10 +15,10 @@ final class Login_Welcome extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->welcome($this->_module, Common::getGet('activated') !== false);
+		return $this->welcome(Common::getGet('activated') !== false);
 	}
 	
-	private function welcome(Module_Login $module, $first_time)
+	private function welcome($first_time)
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');

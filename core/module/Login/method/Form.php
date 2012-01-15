@@ -65,7 +65,7 @@ final class Login_Form extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module, $isAjax))) {
+		if (false !== ($errors = $form->validate($isAjax))) {
 			if ($isAjax) {
 				return $errors;
 			} else {
@@ -85,7 +85,7 @@ final class Login_Form extends GWF_Method
 				return $this->_module->error('err_login').$this->form();
 			}
 		}
-		elseif (true !== ($error = $this->checkBruteforce($this->_module, $user, $isAjax))) {
+		elseif (true !== ($error = $this->checkBruteforce($user, $isAjax))) {
 			if ($isAjax) {
 				return $error;
 			} else {
@@ -97,19 +97,19 @@ final class Login_Form extends GWF_Method
 		}
 		elseif (false === (GWF_Password::checkPasswordS($password, $user->getVar('user_password')))) {
 			if ($isAjax) {
-				return $this->onLoginFailed($this->_module, $user, $isAjax);
+				return $this->onLoginFailed($user, $isAjax);
 			}
 			else { 
-				return $this->onLoginFailed($this->_module, $user, $isAjax).$this->form();
+				return $this->onLoginFailed($user, $isAjax).$this->form();
 			}
 		}
 		
 		GWF_Password::clearMemory('password');
 		
-		return $this->onLoggedIn($this->_module, $user, $isAjax);
+		return $this->onLoggedIn($user, $isAjax);
 	}
 	
-	private function onLoginFailed(Module_Login $module, GWF_User $user, $isAjax)
+	private function onLoginFailed(GWF_User $user, $isAjax)
 	{
 		GWF_LoginFailure::loginFailed($user);
 		$time = $this->_module->cfgTryExceed();
@@ -119,13 +119,13 @@ final class Login_Form extends GWF_Method
 		// Send alert mail?
 		if ( ($tries === 1) && ($this->_module->cfgAlerts()) )
 		{
-			$this->onSendAlertMail($this->_module, $user);
+			$this->onSendAlertMail($user);
 		}
 		
 		return $this->_module->error('err_login2', array($maxtries-$tries, GWF_Time::humanDuration($time)));
 	}
 	
-	private function checkBruteforce(Module_Login $module, GWF_User $user, $isAjax)
+	private function checkBruteforce(GWF_User $user, $isAjax)
 	{
 		$time = $this->_module->cfgTryExceed();
 		$maxtries = $this->_module->cfgMaxTries();
@@ -140,7 +140,7 @@ final class Login_Form extends GWF_Method
 		return true;
 	}
 	
-	private function onLoggedIn(Module_Login $module, GWF_User $user, $isAjax)
+	private function onLoggedIn(GWF_User $user, $isAjax)
 	{
 		$last_url = GWF_Session::getLastURL();
 		
@@ -178,7 +178,7 @@ final class Login_Form extends GWF_Method
 		}
 	}
 	
-	private function onSendAlertMail(Module_Login $module, GWF_User $user)
+	private function onSendAlertMail(GWF_User $user)
 	{
 		if ('' === ($to = $user->getValidMail()))
 		{
@@ -197,8 +197,8 @@ final class Login_Form extends GWF_Method
 	#################
 	### Validator ###
 	#################
-	public function validate_username(Module_Login $module, $arg) { return false; }
-	public function validate_password(Module_Login $module, $arg) { return false; } 
+	public function validate_username($arg) { return false; }
+	public function validate_password($arg) { return false; } 
 }
 
 ?>
