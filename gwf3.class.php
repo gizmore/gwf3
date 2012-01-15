@@ -68,9 +68,16 @@ class GWF3
 		}
 
 		# WebSite is down?
-		if (true === defined('GWF_WORKER_IP') && (GWF_WORKER_IP !== (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '')))
+		if (true === defined('GWF_WORKER_IP'))
 		{
-			die(GWF_SITENAME.' is down for maintainance.<br/>'.GWF_DOWN_REASON);
+			if (GWF_WORKER_IP !== (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '')))
+			{
+				die(GWF_SITENAME.' is down for maintainance.<br/>'.GWF_DOWN_REASON);
+			}
+			else
+			{
+				GWF_Website::addDefaultOutput('<p style="color: #ff0000">Welcome back Admin! GWF_WORKER_IP is activated</p>');
+			}
 		}
 	
 		# Set valid mo/me
@@ -252,11 +259,17 @@ class GWF3
 	{
 		if (false === isset($_SERVER['REMOTE_ADDR']))
 		{
-			return;
+			return true;
 		}
-		if ('' === ($bans = file_get_contents(GWF_PROTECTED_PATH.'temp_ban.lst.txt')))
+		$path = GWF_PROTECTED_PATH.'temp_ban.lst.txt';
+		if (false === Common::isFile($path))
 		{
-			return;
+			return false;
+		}
+
+		if ('' === ($bans = file_get_contents($path)))
+		{
+			return true;
 		}
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$bans = explode("\n", $bans);
@@ -268,6 +281,7 @@ class GWF3
 				if ($ban[1] === $ip && $ban[0] > time())
 				{
 					die('You are banned until '.date('Y-m-d H:i:s', $ban[0]).'+UGZ.');
+					return true;
 				}
 			}
 		}
