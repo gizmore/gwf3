@@ -23,13 +23,13 @@ final class Guestbook_Unlock extends GWF_Method
 		
 		if (isset($_GET['set_moderation']))
 		{
-			return $this->toggleModeration($this->_module, $gb, $gbm, Common::getGetString('set_moderation'));
+			return $this->toggleModeration($gb, $gbm, Common::getGetString('set_moderation'));
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 	}
 	
-	private function toggleModeration(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbm, $state)
+	private function toggleModeration(GWF_Guestbook $gb, GWF_GuestbookMSG $gbm, $state)
 	{
 		$state = $state > 0;
 		if (false === $gbm->saveOption(GWF_GuestbookMSG::IN_MODERATION, $state)) {

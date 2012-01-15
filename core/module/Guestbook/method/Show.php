@@ -30,15 +30,15 @@ final class Guestbook_Show extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateShow($this->_module, $gb);
+		return $this->templateShow($gb);
 	}
 
-	public function templateShow(Module_Guestbook $module, GWF_Guestbook $gb)
+	public function templateShow(GWF_Guestbook $gb)
 	{
 		$nested = $gb->isNestingAllowed();
 		
 		if ($nested) {
-			return $this->templateNested($this->_module, $gb);
+			return $this->templateNested($gb);
 		}
 		
 		$user = GWF_Session::getUser();
@@ -80,7 +80,7 @@ final class Guestbook_Show extends GWF_Method
 		return $this->_module->template($filename, $tVars);
 	}
 
-	public function templateNested(Module_Guestbook $module, GWF_Guestbook $gb)
+	public function templateNested(GWF_Guestbook $gb)
 	{
 		$gbid = $gb->getID();
 		$ipp = $this->_module->cfgItemsPerPage();
@@ -99,7 +99,7 @@ final class Guestbook_Show extends GWF_Method
 		
 		$tVars = array(
 			'gb' => $gb,
-			'entries' => $this->getNestedEntries($this->_module, $gb, $msgs, $conditions, $ipp, $from),
+			'entries' => $this->getNestedEntries($gb, $msgs, $conditions, $ipp, $from),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'guestbook/show'.$gbid_app.'/page-%PAGE%'),
 			'href_sign' => GWF_WEB_ROOT.'guestbook/sign/'.$gbid,
 			'href_moderate' => GWF_WEB_ROOT.'guestbook/edit/'.$gbid,
@@ -109,7 +109,7 @@ final class Guestbook_Show extends GWF_Method
 		return $this->_module->templatePHP('show_nested.php', $tVars);
 	}
 	
-	private function getNestedEntries(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $msgs, $conditions, $ipp, $from)
+	private function getNestedEntries(GWF_Guestbook $gb, GWF_GuestbookMSG $msgs, $conditions, $ipp, $from)
 	{
 		$entries = $msgs->selectObjects('*', $conditions, 'gbm_date ASC', $ipp, $from);
 		foreach ($entries as $entry)

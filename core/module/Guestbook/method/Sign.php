@@ -31,7 +31,7 @@ final class Guestbook_Sign extends GWF_Method
 			if (false !== Common::getPost('sign')) {
 				return $this->onSign($gb, $gbe);
 			}
-			return $this->templateReply($this->_module, $gb, $gbe);
+			return $this->templateReply($gb, $gbe);
 		}
 		
 
@@ -39,10 +39,10 @@ final class Guestbook_Sign extends GWF_Method
 			return $this->onSign($gb);
 		}
 		
-		return $this->templateSign($this->_module, $gb);
+		return $this->templateSign($gb);
 	}
 	
-	private function templateReply(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbe)
+	private function templateReply(GWF_Guestbook $gb, GWF_GuestbookMSG $gbe)
 	{
 		$form = $this->getForm($gb, $gbe);
 		$tVars = array(
@@ -88,7 +88,7 @@ final class Guestbook_Sign extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateSign(Module_Guestbook $module, GWF_Guestbook $gb)
+	private function templateSign(GWF_Guestbook $gb)
 	{
 		$form = $this->getForm($gb);
 		$tVars = array(
@@ -102,7 +102,7 @@ final class Guestbook_Sign extends GWF_Method
 	{
 		$form = $this->getForm($gb);
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateSign($this->_module, $gb);
+			return $errors.$this->templateSign($gb);
 		}
 		
 		if ($gb->isLocked()) {
@@ -137,15 +137,15 @@ final class Guestbook_Sign extends GWF_Method
 		));
 
 		if (false === $gbm->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateSign($this->_module, $gb);
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateSign($gb);
 		}
 		
 		$mod_append = $gb->isModerated() ? '_mod' : '';
 		
 		if ($gb->isModerated()) {
-			$this->sendEmailModerate($this->_module, $gb, $gbm);
+			$this->sendEmailModerate($gb, $gbm);
 		} elseif ($gb->isEMailOnSign()) {
-			$this->sendEmailSign($this->_module, $gb, $gbm);
+			$this->sendEmailSign($gb, $gbm);
 		}
 		
 		return $this->_module->message('msg_signed'.$mod_append).$this->_module->requestMethodB('Show');
@@ -154,7 +154,7 @@ final class Guestbook_Sign extends GWF_Method
 	##################
 	### Send EMail ###
 	##################
-	private function sendEmailModerate(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
+	private function sendEmailModerate(GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
@@ -188,7 +188,7 @@ final class Guestbook_Sign extends GWF_Method
 	#########################
 	### Send EMail Member ###
 	#########################
-	private function sendEmailSign(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
+	private function sendEmailSign(GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);

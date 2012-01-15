@@ -25,16 +25,16 @@ final class Guestbook_Moderate extends GWF_Method
 		
 		# Toggle Moderation Flag
 		if (false !== ($state = Common::getGet('set_moderation'))) {
-			return $this->onSetModeration($this->_module, $gb, Common::getGet('gbmid', 0), $state > 0);
+			return $this->onSetModeration($gb, Common::getGet('gbmid', 0), $state > 0);
 		}
 		# Toggle Public Flag
 		if (false !== ($state = Common::getGet('set_public'))) {
-			return $this->onSetPublic($this->_module, $gb, Common::getGet('gbmid', 0), $state > 0);
+			return $this->onSetPublic($gb, Common::getGet('gbmid', 0), $state > 0);
 		}
 		
 		# Edit Guestbook
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module, $gb).$this->templateEditGB($this->_module, $gb);
+			return $this->onEdit($gb).$this->templateEditGB($gb);
 		}
 		
 		# Edit Single Entry
@@ -45,22 +45,22 @@ final class Guestbook_Moderate extends GWF_Method
 			return $this->onEditEntry($gb, Common::getGet('gbmid', 0), true);
 		}
 		if (false !== (Common::getGet('edit_entry'))) {
-			return $this->templateEditEntry($this->_module, $gb, Common::getGet('gbmid', 0));
+			return $this->templateEditEntry($gb, Common::getGet('gbmid', 0));
 		}
 		
-		return $this->templateEditGB($this->_module, $gb);
+		return $this->templateEditGB($gb);
 	}
 
-	public function templateEditGB(Module_Guestbook $module, GWF_Guestbook $gb)
+	public function templateEditGB(GWF_Guestbook $gb)
 	{
-		$form = $this->getForm($this->_module, $gb);
+		$form = $this->getForm($gb);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_gb')),
 		);
 		return $this->_module->template('edit_gb.tpl', $tVars);
 	}
 	
-	public function getForm(Module_Guestbook $module, GWF_Guestbook $gb)
+	public function getForm(GWF_Guestbook $gb)
 	{
 		$data = array();
 		
@@ -82,7 +82,7 @@ final class Guestbook_Moderate extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function validate_title(Module_Guestbook $module, $arg)
+	public function validate_title(Module_Guestbook $m, $arg)
 	{
 		$arg = $_POST['title'] = trim($arg);
 		$len = GWF_String::strlen($arg);
@@ -93,7 +93,7 @@ final class Guestbook_Moderate extends GWF_Method
 		return false;
 	}
 	
-	public function validate_descr(Module_Guestbook $module, $arg)
+	public function validate_descr(Module_Guestbook $m, $arg)
 	{
 		$arg = $_POST['descr'] = trim($arg);
 		$len = GWF_String::strlen($arg);
@@ -104,9 +104,9 @@ final class Guestbook_Moderate extends GWF_Method
 		return false;
 	}
 	
-	public function onEdit(Module_Guestbook $module, GWF_Guestbook $gb)
+	public function onEdit(GWF_Guestbook $gb)
 	{
-		$form = $this->getForm($this->_module, $gb);
+		$form = $this->getForm($gb);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -134,7 +134,7 @@ final class Guestbook_Moderate extends GWF_Method
 	##################
 	### Edit Entry ###
 	##################
-	private function getEntryForm(Module_Guestbook $module, GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
+	private function getEntryForm(GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
 	{
 		$data = array(
 			'message' => array(GWF_Form::MESSAGE, $gbm->getVar('gbm_message'), $this->_module->lang('th_gbm_message')),
@@ -144,7 +144,7 @@ final class Guestbook_Moderate extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEditEntry(Module_Guestbook $module, GWF_Guestbook $gb, $gbmid)
+	private function templateEditEntry(GWF_Guestbook $gb, $gbmid)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
 			return $this->_module->error('err_gbm');
@@ -153,7 +153,7 @@ final class Guestbook_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		$form = $this->getEntryForm($this->_module, $gb, $gbm);
+		$form = $this->getEntryForm($gb, $gbm);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_entry')),
 		);
@@ -173,9 +173,9 @@ final class Guestbook_Moderate extends GWF_Method
 //			return GWF_HTML::err('ERR_NO_PERMISSION');
 //		}
 		
-		$form = $this->getEntryForm($this->_module, $gb, $gbm);
+		$form = $this->getEntryForm($gb, $gbm);
 		if (false !== ($errors = $form->validate($this->_module))) {
-			return $errors.$this->templateEditEntry($this->_module, $gb, $gbmid);
+			return $errors.$this->templateEditEntry($gb, $gbmid);
 		}
 		
 		if ($delete)
@@ -208,7 +208,7 @@ final class Guestbook_Moderate extends GWF_Method
 	#########################
 	### Toggle Moderation ###
 	#########################
-	public function onSetModeration(Module_Guestbook $module, GWF_Guestbook $gb, $gbmid, $state)
+	public function onSetModeration(GWF_Guestbook $gb, $gbmid, $state)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
 			return $this->_module->error('err_gbm');
@@ -227,7 +227,7 @@ final class Guestbook_Moderate extends GWF_Method
 	#####################
 	### Toggle Public ###
 	#####################
-	public function onSetPublic(Module_Guestbook $module, GWF_Guestbook $gb, $gbmid, $state)
+	public function onSetPublic(GWF_Guestbook $gb, $gbmid, $state)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
 			return $this->_module->error('err_gbm');
