@@ -26,7 +26,7 @@ GWF_Javascript::streamHeader();
 
 # Call Chat::AjaxStream
 if (false === ($module = GWF_Module::getModule('Chat'))) {
-	GWF3:logDie('MISSING MODULE');
+	GWF3::logDie('MISSING MODULE');
 }
 $module->onLoadLanguage();
 $module->onInclude();
