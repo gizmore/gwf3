@@ -43,9 +43,10 @@ final class Shadowcmd_quests extends Shadowcmd
 	{
 		$done = 0;
 		$open = 0;
+		$total = SR_Quest::getTotalQuestCount();
 		$failed = 0;
-		$unknown = 0;
 		$declined = 0;
+		$unknown = count($quests) - $total;
 		
 		foreach ($quests as $quest)
 		{
@@ -62,19 +63,16 @@ final class Shadowcmd_quests extends Shadowcmd
 			{
 				$declined++;
 			}
-			elseif ($quest->isUnknown($player) === true)
-			{
-				$unknown++;
-			}
 			elseif ($quest->isFailed($player) === true)
 			{
 				$failed++;
 			}
 		}
 		
+		
 		$message = sprintf(
 			'Quest stats: %d open, %d accomplished, %d rejected, %d failed, %d unknown from a total of %d.',
-			$open, $done, $declined, $failed, $unknown, SR_Quest::getTotalQuestCount()
+			$open, $done, $declined, $failed, $unknown, $total
 		);
 		
 		return self::reply($player, $message);
