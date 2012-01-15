@@ -21,10 +21,10 @@ final class Profile_Profile extends GWF_Method
 		GWF_Website::setMetaTags($this->_module->lang('mt_profile', array($uname, $uname)));
 		GWF_Website::setMetaDescr($this->_module->lang('md_profile', array($uname, $uname)));
 
-		return $this->profile($this->_module, $user);
+		return $this->profile($user);
 	}
 	
-	private function profile(Module_Profile $module, GWF_User $user)
+	private function profile(GWF_User $user)
 	{
 		if (false === ($profile = GWF_Profile::getProfile($user->getID()))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

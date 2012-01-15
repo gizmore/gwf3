@@ -27,7 +27,7 @@ final class Profile_Form extends GWF_Method
 		return GWF_Profile::getProfile(GWF_Session::getUserID());
 	}
 	
-	private function getForm(Module_Profile $module, GWF_Profile $profile)
+	private function getForm(GWF_Profile $profile)
 	{
 		$data = array(
 			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $this->_module->lang('th_firstname'), '', 32, false),
@@ -65,7 +65,7 @@ final class Profile_Form extends GWF_Method
 	private function templateSettings()
 	{
 		$profile = $this->getProfile();
-		$form = $this->getForm($this->_module, $profile);
+		$form = $this->getForm($profile);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_settings')),
 		);
@@ -75,7 +75,7 @@ final class Profile_Form extends GWF_Method
 	private function onEditSettings()
 	{
 		$profile = $this->getProfile();
-		$form = $this->getForm($this->_module, $profile);
+		$form = $this->getForm($profile);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
