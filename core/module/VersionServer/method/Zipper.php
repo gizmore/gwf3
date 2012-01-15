@@ -101,7 +101,7 @@ final class VersionServer_Zipper extends GWF_Method
 		}
 	}
 	
-	public function onZip(Module_VersionServer $module, $modules, $design)
+	public function onZip($modules, $design)
 	{
 		$_POST = array();
 		foreach ($modules as $modulename)

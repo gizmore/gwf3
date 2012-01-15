@@ -124,7 +124,7 @@ final class VersionServer_Purchase extends GWF_Method
 		$zipper = $this->_module->getMethod('Zipper');
 		$zipper instanceof VersionServer_Zipper;
 		$zipper->setArchiveName($archivename);
-		$error = $zipper->onZip($this->_module, $client->getModuleNames(), 'default');
+		$error = $zipper->onZip($client->getModuleNames(), 'default');
 		if ($zipper->hasError()) {
 			return $error;
 		}
