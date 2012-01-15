@@ -15,7 +15,7 @@ final class SF_Shell extends GWF_Method
 	{
 		$cmd = Common::getRequestString('cmd');
 		$output = $this->init($cmd);
-		return $this->templateShell($this->_module, $output, htmlspecialchars($cmd));
+		return $this->templateShell($output, htmlspecialchars($cmd));
 	}
 	
 	public function init($cmdS) 
@@ -123,7 +123,7 @@ final class SF_Shell extends GWF_Method
 		}
 	}
 	
-	private function templateShell(Module_SF $module, $output, $lastCMD)
+	private function templateShell($output, $lastCMD)
 	{
 		$tVars = array(
 			'output' => $output,
