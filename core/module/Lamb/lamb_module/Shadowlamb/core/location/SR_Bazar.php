@@ -1068,7 +1068,7 @@ class SR_Bazar extends SR_Location
 				$player->message('Database error 6!');
 				return false;
 			}
-			if (false === $player->giveItems(array($item2), 'the bazaar'))
+			if (false === $player->giveItems(array($item2), 'the bazar'))
 			{
 				$player->message('Database error 7!');
 				return false;
@@ -1097,7 +1097,7 @@ class SR_Bazar extends SR_Location
 				return false;
 			}
 			
-			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazaar.', $player->getName(), $amt, $iname));
+			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazar.', $player->getName(), $amt, $iname));
 		}
 		
 		SR_BazarShop::fixAllItemCounts();
