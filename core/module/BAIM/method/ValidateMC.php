@@ -18,7 +18,7 @@ final class BAIM_ValidateMC extends GWF_Method
 			return $this->garbage();
 		}
 		
-		return $this->validate($this->_module, $uid, $token, $mc);
+		return $this->validate($uid, $token, $mc);
 	}
 	
 	private function garbage($real_token='???', $real_mc='???', $ext_msg='somethings wrong')
@@ -28,7 +28,7 @@ final class BAIM_ValidateMC extends GWF_Method
 		return GWF_Random::randomKey(self::SHA512_LEN, GWF_Random::HEXLOWER);
 	}
 	
-	private function validate(Module_BAIM $module, $userid, $token, $mc)
+	private function validate($userid, $token, $mc)
 	{
 		$userid = ((int)$userid) - 1000;
 		if (false === ($row = BAIM_MC::getByUID($userid))) {
@@ -56,10 +56,10 @@ final class BAIM_ValidateMC extends GWF_Method
 			return $this->garbage($real_token, $real_mc, 'wrong MC');
 		}
 		
-		return $this->hash($this->_module, $row);
+		return $this->hash($row);
 	}
 	
-	private function hash(Module_BAIM $module, BAIM_MC $row)
+	private function hash(BAIM_MC $row)
 	{
 		$s = self::SHARED_SECRET;
 		return strtolower(hash('SHA512', $s.$row->getToken().$s.$row->getMC().$s));

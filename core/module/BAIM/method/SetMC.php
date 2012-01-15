@@ -19,13 +19,13 @@ final class BAIM_SetMC extends GWF_Method
 		
 		$back = '';
 		if (false !== Common::getPost('set')) {
-			$back = $this->onSetMC($this->_module, $this->row);
+			$back = $this->onSetMC($this->row);
 		}
 		
-		return $back.$this->templateMC($this->_module, $this->row);
+		return $back.$this->templateMC($this->row);
 	}
 	
-	private function formMC(Module_BAIM $module, BAIM_MC $row)
+	private function formMC(BAIM_MC $row)
 	{
 		$data = array(
 //			'mc' => array(GWF_Form::STRING, $row->getMC(), $this->_module->lang('th_mc'), $this->_module->lang('tt_mc')),
@@ -35,9 +35,9 @@ final class BAIM_SetMC extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 
-	private function templateMC(Module_BAIM $module, BAIM_MC $row)
+	private function templateMC(BAIM_MC $row)
 	{
-		$form = $this->formMC($this->_module, $row);
+		$form = $this->formMC($row);
 		$tVars = array(
 			'row' => $row,
 			'form' => $form->templateY($this->_module->lang('ft_set_mc')),
@@ -56,9 +56,9 @@ final class BAIM_SetMC extends GWF_Method
 		return false;
 	}
 	
-	private function onSetMC(Module_BAIM $module, BAIM_MC $row)
+	private function onSetMC(BAIM_MC $row)
 	{
-		$form = $this->formMC($this->_module, $row);
+		$form = $this->formMC($row);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
