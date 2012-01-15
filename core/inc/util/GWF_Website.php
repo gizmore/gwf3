@@ -244,7 +244,7 @@ final class GWF_Website
 	
 	public static function getHTMLBody($page)
 	{
-		return self::getHTMLbody_head() . $page . self::getHTMLbody_foot();
+		return self::getHTMLbody_head() . self::getDefaultOutput() .  $page . self::getHTMLbody_foot();
 	}
 	
 	public static function displayPage($page)

@@ -70,7 +70,7 @@ class GWF3
 		# WebSite is down?
 		if (true === defined('GWF_WORKER_IP'))
 		{
-			if (GWF_WORKER_IP !== (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '')))
+			if (GWF_WORKER_IP !== (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : ''))
 			{
 				die(GWF_SITENAME.' is down for maintainance.<br/>'.GWF_DOWN_REASON);
 			}
