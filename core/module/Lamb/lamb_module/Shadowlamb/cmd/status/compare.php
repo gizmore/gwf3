@@ -164,13 +164,11 @@ final class Shadowcmd_compare extends Shadowcmd
 				}
 				else if(!$item1V || $item2V > $item1V)
 				{
-					$item1V = $item1V;
 					$item2V = $b.$item2V.$b;
 				}
 				else if(!$item2V || $item1V > $item2V)
 				{
 					$item1V = $b.$item1V.$b;
-					$item2V = $item2V;
 				}
 
 				$item1Stuff[] = $item1V;
@@ -196,13 +194,11 @@ final class Shadowcmd_compare extends Shadowcmd
 				}
 				else if(!$item1V || $item2V > $item1V)
 				{
-					$item1V = $item1V;
 					$item2V = $b.$item2V.$b;
 				}
 				else if(!$item2V || $item1V > $item2V)
 				{
 					$item1V = $b.$item1V.$b;
-					$item2V = $item2V;
 				}
 				
 				$item1Stuff[] = $item1V;

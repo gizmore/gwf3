@@ -11,7 +11,6 @@ if ($message === '')
 
 if (!function_exists('fetchDefinition'))
 {
-	/* language must be '' for en */
 	function fetchDefinition($term) {
 		$output = array();
 		
