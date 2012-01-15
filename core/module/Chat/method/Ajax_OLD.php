@@ -1,5 +1,5 @@
 <?php
-
+/** @todo onPost doesnt exists */
 final class Chat_Ajax_OLD extends GWF_Method
 {
 	private static $SESS_AJAX_PUB = 'GWF_CHAT_AJAX1';
@@ -15,10 +15,10 @@ final class Chat_Ajax_OLD extends GWF_Method
 			return $this->onNewPrivmsg();
 		}
 		if (false !== ($timestamp = Common::getGet('newpubmsg'))) {
-			return $this->onNewPubmsg($this->_module, intval($timestamp/1000));
+			return $this->onNewPubmsg(intval($timestamp/1000));
 		}
 		if (false !== ($target = Common::getGet('postto'))) {
-			return $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
+			return $this->onPost(Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== (Common::getGet('online'))) {
 			return $this->onGetOnline();
@@ -79,7 +79,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		echo PHP_EOL;
 	}
 	
-	private function onNewPubmsg(Module_Chat $module, $timestamp)
+	private function onNewPubmsg($timestamp)
 	{
 		if (false === ($cut = GWF_Session::getOrDefault(self::$SESS_AJAX_PUB, time()))) {
 			return;

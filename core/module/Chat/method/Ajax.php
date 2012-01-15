@@ -7,7 +7,7 @@ final class Chat_Ajax extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($target = Common::getGet('postto'))) {
-			$back = $this->onPost($this->_module, Common::getGet('nickname'), $target, Common::getGet('message'));
+			$back = $this->onPost(Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
 		if (false !== ($laggy = Common::getGet('browser'))) {
 			$back = $this->onAjaxUpdate();
@@ -19,7 +19,7 @@ final class Chat_Ajax extends GWF_Method
 		return $back;
 	}
 	
-	private function onPost(Module_Chat $module, $nickname, $target, $message)
+	private function onPost($nickname, $target, $message)
 	{
 		# Validate the crap!
 		if (false !== ($error = GWF_ChatValidator::validate_yournick($this->_module, $nickname))) {
