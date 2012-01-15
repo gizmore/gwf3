@@ -15,24 +15,24 @@ final class Chicago_BlackSmithSmith extends SR_TalkingNPC
 		$b = chr(2); # bold
 		switch ($word)
 		{
-			case 'seattle': return $this->reply("");
-			case 'shadowrun': return $this->reply("");
-			case 'cyberware': return $this->reply("");
-			case 'magic': return $this->reply("");
-			case 'hire': return $this->reply("");
-			case 'blackmarket': return $this->reply("");
-			case 'bounty': return $this->reply("");
-			case 'alchemy': return $this->reply("");
-			case 'invite': return $this->reply("");
-			case 'renraku': return $this->reply("");
-			case 'malois': return $this->reply("");
-			case 'bribe': return $this->reply("");
-			case 'yes': return $this->reply("");
-			case 'no': return $this->reply("");
-			case 'negotiation': return $this->reply("");
-			case 'hello': return $this->reply("");
+			case 'seattle': return $this->reply("Seeeeeeeeeeattle! Seee the seaaaa.");
+			case 'shadowrun': return $this->reply("shadow... shadow...");
+			case 'cyberware': return $this->reply("Heh. Robots are no good chummer.");
+			case 'magic': return $this->reply("Maaaagicccc. It is magical and shiny.");
+			case 'hire': return $this->reply("I think chummer. I be a bit drunk. I work better that way.");
+			case 'blackmarket': return $this->reply("I heard there is one *hic*");
+			case 'bounty': return $this->reply("Money makes the world go round.");
+			case 'alchemy': return $this->reply("Give me a sword instead. Did I tell you I was drunk? Hah!");
+			case 'invite': return $this->reply("Oh yes a party. I love parties. No thank you.");
+			case 'renraku': return $this->reply("ren... ren?");
+			case 'malois': return $this->reply("I know malois but shhh. It is a secret.");
+			case 'bribe': return $this->reply("Give me moneyyyy.");
+			case 'yes': return $this->reply("Yes! Grab a beer. Grab a sword. Lets get to work!");
+			case 'no': return $this->reply("You make me sad. Pass me a drink.");
+			case 'negotiation': return $this->reply("Neg... I cannot even say it chummer. Hahaha!");
+			case 'hello': return $this->reply("Hi! Pass me my beer!");
 			default:
-				return $this->reply("I do not know anything about $word.");
+				return $this->reply("and that is the point when I decided to steal his parrot!");
 		}
 	}
 }
