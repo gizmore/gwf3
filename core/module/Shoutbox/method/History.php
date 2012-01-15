@@ -13,7 +13,7 @@ final class Shoutbox_History extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($array = Common::getPost('delete'))) {
-			return $this->onDelete($this->_module, $array);
+			return $this->onDelete($array);
 		}
 		return $this->templatePage();
 	}
@@ -45,7 +45,7 @@ final class Shoutbox_History extends GWF_Method
 		return $this->_module->templatePHP('history.php', $tVars);
 	}
 	
-	private function onDelete(Module_Shoutbox $module, $array)
+	private function onDelete($array)
 	{
 		if (!GWF_User::isInGroupS('moderator')) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');

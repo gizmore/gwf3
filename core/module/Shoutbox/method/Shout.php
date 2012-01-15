@@ -16,7 +16,7 @@ final class Shoutbox_Shout extends GWF_Method
 		}
 		
 		$message = Common::getPost('message', '');
-		if (false !== ($error = $this->validate_message($this->_module, $message))) {
+		if (false !== ($error = $this->validate_message($message))) {
 			return GWF_HTML::error('Shoutbox', $error);
 		}
 		
@@ -34,7 +34,7 @@ final class Shoutbox_Shout extends GWF_Method
 		
 		if ($this->_module->cfgEMailModeration())
 		{
-			$this->onEMailModeration($this->_module, $user, $entry);
+			$this->onEMailModeration($user, $entry);
 		}
 
 		$url = htmlspecialchars(GWF_Session::getLastURL());
@@ -80,23 +80,23 @@ final class Shoutbox_Shout extends GWF_Method
 		return false;
 	}
 	
-	public function validate_message(Module_Shoutbox $module, $message)
+	public function validate_message($message)
 	{
-		return GWF_Validator::validateString($this->_module, 'message', $message, 1, $this->_module->cfgMaxlen(), true);
+		return GWF_Validator::validateString('message', $message, 1, $this->_module->cfgMaxlen(), true);
 	}
 	
 	########################
 	### EMail Moderation ###
 	########################
-	public function onEMailModeration(Module_Shoutbox $module, $user, GWF_Shoutbox $entry)
+	public function onEMailModeration($user, GWF_Shoutbox $entry)
 	{
 		foreach (GWF_UserSelect::getUsers(GWF_Group::STAFF) as $staff)
 		{
-			$this->onEMailModerationB($this->_module, $user, $entry, new GWF_User($staff));
+			$this->onEMailModerationB($user, $entry, new GWF_User($staff));
 		}
 	}
 
-	private function onEMailModerationB(Module_Shoutbox $module, $user, GWF_Shoutbox $entry, GWF_User $staff)
+	private function onEMailModerationB($user, GWF_Shoutbox $entry, GWF_User $staff)
 	{
 		if ('' === ($rec = $staff->getValidMail()))
 		{
