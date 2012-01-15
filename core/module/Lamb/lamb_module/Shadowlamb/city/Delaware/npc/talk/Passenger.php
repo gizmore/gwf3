@@ -7,7 +7,7 @@ final class Delaware_Passenger extends SR_TalkingNPC
 		switch ($word)
 		{
 			default:
-				return $this->reply('You look no god man. You got any change?');
+				return $this->reply('You look no good man. You got any change?');
 		}
 	}
 }

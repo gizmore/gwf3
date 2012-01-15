@@ -16,9 +16,9 @@ final class Delaware_MCGuest1 extends SR_TalkingNPC
 		
 		switch ($word)
 		{
-			case 'Emo': case 'Emos':
+			case 'emo': case 'emos':
 				return $this->reply('Yeah I hate emos.');
-			case 'Hipster': case 'Hipsters':
+			case 'hipster': case 'hipsters':
 				return $this->reply('Yeah I hate hipsters.');
 			default:
 				return $this->reply("Damn \X02Hipsters\X02 and \X02Emos\X02. Pfff.");

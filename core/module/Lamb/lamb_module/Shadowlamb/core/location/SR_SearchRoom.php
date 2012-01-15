@@ -195,7 +195,7 @@ class SR_SearchRoom extends SR_Tower
 		$atk = Shadowfunc::diceFloat($loc, $loc * 2.0 + 1.0, 2);
 		$def = Shadowfunc::diceFloat($lvl, $lvl * 1.5 + 2.0, 2);
 		
-		echo sprintf('%s tries to crack lock lvl %s with locpicking %s. DEF:%s ... ATK: %s', $member->getName(), $lvl, $loc, $def, $atk).PHP_EOL;
+		echo sprintf('%s tries to crack lock lvl %s with lockpicking %s. DEF:%s ... ATK: %s', $member->getName(), $lvl, $loc, $def, $atk).PHP_EOL;
 		
 		if ($atk >= $def)
 		{

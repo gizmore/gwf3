@@ -27,7 +27,7 @@ final class Seattle_Blackmarket extends SR_Store
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Seattle_BMGuy'); }
 	public function getHelpText(SR_Player $player) { return "Use #view, #buy and #sell here. The items in the Blackmarket are a bit random. Use #talk to talk to the salesman."; }
 	public function isPVP() { return true; }
-	public function getEnterText(SR_Player $player) { return "You enter the blackmarket. You move to a big bazzar like shop. The owner is a big Troll."; }
+	public function getEnterText(SR_Player $player) { return "You enter the blackmarket. You move to a big bazaar-like shop. The owner is a big Troll."; }
 	public function onEnter(SR_Player $player)
 	{
 		$p = $player->getParty();

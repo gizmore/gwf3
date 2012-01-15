@@ -42,4 +42,3 @@ final class Seattle_Shamane extends SR_TalkingNPC
 	}
 }
 ?>
- 

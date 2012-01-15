@@ -395,7 +395,7 @@ final class Shadowhelp
 						array(
 							'buy' => 'Location command. Usage: #buy <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #sell <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
-							'steal' => 'Location command. Usage: #view [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
+							'steal' => 'Location command. Usage: #steal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
 							'view' => 'Location command. Usage: #view [<view_id>]. In shops you can view the shops items or examine a shop item with this command.',
 						),
 						

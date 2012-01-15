@@ -11,7 +11,7 @@ final class Delaware_Shamane extends SR_TalkingNPC
 		$b = chr(2); # bold
 		switch ($word)
 		{
-			case 'seattle': return $this->reply("Seattle is a nice place, good for calming down, if you don't met the wrong people.");
+			case 'seattle': return $this->reply("Seattle is a nice place, good for calming down, if you don't meet the wrong people.");
 // 			case 'bribe': return $this->reply("");
 // 			case 'malois': return $this->reply("");
 // 			case 'shadowrun': return $this->reply("");

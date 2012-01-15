@@ -922,7 +922,6 @@ final class Shadowfunc
 		{
 			return false;
 		}
-		shuffle($data);
 		$rand -= $chance_none;
 		foreach ($data as $d)
 		{

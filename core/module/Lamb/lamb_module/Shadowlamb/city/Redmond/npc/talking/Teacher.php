@@ -41,4 +41,3 @@ final class Redmond_Teacher extends SR_TalkingNPC
 	}
 }
 ?>
- 

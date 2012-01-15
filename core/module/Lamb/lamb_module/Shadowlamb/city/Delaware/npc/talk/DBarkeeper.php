@@ -10,7 +10,6 @@ final class Delaware_DBarkeeper extends SR_TalkingNPC
 			return true;
 		}
 		
-		$b = chr(2);
 		switch ($word)
 		{
 			default:
