@@ -14,10 +14,10 @@ final class Audit_Replay extends Audit_ViewLog
 		{
 			return $error;
 		}
-		return $this->templateReplay($this->_module, $this->log);
+		return $this->templateReplay($this->log);
 	}
 	
-	public function templateReplay(Module_Audit $module, GWF_AuditLog $log)
+	public function templateReplay(GWF_AuditLog $log)
 	{
 		GWF_Website::addJavascriptInline('var al_script='.$log->getAjaxScript().';');
 		GWF_Website::addJavascriptInline('var al_times='.$log->getAjaxTimes().';');

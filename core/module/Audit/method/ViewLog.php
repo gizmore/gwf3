@@ -14,7 +14,7 @@ class Audit_ViewLog extends GWF_Method
 		{
 			return $error;
 		}
-		return $this->templateViewLog($this->_module, $this->log);
+		return $this->templateViewLog($this->log);
 	}
 	
 	public function sanitize()
@@ -36,14 +36,14 @@ class Audit_ViewLog extends GWF_Method
 			return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'token'));
 		}
 		
-		if (false !== ($error = $this->validateAccess($this->_module, $eusername, $id, $rand)))
+		if (false !== ($error = $this->validateAccess($eusername, $id, $rand)))
 		{
 			return $error;
 		}
 		return false;
 	}
 	
-	public function validateAccess(Module_Audit $module, $eusername, $id, $rand)
+	public function validateAccess($eusername, $id, $rand)
 	{
 		if (false === ($log = GWF_AuditLog::getByID($id)))
 		{
@@ -60,7 +60,7 @@ class Audit_ViewLog extends GWF_Method
 		return false;
 	}
 	
-	private function templateViewLog(Module_Audit $module, GWF_AuditLog $log)
+	private function templateViewLog(GWF_AuditLog $log)
 	{
 		$tVars = array(
 			'log' => $log,

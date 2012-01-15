@@ -21,18 +21,18 @@ final class Audit_Log extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		$this->sendLog($this->_module, $log);
+		$this->sendLog($log);
 		return 'THX!';
 	}
 	
-	private function sendLog(Module_Audit $module, GWF_AuditLog $log)
+	private function sendLog(GWF_AuditLog $log)
 	{
 		$mail = new GWF_Mail();
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 		$mail->setSubject('WarChall audit log');
-		$mail->setBody($this->getMailBody($this->_module, $log));
+		$mail->setBody($this->getMailBody($log)); # TODO: gizmore fix it, method does not exist
 		$mail->sendAsText($this->_module->cfgAuditCC());
 	}
 }
