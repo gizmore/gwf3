@@ -19,15 +19,15 @@ final class Download_Moderate extends GWF_Method
 		
 		switch (Common::getGetString('action'))
 		{
-			case 'allow': return $this->onAllow($this->_module, $dl);
-			case 'delete': return $this->onDelete($this->_module, $dl);
-			case 'download': return $this->onDownload($this->_module, $dl);
+			case 'allow': return $this->onAllow($dl);
+			case 'delete': return $this->onDelete($dl);
+			case 'download': return $this->onDownload($dl);
 		}
 		
 		return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'action'));
 	}
 	
-	private function onAllow(Module_Download $module, GWF_Download $dl)
+	private function onAllow(GWF_Download $dl)
 	{
 		if (false === $dl->saveOption(GWF_Download::ENABLED, true))
 		{
@@ -36,7 +36,7 @@ final class Download_Moderate extends GWF_Method
 		return $this->_module->message('msg_enabled');
 	}
 
-	private function onDelete(Module_Download $module, GWF_Download $dl)
+	private function onDelete(GWF_Download $dl)
 	{
 		if (false === $dl->getVotes()->onDelete())
 		{
@@ -49,14 +49,14 @@ final class Download_Moderate extends GWF_Method
 		return $this->_module->message('msg_deleted');
 	}
 
-	private function onDownload(Module_Download $module, GWF_Download $dl)
+	private function onDownload(GWF_Download $dl)
 	{
 		if (false === ($method = $this->_module->getMethod('Download')))
 		{
 			return GWF_HTML::err('ERR_METHOD_MISSING', array('Download', 'Download'));
 		}
 		$method instanceof Download_Download;
-		$method->sendTheFile($this->_module, $dl);
+		$method->sendTheFile($dl);
 	}
 }
 ?>

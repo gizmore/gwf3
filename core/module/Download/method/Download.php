@@ -26,25 +26,25 @@ final class Download_Download extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('dl_token')) {
-			return $this->onDownloadByToken($this->_module, $dl, Common::getPost('token'));
+			return $this->onDownloadByToken($dl, Common::getPost('token'));
 		}
 		
 		if (false !== Common::getPost('on_order_2_x')) {
-			return $this->onOrder($this->_module, $dl);
+			return $this->onOrder($dl);
 		}
 		
 		if (false !== ($token = Common::getGet('token'))) {
-			return $this->templateOnDownload($this->_module, $dl, $token);
+			return $this->templateOnDownload($dl, $token);
 		}
 		
 		if ($dl->isPaidContent() && !GWF_DownloadToken::checkUser($this->_module, $dl, $user)) {
-			return $this->templatePay($this->_module, $dl);
+			return $this->templatePay($dl);
 		}
 		
-		return $this->templateOnDownload($this->_module, $dl);
+		return $this->templateOnDownload($dl);
 	}
 	
-	public function templateOnDownload(GWF_Module $module, GWF_Download $dl, $token=false)
+	public function templateOnDownload(GWF_Download $dl, $token=false)
 	{
 		# submit this file pls
 		$path = $dl->getDownloadPath();
@@ -66,10 +66,10 @@ final class Download_Download extends GWF_Method
 		# Downloaded one more time
 		$dl->increase('dl_count', 1);
 		
-		$this->sendTheFile($this->_module, $dl);
+		$this->sendTheFile($dl);
 	}
 	
-	public function sendTheFile(GWF_Module $module, GWF_Download $dl)
+	public function sendTheFile(GWF_Download $dl)
 	{
 		GWF3::setConfig('store_last_url', false);
 		
@@ -89,14 +89,14 @@ final class Download_Download extends GWF_Method
 	}
 	
 	
-	private function templatePay(GWF_Module $module, GWF_Download $dl)
+	private function templatePay(GWF_Download $dl)
 	{
 		if (false === ($mod_pay = GWF_Module::getModule('Payment'))) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array( 'Payment'));
 		}
 		
 		$user = GWF_User::getStaticOrGuest();
-		$form = $this->getTokenForm($this->_module, $dl);
+		$form = $this->getTokenForm($dl);
 		
 		$tVars = array(
 			'form' => $form->templateX($this->_module->lang('ft_token')),
@@ -106,7 +106,7 @@ final class Download_Download extends GWF_Method
 		return $this->_module->templatePHP('paid_content.php', $tVars);
 	}
 	
-	private function getTokenForm(GWF_Module $module, GWF_Download $dl)
+	private function getTokenForm(GWF_Download $dl)
 	{
 		$data = array(
 			'name'=> array(GWF_Form::SSTRING, $dl->getVar('dl_filename', ''), $this->_module->lang('th_dl_filename')),
@@ -116,7 +116,7 @@ final class Download_Download extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function onOrder(GWF_Module $module, GWF_Download $dl)
+	private function onOrder(GWF_Download $dl)
 	{
 		// Check for Payment, as it`s not a required dependency.
 		if (false === ($mod_pay = GWF_Module::getModule('Payment'))) {
@@ -144,14 +144,14 @@ final class Download_Download extends GWF_Method
 		return $m->lang('err_token');
 	}
 	
-	private function onDownloadByToken(GWF_Module $module, GWF_Download $dl, $token)
+	private function onDownloadByToken(GWF_Download $dl, $token)
 	{
 		$this->dl = $dl;
-		$form = $this->getTokenForm($this->_module, $dl);
+		$form = $this->getTokenForm($dl);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors.$this->_module->requestMethodB('List');
 		}
-		return $this->templateOnDownload($this->_module, $dl, $token);
+		return $this->templateOnDownload($dl, $token);
 	}
 }
 ?>

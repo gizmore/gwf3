@@ -90,7 +90,7 @@ final class Download_Add extends GWF_Method
 
 		if (false === ($file = $this->getFile()))
 		{
-			$this->uploadedFile($this->_module, $form);
+			$this->uploadedFile($form);
 			$file = $form->getVar('file');
 		}
 		
@@ -154,7 +154,7 @@ final class Download_Add extends GWF_Method
 		
 		if ($mod)
 		{
-			$this->sendModMail($this->_module, $dl);
+			$this->sendModMail($dl);
 			return $this->_module->message('msg_uploaded_mod');
 		}
 		
@@ -162,7 +162,7 @@ final class Download_Add extends GWF_Method
 		return $this->_module->message('msg_uploaded');
 	}
 	
-	private function uploadedFile(Module_Download $module, GWF_Form $form)
+	private function uploadedFile(GWF_Form $form)
 	{
 		if (false === ($file = $form->getVar('file'))) {
 //			echo $this->_module->error('err_file');
@@ -191,7 +191,7 @@ final class Download_Add extends GWF_Method
 		if (false === ($file = $form->getVar('file'))) {
 			return GWF_HTML::err('ERR_MISSING_UPLOAD');
 		}
-		$this->uploadedFile($this->_module, $form);
+		$this->uploadedFile($form);
 	}
 	
 	private function onRemove()
@@ -213,18 +213,18 @@ final class Download_Add extends GWF_Method
 	##################
 	### Moderation ###
 	##################
-	private function sendModMail(Module_Download $module, GWF_Download $dl)
+	private function sendModMail(GWF_Download $dl)
 	{
 //		$dl->setVar('', $val);
 		
 		$user = GWF_Session::getUser();
 		foreach (GWF_UserSelect::getUsers(GWF_Group::STAFF) as $staff)
 		{
-			$this->sendModMailB($this->_module, $dl, $user, new GWF_User($staff));
+			$this->sendModMailB($dl, $user, new GWF_User($staff));
 		}
 	}
 	
-	private function sendModMailB(Module_Download $module, GWF_Download $dl, GWF_User $uploader, GWF_User $staff)
+	private function sendModMailB(GWF_Download $dl, GWF_User $uploader, GWF_User $staff)
 	{
 		if ('' === ($rec = $staff->getValidMail()))
 		{

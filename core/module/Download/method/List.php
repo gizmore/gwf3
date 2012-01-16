@@ -26,10 +26,10 @@ final class Download_List extends GWF_Method
 			$mod_pay->onInclude();
 		}
 		
-		return $this->templateList($this->_module, $user);
+		return $this->templateList($user);
 	}
 	
-	private function templateList(Module_Download $module, $user)
+	private function templateList($user)
 	{
 		$dl = GDO::table('GWF_Download');
 		$permquery = GWF_Download::getPermissionQueryList($user);
