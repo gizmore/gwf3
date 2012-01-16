@@ -65,7 +65,7 @@ $lang = array(
 	'cfg_show_gender' => 'Show Gender Select?',
 	'cfg_use_email' => 'Require EMail to do Account changes?',
 	'cfg_show_avatar' => 'Show Avatar Upload?',
-
+	'cfg_show_checkboxes' =>'Show checkboxes',
 ############################
 # --- EMAIL BELOW HERE --- #
 	# CHANGE MAIL A
@@ -136,7 +136,7 @@ $lang = array(
 		'Before you continue to disable your account, you may leave us a note with the reason(s) for your deletion.<br/>',
 	'th_accrm_note' => 'Note',
 	'btn_accrm' => 'Delete Account',
-	'msg_accrm' => 'Your account got marked as deleted and all references should got deleted.<br/>You got logged out.',
+	'msg_accrm' => 'Your account got marked as deleted and all references should have been deleted.<br/>You got logged out.',
 	'ms_accrm' => GWF_SITENAME.': %s account deletion',
 	'mb_accrm' =>
 		'Dear Staff'.PHP_EOL.

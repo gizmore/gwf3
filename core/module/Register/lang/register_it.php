@@ -4,7 +4,7 @@ $lang = array(
 
 		'title_register' => 'Registrazione',
 
-		'th_username' => 'Nome Utente',
+		'th_username' => 'Nome utente',
 		'th_password' => 'Password',
 		'th_email' => 'Indirizzo E-Mail',
 		'th_birthdate' => 'Data di nascita',
@@ -57,7 +57,7 @@ $lang = array(
 		### Admin Config ###
 		'cfg_auto_login' => 'Login automatico dopo l\'attivazione',
 		'cfg_captcha' => 'Captcha per la registrazione',
-		'cfg_country_select' => 'Mostra un menù per selezionare la nazionalità',
+		'cfg_country_select' => 'Mostra menù per selezionare la nazionalità',
 		'cfg_email_activation' => 'Registrazione tramite E-Mail',
 		'cfg_email_twice' => 'Consenti di utilizzare lo stesso indirizzo E-Mail per account diversi?',
 		'cfg_force_tos' => 'Costringi a leggere le condizioni di utilizzo',
