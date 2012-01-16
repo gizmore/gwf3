@@ -65,6 +65,7 @@ $lang = array(
 	'cfg_plaintextpass' => 'Send Password to email in Plaintext',
 	'cfg_activation_pp' => 'Activations per Admin Page',
 	'cfg_ua_threshold' => 'Timeout for completing registration',
+	'cfg_reg_toslink' => 'Link to TOS',
 
 	'err_birthdate' => 'Your birthdate is invalid.',
 	'err_minage' => 'We are sorry, but you are not old enough to register. You need to be at least %s years old.',

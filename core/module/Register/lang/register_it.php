@@ -15,26 +15,26 @@ $lang = array(
 
 		'btn_register' => 'Registrati',
 
-		'err_register' => 'Durante la registrazione è apparso un errore.',
+		'err_register' => 'Durante la registrazione si è verificato un errore.',
 		'err_name_invalid' => 'Il nome utente non è valido.',
 		'err_name_taken' => 'Il nome utente scelto è gia stato scelto.',
 		'err_country' => 'La nazione scelta non è valida.',
-		'err_pass_weak' => 'La password scelta è troppo corta. Tip: <b>Scegli una password unica, non usarla per altri siti</b>.',
-		'err_token' => 'Il codice di attivazione non è valido. Probabilmente sei già stato attivato.',
+		'err_pass_weak' => 'La password scelta è troppo corta. <b>Consigliamo di scegliere una password complessa e di non usarla per altri siti</b>.',
+		'err_token' => 'Il codice di attivazione non è valido. Probabilmente l\'account è già stato attivato.',
 		'err_email_invalid' => 'L\'E-Mail fornita non è valida.',
-		'err_email_taken' => 'La Vostra E-Mail è già stata utilizzata da un altro utente.',
-		'err_activate' => 'C\'è stato un errore nella registrazione.',
+		'err_email_taken' => 'L\'E-Mail fornita è già stata utilizzata da un altro utente.',
+		'err_activate' => 'Si è verificato un errore nella registrazione.',
 
 		'msg_activated' => 'L\'account è stato attivato con successo. E\' ora possibile effettuale l\'accesso.',
-		'msg_registered' => 'Grazie per esserti registrato.',
+		'msg_registered' => 'Grazie per essersi registrato.',
 
-		'regmail_subject' => 'Registrato su '.GWF_SITENAME,
+		'regmail_subject' => 'Registrazione su '.GWF_SITENAME,
 		'regmail_body' =>
-		'Ciao %s<br/>'.
+		'Salve %s<br/>'.
 		'<br/>'.
-		'Ti ringraziamo per esserti registrato a '.GWF_SITENAME.'.<br/>'.
-		'Per completare la registrazione, devi prima attivare il tuo account, visitando il link sottostante.<br/>'.
-		'Nel caso in cui non ti fossi registrato a '.GWF_SITENAME.' ti preghiamo di ignorare questa E-Mail e/o segnalarci il tutto su '.GWF_SUPPORT_EMAIL.'.<br/>'.
+		'La ringraziamo per essersi registrata a '.GWF_SITENAME.'.<br/>'.
+		'Per completare la registrazione, deve prima attivare il suo account, visitando il link sottostante.<br/>'.
+		'Nel caso in cui non si fosse registrato a '.GWF_SITENAME.' la preghiamo di ignorare questa E-Mail e/o segnalarci il tutto con una mail a '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
 		'%s<br/>'.
 		'<br/>'.
@@ -49,47 +49,49 @@ $lang = array(
 		'Nome utente: %s<br/>'.
 		'Password: %s<br/>'.
 		'</b><br/>'.
-		'Ti consigliamo di salvare la tua password e cancellare questa E-Mail.<br/>'.
-		'Per ragioni di sicurezza, non dovresti mai lasciare la tua password in chiaro.<br/>'.
+		'Le consigliamo di salvare la sua password e cancellare questa E-Mail.<br/>'.
+		'Per ragioni di sicurezza, non dovrebbe mai lasciare la sua password in chiaro.<br/>'.
 		'Per quanto detto, su questo sito le password sono criptate.<br/>'.
 		'<br/>',
-		#TODO: 
+
 		### Admin Config ###
-		'cfg_auto_login' => 'AutoLogin after Activation',
-		'cfg_captcha' => 'Captcha for Register',
-		'cfg_country_select' => 'Show country select',
-		'cfg_email_activation' => 'Email registration',
-		'cfg_email_twice' => 'Register same email twice?',
-		'cfg_force_tos' => 'Show a forced TOS',
-		'cfg_ip_usetime' => 'IP timeout for multi-register',
-		'cfg_min_age' => 'Minimum age / Birthday selector',
-		'cfg_plaintextpass' => 'Send Password to email in Plaintext',
-		'cfg_activation_pp' => 'Activations per Admin Page',
-		'cfg_ua_threshold' => 'Timeout for completing registration',
+		'cfg_auto_login' => 'Login automatico dopo l\'attivazione',
+		'cfg_captcha' => 'Captcha per la registrazione',
+		'cfg_country_select' => 'Mostra un menù per selezionare la nazionalità',
+		'cfg_email_activation' => 'Registrazione tramite E-Mail',
+		'cfg_email_twice' => 'Consenti di utilizzare la stessa E-Mail per account diversi?',
+		'cfg_force_tos' => 'Costringi a leggere le condizioni di utilizzo',
+		'cfg_ip_usetime' => 'Tempo massimo per registrazioni multiple dalle stesso IP',
+		'cfg_min_age' => 'Età minima / Data di nascita',
+		'cfg_plaintextpass' => 'Invia la password via E-Mail in chiaro',
+		'cfg_activation_pp' => 'Attivazioni per Admin Page',
+		'cfg_ua_threshold' => 'Imponi un tempo massimo per l\'attivazione dell\'account',
+		'cfg_reg_toslink' => 'Link al TOS',
 
-		'err_birthdate' => 'Ihr Geburtstag ist ungültig.',
-		'err_minage' => 'Sie sind nicht alt genug um sich auf '.GWF_SITENAME.' zu registrieren. Sie müssen mindestens %s Jahre alt sein.',
-		'err_ip_timeout' => 'Mit dieser IP wurde erst kürzlich ein Konto erstellt.',
+		'err_birthdate' => 'La data di nascita non è valida.',
+		'err_minage' => 'Ci scusiamo, ma non ha l\'età necessaria per iscriversi al sito. Per registrarsi al sito, l\'età minima è %s anni.',
+		'err_ip_timeout' => 'Qualcuno si è recentemente iscritto al sito da questo IP. Per questioni di sicurezza, non è possibile registrare più account consecutivamente dallo stesso IP. La preghiamo di riprovare più tardi.',
 		'th_token' => 'Token',
-		'th_timestamp' => 'Anmelde-Datum',
-		'th_ip' => 'Anmelde IP',
-		'tt_username' => 'Der Nickname muss mit einem Buchstaben beginnen.'.PHP_EOL.'Er darf nur Zahlen, Buchtstaben und _ enthalten. Erlaubte Länge: 3 - %s Zeichen.',
-		'tt_email' => 'Eine gültige EMail ist für die Anmeldung erforderlich.',
+		'th_timestamp' => 'Ora di registrazione',
+		'th_ip' => 'Reg IP',
+		'tt_username' => 'Il nome utente deve iniziare con una lettera.'.PHP_EOL.'Può contenere solo lettere, numeri e l\'underscore e deve può avere una lunghezza compresa tra 3 e %s caratteri.',
+		'tt_email' => 'Per registrarsi è necessaria una E-Mail valida.',
 
-		'info_no_cookie' => 'Ihr Browser unterstützt keine cookies, oder erlaubt diese nicht. Zum einloggen werden diese aber benötigt.',
+		'info_no_cookie' => 'Il suo Browser non supporta i cookies o non permette a '.GWF_SITENAME.' di utilizzarli, ma i cookies sono necessari per effettuare il login.',
 
 		# v2.01 (fixes)
-		'msg_mail_sent' => 'An EMail with instructions to activate your account has been sent to you.',
+		'msg_mail_sent' => 'Un\'E-Mail con le istruzione per l\'attivazione è stata inviata al suo indirizzo.',
 
 		# v2.02 (Detect Country)
-		'cfg_reg_detect_country' => 'Always auto-detect country',
+		'cfg_reg_detect_country' => 'Riconosci in automatico la nazione di appartenenza',
 
 		# v2.03 (Links)
 		'btn_login' => 'Login',
-		'btn_recovery' => 'Password recovery',
+		'btn_recovery' => 'Recupero Password',
 		# v2.04 (Fixes)
-		'tt_password' => 'Your password can be chosen freely. Please do not re-use important passwords. Consider a short phrase as password.',
+		'tt_password' => 'Non ci sono restrizioni per quanto riguarda la password. Consigliamo di scegliere una password complessa (ad esempio una frase) e di non usarla per altri siti.',
 		# v2.05 (Blacklist)
-		'err_domain_banned' => 'Your email provider is on the blacklist.',
+		'err_domain_banned' => 'Il suo E-Mail provider è sulla nostra blacklist.',
+
 );
 ?>
