@@ -16,7 +16,7 @@ final class WeChall_DomainRedirect extends GWF_Method
 			'RewriteRule (.*) http://www.wechall.net/$1 [R=301,L]'.PHP_EOL;
 	}
 	
-	public function execute(GWF_Module $modoule)
+	public function execute()
 	{
 	}
 	
