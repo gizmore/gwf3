@@ -393,7 +393,7 @@ final class Module_Forum extends GWF_Module
 	
 	private function getLastPostTime(GWF_User $user)
 	{
-		if (false === ($result = GDO::table('GWF_ForumPost')->selectVar('MAX(post_date')))
+		if (false === ($result = GDO::table('GWF_ForumPost')->selectVar('MAX(post_date)')))
 		{
 			return 0;
 		}
