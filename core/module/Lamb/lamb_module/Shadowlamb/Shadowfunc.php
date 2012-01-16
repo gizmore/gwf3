@@ -586,11 +586,6 @@ final class Shadowfunc
 		return $back === '' ? 'None' : substr($back, 2);
 	}
 	
-	public static function getBank(SR_Player $player)
-	{
-		return self::getItemsSorted($player, $player->getBankSorted());
-	}
-	
 	public static function getMountInv(SR_Player $player)
 	{
 		return self::getItemsSorted($player, $player->getMountInvSorted());
@@ -1161,5 +1156,133 @@ final class Shadowfunc
 		$adj = $player->get('level');
 		return $base == $adj ? "(L\X02{$base}\X02)" : "(L\X02{$base}\X02({$adj}))";
 	}
+
+	# N.B.: this function should return items in the same order as SR_Player::getItemsSorted()
+	public static function getItemsIndexed(array $items)
+	{
+		$back = array();
+		$name2idx = array();
+		foreach ($items as $itemId => $item)
+		{
+			$name = $item->getItemName();
+			if (array_key_exists($name, $name2idx)) {
+				$idx = $name2idx[$name];
+				$back[$idx][1] += $item->getAmount();
+			} else {
+				$name2idx[$name] = count($back);
+				$back[] = array($name, $item->getAmount());
+			}
+		}
+		return $back;
+	}
+
+	public static function getItemPage($page, $indexedItems, $ipp = 10)
+	{
+		$nItems = count($indexedItems);
+		$page = (int) $page;
+		$nPages = (int) (($nItems+$ipp-1)/$ipp);
+		if ( ($page < 1) || ($page > $nPages) )
+		{
+			return false;
+		}
+		$from = ($page-1)*$ipp;
+		$indexedItems = array_slice($indexedItems, $from, $ipp, true);
+		
+		$b = chr(2);
+		$back = '';
+		foreach ($indexedItems as $idx => $data)
+		{
+			$itemname = $data[0];
+			$count = $data[1];
+			$count = $count > 1 ? "($count)" : '';
+			$back .= sprintf(', %s%d%s-%s%s', $b, $idx+1, $b, $itemname, $count);
+		}
+		$back = substr($back,2);
+
+		$back = sprintf('page %d/%d: %s', $page, $nPages, $back);
+		
+		return $back;
+	}
+	
+	public static function filterIndexedBySubstring($substring, $indexedItems)
+	{
+		$back = array();
+		foreach ($indexedItems as $idx => $data)
+		{
+			$itemName = $data[0];
+			if (false !== stristr($itemName,$substring))
+			{
+				$back[$idx] = $data;
+			}
+		}
+		return $back;
+	}
+	
+	public static function arrayGet($a, $key, $default)
+	{
+		if (array_key_exists($key, $a))
+		{
+			return $a[$key];
+		} else {
+			return $default;
+		}
+	}
+
+	public static function genericViewI(SR_Player $player, array $items, array $args, $text = array())
+	{
+		if (count($args) > 2)
+		{
+			Shadowcmd::reply($player, self::arrayGet($text,'usage','Usage: #viewi [<pattern>] [<page>].'));
+			return false;
+		}
+
+		$items = Shadowfunc::getItemsIndexed($items);
+
+		if (count($args) === 2)
+		{
+			$pattern = $args[0];
+			$page = (int) $args[1];
+		} else if (count($args) === 1)
+		{
+			if (Common::isNumeric($args[0]))
+			{
+				$pattern = NULL;
+				$page = (int) $args[0];
+			} else {
+				$pattern = $args[0];
+				$page = 1;
+			}
+		} else {
+			$pattern = NULL;
+			$page = 1;
+		}
+
+		if ($pattern !== NULL)
+		{
+			$items = Shadowfunc::filterIndexedBySubstring($args[0],$items);
+		}
+
+		if (count($items) === 0)
+		{
+			if ( $pattern !== NULL )
+			{
+				Shadowcmd::reply($player, self::arrayGet($text, 'empty_search', 'No items found that match that pattern.'));
+			} else {
+				Shadowcmd::reply($player, self::arrayGet($text, 'empty', 'There are no items here.'));
+			}
+			return true;
+		}
+
+		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items)))
+		{
+			Shadowcmd::reply($player, self::arrayGet($text, 'no_page', 'No such page!'));
+			return false;
+		}
+
+		Shadowcmd::reply($player, sprintf('%s, %s', self::arrayGet($text, 'prefix', 'Items'), $pageStr));
+
+		return true;
+	}
+	
 }
 ?>

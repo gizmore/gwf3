@@ -14,9 +14,22 @@ final class Shadowrun4
 	####################
 	### Game Masters ###
 	####################
-	private static $GMS = array('gizmore');
+	private static $GMS = NULL;
 	public static function isGM(SR_Player $player)
 	{
+		if (NULL === self::$GMS)
+		{
+			/**
+			 * Example GameMasters.php:
+			 *
+			 * <? return array('gizmore'); ?>
+			 */
+			if (false === (self::$GMS = @include_once('GameMasters.php')))
+			{
+				self::$GMS = array('gizmore');
+			}
+		}
+
 		if (NULL === ($user = $player->getUser()))
 		{
 			return false;

@@ -5,13 +5,13 @@ abstract class SR_Bank extends SR_Location
 	
 	public function getTransactionPrice() { return 0; }
 	
-	public function getCommands(SR_Player $player) { return array('pushi', 'popi', 'pushy', 'popy'); }
+	public function getCommands(SR_Player $player) { return array('viewi', 'pushi', 'popi', 'pushy', 'popy'); }
 
 	public function getHelpText(SR_Player $player)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
 		$p = Shadowfunc::displayNuyen($this->calcPrice($player));
-		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Every transaction is $p for you.";
+		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}viewi to list or search your banked items. Every transaction costs $p for you.";
 	}
 	
 	public function calcPrice(SR_Player $player)
@@ -49,6 +49,13 @@ abstract class SR_Bank extends SR_Location
 	#############
 	### Items ###
 	#############
+	public function on_viewi(SR_Player $player, array $args)
+	{
+		$items = $player->getBankItems();
+		$text = array('prefix' => 'Your bank items');
+		return Shadowfunc::genericViewI($player, $items, $args, $text);
+	}
+	
 	public function on_pushi(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -172,13 +179,6 @@ abstract class SR_Bank extends SR_Location
 		return true;
 	}
 	
-	private function showBank(SR_Player $player)
-	{
-		$bot = Shadowrap::instance($player);
-		$bot->reply(sprintf('Your bank: %s.', Shadowfunc::getBank($player)));
-		return true;
-	}
-	
 	/**
 	 * Pop items from your bank.
 	 * @param SR_Player $player
@@ -189,15 +189,8 @@ abstract class SR_Bank extends SR_Location
 	{
 		$bot = Shadowrap::instance($player);
 
-		# BankInv
-		if (count($args) === 0)
-		{
-			$this->showBank($player);
-			return true;
-		}
-		
 		# Errors
-		if (count($args) > 2)
+		if ( (count($args) === 0) || (count($args) > 2) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'popi'));
 			return false;

@@ -13,7 +13,7 @@ class Item_Holostick extends Item_Credstick
 {
 	public static $CONFIRM_ITEMS = NULL;
 	
-	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|pushi|popi>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
+	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|pushi|viewi>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
 	public function getItemPrice() { return 179.95; }
 	public function getItemUsetime() { return 20; } 
 	public function getItemWeight() { return 200; }
@@ -64,16 +64,20 @@ class Item_Holostick extends Item_Credstick
 			case 'pushy': return $this->onItemUsePush($player, $amount);
 			case 'popy': return $this->onItemUsePop($player, $amount);
 			case 'pushi': return $this->onItemUsePushi($player, $args);
-			case 'popi': return $this->onItemUsePopi($player, $args);
+			case 'viewi': return $this->onItemUseViewi($player, $args);
 			default:
-				$player->message('Try #u Holostick pushy <nuyen>. Try #u Holostick popy <nuyen>. Try #u Holostick pushi <item> [<amt>].');
+				$player->message('Try #u Holostick pushy <nuyen>. Try #u Holostick popy <nuyen>. Try #u Holostick pushi <item> [<amt>]. Try #u Holostick viewi [<pattern>] [<page>].');
 				return false;
 		}
 	}
 	
-	protected function onItemUsePopi(SR_Player $player, array $args)
+	protected function onItemUseViewi(SR_Player $player, array $args)
 	{
-		return $this->reply($player, sprintf('Your bank: %s.', Shadowfunc::getBank($player)));
+		$items = $player->getBankItems();
+		$args = array_slice($args,1);
+		$text = array(	'prefix' => 'Your bank items',
+				'usage' => 'Try #u Holostick viewi [<pattern>] [<page>].');
+		return Shadowfunc::genericViewI($player, $items, $args, $text);
 	}
 	
 	protected function onItemUsePushi(SR_Player $player, array $args)
