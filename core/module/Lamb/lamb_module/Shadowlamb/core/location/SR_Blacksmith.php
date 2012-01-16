@@ -123,7 +123,8 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		$price = $this->calcBreakPrice($player, $item->getItemPriceStatted());
 		$p = Shadowfunc::displayNuyen($price);
-		if (false === ($player->pay($price))) {
+		if (false === ($player->hasNuyen($price)))
+		{
 			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to break this item. You only have %s."', $p, $player->displayNuyen()));
 			return false;
 		}
@@ -142,6 +143,12 @@ abstract class SR_Blacksmith extends SR_Store
 			{
 				unset(self::$BREAK_CONFIRM[$uid]);
 			}
+		}
+		
+		if (false === $player->giveNuyen(-$price))
+		{
+			$player->message('DB ERROR 12');
+			return false;
 		}
 		
 		
