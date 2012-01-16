@@ -33,7 +33,7 @@ final class News_Show extends GWF_Method
 	{
 		// Pre Sanatizer / Convert
 		if (false !== ($newsid = Common::getGet('newsid'))) {
-			if (true !== ($error = $this->convertNewsID($this->_module, $newsid))) {
+			if (true !== ($error = $this->convertNewsID($newsid))) {
 				return $error;
 			}
 		}
@@ -65,7 +65,7 @@ final class News_Show extends GWF_Method
 		$this->page = intval(Common::clamp(Common::getGet('page', '1'), 1, $this->nPages));
 	}
 	
-	private function convertNewsID(Module_News $module, $newsid)
+	private function convertNewsID($newsid)
 	{
 		$news = GDO::table('GWF_News');
 		if (false === ($item = $news->getRow($newsid))) {

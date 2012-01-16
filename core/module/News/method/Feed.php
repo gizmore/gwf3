@@ -16,15 +16,15 @@ final class News_Feed extends GWF_Method
 //			$lang = GWF_Language::getEnglish();
 //		}
 		$lang = GWF_Language::getCurrentLanguage();
-		return $this->templateFeed($this->_module, $lang);
+		return $this->templateFeed($lang);
 	}
 	
-	private function templateFeed(Module_News $module, GWF_Language $lang)
+	private function templateFeed(GWF_Language $lang)
 	{
 		header("Content-Type: application/xml; charset=UTF-8");
 		
 		
-		$items = $this->getItems($this->_module, $lang);
+		$items = $this->getItems($lang);
 		
 		if (count($items) > 0)
 		{
@@ -54,7 +54,7 @@ final class News_Feed extends GWF_Method
 		die();
 	}
 
-	private function getItems(Module_News $module, GWF_Language $lang)
+	private function getItems(GWF_Language $lang)
 	{
 		$back = array();
 		$items = GWF_News::getNews($this->_module->cfgFeedItemcount(), 0, 1, "news_date DESC", false);

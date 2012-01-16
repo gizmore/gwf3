@@ -29,10 +29,10 @@ final class News_Preview extends GWF_Method
 		switch (Common::getGet('mode'))
 		{
 			case 'html':
-				return $this->previewHTML($this->_module, $mail);
+				return $this->previewHTML($mail);
 			case 'text':
 			default:
-				return $this->previewText($this->_module, $mail);
+				return $this->previewText($mail);
 		}
 	}
 	
@@ -52,13 +52,13 @@ final class News_Preview extends GWF_Method
 		return $mail;
 	}
 	
-	private function previewText(Module_News $module, GWF_Mail $mail)
+	private function previewText(GWF_Mail $mail)
 	{
 		header('Content-Type: text/plain');
 		die($mail->nestedTextBody());
 	}
 	
-	private function previewHTML(Module_News $module, GWF_Mail $mail)
+	private function previewHTML(GWF_Mail $mail)
 	{
 		die($mail->nestedHTMLBody());
 	}

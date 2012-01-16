@@ -30,13 +30,13 @@ final class News_ShowComments extends GWF_Method
 		$back = '';
 		if (isset($_POST['reply']))
 		{
-			return $this->onReply($this->_module, $mod_c, $news, $comments);
+			return $this->onReply($mod_c, $news, $comments);
 		}
 		
-		return $back . $this->templateComments($this->_module, $mod_c, $news, $comments);
+		return $back . $this->templateComments($mod_c, $news, $comments);
 	}
 	
-	public function templateComments(Module_News $module, Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)
+	public function templateComments(Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)
 	{
 		$ipp = 10;
 		$cid = $comments->getID();
@@ -62,7 +62,7 @@ final class News_ShowComments extends GWF_Method
 		return $this->_module->template('comments.tpl', $tVars);
 	}
 	
-	private function onReply(Module_News $module, Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)
+	private function onReply(Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)
 	{
 		$ipp = 10;
 		$nItems = $comments->getVar('cmts_count');

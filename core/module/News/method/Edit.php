@@ -142,12 +142,12 @@ final class News_Edit extends GWF_Method
 			$form->getVar('message')
 		);
 		
-		$preview = $this->previewNewsletter($this->_module, $news).Module_News::displayPreview($news);
+		$preview = $this->previewNewsletter($news).Module_News::displayPreview($news);
 		
 		return $preview.$this->templateEdit();
 	}
 	
-	private function previewNewsletter(Module_News $module, GWF_News $news)
+	private function previewNewsletter(GWF_News $news)
 	{
 		Module_News::savePreview($news);
 		$aTEXT = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/text', $this->_module->lang('btn_preview_text'));
@@ -194,7 +194,7 @@ final class News_Edit extends GWF_Method
 
 //		if ($this->_module->cfgNewsInForum())
 //		{
-//			$back .= $this->newsToForum($this->_module, $this->news, !$newhidden);
+//			$back .= $this->newsToForum($this->news, !$newhidden);
 //		}
 		
 		return $back.$this->_module->message('msg_edited', array($this->news->displayTitle(), $this->lang->displayName()));
@@ -247,7 +247,7 @@ final class News_Edit extends GWF_Method
 		$back = '';
 //		if ($this->_module->cfgNewsInForum() && (!$this->news->isHidden()))
 //		{
-//			$back = $this->newsToForum($this->_module, $this->news);
+//			$back = $this->newsToForum($this->news);
 //		}
 		
 		return $back.$this->_module->message('msg_translated', array($this->news->displayTitle(), $lang->displayName())).$this->templateEdit();
@@ -262,20 +262,20 @@ final class News_Edit extends GWF_Method
 	 * @param boolean $visible
 	 * @return string
 	 */
-	public function rebuildAllThreads(Module_News $module, $visible)
+	public function rebuildAllThreads($visible)
 	{
 		$back = '';
 		$news_table = GDO::table('GWF_News');
 		$result = $news_table->select('*');
 		while (false !== ($news = $news_table->fetch($result, GDO::ARRAY_O)))
 		{
-			$back .= $this->newsToForum($this->_module, $news, $visible);
+			$back .= $this->newsToForum($news, $visible);
 		}
 		$news_table->free($result);
 		return $back;
 	}
 	
-	public  function newsToForum(Module_News $module, GWF_News $news, $visible=true)
+	public  function newsToForum(GWF_News $news, $visible=true)
 	{
 		if (false === ($poster = $news->getUser())) {
 			return GWF_HTML::error('News_Edit', 'News_Edit::newsToForum(): Nobody as Poster');
@@ -294,7 +294,7 @@ final class News_Edit extends GWF_Method
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 			
-			if (false === ($lang_board = $this->getNewsForumLangCached($this->_module, $lang, $root_id))) {
+			if (false === ($lang_board = $this->getNewsForumLangCached($lang, $root_id))) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 			
@@ -384,7 +384,7 @@ final class News_Edit extends GWF_Method
 	 * @param unknown_type $pid
 	 * @return unknown_type
 	 */
-	private function getNewsForumLangCached(Module_News $module, GWF_Language $lang, $pid)
+	private function getNewsForumLangCached(GWF_Language $lang, $pid)
 	{
 		static $cache = array();
 		
@@ -392,7 +392,7 @@ final class News_Edit extends GWF_Method
 		
 		if (!isset($cache[$iso]))
 		{
-			$cache[$iso] = $this->getNewsForumLang($this->_module, $lang, $pid);
+			$cache[$iso] = $this->getNewsForumLang($lang, $pid);
 		}
 		return $cache[$iso];
 	}
@@ -404,7 +404,7 @@ final class News_Edit extends GWF_Method
 	 * @param int $pid rootid
 	 * @return GWF_ForumBoard
 	 */
-	private function getNewsForumLang(Module_News $module, GWF_Language $lang, $pid)
+	private function getNewsForumLang(GWF_Language $lang, $pid)
 	{
 		
 		$pid = (int) $pid;

@@ -13,7 +13,7 @@ final class News_Sign extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($token = Common::getGet('unsign'))) {
-			return $this->onUnsign($this->_module, Common::getGet('email', ''), $token);
+			return $this->onUnsign(Common::getGet('email', ''), $token);
 		}
 		
 		if (!$this->_module->isNewsletterForGuests() && !GWF_User::isLoggedIn()) {
@@ -97,7 +97,7 @@ final class News_Sign extends GWF_Method
 		
 		$newsletter = new GWF_Newsletter(false);
 		if (false === ($row = $newsletter->getRow($email))) {
-			return $this->onNewSign($this->_module, $email, $type, $langid).$this->templateSign();
+			return $this->onNewSign($email, $type, $langid).$this->templateSign();
 		}
 		
 		$back = '';
@@ -112,7 +112,7 @@ final class News_Sign extends GWF_Method
 		return $back.$this->templateSign();
 	}
 	
-	private function onNewSign(Module_News $module, $email, $type, $langid)
+	private function onNewSign($email, $type, $langid)
 	{
 		$subscribe = new GWF_Newsletter(array(
 			'nl_email' => $email,
@@ -128,7 +128,7 @@ final class News_Sign extends GWF_Method
 		return $this->_module->message('msg_signed');
 	}
 
-	private function onUnsign(Module_News $module, $email, $token)
+	private function onUnsign($email, $token)
 	{
 		$nl = new GWF_Newsletter(false);
 		if (false === ($nl = $nl->getRow($email))) {

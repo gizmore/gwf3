@@ -121,7 +121,7 @@ final class News_Add extends GWF_Method
 		}
 		
 		if ($form->getVar('newsletter') !== false) {
-			$this->onSendNewsletter($this->_module, $langid, $news);
+			$this->onSendNewsletter($langid, $news); # TODO: gizmore fix it → method does not exist
 		}
 		
 		return $this->_module->message('msg_news_added');
@@ -147,13 +147,13 @@ final class News_Add extends GWF_Method
 		$preview = Module_News::displayPreview($news);
 		
 //		if ($form->getVar('newsletter') !== false) {
-			$preview = $this->previewNewsletter($this->_module, $news).$preview;
+			$preview = $this->previewNewsletter($news).$preview;
 //		}
 		
 		return $preview.$this->templateAdd();
 	}
 	
-//	private function getNewsletterMessage(Module_News $module, $message, $email)
+//	private function getNewsletterMessage($message, $email)
 //	{
 //		if (false === ($user = GWF_User::getByEmail($email))) {
 //			$username = $this->_module->lang('nl_anrede', array( $email));
@@ -168,7 +168,7 @@ final class News_Add extends GWF_Method
 //		return $this->_module->lang('newsletter_wrap', array( $msg));
 //	}
 	
-	private function previewNewsletter(Module_News $module, GWF_News $news)
+	private function previewNewsletter(GWF_News $news)
 	{
 		Module_News::savePreview($news);
 //		var_dump($news);
