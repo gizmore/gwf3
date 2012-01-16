@@ -2,7 +2,7 @@
 final class Quest_Delaware_MCJohnson2 extends SR_Quest
 {
 	public function getQuestName() { return 'Gem'; }
-	public function getQuestDescription() { return "Fight CaveTrolls until you get an Emerald and bring this to Mr.Johnson in the Mac Larens pub in Delaware."; }
+	public function getQuestDescription() { return "Fight CaveTrolls until you get an Emerald and bring this to Mr.Johnson in the MacLarens pub in Delaware."; }
 	public function getNeededAmount() { return 1; }
 	public function getRewardXP() { return 8; }
 	public function getRewardNuyen() { return 2500; }

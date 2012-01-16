@@ -9,7 +9,7 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 		$kn = self::KILLS_NEEDED;
 		$data = $this->getKillData();
 		return sprintf(
-			'Kill %d / %d Hipster, %d / %d Emos and %d / %d Goths and return to Mr.Johnson in the McLaren pub.',
+			'Kill %d / %d Hipster, %d / %d Emos and %d / %d Goths and return to Mr.Johnson in the MacLarens pub.',
 			$data['H'], $kn, $data['E'], $kn, $data['G'], $kn
 		);
 	}
@@ -111,7 +111,7 @@ final class Quest_Delaware_MCJohnson1 extends SR_Quest
 		}
 		$data = $this->getKillData();
 		$data[$key]++;
-		$player->message(sprintf("Now you killed %d of %d %s for Mr.Johnson in the Mac Larens.", $data[$key], self::KILLS_NEEDED, $name));
+		$player->message(sprintf("Now you killed %d of %d %s for Mr.Johnson in the MacLarens pub.", $data[$key], self::KILLS_NEEDED, $name));
 		$this->saveQuestData($data);
 	}
 }

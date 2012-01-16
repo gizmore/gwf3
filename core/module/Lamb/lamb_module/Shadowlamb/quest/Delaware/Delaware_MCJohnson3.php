@@ -2,7 +2,7 @@
 final class Quest_Delaware_MCJohnson3 extends SR_Quest
 {
 	public function getQuestName() { return 'Cops'; }
-	public function getQuestDescription() { return sprintf("Bring %d CopCaps to Mr.Johnson in the Mac Larens pub in Delaware.", $this->getNeededAmount()); }
+	public function getQuestDescription() { return sprintf("Bring %d CopCaps to Mr.Johnson in the MacLarens pub in Delaware.", $this->getNeededAmount()); }
 	public function getNeededAmount() { return 4; }
 	public function getRewardXP() { return 6; }
 	public function getRewardNuyen() { return 2500; }

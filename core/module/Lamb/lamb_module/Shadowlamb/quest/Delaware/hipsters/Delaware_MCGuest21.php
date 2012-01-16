@@ -7,7 +7,7 @@ final class Quest_Delaware_MCGuest21 extends SR_Quest
 {
 	const EMO_TYPE = 'Goths';
 	public function getQuestName() { return 'Goths'; }
-	public function getQuestDescription() { return sprintf('Kill %d / %d %s and return to the McLaren pub.', $this->getAmount(), $this->getNeededAmount(), self::EMO_TYPE); }
+	public function getQuestDescription() { return sprintf('Kill %d / %d %s and return to the MacLarens pub.', $this->getAmount(), $this->getNeededAmount(), self::EMO_TYPE); }
 	public function getNeededAmount() { return 10; }
 	public function getRewardNuyen() { return 500; }
 	
