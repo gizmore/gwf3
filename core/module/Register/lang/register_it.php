@@ -6,7 +6,7 @@ $lang = array(
 
 		'th_username' => 'Nome Utente',
 		'th_password' => 'Password',
-		'th_email' => 'E-Mail',
+		'th_email' => 'Indirizzo E-Mail',
 		'th_birthdate' => 'Data di nascita',
 		'th_countryid' => 'Nazione',
 		'th_tos' => 'Accetto le condizioni',
@@ -21,8 +21,8 @@ $lang = array(
 		'err_country' => 'La nazione scelta non è valida.',
 		'err_pass_weak' => 'La password scelta è troppo corta. <b>Consigliamo di scegliere una password complessa e di non usarla per altri siti</b>.',
 		'err_token' => 'Il codice di attivazione non è valido. Probabilmente l\'account è già stato attivato.',
-		'err_email_invalid' => 'L\'E-Mail fornita non è valida.',
-		'err_email_taken' => 'L\'E-Mail fornita è già stata utilizzata da un altro utente.',
+		'err_email_invalid' => 'L\'indirizzo E-Mail fornita non è valida.',
+		'err_email_taken' => 'L\'indirizzo E-Mail fornita è già stata utilizzata da un altro utente.',
 		'err_activate' => 'Si è verificato un errore nella registrazione.',
 
 		'msg_activated' => 'L\'account è stato attivato con successo. E\' ora possibile effettuale l\'accesso.',
@@ -34,7 +34,7 @@ $lang = array(
 		'<br/>'.
 		'La ringraziamo per essersi registrata a '.GWF_SITENAME.'.<br/>'.
 		'Per completare la registrazione, deve prima attivare il suo account, visitando il link sottostante.<br/>'.
-		'Nel caso in cui non si fosse registrato a '.GWF_SITENAME.' la preghiamo di ignorare questa E-Mail e/o segnalarci il tutto con una mail a '.GWF_SUPPORT_EMAIL.'.<br/>'.
+		'Nel caso in cui non si fosse registrato a '.GWF_SITENAME.' la preghiamo di ignorare questa E-Mail e/o segnalarci il tutto con una E-Mail a '.GWF_SUPPORT_EMAIL.'.<br/>'.
 		'<br/>'.
 		'%s<br/>'.
 		'<br/>'.
@@ -59,7 +59,7 @@ $lang = array(
 		'cfg_captcha' => 'Captcha per la registrazione',
 		'cfg_country_select' => 'Mostra un menù per selezionare la nazionalità',
 		'cfg_email_activation' => 'Registrazione tramite E-Mail',
-		'cfg_email_twice' => 'Consenti di utilizzare la stessa E-Mail per account diversi?',
+		'cfg_email_twice' => 'Consenti di utilizzare lo stesso indirizzo E-Mail per account diversi?',
 		'cfg_force_tos' => 'Costringi a leggere le condizioni di utilizzo',
 		'cfg_ip_usetime' => 'Tempo massimo per registrazioni multiple dalle stesso IP',
 		'cfg_min_age' => 'Età minima / Data di nascita',
@@ -75,7 +75,7 @@ $lang = array(
 		'th_timestamp' => 'Ora di registrazione',
 		'th_ip' => 'Reg IP',
 		'tt_username' => 'Il nome utente deve iniziare con una lettera.'.PHP_EOL.'Può contenere solo lettere, numeri e l\'underscore e deve può avere una lunghezza compresa tra 3 e %s caratteri.',
-		'tt_email' => 'Per registrarsi è necessaria una E-Mail valida.',
+		'tt_email' => 'Per registrarsi è necessario un indirizzo E-Mail valido.',
 
 		'info_no_cookie' => 'Il suo Browser non supporta i cookies o non permette a '.GWF_SITENAME.' di utilizzarli, ma i cookies sono necessari per effettuare il login.',
 
