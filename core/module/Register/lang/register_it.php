@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-		'pt_register' => 'Registrati su '.GWF_SITENAME,
+		'pt_register' => 'Registrazione su '.GWF_SITENAME,
 
-		'title_register' => 'Registrati',
+		'title_register' => 'Registrazione',
 
 		'th_username' => 'Nome Utente',
 		'th_password' => 'Password',
@@ -17,7 +17,7 @@ $lang = array(
 
 		'err_register' => 'Durante la registrazione è apparso un errore.',
 		'err_name_invalid' => 'Il nome utente non è valido.',
-		'err_name_taken' => 'Il nome utente scelto è gia assegnato.',
+		'err_name_taken' => 'Il nome utente scelto è gia stato scelto.',
 		'err_country' => 'La nazione scelta non è valida.',
 		'err_pass_weak' => 'La password scelta è troppo corta. Tip: <b>Scegli una password unica, non usarla per altri siti</b>.',
 		'err_token' => 'Il codice di attivazione non è valido. Probabilmente sei già stato attivato.',
