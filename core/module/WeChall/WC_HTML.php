@@ -785,5 +785,4 @@ final class WC_HTML
 		return $colors[Common::clamp(intval(round($percent/10)), 0, 10)];
 	}
 }
-
 ?>

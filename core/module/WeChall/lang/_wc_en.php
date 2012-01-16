@@ -1,5 +1,4 @@
 <?php
-
 $lang = array(
 	# New Left Sidebar
 	'li_last_active' => '%s reached %s%% on %s',

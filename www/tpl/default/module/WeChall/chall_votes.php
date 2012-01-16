@@ -77,4 +77,4 @@ function wcChallVotes(WC_Challenge $chall, $section)
 </table>
 </div>
 
-<?php if ($tVars['has_solved']) echo $tVars['form_vote']; ?> 
+<?php if ($tVars['has_solved']) echo $tVars['form_vote']; ?>

@@ -13,7 +13,7 @@ final class Slaytags_ShowLyrics extends GWF_Method
 	private function templateShowLyrics(Slay_Song $song)
 	{
 		$sid = $song->getID();
-		$user = GWF_Session::getUser();
+		$user = GWF_User::getStaticOrGuest();
 		$staff = $user->isStaff();
 		$table = GDO::table('Slay_Lyrics');
 		$perm = $staff ? '' : ' AND ssl_options&'.Slay_Lyrics::ENABLED;

@@ -1,4 +1,4 @@
-{if isset($in_reply))]
+{if isset($in_reply)}
 <div class="gwf_gb_entry">
 	<div>
 		<div class="gwf_date">{$in_reply->displayDate()}</div>
