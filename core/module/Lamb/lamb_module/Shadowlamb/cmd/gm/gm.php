@@ -4,7 +4,7 @@ final class Shadowcmd_gm extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 3) {
+		if ((count($args) < 2) || (count($args) > 3)) {
 			$bot->reply(Shadowhelp::getHelp($player, 'gm'));
 			return false;
 		}
@@ -45,6 +45,13 @@ final class Shadowcmd_gm extends Shadowcmd
 		}
 		
 		$old = $target->getVar('sr4pl_'.$var);
+		
+		if (count($args) === 2)
+		{
+			$bot->reply(sprintf('Var %s of %s is set to %s.', $var, $target->getUser()->getName(), $old));
+			return true;
+		}
+
 		$new = $args[2];
 		
 		$target->updateField($var, $new);

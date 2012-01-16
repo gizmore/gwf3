@@ -11,7 +11,7 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 	public function getQuestDescription()
 	{
 		$data = $this->getDrinkData();
-		return sprintf('Bring %d / %d %s and %d / %d %s to the bartender in the MacLaren pub.',
+		return sprintf('Bring %d / %d %s and %d / %d %s to the bartender in the MacLarens pub.',
 			$data['S'], self::NEED_SPARK, 'SparklingWine',
 			$data['A'], self::NEED_ALCO, 'Alcopop');
 	}

@@ -57,6 +57,7 @@ final class Shadowrun4
 	 */
 	public static function getCity($name)
 	{
+		$name = strtolower($name);
 		if (!isset(self::$cities[$name]))
 		{
 //			Lamb_Log::logError(sprintf('Unknown city: %s.', $name));
@@ -351,7 +352,7 @@ final class Shadowrun4
 	{
 		Lamb_Log::logDebug(sprintf('Shadowrun4::initCity(%s)', $entry));
 		require_once $fullpath."/$entry.php";
-		self::$cities[$entry] = $city = new $entry($entry);
+		self::$cities[strtolower($entry)] = $city = new $entry($entry);
 		GWF_File::filewalker($fullpath.'/location', array($city, 'initLocations'));
 		GWF_File::filewalker($fullpath.'/npc', array($city, 'initNPCS'));
 	}

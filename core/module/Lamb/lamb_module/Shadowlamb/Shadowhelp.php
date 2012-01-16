@@ -242,7 +242,7 @@ final class Shadowhelp
 					
 					'gm_cmds' => '"Game Master" commands for debugging and cheating',
 					array(
-						'gm' => 'GM command. Usage: #gm <username> <field> <value>.',
+						'gm' => 'GM command. Usage: #gm <username> <field> [<value>].',
 						'gmc' => 'GM command. Usage: #gmc. Cleanup the database. Handle with care!',
 						'gmd' => 'GM command. Usage: #gmd <player> <remote command to execute>.',
 						'gmi' => 'GM command. Usage: #gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',

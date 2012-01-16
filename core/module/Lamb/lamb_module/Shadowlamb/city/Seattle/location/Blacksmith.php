@@ -54,7 +54,7 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 			$max = 0.8;
 		}
 		else {
-			$bot->reply('This skill or spell is unknown.');
+			$bot->reply('This skill or attribute is unknown.');
 			return false;
 		}
 		
@@ -66,6 +66,8 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 			$bot->reply('My smith hammer is broken!');
 			return false;
 		}
+		
+		$bot->reply("You received ${itemname}.");
 		
 		$key = self::REWARD_RUNES;
 		$player->giveItems(array($item));
