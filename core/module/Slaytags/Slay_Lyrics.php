@@ -61,5 +61,11 @@ final class Slay_Lyrics extends GDO
 		$enabled = $enabled_only ? ('ssl_options&'.self::ENABLED) : '1';
 		return self::table(__CLASS__)->selectVar('count(ssl_uid)', "ssl_sid={$sid} AND ($enabled)");
 	}
+	
+	public function displayLyrics()
+	{
+		$message = $this->getVar('ssl_lyrics');
+		return GWF_Message::display($message);
+	}
 }
 ?>

@@ -13,7 +13,7 @@
 		<div>{$l->getVar('ssl_date')|date}&nbsp;by&nbsp;{$l->display('user_name')}</div>
 		{if $l->isEdited()}<div>{$lang->lang('info_edited', {$l->getVar('ssl_edit_date')|date})}</div>{/if}
 	</div>
-	<div class="slay_lyrics_body">{$l->display('ssl_lyrics')}</div>
+	<div class="slay_lyrics_body">{$l->displayLyrics()}</div>
 	<div class="slay_lyrics_btns">
 		{if $is_admin}
 			{button type='edit' url=$l->hrefEdit() title=$lang->lang('btn_edit')}
