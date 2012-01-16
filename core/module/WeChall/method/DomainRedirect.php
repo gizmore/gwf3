@@ -1,7 +1,7 @@
 <?php
 final class WeChall_DomainRedirect extends GWF_Method
 {
-	public function getHTAccess(GWF_Module $modoule)
+	public function getHTAccess()
 	{
 		return
 			'# Domain Redirection'.PHP_EOL.PHP_EOL.
