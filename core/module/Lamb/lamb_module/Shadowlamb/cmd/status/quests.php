@@ -46,7 +46,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		$total = SR_Quest::getTotalQuestCount();
 		$failed = 0;
 		$declined = 0;
-		$unknown = count($quests) - $total;
+		$unknown = $total - count($quests);
 		
 		foreach ($quests as $quest)
 		{

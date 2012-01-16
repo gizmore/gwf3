@@ -31,4 +31,4 @@ else
 {
 	$bot->reply('The channel does not allow bot commands.');
 }
-?> 
+?>

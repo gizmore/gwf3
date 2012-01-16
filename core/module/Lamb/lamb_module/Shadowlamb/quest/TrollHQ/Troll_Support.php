@@ -2,7 +2,7 @@
 final class Quest_Troll_Support extends SR_Quest
 {
 	public function getQuestName() { return 'TrollSupport'; }
-	public function getQuestDescription() { return sprintf('Kill %d/%d Headhunters and return to Larry, the Troll chief.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return sprintf('Kill %d/%d Delaware Headhunters and return to Larry, the Troll chief.', $this->getAmount(), $this->getNeededAmount()); }
 	
 	public function getRewardXP() { return 7; }
 	public function getRewardNuyen() { return 800; }

@@ -71,7 +71,7 @@ final class Shadowhelp
 				'attributes' => "Player Command. Usage: #(a)ttributes. Attributes",
 				array(
 					'body' => "The body attribute raises your max_hp by ".SR_Player::HP_PER_BODY.'.',
-					'magic' => "The magic attribute raises your max_mp by ".SR_Player::MP_PER_MAGIC.'.',
+					'magic' => "The magic attribute raises your max_mp by ".SR_Player::MP_PER_MAGIC.'. It also increases your MP refresh rate slightly.',
 					'strength' => "The strength attribute raises attack for melee weapons. It also raises the max weight you can carry.",
 					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime and explore times will decrease.",
 					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",

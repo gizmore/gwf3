@@ -1,4 +1,5 @@
 <?php
+require_once 'SR_SearchRoom.php';
 abstract class SR_Cell extends SR_SearchRoom
 {
 	public function getFoundPercentage() { return 80; }
