@@ -56,7 +56,7 @@ final class Account_Delete extends GWF_Method
 		if ($note !== '') {
 			GWF_AccountDelete::insertNote($user, $note);
 		}
-		$this->onSendEmail($this->_module, $user, $note);			
+		$this->onSendEmail($user, $note);			
 		
 		$user->saveOption(GWF_User::DELETED, true);
 		GWF_Hook::call(GWF_Hook::DELETE_USER, $user);
@@ -67,7 +67,7 @@ final class Account_Delete extends GWF_Method
 		return $this->_module->message('msg_accrm');
 	}
 	
-	private function onSendEmail(Module_Account $module, GWF_User $user, $note)
+	private function onSendEmail(GWF_User $user, $note)
 	{
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);

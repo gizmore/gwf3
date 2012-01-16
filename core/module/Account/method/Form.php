@@ -87,7 +87,7 @@ final class Account_Form extends GWF_Method
 		// OPTIONS
 		$data['div2'] = array(GWF_Form::HEADLINE, $this->_module->lang('th_flags'));
 		
-		$data['email_fmt'] = array(GWF_Form::SELECT, $this->selectEMailFormat($this->_module, $user), $this->_module->lang('th_email_fmt'));
+		$data['email_fmt'] = array(GWF_Form::SELECT, $this->selectEMailFormat($user), $this->_module->lang('th_email_fmt'));
 		
 		if ($this->_module->cfgShowCheckboxes())
 		{
@@ -132,7 +132,7 @@ final class Account_Form extends GWF_Method
 	#######################
 	### Change Settings ###
 	#######################
-	private function selectEMailFormat(Module_Account $module, GWF_User $user)
+	private function selectEMailFormat(GWF_User $user)
 	{
 		$data = array(
 			array(GWF_User::EMAIL_HTML, $this->_module->lang('email_fmt_html')),
@@ -153,20 +153,20 @@ final class Account_Form extends GWF_Method
 		
 		# Upload Avatar
 		if (false !== ($file = $form->getVar('avatar'))) {
-			$back .= $this->saveAvatar($this->_module, $file);
+			$back .= $this->saveAvatar($file);
 			Common::unlink($file['tmp_name']);
 		}
 
 		
 		# Flags
 		if ($this->_module->cfgShowAdult() && GWF_Time::getAge($user->getVar('user_birthdate')) > $this->_module->cfgAdultAge()) {
-			$back .= $this->changeFlag($this->_module, $user, 'adult', GWF_USER::WANTS_ADULT);
+			$back .= $this->changeFlag($user, 'adult', GWF_USER::WANTS_ADULT);
 		}
-		$back .= $this->changeFlag($this->_module, $user, 'online', GWF_USER::HIDE_ONLINE);
-		$back .= $this->changeFlag($this->_module, $user, 'show_bday', GWF_USER::SHOW_BIRTHDAY);
-		$back .= $this->changeFlag($this->_module, $user, 'show_obday', GWF_USER::SHOW_OTHER_BIRTHDAYS);
-		$back .= $this->changeFlag($this->_module, $user, 'show_email', GWF_USER::SHOW_EMAIL);
-		$back .= $this->changeFlag($this->_module, $user, 'allow_email', GWF_USER::ALLOW_EMAIL);
+		$back .= $this->changeFlag($user, 'online', GWF_USER::HIDE_ONLINE);
+		$back .= $this->changeFlag($user, 'show_bday', GWF_USER::SHOW_BIRTHDAY);
+		$back .= $this->changeFlag($user, 'show_obday', GWF_USER::SHOW_OTHER_BIRTHDAYS);
+		$back .= $this->changeFlag($user, 'show_email', GWF_USER::SHOW_EMAIL);
+		$back .= $this->changeFlag($user, 'allow_email', GWF_USER::ALLOW_EMAIL);
 		
 		
 		# Email Format
@@ -222,7 +222,7 @@ final class Account_Form extends GWF_Method
 		return $back;
 	}
 	
-	private function changeFlag(Module_Account $module, GWF_User $user, $flagname, $bits)
+	private function changeFlag(GWF_User $user, $flagname, $bits)
 	{
 		$newFlag = Common::getPost($flagname) !== false;
 		$oldFlag = $user->isOptionEnabled($bits);
@@ -254,7 +254,7 @@ final class Account_Form extends GWF_Method
 		return $this->_module->message('msg_deleted_avatar');
 	}
 	
-	private function saveAvatar(Module_Account $module, array $file)
+	private function saveAvatar(array $file)
 	{
 		if (!GWF_Upload::isImageFile($file)) {
 			return $this->_module->error('err_no_image');
@@ -429,10 +429,10 @@ final class Account_Form extends GWF_Method
 			return $this->_module->error('err_gpg_key');
 		}
 		
-		return $this->sendGPGMail($this->_module, $user, $fingerprint);
+		return $this->sendGPGMail($user, $fingerprint);
 	}
 	
-	private function sendGPGMail(Module_Account $module, GWF_User $user, $fingerprint)
+	private function sendGPGMail(GWF_User $user, $fingerprint)
 	{
 		if ('' === ($email = $user->getValidMail())) {
 			return $this->_module->error('err_no_mail');
@@ -442,14 +442,14 @@ final class Account_Form extends GWF_Method
 		$mail->setReceiver($email);
 		$mail->setGPGKey($fingerprint);
 		$mail->setSubject($this->_module->langUser($user, 'mails_gpg'));
-		$mail->setBody($this->getGPGMailBody($this->_module, $user, $fingerprint));
+		$mail->setBody($this->getGPGMailBody($user, $fingerprint));
 		if (false === $mail->sendToUser($user)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
 		return $this->_module->message('msg_mail_sent');
 	}
 	
-	private function getGPGMailBody(Module_Account $module, GWF_User $user, $fingerprint)
+	private function getGPGMailBody(GWF_User $user, $fingerprint)
 	{
 		$href = Common::getAbsoluteURL(sprintf('index.php?mo=Account&me=SetupGPGKey&userid=%s&token=%s', $user->getVar('user_id'), $fingerprint), true);
 		$link = GWF_HTML::anchor($href, $href);

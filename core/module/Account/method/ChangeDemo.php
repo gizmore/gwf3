@@ -4,7 +4,7 @@ final class Account_ChangeDemo extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($token = Common::getGet('token'))) {
-			return $this->onChange($this->_module, $token);
+			return $this->onChange($token);
 		}
 	}
 	
@@ -84,7 +84,7 @@ final class Account_ChangeDemo extends GWF_Method
 		return GWF_HTML::anchor($url, $url);
 	}
 	
-	private function onChange(Module_Account $module, $token)
+	private function onChange($token)
 	{
 		$userid = (int) Common::getGet('userid');
 		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'demo'))) {
