@@ -19,7 +19,7 @@ $lang = array(
 	'err_no_options' => 'You did not specify any options.',
 
 	# Messages
-	'msg_voted' => 'Vote registered. <a href="%s">Click here to return to your last location.',
+	'msg_voted' => 'Vote registered. <a href="%s">Click here</a> to return to your last location.',
 
 	## POLLS ##
 

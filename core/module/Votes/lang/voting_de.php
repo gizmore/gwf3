@@ -8,18 +8,18 @@ $lang = array(
 	'title_button' => '%s Punkte vergeben',
 
 	# Errors
-	'err_votescore' => 'Die Abstimmung wurde nicht gefunden.',
+	'err_votescore' => 'Die Umfrage wurde nicht gefunden.',
 	'err_score' => 'Deine Punktzahl ist ungültig.',
-	'err_expired' => 'Diese Abstimmung ist bereits beendet.',
-	'err_disabled' => 'Diese Abstimmung ist vorrübergehend deaktiviert.',
-	'err_vote_ip' => 'Du hast schon an dieser Abstimmung teilgenommen.',
-	'err_no_guest' => 'Gäste dürfen an dieser Abstimmung nicht teilnehmen.',
+	'err_expired' => 'Diese Umfrage ist bereits beendet.',
+	'err_disabled' => 'Diese Umfrage ist vorübergehend deaktiviert.',
+	'err_vote_ip' => 'Du hast schon an dieser Umfrage teilgenommen.',
+	'err_no_guest' => 'Gäste dürfen an dieser Umfrage nicht teilnehmen.',
 	'err_title' => 'Der Titel muss zwischen %s und %s Zeichen lang sein.',
-	'err_options' => 'Deine Abstimmungs-Optionen %s sind/ist ungültig, und möglicherweise nicht zwischen %s und %s Zeichen lang.',
+	'err_options' => 'Deine Umfrage-Optionen %s sind/ist ungültig, und möglicherweise nicht zwischen %s und %s Zeichen lang.',
 	'err_no_options' => 'Sie haben keine Auswahlmöglichkeiten angegeben.',
 
 	# Messages
-	'msg_voted' => 'Ihre Stimme wurde gezählt.',
+	'msg_voted' => 'Ihre Stimme wurde gezählt. <a href="%s">Hier klicken</a> um zurückzukehren.',
 
 	## POLLS ##
 
@@ -44,27 +44,27 @@ $lang = array(
 	'th_vm_gid' => 'Auf eine Benutzergruppe beschränken',		
 	'th_vm_level' => 'Auf einen Benutzerlevel beschränken',
 
-	'ft_edit' => 'Abstimmung bearbeiten',
-	'ft_add_poll' => 'Eine Abstimmung zuweisen',
-	'ft_create' => 'Eine neue Abstimmung erzeugen',
+	'ft_edit' => 'Umfrage bearbeiten',
+	'ft_add_poll' => 'Eine Umfrage zuweisen',
+	'ft_create' => 'Eine neue Umfrage erzeugen',
 
 	'btn_edit' => 'Bearbeiten',
 	'btn_vote' => 'Abstimmen',
 	'btn_add_opt' => 'Auswahl hinzufügen',
 	'btn_rem_opts' => 'Alle Optionen Löschen',
-	'btn_create' => 'Abstimmung erzeugen',
+	'btn_create' => 'Umfrage erstellen',
 
 	'err_multiview' => 'Die Ansicht-Option ist ungültig.',
-	'err_poll' => 'Diese Abstimmung existiert nicht.',
-	'err_global_poll' => 'Sie dürfen keine globale Abstimmung erzeugen.',
+	'err_poll' => 'Diese Umfrage existiert nicht.',
+	'err_global_poll' => 'Sie dürfen keine globale Umfrage erzeugen.',
 	'err_option_empty' => 'Auswahl %s ist leer.',
 	'err_option_twice' => 'Die Auswahl %s kommt mehrmals vor.',
 	'err_no_options' => 'Sie haben keine einzige Auswahlmöglichkeit angegeben.',
 	'err_no_multi' => 'Sie dürfen nur eine der Möglichkeiten für ihre Stimme auswählen.',
-	'err_poll_off' => 'Diese Abstimmung ist zur zeit deaktiviert.',
+	'err_poll_off' => 'Diese Abstimmung ist zur Zeit deaktiviert.',
 	
-	'msg_poll_edit' => 'Die Abstimmung wurde erfolgreich bearbeitet.',
-	'msg_mvote_added' => 'Die Abstimmung wurde erfolgreich hinzugefügt.',
+	'msg_poll_edit' => 'Die Umfrage wurde erfolgreich bearbeitet.',
+	'msg_mvote_added' => 'Die Umfrage wurde erfolgreich hinzugefügt.',
 
 	# v2.01 Staff
 	'th_vs_id' => 'ID ',
@@ -77,9 +77,9 @@ $lang = array(
 	'th_vs_count' => 'Stimmen',
 
 	# v2.02
-	'th_reverse' => 'Reversible?',
-	'err_irreversible' => 'You have already voted this item and the votes for this item are not reversible.',
-	'err_pollname_taken' => 'This pollname is already taken.',
+	'th_reverse' => 'Änderbar?',
+	'err_irreversible' => 'Diese Umfrage ist nicht zurücknehmbar und Sie haben bereits abgestimmt.',
+	'err_pollname_taken' => 'Der Name für diese Umfrage ist bereits vergeben.',
 );
 
 ?>
