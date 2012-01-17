@@ -58,8 +58,8 @@ final class Shadowcmd_giveny extends Shadowcmd
 			return false;
 		}
 		
-		$target->message(sprintf('Your received %s %s from %s.', $amt, $what, $player->getName()));
-		$player->message(sprintf('Your gave %s %s %s.', $target->getName(), $amt, $what));
+		$target->message(sprintf('You received %s %s from %s.', $amt, $what, $player->getName()));
+		$player->message(sprintf('You gave %s %s %s.', $target->getName(), $amt, $what));
 		
 		return true;
 	}
