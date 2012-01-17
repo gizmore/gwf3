@@ -96,7 +96,7 @@ final class Quest_Troll_Maniac extends SR_Quest
 		{
 			case 'shadowrun':
 				$npc->reply("You are the best. If you can help us an last time we will help you big.");
-				$npc->reply(sprintf('Bring %d SmallShield, %d ElvenShield and %d Kevlar Shield, so I can create better army.', self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR));
+				$npc->reply(sprintf('Bring %d SmallShield, %d LargeShield, %d ElvenShield, and %d KevlarShield so I can create better army.', self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR));
 				$npc->reply('Shamane will reward you well!');
 				break;
 			case 'confirm':
