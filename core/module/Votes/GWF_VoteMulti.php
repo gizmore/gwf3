@@ -208,7 +208,10 @@ final class GWF_VoteMulti extends GDO
 	public static function getByID($vmid)
 	{
 //		return self::table(__CLASS__)->getBy('vm_id', $vmid, GDO::ARRAY_O, array('choices'));
-		$back = self::table(__CLASS__)->getRow($vmid);
+		if(false === ($back = self::table(__CLASS__)->getRow($vmid)))
+		{
+			return false;
+		}
 		$back->loadVoteOptions();
 		return $back;
 	}

@@ -41,7 +41,7 @@ final class Votes_EditPoll extends GWF_Method
 			$data['public'] = array(GWF_Form::CHECKBOX, $poll->isGlobal(), $this->_module->lang('th_vm_public'));
 		}
 		
-		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect('view', $poll->getViewFlag()), $this->_module->lang('th_mvview'));
+		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->_module, 'view', $poll->getViewFlag()), $this->_module->lang('th_mvview'));
 		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', $poll->getGroupID(), true, true), $this->_module->lang('th_vm_gid'));
 		$data['level'] = array(GWF_Form::INT, $poll->getLevel(), $this->_module->lang('th_vm_level'));
 		
