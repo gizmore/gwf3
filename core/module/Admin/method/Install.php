@@ -20,32 +20,32 @@ final class Admin_Install extends GWF_Method
 			return $nav.$this->onInstallAll();
 		}
 		if (false !== Common::getPost('install')) {
-			return $nav.$this->onInstallModuleSafe($this->_module, false);
+			return $nav.$this->onInstallModuleSafe(false);
 		}
 		if (false !== Common::getPost('reinstall')) {
-			return $nav.$this->onTemplateReinstall($this->_module, true);
+			return $nav.$this->onTemplateReinstall(true);
 		}
 		if (false !== Common::getPost('reinstall2')) {
-			return $nav.$this->onInstallModuleSafe($this->_module, true);
+			return $nav.$this->onInstallModuleSafe(true);
 		}
 		if (false !== Common::getPost('resetvars2')) {
 			return $nav.$this->onResetModule();
 		}
 		if (false !== Common::getPost('delete')) {
-			return $nav.$this->onTemplateReinstall($this->_module, false);
+			return $nav.$this->onTemplateReinstall(false);
 		}
 		if (false !== Common::getPost('delete2')) {
 			return $nav.$this->onDeleteModule();
 		}
 		
 		if (false !== ($modulename = Common::getGetString('module'))) {
-			return $nav.$this->onInstall($this->_module, $modulename, false);
+			return $nav.$this->onInstall($modulename, false);
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 	}
 	
-	public function formInstall(Module_Admin $module, GWF_Module $mod)
+	public function formInstall(GWF_Module $mod)
 	{
 		$data = array(
 			'modulename' => array(GWF_Form::HIDDEN, $mod->display('module_name')),
@@ -58,7 +58,7 @@ final class Admin_Install extends GWF_Method
 	
 	public function validate_modulename(Module_Admin $m, $arg) { return false; }
 	
-	public function formReInstall(Module_Admin $module, GWF_Module $mod)
+	public function formReInstall(GWF_Module $mod)
 	{
 		$data = array(
 			'modulename' => array(GWF_Form::HIDDEN, $mod->display('module_name')),
@@ -70,14 +70,14 @@ final class Admin_Install extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function onTemplateReinstall(Module_Admin $module, $dropTable)
+	public function onTemplateReinstall($dropTable)
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
 			return $this->_module->error('err_module', array(htmlspecialchars($arg)));
 		}
 		
-		$form = $this->formReInstall($this->_module, $post_module);
+		$form = $this->formReInstall($post_module);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_reinstall', array($post_module->display('module_name')), GWF_WEB_ROOT.Module_Admin::ADMIN_URL_NAME.'/install/'.$post_module->urlencode('module_name'))),
 		);
@@ -89,11 +89,11 @@ final class Admin_Install extends GWF_Method
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall($this->_module, false);
+			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
-		$form = $this->formReInstall($this->_module, $post_module);
+		$form = $this->formReInstall($post_module);
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->onTemplateReinstall($this->_module, false);
+			return $error.$this->onTemplateReinstall(false);
 		}
 		if (false === GDO::table('GWF_ModuleVar')->deleteWhere('mv_mid='.$post_module->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
@@ -101,23 +101,23 @@ final class Admin_Install extends GWF_Method
 		$post_module->loadVars();
 		return
 			$this->_module->message('msg_defaults').
-			$this->onInstall($this->_module, $post_module->getName(), false);
+			$this->onInstall($post_module->getName(), false);
 	}
 			
-	public function onInstallModuleSafe(Module_Admin $module, $dropTable)
+	public function onInstallModuleSafe($dropTable)
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall($this->_module, false);
+			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
-		$form = $this->formReInstall($this->_module, $post_module);
+		$form = $this->formReInstall($post_module);
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->onTemplateReinstall($this->_module, false);
+			return $error.$this->onTemplateReinstall(false);
 		}
-		return $this->onInstall($this->_module, $form->getVar('modulename'), $dropTable);
+		return $this->onInstall($form->getVar('modulename'), $dropTable);
 	}
 	
-	public function onInstall(Module_Admin $module, $modulename, $dropTable)
+	public function onInstall($modulename, $dropTable)
 	{
 		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
 			return GWF_HTML::err('ERR_MODULE_MISSING', array(GWF_HTML::display($modulename)));
@@ -168,23 +168,23 @@ final class Admin_Install extends GWF_Method
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall($this->_module, false);
+			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
-		$form = $this->formReInstall($this->_module, $post_module);
+		$form = $this->formReInstall($post_module);
 		if (false !== ($error = $form->validate($this->_module))) {
-			return $error.$this->onTemplateReinstall($this->_module, false);
+			return $error.$this->onTemplateReinstall(false);
 		}
 		
 		if (0 == ($mid = $post_module->getID())) {
-			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)).$this->onTemplateReinstall($this->_module, false);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)).$this->onTemplateReinstall(false);
 		}
 		
 		if (false === GDO::table('GWF_Module')->deleteWhere("module_id={$mid}")) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->onTemplateReinstall($this->_module, false);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->onTemplateReinstall(false);
 		}
 		
 		if (false === GDO::table('GWF_ModuleVar')->deleteWhere("mv_mid={$mid}")) {
-			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->onTemplateReinstall($this->_module, false);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->onTemplateReinstall(false);
 		}
 		
 		return $this->_module->message('msg_mod_del');

@@ -34,11 +34,11 @@ final class Admin_Module extends GWF_Method
 		# Enable
 		if (false !== (Common::getPost('enable')))
 		{
-			$back .= $this->onEnable($this->_module, 'enabled');
+			$back .= $this->onEnable('enabled');
 		}
 		elseif (false !== (Common::getPost('disable')))
 		{
-			$back .= $this->onEnable($this->_module, 'disabled');
+			$back .= $this->onEnable('disabled');
 		}
 		
 		# Defaults
@@ -100,7 +100,7 @@ final class Admin_Module extends GWF_Method
 		);
 		
 		# Modulevars
-		$data = array_merge($data, $this->getFormModuleVars($this->_module, $mod));
+		$data = array_merge($data, $this->getFormModuleVars($mod));
 		$data['div2'] = array(GWF_Form::DIVIDER);
 		
 		# Actions
@@ -118,7 +118,7 @@ final class Admin_Module extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormModuleVars(Module_Admin $module, GWF_Module $mod)
+	private function getFormModuleVars(GWF_Module $mod)
 	{
 		$back = array();
 		$mid = $mod->getID();
@@ -138,7 +138,7 @@ final class Admin_Module extends GWF_Method
 			}
 			$name = $var['mv_key'];
 			$getkey = sprintf('mv_%s', $name);
-			$back[$getkey] = $this->getFormModuleVar($this->_module, $mod, $name, $var);
+			$back[$getkey] = $this->getFormModuleVar($mod, $name, $var);
 		}
 		return $back;
 	}
@@ -154,13 +154,13 @@ final class Admin_Module extends GWF_Method
 			return false; 
 		} $method instanceof Admin_Install;
 		
-		return $method->formInstall($this->_module, $this->mod);
+		return $method->formInstall($this->mod);
 	}
 	
 	
-	private function getFormModuleVar(Module_Admin $module, GWF_Module $mod, $name, array $def)
+	private function getFormModuleVar(GWF_Module $mod, $name, array $def)
 	{
-		$tooltip = $this->getTooltip($this->_module, $mod, $name, $def);
+		$tooltip = $this->getTooltip($mod, $name, $def);
 		$helpkey = sprintf('cfg_%s', $name);
 		switch ($def['mv_type'])
 		{
@@ -173,7 +173,7 @@ final class Admin_Module extends GWF_Method
 		
 	}
 	
-	private function getTooltip(Module_Admin $module, GWF_Module $mod, $varname, array $var)
+	private function getTooltip(GWF_Module $mod, $varname, array $var)
 	{
 		switch($var['mv_type'])
 		{
@@ -244,7 +244,7 @@ final class Admin_Module extends GWF_Method
 		return false;
 	}
 	
-	private function updateVar(Module_Admin $module, $key, $value, array $vars, array $varsa)
+	private function updateVar($key, $value, array $vars, array $varsa)
 	{
 		$type = $varsa['mv_type'];
 		$min = $varsa['mv_min'];
@@ -318,7 +318,7 @@ final class Admin_Module extends GWF_Method
 			}
 
 			
-			if (false !== ($error = $this->updateVar($this->_module, $key, $newval, $vars, $row)))
+			if (false !== ($error = $this->updateVar($key, $newval, $vars, $row)))
 			{
 				if ($error !== '')
 				{
@@ -348,7 +348,7 @@ final class Admin_Module extends GWF_Method
 	##############
 	### Enable ###
 	##############
-	private function onEnable(Module_Admin $module, $enum)
+	private function onEnable($enum)
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS()))
 		{

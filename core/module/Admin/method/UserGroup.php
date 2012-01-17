@@ -17,16 +17,16 @@ final class Admin_UserGroup extends GWF_Method
 		$user->loadGroups();
 		
 		if (false !== Common::getPost('add_to_group')) {
-			return $this->onAddToGroup($this->_module, $user).$this->showGroups($this->_module, $user);
+			return $this->onAddToGroup($user).$this->showGroups($user);
 		}
 		
-		return $this->showGroups($this->_module, $user);
+		return $this->showGroups($user);
 	}
 
 	public function validate_groups(Module_Admin $module, $arg) { return false; }
-	public function onAddToGroup(Module_Admin $module, GWF_User $user)
+	public function onAddToGroup(GWF_User $user)
 	{
-		$form = $this->getFormAdd($this->_module, $user);
+		$form = $this->getFormAdd($user);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -51,10 +51,10 @@ final class Admin_UserGroup extends GWF_Method
 		return $this->_module->message('msg_added_to_grp', array($user->displayUsername(), $group->display('group_name')));
 	}
 	
-	public function showGroups(Module_Admin $module, GWF_User $user)
+	public function showGroups(GWF_User $user)
 	{
 		
-		$form = $this->getFormAdd($this->_module, $user);
+		$form = $this->getFormAdd($user);
 		
 		$tVars = array(
 			'form_action' => $this->getMethodHref('&uid='.$user->getID()),
@@ -65,16 +65,16 @@ final class Admin_UserGroup extends GWF_Method
 		return $this->_module->templatePHP('usergroup.php', $tVars);
 	}
 	
-	private function getFormAdd(Module_Admin $module, GWF_User $user)
+	private function getFormAdd(GWF_User $user)
 	{
 		$data = array(
-			'groups' => array(GWF_Form::SELECT, $this->getGroupSelect($this->_module, $user), $this->_module->lang('th_group_name')),
+			'groups' => array(GWF_Form::SELECT, $this->getGroupSelect($user), $this->_module->lang('th_group_name')),
 			'add_to_group' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_to_grp')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getGroupSelect(Module_Admin $module, GWF_User $user)
+	private function getGroupSelect(GWF_User $user)
 	{
 		$groups = GDO::table('GWF_Group')->selectAll('group_id, group_name');
 		$data = array();

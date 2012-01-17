@@ -20,7 +20,7 @@ final class Admin_GroupEdit extends GWF_Method
 		}
 		
 		if (false !== ($uid = Common::getGet('rem'))) {
-			return $this->_module->templateNav().$this->onRemFromGroup($this->_module, $uid).$this->templateEdit();
+			return $this->_module->templateNav().$this->onRemFromGroup($uid).$this->templateEdit();
 		}
 		if (false !== (Common::getPost('edit'))) {
 			return $this->_module->templateNav().$this->onEditGroup().$this->templateEdit();
@@ -46,7 +46,7 @@ final class Admin_GroupEdit extends GWF_Method
 	###############
 	### Selects ###
 	###############
-	public function getGroupViewSelect(Module_Admin $module, $selected, $name)
+	public function getGroupViewSelect($selected, $name)
 	{
 		$data = array(
 			array((string)0x100, $this->_module->lang('th_group_options&'.((string)0x100))),
@@ -57,7 +57,7 @@ final class Admin_GroupEdit extends GWF_Method
 		return GWF_Select::display($name, $data, $selected);
 	}
 	
-	public function getGroupInviteSelect(Module_Admin $module, $selected, $name)
+	public function getGroupInviteSelect($selected, $name)
 	{
 		$data = array(
 			array((string)0x01, $this->_module->lang('th_group_options&'.((string)0x01))),
@@ -76,8 +76,8 @@ final class Admin_GroupEdit extends GWF_Method
 		$g = $this->group;
 		$data = array(
 			'group_name' => array(GWF_Form::STRING, $g->getVar('group_name'), $this->_module->lang('th_group_name')),
-			'view' => array(GWF_Form::SELECT, $this->getGroupViewSelect($this->_module, $g->getVisibleMode(), 'view'), $this->_module->lang('th_group_sel_view')),
-			'join' => array(GWF_Form::SELECT, $this->getGroupInviteSelect($this->_module, $g->getJoinMode(), 'join'), $this->_module->lang('th_group_sel_join')),
+			'view' => array(GWF_Form::SELECT, $this->getGroupViewSelect($g->getVisibleMode(), 'view'), $this->_module->lang('th_group_sel_view')),
+			'join' => array(GWF_Form::SELECT, $this->getGroupInviteSelect($g->getJoinMode(), 'join'), $this->_module->lang('th_group_sel_join')),
 			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang', $g->getVar('group_lang')), $this->_module->lang('th_group_lang')),
 			'country' => array(GWF_Form::SELECT, GWF_CountrySelect::single('country', $g->getVar('group_country')), $this->_module->lang('th_group_country')),
 			'founder' => array(GWF_Form::STRING, $g->getFounder()->getVar('user_name'), $this->_module->lang('th_group_founder')),
@@ -159,7 +159,7 @@ final class Admin_GroupEdit extends GWF_Method
 		return $this->_module->message('msg_added_to_grp', array($user->displayUsername(), $this->group->display('group_name')));
 	}
 	
-	public function onRemFromGroup(Module_Admin $module, $uid)
+	public function onRemFromGroup($uid)
 	{
 		$uid = (int)$uid;
 		$gid = $this->group->getID();

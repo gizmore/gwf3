@@ -132,14 +132,14 @@ final class Admin_UserEdit extends GWF_Method
 		}
 		
 		$msgs = array_merge(
-			$this->onEditFlags($this->_module, 'bot', $u->isBot(), GWF_User::BOT),
-			$this->onEditFlags($this->_module, 'showemail', $u->isOptionEnabled(GWF_User::SHOW_EMAIL), GWF_User::SHOW_EMAIL),
-			$this->onEditFlags($this->_module, 'adult', $u->isOptionEnabled(GWF_User::WANTS_ADULT), GWF_User::WANTS_ADULT),
-			$this->onEditFlags($this->_module, 'online', $u->isOptionEnabled(GWF_User::HIDE_ONLINE), GWF_User::HIDE_ONLINE),
-			$this->onEditFlags($this->_module, 'approved', $u->hasValidMail(), GWF_User::MAIL_APPROVED),
-			$this->onEditDeleteFlag($this->_module, $u->isDeleted(), Common::getPost('deleted') !== false),
-			$this->onEditUsername($this->_module, $u->getVar('user_name'), $form->getVar('username')),
-			$this->onEditPassword($this->_module, $form->getVar('password'))
+			$this->onEditFlags('bot', $u->isBot(), GWF_User::BOT),
+			$this->onEditFlags('showemail', $u->isOptionEnabled(GWF_User::SHOW_EMAIL), GWF_User::SHOW_EMAIL),
+			$this->onEditFlags('adult', $u->isOptionEnabled(GWF_User::WANTS_ADULT), GWF_User::WANTS_ADULT),
+			$this->onEditFlags('online', $u->isOptionEnabled(GWF_User::HIDE_ONLINE), GWF_User::HIDE_ONLINE),
+			$this->onEditFlags('approved', $u->hasValidMail(), GWF_User::MAIL_APPROVED),
+			$this->onEditDeleteFlag($u->isDeleted(), Common::getPost('deleted') !== false),
+			$this->onEditUsername($u->getVar('user_name'), $form->getVar('username')),
+			$this->onEditPassword($form->getVar('password'))
 		);
 
 		$msgs[] = $this->_module->lang('msg_user_edited');
@@ -147,7 +147,7 @@ final class Admin_UserEdit extends GWF_Method
 		return GWF_HTML::messageA('Account', $msgs);
 	}
 	
-	private function onEditFlags(Module_Admin $module, $key, $oldFlag, $bits)
+	private function onEditFlags($key, $oldFlag, $bits)
 	{
 		$newFlag = Common::getPost($key) !== false;
 		if ($newFlag === $oldFlag) {
@@ -161,7 +161,7 @@ final class Admin_UserEdit extends GWF_Method
 		return array($this->_module->lang($key));
 	}
 	
-	private function onEditDeleteFlag(Module_Admin $module, $oldFlag, $newFlag)
+	private function onEditDeleteFlag($oldFlag, $newFlag)
 	{
 		$u = $this->user;
 		if ($oldFlag === $newFlag) {
@@ -185,7 +185,7 @@ final class Admin_UserEdit extends GWF_Method
 		return array($this->_module->lang($key));
 	}
 	
-	private function onEditUsername(Module_Admin $module, $oldName, $newName)
+	private function onEditUsername($oldName, $newName)
 	{
 		$u = $this->user;
 		if ($oldName === $newName) {
@@ -204,7 +204,7 @@ final class Admin_UserEdit extends GWF_Method
 		return array($this->_module->lang('msg_username_changed', array( GWF_HTML::display($oldName)), GWF_HTML::display($newName)));
 	}
 	
-	private function onEditPassword(Module_Admin $module, $newpass)
+	private function onEditPassword($newpass)
 	{
 		$user = $this->user;
 		

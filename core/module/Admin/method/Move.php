@@ -25,10 +25,10 @@ final class Admin_Move extends GWF_Method
 		$by = $gdo->getWhitelistedBy(Common::getGet('by', 'module_name'));
 		$dir = $gdo->getWhitelistedDir(Common::getGet('dir', 'ASC'));
 		
-		return $this->onMove($this->_module, Common::getGet('modulename'));
+		return $this->onMove(Common::getGet('modulename'));
 	}
 	
-	private function onMove(Module_Admin $module, $modulename)
+	private function onMove($modulename)
 	{
 		$modules = GWF_Module::getModules();
 		usort($modules, array(__CLASS__, 'sortByPriority'));
