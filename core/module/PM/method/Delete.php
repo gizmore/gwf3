@@ -3,11 +3,11 @@ final class PM_Delete extends GWF_Method
 {
 	public function execute()
 	{
-		return $this->onDelete($this->_module, Common::getGet('pmid'), Common::getGet('token'), Common::getGet('uid'))
+		return $this->onDelete(Common::getGet('pmid'), Common::getGet('token'), Common::getGet('uid'))
 			.$this->_module->requestMethodB('Overview');
 	}
 	
-	private function onDelete(Module_PM $module, $id, $token, $uid)
+	private function onDelete($id, $token, $uid)
 	{
 		if (false === ($pm = GWF_PM::getByID($id))) {
 			return $this->_module->error('err_pm');

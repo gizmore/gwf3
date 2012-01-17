@@ -15,10 +15,10 @@ final class PM_Trashcan extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('restore'))) {
-			return $this->onRestore($this->_module, Common::getPost('pm')).$this->trashcan();
+			return $this->onRestore(Common::getPost('pm')).$this->trashcan();
 		}
 		if (false !== ($pmid = Common::getGet('undelete'))) {
-			return $this->onRestore($this->_module, array($pmid=>'on')).$this->trashcan();
+			return $this->onRestore(array($pmid=>'on')).$this->trashcan();
 		}
 		
 		return $this->trashcan();
@@ -67,7 +67,7 @@ final class PM_Trashcan extends GWF_Method
 		return $this->_module->templatePHP('trashcan.php', $tVars);
 	}
 	
-	private function onRestore(Module_PM $module, $ids)
+	private function onRestore($ids)
 	{
 		if (!(is_array($ids))) {
 			return ''; #$this->_module->error('err_delete');

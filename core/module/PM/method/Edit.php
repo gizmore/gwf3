@@ -72,11 +72,11 @@ final class PM_Edit extends GWF_Method
 	{
 		$form = $this->getForm();
 		$errors = $form->validate($this->_module);
-		$preview = $this->templatePreview($this->_module, $form);
+		$preview = $this->templatePreview($form);
 		return $errors.$this->templateEdit($preview);
 	}
 	
-	private function templatePreview(Module_PM $module, GWF_Form $form)
+	private function templatePreview(GWF_Form $form)
 	{
 		$tVars = array(
 			'pm' => GWF_PM::fakePM($this->pm->getSender()->getID(), $this->pm->getReceiver()->getID(), $form->getVar('title'), $form->getVar('message')),

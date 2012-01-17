@@ -14,7 +14,7 @@ final class PM_Search extends GWF_Method
 //		}
 
 		if (false !== ($term = Common::getRequest('term'))) {
-			return $this->onQuickSearch($this->_module, $term);
+			return $this->onQuickSearch($term);
 		}
 		
 		if (false !== ($term = Common::getPost('search'))) {
@@ -40,7 +40,7 @@ final class PM_Search extends GWF_Method
 		return new GWF_Form($this, $data, 'get', 0);
 	}
 	
-	private function onQuickSearch(Module_PM $module, $term)
+	private function onQuickSearch($term)
 	{
 		$pms = GDO::table('GWF_PM');
 		$by = Common::getGet('by', '');

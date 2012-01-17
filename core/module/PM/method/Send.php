@@ -39,14 +39,14 @@ final class PM_Send extends GWF_Method
 		}
 		
 		if (false !== ($pmid = Common::getGet('reply'))) {
-			return $this->reply($this->_module, $pmid, false);
+			return $this->reply($pmid, false);
 		}
 		if (false !== ($pmid = Common::getGet('quote'))) {
-			return $this->reply($this->_module, $pmid, true);
+			return $this->reply($pmid, true);
 		}
 		
 		if (false !== ($username = Common::getGet('to'))) {
-			return $this->create2($this->_module, $username);
+			return $this->create2($username); # parameter username not needet: gizmore check this
 		}
 		
 		return GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'me'));
@@ -87,7 +87,7 @@ final class PM_Send extends GWF_Method
 		if ($this->rec === false)
 		{
 			$pmid = max(Common::getGetInt('reply'), Common::getGetInt('quote'));
-			if (false !== ($error = $this->sanitizePM($this->_module, $pmid))) {
+			if (false !== ($error = $this->sanitizePM($pmid))) {
 				return $error;
 			}
 		}
@@ -99,7 +99,7 @@ final class PM_Send extends GWF_Method
 	 * @var GWF_PM
 	 */
 	private $pm = false;
-	private function sanitizePM(Module_PM $module, $pmid)
+	private function sanitizePM($pmid)
 	{
 		if (false === ($this->pm = GWF_PM::getByID($pmid))) {
 			return $this->_module->error('err_pm');
@@ -137,9 +137,9 @@ final class PM_Send extends GWF_Method
 	}
 
 	
-	private function reply(Module_PM $module, $pmid)
+	private function reply($pmid)
 	{
-		if (false !== ($error = $this->sanitizePM($this->_module, $pmid))) {
+		if (false !== ($error = $this->sanitizePM($pmid))) {
 			return $error;
 		}
 		return $this->templateSend();
@@ -222,14 +222,14 @@ final class PM_Send extends GWF_Method
 		}
 		
 		$tVars = array(
-			'reply_to' => $this->pm === false ? '' : $this->templatePM($this->_module, $this->pm),
+			'reply_to' => $this->pm === false ? '' : $this->templatePM($this->pm),
 			'form' => $form->templateY($this->getSEOTitle()),
 			'preview' => $preview,
 		);
 		return $this->_module->templatePHP('send.php', $tVars);
 	}
 	
-	private function templatePM(Module_PM $module, GWF_PM $pm)
+	private function templatePM(GWF_PM $pm)
 	{
 		$tVars = array(
 			'pm' => $pm,

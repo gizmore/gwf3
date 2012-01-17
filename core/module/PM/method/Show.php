@@ -23,7 +23,7 @@ final class PM_Show extends GWF_Method
 		
 		GWF_Website::setPageTitle($this->pm->display('pm_title'));
 		
-		return $this->templateShow($this->_module, Common::getGet('translate')!==false);
+		return $this->templateShow(Common::getGet('translate')!==false);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ final class PM_Show extends GWF_Method
 		return false;
 	}
 
-	private function templateShow(Module_PM $module, $translate)
+	private function templateShow($translate)
 	{
 		$pm = $this->pm;
 		
@@ -70,12 +70,12 @@ final class PM_Show extends GWF_Method
 			'sendrec' => $pm->isRecipient() ? $sender : $receiver,
 //			'term' => $this->term,
 			'transid' => 'pm_trans_'.$pm->getID(),
-			'buttons' => $this->getButtons($this->_module, $this->pm),
+			'buttons' => $this->getButtons($this->pm),
 		);
 		return $this->_module->template('show.tpl', $tVars);
 	}
 	
-	private function getButtons(Module_PM $module, GWF_PM $pm)
+	private function getButtons(GWF_PM $pm)
 	{
 		$transid = 'pm_trans_'.$pm->getID();
 		$u = GWF_Session::getUser();

@@ -5,7 +5,7 @@ final class PM_AutoFolder extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($token = Common::getGet('token'))) {
-			return $this->autoFolderB($this->_module, $token, Common::getGet('pmid'), Common::getGet('uid'));
+			return $this->autoFolderB($token, Common::getGet('pmid'), Common::getGet('uid'));
 		}
 
 		if (!GWF_User::isLoggedIn()) {
@@ -13,12 +13,12 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (false !== ($pmid = Common::getGet('pmid'))) {
-			return $this->autoFolder($this->_module, $pmid);
+			return $this->autoFolder($pmid);
 		}
 
 	}
 	
-	public function autoFolder(Module_PM $module, $pmid)
+	public function autoFolder($pmid)
 	{
 		if (false === ($user = GWF_Session::getUser())) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
@@ -26,7 +26,7 @@ final class PM_AutoFolder extends GWF_Method
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
 			return $this->_module->error('err_pm');
 		}
-		return $this->autoFolderB($this->_module, $pm->getHashcode(), $pm->getID(), $user->getID());
+		return $this->autoFolderB($pm->getHashcode(), $pm->getID(), $user->getID());
 	}
 
 	/**
@@ -37,7 +37,7 @@ final class PM_AutoFolder extends GWF_Method
 	 * @param string $uid
 	 * @return string html
 	 */
-	public function autoFolderB(Module_PM $module, $token, $pmid, $uid)
+	public function autoFolderB($token, $pmid, $uid)
 	{
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
 			return $this->_module->error('err_pm');

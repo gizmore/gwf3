@@ -27,7 +27,7 @@ final class PM_Options extends GWF_Method
 			return $this->onIgnore().$this->templateOptions();
 		}
 		if (false !== ($username = Common::getGet('unignore'))) {
-			return $this->onUnIgnore($this->_module, $username).$this->templateOptions();
+			return $this->onUnIgnore($username).$this->templateOptions();
 		}
 		
 		if (false !== Common::getPost('change')) {
@@ -125,10 +125,10 @@ final class PM_Options extends GWF_Method
 		}
 		
 		$method instanceof PM_Ignore;
-		return $method->onIgnore($this->_module, 'do', $user->getID(), Common::getPostString('reason'));
+		return $method->onIgnore('do', $user->getID(), Common::getPostString('reason')); # gizmore: check parameter !!!
 	}
 
-	private function onUnIgnore(Module_PM $module, $username)
+	private function onUnIgnore($username)
 	{
 		if (false === ($method = $this->_module->getMethod('Ignore'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
@@ -139,7 +139,7 @@ final class PM_Options extends GWF_Method
 		}
 		
 		#$method instanceof PM_Ignore;
-		return $method->onIgnore($this->_module, 'do_not', $user->getID());
+		return $method->onIgnore('do_not', $user->getID());
 	}
 	
 	/**

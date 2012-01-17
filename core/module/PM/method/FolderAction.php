@@ -11,7 +11,7 @@ final class PM_FolderAction extends GWF_Method
 		return $back.$this->_module->requestMethodB('Overview');
 	}
 	
-	public function onDeleteFolder(Module_PM $module, $folderid)
+	public function onDeleteFolder($folderid)
 	{
 		# Permission
 		$folderid = (int) $folderid;
@@ -61,7 +61,7 @@ final class PM_FolderAction extends GWF_Method
 		$back = '';
 		foreach (Common::getPostArray('folder', array()) as $folderid => $stub)
 		{
-			$back .= $this->onDeleteFolder($this->_module, $folderid);
+			$back .= $this->onDeleteFolder($folderid);
 		}
 		return $back;
 	}

@@ -20,7 +20,7 @@ final class PM_Ignore extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($mode = Common::getGet('mode'))) {
-			return $this->onIgnore($this->_module, $mode, Common::getGetString('uid'), Common::getGetString('reason')).$this->templateIgnore();
+			return $this->onIgnore($mode, Common::getGetString('uid'), Common::getGetString('reason')).$this->templateIgnore();
 		}
 		
 		return $this->templateIgnore();
@@ -31,7 +31,7 @@ final class PM_Ignore extends GWF_Method
 		return $this->_module->requestMethodB('Overview');
 	}
 
-	public function onIgnore(Module_PM $module, $mode, $ignore_id, $reason='')
+	public function onIgnore($mode, $ignore_id, $reason='')
 	{
 		if (false === ($user = GWF_User::getByID($ignore_id))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
