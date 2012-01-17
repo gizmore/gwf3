@@ -5,7 +5,7 @@ final class Usergroups_Accept extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($token = Common::getGet('token'))) {
-			$back = $this->acceptByToken($this->_module, $token);
+			$back = $this->acceptByToken($token);
 		}
 		
 		if (!GWF_User::isLoggedIn()) {
@@ -15,7 +15,7 @@ final class Usergroups_Accept extends GWF_Method
 		return $back;
 	}
 	
-	private function acceptByToken(Module_Usergroups $module, $token)
+	private function acceptByToken($token)
 	{
 		$uid = (int) Common::getGet('uid');
 		$gid = (int) Common::getGet('gid');

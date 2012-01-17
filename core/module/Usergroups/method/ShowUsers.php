@@ -44,10 +44,10 @@ final class Usergroups_ShowUsers extends GWF_Method
 				return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 		
-		return $this->templateUsers($this->_module, $group);
+		return $this->templateUsers($group);
 	}
 	
-	private function templateUsers(Module_Usergroups $module, GWF_Group $group)
+	private function templateUsers(GWF_Group $group)
 	{
 		$users = GDO::table('GWF_User');
 		

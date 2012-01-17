@@ -35,44 +35,44 @@ final class Usergroups_Edit extends GWF_Method
 		}
 		
 		if (false !== ($array = Common::getPostArray('kick'))) {
-			return $this->onKick($this->_module, $group, $array).$this->templateEdit($group);
+			return $this->onKick($group, $array).$this->templateEdit($group);
 		}
 		
 		if (false !== ($array = Common::getPostArray('accept'))) {
-			return $this->onAccept($this->_module, $group, $array).$this->templateEdit($group);
+			return $this->onAccept($group, $array).$this->templateEdit($group);
 		}
 		
 		if (false !== ($array = Common::getPostArray('co'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::CO_LEADER, true);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::CO_LEADER, true);
 		}
 		if (false !== ($array = Common::getPostArray('unco'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::CO_LEADER, false);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::CO_LEADER, false);
 		}
 		if (false !== ($array = Common::getPostArray('mod'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::MODERATOR, true);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::MODERATOR, true);
 		}
 		if (false !== ($array = Common::getPostArray('unmod'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::MODERATOR, false);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::MODERATOR, false);
 		}
 		if (false !== ($array = Common::getPostArray('hide'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::HIDDEN, true);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::HIDDEN, true);
 		}
 		if (false !== ($array = Common::getPostArray('unhide'))) {
-			return $this->onSetPriv($this->_module, $group, $array, GWF_UserGroup::HIDDEN, false);
+			return $this->onSetPriv($group, $array, GWF_UserGroup::HIDDEN, false);
 		}
 		
 		if (false !== Common::getPost('invite')) {
-			return $this->onInvite($this->_module, $group);
+			return $this->onInvite($group);
 		}
 		
 		if (false !== Common::getPost('edit')) {
-			return $this->onEdit($this->_module, $group);
+			return $this->onEdit($group);
 		}
 		if (false !== Common::getPost('delete')) {
-			return $this->onDelete($this->_module, $group);
+			return $this->onDelete($group);
 		}
 		if (false !== Common::getPost('del_confirm')) {
-			return $this->onDeleteConfirm($this->_module, $group);
+			return $this->onDeleteConfirm($group);
 		}
 		
 		return $this->templateEdit($group);
@@ -80,8 +80,8 @@ final class Usergroups_Edit extends GWF_Method
 	
 	private function templateEdit(GWF_Group $group, $formDelete='')
 	{
-		$form = $this->getForm($this->_module, $group);
-		$form_invite = $this->getFormInvite($this->_module, $group);
+		$form = $this->getForm($group);
+		$form_invite = $this->getFormInvite($group);
 		
 		$ipp = $this->_module->cfgIPP();
 		$nUsers = $group->getVar('group_memberc');
@@ -100,13 +100,13 @@ final class Usergroups_Edit extends GWF_Method
 			'form_delete' => $formDelete,
 			'pagemenu_members' => GWF_PageMenu::display($pageM, $nPagesM, GWF_WEB_ROOT.'index.php?mo=Usergroups&me=Edit&memberpage=%PAGE%&requestpage='.$pageR),
 			'pagemenu_requests' => GWF_PageMenu::display($pageR, $nPagesR, GWF_WEB_ROOT.'index.php?mo=Usergroups&me=Edit&requestpage=%PAGE%&memberpage='.$pageM),
-			'users' => $this->getMembers($this->_module, $group),
-			'requests' => $this->getJoinRequests($this->_module, $group),
+			'users' => $this->getMembers($group),
+			'requests' => $this->getJoinRequests($group),
 		);
 		return $this->_module->templatePHP('edit.php', $tVars);
 	}
 	
-	private function getJoinRequests(Module_Usergroups $module, GWF_Group $group)
+	private function getJoinRequests(GWF_Group $group)
 	{
 		$back = array();
 		$users = GDO::table('GWF_User')->getTableName();
@@ -126,7 +126,7 @@ final class Usergroups_Edit extends GWF_Method
 		
 	}
 	
-	private function getMembers(Module_Usergroups $module, GWF_Group $group)
+	private function getMembers(GWF_Group $group)
 	{
 		$back = array();
 		$users = GDO::table('GWF_User')->getTableName();
@@ -145,7 +145,7 @@ final class Usergroups_Edit extends GWF_Method
 		return $back;
 	}
 
-	private function getFormInvite(Module_Usergroups $module, GWF_Group $group)
+	private function getFormInvite(GWF_Group $group)
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -154,7 +154,7 @@ final class Usergroups_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getForm(Module_Usergroups $module, GWF_Group $group)
+	private function getForm(GWF_Group $group)
 	{
 		$buttons = array(
 			'edit' => $this->_module->lang('btn_edit'),
@@ -171,13 +171,13 @@ final class Usergroups_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function validate_name(Module_Usergroups $module, $arg) { return $this->_module->validate_name($arg); }
-	public function validate_join(Module_Usergroups $module, $arg) { return $this->_module->validate_join($arg); }
-	public function validate_view(Module_Usergroups $module, $arg) { return $this->_module->validate_view($arg); }
+	public function validate_name($m, $arg) { return $this->_module->validate_name($m, $arg); }
+	public function validate_join($m, $arg) { return $this->_module->validate_join($m, $arg); }
+	public function validate_view($m, $arg) { return $this->_module->validate_view($m, $arg); }
 	
-	public function onEdit(Module_Usergroups $module, GWF_Group $group)
+	public function onEdit(GWF_Group $group)
 	{
-		$form = $this->getForm($this->_module, $group);
+		$form = $this->getForm($group);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors.$this->templateEdit($group);
 		}
@@ -189,7 +189,7 @@ final class Usergroups_Edit extends GWF_Method
 		$options |= isset($_POST['vis_grp']) ? GWF_Group::VISIBLE_GROUP : 0;
 		$options |= isset($_POST['vis_mem']) ? GWF_Group::VISIBLE_MEMBERS : 0;
 		
-		if (false === $this->changeGroupName($this->_module, $group, $_POST['name'])) {
+		if (false === $this->changeGroupName($group, $_POST['name'])) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
@@ -204,7 +204,7 @@ final class Usergroups_Edit extends GWF_Method
 		return $this->_module->message('msg_edited').$this->templateEdit($group);
 	}
 	
-	private function changeGroupName(Module_Usergroups $module, GWF_Group $group, $new_name)
+	private function changeGroupName(GWF_Group $group, $new_name)
 	{
 		if ($new_name === $group->getVar('group_name')) {
 			return true;
@@ -236,7 +236,7 @@ final class Usergroups_Edit extends GWF_Method
 	############
 	### Kick ###
 	############
-	public function onKick(Module_Usergroups $module, GWF_Group $group, $array)
+	public function onKick(GWF_Group $group, $array)
 	{
 		if (!(is_array($array))) { return ''; }
 //		foreach ($array as $username => $stub) { break; }
@@ -266,7 +266,7 @@ final class Usergroups_Edit extends GWF_Method
 	##############
 	### Accept ###
 	##############
-	public function onAccept(Module_Usergroups $module, GWF_Group $group, $array)
+	public function onAccept(GWF_Group $group, $array)
 	{
 		if (!(is_array($array))) { return ''; }
 		
@@ -293,10 +293,10 @@ final class Usergroups_Edit extends GWF_Method
 		return $this->_module->message('msg_accepted', array($user->displayUsername(), $group->display('group_name')));
 	}
 
-	public function validate_username(Module_Usergroups $module, $arg) { return $this->_module->validate_username($arg); }
-	public function onInvite(Module_Usergroups $module, GWF_Group $group)
+	public function validate_username($m, $arg) { return $this->_module->validate_username($m, $arg); }
+	public function onInvite(GWF_Group $group)
 	{
-		$form = $this->getFormInvite($this->_module, $group);
+		$form = $this->getFormInvite($group);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors.$this->templateEdit($group);
 		}
@@ -312,7 +312,7 @@ final class Usergroups_Edit extends GWF_Method
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($group);
 			}
 			
-			$back = $this->sendInvitePM($this->_module, $user, $group);
+			$back = $this->sendInvitePM($user, $group);
 		}
 		
 		return $back.$this->_module->message('msg_invited', array($user->displayUsername()).$this->templateEdit($group));
@@ -321,7 +321,7 @@ final class Usergroups_Edit extends GWF_Method
 	#################
 	### Invite PM ###
 	#################
-	private function getPMTitle(Module_Usergroups $module, GWF_User $user, GWF_Group $group)
+	private function getPMTitle(GWF_User $user, GWF_Group $group)
 	{
 		return $this->_module->langUser($user, 'invite_title', $group->getName());
 	}
@@ -346,17 +346,17 @@ final class Usergroups_Edit extends GWF_Method
 		return $this->_module->langUser($user, 'invite_message', $user->getVar('user_name'), $founder->getVar('user_name'), $group->getName(), $link_yes, $link_no);
 	}
 	
-	private function sendInvitePM(Module_Usergroups $module, GWF_User $user, GWF_Group $group)
+	private function sendInvitePM(GWF_User $user, GWF_Group $group)
 	{
 		if (false === ($mod_pm = GWF_Module::getModule('PM'))) {
 			return '';
-//			return $this->sendInviteEMail($this->_module, $user, $group);
+//			return $this->sendInviteEMail($user, $group);
 		}
 		
 		$mod_pm->onInclude();
 		$mod_pm->onLoadLanguage();
 		
-		$title = $this->getPMTitle($this->_module, $user, $group);
+		$title = $this->getPMTitle($user, $group);
 		$message = $this->getPMMessage($user, $group);
 		
 		$pm = GWF_PM::fakePM(GWF_Session::getUserID(), $user->getID(), $title, $message);
@@ -367,7 +367,7 @@ final class Usergroups_Edit extends GWF_Method
 		return '';
 	}
 	
-	private function onSetPriv(Module_Usergroups $module, GWF_Group $group, array $array, $flag, $bool)
+	private function onSetPriv(GWF_Group $group, array $array, $flag, $bool)
 	{
 		if (false === ($user = GWF_User::getByName(key($array)))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER').$this->templateEdit($group);
@@ -391,14 +391,14 @@ final class Usergroups_Edit extends GWF_Method
 	####################
 	### Delete Group ###
 	####################
-	public function onDelete(Module_Usergroups $module, GWF_Group $group)
+	public function onDelete(GWF_Group $group)
 	{
-		$form = $this->formDelete($this->_module, $group);
+		$form = $this->formDelete($group);
 		$formDelete = $form->templateY($this->_module->lang('ft_del_group', array($group->display('group_name'))));
 		return $this->templateEdit($group, $formDelete);
 	}
 	
-	private function formDelete(Module_Usergroups $module, GWF_Group $group)
+	private function formDelete(GWF_Group $group)
 	{
 		$data = array(
 			'del_groupname' => array(GWF_Form::STRING, '', $this->_module->lang('th_del_groupname'), $this->_module->lang('tt_del_groupname')),
@@ -415,9 +415,9 @@ final class Usergroups_Edit extends GWF_Method
 		return false;
 	}
 	
-	public function onDeleteConfirm(Module_Usergroups $module, GWF_Group $group)
+	public function onDeleteConfirm(GWF_Group $group)
 	{
-		$form = $this->formDelete($this->_module, $group);
+		$form = $this->formDelete($group);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error.$this->templateEdit($group);
 		}

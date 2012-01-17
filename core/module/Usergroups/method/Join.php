@@ -7,15 +7,15 @@ final class Usergroups_Join extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($gid = Common::getGet('deny'))) {
-			return $this->onRefuse($this->_module, $gid);
+			return $this->onRefuse($gid);
 		}
 		if (false !== ($gid = Common::getGet('gid'))) {
-			return $this->onJoin($this->_module, $gid);
+			return $this->onJoin($gid);
 		}
 		return '';
 	}
 	
-	private function onRefuse(Module_Usergroups $module, $gid)
+	private function onRefuse($gid)
 	{
 		if (false === ($group = GWF_Group::getByID($gid))) {
 			return $this->_module->error('err_unk_group');
@@ -34,7 +34,7 @@ final class Usergroups_Join extends GWF_Method
 		return $this->_module->message('msg_refused', array($group->display('group_name')));
 	}
 	
-	private function onJoin(Module_Usergroups $module, $gid)
+	private function onJoin($gid)
 	{
 		if (false === ($group = GWF_Group::getByID($gid))) {
 			return $this->_module->error('err_unk_group');
@@ -54,17 +54,17 @@ final class Usergroups_Join extends GWF_Method
 		switch($group->getJoinMode())
 		{
 			case GWF_Group::FREE:
-				return $this->onQuickJoin($this->_module, $group, $user);
+				return $this->onQuickJoin($group, $user);
 			case GWF_Group::MODERATE:
-				return $this->onRequestJoin($this->_module, $group, $user);
+				return $this->onRequestJoin($group, $user);
 			case GWF_Group::INVITE:
-				return $this->onInviteJoin($this->_module, $group, $user);
+				return $this->onInviteJoin($group, $user);
 			default:
 				return $this->_module->error('err_no_join');
 		}
 	}
 	
-	private function onQuickJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	private function onQuickJoin(GWF_Group $group, GWF_User $user)
 	{
 		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
 		{
@@ -74,7 +74,7 @@ final class Usergroups_Join extends GWF_Method
 		return $this->_module->message('msg_joined', array($group->getName()));
 	}
 		
-	private function onRequestJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	private function onRequestJoin(GWF_Group $group, GWF_User $user)
 	{
 		$userid = $user->getID();
 		$groupid = $group->getID();
@@ -91,14 +91,14 @@ final class Usergroups_Join extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false === $this->onRequestMail($this->_module, $group, $user, $request)) {
+		if (false === $this->onRequestMail($group, $user, $request)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
 		
 		return $this->_module->message('msg_requested', array($group->getName()));
 	}
 	
-	private function onRequestMail(Module_Usergroups $module, GWF_Group $group, GWF_User $user, GWF_UsergroupsInvite $request)
+	private function onRequestMail(GWF_Group $group, GWF_User $user, GWF_UsergroupsInvite $request)
 	{
 		if (false === ($leader = $group->getFounder())) {
 			return false;
@@ -122,7 +122,7 @@ final class Usergroups_Join extends GWF_Method
 		return $mail->sendToUser($leader);
 	}
 	
-	private function onInviteJoin(Module_Usergroups $module, GWF_Group $group, GWF_User $user)
+	private function onInviteJoin(GWF_Group $group, GWF_User $user)
 	{
 		if (false === ($invite = GWF_UsergroupsInvite::getInviteRow($user->getID(), $group->getID()))) {
 			return $this->_module->error('err_not_invited');
@@ -135,7 +135,7 @@ final class Usergroups_Join extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $this->onQuickJoin($this->_module, $group, $user);
+		return $this->onQuickJoin($group, $user);
 	}
 }
 ?>

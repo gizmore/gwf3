@@ -86,14 +86,14 @@ final class Usergroups_Create extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false !== ($error = $this->createBoard($this->_module, $group))) {
+		if (false !== ($error = $this->createBoard($group))) {
 			return $error;
 		}
 		
 		return $this->_module->message('msg_created');
 	}
 	
-	private function createBoard(Module_Usergroups $module, GWF_Group $group)
+	private function createBoard(GWF_Group $group)
 	{
 		$name = $group->getName();
 		

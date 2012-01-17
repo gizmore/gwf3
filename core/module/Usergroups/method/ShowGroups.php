@@ -13,7 +13,7 @@ final class Usergroups_ShowGroups extends GWF_Method
 		GWF_Module::loadModuleDB('Forum',true);
 		
 		if (false !== ($array = Common::getPost('part'))) {
-			return $this->onPart($this->_module, $array).$this->templateGroups();
+			return $this->onPart($array).$this->templateGroups();
 		}
 		return $this->templateGroups();
 	}
@@ -45,7 +45,7 @@ final class Usergroups_ShowGroups extends GWF_Method
 		return $this->_module->templatePHP('groups.php', $tVars);
 	}
 
-	private function onPart(Module_Usergroups $module, $array)
+	private function onPart($array)
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('Part Group', $error);
