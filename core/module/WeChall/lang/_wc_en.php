@@ -15,7 +15,7 @@ $lang = array(
 
 	# Country Ranking
 	'pt_csrank' => 'Country Ranking',
-	'pi_csrank' => 'The best hacker countries in the world.<br/>SpC (Score per Citizen) does take a countries population into account.<br/>Formula: SUM(score) / population * 1000.',
+	'pi_csrank' => 'The best hacker countries in the world.<br/>SpC (Score per Citizen) does take countries population into account.<br/>Formula: SUM(score) / population * 1000.',
 	'mt_csrank' => 'WeChall, Country Ranking, Global Country Ranking, Hacker, Ranking',
 	'md_csrank' => 'The best hacker countries in the world on WeChall.net',
 
@@ -34,7 +34,7 @@ $lang = array(
 	'th_quickupdate' => 'Quick Update',
 
 	# Cat Ranking
-	'pi_tagrank' => 'The best players in the category %s.<br/>Note that here all sites sum up that have some %s challenges, so it is not very representative.',
+	'pi_tagrank' => 'The best players in the category %s.<br/>Note that here all sites that have some %s challenges sum up, so it it not very representative.',
 	'pt_tagrank' => '%s ranking',
 	'mt_tagrank' => GWF_SITENAME.', %s, Ranking, %s Ranking',
 	'md_tagrank' => '%s ranking on '.GWF_SITENAME.'. Page %s of %s.',

@@ -51,7 +51,7 @@ $lang = array(
 		'</b><br/>'.
 		'Le consigliamo di salvare la sua password e cancellare questa E-Mail.<br/>'.
 		'Per ragioni di sicurezza, non dovrebbe mai lasciare la sua password in chiaro.<br/>'.
-		'Per quanto detto, su questo sito le password sono criptate.<br/>'.
+		'Per quanto detto, su questo sito le password vengono criptate.<br/>'.
 		'<br/>',
 
 		### Admin Config ###
@@ -70,14 +70,14 @@ $lang = array(
 
 		'err_birthdate' => 'La data di nascita non è valida.',
 		'err_minage' => 'Ci scusiamo, ma non ha l\'età necessaria per iscriversi al sito. Per registrarsi al sito, l\'età minima è %s anni.',
-		'err_ip_timeout' => 'Qualcuno si è recentemente iscritto al sito da questo IP. Per questioni di sicurezza, non è possibile registrare più account consecutivamente dallo stesso IP. La preghiamo di riprovare più tardi.',
+		'err_ip_timeout' => 'Qualcuno si è recentemente iscritto al sito da questo IP. Per questioni di sicurezza, non è possibile registrare più account consecutivamente dallo stesso IP. La preghiamo di attendere qualche istante e riprovare.',
 		'th_token' => 'Token',
 		'th_timestamp' => 'Ora di registrazione',
 		'th_ip' => 'Reg IP',
 		'tt_username' => 'Il nome utente deve iniziare con una lettera.'.PHP_EOL.'Può contenere solo lettere, numeri e l\'underscore e deve può avere una lunghezza compresa tra 3 e %s caratteri.',
 		'tt_email' => 'Per registrarsi è necessario un indirizzo E-Mail valido.',
 
-		'info_no_cookie' => 'Il suo Browser non supporta i cookies o non permette a '.GWF_SITENAME.' di utilizzarli, ma i cookies sono necessari per effettuare il login.',
+		'info_no_cookie' => 'Il suo Browser non supporta i cookies o non permette a '.GWF_SITENAME.' di utilizzarli, ma questi sono necessari per effettuare il login.',
 
 		# v2.01 (fixes)
 		'msg_mail_sent' => 'Un\'E-Mail con le istruzione per l\'attivazione è stata inviata al suo indirizzo.',
