@@ -67,6 +67,10 @@ final class Shadowcmd_quests extends Shadowcmd
 			{
 				$failed++;
 			}
+			else
+			{
+				$unknown++;
+			}
 		}
 		
 		
