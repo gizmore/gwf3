@@ -229,7 +229,7 @@ echo wcProfileUsergroup($u, GWF_User::isLoggedIn());
 
 GWF_Website::setPageTitle($tLang->lang('pt_profile', array($u->displayUsername())));
 GWF_Website::setMetaDescr($tLang->lang('md_profile', array($u->displayUsername())));
-GWF_Website::addMetaDescr(' '.GWF_Module::getModule('WeChall')->getMethod('API_Bot')->showGlobal($wechall, $u->getVar('user_name')));
+GWF_Website::addMetaDescr(' '.GWF_Module::getModule('WeChall')->getMethod('API_Bot')->showGlobal($u->getVar('user_name')));
 //$tags = '';
 //foreach ($regats as $regat)
 //{
