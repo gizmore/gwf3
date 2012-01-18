@@ -65,7 +65,7 @@ final class GWF_Error extends GWF_Method
 			# Log it?
 			if ($this->_module->cfgLog404())
 			{
-				GWF_Log::log('404', self::get404Message(), true);
+				GWF_Log::log('404', self::getLogMessage('404'), true);
 			}
 		}
 		elseif ($realcode === '403' && (GWF_DEBUG_EMAIL & 8))
@@ -112,6 +112,10 @@ final class GWF_Error extends GWF_Method
 		#todo
 		$referer = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
 		return sprintf('%s The page %s threw a %s error.', $referer.PHP_EOL.PHP_EOL, htmlspecialchars($_SERVER['REQUEST_URI']), $code);
+	}
+	private static function getLogMessage($code)
+	{
+		return sprintf('The page %s threw a %s error.', htmlspecialchars($_SERVER['REQUEST_URI']), $code);
 	}
 }
 ?>

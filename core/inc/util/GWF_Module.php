@@ -372,7 +372,7 @@ class GWF_Module extends GDO
 			$_GET = $get;
 			$_REQUEST = $get;
 		}
-		return $this->getMethod($methodname)->execute($this);
+		return $this->getMethod($methodname)->execute();
 	}
 }
 ?>
