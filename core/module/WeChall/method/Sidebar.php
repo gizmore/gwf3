@@ -26,7 +26,6 @@ final class WeChall_Sidebar extends GWF_Method
 
 	/**
 	 * Show the right panel, holding sites and general stuff.
-	 * @param Module_WeChall $module
 	 * @return string html
 	 */
 	public function displayRight()
@@ -72,7 +71,6 @@ final class WeChall_Sidebar extends GWF_Method
 	
 	/**
 	 * Show the left panel, holding user stuff.
-	 * @param Module_WeChall $module
 	 * @return string html
 	 */
 	public function displayLeft()

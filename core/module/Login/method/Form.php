@@ -43,7 +43,6 @@ final class Login_Form extends GWF_Method
 	}
 
 	/**
-	 * @param Module_Login $module
 	 * @return GWF_Form
 	 */
 	public function getForm()

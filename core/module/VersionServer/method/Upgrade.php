@@ -47,7 +47,6 @@ final class VersionServer_Upgrade extends GWF_Method
 	/**
 	 * Request versions of modules, kernel, etc.
 	 * This is only an indicator when you should definately update!
-	 * @param Module_VersionServer $module
 	 * @return unknown_type
 	 */
 	private function templateVersions()

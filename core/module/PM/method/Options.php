@@ -144,7 +144,6 @@ final class PM_Options extends GWF_Method
 	
 	/**
 	 * Put all your PMs into auto-folders.
-	 * @param Module_PM $module
 	 * @return string
 	 */
 	private function onAutoFolder()

@@ -144,7 +144,6 @@ final class Admin_Module extends GWF_Method
 	}
 	
 	/**
-	 * @param Module_Admin $module
 	 * @return GWF_Form
 	 */
 	private function getFormInstall()

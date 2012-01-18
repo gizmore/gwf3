@@ -234,7 +234,6 @@ final class WeChall_API_Bot extends GWF_Method
 	/**
 	 * Wechall internally bot response.
 	 * The advantage over the other method is accurate challcount.
-	 * @param Module_WeChall $module
 	 * @param string $input
 	 * @return string
 	 */

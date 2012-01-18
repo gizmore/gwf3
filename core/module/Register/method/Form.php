@@ -114,7 +114,6 @@ final class Register_Form extends GWF_Method
 	/**
 	 * Do additional checks and validation.
 	 * returns error or false.
-	 * @param Module_Register $module
 	 * @return mixed
 	 */
 	private function onRegisterB()

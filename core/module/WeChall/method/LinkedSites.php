@@ -155,7 +155,6 @@ final class WeChall_LinkedSites extends GWF_Method
 	 * First we check if username/email exists on that site.
 	 * If so, we check if emails are the same.
 	 * If not, we send some email, else we just link.
-	 * @param Module_WeChall $module
 	 * @return unknown_type
 	 */
 	private function onLinkSite()

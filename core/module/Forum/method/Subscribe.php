@@ -130,7 +130,6 @@ final class Forum_Subscribe extends GWF_Method
 	
 	/**
 	 * Unsubscribe from all threads.
-	 * @param Module_Forum $module
 	 * @param string $token
 	 * @return html
 	 */

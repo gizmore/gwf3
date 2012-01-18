@@ -31,7 +31,6 @@ final class PM_AutoFolder extends GWF_Method
 
 	/**
 	 * Call me by EMail.
-	 * @param Module_PM $module
 	 * @param string $token
 	 * @param string $pmid
 	 * @param string $uid

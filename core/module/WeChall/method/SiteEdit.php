@@ -135,7 +135,6 @@ final class WeChall_SiteEdit extends GWF_Method
 	 * Get the form to upload a logo.
 	 * I chose a separate form because logo stuff can be separated from other settings.
 	 * This prevents accidantal deletion of icons in case of pressing return (or else this button has to be last).
-	 * @param Module_WeChall $module
 	 * @param WC_Site $site
 	 * @param unknown_type $is_admin
 	 * @return unknown_type

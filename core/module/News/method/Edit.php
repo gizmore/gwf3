@@ -258,7 +258,6 @@ final class News_Edit extends GWF_Method
 	##################
 	/**
 	 * Rebuild all threads. return error message or empty string.
-	 * @param Module_News $module
 	 * @param boolean $visible
 	 * @return string
 	 */
@@ -363,7 +362,6 @@ final class News_Edit extends GWF_Method
 	}
 	
 	/** Get the news forum root.
-	 * @param Module_News $module
 	 * @return GWF_ForumBoard
 	 */
 	public function getNewsForumRoot()
@@ -379,7 +377,6 @@ final class News_Edit extends GWF_Method
 	
 	/**
 	 * Get a news lang board cached.
-	 * @param Module_News $module
 	 * @param GWF_Language $lang
 	 * @param unknown_type $pid
 	 * @return unknown_type
@@ -399,7 +396,6 @@ final class News_Edit extends GWF_Method
 	
 	/**
 	 * Get a newsboard for a language.
-	 * @param Module_News $module
 	 * @param GWF_Language $lang
 	 * @param int $pid rootid
 	 * @return GWF_ForumBoard

@@ -38,7 +38,6 @@ final class News_Preview extends GWF_Method
 	
 	/**
 	 * 
-	 * @param Module_News $module
 	 * @return GWF_Mail
 	 */
 	private function getPreviewMail()
