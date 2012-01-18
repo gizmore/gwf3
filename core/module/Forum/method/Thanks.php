@@ -36,7 +36,7 @@ final class Forum_Thanks extends GWF_Method
 			return $this->_module->error('err_thank_self');
 		}
 
-		if (false === $post->onThanks($user)) {
+		if (false === $post->onThanks($this->_module, $user)) {
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
