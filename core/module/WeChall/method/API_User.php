@@ -18,10 +18,10 @@ final class WeChall_API_User extends GWF_Method
 			die(GWF_HTML::lang('ERR_UNKNOWN_USER'));			
 		}
 		
-		die($this->showUser($this->_module, $user, Common::getGet('apikey')));
+		die($this->showUser($user, Common::getGet('apikey')));
 	}
 	
-	private function showUser(Module_WeChall $module, GWF_User $user, $api_key)
+	private function showUser(GWF_User $user, $api_key)
 	{
 		if (false !== ($error = $this->_module->isExcludedFromAPI($user, $api_key))) {
 			return $error;
@@ -57,19 +57,19 @@ final class WeChall_API_User extends GWF_Method
 		$back .= 'Totalscore:'.$user->getVar('user_level').PHP_EOL;
 		$back .= 'GlobalRank:'.WC_RegAt::calcExactRank($user).PHP_EOL;
 		$back .= 'CountryRank:'.$crank.PHP_EOL;
-		$back .= $this->contactData($this->_module, $user);
+		$back .= $this->contactData($user);
 		$back .= 'ForumPosts:'.$fopts->getVar('fopt_posts').PHP_EOL;
 		$back .= 'ForumThanks:'.$fopts->getVar('fopt_thanks').PHP_EOL;
 		$back .= 'ForumVoteUp:'.$fopts->getVar('fopt_upvotes').PHP_EOL;
 		$back .= 'ForumVoteDown:'.$fopts->getVar('fopt_downvotes').PHP_EOL;
-		$back .= $this->regatData($this->_module, $user, $regats);
+		$back .= $this->regatData($user, $regats);
 		if ($private_mode === true) {
-			$back .= $this->privateData($this->_module, $user);
+			$back .= $this->privateData($user);
 		}
 		return $back;
 	}
 	
-	private function regatData(Module_WeChall $module, GWF_User $user, array $regats)
+	private function regatData(GWF_User $user, array $regats)
 	{
 		$back = '';
 		foreach ($regats as $regat)
@@ -80,7 +80,7 @@ final class WeChall_API_User extends GWF_Method
 		return $back;
 	}
 	
-	private function contactData(Module_WeChall $module, GWF_User $user)
+	private function contactData(GWF_User $user)
 	{
 		require_once GWF_CORE_PATH.'module/Profile/GWF_Profile.php';
 		if (false === ($p = GWF_Profile::getProfile($user->getID()))) {
@@ -146,7 +146,7 @@ final class WeChall_API_User extends GWF_Method
 		return $back;
 	}
 	
-	private function privateData(Module_WeChall $module, GWF_User $user)
+	private function privateData(GWF_User $user)
 	{
 		$back = '';
 		$ulc = WC_HTML::getUnreadLinksCount($user);

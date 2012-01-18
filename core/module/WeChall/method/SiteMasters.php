@@ -19,10 +19,10 @@ final class WeChall_SiteMasters extends GWF_Method
 	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
-		return $this->masterTable($this->_module, Common::getGet('old')==='1');
+		return $this->masterTable(Common::getGet('old')==='1');
 	}
 	
-	public function masterTable(Module_WeChall $module, $old)
+	public function masterTable($old)
 	{
 		$masters = GDO::table('WC_SiteMaster');
 		$conditions = $old===true ? 'sitemas_options&1=0' : 'sitemas_options&1=1';

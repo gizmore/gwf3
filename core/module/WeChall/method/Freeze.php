@@ -17,7 +17,7 @@ final class WeChall_Freeze extends GWF_Method
 		}
 		
 		if (false !== ($data = Common::getPost('unfreeze'))) {
-			return $this->onUnFreeze($this->_module, $data).$this->templateFreeze();
+			return $this->onUnFreeze($data).$this->templateFreeze();
 		}
 		
 		return $this->templateFreeze();
@@ -143,7 +143,7 @@ final class WeChall_Freeze extends GWF_Method
 		return $this->_module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
 	}
 		
-	private function onUnFreeze(Module_WeChall $module, $data)
+	private function onUnFreeze($data)
 	{
 		if (false !== ($err = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('WeChall', $err);

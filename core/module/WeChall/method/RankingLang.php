@@ -27,21 +27,21 @@ final class WeChall_RankingLang extends GWF_Method
 		}
 		
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateRankingFor($this->_module, $lang, $username);
+			return $this->templateRankingFor($lang, $username);
 		}
 		
-		return $this->templateRanking($this->_module, $lang, GWF_Session::getUser());
+		return $this->templateRanking($lang, GWF_Session::getUser());
 	}
 	
-	private function templateRankingFor(Module_WeChall $module, GWF_Language $lang, $username)
+	private function templateRankingFor(GWF_Language $lang, $username)
 	{
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateRanking($this->_module, $lang, $user);
+		return $this->templateRanking($lang, $user);
 	}
 	
-	private function templateRanking(Module_WeChall $module, GWF_Language $lang, $user)
+	private function templateRanking(GWF_Language $lang, $user)
 	{
 		$db = gdo_db();
 		$ipp = 50;

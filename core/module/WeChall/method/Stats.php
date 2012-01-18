@@ -25,10 +25,10 @@ final class WeChall_Stats extends GWF_Method
 			return $this->onDisplay();
 		}
 		if (false !== Common::getPost('displayall')) {
-			return $this->onDisplayAll($this->_module, true);
+			return $this->onDisplayAll(true);
 		}
 		if (false !== Common::getPost('displaynone')) {
-			return $this->onDisplayAll($this->_module, false);
+			return $this->onDisplayAll(false);
 		}
 		
 		return $this->templateStats();
@@ -325,7 +325,7 @@ final class WeChall_Stats extends GWF_Method
 		return $this->onDisplay();
 	}
 	
-	private function onDisplayAll(Module_WeChall $module, $bool)
+	private function onDisplayAll($bool)
 	{
 		if ($bool === true) {
 			$_REQUEST['site'] = 'all';

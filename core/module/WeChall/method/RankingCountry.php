@@ -15,10 +15,10 @@ final class WeChall_RankingCountry extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateSingleU($this->_module, $username);
+			return $this->templateSingleU($username);
 		}
 		if (false !== ($cid = Common::getGet('cid'))) {
-			return $this->templateSingle($this->_module, $cid, GWF_Session::getUser());
+			return $this->templateSingle($cid, GWF_Session::getUser());
 		}
 		
 		GWF_Website::setPageTitle($this->_module->lang('pt_csrank'));
@@ -90,15 +90,15 @@ final class WeChall_RankingCountry extends GWF_Method
 	#############################
 	### Single Country Detail ###
 	#############################
-	private function templateSingleU(Module_WeChall $module, $username)
+	private function templateSingleU($username)
 	{
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateSingle($this->_module, $user->getCountryID(), $user);
+		return $this->templateSingle($user->getCountryID(), $user);
 	}
 	
-	private function templateSingle(Module_WeChall $module, $cid, $user)
+	private function templateSingle($cid, $user)
 	{
 		if (false === ($country = GWF_Country::getByID($cid))) {
 			return GWF_HTML::err('ERR_UNKNOWN_COUNTRY');

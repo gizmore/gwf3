@@ -23,7 +23,7 @@ final class WeChall_Challs extends GWF_Method
 		Module_WeChall::includeForums();
 		
 		if (false !== ($cid = Common::getGet('solver'))) {
-			return $this->templateSolvers($this->_module, $cid);
+			return $this->templateSolvers($cid);
 		}
 		
 		WC_HTML::$RIGHT_PANEL = WC_HTML::$LEFT_PANEL = -1;
@@ -59,7 +59,7 @@ final class WeChall_Challs extends GWF_Method
 		
 		$orderby = $challs->getMultiOrderby($by, $dir);
 		
-		$this->setPageDescr($this->_module, $for_userid, $from_userid, $tag, $count);
+		$this->setPageDescr($for_userid, $from_userid, $tag, $count);
 		
 		$tag_2 = $tag == '' ? '' : $tag.'/';
 		$tVars = array(
@@ -68,14 +68,14 @@ final class WeChall_Challs extends GWF_Method
 			'challs' => $challs->selectObjects('*', $conditions, $orderby),
 			'tags' => $show_cloud ? $this->getTags() : '',
 			'solved_bits' => $solved_bits,
-			'table_title' => $this->getTableTitle($this->_module, $for_userid, $from_userid, $tag, $count),
+			'table_title' => $this->getTableTitle($for_userid, $from_userid, $tag, $count),
 			'by' => $by,
 			'dir' => $dir,
 		);
 		return $this->_module->templatePHP('challs.php', $tVars);
 	}
 	
-	private function getTableTitle(Module_WeChall $module, $for_userid, $from_userid, $tag, $challcount)
+	private function getTableTitle($for_userid, $from_userid, $tag, $challcount)
 	{
 		$dtag = GWF_HTML::display($tag);
 		if ($for_userid != 0) {
@@ -87,11 +87,11 @@ final class WeChall_Challs extends GWF_Method
 		}
 	}
 	
-	private function setPageDescr(Module_WeChall $module, $for_userid, $from_userid, $tag, $challcount)
+	private function setPageDescr($for_userid, $from_userid, $tag, $challcount)
 	{
 		$dtag = GWF_HTML::display($tag);
 		
-		GWF_Website::setPageTitle($this->getTableTitle($this->_module, $for_userid, $from_userid, $tag, $challcount), false);
+		GWF_Website::setPageTitle($this->getTableTitle($for_userid, $from_userid, $tag, $challcount), false);
 		
 		if ($for_userid != 0) {
 			$for_user = GWF_User::getByIDOrGuest($for_userid);
@@ -130,7 +130,7 @@ final class WeChall_Challs extends GWF_Method
 	###############
 	### Solvers ###
 	###############
-	public function templateSolvers(Module_WeChall $module, $cid)
+	public function templateSolvers($cid)
 	{
 		if (false === ($chall = WC_Challenge::getByID($cid))) {
 			return $this->_module->error('err_chall');

@@ -20,10 +20,10 @@ final class WeChall_SiteHistory extends GWF_Method
 		
 		$_GET['sid'] = $site->getID();
 		
-		return $this->templateHistory($this->_module, $site);
+		return $this->templateHistory($site);
 	}
 	
-	private function templateHistory(Module_WeChall $module, WC_Site $site)
+	private function templateHistory(WC_Site $site)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		$table = GDO::table('WC_HistoryUser2');

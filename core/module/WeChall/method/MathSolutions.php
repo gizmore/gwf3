@@ -21,10 +21,10 @@ final class WeChall_MathSolutions extends GWF_Method
 			}
 		}
 		
-		return $this->templateSolutions($this->_module, $chall, $user, $length, $token);
+		return $this->templateSolutions($chall, $user, $length, $token);
 	}
 	
-	private function templateSolutions(Module_WeChall $module, WC_Challenge $chall, GWF_User $user, $length, $token)
+	private function templateSolutions(WC_Challenge $chall, GWF_User $user, $length, $token)
 	{
 		$tt = $this->_module->lang('pt_wmc_sol', array($chall->display('chall_title'), $length));
 		GWF_Website::setPageTitle($tt);

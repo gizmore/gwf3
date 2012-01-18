@@ -6,10 +6,10 @@ final class WeChall_ChallsProfile extends GWF_Method
 	
 	public function execute()
 	{
-		return $this->templateChalls($this->_module, $user);
+		return $this->templateChalls($user);
 	}
 	
-	public function templateChalls(Module_WeChall $module, GWF_User $user)
+	public function templateChalls(GWF_User $user)
 	{
 		$whitelist = array('chall_score','chall_title','chall_creator_name','chall_solvecount','chall_date','chall_dif','chall_edu','chall_fun','csolve_date', 'csolve_time_taken');
 		

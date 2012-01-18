@@ -23,13 +23,13 @@ final class WeChall_API_Bot extends GWF_Method
 		$input = trim(Common::getGetString('username', ''));
 		
 		if (false !== ($onsitename = Common::getGet('onsitename')) && false !== ($sitename = Common::getGet('sitename'))) {
-			die($this->rawOnSiteStats($this->_module, $sitename, $onsitename));
+			die($this->rawOnSiteStats($sitename, $onsitename));
 		}
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
 		if (Common::getGet('wechall') === 'yes') {
-			die($this->wechallChalls($this->_module, $input));
+			die($this->wechallChalls($input));
 		}
 		
 		if ($input === '') {
@@ -38,20 +38,20 @@ final class WeChall_API_Bot extends GWF_Method
 		}
 		
 		if (strpos($input, '!sites') === 0) {
-			$this->showSites($this->_module, $input);
+			$this->showSites($input);
 		}
 		elseif (strpos($input, '!site') === 0) {
-			$this->showSiteDetail($this->_module, $input);
+			$this->showSiteDetail($input);
 		}
 		elseif (strpos($input, '!') === 0) {
-			$this->showSite($this->_module, $input);
+			$this->showSite($input);
 		}
 		else {
-			die($this->showGlobal($this->_module, $input));
+			die($this->showGlobal($input));
 		}
 	}
 	
-	public function showGlobal(Module_WeChall $module, $input)
+	public function showGlobal($input)
 	{
 		if (false !== ($user = GWF_User::getByName($input))) {
 			$rank = WC_RegAt::calcExactRank($user);
@@ -95,7 +95,7 @@ final class WeChall_API_Bot extends GWF_Method
 		return 'Sites: '.implode(', ', $sites).'.';
 	}
 	
-	private function showSites(Module_WeChall $module, $input)
+	private function showSites($input)
 	{
 		$input = substr($input, 1);
 		$sitename = trim(Common::substrUntil($input, ' '));
@@ -155,7 +155,7 @@ final class WeChall_API_Bot extends GWF_Method
 		return $sites[$sid]->getVar('site_classname');
 	}
 	
-	private function showSite(Module_WeChall $module, $input)
+	private function showSite($input)
 	{
 		$sitename = Common::substrUntil(substr($input,1), ' ');
 		$username = Common::substrFrom($input, ' ');
@@ -238,7 +238,7 @@ final class WeChall_API_Bot extends GWF_Method
 	 * @param string $input
 	 * @return string
 	 */
-	public function wechallChalls(Module_WeChall $module, $input)
+	public function wechallChalls($input)
 	{
 		if ($input === '') {
 			return sprintf('Try wechallchalls.php?userame=blub');
@@ -283,7 +283,7 @@ final class WeChall_API_Bot extends GWF_Method
 		return $out;
 	}
 	
-	private function rawOnSiteStats(Module_WeChall $module, $sitename, $onsitename)
+	private function rawOnSiteStats($sitename, $onsitename)
 	{
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
 			return $this->_module->lang('err_site');
@@ -309,7 +309,7 @@ final class WeChall_API_Bot extends GWF_Method
 		return $msg;
 	}
 	
-	private function showSiteDetail($module, $input)
+	private function showSiteDetail($input)
 	{
 		$classname = trim(Common::substrFrom($input, ' ', ''));
 		if (false === ($site = WC_Site::getByClassName($classname))) {

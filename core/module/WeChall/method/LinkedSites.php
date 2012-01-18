@@ -23,7 +23,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
 		if (false !== ($token = Common::getGet('link'))) {
-			return $this->onLinkSiteAfterMailPre($this->_module, $token, (int)Common::getGet('site', 0));
+			return $this->onLinkSiteAfterMailPre($token, (int)Common::getGet('site', 0));
 		}
 		
 		if (!(GWF_User::isLoggedIn())) {
@@ -32,10 +32,10 @@ final class WeChall_LinkedSites extends GWF_Method
 
 		# Hide and Show
 		if (false !== ($array = Common::getPost('showname'))) {
-			return $this->onHide($this->_module, $array, 0).$this->templateSites();
+			return $this->onHide($array, 0).$this->templateSites();
 		}
 		if (false !== ($array = Common::getPost('hidename'))) {
-			return $this->onHide($this->_module, $array, 1).$this->templateSites();
+			return $this->onHide($array, 1).$this->templateSites();
 		}
 
 		# Link and UnLink
@@ -43,18 +43,18 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->onLinkSite().$this->templateSites();
 		}
 		if (false !== ($array = Common::getPost('unlink'))) {
-			return $this->onUnLinkSite($this->_module, $array).$this->templateSites();
+			return $this->onUnLinkSite($array).$this->templateSites();
 		}
 		
 		# Update
 		if (false !== ($array = Common::getPost('update'))) {
-			return $this->onUpdate($this->_module, $array).$this->templateSites();
+			return $this->onUpdate($array).$this->templateSites();
 		}
 		if (false !== (Common::getPost('update_all'))) {
 			return $this->onUpdateAll().$this->templateSites();
 		}
 		if (false !== ($siteid = Common::getGet('quick_update'))) {
-			return $this->onQuickUpdate($this->_module, $siteid);
+			return $this->onQuickUpdate($siteid);
 		}
 		
 		return $this->templateSites();
@@ -198,13 +198,13 @@ final class WeChall_LinkedSites extends GWF_Method
 		$user = GWF_Session::getUser();
 		
 		if ($onsitemail !== $user->getValidMail()) {
-			return $this->onLinkSiteMail($this->_module, $site, $user, $onsitename, $onsitemail);
+			return $this->onLinkSiteMail($site, $user, $onsitename, $onsitemail);
 		} else {
-			return $this->onLinkSiteAfterMail($this->_module, $site, $user, $onsitename);
+			return $this->onLinkSiteAfterMail($site, $user, $onsitename);
 		}
 	}
 	
-	private function onLinkSiteMail(Module_WeChall $module, WC_Site $site, GWF_User $user, $onsitename, $onsitemail)
+	private function onLinkSiteMail(WC_Site $site, GWF_User $user, $onsitename, $onsitemail)
 	{
 		$userid = $user->getID();
 		$link = Common::getAbsoluteURL(sprintf('link_site/%d/%s/to/%d/as/%s/%s', $site->getID(), $site->urlencode('site_name'), $userid, urlencode($onsitename), $site->getLinkToken($userid, $onsitename)));
@@ -219,7 +219,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		return $mail->sendToUser($user) ? $this->_module->message('msg_linkmail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
 	}
 
-	private function onLinkSiteAfterMailPre(Module_WeChall $module, $token, $siteid)
+	private function onLinkSiteAfterMailPre($token, $siteid)
 	{
 		if (false === ($site = WC_Site::getByID($siteid))) {
 			return $this->_module->error('err_site');
@@ -241,10 +241,10 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->_module->error('err_link_token');
 		}
 		
-		return $this->onLinkSiteAfterMail($this->_module, $site, $user, $onsitename);
+		return $this->onLinkSiteAfterMail($site, $user, $onsitename);
 	}
 
-	public function onLinkSiteAfterMail(Module_WeChall $module, WC_Site $site, GWF_User $user, $onsitename)
+	public function onLinkSiteAfterMail(WC_Site $site, GWF_User $user, $onsitename)
 	{
 		if (WC_Freeze::isUserFrozenOnSite($user->getID(), $site->getID())) {
 			return $this->_module->error('err_site_ban', array($site->displayName()));
@@ -299,7 +299,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	###################
 	### Hide / Show ###
 	###################
-	private function onHide(Module_WeChall $module, $array, $status)
+	private function onHide($array, $status)
 	{
 		if (!is_array($array)) {
 			return '';
@@ -325,7 +325,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	##############
 	### Unlink ###
 	##############
-	private function onUnLinkSite(Module_WeChall $module, $array)
+	private function onUnLinkSite($array)
 	{
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('WeChall', $error);
@@ -369,15 +369,15 @@ final class WeChall_LinkedSites extends GWF_Method
 	##############
 	### Update ###
 	##############
-	private function onQuickUpdate(Module_WeChall $module, $siteid)
+	private function onQuickUpdate($siteid)
 	{
 		if (false === ($site = WC_Site::getByID($siteid))) {
 			return $this->_module->error('err_site');
 		}
-		return $this->onUpdateB($this->_module, $site, GWF_Session::getUser());
+		return $this->onUpdateB($site, GWF_Session::getUser());
 	}
 	
-	private function onUpdate(Module_WeChall $module, $array)
+	private function onUpdate($array)
 	{
 		if (!is_array($array)) {
 			return '';
@@ -387,10 +387,10 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->_module->error('err_site');
 		}
 				
-		return $this->onUpdateB($this->_module, $site, GWF_Session::getUser());
+		return $this->onUpdateB($site, GWF_Session::getUser());
 	}
 	
-	private function onUpdateB(Module_WeChall $module, WC_Site $site, GWF_User $user)
+	private function onUpdateB(WC_Site $site, GWF_User $user)
 	{
 		$back = $this->_module->message('msg_updating', array($site->displayName()));
 		
@@ -415,7 +415,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		foreach ($regats as $regat)
 		{
 			$site = $regat->getSite();
-			$back .= $this->onUpdateB($this->_module, $site, $user);
+			$back .= $this->onUpdateB($site, $user);
 		}
 		
 		return $back;

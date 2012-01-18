@@ -24,30 +24,30 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		
 		if (false !== Common::getPost('add_sitemin')) {
-			return $this->onAddSitemin($this->_module, $site, $is_admin).$this->templateEdit($this->_module, $site, $is_admin);
+			return $this->onAddSitemin($site, $is_admin).$this->templateEdit($site, $is_admin);
 		}
 		if (false !== Common::getPost('rem_sitemin')) {
-			return $this->onRemSitemin($this->_module, $site, $is_admin).$this->templateEdit($this->_module, $site, $is_admin);
+			return $this->onRemSitemin($site, $is_admin).$this->templateEdit($site, $is_admin);
 		}
 		
 		if (false !== Common::getPost('rem_logo')) {
-			return $this->onRemLogo($this->_module, $site, $is_admin).$this->templateEdit($this->_module, $site, $is_admin);
+			return $this->onRemLogo($site, $is_admin).$this->templateEdit($site, $is_admin);
 		}
 		if (false !== Common::getPost('set_logo')) {
-			return $this->onSetLogo($this->_module, $site, $is_admin).$this->templateEdit($this->_module, $site, $is_admin);
+			return $this->onSetLogo($site, $is_admin).$this->templateEdit($site, $is_admin);
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module, $site, $is_admin).$this->templateEdit($this->_module, $site, $is_admin);
+			return $this->onEdit($site, $is_admin).$this->templateEdit($site, $is_admin);
 		}
-		return $this->templateEdit($this->_module, $site, $is_admin);
+		return $this->templateEdit($site, $is_admin);
 	}
 	
-	public function templateEdit(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function templateEdit(WC_Site $site, $is_admin)
 	{
-		$form = $this->getForm($this->_module, $site, $is_admin);
-		$form_logo = $this->getFormLogo($this->_module, $site, $is_admin);
-		$form_sitemin = $this->getFormSiteAdmin($this->_module, $site, $is_admin);
+		$form = $this->getForm($site, $is_admin);
+		$form_logo = $this->getFormLogo($site, $is_admin);
+		$form_sitemin = $this->getFormSiteAdmin($site, $is_admin);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_site', array($site->displayName()))),
 			'href_update_all' => $this->_module->hrefDDOS($site->getVar('site_id')),
@@ -59,7 +59,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		return $this->_module->templatePHP('site_edit.php', $tVars);
 	}
 
-	public function getForm(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function getForm(WC_Site $site, $is_admin)
 	{
 		$data = array();
 		
@@ -140,7 +140,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	 * @param unknown_type $is_admin
 	 * @return unknown_type
 	 */
-	public function getFormLogo(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function getFormLogo(WC_Site $site, $is_admin)
 	{
 		$data = array();
 		$buttons = array();
@@ -154,7 +154,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function getFormSiteAdmin(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function getFormSiteAdmin(WC_Site $site, $is_admin)
 	{
 		$data = array(
 			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
@@ -167,14 +167,14 @@ final class WeChall_SiteEdit extends GWF_Method
 	####################
 	### Logo Actions ###
 	####################
-	public function onRemLogo(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function onRemLogo(WC_Site $site, $is_admin)
 	{
 		$site->saveOption(WC_Site::HAS_LOGO, false);
 	}
 	
-	public function onSetLogo(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function onSetLogo(WC_Site $site, $is_admin)
 	{
-		$form = $this->getFormLogo($this->_module, $site, $is_admin);
+		$form = $this->getFormLogo($site, $is_admin);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -244,9 +244,9 @@ final class WeChall_SiteEdit extends GWF_Method
 	##############
 	### OnEdit ###
 	##############
-	public function onEdit(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function onEdit(WC_Site $site, $is_admin)
 	{
-		$form = $this->getForm($this->_module, $site, $is_admin);
+		$form = $this->getForm($site, $is_admin);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -322,9 +322,9 @@ final class WeChall_SiteEdit extends GWF_Method
 	##################
 	### Site Admin ###
 	##################
-	public function onAddSitemin(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function onAddSitemin(WC_Site $site, $is_admin)
 	{
-		$form = $this->getFormSiteAdmin($this->_module, $site, $is_admin);
+		$form = $this->getFormSiteAdmin($site, $is_admin);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}
@@ -345,9 +345,9 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 	}
 
-	public function onRemSitemin(Module_WeChall $module, WC_Site $site, $is_admin)
+	public function onRemSitemin(WC_Site $site, $is_admin)
 	{
-		$form = $this->getFormSiteAdmin($this->_module, $site, $is_admin);
+		$form = $this->getFormSiteAdmin($site, $is_admin);
 		if (false !== ($errors = $form->validate($this->_module))) {
 			return $errors;
 		}

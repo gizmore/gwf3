@@ -14,7 +14,7 @@ final class WeChall_API_Site extends GWF_Method
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
 			die($this->_module->lang('err_site'));
 		}
-		die($this->showSite($this->_module, $site));
+		die($this->showSite($site));
 	}
 	
 	private function showAllSites()
@@ -26,12 +26,12 @@ final class WeChall_API_Site extends GWF_Method
 		$back = '';
 		foreach ($sites as $site)
 		{
-			$back .= $this->showSite($this->_module, $site);
+			$back .= $this->showSite($site);
 		}
 		return $back;
 	}
 
-	private function showSite(Module_WeChall $module, WC_Site $site)
+	private function showSite(WC_Site $site)
 	{
 		# Sitename::Classname::Status::
 		# URL::ProfileURL::

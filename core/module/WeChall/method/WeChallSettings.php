@@ -33,7 +33,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		}
 		
 		if (false !== ($sid = Common::getPost('quickjump'))) {
-			return $this->onQuickjump($this->_module, $sid);
+			return $this->onQuickjump($sid);
 		}
 		
 		if (false !== Common::getPost('set_settings')) {
@@ -41,11 +41,11 @@ final class WeChall_WeChallSettings extends GWF_Method
 		}
 		
 		if (false !== ($cat = Common::getGetString('remcat', false))) {
-			return $this->onRemFavCat($this->_module, $cat).$this->templateFavSites();
+			return $this->onRemFavCat($cat).$this->templateFavSites();
 		}
 		
 		if (false !== ($sid = Common::getGet('remove'))) {
-			return $this->onRemoveFavorite($this->_module, $sid).$this->templateFavSites();
+			return $this->onRemoveFavorite($sid).$this->templateFavSites();
 		}
 		
 		return
@@ -58,8 +58,8 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function templateFavSites()
 	{
 		$userid = GWF_Session::getUserID();
-		$form = $this->getForm($this->_module, $userid);
-		$form_favcat = $this->getFormFavcat($this->_module, $userid);
+		$form = $this->getForm($userid);
+		$form_favcat = $this->getFormFavcat($userid);
 		$tVars = array(
 			'form' => $form->templateX($this->_module->lang('ft_favsites')),
 			'favsites' => WC_SiteFavorites::getFavoriteSites($userid),
@@ -71,25 +71,25 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return $this->_module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings();
 	}
 
-	private function getForm(Module_WeChall $module, $userid)
+	private function getForm($userid)
 	{
 		$data = array(
-			'favsite' => array(GWF_Form::SELECT, $this->getSelect($this->_module, $userid), $this->_module->lang('th_sel_favsite')), 
+			'favsite' => array(GWF_Form::SELECT, $this->getSelect($userid), $this->_module->lang('th_sel_favsite')), 
 			'add_fav' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_favsite')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormFavcat(Module_WeChall $module, $userid)
+	private function getFormFavcat($userid)
 	{
 		$data = array(
-			'favcat' => array(GWF_Form::SELECT, $this->getFavcatSelect($this->_module, $userid), $this->_module->lang('th_cat')),
+			'favcat' => array(GWF_Form::SELECT, $this->getFavcatSelect($userid), $this->_module->lang('th_cat')),
 			'add_favcat' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_favcat')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFavcatSelect(Module_WeChall $module, $userid)
+	private function getFavcatSelect($userid)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteCats.php';
 		if (false === ($cats = WC_SiteCats::getAllCats())) {
@@ -104,7 +104,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return GWF_Select::display('favcat', $data, '0');
 	}
 	
-	private function getSelect(Module_WeChall $module, $userid)
+	private function getSelect($userid)
 	{
 		$data = array(array('0', $this->_module->lang('th_sel_favsite')));
 		$sites = WC_SiteFavorites::getNonFavoriteSites($userid);
@@ -127,7 +127,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function onMarkFavorite()
 	{
 		$userid = GWF_Session::getUserID();
-		$form = $this->getForm($this->_module, $userid);
+		$form = $this->getForm($userid);
 		if (false !== ($err = $form->validate($this->_module))) {
 			return $err;
 		}
@@ -137,7 +137,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return $this->_module->message('msg_marked_fav', array($this->site->displayName()));
 	}
 
-	private function onRemoveFavorite(Module_WeChall $module, $sid)
+	private function onRemoveFavorite($sid)
 	{
 		if (false === ($site = WC_Site::getByID($sid))) {
 			return $this->_module->error('err_site');
@@ -150,7 +150,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return $this->_module->message('msg_unmarked_fav', array($site->displayName()));
 	}
 	
-	private function onQuickjump(Module_WeChall $module, $sid)
+	private function onQuickjump($sid)
 	{
 		if (false === ($url = Common::getPost('favsites'))) {
 			return $this->_module->error('err_site');
@@ -313,7 +313,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function onAddFavCat()
 	{
 		$userid = GWF_Session::getUserID();
-		$form = $this->getFormFavcat($this->_module, $userid);
+		$form = $this->getFormFavcat($userid);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -326,7 +326,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		return $this->_module->message('msg_add_favcat', array(htmlspecialchars($cat)));
 	}
 	
-	private function onRemFavCat(Module_WeChall $module, $cat)
+	private function onRemFavCat($cat)
 	{
 		$userid = GWF_Session::getUserID();
 		if (false === (WC_FavCats::removeFavCat($userid, $cat))) {

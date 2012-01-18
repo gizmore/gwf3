@@ -21,13 +21,13 @@ final class WeChall_ChallVotes extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		
 		if (false !== (Common::getPost('vote'))) {
-			return $this->onVote($this->_module, $chall).$this->templateVotes($this->_module, $chall);
+			return $this->onVote($chall).$this->templateVotes($chall);
 		}
 		
-		return $this->templateVotes($this->_module, $chall);
+		return $this->templateVotes($chall);
 	}
 
-	public function templateVotes(Module_WeChall $module, WC_Challenge $chall)
+	public function templateVotes(WC_Challenge $chall)
 	{
 		$user = GWF_User::getStaticOrGuest();
 		$userid = $user->getID();
@@ -36,7 +36,7 @@ final class WeChall_ChallVotes extends GWF_Method
 
 		Module_WeChall::includeForums();
 		
-		$form_vote = $this->getFormVote($this->_module, $chall, $has_solved, $userid);
+		$form_vote = $this->getFormVote($chall, $has_solved, $userid);
 		
 		$tVars = array(
 			'chall' => $chall,
@@ -46,7 +46,7 @@ final class WeChall_ChallVotes extends GWF_Method
 		return $this->_module->templatePHP('chall_votes.php', $tVars);
 	}
 	
-	private function getFormVote(Module_WeChall $module, WC_Challenge $chall, $has_solved, $userid)
+	private function getFormVote(WC_Challenge $chall, $has_solved, $userid)
 	{
 		$fun = $edu = $dif = 0;
 		if ($has_solved)
@@ -74,7 +74,7 @@ final class WeChall_ChallVotes extends GWF_Method
 	public function validate_dif(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'dif', $arg, 0, 10, true); }
 	public function validate_edu(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'edu', $arg, 0, 10, true); }
 	public function validate_fun(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'fun', $arg, 0, 10, true); }
-	public function onVote(Module_WeChall $module, WC_Challenge $chall)
+	public function onVote(WC_Challenge $chall)
 	{
 		if ('0' === ($userid = GWF_Session::getUserID())) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
@@ -84,7 +84,7 @@ final class WeChall_ChallVotes extends GWF_Method
 			return $this->_module->error('err_chall_vote');
 		}
 		
-		$form = $this->getFormVote($this->_module, $chall, false, $userid);
+		$form = $this->getFormVote($chall, false, $userid);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

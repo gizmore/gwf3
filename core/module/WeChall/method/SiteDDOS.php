@@ -14,10 +14,10 @@ final class WeChall_SiteDDOS extends GWF_Method
 			return $this->_module->error('err_site');
 		}
 		
-		return $this->templateDDOS($this->_module, $site);
+		return $this->templateDDOS($site);
 	}
 	
-	private function templateDDOS(Module_WeChall $module, WC_Site $site)
+	private function templateDDOS(WC_Site $site)
 	{
 //		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		

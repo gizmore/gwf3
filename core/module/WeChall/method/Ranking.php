@@ -17,21 +17,21 @@ final class WeChall_Ranking extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($username = Common::getGet('username'))) {
-			return $this->templateRankingU($this->_module, $username);
+			return $this->templateRankingU($username);
 		}
 		
-		return $this->templateRanking($this->_module, GWF_Session::getUser());
+		return $this->templateRanking(GWF_Session::getUser());
 	}
 	
-	private function templateRankingU(Module_WeChall $module, $username)
+	private function templateRankingU($username)
 	{
 		if (false === ($user = GWF_User::getByName($username))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		return $this->templateRanking($this->_module, $user);
+		return $this->templateRanking($user);
 	}
 	
-	private function templateRanking(Module_WeChall $module, $user)
+	private function templateRanking($user)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		$users = GDO::table('GWF_User');

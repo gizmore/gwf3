@@ -50,12 +50,12 @@ final class WeChall_GraphUser extends GWF_Method
 		
 		if ('totalscore' === ($type = Common::getGet('type')))
 		{
-			return $this->graphUserLevel($this->_module, 'userhist_totalscore');
+			return $this->graphUserLevel('userhist_totalscore');
 		}
 		
 		if ('rank' === ($type = Common::getGet('type')))
 		{
-			return $this->graphUserLevel($this->_module, 'userhist_rank');
+			return $this->graphUserLevel('userhist_rank');
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
@@ -66,7 +66,7 @@ final class WeChall_GraphUser extends GWF_Method
 		die($msg);
 	}
 	
-	private function graphUserLevel(Module_WeChall $module, $type)
+	private function graphUserLevel($type)
 	{
 		$dir = dirname(GWF_JPGRAPH_PATH).'/';
 		require_once $dir.'jpgraph.php';

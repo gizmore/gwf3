@@ -44,16 +44,16 @@ final class WeChall_SiteDescr extends GWF_Method
 	private function templateDescr()
 	{
 		$descr = WC_SiteDescr::getDescriptions($this->site->getID());
-		$form_new = $this->getFormNew($this->_module, $descr);
+		$form_new = $this->getFormNew($descr);
 		$tVars = array(
 			'descrs' => $descr,
-			'forms_edit' => $this->getFormsEdit($this->_module, $descr),
+			'forms_edit' => $this->getFormsEdit($descr),
 			'form_new' => $form_new->templateY($this->_module->lang('ft_add_descr')),
 		);
 		return $this->_module->templatePHP('site_edit_descr.php', $tVars);
 	}
 	
-	private function getFormNew(Module_WeChall $module, array $descr)
+	private function getFormNew(array $descr)
 	{
 		$data = array(
 			'langid' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langid', Common::getPostInt('langid')), $this->_module->lang('th_site_language')),
@@ -63,20 +63,20 @@ final class WeChall_SiteDescr extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function getFormsEdit(Module_WeChall $module, array $descr)
+	private function getFormsEdit(array $descr)
 	{
 		unset($_POST['descr']);
 		$back = array();
 		foreach ($descr as $langid => $desc)
 		{
 			$langname = GWF_Language::getByID($langid)->getVar('lang_name');
-			$form = $this->getFormEdit($this->_module, $langid, $desc);
+			$form = $this->getFormEdit($langid, $desc);
 			$back[] = $form->templateY($this->_module->lang('ft_edit_descr', array($langname)));
 		}
 		return $back;
 	}
 	
-	private function getFormEdit(Module_WeChall $module, $langid, $desc)
+	private function getFormEdit($langid, $desc)
 	{
 		$buttons = array(
 			'edit['.$langid.']' => $this->_module->lang('btn_edit'),
@@ -104,7 +104,7 @@ final class WeChall_SiteDescr extends GWF_Method
 	private function onAdd()
 	{
 		$descr = WC_SiteDescr::getDescriptions($this->site->getID());
-		$form = $this->getFormNew($this->_module, $descr);
+		$form = $this->getFormNew($descr);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -140,7 +140,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		if (false === ($langid = $this->getPostLangID('edit'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
 		}
-		$form = $this->getFormEdit($this->_module, $langid, '');
+		$form = $this->getFormEdit($langid, '');
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -157,7 +157,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		if (false === ($langid = $this->getPostLangID('delete'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
 		}
-		$form = $this->getFormEdit($this->_module, $langid, '');
+		$form = $this->getFormEdit($langid, '');
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -176,7 +176,7 @@ final class WeChall_SiteDescr extends GWF_Method
 		if (false === ($langid = $this->getPostLangID('default'))) {
 			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
 		}
-		$form = $this->getFormEdit($this->_module, $langid, '');
+		$form = $this->getFormEdit($langid, '');
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}

@@ -17,10 +17,10 @@ final class WeChall_SiteDetails extends GWF_Method
 			return $this->_module->error('err_site');
 		}
 		
-		return $this->templateSiteDetail($this->_module, $site);
+		return $this->templateSiteDetail($site);
 	}
 	
-	public function templateSiteDetail(Module_WeChall $module, WC_Site $site)
+	public function templateSiteDetail(WC_Site $site)
 	{
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_RegAt.php');
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php');

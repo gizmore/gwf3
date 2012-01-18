@@ -50,7 +50,7 @@ final class WeChall_Sites extends GWF_Method
 			$tag = '';
 		}
 		
-		$this->setPageDescription($this->_module, $tag);
+		$this->setPageDescription($tag);
 		
 		$status_query = $this->getStatusQuery();
 		$lang_query = $this->getLangQuery();
@@ -90,7 +90,7 @@ final class WeChall_Sites extends GWF_Method
 		return Common::clamp(intval(Common::getGetInt('which', 1)), 1, 5);
 	}
 	
-	private function setPageDescription(Module_WeChall $module, $tag)
+	private function setPageDescription($tag)
 	{
 		$which = (string) $this->getWhich();
 		if ($tag !== '') {

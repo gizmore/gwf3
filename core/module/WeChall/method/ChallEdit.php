@@ -19,19 +19,19 @@ final class WeChall_ChallEdit extends GWF_Method
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
-			return $this->onEdit($this->_module, $chall).$this->templateEdit($this->_module, $chall);
+			return $this->onEdit($chall).$this->templateEdit($chall);
 		}
 		if (false !== Common::getPost('reset')) {
-			return $this->onReset($this->_module, $chall).$this->templateEdit($this->_module, $chall);
+			return $this->onReset($chall).$this->templateEdit($chall);
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($this->_module, $chall);
+			return $this->onDelete($chall);
 		}
 		
-		return $this->templateEdit($this->_module, $chall);
+		return $this->templateEdit($chall);
 	}
 	
-	private function getForm(Module_WeChall $module, WC_Challenge $chall)
+	private function getForm(WC_Challenge $chall)
 	{
 		$buttons = array(
 			'edit' => $this->_module->lang('btn_edit'),
@@ -51,18 +51,18 @@ final class WeChall_ChallEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	private function templateEdit(Module_WeChall $module, WC_Challenge $chall)
+	private function templateEdit(WC_Challenge $chall)
 	{
-		$form = $this->getForm($this->_module, $chall);
+		$form = $this->getForm($chall);
 		$tVars = array(
 			'form' => $form->templateY($this->_module->lang('ft_edit_chall')),
 		);
 		return $this->_module->templatePHP('chall_edit.php', $tVars);
 	}
 
-	private function onEdit(Module_WeChall $module, WC_Challenge $chall)
+	private function onEdit(WC_Challenge $chall)
 	{
-		$form = $this->getForm($this->_module, $chall);
+		$form = $this->getForm($chall);
 		if (false !== ($error = $form->validate($this->_module))) {
 			return $error;
 		}
@@ -133,7 +133,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		return $msgs.$this->_module->message('msg_chall_edited');
 	}
 
-	private function onDelete(Module_WeChall $module, WC_Challenge $chall)
+	private function onDelete(WC_Challenge $chall)
 	{
 		if (false === $chall->onDelete()) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -184,7 +184,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		return $back === '' ? false : $m->lang('err_chall_creator', array(substr($back, 2)));
 	}
 	
-	private function onReset(Module_WeChall $module, WC_Challenge $chall)
+	private function onReset(WC_Challenge $chall)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		

@@ -15,10 +15,10 @@ final class WeChall_HistoryText extends GWF_Method
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		return $this->templateHistory($this->_module, $user);
+		return $this->templateHistory($user);
 	}
 
-	private function templateHistory(GWF_Module $module, GWF_User $user)
+	private function templateHistory(GWF_User $user)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';

@@ -21,7 +21,7 @@ final class WeChall_SolvedBy extends GWF_Method
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$tVars = array(
-			'users' => $this->getSolvers($this->_module, $chall, $from, $ipp),
+			'users' => $this->getSolvers($chall, $from, $ipp),
 			'chall' => $chall,
 			'sort_url' => '',
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'challenge_solvers_for/'.$chall->getVar('chall_id').'/'.$chall->urlencode('chall_title').'/page-%PAGE%'),
@@ -29,7 +29,7 @@ final class WeChall_SolvedBy extends GWF_Method
 		return $this->_module->templatePHP('chall_solvers.php', $tVars);
 	}
 
-	public function getSolvers(GWF_Module $module, WC_Challenge $chall, $from, $ipp)
+	public function getSolvers(WC_Challenge $chall, $from, $ipp)
 	{
 		$db = gdo_db();
 		$cid = $chall->getID();

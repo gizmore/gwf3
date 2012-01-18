@@ -48,7 +48,7 @@ final class WeChall_SiteRankings extends GWF_Method
 		GWF_Website::setMetaDescr($this->_module->lang('md_site_ranking', $args));
 		
 		$tVars = array(
-			'userdata' => $this->getRankedUsers($this->_module, $site, $from, $ipp),
+			'userdata' => $this->getRankedUsers($site, $from, $ipp),
 			'site' => $site,
 			'sites' => $site->getSimilarSites(),
 			'site_quickjump' => $this->_module->templateSiteQuickjumpRanking(),
@@ -59,7 +59,7 @@ final class WeChall_SiteRankings extends GWF_Method
 		return $this->_module->templatePHP('site_ranking.php', $tVars);
 	}
 	
-//	private function getRankedUsersOLD(Module_WeChall $module, WC_Site $site, $from, $ipp)
+//	private function getRankedUsersOLD(WC_Site $site, $from, $ipp)
 //	{
 //		$db = gdo_db();
 //		$regat = GDO::table('WC_RegAt')->getTableName();
@@ -73,7 +73,7 @@ final class WeChall_SiteRankings extends GWF_Method
 //		return $result;
 //	}
 //	
-//	private function getRankedUsersOLD2(Module_WeChall $module, WC_Site $site, $from, $ipp)
+//	private function getRankedUsersOLD2(WC_Site $site, $from, $ipp)
 //	{
 //		$db = gdo_db();
 //		$sid1 = $site->getVar('site_id');
@@ -111,7 +111,7 @@ final class WeChall_SiteRankings extends GWF_Method
 //		return $back;
 //	}
 
-	private function getRankedUsers(Module_WeChall $module, WC_Site $site, $from, $ipp)
+	private function getRankedUsers(WC_Site $site, $from, $ipp)
 	{
 		$db = gdo_db();
 		$sid = $site->getVar('site_id');

@@ -168,7 +168,7 @@ final class WeChall_RankingTag extends GWF_Method
 		return (int) $result['c'];
 	}
 
-	private function getTagSelect(GWF_Module $module)
+	private function getTagSelect()
 	{
 		$db = gdo_db();
 		$cats = GWF_TABLE_PREFIX.'wc_sitecat';

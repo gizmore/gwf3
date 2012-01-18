@@ -14,10 +14,10 @@ final class WeChall_GraphSite extends GWF_Method
 	{
 		GWF3::setConfig('store_last_url', false);
 		
-		return $this->graph($this->_module, Common::getGet('site'), Common::getGet('type'));
+		return $this->graph(Common::getGet('site'), Common::getGet('type'));
 	}
 	
-	private function graph(Module_WeChall $module, $sitename, $type)
+	private function graph($sitename, $type)
 	{
 		if (false === ($site = WC_Site::getByName($sitename))) {
 			return $this->_module->error('err_site');
@@ -33,10 +33,10 @@ final class WeChall_GraphSite extends GWF_Method
 		require_once $dir.'jpgraph_line.php';
 		require_once $dir.'jpgraph_plotline.php';
 		
-		return $this->graphB($this->_module, $site, $type);
+		return $this->graphB($site, $type);
 	}
 	
-	private function graphB(Module_WeChall $module, WC_Site $site, $field)
+	private function graphB(WC_Site $site, $field)
 	{
 		$graphtitle = $this->_module->lang('gt_site_'.$field, array($site->getVar('site_name')));
 		$siteid = $site->getID();
