@@ -22,7 +22,7 @@ final class Comments_Moderate extends GWF_Method
 			return $this->onDelete($cmt_id);
 		}
 		
-		return GWF_HTML::err('ERR_PARAMETER', array());
+		return GWF_HTML::err('ERR_PARAMETER', array('cmt_id', __FILE__, __LINE__));
 	}
 	
 	private function sanitize($cmt_id)
