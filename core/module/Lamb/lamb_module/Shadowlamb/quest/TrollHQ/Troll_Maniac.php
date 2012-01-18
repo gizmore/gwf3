@@ -38,10 +38,10 @@ final class Quest_Troll_Maniac extends SR_Quest
 		$have_elven = $this->giveQuesties($player, $npc, 'ElvenShield', $data['E'], self::NEED_ELVEN);
 		$have_kevlar = $this->giveQuesties($player, $npc, 'KevlarShield', $data['K'], self::NEED_KEVLAR);
 
-                $data['S'] = $have_small;
+		$data['S'] = $have_small;
 		$data['L'] = $have_large;
-                $data['E'] = $have_elven;
-                $data['K'] = $have_kevlar;
+		$data['E'] = $have_elven;
+		$data['K'] = $have_kevlar;
 
 		$this->saveQuestData($data);
 		

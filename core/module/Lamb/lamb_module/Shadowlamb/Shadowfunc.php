@@ -917,7 +917,7 @@ final class Shadowfunc
 		{
 			return false;
 		}
-		shuffle($data); # Probably gives better random results with borked rand() sequences.
+#		shuffle($data); # Probably gives better random results?
 		$rand -= $chance_none;
 		foreach ($data as $d)
 		{

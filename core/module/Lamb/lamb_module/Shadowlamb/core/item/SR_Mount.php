@@ -139,10 +139,13 @@ abstract class SR_Mount extends SR_Equipment
 			return false;
 		}
 		
-		$this->onHijackAttempt($player);
-		
-		$eta = $this->calcHijackTime($player);
-		return $party->pushAction(SR_Party::ACTION_HIJACK, $this->getOwner()->getName().' at '.$loc, $eta);
+		if (false === $this->onHijackAttempt($player))
+		{
+			$eta = $this->calcHijackTime($player);
+			$party->pushAction(SR_Party::ACTION_HIJACK, $this->getOwner()->getName().' at '.$loc, $eta);
+		}
+
+		return true;
 	}
 	
 	private function onHijackAttempt(SR_Player $player)
@@ -169,11 +172,12 @@ abstract class SR_Mount extends SR_Equipment
 		{
 			if ($this->onHijackPolizia($player))
 			{
-				return; # Polizia!
+				return true; # Polizia!
 			}
 			$player->message(sprintf('You failed to crack the lock on %s\'s %s.', $this->getOwner()->getName(), $this->getName()));
 // 			$this->hijackBy($player, $eta);
 		}
+		return false;
 	}
 	
 	/**

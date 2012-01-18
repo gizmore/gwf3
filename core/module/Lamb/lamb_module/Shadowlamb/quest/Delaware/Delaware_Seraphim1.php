@@ -52,6 +52,11 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 	
 	public function onConvince(Delaware_Doctor $npc, SR_Player $player)
 	{
+		if ($this->isConvinced($player))
+		{
+			return $npc->reply('You already convinced me.');
+		}
+		
 		$key = 'DLW_DOC_HAND';
 		$nuyen = $player->getNuyen();
 		$price = $this->getRewardNuyen();
