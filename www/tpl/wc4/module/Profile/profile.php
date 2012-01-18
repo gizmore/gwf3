@@ -214,11 +214,11 @@ if (WC_Challenge::getScoreForUser($u) > 0)
 	# Profile Challs
 	$method = $wechall->getMethod('ChallsProfile');
 	$method instanceof WeChall_ChallsProfile;
-	echo $method->templateChalls($wechall, $u);
+	echo $method->templateChalls($u);
 	# Created By
 	$method = $wechall->getMethod('Challs');
 	$method instanceof WeChall_Challs;
-	echo $method->templateChalls($wechall, false, $u->getID(), '', '', '', false, false);
+	echo $method->templateChalls(false, $u->getID(), '', '', '', false, false);
 }
 
 # Guestbook
