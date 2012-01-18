@@ -114,7 +114,7 @@ final class VersionServer_Purchase extends GWF_Method
 		return $this->_module->template('order.tpl', $tVars);
 	}
 	
-	private function onZip(GWF_Module $module)
+	private function onZip()
 	{
 		$client = GWF_Client::getClient(GWF_Session::getUserID());
 		
@@ -135,7 +135,7 @@ final class VersionServer_Purchase extends GWF_Method
 		
 	}
 	
-	private function onOrder(GWF_Module $module)
+	private function onOrder()
 	{
 		// Check for Payment, as it`s not a required dependency.
 		
