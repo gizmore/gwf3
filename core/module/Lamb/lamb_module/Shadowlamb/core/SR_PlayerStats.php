@@ -45,15 +45,18 @@ final class SR_PlayerStats extends GDO
 		$stats = new self(array(
 			'sr4ps_pid' => $player->getID(),
 			# Items
-			'sr4ps_i_loot' => 0,
-			'sr4ps_i_sell' => 0,
-			'sr4ps_i_buy' => 0,
-			'sr4ps_i_drop' => 0,
-			'sr4ps_i_give' => 0,
-			'sr4ps_i_receive' => 0,
+			'sr4ps_i_looted' => 0,
+			'sr4ps_i_sold' => 0,
+			'sr4ps_i_bought' => 0,
+			'sr4ps_i_dropped' => 0,
+			'sr4ps_i_given' => 0,
+			'sr4ps_i_received' => 0,
 			# Nuyen
 			'sr4ps_ny_loot' => 0,
 			'sr4ps_ny_spent' => 0,
+			'sr4ps_ny_income' => 0,
+			'sr4ps_ny_given' => 0,
+			'sr4ps_ny_received' => 0,
 			# Kills
 			'sr4ps_kill_mob' => 0,
 			'sr4ps_kill_npc' => 0,

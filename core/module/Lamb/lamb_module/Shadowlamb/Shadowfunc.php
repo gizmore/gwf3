@@ -266,9 +266,9 @@ final class Shadowfunc
 	##############
 	### Quests ###
 	##############
-	public static function getQuests(SR_Player $player, $section)
+	public static function getQuestsBySection(SR_Player $player, $section)
 	{
-		if (false === ($quests = SR_Quest::getQuests($player, $section))) {
+		if (false === ($quests = SR_Quest::getQuestsBySection($player, $section))) {
 			return false;
 		}
 		$i = 1;

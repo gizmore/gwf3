@@ -5,6 +5,7 @@ class SR_Quest extends GDO
 	### Statistic ###
 	#################
 	private static $TOTAL_QUESTS = 0;
+	private static $quests = array();
 	public static function getTotalQuestCount() { return self::$TOTAL_QUESTS; }
 	
 	####################
@@ -48,6 +49,7 @@ class SR_Quest extends GDO
 	### Quest ###
 	#############
 // 	public function getAllQuests(SR_Player $player) { return self::table(__CLASS__)->selectAll('')}
+	public static function getQuests() { return self::$quests; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
 	public function getName() { return $this->getVar('sr4qu_name'); }
 	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
@@ -149,6 +151,11 @@ class SR_Quest extends GDO
 	public static function includeQuest($entry, $fullpath)
 	{
 		require_once $fullpath;
+
+		$classname = 'Quest_'.substr($entry,0,-4);
+		$quest = new $classname();
+		self::$quests[strtolower($quest->getQuestName())] = $quest;
+
 		self::$TOTAL_QUESTS++;
 	}
 	
@@ -183,7 +190,7 @@ class SR_Quest extends GDO
 		return new $classname($row);
 	}
 	
-	public static function getQuests(SR_Player $player, $section)
+	public static function getQuestsBySection(SR_Player $player, $section)
 	{
 		if (!isset(self::$QUEST_FLAGS[$section])) {
 			return false;
@@ -248,9 +255,26 @@ class SR_Quest extends GDO
 		return self::table(__CLASS__)->deleteWhere('sr4qu_uid='.$player->getID());
 	}
 	
+	public static function optionsToString($opts)
+	{
+		$a = array();
+		if ( $opts & self::ACCEPTED ) { $a[] = 'ACCEPTED'; }
+		if ( $opts & self::REJECTED ) { $a[] = 'REJECTED'; }
+		if ( $opts & self::DONE ) { $a[] = 'DONE'; }
+		if ( $opts & self::FAILED ) { $a[] = 'FAILED'; }
+		if ( $opts & self::ABORTED ) { $a[] = 'ABORTED'; }
+		if ( $opts & self::PARTY_QUEST ) { $a[] = 'PARTY_QUEST'; }
+		return implode('|',$a);
+	}
+	
 	##################
 	### Quest Data ###
 	##################
+	public function getQuestDataBare()
+	{
+		return $this->getVar('sr4qu_data');
+	}
+
 	public function getQuestData()
 	{
 		if (NULL === ($data = $this->getVar('sr4qu_data')))

@@ -36,8 +36,7 @@ final class Delaware_Goblin extends SR_NPC
 		$quest = SR_Quest::getQuest($player, 'Delaware_DallasJ2');
 		if ($quest->isInQuest($player))
 		{
-			$quest->increase('sr4qu_amount', 1);
-			$player->message(sprintf('Now you killed %d goblins for Mr.Johnson.', $quest->getAmount()));
+			$quest->onKill($player);
 		}
 		return array();
 	}

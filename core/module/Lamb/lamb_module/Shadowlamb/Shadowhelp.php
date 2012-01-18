@@ -250,6 +250,7 @@ final class Shadowhelp
 						'gml' => "GM command. Usage: #gml <username> <city> <location>. Teleport a party to a location.",
 						'gmm' => "GM command. Usage: #gmm <the message>. Send a hyperglobal message to all Shadowlamb channels.",
 						'gmn' => "GM command. Usage: #gmn <the message>. Send a hyperglobal message to all Shadowlamb players.",
+						'gmq' => "GM command. Usage: #gmq <username> <quest> [amount|data] [<value>]. Get or set quest information.",
 						'gms' => "GM command. Usage: #gms <player>. Print a lot of status of a player.",
 						'gmsp' => "GM command. Usage: #gmsp <player> <spell> <level>. Adjust the spell for a player.",
 						'gmt' => "GM command. Usage: #gmt <username> <enemy,enemy,...>. Attack a party with enemies for debugging purposes.",

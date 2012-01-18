@@ -1,5 +1,5 @@
 <?php
-final class Quest_Chicago_RazorBaarkeeper1 extends SR_Quest
+class Quest_Chicago_RazorBaarkeeper1 extends SR_Quest
 {
 	public function getQuestName() { return 'Bummer'; }
 	public function getNeededAmount() { return 20; }
@@ -30,5 +30,10 @@ final class Quest_Chicago_RazorBaarkeeper1 extends SR_Quest
 		return true;
 	}
 	
+}
+
+# Compensate for spelling mistake as long as db contains the misspelled name
+final class Quest_Chicago_RazorBarkeeper1 extends Quest_Chicago_RazorBaarkeeper1
+{
 }
 ?>

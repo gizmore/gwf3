@@ -2,7 +2,7 @@
 final class Quest_Delaware_DallasJ2 extends SR_Quest
 {
 	public function getQuestName() { return 'Goblins'; }
-	public function getQuestDescription() { return sprintf('Kill %d of %d Delaware goblins and return to Mr.Johnson in the Delaware_Dallas.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return sprintf('Kill %d / %d Delaware goblins and return to Mr.Johnson in the Delaware_Dallas.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 3; }
 	public function getRewardNuyen() { return 1500; }
 	public function getNeededAmount() { return 10; }
@@ -42,6 +42,12 @@ final class Quest_Delaware_DallasJ2 extends SR_Quest
 				break;
 		}
 		return true;
+	}
+
+	public function onKill(SR_Player $player)
+	{
+		$this->increase('sr4qu_amount', 1);
+		$player->message(sprintf('Now you killed %d of %d goblins for Mr.Johnson.', $this->getAmount(), $this->getNeededAmount()));
 	}
 }
 ?>
