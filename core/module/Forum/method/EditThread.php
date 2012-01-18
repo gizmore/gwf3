@@ -95,10 +95,10 @@ final class Forum_EditThread extends GWF_Method
 		
 		if ($t->getBoardID() !== ($bid = $form->getVar('move'))) {
 //			var_dump($bid);
-			return $this->onMove($this->_module, $t, GWF_ForumBoard::getBoard($bid));
+			return $this->onMove($t, GWF_ForumBoard::getBoard($bid));
 		}
 		else if ($t->getID() !== ($tid = $form->getVar('merge'))) {
-			return $this->onMerge($this->_module, $t, GWF_ForumThread::getThread($tid));
+			return $this->onMerge($t, GWF_ForumThread::getThread($tid));
 		}
 		
 		return $this->_module->message('msg_edited_thread');
@@ -122,7 +122,7 @@ final class Forum_EditThread extends GWF_Method
 		return $this->_module->message('msg_thread_deleted');
 	}
 	
-	private function onMove(Module_Forum $module, GWF_ForumThread $t, GWF_ForumBoard $b)
+	private function onMove(GWF_ForumThread $t, GWF_ForumBoard $b)
 	{
 //		if (false === ($b->isThreadAllowed())) {
 //			$_POST['move'] = $t->getBoardID();
@@ -146,7 +146,7 @@ final class Forum_EditThread extends GWF_Method
 		return $this->_module->message('msg_thread_moved', array($t->display('thread_title'), $b->display('board_title')));
 	}
 
-	private function onMerge(Module_Forum $module, GWF_ForumThread $first, GWF_ForumThread $last)
+	private function onMerge(GWF_ForumThread $first, GWF_ForumThread $last)
 	{
 		// Delete thread
 		if (false === $last->delete()) {

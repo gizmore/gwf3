@@ -26,10 +26,10 @@ final class Forum_GetAttach extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
-		return $this->templateAttach($this->_module, $attach, $post, $user);
+		return $this->templateAttach($attach, $post, $user);
 	}
 	
-	private function templateAttach(Module_Forum $module, GWF_ForumAttachment $attach, GWF_ForumPost $post, $user)
+	private function templateAttach(GWF_ForumAttachment $attach, GWF_ForumPost $post, $user)
 	{
 		$path = $attach->dbimgPath();
 		$mime = $attach->getVar('fatt_mime');

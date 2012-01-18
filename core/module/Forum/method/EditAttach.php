@@ -86,7 +86,7 @@ final class Forum_EditAttach extends GWF_Method
 		# Re-Upload
 		if ( (false !== ($file = $form->getVar('file'))) & ($file['size'] !== 0) )
 		{
-			if (false !== ($error = $this->unReUpload($this->_module, $file, $this->attach))) {
+			if (false !== ($error = $this->unReUpload($file, $this->attach))) {
 				return $error;
 			} 
 			$prepend = $this->_module->message('msg_reupload');
@@ -99,7 +99,7 @@ final class Forum_EditAttach extends GWF_Method
 		return $prepend.$this->_module->message('msg_attach_edited',  array($this->post->getShowHREF()));
 	}
 
-	private function unReUpload(Module_Forum $module, array $file, GWF_ForumAttachment $attach)
+	private function unReUpload(array $file, GWF_ForumAttachment $attach)
 	{
 		$temp = $file['tmp_name'];
 		$target = $attach->dbimgPath();

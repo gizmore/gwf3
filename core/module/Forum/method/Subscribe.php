@@ -26,7 +26,7 @@ final class Forum_Subscribe extends GWF_Method
 	{
 		# Not sane ext_all
 		if (false !== ($token = Common::getGet('ext_all'))) {
-			return $this->onUnSubscribeExtAll($this->_module, $token);
+			return $this->onUnSubscribeExtAll($token);
 		}
 		
 		# Sanitize
@@ -36,7 +36,7 @@ final class Forum_Subscribe extends GWF_Method
 		
 		# Sane guest: ext_thread
 		if (false !== ($token = Common::getGet('ext_thread'))) {
-			return $this->onUnSubscribeExtThread($this->_module, $token);
+			return $this->onUnSubscribeExtThread($token);
 		}
 		
 		# Login Below here
@@ -134,7 +134,7 @@ final class Forum_Subscribe extends GWF_Method
 	 * @param string $token
 	 * @return html
 	 */
-	private function onUnSubscribeExtAll(Module_Forum $module, $token)
+	private function onUnSubscribeExtAll($token)
 	{
 		if (false === ($this->checkExternalToken($token))) {
 			return $this->_module->error('err_token');
@@ -151,7 +151,7 @@ final class Forum_Subscribe extends GWF_Method
 		return $this->_module->message('msg_unsub_all', array(GWF_WEB_ROOT.'forum'));
 	}
 	
-	private function onUnSubscribeExtThread(Module_Forum $module, $token)
+	private function onUnSubscribeExtThread($token)
 	{
 		if (false === ($this->checkExternalToken($token))) {
 			return $this->_module->error('err_token');

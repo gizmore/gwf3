@@ -25,7 +25,7 @@ final class Forum_Options extends GWF_Method
 		$user = GWF_Session::getUser();
 		$row = GWF_ForumOptions::getUserOptions($user);
 		$data = array(
-			'subscr' => array(GWF_Form::SELECT, $row->getSubscrSelect($this->_module, 'subscr'), $this->_module->lang('th_subscr')),
+			'subscr' => array(GWF_Form::SELECT, $row->getSubscrSelect('subscr'), $this->_module->lang('th_subscr')),
 			'hide_subscr' => array(GWF_Form::CHECKBOX, $row->isSubscrHidden(), $this->_module->lang('th_hide_subscr')),
 			'signature' => array(GWF_Form::MESSAGE, $row->getVar('fopt_signature'), $this->_module->lang('th_sig')),
 			'change' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_change'), ''),

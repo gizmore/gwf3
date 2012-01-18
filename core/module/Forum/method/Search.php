@@ -21,10 +21,10 @@ final class Forum_Search extends GWF_Method
 		$this->pagemenu = '';
 		$this->sortURL = '';
 		if (false !== Common::getPost('qsearch')) {
-			return $this->onQuickSearch($this->_module, Common::getPost('term'));
+			return $this->onQuickSearch(Common::getPost('term'));
 		}
 		if (false !== ($term = Common::getGet('term'))) {
-			return $this->onQuickSearch($this->_module, $term);
+			return $this->onQuickSearch($term);
 		}
 		return $this->templateSearch();
 	}
@@ -58,7 +58,7 @@ final class Forum_Search extends GWF_Method
 	##############
 	### Search ###
 	##############
-	public function onQuickSearch(Module_Forum $module, $term)
+	public function onQuickSearch($term)
 	{
 		$posts = GDO::table('GWF_ForumPost');
 		$fields = $posts->getSearchableFields(GWF_User::getStaticOrGuest());

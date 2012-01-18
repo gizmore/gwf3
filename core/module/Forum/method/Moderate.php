@@ -14,23 +14,23 @@ final class Forum_Moderate extends GWF_Method
 		}
 		
 		if (false !== ($tid = Common::getGet('yes_thread'))) {
-			return $this->approveThread($this->_module, $tid, $token);
+			return $this->approveThread($tid, $token);
 		}
 		if (false !== ($tid = Common::getGet('no_thread'))) {
-			return $this->deleteThread($this->_module, $tid, $token);
+			return $this->deleteThread($tid, $token);
 		}
 		
 		if (false !== ($pid = Common::getGet('yes_post'))) {
-			return $this->approvePost($this->_module, $pid, $token);
+			return $this->approvePost($pid, $token);
 		}
 		if (false !== ($pid = Common::getGet('no_post'))) {
-			return $this->deletePost($this->_module, $pid, $token);
+			return $this->deletePost($pid, $token);
 		}
 		
 		return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 	}
 	
-	private function approveThread(Module_Forum $module, $tid, $token)
+	private function approveThread($tid, $token)
 	{
 		if (false === ($thread = GWF_ForumThread::getThread($tid))) {
 			return $this->_module->error('err_thread');
@@ -61,7 +61,7 @@ final class Forum_Moderate extends GWF_Method
 		return $this->_module->message('msg_thread_shown');
 	}
 	
-	private function deleteThread(Module_Forum $module, $tid, $token)
+	private function deleteThread($tid, $token)
 	{
 		if (false === ($thread = GWF_ForumThread::getThread($tid))) {
 			return $this->_module->error('err_thread');
@@ -77,7 +77,7 @@ final class Forum_Moderate extends GWF_Method
 		return $this->_module->message('msg_thread_deleted');
 	}
 	
-	private function approvePost(Module_Forum $module, $pid, $token)
+	private function approvePost($pid, $token)
 	{
 		if (false === ($post = GWF_ForumPost::getPost($pid))) {
 			return $this->_module->error('err_post');
@@ -95,7 +95,7 @@ final class Forum_Moderate extends GWF_Method
 		return $this->_module->message('msg_post_shown');
 	}
 
-	private function deletePost(Module_Forum $module, $pid, $token)
+	private function deletePost($pid, $token)
 	{
 		if (false === ($post = GWF_ForumPost::getPost($pid))) {
 			return $this->_module->error('err_post');

@@ -12,11 +12,11 @@ final class Forum_SubscribeBoard extends GWF_Method
 	{
 		if (false !== ($bid = Common::getGetInt('subscribe', false)))
 		{
-			return $this->onSubscribe($this->_module, $bid);
+			return $this->onSubscribe($bid);
 		}
 		elseif (false !== ($bid = Common::getGetInt('unsubscribe', false)))
 		{
-			return $this->onUnSubscribe($this->_module, $bid);
+			return $this->onUnSubscribe($bid);
 		}
 		else
 		{
@@ -26,7 +26,7 @@ final class Forum_SubscribeBoard extends GWF_Method
 	
 	private $board;
 	
-	private function sanitize(Module_Forum $module, $boardid)
+	private function sanitize($boardid)
 	{
 		if (false === ($this->board = GWF_ForumBoard::getBoard($boardid)))
 		{
@@ -41,9 +41,9 @@ final class Forum_SubscribeBoard extends GWF_Method
 		return false;
 	}
 	
-	private function onSubscribe(Module_Forum $module, $boardid)
+	private function onSubscribe($boardid)
 	{
-		if (false !== ($error = $this->sanitize($this->_module, $boardid)))
+		if (false !== ($error = $this->sanitize($boardid)))
 		{
 			return $error;
 		}
@@ -58,9 +58,9 @@ final class Forum_SubscribeBoard extends GWF_Method
 		return $this->_module->message('msg_subscrboard', array($href));
 	}
 
-	private function onUnSubscribe(Module_Forum $module, $boardid)
+	private function onUnSubscribe($boardid)
 	{
-		if (false !== ($error = $this->sanitize($this->_module, $boardid)))
+		if (false !== ($error = $this->sanitize($boardid)))
 		{
 			return $error;
 		}
