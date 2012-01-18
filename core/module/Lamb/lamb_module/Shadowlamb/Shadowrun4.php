@@ -47,6 +47,7 @@ final class Shadowrun4
 	private static $parties = array();
 	private static $players = array();
 	
+	public static function getCities() { return self::$cities; }
 	public static function getParties() { return self::$parties; }
 	public static function getPlayers() { return self::$players; }
 	public static function getCityCount() { return count(self::$cities); }

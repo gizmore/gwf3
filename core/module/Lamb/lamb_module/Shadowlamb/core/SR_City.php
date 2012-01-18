@@ -9,6 +9,8 @@ abstract class SR_City
 	
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }
+	public function getNPCs() { return $this->npcs; }
+	public function getLocations() { return $this->locations; }
 	public function getSquareKM() { return sqrt(count($this->locations) * 2) + 1; }
 	public function getRespawnLocation(SR_Player $player) { return 'Redmond_Hotel'; }
 	public function onEvents(SR_Party $party) { return false; }

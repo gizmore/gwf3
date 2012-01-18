@@ -23,8 +23,6 @@ final class Shadowcmd_mount extends Shadowcmd
 		if (0 === ($cnt = count($args)))
 		{
 			return self::on_show_page($player, 1);
-			return false;
-// 			return self::on_show($player, $args);
 		}
 		
 		$command = array_shift($args);
@@ -186,36 +184,41 @@ final class Shadowcmd_mount extends Shadowcmd
 			return false;
 		}
 		
-		# Is room in mount?
-//		$iw = $item->getItemWeightStacked();
-		$iw = $item->getItemWeight() * $amt;
-		$we = $mount->calcMountWeight();
-		if ( ($iw + $we) > $max )
-		{
-			$bot->reply(sprintf('The %s(%s) is too heavy to store in your %s(%s/%s)', $item->getName(), Shadowfunc::displayWeight($iw), $mount->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max)));
-			return false;
-		}
-		
-		# Equipped?
-		if ($item->isEquipped($player))
-		{
-			$player->unequip($item);
-			$player->removeFromInventory($item);
-			$player->putInMountInv($item);
-			$stored = 1;
-		}
-		
-		# A stackable?
-		elseif ($item->isItemStackable())
+		# Make sure we have enough items in invemtory.
+		# N.B.: $have_amt/$items2 is used later on!
+		if ($item->isItemStackable())
 		{
 			$have_amt = $item->getAmount();
-			# Split item
 			if ($amt > $have_amt)
 			{
 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
-				
+		}
+		else
+		{
+			$items2 = $player->getInvItems($item->getItemName(), $amt);
+			if (count($items2) < $amt)
+			{
+				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+				return false;
+			}
+		}
+
+		# Is room in mount?
+		$iw = $item->getItemWeight() * $amt;
+		$we = $mount->calcMountWeight();
+		if ( ($iw + $we) > $max )
+		{
+			$bot->reply(sprintf('Your %s(%s/%s) has no room for %d of your %s (%s).', $mount->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max), $amt, $item->getName(), Shadowfunc::displayWeight($iw)));
+			return false;
+		}
+		
+		# A stackable?
+		if ($item->isItemStackable())
+		{
+//			$have_amt = $item->getAmount();
+
 			$item->useAmount($player, $amt);
 			$item2 = SR_Item::createByName($item->getItemName(), $amt, true);
 			$item2->saveVar('sr4it_uid', $player->getID());
@@ -226,13 +229,8 @@ final class Shadowcmd_mount extends Shadowcmd
 		# Not stackable
 		else
 		{
-			$items2 = $player->getInvItems($item->getItemName(), $amt);
-			if (count($items2) < $amt)
-			{
-				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
-				return false;
-			}
-				
+//			$items2 = $player->getInvItems($item->getItemName(), $amt);
+
 			$stored = 0;
 			foreach ($items2 as $item2)
 			{
