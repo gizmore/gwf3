@@ -3,7 +3,7 @@ final class Quest_Chicago_BlackSmith1 extends SR_Quest
 {
 	public function getQuestName() { return 'Blades'; }
 	public function getNeededAmount() { return 4; }
-	public function getQuestDescription() { return sprintf('Bring %d/%d NinjaSwords to the Chicago Blakcksmith.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return sprintf('Bring %d/%d NinjaSwords to the Chicago Blacksmith.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 4; }
 	public function getRewardNuyen() { return 0; }
 	
@@ -39,7 +39,7 @@ final class Quest_Chicago_BlackSmith1 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply(sprintf("Chummer i propose you a deal. Bring me %d NinjaSwords and i will #break all items for free for you.", $this->getNeededAmount()));
+				$npc->reply(sprintf("Chummer, I propose you a deal. Bring me %d NinjaSwords and i will #break all items for free for you.", $this->getNeededAmount()));
 				break;
 			case 'confirm':
 				$npc->reply("What do you say?");
