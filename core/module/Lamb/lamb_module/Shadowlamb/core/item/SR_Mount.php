@@ -90,7 +90,7 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		if ($player->getMountInvItemCount() > 0)
 		{
-			$player->message('Your mount has to be empty to change it. Try #mount unload.');
+			$player->message('Your mount has to be empty to change it. Try #mount clean.');
 			return false;
 		}
 		return parent::onItemEquip($player);
@@ -100,7 +100,7 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		if ($player->getMountInvItemCount() > 0)
 		{
-			$player->message('Your mount has to be empty to change it. Try #mount unload.');
+			$player->message('Your mount has to be empty to change it. Try #mount clean.');
 			return false;
 		}
 		return parent::onItemUnequip($player);

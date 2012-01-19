@@ -287,7 +287,7 @@ final class Shadowhelp
 						'party' => 'Player command. Usage. #(p)arty. View your party status.',
 						'inventory' => 'Player command. Usage: #(i)nventory [<page|search>] <[page]>. View or search your inventory. See',
 						array(
-							'compare' => 'Player command. Usage: #(c)o(mp)are <item1: inv_id|S<store_id>|item_name> [<item2:inv_id|S<store_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
+							'compare' => 'Player command. Usage: #(c)o(mp)are <item1: inv_id|S_<store_id>|item_name> [<item2:inv_id|S_<store_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
 							'swap' => 'Player command. Usage: #(sw)ap <item1> <item2>.  Will swap inventory item position',
 							'sort' => 'Use the swap command to sort your inventory.',
 						),
