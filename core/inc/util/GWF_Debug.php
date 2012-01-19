@@ -25,15 +25,18 @@ final class GWF_Debug
 {
 	private static $die = true;
 	private static $enabled = false;
+	private static $MAIL_ON_ERROR = true;
 	################
 	### Settings ###
 	################
 	public static function setDieOnError($bool=true)
 	{
-		if (is_bool($bool))
-		{
-			self::$die = $bool;
-		}
+		self::$die = $bool;
+	}
+	
+	public static function setMailOnError($bool=true)
+	{
+		self::$MAIL_ON_ERROR = $bool;
 	}
 	
 	public static function disableErrorHandler()
@@ -180,7 +183,7 @@ final class GWF_Debug
 		}
 		
 		# Send error to admin
-		if (GWF_DEBUG_EMAIL & 2)
+		if (self::$MAIL_ON_ERROR)
 		{
 			if (true === isset($_SERVER['REQUEST_URI']))
 			{

@@ -125,6 +125,7 @@ class GWF3
 		if (true === $config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
+			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
 			
 		if (false === $config['no_session'])

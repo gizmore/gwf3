@@ -44,7 +44,12 @@ foreach ($ex as $i => $e) { $ex[$i] = htmlspecialchars($url.$e); }
 echo GWF_Box::box($chall->lang('info', array(GWF_Message::display('[PH'.'P]'.$code.PHP_EOL.$code2.'[/PH'.'P]'), '../solution.php', $showsrc1, $showsrc2, $ex[0], $ex[1], $ex[2])), $chall->lang('title'));
 
 # Execute the code, using eval.
+GWF_Debug::setDieOnError(false);
+GWF_Debug::setMailOnError(false);
 eval($code.$code_emulate_pnb); # eval the first line
+GWF_Debug::setMailOnError(true);
+GWF_Debug::setDieOnError(true);
+
 echo '<div class="box">'.PHP_EOL;
 echo '<div class="box_t">'.$chall->lang('example_title').' ('.htmlspecialchars($filename).')'.'</div>'.PHP_EOL;
 echo '<div class="box_c">'.PHP_EOL;
