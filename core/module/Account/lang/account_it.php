@@ -132,8 +132,8 @@ $lang = array(
 		'pi_accrm' =>
 		'Sembra che lei voglia cancellare il suo account da '.GWF_SITENAME.'.<br/>'.
 		'Ci dispiace che abbia deciso ciò, ma sappia che il suo account non verrà cancellato, sarà solo disabilitato.<br/>'.
-		'Tutti i link a questo nome utenti, ai profile, etc... diventeranno inutilizzabili o sostituiti con account di default. Questa operazione è irreversibile.<br/>'.
-		'Prima di procedere con la cancellazione del suo account, può lasciarci una nota con le ragioni che l\'hanno condotta all\'eliminazione del suo account.<br/>',
+		'Tutti i link a questo nome utente, al profilo, etc... diventeranno inutilizzabili o verranno sostituiti con account di default. Questa operazione è irreversibile.<br/>'.
+		'Prima di procedere con la cancellazione del suo account, può lasciarci una nota con le ragioni che l\'hanno portata a cancellare il suo account.<br/>',
 		'th_accrm_note' => 'Nota',
 		'btn_accrm' => 'Cancella account',
 		'msg_accrm' => 'Il suo account è stato contrassegnato come cancellato e tutti i riferimenti ad esso sono stati eliminati.<br/>Siete stato disconnesso.',

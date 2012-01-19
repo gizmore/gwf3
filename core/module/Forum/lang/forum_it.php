@@ -92,11 +92,11 @@ $lang = array(
 		'th_board_title' => 'Titolo della sezione',
 		'th_board_descr' => 'Descrizione della sezione',
 		'th_subscr' => 'Sottoscrizione E-Mail',
-		'th_sig' => 'Firma da mostrare',
+		'th_sig' => 'Firma da visualizzare',
 		'th_guests' => 'Autorizza post da utenti non registrati (Guest)',
 		'th_google' => 'Non includere Google/Translate Javascript',
 		'th_firstposter' => 'Creatore',
-		'th_lastposter' => 'Replica di',
+		'th_lastposter' => 'Ultima replica',
 		'th_firstdate' => 'Primo post',
 		'th_lastdate' => 'Ultimo post',
 		'th_post_date' => 'Data del post',
@@ -303,7 +303,7 @@ $lang = array(
 
 		# v2.10 subscribers
 		'subscribers' => '%s utenti hanno sottoscritto il thread e ricevo le E-Mail di notifica.',
-		'th_hide_subscr' => 'Nascondere le sottoscrizioni al pubblico?',
+		'th_hide_subscr' => 'Nascondere le sottoscrizioni agli altri utenti?',
 
 		# v2.11 fixes11
 		'txt_lastpost' => 'Vai al tuo ultimo post',

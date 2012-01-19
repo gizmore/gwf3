@@ -28,7 +28,7 @@ $lang = array(
 	'voted' => 'voted',
 	'vmview_never' => 'Never',
 	'vmview_voted' => 'After vote',
-	'vmview_allways' => 'Allways',
+	'vmview_allways' => 'Always',
 
 	'th_date' => 'Date',
 	'th_votes' => 'Votes',

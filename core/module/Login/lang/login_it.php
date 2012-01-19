@@ -44,7 +44,7 @@ $lang = array(
 		'cfg_lf_cleanup_t' => 'Resetta i tentativi errati dopo un certo periodo di tempo?',
 
 		# v2.00 (login history)
-		'msg_last_login' => 'Il suo ultimo login risale a %s da %s (%s).<br/>Può anche <a href="%s">ripercorrere la cronologia dei sui accessi qui</a>.',
+		'msg_last_login' => 'Il suo ultimo login risale a %s da %s (%s).<br/>Può anche <a href="%s">ripercorrere la cronologia dei suoi accessi qui</a>.',
 		'th_loghis_time' => 'Data',
 		'th_loghis_ip' => 'IP',
 		'th_hostname' => 'Nome dell\'host',

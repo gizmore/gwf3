@@ -62,7 +62,7 @@ $lang = array(
 
 	# Sitemaster News
 	'mnews_title' => 'Maestri dei siti',
-	'mnews_body' => 'Alcuni giocatori hanno raggiunto il 100%% in un sito. Ben fatto :)'.PHP_EOL.'Puoi vedere [url=%s] tutti gli utenti che hanno completato dei siti[/url].',
+	'mnews_body' => 'Alcuni giocatori hanno raggiunto il 100%% in un sito. Ben fatto :)'.PHP_EOL.'Puoi vedere [url=%s] tutti gli utenti che hanno padroneggiato dei siti[/url].',
 	'mnews_item' => '[url=/profile/%s]%s[/url] ha raggiunto il 100%% su [url=%s]%s[/url] dopo essere stato collegato al sito per %s, iniziando da %s.',
 
 	# Challenge News
@@ -196,8 +196,8 @@ $lang = array(
 	'lp_language' => 'Lingua',
 
 	# Footer
-	'footer_1' => '©2008-2011 a wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Tutto il codice</a> è coperto dalla <a href="'.GWF_WEB_ROOT.'wechall_license">Licenza Pubblica WeChall</a>; Puoi <a href="'.GWF_WEB_ROOT.'contact">contattarci qui</a>.',
-	'footer_2' => '%s utenti sono stati online il %s<br/>%s pagina sono state servite finora',
+	'footer_1' => '©2008-2011 a wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Tutto il codice</a> è coperto dalla <a href="'.GWF_WEB_ROOT.'wechall_license">Licenza Pubblica WeChall</a>; puoi <a href="'.GWF_WEB_ROOT.'contact">contattarci qui</a>.',
+	'footer_2' => '%s utenti sono stati online il %s<br/>%s pagine sono state servite finora',
 
 
 	# Register
@@ -369,7 +369,7 @@ $lang = array(
 	'msg_chall_voted' => 'Grazie per il tuo voto.',
 	'msg_created_gb' => 'Il tuo guestbook è stato creato. Puoi <a href="%s">configurarlo qui</a>.',
 	'msg_bd_marked' => 'I compleanni di questa settimana sono stati contrassegnati come già letti.',
-	'msg_challs_marked' => 'Le news relative alle Sfide sono state contrassegnate come già lette.',
+	'msg_challs_marked' => 'Le novità relative alle Sfide sono state contrassegnate come già lette.',
 	'msg_marked_fav' => '%s è stato aggiunto ai tuoi siti preferiti.',
 	'msg_unmarked_fav' => '%s è stato rimosso dai tuoi siti preferiti.',
 
@@ -381,7 +381,7 @@ $lang = array(
 	'btn_linked_sites' => 'Siti collegati',
 	'btn_edit_profile' => 'Modifica profilo',
 	'btn_account' => 'Impostazioni account',
-	'btn_pm_settings' => 'IMpostazioni PM',
+	'btn_pm_settings' => 'Impostazioni PM',
 	'btn_forum_settings' => 'Impostazioni Forum',
 	'btn_delete_account' => 'Cancella Account',
 	'btn_view_profile' => 'Visualizza Profilo',
@@ -451,7 +451,7 @@ $lang = array(
 	'cfg_wc_uid' => 'UserID WeChall-User',
 	'cfg_wc_jpgraph' => 'Cartella Include di JPGraph',
 	'cfg_wc_lpt' => 'Tempo Ultimi Giocatori',
-	'cfg_wc_sitemas_dur' => 'Durata News Maestri',
+	'cfg_wc_sitemas_dur' => 'Durata Novità Maestri',
 
 
 
@@ -475,7 +475,7 @@ $lang = array(
 	# Join Box
 	'sites_join_t' => 'Come aggiungere altri sito a WeChall',
 	'sites_join_b' =>
-	'Se sei un amministratore di siti di Sfide, leggi <a href="%s">join.php</a>, per favore.<br/>'.
+	'Se sei un amministratore di un sito di Sfide, leggi <a href="%s">join.php</a>, per favore.<br/>'.
 	'Se vuoi che uno dei tuoi siti preferiti si unisca a WeChall, contatta uno dei suoi amministratori.<br/>'.
 	'Ti preghiamo di non creare un post pubblico nel loro forum a proposito di WeChall, scrivi invece un PM od una E-Mail.',
 
