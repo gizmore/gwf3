@@ -41,7 +41,7 @@ final class Delaware_Priest extends SR_TalkingNPC
 		}
 
 		$dp = Shadowfunc::displayNuyen($price);
-		return $this->reply("You have {$badkarma} bad karma and it would cost {$dp} to forgive your sins. Type #pray sins now to confirm.");
+		return $this->reply("You have {$badkarma} bad karma and it would cost {$dp} to forgive your sins. Type '#pray sins now' to confirm.");
 	}
 
 	private function onPraySins(SR_Player $player, $price)
