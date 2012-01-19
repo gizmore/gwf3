@@ -2,56 +2,57 @@
 
 $lang = array(
 
-	'page_title' => GWF_SITENAME.' Contattare',
+	'page_title' => 'Contatta'.GWF_SITENAME,
 	'page_meta' => 'META TAGS HIER',
 
 	'contact_title' => 'Contatto',
 	'contact_info' =>
-		'Qui potete contattarci via e-Mail. Vi preghiamo di inserire un e-Mail valido, così potremo rispondere alle vostre domande.<br/>'.
-		'Potete inviarci una e-mail da qualsiasi altro programma e-Mail al seguente indirizzo <a href="mailto:%s">%s</a> senden.',
-	'form_title' => 'Contatto '.GWF_SITENAME,
-	'th_email' => 'La vostra e-Mail',
+		'Qui potete contattarci via E-Mail. Vi preghiamo di inserire un indirizzo E-Mail valido, così potremo rispondere alle vostre domande.<br/>'.
+		'Potete inviarci una E-Mail da qualsiasi altro indirizzo E-Mail al seguente indirizzo <a href="mailto:%s">%s</a>.',
+	'form_title' => 'Contatta '.GWF_SITENAME,
+	'th_email' => 'La vostra E-Mail',
 	'th_message' => 'Il Vostro messaggio',
-	'btn_contact' => 'Invia la e-Mail',
+	'btn_contact' => 'Invia E-Mail',
 
 	'mail_subj' => GWF_SITENAME.': Nuovo messaggio di contatto',
 	'mail_body' => 
-		'È stata inviata una nuova e-Mail tramite il formulare di contatto.<br/>'.
+		'È stata inviata una nuova E-Mail tramite il form di contatto.<br/>'.
 		'Invia: %s<br/>'.
 		'Messaggio:<br/>'.
 		'%s<br/>'.
 		'',
 
-	'info_skype' => '<br/>Sie können uns auch via Skype kontaktieren: %s.',
 
-	'err_email' => 'Ihre EMail ist ungültig. Sie können diese Feld frei lassen wenn sie möchten.',
-	'err_message' => 'Ihre Nachricht ist zu kurz oder zu lang.',
+	'info_skype' => '<br/>Può anche contattarci tramite Skype: %s.',
+
+	'err_email' => 'L\'E-Mail è invalida. Può lasciare il campo vuoto se desidera.',
+	'err_message' => 'Il messaggio è troppo lungo o troppo corto.',
 
 	# Admin Config
-	'cfg_captcha' => 'Captcha verwenden',
-	'cfg_email' => 'Nachricht an diese EMail senden',
-	'cfg_icq' => 'ICQ Kontakt Daten',
-	'cfg_skype' => 'Skype Kontakt Daten',
-	'cfg_maxmsglen' => 'Max. Nachrichten Länge',
+	'cfg_captcha' => 'Usa Captcha',	
+	'cfg_email' => 'Invia i messaggi a (E-Mail)',
+	'cfg_icq' => 'Contatto ICQ',
+	'cfg_skype' => 'Contatto Skype',
+	'cfg_maxmsglen' => 'Lunghezza massima messaggio',
 
 	# Sendmail
-	'th_user_email' => 'Ihre EMail Addresse',
-	'ft_sendmail' => 'Eine EMail an %s senden',
-	'btn_sendmail' => 'EMail Senden',
-	'err_no_mail' => 'Dieser Benutzer möchte keine EMails empfangen.',
-	'msg_mailed' => 'Eine EMail wurde an %s gesendet.',
-	'mail_subj_mail' => GWF_SITENAME.': EMail von %s',
+	'th_user_email' => 'Indirizzo E-Mail',
+	'ft_sendmail' => 'Invia una E-Mail a %s',
+	'btn_sendmail' => 'Invia E-mail',
+	'err_no_mail' => 'Questo utente non vuole ricevere E-Mail.',
+	'msg_mailed' => 'Una E-Mail è stata inviata a %s.',
+	'mail_subj_mail' => GWF_SITENAME.': E-Mail da %s',
 	'mail_subj_body' => 
-		'Hallo %s'.PHP_EOL.
+		'Salve %s'.PHP_EOL.
 		PHP_EOL.
-		'Ihnen wurde eine EMail von %s über die '.GWF_SITENAME.' Webseite zugesandt:'.PHP_EOL.
+		'Le è stata inviata una E-Mail da %s tramite il sito '.GWF_SITENAME.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
 		'%s',
-	
-	# V2.01 (List Admins)
-	'list_admins' => 'Admins: %s.',
-	'cfg_captcha_member' => 'Show captcha for members?',
-);
 
+	# V2.01 (List Admins)
+	'list_admins' => 'Amministratori: %s.',
+	
+	'cfg_captcha_member' => 'Mostra Captcha per i membri?',
+);
 ?>

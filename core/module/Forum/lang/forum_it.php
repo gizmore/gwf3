@@ -59,7 +59,7 @@ $lang = array(
 		'msg_marked_read' => '%s threads sono stati impostati come già letti.',
 
 		# Titles
-		'forum_title' => GWF_SITENAME.' Forums',
+		'forum_title' => 'Forums di '.GWF_SITENAME,
 		'ft_add_board' => 'Aggiungi sezione',
 		'ft_add_thread' => 'Crea thread',
 		'ft_edit_board' => 'Aggiungi sezione preesistente',
@@ -293,12 +293,12 @@ $lang = array(
 		'th_downloads' => 'Numero di download',
 
 		# v2.09 Lang Boards
-		'cfg_lang_boards' => 'Crea sezioni divise per linguaggio',
+		'cfg_lang_boards' => 'Crea sezioni divise per lingue',
 		'lang_board_title' => 'Sezione %s',
 		'lang_board_descr' => 'Per la lingua %s',
 		'lang_root_title' => 'Lingua straniera',
 		'lang_root_descr' => 'Sezioni non in inglese',
-		'md_board' => GWF_SITENAME.' Forums. %s',
+		'md_board' => 'Forums di '.GWF_SITENAME.'. %s',
 		'mt_board' => GWF_SITENAME.', Forum, Guest Posts, Alternativo, Forum, Software',
 
 		# v2.10 subscribers
@@ -318,7 +318,7 @@ $lang = array(
 		'submode' => 'La tua modalità globale di sottoscrizione è: &quot;%s&quot;.',
 		'submode_all' => 'L\'intera sezione',
 		'submode_own' => 'Dove ha postato',
-		'submode_none' => 'Manually',
+		'submode_none' => 'Manuale',
 		'subscr_boards' => 'Ha sottoscritto manualmente %s sezioni.',
 		'subscr_threads' => 'Ha sottoscritto manualmente %s thread.',
 		'btn_subscriptions' => 'Gestisci sottoscrizioni',

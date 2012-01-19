@@ -11,8 +11,8 @@ $lang = array(
 		'th_email' => 'Indirizzo E-Mail di contatto',
 		'th_demo' => 'Impostazioni demografiche - Può cambiarle una volta ogni %s.',
 		'th_countryid' => 'Nazione',
-		'th_langid' => 'Linguaggio primario',
-		'th_langid2' => 'Linguaggio secondario',
+		'th_langid' => 'Lingua primaria',
+		'th_langid2' => 'Lingua secondaria',
 		'th_birthdate' => 'Data di nascita',
 		'th_gender' => 'Sesso',
 		'th_flags' => 'Opzioni - Modificabili al volo',
@@ -55,9 +55,9 @@ $lang = array(
 
 		# Admin Config
 		'cfg_avatar_max_x' => 'Larghezza massima dell\'Avatar',
-		'cfg_avatar_max_y' => 'Lunghezza massima dell\'Avatar',
+		'cfg_avatar_max_y' => 'Altezza massima dell\'Avatar',
 		'cfg_avatar_min_x' => 'Larghezza minima dell\'Avatar',
-		'cfg_avatar_min_y' => 'Lunghezza minima dell\'Avatar',
+		'cfg_avatar_min_y' => 'Altezza minima dell\'Avatar',
 		'cfg_adult_age' => 'Età minima per i contenuti per adulti',
 		'cfg_demo_changetime' => 'Pausa tra cambi demografici',
 		'cfg_mail_sender' => 'Mittente E-Mail per cambio impostazioni demografiche',
@@ -103,8 +103,8 @@ $lang = array(
 		PHP_EOL.
 		'Sesso: %s'.PHP_EOL.
 		'Nazione: %s'.PHP_EOL.
-		'Linguaggio primario: %s'.PHP_EOL.
-		'Linguaggio secondario: %s'.PHP_EOL.
+		'Lingua primaria: %s'.PHP_EOL.
+		'Lingua secondaria: %s'.PHP_EOL.
 		'Data di nascita: %s'.PHP_EOL.
 		PHP_EOL.
 		'Se vuole mantenere queste impostazioni, visiti il link sottostante:'.PHP_EOL.
