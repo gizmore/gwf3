@@ -359,3 +359,18 @@ function clamp(num, min, max)
 	}
 	return num;
 }
+
+/**
+ * TODO: Firefox + Sending form with enter is broken in contact.
+ * Tried to fix but does not work nicely.
+ */
+function gwf3_form_input_fix()
+{
+	$('input').keypress(function(event){
+		if (event.keyCode == '13') {
+			event.preventDefault();
+			return false;
+		}
+		return true;
+	});
+}
