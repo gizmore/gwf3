@@ -194,7 +194,7 @@ $lang = array(
 	'lp_last_online' => 'Online in %s',
 	'lp_last_online2' => '<a href="%s">%s utenti</a>',
 	'lp_language' => 'Lingua',
-	#TODO: translate from here
+
 	# Footer
 	'footer_1' => '©2008-2011 a wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Tutto il codice</a> è coperto dalla <a href="'.GWF_WEB_ROOT.'wechall_license">Licenza Pubblica WeChall</a>; Puoi <a href="'.GWF_WEB_ROOT.'contact">contattarci qui</a>.',
 	'footer_2' => '%s utenti sono stati online il %s<br/>%s pagina sono state servite finora',
