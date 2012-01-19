@@ -155,7 +155,7 @@ class SR_Rune extends SR_Item
 			} else {
 				$result += $runedata[$k][$type] * $v * $i;
 			}
-			$i *= 1.25;
+			$i *= 1.50;
 		}
 		return round($result, 2);
 	}
