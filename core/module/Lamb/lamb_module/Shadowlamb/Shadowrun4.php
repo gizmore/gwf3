@@ -141,7 +141,7 @@ final class Shadowrun4
 			return false;
 		}
 		# Cache (if real player, not NPC)
-		if (false === ($player instanceof SR_NPCBase))
+		if ($player->isHuman())
 		{
 			self::$players[$playerid] = $player;
 		}
