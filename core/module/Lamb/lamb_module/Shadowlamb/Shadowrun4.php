@@ -140,8 +140,11 @@ final class Shadowrun4
 		{
 			return false;
 		}
-		# Cache
-		self::$players[$playerid] = $player;
+		# Cache (if real player, not NPC)
+		if (false === ($player instanceof SR_NPCBase))
+		{
+			self::$players[$playerid] = $player;
+		}
 		return $player;
 	}
 
