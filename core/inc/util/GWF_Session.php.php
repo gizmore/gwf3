@@ -13,15 +13,15 @@ final class GWF_Session
 	private static $USER = false;
 	private static $SESSDATA;
 
-	private static $template = array(
-		'sess_id' => '',
-		'sess_sid' => '',
-		'sess_user' => self::$USER,
-		'sess_data' => '',
-		'sess_ip' => '',
-		'sess_lasturl' => '',
-		'user' => '',
-	);
+// 	private static $template = array(
+// 		'sess_id' => '',
+// 		'sess_sid' => '',
+// 		'sess_user' => self::$USER,
+// 		'sess_data' => '',
+// 		'sess_ip' => '',
+// 		'sess_lasturl' => '',
+// 		'user' => '',
+// 	);
 
 	public function __construct($data)
 	{

@@ -220,9 +220,8 @@ final class GWF_FormValidator
 			if (!method_exists($validator, $func_name))
 			{
 				$errors[] = GWF_HTML::lang('ERR_METHOD_MISSING', array($func_name, get_class($validator)));
-				continue;
 			}
-			if (false !== ($error = call_user_func($function, $context, $form->getVar($key))))
+			elseif (false !== ($error = call_user_func($function, $context, $form->getVar($key))))
 			{
 				$errors[] = $error;
 			}

@@ -10,6 +10,7 @@ function gdo_db()
 	if (!isset($db))
 	{
 		$db = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE);
+		GDO::setCurrentDB($db);
 	}
 	return $db;
 }
@@ -187,6 +188,15 @@ abstract class GDO
 		$old = $this->getOptions();
 		return $enabled ? $old|$bits : $old&(~$bits);
 	}
+
+	############################
+	### Multi DB connections ###
+	############################
+	private static $CURRENT_DB = NULL;
+	public static function setCurrentDB(GDO_Database $db)
+	{
+		self::$CURRENT_DB = $db;
+	}
 	
 	###################
 	### Table Cache ###
@@ -254,7 +264,7 @@ abstract class GDO
 	 */
 	public function createTable($drop=false)
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		$tablename = $this->getTableName();
 		if ( ($drop) && (false === $db->dropTable($tablename)) )
 		{
@@ -387,7 +397,6 @@ abstract class GDO
 	##############
 	public function select($columns='*', $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		$db = gdo_db();
 		$table = $this->getTableName();
 		$join = $this->getJoins($joins);
 		$where = $this->getWhere($where);
@@ -396,7 +405,7 @@ abstract class GDO
 		$limit = self::getLimit($limit, $from);
 		$query = "SELECT {$columns} FROM `{$table}` t ".$join.$where.$groupby.$orderby.$limit;
 // 		echo "$query<br/>\n";
-		return $db->queryRead($query);
+		return self::$CURRENT_DB->queryRead($query);
 	}
 
 	/**
@@ -450,7 +459,7 @@ abstract class GDO
 	 */
 	public function fetch($result, $r_type=self::ARRAY_A)
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		switch($r_type)
 		{
 			case self::ARRAY_A: return $db->fetchAssoc($result);
@@ -479,7 +488,7 @@ abstract class GDO
 	
 	public function selectColumn($column, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		if (false === ($result = $this->select($column, $where, $orderby, $joins, $limit, $from, $groupby)))
 		{
 			return false;
@@ -504,7 +513,7 @@ abstract class GDO
 	
 	private function createObjects($result)
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		$back = array();
 		while (false !== ($row = $db->fetchAssoc($result)))
 		{
@@ -688,7 +697,7 @@ abstract class GDO
 	 */
 	public function insertAssoc(array $data, $replace=true)
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		$tablename = $this->getTableName();
 		$keys = $vals = '';
 		foreach ($data as $k => $v)
@@ -726,7 +735,7 @@ abstract class GDO
 	 */
 	public function deleteWhere($where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		$db = gdo_db();
+		$db = self::$CURRENT_DB;
 		$tablename = $this->getTableName();
 		$join = $this->getJoins($joins, 'INNER JOIN');
 		$where = $this->getWhere($where);
@@ -747,11 +756,10 @@ abstract class GDO
 	 */
 	public function updateRow($set)
 	{
-		$db = gdo_db();
 		$table = $this->getTableName();
 		$where = $this->getPKWhere();
 		$query = "UPDATE `{$table}` SET {$set} WHERE {$where} LIMIT 1";
-		return $db->queryWrite($query);
+		return self::$CURRENT_DB->queryWrite($query);
 	}
 	
 	/**
@@ -804,14 +812,13 @@ abstract class GDO
 	{
 		if ($set !== '')
 		{
-			$db = gdo_db();
 			$tablename = $this->getTableName();
 			$joins = $this->getJoins($joins);
 			$limit = $this->getLimit($limit, $from);
 			$where = $this->getWhere($where);
 			$groupby = $this->getGroupBy($groupby);
 			$query = "UPDATE `{$tablename}`{$joins} SET ".$set.$where.$groupby.$limit;
-			return $db->queryWrite($query);
+			return self::$CURRENT_DB->queryWrite($query);
 		}
 		return true;
 	}

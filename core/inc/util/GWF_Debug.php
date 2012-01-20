@@ -183,7 +183,7 @@ final class GWF_Debug
 		}
 		
 		# Send error to admin
-		if (self::$MAIL_ON_ERROR)
+		if (true === self::$MAIL_ON_ERROR)
 		{
 			if (true === isset($_SERVER['REQUEST_URI']))
 			{
@@ -192,7 +192,7 @@ final class GWF_Debug
 			self::sendDebugMail(self::backtrace($message, false));
 		}
 		
-		if (self::$die)
+		if (true === self::$die)
 		{
 			die(1); # oops :)
 		}
