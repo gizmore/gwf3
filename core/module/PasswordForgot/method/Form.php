@@ -15,7 +15,7 @@ final class PasswordForgot_Form extends GWF_Method
 	
 	public function execute()
 	{
-		if (GWF_IP6::isLocal())
+		if ( (GWF_IP6::isLocal()) && ((GWF_DEBUG_EMAIL&16)>0) )
 		{
 			return GWF_HTML::err('ERR_MODULE_DISABLED', array( 'PasswordForgot'));
 		}
