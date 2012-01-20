@@ -45,7 +45,7 @@ class SR_ClanHQ extends SR_Location
 	public function getHelpText(SR_Player $player)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
-		return "Join clans with {$c}abondon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.";
+		return "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.";
 	}
 	
 	public function getCommands(SR_Player $player)
@@ -53,7 +53,7 @@ class SR_ClanHQ extends SR_Location
 		return array('abondon', 'request', 'accept', 'create' , 'manage', 'toggle', 'push', 'pop', 'view', 'pushy', 'popy');
 	}
 
-	public function on_abondon(SR_Player $player, array $args)
+	public function on_abandon(SR_Player $player, array $args)
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
