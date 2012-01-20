@@ -139,7 +139,7 @@ final class Links_Edit extends GWF_Method
 		{
 			$this->link->saveOption(GWF_Links::STICKY, isset($_POST['link_options&'.GWF_Links::STICKY]));
 			
-			if (false === $this->link->toggleModeration(isset($_POST['link_options&'.GWF_Links::IN_MODERATION]))) {
+			if (false === $this->link->toggleModeration($this->_module, isset($_POST['link_options&'.GWF_Links::IN_MODERATION]))) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 		}
