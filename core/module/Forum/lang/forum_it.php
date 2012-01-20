@@ -244,7 +244,7 @@ $lang = array(
 		# v2.03 (Merge)
 		'msg_merged' => 'I thread sono stati uniti.',
 		'th_viewcount' => 'Visite',
-		#TODO:
+
 		# v2.04 (Polls)
 		'ft_add_poll' => 'Assegna un sondaggio ad un thread',
 		'btn_assign' => 'Assegna',

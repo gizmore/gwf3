@@ -188,6 +188,10 @@ $lang = array(
 		
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
+		
+	# monnino fixes
+	'cfg_pm_limit_per_level' => 'PM limit per level',
+	'cfg_pm_own_bot' => 'PM own bot',		
 );
 
 ?>

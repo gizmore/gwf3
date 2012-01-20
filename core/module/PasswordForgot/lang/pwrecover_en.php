@@ -42,6 +42,10 @@ $lang = array(
 
 	# v2.01 (fixes)
 	'err_weak_pass' => 'Your password is too weak. Minimum are %s chars.',
+		
+	#monnino fixes
+	'cfg_captcha' => 'Use Captcha',
+	'cfg_mail_sender' => 'E-Mail sender',
 );
 
 ?>

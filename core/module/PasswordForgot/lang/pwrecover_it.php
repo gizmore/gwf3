@@ -3,8 +3,8 @@
 $lang = array(
 
 	'msg_sent_mail' => 'Le abbiamo inviato una E-Mail a %s. La preghiamo di seguire le informazioni in essa contenute.',
-	'err_not_found' => 'Utente non trovato. La preghiamo di inserire la sua E-Mail o il suo nome utente.',
-	'err_not_same_user' => 'Utente non trovato. La preghiamo di inserire la sua E-Mail o il suo nome utente.', # same message! no spoiled connection from uname=>email
+	'err_not_found' => 'Utente non trovato. La preghiamo di inserire il suo indirizzo E-Mail oppure il suo nome utente.',
+	'err_not_same_user' => 'Utente non trovato. La preghiamo di inserire il suo indirizzo oppure il suo nome utente.', # same message! no spoiled connection from uname=>email
 	'err_no_mail' => 'Siamo spiacenti, ma non ha un indirizzo E-Mail collegato al suo account. :(',
 	'err_pass_retype' => 'La password non coincide con quella riscritta sotto.',
 	'msg_pass_changed' => 'La sua password è stata cambiata.',
@@ -12,7 +12,7 @@ $lang = array(
 	'pt_request' => 'Richiedi una nuova password',
 	'pt_change' => 'Cambia password',
 	
-	'info_request' => 'Qui può richiedere una nuova password per il suo account.<br/>Deve semplicemente inserire il suo nome utente <b>o</b> il suo indirizzo E-Mail, e le invieremo delle ulteriori informazioni al suo indirizzo E-Mail.',
+	'info_request' => 'Qui può richiedere una nuova password per il suo account.<br/>Deve semplicemente inserire il suo nome utente <b>oppure</b> il suo indirizzo E-Mail, e le invieremo delle ulteriori informazioni al suo indirizzo E-Mail.',
 	'info_change' => 'Può inserire una nuov apassword per il suo account, %s.',
 
 	'title_request' => 'Richiedi una nuova password',
@@ -41,7 +41,11 @@ $lang = array(
 		'Il team di '.GWF_SITENAME.PHP_EOL,
 
 	# v2.01 (fixes)
-	'err_weak_pass' => 'La sua password è troppo debole. Deve essere lunga minimo %s caratteri.',
+	'err_weak_pass' => 'La sua password è troppo debole. Deve essere lunga almeno %s caratteri.',
+		
+	#monnino fixes
+	'cfg_captcha' => 'Usa Captcha',
+	'cfg_mail_sender' => 'Mittente E-Mail',
 );
 
 ?>

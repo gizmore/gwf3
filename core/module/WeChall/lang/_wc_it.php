@@ -653,6 +653,9 @@ $lang = array(
 	
 	#WC5 (monnino fixes)
 	'th_site_color' => 'Colore del Sito',
+	'th_onsitename' => 'Nome utente sul sito',
 	'pi_site_tags' => 'Tag del Sito',
+	'ft_hardlink' => 'Forza collegamento utente',
+	'btn_hardlink' => 'Forza collegamento utente',
 );
 ?>

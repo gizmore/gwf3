@@ -78,5 +78,10 @@ $lang = array(
 
 	'cfg_home_page' => 'PageID of the GWF HomePage or 0 for None',
 //	'cfg_ipp' => '',
+
+	# monnino fixes 
+	'btn_show_published' => 'Show Published', 
+	'btn_show_revisions' => 'Show Revisions',
+	'btn_show_disableds' => 'Show Disableds',
 );
 ?>

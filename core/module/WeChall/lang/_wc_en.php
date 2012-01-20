@@ -653,6 +653,9 @@ $lang = array(
 		
 	#WC5 (monnino fixes)
 	'th_site_color' => 'Site color',
+	'th_onsitename' => 'User OnSiteName',
 	'pi_site_tags' => 'Site Tags',
+	'ft_hardlink' => 'Force a useraccount link',
+	'btn_hardlink' => 'Force link',
 );
 ?>

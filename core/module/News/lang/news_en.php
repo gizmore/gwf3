@@ -127,6 +127,10 @@ $lang = array(
 	# V3.00 (fixes)
 	'rss_img_title' => GWF_SITENAME.' Logo',
 	'cfg_news_comments' => 'Enable comments',
+		
+	# monnino fixes
+	'btn_news' => 'News',
+	'btn_build_forum' => 'Create News Boards',
 );
 
 ?>
