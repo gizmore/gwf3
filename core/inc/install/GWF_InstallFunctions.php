@@ -89,7 +89,7 @@ final class GWF_InstallFunctions
 		{
 			$back .= sprintf('Installing %s...<br/>', $module->getName());
 			$back .= GWF_ModuleLoader::installModule($module, $dropTables);
-			$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore
+			$module->saveOption(GWF_Module::ENABLED, true); // TODO: gizmore.. check if bug
 		}
 		
 		return $back;

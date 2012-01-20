@@ -18,7 +18,7 @@ final class Votes_Staff extends GWF_Method
 
 			// Edit
 			if (false !== Common::getPost('editvs')) {
-				return $this->onEdit($vs); # TODO: gizmore fix it: missing method
+				return $this->onEdit($vs); # FIXME: {gizmore} missing method
 			}
 			
 			// Single Template

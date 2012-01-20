@@ -5,7 +5,7 @@ final class Language_CodeLangs extends GWF_Method
 	{
 		if(false === Common::isFile(GWF_GESHI_PATH))
 		{
-			return ''; // FIXME: log it? GESHI_PATH is may not readable
+			return ''; // FIXME: {gizmore} log it? GESHI_PATH is may not readable
 		}
 		require_once GWF_GESHI_PATH;
 		$geshi = new GeSHi();

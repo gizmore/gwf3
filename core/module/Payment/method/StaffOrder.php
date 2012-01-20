@@ -10,7 +10,7 @@ final class Payment_StaffOrder extends GWF_Method
 		}
 		
 		if (false !== (Common::getGet('mark_paid'))) {
-			return $this->onMarkPaid($order).$this->templateOrder($order); #TODO: gizmore fix it: method does not exists
+			return $this->onMarkPaid($order).$this->templateOrder($order); #FIXME: {gizmore} method does not exists
 		}
 
 		if (false !== Common::getPost('exec')) {

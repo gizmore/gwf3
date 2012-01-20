@@ -121,7 +121,7 @@ final class News_Add extends GWF_Method
 		}
 		
 		if ($form->getVar('newsletter') !== false) {
-			$this->onSendNewsletter($langid, $news); # TODO: gizmore fix it → method does not exist
+			$this->onSendNewsletter($langid, $news); # FIXME: {gizmore} method does not exist
 		}
 		
 		return $this->_module->message('msg_news_added');

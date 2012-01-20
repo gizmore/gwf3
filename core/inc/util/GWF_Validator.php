@@ -145,7 +145,7 @@ final class GWF_Validator
 			} elseif ($unset !== false) {
 				$_POST[$key] = $unset;
 			}
-			return $m->lang('err_'.$key, array($min, $max)); // FIXME: if lang is not loaded it will ends up in FATAL
+			return $m->lang('err_'.$key, array($min, $max)); // FIXME: {gizmore} if lang is not loaded it will ends up in FATAL
 		}
 		return false;
 	}

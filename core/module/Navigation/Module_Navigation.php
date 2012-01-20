@@ -138,7 +138,7 @@ final class Module_Navigation extends GWF_Module
 			
 			$i = 0;
 
-			if (is_array($pbmodule)) # TODO: spaceone fix this. gizmore: fixed ;) 
+			if (is_array($pbmodule))
 			foreach($pbmodule as $methodname => $pbvars)
 			{
 				#TODO: Create Category for each Method?
