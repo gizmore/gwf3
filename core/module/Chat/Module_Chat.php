@@ -197,10 +197,10 @@ final class Module_Chat extends GWF_Module
 		$min = $this->getChanmsgPerPage();
 		$msgs = new GWF_ChatMsg(false);
 		$channel = $msgs->escape($channel);
-		$backA = $msgs->select("chatmsg_to='$channel' AND chatmsg_time>$cut", 'chatmsg_time DESC'); #, 'chatmsg_time', 'DESC', $this->getChanmsgPerPage());
+		$backA = $msgs->selectAll('*', "chatmsg_to='$channel' AND chatmsg_time>$cut", 'chatmsg_time DESC'); #, 'chatmsg_time', 'DESC', $this->getChanmsgPerPage());
 		$countA = count($backA);
 		if ($countA < $min) {
-			$backB = $msgs->select("chatmsg_to='$channel'", 'chatmsg_time DESC', $min-$countA, $countA);
+			$backB = $msgs->selectAll('*', "chatmsg_to='$channel'", 'chatmsg_time DESC', $min-$countA, $countA);
 		} else {
 			$backB = array();
 		}
@@ -216,10 +216,10 @@ final class Module_Chat extends GWF_Module
 		$min = $this->getPrivmsgPerPage();
 		$msgs = new GWF_ChatMsg(false);
 		$nick = $msgs->escape($nick);
-		$backA = $msgs->select("(((chatmsg_to='$nick') OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>=$cut)", 'chatmsg_time DESC');
+		$backA = $msgs->selectAll('*', "(((chatmsg_to='$nick') OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>=$cut)", 'chatmsg_time DESC');
 		$countA = count($backA);
 		if ($countA < $min) {
-			$backB = $msgs->select("(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!=''))", 'chatmsg_time DESC', $min-$countA, $countA);
+			$backB = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!=''))", 'chatmsg_time DESC', $min-$countA, $countA);
 		} else {
 			$backB = array();
 		}
@@ -368,7 +368,7 @@ final class Module_Chat extends GWF_Module
 		
 		# Get Public Channel Messages
 		$last = $times[2];
-		$pubmsg = $msgtable->select("chatmsg_to='' AND chatmsg_time>$last", 'chatmsg_time', 'ASC');
+		$pubmsg = $msgtable->selectAll('*', "chatmsg_to='' AND chatmsg_time>$last", 'chatmsg_time ASC');
 		if (count($pubmsg) > 0)
 		{
 			$page .= $this->getMessages($pubmsg, false);
@@ -380,7 +380,7 @@ final class Module_Chat extends GWF_Module
 		{
 			$last = $times[3];
 			$nick = $msgtable->escape($nick);
-			$privmsg = $msgtable->select("(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
+			$privmsg = $msgtable->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
 			if (count($privmsg) > 0)
 			{
 				$page .= $this->getMessages($privmsg, true);

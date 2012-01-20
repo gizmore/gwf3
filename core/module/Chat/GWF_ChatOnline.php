@@ -117,21 +117,19 @@ final class GWF_ChatOnline extends GDO
 	public static function getOnlineUsers()
 	{
 		$chaton = new self(false);
-		return $chaton->select("chaton_timeleft=0", 'chaton_name ASC');
+		return $chaton->selectAll('*', "chaton_timeleft=0", 'chaton_name ASC');
 	}
 	
 	public static function getJoined($cut)
 	{
 		$cut = (int) $cut;
-		$online = new self(false);
-		return $online->select("chaton_timejoin>$cut");
+		return self::table(__CLASS__)->selectAll('*', "chaton_timejoin>{$cut}");
 	}
 
 	public static function getKicked($cut)
 	{
 		$cut = (int) $cut;
-		$online = new self(false);
-		return $online->select("chaton_timeleft>$cut");
+		return self::table(__CLASS__)->selectAll('*', "chaton_timeleft>{$cut}");
 	}
 }
 

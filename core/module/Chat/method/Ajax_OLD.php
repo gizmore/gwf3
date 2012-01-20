@@ -36,7 +36,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		if (false === ($cut = GWF_Session::getOrDefault(self::$SESS_AJAX_PRIV, time()))) {
 			return;
 		}
-		$new = $msgs->select("(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>=$cut", 'chatmsg_time ASC');
+		$new = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>=$cut", 'chatmsg_time ASC');
 		
 		foreach ($new as $msg)
 		{
@@ -86,7 +86,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 		}
 		$msgs = new GWF_ChatMsg(false);
 		$channel = '';
-		$new = $msgs->select("chatmsg_to='$channel' AND chatmsg_time>$cut", 'chatmsg_time ASC');
+		$new = $msgs->selectAll('*', "chatmsg_to='$channel' AND chatmsg_time>$cut", 'chatmsg_time ASC');
 		foreach ($new as $msg)
 		{
 			$this->echoMessage($msg);
@@ -182,7 +182,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			$msgs = new GWF_ChatMsg(false);
 			$channel = '';
 			$last = $times[2];
-			$pubmsg = $msgs->select("chatmsg_to='$channel' AND chatmsg_time>$last", 'chatmsg_time ASC');
+			$pubmsg = $msgs->selectAll('*', "chatmsg_to='$channel' AND chatmsg_time>$last", 'chatmsg_time ASC');
 			if (count($pubmsg) > 0)
 			{
 				$stuff_sent = true;
@@ -193,7 +193,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			# Get Private Messages
 			if (false !== ($nick = $this->_module->getNickname())) {
 				$last = $times[3];
-				$privmsg = $msgs->select("(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
+				$privmsg = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
 				if (count($privmsg) > 0)
 				{
 					$stuff_sent = true;
