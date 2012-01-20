@@ -55,6 +55,9 @@ final class Shadowhelp
 		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %.02f bad_karma.', $player->getBase('bad_karma')+SR_PlayerVar::getVal($player, '__SLBADKARMA', 0.00));
 		
 		$hjbk = SR_Mount::HIJACK_BAD_KARMA;
+
+		$all_ny = GDO::table('SR_Player')->selectVar('SUM(sr4pl_nuyen)');
+		$all_ny = Shadowfunc::displayNuyen($all_ny);
 		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
@@ -300,7 +303,7 @@ final class Shadowhelp
 						'known_words' => "Player command. Usage: #known_words|#kw. List some useful words you have learned, which you can enumerate with #talk and #say.",
 						'known_spells' => 'Player command. Usage: #known_spells|#ks <[ks_id|spell_name]>. List your known magic spells or examine a spell.',
 						'quests' => 'Player command. Usage: #(qu)ests [<open|done|deny|fail|abort|stats|searchterm|id>] [<id>]. Shows info about your quests. To get quests you need to talk to the npc. Most often, the trigger is #talk shadowrun and #talk yes to get them.',
-						'nuyen' => 'Player command. Usage: #(n)u(y)en/#ny. Show the parties nuyen. Nuyen is the currency(money) in Shadowlamb. It means "New Yen".',
+						'nuyen' => "Player command. Usage: #(n)u(y)en/#ny. Show the parties nuyen. Nuyen is the currency(money) in Shadowlamb. It means \"New Yen\". The nuyen is considered strong as there are only {$all_ny} in the whole world.",
 						'karma' => 'Player command. Usage: #(ka)rma. Show the parties karma. With karma you can #lvlup your skills, attributes and spells.',
 						'hp' => NULL,
 						'mp' => NULL,
@@ -583,7 +586,7 @@ final class Shadowhelp
 			$costs .= sprintf(", L%d(%sMP)", $level, $spell->getManaCost($player, $level));
 		}
 		$costs = substr($costs, 2);
-		return sprintf('%s %s %s %s.', $spell->displayType(), $spell->displayClass(), $spell->getHelp(), $costs);
+		return sprintf('%s %s. %s %s.', $spell->displayType(), $spell->displayClass(), $spell->getHelp(), $costs);
 	}
 	
 	###############
