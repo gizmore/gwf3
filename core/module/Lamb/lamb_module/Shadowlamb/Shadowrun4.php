@@ -26,7 +26,7 @@ final class Shadowrun4
 			 */
 			if (false === (self::$GMS = @include_once('GameMasters.php')))
 			{
-				self::$GMS = array('gizmore');
+				self::$GMS = array('gizmore{14}');
 			}
 		}
 
@@ -34,10 +34,13 @@ final class Shadowrun4
 		{
 			return false;
 		}
-//		if (!$user->isLoggedIn()) {
-//			return false;
-//		}
-		return in_array($user->getName(), self::$GMS, true);
+		
+		if (!$user->isLoggedIn())
+		{
+			return false;
+		}
+		
+		return in_array($player->getName(), self::$GMS, true);
 	}
 
 	#################
