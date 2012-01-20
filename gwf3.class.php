@@ -79,6 +79,8 @@ class GWF3
 				GWF_Website::addDefaultOutput('<p style="color: #ff0000">Welcome back Admin! GWF_WORKER_IP is activated</p>');
 			}
 		}
+		
+		$db = gdo_db();
 	
 		# Set valid mo/me
 		$_GET['mo'] = Common::getGetString('mo', GWF_DEFAULT_MODULE);
