@@ -4,13 +4,13 @@ final class Forum_Moderate extends GWF_Method
 {
 //	public function getHTAccess()
 //	{
-//		return ''
+//		return '';
 //	}
 	
 	public function execute()
 	{
 		if (false === ($token = Common::getGet('token'))) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
 		if (false !== ($tid = Common::getGet('yes_thread'))) {
@@ -27,7 +27,7 @@ final class Forum_Moderate extends GWF_Method
 			return $this->deletePost($pid, $token);
 		}
 		
-		return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 	}
 	
 	private function approveThread($tid, $token)
@@ -45,15 +45,15 @@ final class Forum_Moderate extends GWF_Method
 		}
 
 		if (false === $thread->onApprove()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === $thread->saveOption(GWF_ForumThread::IN_MODERATION, false)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (false === $thread->getFirstPost()->saveOption(GWF_ForumPost::IN_MODERATION, false)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
 		$this->_module->cachePostcount();
@@ -71,7 +71,7 @@ final class Forum_Moderate extends GWF_Method
 		}
 
 		if (false === $thread->deleteThread()) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $this->_module->message('msg_thread_deleted');
@@ -87,7 +87,7 @@ final class Forum_Moderate extends GWF_Method
 		}
 		
 		if (false === $post->onApprove($this->_module)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
 		$this->_module->cachePostcount();
@@ -105,11 +105,9 @@ final class Forum_Moderate extends GWF_Method
 		}
 		
 		if (false === ($post->deletePost())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		return $this->_module->message('msg_post_deleted');
 	}
 }
-
-?>

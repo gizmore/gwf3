@@ -39,7 +39,7 @@ final class Votes_Button extends GWF_Method
 	{
 		$cs = $this->size;
 		$cx = $cy = round($this->size/2);
-		if (false === ($image = imagecreatetruecolor($cs, $cs))) {
+		if (false === ($image = imagecreatetruecolor($cs, $cs))) { # FIXME: define in bootstrap? check if function exists?
 			return GWF_HTML::err('ERR_GENERAL');
 		}
 		imagealphablending($image, true);

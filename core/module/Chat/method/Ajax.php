@@ -6,6 +6,7 @@ final class Chat_Ajax extends GWF_Method
 
 	public function execute()
 	{
+		$back = '';
 		if (false !== ($target = Common::getGet('postto'))) {
 			$back = $this->onPost(Common::getGet('nickname'), $target, Common::getGet('message'));
 		}
