@@ -94,7 +94,7 @@ final class GWF_IP6
 	
 	public static function isLocal()
 	{
-		if (false === ($ip = self::remoteAddress())) {
+		if (self::serverAddress() === ($ip = self::remoteAddress())) {
 			return true;
 		}
 		if (self::isV6($ip)) {
@@ -230,10 +230,14 @@ final class GWF_IP6
 	#################
 	public static function remoteAddress()
 	{
-//		return '92.76.129.71';
 		return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
 	}
-	
+
+	public static function serverAddress()
+	{
+		return isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '127.0.0.1';
+	}
+
 	/**
 	 * @return mixed the proxies forward or via field, or false if no visible proxy.
 	 */
