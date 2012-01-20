@@ -36,7 +36,6 @@ final class SR_ClanMembers extends GDO
 	public static function getClanByPID($pid)
 	{
 		$pid = (int)$pid;
-		echo "TRY PID $pid\n";
 		return self::table(__CLASS__)->selectFirst('clans.*', "sr4cm_pid={$pid}", '', array('clans'), 'SR_Clan');
 	}
 	
@@ -47,6 +46,8 @@ final class SR_ClanMembers extends GDO
 	 */
 	public static function getClanByPName($pname)
 	{
+		echo "TRY PID $pname\n";
+		
 		if (false === ($player = Shadowrun4::getPlayerByShortName($pname)))
 		{
 			return false;
@@ -55,6 +56,9 @@ final class SR_ClanMembers extends GDO
 		{
 			return false;
 		}
+		
+		var_dump($player);
+		
 		return self::getClanByPID($player->getID());
 	}
 	
@@ -95,7 +99,7 @@ final class SR_ClanMembers extends GDO
 	public static function computeLeaderID($cid)
 	{
 		$cid = (int)$cid;
-		return self::table(__CLASS__)->selectVar('sr4cm_pid', "sr4cm_cid={$cid}", 'sr4cm_time ASC', NULL);
+		return self::table(__CLASS__)->selectVar('sr4cm_pid', "sr4cm_cid={$cid}", 'sr4cm_jointime ASC', NULL);
 	}
 	
 	/**

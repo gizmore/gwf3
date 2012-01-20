@@ -24,8 +24,13 @@ class SR_ClanHQ extends SR_Location
 	const COST_PUSHY = 50;
 	const COST_POPY = 100;
 	
-	const COST_PUSHI = 200;
-	const COST_POPI = 300;
+	const COST_PUSHI = 100;
+	const COST_POPI = 100;
+	
+	public function getFoundPercentage()
+	{
+		return 100;
+	}
 	
 	public function getFoundText(SR_Player $player)
 	{
@@ -70,7 +75,14 @@ class SR_ClanHQ extends SR_Location
 			}
 		}
 		
-		return $clan->kick($player);
+		if (false === $clan->kick($player))
+		{
+			$player->message('DB ERROR 1');
+			return false;
+		}
+		
+		$player->message(sprintf('You have left the "%s" clan.', $clan->getName()));
+		return true;
 	}
 	
 	public function on_request(SR_Player $player, array $args)
@@ -143,7 +155,7 @@ class SR_ClanHQ extends SR_Location
 		}
 		
 		# Accept
-		if (false !== ($joiner = SR_ClanRequests::getRequest($player, $clan, $args[0])))
+		if (false === ($joiner = SR_ClanRequests::getRequest($player, $clan, $args[0])))
 		{
 			$player->message(sprintf('%s did not request to join your clan.', $args[0]));
 			return false;
@@ -161,12 +173,17 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
+		SR_ClanRequests::clearRequests($joiner);
+		
 		$joiner->message(sprintf('%s has accepted your join request for the %s clan.', $leader->displayName(), $clan->getName()));
+		
+		return true;
 	}
 	
 	private function showRequests(SR_Player $player, SR_Clan $clan, $page=1)
 	{
 		$ipp = 10;
+		$cid = $clan->getID();
 		$table = GDO::table('SR_ClanRequests');
 		$nItems = $table->countRows("sr4cr_cid={$cid}");
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
@@ -184,6 +201,8 @@ class SR_ClanHQ extends SR_Location
 			$player->message('DB ERROR 1');
 			return false;
 		}
+		
+		$message = '';
 		
 		foreach ($result as $row)
 		{
