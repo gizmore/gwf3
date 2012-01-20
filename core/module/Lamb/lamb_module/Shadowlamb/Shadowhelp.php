@@ -582,7 +582,7 @@ final class Shadowhelp
 				$costs .= ', '
 			$costs .= sprintf("L%d(%sMP)", $level, $spell->getManaCost($player, $level));
 		}
-		return sprintf('%s %s %s', $spell->displayType(), $spell->displayClass(), $spell->getHelp(), $costs);
+		return sprintf('%s %s. %s %s.', $spell->displayType(), $spell->displayClass(), $spell->getHelp(), $costs);
 	}
 	
 	###############
