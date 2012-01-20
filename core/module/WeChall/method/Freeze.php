@@ -10,6 +10,7 @@ final class WeChall_Freeze extends GWF_Method
 	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
+		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 		if (false !== Common::getPost('freeze')) {
