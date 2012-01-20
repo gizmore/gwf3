@@ -2,13 +2,13 @@
 #########################################################################
 # to do a clean reinstall, run this script with --drop-tables argument! #
 #########################################################################
-chdir('../../../');
+chdir('../../../../');
 
 # EDIT!
 # Change your protected/config.php location
-require_once 'protected/config_lamb_dev.php';
+require_once 'www/protected/config_lamb_dev.php';
 # Change your gwf3.class.php location
-require_once '../gwf3.class.php'; 
+require_once 'gwf3.class.php'; 
 # End of EDIT!
 
 

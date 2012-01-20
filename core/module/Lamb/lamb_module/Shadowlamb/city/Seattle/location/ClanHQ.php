@@ -1,5 +1,5 @@
 <?php
-final class Redmond_ClanHQ extends SR_ClanHQ
+final class Seattle_ClanHQ extends SR_ClanHQ
 {
 	
 }

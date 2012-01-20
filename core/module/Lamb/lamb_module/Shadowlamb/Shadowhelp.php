@@ -379,6 +379,7 @@ final class Shadowhelp
 						'info' => "Player command. Usage: #info. Show the info text of your current location.",
 						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
 						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',
+						'clan' => 'Player command. Usage: #clan [<player|page>]. Show clan info for a player or browse the clan history.',
 					),
 					
 					'mount_cmds' => 'Mount commands',
@@ -456,6 +457,21 @@ final class Shadowhelp
 						array(
 							'leave' => 'Location command. Usage: #leave. In most dungeons you can goto an exit and issue leave there to leave the dungeon.',
 							'search' => 'Location command. Usage: #search. In some dungeon rooms you can use #search to search for hidden items.',
+						),
+							
+						'clanhq_cmds' => 'ClanHQ commands',
+						array(
+							'clan_create' => 'Player command: Usage: #create <name>. Create your clan.',
+							'clan_manage' => 'ClanLeader command. Usage: #manage <buywealth|buystorage|buymembers|slogan>. Manage your clan size and motto.',
+							'clan_request' => 'Player command. Usage: #request <player>. Join another player\'s clan.',
+							'clan_accept' => 'ClanLeader command. Usage #accept <player>. Accept another player\'s clan join request.',
+							'clan_abondon' => 'Player command. Usage: #abondon. Abondon or even destroy your current clan. The clan has to be emptied for beeing destroyed.',
+							'clan_toggle' => 'ClanLeader command. Usage #toggle <moderation>. Switch various clan setting bits.',
+							'clan_pushy' => 'Player command. Usage: #pushy <amt>. Deposit money into your clan\'s bank.',
+							'clan_popy' => 'Player command. Usage: #popy <amt>. Withdraw money out of your clan\'s bank.',
+							'clan_push' => 'Player command. Usage: #push <item> <amt>. Deposit items into your clan\'s storage.',
+							'clan_pop' => 'Player command. Usage: #pop <item> <amt>. Withdraw items out of your clan\'s storage.',
+							'clan_view' => 'Player command. Usage: #view <page|itemname|searchterm>. Browse and view items in the clan bank.',
 						),
 					),
 				),

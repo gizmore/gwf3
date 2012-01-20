@@ -10,6 +10,10 @@ final class Shadowcmd_gms extends Shadowcmd
 		}
 		if (false !== ($npc = Shadowrun4::getPlayerByShortName($args[0]))) {
 		}
+		elseif ($npc === -1) {
+			$bot->reply('The playername is ambigious.');
+			return false;
+		}
 		elseif (false !== ($npc = Shadowrun4::getPlayerByPID($args[0]))) {
 		}
 		else {

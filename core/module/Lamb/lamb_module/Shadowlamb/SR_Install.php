@@ -1,7 +1,7 @@
 <?php
 final class SR_Install
 {
-	public static $TABLES = array('SR_Item', 'SR_Party', 'SR_Player', 'SR_Quest', 'SR_Stats', 'SR_PlayerStats', 'SR_PlayerVar', 'SR_Bounty', 'SR_BountyStats', 'SR_BountyHistory', 'SR_KillProtect', 'SR_BazarItem', 'SR_BazarShop', 'SR_BazarHistory', 'SR_Tell', 'SR_NoShout');
+	public static $TABLES = array('SR_Item', 'SR_Party', 'SR_Player', 'SR_Quest', 'SR_Stats', 'SR_PlayerStats', 'SR_PlayerVar', 'SR_Bounty', 'SR_BountyStats', 'SR_BountyHistory', 'SR_KillProtect', 'SR_BazarItem', 'SR_BazarShop', 'SR_BazarHistory', 'SR_Tell', 'SR_NoShout', 'SR_Clan', 'SR_ClanBank', 'SR_ClanHistory', 'SR_ClanMembers', 'SR_ClanRequests');
 	public static function onInstall($dropTable=false)
 	{
 		Lamb_Log::logDebug(__METHOD__);

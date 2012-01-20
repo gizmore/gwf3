@@ -251,6 +251,12 @@ abstract class SR_Blacksmith extends SR_Store
 				}
 			}
 		}
+		
+		if (false === SR_Item::canMergeModifiersLength($item, $rune))
+		{
+			$bot->reply('The item string would get too long with another modifier.');
+			return false;
+		}
 
 		$mods = SR_Item::mergeModifiers($item->getItemModifiersB(), $rune->getItemModifiersB());
 		

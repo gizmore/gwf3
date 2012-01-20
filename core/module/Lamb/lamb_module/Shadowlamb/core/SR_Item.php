@@ -207,6 +207,8 @@ class SR_Item extends GDO
 	/**
 	 * LeatherVest_of_strength:1,quickness:4,marm:4,foo:4
 	 * @param string $itemname
+	 * @param int $amount
+	 * @param boolean $insert
 	 * @return SR_Item
 	 */
 	public static function createByName($itemname, $amount=true, $insert=true)
@@ -256,6 +258,7 @@ class SR_Item extends GDO
 	
 	private $modifiers = NULL;
 	public function getItemModifiersB() { return $this->modifiers; }
+	public function getItemModifiersBArray() { return $this->modifiers === NULL ? array() : $this->modifiers; }
 	public function initModifiersB()
 	{
 		$modifiers = array();
@@ -266,11 +269,6 @@ class SR_Item extends GDO
 				$data = explode(':', $data);
 				$modifiers[$data[0]] = (float)$data[1];
 			}
-		}
-		
-		if (count($modifiers) === 0)
-		{
-			$this->modifiers = NULL;
 		}
 		$this->modifiers = count($modifiers) ? $modifiers : NULL;
 	}
@@ -691,6 +689,13 @@ class SR_Item extends GDO
 			$this->onItemUnequip($player);
 		}
 		return true;
+	}
+	
+	public static function canMergeModifiersLength(SR_item $item, SR_Rune $rune)
+	{
+		$string = $item->getItemName();
+		$string .= '_of_'.$rune->displayModifiersB($item->getOwner());
+		return strlen($string) <= 255;
 	}
 	
 }

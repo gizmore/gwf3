@@ -64,7 +64,7 @@ final class Quest_Troll_Maniac extends SR_Quest
 	
 	private function onTrollReward(SR_NPC $npc, SR_Player $player)
 	{
-		$max = $player->isRunner() ? self::MAX_VAL_ATTRIBUTE_RUNNER : self::MAX_VAL_ATTRIBUTE;
+		$max = $player->isRunner() ? Shadowcmd_lvlup::MAX_VAL_ATTRIBUTE_RUNNER : Shadowcmd_lvlup::MAX_VAL_ATTRIBUTE;
 		$base = $player->getBase('magic');
 		
 		if ($base >= $max)
