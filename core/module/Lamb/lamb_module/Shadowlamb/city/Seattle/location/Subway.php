@@ -9,7 +9,7 @@ final class Seattle_Subway extends SR_Subway
 	{
 		return array(
 			array('Redmond_Subway', 100, Redmond::TIME_TO_SEATTLE, 0),
-			array('Delaware_Subway', 200, Seattle::TIME_TO_DELAWARE, 14),
+			array('Delaware_Subway', 200, Seattle::TIME_TO_DELAWARE, 15),
 		);
 	}
 	

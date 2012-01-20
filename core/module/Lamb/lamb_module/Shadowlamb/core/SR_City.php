@@ -6,6 +6,7 @@ abstract class SR_City
 	private $locations = array();
 	
 	public abstract function getArriveText();
+	public abstract function getMinLevel();
 	
 	public function __construct($name) { $this->name = $name; }
 	public function getName() { return $this->name; }

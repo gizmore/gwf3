@@ -393,7 +393,7 @@ class SR_ClanHQ extends SR_Location
 		{
 			$player->message(sprintf(
 				'Your clan currently can store %s. Another %s would cost you %s. Please type #manage buystorage %s to confirm.',
-				$clan->dispalyMaxStorage(), $dadd, $dcost, self::CONFIRM_PHRASE
+				$clan->displayMaxStorage(), $dadd, $dcost, self::CONFIRM_PHRASE
 			));
 			return true;
 		}

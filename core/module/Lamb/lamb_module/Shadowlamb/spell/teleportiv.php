@@ -1,5 +1,6 @@
 <?php
-final class Spell_teleportiv extends SR_Spell
+require_once 'teleportiii.php';
+class Spell_teleportiv extends Spell_teleportiii
 {
 	public function getSpellLevel() { return 5; }
 	
@@ -81,6 +82,13 @@ final class Spell_teleportiv extends SR_Spell
 				$bot->reply('You cannot cast teleport inside this lcoation.');
 				return false;
 			}
+		}
+		
+		# Minlevels (thx sabretooth)
+		if (false !== ($error = $this->checkCityTargetLimits($player, $target)))
+		{
+			$bot->reply($error);
+			return false;
 		}
 		
 		$level = $this->getLevel($player);

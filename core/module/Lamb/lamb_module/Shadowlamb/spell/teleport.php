@@ -1,5 +1,5 @@
 <?php
-final class Spell_teleport extends SR_Spell
+class Spell_teleport extends SR_Spell
 {
 	public function getSpellLevel() { return 2; }
 	
@@ -67,6 +67,13 @@ final class Spell_teleport extends SR_Spell
 			}
 		}
 		
+		# Minlevels (thx sabretooth)
+		if (false !== ($error = $this->checkCityTargetLimits($player, $target)))
+		{
+			$bot->reply($error);
+			return false;
+		}
+
 		$level = $this->getLevel($player);
 		
 		$mc = $p->getMemberCount();
@@ -89,5 +96,40 @@ final class Spell_teleport extends SR_Spell
 		return true;
 	}
 	
+	public function checkCityTargetLimits(SR_Player $player, SR_Location $target)
+	{
+		$p = $player->getParty();
+		
+		if (false === ($city = $target->getCityClass()))
+		{
+			return 'DB ERROR 1';
+		}
+		
+		$minlvl = $city->getMinLevel();
+		
+		if ($minlvl < 0)
+		{
+			return 'You cannot teleport there, because the cities minlevel is invalid(BUG)!';
+		}
+		
+		$errors = '';
+		foreach ($p->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$lvl = $member->getBase('level');
+			if ($lvl < $minlvl)
+			{
+				$errors .= sprintf(', %s(L%s)', $member->getName(), $lvl);
+			}
+		}
+
+		if ($errors !== '')
+		{
+			$errors = substr($errors, 2);
+			return sprintf('You cannot teleport to %s because %s do(es) not have the min level of %s.', $city->getName(), $errors, $minlvl);
+		}
+		
+		return false;
+	}
 }
 ?>

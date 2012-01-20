@@ -19,6 +19,7 @@ final class Chicago extends SR_City
 			
 	}
 	public function getArriveText() { return 'You arrive in Chicago. After the racewars only slums are left.'; }
+	public function getMinLevel() { return 21; }
 	public function getSquareKM() { return 12; }
 	public function onEvents(SR_Party $party)
 	{

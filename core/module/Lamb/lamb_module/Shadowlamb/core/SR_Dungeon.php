@@ -13,6 +13,21 @@ abstract class SR_Dungeon extends SR_City
 	public function isDungeon() { return true; }
 	public function getAreaSize() { return 100; }
 	
+	public function getMinLevel()
+	{
+		if (false === ($loc = Shadowrun4::getLocationByTarget($this->getCityLocation())))
+		{
+			return -1;
+		}
+		
+		if (false === ($city = $loc->getCityClass()))
+		{
+			return -1;
+		}
+		
+		return $city->getMinLevel();
+	}
+	
 	#############
 	### Alert ###
 	#############
