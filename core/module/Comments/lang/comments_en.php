@@ -71,5 +71,10 @@ $lang = array(
 		'Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script',
 		
+	#monnino fixes
+	'cfg_guest_captcha' => 'Captcha for Guests?',
+	'cfg_member_captcha' => 'Captcha for Members?',
+	'cfg_moderated' => 'Moderated?',
+	'cfg_max_msg_len' => 'Max message length',
 );
 ?>
