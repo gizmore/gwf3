@@ -494,7 +494,7 @@ $lang = array(
 	'msg_unfrozen' => 'Il ban di %s da %s è stato rimosso.',
 
 	# v4.03 (finish)
-	'scorefaq_box' => 'Come funziona il <a href="%s">putneggio</a> su WeChall',
+	'scorefaq_box' => 'Come funziona il <a href="%s">punteggio</a> su WeChall',
 	'err_bot_challenge' => 'I bot non sono autorizzati a risolvere delle sfide.',
 
 	# v4.04 (fixes+stats)

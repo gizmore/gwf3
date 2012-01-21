@@ -80,7 +80,7 @@ $lang = array(
 		'info_no_cookie' => 'Il suo Browser non supporta i cookies o non permette a '.GWF_SITENAME.' di utilizzarli, ma questi sono necessari per effettuare il login.',
 
 		# v2.01 (fixes)
-		'msg_mail_sent' => 'Un\'E-Mail con le istruzione per l\'attivazione è stata inviata al suo indirizzo.',
+		'msg_mail_sent' => 'Un\'E-Mail con le istruzioni per l\'attivazione è stata inviata al suo indirizzo.',
 
 		# v2.02 (Detect Country)
 		'cfg_reg_detect_country' => 'Riconosci in automatico la nazione di appartenenza',

@@ -6,9 +6,8 @@ $cat = $tVars['cat']; $cat instanceof GWF_Category;
 $trans = $cat->getTranslations();
 
 $headers = array(
-	array('th_language'),
-	array('th_translation'),
-	
+	array($tLang->lang('th_language')),
+	array($tLang->lang('th_translation')),
 );
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers);

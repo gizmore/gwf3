@@ -98,9 +98,9 @@ $lang = array(
 	'df4' => 'Y', # 2009
 	'df6' => 'M Y', # January 2009
 	'df8' => 'D, j N, Y', # Tue, Jan 9, 2009
-	'df10' => 'd N, Y - H:00', # Jan 09, 2009 - 23:00
-	'df12' => 'd N, Y - H:i',  # Jan 09, 2009 - 23:59
-	'df14' => 'd N, Y - H:i:s',# Jan 09, 2009 - 23:59:59
+	'df10' => 'd N Y - H:00', # Jan 09, 2009 - 23:00
+	'df12' => 'd N Y - H:i',  # Jan 09, 2009 - 23:59
+	'df14' => 'd N Y - H:i:s',# Jan 09, 2009 - 23:59:59
 
 	# The data from the 5 sections above, merged for faster access.
 	'datecache' => array(
@@ -108,7 +108,7 @@ $lang = array(
 		array('Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'),
 		array('Dom','Lun','Mar','Mer','Gio','Ven','Sab'),
 		array('Domenica','Lunedì','Martedy','Mercoledì','Giovedì','Venerdì','Sabato'),
-		array(4=>'Y', 6=>'M Y', 8=>'D, j N, Y', 10=>'d N, Y - H:00', 12=>'d N, Y - H:i', 14=>'d N, Y - H:i:s'),
+		array(4=>'Y', 6=>'M Y', 8=>'D, j N Y', 10=>'d N Y - H:00', 12=>'d N Y - H:i', 14=>'d N Y - H:i:s'),
 	),
 
 
