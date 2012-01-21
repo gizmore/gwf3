@@ -32,6 +32,11 @@ final class TrollHQ_LivingRoom extends SR_SearchRoom
 	
 	public function onEnter(SR_Player $player)
 	{
+		if (false === parent::onEnter($player))
+		{
+			return false;
+		}
+		
 		if (0 === ($count = $this->getTrollCount($player)))
 		{
 			return true;
