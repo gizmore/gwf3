@@ -59,5 +59,32 @@ final class GWF_Array
 		$last = array_pop($array);
 		return implode(', ', $array)." {$and} {$last}";
 	}
+	
+	/**
+	 * Swap the positions of an associative array.
+	 * @param array $arr
+	 * @param mixed $key1
+	 * @param mixed $key2
+	 */
+	public static function swapAssoc(array $array, $key1, $key2)
+	{
+		$back = array();
+		foreach ($array as $key => $value)
+		{
+			if ($key === $key1)
+			{
+				$back[$key2] = $array[$key2];
+			}
+			elseif ($key === $key2)
+			{
+				$back[$key1] = $array[$key1];
+			}
+			else
+			{
+				$back[$key] = $value;
+			}
+		}
+		return $back;
+	}
 }
 ?>

@@ -356,14 +356,13 @@ final class Lamb
 				$this->processTimers();
 			}
 			
-//			$this->processSTDIN();
-			
 			if ($this->is_idle)
 			{
 				usleep(LAMB_SLEEP_MILLIS * 1000);
 			}
 			else
 			{
+				# This is a public var, and thus cannot get optimized away.
 				$this->seed += rand();
 			}
 		}

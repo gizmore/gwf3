@@ -59,6 +59,7 @@ class Shadowcmd
 		'p' => 'party',
 		'pa' => 'part',
 		'pl' => 'party_loot',
+		'po' => 'party_order',
 		'pm' => 'party_message',
 		'q' => 'equipment',
 		'qu' => 'quests',
@@ -107,7 +108,7 @@ class Shadowcmd
 // 		'hijack' => array('u','r','ca','eq','uq','gi','dr','pa'),
 		'hijack' => array(),
 	);
-	public static $CMDS_LEADER_ALWAYS = array('le','npc','ban','unban');
+	public static $CMDS_LEADER_ALWAYS = array('le','po','npc','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'sleep' => array('stop'),

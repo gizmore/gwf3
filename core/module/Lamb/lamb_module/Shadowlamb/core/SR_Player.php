@@ -811,8 +811,8 @@ class SR_Player extends GDO
 			$perc = $load * self::MAX_WEIGHT_MALUS;
 // 			echo sprintf("Player gets malus of %.02f%%\n", $perc*100);
 			$perc = 1 - $perc;
-			$this->sr4_data_modified['attack'] = round($this->sr4_data_modified['attack'] * $perc); 
-			$this->sr4_data_modified['defense'] = round($this->sr4_data_modified['defense'] * $perc); 
+			$this->sr4_data_modified['attack'] = round($this->sr4_data_modified['attack'] * $perc, 1); 
+			$this->sr4_data_modified['defense'] = round($this->sr4_data_modified['defense'] * $perc, 1); 
 		}
 	}
 	

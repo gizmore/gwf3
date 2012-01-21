@@ -1594,5 +1594,12 @@ final class SR_Party extends GDO
 			$member->setEnum($enum++);
 		}
 	}
+
+	public function swapMembers(SR_Player $a, SR_Player $b)
+	{
+		$this->members = GWF_Array::swapAssoc($this->members, $a->getID(), $b->getID());
+		$this->recomputeEnums();
+		return $this->updateMembers();
+	}
 }
 ?>
