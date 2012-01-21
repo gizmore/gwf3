@@ -252,7 +252,7 @@ final class Shadowhelp
 						'gmd' => 'GM command. Usage: #gmd <player> <remote command to execute>.',
 						'gmi' => 'GM command. Usage: #gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
 						#'gmk' => 'GM command. Usage: #gmk <username> <field> <knowledge>',
-						'gml' => "GM command. Usage: #gml <username> <city> <location>. Teleport a party to a location.",
+						'gml' => "GM command. Usage: #gml <username> <city_location> [inside|outside]. Teleport a party to a location. By default parties end up outside of the location.",
 						'gmm' => "GM command. Usage: #gmm <the message>. Send a hyperglobal message to all Shadowlamb channels.",
 						'gmn' => "GM command. Usage: #gmn <the message>. Send a hyperglobal message to all Shadowlamb players.",
 						'gmq' => "GM command. Usage: #gmq <username> <quest> [amount|data] [<value>]. Get or set quest information.",

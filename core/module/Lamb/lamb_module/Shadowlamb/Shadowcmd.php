@@ -114,7 +114,7 @@ class Shadowcmd
 		'sleep' => array('stop'),
 		'talk' => array('ki','fi','bye'),
 		'fight' => array(),
-		'inside' => array('kick'),
+		'inside' => array('ki'),
 		'outside' => array('g','exp','h','ki'),
 		'explore' => array('g','exp','h','ki','stop'),
 		'goto' => array('g','exp','h','ki','stop'),
