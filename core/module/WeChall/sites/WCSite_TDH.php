@@ -14,7 +14,7 @@ class WCSite_TDH extends WC_Site
 
 		$rank = intval($stats[0]);
 		$onsitescore = intval($stats[1]);
-		$onsitescore = Common::clamp($onsitescore, 0, false);
+		$onsitescore = Common::clamp($onsitescore, 0);
 		$solved_challs = intval($stats[2]);
 		$usercount = intval($stats[3]);
 		$maxscore = intval($stats[4]);

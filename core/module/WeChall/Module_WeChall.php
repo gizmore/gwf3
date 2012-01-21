@@ -3,7 +3,6 @@ require_once 'WC_HTML.php'; # We always need it
 
 # DEBUG
 $debug = GWF_DEBUG_EMAIL && GWF_IP6::isLocal();
-$debug = false;
 define('WECHALL_DEBUG_SCORING', $debug); # set true to debug scoring events.
 define('WECHALL_DEBUG_LINKING', $debug); # set true to debug site linking
 define('WECHALL_CAESUM_PATCH', 'defined');
