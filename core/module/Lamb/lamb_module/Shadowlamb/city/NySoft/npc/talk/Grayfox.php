@@ -31,7 +31,7 @@ final class NySoft_Grayfox extends SR_TalkingNPC
 			case 'negotiation': return $this->reply("");
 			case 'hello': return $this->reply("");
 			default:
-				return $this->reply("I do not know anything about $word.");
+				return $this->reply("");
 		}
 	}
 }

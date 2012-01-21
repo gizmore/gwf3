@@ -26,7 +26,7 @@ final class Chicago_EliteSniper extends SR_NPC
 			'strength' => rand(3, 4),
 			'quickness' => rand(4, 5),
 			'distance' => rand(20, 40),
-			'hmgs' => rand(8, 12),
+			'smgs' => rand(8, 12),
 			'firearms' => rand(8, 12),
 			'sharpshooter' => rand(8, 12),
 			'nuyen' => rand(80, 120),

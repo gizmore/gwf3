@@ -22,16 +22,21 @@ final class NySoft_Stephen extends SR_TalkingNPC
 			case 'bribe': 
 				if (count($args) === 0)
 				{
-					return $this->reply("Please specify an amount to bribe Stephen");
-				} else {
-					if ($player->hasNuyen($args[1])) {
+					$this->reply("Please specify an amount to bribe Stephen");
+					return false;
+				}
+				else
+				{
+					if (!$player->hasNuyen($args[0]))
+					{
 						return $this->reply("Don't try to fool me, you don't have enough ny");
-					} else  {
-						$player->pay($args[1]);
+					}
+					else 
+					{
+						$player->pay($args[0]);
 						return $this->reply("Thanks, but I don't have anything for you.");
 					}
 				}
-				
 			case 'yes': return $this->reply("Yes what? \"Yes sir!\" it is");
 			case 'no': return $this->reply("...");
 			case 'negotiation': return $this->reply("That won't work on me.");

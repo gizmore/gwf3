@@ -5,7 +5,7 @@ final class Hideout_Room2 extends SR_Location
 	public function getFoundPercentage() { return 100; }
 	public function getFoundText(SR_Player $player) { return 'You found another room. It seems to be quiet in there.'; }
 	public function getEnterText(SR_Player $player) { return 'You see three Lamers sleeping.'; }
-	public function getLeaderCommands(SR_Player $player) { return array('wakeup'); }
+	public function getLeaderCommands(SR_Player $player) { return array_merge(parent::getLeaderCommands($player), array('wakeup')); }
 	public function onEnter(SR_Player $player)
 	{
 		parent::onEnter($player);

@@ -56,7 +56,8 @@ final class Shadowhelp
 		
 		$hjbk = SR_Mount::HIJACK_BAD_KARMA;
 
-		$all_ny = GDO::table('SR_Player')->selectVar('SUM(sr4pl_nuyen)');
+		$all_ny = GDO::table('SR_Player')->selectVar('SUM(sr4pl_nuyen+sr4pl_bank_nuyen)');
+		$all_ny += GDO::table('SR_Clan')->selectVar('SUM(sr4cl_money)');
 		$all_ny = Shadowfunc::displayNuyen($all_ny);
 		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
@@ -316,7 +317,8 @@ final class Shadowhelp
 					
 					'chat_cmds' => 'Commands for chat and talk',
 					array(
-						'party_message' => 'Player command. Usage: #party_message|#pm <your message ...>. Send a message to all party members. Useful for cross-server/cross-channel messages.',
+						'clan_message' => 'Player command. Usage: #(c)lan_(m)essage <your message ...>. Send a message to all your clan members. See: #party_message, #say, #whisper.',
+						'party_message' => 'Player command. Usage: #(p)arty_(m)essage <your message ...>. Send a message to all party members. Useful for cross-server/cross-channel messages.',
 						'say' => "Player command. Usage: #say <#kw_id|the message>. If you meet other parties on street you can use #say to talk to them. Inside and outside locations this sends messages accross the servers. In fight this sends messages to enemy party.",
 						'talk' => "Player command. Usage: #talk <#kw_id|word>. In many locations you can use #talk to talk to the NPCs. If there is more than one NPC it is often #ttX. Always check your #c inside locations. Bold words during a talk indicate a further topic to talk about.",
 						'shout' => "Player command. Usage: #shout <the message>. Shout a message to all shadowlamb channels on all servers.",
@@ -340,7 +342,7 @@ final class Shadowhelp
 						'use' => 'Player command. Usage: #(u)se <inv_id|item_name> [<target_name|target_enum>]. Use an item. In combat this costs time.',
 						'brew' => 'Player command. Usage: #(br)ew <spell> [<level>]. Try to brew a magic potion. Needs a WaterBottle.',
 						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>][:level] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
-						'drop' => 'Player command. Usage: #drop <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
+						'drop' => 'Player command. Usage: #(dr)op <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
 						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
 						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
@@ -374,35 +376,35 @@ final class Shadowhelp
 					'party_cmds' => 'Party commands',
 					array(
 						'leader' => 'Leader command. Usage: #(le)ader <member_name|member_enum>. Set a new party leader for your party.',
-						'request_leader' => 'Player command. Usage: #request_leader|#rl. Request leadership in case the current leader is away.',
+						'request_leader' => 'Player command. Usage: #(r)equest_(l)eader. Request leadership in case the current leader is away.',
 						'join' => 'Player command. Usage: #(j)oin <player>. Join the party of another player who is at the same location as you. You can #look to see which players are around you.',
-						'part' => 'Player command. Usage: #part. Leave your current party and create a fresh one.',
-						'fight' => 'Leader Command. Usage: #fight [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
+						'part' => 'Player command. Usage: #(pa)rt. Leave your current party and create a fresh one.',
+						'fight' => 'Leader Command. Usage: #(fi)ght [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
 						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party. If you meet humans, both have to say bye so the "evil" players get a chance to kill you.',
 						'party_loot' => "Leader command. Usage: #pl <killer|cycle|rand>. Define who loots the items from kills. The default is killer.",
 						'info' => "Player command. Usage: #info. Show the info text of your current location.",
 						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
 						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',
-						'clan' => 'Player command. Usage: #clan [<player|page>]. Show clan info for a player or browse the clan history.',
+						'clan' => 'Player command. Usage: #clan [<player|historypage|!(m)embers>] [<memberpage>]. Show clan info for a player or browse the clan history or member pages.',
 					),
 					
 					'mount_cmds' => 'Mount commands',
 					array(
-						'mount' => 'Player command. Usage #mount [<push|pop|clean>] [<item>]. Show your mount or push and pop items from it. Items in your mount can be stolen via #hijack from other players.',
-						'mounts' => 'Player command. Usage #mounts. Show all the mounts in your party.',
+						'mount' => 'Player command. Usage #(mo)unt [<push|pop|clean>] [<item>]. Show your mount or push and pop items from it. Items in your mount can be stolen via #hijack from other players.',
+						'mounts' => 'Player command. Usage #(mo)unt(s). Show all the mounts in your party.',
 					),
 					
 					'location_cmds' => 'All location commands',
 					array(
 					
-						'look' => "Player command. Usage: #look. Look around to spot other players in your current location. You can see players from other servers too.",
+						'look' => "Player command. Usage: #(lo)ok. Look around to spot other players in your current location. You can see players from other servers too.",
 					
 						'shop_cmds' => 'Store commands',
 						array(
-							'buy' => 'Location command. Usage: #buy <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
-							'sell' => 'Location command. Usage: #sell <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
-							'steal' => 'Location command. Usage: #steal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
-							'view' => 'Location command. Usage: #view [<view_id>]. In shops you can view the shops items or examine a shop item with this command.',
+							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
+							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
+							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
+							'view' => 'Location command. Usage: #(v)iew [<view_id>]. In shops you can view the shops items or examine a shop item with this command.',
 						),
 						
 						'bank_cmds' => 'Bank commands',
@@ -415,7 +417,7 @@ final class Shadowhelp
 						
 						'bazar_cmds' => 'Bazar commands',
 						array(
-							'bazar_view' => 'Bazar command. Usage #view [<player>] [<item>]. Browse the bazar.',
+							'bazar_view' => 'Bazar command. Usage #(v)iew [<player>] [<item>]. Browse the bazar.',
 							'bazar_push' => 'Bazar command. Usage #push <item> <price> [<amt>]. Push your items to the bazar and offer it for a price.',
 							'bazar_pop' => 'Bazar command. Usage #pop <item>. Remove an item from your bazar and put it back into your inventory. The fee is 50Y.',
 							'bazar_buy' => 'Bazar command. Usage #buy <player> <item> [<amt>]. Buy an item from the bazar.',
@@ -427,11 +429,11 @@ final class Shadowhelp
 
 						'smith_cmds' => 'Blacksmith commands',
 						array(
-							'clean' => 'Location command. Usage: #clean <item>. Will remove all modifiers from an item. The runes / modifiers will be lost.',
-							'break' => 'Location command. Usage: #break <item>. Will destroy an item and release it`s runes, which you will receive.',
+							'clean' => 'Location command. Usage: #(cl)ean <item>. Will remove all modifiers from an item. The runes / modifiers will be lost.',
+							'break' => 'Location command. Usage: #(b)rea(k) <item>. Will destroy an item and release it`s runes, which you will receive.',
 							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
-							'upgrade' => 'Location command. Usage: #upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
-							'simulate' => 'Location command. Usage: #simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
+							'upgrade' => 'Location command. Usage: #(up)grade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
+// 							'simulate' => 'Location command. Usage: #simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
 						),
 						
 						'school_cmds' => 'School and Temple commands',
@@ -519,7 +521,6 @@ final class Shadowhelp
 					array(
 						'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
 					),
-					
 					
 					'teachers' => 'The teachers',
 					array(

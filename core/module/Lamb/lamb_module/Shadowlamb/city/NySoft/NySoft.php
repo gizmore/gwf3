@@ -10,6 +10,8 @@ final class NySoft extends SR_Dungeon
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 	
+	public function getMinLevel() { return 20; }
+	
 	public function getImportNPCS() { return array('Seattle_BlackOp'); }
 //	/**
 //	 * Get the renraku main elevator.
@@ -31,7 +33,7 @@ final class NySoft extends SR_Dungeon
 	
 	public function getRespawnLocation(SR_Player $player)
 	{
-		return Shadowrun4::getCity('Delaware')->getRespawnLocation($player);
+		return Shadowrun4::getCity('Prison')->getRespawnLocation($player);
 	}
 	
 }

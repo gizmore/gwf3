@@ -25,7 +25,7 @@ final class NySoft_Secretary extends SR_TalkingNPC
 			case 'negotiation': return $this->reply("");
 			case 'hello': return $this->reply("");
 			default:
-				return $this->reply("I do not know anything about $word.");
+				return $this->reply("");
 		}
 	}
 }

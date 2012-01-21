@@ -23,16 +23,19 @@ class Shadowcmd_givekp extends Shadowcmd
 	
 	public static function giveKnow(SR_Player $player, SR_Player $target, $what, $which)
 	{
-		if (false === ($which = $player->getKnowledgeByArg($what, $which)))
+		if (false === $player->hasKnowledge($what, $which))
+// 		if (false === ($which = $player->getKnowledgeByArg($what, $which)))
 		{
 			$player->message('You don`t have this knowledge.');
 			return false;
 		}
+		
 		if (!$target->hasKnowledge($what, $which))
 		{
 			$target->giveKnowledge($what, $which);
-			$player->message(sprintf('You told %s about %s.', $target->getName(), $which));
+			$player->getParty()->message($player, sprintf(' told %s about %s.', $target->getName(), $which));
 		}
+		
 		return true;
 	}
 }

@@ -13,6 +13,11 @@ final class NySoft_Andrew extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$b = chr(2); # bold
 		switch ($word)
 		{
@@ -33,7 +38,7 @@ final class NySoft_Andrew extends SR_TalkingNPC
 			case 'negotiation': return $this->reply("");
 			case 'hello': return $this->reply("");
 			default:
-				return $this->reply("I do not know anything about $word.");
+				return $this->reply("");
 		}
 	}
 }

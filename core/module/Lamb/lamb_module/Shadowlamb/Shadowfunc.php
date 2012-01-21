@@ -400,23 +400,37 @@ final class Shadowfunc
 	
 	public static function getKnownPlaces(SR_Player $player, $cityname)
 	{
-		$cityname = strtolower($cityname);
 		$b = chr(2);
 		$back = '';
 		$kp = $player->getVar('sr4pl_known_places');
-		$i = 1;
+		
+		if (!strcasecmp($cityname, $player->getParty()->getCity()))
+		{
+			$i = 1;
+		}
+		else
+		{
+			$i = 0;
+		}
+		
 		$cn = $cityname.'_';
 		$len = strlen($cn);
 		foreach (explode(',', $kp) as $p)
 		{
-			if ($p === '') {
+			if ($p === '')
+			{
 				continue;
 			}
-			if (stripos($p, $cn) === 0)
+			
+			if (strpos($p, $cn) === 0)
 			{
-				$back .= sprintf(', %s-%s', $b.$i.$b, substr($p, $len));
+				$id = $i === 0 ? '' : "\X02{$i}\X02-";
+				$back .= sprintf(', %s%s', $id, substr($p, $len));
+				if ($i > 0)
+				{
+					$i++;
+				}
 			}
-			$i++;
 		}
 		return substr($back, 2);
 	}

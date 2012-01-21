@@ -6,6 +6,13 @@ final class Renraku extends SR_Dungeon
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 	
+	public function getImportNPCS()
+	{
+		return array(
+			'Renraku04_Security',
+		);
+	}
+	
 	/**
 	 * Get the renraku main elevator.
 	 * @return Renraku_Elevator

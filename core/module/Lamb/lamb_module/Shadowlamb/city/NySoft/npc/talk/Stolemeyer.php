@@ -15,7 +15,7 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 			$p = $player->getParty();
 			$p->notice('You confront Mr.Stoleymeyer with the illegal Renraku experiments...');
 			$p->notice('"You are one of those bastards!", he shouts, "Tho shalt not escape!" ... he calls for his minions...');
-			$p->fight(SR_NPC::createEnemyParty('NySoft_Stolemeyer','Redmond_Lamer','TrollCellar_Imp','Redmond_Ueberpunk','Seattle_Shaolin','Redmond_Ueberpunk','Prison_GrayOP','Delaware_Goth','Chicago_Commando'));
+			$p->fight(SR_NPC::createEnemyParty('NySoft_Stolemeyer','Redmond_Lamer','TrollCellar_Imp','Seattle_Shaolin','Redmond_Ueberpunk','Prison_GrayOp','Delaware_Goth','Chicago_DarkRunner'));
 			return true;
 		}
 		
@@ -54,7 +54,7 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 	{
 		$this->reply("Ok ok chummer, they are using our software to control genetic experiments.");
 		$this->reply("It's probably not legal, that's all i know. Heck i am not even sure what kind of DNA they to mix... Please leave now.");
-		$this->reply("Maybe you should find out what DNA they play with first :O.");
+		$this->reply("Maybe you should find out what DNA they play with and what they want to achieve :O.");
 		$quest4 = SR_Quest::getQuest($player, 'Renraku_IV');
 		if ($quest4->isUnknown($player))
 		{

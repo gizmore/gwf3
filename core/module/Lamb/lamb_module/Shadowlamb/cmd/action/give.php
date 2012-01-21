@@ -38,6 +38,12 @@ final class Shadowcmd_give extends Shadowcmd
 			$player->message('You don`t have that item.');
 			return false;
 		}
+		
+// 		if (false === $item->isItemTradeable())
+// 		{
+// 			$player->message('You are not allowed to trade this item.');
+// 			return false;
+// 		}
 
 		if ($item->isItemStackable())
 		{

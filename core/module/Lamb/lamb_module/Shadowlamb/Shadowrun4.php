@@ -9,7 +9,8 @@ final class Shadowrun4
 {
 	const SR_SHORTCUT = '#';
 	const KICK_IDLE_TIMEOUT = 1800; # 30min
-	const SECONDS_PER_TICK = 1.0;
+	const TICKLEN = 1.0; # 1.0 real second == 1 gametick
+	const SECONDS_PER_TICK = 1; # N game second per gametick (you may want to raise during developement, only full int)
 	
 	####################
 	### Game Masters ###
@@ -20,13 +21,13 @@ final class Shadowrun4
 		if (NULL === self::$GMS)
 		{
 			/**
-			 * Example GameMasters.php:
+			 * @Example GameMasters.php in this directory:
 			 *
-			 * <? return array('gizmore'); ?>
+			 * <? return array('gizmore{14}'); ?>
 			 */
 			if (false === (self::$GMS = @include_once('GameMasters.php')))
 			{
-				self::$GMS = array('gizmore{14}');
+				self::$GMS = array('gizmore{1}');
 			}
 		}
 
@@ -68,6 +69,19 @@ final class Shadowrun4
 			return false;
 		}
 		return self::$cities[$name];
+	}
+	
+	public static function getCityByAbbrev($name)
+	{
+		$back = array();
+		foreach (self::$cities as $cn => $city)
+		{
+			if (stripos($cn, $name) !== false)
+			{
+				$back[] = $city;
+			}
+		}
+		return count($back) === 1 ? $back[0] : false;
 	}
 	
 	public static function addParty(SR_Party $party)
@@ -318,7 +332,7 @@ final class Shadowrun4
 	{
 		$bot = Lamb::instance();
 		self::reloadParties();
-		$bot->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
+		$bot->addTimer(array(__CLASS__, 'shadowTimer'), self::TICKLEN, NULL, NULL, 1);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), SR_Player::HP_REFRESH_TIMER);
 		$bot->addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), SR_Player::MP_REFRESH_TIMER);
 //		$bot->addTimer(array(__CLASS__, 'shadowTimerItems'), 60);
@@ -416,18 +430,17 @@ final class Shadowrun4
 	public static function shadowTimer()
 	{
 		# 1 second over in the Shadowlamb world.
-		self::$sr_timestamp = GWF_Counter::getAndCount('Lamb_SR4_Timestamp');
-//		Lamb_Log::logDebug(sprintf('Executing %s with shadowtime=%s', __METHOD__, self::$sr_timestamp));
-		
+		self::$sr_timestamp = GWF_Counter::getAndCount('Lamb_SR4_Timestamp', self::SECONDS_PER_TICK);
+	
 		# Next tick in one second max pls.
-		Lamb::instance()->addTimer(array(__CLASS__, 'shadowTimer'), self::SECONDS_PER_TICK, NULL, NULL, 1);
+		Lamb::instance()->addTimer(array(__CLASS__, 'shadowTimer'), self::TICKLEN, NULL, NULL, 1);
 		
 		# Execute Web Commands
 		self::shadowTimerWebcommands();
 		
 		# All parties:
 		$partyids = array_keys(self::$parties);
-		shuffle($partyids);
+		shuffle($partyids); # Shuffle which party goes first to have evenly distributed winners in race conditions.
 		foreach ($partyids as $id)
 		{
 			# still there?

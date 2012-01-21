@@ -6,6 +6,13 @@ final class Renraku02 extends SR_Dungeon
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 
+	public function getImportNPCS()
+	{
+		return array(
+			'Renraku04_Security',
+		);
+	}
+	
 	public function getRespawnLocation(SR_Player $player)
 	{
 		return Shadowrun4::getCity('Seattle')->getRespawnLocation($player);
