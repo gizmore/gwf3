@@ -1581,6 +1581,35 @@ final class SR_Party extends GDO
 		
 		return $mounts[0];
 	}
+
+	/**
+	 * Get a cricital mount for this party.
+	 * Assume a distribution of all players over a subset of their mounts
+	 * such that the travel time is minimal. (Travel time being determined
+	 * by the slowest mount in the subset.) We call the slowest mount in
+	 * such a subset a critical mount.
+	 * @return SR_Mount
+	 */
+	public function getCriticalMount()
+	{
+		$mounts = $this->getMounts();
+		$mc = $this->getMemberCount();
+		
+		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
+
+		/**
+		 * Essentially we fill the fastest mount with the owner and
+		 * the (unassigned) owners of the slowest mounts. Then the
+		 * second fastest etc.
+		 */
+		$critical = -1;
+		while ( $mc > 0 )
+		{
+			$mc -= $mounts[++$critical]->getMountPassengers();
+		}
+
+		return $mounts[$critical];
+	}
 	
 	################
 	### New Enum ###

@@ -27,7 +27,7 @@ abstract class SR_City
 	{
 		if (!$this->isDungeon())
 		{
-			$mount = $party->getBestMount();
+			$mount = $party->getCriticalMount();
 			$eta = $mount->getMountTime($eta);
 			$eta -= ($mount->getMountTuneup() * 10);
 		}
