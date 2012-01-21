@@ -9,8 +9,10 @@ function gdo_db()
 	static $db;
 	if (!isset($db))
 	{
-		$db = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE);
-		GDO::setCurrentDB($db);
+		if (false !== ($db = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE)))
+		{
+			GDO::setCurrentDB($db);
+		}
 	}
 	return $db;
 }
