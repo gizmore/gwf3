@@ -70,7 +70,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 			$message = sprintf(' load(s) %d bullet(s) into his %s. %s', $put, $this->getItemName(), Shadowfunc::displayBusy($busy));
 //			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime()+rand(0, 10))));
 			$p->message($player, $message);
-//			$p->getEnemyParty()->message($player, $message);
+// 			$p->getEnemyParty()->message($player, $message);
 		}
 		else
 		{

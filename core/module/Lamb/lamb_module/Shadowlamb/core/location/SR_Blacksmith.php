@@ -200,35 +200,39 @@ abstract class SR_Blacksmith extends SR_Store
 	### Upgrade / Simulate ###
 	##########################
 	private static $UPGRADE_CONFIRM = array();
-	public function on_upgrade(SR_Player $player, array $args) { return $this->onUpgrade($player, $args, false); }
-	//	public function on_simulate(SR_Player $player, array $args) { return $this->onUpgrade($player, $args, true); }
-	private function onUpgrade(SR_Player $player, array $args, $simulated=false)
+	public function on_upgrade(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 2) {
-			$bot->reply(Shadowhelp::getHelp($player, $simulated?'simulate':'upgrade'));
+		if (count($args) !== 2)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'upgrade'));
 			return false;
 		}
 
-		if (false === ($item = $player->getItem($args[0]))) {
+		if (false === ($item = $player->getItem($args[0])))
+		{
 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if (!($item instanceof SR_Equipment)) {
+		if (!($item instanceof SR_Equipment))
+		{
 			$bot->reply('The first item is not an equipment.');
 			return false;
 		}
-		if (false === ($rune = $player->getItem($args[1]))) {
+		if (false === ($rune = $player->getInvItem($args[1])))
+		{
 			$bot->reply('You don`t have that rune.');
 			return false;
 		}
-		if (!($rune instanceof SR_Rune)) {
+		if (!($rune instanceof SR_Rune))
+		{
 			$bot->reply('The second item is not a rune.');
 			return false;
 		}
 
 		$modsRune = $rune->getModifiers();
-		if (($modsRune === NULL) || (count($modsRune) === 0)) {
+		if (($modsRune === NULL) || (count($modsRune) === 0))
+		{
 			$bot->reply('The rune has no modifiers. Somethings wrong!');
 			return false;
 		}
@@ -278,59 +282,50 @@ abstract class SR_Blacksmith extends SR_Store
 			self::$UPGRADE_CONFIRM[$pid] = $msg;
 			return $player->message(sprintf(
 				'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',
-			Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
+				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
 			));
 		}
-		else {
+		else
+		{
 			unset(self::$UPGRADE_CONFIRM[$pid]);
 		}
 
-
-		//		if ($simulated === true)
-		//		{
-		//			$price_s = $this->calcSimulationPrice($player, $price_u);
-		//			$dps = Shadowfunc::displayNuyen($price_s);
-		//			if (false === ($player->pay($price_s))) {
-		//				$bot->reply(sprintf('The smith says: "I am sorry chummer, the simulation will cost %s."', $dps));
-		//				return false;
-		//			}
-		//			$bot->reply(sprintf('You pay %s and the smith examines your items: "The upgrade would cost %s. Chance to fail: %s%%. Chance to break: %s%%."', $dps, $dpu, $fail, $break));
-		//			return true;
-		//		}
-		//		else
+		if (!$player->hasNuyen($price_u))
 		{
-			if (!$player->hasNuyen($price_u)) {
-				$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));
-				return false;
-			}
-				
-				
-			$player->message('The smith takes your items and goes to work...');
-			$player->removeItem($rune);
-				
-			if (Shadowfunc::dicePercent($fail)) {
-				if (Shadowfunc::dicePercent($break)) {
-					$player->removeItem($item);
-					$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
-				}
-				else {
-					$price_f = $this->calcUpgradePrice($player, 0);
-					$player->pay($price_f);
-					$dpf = Shadowfunc::displayNuyen($price_f);
-					$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
-				}
-			}
-			else {
-				$player->pay($price_u);
-				$item->addModifiers($rune->getItemModifiersB(), true);
-				$item->addModifiers($rune->getItemModifiersA($player), true);
-				$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
-			}
-				
-			$player->modify();
-				
-			return true;
+			$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));
+			return false;
 		}
+			
+			
+		$player->message('The smith takes your items and goes to work...');
+		$player->removeItem($rune);
+			
+		if (Shadowfunc::dicePercent($fail))
+		{
+			if (Shadowfunc::dicePercent($break))
+			{
+				$player->removeItem($item);
+				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
+			}
+			else
+			{
+				$price_f = $this->calcUpgradePrice($player, 0);
+				$player->pay($price_f);
+				$dpf = Shadowfunc::displayNuyen($price_f);
+				$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
+			}
+		}
+		else
+		{
+			$player->pay($price_u);
+			$item->addModifiers($rune->getItemModifiersB(), true);
+			$item->addModifiers($rune->getItemModifiersA($player), true);
+			$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
+		}
+			
+		$player->modify();
+			
+		return true;
 	}
 	
 	private function checkCombination(SR_Player $player, SR_Item $item, SR_Rune $rune)

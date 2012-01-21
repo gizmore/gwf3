@@ -32,7 +32,7 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		if (false === ($tlc = self::getTLCByArg($player, $args[0])))
 		{
-			$player->message('This location is unknown.');
+			$player->message('This location is unknown or ambigious.');
 			return false;
 		}
 		

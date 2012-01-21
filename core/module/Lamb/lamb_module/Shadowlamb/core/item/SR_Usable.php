@@ -26,18 +26,28 @@ abstract class SR_Usable extends SR_Item
 	
 	public function announceUsage(SR_Player $player, SR_Player $target, $message='', $message2='', $useamt=1)
 	{
-		if ($player->isFighting()) {
+		if ($player->isFighting())
+		{
 			$busy = $player->busy($this->getItemUsetime());
 			$busymsg = sprintf(' %ds busy.', $busy);
-		} else {
+		}
+		else
+		{
 			$busymsg = '';
 		}
-		$player->getParty()->message($player, sprintf(' used %s on %s.%s%s', $this->getName(), $target->getName(), $busymsg, $message));
-		$target->getParty()->message($player, sprintf(' used %s on %s.%s', $this->getName(), $target->getName(), $message2));
-
-		if ($useamt > 0) {
-			$this->useAmount($player, $useamt);
+		$player->getParty()->notice(sprintf('%s used %s on %s.%s%s', $player->getName(), $this->getName(), $target->getName(), $busymsg, $message));
+		
+		if ($player->isFighting())
+		{
+			$player->getEnemyParty()->notice(sprintf('%s used %s on %s.%s', $player->getName(), $this->getName(), $target->getName(), $message2));
 		}
+
+		if ($useamt > 0)
+		{
+			return $this->useAmount($player, $useamt);
+		}
+		
+		return true;
 	}
 	
 }

@@ -71,8 +71,12 @@ final class Shadowcmd_clan extends Shadowcmd
 			return false;
 		}
 		$message = sprintf(
-			'%s is in the "%s" clan with %s members, %s wealth and %s in the bank. Their motto: %s',
-			$target->getName(), $clan->getName(), $clan->getMembercount(), $clan->displayNuyen(), $clan->displayStorage(), $clan->getSlogan()
+			'%s is in the "%s" clan with %s/%s members, %s/%s wealth and %s/%s in the bank. Their motto: %s',
+			$target->getName(), $clan->getName(),
+			$clan->getMembercount(), $clan->getMaxMembercount(),
+			$clan->displayNuyen(), $clan->displayMaxNuyen(),
+			$clan->displayStorage(), $clan->displayMaxStorage(),
+			$clan->getSlogan()
 		);
 		return $bot->reply($message);
 	}

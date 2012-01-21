@@ -78,7 +78,7 @@ abstract class SR_QuestMultiItem extends SR_Quest
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		$have = $this->getQuestData();
-		$need = $this->getQuestDataItems();
+		$need = $this->getQuestDataItems($player);
 		
 		# Give the shizzle
 		$given = 0;
