@@ -1,15 +1,21 @@
 <?php
+/**
+ * Clan information functions that always work. 
+ * @author gizmore
+ */
 final class Shadowcmd_clan extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
 		
+		# Own info
 		if (count($args) === 0)
 		{
 			return self::showClanInfo($player, $player);
 		}
 		
+		# 1 Numeric == clan history.
 		if ( (count($args) === 1) && Common::isNumeric($args[0]))
 		{
 			if ($args[0] < 1)
@@ -20,13 +26,23 @@ final class Shadowcmd_clan extends Shadowcmd
 			
 			return self::showHistoryPage($player, (int)$args[0]);
 		}
+
+		# !members shows your clan members.
+		if ( (count($args) === 1) || (count($args) === 2) )
+		{
+			if ( ($args[0] === '!m') || ($args[0] === '!members') )
+			{
+				$page = isset($args[1]) ? (int)$args[1] : 1;
+				return self::showMembers($player, $page);
+			}
+		}
 		
+		# Show another player.
 		if (count($args) !== 1)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'clan'));
 			return false;
 		}
-		
 		if (false === ($target = Shadowrun4::getPlayerByShortName($args[0])))
 		{
 			$bot->reply('This player is unknown or not in memory.');
@@ -37,10 +53,14 @@ final class Shadowcmd_clan extends Shadowcmd
 			$bot->reply('This playername is ambigous.');
 			return false;
 		}
-		
 		return self::showClanInfo($player, $target);
 	}
 	
+	/**
+	 * Show clan statistics for a player.
+	 * @param SR_Player $player
+	 * @param SR_Player $target
+	 */
 	private static function showClanInfo(SR_Player $player, SR_Player $target)
 	{
 		$bot = Shadowrap::instance($player);
@@ -57,6 +77,58 @@ final class Shadowcmd_clan extends Shadowcmd
 		return $bot->reply($message);
 	}
 	
+	/**
+	 * Show one member page for your clan.
+	 * @param SR_Player $player
+	 * @param int $page
+	 */
+	private static function showMembers(SR_Player $player, $page)
+	{
+		if ($page < 1)
+		{
+			$player->message(Shadowhelp::getHelp($player, 'clan'));
+			return false;
+		}
+		if (false === ($clan = SR_Clan::getByPlayer($player)))
+		{
+			$player->message('You are not in a clan, chummer.');
+			return false;
+		}
+		$ipp = 10;
+		$nItems = $clan->getMembercount();
+		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
+		if ($page > $nPages)
+		{
+			$player->message('This page is empty.');
+			return false;
+		}
+		$from = GWF_PageMenu::getFrom($page, $ipp);
+		$where = 'sr4cm_cid='.$clan->getID();
+		$orderby = 'sr4cm_jointime ASC';
+		if (false === ($members = GDO::table('SR_ClanMembers')->selectAll('sr4pl_name, sr4pl_sid, sr4pl_level', $where, $orderby, array('players'), $ipp, $from, GDO::ARRAY_N)))
+		{
+			$player->message('DB ERROR 1');
+			return false;
+		}
+		if (count($members) === 0)
+		{
+			$player->message('This page is empty.');
+			return false;
+		}
+		$back = '';
+		foreach ($members as $row)
+		{
+			$from++;
+			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
+		}
+		return Shadowrap::instance($player)->reply(sprintf('%d ClanMembers page %d/%d: %s.', $nItems, $page, $nPages, substr($back, 2)));
+	}
+	
+	/**
+	 * Show one history page for your clan.
+	 * @param SR_Player $player
+	 * @param int $page
+	 */
 	private static function showHistoryPage(SR_Player $player, $page)
 	{
 		$bot = Shadowrap::instance($player);

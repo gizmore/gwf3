@@ -282,12 +282,6 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		if ($clan->getLeaderID() != $player->getID())
-		{
-			$player->message("You don't lead this clan, chummer!");
-			return false;
-		}
-		
 		if (count($args) === 0)
 		{
 			$player->message(Shadowhelp::getHelp($player, 'clan_manage'));
@@ -308,6 +302,12 @@ class SR_ClanHQ extends SR_Location
 	
 	private function onSetSlogan(SR_Player $player, SR_Clan $clan, array $args)
 	{
+		if ($clan->getLeaderID() != $player->getID())
+		{
+			$player->message("You don't lead this clan, chummer!");
+			return false;
+		}
+		
 		array_shift($args);
 		$slogan = implode(' ', $args);
 		
@@ -985,6 +985,29 @@ class SR_ClanHQ extends SR_Location
 		}
 		$bot = Shadowrap::instance($player);
 		return $bot->reply($item->getItemInfo($player));
+	}
+	
+	public static function onClanMessage(SR_Player $player, array $args)
+	{
+		if (false === ($clan = SR_Clan::getByPlayer($player)))
+		{
+			$player->message('You are not in a clan, chummer.');
+			return false;
+		}
+		
+		if ('' === ($message = implode(' ', $args)))
+		{
+			$player->message(Shadowhelp::getHelp($player, 'clan_message'));
+			return false;
+		}
+		
+		foreach (SR_ClanMembers::getOnlineMembers($clan->getID()) as $member)
+		{
+			$member instanceof SR_Player;
+			$member->message($message);
+		}
+		
+		return SR_ClanHistory::onMessage($clan, $player, $message);
 	}
 }
 ?>

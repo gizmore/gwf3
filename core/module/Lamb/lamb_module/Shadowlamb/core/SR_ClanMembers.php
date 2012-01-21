@@ -22,7 +22,7 @@ final class SR_ClanMembers extends GDO
 			'sr4cm_cid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
 			'sr4cm_jointime' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4cm_options' => array(GDO::UINT, 0),
-			
+			# Joins
 			'clans' => array(GDO::JOIN, GDO::NULL, array('SR_Clan', 'sr4cm_cid', 'sr4cl_id')),
 			'players' => array(GDO::JOIN, GDO::NULL, array('SR_Player', 'sr4cm_pid', 'sr4pl_id')),
 		);

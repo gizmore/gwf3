@@ -4,7 +4,7 @@ abstract class SR_Subway extends SR_Location
 	# array(array($target, $price, $time, $level))
 	public abstract function getSubwayTargets(SR_Player $player);
 	
-	public function getLeaderCommands(SR_Player $player) { return array('travel'); }
+	public function getLeaderCommands(SR_Player $player) { return array_merge(parent::getLeaderCommands($player), array('travel')); }
 	
 	public function calcTicketPrice($price, SR_Player $player)
 	{
