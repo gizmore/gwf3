@@ -31,9 +31,10 @@ $gwf = new GWF3(getcwd(), array(
 GWF_Debug::setDieOnError(false);
 
 # Website init
-header('Content-Type: text/html; charset=UTF-8');
 GWF_InstallWizardLanguage::init();
 GWF_HTML::init();
+header('Content-Type: text/html; charset=UTF-8');
+
 
 # Set install language
 $il = new GWF_LangTrans(GWF_CORE_PATH.'lang/install/install');
