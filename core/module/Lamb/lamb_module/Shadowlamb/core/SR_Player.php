@@ -1320,9 +1320,10 @@ class SR_Player extends GDO
 	
 	public function getMPGain()
 	{
+		$multi = $this->isFighting() ? 0.20 : 1.00;
 		$ma = $this->get('magic') * 5;
 		$ma += ($this->get('orcas')+1) * 20;
-		return round(self::MP_REFRESH_MULTI*$ma, 2);
+		return round(self::MP_REFRESH_MULTI*$ma*$multi, 2);
 	}
 	
 	public function refreshHPTimer()
@@ -1339,7 +1340,8 @@ class SR_Player extends GDO
 	
 	public function getHPGain()
 	{
-		return round(self::HP_REFRESH_MULTI*$this->get('elephants'), 2);
+		$multi = $this->isFighting() ? 0.20 : 1.00;
+		return round(self::HP_REFRESH_MULTI*$this->get('elephants')*$multi, 2);
 	}
 	
 	############
