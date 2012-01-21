@@ -26,7 +26,6 @@ abstract class SR_Location
 	public function getNPCS(SR_Player $player) { return array(); }
 	public function getComputers() { return array(); }
 	public function getCommands(SR_Player $player) { return array(); }
-	public function getLeaderCommands(SR_Player $player) { return array(); }
 	public function getFoundPercentage() { return 0.00; }
 	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
 	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
@@ -37,12 +36,15 @@ abstract class SR_Location
 	public function hasATM() { return !$this->getCityClass()->isDungeon(); }
 	public function onCityEnter(SR_Party $party) { $this->onCleanComputers($party); }
 	public function onCityExit(SR_Party $party) {}
+	public function onEnterLocation(SR_Party $party) {}
+	public function onLeaveLocation(SR_Party $party) {}
 	public function isHijackable() { return true; }
 	public function getAreaSize() { return 16; }
 	public function isEnterAllowed(SR_Player $player) { return true; }
 	public function isExitAllowed(SR_Player $player) { return true; }
 	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isEnterAllowed($m))) return false; return true; }
 	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isExitAllowed($m))) return false; return true; }
+	public function getLeaderCommands(SR_Player $player) { $back = array(); if ($this->isExitAllowedParty($player->getParty())) $back = array('hunt','exit','goto','explore'); return $back; }
 	
 	/**
 	 * We enter the location and are inside after we message the members.
@@ -124,6 +126,26 @@ abstract class SR_Location
 	
 	public function checkLocation()
 	{
+		return true;
+	}
+	
+	public function on_exit(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+// 		if (false !== ($error = Shadowcmd::checkLeader($player)))
+// 		{
+// 			$bot->reply($error);
+// 			return false;
+// 		}
+		$party = $player->getParty();
+		if (false !== ($error = Shadowcmd::checkMove($party)))
+		{
+			$bot->reply($error);
+			return false;
+		}
+	
+		$party->pushAction(SR_Party::ACTION_OUTSIDE);
+		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
 		return true;
 	}
 }

@@ -13,18 +13,25 @@ class Shadowcmd
 	public static $CMD_SHORTCUTS = array(
 		'#' => 'attack',
 		'a' => 'attributes',
+		'ac' => 'accept',
 		'br' => 'brew',
+		'bk' => 'break',
+		'bu' => 'buy',
 		'bw' => 'backward',
 		'c' => 'commands',
 		'ca' => 'cast',
 		'cc' => 'ccommands',
+		'cl' => 'clan',
+		'cm' => 'clan_message',
 		'cmp' => 'compare',
 		'cy' => 'cyberware',
+		'dr' => 'drop',
 		'ef' => 'effects',
 		'en' => 'enter',
 		'eq' => 'equip',
 		'ex' => 'examine',
 		'exp' => 'explore',
+		'fi' => 'fight',
 		'fl' => 'flee',
 		'fw' => 'forward',
 		'g' => 'goto',
@@ -32,32 +39,45 @@ class Shadowcmd
 		'gp' => 'givekp',
 		'gw' => 'givekw',
 		'gy' => 'giveny',
+		'h' => 'hunt',
 		'i' => 'inventory',
+		'in' => 'info',
 		'j' => 'join',
 		'ka' => 'karma',
+		'ki' => 'kick',
 		'kk' => 'known_knowledge',
 		'kp' => 'known_places',
 		'ks' => 'known_spells',
 		'kw' => 'known_words',
 		'l' => 'lvlup',
 		'le' => 'leader',
+		'lo' => 'look',
+		'ma' => 'manage',
 		'mo' => 'mount',
+		'mos' => 'mounts',
 		'ny' => 'nuyen',
 		'p' => 'party',
+		'pa' => 'part',
 		'pl' => 'party_loot',
 		'pm' => 'party_message',
 		'q' => 'equipment',
 		'qu' => 'quests',
 		'r' => 'reload',
+		're' => 'request',
 		'rl' => 'request_leader',
 		'rm' => 'running_mode',
 		's' => 'status',
 		'sd' => 'set_distance',
+		'se' => 'sell',
+		'st' => 'steal',
 		'sh' => 'shout',
 		'sk' => 'skills',
 		'sw' => 'swap',
+		't' => 'travel',
 		'u' => 'use',
 		'uq' => 'unequip',
+		'up' => 'upgrade',
+		'v' => 'view',
 		'w' => 'whisper',
 		'wb' => 'whisper_back',
 		'we' => 'weight',
@@ -72,40 +92,44 @@ class Shadowcmd
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmns','gmx');
 	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw');
-	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','clan','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','wb','sd','pm','rl');
+	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','cl','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','wb','sd','cm','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
-		'talk' => array('u','r','eq','uq','j','part','gi','drop','ca','say'),
+		'talk' => array('u','r','eq','uq','j','pa','gi','dr','ca','say'),
 		'fight' => array('fl','eq','uq','gi','fw','bw','u','r','ca','#'),
-		'inside' => array('j','part','u','r','ca','eq','uq','gi','drop','look','info'),
-		'outside' => array('j','part','u','r','ca','eq','uq','gi','drop','look','info'),
-		'explore' => array('u','r','ca','eq','uq','part','gi','drop'),
-		'goto' => array('u','r','ca','eq','uq','gi','drop','part'),
-		'hunt' => array('u','r','ca','eq','uq','gi','drop','part'),
-		'travel' => array('u','r','ca','eq','uq','gi','drop'),
-// 		'hijack' => array('u','r','ca','eq','uq','gi','drop','part'),
+		'inside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
+		'outside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
+		'explore' => array('u','r','ca','eq','uq','pa','gi','dr'),
+		'goto' => array('u','r','ca','eq','uq','gi','dr','pa'),
+		'hunt' => array('u','r','ca','eq','uq','gi','dr','pa'),
+		'travel' => array('u','r','ca','eq','uq','gi','dr'),
+// 		'hijack' => array('u','r','ca','eq','uq','gi','dr','pa'),
 		'hijack' => array(),
 	);
 	public static $CMDS_LEADER_ALWAYS = array('le','npc','ban','unban');
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'sleep' => array('stop'),
-		'talk' => array('kick','fight','bye'),
+		'talk' => array('ki','fi','bye'),
 		'fight' => array(),
 		'inside' => array('kick'),
-		'outside' => array('g','exp','hunt','kick'),
-		'explore' => array('g','exp','hunt','kick','stop'),
-		'goto' => array('g','exp','hunt','kick','stop'),
-		'hunt' => array('g','exp','hunt','kick','stop'), 
+		'outside' => array('g','exp','h','ki'),
+		'explore' => array('g','exp','h','ki','stop'),
+		'goto' => array('g','exp','h','ki','stop'),
+		'hunt' => array('g','exp','h','ki','stop'), 
 		'travel' => array(),
 		'hijack' => array(),
 	);
 	
+	# Bold overrides
+	private static $BOLD = array();
+	private static $NON_BOLD = array('exit');
+	
 	##########################
 	### Get valid commands ###
 	##########################
-	public static function getCurrentCommands(SR_Player $player, $show_hidden=true)
+	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=false)
 	{
 		if (false !== ($error = self::checkCreated($player)))
 		{
@@ -122,49 +146,44 @@ class Shadowcmd
 		# Allways commands
 		$commands = self::$CMDS_ALWAYS;
 		
-		if (false !== $scanner = $player->getInvItemByName('Scanner_v6'))
+		# Always
+		if ($show_hidden === true)
 		{
-			$commands = array_merge(array('spy'), $commands);
-		}
-		
-		if ($player->get('alchemy') >= 0)
-		{
-			$commands = array_merge(array('br'), $commands);
-		}
-		
-		if ($show_hidden) {
 			$commands = array_merge($commands, self::$CMDS_ALWAYS_CREATE);
 		}
 		
 		# GM commands
-		if ($player->isGM()) {
-			if ($show_hidden) {
+		if ($player->isGM())
+		{
+			if ($show_hidden === true)
+			{
 				$commands = array_merge($commands, self::$CMDS_GM);
 			}
 		}
 		
 		# Hidden commands
-		if ($show_hidden) {
+		if ($show_hidden === true)
+		{
 			$commands = array_merge($commands, self::$CMDS_ALWAYS_HIDDEN);
 		}
 		
-		# Action commands
+		# Player actions
 		$commands = array_merge($commands, self::$CMDS[$action]);
-		if ($leader)
+		if (false !== $scanner = $player->getInvItemByName('Scanner_v6'))
+		{
+			$commands = array_merge(array('spy'), $commands);
+		}
+		if ($player->get('alchemy') >= 0)
+		{
+			$commands = array_merge(array('br'), $commands);
+		}
+		
+		# Leader actions
+		if ($leader === true)
 		{
 			if ($show_hidden === true)
 			{
 				$commands = array_merge($commands, self::$CMDS_LEADER_ALWAYS);
-			}
-			
-			# Inside location?
-			if (false !== ($location = $party->getLocationClass('inside')))
-			{
-				if ($location->isExitAllowed($player))
-				{
-					# We can exit
-					$commands = array_merge($commands, array('exit','g','exp','hunt'));
-				}
 			}
 			
 			# Outside location?
@@ -177,25 +196,26 @@ class Shadowcmd
 				}
 			}
 			
-			
+			# Action
 			$commands = array_merge($commands, self::$CMDS_LEADER[$action]);
 		}
 		
 		# Location commands
 		if (false !== ($location = $party->getLocationClass('inside')))
 		{
-			$commands = array_merge($commands, $location->getNPCTalkCommands($player));
-			$commands = array_merge($commands, $location->getCommands($player));
-			
-			if ($location->isPVP())
-			{
-				$commands[] = 'fight';
-			}
-			
+			# Leader
 			if ($leader === true)
 			{
-				$commands = array_merge($commands, $location->getLeaderCommands($player));
+				$commands = array_merge($commands, self::shortcutArray($location->getLeaderCommands($player)));
+				if ($location->isPVP())
+				{
+					$commands[] = 'fi';
+				}
 			}
+			# Talk
+			$commands = array_merge($commands, $location->getNPCTalkCommands($player));
+			# Special
+			$commands = array_merge($commands, self::shortcutArray($location->getCommands($player)));
 		}
 		
 		if (false !== ($location = $party->getLocationClass('outside')))
@@ -210,7 +230,60 @@ class Shadowcmd
 //			}
 		}
 		
+		if ($boldify === true)
+		{
+			$commands = array_map(array(__CLASS__, 'boldify'), $commands);
+		}
+		
+		if ($long_versions === true)
+		{
+			$commands = array_map(array(__CLASS__, 'unshortcut'), $commands);
+		}
+		
+		
 		return $commands;
+	}
+	
+	public static function boldify($cmd)
+	{
+		if (!in_array($cmd, self::$BOLD, true) === true)
+		{
+			# Defaults do not bold.
+			if (   (in_array($cmd, self::$CMDS_ALWAYS_CREATE, true) === true)
+				|| (in_array($cmd, self::$CMDS_GM, true) === true)
+				|| (in_array($cmd, self::$CMDS_ALWAYS, true) === true)
+				|| (in_array($cmd, self::$CMDS_ALWAYS_HIDDEN) === true)
+				|| (in_array($cmd, self::$CMDS_LEADER_ALWAYS, true) === true)
+				|| (in_array($cmd, self::$NON_BOLD, true) === true)
+			)
+			{
+				return $cmd; 
+			}
+			# Default actions do not bold either.
+			foreach (self::$CMDS as $action => $cmds)
+			{
+				if (in_array($cmd, $cmds, true) === true)
+				{
+					return $cmd;
+				}
+			}
+			foreach (self::$CMDS_LEADER as $action => $cmds)
+			{
+				if (in_array($cmd, $cmds, true) === true)
+				{
+					return $cmd;
+				}
+			}
+		}
+		
+		# Here we have location commands ... and
+		# Bold it
+		return "\X02{$cmd}\X02";
+	}
+	
+	private static function shortcutArray(array $cmds)
+	{
+		return array_map(array(__CLASS__, 'shortcut'), $cmds);
 	}
 	
 	################
@@ -237,7 +310,7 @@ class Shadowcmd
 	 * @param SR_Player $player
 	 * @return false|string
 	 */
-	protected static function checkLeader(SR_Player $player)
+	public static function checkLeader(SR_Player $player)
 	{
 		if (false !== ($error = self::checkCreated($player)))
 		{
@@ -255,7 +328,7 @@ class Shadowcmd
 	 * @param SR_Player $player
 	 * @return false|string
 	 */
-	protected static function checkMove(SR_Party $party)
+	public static function checkMove(SR_Party $party)
 	{
 		$b = chr(2);
 		$back = '';
@@ -324,7 +397,7 @@ class Shadowcmd
 				$bot->reply('You did not #start the game yet.');
 			}
 			else {
-				$bot->reply('The command is not available for your current action or location. Try '.$c.'c to see all currently available commands.');
+				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
 			}
 			return false;
 		}
