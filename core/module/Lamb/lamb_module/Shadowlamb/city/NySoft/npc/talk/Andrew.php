@@ -6,7 +6,8 @@ final class NySoft_Andrew extends SR_TalkingNPC
 	public function getNPCQuests(SR_Player $player)
 	{
 		return array(
-// 			'NySoft_Andrew1',
+			'NySoft_Andrew1',
+			'NySoft_Andrew2',
 		);
 	}
 	

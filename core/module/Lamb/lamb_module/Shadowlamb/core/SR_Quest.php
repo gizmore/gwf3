@@ -70,7 +70,8 @@ class SR_Quest extends GDO
 	public function onAccept(SR_Player $player) {}
 	public function accept(SR_Player $player)
 	{
-		if ($this->isAccepted($player)) {
+		if ($this->isAccepted($player))
+		{
 			return true;
 		}
 		$this->saveOption(self::ACCEPTED, true);

@@ -125,6 +125,7 @@ final class Shadowhelp
 					'range2' => 'Spells and weapons have a minimum range. A range of 2m has no malus in combat / is considered 0.',
 					'distance' => "Imagine the combat as a line. +10 +8 +6 +4 +2 +0 -2 -4 -6 -8 -10. One party starts in the positive, the other in the negative. You can set your default distance with #sd.",
 					'death' => "When you die you might loose a random item. Also you will loose XP and nuyen you might have in your pocket. You will respawn in your nearest respawn location which is mostly a Hotel.",
+					'combat_lock' => 'In combat some commands lock your current target. The default command is attack random, which will also lock this target.',
 				),
 				
 				'your_status' => 'Your character status',
@@ -176,7 +177,7 @@ final class Shadowhelp
 					'max_hp' => 'The maximum amount of HP your character can have. You can increase this with the body attribute or rune modifiers.',
 					'mp' => "MP are your manapoints. Use #mp to see all party MP. To cast magic #spells you need MP. You can refresh manapoints in Hotel, or by using certain potions or items.",
 					'max_mp' => 'The maximum amount of MP your character can have. You can increase this with the magic attribute or rune modifiers.',
-					'atk' => 'Your chances to hit.',
+					'atk' => 'Your amount of chances to hit. The more hits you generate the more damage you cause. Your atk should be around twice your maxdmg, or even higher.',
 					'defense' => 'You chance to evade attacks. Reduces hits. You can increase defense with quickness',
 					'damage' => 'The min and max damage you can cause.',
 					'arm' => "Armor reduces damage. There are two types of armor",
@@ -328,7 +329,7 @@ final class Shadowhelp
 						'forward' => "Combat command. Usage: #forward|#fw. Move forward in distance.",
 						'backward' => "Combat command. Usage: #backward|#bw. Move backwards in distance.",
 						'flee' => "Combat command. Usage: #(fl)ee. Try to flee from the enemy. If successful you will #part the current #(p)arty. You will also loose some XP.",
-						'attack' => "Combat command. Usage: #attack|## [<enemy_name|enemy_enum>]. Select your target to attack with your weapon. Attack will lock your target, so you don't need to type attack all the time. See #help busytime and #help combat.",
+						'attack' => "Combat command. Usage: #attack|## [<enemy_name|enemy_enum>]. Select your target to attack with your weapon. Attack will lock your target, so you don't need to type attack all the time. See #help busytime and #help combat. See atk to see what the atk stat does.",
 						'set_distance' => 'Player command. Usage: #(s)et_(d)istance/#sd <meters>. Set your default combat distance. The max distance is '.SR_Player::MAX_SD.'.',
 					),
 					
@@ -363,7 +364,7 @@ final class Shadowhelp
 					array(
 						'explore' => 'Leader command. Usage: #(exp)lore. Start to explore the current city. When the explore time is over, you find a new #kp. When you have found a new known_place, you are outside of it. Use #(en)ter to enter it.',
 						'goto' => "Leader command. Usage: #(g)oto <kp_id|place>. Goto another place in your current city.",
-						'hunt' => "Leader command. Usage: #hunt <player>. Hunt another human party.",
+						'hunt' => "Leader command. Usage: #hunt <player>. Hunt another human party. When your ETA is over, you will be in the same location, or meet the party on streets.",
 						'enter' => 'Leader command. Usage: #(en)ter. Enter a location. Check your current location with #kp. Find new locations with #(exp)lore.',
 						'exit' => 'Leader command. Usage: #exit. Exit a location and return outside of it in the same city. To leave a dungeon, use #leave in the dungeons exit.',
 						'sleep' => "Leader command. Usage: #sleep. In Hotels and some other locations, you can sleep to rest and restore your HP and MP.",
@@ -491,7 +492,7 @@ final class Shadowhelp
 					),
 					
 					'location' => "Each (p)arty has a location. There are multiple cities and dungeons with lots of locations. You can #(g)oto your #known_places and #(exp)lore your current city to find more. Check your #kp to see all your known places in the current city.",
-				
+						
 					'action' => 'Each #(p)arty has an action',
 					array(
 						'action_delete' => 'This means the party is going to be deleted from database.',
@@ -537,7 +538,13 @@ final class Shadowhelp
 						'lock_option' => 'Dis/enable equipment lock, which determines how your (effective) level is computed. When you lock your equipment you cannot change it in combat.',
 						'bot_option' => 'Dis/enable the bot flag for your player. This has no effect on the game, just that [BOT] is shown behind your playername as information.',
 						'norl_option' => 'You can dis/enable this option to specify if it is allowed to steal your leadership with the #rl command.',
-					)
+					),
+					
+					'glossary' => 'Some glossary of terms and keywords used.',
+					array(
+						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join or #give or any other command you can imagine.',
+						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to lock a random target.',
+					),
 				),
 			),
 		);
