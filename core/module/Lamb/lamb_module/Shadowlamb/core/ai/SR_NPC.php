@@ -20,19 +20,20 @@ abstract class SR_NPC extends SR_NPCBase
 	{
 		if (!$this->isBusy())
 		{
-			if (LAMB_DEV)
-			{
-				SR_AICMD::combatTimer($this);
-			}
-			else
-			{
+// 			if (LAMB_DEV)
+// 			{
+// 				SR_AICMD::combatTimer($this);
+// 			}
+// 			else
+// 			{
 				$this->combatAI();
-			}
+// 			}
 			parent::combatTimer();
 		}
 	}
 	private function combatAIPushUse(SR_Item $item, $argstr='') { $this->combatPush('use '.$item->getItemName().($argstr===''?'':' '.$argstr)); return true; }
 	private function combatAIPushSpell(SR_Spell $spell, $argstr='') { $this->combatPush('spell '.$spell->getName().($argstr===''?'':' '.$argstr)); return true; }
+	private function combatAIPushEquip(SR_Item $item) { $this->combatPush('equip '.$item->getItemName()); }
 	
 	/**
 	 * The AI is gonna inject a command.
@@ -45,19 +46,31 @@ abstract class SR_NPC extends SR_NPCBase
 		}
 //		echo __METHOD__.PHP_EOL;
 		
-		if ($this->combatAIHeal()) {
+		if ($this->getWeapon() instanceof Item_Fists)
+		{
+			if ($this->combatAIEquipWeapon())
+			{
+				return;
+			}
+		}
+		
+		if ($this->combatAIHeal())
+		{
 			return;
 		}
 		
-		if ($this->combatAIConsume()) {
+		if ($this->combatAIConsume())
+		{
 			return;
 		}
 		
-		if ($this->combatAISpell()) {
+		if ($this->combatAISpell())
+		{
 			return;
 		}
 		
-		if ($this->combatAIGrenade()) {
+		if ($this->combatAIGrenade())
+		{
 			return;
 		}
 	}
@@ -360,6 +373,73 @@ abstract class SR_NPC extends SR_NPCBase
 			}
 		}
 		return $items;
+	}
+
+	public function combatAIEquipWeapon()
+	{
+		if (false !== ($weapon = $this->getBestWeapon()))
+		{
+			$this->combatAIPushEquip($item);
+			return true;
+		}
+		return false;
+	}
+	
+	private function getBestWeapon()
+	{
+		$best = false;
+		foreach ($this->getInventory() as $item)
+		{
+			if ($item instanceof SR_FireWeapon)
+			{
+				if (!$this->hasAmmoFor($item))
+				{
+					continue;
+				}
+			}
+			elseif ($item instanceof SR_MeleeWeapon)
+			{
+			}
+			else
+			{
+				continue;
+			}
+			
+			if (!$this->canEquip($item))
+			{
+				continue;
+			}
+			
+			if ($this->isWeaponBetterThan($item, $best))
+			{
+				$best = $item;
+			}
+		}
+		return $best;
+	}
+	
+	public function canEquip(SR_Equipment $item)
+	{
+		return false === Shadowfunc::checkRequirements($player, $this->getItemRequirements());
+	}
+	
+	public function hasAmmoFor(SR_FireWeapon $weapon)
+	{
+		return $this->getInvItemByName($weapon->getAmmoName(), false) !== false;
+	}
+	
+	public function isWeaponBetterThan(SR_Weapon $a, $b)
+	{
+		if (is_bool($b))
+		{
+			return true;
+		}
+		$b instanceof SR_Weapon;
+		$amod = $a->getItemModifiersA($this);
+		$bmod = $b->getItemModifiersA($this);
+		$admg = isset($amod['maxdmg']) ? $amod['maxdmg'] : 0;
+		$bdmg = isset($bmod['maxdmg']) ? $bmod['maxdmg'] : 0;
+		return $admg > $bdmg;
 	}
 }
 ?>

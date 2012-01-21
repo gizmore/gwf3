@@ -350,6 +350,11 @@ final class SR_Party extends GDO
 	 */
 	public function onPartyArrived($action)
 	{
+		if (false !== ($loc = $this->getLocationClass()))
+		{
+			$loc->onEnterLocation($this);
+		}
+		
 		return $this->onPartyArriveLeft(sprintf('arrived %s %s', $action, $this->getTarget()));
 	}
 	
@@ -358,6 +363,11 @@ final class SR_Party extends GDO
 	 */ 
 	public function onPartyLeft($action)
 	{
+		if (false !== ($loc = $this->getLocationClass()))
+		{
+			$loc->onLeaveLocation($this);
+		}
+		
 		$this->onPartyArriveLeft(sprintf('left %s', $this->getTarget()));
 	}
 	
@@ -856,7 +866,7 @@ final class SR_Party extends GDO
 	
 	public function message(SR_Player $player, $message)
 	{
-		return $this->notice($player->getEnum().'-'.$player->getName().$message);
+		$this->notice($player->getEnum().'-'.$player->getName().$message);
 	}
 	
 	#################

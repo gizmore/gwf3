@@ -135,7 +135,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	{
 		if (false === ($q = $this->getNPCQuest($player)))
 		{
-			Lamb_Log::logDebug('No more auto-quests.');
+// 			Lamb_Log::logDebug('No more auto-quests.');
 			return false;
 		}
 		
@@ -145,7 +145,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 		
 		switch ($word)
 		{
-			case 'shadowrun':
+			case $q->getTrigger():
 				if ($has === true)
 				{
 					$q->checkQuest($this, $player);

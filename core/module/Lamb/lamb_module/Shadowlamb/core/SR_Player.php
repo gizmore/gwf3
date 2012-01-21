@@ -141,6 +141,7 @@ class SR_Player extends GDO
 			# ID
 			'sr4pl_id' => array(GDO::AUTO_INCREMENT),
 			'sr4pl_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NULL, array('Lamb_User', 'sr4pl_uid', 'lusr_id')),
+			'sr4pl_sid' => array(GDO::UINT, 0),
 			'sr4pl_partyid' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4pl_classname' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
 			'sr4pl_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
@@ -204,6 +205,7 @@ class SR_Player extends GDO
 	###################
 	public function getID() { return $this->getInt('sr4pl_id'); }
 	public function getUID() { return $this->getUser()->getID(); }
+	public function getServerID() { return $this->getVar('sr4pl_sid'); }
 	public function isNPC() { return $this->getVar('sr4pl_uid') === NULL; }
 	public function isHuman() { return $this->getVar('sr4pl_uid') !== NULL; }
 	public function isCreated() { return $this->isOptionEnabled(self::CREATED); }
@@ -487,11 +489,12 @@ class SR_Player extends GDO
 		}
 	}
 	
-	public static function getPlayerData($userid=0)
+	public static function getPlayerData($userid=0, $serverid=0)
 	{
 		$back = array(
 			'sr4pl_id' => 0,
 			'sr4pl_uid' => $userid,
+			'sr4pl_sid' => $serverid,
 			'sr4pl_partyid' => 0,
 			'sr4pl_classname' => NULL,
 			'sr4pl_name' => NULL,
@@ -550,7 +553,7 @@ class SR_Player extends GDO
 	
 	public static function createHuman(Lamb_User $user)
 	{
-		$data = self::applyStartData(self::getPlayerData($user->getID()));
+		$data = self::applyStartData(self::getPlayerData($user->getID(), $user->getServerID()));
 		$data['sr4pl_name'] = $user->getName();
 		$human = new self($data);
 		if (false === ($human->insert()))
@@ -2534,6 +2537,5 @@ class SR_Player extends GDO
 		$this->old_combat_stack = '';
 		return true;
 	}
-	
 }
 ?>
