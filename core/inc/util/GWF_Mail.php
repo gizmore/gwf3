@@ -38,6 +38,24 @@ final class GWF_Mail
 //	public function addAttachment($title, $file) {}
 //	public function removeAttachment($title) {}
 
+	public static function sendMailS($sender, $receiver, $subject, $body, $html=false)
+	{
+		$mail = new self();
+		$mail->setSender($sender);
+		$mail->setReceiver($receiver);
+		$mail->setSubject($subject);
+		$mail->setBody($body);
+
+		return false === $html
+			? $mail->sendAsText()
+			: $mail->sendAsHTML();
+	}
+
+	public static function sendDebugMail($subject, $body)
+	{
+		return self::sendMailS(GWF_BOT_EMAIL, GWF_ADMIN_EMAIL, GWF_SITENAME.$subject, GWF_Debug::getDebugText($body));
+	}
+
 	public function nestedHTMLBody()
 	{
 		$tVars = array(
@@ -228,4 +246,3 @@ final class GWF_Mail
 		return $back;
 	}
 }
-?>

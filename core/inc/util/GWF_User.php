@@ -133,6 +133,12 @@ final class GWF_User extends GDO
 		return self::displayProfileLinkS($this->getVar('user_name'));
 //		return GWF_HTML::anchor($this->getProfileHREF(), $this->getVar('user_name'));
 	}
+	public function displayProfileLink2()
+	{
+		return true === $this->isGuest()
+			? $this->displayUsername()
+			: self::displayProfileLinkS($this->getVar('user_name'));
+	}
 	public static function displayProfileLinkS($username)
 	{
 		return sprintf('<a href="%sprofile/%s">%s</a>', GWF_WEB_ROOT, urlencode($username), htmlspecialchars($username));

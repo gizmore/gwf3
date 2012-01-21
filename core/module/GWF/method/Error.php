@@ -56,21 +56,22 @@ final class GWF_Error extends GWF_Method
 		# Real 404 page?
 		if ($realcode === '404')
 		{
+			$message = self::getMessage('404');
 			# Mail it?
 			if ((GWF_DEBUG_EMAIL & 4) && $this->_module->cfgMail404())
 			{
-				self::gwf_error_404_mail();
+				self::errorMail(': 404 Error', $message);
 			}
 			
 			# Log it?
 			if ($this->_module->cfgLog404())
 			{
-				GWF_Log::log('404', self::getLogMessage('404'), true);
+				GWF_Log::log('404', $message, true);
 			}
 		}
 		elseif ($realcode === '403' && (GWF_DEBUG_EMAIL & 8))
 		{
-			self::errorMail(': 403 Error', self::getMailMessage('403'));
+			self::errorMail(': 403 Error', self::getMessage('403'));
 		}
 		
 		# TODO: create base-lang: ERR_HTTP_404
@@ -84,36 +85,13 @@ final class GWF_Error extends GWF_Method
 		return $this->_module->template('error.tpl', $tVars);
 	}
 	
-	public static function gwf_error_404_mail()
-	{
-		# TODO: add constant/variable with forbidden domains (in config?)
-//		$blacklist = array(
-//		);
-		
-//		if (in_array($_SERVER['REQUEST_URI'], $blacklist, true))
-//		{
-//			return;
-//		}
-		return self::errorMail(': 404 Error', self::getMailMessage('404'));
-	}
-
 	public static function errorMail($subject, $body)
 	{
-		$mail = new GWF_Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setReceiver(GWF_ADMIN_EMAIL);
-		$mail->setSubject(GWF_SITENAME.$subject);
-		$mail->setBody($body);
-		return $mail->sendAsText();
+		# TODO: blacklist for domains or paths by config?
+		return GWF_Mail::sendDebugMail($subject, $body);
 	}
 
-	private static function getMailMessage($code)
-	{
-		#todo
-		$referer = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
-		return sprintf('%s The page %s threw a %s error.', $referer.PHP_EOL.PHP_EOL, htmlspecialchars($_SERVER['REQUEST_URI']), $code);
-	}
-	private static function getLogMessage($code)
+	private static function getMessage($code)
 	{
 		return sprintf('The page %s threw a %s error.', htmlspecialchars($_SERVER['REQUEST_URI']), $code);
 	}

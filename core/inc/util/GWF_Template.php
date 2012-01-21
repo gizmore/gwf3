@@ -87,12 +87,7 @@ final class GWF_Template
 	
 	private static function sendErrorMail($path, $msg)
 	{
-		$mail = new GWF_Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setReceiver(GWF_ADMIN_EMAIL);
-		$mail->setSubject(GWF_SITENAME.': Smarty Error!');
-		$mail->setBody(GWF_Debug::backtrace($msg, false));
-		return $mail->sendAsText();
+		return GWF_Mail::sendDebugMail(': Smarty Error: '.$path, GWF_Debug::backtrace($msg, false));
 	}
 
 	/**

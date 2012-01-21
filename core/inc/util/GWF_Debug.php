@@ -1,23 +1,11 @@
 <?php
-##
-### Autoconfigure constants in case not defined
-##
-// Common::defineConst('GWF_PATH', getcwd());
-// if (PHP_SAPI === 'cli')
-// {
-// 	Common::defineConst('GWF_WWW_PATH', getcwd());
-// }
-// else
-// {
-// 	Common::defineConst('GWF_WWW_PATH', $_SERVER['REQUEST_URI']);
-// }
-
 /**
  * Debug backtrace and error handler.
  * Can send email on PHP errors.
  * Also has a method to get debug timings.
  * @example GWF_Debug::enableErrorHandler(); fatal_ooops();
  * @see GWF_DEBUG_EMAIL in protected/config.php
+ * @todo it displays and sends two errors for each error
  * @author gizmore
  * @version 3.02
  */
@@ -26,6 +14,24 @@ final class GWF_Debug
 	private static $die = true;
 	private static $enabled = false;
 	private static $MAIL_ON_ERROR = true;
+
+	public static function initNoGWF()
+	{
+		# Autoconfigure constants in case not defined
+		$path = getcwd();
+		$wwwpath = (PHP_SAPI === 'cli') ? $path : $_SERVER['REQUEST_URI']; # FIXME: vuln
+		Common::defineConst('GWF_PATH', $path);
+		Common::defineConst('GWF_WWW_PATH', $wwwpath);
+
+		# Check if Mail class exists
+//		if( false === class_exists('GWF_Mail') )
+//		{
+//			self::setMailOnError(false);
+//		}
+
+		# TODO: GWF_IP6, GWF_Log
+	}
+
 	################
 	### Settings ###
 	################
@@ -33,12 +39,12 @@ final class GWF_Debug
 	{
 		self::$die = $bool;
 	}
-	
+
 	public static function setMailOnError($bool=true)
 	{
 		self::$MAIL_ON_ERROR = $bool;
 	}
-	
+
 	public static function disableErrorHandler()
 	{
 		if (self::$enabled === true)
@@ -47,7 +53,7 @@ final class GWF_Debug
 			self::$enabled = false;
 		}
 	}
-	
+
 	public static function enableErrorHandler()
 	{
 		if (self::$enabled === false)
@@ -57,7 +63,7 @@ final class GWF_Debug
 			self::$enabled = true;
 		}
 	}
-	
+
 	public static function enableStubErrorHandler()
 	{
 		self::disableErrorHandler();
@@ -65,9 +71,6 @@ final class GWF_Debug
 		self::$enabled = true;
 	}
 
-	##########
-	### GC ###
-	##########
 	/**
 	 * Call the garbage collector if exists.
 	 */
@@ -86,7 +89,7 @@ final class GWF_Debug
 	{
 		return false;
 	}
-	
+
 	/**
 	 * This one get's called on a fatal. No stacktrace available and some vars are messed up.
 	 */
@@ -106,7 +109,7 @@ final class GWF_Debug
 			}
 		}
 	}
-	
+
 	/**
 	 * Throw a custom error.
 	 * @param string $message
@@ -117,7 +120,7 @@ final class GWF_Debug
 // 	{
 // 		self::error_handler(-1, $message, $file, $line, NULL);
 // 	}
-	
+
 	/**
 	 * Error handler creates some html backtrace and can die on _every_ warning etc.
 	 * @param int $errno
@@ -185,10 +188,6 @@ final class GWF_Debug
 		# Send error to admin
 		if (true === self::$MAIL_ON_ERROR)
 		{
-			if (true === isset($_SERVER['REQUEST_URI']))
-			{
-				$message = htmlspecialchars($_SERVER['REQUEST_URI']).PHP_EOL.PHP_EOL.$message;
-			}
 			self::sendDebugMail(self::backtrace($message, false));
 		}
 		
@@ -197,7 +196,8 @@ final class GWF_Debug
 			die(1); # oops :)
 		}
 		
-		# Return false to populate php last error. TODO: Check if we want that. (spaceone: Yes we want that!)
+		# Return false to populate php last error.
+		# TODO: Check if we want that.
 		return false; 
 	}
 
@@ -207,20 +207,29 @@ final class GWF_Debug
 	 */
 	public static function sendDebugMail($message)
 	{
-		$mail = new GWF_Mail();
-		$mail->setSender(GWF_BOT_EMAIL);
-		$mail->setReceiver(GWF_ADMIN_EMAIL);
-		$mail->setSubject(GWF_SITENAME.': PHP Error');
-		$mail->setBody($message);
-		return $mail->sendAsText();
+		return GWF_Mail::sendDebugMail(': PHP Error', $message);
 	}
-	
-	############################
-	### Own Backtrace Output ###
-	############################
+
+	/**
+	 * Get some additional information
+	 * @todo move?
+	 */
+	public static function getDebugText($message)
+	{
+		$request = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_GET['mo'].'/'.$_GET['me'];
+		$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+		$ip = $_SEVER['REMOTE_ADDR'];
+		try {
+			$user = GWF_User::getStaticOrGuest()->displayUsername();
+		} catch (Exception $e) { $user = 'ERROR'; }
+
+		$pre = sprintf("RequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: \n", $request, $referer, $ip, $user);
+		return htmlspecialchars($pre).$message.PHP_EOL;
+	}
+
 	/**
 	 * Return a backtrace in either HTML or plaintext. You should use monospace font for html.
-	 * HTML means (x)html(5) and <pre> stlye.
+	 * HTML means (x)html(5) and <pre> style.
 	 * Plaintext means nice for logfiles.
 	 * @param string $message
 	 * @param boolean $html
@@ -261,7 +270,7 @@ final class GWF_Debug
 			$preline = isset($row['line']) ? $row['line'] : '?';
 			$prefile = isset($row['file']) ? $row['file'] : '[unknown file]';
 		}
-		
+
 		$copy = array();
 		foreach ($implode as $imp)
 		{
@@ -270,14 +279,14 @@ final class GWF_Debug
 			$func .= str_repeat('.', $longest-$len);
 			$copy[] = sprintf('%s %s line %s.', $func, self::shortpath($file), $line);
 		}
-		
+
 		$back .= $html === true ? '<hr/>' : PHP_EOL;
 		$back .= sprintf('Backtrace starts in %s line %s.', self::shortpath($prefile), $preline).PHP_EOL;
 		$back .= implode(PHP_EOL, array_reverse($copy));
 		$back .= $html ? "\n</pre>\n" : "\n";
 		return $back;
 	}
-	
+
 	/**
 	 * Strip full pathes so we don't have a full path disclosure.
 	 * @param string $path
@@ -290,4 +299,3 @@ final class GWF_Debug
 		return trim($path, ' /');
 	}
 }
-?>
