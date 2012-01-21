@@ -4,7 +4,7 @@ final class Shadowcmd_gml extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if ( (count($args) < 3) || (count($args) > 4) )
+		if ( (count($args) < 2) || (count($args) > 3) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'gml'));
 			return false;
@@ -12,13 +12,13 @@ final class Shadowcmd_gml extends Shadowcmd
 		
 		$action = SR_Party::ACTION_OUTSIDE;
 		
-		if (count($args) > 3)
+		if (count($args) > 2)
 		{
-			switch ($args[3])
+			switch ($args[2])
 			{
 				case SR_Party::ACTION_INSIDE:
 				case SR_Party::ACTION_OUTSIDE:
-					$action = $args[3];
+					$action = $args[2];
 					break;
 				default:
 					$bot->reply(Shadowhelp::getHelp($player, 'gml'));
@@ -59,15 +59,18 @@ final class Shadowcmd_gml extends Shadowcmd
 			return false;
 		}
 		
-		if (false === ($city = Shadowrun4::getCity($args[1])))
+		$cityname = Common::substrUntil($args[1], '_', '');
+		$locname = Common::substrFrom($args[1], '_', '');
+		
+		if (false === ($city = Shadowrun4::getCity($cityname)))
 		{
-			$bot->reply('The city '.$args[1].' is unknown');
+			$bot->reply('The city '.$cityname.' is unknown');
 			return false;
 		}
 		
-		if (false === ($loc = $city->getLocation($args[2])))
+		if (false === ($loc = $city->getLocation($locname)))
 		{
-			$bot->reply(sprintf('The location %s is unknown in %s.', $args[2], $args[1]));
+			$bot->reply(sprintf('The location %s is unknown in %s.', $locname, $cityname));
 			return false;
 		}
 		

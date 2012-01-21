@@ -53,7 +53,7 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 	private function onTalkToStolemeyer(SR_Player $player)
 	{
 		$this->reply("Ok ok chummer, they are using our software to control genetic experiments.");
-		$this->reply("It's probably not legal, that's all i know. Heck i am not even sure what kind of DNA they to mix... Please leave now.");
+		$this->reply("It's probably not legal, that's all i know. Heck i am not even sure what kind of DNA they try to mix... Please leave now.");
 		$this->reply("Maybe you should find out what DNA they play with and what they want to achieve :O.");
 		$quest4 = SR_Quest::getQuest($player, 'Renraku_IV');
 		if ($quest4->isUnknown($player))
@@ -108,7 +108,7 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 	public function getNPCLoot(SR_Player $player)
 	{
 		$p = $player->getParty();
-		$p->notice('"You bastard, we talk later...", Mr.Stolemeyer cries... and disappears from combat.');
+		$p->notice('"You bastard, we talk later...", '.chr(2).'Mr.Stolemeyer'.chr(2).' cries... and disappears from combat.');
 		foreach ($p->getMembers() as $member)
 		{
 			$quest = SR_Quest::getQuest($player, 'Renraku_III');

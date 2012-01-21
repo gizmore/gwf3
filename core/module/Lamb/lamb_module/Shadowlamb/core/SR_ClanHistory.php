@@ -163,7 +163,7 @@ final class SR_ClanHistory extends GDO
 				'sr4ch_cid' => $clan->getID(),
 				'sr4ch_time' => Shadowrun4::getTime(),
 				'sr4ch_pname' => $player->getName(),
-				'sr4ch_action' => self::MESSAGE,
+				'sr4ch_action' => self::MSG,
 				'sr4ch_iname' => $message,
 				'sr4ch_amt' => '0',
 		));

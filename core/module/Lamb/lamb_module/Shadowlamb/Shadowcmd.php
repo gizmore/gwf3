@@ -91,7 +91,7 @@ class Shadowcmd
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmns','gmx');
-	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw');
+	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw','swapkp');
 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','cl','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mounts','sh','w','wb','sd','cm','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
@@ -125,6 +125,8 @@ class Shadowcmd
 	# Bold overrides
 	private static $BOLD = array();
 	private static $NON_BOLD = array('exit');
+	
+	private static $CURRENT_PLAYER = NULL;
 	
 	##########################
 	### Get valid commands ###
@@ -230,16 +232,15 @@ class Shadowcmd
 //			}
 		}
 		
-		if ($boldify === true)
-		{
-			$commands = array_map(array(__CLASS__, 'boldify'), $commands);
-		}
-		
 		if ($long_versions === true)
 		{
 			$commands = array_map(array(__CLASS__, 'unshortcut'), $commands);
 		}
 		
+		if ($boldify === true)
+		{
+			$commands = array_map(array(__CLASS__, 'boldify'), $commands);
+		}
 		
 		return $commands;
 	}
@@ -356,6 +357,8 @@ class Shadowcmd
 	###############
 	public static function onTrigger(SR_Player $player, $message)
 	{
+		self::$CURRENT_PLAYER = $player;
+		
 		if ($player->isFighting())
 		{
 			$cmd = Common::substrUntil($message, ' ', $message);

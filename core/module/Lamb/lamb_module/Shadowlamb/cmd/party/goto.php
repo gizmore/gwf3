@@ -148,6 +148,11 @@ final class Shadowcmd_goto extends Shadowcmd
 		return self::getTCLByNameB($player, $arg, $places);
 	}
 	
+	public static function getPlacesInCurrentCity(SR_Player $player)
+	{
+		return self::getPlacesInCity($player, $player->getParty()->getCity());
+	}
+	
 	private static function getPlacesInCity(SR_Player $player, $cityname)
 	{
 		$back = array();
