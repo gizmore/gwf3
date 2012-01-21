@@ -3,7 +3,7 @@ final class Quest_NySoft_Andrew2 extends SR_Quest
 {
 	public function getRewardXP() { return 5; }
 	public function getRewardNuyen() { return 3000; }
-	public function getQuestName() { return 'Suprises'; }
+	public function getQuestName() { return 'MoreSuprise'; }
 	
 	public function getNeededAmount() { return 30; }
 	
@@ -14,15 +14,15 @@ final class Quest_NySoft_Andrew2 extends SR_Quest
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have_after = $this->giveQuesties($player, $npc, 'ID4Card', $have_before, $need);
-		$given = $have_after - $have_before;
-		if ($given > 0)
+			
+		if ($have_after > $have_before)
 		{
-			$player->message(sprintf('You hand %d ID4Cards to Mr.Northwood...', $given));
+			$this->saveAmount($have_after);
 		}
-		
-		if ($have_after > $need)
+				
+		if ($have_after >= $need)
 		{
-			$npc->reply('Well done chummer... take this little reward...');
+			$npc->reply('Well done chummer... take this little reward... We will probably find out more soon!');
 			$this->onSolve($player);
 		}
 		else

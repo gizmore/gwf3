@@ -14,13 +14,13 @@ final class Quest_NySoft_Andrew1 extends SR_Quest
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
 		$have_after = $this->giveQuesties($player, $npc, 'IDCard', $have_before, $need);
-		$given = $have_after - $have_before;
-		if ($given > 0)
-		{
-			$player->message(sprintf('You hand %d IDCards to Mr.Northwood...', $given));
-		}
 		
-		if ($have_after > $need)
+		if ($have_after > $have_before)
+		{
+			$this->saveAmount($have_after);
+		}
+			
+		if ($have_after >= $need)
 		{
 			$npc->reply('Well done chummer... take this little reward...');
 			$this->onSolve($player);

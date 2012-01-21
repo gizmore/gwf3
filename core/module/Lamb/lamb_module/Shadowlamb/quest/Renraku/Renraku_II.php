@@ -60,7 +60,7 @@ final class Quest_Renraku_II extends SR_Quest
 	public function onHackedThree(SR_Player $player)
 	{
 		$player->message('You find an interesting file: "project_leaders.dbm" ...');
-		$player->message('Leaders: G. Lessley[Seattle Headquarters], R. Stolemeyer[Amerindian Laboratory], J. Johnson[Nysoft, Dellaware]');
+		$player->message('Leaders: G. Lessley[Seattle Headquarters], R. Stolemeyer[NySoft, Delaware], J. Johnson[Amerindian Labs]');
 		$player->message('You get angry while you read the file ... ');
 		if (!isset($data['H3']))
 		{

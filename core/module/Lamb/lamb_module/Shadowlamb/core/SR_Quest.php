@@ -48,10 +48,11 @@ class SR_Quest extends GDO
 	#############
 	### Quest ###
 	#############
-// 	public function getAllQuests(SR_Player $player) { return self::table(__CLASS__)->selectAll('')}
 	public static function getQuests() { return self::$quests; }
-	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
+	
 	public function getName() { return $this->getVar('sr4qu_name'); }
+	public function getTrigger() { return 'shadowrun'; }
+	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
 	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
 	public function getAmount() { return $this->getVar('sr4qu_amount'); }
 	public function saveAmount($amt) { return $this->saveVar('sr4qu_amount', $amt); }
@@ -68,25 +69,55 @@ class SR_Quest extends GDO
 	public function isUnknown(SR_Player $player) { return $this->getOptions() === 0; }
 	public function onNPCQuestTalk(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL) { return $this->onNPCQuestTalkB($npc, $player, $word, $args); }
 	public function onAccept(SR_Player $player) {}
+	public function displayQuest() { return sprintf('"%s": %s', $this->getQuestName(), $this->getQuestDescription()); }
+	public function getPlayer() { return Shadowrun4::getPlayerByPID($this->getPlayerID()); }
+	public function getPlayerID() { return $this->getVar('sr4qu_uid'); }
+
+	/**
+	 * Accept logic.
+	 * @param SR_Player $player
+	 */
 	public function accept(SR_Player $player)
 	{
 		if ($this->isAccepted($player))
 		{
+			$player->message('You already accepted this quest. (Please report to gizmore, should not see me.)');
 			return true;
 		}
-		$this->saveOption(self::ACCEPTED, true);
+		
+		# Insert
+		$this->setOption(self::ACCEPTED, true);
+		if (false === $this->replace())
+		{
+			return false;
+		}
+		
+		# Callback
+		$this->onAccept($player); 
+		
+		# Announce
 		$player->message(sprintf('You got a new quest: %s.', $this->getQuestName()));
-		$this->onAccept($player);
 		return true;
 	}
 	
 	public function decline(SR_Player $player)
 	{
-		if ($this->getOptions() !== 0) {
+		if ($this->getOptions() !== 0)
+		{
+			$player->message('You already declined this quest. (Please report to gizmore, should not see me.)');
+			return true;
+		}
+		
+		# Insert
+		$this->setOption(self::REJECTED, true);
+		if (false === $this->replace())
+		{
 			return false;
 		}
-		$this->saveOption(self::REJECTED, true);
-		$player->message(sprintf('You declined the quest "%s". (forever)', $this->getQuestName()));
+
+		# Announce
+		$player->message(sprintf('You declined the "%s" quest, forever.', $this->getQuestName()));
+		return true;
 	}
 	
 	public function onSolve(SR_Player $player)
@@ -94,34 +125,50 @@ class SR_Quest extends GDO
 		if ($this->isDone($player))
 		{
 			$player->message('You already solved this quest (should not happen).');
+			return true;
+		}
+
+		# Update
+		if (false === $this->saveOption(self::DONE, true))
+		{
+			return false;
+		}
+		if (false === $player->increase('sr4pl_quests_done', 1))
+		{
 			return false;
 		}
 		
-		$this->saveOption(self::DONE, true);
-		$player->increase('sr4pl_quests_done', 1);
+		# Callback
 		$this->onQuestSolve($player);
+		
+		# Easyrewards
 		$this->onReward($player);
+		
+		# Announce
 		$player->modify();
 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
 		return true;
 	}
 	
+	/**
+	 * Old helper.
+	 * @deprecated
+	 * @param SR_Player $player
+	 * @param unknown_type $by
+	 */
 	public function giveAmount(SR_Player $player, $by=1)
 	{
-		if (false === ($this->increase('sr4qu_amount', $by))) {
+		if (false === ($this->increase('sr4qu_amount', $by)))
+		{
 			return false;
 		}
-		if ($this->getAmount() >= $this->getNeededAmount()) {
+		if ($this->getAmount() >= $this->getNeededAmount())
+		{
 			$this->onSolve($player);
 		}
 		return true;
 	}
 	
-	public function displayQuest()
-	{
-		return sprintf('"%s": %s', $this->getQuestName(), $this->getQuestDescription());
-	}
-
 	##############
 	### Static ###
 	##############
@@ -245,9 +292,6 @@ class SR_Quest extends GDO
 			'sr4qu_data' => NULL,
 			'sr4qu_options' => 0,	
 		));
-		if (false === ($quest->replace())) {
-			return false;
-		}
 		return $quest;
 	}
 	
@@ -340,17 +384,16 @@ class SR_Quest extends GDO
 		switch ($word)
 		{
 			case 'confirm':
-				$npc->reply('What do you say, chummer?');
-				break;
-			case 'shadowrun':
-				$npc->reply('Description reply for Quest '.$this->getName());
-				break;
+				return $npc->reply('What do you say, chummer?');
+				
+			case $this->getTrigger():
+				return $npc->reply('Description reply for Quest '.$this->getName());
+				
 			case 'yes':
-				$npc->reply('Accept reply for Quest '.$this->getName());
-				break;
+				return $npc->reply('Accept reply for Quest '.$this->getName());
+				
 			case 'no':
-				$npc->reply('Deny reply for Quest '.$this->getName());
-				break;
+				return $npc->reply('Deny reply for Quest '.$this->getName());
 		}
 		return true;
 	}

@@ -1,75 +1,22 @@
 <?php
-final class Quest_NySoft_Priorities extends SR_Quest
+final class Quest_NySoft_Priorities extends SR_QuestMultiItem
 {
-	public static $PRIORITY_ITEMS = array(
-		'Pizza' => 6,
-		'Coke' => 8,
-		'SmallBeer' => 6,
-	);
+	public function getQuestDataItems(SR_Player $player)
+	{
+		return array(
+			'Pizza' => 6,
+			'Coke' => 8,
+			'SmallBeer' => 6,
+		);
+	}
 	public function getRewardXP() { return 6; }
 	public function getRewardNuyen() { return 600; }
 	public function getQuestName() { return 'Priorities'; }
-	public function getQuestDescription()
-	{
-		$data = $this->getQuestData();
-		$out = array();
-		foreach (self::$PRIORITY_ITEMS as $itemname => $amt)
-		{
-			$out[] = sprintf("%d/%d %s", $data[$itemname], $amt, $itemname);
-		}
-		return sprintf('Bring %s to Christian in the NySoft office, Deleware.', GWF_Array::implodeHuman($out));
-	}
+	public function getQuestDescription() { return parent::getQuestDescriptionMI('Bring %1$s to Christian in the NySoft office, Deleware.'); }
+	public function onQuestMIGiven($npc, SR_Player $player) { $npc->reply("Thanks chummer!"); }
+	public function onQuestMIMore($npc, SR_Player $player) { $npc->reply('Where are our supplies?'); }
+	public function onQuestMISolved($npc, SR_Player $player) { $npc->reply("Finally i can get back to work!"); }
 	
-	public function getTheQuestData()
-	{
-		$data = $this->getQuestData();
-		if (count($data) > 0)
-		{
-			return $data;
-		}
-		$data = array();
-		foreach (self::$PRIORITY_ITEMS as $itemname => $amt)
-		{
-			$data[$itemname] = 0;
-		}
-		return $data;
-	}
-	
-	public function checkQuest(SR_NPC $npc, SR_Player $player)
-	{
-		$have = $this->getTheQuestData();
-		$need = $this->getTheQuestData();
-		$given = 0;
-		$need_total = 0;
-		$have_total = 0;
-		foreach (self::$PRIORITY_ITEMS as $itemname => $amt)
-		{
-			$hbe = $have[$itemname]; # before
-			$hav = $this->giveQuesties($player, $npc, $itemname, $have[$itemname], $amt); # after
-			$have[$itemname] = $hav;
-			$need[$itemname] = $amt - $hav;
-			$given += $hav - $hbe;
-			$need_total += $amt;
-			$have_total += $hav;
-		}
-		
-		if ($given > 0)
-		{
-			$npc->reply("Thanks chummer!");
-			$this->saveQuestData($have);
-		}
-		
-		if ($have_total >= $need_total)
-		{
-			$npc->reply('Thanks man, now i can get back to work!');
-			$this->onSolve($player);
-		}
-		else 
-		{
-			$npc->reply('Where are our supplies?');
-		}
-	}
-		
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		$need = $this->getNeededAmount();
@@ -83,7 +30,7 @@ final class Quest_NySoft_Priorities extends SR_Quest
 				$npc->reply("Interested?");
 				break;
 			case 'confirm':
-				$npc->reply("Interested?");
+				$npc->reply("So?");
 				break;
 			case 'yes':
 				$npc->reply('Thank you chummer.');
