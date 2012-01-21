@@ -3,7 +3,7 @@ final class Quest_NySoft_Andrew2 extends SR_Quest
 {
 	public function getRewardXP() { return 5; }
 	public function getRewardNuyen() { return 3000; }
-	public function getQuestName() { return 'MoreSuprise'; }
+	public function getQuestName() { return 'MoreSurprise'; }
 	
 	public function getNeededAmount() { return 30; }
 	
@@ -38,7 +38,7 @@ final class Quest_NySoft_Andrew2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("You will laugh your ass of ... we surely need ID4Cards too ... suprise suprise haha!");
+				$npc->reply("You will laugh your ass of ... we surely need ID4Cards too ... surprise surprise haha!");
 				$npc->reply('You can organize them too, can you?');
 				break;
 			case 'confirm':

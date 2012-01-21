@@ -3,7 +3,7 @@ final class Quest_NySoft_Andrew1 extends SR_Quest
 {
 	public function getRewardXP() { return 3; }
 	public function getRewardNuyen() { return 900; }
-	public function getQuestName() { return 'Suprise'; }
+	public function getQuestName() { return 'Surprise'; }
 	
 	public function getNeededAmount() { return 30; }
 	
@@ -38,8 +38,8 @@ final class Quest_NySoft_Andrew1 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("You say Renraku is doing illegal experiments? Our software might be involved?!... That's a big suprise to me!");
-				$npc->reply("Well, if you could bring me $need IDCards i could send a secret team into their office.");
+				$npc->reply("You say Renraku is doing illegal experiments? Our software might be involved?!... That's a big surprise to me!");
+				$npc->reply("Well, if you could bring me $need IDCards I could send a secret team into their office.");
 				$npc->reply('It is not a big deal for you, is it?');
 				break;
 			case 'confirm':
