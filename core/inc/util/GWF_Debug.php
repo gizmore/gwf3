@@ -218,7 +218,7 @@ final class GWF_Debug
 	{
 		$request = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_GET['mo'].'/'.$_GET['me'];
 		$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-		$ip = $_SEVER['REMOTE_ADDR'];
+		$ip = $_SERVER['REMOTE_ADDR'];
 		try {
 			$user = GWF_User::getStaticOrGuest()->displayUsername();
 		} catch (Exception $e) { $user = 'ERROR'; }
