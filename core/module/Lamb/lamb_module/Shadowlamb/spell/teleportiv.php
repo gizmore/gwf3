@@ -36,10 +36,10 @@ class Spell_teleportiv extends Spell_teleportiii
 
 		$bot = Shadowrap::instance($player);
 		
-		$tlc = $args[0];
-		if (is_numeric($tlc))
+		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $args[0])))
 		{
-			$tlc = $player->getKnowledgeByID('places', $tlc);
+			$player->message('The location does not exist or is ambigous.');
+			return false;
 		}
 		
 		$city = Common::substrUntil($tlc, '_');
@@ -48,12 +48,6 @@ class Spell_teleportiv extends Spell_teleportiii
 			$bot->reply('This city is unknown.');
 			return false;
 		}
-		
-//		if ($cityclass->isDungeon())
-//		{
-//			$bot->reply('You can not teleport into dungeons.');
-//			return false;
-//		}
 		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{

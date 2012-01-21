@@ -33,12 +33,14 @@ class Spell_teleport extends SR_Spell
 
 		$bot = Shadowrap::instance($player);
 		
-		$tlc = $args[0];
-		$cityclass = $p->getCityClass();
-		if (is_numeric($tlc))
+		if (false === ($tlc = Shadowcmd_goto::getTLCByArg($player, $args[0])))
 		{
-			$tlc = $player->getKnowledgeByID('places', $tlc);
+			$player->message('This location is unknown.');
+			return false;
 		}
+
+		$cityclass = $p->getCityClass();
+		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
 			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $p->getCity()));

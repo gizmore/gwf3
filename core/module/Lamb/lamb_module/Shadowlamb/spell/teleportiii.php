@@ -36,10 +36,10 @@ class Spell_teleportiii extends Spell_teleportii
 
 		$bot = Shadowrap::instance($player);
 		
-		$tlc = $args[0];
-		if (is_numeric($tlc))
+		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $args[0])))
 		{
-			$tlc = $player->getKnowledgeByID('places', $tlc);
+			$player->message('The location does not exist or is ambigous.');
+			return false;
 		}
 		
 		$city = Common::substrUntil($tlc, '_');

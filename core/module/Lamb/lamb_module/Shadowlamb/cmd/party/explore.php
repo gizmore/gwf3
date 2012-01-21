@@ -16,7 +16,7 @@ final class Shadowcmd_explore extends Shadowcmd
 		}
 		
 		if ($party->getAction() === SR_Party::ACTION_EXPLORE) {
-			$bot->reply(sprintf('You are already exploring %s.', $party->getCity()));
+			$bot->reply(sprintf('You are already exploring %s. ETA: %s.', $party->getCity(), $party->displayETA()));
 			return false;
 		}
 		
