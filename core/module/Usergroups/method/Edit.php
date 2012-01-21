@@ -171,9 +171,9 @@ final class Usergroups_Edit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function validate_name($m, $arg) { return $this->_module->validate_name($m, $arg); }
-	public function validate_join($m, $arg) { return $this->_module->validate_join($m, $arg); }
-	public function validate_view($m, $arg) { return $this->_module->validate_view($m, $arg); }
+	public function validate_name($m, $arg) { return $this->_module->validate_name($arg); }
+	public function validate_join($m, $arg) { return $this->_module->validate_join($arg); }
+	public function validate_view($m, $arg) { return $this->_module->validate_view($arg); }
 	
 	public function onEdit(GWF_Group $group)
 	{
