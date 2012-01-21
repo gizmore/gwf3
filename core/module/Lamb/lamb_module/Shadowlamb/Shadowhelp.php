@@ -329,6 +329,7 @@ final class Shadowhelp
 					
 					'combat_cmds' => 'Commands work in combat',
 					array(
+						'idle' => "Combat command. Usage: #idle. Do nothing.",
 						'forward' => "Combat command. Usage: #forward|#fw. Move forward in distance.",
 						'backward' => "Combat command. Usage: #backward|#bw. Move backwards in distance.",
 						'flee' => "Combat command. Usage: #(fl)ee. Try to flee from the enemy. If successful you will #part the current #(p)arty. You will also loose some XP.",

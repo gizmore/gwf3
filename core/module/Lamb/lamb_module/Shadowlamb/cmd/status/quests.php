@@ -128,7 +128,8 @@ final class Shadowcmd_quests extends Shadowcmd
 			foreach ($quests as $id => $quest)
 			{
 				$quest instanceof SR_Quest;
-				$message .= sprintf(", %d-%s", $id, $quest->getQuestName());
+				$b = ($quest->isAccepted($player) && !$quest->isDone($player)) ? chr(2) : '';
+				$message .= sprintf(", %s%d%s-%s", $b, $id, $b, $quest->getQuestName());
 			}
 			
 			if ($message === '')
@@ -186,7 +187,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		{
 			return self::reply($player, 'This quest is unknown to you.');
 		}
-		$message = sprintf('%d: %s - %s', $id, $quest->getQuestName(), $quest->getQuestDescription());
+		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
 		return self::reply($player, $message);
 	}
 }

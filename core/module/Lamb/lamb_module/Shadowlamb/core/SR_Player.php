@@ -2395,6 +2395,10 @@ class SR_Player extends GDO
 		{
 			return true;
 		}
+		if (Common::startsWith($c, 'idle'))
+		{
+			return true;
+		}
 		if (Common::startsWith($c, 'fl'))
 		{
 			return true;

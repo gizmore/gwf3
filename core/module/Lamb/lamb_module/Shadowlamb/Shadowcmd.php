@@ -98,7 +98,7 @@ class Shadowcmd
 		'delete' => array(),
 		'sleep' => array(),
 		'talk' => array('u','r','eq','uq','j','pa','gi','dr','ca','say'),
-		'fight' => array('fl','eq','uq','gi','fw','bw','u','r','ca','#'),
+		'fight' => array('fl','eq','uq','gi','idle','fw','bw','u','r','ca','#'),
 		'inside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
 		'outside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
 		'explore' => array('u','r','ca','eq','uq','pa','gi','dr'),

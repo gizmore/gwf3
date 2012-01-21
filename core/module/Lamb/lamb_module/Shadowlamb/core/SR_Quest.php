@@ -169,6 +169,28 @@ class SR_Quest extends GDO
 		return true;
 	}
 	
+	public function getStatusString(SR_Player $player)
+	{
+		if ( $this->isDone($player) )
+		{
+			return 'done';
+		} else if ( $this->isAccepted($player) )
+		{
+			return 'open';
+		} else if ( $this->isDeclined($player) )
+		{
+			return 'deny';
+		} else if ( $this->isFailed($player) )
+		{
+			return 'fail';
+		} else if ( $this->isAborted($player) )
+		{
+			return 'abort';
+		}
+
+		return 'unknown';
+	}
+
 	##############
 	### Static ###
 	##############
