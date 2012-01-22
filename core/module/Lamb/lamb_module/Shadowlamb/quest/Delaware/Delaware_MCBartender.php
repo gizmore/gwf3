@@ -40,7 +40,7 @@ final class Quest_Delaware_MCBartender extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply(sprintf("I still need %d SparklingWine and %d Alcopops-", (self::NEED_SPARK-$data['S']), (self::NEED_ALCO-$data['A'])));
+			return $npc->reply(sprintf("I still need %d SparklingWine and %d Alcopops", (self::NEED_SPARK-$data['S']), (self::NEED_ALCO-$data['A'])));
 		}
 	}
 	

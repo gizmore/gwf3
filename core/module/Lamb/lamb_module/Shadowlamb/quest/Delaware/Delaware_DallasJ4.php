@@ -31,8 +31,8 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 			case 'shadowrun':
 				$npc->reply("I have a client but he cannot pay much.");
 				$npc->reply("Also the run is very difficult, but you might be interested.");
-				$npc->reply("The clients wants the copy of a certain file from the Renraku database.");
-				$npc->reply("The file is named \"results2.dbm\". I think you are interested in a copy as well.");
+				$npc->reply("The client wants the copy of a certain file from the Renraku database.");
+				$npc->reply("The file is named \"results2.dbm\". I think you might be interested in a copy as well.");
 				break;
 			case 'confirm':
 				$npc->reply(sprintf("What do you think? I can pay you %s.", $this->displayRewardNuyen()));

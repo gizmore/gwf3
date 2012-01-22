@@ -28,7 +28,7 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 				$npc->reply("Hello chummer :( You want to hear about my problems?");
 				$npc->reply("I got robbed by Trolls and Goblins, and I lost my FirstHand ...");
 				$npc->reply("I wanted to get a new HandL3 implanted, but the doctor says it's illegal.");
-				$npc->reply("If you could convince him todo it anyway I would be very thankful.");
+				$npc->reply("If you could convince him to do it anyway I would be very thankful.");
 				$npc->reply("Just ask him about \X02hand\X02.");
 				break;
 			case 'confirm':
