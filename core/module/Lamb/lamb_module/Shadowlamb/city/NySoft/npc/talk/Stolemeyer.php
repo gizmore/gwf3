@@ -111,10 +111,10 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 		$p->notice('"You bastard, we talk later...", '.chr(2).'Mr.Stolemeyer'.chr(2).' cries... and disappears from combat.');
 		foreach ($p->getMembers() as $member)
 		{
-			$quest = SR_Quest::getQuest($player, 'Renraku_III');
-			if ($quest->isInQuest($player))
+			$quest = SR_Quest::getQuest($member, 'Renraku_III');
+			if ($quest->isInQuest($member))
 			{
-				$quest->onSolve($player);
+				$quest->onSolve($member);
 			}
 		}
 		return array();
