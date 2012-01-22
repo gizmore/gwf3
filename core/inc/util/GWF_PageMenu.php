@@ -95,7 +95,7 @@ final class GWF_PageMenu
 			"pagelinks" => $pages,
 		);
 		
-		return GWF_Template::templatePHPMain('menu_page.php', $tVars);
+		return GWF_Template::templateMain('menu_page.tpl', $tVars);
 	}
 	
 	private static function replaceHref($href, $page)
@@ -138,7 +138,7 @@ final class GWF_PageMenu
 			'selected' => $letter,
 		);
 		
-		return GWF_Template::templatePHPMain('letter_menu.php', $tVars);
+		return GWF_Template::templateMain('letter_menu.tpl', $tVars);
 	}
 	
 	private static function replaceLetterHREF($href, $letter)

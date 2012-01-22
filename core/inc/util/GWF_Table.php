@@ -108,7 +108,7 @@ final class GWF_Table
 			'headers' => self::getHeaders2($headers, $sortURL, $by, $dir),
 			'raw' => $raw,
 		);
-		return GWF_Template::templatePHPMain('thead.php', $tVars);
+		return GWF_Template::templateMain('thead.tpl', $tVars);
 	}
 	
 	private static function getHeaders2(array $headers, $sortURL='', $key_by='by', $key_dir='dir')

@@ -6,6 +6,7 @@ Common::defineConst('GWF_CHMOD', '0777'); # Fallback
  * @author gizmore
  * @version 3.0
  * @since 1.0
+ * @todo error_log() if GWF3-config
  */
 final class GWF_Log
 {
