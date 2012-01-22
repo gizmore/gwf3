@@ -94,7 +94,7 @@ final class SR_BadKarma
 			}
 		}
 		
-		return $back === '' ? '' : sprintf('%s.', substr($back, 2));
+		return $back === '' ? '' : sprintf(' %s.', substr($back, 2));
 	}
 }
 ?>

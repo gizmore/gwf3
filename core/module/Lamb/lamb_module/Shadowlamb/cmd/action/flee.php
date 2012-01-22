@@ -30,7 +30,7 @@ final class Shadowcmd_flee extends Shadowcmd
 		$np->popAction(true);
 		if ($np->isInsideLocation())
 		{
-			$party->pushAction(SR_Party::ACTION_OUTSIDE);
+			$np->pushAction(SR_Party::ACTION_OUTSIDE);
 		}
 	}
 }

@@ -1084,8 +1084,8 @@ final class SR_Party extends GDO
 		$busy = $player->busy(25);
 		$name = $player->displayNameNB();
 		$tn = $target->displayNameNB();
-		$this->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, -$move, $tn, $new_d, $busy));
-		$this->getEnemyParty()->notice(sprintf('%s walks %.01f meters towards %s and is now on position %.01f meters.', $name, -$move, $tn, $new_d));
+		$this->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, abs($move), $tn, $new_d, $busy));
+		$this->getEnemyParty()->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters.', $name, abs($move), $tn, $new_d));
 		return true;
 	}
 	
@@ -1101,7 +1101,7 @@ final class SR_Party extends GDO
 		$new_d = 0;
 		$this->movePlayerB($pid, $by, $new_d);
 		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '.';
-		$message = sprintf(' moves %.01fm %s and is now on position %.01fm%s', $by, $fwbw, $new_d, $busy);
+		$message = sprintf(' moves %.01f meters %s and is now on position %.01f meters%s', abs($by), $fwbw, $new_d, $busy);
 		$this->message($player, $message);
 		$this->getEnemyParty()->message($player, $message);
 		return true;
