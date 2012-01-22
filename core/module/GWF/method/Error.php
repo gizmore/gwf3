@@ -22,6 +22,7 @@ final class GWF_Error extends GWF_Method
 	{
 		# Get the error page
 		$errors = array(
+			# client errors 4xx
 			'400' => 'Bad Request',
 			'401' => 'Unauthorized',
 			'403' => 'Forbidden',
@@ -44,7 +45,7 @@ final class GWF_Error extends GWF_Method
 			'423' => 'Locked',
 			'424' => 'Failed Dependency',
 			'426' => 'Upgrade Required',
-			# TODO: add 5XX; add htaccess
+			# TODO: server errors 5XX; add htaccess
 		);
 
 		$realcode = Common::getGet('code', '0');

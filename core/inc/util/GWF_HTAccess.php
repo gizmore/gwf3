@@ -6,7 +6,7 @@ final class GWF_HTAccess
 	################
 	public static function getHTAccess()
 	{
-		$custom_hta = GWF_WWW_PATH.'protected/pre_htaccess.txt';
+		$custom_hta = GWF_PROTECTED_PATH.'pre_htaccess.txt';
 		$custom = Common::isFile($custom_hta) ? (file_get_contents($custom_hta).PHP_EOL) : '';
 		
 		if ($custom !== '')
@@ -26,17 +26,22 @@ final class GWF_HTAccess
 			PHP_EOL.
 			'# Secure Limits'.PHP_EOL.
 			'<LimitExcept GET HEAD POST>'.PHP_EOL.
-			'Deny from all'.PHP_EOL.
+			'  Deny from all'.PHP_EOL.
 			'</LimitExcept>'.PHP_EOL.
 			PHP_EOL.
 			'# No dot files'.PHP_EOL.
 			'RedirectMatch 404 /\..*$'.PHP_EOL.
 			PHP_EOL.
 			'# Custom error pages'.PHP_EOL.
-			'ErrorDocument 403 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=403'.PHP_EOL.
-			'ErrorDocument 404 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=404'.PHP_EOL.
+			'ErrorDocument 403 # Forbidden'.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=403'.PHP_EOL.
+			'ErrorDocument 404 # Not Found'.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=404'.PHP_EOL.
+			'ErrorDocument 400 # Bad Request'.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=400'.PHP_EOL.
+			'ErrorDocument 401 # Unauthorized'.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=401'.PHP_EOL.
 			PHP_EOL.
 			'RewriteEngine On'.PHP_EOL.
+			PHP_EOL.
+			'RewriteCond %{HTTP_HOST} ^www.'.GWF_DOMAIN.'$ [NC]'.PHP_EOL.
+			'  RewriteRule ^(.*) http://'.GWF_DOMAIN.'/$1 [L,R=301]'.PHP_EOL.
 			PHP_EOL.
 			self::getLangRewrites().PHP_EOL.
 			PHP_EOL;
@@ -45,11 +50,10 @@ final class GWF_HTAccess
 	
 	private static function getLangRewrites()
 	{
-		$back = '';
-		$back .= '#################'.PHP_EOL;
+		$back  = '#################'.PHP_EOL;
 		$back .= '### languages ###'.PHP_EOL;
 		$back .= '#################'.PHP_EOL;
-		foreach (preg_split('/[;,]+/', GWF_SUPPORTED_LANGS) as $iso)
+		foreach (GWF_Language::getAvailable() as $iso)
 		{
 			if (false !== GWF_Language::getByISO($iso))
 			{

@@ -13,6 +13,7 @@ final class GWF_Debug
 {
 	private static $die = true;
 	private static $enabled = false;
+	private static $exception = false;
 	private static $MAIL_ON_ERROR = true;
 
 	public static function initNoGWF()
@@ -152,8 +153,8 @@ final class GWF_Debug
 			case E_USER_NOTICE: case E_NOTICE: $errnostr = 'PHP Notice'; break;
 			case E_USER_ERROR: $errnostr = 'PHP Error'; break;
 			case E_STRICT: $errnostr = 'PHP Strict Error'; break;
-			case E_DEPRECATED: case E_USER_DEPRECATED: $errnostr = 'PHP Deprecated'; break;
-			case E_RECOVERABLE_ERROR: $errnostr = 'PHP Recoverable Error'; break;
+			# if(PHP5.3) case E_DEPRECATED: case E_USER_DEPRECATED: $errnostr = 'PHP Deprecated'; break;
+			# if(PHP5.2) case E_RECOVERABLE_ERROR: $errnostr = 'PHP Recoverable Error'; break;
 			case E_COMPILE_WARNING: case E_COMPILE_ERROR: $errnostr = 'PHP Compiling Error'; break;
 			case E_PARSE: $errnostr = 'PHP Parsing Error'; break;
 			
@@ -199,6 +200,33 @@ final class GWF_Debug
 		# Return false to populate php last error.
 		# TODO: Check if we want that.
 		return false; 
+	}
+
+	public static function exception_handler($e)
+	{
+		$e instanceof Exception;
+		return false;
+
+		# TODO: die?
+		# Log, eMail, etc.
+	}
+
+	public static function disableExceptionHandler()
+	{
+		if (self::$exception === true)
+		{
+			restore_exception_handler();
+			self::$exception = false;
+		}
+	}
+
+	public static function enableExceptionHandler()
+	{
+		if (self::$exception === false)
+		{
+			set_exception_handler(array('GWF_Debug', 'exception_handler'));
+			self::$exception = true;
+		}
 	}
 
 	/**
