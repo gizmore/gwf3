@@ -1312,7 +1312,7 @@ class SR_Player extends GDO
 		if ($ma > 0)
 		{
 			$gain = $this->getMPGain();
-			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
+// 			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
 			return $this->healMP($gain);
 		}
 		return true;
@@ -1332,7 +1332,7 @@ class SR_Player extends GDO
 		if ($ele > 0)
 		{
 			$gain = $this->getHPGain();
-			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
+// 			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
 			return $this->healHP($gain);
 		}
 		return true;

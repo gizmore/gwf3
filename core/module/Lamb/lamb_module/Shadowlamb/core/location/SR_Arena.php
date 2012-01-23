@@ -36,12 +36,9 @@ class SR_Arena extends SR_Store
 		$key = $this->getArenaKey($player);
 		$bits = SR_PlayerVar::getVal($player, $key, 0);
 		
-		echo "Bits:{$bits}\n";
-		
 		foreach ($enemies as $data)
 		{
 			list($bit, $name, $text, $nuyen) = $data;
-			echo "Bit:{$bit}\n";
 			if (($bits & $bit)===0)
 			{
 				return $this->onChallengeB($player, $bit, $name, $text, $nuyen);

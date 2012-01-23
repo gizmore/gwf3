@@ -16,39 +16,6 @@ final class Shadowfunc
 		}
 	}
 	
-//	public static function getPlayerInLocationB(SR_Player $player, $name)
-//	{
-//		$name = strtolower($name);
-//		$n = self::toShortname($name);
-//		$candidates = array();
-//		$players = Shadowrun4::getPlayers();
-//		foreach ($players as $pl)
-//		{
-//			$pl instanceof SR_Player;
-//			
-//			if ($name === $pl->getName()) {
-//				return $pl;
-//			}
-//			
-//			if ($n !== strtolower($pl->getShortName())) {
-//				continue;
-//			}
-//			
-//			if (self::sharesLocation($player, $pl))
-//			{
-//				$candidates[] = $pl;
-//			}
-//		}
-//		$count = count($candidates);
-//		if ($count === 0) {
-//			return false;
-//		}
-//		elseif ($count === 1) {
-//			return $candidates[0];
-//		}
-//		return false;
-//	}
-	
 	private static function sharesLocation(SR_Player $a, SR_Player $b)
 	{
 		$pa = $a->getParty();
@@ -926,7 +893,7 @@ final class Shadowfunc
 		$chance_none = (int)$chance_none;
 		$chance = $total + $chance_none;
 		$rand = rand(1, $chance);
-		Lamb_Log::logDebug(sprintf('Shadowfunc::randomData(): Total(%s)+None(%s)=MAX(%s). Dice: %s', $total, $chance_none, $chance, $rand));
+// 		Lamb_Log::logDebug(sprintf('Shadowfunc::randomData(): Total(%s)+None(%s)=MAX(%s). Dice: %s', $total, $chance_none, $chance, $rand));
 		if ($rand <= $chance_none)
 		{
 			return false;

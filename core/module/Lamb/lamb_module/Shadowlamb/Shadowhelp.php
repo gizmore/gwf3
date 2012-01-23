@@ -318,13 +318,13 @@ final class Shadowhelp
 					
 					'chat_cmds' => 'Commands for chat and talk',
 					array(
-						'clan_message' => 'Player command. Usage: #(c)lan_(m)essage <your message ...>. Send a message to all your clan members. See: #party_message, #say, #whisper.',
-						'party_message' => 'Player command. Usage: #(p)arty_(m)essage <your message ...>. Send a message to all party members. Useful for cross-server/cross-channel messages.',
-						'say' => "Player command. Usage: #say <#kw_id|the message>. If you meet other parties on street you can use #say to talk to them. Inside and outside locations this sends messages accross the servers. In fight this sends messages to enemy party.",
-						'talk' => "Player command. Usage: #talk <#kw_id|word>. In many locations you can use #talk to talk to the NPCs. If there is more than one NPC it is often #ttX. Always check your #c inside locations. Bold words during a talk indicate a further topic to talk about.",
-						'shout' => "Player command. Usage: #shout <the message>. Shout a message to all shadowlamb channels on all servers.",
-						'whisper' => "Player command. Usage: #(w)hisper <player> <the message>. Send a message to another player. This works accross networks.",
-						'whisper_back' => "Player command. Usage: #(w)hisper_(b)ack <the message>. Send a message back to the player who whispered you.",
+						'clan_message' => 'Player command. Usage: #(c)lan_(m)essage <your message ...>. Send a message to all your clan members. See: #help chat_cmds.',
+						'party_message' => 'Player command. Usage: #(p)arty_(m)essage <your message ...>. Send a message to all party members. Useful for cross-server/cross-channel messages. See: #help chat_cmds.',
+						'say' => "Player command. Usage: #say <#kw_id|the message>. If you meet other parties on street you can use #say to talk to them. Inside and outside locations this sends messages accross the servers. In fight this sends messages to enemy party. See: #help chat_cmds.",
+						'talk' => "Player command. Usage: #talk <#kw_id|word>. In many locations you can use #talk to talk to the NPCs. If there is more than one NPC it is often #ttX. Always check your #c inside locations. Bold words during a talk indicate a further topic to talk about. See: #help chat_cmds.",
+						'shout' => "Player command. Usage: #shout <the message>. Shout a message to all shadowlamb channels on all servers. See: #help chat_cmds.",
+						'whisper' => "Player command. Usage: #(w)hisper <player> <the message>. Send a message to another player. This works accross networks. See: #help chat_cmds.",
+						'whisper_back' => "Player command. Usage: #(w)hisper_(b)ack <the message>. Send a message back to the player who whispered you. See: #help chat_cmds.",
 					),
 					
 					'combat_cmds' => 'Commands work in combat',

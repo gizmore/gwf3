@@ -27,9 +27,11 @@ abstract class SR_City
 	{
 		if (!$this->isDungeon())
 		{
-			$mount = $party->getCriticalMount();
-			$eta = $mount->getMountTime($eta);
-			$eta -= ($mount->getMountTuneup() * 10);
+			if (false !== ($mount = $party->getCriticalMount()))
+			{
+				$eta = $mount->getMountTime($eta);
+				$eta -= ($mount->getMountTuneup() * 10);
+			}
 		}
 		$eta += rand(0, $randtime);
 		$eta = Common::clamp(round($eta), $mintime);

@@ -77,7 +77,7 @@ class Shadowcmd
 		't' => 'travel',
 		'u' => 'use',
 		'uq' => 'unequip',
-		'up' => 'upgrade',
+// 		'up' => 'upgrade',
 		'v' => 'view',
 		'w' => 'whisper',
 		'wb' => 'whisper_back',

@@ -19,7 +19,7 @@ If you plan to use lamb+website, you can use the same database for both of it, b
 
 2b) Install via install wizard.
 
-You will need a webserver to access protected/install_wizard.php
+You will need a webserver to access install/install_wizard.php
 Simply follow the instructions and all modules will be installed.
 You will then have a working gwf3 website + bot. 
 

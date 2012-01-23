@@ -189,7 +189,14 @@ final class SR_Party extends GDO
 	/**
 	 * @return SR_Player
 	 */
-	public function getLeader() { foreach($this->members as $pid => $player) { return $player; } }
+	public function getLeader()
+	{
+		foreach($this->members as $pid => $player)
+		{
+			return $player;
+		}
+		return false;
+	}
 	
 	/**
 	 * Get the current city name.
@@ -333,7 +340,6 @@ final class SR_Party extends GDO
 		{
 			if (false !== ($newcity = $this->getCityClass()))
 			{
-				echo "New city is: ".$newcity->getName().PHP_EOL;
 				if ($oldcity->getName() !== $newcity->getName())
 				{
 					$oldcity->onCityExit($this);
@@ -736,17 +742,17 @@ final class SR_Party extends GDO
 		if (false !== ($location = $this->getLocationClass()))
 		{
 			$this->max_dist = $location->getAreaSize();
-			printf("SR_Party::setupMaxDist() with location %s = %s.\n", $location->getName(), $this->max_dist);
+// 			printf("SR_Party::setupMaxDist() with location %s = %s.\n", $location->getName(), $this->max_dist);
 		}
 		elseif (false !== ($city = $this->getCityClass()))
 		{
 			$this->max_dist = $city->getAreaSize();
-			printf("SR_Party::setupMaxDist() with city %s = %s.\n", $city->getName(), $this->max_dist);
+// 			printf("SR_Party::setupMaxDist() with city %s = %s.\n", $city->getName(), $this->max_dist);
 		}
 		else
 		{
 			$this->max_dist = 15.0;
-			printf("SR_Party::setupMaxDist() with default%s.\n", $this->max_dist);
+// 			printf("SR_Party::setupMaxDist() with default%s.\n", $this->max_dist);
 		}
 		$this->max_dist = Common::clamp(round($this->max_dist/2, 1), 1.0, 99999.9);
 	}
@@ -1593,6 +1599,12 @@ final class SR_Party extends GDO
 	public function getCriticalMount()
 	{
 		$mounts = $this->getMounts();
+		
+		if (count($mounts) === 0)
+		{
+			return false;
+		}
+		
 		$mc = $this->getMemberCount();
 		
 		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
