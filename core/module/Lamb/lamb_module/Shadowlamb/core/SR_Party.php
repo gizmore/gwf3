@@ -1542,10 +1542,8 @@ final class SR_Party extends GDO
 		$back = array();
 		foreach ($this->members as $member)
 		{
-			if ($member->hasEquipment('mount'))
-			{
-				$back[] = $member->getEquipment('mount');
-			}
+			$member instanceof SR_Player;
+			$back[] = $member->getMount();
 		}
 		return $back;
 	}
@@ -1578,10 +1576,10 @@ final class SR_Party extends GDO
 		$mounts = $this->getMounts();
 		$mounts = $this->filterSmallMounts($mounts);
 		
-		if (count($mounts) === 0)
-		{
-			return $this->getLeader()->getPockets();
-		}
+// 		if (count($mounts) === 0)
+// 		{
+// 			return $this->getLeader()->getPockets();
+// 		}
 		
 		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
 		
@@ -1600,11 +1598,6 @@ final class SR_Party extends GDO
 	{
 		$mounts = $this->getMounts();
 		
-		if (count($mounts) === 0)
-		{
-			return false;
-		}
-		
 		$mc = $this->getMemberCount();
 		
 		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
@@ -1617,7 +1610,14 @@ final class SR_Party extends GDO
 		$critical = -1;
 		while ( $mc > 0 )
 		{
-			$mc -= $mounts[++$critical]->getMountPassengers();
+			$mc -= $mounts[--$critical]->getMountPassengers();
+			
+// 			$critical++;
+// 			if (false === isset($mounts[$critical]))
+// 			{
+// 				$critical--;
+// 				break;
+// 			}
 		}
 
 		return $mounts[$critical];
