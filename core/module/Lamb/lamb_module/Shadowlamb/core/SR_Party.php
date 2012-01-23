@@ -1576,11 +1576,6 @@ final class SR_Party extends GDO
 		$mounts = $this->getMounts();
 		$mounts = $this->filterSmallMounts($mounts);
 		
-// 		if (count($mounts) === 0)
-// 		{
-// 			return $this->getLeader()->getPockets();
-// 		}
-		
 		usort($mounts, array(__CLASS__, 'sort_mount_eta_asc'));
 		
 		return $mounts[0];
@@ -1610,14 +1605,7 @@ final class SR_Party extends GDO
 		$critical = -1;
 		while ( $mc > 0 )
 		{
-			$mc -= $mounts[--$critical]->getMountPassengers();
-			
-// 			$critical++;
-// 			if (false === isset($mounts[$critical]))
-// 			{
-// 				$critical--;
-// 				break;
-// 			}
+			$mc -= $mounts[++$critical]->getMountPassengers();
 		}
 
 		return $mounts[$critical];
