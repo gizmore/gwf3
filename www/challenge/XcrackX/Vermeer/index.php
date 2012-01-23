@@ -1,10 +1,10 @@
 <?php
 chdir('../../../');
-define('GWF_PAGE_TITLE', 'Training: Stegano 169');
+define('GWF_PAGE_TITLE', 'Vermeer');
 require_once('challenge/html_head.php');
 require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 3, 'challenge/XcrackX/Vermeer/index.php', 'HACKING', WC_Challenge::CASE_I);
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 3, 'challenge/XcrackX/Vermeer/index.php');
 }
 $chall->showHeader();
 # -------------------------- #
