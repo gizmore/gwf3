@@ -1,0 +1,27 @@
+filetype plugin on
+syntax on
+colorscheme delek
+set incsearch
+set hlsearch
+set ignorecase
+set nocompatible
+set number
+
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=4
+set tabstop=4
+
+set autoindent
+if $LANG =~ ".*\.UTF-8$" || $LANG =~ ".*utf8$" || $LANG =~ ".*utf-8$"
+        try
+                set listchars=tab:»\ ,trail:·,precedes:…,extends:…
+                set list
+        catch
+        endtry
+endif
+
+set foldmethod=indent
+set foldlevel=99
