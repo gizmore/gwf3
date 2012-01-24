@@ -9,6 +9,8 @@ class SR_Bazar extends SR_Location
 	const MIN_SLOTS = 2;
 	const MAX_SLOTS_BUY = 18;
 	
+	const MAX_SLOT_PRICE = 2000;
+	
 	const MIN_PRICE = 50;
 	const MAX_PRICE = 1234567890;
 	
@@ -697,6 +699,9 @@ class SR_Bazar extends SR_Location
 		{
 			$price += $price;
 		}
+		
+		$price = Common::clamp($price, 0, self::MAX_SLOT_PRICE);
+		
 		return $price;
 	}
 	
