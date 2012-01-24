@@ -47,6 +47,10 @@ final class PrisonB2_ExitGuard extends SR_TalkingNPC
 			$ep = SR_NPC::createEnemyParty('Prison_Ward','Prison_Ward','Prison_Ward','Prison_Guard','Prison_Guard');
 			$p->fight($ep, true);
 		}
+		else if ( !$player->hasNuyen($amt) )
+		{
+			$this->reply('The idea of a bribe is usually that you can pay it ...');
+		}
 		else
 		{
 			$party = $player->getParty();
@@ -55,6 +59,8 @@ final class PrisonB2_ExitGuard extends SR_TalkingNPC
 			$player->giveNuyen(-$amt);
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, 'PrisonB2_Exit');
 		}
+
+		return true;
 	}	
 }
 ?>

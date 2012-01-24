@@ -59,6 +59,7 @@ final class Prison_Secretary extends SR_TalkingNPC
 		}
 		else
 		{
+			$b = chr(2);
 			return $this->reply("Oh ... only family members may visit imprisoners ... unless you have a {$b}fakeid{$b} ^^ just kidding.");
 		}
 	}

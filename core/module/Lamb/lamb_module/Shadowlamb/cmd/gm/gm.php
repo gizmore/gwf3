@@ -55,7 +55,12 @@ final class Shadowcmd_gm extends Shadowcmd
 		$new = $args[2];
 		
 		$target->updateField($var, $new);
-		$target->modify();
+		if ( $var === 'const_vars' )
+		{
+			$target->reloadConstVars();
+		} else {
+			$target->modify();
+		}
 		$bot->reply(sprintf('Set %s`s %s from %s to %s.', $target->getUser()->getName(), $var, $old, $new));
 		return true;
 	}

@@ -35,7 +35,7 @@ final class Delaware_MCJohnson extends SR_TalkingNPC
 				{
 					$this->reply('Malois? Isn\'t that the guy who claimed to be a Renraku proband and went to prison?');
 					$this->reply('Well ... that\'s probably not your business... Maybe i mean Matthew.');
-					$player->message('You consider that beeing a useful information.');
+					$player->message('You consider that being useful information.');
 					SR_PlayerVar::setVal($player, $key, 1);
 					
 				}

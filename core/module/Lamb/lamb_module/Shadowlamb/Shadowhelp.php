@@ -50,7 +50,7 @@ final class Shadowhelp
 		$orca_gain = $player === NULL ? 0 : $player->getMPGain();
 		$orca_time = GWF_Time::humanDuration(SR_Player::MP_REFRESH_TIMER); 
 		
-		$crit = $player === NULL ? 0 : sprintf('%.03f', $player->getCritPermille()/1000);
+		$crit = $player === NULL ? 0 : sprintf('%.01f', $player->getCritPermille()/10); # permille -> percent
 		
 		$bad_karma = $player === NULL ? '' : sprintf(' Your current character has %.02f bad_karma.', $player->getBase('bad_karma')+SR_PlayerVar::getVal($player, '__SLBADKARMA', 0.00));
 		

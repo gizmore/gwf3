@@ -433,7 +433,7 @@ class SR_Player extends GDO
 		return $player;
 	}
 	
-	private function reloadConstVars()
+	public function reloadConstVars()
 	{
 		if (NULL === ($s = $this->getVar('sr4pl_const_vars'))) {
 			$this->sr4_const_vars = array();
