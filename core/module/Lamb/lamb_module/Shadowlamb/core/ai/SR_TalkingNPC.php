@@ -186,5 +186,15 @@ abstract class SR_TalkingNPC extends SR_NPC
 				return false;
 		}
 	}
+	
+	public function onByeChat(SR_Player $player)
+	{
+		$p = $this->getParty();
+		$ep = $player->getParty();
+		$p->popAction(true);
+		$ep->popAction(true);
+		$p->setContactEta(rand(10, 20));
+		$ep->setContactEta(rand(10, 20));
+	}
 }
 ?>

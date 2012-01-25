@@ -524,6 +524,7 @@ final class SR_Party extends GDO
 		unset($this->distance[$pid]);
 		if ($update === true)
 		{
+			$this->recomputeEnums();
 			$this->updateMembers();
 			if ($this->getMemberCount() === 0)
 			{

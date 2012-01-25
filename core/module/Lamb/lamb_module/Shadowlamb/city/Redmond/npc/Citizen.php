@@ -67,6 +67,24 @@ final class Redmond_Citizen extends SR_HireNPC
 				}
 				break;
 				
+			case 'temple':
+				switch (rand(0,3))
+				{
+					case 0: $this->reply('Oh the temple, i haven\'t been there for ages!'); break;
+					case 1: $this->reply('Are you getting paid for this?'); break;
+					case 2: $this->reply('There is a temple in redmond?'); break;
+					case 3: $this->reply('I am not interested in magic, thank you.'); break;
+				}
+				$quest = SR_Quest::getQuest($player, 'Redmond_Temple');
+				if ($quest->isInQuest($player))
+				{
+					$quest->increaseAmount(1);
+					$player->message(sprintf('You now told %d/%d citizens about the Redmond Temple.', $quest->getAmount(), $quest->getNeededAmount()));
+					$this->reply('I gotta go!');
+					$this->onByeChat($player);
+				}
+				break;
+				
 			default:
 			case 'hello':
 				$this->reply("Hello chummer. Are you on a {$b}Shadowrun{$b}?");
@@ -74,6 +92,8 @@ final class Redmond_Citizen extends SR_HireNPC
 				$player->giveKnowledge('words', 'No');
 				$player->giveKnowledge('words', 'Shadowrun');
 				break;
+				
+			return true;
 		}
 	}
 }
