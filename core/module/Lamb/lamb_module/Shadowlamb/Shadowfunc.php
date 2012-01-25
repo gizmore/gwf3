@@ -859,7 +859,10 @@ final class Shadowfunc
 		}
 
 		$chance_none = 1.81;
-		$chance_none -= ($player->get('luck') / 200) - ($player->getParty()->getPartyLevel() / 200);
+		$chance_none -= ($player->get('luck') / 200);
+		$chance_none -= ($player->getParty()->getPartyLevel() / 200);
+		$chance_none = Common::clamp($chance_none, 0);
+		
 		$i = $chance_none;
 		while (true)
 		{
