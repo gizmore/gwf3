@@ -5,6 +5,7 @@ final class Seattle_Shamane extends SR_TalkingNPC
 	
 	public function getName() { return 'Namir'; }
 	public function getNPCModifiers() { return array('race' => 'human'); }
+	public function getNPCQuests(SR_Player $player) { return array('Seattle_Temple'); }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{ 

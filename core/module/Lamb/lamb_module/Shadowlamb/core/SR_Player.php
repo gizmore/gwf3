@@ -2326,6 +2326,11 @@ class SR_Player extends GDO
 			return '# 1';
 		}
 		$targets = $ep->getMembers();
+// 		if (count($targets) === 0)
+// 		{
+// 			return '# 1';
+// 		}
+		
 		$target = $targets[array_rand($targets)];
 		return '# '.$target->getEnum();
 	}

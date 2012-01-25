@@ -339,7 +339,7 @@ final class Shadowhelp
 					
 					'action_cmds' => 'Action commands',
 					array(
-						'npc' => 'Leader command. Usage: #npc <the remote command>. Execute a command in the name of your NPC.',
+						'npc' => 'Leader command. Usage: #npc <thenpc> <the remote command>. Execute a command in the name of your NPC. Example: #npc 2 status.',
 						'say' => NULL,
 						'use' => 'Player command. Usage: #(u)se <inv_id|item_name> [<target_name|target_enum>]. Use an item. In combat this costs time.',
 						'brew' => 'Player command. Usage: #(br)ew <spell> [<level>]. Try to brew a magic potion. Needs a WaterBottle.',

@@ -24,7 +24,7 @@ final class Chicago_WhiteTemple extends SR_School
 		return array(
 //G			array('berzerk', 3500+$p),
 //G			array('blow', 2500+$p),
-			array('bunny', 2500+$p),
+//Q			array('bunny', 2500+$p),
 			array('calm', 2500+$p),
 //G			array('chameleon', 3500+$p),
 //B			array('fireball', 4500+$p),
@@ -37,7 +37,7 @@ final class Chicago_WhiteTemple extends SR_School
 			array('heal', 4500+$p),
 // 			array('magicarp', 19500+$p),
 //B			array('poison_dart', 4000+$p),
-			array('rabbit', 5000+$p),
+//Q			array('rabbit', 5000+$p),
 // 			array('teleport', 5000+$p),
 // 			array('teleportii', 15000+$p),
 // 			array('teleportiii', 500000+$p),

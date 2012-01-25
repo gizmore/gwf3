@@ -19,10 +19,17 @@ final class Shadowcmd_flee extends Shadowcmd
 	public static function onFlee(SR_Player $player)
 	{
 		$party = $player->getParty();
+		$ep = $party->getEnemyParty();
 		$party->notice(sprintf('%s has fled from the enemy.', $player->getName()));
-		$party->getEnemyParty()->notice(sprintf('%s has fled from combat.', $player->getName()));
+		$ep->notice(sprintf('%s has fled from combat.', $player->getName()));
 		$player->resetXP();
 		$party->kickUser($player, true);
+		
+		if ($party->getMemberCount() === 0)
+		{
+			$ep->onFightDone();
+		}
+		
 		$np = SR_Party::createParty();
 		$np->addUser($player, true);
 		$np->cloneAction($party);

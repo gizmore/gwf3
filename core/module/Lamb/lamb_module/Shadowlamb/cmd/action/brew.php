@@ -36,11 +36,6 @@ final class Shadowcmd_brew extends Shadowcmd
 		$spell->setMode(SR_Spell::MODE_POTION);
 		$level = $player->getSpellLevel($spellname);
 		
-// 		if ($spell->isOffensive())
-// 		{
-// 			return $bot->reply('You cannot brew offensive spells.');
-// 		}
-
 		if ($wantlevel === true)
 		{
 			$wantlevel = $level;
@@ -56,15 +51,13 @@ final class Shadowcmd_brew extends Shadowcmd
 		{
 			return $bot->reply('You do not have a WaterBottle.');
 		}
-		if ($level === true)
-		{
-		}
 		if (false === $bottle->useAmount($player, 1))
 		{
 			return $bot->reply('Database error.');
 		}
 		if (false === $spell->onCast($player, array(), $level))
 		{
+			return $bot->reply('Brewing the potion failed and the bottle is lost.');
 			return true;
 		}
 		

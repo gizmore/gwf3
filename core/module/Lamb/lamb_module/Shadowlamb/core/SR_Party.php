@@ -780,8 +780,8 @@ final class SR_Party extends GDO
 			if (false !== ($player = Shadowrun4::getPlayerByPID($playerid)))
 			{
 				$this->addUser($player, false);
+				$this->distance[$player->getID()] = $dist[$i];
 			}
-			$this->distance[$player->getID()] = $dist[$i];
 		}
 		
 		if (false === $this->updateMembers())
