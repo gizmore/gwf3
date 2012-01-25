@@ -858,10 +858,10 @@ final class Shadowfunc
 			$total += $dc;
 		}
 
-		$chance_none = 1.81;
+		$chance_none = 1.85;
 		$chance_none -= ($player->get('luck') / 200);
 		$chance_none -= ($player->getParty()->getPartyLevel() / 200);
-		$chance_none = Common::clamp($chance_none, 0);
+		$chance_none = Common::clamp($chance_none, 1.2);
 		
 		$i = $chance_none;
 		while (true)
