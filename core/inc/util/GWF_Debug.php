@@ -244,7 +244,7 @@ final class GWF_Debug
 	 */
 	public static function getDebugText($message)
 	{
-		$request = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_GET['mo'].'/'.$_GET['me'];
+		$request = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe();
 		$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'cronjob';
 		try {
@@ -253,6 +253,11 @@ final class GWF_Debug
 
 		$pre = sprintf("RequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: \n", $request, $referer, $ip, $user);
 		return htmlspecialchars($pre).$message.PHP_EOL;
+	}
+	
+	private static function getMoMe()
+	{
+		return Common::getGetString('mo').'/'.Common::getGetString('me');
 	}
 
 	/**
