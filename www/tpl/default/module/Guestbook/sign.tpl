@@ -3,7 +3,7 @@
 	<div>
 		<div class="gwf_date">{$in_reply->displayDate()}</div>
 		<div>{$in_reply->displayUsername()}</div>
-		{if $module->cfgAllowEmail()}<div>{$in_reply->displayEMail($can_mod)]</div>{/if}
+		{if $module->cfgAllowEmail()}<div>{$in_reply->displayEMail($can_mod)}</div>{/if}
 		{if $module->cfgAllowURL()}<div>{$in_reply->displayURL()}</div>{/if}
 	</div>
 	<hr/>
