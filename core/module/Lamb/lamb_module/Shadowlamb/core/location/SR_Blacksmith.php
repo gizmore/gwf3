@@ -361,9 +361,10 @@ abstract class SR_Blacksmith extends SR_Store
 	#############
 	### Split ###
 	#############
+	private static $SPLIT_CONFIRM = array();
 	public function on_split(SR_Player $player, array $args)
 	{
-		static $confirm = array();
+// 		static $confirm = array();
 	
 		# Bailout
 		$bot = Shadowrap::instance($player);
@@ -381,8 +382,8 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 		$pid = $player->getID();
 		$itemname = $rune->getItemName();
-		$confirmed = ( (isset($confirm[$pid])) && ($confirm[$pid]===$rune->getID()) );
-		unset($confirm[$pid]);
+		$confirmed = ( (isset(self::$SPLIT_CONFIRM[$pid])) && (self::$SPLIT_CONFIRM[$pid]===$rune->getID()) );
+		unset(self::$SPLIT_CONFIRM[$pid]);
 	
 		if (!($rune instanceof SR_Rune))
 		{
@@ -408,7 +409,7 @@ abstract class SR_Blacksmith extends SR_Store
 		# Confirm?
 		if (!$confirmed)
 		{
-			$confirm[$pid] = $rune->getID();
+			self::$SPLIT_CONFIRM[$pid] = $rune->getID();
 			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
 			return true;
 		}
@@ -455,6 +456,17 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 	
 		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
+	}
+	
+	public function onEnterLocation(SR_Party $party)
+	{
+		foreach ($party->getMembers() as $player)
+		{
+			$pid = $player->getID();
+			unset(self::$UPGRADE_CONFIRM[$pid]);
+			unset(self::$SPLIT_CONFIRM[$pid]);
+			unset(self::$BREAK_CONFIRM[$pid]);
+		}
 	}
 
 }
