@@ -9,6 +9,11 @@ final class Seattle_Shamane extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{ 
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
 		$c = Shadowrun4::SR_SHORTCUT;
 		$b = chr(2);
 		switch ($word)
@@ -28,7 +33,7 @@ final class Seattle_Shamane extends SR_TalkingNPC
 			case 'magic': $msg = 'The magic attribute will increase your MP and allow you to learn spells. You can learn magic in the Redmond Temple.'; break;
 			case 'shadowrun':
 				$msg = 'Please leave us now, you already learned everything you could need.';
-				$player->setTemp(self::TEMP_PISSED, $player->getTemp(self::TEMP_PISSED, 0)+1);
+// 				$player->setTemp(self::TEMP_PISSED, $player->getTemp(self::TEMP_PISSED, 0)+1);
 				break;
 			case 'blackmarket':
 				$player->setTemp(self::TEMP_PISSED, $player->getTemp(self::TEMP_PISSED, 0)+1);

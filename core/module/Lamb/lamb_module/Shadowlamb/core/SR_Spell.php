@@ -21,7 +21,9 @@ abstract class SR_Spell
 	const MODE_POTION = 1; 
 	private $mode = self::MODE_SPELL;
 	public function setMode($mode) { $this->mode = $mode; }
-
+	public function isCastMode() { return $this->mode === self::MODE_SPELL; }
+	public function isBrewMode() { return $this->mode === self::MODE_POTION; }
+	
 	##############
 	### Loader ###
 	##############

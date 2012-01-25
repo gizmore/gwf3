@@ -19,6 +19,11 @@ class Spell_teleport extends SR_Spell
 	
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
+		if ($this->isBrewMode())
+		{
+			return $this->onBrew($player, 30, 2, 5);
+		}
+		
 		$p = $player->getParty();
 		
 		if (!$p->isIdle()) {
@@ -132,6 +137,24 @@ class Spell_teleport extends SR_Spell
 		}
 		
 		return false;
+	}
+	
+	public function onBrew(SR_Player $player, $mp, $diff, $hits)
+	{
+		if ($player->getMP() < $mp)
+		{
+			$player->message(sprintf('You need %s MP to brew this potion, but you got only %s.', $mp, $player->getMP()));
+			return false;
+		}
+		$player->healMP(-$mp);
+
+		$es = $player->get('essence');
+		$al = $player->get('alchemy');
+		$wi = $player->get('wisdom');
+		$dices = $es*3 + $al*2 + $wi;
+		$hit = Shadowfunc::dicePool($dices, $diff, $diff);
+		
+		return $hit >= $hits;
 	}
 }
 ?>

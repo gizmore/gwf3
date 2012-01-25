@@ -20,6 +20,11 @@ class Spell_teleportiv extends Spell_teleportiii
 	
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
+		if ($this->isBrewMode())
+		{
+			return $this->onBrew($player, 90, 5, 12);
+		}
+		
 		$p = $player->getParty();
 		
 		if (!$p->isIdle())
