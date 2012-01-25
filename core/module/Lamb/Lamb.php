@@ -518,7 +518,7 @@ final class Lamb
 		{
 			while (true)
 			{
-				$server->getConnection()->sendQueue();
+				$c->sendQueue();
 
 				if (false === ($msg = $c->getMessage()))
 				{

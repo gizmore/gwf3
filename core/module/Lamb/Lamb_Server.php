@@ -294,6 +294,7 @@ final class Lamb_Server extends GDO
 		$this->channels = array();
 		$this->users = array();
 		$this->next_retry = time() + 60;
+		$this->retry_count = 0;
 	}
 	
 	public function login()

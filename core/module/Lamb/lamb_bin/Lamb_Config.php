@@ -23,7 +23,7 @@ $LAMB_CFG = array
 	'trigger' => '.',
 	'event_plugins' => false,
 	'sleep_millis' => 50,
-	'ping_timeout' => 300,
+	'ping_timeout' => 600,
 	'connect_timeout' => 5,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
 
@@ -110,7 +110,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.gizmore.org:6666',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#wechall,#shadowlamb,#sr',
+			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite',
 			'admins' => 'gizmore',
 		),
 		
@@ -146,14 +146,14 @@ $LAMB_CFG = array
 //			'admins' => '/sI2/gizmore',
 //		),
 		
-		array(
-			'host' => 'irc://irc.a2.ano:6667',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-			'channels' => '#shadowlamb',
-//			'admins' => '/NNN/gizmore',
-			'admins' => '/A2/gizmore',
-		),
+// 		array(
+// 			'host' => 'irc://irc.a2.ano:6667',
+// 			'nickname' => 'Lamb3',
+// 			'password' => 'lamblamb',
+// 			'channels' => '#shadowlamb',
+// //			'admins' => '/NNN/gizmore',
+// 			'admins' => '/A2/gizmore',
+// 		),
 		
 //		array(
 //			'host' => 'irc://irc.muffinnet.ano:6667',

@@ -132,7 +132,8 @@ final class Lamb_IRC
 		# Peek message
 		if (false === ($msg = fgets($this->socket)))
 		{
-			return '';
+			return $this->checkTimeout(); # Nothing happens
+// 			return '';
 		}
 		
 		if ('' === ($msg = trim($msg)))
