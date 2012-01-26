@@ -65,10 +65,11 @@
 		<option value="/">{$smarty.const.GWF_SITENAME}</option>
 		<option value="http://">HTTP</option> 
 		<option value="https://">HTTPS</option> 
-		<option value="">{GWF_HTML::lang('other', array('3', 2, 1))}</option> 
+{*		<option value="">{GWF_HTML::lang('other', array('3', 2, 1))}</option> *} 
 	</select>
 	<input id="bb_url_href_{$key}" type="text" value="google.de" />
-	<input type="image" onclick="" alt="Add URL" />
+	<img src="{$root}img/{$iconset}/add.png" alt="Add" title="Add" onclick="return bbInsertURL('{$key}')" />
+{*	<input type="submit" onclick="" value="Add" /> *}
 </div>
 
 <!-- /GWF3 BB CODE BAR  -->

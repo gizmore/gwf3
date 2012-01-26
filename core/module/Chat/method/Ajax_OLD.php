@@ -107,12 +107,12 @@ final class Chat_Ajax_OLD extends GWF_Method
 			$kicked = GWF_ChatOnline::getKicked($last);
 			foreach ($joined as $j)
 			{
-				echo sprintf('+%s'.PHP_EOL, $j->display('chaton_name'));
+				printf('+%s'.PHP_EOL, $j->display('chaton_name'));
 				$sent_stuff = true;
 			}
 			foreach ($kicked as $k)
 			{
-				echo sprintf('-%s'.PHP_EOL, $k->display('chaton_name'));
+				printf('-%s'.PHP_EOL, $k->display('chaton_name'));
 				$sent_stuff = true;
 			}
 			$last = time();
@@ -130,7 +130,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 	{
 		foreach ($array as $online)
 		{
-			echo sprintf('%s%s'.PHP_EOL, $c, $online->display('chaton_name'));
+			printf('%s%s'.PHP_EOL, $c, $online->display('chaton_name'));
 		}
 	}
 	

@@ -16,7 +16,7 @@ final class Module_Heart extends GWF_Module
 		$ms = (string)((GWF_ONLINE_TIMEOUT/2-1)*1000);
 		
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Heart/hb.js');
-		GWF_Website::addJavascriptOnload(sprintf('setTimeout("gwf_heartbeat(%s);", %s); gwf3_form_input_fix();', $ms, $ms));
+		GWF_Website::addJavascriptOnload(sprintf('setTimeout("gwf_heartbeat(%s);", %s);', $ms, $ms));
 		
 		$cut = time() - GWF_ONLINE_TIMEOUT;
 		$spider = GWF_User::WEBSPIDER;

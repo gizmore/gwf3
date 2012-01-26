@@ -32,7 +32,7 @@ final class GWF_AdminWebSpiders
 		
 		$users = GDO::table('GWF_User');
 		$users->deleteWhere("user_name LIKE '[%]'");
-		echo sprintf('Deleted %d bots.<br/>', $users->affectedRows());
+		printf('Deleted %d bots.<br/>', $users->affectedRows());
 		
 		GDO::table('GWF_Webspider')->createTable(true);
 		

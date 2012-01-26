@@ -196,8 +196,6 @@ final class GWF_Upload
 	 */
 	public static function resizeImage(array $file, $max_width, $max_height, $min_width=1, $min_height=1)
 	{
-//		echo sprintf('resizeImage to %dx%d / %dx%d', $max_width, $max_height, $min_width, $min_height);
-
 		// HACK
 		if (false === ($image = @imagecreatefromstring(file_get_contents($file['tmp_name'])))) {
 			return false;
@@ -282,8 +280,6 @@ final class GWF_Upload
 			return false;
 		}
 				
-//		echo sprintf('I would like to resize the image from %dx%d to %dx%d.', $width, $height, $new_width, $new_height);
-
 		# Create new Image
 		if (false === ($resized_img = imagecreatetruecolor($new_width, $new_height))) {
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);

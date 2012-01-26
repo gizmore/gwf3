@@ -14,7 +14,8 @@ final class Contact_Form extends GWF_Method
 	{
 		GWF_Website::setPageTitle($this->_module->lang('page_title'));
 		GWF_Website::setMetaTags($this->_module->lang('page_meta'));
-		if (false !== (Common::getPost('contact'))) {
+		if (false !== (Common::getPost('contact')))
+		{
 			return $this->onSend();
 		}
 		return $this->templateForm();

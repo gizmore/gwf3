@@ -89,8 +89,6 @@ final class GWF_Category extends GWF_Tree
 		$langid = (int) $langid;
 		$text = (string) $text;
 		
-//		echo sprintf('CHANGING Cat %s LangID %d to %s', $catid, $langid, $text);
-		
 		$trans = self::table('GWF_CategoryTranslation');
 		if (false === ($t = $trans->getRow($catid, $langid))) {
 			$t = new GWF_CategoryTranslation(array(

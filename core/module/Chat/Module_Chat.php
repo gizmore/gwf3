@@ -200,7 +200,7 @@ final class Module_Chat extends GWF_Module
 		$backA = $msgs->selectAll('*', "chatmsg_to='$channel' AND chatmsg_time>$cut", 'chatmsg_time DESC'); #, 'chatmsg_time', 'DESC', $this->getChanmsgPerPage());
 		$countA = count($backA);
 		if ($countA < $min) {
-			$backB = $msgs->selectAll('*', "chatmsg_to='$channel'", 'chatmsg_time DESC', $min-$countA, $countA);
+			$backB = $msgs->selectAll('*', "chatmsg_to='$channel'", 'chatmsg_time DESC', NULL, $min-$countA, $countA);
 		} else {
 			$backB = array();
 		}
@@ -219,7 +219,7 @@ final class Module_Chat extends GWF_Module
 		$backA = $msgs->selectAll('*', "(((chatmsg_to='$nick') OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>=$cut)", 'chatmsg_time DESC');
 		$countA = count($backA);
 		if ($countA < $min) {
-			$backB = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!=''))", 'chatmsg_time DESC', $min-$countA, $countA);
+			$backB = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!=''))", 'chatmsg_time DESC', NULL, $min-$countA, $countA);
 		} else {
 			$backB = array();
 		}

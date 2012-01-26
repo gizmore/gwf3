@@ -157,11 +157,7 @@ final class GWF_Mail
 		
 		if (GWF_DEBUG_EMAIL & 16)
 		{
-			echo sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message);
-			
-//			die('TESTMAIL');
-//			echo "<pre>$encrypted</pre>";
-			
+			printf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message);
 			return true;
 		}
 		else

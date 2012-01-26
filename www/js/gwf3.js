@@ -55,29 +55,6 @@ function gwfGoogleTrans(id)
 /*======*/
 /*= Ajax */
 /*======*/
-//function getAjaxObject()
-//{
-//	var xmlHttp;
-//	try { // Firefox, Opera 8.0+, Safari
-//		xmlHttp = new XMLHttpRequest();
-//	}
-//	catch(e) { // Internet Explorer
-//		try {
-//			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-//		}
-//		catch (e) {
-//			try {
-//				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-//			}
-//    		catch (e) {
-//				alert("Your browser does not support AJAX!");
-//				return false;
-//			}
-//		}
-//	}
-//	return xmlHttp;
-//}
-
 function ajaxUpdate(id, url)
 {
 	$.ajax(url, {
@@ -86,17 +63,6 @@ function ajaxUpdate(id, url)
 			$('#'+id).html(data);
 		}
 	});
-//	var ajax = getAjaxObject();
-//	ajax.open("GET", url, true);
-//	ajax.onreadystatechange = function ()
-//	{
-//		if (ajax.readyState == 4)
-//		{
-//			$('#'+id).html(ajax.responseText);
-//		}
-//	};
-//	ajax.send(null);
-//	return true;
 }
 
 function ajaxUpdateSync(id, url)
@@ -121,14 +87,6 @@ function ajaxSync(url)
 		}
 	});
 	return back;
-//	var ajax = getAjaxObject();
-//	ajax.open('GET', url, false);
-//	ajax.send(null);
-//	if(ajax.status === 200)
-//	{
-//		return ajax.responseText;
-//	}
-//	return false;
 }
 
 function ajaxSyncPost(url, data)
@@ -143,18 +101,6 @@ function ajaxSyncPost(url, data)
 	var back = false;
 	request.done(function(result) { back = result; });
 	return back;
-//	var ajax = getAjaxObject();
-//	ajax.open('POST', url, false);
-//	//Send the proper header information along with the request
-//	ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//	ajax.setRequestHeader("Content-length", data.length);
-//	ajax.setRequestHeader("Connection", "close");
-//	ajax.send(data);
-//	if(ajax.status == 200)
-//	{
-//		return ajax.responseText;
-//	}
-//	return false;
 }
 
 /*=====================*/
@@ -341,7 +287,7 @@ function focusInput(selector)
 }
 
 /**
- * GWF_Common::clamp() emulation. 
+ * GWF_Common::clamp() javascript port. 
  * @param num
  * @param min
  * @param max
@@ -358,22 +304,4 @@ function clamp(num, min, max)
 		return max;
 	}
 	return num;
-}
-
-/**
- * TODO: Firefox + Sending form with enter is broken in contact.
- * Tried to fix but does not work nicely.
- */
-function gwf3_form_input_fix()
-{
-	return; // TODO: Fix it somehow :(
-	
-	$('input[type="text"]').keypress(function(event){
-		if (event.keyCode == '13') {
-			event.preventDefault();
-			// TODO: send form
-			return false;
-		}
-		return true;
-	});
 }

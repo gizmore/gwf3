@@ -240,10 +240,27 @@ class Shadowcmd
 		
 		if ($boldify === true)
 		{
-			$commands = array_map(array(__CLASS__, 'boldify'), $commands);
+			if ($long_versions === true)
+			{
+				$commands = array_map(array(__CLASS__, 'boldify_longs'), $commands);
+			}
+			else
+			{
+				$commands = array_map(array(__CLASS__, 'boldify'), $commands);				
+			}
 		}
 		
 		return $commands;
+	}
+	
+	public static function boldify_longs($cmd)
+	{
+		$short = self::shortcut($cmd);
+		if ($short === self::boldify($short))
+		{
+			return $cmd;
+		}
+		return "\X02{$cmd}\X02";
 	}
 	
 	public static function boldify($cmd)

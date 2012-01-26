@@ -93,7 +93,7 @@
 			case GWF_Form::MESSAGE_NOBB:
 //				printf();
 				printf('<tr><td colspan="%d">%s</td></tr>'.PHP_EOL, $cols, $data[2]);
-				printf('<tr><td colspan="%d"><textarea id="%s" name="%s" cols="80" rows="8" wrap="off">%s</textarea></td></tr>'.PHP_EOL, $cols, $key, $key, $data[1]);
+				printf('<tr><td colspan="%d"><textarea id="%s" name="%s" cols="80" rows="8">%s</textarea></td></tr>'.PHP_EOL, $cols, $key, $key, $data[1]);
 				break;
 				
 			case GWF_Form::VALIDATOR:

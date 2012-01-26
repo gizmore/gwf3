@@ -109,15 +109,38 @@ function bbInsertCodeNow(key)
 
 function bbInsertURL(key)
 {
-	if (false === bbInsertURLInit(key)) {
-		return bbInsert(key, '[url=http://google.com]', '[/code]');
+	if (false === bbInsertURLInit(key))
+	{
+		return bbInsertURL2(key, bbInsertGetURL(key));
 	}
 	return false;
-	
+}
+
+function bbInsertGetURL(key)
+{
+	var prot = $('#bb_url_prot_'+key).val();
+	var url = $('#bb_url_href_'+key).val();
+	switch(prot)
+	{
+	case '/': return '/'+url.substrFrom('://', url);
+	case 'http://': return '/'+url.substrFrom('://', url);
+	case 'https://': return '/'+url.substrFrom('://', url);
+	default: return 'http://google.com';
+	}
+}
+
+function bbInsertURL2(key, url)
+{
+	return bbInsert(key, '[url='+url+']', '[/url]');
 }
 
 function bbInsertURLInit(key)
 {
-	$('#bb_url_'+key).show();
-	return false;
+	var form = $('#bb_url_'+key);
+	if (form.is(":visible"))
+	{
+		return false;
+	}
+	form.show();
+	return true;
 }

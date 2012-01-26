@@ -22,8 +22,6 @@ final class Heart_Beat extends GWF_Method
 		$u_users = array();
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-//			echo sprintf('%s: %08x<br/>', $row['user_name'], $row['user_options']);
-			
 			$total++;
 			$uid = $row['sess_user'];
 			

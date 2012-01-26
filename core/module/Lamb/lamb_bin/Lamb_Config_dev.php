@@ -22,7 +22,7 @@ $LAMB_CFG = array
 	'trigger' => '.',
 	'sleep_millis' => 50,
 	'event_plugins' => true,
-	'ping_timeout' => 300,
+	'ping_timeout' => 600,
 	'connect_timeout' => 1,
 	'send_command_issuer_nickname_on_reply' => true, # thx space
 
