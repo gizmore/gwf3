@@ -39,9 +39,9 @@ final class GWF_HTAccess
 			'ErrorDocument 401 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=401'.PHP_EOL.
 			PHP_EOL.
 			'RewriteEngine On'.PHP_EOL.
-			PHP_EOL.
-			'RewriteCond %{HTTP_HOST} ^www.'.GWF_DOMAIN.'$ [NC]'.PHP_EOL.
-			'  RewriteRule ^(.*) http://'.GWF_DOMAIN.'/$1 [L,R=301]'.PHP_EOL.
+#			PHP_EOL.
+#			'RewriteCond %{HTTP_HOST} ^www.'.GWF_DOMAIN.'$ [NC]'.PHP_EOL.
+#			'RewriteRule ^(.*) http://'.GWF_DOMAIN.'/$1 [L,R=301]'.PHP_EOL.
 			PHP_EOL.
 			self::getLangRewrites().PHP_EOL.
 			PHP_EOL;
