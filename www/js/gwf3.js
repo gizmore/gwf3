@@ -366,9 +366,12 @@ function clamp(num, min, max)
  */
 function gwf3_form_input_fix()
 {
-	$('input').keypress(function(event){
+	return; // TODO: Fix it somehow :(
+	
+	$('input[type="text"]').keypress(function(event){
 		if (event.keyCode == '13') {
 			event.preventDefault();
+			// TODO: send form
 			return false;
 		}
 		return true;
