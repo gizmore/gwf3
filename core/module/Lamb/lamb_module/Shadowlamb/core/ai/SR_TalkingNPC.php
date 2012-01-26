@@ -62,7 +62,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 		foreach ($this->getNPCQuests($player) as $name)
 		{
 			$quest = SR_Quest::getQuest($player, $name);
-			if (!$quest->isDone($player))
+			if  ( (!$quest->isDone($player)) && (!$quest->isFailed($player)) && (!$quest->isDeclined($player)) )
 			{
 				return $quest;
 			}

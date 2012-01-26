@@ -1,5 +1,5 @@
 <?php
-class Quest_Chicago_RazorBaarkeeper1 extends SR_Quest
+final class Quest_Chicago_RazorBarkeeper1 extends SR_Quest
 {
 	public function getQuestName() { return 'Bummer'; }
 	public function getNeededAmount() { return 20; }
@@ -25,15 +25,17 @@ class Quest_Chicago_RazorBaarkeeper1 extends SR_Quest
 				break;
 			case 'no':
 				$npc->reply('Hehe yeah, i was just kidding.');
+				if ( (count($args) === 0) || ($args[0] !== 'SURE') )
+				{
+					$player->message("Use \X02#talk no SURE\X02 to decline this quest forever.");
+				}
+				else
+				{
+					$this->decline($player);
+				}
 				break;
 		}
 		return true;
 	}
-	
-}
-
-# Compensate for spelling mistake as long as db contains the misspelled name
-final class Quest_Chicago_RazorBarkeeper1 extends Quest_Chicago_RazorBaarkeeper1
-{
 }
 ?>

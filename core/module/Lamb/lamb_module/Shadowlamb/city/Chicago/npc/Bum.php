@@ -37,5 +37,16 @@ final class Chicago_Bum extends SR_HireNPC
 				return $this->reply("What do you say?");
 		}
 	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Chicago_RazorBarkeeper1');
+		if ($quest->isInQuest($player))
+		{
+			$quest->increase('sr4qu_amount', 1);
+			$player->message(sprintf('Now you killed %d/%d bums for the Razor barkeeper.', $quest->getAmount(), $quest->getNeededAmount()));
+		}
+		return array();
+	}
 }
 ?>
