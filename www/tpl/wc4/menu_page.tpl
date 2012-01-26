@@ -4,9 +4,9 @@
 {if $link === false}
 	...
 {elseif $link === ''}
-	<a class="gwf_pagemenu_sel" {$link}>[{$id}]</a>
+	<a class="gwf_pagemenu_sel" {$link}>{$id}</a>
 {else}
-	<a {$link}>[{$id}]</a>
+	<a {$link}>{$id}</a>
 {/if}
 {/foreach}
 </span>
