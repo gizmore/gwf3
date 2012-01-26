@@ -53,7 +53,7 @@ $lang = array(
 
 	# Show 
 	'unknown_user' => 'Utente sconosciuto',
-	'title_no_news' => '----',
+	'title_no_news' => '~~~~',
 	'msg_no_news' => 'Non ci sono ancora novità in questa categoria.',
 
 	# Newsletter

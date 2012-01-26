@@ -4,13 +4,13 @@ $lang = array(
 	'li_last_active' => '%s ha raggiunto %s%% su %s',
 
 	# Global Meta Tags
-	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
-	'md_wechall' => 'Overview of hacking challenge and problem solving sites. - wechall',
+	'mt_wechall' => 'Hackit, Sfida, Problema, Indovinello, WeChall, Globale, Hacker, Sito,  Classifica',
+	'md_wechall' => 'Panoramica di siti di sfide. - wechall',
 
 	# TextHistory
 	'pt_texthis' => 'Cronologia per %s',
 	'pi_texthis' => 'Cronologia completa per %s.',
-	'mt_texthis' => 'WeChall, Cronologia, %s, Text Based',
+	'mt_texthis' => 'WeChall, Cronologia, %s, Testuale',
 	'md_texthis' => 'Cronologia completa e attività sui siti di %s.',
 
 	# Country Ranking
@@ -37,7 +37,7 @@ $lang = array(
 	'pi_tagrank' => 'I migliori giocatori della categoria %s.<br/>Nota: nella somma sono inclusi tutti i siti che hanno Sfide ricadenti nella tipologia %s.',
 	'pt_tagrank' => 'Classifica %s',
 	'mt_tagrank' => GWF_SITENAME.', %s, Classifica, Classifica %s',
-	'md_tagrank' => '%s ranking on '.GWF_SITENAME.'. Pagina %s di %s.',
+	'md_tagrank' => 'Classifica di %s su '.GWF_SITENAME.'. Pagina %s di %s.',
 
 	# Lang Ranking
 	'logo2_hover' => '%s ha risolto il %s%% su %s',
@@ -45,7 +45,7 @@ $lang = array(
 	'pit_langrank' => 'Classifica %s',
 	'pi_langrank' => 'I migliori giocatori su siti in %s.',
 	'pt_rankingc' => 'Classifica nazionale',
-	'mt_ranking_lang' => GWF_SITENAME.', Ranking, %s, Challenge, Sites, List, Cross, Challenge, Site, Sites',
+	'mt_ranking_lang' => GWF_SITENAME.', Classifica, %s, Sfida, Siti, Lista, Cross, Sfida, Sito, Siti',
 	'md_ranking_lang' => 'I migliori giocatori su siti in %s, registrati su '.GWF_SITENAME.'. Pagina %s su%s.',
 
 	# User Graphs
@@ -104,23 +104,23 @@ $lang = array(
 	'md_profile' => 'Profilo su WeChall di %s | Posizione %s | Collegato a %s siti | The Hacker Challenge Sites',
 
 	# Meta Tags
-	'mt_ranking' => 'a Global Ranking for Hacking Challenge Sites and Hacking Challenge Site Overview',
-	'mt_site_ranking' => 'WeChall, Site, Ranking, %s, Page %s',
-	'md_site_ranking' => 'WeChall user-rank table for %s - page %s',
-	'mt_challs' => '%s, Computer, Hackit, Challenges, Challenge, Problems, WeChall, Non Simulated.',
-	'md_challs' => '%s Challenges on WeChall.',
-	'mt_challs_for' => '%s, Computer, Hackit, Challenge, Overview, %s, WeChall',
-	'md_challs_for' => '%s Challenge Overview for %s on WeChall.',
-	'mt_challs_from' => '%s, Computer, Hackit, Challenge, %s, WeChall',
-	'md_challs_from' => 'Challenges made by %s on WeChall.',
-	'mt_sites_1' => 'WeChall, Participating, Active, Challenge, Sites',
-	'md_sites_1' => 'Participating and active challenge sites listed on WeChall.',
-	'mt_sites_2' => 'WeChall, Challenge, Site, Graveyard',
-	'md_sites_2' => 'Challenge Site Graveyard on WeChall.',
-	'mt_sites_3' => 'Challenge, Site, Overview, Coming, Soon, WeChall',
-	'md_sites_3' => 'Challenge sites soon ranked on WeChall.',
-	'mt_sites_4' => 'Other, More, Challenge, Sites, Not Ranked, Wechall',
-	'md_sites_4' => 'Other challenge sites that are not ranked on WeChall.',
+	'mt_ranking' => 'Una classifica globale per siti di sfide sull\'hacking e panoramica su siti di sfide sull\'hacking',
+	'mt_site_ranking' => 'WeChall, Sito, Classifica, %s, Pagina %s',
+	'md_site_ranking' => 'Tabella del punteggio utente su WeChall per %s - pagina %s',
+	'mt_challs' => '%s, Computer, Hackit, Sfide, Sfida, Problemi, WeChall, Non simulato.',
+	'md_challs' => '%s sfide su WeChall.',
+	'mt_challs_for' => '%s, Computer, Hackit, Sfida, Panoramica, %s, WeChall',
+	'md_challs_for' => '%s Panoramica delle sfide per %s su WeChall.',
+	'mt_challs_from' => '%s, Computer, Hackit, Sfide, %s, WeChall',
+	'md_challs_from' => 'Sfide ideate da %s su WeChall.',
+	'mt_sites_1' => 'WeChall, Partecipazione, Attivo, Sfida, Siti',
+	'md_sites_1' => 'Siti partecipanti ed attivi raccolti su WeChall.',
+	'mt_sites_2' => 'WeChall, Sfida, Sito, Cimitero',
+	'md_sites_2' => 'Cimitero dei siti di sfide su WeChall.',
+	'mt_sites_3' => 'Sfida, Sito, Panoramica, In arrivo, Presto, WeChall',
+	'md_sites_3' => 'Siti di sfide in arrivo su WeChall.',
+	'mt_sites_4' => 'Altri, Sfida, Siti, Non Conteggiati, Wechall',
+	'md_sites_4' => 'Altri siti non conteggiati su WeChall.',
 
 	# Info
 	'pt_graveyard' => 'Cimitero',
@@ -138,7 +138,7 @@ $lang = array(
 	'a_title' => 'Punteggio totale: %s',
 	'head_sites' => 'Nuovi siti',
 	'head_users' => '<a href="%s">Nuovi utenti</a>',
-	'head_online' => '%s Online',
+	'head_online' => '%s Online ',
 
 	# Challenge
 	'chall_solvecount' => 'Risolta da %s persone',
@@ -169,18 +169,18 @@ $lang = array(
 	# Menu
 	'menu_news' => 'Novità',
 	'menu_register' => 'Registrati',
-	'menu_logout' => 'Logout',
+	'menu_logout' => 'Logout ',
 	'menu_about' => 'A proposito di noi',
-	'menu_links' => 'Links',
+	'menu_links' => 'Links ',
 	'menu_sites' => 'Siti',
-	'menu_forum' => 'Forum',
+	'menu_forum' => 'Forum ',
 	'menu_ranking' => 'Classifica',
 	'menu_challs' => 'Sfide',
-	'menu_account' => 'Account',
-	'menu_pm' => 'PM',
+	'menu_account' => 'Account ',
+	'menu_pm' => 'PM ',
 	'menu_stats' => 'Statistiche',
-	'menu_chat' => 'Chat',
-	'menu_admin' => 'Admin',
+	'menu_chat' => 'Chat ',
+	'menu_admin' => 'Admin ',
 	# Right Panel
 	'rp_stats' => 'Statistiche',
 	'rp_sitecount' => '%s Siti',
@@ -216,7 +216,7 @@ $lang = array(
 	'th_site_language' => 'Lingua',
 	'th_site_language2' => 'Il inguaggio preferito sul Sito',
 	'th_site_name' => 'Sito',
-	'th_site_logo' => 'Logo',
+	'th_site_logo' => 'Logo ',
 	'th_site_classname' => 'Tags',
 	'th_site_score' => 'Punteggio',
 	'th_site_basescore' => 'Punteggio base',
@@ -228,8 +228,8 @@ $lang = array(
 	'th_site_dif' => 'Difficoltà',
 	'th_site_fun' => 'Divertimento',
 	'th_site_avg' => 'Media',
-	'th_site_vote_dif' => 'Dif',
-	'th_site_vote_fun' => 'Div',
+	'th_site_vote_dif' => 'Dif ',
+	'th_site_vote_fun' => 'Div ',
 	'th_site_description' => 'Descrizione',
 	'th_site_status' => 'Stato',
 	'th_autoupdate' => 'Il sito è provvisto di update automatico?',
@@ -254,7 +254,7 @@ $lang = array(
 	'th_dif' => 'Difficoltà',
 	'th_edu' => 'Educazione',
 	'th_fun' => 'Divertimento',
-	'th_forum' => 'Forums',
+	'th_forum' => 'Forums ',
 	'th_regat_solved' => 'Risolte',
 	'th_regat_lastdate' => 'Ultimo Update',
 	'th_regat_onsitename' => 'Nome Utente',
@@ -269,7 +269,7 @@ $lang = array(
 	'th_sitemas_firstdate' => 'Primo tracciamento',
 	'th_sitemas_tracktime' => 'Tempo di tracciamento',
 	'th_sitemas_startperc' => 'Da',
-	'th_rank' => '#',
+	'th_rank' => ' #',
 	'th_rank2' => 'Posizione globale',
 	'th_crank' => 'Posizione nazionale',
 	'th_last_activites' => 'Ultime attività di %s',
@@ -278,7 +278,7 @@ $lang = array(
 	'th_favsites' => 'Siti favoriti',
 	'th_userhist_date' => 'Data',
 	'th_userhist_comment' => 'Commento',
-	'th_userhist_percent' => '%',
+	'th_userhist_percent' => '% ',
 
 	'th_user_countryid' => 'Nazione',
 	'th_players' => 'Giocatori',
@@ -374,7 +374,7 @@ $lang = array(
 	'msg_unmarked_fav' => '%s è stato rimosso dai tuoi siti preferiti.',
 
 	# Buttons
-	'btn_pm' => 'PM %s',
+	'btn_pm' => 'PM %s ',
 	//	'btn_email' => 'Send EMail to %s',
 	'btn_solve' => 'Invia',
 	'btn_link' => 'Collega sito',
@@ -465,8 +465,8 @@ $lang = array(
 	'btn_add_favsite' => 'Aggiungi',
 
 	'pt_site_detail' => 'Dettagli di %s',
-	'mt_site_detail' => '%s, Challenge, Site, Details, Overview, WeChall',
-	'md_site_detail' => 'Details of %s challenge site on WeChall',
+	'mt_site_detail' => '%s, Sfida, Sito, Dettagli, Panoramica, WeChall',
+	'md_site_detail' => 'Dettagli del sito %s su WeChall',
 
 	# Statgraph
 	'err_end_date' => 'La data finale è invalida.',
@@ -514,7 +514,7 @@ $lang = array(
 	'btn_show_stats' => 'Aggiorna',
 	'chk_icons' => 'Icone',
 	'chk_values' => 'Valori',
-	'chk_zoom' => 'Zoom',
+	'chk_zoom' => 'Zoom ',
 
 	# v4.02
 	'btn_all_sites' => 'Tutti i siti',
@@ -525,7 +525,7 @@ $lang = array(
 
 	# v4.03
 	'ft_signup' => 'Registrati',
-	'th_password' => 'Password',
+	'th_password' => 'Password ',
 	'th_bind_ip' => 'Restringi sessione all\'IP',
 	'btn_forgot_pw' => 'Password dimenticata',
 	'btn_login' => 'Connetti',
@@ -533,7 +533,7 @@ $lang = array(
 	'bd_soon' => 'Il prossimo %s',
 
 	'btn_close' => 'Chiudi',
-	'btn_guestbook' => 'Guestbook',
+	'btn_guestbook' => 'Guestbook ',
 
 	# v4.04
 	'err_site_down' => '%s è temporeneamente irraggiungibile.',
@@ -649,7 +649,7 @@ $lang = array(
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'La categoria \'%s\' è stata rimossa dalle tua categorie preferite.',
 	'err_site_status' => 'Lo stato del sito è invalido.',
-	'menu_download' => 'Downloads',
+	'menu_download' => 'Downloads ',
 	
 	#WC5 (monnino fixes)
 	'th_site_color' => 'Colore del Sito',

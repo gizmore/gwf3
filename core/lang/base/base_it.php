@@ -30,12 +30,12 @@ $lang = array(
 	'ERR_DANGEROUS_UPLOAD' => 'Il file caricato contiene &quot;&lt;?&quot; che è considerato insicuro e quindi non è permesso.',
 
 	# GWF_Time
-	'unit_sec_s' => 's',
+	'unit_sec_s' => 's ',
 	'unit_min_s' => 'min',
 	'unit_hour_s' => 'ore',
 	'unit_day_s' => 'gg',
-	'unit_month_s' => 'M',
-	'unit_year_s' => 'y',
+	'unit_month_s' => 'M ',
+	'unit_year_s' => 'a',
 
 	'M1' => 'Gennaio',
 	'M2' => 'Febbraio',
@@ -51,16 +51,16 @@ $lang = array(
 	'M12' => 'Dicembre',
 
 	'm1' => 'Gen',
-	'm2' => 'Feb',
-	'm3' => 'Mar',
-	'm4' => 'Apr',
+	'm2' => 'Feb ',
+	'm3' => 'Mar ',
+	'm4' => 'Apr ',
 	'm5' => 'Mag',
 	'm6' => 'Giu',
 	'm7' => 'Lug',
 	'm8' => 'Ago',
 	'm9' => 'Set',
 	'm10' => 'Ott',
-	'm11' => 'Nov',
+	'm11' => 'Nov ',
 	'm12' => 'Dic',
 
 	'D0' => 'Domenica',
@@ -95,8 +95,8 @@ $lang = array(
 	### Hour:   H:23    h=11
 	### Minute: i:59
 	### Second: s:59
-	'df4' => 'Y', # 2009
-	'df6' => 'M Y', # January 2009
+	'df4' => ' Y', # 2009
+	'df6' => ' M Y', # January 2009
 	'df8' => 'D, j N, Y', # Tue, Jan 9, 2009
 	'df10' => 'd N Y - H:00', # Jan 09, 2009 - 23:00
 	'df12' => 'd N Y - H:i',  # Jan 09, 2009 - 23:59
@@ -107,7 +107,7 @@ $lang = array(
 		array('Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'),
 		array('Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'),
 		array('Dom','Lun','Mar','Mer','Gio','Ven','Sab'),
-		array('Domenica','Lunedì','Martedy','Mercoledì','Giovedì','Venerdì','Sabato'),
+		array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'),
 		array(4=>'Y', 6=>'M Y', 8=>'D, j N Y', 10=>'d N Y - H:00', 12=>'d N Y - H:i', 14=>'d N Y - H:i:s'),
 	),
 
@@ -187,13 +187,13 @@ $lang = array(
 
 	# 2.05 Bits
 	'yes' => 'Si',
-	'no' => 'No',
+	'no' => 'No ',
 	
 	# 2.06 spoiler
-	'bbspoiler_info' => 'Clicca per lo spoiler',
+	'bbspoiler_info' => 'Clicca per visualizzare lo spoiler',
 	
 	# 3.00 Filesize
-	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
+	'filesize' => array('B ','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
 	'err_bb_level' => 'E\' richiesto un livello utente di %s per visualizzare questi contenuti.',
 );
 ?>

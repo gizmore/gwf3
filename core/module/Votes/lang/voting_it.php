@@ -67,11 +67,11 @@ $lang = array(
 	'msg_mvote_added' => 'Il sondaggio è stato aggiunto con successo.',
 
 	# v2.01 Staff
-	'th_vs_id' => 'ID',
+	'th_vs_id' => 'ID ',
 	'th_vs_name' => 'Nome',
 	'th_vs_expire_date' => 'Scade',
-	'th_vs_min' => 'Min',
-	'th_vs_max' => 'Max',
+	'th_vs_min' => 'Min ',
+	'th_vs_max' => 'Max ',
 	'th_vs_avg' => 'Media',
 	'th_vs_sum' => 'Somma',
 	'th_vs_count' => 'Totale',

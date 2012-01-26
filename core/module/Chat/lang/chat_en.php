@@ -27,7 +27,7 @@ $lang = array(
 	'err_target_invalid' => 'The target is invalid. You are not allowed to send messages to yourself.',
 	'err_nick_syntax' => 'Your chosen nickname is invalid.', # we could be more verbose
 	'err_nick_taken' => 'Your chosen nickname is already in use.',
-	'err_nick_tamper' => 'Please do not try to change your guest nick, stupid!',
+	'err_nick_tamper' => 'You cannot change your guest nickname on your own',
 	
 	# Messages
 	'msg_posted' => 'Your message has been sent.',

@@ -12,7 +12,7 @@ $lang = array(
 	'cfg_local_fee_buy' => 'Local Purchase Fee',
 	'cfg_local_fee_sell' => 'Local Sell Fee',
 	'cfg_orders_per_page' => 'Orders Per Page',
-	'cfg_currency' => 'Store Currency',
+	'cfg_currency' => 'Shop Currency',
 	'cfg_currencies' => 'Accepted Currencies',
 
 	# Tooltips

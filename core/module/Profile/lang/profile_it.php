@@ -46,7 +46,7 @@ $lang = array(
 		# Headers
 		'th_user_name' => 'Nome utente',
 		'th_user_level' => 'Livello',
-		'th_user_avatar' => 'Avatar',
+		'th_user_avatar' => 'Avatar ',
 		'th_gender' => 'Sesso',
 		'th_firstname' => 'Nome',
 		'th_lastname' => 'Cognome',
@@ -56,12 +56,12 @@ $lang = array(
 		'th_website' => 'Sito',
 		'th_tel' => 'Telefono',
 		'th_mobile' => 'Cellulare',
-		'th_icq' => 'ICQ',
-		'th_msn' => 'MSN',
-		'th_jabber' => 'Jabber',
-		'th_skype' => 'Skype',
-		'th_yahoo' => 'Yahoo!',
-		'th_aim' => 'AIM',
+		'th_icq' => 'ICQ ',
+		'th_msn' => 'MSN ',
+		'th_jabber' => 'Jabber ',
+		'th_skype' => 'Skype ',
+		'th_yahoo' => 'Yahoo! ',
+		'th_aim' => 'AIM ',
 		'th_about_me' => 'A proposito di te',
 		'th_hidemail' => 'Nascondi indirizzo E-Mail?',
 		'th_hidden' => 'Nascondi il profilo agli utenti non registrati?',
@@ -98,7 +98,7 @@ $lang = array(
 
 		# v2.04 (ext. profile)
 		'th_user_country' => 'Nazione',
-		'btn_pm' => 'PM',
+		'btn_pm' => 'PM ',
 
 		# v2.05 (more fixes)
 		'at_mailto' => 'Invia un\'E-Mail a %s',
@@ -109,7 +109,7 @@ $lang = array(
 		'th_birthdate' => 'Data di nascita',
 
 		# v2.07 (IRC+Robots)
-		'th_irc' => 'IRC',
+		'th_irc' => 'IRC ',
 		'th_hiderobot' => 'Nascondi ai web crawlers?',
 		'tt_hiderobot' => 'Selezioni questa opzione se non vuole che il suo profilo venga indicizzato dai web crawlers.',
 		'err_no_spiders' => 'Questo profilo non verrà visualizzato dai web crawlers.',

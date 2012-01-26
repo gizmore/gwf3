@@ -4,7 +4,7 @@ $lang = array(
 	'err_invalid_key' => 'La chiave è invalida. 1 - %s caratteri alfanumeriic)',
 	'err_dup_key' => 'La categoria esiste già.',
 
-	'th_id' => 'ID',
+	'th_id' => 'ID ',
 	'th_group' => 'Gruppo',
 	'th_key' => 'Chiave',
 	'th_edit' => 'Modifica',

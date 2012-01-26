@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 
-	'alt_flag' => '%s',
+	'alt_flag' => '%s ',
 
 	# Page Info
 	'pi_invited' => 'L\'utente %s la <a href="%s">invita nel suo gruppo &quot;%s&quot;</a>.<br/><br/><br/><a href="%s">Clicca qui per rifiutare l\'invito</a>.',
@@ -9,8 +9,8 @@ $lang = array(
 	# Avatar Gallery
 	'pt_avatars' => 'Galleria degli Avatar.',
 	'pi_avatars' => 'La galleria degli avatar di '.GWF_SITENAME,
-	'mt_avatars' => GWF_SITENAME.', Avatar, Gallery',
-	'md_avatars' => 'The user avatar gallery on '.GWF_SITENAME,
+	'mt_avatars' => GWF_SITENAME.', Avatar, Galleria',
+	'md_avatars' => 'Galleria avatar dell\'utente su '.GWF_SITENAME,
 
 	# Table Headers 
 	'th_name' => 'Nome del gruppo',
@@ -74,7 +74,7 @@ $lang = array(
 	'sel_join_2' => 'Su invito',
 	'sel_join_4' => 'Tramite lista di moderazione',
 	'sel_join_8' => 'Clicca ed unisciti',
-	'sel_join_16' => 'Tramite script',
+	'sel_join_16' => 'Pieno (invito tramite script)',
 	'sel_view_type' => 'Seleziona la visibilità del gruppo',
 	'sel_view_'.(0x100) => 'Forum pubblico',
 	'sel_view_'.(0x200) => 'Solo membri di '.GWF_SITENAME,
@@ -126,8 +126,8 @@ $lang = array(
 		
 	# v2.05 (Jinx Edition)
 	'err_not_in_group' => 'L\'utente %s non è in questo gruppo.',
-	'btn_unco' => 'Co-Leader',
-	'btn_co' => 'No Co-Leader',
+	'btn_unco' => 'Co-Leader ',
+	'btn_co' => 'Non Co-Leader',
 	'btn_unhide' => 'Nascondi',
 	'btn_hide' => 'Mostra',
 	'btn_unmod' => 'Moderatore',
@@ -154,12 +154,12 @@ $lang = array(
 	'btn_adv_search' => 'Ricerca avanzata',
 	'ft_search_adv' => 'Ricerca utenti avanzata',
 	'th_country' => 'Nazione',
-	'th_icq' => 'ICQ',
-	'th_msn' => 'MSN',
-	'th_jabber' => 'Jabber',
-	'th_skype' => 'Skype',
-	'th_yahoo' => 'Yahoo',
-	'th_aim' => 'AIM',
+	'th_icq' => 'ICQ ',
+	'th_msn' => 'MSN ',
+	'th_jabber' => 'Jabber ',
+	'th_skype' => 'Skype ',
+	'th_yahoo' => 'Yahoo ',
+	'th_aim' => 'AIM ',
 	'th_language' => 'Lingua',			
 	'th_hasmail' => 'E-Mail',
 	'th_haswww' => 'Sito Web',

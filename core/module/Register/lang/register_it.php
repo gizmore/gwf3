@@ -5,7 +5,7 @@ $lang = array(
 		'title_register' => 'Registrazione',
 
 		'th_username' => 'Nome utente',
-		'th_password' => 'Password',
+		'th_password' => 'Password ',
 		'th_email' => 'Indirizzo E-Mail',
 		'th_birthdate' => 'Data di nascita',
 		'th_countryid' => 'Nazione',
@@ -71,9 +71,9 @@ $lang = array(
 		'err_birthdate' => 'La data di nascita non è valida.',
 		'err_minage' => 'Ci scusiamo, ma non ha l\'età necessaria per iscriversi al sito. Per registrarsi al sito, l\'età minima è %s anni.',
 		'err_ip_timeout' => 'Qualcuno si è recentemente iscritto al sito da questo IP. Per questioni di sicurezza, non è possibile registrare più account consecutivamente dallo stesso IP. La preghiamo di attendere qualche istante e riprovare.',
-		'th_token' => 'Token',
+		'th_token' => 'Token ',
 		'th_timestamp' => 'Ora di registrazione',
-		'th_ip' => 'Reg IP',
+		'th_ip' => 'Reg IP ',
 		'tt_username' => 'Il nome utente deve iniziare con una lettera.'.PHP_EOL.'Può contenere solo lettere, numeri e l\'underscore e deve può avere una lunghezza compresa tra 3 e %s caratteri.',
 		'tt_email' => 'Per registrarsi è necessario un indirizzo E-Mail valido.',
 
@@ -86,7 +86,7 @@ $lang = array(
 		'cfg_reg_detect_country' => 'Riconosci in automatico la nazione di appartenenza',
 
 		# v2.03 (Links)
-		'btn_login' => 'Login',
+		'btn_login' => 'Login ',
 		'btn_recovery' => 'Recupero Password',
 		# v2.04 (Fixes)
 		'tt_password' => 'Non ci sono restrizioni per quanto riguarda la password. Consigliamo di scegliere una password complessa (ad esempio una frase) e di non usarla per altri siti.',

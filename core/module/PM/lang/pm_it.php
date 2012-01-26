@@ -86,11 +86,11 @@ $lang = array(
 	'th_pmo_signature' => 'Firma PM',
 
 	'th_pm_options&1' => 'Nuovo',
-	'th_actions' => '',
+	'th_actions' => ' ',
 	'th_user_name' => 'Nome Utente',
 	'th_pmf_name' => 'Cartella',
 	'th_pmf_count' => 'Totale',
-	'th_pm_id' => 'ID',
+	'th_pm_id' => 'ID ',
 	'th_pm_to' => 'A',
 	'th_pm_from' => 'Da',
 //	'th_pm_to_folder' => 'To Folder',
@@ -161,7 +161,7 @@ $lang = array(
 	'msg_mail_sent' => 'Una E-Mail contente il suo messaggio è stata inviata a %s.',
 		
 	# v2.03 SEO
-	'pt_pm' => 'PM',
+	'pt_pm' => 'PM ',
 		
 	# v2.04 fixes
 	'ft_new_folder' => 'Crea una nuova cartella',

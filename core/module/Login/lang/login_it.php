@@ -3,12 +3,12 @@
 $lang = array(
 
 		'pt_login' => 'Login su '.GWF_SITENAME,
-		'title_login' => 'Login',
+		'title_login' => 'Login ',
 
 		'th_username' => 'Nome utente',
-		'th_password' => 'Password',
-		'th_login' => 'Login',
-		'btn_login' => 'Login',
+		'th_password' => 'Password ',
+		'th_login' => 'Login ',
+		'btn_login' => 'Login ',
 		'btn_register' => 'Registrati',
 		'btn_recovery' => 'Recupero',
 
@@ -46,7 +46,7 @@ $lang = array(
 		# v2.00 (login history)
 		'msg_last_login' => 'Il suo ultimo login risale a %s da %s (%s).<br/>Può anche <a href="%s">ripercorrere la cronologia dei suoi accessi qui</a>.',
 		'th_loghis_time' => 'Data',
-		'th_loghis_ip' => 'IP',
+		'th_loghis_ip' => 'IP ',
 		'th_hostname' => 'Nome dell\'host',
 
 		# v2.01 (clear hist)

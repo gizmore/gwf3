@@ -330,6 +330,12 @@ $lang = array(
 	'err_post_level' => 'You need a minimum userlevel of %s to post.',
 	'cfg_post_timeout' => 'Minimum time between two posts',
 	'cfg_post_min_level' => 'Minimum level to post',
+		
+	# monnino fixes
+	'btn_cleanup' => 'Clean up',
+	'cfg_guest_captcha' => 'Guest Captcha?',
+	'cfg_gwf2_rewrites' => 'Use old gwf2 forum rewrite rules',
+		
 );
 
 ?>

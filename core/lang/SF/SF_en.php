@@ -29,7 +29,7 @@ $lang = array(
 		1 => "Only 5 days until the weekend. ",
 		2 => "Only 4 days until the weekend. ",
 		3 => "Only 3 days until the weekend. ",
-		4 => "Only 4 days until the weekend. ",
+		4 => "Only 2 days until the weekend. ",
 		5 => date('G') < 13 ? "Finally, the weekend begins... " : "Tomorrow starts the weekend! ",
 		6 => "And it is weekend!!!           ",
 	),

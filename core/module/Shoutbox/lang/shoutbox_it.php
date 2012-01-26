@@ -6,7 +6,7 @@ $lang = array(
 	# History
 	'pt_history' => 'Cronologia della Shoutbox di '.GWF_SITENAME.' (Pagina %s / %s)',
 	'pi_history' => 'La Shoutbox di '.GWF_SITENAME,
-	'mt_history' => GWF_SITENAME.', Shoutbox, History',
+	'mt_history' => GWF_SITENAME.', Shoutbox, Cronologia',
 	'md_history' => 'La Shoutbox di '.GWF_SITENAME.' è per brevi messaggi che non meritano un thread nel forum.',
 
 	# Errors

@@ -8,5 +8,7 @@ $lang = array(
 	'th_rand' => 'SALT',
 		
 	'err_log' => 'This replay could not been found.',
+		
+	'cfg_logfile' => 'Logfile Path',
 );
 ?>
