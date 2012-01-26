@@ -2,7 +2,7 @@
 final class Chicago_Bum extends SR_HireNPC
 {
 	public function getNPCLevel() { return 5; }
-	public function getNPCPlayerName() { return Shadowfunc::getRandomName($this); }
+	public function getNPCPlayerName() { return 'Bum'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 45.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCEquipment()
