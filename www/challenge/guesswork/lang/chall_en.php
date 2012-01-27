@@ -18,7 +18,7 @@ $lang = array(
 	'err_wrong' => 'The user/password combination is unknown.',
 	'msg_congrats' =>
 		'Well Done. You now have control over the WeChall account.<br/>'.
-		'Do not abuse it too much, you may have fun in the forums or shoutbox tho.<br/>'.
+		'Do not abuse it too much, you may have fun in the forums or shoutbox though.<br/>'.
 		'WeChall is a regular user, PM is not allowed.<br/>',
 		'Have fun, happy challenging and:&nbsp;<span style="color:red;">Do Not Abuse!</span><br/>'.
 		'If you find a way how to abuse it please report!',

@@ -7,7 +7,7 @@ $lang = array(
 		'The <a href="%1$s">first list</a> is using the <a href="%2$s">WC3 hashing algorithm</a>, which uses some fixed salt md5.<br/>'.
 		'The <a href="%3$s">second list</a> is using the <a href="%4$s">WC4 hashing algorithm</a>, which uses salted sha1.<br/>'.
 		'<br/>'.
-		'The solution is the 2 longest plaintexts of each list, concatinated with a comma.<br/>'.
+		'The solution is the 2 longest plaintexts of each list, concatenated with a comma.<br/>'.
 		'Example solution: wordfrom1,wordfrom1,wordfrom2,wordfrom2.<br/>'.
 		'<br/>'.
 		'The goal of this challenge is to demonstrate the advantage of the new algo over the old.<br/>'.

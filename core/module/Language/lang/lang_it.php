@@ -19,14 +19,14 @@ $lang = array(
 	'btn_branch' => 'Ramifica',
 	'btn_checker' => 'Controlla i file del linguaggio',
 	'btn_check' => 'Controlla',
-	'btn_bundle' => 'Accorpa',
+	'btn_bundle' => 'Impacchetta',
 	'btn_missing' => 'Mancante',
 	'btn_code' => 'Invia codice sorgente',
 	
 	'ft_checker' => 'Controlla linguaggio',
-	'ft_bundle' => 'Accorpa i file dei linguaggi',
+	'ft_bundle' => 'Impacchetta i file dei linguaggi',
 
-	'msg_bundled' => 'Accorpati i file dei linguaggi in %s (%s file).',
+	'msg_bundled' => 'Impacchettati i file dei linguaggi in %s (%s file).',
 
 	'err_zip' => 'Si è verificato un errore durante la creazione del file ZIP, nel file %s linea %s.',
 );
