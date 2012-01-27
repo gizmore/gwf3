@@ -1,7 +1,8 @@
 <?php
 final class SR_KillProtect extends GDO
 {
-	const MAX_LEVEL_DIFF = 30; # Effective Level
+	const MAX_LEVEL_DIFF = 25; # Effective Level
+	const DISABLE_LEVEL_DIFF = 50; # When reaching this level you are not killprotected anymore.
 	const KILL_TIMEOUT_MIN = 3600; # 1h
 	const KILL_TIMEOUT_ADD = 7200; # 1h
 	const KILL_TIMEOUT_AVG = 6000; # 4h
@@ -39,6 +40,12 @@ final class SR_KillProtect extends GDO
 		self::$CACHE = self::table(__CLASS__)->selectColumn('CONCAT(sr4kp_killer,":",sr4kp_victim,":",sr4kp_srtime)');
 	}
 	
+	/**
+	 * Check the database for a recent kill.
+	 * @param SR_Player $killer
+	 * @param SR_Player $victim
+	 * @return false|int timestamp
+	 */
 	private static function isKillProtectedB(SR_Player $killer, SR_Player $victim)
 	{
 		if ( ($killer->isNPC()) || ($victim->isNPC()) )
@@ -145,6 +152,12 @@ final class SR_KillProtect extends GDO
 		# Check party sums for effective level.
 		$al = $attackers->getSum('level', false);
 		$dl = $defenders->getSum('level', false);
+		
+		# Clamp to the level where game gets hard.
+		$clamp = self::MAX_LEVEL_DIFF + self::DISABLE_LEVEL_DIFF;
+		$al = Common::clamp($al, 0, $clamp);
+		$dl = Common::clamp($dl, 0, $clamp);
+		
 		$dif = $al - $dl;
 		if ($dif > self::MAX_LEVEL_DIFF)
 		{
