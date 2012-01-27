@@ -66,7 +66,14 @@ final class GWF_QuickSearch
 		}
 		
 		# Whitelist fields
-		foreach ($fields as $field) { if (false === $gdo->getWhitelistedBy($field)) { echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__); return false; }}
+		foreach ($fields as $field)
+		{
+			if (false === $gdo->getWhitelistedBy($field))
+			{
+				echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
+				return false;
+			}
+		}
 		
 		# Concat the Fields, (we are doing a full search anyway)
 		$concat = 'CONCAT('.implode(', ":", ', $fields).')';
@@ -199,7 +206,7 @@ final class GWF_QuickSearch
 			$back[] = $item;
 		}
 		
-		if ( ($bracket !== 0) || ($in_quote) )
+		if ( ($bracket !== 0) || ($in_quote === true) )
 		{
 			return false;
 		}

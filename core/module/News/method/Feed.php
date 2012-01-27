@@ -15,6 +15,8 @@ final class News_Feed extends GWF_Method
 //		if (false === ($lang = GWF_Language::getByISO($iso))) {
 //			$lang = GWF_Language::getEnglish();
 //		}
+		GWF3::setConfig('store_last_url', false);
+
 		$lang = GWF_Language::getCurrentLanguage();
 		return $this->templateFeed($lang);
 	}

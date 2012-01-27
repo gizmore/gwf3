@@ -103,5 +103,73 @@ final class GWF_FormGDO extends GWF_Form
 //		}
 		die(sprintf('UNRECOGNIZED GDO TYPE in %s: %08x', __METHOD__, $gdo_d));
 	}
+	
+	##########################
+	### Some default forms ###
+	##########################
+	/**
+	 * Get a default advanced search form.
+	 * @param GWF_Module $module
+	 * @param object $caller
+	 * @param GDO $gdo
+	 * @param GWF_User $user
+	 * @param boolean $captcha
+	 * @return GWF_Form
+	 */
+	public static function getSearchForm(GWF_Module $module, $caller, GDO $gdo, $user, $use_captcha=true)
+	{
+		$data = array_merge(
+			self::getDefaultFields($module, $gdo, $gdo->getSearchableFields($user)),
+			$gdo->getSearchableFormData($user),
+			self::getActions($module, $gdo->getSearchableActions($user)),
+			self::getFormDataCaptcha($use_captcha)
+		);
+		return new GWF_Form($caller, $data);
+	}
+	
+	public static function getQuickSearchForm(GWF_Module $module, $caller, GDO $gdo, $user, $use_captcha=true)
+	{
+		$data = array(
+			'term' => array(GWF_Form::STRING, Common::getRequestString('term', ''), GWF_HTML::lang('term')),
+			'qsearch' => array(GWF_Form::SUBMIT, GWF_HTML::lang('search')),
+		);
+		return new GWF_Form($caller, $data);
+	}
+
+	private static function getDefaultFields(GWF_Module $module, GDO $gdo, array $fields)
+	{
+		$filtered = array();
+		foreach ($fields as $c)
+		{
+		# Option GRP
+		if (strpos($c, '&&') !== false)
+			{
+			$pos = strpos($c, '&&');
+			$pos = strpos($c, '&', $pos+1);
+			$colname = substr($c, 0, $pos);
+			$choice = substr($c, $pos+1);
+			if (!isset($filtered[$c])) {
+			$filtered[$colname] = array(GDO::ENUM, GDO::NULL, array());
+		}
+		$filtered[$colname][2][] = $choice;
+		}
+		elseif (strpos($c, '&') !== false)
+		{
+			$filtered[$c] = $gdo->getColumnDefine($gdo->getOptionsName());
+			}
+			else
+			{
+			$filtered[$c] = $gdo->getColumnDefine($c);
+		}
+	}
+	
+	$data = array();
+	foreach ($filtered as $c => $define)
+	{
+	$data[$c] = self::getFormData($module, $gdo, $c, $define);
+	}
+	return $data;
+	}
+	
 }
 ?>

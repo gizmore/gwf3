@@ -51,7 +51,7 @@ final class Lamb_IRC
 			fclose($this->socket);
 			$this->socket = NULL;
 			$this->context = NULL;
-			Lamb_Log::logDebug('Lamb_IRC::disconnect() from '.$this->host.PHP_EOL);
+			Lamb_Log::logDebug('Lamb_IRC::disconnect() from '.$this->host);
 		}
 	}
 	

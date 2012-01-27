@@ -14,7 +14,7 @@
 			{GWF_Table::column('<b>-</b>')}
 		{/if}
 		{if $s->hasLyrics()}
-			{GWF_Table::column({button type='generic' text='L' title=$lang->lang('show_lyrics')}, 'ce')}
+			{GWF_Table::column({button type='generic' text='L' title=$lang->lang('show_lyrics') url=$s->hrefShowLyrics()}, 'ce')}
 		{else}
 			{GWF_Table::column()}
 		{/if}

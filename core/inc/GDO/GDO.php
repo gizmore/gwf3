@@ -174,8 +174,8 @@ abstract class GDO
 	################
 	### Escaping ###
 	################
-	public static function escape($s) { return gdo_db()->escape($s); }
-	public static function escapeIdentifier($s) { return gdo_db()->escapeIdentifier($s); }
+	public static function escape($s) { return self::$CURRENT_DB->escape($s); }
+	public static function escapeIdentifier($s) { return self::$CURRENT_DB->escapeIdentifier($s); }
 	
 	###############
 	### Options ###
@@ -277,12 +277,12 @@ abstract class GDO
 	
 	public function tableExists()
 	{
-		return gdo_db()->tableExists($this->getTableName());
+		return self::$CURRENT_DB->tableExists($this->getTableName());
 	}
 	
 	public function truncate()
 	{
-		return gdo_db()->truncateTable($this->getTableName());
+		return self::$CURRENT_DB->truncateTable($this->getTableName());
 	}
 	
 	#############
@@ -350,18 +350,19 @@ abstract class GDO
 		
 		foreach ($this->getColumnDefcache() as $c => $d)
 		{
-			if ( ($nested) && ( (($d[0] & self::OBJECT) === self::OBJECT) || (($d[0] & self::JOIN) === self::JOIN) ) )
+			if ($c === $byp)
+			{
+				return $by;
+			}
+			elseif ( ($nested === true) && ( (($d[0] & self::OBJECT) === self::OBJECT) || (($d[0] & self::JOIN) === self::JOIN) ) )
 			{
 				if (false !== self::table($d[2][0])->getWhitelistedBy($byp))
 				{
 					return $by;
 				}
 			}
-			elseif ($c === $byp)
-			{
-				return $by;
-			}
 		}
+				
 		return $default;
 	}
 	
@@ -372,7 +373,7 @@ abstract class GDO
 			return $by;
 		}
 		$cd = $this->getColumnDefcache();
-		if (isset($cd[$pre]))
+		if (true === isset($cd[$pre]))
 		{
 			return Common::substrFrom($by, '.');
 		}
@@ -530,7 +531,7 @@ abstract class GDO
 	############
 	public function free($result)
 	{
-		return gdo_db()->free($result);
+		return self::$CURRENT_DB->free($result);
 	}
 	
 	###############
@@ -686,7 +687,7 @@ abstract class GDO
 		}
 		if (false !== ($col = $this->getAutoColName()))
 		{
-			$this->setVar($col, (string)gdo_db()->insertID());
+			$this->setVar($col, (string)self::$CURRENT_DB->insertID());
 		}
 		return true;
 	}
@@ -846,12 +847,12 @@ abstract class GDO
 	
 	public function affectedRows()
 	{
-		return gdo_db()->affectedRows();
+		return self::$CURRENT_DB->affectedRows();
 	}
 	
 	public function numRows($result)
 	{
-		return gdo_db()->numRows($result);
+		return self::$CURRENT_DB->numRows($result);
 	}
 	
 	##############
@@ -1027,7 +1028,26 @@ abstract class GDO
 	
 	public function lock($string)
 	{
-		return gdo_db()->lock($string);
+		return self::$CURRENT_DB->lock($string);
+	}
+
+	/**
+	 * Return all column names but exclude those in the params.
+	 * @deprecated
+	 * @param array $exclusive
+	 * @return array
+	 */
+	public function getColumnNamesExclusive(array $exclusive)
+	{
+		$back = array();
+		foreach ($this->getColumnDefcache() as $c => $d)
+		{
+			if (false === in_array($c, $exclusive, true))
+			{
+				$back[] = $c;
+			}
+		}
+		return $back;
 	}
 }
 ?>

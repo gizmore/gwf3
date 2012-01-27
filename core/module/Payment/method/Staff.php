@@ -1,15 +1,18 @@
 <?php
-
+/**
+ * Staff table of orders and transactions.
+ * @author gizmore
+ */
 final class Payment_Staff extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::STAFF; }
 	
 	public function execute()
 	{
-		if (false !== (Common::getPost('qsearch'))) {
+		if (true === isset($_POST['qsearch']))
+		{
 			return $this->onQuickSearch();
 		}
-		
 		return $this->templateStaff();
 	}
 	
@@ -28,7 +31,7 @@ final class Payment_Staff extends GWF_Method
 		$conditions = "(order_status$op'$paid' $op2 order_status$op'$exec')";
 		$bit = $o ? 'o' : 't';
 		$sortURL = $this->getMethodHref('&'.$bit.'=1&by=%BY%&dir=%DIR%');
-		return GWF_Table::displayGDO2($this->_module, $orders, GWF_Session::getUser(), $sortURL, $conditions, 25, true);
+		return GWF_TableGDO::display($this->_module, $orders, GWF_Session::getUser(), $sortURL, $conditions, 25, true, array('order_uid'));
 	}
 	
 	public function templateStaff()
@@ -57,16 +60,23 @@ final class Payment_Staff extends GWF_Method
 	{
 		$user = GWF_User::getStaticOrGuest();
 		$orders = GDO::table('GWF_Order');
+		$orders instanceof GWF_Order;
 
 		$o = Common::getGet('o') !== false;
 		$bit = $o ? 'o' : 't';
 		$sortURL = $this->getMethodHref('&'.$bit.'=1&by=%BY%&dir=%DIR%');
-		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($orders, $orders->getSearchableFields($user), Common::getRequest('term'))))
+		
+		$fields = $orders->getSearchableFields($user);
+		
+		$term = Common::getRequestString('term', '');
+		
+// 		var_dump($fields, $term);
+		
+		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($orders, $fields, $term)))
 		{
 			$conditions = '0';
 		}
-//		var_dump($conditions);
-		return GWF_Table::displayGDO2($this->_module, $orders, $user, $sortURL, $conditions, 25, true);
+		return GWF_TableGDO::display($this->_module, $orders, $user, $sortURL, $conditions, 25, true);
 	}
 }
 

@@ -197,7 +197,7 @@ class GWF_Form
 	{
 		if (false === ($token = GWF_CSRF::validateToken()))
 		{
-			return GWF_HTML::lang('ERR_CSRF');
+			return GWF_HTML::err('ERR_CSRF');
 		}
 		return false;
 	}

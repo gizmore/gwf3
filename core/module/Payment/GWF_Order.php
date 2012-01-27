@@ -3,7 +3,7 @@
  * Order Table and Row.
  * @author gizmore
  */
-final class GWF_Order extends GDO # implements GDO_Sortable, GDO_Searchable
+final class GWF_Order extends GDO implements GWF_Sortable, GWF_Searchable
 {
 	const TOKEN_LEN = 12;
 	const XTOKEN_LEN = 64;
