@@ -3,7 +3,7 @@ final class Slaytags_Songs extends GWF_Method
 {
 	const IPP = 25;
 	const BY = 'ss_id';
-	const DIR = 'ASC';
+	const DIR = 'DESC';
 	
 	public function execute()
 	{
