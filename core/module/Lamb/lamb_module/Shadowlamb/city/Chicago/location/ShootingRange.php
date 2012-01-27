@@ -5,7 +5,7 @@ final class Chicago_ShootingRange extends SR_School
 	
 	public function getFoundPercentage() { return 60.00; }
 	public function getFoundText(SR_Player $player) { return 'You found an interesting building: "El monnino School of Rangers".'; }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "Use {$c}learn <course> to learn a new skill. See an overview of the skills to learn with {$c}courses. Use {$c}talk <word> to talk to the dwarf.";}
+	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "Use {$c}learn <course> to learn a new skill. See an overview of the skills to learn with {$c}courses. Use {$c}talk <word> to talk to the ranger.";}
 	
 	public function onEnter(SR_Player $player)
 	{
@@ -22,7 +22,7 @@ final class Chicago_ShootingRange extends SR_School
 			array('pistols', 450),
 			array('shotguns', 600),
 			array('smgs', 900),
-			array('hmgs', 1600),
+			array('hmgs', 1800),
 			array('sharpshooter', 1300),
 		);
 	}

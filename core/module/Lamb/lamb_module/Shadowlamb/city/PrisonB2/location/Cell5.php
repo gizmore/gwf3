@@ -39,7 +39,10 @@ final class PrisonB2_Cell5 extends SR_SearchRoom
 	
 	private function isMaloisHere(SR_Player $player)
 	{
-		$party = $player->getParty();
+		if (false === ($party = $player->getParty()))
+		{
+			return false;
+		}
 		return ( ($party->hasNPCNamed('Malois')) || ($party->hasConst('RESCUED_MALOIS')) ) ? false : true;
 	}
 }

@@ -124,8 +124,36 @@ abstract class SR_Location
 		}
 	}
 	
+	/**
+	 * Validate location code for errors.
+	 */
 	public function checkLocation()
 	{
+		if (false === $this->checkLocationNPCs())
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Validate if all NPC exist.
+	 */
+	private function checkLocationNPCs()
+	{
+		# Dummy player
+		$player = new SR_Player(SR_Player::getPlayerData(0));
+		$player->modify();
+		
+		# Validate talking NPCs
+		foreach ($this->getNPCS($player) as $tt => $classname)
+		{
+			if (false === ($npc = Shadowrun4::getNPC($classname)))
+			{
+				die(sprintf('Location %s is missing talking NPC %s.', $this->getName(), $classname));
+				return false;
+			}
+		}
 		return true;
 	}
 	

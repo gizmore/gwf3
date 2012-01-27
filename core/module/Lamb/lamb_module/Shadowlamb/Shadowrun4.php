@@ -65,7 +65,6 @@ final class Shadowrun4
 		$name = strtolower($name);
 		if (!isset(self::$cities[$name]))
 		{
-//			Lamb_Log::logError(sprintf('Unknown city: %s.', $name));
 			return false;
 		}
 		return self::$cities[$name];
@@ -104,14 +103,17 @@ final class Shadowrun4
 	}
 	
 	/**
+	 * Get or reload a party from/into memory.
 	 * @param int $partyid
 	 * @return SR_Party
 	 */
 	public static function getParty($partyid)
 	{
 		$partyid = (int)$partyid;
-		if (!(isset(self::$parties[$partyid]))) {
-			if (false === ($party = SR_Party::getByID($partyid))) {
+		if (false === isset(self::$parties[$partyid]))
+		{
+			if (false === ($party = SR_Party::getByID($partyid)))
+			{
 				return false;
 			}
 			self::$parties[$partyid] = $party;
@@ -119,6 +121,10 @@ final class Shadowrun4
 		return self::$parties[$partyid];
 	}
 	
+	/**
+	 * Remove a party from memory.
+	 * @param SR_Party $party
+	 */
 	public static function removeParty(SR_Party $party)
 	{
 		$partyid = $party->getID();
@@ -129,11 +135,19 @@ final class Shadowrun4
 		unset(self::$parties[$partyid]);
 	}
 	
+	/**
+	 * Remove a human player from memory.
+	 * @param SR_Player $player
+	 */
 	public static function removePlayer(SR_Player $player)
 	{
 		unset(self::$players[$player->getID()]);
 	}
 	
+	/**
+	 * Add a player to memory.
+	 * @param SR_Player $player
+	 */
 	public static function addPlayer(SR_Player $player)
 	{
 		self::$players[$player->getID()] = $player;
@@ -148,7 +162,7 @@ final class Shadowrun4
 	{
 		$playerid = (int)$playerid;
 		# Cached
-		if (isset(self::$players[$playerid]))
+		if (true === isset(self::$players[$playerid]))
 		{
 			return self::$players[$playerid];
 		}
@@ -158,9 +172,9 @@ final class Shadowrun4
 			return false;
 		}
 		# Cache (if real player, not NPC)
-		if ($player->isHuman())
+		if (true === $player->isHuman())
 		{
-			self::$players[$playerid] = $player;
+			self::addPlayer($player);
 		}
 		return $player;
 	}
@@ -175,7 +189,6 @@ final class Shadowrun4
 		{
 			$player instanceof SR_Player;
 			if (NULL !== ($user = $player->getUser()))
-//			if ($user instanceof Lamb_User)
 			{
 				if ($uid == $user->getID())
 				{
@@ -264,19 +277,19 @@ final class Shadowrun4
 		
 		if (false === ($player = SR_Player::getByUID($user->getID())))
 		{
-			if ($create === false) {
+			if ($create === false)
+			{
 				return false;
 			}
-			if (false === ($player = SR_Player::createHuman($user))) {
+			if (false === ($player = SR_Player::createHuman($user)))
+			{
 				return false;
 			}
 		}
 		
-		$pid = $player->getID();
-//		if (!isset(self::$players[$pid])) {
-		self::$players[$pid] = $player;
-//		}
-		return self::$players[$pid];
+		self::addPlayer($player);
+		
+		return $player;
 	}
 	
 	/**
@@ -318,9 +331,9 @@ final class Shadowrun4
 			self::initCore(Lamb::DIR);
 			self::initCmds(Lamb::DIR);
 			self::initItems(Lamb::DIR);
+			self::initQuests(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
 			self::initCities(Lamb::DIR);
-			self::initQuests(Lamb::DIR);
 			SR_Player::init();
 //			require_once 'SR_Install.php';
 //			SR_Install::onInstall();
@@ -374,14 +387,15 @@ final class Shadowrun4
 		Lamb_Log::logDebug(sprintf('Shadowrun4::initCity(%s)', $entry));
 		require_once $fullpath."/$entry.php";
 		self::$cities[strtolower($entry)] = $city = new $entry($entry);
-		GWF_File::filewalker($fullpath.'/location', array($city, 'initLocations'));
 		GWF_File::filewalker($fullpath.'/npc', array($city, 'initNPCS'));
+		GWF_File::filewalker($fullpath.'/location', array($city, 'initLocations'));
 	}
 	
 	private static function initCities2()
 	{
 		foreach (self::$cities as $name => $city)
 		{
+			$city instanceof SR_City;
 			$city->onInit();
 		}
 	}

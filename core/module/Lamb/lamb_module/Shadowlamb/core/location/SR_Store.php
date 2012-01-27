@@ -368,7 +368,7 @@ abstract class SR_Store extends SR_Location
 
 	public function checkLocation()
 	{
-		return true;
+// 		return true;
 		$player = new SR_Player(SR_Player::getPlayerData(0));
 		$player->modify();
 		$items = $this->getStoreItems($player);
@@ -381,7 +381,7 @@ abstract class SR_Store extends SR_Location
 				die(sprintf('%s has an invalid item: %s.', $this->getName(), $iname));
 			}
 		}
-		return true;
+		return parent::checkLocation();
 	}
 	
 	################
