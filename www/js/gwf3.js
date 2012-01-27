@@ -197,12 +197,12 @@ function getDivHeight(el)
 }
 
 /* String util */
-String.prototype.ltrim = function(chars) { chars = chars || "\\s"; return this.replace(new RegExp("^[" + chars + "]+", "gD"), ""); };
-String.prototype.rtrim = function(chars) { chars = chars || "\\s"; return this.replace(new RegExp("[" + chars + "]+$", "gD"), ""); };
+String.prototype.ltrim = function(chars) { chars = chars || "\\s"; return this.replace(new RegExp("^[" + chars + "]+", "g"), ""); };
+String.prototype.rtrim = function(chars) { chars = chars || "\\s"; return this.replace(new RegExp("[" + chars + "]+$", "g"), ""); };
 String.prototype.trim = function(chars) { return this.rtrim(chars).ltrim(chars); };
-String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'iD')) !== null; };
-String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'iD')) !== null; };
-String.prototype.contains = function(s) { return this.match(new RegExp(s, 'iD')) !== null; };
+String.prototype.startsWith = function(s) { return this.match(new RegExp('^'+s, 'i')) !== null; };
+String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i')) !== null; };
+String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; };
 String.prototype.substrFrom = function(s, d) { var i = this.indexOf(s); return i === -1 ? d : this.substr(i+s.length); };
 String.prototype.substrUntil = function(s, d) { var i = this.indexOf(s); return i === -1 ? d : this.substring(0, i); };
 
