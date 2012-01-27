@@ -12,7 +12,7 @@ final class Quest_NySoft_Priorities extends SR_QuestMultiItem
 	public function getRewardXP() { return 6; }
 	public function getRewardNuyen() { return 600; }
 	public function getQuestName() { return 'Priorities'; }
-	public function getQuestDescription() { return parent::getQuestDescriptionMI('Bring %1$s to Christian in the NySoft office, Deleware.'); }
+	public function getQuestDescription() { return parent::getQuestDescriptionMI('Bring %1$s to Christian in the NySoft office, Delaware.'); }
 	public function onQuestMIGiven($npc, SR_Player $player) { $npc->reply("Thanks chummer!"); }
 	public function onQuestMIMore($npc, SR_Player $player) { $npc->reply('Where are our supplies?'); }
 	public function onQuestMISolved($npc, SR_Player $player) { $npc->reply("Finally i can get back to work!"); }

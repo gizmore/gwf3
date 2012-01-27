@@ -210,7 +210,13 @@ final class Lamb_IRC
 			Lamb_Log::logChat($server, $message);
 		}
 		
-		return fflush($this->socket);
+		if (false === fflush($this->socket))
+		{
+			return false;
+		}
+		
+		$this->timestamp = time();
+		return true;
 	}
 	
 	

@@ -69,7 +69,7 @@ class Lamb_QuitJoin extends GDO
 		$dur = $end - $start[1];
 		if ($dur > self::NOTEWORTHY)
 		{
-			echo "{$uname} quitjoin time: {$dur}s.\n";
+// 			echo "{$uname} quitjoin time: {$dur}s.\n";
 			return;
 		}
 
