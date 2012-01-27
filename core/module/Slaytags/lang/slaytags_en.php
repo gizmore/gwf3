@@ -11,8 +11,9 @@ $lang = array(
 	'dl_from_rko' => 'Download from remix.kwed.org',
 	'show_lyrics' => 'Show lyrics',
 	'info_quicksearch' => 'Use the quicksearch to search the whole slaytag database for keywords.<br/>The search should also crawl the lyrics, which you hopefully will provide.',
-
+	'seconds_left' => 'Seconds left',
 	'pt_lyrics' => '%2$s by %1$s [Lyrics]',
+	'download_from_rko' => 'Download from RKO',
 
 	'ft_tag' => 'Slaytagger',
 	'ft_add_tag' => 'Add a new tag',

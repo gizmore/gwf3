@@ -9,7 +9,7 @@
 		{GWF_Table::column($s->display('ss_title'))}
 		{GWF_Table::column($s->displayDuration(), 'gwf_date')}
 		{if $s->isRKO()}
-			{GWF_Table::column({button type='download' text='D' title=$lang->lang('download_from_rko')}, 'ce')}
+			{GWF_Table::column({button type='download' url=$s->hrefRKO() text='D' title=$lang->lang('download_from_rko')}, 'ce')}
 		{else}
 			{GWF_Table::column('<b>-</b>')}
 		{/if}

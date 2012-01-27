@@ -10,11 +10,6 @@ final class Slaytags_Tag extends GWF_Method
 			return $this->_module->error('err_song');
 		}
 		
-//		if ( (!$song->isPlaying()) || (!$song->recentlyPlayed(5)) )
-//		{
-//			return $this->_module->error('err_cannot_tag_recent_song');
-//		}
-		
 		if (isset($_POST['doit']))
 		{
 			return $this->onTag($song).$this->templateTag($song);
@@ -33,12 +28,18 @@ final class Slaytags_Tag extends GWF_Method
 			'song' => $song,
 			'has_tagged' => $has_tagged,
 			'form' => $form->templateY($this->_module->lang('ft_tag')),
+// 			'form' => $this->getTinyFormTag($song),
 			'href_add_tag' => $this->_module->getMethodURL('AddTag', '&stid='.$song->getID()),
 		);
 		return $this->_module->template('tag.tpl', $tVars);
 	}
 	
-	private function formTag(Slay_Song $song)
+// 	private function getTinyFormTag(Slay_Song $song)
+// 	{
+		
+// 	}
+	
+	private function formTagOLD(Slay_Song $song)
 	{
 		$data = array();
 		
@@ -56,10 +57,32 @@ final class Slaytags_Tag extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
+	private function formTag(Slay_Song $song)
+	{
+		$data = array();
+	
+		$user = GWF_Session::getUser();
+		$votes = Slay_TagVote::getVotes($song, $user);
+	
+		$html = '';
+		foreach (Slay_Tag::getTagNames() as $tag)
+		{
+			$checked = in_array($tag, $votes, true) ? ' checked="checked"' : '';
+// 			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			
+			$html .= sprintf('<input type="checkbox" name="tag_%s"%s />%s', $tag, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+		}
+	
+		$data['html'] = array(GWF_Form::HTML, $html);
+		$data['doit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_tag'));
+	
+		return new GWF_Form($this, $data);
+	}
+	
 	private function onTag(Slay_Song $song)
 	{
 		$form = $this->formTag($song);
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validateCSRF_WeakS()))
 		{
 			return $error;
 		}

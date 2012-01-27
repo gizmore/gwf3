@@ -1,6 +1,6 @@
 <div class="gwf3_top">
 	<div class="fl">
-		<h1>GWF v{$smarty.const.GWF_CORE_VERSION}</h1>
+		<h1 id="slaytag_logo"><a href="/about_slaytags.html" title="Slaytags">Slaytags</a></h1>
 	</div>
 	<div class="fl">
 		<p>{GWF_Notice::getOnlineUsers()}</p>
@@ -11,17 +11,17 @@
 <div id="slay_np_header">
 </div>
 
-<div class="gwf3_topmenu">
+<div class="gwf3_topmenu blue_shadow">
 	<ul>
 		{* Both *}
 		<li><a href="{$root}about_slaytags.html">About</a></li>
-		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=Main">Slaytags</a>↶↶</li>
-		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=Search">Tagsearches</a>↶↶</li>
-		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=Songs">All Songs</a>↶↶</li>
+		<li><a href="{$root}index.php?mo=Slaytags&amp;me=Main">Slaytags</a></li>
+		<li><a href="{$root}index.php?mo=Slaytags&amp;me=Search">Tagsearches</a></li>
+		<li><a href="{$root}index.php?mo=Slaytags&amp;me=Songs">All Songs</a></li>
 		{* Member *}
 		{if $user->isLoggedIn()}
-		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=MyTags">MyTags</a>↶↶</li>
-		<li>↷↷<a href="{$root}index.php?mo=Slaytags&amp;me=MyPlaylist">MyPlaylist</a>↶↶</li>
+		<li><a href="{$root}index.php?mo=Slaytags&amp;me=MyTags">MyTags</a></li>
+		<li><a href="{$root}index.php?mo=Slaytags&amp;me=MyPlaylist">MyPlaylist</a></li>
 		<li><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user)}</a></li>
 		<li><a href="{$root}account">Account</a></li>
 		<li><a href="{$root}profile_settings">Profile</a></li>

@@ -22,7 +22,7 @@
 </div>
 
 {if $song->isTagged()}
-<div>
+<div class="box box_c">
 {foreach from=$song->getTags() item=tag}
 	<span>{$tag}: {$song->getVotePercent($tag)}%</span>
 {/foreach}
@@ -30,7 +30,7 @@
 {/if}
 
 <div class="box box_c">
-	<div>↷↷{button type='generic' url=$song->hrefTag() title=$lang->lang('tag_this_song') text=$lang->lang('tag_this_song')}↶↶</div>
-	<div>↷{button type='generic' url=$song->hrefLyrics() title=$lang->lang('add_lyrics_to_song') text=$lang->lang('add_lyrics_to_song')}↶</div>
+	<div>{button type='generic' url=$song->hrefTag() title=$lang->lang('tag_this_song') text=$lang->lang('tag_this_song')}</div>
+	<div>{button type='generic' url=$song->hrefLyrics() title=$lang->lang('add_lyrics_to_song') text=$lang->lang('add_lyrics_to_song')}</div>
 </div>
 {/if}
