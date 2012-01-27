@@ -120,7 +120,7 @@ $lang = array(
 		'<i>profile.php?username=%%USERNAME%%</i><br/>'.
 		'<br/>'.
 		'This is more part of your site, optional, and will show a (complete) profile of the user.<br/>'.
-		'If you like to support us with this script, make sure you dont need to login for that.<br/>'.
+		'If you like to support us with this script, make sure you don\'t need to login for that.<br/>'.
 		'Again, you can choose the filename and vars for your script freely.<br/>'.
 		'Profile scripts that use an URL like <i>profile/%%USERNAME%%.html</i> will work fine too.',
 		
@@ -199,7 +199,7 @@ $lang = array(
 		'%s'.
 		'</pre>'.
 		'<br/>'.
-		'If you like to, i can implement this script for you, in case you use some known forum software, like phpbb.',
+		'If you like to, I can implement this script for you, in case you use some known forum software, like phpbb.',
 		
 	'api_1t' => 'Poll the latest forum activity',
 	'api_1b' =>

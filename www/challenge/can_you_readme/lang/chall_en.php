@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Description',
 	'info' =>
-		'A friend and me have a bet running, that you wont beat his OCR program in scanning text out of images.<br/>'.
+		'A friend and me have a bet running, that you won\'t beat his OCR program in scanning text out of images.<br/>'.
 		'His averge scan time is %1$s seconds, can you beat that?',
 
 	'err_no_request' => 'No image has been requested from you.',

@@ -18,7 +18,7 @@ final class NySoft_Stephen extends SR_TalkingNPC
 			case 'alchemy': return $this->reply("Are you from medieval times? There's no such thing as changing stone to gold!");
 			case 'invite': return $this->reply("A party? It's not in an elevator, so I won't come.");
 			case 'renraku': return $this->reply("Don't remind me of that, have been bad times.");
-			case 'malois': return $this->reply("Hmm.. I heard this name before, but i don't remember...");
+			case 'malois': return $this->reply("Hmm.. I heard this name before, but I don't remember...");
 			case 'bribe': 
 				if (count($args) === 0)
 				{

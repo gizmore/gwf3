@@ -70,7 +70,7 @@ final class Redmond_Citizen extends SR_HireNPC
 			case 'temple':
 				switch (rand(0,3))
 				{
-					case 0: $this->reply('Oh the temple, i haven\'t been there for ages!'); break;
+					case 0: $this->reply('Oh the temple, I haven\'t been there for ages!'); break;
 					case 1: $this->reply('Are you getting paid for this?'); break;
 					case 2: $this->reply('There is a temple in redmond?'); break;
 					case 3: $this->reply('I am not interested in magic, thank you.'); break;

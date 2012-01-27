@@ -2,9 +2,9 @@
 $lang = array(
 	'title' => 'Crypto: Simple Substitution I',
 	'info' =>
-		'Oh dear, i guess you have cracked the two caesar cryptos...<br/>'.
+		'Oh dear, I guess you have cracked the two caesar cryptos...<br/>'.
 		'This one is more difficult. Although a <a href="http://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution">simple substitution</a> is easily cracked...<br/>'.
-		'Again the characters are limited to A-Z... But i think i can come up with a 256 version again.<br/>'.
+		'Again the characters are limited to A-Z... But I think I can come up with a 256 version again.<br/>'.
 		'<br/>'.
 		'Enjoy!',
 

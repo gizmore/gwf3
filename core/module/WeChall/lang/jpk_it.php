@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'page_title' => 'JPocketKnife',
+	'page_title' => 'JPocketKnife ',
 	'meta_tags' => 'Java Conversione Strumento Applet Semplice Cifrari Codifica Cifrario Analisi',
 	'page_info' =>
 		'Questo è il JPK,<br/>'.

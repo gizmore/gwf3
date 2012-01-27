@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'page_title' => 'JDicTac',
+	'page_title' => 'JDicTac ',
 	'meta_tags' => 'Java, Hash-Cracking, Strumento, Attacco, Home, Fatto, Mano, Hashes',
 	'page_info' =>
 		'Questo è il JDicTac,<br/>'.

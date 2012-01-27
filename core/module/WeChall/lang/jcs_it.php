@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'page_title' => 'JColorSucker',
+	'page_title' => 'JColorSucker ',
 	'meta_tags' => 'Acquisici RGB ARGB Pixels dalle immagini, Java, Gizmore, Tool',
 	'box' =>
 		'Proposito: acquisisci il valore dei pixel di un immagine e salvali come testo in un file.<br/><br/>'.

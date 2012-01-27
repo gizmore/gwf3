@@ -184,7 +184,7 @@ final class Lamb_ScumGame
 		$acv = array_count_values($this->cards[$pn]);
 		$check = $cards[0];
 		if ($check > 0) { $check = (int)$check; }
-		if ( (!isset($acv[$check])) || (count($cards) > $acv[$check]) ) { return 'You dont have the right cards.'; }
+		if ( (!isset($acv[$check])) || (count($cards) > $acv[$check]) ) { return 'You don\'t have the right cards.'; }
 		
 		# Cards are on table.
 		if (count($cc) > 0)

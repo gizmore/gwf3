@@ -35,17 +35,17 @@ $lang = array(
 		'If you like to try out PootTool, take a look at the tutorial page.<br/>',
 	'faq_info' => 'Here are some answers to frequently asked questions:',
 	'faqq_1' => 'If you do not like cheating, why did you put it online?',
-	'faqa_1' => 'I think there are several ways and programs to cheat. This is only of them, and fairly good, but i like to show it anyway. Also i invested time and work into this project and it would be sad if it only gets dusty on my harddisk. Last but not least i am a bit proud of it :)',
+	'faqa_1' => 'I think there are several ways and programs to cheat. This is only of them, and fairly good, but I like to show it anyway. Also I invested time and work into this project and it would be sad if it only gets dusty on my harddisk. Last but not least I am a bit proud of it :)',
 	'faqq_2' => 'Do you think there are people cheating on PlayRay?',
 	'faqa_2' => 'I think a small minority of players doesn`t shrink away from cheating. However, proving that is a very difficult up to impossible task. You can`t prove the use of PoolTool or most other cheating programs, but you can guess it. If you hear from other programs that allow you to cheat on PlayRay, please let me know.',
-	'faqq_3' => 'How can i <b>guess</b> if someone is cheating?',
-	'faqa_3' => 'As i said, you can only guess, and some players are really, really good, but when a medium-strength player suddenly makes very difficult tosses without any aiming it seems very weird to me. Keep in mind, you can only guess, and some people are just lucky. A good way to guess is maybe watch the players queue movements. Also you should play with a low timelimit, to make cheating more diffuclt.',
+	'faqq_3' => 'How can I <b>guess</b> if someone is cheating?',
+	'faqa_3' => 'As I said, you can only guess, and some players are really, really good, but when a medium-strength player suddenly makes very difficult tosses without any aiming it seems very weird to me. Keep in mind, you can only guess, and some people are just lucky. A good way to guess is maybe watch the players queue movements. Also you should play with a low timelimit, to make cheating more diffuclt.',
 	'faqq_4' => 'Can you code me a similar program for XYZ?',
 	'faqa_4' => 'This depends on the program.',
 	'faqq_5' => 'Do you like writing me similar programs?',
 	'faqa_5' => 'This depends, beside the program, on my motivation.',
 	'faqq_6' => 'Would you please remove this website?',
-	'faqa_6' => 'No i won`t. The software would be available from people that already got it, so it would make no sense to remove it now.',
+	'faqa_6' => 'No I won`t. The software would be available from people that already got it, so it would make no sense to remove it now.',
 	'faqq_7' => 'You are such a cheater! Why the heck do you cheat?!?!',
 	'faqa_7' => 'Please read the page attentive and in order. Wut? You are here again? So please repeat your question a) backwards, b) in another language, c) in rot26',
 
@@ -77,7 +77,7 @@ $lang = array(
 		'After the balls have been scanned, you can select a ball and a pocket. The selecting order doesnt matter. The program is kinda intuitive and aims over bounds or N balls, to get the selected ball into the selected pocket. The algorithm can be improved, though.<br/><br/>'.
 		'<b>To select a pocket or a ball, simply click it in PoolTool.</b><br/>'.
 		'I am gonna click the green,full Ball in PoolTool. It changes its color to cyan when selected.<br/>',
-	'tut_6' => 'Now i select the target pocket. Simply click it like the ball. Also the pocket changes color to cyan when selected.',
+	'tut_6' => 'Now I select the target pocket. Simply click it like the ball. Also the pocket changes color to cyan when selected.',
 	'tut_7' =>
 		'As you might have noticed, PoolTool immediately calculates its toss and outputs it in a graphical way. If a ball changes its color to red, it is blocking the toss, lying between selected ball and pocket. Impossible tosses are marked as impossible in the program. The white lines show the direction after a collision. (This is currently calculated completely wrong.)<br/><br/>'.
 		'Now you can press <b>Aim</b> or <b>Shoot</b>. Aim sets the mouse to the calculated best shot. You can then hold the mouse button to specify the tosses strength. Shoot executes a rightclick at that position, a toss with full power. This may be more accurate, depending on your ability to handle a mouse.',

@@ -51,7 +51,7 @@ $lang = array(
 	'err_descr' => 'Your meta description is invalid. It has to be between %s and %s chars long.',
 	'err_tags' => 'Your tags are invalid. In total they have to be between %s and %s chars long.',
 	'err_content' => 'Your page content is invalid. It has to be between %s and %s chars long.',
-	'err_inline_css' => 'Your CSS code is invalid. It do not need CSS-style tag/HTML comment.',
+	'err_inline_css' => 'Your CSS code is invalid. It does not need CSS-style tag/HTML comment.',
 	'err_dup_lid' => 'A translated page with this language already exists.',
 	'err_file_ext' => 'Your uploaded file extension is not allowed. Appended &quot;.html&quot; to it.',
 	'err_upload_exists' => 'A file with that name already exists.',
@@ -67,7 +67,7 @@ $lang = array(
 	'info_modified' => 'Page created on %s. Last Modified on %s, %s.',
 	'info_trans' => 'This page is also available in %s.',
 	'info_similar' => 'You might be interested in similar pages: %s.',
-	'info_pageviews' => 'The page has benn served %s times.',
+	'info_pageviews' => 'The page has been served %s times.',
 
 	'author' => 'Author',
 	'created_on' => 'Created on',

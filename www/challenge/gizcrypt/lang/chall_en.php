@@ -20,7 +20,7 @@ $lang = array(
 		'Additional hint: The secret key is 11 chars long, and contains only a-zA-Z.<br/>'.PHP_EOL.
 		'Thanks go out to %6$s and %7$s for their feedback and testing the challenge.<br/>'.PHP_EOL,
 		
-	'message' => 'Hello, It seems like you are able to read this text. This is amazing! It would be cool if you can leave a message in the solution forums, telling us how you solved it. Oh, i almost forgot to tell you the password: %1$s. In case you are still trying and have no luck, you maybe need some more ciphertext. This is the end of the message.',
+	'message' => 'Hello, It seems like you are able to read this text. This is amazing! It would be cool if you can leave a message in the solution forums, telling us how you solved it. Oh, I almost forgot to tell you the password: %1$s. In case you are still trying and have no luck, you maybe need some more ciphertext. This is the end of the message.',
 
 	'title_src' => 'Sourcecode of <b>&quot;%1$s&quot;</b>',
 );

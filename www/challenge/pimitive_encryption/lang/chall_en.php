@@ -3,7 +3,7 @@ $lang = array(
 	'title' => 'Pimitive Encryption',
 	'info' =>
 		'This challenge was planned to get released on net-force, but it seems to take ages to get it released there.<br/>'.
-		'So i decided to put it online on wechall.<br/>'.
+		'So I decided to put it online on wechall.<br/>'.
 		'Thanks go out to %s for testing the challenge!<br/>'.
 		'<br/>'.
 		'And here is your mission:<br/>'.

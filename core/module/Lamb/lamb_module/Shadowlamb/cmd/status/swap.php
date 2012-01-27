@@ -14,7 +14,7 @@ final class Shadowcmd_swap extends Shadowcmd
 		$ret = $player->swapInvItems($args[0],$args[1]);
 
 		if($ret < 0 && $ret > -3){
-			$bot->reply("You dont have " . $args[-$ret-1]);
+			$bot->reply("You don\'t have " . $args[-$ret-1]);
 		}elseif($ret == -3){
 			$bot->reply("You can't swap " . $args[0] . " with itself");
 		}else{

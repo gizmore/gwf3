@@ -24,11 +24,11 @@ The sourcecode is slim and does not seem to contain a trojan or other malicious 
 	'main_intro' => 'The author (Bt) writes:',
 	'main_info' =>
 'I got the idea for B.AIM while playing pool during a holiday in the Netherlands.
-Because i was bored in the evenings in the hotel, i thought to myself,
+Because I was bored in the evenings in the hotel, I thought to myself,
 write a program which calculates pool tosses and vizualize it.
-I was lucky and still got Delphi7 on my laptop, so i could start coding right away.
-I was curious how i could implement the physics best, and searched google for a pool simulation.
-By google i found Playray, and immediately the idea of a concept.
+I was lucky and still got Delphi7 on my laptop, so I could start coding right away.
+I was curious how I could implement the physics best, and searched google for a pool simulation.
+By google I found Playray, and immediately the idea of a concept.
 After 5 days one hour each, the first version of B.AiM was done.
 So, the program got created within a holiday, due boredom and curiousity how to realize such a project best.
 The reason that Playray got chosen was a pure accident. I did not know the site before.',

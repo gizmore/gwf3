@@ -8,7 +8,7 @@ $lang = array(
 		'You can ignore [url=%2$s]Common::getPost[/url] completely, replace it by $_POST[\'input\'], and assume [url=%5$s]magic_quotes_gpc()[/url] are disabled.'.PHP_EOL.
 		PHP_EOL.
 		'Below the input box is the output of the script, to test your attacks.'.PHP_EOL.
-		'You will fail anyway, because i used [url=%6$s]htmlspecialchars()[/url] to prevent XSS.'.PHP_EOL.
+		'You will fail anyway, because I used [url=%6$s]htmlspecialchars()[/url] to prevent XSS.'.PHP_EOL.
 		PHP_EOL.
 		'[i]Gizmore - March, 23th 2009[/i]',
 		
