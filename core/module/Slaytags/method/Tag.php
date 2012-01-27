@@ -64,14 +64,15 @@ final class Slaytags_Tag extends GWF_Method
 		$user = GWF_Session::getUser();
 		$votes = Slay_TagVote::getVotes($song, $user);
 	
-		$html = '';
+		$html = '<div class="tinytagger">';
 		foreach (Slay_Tag::getTagNames() as $tag)
 		{
 			$checked = in_array($tag, $votes, true) ? ' checked="checked"' : '';
 // 			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
 			
-			$html .= sprintf('<input type="checkbox" name="tag_%s"%s />%s', $tag, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			$html .= sprintf('<input type="checkbox" name="tag_%s"%s /><span>%s</span>', $tag, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
 		}
+		$html .= '</div>'.PHP_EOL;
 	
 		$data['html'] = array(GWF_Form::HTML, $html);
 		$data['doit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_tag'));
