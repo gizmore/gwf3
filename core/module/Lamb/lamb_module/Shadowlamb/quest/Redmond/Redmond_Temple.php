@@ -4,7 +4,7 @@ final class Quest_Redmond_Temple extends SR_Quest
 	public function getQuestName() { return 'Merchandize'; }
 	public function getQuestDescription() { return sprintf("Tell %d/%d citizens about the awesome Temple in Redmond. Use \X02#say temple\X02 to merchandize the temple.", $this->getAmount(), $this->getNeededAmount()); }
 	public function getRewardXP() { return 5; }
-	public function getRewardItems() { return array('Amulet_of_maxmp:10'); }
+	public function getRewardItems() { return array('Amulet_of_max_mp:10'); }
 	public function getNeededAmount() { return 25; }
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
@@ -16,7 +16,7 @@ final class Quest_Redmond_Temple extends SR_Quest
 		}
 		else
 		{
-			$npc->reply('I see you have told %d/%d citizens about the temple. Do some more work please.', $this->getAmount(), $this->getNeededAmount());
+			$npc->reply(sprintf('I see you have told %d/%d citizens about the temple. Do some more work please.', $this->getAmount(), $this->getNeededAmount()));
 		}
 	}
 	

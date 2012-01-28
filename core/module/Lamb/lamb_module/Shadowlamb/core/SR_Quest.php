@@ -456,8 +456,12 @@ class SR_Quest extends GDO
 				$itemstr .= ', '.$itemname;
 				$giveitems[] = $item;
 			}
+			else
+			{
+				$player->message(sprintf('Cannot create item: %s. (report to gizmore)', $itemname));
+			}
 		}
-		$player->giveItems($giveitems);
+		$player->giveItems($giveitems, 'Quest Reward');
 		
 		$out = $nystr.$xpstr.$itemstr;
 		if ($out !== '')
