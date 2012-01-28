@@ -246,7 +246,7 @@ final class GWF_Debug
 	{
 		try { $user = GWF_User::getStaticOrGuest()->displayUsername(); } catch (Exception $e) { $user = 'ERROR'; }
 
-		$arg = array(
+		$args = array(
 			isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'NULL',
 			isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe(),
 			isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'NULL',
@@ -255,9 +255,9 @@ final class GWF_Debug
 			print_r($_POST, true),
 		);
 
-		$arg[] = $user;
-		$pattern = "User: %s\nRequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nMessage: \n";
-		return htmlspecialchars( vsprintf($pattern, $arg) ).$message.PHP_EOL;
+		$args[] = $user;
+		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nUser: %s\n\nnMessage: \n";
+		return htmlspecialchars( vsprintf($pattern, $args) ).$message.PHP_EOL;
 	}
 	
 	private static function getMoMe()
