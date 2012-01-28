@@ -13,7 +13,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 //		$sub = Common::clamp($player->get($this->getItemSubType())); # (pis,sho,smg,hmg)
 //		$nin = Common::clamp($player->get('ninja')); # (nin)
 		$fir = $player->get('firearms');
-		$sub = $player->get('bows');
+		$sub = $player->get($this->getItemSubType());
 //		$nin = $player->get('ninja');
 		return array(
 			'attack' =>  3.2 + round($fir*2.0 + $sub*1.2, 1), # 3.2
