@@ -82,7 +82,7 @@ final class Shoutbox_Shout extends GWF_Method
 	
 	public function validate_message($message)
 	{
-		return GWF_Validator::validateString('message', $message, 1, $this->_module->cfgMaxlen(), true);
+		return GWF_Validator::validateString($this->_module, 'message', $message, 1, $this->_module->cfgMaxlen(), true);
 	}
 	
 	########################
