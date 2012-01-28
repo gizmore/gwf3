@@ -244,15 +244,20 @@ final class GWF_Debug
 	 */
 	public static function getDebugText($message)
 	{
-		$request = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe();
-		$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'cronjob';
-		try {
-			$user = GWF_User::getStaticOrGuest()->displayUsername();
-		} catch (Exception $e) { $user = 'ERROR'; }
+		try { $user = GWF_User::getStaticOrGuest()->displayUsername(); } catch (Exception $e) { $user = 'ERROR'; }
 
-		$pre = sprintf("RequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: \n", $request, $referer, $ip, $user);
-		return htmlspecialchars($pre).$message.PHP_EOL;
+		$arg = array(
+			isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'NULL',
+			isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe(),
+			isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'NULL',
+			isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'NULL',
+			print_r($_GET, true),
+			print_r($_POST, true),
+		);
+
+		$arg[] = $user;
+		$pattern = "User: %s\nRequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nMessage: \n";
+		return htmlspecialchars( vsprintf($pattern, $arg) ).$message.PHP_EOL;
 	}
 	
 	private static function getMoMe()
