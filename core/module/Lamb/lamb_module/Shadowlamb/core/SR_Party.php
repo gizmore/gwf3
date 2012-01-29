@@ -392,22 +392,40 @@ final class SR_Party extends GDO
 		foreach (Shadowrun4::getParties() as $p)
 		{
 			$p instanceof SR_Party;
-			if ($p->getID() !== $this->getID())
+			if ($p->getID() === $this->getID())
 			{
-				# Sharing the location for this event?
-				if ($this->sharesLocation($p))
+				continue;
+			}
+			
+			$a1 = $this->getAction();
+			$a2 = $p->getAction();
+			
+			$t1 = $this->getTarget();
+			$t2 = $p->getTarget();
+			
+			if ($a1 === self::ACTION_OUTSIDE)
+			{
+				$a1 = self::ACTION_INSIDE;
+			}
+			
+			if ($a2 === self::ACTION_OUTSIDE)
+			{
+				$a2 = self::ACTION_INSIDE;
+			}
+			
+			# Sharing the location for this event?
+			if ( ($a1 === $a2) && ($t1 === $t2) )
+			{
+				# Output!
+				if (!isset($message))
 				{
-					# Output!
-					if (!isset($message))
-					{
-						$message = sprintf('%s %s.', $this->displayMembers(false, true), $text_snippet);
-					}
-					foreach ($p->getMembers() as $player)
-					{
-						$player instanceof SR_Player;
-						$player->message($message); 
-						$player->setOption(SR_Player::LOOK_DIRTY); # Clients refresh.
-					}
+					$message = sprintf('%s %s.', $this->displayMembers(false, true), $text_snippet);
+				}
+				foreach ($p->getMembers() as $player)
+				{
+					$player instanceof SR_Player;
+					$player->message($message); 
+					$player->setOption(SR_Player::LOOK_DIRTY); # Clients refresh.
 				}
 			}
 		}
