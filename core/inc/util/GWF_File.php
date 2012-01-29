@@ -33,11 +33,30 @@ final class GWF_File
 	
 	public static function createDir($path)
 	{
-		if (Common::isDir($path))
+		if (true === Common::isDir($path))
 		{
 			return true;
 		}
 		return @mkdir($path, GWF_CHMOD, true);
+	}
+	
+	/**
+	 * Write file contents to a file.
+	 * @param string $path path with a filename
+	 * @param string $content
+	 * @return boolean
+	 */
+	public static function writeFile($path, $content)
+	{
+		if (false === @file_put_contents($path, $content))
+		{
+			return false;
+		}
+		if (false === @chmod($path, GWF_CHMOD))
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	public static function touch($filename)

@@ -24,15 +24,39 @@ final class GWF_Language extends GDO
 	public function getID() { return $this->getVar('lang_id'); }
 	public function getISO() { return $this->getVar('lang_iso'); }
 	
-	public static function getByID($id) { return self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.intval($id)); }
-	public static function getByISO($iso) { $iso = self::escape($iso); return self::table(__CLASS__)->selectFirstObject('*', "lang_iso='$iso'"); }
-	public static function isSupported($id) { $id=(int)$id; return self::table(__CLASS__)->selectVar('1', "lang_id=$id AND lang_options&1") === '1'; } 
+	public static function getByID($id) { return self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.((int)$id)); }
+	
+	/**
+	 * Get a language by ISO.
+	 * @param string $iso
+	 * @return GWF_Language
+	 */
+	public static function getByISO($iso)
+	{
+		# NoCache
+// 		$iso = self::escape($iso);
+// 		return self::table(__CLASS__)->selectFirstObject('*', "lang_iso='{$iso}'");
+		
+		# Cached
+		static $CACHE = array();
+		if (false === isset($CACHE[$iso]))
+		{
+			$eiso = self::escape($iso);
+			$CACHE[$iso] = self::table(__CLASS__)->selectFirstObject('*', "lang_iso='{$eiso}'");
+		}
+		return $CACHE[$iso];
+	}
+	
+	public static function isSupported($id) { return self::table(__CLASS__)->selectVar('1', 'lang_id='.((int)$id).' AND lang_options&1"') === '1'; }
 	public static function getByIDOrUnknown($id)
 	{
-		if ($id == 0) {
+		$id = (int)$id;
+		if ($id === 0)
+		{
 			return self::getUnknown();
 		}
-		if (false !== ($c = self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.intval($id)))) {
+		if (false !== ($c = self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.$id)))
+		{
 			return $c;
 		}
 		return self::getUnknown();
@@ -40,8 +64,7 @@ final class GWF_Language extends GDO
 	
 	public static function getISOByID($id)
 	{
-		$id = (int)$id;
-		return self::table(__CLASS__)->selectVar('lang_iso', "lang_id={$id}");
+		return self::table(__CLASS__)->selectVar('lang_iso', 'lang_id='.((int)$id));
 	}
 	
 	###############

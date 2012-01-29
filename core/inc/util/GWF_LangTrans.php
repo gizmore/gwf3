@@ -131,9 +131,9 @@ final class GWF_LangTrans
 	 */
 	private function translate($iso, $key, $args=NULL)
 	{
-		if (!isset($this->trans[$iso][$key]))
+		if (false === isset($this->trans[$iso][$key]))
 		{
-			return htmlspecialchars($key).(is_array($args) ? ': '.implode(',', $args) : '');
+			return htmlspecialchars($key).(is_array($args) ? ': '.GWF_Array::implode(',', $args) : '');
 		}
 		
 		return $this->replaceArgs($this->trans[$iso][$key], $args);
@@ -158,37 +158,36 @@ final class GWF_LangTrans
 	 */
 	private function loadLanguage($iso)
 	{
-		if (isset($this->trans[$iso]))
+		if (true === isset($this->trans[$iso]))
 		{
-			return true; // ISO Cache hit
+			return true; # ISO Cache hit
 		}
 		
 		$path1 = $this->base_path.'_'.$iso.'.php';
-		if (Common::isFile($path1))
+		if (true === Common::isFile($path1))
 		{
-			$path = $path1; // Load ISO
+			$path = $path1; # Load ISO
 		}
 		
-		elseif (isset($this->trans[GWF_DEFAULT_LANG]))
+		elseif (true === isset($this->trans[GWF_DEFAULT_LANG]))
 		{
 			$this->trans[$iso] = $this->trans[GWF_DEFAULT_LANG];
-			return false; // Copy default cache
+			return false; # Copy default cache
 		}
 		
 		else
 		{
-			// Load default
+			# Load default
 			$path = $this->base_path.'_'.GWF_DEFAULT_LANG.'.php';
-			if (!Common::isFile($path))
+			if (false === Common::isFile($path))
 			{
 				die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
 			}
 		}
 
-		// Load file
+		# Load file
 		require $path;
 		$this->trans[$iso] = $lang;
-		
 		return true;
 	}
 }

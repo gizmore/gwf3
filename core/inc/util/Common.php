@@ -82,9 +82,9 @@ final class Common
 	#################
 	### File Util ###
 	#################
-	public static function isDir($path) { return is_dir($path) && is_readable($path); }
-	public static function isFile($path) { return is_file($path) && is_readable($path); }
-	public static function unlink($path) { return is_file($path) && is_writeable($path) ? unlink($path) : false; }
+	public static function isDir($path) { return (is_dir($path) === true) && (is_readable($path) === true); }
+	public static function isFile($path) { return (is_file($path) === true) && (is_readable($path) === true); }
+	public static function unlink($path) { return (is_file($path) === true) && (is_writeable($path) === true) ? unlink($path) : false; }
 	
 	#################
 	### Math Util ###
@@ -129,7 +129,7 @@ final class Common
 	 */
 	public static function isNumeric($s, $allow_float=false)
 	{
-		return $allow_float ? is_numeric($s) : preg_match('/^[-+]?\d+$/D', $s) === 1;
+		return $allow_float === true ? is_numeric($s) === true : preg_match('/^[-+]?\d+$/D', $s) === 1;
 	}
 	
 	###################
@@ -189,7 +189,8 @@ final class Common
 	{
 		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
 		$pos = $spos($string, $from);
-		if ($pos === false) {
+		if ($pos === false)
+		{
 			return $default;
 		}
 		$len = strlen($from);
@@ -207,7 +208,7 @@ final class Common
 	 */
 	public static function stripMessage($msg, $limit, $append='...')
 	{
-		if (strlen($msg)<=$limit)
+		if (strlen($msg) <= $limit)
 		{
 			return $msg;
 		}
@@ -224,7 +225,7 @@ final class Common
 	 */
 	public static function regex($pattern, $s)
 	{
-		return preg_match($pattern, $s, $matches) ? $matches[1] : false;
+		return preg_match($pattern, $s, $matches) > 0 ? $matches[1] : false;
 	}
 }
 ?>

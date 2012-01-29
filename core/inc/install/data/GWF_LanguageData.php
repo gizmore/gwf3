@@ -1,6 +1,14 @@
 <?php
 /**
- * This class contains Language and Countrycodes
+ * This class contains Language and Countrycodes.
+ * 
+ * Country data contains:
+ * ID, Name, Languages(iso-639-3), continent, TLD, population
+ * 
+ * Language data contains:
+ * English Name | Native Name | iso-639-3 | iso-639-1
+ * 
+ * @see GWF_Currency
  * @author gizmore
  */
 final class GWF_LanguageData
@@ -423,3 +431,4 @@ final class GWF_LanguageData
 		return $languages;
 	}
 }
+?>

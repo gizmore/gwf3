@@ -41,7 +41,7 @@ final class GWF_Array
 	/**
 	 * Implode an array like humans would do:
 	 * Example: 1, 2, 3 and last
-	 * @todo Move to other file. Make it recursive?
+	 * @todo Make it recursive?
 	 * @param array $array
 	 * @return string
 	 */
