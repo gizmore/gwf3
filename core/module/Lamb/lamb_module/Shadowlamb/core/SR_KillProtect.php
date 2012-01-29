@@ -2,11 +2,11 @@
 final class SR_KillProtect extends GDO
 {
 	const MAX_LEVEL_DIFF = 25; # Effective Level
-	const DISABLE_LEVEL_DIFF = 50; # When reaching this level you are not killprotected anymore.
-	const KILL_TIMEOUT_MIN = 3600; # 1h
-	const KILL_TIMEOUT_ADD = 7200; # 1h
-	const KILL_TIMEOUT_AVG = 6000; # 4h
-	const KILL_TIMEOUT_MAX = 200000; # 2d
+	const DISABLE_LEVEL_DIFF = 0; # When reaching this level you are not killprotected anymore.
+	const KILL_TIMEOUT_MIN = 3600; # Min value for timeout (1h)
+	const KILL_TIMEOUT_MAX = 86400; # Max value for timeout (24h)
+	const KILL_TIMEOUT_ADD = 600; # Add this to timeout, on a per level diff basis. (10min)
+	const KILL_TIMEOUT_AVG = 10800; # Base value for timeout (3h)
 	
 	private static $CACHE = array();
 	
