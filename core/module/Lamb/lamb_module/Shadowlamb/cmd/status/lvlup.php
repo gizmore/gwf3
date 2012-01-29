@@ -28,45 +28,63 @@ final class Shadowcmd_lvlup extends Shadowcmd
 //			return false;
 //		}
 		
-		$bot = Shadowrap::instance($player);
+// 		$bot = Shadowrap::instance($player);
 		$runner = $player->isRunner();
 		$have = $player->getBase('karma');
 
 		if (count($args) !== 1)
 		{
 			$cost = self::KARMA_COST_SPELL;
-			$b = chr(2);
-			$player->message('Skills to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$SKILL, self::KARMA_COST_SKILL, $runner?self::MAX_VAL_SKILL_RUNNER:self::MAX_VAL_SKILL));
+// 			$b = chr(2);
+			$player->msg('5057', array(Shadowfunc::getStatsLvlUpArray($player, SR_Player::$SKILL, self::KARMA_COST_SKILL, $runner?self::MAX_VAL_SKILL_RUNNER:self::MAX_VAL_SKILL)));
+// 			$player->message('Skills to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$SKILL, self::KARMA_COST_SKILL, $runner?self::MAX_VAL_SKILL_RUNNER:self::MAX_VAL_SKILL));
 			$arr = SR_Player::$ATTRIBUTE;
 			unset($arr['es']);//ignore essence
-			$player->message('Attributes to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, $arr, self::KARMA_COST_ATTRIBUTE, $runner?self::MAX_VAL_ATTRIBUTE_RUNNER:self::MAX_VAL_ATTRIBUTE));
-			$player->message('Knowledge to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$KNOWLEDGE, self::KARMA_COST_KNOWLEDGE, $runner?self::MAX_VAL_KNOWLEDGE_RUNNER:self::MAX_VAL_KNOWLEDGE));
+			$player->msg('5058', array(Shadowfunc::getStatsLvlUpArray($player, $arr, self::KARMA_COST_ATTRIBUTE, $runner?self::MAX_VAL_ATTRIBUTE_RUNNER:self::MAX_VAL_ATTRIBUTE)));
+// 			$player->message('Attributes to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, $arr, self::KARMA_COST_ATTRIBUTE, $runner?self::MAX_VAL_ATTRIBUTE_RUNNER:self::MAX_VAL_ATTRIBUTE));
+			$player->msg('5059', array(Shadowfunc::getStatsLvlUpArray($player, SR_Player::$KNOWLEDGE, self::KARMA_COST_KNOWLEDGE, $runner?self::MAX_VAL_KNOWLEDGE_RUNNER:self::MAX_VAL_KNOWLEDGE)));
+// 			$player->message('Knowledge to upgrade: ' . Shadowfunc::getStatsLvlUpArray($player, SR_Player::$KNOWLEDGE, self::KARMA_COST_KNOWLEDGE, $runner?self::MAX_VAL_KNOWLEDGE_RUNNER:self::MAX_VAL_KNOWLEDGE));
 			$s = '';
 
 			if($player->getSpellData())
 			{
+				$format = $player->lang('fmt_lvlup');
 				$max = $runner ? self::MAX_VAL_SPELL_RUNNER : self::MAX_VAL_SPELL;
 				$nl = $player->getSpellData();
 				asort($nl);
 				foreach (array_reverse($nl) as $name => $base)
 				{
-					if($base == $max){
-						$n = $b.'*'.$b;
-					}else{
+					$k = 'K';
+					$bold = '';
+					$could = 0;
+					if($base == $max)
+					{
+						$n = '*';
+						$k = '';
+					}
+					else
+					{
 						$n = ($base + 1) * 2;
-						if($n <= $have){
-							$n = $b.$n.'K'.$b;
-							$name = $b.$name.$b;
-						}else{
-							$n = $n.'K';
+						if($n <= $have)
+						{
+							$bold = chr(2);
+							$could = 1;
+// 							$n = $b.$n.'K'.$b;
+// 							$name = $b.$name.$b;
+						}
+						else
+						{
+// 							$n = $n.'K';
 						}
 					}
-					$s .= sprintf(', %s:%s(%s)', $name, ($base+1), $n);
+					$s .= sprintf($format, $name, ($base+1), $n, $bold, $k, $could);
+// 					$s .= sprintf(', %s:%s(%s)', $name, ($base+1), $n);
 				}
 			}
-			$s = $s === '' ? 'None' : substr($s,2);
-			$player->message('Spells to upgrade: '.$s);
-			return false;
+			$s = $s === '' ? $player->lang('none') : substr($s,2);
+			$player->msg('5060', array($s));
+// 			$player->message('Spells to upgrade: '.$s);
+			return true;
 		}
 		$f = strtolower($args[0]);
 
@@ -74,8 +92,14 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		if (isset(SR_Player::$SKILL[$f])) { $f = SR_Player::$SKILL[$f]; }
 		if (isset(SR_Player::$ATTRIBUTE[$f])) { $f = SR_Player::$ATTRIBUTE[$f]; }
 		if (isset(SR_Player::$KNOWLEDGE[$f])) { $f = SR_Player::$KNOWLEDGE[$f]; }
-		if ($f === 'essence') { $bot->reply('You can not levelup your essence.'); return false; }
-		
+// 		if ($f === 'essence') { $bot->reply('You can not levelup your essence.'); return false; }
+		if ($f === 'essence')
+		{
+			$player->msg('1024');
+// 			$bot->reply('You can not levelup your essence.');
+			return false;
+		}
+			
 		$is_spell = false;
 		
 		if (in_array($f, SR_Player::$SKILL))
@@ -107,26 +131,30 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		
 		else
 		{
-			$bot->reply('You can only levelup attributes, skills, knowledge and spells.');
+			$player->msg('1024');
+// 			$bot->reply('You can only levelup attributes, skills, knowledge and spells.');
 			return false;
 		}
 		
 		if ($level < 0)
 		{
-			$bot->reply(sprintf('You need to learn %s first.', $f));
+			$player->msg('1025', array($f));
+// 			$bot->reply(sprintf('You need to learn %s first.', $f));
 			return false;
 		}
 		
 		if ($level >= $max)
 		{
-			$bot->reply(sprintf('You already have reached the max level of %d for %s.', $max, $f));
+			$player->msg('1026', array($max, $f));
+// 			$bot->reply(sprintf('You already have reached the max level of %d for %s.', $max, $f));
 			return false;
 		}
 		
 		$need = ($level+1) * $cost;
 		if ($need > $have)
 		{
-			$bot->reply(sprintf('You need %d karma to increase your base level for %s from %d to %d, but you only have %d karma.', $need, $f, $level, $level+1, $have));
+			$player->msg('1027', array($need, $f, $level, $level+1, $have));
+// 			$bot->reply(sprintf('You need %d karma to increase your base level for %s from %d to %d, but you only have %d karma.', $need, $f, $level, $level+1, $have));
 			return false;
 		}
 		
@@ -144,7 +172,8 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 		$player->modify();
-		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));
+		return self::rply($player, '5061', array($need, $f, $level, $level+1));
+// 		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));
 	}
 }
 ?>

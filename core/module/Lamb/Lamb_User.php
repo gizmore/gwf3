@@ -40,7 +40,7 @@ final class Lamb_User extends GDO
 			'lusr_id' => array(GDO::AUTO_INCREMENT),
 			'lusr_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I|GDO::INDEX, GDO::NOT_NULL, 64),
 			'lusr_sid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
-			'lusr_language' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'en', 4),
+			'lusr_lang' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'en', 4),
 			'lusr_options' => array(GDO::UINT, 0),
 //			'lusr_last_date' => array(GDO::DATE, '', GWF_Date::LEN_SECOND),
 			'lusr_last_message' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
@@ -53,7 +53,8 @@ final class Lamb_User extends GDO
 	}
 	public function getID() { return $this->getVar('lusr_id'); }
 	public function getServerID() { return $this->getVar('lusr_sid'); }
-	public function getLangISO() { return $this->getVar('lusr_language'); }
+	public function getLangISO() { return $this->getVar('lusr_lang'); }
+	public function getLangClass() { return GWF_Language::getByISO($this->getLangISO()); }
 	public function getName() { return $this->getVar('lusr_name'); }
 	public function isBot() { return $this->isOptionEnabled(self::BOT); }
 	public function isAdmin() { return $this->isLoggedIn() && $this->getServer()->isAdminUsername($this->getName()); }
@@ -94,7 +95,7 @@ final class Lamb_User extends GDO
 	{
 		$sid = $server->getID();
 		$username = GDO::escape($username);
-		return GDO::table(__CLASS__)->selectFirstObject('*', "lusr_sid=$sid AND lusr_name='$username'");
+		return GDO::table(__CLASS__)->selectFirstObject('*', "lusr_sid={$sid} AND lusr_name='{$username}'");
 	}
 	
 	private static function createUser(Lamb_Server $server, $username)
@@ -103,6 +104,7 @@ final class Lamb_User extends GDO
 			'lusr_id' => 0,
 			'lusr_name' => $username,
 			'lusr_sid' => $server->getID(),
+			'lusr_lang' => 'en',
 			'lusr_options' => 0,
 			'lusr_last_message' => '',
 			'lusr_last_channel' => '',
@@ -111,7 +113,8 @@ final class Lamb_User extends GDO
 			'lusr_hostname' => '',
 			'lusr_ip' => '',
 		));
-		if (false === ($user->insert())) {
+		if (false === ($user->insert()))
+		{
 			return false;
 		}
 		return $user;

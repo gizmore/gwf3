@@ -3,25 +3,33 @@ final class Shadowcmd_swap extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-
 		if (count($args) !== 2)
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'swap'));
+			self::reply($player, Shadowhelp::getHelp($player, 'swap'));
 			return false;
 		}
 
-		$ret = $player->swapInvItems($args[0],$args[1]);
+		$ret = $player->swapInvItems($args[0], $args[1]);
 
-		if($ret < 0 && $ret > -3){
-			$bot->reply("You don\'t have " . $args[-$ret-1]);
-		}elseif($ret == -3){
-			$bot->reply("You can't swap " . $args[0] . " with itself");
-		}else{
-			$bot->reply("Items " . $args[0] . " and " . $args[1] . " have been swapped.");
+		if($ret < 0 && $ret > -3)
+		{
+			self::rply($player, '1020', array($args[-$ret-1]));
+			return false;
+// 			$bot->reply("You don\'t have " . $args[-$ret-1]);
+		}
+		elseif($ret == -3)
+		{
+			self::rply($player, '1030');
+			return false;
+// 			$bot->reply("You can't swap " . $args[0] . " with itself.");
+		}
+		else
+		{
+			return self::rply($player, '5063', $args);
+// 			$bot->reply("Items " . $args[0] . " and " . $args[1] . " have been swapped.");
 		}
 
-		return true;
+// 		return true;
 	}
 }
 ?>

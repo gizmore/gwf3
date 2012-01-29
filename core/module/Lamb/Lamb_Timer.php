@@ -64,6 +64,12 @@ final class Lamb_Timer
 		# Repeat
 		$this->time_exec = $time + $this->seconds;
 		
+		# Language
+		if ($this->server !== NULL)
+		{
+			GWF_Language::setCurrentLanguage($this->server->getLangClass());
+		}
+	
 		# Exec
 		return call_user_func($this->callback, $this->server, $this->args);
 	}

@@ -34,6 +34,7 @@ final class Lamb
 	 */
 	private $lm_server = NULL; # Current server
 	private $lm_origin = '';   # Current origin
+	private $lm_user = false;
 	/**
 	 * Active timers.
 	 * @var array(Lamb_Timer)
@@ -64,9 +65,19 @@ final class Lamb
 	private $lang;
 	public function getLang() { return $this->lang(); }
 	public function onLoadLanguage() { $this->lang = new GWF_LangTrans(self::DIR.'lang/lambbot'); return $this->lang; }
-	public function lang($key, $args=NULL) { return $this->lang->langISO('en', $key, $args); }
+	public function lang($key, $args=NULL) { return $this->lang->langISO($this->getCurrentUser()->getLangISO(), $key, $args); }
 	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
 	public function langUser(Lamb_User $user, $key, $args=NULL) { return $this->lang->langISO($user->getLangISO(), $key, $args); }
+	public function getISOCodes()
+	{
+		$iso_codes = explode(';', GWF_SUPPORTED_LANGS);
+		$iso_codes[] = 'bot'; # Special bot and custom client langfile.
+		$iso_codes[] = 'php'; # PHP Serialized
+		$iso_codes[] = 'json'; # JSON encoded
+		$iso_codes[] = 'back'; # SLv3 original.
+		array_map('strtolower', $iso_codes);
+		return $iso_codes;
+	}
 	
 	###############
 	### Current ###
@@ -102,7 +113,7 @@ final class Lamb
 	 */
 	public function getCurrentUser()
 	{
-		return $this->lm_server->getUser($this->lm_server->getFrom());
+		return $this->lm_user;
 	}
 	
 	##############
@@ -500,36 +511,6 @@ final class Lamb
 		return $this->initTimers();
 	}
 	
-//	public function processTimerPlugins(Lamb_Server $server, $args)
-//	{
-//		# Store uptime is a basic timer
-//		GWF_Settings::setSetting('_lamb3_shutdowntime', microtime(true));
-//		
-//		$path = self::DIR.'lamb_timer';
-//		if (false !== ($dir = dir($path)))
-//		{
-//			while (false !== ($entry = $dir->read()))
-//			{
-//				if (Common::endsWith($entry, '.php'))
-//				{
-//					include "$path/$entry";
-//				}
-//			}
-//			$dir->close();
-//		}
-//		else {
-//			echo "Cannot read timers dir!\n";
-//		}
-//		
-//		foreach ($this->modules as $module)
-//		{
-//			$module->onTimer($server);
-//		}
-//		
-//		// Add timer again
-//		$this->addTimer($server, array($this, 'processTimerPlugins'), NULL, LAMB_TIMER_INTERVAL);
-//	}
-	
 	###############
 	### Process ###
 	###############
@@ -548,17 +529,10 @@ final class Lamb
 					return false;
 				}
 				
-				$msg = trim($msg);
-				
-				if ($msg === '')
+				if ('' === ($msg = trim($msg)))
 				{
 					return true;
 				}
-
-// 				if ('' === ($msg = trim($c->getMessage())))
-// 				{
-// 					return true;
-// 				}
 				
 				$this->is_idle = false;
 				$this->processMessage($server, $msg);
@@ -709,7 +683,7 @@ final class Lamb
 	{
 		$sid = $server->getID();
 		# Not there?
-		if (!isset($this->servers[$sid]))
+		if (false === isset($this->servers[$sid]))
 		{
 			return false;
 		}
@@ -730,7 +704,7 @@ final class Lamb
 	{
 		# Duplicate?
 		$sid = $server->getID();
-		if (isset($this->servers[$sid]))
+		if (true === isset($this->servers[$sid]))
 		{
 			return false;
 		}
@@ -864,6 +838,20 @@ final class Lamb
 		$dir->close();
 	}
 
+	public function setCurrentUser(Lamb_User $user)
+	{
+		$this->lm_user = $user;
+	}
+	
+	public function setupLanguage(Lamb_User $user)
+	{
+		if (false === ($lang = $user->getLangClass()))
+		{
+			$lang = GWF_Language::getEnglish();
+		}
+		GWF_Language::setCurrentLanguage($lang, false);		
+	}
+	
 	/**
 	 * A privmsg with %TRIGGER% has occured.
 	 * @param Lamb_Server $server
@@ -873,6 +861,8 @@ final class Lamb
 	 */
 	public function onTrigger(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
 	{
+		$this->setupLanguage($user);
+		
 		if ( $user->isRegistered() && (!$user->isLoggedIn()) )
 		{
 			$this->tryAutologin($user);

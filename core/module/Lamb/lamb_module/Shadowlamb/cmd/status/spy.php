@@ -5,5 +5,7 @@ final class Shadowcmd_spy extends Shadowcmd
 	{
 		$bot = Shadowrap::instance($player);
 		$bot->reply('This command is not implemented yet.');
+		# TODO: Implement.
 	}
 }
+?>

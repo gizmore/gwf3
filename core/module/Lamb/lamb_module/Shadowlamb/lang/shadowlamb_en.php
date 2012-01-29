@@ -9,6 +9,7 @@ $lang = array(
 ### Bits ###
 ############
 # Tiny bits
+'name' => 'Name',
 'none' => 'None',
 'over' => 'Over',
 'items' => 'Items',
@@ -33,6 +34,13 @@ $lang = array(
 'fmt_cityquests' => ', %s(%.01f%%)', # cityname, percent
 'fmt_sumlist' => ", {$b}%s{$b}-%s(%s)", # enum, playername, summand
 'fmt_quests' => ", %1\$s%2\$d%1\$s-%3\$s", # boldy, id, name
+'fmt_rawitems' => ", {$b}%s{$b}-%s", # id, itemname
+'fmt_items' => ", {$b}%s{$b}-%s%s", # id, itemname, (amt), amt
+'fmt_effect' => ", {$b}%s{$b}:%s(%s)", # stat, gain, duration
+'fmt_equip' => ", {$b}%s{$b}:%s", # long type, item, short type
+'fmt_hp_mp' => ", {$b}%1\$s{$b}-%2\$s%5\$s(%3\$s/%4\$s)%5\$s", # $member->getEnum(), $member->getName(), $hpmp, $hpmmpm, $b2, $b1
+'fmt_spells' => ", {$b}%s{$b}-%s:%s%s", # id, spellname, base, (adjusted), adjusted
+'fmt_lvlup' => ', %4$s%1$s%4$s:%2$s(%4$s%3$s%5$s%4$s)', # field, tobase, karma, bold, K, couldbit
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
@@ -94,6 +102,15 @@ $lang = array(
 # Ingame help
 'hlp_in_outside' => 'When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.',
 
+# Knowledge
+'ks_words' => 'Word',
+'ks_spells' => 'Spell',
+'ks_places' => 'Place',
+'kp_words' => 'Words',
+'kp_spells' => 'Spells',
+'kp_places' => 'Places',
+
+
 ##########################
 #   0000-4999   = Errors #
 ##########################
@@ -103,7 +120,7 @@ $lang = array(
 '1002' => 'You need at least level %d to shout.', # level
 '1003' => 'Please wait %s before you shout again.', # duration
 '1004' => 'You have no %s quests.', # section
-'1005' => 'You don\'t know any word.',
+// '1005' => 'You don\'t know any word.',
 '1006' => 'You do not meet the requirements: %s.', # statted-list
 '1007' => 'No items found that match the search pattern.',
 '1008' => 'There are no items here.',
@@ -114,6 +131,31 @@ $lang = array(
 '1013' => 'You can not use this item.',
 '1014' => 'You can not equip this item.',
 '1015' => 'Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.',
+'1016' => 'You already have your asl set to: %s.', # aslstring
+'1017' => 'This player is unknown or not in memory.',
+'1018' => 'This playername is ambigous.',
+'1019' => 'You are not in a clan, chummer.',
+'1020' => 'I don\'t know what item "%s" is.', # itemname
+'1021' => 'You don`t have anything comparable to "%s" equipped.', # itemname
+'1022' => 'You are not in a store.',
+'1023' => 'You don\'t have this knowledge.',
+'1024' => 'You can only levelup attributes, skills, knowledge and spells. Also you cannot levelup your essence.',
+'1025' => 'You need to learn %s first.', # field
+'1026' => 'You already have reached the max level of %d for %s.',
+'1027' => 'You need %d karma to increase your base level for %s from %d to %d, but you only have %d karma.',
+'1028' => '%s is not here or the name is ambigous.',
+'1029' => 'You don\'t have this item.',
+'1030' => 'You can\'t swap the same things.',
+'1031' => '',
+'1032' => '',
+'1033' => '',
+'1034' => '',
+'1035' => '',
+'1036' => '',
+'1037' => '',
+'1038' => '',
+'1039' => '',
+'1040' => '',
 
 
 ############################
@@ -159,10 +201,52 @@ $lang = array(
 '5033' => 'You found %s in the streets of %s.', # target, cityname
 '5034' => "You collected a {$b}bounty{$b}: %s.", # nuyen
 '5035' => '%s have been booked to your bank account for selling %s %s to %s.', # nuyen, amt, item, player
-'5036' => 'Your character has been punished with %.02f bad_karma.',
-'5037' => '',
-'5038' => '',
-'5039' => '',
+'5036' => 'Your character has been punished with %.02f bad_karma.', # bad karma
+'5037' => 'Hidden commands: %s.', # cmdlist
+'5038' => 'Player %s does not belong to a clan yet.', # player
+'5039' => '%s is in the "%s" clan with %s/%s members, %s/%s wealth and %s/%s in the bank. Their motto: %s',
+'5040' => '%d ClanMembers page %d/%d: %s.', # membercount, page, npages, sumlist
+'5041' => 'ClanHistory page %d/%d: %s.', # page, npages, weird msglist
+'5042' => 'Cmds: %s.',
+'5043' => '%s', # Compare table messages, 3 rows
+'5044' => '%s', # Unknown table messages, multiple rows
+'5045' => 'Your cyberware: %s.', # itemlist
+'5046' => 'You surely forgot about the %s "%s".', # section, knowledge
+'5047' => 'Your effects: %s.', # effectlist
+'5048' => 'Your equipment: %s.', # equipstring
+'5049' => '%s', # examine string
+'5050' => 'Your parties HP: %s.', # HP/MP string
+'5051' => 'Your parties MP: %s.', # HP/MP string
+'5052' => 'Your party has %s karma: %s.', # total, sumlist
+'5053' => 'Your knowledge: %s.', # statlist
+'5054' => 'Known spells: %s.', # spellfmtlist
+'5055' => 'Known Words: %s.', # #rawitemlist
+'5056' => 'Your party has level %s(%s/%s): %s.', # total level, xp , need xp, sumlist
+'5057' => 'Skills to upgrade: %s.', # lvlupstring
+'5058' => 'Attributes to upgrade: %s.', # lvlupstring
+'5059' => 'Knowledge to upgrade: %s.', # lvlupstring
+'5060' => 'Spells to upgrade: %s.', # lvlupstring
+'5061' => 'You used %d karma and leveled up your %s from %d to %d.', # karma, field, from, to
+'5062' => "{$b}%s{$b} shows you: %s.", # player, examinestring
+'5063' => 'Items %s and %s have been swapped.', # itemname, itemname
+'5064' => 'Your party carries %s: %s.', # total weight, sumlist
+'5065' => '',
+'5066' => '',
+'5067' => '',
+'5068' => '',
+'5069' => '',
+'5070' => '',
+'5071' => '',
+'5072' => '',
+'5073' => '',
+'5074' => '',
+'5075' => '',
+'5076' => '',
+'5077' => '',
+'5078' => '',
+'5079' => '',
+'5080' => '',
+
 
 );
 ?>

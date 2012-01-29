@@ -11,6 +11,10 @@ require_once 'www/protected/config_lamb_dev.php';
 require_once 'gwf3.class.php'; 
 # End of EDIT!
 
+if (false === ($db = gdo_db()))
+{
+	die('Config invalid!');
+}
 
 require_once 'core/module/Lamb/Lamb_Install.php';
 
@@ -25,6 +29,13 @@ if ($drop_tables === true)
 #############################
 ### Needed GWF/inc tables ###
 #############################
+# Lang
+require_once GWF_CORE_PATH.'inc/install/GWF_InstallFunctions.php';
+GDO::table('GWF_Language')->createTable($drop_tables);
+GDO::table('GWF_Country')->createTable($drop_tables);
+GDO::table('GWF_LangMap')->createTable($drop_tables);
+GWF_InstallFunctions::createLanguage(true, true, false);
+# More util
 GDO::table('GWF_Counter')->createTable($drop_tables);
 GDO::table('GWF_Settings')->createTable($drop_tables);
 

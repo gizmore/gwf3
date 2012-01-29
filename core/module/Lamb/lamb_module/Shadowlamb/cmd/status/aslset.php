@@ -9,7 +9,8 @@ final class Shadowcmd_aslset extends Shadowcmd_asl
 	{
 		if ($player->getBase('age') > 0)
 		{
-			$player->message(sprintf("You already have your asl set to: %s.", Shadowfunc::displayASL($player)));
+			$player->msg('1016', array(Shadowfunc::displayASL($player)));
+// 			$player->message(sprintf("You already have your asl set to: %s.", Shadowfunc::displayASL($player)));
 			return false; 
 		}
 		
@@ -31,7 +32,7 @@ final class Shadowcmd_aslset extends Shadowcmd_asl
 		$height = self::parseValue($arg, 'cm');
 		if ( ($height > 1) && ($height < 2) )
 		{
-			$player->message(sprintf('Auto corrected your height "%.03f" to "%dcm"', $height, round($height*100)));
+// 			$player->message(sprintf('Auto corrected your height "%.03f" to "%dcm"', $height, round($height*100)));
 			$height = round($height*100);
 		}
 		

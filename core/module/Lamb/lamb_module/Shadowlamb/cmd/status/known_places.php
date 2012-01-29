@@ -21,8 +21,7 @@ final class Shadowcmd_known_places extends Shadowcmd
 			return self::reply($player, 'Error: Cannot get city class for your party!');
 		}
 		
-		$cityname = $city->getName();
-		$bot->reply(Shadowrun4::lang('5007', array($cityname, Shadowfunc::getKnownPlaces($player, $cityname))));
+		return self::rply($player, '5007', array($city->getName(), Shadowfunc::getKnownPlaces($player, $cityname)));
 // 		$bot->reply(sprintf('Known Places in %s: %s.', $cityname, Shadowfunc::getKnownPlaces($player, $cityname)));
 		return true;
 	}

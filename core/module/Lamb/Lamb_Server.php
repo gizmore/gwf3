@@ -42,6 +42,7 @@ final class Lamb_Server extends GDO
 		return array(
 			'serv_id' => array(GDO::AUTO_INCREMENT),
 			'serv_host' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL),
+			'serv_lang' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'en', 4),
 			'serv_version' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'serv_ip' => GWF_IP6::gdoDefine(GWF_IP6::BIN_32_128, GDO::NULL),
 			'serv_maxusers' => array(GDO::UINT, 0),
@@ -83,6 +84,20 @@ final class Lamb_Server extends GDO
 	public function getNicknames() { return explode(',', $this->getVar('serv_nicknames')); }
 	public function getAdminUsernames() { return explode(',', $this->getVar('serv_admins')); }
 	public function isThrottled() { return $this->getInt('serv_flood_amt') > 0; }
+	public function getLangIso() { return $this->getVar('serv_lang'); }
+	
+	/**
+	 * Get language class object for server or english.
+	 * @return GWF_Language
+	 */
+	public function getLangClass()
+	{
+		if (false === ($lang = GWF_Language::getByISO($this->getLangIso())))
+		{
+			$lang = GWF_Language::getEnglish();
+		}
+		return $lang;
+	}
 	
 	###########
 	### IRC ###
@@ -131,6 +146,7 @@ final class Lamb_Server extends GDO
 		$server = new self(array(
 			'serv_id' => '0',
 			'serv_host' => $host,
+			'serv_lang' => 'en',
 			'serv_version' => NULL,
 			'serv_ip' => NULL,
 			'serv_maxusers' => '0',

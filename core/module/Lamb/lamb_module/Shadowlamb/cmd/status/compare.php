@@ -21,7 +21,8 @@ final class Shadowcmd_compare extends Shadowcmd
 
 		if(!$item1)
 		{
-			$bot->reply('I don`t know what item "'.$args[0].'" is.');
+			self::rply($player, '1020', array($args[0]));
+// 			$bot->reply('I don`t know what item "'.$args[0].'" is.');
 			return false;
 		}
 		
@@ -30,18 +31,20 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2 = self::getItem($bot, $player, $args[1]);
 			if(!$item2)
 			{
-				$bot->reply('I don`t know what item "'.$args[1].'" is.');
+				self::rply($player, '1020', array($args[1]));
+// 				$bot->reply('I don`t know what item "'.$args[1].'" is.');
 				return false;
 			}
 		}else{
 			$item2 = $player->getItem( $item1->getItemType() );
 			if(!$item2)
 			{
-				$bot->reply('You don`t have anything comparable to "'.$item1->getItemName().'" equipped');
+				self::rply($player, '1021', array($item1->getItemName()));
+// 				$bot->reply('You don`t have anything comparable to "'.$item1->getItemName().'" equipped');
 				return false;
 			}
 		}
-		$bot->replyTable(self::getComparisonMatrix($player, $item1, $item2));
+		$bot->replyTable(self::getComparisonMatrix($player, $item1, $item2), '5043');
 		return true;
 	}
 
@@ -330,7 +333,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2Stuff[] = Shadowfunc::displayNuyen($item2Prc);
 		}
 		
-		return array('Name' => $titles, $item1->getItemName() => $item1Stuff, $item2->getItemName() => $item2Stuff);
+		return array(Shadowrun4::lang('name') => $titles, $item1->getItemName() => $item1Stuff, $item2->getItemName() => $item2Stuff);
 	}
 
 	private static function getItem($bot, SR_Player $player, $itemid)
@@ -344,7 +347,8 @@ final class Shadowcmd_compare extends Shadowcmd
 			}
 			else
 			{
-				$bot->reply('You are not in a store!');
+				self::rply($player, '1022');
+// 				$bot->reply('You are not in a store!');
 			}
 			return false;
 		}

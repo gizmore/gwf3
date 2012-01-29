@@ -7,7 +7,8 @@ final class Shadowcmd_commands extends Shadowcmd
 		$long_versions = isset($args[0]);
 		$commands = self::getCurrentCommands($player, false, $boldify, $long_versions);
 		
-		return Shadowrap::instance($player)->reply(sprintf('Cmds: %s.', implode(',', $commands)));
+		return self::rply($player, '5042', array(implode(',', $commands)));
+// 		return Shadowrap::instance($player)->reply(sprintf('Cmds: %s.', implode(',', $commands)));
 	}
 }
 ?>

@@ -34,7 +34,7 @@ final class Shadowrap
 	  * @param array $table where each entry is 'row label' => array(values)
 	  * @return true|false
 	  */
-	public function replyTable(array $table)
+	public function replyTable(array $table, $key='5044')
 	{
 		$maxRowLabelWidth = 0;
 		$maxWidths = array(-1=>0);
@@ -66,7 +66,8 @@ final class Shadowrap
 				$charcounts = count_chars($v,0);
 				$s .= sprintf('| %-'.($maxWidths[$k]+1+$charcounts[2]).'s', $v);
 			}
-			$this->reply($s);
+			$this->reply(Shadowrun4::lang($key, array($s)));
+// 			$this->reply($s);
 		}
 	}
 }

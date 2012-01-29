@@ -21,7 +21,8 @@ final class Shadowcmd_show extends Shadowcmd
 		# Try to get target.
 		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
 		{
-			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
+			$player->msg('1028', array($args[0]));
+// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
 			return false;
 		}
 		
@@ -34,13 +35,14 @@ final class Shadowcmd_show extends Shadowcmd
 		# Try to get item.
 		if (false === ($item = $player->getItem($args[1])))
 		{
-			$bot->reply('You don`t have that item.');
+			$player->msg('1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
 		
-		$msg = sprintf('%s shows you: %s', $player->displayName(), $item->getItemInfo($player));
-		
-		return $target->message($msg);
+		return $target->msg('5062', array($player->displayName(), $item->getItemInfo($player)));
+// 		$msg = sprintf('%s shows you: %s', $player->displayName(), $item->getItemInfo($player));
+// 		return $target->message($msg);
 	}
 }
 ?>

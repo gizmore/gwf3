@@ -45,12 +45,14 @@ final class Shadowcmd_clan extends Shadowcmd
 		}
 		if (false === ($target = Shadowrun4::getPlayerByShortName($args[0])))
 		{
-			$bot->reply('This player is unknown or not in memory.');
+			self::rply($player, '1017');
+// 			$bot->reply('This player is unknown or not in memory.');
 			return false;
 		}
 		else if ($target === -1)
 		{
-			$bot->reply('This playername is ambigous.');
+			self::rply($player, '1018');
+// 			$bot->reply('This playername is ambigous.');
 			return false;
 		}
 		return self::showClanInfo($player, $target);
@@ -63,22 +65,32 @@ final class Shadowcmd_clan extends Shadowcmd
 	 */
 	private static function showClanInfo(SR_Player $player, SR_Player $target)
 	{
-		$bot = Shadowrap::instance($player);
+// 		$bot = Shadowrap::instance($player);
 		
 		if (false === ($clan = SR_Clan::getByPlayer($target)))
 		{
-			$bot->reply(sprintf('Player %s does not belong to a clan yet.', $target->getName()));
+			self::rply($player, '5038', array($target->getName()));
+// 			$bot->reply(sprintf('Player %s does not belong to a clan yet.', $target->getName()));
 			return false;
 		}
-		$message = sprintf(
-			'%s is in the "%s" clan with %s/%s members, %s/%s wealth and %s/%s in the bank. Their motto: %s',
+		
+		return self::rply($player, '5039', array(
 			$target->getName(), $clan->getName(),
 			$clan->getMembercount(), $clan->getMaxMembercount(),
 			$clan->displayNuyen(), $clan->displayMaxNuyen(),
 			$clan->displayStorage(), $clan->displayMaxStorage(),
 			$clan->getSlogan()
-		);
-		return $bot->reply($message);
+		));
+		
+// 		$message = sprintf(
+// 			'%s is in the "%s" clan with %s/%s members, %s/%s wealth and %s/%s in the bank. Their motto: %s',
+// 			$target->getName(), $clan->getName(),
+// 			$clan->getMembercount(), $clan->getMaxMembercount(),
+// 			$clan->displayNuyen(), $clan->displayMaxNuyen(),
+// 			$clan->displayStorage(), $clan->displayMaxStorage(),
+// 			$clan->getSlogan()
+// 		);
+// 		return $bot->reply($message);
 	}
 	
 	/**
@@ -95,7 +107,8 @@ final class Shadowcmd_clan extends Shadowcmd
 		}
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan, chummer.');
+			self::rply($player, '1019', array($player->getName()));
+// 			$player->message('You are not in a clan, chummer.');
 			return false;
 		}
 		$ipp = 10;
@@ -103,7 +116,8 @@ final class Shadowcmd_clan extends Shadowcmd
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ($page > $nPages)
 		{
-			$player->message('This page is empty.');
+			$player->msg('1009');
+// 			$player->message('This page is empty.');
 			return false;
 		}
 		$from = GWF_PageMenu::getFrom($page, $ipp);
@@ -116,16 +130,22 @@ final class Shadowcmd_clan extends Shadowcmd
 		}
 		if (count($members) === 0)
 		{
-			$player->message('This page is empty.');
+			$player->msg('1009');
+// 			$player->message('This page is empty.');
 			return false;
 		}
+		
 		$back = '';
+		$format = $player->lang('fmt_sumlist');
 		foreach ($members as $row)
 		{
 			$from++;
-			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
+			$back .= sprintf($format, $from, "{$row[0]}(L{$row[1]})", $row[2]);
+// 			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
 		}
-		return Shadowrap::instance($player)->reply(sprintf('%d ClanMembers page %d/%d: %s.', $nItems, $page, $nPages, substr($back, 2)));
+		
+		return self::rply($player, '5040', array($nItems, $page, $nPages, substr($back, 2)));
+// 		return Shadowrap::instance($player)->reply(sprintf('%d ClanMembers page %d/%d: %s.', $nItems, $page, $nPages, substr($back, 2)));
 	}
 	
 	/**
@@ -135,11 +155,12 @@ final class Shadowcmd_clan extends Shadowcmd
 	 */
 	private static function showHistoryPage(SR_Player $player, $page)
 	{
-		$bot = Shadowrap::instance($player);
+// 		$bot = Shadowrap::instance($player);
 		
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$bot->reply('You don\'t belong to a clan yet.');
+			return self::rply($player, '1019');
+// 			$bot->reply('You don\'t belong to a clan yet.');
 			return false;
 		}
 		
@@ -150,13 +171,15 @@ final class Shadowcmd_clan extends Shadowcmd
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ($page > $nPages)
 		{
-			$bot->reply('This page is empty.');
+			return self::rply($player, '1009');
+// 			$bot->reply('This page is empty.');
 			return false;
 		}
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		if (false === ($result = $table->selectAll('sr4ch_time,sr4ch_pname,sr4ch_action,sr4ch_iname,sr4ch_amt', $where, 'sr4ch_time DESC', NULL, $ipp, $from, GDO::ARRAY_N)))
 		{
-			$bot->reply('DB ERROR');
+			$player->message('DB ERROR');
+// 			$bot->reply('DB ERROR');
 			return false;
 		}
 
@@ -169,8 +192,9 @@ final class Shadowcmd_clan extends Shadowcmd
 			$out[] = $b2.SR_ClanHistory::getHistMessage($row[0], $row[1], $row[2], $row[3], $row[4]).$b2;
 		}
 		
-		$message = sprintf('ClanHistory page %d/%d: %s', $page, $nPages, implode('  ', $out));
-		return $bot->reply($message);
+		return self::rply($player, '', array($page, $nPages, implode('  ', $out)));
+// 		$message = sprintf('ClanHistory page %d/%d: %s', $page, $nPages, implode('  ', $out));
+// 		return $bot->reply($message);
 	}
 }
 ?>

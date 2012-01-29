@@ -441,12 +441,13 @@ final class Shadowfunc
 	{
 		$i = 1;
 		$back = '';
+		$format = $player->lang('fmt_rawitems');
 		foreach (explode(',', trim($player->getVar('sr4pl_known_words'), ',')) as $w)
 		{
-			$back .= sprintf(", \x02%s\x02-%s", $i++, $w);
+			$back .= sprintf($format, $i++, $w);
+// 			$back .= sprintf(", \x02%s\x02-%s", $i++, $w);
 		}
-		# You don't know any word
-		return $back === '' ? $player->lang('1005') : substr($back, 2);
+		return $back === '' ? $player->lang('none') : substr($back, 2);
 	}
 	
 	
@@ -492,11 +493,13 @@ final class Shadowfunc
 	
 	public static function getEquipment(SR_Player $player)
 	{
-		$b = chr(2);
+// 		$b = chr(2);
 		$back = '';
+		$format = $player->lang('fmt_equip');
 		foreach ($player->getAllEquipment(true) as $key => $item)
 		{
-			$back .= sprintf(', %s:%s', "{$b}$key{$b}", $item->getItemName());
+			$back .= sprintf($format, $key, $item->getItemName(), self::shortcutEquipment($key));
+// 			$back .= sprintf(', %s:%s', "{$b}$key{$b}", $item->getItemName());
 		}
 		return substr($back, 2);
 	}
@@ -507,8 +510,8 @@ final class Shadowfunc
 		$back = '';
 		foreach ($fields as $fiel => $field)
 		{
-			$now = $player->get($field);
-			$base = $player->getBase($field);
+			$now = round($player->get($field), 1);
+			$base = round($player->getBase($field), 1);
 			
 //			if ($base < 0 && $now < 0)
 			if ($now >= 0)
@@ -524,7 +527,7 @@ final class Shadowfunc
 	
 	public static function getStatsLvlUpArray(SR_Player $player, array $fields, $cost, $max)
 	{
-		$b = chr(2);
+// 		$b = chr(2);
 		$back = '';
 		$karma = $player->getBase('karma');
 		$nl = array();
@@ -533,22 +536,36 @@ final class Shadowfunc
 
 		asort($nl);
 		
+		$format = $player->lang('fmt_lvlup');
 		foreach (array_reverse($nl) as $field => $base)
 		{
+			$k = 'K';
+			$bold = '';
+			$could = 0;
 			if ($base >= 0)
 			{
-				if($base == $max){
+				if($base == $max)
+				{
 					$n = '*';
-				}else{
+					$k = '';
+				}
+				else
+				{
 					$n = ($base + 1) * $cost;
-					if($n <= $karma){
-						$n = $b.$n.'K'.$b;
-						$field = $b.$field.$b;
-					}else{
-						$n = $n.'K';
+					if($n <= $karma)
+					{
+// 						$n = $b.$n.'K'.$b;
+// 						$field = $b.$field.$b;
+						$bold = chr(2);
+						$could = 1;
+					}
+					else
+					{
+// 						$n = $n.'K';
 					}
 				}
-				$back .= sprintf(', %s:%s(%s)', $field, ($base+1), $n);
+				$back .= sprintf($format, $field, ($base+1), $n, $bold, $k, $could);
+// 				$back .= sprintf(', %s:%s(%s)', $field, ($base+1), $n);
 			}
 			
 		}
@@ -557,7 +574,7 @@ final class Shadowfunc
 	
 	public static function getEffects(SR_Player $player)
 	{
-		$b = chr(2);
+// 		$b = chr(2);
 		$e = $player->getEffects();
 		if (count($e) === 0)
 		{
@@ -584,11 +601,13 @@ final class Shadowfunc
 		}
 		
 		$t2 = Shadowrun4::getTime();
+		$format = Shadowrun4::lang('fmt_effect');
 		$back = '';
 		foreach ($sorted as $k => $data)
 		{
 			list($v, $t) = $data;
-			$back .= sprintf(', %s:%s(%s)', $b.$k.$b, $v, GWF_Time::humanDuration($t-$t2));
+			$back .= sprintf($format, $k, $v, GWF_Time::humanDuration($t-$t2));
+// 			$back .= sprintf(', %s:%s(%s)', $b.$k.$b, $v, GWF_Time::humanDuration($t-$t2));
 		}
 		
 		return substr($back, 2);
@@ -596,15 +615,17 @@ final class Shadowfunc
 	
 	public static function getSpells(SR_Player $player)
 	{
+		$format = $player->lang('fmt_spells');
 		$back = '';
-		$b = chr(2);
+// 		$b = chr(2);
 		$i = 1;
 		foreach ($player->getSpellData() as $name => $base)
 		{
 			$mod = $player->get($name);
-			$mod = $mod > $base ? "($mod)" : '';
-			$back .= sprintf(', %s-%s:%s%s', $b.$i.$b, $name, $base, $mod);
-			$i++;
+			$dmod = $mod > $base ? "($mod)" : '';
+			$back .= sprintf($format, $i++, $name, $base, $dmod, $mod);
+// 			$back .= sprintf(', %s-%s:%s%s', $b.$i.$b, $name, $base, $mod);
+// 			$i++;
 		}
 		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
 	}
@@ -621,14 +642,16 @@ final class Shadowfunc
 	
 	public static function getItemsSorted(SR_Player $player, array $items, $i=1)
 	{
-		$b = chr(2);
+// 		$b = chr(2);
 		$back = '';
+		$format = $player->lang('fmt_items');
 		foreach ($items as $itemname => $data)
 		{
 			$count = $data[0];
 			$itemid = $data[1];
-			$count = $count > 1 ? "($count)" : '';
-			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $itemname, $count);
+			$dcount = $count > 1 ? "($count)" : '';
+			$back .= sprintf($format, ($i++), $itemname, $dcount, $count);
+// 			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $itemname, $dcount);
 		}
 		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
 	}
@@ -637,9 +660,11 @@ final class Shadowfunc
 	{
 		$i = 1;
 		$back = '';
+		$format = $player->lang('fmt_rawitems');
 		foreach ($player->getCyberware() as $item)
 		{
-			$back .= sprintf(', %d-:%s', $i++, $item->getItemName());
+			$back .= sprintf($format, $i++, $item->getItemName());
+// 			$back .= sprintf(', %d-:%s', $i++, $item->getItemName());
 		}
 		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
 	}
@@ -1332,6 +1357,11 @@ final class Shadowfunc
 	public static function shortcutModifier($modifier)
 	{
 		return true === isset(SR_Player::$REV_ALL[$modifier]) ? SR_Player::$REV_ALL[$modifier] : $modifier;
+	}
+
+	public static function shortcutEquipment($type)
+	{
+		return (false === ($index = array_search($type, SR_Player::$EQUIPMENT))) ? $type : $index;
 	}
 }
 ?>

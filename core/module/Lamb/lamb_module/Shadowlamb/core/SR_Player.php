@@ -2137,15 +2137,19 @@ class SR_Player extends GDO
 		$knowledge = strtolower($knowledge);
 		if (!$this->hasKnowledge($field, $knowledge))
 		{
-			$this->message(sprintf('You don\'t have knowledge for %s.', $knowledge));
-			return true;
+			return $player->msg('1023');
+// 			$this->message(sprintf('You don\'t have knowledge for %s.', $knowledge));
+// 			return true;
 		}
 		$k = $this->getKnowledge($field);
-		if (false === $this->saveVar('sr4pl_known_'.$field, str_ireplace(",$knowledge,", ',', $k))) {
+		if (false === $this->saveVar('sr4pl_known_'.$field, str_ireplace(",$knowledge,", ',', $k)))
+		{
 			return false;
 		}
-		$this->message(sprintf('You surely forgot about the %s: %s.', $field, $knowledge));
-		return true;
+		
+		return $this->msg('5046', array($this->lang('ks_'.$field), $knowledge));
+// 		$this->message(sprintf('You surely forgot about the %s: %s.', $field, $knowledge));
+// 		return true;
 	}
 	
 	############

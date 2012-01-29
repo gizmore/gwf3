@@ -15,25 +15,29 @@ final class Shadowcmd_swapkp extends Shadowcmd
 		
 		if ('' === ($kp = $player->getKnowledge('places')))
 		{
-			$player->message('You have no known places yet.');
+			$player->msg('1023');
+// 			$player->message('You have no known places yet.');
 			return false;
 		}
 		
 		if (false === ($placeA = Shadowcmd_goto::getTLCByArg($player, $args[0])))
 		{
-			$player->message(sprintf('The first place, %s, is unknown.', $args[0]));
+			$player->msg('1023');
+// 			$player->message(sprintf('The first place, %s, is unknown.', $args[0]));
 			return false;
 		}
 		
 		if (false === ($placeB = Shadowcmd_goto::getTLCByArg($player, $args[1])))
 		{
-			$player->message(sprintf('The second place, %s, is unknown.', $args[1]));
+			$player->msg('1023');
+// 			$player->message(sprintf('The second place, %s, is unknown.', $args[1]));
 			return false;
 		}
 		
 		if ($placeA === $placeB)
 		{
-			$player->message('Swapping nothing, so bailout.');
+			$player->msg('1030');
+// 			$player->message('Swapping nothing, so bailout.');
 			return false;
 		}
 		

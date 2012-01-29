@@ -1,10 +1,9 @@
 <?php # Usage: %CMD% [<iso>]. Set your bot's language or list the known iso codes.
+// return;
 $bot = Lamb::instance();
 
 # Gather ISO codes
-$iso_codes = explode(';', GWF_SUPPORTED_LANGS);
-$iso_codes[] = 'bot'; # Special bot and custom client language.
-array_map('strtolower', $iso_codes); # lower them
+$iso_codes = $bot->getISOCodes();
 
 if ($message === '')
 {
@@ -22,7 +21,7 @@ if ($old === $message)
 	return $bot->reply(sprintf('Your language was already set to "%s".', $old));
 }
 
-if (false === $user->saveVar('lusr_language', $message))
+if (false === $user->saveVar('lusr_lang', $message))
 {
 	return $bot->reply('Database error!');
 }

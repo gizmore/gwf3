@@ -22,6 +22,7 @@ final class Lamb_Channel extends GDO
 			'chan_id' => array(GDO::AUTO_INCREMENT),
 			'chan_sid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'chan_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I|GDO::INDEX, GDO::NOT_NULL, 63),
+			'chan_lang' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'en', 4),
 			'chan_maxusers' => array(GDO::UINT, 0),
 			'chan_ops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
 			'chan_hops' => array(GDO::BLOB|GDO::ASCII|GDO::CASE_S),
@@ -34,6 +35,20 @@ final class Lamb_Channel extends GDO
 	public function allowsTrigger()
 	{
 		return !$this->isOptionEnabled(self::NO_RESPONSE);
+	}
+	
+	############
+	### Lang ###
+	############
+	public function getLangClass()
+	{
+		return (false === ($lang = GWF_Language::getByISO($this->getVar('chan_lang')))) ?
+			GWF_Language::getEnglish() : $lang;
+	}
+	
+	public function setupLanguage()
+	{
+		GWF_Language::setCurrentLanguage($this->getLangClass());
 	}
 	
 	##############
@@ -72,6 +87,7 @@ final class Lamb_Channel extends GDO
 			'chan_id' => 0,
 			'chan_sid' => $server->getID(),
 			'chan_name' => $channel_name,
+			'chan_lang' => 'en',
 			'chan_maxusers' => 0,
 			'chan_ops' => '',
 			'chan_hops' => '',
