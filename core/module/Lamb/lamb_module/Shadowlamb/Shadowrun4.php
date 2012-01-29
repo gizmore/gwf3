@@ -331,9 +331,14 @@ final class Shadowrun4
 			self::initCore(Lamb::DIR);
 			self::initCmds(Lamb::DIR);
 			self::initItems(Lamb::DIR);
-			self::initQuests(Lamb::DIR);
+// 			self::initQuests(Lamb::DIR);
+			self::initCityBases(Lamb::DIR);
 			self::initSpells(Lamb::DIR);
-			self::initCities(Lamb::DIR);
+			self::initCityQuests(Lamb::DIR);
+			self::initCityNPCs(Lamb::DIR);
+			self::initCityLocations(Lamb::DIR);
+// 			self::initCities(Lamb::DIR);
+			self::initCityAfter();
 			SR_Player::init();
 //			require_once 'SR_Install.php';
 //			SR_Install::onInstall();
@@ -351,14 +356,18 @@ final class Shadowrun4
 //		$bot->addTimer(array(__CLASS__, 'shadowTimerItems'), 60);
 	}
 	
+	public static function getShadowDir() { return Lamb::DIR.'lamb_module/Shadowlamb/'; }
 	public static function initCmds($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/cmd', array(__CLASS__, 'includeFile')); }
 	public static function initCore($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/core', array(__CLASS__, 'includeFile')); }
 	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); }
 	public static function initSpells($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/spell', array('SR_Spell', 'includeSpell')); }
-	public static function initCities($dir='') { self::initCityFiles($dir); self::initCityAfter(); }
-	private static function initCityFiles($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
+// 	public static function initCities($dir='') { self::initCityFiles($dir); self::initCityAfter(); }
+// 	private static function initCityFiles($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
+// 	private static function initCityNPCs($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityNPC'), false); }
+// 	private static function initCityQuests($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityQuest'), false); }
+// 	private static function initCityLocations($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityLocation'), false); }
 	private static function initCityAfter() { foreach (self::$cities as $city) { $city->onInit(); } }
-	public static function initQuests($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/quest', array('SR_Quest', 'includeQuest')); }
+// 	public static function initQuests($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/quest', array('SR_Quest', 'includeQuest')); }
 //	public static function initTimer() { self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp'); }
 
 	private static function reloadParties()
@@ -382,21 +391,88 @@ final class Shadowrun4
 		return true;
 	}
 	
-	public static function initCity($entry, $fullpath)
+	/**
+	 * Init all cities in chronological order.
+	 * @param unknown_type $dir
+	 */
+	private static function initCityBases($dir)
 	{
-		Lamb_Log::logDebug(sprintf('Shadowrun4::initCity(%s)', $entry));
-		require_once $fullpath."/$entry.php";
-		self::$cities[strtolower($entry)] = $city = new $entry($entry);
-		GWF_File::filewalker($fullpath.'/npc', array($city, 'initNPCS'));
-		GWF_File::filewalker($fullpath.'/location', array($city, 'initLocations'));
+		Lamb_Log::logDebug('Init all Areas in chronological order...');
+		$cities = array(
+			'Redmond', 'Hideout', 'OrkHQ',
+			'Seattle', 'Harbor', 'Renraku',
+			'Delaware', 'Troll', 'Prison', 'NySoft',
+			'Chicago', # :(
+			'Vegas',
+			'Amerindian',
+		);
+		foreach ($cities as $city)
+		{
+			GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityBase'), false, $city);
+		}
+		
+		# And the rest for backwards compatible
+		Lamb_Log::logDebug('Init remaining / new areas...');
+		GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityBase'), false, NULL);
 	}
 	
-	private static function initCities2()
+	
+	public static function initCityBase($entry, $fullpath, $cityname)
 	{
-		foreach (self::$cities as $name => $city)
+		# Already inited
+		if (false !== self::getCity($entry))
+		{
+			return;
+		}
+		
+		# Init later
+		if ( (is_string($cityname)) && (strpos($entry, $cityname) !== 0) )
+		{
+			return;
+		}
+		
+		# Announce loading
+		Lamb_Log::logDebug(sprintf('Shadowrun4::initCityBase(%s)', $entry));
+		require_once "{$fullpath}/{$entry}.php";
+		self::$cities[strtolower($entry)] = new $entry($entry);
+	}
+	
+	public static function initCityNPCs($dir='stub')
+	{
+		foreach (self::$cities as $city)
 		{
 			$city instanceof SR_City;
-			$city->onInit();
+			$fullpath = self::getShadowDir().'city/'.$city->getName().'/npc';
+			if (Common::isDir($fullpath))
+			{
+				GWF_File::filewalker($fullpath, array($city, 'initNPCS'));				
+			}
+		}
+	}
+	
+	public static function initCityLocations($dir='stub')
+	{
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			$fullpath = self::getShadowDir().'city/'.$city->getName().'/location';
+			if (Common::isDir($fullpath))
+			{
+				GWF_File::filewalker($fullpath, array($city, 'initLocations'));				
+			}
+		}
+	}
+	
+	public static function initCityQuests($dir='stub')
+	{
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			$fullpath = self::getShadowDir().'city/'.$city->getName().'/quest';
+			if (Common::isDir($fullpath))
+			{
+				GWF_File::filewalker($fullpath, array($city, 'initQuests'));				
+			}
 		}
 	}
 	

@@ -28,8 +28,10 @@ final class Shadowcmd_quests extends Shadowcmd
 			case 'fail':
 			case 'abort':
 				return self::displaySection($player, $quests, $args[0], $args);
-			case 'stats':
+			case 'stats': case 's':
 				return self::displayStats($player, $quests);
+			case 'citystats': case 'cs':
+				return self::displayCityStats($player);
 			default:
 				if (Common::isNumeric($args[0]))
 				{
@@ -79,7 +81,50 @@ final class Shadowcmd_quests extends Shadowcmd
 			$open, $done, $declined, $failed, $unknown, $total
 		);
 		
-		return self::reply($player, $message);
+		self::reply($player, $message);
+	}
+	
+	private static function displayCityStats(SR_Player $player)
+	{
+		$all = SR_Quest::getQuests();
+		
+		var_dump($all);
+		
+		$by_city = array();
+		foreach ($all as $quest)
+		{
+			$quest instanceof SR_Quest;
+			$q2 = SR_Quest::getQuest($player, $quest->getVar('sr4qu_name'));
+			
+			$cityname = $quest->getCityName();
+			
+			if (false === isset($by_city[$cityname]))
+			{
+				$by_city[$cityname] = array(0, 0);
+			}
+			
+			if ($q2->isDone($player))
+			{
+				$by_city[$cityname][0]++;
+			}
+
+			$by_city[$cityname][1]++;
+		}
+		
+		$out = '';
+		foreach ($by_city as $cityname => $data)
+		{
+			list($done, $total) = $data;
+			$out .= sprintf(', %s(%.01f%%)', $cityname, $done/$total*100);
+		}
+		
+		if ($out === '')
+		{
+			self::reply($player, "You don't have any quest data.");
+		}
+
+		$message = sprintf('Quest stats per city: %s.', substr($out, 2));
+		self::reply($player, $message);
 	}
 
 	private static function displaySection(SR_Player $player, array $quests, $section, array $args)

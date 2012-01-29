@@ -101,6 +101,11 @@ abstract class SR_City
 		}
 	}
 	
+	public function initQuests($filename, $fullpath)
+	{
+		SR_Quest::includeQuest($filename, $fullpath, $this->getName());
+	}
+	
 	/**
 	 * Get a location in this city by Full_Name
 	 * @param $name

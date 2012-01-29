@@ -4,9 +4,9 @@ class SR_Quest extends GDO
 	#################
 	### Statistic ###
 	#################
-	private static $TOTAL_QUESTS = 0;
-	private static $quests = array();
-	public static function getTotalQuestCount() { return self::$TOTAL_QUESTS; }
+	private static $QUESTS = array();
+	public static function getQuests() { return self::$QUESTS; }
+	public static function getTotalQuestCount() { return count(self::$QUESTS); }
 	
 	####################
 	### Option flags ###
@@ -48,8 +48,6 @@ class SR_Quest extends GDO
 	#############
 	### Quest ###
 	#############
-	public static function getQuests() { return self::$quests; }
-	
 	public function getName() { return $this->getVar('sr4qu_name'); }
 	public function getTrigger() { return 'shadowrun'; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
@@ -73,6 +71,11 @@ class SR_Quest extends GDO
 	public function getPlayer() { return Shadowrun4::getPlayerByPID($this->getPlayerID()); }
 	public function getPlayerID() { return $this->getVar('sr4qu_uid'); }
 
+	# Citynames for sections
+	private $cityname = 'Unknown';
+	public function getCityName() { return $this->cityname; }
+	public function setCityName($cityname) { $this->cityname = $cityname; }
+	
 	/**
 	 * Accept logic.
 	 * @param SR_Player $player
@@ -214,19 +217,35 @@ class SR_Quest extends GDO
 	}
 	
 	/**
-	 * Include all quests on init.
+	 * Include all quests on init. Dies on error.
 	 * @param string $entry
 	 * @param string $fullpath
+	 * @param string $cyityname
 	 */
-	public static function includeQuest($entry, $fullpath)
+	public static function includeQuest($entry, $fullpath, $cityname='Unknown')
 	{
+		# Include
+		Lamb_Log::logDebug(sprintf('SR_Quest::includeQuest for city "%s" - "%s"', $cityname, $entry));
 		require_once $fullpath;
-
-		$classname = 'Quest_'.substr($entry,0,-4);
+		# Instance 
+		$cname = substr($entry,0,-4);
+		$classname = 'Quest_'.$cname;
 		$quest = new $classname();
-		self::$quests[strtolower($quest->getQuestName())] = $quest;
-
-		self::$TOTAL_QUESTS++;
+		$quest instanceof SR_Quest;
+		$quest->setGDOData(array(
+			'sr4qu_uid' => '0',
+			'sr4qu_name' => $cname,
+			'sr4qu_eta' => '0',
+			'sr4qu_date' => '0',
+			'sr4qu_amount' => '0',
+			'sr4qu_data' => NULL,
+			'sr4qu_options' => '0',
+		));
+		$quest instanceof SR_Quest;
+		# Setup
+		$quest->setCityName($cityname);
+		# Global cache
+		self::$QUESTS[strtolower($quest->getQuestName())] = $quest;
 	}
 	
 	/**

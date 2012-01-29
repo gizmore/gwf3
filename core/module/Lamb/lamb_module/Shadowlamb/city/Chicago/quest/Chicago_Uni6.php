@@ -1,5 +1,5 @@
 <?php
-require_once Lamb::DIR.'lamb_module/Shadowlamb/quest/Delaware/Delaware_Exams5.php';
+require_once Lamb::DIR.'lamb_module/Shadowlamb/city/Delaware/quest/Delaware_Exams5.php';
 final class Quest_Chicago_Uni6 extends Quest_Delaware_Exams5
 {
 	public function getQuestName() { return 'MasterBachelor'; }
