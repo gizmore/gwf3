@@ -42,7 +42,7 @@ final class Slay_SongTag extends GDO
 			
 			if ($count > 0)
 			{
-				$cache[$tag_obj->getVar('st_name')] = $count;
+				$cache[$tag_obj->getVar('st_name')] = array($count, $tid);
 			}
 			
 			if (false === $table->insertAssoc(array(
@@ -67,9 +67,11 @@ final class Slay_SongTag extends GDO
 		if (count($cache) > 0)
 		{
 			arsort($cache);
-			foreach ($cache as $tname => $count)
+			foreach ($cache as $tname => $data)
 			{
-				$cc .= sprintf(', %s(%.02f%%)', $tname, $count/$taggers*100);
+				list($count, $tid) = $data;
+				$href = sprintf('/index.php?mo=Slaytags&me=Search&searchtag=%s&searchterm=&search=Search&by=ss_id&dir=ASC&page=1', $tid);
+				$cc .= sprintf(', <a href="%s">%s(%.02f%%)</a>', $href, $tname, $count/$taggers*100);
 			}
 			$cc = substr($cc, 2);
 		}
