@@ -248,6 +248,13 @@ class SR_Player extends GDO
 	public function getY() { return $this->getDistance(); }
 	public function hasSolvedQuest($name) { return SR_Quest::getQuest($this, $name)->isDone($this); }
 		
+	################
+	### Language ###
+	################
+	public function getLangISO() { return (false === ($user = $this->getUser())) ? 'en' : $user->getLangISO(); }
+	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
+	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
+	
 	############
 	### Enum ###
 	############

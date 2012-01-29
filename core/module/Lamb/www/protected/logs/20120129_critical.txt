@@ -1,0 +1,2 @@
+<?php die(2); ?>
+06:27 [localhost] - Cannot redeclare Lamb_Module::onLoadLanguage() in core/module/Lamb/Lamb_Module.php line 78

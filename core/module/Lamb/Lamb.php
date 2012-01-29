@@ -57,7 +57,17 @@ final class Lamb
 	##############
 	public function getModules() { return $this->modules; }
 	public function getServers() { return $this->servers; }
-
+	
+	################
+	### Language ###
+	################
+	private $lang;
+	public function getLang() { return $this->lang(); }
+	public function onLoadLanguage() { $this->lang = new GWF_LangTrans(self::DIR.'lang/lambbot'); return $this->lang; }
+	public function lang($key, $args=NULL) { return $this->lang->langISO('en', $key, $args); }
+	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
+	public function langUser(Lamb_User $user, $key, $args=NULL) { return $this->lang->langISO($user->getLangISO(), $key, $args); }
+	
 	###############
 	### Current ###
 	###############
@@ -110,6 +120,9 @@ final class Lamb
 	############
 	public function init()
 	{
+		Lamb_Log::logDebug('Loading lambbot language file...');
+		$this->onLoadLanguage();
+		
 		$t = microtime(true);
 		
 		$this->sumUptime();
@@ -220,12 +233,21 @@ final class Lamb
 		# Install
 		if (false === ($module->onInstall()))
 		{
+			return Lamb_Log::logError(sprintf('Lamb::initModule(%s) failed: onInstall returned false.', $module_name).PHP_EOL);
 			return false;
 		}
 		
-		#Init
+		# Init
 		if (false === ($module->onInit()))
 		{
+			return Lamb_Log::logError(sprintf('Lamb::initModule(%s) failed: onInit returned false.', $module_name).PHP_EOL);
+			return false;
+		}
+		
+		# Language
+		if (false === ($module->onLoadLanguage()))
+		{
+			return Lamb_Log::logError(sprintf('Lamb::initModule(%s) failed: onLoadLanguage returned false.', $module_name).PHP_EOL);
 			return false;
 		}
 

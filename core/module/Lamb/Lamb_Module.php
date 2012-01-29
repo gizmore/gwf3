@@ -15,8 +15,20 @@ abstract class Lamb_Module
 	public function setName($name) { $this->name = $name; }
 	
 	############
+	### Lang ###
+	############
+	private $lang;
+	public function getLang() { return $this->lang; }
+	public function onLoadLanguage() { $this->lang = new GWF_LangTrans(Lamb::DIR.'lamb_module/'.$this->name.'/lang/'.strtolower($this->name)); }
+	public function lang($key, $args=NULL) { return $this->lang->langISO('en', $key, $args); }
+	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
+	public function langUser(Lamb_User $user, $key, $args=NULL) { return $this->lang->langISO($user->getLangISO(), $key, $args); }
+		
+	############
 	### Init ###
 	############
+	public function __construct() {}
+	
 	private $inited = array();
 	public function initServer(Lamb_Server $server)
 	{

@@ -7,6 +7,14 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	
 	# Hardcoded shadowlamb channels for shortcuts
 	public static $INCLUDE_CHANS = array('#sr', '#shadowlamb');
+
+	private static $INSTANCE;
+	public static function instance() { return self::$INSTANCE; }
+	public function __construct()
+	{
+		parent::__construct();
+		self::$INSTANCE = $this;
+	}
 	
 	################
 	### Triggers ###

@@ -411,13 +411,15 @@ class Shadowcmd
 		$command = self::unshortcut($cmd);
 		$commands = self::getCurrentCommands($player);
 
-//		var_dump($cmd);
 		if (!in_array($cmd, $commands, true))
 		{
-			if (!$player->isCreated()) {
-				$bot->reply('You did not #start the game yet.');
+			if (!$player->isCreated())
+			{
+				$player->rply('0000'); # You did not start game yet
+				Shadowrun4::removePlayer($player);
 			}
-			else {
+			else
+			{
 				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
 			}
 			return false;

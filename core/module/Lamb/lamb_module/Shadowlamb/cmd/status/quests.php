@@ -30,7 +30,7 @@ final class Shadowcmd_quests extends Shadowcmd
 				return self::displaySection($player, $quests, $args[0], $args);
 			case 'stats': case 's':
 				return self::displayStats($player, $quests);
-			case 'citystats': case 'cs':
+			case 'citystats': case 'cstats': case 'cs':
 				return self::displayCityStats($player);
 			default:
 				if (Common::isNumeric($args[0]))
@@ -87,8 +87,6 @@ final class Shadowcmd_quests extends Shadowcmd
 	private static function displayCityStats(SR_Player $player)
 	{
 		$all = SR_Quest::getQuests();
-		
-		var_dump($all);
 		
 		$by_city = array();
 		foreach ($all as $quest)

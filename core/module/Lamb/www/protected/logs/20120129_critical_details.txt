@@ -1,0 +1,8 @@
+<?php die(2); ?>
+06:27 [localhost] - 
+Cannot redeclare Lamb_Module::onLoadLanguage() in core/module/Lamb/Lamb_Module.php line 78
+Backtrace starts in [unknown file] line ?.
+GWF_Debug::shutdown_function() core/inc/util/GWF_Debug.php line 109.
+GWF_Debug::error_handler().... core/inc/util/GWF_Debug.php line 144.
+GWF_Log::logCritical()........ core/inc/util/GWF_Log.php line 84.
+
