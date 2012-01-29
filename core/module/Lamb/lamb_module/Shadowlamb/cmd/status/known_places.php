@@ -22,7 +22,8 @@ final class Shadowcmd_known_places extends Shadowcmd
 		}
 		
 		$cityname = $city->getName();
-		$bot->reply(sprintf('Known Places in %s: %s.', $cityname, Shadowfunc::getKnownPlaces($player, $cityname)));
+		$bot->reply(Shadowrun4::lang('5007', array($cityname, Shadowfunc::getKnownPlaces($player, $cityname))));
+// 		$bot->reply(sprintf('Known Places in %s: %s.', $cityname, Shadowfunc::getKnownPlaces($player, $cityname)));
 		return true;
 	}
 }

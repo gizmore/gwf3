@@ -16,14 +16,13 @@ final class Shadowhelp
 			'dmg' => 'damage',
 			'skill' => 'skills',
 			'attribute' => 'attributes',
-//			'ca' => 'cast'
-//			'casting' => 'cast',
 			'bmi' => 'body_mass',
 			'die' => 'death',
 		);
+		
 		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
 		
-		if (isset($shortcuts[$word]))
+		if (true === isset($shortcuts[$word]))
 		{
 			return $shortcuts[$word];
 		}
@@ -407,6 +406,7 @@ final class Shadowhelp
 							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
 							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
 							'view' => 'Location command. Usage: #(v)iew [<view_id>]. In shops you can view the shops items or examine a shop item with this command.',
+							'viewi' => 'Location command: Usage: #viewi [<pattern>] [<page>]. Generic searchable view implementation.',
 						),
 						
 						'bank_cmds' => 'Bank commands',

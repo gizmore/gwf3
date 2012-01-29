@@ -28,11 +28,13 @@ class Shadowcmd_asl extends Shadowcmd
 		$b = chr(2);
 		if ($player->getBase('age') > 0)
 		{
-			return self::reply($player, sprintf("Your asl: %s. Use #asl [<age|bmi|height>] for party sums.", Shadowfunc::displayASL($player)));
+			return self::rply($player, '5012', array(Shadowfunc::displayASL($player)));
+// 			return self::reply($player, sprintf("Your asl: %s. Use #asl [<age|bmi|height>] for party sums.", Shadowfunc::displayASL($player)));
 		}
 		else
 		{
-			$player->message(sprintf("You did not setup your asl with {$b}#aslset{$b} yet. You need to do this to start moving in the game."));
+			$player->msg('1011');
+// 			$player->message(sprintf("You did not setup your asl with {$b}#aslset{$b} yet. You need to do this to start moving in the game."));
 			return false;
 		}
 	}
@@ -51,11 +53,9 @@ class Shadowcmd_asl extends Shadowcmd
 	
 	public static function onASLShowPartyB(SR_Player $player, $field)
 	{
-		$ftxts = array('age' => 'ages', 'bmi' => 'body masses', 'height' => 'heights');
-		$b = chr(2);
 		$out = '';
 		$sum = 0;
-//		$i = 1;
+		$format = Shadowrun4::lang('fmt_sumlist');
 		foreach ($player->getParty()->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
@@ -68,9 +68,8 @@ class Shadowcmd_asl extends Shadowcmd
 				case 'height': $out2 = Shadowfunc::displayDistance($val, 2); break;
 				default: self::reply($player, 'Error unknown field in onASLShowPartyB()'); return false;
 			}
-			$out .= sprintf(", {$b}%d{$b}-%s(%s)", $member->getEnum(), $member->getName(), $out2);
+			$out .= sprintf($format, $member->getEnum(), $member->getName(), $out2);
 		}
-		
 		switch ($field)
 		{
 			case 'age': $sumtxt = "{$sum}y"; break;
@@ -78,8 +77,7 @@ class Shadowcmd_asl extends Shadowcmd
 			case 'height': $sumtxt = Shadowfunc::displayDistance($sum, 2); break;
 			default: self::reply($player, 'Error unknown field2 in onASLShowPartyB()'); return false;
 		}
-		$message = sprintf('Your party\'s %s(%s): %s.', $ftxts[$field], $sumtxt, substr($out, 2));
-		self::reply($player, $message);
+		self::rply($player, '', array(Shadowrun4::lang('sum_'.$field), $sumtxt, substr($out, 2)));
 		return true;
 	}
 }

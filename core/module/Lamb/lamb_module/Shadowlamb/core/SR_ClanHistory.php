@@ -63,22 +63,36 @@ final class SR_ClanHistory extends GDO
 	 */
 	public static function getHistMessage($time, $pname, $action, $iname, $amt)
 	{
+		$key = 'ch_'.$action;
 		switch ($action)
 		{
-			case self::CREATE: return sprintf('%s created the clan %s.', $pname, $iname);
-			case self::REQUEST: return sprintf('%s requested to join your clan as member #%s.', $pname, $amt);
-			case self::JOIN: return sprintf('%s has joined your clan as member #%s.', $pname, $amt);
-			case self::PART: return sprintf('%s has left your clan and it now holds %s members.', $pname, $amt);
-			case self::MSG: return sprintf("\X02%s\X02: \"%s\"", $pname, $iname);
-			case self::PUSHY: return sprintf('%s has pushed %s into the clanbank.', $pname, Shadowfunc::displayNuyen($amt));
-			case self::POPY: return sprintf('%s has taken %s out of the clanbank.', $pname, Shadowfunc::displayNuyen($amt));
-			case self::PUSHI: return sprintf('%s has put %s %s into the clanbank.', $pname, $amt, $iname);
-			case self::POPI: return sprintf('%s has taken %s %s out of the clanbank.', $pname, $amt, $iname);
-			case self::ADD_MEMBERS: return sprintf('%s has purchased more member slots and the clan can now hold up to %s.', $pname, $amt);
-			case self::ADD_WEALTH: return sprintf('%s has purchased more nuyen capacity and the clan can now hold up to %s.', $pname, Shadowfunc::displayNuyen($amt));
-			case self::ADD_STORAGE: return sprintf('%s has purchased more storage room and the clan can now hold up to %s.', $pname, Shadowfunc::displayWeight($amt));
-			default: return 'ERR ACTION:'.$action;
+			case self::CREATE: $args = array($pname, $iname); break;
+			case self::REQUEST:
+			case self::JOIN:
+			case self::PART: $args = array($pname, $amt); break;
+			case self::MSG: $args = array($pname, $iname); break;
+			case self::PUSHY:
+			case self::POPY: $args = array($pname, Shadowfunc::displayNuyen($amt)); break;
+			case self::PUSHI:
+			case self::POPI: $args = array($pname, $amt, $iname); break;
+			case self::ADD_MEMBERS: $args = array($pname, $amt); break;
+			case self::ADD_WEALTH: $args = array($pname, Shadowfunc::displayNuyen($amt)); break;
+			case self::ADD_STORAGE: $args = array($pname, Shadowfunc::displayWeight($amt)); break;
+// 			case self::CREATE: return sprintf('%s created the clan %s.', $pname, $iname);
+// 			case self::REQUEST: return sprintf('%s requested to join your clan as member #%s.', $pname, $amt);
+// 			case self::JOIN: return sprintf('%s has joined your clan as member #%s.', $pname, $amt);
+// 			case self::PART: return sprintf('%s has left your clan and it now holds %s members.', $pname, $amt);
+// 			case self::MSG: return sprintf("\X02%s\X02: \"%s\"", $pname, $iname);
+// 			case self::PUSHY: return sprintf('%s has pushed %s into the clanbank.', $pname, Shadowfunc::displayNuyen($amt));
+// 			case self::POPY: return sprintf('%s has taken %s out of the clanbank.', $pname, Shadowfunc::displayNuyen($amt));
+// 			case self::PUSHI: return sprintf('%s has put %s %s into the clanbank.', $pname, $amt, $iname);
+// 			case self::POPI: return sprintf('%s has taken %s %s out of the clanbank.', $pname, $amt, $iname);
+// 			case self::ADD_MEMBERS: return sprintf('%s has purchased more member slots and the clan can now hold up to %s.', $pname, $amt);
+// 			case self::ADD_WEALTH: return sprintf('%s has purchased more nuyen capacity and the clan can now hold up to %s.', $pname, Shadowfunc::displayNuyen($amt));
+// 			case self::ADD_STORAGE: return sprintf('%s has purchased more storage room and the clan can now hold up to %s.', $pname, Shadowfunc::displayWeight($amt));
+			default: return 'ERR ACTION: '.$action;
 		}
+		return Shadowrun4::lang($key, $args);
 	}
 	
 	public static function insertAndSend(SR_Clan $clan, SR_ClanHistory $event)

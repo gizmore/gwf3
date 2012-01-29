@@ -8,6 +8,10 @@ class SR_Quest extends GDO
 	public static function getQuests() { return self::$QUESTS; }
 	public static function getTotalQuestCount() { return count(self::$QUESTS); }
 	
+	############
+	### Lang ###
+	############
+	
 	####################
 	### Option flags ###
 	####################
@@ -176,22 +180,26 @@ class SR_Quest extends GDO
 	{
 		if ( $this->isDone($player) )
 		{
-			return 'done';
+			return Shadowrun4::lang('qu_done');
+// 			return 'done';
 		} else if ( $this->isAccepted($player) )
 		{
-			return 'open';
+			return Shadowrun4::lang('qu_open');
 		} else if ( $this->isDeclined($player) )
 		{
-			return 'deny';
+			return Shadowrun4::lang('qu_deny');
+// 			return 'deny';
 		} else if ( $this->isFailed($player) )
 		{
-			return 'fail';
+			return Shadowrun4::lang('qu_abort');
+// 			return 'fail';
 		} else if ( $this->isAborted($player) )
 		{
-			return 'abort';
+			return Shadowrun4::lang('qu_fail');
+// 			return 'abort';
 		}
 
-		return 'unknown';
+		return 'UNKNOWN_QUEST_STATE';
 	}
 
 	##############

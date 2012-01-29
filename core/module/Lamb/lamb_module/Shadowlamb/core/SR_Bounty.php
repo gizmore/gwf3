@@ -32,19 +32,20 @@ final class SR_Bounty extends GDO
 	
 	public static function displayBountyParty(SR_Party $party)
 	{
-		$i = 1;
-		$b = chr(2);
 		$back = '';
+		$format = Shadowrun4::lang('fmt_sumlist');
 		foreach ($party->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
 			$bounty = $member->getBase('bounty');
 			if ($bounty > 0)
 			{
-				$back .= sprintf(", {$b}%s{$b}-%s(%s)", $i++, $member->getName(), Shadowfunc::displayNuyen($bounty));
+				$back .= sprintf($format, $member->getEnum(), $member->getName(), Shadowfunc::displayNuyen($bounty));
+// 				$back .= sprintf(", {$b}%s{$b}-%s(%s)", $i++, $member->getName(), Shadowfunc::displayNuyen($bounty));
 			}
 		}
-		return $back === '' ? '' : sprintf(" There is a {$b}bounty{$b} on %s.", substr($back, 2));
+		return $back === '' ? '' : Shadowrun4::lang('meet_bounty', array(substr($back, 2)));
+// 		return $back === '' ? '' : sprintf(" There is a {$b}bounty{$b} on %s.", substr($back, 2));
 	}
 	
 	public static function displayBountyPlayer(SR_Player $player)
@@ -52,16 +53,16 @@ final class SR_Bounty extends GDO
 		$bounty = $player->getBase('bounty');
 		if ($bounty <= 0)
 		{
-			return "This player has no bounty.";
+			return $player->lang('no_bounty'); # This player has no bounty.
 		}
 		$total = Shadowfunc::displayNuyen($bounty);
-		$b = chr(2);
-		return sprintf("There is a total {$b}bounty of %s{$b} for %s: %s.", $total, $player->getName(), self::displayBountyPlayerDetails($player));
+		return $player->lang('total_bounty', array($total, $player->getName(), self::displayBountyPlayerDetails($player)));
+// 		return sprintf("There is a total {$b}bounty of %s{$b} for %s: %s.", $total, $player->getName(), self::displayBountyPlayerDetails($player));
 	}
 	
 	public static function displayBountyPlayerDetails(SR_Player $player)
 	{
-		return "Unknown Contactors";
+		return $player->lang('unknown_contr'); # Unknown contractor
 	}
 	
 	public static function displayBounties(SR_Player $player, $page=1, $ipp=10, $orderby='bounty DESC', $server=NULL)
@@ -76,21 +77,27 @@ final class SR_Bounty extends GDO
 		
 		if (count($bounties) === 0)
 		{
-			return 'There are no bounties at the moment.';
+			return $player->lang('no_bounties');
+// 			return 'There are no bounties at the moment.';
 		}
+		
+		$format = $player->lang('fmt_sumlist');
 		
 		$out = '';
 		foreach ($bounties as $i => $data)
 		{
 			$ny = Shadowfunc::displayNuyen($data[1]);
-			$out .= sprintf(", \x02%s\X02-%s(%s)", $i+1, $data[0], $ny);
+			$out .= sprintf($format, $i+1, $data[0], $ny);
+// 			$out .= sprintf(", \x02%s\X02-%s(%s)", $i+1, $data[0], $ny);
 		}
-		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
+		
+		return $player->lang('bounty_page', array($page, $numPages, substr($out, 2)));
+// 		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
 	}
 	
 	public static function cleanupBounties()
 	{
-		
+		# TODO: Cleanup?
 	}
 	
 	public static function insertBounty(SR_Player $boss, SR_Player $victim, $nuyen)
@@ -144,7 +151,8 @@ final class SR_Bounty extends GDO
 		
 		self::table(__CLASS__)->deleteWhere($where);
 		
-		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayNuyen($sum)));
+		$killer->msg('5034', array(Shadowfunc::displayNuyen($sum)));
+// 		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayNuyen($sum)));
 	}
 	
 }

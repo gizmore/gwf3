@@ -63,6 +63,7 @@ class SR_Player extends GDO
 	const LOOK_DIRTY = 0x100000;
 	const DIRTY_FLAGS = 0x187fe0;
 
+	public static $ALL = NULL; # see init
 	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
 //	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
@@ -247,14 +248,16 @@ class SR_Player extends GDO
 	public function getX() { return $this->getEnum() * SR_Party::X_COORD_INC + SR_Party::X_COORD_INI;}
 	public function getY() { return $this->getDistance(); }
 	public function hasSolvedQuest($name) { return SR_Quest::getQuest($this, $name)->isDone($this); }
-		
+	public function displayWeight() { return Shadowfunc::displayWeight($this->get('weight')); }
+	public function displayMaxWeight() { return Shadowfunc::displayWeight($this->get('max_weight')); }
+	
 	################
 	### Language ###
 	################
 	public function getLangISO() { return (false === ($user = $this->getUser())) ? 'en' : $user->getLangISO(); }
-	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
-	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
-	
+	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->lang($key, $args)); }
+	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->lang($key, $args)); }
+	public function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->lang($key, $args); }
 	############
 	### Enum ###
 	############
@@ -275,6 +278,7 @@ class SR_Player extends GDO
 	 */
 	public function getUser()
 	{
+		#XXX What the heck?
 		$user = $this->getVar('sr4pl_uid');
 		if (false !== ($server = Lamb::instance()->getServer($user->getVar('lusr_sid'))))
 		{
@@ -360,13 +364,13 @@ class SR_Player extends GDO
 	 */
     public static function init()
     {
-    	self::$REV_ALL = array_merge(
-    		array_flip(self::$ATTRIBUTE),
-    		array_flip(self::$SKILL),
-    		array_flip(self::$COMBAT_STATS),
-    		array_flip(self::$MAGIC_STATS),
-    		array_flip(self::$MOUNT_STATS)
-    	);
+    	self::$ALL = array_merge(self::$ATTRIBUTE, self::$SKILL, self::$COMBAT_STATS, self::$MAGIC_STATS, self::$MOUNT_STATS, self::$KNOWLEDGE);
+    	self::$REV_ALL = array_flip(self::$ALL);
+    }
+    
+    public static function getAllModifiers()
+    {
+    	return self::$ALL;
     }
 	
 	public static function getByID($player_id)
@@ -593,6 +597,14 @@ class SR_Player extends GDO
 		if ($this->isOptionEnabled(self::HELP))
 		{
 			$this->message($message);
+		}
+	}
+	
+	public function hlp($key, $args=NULL)
+	{
+		if ($this->isOptionEnabled(self::HELP))
+		{
+			$this->msg('5030', Shadowrun4::lang($key, $args));
 		}
 	}
 	
@@ -1679,10 +1691,13 @@ class SR_Player extends GDO
 		foreach ($items as $itemid => $item)
 		{
 			$name = $item->getItemName();
-			if (isset($temp[$name])) {
+			if (isset($temp[$name]))
+			{
 				$temp[$name][0] += $item->getAmount();
 				$temp[$name][1] = $itemid;
-			} else {
+			}
+			else
+			{
 				$temp[$name] = array($item->getAmount(), $itemid);
 			}
 		}
@@ -2555,5 +2570,6 @@ class SR_Player extends GDO
 		$this->old_combat_stack = '';
 		return true;
 	}
+	
 }
 ?>

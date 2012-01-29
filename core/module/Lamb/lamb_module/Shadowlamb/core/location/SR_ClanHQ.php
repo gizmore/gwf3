@@ -50,7 +50,7 @@ class SR_ClanHQ extends SR_Location
 	
 	public function getCommands(SR_Player $player)
 	{
-		return array('abondon', 'request', 'accept', 'create' , 'manage', 'toggle', 'push', 'pop', 'view', 'pushy', 'popy');
+		return array('abandon', 'request', 'accept', 'create' , 'manage', 'toggle', 'push', 'pop', 'view', 'pushy', 'popy');
 	}
 
 	public function on_abandon(SR_Player $player, array $args)

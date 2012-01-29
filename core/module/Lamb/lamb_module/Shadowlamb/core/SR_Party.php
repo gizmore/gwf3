@@ -875,6 +875,12 @@ final class SR_Party extends GDO
 		return true;
 	}
 	
+	/**
+	 * Notice a raw message to all members.
+	 * @param string $message
+	 * @param SR_Player|null $but
+	 * @return true
+	 */
 	public function notice($message, $but=NULL)
 	{
 		$butid = $but === NULL ? 0 : $but->getID();
@@ -889,6 +895,33 @@ final class SR_Party extends GDO
 		return true;
 	}
 	
+	/**
+	 * Language setting aware notice.
+	 * @see self::notice
+	 * @param string $key
+	 * @param array|null $args
+	 * @param SR_Player|null $but
+	 * @return true
+	 */
+	public function ntice($key, $args=NULL, $but=NULL)
+	{
+		$butid = $but === NULL ? 0 : $but->getID();
+		foreach ($this->members as $player)
+		{
+			$player instanceof SR_Player;
+			if ($player->getID() !== $butid)
+			{
+				$player->msg($key, $args);
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * @deprecated
+	 * @param SR_Player $player
+	 * @param unknown_type $message
+	 */
 	public function message(SR_Player $player, $message)
 	{
 		$this->notice($player->getEnum().'-'.$player->getName().$message);
@@ -1218,32 +1251,67 @@ final class SR_Party extends GDO
 	{
 		$b = chr(2);
 		$action = $this->getAction();
+		
 		switch ($action)
 		{
-			case 'delete': return "{$b}beeing deleted{$b}.";
+			case 'delete':
+				return Shadowrun4::lang('pa_delete');
+				
 			case 'talk':
 				$ep = $this->getEnemyParty();
-				$epm = $ep === false ? 'Empty party' : $ep->displayMembers();
-				return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $epm, $this->displayContactETA(), $this->displayLastAction());
-			case 'fight': return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
-			case 'inside': return sprintf("{$b}inside{$b} %s.", $this->getLocation());
+				$epm = $ep === false ? Shadowrun4::lang('empty_party') : $ep->displayMembers();
+				return Shadowrun4::lang('pa_talk', array(
+						$epm, $this->displayContactETA(), $this->displayLastAction()));
+// 				return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $epm, $this->displayContactETA(), $this->displayLastAction());
+			
+			case 'fight':
+				return Shadowrun4::lang('pa_fight', array(
+					$this->getEnemyParty()->displayMembers(true), $this->displayLastAction()));
+// 				return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
+			
+			case 'inside':
+				return Shadowrun4::lang('pa_inside', array($this->getLocation()));
+// 				return sprintf("{$b}inside{$b} %s.", $this->getLocation());
+				
 			case 'outside':
 				$city = $this->getCityClass();
 				if ($this->isAtLocation() || (!$city->isDungeon()))
 				{
-					return sprintf("{$b}outside{$b} of %s.", $this->getLocation());
+					return Shadowrun4::lang('pa_outside1', array($this->getLocation()));
+// 					return sprintf("{$b}outside{$b} of %s.", $this->getLocation());
 				}
 				else
 				{
-					return sprintf("somewhere inside %s.", $this->getLocation());
+					return Shadowrun4::lang('pa_outside2', array($this->getLocation()));
+// 					return sprintf("somewhere inside %s.", $this->getLocation());
 				}
-			case 'sleep': return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
-			case 'travel': return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getTarget(), $this->displayETA());
-			case 'explore': return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
-			case 'goto': return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
-			case 'hunt': return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
-			case 'hijack': return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
-			default: return 'UNKNOWN PARTY ACTION IS UNKNOWN.';
+				
+			case 'sleep':
+				return Shadowrun4::lang('pa_sleep', array($this->getLocation()));
+// 				return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
+				
+			case 'travel':
+				return Shadowrun4::lang('pa_travel', array($this->getTarget(), $this->displayETA()));
+// 				return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getTarget(), $this->displayETA());
+			
+			case 'explore':
+				return Shadowrun4::lang('pa_explore', array($this->getLocation(), $this->displayETA()));
+// 				return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
+			
+			case 'goto':
+				return Shadowrun4::lang('pa_goto', array($this->getLocation(), $this->displayETA()));
+// 				return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
+			
+			case 'hunt':
+				return Shadowrun4::lang('pa_hunt', array($this->getTarget(), $this->displayETA()));
+// 				return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
+			
+			case 'hijack':
+				return Shadowrun4::lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $this->displayETA()));
+// 				return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
+			
+			default:
+				return 'UNKNOWN PARTY ACTION IS UNKNOWN.';
 		}
 	}
 	
@@ -1259,7 +1327,8 @@ final class SR_Party extends GDO
 			case 'travel':
 				$lt = $this->getVar('sr4pa_last_target');
 				$le = $this->displayLastETA();
-				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
+				return Shadowrun4::lang('last_action', array($la, $lt, $le));
+// 				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
 				
 			default:
 				return '';
@@ -1268,11 +1337,11 @@ final class SR_Party extends GDO
 	
 	public function displayMembers($with_distance=false, $with_levels=false)
 	{
-		if ($this->getMemberCount() === 0) {
+		if ($this->getMemberCount() === 0)
+		{
 			return 'This party is empty! (should not see me)';
 		}
 		$b = chr(2);
-//		$i = 1;
 		$back = '';
 		foreach ($this->members as $player)
 		{
@@ -1320,7 +1389,7 @@ final class SR_Party extends GDO
 			{
 				$this->pushAction('outside', 'Redmond', 0);
 				$this->pushAction('outside', 'Redmond', 0);
-				Lamb_Log::logError(sprintf('Human party %d got action delete!', $this->getID()));
+				Lamb_Log::logError(sprintf('ERROR: Human party %d got action delete!', $this->getID()));
 				return;
 			}
 		}
@@ -1413,18 +1482,16 @@ final class SR_Party extends GDO
 			$player->healHP(0.1);
 			$player->healMP(0.1);
 			
-//			printf("Player %s has now %s/%s HP and %s/%s MP.\n", $player->getName(), $player->getHP(), $player->getMaxHP(), $player->getMP(), $player->getMaxMP());
-			
 			if ($player->hasFullHPMP())
 			{
 				$sleeping--;
-				$player->message('You awake and have a delicious breakfast.');
+				$player->msg('5001'); # You awake and have a delicous breakfast.
 			}
 		}
 		if ($sleeping === 0)
 		{
 			$this->popAction();
-			$this->notice('You are ready to go.');
+			$this->ntice('5002'); # You are ready to go.
 		}
 	}
 	
@@ -1527,13 +1594,17 @@ final class SR_Party extends GDO
 	public function givePartyXP($xp)
 	{
 		$xp_gain = (int)round($xp*100);
-		if ($xp_gain <= 0) {
+		
+		if ($xp_gain <= 0)
+		{
 			return true;
 		}
+		
 		$xpl = self::XP_PER_LEVEL*100;
 		$xp = $this->getVar('sr4pa_xp') + $xp_gain;
 		$data = array('sr4pa_xp_total'=>$this->getVar('sr4pa_xp_total')+$xp);
 		$gain = (int)($xp/$xpl);
+		
 		if ($gain > 0)
 		{
 			$data['sr4pa_level'] = $this->getVar('sr4pa_level') + $gain;
@@ -1541,13 +1612,15 @@ final class SR_Party extends GDO
 		}
 		$data['sr4pa_xp'] = $xp;
 		
-		if (false === ($this->saveVars($data))) {
-			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		if (false === ($this->saveVars($data)))
+		{
 			return false;
 		}
 		
-		if ($gain > 0) {
-			$this->notice(sprintf('The party advanced to level %s.', $this->getPartyLevel()));
+		if ($gain > 0)
+		{
+			$this->ntice('', array($this->getPartyLevel()));
+// 			$this->notice(sprintf('The party advanced to level %s.', $this->getPartyLevel()));
 		}
 		
 		return true;

@@ -62,14 +62,19 @@ abstract class SR_Spell
 	 */
 	public function getTarget(SR_Player $player, array $args)
 	{
-		if ($this->isOffensive()) {
+		if ($this->isOffensive())
+		{
 			$target = Shadowfunc::getOffensiveTarget($player, $args[0]);
-		} else {
+		}
+		else
+		{
 			$target = Shadowfunc::getFriendlyTarget($player, $args[0]);
 		}
 		
-		if ($target === false) {
-			$player->message('The target is unknown');
+		if ($target === false)
+		{
+			$player->msg('1012');
+// 			$player->message('The target is unknown');
 		}
 		
 		return $target;

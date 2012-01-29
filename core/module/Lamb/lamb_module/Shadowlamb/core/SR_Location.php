@@ -27,8 +27,10 @@ abstract class SR_Location
 	public function getComputers() { return array(); }
 	public function getCommands(SR_Player $player) { return array(); }
 	public function getFoundPercentage() { return 0.00; }
-	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
-	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found', array($this->getName())); }
+	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter', array($this->getName())); }
+// 	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
+// 	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
 	public function getHelpText(SR_Player $player) { return false; }
 	public function isPVP() { return false; }
 	public function getCity() { return Common::substrUntil($this->getName(), '_'); }
@@ -109,7 +111,8 @@ abstract class SR_Location
 				return $npc->onNPCTalkA($player, $word, $args);
 			}
 		}
-		echo "ERROR: Unknown function '$name'.\n";
+		
+		Lamb_Log::logError("ERROR: Unknown function '$name'.");
 		return false;
 	}
 	
@@ -160,11 +163,7 @@ abstract class SR_Location
 	public function on_exit(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-// 		if (false !== ($error = Shadowcmd::checkLeader($player)))
-// 		{
-// 			$bot->reply($error);
-// 			return false;
-// 		}
+
 		$party = $player->getParty();
 		if (false !== ($error = Shadowcmd::checkMove($party)))
 		{
@@ -173,7 +172,8 @@ abstract class SR_Location
 		}
 	
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
-		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
+		$party->ntice('5020', array($party->getLocation()));
+// 		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
 		return true;
 	}
 }

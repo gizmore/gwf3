@@ -12,14 +12,16 @@ abstract class SR_Computer
 	public function onFailed(SR_Player $player, $hits, $n)
 	{
 		$message = sprintf('Your %s. Hacking attemp against the %s box failed with %s hits.', $n, $this->getName(), $hits);
-		echo "$message\n";
-		$player->message('Your hacking attempt failed.');
+		Lamb_Log::logDebug($message);
+		
+		$player->msg('5022');
+// 		$player->message('Your hacking attempt failed.');
 	}
 	
 	public function onHacked(SR_Player $player, $hits)
 	{
 		$message = sprintf('You have hacked the %s box with %s hits.', $this->getName(), $hits);
-		echo "$message\n";
+		Lamb_Log::logDebug($message);
 	}
 	
 	###############

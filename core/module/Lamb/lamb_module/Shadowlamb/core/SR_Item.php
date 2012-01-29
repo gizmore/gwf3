@@ -110,6 +110,7 @@ class SR_Item extends GDO
 	{
 		return count(self::$items);
 	}
+	
 	/**
 	 * @param string $itemname
 	 * @param array $data
@@ -117,7 +118,8 @@ class SR_Item extends GDO
 	 */
 	protected static function instance($itemname, $data=NULL)
 	{
-		if (!array_key_exists($itemname, self::$items)) {
+		if (!array_key_exists($itemname, self::$items))
+		{
 			Lamb_Log::logError(sprintf('SR_Item::instance() failed: Unknown itemname: %s.', $itemname));
 			return false;
 		}
@@ -214,19 +216,22 @@ class SR_Item extends GDO
 	public static function createByName($itemname, $amount=true, $insert=true)
 	{
 		$name = Common::substrUntil($itemname, '_of_', $itemname);
-		if (!array_key_exists($name, self::$items)) {
+		if (!array_key_exists($name, self::$items))
+		{
 			Lamb_Log::logError(sprintf('SR_Item::createByName(%s) failed: Unknown itemname: %s.', $itemname, $name));
 			return false;
 		}
 		$classname = "Item_$name";
 
-		
-		if ('' === ($modstring = Common::substrFrom($itemname, '_of_', ''))) {
+		if ('' === ($modstring = Common::substrFrom($itemname, '_of_', '')))
+		{
 			$modifiers = NULL;
 		}
-		else {
+		else
+		{
 			$modifiers = $modstring;
-			if (false === self::checkModifiers($modstring)) {
+			if (false === self::checkModifiers($modstring))
+			{
 				return false;
 			}
 		}
@@ -452,11 +457,13 @@ class SR_Item extends GDO
 	 */
 	public function displayModifiersB(SR_Player $player)
 	{
-		if ($this->modifiers === NULL) {
+		if ($this->modifiers === NULL)
+		{
 			return '';
 		}
-		$b = chr(2);
-		return sprintf(' %sModifiers%s: %s.', $b, $b, Shadowfunc::getModifiers($this->getItemModifiersB()));
+		return Shadowrun4::lang('modifiers', array(Shadowfunc::getModifiers($this->getItemModifiersB())));
+// 		$b = chr(2);
+// 		return sprintf(' %sModifiers%s: %s.', $b, $b, Shadowfunc::getModifiers($this->getItemModifiersB()));
 	}
 	
 	private function displayWeightB()
@@ -550,19 +557,22 @@ class SR_Item extends GDO
 	################
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		$player->message('You can not use this item.');
+		$player->msg('1013');
+// 		$player->message('You can not use this item.');
 		return false;
 	}
 	
 	public function onItemEquip(SR_Player $player)
 	{
-		$player->message('You can not equip this item.');
+		$player->msg('1014');
+// 		$player->message('You can not equip this item.');
 		return false;
 	}
 	
 	public function onItemUnequip(SR_Player $player)
 	{
-		$player->message('You can not equip this item.');
+		$player->msg('1014');
+// 		$player->message('You can not equip this item.');
 		return false;
 	}
 	
@@ -595,6 +605,9 @@ class SR_Item extends GDO
 	################
 	### Duration ###
 	################
+	/**
+	 * @deprecated
+	 */
 	public function displayDuration()
 	{
 		return '';
@@ -698,5 +711,24 @@ class SR_Item extends GDO
 		return strlen($string) <= 255;
 	}
 	
+	/**
+	 * Sort items by type.
+	 * @param SR_Item $a
+	 * @param SR_Item $b
+	 * @return integer
+	 */
+	public static function sort_type_asc($a, $b)
+	{
+		if (0 !== ($back = strcmp($a->getItemType(), $b->getItemType())))
+		{
+			return $back;
+		}
+		
+		if (0 !== ($back = strcmp($a->getItemSubType(), $b->getItemSubType())))
+		{
+			return $back;
+		}
+		return strcasecmp($a->getName(), $b->getName());
+	}
 }
 ?>

@@ -37,8 +37,7 @@ final class SR_BazarShop extends GDO
 	{
 		if ('' === ($slogan = $this->getVar('sr4bs_message')))
 		{
-			$pname = $this->getVar('sr4bs_pname');
-			return "Welcome to {$pname}'s shop.";
+			return Shadowrun4::lang('stub_shop_slogan', array($this->getVar('sr4bs_pname')));
 		}
 		return $slogan;
 	}

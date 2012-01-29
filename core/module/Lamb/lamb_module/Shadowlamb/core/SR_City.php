@@ -203,7 +203,8 @@ abstract class SR_City
 			($target->getParty()->getLocation('inside') !== $party->getLocation())
 		)
 		{
-			$party->notice('Your target for hijacking ('.$party->getTarget().') gone away.');
+			$party->ntice('5024', array($party->getTarget()));
+// 			$party->notice('Your target for hijacking ('.$party->getTarget().') gone away.');
 			$party->pushAction('outside', $party->getLocation());
 			return false;
 		}
@@ -219,19 +220,26 @@ abstract class SR_City
 	
 	private function hasLostHuntTarget(SR_Party $party)
 	{
-		if (false === ($target = $party->getHuntTarget())) {
-			
+		if (false === ($target = $party->getHuntTarget()))
+		{
+			# Fail
 		}
-		elseif ($target->getParty()->getCity() !== $party->getCity()) {
-			$party->notice(sprintf('%s has left %s.', $target->getName(), $party->getCity()));
+		elseif ($target->getParty()->getCity() !== $party->getCity())
+		{
+			$party->ntice('5025', array($target->getName(), $party->getCity()));
+// 			$party->notice(sprintf('%s has left %s.', $target->getName(), $party->getCity()));
 		}
-		elseif ($target->getPartyID() === $party->getID()) {
-			$party->notice(sprintf('%s is in your party now.', $target->getName()));
+		elseif ($target->getPartyID() === $party->getID())
+		{
+			$party->ntice('5026', array($target->getName()));
+// 			$party->notice(sprintf('%s is in your party now.', $target->getName()));
 		}
-		else {
+		else
+		{
 			return false;
 		}
 		
+		# Fail
 		$this->onLostHuntTarget($party);
 		return true;
 	}
@@ -254,19 +262,26 @@ abstract class SR_City
 			$possible[] = array($l, $perc);
 		}
 		
-		if (count($possible) === 0) {
-			$party->notice(sprintf('You explored %s again, but it seems you know every single corner of it.', $cityname));
+		if (count($possible) === 0)
+		{
+			$party->ntice('5027', array($cityname));
+// 			$party->notice(sprintf('You explored %s again, but it seems you know every single corner of it.', $cityname));
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $cityname, 0);
 		}
-		elseif (false === ($l = Shadowfunc::randomData($possible, $total, 500))) {
-			$party->notice(sprintf('You explored %s again, but could not find anything new.', $cityname));
+		elseif (false === ($l = Shadowfunc::randomData($possible, $total, 500)))
+		{
+			$party->ntice('5028', array($cityname));
+// 			$party->notice(sprintf('You explored %s again, but could not find anything new.', $cityname));
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $cityname, 0);
 		}
-		else {
+		else
+		{
 			$n = $l->getName();
 			$party->giveKnowledge('places', $n);
-			$party->notice($l->getFoundText($leader));
-			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.');
+			$party->ntice('5029', array($l->getFoundText($leader)));
+// 			$party->notice($l->getFoundText($leader));
+			$leader->hlp('hlp_in_outside');
+// 			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.');
 			$party->pushAction(SR_Party::ACTION_OUTSIDE, $n);
 		}
 	}
@@ -286,7 +301,8 @@ abstract class SR_City
 	private function onLostHuntTarget(SR_Party $party)
 	{
 		$loc = $party->getCity();
-		$party->notice(sprintf('You have lost your target and continue in the streets of %s.', $loc));
+		$party->ntice('5031', array($loc));
+// 		$party->notice(sprintf('You have lost your target and continue in the streets of %s.', $loc));
 		$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
 	}
 	
@@ -306,14 +322,16 @@ abstract class SR_City
 			case SR_Party::ACTION_INSIDE:
 				$loc = $ep->getLocation();
 				$party->giveKnowledge('places', $loc);
-				$party->notice(sprintf('You found %s at %s with a party of %s members.', $target->getName(), $loc, $ep->getMemberCount()));
+				$party->ntice('5032', array($target->getName(), $loc, $ep->getMemberCount()));
+// 				$party->notice(sprintf('You found %s at %s with a party of %s members.', $target->getName(), $loc, $ep->getMemberCount()));
 				$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
 				break;
 			case SR_Party::ACTION_EXPLORE:
 			case SR_Party::ACTION_GOTO:
 			case SR_Party::ACTION_HUNT:
 				$loc = $party->getCity();
-				$party->notice(sprintf('You found %s in the streets of %s.', $target->getName(), $loc));
+				$party->ntice('5033', array($target->getName(), $loc));
+// 				$party->notice(sprintf('You found %s in the streets of %s.', $target->getName(), $loc));
 				$party->pushAction(SR_Party::ACTION_OUTSIDE, $loc);
 				$party->talk($ep, true);
 				break;

@@ -81,7 +81,8 @@ final class SR_BazarItem extends GDO
 		
 		$iname = $this->getVar('sr4ba_iname');
 		
-		$seller->message(sprintf('%s have been booked to your bank account for selling %s %s to %s.', Shadowfunc::displayNuyen($price), $amt, $iname, $buyer->getName()));
+		$seller->msg('5035', array(Shadowfunc::displayNuyen($price), $amt, $iname, $buyer->getName()));
+// 		$seller->message(sprintf('%s have been booked to your bank account for selling %s %s to %s.', Shadowfunc::displayNuyen($price), $amt, $iname, $buyer->getName()));
 		
 		return true;
 	}

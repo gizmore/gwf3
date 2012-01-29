@@ -1,1 +1,1 @@
-New: 4 NySoft quests working and unlocked. 
+New: #quests citystats + New prerequisite quest in Chicago Blacksmith.

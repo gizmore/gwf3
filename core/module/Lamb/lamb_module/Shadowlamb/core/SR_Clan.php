@@ -130,7 +130,8 @@ final class SR_Clan extends GDO
 			return false;
 		}
 		
-		$player->message(sprintf('Your join request has been sent to the clan leaders.'));
+		$player->msg('5023');
+// 		$player->message(sprintf('Your join request has been sent to the clan leaders.'));
 		
 		return SR_ClanHistory::onRequest($this, $player);
 	}

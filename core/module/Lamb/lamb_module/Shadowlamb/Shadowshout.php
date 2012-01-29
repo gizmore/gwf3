@@ -42,22 +42,26 @@ final class Shadowshout
 	public static function shout(SR_Player $player, $message)
 	{
 		# check minlevel
-		if ($player->getBase('level') < self::MIN_LEVEL) {
-			$player->message(sprintf('You need at least level %s to shout.', self::MIN_LEVEL));
+		if ($player->getBase('level') < self::MIN_LEVEL)
+		{
+			# You need at least level %s to shout.
+			$player->msg('1002', array(self::MIN_LEVEL));
 			return false;
 		}
 		
 		# check delay
 		$delay = self::getShoutWait($player);
-		if ($delay > 0) {
-			$player->message(sprintf('Please wait %s before you shout again.', GWF_Time::humanDuration($delay)));
+		if ($delay > 0)
+		{
+			# Please wait %s before you shout again.
+			$player->msg('1003', array(GWF_Time::humanDuration($delay)));
 			return false;
 		}
 		
 		# store time
 		$player->setTemp(self::TEMP_KEY, time());
 		
-		# send message
+		# send message (cannot get translated easily)
 		$b = chr(2);
 		self::sendGlobalMessage(sprintf('%s shouts: "%s"', $b.$player->getName().$b, $message));
 	}

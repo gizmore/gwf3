@@ -163,7 +163,8 @@ final class SR_KillProtect extends GDO
 		{
 			if ($verbose)
 			{
-				$player->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
+				$player->msg('1015', array($al, $dl, self::MAX_LEVEL_DIFF));
+// 				$player->message(sprintf('Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.', $al, $dl, self::MAX_LEVEL_DIFF));
 			}
 			# Protected by level
 			return true;

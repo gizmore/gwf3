@@ -455,14 +455,16 @@ class Shadowcmd
 	#############
 	public static function reply(SR_Player $player, $message)
 	{
-		if ($player->isFighting())
-		{
-			return $player->message($message);
-		}
-		else
-		{
-			return Shadowrap::instance($player)->reply($message);
-		}
+		return $player->isFighting() ?
+			$player->message($message) :
+			Shadowrap::instance($player)->reply($message);
+	}
+
+	public static function rply(SR_Player $player, $key, $args=NULL)
+	{
+		return $player->isFighting() ?
+			$player->msg($key, $args) :
+			Shadowrap::instance($player)->reply(Shadowrun4::lang($key, $args));
 	}
 }
 ?>

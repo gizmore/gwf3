@@ -46,7 +46,8 @@ abstract class SR_Dungeon extends SR_City
 		$party->setTemp($this->getAlertKey($party), Shadowrun4::getTime() + $duration);
 		if ($announce)
 		{
-			$party->notice(sprintf('You hear the alarm sound!'));
+			$party->ntice('5021');
+// 			$party->notice(sprintf('You hear the alarm sound!'));
 		}
 	}
 	

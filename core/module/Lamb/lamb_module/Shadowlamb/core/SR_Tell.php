@@ -29,7 +29,8 @@ final class SR_Tell extends GDO
 		
 		foreach (array_reverse($result) as $row)
 		{
-			$player->message('OldMessage: '.$row[1]);
+			$player->msg('5019', array($row[1]));
+// 			$player->message('OldMessage: '.$row[1]);
 		}
 		
 		return $table->deleteWhere($where);

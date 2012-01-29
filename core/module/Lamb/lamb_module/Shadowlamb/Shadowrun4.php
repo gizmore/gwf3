@@ -2,6 +2,7 @@
 require_once 'Shadowcmd.php';
 require_once 'Shadowfunc.php';
 require_once 'Shadowhelp.php';
+require_once 'Shadowlang.php';
 require_once 'Shadowrap.php';
 require_once 'Shadowshout.php';
 
@@ -11,6 +12,11 @@ final class Shadowrun4
 	const KICK_IDLE_TIMEOUT = 1800; # 30min
 	const TICKLEN = 1.0; # 1.0 real second == 1 gametick
 	const SECONDS_PER_TICK = 1; # N game second per gametick (you may want to raise during developement, only full int)
+	
+	################
+	### Language ###
+	################
+	public static function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->lang($key, $args); }
 	
 	####################
 	### Game Masters ###
@@ -314,6 +320,21 @@ final class Shadowrun4
 		return $npc;
 	}
 	
+	/**
+	 * Get all NPCs.
+	 * @return array
+	 */
+	public static function getAllNPCs()
+	{
+		$npcs = array();
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			$npcs = array_merge($npcs, array_values($city->getNPCs()));
+		}
+		return $npcs;
+	}
+	
 	############
 	### Init ###
 	############
@@ -340,10 +361,10 @@ final class Shadowrun4
 // 			self::initCities(Lamb::DIR);
 			self::initCityAfter();
 			SR_Player::init();
-//			require_once 'SR_Install.php';
-//			SR_Install::onInstall();
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
+
+			Shadowlang::onLoadLanguage();
 		}
 	}
 	public static function initTimers()
@@ -485,7 +506,8 @@ final class Shadowrun4
 		if ($user->isRegistered() && !$user->isLoggedIn())
 		{
 			$bot->tryAutologin($user);
-			return $bot->reply('You need to login to play.');
+			# You need to login to play.
+			return $bot->reply(LambModule_Shadowlamb::instance()->langUser($user, '0001'));
 		}
 		
 		if (false === ($player = self::getPlayerForUser($user)))
@@ -509,7 +531,8 @@ final class Shadowrun4
 			return;
 		}
 		$p = $player->getParty();
-		$p->notice(sprintf('%s just quit his irc server.', $player->displayNameNB()), $player);
+		# %s just quit his irc server.
+		$p->ntice('5000', array($player->displayNameNB()), $player);
 	}
 	
 	#############

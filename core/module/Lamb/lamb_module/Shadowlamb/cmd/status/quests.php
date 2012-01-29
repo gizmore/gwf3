@@ -75,11 +75,14 @@ final class Shadowcmd_quests extends Shadowcmd
 			}
 		}
 		
-		
-		$message = sprintf(
-			'Quest stats: %d open, %d accomplished, %d rejected, %d failed, %d unknown from a total of %d.',
+		$message = Shadowrun4::lang('5010', array(
 			$open, $done, $declined, $failed, $unknown, $total
-		);
+		));
+		
+// 		$message = sprintf(
+// 			'Quest stats: %d open, %d accomplished, %d rejected, %d failed, %d unknown from a total of %d.',
+// 			$open, $done, $declined, $failed, $unknown, $total
+// 		);
 		
 		self::reply($player, $message);
 	}
@@ -109,19 +112,22 @@ final class Shadowcmd_quests extends Shadowcmd
 			$by_city[$cityname][1]++;
 		}
 		
+		$format = Shadowrun4::lang('fmt_cityquests');
+		
 		$out = '';
 		foreach ($by_city as $cityname => $data)
 		{
 			list($done, $total) = $data;
-			$out .= sprintf(', %s(%.01f%%)', $cityname, $done/$total*100);
+			$out .= sprintf($format, $cityname, $done/$total*100);
 		}
 		
 		if ($out === '')
 		{
-			self::reply($player, "You don't have any quest data.");
+			self::reply($player, Shadowrun4::lang('1010'));
 		}
 
-		$message = sprintf('Quest stats per city: %s.', substr($out, 2));
+		$message = Shadowrun4::lang('5009', array(substr($out, 2)));
+// 		$message = sprintf('Quest stats per city: %s.', substr($out, 2));
 		self::reply($player, $message);
 	}
 
@@ -151,9 +157,11 @@ final class Shadowcmd_quests extends Shadowcmd
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nQuests);
 		$page = (int)$page;
 		
+		$format = Shadowrun4::lang('fmt_quests');
+		
 		if (count($quests) === 0)
 		{
-			return self::reply($player, 'There are no quests here.');
+			return self::reply($player, Shadowrun4::lang('1010')); # There are no quests here.
 		}
 		if (count($quests) === 1)
 		{
@@ -164,7 +172,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		{
 			if ( ($page < 1) || ($page > $nPages) )
 			{
-				return self::reply($player, 'This page is empty.');
+				return self::reply($player, Shadowrun4::lang('1009'));
 			}
 			$quests = array_slice($quests, ($page-1)*10, 10, true);
 			$message = '';
@@ -172,16 +180,19 @@ final class Shadowcmd_quests extends Shadowcmd
 			{
 				$quest instanceof SR_Quest;
 				$b = ($quest->isAccepted($player) && !$quest->isDone($player)) ? chr(2) : '';
-				$message .= sprintf(", %s%d%s-%s", $b, $id, $b, $quest->getQuestName());
+				$message .= sprintf($format, $b, $id, $quest->getQuestName());
 			}
 			
 			if ($message === '')
 			{
-				return self::reply($player, 'There are no quests here.');
+				return self::reply($player, Shadowrun4::lang('1010')); # There are no quests here.
 			}
 			
-			$message = sprintf('%s quests, page %d/%d: %s.',$section, $page, $nPages, substr($message, 2));
-			self::reply($player, $message);
+			$section = Shadowrun4::lang('qu_'.$section);
+			
+			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
+// 			$message = sprintf('%s quests, page %d/%d: %s.', $section, $page, $nPages, substr($message, 2));
+// 			self::reply($player, $message);
 		}
 	}
 	
@@ -190,7 +201,8 @@ final class Shadowcmd_quests extends Shadowcmd
 		$id = (int)$args[0];
 		if ( ($id < 1) || ($id > count($quests)) )
 		{
-			$player->message(sprintf('Unknown quest ID'));
+			$player->msg('1010');
+// 			$player->message(sprintf('Unknown quest ID'));
 			return false;
 		}
 		return self::onDisplayQuest($player, $quests[$id-1], $id);
@@ -228,9 +240,13 @@ final class Shadowcmd_quests extends Shadowcmd
 	{
 		if ($quest->isUnknown($player))
 		{
-			return self::reply($player, 'This quest is unknown to you.');
+			return $player->msg('1010');
+// 			return self::reply($player, 'This quest is unknown to you.');
 		}
-		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
+		$message = Shadowrun4::lang('5011', array(
+			$id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player)
+		));
+// 		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
 		return self::reply($player, $message);
 	}
 }

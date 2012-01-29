@@ -61,16 +61,17 @@ final class SR_Effect
 	public function display()
 	{
 		$eta = $this->getETA();
-		$e = $eta > 0 ? '('.GWF_Time::humanDuration($eta).')' : '(Over)';
+		$e = $eta > 0 ? GWF_Time::humanDuration($eta) : Shadowrun4::lang('over');
+		$e = "($e)";
 		switch($this->mode)
 		{
 			case self::MODE_REPEAT:
-				return 'Unknown';
+				return Shadowrun4::lang('unknown');
 			case self::MODE_ONCE:
 			case self::MODE_ONCE_EXTEND:
 				return Shadowfunc::getModifiers($this->modifiers).$e;
 			case self::MODE_TRIGGER:
-				return 'Unknown';
+				return Shadowrun4::lang('unknown');
 		}
 	}
 

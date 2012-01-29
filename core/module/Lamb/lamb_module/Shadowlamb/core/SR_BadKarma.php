@@ -55,9 +55,6 @@ final class SR_BadKarma
 			return true;
 		}
 
-		# Announce
-		$player->message(sprintf('Your character has been punished with %.02f bad_karma.', $add));
-		
 		# Get fraction
 		$fraction = SR_PlayerVar::getVal($player, '__SLBADKARMA', 0.00);
 		
@@ -74,8 +71,11 @@ final class SR_BadKarma
 			# Save new int bad karma
 			$bk = $player->getBase('bad_karma');
 			$player->saveBase('bad_karma', $bk+$abk);
-			$player->message(sprintf('Your character has been punished with %s bad_karma.', $abk));
 		}
+		
+		# Announce
+		$player->msg('5036', array($abk+$fraction));
+// 		$player->message(sprintf('Your character has been punished with %s bad_karma.', $abk+$fraction));
 		
 		# Save fraction
 		return SR_PlayerVar::setVal($player, '__SLBADKARMA', round($fraction, 2));
@@ -90,7 +90,8 @@ final class SR_BadKarma
 			$bk = $member->getBase('bad_karma');
 			if ($bk > 0)
 			{
-				$back .= sprintf(', %s has %d bad_karma', $member->getName(), $bk);
+				$back .= Shadowrun4::lang('info_bk', array($member->getName(), $bk));
+// 				$back .= sprintf(', %s has %d bad_karma', $member->getName(), $bk);
 			}
 		}
 		
