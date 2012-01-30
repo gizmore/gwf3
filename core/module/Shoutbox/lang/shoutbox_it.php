@@ -11,7 +11,7 @@ $lang = array(
 
 	# Errors
 	'err_flood_time' => 'La preghiamo di aspettare %s prima di inviare un nuovo messaggio.',
-	'err_flood_limit' => 'Ha esaurito il limite di %s messagio al giorno.',
+	'err_flood_limit' => 'Ha esaurito il limite di %s messaggio al giorno.',
 	'err_message' => 'Il messaggio deve avere una lunghezza compresa tra %s e %s caratteri.',
 	
 	# Messages

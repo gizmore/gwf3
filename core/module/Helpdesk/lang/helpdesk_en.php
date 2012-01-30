@@ -64,7 +64,7 @@ $lang = array(
 	'err_confirm_delete' => 'Please checkmark the deletion box to confirm the deletion.',
 	
 	'msg_created' => 'Your ticket has been created.',
-	'msg_assigned' => 'Tickt #%s is now assigned to %s.',
+	'msg_assigned' => 'Ticket #%s is now assigned to %s.',
 	'msg_raised' => 'The priority has been raised by %s.',
 	'msg_lowered' => 'The priority has been lowered by %s.',
 	'msg_replied' => 'You have replied to the ticket.',

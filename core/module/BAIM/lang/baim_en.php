@@ -18,7 +18,7 @@ $lang = array(
 
 	'main_intro2' => 'Gizmore writes:',
 	'main_info2' =>
-'B.AIM is a well done implementation fo an Aim-Bot.
+'B.AIM is a well done implementation for an Aim-Bot.
 The sourcecode is slim and does not seem to contain a trojan or other malicious parts.',
 
 	'main_intro' => 'The author (Bt) writes:',
@@ -58,7 +58,7 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 		"Known bugs:\r\n".
 		"On some systems it might happend that the game slows down and balls move slowly. This is a known problem of some Java versions and not a bug caused by B.AiM! It should help to install the latest Java Runtime Environment.\r\n\r\n".
 		"The program is free from any malware! In case your antivirus solution triggers an alert, it is wrong!".
-		"In case you got B.AiM from a different source, you should be careful tho.\r\n\r\n".
+		"In case you got B.AiM from a different source, you should be careful though.\r\n\r\n".
 		"Have fun with B.AiM\r\n". 
 		"- the Author -\r\n\r\n\r\n".
 		"If you got any trouble, please send us mail to support@baim.gizmore.org, we will try to help you quickly.\r\n".
