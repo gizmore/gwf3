@@ -339,7 +339,7 @@ class Shadowcmd
 		{
 			return false;
 		}
-		return 'This command is only available to the party leader.';
+		return $player->msg('1032'); # 'This command is only available to the party leader.';
 	}
 	
 	/**
@@ -416,7 +416,7 @@ class Shadowcmd
 			if (!$player->isCreated())
 			{
 				$player->rply('0000'); # You did not start game yet
-				Shadowrun4::removePlayer($player);
+// 				Shadowrun4::removePlayer($player);
 			}
 			else
 			{
