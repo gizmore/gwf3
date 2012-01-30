@@ -27,7 +27,7 @@ final class Spell_firewall extends SR_CombatSpell
 			$d = abs($line - $t->getY());
 // 			echo "Distance to target is $d\n";
 			$l = $level - $d;
-			if ($l > 0)
+			if ($l >= 0)
 			{
 				$hits = $this->dice($player, $t, $l);
 				$damage[$t->getID()] = $this->calcFirewallDamage($player, $t, $level, $hits);

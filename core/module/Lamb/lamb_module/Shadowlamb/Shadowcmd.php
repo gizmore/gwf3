@@ -229,7 +229,7 @@ class Shadowcmd
 			}
 //			if ($location->isPVP())
 //			{
-				$commands[] = 'fight';
+				$commands[] = 'fi';
 //			}
 		}
 		
