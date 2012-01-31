@@ -69,7 +69,7 @@ class Shadowcmd
 		'rm' => 'running_mode',
 		's' => 'status',
 		'sd' => 'set_distance',
-		'se' => 'sell',
+// 		'se' => 'sell',
 		'st' => 'steal',
 		'sh' => 'shout',
 		'sk' => 'skills',

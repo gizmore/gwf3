@@ -105,7 +105,7 @@ abstract class SR_SecondHandStore extends SR_Store
 			$bot->reply(Shadowhelp::getHelp($player, 'sell'));
 			return false;
 		}
-		if (false === ($item = $player->getItem($args[0]))) {
+		if (false === ($item = $player->getInvItem($args[0]))) {
 			$bot->reply('You don`t have that item.');
 			return false;
 		}

@@ -161,7 +161,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		
 		if (count($quests) === 0)
 		{
-			return self::reply($player, Shadowrun4::lang('1010')); # There are no quests here.
+			return self::rply($player, '1010'); # There are no quests here.
 		}
 		if (count($quests) === 1)
 		{
@@ -190,7 +190,8 @@ final class Shadowcmd_quests extends Shadowcmd
 			
 			$section = Shadowrun4::lang('qu_'.$section);
 			
-			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
+			return self::rply($player, '5069', array($section, $page, $nPages, substr($message, 2)));
+// 			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
 // 			$message = sprintf('%s quests, page %d/%d: %s.', $section, $page, $nPages, substr($message, 2));
 // 			self::reply($player, $message);
 		}

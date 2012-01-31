@@ -403,15 +403,16 @@ final class SR_Party extends GDO
 			$t1 = $this->getTarget();
 			$t2 = $p->getTarget();
 			
-			if ($a1 === self::ACTION_OUTSIDE)
-			{
-				$a1 = self::ACTION_INSIDE;
-			}
+			# TODO: Check if inside arrivals are announced to outside parties.
+// 			if ($a1 === self::ACTION_OUTSIDE)
+// 			{
+// 				$a1 = self::ACTION_INSIDE;
+// 			}
 			
-			if ($a2 === self::ACTION_OUTSIDE)
-			{
-				$a2 = self::ACTION_INSIDE;
-			}
+// 			if ($a2 === self::ACTION_OUTSIDE)
+// 			{
+// 				$a2 = self::ACTION_INSIDE;
+// 			}
 			
 			# Sharing the location for this event?
 			if ( ($a1 === $a2) && ($t1 === $t2) )

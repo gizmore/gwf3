@@ -1335,18 +1335,18 @@ final class Shadowfunc
 		{
 			if ( $pattern !== NULL )
 			{
-				$bot-reply(self::arrayGet($text, 'empty_search', Shadowrun4::lang('1007')));
+				$bot->reply(self::arrayGet($text, 'empty_search', Shadowrun4::lang('1007')));
 			}
 			else
 			{
-				$bot-reply(self::arrayGet($text, 'empty', Shadowrun4::lang('1008')));
+				$bot->reply(self::arrayGet($text, 'empty', Shadowrun4::lang('1008')));
 			}
 			return true;
 		}
 		
 		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items)))
 		{
-			$bot-reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
+			$bot->reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
 			return false;
 		}
 		

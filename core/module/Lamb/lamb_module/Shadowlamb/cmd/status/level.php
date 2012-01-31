@@ -4,9 +4,10 @@ final class Shadowcmd_level extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 // 		$bot = Shadowrap::instance($player);
+		$p = $player->getParty();
 		$out = '';
 		$format = $player->lang('fmt_sumlist');
-		foreach ($player->getParty()->getMembers() as $member)
+		foreach ($p->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
 			$summand = sprintf('L%s(%s)', $member->getBase('level'), $member->get('level'));
