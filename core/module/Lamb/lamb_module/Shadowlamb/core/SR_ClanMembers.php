@@ -57,8 +57,6 @@ final class SR_ClanMembers extends GDO
 			return false;
 		}
 		
-		var_dump($player);
-		
 		return self::getClanByPID($player->getID());
 	}
 	

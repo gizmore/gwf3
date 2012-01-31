@@ -661,7 +661,6 @@ final class Shadowhelp
 		
 		if (false !== ($item = SR_Item::getItem($topic)))
 		{
-			var_dump($item);
 			return $item->getItemInfo($player);
 		}
 		

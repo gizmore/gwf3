@@ -27,6 +27,15 @@ $lang = array(
 'loot_nyxp' => '. You loot %s and %.02f XP',
 'page' => 'page %d/%d: %s.',
 
+# Options
+'opt_help' => 'Help',
+'opt_lock' => 'Equipment Lock',
+'opt_bot' => 'Player Botflag',
+'opt_norl' => 'Permleader',
+'enabled' => 'enabled',
+'disabled' => 'enabled',
+
+
 # PrintF-Formats
 'fmt_gain' => '%s%.02f(%.02f/%.02f)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Age{$b}:%d, %dcm %s", # age, height, weight
@@ -149,8 +158,8 @@ $lang = array(
 '1030' => 'You can\'t swap the same things.',
 '1031' => 'You are not outside of a location.',
 '1032' => 'You are not the party leader.',
-'1033' => '',
-'1034' => '',
+'1033' => 'Your party is moving. Try this command when idle.',
+'1034' => 'You cannot switch to running mode when you passed level 2.',
 '1035' => '',
 '1036' => '',
 '1037' => '',
@@ -236,17 +245,27 @@ $lang = array(
 '5067' => '%s has been banned from the party.',
 '5068' => '%s may now join your party again.',
 '5069' => '%s quests, page %d/%d: %s.',
-'5070' => '',
-'5071' => '',
-'5072' => '',
-'5073' => '',
-'5074' => '',
-'5075' => '',
-'5076' => '',
-'5077' => '',
-'5078' => '',
+'5070' => '%s has been already %s.', # option, en/disabled
+'5071' => '%s has been %s for your character.', # option, en/disabled
+'5072' => 'Your Shadowlamb message type was already set to %s.',
+'5073' => 'Your Shadowlamb message type has been set to %s.',
+'5074' => 'This is a test.',
+'5075' => 'You are already playing running mode. Nice!',
+'5076' => 'Type "#rm %s" to confirm.',
+'5077' => 'You are now playing running mode. This means unlimited stats but instant death. Good luck!',
+'5078' => 'It is advised you #enable norl now too, to prevent your char from beeing kidnapped with the #rl command!',
 '5079' => '',
 '5080' => '',
+'5081' => '',
+'5082' => '',
+'5083' => '',
+'5084' => '',
+'5085' => '',
+'5086' => '',
+'5087' => '',
+'5088' => '',
+'5089' => '',
+'5090' => '',
 
 
 );
