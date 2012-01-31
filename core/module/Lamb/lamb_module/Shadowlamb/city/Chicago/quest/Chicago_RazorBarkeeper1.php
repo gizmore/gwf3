@@ -7,6 +7,20 @@ final class Quest_Chicago_RazorBarkeeper1 extends SR_Quest
 	public function getRewardXP() { return 2; }
 	public function getRewardNuyen() { return 5000; }
 	
+	public function checkQuest(SR_NPC $npc, SR_Player $player)
+	{
+		if ($this->getAmount() >= $this->getNeededAmount())
+		{
+			$npc->reply('Dude i was just kidding ... well ... here you are -.-');
+			$this->onSolve($player);
+		}
+		else
+		{
+			$npc->reply('Dude i was just kidding -.-');
+		}
+		return false;
+	}
+	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		$need = $this->getNeededAmount();
