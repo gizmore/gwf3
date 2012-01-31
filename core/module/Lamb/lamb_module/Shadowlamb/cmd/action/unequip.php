@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_unequip extends Shadowcmd
 {
+	public static function isCombatCommand() { return true; }
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);

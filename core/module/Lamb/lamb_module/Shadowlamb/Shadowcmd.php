@@ -86,6 +86,7 @@ class Shadowcmd
 	);
 	private static function unshortcut($cmd) { return Shadowfunc::unshortcut($cmd, self::$CMD_SHORTCUTS); }
 	private static function shortcut($cmd) { return Shadowfunc::shortcut($cmd, self::$CMD_SHORTCUTS); }
+	public static function isCombatCommand() { return false; }
 	
 	################
 	### Triggers ###
@@ -455,14 +456,14 @@ class Shadowcmd
 	#############
 	public static function reply(SR_Player $player, $message)
 	{
-		return $player->isFighting() ?
+		return (self::isCombatCommand() && $player->isFighting()) ?
 			$player->message($message) :
 			Shadowrap::instance($player)->reply($message);
 	}
 
 	public static function rply(SR_Player $player, $key, $args=NULL)
 	{
-		return $player->isFighting() ?
+		return (self::isCombatCommand() && $player->isFighting()) ?
 			$player->msg($key, $args) :
 			Shadowrap::instance($player)->reply(Shadowrun4::lang($key, $args));
 	}

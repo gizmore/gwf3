@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_brew extends Shadowcmd
 {
+	public static function isCombatCommand() { return true; }
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		if (0 > ($alchemy = $player->get('alchemy')))

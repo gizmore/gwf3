@@ -1,6 +1,8 @@
 <?php
 final class Shadowcmd_cast extends Shadowcmd
 {
+	public static function isCombatCommand() { return true; }
+	
 	public static function execute(SR_Player $player, array $args)
 	{
 		if (count($args) === 0)
