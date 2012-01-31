@@ -347,6 +347,8 @@ abstract class SR_NPCBase extends SR_Player
 	{
 		if ($this->isNPCDropping($player->getParty()))
 		{
+			$player = $player->getParty()->getKiller($player);
+			
 			$items = array_merge(
 				Shadowfunc::randLoot($player, (int)$this->getBase('level'), $this->getNPCHighChanceDrops()), 
 				$this->generateNPCLoot($player)

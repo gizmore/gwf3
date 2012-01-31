@@ -2466,13 +2466,22 @@ class SR_Player extends GDO
 	{
 		SR_PlayerStats::onKill($killer, $this);
 		
-		$killer = $killer->getParty()->getKiller($killer);
+		if ($this->isHuman())
+		{
+			$this->announceKilled($killer);
+		}
 		
-		if ($killer->isHuman()) {
+// 		$killer = $killer->getParty()->getKiller($killer);
+		
+		if ($killer->isHuman())
+		{
 			$this->gotKilledByHuman($killer);
-		} else {
+		}
+		else
+		{
 			$this->gotKilledByNPC($killer);
 		}
+		
 		$this->respawn();
 	}
 	
@@ -2486,7 +2495,7 @@ class SR_Player extends GDO
 				$this->saveOption(self::DEAD, true);
 			}
 		}
-		$this->announceKilled($killer);
+// 		$this->announceKilled($killer);
 	}
 	
 	private function looseItem(SR_Player $killer)
@@ -2526,7 +2535,7 @@ class SR_Player extends GDO
 			SR_KillProtect::onKilled($killer, $this);
 		}
 		
-		return $this->gotKilledByNPC($killer);
+// 		return $this->gotKilledByNPC($killer);
 	}
 	
 	private function announceKilled(SR_Player $killer)
