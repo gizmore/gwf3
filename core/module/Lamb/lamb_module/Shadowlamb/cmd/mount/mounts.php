@@ -8,10 +8,13 @@ final class Shadowcmd_mounts extends Shadowcmd
 		{
 			if ($city->isDungeon())
 			{
-				Shadowrap::instance($player)->reply('In dungeons you don\'t have mounts.');
+				self::rply($player, '1035');
+				return false;
+// 				Shadowrap::instance($player)->reply('In dungeons you don\'t have mounts.');
 			}
 		}
 //		$i = 1;
+		$format = $player->lang('fmt_sumlist');
 		$out = '';
 		$total = 0.0;
 		$total_max = 0.0;
@@ -25,12 +28,14 @@ final class Shadowcmd_mounts extends Shadowcmd
 			$total_max += $max;
 			if ('' !== ($weight = $mount->displayWeight()))
 			{
-				$weight = "({$weight})";
+// 				$weight = "({$weight})";
 			}
-			$out .= sprintf(", \x02%s\x02-%s%s", $member->getEnum(), $mount->getName(), $weight);
+			$out .= sprintf($format, $member->getEnum(), $mount->getName(), $weight);
+// 			$out .= sprintf(", \x02%s\x02-%s%s", $member->getEnum(), $mount->getName(), $weight);
 		}
 		
-		$message = sprintf('Party Mounts(%s/%s): %s.', Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2));
+		return self::rply($player, '5083', array(Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2)));
+// 		$message = sprintf('Party Mounts(%s/%s): %s.', Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2));
 		
 		return Shadowrap::instance($player)->reply($message);
 	}

@@ -12,7 +12,7 @@ class Shadowcmd_hp extends Shadowcmd
 	protected static function onHPMP(SR_Player $player, $what, $key)
 	{
 //		$i = 1;
-// 		$b = chr(2);
+		$b = chr(2);
 // 		$bot = Shadowrap::instance($player);
 		$party = $player->getParty();
 		$members = $party->getMembers();

@@ -1620,7 +1620,7 @@ final class SR_Party extends GDO
 		
 		if ($gain > 0)
 		{
-			$this->ntice('', array($this->getPartyLevel()));
+			$this->ntice('5003', array($this->getPartyLevel()));
 // 			$this->notice(sprintf('The party advanced to level %s.', $this->getPartyLevel()));
 		}
 		

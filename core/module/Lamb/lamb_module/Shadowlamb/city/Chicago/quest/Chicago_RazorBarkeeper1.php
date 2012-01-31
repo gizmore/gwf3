@@ -18,7 +18,7 @@ final class Quest_Chicago_RazorBarkeeper1 extends SR_Quest
 		{
 			$npc->reply('Dude i was just kidding -.-');
 		}
-		return false;
+		return true;
 	}
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
