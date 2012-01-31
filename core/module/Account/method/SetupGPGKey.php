@@ -8,7 +8,7 @@ final class Account_SetupGPGKey extends GWF_Method
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		$tmpfile = 'extra/temp/gpg/'.$user->getVar('user_id');
+		$tmpfile = GWF_PATH.'extra/temp/gpg/'.$user->getVar('user_id');
 		if ( (!is_file($tmpfile)) || (!is_readable($tmpfile)) ) {
 			return GWF_HTML::err('ERR_FILE_NOT_FOUND', array( $tmpfile));
 		}
