@@ -20,11 +20,13 @@ final class Shadowcmd_whisper extends Shadowcmd
 		
 		if ($result === false)
 		{
-			return $player->message('The player is unknown or not in memory.');
+			return $player->msg('1017');
+// 			return $player->message('The player is unknown or not in memory.');
 		}
 		elseif ($result === -1)
 		{
-			return $player->message('The player name is ambigous. Try the {server} version.');
+			return $player->msg('1018');
+// 			return $player->message('The player name is ambigous. Try the {server} version.');
 		}
 		else
 		{
@@ -35,7 +37,8 @@ final class Shadowcmd_whisper extends Shadowcmd
 	public static function onWhisper(SR_Player $from, SR_Player $to, $message)
 	{
 		self::onWhispered($from, $to);
-		return $to->message(sprintf("\X02%s\X02 whispers: \"%s\"", $from->getName(), $message));
+		return $to->msg('5086', array($from->getName(), $message));
+// 		return $to->message(sprintf("\X02%s\X02 whispers: \"%s\"", $from->getName(), $message));
 	}
 	
 	/**

@@ -1,4 +1,5 @@
 <?php
+$c = "#";
 $b = chr(2);
 /**
  * Please respect weird punctuations when doing human readable translations
@@ -112,6 +113,7 @@ $lang = array(
 
 # Ingame help
 'hlp_in_outside' => 'When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.',
+'hlp_clan_enter' => "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.",
 
 # Knowledge
 'ks_words' => 'Word',
@@ -144,7 +146,7 @@ $lang = array(
 '1015' => 'Your party (level sum %d) cannot attack a party with level sum %d because the level difference is larger than %d.',
 '1016' => 'You already have your asl set to: %s.', # aslstring
 '1017' => 'This player is unknown or not in memory.',
-'1018' => 'This playername is ambigous.',
+'1018' => 'This playername is ambigous. Try the {server} version.',
 '1019' => 'You are not in a clan, chummer.',
 '1020' => 'I don\'t know what item "%s" is.', # itemname
 '1021' => 'You don`t have anything comparable to "%s" equipped.', # itemname
@@ -170,9 +172,9 @@ $lang = array(
 '1041' => 'Your %s(%s/%s) has no room for %d of your %s (%s).', # mountname, stored, storage, amt, itemname, weight
 '1042' => 'You don`t have that item in your mount.',
 '1043' => 'You don\'t have that much %s in your %s.', # itemname, mountname
-'1044' => '',
-'1045' => '',
-'1046' => '',
+'1044' => 'Please wait %s before you shout again.',  # duration
+'1045' => 'Multiple players whispered you, so I quit with this message.',
+'1046' => 'Nobody whispered you in the last %s.', # duration
 '1047' => '',
 '1048' => '',
 '1049' => '',
@@ -271,9 +273,9 @@ $lang = array(
 '5081' => 'You collect %d %s from your %s and put it into your inventory (ID: %d).', # amt, itemname, mountname, invid
 '5082' => 'You have cleaned your mount.',
 '5083' => 'Party Mounts(%s/%s): %s.', # storage, max storage, sumlist
-'5084' => '',
-'5085' => '',
-'5086' => '',
+'5084' => "{$b}%s{$b} pm: \"%s\"", # player, message
+'5085' => "{$b}%s{$b} says: \"%s\"", # player, message
+'5086' => "{$b}%s{$b} whispers: \"%s\"", # player, message
 '5087' => '',
 '5088' => '',
 '5089' => '',

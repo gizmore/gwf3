@@ -44,8 +44,9 @@ class SR_ClanHQ extends SR_Location
 	
 	public function getHelpText(SR_Player $player)
 	{
-		$c = Shadowrun4::SR_SHORTCUT;
-		return "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.";
+		return $player->lang('hlp_clan_enter');
+// 		$c = Shadowrun4::SR_SHORTCUT;
+// 		return "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.";
 	}
 	
 	public function getCommands(SR_Player $player)

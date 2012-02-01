@@ -77,7 +77,7 @@ final class Shadowshout
 		return $next - time();
 	}
 	
-	public static function onLocationGlobalMessage(SR_Player $player, $message)
+	public static function onLocationGlobalMessage(SR_Player $player, $key, $args=NULL)
 	{
 		$lamb = Lamb::instance();
 		$server = $lamb->getCurrentServer();
@@ -117,7 +117,8 @@ final class Shadowshout
 						}
 						
 						# send to player.
-						$m->message($message);
+						$m->msg($key, $args);
+// 						$m->message($message);
 						$sent++;
 					}
 				}

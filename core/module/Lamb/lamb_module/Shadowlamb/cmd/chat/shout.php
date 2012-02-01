@@ -3,7 +3,8 @@ final class Shadowcmd_shout extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		if (count($args) === 0) {
+		if (count($args) === 0)
+		{
 			Shadowrap::instance($player)->reply(Shadowhelp::getHelp($player, 'shout'));
 			return false;
 		}
@@ -11,7 +12,8 @@ final class Shadowcmd_shout extends Shadowcmd
 		$wait = SR_NoShout::isNoShout($player->getID());
 		if ($wait > 0)
 		{
-			$player->message(sprintf('Please wait %s before you shout again.', GWF_Time::humanDuration($wait)));
+			$player->msg('1044', array(GWF_Time::humanDuration($wait)));
+// 			$player->message(sprintf('Please wait %s before you shout again.', GWF_Time::humanDuration($wait)));
 			return false;
 		}
 		

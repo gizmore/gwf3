@@ -12,7 +12,7 @@ final class Prison_GrayOp extends SR_NPC
 		}
 
 		$bad_karma = $party->getSum('bad_karma', true);
-		$perc = ($bad_karma/50) * 100;
+		$perc = ($bad_karma/5) * 100;
 		return Common::clamp($perc, 0.0, 100.0);
 
 	}

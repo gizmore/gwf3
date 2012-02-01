@@ -3,15 +3,19 @@ final class Shadowcmd_say extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		$b = chr(2);
+		if ('' === ($message = trim(implode(' ', $args))))
+		{
+			return false;
+		}
+		
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
-		$msg = sprintf('%s says: "%s"', $b.$player->getName().$b, implode(' ', $args));
+		$pname = $player->getName();
 		
 		if ($p->isTalking() && ($ep !== false) )
 		{
-			$p->notice($msg);
-			$ep->notice($msg);
+			$p->ntice('5085', array($pname, $message));
+			$ep->ntice('5085', array($pname, $message));
 			$p->setContactEta(60);
 			
 			$el = $ep->getLeader();
@@ -23,16 +27,16 @@ final class Shadowcmd_say extends Shadowcmd
 		}
 		elseif ($p->isAtLocation())
 		{
-			Shadowshout::onLocationGlobalMessage($player, $msg);
+			Shadowshout::onLocationGlobalMessage($player, '5085', $args);
 		}
 		elseif ($p->isFighting())
 		{
-			$p->notice($msg);
-			$ep->notice($msg);
+			$p->ntice('5085', array($pname, $message));
+			$ep->ntice('5085', array($pname, $message));
 		}
 		else
 		{
-			$p->notice($msg);
+			$p->ntice('5085', array($pname, $message));
 		}
 		return true;
 	}

@@ -13,17 +13,20 @@ final class Shadowcmd_whisper_back extends Shadowcmd
 		
 		if ($target === -1)
 		{
-			$player->message(sprintf('Nobody whispered you in the last %s.', GWF_Time::humanDuration(Shadowcmd_whisper::WB_TIME)));
+			self::rply($player, '1046', array(GWF_Time::humanDuration(Shadowcmd_whisper::WB_TIME)));
+// 			$player->message(sprintf('Nobody whispered you in the last %s.', GWF_Time::humanDuration(Shadowcmd_whisper::WB_TIME)));
 			return false;
 		}
 		elseif ($target === false)
 		{
-			$player->message('Your chat buddy is not in memory.');
+			self::rply($player, '1017');
+// 			$player->message('Your chat buddy is not in memory.');
 			return false;
 		}
 		elseif ($target === -2)
 		{
-			$player->message('Multiple players whispered you, so I quit with this message.');
+			self::rply($player, '1045');
+// 			$player->message('Multiple players whispered you, so I quit with this message.');
 			return false;
 		}
 		
