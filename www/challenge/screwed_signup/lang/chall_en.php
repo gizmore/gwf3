@@ -23,7 +23,7 @@ $lang = array(
 	'th_password' => 'Password',
 
 	# Solved!
-	'note_solved' => 'Very well done.<br/>Your account got deleted to avoid coincedence solving.',
+	'note_solved' => 'Very well done.<br/>Your account got deleted to avoid coincidence solving.',
 
 	
 );

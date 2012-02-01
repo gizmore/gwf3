@@ -38,7 +38,7 @@ $lang = array(
 
 	'solved_note' => 'Very well done! I will delete your entry now, because your values might spoil it! Please do not create spoiling cheating entries, to keep it more difficult.',
 
-	'msg_del_cheaters' => 'Succesfully deleted %1$s cheaters!',
+	'msg_del_cheaters' => 'Successfully deleted %1$s cheaters!',
 
 	'alt_bananas' => 'Bananas',
 	'alt_cherries' => 'Cherries',

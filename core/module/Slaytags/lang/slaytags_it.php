@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'tag' => '%1$s (%2$s%%)',
+	'tag' => '%1$s (%2$s%%) ',
 	'now_playing' => 'State ascoltando',
 	'previously_played' => 'Canzone precedente',
 	'tag_this_song' => 'Tagga a questa canzone',
@@ -49,8 +49,8 @@ $lang = array(
 	'err_tag' => 'Il tag fornito è invalido. Deve avere un lunghezza compresa tra %1$s e %2$s caratteri.',
 	'err_lyrics' => 'Il testo della canzone deve avere una lunghezza compresa tra %1$s e %2$s caratteri.',
 	'err_lyrics_unk' => 'Non è stato possibile trovare il testo della canzone.',
-	'err_song' => 'non è stato possibile trovare la canzone.',
-	'err_add_tag' => 'ha già aggiunti un tag. Finchè lo staff non decide di accettarlo non ne può aggiungere un altro.',
+	'err_song' => 'Non è stato possibile trovare la canzone.',
+	'err_add_tag' => 'Ha già aggiunto un tag. Finchè lo staff non decide di accettarlo non ne può aggiungere un altro.',
 	'err_dup_tag' => 'Questo tag esiste già.',
 	'err_searchterm' => 'Il termine di ricerca è invalido. Deve avere un lunghezza compresa tra %1$s e %2$s caratteri.',
 	'err_searchtag' => 'Il tag fornito è invalido.',
@@ -61,7 +61,7 @@ $lang = array(
 	'msg_tag_added' => 'Grazie. Un nuovo tag è stato aggiunto al database.<br/><a href="%1$s">Ritorna alla canzone per taggarla!</a>',
 	'msg_added_lyrics' => 'Grazie. Un nuovo testo è stato aggiunto!',
 	'msg_cross_login' => 'Grazie al suo token di cross-login, è stato effettuato l\'accesso con il nome utente di %1$s.<br/>Questa è un opzione conveniente per velocizzare il processo di tagging.',
-	'msg_song_edit' => 'The song has been edited.',
+	'msg_song_edit' => 'La canzone è stata modificata.',
 	'msg_tags_flushed' => 'I tag di questa canzone sono stati rimossi.',
 
 	###################
@@ -71,7 +71,7 @@ $lang = array(
 	'mail_body_lyri' =>
 		'Ciao %1$s'.PHP_EOL.
 		PHP_EOL.
-		'l\'utente %2$s ha appena aggiunti il resto della canzone %3$s - %4$s'.PHP_EOL.
+		'L\'utente %2$s ha appena aggiunti il resto della canzone %3$s - %4$s'.PHP_EOL.
 		PHP_EOL.
 		'%5$s'.PHP_EOL.
 		PHP_EOL.
