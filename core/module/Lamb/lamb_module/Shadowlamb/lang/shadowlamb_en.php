@@ -276,9 +276,9 @@ $lang = array(
 '5084' => "{$b}%s{$b} pm: \"%s\"", # player, message
 '5085' => "{$b}%s{$b} says: \"%s\"", # player, message
 '5086' => "{$b}%s{$b} whispers: \"%s\"", # player, message
-'5087' => '',
-'5088' => '',
-'5089' => '',
+'5087' => '%s', # bounties
+'5088' => '%s', # own bounty
+'5089' => '%s', # other bounty
 '5090' => '',
 
 
