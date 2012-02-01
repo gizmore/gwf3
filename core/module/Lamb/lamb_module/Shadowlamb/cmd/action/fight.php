@@ -23,7 +23,8 @@ final class Shadowcmd_fight extends Shadowcmd
 			if (false !== ($time = SR_KillProtect::isKillProtectedParty($p, $ep)))
 			{
 				$wait = GWF_Time::humanDuration($time-Shadowrun4::getTime());
-				$player->message(sprintf('You cannot attack this party again. Please wait %s.', $wait));
+				self::rply($player, '1060', array($wait));
+// 				$player->message(sprintf('You cannot attack this party again. Please wait %s.', $wait));
 				return true;
 			}
 			
@@ -42,12 +43,15 @@ final class Shadowcmd_fight extends Shadowcmd
 		elseif ( ($a === SR_Party::ACTION_INSIDE) || ($a === SR_Party::ACTION_OUTSIDE) )
 		{
 			$bot = Shadowrap::instance($player);
-			if (count($args) !== 1) {
+			if (count($args) !== 1)
+			{
 				$bot->reply(Shadowhelp::getHelp($player, 'fight'));
 				return false;
 			}
-			if (false === ($target = Shadowfunc::getPlayerInLocation($player, $args[0]))) {
-				$bot->reply(sprintf('%s is not here.', $args[0]));
+			if (false === ($target = Shadowfunc::getPlayerInLocation($player, $args[0])))
+			{
+				self::rply($player, '1028', array($args[0]));
+// 				$bot->reply(sprintf('%s is not here.', $args[0]));
 				return false;
 			}
 			

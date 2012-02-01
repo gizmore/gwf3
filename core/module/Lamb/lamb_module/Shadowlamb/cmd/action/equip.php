@@ -14,14 +14,16 @@ final class Shadowcmd_equip extends Shadowcmd
 
 		if ($player->isFighting() && $player->isLocked())
 		{
-			$player->message('You cannot change your equipment in combat when it\'s locked.');
+			self::rply($player, '1059');
+// 			$player->message('You cannot change your equipment in combat when it\'s locked.');
 			return false;
 		}
 		
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getInvItem($itemname)))
 		{
-			$player->message("You don't have that item.");
+			self::rply($player, '1029');
+// 			$player->message("You don't have that item.");
 			return false;
 		}
 		

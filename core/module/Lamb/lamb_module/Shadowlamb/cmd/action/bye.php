@@ -46,6 +46,7 @@ final class Shadowcmd_bye extends Shadowcmd
 		
 		if ($ep->isHuman())
 		{
+			$ep->getLeader()->msg('5092');
 			if (!self::onHumanBye($p, $ep))
 			{
 				return true;

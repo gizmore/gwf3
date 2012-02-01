@@ -6,7 +6,8 @@ final class Shadowcmd_givekw extends Shadowcmd_givekp
 	{
 		if ($player->isFighting())
 		{
-			$player->message('This does not work in combat');
+			$player->msg('1036');
+// 			$player->message('This does not work in combat');
 			return false;
 		}
 		
@@ -18,7 +19,8 @@ final class Shadowcmd_givekw extends Shadowcmd_givekp
 		
 		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
 		{
-			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
+			$player->msg('1028', array($args[0]));
+// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
 			return false;
 		}
 

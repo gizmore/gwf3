@@ -28,6 +28,7 @@ $lang = array(
 'kills' => ', kills %s with %s', # player, damage
 'loot_nyxp' => '. You loot %s and %.02f XP',
 'page' => 'page %d/%d: %s.',
+'from_brewing' => 'brewing magic potions',
 
 # Options
 'opt_help' => 'Help',
@@ -39,6 +40,7 @@ $lang = array(
 
 
 # PrintF-Formats
+'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%.02f(%.02f/%.02f)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Age{$b}:%d, %dcm %s", # age, height, weight
 'fmt_requires' => " {$b}Requires{$b}: %s.", # statted list
@@ -53,6 +55,7 @@ $lang = array(
 'fmt_hp_mp' => ", {$b}%1\$s{$b}-%2\$s%5\$s(%3\$s/%4\$s)%5\$s", # $member->getEnum(), $member->getName(), $hpmp, $hpmmpm, $b2, $b1
 'fmt_spells' => ", {$b}%s{$b}-%s:%s%s", # id, spellname, base, (adjusted), adjusted
 'fmt_lvlup' => ', %4$s%1$s%4$s:%2$s(%4$s%3$s%5$s%4$s)', # field, tobase, karma, bold, K, couldbit
+'fmt_giveitems' => ', %s x %s', # amt, itemname
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
@@ -166,7 +169,7 @@ $lang = array(
 '1035' => 'In dungeons you don\'t have mounts.',
 '1036' => 'This command does not work in combat.',
 '1037' => 'You cannot store items in that mount.',
-'1038' => 'Please push/pop a positive amount of items.',
+'1038' => 'Please specify a positive amount of items.',
 '1039' => 'You cannot put mounts in your %s.', # mount name
 '1040' => 'You have not that much %s.',
 '1041' => 'Your %s(%s/%s) has no room for %d of your %s (%s).', # mountname, stored, storage, amt, itemname, weight
@@ -175,10 +178,30 @@ $lang = array(
 '1044' => 'Please wait %s before you shout again.',  # duration
 '1045' => 'Multiple players whispered you, so I quit with this message.',
 '1046' => 'Nobody whispered you in the last %s.', # duration
-'1047' => '',
-'1048' => '',
-'1049' => '',
-'1050' => '',
+'1047' => 'You need to learn alchemy first.',
+'1048' => 'You don\'t have this spell.',
+'1049' => 'You don\'t have the %s spell on that high level.', # spellname
+'1050' => 'You do not have a WaterBottle.',
+'1051' => 'Brewing the potion failed and the bottle is lost.',
+'1052' => 'The "%s" spell works in combat only.', # spellname
+'1053' => 'You cannot cast a spell with a level smaller than 0.',
+'1054' => 'You cannot cast %s level %s because your spell level is only %s.', # spellname, levelneed, levelhave 
+'1055' => 'You need %s MP to cast %s, but you only have %s.', # needmp, spellname, #havemp
+'1056' => 'You failed to cast %s. %s MP wasted.%s',
+'1057' => 'The %s from %s failed.', # spellname, player
+'1058' => 'You should not drop that item.',
+'1059' => 'You cannot change your equipment in combat when it\'s locked.',
+'1060' => 'You cannot attack this party again. Please wait %s.', # duration
+'1061' => 'Funny. You give something to yourself. Problem?',
+'1062' => 'Please specify a positive amount of nuyen.',
+'1063' => 'You only have %s.', # nuyen
+'1064' => 'This player is not in your party.',
+'1065' => 'You can only remote control NPC',
+'1066' => 'Only the following remote commands are allowed: %s.', # rawlist
+'1067' => 'You don`t have a %s equipped.', # type
+'1068' => '',
+'1069' => '',
+'1070' => '',
 
 
 
@@ -279,7 +302,57 @@ $lang = array(
 '5087' => '%s', # bounties
 '5088' => '%s', # own bounty
 '5089' => '%s', # other bounty
-'5090' => '',
+'5090' => '%s moves %.01f meters %s and is now on position %.01f meters%s', # player, fw/bw, metres, busy (OWN)
+'5091' => '%s moves %.01f meters %s and is now on position %.01f meters%s', # player, fw/bw, metres, busy (ENEMY)
+'5092' => 'The enemy party said "bye".',
+'5093' => 'You continue %s.', # action
+'5094' => '%s thanked you and left the party.', # player
+'5095' => 'You encounter %s.',
+'5096' => 'You meet %s.%s%s',
+'5097' => '%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.',
+'5098' => '%s moves %.01f meters towards %s and is now on position %.01f meters.',
+'5099' => '%s-%s uses a level %s %s potion on %s-%s%s.',
+'5100' => '%s-%s casts a level %s %s on %s-%s%s.',
+'5101' => '%s-%s uses a level %s %s potion on %s-%s but caused no damage.',
+'5102' => '%s-%s casts a level %s %s on %s-%s but caused no damage.',
+'5103' => '%s-%s uses a level %s %s potion on %s-%s and kills them with %s damage.',
+'5104' => '%s-%s casts a level %s %s on %s-%s and kills them with %s damage.',
+'5105' => 'You loot %s and %s XP.', # nuyen, XP
+'5106' => '%s-%s uses a level %s %s potion on %s-%s and caused %s damage.',
+'5107' => '%s-%s casts a level %s %s on %s-%s and caused %s damage.',
+'5108' => '%s-%s uses a level %s %s potion on %s-%s and caused %s damage. (%.02f/%.02f)HP left.',
+'5109' => '%s-%s casts a level %s %s on %s-%s and caused %s damage. (%.02f/%.02f)HP left.',
+'5110' => 'You are about to drop %d %s. Retype to confirm.', # amt itemname
+'5111' => 'You got rid of %d %s.',
+'5112' => '%s tried to flee from the combat. %s busy.', #player, duration
+'5113' => '%s has fled from the enemy.', # player
+'5114' => '%s has fled from combat.', # player
+'5115' => 'You gave %d %s to %s.%s', # amt, item, player, busytime
+'5116' => '%s received %s from %s.', # player, amt, source
+'5117' => '%s told %s about %s.', # player, player, knowledge
+'5118' => 'You received %s from %s.',
+'5119' => 'You gave %s to %s.',
+'5120' => 'You see no other players.',
+'5121' => 'You see these players: %s.',
+'5122' => 'Your default combat distance has been set to %.01f meters.',
+'5123' => 'Distances: %s.', # sumlist
+'5124' => 'Distances: %s.', # sumlist
+'5125' => '',
+'5126' => '',
+'5127' => '',
+'5128' => '',
+'5129' => '',
+'5130' => '',
+'5131' => '',
+'5132' => '',
+'5133' => '',
+'5134' => '',
+'5135' => '',
+'5136' => '',
+'5137' => '',
+'5138' => '',
+'5139' => '',
+'5140' => '',
 
 
 );

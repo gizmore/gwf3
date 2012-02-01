@@ -17,19 +17,22 @@ final class Shadowcmd_npc extends Shadowcmd_gmd
 		$party = $player->getParty();
 		if (false === ($remote = $party->getMemberByArg(array_shift($args))))
 		{
-			$player->message('This player is not in your party.');
+			$player->msg('1064');
+// 			$player->message('This player is not in your party.');
 			return false;
 		}
 
 		if ($remote->isHuman())
 		{
-			$player->message('You can only remote control NPC.');
+			$player->msg('1065');
+// 			$player->message('You can only remote control NPC.');
 			return false;
 		}
 		
 		if (!in_array($args[0], self::$WHITELIST, true))
 		{
-			$player->message(sprintf('Only the following remote commands are allowed: %s.', implode(', ', self::$WHITELIST)));
+			$player->msg('1066', array(implode(', ', self::$WHITELIST)));
+// 			$player->message(sprintf('Only the following remote commands are allowed: %s.', implode(', ', self::$WHITELIST)));
 			return false;
 		}
 		

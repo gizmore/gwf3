@@ -7,33 +7,45 @@ final class Shadowcmd_set_distance extends Shadowcmd
 		
 		if (count($args) === 0)
 		{
-			$p = $player->getParty();
-			$out = '';
-			foreach ($p->getMembers() as $member)
-			{
-				$member instanceof SR_Player;
-				if ($p->isFighting()) {
-					$out .= sprintf(', %s:%s(%s)', $member->getName(), $member->getBase('distance'), $p->getDistance($member));					
-				} else {
-					$out .= sprintf(', %s:%s', $member->getName(), $member->getBase('distance'));					
-				}
-			}
-			$player->message('Distances: '.substr($out, 2).'.');
-			return true;
+			return self::showDistances($player);
 		}
 		
-		if ( (count($args) !== 1) || (!is_numeric($args[0])) ) {
+		# err args
+		if ( (count($args) !== 1) || (!is_numeric($args[0])) )
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
 		}
+		
+		# Out of bounds
 		$d = round(floatval($args[0]), 1);
-		if ($d < 0 || $d > SR_Player::MAX_SD) {
+		if ($d < 0 || $d > SR_Player::MAX_SD)
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
 		}
+		
 		$player->updateField('distance', $d);
-		$player->message(sprintf("Your default combat distance has been set to %.01f meters.", $d));
-		return true;
+		return self::rply($player, '5122', array($d));
+// 		$player->message(sprintf("Your default combat distance has been set to %.01f meters.", $d));
+// 		return true;
 	}
+	
+	private static function showDistances(SR_Player $player)
+	{
+		$p = $player->getParty();
+		$format = $player->lang('fmt_sumlist');
+		$key = $player->isFighting() ? '5123' : '5124';
+		$out = '';
+		foreach ($p->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$val = $player->isFighting() ? $p->getDistance($member) : $member->getBase('distance');
+			$out .= sprintf($format, $member->getEnum(), $member->getName(), $val);
+// 			$out .= sprintf(', %s:%s(%s)', $member->getName(), $member->getBase('distance'), $p->getDistance($member));
+		}
+		return self::rply($player, $key, array(substr($out, 2)));
+	}
+	
 }
 ?>

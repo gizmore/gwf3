@@ -14,7 +14,8 @@ final class Shadowcmd_use extends Shadowcmd
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getItem($itemname)))
 		{
-			self::reply($player, "You don't have this item.");
+			self::rply($player, '1029');
+// 			self::reply($player, "You don't have this item.");
 			return false;
 		}
 		

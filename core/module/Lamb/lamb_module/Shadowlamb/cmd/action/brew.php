@@ -7,7 +7,9 @@ final class Shadowcmd_brew extends Shadowcmd
 	{
 		if (0 > ($alchemy = $player->get('alchemy')))
 		{
-			return $player->message('You need to learn alchemy first.');
+			$player->msg('1047');
+			return false;
+// 			return $player->message('You need to learn alchemy first.');
 		}
 		
 		$wantlevel = true;
@@ -23,17 +25,23 @@ final class Shadowcmd_brew extends Shadowcmd
 		$party = $player->getParty();
 		if ($party->isFighting())
 		{
-			return $player->message('You cannot brew potions when fighting.');
+			$player->msg('1036');
+			return false;
+// 			return $player->message('You cannot brew potions when fighting.');
 		}
 		if (!$party->isIdle())
 		{
-			return $player->message('Your party needs to be idle for brewing potions.');
+			$player->msg('1033');
+			return false;
+// 			return $player->message('Your party needs to be idle for brewing potions.');
 		}
 
 		$bot = Shadowrap::instance($player);
 		if (false === ($spell = $player->getSpell($spellname)))
 		{
-			return $bot->reply('You don\'t have this spell.');
+			$player->msg('1048');
+			return false;
+// 			return $bot->reply('You don\'t have this spell.');
 		}
 		$spell->setMode(SR_Spell::MODE_POTION);
 		$level = $player->getSpellLevel($spellname);
@@ -45,13 +53,17 @@ final class Shadowcmd_brew extends Shadowcmd
 		
 		if ($wantlevel > $level)
 		{
-			return $player->message(sprintf('You don\'t have the %s spell on that high level.', $spellname));
+			$player->msg('1049', array($spellname));
+			return false;
+// 			return $player->message(sprintf('You don\'t have the %s spell on that high level.', $spellname));
 		}
 		$level = $wantlevel;
 		
 		if (false === ($bottle = $player->getInvItem('WaterBottle')))
 		{
-			return $bot->reply('You do not have a WaterBottle.');
+			$player->msg('1050', array($spellname));
+			return false;
+// 			return $bot->reply('You do not have a WaterBottle.');
 		}
 		if (false === $bottle->useAmount($player, 1))
 		{
@@ -59,8 +71,9 @@ final class Shadowcmd_brew extends Shadowcmd
 		}
 		if (false === $spell->onCast($player, array(), $level))
 		{
-			return $bot->reply('Brewing the potion failed and the bottle is lost.');
-			return true;
+			$player->msg('1051', array($spellname));
+// 			return $bot->reply('Brewing the potion failed and the bottle is lost.');
+			return false;
 		}
 		
 		
@@ -69,7 +82,7 @@ final class Shadowcmd_brew extends Shadowcmd
 		$level = Shadowfunc::diceFloat($minlevel, $maxlevel, 1);
 		
 		$potion = Item_AlchemicPotion::alchemicFactory($spellname, $level);
-		$player->giveItems(array($potion), 'brewing magic potions');
+		$player->giveItems(array($potion), $player->lang('from_brewing'));
 		return;
 	}
 }

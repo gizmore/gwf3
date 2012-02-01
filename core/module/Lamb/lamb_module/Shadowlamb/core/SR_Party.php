@@ -460,7 +460,8 @@ final class SR_Party extends GDO
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 		if ($announce === true)
 		{
-			$this->notice('You continue '.$this->displayAction());
+			$this->ntice('5093', array($this->displayAction()));
+// 			$this->notice('You continue '.$this->displayAction());
 		}
 		
 		$this->timestamp = time();
@@ -476,7 +477,8 @@ final class SR_Party extends GDO
 			{
 				if ($member->hasToLeave())
 				{
-					$this->notice(sprintf('%s thanked you and left the party.', $member->getName()));
+					$this->ntice('5094', array($member->getName()));
+// 					$this->notice(sprintf('%s thanked you and left the party.', $member->getName()));
 					$this->kickUser($member, true);
 				}
 			}
@@ -685,8 +687,10 @@ final class SR_Party extends GDO
 		$party->setContactEta(rand(10,25));
 		if ($announce === true)
 		{
-			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true, true)));
-			$party->notice(sprintf('You encounter %s.', $this->displayMembers(true, true)));
+			$this->ntice('5095', array($party->displayMembers(true, true)));
+			$party->ntice('5095', array($this->displayMembers(true, true)));
+// 			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true, true)));
+// 			$party->notice(sprintf('You encounter %s.', $this->displayMembers(true, true)));
 		}
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
@@ -730,8 +734,10 @@ final class SR_Party extends GDO
 		
 		if ($announce === true)
 		{
-			$this->notice(sprintf('You meet %s.%s%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
-			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
+			$this->ntice('5096', array($party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
+			$party->ntice('5096', array($this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
+// 			$this->notice(sprintf('You meet %s.%s%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
+// 			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 		}
 		
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
@@ -1143,16 +1149,20 @@ final class SR_Party extends GDO
 		$busy = $player->busy(25);
 		$name = $player->displayNameNB();
 		$tn = $target->displayNameNB();
-		$this->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, abs($move), $tn, $new_d, $busy));
-		$this->getEnemyParty()->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters.', $name, abs($move), $tn, $new_d));
+		
+		$ep = $this->getEnemyParty();
+		$this->ntice('5097', array($name, abs($move), $tn, $new_d, $busy));
+		$ep->ntice('5098', array($name, abs($move), $tn, $new_d));
+// 		$this->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, abs($move), $tn, $new_d, $busy));
+// 		$this->getEnemyParty()->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters.', $name, abs($move), $tn, $new_d));
 		return true;
 	}
 	
 	###############
 	### FW / BW ###
 	###############
-	public function forward(SR_Player $player, $busy=-1) { return $this->forwardB($player, $this->direction, 'forwards', $busy); }
-	public function backward(SR_Player $player, $busy=-1) { return $this->forwardB($player, -$this->direction, 'backwards', $busy); }
+	public function forward(SR_Player $player, $busy=-1) { return $this->forwardB($player, $this->direction, $player->lang('forwards'), $busy); }
+	public function backward(SR_Player $player, $busy=-1) { return $this->forwardB($player, -$this->direction, $player->lang('backwards'), $busy); }
 	private function forwardB(SR_Player $player, $dir, $fwbw, $busy=-1)
 	{
 		$by = $dir * $player->getMovePerSecond();
@@ -1160,9 +1170,14 @@ final class SR_Party extends GDO
 		$new_d = 0;
 		$this->movePlayerB($pid, $by, $new_d);
 		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '.';
-		$message = sprintf(' moves %.01f meters %s and is now on position %.01f meters%s', abs($by), $fwbw, $new_d, $busy);
-		$this->message($player, $message);
-		$this->getEnemyParty()->message($player, $message);
+		
+		$ep = $this->getEnemyParty();
+		$pname = $player->getName();
+		$this->ntice('5090', array($pname, abs($by), $fwbw, $new_d, $busy));
+		$ep->ntice('5091', array($pname, abs($by), $fwbw, $new_d, $busy));
+// 		$message = sprintf(' moves %.01f meters %s and is now on position %.01f meters%s', abs($by), $fwbw, $new_d, $busy);
+// 		$this->message($player, $message);
+// 		$this->getEnemyParty()->message($player, $message);
 		return true;
 	}
 	

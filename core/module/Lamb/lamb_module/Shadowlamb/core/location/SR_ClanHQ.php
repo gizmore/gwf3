@@ -21,11 +21,11 @@ class SR_ClanHQ extends SR_Location
 	const ADD_STORAGE = 1000;
 	const COST_STORAGE = 500;
 	
-	const COST_PUSHY = 50;
-	const COST_POPY = 100;
+	const COST_PUSHY = 40;
+	const COST_POPY = 80;
 	
-	const COST_PUSHI = 100;
-	const COST_POPI = 100;
+	const COST_PUSHI = 10;
+	const COST_POPI = 30;
 	
 	public function getFoundPercentage()
 	{

@@ -5,7 +5,8 @@ final class Shadowcmd_giveny extends Shadowcmd
 	{
 		if ($player->isFighting())
 		{
-			$player->message('This does not work in combat');
+			$player->msg('1036');
+// 			$player->message('This does not work in combat');
 			return false;
 		}
 		if (count($args) !== 2)
@@ -16,7 +17,8 @@ final class Shadowcmd_giveny extends Shadowcmd
 		
 		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
 		{
-			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
+			$player->msg('1028', array($args[0]));
+// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
 			return false;
 		}
 
@@ -27,14 +29,16 @@ final class Shadowcmd_giveny extends Shadowcmd
 	{
 		if ($amt <= 0)
 		{
-			$player->message(sprintf('You can only give away a positive amount of %s.', $what));
+			$player->msg('1062');
+// 			$player->message(sprintf('You can only give away a positive amount of %s.', $what));
 			return false;
 		}
 		
 		$have = $player->getBase($what);
 		if ($amt > $have)
 		{
-			$player->message(sprintf('You only have %s %s.', $have, $what));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($have)));
+// 			$player->message(sprintf('You only have %s %s.', $have, $what));
 			return false;
 		}
 
@@ -58,8 +62,10 @@ final class Shadowcmd_giveny extends Shadowcmd
 			return false;
 		}
 		
-		$target->message(sprintf('You received %s %s from %s.', $amt, $what, $player->getName()));
-		$player->message(sprintf('You gave %s %s %s.', $target->getName(), $amt, $what));
+		$target->msg('5118', array(Shadowfunc::displayNuyen($amt), $player->getName()));
+		$player->msg('5119', array(Shadowfunc::displayNuyen($amt), $target->getName()));
+// 		$target->message(sprintf('You received %s %s from %s.', $amt, $what, $player->getName()));
+// 		$player->message(sprintf('You gave %s %s %s.', $target->getName(), $amt, $what));
 		
 		return true;
 	}

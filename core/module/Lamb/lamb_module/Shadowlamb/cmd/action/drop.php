@@ -15,20 +15,25 @@ final class Shadowcmd_drop extends Shadowcmd
 		
 		if (false === ($item = $player->getInvItem($args[0])))
 		{
-			$bot->reply('You don`t have that item.');
+			self::rply($player, '1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
 		
 		
 		$amt = count($args) === 2 ? (int)$args[1] : 1;
 		
-		if ($amt < 1) {
-			$bot->reply('You can only drop a positive amount of items.');
+		if ($amt < 1)
+		{
+			self::rply($player, '1038');
+// 			$bot->reply('You can only drop a positive amount of items.');
 			return false;
 		}
 		
-		if (!$item->isItemDropable()) {
-			$bot->reply('You should not drop that item.');
+		if (!$item->isItemDropable())
+		{
+			self::rply($player, '1058');
+// 			$bot->reply('You should not drop that item.');
 			return false;
 		}
 		$iname = $item->getItemName();
@@ -41,7 +46,8 @@ final class Shadowcmd_drop extends Shadowcmd
 			if ( (!isset(self::$CONFIRM[$pid])) || ($msg !== self::$CONFIRM[$pid]) )
 			{
 				self::$CONFIRM[$pid] = $msg;
-				$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
+				self::rply($player, '5110', array($amt, $iname));
+// 				$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
 				return true;
 			}
 			else
@@ -96,10 +102,12 @@ final class Shadowcmd_drop extends Shadowcmd
 //			}
 		}
 		
-		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $iname));
-		$player->modify();
 		
-		return true;
+		$player->modify();
+
+		return self::rply($player, '5111', array($dropped, $iname));
+// 		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $iname));
+// 		return true;
 	}
 }
 ?>

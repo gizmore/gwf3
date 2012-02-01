@@ -1098,7 +1098,7 @@ final class Shadowfunc
 	 * @param SR_Player $player
 	 * @param array $damage
 	 */
-	public static function multiDamage(SR_Player $player, array $damage, $failmsg='Nothing happened.')
+	public static function multiDamage(SR_Player $player, array $damage, $spellname='Spell')
 	{
 		$p = $player->getParty();
 		$mc = $p->getMemberCount();
@@ -1166,7 +1166,8 @@ final class Shadowfunc
 
 		if ($out === '')
 		{
-			$p->notice($failmsg);
+			$p->ntice('1057', array($spellname, $player->getName()));
+// 			$p->notice($failmsg);
 			return;
 		}
 		

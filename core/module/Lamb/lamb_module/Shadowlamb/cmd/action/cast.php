@@ -7,9 +7,11 @@ final class Shadowcmd_cast extends Shadowcmd
 	{
 		if (count($args) === 0)
 		{
-			$message = sprintf('Known spells: %s.', Shadowfunc::getSpells($player));
-			self::reply($player, $message);
+			Shadowcmd_known_spells::execute($player, $args);
 			return false;
+// 			$message = sprintf('Known spells: %s.', Shadowfunc::getSpells($player));
+// 			self::reply($player, $message);
+// 			return false;
 		}
 		
 		$sn = array_shift($args);
@@ -18,9 +20,11 @@ final class Shadowcmd_cast extends Shadowcmd
 		
 		if (false === ($spell = $player->getSpell($sn)))
 		{
-			$player->message(sprintf('You don\'t know the %s spell.', $sn));
+			self::rply($player, '1048');
+// 			$player->message(sprintf('You don\'t know the %s spell.', $sn));
 			return false;
 		}
+		
 		$spell->setMode(SR_Spell::MODE_SPELL);
 		return $spell->onCast($player, $args, $wanted_level);
 	}

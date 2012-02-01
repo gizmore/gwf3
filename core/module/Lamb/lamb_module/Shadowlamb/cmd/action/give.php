@@ -14,13 +14,15 @@ final class Shadowcmd_give extends Shadowcmd
 		
 		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
 		{
-			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
+			$player->msg('1028', array($args[0]));
+// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
 			return false;
 		}
 		
 		if ($target->getID() === $player->getID())
 		{
-			$player->message('Funny. You give something to yourself. Problem?');
+			$player->msg('1061');
+// 			$player->message('Funny. You give something to yourself. Problem?');
 			return false;
 		}			
 		
@@ -31,13 +33,15 @@ final class Shadowcmd_give extends Shadowcmd
 	{
 		if ($amt < 1)
 		{
-			$player->message('Please give a positive amount of items.');
+			$player->msg('1038');
+// 			$player->message('Please give a positive amount of items.');
 			return false;
 		}
 		
 		if (false === ($item = $player->getInvItem($id)))
 		{
-			$player->message('You don`t have that item.');
+			$player->msg('1029');
+// 			$player->message('You don`t have that item.');
 			return false;
 		}
 		
@@ -51,7 +55,8 @@ final class Shadowcmd_give extends Shadowcmd
 		{
 			if ($amt > $item->getAmount())
 			{
-				$player->message(sprintf('You only have %d %s.', $item->getAmount(), $item->getName()));
+				$player->msg('1040', array($item->getItemName()));
+// 				$player->message(sprintf('You only have %d %s.', $item->getAmount(), $item->getName()));
 				return false;
 			}
 			$giveItem = SR_Item::createByName($item->getName(), $amt, true);
@@ -69,7 +74,10 @@ final class Shadowcmd_give extends Shadowcmd
 		}
 		
 		$busymsg = $player->isFighting() ? Shadowfunc::displayBusy($player->busy(SR_Player::GIVE_TIME)) : '';
-		$player->message(sprintf('You gave %d %s to %s.%s', $amt, $giveItem->getName(), $target->getName(), $busymsg));
+		
+		self::rply($player, '5115', array($amt, $giveItem->getName(), $target->getName(), $busymsg));
+		
+// 		$player->message(sprintf('You gave %d %s to %s.%s', $amt, $giveItem->getName(), $target->getName(), $busymsg));
 
 		$target->giveItems(array($giveItem), $player->getName());
 		

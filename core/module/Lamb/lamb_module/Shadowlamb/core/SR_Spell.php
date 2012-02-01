@@ -139,7 +139,8 @@ abstract class SR_Spell
 			}
 			elseif (!$player->isFighting())
 			{
-				$player->message(sprintf('The spell %s works in combat only.', $this->getName()));
+				$player->msg('1052', array($this->getName()));
+// 				$player->message(sprintf('The spell %s works in combat only.', $this->getName()));
 				return false;
 			}
 			elseif (count($args) === 0) {
@@ -178,12 +179,14 @@ abstract class SR_Spell
 			$wanted_level = (int)$wanted_level;
 			if ($wanted_level < 0)
 			{
-				$player->message('You cannot cast a spell with a level smaller than 0.');
+				$player->msg('1053');
+// 				$player->message('You cannot cast a spell with a level smaller than 0.');
 				return false;
 			}
 			elseif ($wanted_level > $level)
 			{
-				$player->message(sprintf('You cannot cast %s level %s because your spell level is only %s.', $this->getName(), $wanted_level, $level));
+				$player->msg('1054', array($this->getName(), $wanted_level, $level));
+// 				$player->message(sprintf('You cannot cast %s level %s because your spell level is only %s.', $this->getName(), $wanted_level, $level));
 				return false;
 			}
 			else
@@ -200,7 +203,8 @@ abstract class SR_Spell
 		
 		if ($need > $have)
 		{
-			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
+			$player->msg('1055', array($need, $this->getName(), $have));
+// 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
 			return false;
 		}
 		
@@ -216,7 +220,8 @@ abstract class SR_Spell
 		{
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);
-			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
+			$player->msg('1056', array($this->getName(), $waste, $busy));
+// 			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
 			return false;
 		}
 		
@@ -270,26 +275,19 @@ abstract class SR_Spell
 	################
 	### Announce ###
 	################
-	public function getAnnounceMessage(SR_Player $player, SR_Player $target, $level)
+	public function announceADV(SR_Player $player, SR_Player $target, $level, $key_friend, $key_foe, $arg1='', $arg2='', $arg3='')
 	{
-		if ($this->mode === self::MODE_POTION)
+		if (false === $this->isBrewMode())
 		{
-			return sprintf('%s-%s uses a level %s %s potion on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
+			$key_friend++;
+			$key_foe++;
 		}
-		else
-		{
-			return sprintf('%s-%s casts a level %s %s on %s-%s', $player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName());
-		}
-	}
-
-	public function announceADV(SR_Player $player, SR_Player $target, $level, $append='', $append_ep='')
-	{
-		$msg = $this->getAnnounceMessage($player, $target, $level);
 		$p = $player->getParty();
-		$p->notice($msg.$append.'.');
+		$p->ntice($key_friend, array($player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName(), $arg1, $arg2, $arg3));
 		if ($p->isFighting())
 		{
-			$p->getEnemyParty()->notice($msg.$append_ep.'.');
+			$ep = $p->getEnemyParty();
+			$ep->ntice($key_foe, array($player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName(), $arg1, $arg2, $arg3));
 		}
 	}
 
@@ -307,9 +305,11 @@ abstract class SR_Spell
 	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $damage)
 	{
 		$damage = round($damage, 1);
-		if ($damage <= 0) {
-			$append = $append_ep = ' but caused no damage';
-			$this->announceADV($player, $target, $level, $append, $append_ep);
+		if ($damage <= 0)
+		{
+// 			$append = $append_ep = $player->lang('but no damge');
+// 			$append = $append_ep = ' but caused no damage';
+			$this->announceADV($player, $target, $level, '5101', '5101');
 			return true;
 		}
 		
@@ -321,8 +321,9 @@ abstract class SR_Spell
 		$target->dealDamage($damage);
 		if ($target->isDead())
 		{
-			$append = $append_ep = ' and kills them with '.$damage.' damage';
-			$this->announceADV($player, $target, $level, $append, $append_ep);
+// 			$append = $append_ep = ' and kills them with '.$damage.' damage';
+			
+			$this->announceADV($player, $target, $level, '5103', '5103', $damage);
 
 			# Loot him!
 			$xp = $target->isHuman() ? 0 : $target->getLootXP();
@@ -343,7 +344,8 @@ abstract class SR_Spell
 				$pxp += $lxp;
 				$member->giveXP($lxp);
 				$member->giveNuyen($ny);
-				$member->message(sprintf('You loot %s Nuyen and %s XP.', $ny, $lxp));
+				$member->msg('5105', array(Shadowfunc::displayNuyen($ny), $lxp));
+// 				$member->message(sprintf('You loot %s Nuyen and %s XP.', $ny, $lxp));
 			}
 			
 			$p->givePartyXP($pxp);
@@ -355,9 +357,9 @@ abstract class SR_Spell
 		{
 			$hp = $target->getHP();
 			$maxhp = $target->getMaxHP();
-			$append = " and caused {$damage} damage";
-			$append_ep = "{$append} ($hp/$maxhp)HP left.";
-			$this->announceADV($player, $target, $level, $append, $append_ep);
+// 			$append = " and caused {$damage} damage";
+// 			$append_ep = "{$append} ($hp/$maxhp)HP left.";
+			$this->announceADV($player, $target, $level, '5108', '5106', $damage, $hp, $maxhp);
 		}
 
 		if ($ep->getMemberCount() === 0)
@@ -379,7 +381,7 @@ abstract class SR_Spell
 	 */
 	public function spellDamageMultiTargets(SR_Player $player, array $damage, $level)
 	{
-		Shadowfunc::multiDamage($player, $damage, 'The spell did not do any damage.');
+		Shadowfunc::multiDamage($player, $damage, $this->getName());
 	}
 }
 

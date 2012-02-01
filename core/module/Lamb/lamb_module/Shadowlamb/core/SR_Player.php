@@ -1787,6 +1787,8 @@ class SR_Player extends GDO
 			return true;
 		}
 		
+		$format = $this->lang('');
+		
 		$b = chr(2);
 		$message = '';
 		foreach ($items as $item)
@@ -1794,7 +1796,8 @@ class SR_Player extends GDO
 			$this->giveItem($item);
 			$amt = $item->getAmount();
 			$multi = $amt > 1 ? "{$amt} x " : '';
-			$message .= sprintf(", {$b}%s%s{$b}", $multi, $item->getItemName());
+			$message .= sprintf($format, $multi, $item->getItemName());
+// 			$message .= sprintf(", {$b}%s%s{$b}", $multi, $item->getItemName());
 		}
 		
 		if (false === $this->updateInventory())
@@ -1805,10 +1808,11 @@ class SR_Player extends GDO
 		if ($from !== '')
 		{
 			$message = substr($message, 2);
-			$from = " from {$from}";
-			$plur = $cnt > 1 ? $cnt.' items' : 'an item';
-			$message = sprintf(' received %s%s: %s.', $plur, $from, $message);
-			$this->getParty()->message($this, $message);
+			$this->getParty()->ntice('5116', array($this->getName(), $message, $from));
+// 			$from = " from {$from}";
+// 			$plur = $cnt > 1 ? $cnt.' items' : 'an item';
+// 			$message = sprintf(' received %s%s: %s.', $plur, $from, $message);
+// 			$this->getParty()->message($this, $message);
 		}
 		
 		return true;
