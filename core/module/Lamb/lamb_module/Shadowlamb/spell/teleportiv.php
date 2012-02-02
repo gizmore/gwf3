@@ -29,13 +29,15 @@ class Spell_teleportiv extends Spell_teleportiii
 		
 		if (!$p->isIdle())
 		{
-			$player->message('This spell only works when your party is idle.');
+			$player->msg('1033');
+// 			$player->message('This spell only works when your party is idle.');
 			return false;
 		}
 		
 		if (count($args) === 0)
 		{
-			$player->message('Please specify a target to teleport to.');
+			$player->msg('1072');
+// 			$player->message('Please specify a target to teleport to.');
 			return false;
 		}
 
@@ -43,33 +45,38 @@ class Spell_teleportiv extends Spell_teleportiii
 		
 		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $args[0])))
 		{
-			$player->message('The location does not exist or is ambigous.');
+			$player->msg('1069');
+// 			$player->message('The location does not exist or is ambigous.');
 			return false;
 		}
 		
 		$city = Common::substrUntil($tlc, '_');
 		if (false === ($cityclass = Shadowrun4::getCity($city)))
 		{
-			$bot->reply('This city is unknown.');
+			$player->msg('1073');
+// 			$bot->reply('This city is unknown.');
 			return false;
 		}
 		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
-			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $city));
+			$player->msg('1070', array($p->getCity()));
+// 			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $city));
 			return false;
 		}
 		
 		$tlc = $target->getName();
 		if (!$player->hasKnowledge('places', $tlc))
 		{
-			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
+			$player->msg('1023');
+// 			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
 			return false;
 		}
 		
 		if ($p->getLocation() === $tlc)
 		{
-			$bot->reply(sprintf('You are already at the %s.', $tlc));
+			$player->msg('1071', array($tlc));
+// 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
 		}
 		
@@ -78,15 +85,15 @@ class Spell_teleportiv extends Spell_teleportiii
 		{
 			if (!$loc->isExitAllowed($player))
 			{
-				$bot->reply('You cannot cast teleport inside this lcoation.');
+				$player->msg('1074');
+// 				$bot->reply('You cannot cast teleport inside this lcoation.');
 				return false;
 			}
 		}
 		
 		# Minlevels (thx sabretooth)
-		if (false !== ($error = $this->checkCityTargetLimits($player, $target)))
+		if (false === $this->checkCityTargetLimits($player, $target))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		
@@ -96,20 +103,24 @@ class Spell_teleportiv extends Spell_teleportiii
 		$need_level = $mc / 2;
 		if ($level < $need_level)
 		{
-			$bot->reply(sprintf('You need at least %s level %s to teleport %s party members.', $this->getName(), $need_level, $mc));
+			$player->msg('1076', array($this->getName(), $need_level, $mc));
 			return false;
+// 			$bot->reply(sprintf('You need at least %s level %s to teleport %s party members.', $this->getName(), $need_level, $mc));
+// 			return false;
 		}
 		
 		$need = $this->getManaCost($player, $need_level);
 		$have = $player->getMP();
 		if ($need > $have)
 		{
-			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
+			$player->msg('1055', array($need, $this->getName(), $need_level, $have));
+// 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
 			return false;
 		}
 
 		$player->healMP(-$need);
-		$p->notice(sprintf('%s used %s MP to cast %s and your party is now outside of %s.', $player->getName(), $need, $this->getName(), $tlc));
+		$p->ntice('5133', array($player->getName(), $need, $this->getName(), $tlc));
+// 		$p->notice(sprintf('%s used %s MP to cast %s and your party is now outside of %s.', $player->getName(), $need, $this->getName(), $tlc));
 		$p->pushAction('outside', $tlc);
 		return true;
 	}

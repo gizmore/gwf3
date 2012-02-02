@@ -17,7 +17,6 @@ final class Spell_bunny extends SR_SupportSpell
 		if ($hits > $this->getManaCost())
 		{
 			Shadowcmd_flee::onFlee($target);
-			return true;
 		}
 		return true;
 	}

@@ -1439,6 +1439,10 @@ final class SR_Party extends GDO
 			foreach ($this->members as $player)
 			{
 				$player instanceof SR_Player;
+				if (NULL !== ($user = $player->getUser()))
+				{
+					Lamb::instance()->setCurrentUser($user);
+				}
 				$player->combatTimer();
 			}
 		}

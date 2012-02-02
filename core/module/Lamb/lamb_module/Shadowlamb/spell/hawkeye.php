@@ -21,7 +21,7 @@ final class Spell_hawkeye extends SR_SupportSpell
 		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('firearms'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
-		$this->announceADV($player, $target, $level, sprintf('+%s firearms for %s.', $by, GWF_Time::humanDuration($dur)));
+		$this->announceADV($player, $target, $level, '10070', $by, GWF_Time::humanDuration($dur));
 		return true;
 	}
 }

@@ -388,7 +388,8 @@ abstract class SR_NPCBase extends SR_Player
 		if ($this->arena_ny > 0)
 		{
 			$ny = $this->arena_ny;
-			$player->message(sprintf('You get a reward of %s for killing the enemy.', Shadowfunc::displayNuyen($ny)));
+			$player->msg('5125', array(Shadowfunc::displayNuyen($ny)));
+// 			$player->message(sprintf('You get a reward of %s for killing the enemy.', Shadowfunc::displayNuyen($ny)));
 			$player->giveNuyen($ny);
 		}
 		

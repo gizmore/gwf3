@@ -26,13 +26,17 @@ class Spell_teleport extends SR_Spell
 		
 		$p = $player->getParty();
 		
-		if (!$p->isIdle()) {
-			$player->message('This spell only works when your party is idle.');
+		if (!$p->isIdle())
+		{
+			$player->msg('1033');
+// 			$player->message('This spell only works when your party is idle.');
 			return false;
 		}
 		
-		if (count($args) === 0) {
-			$player->message('Please specify a target to teleport to.');
+		if (count($args) === 0)
+		{
+			$player->msg('1072');
+// 			$player->message('Please specify a target to teleport to.');
 			return false;
 		}
 
@@ -40,7 +44,8 @@ class Spell_teleport extends SR_Spell
 		
 		if (false === ($tlc = Shadowcmd_goto::getTLCByArg($player, $args[0])))
 		{
-			$player->message('This location is unknown.');
+			$player->msg('1069');
+// 			$player->message('This location is unknown.');
 			return false;
 		}
 
@@ -48,19 +53,22 @@ class Spell_teleport extends SR_Spell
 		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
-			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $p->getCity()));
+			$player->msg('1070', array($p->getCity()));
+// 			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $p->getCity()));
 			return false;
 		}
 		$tlc = $target->getName();
 		if (!$player->hasKnowledge('places', $tlc))
 		{
-			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
+			$player->msg('1023');
+// 			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
 			return false;
 		}
 		
 		if ($p->getLocation() === $tlc)
 		{
-			$bot->reply(sprintf('You are already at the %s.', $tlc));
+			$player->msg('1071', array($tlc));
+// 			$bot->reply(sprintf('You are already at the %s.', $tlc));
 			return false;
 		}
 
@@ -69,15 +77,15 @@ class Spell_teleport extends SR_Spell
 		{
 			if (!$loc->isExitAllowed($player))
 			{
-				$bot->reply('You cannot cast teleport inside this lcoation.');
+				$player->msg('1074');
+// 				$bot->reply('You cannot cast teleport inside this lcoation.');
 				return false;
 			}
 		}
 		
 		# Minlevels (thx sabretooth)
-		if (false !== ($error = $this->checkCityTargetLimits($player, $target)))
+		if (false === $this->checkCityTargetLimits($player, $target))
 		{
-			$bot->reply($error);
 			return false;
 		}
 
@@ -85,20 +93,27 @@ class Spell_teleport extends SR_Spell
 		
 		$mc = $p->getMemberCount();
 		$need_level = $mc / 2;
-		if ($level < $need_level) {
-			$bot->reply(sprintf('You need at least teleport level %s to teleport %s party members.', $need_level, $mc));
+		if ($level < $need_level)
+		{
+			$player->msg('1076', array($this->getName(), $need_level, $mc));
 			return false;
+// 			$bot->reply(sprintf('You need at least teleport level %s to teleport %s party members.', $need_level, $mc));
+// 			return false;
 		}
 		
 		$need = $this->getManaCost($player, $need_level);
 		$have = $player->getMP();
-		if ($need > $have) {
-			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
+		if ($need > $have)
+		{
+			$player->msg('1055', array($need, $this->getName(), $need_level, $have));
 			return false;
+// 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
+// 			return false;
 		}
 
 		$player->healMP(-$need);
-		$p->notice(sprintf('%s used %s MP to cast teleport and your party is now outside of %s.', $player->getName(), $need, $tlc));
+		$p->ntice('5133', array($player->getName(), $need, $this->getName(), $tlc));
+// 		$p->notice(sprintf('%s used %s MP to cast teleport and your party is now outside of %s.', $player->getName(), $need, $tlc));
 		$p->pushAction('outside', $tlc);
 		return true;
 	}
@@ -109,14 +124,15 @@ class Spell_teleport extends SR_Spell
 		
 		if (false === ($city = $target->getCityClass()))
 		{
-			return 'DB ERROR 1';
+			return false;
 		}
 		
 		$minlvl = $city->getMinLevel();
 		
 		if ($minlvl < 0)
 		{
-			return 'You cannot teleport there, because the cities minlevel is invalid(BUG)!';
+			$player->message('You cannot teleport there, because the cities minlevel is invalid(BUG)!');
+			return false;
 		}
 		
 		$errors = '';
@@ -133,17 +149,20 @@ class Spell_teleport extends SR_Spell
 		if ($errors !== '')
 		{
 			$errors = substr($errors, 2);
-			return sprintf('You cannot teleport to %s because %s do(es) not have the min level of %s.', $city->getName(), $errors, $minlvl);
+			$player->msg('1075', array($city->getName(), $errors, $minlvl));
+// 			return sprintf('You cannot teleport to %s because %s do(es) not have the min level of %s.', $city->getName(), $errors, $minlvl);
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 	
 	public function onBrew(SR_Player $player, $mp, $diff, $hits)
 	{
 		if ($player->getMP() < $mp)
 		{
-			$player->message(sprintf('You need %s MP to brew this potion, but you got only %s.', $mp, $player->getMP()));
+			$player->msg('1077', array($mp, $player->getMP()));
+// 			$player->message(sprintf('You need %s MP to brew this potion, but you got only %s.', $mp, $player->getMP()));
 			return false;
 		}
 		$player->healMP(-$mp);

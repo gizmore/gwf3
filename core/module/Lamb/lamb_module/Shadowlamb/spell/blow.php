@@ -31,10 +31,9 @@ final class Spell_blow extends SR_CombatSpell
 		$ep = $target->getParty();
 		$ep->movePlayer($target, false, $metres);
 		
-		$append = sprintf('%s got blown away %s metres and is now on position %s.', $target->getName(), $metres, $target->getY());
-		
-		$this->announceADV($player, $target, $level, $append);
-		
+		$this->announceADV($player, $target, $level, '10020', $metres, $target->getY());
+// 		$append = sprintf('%s got blown away %s metres and is now on position %s.', $target->getName(), $metres, $target->getY());
+// 		$this->announceADV($player, $target, $level, $append);
 		return true;
 	}	
 }

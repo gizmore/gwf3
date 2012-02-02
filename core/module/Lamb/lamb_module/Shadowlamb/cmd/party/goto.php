@@ -32,26 +32,30 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		if (false === ($tlc = self::getTLCByArg($player, $args[0])))
 		{
-			$player->message('This location is unknown or ambigious.');
+			self::rply($player, '1069');
+// 			$player->message('This location is unknown or ambigious.');
 			return false;
 		}
 		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
-			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $cityname));
+			self::rply($player, '1070', array($cityname));
+// 			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $cityname));
 			return false;
 		}
 		
 		$tlc = $target->getName();
 		if (!$player->hasKnowledge('places', $tlc))
 		{
-			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
+			self::rply($player, '1023');
+// 			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
 			return false;
 		}
 		
 		if ($party->getLocation('inside') === $tlc)
 		{
-			$bot->reply(sprintf('You are already in %s.', $tlc));
+			self::rply($player, '1071', array($tlc));
+// 			$bot->reply(sprintf('You are already in %s.', $tlc));
 			return false;
 		}
 		
@@ -63,7 +67,8 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		if ( ($party->getAction() === SR_Party::ACTION_GOTO) && ($party->getTarget() === $tlc) )
 		{
-			$bot->reply(sprintf('You are already going to %s. ETA: %s.', $tlc, $party->displayETA()));
+			self::rply($player, '5127', array($tlc, $party->displayETA()));
+// 			$bot->reply(sprintf('You are already going to %s. ETA: %s.', $tlc, $party->displayETA()));
 			return false;
 		}
 
@@ -72,7 +77,8 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		$party->pushAction(SR_Party::ACTION_GOTO, $tlc, $eta);
 		$party->setContactEta(rand(5,15));
-		$party->notice(sprintf('You are going to %s. ETA: %s.', $tlc, GWF_Time::humanDuration($eta)));
+		$party->ntice('5127', array($tlc, $party->displayETA()));
+// 		$party->notice(sprintf('You are going to %s. ETA: %s.', $tlc, GWF_Time::humanDuration($eta)));
 		
 		return true;
 	}

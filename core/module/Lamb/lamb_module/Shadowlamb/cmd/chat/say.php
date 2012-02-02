@@ -27,7 +27,7 @@ final class Shadowcmd_say extends Shadowcmd
 		}
 		elseif ($p->isAtLocation())
 		{
-			Shadowshout::onLocationGlobalMessage($player, '5085', $args);
+			Shadowshout::onLocationGlobalMessage($player, '5085', array($pname, $message));
 		}
 		elseif ($p->isFighting())
 		{

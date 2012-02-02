@@ -36,7 +36,7 @@ $lang = array(
 'opt_bot' => 'Player Botflag',
 'opt_norl' => 'Permleader',
 'enabled' => 'enabled',
-'disabled' => 'enabled',
+'disabled' => 'disabled',
 
 
 # PrintF-Formats
@@ -55,7 +55,7 @@ $lang = array(
 'fmt_hp_mp' => ", {$b}%1\$s{$b}-%2\$s%5\$s(%3\$s/%4\$s)%5\$s", # $member->getEnum(), $member->getName(), $hpmp, $hpmmpm, $b2, $b1
 'fmt_spells' => ", {$b}%s{$b}-%s:%s%s", # id, spellname, base, (adjusted), adjusted
 'fmt_lvlup' => ', %4$s%1$s%4$s:%2$s(%4$s%3$s%5$s%4$s)', # field, tobase, karma, bold, K, couldbit
-'fmt_giveitems' => ', %s x %s', # amt, itemname
+'fmt_giveitems' => ", {$b}%s x %s{$b}", # amt, itemname
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
@@ -186,7 +186,7 @@ $lang = array(
 '1052' => 'The "%s" spell works in combat only.', # spellname
 '1053' => 'You cannot cast a spell with a level smaller than 0.',
 '1054' => 'You cannot cast %s level %s because your spell level is only %s.', # spellname, levelneed, levelhave 
-'1055' => 'You need %s MP to cast %s, but you only have %s.', # needmp, spellname, #havemp
+'1055' => 'You need %s MP to cast %s level %s, but you only have %s.', # needmp, spellname, level, #havemp
 '1056' => 'You failed to cast %s. %s MP wasted.%s',
 '1057' => 'The %s from %s failed.', # spellname, player
 '1058' => 'You should not drop that item.',
@@ -199,11 +199,93 @@ $lang = array(
 '1065' => 'You can only remote control NPC',
 '1066' => 'Only the following remote commands are allowed: %s.', # rawlist
 '1067' => 'You don`t have a %s equipped.', # type
-'1068' => '',
-'1069' => '',
-'1070' => '',
+'1068' => 'You are already exploring %s. ETA: %s.',
+'1069' => 'This location is unknown or ambigious.',
+'1070' => 'This location does not exist in %s.',
+'1071' => 'You are already in %s.',
+'1072' => 'Please specify a target to teleport to.',
+'1073' => 'This city is unknown.',
+'1074' => 'You cannot cast teleport inside this lcoation.',
+'1075' => 'You cannot teleport to %s because %s do(es) not have the min level of %s.',
+'1076' => 'You need at least %s level %s to teleport %s party members.',
+'1077' => 'You need %s MP to brew this potion, but you got only %s.',
+'1078' => 'You cannot cast this spell inside a dungeon.',
+'1079' => 'You can not teleport into dungeons.',
+'1080' => '',
+'1081' => '',
+'1082' => '',
+'1083' => '',
+'1084' => '',
+'1085' => '',
+'1086' => '',
+'1087' => '',
+'1088' => '',
+'1089' => '',
+'1090' => '',
 
-
+########################
+# 10000-14999 = Spells #
+########################
+# Generic
+'10000' => '%s uses a level %s %s potion on %s.',
+'10001' => '%s casts a level %s %s on %s.',
+'10002' => '%s uses a level %s %s potion on %s.',
+'10003' => '%s casts a level %s %s on %s.',
+# Berzerk
+'10010' => '%s uses a level %s %s potion on %s, +%s min_dmg / +%s max_dmg for %s.',
+'10011' => '%s casts a level %s %s on %s, +%s min_dmg / +%s max_dmg for %s.',
+'10012' => '%s uses a level %s %s potion on %s.',
+'10013' => '%s casts a level %s %s on %s.',
+# Blow
+'10020' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
+'10021' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
+'10022' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
+'10023' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
+# Chameleon
+'10030' => '%s uses a level %s %s potion on %s, +%s charisma for %s.',
+'10031' => '%s casts a level %s %s on %s, +%s charisma for %s.',
+'10032' => '%s uses a level %s %s potion on %s.',
+'10033' => '%s casts a level %s %s on %s.',
+# Firebolt
+'10040' => '%s uses a level %s %s potion on %s and caused %s damage.',
+'10041' => '%s casts a level %s %s on %s and caused %s damage.',
+'10042' => '%s uses a level %s %s potion on %s and caused %s damage, %s/%s HP left.',
+'10043' => '%s casts a level %s %s on %s and caused %s damage, %s/%s HP left.',
+# Freeze
+'10050' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
+'10051' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
+'10052' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
+'10053' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
+# Goliath
+'10060' => '%s uses a level %s %s potion on %s, +%s strength for %s.',
+'10061' => '%s casts a level %s %s on %s, +%s strength for %s.',
+'10062' => '%s uses a level %s %s potion on %s.',
+'10063' => '%s casts a level %s %s on %s.',
+# Hawkeye
+'10070' => '%s uses a level %s %s potion on %s, +%s firearms for %s.',
+'10071' => '%s casts a level %s %s on %s, +%s firearms for %s.',
+'10072' => '%s uses a level %s %s potion on %s.',
+'10073' => '%s casts a level %s %s on %s.',
+# Hummingbird
+'10080' => '%s uses a level %s %s potion on %s, +%s quickness for %s.',
+'10081' => '%s casts a level %s %s on %s, +%s quickness for %s.',
+'10082' => '%s uses a level %s %s potion on %s.',
+'10083' => '%s casts a level %s %s on %s.',
+# Magicarp
+'10090' => '%s uses a level %s %s potion on %s and they lost %s MP.',
+'10091' => '%s casts a level %s %s on %s, +%s and they lost %s MP.',
+'10092' => '%s uses a level %s %s potion on %s and they lost %s MP.',
+'10093' => '%s casts a level %s %s on %s and they lost %s MP.',
+# Turtle
+'10100' => '%s uses a level %s %s potion on %s, +%s marm/farm for %s.',
+'10101' => '%s casts a level %s %s on %s, +%s marm/farm for %s.',
+'10102' => '%s uses a level %s %s potion on %s.',
+'10103' => '%s casts a level %s %s on %s.',
+# Heal
+'10110' => '%s uses a level %s %s potion on %s, %s.',
+'10111' => '%s casts a level %s %s on %s, %s.',
+'10112' => '%s uses a level %s %s potion on %s.',
+'10113' => '%s casts a level %s %s on %s.',
 
 ############################
 #   5000-9999   = Messages #
@@ -311,24 +393,14 @@ $lang = array(
 '5096' => 'You meet %s.%s%s',
 '5097' => '%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.',
 '5098' => '%s moves %.01f meters towards %s and is now on position %.01f meters.',
-'5099' => '%s-%s uses a level %s %s potion on %s-%s%s.',
-'5100' => '%s-%s casts a level %s %s on %s-%s%s.',
-'5101' => '%s-%s uses a level %s %s potion on %s-%s but caused no damage.',
-'5102' => '%s-%s casts a level %s %s on %s-%s but caused no damage.',
-'5103' => '%s-%s uses a level %s %s potion on %s-%s and kills them with %s damage.',
-'5104' => '%s-%s casts a level %s %s on %s-%s and kills them with %s damage.',
 '5105' => 'You loot %s and %s XP.', # nuyen, XP
-'5106' => '%s-%s uses a level %s %s potion on %s-%s and caused %s damage.',
-'5107' => '%s-%s casts a level %s %s on %s-%s and caused %s damage.',
-'5108' => '%s-%s uses a level %s %s potion on %s-%s and caused %s damage. (%.02f/%.02f)HP left.',
-'5109' => '%s-%s casts a level %s %s on %s-%s and caused %s damage. (%.02f/%.02f)HP left.',
 '5110' => 'You are about to drop %d %s. Retype to confirm.', # amt itemname
 '5111' => 'You got rid of %d %s.',
 '5112' => '%s tried to flee from the combat. %s busy.', #player, duration
 '5113' => '%s has fled from the enemy.', # player
 '5114' => '%s has fled from combat.', # player
 '5115' => 'You gave %d %s to %s.%s', # amt, item, player, busytime
-'5116' => '%s received %s from %s.', # player, amt, source
+'5116' => '%s received %s from %s.', # player, itemlist, source
 '5117' => '%s told %s about %s.', # player, player, knowledge
 '5118' => 'You received %s from %s.',
 '5119' => 'You gave %s to %s.',
@@ -337,15 +409,13 @@ $lang = array(
 '5122' => 'Your default combat distance has been set to %.01f meters.',
 '5123' => 'Distances: %s.', # sumlist
 '5124' => 'Distances: %s.', # sumlist
-'5125' => '',
-'5126' => '',
-'5127' => '',
-'5128' => '',
-'5129' => '',
-'5130' => '',
-'5131' => '',
-'5132' => '',
-'5133' => '',
+'5125' => 'You get a reward of %s for killing the enemy.',
+'5126' => 'You start to explore %s. ETA: %s.',
+'5127' => 'You are going to %s. ETA: %s.',
+'5128' => 'You see no mounts from other players to rob.',
+'5129' => '%s', # Mount page
+'5130' => 'Mounts to hijack: %s.',
+'5133' => '%s used %s MP to cast %s and your party is now outside of %s.',
 '5134' => '',
 '5135' => '',
 '5136' => '',

@@ -140,7 +140,7 @@ final class Shadowcmd_clan extends Shadowcmd
 		foreach ($members as $row)
 		{
 			$from++;
-			$back .= sprintf($format, $from, "{$row[0]}(L{$row[1]})", $row[2]);
+			$back .= sprintf($format, $from, "{$row[0]}{{$row[1]}}", "L{$row[2]}");
 // 			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
 		}
 		

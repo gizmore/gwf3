@@ -39,8 +39,9 @@ final class Spell_freeze extends SR_CombatSpell
 		$target->busy($ef*10);
 		$effect = new SR_Effect($seconds, array('frozen'=>$ef), SR_Effect::MODE_ONCE_EXTEND);
 		$target->addEffects($effect);
-		$append = $append_ep = sprintf('%s seconds frozen with power %01f.', $seconds, $ef);
-		$this->announceADV($player, $target, $level, $append, $append_ep);
+// 		$append = $append_ep = sprintf('%s seconds frozen with power %01f.', $seconds, $ef);
+// 		$this->announceADV($player, $target, $level, $append, $append_ep);
+		$this->announceADV($player, $target, $level, '10050', $seconds, $ef);
 		return true;
 	}
 }

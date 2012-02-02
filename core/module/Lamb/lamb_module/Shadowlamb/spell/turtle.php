@@ -22,8 +22,8 @@ final class Spell_turtle extends SR_SupportSpell
 		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('marm'=>$by, 'farm'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
-		$append = sprintf('+%s marm/farm for %s.', $by, GWF_Time::humanDuration($dur));
-		$this->announceADV($player, $target, $level, $append);
+// 		$append = sprintf('+%s marm/farm for %s.', $by, GWF_Time::humanDuration($dur));
+		$this->announceADV($player, $target, $level, '10100', $by, GWF_Time::humanDuration($dur));
 		return true;
 	}
 }

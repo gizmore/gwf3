@@ -1288,12 +1288,18 @@ final class Shadowfunc
 	
 	public static function genericViewI(SR_Player $player, array $items, array $args, $text = array())
 	{
+		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, $text));
+	}
+	
+	public static function getGenericViewI(SR_Player $player, array $items, array $args, $text = array())
+	{
 		$bot = Shadowrap::instance($player);
 		
 		if ( (count($args) > 2) /*|| (count($args) < 1)*/ )
 		{
-			$bot->reply(self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi')));
-			return false;
+			return self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi'));
+// 			$bot->reply(self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi')));
+// 			return false;
 		}
 		
 		$items = Shadowfunc::getItemsIndexed($items);
@@ -1336,23 +1342,25 @@ final class Shadowfunc
 		{
 			if ( $pattern !== NULL )
 			{
-				$bot->reply(self::arrayGet($text, 'empty_search', Shadowrun4::lang('1007')));
+				return self::arrayGet($text, 'empty_search', Shadowrun4::lang('1007'));
+// 				$bot->reply(self::arrayGet($text, 'empty_search', Shadowrun4::lang('1007')));
 			}
 			else
 			{
-				$bot->reply(self::arrayGet($text, 'empty', Shadowrun4::lang('1008')));
+				return self::arrayGet($text, 'empty', Shadowrun4::lang('1008'));
+// 				$bot->reply(self::arrayGet($text, 'empty', Shadowrun4::lang('1008')));
 			}
-			return true;
+// 			return true;
 		}
 		
 		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items)))
 		{
-			$bot->reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
-			return false;
+			return self::arrayGet($text, 'no_page', Shadowrun4::lang('1009'));
+// 			$bot->reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
+// 			return false;
 		}
 		
-		$bot->reply(sprintf('%s, %s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr));
-		return true;
+		return sprintf('%s, %s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr);
 	}
 	
 	public static function shortcutModifier($modifier)

@@ -18,9 +18,10 @@ final class Shadowcmd_exit extends Shadowcmd
 		}
 		
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
-		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
+		return $party->ntice('5020', array($party->getLocation()));
 		
-		return true;
+// 		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
+// 		return true;
 	}
 }
 ?>

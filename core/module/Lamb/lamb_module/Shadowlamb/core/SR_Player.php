@@ -254,10 +254,18 @@ class SR_Player extends GDO
 	################
 	### Language ###
 	################
-	public function getLangISO() { return (false === ($user = $this->getUser())) ? 'en' : $user->getLangISO(); }
-	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->lang($key, $args)); }
-	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->lang($key, $args)); }
-	public function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->lang($key, $args); }
+	public function getLangISO()
+	{
+		$user = $this->getUser();
+		if ($user instanceof Lamb_User)
+		{
+			return $user->getLangISO();
+		}
+		return 'en';
+	}
+	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
+	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
+	public function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args); }
 	############
 	### Enum ###
 	############
@@ -1787,7 +1795,7 @@ class SR_Player extends GDO
 			return true;
 		}
 		
-		$format = $this->lang('');
+		$format = $this->lang('fmt_giveitems');
 		
 		$b = chr(2);
 		$message = '';
@@ -1796,7 +1804,7 @@ class SR_Player extends GDO
 			$this->giveItem($item);
 			$amt = $item->getAmount();
 			$multi = $amt > 1 ? "{$amt} x " : '';
-			$message .= sprintf($format, $multi, $item->getItemName());
+			$message .= sprintf($format, $amt, $item->getItemName());
 // 			$message .= sprintf(", {$b}%s%s{$b}", $multi, $item->getItemName());
 		}
 		

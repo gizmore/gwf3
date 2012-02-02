@@ -19,8 +19,8 @@ final class Spell_magicarp extends SR_Spell
 		$max = $hits*1.5;
 		$sucked = Shadowfunc::diceFloat($min, $max, 1);
 		$target->healMP(-$sucked);
-		$append = sprintf('%s lost %s MP.', $target->getName(), $sucked);
-		$this->announceADV($player, $target, $level, $append);
+// 		$append = sprintf('%s lost %s MP.', $target->getName(), $sucked);
+		$this->announceADV($player, $target, $level, '10090', $sucked);
 		return true;
 	}
 }

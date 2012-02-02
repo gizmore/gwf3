@@ -6,7 +6,8 @@ final class Shadowcmd_hijack extends Shadowcmd
 		$p = $player->getParty();
 		if (false === ($location = $p->getLocationClass('outside')))
 		{
-			return $player->message('This command only works when you are outside a location.');
+			return self::rply($player, '1031');
+// 			return $player->message('This command only works when you are outside a location.');
 		}
 		
 		$bot = Shadowrap::instance($player);
@@ -46,9 +47,12 @@ final class Shadowcmd_hijack extends Shadowcmd
 		
 		if (count($victims) === 0)
 		{
-			return $player->message('You see no mounts from other players to rob.');
+			self::rply($player, '5128');
+			return false;
+// 			return $player->message('You see no mounts from other players to rob.');
 		}
 		
+		$format = $player->lang('fmt_sumlist');
 		if (count($args) === 0)
 		{
 			$out = '';
@@ -56,14 +60,17 @@ final class Shadowcmd_hijack extends Shadowcmd
 			{
 				$victim instanceof SR_Player;
 				$mount = $victim->getMount();
-				$out .= sprintf(", \x02%s\x02-%s(%s)", ($i+1), $victim->getName(), $mount->getName());
+				$out .= sprintf($format, ($i+1), $victim->getName(), $mount->getName());
+// 				$out .= sprintf(", \x02%s\x02-%s(%s)", ($i+1), $victim->getName(), $mount->getName());
 			}
-			return $bot->reply(substr($out, 2));
+			return self::rply($player, '5130', array(substr($out, 2)));
+// 			return $bot->reply(substr($out, 2));
 		}
 		
 		if (false === ($target = Shadowfunc::getTarget($victims, $args[0], true)))
 		{
-			$player->message('You see no mounts from other players to rob.');
+			self::rply($player, '5128');
+// 			$player->message('You see no mounts from other players to rob.');
 			return false;
 		}
 		
@@ -71,7 +78,8 @@ final class Shadowcmd_hijack extends Shadowcmd
 		
 		if ($mount->getMountWeight() === 0)
 		{
-			$player->message('This mount cannot store anything.');
+			self::rply($player, '1037');
+// 			$player->message('This mount cannot store anything.');
 			return false;
 		}
 		

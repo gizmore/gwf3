@@ -37,10 +37,10 @@ final class Shadowcmd_mount extends Shadowcmd
 			
 			default:
 				$items = $player->getMountInvItems();
-				$txt = array(
+				$text = array(
 					'prefix' => $player->lang('mount'),
 				);
-				return Shadowfunc::genericViewI($player, $items, $args, $txt);
+				return self::rply($player, '5129', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
 		}
 	}
 

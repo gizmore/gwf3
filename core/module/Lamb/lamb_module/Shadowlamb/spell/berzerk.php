@@ -9,7 +9,6 @@ final class Spell_berzerk extends SR_SupportSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-//		$level = $this->getLevel($player);
 		return (($level+3)/2) + 1;
 	}
 	
@@ -19,8 +18,7 @@ final class Spell_berzerk extends SR_SupportSpell
 		$by = $this->getSpellIncrement($player, $target, $level, $hits);
 		$mod = array('min_dmg'=>$by, 'max_dmg'=>$by*2);
 		$target->addEffects(new SR_Effect($dur, $mod));
-		$append = sprintf('+%s min_dmg / +%s max_dmg for %s.', $by, $by*2, GWF_Time::humanDuration($dur));
-		$this->announceADV($player, $target, $level, $append, '');
+		$this->announceADV($player, $target, $level, '10010', $by, $by*2, GWF_Time::humanDuration($dur));
 		return true;
 	}
 }

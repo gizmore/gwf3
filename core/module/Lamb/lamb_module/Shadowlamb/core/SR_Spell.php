@@ -203,7 +203,7 @@ abstract class SR_Spell
 		
 		if ($need > $have)
 		{
-			$player->msg('1055', array($need, $this->getName(), $have));
+			$player->msg('1055', array($need, $this->getName(), $level, $have));
 // 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));
 			return false;
 		}
@@ -275,22 +275,29 @@ abstract class SR_Spell
 	################
 	### Announce ###
 	################
-	public function announceADV(SR_Player $player, SR_Player $target, $level, $key_friend, $key_foe, $arg1='', $arg2='', $arg3='')
+	public function announceADV(SR_Player $player, SR_Player $target, $level, $key='10000', $arg1='', $arg2='', $arg3='')
 	{
+		# Pick right keys. Each spell has own 4 keys for all 4 possibilities.
+		$key_friend = $key;
+		$key_foe = $key+2;
 		if (false === $this->isBrewMode())
 		{
 			$key_friend++;
 			$key_foe++;
 		}
+		$key_friend = (string)$key_friend;
+		$key_foe = (string)$key_foe;
+		
+		# Announce
 		$p = $player->getParty();
-		$p->ntice($key_friend, array($player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName(), $arg1, $arg2, $arg3));
+		$p->ntice($key_friend, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
 		if ($p->isFighting())
 		{
 			$ep = $p->getEnemyParty();
-			$ep->ntice($key_foe, array($player->getEnum(), $player->getName(), $level, $this->getName(), $target->getEnum(), $target->getName(), $arg1, $arg2, $arg3));
+			$p->ntice($key_foe, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
 		}
 	}
-
+	
 	#####################
 	### Single Damage ###
 	#####################
@@ -302,14 +309,16 @@ abstract class SR_Spell
 	 * @param int $level
 	 * @param double $damage
 	 */
-	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $damage)
+	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage)
 	{
+		$maxhp = $target->getMaxHP();
 		$damage = round($damage, 1);
 		if ($damage <= 0)
 		{
 // 			$append = $append_ep = $player->lang('but no damge');
 // 			$append = $append_ep = ' but caused no damage';
-			$this->announceADV($player, $target, $level, '5101', '5101');
+			$hp = $target->getHP();
+			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp);
 			return true;
 		}
 		
@@ -323,7 +332,7 @@ abstract class SR_Spell
 		{
 // 			$append = $append_ep = ' and kills them with '.$damage.' damage';
 			
-			$this->announceADV($player, $target, $level, '5103', '5103', $damage);
+			$this->announceADV($player, $target, $level, $key, $damage, '0', $maxhp);
 
 			# Loot him!
 			$xp = $target->isHuman() ? 0 : $target->getLootXP();
@@ -356,10 +365,10 @@ abstract class SR_Spell
 		else # just some dmg
 		{
 			$hp = $target->getHP();
-			$maxhp = $target->getMaxHP();
+// 			$maxhp = $target->getMaxHP();
 // 			$append = " and caused {$damage} damage";
 // 			$append_ep = "{$append} ($hp/$maxhp)HP left.";
-			$this->announceADV($player, $target, $level, '5108', '5106', $damage, $hp, $maxhp);
+			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp);
 		}
 
 		if ($ep->getMemberCount() === 0)
