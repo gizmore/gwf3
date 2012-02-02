@@ -7,9 +7,8 @@ final class Shadowcmd_goto extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		if (false !== ($error = self::checkLeader($player)))
+		if (false === self::checkLeader($player))
 		{
-			$player->message($error);
 			return false;
 		}
 		
@@ -24,9 +23,8 @@ final class Shadowcmd_goto extends Shadowcmd
 		$cityclass = $party->getCityClass();
 		
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkMove($party)))
+		if (false === self::checkMove($party))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		

@@ -9,12 +9,14 @@ final class Shadowcmd_part extends Shadowcmd
 			return false;
 		}
 		$p = $player->getParty();
-		if ($p->getMemberCount() === 1) {
-			$bot->reply('You are not in a party.');
+		if ($p->getMemberCount() === 1)
+		{
+			self::rply($player, '1093');
+// 			$bot->reply('You are not in a party.');
 			return false;
 		}
-		
-		$p->notice(sprintf('%s has left the party.', $player->getName()));
+		$p->ntice('5135', array($player->getName()));
+// 		$p->notice(sprintf('%s has left the party.', $player->getName()));
 		$p->kickUser($player, true);
 		$np = SR_Party::createParty();
 		$np->addUser($player, true);

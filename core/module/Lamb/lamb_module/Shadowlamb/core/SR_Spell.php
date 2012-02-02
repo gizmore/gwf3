@@ -294,7 +294,7 @@ abstract class SR_Spell
 		if ($p->isFighting())
 		{
 			$ep = $p->getEnemyParty();
-			$p->ntice($key_foe, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
+			$ep->ntice($key_foe, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
 		}
 	}
 	

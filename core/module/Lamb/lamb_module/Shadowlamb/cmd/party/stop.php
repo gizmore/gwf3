@@ -4,8 +4,8 @@ final class Shadowcmd_stop extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkLeader($player))) {
-			$bot->reply($error);
+		if (false === self::checkLeader($player))
+		{
 			return false;
 		}
 		$p = $player->getParty();

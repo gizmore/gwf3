@@ -43,7 +43,7 @@ final class Seattle_Store extends SR_Store
 	{
 		if ($this->isMaloisHere($player))
 		{
-			return parent::getHelpText($player)." Use {$c}talk to talk to Malois.";
+			return parent::getHelpText($player)." Use #talk to talk to Malois.";
 		}
 		else
 		{

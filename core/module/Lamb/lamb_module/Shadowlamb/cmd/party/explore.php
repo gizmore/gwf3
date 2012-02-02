@@ -4,16 +4,14 @@ final class Shadowcmd_explore extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (false !== ($error = self::checkLeader($player)))
+		if (false === self::checkLeader($player))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		
 		$party = $player->getParty();
-		if (false !== ($error = self::checkMove($party)))
+		if (false === self::checkMove($party))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		

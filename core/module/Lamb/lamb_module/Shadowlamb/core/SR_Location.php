@@ -165,9 +165,8 @@ abstract class SR_Location
 		$bot = Shadowrap::instance($player);
 
 		$party = $player->getParty();
-		if (false !== ($error = Shadowcmd::checkMove($party)))
+		if (false === Shadowcmd::checkMove($party))
 		{
-			$bot->reply($error);
 			return false;
 		}
 	

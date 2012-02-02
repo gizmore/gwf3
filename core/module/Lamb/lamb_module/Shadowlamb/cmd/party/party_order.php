@@ -7,9 +7,8 @@ final class Shadowcmd_party_order extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		if (false !== ($error = self::checkLeader($player)))
+		if (false === self::checkLeader($player))
 		{
-			$player->message($error);
 			return false;
 		}
 		
@@ -21,7 +20,8 @@ final class Shadowcmd_party_order extends Shadowcmd
 		
 		if (!$party->isIdle())
 		{
-			$player->message('Your party has to be idle to re-order party members.');
+			$player->msg('1033');
+// 			$player->message('Your party has to be idle to re-order party members.');
 			return false;
 		}
 		
@@ -33,25 +33,29 @@ final class Shadowcmd_party_order extends Shadowcmd
 		
 		if (false === ($a = $party->getMemberByArg($args[0])))
 		{
-			$player->message('Your first parameter does not adress a party member.');
+			$player->msg('1064');
+// 			$player->message('Your first parameter does not adress a party member.');
 			return false;
 		}
 		
 		if (false === ($b = $party->getMemberByArg($args[1])))
 		{
-			$player->message('Your second parameter does not adress a party member.');
+			$player->msg('1064');
+// 			$player->message('Your second parameter does not adress a party member.');
 			return false;
 		}
 		
 		if ($a->getID() === $b->getID())
 		{
-			$player->message('Nothing swapped, so bailout.');
+			$player->msg('1030');
+// 			$player->message('Nothing swapped, so bailout.');
 			return false;
 		}
 		
 		if ($a->isLeader() || $b->isLeader())
 		{
-			$player->message('You should not use this command to swap leader position. Please use the #(le)ader command.');
+			$player->msg('1094');
+// 			$player->message('You should not use this command to swap leader position. Please use the #(le)ader command.');
 			return false;
 		}
 		
@@ -61,7 +65,8 @@ final class Shadowcmd_party_order extends Shadowcmd
 			return false;
 		}
 		
-		$party->notice(sprintf('%s and %s have swapped their party position.', $a->getName(), $b->getName()));
+		$party->ntice('5140', array($a->getName(), $b->getName()));
+// 		$party->notice(sprintf('%s and %s have swapped their party position.', $a->getName(), $b->getName()));
 		
 		return true;
 	}

@@ -14,17 +14,20 @@ final class Shadowcmd_kick extends Shadowcmd
 		$p = $player->getParty();
 		if (false === ($target = $p->getMemberByArg($args[0])))
 		{
-			$bot->reply('This player is not in your party.');
+			self::rply($player, '1089');
+// 			$bot->reply('This player is not in your party.');
 			return false;
 		}
 		
 		if ($target->getID() === $player->getID())
 		{
-			$bot->reply('You can not kick yourself.');
+			self::rply($player, '1090');
+// 			$bot->reply('You can not kick yourself.');
 			return false;
 		}
 		
-		$p->notice(sprintf('%s has been kicked off the party.', $target->getName()));
+		$p->ntice('5137', array($target->getName()));
+// 		$p->notice(sprintf('%s has been kicked off the party.', $target->getName()));
 		if ($p->kickUser($target, true))
 		{
 			$np = SR_Party::createParty();

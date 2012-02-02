@@ -135,7 +135,7 @@ class Shadowcmd
 	##########################
 	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=false)
 	{
-		if (false !== ($error = self::checkCreated($player)))
+		if (false === $player->isCreated())
 		{
 			return self::$CMDS_ALWAYS_CREATE;
 		}
@@ -319,10 +319,12 @@ class Shadowcmd
 	{
 		if ($player->isCreated())
 		{
-			return false;
+			return true;
 		}
-		$c = Shadowrun4::SR_SHORTCUT;
-		return 'You did not start the game yet. Type '.$c.'start <race> <gender> to start your journey in Shadowlamb.';
+		$player->msg('0000');
+		return false;
+// 		$c = Shadowrun4::SR_SHORTCUT;
+// 		return 'You did not start the game yet. Type '.$c.'start <race> <gender> to start your journey in Shadowlamb.';
 	}
 	
 	/**
@@ -332,15 +334,16 @@ class Shadowcmd
 	 */
 	public static function checkLeader(SR_Player $player)
 	{
-		if (false !== ($error = self::checkCreated($player)))
-		{
-			return $error;
-		}
-		if ($player->isLeader())
+		if (false === self::checkCreated($player))
 		{
 			return false;
 		}
-		return $player->msg('1032'); # 'This command is only available to the party leader.';
+		if ($player->isLeader())
+		{
+			return true;
+		}
+		$player->msg('1032'); # 'This command is only available to the party leader.';
+		return false;
 	}
 	
 	/**
@@ -357,18 +360,32 @@ class Shadowcmd
 			$member instanceof SR_Player;
 			if ($member->isDead())
 			{
-				$back .= sprintf(', %s is dead', $member->getName());
+				$party->ntice('1080', array($member->getName()));
+				return false;
+// 				$back .= sprintf(', %s is dead', $member->getName());
 			}
 			elseif ($member->isOverloadedFull())
 			{
-				$back .= sprintf(', %s is overloaded', $member->getName());
+				$party->ntice('1081', array($member->getName()));
+				return false;
+// 				$back .= sprintf(', %s is overloaded', $member->getName());
 			}
 			elseif ($member->getBase('age') <= 0)
 			{
-				$back .= sprintf(", %s has no {$b}#asl{$b}", $member->getName());
+				$party->ntice('1082', array($member->getName()));
+				return false;
+// 				$back .= sprintf(", %s has no {$b}#asl{$b}", $member->getName());
 			}
 		}
-		return $back === '' ? false : 'You cannot move because '.substr($back, 2).'.';
+		return true;
+// 		if ($back === '')
+// 		{
+// 			return true;
+// 		}
+		
+// 		$party->ntice('', array(substr($back, 2)));
+// 		return false;
+// 		return $back === '' ? false : 'You cannot move because '.substr($back, 2).'.';
 	}
 	
 	###############

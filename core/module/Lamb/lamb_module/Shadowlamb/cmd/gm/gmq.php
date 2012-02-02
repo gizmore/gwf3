@@ -22,7 +22,7 @@ final class Shadowcmd_gmq extends Shadowcmd
 			return false;
 		}
 		
-		if (false !== ($error = self::checkCreated($target)))
+		if (false === $target->isCreated())
 		{
 			$bot->reply(sprintf('The player %s has not started a game yet.', $args[0]));
 			return false;

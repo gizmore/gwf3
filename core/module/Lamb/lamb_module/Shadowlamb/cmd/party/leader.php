@@ -14,19 +14,22 @@ final class Shadowcmd_leader extends Shadowcmd
 		$party = $player->getParty();
 		if (false === ($target = $party->getMemberByArg($args[0])))
 		{
-			$bot->reply(sprintf('%s is not in your party.', $args[0]));
+			self::rply($player, '1089');
+// 			$bot->reply(sprintf('%s is not in your party.', $args[0]));
 			return false;
 		}
 		
 		if ($target->isLeader())
 		{
-			$bot->reply(sprintf('%s is already the party leader.', $target->getName()));
+			self::rply($player, '1091', array($target->getName()));
+// 			$bot->reply(sprintf('%s is already the party leader.', $target->getName()));
 			return false;
 		}
 		
 		if ($target->isNPC())
 		{
-			$bot->reply(sprintf('You can not give leadership to NPCs.'));
+			self::rply($player, '1092');
+// 			$bot->reply(sprintf('You can not give leadership to NPCs.'));
 			return false;
 		}
 		
@@ -34,18 +37,20 @@ final class Shadowcmd_leader extends Shadowcmd
 		{
 			case SR_Party::ACTION_HIJACK:
 			case SR_Party::ACTION_FIGHT:
-				$bot->reply(sprintf('You cannot change leadership now.'));
+				self::rply($player, '1033');
+// 				$bot->reply(sprintf('You cannot change leadership now.'));
 				return false;
 		}
 		
 		# Do it!
 		if (false === $party->setLeader($target))
 		{
-			$bot->reply('Error.');
+			$bot->reply('Database error.');
 			return false;
 		}
 		
-		$party->notice(sprintf('%s is the new party leader.', $target->getName()));
+		$party->ntice('5138', array($target->getName()));
+// 		$party->notice(sprintf('%s is the new party leader.', $target->getName()));
 		return true;
 	}
 }
