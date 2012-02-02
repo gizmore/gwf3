@@ -20,24 +20,31 @@ final class Spell_fireball extends SR_CombatSpell
 		$p = $player->getParty();
 		$ep = $p->getEnemyParty();
 		
+		# Firebolt ads 0.20 per level
 		$firebolt = $player->getSpell('firebolt');
-		$level += $firebolt === false ? 0 : $firebolt->getLevel($player);
+		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($player);
+		$firebolt = round($firebolt/5, 1);
+		$level += $firebolt;
 		
 		$damage = array();
 		foreach ($targets as $data)
 		{
 			list($pid, $d) = $data;
-			$d = Common::clamp($d, 1);
 			$target = $ep->getMemberByPID($pid);
-			$hits = $this->dice($player, $target, $level);# * $level / 2;
-			echo "Fireball hits=$hits, Distance=$d";
-			$hits /= $d;
-			echo "Fireball hits=$hits";
-			$min = $level*2;
-			$max = $level*4 + $hits;
-			$dmg = rand($min*10, $max*10+$hits);
-			$dmg /= 10;
-			$damage[$pid] = $dmg;
+			$d = Common::clamp($d, 1);
+			
+			$hits = $this->dice($player, $target, $level); # Dice hits
+// 			echo "Fireball hits=$hits, Distance=$d";
+			
+			$hits /= 2; # We take half..
+			$hits /= ($d * 2); # And divide by distance
+			$hits = round($hits, 1);
+			
+// 			echo "Fireball hits=$hits";
+			$min = $level*2; # The min damage is still like 2 or 20
+			$max = $min + $hits; # The max damage is min + hits 
+
+			$damage[$pid] = Shadowfunc::diceFloat($min, $max);
 		}
 		
 		$this->spellDamageMultiTargets($player, $damage, $level);
