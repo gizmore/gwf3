@@ -8,7 +8,7 @@ final class Spell_fireball extends SR_CombatSpell
 	public function getManaCost(SR_Player $player, $level)
 	{
 //		$level = $this->getLevel($player);
-		return 6 + ($level*2);
+		return 2 + ($level);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
@@ -31,16 +31,16 @@ final class Spell_fireball extends SR_CombatSpell
 		{
 			list($pid, $d) = $data;
 			$target = $ep->getMemberByPID($pid);
-			$d = Common::clamp($d, 1);
+			$d = Common::clamp($d, 2);
 			
 			$hits = $this->dice($player, $target, $level); # Dice hits
-// 			echo "Fireball hits=$hits, Distance=$d";
+			echo "!! Fireball hits=$hits, Distance=$d";
 			
-			$hits /= 2; # We take half..
-			$hits /= ($d * 2); # And divide by distance
+// 			$hits /= 2; # We take half..
+			$hits /= ($d * 2.5); # And divide by distance
 			$hits = round($hits, 1);
 			
-// 			echo "Fireball hits=$hits";
+			echo " Fireball hits=$hits\n";
 			$min = $level*2; # The min damage is still like 2 or 20
 			$max = $min + $hits; # The max damage is min + hits 
 
