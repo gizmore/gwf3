@@ -7,7 +7,7 @@ final class Spell_fireball extends SR_CombatSpell
 	public function getCastTime($level) { return Common::clamp(40-$level, 30, 42); }
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 2 + ($level);
+		return 3 + ($level);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
@@ -30,20 +30,24 @@ final class Spell_fireball extends SR_CombatSpell
 		{
 			list($pid, $d) = $data;
 			$target = $ep->getMemberByPID($pid);
-			$d = Common::clamp($d, 2);
+			$d = Common::clamp($d, 1);
 			
 			$hits = $this->dice($player, $target, $level); # Dice hits
 			echo "!! Fireball hits=$hits, Distance=$d";
 			
 // 			$hits /= 2; # We take half..
-			$hits /= ($d * 2.5); # And divide by distance
-			$hits = round($hits, 1);
+// 			$hits /= ($d * 5); # And divide by distance
+// 			$hits = round($hits, 1);
+// 			echo " Fireball hits=$hits\n";
 			
-			echo " Fireball hits=$hits\n";
-			$min = $level*2; # The min damage is still like 2 or 20
+			$min = $level*1.0; # The min damage is still like 2 or 20
 			$max = $min + $hits; # The max damage is min + hits 
 
-			$damage[$pid] = Shadowfunc::diceFloat($min, $max);
+			$dmg = Shadowfunc::diceFloat($min, $max);
+			$dmg /= $d*3.0; # Apply area reduction
+			$dmg = round($dmg,1);
+			
+			$damage[$pid] = $dmg;
 		}
 		
 		$this->spellDamageMultiTargets($player, $damage, $level);

@@ -11,7 +11,7 @@ final class Spell_firewall extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 3 + ($level*1.5);
+		return 4 + ($level*1.5);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
