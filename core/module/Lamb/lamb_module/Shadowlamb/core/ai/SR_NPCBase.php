@@ -360,11 +360,25 @@ abstract class SR_NPCBase extends SR_Player
 	private function getNPCHighChanceDrops()
 	{
 		$back = array();
+
+		foreach ($this->getNPCInventory() as $itemname)
+		{
+			if (false === in_array($itemname, $back, true))
+			{
+				$back[] = $itemname;
+			}
+		}
+		
 		foreach ($this->getAllEquipment(false) as $item)
 		{
 			$item instanceof SR_Item;
-			$back[] = $item->getName();
+			$itemname = $item->getName();
+			if (false === in_array($itemname, $back, true))
+			{
+				$back[] = $itemname;
+			}
 		}
+		
 		return $back;
 	}
 

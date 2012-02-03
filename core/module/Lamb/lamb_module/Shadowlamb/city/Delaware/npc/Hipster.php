@@ -33,6 +33,13 @@ final class Delaware_Hipster extends SR_NPC
 		);
 	}
 	
+	public function getNPCInventory()
+	{
+		return array(
+			'Coke'
+		);
+	}
+	
 	public function getNPCLoot(SR_Player $player)
 	{
 		SR_Quest::getQuest($player, 'Delaware_MCGuest12')->onKill($player);
