@@ -25,7 +25,7 @@ final class Spell_firewall extends SR_CombatSpell
 		$level += $firebolt;
 		
 		# Fireball ads 0.25 per level
-		$fireball = $player->getSpell('firebolt');
+		$fireball = $player->getSpell('fireball');
 		$fireball = $fireball === false ? 0 : $fireball->getLevel($player);
 		$fireball = round($fireball/4, 1);
 		$level += $fireball;

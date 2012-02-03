@@ -40,7 +40,7 @@ final class Chicago_BlackTemple extends SR_School
 // 			array('teleportiv', 5000000+$p),
 //G			array('tornado', 17000+$p),
 // 			array('turtle', 6500+$p),
-// 			array('vulcano', 25000+$p),
+			array('vulcano', 25000+$p),
 // 			array('whirlwind', 9500+$p),
 		);
 	}

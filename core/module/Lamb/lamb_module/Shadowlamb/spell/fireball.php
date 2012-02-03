@@ -7,7 +7,6 @@ final class Spell_fireball extends SR_CombatSpell
 	public function getCastTime($level) { return Common::clamp(40-$level, 30, 42); }
 	public function getManaCost(SR_Player $player, $level)
 	{
-//		$level = $this->getLevel($player);
 		return 2 + ($level);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
