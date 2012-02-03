@@ -92,7 +92,7 @@ class Shadowcmd
 	### Triggers ###
 	################
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
-	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmns','gmx');
+	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmul','gmns','gmx');
 	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw','swapkp');
 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','cl','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mos','sh','w','wb','sd','cm','pm','rl');
 	public static $CMDS = array(

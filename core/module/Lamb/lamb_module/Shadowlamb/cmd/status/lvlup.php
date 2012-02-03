@@ -101,30 +101,31 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 			
 		$is_spell = false;
+		$cost = self::getKarmaCostFactor($f);
 		
 		if (in_array($f, SR_Player::$SKILL))
 		{
 			$level = $player->getBase($f);
-			$cost = self::KARMA_COST_SKILL;
+// 			$cost = self::KARMA_COST_SKILL;
 			$max = $runner ? self::MAX_VAL_SKILL_RUNNER : self::MAX_VAL_SKILL;
 		}
 		
 		elseif (in_array($f, SR_Player::$ATTRIBUTE))
 		{
 			$level = $player->getBase($f);
-			$cost = self::KARMA_COST_ATTRIBUTE;
+// 			$cost = self::KARMA_COST_ATTRIBUTE;
 			$max = $runner ? self::MAX_VAL_ATTRIBUTE_RUNNER : self::MAX_VAL_ATTRIBUTE;
 		}
 		
 		elseif (in_array($f, SR_Player::$KNOWLEDGE))
 		{
 			$level = $player->getBase($f);
-			$cost = self::KARMA_COST_KNOWLEDGE;
+// 			$cost = self::KARMA_COST_KNOWLEDGE;
 			$max = $runner ? self::MAX_VAL_KNOWLEDGE_RUNNER : self::MAX_VAL_KNOWLEDGE;
 		}
 		elseif (false !== ($spell = SR_Spell::getSpell($f))) {
 			$level = $spell->getBaseLevel($player);
-			$cost = self::KARMA_COST_SPELL;
+// 			$cost = self::KARMA_COST_SPELL;
 			$is_spell = true;
 			$max = $runner ? self::MAX_VAL_SPELL_RUNNER : self::MAX_VAL_SPELL;
 		}
@@ -151,6 +152,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 		$need = ($level+1) * $cost;
+		
 		if ($need > $have)
 		{
 			$player->msg('1027', array($need, $f, $level, $level+1, $have));
@@ -174,6 +176,31 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		$player->modify();
 		return self::rply($player, '5061', array($need, $f, $level, $level+1));
 // 		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));
+	}
+	
+	public static function getKarmaCostFactor($field)
+	{
+		if ($field === 'essence')
+		{
+			return false;
+		}
+		if (true === in_array($field, SR_Player::$SKILL, true))
+		{
+			return self::KARMA_COST_SKILL;
+		}
+		if (true === in_array($field, SR_Player::$ATTRIBUTE, true))
+		{
+			return self::KARMA_COST_ATTRIBUTE;
+		}
+		if (true === in_array($field, SR_Player::$KNOWLEDGE, true))
+		{
+			return self::KARMA_COST_KNOWLEDGE;
+		}
+		if (false !== ($spell = SR_Spell::getSpell($f)))
+		{
+			return self::KARMA_COST_SPELL;
+		}
+		return false;
 	}
 }
 ?>
