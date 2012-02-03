@@ -4,6 +4,8 @@ final class Item_WeddingRing extends SR_Ring
 	public function getItemLevel() { return -1; }
 	public function getItemPrice() { return 900; }
 	
+	public function isItemDropable() { return false; }
+	
 	public function getItemDescription()
 	{
 		$username = Lamb::instance()->getCurrentUser()->getName();
