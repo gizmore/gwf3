@@ -7,7 +7,7 @@ final class Seattle_Harbor extends SR_Tower
 	public function onEnter(SR_Player $player)
 	{
 		$player->getParty()->notice('You enter the Harbor ...');
-		return $this->teleport($player, 'Harbor_Exit');
+		return $this->teleportInside($player, 'Harbor_Exit');
 	}
 }
 ?>

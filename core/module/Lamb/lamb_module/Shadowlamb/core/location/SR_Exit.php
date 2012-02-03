@@ -12,7 +12,7 @@ abstract class SR_Exit extends SR_Tower
 // 	public function isExitAllowed(SR_Player $player) { return false; }
 	public function on_leave(SR_Player $player, array $args)
 	{
-		$this->teleport($player, $this->getExitLocation());
+		$this->teleportOutside($player, $this->getExitLocation());
 	}
 }
 ?>

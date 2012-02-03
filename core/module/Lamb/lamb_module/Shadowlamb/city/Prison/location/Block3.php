@@ -6,7 +6,7 @@ final class Prison_Block3 extends SR_Tower
 	
 	public function onEnter(SR_Player $player)
 	{
-		$this->teleport($player, 'PrisonB3_Exit');
+		$this->teleportInside($player, 'PrisonB3_Exit');
 	}
 }
 ?>

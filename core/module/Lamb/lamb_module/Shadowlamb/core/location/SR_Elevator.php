@@ -228,7 +228,7 @@ abstract class SR_Elevator extends SR_Tower
 		}
 
 		$eta = $this->getElevatorTime();
-		if (false === ($this->teleport($player, $floor->getName(), $eta)))
+		if (false === ($this->teleportInside($player, $floor->getName())))
 		{
 			$player->message('Error!');
 			return false;

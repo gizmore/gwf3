@@ -5,7 +5,7 @@ final class TrollHQ2_Downstairs extends SR_Tower
 	public function getFoundPercentage() { return 50.00; }
 	public function onEnter(SR_Player $player)
 	{
-		return $this->teleport($player, 'TrollHQ_Upstairs', 30);
+		return $this->teleportOutside($player, 'TrollHQ_Upstairs');
 	}
 }
 ?>

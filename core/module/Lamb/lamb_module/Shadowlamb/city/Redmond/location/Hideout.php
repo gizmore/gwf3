@@ -10,7 +10,7 @@ final class Redmond_Hideout extends SR_Tower
 		$dice = rand(0, 6);
 		if ($dice < 2) {
 			$party->notice('You silently search the door and windows for an entrance. You were lucky and sneak in...');
-			$this->teleport($player, 'Hideout_Exit');
+			$this->teleportInside($player, 'Hideout_Exit');
 		}
 		else if ($dice < 4) {
 			$party->notice('You silently search the door and windows for an entrance. You have no luck, everything\'s closed.');

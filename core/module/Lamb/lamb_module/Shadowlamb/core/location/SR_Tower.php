@@ -22,22 +22,33 @@ abstract class SR_Tower extends SR_Location
 	 * @param string $target
 	 * @param int $eta
 	 */
-	public function teleport(SR_Player $player, $target, $eta=4)
-	{
-		if (false === ($location = Shadowrun4::getLocationByTarget($target)))
-		{
-			Lamb_Log::logError('Unknown $target "'.$target.'" for '.__METHOD__.' in '.__FILE__.' line '.__LINE__.'.');
-			return false;
-		}
-		$party = $player->getParty();
-		$party->pushAction(SR_Party::ACTION_TRAVEL, $target, $eta);
-		$party->giveKnowledge('places', $target);
-		return true;
-	}
+// 	public function teleport(SR_Player $player, $target)
+// 	{
+// 		if (false === ($location = Shadowrun4::getLocationByTarget($target)))
+// 		{
+// 			Lamb_Log::logError('Unknown $target "'.$target.'" for '.__METHOD__.' in '.__FILE__.' line '.__LINE__.'.');
+// 			return false;
+// 		}
+// 		$party = $player->getParty();
+// 		$party->pushAction(SR_Party::ACTION_OUTSIDE, $target);
+// // 		$party->pushAction(SR_Party::ACTION_TRAVEL, $target, $eta);
+// 		$party->giveKnowledge('places', $target);
+// 		return true;
+// 	}
 	
 	public function teleportInstant(SR_Player $player, $target, $action=SR_Party::ACTION_INSIDE)
 	{
 		return $this->beam($player, $target, $action);
+	}
+	
+	public function teleportInside(SR_Player $player, $target)
+	{
+		return $this->beam($player, $target, SR_Party::ACTION_INSIDE);
+	}
+	
+	public function teleportOutside(SR_Player $player, $target)
+	{
+		return $this->beam($player, $target, SR_Party::ACTION_OUTSIDE);
 	}
 	
 	/**

@@ -8,7 +8,7 @@ final class Redmond_OrkHQ extends SR_Tower
 	{
 		$party = $player->getParty();
 		$party->notice('You easily manage to crack the rotten front door open...');
-		$this->teleport($player, 'OrkHQ_Exit');
+		$this->teleportInside($player, 'OrkHQ_Exit');
 	}
 }
 ?>

@@ -12,7 +12,7 @@ final class Delaware_TrollHQ extends SR_SearchRoom
 		{
 			return false;
 		}
-		return $this->teleport($player, 'TrollHQ_Exit', 5);
+		return $this->teleportInside($player, 'TrollHQ_Exit');
 	}
 }
 ?>
