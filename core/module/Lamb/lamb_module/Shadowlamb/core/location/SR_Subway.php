@@ -63,21 +63,28 @@ abstract class SR_Subway extends SR_Location
 	{
 		$bot = Shadowrap::instance($player);
 		$out = '';
-		
+		$format = $player->lang('fmt_sumlist');
 		foreach ($this->getFilteredTargets($player) as $i => $data)
 		{
 			list($target, $price, $time, $level) = $data;
-			$out .= sprintf(', %s:%s(%s)', $i+1, $target, $price);
+			$dprice = Shadowfunc::displayNuyen($price);
+			$out .= sprintf($format, $i+1, $target, $dprice);
+// 			$out .= sprintf(', %s:%s(%s)', $i+1, $target, $price);
 		}
 		
-		if ($out === '') {
-			$out = 'There are no trains planned for today.';
-		}
-		else {
-			$out = substr($out, 2);
+		if ($out === '')
+		{
+			return $bot->rply('1152');
+// 			$out = 'There are no trains planned for today.';
 		}
 		
-		$bot->reply($out);
+		return $bot->rply('', array(substr($out, 2)));
+		
+// 		else {
+// 			$out = substr($out, 2);
+// 		}
+		
+// 		$bot->reply($out);
 	}
 	
 	public function on_travel(SR_Player $player, array $args)
@@ -92,20 +99,24 @@ abstract class SR_Subway extends SR_Location
 			return true;
 		}
 		
-		if (false === ($target = $this->getSubwayTarget($player, $args[0]))) {
-			$bot->reply("This target is unknown. Check available targets with {$c}travel.");
+		if (false === ($target = $this->getSubwayTarget($player, $args[0])))
+		{
+			$bot->rply('1153');
+// 			$bot->reply("This target is unknown. Check available targets with {$c}travel.");
 			return false;
 		}
 		
 		list($target, $price, $time) = $target;
 		$dp = Shadowfunc::displayNuyen($price);
-		if (false === ($player->pay($price))) {
-			$bot->reply(sprintf('You can not afford %d tickets for %s', $party->getMemberCount(), $dp));
+		if (false === ($player->pay($price)))
+		{
+			$bot->rply('1154', array($party->getMemberCount(), $dp));
+// 			$bot->reply(sprintf('You can not afford %d tickets for %s', $party->getMemberCount(), $dp));
 			return false;
 		}
 		
-		$eta = GWF_Time::humanDuration($time);
-		$party->message($player, " paid the price of $dp and you take the next train to $target. ETA: $eta");
+		$party->ntice('5200', array($player->getName(), $dp, $target, GWF_Time::humanDuration($time)));
+// 		$party->message($player, " paid the price of $dp and you take the next train to $target. ETA: $eta");
 		$party->pushAction(SR_Party::ACTION_TRAVEL, $target, $time);
 		
 		return true;

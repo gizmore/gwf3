@@ -34,12 +34,14 @@ class SR_ClanHQ extends SR_Location
 	
 	public function getFoundText(SR_Player $player)
 	{
-		return sprintf('You found the clan headquarters.');
+		return $player->lang('stub_found_clanhq');
+// 		return sprintf('You found the clan headquarters.');
 	}
 	
 	public function getEnterText(SR_Player $player)
 	{
-		return sprintf('You enter the clan headquarters.');
+		return $player->lang('stub_enter_clanhq');
+// 		return sprintf('You enter the clan headquarters.');
 	}
 	
 	public function getHelpText(SR_Player $player)
@@ -58,7 +60,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message(sprintf('You are not in a clan.'));
+			$player->msg('1019');
+// 			$player->message(sprintf('You are not in a clan.'));
 			return false;
 		}
 		
@@ -66,12 +69,14 @@ class SR_ClanHQ extends SR_Location
 		{
 			if (!$clan->isStorageEmpty())
 			{
-				$player->message(sprintf('You cannot destroy a clan when storage is not empty.'));
+				$player->msg('1119');
+// 				$player->message(sprintf('You cannot destroy a clan when storage is not empty.'));
 				return false;
 			}
 			if ($clan->getNuyen() > 0)
 			{
-				$player->message(sprintf('You cannot destroy a clan when the bank is not empty.'));
+				$player->msg('1119');
+// 				$player->message(sprintf('You cannot destroy a clan when the bank is not empty.'));
 				return false;
 			}
 		}
@@ -82,7 +87,8 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('You have left the "%s" clan.', $clan->getName()));
+		$player->msg('5165', array($clan->getName()));
+// 		$player->message(sprintf('You have left the "%s" clan.', $clan->getName()));
 		return true;
 	}
 	
@@ -90,7 +96,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false !== ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message(sprintf('You are already in the clan "%s".', $clan->getName()));
+			$player->msg('1120', array($clan->getName()));
+// 			$player->message(sprintf('You are already in the clan "%s".', $clan->getName()));
 			return false;
 		}
 		
@@ -105,13 +112,15 @@ class SR_ClanHQ extends SR_Location
 			&& (false === ($clan = SR_Clan::getByPName($args[0])))
 		)
 		{
-			$player->message('This clan or player is unknown.');
+			$player->msg('1121');
+// 			$player->message('This clan or player is unknown.');
 			return false;
 		}
 		
 		if ($clan->isFullMembers())
 		{
-			$player->message(sprintf('This clan has reached it\'s member limit of %d.', $clan->getMaxMembercount()));
+			$player->msg('1122', array($clan->getMaxMembercount()));
+// 			$player->message(sprintf('This clan has reached it\'s member limit of %d.', $clan->getMaxMembercount()));
 			return false;
 		}
 		
@@ -119,7 +128,8 @@ class SR_ClanHQ extends SR_Location
 		{
 			if (SR_ClanRequests::hasOpenRequests($player))
 			{
-				$player->message('You are already applying for a clan, your old request has been deleted.');
+				$player->msg('1123');
+// 				$player->message('You were already applying for a clan, your old request has been deleted.');
 				SR_ClanRequests::clearRequests($player);
 			}
 			return $clan->sendRequest($player);
@@ -134,7 +144,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message("You don't have a clan, chummer!");
+			$player->msg('1019');
+// 			$player->message("You don't have a clan, chummer!");
 			return false;
 		}
 		
@@ -151,20 +162,23 @@ class SR_ClanHQ extends SR_Location
 		$leader = $clan->getLeader();
 		if ($leader->getID() !== $player->getID())
 		{
-			$player->message("You don't lead this clan, chummer!");
+			$player->msg('1124');
+// 			$player->message("You don't lead this clan, chummer!");
 			return false;
 		}
 		
 		# Accept
 		if (false === ($joiner = SR_ClanRequests::getRequest($player, $clan, $args[0])))
 		{
-			$player->message(sprintf('%s did not request to join your clan.', $args[0]));
+			$player->msg('1125', array($args[0]));
+// 			$player->message(sprintf('%s did not request to join your clan.', $args[0]));
 			return false;
 		}
 		
 		if ($clan->isFullMembers())
 		{
-			$player->message(sprintf("Your clan has reached it's limit of %s members. You can purchase more slots via the #manage function.", $clan->getMaxMembercount()));
+			$player->msg('1126', array($clan->getMaxMembercount()));
+// 			$player->message(sprintf("Your clan has reached it's limit of %s members. You can purchase more slots via the #manage function.", $clan->getMaxMembercount()));
 			return false;
 		}
 		
@@ -176,7 +190,8 @@ class SR_ClanHQ extends SR_Location
 		
 		SR_ClanRequests::clearRequests($joiner);
 		
-		$joiner->message(sprintf('%s has accepted your join request for the %s clan.', $leader->displayName(), $clan->getName()));
+		$joiner->msg('5166', array($leader->displayName(), $clan->getName()));
+// 		$joiner->message(sprintf('%s has accepted your join request for the %s clan.', $leader->displayName(), $clan->getName()));
 		
 		return true;
 	}
@@ -193,7 +208,8 @@ class SR_ClanHQ extends SR_Location
 		$page = (int)$page;
 		if ( ($page < 1) || ($page > $nPages) )
 		{
-			$player->message('This page is empty.');
+			$player->msg('1009');
+// 			$player->message('This page is empty.');
 			return false;
 		}
 		
@@ -210,7 +226,8 @@ class SR_ClanHQ extends SR_Location
 			$message .= ', '.$row[0];
 		}
 		
-		$player->message(sprintf('Clan join requests page %d/%d: %s.', $page, $nPages, substr($message, 2)));
+		$player->msg('5167', array($page, $nPages, substr($message, 2)));
+// 		$player->message(sprintf('Clan join requests page %d/%d: %s.', $page, $nPages, substr($message, 2)));
 		
 		return true;
 	}
@@ -219,7 +236,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false !== ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message(sprintf('You are already in the "%s" clan, chummer.', $clan->getName()));
+			$player->msg('1120', array($clan->getName()));
+// 			$player->message(sprintf('You are already in the "%s" clan, chummer.', $clan->getName()));
 			return false;
 		}
 		
@@ -231,31 +249,36 @@ class SR_ClanHQ extends SR_Location
 		
 		if ($player->getBase('level') < self::LVL_CREATE)
 		{
-			$player->message(sprintf('You do not have the minimum level of %s to create a clan.', self::LVL_CREATE));
+			$player->msg('1127', array(self::LVL_CREATE));
+// 			$player->message(sprintf('You do not have the minimum level of %s to create a clan.', self::LVL_CREATE));
 			return false;
 		}
 		
 		if (false === $player->hasNuyen(self::COST_CREATE))
 		{
-			$player->message(sprintf('It cost %s to create a clan, but you only got %s.', $dcost, $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It cost %s to create a clan, but you only got %s.', $dcost, $player->displayNuyen()));
 			return false;
 		}
 		
 		$name = implode(' ', $args);
 		if (strlen($name) > SR_Clan::MAX_NAME_LEN)
 		{
-			$player->message('The name of your clan is too long.');
+			$player->msg('1128');
+// 			$player->message('The name of your clan is too long or too short.');
 			return false;
 		}
 		if (strlen($name) < SR_Clan::MIN_NAME_LEN)
 		{
-			$player->message('The name of your clan is too short.');
+			$player->msg('1128');
+// 			$player->message('The name of your clan is too long or too short.');
 			return false;
 		}
 
 		if (false !== ($clan2 = SR_Clan::getByName($name)))
 		{
-			$player->message('A clan with this name already exists.');
+			$player->msg('1129');
+// 			$player->message('A clan with this name already exists.');
 			return false;
 		}
 		
@@ -271,7 +294,8 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('Congratulations. You formed a new clan named "%s".', $clan->getName()));
+		$player->msg('5168', array($clan->getName()));
+// 		$player->message(sprintf('Congratulations. You formed a new clan named "%s".', $clan->getName()));
 		return true;
 	}
 
@@ -279,7 +303,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message("You don't have a clan, chummer!");
+			$player->msg('1019');
+// 			$player->message("You don't have a clan, chummer!");
 			return false;
 		}
 		
@@ -305,7 +330,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if ($clan->getLeaderID() != $player->getID())
 		{
-			$player->message("You don't lead this clan, chummer!");
+			$player->msg('1124');
+// 			$player->message("You don't lead this clan, chummer!");
 			return false;
 		}
 		
@@ -317,13 +343,15 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen($cost))
 		{
-			$player->message(sprintf('It cost %s to set a slogan for your clan, but you only have %s.', $dcost, $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It cost %s to set a slogan for your clan, but you only have %s.', $dcost, $player->displayNuyen()));
 			return false;
 		}
 		
 		if (strlen($slogan) > 196)
 		{
-			$player->message(sprintf('Your slogan exceeds the maxlength of %s characters.', 196));
+			$player->msg('1130', array(196));
+// 			$player->message(sprintf('Your slogan exceeds the maxlength of %s characters.', 196));
 			return false;
 		}
 		
@@ -333,7 +361,8 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('You paid the fee of %s and set a new slogan for your clan.', $dcost));
+		$player->msg('5169', array($dcost));
+// 		$player->message(sprintf('You paid the fee of %s and set a new slogan for your clan.', $dcost));
 		return true;
 	}
 	
@@ -344,24 +373,27 @@ class SR_ClanHQ extends SR_Location
 		
 		if ( (count($args) !== 2) || ($args[1] !== self::CONFIRM_PHRASE) )
 		{
-			$player->message(sprintf(
-				'Your clan currently can bank %s. Another %s would cost you %s. Please type #manage buywealth %s to confirm.',
-				$clan->displayMaxNuyen(), $dadd, $dcost, self::CONFIRM_PHRASE
-			));
-			return true;
+			return $player->msg('5170', array($clan->displayMaxNuyen(), $dadd, $dcost, self::CONFIRM_PHRASE));
+// 			$player->message(sprintf(
+// 				'Your clan currently can bank %s. Another %s would cost you %s. Please type #manage buywealth %s to confirm.',
+// 				$clan->displayMaxNuyen(), $dadd, $dcost, self::CONFIRM_PHRASE
+// 			));
+// 			return true;
 		}
 		
 		if ($clan->isMaxMoney())
 		{
-			$player->message(sprintf('Your clan has already reached the maximum of %s/%s wealth.', $clan->displayNuyen(), $clan->displayMaxNuyen()));
+			$player->msg('5171', array($clan->displayNuyen(), $clan->displayMaxNuyen()));
+// 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s.', $clan->displayNuyen(), $clan->displayMaxNuyen()));
 			return false;
 		}
 		
 		if (false === $player->hasNuyen(self::COST_WEALTH))
 		{
-			$player->message(sprintf('It would cost %s to buy another %s of clan wealth, but you only got %s.',
-				$dcost, $dadd, $player->displayNuyen()
-			));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It would cost %s to buy another %s of clan wealth, but you only got %s.',
+// 				$dcost, $dadd, $player->displayNuyen()
+// 			));
 			return false;
 		}
 		
@@ -377,10 +409,12 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf(
-			'You paid %s and your clan now has a max wealth of %s/%s.',
-			$dcost, $clan->displayNuyen(), $clan->displayMaxNuyen()
-		));
+		$player->msg('5172', array($dcost, $clan->displayNuyen(), $clan->displayMaxNuyen()));
+		
+// 		$player->message(sprintf(
+// 			'You paid %s and your clan now has a max wealth of %s/%s.',
+// 			$dcost, $clan->displayNuyen(), $clan->displayMaxNuyen()
+// 		));
 		
 		return SR_ClanHistory::onAddWealth($clan, $player);
 	}
@@ -392,24 +426,27 @@ class SR_ClanHQ extends SR_Location
 		
 		if ( (count($args) !== 2) || ($args[1] !== self::CONFIRM_PHRASE) )
 		{
-			$player->message(sprintf(
-				'Your clan currently can store %s. Another %s would cost you %s. Please type #manage buystorage %s to confirm.',
-				$clan->displayMaxStorage(), $dadd, $dcost, self::CONFIRM_PHRASE
-			));
-			return true;
+			return $player->msg('5170', array($clan->displayMaxStorage(), $dadd, $dcost, self::CONFIRM_PHRASE));
+// 			$player->message(sprintf(
+// 				'Your clan currently can store %s. Another %s would cost you %s. Please type #manage buystorage %s to confirm.',
+// 				$clan->displayMaxStorage(), $dadd, $dcost, self::CONFIRM_PHRASE
+// 			));
+// 			return true;
 		}
 		
 		if ($clan->isMaxStorage())
 		{
-			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));
+			$player->msg('5171', array($clan->displayNuyen(), $clan->displayMaxNuyen()));
+// 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));
 			return false;
 		}
 		
 		if (false === $player->hasNuyen(self::COST_STORAGE))
 		{
-			$player->message(sprintf('It would cost %s to buy another %s of clan storage, but you only got %s.',
-				$dcost, $dadd, $player->displayNuyen()
-			));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It would cost %s to buy another %s of clan storage, but you only got %s.',
+// 				$dcost, $dadd, $player->displayNuyen()
+// 			));
 			return false;
 		}
 		
@@ -425,10 +462,12 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf(
-			'You paid %s and your clan has now a max storage of %s/%s.',
-			$dcost, $clan->displayStorage(), $clan->displayMaxStorage()
-		));
+		$player->msg('5172', array($dcost, $clan->displayStorage(), $clan->displayMaxStorage()));
+		
+// 		$player->message(sprintf(
+// 			'You paid %s and your clan has now a max storage of %s/%s.',
+// 			$dcost, $clan->displayStorage(), $clan->displayMaxStorage()
+// 		));
 		
 		return SR_ClanHistory::onAddStorage($clan, $player);
 	}
@@ -440,24 +479,27 @@ class SR_ClanHQ extends SR_Location
 		
 		if ( (count($args) !== 2) || ($args[1] !== self::CONFIRM_PHRASE) )
 		{
-			$player->message(sprintf(
-				'Your clan currently can have a maximum of %s members. Raising this maximum by %s would cost you %s. Please type #manage buystorage %s to confirm.',
-				$clan->getMaxMembercount(), $dadd, $dcost, self::CONFIRM_PHRASE
-			));
+			return $player->msg('5170', array($clan->displayMaxMembercount(), $dadd, $dcost, self::CONFIRM_PHRASE));
+// 			$player->message(sprintf(
+// 				'Your clan currently can have a maximum of %s members. Raising this maximum by %s would cost you %s. Please type #manage buystorage %s to confirm.',
+// 				$clan->getMaxMembercount(), $dadd, $dcost, self::CONFIRM_PHRASE
+// 			));
 			return true;
 		}
 		
 		if ($clan->isMaxStorage())
 		{
-			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));
+			$player->msg('5171', array($clan->getMembercount(), $clan->displayMaxMembercount()));
+// 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));
 			return false;
 		}
 		
 		if (false === $player->hasNuyen(self::COST_MEMBERS))
 		{
-			$player->message(sprintf('It would cost %s to raise your max members by %s, but you only got %s.',
-				$dcost, $dadd, $player->displayNuyen()
-			));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It would cost %s to raise your max members by %s, but you only got %s.',
+// 				$dcost, $dadd, $player->displayNuyen()
+// 			));
 			return false;
 		}
 		
@@ -473,10 +515,11 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf(
-			'You paid %s and your clan has now of %s/%s members.',
-			$dcost, $clan->getMembercount(), $clan->getMaxMembercount()
-		));
+		$player->msg('5172', array($dcost, $clan->getMembercount(), $clan->displayMaxMembercount()));
+// 		$player->message(sprintf(
+// 			'You paid %s and your clan has now of %s/%s members.',
+// 			$dcost, $clan->getMembercount(), $clan->getMaxMembercount()
+// 		));
 		
 		return SR_ClanHistory::onAddMembers($clan, $player);
 	}
@@ -485,7 +528,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan.');
+			$player->msg('1019');
+// 			$player->message('You are not in a clan.');
 			return false;
 		}
 		
@@ -498,7 +542,8 @@ class SR_ClanHQ extends SR_Location
 		$amt = (int)$args[0];
 		if ($amt <= 0)
 		{
-			$player->message('Please push a postive amount of nuyen.');
+			$player->msg('1062');
+// 			$player->message('Please push a postive amount of nuyen.');
 			return false;
 		}
 		
@@ -507,9 +552,10 @@ class SR_ClanHQ extends SR_Location
 		$totalneed = $amt + self::COST_PUSHY;
 		if (false === $player->hasNuyen($totalneed))
 		{
-			$player->message(sprintf('You want to push %s(+%s)=%s to the clan bank, but you only got %s.',
-				$damt, $dfee, Shadowfunc::displayNuyen($totalneed), $player->displayNuyen()
-			));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('You want to push %s(+%s)=%s to the clan bank, but you only got %s.',
+// 				$damt, $dfee, Shadowfunc::displayNuyen($totalneed), $player->displayNuyen()
+// 			));
 			return false;
 		}
 		
@@ -519,7 +565,8 @@ class SR_ClanHQ extends SR_Location
 		
 		if ($can === 0)
 		{
-			$player->message(sprintf('Your clan already holds the maximum of %s/%s. Ask your clanleader to purchase a higher wealth.', $clan->displayNuyen(), $clan->displayMaxNuyen()));
+			$player->msg('5171', array($clan->displayNuyen(), $clan->displayMaxNuyen()));
+// 			$player->message(sprintf('Your clan already holds the maximum of %s/%s.', $clan->displayNuyen(), $clan->displayMaxNuyen()));
 			return false;
 		}
 		
@@ -538,9 +585,10 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('You pay the fee of %s and push %s to the clan bank, which now holds %s/%s.',
-			$dfee, Shadowfunc::displayNuyen($amt), $clan->displayNuyen(), $clan->displayMaxNuyen()
-		));
+		$player->msg('5173', array($dfee, Shadowfunc::displayNuyen($amt), $clan->displayNuyen(), $clan->displayMaxNuyen()));
+// 		$player->message(sprintf('You pay the fee of %s and push %s to the clan bank, which now holds %s/%s.',
+// 			$dfee, Shadowfunc::displayNuyen($amt), $clan->displayNuyen(), $clan->displayMaxNuyen()
+// 		));
 		
 		return SR_ClanHistory::onPushy($clan, $player, $amt);
 	}
@@ -549,7 +597,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan.');
+			$player->msg('1019');
+// 			$player->message('You are not in a clan.');
 			return false;
 		}
 		if (count($args) !== 1)
@@ -560,7 +609,8 @@ class SR_ClanHQ extends SR_Location
 		$amt = (int)$args[0];
 		if ($amt <= 0)
 		{
-			$player->message('Please pop a postive amount of nuyen.');
+			$player->msg('1062');
+// 			$player->message('Please pop a postive amount of nuyen.');
 			return false;
 		}
 		$damt = Shadowfunc::displayNuyen($amt);
@@ -571,9 +621,10 @@ class SR_ClanHQ extends SR_Location
 		
 		if ($have < $totalneed)
 		{
-			$player->message(sprintf('You want to pop %s(+%s)=%s out of the clan bank, but it currently holds only %s.',
-				$damt, $dfee, Shadowfunc::displayNuyen($totalneed), $clan->displayNuyen()
-			));
+			$player->msg('1131', array($damt, $dfee, Shadowfunc::displayNuyen($totalneed), $clan->displayNuyen()));
+// 			$player->message(sprintf('You want to pop %s(+%s)=%s out of the clan bank, but it currently holds only %s.',
+// 				$damt, $dfee, Shadowfunc::displayNuyen($totalneed), $clan->displayNuyen()
+// 			));
 			return false;
 		}
 		
@@ -589,9 +640,10 @@ class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('You pop %s(-%s)=%s out of the clan bank, which now holds %s/%s.',
-			Shadowfunc::displayNuyen($totalneed), $dfee, $damt, $clan->displayNuyen(), $clan->displayMaxNuyen()
-		));
+		$player->msg('5174', array(Shadowfunc::displayNuyen($totalneed), $dfee, $damt, $clan->displayNuyen(), $clan->displayMaxNuyen()));
+// 		$player->message(sprintf('You pop %s(-%s)=%s out of the clan bank, which now holds %s/%s.',
+// 			Shadowfunc::displayNuyen($totalneed), $dfee, $damt, $clan->displayNuyen(), $clan->displayMaxNuyen()
+// 		));
 
 		return SR_ClanHistory::onPopy($clan, $player, $totalneed);
 	}
@@ -600,7 +652,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan.');
+			$player->msg('1019');
+// 			$player->message('You are not in a clan.');
 			return false;
 		}
 		if ( (count($args) !== 1) && (count($args) !== 2) )
@@ -613,20 +666,23 @@ class SR_ClanHQ extends SR_Location
 		$dfee = Shadowfunc::displayNuyen($fee);
 		if (false === $player->hasNuyen($fee))
 		{
-			$player->message(sprintf('The fee to push items in the bank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('The fee to push items in the bank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
 			return false;
 		}
 		
 		$amt = isset($args[1]) ? ((int)$args[1]) : 1;
 		if ($amt <= 0)
 		{
-			$player->message('Please push a positive amount of items.');
+			$player->message('1038');
+// 			$player->message('Please push a positive amount of items.');
 			return false;
 		}
 		
 		if (false === ($item = $player->getInvItem($args[0])))
 		{
-			$player->message("You don't have that item in your inventory.");
+			$player->message('1029');
+// 			$player->message("You don't have that item in your inventory.");
 			return false;
 		}
 		$itemname = $item->getItemName();
@@ -635,15 +691,17 @@ class SR_ClanHQ extends SR_Location
 		{
 			if ($item->getAmount() < $amt)
 			{
-				$player->message(sprintf('You try to push %s %s but you only have %s.', $amt, $itemname, $item->getAmount()));
+				$player->msg('1040', array($itemname));
+// 				$player->message(sprintf('You try to push %s %s but you only have %s.', $amt, $itemname, $item->getAmount()));
 				return false;
 			}
 			$weight = $item->getItemWeightStacked();
 			if (false === $clan->canHoldMore($weight))
 			{
-				$player->message(sprintf('You try to push another %s into the clan bank, but it already holds %s/%s.',
-					Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()
-				));
+				$player->msg('1132', array(Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()));
+// 				$player->message(sprintf('You try to push another %s into the clan bank, but it already holds %s/%s.',
+// 					Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()
+// 				));
 				return false;
 			}
 			
@@ -664,17 +722,19 @@ class SR_ClanHQ extends SR_Location
 			$items = $player->getInvItems($itemname, $amt);
 			if (count($items) !== $amt)
 			{
-				$player->message(sprintf('You try to push %s %s but you only have %s.', $amt, $itemname, count($items)));
+				$player->msg('1040', array($itemname));
+// 				$player->message(sprintf('You try to push %s %s but you only have %s.', $amt, $itemname, count($items)));
 				return false;
 			}
 			
 			$weight = $item->getItemWeight() * $amt;
 			if (false === $clan->canHoldMore($weight))
 			{
-				$player->message(sprintf(
-					'You try to push another %s into the clan bank, but it already holds %s/%s.',
-					Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()
-				));
+				$player->msg('1132', array(Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()));
+// 				$player->message(sprintf(
+// 					'You try to push another %s into the clan bank, but it already holds %s/%s.',
+// 					Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()
+// 				));
 				return false;
 			}
 			
@@ -699,11 +759,11 @@ class SR_ClanHQ extends SR_Location
 			$player->message('DB ERROR 44');
 		}
 		
-		$message = sprintf(
-			'You pay the fee of %s and put %s of your %s into the clan bank, which now holds %s/%s.',
-			$dfee, $amt, $itemname, $clan->displayStorage(), $clan->displayMaxStorage());
-		
-		$player->message($message);
+		$player->msg('5173',array($dfee, "{$amt}x{$itemname}", $clan->displayStorage(), $clan->displayMaxStorage()));
+// 		$message = sprintf(
+// 			'You pay the fee of %s and put %s of your %s into the clan bank, which now holds %s/%s.',
+// 			$dfee, $amt, $itemname, $clan->displayStorage(), $clan->displayMaxStorage());
+// 		$player->message($message);
 		
 		return SR_ClanHistory::onPushi($clan, $player, $itemname, $amt);
 	}
@@ -717,7 +777,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan.');
+			$player->msg('1019');
+// 			$player->message('You are not in a clan.');
 			return false;
 		}
 		if ( (count($args) !== 1) && (count($args) !== 2) )
@@ -728,14 +789,16 @@ class SR_ClanHQ extends SR_Location
 		$amt = isset($args[1]) ? ((int)$args[1]) : 1;
 		if ($amt <= 0)
 		{
-			$player->message('Please pop a positive amount of items.');
+			$player->message('1038');
+// 			$player->message('Please pop a positive amount of items.');
 			return false;
 		}
 		$itemname = $args[0];
 		
 		if (false === ($row = SR_ClanBank::getByCIDINAME($clan->getID(), $itemname)))
 		{
-			$player->message('You don\'t have that item in your clanbank.');
+			$player->message('1133');
+// 			$player->message('You don\'t have that item in your clanbank.');
 			return false;
 		}
 		$itemname = $row->getIName();
@@ -744,13 +807,15 @@ class SR_ClanHQ extends SR_Location
 		$dfee = Shadowfunc::displayNuyen($fee);
 		if (false === $player->hasNuyen($fee))
 		{
-			$player->message(sprintf('The fee to pop items from the clanbank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('The fee to pop items from the clanbank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
 			return false;
 		}
 		
 		if ($row->getAmt() < $amt)
 		{
-			$player->message(sprintf('You try to take %s %s out of the clan bank, but there are only %s.', $amt, $itemname, $row->getAmt()));
+			$player->msg('1134', array($itemname));
+// 			$player->message(sprintf('You try to take %s %s out of the clan bank, but there are only %s.', $amt, $itemname, $row->getAmt()));
 			return false;
 		}
 		
@@ -803,10 +868,13 @@ class SR_ClanHQ extends SR_Location
 			$player->message('DB ERROR 55');
 		}
 		
-		$message = sprintf(
-			'You pay the fee of %s and pop %s %s out of the clanbank. %s/%s storage left.',
-			$dfee, $amt, $itemname, $clan->displayStorage(), $clan->displayMaxStorage()
-		);
+		$player->msg('5174', array(
+			$dfee, "{$amt}x{$itemname}", $clan->displayStorage(), $clan->displayMaxStorage()
+		));
+// 		$message = sprintf(
+// 			'You pay the fee of %s and pop %s %s out of the clanbank. %s/%s storage left.',
+// 			$dfee, $amt, $itemname, $clan->displayStorage(), $clan->displayMaxStorage()
+// 		);
 		
 		return SR_ClanHistory::onPopi($clan, $player, $itemname, $amt);
 	}
@@ -815,13 +883,15 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message("You don't have a clan, chummer!");
+			$player->msg('1019');
+// 			$player->message("You don't have a clan, chummer!");
 			return false;
 		}
 		
 		if ($clan->getLeaderID() != $player->getID())
 		{
-			$player->message("You don't lead this clan, chummer!");
+			$player->msg('1124');
+// 			$player->message("You don't lead this clan, chummer!");
 			return false;
 		}
 		
@@ -864,14 +934,16 @@ class SR_ClanHQ extends SR_Location
 		}
 		
 		$bot = Shadowrap::instance($player);
-		return $bot->reply(sprintf('Your clan\'s %s option has been %s.', $text, $switch));
+		return $bot->rply('5175', array($player->lang('ct_'.$text)), $player->lang($switch));
+// 		return $bot->reply(sprintf('Your clan\'s %s option has been %s.', $text, $switch));
 	}
 	
 	public function on_view(SR_Player $player, array $args)
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message("You don't have a clan, chummer!");
+			$player->msg('1019');
+// 			$player->message("You don't have a clan, chummer!");
 			return false;
 		}
 		
@@ -907,7 +979,8 @@ class SR_ClanHQ extends SR_Location
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ( ($page < 1) || ($page > $nPages) )
 		{
-			$player->message('This page is empty.');
+			$player->msg('1009');
+// 			$player->message('This page is empty.');
 			return false;
 		}
 		$from = GWF_PageMenu::getFrom($page, $ipp);
@@ -917,17 +990,21 @@ class SR_ClanHQ extends SR_Location
 			$player->message('DB ERROR 1.');
 			return false;
 		}
-		$out = array();
+		$out = '';
+		$format = $player->lang('fmt_items');
 		foreach ($result as $row)
 		{
 			$from++;
 			list($itemname, $amt) = $row;
-			$amt = $amt === '1' ? '' : "({$amt})";
-			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
+			$damt = $amt === '1' ? '' : "({$amt})";
+			$out .= sprintf($format, $from, $itemname, $damt, $amt);
+// 			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
 		}
 		$bot = Shadowrap::instance($player);
-		$text = count($out) === 0 ? 'The bank is empty.' : implode(', ', $out);
-		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, $text));
+		
+		return $bot->rply('5176', array($page, $nPages, substr($out, 2)));
+// 		$text = count($out) === 0 ? 'The bank is empty.' : implode(', ', $out);
+// 		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, $text));
 	}
 	
 	private function onViewItems(SR_Clan $clan, SR_Player $player, $arg, $page)
@@ -941,14 +1018,16 @@ class SR_ClanHQ extends SR_Location
 		$nItems = $table->countRows($where);
 		if ($nItems === 0)
 		{
-			$player->message('No match found.');
+			$player->msg('1007');
+// 			$player->message('No match found.');
 			return true;
 		}
 		
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ( ($page < 1) || ($page > $nPages) )
 		{
-			$player->message('This page is empty.');
+			$player->msg('1009');
+// 			$player->message('This page is empty.');
 			return false;
 		}
 		
@@ -964,17 +1043,20 @@ class SR_ClanHQ extends SR_Location
 			return $this->onViewItem($clan, $player, $result[0][0], $result[0][1]);
 		}
 		
-		$out = array();
+		$out = '';
+		$format = $player->lang('fmt_items');
 		foreach ($result as $row)
 		{
 			$from++;
 			list($itemname, $amt) = $row;
-			$amt = $amt === '1' ? '' : "({$amt})";
-			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
+			$damt = $amt === '1' ? '' : "({$amt})";
+			$out .= sprintf($format, $from, $itemname, $damt, $amt);
+// 			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
 		}
 		
 		$bot = Shadowrap::instance($player);
-		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, implode(', ', $out)));
+		return $bot->rply('5176', array($page, $nPages, substr($out, 2)));
+// 		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, implode(', ', $out)));
 	}
 	
 	private function onViewItem(SR_Clan $clan, SR_Player $player, $itemname, $amt)
@@ -992,7 +1074,8 @@ class SR_ClanHQ extends SR_Location
 	{
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
-			$player->message('You are not in a clan, chummer.');
+			$player->msg('1019');
+// 			$player->message('You are not in a clan, chummer.');
 			return false;
 		}
 		

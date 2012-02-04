@@ -62,9 +62,12 @@ abstract class SR_Elevator extends SR_Tower
 	public function getAreaSize() { return 6; }
 	public function isPVP() { return false; }
 	public function getFoundPercentage() { return 100.0; }
-	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }
-	public function getFoundText(SR_Player $player) { return 'You found an elevator.'; }
-	public function getHelpText(SR_Player $player) { return 'In elevators you can use #up, #down and #floor.'; }
+// 	public function getEnterText(SR_Player $player) {  return sprintf('You enter the %s. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }
+// 	public function getFoundText(SR_Player $player) { return 'You found an elevator.'; }
+// 	public function getHelpText(SR_Player $player) { return 'In elevators you can use #up, #down and #floor.'; }
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_elevator'); }
+	public function getEnterText(SR_Player $player) {  return $player->lang('stub_enter_elevator', array($this->getName(), $this->getElevatorMaxKG())); }
+	public function getHelpText(SR_Player $player) { return $player->lang('hlp_elevator'); }
 	public function getCommands(SR_Player $player) { return array('up','down','floor'); }
 	
 	#############
@@ -217,25 +220,31 @@ abstract class SR_Elevator extends SR_Tower
 		}
 		if (false === $this->hasElevatorPermN($player, $n))
 		{
-			$player->message('Somehow the elevator is blocking this floor for you.');
+			$player->msg('1135');
+// 			$player->message('Somehow the elevator is blocking this floor for you.');
 			return false;
 		}
 		
 		if ($floor->getName() === $this->getName())
 		{
-			$player->message('You push the button but you are on the very same floor already.');
+			$player->msg('1136');
+// 			$player->message('You push the button but you are on the very same floor already.');
 			return false;
 		}
 
+		$player->getParty()->ntice('5177', array($btn, Shadowfunc::displayETA($eta)));
+		
 		$eta = $this->getElevatorTime();
-		if (false === ($this->teleportInside($player, $floor->getName())))
+		if (false === $this->teleportInside($player, $floor->getName()))
 		{
 			$player->message('Error!');
 			return false;
 		}
 		
-		$message = 'Your party pushes the '.$btn.' button and the elevator starts to move. '.Shadowfunc::displayETA($eta);
-		return $player->getParty()->notice($message);
+// 		$message = 'Your party pushes the '.$btn.' button and the elevator starts to move. '.Shadowfunc::displayETA($eta);
+// 		return $player->getParty()->notice($message);
+
+		return true;
 	}
 	
 	################
@@ -329,9 +338,10 @@ abstract class SR_Elevator extends SR_Tower
 			$i++;
 		}
 		
-		$out = $out === '' ? '' : substr($out, 2);
-		$message = sprintf('You are on %s floor %s. Accessible floors: %s.', $this->getElevatorCity(), $this->getElevatorButtonFromN($this->getElevatorN()), $out);
-		return $bot->reply($message);
+		$out = $out === '' ? $player->lang('none') : substr($out, 2);
+		return $bot->rply('5178', array($this->getElevatorCity(), $this->getElevatorButtonFromN($this->getElevatorN()), $out));
+// 		$message = sprintf('You are on %s floor %s. Accessible floors: %s.', $this->getElevatorCity(), $this->getElevatorButtonFromN($this->getElevatorN()), $out);
+// 		return $bot->reply($message);
 	}
 }
 ?>

@@ -1291,6 +1291,14 @@ final class Shadowfunc
 		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, $text));
 	}
 	
+	/**
+	 * Generic item view helper function. Populate text-array with response text snippets,
+	 * @param SR_Player $player
+	 * @param array $items
+	 * @param array $args
+	 * @param array $text
+	 * @author dloser
+	 */
 	public static function getGenericViewI(SR_Player $player, array $items, array $args, $text = array())
 	{
 		$bot = Shadowrap::instance($player);

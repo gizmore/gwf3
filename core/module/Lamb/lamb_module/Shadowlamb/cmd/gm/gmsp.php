@@ -37,10 +37,29 @@ final class Shadowcmd_gmsp extends Shadowcmd
 			return false;
 		}
 		
-		$target->levelupSpell($spell->getName(), 1);
+		$by = 1;
+		
+		if (count($args) === 3)
+		{
+			if (!Common::isNumeric($args[2]))
+			{
+				$bot->reply(Shadowhelp::getHelp($player, 'gmsp'));
+				return false;
+			}
+			
+			if (false === ($base = $player->getSpellBaseLevel($args[1])))
+			{
+				$bot->reply(Shadowhelp::getHelp($player, 'gmsp'));
+				return false;
+			}
+			$by = $args[2] - $base;
+		}
+		
+		$target->levelupSpell($spell->getName(), $by);
 		$target->modify();
 		
-		return $bot->reply(sprintf('The target got increased spells!'));
+		$base = $target->getSpellBaseLevel($args[1]);
+		return $bot->reply(sprintf('The target got changed spells!'));
 	}
 }
 ?>

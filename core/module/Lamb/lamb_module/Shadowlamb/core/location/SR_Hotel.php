@@ -12,11 +12,17 @@ abstract class SR_Hotel extends SR_Location
 		return Shadowfunc::calcBuyPrice($n*$p, $player);
 	}
 	
+	public function displaySleepPrice(SR_Player $player)
+	{
+		return Shadowfunc::displayNuyen($this->calcPrice($player));
+	}
+	
 	public function getHelpText(SR_Player $player)
 	{
-		$price = $this->calcPrice($player);
-		$c = Shadowrun4::SR_SHORTCUT;
-		return sprintf('You can pay %s to %ssleep here and restore your party`s HP/MP.', $price, $c); 
+		return $player->lang('hlp_hotel', array($this->displaySleepPrice($player)));
+// 		$price = $this->calcPrice($player);
+// 		$c = Shadowrun4::SR_SHORTCUT;
+// 		return sprintf('You can pay %s to %ssleep here and restore your party`s HP/MP.', $price, $c); 
 	}
 	
 	public function on_sleep(SR_Player $player, array $args)
@@ -27,18 +33,21 @@ abstract class SR_Hotel extends SR_Location
 		
 		if (!$party->needsToRest())
 		{
-			return $bot->reply('You don`t need to rest.');
+			return $bot->rply('1137');
+// 			return $bot->reply('You don`t need to rest.');
 		}
 		
 		
 		if (false === ($player->pay($price)))
 		{
-			return $bot->reply(sprintf('To rent a room for your party, you need %s. You only got %s!', Shadowfunc::displayNuyen($price), $player->displayNuyen()));
+			return $bot->rply('1063', array($player->displayNuyen()));
+// 			return $bot->reply(sprintf('To rent a room for your party, you need %s. You only got %s!', Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 		}
 		
 		if ($price > 0)
 		{
-			$player->message(sprintf('You pay %s nuyen.', $price));
+			$player->msg('5143', array($price));
+// 			$player->message(sprintf('You pay %s nuyen.', $price));
 		}
 
 		$b = chr(2);
@@ -50,7 +59,8 @@ abstract class SR_Hotel extends SR_Location
 //			$member->effectsReset();
 //		}
 		
-		$party->notice("The party goes to sleep. You go to your {$b}own{$b} bedroom.");
+		return $party->ntice('5182');
+// 		$party->notice("The party goes to sleep. You go to your {$b}own{$b} bedroom.");
 	}
 }
 ?>

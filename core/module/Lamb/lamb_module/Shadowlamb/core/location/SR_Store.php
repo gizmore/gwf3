@@ -4,18 +4,46 @@ abstract class SR_Store extends SR_Location
 	const BAD_KARMA_STEAL_PRISON = 0.4;
 	const BAD_KARMA_STEAL_COMBAT = 0.2;
 	
-	public function getCommands(SR_Player $player) { return array('view','buy','sell','steal'); }
+	public function allowShopBuy(SR_Player $player) { return true; }
+	public function allowShopSell(SR_Player $player) { return true; }
+	public function allowShopSteal(SR_Player $player) { return $player->getBase('thief') > 0; }
+	
+	public function getCommands(SR_Player $player)
+	{
+		$back = array();
+		if (true === $this->allowShopBuy($player))
+		{
+			$back[] = 'view';
+			$back[] = 'buy';
+		}
+			if (true === $this->allowShopSell($player))
+		{
+			$back[] = 'sell';
+		}
+		if (true === $this->allowShopSteal($player))
+		{
+			$back[] = 'steal';
+		}
+		return $back;
+	}
+	
 	public function getHelpText(SR_Player $player)
 	{
 		$c = Shadowrun4::SR_SHORTCUT; 
-		if ($player->getBase('thief') > 0)
+		$cmds = $this->getCommands($player);
+		foreach ($cmds as $i => $cmd)
 		{
-			return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal.";
+			$cmds[$i] = "{$c}{$cmd}";
 		}
-		else
-		{
-			return "In shops you can use {$c}view, {$c}buy and {$c}sell.";
-		}
+		return $player->lang('hlp_store', array(GWF_Array::implodeHuman($cmds)));
+// 		if ($player->getBase('thief') > 0)
+// 		{
+// 			return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal.";
+// 		}
+// 		else
+// 		{
+// 			return "In shops you can use {$c}view, {$c}buy and {$c}sell.";
+// 		}
 	}
 	
 	/**
@@ -140,44 +168,62 @@ abstract class SR_Store extends SR_Location
 	public function on_view(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) === 0) {
-			$bot->reply($this->onViewItems($player));
+		if (count($args) === 0)
+		{
+// 			$bot->reply($this->onViewItems($player));
+			$this->onViewItems($player);
 		}
-		elseif (count($args) === 1) {
-			$bot->reply($this->onViewItem($player, $args[0]));
+		elseif (count($args) === 1)
+		{
+			$this->onViewItem($player, $args[0]);
 		}
-		else {
+		else
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'view'));
 		}
 	}
 	
 	private function onViewItem(SR_Player $player, $itemname)
 	{
-		if (false === ($item = $this->getStoreItem($player, $itemname))) {
-			return 'We don`t have that item.';
+		$bot = Shadowrap::instance($player);
+		if (false === ($item = $this->getStoreItem($player, $itemname)))
+		{
+			$bot->rply('1029');
+// 			return 'We don`t have that item.';
+			return false;
 		}
-		return $item->getItemInfo($player);
+		return $bot->rply('5189', array($item->getItemInfo($player)));
+// 		return $item->getItemInfo($player);
 	}
 	
 	private function onViewItems(SR_Player $player)
 	{
 		$player->setOption(SR_Player::RESPONSE_ITEMS);
 		
+		$bot = Shadowrap::instance($player);
+		
 		$back = '';
 		$items = $this->getStoreItemsB($player);
 		
-		if (count($items) === 0) {
-			return 'There are no items here.';
+		if (count($items) === 0)
+		{
+			return $bot->rply('1008');
+// 			return 'There are no items here.';
 		}
+		
 		$i = 1;
+		$format = $player->lang('fmt_sumlist');
 		foreach ($items as $data)
 		{
 			if (false === ($item = $this->createItemFromData($player, $data))) {
 				continue;
 			}
-			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
+			$back .= sprintf($format, $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
+// 			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
 		}
-		return substr($back, 2);
+		
+		return $bot->rply('5188', array(substr($back, 2)));
+// 		return substr($back, 2);
 	}
 	
 	###########
@@ -193,14 +239,18 @@ abstract class SR_Store extends SR_Location
 		}
 		if (false === ($item = $this->getStoreItem($player, $args[0])))
 		{
-			$bot->reply('We don`t have that item.');
+			$bot->rply('1029');
+// 			$bot->reply('We don`t have that item.');
 			return false;
 		}
 		
 		$price = $item->getStorePrice();
+		$dprice = Shadowfunc::displayNuyen($price);
+		
 		if (false === ($player->pay($price)))
 		{
-			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
+			$bot->rply('1063', array($player->displayNuyen()));
+// 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
 			return false;
 		}
 		
@@ -213,7 +263,8 @@ abstract class SR_Store extends SR_Location
 		$player->giveItems(array($item));
 		$player->modify();
 		$item = $player->getInvItemByName($item->getItemName());
-		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayNuyen($price), $item->getItemName(), $item->getInventoryID()));
+		$bot->rply('5190', array($dprice, $item->getItemName(), $item->getInventoryID()));
+// 		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayNuyen($price), $item->getItemName(), $item->getInventoryID()));
 		return true;
 	}
 	
@@ -232,13 +283,15 @@ abstract class SR_Store extends SR_Location
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getInvItem($itemname)))
 		{
-			$bot->reply('You don\'t have that item.');
+			$bot->rply('1029');
+// 			$bot->reply('You don\'t have that item.');
 			return false;
 		}
 		$itemname = $item->getItemName();
 		if (!$item->isItemSellable())
 		{
-			$bot->reply(sprintf('I don\'t want your %s.', $item->getItemName()));
+			$bot->rply('1151', array($item->getItemName()));
+// 			$bot->reply(sprintf('I don\'t want your %s.', $item->getItemName()));
 			return false;
 		}
 		
@@ -257,7 +310,8 @@ abstract class SR_Store extends SR_Location
 			# Split item
 			if ($amt > $have_amt)
 			{
-				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+				$bot->rply('1040', array($item->getItemName()));
+// 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
 				
@@ -274,7 +328,8 @@ abstract class SR_Store extends SR_Location
 			$items2 = $player->getInvItems($item->getItemName(), $amt);
 			if (count($items2) < $amt)
 			{
-				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+				$bot->rply('1040', array($item->getItemName()));
+// 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
 				
@@ -292,77 +347,17 @@ abstract class SR_Store extends SR_Location
 		$total = $this->calcSellPrice($player, $item, $amt);
 		
 		$player->giveNuyen($total);
-				
-		$bot->reply(sprintf('You sold %d of your %s for %s. You now carry %s/%s.',
+
+		return $bot->rply('5191', array(
 			$amt, $item->getItemName(), Shadowfunc::displayNuyen($total),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
-		return true;
-//		
-//		$inv = $player->getInventorySorted();
-//		
-//		if (is_numeric($arg))
-//		{
-//			$arg = (int)$arg;
-//			if ( ($arg < 1) || ($arg > count($inv)) )
-//			{
-//				$item = false;
-//			}
-//			else
-//			{
-//				$item = array_slice($inv, $arg-1, 1, true);
-//				$itemname = key($item);
-//			}
-//		}
-//		else
-//		{
-//			
-//			$item = $player->getInvItem($arg);
-//			$confirmed = true;
-//		}
-//		
-//		
-//		
-//
-//		if ($item === false)
-//		{
-//			$bot->reply('You don`t have that item in your inventory.');
-//			return false;
-//		}
-//		
-//		if (false === ($item = $player->getInvItem($args[0]))) {
-//			$bot->reply('You don`t have that item in your inventory.');
-//			return false;
-//		}
-//		if (!$item->isItemSellable()) {
-//			$bot->reply('I don`t want your '.$item->getItemName().'.');
-//			return false;
-//		}
-//
-////		# Sell it
-////		if ($item->isEquipped($player))
-////		{
-////			$player->unequip($item);
-////			$player->modify();
-////		}
-//
-//		if ($amt < 1)
-//		{
-//			$bot->reply('Please sell a positive amount.');
-//			return false;
-//		}
-//		
-//		$price = $this->calcSellPrice($player, $item) * $amt;
-//		
-//		if (false === $item->useAmount($player, 1)) {
-//			$bot->reply('Database error in SR_Store::on_sell()');
-//			return false;
-//		}
-//
-//		$player->giveNuyen($price);
-//				
-//		$bot->reply(sprintf('You sold your %s for %s.', $item->getItemName(), Shadowfunc::displayNuyen($price)));
-//		return true;
+		
+// 		$bot->reply(sprintf('You sold %d of your %s for %s. You now carry %s/%s.',
+// 			$amt, $item->getItemName(), Shadowfunc::displayNuyen($total),
+// 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+// 		));
+// 		return true;
 	}
 
 
@@ -401,16 +396,17 @@ abstract class SR_Store extends SR_Location
 		
 		if (false === ($item = $this->getStoreItem($player, $args[0])))
 		{
-			$bot->reply('There is no such item here.');
+			$bot->rply('1140');
+// 			$bot->reply('There is no such item here.');
 			return false;
 		}
 		$itemname = $item->getItemName();
 		
-		if ($player->getBase('thief') < 0)
-		{
-			$bot->reply('You are missing the thief skill.');
-			return false;
-		}
+// 		if ($player->getBase('thief') < 0)
+// 		{
+// 			$bot->reply('You are missing the thief skill.');
+// 			return false;
+// 		}
 		
 		# Steal difficulty
 		$difficulty = $item->getItemLevel();
@@ -438,7 +434,8 @@ abstract class SR_Store extends SR_Location
 		$max = $min + $skill + 1;
 		$dice_skill = Shadowfunc::diceFloat($min, $max, 2);
 		
-		$bot->reply(sprintf('You attempt to steal %s...', $item->getItemName()));
+		$bot->rply('5192', array($item->getItemName()));
+// 		$bot->reply(sprintf('You attempt to steal %s...', $item->getItemName()));
 		
 		# On succes we have a negative value.
 		$difference = $dice_diff - $dice_skill;
@@ -482,7 +479,8 @@ abstract class SR_Store extends SR_Location
 			return $bot->reply('DB ERROR!');
 		}
 		
-		$bot->reply(sprintf('You were lucky and able to steal %s.', $itemname));
+		$bot->rply('5193', array($itemname));
+// 		$bot->reply(sprintf('You were lucky and able to steal %s.', $itemname));
 		
 		if (false === $player->giveItems(array($item), 'stealing'))
 		{
@@ -495,13 +493,15 @@ abstract class SR_Store extends SR_Location
 	private function onStealNothing(SR_Player $player, $itemname)
 	{
 		$bot = Shadowrap::instance($player);
-		return $bot->reply('You cannot find the right moment to steal something.');
+		return $bot->rply('5194');
+// 		return $bot->reply('You cannot find the right moment to steal something.');
 	}
 
 	private function onStealPrisoned(SR_Player $player, $itemname)
 	{
 		$bot = Shadowrap::instance($player);
-		$bot->reply('You are out of luck ... the shop owner silently called the cops and you are put into Delaware Prison.');
+		$bot->rply('5195');
+// 		$bot->reply('You are out of luck ... the shop owner silently called the cops and you are put into Delaware Prison.');
 		SR_BadKarma::addBadKarma($player, self::BAD_KARMA_STEAL_PRISON);
 		
 		$p = $player->getParty();
@@ -517,7 +517,8 @@ abstract class SR_Store extends SR_Location
 	private function onStealCombat(SR_Player $player, $itemname)
 	{
 		$bot = Shadowrap::instance($player);
-		$bot->reply('You are out of luck ... the shop owner silently called the cops ...');
+		$bot->rply('5196');
+// 		$bot->reply('You are out of luck ... the shop owner silently called the cops ...');
 		SR_BadKarma::addBadKarma($player, self::BAD_KARMA_STEAL_COMBAT);
 		
 		$p = $player->getParty();
@@ -533,7 +534,8 @@ abstract class SR_Store extends SR_Location
 	private function onStealOops(SR_Player $player, $itemname)
 	{
 		$bot = Shadowrap::instance($player);
-		return $bot->reply('The shop owner is watching ... you better wait a bit.');
+		$bot->rply('5197');
+// 		return $bot->reply('The shop owner is watching ... you better wait a bit.');
 	}
 }
 ?>

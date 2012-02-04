@@ -25,6 +25,11 @@ final class Shadowrap
 		
 		return true;
 	}
+	
+	public function rply($key, $args=NULL)
+	{
+		return self::reply(Shadowrun4::lang($key, $args));
+	}
 
 	/**
 	  * Reply to the current origin and user, display as a table

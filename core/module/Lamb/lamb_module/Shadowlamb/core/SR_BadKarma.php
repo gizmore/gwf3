@@ -74,7 +74,7 @@ final class SR_BadKarma
 		}
 		
 		# Announce
-		$player->msg('5036', array($abk+$fraction));
+		$player->msg('5036', array($add));
 // 		$player->message(sprintf('Your character has been punished with %s bad_karma.', $abk+$fraction));
 		
 		# Save fraction

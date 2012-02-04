@@ -50,6 +50,7 @@ final class SR_Clan extends GDO
 	public function isMaxMoney() { return $this->getNuyen() >= $this->getMaxNuyen(); }
 	public function getMembercount() { return $this->getInt('sr4cl_members'); }
 	public function getMaxMembercount() { return $this->getInt('sr4cl_max_members'); }
+	public function displayMaxMembercount() { return Shadowrun4::lang('members', array($this->getMaxMembercount())); }
 	public function getNuyen() { return $this->getInt('sr4cl_money'); }
 	public function getMaxNuyen() { return $this->getInt('sr4cl_max_money'); }
 	public function getStorage() { return $this->getInt('sr4cl_storage'); }

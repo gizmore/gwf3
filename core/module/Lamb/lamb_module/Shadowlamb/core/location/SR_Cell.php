@@ -8,7 +8,8 @@ abstract class SR_Cell extends SR_SearchRoom
 	
 	public function onEnter(SR_Player $player)
 	{
-		$player->message(sprintf('You find no way to enter %s.', get_class($this)));
+		$player->msg('1118');
+// 		$player->message(sprintf('You find no way to enter %s.', get_class($this)));
 		return false;
 	}
 }

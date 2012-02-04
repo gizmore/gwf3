@@ -3,8 +3,9 @@ class SR_SearchRoom extends SR_Tower
 {
 	public function isLocked() { return $this->getLockLevel() >= 0; } 
 	public function getLockLevel() { return -1; } # 0.0-10.0
-	public function onCrackLockFailed(SR_Player $player) { $player->message('Your party members tried to crack the lock, but failed.'); }
-	public function onCrackedLock(SR_Player $player, SR_Player $cracker) { $player->getParty()->message($cracker, ' cracked the lock!'); }
+// 	public function onCrackLockFailed(SR_Player $player) { $player->message('Your party members tried to crack the lock, but failed.'); }
+	public function onCrackLockFailed(SR_Player $player) { $player->msg('1149'); }
+	public function onCrackedLock(SR_Player $player, SR_Player $cracker) { $player->getParty()->ntice('5187', array($cracker->getName())); }
 	
 	public function isSearchable() { return $this->getSearchLevel() >= 0; }
 	public function getSearchMaxAttemps() { return 1; }
@@ -16,11 +17,11 @@ class SR_SearchRoom extends SR_Tower
 		$back = '';
 		if (count($this->getComputers()) > 0)
 		{
-			$back .= ' You can use a Cyberdeck here to hack into a computer.';
+			$back .= $player->lang('hlp_hack');# You can use a Cyberdeck here to hack into a computer.';
 		}
 		if ($this->isSearchable())
 		{
-			$back .= ' You can use #search here to search the room for items.';
+			$back .= $player->lang('hlp_search'); # ' You can use #search here to search the room for items.';
 		}
 		return $back === '' ? false : substr($back, 1);
 	}
@@ -50,7 +51,8 @@ class SR_SearchRoom extends SR_Tower
 		
 		if ($attemp >= $this->getSearchMaxAttemps())
 		{
-			$player->message('Not again.');
+			$player->msg('1148');
+// 			$player->message('Not again.');
 			return;
 		}
 		
@@ -61,12 +63,14 @@ class SR_SearchRoom extends SR_Tower
 		
 		if (count($loot) > 0)
 		{
-			$player->message(sprintf('You search the %s...', $this->getName()));
+			$player->msg('5185', array($this->getName()));
+// 			$player->message(sprintf('You search the %s...', $this->getName()));
 			$player->giveItems($loot, 'searching '.$this->getName());
 		}
 		else
 		{
-			$player->message(sprintf('You search the %s... But find nothing.', $this->getName()));
+			$player->msg('5186', array($this->getName()));
+// 			$player->message(sprintf('You search the %s... But find nothing.', $this->getName()));
 		}
 	}
 	
@@ -195,7 +199,7 @@ class SR_SearchRoom extends SR_Tower
 		$atk = Shadowfunc::diceFloat($loc, $loc * 2.0 + 1.0, 2);
 		$def = Shadowfunc::diceFloat($lvl, $lvl * 1.5 + 2.0, 2);
 		
-		echo sprintf('%s tries to crack lock lvl %s with lockpicking %s. DEF:%s ... ATK: %s', $member->getName(), $lvl, $loc, $def, $atk).PHP_EOL;
+		printf('%s tries to crack lock lvl %s with lockpicking %s. DEF:%s ... ATK: %s', $member->getName(), $lvl, $loc, $def, $atk).PHP_EOL;
 		
 		if ($atk >= $def)
 		{

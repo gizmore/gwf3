@@ -26,16 +26,20 @@ abstract class SR_School extends SR_Store
 	{
 		$bot = Shadowrap::instance($player);
 		
+		$format = $player->lang('fmt_bazar_shops');
 		$c = '';
 		foreach ($this->getFields($player) as $data)
 		{
 			$price = Shadowfunc::calcBuyPrice($data[1], $player);
 			$dp = Shadowfunc::displayNuyen($price);
-			$c .= sprintf(', %s(%s)', $data[0], $price);
+			$c .= sprintf($format, $data[0], $dp);
+// 			$c .= sprintf(', %s(%s)', $data[0], $price);
 		}
 		
-		$bot->reply(sprintf('Available Courses: %s.', substr($c, 2)));
-		return true;
+		$c = $c === '' ? $player->lang('none') : substr($c, 2);
+		return $bot->rply('5183', array($c));
+// 		$bot->reply(sprintf('Available Courses: %s.', substr($c, 2)));
+// 		return true;
 	}
 
 	public function on_learn(SR_Player $player, array $args)
@@ -82,28 +86,35 @@ abstract class SR_School extends SR_Store
 		{
 			if ($player->getBase($field) < -1)
 			{
-				$player->message(sprintf('Your character cannot learn %s.', $field));
+				$player->msg('1145', array($field));
+// 				$player->message(sprintf('Your character cannot learn %s.', $field));
 				return false;
 			}
 		}
 		
 		
-		if ($have === true) {
-			$player->message(sprintf('You already learned the %s %s.', $type, $field));
+		if ($have === true)
+		{
+			$player->msg('1146', array($field));
+// 			$player->message(sprintf('You already learned the %s %s.', $type, $field));
 			return false;
 		}
 		
 		if ($type === 'spell')
 		{
-			if (false !== ($error = $spell->checkRequirements($player))) {
-				$player->message(sprintf('You need %s to learn this spell.', $error));
+			if (false !== ($error = $spell->checkRequirements($player)))
+			{
+				$player->msg('1147', array($error));
+// 				$player->message(sprintf('You need %s to learn this spell.', $error));
 				return false;
 			}
 		}
 		
 		$dp = Shadowfunc::displayNuyen($price);
-		if (false === $player->pay($price)) {
-			$player->message(sprintf('It cost %s to learn the %s %s, but you only have %s.', $dp, $type, $field, $player->displayNuyen()));
+		if (false === $player->pay($price))
+		{
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It cost %s to learn the %s %s, but you only have %s.', $dp, $type, $field, $player->displayNuyen()));
 			return false;
 		}
 		
@@ -117,7 +128,9 @@ abstract class SR_School extends SR_Store
 		}
 	
 		$player->modify();
-		$player->message(sprintf('You pay %s and learned the %s %s.', $dp, $type, $field));
+		
+		$player->msg('5184', array($dp, $field));
+// 		$player->message(sprintf('You pay %s and learned the %s %s.', $dp, $type, $field));
 		return true;
 	}
 }

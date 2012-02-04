@@ -11,7 +11,7 @@ final class Spell_vulcano extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 5 + ($level*2);
+		return 6 + ($level*1.5);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
@@ -45,16 +45,16 @@ final class Spell_vulcano extends SR_CombatSpell
 		{
 			list($pid, $d) = $data;
 			$target = $ep->getMemberByPID($pid);
-			$d = Common::clamp($d, 2);
+			$d = Common::clamp($d, 1);
 		
 			$hits = $this->dice($player, $target, $level); # Dice hits
 			echo "!! Vulcano hits=$hits, Distance=$d";
 		
 			$min = $level*2; # The min damage is still like 2 or 20
-			$max = $min*1.5 + $hits; # The max damage is min + hits 
+			$max = $min*1.5 + $hits*2.0; # The max damage is min + hits 
 
 			$dmg = Shadowf1unc::diceFloat($min, $max);
-			$dmg /= $d*2.0;
+			$dmg /= $d*1.25;
 		
 			$damage[$pid] = $dmg;
 		}

@@ -4,7 +4,7 @@ class SR_Bazar extends SR_Location
 	const FEE = 4.5;
 	const POP_FEE = 50;
 	
-	const SLOT_PRICE = 25;
+	const SLOT_PRICE = 10;
 //	const MAX_SLOTS = 20;
 	const MIN_SLOTS = 2;
 	const MAX_SLOTS_BUY = 18;
@@ -30,7 +30,8 @@ class SR_Bazar extends SR_Location
 	
 	public function getHelpText(SR_Player $player)
 	{
-		return "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.";
+		return $player->lang('hlp_bazar');
+// 		return "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.";
 	}
 	
 	public function getCommands(SR_Player $player)
@@ -45,14 +46,18 @@ class SR_Bazar extends SR_Location
 	
 	public function getFoundText(SR_Player $player)
 	{
-		return "You found the local bazar, a place where you can offer your items and purchase them.";
+		return $player->lang('stub_found_bazar');
+// 		return "You found the local bazar, a place where you can offer your items and purchase them.";
 	}
 	
 	public function getEnterText(SR_Player $player)
 	{
-		$shops = SR_BazarShop::getShopCount();
-		$items = SR_BazarShop::getTotalItemCount();
-		return "You enter the bazar. You see {$shops} shops with a total of {$items} items.";
+		return $player->lang('stub_enter_bazar', array(
+			SR_BazarShop::getShopCount(), SR_BazarShop::getTotalItemCount()
+		));
+// 		$shops = SR_BazarShop::getShopCount();
+// 		$items = SR_BazarShop::getTotalItemCount();
+// 		return "You enter the bazar. You see {$shops} shops with a total of {$items} items.";
 	}
 	
 	public function getAreaSize()
@@ -106,16 +111,24 @@ class SR_Bazar extends SR_Location
 		}
 		
 		$out = '';
+		$format = $player->lang('fmt_bazar_shops');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
 		{
-			$out .= sprintf(", \X02%s\X02(%d)", $row[0], $row[1]);
+			$out .= sprintf($format, $row[0], $row[1]);
+// 			$out .= sprintf(", \X02%s\X02(%d)", $row[0], $row[1]);
 		}
 		
 		$table->free($result);
 		
-		$out = $out === '' ? 'There are no open shops yet' : substr($out, 2);
+		if ($out === '')
+		{
+			$player->msg('1105');
+// 			$out = $out === '' ? 'There are no open shops yet' : substr($out, 2);
+			return false;
+		}
 		
-		return $player->message("Shops (Page {$page}/{$nPages}): {$out}.");
+		return $player->msg('5149', array($page, $nPages, substr($out, 2)));
+// 		return $player->message("Shops (Page {$page}/{$nPages}): {$out}.");
 	}
 	
 	public function onViewShop(SR_Player $player, $pname)
@@ -124,7 +137,8 @@ class SR_Bazar extends SR_Location
 
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message("{$pname} does not have a shop.");
+			$player->msg('1106', array($pname));
+// 			$player->message("{$pname} does not have a shop.");
 			return false;
 		}
 		
@@ -137,21 +151,26 @@ class SR_Bazar extends SR_Location
 		
 		$itemcount = 0;
 		$out = '';
+		$format = $player->lang('fmt_bazar_shop');
 		while (false !== ($row = $i_table->fetch($result, GDO::ARRAY_N)))
 		{
-			$amt = $row[2] < 2 ? '' : $row[2].'x';
-			$out .= sprintf(", %s\X02%s\X02(%s)", $amt, $row[0], Shadowfunc::displayNuyen($this->calcBuyPrice($row[1])));
+			$out .= sprintf($format, $row[2], $row[0], Shadowfunc::displayNuyen($this->calcBuyPrice($row[1])));
+// 			$amt = $row[2] < 2 ? '' : $row[2].'x';
+// 			$out .= sprintf(", %s\X02%s\X02(%s)", $amt, $row[0], Shadowfunc::displayNuyen($this->calcBuyPrice($row[1])));
 			$itemcount++;
 		}
 		$i_table->free($result);
 		
 		if ($out === '')
 		{
-			return $player->message(sprintf("%s's shop is empty.", $pname));
+			return $player->msg('1107', array($pname));
+// 			return $player->message(sprintf("%s's shop is empty.", $pname));
 		}
 		
-		$player->message($shop->getSlogan());
-		$player->message(sprintf("%d Items: %s.", $itemcount, substr($out, 2)));
+		$player->msg('5150', array($pname, $shop->getSlogan()));
+		$player->msg('5151', array($itemcount, substr($out, 2)));
+// 		$player->message($shop->getSlogan());
+// 		$player->message(sprintf("%d Items: %s.", $itemcount, substr($out, 2)));
 		return true;
 	}
 	
@@ -159,13 +178,15 @@ class SR_Bazar extends SR_Location
 	{
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message("{$pname} does not have a shop.");
+			$player->msg('1106', array($pname));
+// 			$player->message("{$pname} does not have a shop.");
 			return false;
 		}
 		
 		if (false === ($bi = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
-			$player->message('This shop does not offer this item.');
+			$player->msg('1108');
+// 			$player->message('This shop does not offer this item.');
 			return false;
 		}
 		
@@ -177,9 +198,11 @@ class SR_Bazar extends SR_Location
 		
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price'));
 		
-		$out = sprintf("%s sells one of %d items for \X02%s\X02: %s.", $pname, $bi->getVar('sr4ba_iamt'), Shadowfunc::displayNuyen($price), $item->getItemInfo($player));
-		
-		return $player->message($out);
+		return $player->msg('5152', array(
+			$pname, $bi->getVar('sr4ba_iamt'), $item->getItemName(), Shadowfunc::displayNuyen($price), $item->getItemInfo($player)
+		));
+// 		$out = sprintf("%s sells one of %d items for \X02%s\X02: %s.", $pname, $bi->getVar('sr4ba_iamt'), Shadowfunc::displayNuyen($price), $item->getItemInfo($player));
+// 		return $player->message($out);
 	}
 	
 	############
@@ -202,19 +225,22 @@ class SR_Bazar extends SR_Location
 		$price = round($args[1]);
 		if ($price < self::MIN_PRICE)
 		{
-			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
+			$player->msg('1109', array(Shadowfunc::displayNuyen(self::MIN_PRICE)));
+// 			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
 		if ($price > self::MAX_PRICE)
 		{
-			$player->message("Your price exceeds the max price.");
+			$player->msg('1110');
+// 			$player->message("Your price exceeds the max price.");
 			return false;
 		}
 		
 		$amt = isset($args[2]) ? ((int)$args[2]) : 0;
 		if ($amt < 0)
 		{
-			$player->message("Please push a positive amount into your bazar.");
+			$player->msg('1038');
+// 			$player->message("Please push a positive amount into your bazar.");
 			return false;
 		}
 		$amt = Common::clamp($amt, 1);
@@ -222,7 +248,8 @@ class SR_Bazar extends SR_Location
 		
 		if (false === ($item = $player->getInvItem($iname)))
 		{
-			$player->message("You don't have this item in your inventory.");
+			$player->msg('1029');
+// 			$player->message("You don't have this item in your inventory.");
 			return false;
 		}
 		
@@ -234,7 +261,8 @@ class SR_Bazar extends SR_Location
 		{
 			if (!$this->hasFreeSlot($player))
 			{
-				$player->message("All your bazar slots are in use. Try #pop or #buyslot.");
+				$player->msg('1111');
+// 				$player->message("All your bazar slots are in use. Try #pop or #buyslot.");
 				return false;
 			}
 			
@@ -255,7 +283,8 @@ class SR_Bazar extends SR_Location
 			{
 				if ($amt > $item->getAmount())
 				{
-					$player->message(sprintf("You only have %d of %s but you want to push %d.", $item->getAmount(), $item->getItemName(), $amt));
+					$player->msg('1040', array($item->getItemName()));
+// 					$player->message(sprintf("You only have %d of %s but you want to push %d.", $item->getAmount(), $item->getItemName(), $amt));
 					return false;
 				}
 				
@@ -278,7 +307,8 @@ class SR_Bazar extends SR_Location
 				$items = $player->getInvItems($iname, $amt);
 				if (count($items) < $amt)
 				{
-					$player->message(sprintf("You only have %d of %s but you want to push %d.", count($items), $iname, $amt));
+					$player->msg('1040', array($item->getItemName()));
+// 					$player->message(sprintf("You only have %d of %s but you want to push %d.", count($items), $iname, $amt));
 					return false;
 				}
 				
@@ -306,7 +336,17 @@ class SR_Bazar extends SR_Location
 			}
 
 			$price2 = $this->calcBuyPrice($price);
-			return $player->message(sprintf('You offered %d %s for %s each in your bazar.', $amt, $iname, Shadowfunc::displayNuyen($price2)));
+			$dprice = Shadowfunc::displayNuyen($price2);
+			
+			$player->msg('5153', array($amt, $iname, $dprice));
+			
+			# Global shout.
+			Shadowshout::sendGlobalMessage(sprintf('%s offers %d x %s for %s each in his bazaar.',
+				$player->getName(), $amt, $iname, $dprice
+			));
+			
+			return true;
+// 			return $player->message(sprintf('You now offer %d %s for %s each in your bazar.', $amt, $iname, $dprice));
 		}
 		
 		# Add to bazar stack
@@ -323,7 +363,8 @@ class SR_Bazar extends SR_Location
 			{
 				if ($item->getAmount() < $amt)
 				{
-					$player->message(sprintf('You want to push %s %s, but you only have %s.', $amt, $iname, $item->getAmount()));
+					$player->msg('1040', array($iname));
+// 					$player->message(sprintf('You want to push %s %s, but you only have %s.', $amt, $iname, $item->getAmount()));
 					return false;
 				}
 				if (false === $item->useAmount($player, $amt))
@@ -338,7 +379,8 @@ class SR_Bazar extends SR_Location
 				$items2 = $player->getInvItems($iname, $amt);
 				if (count($items2) < $amt)
 				{
-					$player->message(sprintf('You want to push %d %s but you only got %d.', $amt, $iname, count($items2)));
+					$player->msg('1040', array($iname));
+// 					$player->message(sprintf('You want to push %d %s but you only got %d.', $amt, $iname, count($items2)));
 					return false;
 				}
 				
@@ -370,8 +412,11 @@ class SR_Bazar extends SR_Location
 				return false;
 			}
 			
+			$amt = $bitem->getVar('sr4ba_iamt');
 			$price2 = $this->calcBuyPrice($price);
-			return $player->message(sprintf('You now offer %d %s in your bazar for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price2)));
+			$dprice = Shadowfunc::displayNuyen($price2);
+			$player->msg('5153', array($amt, $iname, $dprice));
+// 			return $player->message(sprintf('You now offer %d %s in your bazar for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price2)));
 		}
 	}
 	
@@ -420,25 +465,29 @@ class SR_Bazar extends SR_Location
 		
 		if ($amt < 1)
 		{
-			$player->message('Please pop a positive amount of your bazar.');
+			$player->msg('1038');
+// 			$player->message('Please pop a positive amount of your bazar.');
 			return false;
 		}
 		
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message('You don\'t have a shop yet.');
+			$player->msg('1106', array($pname));
+// 			$player->message('You don\'t have a shop yet.');
 			return false;
 		}
 		
 		if (false === ($bitem = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
-			$player->message('You don\'t have this item in your bazar.');
+			$player->msg('1112');
+// 			$player->message('You don\'t have this item in your bazar.');
 			return false;
 		}
 		
 		if ($amt > $bitem->getVar('sr4ba_iamt'))
 		{
-			$player->message(sprintf('You try to pop %d %s out of your bazar, but you only have %s.', $amt, $iname, $bitem->getVar('sr4ba_iamt')));
+			$player->msg('1113', array($iname));
+// 			$player->message(sprintf('You try to pop %d %s out of your bazar, but you only have %s.', $amt, $iname, $bitem->getVar('sr4ba_iamt')));
 			return false;
 		}
 		
@@ -452,7 +501,8 @@ class SR_Bazar extends SR_Location
 		$fee = $this->calcPopFee($player, $amt);
 		if ($player->getNuyen() < $fee)
 		{
-			$player->message(sprintf('The fee for popping %d items out of your bazar is %s, but you only have %s.', $amt, Shadowfunc::displayNuyen($fee), $player->displayNuyen()));
+			$player->msg('1114', array($amt, Shadowfunc::displayNuyen($fee), $player->displayNuyen()));
+// 			$player->message(sprintf('The fee for popping %d items out of your bazar is %s, but you only have %s.', $amt, Shadowfunc::displayNuyen($fee), $player->displayNuyen()));
 			return false;
 		}
 
@@ -510,7 +560,8 @@ class SR_Bazar extends SR_Location
 		
 		$player->giveNuyen(-$fee);
 		
-		return $player->message(sprintf('You pay the fee of %s and remove %d %s from your bazar and put it into your inventory.', Shadowfunc::displayNuyen($fee), $amt, $iname));
+		return $player->msg('5154', array(Shadowfunc::displayNuyen($fee), $amt, $iname));
+// 		return $player->message(sprintf('You pay the fee of %s and remove %d %s from your bazar and put it into your inventory.', Shadowfunc::displayNuyen($fee), $amt, $iname));
 	}
 	
 	###########
@@ -536,7 +587,8 @@ class SR_Bazar extends SR_Location
 		$pname = $args[0];
 		if ($pname === $player->getName())
 		{
-			$player->message('You cannot buy items from your own shop.');
+			$player->msg('1115');
+// 			$player->message('You cannot buy items from your own shop.');
 			return false;
 		}
 		
@@ -551,26 +603,30 @@ class SR_Bazar extends SR_Location
 		
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message('This player does not have a shop.');
+			$player->msg('1106', array($pname));
+// 			$player->message('This player does not have a shop.');
 			return false;
 		}
 		
 		if (false === ($bi = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
-			$player->message('This shop does not offer this item.');
+			$player->msg('1108');
+// 			$player->message('This shop does not offer this item.');
 			return false;
 		}
 		
 		if ($amt > $bi->getVar('sr4ba_iamt'))
 		{
-			$player->message(sprintf('You tried to purchase %d %s, but the shop only offers %d.', $amt, $iname, $bi->getVar('sr4ba_iamt')));
+			$player->msg('1116', array($amt, $iname, $bi->getVar('sr4ba_iamt')));
+// 			$player->message(sprintf('You tried to purchase %d %s, but the shop only offers %d.', $amt, $iname, $bi->getVar('sr4ba_iamt')));
 			return false;
 		}
 		
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price')) * $amt;
 		if ($price > $player->getNuyen())
 		{
-			$player->message(sprintf('The price for %d %s is %s in this shop, but you only have %s.', $amt, $iname, Shadowfunc::displayNuyen($price), $player->displayNuyen()));
+			$player->message('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('The price for %d %s is %s in this shop, but you only have %s.', $amt, $iname, Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 			return false;
 		}
 		
@@ -588,7 +644,8 @@ class SR_Bazar extends SR_Location
 		if ($old_msg !== $msg)
 		{
 			$player->setTemp(self::TEMP_BUY_CONFIRM, $msg);
-			$player->message(sprintf('You attempt to purchase %d %s from %s for %s. Retype to confirm.', $amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
+			$player->msg('5155', array($amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
+// 			$player->message(sprintf('You attempt to purchase %d %s from %s for %s. Retype to confirm.', $amt, $iname, $pname, Shadowfunc::displayNuyen($price)));
 			return true;
 		}
 		
@@ -596,7 +653,8 @@ class SR_Bazar extends SR_Location
 		if ($item->isItemStackable())
 		{
 			$item2 = SR_Item::createByName($iname, $amt, true);
-			$player->giveItems(array($item2), "purchasing from {$pname}'s bazar.");
+			$player->giveItem($item2);
+			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, $pname));
 		}
 		
 		else
@@ -607,7 +665,8 @@ class SR_Bazar extends SR_Location
 				$player->giveItem($item2);
 			}
 			$player->updateInventory();
-			$player->getParty()->notice(sprintf('%s purchased %d %s from %s\'s bazar.', $player->getName(), $amt, $iname, $pname));
+			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, $pname));
+// 			$player->getParty()->notice(sprintf('%s purchased %d %s from %s\'s bazar.', $player->getName(), $amt, $iname, $pname));
 		}
 
 		if (false === $shop->increase('sr4bs_itemcount', -$amt))
@@ -625,7 +684,7 @@ class SR_Bazar extends SR_Location
 		
 		if (false === $bi->onPayOwner($player, $amt))
 		{
-			$player->message('Shop owner could not been paid, because the player is probably deleted.');
+			$player->message('Shop owner could not been paid, because the player is probably deleted.(BUG?!)');
 //			return false;
 		}
 		
@@ -659,7 +718,8 @@ class SR_Bazar extends SR_Location
 			}
 			else
 			{
-				$player->message('Type "#buyslot yesplease" to confirm.');
+				$player->msg('5076', array('#buyslot yesplease'));
+// 				$player->message('Type "#buyslot yesplease" to confirm.');
 				return false;
 			}
 		}
@@ -683,7 +743,8 @@ class SR_Bazar extends SR_Location
 		}
 		$avail_slots = $this->getBazarSlots($player);
 		$price = $this->calcBuySlotPrice($player);
-		return $player->message(sprintf('You currently have %d of %d bazar slots in use. Another slot would cost you %s. Type #buyslot yesplease to confirm.', $used_slots, $avail_slots, Shadowfunc::displayNuyen($price)));
+		$player->msg('5157', array($used_slots, $avail_slots, Shadowfunc::displayNuyen($price)));
+// 		return $player->message(sprintf('You currently have %d of %d bazar slots in use. Another slot would cost you %s. Type #buyslot yesplease to confirm.', $used_slots, $avail_slots, Shadowfunc::displayNuyen($price)));
 	}
 	
 	private function calcBuySlotPrice(SR_Player $player)
@@ -711,7 +772,8 @@ class SR_Bazar extends SR_Location
 		$avail_slots = $this->getBazarSlots($player);
 		if ($player->getNuyen() < $price)
 		{
-			$player->message(sprintf('It would cost %s to purchase slot number %s, but you only have %s.', Shadowfunc::displayNuyen($price), $avail_slots+1, $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('It would cost %s to purchase slot number %s, but you only have %s.', Shadowfunc::displayNuyen($price), $avail_slots+1, $player->displayNuyen()));
 			return false;
 		}
 		
@@ -728,7 +790,8 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		return $player->message(sprintf('You pay the fee of %s and now have %s bazar slots.', Shadowfunc::displayNuyen($price), $avail_slots+1));
+		$player->msg('5158', array(Shadowfunc::displayNuyen($price), $avail_slots+1));
+// 		return $player->message(sprintf('You pay the fee of %s and now have %s bazar slots.', Shadowfunc::displayNuyen($price), $avail_slots+1));
 	}
 	
 	##############
@@ -744,10 +807,13 @@ class SR_Bazar extends SR_Location
 		$pname = $player->getName();
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message('You did not create a shop yet. You can do so by #push or #buyslot.');
+			$player->msg('1106', array($pname));
+// 			$player->message('You did not create a shop yet. You can do so by #push or #buyslot.');
 			return false;
 		}
-		return $player->message(sprintf('Your shop\'s slogan: %s.', $shop->getSlogan()));
+		
+		return $player->msg('5150', array($pname, $shop->getSlogan()));
+// 		return $player->message(sprintf('Your shop\'s slogan: %s.', $shop->getSlogan()));
 	}
 	
 	private function onSetSlogan(SR_Player $player, $new_slogan)
@@ -760,7 +826,8 @@ class SR_Bazar extends SR_Location
 
 		if (GWF_String::strlen($new_slogan) > SR_BazarShop::MAX_SLOGAN_LEN)
 		{
-			$player->message(sprintf('Your new slogan exceeds the max length of %d characters.', SR_BazarShop::MAX_SLOGAN_LEN));
+			$player->message('1117', array(SR_BazarShop::MAX_SLOGAN_LEN));
+// 			$player->message(sprintf('Your new slogan exceeds the max length of %d characters.', SR_BazarShop::MAX_SLOGAN_LEN));
 			return false;
 		}
 
@@ -770,7 +837,8 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
-		$player->message(sprintf('Your slogan has been set to: %s.', $new_slogan));
+		$player->msg('5159', array($new_slogan));
+// 		$player->message(sprintf('Your slogan has been set to: %s.', $new_slogan));
 		return true;
 	}
 	
@@ -790,24 +858,28 @@ class SR_Bazar extends SR_Location
 		
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			$player->message('You don\'t have a shop yet.');
+			$player->msg('1106', array($pname));
+// 			$player->message('You don\'t have a shop yet.');
 			return false;
 		}
 		
 		if (false === ($bitem = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
-			$player->message('You don\'t have this item in your bazar.');
+			$player->msg('1112');
+// 			$player->message('You don\'t have this item in your bazar.');
 			return false;
 		}
 		
 		if ($price < self::MIN_PRICE)
 		{
-			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
+			$player->msg('1109', array(Shadowfunc::displayNuyen(self::MIN_PRICE)));
+// 			$player->message(sprintf('The minimum price for an item is %s.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
 		if ($price > self::MAX_PRICE)
 		{
-			$player->message("Your price exceeds the max price.");
+			$player->msg('1110');
+// 			$player->message("Your price exceeds the max price.");
 			return false;
 		}
 		
@@ -817,8 +889,11 @@ class SR_Bazar extends SR_Location
 			return false;
 		}
 		
+		$amt = $bitem->getVar('sr4ba_iamt');
 		$price2 = $this->calcBuyPrice($price);
-		return $player->message(sprintf('You now offer %d %s for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price2)));
+		$dprice = Shadowfunc::displayNuyen($price2);
+		return $player->msg('5153', array($amt, $iname, $dprice));
+// 		return $player->message(sprintf('You now offer %d %s for %s each.', $bitem->getVar('sr4ba_iamt'), $iname, Shadowfunc::displayNuyen($price2)));
 	}
 	
 	##############
@@ -848,7 +923,8 @@ class SR_Bazar extends SR_Location
 		
 		if ($nItems === 0)
 		{
-			$player->message('No item matches your search query :(');
+			$player->msg('1007');
+// 			$player->message('No item matches your search query :(');
 			return false;
 		}
 		
@@ -869,7 +945,8 @@ class SR_Bazar extends SR_Location
 		
 		if ($page > $nPages)
 		{
-			$player->message('There are no more matches.');
+			$player->msg('1009');
+// 			$player->message('There are no more matches.');
 			return false;
 		}
 		
@@ -882,16 +959,20 @@ class SR_Bazar extends SR_Location
 		}
 		
 		$out = '';
+		$format = $player->lang('fmt_bazar_search');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
 			$amt = $row['sr4ba_iamt'];
 			$amt = $amt > 1 ? "({$amt}x)" : '';
-			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
+			
+			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $amt, $row['sr4ba_price']);
+// 			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
 		
 		$table->free($result);
 		
-		return $player->message(sprintf('Matches %d/%d: %s.', $page, $nPages, substr($out, 2)));
+		return $player->msg('5160', array($page, $nPages, substr($out, 2)));
+// 		return $player->message(sprintf('Matches %d/%d: %s.', $page, $nPages, substr($out, 2)));
 	}
 
 	################
@@ -911,12 +992,14 @@ class SR_Bazar extends SR_Location
 		$total = $args[1];
 		if ($total < self::MIN_PRICE)
 		{
-			$player->message(sprintf('The minimum price for a single item is %s. Your total bid should be larger or equal than this.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
+			$player->msg('1109', array(self::MIN_PRICE));
+// 			$player->message(sprintf('The minimum price for a single item is %s. Your total bid should be larger or equal than this.', Shadowfunc::displayNuyen(self::MIN_PRICE)));
 			return false;
 		}
 		if ($total > $player->getNuyen())
 		{
-			$player->message(sprintf('You want to purchase items worth %s, but you only have %s.', Shadowfunc::displayNuyen($total), $player->displayNuyen()));
+			$player->msg('1063', array($player->displayNuyen()));
+// 			$player->message(sprintf('You want to purchase items worth %s, but you only have %s.', Shadowfunc::displayNuyen($total), $player->displayNuyen()));
 			return false;
 		}
 		
@@ -924,7 +1007,8 @@ class SR_Bazar extends SR_Location
 		$amt = isset($args[2]) ? ((int)$args[2]) : 1;
 		if ( ($amt < 1) || ($amt > 1234567123) )
 		{
-			$player->message(sprintf('Please buy a positive amount of items.'));
+			$player->msg('1038');
+// 			$player->message(sprintf('Please buy a positive amount of items.'));
 			return false;
 		}
 		
@@ -973,14 +1057,16 @@ class SR_Bazar extends SR_Location
 		# Check Result
 		if ($have_amt < $amt)
 		{
-			$player->message(sprintf('You want to purchase %d %s, but you can only find %d.', $amt, $iname, $have_amt));
+			$player->msg('5161', array($amt, $iname, $have_amt));
+// 			$player->message(sprintf('You want to purchase %d %s, but you can only find %d.', $amt, $iname, $have_amt));
 			$player->unsetTemp(self::TEMP_BBUY_CONFIRM);
 			return false;
 		}
 		
 		if ($have_price > $total)
 		{
-			$player->message(sprintf('You want to pay %s for %d %s, but the best price is %s.', Shadowfunc::displayNuyen($total), $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+			$player->msg('5162', array(Shadowfunc::displayNuyen($total), $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+// 			$player->message(sprintf('You want to pay %s for %d %s, but the best price is %s.', Shadowfunc::displayNuyen($total), $amt, $iname, Shadowfunc::displayNuyen($have_price)));
 			$player->unsetTemp(self::TEMP_BBUY_CONFIRM);
 			return false;
 		}
@@ -995,7 +1081,8 @@ class SR_Bazar extends SR_Location
 		else
 		{
 			$player->setTemp(self::TEMP_BBUY_CONFIRM, $msg);
-			$player->message(sprintf('You are about to buy %d %s for %s in total. Retype your command to confirm.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+			$player->msg('5163', array($amt, $iname, Shadowfunc::displayNuyen($have_price)));
+// 			$player->message(sprintf('You are about to buy %d %s for %s in total. Retype your command to confirm.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
 			return true;
 		}
 	}
@@ -1102,13 +1189,15 @@ class SR_Bazar extends SR_Location
 				return false;
 			}
 			
-			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazar.', $player->getName(), $amt, $iname));
+			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, '!Shadowlamb!'));
+// 			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazar.', $player->getName(), $amt, $iname));
 		}
 		
 		SR_BazarShop::fixAllItemCounts();
 		
 		$player->giveNuyen(-$have_price);
-		$player->message(sprintf('You purchased %d %s for a total price of %s.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
+		$player->msg('5164', array($amt, $iname, Shadowfunc::displayNuyen($have_price)));
+// 		$player->message(sprintf('You purchased %d %s for a total price of %s.', $amt, $iname, Shadowfunc::displayNuyen($have_price)));
 		
 		return true;
 	}

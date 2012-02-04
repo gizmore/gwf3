@@ -237,6 +237,7 @@ class SR_Player extends GDO
 	public function getBankNuyen() { return $this->getFloat('sr4pl_bank_nuyen'); }
 	public function getDistance() { return $this->getParty()->getDistance($this); }
 	public function displayNuyen() { return Shadowfunc::displayNuyen($this->getNuyen()); }
+	public function displayBankNuyen() { return Shadowfunc::displayNuyen($this->getBankNuyen()); }
 	public function isDrunk() { return $this->get('alc') >= (0.8 + $this->getBase('body')*0.20); }
 	public function isCaffed() { return $this->get('caf') >= (1.4 + $this->getBase('body')*0.25); }
 	public function getMovePerSecond() { return 1.5 + $this->get('quickness') * 0.25 + Shadowfunc::diceFloat(-0.2,+0.2,1); }

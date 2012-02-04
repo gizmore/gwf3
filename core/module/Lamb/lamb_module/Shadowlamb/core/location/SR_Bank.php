@@ -9,9 +9,10 @@ abstract class SR_Bank extends SR_Location
 
 	public function getHelpText(SR_Player $player)
 	{
-		$c = Shadowrun4::SR_SHORTCUT;
-		$p = Shadowfunc::displayNuyen($this->calcPrice($player));
-		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}viewi to list or search your banked items. Every transaction costs $p for you.";
+		return $player->lang('hlp_bank', array(Shadowfunc::displayNuyen($this->calcPrice($player))));
+// 		$c = Shadowrun4::SR_SHORTCUT;
+// 		$p = Shadowfunc::displayNuyen($this->calcPrice($player));
+// 		return "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}viewi to list or search your banked items. Every transaction costs $p for you.";
 	}
 	
 	public function calcPrice(SR_Player $player)
@@ -24,26 +25,41 @@ abstract class SR_Bank extends SR_Location
 	
 	public function checkAfford(SR_Player $player, $sendmoney=0)
 	{
+		# Free?
 		if (0 >= ($price = $this->calcPrice($player)))
 		{
-			return false;
+			
+			return true;
 		}
+		
 		$nuyen = $player->getNuyen();
 		if ($nuyen < ($price+$sendmoney))
 		{
-			return sprintf('You can not afford to use the bank. This cost %s and you only have %s to spare.', Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($nuyen-$sendmoney));
+			$player->msg('1100', array(Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($nuyen-$sendmoney)));
+// 			return sprintf('You can not afford to use the bank. This cost %s and you only have %s to spare.', Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($nuyen-$sendmoney));
+			return false;
 		}
-		return false;
+		
+		return true;
 	}
 	
 	private function pay(SR_Player $player)
 	{
+		# Free?
 		if (0 >= ($price = $this->calcPrice($player)))
 		{
-			return '';
+			return true;
 		}
-		$player->pay($price);
-		return sprintf('You pay %s nuyen and ', $price);
+
+		# Error
+		if (false === $player->pay($price))
+		{
+			return false;
+		}
+		
+		# Announce payment
+		return $player->msg('5143', array($price));
+// 		return sprintf('You pay %s nuyen.', $price);
 	}
 	
 	#############
@@ -52,8 +68,10 @@ abstract class SR_Bank extends SR_Location
 	public function on_viewi(SR_Player $player, array $args)
 	{
 		$items = $player->getBankItems();
-		$text = array('prefix' => 'Your bank items');
-		return Shadowfunc::genericViewI($player, $items, $args, $text);
+		$text = array(
+			'prefix' => $player->lang('bank_items')
+		);
+		return $player->msg('', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
 	}
 	
 	public function on_pushi(SR_Player $player, array $args)
@@ -68,14 +86,15 @@ abstract class SR_Bank extends SR_Location
 		
 		$args[0] = strtolower($args[0]);
 		
-		if (false !== ($error = $this->checkAfford($player)))
+		if (false === $this->checkAfford($player))
 		{
-			$bot->reply($error);
+// 			$bot->reply($error);
 			return false;
 		}
 		if (false === ($item = $player->getInvItem($args[0])))
 		{
-			$bot->reply('You don`t have that item in your inventory.');
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item in your inventory.');
 			return false;
 		}
 		
@@ -107,12 +126,14 @@ abstract class SR_Bank extends SR_Location
 				$amt = (int) $args[1];
 				if ($amt < 1)
 				{
-					$bot->reply('Please push a positive amount of items.');
+					$bot->rply('1038');
+// 					$bot->reply('Please push a positive amount of items.');
 					return false;
 				}
 				if ($amt > $have_amt)
 				{
-					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+					$bot->rply('1040', array($item->getItemName()));
+// 					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 					return false;
 				}
 				
@@ -139,14 +160,16 @@ abstract class SR_Bank extends SR_Location
 				$amt = (int)$args[1];
 				if ($amt < 1)
 				{
-					$bot->reply('Please push a larger amount than zero.');
+					$bot->rply('1038');
+// 					$bot->reply('Please push a larger amount than zero.');
 					return false;
 				}
 				
 				$items2 = $player->getInvItems($item->getItemName(), $amt);
 				if (count($items2) < $amt)
 				{
-					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
+					$bot->rply('1040', array($item->getItemName()));
+// 					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 					return false;
 				}
 				
@@ -165,18 +188,23 @@ abstract class SR_Bank extends SR_Location
 		}
 		
 		# Pay
-		if ('' === ($paymsg = $this->pay($player))) {
-			$paymsg .= 'You ';
+		if (false === $this->pay($player))
+		{
+			return false;
 		}
-		$paymsg .= sprintf('put %d of your %s into your bank account. You now carry %s/%s.',
+		
+		$player->modify();
+		return $bot->rply('5144', array(
 			$stored, $item->getItemName(),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
-		);
+		));
+// 		$paymsg .= sprintf('put %d of your %s into your bank account. You now carry %s/%s.',
+// 			$stored, $item->getItemName(),
+// 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+// 		);
 		# Out
-		$player->modify();
-		$bot->reply($paymsg);
-		
-		return true;
+// 		$bot->reply($paymsg);
+// 		return true;
 	}
 	
 	/**
@@ -195,14 +223,14 @@ abstract class SR_Bank extends SR_Location
 			$bot->reply(Shadowhelp::getHelp($player, 'popi'));
 			return false;
 		}
-		if (false !== ($error = $this->checkAfford($player)))
+		if (false === $this->checkAfford($player))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		if (false === ($item = $player->getBankItem($args[0])))
 		{
-			$bot->reply('You don`t have that item in your bank.');
+			$bot->rply('1101');
+// 			$bot->reply('You don`t have that item in your bank.');
 			return false;
 		}
 		
@@ -213,7 +241,8 @@ abstract class SR_Bank extends SR_Location
 		{
 			if (!$player->removeFromBank($item))
 			{
-				$bot->reply('You don`t have that item in your bank.');
+				$bot->rply('1101');
+// 				$bot->reply('You don`t have that item in your bank.');
 				return false;
 			}
 			if (!$player->giveItems(array($item)))
@@ -231,7 +260,8 @@ abstract class SR_Bank extends SR_Location
 			$amt = (int)$args[1];
 			if ($amt <= 0)
 			{
-				$bot->reply('Please pop a positve amount of items.');
+				$bot->rply('1038');
+// 				$bot->reply('Please pop a positve amount of items.');
 				return false;
 			}
 			
@@ -247,7 +277,8 @@ abstract class SR_Bank extends SR_Location
 			}
 			if ($amt > $have_amt)
 			{
-				$bot->reply(sprintf('You do not have that much %s in your bank.', $item->getItemName()));
+				$bot->rply('1102', array($item->getItemName()));
+// 				$bot->reply(sprintf('You do not have that much %s in your bank.', $item->getItemName()));
 				return false;
 			}
 			
@@ -303,15 +334,25 @@ abstract class SR_Bank extends SR_Location
 		
 		$player->updateInventory();
 		
-		if ('' === ($paymsg = $this->pay($player))) {
-			$paymsg .= 'You ';
+		if (false === $this->pay($player))
+		{
+			return false;
 		}
-		$paymsg .= sprintf('remove %d %s from your bank account and put it into your inventory. You now carry %s/%s.',
+		
+		return $bot->rply('5145', array(
 			$collected, $item->getItemName(),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
-		);
-		$bot->reply($paymsg);
-		return true;
+		));
+		
+// 		if ('' === ($paymsg = $this->pay($player))) {
+// 			$paymsg .= 'You ';
+// 		}
+// 		$paymsg .= sprintf('remove %d %s from your bank account and put it into your inventory. You now carry %s/%s.',
+// 			$collected, $item->getItemName(),
+// 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
+// 		);
+// 		$bot->reply($paymsg);
+// 		return true;
 	}
 	
 	##################
@@ -320,7 +361,11 @@ abstract class SR_Bank extends SR_Location
 	private function showNuyen(SR_Player $player)
 	{
 		$bot = Shadowrap::instance($player);
-		$bot->reply(sprintf('You carry %s. In your bank are %s. Every transaction costs %s', $player->displayNuyen(), Shadowfunc::displayNuyen($player->getBase('bank_nuyen')), Shadowfunc::displayNuyen($this->calcPrice($player))));
+		return $bot->rply('5146', array(
+				$player->displayNuyen(), $player->displayBankNuyen(),
+				Shadowfunc::displayNuyen($this->calcPrice($player))
+		));
+// 		$bot->reply(sprintf('You carry %s. In your bank are %s. Every transaction costs %s', $player->displayNuyen(), $player->displayBankNuyen(), Shadowfunc::displayNuyen($this->calcPrice($player))));
 	}
 	
 	##################
@@ -337,20 +382,27 @@ abstract class SR_Bank extends SR_Location
 		
 		if (0 >= ($want = round(floatval($args[0]), 2)))
 		{
-			$bot->reply(sprintf('Please push a positive amount of nuyen.'));
+			$bot->rply('1062');
+// 			$bot->reply(sprintf('Please push a positive amount of nuyen.'));
 			return false;
 		}
 		
-		if (false !== ($error = $this->checkAfford($player, $want)))
+		if (false === $this->checkAfford($player, $want))
 		{
-			$bot->reply($error);
 			return false;
 		}
 		
 		
 		$have = $player->getNuyen();
-		if ($want > $have) {
-			$bot->reply(sprintf('You can not push %s, because you only carry %s.', Shadowfunc::displayNuyen($want), $player->displayNuyen()));
+		if ($want > $have)
+		{
+			$bot->rply('1103', array(Shadowfunc::displayNuyen($want), $player->displayNuyen()));
+// 			$bot->reply(sprintf('You can not push %s, because you only carry %s.', Shadowfunc::displayNuyen($want), $player->displayNuyen()));
+			return false;
+		}
+		
+		if (false === $this->pay($player))
+		{
 			return false;
 		}
 		
@@ -358,12 +410,12 @@ abstract class SR_Bank extends SR_Location
 		$player->giveNuyen(-$want);
 		$have = $player->getBase('bank_nuyen');
 		
-		if ('' === ($paymsg = $this->pay($player))) {
-			$paymsg .= 'You ';
-		}
-		$paymsg .= sprintf('push %s into your bank account(now %s) and keep %s in your inventory.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
-		$bot->reply($paymsg);
-		return true;
+		return $bot->rply('5147', array(
+			Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen()
+		));
+// 		$paymsg .= sprintf('push %s into your bank account(now %s) and keep %s in your inventory.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
+// 		$bot->reply($paymsg);
+// 		return true;
 		
 	}
 
@@ -373,23 +425,34 @@ abstract class SR_Bank extends SR_Location
 	public function on_popy(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1) {
+		if (count($args) !== 1)
+		{
 			$this->showNuyen($player);
 			return true;
 		}
-		if (false !== ($error = $this->checkAfford($player))) {
-			$bot->reply($error);
+		
+		if (false === $this->checkAfford($player))
+		{
 			return false;
 		}
 		
-		if (0 >= ($want = round(floatval($args[0]), 2))) {
-			$bot->reply(sprintf('Please pop a positive amount of nuyen.'));
+		if (0 >= ($want = round(floatval($args[0]), 2)))
+		{
+			$bot->rply('1062');
+// 			$bot->reply(sprintf('Please pop a positive amount of nuyen.'));
 			return false;
 		}
 		
 		$have = $player->getBase('bank_nuyen');
-		if ($want > $have) {
-			$bot->reply(sprintf('You can not pop %s, because you only have %s in your bank account.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have)));
+		if ($want > $have)
+		{
+			$bot->rply('1104', array(Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have)));
+// 			$bot->reply(sprintf('You can not pop %s, because you only have %s in your bank account.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have)));
+			return false;
+		}
+
+		if (false === $this->pay($player))
+		{
 			return false;
 		}
 		
@@ -397,12 +460,12 @@ abstract class SR_Bank extends SR_Location
 		$player->giveNuyen($want);
 		$have = $player->getBase('bank_nuyen');
 		
-		if ('' === ($paymsg = $this->pay($player))) {
-			$paymsg .= 'You ';
-		}
-		$paymsg .= sprintf('pop %s from your bank account(%s left) and now carry %s.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
-		$bot->reply($paymsg);
-		return true;
+		return $bot->rply('5148', array(
+			Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen()
+		));
+// 		$paymsg .= sprintf('pop %s from your bank account(%s left) and now carry %s.', Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen());
+// 		$bot->reply($paymsg);
+// 		return true;
 	}
 }
 ?>

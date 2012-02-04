@@ -11,14 +11,14 @@ final class Spell_firebolt extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 2 + ($level*0.5);
+		return 1 + ($level*0.5);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
 //		echo "Casting Firebolt with level $level and $hits hits.\n";
-		$min = 1.00 + $level*0.5;
-		$max = $min + $level*1.2 + $hits*0.35;
+		$min = 1.00 + $level*0.2;
+		$max = $min + $level*1.0 + $hits*0.30;
 		$damage = Shadowfunc::diceFloat($min, $max);
 		return $this->spellDamageSingleTarget($player, $target, $level, '10040', $damage);
 	}

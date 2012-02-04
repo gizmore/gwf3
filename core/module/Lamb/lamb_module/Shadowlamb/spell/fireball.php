@@ -7,7 +7,7 @@ final class Spell_fireball extends SR_CombatSpell
 	public function getCastTime($level) { return Common::clamp(40-$level, 30, 42); }
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 3 + ($level);
+		return 1 + ($level);
 	}
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
 	{
@@ -41,10 +41,10 @@ final class Spell_fireball extends SR_CombatSpell
 // 			echo " Fireball hits=$hits\n";
 			
 			$min = $level*1.0; # The min damage is still like 2 or 20
-			$max = $min + $hits; # The max damage is min + hits 
+			$max = $min + $hits*1.9; # The max damage is min + hits 
 
 			$dmg = Shadowfunc::diceFloat($min, $max);
-			$dmg /= $d*3.0; # Apply area reduction
+			$dmg /= $d*1.35; # Apply area reduction
 			$dmg = round($dmg,1);
 			
 			$damage[$pid] = $dmg;

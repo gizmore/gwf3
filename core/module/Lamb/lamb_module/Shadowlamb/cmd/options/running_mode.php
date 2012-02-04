@@ -21,7 +21,7 @@ final class Shadowcmd_running_mode extends Shadowcmd
 		elseif (count($args) === 0)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
-			self::rply($player, '5076', array(self::WORD));
+			self::rply($player, '5076', array('#rm '.self::WORD));
 // 			$bot->reply('Type "#rm '.self::WORD.' to confirm.');
 		}
 		elseif ( (count($args) !== 1) || ($args[0] !== self::WORD) )

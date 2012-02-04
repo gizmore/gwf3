@@ -4,6 +4,7 @@ final class Shadowcmd_hunt extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
+		$p = $player->getParty();
 		
 		if (count($args) !== 1)
 		{
@@ -15,7 +16,7 @@ final class Shadowcmd_hunt extends Shadowcmd
 		{
 			return false;
 		}
-		if (false === self::checkMove($party))
+		if (false === self::checkMove($p))
 		{
 			return false;
 		}

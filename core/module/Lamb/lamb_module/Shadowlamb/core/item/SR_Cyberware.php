@@ -29,12 +29,11 @@ abstract class SR_Cyberware extends SR_Item
 		$have = $player->get('essence');
 		if ($need > $have)
 		{
-			return sprintf('You don`t have enough essence(%s) to implant %s, which needs %s essence.', $have, $this->getItemName(), $need);
-		}
-		else
-		{
+			$player->msg('1143', array($have, $this->getItemName(), $need));
 			return false;
+// 			return sprintf('You don`t have enough essence(%s) to implant %s, which needs %s essence.', $have, $this->getItemName(), $need);
 		}
+		return true;
 	}
 }
 ?>

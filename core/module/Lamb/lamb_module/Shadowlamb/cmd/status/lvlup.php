@@ -196,7 +196,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		{
 			return self::KARMA_COST_KNOWLEDGE;
 		}
-		if (false !== ($spell = SR_Spell::getSpell($f)))
+		if (false !== ($spell = SR_Spell::getSpell($field)))
 		{
 			return self::KARMA_COST_SPELL;
 		}

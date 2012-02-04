@@ -10,11 +10,13 @@ final class Shadowcmd_gmt extends Shadowcmd
 		}
 		
 		$server = $player->getUser()->getServer();
-		if (false === ($user = $server->getUserByNickname($args[0]))) {
+		if (false === ($user = $server->getUserByNickname($args[0])))
+		{
 			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
 			return false;
 		}
-		if (false === ($target = Shadowrun4::getPlayerForUser($user))) {
+		if (false === ($target = Shadowrun4::getPlayerForUser($user)))
+		{
 			$bot->reply(sprintf('The player %s is unknown.', $args[0]));
 			return false;
 		}

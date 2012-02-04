@@ -41,12 +41,12 @@ abstract class SR_Tower extends SR_Location
 		return $this->beam($player, $target, $action);
 	}
 	
-	public function teleportInside(SR_Player $player, $target)
+	public function teleportInside(SR_Player $player, $target, $eta=10)
 	{
 		return $this->beam($player, $target, SR_Party::ACTION_INSIDE);
 	}
 	
-	public function teleportOutside(SR_Player $player, $target)
+	public function teleportOutside(SR_Player $player, $target, $eta=10)
 	{
 		return $this->beam($player, $target, SR_Party::ACTION_OUTSIDE);
 	}

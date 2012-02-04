@@ -268,8 +268,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$luck = Common::clamp($luck, 0, 30);
 		$luckmod = 0.35;
 		$luckmod -= $luck * 0.005;
-		$fail = SR_Rune::calcFailChance($mods)*$luckmod*3.5;
-		$break = SR_Rune::calcBreakChance($mods)*$luckmod*1.5;
+		$fail = SR_Rune::calcFailChance($mods)*$luckmod*3.0;
+		$break = SR_Rune::calcBreakChance($mods)*$luckmod*1.2;
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
 		$dpu = Shadowfunc::displayNuyen($price_u);
 		
