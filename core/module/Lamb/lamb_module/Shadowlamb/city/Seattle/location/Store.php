@@ -16,15 +16,24 @@ final class Seattle_Store extends SR_Store
 	private function isMaloisHere(SR_Player $player)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
-		if ($quest->isDone($player))
+		if (false === $quest->isDone($player))
 		{
-			$quest2 = SR_Quest::getQuest($player, 'Chicago_HotelWoman1');
-			if ( (!$quest2->isAccepted($player)) && (!$quest2->isDone($player)) )
-			{
-				return true;
-			}
+			return false; # dunno about malois yet.
 		}
-		return false;
+		
+		$quest1 = SR_Quest::getQuest($player, 'Chicago_HotelWoman1');
+		if (false === $quest1->isAccepted($player))
+		{
+			return true; # New quests not accepted, not gone again.
+		}
+		
+		$quest2 = SR_Quest::getQuest($player, 'Chicago_HotelWoman2');
+		if (true === $quest2->isDone($player))
+		{
+			return true; # And he is back again.
+		}
+		
+		return false; # Gone! :O
 	}
 	
 	public function getEnterText(SR_Player $player)
