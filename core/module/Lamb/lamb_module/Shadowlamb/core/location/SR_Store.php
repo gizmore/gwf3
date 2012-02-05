@@ -249,7 +249,7 @@ abstract class SR_Store extends SR_Location
 		
 		if (false === ($player->pay($price)))
 		{
-			$bot->rply('1063', array($player->displayNuyen()));
+			$bot->rply('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
 			return false;
 		}

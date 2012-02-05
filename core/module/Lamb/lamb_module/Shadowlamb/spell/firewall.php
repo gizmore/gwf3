@@ -11,7 +11,7 @@ final class Spell_firewall extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 4 + ($level*1.5);
+		return 4 + ($level*1.0);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
@@ -55,7 +55,7 @@ final class Spell_firewall extends SR_CombatSpell
 	{
 // 		echo "Calc damage with $hits hits\n";
 		$min = $level + 1;
-		$max = $min + $hits * 0.4;
+		$max = $min + $hits * 1.0;
 		return Shadowfunc::diceFloat($min, $max);
 	}
 }

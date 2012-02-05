@@ -113,7 +113,7 @@ abstract class SR_School extends SR_Store
 		$dp = Shadowfunc::displayNuyen($price);
 		if (false === $player->pay($price))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dp, $player->displayNuyen()));
 // 			$player->message(sprintf('It cost %s to learn the %s %s, but you only have %s.', $dp, $type, $field, $player->displayNuyen()));
 			return false;
 		}

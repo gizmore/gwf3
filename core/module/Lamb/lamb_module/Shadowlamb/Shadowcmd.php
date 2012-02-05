@@ -370,12 +370,12 @@ class Shadowcmd
 				return false;
 // 				$back .= sprintf(', %s is overloaded', $member->getName());
 			}
-			elseif ($member->getBase('age') <= 0)
-			{
-				$party->ntice('1082', array($member->getName()));
-				return false;
-// 				$back .= sprintf(", %s has no {$b}#asl{$b}", $member->getName());
-			}
+// 			elseif ($member->getBase('age') <= 0)
+// 			{
+// 				$party->ntice('1082', array($member->getName()));
+// 				return false;
+// // 				$back .= sprintf(", %s has no {$b}#asl{$b}", $member->getName());
+// 			}
 		}
 		return true;
 // 		if ($back === '')

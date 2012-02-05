@@ -40,8 +40,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 	{
 		if (false === ($ammo = $player->getItemByName($this->getAmmoName())))
 		{
-			$player->msg('');
-			$player->message('You are out of ammo!');
+			$player->msg('5205');
+// 			$player->message('You are out of ammo!');
 			$player->unequip($this);
 			$player->modify();
 			return true;
@@ -56,7 +56,8 @@ abstract class SR_FireWeapon extends SR_Weapon
 		
 		if ($put == 0)
 		{
-			$player->message('Your weapon is already loaded.');
+			$player->msg('1156');
+// 			$player->message('Your weapon is already loaded.');
 			return false;
 		}
 		
@@ -67,18 +68,24 @@ abstract class SR_FireWeapon extends SR_Weapon
 
 		if ($p->isFighting())
 		{
+			$ep = $p->getEnemyParty();
 			$busy = $player->busy(round($this->getReloadTime()+rand(0, 10)));
-			$message = sprintf(' load(s) %d bullet(s) into his %s. %s', $put, $this->getItemName(), Shadowfunc::displayBusy($busy));
+			$p->ntice('5206', array($player->getName(), $put, $this->getName(), $busy));
+			$ep->ntice('5206', array($player->getName(), $put, $this->getName(), $busy));
+			
+// 			$message = sprintf(' load(s) %d bullet(s) into his %s. %s', $put, $this->getItemName(), Shadowfunc::displayBusy($busy));
 //			$message = sprintf(' load(s) %d bullet(s) into his %s. %s busy.', $put, $this->getItemName(), $player->busy(round($this->getReloadTime()+rand(0, 10))));
-			$p->message($player, $message);
+// 			$p->message($player, $message);
 // 			$p->getEnemyParty()->message($player, $message);
 		}
 		else
 		{
-			$message = sprintf('You load %d bullet(s) into your %s.', $put, $this->getItemName());
+// 			$message = sprintf('You load %d bullet(s) into your %s.', $put, $this->getItemName());
 			$bot = Shadowrap::instance($player);
-			$bot->reply($message);
+			$bot->rply('5207', array($put, $this->getName()));
+// 			$bot->reply($message);
 		}
+		
 		
 		return true;
 	}

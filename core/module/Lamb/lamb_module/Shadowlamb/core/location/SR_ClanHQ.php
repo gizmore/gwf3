@@ -256,7 +256,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen(self::COST_CREATE))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dcost, $player->displayNuyen()));
 // 			$player->message(sprintf('It cost %s to create a clan, but you only got %s.', $dcost, $player->displayNuyen()));
 			return false;
 		}
@@ -343,7 +343,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen($cost))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dcost, $player->displayNuyen()));
 // 			$player->message(sprintf('It cost %s to set a slogan for your clan, but you only have %s.', $dcost, $player->displayNuyen()));
 			return false;
 		}
@@ -390,7 +390,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen(self::COST_WEALTH))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dcost, $player->displayNuyen()));
 // 			$player->message(sprintf('It would cost %s to buy another %s of clan wealth, but you only got %s.',
 // 				$dcost, $dadd, $player->displayNuyen()
 // 			));
@@ -443,7 +443,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen(self::COST_STORAGE))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dcost, $player->displayNuyen()));
 // 			$player->message(sprintf('It would cost %s to buy another %s of clan storage, but you only got %s.',
 // 				$dcost, $dadd, $player->displayNuyen()
 // 			));
@@ -496,7 +496,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === $player->hasNuyen(self::COST_MEMBERS))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dcost, $player->displayNuyen()));
 // 			$player->message(sprintf('It would cost %s to raise your max members by %s, but you only got %s.',
 // 				$dcost, $dadd, $player->displayNuyen()
 // 			));
@@ -552,7 +552,7 @@ class SR_ClanHQ extends SR_Location
 		$totalneed = $amt + self::COST_PUSHY;
 		if (false === $player->hasNuyen($totalneed))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($totalneed), $player->displayNuyen()));
 // 			$player->message(sprintf('You want to push %s(+%s)=%s to the clan bank, but you only got %s.',
 // 				$damt, $dfee, Shadowfunc::displayNuyen($totalneed), $player->displayNuyen()
 // 			));
@@ -666,7 +666,7 @@ class SR_ClanHQ extends SR_Location
 		$dfee = Shadowfunc::displayNuyen($fee);
 		if (false === $player->hasNuyen($fee))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dfee, $player->displayNuyen()));
 // 			$player->message(sprintf('The fee to push items in the bank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
 			return false;
 		}
@@ -807,7 +807,7 @@ class SR_ClanHQ extends SR_Location
 		$dfee = Shadowfunc::displayNuyen($fee);
 		if (false === $player->hasNuyen($fee))
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array($dfee, $player->displayNuyen()));
 // 			$player->message(sprintf('The fee to pop items from the clanbank is %s, but you only have %s.', $dfee, $player->displayNuyen()));
 			return false;
 		}

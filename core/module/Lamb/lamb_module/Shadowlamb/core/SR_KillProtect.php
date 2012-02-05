@@ -32,7 +32,7 @@ final class SR_KillProtect extends GDO
 	private static function cleanup()
 	{
 		$cut = self::getCut();
-		self::table(__CLASS__)->deleteWhere("sr4kp_srtime<{$cut}");
+		self::table(__CLASS__)->deleteWhere("sr4kp_srtime<={$cut}");
 	}
 	
 	private static function refreshCache()
@@ -48,10 +48,11 @@ final class SR_KillProtect extends GDO
 	 */
 	private static function isKillProtectedB(SR_Player $killer, SR_Player $victim)
 	{
-		if ( ($killer->isNPC()) || ($victim->isNPC()) )
+		if ( (true === $killer->isNPC()) || (true === $victim->isNPC()) )
 		{
 			return false;
 		}
+		
 		foreach (self::$CACHE as $entry)
 		{
 			$search = $killer->getID().':'.$victim->getID().':';
@@ -79,6 +80,8 @@ final class SR_KillProtect extends GDO
 	
 	public static function onKilled(SR_Player $killer, SR_Player $victim)
 	{
+		echo __METHOD__;
+		
 		return self::table(__CLASS__)->insertAssoc(array(
 			'sr4kp_killer' => $killer->getID(),
 			'sr4kp_victim' => $victim->getID(),

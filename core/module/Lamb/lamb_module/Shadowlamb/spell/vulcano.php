@@ -11,18 +11,13 @@ final class Spell_vulcano extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 6 + ($level*1.5);
+		return 6 + ($level*1.0);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		echo "Casting Vulcano with level $level and $hits hits.\n";
 		$this->announceADV($player, $target, $level);
-		
-		$inaccuracy = Common::clamp(8-$level, 1);
-		$targets = SR_Grenade::computeDistances($target, $inaccuracy);
-		$p = $player->getParty();
-		$ep = $p->getEnemyParty();
 		
 		# Firebolt ads 0.20 per level
 		$firebolt = $potion_player->getSpell('firebolt');
@@ -40,6 +35,12 @@ final class Spell_vulcano extends SR_CombatSpell
 		$firewall = round($firewall*0.3, 1);
 		$level += $firewall;
 		
+		# Inaccurate
+		$inaccuracy = Common::clamp(3-$level*0.1, 1);
+		$targets = SR_Grenade::computeDistances($target, $inaccuracy);
+		$p = $player->getParty();
+		$ep = $p->getEnemyParty();
+		
 		$damage = array();
 		foreach ($targets as $data)
 		{
@@ -50,11 +51,12 @@ final class Spell_vulcano extends SR_CombatSpell
 			$hits = $this->dice($potion_player, $target, $level); # Dice hits
 			echo "!! Vulcano hits=$hits, Distance=$d";
 		
-			$min = $level*2; # The min damage is still like 2 or 20
-			$max = $min*1.5 + $hits*2.0; # The max damage is min + hits 
+			$min = 1.00 + $level*1.0; # Min damage is quite low
+			$max = $min + $level + $hits*1.2; # The max damage is min + hits 
 
-			$dmg = Shadowf1unc::diceFloat($min, $max);
-			$dmg /= $d*1.25;
+			$dmg = Shadowfunc::diceFloat($min, $max);
+			$dmg /= ($d/SR_Party::X_COORD_INC)*1.20; # Apply area reduction
+			$dmg = round($dmg,1);
 		
 			$damage[$pid] = $dmg;
 		}

@@ -11,7 +11,7 @@ final class Spell_firebolt extends SR_CombatSpell
 	
 	public function getManaCost(SR_Player $player, $level)
 	{
-		return 1 + ($level*0.5);
+		return 1 + ($level*0.25);
 	}
 	
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)

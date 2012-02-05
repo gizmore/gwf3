@@ -90,7 +90,8 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		if ($player->getMountInvItemCount() > 0)
 		{
-			$player->message('Your mount has to be empty to change it. Try #mount clean.');
+			$player->msg('1164');
+// 			$player->message('Your mount has to be empty to change it. Try #mount clean.');
 			return false;
 		}
 		return parent::onItemEquip($player);
@@ -100,7 +101,8 @@ abstract class SR_Mount extends SR_Equipment
 	{
 		if ($player->getMountInvItemCount() > 0)
 		{
-			$player->message('Your mount has to be empty to change it. Try #mount clean.');
+			$player->msg('1164');
+// 			$player->message('Your mount has to be empty to change it. Try #mount clean.');
 			return false;
 		}
 		return parent::onItemUnequip($player);
@@ -117,7 +119,8 @@ abstract class SR_Mount extends SR_Equipment
 	{
 // 		$player->setConst('_SL4_HIJACK', 0);
 		$eta = $this->calcHijackTime($player);
-		$player->message(sprintf('You start to to crack the lock on %s\'s %s. Time penalty: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
+		$player->msg('5218', array($this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
+// 		$player->message(sprintf('You start to to crack the lock on %s\'s %s. Time penalty: %s', $this->getOwner()->getName(), $this->getName(), GWF_Time::humanDuration($eta)));
 		return $this->hijackBy($player, $eta);
 	}
 	
@@ -131,7 +134,8 @@ abstract class SR_Mount extends SR_Equipment
 		{
 			return false;
 		}
-		$owner->message(sprintf("%s is trying to \X02crack the LOCK\X02 on your %s!", $player->getName(), $this->getName()));
+		$owner->msg('5219', array($player->getName(), $this->getName()));
+// 		$owner->message(sprintf("%s is trying to \X02crack the LOCK\X02 on your %s!", $player->getName(), $this->getName()));
 		
 		$party = $player->getParty();
 		if (false === ($loc = $party->getLocation()))
@@ -174,7 +178,8 @@ abstract class SR_Mount extends SR_Equipment
 			{
 				return true; # Polizia!
 			}
-			$player->message(sprintf('You failed to crack the lock on %s\'s %s.', $this->getOwner()->getName(), $this->getName()));
+			$player->msg('5220', array($this->getOwner()->getName(), $this->getName()));
+// 			$player->message(sprintf('You failed to crack the lock on %s\'s %s.', $this->getOwner()->getName(), $this->getName()));
 // 			$this->hijackBy($player, $eta);
 		}
 		return false;
@@ -187,7 +192,8 @@ abstract class SR_Mount extends SR_Equipment
 	public function onHijack(SR_Player $player)
 	{
 		$p = $player->getParty();
-		return $p->notice("You are done with cracking your target's lock.");
+		return $p->ntice('5221');
+// 		return $p->notice("You are done with cracking your target's lock.");
 	}
 	
 	/**
@@ -201,8 +207,8 @@ abstract class SR_Mount extends SR_Equipment
 			return false; # No polizia.
 		}
 		$p = $player->getParty();
-		$p->notice('"Hey, what are you doing!!!"');
-		$p->notice('You spot a police officer approaching...');
+		$p->ntice('5222');
+// 		$p->notice('"Hey, what are you doing!!!" ... You spot a police officer approaching!');
 		SR_NPC::createEnemyParty('Seattle_BlackOp')->fight($p);
 		return true;
 	}
@@ -237,16 +243,43 @@ abstract class SR_Mount extends SR_Equipment
 		$party->pushAction('outside', $party->getLocation());
 		
 		$owner = $this->getOwner();
+		$oname = $owner->getName();
+		$mname = $this->getName();
+		
 		$items = $owner->getMountInvItems();
-		if (count($items) > 0)
+		
+		
+		if (count($items) === 0)
 		{
-			$item = $items[array_rand($items, 1)];
-			$player->message(sprintf('You managed to crack the lock on %s\'s %s and stole a %s.', $this->getOwner()->getName(), $this->getName(), $item->getItemName()));
-			$player->giveItems(array($item), 'hijacking '.$owner->getName());
-			$owner->message(sprintf('%s stole a %s out of your %s.', $player->getName(), $item->getItemName(), $this->getName()));
+			$player->msg('5223', array($oname, $mname));
+// 			$player->message(sprintf('You managed to crack the lock on %s\'s %s but it seems empty.', $this->getOwner()->getName(), $this->getName()));
+			return true;
 		}
-			
-		$player->message(sprintf('You managed to crack the lock on %s\'s %s but it seems empty.', $this->getOwner()->getName(), $this->getName()));
+		
+		$player->msg('5224', array($oname, $mname));
+		$player->msg('5225', array($player->getName(), $mname));
+		
+		$item = $items[array_rand($items, 1)];
+		$item instanceof SR_Item;
+		$iname = $item->getItemName();
+		if (false === $item->isItemDropable())
+		{
+			$player->msg('5226'); # In the last second you see military forces approaching and decide to interrupt your activities.
+			return true;
+		}
+		
+		if (false === $owner->removeFromMountInv($item))
+		{
+			$player->message('Database error 4!');
+			return false;
+		}
+		
+		$player->giveItems(array($item), "hijacking {$oname}");
+// 		$player->message(sprintf('You managed to crack the lock on %s\'s %s and stole a %s.', $this->getOwner()->getName(), $this->getName(), $item->getItemName()));
+
+		
+		$owner->msg('5227', array($pname, $item->getAmount(), $iname, $oname));
+// 		$owner->message(sprintf('%s stole %dx%s out of your %s.', $player->getName(), $item->getItemName(), $this->getName()));
 		
 		return true;
 	}

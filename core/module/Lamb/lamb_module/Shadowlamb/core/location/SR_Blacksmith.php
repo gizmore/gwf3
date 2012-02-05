@@ -53,25 +53,36 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply(Shadowhelp::getHelp($player, 'clean'));
 			return false;
 		}
-		if (false === ($item = $player->getItem($args[0]))) {
-			$bot->reply('You don`t have that item.');
+		if (false === ($item = $player->getItem($args[0])))
+		{
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if (!$item->isItemStatted()) {
-			$bot->reply('You can only clean statted items.');
+		if (!($item instanceof SR_Equipment))
+		{
+			$bot->rply('1158');
 			return false;
 		}
-		if ($item instanceof SR_Rune) {
-			$bot->reply('You cannot clean runes.');
-			return false;
-		}
+// 		if (!$item->isItemStatted())
+// 		{
+// 			$bot->reply('You can only clean statted items.');
+// 			return false;
+// 		}
+// 		if ($item instanceof SR_Rune)
+// 		{
+// 			$bot->reply('You cannot clean runes.');
+// 			return false;
+// 		}
 
 		$itemname = $item->getItemName();
 		$price = $this->calcCleanPrice($player, $item->getItemPriceStatted());
 
 		$p = Shadowfunc::displayNuyen($price);
-		if (false === ($player->pay($price))) {
-			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to clean this item. You only have %s."', $p, $player->displayNuyen()));
+		if (false === ($player->pay($price)))
+		{
+			$bot->rply('1063', array($p, $player->displayNuyen()));
+// 			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to clean this item. You only have %s."', $p, $player->displayNuyen()));
 			return false;
 		}
 
@@ -82,7 +93,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$item->initModifiersB();
 		$player->modify();
 
-		$bot->reply("You pay {$p} and the smith cleans the {$itemname} from all it's runes. You receive a(n): ".$item->getItemName().'.');
+		$bot->rply('5208', array($p, $itemname, $item->getItemName()));
+// 		$bot->reply("You pay {$p} and the smith cleans the {$itemname} from all it's runes. You receive a(n): ".$item->getItemName().'.');
 
 		return true;
 
@@ -102,20 +114,32 @@ abstract class SR_Blacksmith extends SR_Store
 	public function on_break(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1) {
+		if (count($args) !== 1)
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'break'));
 			return false;
 		}
-		if (false === ($item = $player->getInvItem($args[0]))) {
-			$bot->reply('You don`t have that item.');
+		if (false === ($item = $player->getInvItem($args[0])))
+		{
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if (!$item->isItemStatted()) {
-			$bot->reply('You can only break statted items.');
+		if (!$item->isItemStatted())
+		{
+			$bot->rply('1159');
+// 			$bot->reply('You can only break statted items.');
 			return false;
 		}
-		if ($item instanceof SR_Rune) {
-			$bot->reply('You cannot break runes.');
+// 		if ($item instanceof SR_Rune)
+// 		{
+// 			$bot->reply('You cannot break runes.');
+// 			return false;
+// 		}
+		if (!($item instanceof SR_Equipment))
+		{
+			$bot->rply('1158');
+// 			$bot->reply('You can only break equipment.');
 			return false;
 		}
 		
@@ -125,7 +149,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$p = Shadowfunc::displayNuyen($price);
 		if (false === ($player->hasNuyen($price)))
 		{
-			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to break this item. You only have %s."', $p, $player->displayNuyen()));
+			$bot->rply('1063', array($p, $player->displayNuyen()));
+// 			$bot->reply(sprintf('The employee shakes his head: "Nono, it will cost %s to break this item. You only have %s."', $p, $player->displayNuyen()));
 			return false;
 		}
 
@@ -185,12 +210,14 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 		if (count($runes) > 0)
 		{
-			$bot->reply(sprintf('You pay %s and break the %s into %s.', $p, $itemname, substr($runestr, 2)));
+			$bot->rply('5209', array($p, $itemname, substr($runestr, 2)));
+// 			$bot->reply(sprintf('You pay %s and break the %s into %s.', $p, $itemname, substr($runestr, 2)));
 			$player->giveItems($runes);
 		}
 		else
 		{
-			$bot->reply(sprintf('You pay %s but breaking the %s into runes failed.', $p, $itemname));
+			$bot->rply('5210', array($p, $itemname));
+// 			$bot->reply(sprintf('You pay %s but breaking the %s into runes failed.', $p, $itemname));
 		}
 		$player->modify();
 		return true;
@@ -211,35 +238,40 @@ abstract class SR_Blacksmith extends SR_Store
 
 		if (false === ($item = $player->getItem($args[0])))
 		{
-			$bot->reply('You don`t have that item.');
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
 		if (!($item instanceof SR_Equipment))
 		{
-			$bot->reply('The first item is not an equipment.');
+			$bot->rply('1158');
+// 			$bot->reply('The first item is not an equipment.');
 			return false;
 		}
 		if (false === ($rune = $player->getInvItem($args[1])))
 		{
-			$bot->reply('You don`t have that rune.');
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that rune.');
 			return false;
 		}
 		if (!($rune instanceof SR_Rune))
 		{
-			$bot->reply('The second item is not a rune.');
+			$bot->rply('1160');
+// 			$bot->reply('The second item is not a rune.');
 			return false;
 		}
 
 		$modsRune = $rune->getModifiers();
 		if (($modsRune === NULL) || (count($modsRune) === 0))
 		{
-			$bot->reply('The rune has no modifiers. Somethings wrong!');
+			$bot->reply('The rune has no modifiers. Somethings wrong! (BUG)');
 			return false;
 		}
 
 		if (!$this->checkCombination($player, $item, $rune))
 		{
-			$bot->reply('This item can not get this rune applied to it.');
+// 			$bot->rply('1161');
+// 			$bot->reply('This item can not get this rune applied to it.');
 			return false;
 		}
 		
@@ -250,7 +282,8 @@ abstract class SR_Blacksmith extends SR_Store
 			{
 				if (count($player->getMountInvSorted()) !== 0)
 				{
-					$bot->reply("Please '#mount clean' before you '#upgrade' it.");
+					$bot->rply('1164');
+// 					$bot->reply("Please '#mount clean' before you '#upgrade' it.");
 					return false;
 				}
 			}
@@ -258,7 +291,8 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		if (false === SR_Item::canMergeModifiersLength($item, $rune))
 		{
-			$bot->reply('The item string would get too long with another modifier.');
+			$bot->rply('1165');
+// 			$bot->reply('The item string would get too long with another modifier.');
 			return false;
 		}
 
@@ -283,10 +317,13 @@ abstract class SR_Blacksmith extends SR_Store
 		if ($msg !== $old_msg)
 		{
 			self::$UPGRADE_CONFIRM[$pid] = $msg;
-			return $player->message(sprintf(
-				'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',
+			return $player->msg('5211', array(
 				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
 			));
+// 			return $player->message(sprintf(
+// 				'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',
+// 				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
+// 			));
 		}
 		else
 		{
@@ -295,12 +332,14 @@ abstract class SR_Blacksmith extends SR_Store
 
 		if (!$player->hasNuyen($price_u))
 		{
-			$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));
+			$bot->rply('1063', array($dpu, $player->displayNuyen()));
+// 			$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));
 			return false;
 		}
 			
 			
-		$player->message('The smith takes your items and goes to work...');
+		$player->msg('5212');
+// 		$player->message('The smith takes your items and goes to work...');
 		$player->removeItem($rune);
 			
 		if (Shadowfunc::dicePercent($fail))
@@ -308,14 +347,16 @@ abstract class SR_Blacksmith extends SR_Store
 			if (Shadowfunc::dicePercent($break))
 			{
 				$player->removeItem($item);
-				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
+				$bot->rply('5213');
+// 				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
 			}
 			else
 			{
 				$price_f = $this->calcUpgradePrice($player, 0);
 				$player->pay($price_f);
 				$dpf = Shadowfunc::displayNuyen($price_f);
-				$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
+				$bot->rply('5214', array($dpf));
+// 				$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
 			}
 		}
 		else
@@ -323,7 +364,8 @@ abstract class SR_Blacksmith extends SR_Store
 			$player->pay($price_u);
 			$item->addModifiers($rune->getItemModifiersB(), true);
 			$item->addModifiers($rune->getItemModifiersA($player), true);
-			$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
+			$bot->rply('5215', array($dpu, $item->getItemName()));
+// 			$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
 		}
 			
 		$player->modify();
@@ -335,7 +377,8 @@ abstract class SR_Blacksmith extends SR_Store
 	{
 		if ($rune->isMixedRune())
 		{
-			$player->message('The rune has mixed mount and equipment modifiers. You have to split it first.');
+			$player->msg('1161');
+// 			$player->message('The rune has mixed mount and equipment modifiers. You have to split it first.');
 			return false;
 		}
 	
@@ -345,7 +388,8 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			if (!($item instanceof SR_Mount))
 			{
-				$player->message('This rune can only applied to mounts.');
+				$player->msg('1162');
+// 				$player->message('This rune can only be applied to mounts.');
 				return false;
 			}
 		}
@@ -353,7 +397,8 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			if (!$item->isItemStattable())
 			{
-				$player->message('This rune can only be applied to equipment.');
+				$player->msg('1163');
+// 				$player->message('This rune can only be applied to equipment.');
 				return false;
 			}
 		}
@@ -367,8 +412,6 @@ abstract class SR_Blacksmith extends SR_Store
 	private static $SPLIT_CONFIRM = array();
 	public function on_split(SR_Player $player, array $args)
 	{
-// 		static $confirm = array();
-	
 		# Bailout
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1)
@@ -380,7 +423,8 @@ abstract class SR_Blacksmith extends SR_Store
 		# Get Item
 		if (false === ($rune = $player->getItem($args[0])))
 		{
-			$bot->reply('You don`t have that item.');
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item.');
 			return false;
 		}
 		$pid = $player->getID();
@@ -390,13 +434,15 @@ abstract class SR_Blacksmith extends SR_Store
 	
 		if (!($rune instanceof SR_Rune))
 		{
-			$bot->reply('You can only split runes.');
+			$bot->rply('1166');
+// 			$bot->reply('You can only split runes.');
 			return false;
 		}
 		$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
 		if (count($mods) < 2)
 		{
-			$bot->reply('This rune has only one modifier.');
+			$bot->rply('1167');
+// 			$bot->reply('This rune has only one modifier.');
 			return false;
 		}
 	
@@ -405,7 +451,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$dp = Shadowfunc::displayNuyen($price);
 		if (!$player->hasNuyen($price))
 		{
-			$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));
+			$bot->rply('1063', array($dp, $player->displayNuyen()));
+// 			$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));
 			return false;
 		}
 	
@@ -413,7 +460,8 @@ abstract class SR_Blacksmith extends SR_Store
 		if (!$confirmed)
 		{
 			self::$SPLIT_CONFIRM[$pid] = $rune->getID();
-			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
+			$bot->rply('5216', array($dp, $itemname));
+// 			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
 			return true;
 		}
 	
@@ -442,7 +490,8 @@ abstract class SR_Blacksmith extends SR_Store
 	
 		if (count($runes) === 0)
 		{
-			$bot->reply(sprintf('The rune burned into dust while splitting it. You don\'t need to pay.'));
+			$bot->rply('1168');
+// 			$bot->reply(sprintf('The rune burned into dust while splitting it. You don\'t need to pay.'));
 			return true;
 		}
 	
@@ -458,7 +507,8 @@ abstract class SR_Blacksmith extends SR_Store
 			return false;
 		}
 	
-		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
+		return $bot->rply('5217');
+// 		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 	}
 	
 	public function onEnterLocation(SR_Party $party)

@@ -8,13 +8,17 @@ abstract class SR_Grenade extends SR_Usable
 	
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		if (!$player->getParty()->isFighting()) {
-			$player->message('This item works only in combat.');
+		if (!$player->getParty()->isFighting())
+		{
+			$player->msg('1157');
+// 			$player->message('This item works only in combat.');
 			return false;
 		}
 		
-		if ( (count($args) === 0) || (false === ($target = $this->getOffensiveTarget($player, $args[0]))) ) {
-			$player->message('You need a valid target to throw a '.$this->getName().'. Try 1,2,..,N to enumerate enemies.');
+		if ( (count($args) === 0) || (false === ($target = $this->getOffensiveTarget($player, $args[0]))) )
+		{
+			$player->msg('1012');
+// 			$player->message('You need a valid target to throw a '.$this->getName().'. Try 1,2,..,N to enumerate enemies.');
 			return false;
 		}
 		$this->announceUsage($player, $target);
@@ -43,24 +47,17 @@ abstract class SR_Grenade extends SR_Usable
 		$members = $party->getMembers();
 		
 		$coords = array();
-		$x = $y = 0;
 		foreach ($members as $m)
 		{
 			$m instanceof SR_Player;
-			$y = $m->getY();
-			$x = $m->getX();
-			$coords[$m->getID()] = array($x, $y);
+			$coords[$m->getID()] = array($m->getX(), $m->getY());
 		}
 		
-		$handicap = rand(-$inaccuracy*10, +$inaccuracy*10);
-		$handicap/= 10;
-		$g_x = $coords[$target->getID()][0] + $handicap;
+		# Point of impact.
+		$g_x = $coords[$target->getID()][0] + Shadowfunc::diceFloat(-$inaccuracy, +$inaccuracy);
+		$g_y = $coords[$target->getID()][1] + Shadowfunc::diceFloat(-$inaccuracy, +$inaccuracy);
 
-		$handicap = rand(-$inaccuracy*10, +$inaccuracy*10);
-		$handicap/= 10;
-		$g_y = $coords[$target->getID()][1] + $handicap;
-		
-		echo sprintf("Grenade has coords %.02f / %.02f\n", $g_x, $g_y);
+// 		echo sprintf("Grenade has coords %.02f / %.02f\n", $g_x, $g_y);
 		
 		$back = array();
 		foreach ($coords as $uid => $data)
@@ -69,7 +66,7 @@ abstract class SR_Grenade extends SR_Usable
 			$d = Shadowfunc::calcDistanceB($g_x, $g_y, $p_x, $p_y);
 			$p = Shadowrun4::getPlayerByPID($uid);
 			$back[] = array($uid, $d);
-			echo sprintf("%s has coords %.02f / %.02f (distance: %.02f)\n", $p->getName(), $p_x, $p_y, $d);
+// 			echo sprintf("%s has coords %.02f / %.02f (distance: %.02f)\n", $p->getName(), $p_x, $p_y, $d);
 		}
 		return $back;
 	}

@@ -37,7 +37,7 @@ final class Shadowcmd_giveny extends Shadowcmd
 		$have = $player->getBase($what);
 		if ($amt > $have)
 		{
-			$player->msg('1063', array(Shadowfunc::displayNuyen($have)));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($amt), Shadowfunc::displayNuyen($have)));
 // 			$player->message(sprintf('You only have %s %s.', $have, $what));
 			return false;
 		}

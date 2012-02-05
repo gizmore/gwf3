@@ -40,7 +40,7 @@ abstract class SR_Hotel extends SR_Location
 		
 		if (false === ($player->pay($price)))
 		{
-			return $bot->rply('1063', array($player->displayNuyen()));
+			return $bot->rply('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			return $bot->reply(sprintf('To rent a room for your party, you need %s. You only got %s!', Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 		}
 		

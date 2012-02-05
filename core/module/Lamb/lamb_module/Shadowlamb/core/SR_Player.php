@@ -218,7 +218,7 @@ class SR_Player extends GDO
 	public static function getGenders() { return array_keys(self::$GENDER); }
 	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getServerID()); }
 	public function displayName() { $u = $this->getUser(); return sprintf("\X02%s{%s}\X02", Lamb::softhyphe($u->getName()), $u->getServerID()) ; }
-	public function displayNameNB() { return $this->getEnum().'-'.str_replace("\X02", '', $this->displayName()); }
+	public function displayNameNB() { return $this->getEnum().'-'.trim($this->displayName(), "\X02"); }
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
@@ -1130,14 +1130,23 @@ class SR_Player extends GDO
 			return false;
 		}
 		$back = array_slice(array_keys($spells), $n-1, 1);
-		return SR_Spell::getSpell($back[0]);
+		
+		$spell = SR_Spell::getSpell($back[0]);
+		$spell->setCaster($this);
+		return $spell;
 	}
 	
 	public function getSpellByName($sn)
 	{
 		$sn = strtolower($sn);
 		$spells = $this->getSpellData();
-		return isset($spells[$sn]) ? SR_Spell::getSpell($sn) : false;
+		if (false === isset($spells[$sn]))
+		{
+			return false;
+		}
+		$spell = SR_Spell::getSpell($sn);
+		$spell->setCaster($this);
+		return $spell;
 	}
 	
 	#################

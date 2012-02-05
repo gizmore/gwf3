@@ -625,7 +625,7 @@ class SR_Bazar extends SR_Location
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price')) * $amt;
 		if ($price > $player->getNuyen())
 		{
-			$player->message('1063', array($player->displayNuyen()));
+			$player->message('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			$player->message(sprintf('The price for %d %s is %s in this shop, but you only have %s.', $amt, $iname, Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 			return false;
 		}
@@ -772,7 +772,7 @@ class SR_Bazar extends SR_Location
 		$avail_slots = $this->getBazarSlots($player);
 		if ($player->getNuyen() < $price)
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			$player->message(sprintf('It would cost %s to purchase slot number %s, but you only have %s.', Shadowfunc::displayNuyen($price), $avail_slots+1, $player->displayNuyen()));
 			return false;
 		}
@@ -998,7 +998,7 @@ class SR_Bazar extends SR_Location
 		}
 		if ($total > $player->getNuyen())
 		{
-			$player->msg('1063', array($player->displayNuyen()));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($total), $player->displayNuyen()));
 // 			$player->message(sprintf('You want to purchase items worth %s, but you only have %s.', Shadowfunc::displayNuyen($total), $player->displayNuyen()));
 			return false;
 		}

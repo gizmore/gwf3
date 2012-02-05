@@ -70,6 +70,7 @@ final class Item_AlchemicPotion extends SR_Usable
 			$player->message('Unknown spell');
 			return false;
 		}
+		$spell->setCaster($player);
 		
 		if (count($args) === 0)
 		{
@@ -101,6 +102,7 @@ final class Item_AlchemicPotion extends SR_Usable
 		$dummy->setVar('sr4pl_intelligence', $mods['intelligence']);
 		$dummy->setVar('sr4pl_wisdom', $mods['wisdom']);
 		$dummy->modify();
+		
 		$hits = $spell->dice($dummy, $target, $level);
 		
 		return $spell->cast($player, $target, $level, $hits, $dummy);
