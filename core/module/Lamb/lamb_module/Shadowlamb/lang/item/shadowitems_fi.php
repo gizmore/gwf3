@@ -121,6 +121,7 @@ $lang = array(
 'LargeBeer' => 'LargeBeer',
 'LO_Rune' => 'LO_Rune',
 'LokiSmoozy' => 'LokiSmoozy',
+'Mandrake' => 'Mandrake',
 'MasterScroll' => 'MasterScroll',
 'MilitaryCircuits' => 'MilitaryCircuits',
 'MolotovCocktail' => 'MolotovCocktail',

@@ -10,16 +10,28 @@ final class Item_AlchemicPotion extends SR_Usable
 	 
 	public static function alchemicFactory(SR_Player $player, $spellname, $level)
 	{
-		$magic = $player->getBase('magic');
-		$int = $player->getBase('intelligence');
-		$wisdom = $player->getBase('wisdom');
+		$ma = $player->get('magic');
+		$in = $player->get('intelligence');
+		$wi = $player->get('wisdom');
+		$alc = $player->get('alchemy');
+		
+		# 10 - 80 percent randomness
+		$randomness = (100 - ($wi + $alc*2 + $in + $ma)); 
+		$randomness = Common::clamp($randomness, 10, 80);
+		$randomness = Shadowfunc::diceFloat(10, $randomness) * 0.01;
+		
+		# Dice!
+		$minlevel = round($level - ($level*$randomness), 1);
+		$maxlevel = $level;
+		$level = Shadowfunc::diceFloat($minlevel, $maxlevel, 1);
+		
 		
 		$potion = SR_Item::createByName('AlchemicPotion');
 		$potion->addModifiers(array(
 			$spellname=>$level,
-			'magic' => $magic,
-			'intelligence' => $int,
-			'wisdom' => $wisdom,
+			'magic' => $player->getBase('magic'),
+			'intelligence' => $player->getBase('intelligence'),
+			'wisdom' => $player->getBase('wisdom'),
 		));
 		return $potion;
 	}

@@ -17,6 +17,7 @@ final class Seattle_Alchemist extends SR_Store
 			array('Stimpatch', 100.0, 1200),
 			array('ScrollOfWisdom', 100.0, 1000),
 			array('ElvenStaff', 100.0, 5000),
+			array('Mandrake', 100.0, 3000),
 		);
 	}
 }

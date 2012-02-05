@@ -16,6 +16,7 @@ final class Delaware_Alchemist extends SR_Store
 			array('Stimpatch', 100.0, 1000),
 			array('ScrollOfWisdom', 100.0, 200),
 			array('Ether', 100.0, 2000),
+			array('Mandrake', 100.0, 3000),
 		);
 	}
 }

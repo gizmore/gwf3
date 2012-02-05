@@ -16,6 +16,7 @@ final class Chicago_Alchemist extends SR_Store
 			array('AimWater', 100.0, 650),
 			array('Stimpatch', 100.0, 1200),
 			array('Ether', 100.0, 2500),
+			array('Mandrake', 100.0, 3000),
 		);
 	}
 }

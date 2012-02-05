@@ -16,6 +16,7 @@ final class Redmond_Alchemist extends SR_Store
 			array('AimWater', 100.0, 300),
 			array('Stimpatch', 100.0, 1300),
 			array('ScrollOfWisdom', 100.0, 800),
+			array('Mandrake', 100.0, 3000),
 		);
 	}
 }

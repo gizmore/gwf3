@@ -65,10 +65,31 @@ final class Shadowcmd_brew extends Shadowcmd
 			return false;
 // 			return $bot->reply('You do not have a WaterBottle.');
 		}
+
+		# Enough mandrake?
+		$need_mandrake = $spell->getSpellLevel() * $spell->getSpellLevel();
+		if (false === ($mandrake = $player->getInvItem('Mandrake')))
+		{
+			$player->msg('1050', array("{$need_mandrake}xMandrake"));
+			return false;
+		}
+		if ($mandrake->getAmount() < $need_mandrake)
+		{
+			$player->msg('1050', array("{$need_mandrake}xMandrake"));
+			return false;
+		}
+		
+		# Consume utilities
 		if (false === $bottle->useAmount($player, 1))
 		{
 			return $bot->reply('Database error.');
 		}
+		if (false === $mandrake->useAmount($player, $need_mandrake))
+		{
+			return $bot->reply('Database error.');
+		}
+		
+		# Brew it
 		if (false === $spell->onCast($player, array(), $level))
 		{
 			$player->msg('1051', array($spellname));
@@ -76,12 +97,11 @@ final class Shadowcmd_brew extends Shadowcmd
 			return false;
 		}
 		
-		
-		$minlevel = $alchemy * 0.1;
-		$maxlevel = max($minlevel, $level);
-		$level = Shadowfunc::diceFloat($minlevel, $maxlevel, 1);
-		
-		$potion = Item_AlchemicPotion::alchemicFactory($player, $spellname, $level);
+		if (false === ($potion = Item_AlchemicPotion::alchemicFactory($player, $spellname, $level)))
+		{
+			$player->message('Database error 5!');
+			return false;
+		}
 		$player->giveItems(array($potion), $player->lang('from_brewing'));
 		return;
 	}
