@@ -17,8 +17,8 @@ final class VersionServer_Zipper extends GWF_Method
 	public static $rootfiles = array(
 		'gwf3.class.php',
 		'GWF3.php',
-		'www/gwf_cronjob.example.php',
-		'www/index.example.php',
+// 		'www/gwf_cronjob.example.php',
+// 		'www/index.example.php',
 // 		'www/robots.txt',
 	);
 	
@@ -26,12 +26,12 @@ final class VersionServer_Zipper extends GWF_Method
 // 	);
 	
 	public static $protected_files = array(
-		'www/protected/config.example.php',
-		'www/protected/db_backup.example.sh',
+// 		'www/protected/config.example.php',
+// 		'www/protected/db_backup.example.sh',
 		'www/protected/index.php',
-		'www/protected/temp_ban.lst.txt',
-		'www/protected/temp_ban.php',
-		'www/protected/temp_down.php',
+// 		'www/protected/temp_ban.lst.txt',
+// 		'www/protected/temp_ban.php',
+// 		'www/protected/temp_down.php',
 	);
 	
 	public static $tempdirs = array(

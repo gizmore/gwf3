@@ -80,3 +80,12 @@ core/module/Guestbook/tpl/default/_entry.php
 #16: use more private in methods
 
 --------------------------------------------------------------------------------
+
+#17: PM attachments
+
+--------------------------------------------------------------------------------
+
+#18: Optional AES Encryption for forums and pms
+     For PMs this requires a redesign of database.
+
+--------------------------------------------------------------------------------

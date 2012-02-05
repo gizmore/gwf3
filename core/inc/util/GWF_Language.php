@@ -47,7 +47,7 @@ final class GWF_Language extends GDO
 		return $CACHE[$iso];
 	}
 	
-	public static function isSupported($id) { return self::table(__CLASS__)->selectVar('1', 'lang_id='.((int)$id).' AND lang_options&1"') === '1'; }
+	public static function isSupported($id) { return self::table(__CLASS__)->selectVar('1', 'lang_id='.((int)$id).' AND lang_options&1') === '1'; }
 	public static function getByIDOrUnknown($id)
 	{
 		$id = (int)$id;

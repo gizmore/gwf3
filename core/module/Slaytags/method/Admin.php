@@ -5,9 +5,16 @@ final class Slaytags_Admin extends GWF_Method
 	
 	public function execute()
 	{
+		set_time_limit(0);
+		
 		if (isset($_POST['recalc']))
 		{
-			$this->onRecalcTags().$this->templateAdmin();
+			return $this->onRecalcTags().$this->templateAdmin();
+		}
+		
+		if (isset($_POST['cleanup_ut']))
+		{
+			return $this->onCleanupUntagged().$this->templateAdmin();
 		}
 		
 		return $this->templateAdmin();
@@ -26,6 +33,7 @@ final class Slaytags_Admin extends GWF_Method
 	{
 		$data = array(
 			'recalc' => array(GWF_Form::SUBMIT, 'RecalcTags'),
+			'cleanup_ut' => array(GWF_Form::SUBMIT, 'CleanupUntagged'),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -56,6 +64,11 @@ final class Slaytags_Admin extends GWF_Method
 		$table->free($result);
 		
 		return $this->_module->message('rehashed!');
+	}
+
+	private function onCleanupUntagged()
+	{
+		return 'ERR_STUB';
 	}
 }
 ?>
