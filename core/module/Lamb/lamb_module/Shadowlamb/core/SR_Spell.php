@@ -246,7 +246,7 @@ abstract class SR_Spell
 		$dices += round($player->get('intelligence') * 5);
 		$dices += round($player->get('spellatk') * 6);
 		$dices += round($player->get('essence') * 18);
-		$dices -= round(Shadowfunc::calcDistance($player, $target)/4);
+// 		$dices -= round(Shadowfunc::calcDistance($player, $target)/4); # XXX Cannot apply distance malus because of alchemy.
 		
 		$defense = round($target->get('essence') * 2);
 		$defense += round($target->get('intelligence') * 2);
