@@ -61,7 +61,7 @@ final class Shadowcmd_brew extends Shadowcmd
 		
 		if (false === ($bottle = $player->getInvItem('WaterBottle')))
 		{
-			$player->msg('1050', array($spellname));
+			$player->msg('1050', array('WaterBottle'));
 			return false;
 // 			return $bot->reply('You do not have a WaterBottle.');
 		}
@@ -81,7 +81,7 @@ final class Shadowcmd_brew extends Shadowcmd
 		$maxlevel = max($minlevel, $level);
 		$level = Shadowfunc::diceFloat($minlevel, $maxlevel, 1);
 		
-		$potion = Item_AlchemicPotion::alchemicFactory($spellname, $level);
+		$potion = Item_AlchemicPotion::alchemicFactory($player, $spellname, $level);
 		$player->giveItems(array($potion), $player->lang('from_brewing'));
 		return;
 	}

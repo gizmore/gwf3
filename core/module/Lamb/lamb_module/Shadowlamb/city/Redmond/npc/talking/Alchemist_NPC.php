@@ -14,6 +14,7 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'magic':
+				$this->rply($key);
 				$this->reply('Yeah, I even sell some magic potions and elixirs.');
 				break;
 			

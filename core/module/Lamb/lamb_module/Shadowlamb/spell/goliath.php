@@ -15,10 +15,10 @@ final class Spell_goliath extends SR_SupportSpell
 		return ($level/2) + 1;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$dur = $this->getSpellDuration($player, $target, $level, $hits);
-		$by = $this->getSpellIncrement($player, $target, $level, $hits);
+		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
+		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
 		$mod = array('strength'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 // 		$append = sprintf('+%s strength for %s.', $by, GWF_Time::humanDuration($dur));

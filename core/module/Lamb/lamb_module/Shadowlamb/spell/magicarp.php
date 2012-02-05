@@ -11,7 +11,7 @@ final class Spell_magicarp extends SR_Spell
 //		$level = $this->getLevel($player);
 		return 6 + ($level*0.7);
 	}
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		echo "Casting ".$this->getName()." with level $level and $hits hits.\n";
 		

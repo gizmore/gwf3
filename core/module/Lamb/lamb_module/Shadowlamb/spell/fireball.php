@@ -9,7 +9,7 @@ final class Spell_fireball extends SR_CombatSpell
 	{
 		return 1 + ($level);
 	}
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		echo "Casting Fireball with level $level and $hits hits.\n";
 		$this->announceADV($player, $target, $level);
@@ -20,8 +20,8 @@ final class Spell_fireball extends SR_CombatSpell
 		$ep = $p->getEnemyParty();
 		
 		# Firebolt ads 0.20 per level
-		$firebolt = $player->getSpell('firebolt');
-		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($player);
+		$firebolt = $potion_player->getSpell('firebolt');
+		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($potion_player);
 		$firebolt = round($firebolt/5, 1);
 		$level += $firebolt;
 		
@@ -32,7 +32,7 @@ final class Spell_fireball extends SR_CombatSpell
 			$target = $ep->getMemberByPID($pid);
 			$d = Common::clamp($d, 1);
 			
-			$hits = $this->dice($player, $target, $level); # Dice hits
+			$hits = $this->dice($potion_player, $target, $level); # Dice hits
 			echo "!! Fireball hits=$hits, Distance=$d";
 			
 // 			$hits /= 2; # We take half..

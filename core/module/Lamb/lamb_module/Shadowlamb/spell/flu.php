@@ -15,7 +15,7 @@ final class Spell_flu extends SR_CombatSpell
 		return $level + 2;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$seconds = Common::clamp(90-$hits, 30, 90);
 		$amount = rand($level, $level+$hits/3) + rand(0, $player->get('wisdom'));

@@ -14,19 +14,19 @@ final class Spell_firewall extends SR_CombatSpell
 		return 4 + ($level*1.5);
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 // 		echo "Casting Firewall with level $level and $hits hits.\n";
 		
 		# Firebolt ads 0.20 per level
-		$firebolt = $player->getSpell('firebolt');
-		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($player);
+		$firebolt = $potion_player->getSpell('firebolt');
+		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($potion_player);
 		$firebolt = round($firebolt/5, 1);
 		$level += $firebolt;
 		
 		# Fireball ads 0.25 per level
-		$fireball = $player->getSpell('fireball');
-		$fireball = $fireball === false ? 0 : $fireball->getLevel($player);
+		$fireball = $potion_player->getSpell('fireball');
+		$fireball = $fireball === false ? 0 : $fireball->getLevel($potion_player);
 		$fireball = round($fireball/4, 1);
 		$level += $fireball;
 		
@@ -41,7 +41,7 @@ final class Spell_firewall extends SR_CombatSpell
 			$l = $level - $d;
 			if ($l >= 0)
 			{
-				$hits = $this->dice($player, $t, $l);
+				$hits = $this->dice($potion_player, $t, $l);
 				$damage[$t->getID()] = $this->calcFirewallDamage($player, $t, $level, $hits);
 			}
 		}

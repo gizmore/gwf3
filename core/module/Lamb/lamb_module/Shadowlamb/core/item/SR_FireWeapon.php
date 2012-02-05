@@ -40,6 +40,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 	{
 		if (false === ($ammo = $player->getItemByName($this->getAmmoName())))
 		{
+			$player->msg('');
 			$player->message('You are out of ammo!');
 			$player->unequip($this);
 			$player->modify();

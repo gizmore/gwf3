@@ -17,9 +17,10 @@ final class Spell_poison_dart extends SR_CombatSpell
 		return $level + 6;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$damage = rand($level, $level+$player->get('wisdom')+1);
+		$wisdom = $potion_player->get('wisdom');
+		$damage = rand($level, $level+$wisdom+1);
 		$this->spellDamageSingleTarget($player, $target, $level, $damage);
 
 		$seconds = Common::clamp(90-$hits, 30, 90);

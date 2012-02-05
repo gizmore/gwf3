@@ -1194,19 +1194,17 @@ class SR_Player extends GDO
 		$this->updateInventory();
 		$this->updateEquipment($field, NULL);
 
-		if ($this->isFighting())
-		{
-			$busy = $this->busy(self::UNEQUIP_TIME);
-		}
+		$busy = $this->isFighting() ? $this->busy(self::UNEQUIP_TIME) : 0;
 		
 		if ($announce)
 		{
-			$msg = 'You put your '.$item->getItemName().' into the inventory.';
-			if ($this->isFighting())
-			{
-				$msg .= sprintf(' %ss busy.', $busy);	
-			}
-			$this->message($msg);
+			$this->msg('5203', array($item->getName(), $busy));
+// 			$msg = 'You put your '.$item->getItemName().' into the inventory.';
+// 			if ($this->isFighting())
+// 			{
+// 				$msg .= sprintf(' %ss busy.', $busy);	
+// 			}
+// 			$this->message($msg);
 		}
 //		$this->modify();
 		$this->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
@@ -2542,12 +2540,15 @@ class SR_Player extends GDO
 	{
 		SR_Bounty::onKilledByHuman($killer, $this);
 		
-		if ( (!SR_KillProtect::isKillProtected($killer, $this)) && (!SR_KillProtect::isKillProtectedLevel($killer, $this)) )
+		if (false === SR_KillProtect::isKillProtected($killer, $this))
 		{
-			$this->looseItem($killer);
 			SR_KillProtect::onKilled($killer, $this);
 		}
 		
+		if (false === SR_KillProtect::isKillProtectedLevel($killer, $this))
+		{
+			$this->looseItem($killer);
+		}
 // 		return $this->gotKilledByNPC($killer);
 	}
 	

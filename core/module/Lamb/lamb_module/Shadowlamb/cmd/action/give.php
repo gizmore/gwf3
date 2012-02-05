@@ -59,7 +59,7 @@ final class Shadowcmd_give extends Shadowcmd
 // 				$player->message(sprintf('You only have %d %s.', $item->getAmount(), $item->getName()));
 				return false;
 			}
-			$giveItem = SR_Item::createByName($item->getName(), $amt, true);
+			$giveItem = SR_Item::createByName($item->getItemName(), $amt, true);
 			$item->useAmount($player, $amt);
 		}
 		else

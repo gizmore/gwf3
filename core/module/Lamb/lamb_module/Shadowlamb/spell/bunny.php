@@ -11,7 +11,7 @@ final class Spell_bunny extends SR_SupportSpell
 		return Common::clamp(7-$level/4, 1);
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$this->announceADV($player, $target, $level);
 		if ($hits > $this->getManaCost())

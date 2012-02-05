@@ -17,7 +17,7 @@ final class Spell_freeze extends SR_CombatSpell
 	}
 
 
-//	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+//	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 //	{
 //		$wis = $player->get('wisdom') * 30;
 //		$min = 20+$level*10;
@@ -29,9 +29,9 @@ final class Spell_freeze extends SR_CombatSpell
 //		return true;
 //	}
 
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$wis = $player->get('wisdom') * 30;
+		$wis = $potion_player->get('wisdom') * 30;
 		$min = 20+$level*10;
 		$max = 40+$level*20+$wis;
 		$seconds = rand($min, $max);

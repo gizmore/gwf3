@@ -15,7 +15,7 @@ abstract class SR_Spell
 	public abstract function isOffensive();
 	public abstract function getCastTime($level);
 	public abstract function getManaCost(SR_Player $player, $level);
-	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits);
+	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player);
 	
 	const MODE_SPELL = 0;
 	const MODE_POTION = 1; 
@@ -232,7 +232,7 @@ abstract class SR_Spell
 			return true;
 		}
 		
-		return $this->cast($player, $target, $level, $hits);
+		return $this->cast($player, $target, $level, $hits, $player);
 	}
 	
 	public function dice(SR_Player $player, SR_Player $target, $level)

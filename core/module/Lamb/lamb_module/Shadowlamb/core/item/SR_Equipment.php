@@ -30,38 +30,41 @@ abstract class SR_Equipment extends SR_Usable
 			return false;
 		}
 		
-		if ($this->isBroken())
-		{
-			$player->message(sprintf('Your %s is broken and needs to get repaired first.', $this->getItemName()));
-			return false;
-		}
+// 		if ($this->isBroken())
+// 		{
+// 			die('HEHE AZBY');
+// // 			$player->msg('', array());
+// // 			$player->message(sprintf('Your %s is broken and needs to get repaired first.', $this->getItemName()));
+// 			return false;
+// 		}
 		
-		$msg = '';
+// 		$msg = '';
 		$busy = 0;
 		$type = $this->getItemType();
-		$combat = $player->isFighting();
+// 		$combat = $player->isFighting();
 		
 		# Unequip first
 		if ($player->hasEquipment($type))
 		{
 			$item = $player->getEquipment($type);
-			$msg .= 'You put your '.$item->getItemName().' into the inventory. ';
+// 			$msg .= 'You put your '.$item->getItemName().' into the inventory. ';
 			$player->unequip($item, false);
 			$busy += $combat === true ? 15 : 0;
 		}
 		
 		# Equip
 		$player->equip($this);
-		$msg .= sprintf('You use %s as %s from now on.', $this->getItemName(), $type);
+// 		$msg .= sprintf('You use %s as %s from now on.', $this->getItemName(), $type);
 		$busy += $combat === true ? $this->getItemUsetime() : 0;
 		
 		if ($busy > 0)
 		{
 			$busy = $player->busy($busy);
-			$msg .= sprintf(' %s busy.', GWF_Time::humanDuration($busy));
+// 			$msg .= sprintf(' %s busy.', GWF_Time::humanDuration($busy));
 		}
 		$player->modify();
 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
+		$player->msg('5204', array($this->getItemName(), $busy));
 		$player->message($msg);
 		return true;
 	}
@@ -69,7 +72,8 @@ abstract class SR_Equipment extends SR_Usable
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$c = Shadowrun4::SR_SHORTCUT;
-		$player->message('This equipment has no special usage. You can equip it with '.$c.'equip.');
+		$player->msg('1155');
+// 		$player->message('This equipment has no special usage. You can equip it with '.$c.'equip.');
 		return false;
 	}
 }

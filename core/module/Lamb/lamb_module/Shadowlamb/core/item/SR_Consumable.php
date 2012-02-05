@@ -25,21 +25,30 @@ abstract class SR_Consumable extends SR_Usable
 		}
 		
 		# Announce Usage
-		$message = $this->getConsumeMessage($busy);
-		
+		$pname = $player->getName();
 		$p = $player->getParty();
-		$p->message($player, $message);
+		$p->ntice('5201', array($pname, $this->getName(), $busy));
 		
-		if ($p->isFighting()) {
-			$player->getEnemyParty()->message($player, $message);
+		if ($p->isFighting())
+		{
+			$ep = $p->getEnemyParty();
+			$ep->ntice('5201', array($pname, $this->getName(), $busy));
 		}
+		
+		# Announce Usage
+// 		$message = $this->getConsumeMessage($busy);
+// 		$p = $player->getParty();
+// 		$p->message($player, $message);
+// 		if ($p->isFighting()) {
+// 			$player->getEnemyParty()->message($player, $message);
+// 		}
 	}
 	
-	public function getConsumeMessage($busy)
-	{
-		$busy = $busy > 0 ? sprintf(' %s busy.', GWF_Time::humanDuration($busy)) : '';
-		return sprintf('consumed an item: %s.%s', $this->getItemName(), $busy);
-	}
+// 	public function getConsumeMessage($busy)
+// 	{
+// 		$busy = $busy > 0 ? sprintf(' %s busy.', GWF_Time::humanDuration($busy)) : '';
+// 		return sprintf('consumed an item: %s.%s', $this->getItemName(), $busy);
+// 	}
 }
 
 abstract class SR_Food extends SR_Consumable

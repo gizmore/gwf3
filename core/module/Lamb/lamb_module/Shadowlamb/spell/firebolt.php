@@ -14,7 +14,7 @@ final class Spell_firebolt extends SR_CombatSpell
 		return 1 + ($level*0.5);
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 //		echo "Casting Firebolt with level $level and $hits hits.\n";
 		$min = 1.00 + $level*0.2;

@@ -6,10 +6,21 @@ final class Item_AlchemicPotion extends SR_Usable
 	public function getItemPrice() { return 31.95; }
 	public function getItemDescription() { return 'A magic potion that will cast a magic spell.'; }
 	
-	public static function alchemicFactory($spellname, $level)
+	public function isItemStackable() { return false; }
+	 
+	public static function alchemicFactory(SR_Player $player, $spellname, $level)
 	{
+		$magic = $player->getBase('magic');
+		$int = $player->getBase('intelligence');
+		$wisdom = $player->getBase('wisdom');
+		
 		$potion = SR_Item::createByName('AlchemicPotion');
-		$potion->addModifiers(array($spellname=>$level));
+		$potion->addModifiers(array(
+			$spellname=>$level,
+			'magic' => $magic,
+			'intelligence' => $int,
+			'wisdom' => $wisdom,
+		));
 		return $potion;
 	}
 
@@ -72,8 +83,15 @@ final class Item_AlchemicPotion extends SR_Usable
 			return false;
 		}
 		
-		$hits = $spell->dice($player, $target, $level);
-		return $spell->cast($player, $target, $level, $hits);
+		# Dummy player
+		$dummy = new SR_Player(SR_Player::getPlayerData(0));
+		$dummy->setVar('sr4pl_magic', $mods['magic']);
+		$dummy->setVar('sr4pl_intelligence', $mods['intelligence']);
+		$dummy->setVar('sr4pl_wisdom', $mods['wisdom']);
+		$dummy->modify();
+		$hits = $spell->dice($dummy, $target, $level);
+		
+		return $spell->cast($player, $target, $level, $hits, $dummy);
 	}
 }
 ?>

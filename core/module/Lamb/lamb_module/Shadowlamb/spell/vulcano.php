@@ -14,7 +14,7 @@ final class Spell_vulcano extends SR_CombatSpell
 		return 6 + ($level*1.5);
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		echo "Casting Vulcano with level $level and $hits hits.\n";
 		$this->announceADV($player, $target, $level);
@@ -25,17 +25,17 @@ final class Spell_vulcano extends SR_CombatSpell
 		$ep = $p->getEnemyParty();
 		
 		# Firebolt ads 0.20 per level
-		$firebolt = $player->getSpell('firebolt');
+		$firebolt = $potion_player->getSpell('firebolt');
 		$firebolt = $firebolt === false ? 0 : $firebolt->getLevel($player);
 		$firebolt = round($firebolt/5, 1);
 		$level += $firebolt;
 		# Fireball ads 0.25 per level
-		$fireball = $player->getSpell('fireball');
+		$fireball = $potion_player->getSpell('fireball');
 		$fireball = $fireball === false ? 0 : $fireball->getLevel($player);
 		$fireball = round($fireball/4, 1);
 		$level += $fireball;
 		# Firewall ads 0.3 per level
-		$firewall = $player->getSpell('firewall');
+		$firewall = $potion_player->getSpell('firewall');
 		$firewall = $firewall === false ? 0 : $firewall->getLevel($player);
 		$firewall = round($firewall*0.3, 1);
 		$level += $firewall;
@@ -47,7 +47,7 @@ final class Spell_vulcano extends SR_CombatSpell
 			$target = $ep->getMemberByPID($pid);
 			$d = Common::clamp($d, 1);
 		
-			$hits = $this->dice($player, $target, $level); # Dice hits
+			$hits = $this->dice($potion_player, $target, $level); # Dice hits
 			echo "!! Vulcano hits=$hits, Distance=$d";
 		
 			$min = $level*2; # The min damage is still like 2 or 20

@@ -12,11 +12,11 @@ final class Spell_blow extends SR_CombatSpell
 //		return 4 + $this->getLevel($player);
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$lev = $this->getLevel($player);
-		$int = $player->get('intelligence');
-		$wis = $player->get('wisdom');
+		$int = $potion_player->get('intelligence');
+		$wis = $potion_player->get('wisdom');
 		
 		$min = 0.5;
 		$min += $level * 0.2;

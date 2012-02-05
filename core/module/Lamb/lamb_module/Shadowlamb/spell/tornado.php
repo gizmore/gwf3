@@ -12,7 +12,7 @@ final class Spell_tornado extends SR_CombatSpell
 		return 8 + $level * 2;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		
 	}	

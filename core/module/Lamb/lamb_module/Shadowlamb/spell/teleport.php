@@ -15,7 +15,7 @@ class Spell_teleport extends SR_Spell
 		$p = $player->getParty();
 		return self::MANA_MIN + self::MANA_PER_M * $p->getMemberCount();
 	}
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits) {}
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player) {}
 	
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{

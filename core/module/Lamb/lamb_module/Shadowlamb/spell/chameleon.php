@@ -17,10 +17,10 @@ final class Spell_chameleon extends SR_SupportSpell
 		return (($level+2)/2) + 1;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$dur = $this->getSpellDuration($player, $target, $level, $hits);
-		$by = $this->getSpellIncrement($player, $target, $level, $hits);
+		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
+		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
 		$mod = array('charisma'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$this->announceADV($player, $target, $level, '10030', $by, GWF_Time::humanDuration($dur));

@@ -15,10 +15,10 @@ final class Spell_calm extends SR_HealSpell
 		return ($level * 0.5) + 2.5;
 	}
 	
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$wis = $player->get('wisdom');
-		$int = $player->get('intelligence');
+		$wis = $potion_player->get('wisdom');
+		$int = $potion_player->get('intelligence');
 		$min = $wis / 2 + $level;
 		$max = $min + $int * 2 + 2;
 		$amount = Shadowfunc::diceFloat($min, $max, 1) / 2;

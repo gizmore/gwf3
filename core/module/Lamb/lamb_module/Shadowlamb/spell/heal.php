@@ -9,7 +9,7 @@ final class Spell_heal extends SR_HealSpell
 	{
 		return 6 + $level;
 	}
-	public function cast(SR_Player $player, SR_Player $target, $level, $hits)
+	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$min = $level + 1;
 		$max = $min + ($level/4) + ($hits/10);

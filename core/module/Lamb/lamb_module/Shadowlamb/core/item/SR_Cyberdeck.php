@@ -11,7 +11,8 @@ abstract class SR_Cyberdeck extends SR_Usable
 		$p = $player->getParty();
 		if (false === ($l = $p->getLocationClass(SR_Party::ACTION_INSIDE)))
 		{
-			$player->message('This item only works inside locations with computers.');
+			$player->msg('hlp_cyberdeck');
+// 			$player->message('This item only works inside locations with computers.');
 			return false;
 		}
 
@@ -20,25 +21,30 @@ abstract class SR_Cyberdeck extends SR_Usable
 		
 		if (count($computers) === 0)
 		{
-			$bot->reply('You don\'t see any Computers with a Headcomputer interface here.');
+			$player->msg('hlp_cyberdeck_targets');
+// 			$bot->reply('You don\'t see any Computers with a Headcomputer interface here.');
 			return false;
 		}
 		
 		if (count($args) !== 1)
 		{
 			$i = 1;
+			$format = $player->lang('fmt_rawitems');
 			$out = '';
 			foreach ($computers as $pc)
 			{
-				$out .= sprintf(", \x02%s\x02-%s", $i++, $pc);
+				$out .= sprintf($format, $i++, $pc);
+// 				$out .= sprintf(", \x02%s\x02-%s", $i++, $pc);
 			}
-			$bot->reply(sprintf('Possible targets: %s.', substr($out, 2)));
-			return true;
+			return $bot->rply('5202', array(substr($out, 2)));
+// 			$bot->reply(sprintf('Possible targets: %s.', substr($out, 2)));
+// 			return true;
 		}
 		
 		if (false === ($computer = $this->getComputerTarget($player, $computers, $args[0])))
 		{
-			$bot->reply('The target computer is invalid.');
+			$bot->rply('1012'); # The target is unknown.
+// 			$bot->reply('The target computer is invalid.');
 			return false;
 		}
 
@@ -50,13 +56,15 @@ abstract class SR_Cyberdeck extends SR_Usable
 		
 		if (!$player->hasHeadcomputer())
 		{
-			$bot->reply('You don\'t have a headcomputer.');
+			$bot->rply('1050', array('headcomputer'));
+// 			$bot->reply('You don\'t have a headcomputer.');
 			return false;
 		}
 		
 		if ($player->getBase('computers') < 0)
 		{
-			$bot->reply('You need to learn the computers skill first.');
+			$bot->rply('1025', 'computers');
+// 			$bot->reply('You need to learn the computers skill first.');
 			return false;
 		}
 		
