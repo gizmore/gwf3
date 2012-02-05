@@ -62,7 +62,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.idlemonkeys.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#wechall,#net-force,#sr,#securitytraps,#3564020356,#revolutionelite,#pyramid,#tbs,#lost-chall',
+			'channels' => '#wechall,#net-force,#securitytraps,#3564020356,#revolutionelite,#pyramid,#tbs,#lost-chall',
 			'admins' => 'gizmore',
 		),
 		
@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#mo,#Mathematik,#ru',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru',
 			'admins' => 'gizmore',
 		),
 		
@@ -78,7 +78,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://natalya.psych0tik.net:6697',
 			'nickname' => 'Lamb',
 			'password' => LAMB_PASSWORD2,
-			'channels' => '#shadowlamb,#hbh,#shadowlamb_bots,#valhalla',
+			'channels' => '#shadowlamb,#hbh,#shadowlamb_bots', #valhalla
 			'admins' => 'gizmore',
 		),
 		

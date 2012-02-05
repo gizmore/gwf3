@@ -962,10 +962,7 @@ class SR_Bazar extends SR_Location
 		$format = $player->lang('fmt_bazar_search');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-			$amt = $row['sr4ba_iamt'];
-			$amt = $amt > 1 ? "({$amt}x)" : '';
-			
-			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $amt, $row['sr4ba_price']);
+			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_iamt'], $row['sr4ba_price']);
 // 			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
 		

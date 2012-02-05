@@ -59,7 +59,7 @@ $lang = array(
 'fmt_giveitems' => ", {$b}%sx%s{$b}", # amt, itemname
 'fmt_bazar_shop' => ", %dx{$b}%s{$b}(%s)", # itemcount, itemname, price
 'fmt_bazar_shops' => ", {$b}%s{$b}(%d)", # player, itemcount
-'fmt_bazar_search' => ", \"{$b}%s %s{$b}\"(%dx%s)", # player, itemname, amount, price
+'fmt_bazar_search' => ", \"{$b}%s %s{$b}\"(%sx%s)", # player, itemname, amount, price
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
@@ -636,13 +636,23 @@ $lang = array(
 '5231' => '%s attacks %s with %s but caused no damage. %s seconds busy.',
 '5232' => '%1$s attacks %2$s with %3$s and caused %6$s%4$s damage%6$s. %5$s seconds busy.',
 '5233' => '%1$s attacks %2$s with %3$s and caused %8$s%4$s damage%8$s, %5$s/%6$sHP left. %7$s seconds busy.',
-'5234' => '%1$s attacks %2$s with %3$s and killed them with %8$s%4$s damage%8$s, %5$s seconds busy. You loot %6$s and %7$XP.',
+'5234' => '%1$s attacks %2$s with %3$s and killed them with %8$s%4$s damage%8$s, %5$s seconds busy. You loot %6$s and %7$sXP.',
 '5235' => '%1$s attacks %2$s with %3$s and killed them with %6$s%4$s damage%6$s, %5$s seconds busy.',
-'5236' => '',
-'5237' => '',
-'5238' => '',
-'5239' => '',
-'5240' => '',
+'5236' => 'You got a new quest: %s.',
+'5237' => 'You declined the "%s" quest, forever.',
+'5238' => 'You have completed a quest: %s.',
+'5239' => 'You hand %d %s(s) to %s.',
+'5240' => 'You received %s.', # quest reward string
+'5241' => '',
+'5242' => '',
+'5243' => '',
+'5244' => '',
+'5245' => '',
+'5246' => '',
+'5247' => '',
+'5248' => '',
+'5249' => '',
+'5250' => '',
 
 
 );

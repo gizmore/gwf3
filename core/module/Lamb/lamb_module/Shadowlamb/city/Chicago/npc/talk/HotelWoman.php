@@ -2,7 +2,15 @@
 final class Chicago_HotelWoman extends SR_TalkingNPC
 {
 	public function getName() { return 'Charly'; }
-	public function getNPCQuests(SR_Player $player) { return array('Chicago_HotelWoman1', 'Chicago_HotelWoman2'); }
+	public function getNPCQuests(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Seattle_Malois2');
+		if (false === $quest->isDone($player))
+		{
+			return array();
+		}
+		return array('Chicago_HotelWoman1', 'Chicago_HotelWoman2');
+	}
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		if ($this->onNPCQuestTalk($player, $word, $args))
@@ -12,7 +20,7 @@ final class Chicago_HotelWoman extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'renraku': return $this->reply('I hate renraku ... they are responsible for much bad things lately.');
-// 			case 'shadowrun': return $this->reply('I am not into illegal stuff.');
+			case 'shadowrun': return $this->reply('I am not into illegal stuff.');
 			case 'cyberware': return $this->reply('Most of my friends don\'t use a headcomputer.');
 			case 'magic': return $this->reply('Most of my friends are not from a magic race.');
 			case 'hire': return $this->reply('I am not interested in anything like that.');

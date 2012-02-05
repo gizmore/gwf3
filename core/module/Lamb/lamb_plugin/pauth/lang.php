@@ -1,4 +1,4 @@
-<?php # Usage: %CMD% [<iso>]. Set your bot's language or list the known iso codes.
+<?php # Usage: %CMD% [<iso>]. Set your language or list the known iso codes.
 // return;
 $bot = Lamb::instance();
 

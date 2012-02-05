@@ -64,7 +64,7 @@ class SR_Quest extends GDO
 	public function getQuestName() { return $this->getName(); }
 	public function getQuestDescription() { return 'QUEST DESCRIPTION'; }
 	public function isDone(SR_Player $player) { return $this->isOptionEnabled(self::DONE); }
-	public function isInQuest(SR_Player $player) { return (!$this->isDone($player)) && ($this->isAccepted($player)); }
+	public function isInQuest(SR_Player $player) { return (false === $this->isDone($player)) && (true === $this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
 	public function isDeclined(SR_Player $player) { return $this->isOptionEnabled(self::REJECTED); }
 	public function isFailed(SR_Player $player) { return $this->isOptionEnabled(self::FAILED); }
@@ -103,7 +103,8 @@ class SR_Quest extends GDO
 		$this->onAccept($player); 
 		
 		# Announce
-		$player->message(sprintf('You got a new quest: %s.', $this->getQuestName()));
+		$player->msg('5236', array($this->getQuestName()));
+// 		$player->message(sprintf('You got a new quest: %s.', $this->getQuestName()));
 		return true;
 	}
 	
@@ -123,13 +124,14 @@ class SR_Quest extends GDO
 		}
 
 		# Announce
-		$player->message(sprintf('You declined the "%s" quest, forever.', $this->getQuestName()));
+		$player->msg('5237', array($this->getQuestName()));
+// 		$player->message(sprintf('You declined the "%s" quest, forever.', $this->getQuestName()));
 		return true;
 	}
 	
 	public function onSolve(SR_Player $player)
 	{
-		if ($this->isDone($player))
+		if (true === $this->isDone($player))
 		{
 			$player->message('You already solved this quest (should not happen).');
 			return true;
@@ -153,7 +155,8 @@ class SR_Quest extends GDO
 		
 		# Announce
 		$player->modify();
-		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
+		$player->msg('5238', array($this->getQuestName()));
+// 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
 		return true;
 	}
 	
@@ -419,7 +422,8 @@ class SR_Quest extends GDO
 		
 		if ($give > 0)
 		{
-			$player->message(sprintf('You hand %d %s(s) to %s.', $give, $itemname, $npc->getName()));
+			$player->msg('5239', array($give, $itemname, $npc->getName()));
+// 			$player->message(sprintf('You hand %d %s(s) to %s.', $give, $itemname, $npc->getName()));
 		}
 		
 		return $have;
@@ -493,7 +497,8 @@ class SR_Quest extends GDO
 		$out = $nystr.$xpstr.$itemstr;
 		if ($out !== '')
 		{
-			$player->message(sprintf('You received %s.', substr($out, 2)));
+			$player->msg('5240', substr($out, 2));
+// 			$player->message(sprintf('You received %s.', substr($out, 2)));
 		}
 	}
 }
