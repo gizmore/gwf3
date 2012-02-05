@@ -54,6 +54,9 @@ abstract class SR_Spell
 	public function getLevel(SR_Player $player) { return $player->getSpellLevel($this->getName()); }
 	public function getBaseLevel(SR_Player $player) { return $player->getSpellBaseLevel($this->getName()); }
 	
+	private $caster = NULL;
+	public function setCaster(SR_Player $player) { $this->caster = $player; }
+	public function getCaster() { return $this->caster; }
 	
 	/**
 	 * @param SR_Player $player
@@ -161,7 +164,10 @@ abstract class SR_Spell
 		
 		if ($this->mode === self::MODE_POTION)
 		{
-			$target = $player;
+			# Dummy player
+			$dummy = new SR_Player(SR_Player::getPlayerData(0));
+			$dummy->modify();
+			$target = $dummy;
 		}
 		elseif (false === ($target = $this->getTarget($player, $args)))
 		{
@@ -246,7 +252,7 @@ abstract class SR_Spell
 		$dices += round($player->get('intelligence') * 5);
 		$dices += round($player->get('spellatk') * 6);
 		$dices += round($player->get('essence') * 18);
-// 		$dices -= round(Shadowfunc::calcDistance($player, $target)/4); # XXX Cannot apply distance malus because of alchemy.
+		$dices -= round(Shadowfunc::calcDistance($this->caster, $target)/4); # XXX Cannot apply distance malus because of alchemy.
 		
 		$defense = round($target->get('essence') * 2);
 		$defense += round($target->get('intelligence') * 2);
