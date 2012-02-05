@@ -29,7 +29,7 @@ $lang = array(
 	'solved_by_title' => '<a href="%s">%s</a> Helden',
 	'solved_by_text' => 'Alle Benutzer die %s gelöst haben, in historischer Reihenfolge.',
 	'newsrow_linkt' => 'Heutiges Linken von Accounts',
-	'newsrow_link' => '%s hat sein/ihr Konto mit %s gelinkt. %s gelöst.',
+	'newsrow_link' => '%s hat sein/ihr Konto mit %s gelinkt. %s%% gelöst.',
 	
 	# Quick Update
 	'th_quickupdate' => 'Schnellupdate',
@@ -64,7 +64,7 @@ $lang = array(
 	# Sitemaster News
 	'mnews_title' => 'Site Master News',
 	'mnews_body' => 'Ein(ige) Spieler haben 100%% auf einer Challengeseite erreicht. Gute Arbeit!'.PHP_EOL.'Alle [url=%s]Meister einer Seite ansehen[/url].',
-	'mnews_item' => '[url=/profile/%s]%s[/url] hat 100%% auf [url=%s]%s[/url] erreicht. Das Konto war %s gelinkt, angefangen bei %s%%.',
+	'mnews_item' => '[url=/profile/%s]%s[/url] hat 100%% auf [url=%s]%s[/url] erreicht. Das Konto war %s gelinkt, angefangen bei %s.',
 
 	# Challenge News
 	'cnews_title' => 'Es gibt neue Challenges',
