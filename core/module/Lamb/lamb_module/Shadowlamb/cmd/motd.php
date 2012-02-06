@@ -5,11 +5,13 @@ final class Shadowcmd_motd extends Shadowcmd
 	{
 		$bot = Shadowrap::instance($player);
 		$path = Lamb::DIR.'lamb_module/Shadowlamb/shadowlamb_motd.txt';
-		if (false === ($motd = @file_get_contents($path))) {
+		if (false === ($motd = @file_get_contents($path)))
+		{
 			$bot->reply('Can not read '.$path);
 		}
-		$bot->reply(sprintf('Message of the day: %s', $motd));
-		return true;
+		return $bot->rply('5249', array($motd));
+// 		$bot->reply(sprintf('Message of the day: %s', $motd));
+// 		return true;
 	}
 }
 ?>

@@ -104,7 +104,12 @@ final class Shadowshout
 						{
 							continue;
 						}
-						$s = $u->getServer();
+						
+						if (false === ($s = $u->getServer()))
+						{
+							continue;
+						}
+						
 						$c = $s->getChannel('#shadowlamb');
 						
 						if ($sid === $s->getID())

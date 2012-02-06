@@ -458,9 +458,14 @@ final class SR_Party extends GDO
 		$this->onCleanupHirelings();
 
 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
+		
 		if ($announce === true)
 		{
-			$this->ntice('5093', array($this->displayAction()));
+			foreach ($this->members as $member)
+			{
+				$member instanceof SR_Player;
+				$member->msg('5093', array($this->displayAction($member)));
+			}
 // 			$this->notice('You continue '.$this->displayAction());
 		}
 		
@@ -1263,7 +1268,7 @@ final class SR_Party extends GDO
 	}
 	
 	
-	public function displayAction()
+	public function displayAction(SR_Player $player)
 	{
 		$b = chr(2);
 		$action = $this->getAction();
@@ -1271,59 +1276,59 @@ final class SR_Party extends GDO
 		switch ($action)
 		{
 			case 'delete':
-				return Shadowrun4::lang('pa_delete');
+				return $player->lang('pa_delete');
 				
 			case 'talk':
 				$ep = $this->getEnemyParty();
-				$epm = $ep === false ? Shadowrun4::lang('empty_party') : $ep->displayMembers();
-				return Shadowrun4::lang('pa_talk', array(
+				$epm = $ep === false ? $player->lang('empty_party') : $ep->displayMembers();
+				return $player->lang('pa_talk', array(
 						$epm, $this->displayContactETA(), $this->displayLastAction()));
 // 				return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $epm, $this->displayContactETA(), $this->displayLastAction());
 			
 			case 'fight':
-				return Shadowrun4::lang('pa_fight', array(
+				return $player->lang('pa_fight', array(
 					$this->getEnemyParty()->displayMembers(true), $this->displayLastAction()));
 // 				return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			
 			case 'inside':
-				return Shadowrun4::lang('pa_inside', array($this->getLocation()));
+				return $player->lang('pa_inside', array($this->getLocation()));
 // 				return sprintf("{$b}inside{$b} %s.", $this->getLocation());
 				
 			case 'outside':
 				$city = $this->getCityClass();
 				if ($this->isAtLocation() || (!$city->isDungeon()))
 				{
-					return Shadowrun4::lang('pa_outside1', array($this->getLocation()));
+					return $player->lang('pa_outside1', array($this->getLocation()));
 // 					return sprintf("{$b}outside{$b} of %s.", $this->getLocation());
 				}
 				else
 				{
-					return Shadowrun4::lang('pa_outside2', array($this->getLocation()));
+					return $player->lang('pa_outside2', array($this->getLocation()));
 // 					return sprintf("somewhere inside %s.", $this->getLocation());
 				}
 				
 			case 'sleep':
-				return Shadowrun4::lang('pa_sleep', array($this->getLocation()));
+				return $player->lang('pa_sleep', array($this->getLocation()));
 // 				return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
 				
 			case 'travel':
-				return Shadowrun4::lang('pa_travel', array($this->getTarget(), $this->displayETA()));
+				return $player->lang('pa_travel', array($this->getTarget(), $this->displayETA()));
 // 				return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			
 			case 'explore':
-				return Shadowrun4::lang('pa_explore', array($this->getLocation(), $this->displayETA()));
+				return $player->lang('pa_explore', array($this->getLocation(), $this->displayETA()));
 // 				return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			
 			case 'goto':
-				return Shadowrun4::lang('pa_goto', array($this->getLocation(), $this->displayETA()));
+				return $player->lang('pa_goto', array($this->getLocation(), $this->displayETA()));
 // 				return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			
 			case 'hunt':
-				return Shadowrun4::lang('pa_hunt', array($this->getTarget(), $this->displayETA()));
+				return $player->lang('pa_hunt', array($this->getTarget(), $this->displayETA()));
 // 				return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			
 			case 'hijack':
-				return Shadowrun4::lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $this->displayETA()));
+				return $player->lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $this->displayETA()));
 // 				return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
 			
 			default:
@@ -1343,7 +1348,7 @@ final class SR_Party extends GDO
 			case 'travel':
 				$lt = $this->getVar('sr4pa_last_target');
 				$le = $this->displayLastETA();
-				return Shadowrun4::lang('last_action', array($la, $lt, $le));
+				return $player->lang('last_action', array($la, $lt, $le));
 // 				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
 				
 			default:

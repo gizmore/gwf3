@@ -456,7 +456,7 @@ final class Shadowfunc
 		$party = $player->getParty();
 		$mc = $party->getMemberCount();
 		
-		$action = $party->displayAction();
+		$action = $party->displayAction($player);
 		
 		$with_distance = $party->isFighting();
 		

@@ -20,8 +20,9 @@ final class Shadowcmd_stats extends Shadowcmd
 				}
 			}
 		}
-		$bot->reply(sprintf('Currently there are %s Human, %s NPC and %s parties in memory.', $human, $npc, $parties));
-		return true;
+		return $bot->rply('5244', array($human, $npc, $parties));
+// 		$bot->reply(sprintf('Currently there are %s Human, %s NPC and %s parties in memory.', $human, $npc, $parties));
+// 		return true;
 	}
 }
 ?>

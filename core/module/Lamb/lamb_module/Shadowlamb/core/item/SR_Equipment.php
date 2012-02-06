@@ -65,7 +65,7 @@ abstract class SR_Equipment extends SR_Usable
 		$player->modify();
 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
 		$player->msg('5204', array($this->getItemName(), $busy));
-		$player->message($msg);
+// 		$player->message($msg);
 		return true;
 	}
 	

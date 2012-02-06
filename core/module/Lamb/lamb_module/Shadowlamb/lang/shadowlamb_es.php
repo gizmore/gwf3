@@ -138,7 +138,13 @@ $lang = array(
 'hlp_store' => 'En este almacen puedes usar %s.',
 'hlp_cyberdeck' => 'Este objeto solo funciona dentro de lugares con ordenadores.',
 'hlp_cyberdeck_targets' => 'Tú no ves ningun ordenador con un interfaz Headcomputer aquí.',
+'hlp_start' => "{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.",
 
+# Start storyline
+'start_1' => "You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.",
+'start_2' => "What happened... You can`t remember anything.... Gosh, you even forgot your name.",
+'start_3' => "You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.",
+'start_4' => "Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files. Use {$c}help <cmd> to see the help for a command.",
 
 # Knowledge
 'ks_words' => 'Palabra',
@@ -332,6 +338,10 @@ $lang = array(
 '1167' => 'This rune has only one modifier.',
 '1168' => 'The rune completely broke while splitting it. You don\'t need to pay.',
 '1169' => 'You can not reload a melee weapon? Oo',
+'1170' => 'Your party is not moving.',
+'1171' => 'Your character has been created already. You can type #reset to start over.',
+'1172' => 'Your race is unknown or an NPC only race. Valid races: %s.',
+'1173' => 'Your gender is unknown. Valid genders: %s.',
 
 ########################
 # 10000-14999 = Spells #
@@ -597,7 +607,6 @@ $lang = array(
 '5202' => 'Objetivos posibles: %s.', # Computer target list fmt_rawitems.
 '5203' => 'Tu pones tu %s en el inventario, %s segundos ocupado.',
 '5204' => 'Tu usas %s desde ahora, %d segundos ocupado.',
-
 '5205' => 'Estás sin munición!',
 '5206' => '%s carga %d bala(s) en su %s. %s segundos ocupado.', # player, amount, itemname, busytime
 '5207' => 'Cargas %d bala(s) en tu %s.', # amount, itemname
@@ -623,9 +632,7 @@ $lang = array(
 '5227' => '%s roba %dx%s de tu %s.',
 '5228' => '%s usado %s en %s.%s%s', # player, itemname, player, busy, appendmsg # (friend)
 '5229' => '%s usado %s en %s.%s', # player, itemname, player, appendmsg # (foe)
-
 '5230' => '%s ataca %s con %s pero falla. %s segundos ocupado.',
-
 '5231' => '%s ataca %s con %s pero no causa daños. %s segundos ocupado.',
 '5232' => '%1$s ataca a %2$s con %3$s y causa %6$s%4$s daño%6$s. %5$s segundos ocupado.',
 '5233' => '%1$s ataca a %2$s con %3$s y causa %8$s%4$s daño%8$s, %5$s/%6$sHP queda. %7$s segundos ocupado.',
@@ -637,6 +644,15 @@ $lang = array(
 '5239' => 'Tu das la mano %d %s(s) a %s.',
 '5240' => 'Recibes %s.', # quest reward string
 '5241' => 'En Shadowlamb v3 hay: %s diferentes NPC en %s Areas con %s Lugares. %s Objetos, %s Hechizos y %s Pruebas. Teclea #stats para ver cuantos están jugando.',
+
+'5242' => 'The party stopped. What now?!',
+'5243' => 'It is the year 2064 + %s.',
+'5244' => 'Currently there are %s Human, %s NPC and %s parties in memory.',
+'5245' => 'Your character has been deleted. You may issue "#start" again.',
+'5246' => 'This will completely delete your character. Type "#reset i_am_sure" to confirm.',
+'5247' => 'Active players, page %d of %d: %s.',
+'5248' => 'Active parties, page %s of %s: %s.',
+'5249' => 'Message of the day: %s',
 
 );
 ?>

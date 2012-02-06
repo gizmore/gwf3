@@ -9,7 +9,8 @@ final class Shadowcmd_reset extends Shadowcmd
 	{
 		if (!$player->getParty()->isIdle())
 		{
-			$player->message('Your party has to be idle to reset players. Try #part to leave your party.');
+			$player->msg('1033');
+// 			$player->message('Your party has to be idle to reset players. Try #part to leave your party.');
 			return false;
 		}
 
@@ -19,11 +20,13 @@ final class Shadowcmd_reset extends Shadowcmd
 		if ( (count($args)===1) && ($args[0]==='i_am_sure') )
 		{
 			$player->deletePlayer();
-			$player->message(sprintf('Your character has been deleted. You may issue %sstart again.', $c));
+			$player->msg('5245');
+// 			$player->message(sprintf('Your character has been deleted. You may issue %sstart again.', $c));
 		}
 		else
 		{
-			$bot->reply(sprintf('This will completely delete your character. Type "%sreset i_am_sure" to confirm.', $c));
+			$player->msg('5246');
+// 			$bot->reply(sprintf('This will completely delete your character. Type "%sreset i_am_sure" to confirm.', $c));
 		}
 		
 		return true;

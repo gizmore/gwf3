@@ -12,20 +12,22 @@ final class Shadowcmd_stop extends Shadowcmd
 		
 		if ($p->isSleeping())
 		{
-			$p->popAction(false);
-			$p->notice(sprintf('You interrupt the parties sleeping and continue %s', $p->displayAction()));
+			$p->popAction(true);
+// 			$p->notice(sprintf('You interrupt the parties sleeping and continue %s', $p->displayAction()));
 			return true;
 		}
 		
 		if (!$p->isMoving())
 		{
-			$bot->reply('Your party is not moving.');
+			$bot->rply('1170');
+// 			$bot->reply('Your party is not moving.');
 			return false;
 		}
 		
 		$c = $p->getCity();
 		$p->pushAction(SR_Party::ACTION_OUTSIDE, $c);
-		$p->notice('The party stopped. What now?!');
+		$p->ntice('5242');
+// 		$p->notice('The party stopped. What now?!');
 		return true;
 	}
 }

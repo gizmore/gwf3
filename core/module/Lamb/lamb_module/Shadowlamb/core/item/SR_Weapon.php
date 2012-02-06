@@ -90,7 +90,7 @@ abstract class SR_Weapon extends SR_Equipment
 		if ($damage <= 0)
 		{
 			$p->ntice('5231', array($pname, $tname, $iname, $busy));
-			$p->ntice('5231', array($pname, $tname, $iname, $busy));
+			$ep->ntice('5231', array($pname, $tname, $iname, $busy));
 			return true;
 // 			$msg .= sprintf(' but causes no damage.');
 // 			$hpmsg = sprintf(' %s/%s HP left.', round($target->getHP(), 1), round($target->get('max_hp'), 1));

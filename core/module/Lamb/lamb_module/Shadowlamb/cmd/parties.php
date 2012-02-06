@@ -23,6 +23,7 @@ final class Shadowcmd_parties extends Shadowcmd
 		$slice = array_slice($pp, $from, self::PPP);
 		
 		$out = '';
+		$format = $player->lang('fmt_list');
 		foreach ($slice as $p)
 		{
 			$p instanceof SR_Party;
@@ -30,10 +31,13 @@ final class Shadowcmd_parties extends Shadowcmd
 			$l = $p->getSum('level', true);
 			$ll = $p->getSum('level', false);
 			$mc = $p->getMemberCount();
-			$out .= sprintf(', %s(L%s(%s))(M%s)', $leader, $l, $ll, $mc);
+			$item = sprintf('%s(L%s(%s))(M%s)', $leader, $l, $ll, $mc);
+			$out .= sprintf($format, $item);
+// 			$out .= sprintf(', %s(L%s(%s))(M%s)', $leader, $l, $ll, $mc);
 		}
-		$bot = Shadowrap::instance($player);
-		$bot->reply(sprintf('Parties page %s from %s: %s.', $page, $nPages, substr($out, 2)));
+		return self::rply($player, '5248', array($page, $nPages, substr($out, 2)));
+// 		$bot = Shadowrap::instance($player);
+// 		$bot->reply(sprintf('Parties page %s from %s: %s.', $page, $nPages, substr($out, 2)));
 	}
 }
 ?>
