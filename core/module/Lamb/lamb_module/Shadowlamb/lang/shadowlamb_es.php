@@ -317,11 +317,21 @@ $lang = array(
 '1153' => 'Este destino es desconocido. Comprueba posibles destinos con #travel.',
 '1154' => 'No puedes permitirte el lujo de %d billetes para %s.',
 '1155' => 'Este equipo no tiene un uso especial. Puedes equiparlo con #equip.',
-'1156' => '',
-'1157' => '',
-'1158' => '',
-'1159' => '',
-'1160' => '',
+
+'1156' => 'Your weapon is already loaded.',
+'1157' => 'This item works only in combat.',
+'1158' => 'You can only craft equipment.',
+'1159' => 'You can only break statted items.',
+'1160' => 'The second item is not a rune.',
+'1161' => 'The rune has mixed mount and equipment modifiers. You have to split it first.',
+'1162' => 'This rune can only be applied to mounts.',
+'1163' => 'This rune can only be applied to equipment.',
+'1164' => 'Please "#mount clean" before you change it.',
+'1165' => 'The item string would get too long with another modifier.',
+'1166' => 'You can only split runes.',
+'1167' => 'This rune has only one modifier.',
+'1168' => 'The rune completely broke while splitting it. You don\'t need to pay.',
+'1169' => 'You can not reload a melee weapon? Oo',
 
 ########################
 # 10000-14999 = Spells #
@@ -587,13 +597,46 @@ $lang = array(
 '5202' => 'Objetivos posibles: %s.', # Computer target list fmt_rawitems.
 '5203' => 'Tu pones tu %s en el inventario, %s segundos ocupado.',
 '5204' => 'Tu usas %s desde ahora, %d segundos ocupado.',
-'5205' => '',
-'5206' => '',
-'5207' => '',
-'5208' => '',
-'5209' => '',
-'5210' => '',
+
+'5205' => 'You are out of ammo!',
+'5206' => '%s loads %d bullet(s) into his %s. %s seconds busy.', # player, amount, itemname, busytime
+'5207' => 'You load %d bullet(s) into your %s.', # amount, itemname
+'5208' => 'You pay %s and the smith cleans the %s from all it\'s runes. You receive a(n): %s.', # price, itemname, itemname
+'5209' => 'You pay %s and break the %s into %s.', # price, itemname, rawlist
+'5210' => 'You pay %s but breaking the %s into runes failed.', # price, itemname
+'5211' => 'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',
+'5212' => 'The smith takes your items and goes to work...',
+'5213' => 'The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.',
+'5214' => 'The upgrade failed and the rune is lost. You only need to pay %s for the work.',
+'5215' => 'The upgrade succeeded. You pay %s and the smith presents you a fine %s.',
+'5216' => 'It would cost %s to split the %s. Retype your command to confirm.',
+'5217' => 'You pay %s and split your %s into %s.',
+'5218' => 'You start to to crack the lock on %s\'s %s. Time penalty: %s.',
+'5219' => '%s is trying to \X02crack the LOCK\X02 on your %s!',
+'5220' => 'You failed to crack the lock on %s\'s %s.',
+'5221' => 'You are done with cracking your target\'s lock.',
+'5222' => '"Hey, what are you doing!!!" ... You spot a police officer approaching!',
+'5223' => 'You managed to crack the lock on %s\'s %s but it seems empty.',
+'5224' => 'You managed to crack the lock on %s\'s',
+'5225' => '%s managed to crack your lock on your %s!',
+'5226' => 'In the last second you see military forces approaching and decide to interrupt your activities.',
+'5227' => '%s stole %dx%s out of your %s.',
+'5228' => '%s used %s on %s.%s%s', # player, itemname, player, busy, appendmsg # (friend)
+'5229' => '%s used %s on %s.%s', # player, itemname, player, appendmsg # (foe)
+
 '5230' => '%s ataca %s con %s pero falla. %s segundos ocupado.',
+
+'5231' => '%s attacks %s with %s but caused no damage. %s seconds busy.',
+'5232' => '%1$s attacks %2$s with %3$s and caused %6$s%4$s damage%6$s. %5$s seconds busy.',
+'5233' => '%1$s attacks %2$s with %3$s and caused %8$s%4$s damage%8$s, %5$s/%6$sHP left. %7$s seconds busy.',
+'5234' => '%1$s attacks %2$s with %3$s and killed them with %8$s%4$s damage%8$s, %5$s seconds busy. You loot %6$s and %7$sXP.',
+'5235' => '%1$s attacks %2$s with %3$s and killed them with %6$s%4$s damage%6$s, %5$s seconds busy.',
+'5236' => 'You got a new quest: %s.',
+'5237' => 'You declined the "%s" quest, forever.',
+'5238' => 'You have completed a quest: %s.',
+'5239' => 'You hand %d %s(s) to %s.',
+'5240' => 'You received %s.', # quest reward string
+'5241' => 'In Shadowlamb v3 there are: %s different NPC in %s Areas with %s Locations. %s Items, %s Spells and %s Quests. Try #stats to show how many are playing.',
 
 );
 ?>
