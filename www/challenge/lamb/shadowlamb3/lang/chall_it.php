@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Shadowlamb - Chapter III (BrickedWall)',
+	'title' => 'Shadowlamb - Capitolo III (BrickedWall)',
 	'info' =>
 		'Ugah problema. Gunda triste. Scrivi "gizmore is noob" su muro in Prison_Block1, Delaware.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.

@@ -9,7 +9,7 @@ $lang = array(
 		'<br/>'.
 		'You have read the protocols that if GLaDOS receives a new e-mail with an id in it, GLaDOS will visit the experience web application above, enter the id and click on the first link in order to gather information about the new experience subject.<br/>'.
 		'<br/>'.
-		'During your mission you have succesfully accessed a test webserver, and setup a php file, which can be accessed from the internal network via this link:<br/>'.
+		'During your mission you have successfully accessed a test webserver, and setup a php file, which can be accessed from the internal network via this link:<br/>'.
 		'<i>http://test.cake/steal_cookie.php</i><br/>'.
 		'<a href="%3$s">This php file</a> can receive the "cookie" get parameter and record the values in a file, which is accessible for you.<br/>'.
 		'<br/>'.

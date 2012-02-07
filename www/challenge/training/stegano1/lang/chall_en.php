@@ -1,5 +1,5 @@
 <?php
 $lang = array(
-	'info' => 'This is the most basic image stegano I can think of.',
+	'info' => 'Questa è la più semplice sfida steganografica a cui possa pensare.',
 );
 ?>

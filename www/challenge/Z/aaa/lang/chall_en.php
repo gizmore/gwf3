@@ -11,7 +11,7 @@ $lang = array(
 		'SoftMicro is the old partner for VSA, and he has implemented lots of backdoors for a commercial operating system named "Doors" for VSA.<br/>'.
 		'SoftMicro\'s software is usually crappy, but their network is very well defended - thanks to the very often attacks against SoftMicro\'s network.<br/>'.
 		'But VSA doesn\'t accept any code from SoftMicro directly, because they hired a well known company named Anderson to audit every piece of code that are used at VSA.<br/>'.
-		'Your plan is to hijack the communication between Andersen and SoftMicro, so you can analyse the program, and after Andersen audited the program, you will hijack the traffic between Andersen and VSA, exchange the program with your evil one, and the job is done.<br/>'.
+		'Your plan is to hijack the communication between Anderson and SoftMicro, so you can analyse the program, and after Anderson audited the program, you will hijack the traffic between Anderson and VSA, exchange the program with your evil one, and the job is done.<br/>'.
 		'<br/>'.
 		'The plan is great, but maybe not everything goes as planned...<br/>'.
 		'<br/><br/>'.

@@ -28,7 +28,7 @@ $lang = array(
 		'Ok, matching static strings is not the main goal of regular expressions.<br/>'.PHP_EOL.
 		'Your next task is to submit an expression that matches valid filenames for certain images.<br/>'.PHP_EOL.
 		'Your pattern shall match all images with the name wechall.ext or wechall4.ext and a valid image extension.<br/>'.PHP_EOL.
-		'Valid imgage extensions are .jpg, .gif, .tiff, .bmp and .png.<br/>'.PHP_EOL.
+		'Valid image extensions are .jpg, .gif, .tiff, .bmp and .png.<br/>'.PHP_EOL.
 		'Here are some examples for valid filenames: wechall4.tiff, wechall.png, wechall4.jpg, wechall.bmp',
 
 	'info_4' =>

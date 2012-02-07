@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Preg Evasion',
+	'title' => 'Preg Evasion ',
 	'info' =>
 		'La tua missione è quella di ingannare la funzione preg_match().<br/>'.
 		'Dai un occhiata al <a href="%1$s">codice sorgente</a>, anche in <a href="%2$s">versione evidenziata</a>.<br/>'.PHP_EOL.

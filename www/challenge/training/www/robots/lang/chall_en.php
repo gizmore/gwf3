@@ -1,10 +1,10 @@
 <?php
 $lang = array(
-	'title' => 'WWW-Robots',
+	'title' => 'WWW - Robots',
 	'info' =>
-		'In this little training challenge, you are going to learn about the <a href="http://en.wikipedia.org/wiki/Robots_exclusion_standard">Robots_exclusion_standard</a>.<br/>'.
-		'The robots.txt file is used by web crawlers to check if they are allowed to crawl and index your website or only parts of it.<br/>'.
-		'Sometimes these files reveal the directory structure instead protecting the content from being crawled.<br/><br/>'.
-		'Enjoy!',
+		'In questa piccola sfida, imparerai qualcosa a riguardo del <a href="http://it.wikipedia.org/wiki/Protocollo_di_esclusione_robot">Protocollo di esclusione robot</a>.<br/>'.
+		'Il file robots. è utilizzato dai web crawlers per controllare se sono autorizzati a navigare ed indicizzare tutto il tuo sito o solo parti di esso.<br/>'.
+		'A volte, questi file rivelano informazioni sulla struttura delle cartelle del sito invece che proteggere il sito stesso del crawling.<br/><br/>'.
+		'Buon divertimento!',
 );
 ?>

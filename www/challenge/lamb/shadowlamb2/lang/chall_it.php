@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Shadowlamb - Chapter II',
+	'title' => 'Shadowlamb - Capitolo II',
 	'info' =>
 		'Ugah fatto quest. Ora crittogramma e gioco difficile. Tu finisci crittogramma RottenHome a Seattle. Tu sa come giocare.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.

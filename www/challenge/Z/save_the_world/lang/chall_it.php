@@ -1,23 +1,24 @@
 <?php
 $lang = array(
 	'info' => 
-		'It is year 2018, the world war III is upcoming between USA and China. You<br/>'.
-		'are a secret agent working for the USA. The USA IGA (Information Gathering<br/>'.
-		'Agency) gathered three RSA enciphered messages. All messages were originated<br/>'.
-		'from the same "clear text message", which is a symmetric key (m). With this<br/>'.
-		'symmetric key there is a document encrypted. This document contains all the<br/>'.
-		'secret information about the newest high-tech weapons made in China. This<br/>'.
-		'document was symmetrically encrypted with the CSEA (Chinese Super Encryption<br/>'.
-		'Algorythm). This algorythm is almost unbreakable.<br/>'.
+		'L\'anno è il 2018, la terza guerra mondiale incombe tra Cine e USA. Tu sei<br/>'.
+		'un agente segreto che lavora per gli USA. L\'agenzia IGA (Information Gathering<br/>'.
+		'Agency) degli USA ha raccolto tre messaggi RSA. Tutti i messaggi contengono <br/>'.
+		'lo stesso "messaggio in chiaro", ovvero una chiave simmetrica (m). Con questa<br/>'.
+		'chiave simmetrica è stato crittato un documento. Questo documento contiene tutte<br/>'.
+		'le informazioni segrete sulle nuove armi high-tech fatte in Cina. Questo documento<br/>'.
+		'è stato crittato simmetricamente con il CSEA (Chinese Super Encryption Algorythm<br/>'.
+		'- Super Algoritmo di Crittazione Cinese). E\' quasi impossibile crackare questo<br/>'.
+		'algoritmo.<br/>'.
 		'<br/>'.
-		'You know, that the chinese government used RSA to encrypt the symmetric key.<br/>'.
-		'Your boss, general Eromzig bought a new supercomputer to factorize<br/>'.
-		'the RSA public keys. Scientists say they need 2 weeks to factorize one of<br/>'.
-		'the public keys.<br/>'.
-		'That\'s why he hired you, because he thinks you can break the RSA algorithm in<br/>'.
-		'1 hour. Your mission is to get the symmetric key in decimal format.<br/>'.
+		'Sai che il governo cinese ha utilizzato l\'RSA per crittare la chiave simmetrica.<br/>'.
+		'Il tuo boss, il generale Eromzig, ha comprato un supercomputer per fattorizzare<br/>'.
+		'la chiave pubblica dell\'RSA. Gli scienziati dicone che ci vorranno 2 settimane per<br/>'.
+		'fattorizzare una delle chiavi pubbliche.<br/>'.
+		'Ecco perchè ti ha assunto: perchè pensa che tu possa rompere l\'algoritmo RSA in<br/>'.
+		'meno di un ora. La tua missione è di trovarela chiave simmetrica in formato decimale.<br/>'.
 		'<br/>'.
-		'The public keys which were used to encrypt the symmetric key are the following:<br/>'.
+		'Le chiavi pubbliche utilizzate per crittare la chiave simmetrica sono le seguenti:<br/>'.
 		'<br/>'.
 		'1.  e1=3<br/>'.
 		'<br/>'.
@@ -26,9 +27,9 @@ $lang = array(
 		'4488724766148765407843262238743292578704036171018334438216003870719162685398<br/>'.
 		'0909371868024916680863506138780750868544480874747891485377406501549284653034<br/>'.
 		'6393353<br/>'.
-		'<div style="margin-left: 20px;">It is the public key of general Sun Tzu.</div>'.
+		'<div style="margin-left: 20px;">E\' la chiave pubblica del generale Sun Tzu.</div>'.
 		'<br/>'.
-		'<div style="margin-left: 20px;">The encrypted message sent to general Sun Tzu was:</div>'.
+		'<div style="margin-left: 20px;">Il messaggio crittato inviato al generale Sun Tzu era:</div>'.
 		'<br/>'.
 		'c1=5905834709610937116879525212284626416445185838650537322471725138676007071<br/>'.
 		'5998321616322872045496360926010965597694014530236569746798289883620698223974<br/>'.
@@ -45,9 +46,9 @@ $lang = array(
 		'5064768446425517222613332761974284232596856817882979785065536406882469923774<br/>'.
 		'4054358642264643142596395741955735422343101742596135638430962118605087100390<br/>'.
 		'8824523<br/>'.
-		'<div style="margin-left: 20px;">It is the public key of general Qin Jiushao.</div>'.
+		'<div style="margin-left: 20px;">E\' la chiave pubblica del generale Qin Jiushao.</div>'.
 		'<br/> '.
-		'<div style="margin-left: 20px;">The encrypted message sent to general Qin Jiushao was:</div>'.
+		'<div style="margin-left: 20px;">Il messaggio crittato inviato al generale Qin Jiushao era:</div>'.
 		'<br/>'.
 		'c2=6883263686330952184273822891213591005924705168937975803056469379223409544<br/>'.
 		'6146808098880880327706725969407906645386006921749510378088144330242695605459<br/>'.
@@ -64,9 +65,9 @@ $lang = array(
 		'3674664850382891750853847082861247537097054898628900960779958023749459758924<br/>'.
 		'8806794509169565536014318238391241867494598197275008237041687608289913221668<br/>'.
 		'78406679<br/>'.
-		'<div style="margin-left: 20px;">It is the public key of general Ymenetn Gnauq.</div>'.
+		'<div style="margin-left: 20px;">E\' la chiave pubblica del generale Ymenetn Gnauq.</div>'.
 		'<br/>'.
-		'The encrypted message sent to general Ymenetn Gnauq was:<br/>'.
+		'Il messaggio crittato inviato al generale Ymenetn Gnauq era:<br/>'.
 		'<br/>'.
 		'c3=3153023395443523487161547446108225786081457485251683234856675074524798052<br/>'.
 		'9778060741121062564921306275042716802719690563904928683994299563976201039979<br/>'.
@@ -76,11 +77,11 @@ $lang = array(
 		'<br/>'.
 		'where c3= m^e3 mod n3<br/>'.
 		'<br/>'.
-		'You are lucky, because you have everything to decrypt the symmetric key (m):<br/>'.
-		'You got brain, you have access to all knowledge in the world (wikipedia),<br/>'.
-		'you got pencil and paper, and of course a "BNC" (Big Number Calculator).<br/>'.
-		'When you break the code in 1 hour, you can save the world, because the<br/>'.
-		'chinese will not attack you, if you have their secret weapon. So better<br/>'.
-		'hurry. The World needs YOU!',
+		'Sei fortunato, hai tutto quello che ti serve per decrittare la chiave simmetrica(m):<br/>'.
+		'Hai un cervello, hai accesso a tutta la conoscenza del mondo (wikipedia),<br/>'.
+		'hai una matita e della carta e, ovviamente, una BNC (Big Number Calculator).<br/>'.
+		'Se recupererai la chiave entro un ora, salverai il mondo, poichè i cinesi non<br/>'.
+		'attaccherano, se avrai le loro armi segrete. Per cui sbrigati!<br/>'.
+		'Il mondo ha bisogno di TE!',
 );
 ?>
