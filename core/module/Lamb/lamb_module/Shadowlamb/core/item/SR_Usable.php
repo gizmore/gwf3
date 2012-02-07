@@ -41,7 +41,7 @@ abstract class SR_Usable extends SR_Item
 		
 		if ($player->isFighting())
 		{
-			$player->getParty()->ntice('5229', array($player->getName(), $this->getName(), $target->getName(), $busymsg, $message2));
+			$player->getEnemyParty()->ntice('5229', array($player->getName(), $this->getName(), $target->getName(), $busymsg, $message2));
 // 			$player->getEnemyParty()->notice(sprintf('%s used %s on %s.%s', $player->getName(), $this->getName(), $target->getName(), $message2));
 		}
 

@@ -31,6 +31,7 @@ final class SR_Install
 		return
 			(true === self::createNPCLangFiles()) &&
 			(true === self::createQuestLangFiles()) &&
+			(true === self::createLocationLangFiles()) &&
 			(true === self::createItemLangFile()) &&
 			(true === self::createHelpLangFile());
 	}
@@ -169,6 +170,72 @@ final class SR_Install
 		return true;
 	}
 	
+	private static function createLocationLangFiles()
+	{
+		foreach (Shadowrun4::getCities() as $city)
+		{
+			$city instanceof SR_City;
+			foreach ($city->getLocations() as $location)
+			{
+				
+			}
+		}
+		$isos = Lamb::instance()->getISOCodes();
+		$empty = self::getEmptyLangFile();
+		
+		foreach (SR_Quest::getQuests() as $quest)
+		{
+			$quest instanceof SR_Quest;
+			$cl = $quest->getName();
+			$path = sprintf('%s/lang/quest/%s/%s', Shadowrun4::getShadowDir(), $quest->getCityName(), $cl);
+			if (false === GWF_File::createDir($path))
+			{
+				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+				return false;
+			}
+			
+			$e = "{$path}/{$cl}_en.php";
+			
+			if (Common::isFile($e))
+			{
+				# Have an english?
+				$content = file_get_contents($e);
+			}
+			else
+			{
+				# Write empty english.
+				if (false === GWF_File::writeFile($e, $empty))
+				{
+					echo GWF_HTML::err('ERR_WRITE_FILE', array($p));
+					return false;
+				}
+				continue;
+			}
+			
+			# English still empty?
+			if ($content === $empty)
+			{
+				continue;
+			}
+			
+// 			# Copy english content if file does not exist yet.
+// 			foreach ($isos as $iso)
+// 			{
+// 				$p = "{$path}/{$cl}_{$iso}.php";
+			
+// 				if (false === Common::isFile($p))
+// 				{
+// 					if (false === GWF_File::writeFile($p, $content))
+// 					{
+// 						echo GWF_HTML::err('ERR_WRITE_FILE', array($p));
+// 						return false;
+// 					}
+// 				}
+// 			}
+		}
+		
+		return true;
+	}
 	private static function createItemLangFile()
 	{
 		$langfile = Shadowlang::getItemfile();

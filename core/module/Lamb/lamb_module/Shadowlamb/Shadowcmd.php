@@ -439,7 +439,7 @@ class Shadowcmd
 			}
 			else
 			{
-				$player->rply($key);
+				$player->rply('1174');
 // 				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
 			}
 			return false;

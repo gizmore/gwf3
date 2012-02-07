@@ -901,7 +901,7 @@ final class Shadowfunc
 	{
 		$back = array();
 		
-		$minlevel = Common::clamp($level-8, 0);
+// 		$minlevel = Common::clamp($level-8, 0);
 		
 		$items = SR_Item::getAllItems();
 		$total = 0;
@@ -910,7 +910,7 @@ final class Shadowfunc
 		{
 			$item instanceof SR_Item;
 			$il = $item->getItemLevel();
-			if ( ($il > $level) || ($il < $minlevel) || (!$item->isItemLootable()) )
+			if ( ($il > $level) || ($il < 0) || (!$item->isItemLootable()) )
 			{
 				continue;
 			}

@@ -132,7 +132,7 @@ abstract class SR_City
 	#############
 	public function onArrive(SR_Party $party)
 	{
-		$party->notice($this->getArriveText());
+// 		$party->notice($this->getArriveText());
 		$this->onCityEnter($party);
 // 		if (false !== ($location = $party->getLocationClass('inside')))
 // 		{
@@ -146,6 +146,13 @@ abstract class SR_City
 		{
 			$location instanceof SR_Location;
 			$location->onCityEnter($party);
+		}
+		
+		foreach ($party->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$text = $this->getArriveText();
+			$member->msg('5257', array($text, $this->getName()));
 		}
 	}
 	
