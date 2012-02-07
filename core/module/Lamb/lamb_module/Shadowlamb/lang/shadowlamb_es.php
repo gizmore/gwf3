@@ -342,6 +342,7 @@ $lang = array(
 '1171' => 'Your character has been created already. You can type #reset to start over.',
 '1172' => 'Your race is unknown or an NPC only race. Valid races: %s.',
 '1173' => 'Your gender is unknown. Valid genders: %s.',
+'1174' => "The command is not available for your current action or location. Try {$c}c [<l|long>] to see all currently available commands.",
 
 ########################
 # 10000-14999 = Spells #
@@ -659,6 +660,7 @@ $lang = array(
 '5253' => 'You lost %s XP!',
 '5254' => 'You lost %s!', # nuyen
 '5255' => 'You lost %d of your %s.',
+'5256' => 'You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.',
 
 );
 ?>

@@ -418,6 +418,7 @@ class Shadowcmd
 		
 		if ($player->isOptionEnabled(SR_Player::DEAD))
 		{
+			$player->msg('5256');
 			$player->message('You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.');
 			return false;
 		}
@@ -438,7 +439,8 @@ class Shadowcmd
 			}
 			else
 			{
-				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
+				$player->rply($key);
+// 				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
 			}
 			return false;
 		}
