@@ -28,8 +28,10 @@ final class Shadowcmd_kick extends Shadowcmd
 		
 		$p->ntice('5137', array($target->getName()));
 // 		$p->notice(sprintf('%s has been kicked off the party.', $target->getName()));
-		if ($p->kickUser($target, true))
+		if ($p->kickUser($target, false))
 		{
+			$p->recomputeEnums();
+			$p->updateMembers();
 			$np = SR_Party::createParty();
 			$np->cloneAction($p);
 			$np->clonePreviousAction($p);
