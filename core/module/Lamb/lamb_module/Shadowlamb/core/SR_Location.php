@@ -48,6 +48,11 @@ abstract class SR_Location
 	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isExitAllowed($m))) return false; return true; }
 	public function getLeaderCommands(SR_Player $player) { $back = array(); if ($this->isExitAllowedParty($player->getParty())) $back = array('hunt','exit','goto','explore'); return $back; }
 	
+	public function lang(SR_Player $player, $key, $args=NULL)
+	{
+		return Shadowlang::langLocation($player, $key, $args);
+	}
+	
 	/**
 	 * We enter the location and are inside after we message the members.
 	 * @param SR_Player $player

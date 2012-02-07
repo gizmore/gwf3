@@ -3,7 +3,11 @@ final class Redmond_Blacksmith extends SR_Blacksmith
 {
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Redmond_BlackDwarf'); }
 	public function getFoundPercentage() { return 50.00; }
-	public function getFoundText(SR_Player $player) { return 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.'; }
+	public function getFoundText(SR_Player $player)
+	{
+// 		return $this->lang($player, 'found');
+		return 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.';
+	}
 	
 	public function getCommands(SR_Player $player)
 	{

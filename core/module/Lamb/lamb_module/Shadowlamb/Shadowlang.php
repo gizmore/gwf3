@@ -3,6 +3,7 @@ final class Shadowlang
 {
 	private static $LANG_NPC = array();
 	private static $LANG_QUEST = array();
+	private static $LANG_LOCATION = array();
 	private static $LANG_ITEM;
 	private static $LANG_HELP;
 	
@@ -14,11 +15,10 @@ final class Shadowlang
 		$dir = Shadowrun4::getShadowDir();
 		self::$LANG_NPC = array(); # flush caches too.
 		self::$LANG_QUEST = array();
+		self::$LANG_LOCATION = array();
 		self::$LANG_HELP = new GWF_LangTrans("{$dir}/lang/help/shadowhelp");
 		self::$LANG_ITEM = new GWF_LangTrans("{$dir}/lang/item/shadowitems");
 	}
-	
-	
 	
 	public static function langNPC(SR_NPC $npc, $key, $args=NULL)
 	{
@@ -60,6 +60,13 @@ final class Shadowlang
 			self::$LANG_QUEST[$cl] = new GWF_LangTrans($path);
 		}
 		return self::$LANG_QUEST[$cl];
+	}
+	
+	
+	
+	public static function langLocation()
+	{
+		
 	}
 }
 ?>
