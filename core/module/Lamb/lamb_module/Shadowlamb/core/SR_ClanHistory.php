@@ -40,7 +40,7 @@ final class SR_ClanHistory extends GDO
 	public function getAction() { return $this->getVar('sr4ch_action'); }
 	public function getIName() { return $this->getVar('sr4ch_iname'); }
 	public function getAmt() { return $this->getVar('sr4ch_amt'); }
-	public function getMessage() { return self::getHistMessage($this->getTime(), $this->getPName(), $this->getAction(), $this->getIName(), $this->getAmt()); }
+	public function getMessage(SR_Player $player) { return self::getHistMessage($player, $this->getTime(), $this->getPName(), $this->getAction(), $this->getIName(), $this->getAmt()); }
 	
 	/**
 	 * Get a row by ID.
@@ -61,7 +61,7 @@ final class SR_ClanHistory extends GDO
 	 * @param int $amt
 	 * @return string
 	 */
-	public static function getHistMessage($time, $pname, $action, $iname, $amt)
+	public static function getHistMessage(SR_Player $player, $time, $pname, $action, $iname, $amt)
 	{
 		$key = 'ch_'.$action;
 		switch ($action)
@@ -92,7 +92,7 @@ final class SR_ClanHistory extends GDO
 // 			case self::ADD_STORAGE: return sprintf('%s has purchased more storage room and the clan can now hold up to %s.', $pname, Shadowfunc::displayWeight($amt));
 			default: return 'ERR ACTION: '.$action;
 		}
-		return Shadowrun4::lang($key, $args);
+		return $player->lang($key, $args);
 	}
 	
 	public static function insertAndSend(SR_Clan $clan, SR_ClanHistory $event)
@@ -102,11 +102,10 @@ final class SR_ClanHistory extends GDO
 	
 	public static function sendEvent(SR_Clan $clan, SR_ClanHistory $event)
 	{
-		$message = $event->getMessage();
 		foreach ($clan->getOnlineMembers() as $member)
 		{
 			$member instanceof SR_Player;
-			$member->message($message);
+			$member->msg('5258', array($event->getMessage($member)));
 		}
 		return true;
 	}

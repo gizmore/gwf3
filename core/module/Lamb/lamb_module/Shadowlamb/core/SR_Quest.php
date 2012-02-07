@@ -11,6 +11,20 @@ class SR_Quest extends GDO
 	############
 	### Lang ###
 	############
+	public function displayQuestName(SR_Player $player)
+	{
+		return $this->lang($player, 'name');
+	}
+	
+	public function displayQuestDescription(SR_Player $player)
+	{
+		return $this->lang($player, 'description');
+	}
+	
+	public function lang(SR_Player $player, $key, $args=NULL)
+	{
+		return Shadowlang::langQuest($this, $player, $key, $args);
+	}
 	
 	####################
 	### Option flags ###
@@ -74,7 +88,7 @@ class SR_Quest extends GDO
 	public function displayQuest() { return sprintf('"%s": %s', $this->getQuestName(), $this->getQuestDescription()); }
 	public function getPlayer() { return Shadowrun4::getPlayerByPID($this->getPlayerID()); }
 	public function getPlayerID() { return $this->getVar('sr4qu_uid'); }
-
+	
 	# Citynames for sections
 	private $cityname = 'Unknown';
 	public function getCityName() { return $this->cityname; }

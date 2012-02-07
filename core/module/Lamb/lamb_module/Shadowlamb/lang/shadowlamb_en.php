@@ -668,7 +668,7 @@ $lang = array(
 '5255' => 'You lost %d of your %s.',
 '5256' => 'You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.',
 '5257' => '%s', # Arrive city message.
-'5258' => '',
+'5258' => '%s', # clan message
 '5259' => '',
 '5260' => '',
 );
