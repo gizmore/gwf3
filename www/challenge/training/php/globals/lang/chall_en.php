@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Training: Register Globals',
+	'title' => 'PHP - Register Globals',
 	'info' =>
 		'This challenge is a relict of old PHP times, where <a href="http://php.net/manual/en/security.globals.php">register globals</a> has been enabled by default, which often lead to security issues.<br/>'.
 		'Again, your job is to login as admin, and you are given the <a href="%1$s">sourcecode</a> as well as <a href="%2$s">highlighted version</a>.<br/>'.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Training: Baconian',
+	'title' => 'Kodierung - Baconian',
 	'info' =>
 		'In diesem Challenge musst Du eine versteckte Nachricht in einer anderen aufstöbern.<br/>'.
 		'Es ist bekannt das die Nachricht mittels <a href="http://en.wikipedia.org/wiki/Bacon%27s_cipher">Bacon cipher</a> versteckt ist.<br/>'.

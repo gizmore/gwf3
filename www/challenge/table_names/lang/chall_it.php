@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'mission_t' => 'la tua missione...',
+	'mission_t' => 'La tua missione...',
 	'mission_i' =>
 		'E\' di trovare il nome del database e delle tabelle utilizzare in questa sfida basata su SQL injection.<br/>'.
 		'Questa volta, non ti è dato il codice sorgente, quindi buona fortuna.<br/><br/>'.

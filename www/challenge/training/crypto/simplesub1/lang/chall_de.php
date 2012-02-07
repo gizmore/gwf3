@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto: Einfache Substitution I',
+	'title' => 'Crypto - Einfache Substitution I',
 	'info' =>
 		'Oje, ich wette du hast die zwei Caesar-Chiffren knacken können ...<br/>'.
 		'Dieses ist etwas schwerer. Obwohl eine einfache <a href="http://de.wikipedia.org/wiki/Substitution_%28Kryptographie%29">Substitution</a> einfach zu knacken ist...<br/>'.

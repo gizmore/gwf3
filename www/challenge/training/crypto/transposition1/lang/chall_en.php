@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Transposition I',
+	'title' => 'Crypto - Transposition I',
 	'info' =>
 		'It seems that the simple substitution ciphers are too easy for you.<br/>'.
 		'From my own experience I can tell that <a href="http://en.wikipedia.org/wiki/Transposition_cipher">transposition ciphers</a> are more difficult to attack.<br/>'.

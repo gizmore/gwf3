@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Kodierung: URL Kodierung',
+	'title' => 'Kodierung - URL Kodierung',
 
 	'info' =>
 		'Deine Aufgabe ist dieses zu dekodieren:<br/>'.PHP_EOL.

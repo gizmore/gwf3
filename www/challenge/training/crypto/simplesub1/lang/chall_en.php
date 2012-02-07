@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto: Simple Substitution I',
+	'title' => 'Crypto - Simple Substitution I',
 	'info' =>
 		'Oh dear, I guess you have cracked the two caesar cryptos...<br/>'.
 		'This one is more difficult. Although a <a href="http://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution">simple substitution</a> is easily cracked...<br/>'.

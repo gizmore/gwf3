@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Bacon Returns',
+	'title' => 'Encodings - Bacon Returns',
 	'info' =>
 		'Mr. <a href="%1$s">Bacon</a> is back and wants to challenge you again.<br/>'.
 		'This time it is way harder to decode. I have changed the encoder after researching the baconian chiffre on the interwebs.<br/>'.

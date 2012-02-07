@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Local File Inclusion',
+	'title' => 'PHP - Local File Inclusion',
 	'info' =>
 		'Sinun tehtäväsi on hyödyntää tätä koodia, joka on ilmeisesti <a href="http://en.wikipedia.org/wiki/Local_File_Inclusion">LFI heikkous</a>:<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.

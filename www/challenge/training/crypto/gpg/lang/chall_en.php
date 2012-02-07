@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto: GPG',
+	'title' => 'Crypto - GPG',
 	'info' =>
 		'In this challenge your goal is to setup gpg encryption for your emails.<br/>'.PHP_EOL.
 		'To do so, generate your keypairs locally and store your public key on wechall.<br/>'.PHP_EOL.

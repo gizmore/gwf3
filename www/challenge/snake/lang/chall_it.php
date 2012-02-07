@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'title' => 'Snake per Poveri',
+	'title' => 'Snake 4 Poors',
 	'info' =>
-		'la tua missione è di ottenere esattamente %1$s punti. Puoi <a href="%2$s">dare un occhiata alla tabella dei punteggi qui</a>.<br/>'.
+		'La tua missione è di ottenere esattamente %1$s punti. Puoi <a href="%2$s">dare un occhiata alla tabella dei punteggi qui</a>.<br/>'.
 		'<br/>'.
 		'<b>Istruzioni del gioco</b>:<br/>'.
 		'- Clicca sull\'applet per rendere le finestra attiva, poi premi P o F4.<br/>'.

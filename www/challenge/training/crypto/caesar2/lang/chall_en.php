@@ -10,6 +10,6 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!',
 	
-	'plaintext' => 'Good job, you solved one more challenge in your journey. This one was fairly easy to crack. Wasn\'t it? 255 keys is a quite small keyspace, so it shouldn\'t have taken you too long to decrypt this message. Well done, your solution is %1$s.',
+	'plaintext' => 'Good job, you solved one more challenge in your journey. This one was fairly easy to crack. Wasn\'t it? 128 keys is a quite small keyspace, so it shouldn\'t have taken you too long to decrypt this message. Well done, your solution is %1$s.',
 );
 ?>

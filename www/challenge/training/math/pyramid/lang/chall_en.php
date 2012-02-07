@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Training: Math Pyramid',
+	'title' => 'Math - Math Pyramid',
 	'info' =>
 		'This is the first release of a math challenge.<br/>'.
 		'You have to come up with the shortest solution (%1$s chars or less) for a geometric function.<br/>'.

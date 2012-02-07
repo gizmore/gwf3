@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Encodings: URL encode',
+	'title' => 'Encodings - URL encode',
 
 	'info' =>
 		'Your task is to decode the following:<br/>'.PHP_EOL.

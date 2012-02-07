@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'American Standard Code for Information Interchange',
+	'title' => 'Encodings - American Standard Code for Information Interchange',
 	'info' =>
 		'In a computer, you can only work with numbers.<br/>'.PHP_EOL.
 		'In this challenge you have to decode the following message, which is in <a href="http://en.wikipedia.org/wiki/ASCII">ASCII</a>.<br/>'.PHP_EOL.

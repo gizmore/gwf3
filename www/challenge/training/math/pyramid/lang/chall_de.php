@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Übung: Mathe Pyramide',
+	'title' => 'Mathe - Mathe Pyramide',
 	'info' =>
 		'Das ist das erste Mathematik Rätsel auf WeChall.<br/>'.
 		'You have to come up with the shortest solution (%1$s chars or less) for a geometric function.<br/>'.

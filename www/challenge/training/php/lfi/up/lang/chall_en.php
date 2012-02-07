@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Local File Inclusion',
+	'title' => 'PHP - Local File Inclusion',
 	'info' =>
 		'Your mission is to exploit this code, which has obviously an <a href="http://en.wikipedia.org/wiki/Local_File_Inclusion">LFI vulnerability</a>:<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
