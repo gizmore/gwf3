@@ -1282,12 +1282,12 @@ final class SR_Party extends GDO
 				$ep = $this->getEnemyParty();
 				$epm = $ep === false ? $player->lang('empty_party') : $ep->displayMembers();
 				return $player->lang('pa_talk', array(
-						$epm, $this->displayContactETA(), $this->displayLastAction()));
+						$epm, $this->displayContactETA(), $this->displayLastAction($player)));
 // 				return sprintf("{$b}talking{$b} to %s. %s remaining.%s", $epm, $this->displayContactETA(), $this->displayLastAction());
 			
 			case 'fight':
 				return $player->lang('pa_fight', array(
-					$this->getEnemyParty()->displayMembers(true), $this->displayLastAction()));
+					$this->getEnemyParty()->displayMembers(true), $this->displayLastAction($player)));
 // 				return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			
 			case 'inside':
@@ -1336,10 +1336,10 @@ final class SR_Party extends GDO
 		}
 	}
 	
-	public function displayLastAction()
+	public function displayLastAction(SR_Player $player)
 	{
 		$la = $this->getVar('sr4pa_last_action');
-		
+		$dla = $player->lang('pa_'.$la);
 		switch ($la)
 		{
 			case 'goto':
@@ -1348,7 +1348,7 @@ final class SR_Party extends GDO
 			case 'travel':
 				$lt = $this->getVar('sr4pa_last_target');
 				$le = $this->displayLastETA();
-				return $player->lang('last_action', array($la, $lt, $le));
+				return $player->lang('last_action', array($dla, $lt, $le));
 // 				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
 				
 			default:

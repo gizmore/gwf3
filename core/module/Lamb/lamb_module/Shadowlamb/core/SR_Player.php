@@ -721,7 +721,8 @@ class SR_Player extends GDO
 //		$location = $city->getRespawnLocation();
 		$new_party->pushAction(SR_Party::ACTION_INSIDE, $location);
 		$this->updateField('partyid', $new_party->getID());
-		$this->message(sprintf('You respawn at %s.', $location));
+		$this->msg('5252', array($location));
+// 		$this->message(sprintf('You respawn at %s.', $location));
 		$this->heal('hp', 20);
 		$this->heal('mp', 10);
 	}
@@ -2146,7 +2147,8 @@ class SR_Player extends GDO
 			
 			if ($announce)
 			{
-				$this->message(sprintf('You know a new %s: %s.', $txt[$field], $b.$knowledge.$b));
+				$this->msg('5250', array($this->lang('ks_'.$field), $knowledge, $field));
+// 				$this->message(sprintf('You know a new %s: %s.', $txt[$field], $b.$knowledge.$b));
 			}
 		}
 		return true;
@@ -2282,7 +2284,8 @@ class SR_Player extends GDO
 		
 		if ($karma > 0)
 		{
-			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", $this->getBase('karma'), $karma));
+			$this->msg('5251', array($this->getBase('karma'), $karma));
+// 			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", $this->getBase('karma'), $karma));
 		}
 		
 		if ( ($karma > 0) || ($level > 0) )
@@ -2307,7 +2310,8 @@ class SR_Player extends GDO
 		$this->alterField('xp', -$xp);
 		$this->alterField('xp_level', -$xp);
 		$this->alterField('xp_total', -$xp);
-		$this->message(sprintf('You lost %.02f XP!', $xp));
+		$this->msg('5253', array(round($xp, 2)));
+// 		$this->message(sprintf('You lost %.02f XP!', $xp));
 	}
 	
 	##############
@@ -2478,7 +2482,8 @@ class SR_Player extends GDO
 	public function getLootNuyen()
 	{
 		$back = round($this->getBase('nuyen') / 8, 2);
-		$this->message(sprintf('You lost %s!', Shadowfunc::displayNuyen($back)));
+		$this->msg('', array(Shadowfunc::displayNuyen($back)));
+// 		$this->message(sprintf('You lost %s!', Shadowfunc::displayNuyen($back)));
 		return $back;
 	}
 	
@@ -2541,7 +2546,8 @@ class SR_Player extends GDO
 			}
 			$this->removeFromInventory($item);
 			$killer->giveItems(array($item), 'killing '.$this->getName());
-			$this->message(sprintf('You lost your %s.', $item->getItemName()));
+			$this->msg('5255', array($item->getAmount(), $item->getItemName()));
+// 			$this->message(sprintf('You lost your %s.', $item->getItemName()));
 		}
 	}
 	

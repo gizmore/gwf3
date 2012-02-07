@@ -660,16 +660,11 @@ $lang = array(
 '5247' => 'Active players, page %d of %d: %s.',
 '5248' => 'Active parties, page %s of %s: %s.',
 '5249' => 'Message of the day: %s',
-'5250' => '',
-'5251' => '',
-'5252' => '',
-'5253' => '',
-'5254' => '',
-'5255' => '',
-'5256' => '',
-'5257' => '',
-'5258' => '',
-'5259' => '',
-'5260' => '',
+'5250' => 'You know a new %s: %s.', # knowledge, what, field
+'5251' => "You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.",
+'5252' => 'You respawn at %s.',
+'5253' => 'You lost %s XP!',
+'5254' => 'You lost %s!', # nuyen
+'5255' => 'You lost %d of your %s.',
 );
 ?>

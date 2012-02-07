@@ -41,7 +41,7 @@ abstract class SR_Equipment extends SR_Usable
 // 		$msg = '';
 		$busy = 0;
 		$type = $this->getItemType();
-// 		$combat = $player->isFighting();
+		$combat = $player->isFighting();
 		
 		# Unequip first
 		if ($player->hasEquipment($type))
