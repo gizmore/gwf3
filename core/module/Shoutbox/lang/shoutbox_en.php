@@ -51,6 +51,10 @@ $lang = array(
 		''.PHP_EOL.
 		'Regards'.PHP_EOL.
 		'The GWF3 script',
+	
+	#monnino fixes
+	'cfg_sb_guest_captcha' => 'Captcha for Guests',
+	'cfg_sb_member_captcha' => 'Captcha for Members',
 
 );
 ?>

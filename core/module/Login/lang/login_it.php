@@ -66,6 +66,10 @@ $lang = array(
 		PHP_EOL.
 		'Cordiali saluti,<br/>'.
 		'Il team di '.GWF_SITENAME,
+		
+		#monnino fixes
+		'cfg_send_alerts' => 'Invia avvertimenti',
+		
 );
 
 ?>

@@ -66,6 +66,9 @@ $lang = array(
 		PHP_EOL.
 		'Sincerly'.
 		'The '.GWF_SITENAME.' script',
+	
+	# monnino fixes
+	'cfg_send_alerts' => 'Send alerts',
 );
 
 ?>

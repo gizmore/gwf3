@@ -56,8 +56,8 @@ $lang = array(
 	'btn_remove' => 'RImuovi',
 
 	# Admin config
-	'cfg_anon_downld' => 'Permetti download ai utenti non registrati',
-	'cfg_anon_upload' => 'Permetti upload ai utenti non registrati',
+	'cfg_anon_downld' => 'Permetti download agli utenti non registrati',
+	'cfg_anon_upload' => 'Permetti upload agli utenti non registrati',
 	'cfg_user_upload' => 'Permtti upload agli utenti',
 	'cfg_dl_gvotes' => 'Permetti voti agli utenti non registrati',	
 	'cfg_dl_gcaptcha' => 'Captcha per upload degli utenti non registrati',	
@@ -79,7 +79,7 @@ $lang = array(
 	'err_dl_expire' => 'Il tempo per cui il download resterà attivo deve essere compreso tra 0 secondi and 5 anni.',
 	'th_dl_expire' => 'Il download scade dopo',
 	'tt_dl_expire' => 'La durata deve essere espressa come 5 secondi o 1 mese 3 giorni.',
-	'th_dl_guest_view' => 'Visibile ai utenti non registrati ?',
+	'th_dl_guest_view' => 'Visibile agli utenti non registrati ?',
 	'tt_dl_guest_view' => 'Gli utenti non registrati potranno vedere questo download?',
 	'th_dl_guest_down' => 'Scaricabile dagli utenti non registrati?',
 	'tt_dl_guest_down' => 'Gli utenti non registrati potranno scaricare questo file?',

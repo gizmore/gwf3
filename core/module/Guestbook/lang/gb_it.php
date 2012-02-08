@@ -65,7 +65,7 @@ $lang = array(
 	'btn_replyto' => 'Replica a %s',
 
 	# Admin Config
-	'cfg_gb_allow_email' => 'Permetti e mostra le E-Mail?',
+	'cfg_gb_allow_email' => 'Permetti e mostra indirizzi E-Mail?',
 	'cfg_gb_allow_url' => 'Permetti e mostra i siti Web?',
 	'cfg_gb_allow_guest' => 'Permetti voci da utenti non registrati?',
 	'cfg_gb_captcha' => 'Captcha per utenti non registrati?',

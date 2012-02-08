@@ -28,7 +28,7 @@ $lang = array(
 	'btn_shout' => 'Urla!',
 
 	# Admin config
-	'cfg_sb_guests' => 'Permetti i post degli utenti non registrati',	
+	'cfg_sb_guests' => 'Permetti i post agli utenti non registrati',	
 	'cfg_sb_ipp' => 'Elementi nella Cronologia',
 	'cfg_sb_ippbox' => 'Elementi per riga',
 	'cfg_sb_maxlen' => 'Lunghezza massima messaggio',
@@ -51,6 +51,10 @@ $lang = array(
 		''.PHP_EOL.
 		'Cordiali saluti'.PHP_EOL.
 		'Gli script di '.GWF_SITENAME,
-
+		
+	#monnino fixes
+	'cfg_sb_guest_captcha' => 'Captcha per Guest',
+	'cfg_sb_member_captcha' => 'Captcha per Membri',
+		
 );
 ?>

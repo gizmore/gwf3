@@ -202,5 +202,6 @@ $lang = array(
 	# monnino fixes
 	'cfg_hide_web_spiders' => 'Nascondi Webspider',
 	'cfg_install_webspiders' => 'Installa Webspider',
+	'btn_add' => 'Aggiungi gruppo'
 );
 ?>

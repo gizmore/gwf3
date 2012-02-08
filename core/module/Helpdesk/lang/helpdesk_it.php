@@ -157,6 +157,9 @@ $lang = array(
 		PHP_EOL.
 		'La preghiamo di impostare il messaggio come letto visitando il link sottostante:'.PHP_EOL.
 		'%s'.PHP_EOL,
-		
+	
+	# monnino fixes
+	'cfg_maxlen_message' => 'Lunghezza massima messaggio',
+	'cfg_maxlen_title' => 'Lunghezza massima titolo',
 );
 ?>

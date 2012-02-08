@@ -198,5 +198,10 @@ $lang = array(
 	'msg_edit_group' => 'The group has been edited.',
 	'msg_mod_del' => 'The module has been deleted from the database.',
 	'btn_delete' => 'Delete',
+		
+	#monnino fixes
+	'cfg_hide_web_spiders' => 'Hide Webspider',
+	'cfg_install_webspiders' => 'Install Webspider',
+	'btn_add' => 'Add group'
 );
 ?>

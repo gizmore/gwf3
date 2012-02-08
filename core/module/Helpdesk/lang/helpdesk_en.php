@@ -157,6 +157,9 @@ $lang = array(
 		PHP_EOL.
 		'Please mark the message as read by visiting this page:'.PHP_EOL.
 		'%s'.PHP_EOL,
-		
+	
+	# monnino fixes
+	'cfg_maxlen_message' => 'Message max length',
+	'cfg_maxlen_title' => 'Title max length',
 );
 ?>

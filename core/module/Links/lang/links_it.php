@@ -141,7 +141,7 @@ $lang = array(
 	# v2.02 (permitted)
 	'permtext_in_mod' => 'Il link è in moderazione',
 	'permtext_score' => 'E\' richiesto un livello utente di %s per vedere questo link',
-	'permtext_member' => 'Questo link è visualizzabile solo da utenti non registrati',
+	'permtext_member' => 'Questo link è visualizzabile solo da utenti registrati',
 	'permtext_group' => 'Deve essere nel gruppo %s per vedere questo link',
 	'cfg_show_permitted' => 'Mostra la ragione per cui sono proibiti certi link?',
 		

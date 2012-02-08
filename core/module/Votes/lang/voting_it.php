@@ -84,7 +84,17 @@ $lang = array(
 	# v3.00 (fixes)
 	'err_gid' => 'La preghiamo di selezionare un gruppo valido.',
 	'msg_voted_ajax' => 'Grazie per il suo voto.',
-
+		
+	#monnino fixes
+	'cfg_vote_guests' => 'Permetti voto agli utenti non registrati',
+	'cfg_vote_iconlimit' => 'Limite icone',
+	'cfg_vote_option_max' => 'Numero massimo di opzioni',
+	'cfg_vote_option_min' => 'Numero minimo di opzioni',
+	#'cfg_vote_poll_level' => 'Livello del sondaggio',
+	#'cfg_vote_title_max' => '',
+	#'cfg_vote_title_min' => '',
+	#'cfg_vote_poll_group' => 'Gruppo del sondaggio',
+	'cfg_vote_guests_timeout' => 'Timeout del voto per utenti non registrati',
 );
 
 ?>
