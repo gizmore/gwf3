@@ -115,7 +115,7 @@ $lang = array(
 	'err_no_spiders' => 'This profile can not be watched by web crawlers.',
 	
 	# monnino fixes
-	'cfg_prof_level_gb' => 'Minimum level to create a guestbook in profilo',
+	'cfg_prof_level_gb' => 'Minimum level to create a guestbook in the profile',
 		
 );
 
