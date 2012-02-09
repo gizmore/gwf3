@@ -113,6 +113,10 @@ $lang = array(
 	'th_hiderobot' => 'Hide from web crawlers?',
 	'tt_hiderobot' => 'Checkmark this if you don\'t want your profile get indexed by search engines.',
 	'err_no_spiders' => 'This profile can not be watched by web crawlers.',
+	
+	# monnino fixes
+	'cfg_prof_level_gb' => 'Minimum level to create a guestbook in profilo',
+		
 );
 
 ?>

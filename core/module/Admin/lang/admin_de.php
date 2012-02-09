@@ -159,7 +159,7 @@ $lang = array(
 	# Tooltips
 	'tt_int' => 'Ganzzahl zwischen %s und %s.',
 	'tt_text' => 'Zeichenkette mit der Länge %s bis %s.',
-	'tt_bool' => 'Boolescher Wert. Entweder 0 oder 1'.PHP_EOL.'Sie können auch YES,NO, ON,OFF verwenden.',
+	'tt_bool' => 'Boolescher Wert.',
 	'tt_script' => 'Skript Wert welcher ausschließlich vom Modul kontrolliert wird.',
 	'tt_time' => 'Dauer zwischen %s und %s.<br/>Sie können auch Zeichenketten wie 1 year oder 1d 3m angeben.',
 	'tt_float' => 'Fließkommazahl zwischen %s und %s.',

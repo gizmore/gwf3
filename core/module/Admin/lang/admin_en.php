@@ -161,7 +161,7 @@ $lang = array(
 	# Tooltips
 	'tt_int' => 'Integer value between %s and %s.',
 	'tt_text' => 'Text String with length %s to %s.',
-	'tt_bool' => 'Boolean value. Either 0 or 1.'."\n".'You can also use yes, no, on, off, etc.',
+	'tt_bool' => 'Boolean value.',
 	'tt_script' => 'Script Value which is controlled by the Module itself.',
 	'tt_time' => 'Duration between %s and %s.',
 	'tt_float' => 'Floating Point Number between %s and %s.',

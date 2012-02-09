@@ -90,11 +90,12 @@ $lang = array(
 	'cfg_vote_iconlimit' => 'Limite icone',
 	'cfg_vote_option_max' => 'Numero massimo di opzioni',
 	'cfg_vote_option_min' => 'Numero minimo di opzioni',
-	#'cfg_vote_poll_level' => 'Livello del sondaggio',
-	#'cfg_vote_title_max' => '',
-	#'cfg_vote_title_min' => '',
-	#'cfg_vote_poll_group' => 'Gruppo del sondaggio',
+	'cfg_vote_poll_level' => 'Livello minimo del sondaggio',
+	'cfg_vote_title_max' => 'Lunghezza massima titolo sondaggio',
+	'cfg_vote_title_min' => 'Lunghezza minima titolo sondaggio',
+	'cfg_vote_poll_group' => 'Gruppo del sondaggio',
 	'cfg_vote_guests_timeout' => 'Timeout del voto per utenti non registrati',
+	'ft_edit_vs' => 'Modifica punteggio voto',
 );
 
 ?>

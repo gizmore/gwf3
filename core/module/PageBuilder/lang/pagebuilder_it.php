@@ -27,7 +27,7 @@ $lang = array(
 	'th_show_trans' => 'Mostra traduzioni disponibili',
 	'th_show_comments' => 'Permetti commenti',
 	'th_home_page' => 'Imposta come HomePage di GWF',
-	'th_index' => 'permetti indicizzazione',
+	'th_index' => 'Permetti indicizzazione',
 	'th_follow' => 'Permetti seguito',
 	'th_in_sitemap' => 'Inserisci nella mappa del sito',
 

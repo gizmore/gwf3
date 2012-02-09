@@ -87,6 +87,13 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 	'err_mc_cheater' => 'The users MC has duplicates!',
 	'msg_new_demo' => 'The user %s got his/her demo records deleted. He/She has to download the demo again.',
 	
+	#monnino fixes
+	'err_no_mc_set' => 'The user does not have a machinecode set.',
+	'ft_new_demo' => 'Grant new demo',
+	'th_user_name' => 'Username',
+	'ft_flush_demo' => 'Flush all demo records',
+	'btn_new_demo' => 'Grant new Demo',
+	'btn_flush_demo' => 'Flush all Demos',
 );
 
 ?>

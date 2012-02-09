@@ -80,5 +80,12 @@ $lang = array(
 		PHP_EOL.
 		'Cordiali saluti,'.PHP_EOL.
 		'The Slaytagginsite',
+	
+	# config
+	'cfg_slay_time_off' => 'Ritardo da SlayRadioTime',
+	'btn_cleanup_ut' => 'Ripulisci canzoni senza Tag',
+	'btn_recalc_tags' => 'Ricalcola Tags',
+	'th_actions' => 'Azioni',
+		
 );
 ?>

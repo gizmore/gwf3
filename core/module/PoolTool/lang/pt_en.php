@@ -94,5 +94,8 @@ $lang = array(
 	'th_hour_a' => 'From Hour',
 	'th_hour_b' => 'To Hour',
 	'th_ips' => 'IPs',
+		
+	# monnino fixes
+	'cfg_ptmpw' => 'PoolTool Password',
 );
 ?>

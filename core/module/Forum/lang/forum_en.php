@@ -333,9 +333,10 @@ $lang = array(
 		
 	# monnino fixes
 	'btn_cleanup' => 'Clean up',
+	'btn_fix_counters' => 'Fix Counters',
 	'cfg_guest_captcha' => 'Guest Captcha?',
 	'cfg_gwf2_rewrites' => 'Use old gwf2 forum rewrite rules',
-		
+	
 );
 
 ?>

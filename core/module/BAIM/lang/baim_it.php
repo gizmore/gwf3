@@ -86,7 +86,14 @@ Ho scelto Playray in maniera casuale. Non conoscevo quel sito prima.',
 	'err_no_mc' => 'Questo utente non ha un MC impostato.',
 	'err_mc_cheater' => 'L\'MC dell\'utente ha duplicati!',
 	'msg_new_demo' => 'L\'utente %s ha avuto la sua documentazioen demo rimossa. Dovrà scaricare il demo nuovamente.',
-	
+		
+	#monnino fixes
+	'err_no_mc_set' => 'L\'utente non ha un machinecode settato.',
+	'ft_new_demo' => 'Concedi un nuovo demo',
+	'th_user_name' => 'Nome utente',
+	'ft_flush_demo' => 'Rimuovi tutti i dati sui Demo',
+	'btn_new_demo' => 'Concedi nuovo Demo',
+	'btn_flush_demo' => 'Rimuovi tutti i Demo',	
 );
 
 ?>

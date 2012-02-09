@@ -80,5 +80,11 @@ $lang = array(
 		PHP_EOL.
 		'Sincerly'.PHP_EOL.
 		'The Slaytagginsite',
+		
+	# config
+	'cfg_slay_time_off' => 'Time offset to SlayRadioTime',
+	'btn_cleanup_ut' => 'Cleanup untagged',
+	'btn_recalc_tags' => 'Recalculate Tags',
+	'th_actions' => 'Actions',
 );
 ?>

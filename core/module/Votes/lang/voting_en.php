@@ -90,12 +90,12 @@ $lang = array(
 	'cfg_vote_iconlimit' => 'Icon limit',
 	'cfg_vote_option_max' => 'Max option number',
 	'cfg_vote_option_min' => 'Min option number',
-	'cfg_vote_poll_level' => 'Poll level',
+	'cfg_vote_poll_level' => 'Poll required level',
 	'cfg_vote_title_max' => 'Max title length',
 	'cfg_vote_title_min' => 'Min title length',
-	'cfg_vote_poll_group' => 'Poll group',
+	'cfg_vote_poll_group' => 'Poll required group',
 	'cfg_vote_guests_timeout' => 'Guests timeout',
-		
+	'ft_edit_vs' => 'Edit votescore',
 );
 
 ?>

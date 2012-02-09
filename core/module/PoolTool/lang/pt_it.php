@@ -94,5 +94,8 @@ $lang = array(
 	'th_hour_a' => 'Dall\'ora',
 	'th_hour_b' => 'All\'ora',
 	'th_ips' => 'IPs ',
+	
+	# monnino fixes
+	'cfg_ptmpw' => 'Password PoolTool',
 );
 ?>

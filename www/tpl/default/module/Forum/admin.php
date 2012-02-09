@@ -1,6 +1,6 @@
 <?php
 echo '<div class="gwf_buttons">'.PHP_EOL;
-echo GWF_Button::generic($tLang->lang('Fix Counters'), $tVars['href_fix_counters']);
+echo GWF_Button::generic($tLang->lang('btn_fix_counters'), $tVars['href_fix_counters']);
 echo GWF_Button::generic($tLang->lang('btn_cleanup'), $tVars['href_cleanup']);
 echo '</div>'.PHP_EOL;
 

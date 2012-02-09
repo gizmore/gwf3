@@ -24,7 +24,7 @@ final class Slaytags_Admin extends GWF_Method
 	{
 		$form_actions = $this->formActions();
 		$tVars = array(
-			'form_actions' => $form_actions->templateY('Actions'),
+			'form_actions' => $form_actions->templateY($this->_module->lang('th_actions')),
 		);
 		return $this->_module->template('admin.tpl', $tVars);
 	}
@@ -32,8 +32,8 @@ final class Slaytags_Admin extends GWF_Method
 	private function formActions()
 	{
 		$data = array(
-			'recalc' => array(GWF_Form::SUBMIT, 'RecalcTags'),
-			'cleanup_ut' => array(GWF_Form::SUBMIT, 'CleanupUntagged'),
+			'recalc' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_recalc_tags')),
+			'cleanup_ut' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_cleanup_ut')),
 		);
 		return new GWF_Form($this, $data);
 	}

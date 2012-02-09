@@ -161,9 +161,9 @@ $lang = array(
 	# Tooltips
 	'tt_int' => 'Valore intero compreso tra %s e %s.',
 	'tt_text' => 'Testo con lunghezza compresa tra %s e %s caratteri.',
-	'tt_bool' => 'Valore booleano. \'1\' oppure \'0\'.'."\n".'You can also use yes, no, on, off, etc.',
+	'tt_bool' => 'Valore booleano.',
 	'tt_script' => 'Valore script controllato autonomamente dal modulo.',
-	'tt_time' => 'Durata compresa  tra %s e %s.',
+	'tt_time' => 'Durata compresa tra %s e %s.',
 	'tt_float' => 'Numero reale compreso tra %s e %s.',
 
 	#v2.01 (Add Group)
