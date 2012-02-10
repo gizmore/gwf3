@@ -204,11 +204,35 @@ final class GWF_Debug
 
 	public static function exception_handler($e)
 	{
-		$e instanceof Exception;
-		return false;
+		try
+		{
+			$mail = self::$MAIL_ON_ERROR;
+			$log = true;
 
-		# TODO: die?
-		# Log, eMail, etc.
+			if ($e instanceof GWF_Exception)
+			{
+				$mail = $mail && (GWF_Exception::MAIL !== $e->getCode());
+				$log = $log && (GWF_Exception::LOG !== $e->getCode());
+			}
+
+			# TODO: formatting for log, email, html
+
+			# Send error to admin?
+			if ($mail)
+			{
+				self::sendDebugMail($e->getMessage().PHP_EOL.$e->getTrace(), false));
+			}
+
+			# Log it?
+			if ($log)
+			{
+				GWF_Log::logCritical($e->getMessage());
+			}
+			
+		}
+		catch (Exception $null) { unset($null); }
+
+		# TODO: die / return ?
 	}
 
 	public static function disableExceptionHandler()

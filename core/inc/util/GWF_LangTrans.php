@@ -54,7 +54,7 @@ final class GWF_LangTrans
 	public function langA($var, $key, $args=NULL)
 	{
 		$back = $this->lang($var);
-		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $back.'['.$key.']';
+		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $back.'['.$key.']: '.htmlspecialchars(implode(',', $args)); # TODO: htmlspecialchars could break something
 	}
 	
 	
