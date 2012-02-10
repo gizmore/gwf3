@@ -19,14 +19,18 @@ class Spell_teleport extends SR_Spell
 	
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
-		if ($this->isBrewMode())
+		echo "Casting teleport with ... ".implode(',', $args)." L$wanted_level\ņ";
+		
+		if (true === $this->isBrewMode())
 		{
 			return $this->onBrew($player, 30, 2, 5);
 		}
 		
+		echo "Casting teleport with ... ".implode(',', $args)." L$wanted_level\ņ";
+		
 		$p = $player->getParty();
 		
-		if (!$p->isIdle())
+		if (false === $p->isIdle())
 		{
 			$player->msg('1033');
 // 			$player->message('This spell only works when your party is idle.');
@@ -89,7 +93,7 @@ class Spell_teleport extends SR_Spell
 			return false;
 		}
 
-		$level = $this->getLevel($player);
+		$level = $this->getLevel($this->getCaster());
 		
 		$mc = $p->getMemberCount();
 		$need_level = $mc / 2;

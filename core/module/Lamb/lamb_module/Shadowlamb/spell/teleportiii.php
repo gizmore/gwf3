@@ -104,7 +104,7 @@ class Spell_teleportiii extends Spell_teleportii
 			return false;
 		}
 		
-		$level = $this->getLevel($player);
+		$level = $this->getLevel($this->getCaster());
 		
 		$mc = $p->getMemberCount();
 		$need_level = $mc / 2;

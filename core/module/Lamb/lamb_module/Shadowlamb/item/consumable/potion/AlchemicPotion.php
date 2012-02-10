@@ -38,7 +38,7 @@ final class Item_AlchemicPotion extends SR_Usable
 
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		if (!$this->onUsePotion($player, $args))
+		if (false === $this->onUsePotion($player, $args))
 		{
 			return false;
 		}
@@ -62,6 +62,8 @@ final class Item_AlchemicPotion extends SR_Usable
 	
 	public function onUsePotion(SR_Player $player, array $args)
 	{
+		echo "Using potion".implode(',', $args).PHP_EOL;
+		
 		$mods = $this->getItemModifiersB();
 		$spellname = key($mods);
 		$level = array_shift($mods);
@@ -84,28 +86,35 @@ final class Item_AlchemicPotion extends SR_Usable
 		}
 		
 		$spell->setMode(SR_Spell::MODE_POTION);
-		if (false === ($target = $spell->getTarget($player, $args)))
+		if (false !== ($target = $spell->getTarget($player, $args, false)))
 		{
-			$player->message('Unknown target.');
-			return false;
+			if ( (false === $spell->isOffensive()) && ($target->getID() != $player->getID()) )
+			{
+				$player->message('You cannot inject potions into other peoples mouth\'.');
+				return false;
+			}
 		}
 		
-		if ( (!$spell->isOffensive()) && ($target->getID() !== $player->getID()) )
-		{
-			$player->message('You cannot inject potions into other peoples mouth\'.');
-			return false;
-		}
+		
+		echo "Using potion 2222 ".implode(',', $args).PHP_EOL;
 		
 		# Dummy player
+		$mods['magic'] = false === isset($mods['magic']) ? $player->getBase('magic') : $mods['magic'];
+		$mods['intelligence'] = false === isset($mods['intelligence']) ? $player->getBase('intelligence') : $mods['intelligence'];
+		$mods['wisdom'] = false === isset($mods['wisdom']) ? $player->getBase('wisdom') : $mods['wisdom'];
+		
 		$dummy = new SR_Player(SR_Player::getPlayerData(0));
 		$dummy->setVar('sr4pl_magic', $mods['magic']);
 		$dummy->setVar('sr4pl_intelligence', $mods['intelligence']);
 		$dummy->setVar('sr4pl_wisdom', $mods['wisdom']);
+		$dummy->setSpellData(array($spellname=>$level));
 		$dummy->modify();
+		$spell->setCaster($dummy);
 		
-		$hits = $spell->dice($dummy, $target, $level);
-		
-		return $spell->cast($player, $target, $level, $hits, $dummy);
+// 		$hits = $spell->dice($dummy, $target, $level);
+		$spell->setMode(SR_Spell::MODE_SPELL);
+		return $spell->onCast($player, $args, $level);
+// 		return $spell->cast($player, $target, $level, $hits, $dummy);
 	}
 }
 ?>

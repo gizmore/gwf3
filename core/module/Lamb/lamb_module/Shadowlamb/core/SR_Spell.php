@@ -18,11 +18,13 @@ abstract class SR_Spell
 	public abstract function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player);
 	
 	const MODE_SPELL = 0;
-	const MODE_POTION = 1; 
+	const MODE_POTION = 1;
+	const MODE_BREW = 2;
 	private $mode = self::MODE_SPELL;
 	public function setMode($mode) { $this->mode = $mode; }
 	public function isCastMode() { return $this->mode === self::MODE_SPELL; }
-	public function isBrewMode() { return $this->mode === self::MODE_POTION; }
+	public function isBrewMode() { return $this->mode === self::MODE_BREW; }
+	public function isPotionMode() { return $this->mode === self::MODE_POTION; }
 	
 	##############
 	### Loader ###
@@ -63,7 +65,7 @@ abstract class SR_Spell
 	 * @param array $args
 	 * @return SR_Player
 	 */
-	public function getTarget(SR_Player $player, array $args)
+	public function getTarget(SR_Player $player, array $args, $verbose=true)
 	{
 		if ($this->isOffensive())
 		{
@@ -76,7 +78,10 @@ abstract class SR_Spell
 		
 		if ($target === false)
 		{
-			$player->msg('1012');
+			if (true === $verbose)
+			{
+				$player->msg('1012');
+			}
 // 			$player->message('The target is unknown');
 		}
 		
@@ -137,7 +142,7 @@ abstract class SR_Spell
 	{
 		if ($this->isOffensive())
 		{
-			if ($this->mode === self::MODE_POTION)
+			if ($this->mode === self::MODE_BREW)
 			{
 			}
 			elseif (!$player->isFighting())
@@ -162,7 +167,7 @@ abstract class SR_Spell
 			}
 		}
 		
-		if ($this->mode === self::MODE_POTION)
+		if ($this->mode === self::MODE_BREW)
 		{
 			# Dummy player
 			$dummy = new SR_Player(SR_Player::getPlayerData(0));
@@ -174,9 +179,9 @@ abstract class SR_Spell
 			return false;
 		}
 		
-		$level = $this->getLevel($player);
+		$level = $this->getLevel($this->getCaster());
 		
-		if ($this->mode === self::MODE_POTION)
+		if ($this->mode === self::MODE_BREW)
 		{
 			$level = $wanted_level;
 		}
@@ -201,7 +206,7 @@ abstract class SR_Spell
 			}
 		}
 		
-		$mp_faktor = $this->mode === self::MODE_POTION ? 1.5 : 1.0;
+		$mp_faktor = $this->mode === self::MODE_BREW ? 1.5 : 1.0;
 		
 		$need = round($this->getManaCost($player, $level)*$mp_faktor, 1);
 		$need = Common::clamp($need, 1, 1000000);
@@ -214,7 +219,7 @@ abstract class SR_Spell
 			return false;
 		}
 		
-		$hits = $this->dice($player, $target, $level);
+		$hits = $this->dice($this->getCaster(), $target, $level);
 		
 		$busy = '';
 		if ($player->isFighting())
@@ -231,9 +236,12 @@ abstract class SR_Spell
 			return false;
 		}
 		
-		$player->healMP(-$need);
+		if (false === $this->isPotionMode())
+		{
+			$player->healMP(-$need);
+		}		
 		
-		if ($this->mode === self::MODE_POTION)
+		if ($this->mode === self::MODE_BREW)
 		{
 			return true;
 		}

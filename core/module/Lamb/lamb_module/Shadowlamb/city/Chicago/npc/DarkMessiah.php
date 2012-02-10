@@ -1,8 +1,8 @@
 <?php
-final class Chicago_DarkPriest extends SR_NPC
+final class Chicago_DarkMessiah extends SR_NPC
 {
-	public function getNPCLevel() { return 21; }
-	public function getNPCPlayerName() { return 'DarkPriest'; }
+	public function getNPCLevel() { return 25; }
+	public function getNPCPlayerName() { return 'DarkMessiah'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
 	public function getNPCEquipment()
 	{
@@ -25,7 +25,7 @@ final class Chicago_DarkPriest extends SR_NPC
 			'gender' => 'male',
 			'magic' => '5',
 			'melee' => '4',
-			'intelligence' => '4',
+			'intelligence' => '5',
 			'strength' => rand(2, 4),
 			'quickness' => rand(3, 5),
 			'distance' => rand(8, 14),
@@ -41,27 +41,8 @@ final class Chicago_DarkPriest extends SR_NPC
 	public function getNPCSpells()
 	{
 		return array(
-			'firebolt' => 3,
-			'freeze' => 3,
+			'fireball' => 4,
 		);
 	}
-	
-// 	public function getNPCLoot(SR_Player $player)
-// 	{
-// 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
-// 		return array();
-// 	}
-	
-//	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Seattle_GJohnson1');
-//		if ($quest->isInQuest($player))
-//		{
-//			$quest->increase('sr4qu_amount', 1);
-//			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
-//		}
-//		return array();
-//	}
 }
 ?>

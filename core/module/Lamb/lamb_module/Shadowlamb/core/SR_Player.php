@@ -1072,8 +1072,17 @@ class SR_Player extends GDO
 		{
 			$s .= sprintf(',%s:%s', $name, $level);
 		}
-		
 		return $this->saveVar('sr4pl_known_spells', $s.',');
+	}
+	
+	public function setSpellData(array $data)
+	{
+		$s = '';
+		foreach ($data as $name => $level)
+		{
+			$s .= sprintf(',%s:%s', $name, $level);
+		}
+		return $this->setVar('sr4pl_known_spells', $s.',');
 	}
 	
 	public function getSpellBaseLevel($spellname)
