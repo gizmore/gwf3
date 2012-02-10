@@ -19,6 +19,6 @@ final class Renraku02_Room4 extends SR_SearchRoom
 	public function getComputers() { return array('Renraku02_Box4'); }
 	public function getLockLevel() { return 0.9; }
 	public function getEnterText(SR_Player $player) { return 'You enter the room labelled 0204. On a desk you see a computer with a screensaver.'; }
-	public function getFoundText(SR_Player $player) { return 'You found a room labelled "0202". It seems locked.'; }
+	public function getFoundText(SR_Player $player) { return 'You found a room labelled "0204". It seems locked.'; }
 }
 ?>

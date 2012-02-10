@@ -10,6 +10,7 @@ final class PC_Renraku03_Box7 extends SR_Computer
 		$quest = SR_Quest::getQuest($player, 'Delaware_DallasJ4');
 		$quest instanceof Quest_Delaware_DallasJ4;
 		$quest->onGetFile($player);
+		$player->message('You find a file: "results2.dbm"');
 		$player->message('You get the file and store it on your headcomputer.');
 		
 	}

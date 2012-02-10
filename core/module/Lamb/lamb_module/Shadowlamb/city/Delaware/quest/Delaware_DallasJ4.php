@@ -2,7 +2,7 @@
 final class Quest_Delaware_DallasJ4 extends SR_Quest
 {
 	public function getQuestName() { return 'Disquette'; }
-	public function getQuestDescription() { return sprintf('Steal the file "results2.dbm" from the Renraku office in Seattle.'); }
+	public function getQuestDescription() { return sprintf('Steal the file "results2.dbm" from the Renraku office in Seattle and bring it to Mr.Johnson in the Delaware_Dallas.'); }
 	public function getRewardXP() { return 2; }
 	public function getRewardNuyen() { return 1000; }
 	public function getNeededAmount() { return 1; }
@@ -19,7 +19,7 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply("Please bring use the data.");
+			return $npc->reply("Please bring us the data.");
 		}
 	}
 	
