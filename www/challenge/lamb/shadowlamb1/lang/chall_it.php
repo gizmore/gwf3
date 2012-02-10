@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Shadowlamb - Capitolo I',
 	'info' => 
-		'Ugah fatto gioco. Tu gioca gioco. Tu #use ScrollOfWisdom. Tu <a href="%1$s">giochi su IRC</a>. Gioco in inglese.',
+		'Ugah fatto gioco. Tu gioca gioco. Tu #use PergamenaDellaConoscenza. Tu <a href="%1$s">giochi su IRC</a>. Gioco in inglese.',
 
 	'client_it' => 'Come giocare',
 	'client_info' =>
