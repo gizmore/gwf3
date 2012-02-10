@@ -28,12 +28,13 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
-		return
-			(true === self::createNPCLangFiles()) &&
-			(true === self::createQuestLangFiles()) &&
-			(true === self::createLocationLangFiles()) &&
-			(true === self::createItemLangFile()) &&
-			(true === self::createHelpLangFile());
+		return true;
+// 		return
+// 			(true === self::createNPCLangFiles()) &&
+// 			(true === self::createQuestLangFiles()) &&
+// 			(true === self::createLocationLangFiles()) &&
+// 			(true === self::createItemLangFile()) &&
+// 			(true === self::createHelpLangFile());
 	}
 	
 	
@@ -48,10 +49,11 @@ final class SR_Install
 				continue;
 			}
 			
-			$path = sprintf('%s/lang/npc/%s', Shadowrun4::getShadowDir(), $city->getName());
-			if (false === GWF_File::createDir($path))
+			# NPC langdir for city
+			$dir = sprintf('%scity/%s/lang/npc', Shadowrun4::getShadowDir(), $city->getName());
+			if (false === GWF_File::createDir($dir))
 			{
-				echo GWF_HTML::err('ERR_WRITE_FILE', array($path));
+				echo GWF_HTML::err('ERR_WRITE_FILE', array($dir));
 				return false;
 			}
 			
@@ -72,14 +74,14 @@ final class SR_Install
 	private static function createNPCLangFile(SR_City $city, SR_NPC $npc)
 	{
 		$cl = $npc->getNPCClassName();
-		$path = sprintf('%s/lang/npc/%s/%s', Shadowrun4::getShadowDir(), $city->getName(), $cl);
-		if (false === GWF_File::createDir($path))
+		$dir = sprintf('%scity/%s/lang/npc/%s', Shadowrun4::getShadowDir(), $city->getName(), $cl);
+		if (false === GWF_File::createDir($dir))
 		{
-			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			echo GWF_HTML::err('ERR_WRITE_FILE', array($dir));
 			return false;
 		}
 			
-		$en = "{$path}/{$cl}_en.php";
+		$en = "{$dir}/{$cl}_en.php";
 			
 		if (true === Common::isFile($en))
 		{
@@ -98,7 +100,7 @@ final class SR_Install
 		# Copy english to translations.
 		foreach (Lamb::instance()->getISOCodes() as $iso)
 		{
-			$p = "{$path}/{$cl}_{$iso}.php";
+			$p = "{$dir}/{$cl}_{$iso}.php";
 			
 			if (false === Common::isFile($p))
 			{
@@ -120,14 +122,14 @@ final class SR_Install
 		{
 			$quest instanceof SR_Quest;
 			$cl = $quest->getName();
-			$path = sprintf('%s/lang/quest/%s/%s', Shadowrun4::getShadowDir(), $quest->getCityName(), $cl);
-			if (false === GWF_File::createDir($path))
+			$dir = sprintf('%scity/%s/lang/quest/%s', Shadowrun4::getShadowDir(), $quest->getCityName(), $cl);
+			if (false === GWF_File::createDir($dir))
 			{
 				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				return false;
 			}
 			
-			$e = "{$path}/{$cl}_en.php";
+			$e = "{$dir}/{$cl}_en.php";
 			
 			if (Common::isFile($e))
 			{

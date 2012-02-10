@@ -15,7 +15,7 @@ final class Spell_rabbit extends SR_SupportSpell
 	{
 		$this->announceADV($player, $target, $level);
 		
-		if ($hits > $this->getManaCost())
+		if ($hits > $this->getManaCost($player, $level))
 		{
 			foreach ($player->getParty()->getMembers() as $member)
 			{

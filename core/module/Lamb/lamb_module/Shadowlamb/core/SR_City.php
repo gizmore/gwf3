@@ -5,7 +5,7 @@ abstract class SR_City
 	private $npcs = array();
 	private $locations = array();
 	
-	public abstract function getArriveText();
+	public abstract function getArriveText(SR_Player $player);
 	public abstract function getMinLevel();
 	
 	public function __construct($name) { $this->name = $name; }
@@ -22,6 +22,24 @@ abstract class SR_City
 	public function getExploreTime() { return $this->getSquareKM() * 45; }
 	public function getExploreETA(SR_Party $party) { return $this->calcETA($party, $this->getExploreTime()); }
 	public function getAreaSize() { return 99999.9; }
+	
+	############
+	### Lang ###
+	############
+	/**
+	 * @var GWF_LangTrans
+	 */
+	private $lang = NULL;
+	public function onLoadLanguage()
+	{
+		$cityname = $this->getName();
+		$path = sprintf('%scity/%s/lang/%s', Shadowrun4::getShadowDir(), $cityname, strtolower($cityname));
+		return $this->lang = new GWF_LangTrans($path);
+	}
+	public function lang(SR_Player $player, $key, $args=NULL)
+	{
+		return $this->lang->langISO($player->getLangISO(), $key, $args);
+	}
 	
 	private function calcETA(SR_Party $party, $eta=60, $tpq=1.0, $mintime=5, $randtime=10)
 	{
@@ -151,7 +169,7 @@ abstract class SR_City
 		foreach ($party->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
-			$text = $this->getArriveText();
+			$text = $this->getArriveText($member);
 			$member->msg('5257', array($text, $this->getName()));
 		}
 	}

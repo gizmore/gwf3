@@ -2,7 +2,7 @@
 final class Redmond extends SR_City
 {
 	const TIME_TO_SEATTLE = 300;
-	public function getArriveText() { return 'You arrive at Redmond. Home sweet home.'; }
+	public function getArriveText(SR_Player $player) { return 'You arrive at Redmond. Home sweet home.'; }
 	public function getSquareKM() { return 6; }
 //	public function getExploreTime() { return 180; }
 	public function getMinLevel() { return 0; }

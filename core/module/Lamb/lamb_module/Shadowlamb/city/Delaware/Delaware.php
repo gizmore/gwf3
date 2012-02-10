@@ -12,7 +12,7 @@ final class Delaware extends SR_City
 				'Prison_GrayOp',
 			);
 	}
-	public function getArriveText() { return 'You arrive in Delaware. Meanwhile it\'s known for it\'s automobile industry.'; }
+	public function getArriveText(SR_Player $player) { return 'You arrive in Delaware. Meanwhile it\'s known for it\'s automobile industry.'; }
 	public function getSquareKM() { return 12; }
 	public function getMinLevel() { return 15; }
 	public function onEvents(SR_Party $party)

@@ -63,10 +63,10 @@ $lang = array(
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'un grupo vacío',
-'last_action' => ' Ultima acción: %s %s. %s.', # last action, last target, last durcation
+// 'last_action' => ' Ultima acción: %s %s. %s.', # last action, last target, last durcation
 'pa_delete' => "{$b}siendo borrado{$b}.",
-'pa_talk' => "{$b}hablando{$b} a %s. %s queda.%s", # enemy party, duration, last action
-'pa_fight' => "{$b}luchando{$b} contra %s.%s", # enemy party last action.
+'pa_talk' => "{$b}hablando{$b} a %s. %s queda. Ultima acción: %s", # enemy party, duration, last action
+'pa_fight' => "{$b}luchando{$b} contra %s. Ultima acción: %s", # enemy party last action.
 'pa_inside' => "{$b}dentro de{$b} %s.", # location
 'pa_outside1' => "{$b}fuera{$b} of %s.", # location
 'pa_outside2' => "en algún lugar dentro de %s.", # location

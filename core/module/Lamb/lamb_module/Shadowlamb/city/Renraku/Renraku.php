@@ -2,7 +2,7 @@
 final class Renraku extends SR_Dungeon
 {
 	public function getCityLocation() { return 'Seattle_Renraku'; }
-	public function getArriveText() { return 'You enter the Renraku office. "Stay calm", you think by yourself.'; }
+	public function getArriveText(SR_Player $player) { return 'You enter the Renraku office. "Stay calm", you think by yourself.'; }
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 	

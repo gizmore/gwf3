@@ -11,7 +11,7 @@ class Item_Backpack extends Item_Pockets
 	public function getMountLockLevel() { return 0; }
 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.95; }
 
-	public function getItemModifiersA(SR_Player $player)
+	public function getItemModifiers(SR_Player $player)
 	{
 		return array(
 			'max_weight' => self::BACKPACK_WEIGHT,

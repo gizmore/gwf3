@@ -265,7 +265,7 @@ class SR_Player extends GDO
 		return 'en';
 	}
 	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
-	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
+// 	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
 	public function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args); }
 	############
 	### Enum ###

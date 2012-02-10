@@ -8,7 +8,8 @@ final class Vegas extends SR_City
 		return array();
 	}
 		
-	public function getArriveText() { return 'You arrive at Seattle. It is a big city with a bunch of slums and a big commercial centrum.'; }
+	public function getArriveText(SR_Player $player) { return $this->lang($player, 'arrive'); }
+	
 	public function getSquareKM() { return 14; }
 	public function getMinLevel() { return 26; }
 	

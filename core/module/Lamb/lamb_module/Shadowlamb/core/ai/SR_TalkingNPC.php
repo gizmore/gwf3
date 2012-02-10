@@ -11,12 +11,31 @@ abstract class SR_TalkingNPC extends SR_NPC
 	public function isNPCFriendly(SR_Party $party) { return true; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
+	############
+	### Lang ###
+	############
+	public function langNPC($player, $key, $args=NULL)
+	{
+		return Shadowlang::langNPC($this, $player, $key, $args);
+	}
+	
 	################
 	### NPC Talk ###
 	################
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
-		return $this->reply('I am not implemented yet. If you want you can implement me :)');
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
+		
+		echo __METHOD__;
+		$key = 'word_'.$word;
+		if ($key === ($text = $this->langNPC($player, $key)))
+		{
+			return $this->reply($this->langNPC($player, 'word_default'));
+		}
+		return $this->reply($text);
 	}
 	
 	public function reply($message)
@@ -35,6 +54,8 @@ abstract class SR_TalkingNPC extends SR_NPC
 		}
 		return true;
 	}
+	
+// 	public function rply($key)
 	
 	public function bye()
 	{

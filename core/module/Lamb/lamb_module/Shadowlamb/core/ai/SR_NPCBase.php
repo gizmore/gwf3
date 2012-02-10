@@ -33,6 +33,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function isCreated() { return true; }
 	public function getLootNuyen() { return $this->getBase('nuyen'); }
 	public function getUser() { return NULL; }
+	public function getLangISO() { return 'en'; }
 	
 	/**
 	 * NPC messages are queued to a player on remote commands.

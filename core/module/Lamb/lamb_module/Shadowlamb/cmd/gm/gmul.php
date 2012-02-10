@@ -57,13 +57,15 @@ final class Shadowcmd_gmul extends Shadowcmd
 		# Apply
 		if ($is_spell === true)
 		{
-			$player->levelupSpell($field, -1);
+			$target->levelupSpell($field, -1);
 		}
 		else
 		{
-			$player->increaseField($field, -1);
+			$target->increaseField($field, -1);
 		}
-		$player->increaseField('karma', $karma_back);
+		$target->increaseField('karma', $karma_back);
+		
+		$target->modify();
 		
 		# Announce
 		return self::reply($player, sprintf('%s reverted %s back to level %s and got %s karma back.', $target->getName(), $field, $have_level-1, $karma_back));

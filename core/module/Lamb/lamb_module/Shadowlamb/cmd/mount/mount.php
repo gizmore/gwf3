@@ -99,7 +99,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		# Is mount in mount?
 		if ($item instanceof SR_Mount)
 		{
-			self::rply($player, '1039');
+			self::rply($player, '1039', array($mount->getName()));
 // 			$bot->reply(sprintf('You cannot put mounts in your %s.', $mount->getName()));
 			return false;
 		}

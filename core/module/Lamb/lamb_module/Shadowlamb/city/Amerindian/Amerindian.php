@@ -3,7 +3,7 @@ final class Amerindian extends SR_City
 {
 //	public function getImportNPCS() { return array('Redmond_Cyberpunk','Redmond_Ork','Redmond_Ueberpunk','Redmond_Burglar'); }
 	public function getImportNPCS() { return array('Seattle_BlackOp'); }
-	public function getArriveText() { return 'You arrive at the outer Amerindian territory. A broad land and quite a few buildings. You wonder if there is a casino.'; }
+	public function getArriveText(SR_Player $player) { return 'You arrive at the outer Amerindian territory. A broad land and quite a few buildings. You wonder if there is a casino.'; }
 	public function getSquareKM() { return 8; }
 	public function getMinLevel() { return 26; }
 //	public function onEvents(SR_Party $party)

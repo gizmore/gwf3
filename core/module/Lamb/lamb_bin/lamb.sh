@@ -14,4 +14,8 @@ cd ../../
 php core/module/Lamb/lamb_bin/lamb_main.php www/protected/config_lamb.php Lamb_Config.php
 
 # Oops
-mplayer core/module/Lamb/lamb_bin/wecken.mp3
+while [ 1 ]
+do
+	mplayer core/module/Lamb/lamb_bin/wecken.mp3
+	sleep 20
+done

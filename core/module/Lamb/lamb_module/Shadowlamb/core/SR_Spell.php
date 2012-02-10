@@ -222,7 +222,7 @@ abstract class SR_Spell
 			$busy = Shadowfunc::displayBusy($player->busy($this->getCastTime($level)));
 		}
 		
-		if ($hits < $target->get('essence')*2)
+		if ($hits < $target->get('essence'))
 		{
 			$waste = round($need/2, 1);
 			$player->healMP(-$waste);

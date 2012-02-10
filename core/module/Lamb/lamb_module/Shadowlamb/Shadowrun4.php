@@ -456,6 +456,7 @@ final class Shadowrun4
 		Lamb_Log::logDebug(sprintf('Shadowrun4::initCityBase(%s)', $entry));
 		require_once "{$fullpath}/{$entry}.php";
 		self::$cities[strtolower($entry)] = new $entry($entry);
+		self::$cities[strtolower($entry)]->onLoadLanguage();
 	}
 	
 	public static function initCityNPCs($dir='stub')

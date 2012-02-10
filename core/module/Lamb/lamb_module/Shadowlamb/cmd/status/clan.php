@@ -189,10 +189,10 @@ final class Shadowcmd_clan extends Shadowcmd
 		{
 			$b = 1 - $b;
 			$b2 = $b === 0 ? '' : "\X02";
-			$out[] = $b2.SR_ClanHistory::getHistMessage($row[0], $row[1], $row[2], $row[3], $row[4]).$b2;
+			$out[] = $b2.SR_ClanHistory::getHistMessage($player, $row[0], $row[1], $row[2], $row[3], $row[4]).$b2;
 		}
 		
-		return self::rply($player, '', array($page, $nPages, implode('  ', $out)));
+		return self::rply($player, '5041', array($page, $nPages, implode('  ', $out)));
 // 		$message = sprintf('ClanHistory page %d/%d: %s', $page, $nPages, implode('  ', $out));
 // 		return $bot->reply($message);
 	}

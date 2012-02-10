@@ -762,6 +762,7 @@ final class SR_Party extends GDO
 			$dist = Common::clamp($member->getBase('distance'), 0, $this->max_dist);
 			$this->distance[$pid] = $neg * $dist;
 		}
+		return $this->updateMembers();
 	}
 
 	/**
@@ -814,12 +815,12 @@ final class SR_Party extends GDO
 			}
 		}
 		
+		$this->recomputeEnums();
+		
 		if (false === $this->updateMembers())
 		{
 			return false;
 		}
-		
-		$this->recomputeEnums();
 		
 		$this->setupMaxDist();
 		
@@ -1266,11 +1267,15 @@ final class SR_Party extends GDO
 		return $duration <= 0 ? '0s' : GWF_Time::humanDuration($duration);
 	}
 	
-	
 	public function displayAction(SR_Player $player)
 	{
+		return $this->displayActionB($player, $this->getAction());
+	}
+	
+	private function displayActionB(SR_Player $player, $action)
+	{
 		$b = chr(2);
-		$action = $this->getAction();
+// 		$action = $this->getAction();
 		
 		switch ($action)
 		{
@@ -1337,21 +1342,15 @@ final class SR_Party extends GDO
 	
 	public function displayLastAction(SR_Player $player)
 	{
-		$la = $this->getVar('sr4pa_last_action');
-		$dla = $player->lang('pa_'.$la);
-		switch ($la)
+		$action = $this->getVar('sr4pa_last_action');
+		# Do a switch here to prevent a nice deadloop condition :)
+		switch ($action)
 		{
-			case 'goto':
-			case 'hunt':
-			case 'explore':
-			case 'travel':
-				$lt = $this->getVar('sr4pa_last_target');
-				$le = $this->displayLastETA();
-				return $player->lang('last_action', array($dla, $lt, $le));
-// 				return sprintf(' Last action: %s %s. %s.', $la, $lt, $le);
-				
-			default:
+			case 'fight':
+			case 'talk':
 				return '';
+			default:
+				return $this->displayActionB($player, $action);
 		}
 	}
 	

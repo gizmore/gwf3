@@ -50,7 +50,7 @@ abstract class SR_Location
 	
 	public function lang(SR_Player $player, $key, $args=NULL)
 	{
-		return Shadowlang::langLocation($player, $key, $args);
+		return Shadowlang::langLocation($this, $player, $key, $args);
 	}
 	
 	/**

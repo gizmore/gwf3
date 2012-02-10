@@ -14,7 +14,7 @@ final class Spell_bunny extends SR_SupportSpell
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$this->announceADV($player, $target, $level);
-		if ($hits > $this->getManaCost())
+		if ($hits > $this->getManaCost($player, $level))
 		{
 			Shadowcmd_flee::onFlee($target);
 		}

@@ -2,7 +2,7 @@
 final class Renraku04 extends SR_Dungeon
 {
 	public function getCityLocation() { return 'Seattle_Renraku'; }
-	public function getArriveText() { return 'The elevator stops at Renraku floor 4. You can hear the alarm sound. Seems like your visit got detected.'; }
+	public function getArriveText(SR_Player $player) { return 'The elevator stops at Renraku floor 4. You can hear the alarm sound. Seems like your visit got detected.'; }
 	public function getGotoTime() { return 200; }
 	public function getExploreTime() { return 240; }
 

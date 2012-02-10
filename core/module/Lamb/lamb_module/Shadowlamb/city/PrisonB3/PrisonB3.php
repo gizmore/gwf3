@@ -2,7 +2,7 @@
 final class PrisonB3 extends SR_Dungeon
 {
 	public function getCityLocation() { return 'Delaware_Prison'; }
-	public function getArriveText() { return 'You enter cell block 3.'; }
+	public function getArriveText(SR_Player $player) { return 'You enter cell block 3.'; }
 	public function getImportNPCS() { return array('Seattle_BlackOp','Prison_GrayOp'); }
 	
 	public function onCityEnter(SR_Party $party)

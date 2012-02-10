@@ -6,7 +6,7 @@
 final class NySoft extends SR_Dungeon
 {
 	public function getCityLocation() { return 'Delaware_NySoft'; }
-	public function getArriveText() { return 'You enter the NySoft office. Quite small but impressive building.'; }
+	public function getArriveText(SR_Player $player) { return 'You enter the NySoft office. Quite small but impressive building.'; }
 	public function getGotoTime() { return 120; }
 	public function getExploreTime() { return 160; }
 	
