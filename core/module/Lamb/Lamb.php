@@ -70,7 +70,7 @@ final class Lamb
 	public function langUser(Lamb_User $user, $key, $args=NULL) { return $this->lang->langISO($user->getLangISO(), $key, $args); }
 	public function getISOCodes()
 	{
-		$iso_codes = explode(';', GWF_SUPPORTED_LANGS);
+		$iso_codes = GWF_Language::getAvailable();
 		$iso_codes[] = 'bot'; # Special bot and custom client langfile.
 		$iso_codes[] = 'php'; # PHP Serialized
 		$iso_codes[] = 'json'; # JSON encoded
