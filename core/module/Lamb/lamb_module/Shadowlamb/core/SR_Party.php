@@ -1248,12 +1248,8 @@ final class SR_Party extends GDO
 	###############
 	### Display ###
 	###############
-	public function displayETA($use_last_eta = false)
+	public function displayETA()
 	{
-		if ( $use_last_eta )
-		{
-			return $this->displayLastETA();
-		}
 		$duration = $this->getETA()-Shadowrun4::getTime();
 		return $duration <= 0 ? '0s' : GWF_Time::humanDuration($duration);
 	}
@@ -1273,10 +1269,10 @@ final class SR_Party extends GDO
 	
 	public function displayAction(SR_Player $player)
 	{
-		return $this->displayActionB($player, $this->getAction());
+		return $this->displayActionB($player, $this->getAction(), $this->displayETA());
 	}
 	
-	private function displayActionB(SR_Player $player, $action, $is_last_action = false)
+	private function displayActionB(SR_Player $player, $action, $display_eta)
 	{
 		$b = chr(2);
 // 		$action = $this->getAction();
@@ -1320,23 +1316,23 @@ final class SR_Party extends GDO
 // 				return sprintf("{$b}sleeping{$b} inside %s.", $this->getLocation());
 				
 			case 'travel':
-				return $player->lang('pa_travel', array($this->getTarget(), $this->displayETA($is_last_action)));
+				return $player->lang('pa_travel', array($this->getTarget(), $display_eta));
 // 				return sprintf("{$b}travelling{$b} to %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			
 			case 'explore':
-				return $player->lang('pa_explore', array($this->getLocation(), $this->displayETA($is_last_action)));
+				return $player->lang('pa_explore', array($this->getLocation(), $display_eta));
 // 				return sprintf("{$b}exploring{$b} %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			
 			case 'goto':
-				return $player->lang('pa_goto', array($this->getLocation(), $this->displayETA($is_last_action)));
+				return $player->lang('pa_goto', array($this->getLocation(), $display_eta));
 // 				return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			
 			case 'hunt':
-				return $player->lang('pa_hunt', array($this->getTarget(), $this->displayETA($is_last_action)));
+				return $player->lang('pa_hunt', array($this->getTarget(), $display_eta));
 // 				return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			
 			case 'hijack':
-				return $player->lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $this->displayETA($is_last_action)));
+				return $player->lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $display_eta));
 // 				return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
 			
 			default:
@@ -1354,7 +1350,7 @@ final class SR_Party extends GDO
 			case 'talk':
 				return '';
 			default:
-				return $this->displayActionB($player, $action, true);
+				return $this->displayActionB($player, $action, $this->displayLastETA());
 		}
 	}
 	
