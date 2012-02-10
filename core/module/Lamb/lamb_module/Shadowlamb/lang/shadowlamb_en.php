@@ -17,7 +17,7 @@ $lang = array(
 'mount' => 'Mount',
 'bank_items' => 'Your bank items',
 'unknown' => 'Unknown',
-'unknown_contr' => 'Unknown Contactors',
+'unknown_contr' => 'Unknown Contractors',
 'modifiers' => " {$b}Modifiers{$b}: %s.", # statlist
 'm' => 'm', # metres
 'g' => '%dg', # gram
@@ -64,7 +64,7 @@ $lang = array(
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
 // 'last_action' => ' Last action: %s %s. %s.', # last action, last target, last durcation
-'pa_delete' => "{$b}beeing deleted{$b}.",
+'pa_delete' => "{$b}being deleted{$b}.",
 'pa_talk' => "{$b}talking{$b} to %s. %s remaining. Last action: %s", # enemy party, duration, last action
 'pa_fight' => "{$b}fighting{$b} against %s. Last action: %s", # enemy party last action.
 'pa_inside' => "{$b}inside{$b} %s.", # location
@@ -99,7 +99,7 @@ $lang = array(
 'stub_enter_bazar' => 'You enter the bazar. You see %d shops with a total of %d items.', # shopcount, itemcount
 'stub_found_clanhq' => 'You found the clan headquarters.',
 'stub_enter_clanhq' => 'You enter the clan headquarters.',
-'stub_found_elevator' =>  'You enter the %s. A sign reads: "MAX %s KG".',
+'stub_found_elevator' =>  'You found the %s. A sign reads: "MAX %s KG".',
 'stub_enter_elevator' =>  'You enter the %s. A sign reads: "MAX %s KG".',
 
 # Clan history
@@ -243,7 +243,7 @@ $lang = array(
 '1071' => 'You are already in %s.',
 '1072' => 'Please specify a target to teleport to.',
 '1073' => 'This city is unknown.',
-'1074' => 'You cannot cast teleport inside this lcoation.',
+'1074' => 'You cannot cast teleport inside this location.',
 '1075' => 'You cannot teleport to %s because %s do(es) not have the min level of %s.',
 '1076' => 'You need at least %s level %s to teleport %s party members.',
 '1077' => 'You need %s MP to brew this potion, but you got only %s.',
@@ -355,65 +355,65 @@ $lang = array(
 # 10000-14999 = Spells #
 ########################
 # Generic
-'10000' => '%s uses a level %s %s potion on %s.',
-'10001' => '%s casts a level %s %s on %s.',
-'10002' => '%s uses a level %s %s potion on %s.',
-'10003' => '%s casts a level %s %s on %s.',
+'10000' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10001' => '%1$s casts a level %2$s %3$s on %4$s.',
+'10002' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10003' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Berzerk
-'10010' => '%s uses a level %s %s potion on %s, +%s min_dmg / +%s max_dmg for %s.',
-'10011' => '%s casts a level %s %s on %s, +%s min_dmg / +%s max_dmg for %s.',
-'10012' => '%s uses a level %s %s potion on %s.',
-'10013' => '%s casts a level %s %s on %s.',
+'10010' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s.',
+'10011' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$%s.',
+'10012' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10013' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Blow
-'10020' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
-'10021' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
-'10022' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
-'10023' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
+'10020' => '%1$s uses a level %2$s %3$s potion on %4$s who got blown away %5$s and is now on position %6$s.',
+'10021' => '%1$s casts a level %2$s %3$s on %4$s who got blown away %5$s and is now on position %6$s.',
+'10022' => '%1$s uses a level %2$s %3$s potion on %4$s who got blown away %5$s and is now on position %6$s.',
+'10023' => '%1$s casts a level %2$s %3$s on %4$s who got blown away %5$s and is now on position %6$s.',
 # Chameleon
-'10030' => '%s uses a level %s %s potion on %s, +%s charisma for %s.',
-'10031' => '%s casts a level %s %s on %s, +%s charisma for %s.',
-'10032' => '%s uses a level %s %s potion on %s.',
-'10033' => '%s casts a level %s %s on %s.',
+'10030' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s charisma for %6$s.',
+'10031' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s charisma for %6$s.',
+'10032' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10033' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Firebolt
-'10040' => '%s uses a level %s %s potion on %s and caused %s damage.',
-'10041' => '%s casts a level %s %s on %s and caused %s damage.',
-'10042' => '%s uses a level %s %s potion on %s and caused %s damage, %s/%s HP left.',
-'10043' => '%s casts a level %s %s on %s and caused %s damage, %s/%s HP left.',
+'10040' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage.',
+'10041' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage.',
+'10042' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage, %6$s/%7$s HP left.',
+'10043' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage, %6$s/%7$s HP left.',
 # Freeze
-'10050' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
-'10051' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
-'10052' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
-'10053' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
+'10050' => '%1$s uses a level %2$s %3$s potion on %4$s. %5$s seconds frozen with power %6$01f.',
+'10051' => '%1$s casts a level %2$s %3$s on %4$s. %5$s seconds frozen with power %6$01f.',
+'10052' => '%1$s uses a level %2$s %3$s potion on %4$s. %5$s seconds frozen with power %6$01f.',
+'10053' => '%1$s casts a level %2$s %3$s on %4$s. %5$s seconds frozen with power %6$01f.',
 # Goliath
-'10060' => '%s uses a level %s %s potion on %s, +%s strength for %s.',
-'10061' => '%s casts a level %s %s on %s, +%s strength for %s.',
-'10062' => '%s uses a level %s %s potion on %s.',
-'10063' => '%s casts a level %s %s on %s.',
+'10060' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s strength for %6$s.',
+'10061' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s strength for %6$s.',
+'10062' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10063' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Hawkeye
-'10070' => '%s uses a level %s %s potion on %s, +%s firearms for %s.',
-'10071' => '%s casts a level %s %s on %s, +%s firearms for %s.',
-'10072' => '%s uses a level %s %s potion on %s.',
-'10073' => '%s casts a level %s %s on %s.',
+'10070' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s firearms for %6$s.',
+'10071' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s firearms for %6$s.',
+'10072' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10073' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Hummingbird
-'10080' => '%s uses a level %s %s potion on %s, +%s quickness for %s.',
-'10081' => '%s casts a level %s %s on %s, +%s quickness for %s.',
-'10082' => '%s uses a level %s %s potion on %s.',
-'10083' => '%s casts a level %s %s on %s.',
+'10080' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s quickness for %6$s.',
+'10081' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s quickness for %6$s.',
+'10082' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10083' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Magicarp
-'10090' => '%s uses a level %s %s potion on %s and they lost %s MP.',
-'10091' => '%s casts a level %s %s on %s, +%s and they lost %s MP.',
-'10092' => '%s uses a level %s %s potion on %s and they lost %s MP.',
-'10093' => '%s casts a level %s %s on %s and they lost %s MP.',
+'10090' => '%1$s uses a level %2$s %3$s potion on %4$s and they lost %5$s MP.',
+'10091' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s and they lost %6$s MP.',
+'10092' => '%1$s uses a level %2$s %3$s potion on %4$s and they lost %5$s MP.',
+'10093' => '%1$s casts a level %2$s %3$s on %4$s and they lost %5$s MP.',
 # Turtle
-'10100' => '%s uses a level %s %s potion on %s, +%s marm/farm for %s.',
-'10101' => '%s casts a level %s %s on %s, +%s marm/farm for %s.',
-'10102' => '%s uses a level %s %s potion on %s.',
-'10103' => '%s casts a level %s %s on %s.',
+'10100' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s marm/farm for %6$s.',
+'10101' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s marm/farm for %5$s.',
+'10102' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10103' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Heal
-'10110' => '%s uses a level %s %s potion on %s, %s.',
-'10111' => '%s casts a level %s %s on %s, %s.',
-'10112' => '%s uses a level %s %s potion on %s.',
-'10113' => '%s casts a level %s %s on %s.',
+'10110' => '%1$s uses a level %2$s %3$s potion on %4$s, %s.',
+'10111' => '%1$s casts a level %2$s %3$s on %4$s, %s.',
+'10112' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10113' => '%1$s casts a level %2$s %3$s on %4$s.',
 
 ############################
 #   5000-9999   = Messages #
