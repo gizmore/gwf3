@@ -220,7 +220,7 @@ final class GWF_Debug
 			# Send error to admin?
 			if ($mail)
 			{
-				self::sendDebugMail($e->getMessage().PHP_EOL.$e->getTrace(), false));
+				self::sendDebugMail($e->getMessage().PHP_EOL.$e->getTrace(), false);
 			}
 
 			# Log it?
