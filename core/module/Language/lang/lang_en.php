@@ -29,5 +29,15 @@ $lang = array(
 	'msg_bundled' => 'Bundled language files in %s (%s files).',
 
 	'err_zip' => 'An error occured in zip archive in %s line %s.',
+		
+	# v1.01
+	'dh_langchecker' => 'Results',
+	'err_probsum' => 'Summary for language "%s": %d errors, %d warnings and %d missing files.',
+	'dh_transfilemiss' => 'Files missing: %d',
+	'err_transfilemiss' => 'Missing file: %s',
+	'dh_warning' => 'Warnings in %s',
+	'err_transkey' => 'Key "%s" is not translated: %s',
+	'dh_errors' => 'Errors in %s',
+	'err_keymiss' => 'Key "%s" is completely missing.',
 );
 ?>

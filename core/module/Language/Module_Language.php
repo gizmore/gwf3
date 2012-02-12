@@ -2,7 +2,7 @@
 
 final class Module_Language extends GWF_Module
 {
-	public function getVersion() { return 1.00; }
+	public function getVersion() { return 1.01; }
 	public function getAdminSectionURL() { return $this->getMethodURL('EditFiles'); }
 //	public function getDefaultPriority() { return 1; }
 //	public function getDefaultAutoLoad() { return true; }
