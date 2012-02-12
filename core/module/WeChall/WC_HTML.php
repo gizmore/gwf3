@@ -13,7 +13,7 @@ function html_head($title="WeChall", $withSidebar=false, $strict=true, $scripts=
 }
 function htmlDisplayError($msg, $log=true) { echo GWF_HTML::error('WeChall', $msg, $log); return false; }
 function htmlDisplayMessage($msg, $log=true) { echo GWF_HTML::message('WeChall', $msg, $log); return true; }
-function htmlSendToLogin() { echo GWF_HTML::err('ERR_LOGIN_REQUIRED'); GWF_Website::redirect(GWF_WEB_ROOT.'login'); }
+function htmlSendToLogin() { echo GWF_HTML::err('ERR_LOGIN_REQUIRED'); /* GWF_Website::redirect(GWF_WEB_ROOT.'login'); */ }
 function htmlTitleBox($title, $subtext) { echo GWF_Box::box($subtext, $title); }
 # END OF WRAPPER #
 
