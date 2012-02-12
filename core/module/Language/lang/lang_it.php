@@ -33,11 +33,16 @@ $lang = array(
 	# v1.01
 	'dh_langchecker' => 'Risultati',
 	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avverimenti e %d file mancanti.',
-	'dh_transfilemiss' => 'File mancanti: %d',
-	'err_transfilemiss' => 'File mancante: %s',
+	'dh_transfilemiss' => 'File della traduzione mancanti: %d',
+	'err_transfilemiss' => '%s ',
+	'dh_filemiss' => 'File mancanti: %s',
+	'err_filemiss' => '%s ',
+	'dh_emptyfile' => 'File vuoti: %s',
+	'err_emptyfile' => '%s ',
 	'dh_warning' => 'Avvertimenti in %s',
-	'err_transkey' => 'la chiave "%s" non è tradotta: %s',
 	'dh_errors' => 'Errori in %s',
+	'err_transkey' => 'La chiave "%s" non è tradotta: %s',
 	'err_keymiss' => 'La chiave "%s" manca completamente.',
+	'err_emptykey' => 'Il file contiene una chiave vuota: %s',
 );
 ?>
