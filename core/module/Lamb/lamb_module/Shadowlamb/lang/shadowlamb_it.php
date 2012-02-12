@@ -669,7 +669,7 @@ $lang = array(
 '5256' => 'Stavi giocando in #modalità_corsa e sei stato ucciso da un NPC o da un altro giocatore #rm. Sei morto. Usa #resetta per ricominciare.',
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
-'5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
+'5259' => 'Treni: %s.', # Travel target list fmt_sumlist.
 '5260' => '',
 );
 ?>

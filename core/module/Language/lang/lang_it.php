@@ -32,7 +32,7 @@ $lang = array(
 
 	# v1.01
 	'dh_langchecker' => 'Risultati',
-	'err_probsum' => 'Sommario per il linguggio "%s": %d errori, %d avverimenti e %d file mancanti.',
+	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avverimenti e %d file mancanti.',
 	'dh_transfilemiss' => 'File mancanti: %d',
 	'err_transfilemiss' => 'File mancante: %s',
 	'dh_warning' => 'Avvertimenti in %s',
