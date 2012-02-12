@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 final class Language_Checker extends GWF_Method
 {
 	private $lang;
@@ -191,8 +194,8 @@ final class Language_Checker extends GWF_Method
 			}
 			elseif ($lang2[$key] === $lang1[$key])
 			{
-				$out = is_array($lang2[$key]) ? 'ARRAY' : htmlspecialchars($lang2[$key]); # FIXME
-				$warn[] = $this->_module->lang('err_transkey', array($key, $out));
+				$out = is_array($lang2[$key]) ? 'A('.GWF_Array::implodeHuman($lang2[$key]).')' : $lang2[$key];
+				$warn[] = $this->_module->lang('err_transkey', array($key, htmlspecialchars($out)));
 			}
 		}
 

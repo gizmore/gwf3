@@ -53,7 +53,7 @@ final class GWF_Array
 			return '';
 		}
 		elseif ($cnt === 1) {
-			return $array[0];
+			return array_pop($array);
 		}
 		if ($and === NULL) { $and = GWF_HTML::lang('and'); }
 		$last = array_pop($array);
