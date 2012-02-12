@@ -112,7 +112,7 @@ final class Item_AlchemicPotion extends SR_Usable
 		$spell->setCaster($dummy);
 		
 // 		$hits = $spell->dice($dummy, $target, $level);
-		$spell->setMode(SR_Spell::MODE_SPELL);
+// 		$spell->setMode(SR_Spell::MODE_SPELL);
 		return $spell->onCast($player, $args, $level);
 // 		return $spell->cast($player, $target, $level, $hits, $dummy);
 	}

@@ -115,7 +115,10 @@ class Spell_teleport extends SR_Spell
 // 			return false;
 		}
 
-		$player->healMP(-$need);
+		if (true === $this->isCastMode())
+		{
+			$player->healMP(-$need);
+		}
 		$p->ntice('5133', array($player->getName(), $need, $this->getName(), $tlc));
 // 		$p->notice(sprintf('%s used %s MP to cast teleport and your party is now outside of %s.', $player->getName(), $need, $tlc));
 		$p->pushAction('outside', $tlc);

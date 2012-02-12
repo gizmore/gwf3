@@ -13,7 +13,7 @@ class Item_Holostick extends Item_Credstick
 {
 	public static $CONFIRM_ITEMS = NULL;
 	
-	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|pushi|viewi>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
+	public function getItemDescription() { return sprintf("You can access your bank money and items with a Holostick. Try #use Holostick [<pushy|popy|push|view>] [<nuyen|item>] [<item_amount>]. Each money transaction cost %s. The item transaction cost varies per item weight and value. You cannot popi items with a Holostick.", Shadowfunc::displayNuyen($this->getTransactionCost())); }
 	public function getItemPrice() { return 179.95; }
 	public function getItemUsetime() { return 20; } 
 	public function getItemWeight() { return 200; }
@@ -63,10 +63,10 @@ class Item_Holostick extends Item_Credstick
 		{
 			case 'pushy': return $this->onItemUsePush($player, $amount);
 			case 'popy': return $this->onItemUsePop($player, $amount);
-			case 'pushi': return $this->onItemUsePushi($player, $args);
-			case 'viewi': return $this->onItemUseViewi($player, $args);
+			case 'push': return $this->onItemUsePushi($player, $args);
+			case 'view': return $this->onItemUseViewi($player, $args);
 			default:
-				$player->message('Try #u Holostick pushy <nuyen>. Try #u Holostick popy <nuyen>. Try #u Holostick pushi <item> [<amt>]. Try #u Holostick viewi [<pattern>] [<page>].');
+				$player->message('Try #u Holostick pushy <nuyen>. Try #u Holostick popy <nuyen>. Try #u Holostick push <item> [<amt>]. Try #u Holostick view [<pattern>] [<page>].');
 				return false;
 		}
 	}
@@ -141,12 +141,12 @@ class Item_Holostick extends Item_Credstick
 				$this->reply($player, GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
 				return false;
 			}
-			if (false === ($pushitem = SR_Item::createByName($itemname, $use_amt)))
+			if (false === ($item2 = SR_Item::createByName($itemname, $use_amt)))
 			{
 				$this->reply($player, GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
 				return false;
 			}
-			if (false === $player->putInBank($pushitem))
+			if (false === $player->putInBank($item2))
 			{
 				$this->reply($player, GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)));
 			}

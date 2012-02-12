@@ -27,7 +27,7 @@ abstract class SR_Hospital extends SR_Store
 			return false;
 		}
 		$player->healHP(100000);
-		return $bot->rply('5179', array($pl));
+		return $bot->rply('5179', array($p1));
 // 		$bot->reply(sprintf('The doctor takes your %s and heals you.', $p1));
 		return true;
 	}

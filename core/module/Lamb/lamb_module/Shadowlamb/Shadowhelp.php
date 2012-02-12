@@ -341,7 +341,7 @@ final class Shadowhelp
 						'npc' => 'Leader command. Usage: #npc <thenpc> <the remote command>. Execute a command in the name of your NPC. Example: #npc 2 status.',
 						'say' => NULL,
 						'use' => 'Player command. Usage: #(u)se <inv_id|item_name> [<target_name|target_enum>]. Use an item. In combat this costs time.',
-						'brew' => 'Player command. Usage: #(br)ew <spell> [<level>]. Try to brew a magic potion. Needs a WaterBottle.',
+						'brew' => 'Player command. Usage: #(br)ew <spell> [<level>]. Try to brew a magic potion. Needs a WaterBottle and Mandrake(s).',
 						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>][:level] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
 						'drop' => 'Player command. Usage: #(dr)op <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
 						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
@@ -411,9 +411,9 @@ final class Shadowhelp
 						
 						'bank_cmds' => 'Bank commands',
 						array(
-							'pushi' => "Location command. Usage: #pushi <item>. In banks you can store items and nuyen to keep them safe for later usage.",
+							'push' => NULL,
 							'pushy' => "Location command. Usage: #pushy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
-							'popi' => "Location command. Usage: #popi <bankid>. In banks you can store items and nuyen to keep them safe for later usage.",
+							'pop' => NULL,
 							'popy' => "Location command. Usage: #popy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
 						),
 						

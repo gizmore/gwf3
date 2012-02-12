@@ -16,8 +16,8 @@ final class Spell_heal extends SR_HealSpell
 		$gain = Shadowfunc::diceFloat($min, $max);
 		$oldhp = $target->getHP();
 		$maxhp = $target->getMaxHP();
+		$gain = $target->healHP($gain);
 		$append = Shadowfunc::displayHPGain($oldhp, $gain, $maxhp);
-		$target->healHP($gain);
 		$this->announceADV($player, $target, $level, '10110', $append);
 		return true;
 	}

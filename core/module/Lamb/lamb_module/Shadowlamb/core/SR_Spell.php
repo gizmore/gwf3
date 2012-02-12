@@ -294,7 +294,7 @@ abstract class SR_Spell
 		# Pick right keys. Each spell has own 4 keys for all 4 possibilities.
 		$key_friend = $key;
 		$key_foe = $key+2;
-		if (false === $this->isBrewMode())
+		if (true === $this->isCastMode())
 		{
 			$key_friend++;
 			$key_foe++;

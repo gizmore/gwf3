@@ -178,7 +178,7 @@ class SR_Quest extends GDO
 	 * Old helper.
 	 * @deprecated
 	 * @param SR_Player $player
-	 * @param unknown_type $by
+	 * @param int $by
 	 */
 	public function giveAmount(SR_Player $player, $by=1)
 	{
