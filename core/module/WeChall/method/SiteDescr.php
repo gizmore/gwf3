@@ -7,7 +7,7 @@ final class WeChall_SiteDescr extends GWF_Method
 	public function execute()
 	{
 		if (false !== ($errors = $this->sanitize())) {
-			return GWF_HTML::errorA('WC4', $errors, true);
+			return GWF_HTML::error('WC4', $errors, true);
 		}
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';

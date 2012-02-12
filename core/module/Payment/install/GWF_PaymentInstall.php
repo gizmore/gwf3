@@ -77,6 +77,6 @@ final class GWF_PaymentInstall
 		}
 		fclose($fh);
 		
-		return GWF_HTML::errorA('Install Currencies', $errors);
+		return GWF_HTML::error('Install Currencies', $errors);
 	}
 }

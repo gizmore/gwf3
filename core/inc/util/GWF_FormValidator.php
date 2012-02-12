@@ -34,12 +34,12 @@ final class GWF_FormValidator
 		
 		if (false !== ($errors = self::validateMissingVars($context, $form, $validator)))
 		{
-			return GWF_HTML::errorA($name, $errors, false);
+			return GWF_HTML::error($name, $errors, false);
 		}
 		
 		if (false !== ($errors = self::validateVars($context, $form, $validator)))
 		{
-			return GWF_HTML::errorA($name, $errors, false);
+			return GWF_HTML::error($name, $errors, false);
 		}
 		
 		return false;

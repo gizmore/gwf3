@@ -32,18 +32,29 @@ final class GWF_HTML
 	### Errors ###
 	##############
 	private static $_ERRORS = array();
+	/** strip full paths */
 	public static function err($key, $args=NULL, $log=true, $to_smarty = false) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log, $to_smarty); }
-	public static function error($title=NULL, $message, $log=true, $to_smarty = false) { return self::errorA($title, array($message), $log, $to_smarty); }
-	public static function errorA($title=NULL, array $messages, $log=true, $to_smarty=false)
+
+	/**
+	 * Display a errormessage
+	 * @uathor spaceone, gizmore
+	 * @param string $title
+	 * @param string|array $messages
+	 * @param boolean $log log the Error?
+	 * @param boolean $to_smarty group errors to a fixed smarty area
+	 * @return string
+	 */
+	public static function error($title=NULL, $messages, $log=true, $to_smarty=false)
 	{
+		$messages = (array) $messages;
+
 		if (count($messages) === 0) return '';
 		
 		if ($log === true)
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-		# SpaceOne :D take care!
-		if (false === $to_smarty && false === Common::getConst('GWF_ERRORS_TO_SMARTY', false))
+		if (false === $to_smarty && false === GWF_ERRORS_TO_SMARTY)
 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
 		}
@@ -86,7 +97,7 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if (false === $to_smarty && false === Common::getConst('GWF_MESSAGES_TO_SMARTY', false))
+		if (false === $to_smarty && false === GWF_MESSAGES_TO_SMARTY)
 		{
 			return self::displayMessages(array('title' => $title, 'messages' => $messages));
 		}

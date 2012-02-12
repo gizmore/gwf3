@@ -109,7 +109,7 @@ final class Slaytags_Tag extends GWF_Method
 		
 		if (count($errors) > 0)
 		{
-			return GWF_HTML::errorA('Slaytags', $errors);
+			return GWF_HTML::error('Slaytags', $errors);
 		}
 		
 		$user = GWF_Session::getUser();

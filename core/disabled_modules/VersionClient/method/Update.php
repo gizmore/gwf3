@@ -214,7 +214,7 @@ final class VersionClient_Update extends GWF_Method
 		$archivedir = $this->getArchiveDir();
 		$this->onCheckPermissions($archivedir, $errors);
 		if (count($errors) > 0) {
-			return GWF_HTML::errorA('Update', $errors);
+			return GWF_HTML::error('Update', $errors);
 		}
 		
 		return $this->onUpdateD($module);

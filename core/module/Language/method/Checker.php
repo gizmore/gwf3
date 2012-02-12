@@ -76,15 +76,15 @@ final class Language_Checker extends GWF_Method
 		}
 		if (count($this->enMissingFile) > 0)
 		{
-			$message .= GWF_HTML::errorA($this->_module->lang('dh_filemiss', array(count($this->enMissingFile))), $this->enMissingFile, false);
+			$message .= GWF_HTML::error($this->_module->lang('dh_filemiss', array(count($this->enMissingFile))), $this->enMissingFile, false);
 		}
 		if (count($this->enEmptyFile) > 0)
 		{
-			$message .= GWF_HTML::errorA($this->_module->lang('dh_emptyfile', array(count($this->enEmptyFile))), $this->enEmptyFile, false);
+			$message .= GWF_HTML::error($this->_module->lang('dh_emptyfile', array(count($this->enEmptyFile))), $this->enEmptyFile, false);
 		}
 		if (count($this->transMissing) > 0)
 		{
-			$message .= GWF_HTML::errorA($this->_module->lang('dh_transfilemiss', array(count($this->transMissing))), $this->transMissing, false);
+			$message .= GWF_HTML::error($this->_module->lang('dh_transfilemiss', array(count($this->transMissing))), $this->transMissing, false);
 		}
 		if ($this->errWarnMessage !== '')
 		{
@@ -215,11 +215,11 @@ final class Language_Checker extends GWF_Method
 
 		if (count($errs) > 0)
 		{
-			$this->errWarnMessage .= GWF_HTML::errorA($this->_module->lang('dh_errors', array($path2)), $errs, false);
+			$this->errWarnMessage .= GWF_HTML::error($this->_module->lang('dh_errors', array($path2)), $errs, false);
 		}
 		if (count($warn) > 0 && $this->show_warns === true)
 		{
-			$this->errWarnMessage .= GWF_HTML::errorA($this->_module->lang('dh_warning', array($path2)), $warn, false);
+			$this->errWarnMessage .= GWF_HTML::error($this->_module->lang('dh_warning', array($path2)), $warn, false);
 		}
 	}
 }

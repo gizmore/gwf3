@@ -335,7 +335,7 @@ final class Admin_Module extends GWF_Method
 		$modname = $this->mod->display('module_name');
 		if (!empty($errors))
 		{
-			$back .= GWF_HTML::errorA($modname, $errors);
+			$back .= GWF_HTML::error($modname, $errors);
 		}
 		if (!empty($messages))
 		{

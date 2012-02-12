@@ -130,7 +130,7 @@ final class Register_Form extends GWF_Method
 			}
 		}
 		
-		return count($errors) === 0 ? false : GWF_HTML::errorA($this->_module->getName(), $errors);
+		return count($errors) === 0 ? false : GWF_HTML::error($this->_module->getName(), $errors);
 	}
 	
 	private function sendEmail($username, $email, $token, $password)

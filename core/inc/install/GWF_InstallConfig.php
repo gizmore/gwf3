@@ -345,7 +345,7 @@ final class GWF_InstallConfig
 		}
 		
 		if (count($errors) > 0) {
-			echo GWF_HTML::errorA(self::$lang->lang('wizard'), $errors);
+			echo GWF_HTML::error(self::$lang->lang('wizard'), $errors);
 		}
 	}
 	

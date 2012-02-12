@@ -203,7 +203,7 @@ final class Module_Votes extends GWF_Module
 		}
 		
 		if (count($errors) > 0) {
-			return GWF_HTML::errorA('Votes', $errors);
+			return GWF_HTML::error('Votes', $errors);
 		}
 		
 		
