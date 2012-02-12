@@ -167,7 +167,7 @@ final class GWF_InstallWizard
 	public static function wizard_test_security1()
 	{
 		$secure = true;
-		$bad_funcs = array('exec', 'system', 'passthru', 'shell_exec', 'proc_open', 'popen', 'pcntl_exec');
+		$bad_funcs = array('exec', 'system', 'passthru', 'shell_exec', 'proc_open', 'popen', 'pcntl_exec', 'link');
 		foreach ($bad_funcs as $func)
 		{
 			if (function_exists($func))
