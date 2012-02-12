@@ -13,7 +13,7 @@ class WCSite_BBox extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		$onsitescore = intval($stats[0]);
-		$onsitescore = Common::clamp($onsitescore, 0, false);
+		$onsitescore = Common::clamp($onsitescore, 0);
 		$maxscore = intval($stats[1]);
 		$usercount = intval($stats[2]);
 		$onsiterank = isset($stats[3]) ? intval($stats[3]) : -1;
