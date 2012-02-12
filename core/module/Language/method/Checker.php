@@ -10,10 +10,11 @@ final class Language_Checker extends GWF_Method
 	private $warnings = 0;
 	private $errors = 0;
 	private $missing = 0;
-	private $enMissingFile= array();
-	private $transMissing= array();
-	private $enEmptyFile= array();
-	private $errWarnMessage= '';
+	private $enMissingFile = array(); # missing english files
+	private $transMissing = array(); # missing translated files
+	private $enEmptyFile = array(); # files without $lang
+	private $errWarnMessages = array(); # warnings
+	private $errErrorMessages = array(); # errors
 
 	public function getUserGroups() { return 'admin'; }
 	
@@ -67,32 +68,47 @@ final class Language_Checker extends GWF_Method
 
 	private function onCheckB()
 	{
+		# TODO: add WWW-module path?
+		# check language files
 		$this->onCheckRecursive(GWF_CORE_PATH.'lang');
 		$this->onCheckRecursive(GWF_CORE_PATH.'module');
+
 		$message = '';
 		if ($this->errors > 0 || $this->warnings > 0 || $this->missing > 0)
 		{
-			$message .= $this->module->message('dh_langchecker', $this->module->lang('err_probsum', array($this->lang->getVar('lang_name'), $this->errors, $this->warnings, $this->missing)), false); # FIXME
+			# statistics
+			$message .= $this->module->message('err_probsum', array($this->lang->getVar('lang_name'), $this->errors, $this->warnings, $this->missing), false);
 		}
 		if (count($this->enMissingFile) > 0)
 		{
-			$message .= $this->module->error('dh_filemiss', array(count($this->enMissingFile), $this->enMissingFile), false);
+			# missing english files
+			$message .= $this->module->error('err_missing_en_files', array(count($this->enMissingFile), implode('<br>'PHP_EOL, $this->enMissingFile)), false);
 		}
 		if (count($this->enEmptyFile) > 0)
 		{
-			$message .= $this->module->error('dh_emptyfile', array(count($this->enEmptyFile), $this->enEmptyFile), false);
+			# empty and uncorrect files
+			$message .= $this->module->error('err_empty_files', array(count($this->enEmptyFile), implode('<br>'PHP_EOL, $this->enEmptyFile)), false);
 		}
 		if (count($this->transMissing) > 0)
 		{
-			$message .= $this->module->error('dh_transfilemiss', array(count($this->transMissing), $this->transMissing), false);
+			# missing translation files
+			$message .= $this->module->error('err_missing_files', array(count($this->transMissing), implode('<br>'PHP_EOL, $this->transMissing)), false);
 		}
-		if ($this->errWarnMessage !== '')
+		foreach($this->errErrorMessages as $path => $err)
 		{
-			$message .= $this->errWarnMessage;
+			$message .= $this->module->error('err_file_errors', array($path, implode('<br>'PHP_EOL, $err)), false)
 		}
+		if (true === $this->show_warns)
+		{
+			foreach($this->errWarnMessages as $path => $warn)
+			{
+				$message .= $this->module->error('err_file_warnings', array($path, implode('<br>'PHP_EOL, $warn)), false)
+			}
+		}
+
 		if ($message === '')
 		{
-			return $this->module->message('err_noerror', array($this->lang->getVar('lang_name')), false);
+			return $this->module->message('no_errors', array($this->lang->getVar('lang_name')), false);
 		}
 		return $message;
 
@@ -118,7 +134,7 @@ final class Language_Checker extends GWF_Method
 			{
 				$this->onCheckRecursive($fullpath);
 			}
-			elseif (Common::endsWith($entry, '_en.php'))
+			elseif (Common::endsWith($entry, '_en.php')) # FIXME: replace en by default lang?
 			{
 				$this->onCheckFile($fullpath);
 			}
@@ -131,22 +147,29 @@ final class Language_Checker extends GWF_Method
 		return substr($path, 0, -7).sprintf('_%s.php', $this->lang->getISO());
 	}
 
+	/**
+	 * Check a file for translation errors 
+	 * @todo remove 2 loops, compare keys with array sort
+	 */
 	private function onCheckFile($path1)
 	{
 		$this->num_files++;
 
+		# English file exists?
 		if (!file_exists($path1) || !is_file($path1) || !is_readable($path1))
 		{
-			$this->enMissingFile[] = $this->module->lang('err_filemiss', array($path1));
+			$this->enMissingFile[] = $path1;
 			$this->errors++;
 			return;
 		}
+		# Include english language file
 		else 
 		{
+			# TODO: try{} to catch syntax errors?!
 			include $path1;
 			if (!isset($lang))
 			{
-				$this->enEmptyFile[] = $this->module->lang('err_emptyfile', array($path1));
+				$this->enEmptyFile[] = $path1;
 				$this->errors++;
 				return;
 			}
@@ -155,16 +178,19 @@ final class Language_Checker extends GWF_Method
 		}
 
 		$path2 = $this->getOtherPath($path1);
-		if (!file_exists($path2) || !is_file($path2) || !is_readable($path2))
+		# same paths?
+		if ($path1 === $path2) 
 		{
-			$this->transMissing[] = $this->module->lang('err_transfilemiss', array($path2));
+			$lang2 = false;
+		}
+		# other-ISO file exists?
+		elseif (!file_exists($path2) || !is_file($path2) || !is_readable($path2))
+		{
+			$this->transMissing[] = $path2;
 			$this->missing++;
 			$lang2 = false;
 		}
-		elseif ($path1 === $path2) 
-		{
-			$lang2 = false;
-		}
+		# include other-ISO file
 		else 
 		{
 			include $path2;
@@ -175,37 +201,53 @@ final class Language_Checker extends GWF_Method
 		$errs = array();
 		$warn = array();
 
+		# English lang file
 		foreach ($lang1 as $key => $value)
 		{
-			if ($key === '')
+			# Value is empty?
+			if ($value === '')
 			{
-				$errs[] = $this->module->lang('err_emptykey', array(GWF_Language::getByISO('en')->getVar('lang_name'), $path1));
+				$errs[] = $this->module->lang('err_empty_key', array('English', $key));
 				continue;
 			}
 
+			# other ISO lang file
 			if ($lang2 === false)
 			{
 				continue;
 			}
 
-			if (!isset($lang2[$key]))
+			# Key exists?
+			if (false === isset($lang2[$key]))
 			{
-				$errs[] = $this->module->lang('err_keymiss', array($key));
+				$errs[] = $this->module->lang('err_missing_key', array($key));
 			}
+			# Key is translated?
 			elseif ($lang2[$key] === $lang1[$key])
 			{
 				$out = is_array($lang2[$key]) ? 'A('.GWF_Array::implodeHuman($lang2[$key]).')' : $lang2[$key];
-				$warn[] = $this->module->lang('err_transkey', array($key, htmlspecialchars($out)));
+				$warn[] = $this->module->lang('err_key_not_translated', array($key, htmlspecialchars($out)));
 			}
+		}
+
+		if (isset($lang1['']))
+		{
+			$errs[] = $this->module->lang('err_not_finished', array($this->lang->getVar('lang_name'), $path1));
 		}
 
 		if (is_array($lang2))
 		{
+			if (isset($lang2['']))
+			{
+				$errs[] = $this->module->lang('err_not_finished', array($this->lang->getVar('lang_name'), $path2));
+			}
+			# TODO: remove, do it faster
+			# other-ISO lang file
 			foreach ($lang2 as $key => $value)
 			{
-				if ($key === '') 
+				if ($value === '')
 				{
-					$errs[] = $this->module->lang('err_emptykey', array($this->lang->getVar('lang_name'), $path2));
+					$errs[] = $this->module->lang('err_empty_key', array($this->lang->getVar('lang_name'), $path2)); # FIXME: lang name could be wrong
 				}
 			}
 		}
@@ -213,13 +255,15 @@ final class Language_Checker extends GWF_Method
 		$this->errors += count($errs);
 		$this->warnings += count($warn);
 
+		$path = GWF_Debug::shortpath(realpath($path2)); # FIXME: duplication errors if two different modulelang locations
+
 		if (count($errs) > 0)
 		{
-			$this->errWarnMessage .= $this->module->error('dh_errors', array($path2, $errs), false);
+			$this->errErrorMessages[$path][] = $errs;
 		}
 		if (count($warn) > 0 && $this->show_warns === true)
 		{
-			$this->errWarnMessage .= $this->module->error('dh_warning', array($path2, $warn), false);
+			$this->errWarnMessages[$path][] = $warn;
 		}
 	}
 }
