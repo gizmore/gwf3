@@ -115,8 +115,8 @@ class GWF_Module extends GDO
 	}
 	
 	public function onLoadLanguage() { $this->lang = GWF_HTML::getLang(); }
-	public function error($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
-	public function message($key, $args=NULL, $log=true, $to_smarty=false) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log, $to_smarty); }
+	public function error($key, $args=NULL, $log=true) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log); }
+	public function message($key, $args=NULL, $log=true) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log); }
 	public function lang($key, $args=NULL) { return $this->lang->lang($key, $args); }
 	public function langAdmin($key, $args=NULL) { return $this->lang->langAdmin($key, $args); }
 	public function langUser(GWF_User $user, $key, $args=NULL) { return $this->lang->langUser($user, $key, $args); }
@@ -209,7 +209,7 @@ class GWF_Module extends GDO
 		{
 			return false; # Database Problem
 		}
-		$ret = true;
+		$msg = array();
 		foreach ($modules as $data)
 		{
 			$modulename = $data['module_name'];
@@ -219,11 +219,13 @@ class GWF_Module extends GDO
 			}
 			if (false === ($module = self::initModuleB($modulename, $data)))
 			{
+				# TODO...
+				$msg[] = 'Could not autoload module '.$modulename;
 				GWF_Log::logError('Could not autoload module '.$modulename);
-				// $ret = false; # die in GWF3 if one module could not be loaded?
 			}
 		}
-		return $ret;
+		return true;
+		//return count($msg) ? true : new GWF_Exception($msg, GWF_Exception::MODULES);
 	}
 	
 	/**
