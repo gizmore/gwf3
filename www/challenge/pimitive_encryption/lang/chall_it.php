@@ -12,7 +12,7 @@ $lang = array(
 		'Sono sicuro che puoi indovinare quale è la chiave in maniera logica.<br/>'.
 		'<br/>'.
 		'<pre style="font-family:monospace">'.
-		'<b>File originaleType</b>: <a href="http://it.wikipedia.org/wiki/ZIP_%28formato_di_file%29">Archivio ZIP</a> (MAGIC DWORD 0x504B0304)'.PHP_EOL.
+		'<b>File originaleType</b>: <a href="http://it.wikipedia.org/wiki/ZIP_%%28formato_di_file%%29">Archivio ZIP</a> (MAGIC DWORD 0x504B0304)'.PHP_EOL.
 		'<b>Tipo di crittatura</b>: One-Time-Pad XOR'.PHP_EOL.
 		'</pre>'.
 		'<br/>'.

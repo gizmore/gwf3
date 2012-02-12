@@ -63,7 +63,7 @@ $lang = array(
 	# Sitemaster News
 	'mnews_title' => 'Oldalmester hírek',
 	'mnews_body' => 'Néhány játékos 100%%-ot oldott meg egy adott oldalon. Szép munka :)'.PHP_EOL.'[url=%s]Itt nézheted meg az összes oldalmestert[/url].',
-	'mnews_item' => '[url=/profile/%s]%s[/url] 100%-ot ért el a(z) [url=%s]%s[/url] oldalon miután %s let hozzákapcsolva a profilhoz, és innen kezdve: %s.',
+	'mnews_item' => '[url=/profile/%s]%s[/url] 100%%-ot ért el a(z) [url=%s]%s[/url] oldalon miután %s let hozzákapcsolva a profilhoz, és innen kezdve: %s.',
 
 	# Challenge News
 	'cnews_title' => 'Új rejtvények vannak',
