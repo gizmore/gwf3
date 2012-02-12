@@ -112,6 +112,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		if (false === $chall->saveVars(array(
 			'chall_url' => $form->getVar('url'),
 			'chall_title' => $form->getVar('title'),
+			'chall_solution' => $form->getVar('solution'),
 			
 		))) {
 			$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
