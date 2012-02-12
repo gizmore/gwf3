@@ -110,8 +110,7 @@ final class Language_Checker extends GWF_Method
 		{
 			return $this->module->message('no_errors', array($this->lang->getVar('lang_name')), false);
 		}
-		return $message;
-
+		return GWF_Debug::shortpath($message);
 	}
 
 	private function onCheckRecursive($path)
@@ -129,14 +128,20 @@ final class Language_Checker extends GWF_Method
 			}
 
 			$fullpath = $path.'/'.$entry;
+			$fullisopath = $path.'/'.substr($entry, 0, -7).sprintf('_%s.php', $this->lang->getISO());
 
 			if (is_dir($fullpath))
 			{
 				$this->onCheckRecursive($fullpath);
 			}
-			elseif (Common::endsWith($entry, '_en.php')) # FIXME: replace en by default lang?
+			elseif (Common::endsWith($entry, '_en.php')) # FIXME: replace en by GWF_DEFAULT_LANGUAGE?
 			{
-				$this->onCheckFile($fullpath);
+				$this->onCheckFile($fullisopath);
+			}
+			# ELSEIF!!
+			elseif (is_file($fullisopath))
+			{
+				$this->onCheckFile($fullisopath);
 			}
 
 		}
@@ -144,17 +149,18 @@ final class Language_Checker extends GWF_Method
 
 	private function getOtherPath($path)
 	{
-		return substr($path, 0, -7).sprintf('_%s.php', $this->lang->getISO());
+		return substr($path, 0, -7).'_en.php';
 	}
 
 	/**
 	 * Check a file for translation errors 
 	 * @todo remove 2 loops, compare keys with array sort
 	 */
-	private function onCheckFile($path1)
+	private function onCheckFile($path2)
 	{
 		$this->num_files++;
 
+		$path1 = $this->getOtherPath($path2);
 		# English file exists?
 		if (!file_exists($path1) || !is_file($path1) || !is_readable($path1))
 		{
@@ -177,7 +183,6 @@ final class Language_Checker extends GWF_Method
 			unset($lang);
 		}
 
-		$path2 = $this->getOtherPath($path1);
 		# same paths?
 		if ($path1 === $path2) 
 		{
