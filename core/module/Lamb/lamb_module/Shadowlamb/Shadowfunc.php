@@ -1307,7 +1307,7 @@ final class Shadowfunc
 		
 		if ( (count($args) > 2) /*|| (count($args) < 1)*/ )
 		{
-			return self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi'));
+			return self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'view'));
 // 			$bot->reply(self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi')));
 // 			return false;
 		}

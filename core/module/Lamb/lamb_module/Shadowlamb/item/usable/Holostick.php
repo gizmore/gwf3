@@ -76,7 +76,7 @@ class Item_Holostick extends Item_Credstick
 		$items = $player->getBankItems();
 		$args = array_slice($args,1);
 		$text = array(	'prefix' => 'Your bank items',
-				'usage' => 'Try #u Holostick viewi [<pattern>] [<page>].');
+				'usage' => 'Try #u Holostick view [<pattern>] [<page>].');
 		return Shadowfunc::genericViewI($player, $items, $args, $text);
 	}
 	

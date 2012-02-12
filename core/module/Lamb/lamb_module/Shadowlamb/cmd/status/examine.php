@@ -11,6 +11,18 @@ final class Shadowcmd_examine extends Shadowcmd
 			return false;
 		}
 		
+		$p = $player->getParty();
+		if (false !== ($loc = $p->getLocationClass(SR_Party::ACTION_INSIDE)))
+		{
+			if ($loc instanceof SR_Store)
+			{
+				if (false !== ($item = $loc->getStoreItem($player, $args[0])))
+				{
+					return self::rply($player, '5049', array($item->getItemInfo($player)));
+				}
+			}
+		}
+		
 		if (false === ($item = $player->getItem($args[0])))
 		{
 			self::rply($player, '1020', array($args[0]));

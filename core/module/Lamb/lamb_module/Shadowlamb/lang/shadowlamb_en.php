@@ -129,7 +129,7 @@ $lang = array(
 # Ingame help
 'hlp_in_outside' => 'When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.',
 'hlp_clan_enter' => "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.",
-'hlp_bank' => "In a bank you can use {$c}push and {$c}pop to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}viewi to list or search your banked items. Every transaction costs %s for you.",
+'hlp_bank' => "In a bank you can use {$c}push and {$c}pop to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}view to list or search your banked items. Every transaction costs %s for you.",
 'hlp_bazar' => "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.",
 'hlp_elevator' => 'In elevators you can use #up, #down and #floor.',
 'hlp_exit' => 'You can return to this location to #leave the building.',

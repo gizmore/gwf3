@@ -135,14 +135,15 @@ abstract class SR_Store extends SR_Location
 			$itemname = strtolower($itemname);
 			foreach ($items as $d)
 			{
-				if (strtolower($d[0]) === $itemname)
+				if (stripos($d[0], $itemname) === 0)
 				{
 					$data = $d;
 					break;
 				}
 			}
 		}
-		if ($data === false) {
+		if ($data === false)
+		{
 			return false;
 		}
 
@@ -167,20 +168,21 @@ abstract class SR_Store extends SR_Location
 	############
 	public function on_view(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		if (count($args) === 0)
-		{
-// 			$bot->reply($this->onViewItems($player));
-			$this->onViewItems($player);
-		}
-		elseif (count($args) === 1)
-		{
-			$this->onViewItem($player, $args[0]);
-		}
-		else
-		{
-			$bot->reply(Shadowhelp::getHelp($player, 'view'));
-		}
+		return $this->onViewItems($player, $args);
+// 		$bot = Shadowrap::instance($player);
+// 		if (count($args) === 0)
+// 		{
+// // 			$bot->reply($this->onViewItems($player));
+// 			$this->onViewItems($player, array());
+// 		}
+// 		elseif (count($args) === 1)
+// 		{
+// 			$this->onViewItem($player, $args[0]);
+// 		}
+// 		else
+// 		{
+// 			$bot->reply(Shadowhelp::getHelp($player, 'view'));
+// 		}
 	}
 	
 	private function onViewItem(SR_Player $player, $itemname)
@@ -196,34 +198,50 @@ abstract class SR_Store extends SR_Location
 // 		return $item->getItemInfo($player);
 	}
 	
-	private function onViewItems(SR_Player $player)
+	private function getStoreItemsC(SR_Player $player)
 	{
-		$player->setOption(SR_Player::RESPONSE_ITEMS);
-		
-		$bot = Shadowrap::instance($player);
-		
-		$back = '';
+		$back = array();
 		$items = $this->getStoreItemsB($player);
-		
-		if (count($items) === 0)
-		{
-			return $bot->rply('1008');
-// 			return 'There are no items here.';
-		}
-		
-		$i = 1;
-		$format = $player->lang('fmt_sumlist');
 		foreach ($items as $data)
 		{
-			if (false === ($item = $this->createItemFromData($player, $data))) {
-				continue;
-			}
-			$back .= sprintf($format, $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
-// 			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
+			$back[] = $this->createItemFromData($player, $data);
 		}
+		return $back;
+	}
+	
+	private function onViewItems(SR_Player $player, array $args=array())
+	{
+		$player->setOption(SR_Player::RESPONSE_ITEMS);
+		$text = array(
+		);
+		$items = $this->getStoreItemsC($player);
+		return Shadowfunc::genericViewI($player, $items, $args, $text);
 		
-		return $bot->rply('5188', array(substr($back, 2)));
-// 		return substr($back, 2);
+		
+// 		$bot = Shadowrap::instance($player);
+		
+// 		$back = '';
+// 		$items = $this->getStoreItemsB($player);
+		
+// 		if (count($items) === 0)
+// 		{
+// 			return $bot->rply('1008');
+// // 			return 'There are no items here.';
+// 		}
+		
+// 		$i = 1;
+// 		$format = $player->lang('fmt_sumlist');
+// 		foreach ($items as $data)
+// 		{
+// 			if (false === ($item = $this->createItemFromData($player, $data))) {
+// 				continue;
+// 			}
+// 			$back .= sprintf($format, $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
+// // 			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
+// 		}
+		
+// 		return $bot->rply('5188', array(substr($back, 2)));
+// // 		return substr($back, 2);
 	}
 	
 	###########
