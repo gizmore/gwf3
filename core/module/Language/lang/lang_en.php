@@ -44,5 +44,6 @@ $lang = array(
 	'err_transkey' => 'Key "%s" is not translated: %s',
 	'err_keymiss' => 'Key "%s" is completely missing.',
 	'err_emptykey' => 'English language file contains an empty key: %s',
+	'msg_no_errors' => 'No errors found.',
 );
 ?>

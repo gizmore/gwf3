@@ -44,5 +44,6 @@ $lang = array(
 	'err_transkey' => 'La chiave "%s" non è tradotta: %s',
 	'err_keymiss' => 'La chiave "%s" manca completamente.',
 	'err_emptykey' => 'Il file contiene una chiave vuota: %s',
+	'msg_no_errors' => 'Non sono stati trovati errori.',
 );
 ?>

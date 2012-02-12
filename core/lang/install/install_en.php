@@ -17,7 +17,7 @@ $lang = array(
 	'err_copy' => 'Cannot copy to file %s.',
 	'err_clear_smarty' => 'Could not clear smarty cache.',
 		
-	'msg_copy' => 'Succesfully made a copy of %s.',
+	'msg_copy' => 'Successfully made a copy of %s.',
 	'msg_copy_untouched' => 'Your copy of %s has not been touched.',
 	'msg_htaccess' => 'I have successfully written the root .htaccess file.',
 	
@@ -55,7 +55,7 @@ $lang = array(
 
 	'step_0'    => 'Check requirements',
 	'step_0_0'  => 'Welcome to the GWF install wizard.<br/>Please create a database for your installation first.<br/>MySQL commands to create a database:',
-	'step_0_0a' => 'Then first make sure all fields marked with (*) are green.',
+	'step_0_0a' => 'First make sure all fields marked with (*) are green.',
 	'step_0_1'  => 'Is directory &quot;protected/&quot; .htaccess protected?',
 	'step_0_2'  => 'Is the root .htaccess writable?(*)',
 	'step_0_3'  => 'Can write &quot;protected/config.php&quot;?(*)',
