@@ -86,7 +86,7 @@ $lang = array(
 	'th_pmo_signature' => 'Your PM Signature',
 
 	'th_pm_options&1' => 'New',
-	'th_actions' => '',
+	'th_actions' => ' ',
 	'th_user_name' => 'Username',
 	'th_pmf_name' => 'Folder',
 	'th_pmf_count' => 'Count',

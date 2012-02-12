@@ -31,19 +31,14 @@ $lang = array(
 	'err_zip' => 'An error occured in zip archive in %s line %s.',
 		
 	# v1.01
-	'dh_langchecker' => 'Results',
 	'err_probsum' => 'Summary for language "%s": %d errors, %d warnings and %d missing files.',
-	'dh_transfilemiss' => 'Translation files missing: %d',
-	'err_transfilemiss' => '%s',
-	'dh_filemiss' => 'Missing files',
-	'err_filemiss' => '%s',
-	'dh_emptyfile' => 'Empty files',
-	'err_emptyfile' => '%s',
-	'dh_warning' => 'Warnings in %s',
-	'dh_errors' => 'Errors in %s',
-	'err_transkey' => 'Key "%s" is not translated: %s',
-	'err_keymiss' => 'Key "%s" is completely missing.',
-	'err_emptykey' => 'English language file contains an empty key: %s',
+	'err_missing_en_files' => 'The following %d files do not exists<br>%s',
+	'err_file_warnings' => 'Warnings in %s<br/>%s',
+	'err_file_errors' => 'Errors in %s:<br/>%s',
+	'err_missing_files' => 'The following %d translation files do not exists<br>%s', # translation files
+	'err_key_not_translated' => 'Key "%s" is not translated: %s',
+	'err_missing_key' => 'Key "%s" is missing.',
+	'err_empty_key' => '%s language file contains an empty key: %s',
 	'msg_no_errors' => 'No errors found.',
 );
 ?>

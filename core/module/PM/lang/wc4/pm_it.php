@@ -86,7 +86,7 @@ $lang = array(
 	'th_pmo_signature' => 'Firma PM',
 
 	'th_pm_options&1' => 'Nuovo',
-	'th_actions' => ' ',
+	'th_actions' => '  ',
 	'th_user_name' => 'Nome Utente',
 	'th_pmf_name' => 'Cartella',
 	'th_pmf_count' => 'Totale',

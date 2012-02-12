@@ -20,7 +20,7 @@ $lang = array(
 	'cfg_CaptchaFont' => 'Font del Captcha',
 //	'cfg_CaptchaWidth' => '',
 //	'cfg_CaptchaHeight' => '',
-	'cfg_allow_all_requests' => 'Allow all types of HTTP requests? (not recommended)',
+	'cfg_allow_all_requests' => 'Permetti qualsiasi tipo di richiesta HTTP? (non raccomandato)',
 		
 	'tt_FancyIndex' => 'Attiva Apache Fancy Indexing?',
 //	'tt_NameWidth' => '',

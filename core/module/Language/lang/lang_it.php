@@ -31,19 +31,14 @@ $lang = array(
 	'err_zip' => 'Si è verificato un errore durante la creazione del file ZIP, nel file %s linea %s.',
 
 	# v1.01
-	'dh_langchecker' => 'Risultati',
-	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avverimenti e %d file mancanti.',
-	'dh_transfilemiss' => 'File della traduzione mancanti: %d',
-	'err_transfilemiss' => '%s ',
-	'dh_filemiss' => 'File mancanti: %s',
-	'err_filemiss' => '%s ',
-	'dh_emptyfile' => 'File vuoti: %s',
-	'err_emptyfile' => '%s ',
-	'dh_warning' => 'Avvertimenti in %s',
-	'dh_errors' => 'Errori in %s',
-	'err_transkey' => 'La chiave "%s" non è tradotta: %s',
-	'err_keymiss' => 'La chiave "%s" manca completamente.',
-	'err_emptykey' => 'Il file contiene una chiave vuota: %s',
-	'msg_no_errors' => 'Non sono stati trovati errori.',
+	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avvertimenti e %d file mancanti.',
+	'err_missing_en_files' => 'I seguenti %d file non esistono<br>%s',
+	'err_file_warnings' => 'Avvertimenti in %s<br/>%s',
+	'err_file_errors' => 'Errori in %s:<br/>%s',
+	'err_missing_files' => 'I seguenti %d file di traduzione non esistono<br>%s',
+	'err_key_not_translated' => 'La chiave "%s" non è tradotta: %s',
+	'err_missing_key' => 'Manca la chiave "%s".',
+	'err_empty_key' => 'Il linguaggio %s contiene una chiave vuota: %s',
+	'msg_no_errors' => 'Nessun errore trovato.',
 );
 ?>
