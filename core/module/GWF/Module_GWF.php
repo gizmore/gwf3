@@ -7,7 +7,7 @@
  */
 final class Module_GWF extends GWF_Module
 {
-	public function getVersion() { return 3.07; }
+	public function getVersion() { return 3.08; }
 	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_InstallGWF.php'; return GWF_InstallGWF::onInstall($this, $dropTable); }
 	
 //	public function cfgDesign() { return $this->getModuleVar('Design', GWF_Template::getDesign()); }
@@ -42,6 +42,9 @@ final class Module_GWF extends GWF_Module
 	public function cfgCaptchaWidth() { return (int)$this->getModuleVar('CaptchaWidth', '210'); }
 	public function cfgCaptchaHeight() { return (int)$this->getModuleVar('CaptchaHeight', '42'); }
 
+	# Security Config
+	public function cfgAllRequests() { return $this->getModuleVarBool('allow_all_requests', false); }
+	
 	public static function validate_CaptchaColor($color) { return preg_match('/^[a-f0-9A-F]{6}$/D', $color) ? $color : false; }
 	public static function validate_CaptchaFont(array $paths)
 	{

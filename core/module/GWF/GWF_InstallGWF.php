@@ -27,6 +27,8 @@ final class GWF_InstallGWF
 			'CaptchaFont' => array(GWF_PATH.'extra/font/teen.ttf', 'text'),
 			'CaptchaWidth' => array('210', 'int'),
 			'CaptchaHeight' => array('42', 'int'),
+			# Security
+			'allow_all_requests' => array('NO', 'bool'),
 		));
 	}
 }
