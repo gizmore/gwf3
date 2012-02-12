@@ -17,7 +17,7 @@ final class Contact_SendMail extends GWF_Method
 		}
 		
 		if ('' === ($email = $user->getValidMail()) || (!$user->isOptionEnabled(GWF_User::ALLOW_EMAIL))) {
-			return $this->_module->error('err_no_mail');
+			return $this->module->error('err_no_mail');
 		}
 		
 		if (false !== Common::getPost('send')) {
@@ -32,16 +32,16 @@ final class Contact_SendMail extends GWF_Method
 		$form = $this->form($user);
 		$tVars = array(
 //			'href_mailto' => sprintf('mailto:'.$user->getValidMail()),
-			'form' => $form->templateY($this->_module->lang('ft_sendmail', array( $user->displayUsername()))),
+			'form' => $form->templateY($this->module->lang('ft_sendmail', array( $user->displayUsername()))),
 //			'' => '',
 		);
-		return $this->_module->template('sendmail.tpl', $tVars);
+		return $this->module->template('sendmail.tpl', $tVars);
 	}
 	
 	private function send(GWF_User $user)
 	{
 		$form = $this->form($user);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->template($user);
 		}
 		
@@ -54,12 +54,12 @@ final class Contact_SendMail extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
-		$mail->setSubject($this->_module->langUser($user, 'mail_subj_mail', $sendermail));
-		$mail->setBody($this->_module->langUser($user, 'mail_subj_body', array($user->displayUsername(), $sendermail, GWF_Message::display($_POST['message']))));
+		$mail->setSubject($this->module->langUser($user, 'mail_subj_mail', $sendermail));
+		$mail->setBody($this->module->langUser($user, 'mail_subj_body', array($user->displayUsername(), $sendermail, GWF_Message::display($_POST['message']))));
 		if (false === $mail->sendToUser($u)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
-		return $this->_module->message('msg_mailed', array($user->displayUsername()));
+		return $this->module->message('msg_mailed', array($user->displayUsername()));
 	}
 
 	public function validate_email(Module_Contact $m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg, true, true); }
@@ -71,14 +71,14 @@ final class Contact_SendMail extends GWF_Method
 		$data = array();
 		
 		if ('' === ($email = $u->getValidMail())) {
-			$data['email'] = array(GWF_Form::STRING, $u->getValidMail(), $this->_module->lang('th_user_email'));
+			$data['email'] = array(GWF_Form::STRING, $u->getValidMail(), $this->module->lang('th_user_email'));
 		}
 
-		$data['message'] = array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message'));
+		$data['message'] = array(GWF_Form::MESSAGE, '', $this->module->lang('th_message'));
 		if ($u->getID() === 0) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['send'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_sendmail'));
+		$data['send'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_sendmail'));
 		
 		return new GWF_Form($this, $data);
 	}

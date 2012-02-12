@@ -14,9 +14,9 @@ final class Admin_BaseCFG extends GWF_Method
 	{
 		$form = $this->formGPGSig();
 		$tVars = array(
-			'form_gpg' => $form->templateY($this->_module->lang('ft_gpg')),
+			'form_gpg' => $form->templateY($this->module->lang('ft_gpg')),
 		);
-		return $this->_module->template('base_cfg.php', $tVars);
+		return $this->module->template('base_cfg.php', $tVars);
 	}
 	
 	###########
@@ -26,7 +26,7 @@ final class Admin_BaseCFG extends GWF_Method
 	public function validate_gpg_paste(Module_Admin $module, $arg)
 	{
 		if (false === ($this->gpg_fingerprint = GWF_PublicKey::grabFingerprint($arg))) {
-			return $this->_module->lang('err_gpg_key');
+			return $this->module->lang('err_gpg_key');
 		}
 		return false;
 	}
@@ -34,8 +34,8 @@ final class Admin_BaseCFG extends GWF_Method
 	private function formGPGSig()
 	{
 		$data = array(
-			'gpg_paste' =>  array(GWF_Form::MESSAGE_NOBB, '', $this->_module->lang('th_gpg_key')),
-			'gpg_create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_gpg_key')),
+			'gpg_paste' =>  array(GWF_Form::MESSAGE_NOBB, '', $this->module->lang('th_gpg_key')),
+			'gpg_create' => array(GWF_Form::SUBMIT, $this->module->lang('btn_gpg_key')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -43,11 +43,11 @@ final class Admin_BaseCFG extends GWF_Method
 	private function onGPGSig()
 	{
 		$form = $this->formGPGSig();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
-		return $this->_module->message('msg_gpg_key', array($this->gpg_fingerprint));
+		return $this->module->message('msg_gpg_key', array($this->gpg_fingerprint));
 	}
 }
 

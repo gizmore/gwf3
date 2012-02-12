@@ -28,7 +28,7 @@ final class WeChall_Tools extends GWF_Method
 	{
 		if (Common::getGetString('list', '0') === '1')
 		{
-			return $this->_module->template("tools/list.tpl");
+			return $this->module->template("tools/list.tpl");
 		}
 		
 		$whitelist = array(
@@ -43,10 +43,10 @@ final class WeChall_Tools extends GWF_Method
 		
 		# Counter Box
 		$count = GWF_Counter::getAndCount($file, 1);
-		$box = GWF_Box::box($this->_module->lang('pi_viewcount', array($count)));
+		$box = GWF_Box::box($this->module->lang('pi_viewcount', array($count)));
 		
 		# Translations
-		$langpath = $this->_module->getDir().'/lang/'.$file;#.'/'.$file;
+		$langpath = $this->module->getDir().'/lang/'.$file;#.'/'.$file;
 		$trans = new GWF_LangTrans($langpath);
 		GWF_Website::setPageTitle($trans->lang('page_title'));
 		GWF_Website::setMetaTags($trans->lang('meta_tags'));
@@ -56,7 +56,7 @@ final class WeChall_Tools extends GWF_Method
 		);
 		
 		
-		return $this->_module->templatePHP("tools/$file/$file.php", $tVars).$box;
+		return $this->module->templatePHP("tools/$file/$file.php", $tVars).$box;
 	}
 }
 ?>

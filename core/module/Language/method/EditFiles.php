@@ -92,10 +92,10 @@ final class Language_EditFiles extends GWF_Method
 		
 		$tVars = array(
 			'files' => $this->files,
-			'href_checker' => $this->_module->getMethodURL('Checker'),
-			'href_bundle' => $this->_module->getMethodURL('Bundle'),
+			'href_checker' => $this->module->getMethodURL('Checker'),
+			'href_bundle' => $this->module->getMethodURL('Bundle'),
 		);
-		return $this->_module->templatePHP('files.php', $tVars);
+		return $this->module->templatePHP('files.php', $tVars);
 	}
 
 	private function templateFile($filename)
@@ -111,17 +111,17 @@ final class Language_EditFiles extends GWF_Method
 		$tVars = array(
 			'file' => $file,
 			'class' => $fileclass,
-			'form' => $form->templateY($this->_module->lang('ft_edit_file', array(GWF_HTML::display($filename)))),
+			'form' => $form->templateY($this->module->lang('ft_edit_file', array(GWF_HTML::display($filename)))),
 		);
-		return $this->_module->templatePHP('file.php', $tVars);
+		return $this->module->templatePHP('file.php', $tVars);
 	}
 
 	private function getFileForm(array $file)
 	{
 		$class = $file[2];
 		$data = array();
-		$data['text'] = array(GWF_Form::MESSAGE, $class->getVar('lf_data'), $this->_module->lang('th_lf_data'));
-		$data['cmds'] = array(GWF_Form::SUBMITS, array('check_syntax'=>$this->_module->lang('btn_chksyn'),'save_file'=>$this->_module->lang('btn_edit') ) );
+		$data['text'] = array(GWF_Form::MESSAGE, $class->getVar('lf_data'), $this->module->lang('th_lf_data'));
+		$data['cmds'] = array(GWF_Form::SUBMITS, array('check_syntax'=>$this->module->lang('btn_chksyn'),'save_file'=>$this->module->lang('btn_edit') ) );
 		return new GWF_Form($this, $data);
 	}
 }

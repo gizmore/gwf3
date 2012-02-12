@@ -47,7 +47,7 @@ class Audit_ViewLog extends GWF_Method
 	{
 		if (false === ($log = GWF_AuditLog::getByID($id)))
 		{
-			return $this->_module->error('err_log');
+			return $this->module->error('err_log');
 		}
 		
 		if ( ($log->getVar('al_eusername') !== $eusername) || ($log->getVar('al_rand') !== $rand) )
@@ -65,7 +65,7 @@ class Audit_ViewLog extends GWF_Method
 		$tVars = array(
 			'log' => $log,
 		);
-		return $this->_module->template('log.tpl', $tVars);
+		return $this->module->template('log.tpl', $tVars);
 	}
 }
 ?>

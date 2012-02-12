@@ -34,7 +34,7 @@ final class News_Edit extends GWF_Method
 		$newsid = (int) Common::getGet('newsid', '0');
 		$langid = (int) Common::getGet('langid', '0');
 		if (false === ($news = GWF_News::getNewsItem($newsid))) {
-			return $this->_module->error('err_news');
+			return $this->module->error('err_news');
 		}
 //		if (false === ($news->loadTranslations())) {
 //			return GWF_HTML::err('ERR_UNKNOWN_LANGUAGE');
@@ -71,15 +71,15 @@ final class News_Edit extends GWF_Method
 //		GWF_Language::setShowSupported(true);
 		$data = array(
 			'langid' => array(GWF_Form::HIDDEN, $langid),
-			'title' => array(GWF_Form::STRING, $title, $this->_module->lang('th_title')),
-			'message' => array(GWF_Form::MESSAGE, $message, $this->_module->lang('th_message')),
-			'hidden' => array(GWF_Form::CHECKBOX, $this->news->isHidden(), $this->_module->lang('th_hidden')),
-			'mailme' => array(GWF_Form::CHECKBOX, $this->news->isToBeMailed(), $this->_module->lang('th_mail_me')),
-			'preview' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_preview'), ''),
-			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit'), ''),
-//			'transid' => array(GWF_Form::GDO, Common::getPost('transid', 0), $this->_module->lang('th_transid'), 20, 'GWF_Language'),
-			'transid' => array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'transid'), $this->_module->lang('th_transid')),
-			'translate' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_translate'), ''),
+			'title' => array(GWF_Form::STRING, $title, $this->module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, $message, $this->module->lang('th_message')),
+			'hidden' => array(GWF_Form::CHECKBOX, $this->news->isHidden(), $this->module->lang('th_hidden')),
+			'mailme' => array(GWF_Form::CHECKBOX, $this->news->isToBeMailed(), $this->module->lang('th_mail_me')),
+			'preview' => array(GWF_Form::SUBMIT, $this->module->lang('btn_preview'), ''),
+			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit'), ''),
+//			'transid' => array(GWF_Form::GDO, Common::getPost('transid', 0), $this->module->lang('th_transid'), 20, 'GWF_Language'),
+			'transid' => array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'transid'), $this->module->lang('th_transid')),
+			'translate' => array(GWF_Form::SUBMIT, $this->module->lang('btn_translate'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -87,12 +87,12 @@ final class News_Edit extends GWF_Method
 	private function templateEdit()
 	{
 		$form = $this->getForm();
-		$form_title = $this->_module->lang('ft_edit', array( $this->lang->displayName()));
+		$form_title = $this->module->lang('ft_edit', array( $this->lang->displayName()));
 		$action = $this->news->hrefEdit($this->lang);
 		$tVars = array(
 			'form' => $form->templateY($form_title, $action),
 		);
-		return $this->_module->templatePHP('edit.php', $tVars);
+		return $this->module->templatePHP('edit.php', $tVars);
 	}
 	
 	##################
@@ -100,26 +100,26 @@ final class News_Edit extends GWF_Method
 	##################
 	public function validate_title(GWF_Module $module, $arg)
 	{
-		return strlen($arg) < 3 ? $this->_module->error('err_title') : false;
+		return strlen($arg) < 3 ? $this->module->error('err_title') : false;
 	}
 	
 	public function validate_message(GWF_Module $module, $arg)
 	{
-		return strlen($arg) < 3 ? $this->_module->error('err_message') : false;
+		return strlen($arg) < 3 ? $this->module->error('err_message') : false;
 	}
 	
 	public function validate_langid(GWF_Module $module, $arg)
 	{
 		return false;
 		$langid = (int) $arg;
-		return GWF_Language::isLangIDSupported($langid) ? false : $this->_module->error('err_lang_src');
+		return GWF_Language::isLangIDSupported($langid) ? false : $this->module->error('err_lang_src');
 	}
 	
 	public function validate_transid(GWF_Module $module, $arg)
 	{
 		return false;
 //		$langid = (int) $arg;
-//		return GWF_Language::isLangIDSupported($arg) ? false : $this->_module->lang('err_langtrans');
+//		return GWF_Language::isLangIDSupported($arg) ? false : $this->module->lang('err_langtrans');
 	}
 	
 	###############
@@ -129,7 +129,7 @@ final class News_Edit extends GWF_Method
 	{
 		$form = $this->getForm();
 		
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateEdit();
 		}
 		
@@ -150,9 +150,9 @@ final class News_Edit extends GWF_Method
 	private function previewNewsletter(GWF_News $news)
 	{
 		Module_News::savePreview($news);
-		$aTEXT = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/text', $this->_module->lang('btn_preview_text'));
-		$aHTML = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/html', $this->_module->lang('btn_preview_html'));
-		return $this->_module->lang('preview_info', array( $aTEXT, $aHTML));
+		$aTEXT = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/text', $this->module->lang('btn_preview_text'));
+		$aHTML = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/html', $this->module->lang('btn_preview_html'));
+		return $this->module->lang('preview_info', array( $aTEXT, $aHTML));
 	}
 	
 	############
@@ -161,7 +161,7 @@ final class News_Edit extends GWF_Method
 	private function onEdit()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) { #, array('langid', 'title', 'message')))) {
+		if (false !== ($error = $form->validate($this->module))) { #, array('langid', 'title', 'message')))) {
 			return $error;
 		}
 		
@@ -178,26 +178,26 @@ final class News_Edit extends GWF_Method
 		$newhidden = isset($_POST['hidden']);
 		$options |= $newhidden ? GWF_News::HIDDEN : 0;
 		if ($newhidden !== $oldhidden) {
-			$back .= $this->_module->message('msg_hidden_'.($newhidden?1:0));
+			$back .= $this->module->message('msg_hidden_'.($newhidden?1:0));
 		}
 		
 		$oldmail = $this->news->isToBeMailed();
 		$newmail = isset($_POST['mailme']);
 		$options |= $newmail ? GWF_News::MAIL_ME : 0;
 		if ($newmail !== $oldmail) {
-			$back .= $this->_module->message('msg_mailme_'.($newmail?1:0));
+			$back .= $this->module->message('msg_mailme_'.($newmail?1:0));
 		}
 		
 		if (false === $this->news->saveVar('news_options', $options)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-//		if ($this->_module->cfgNewsInForum())
+//		if ($this->module->cfgNewsInForum())
 //		{
 //			$back .= $this->newsToForum($this->news, !$newhidden);
 //		}
 		
-		return $back.$this->_module->message('msg_edited', array($this->news->displayTitle(), $this->lang->displayName()));
+		return $back.$this->module->message('msg_edited', array($this->news->displayTitle(), $this->lang->displayName()));
 	}
 
 	#################
@@ -207,12 +207,12 @@ final class News_Edit extends GWF_Method
 	{
 		$newsid = (int) Common::getPost('newsid', 0);
 		if (false === ($news = GWF_News::getByID($newsid))) {
-			return $this->_module->error('err_news');
+			return $this->module->error('err_news');
 		}
 		
 		$translateID = (int) Common::getPost('translate', 0);
 		if (false === ($lang = GWF_Language::getByID($translateID))) {
-			return $this->_module->error('err_lang_dest');
+			return $this->module->error('err_lang_dest');
 		}
 		
 		$trans = $news->getFirstTranslation();
@@ -225,17 +225,17 @@ final class News_Edit extends GWF_Method
 	private function onTranslate()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) { #, array('transid', 'langid', 'title', 'message')))) {
+		if (false !== ($error = $form->validate($this->module))) { #, array('transid', 'langid', 'title', 'message')))) {
 			return $error.$this->templateEdit();
 		}
 		
 		$transid = $form->getVar('transid');
 		if (false === ($lang = GWF_Language::getByID($transid))) {
-			return $this->_module->error('err_lang_dest').$this->templateEdit();
+			return $this->module->error('err_lang_dest').$this->templateEdit();
 		}
 		
 		if ($form->getVar('langid') === $transid) {
-			return $this->_module->error('err_equal_translang', array($this->lang->displayName())).$this->templateEdit();
+			return $this->module->error('err_equal_translang', array($this->lang->displayName())).$this->templateEdit();
 		}
 		
 		if (false === ($this->news->saveTranslation($transid, $form->getVar('title'), $form->getVar('message')))) {
@@ -245,12 +245,12 @@ final class News_Edit extends GWF_Method
 		$this->lang = $lang;
 		
 		$back = '';
-//		if ($this->_module->cfgNewsInForum() && (!$this->news->isHidden()))
+//		if ($this->module->cfgNewsInForum() && (!$this->news->isHidden()))
 //		{
 //			$back = $this->newsToForum($this->news);
 //		}
 		
-		return $back.$this->_module->message('msg_translated', array($this->news->displayTitle(), $lang->displayName())).$this->templateEdit();
+		return $back.$this->module->message('msg_translated', array($this->news->displayTitle(), $lang->displayName())).$this->templateEdit();
 	}
 	
 	##################
@@ -412,7 +412,7 @@ final class News_Edit extends GWF_Method
 
 		/// Create new board
 		$options = GWF_ForumBoard::GUEST_VIEW;
-		$descr = $this->_module->langISO($lang->getISO(), 'board_lang_descr', array($lang->displayName()));
+		$descr = $this->module->langISO($lang->getISO(), 'board_lang_descr', array($lang->displayName()));
 		$board = GWF_ForumBoard::createBoard($title, $descr, $pid, $options);
 		
 		return $board;

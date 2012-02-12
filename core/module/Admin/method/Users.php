@@ -16,13 +16,13 @@ final class Admin_Users extends GWF_Method
 			return $error;
 		}
 		
-		return $this->_module->templateNav().$this->templateUserTable();
+		return $this->module->templateNav().$this->templateUserTable();
 	}
 	
 	private function sanitize()
 	{
 		$users = GDO::table('GWF_User');
-		$this->upp = $this->_module->cfgUsersPerPage();
+		$this->upp = $this->module->cfgUsersPerPage();
 		$this->nUsers = $users->countRows();
 //		$this->by = $users->getWhitelistedBy(Common::getGet('by'), 'user_regdate');
 //		$this->dir = $users->getWhitelistedDir(Common::getGet('dir'), 'DESC');
@@ -44,9 +44,9 @@ final class Admin_Users extends GWF_Method
 //			'by' => $this->by,
 //			'dir' => $this->dir,
 			'sort_url' => $this->getTableSortURL(),
-			'search_form' => $this->getSearchForm()->templateX($this->_module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
+			'search_form' => $this->getSearchForm()->templateX($this->module->lang('ft_search'), GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch'),
 		);
-		return $this->_module->templatePHP('users.php', $tVars);
+		return $this->module->templatePHP('users.php', $tVars);
 	}
 
 	private function getUsers()

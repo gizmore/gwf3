@@ -12,7 +12,7 @@ final class WeChall_API_Site extends GWF_Method
 			die($this->showAllSites());
 		}
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
-			die($this->_module->lang('err_site'));
+			die($this->module->lang('err_site'));
 		}
 		die($this->showSite($site));
 	}

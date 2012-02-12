@@ -33,13 +33,13 @@ final class PM_Edit extends GWF_Method
 	private function sanitize()
 	{
 		if (false === ($this->pm = GWF_PM::getByID(Common::getGet('pmid')))) {
-			return $this->_module->error('err_pm');
+			return $this->module->error('err_pm');
 		}
 		if ($this->pm->isRead()) {
-			return $this->_module->error('err_pm_read');
+			return $this->module->error('err_pm_read');
 		}
 		if (false === $this->pm->canEdit(GWF_Session::getUser())) {
-			return $this->_module->error('err_perm_write');
+			return $this->module->error('err_perm_write');
 		}
 		return false;
 	}
@@ -47,12 +47,12 @@ final class PM_Edit extends GWF_Method
 	private function getForm()
 	{
 		$buttons = array(
-			'preview' => $this->_module->lang('btn_preview'),
-			'edit' => $this->_module->lang('btn_edit'),
+			'preview' => $this->module->lang('btn_preview'),
+			'edit' => $this->module->lang('btn_edit'),
 		);
 		$data = array(
-			'title' => array(GWF_Form::STRING, $this->pm->getVar('pm_title'), $this->_module->lang('th_pm_title')),
-			'message' => array(GWF_Form::MESSAGE, $this->pm->getVar('pm_message'), $this->_module->lang('th_pm_message')),
+			'title' => array(GWF_Form::STRING, $this->pm->getVar('pm_title'), $this->module->lang('th_pm_title')),
+			'message' => array(GWF_Form::MESSAGE, $this->pm->getVar('pm_message'), $this->module->lang('th_pm_message')),
 			'cmds' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -62,16 +62,16 @@ final class PM_Edit extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit')),
+			'form' => $form->templateY($this->module->lang('ft_edit')),
 			'preview' => $preview,
 		);
-		return $this->_module->template('edit.tpl', $tVars);
+		return $this->module->template('edit.tpl', $tVars);
 	}
 	
 	private function onPreview()
 	{
 		$form = $this->getForm();
-		$errors = $form->validate($this->_module);
+		$errors = $form->validate($this->module);
 		$preview = $this->templatePreview($form);
 		return $errors.$this->templateEdit($preview);
 	}
@@ -81,16 +81,16 @@ final class PM_Edit extends GWF_Method
 		$tVars = array(
 			'pm' => GWF_PM::fakePM($this->pm->getSender()->getID(), $this->pm->getReceiver()->getID(), $form->getVar('title'), $form->getVar('message')),
 			'actions' => false,
-			'title' => $this->_module->lang('ft_preview'),
+			'title' => $this->module->lang('ft_preview'),
 			'unread' => array(),
 		);
-		return $this->_module->templatePHP('show.php', $tVars);
+		return $this->module->templatePHP('show.php', $tVars);
 	}
 
 	private function onEdit()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateEdit();
 		}
 		
@@ -110,11 +110,11 @@ final class PM_Edit extends GWF_Method
 			}
 		}
 		
-		return $this->_module->message('msg_edited').$this->_module->requestMethodB('Overview');
+		return $this->module->message('msg_edited').$this->module->requestMethodB('Overview');
 	}
 	
-	public function validate_title(Module_PM $module, $arg) { return $this->_module->validate_title($arg); }
-	public function validate_message(Module_PM $module, $arg) { return $this->_module->validate_message($arg); }
+	public function validate_title(Module_PM $module, $arg) { return $this->module->validate_title($arg); }
+	public function validate_message(Module_PM $module, $arg) { return $this->module->validate_message($arg); }
 }
 
 ?>

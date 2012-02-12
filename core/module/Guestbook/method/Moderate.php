@@ -17,7 +17,7 @@ final class Guestbook_Moderate extends GWF_Method
 	{
 		# Permissions
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {
-			return $this->_module->error('err_gb');
+			return $this->module->error('err_gb');
 		}
 		if (false === ($gb->canModerate(GWF_Session::getUser()))) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -55,30 +55,30 @@ final class Guestbook_Moderate extends GWF_Method
 	{
 		$form = $this->getForm($gb);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_gb')),
+			'form' => $form->templateY($this->module->lang('ft_edit_gb')),
 		);
-		return $this->_module->template('edit_gb.tpl', $tVars);
+		return $this->module->template('edit_gb.tpl', $tVars);
 	}
 	
 	public function getForm(GWF_Guestbook $gb)
 	{
 		$data = array();
 		
-		$data['title'] = array(GWF_Form::STRING, $gb->getVar('gb_title'), $this->_module->lang('th_gb_title'));
-		$data['locked'] = array(GWF_Form::CHECKBOX, $gb->isLocked(), $this->_module->lang('th_gb_locked'));
-		$data['moderated'] = array(GWF_Form::CHECKBOX, $gb->isModerated(), $this->_module->lang('th_gb_moderated'));
-		$data['g_view'] = array(GWF_Form::CHECKBOX, $gb->isGuestViewable(), $this->_module->lang('th_gb_guest_view'));
-		$data['g_sign'] = array(GWF_Form::CHECKBOX, $gb->isGuestWriteable(), $this->_module->lang('th_gb_guest_sign'));
-		$data['bbcode'] = array(GWF_Form::CHECKBOX, $gb->isBBAllowed(), $this->_module->lang('th_gb_bbcode'));
-		$data['website'] = array(GWF_Form::CHECKBOX, $gb->isURLAllowed(), $this->_module->lang('th_gb_urls'));
-		$data['smileys'] = array(GWF_Form::CHECKBOX, $gb->isSmileyAllowed(), $this->_module->lang('th_gb_smiles'));
-		$data['emails'] = array(GWF_Form::CHECKBOX, $gb->isEMailAllowed(), $this->_module->lang('th_gb_emails'));
-		$data['emailentries'] = array(GWF_Form::CHECKBOX, $gb->isEMailOnSign(), $this->_module->lang('th_mailonsign'));
-		if ($this->_module->cfgNesting()) {
-			$data['nesting'] = array(GWF_Form::CHECKBOX, $gb->isNestingAllowed(), $this->_module->lang('th_gb_nesting'));
+		$data['title'] = array(GWF_Form::STRING, $gb->getVar('gb_title'), $this->module->lang('th_gb_title'));
+		$data['locked'] = array(GWF_Form::CHECKBOX, $gb->isLocked(), $this->module->lang('th_gb_locked'));
+		$data['moderated'] = array(GWF_Form::CHECKBOX, $gb->isModerated(), $this->module->lang('th_gb_moderated'));
+		$data['g_view'] = array(GWF_Form::CHECKBOX, $gb->isGuestViewable(), $this->module->lang('th_gb_guest_view'));
+		$data['g_sign'] = array(GWF_Form::CHECKBOX, $gb->isGuestWriteable(), $this->module->lang('th_gb_guest_sign'));
+		$data['bbcode'] = array(GWF_Form::CHECKBOX, $gb->isBBAllowed(), $this->module->lang('th_gb_bbcode'));
+		$data['website'] = array(GWF_Form::CHECKBOX, $gb->isURLAllowed(), $this->module->lang('th_gb_urls'));
+		$data['smileys'] = array(GWF_Form::CHECKBOX, $gb->isSmileyAllowed(), $this->module->lang('th_gb_smiles'));
+		$data['emails'] = array(GWF_Form::CHECKBOX, $gb->isEMailAllowed(), $this->module->lang('th_gb_emails'));
+		$data['emailentries'] = array(GWF_Form::CHECKBOX, $gb->isEMailOnSign(), $this->module->lang('th_mailonsign'));
+		if ($this->module->cfgNesting()) {
+			$data['nesting'] = array(GWF_Form::CHECKBOX, $gb->isNestingAllowed(), $this->module->lang('th_gb_nesting'));
 		}
-		$data['descr'] = array(GWF_Form::MESSAGE, $gb->getVar('gb_descr'), $this->_module->lang('th_gb_descr'));
-		$data['edit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit_gb'));
+		$data['descr'] = array(GWF_Form::MESSAGE, $gb->getVar('gb_descr'), $this->module->lang('th_gb_descr'));
+		$data['edit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_gb'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -86,9 +86,9 @@ final class Guestbook_Moderate extends GWF_Method
 	{
 		$arg = $_POST['title'] = trim($arg);
 		$len = GWF_String::strlen($arg);
-		$max = $this->_module->cfgMaxTitleLen();
+		$max = $this->module->cfgMaxTitleLen();
 		if ($len < 1 || $len > $max) {
-			return $this->_module->lang('err_gb_title', array( 1, $max));
+			return $this->module->lang('err_gb_title', array( 1, $max));
 		}
 		return false;
 	}
@@ -97,9 +97,9 @@ final class Guestbook_Moderate extends GWF_Method
 	{
 		$arg = $_POST['descr'] = trim($arg);
 		$len = GWF_String::strlen($arg);
-		$max = $this->_module->cfgMaxDescrLen();
+		$max = $this->module->cfgMaxDescrLen();
 		if ($len < 1 || $len > $max) {
-			return $this->_module->lang('err_gb_descr', array( 1, $max));
+			return $this->module->lang('err_gb_descr', array( 1, $max));
 		}
 		return false;
 	}
@@ -107,7 +107,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function onEdit(GWF_Guestbook $gb)
 	{
 		$form = $this->getForm($gb);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -124,11 +124,11 @@ final class Guestbook_Moderate extends GWF_Method
 		$gb->saveOption(GWF_Guestbook::ALLOW_SMILEY, isset($_POST['smileys']));
 		$gb->saveOption(GWF_Guestbook::ALLOW_EMAIL, isset($_POST['emails']));
 		$gb->saveOption(GWF_Guestbook::EMAIL_ON_ENTRY, isset($_POST['emailentries']));
-		if ($this->_module->cfgNesting()) {
+		if ($this->module->cfgNesting()) {
 			$gb->saveOption(GWF_Guestbook::ALLOW_NESTING, isset($_POST['nesting']));
 		}
 		
-		return $this->_module->message('msg_gb_edited');
+		return $this->module->message('msg_gb_edited');
 	}
 	
 	##################
@@ -137,9 +137,9 @@ final class Guestbook_Moderate extends GWF_Method
 	private function getEntryForm(GWF_Guestbook $gb, GWF_GuestbookMSG $gbm)
 	{
 		$data = array(
-			'message' => array(GWF_Form::MESSAGE, $gbm->getVar('gbm_message'), $this->_module->lang('th_gbm_message')),
-			'edit_entry' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit_entry')),
-			'del_entry' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_del_entry')),
+			'message' => array(GWF_Form::MESSAGE, $gbm->getVar('gbm_message'), $this->module->lang('th_gbm_message')),
+			'edit_entry' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_entry')),
+			'del_entry' => array(GWF_Form::SUBMIT, $this->module->lang('btn_del_entry')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -147,7 +147,7 @@ final class Guestbook_Moderate extends GWF_Method
 	private function templateEditEntry(GWF_Guestbook $gb, $gbmid)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
-			return $this->_module->error('err_gbm');
+			return $this->module->error('err_gbm');
 		}
 		if ($gbm->getVar('gbm_gbid') !== $gb->getID()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -155,15 +155,15 @@ final class Guestbook_Moderate extends GWF_Method
 		
 		$form = $this->getEntryForm($gb, $gbm);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_entry')),
+			'form' => $form->templateY($this->module->lang('ft_edit_entry')),
 		);
-		return $this->_module->template('edit_gbm.tpl', $tVars);
+		return $this->module->template('edit_gbm.tpl', $tVars);
 	}
 
 	private function onEditEntry(GWF_Guestbook $gb, $gbmid, $delete=false)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
-			return $this->_module->error('err_gbm');
+			return $this->module->error('err_gbm');
 		}
 		if ($gbm->getVar('gbm_gbid') !== $gb->getID()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -174,7 +174,7 @@ final class Guestbook_Moderate extends GWF_Method
 //		}
 		
 		$form = $this->getEntryForm($gb, $gbm);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateEditEntry($gb, $gbmid);
 		}
 		
@@ -183,14 +183,14 @@ final class Guestbook_Moderate extends GWF_Method
 			if (false === $gbm->delete()) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			return $this->_module->message('msg_e_deleted');
+			return $this->module->message('msg_e_deleted');
 		}
 		else
 		{
 			if (false === $gbm->saveVar('gbm_message', $form->getVar('message'))) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			return $this->_module->message('msg_gbm_edited');
+			return $this->module->message('msg_gbm_edited');
 		}
 	}
 	
@@ -211,7 +211,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function onSetModeration(GWF_Guestbook $gb, $gbmid, $state)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
-			return $this->_module->error('err_gbm');
+			return $this->module->error('err_gbm');
 		}
 		if ($gbm->getVar('gbm_gbid') !== $gb->getID()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -221,7 +221,7 @@ final class Guestbook_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_gbm_mod_'.($state ? '1' : '0'));
+		return $this->module->message('msg_gbm_mod_'.($state ? '1' : '0'));
 	}
 	
 	#####################
@@ -230,7 +230,7 @@ final class Guestbook_Moderate extends GWF_Method
 	public function onSetPublic(GWF_Guestbook $gb, $gbmid, $state)
 	{
 		if (false === ($gbm = GWF_GuestbookMSG::getByID($gbmid))) {
-			return $this->_module->error('err_gbm');
+			return $this->module->error('err_gbm');
 		}
 		if ($gbm->getVar('gbm_gbid') !== $gb->getID()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -242,7 +242,7 @@ final class Guestbook_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_gbm_pub_'.($state ? '1' : '0'));
+		return $this->module->message('msg_gbm_pub_'.($state ? '1' : '0'));
 	}
 	
 }

@@ -15,7 +15,7 @@ final class Chat_Ajax extends GWF_Method
 		}
 
 		# Update Nickname
-		GWF_ChatOnline::onRequest($this->_module);
+		GWF_ChatOnline::onRequest($this->module);
 		
 		return $back;
 	}
@@ -23,25 +23,25 @@ final class Chat_Ajax extends GWF_Method
 	private function onPost($nickname, $target, $message)
 	{
 		# Validate the crap!
-		if (false !== ($error = GWF_ChatValidator::validate_yournick($this->_module, $nickname))) {
+		if (false !== ($error = GWF_ChatValidator::validate_yournick($this->module, $nickname))) {
 			return $error;
 		}
-		if (false !== ($error = GWF_ChatValidator::validate_target($this->_module, $target))) {
+		if (false !== ($error = GWF_ChatValidator::validate_target($this->module, $target))) {
 			$error;
 		}
-		if (false !== ($error = GWF_ChatValidator::validate_message($this->_module, $message))) {
+		if (false !== ($error = GWF_ChatValidator::validate_message($this->module, $message))) {
 			return $error;
 		}
 		
 		# Post it!
-		$oldnick = $this->_module->getNickname();
+		$oldnick = $this->module->getNickname();
 		$sender = Common::getPost('yournick', $oldnick);
 		$target = trim($target);
 		$message = str_replace("\n", '<br/>', Common::getPost('message'));
 
 		if ($oldnick === false) {
-			$sender = $this->_module->getGuestPrefixed($sender);
-			$this->_module->setGuestNick($sender);
+			$sender = $this->module->getGuestPrefixed($sender);
+			$this->module->setGuestNick($sender);
 		} else {
 			$sender = $oldnick;
 		}
@@ -55,9 +55,9 @@ final class Chat_Ajax extends GWF_Method
 	
 	private function onAjaxUpdate()
 	{
-		GWF_ChatOnline::onRequest($this->_module);
+		GWF_ChatOnline::onRequest($this->module);
 		$times = $this->getAjaxTimes();
-		$back = $this->_module->getAjaxUpdates($times);
+		$back = $this->module->getAjaxUpdates($times);
 		self::saveAjaxTimes($times);
 		return $back;
 	}

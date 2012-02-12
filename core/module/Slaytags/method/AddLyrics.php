@@ -7,7 +7,7 @@ final class Slaytags_AddLyrics extends GWF_Method
 	{
 		if (false === ($song = Slay_Song::getByID(Common::getGetString('stid'))))
 		{
-			return $this->_module->error('err_song');
+			return $this->module->error('err_song');
 		}
 		
 		if (isset($_POST['add']))
@@ -22,18 +22,18 @@ final class Slaytags_AddLyrics extends GWF_Method
 	{
 		$form = $this->formAddLyrics($song);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_lyrics')),
+			'form' => $form->templateY($this->module->lang('ft_add_lyrics')),
 		);
-		return $this->_module->template('add_lyrics.tpl', $tVars);
+		return $this->module->template('add_lyrics.tpl', $tVars);
 	}
 
 	private function formAddLyrics(Slay_Song $song)
 	{
 		$user = GWF_Session::getUser();
 		$data = array(
-			'lyrics' => array(GWF_Form::MESSAGE_NOBB, Slay_Lyrics::getLyrics($song, $user), $this->_module->lang('th_lyrics')),
-			'enabled' => array(GWF_Form::CHECKBOX, Slay_Lyrics::isEnabledLyrics($song, $user), $this->_module->lang('th_enabled')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_lyrics')),
+			'lyrics' => array(GWF_Form::MESSAGE_NOBB, Slay_Lyrics::getLyrics($song, $user), $this->module->lang('th_lyrics')),
+			'enabled' => array(GWF_Form::CHECKBOX, Slay_Lyrics::isEnabledLyrics($song, $user), $this->module->lang('th_enabled')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_lyrics')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -43,7 +43,7 @@ final class Slaytags_AddLyrics extends GWF_Method
 	private function onAddLyrics(Slay_Song $song)
 	{
 		$form = $this->formAddLyrics($song);
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validate($this->module)))
 		{
 			return $error;
 		}
@@ -67,7 +67,7 @@ final class Slaytags_AddLyrics extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_added_lyrics');
+		return $this->module->message('msg_added_lyrics');
 	}
 }
 ?>

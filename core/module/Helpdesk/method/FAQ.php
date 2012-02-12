@@ -1,7 +1,7 @@
 <?php
 final class Helpdesk_FAQ extends GWF_Method
 {
-	private function onGenerate() { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($this->_module); }
+	private function onGenerate() { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($this->module); }
 	
 	public function execute()
 	{
@@ -20,11 +20,11 @@ final class Helpdesk_FAQ extends GWF_Method
 	public function templateFAQ()
 	{
 		$tVars = array(
-			'href_add' => $this->_module->getMethodURL('FAQAdd'),
+			'href_add' => $this->module->getMethodURL('FAQAdd'),
 			'href_generate' => $this->getMethodHREF('&generate=now'),
 			'faq' => $this->buildFAQ(),
 		);
-		return $this->_module->template('faq.tpl', $tVars);
+		return $this->module->template('faq.tpl', $tVars);
 	}
 	
 	private function buildFAQ()
@@ -70,7 +70,7 @@ final class Helpdesk_FAQ extends GWF_Method
 			$back['q'] = $row['hdf_question'];
 			$back['a'] = array(GWF_Message::display($row['hdf_answer']));
 		}
-		$back['href_edit'] = $this->_module->getMethodURL('FAQEdit', '&faqid='.$row['hdf_id']);
+		$back['href_edit'] = $this->module->getMethodURL('FAQEdit', '&faqid='.$row['hdf_id']);
 		return $back;
 	}
 }

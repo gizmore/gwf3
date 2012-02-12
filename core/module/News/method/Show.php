@@ -59,7 +59,7 @@ final class News_Show extends GWF_Method
 		$hiddenQuery = "news_options&1=0";
 		$condition = "($catQuery) AND ($hiddenQuery)";
 		$this->numNews = $news->countRows($condition);
-		$npp = $this->_module->getNewsPerPage();
+		$npp = $this->module->getNewsPerPage();
 		
 		$this->nPages = GWF_PageMenu::getPagecount($npp, $this->numNews);
 		$this->page = intval(Common::clamp(Common::getGet('page', '1'), 1, $this->nPages));
@@ -81,7 +81,7 @@ final class News_Show extends GWF_Method
 		$_GET['catid'] = $catid;
 		
 		$condition = $catid === 0 ? '' : "news_catid=$catid";
-		if (1 > ($page = GWF_PageMenu::getPageFor($item, $condition, 'news_date DESC', $this->_module->getNewsPerPage()))) {
+		if (1 > ($page = GWF_PageMenu::getPageFor($item, $condition, 'news_date DESC', $this->module->getNewsPerPage()))) {
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 		
@@ -92,15 +92,15 @@ final class News_Show extends GWF_Method
 	
 	public function templateShow()
 	{
-		if (false === ($news = GWF_News::getNewsQuick($this->_module->getNewsPerPage(), $this->catid, $this->page, GWF_Language::getCurrentID()))) {
+		if (false === ($news = GWF_News::getNewsQuick($this->module->getNewsPerPage(), $this->catid, $this->page, GWF_Language::getCurrentID()))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}		
 		
 		$date = count($news) > 0 ? $news[0]['news_date'] : GWF_Settings::getSetting('gwf_site_birthday').'090000';
 		$date = GWF_Time::displayDate($date);
-		GWF_Website::setPageTitle($this->_module->lang('pt_news', array( $date)));
-		GWF_Website::setMetaTags($this->_module->lang('mt_news', array( $date)));
-		GWF_Website::setMetaDescr($this->_module->lang('md_news', array( $this->page, $this->nPages)));
+		GWF_Website::setPageTitle($this->module->lang('pt_news', array( $date)));
+		GWF_Website::setMetaTags($this->module->lang('mt_news', array( $date)));
+		GWF_Website::setMetaDescr($this->module->lang('md_news', array( $this->page, $this->nPages)));
 		
 //		$mod_forum = GWF_Module::getModule('Forum', true);
 		
@@ -112,16 +112,16 @@ final class News_Show extends GWF_Method
 			'cat' => GWF_HTML::display($this->catTitle),
 			'page_menu' => $this->getPageMenu(),
 			'page' => $this->page,
-			'can_sign' => $this->_module->canSignNewsletter(GWF_Session::getUser()),
-			'href_sign_news' => $this->_module->hrefSignNewsletter(),
+			'can_sign' => $this->module->canSignNewsletter(GWF_Session::getUser()),
+			'href_sign_news' => $this->module->hrefSignNewsletter(),
 //			'href_unsign' => GWF_WEB_ROOT.'newsletter/subscribe',
 			'may_add' => GWF_User::isAdminS() || GWF_User::isStaffS(),
-			'href_add' => $this->_module->hrefAddNews(),
-//			'with_forum' => ( ($mod_forum !== false) && ($this->_module->cfgNewsInForum()) ),
+			'href_add' => $this->module->hrefAddNews(),
+//			'with_forum' => ( ($mod_forum !== false) && ($this->module->cfgNewsInForum()) ),
 //			'href_comments_more' => GWF_WEB_RO
 		
 		);
-		return $this->_module->templatePHP('show.php', $tVars);
+		return $this->module->templatePHP('show.php', $tVars);
 	}
 	
 	private function getPageMenu()

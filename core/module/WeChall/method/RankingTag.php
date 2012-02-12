@@ -58,9 +58,9 @@ final class WeChall_RankingTag extends GWF_Method
 		
 		$dtag = GWF_HTML::display($tag);
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_tagrank', array($dtag)));
-		GWF_Website::setMetaTags($this->_module->lang('mt_tagrank', array($dtag, $dtag)));
-		GWF_Website::setMetaDescr($this->_module->lang('md_tagrank', array($dtag, $page, $nPages)));
+		GWF_Website::setPageTitle($this->module->lang('pt_tagrank', array($dtag)));
+		GWF_Website::setMetaTags($this->module->lang('mt_tagrank', array($dtag, $dtag)));
+		GWF_Website::setMetaDescr($this->module->lang('md_tagrank', array($dtag, $page, $nPages)));
 		
 		$tVars = array(
 			'rank' => $rank,
@@ -72,7 +72,7 @@ final class WeChall_RankingTag extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('category_ranking/%s/page-%%PAGE%%', urlencode($tag))),
 			'select' => $this->getTagSelect(),
 		);
-		return $this->_module->templatePHP('ranking_tag.php', $tVars);
+		return $this->module->templatePHP('ranking_tag.php', $tVars);
 	}
 	
 	private function getPageNum($ipp, $bit)

@@ -15,7 +15,7 @@ final class Admin_UserEdit extends GWF_Method
 			return $error;
 		}
 		
-		$nav = $this->_module->templateNav();
+		$nav = $this->module->templateNav();
 		
 		if (false !== Common::getPost('edit')) {
 			return $nav.$this->onEdit().$this->templateUserEdit();
@@ -37,24 +37,24 @@ final class Admin_UserEdit extends GWF_Method
 		$u = $this->user;
 		$data = array(
 			# Basic
-			'username' => array(GWF_Form::STRING, $u->displayUsername(), $this->_module->lang('th_user_name')),
-			'email' => array(GWF_Form::STRING, $u->display('user_email'), $this->_module->lang('th_email')),
-			'password' => array(GWF_Form::STRING, '', $this->_module->lang('th_new_pass')),
+			'username' => array(GWF_Form::STRING, $u->displayUsername(), $this->module->lang('th_user_name')),
+			'email' => array(GWF_Form::STRING, $u->display('user_email'), $this->module->lang('th_email')),
+			'password' => array(GWF_Form::STRING, '', $this->module->lang('th_new_pass')),
 			# Selects
-			'gender' => array(GWF_Form::SELECT, $u->getGenderSelect('gender'), $this->_module->lang('th_gender')),
-			'country' => array(GWF_Form::SELECT, $u->getCountrySelect('country'), $this->_module->lang('th_country')),
-			'lang1' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang1', $u->getVar('user_langid')), $this->_module->lang('th_lang_1')),
-			'lang2' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang2', $u->getVar('user_langid2')), $this->_module->lang('th_lang_2')),
+			'gender' => array(GWF_Form::SELECT, $u->getGenderSelect('gender'), $this->module->lang('th_gender')),
+			'country' => array(GWF_Form::SELECT, $u->getCountrySelect('country'), $this->module->lang('th_country')),
+			'lang1' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang1', $u->getVar('user_langid')), $this->module->lang('th_lang_1')),
+			'lang2' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'lang2', $u->getVar('user_langid2')), $this->module->lang('th_lang_2')),
 			# Options
-			'level' => array(GWF_Form::STRING, $u->getVar('user_level'), $this->_module->lang('th_level')),
-			'approved' => array(GWF_Form::CHECKBOX, $u->hasValidMail(), $this->_module->lang('th_is_approved')),
-			'bot' => array(GWF_Form::CHECKBOX, $u->isBot(), $this->_module->lang('th_is_bot')),
-			'online' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::HIDE_ONLINE), $this->_module->lang('th_hide_online')),
-			'showemail' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::SHOW_EMAIL), $this->_module->lang('th_show_email')),
-			'adult' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::WANTS_ADULT), $this->_module->lang('th_want_adult')),
-			'deleted' => array(GWF_Form::CHECKBOX, $u->isDeleted(), $this->_module->lang('th_deleted')),
+			'level' => array(GWF_Form::STRING, $u->getVar('user_level'), $this->module->lang('th_level')),
+			'approved' => array(GWF_Form::CHECKBOX, $u->hasValidMail(), $this->module->lang('th_is_approved')),
+			'bot' => array(GWF_Form::CHECKBOX, $u->isBot(), $this->module->lang('th_is_bot')),
+			'online' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::HIDE_ONLINE), $this->module->lang('th_hide_online')),
+			'showemail' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::SHOW_EMAIL), $this->module->lang('th_show_email')),
+			'adult' => array(GWF_Form::CHECKBOX, $u->isOptionEnabled(GWF_User::WANTS_ADULT), $this->module->lang('th_want_adult')),
+			'deleted' => array(GWF_Form::CHECKBOX, $u->isDeleted(), $this->module->lang('th_deleted')),
 			# Action
-			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit_user'), ''),
+			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_user'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -64,12 +64,12 @@ final class Admin_UserEdit extends GWF_Method
 		$u = $this->user;
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_useredit', array( $u->displayUsername()))),
+			'form' => $form->templateY($this->module->lang('ft_useredit', array( $u->displayUsername()))),
 			'href_login_as' => Module_Admin::getLoginAsURL($u->urlencode('user_name')),
 			'href_user_groups' => GWF_WEB_ROOT.'index.php?mo=Admin&me=UserGroup&uid='.$u->getID(),
 			'user' => $u,
 		);
-		return $this->_module->templatePHP('user_edit.php', $tVars);
+		return $this->module->templatePHP('user_edit.php', $tVars);
 	}
 
 	##################
@@ -83,10 +83,10 @@ final class Admin_UserEdit extends GWF_Method
 			return false;
 		}
 		if (GWF_User::getByName($arg) !== false) {
-			return $this->_module->lang('err_username_taken');
+			return $this->module->lang('err_username_taken');
 		}
 		if (!GWF_Validator::isValidUsername($arg)) {
-			return $this->_module->lang('err_username');
+			return $this->module->lang('err_username');
 		}
 		return false;
 	}
@@ -100,11 +100,11 @@ final class Admin_UserEdit extends GWF_Method
 	{
 		$arg = trim($arg);
 		$_POST['email'] = $arg;
-		return GWF_Validator::isValidEmail($arg) ? false : $this->_module->lang('err_email');
+		return GWF_Validator::isValidEmail($arg) ? false : $this->module->lang('err_email');
 	}
 	
 	public function validate_password(Module_Admin $module, $arg) { return false; }
-	public function validate_gender(Module_Admin $module, $arg) { return GWF_Gender::isValidGender($arg) ? false : $this->_module->lang('err_gender'); }
+	public function validate_gender(Module_Admin $module, $arg) { return GWF_Gender::isValidGender($arg) ? false : $this->module->lang('err_gender'); }
 	public function validate_country(Module_Admin $module, $arg) { return GWF_CountrySelect::validate_countryid($arg, true); }
 	public function validate_lang1(Module_Admin $module, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
 	public function validate_lang2(Module_Admin $module, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
@@ -116,7 +116,7 @@ final class Admin_UserEdit extends GWF_Method
 	{
 		$u = $this->user;
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -142,7 +142,7 @@ final class Admin_UserEdit extends GWF_Method
 			$this->onEditPassword($form->getVar('password'))
 		);
 
-		$msgs[] = $this->_module->lang('msg_user_edited');
+		$msgs[] = $this->module->lang('msg_user_edited');
 		
 		return GWF_HTML::messageA('Account', $msgs);
 	}
@@ -158,7 +158,7 @@ final class Admin_UserEdit extends GWF_Method
 			return array();
 		}
 		$key = sprintf('msg_%s_%s', $key, $newFlag === true ? '1' : '0');
-		return array($this->_module->lang($key));
+		return array($this->module->lang($key));
 	}
 	
 	private function onEditDeleteFlag($oldFlag, $newFlag)
@@ -182,7 +182,7 @@ final class Admin_UserEdit extends GWF_Method
 		}
 		
 		$key = $newFlag === true ? 'msg_deleted' : 'msg_undeleted';
-		return array($this->_module->lang($key));
+		return array($this->module->lang($key));
 	}
 	
 	private function onEditUsername($oldName, $newName)
@@ -201,7 +201,7 @@ final class Admin_UserEdit extends GWF_Method
 			return array();
 		}
 		
-		return array($this->_module->lang('msg_username_changed', array( GWF_HTML::display($oldName)), GWF_HTML::display($newName)));
+		return array($this->module->lang('msg_username_changed', array( GWF_HTML::display($oldName)), GWF_HTML::display($newName)));
 	}
 	
 	private function onEditPassword($newpass)
@@ -221,7 +221,7 @@ final class Admin_UserEdit extends GWF_Method
 		
 		GWF_Hook::call(GWF_Hook::CHANGE_PASSWD, $user, array($newpass, ''));
 		
-		return array($this->_module->lang('msg_userpass_changed', array( $user->displayUsername(), GWF_HTML::display($newpass))));
+		return array($this->module->lang('msg_userpass_changed', array( $user->displayUsername(), GWF_HTML::display($newpass))));
 	}
 	
 } 

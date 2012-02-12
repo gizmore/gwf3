@@ -5,12 +5,12 @@ final class Comments_Visible extends GWF_Method
 	{
 		if (false === ($comment = GWF_Comment::getByID(Common::getGetString('cmt_id'))))
 		{
-			return $this->_module->error('err_comment');
+			return $this->module->error('err_comment');
 		}
 		
 		if (false === ($comments = $comment->getComments()))
 		{
-			return $this->_module->error('err_comments');
+			return $this->module->error('err_comments');
 		}
 		
 		if (!$comments->canModerate(GWF_Session::getUser()))
@@ -23,7 +23,7 @@ final class Comments_Visible extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_visible');
+		return $this->module->message('msg_visible');
 	}
 }
 ?>

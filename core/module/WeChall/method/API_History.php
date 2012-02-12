@@ -55,7 +55,7 @@ final class WeChall_API_History extends GWF_Method
 			if (false === ($this->user = GWF_User::getByName($username))) {
 				return GWF_HTML::err('ERR_UNKNOWN_USER');
 			}
-			if (false !== ($error = $this->_module->isExcludedFromAPI($this->user, Common::getGet('password')))) {
+			if (false !== ($error = $this->module->isExcludedFromAPI($this->user, Common::getGet('password')))) {
 				return $error;
 			}
 		}
@@ -64,7 +64,7 @@ final class WeChall_API_History extends GWF_Method
 		if (false !== ($sitename = Common::getGet('sitename')))
 		{
 			if ( (false === ($this->site = WC_Site::getByName($sitename))) && (false === ($this->site = WC_Site::getByClassName($sitename))) ) {
-				return $this->_module->error('err_site');
+				return $this->module->error('err_site');
 			}
 		}
 
@@ -89,7 +89,7 @@ final class WeChall_API_History extends GWF_Method
 //			require_once 'core/module/WeChall/WC_API_Block.php';
 //			if (WC_API_Block::isBlocked())
 //			{
-//				return $this->_module->error('err_api_block');
+//				return $this->module->error('err_api_block');
 //			}
 //		}
 		

@@ -56,7 +56,7 @@ final class WeChall_Sites extends GWF_Method
 		$lang_query = $this->getLangQuery();
 		$tag_query = $this->getTagQuery($tag_bit);
 		
-		$ipp = $this->_module->cfgItemsPerPage();
+		$ipp = $this->module->cfgItemsPerPage();
 		
 		$by = Common::getGet('by', 'site_id');
 		$dir = Common::getGet('dir', 'DESC');
@@ -75,14 +75,14 @@ final class WeChall_Sites extends GWF_Method
 		$tVars = array(
 			'sites' => $table->selectObjects('*', $conditions, $orderby, $ipp, GWF_PageMenu::getFrom($page, $ipp)),
 			'descrs' => WC_SiteDescr::getAllDescr(),
-			'site_quickjump' => $this->_module->templateSiteQuickjumpDetail(),
+			'site_quickjump' => $this->module->templateSiteQuickjumpDetail(),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $href),
 			'sortURL' => $this->getTableSortURL(),
 			'which' => intval(Common::getGet('which')),
 			'tag' => $tag,
 			'page_title' => $this->pageTitle,
 		);
-		return $this->_module->templatePHP('sites.php', $tVars);
+		return $this->module->templatePHP('sites.php', $tVars);
 	}
 	
 	private function getWhich()
@@ -98,14 +98,14 @@ final class WeChall_Sites extends GWF_Method
 		}
 		
 		if ($tag !== '') {
-			$this->pageTitle = $this->_module->lang('pt_sites_'.$which.'_tagged', array($tag));
+			$this->pageTitle = $this->module->lang('pt_sites_'.$which.'_tagged', array($tag));
 		}
 		else {
-			$this->pageTitle = $this->_module->lang('pt_sites_'.$which);
+			$this->pageTitle = $this->module->lang('pt_sites_'.$which);
 		}
 		GWF_Website::setPageTitle($this->pageTitle);
-		GWF_Website::setMetaDescr($this->_module->lang('md_sites_'.$which));
-		GWF_Website::setMetaTags($this->_module->lang('mt_sites_'.$which));
+		GWF_Website::setMetaDescr($this->module->lang('md_sites_'.$which));
+		GWF_Website::setMetaTags($this->module->lang('mt_sites_'.$which));
 	}
 	
 	private function getStatusQuery()

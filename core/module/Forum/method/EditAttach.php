@@ -16,11 +16,11 @@ final class Forum_EditAttach extends GWF_Method
 	public function execute()
 	{
 		if (false === ($this->attach = GWF_ForumAttachment::getByID(Common::getGet('aid', 0)))) {
-			return $this->_module->error('err_attach');
+			return $this->module->error('err_attach');
 		}
 		
 		if (false === ($this->post = $this->attach->getPost())) {
-			return $this->_module->error('err_post');
+			return $this->module->error('err_post');
 		}
 		
 		if (!$this->post->hasEditPermission()) {
@@ -40,11 +40,11 @@ final class Forum_EditAttach extends GWF_Method
 
 	private function formEdit()
 	{
-		$buttons = array('edit'=>$this->_module->lang('btn_edit_attach'), 'delete'=>$this->_module->lang('btn_del_attach'));
+		$buttons = array('edit'=>$this->module->lang('btn_edit_attach'), 'delete'=>$this->module->lang('btn_del_attach'));
 		$data = array();
-		$data['file']  = array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_attach_file'));
-		$data['guest_view'] = array(GWF_Form::CHECKBOX, $this->attach->isGuestView(), $this->_module->lang('th_guest_view'));
-		$data['guest_down'] = array(GWF_Form::CHECKBOX, $this->attach->isGuestDown(), $this->_module->lang('th_guest_down'));
+		$data['file']  = array(GWF_Form::FILE_OPT, '', $this->module->lang('th_attach_file'));
+		$data['guest_view'] = array(GWF_Form::CHECKBOX, $this->attach->isGuestView(), $this->module->lang('th_guest_view'));
+		$data['guest_down'] = array(GWF_Form::CHECKBOX, $this->attach->isGuestDown(), $this->module->lang('th_guest_down'));
 		$data['buttons'] = array(GWF_Form::SUBMITS, $buttons);
 		return new GWF_Form($this, $data);
 	}
@@ -53,15 +53,15 @@ final class Forum_EditAttach extends GWF_Method
 	{
 		$form = $this->formEdit();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_attach')),
+			'form' => $form->templateY($this->module->lang('ft_edit_attach')),
 		);
-		return $this->_module->templatePHP('edit_attach.php', $tVars);
+		return $this->module->templatePHP('edit_attach.php', $tVars);
 	}
 	
 	private function onDelete()
 	{
 		$form = $this->formEdit();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -71,13 +71,13 @@ final class Forum_EditAttach extends GWF_Method
 		
 		$this->post->increase('post_attachments', -1);
 		
-		return $this->_module->message('msg_attach_deleted', array($this->post->getShowHREF()));
+		return $this->module->message('msg_attach_deleted', array($this->post->getShowHREF()));
 	}
 	
 	private function onEdit()
 	{
 		$form = $this->formEdit();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -89,14 +89,14 @@ final class Forum_EditAttach extends GWF_Method
 			if (false !== ($error = $this->unReUpload($file, $this->attach))) {
 				return $error;
 			} 
-			$prepend = $this->_module->message('msg_reupload');
+			$prepend = $this->module->message('msg_reupload');
 		}
 		
 		# Save option
 		$this->attach->saveOption(GWF_ForumAttachment::GUEST_VISIBLE, isset($_POST['guest_view']));
 		$this->attach->saveOption(GWF_ForumAttachment::GUEST_DOWNLOAD, isset($_POST['guest_down']));
 		
-		return $prepend.$this->_module->message('msg_attach_edited',  array($this->post->getShowHREF()));
+		return $prepend.$this->module->message('msg_attach_edited',  array($this->post->getShowHREF()));
 	}
 
 	private function unReUpload(array $file, GWF_ForumAttachment $attach)

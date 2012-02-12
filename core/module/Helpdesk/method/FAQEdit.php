@@ -10,7 +10,7 @@ final class Helpdesk_FAQEdit extends GWF_Method
 	public function execute()
 	{
 		if (false === ($faq = GWF_HelpdeskFAQ::getByID(Common::getGetString('faqid')))) {
-			return $this->_module->error('err_faq');
+			return $this->module->error('err_faq');
 		}
 		
 		if (isset($_POST['edit'])) {
@@ -27,20 +27,20 @@ final class Helpdesk_FAQEdit extends GWF_Method
 	{
 		$form = $this->formEdit($faq);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_faq')),
+			'form' => $form->templateY($this->module->lang('ft_edit_faq')),
 		);
-		return $this->_module->template('faq_edit.tpl', $tVars);
+		return $this->module->template('faq_edit.tpl', $tVars);
 	}
 
 	private function formEdit(GWF_HelpdeskFAQ $faq)
 	{
 		$data = array(
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $faq->getVar('hdf_langid')), $this->_module->lang('th_lang'), $this->_module->lang('tt_lang')),
-			'question' => array(GWF_Form::STRING, $faq->getVar('hdf_question'), $this->_module->lang('th_question')),
-			'answer' => array(GWF_Form::MESSAGE, $faq->getVar('hdf_answer'), $this->_module->lang('th_answer')),
-			'delete_confirm' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_confirm_del')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $faq->getVar('hdf_langid')), $this->module->lang('th_lang'), $this->module->lang('tt_lang')),
+			'question' => array(GWF_Form::STRING, $faq->getVar('hdf_question'), $this->module->lang('th_question')),
+			'answer' => array(GWF_Form::MESSAGE, $faq->getVar('hdf_answer'), $this->module->lang('th_answer')),
+			'delete_confirm' => array(GWF_Form::CHECKBOX, false, $this->module->lang('th_confirm_del')),
 			'delete_confirm_v' => array(GWF_Form::VALIDATOR),
-			'add' => array(GWF_Form::SUBMITS, array('edit'=>$this->_module->lang('btn_edit_faq'),'delete'=>$this->_module->lang('btn_rem_faq'))),
+			'add' => array(GWF_Form::SUBMITS, array('edit'=>$this->module->lang('btn_edit_faq'),'delete'=>$this->module->lang('btn_rem_faq'))),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -48,7 +48,7 @@ final class Helpdesk_FAQEdit extends GWF_Method
 	private function onEdit(GWF_HelpdeskFAQ $faq)
 	{
 		$form = $this->formEdit($faq);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateEdit($faq);
 		}
 		
@@ -60,17 +60,17 @@ final class Helpdesk_FAQEdit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_faq_edit').$this->templateEdit($faq);
+		return $this->module->message('msg_faq_edit').$this->templateEdit($faq);
 	}
 	
 	private function onDelete(GWF_HelpdeskFAQ $faq)
 	{
 		$form = $this->formEdit($faq);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateEdit($faq);
 		}
 		
-		return $this->_module->message('msg_faq_del').$this->_module->execute('FAQ');
+		return $this->module->message('msg_faq_del').$this->module->execute('FAQ');
 	}
 	
 }

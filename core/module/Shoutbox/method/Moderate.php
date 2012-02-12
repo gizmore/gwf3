@@ -18,7 +18,7 @@ final class Shoutbox_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_deleted');
+		return $this->module->message('msg_deleted');
 	}
 }
 ?>

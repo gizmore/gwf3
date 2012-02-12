@@ -27,9 +27,9 @@ final class WeChall_Freeze extends GWF_Method
 	private function formFreeze()
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
-			'siteid' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->_module->lang('th_site_name')),
-			'freeze' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_freeze')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_user_name')),
+			'siteid' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->module->lang('th_site_name')),
+			'freeze' => array(GWF_Form::SUBMIT, $this->module->lang('btn_freeze')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -56,7 +56,7 @@ final class WeChall_Freeze extends GWF_Method
 	{
 		$selected = intval(Common::getPost('siteid', 0));
 		$data = array();
-		$data[] = array($this->_module->lang('th_sel_favsite'), 0);
+		$data[] = array($this->module->lang('th_sel_favsite'), 0);
 		$sites = WC_Site::getSitesRanked();
 		foreach ($sites as $site)
 		{
@@ -69,7 +69,7 @@ final class WeChall_Freeze extends GWF_Method
 	private function templateFreeze()
 	{
 		$freezes = GDO::table('WC_Freeze');
-		$ipp = $this->_module->cfgItemsPerPage();
+		$ipp = $this->module->cfgItemsPerPage();
 		$nItems = $freezes->countRows();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
@@ -84,25 +84,25 @@ final class WeChall_Freeze extends GWF_Method
 		$tVars = array(
 //			'frozen' => $freezes->selectAll($orderby, $ipp, $from),
 			'frozen' => $freezes->selectObjects('*', '', $orderby, $ipp, $from),
-			'form' => $form->templateY($this->_module->lang('ft_freeze')),
+			'form' => $form->templateY($this->module->lang('ft_freeze')),
 			'form_action' => $this->getMethodHref(),
 			'page_menu' => GWF_PageMenu::display($page, $nPages, sprintf(GWF_WEB_ROOT.'index.php?mo=WeChall&me=Freeze&by=%s&dir=%s&page=%%PAGE%%', urlencode($by), urlencode($dir))),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=Freeze&by=%BY%&dir=%DIR%',
-			'href_ddos' => $this->_module->getMethodURL('UpdateAll'),
-			'href_convert' => $this->_module->getMethodURL('Convert'),
-			'href_update' => $this->_module->getMethodURL('Admin', '&remote_update=yes'),
-			'href_chall_cache' => $this->_module->getMethodURL('Admin', '&chall_cache=yes'),
-			'href_recalc_all' => $this->_module->getMethodURL('Admin', '&recalc=all'),
-			'href_sitetags' => $this->_module->getMethodURL('Admin', '&sitetags=yes'),
-			'href_freeze' => $this->_module->getMethodURL('Freeze'),
+			'href_ddos' => $this->module->getMethodURL('UpdateAll'),
+			'href_convert' => $this->module->getMethodURL('Convert'),
+			'href_update' => $this->module->getMethodURL('Admin', '&remote_update=yes'),
+			'href_chall_cache' => $this->module->getMethodURL('Admin', '&chall_cache=yes'),
+			'href_recalc_all' => $this->module->getMethodURL('Admin', '&recalc=all'),
+			'href_sitetags' => $this->module->getMethodURL('Admin', '&sitetags=yes'),
+			'href_freeze' => $this->module->getMethodURL('Freeze'),
 		);
-		return $this->_module->templatePHP('freeze.php', $tVars);
+		return $this->module->templatePHP('freeze.php', $tVars);
 	}
 	
 	private function onFreeze()
 	{
 		$form = $this->formFreeze();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -111,7 +111,7 @@ final class WeChall_Freeze extends GWF_Method
 		
 		if (WC_Freeze::isUserFrozenOnSite($userid, $siteid))
 		{
-			return $this->_module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
+			return $this->module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
 		}
 
 		$old_totalscore = $this->user->getVar('user_level');
@@ -141,7 +141,7 @@ final class WeChall_Freeze extends GWF_Method
 		}
 		
 		# All done :)
-		return $this->_module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
+		return $this->module->message('msg_frozen', array($this->user->displayUsername(), $this->site->displayName()));
 	}
 		
 	private function onUnFreeze($data)
@@ -165,7 +165,7 @@ final class WeChall_Freeze extends GWF_Method
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		if (false === ($site = WC_Site::getByID($siteid))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		
 		if (WC_Freeze::isUserFrozenOnSite($userid, $siteid))
@@ -181,7 +181,7 @@ final class WeChall_Freeze extends GWF_Method
 		}
 
 		# Done
-		return $this->_module->message('msg_unfrozen', array($user->displayUsername(), $site->displayName()));
+		return $this->module->message('msg_unfrozen', array($user->displayUsername(), $site->displayName()));
 	}
 }
 ?>

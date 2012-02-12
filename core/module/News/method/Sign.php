@@ -16,7 +16,7 @@ final class News_Sign extends GWF_Method
 			return $this->onUnsign(Common::getGet('email', ''), $token);
 		}
 		
-		if (!$this->_module->isNewsletterForGuests() && !GWF_User::isLoggedIn()) {
+		if (!$this->module->isNewsletterForGuests() && !GWF_User::isLoggedIn()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
@@ -36,16 +36,16 @@ final class News_Sign extends GWF_Method
 		}
 		
 		$data = array(
-			'email' => array(GWF_Form::STRING, $email, $this->_module->lang('th_email')),
-			'type' => array(GWF_Form::SELECT, GWF_Newsletter::getTypeSelect($this->_module, 'type'), $this->_module->lang('th_type')),
+			'email' => array(GWF_Form::STRING, $email, $this->module->lang('th_email')),
+			'type' => array(GWF_Form::SELECT, GWF_Newsletter::getTypeSelect($this->module, 'type'), $this->module->lang('th_type')),
 		);
 		
 //		if (!GWF_User::isLoggedIn()) {
 //			GWF_Language::setShowSupported(true);
-			$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid'), $this->_module->lang('th_langid'));
+			$data['langid'] = array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid'), $this->module->lang('th_langid'));
 //		}
 
-		$data['sign'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_sign'), '');
+		$data['sign'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_sign'), '');
 		return new GWF_Form(GDO::table('GWF_Newsletter'), $data);
 	}
 	
@@ -56,17 +56,17 @@ final class News_Sign extends GWF_Method
 		$row = GWF_Newsletter::getRowForUser($user);
 		$tVars = array(
 			'info' => $this->getSignInfo(),
-			'form' => $form->templateY($this->_module->lang('ft_sign')),
+			'form' => $form->templateY($this->module->lang('ft_sign')),
 			'subscribed' => $row !== false,
 			'href_unsign' => $row !== false ? $row->getUnsignHREF() : false,
 		);
-		return $this->_module->templatePHP('sign.php', $tVars);
+		return $this->module->templatePHP('sign.php', $tVars);
 	}
 	
 	private function getSignInfo()
 	{
 		if (false === ($user = GWF_Session::getUser())) {
-			return $this->_module->lang('sign_info_login');
+			return $this->module->lang('sign_info_login');
 		}
 		$type = GWF_Newsletter::getEmailTypeForUser($user);
 		switch ($type)
@@ -76,18 +76,18 @@ final class News_Sign extends GWF_Method
 			case GWF_Newsletter::WANT_TEXT: $key = 'sign_info_text'; break;
 			default: return GWF_HTML::lang('ERR_GENERAL', array( __FILE__, __LINE__)); 
 		}
-		return $this->_module->lang($key);
+		return $this->module->lang($key);
 	}
 	
 	private function onSign()
 	{
-		if (!$this->_module->isNewsletterForGuests() && !GWF_Session::isLoggedIn()) {
+		if (!$this->module->isNewsletterForGuests() && !GWF_Session::isLoggedIn()) {
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
 		$form = $this->getForm();
 		
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateSign();
 		}
 		
@@ -102,11 +102,11 @@ final class News_Sign extends GWF_Method
 		
 		$back = '';
 		if ($langid !== $row->getVar('nl_langid')) {
-			$back .= $this->_module->message('msg_changed_lang');
+			$back .= $this->module->message('msg_changed_lang');
 			$row->saveVar('nl_langid', $langid);
 		}
 		if ($row->getType() !== $type) {
-			$back .= $this->_module->message('msg_changed_type');
+			$back .= $this->module->message('msg_changed_type');
 			$row->saveType($type);
 		}
 		return $back.$this->templateSign();
@@ -125,23 +125,23 @@ final class News_Sign extends GWF_Method
 		if (false === $subscribe->replace()) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		return $this->_module->message('msg_signed');
+		return $this->module->message('msg_signed');
 	}
 
 	private function onUnsign($email, $token)
 	{
 		$nl = new GWF_Newsletter(false);
 		if (false === ($nl = $nl->getRow($email))) {
-			return $this->_module->error('err_unsign');
+			return $this->module->error('err_unsign');
 		}
 		
 		if ($nl->getVar('nl_unsign') !== $token) {
-			return $this->_module->error('err_unsign');
+			return $this->module->error('err_unsign');
 		}
 		
 		$nl->delete();
 		
-		return $this->_module->message('msg_unsigned');
+		return $this->module->message('msg_unsigned');
 	}
 	
 }

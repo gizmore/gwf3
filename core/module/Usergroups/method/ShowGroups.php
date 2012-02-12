@@ -39,10 +39,10 @@ final class Usergroups_ShowGroups extends GWF_Method
 			'page_menu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&amp;by=%BY%&dir=%DIR%&page=1',
 			'form_action' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=ShowGroups&by='.urlencode($by).'&dir='.urlencode($dir).'&page='.$page,
-			'href_add_group' => $this->_module->getMethodURL('Create'),
-			'href_edit_group' => $this->_module->getMethodURL('Edit'),
+			'href_add_group' => $this->module->getMethodURL('Create'),
+			'href_edit_group' => $this->module->getMethodURL('Edit'),
 		);
-		return $this->_module->templatePHP('groups.php', $tVars);
+		return $this->module->templatePHP('groups.php', $tVars);
 	}
 
 	private function onPart($array)
@@ -55,11 +55,11 @@ final class Usergroups_ShowGroups extends GWF_Method
 //		foreach ($array as $gid => $stub) { break; }
 		
 		if (false === ($group = GWF_Group::getByID($gid))) {
-			return $this->_module->error('err_unk_group');
+			return $this->module->error('err_unk_group');
 		}
 		
 		if ($group->getFounder()->getID() === GWF_Session::getUserID()) {
-			return $this->_module->error('err_kick_leader');
+			return $this->module->error('err_kick_leader');
 		}
 		
 		$gid = $group->getID();

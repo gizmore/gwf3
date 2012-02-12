@@ -37,9 +37,9 @@ final class WeChall_Stats extends GWF_Method
 	private function setPageTitles()
 	{
 		if ($this->user1 === false) {
-			GWF_Website::setPageTitle($this->_module->lang('pt_stats', array('Unknown')));
-			GWF_Website::setMetaTags($this->_module->lang('mt_stats', array('Unknown')));
-			GWF_Website::setMetaDescr($this->_module->lang('md_stats', array('Unknown')));
+			GWF_Website::setPageTitle($this->module->lang('pt_stats', array('Unknown')));
+			GWF_Website::setMetaTags($this->module->lang('mt_stats', array('Unknown')));
+			GWF_Website::setMetaDescr($this->module->lang('md_stats', array('Unknown')));
 			return;
 		}
 		
@@ -49,16 +49,16 @@ final class WeChall_Stats extends GWF_Method
 		if ($name2 === '')
 		{
 			$args = array($name1);
-			GWF_Website::setPageTitle($this->_module->lang('pt_stats', $args));
-			GWF_Website::setMetaTags($this->_module->lang('mt_stats', $args));
-			GWF_Website::setMetaDescr($this->_module->lang('md_stats', $args));
+			GWF_Website::setPageTitle($this->module->lang('pt_stats', $args));
+			GWF_Website::setMetaTags($this->module->lang('mt_stats', $args));
+			GWF_Website::setMetaDescr($this->module->lang('md_stats', $args));
 		}
 		else
 		{
 			$args = array($name1, $name2);
-			GWF_Website::setPageTitle($this->_module->lang('pt_stats2', $args));
-			GWF_Website::setMetaTags($this->_module->lang('mt_stats2', $args));
-			GWF_Website::setMetaDescr($this->_module->lang('md_stats2', $args));
+			GWF_Website::setPageTitle($this->module->lang('pt_stats2', $args));
+			GWF_Website::setMetaTags($this->module->lang('mt_stats2', $args));
+			GWF_Website::setMetaDescr($this->module->lang('md_stats2', $args));
 		}
 	}
 
@@ -92,7 +92,7 @@ final class WeChall_Stats extends GWF_Method
 		}
 
 //		if ($score1 <= 0 && $score2 <= 0) {
-//			return $this->_module->error('err_graph_empty');
+//			return $this->module->error('err_graph_empty');
 //		}
 		
 		$sel = Common::getRequest('site', false);
@@ -178,7 +178,7 @@ final class WeChall_Stats extends GWF_Method
 			'months' => $this->months===0?'':$this->months,
 		);
 		
-		return $this->_module->templatePHP('stats.php', $tVars);
+		return $this->module->templatePHP('stats.php', $tVars);
 	}
 	
 	private function getSites()

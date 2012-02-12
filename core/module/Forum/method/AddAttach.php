@@ -16,7 +16,7 @@ final class Forum_AddAttach extends GWF_Method
 	public function execute()
 	{
 		if (false === ($this->post = GWF_ForumPost::getPost(Common::getGet('pid', 0)))) {
-			return $this->_module->error('err_post');
+			return $this->module->error('err_post');
 		}
 		if (!$this->post->hasEditPermission()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
@@ -33,10 +33,10 @@ final class Forum_AddAttach extends GWF_Method
 	{
 		$is_guest = $this->post->isOptionEnabled(GWF_ForumPost::GUEST_VIEW);
 		$data = array();
-		$data['file']  = array(GWF_Form::FILE, '', $this->_module->lang('th_attach_file'));
-		$data['guest_view'] = array(GWF_Form::CHECKBOX, $is_guest, $this->_module->lang('th_guest_view'));
-		$data['guest_down'] = array(GWF_Form::CHECKBOX, $is_guest, $this->_module->lang('th_guest_down'));
-		$data['add'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_attach'));
+		$data['file']  = array(GWF_Form::FILE, '', $this->module->lang('th_attach_file'));
+		$data['guest_view'] = array(GWF_Form::CHECKBOX, $is_guest, $this->module->lang('th_guest_view'));
+		$data['guest_down'] = array(GWF_Form::CHECKBOX, $is_guest, $this->module->lang('th_guest_down'));
+		$data['add'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_add_attach'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -44,9 +44,9 @@ final class Forum_AddAttach extends GWF_Method
 	{
 		$form = $this->formAdd();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_attach')),
+			'form' => $form->templateY($this->module->lang('ft_add_attach')),
 		);
-		return $this->_module->templatePHP('add_attach.php', $tVars);
+		return $this->module->templatePHP('add_attach.php', $tVars);
 	}
 	
 	public function validate_file($module, $arg) { return false; }
@@ -54,7 +54,7 @@ final class Forum_AddAttach extends GWF_Method
 	private function onAdd()
 	{
 		$form = $this->formAdd();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateAdd();
 		}
 		
@@ -98,7 +98,7 @@ final class Forum_AddAttach extends GWF_Method
 		
 		$this->post->increase('post_attachments', 1);
 		
-		return $this->_module->message('msg_attach_added', array($this->post->getShowHREF()));
+		return $this->module->message('msg_attach_added', array($this->post->getShowHREF()));
 	}
 }
 ?>

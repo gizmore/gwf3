@@ -32,7 +32,7 @@ final class Audit_Logs extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Audit&me=Logs&by=%BY%&dir=%DIR%&page=1',
 		);
 		
-		return $this->_module->template('logs.tpl', $tVars);
+		return $this->module->template('logs.tpl', $tVars);
 	}
 }
 ?>

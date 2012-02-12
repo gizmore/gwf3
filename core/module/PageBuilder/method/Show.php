@@ -12,7 +12,7 @@ final class PageBuilder_Show extends GWF_Method
 		$pages = GDO::table('GWF_Page')->selectAll('page_id, page_url', 'page_options&1', '', NULL, -1, -1, GDO::ARRAY_N);
 		$back = '';
 
-		if (0 !== ($hpid = $this->_module->cfgHomePage()))
+		if (0 !== ($hpid = $this->module->cfgHomePage()))
 		{
 			$back .= "RewriteRule ^$ index.php?mo=PageBuilder&me=Show&pageid={$hpid}".PHP_EOL;
 		}
@@ -34,7 +34,7 @@ final class PageBuilder_Show extends GWF_Method
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid'))))
 		{
 			header($_SERVER['SERVER_PROTOCOL']." 404 Not Found"); 
-			return $this->_module->error('err_404');
+			return $this->module->error('err_404');
 		}
 		
 		# Have permission to see?
@@ -139,7 +139,7 @@ final class PageBuilder_Show extends GWF_Method
 			'translations' => $this->getPageTranslations($page),
 			'similar' => $this->getSimilarPages($page),
 		);
-		return $this->_module->template('show_page.tpl', $tVars);
+		return $this->module->template('show_page.tpl', $tVars);
 	}
 
 	private function getPageContent(GWF_Page $page)
@@ -168,7 +168,7 @@ final class PageBuilder_Show extends GWF_Method
 		}
 		$comments = $this->comments;
 		
-		$ipp = $this->_module->cfgCommentsPerPage();
+		$ipp = $this->module->cfgCommentsPerPage();
 		$cid = $comments->getID();
 		$visible = GWF_Comment::VISIBLE;
 		$where = "cmt_cid={$cid} AND cmt_options&{$visible}";
@@ -192,7 +192,7 @@ final class PageBuilder_Show extends GWF_Method
 			return '';
 		}
 		$comments = $this->comments;
-		$ipp = $this->_module->cfgCommentsPerPage();
+		$ipp = $this->module->cfgCommentsPerPage();
 		$cid = $comments->getID();
 		$visible = GWF_Comment::VISIBLE;
 		$where = "cmt_cid={$cid} AND cmt_options&{$visible}";

@@ -30,26 +30,26 @@ final class Votes_AddPoll extends GWF_Method
 			'opt' => array(GWF_Form::VALIDATOR),
 		);
 		$buttons = array(
-			'add_opt' => $this->_module->lang('btn_add_opt'),
-			'rem_opts' => $this->_module->lang('btn_rem_opts'),
-			'create' => $this->_module->lang('btn_create'),
+			'add_opt' => $this->module->lang('btn_add_opt'),
+			'rem_opts' => $this->module->lang('btn_rem_opts'),
+			'create' => $this->module->lang('btn_create'),
 		);
 		
-		$data['title'] = array(GWF_Form::STRING, '', $this->_module->lang('th_title'));
-		$data['reverse'] = array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_reverse'));
-		$data['multi'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_multi'));
-		$data['guests'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_guests'));
+		$data['title'] = array(GWF_Form::STRING, '', $this->module->lang('th_title'));
+		$data['reverse'] = array(GWF_Form::CHECKBOX, true, $this->module->lang('th_reverse'));
+		$data['multi'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_multi'));
+		$data['guests'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_guests'));
 		if (Module_Votes::mayAddGlobalPoll(GWF_Session::getUser())) {
-			$data['public'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_vm_public'));
+			$data['public'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_vm_public'));
 		}
-		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->_module, 'view', intval(Common::getPost('view', GWF_VoteMulti::SHOW_RESULT_VOTED))), $this->_module->lang('th_mvview'));
-		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', Common::getPostString('gid', '0')), $this->_module->lang('th_vm_gid'));
-		$data['level'] = array(GWF_Form::INT, '0', $this->_module->lang('th_vm_level'));
+		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->module, 'view', intval(Common::getPost('view', GWF_VoteMulti::SHOW_RESULT_VOTED))), $this->module->lang('th_mvview'));
+		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', Common::getPostString('gid', '0')), $this->module->lang('th_vm_gid'));
+		$data['level'] = array(GWF_Form::INT, '0', $this->module->lang('th_vm_level'));
 		
 		$i = 1;
 		foreach (GWF_Session::getOrDefault(self::SESS_OPTIONS, array()) as $item)
 		{
-			$data['opt['.$i.']'] = array(GWF_Form::STRING, $item, $this->_module->lang('th_option', array( $i)));
+			$data['opt['.$i.']'] = array(GWF_Form::STRING, $item, $this->module->lang('th_option', array( $i)));
 			$i++;
 		}
 		
@@ -64,9 +64,9 @@ final class Votes_AddPoll extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_create')),
+			'form' => $form->templateY($this->module->lang('ft_create')),
 		);
-		return $this->_module->template('add_poll.tpl', $tVars);
+		return $this->module->template('add_poll.tpl', $tVars);
 	}
 	
 	public function onAddOption($add_new=true)
@@ -100,14 +100,14 @@ final class Votes_AddPoll extends GWF_Method
 //	public function onCreate()
 //	{
 //		$form = $this->getForm();
-//		if (false !== ($errors = $form->validate($this->_module))) {
+//		if (false !== ($errors = $form->validate($this->module))) {
 //			return $errors.$this->templateCreate();
 //		}
 //		
 //		$opts = Common::getPost('opt', array());
 //		
 //		if (count($opts) < 1) {
-//			return $this->_module->error('err_no_options');
+//			return $this->module->error('err_no_options');
 //		}
 //		
 //		foreach ($opts as $i => $opt)
@@ -122,7 +122,7 @@ final class Votes_AddPoll extends GWF_Method
 //			));
 //		}
 //		
-//		return $this->_module->message('msg_mvote_added');
+//		return $this->module->message('msg_mvote_added');
 //	}
 	
 	##################
@@ -139,8 +139,8 @@ final class Votes_AddPoll extends GWF_Method
 		$this->checked_opt = true;
 		$opts = Common::getPostArray('opt', array());
 		$post = array();
-		$min = $this->_module->cfgMinOptionLen();
-		$max = $this->_module->cfgMaxOptionLen();
+		$min = $this->module->cfgMinOptionLen();
+		$max = $this->module->cfgMaxOptionLen();
 		
 		$err = '';
 		foreach ($opts as $i => $op)
@@ -169,7 +169,7 @@ final class Votes_AddPoll extends GWF_Method
 		if ($err === '') {
 			return false;
 		}
-		return $this->_module->lang('err_options', array( substr($err, 2)), $min, $max);
+		return $this->module->lang('err_options', array( substr($err, 2)), $min, $max);
 	}
 	
 	public function validate_view(Module_Votes $m, $arg) { return GWF_VoteMulti::isValidViewFlag(($arg)) ? false : $m->lang('err_multiview'); }
@@ -179,13 +179,13 @@ final class Votes_AddPoll extends GWF_Method
 	private function onAddPoll()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateAddPoll();
 		}
 		
 		$opts = Common::getPostArray('opt', array());
 		if (count($opts) === 0) {
-			return $this->_module->error('err_no_options').$this->templateAddPoll();
+			return $this->module->error('err_no_options').$this->templateAddPoll();
 		}
 		
 		$user = GWF_Session::getUser();
@@ -198,8 +198,8 @@ final class Votes_AddPoll extends GWF_Method
 		$guest_votes = isset($_POST['guests']);
 		$is_public = isset($_POST['public']);
 		$result = (int)$form->getVar('view');
-		if ($is_public && !$this->_module->mayAddGlobalPoll($user)) {
-			return $this->_module->error('err_global_poll').$this->templateAddPoll();
+		if ($is_public && !$this->module->mayAddGlobalPoll($user)) {
+			return $this->module->error('err_global_poll').$this->templateAddPoll();
 		}
 		
 		GWF_Session::remove(self::SESS_OPTIONS);

@@ -32,22 +32,22 @@ final class Login_Welcome extends GWF_Method
 
 		if ($fails > 0)
 		{
-			$fails = $this->_module->lang('err_failures', array( $fails));
+			$fails = $this->module->lang('err_failures', array( $fails));
 		}
 		else 
 		{
 			$fails = '';
 		}
 		
-		$href_hist = $this->_module->getMethodURL('History');
+		$href_hist = $this->module->getMethodURL('History');
 		$username = $user->display('user_name');
 		
 		if (false !== ($ll = GWF_LoginHistory::getLastLogin($user->getID()))) {
-			$last_login = $this->_module->lang('msg_last_login', array($ll->displayDate(), $ll->displayIP(), $ll->displayHostname(), $href_hist));
-			$welcome = $this->_module->lang('welcome_back', array($username, $ll->displayDate(), $ll->displayIP()));
+			$last_login = $this->module->lang('msg_last_login', array($ll->displayDate(), $ll->displayIP(), $ll->displayHostname(), $href_hist));
+			$welcome = $this->module->lang('welcome_back', array($username, $ll->displayDate(), $ll->displayIP()));
 		} else {
 			$last_login = '';
-			$welcome = $this->_module->lang('welcome', array($username));
+			$welcome = $this->module->lang('welcome', array($username));
 		}
 		
 		$tVars = array(
@@ -58,7 +58,7 @@ final class Login_Welcome extends GWF_Method
 			'last_login' => $last_login,
 			'href_history' => $href_hist,
 		);
-		return $this->_module->template('welcome.tpl', $tVars);
+		return $this->module->template('welcome.tpl', $tVars);
 	}
 }
 ?>

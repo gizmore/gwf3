@@ -34,25 +34,25 @@ final class Forum_Search extends GWF_Method
 	#############
 //	public function getFormAdv()
 //	{
-//		return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_ForumPost'), GWF_User::getStaticOrGuest(), true);
+//		return GWF_FormGDO::getSearchForm($this->module, $this, GDO::table('GWF_ForumPost'), GWF_User::getStaticOrGuest(), true);
 //	}
 	
 	public function getFormQuick()
 	{
-		return GWF_QuickSearch::getQuickSearchForm($this->_module, $this);
+		return GWF_QuickSearch::getQuickSearchForm($this->module, $this);
 	}
 	
 	public function templateSearch($result=array(), $term='')
 	{
 		$tVars = array(
-			'form_quick' => $this->getFormQuick()->templateX($this->_module->lang('ft_search_quick'), false),
-//			'form_adv' => $this->getFormAdv()->templateY($this->_module->lang('ft_search_adv')),
+			'form_quick' => $this->getFormQuick()->templateX($this->module->lang('ft_search_quick'), false),
+//			'form_adv' => $this->getFormAdv()->templateY($this->module->lang('ft_search_adv')),
 			'pagemenu' => $this->pagemenu,
 			'sort_url' => $this->sortURL,
 			'result' => $result,
 			'term' => $term,
 		);
-		return $this->_module->templatePHP('search.php', $tVars);
+		return $this->module->templatePHP('search.php', $tVars);
 	}
 	
 	##############
@@ -74,7 +74,7 @@ final class Forum_Search extends GWF_Method
 		$by = Common::getGet('by', 'post_date');
 		$dir = Common::getGet('dir', 'DESC');
 		$orderby = $posts->getMultiOrderby($by, $dir);
-		$ipp = $this->_module->getThreadsPerPage();
+		$ipp = $this->module->getThreadsPerPage();
 		$nItems = $posts->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(Common::getGet('page', 1), 1, $nPages);

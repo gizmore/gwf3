@@ -24,16 +24,16 @@ final class Account_Delete extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('pt_accrm')),
+			'form' => $form->templateY($this->module->lang('pt_accrm')),
 		);
-		return $this->_module->template('delete.tpl', $tVars);
+		return $this->module->template('delete.tpl', $tVars);
 	}
 	
 	private function getForm()
 	{
 		$data = array(
-			'note' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_accrm_note')),
-			'delete' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_accrm')),
+			'note' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_accrm_note')),
+			'delete' => array(GWF_Form::SUBMIT, $this->module->lang('btn_accrm')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -42,7 +42,7 @@ final class Account_Delete extends GWF_Method
 	private function onDelete()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateDelete();
 		}
 		
@@ -64,7 +64,7 @@ final class Account_Delete extends GWF_Method
 		GWF_Session::onLogout();
 		GWF_Hook::call(GWF_Hook::LOGOUT, $user);
 		
-		return $this->_module->message('msg_accrm');
+		return $this->module->message('msg_accrm');
 	}
 	
 	private function onSendEmail(GWF_User $user, $note)
@@ -73,8 +73,8 @@ final class Account_Delete extends GWF_Method
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 //		$mail->setCC(GWF_STAFF_EMAILS);
-		$mail->setSubject($this->_module->langAdmin('ms_accrm', array($user->getVar('user_name'))));
-		$mail->setBody($this->_module->langAdmin('mb_accrm', array($user->displayUsername(), $note)));
+		$mail->setSubject($this->module->langAdmin('ms_accrm', array($user->getVar('user_name'))));
+		$mail->setBody($this->module->langAdmin('mb_accrm', array($user->displayUsername(), $note)));
 		return $mail->sendAsHTML(GWF_STAFF_EMAILS);
 	}
 	

@@ -15,7 +15,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 	public function execute()
 	{
 		if (false === ($group = GWF_Group::getByID(Common::getGet('gid')))) {
-			return $this->_module->error('err_unk_group');
+			return $this->module->error('err_unk_group');
 		}
 		
 		if ($group->isOptionEnabled(GWF_Group::VISIBLE_MEMBERS))
@@ -36,7 +36,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 			case GWF_Group::SCRIPT:
 				if (!GWF_User::isInGroupS($group->getVar('group_name')))
 				{
-					return $this->_module->error('err_not_invited');
+					return $this->module->error('err_not_invited');
 				}
 				break;
 				
@@ -73,7 +73,7 @@ final class Usergroups_ShowUsers extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('users_in_group/%s/%s/by/%s/%s/page-%%PAGE%%', $gid, $gn, urlencode($by), urlencode($dir))),
 			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 		);
-		return $this->_module->templatePHP('users.php', $tVars);
+		return $this->module->templatePHP('users.php', $tVars);
 	}
 	
 }

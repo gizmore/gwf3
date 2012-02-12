@@ -31,7 +31,7 @@ final class PM_Trashcan extends GWF_Method
 		$del = GWF_PM::OWNER_DELETED;
 		$conditions = "(pm_owner=$uid AND pm_options&$del)";
 		$nItems = $pms->countRows($conditions);
-		$ipp = $this->_module->cfgPMPerPage();
+		$ipp = $this->module->cfgPMPerPage();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		
@@ -51,8 +51,8 @@ final class PM_Trashcan extends GWF_Method
 	
 	private function trashcan()
 	{
-		if ($this->_module->cfgAllowDelete()) {
-			$form_empty = $this->formEmpty()->templateX($this->_module->lang('ft_empty'), false);
+		if ($this->module->cfgAllowDelete()) {
+			$form_empty = $this->formEmpty()->templateX($this->module->lang('ft_empty'), false);
 		} else {
 			$form_empty = '';
 		}
@@ -64,13 +64,13 @@ final class PM_Trashcan extends GWF_Method
 			'sort_url' => $this->sortURL,
 			'form_empty' => $form_empty,
 		);
-		return $this->_module->templatePHP('trashcan.php', $tVars);
+		return $this->module->templatePHP('trashcan.php', $tVars);
 	}
 	
 	private function onRestore($ids)
 	{
 		if (!(is_array($ids))) {
-			return ''; #$this->_module->error('err_delete');
+			return ''; #$this->module->error('err_delete');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -91,7 +91,7 @@ final class PM_Trashcan extends GWF_Method
 		
 		$this->sanitize();
 		
-		return $this->_module->message('msg_restored', array($count));
+		return $this->module->message('msg_restored', array($count));
 		
 	}
 	
@@ -101,14 +101,14 @@ final class PM_Trashcan extends GWF_Method
 	private function formEmpty()
 	{
 		$data = array(
-			'empty' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_delete')),
+			'empty' => array(GWF_Form::SUBMIT, $this->module->lang('btn_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
 	private function onEmpty()
 	{
-		if (!$this->_module->cfgAllowDelete()) {
+		if (!$this->module->cfgAllowDelete()) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
@@ -116,7 +116,7 @@ final class PM_Trashcan extends GWF_Method
 		$uid = $user->getVar('user_id');
 		
 		$form = $this->formEmpty();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -131,7 +131,7 @@ final class PM_Trashcan extends GWF_Method
 //			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 //		}
 		$deleted = $pms->affectedRows($result);
-		return $this->_module->message('msg_empty', array($deleted, $deleted, $deleted-$deleted));
+		return $this->module->message('msg_empty', array($deleted, $deleted, $deleted-$deleted));
 	}
 }
 

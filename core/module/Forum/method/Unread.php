@@ -15,7 +15,7 @@ final class Forum_Unread extends GWF_Method
 		$dir = Common::getGet('dir', 'DESC');
 		$page = intval(Common::getGet('page', 1));
 		$t = GDO::table('GWF_ForumThread');
-		$ipp = $this->_module->getThreadsPerPage();
+		$ipp = $this->module->getThreadsPerPage();
 		$orderby = $t->getMultiOrderby($by, $dir);
 		$conditions = GWF_ForumThread::getUnreadQuery(GWF_Session::getUser());
 		$nItems = $t->countRows($conditions);
@@ -26,10 +26,10 @@ final class Forum_Unread extends GWF_Method
 		$tVars = array(
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $pmhref),
 			'threads' => $threads,
-			'board' => $this->_module->getCurrentBoard(),
+			'board' => $this->module->getCurrentBoard(),
 			'sort_url' => $this->getMethodHref(sprintf('&by=%%BY%%&dir=%%DIR%%&page=1')),
 		);
-		return $this->_module->templatePHP('unread.php', $tVars);
+		return $this->module->templatePHP('unread.php', $tVars);
 	}
 }
 

@@ -24,17 +24,17 @@ final class WeChall_SiteAdd extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_site')),
+			'form' => $form->templateY($this->module->lang('ft_add_site')),
 		);
-		return $this->_module->templatePHP('site_add.php', $tVars);
+		return $this->module->templatePHP('site_add.php', $tVars);
 	}
 
 	public function getForm()
 	{
 		$data = array(
-			'site_name' => array(GWF_Form::STRING, '', $this->_module->lang('th_site_name')),
-			'site_classname' => array(GWF_Form::STRING, '', $this->_module->lang('th_site_classname')),
-			'add_site' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_site')),
+			'site_name' => array(GWF_Form::STRING, '', $this->module->lang('th_site_name')),
+			'site_classname' => array(GWF_Form::STRING, '', $this->module->lang('th_site_classname')),
+			'add_site' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_site')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -42,7 +42,7 @@ final class WeChall_SiteAdd extends GWF_Method
 	public function onAddSite()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateSiteAdd();
 		}
 		
@@ -87,7 +87,7 @@ final class WeChall_SiteAdd extends GWF_Method
 		if (false === $site->onCreateBoard()) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		if (false === $site->onCreateThread($this->_module)) {
+		if (false === $site->onCreateThread($this->module)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -96,7 +96,7 @@ final class WeChall_SiteAdd extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_site_added');
+		return $this->module->message('msg_site_added');
 	}
 	
 	##################

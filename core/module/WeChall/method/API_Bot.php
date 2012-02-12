@@ -64,7 +64,7 @@ final class WeChall_API_Bot extends GWF_Method
 			die($message);
 		}
 		
-//		if (false !== ($error = $this->_module->isExcludedFromAPI($user))) {
+//		if (false !== ($error = $this->module->isExcludedFromAPI($user))) {
 //			die($error);
 //		}
 		
@@ -117,7 +117,7 @@ final class WeChall_API_Bot extends GWF_Method
 			die( "The user doesnt exist at https://www.wechall.net" );
 		}
 		
-//		if (false !== ($error = $this->_module->isExcludedFromAPI($user))) {
+//		if (false !== ($error = $this->module->isExcludedFromAPI($user))) {
 //			die($error);
 //		}
 		
@@ -180,7 +180,7 @@ final class WeChall_API_Bot extends GWF_Method
 			die('User Not Found on https://www.wechall.net');
 		}
 		
-//		if (false !== ($error = $this->_module->isExcludedFromAPI($user))) {
+//		if (false !== ($error = $this->module->isExcludedFromAPI($user))) {
 //			die($error);
 //		}
 		
@@ -258,7 +258,7 @@ final class WeChall_API_Bot extends GWF_Method
 			return sprintf('The user does not exist.');
 		}
 		
-//		if (false !== ($error = $this->_module->isExcludedFromAPI($user))) {
+//		if (false !== ($error = $this->module->isExcludedFromAPI($user))) {
 //			return $error;
 //		}
 
@@ -285,7 +285,7 @@ final class WeChall_API_Bot extends GWF_Method
 	private function rawOnSiteStats($sitename, $onsitename)
 	{
 		if ( (false === ($site = WC_Site::getByName($sitename))) && (false === ($site = WC_Site::getByClassName($sitename))) ) {
-			return $this->_module->lang('err_site');
+			return $this->module->lang('err_site');
 		}
 		
 		$site = $site->getSiteClass();

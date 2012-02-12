@@ -8,7 +8,7 @@ final class Admin_Superuser extends GWF_Method
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	public function execute()
 	{
-		$nav = $this->_module->templateNav();
+		$nav = $this->module->templateNav();
 		
 		# Setup / Change Password
 		if (Common::getPost('setup') !== false) {
@@ -29,14 +29,14 @@ final class Admin_Superuser extends GWF_Method
 	##############
 	public function validate_check_pass(Module_Admin $module, $arg)
 	{
-		return GWF_Password::checkPasswordS($arg, $this->_module->cfgSuperHash()) ? false : $this->_module->lang('err_check_pass');
+		return GWF_Password::checkPasswordS($arg, $this->module->cfgSuperHash()) ? false : $this->module->lang('err_check_pass');
 	}
 	
 	public function getFormPrompt()
 	{
 		$data = array(
-			'check_pass' => array(GWF_Form::STRING, '', $this->_module->lang('th_check_pass')),
-			'login' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_login'), ''),
+			'check_pass' => array(GWF_Form::STRING, '', $this->module->lang('th_check_pass')),
+			'login' => array(GWF_Form::SUBMIT, $this->module->lang('btn_login'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -45,21 +45,21 @@ final class Admin_Superuser extends GWF_Method
 	{
 		$form = $this->getFormPrompt();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_prompt')),
+			'form' => $form->templateY($this->module->lang('ft_prompt')),
 		);
-		return $this->_module->template('prompt.tpl', $tVars);
+		return $this->module->template('prompt.tpl', $tVars);
 	}
 	
 	public function onLogin()
 	{
 		$form = $this->getFormPrompt();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templatePrompt();
 		}
 		
-		$this->_module->onEnteredHash();
+		$this->module->onEnteredHash();
 		
-		return $this->_module->requestMethodB('Modules');
+		return $this->module->requestMethodB('Modules');
 	}
 	
 	#############
@@ -69,8 +69,8 @@ final class Admin_Superuser extends GWF_Method
 	public function getFormSetup()
 	{
 		$data = array(
-			'new_pass' => array(GWF_Form::STRING, '', $this->_module->lang('th_new_pass')),
-			'setup' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_setup'), ''),
+			'new_pass' => array(GWF_Form::STRING, '', $this->module->lang('th_new_pass')),
+			'setup' => array(GWF_Form::SUBMIT, $this->module->lang('btn_setup'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -79,15 +79,15 @@ final class Admin_Superuser extends GWF_Method
 	{
 		$form = $this->getFormSetup();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_setup')),
+			'form' => $form->templateY($this->module->lang('ft_setup')),
 		);
-		return $this->_module->templatePHP('setup.php', $tVars);
+		return $this->module->templatePHP('setup.php', $tVars);
 	}
 	
 	public function onSetup()
 	{
 		$form = $this->getFormSetup();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templatePrompt();
 		}
 		
@@ -95,10 +95,10 @@ final class Admin_Superuser extends GWF_Method
 		if ($newpass !== '') {
 			$newpass = GWF_Password::hashPasswordS($newpass);
 		}
-		$this->_module->cfgSaveSuperhash($newpass);
+		$this->module->cfgSaveSuperhash($newpass);
 		
 		$key = $newpass === '' ? 'msg_pass_cleared' : 'msg_pass_set';
-		return $this->_module->message($key, array($plain));
+		return $this->module->message($key, array($plain));
 	}
 	
 }

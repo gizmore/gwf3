@@ -31,32 +31,32 @@ final class WeChall_SiteRankings extends GWF_Method
 	public function templateRanking()
 	{
 		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		
-		$ipp = $this->_module->cfgItemsPerPage();
+		$ipp = $this->module->cfgItemsPerPage();
 		$nItems = $site->getLinkcount() - $this->getLinkcountUnranked($site->getID());
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 
 		$args = array($site->displayName(), $page);
-		$title = $this->_module->lang('pt_site_ranking', $args);
+		$title = $this->module->lang('pt_site_ranking', $args);
 		
 		GWF_Website::setPageTitle($title);
-		GWF_Website::setMetaTags($this->_module->lang('mt_site_ranking', $args));
-		GWF_Website::setMetaDescr($this->_module->lang('md_site_ranking', $args));
+		GWF_Website::setMetaTags($this->module->lang('mt_site_ranking', $args));
+		GWF_Website::setMetaDescr($this->module->lang('md_site_ranking', $args));
 		
 		$tVars = array(
 			'userdata' => $this->getRankedUsers($site, $from, $ipp),
 			'site' => $site,
 			'sites' => $site->getSimilarSites(),
-			'site_quickjump' => $this->_module->templateSiteQuickjumpRanking(),
+			'site_quickjump' => $this->module->templateSiteQuickjumpRanking(),
 			'rank' => $from+1,
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'site/ranking/for/'.$site->getID().'/'.$site->urlencodeSEO('site_name').'/page-%PAGE%'),
 			'page_title' => $title,
 		);
-		return $this->_module->templatePHP('site_ranking.php', $tVars);
+		return $this->module->templatePHP('site_ranking.php', $tVars);
 	}
 	
 //	private function getRankedUsersOLD(WC_Site $site, $from, $ipp)
@@ -160,7 +160,7 @@ final class WeChall_SiteRankings extends GWF_Method
 	{
 		$jumps = Common::getPost('quickjumps');
 		if (!is_array($jumps)) {
-			return $this->_module->error('err_site').'1';
+			return $this->module->error('err_site').'1';
 		}
 		
 		foreach ($jumps as $key => $value)
@@ -170,7 +170,7 @@ final class WeChall_SiteRankings extends GWF_Method
 			}
 			
 			if (false === ($site = WC_Site::getByID($value))) {
-				return $this->_module->error('err_site').'2';
+				return $this->module->error('err_site').'2';
 			}
 
 			$sid = $site->getVar('site_id');
@@ -178,7 +178,7 @@ final class WeChall_SiteRankings extends GWF_Method
 			return '';
 		}
 
-		return $this->_module->error('err_site').'3';
+		return $this->module->error('err_site').'3';
 	}
 }
 

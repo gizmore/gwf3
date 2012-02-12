@@ -18,7 +18,7 @@ final class Guestbook_Show extends GWF_Method
 	{
 		# Get GB
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {
-			return $this->_module->error('err_gb');
+			return $this->module->error('err_gb');
 		}
 
 		# SEO
@@ -53,7 +53,7 @@ final class Guestbook_Show extends GWF_Method
 		$orderby = 'gbm_date ASC';
 		
 		$msgs = GDO::table('GWF_GuestbookMSG');
-		$ipp = $this->_module->cfgItemsPerPage();
+		$ipp = $this->module->cfgItemsPerPage();
 		$nItems = $msgs->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', $nPages)), 1, $nPages);
@@ -68,22 +68,22 @@ final class Guestbook_Show extends GWF_Method
 			'href_sign' => GWF_WEB_ROOT.'guestbook/sign/'.$gbid,
 			'href_moderate' => GWF_WEB_ROOT.'guestbook/edit/'.$gbid,
 			'can_moderate' => $can_moderate, 
-			'can_sign' => $gb->canSign(GWF_Session::getUser(), $this->_module->cfgAllowGuest()),
-			'allow_url' => $this->_module->cfgAllowURL(),
-			'allow_email' => $this->_module->cfgAllowEMail(),
-			'btn_edit' => $can_moderate ? GWF_Button::options(GWF_WEB_ROOT.'guestbook/edit/'.$gbid, $this->_module->lang('btn_edit_gb')) : '',
+			'can_sign' => $gb->canSign(GWF_Session::getUser(), $this->module->cfgAllowGuest()),
+			'allow_url' => $this->module->cfgAllowURL(),
+			'allow_email' => $this->module->cfgAllowEMail(),
+			'btn_edit' => $can_moderate ? GWF_Button::options(GWF_WEB_ROOT.'guestbook/edit/'.$gbid, $this->module->lang('btn_edit_gb')) : '',
 		);
 		
 		$filename = 'show.tpl';
 //		$filename = $nested ? 'show_nested.php' : 'show.php';
 		
-		return $this->_module->template($filename, $tVars);
+		return $this->module->template($filename, $tVars);
 	}
 
 	public function templateNested(GWF_Guestbook $gb)
 	{
 		$gbid = $gb->getID();
-		$ipp = $this->_module->cfgItemsPerPage();
+		$ipp = $this->module->cfgItemsPerPage();
 		$user = GWF_Session::getUser();
 		$can_moderate = $gb->canModerate($user);
 		$mod = GWF_GuestbookMSG::IN_MODERATION;
@@ -106,7 +106,7 @@ final class Guestbook_Show extends GWF_Method
 			'can_moderate' => $can_moderate, 
 		);
 		
-		return $this->_module->templatePHP('show_nested.php', $tVars);
+		return $this->module->templatePHP('show_nested.php', $tVars);
 	}
 	
 	private function getNestedEntries(GWF_Guestbook $gb, GWF_GuestbookMSG $msgs, $conditions, $ipp, $from)

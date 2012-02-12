@@ -16,13 +16,13 @@ final class WeChall_CreateGB extends GWF_Method
 		
 		$user = GWF_Session::getUser();
 		if (!($mod_gb->canCreateGuestbook($user))) {
-			return $this->_module->error('err_create_gb');
+			return $this->module->error('err_create_gb');
 		}
 		
 		if (false !== ($gb = $mod_gb->getGuestbook($user->getID()))) {
 			GWF_Website::redirect($gb->hrefEdit());
 			return '';
-//			return $this->_module->error('err_have_gb');
+//			return $this->module->error('err_have_gb');
 		}
 		
 		$options = GWF_Guestbook::DEFAULT_OPTIONS;
@@ -38,7 +38,7 @@ final class WeChall_CreateGB extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_created_gb', array(GWF_WEB_ROOT.'guestbook/edit/'.$gb->getID()));
+		return $this->module->message('msg_created_gb', array(GWF_WEB_ROOT.'guestbook/edit/'.$gb->getID()));
 	}
 }
 

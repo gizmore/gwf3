@@ -29,13 +29,13 @@ final class PasswordForgot_Form extends GWF_Method
 	private function getForm()
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username')),
-			'email' => array(GWF_Form::STRING, '', $this->_module->lang('th_email')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_username')),
+			'email' => array(GWF_Form::STRING, '', $this->module->lang('th_email')),
 		);
-		if ($this->_module->wantCaptcha()) {
+		if ($this->module->wantCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['request'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_request'), '');
+		$data['request'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_request'), '');
 		return new GWF_Form($this, $data);
 	}
 	
@@ -43,9 +43,9 @@ final class PasswordForgot_Form extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('title_request'))
+			'form' => $form->templateY($this->module->lang('title_request'))
 		);
-		return $this->_module->templatePHP('request.php', $tVars);
+		return $this->module->templatePHP('request.php', $tVars);
 	}
 	
 	public function validate_email(Module_PasswordForgot $module, $email) { return false; }
@@ -55,7 +55,7 @@ final class PasswordForgot_Form extends GWF_Method
 	{
 		$form = $this->getForm();
 		
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->form();
 		}
 		
@@ -66,12 +66,12 @@ final class PasswordForgot_Form extends GWF_Method
 
 		# nothing found
 		if ($user1 === false && $user2 === false) {
-			return $this->_module->error('err_not_found').$this->form();
+			return $this->module->error('err_not_found').$this->form();
 		}
 		
 		# Two different users
 		if ($user1 !== false && $user2 !== false && ($user1->getID() !== $user2->getID())) {
-			return $this->_module->error('err_not_same_user').$this->form();
+			return $this->module->error('err_not_same_user').$this->form();
 		}
 
 		# pick the user and send him mail
@@ -91,21 +91,21 @@ final class PasswordForgot_Form extends GWF_Method
 	{
 		if ('' === ($email = $user->getValidMail()))
 		{
-			return $this->_module->error('err_no_mail');
+			return $this->module->error('err_no_mail');
 		}
 
-		$sender = $this->_module->getMailSender();
+		$sender = $this->module->getMailSender();
 		$username = $user->displayUsername();
 		$link = $this->getRequestLink($user);
-		$body = $this->_module->lang('mail_body', array( $username, $sender, $link));
+		$body = $this->module->lang('mail_body', array( $username, $sender, $link));
 		
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_SUPPORT_EMAIL);
 		$mail->setReceiver($email);
-		$mail->setSubject($this->_module->lang('mail_subj'));
+		$mail->setSubject($this->module->lang('mail_subj'));
 		$mail->setBody($body);
 		
-		return $mail->sendToUser($user) ? $this->_module->message('msg_sent_mail', array('<em>'.GWF_HTML::display(GWF_HTML::lang('unknown')).'</em>')) : GWF_HTML::err('ERR_MAIL_SENT'); 
+		return $mail->sendToUser($user) ? $this->module->message('msg_sent_mail', array('<em>'.GWF_HTML::display(GWF_HTML::lang('unknown')).'</em>')) : GWF_HTML::err('ERR_MAIL_SENT'); 
 	}
 	
 	private function getRequestLink(GWF_User $user)

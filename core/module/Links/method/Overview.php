@@ -67,8 +67,8 @@ final class Links_Overview extends GWF_Method
 		
 		$this->tag = GWF_LinksTag::getWhitelistedTag(Common::getGet('tag'), '');
 		
-		$this->lpp = $this->_module->cfgLinksPerPage();
-		$this->nLinks = $links->countLinks($this->_module, $this->user, $this->tag, false);
+		$this->lpp = $this->module->cfgLinksPerPage();
+		$this->nLinks = $links->countLinks($this->module, $this->user, $this->tag, false);
 		$this->nPages = GWF_PageMenu::getPagecount($this->lpp, $this->nLinks);
 		$this->page = Common::clamp(Common::getGet('page', 1), 1, $this->nPages);
 		$this->from = GWF_PageMenu::getFrom($this->page, $this->lpp);
@@ -83,16 +83,16 @@ final class Links_Overview extends GWF_Method
 		
 //		var_dump($this->tag);
 		
-//		$unread_query = $this->_module->getUnreadQuery($this->user);
+//		$unread_query = $this->module->getUnreadQuery($this->user);
 		$tag_query = $links->getTagQuery($this->tag);
 		
 //		var_dump($tag_query);
 		
-		if ($this->_module->cfgShowPermitted()) {
+		if ($this->module->cfgShowPermitted()) {
 			$conditions = "($tag_query)";
 		}
 		else {
-			$perm_query = $this->_module->getPermQuery($this->user);
+			$perm_query = $this->module->getPermQuery($this->user);
 			$mod_query = $links->getModQuery($this->user);
 			$member_query = $links->getMemberQuery($this->user);
 			$private_query = $links->getPrivateQuery($this->user);
@@ -107,8 +107,8 @@ final class Links_Overview extends GWF_Method
 		
 		$this->pagemenu = GWF_PageMenu::display($this->page, $this->nPages, $href);
 		
-		$this->add_link_text = GWF_LinksValidator::mayAddLink($this->_module, $this->user);
-		$this->hrefAdd = $this->add_link_text === false ? $this->_module->getMethodURL('Add', '&tag='.$this->tag) : false;
+		$this->add_link_text = GWF_LinksValidator::mayAddLink($this->module, $this->user);
+		$this->hrefAdd = $this->add_link_text === false ? $this->module->getMethodURL('Add', '&tag='.$this->tag) : false;
 		
 		
 //		$this->newLinks = $links->select("(($perm_query) AND ($unread_query) AND ($mod_query) AND ($member_query) AND ($tag_query))", 'link_date ASC');
@@ -119,26 +119,26 @@ final class Links_Overview extends GWF_Method
 	private function overview()
 	{
 		if ($this->tag === '') {
-			$tag_title = $this->_module->lang('pt_links');
-			GWF_Website::setPageTitle($this->_module->lang('pt_links'));
-			GWF_Website::setMetaTags($this->_module->lang('mt_links'));
-			GWF_Website::setMetaDescr($this->_module->lang('md_links'));
+			$tag_title = $this->module->lang('pt_links');
+			GWF_Website::setPageTitle($this->module->lang('pt_links'));
+			GWF_Website::setMetaTags($this->module->lang('mt_links'));
+			GWF_Website::setMetaDescr($this->module->lang('md_links'));
 		}
 		else {
 			$dtag = GWF_HTML::display($this->tag);
-			$tag_title = $this->_module->lang('pt_linksec', array( $dtag));
-			GWF_Website::setPageTitle($this->_module->lang('pt_linksec', array( $dtag)));
-			GWF_Website::setMetaTags($this->_module->lang('mt_linksec', array( $dtag)));
-			GWF_Website::setMetaDescr($this->_module->lang('md_linksec', array( $dtag)));
+			$tag_title = $this->module->lang('pt_linksec', array( $dtag));
+			GWF_Website::setPageTitle($this->module->lang('pt_linksec', array( $dtag)));
+			GWF_Website::setMetaTags($this->module->lang('mt_linksec', array( $dtag)));
+			GWF_Website::setMetaDescr($this->module->lang('md_linksec', array( $dtag)));
 		}
 		
-		$with_votes = GWF_Session::isLoggedIn() ? true : $this->_module->cfgGuestVotes();
-//		$sortURLNew = $this->_module->getMethodURL('NewLinks', '&by=%BY%&dir=%DIR%&page=1');
+		$with_votes = GWF_Session::isLoggedIn() ? true : $this->module->cfgGuestVotes();
+//		$sortURLNew = $this->module->getMethodURL('NewLinks', '&by=%BY%&dir=%DIR%&page=1');
 		$tVars = array(
-			'cloud' => $this->_module->templateCloud(),
-			'search' => '', #$this->_module->templateSearch(),
-			'new_link_count' => $this->_module->countUnread(GWF_Session::getUser()),
-			'links' => $this->_module->templateLinks($this->links, $this->sortURL, $this->by, $this->dir, false, false, false, $with_votes),
+			'cloud' => $this->module->templateCloud(),
+			'search' => '', #$this->module->templateSearch(),
+			'new_link_count' => $this->module->countUnread(GWF_Session::getUser()),
+			'links' => $this->module->templateLinks($this->links, $this->sortURL, $this->by, $this->dir, false, false, false, $with_votes),
 			'page_menu' => $this->pagemenu,
 			'href_add' => $this->hrefAdd,
 			'href_search' => GWF_WEB_ROOT.'link/search',
@@ -148,7 +148,7 @@ final class Links_Overview extends GWF_Method
 			'tag_title' => $tag_title,
 			'text_add' => $this->add_link_text,
 		);
-		return $this->_module->templatePHP('overview.php', $tVars);
+		return $this->module->templatePHP('overview.php', $tVars);
 	}
 }
 

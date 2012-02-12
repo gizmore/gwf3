@@ -22,11 +22,11 @@ final class Account_SetupGPGKey extends GWF_Method
 		}
 		
 		if (false === ($fingerprint = GWF_PublicKey::grabFingerprint($file_content))) {
-			return $this->_module->error('err_gpg_key');
+			return $this->module->error('err_gpg_key');
 		}
 		
 		if (Common::getGet('token') !== $fingerprint) {
-			return $this->_module->error('err_gpg_token');
+			return $this->module->error('err_gpg_token');
 		}
 		
 		if (false === (GWF_PublicKey::updateKey($user->getID(), $file_content))) {
@@ -37,7 +37,7 @@ final class Account_SetupGPGKey extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_setup_gpg');
+		return $this->module->message('msg_setup_gpg');
 	}
 }
 ?>

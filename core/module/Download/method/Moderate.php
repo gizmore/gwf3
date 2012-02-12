@@ -9,7 +9,7 @@ final class Download_Moderate extends GWF_Method
 	{
 		if (false === ($dl = GWF_Download::getByID(Common::getGetString('dlid'))))
 		{
-			return $this->_module->error('err_dlid');
+			return $this->module->error('err_dlid');
 		}
 		
 		if ($dl->getHashcode() !== Common::getGetString('token'))
@@ -33,7 +33,7 @@ final class Download_Moderate extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return $this->_module->message('msg_enabled');
+		return $this->module->message('msg_enabled');
 	}
 
 	private function onDelete(GWF_Download $dl)
@@ -46,12 +46,12 @@ final class Download_Moderate extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		return $this->_module->message('msg_deleted');
+		return $this->module->message('msg_deleted');
 	}
 
 	private function onDownload(GWF_Download $dl)
 	{
-		if (false === ($method = $this->_module->getMethod('Download')))
+		if (false === ($method = $this->module->getMethod('Download')))
 		{
 			return GWF_HTML::err('ERR_METHOD_MISSING', array('Download', 'Download'));
 		}

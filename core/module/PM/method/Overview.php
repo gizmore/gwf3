@@ -60,7 +60,7 @@ final class PM_Overview extends GWF_Method
 		$del = GWF_PM::OWNER_DELETED;
 		$conditions = "pm_owner=$uid AND pm_folder=$fid AND pm_options&$del=0";
 		$pmTable = GDO::table('GWF_PM');
-		$this->ipp = $this->_module->cfgPMPerPage();
+		$this->ipp = $this->module->cfgPMPerPage();
 		$this->nItems = $pmTable->countRows($conditions);
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp(intval(Common::getGet('page')), 1, $this->nPages);
@@ -74,12 +74,12 @@ final class PM_Overview extends GWF_Method
 	##############
 	private function templateGuests()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_guest'));
+		GWF_Website::setPageTitle($this->module->lang('pt_guest'));
 		
 		$tVars = array(
 			'new_pm' => $this->getNewPMFormGuest(),
 		);
-		return $this->_module->template('overview_guests.tpl', $tVars);
+		return $this->module->template('overview_guests.tpl', $tVars);
 	}
 	
 	################
@@ -87,7 +87,7 @@ final class PM_Overview extends GWF_Method
 	################
 	private function templateOverview()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_pm'));
+		GWF_Website::setPageTitle($this->module->lang('pt_pm'));
 		
 		$fname = $this->folder->urlencodeSEO('pmf_name');
 		$hrefPage = GWF_WEB_ROOT.sprintf('pm/folder/%s/%s/by/%s/%s/page-%%PAGE%%', $this->fid, $fname, urlencode(Common::getGet('by')), urlencode(Common::getGet('dir')));
@@ -96,20 +96,20 @@ final class PM_Overview extends GWF_Method
 		$tVars = array(
 			'folder' => $this->folder,
 			'folders' => $this->folderTable(),
-			'form_new_folder' => $this->getFormNewFolder()->templateX($this->_module->lang('ft_new_folder')),
+			'form_new_folder' => $this->getFormNewFolder()->templateX($this->module->lang('ft_new_folder')),
 		
 //			'pms' => $this->pmTable(),
 			'pms' => $this->pms,
 			'pagemenu' => GWF_PageMenu::display($this->page, $this->nPages, $hrefPage),
 			'sort_url' => $hrefSort,
 			'new_pm' => $this->getNewPMForm(),
-			'href_options' => $this->_module->getOptionsHREF(),
-			'href_search' => $this->_module->getSearchHREF(),
-			'folder_select' => GWF_PMFolder::getSelectS($this->_module, Common::getRequest('folders', '0')),
+			'href_options' => $this->module->getOptionsHREF(),
+			'href_search' => $this->module->getSearchHREF(),
+			'folder_select' => GWF_PMFolder::getSelectS($this->module, Common::getRequest('folders', '0')),
 			'form_action' => isset($_SERVER['REQUEST_URI']) ? GWF_HTML::display($_SERVER['REQUEST_URI']) : GWF_WEB_ROOT.'pm',
-			'href_trashcan' => $this->_module->getMethodURL('Trashcan&by=pm_date&dir=DESC'),
+			'href_trashcan' => $this->module->getMethodURL('Trashcan&by=pm_date&dir=DESC'),
 		);
-		return $this->_module->templatePHP('overview.php', $tVars);
+		return $this->module->templatePHP('overview.php', $tVars);
 	}
 
 	public function folderTable()
@@ -128,16 +128,16 @@ final class PM_Overview extends GWF_Method
 			'orderby' => $orderby,
 			'folders' => $folders,
 			'sort_url' => '',
-			'folder_action' => $this->_module->getMethodURL('FolderAction'),
+			'folder_action' => $this->module->getMethodURL('FolderAction'),
 		);
-		return $this->_module->templatePHP('folders.php', $tVars);
+		return $this->module->templatePHP('folders.php', $tVars);
 	}
 	
 	private function getFormNewFolder()
 	{
 		$data = array(
-			'foldername' => array(GWF_Form::STRING, '', $this->_module->lang('th_pmf_name')),
-			'newfolder' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_new_folder')),
+			'foldername' => array(GWF_Form::STRING, '', $this->module->lang('th_pmf_name')),
+			'newfolder' => array(GWF_Form::SUBMIT, $this->module->lang('btn_new_folder')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -148,7 +148,7 @@ final class PM_Overview extends GWF_Method
 		$fid = $this->folder->getID();
 		$conditions = "(pm_from=$uid AND pm_from_folder=$fid) OR (pm_to=$uid AND pm_to_folder=$fid)";
 		$sortURL = GWF_WEB_ROOT.'pm/folder/'.$fid.'/'.$this->folder->urlencodeSEO('pmf_name').'/by/%BY%/%DIR%/page-1';
-		return GWF_Table::displayGDO2($this->_module, GDO::table('GWF_PM'), GWF_Session::getUser(), $sortURL, $conditions, $this->_module->cfgPMPerPage());
+		return GWF_Table::displayGDO2($this->module, GDO::table('GWF_PM'), GWF_Session::getUser(), $sortURL, $conditions, $this->module->cfgPMPerPage());
 	}
 	
 	private function getNewPMForm()
@@ -156,21 +156,21 @@ final class PM_Overview extends GWF_Method
 		$data = array(
 			#'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->getCorrespondence(), 'username_sel')),
 			'username' => array(GWF_Form::STRING, ''),
-			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
+			'create' => array(GWF_Form::SUBMIT, $this->module->lang('btn_create')),
 		);
 		$form = new GWF_Form($this, $data);
-		return $form->templateX($this->_module->lang('ft_new_pm'), GWF_PM::getNewPMHref());
+		return $form->templateX($this->module->lang('ft_new_pm'), GWF_PM::getNewPMHref());
 	}
 
 	private function getNewPMFormGuest()
 	{
 		$data = array(
 			'username_sel' => array(GWF_Form::SELECT, $this->getUsernameSelect($this->getUsernamesPPM(), 'username_sel')),
-			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
+			'create' => array(GWF_Form::SUBMIT, $this->module->lang('btn_create')),
 			'username' => array(GWF_Form::STRING, ''),
 		);
 		$form = new GWF_Form($this, $data);
-		return $form->templateX($this->_module->lang('ft_new_pm'), GWF_PM::getNewPMHref());
+		return $form->templateX($this->module->lang('ft_new_pm'), GWF_PM::getNewPMHref());
 	}
 
 	private function getCorrespondence()
@@ -199,7 +199,7 @@ final class PM_Overview extends GWF_Method
 	private function getUsernameSelect(array $usernames, $name='username')
 	{
 		$back = sprintf('<select name="%s">', $name);
-		$back .= sprintf('<option value="0">%s</option>', $this->_module->lang('sel_username'));
+		$back .= sprintf('<option value="0">%s</option>', $this->module->lang('sel_username'));
 		foreach ($usernames as $username)
 		{
 			$username = GWF_HTML::display($username);
@@ -216,7 +216,7 @@ final class PM_Overview extends GWF_Method
 	{
 		$ids = Common::getPost('pm');
 		if (!(is_array($ids))) {
-			return ''; #$this->_module->error('err_delete');
+			return ''; #$this->module->error('err_delete');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -237,25 +237,25 @@ final class PM_Overview extends GWF_Method
 		
 		$this->sanitize();
 		
-		return $this->_module->message('msg_deleted', array($count));
+		return $this->module->message('msg_deleted', array($count));
 	}
 	
 	##################
 	### New Folder ###
 	##################
-	public function validate_foldername(Module_PM $module, $arg) { return $this->_module->validate_foldername($arg); }
+	public function validate_foldername(Module_PM $module, $arg) { return $this->module->validate_foldername($arg); }
 	public function onCreateFolder()
 	{
 		$form = $this->getFormNewFolder();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
 		$userid = GWF_Session::getUserID();
 		
 		$folders = GWF_PMFolder::getFolders($userid);
-		if (count($folders) >= $this->_module->cfgMaxFolders()) {
-			return $this->_module->error('err_max_folders');
+		if (count($folders) >= $this->module->cfgMaxFolders()) {
+			return $this->module->error('err_max_folders');
 		}
 		
 		if (false === ($folder = GWF_PMFolder::insertFolder($userid, $form->getVar('foldername')))) {
@@ -278,11 +278,11 @@ final class PM_Overview extends GWF_Method
 		$user = GWF_Session::getUser();
 		
 		if (false === ($folder = GWF_PMFolder::getByID(Common::getPost('folders')))) {
-			return $this->_module->error('err_folder');
+			return $this->module->error('err_folder');
 		}
 		
 		if ($folder->getVar('pmf_uid') !== $user->getID()) {
-			return $this->_module->error('err_folder');
+			return $this->module->error('err_folder');
 		}
 		
 		$count = 0;
@@ -301,7 +301,7 @@ final class PM_Overview extends GWF_Method
 		}
 		
 		$this->sanitize();
-		return $this->_module->message('msg_moved', array($count));
+		return $this->module->message('msg_moved', array($count));
 	}
 	
 }

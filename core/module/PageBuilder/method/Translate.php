@@ -12,7 +12,7 @@ final class PageBuilder_Translate extends GWF_Method
 	public function execute()
 	{
 		if (false === ($this->page = GWF_Page::getByID(Common::getGetString('pageid')))) {
-			return $this->_module->lang('err_page');
+			return $this->module->lang('err_page');
 		}
 		
 		$back = '';
@@ -28,26 +28,26 @@ final class PageBuilder_Translate extends GWF_Method
 	{
 		$form = $this->formTranslate($page);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_translate')),
+			'form' => $form->templateY($this->module->lang('ft_translate')),
 		);
-		return $this->_module->template('translate.tpl', $tVars);
+		return $this->module->template('translate.tpl', $tVars);
 	}
 	
 	private function formTranslate(GWF_Page $page)
 	{
 		$data = array(
-			'url' => array(GWF_Form::STRING, $page->getVar('page_url'), $this->_module->lang('th_url')),
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $this->_module->lang('th_lang')),
-//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->_module->lang('th_groups')),
-//			'noguests' => array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->_module->lang('th_noguests')),
-//			'enabled' => array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->_module->lang('th_enabled')),
-			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $this->_module->lang('th_title')),
-			'descr' => array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $this->_module->lang('th_descr')),
-			'tags' => array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $this->_module->lang('th_tags')),
-			'file' => array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_file')),
-			'upload' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_upload')),
-			'content' => array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $this->_module->lang('th_content')),
-			'translate' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_translate')),
+			'url' => array(GWF_Form::STRING, $page->getVar('page_url'), $this->module->lang('th_url')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang'), $this->module->lang('th_lang')),
+//			'groups' => array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->module->lang('th_groups')),
+//			'noguests' => array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->module->lang('th_noguests')),
+//			'enabled' => array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->module->lang('th_enabled')),
+			'title' => array(GWF_Form::STRING, $page->getVar('page_title'), $this->module->lang('th_title')),
+			'descr' => array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $this->module->lang('th_descr')),
+			'tags' => array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $this->module->lang('th_tags')),
+			'file' => array(GWF_Form::FILE_OPT, '', $this->module->lang('th_file')),
+			'upload' => array(GWF_Form::SUBMIT, $this->module->lang('btn_upload')),
+			'content' => array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $this->module->lang('th_content')),
+			'translate' => array(GWF_Form::SUBMIT, $this->module->lang('btn_translate')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -75,7 +75,7 @@ final class PageBuilder_Translate extends GWF_Method
 	private function onTranslate(GWF_Page $page)
 	{
 		$form = $this->formTranslate($page);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -114,11 +114,11 @@ final class PageBuilder_Translate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__,__LINE__));
 		}
 		
-		if (false === $this->_module->writeHTA()) {
+		if (false === $this->module->writeHTA()) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $this->_module->message('msg_trans');
+		return $this->module->message('msg_trans');
 	}
 }
 ?>

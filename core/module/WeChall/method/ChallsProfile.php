@@ -30,9 +30,9 @@ final class WeChall_ChallsProfile extends GWF_Method
 		$tVars = array(
 			'data' => $db->queryAll($query),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Profile&me=Profile&username='.$user->urlencode('user_name').'&pcby=%BY%&pcdir=%DIR%#wc_profile_challenges',
-			'table_title' => $this->_module->lang('tt_challs_for', array('', $user->display('user_name'))),
+			'table_title' => $this->module->lang('tt_challs_for', array('', $user->display('user_name'))),
 		);
-		return $this->_module->templatePHP('challs_profile.php', $tVars);
+		return $this->module->templatePHP('challs_profile.php', $tVars);
 	}
 }
 ?>

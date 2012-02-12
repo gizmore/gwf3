@@ -28,7 +28,7 @@ final class PM_Ignore extends GWF_Method
 	
 	private function templateIgnore()
 	{
-		return $this->_module->requestMethodB('Overview');
+		return $this->module->requestMethodB('Overview');
 	}
 
 	public function onIgnore($mode, $ignore_id, $reason='')
@@ -40,14 +40,14 @@ final class PM_Ignore extends GWF_Method
 		$uid = GWF_Session::getUserID();
 		
 		if ($uid === $user->getID()) {
-			return $this->_module->error('err_ignore_self');
+			return $this->module->error('err_ignore_self');
 		}
 
 		switch($mode)
 		{
 			case 'do':
 				if ($user->isInGroupName(GWF_Group::ADMIN)) {
-					return $this->_module->error('err_ignore_admin');
+					return $this->module->error('err_ignore_admin');
 				}
 				if (false === GWF_PMIgnore::ignore($uid, $user->getID(), $reason)) {
 					return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
@@ -62,7 +62,7 @@ final class PM_Ignore extends GWF_Method
 		}
 		
 		$msgkey = $mode === 'do' ? 'msg_ignored' : 'msg_unignored';
-		return $this->_module->message($msgkey, array($user->display('user_name')));
+		return $this->module->message($msgkey, array($user->display('user_name')));
 	}
 }
 ?>

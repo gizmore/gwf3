@@ -12,7 +12,7 @@ final class Konzert_Admin extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $this->_module->template('admin.tpl', $tVars);
+		return $this->module->template('admin.tpl', $tVars);
 	}
 }
 ?>

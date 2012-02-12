@@ -8,7 +8,7 @@ final class Helpdesk_AssignWork extends GWF_Method
 	public function execute()
 	{
 		if (false === ($ticket = GWF_HelpdeskTicket::getByID(Common::getGetString('ticket')))) {
-			return $this->_module->error('err_ticket');
+			return $this->module->error('err_ticket');
 		}
 		
 		if (false === ($user = GWF_User::getByID(Common::getGetString('worker')))) {
@@ -21,11 +21,11 @@ final class Helpdesk_AssignWork extends GWF_Method
 		}
 		
 		if (!$ticket->isOpen()) {
-			return $this->_module->error('err_not_open');
+			return $this->module->error('err_not_open');
 		}
 		
 		if ($ticket->getHashcode() !== Common::getGetString('token')) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		
 		return $this->onAssign($ticket, $user);
@@ -40,7 +40,7 @@ final class Helpdesk_AssignWork extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_assigned', array($ticket->getID(), $user->displayUsername()));
+		return $this->module->message('msg_assigned', array($ticket->getID(), $user->displayUsername()));
 	}
 }
 ?>

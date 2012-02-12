@@ -36,7 +36,7 @@ final class Admin_Move extends GWF_Method
 		$mode = $this->getMoveMode();
 		
 		if (false === ($current = GWF_Module::getModule($modulename))) {
-			return $this->_module->error('err_mod_not_installed');
+			return $this->module->error('err_mod_not_installed');
 		}
 		
 		$order = array(
@@ -95,7 +95,7 @@ final class Admin_Move extends GWF_Method
 		$_GET['by'] = 'module_priority';
 		$_GET['dir'] = 'ASC';
 		
-		return $this->_module->requestMethodB('Modules');
+		return $this->module->requestMethodB('Modules');
 	}
 	
 	private function switchPriority(GWF_Module $current, GWF_Module $exchange)

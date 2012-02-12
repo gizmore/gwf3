@@ -6,7 +6,7 @@ final class Votes_EditPoll extends GWF_Method
 	public function execute()
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID(Common::getGet('vmid')))) {
-			return $this->_module->error('err_poll');
+			return $this->module->error('err_poll');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -25,27 +25,27 @@ final class Votes_EditPoll extends GWF_Method
 	{
 		$form = $this->getForm($poll, $user);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit')),
+			'form' => $form->templateY($this->module->lang('ft_edit')),
 		);
-		return $this->_module->template('edit_poll.tpl', $tVars);
+		return $this->module->template('edit_poll.tpl', $tVars);
 	}
 	
 	private function getForm(GWF_VoteMulti $poll, GWF_User $user)
 	{
 		$data = array();
-		$data['title'] = array(GWF_Form::STRING, $poll->getVar('vm_title'), $this->_module->lang('th_title'));
-		$data['guest'] = array(GWF_Form::CHECKBOX, $poll->isGuestVoteAllowed(), $this->_module->lang('th_guests'));
-		$data['multi'] = array(GWF_Form::CHECKBOX, $poll->isMultipleChoice(), $this->_module->lang('th_multi'));
-		$data['enabled'] = array(GWF_Form::CHECKBOX, $poll->isEnabled(), $this->_module->lang('th_enabled'));
+		$data['title'] = array(GWF_Form::STRING, $poll->getVar('vm_title'), $this->module->lang('th_title'));
+		$data['guest'] = array(GWF_Form::CHECKBOX, $poll->isGuestVoteAllowed(), $this->module->lang('th_guests'));
+		$data['multi'] = array(GWF_Form::CHECKBOX, $poll->isMultipleChoice(), $this->module->lang('th_multi'));
+		$data['enabled'] = array(GWF_Form::CHECKBOX, $poll->isEnabled(), $this->module->lang('th_enabled'));
 		if (Module_Votes::mayAddGlobalPoll(GWF_Session::getUser())) {
-			$data['public'] = array(GWF_Form::CHECKBOX, $poll->isGlobal(), $this->_module->lang('th_vm_public'));
+			$data['public'] = array(GWF_Form::CHECKBOX, $poll->isGlobal(), $this->module->lang('th_vm_public'));
 		}
 		
-		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->_module, 'view', $poll->getViewFlag()), $this->_module->lang('th_mvview'));
-		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', $poll->getGroupID(), true, true), $this->_module->lang('th_vm_gid'));
-		$data['level'] = array(GWF_Form::INT, $poll->getLevel(), $this->_module->lang('th_vm_level'));
+		$data['view'] = array(GWF_Form::SELECT, GWF_VoteMulti::getViewSelect($this->module, 'view', $poll->getViewFlag()), $this->module->lang('th_mvview'));
+		$data['gid'] = array(GWF_Form::SELECT, GWF_GroupSelect::single('gid', $poll->getGroupID(), true, true), $this->module->lang('th_vm_gid'));
+		$data['level'] = array(GWF_Form::INT, $poll->getLevel(), $this->module->lang('th_vm_level'));
 		
-		$data['edit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit'));
+		$data['edit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -57,13 +57,13 @@ final class Votes_EditPoll extends GWF_Method
 	public function onEdit(GWF_VoteMulti $poll, GWF_User $user)
 	{
 		$form = $this->getForm($poll, $user);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
 		$global = isset($_POST['public']);
 		if ($global && !Module_Votes::mayAddGlobalPoll($user)) {
-			return $this->_module->error('err_global_poll');
+			return $this->module->error('err_global_poll');
 		}
 		
 		$options = 0;
@@ -82,7 +82,7 @@ final class Votes_EditPoll extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_poll_edit');
+		return $this->module->message('msg_poll_edit');
 	}
 	
 	

@@ -26,7 +26,7 @@ final class Audit_Replay extends Audit_ViewLog
 		$tVars = array(
 			'log' => $log,
 		);
-		return $this->_module->template('replay.tpl', $tVars);
+		return $this->module->template('replay.tpl', $tVars);
 	}
 }
 ?>

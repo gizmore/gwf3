@@ -30,7 +30,7 @@ final class Forum_SubscribeBoard extends GWF_Method
 	{
 		if (false === ($this->board = GWF_ForumBoard::getBoard($boardid)))
 		{
-			return $this->_module->error('err_board');
+			return $this->module->error('err_board');
 		}
 		
 		if (!$this->board->hasPermissionS())
@@ -55,7 +55,7 @@ final class Forum_SubscribeBoard extends GWF_Method
 		}
 		
 		$href = htmlspecialchars($this->board->getShowBoardHREF());
-		return $this->_module->message('msg_subscrboard', array($href));
+		return $this->module->message('msg_subscrboard', array($href));
 	}
 
 	private function onUnSubscribe($boardid)
@@ -71,8 +71,8 @@ final class Forum_SubscribeBoard extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$href = htmlspecialchars($this->_module->getMethodURL('Subscriptions'));
-		return $this->_module->message('msg_unsubscrboard', array($href));
+		$href = htmlspecialchars($this->module->getMethodURL('Subscriptions'));
+		return $this->module->message('msg_unsubscrboard', array($href));
 	}
 }
 ?>

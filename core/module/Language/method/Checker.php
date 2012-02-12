@@ -30,17 +30,17 @@ final class Language_Checker extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_checker')),
+			'form' => $form->templateY($this->module->lang('ft_checker')),
 		);
-		return $this->_module->templatePHP('checker.php', $tVars);
+		return $this->module->templatePHP('checker.php', $tVars);
 	}
 
 	private function getForm()
 	{
 		$data = array(
-			'langs' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langs', Common::getPost('langs', 'en'), true), $this->_module->lang('th_langs')),
-			'warns' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_warns')),
-			'check' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_check')),
+			'langs' => array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'langs', Common::getPost('langs', 'en'), true), $this->module->lang('th_langs')),
+			'warns' => array(GWF_Form::CHECKBOX, true, $this->module->lang('th_warns')),
+			'check' => array(GWF_Form::SUBMIT, $this->module->lang('btn_check')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -50,7 +50,7 @@ final class Language_Checker extends GWF_Method
 	private function onCheck()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module)))
+		if (false !== ($errors = $form->validate($this->module)))
 		{
 			return $errors.$this->templateChecker();
 		}
@@ -72,19 +72,19 @@ final class Language_Checker extends GWF_Method
 		$message = '';
 		if ($this->errors > 0 || $this->warnings > 0 || $this->missing > 0)
 		{
-			$message .= $this->_module->message('dh_langchecker', $this->_module->lang('err_probsum', array($this->lang->getVar('lang_name'), $this->errors, $this->warnings, $this->missing)), false); # FIXME
+			$message .= $this->module->message('dh_langchecker', $this->module->lang('err_probsum', array($this->lang->getVar('lang_name'), $this->errors, $this->warnings, $this->missing)), false); # FIXME
 		}
 		if (count($this->enMissingFile) > 0)
 		{
-			$message .= $this->_module->error('dh_filemiss', array(count($this->enMissingFile), $this->enMissingFile), false);
+			$message .= $this->module->error('dh_filemiss', array(count($this->enMissingFile), $this->enMissingFile), false);
 		}
 		if (count($this->enEmptyFile) > 0)
 		{
-			$message .= $this->_module->error('dh_emptyfile', array(count($this->enEmptyFile), $this->enEmptyFile), false);
+			$message .= $this->module->error('dh_emptyfile', array(count($this->enEmptyFile), $this->enEmptyFile), false);
 		}
 		if (count($this->transMissing) > 0)
 		{
-			$message .= $this->_module->error('dh_transfilemiss', array(count($this->transMissing), $this->transMissing), false);
+			$message .= $this->module->error('dh_transfilemiss', array(count($this->transMissing), $this->transMissing), false);
 		}
 		if ($this->errWarnMessage !== '')
 		{
@@ -92,7 +92,7 @@ final class Language_Checker extends GWF_Method
 		}
 		if ($message === '')
 		{
-			return $this->_module->message('err_noerror', array($this->lang->getVar('lang_name')), false);
+			return $this->module->message('err_noerror', array($this->lang->getVar('lang_name')), false);
 		}
 		return $message;
 
@@ -137,7 +137,7 @@ final class Language_Checker extends GWF_Method
 
 		if (!file_exists($path1) || !is_file($path1) || !is_readable($path1))
 		{
-			$this->enMissingFile[] = $this->_module->lang('err_filemiss', array($path1));
+			$this->enMissingFile[] = $this->module->lang('err_filemiss', array($path1));
 			$this->errors++;
 			return;
 		}
@@ -146,7 +146,7 @@ final class Language_Checker extends GWF_Method
 			include $path1;
 			if (!isset($lang))
 			{
-				$this->enEmptyFile[] = $this->_module->lang('err_emptyfile', array($path1));
+				$this->enEmptyFile[] = $this->module->lang('err_emptyfile', array($path1));
 				$this->errors++;
 				return;
 			}
@@ -157,7 +157,7 @@ final class Language_Checker extends GWF_Method
 		$path2 = $this->getOtherPath($path1);
 		if (!file_exists($path2) || !is_file($path2) || !is_readable($path2))
 		{
-			$this->transMissing[] = $this->_module->lang('err_transfilemiss', array($path2));
+			$this->transMissing[] = $this->module->lang('err_transfilemiss', array($path2));
 			$this->missing++;
 			$lang2 = false;
 		}
@@ -179,7 +179,7 @@ final class Language_Checker extends GWF_Method
 		{
 			if ($key === '')
 			{
-				$errs[] = $this->_module->lang('err_emptykey', array(GWF_Language::getByISO('en')->getVar('lang_name'), $path1));
+				$errs[] = $this->module->lang('err_emptykey', array(GWF_Language::getByISO('en')->getVar('lang_name'), $path1));
 				continue;
 			}
 
@@ -190,12 +190,12 @@ final class Language_Checker extends GWF_Method
 
 			if (!isset($lang2[$key]))
 			{
-				$errs[] = $this->_module->lang('err_keymiss', array($key));
+				$errs[] = $this->module->lang('err_keymiss', array($key));
 			}
 			elseif ($lang2[$key] === $lang1[$key])
 			{
 				$out = is_array($lang2[$key]) ? 'A('.GWF_Array::implodeHuman($lang2[$key]).')' : $lang2[$key];
-				$warn[] = $this->_module->lang('err_transkey', array($key, htmlspecialchars($out)));
+				$warn[] = $this->module->lang('err_transkey', array($key, htmlspecialchars($out)));
 			}
 		}
 
@@ -205,7 +205,7 @@ final class Language_Checker extends GWF_Method
 			{
 				if ($key === '') 
 				{
-					$errs[] = $this->_module->lang('err_emptykey', array($this->lang->getVar('lang_name'), $path2));
+					$errs[] = $this->module->lang('err_emptykey', array($this->lang->getVar('lang_name'), $path2));
 				}
 			}
 		}
@@ -215,11 +215,11 @@ final class Language_Checker extends GWF_Method
 
 		if (count($errs) > 0)
 		{
-			$this->errWarnMessage .= $this->_module->error('dh_errors', array($path2, $errs), false);
+			$this->errWarnMessage .= $this->module->error('dh_errors', array($path2, $errs), false);
 		}
 		if (count($warn) > 0 && $this->show_warns === true)
 		{
-			$this->errWarnMessage .= $this->_module->error('dh_warning', array($path2, $warn), false);
+			$this->errWarnMessage .= $this->module->error('dh_warning', array($path2, $warn), false);
 		}
 	}
 }

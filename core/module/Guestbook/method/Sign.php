@@ -12,10 +12,10 @@ final class Guestbook_Sign extends GWF_Method
 	public function execute()
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gbid')))) {
-			return $this->_module->error('err_gb');
+			return $this->module->error('err_gb');
 		}
 		
-		if (!$gb->canSign(GWF_Session::getUser(), $this->_module->cfgAllowGuest())) {
+		if (!$gb->canSign(GWF_Session::getUser(), $this->module->cfgAllowGuest())) {
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
@@ -47,9 +47,9 @@ final class Guestbook_Sign extends GWF_Method
 		$form = $this->getForm($gb, $gbe);
 		$tVars = array(
 			'in_reply' => $gbe,
-			'form' => $form->templateY($this->_module->lang('ft_sign', array( $gb->displayTitle()))),
+			'form' => $form->templateY($this->module->lang('ft_sign', array( $gb->displayTitle()))),
 		);
-		return $this->_module->template('sign.tpl', $tVars);
+		return $this->module->template('sign.tpl', $tVars);
 	}
 	
 	private function getForm(GWF_Guestbook $gb, $gbe=false)
@@ -59,31 +59,31 @@ final class Guestbook_Sign extends GWF_Method
 		$user = GWF_Session::getUser();
 		
 		if ($user === false) {
-			$data['username'] = array(GWF_Form::STRING, '', $this->_module->lang('th_gbm_username'));
+			$data['username'] = array(GWF_Form::STRING, '', $this->module->lang('th_gbm_username'));
 		}
 		
-		if ($gb->isEMailAllowed() && $this->_module->cfgAllowEMail()) {
+		if ($gb->isEMailAllowed() && $this->module->cfgAllowEMail()) {
 			$email = $user === false ? '' : $user->getValidMail();
-			$data['email'] = array(GWF_Form::STRING, $email, $this->_module->lang('th_gbm_email'), $this->_module->lang('tt_gbm_email'), 32, false);
+			$data['email'] = array(GWF_Form::STRING, $email, $this->module->lang('th_gbm_email'), $this->module->lang('tt_gbm_email'), 32, false);
 		}
 
-		if ($gb->isURLAllowed() && $this->_module->cfgAllowURL()) {
-			$data['url'] = array(GWF_Form::STRING, '', $this->_module->lang('th_gbm_url'));
+		if ($gb->isURLAllowed() && $this->module->cfgAllowURL()) {
+			$data['url'] = array(GWF_Form::STRING, '', $this->module->lang('th_gbm_url'));
 		}
 		
 		$msg = $gbe === false ? '' : $gbe->getVar('gbm_message');
 		
-		$data['message'] = array(GWF_Form::MESSAGE, $msg, $this->_module->lang('th_gbm_message'));
+		$data['message'] = array(GWF_Form::MESSAGE, $msg, $this->module->lang('th_gbm_message'));
 		
-		if ($user === false && $this->_module->cfgGuestCaptcha()) {
+		if ($user === false && $this->module->cfgGuestCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		
-		$data['showmail'] = array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_opt_showmail'));
-		$data['public'] = array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_opt_public'));
-		$data['toggle'] = array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_opt_toggle'));
+		$data['showmail'] = array(GWF_Form::CHECKBOX, true, $this->module->lang('th_opt_showmail'));
+		$data['public'] = array(GWF_Form::CHECKBOX, true, $this->module->lang('th_opt_public'));
+		$data['toggle'] = array(GWF_Form::CHECKBOX, true, $this->module->lang('th_opt_toggle'));
 		
-		$data['sign'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_sign', array( $gb->displayTitle())));
+		$data['sign'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_sign', array( $gb->displayTitle())));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -93,20 +93,20 @@ final class Guestbook_Sign extends GWF_Method
 		$form = $this->getForm($gb);
 		$tVars = array(
 			'can_mod' => $gb->canModerate(GWF_Session::getUser()),
-			'form' => $form->templateY($this->_module->lang('ft_sign', array( $gb->displayTitle()))),
+			'form' => $form->templateY($this->module->lang('ft_sign', array( $gb->displayTitle()))),
 		);
-		return $this->_module->templatePHP('sign.php', $tVars);
+		return $this->module->templatePHP('sign.php', $tVars);
 	}
 
 	private function onSign(GWF_Guestbook $gb, $gbe=false)
 	{
 		$form = $this->getForm($gb);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateSign($gb);
 		}
 		
 		if ($gb->isLocked()) {
-			return $this->_module->error('err_locked');
+			return $this->module->error('err_locked');
 		}
 		
 		if (false === ($user = GWF_Session::getUser())) {
@@ -148,7 +148,7 @@ final class Guestbook_Sign extends GWF_Method
 			$this->sendEmailSign($gb, $gbm);
 		}
 		
-		return $this->_module->message('msg_signed'.$mod_append).$this->_module->requestMethodB('Show');
+		return $this->module->message('msg_signed'.$mod_append).$this->module->requestMethodB('Show');
 	}
 	
 	##################
@@ -170,12 +170,12 @@ final class Guestbook_Sign extends GWF_Method
 			$recname = $owner->displayUsername();
 		}
 		$mail->setReceiver($rec);
-		$mail->setSubject($this->_module->langAdmin('mails_signed'));
+		$mail->setSubject($this->module->langAdmin('mails_signed'));
 		
 		$link = Common::getAbsoluteURL('index.php?mo=Guestbook&me=Unlock&set_moderation=0&gbid='.$gb->getID().'&gbmid='.$gbm->getID().'&gbmtoken='.$gbm->getHashcode());
 		$link = GWF_HTML::anchor($link, $link);
 		
-		$mail->setBody($this->_module->langAdmin('mailb_signed', array($recname, $gb->displayTitle(), $gbm->displayUsername(), $gbm->displayEMail(true), $gbm->display('gbm_message'), $link)));
+		$mail->setBody($this->module->langAdmin('mailb_signed', array($recname, $gb->displayTitle(), $gbm->displayUsername(), $gbm->displayEMail(true), $gbm->display('gbm_message'), $link)));
 
 		if ($owner === false) {
 			$mail->sendAsHTML($cc);
@@ -204,9 +204,9 @@ final class Guestbook_Sign extends GWF_Method
 			$recname = $owner->displayUsername();
 		}
 		$mail->setReceiver($rec);
-		$mail->setSubject($this->_module->langAdmin('mails2_signed'));
+		$mail->setSubject($this->module->langAdmin('mails2_signed'));
 		
-		$mail->setBody($this->_module->langAdmin('mailb2_signed', array($recname, $gb->displayTitle(), $gbm->displayUsername(), $gbm->displayEMail(true), $gbm->display('gbm_message'))));
+		$mail->setBody($this->module->langAdmin('mailb2_signed', array($recname, $gb->displayTitle(), $gbm->displayUsername(), $gbm->displayEMail(true), $gbm->display('gbm_message'))));
 		
 		if ($owner === false) {
 			$mail->sendAsHTML($cc);

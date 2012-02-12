@@ -59,13 +59,13 @@ final class GWF_Error extends GWF_Method
 		{
 			$message = self::getMessage('404');
 			# Mail it?
-			if ((GWF_DEBUG_EMAIL & 4) && $this->_module->cfgMail404())
+			if ((GWF_DEBUG_EMAIL & 4) && $this->module->cfgMail404())
 			{
 				self::errorMail(': 404 Error', $message);
 			}
 			
 			# Log it?
-			if ($this->_module->cfgLog404())
+			if ($this->module->cfgLog404())
 			{
 				GWF_Log::log('404', $message, true);
 			}
@@ -83,7 +83,7 @@ final class GWF_Error extends GWF_Method
 			'file' => GWF_HTML::error(GWF_SITENAME, $err_msg, false),
 		);
 		
-		return $this->_module->template('error.tpl', $tVars);
+		return $this->module->template('error.tpl', $tVars);
 	}
 	
 	public static function errorMail($subject, $body)

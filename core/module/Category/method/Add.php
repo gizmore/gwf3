@@ -24,9 +24,9 @@ final class Category_Add extends GWF_Method
 	private function getForm()
 	{
 		$data = array(
-			'key' => array(GWF_Form::STRING, '', $this->_module->lang('th_key')),
-			'group' => array(GWF_Form::STRING, '', $this->_module->lang('th_group')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add')),
+			'key' => array(GWF_Form::STRING, '', $this->module->lang('th_key')),
+			'group' => array(GWF_Form::STRING, '', $this->module->lang('th_group')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -35,19 +35,19 @@ final class Category_Add extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add')),
+			'form' => $form->templateY($this->module->lang('ft_add')),
 		);
-		return $this->_module->template('add.tpl', $tVars);
+		return $this->module->template('add.tpl', $tVars);
 	}
 	
 	public function validate_key(Module_Category $module, $key)
 	{
 		$key = (string) $key;
 		if (($key === '') || (strlen($key) > GWF_Category::KEY_LENGTH)) {
-			return $this->_module->lang('err_invalid_key', array( GWF_Category::KEY_LENGTH));
+			return $this->module->lang('err_invalid_key', array( GWF_Category::KEY_LENGTH));
 		}
 		if (GWF_Category::keyExists($key)) {
-			return $this->_module->lang('err_dup_key');
+			return $this->module->lang('err_dup_key');
 		}
 		return false;
 	}
@@ -60,7 +60,7 @@ final class Category_Add extends GWF_Method
 	private function onAdd()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateAdd();
 		}
 		$cat = new GWF_Category(array(
@@ -77,7 +77,7 @@ final class Category_Add extends GWF_Method
 		
 		$cat->rebuildFullTree();
 		
-		return $this->_module->message('msg_added');
+		return $this->module->message('msg_added');
 	}
 }
 

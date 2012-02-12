@@ -30,26 +30,26 @@ final class Forum_AddBoard extends GWF_Method
 	private function sanitize()
 	{
 		$table = GDO::table('GWF_ForumBoard');
-		if (false === ($this->board = $table->getRow($this->_module->getBoardID()))) {
-			return $this->_module->error('err_parent');
+		if (false === ($this->board = $table->getRow($this->module->getBoardID()))) {
+			return $this->module->error('err_parent');
 		}
 		return false;
 	}
 	
 	private function getForm()
 	{
-		$parent = $this->_module->getCurrentBoard();
+		$parent = $this->module->getCurrentBoard();
 		
 		$data = array(
 			'parentid' => array(GWF_Form::HIDDEN, $parent->getID()),
-			'groupid' => array(GWF_Form::SELECT, $this->_module->getGroupSelect($this->board->getGroupID()), $this->_module->lang('th_groupid')),
-			'title' => array(GWF_Form::STRING, '', $this->_module->lang('th_board_title')),
-			'descr' => array(GWF_Form::STRING, '', $this->_module->lang('th_board_descr')),
-			'allow_threads' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_thread_allowed')),
-			'is_locked' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_locked')),
-			'guest_view' => array(GWF_Form::CHECKBOX, $parent->isGuestView(), $this->_module->lang('th_guest_view')),
-			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $this->_module->lang('th_guests')),
-			'add_board' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_board')),
+			'groupid' => array(GWF_Form::SELECT, $this->module->getGroupSelect($this->board->getGroupID()), $this->module->lang('th_groupid')),
+			'title' => array(GWF_Form::STRING, '', $this->module->lang('th_board_title')),
+			'descr' => array(GWF_Form::STRING, '', $this->module->lang('th_board_descr')),
+			'allow_threads' => array(GWF_Form::CHECKBOX, true, $this->module->lang('th_thread_allowed')),
+			'is_locked' => array(GWF_Form::CHECKBOX, false, $this->module->lang('th_locked')),
+			'guest_view' => array(GWF_Form::CHECKBOX, $parent->isGuestView(), $this->module->lang('th_guest_view')),
+			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $this->module->lang('th_guests')),
+			'add_board' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_board')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -58,18 +58,18 @@ final class Forum_AddBoard extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_board')),
+			'form' => $form->templateY($this->module->lang('ft_add_board')),
 		);
-		return $this->_module->templatePHP('add_board.php', $tVars);
+		return $this->module->templatePHP('add_board.php', $tVars);
 	}
 	
 	##################
 	### Validators ###
 	##################
-	public function validate_parentid(Module_Forum $module, $arg) { return $this->_module->validate_parentid($arg); }
-	public function validate_groupid(Module_Forum $module, $arg) { return $this->_module->validate_groupid($arg); }
-	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
-	public function validate_descr(Module_Forum $module, $arg) { return $this->_module->validate_descr($arg); }
+	public function validate_parentid(Module_Forum $module, $arg) { return $this->module->validate_parentid($arg); }
+	public function validate_groupid(Module_Forum $module, $arg) { return $this->module->validate_groupid($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->module->validate_title($arg); }
+	public function validate_descr(Module_Forum $module, $arg) { return $this->module->validate_descr($arg); }
 	
 	#################
 	### Add Board ###
@@ -77,7 +77,7 @@ final class Forum_AddBoard extends GWF_Method
 	private function onAddBoard()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateAddBoard();
 		}
 		
@@ -96,6 +96,6 @@ final class Forum_AddBoard extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_board_added', array($board->getParent()->getShowBoardHREF()));
+		return $this->module->message('msg_board_added', array($board->getParent()->getShowBoardHREF()));
 	}
 }

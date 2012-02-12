@@ -24,7 +24,7 @@ final class Category_Admin extends GWF_Method
 			'sort_url' => '',
 			'url_new' => GWF_WEB_ROOT.'category/add',
 		);
-		return $this->_module->templatePHP('admin.php', $tVars);
+		return $this->module->templatePHP('admin.php', $tVars);
 	}
 }
 

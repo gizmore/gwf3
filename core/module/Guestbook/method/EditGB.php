@@ -12,7 +12,7 @@ final class Guestbook_EditGB extends GWF_Method
 	public function execute()
 	{
 		if (false === ($gb = GWF_Guestbook::getByID(Common::getGet('gb')))) {
-			return $this->_module->error('err_gb');
+			return $this->module->error('err_gb');
 		}
 		
 		if (false === $gb->canModerate(GWF_Session::getUser())) {

@@ -8,7 +8,7 @@ final class PM_FolderAction extends GWF_Method
 			$back .= $this->onDeleteFolders();
 		}
 
-		return $back.$this->_module->requestMethodB('Overview');
+		return $back.$this->module->requestMethodB('Overview');
 	}
 	
 	public function onDeleteFolder($folderid)
@@ -19,7 +19,7 @@ final class PM_FolderAction extends GWF_Method
 		if ( (false === ($folder = GWF_PMFolder::getByID($folderid)))
 			|| ($folder->getVar('pmf_uid') !== $user->getID()) ) 
 		{
-			return $this->_module->error('err_folder_perm');
+			return $this->module->error('err_folder_perm');
 		}
 
 		# Delete PMs$result
@@ -48,7 +48,7 @@ final class PM_FolderAction extends GWF_Method
 		}
 
 		# Done
-		return $this->_module->message('msg_folder_deleted', array($folder->display('pmf_name'), $count));
+		return $this->module->message('msg_folder_deleted', array($folder->display('pmf_name'), $count));
 	}
 	
 	##

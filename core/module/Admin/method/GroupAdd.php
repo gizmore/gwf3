@@ -15,16 +15,16 @@ final class Admin_GroupAdd extends GWF_Method
 		$form = $this->getForm();
 		
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_group')),
+			'form' => $form->templateY($this->module->lang('ft_add_group')),
 		);
-		return $this->_module->template('group_add.tpl', $tVars);
+		return $this->module->template('group_add.tpl', $tVars);
 	}
 	
 	private function getForm()
 	{
 		$data = array(
-			'groupname' => array(GWF_Form::STRING, '', $this->_module->lang('th_group_name')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_group')),
+			'groupname' => array(GWF_Form::STRING, '', $this->module->lang('th_group_name')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_group')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -33,7 +33,7 @@ final class Admin_GroupAdd extends GWF_Method
 	private function onAdd()
 	{
 		$form = $this->getForm();
-		if (false !== ($err = $form->validate($this->_module))) {
+		if (false !== ($err = $form->validate($this->module))) {
 			return $err.$this->templateAdd();
 		}
 		
@@ -54,7 +54,7 @@ final class Admin_GroupAdd extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateAdd();
 		}
 		
-		return $this->_module->message('msg_group_added');
+		return $this->module->message('msg_group_added');
 	}
 }
 ?>

@@ -8,7 +8,7 @@ final class Votes_VotePoll extends GWF_Method
 	public function execute()
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID(Common::getPost('vmid')))) {
-			return $this->_module->error('err_poll');
+			return $this->module->error('err_poll');
 		}
 		
 		$user = GWF_Session::getUser();
@@ -22,7 +22,7 @@ final class Votes_VotePoll extends GWF_Method
 		}
 		
 		if (!$poll->isEnabled()) {
-			return $this->_module->error('err_poll_off');
+			return $this->module->error('err_poll_off');
 		}
 		
 		return $this->onVote($poll, $user);
@@ -31,7 +31,7 @@ final class Votes_VotePoll extends GWF_Method
 	private function checkReversible(GWF_VoteMulti $poll, $user)
 	{
 		if ($poll->isIrreversible() && $poll->hasVoted($user)) {
-			return $this->_module->error('err_irreversible');
+			return $this->module->error('err_irreversible');
 		}
 		return false;
 	}
@@ -54,18 +54,18 @@ final class Votes_VotePoll extends GWF_Method
 		
 		$count = count($taken);
 //		if ($count === 0) {
-//			return $this->_module->error('err_no_options');
+//			return $this->module->error('err_no_options');
 //		}
 		
 		if (!$poll->isMultipleChoice() && $count !== 1) {
-			return $this->_module->error('err_no_multi');
+			return $this->module->error('err_no_multi');
 		}
 
 		if (false === ($poll->onVote($user, $taken))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_voted', array(htmlspecialchars(GWF_Session::getLastURL())));
+		return $this->module->message('msg_voted', array(htmlspecialchars(GWF_Session::getLastURL())));
 	}
 }
 ?>

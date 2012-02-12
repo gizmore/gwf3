@@ -15,18 +15,18 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	{
 		$form = $this->formAdd();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_faq')),
+			'form' => $form->templateY($this->module->lang('ft_add_faq')),
 		);
-		return $this->_module->template('faq_add.tpl', $tVars);
+		return $this->module->template('faq_add.tpl', $tVars);
 	}
 	
 	private function formAdd()
 	{
 		$data = array(
-			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', Common::getPostString('lang')), $this->_module->lang('th_lang'), $this->_module->lang('tt_lang')),
-			'question' => array(GWF_Form::STRING, '', $this->_module->lang('th_question')),
-			'answer' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_answer')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_faq')),
+			'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', Common::getPostString('lang')), $this->module->lang('th_lang'), $this->module->lang('tt_lang')),
+			'question' => array(GWF_Form::STRING, '', $this->module->lang('th_question')),
+			'answer' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_answer')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_faq')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -38,7 +38,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 	private function onAdd()
 	{
 		$form = $this->formAdd();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateAdd();
 		}
 		
@@ -54,7 +54,7 @@ final class Helpdesk_FAQAdd extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd();
 		}
 		
-		return $this->_module->message('msg_faq_add');
+		return $this->module->message('msg_faq_add');
 	}
 }
 ?>

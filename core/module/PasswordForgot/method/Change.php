@@ -10,15 +10,15 @@ final class PasswordForgot_Change extends GWF_Method
 	{
 		# Check token
 		if (false === ($token = Common::getGet('token'))) {
-			return $this->_module->error('err_no_token');
+			return $this->module->error('err_no_token');
 		}
 		if (false === ($userid = Common::getGet('userid'))) {
-			return $this->_module->error('err_no_token');
+			return $this->module->error('err_no_token');
 		}
 		
 		require_once GWF_CORE_PATH.'module/Account/GWF_AccountChange.php';
 		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'pass'))) {
-			return $this->_module->error('err_no_token');
+			return $this->module->error('err_no_token');
 		}
 		
 		# Do stuff
@@ -31,9 +31,9 @@ final class PasswordForgot_Change extends GWF_Method
 	private function getForm()
 	{
 		$data = array(
-			'password' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_password')),
-			'password2' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_password2')),
-			'change' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_change'), ''),
+			'password' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_password')),
+			'password2' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_password2')),
+			'change' => array(GWF_Form::SUBMIT, $this->module->lang('btn_change'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -42,19 +42,19 @@ final class PasswordForgot_Change extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('title_change')),
+			'form' => $form->templateY($this->module->lang('title_change')),
 			'username' => $ac->getUser()->displayUsername(),
 		);
-		return $this->_module->templatePHP('change.php', $tVars);
+		return $this->module->templatePHP('change.php', $tVars);
 	}
 	
 	public function validate_password2(Module_PasswordForgot $module, $password) { return false; }
 	public function validate_password(Module_PasswordForgot $module, $password)
 	{
 		if (!GWF_Validator::isValidPassword($password)) {
-			return $this->_module->lang('err_weak_pass', array( 8));
+			return $this->module->lang('err_weak_pass', array( 8));
 		} elseif (Common::getPost('password2', '') !== $password) {
-			return $this->_module->lang('err_pass_retype');
+			return $this->module->lang('err_pass_retype');
 		} else {
 			return false;
 		}
@@ -63,7 +63,7 @@ final class PasswordForgot_Change extends GWF_Method
 	private function onChangePass(GWF_AccountChange $ac)
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateChange($ac);
 		}
 		
@@ -79,7 +79,7 @@ final class PasswordForgot_Change extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_pass_changed');
+		return $this->module->message('msg_pass_changed');
 	}
 }
 

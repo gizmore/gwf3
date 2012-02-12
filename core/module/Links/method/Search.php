@@ -25,50 +25,50 @@ final class Links_Search extends GWF_Method
 	
 	private function getFormAdv()
 	{
-		return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_Links'), GWF_Session::getUser(), $this->_module->lang('ft_search'));
+		return GWF_FormGDO::getSearchForm($this->module, $this, GDO::table('GWF_Links'), GWF_Session::getUser(), $this->module->lang('ft_search'));
 	}
 	
 	private function getFormQuick()
 	{
 		$data = array(
 			'term' => array(GWF_Form::STRING, '', GWF_HTML::lang('term')),
-			'search_quick' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_search')),
+			'search_quick' => array(GWF_Form::SUBMIT, $this->module->lang('btn_search')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
 	public function templateAdvSearch()
 	{
-		return $this->getFormAdv()->templateY($this->_module->lang('ft_search'));
+		return $this->getFormAdv()->templateY($this->module->lang('ft_search'));
 	}
 	
 	public function templateQuickSearch()
 	{
 		$form = $this->getFormQuick();
 		$tVars = array(
-			'form' => $form->templateX($this->_module->lang('ft_search'), false, $this->_module->hrefSearch()),
+			'form' => $form->templateX($this->module->lang('ft_search'), false, $this->module->hrefSearch()),
 		);
-		return $this->_module->templatePHP('_search.php', $tVars);
+		return $this->module->templatePHP('_search.php', $tVars);
 	}
 	
 	public function templateSearch(array $matches, $term)
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_search'));
-		GWF_Website::setMetaTags($this->_module->lang('mt_search'));
-		GWF_Website::setMetaDescr($this->_module->lang('md_search'));
+		GWF_Website::setPageTitle($this->module->lang('pt_search'));
+		GWF_Website::setMetaTags($this->module->lang('mt_search'));
+		GWF_Website::setMetaDescr($this->module->lang('md_search'));
 		$tVars = array(
-			'cloud' => $this->_module->templateCloud(),
-			'matches' => $this->_module->templateLinks($matches, '#', '', ''),
+			'cloud' => $this->module->templateCloud(),
+			'matches' => $this->module->templateLinks($matches, '#', '', ''),
 			'form' => $this->templateQuickSearch(),
 			'term' => $term,
 		);
-		return $this->_module->templatePHP('search.php', $tVars);
+		return $this->module->templatePHP('search.php', $tVars);
 	}
 	
 	public function onSearch($adv)
 	{
 		$form = $adv ? $this->getFormAdv() : $this->getFormQuick();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateSearch(array(), $adv ? '' : $_REQUEST['term']);
 		}
 		if ($adv === true)
@@ -84,13 +84,13 @@ final class Links_Search extends GWF_Method
 	private function onQuickSearch($term)
 	{
 		$fields = array('link_href', 'link_descr');
-		if ($this->_module->cfgLongDescription()) {
+		if ($this->module->cfgLongDescription()) {
 			$fields[] = 'link_descr2';
 		}
 		$links = GDO::table('GWF_Links');
 		$by = $links->getWhitelistedBy(Common::getGet('by'), 'link_id');
 		$dir = GDO::getWhitelistedDirS(Common::getGet('dir'), 'DESC');
-		$conditions = $this->_module->getPermQuery(GWF_Session::getUser());
+		$conditions = $this->module->getPermQuery(GWF_Session::getUser());
 		$limit = 50;
 		$from = 0;
 		if (false === ($matches = GWF_QuickSearch::search($links, $fields, $term, "$by $dir", $limit, $from, $conditions))) {

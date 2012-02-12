@@ -58,11 +58,11 @@ final class Forum_Subscribe extends GWF_Method
 	
 	private function sanitize()
 	{
-		if (false === ($this->thread = $this->_module->getCurrentThread())) {
-			return $this->_module->error('err_thread');
+		if (false === ($this->thread = $this->module->getCurrentThread())) {
+			return $this->module->error('err_thread');
 		}
 		if (false === $this->thread->hasPermission(GWF_Session::getUser())) {
-			return $this->_module->error('err_thread_perm');
+			return $this->module->error('err_thread_perm');
 		}
 		return false;
 	}
@@ -72,14 +72,14 @@ final class Forum_Subscribe extends GWF_Method
 		$back = $this->thread->getLastPageHREF();
 		
 		if (!$this->thread->canSubscribe()) {
-			return $this->_module->error('err_no_subscr', array($back));
+			return $this->module->error('err_no_subscr', array($back));
 		}
 		
 		if (false === GWF_ForumSubscription::subscribe(GWF_Session::getUserID(), $this->thread->getID())) {
-			return $this->_module->error('err_subscr', array($back));
+			return $this->module->error('err_subscr', array($back));
 		}
 		
-		return $this->_module->message('msg_subscribed', array($back));
+		return $this->module->message('msg_subscribed', array($back));
 	}
 
 	private function onUnSubscribe()
@@ -87,14 +87,14 @@ final class Forum_Subscribe extends GWF_Method
 		$back = $this->thread->getLastPageHREF();
 		
 		if (!$this->thread->canUnSubscribe()) {
-			return $this->_module->error('err_no_unsubscr', array($back));
+			return $this->module->error('err_no_unsubscr', array($back));
 		}
 		
 		if (false === GWF_ForumSubscription::unsubscribe(GWF_Session::getUserID(), $this->thread->getID())) {
-			return $this->_module->error('err_unsubscr', array($back));
+			return $this->module->error('err_unsubscr', array($back));
 		}
 		
-		return $this->_module->message('msg_unsubscribed', array($back));
+		return $this->module->message('msg_unsubscribed', array($back));
 	}
 	
 	################
@@ -136,7 +136,7 @@ final class Forum_Subscribe extends GWF_Method
 	private function onUnSubscribeExtAll($token)
 	{
 		if (false === ($this->checkExternalToken($token))) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		
 		if (false === GWF_ForumSubscription::unsubscribeAll($this->user->getID())) {
@@ -147,24 +147,24 @@ final class Forum_Subscribe extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_unsub_all', array(GWF_WEB_ROOT.'forum'));
+		return $this->module->message('msg_unsub_all', array(GWF_WEB_ROOT.'forum'));
 	}
 	
 	private function onUnSubscribeExtThread($token)
 	{
 		if (false === ($this->checkExternalToken($token))) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		
 		if (!GWF_ForumSubscription::hasSubscribedManually($this->user, $this->thread->getID())) {
-			return $this->_module->error('err_sub_by_global');
+			return $this->module->error('err_sub_by_global');
 		}
 		
 		if (false === GWF_ForumSubscription::unsubscribe($this->user->getID(), $this->thread->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_unsubscribed', array($this->thread->getLastPageHREF()));
+		return $this->module->message('msg_unsubscribed', array($this->thread->getLastPageHREF()));
 	}
 }
 ?>

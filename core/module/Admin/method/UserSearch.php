@@ -9,7 +9,7 @@ final class Admin_UserSearch extends GWF_Method
 	
 	public function execute()
 	{
-		$nav = $this->_module->templateNav();
+		$nav = $this->module->templateNav();
 		
 		if (false !== Common::getPost('search') || false !== Common::getGet('term')) {
 			return $nav.$this->onSearch();
@@ -31,7 +31,7 @@ final class Admin_UserSearch extends GWF_Method
 		$form = $this->getForm();
 		$tVars = array(
 			'searched' => false,
-			'form' => $form->templateX($this->_module->lang('ft_search'), false),
+			'form' => $form->templateX($this->module->lang('ft_search'), false),
 			'hits' => 0,
 			'users' => array(),
 			'term' => Common::getRequest('term', ''),
@@ -40,7 +40,7 @@ final class Admin_UserSearch extends GWF_Method
 			'dir' => '',
 			'sort_url' => '',
 		);
-		return $this->_module->templatePHP('user_search.php', $tVars);
+		return $this->module->templatePHP('user_search.php', $tVars);
 	}
 	
 	public function validate_term(Module_Admin $module, $arg)
@@ -57,7 +57,7 @@ final class Admin_UserSearch extends GWF_Method
 	public function onSearch()
 	{
 		$form = $this->getForm();
-//		if (false !== ($error = $form->validate($this->_module))) {
+//		if (false !== ($error = $form->validate($this->module))) {
 //			return $error.$this->templateSearch();
 //		}
 		
@@ -65,7 +65,7 @@ final class Admin_UserSearch extends GWF_Method
 		
 		$term = Common::getRequest('term');
 		
-		if (false !== ($error = $this->validate_term($this->_module, $term))) {
+		if (false !== ($error = $this->validate_term($this->module, $term))) {
 			return $error;
 		}
 		
@@ -82,21 +82,21 @@ final class Admin_UserSearch extends GWF_Method
 		
 		$hits = $users->countRows($conditions);
 		
-		$ipp = $this->_module->cfgUsersPerPage();
+		$ipp = $this->module->cfgUsersPerPage();
 		$nPages = GWF_PageMenu::getPagecount($ipp, $hits);
 		$page = Common::clamp((int)Common::getGet('page', 1), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 
 		$tVars = array(
 			'searched' => true,
-			'form' => $form->templateX($this->_module->lang('ft_search')),
+			'form' => $form->templateX($this->module->lang('ft_search')),
 			'hits' => $hits,
 			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'term' => $term,
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by='.urlencode($by).'&dir='.urlencode($dir).'&page=1'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by=%BY%&dir=%DIR%&page=1',
 		);
-		return $this->_module->templatePHP('user_search.php', $tVars);
+		return $this->module->templatePHP('user_search.php', $tVars);
 		
 	}
 }

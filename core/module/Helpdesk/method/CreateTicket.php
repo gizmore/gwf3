@@ -18,20 +18,20 @@ final class Helpdesk_CreateTicket extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_new_ticket')),
+			'form' => $form->templateY($this->module->lang('ft_new_ticket')),
 		);
-		return $this->_module->template('new_ticket.tpl', $tVars);
+		return $this->module->template('new_ticket.tpl', $tVars);
 	}
 	
 	private function getForm()
 	{
 		$data = array(
-			'title' => array(GWF_Form::SELECT, GWF_HelpdeskTitle::select('title', Common::getPostString('title')), $this->_module->lang('th_title')),
-			'other' => array(GWF_Form::STRING, '', $this->_module->lang('th_other')),
-			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
-			'faq' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_allow_faq'), $this->_module->lang('tt_allow_faq')),
-			'email' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_email_me')),
-			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_new_ticket')),
+			'title' => array(GWF_Form::SELECT, GWF_HelpdeskTitle::select('title', Common::getPostString('title')), $this->module->lang('th_title')),
+			'other' => array(GWF_Form::STRING, '', $this->module->lang('th_other')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_message')),
+			'faq' => array(GWF_Form::CHECKBOX, false, $this->module->lang('th_allow_faq'), $this->module->lang('tt_allow_faq')),
+			'email' => array(GWF_Form::CHECKBOX, true, $this->module->lang('th_email_me')),
+			'create' => array(GWF_Form::SUBMIT, $this->module->lang('btn_new_ticket')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -43,7 +43,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 	private function onCreate()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateCT();
 		}
 		
@@ -82,7 +82,7 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		
 		$this->onMailTicket($ticket, $message);
 		
-		return $this->_module->message('msg_created');
+		return $this->module->message('msg_created');
 	}
 	
 	private function onMailTicket(GWF_HelpdeskTicket $ticket, GWF_HelpdeskMsg $message)
@@ -107,9 +107,9 @@ final class Helpdesk_CreateTicket extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($rec);
-		$mail->setSubject($this->_module->langUser($user, 'subj_nt', array($ticket->getID())));
-		$href_work = Common::getAbsoluteURL($this->_module->getMethodURL('AssignWork', '&ticket='.$ticket->getID().'&worker='.$user->getID().'&token='.$ticket->getHashcode()), false);
-		$mail->setBody($this->_module->langUser($user, 'body_nt', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $ticket->displayTitle($user), $message->displayMessage(), $href_work)));
+		$mail->setSubject($this->module->langUser($user, 'subj_nt', array($ticket->getID())));
+		$href_work = Common::getAbsoluteURL($this->module->getMethodURL('AssignWork', '&ticket='.$ticket->getID().'&worker='.$user->getID().'&token='.$ticket->getHashcode()), false);
+		$mail->setBody($this->module->langUser($user, 'body_nt', array($user->displayUsername(), $ticket->getCreator()->displayUsername(), $ticket->displayTitle($user), $message->displayMessage(), $href_work)));
 		return $mail->sendToUser($user);
 	}
 }

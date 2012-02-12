@@ -15,9 +15,9 @@ final class Profile_Form extends GWF_Method
 			return $this->onEditSettings().$this->templateSettings();
 		}
 
-		GWF_Website::setPageTitle($this->_module->lang('pt_settings'));
-		GWF_Website::setMetaTags($this->_module->lang('mt_settings'));
-		GWF_Website::setMetaTags($this->_module->lang('md_settings'));
+		GWF_Website::setPageTitle($this->module->lang('pt_settings'));
+		GWF_Website::setMetaTags($this->module->lang('mt_settings'));
+		GWF_Website::setMetaTags($this->module->lang('md_settings'));
 		
 		return $this->templateSettings();
 	}
@@ -30,34 +30,34 @@ final class Profile_Form extends GWF_Method
 	private function getForm(GWF_Profile $profile)
 	{
 		$data = array(
-			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $this->_module->lang('th_firstname'), '', 32, false),
-			'lastname' => array(GWF_Form::STRING, $profile->getVar('prof_lastname'), $this->_module->lang('th_lastname'), '', 32, false),
-			'street' => array(GWF_Form::STRING, $profile->getVar('prof_street'), $this->_module->lang('th_street'), '', 32, false),
-			'zip' => array(GWF_Form::STRING, $profile->getVar('prof_zip'), $this->_module->lang('th_zip'), '', 6, false),
-			'city' => array(GWF_Form::STRING, $profile->getVar('prof_city'), $this->_module->lang('th_city'), '', 32, false),
+			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $this->module->lang('th_firstname'), '', 32, false),
+			'lastname' => array(GWF_Form::STRING, $profile->getVar('prof_lastname'), $this->module->lang('th_lastname'), '', 32, false),
+			'street' => array(GWF_Form::STRING, $profile->getVar('prof_street'), $this->module->lang('th_street'), '', 32, false),
+			'zip' => array(GWF_Form::STRING, $profile->getVar('prof_zip'), $this->module->lang('th_zip'), '', 6, false),
+			'city' => array(GWF_Form::STRING, $profile->getVar('prof_city'), $this->module->lang('th_city'), '', 32, false),
 			'div1' => array(GWF_Form::DIVIDER),
-			'tel' => array(GWF_Form::STRING, $profile->getVar('prof_tel'), $this->_module->lang('th_tel'), '', 16, false),
-			'mobile' => array(GWF_Form::STRING, $profile->getVar('prof_mobile'), $this->_module->lang('th_mobile'), '', 16, false),
+			'tel' => array(GWF_Form::STRING, $profile->getVar('prof_tel'), $this->module->lang('th_tel'), '', 16, false),
+			'mobile' => array(GWF_Form::STRING, $profile->getVar('prof_mobile'), $this->module->lang('th_mobile'), '', 16, false),
 			'div2' => array(GWF_Form::DIVIDER),
-			'website' => array(GWF_Form::STRING, $profile->getVar('prof_website'), $this->_module->lang('th_website'), '', 32, false),
-			'icq' => array(GWF_Form::STRING, $profile->getVar('prof_icq'), $this->_module->lang('th_icq'), '', 16, false),
-			'msn' => array(GWF_Form::STRING, $profile->getVar('prof_msn'), $this->_module->lang('th_msn'), '', 32, false),
-			'jabber' => array(GWF_Form::STRING, $profile->getVar('prof_jabber'), $this->_module->lang('th_jabber'), '', 32, false),
-			'skype' => array(GWF_Form::STRING, $profile->getVar('prof_skype'), $this->_module->lang('th_skype'), '', 32, false),
-			'yahoo' => array(GWF_Form::STRING, $profile->getVar('prof_yahoo'), $this->_module->lang('th_yahoo'), '', 32, false),
-			'aim' => array(GWF_Form::STRING, $profile->getVar('prof_aim'), $this->_module->lang('th_aim'), '', 32, false),
-			'irc' => array(GWF_Form::STRING, $profile->getVar('prof_irc'), $this->_module->lang('th_irc'), '', 32, false),
+			'website' => array(GWF_Form::STRING, $profile->getVar('prof_website'), $this->module->lang('th_website'), '', 32, false),
+			'icq' => array(GWF_Form::STRING, $profile->getVar('prof_icq'), $this->module->lang('th_icq'), '', 16, false),
+			'msn' => array(GWF_Form::STRING, $profile->getVar('prof_msn'), $this->module->lang('th_msn'), '', 32, false),
+			'jabber' => array(GWF_Form::STRING, $profile->getVar('prof_jabber'), $this->module->lang('th_jabber'), '', 32, false),
+			'skype' => array(GWF_Form::STRING, $profile->getVar('prof_skype'), $this->module->lang('th_skype'), '', 32, false),
+			'yahoo' => array(GWF_Form::STRING, $profile->getVar('prof_yahoo'), $this->module->lang('th_yahoo'), '', 32, false),
+			'aim' => array(GWF_Form::STRING, $profile->getVar('prof_aim'), $this->module->lang('th_aim'), '', 32, false),
+			'irc' => array(GWF_Form::STRING, $profile->getVar('prof_irc'), $this->module->lang('th_irc'), '', 32, false),
 			'div3' => array(GWF_Form::DIVIDER),
-			'about_me' => array(GWF_Form::MESSAGE, $profile->getVar('prof_about_me'), $this->_module->lang('th_about_me'), '', 0, false),
-//			'showbday' => array(GWF_Form::CHECKBOX, !$profile->isBirthdayHidden(), $this->_module->lang('th_showbday')),
-			'hidecountry' => array(GWF_Form::CHECKBOX, $profile->isCountryHidden(), $this->_module->lang('th_hidecountry')),
-			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $this->_module->lang('th_hidemail')),
-			'hideguests' => array(GWF_Form::CHECKBOX, $profile->isGuestHidden(), $this->_module->lang('th_hideguest')),
-			'hiderobots' => array(GWF_Form::CHECKBOX, $profile->isRobotHidden(), $this->_module->lang('th_hiderobot'), $this->_module->lang('tt_hiderobot')),
-//			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $this->_module->lang('th_hidden')),
-			'level_all' => array(GWF_Form::INT, $profile->getVar('prof_level_all'), $this->_module->lang('th_level_all'), $this->_module->lang('tt_level_all'), 5, true),
-			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $this->_module->lang('th_level_contact'), $this->_module->lang('tt_level_contact'), 5, true),
-			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
+			'about_me' => array(GWF_Form::MESSAGE, $profile->getVar('prof_about_me'), $this->module->lang('th_about_me'), '', 0, false),
+//			'showbday' => array(GWF_Form::CHECKBOX, !$profile->isBirthdayHidden(), $this->module->lang('th_showbday')),
+			'hidecountry' => array(GWF_Form::CHECKBOX, $profile->isCountryHidden(), $this->module->lang('th_hidecountry')),
+			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $this->module->lang('th_hidemail')),
+			'hideguests' => array(GWF_Form::CHECKBOX, $profile->isGuestHidden(), $this->module->lang('th_hideguest')),
+			'hiderobots' => array(GWF_Form::CHECKBOX, $profile->isRobotHidden(), $this->module->lang('th_hiderobot'), $this->module->lang('tt_hiderobot')),
+//			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $this->module->lang('th_hidden')),
+			'level_all' => array(GWF_Form::INT, $profile->getVar('prof_level_all'), $this->module->lang('th_level_all'), $this->module->lang('tt_level_all'), 5, true),
+			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $this->module->lang('th_level_contact'), $this->module->lang('tt_level_contact'), 5, true),
+			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -67,16 +67,16 @@ final class Profile_Form extends GWF_Method
 		$profile = $this->getProfile();
 		$form = $this->getForm($profile);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_settings')),
+			'form' => $form->templateY($this->module->lang('ft_settings')),
 		);
-		return $this->_module->templatePHP('settings.php', $tVars);
+		return $this->module->templatePHP('settings.php', $tVars);
 	}
 
 	private function onEditSettings()
 	{
 		$profile = $this->getProfile();
 		$form = $this->getForm($profile);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -111,7 +111,7 @@ final class Profile_Form extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 				
-		return $this->_module->message('msg_edited');
+		return $this->module->message('msg_edited');
 	}
 	
 	##################

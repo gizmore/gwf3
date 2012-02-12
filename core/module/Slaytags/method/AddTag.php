@@ -8,7 +8,7 @@ final class Slaytags_AddTag extends GWF_Method
 		$user = GWF_Session::getUser();
 		if (!Slay_Tag::mayAddTag($user))
 		{
-			return $this->_module->error('err_add_tag');
+			return $this->module->error('err_add_tag');
 		}
 		
 		if (isset($_POST['add']))
@@ -22,16 +22,16 @@ final class Slaytags_AddTag extends GWF_Method
 	{
 		$form = $this->formAddTag();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add_tag')),
+			'form' => $form->templateY($this->module->lang('ft_add_tag')),
 		);
-		return $this->_module->template('add_tag.tpl', $tVars);
+		return $this->module->template('add_tag.tpl', $tVars);
 	}
 	
 	private function formAddTag()
 	{
 		$data = array(
-			'tag' => array(GWF_Form::STRING, '', $this->_module->lang('th_tag')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add')),
+			'tag' => array(GWF_Form::STRING, '', $this->module->lang('th_tag')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -48,7 +48,7 @@ final class Slaytags_AddTag extends GWF_Method
 	private function onAddTag()
 	{
 		$form = $this->formAddTag();
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validate($this->module)))
 		{
 			return $error.$this->templateAddTag();
 		}
@@ -64,8 +64,8 @@ final class Slaytags_AddTag extends GWF_Method
 		), false);
 		
 		
-		$href = $this->_module->getMethodURL('Tag', '&stid='.Common::getGetInt('stid', '0'));
-		return $this->_module->message('msg_tag_added', array($href));
+		$href = $this->module->getMethodURL('Tag', '&stid='.Common::getGetInt('stid', '0'));
+		return $this->module->message('msg_tag_added', array($href));
 	}
 	
 }

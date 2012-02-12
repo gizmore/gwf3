@@ -14,7 +14,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php';
 		
 		if (false === ($site = WC_Site::getByID(Common::getGet('siteid')))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		
 		if (false === ($is_admin = GWF_User::isAdminS())) {
@@ -49,73 +49,73 @@ final class WeChall_SiteEdit extends GWF_Method
 		$form_logo = $this->getFormLogo($site, $is_admin);
 		$form_sitemin = $this->getFormSiteAdmin($site, $is_admin);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_site', array($site->displayName()))),
-			'href_update_all' => $this->_module->hrefDDOS($site->getVar('site_id')),
-			'href_update_one' => $this->_module->getMethodURL('SiteUpdateUser', '&siteid='.$site->getVar('site_id')),
-			'form_logo' => $form_logo->templateY($this->_module->lang('ft_edit_site_logo', $site->displayName())),
-			'form_site_admin' => $form_sitemin->templateX($this->_module->lang('ft_edit_site_admin', array($site->displayName()))),
-			'href_edit_descr' => $this->_module->getMethodURL('SiteDescr', '&siteid='.$site->getVar('site_id')),
+			'form' => $form->templateY($this->module->lang('ft_edit_site', array($site->displayName()))),
+			'href_update_all' => $this->module->hrefDDOS($site->getVar('site_id')),
+			'href_update_one' => $this->module->getMethodURL('SiteUpdateUser', '&siteid='.$site->getVar('site_id')),
+			'form_logo' => $form_logo->templateY($this->module->lang('ft_edit_site_logo', $site->displayName())),
+			'form_site_admin' => $form_sitemin->templateX($this->module->lang('ft_edit_site_admin', array($site->displayName()))),
+			'href_edit_descr' => $this->module->getMethodURL('SiteDescr', '&siteid='.$site->getVar('site_id')),
 		);
-		return $this->_module->templatePHP('site_edit.php', $tVars);
+		return $this->module->templatePHP('site_edit.php', $tVars);
 	}
 
 	public function getForm(WC_Site $site, $is_admin)
 	{
 		$data = array();
 		
-		$data['site_name'] = array(GWF_Form::STRING, $site->getVar('site_name'), $this->_module->lang('th_site_name'));
+		$data['site_name'] = array(GWF_Form::STRING, $site->getVar('site_name'), $this->module->lang('th_site_name'));
 		
 		if ($is_admin) {
-			$data['site_classname'] = array(GWF_Form::STRING, $site->getVar('site_classname'), $this->_module->lang('th_site_classname'));
-			$data['site_basescore'] = array(GWF_Form::INT, $site->getVar('site_basescore'), $this->_module->lang('th_site_basescore'));
-			$data['site_usercount'] = array(GWF_Form::INT, $site->getVar('site_usercount'), $this->_module->lang('th_site_usercount'));
-			$data['site_challcount'] = array(GWF_Form::INT, $site->getVar('site_challcount'), $this->_module->lang('th_site_challcount'));
-			$data['site_powarg'] = array(GWF_Form::INT, $site->getVar('site_powarg'), $this->_module->lang('th_site_powarg'));
-			$data['site_spc'] = array(GWF_Form::INT, $site->getVar('site_spc'), $this->_module->lang('th_site_spc'));
-			$data['site_color'] = array(GWF_Form::STRING, $site->getVar('site_color'), $this->_module->lang('th_site_color'));
+			$data['site_classname'] = array(GWF_Form::STRING, $site->getVar('site_classname'), $this->module->lang('th_site_classname'));
+			$data['site_basescore'] = array(GWF_Form::INT, $site->getVar('site_basescore'), $this->module->lang('th_site_basescore'));
+			$data['site_usercount'] = array(GWF_Form::INT, $site->getVar('site_usercount'), $this->module->lang('th_site_usercount'));
+			$data['site_challcount'] = array(GWF_Form::INT, $site->getVar('site_challcount'), $this->module->lang('th_site_challcount'));
+			$data['site_powarg'] = array(GWF_Form::INT, $site->getVar('site_powarg'), $this->module->lang('th_site_powarg'));
+			$data['site_spc'] = array(GWF_Form::INT, $site->getVar('site_spc'), $this->module->lang('th_site_spc'));
+			$data['site_color'] = array(GWF_Form::STRING, $site->getVar('site_color'), $this->module->lang('th_site_color'));
 		}
 		
-		$data['site_status'] = array(GWF_Form::SELECT, $this->getStatusSelect($site), $this->_module->lang('th_site_status'));
+		$data['site_status'] = array(GWF_Form::SELECT, $this->getStatusSelect($site), $this->module->lang('th_site_status'));
 		
-		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->_module->lang('th_autoupdate'));
-		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->_module->lang('th_site_has_osr'));
-		$data['default_hide'] = array(GWF_Form::CHECKBOX, $site->isDefaultHidden(), $this->_module->lang('th_default_hide'));
+		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->module->lang('th_autoupdate'));
+		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->module->lang('th_site_has_osr'));
+		$data['default_hide'] = array(GWF_Form::CHECKBOX, $site->isDefaultHidden(), $this->module->lang('th_default_hide'));
 		
 		$data['div0'] = array(GWF_Form::DIVIDER);
 		
 		if ($is_admin) {
-			$data['divi0'] = array(GWF_Form::HEADLINE, $this->_module->lang('pi_site_tags', array($site->displayTags(true))));
-			$data['site_tags'] = array(GWF_Form::STRING, $site->getVar('site_tags'), $this->_module->lang('th_site_tags'));
+			$data['divi0'] = array(GWF_Form::HEADLINE, $this->module->lang('pi_site_tags', array($site->displayTags(true))));
+			$data['site_tags'] = array(GWF_Form::STRING, $site->getVar('site_tags'), $this->module->lang('th_site_tags'));
 		}
 		
-		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', $site->getCountryID()), $this->_module->lang('th_site_country2'));
+		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', $site->getCountryID()), $this->module->lang('th_site_country2'));
 		if ($is_admin) {
-			$data['site_language'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'site_language', $site->getLangID()), $this->_module->lang('th_site_language2'));
+			$data['site_language'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'site_language', $site->getLangID()), $this->module->lang('th_site_language2'));
 		}
 		if ($is_admin) {
-			$data['site_joindate'] = array(GWF_Form::STRING, $site->getVar('site_joindate'), $this->_module->lang('th_site_joindate'), '', GWF_Date::LEN_SECOND);
+			$data['site_joindate'] = array(GWF_Form::STRING, $site->getVar('site_joindate'), $this->module->lang('th_site_joindate'), '', GWF_Date::LEN_SECOND);
 		}
-		$data['site_launchdate'] = array(GWF_Form::DATE, $site->getVar('site_launchdate'), $this->_module->lang('th_site_launchdate'), '', GWF_Date::LEN_DAY);
+		$data['site_launchdate'] = array(GWF_Form::DATE, $site->getVar('site_launchdate'), $this->module->lang('th_site_launchdate'), '', GWF_Date::LEN_DAY);
 		
 		if ($is_admin) {
-			$data['site_authkey'] = array(GWF_Form::STRING, $site->getVar('site_authkey'), $this->_module->lang('th_site_authkey'));
+			$data['site_authkey'] = array(GWF_Form::STRING, $site->getVar('site_authkey'), $this->module->lang('th_site_authkey'));
 		}
 		
-		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $this->_module->lang('th_site_xauthkey'));
+		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $this->module->lang('th_site_xauthkey'));
 
-		$data['site_irc'] = array(GWF_Form::STRING, $site->getVar('site_irc'), $this->_module->lang('th_site_irc'));
+		$data['site_irc'] = array(GWF_Form::STRING, $site->getVar('site_irc'), $this->module->lang('th_site_irc'));
 		
 		$data['div2'] = array(GWF_Form::DIVIDER);
-		$data['div3'] = array(GWF_Form::HEADLINE, $this->_module->lang('pi_site_urls'));
-		$data['site_url'] = array(GWF_Form::STRING, $site->getVar('site_url'), $this->_module->lang('th_site_url'));
-		$data['site_url_mail'] = array(GWF_Form::STRING, $site->getVar('site_url_mail'), $this->_module->lang('th_site_url_mail'));
-		$data['site_url_score'] = array(GWF_Form::STRING, $site->getVar('site_url_score'), $this->_module->lang('th_site_url_score'));
-		$data['site_url_profile'] = array(GWF_Form::STRING, $site->getVar('site_url_profile'), $this->_module->lang('th_site_url_profile'));
+		$data['div3'] = array(GWF_Form::HEADLINE, $this->module->lang('pi_site_urls'));
+		$data['site_url'] = array(GWF_Form::STRING, $site->getVar('site_url'), $this->module->lang('th_site_url'));
+		$data['site_url_mail'] = array(GWF_Form::STRING, $site->getVar('site_url_mail'), $this->module->lang('th_site_url_mail'));
+		$data['site_url_score'] = array(GWF_Form::STRING, $site->getVar('site_url_score'), $this->module->lang('th_site_url_score'));
+		$data['site_url_profile'] = array(GWF_Form::STRING, $site->getVar('site_url_profile'), $this->module->lang('th_site_url_profile'));
 		
-//		$data['site_description'] = array(GWF_Form::MESSAGE, $site->getVar('site_description'), $this->_module->lang('th_site_description'));
+//		$data['site_description'] = array(GWF_Form::MESSAGE, $site->getVar('site_description'), $this->module->lang('th_site_description'));
 		
 
-		$data['edit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit_site'));
+		$data['edit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_site'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -126,7 +126,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		foreach (WC_Site::$STATES as $state)
 		{
 			$sel = GWF_HTML::selected($site->getStatus() === $state);
-			$back .= sprintf('<option value="%s"%s>%s</option>', $state, $sel, $this->_module->lang('site_state_'.$state));
+			$back .= sprintf('<option value="%s"%s>%s</option>', $state, $sel, $this->module->lang('site_state_'.$state));
 		}
 		return $back . '</select>';
 	}
@@ -144,11 +144,11 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data = array();
 		$buttons = array();
 		if ($site->hasLogo()) {
-			$buttons['rem_logo'] = $this->_module->lang('btn_rem_logo');
-			$data['current_logo'] = array(GWF_Form::HEADLINE, $site->displayLogo(), $this->_module->lang('th_site_logo'));
+			$buttons['rem_logo'] = $this->module->lang('btn_rem_logo');
+			$data['current_logo'] = array(GWF_Form::HEADLINE, $site->displayLogo(), $this->module->lang('th_site_logo'));
 		}
-		$buttons['set_logo'] = $this->_module->lang('btn_set_logo');
-		$data['new_logo'] = array(GWF_Form::FILE, '', $this->_module->lang('th_site_new_logo'));
+		$buttons['set_logo'] = $this->module->lang('btn_set_logo');
+		$data['new_logo'] = array(GWF_Form::FILE, '', $this->module->lang('th_site_new_logo'));
 		$data['cmd'] = array(GWF_Form::SUBMITS, $buttons);
 		return new GWF_Form($this, $data);
 	}
@@ -156,9 +156,9 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function getFormSiteAdmin(WC_Site $site, $is_admin)
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
-			'add_sitemin' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_sitemin')),
-			'rem_sitemin' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_rem_sitemin')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_user_name')),
+			'add_sitemin' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_sitemin')),
+			'rem_sitemin' => array(GWF_Form::SUBMIT, $this->module->lang('btn_rem_sitemin')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -174,36 +174,36 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function onSetLogo(WC_Site $site, $is_admin)
 	{
 		$form = $this->getFormLogo($site, $is_admin);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
 		# Upload Icon
 		if (false === ($file = $form->getVar('new_logo'))) {
-			return $this->_module->error('err_no_logo');
+			return $this->module->error('err_no_logo');
 		}
 		
 //		if (!(GWF_Upload::isImageFile($file))) {
-//			return $this->_module->error('err_no_logo');
+//			return $this->module->error('err_no_logo');
 //		}
 
 		if (false === GWF_Upload::resizeImage($file, 32, 32, 32, 32)) {
-			return $this->_module->error('err_no_logo');
+			return $this->module->error('err_no_logo');
 		}
 		
 		$sid = $site->getID();
 		$filename = 'dbimg/logo/'.$sid;
 		if (false === ($file = GWF_Upload::moveTo($file, $filename))) {
-			return $this->_module->error('err_write_logo', array($filename));
+			return $this->module->error('err_write_logo', array($filename));
 		}
 		
 		# Convert to GIF
 		if (false === ($img = imagecreatefromstring(file_get_contents($filename)))) {
-			return $this->_module->error('err_no_logo');
+			return $this->module->error('err_no_logo');
 		}
 		$filenamegif = 'dbimg/logo_gif/'.$sid.'.gif';
 		if (false === imagegif($img, $filenamegif)) {
-			return $this->_module->error('err_write_logo', array($filenamegif));
+			return $this->module->error('err_write_logo', array($filenamegif));
 		}
 		imagedestroy($img);
 		
@@ -246,7 +246,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function onEdit(WC_Site $site, $is_admin)
 	{
 		$form = $this->getForm($site, $is_admin);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -315,7 +315,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 //		}
 		
-		return $this->_module->message('msg_site_edited', array($site->displayName()));
+		return $this->module->message('msg_site_edited', array($site->displayName()));
 	}	
 
 	##################
@@ -324,7 +324,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function onAddSitemin(WC_Site $site, $is_admin)
 	{
 		$form = $this->getFormSiteAdmin($site, $is_admin);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -333,21 +333,21 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		
 		if (true === WC_SiteAdmin::isSiteAdmin($user->getID(), $site->getID())) {
-			return $this->_module->error('err_sitemin_dup', array($user->displayUsername(), $site->displayName()));
+			return $this->module->error('err_sitemin_dup', array($user->displayUsername(), $site->displayName()));
 		}
 		
 		if (false === WC_SiteAdmin::makeSiteAdmin($user->getID(), $site->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_sitemin_add', array($user->displayUsername(), $site->displayName()));
+		return $this->module->message('msg_sitemin_add', array($user->displayUsername(), $site->displayName()));
 		
 	}
 
 	public function onRemSitemin(WC_Site $site, $is_admin)
 	{
 		$form = $this->getFormSiteAdmin($site, $is_admin);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -356,14 +356,14 @@ final class WeChall_SiteEdit extends GWF_Method
 		}
 		
 		if (false === WC_SiteAdmin::isSiteAdmin($user->getID(), $site->getID())) {
-			return $this->_module->error('err_not_sitemin', array($user->displayUsername(), $site->displayName()));
+			return $this->module->error('err_not_sitemin', array($user->displayUsername(), $site->displayName()));
 		}
 		
 		if (false === WC_SiteAdmin::remSiteAdmin($user->getID(), $site->getID())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_sitemin_rem', array($user->displayUsername(), $site->displayName()));
+		return $this->module->message('msg_sitemin_rem', array($user->displayUsername(), $site->displayName()));
 		
 	}
 }

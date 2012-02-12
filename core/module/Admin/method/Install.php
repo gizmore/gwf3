@@ -14,7 +14,7 @@ final class Admin_Install extends GWF_Method
 	
 	public function execute()
 	{
-		$nav = $this->_module->templateNav();
+		$nav = $this->module->templateNav();
 		
 		if ('true' === Common::getGetString('all')) {
 			return $nav.$this->onInstallAll();
@@ -49,9 +49,9 @@ final class Admin_Install extends GWF_Method
 	{
 		$data = array(
 			'modulename' => array(GWF_Form::HIDDEN, $mod->display('module_name')),
-			'install' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_install'), $this->_module->lang('th_install')),
-			'reinstall' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_reinstall'), $this->_module->lang('th_reinstall')),
-			'delete' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_delete')),
+			'install' => array(GWF_Form::SUBMIT, $this->module->lang('btn_install'), $this->module->lang('th_install')),
+			'reinstall' => array(GWF_Form::SUBMIT, $this->module->lang('btn_reinstall'), $this->module->lang('th_reinstall')),
+			'delete' => array(GWF_Form::SUBMIT, $this->module->lang('btn_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -62,10 +62,10 @@ final class Admin_Install extends GWF_Method
 	{
 		$data = array(
 			'modulename' => array(GWF_Form::HIDDEN, $mod->display('module_name')),
-			'install' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_install'), $this->_module->lang('th_install')),
-			'resetvars2' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_defaults'), $this->_module->lang('th_reset')),
-			'reinstall2' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_reinstall'), $this->_module->lang('th_reinstall')),
-			'delete2' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_delete'), $this->_module->lang('th_delete')),
+			'install' => array(GWF_Form::SUBMIT, $this->module->lang('btn_install'), $this->module->lang('th_install')),
+			'resetvars2' => array(GWF_Form::SUBMIT, $this->module->lang('btn_defaults'), $this->module->lang('th_reset')),
+			'reinstall2' => array(GWF_Form::SUBMIT, $this->module->lang('btn_reinstall'), $this->module->lang('th_reinstall')),
+			'delete2' => array(GWF_Form::SUBMIT, $this->module->lang('btn_delete'), $this->module->lang('th_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -74,14 +74,14 @@ final class Admin_Install extends GWF_Method
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', array(htmlspecialchars($arg)));
+			return $this->module->error('err_module', array(htmlspecialchars($arg)));
 		}
 		
 		$form = $this->formReInstall($post_module);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_reinstall', array($post_module->display('module_name')), GWF_WEB_ROOT.Module_Admin::ADMIN_URL_NAME.'/install/'.$post_module->urlencode('module_name'))),
+			'form' => $form->templateY($this->module->lang('ft_reinstall', array($post_module->display('module_name')), GWF_WEB_ROOT.Module_Admin::ADMIN_URL_NAME.'/install/'.$post_module->urlencode('module_name'))),
 		);
-		return $this->_module->template('install.tpl', $tVars);
+		return $this->module->template('install.tpl', $tVars);
 	}
 	
 	
@@ -89,10 +89,10 @@ final class Admin_Install extends GWF_Method
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
+			return $this->module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
 		$form = $this->formReInstall($post_module);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->onTemplateReinstall(false);
 		}
 		if (false === GDO::table('GWF_ModuleVar')->deleteWhere('mv_mid='.$post_module->getID())) {
@@ -100,7 +100,7 @@ final class Admin_Install extends GWF_Method
 		}
 		$post_module->loadVars();
 		return
-			$this->_module->message('msg_defaults').
+			$this->module->message('msg_defaults').
 			$this->onInstall($post_module->getName(), false);
 	}
 			
@@ -108,10 +108,10 @@ final class Admin_Install extends GWF_Method
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
+			return $this->module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
 		$form = $this->formReInstall($post_module);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->onTemplateReinstall(false);
 		}
 		return $this->onInstall($form->getVar('modulename'), $dropTable);
@@ -131,13 +131,13 @@ final class Admin_Install extends GWF_Method
 		$errors = GWF_ModuleLoader::installModule($install, $dropTable);
 		
 		if ($errors !== '') {
-			return $errors.$this->_module->error('err_install').$this->_module->requestMethodB('Modules');
+			return $errors.$this->module->error('err_install').$this->module->requestMethodB('Modules');
 		}
 		
 //		if (false === ($install->saveOption(GWF_Module::ENABLED, true))) {
 //			return 
 //				GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).
-//				$this->_module->message('err_install').$this->_module->requestMethodB('Modules');
+//				$this->module->message('err_install').$this->module->requestMethodB('Modules');
 //		}
 		
 		GWF_ModuleLoader::installHTAccess($modules);
@@ -145,8 +145,8 @@ final class Admin_Install extends GWF_Method
 		$msg = $dropTable === true ? 'msg_wipe' : 'msg_install';
 		
 		return 
-			$this->_module->message($msg, array(GWF_HTML::display($modulename))).
-			$this->_module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($modulename)));
+			$this->module->message($msg, array(GWF_HTML::display($modulename))).
+			$this->module->message('msg_installed', array(Module_Admin::getEditURL($modulename), GWF_HTML::display($modulename)));
 	}
 
 	public function onInstallAll()
@@ -161,17 +161,17 @@ final class Admin_Install extends GWF_Method
 		
 		GWF_ModuleLoader::installHTAccess($modules);
 		
-		return $this->_module->message('msg_install_all', array($this->_module->getMethodURL('Modules'))).$back;
+		return $this->module->message('msg_install_all', array($this->module->getMethodURL('Modules'))).$back;
 	}
 	
 	public function onDeleteModule()
 	{
 		$arg = Common::getPost('modulename', '');
 		if (false === ($post_module = GWF_ModuleLoader::loadModuleFS($arg))) {
-			return $this->_module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
+			return $this->module->error('err_module', htmlspecialchars($arg)).$this->onTemplateReinstall(false);
 		}
 		$form = $this->formReInstall($post_module);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->onTemplateReinstall(false);
 		}
 		
@@ -187,7 +187,7 @@ final class Admin_Install extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->onTemplateReinstall(false);
 		}
 		
-		return $this->_module->message('msg_mod_del');
+		return $this->module->message('msg_mod_del');
 	}
 }
 

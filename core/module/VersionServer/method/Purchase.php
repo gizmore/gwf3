@@ -56,7 +56,7 @@ final class VersionServer_Purchase extends GWF_Method
 			'langs' => $langs,
 			'client' => GWF_Client::getByID(GWF_Session::getUserID()),
 		);
-		return $this->_module->templatePHP('purchase.php', $tVars);
+		return $this->module->templatePHP('purchase.php', $tVars);
 	}
 	
 	private function onPurchase()
@@ -66,7 +66,7 @@ final class VersionServer_Purchase extends GWF_Method
 		}
 		
 		if ( (!(isset($_POST['mod']))) || (!is_array($_POST['mod'])) ) {
-			return $this->_module->error('err_select_modules').$this->templatePurchase();
+			return $this->module->error('err_select_modules').$this->templatePurchase();
 //			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__)).$this->templatePurchase();
 		}
 		 
@@ -79,7 +79,7 @@ final class VersionServer_Purchase extends GWF_Method
 			}
 		}
 		if (count($purchased_modules) === 0) {
-			return $this->_module->error('err_select_modules').$this->templatePurchase();
+			return $this->module->error('err_select_modules').$this->templatePurchase();
 		}
 		
 		$designs = GWF_Design::getDesigns();
@@ -108,10 +108,10 @@ final class VersionServer_Purchase extends GWF_Method
 		Module_Payment::saveTempOrder($order);
 		
 		$tVars = array(
-			'order' => Module_Payment::displayOrderS($this->_module, $order, $user),
+			'order' => Module_Payment::displayOrderS($this->module, $order, $user),
 		);
 		
-		return $this->_module->template('order.tpl', $tVars);
+		return $this->module->template('order.tpl', $tVars);
 	}
 	
 	private function onZip()
@@ -121,7 +121,7 @@ final class VersionServer_Purchase extends GWF_Method
 		$rand = Common::randomDateStamp();
 		$archivename = 'dbimg/gwf_purchase_'.$rand.'.zip';
 		
-		$zipper = $this->_module->getMethod('Zipper');
+		$zipper = $this->module->getMethod('Zipper');
 		$zipper instanceof VersionServer_Zipper;
 		$zipper->setArchiveName($archivename);
 		$error = $zipper->onZip($client->getModuleNames(), 'default');
@@ -149,7 +149,7 @@ final class VersionServer_Purchase extends GWF_Method
 		$user = GWF_User::getStaticOrGuest();
 		$paysite = Common::getPost('paysite', 'xx');
 		
-		return Module_Payment::displayOrder2S($this->_module, $order, $user, $paysite);
+		return Module_Payment::displayOrder2S($this->module, $order, $user, $paysite);
 	}
 	
 }

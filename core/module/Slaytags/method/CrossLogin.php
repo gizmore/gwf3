@@ -43,7 +43,7 @@ final class Slaytags_CrossLogin extends GWF_Method
 	{
 		if ($token !== $this->slayradioHash($userid))
 		{
-//			return $this->_module->error('err_cross_login');
+//			return $this->module->error('err_cross_login');
 		}
 		
 		$username = "1_{$userid}";
@@ -110,10 +110,10 @@ final class Slaytags_CrossLogin extends GWF_Method
 		
 		if (false === GWF_Session::onLogin($user, false, true))
 		{
-			return $this->_module->error('ERR_GENERAL', array(__FILE__, __LINE__));
+			return $this->module->error('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_cross_login');
+		return $this->module->message('msg_cross_login');
 	}
 }
 ?>

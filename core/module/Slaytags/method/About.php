@@ -15,7 +15,7 @@ final class Slaytags_About extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $this->_module->template('about.tpl', $tVars);
+		return $this->module->template('about.tpl', $tVars);
 	}
 }
 ?>

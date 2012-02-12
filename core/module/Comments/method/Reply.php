@@ -18,9 +18,9 @@ final class Comments_Reply extends GWF_Method
 		$form = $this->formReply($href);
 		$action = $href === NULL ? $this->getMethodHREF() : $href;
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_reply'), $action),
+			'form' => $form->templateY($this->module->lang('ft_reply'), $action),
 		);
-		return $this->_module->template('reply.tpl', $tVars);
+		return $this->module->template('reply.tpl', $tVars);
 	}
 	
 	public function formReply($href=NULL)
@@ -29,25 +29,25 @@ final class Comments_Reply extends GWF_Method
 		$data = array();
 		if ($user === false)
 		{
-			$data['username'] = array(GWF_Form::STRING, '', $this->_module->lang('th_username'));
-			$data['email'] = array(GWF_Form::STRING, '', $this->_module->lang('th_email'));
+			$data['username'] = array(GWF_Form::STRING, '', $this->module->lang('th_username'));
+			$data['email'] = array(GWF_Form::STRING, '', $this->module->lang('th_email'));
 		}
 		else
 		{
-			$data['email'] = array(GWF_Form::STRING, $user->getValidMail(), $this->_module->lang('th_email'));
+			$data['email'] = array(GWF_Form::STRING, $user->getValidMail(), $this->module->lang('th_email'));
 		}
-		$data['www'] = array(GWF_Form::STRING, '', $this->_module->lang('th_www'));
+		$data['www'] = array(GWF_Form::STRING, '', $this->module->lang('th_www'));
 		$data['cmt_id'] = array(GWF_Form::HIDDEN, Common::getRequestString('cmt_id', '0'));
 		$data['cmts_id'] = array(GWF_Form::HIDDEN, Common::getRequestString('cmts_id', '0'));
-		$data['showmail'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_showmail'));
-		$data['message'] = array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message'));
+		$data['showmail'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_showmail'));
+		$data['message'] = array(GWF_Form::MESSAGE, '', $this->module->lang('th_message'));
 		
-		if ($this->_module->cfgCaptcha($user))
+		if ($this->module->cfgCaptcha($user))
 		{
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		
-		$data['reply'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_reply'));
+		$data['reply'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_reply'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -62,7 +62,7 @@ final class Comments_Reply extends GWF_Method
 	public function onReply($href=NULL)
 	{
 		$form = $this->formReply($href);
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validate($this->module)))
 		{
 			return $error . $this->templateReply($href);
 		}
@@ -72,7 +72,7 @@ final class Comments_Reply extends GWF_Method
 		
 		$options = 0;
 		$options |= isset($_POST['showmail']) ? GWF_Comment::SHOW_EMAIL : 0;
-//		$options |= $this->_module->cfgModerated() ? 0 : GWF_Comment::VISIBLE;
+//		$options |= $this->module->cfgModerated() ? 0 : GWF_Comment::VISIBLE;
 		
 		$comment = new GWF_Comment(array(
 			'cmt_id' => 0,
@@ -95,7 +95,7 @@ final class Comments_Reply extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if ($this->_module->cfgModerated())
+		if ($this->module->cfgModerated())
 		{
 			return $this->onSendModerateMail($user, $comment);
 		}
@@ -132,7 +132,7 @@ final class Comments_Reply extends GWF_Method
 			}
 		}
 		
-		return $this->_module->message('msg_commented_mod');
+		return $this->module->message('msg_commented_mod');
 	}
 	
 	private function onSendModerateMailB($user, GWF_Comment $comment, GWF_User $admin)
@@ -154,8 +154,8 @@ final class Comments_Reply extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($rec);
-		$mail->setSubject($this->_module->langUser($admin, 'subj_mod'));
-		$mail->setBody($this->_module->langUser($admin, 'body_mod', $args));
+		$mail->setSubject($this->module->langUser($admin, 'subj_mod'));
+		$mail->setBody($this->module->langUser($admin, 'body_mod', $args));
 		return $mail->sendToUser($admin);
 	}
 	
@@ -172,7 +172,7 @@ final class Comments_Reply extends GWF_Method
 			}
 		}
 		
-		return $this->_module->message('msg_commented');
+		return $this->module->message('msg_commented');
 	}
 	
 	private function onSendCommentedMailB($user, GWF_Comment $comment, GWF_User $admin)
@@ -193,8 +193,8 @@ final class Comments_Reply extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($rec);
-		$mail->setSubject($this->_module->langUser($admin, 'subj_cmt'));
-		$mail->setBody($this->_module->langUser($admin, 'body_cmt', $args));
+		$mail->setSubject($this->module->langUser($admin, 'subj_cmt'));
+		$mail->setBody($this->module->langUser($admin, 'body_cmt', $args));
 		$mail->sendToUser($admin);
 	}
 }

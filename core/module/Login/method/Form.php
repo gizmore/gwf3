@@ -14,11 +14,11 @@ final class Login_Form extends GWF_Method
 	
 	public function execute()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_login'));
+		GWF_Website::setPageTitle($this->module->lang('pt_login'));
 		
 		if (false !== GWF_Session::getUser())
 		{
-			return $this->_module->error('ERR_ALREADY_LOGGED_IN');
+			return $this->module->error('ERR_ALREADY_LOGGED_IN');
 		}
 
 		if (false !== Common::getPost('login'))
@@ -32,14 +32,14 @@ final class Login_Form extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('title_login')),
+			'form' => $form->templateY($this->module->lang('title_login')),
 			'have_cookies' => GWF_Session::haveCookies(),
 			'token' => $form->getFormCSRFToken(),
 			'tooltip' => $form->getTooltipText('bind_ip'),
 			'register' => GWF_Module::loadModuleDB('Register', false, false, true) !== false,
 			'recovery' => GWF_Module::loadModuleDB('PasswordForgot', false, false, true) !== false,
 		);
-		return $this->_module->template($this->_tpl, $tVars);
+		return $this->module->template($this->_tpl, $tVars);
 	}
 
 	/**
@@ -48,14 +48,14 @@ final class Login_Form extends GWF_Method
 	public function getForm()
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username')),
-			'password' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_password')),
-			'bind_ip' => array(GWF_Form::CHECKBOX, true, $this->_module->lang('th_bind_ip'), $this->_module->lang('tt_bind_ip')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_username')),
+			'password' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_password')),
+			'bind_ip' => array(GWF_Form::CHECKBOX, true, $this->module->lang('th_bind_ip'), $this->module->lang('tt_bind_ip')),
 		);
-		if ($this->_module->cfgCaptcha()) {
+		if ($this->module->cfgCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['login'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_login'));
+		$data['login'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_login'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -64,7 +64,7 @@ final class Login_Form extends GWF_Method
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module, $isAjax))) {
+		if (false !== ($errors = $form->validate($this->module, $isAjax))) {
 			if ($isAjax) {
 				return $errors;
 			} else {
@@ -79,9 +79,9 @@ final class Login_Form extends GWF_Method
 		if (false === ($user = $users->selectFirstObject('*', sprintf('user_name=\'%s\' AND user_options&%d=0', $users->escape($username), GWF_User::DELETED))))
 		{
 			if ($isAjax) {
-				return $this->_module->error('err_login');
+				return $this->module->error('err_login');
 			} else {
-				return $this->_module->error('err_login').$this->form();
+				return $this->module->error('err_login').$this->form();
 			}
 		}
 		elseif (true !== ($error = $this->checkBruteforce($user, $isAjax))) {
@@ -111,30 +111,30 @@ final class Login_Form extends GWF_Method
 	private function onLoginFailed(GWF_User $user, $isAjax)
 	{
 		GWF_LoginFailure::loginFailed($user);
-		$time = $this->_module->cfgTryExceed();
-		$maxtries = $this->_module->cfgMaxTries();
+		$time = $this->module->cfgTryExceed();
+		$maxtries = $this->module->cfgMaxTries();
 		list($tries, $mintime) = GWF_LoginFailure::getFailedData($user, $time);
 		
 		// Send alert mail?
-		if ( ($tries === 1) && ($this->_module->cfgAlerts()) )
+		if ( ($tries === 1) && ($this->module->cfgAlerts()) )
 		{
 			$this->onSendAlertMail($user);
 		}
 		
-		return $this->_module->error('err_login2', array($maxtries-$tries, GWF_Time::humanDuration($time)));
+		return $this->module->error('err_login2', array($maxtries-$tries, GWF_Time::humanDuration($time)));
 	}
 	
 	private function checkBruteforce(GWF_User $user, $isAjax)
 	{
-		$time = $this->_module->cfgTryExceed();
-		$maxtries = $this->_module->cfgMaxTries();
+		$time = $this->module->cfgTryExceed();
+		$maxtries = $this->module->cfgMaxTries();
 		$data = GWF_LoginFailure::getFailedData($user, $time);
 		
 		$tries = $data[0];
 		$mintime = $data[1];
 		
 		if ($tries >= $maxtries) {
-			return $this->_module->error('err_blocked', array(GWF_Time::humanDuration($mintime - time() + $time)));
+			return $this->module->error('err_blocked', array(GWF_Time::humanDuration($mintime - time() + $time)));
 		}
 		return true;
 	}
@@ -153,7 +153,7 @@ final class Login_Form extends GWF_Method
 		# save last login time
 		$user->saveVar('user_lastlogin', time());
 		
-		if ($this->_module->cfgCleanupAlways()) {
+		if ($this->module->cfgCleanupAlways()) {
 			GWF_LoginFailure::cleanupUser($user->getID());
 		}
 		
@@ -169,7 +169,7 @@ final class Login_Form extends GWF_Method
 				GWF_Language::setCurrentLanguage($lang);
 			}
 			
-			if (0 < ($fails = GWF_LoginFailure::getFailCount($user, $this->_module->cfgTryExceed()))) {
+			if (0 < ($fails = GWF_LoginFailure::getFailCount($user, $this->module->cfgTryExceed()))) {
 				GWF_Session::set('GWF_LOGIN_FAILS', $fails);
 			}
 			
@@ -187,8 +187,8 @@ final class Login_Form extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($to);
-		$mail->setSubject($this->_module->langUser($user, 'alert_subj'));
-		$mail->setBody($this->_module->langUser($user, 'alert_body', array($user->displayUsername(), $_SERVER['REMOTE_ADDR'])));
+		$mail->setSubject($this->module->langUser($user, 'alert_subj'));
+		$mail->setBody($this->module->langUser($user, 'alert_body', array($user->displayUsername(), $_SERVER['REMOTE_ADDR'])));
 		
 		return $mail->sendToUser($user);
 	}

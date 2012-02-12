@@ -29,13 +29,13 @@ final class Login_History extends GWF_Method
 		$form = $this->formDelete();
 		
 		$headers = array(
-			array($this->_module->lang('th_loghis_time'), 'loghis_time'),
-			array($this->_module->lang('th_loghis_ip'), 'loghis_ip'),
-			array($this->_module->lang('th_hostname')),
+			array($this->module->lang('th_loghis_time'), 'loghis_time'),
+			array($this->module->lang('th_loghis_ip'), 'loghis_ip'),
+			array($this->module->lang('th_hostname')),
 		);
 		
 		if (false !== ($c = GWF_LoginCleared::getCleared($userid))) {
-			$cleared = $this->_module->lang('info_cleared', array($c->displayDate(), $c->displayIP(), $c->displayHost()));
+			$cleared = $this->module->lang('info_cleared', array($c->displayDate(), $c->displayIP(), $c->displayHost()));
 		} else {
 			$cleared = '';
 		}
@@ -44,18 +44,18 @@ final class Login_History extends GWF_Method
 		$tVars = array(
 			'tablehead' => GWF_Table::displayHeaders2($headers),
 			'history' => $history->selectObjects('*', $conditions, $orderby, $ipp, $from),
-//			'sort_url' => $this->_module->getMethodURL('History', '&by=%BY%&dir=%DIR%&page=1'),
-			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->_module->getMethodURL('History', '&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%')),
-			'form' => $form->templateX($this->_module->lang('ft_clear')),
+//			'sort_url' => $this->module->getMethodURL('History', '&by=%BY%&dir=%DIR%&page=1'),
+			'pagemenu' => GWF_PageMenu::display($page, $nPages, $this->module->getMethodURL('History', '&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%')),
+			'form' => $form->templateX($this->module->lang('ft_clear')),
 			'cleared' => $cleared,
 		);
-		return $this->_module->template('history.tpl', $tVars);
+		return $this->module->template('history.tpl', $tVars);
 	}
 	
 	private function formDelete()
 	{
 		$data = array(
-			'clear' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_clear')),
+			'clear' => array(GWF_Form::SUBMIT, $this->module->lang('btn_clear')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -63,7 +63,7 @@ final class Login_History extends GWF_Method
 	private function onClear()
 	{
 		$form = $this->formDelete();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -77,7 +77,7 @@ final class Login_History extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_cleared');
+		return $this->module->message('msg_cleared');
 	}
 }
 ?>

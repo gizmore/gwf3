@@ -17,8 +17,8 @@ final class Payment_Staff extends GWF_Method
 	}
 	
 	### Search Templates
-	public function templateAdvSearch() { return GWF_FormGDO::getSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
-	public function templateQuickSearch() { return GWF_FormGDO::getQuickSearchForm($this->_module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
+	public function templateAdvSearch() { return GWF_FormGDO::getSearchForm($this->module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
+	public function templateQuickSearch() { return GWF_FormGDO::getQuickSearchForm($this->module, $this, GDO::table('GWF_Order'), GWF_Session::getUser()); }
 
 	private function getTable()
 	{
@@ -31,29 +31,29 @@ final class Payment_Staff extends GWF_Method
 		$conditions = "(order_status$op'$paid' $op2 order_status$op'$exec')";
 		$bit = $o ? 'o' : 't';
 		$sortURL = $this->getMethodHref('&'.$bit.'=1&by=%BY%&dir=%DIR%');
-		return GWF_TableGDO::display($this->_module, $orders, GWF_Session::getUser(), $sortURL, $conditions, 25, true, array('order_uid'));
+		return GWF_TableGDO::display($this->module, $orders, GWF_Session::getUser(), $sortURL, $conditions, 25, true, array('order_uid'));
 	}
 	
 	public function templateStaff()
 	{
 		$tVars = array(
-			'quicksearch' => $this->templateQuickSearch()->templateX($this->_module->lang('ft_search')),
+			'quicksearch' => $this->templateQuickSearch()->templateX($this->module->lang('ft_search')),
 			'table' => $this->getTable(),
 			'href_orders' => $this->getMethodHref(sprintf('&o=1&by=order_id&dir=DESC&page=1')),
 			'href_transactions' => $this->getMethodHref(sprintf('&t=1&by=order_id&dir=DESC&page=1')),
 		);
-		return $this->_module->templatePHP('staff.php', $tVars);
+		return $this->module->templatePHP('staff.php', $tVars);
 	}
 	
 	private function onQuickSearch()
 	{
 		$tVars = array(
-			'quicksearch' => $this->templateQuickSearch()->templateX($this->_module->lang('ft_search')),
+			'quicksearch' => $this->templateQuickSearch()->templateX($this->module->lang('ft_search')),
 			'table' => $this->getQuickSearchTable(),
 			'href_orders' => $this->getMethodHref(sprintf('&o=1&by=order_id&dir=DESC&page=1')),
 			'href_transactions' => $this->getMethodHref(sprintf('&t=1&by=order_id&dir=DESC&page=1')),
 		);
-		return $this->_module->templatePHP('staff.php', $tVars);
+		return $this->module->templatePHP('staff.php', $tVars);
 	}
 	
 	private function getQuickSearchTable()
@@ -76,7 +76,7 @@ final class Payment_Staff extends GWF_Method
 		{
 			$conditions = '0';
 		}
-		return GWF_TableGDO::display($this->_module, $orders, $user, $sortURL, $conditions, 25, true);
+		return GWF_TableGDO::display($this->module, $orders, $user, $sortURL, $conditions, 25, true);
 	}
 }
 

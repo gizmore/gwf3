@@ -35,16 +35,16 @@ final class News_Add extends GWF_Method
 //		GWF_Language::setShowSupported(true);
 		$data = array(
 //			'username' => array(GWF_Form::STRING, GWF_Session::getUser()->getVar('username'), GWF_HTML::lang('username')),
-			'langid' => array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid', $langid), $this->_module->lang('th_langid')),
-			'catid' => array(GWF_Form::SELECT, GWF_CategorySelect::single('catid', Common::getPostString('catid', '1'), 0), $this->_module->lang('th_category')),
-			'title' => array(GWF_Form::STRING, '', $this->_module->lang('th_title')),
-			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
+			'langid' => array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_Language::SUPPORTED, 'langid', $langid), $this->module->lang('th_langid')),
+			'catid' => array(GWF_Form::SELECT, GWF_CategorySelect::single('catid', Common::getPostString('catid', '1'), 0), $this->module->lang('th_category')),
+			'title' => array(GWF_Form::STRING, '', $this->module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_message')),
 			'div1' => array(GWF_Form::DIVIDER),
-//			'newsletter' => array(GWF_Form::CHECKBOX, Common::getPost('newsletter') !== false, $this->_module->lang('th_newsletter')),
+//			'newsletter' => array(GWF_Form::CHECKBOX, Common::getPost('newsletter') !== false, $this->module->lang('th_newsletter')),
 			'div2' => array(GWF_Form::DIVIDER),
-			'preview' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_preview'), ''),
-//			'hidden' => array(GWF_Form::CHECKBOX, Common::getPost('hidden') !== false, $this->_module->lang('th_hidden')),
-			'add' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add'), ''),
+			'preview' => array(GWF_Form::SUBMIT, $this->module->lang('btn_preview'), ''),
+//			'hidden' => array(GWF_Form::CHECKBOX, Common::getPost('hidden') !== false, $this->module->lang('th_hidden')),
+			'add' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add'), ''),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -53,15 +53,15 @@ final class News_Add extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add')),
+			'form' => $form->templateY($this->module->lang('ft_add')),
 		);
-		return $this->_module->templatePHP('add.php', $tVars);
+		return $this->module->templatePHP('add.php', $tVars);
 	}
 	
 	public function validate_langid(Module_News $module, $langid)
 	{
 		if (!GWF_LangSelect::isValidLanguage($langid, false)) {
-			return $this->_module->lang('err_langid');
+			return $this->module->lang('err_langid');
 		}
 		return false;
 	}
@@ -73,7 +73,7 @@ final class News_Add extends GWF_Method
 			return false;
 		}
 		if (!GWF_Category::categoryExists($catid)) {
-			return $this->_module->lang('err_cat');
+			return $this->module->lang('err_cat');
 		}
 		return false;
 	}
@@ -81,7 +81,7 @@ final class News_Add extends GWF_Method
 	public function validate_message(Module_News $module, $msg)
 	{
 		if (strlen($msg) < 16) {
-			return $this->_module->lang('err_msg_too_short');
+			return $this->module->lang('err_msg_too_short');
 		}
 		return false;
 	}
@@ -89,7 +89,7 @@ final class News_Add extends GWF_Method
 	public function validate_title(Module_News $module, $title)
 	{
 		if (strlen($title) < 4) {
-			return $this->_module->lang('err_title_too_short');
+			return $this->module->lang('err_title_too_short');
 		}
 		return false;
 	}
@@ -98,7 +98,7 @@ final class News_Add extends GWF_Method
 	{
 		$form = $this->getForm();
 		
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateAdd();
 		}
 		
@@ -124,14 +124,14 @@ final class News_Add extends GWF_Method
 			$this->onSendNewsletter($langid, $news); # FIXME: {gizmore} method does not exist
 		}
 		
-		return $this->_module->message('msg_news_added');
+		return $this->module->message('msg_news_added');
 	}
 
 	private function onPreview()
 	{
 		$form = $this->getForm();
 		
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateAdd();
 		}
 		
@@ -156,25 +156,25 @@ final class News_Add extends GWF_Method
 //	private function getNewsletterMessage($message, $email)
 //	{
 //		if (false === ($user = GWF_User::getByEmail($email))) {
-//			$username = $this->_module->lang('nl_anrede', array( $email));
+//			$username = $this->module->lang('nl_anrede', array( $email));
 //		}
 //		else {
-//			$username = $this->_module->lang('nl_anrede', array( $user->getName()));
+//			$username = $this->module->lang('nl_anrede', array( $user->getName()));
 //		}
 //		
 //		if (false === ($))
 //		$lin
 //		
-//		return $this->_module->lang('newsletter_wrap', array( $msg));
+//		return $this->module->lang('newsletter_wrap', array( $msg));
 //	}
 	
 	private function previewNewsletter(GWF_News $news)
 	{
 		Module_News::savePreview($news);
 //		var_dump($news);
-		$aTEXT = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/text', $this->_module->lang('btn_preview_text'));
-		$aHTML = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/html', $this->_module->lang('btn_preview_html'));
-		return $this->_module->lang('preview_info', array( $aTEXT, $aHTML));
+		$aTEXT = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/text', $this->module->lang('btn_preview_text'));
+		$aHTML = sprintf('<a href="%s">%s</a>', GWF_WEB_ROOT.'newsletter/preview/html', $this->module->lang('btn_preview_html'));
+		return $this->module->lang('preview_info', array( $aTEXT, $aHTML));
 	}
 
 }

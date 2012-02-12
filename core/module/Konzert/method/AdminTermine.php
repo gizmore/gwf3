@@ -28,13 +28,13 @@ final class Konzert_AdminTermine extends GWF_Method
 		$from = GWF_PageMenu::getFrom($page, self::IPP);
 		
 		$tVars = array(
-			'add_button' => GWF_Button::add($this->_module->lang('btn_add'), $this->_module->getMethodURL('AddTermin')),
+			'add_button' => GWF_Button::add($this->module->lang('btn_add'), $this->module->getMethodURL('AddTermin')),
 			'termine' => $termine->selectObjects('*', $where, $orderby, self::IPP, $from),
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Konzert&me=AdminTermine&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Konzert&me=AdminTermine&by=%BY%&dir=%DIR%&page=1',
 		);
 		
-		return $this->_module->template('a_termine.tpl', $tVars);
+		return $this->module->template('a_termine.tpl', $tVars);
 	}
 }
 ?>

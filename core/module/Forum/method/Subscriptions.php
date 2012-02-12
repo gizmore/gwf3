@@ -21,28 +21,28 @@ final class Forum_Subscriptions extends GWF_Method
 			'subscr_threads' => $this->getSubscrThreads($tsub),
 			'subscr_boards' => $this->getSubscrBoards($bsub),
 		);
-		return $this->_module->template('subscriptions.tpl', $tVars);
+		return $this->module->template('subscriptions.tpl', $tVars);
 	}
 	
 	private function getIntro(GWF_ForumOptions $fopt)
 	{
 		$mode = $fopt->getVar('fopt_subscr');
-		$modetxt = $this->_module->lang('submode_'.$mode);
-		return $this->_module->lang('submode', array($modetxt));
+		$modetxt = $this->module->lang('submode_'.$mode);
+		return $this->module->lang('submode', array($modetxt));
 	}
 
 	private function getIntroBoards(GWF_ForumSubscrBoard $bsub)
 	{
 		$uid = GWF_Session::getUserID();
 		$count = $bsub->countRows("subscr_uid={$uid}");
-		return $this->_module->lang('subscr_boards', array($count));
+		return $this->module->lang('subscr_boards', array($count));
 	}
 
 	private function getIntroThreads(GWF_ForumSubscription $tsub)
 	{
 		$uid = GWF_Session::getUserID();
 		$count = $tsub->countRows("subscr_uid={$uid}");
-		return $this->_module->lang('subscr_threads', array($count));
+		return $this->module->lang('subscr_threads', array($count));
 	}
 
 	private function getSubscrThreads(GWF_ForumSubscription $tsub)

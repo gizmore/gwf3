@@ -9,13 +9,13 @@ final class PoolTool_About extends GWF_Method
 	
 	public function execute()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_about'));
-		GWF_Website::setMetaTags($this->_module->lang('mt_about'));
-		GWF_Website::setMetaDescr($this->_module->lang('md_about'));
+		GWF_Website::setPageTitle($this->module->lang('pt_about'));
+		GWF_Website::setMetaTags($this->module->lang('mt_about'));
+		GWF_Website::setMetaDescr($this->module->lang('md_about'));
 		
 		$tVars = array(
 		);
-		return $this->_module->templatePHP('about.php', $tVars);
+		return $this->module->templatePHP('about.php', $tVars);
 	}
 }
 

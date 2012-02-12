@@ -19,23 +19,23 @@ final class Chat_Mibbit extends GWF_Method
 	
 	private function templateMibbit()
 	{
-		if (!$this->_module->cfgMibbit()) {
+		if (!$this->module->cfgMibbit()) {
 			return GWF_HTML::err('ERR_MODULE_DISABLED', array( 'Chat_Mibbit'));
 		}
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_irc_chat'));
-		GWF_Website::setMetaTags($this->_module->lang('mt_irc_chat'));
-		GWF_Website::setMetaDescr($this->_module->lang('md_irc_chat'));
+		GWF_Website::setPageTitle($this->module->lang('pt_irc_chat'));
+		GWF_Website::setMetaTags($this->module->lang('mt_irc_chat'));
+		GWF_Website::setMetaDescr($this->module->lang('md_irc_chat'));
 		
 		$tVars = array(
 			'href_webchat' => GWF_WEB_ROOT.'chat',
 			'href_ircchat' => GWF_WEB_ROOT.'irc_chat',
 			'href_ircchat_full' => GWF_WEB_ROOT.'irc_chat_fullscreen',
-			'mibbit_url' => $this->_module->cfgMibbitURL(),
-			'mibbit' => $this->_module->cfgMibbit(),
-			'gwf_chat' => $this->_module->cfgGWFChat(),
+			'mibbit_url' => $this->module->cfgMibbitURL(),
+			'mibbit' => $this->module->cfgMibbit(),
+			'gwf_chat' => $this->module->cfgGWFChat(),
 		);
-		return $this->_module->templatePHP('mibbit.php', $tVars);
+		return $this->module->templatePHP('mibbit.php', $tVars);
 	}	
 }
 ?>

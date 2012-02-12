@@ -24,16 +24,16 @@ final class Slaytags_Admin extends GWF_Method
 	{
 		$form_actions = $this->formActions();
 		$tVars = array(
-			'form_actions' => $form_actions->templateY($this->_module->lang('th_actions')),
+			'form_actions' => $form_actions->templateY($this->module->lang('th_actions')),
 		);
-		return $this->_module->template('admin.tpl', $tVars);
+		return $this->module->template('admin.tpl', $tVars);
 	}
 	
 	private function formActions()
 	{
 		$data = array(
-			'recalc' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_recalc_tags')),
-			'cleanup_ut' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_cleanup_ut')),
+			'recalc' => array(GWF_Form::SUBMIT, $this->module->lang('btn_recalc_tags')),
+			'cleanup_ut' => array(GWF_Form::SUBMIT, $this->module->lang('btn_cleanup_ut')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -41,7 +41,7 @@ final class Slaytags_Admin extends GWF_Method
 	private function onRecalcTags()
 	{
 		$form_actions = $this->formActions();
-		if (false !== ($error = $form_actions->validate($this->_module)))
+		if (false !== ($error = $form_actions->validate($this->module)))
 		{
 			return $error;
 		}
@@ -63,7 +63,7 @@ final class Slaytags_Admin extends GWF_Method
 		
 		$table->free($result);
 		
-		return $this->_module->message('rehashed!');
+		return $this->module->message('rehashed!');
 	}
 
 	private function onCleanupUntagged()

@@ -15,7 +15,7 @@ final class WeChall_ChallEdit extends GWF_Method
 	public function execute()
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGet('cid')))) {
-			return $this->_module->error('err_chall');
+			return $this->module->error('err_chall');
 		}
 		
 		if (false !== (Common::getPost('edit'))) {
@@ -34,18 +34,18 @@ final class WeChall_ChallEdit extends GWF_Method
 	private function getForm(WC_Challenge $chall)
 	{
 		$buttons = array(
-			'edit' => $this->_module->lang('btn_edit'),
-			'reset' => $this->_module->lang('btn_reset'),
-			'delete' => $this->_module->lang('btn_delete'),
+			'edit' => $this->module->lang('btn_edit'),
+			'reset' => $this->module->lang('btn_reset'),
+			'delete' => $this->module->lang('btn_delete'),
 		);
 		$data = array(
-			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $this->_module->lang('th_chall_score')),
-			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $this->_module->lang('th_chall_title')),
-			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $this->_module->lang('th_chall_tags')),
-			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $this->_module->lang('th_chall_url')),
-			'solution' => array(GWF_Form::STRING, '', $this->_module->lang('th_chall_solution')),
-			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $this->_module->lang('th_chall_creator_name')),
-			'case_i' => array(GWF_Form::CHECKBOX, $chall->isCaseI(), $this->_module->lang('th_chall_case_i')),
+			'score' => array(GWF_Form::INT, $chall->getVar('chall_score'), $this->module->lang('th_chall_score')),
+			'title' => array(GWF_Form::STRING, $chall->getVar('chall_title'), $this->module->lang('th_chall_title')),
+			'tags' => array(GWF_Form::STRING, $chall->getVar('chall_tags'), $this->module->lang('th_chall_tags')),
+			'url' => array(GWF_Form::STRING, $chall->getVar('chall_url'), $this->module->lang('th_chall_url')),
+			'solution' => array(GWF_Form::STRING, '', $this->module->lang('th_chall_solution')),
+			'creators' => array(GWF_Form::STRING, $chall->getVar('chall_creator_name'), $this->module->lang('th_chall_creator_name')),
+			'case_i' => array(GWF_Form::CHECKBOX, $chall->isCaseI(), $this->module->lang('th_chall_case_i')),
 			'cmd' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
@@ -55,15 +55,15 @@ final class WeChall_ChallEdit extends GWF_Method
 	{
 		$form = $this->getForm($chall);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_chall')),
+			'form' => $form->templateY($this->module->lang('ft_edit_chall')),
 		);
-		return $this->_module->templatePHP('chall_edit.php', $tVars);
+		return $this->module->templatePHP('chall_edit.php', $tVars);
 	}
 
 	private function onEdit(WC_Challenge $chall)
 	{
 		$form = $this->getForm($chall);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 
@@ -93,7 +93,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$old_score = $chall->getVar('chall_score');
 		if ($new_score !== $old_score) {
 			if (!WC_Challenge::isValidScore($new_score)) {
-				$msgs .= $this->_module->error('err_chall_score', array($new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE));
+				$msgs .= $this->module->error('err_chall_score', array($new_score, WC_Challenge::MIN_SCORE, WC_Challenge::MAX_SCORE));
 			}
 			
 			if (false === ($chall->saveVar('chall_score', $new_score))) {
@@ -129,7 +129,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		Module_WeChall::instance()->cacheChallTags();
 		
 		# Done
-		return $msgs.$this->_module->message('msg_chall_edited');
+		return $msgs.$this->module->message('msg_chall_edited');
 	}
 
 	private function onDelete(WC_Challenge $chall)
@@ -141,7 +141,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		$wc = WC_Site::getWeChall();
 		$wc->recalcSite();
 		
-		return $this->_module->message('msg_chall_deleted');
+		return $this->module->message('msg_chall_deleted');
 	}
 	
 	##################

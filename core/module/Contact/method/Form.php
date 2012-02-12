@@ -12,8 +12,8 @@ final class Contact_Form extends GWF_Method
 
 	public function execute()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('page_title'));
-		GWF_Website::setMetaTags($this->_module->lang('page_meta'));
+		GWF_Website::setPageTitle($this->module->lang('page_title'));
+		GWF_Website::setMetaTags($this->module->lang('page_meta'));
 		if (false !== (Common::getPost('contact')))
 		{
 			return $this->onSend();
@@ -26,12 +26,12 @@ final class Contact_Form extends GWF_Method
 		if ($arg === '') {
 			return false;
 		}
-		return GWF_Validator::isValidEmail($arg) ? false : $this->_module->lang('err_email');
+		return GWF_Validator::isValidEmail($arg) ? false : $this->module->lang('err_email');
 	}
 
 	public function validate_message(GWF_Module $module, $arg)
 	{
-		return strlen($arg) < 5 ? $this->_module->lang('err_message') : false;
+		return strlen($arg) < 5 ? $this->module->lang('err_message') : false;
 	}
 
 	private function getForm()
@@ -39,13 +39,13 @@ final class Contact_Form extends GWF_Method
 		$user = GWF_Session::getUser();
 		$default_email = $user === false ? '' : $user->getVar('user_email');
 		$data = array(
-			'email' => array(GWF_Form::STRING, $default_email, $this->_module->lang('th_email')),
-			'message' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_message')),
+			'email' => array(GWF_Form::STRING, $default_email, $this->module->lang('th_email')),
+			'message' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_message')),
 		);
-		if ($this->_module->isCaptchaEnabled()) {
+		if ($this->module->isCaptchaEnabled()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
-		$data['contact'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_contact'), '');
+		$data['contact'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_contact'), '');
 
 		return new GWF_Form($this, $data);
 	}
@@ -53,14 +53,14 @@ final class Contact_Form extends GWF_Method
 	private function templateForm()
 	{
 		$form = $this->getForm();
-		$skype = $this->_module->getContactSkype();
+		$skype = $this->module->getContactSkype();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('form_title')),
-			'email' => $this->_module->getContactEMail(),
-			'skype' => $skype === '' ? '' : $this->_module->lang('info_skype', array( $skype)),
+			'form' => $form->templateY($this->module->lang('form_title')),
+			'email' => $this->module->getContactEMail(),
+			'skype' => $skype === '' ? '' : $this->module->lang('info_skype', array( $skype)),
 			'admin_profiles' => $this->getAdminProfiles(),
 		);
-		return $this->_module->template('form.tpl', $tVars);
+		return $this->module->template('form.tpl', $tVars);
 	}
 
 	private function getAdminProfiles()
@@ -86,7 +86,7 @@ final class Contact_Form extends GWF_Method
 	private function onSend()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateForm();
 		}
 
@@ -115,7 +115,7 @@ final class Contact_Form extends GWF_Method
 			$send_to[] = $user->displayUsername();
 		}
 		
-		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $this->_module->message('msg_mailed', array(GWF_Array::implodeHuman($send_to)));
+		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $this->module->message('msg_mailed', array(GWF_Array::implodeHuman($send_to)));
 	}
 	
 	private function onSendC($email, $message, GWF_User $user)
@@ -123,8 +123,8 @@ final class Contact_Form extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
-		$mail->setSubject($this->_module->langUser($user, 'mail_subj'));
-		$mail->setBody($this->_module->langUser($user, 'mail_body', array($email, $message)));
+		$mail->setSubject($this->module->langUser($user, 'mail_subj'));
+		$mail->setBody($this->module->langUser($user, 'mail_body', array($email, $message)));
 		return $mail->sendToUser($user);
 	}
 }

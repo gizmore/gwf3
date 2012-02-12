@@ -41,7 +41,7 @@ final class Slaytags_Staff extends GWF_Method
 		
 		$tVars = array(
 		);
-		return $this->_module->template('staff.tpl', $tVars);
+		return $this->module->template('staff.tpl', $tVars);
 	}
 	
 }

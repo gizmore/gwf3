@@ -51,7 +51,7 @@ final class News_Feed extends GWF_Method
 
 		echo
 			'<?xml version="1.0" encoding="UTF-8" ?>'.PHP_EOL.
-			$this->_module->templatePHP('feed.php', $tVars);
+			$this->module->templatePHP('feed.php', $tVars);
 		
 		die();
 	}
@@ -59,7 +59,7 @@ final class News_Feed extends GWF_Method
 	private function getItems(GWF_Language $lang)
 	{
 		$back = array();
-		$items = GWF_News::getNews($this->_module->cfgFeedItemcount(), 0, 1, "news_date DESC", false);
+		$items = GWF_News::getNews($this->module->cfgFeedItemcount(), 0, 1, "news_date DESC", false);
 		$langid = $lang->getID();
 		foreach ($items as $item)
 		{

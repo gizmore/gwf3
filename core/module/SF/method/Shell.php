@@ -23,7 +23,7 @@ final class SF_Shell extends GWF_Method
 		if($cmdS != NULL || $cmdS === false)
 		{
 			return $this->getMoMe() === array($_GET['mo'], $_GET['me']) ?
-				$this->_module->error('err_no_command_given') : '';
+				$this->module->error('err_no_command_given') : '';
 		}
 		
 		$cmdA = explode(' ', trim($cmdS));
@@ -53,13 +53,13 @@ final class SF_Shell extends GWF_Method
 		
 		if(strpos('.', $cmd) || strpos('/', $cmd))
 		{
-			return $this->_module->error('err_hacking_attemp');
+			return $this->module->error('err_hacking_attemp');
 		}
 		
 		$file = GWF_CORE_PATH.'module/SF/SF_Function.php';
 		if(false === Common::isFile($file))
 		{
-			return $this->_module->error('err_no_function');
+			return $this->module->error('err_no_function');
 		}
 
 		require_once $file;
@@ -79,7 +79,7 @@ final class SF_Shell extends GWF_Method
 		}
 		else
 		{
-			$this->_module->error('err_no_command', array($cmd));
+			$this->module->error('err_no_command', array($cmd));
 		}
 	}
 	public function onPipe($cmdS)
@@ -115,11 +115,11 @@ final class SF_Shell extends GWF_Method
 			$tVars = array(
 				'functions' => $functions,
 			);
-			return $this->_module->template('shellhelp.tpl', $tVars);
+			return $this->module->template('shellhelp.tpl', $tVars);
 		}
 		else
 		{
-			return $this->_module->lang('tt_'.$cmd);
+			return $this->module->lang('tt_'.$cmd);
 		}
 	}
 	
@@ -129,7 +129,7 @@ final class SF_Shell extends GWF_Method
 			'output' => $output,
 			'lastCMD' => $lastCMD
 		);
-		return $this->_module->template('shell.tpl', $tVars);
+		return $this->module->template('shell.tpl', $tVars);
 	}
 	
 }

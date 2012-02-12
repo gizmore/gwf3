@@ -18,13 +18,13 @@ final class Slaytags_Songs extends GWF_Method
 		$joins = NULL;
 		
 		$headers = array();
-		$headers[] = array($this->_module->lang('th_artist'), 'ss_artist');
-		$headers[] = array($this->_module->lang('th_title'), 'ss_title');
-		$headers[] = array($this->_module->lang('th_duration'), 'ss_duration');
-		$headers[] = array($this->_module->lang('D'));
-		$headers[] = array($this->_module->lang('L'));
-		$headers[] = array($this->_module->lang('T'));
-		$headers[] = array($this->_module->lang('th_tags'));
+		$headers[] = array($this->module->lang('th_artist'), 'ss_artist');
+		$headers[] = array($this->module->lang('th_title'), 'ss_title');
+		$headers[] = array($this->module->lang('th_duration'), 'ss_duration');
+		$headers[] = array($this->module->lang('D'));
+		$headers[] = array($this->module->lang('L'));
+		$headers[] = array($this->module->lang('T'));
+		$headers[] = array($this->module->lang('th_tags'));
 		
 		$where = "";
 		
@@ -46,7 +46,7 @@ final class Slaytags_Songs extends GWF_Method
 			'songs' => $songs,
 			'headers' => $headers,
 		);
-		return $this->_module->template('songs.tpl', $tVars);
+		return $this->module->template('songs.tpl', $tVars);
 	}
 }
 ?>

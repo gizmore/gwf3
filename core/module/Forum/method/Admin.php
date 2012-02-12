@@ -31,7 +31,7 @@ final class Forum_Admin extends GWF_Method
 	private function templateAdmin()
 	{
 		$posts = GDO::table('GWF_ForumPost');
-		$ipp = $this->_module->getPostsPerThread();
+		$ipp = $this->module->getPostsPerThread();
 
 		# In Moderation
 		$mconditions = 'post_options&'.GWF_ForumPost::IN_MODERATION;
@@ -52,7 +52,7 @@ final class Forum_Admin extends GWF_Method
 			'href_cleanup' => $this->getMethodHref('&cleanup=now'),
 		
 		);
-		return $this->_module->templatePHP('admin.php', $tVars);
+		return $this->module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function onCleanup()
@@ -71,7 +71,7 @@ final class Forum_Admin extends GWF_Method
 		}
 		$dp = $posts->affectedRows();
 		
-		return $this->_module->message('msg_cleanup', array($dt, $dp));
+		return $this->module->message('msg_cleanup', array($dt, $dp));
 	}
 
 	private function onFixCounters()

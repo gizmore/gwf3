@@ -6,7 +6,7 @@ final class Payment_StaffOrder extends GWF_Method
 	public function execute()
 	{
 		if (false === ($order = GWF_Order::getByID(Common::getGet('oid')))) {
-			return $this->_module->error('err_order');
+			return $this->module->error('err_order');
 		}
 		
 		if (false !== (Common::getGet('mark_paid'))) {
@@ -41,15 +41,15 @@ final class Payment_StaffOrder extends GWF_Method
 			'display' => $gdo->displayOrder($module2),
 			'href_paid' => GWF_WEB_ROOT.'index.php?mo=Payment&me=StaffOrder&oid='.$oid.'&mark_paid=true',
 			'form_exec' => $form_exec->templateX(false, false),
-			'form_edit' => $form_edit->templateY($this->_module->lang('ft_edit_order')),
+			'form_edit' => $form_edit->templateY($this->module->lang('ft_edit_order')),
 		);
-		return $this->_module->templatePHP('staff_order.php', $tVars);
+		return $this->module->templatePHP('staff_order.php', $tVars);
 	}
 	
 	private function getFormExec(GWF_Order $order)
 	{
 		$data = array(
-			'exec' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_execute')),
+			'exec' => array(GWF_Form::SUBMIT, $this->module->lang('btn_execute')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -57,7 +57,7 @@ final class Payment_StaffOrder extends GWF_Method
 	private function getFormEdit(GWF_Order $order)
 	{
 		$data = array(
-			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
+			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -65,7 +65,7 @@ final class Payment_StaffOrder extends GWF_Method
 	private function onExecute(GWF_Order $order)
 	{
 		$form_exec = $this->getFormExec($order);
-		if (false !== ($errors = $form_exec->validate($this->_module))) {
+		if (false !== ($errors = $form_exec->validate($this->module))) {
 			return $errors;
 		}
 		

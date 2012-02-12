@@ -7,7 +7,7 @@ final class Slaytags_Tag extends GWF_Method
 	{
 		if (false === ($song = Slay_Song::getByID(Common::getGetString('stid'))))
 		{
-			return $this->_module->error('err_song');
+			return $this->module->error('err_song');
 		}
 		
 		if (isset($_POST['doit']))
@@ -27,11 +27,11 @@ final class Slaytags_Tag extends GWF_Method
 		$tVars = array(
 			'song' => $song,
 			'has_tagged' => $has_tagged,
-			'form' => $form->templateY($this->_module->lang('ft_tag')),
+			'form' => $form->templateY($this->module->lang('ft_tag')),
 // 			'form' => $this->getTinyFormTag($song),
-			'href_add_tag' => $this->_module->getMethodURL('AddTag', '&stid='.$song->getID()),
+			'href_add_tag' => $this->module->getMethodURL('AddTag', '&stid='.$song->getID()),
 		);
-		return $this->_module->template('tag.tpl', $tVars);
+		return $this->module->template('tag.tpl', $tVars);
 	}
 	
 // 	private function getTinyFormTag(Slay_Song $song)
@@ -49,10 +49,10 @@ final class Slaytags_Tag extends GWF_Method
 		foreach (Slay_Tag::getTagNames() as $tag)
 		{
 			$checked = in_array($tag, $votes, true);
-			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->module->lang('tag', array($tag, $song->getVotePercent($tag))));
 		}
 		
-		$data['doit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_tag'));
+		$data['doit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_tag'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -68,14 +68,14 @@ final class Slaytags_Tag extends GWF_Method
 		foreach (Slay_Tag::getTagNames() as $tag)
 		{
 			$checked = in_array($tag, $votes, true) ? ' checked="checked"' : '';
-// 			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+// 			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->module->lang('tag', array($tag, $song->getVotePercent($tag))));
 			
-			$html .= sprintf('<input type="checkbox" name="tag_%s"%s /><span>%s</span>', $tag, $checked, $this->_module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			$html .= sprintf('<input type="checkbox" name="tag_%s"%s /><span>%s</span>', $tag, $checked, $this->module->lang('tag', array($tag, $song->getVotePercent($tag))));
 		}
 		$html .= '</div>'.PHP_EOL;
 	
 		$data['html'] = array(GWF_Form::HTML, $html);
-		$data['doit'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_tag'));
+		$data['doit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_tag'));
 	
 		return new GWF_Form($this, $data);
 	}
@@ -98,7 +98,7 @@ final class Slaytags_Tag extends GWF_Method
 				$k = substr($k, 4);
 				if (Slay_Tag::getByName($k) === false)
 				{
-					$errors[] = $this->_module->lang('err_tag_uk');
+					$errors[] = $this->module->lang('err_tag_uk');
 				}
 				else
 				{
@@ -129,7 +129,7 @@ final class Slaytags_Tag extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_tagged');
+		return $this->module->message('msg_tagged');
 	}
 }
 ?>

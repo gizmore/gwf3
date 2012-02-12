@@ -46,8 +46,8 @@ final class Usergroups_AvatarGallery extends GWF_Method
 		$has_av = GWF_User::HAS_AVATAR;
 		$usert = GDO::table('GWF_User');
 		
-		$num_x = $this->_module->cfgAvatarsX();
-		$num_y = $this->_module->cfgAvatarsY();
+		$num_x = $this->module->cfgAvatarsX();
+		$num_y = $this->module->cfgAvatarsY();
 		$ipp = $num_x * $num_y;
 		$nItems = $usert->countRows("user_options&$has_av>0");
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
@@ -57,9 +57,9 @@ final class Usergroups_AvatarGallery extends GWF_Method
 		
 		$query = "SELECT user_id,user_name,user_avatar_v,ag_hits,user_level FROM $users LEFT JOIN $ag ON ag_uid=user_id AND ag_version=user_avatar_v WHERE user_options&$has_av>0  ORDER BY ag_hits DESC, user_level DESC $limit";
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_avatars'));
-		GWF_Website::setMetaDescr($this->_module->lang('md_avatars'));
-		GWF_Website::setMetaTags($this->_module->lang('mt_avatars'));
+		GWF_Website::setPageTitle($this->module->lang('pt_avatars'));
+		GWF_Website::setMetaDescr($this->module->lang('md_avatars'));
+		GWF_Website::setMetaTags($this->module->lang('mt_avatars'));
 		
 		$tVars = array(
 			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'avatar/gallery/page-%PAGE%'),
@@ -67,7 +67,7 @@ final class Usergroups_AvatarGallery extends GWF_Method
 			'num_x' => $num_x,
 			'num_y' => $num_y,
 		);
-		return $this->_module->templatePHP('avatars.php', $tVars);
+		return $this->module->templatePHP('avatars.php', $tVars);
 	}
 }
 

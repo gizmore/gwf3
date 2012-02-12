@@ -29,12 +29,12 @@ final class Comments_Moderate extends GWF_Method
 	{
 		if (false === ($c = GWF_Comment::getByID($cmt_id)))
 		{
-			return $this->_module->error('err_comment');
+			return $this->module->error('err_comment');
 		}
 		
 		if (Common::getGetString('ctoken', '') !== $c->getHashcode())
 		{
-			return $this->_module->error('err_hashcode');
+			return $this->module->error('err_hashcode');
 		}
 		
 		$this->comment = $c;
@@ -54,7 +54,7 @@ final class Comments_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_visible');
+		return $this->module->message('msg_visible');
 	}
 
 	private function onDelete($cmt_id)
@@ -69,7 +69,7 @@ final class Comments_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_deleted');
+		return $this->module->message('msg_deleted');
 	}
 }
 ?>

@@ -47,13 +47,13 @@ final class Votes_Polls extends GWF_Method
 			'may_add_poll' => Module_Votes::mayAddPoll($user),
 			'href_add_poll' => GWF_WEB_ROOT.'poll/add',
 		);
-		return $this->_module->templatePHP('polls.php', $tVars);
+		return $this->module->templatePHP('polls.php', $tVars);
 	}
 
 	private function templatePoll($pollid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($pollid))) {
-			return $this->_module->error('err_poll').$this->templatePolls();
+			return $this->module->error('err_poll').$this->templatePolls();
 		}
 		
 		return $poll->showResults(300);

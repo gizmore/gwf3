@@ -26,7 +26,7 @@ final class PaymentPaypal_ConfirmCheckout2 extends GWF_Method
 		holds the name value pairs
 		*/
 		if (false === ($resArray = @unserialize($order->getOrderXToken()))) {
-			return $mp->error('err_xtoken', $this->_module->getSiteName());
+			return $mp->error('err_xtoken', $this->module->getSiteName());
 		}
 		$token = $resArray["TOKEN"];
 		$paymentAmount = $order->getOrderPriceTotal();

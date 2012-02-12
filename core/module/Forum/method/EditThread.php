@@ -17,8 +17,8 @@ final class Forum_EditThread extends GWF_Method
 	
 	public function execute()
 	{
-		if (false === ($this->thread = $this->_module->getCurrentThread())) {
-			return $this->_module->error('err_thread');
+		if (false === ($this->thread = $this->module->getCurrentThread())) {
+			return $this->module->error('err_thread');
 		}
 		
 		if (!$this->thread->hasEditPermission(GWF_Session::getUser())) {
@@ -42,17 +42,17 @@ final class Forum_EditThread extends GWF_Method
 	{
 		$t = $this->thread;
 		$data = array(
-			'sticky' => array(GWF_Form::CHECKBOX, $t->isSticky(), $this->_module->lang('th_sticky')),
-			'hidden' => array(GWF_Form::CHECKBOX, $t->isHidden(), $this->_module->lang('th_hidden')),
-			'closed' => array(GWF_Form::CHECKBOX, $t->isClosed(), $this->_module->lang('th_closed')),
-			'guest_view' => array(GWF_Form::CHECKBOX, $t->isGuestView(), $this->_module->lang('th_guest_view')),
-			'invisible' => array(GWF_Form::CHECKBOX, $t->isInvisible(), $this->_module->lang('th_invisble')),
-			'title' => array(GWF_Form::STRING, $t->getVar('thread_title'), $this->_module->lang('th_title')), 
-			'merge' => array(GWF_Form::SELECT, $t->getMergeSelect('merge'), $this->_module->lang('th_merge')),
-//			'move' => array(GWF_Form::GDO, $t->getBoardID(), $this->_module->lang('th_board'), 0, 'GWF_ForumBoard'),
-			'move' => array(GWF_Form::SELECT, GWF_ForumBoardSelect::single('move', $t->getBoardID()), $this->_module->lang('th_board')),
-			'edit' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit')),
-			'delete' => array(GWF_Form::SUBMIT, $this->_module->lang('th_delete')),
+			'sticky' => array(GWF_Form::CHECKBOX, $t->isSticky(), $this->module->lang('th_sticky')),
+			'hidden' => array(GWF_Form::CHECKBOX, $t->isHidden(), $this->module->lang('th_hidden')),
+			'closed' => array(GWF_Form::CHECKBOX, $t->isClosed(), $this->module->lang('th_closed')),
+			'guest_view' => array(GWF_Form::CHECKBOX, $t->isGuestView(), $this->module->lang('th_guest_view')),
+			'invisible' => array(GWF_Form::CHECKBOX, $t->isInvisible(), $this->module->lang('th_invisble')),
+			'title' => array(GWF_Form::STRING, $t->getVar('thread_title'), $this->module->lang('th_title')), 
+			'merge' => array(GWF_Form::SELECT, $t->getMergeSelect('merge'), $this->module->lang('th_merge')),
+//			'move' => array(GWF_Form::GDO, $t->getBoardID(), $this->module->lang('th_board'), 0, 'GWF_ForumBoard'),
+			'move' => array(GWF_Form::SELECT, GWF_ForumBoardSelect::single('move', $t->getBoardID()), $this->module->lang('th_board')),
+			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
+			'delete' => array(GWF_Form::SUBMIT, $this->module->lang('th_delete')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -63,24 +63,24 @@ final class Forum_EditThread extends GWF_Method
 		$tVars = array(
 			'thread' => $this->thread,
 			'href_add_poll' => $this->thread->hrefAddPoll(),
-			'form' => $form->templateY($this->_module->lang('ft_edit_thread')),
+			'form' => $form->templateY($this->module->lang('ft_edit_thread')),
 		);
-		return $this->_module->templatePHP('edit_thread.php', $tVars);
+		return $this->module->templatePHP('edit_thread.php', $tVars);
 	}
 
 	##################
 	### Validators ###
 	##################
-	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
-	public function validate_merge(Module_Forum $module, $arg) { return $this->_module->validate_thread($arg); }
-	public function validate_move(Module_Forum $module, $arg) { return $this->_module->validate_parentid($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->module->validate_title($arg); }
+	public function validate_merge(Module_Forum $module, $arg) { return $this->module->validate_thread($arg); }
+	public function validate_move(Module_Forum $module, $arg) { return $this->module->validate_parentid($arg); }
 	
 	private function onEdit()
 	{
 		$t = $this->thread;
 		$form = $this->getForm();
 		
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -101,7 +101,7 @@ final class Forum_EditThread extends GWF_Method
 			return $this->onMerge($t, GWF_ForumThread::getThread($tid));
 		}
 		
-		return $this->_module->message('msg_edited_thread');
+		return $this->module->message('msg_edited_thread');
 	}
 	
 	private function onDelete()
@@ -109,7 +109,7 @@ final class Forum_EditThread extends GWF_Method
 		$t = $this->thread;
 		$form = $this->getForm();
 		
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateEditThread();
 		}
 		
@@ -117,16 +117,16 @@ final class Forum_EditThread extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEditThread();
 		}
 		
-		$this->_module->cachePostcount();
+		$this->module->cachePostcount();
 		
-		return $this->_module->message('msg_thread_deleted');
+		return $this->module->message('msg_thread_deleted');
 	}
 	
 	private function onMove(GWF_ForumThread $t, GWF_ForumBoard $b)
 	{
 //		if (false === ($b->isThreadAllowed())) {
 //			$_POST['move'] = $t->getBoardID();
-//			return $this->_module->error('err_no_thread_allowed');
+//			return $this->module->error('err_no_thread_allowed');
 //		}
 		
 		$pc = $t->getPostCount();
@@ -143,7 +143,7 @@ final class Forum_EditThread extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_thread_moved', array($t->display('thread_title'), $b->display('board_title')));
+		return $this->module->message('msg_thread_moved', array($t->display('thread_title'), $b->display('board_title')));
 	}
 
 	private function onMerge(GWF_ForumThread $first, GWF_ForumThread $last)
@@ -183,7 +183,7 @@ final class Forum_EditThread extends GWF_Method
 		}
 		
 		// Done
-		return $this->_module->message('msg_merged');
+		return $this->module->message('msg_merged');
 	}
 }
 

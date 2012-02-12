@@ -30,7 +30,7 @@ final class Helpdesk_ShowTickets extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Helpdesk&me=ShowTickets&by=%BY%&dir=%DIR%',
 		);
-		return $this->_module->template('user.tpl', $tVars);
+		return $this->module->template('user.tpl', $tVars);
 	}
 }
 ?>

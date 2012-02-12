@@ -13,7 +13,7 @@ final class Admin_Modules extends GWF_Method
 	}
 	public function execute()
 	{
-		return $this->_module->templateNav().$this->templateModules();
+		return $this->module->templateNav().$this->templateModules();
 	}
 	
 	private function templateModules()
@@ -22,16 +22,16 @@ final class Admin_Modules extends GWF_Method
 		$by = $gdo->getWhitelistedBy(Common::getGetString('by'), 'module_name');
 		$dir = GDO::getWhitelistedDirS(Common::getGetString('dir', 'ASC'));
 		$headers = array(
-			array($this->_module->lang('th_priority'), 'module_priority', 'ASC'),
-			array($this->_module->lang('th_move')),
-			array($this->_module->lang('th_name'), 'module_name', 'ASC'),
-			array($this->_module->lang('th_version_db')),
-			array($this->_module->lang('th_version_hd')),
-			array($this->_module->lang('th_install')),
-			array($this->_module->lang('th_basic')),
-			array($this->_module->lang('th_adv')),
+			array($this->module->lang('th_priority'), 'module_priority', 'ASC'),
+			array($this->module->lang('th_move')),
+			array($this->module->lang('th_name'), 'module_name', 'ASC'),
+			array($this->module->lang('th_version_db')),
+			array($this->module->lang('th_version_hd')),
+			array($this->module->lang('th_install')),
+			array($this->module->lang('th_basic')),
+			array($this->module->lang('th_adv')),
 		);
-		$modules = $this->_module->getAllModules($by, $dir);
+		$modules = $this->module->getAllModules($by, $dir);
 		
 		# Need install?
 		$install_all = '';
@@ -40,7 +40,7 @@ final class Admin_Modules extends GWF_Method
 				continue;
 			}
 			if ($d['vdb'] < $d['vfs']) {
-				$install_all = $this->_module->lang('install_info', array(Module_Admin::getInstallAllURL()));
+				$install_all = $this->module->lang('install_info', array(Module_Admin::getInstallAllURL()));
 				break;
 			}
 		}
@@ -50,12 +50,12 @@ final class Admin_Modules extends GWF_Method
 			'install_all' => $install_all,
 			'tablehead' => GWF_Table::displayHeaders1($headers, Module_Admin::getSortURL('%BY%', '%DIR%'), 'module_name', 'ASC'),
 		
-			'install' => $this->_module->lang('btn_install'),
-			'configure' => $this->_module->lang('btn_config'),
-			'adminsect' => $this->_module->lang('btn_admin_section'),
+			'install' => $this->module->lang('btn_install'),
+			'configure' => $this->module->lang('btn_config'),
+			'adminsect' => $this->module->lang('btn_admin_section'),
 		);
 		
-		return $this->_module->template('modules.tpl', $tVars);
+		return $this->module->template('modules.tpl', $tVars);
 	}
 }
 

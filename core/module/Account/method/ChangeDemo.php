@@ -88,7 +88,7 @@ final class Account_ChangeDemo extends GWF_Method
 	{
 		$userid = (int) Common::getGet('userid');
 		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'demo'))) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		if (false === ($user = GWF_User::getByID($userid))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
@@ -108,7 +108,7 @@ final class Account_ChangeDemo extends GWF_Method
 		
 		GWF_AccountChange::createToken($userid, 'demo_lock');
 		
-		return $this->_module->message('msg_demo_changed');
+		return $this->module->message('msg_demo_changed');
 	}
 }
 

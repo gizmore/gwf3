@@ -9,7 +9,7 @@ final class Lamb_Account extends GWF_Method
 
 	public function execute()
 	{
-		$this->_module->initShadowlamb();
+		$this->module->initShadowlamb();
 		
 		if (false !== ($error = $this->initPlayers())) {
 			return $error;
@@ -39,9 +39,9 @@ final class Lamb_Account extends GWF_Method
 	private function formLink()
 	{
 		$data = array(
-			'player_name' => array(GWF_Form::STRING, '', $this->_module->lang('th_player_name'), $this->_module->lang('tt_player_name')),
-			'player_pass' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_player_pass'), $this->_module->lang('tt_player_pass')),
-			'link_player' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_link_account')),
+			'player_name' => array(GWF_Form::STRING, '', $this->module->lang('th_player_name'), $this->module->lang('tt_player_name')),
+			'player_pass' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_player_pass'), $this->module->lang('tt_player_pass')),
+			'link_player' => array(GWF_Form::SUBMIT, $this->module->lang('btn_link_account')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -51,9 +51,9 @@ final class Lamb_Account extends GWF_Method
 		$user = GWF_Session::getUser();
 		$default_name = $user->getVar('user_name');
 		$data = array(
-			'create_player_name' => array(GWF_Form::STRING, $default_name, $this->_module->lang('th_player_name'), $this->_module->lang('tt_player_name')),
-			'create_player_pass' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_player_pass'), $this->_module->lang('tt_player_pass')),
-			'create_player' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create_account')),
+			'create_player_name' => array(GWF_Form::STRING, $default_name, $this->module->lang('th_player_name'), $this->module->lang('tt_player_name')),
+			'create_player_pass' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_player_pass'), $this->module->lang('tt_player_pass')),
+			'create_player' => array(GWF_Form::SUBMIT, $this->module->lang('btn_create_account')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -63,12 +63,12 @@ final class Lamb_Account extends GWF_Method
 		$formLink = $this->formLink();
 		$formCreate = $this->formCreate();
 		$tVars = array(
-			'form_link' => $formLink->templateX($this->_module->lang('ft_link')),
+			'form_link' => $formLink->templateX($this->module->lang('ft_link')),
 			'form_create' => $formCreate->templateX(),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Lamb&me=Account&by=%BY%&dir=%DIR%',
 			'chars' => $this->sr_players,
 		);
-		return $this->_module->templatePHP('account.php', $tVars);
+		return $this->module->templatePHP('account.php', $tVars);
 	}
 	
 	public function validate_create_player_name(Module_Lamb $m, $arg)
@@ -117,7 +117,7 @@ final class Lamb_Account extends GWF_Method
 	private function onLink()
 	{
 		$form = $this->formLink();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 
@@ -125,13 +125,13 @@ final class Lamb_Account extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		return $this->_module->message('msg_char_linked');
+		return $this->module->message('msg_char_linked');
 	}
 
 	private function onCreate()
 	{
 		$form = $this->formCreate();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -162,7 +162,7 @@ final class Lamb_Account extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		return $this->_module->message('msg_char_created');
+		return $this->module->message('msg_char_created');
 	}
 }
 ?>

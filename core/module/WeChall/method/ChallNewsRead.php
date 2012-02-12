@@ -23,7 +23,7 @@ final class WeChall_ChallNewsRead extends GWF_Method
 		if (false === $db->queryWrite($query)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return $this->_module->message('msg_challs_marked');
+		return $this->module->message('msg_challs_marked');
 	}
 }
 ?>

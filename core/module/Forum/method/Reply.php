@@ -51,37 +51,37 @@ final class Forum_Reply extends GWF_Method
 		$this->quoted = Common::getGet('quote') !== false;
 		
 		if (false === ($pid = Common::getGet('pid'))) {
-			if (false === ($this->thread = $this->_module->getCurrentThread())) {
-				return $this->_module->error('err_post');
+			if (false === ($this->thread = $this->module->getCurrentThread())) {
+				return $this->module->error('err_post');
 			}
 			if (false === ($this->post = $this->thread->getLastPost())) {
-//				return $this->_module->error('err_post');
+//				return $this->module->error('err_post');
 			}
 			$this->replyThread = true;
 		}
-		elseif (false === ($this->post = $this->_module->getCurrentPost())) {
-			return $this->_module->error('err_post');
+		elseif (false === ($this->post = $this->module->getCurrentPost())) {
+			return $this->module->error('err_post');
 		}
 		else {
 			if (false === ($this->thread = $this->post->getThread())) {
-				return $this->_module->error('err_post');
+				return $this->module->error('err_post');
 			}
 		}
 		
 		# Check Permission
 		$user = GWF_Session::getUser();
-		if (!$this->thread->hasReplyPermission($user, $this->_module)) {
+		if (!$this->thread->hasReplyPermission($user, $this->module)) {
 			$a = GWF_HTML::display($this->post->getShowHREF());
-			return $this->_module->error('err_reply_perm', array($a));
+			return $this->module->error('err_reply_perm', array($a));
 		}
 		
 		if (false !== ($last_post = $this->thread->getLastPost()))
 		{
 			if ($last_post->getPosterID() === GWF_Session::getUserID()) {
-				if (!$this->_module->cfgDoublePost())
+				if (!$this->module->cfgDoublePost())
 				{
 					$a = GWF_HTML::display($this->post->getShowHREF());
-					return $this->_module->error('err_better_edit', array($a));
+					return $this->module->error('err_better_edit', array($a));
 				}
 			}
 		}
@@ -96,15 +96,15 @@ final class Forum_Reply extends GWF_Method
 	{
 		$msg = $this->quoted === true ? $this->getQuotedMessage() : '';
 		$buttons = array(
-			'submit_reply' => $this->_module->lang('btn_reply'),
-			'submit_preview' => $this->_module->lang('btn_preview'),
+			'submit_reply' => $this->module->lang('btn_reply'),
+			'submit_preview' => $this->module->lang('btn_preview'),
 		);
 		$data = array(
-			'title' => array(GWF_Form::STRING, $this->getReplyTitle(), $this->_module->lang('th_title')),
-			'message' => array(GWF_Form::MESSAGE, $msg, $this->_module->lang('th_message')),
-			'smileys' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_smileys')),
-			'bbcode' => array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_bbcode')),
-//			'guest_view' => array(GWF_Form::CHECKBOX, $this->thread->isGuestView(), $this->_module->lang('th_guest_view')),
+			'title' => array(GWF_Form::STRING, $this->getReplyTitle(), $this->module->lang('th_title')),
+			'message' => array(GWF_Form::MESSAGE, $msg, $this->module->lang('th_message')),
+			'smileys' => array(GWF_Form::CHECKBOX, false, $this->module->lang('th_smileys')),
+			'bbcode' => array(GWF_Form::CHECKBOX, false, $this->module->lang('th_bbcode')),
+//			'guest_view' => array(GWF_Form::CHECKBOX, $this->thread->isGuestView(), $this->module->lang('th_guest_view')),
 			'submit' => array(GWF_Form::SUBMITS, $buttons, ''),
 		);
 		return new GWF_Form($this, $data);
@@ -139,17 +139,17 @@ final class Forum_Reply extends GWF_Method
 		$url = $_SERVER['REQUEST_URI'].'#form';
 		
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_reply'), $url),
+			'form' => $form->templateY($this->module->lang('ft_reply'), $url),
 			'preview' => $preview,
 		);
-		return $this->_module->templatePHP('reply.php', $tVars);
+		return $this->module->templatePHP('reply.php', $tVars);
 	}
 	
 	private function templateLastPosts()
 	{
 		$tVars = array(
 			'thread' => $this->thread,
-			'posts' => $this->getLastPosts($this->_module->getLastPostsReply()),
+			'posts' => $this->getLastPosts($this->module->getLastPostsReply()),
 			'pagemenu' => '',
 			'actions' => false,
 			'title' => true,
@@ -159,7 +159,7 @@ final class Forum_Reply extends GWF_Method
 			'can_thank' => false,
 			'term' => array(),
 		);
-		return $this->_module->templatePHP('show_thread.php', $tVars);
+		return $this->module->templatePHP('show_thread.php', $tVars);
 	}
 	
 	private function getLastPosts($count)
@@ -174,7 +174,7 @@ final class Forum_Reply extends GWF_Method
 	private function onPreview()
 	{
 		$form = $this->getForm();
-		$error = $form->validate($this->_module);
+		$error = $form->validate($this->module);
 
 		$user = GWF_Session::getUser();
 		$title = $form->getVar('title');
@@ -200,7 +200,7 @@ final class Forum_Reply extends GWF_Method
 		return $error.
 			$this->templateLastPosts().
 			'<a name="form"></a>'.
-			$this->_module->templatePHP('show_thread.php', $tVars).
+			$this->module->templatePHP('show_thread.php', $tVars).
 			$this->templateReply(true);
 	}
 	
@@ -210,13 +210,13 @@ final class Forum_Reply extends GWF_Method
 	private function onReply()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateReply();
 		}
 		
 		# Gather vars
 		$user = GWF_Session::getUser();
-		$is_mod = $user === false && $this->_module->isGuestPostModerated();
+		$is_mod = $user === false && $this->module->isGuestPostModerated();
 		
 		$title = $form->getVar('title');
 		$message = $form->getVar('message');
@@ -239,27 +239,27 @@ final class Forum_Reply extends GWF_Method
 		
 		if (!$is_mod)
 		{
-			if (false === $post->onApprove($this->_module)) {
+			if (false === $post->onApprove($this->module)) {
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 //			$this->thread->increase('thread_postcount', 1); # Increase cache :/
 			
-			$this->_module->cachePostcount();
+			$this->module->cachePostcount();
 			
-			return $this->_module->message('msg_posted', array($post->getThread()->getLastPageHREF()));
+			return $this->module->message('msg_posted', array($post->getThread()->getLastPageHREF()));
 		}
 		else
 		{
-			GWF_ForumSubscription::sendModeratePost($this->_module, $post);
-			return $this->_module->message('msg_posted_mod', array($this->thread->getLastPageHREF()));
+			GWF_ForumSubscription::sendModeratePost($this->module, $post);
+			return $this->module->message('msg_posted_mod', array($this->thread->getLastPageHREF()));
 		}
 	}
 	
 	##################
 	### Validators ###
 	##################
-	public function validate_title(Module_Forum $module, $arg) { return $this->_module->validate_title($arg); }
-	public function validate_message(Module_Forum $module, $arg) { return $this->_module->validate_message($arg); }
+	public function validate_title(Module_Forum $module, $arg) { return $this->module->validate_title($arg); }
+	public function validate_message(Module_Forum $module, $arg) { return $this->module->validate_message($arg); }
 	
 }
 

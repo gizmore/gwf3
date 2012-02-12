@@ -12,15 +12,15 @@ final class Usergroups_Search extends GWF_Method
 	private function getFormQuick()
 	{
 		$data = array(
-			'term' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
-			'search' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_search')),
+			'term' => array(GWF_Form::STRING, '', $this->module->lang('th_user_name')),
+			'search' => array(GWF_Form::SUBMIT, $this->module->lang('btn_search')),
 		);
 		return new GWF_Form($this, $data);
 	}
 	
 	private function templateUsers($term='')
 	{
-		$ipp = $this->_module->cfgIPP();
+		$ipp = $this->module->cfgIPP();
 		$form = $this->getFormQuick();
 		$usertable = GDO::table('GWF_User');
 		$by = Common::getGet('by', '');
@@ -47,13 +47,13 @@ final class Usergroups_Search extends GWF_Method
 		
 		$href_pagemenu = GWF_WEB_ROOT.'index.php?mo=Usergroups&me=Search&term='.urlencode($term).'&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%';
 		$tVars = array(
-			'form' => $form->templateX(false, false),#$this->_module->lang('ft_search_quick')),
+			'form' => $form->templateX(false, false),#$this->module->lang('ft_search_quick')),
 			'users' => $users,
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Usergroups&me=Search&term='.urlencode($term).'&by=%BY%&dir=%DIR%&page=1',
 			'page_menu' => GWF_PageMenu::display($page, $nPages, $href_pagemenu),
-			'href_adv' => $this->_module->getMethodURL('SearchAdv'),
+			'href_adv' => $this->module->getMethodURL('SearchAdv'),
 		);
-		return $this->_module->templatePHP('search.php', $tVars);
+		return $this->module->templatePHP('search.php', $tVars);
 	}
 }
 ?>

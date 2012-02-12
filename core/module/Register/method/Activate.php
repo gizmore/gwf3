@@ -17,7 +17,7 @@ final class Register_Activate extends GWF_Method
 	{
 		if ('' !== ($token = Common::getGetString('token')))
 		{
-			return self::onActivate($this->_module, $token, (Common::getGet('mail')!==false));
+			return self::onActivate($this->module, $token, (Common::getGet('mail')!==false));
 		}
 	}
 	

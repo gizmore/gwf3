@@ -22,10 +22,10 @@ final class PoolTool_MatchIP extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_matcher')),
+			'form' => $form->templateY($this->module->lang('ft_matcher')),
 			'matches' => $matches,
 		);
-		return $this->_module->templatePHP('matcher.php', $tVars);
+		return $this->module->templatePHP('matcher.php', $tVars);
 	}	
 
 	private function getForm()
@@ -41,12 +41,12 @@ final class PoolTool_MatchIP extends GWF_Method
 		}
 		
 		$data = array(
-			'pass' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_pass')),
-			'date' => array(GWF_Form::DATE, '', $this->_module->lang('th_day'), GWF_Date::LEN_DAY),
-			'hour_a' => array(GWF_Form::SELECT, $this->getHourSelect('hour_a'), $this->_module->lang('th_hour_a')),
-			'hour_b' => array(GWF_Form::SELECT, $this->getHourSelect('hour_b'), $this->_module->lang('th_hour_b')),
-			'ips' => array(GWF_Form::MESSAGE, '', $this->_module->lang('th_ips')),
-			'match' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_match')),
+			'pass' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_pass')),
+			'date' => array(GWF_Form::DATE, '', $this->module->lang('th_day'), GWF_Date::LEN_DAY),
+			'hour_a' => array(GWF_Form::SELECT, $this->getHourSelect('hour_a'), $this->module->lang('th_hour_a')),
+			'hour_b' => array(GWF_Form::SELECT, $this->getHourSelect('hour_b'), $this->module->lang('th_hour_b')),
+			'ips' => array(GWF_Form::MESSAGE, '', $this->module->lang('th_ips')),
+			'match' => array(GWF_Form::SUBMIT, $this->module->lang('btn_match')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -65,7 +65,7 @@ final class PoolTool_MatchIP extends GWF_Method
 	private function onMatch()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateMatcher();
 		}
 		

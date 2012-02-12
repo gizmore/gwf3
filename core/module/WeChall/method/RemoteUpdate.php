@@ -40,7 +40,7 @@ final class WeChall_RemoteUpdate extends GWF_Method
 			$this->outExit($unknownsite);
 		}
 		
-		$this->_module->includeClass('WC_RegAt');
+		$this->module->includeClass('WC_RegAt');
 		if (false === ($user = WC_RegAt::getUserByOnsiteName($onsitename, $site->getID())))
 		{
 			$this->outExit($unknownuser);

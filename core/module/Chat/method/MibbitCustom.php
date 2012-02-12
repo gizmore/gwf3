@@ -10,7 +10,7 @@ final class Chat_MibbitCustom extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $this->_module->templatePHP('mibbit_custom.php', $tVars);
+		return $this->module->templatePHP('mibbit_custom.php', $tVars);
 	}
 }
 ?>

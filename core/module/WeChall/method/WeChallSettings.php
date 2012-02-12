@@ -61,21 +61,21 @@ final class WeChall_WeChallSettings extends GWF_Method
 		$form = $this->getForm($userid);
 		$form_favcat = $this->getFormFavcat($userid);
 		$tVars = array(
-			'form' => $form->templateX($this->_module->lang('ft_favsites')),
+			'form' => $form->templateX($this->module->lang('ft_favsites')),
 			'favsites' => WC_SiteFavorites::getFavoriteSites($userid),
-			'form_cat' => $form_favcat->templateX($this->_module->lang('ft_favcats')),
+			'form_cat' => $form_favcat->templateX($this->module->lang('ft_favcats')),
 			'favcats' => WC_FavCats::getFavCats($userid),
 //			'sort_url' => GWF_WEB_ROOT.'favorite_sites/by/%BY%/%DIR%',
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WeChallSettings',
 		);
-		return $this->_module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings();
+		return $this->module->templatePHP('site_favorites.php', $tVars).$this->templateWeChallSettings();
 	}
 
 	private function getForm($userid)
 	{
 		$data = array(
-			'favsite' => array(GWF_Form::SELECT, $this->getSelect($userid), $this->_module->lang('th_sel_favsite')), 
-			'add_fav' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_favsite')),
+			'favsite' => array(GWF_Form::SELECT, $this->getSelect($userid), $this->module->lang('th_sel_favsite')), 
+			'add_fav' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_favsite')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -83,8 +83,8 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function getFormFavcat($userid)
 	{
 		$data = array(
-			'favcat' => array(GWF_Form::SELECT, $this->getFavcatSelect($userid), $this->_module->lang('th_cat')),
-			'add_favcat' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_add_favcat')),
+			'favcat' => array(GWF_Form::SELECT, $this->getFavcatSelect($userid), $this->module->lang('th_cat')),
+			'add_favcat' => array(GWF_Form::SUBMIT, $this->module->lang('btn_add_favcat')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -95,7 +95,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if (false === ($cats = WC_SiteCats::getAllCats())) {
 			return '';
 		}
-		$data = array(array('0', $this->_module->lang('th_sel_favcat')));
+		$data = array(array('0', $this->module->lang('th_sel_favcat')));
 		foreach ($cats as $cat)
 		{
 			$cat = htmlspecialchars($cat);
@@ -106,7 +106,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	
 	private function getSelect($userid)
 	{
-		$data = array(array('0', $this->_module->lang('th_sel_favsite')));
+		$data = array(array('0', $this->module->lang('th_sel_favsite')));
 		$sites = WC_SiteFavorites::getNonFavoriteSites($userid);
 		foreach ($sites as $site)
 		{
@@ -119,7 +119,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	public function validate_favsite(Module_WeChall $module, $arg)
 	{
 		if (false === ($this->site = WC_Site::getByID($arg))) {
-			return $this->_module->lang('err_site');
+			return $this->module->lang('err_site');
 		}
 		return false;
 	}
@@ -128,32 +128,32 @@ final class WeChall_WeChallSettings extends GWF_Method
 	{
 		$userid = GWF_Session::getUserID();
 		$form = $this->getForm($userid);
-		if (false !== ($err = $form->validate($this->_module))) {
+		if (false !== ($err = $form->validate($this->module))) {
 			return $err;
 		}
 		
 		WC_SiteFavorites::setFavorite($userid, $this->site->getID(), true);
 
-		return $this->_module->message('msg_marked_fav', array($this->site->displayName()));
+		return $this->module->message('msg_marked_fav', array($this->site->displayName()));
 	}
 
 	private function onRemoveFavorite($sid)
 	{
 		if (false === ($site = WC_Site::getByID($sid))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		
 		$userid = GWF_Session::getUserID();
 		
 		WC_SiteFavorites::setFavorite($userid, $site->getID(), false);
 		
-		return $this->_module->message('msg_unmarked_fav', array($site->displayName()));
+		return $this->module->message('msg_unmarked_fav', array($site->displayName()));
 	}
 	
 	private function onQuickjump($sid)
 	{
 		if (false === ($url = Common::getPost('favsites'))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		header('Location: '.$url);
 		die();
@@ -169,13 +169,13 @@ final class WeChall_WeChallSettings extends GWF_Method
 		$old_pass = isset($data['WC_NO_XSS_PASS']) ? $data['WC_NO_XSS_PASS'] : '';
 		
 		$data = array(
-			'priv_history' => array(GWF_Form::CHECKBOX, isset($data['WC_PRIV_HIST']), $this->_module->lang('th_priv_history'), $this->_module->lang('tt_priv_history')),
-			'cross_site' => array(GWF_Form::CHECKBOX, isset($data['WC_NO_XSS']), $this->_module->lang('th_no_xss'), $this->_module->lang('tt_no_xss')),
-			'cross_pass' => array(GWF_Form::STRING, $old_pass, $this->_module->lang('th_xss_pass'), $this->_module->lang('tt_xss_pass'), false),
+			'priv_history' => array(GWF_Form::CHECKBOX, isset($data['WC_PRIV_HIST']), $this->module->lang('th_priv_history'), $this->module->lang('tt_priv_history')),
+			'cross_site' => array(GWF_Form::CHECKBOX, isset($data['WC_NO_XSS']), $this->module->lang('th_no_xss'), $this->module->lang('tt_no_xss')),
+			'cross_pass' => array(GWF_Form::STRING, $old_pass, $this->module->lang('th_xss_pass'), $this->module->lang('tt_xss_pass'), false),
 			'div1' => array(GWF_Form::DIVIDER),
-			'hide_rank' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_RANK']), $this->_module->lang('th_hide_rank'), $this->_module->lang('tt_hide_rank')),
-			'hide_score' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_SCORE']), $this->_module->lang('th_hide_score'), $this->_module->lang('tt_hide_score')),
-			'set_settings' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_set_settings')),
+			'hide_rank' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_RANK']), $this->module->lang('th_hide_rank'), $this->module->lang('tt_hide_rank')),
+			'hide_score' => array(GWF_Form::CHECKBOX, isset($data['WC_HIDE_SCORE']), $this->module->lang('th_hide_score'), $this->module->lang('tt_hide_score')),
+			'set_settings' => array(GWF_Form::SUBMIT, $this->module->lang('btn_set_settings')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -183,7 +183,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function templateWeChallSettings()
 	{
 		$form = $this->formWCSettings();
-		return $form->templateY($this->_module->lang('ft_settings'));
+		return $form->templateY($this->module->lang('ft_settings'));
 	}
 
 	public function validate_cross_pass(Module_WeChall $module, $pass)
@@ -194,7 +194,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	private function onSetSettings()
 	{
 		$form = $this->formWCSettings();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templateFavSites();
 		}
 		
@@ -210,10 +210,10 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if ($new_priv !== $old_priv) {
 			if ($new_priv === false) {
 				unset($data['WC_PRIV_HIST']);
-				$back .= $this->_module->message('msg_priv_hist_0');
+				$back .= $this->module->message('msg_priv_hist_0');
 			} else {
 				$data['WC_PRIV_HIST'] = 1;
-				$back .= $this->_module->message('msg_priv_hist_1');
+				$back .= $this->module->message('msg_priv_hist_1');
 			}
 			$changed = 1;
 		}
@@ -227,13 +227,13 @@ final class WeChall_WeChallSettings extends GWF_Method
 			$noxss = WC_HistoryUser2::NO_XSS;
 			if ($new_xss === false) {
 				unset($data['WC_NO_XSS']);
-				$back .= $this->_module->message('msg_no_xss_0');
+				$back .= $this->module->message('msg_no_xss_0');
 				$set = "userhist_options=userhist_options-$noxss";
 				$where = "userhist_options&$noxss AND ";
 				
 			} else {
 				$data['WC_NO_XSS'] = 1;
-				$back .= $this->_module->message('msg_no_xss_1');
+				$back .= $this->module->message('msg_no_xss_1');
 				$set = "userhist_options=userhist_options|$noxss";
 				$where = "";
 			}
@@ -251,12 +251,12 @@ final class WeChall_WeChallSettings extends GWF_Method
 			if ($new_pass === '')
 			{
 				unset($data['WC_NO_XSS_PASS']);
-				$back .= $this->_module->message('msg_xss_pass_0');
+				$back .= $this->module->message('msg_xss_pass_0');
 			}
 			else
 			{
 				$data['WC_NO_XSS_PASS'] = $new_pass;
-				$back .= $this->_module->message('msg_xss_pass_1');
+				$back .= $this->module->message('msg_xss_pass_1');
 			}
 			$changed = 1;
 		}
@@ -270,13 +270,13 @@ final class WeChall_WeChallSettings extends GWF_Method
 			if ($new_hide_rank === false) {
 				unset($data['WC_HIDE_RANK']);
 				$user->saveOption(0x10000000, false);
-				$back .= $this->_module->message('msg_hide_rank_0');
+				$back .= $this->module->message('msg_hide_rank_0');
 				GDO::table('WC_RegAt')->update('regat_options=regat_options-4', "regat_uid=$uid AND regat_options&4");
 			} else {
 				$data['WC_HIDE_RANK'] = 1;
 				$user->saveOption(0x10000000, true);
 				GDO::table('WC_RegAt')->update('regat_options=regat_options|4', "regat_uid=$uid");
-				$back .= $this->_module->message('msg_hide_rank_1');
+				$back .= $this->module->message('msg_hide_rank_1');
 				
 			}
 			$changed = 1;
@@ -289,10 +289,10 @@ final class WeChall_WeChallSettings extends GWF_Method
 		{
 			if ($new_hide_score === false) {
 				unset($data['WC_HIDE_SCORE']);
-				$back .= $this->_module->message('msg_hide_score_0');
+				$back .= $this->module->message('msg_hide_score_0');
 			} else {
 				$data['WC_HIDE_SCORE'] = 1;
-				$back .= $this->_module->message('msg_hide_score_1');
+				$back .= $this->module->message('msg_hide_score_1');
 			}
 			$changed = 1;
 		}
@@ -314,7 +314,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 	{
 		$userid = GWF_Session::getUserID();
 		$form = $this->getFormFavcat($userid);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -323,7 +323,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_add_favcat', array(htmlspecialchars($cat)));
+		return $this->module->message('msg_add_favcat', array(htmlspecialchars($cat)));
 	}
 	
 	private function onRemFavCat($cat)
@@ -332,7 +332,7 @@ final class WeChall_WeChallSettings extends GWF_Method
 		if (false === (WC_FavCats::removeFavCat($userid, $cat))) {
 			return '';
 		}
-		return $this->_module->message('msg_rem_favcat', array(htmlspecialchars($cat)));
+		return $this->module->message('msg_rem_favcat', array(htmlspecialchars($cat)));
 	}
 }
 

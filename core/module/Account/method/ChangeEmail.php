@@ -57,7 +57,7 @@ final class Account_ChangeEmail extends GWF_Method
 	{
 		$userid = (int) Common::getGet('userid');
 		if (false === ($row = GWF_AccountChange::checkToken($userid, $token, 'email'))) {
-			return $this->_module->error('err_token_chmaila');
+			return $this->module->error('err_token_chmaila');
 		}
 		
 		return $this->templateChangeMailB($row);
@@ -66,9 +66,9 @@ final class Account_ChangeEmail extends GWF_Method
 	private function getChangeMailForm(GWF_AccountChange $ac)
 	{
 		$data = array(
-			'email' => array(GWF_Form::STRING, '', $this->_module->lang('th_email_new')),
-			'email_re' => array(GWF_Form::STRING, '', $this->_module->lang('th_email_re')),
-			'changemail' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_changemail')),
+			'email' => array(GWF_Form::STRING, '', $this->module->lang('th_email_new')),
+			'email_re' => array(GWF_Form::STRING, '', $this->module->lang('th_email_re')),
+			'changemail' => array(GWF_Form::SUBMIT, $this->module->lang('btn_changemail')),
 			'token' => array(GWF_Form::HIDDEN, $ac->getVar('token')),
 			'userid' => array(GWF_Form::HIDDEN, $ac->getVar('userid')),
 		);
@@ -80,9 +80,9 @@ final class Account_ChangeEmail extends GWF_Method
 		$form = $this->getChangeMailForm($ac);
 		
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('chmail_title')),
+			'form' => $form->templateY($this->module->lang('chmail_title')),
 		);
-		return $this->_module->template('changemail.tpl', $tVars);
+		return $this->module->template('changemail.tpl', $tVars);
 	}
 	
 	private function onRequestB()
@@ -90,28 +90,28 @@ final class Account_ChangeEmail extends GWF_Method
 		$token = Common::getPost('token');
 		$userid = (int) Common::getPost('userid');
 		if (false === ($row = GWF_AccountChange::checkToken($userid, $token, 'email'))) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		
 		$email1 = Common::getPost('email');
 		$email2 = Common::getPost('email_re');
 		if (!GWF_Validator::isValidEmail($email1)) {
-			return $this->_module->error('err_email_invalid').$this->templateChangeMailB($row);
+			return $this->module->error('err_email_invalid').$this->templateChangeMailB($row);
 		}
 		
 		if ($email1 !== $email2) {
-			return $this->_module->error('err_email_retype').$this->templateChangeMailB($row);
+			return $this->module->error('err_email_retype').$this->templateChangeMailB($row);
 		}
 		
 		if (GWF_User::getByEmail($email1) !== false) {
-			return $this->_module->error('err_email_taken');
+			return $this->module->error('err_email_taken');
 		}
 		
 		if (false === $row->delete()) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return self::sendEmailB($this->_module, $userid, $email1);
+		return self::sendEmailB($this->module, $userid, $email1);
 	}
 	
 	private static function sendEmailB(Module_Account $module, $userid, $email)
@@ -148,7 +148,7 @@ final class Account_ChangeEmail extends GWF_Method
 	{
 		$userid = (int) Common::getGet('userid');
 		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'email2'))) {
-			return $this->_module->error('err_token');
+			return $this->module->error('err_token');
 		}
 		
 		if (false === ($user = $ac->getUser())) {
@@ -164,7 +164,7 @@ final class Account_ChangeEmail extends GWF_Method
 		$user->saveVar('user_email', $newmail);
 		$user->saveOption(GWF_User::MAIL_APPROVED, true);
 		
-		return $this->_module->message('msg_mail_changed', array(htmlspecialchars($newmail)));
+		return $this->module->message('msg_mail_changed', array(htmlspecialchars($newmail)));
 	}
 }
 

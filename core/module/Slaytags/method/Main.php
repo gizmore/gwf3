@@ -14,14 +14,14 @@ final class Slaytags_Main extends GWF_Method
 		GWF_Website::addJavascriptOnload("slayInitRedirect(".($left+1).");");
 		
 		$tVars = array(
-			'href_history' => $this->_module->getMethodURL('History', '&page='.Slay_PlayHistory::getNumPages()),
+			'href_history' => $this->module->getMethodURL('History', '&page='.Slay_PlayHistory::getNumPages()),
 			'history' => Slay_PlayHistory::getLastPlayed(1),
-			'now' => Slay_PNow::getNowPlaying($this->_module),
+			'now' => Slay_PNow::getNowPlaying($this->module),
 			'left' => $left,
 //			'next' => Slay_Pnext::getNextPlaying(),
 		);
 		
-		return $this->_module->template('main.tpl', $tVars);
+		return $this->module->template('main.tpl', $tVars);
 	}
 }
 ?>

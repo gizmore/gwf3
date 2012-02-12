@@ -8,14 +8,14 @@ final class BAIM_Main extends GWF_Method
 	
 	public function execute()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_main'));
-//		GWF_Website::setMetaTags($this->_module->lang('mt_main'));
-//		GWF_Website::setMetaDescr($this->_module->lang('md_main'));
+		GWF_Website::setPageTitle($this->module->lang('pt_main'));
+//		GWF_Website::setMetaTags($this->module->lang('mt_main'));
+//		GWF_Website::setMetaDescr($this->module->lang('md_main'));
 		
 		$tVars = array(
 //			'news' => $this->getNews(),
 		);
-		return $this->_module->templatePHP('main.php', $tVars);
+		return $this->module->templatePHP('main.php', $tVars);
 	}
 	
 	private function getNews()

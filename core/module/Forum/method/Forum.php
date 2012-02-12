@@ -22,7 +22,7 @@ final class Forum_Forum extends GWF_Method
 	public function getHTAccess()
 	{
 		$back = '';
-		if ($this->_module->cfgOldURLS())
+		if ($this->module->cfgOldURLS())
 		{
 			$back .=
 // 			'RewriteRule ^forum$ index.php?mo=Forum&me=Forum&bid=1&page=1'.PHP_EOL.
@@ -52,9 +52,9 @@ final class Forum_Forum extends GWF_Method
 			return $error;
 		}
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_board', array($this->board->getVar('board_title'))));
-		GWF_Website::setMetaDescr($this->_module->lang('md_board', array($this->board->getVar('board_descr'))));
-		GWF_Website::setMetaTags($this->_module->lang('mt_board'));
+		GWF_Website::setPageTitle($this->module->lang('pt_board', array($this->board->getVar('board_title'))));
+		GWF_Website::setMetaDescr($this->module->lang('md_board', array($this->board->getVar('board_descr'))));
+		GWF_Website::setMetaTags($this->module->lang('mt_board'));
 		
 		if (false !== (Common::getGet('mark_all_read'))) {
 			return $this->markAllRead().$this->templateForum();
@@ -65,12 +65,12 @@ final class Forum_Forum extends GWF_Method
 	
 	public function sanitize()
 	{
-		if (false === ($this->board = $this->_module->getCurrentBoard())) {
-			return $this->_module->error('err_board');
+		if (false === ($this->board = $this->module->getCurrentBoard())) {
+			return $this->module->error('err_board');
 		}
 		$threads = GDO::table('GWF_ForumThread');
 		$bid = $this->board->getID();
-		$this->tpp = $this->_module->getThreadsPerPage();
+		$this->tpp = $this->module->getThreadsPerPage();
 		$this->nThreads = $threads->countRows("thread_bid=$bid");
 		$this->nPages = GWF_PageMenu::getPagecount($this->tpp, $this->nThreads);
 		$this->page = Common::clamp((int)Common::getGet('tpage', '1'), 1, $this->nPages);
@@ -99,16 +99,16 @@ final class Forum_Forum extends GWF_Method
 			'pagemenu_threads' => GWF_PageMenu::display($this->page, $this->nPages, sprintf(GWF_WEB_ROOT.'forum-b%s/tby/%s/%s/%s-p%%PAGE%%.html', $bid, $by, $dir, $bt)),
 			'new_thread_allowed' => $this->board->isNewThreadAllowed(),
 			'unread_threads' => GWF_ForumThread::getUnreadThreadCount(GWF_Session::getUser()),
-			'latest_threads' => GWF_ForumThread::getLatestThreads($this->_module->getNumLatestThreads()),
+			'latest_threads' => GWF_ForumThread::getLatestThreads($this->module->getNumLatestThreads()),
 			'href_options' => GWF_WEB_ROOT.'forum/options',
-			'href_unread' => $this->_module->getMethodURL('Unread'),
+			'href_unread' => $this->module->getMethodURL('Unread'),
 			'href_search' => GWF_WEB_ROOT.'forum/search',
 			'board_sort_url' => GWF_WEB_ROOT.sprintf('forum-b%s/bby/%%BY%%/%%DIR%%/%s-p1.html', $bid, $bt),
 //			'thread_sort_url' => GWF_WEB_ROOT.sprintf('forum-b%s/bby/ forum/board/%s/%s/bpage-%d/tpage-1/tby/%%BY%%/to/%%DIR%%', $bid, $bt, $this->bPage),
 			'thread_sort_url' => GWF_WEB_ROOT.sprintf('forum-b%s/bby/%s/%s/bp-%d/tby/%%BY%%/%%DIR%%/%s-p1.html', $bid, $bby, $bdir, $this->bPage, $bt),
 			'href_polls' => GWF_WEB_ROOT.'poll_overview',
 		);
-		return $this->_module->templatePHP('forum.php', $tVars);
+		return $this->module->templatePHP('forum.php', $tVars);
 	}
 }
 ?>

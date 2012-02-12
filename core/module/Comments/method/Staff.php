@@ -31,7 +31,7 @@ final class Comments_Staff extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, $hrefp),
 			'comments' => $table->selectObjects('*', $where, $orderby, $ipp, $from),
 		);
-		return $this->_module->template('staff.tpl', $tVars);
+		return $this->module->template('staff.tpl', $tVars);
 	}
 	
 	private function getWhere()

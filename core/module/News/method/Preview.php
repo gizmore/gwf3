@@ -19,11 +19,11 @@ final class News_Preview extends GWF_Method
 	public function execute()
 	{
 		if (false === ($this->news = Module_News::getSavedPreview())) {
-			return $this->_module->error('err_no_preview');
+			return $this->module->error('err_no_preview');
 		}
 		
 		if (false === ($mail = $this->getPreviewMail())) {
-			return $this->_module->error('err_no_preview');
+			return $this->module->error('err_no_preview');
 		}
 		
 		switch (Common::getGet('mode'))
@@ -46,7 +46,7 @@ final class News_Preview extends GWF_Method
 		$mail = new GWF_Mail();
 		
 		$mail->setSubject($news->getTitle());
-		$mail->setBody($news->getNewsletterMessage($this->_module, 'test@noreply.com'));
+		$mail->setBody($news->getNewsletterMessage($this->module, 'test@noreply.com'));
 		
 		return $mail;
 	}

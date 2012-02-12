@@ -11,7 +11,7 @@ final class Forum_ShowThread extends GWF_Method
 	public function getHTAccess()
 	{
 		$back = '';
-		if ($this->_module->cfgOldURLS())
+		if ($this->module->cfgOldURLS())
 		{
 			$back .=
 			'RewriteRule ^forum/show/thread/([0-9]+)/[^/]+/?$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
@@ -52,14 +52,14 @@ final class Forum_ShowThread extends GWF_Method
 			return $error;
 		}
 		
-		if ($this->_module->cfgUseGTranslate())
+		if ($this->module->cfgUseGTranslate())
 		{
 			GWF_Website::addJavascript('http://www.google.com/jsapi');
 			GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Forum/gwf_forum.js');
 			GWF_Website::addJavascriptInline('google.load("language", "1");');
 		}
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_thread', array($this->thread->getBoard()->getVar('board_title'), $this->thread->getVar('thread_title'))));
+		GWF_Website::setPageTitle($this->module->lang('pt_thread', array($this->thread->getBoard()->getVar('board_title'), $this->thread->getVar('thread_title'))));
 		
 		return $this->templateThread();
 	}
@@ -69,21 +69,21 @@ final class Forum_ShowThread extends GWF_Method
 	private function sanitize()
 	{
 		if (false === ($this->thread = GWF_ForumThread::getByID(Common::getGetString('tid')))) {
-			return $this->_module->error('err_thread');
+			return $this->module->error('err_thread');
 		}
 		
-		$this->ppt = $this->_module->getPostsPerThread();
+		$this->ppt = $this->module->getPostsPerThread();
 		$this->nPosts = $this->thread->getPostCount();
 		$this->nPages = GWF_PageMenu::getPagecount($this->ppt, $this->nPosts);
 		$default_page = isset($_GET['last_page']) ? $this->nPages : 1;
 		$this->page = Common::clamp(Common::getGetInt('page'), $default_page, $this->nPages);
 
 		if (!$this->thread->hasPermission(GWF_Session::getUser())) {
-			return $this->_module->error('err_thread_perm');
+			return $this->module->error('err_thread_perm');
 		}
 		
 		if ($this->thread->isInModeration()) {
-			return $this->_module->error('err_in_mod');
+			return $this->module->error('err_in_mod');
 		}
 		
 		return false;
@@ -108,17 +108,17 @@ final class Forum_ShowThread extends GWF_Method
 			'pagemenu' => $this->getPageMenu(),
 			'actions' => true,
 			'title' => true,
-			'reply' => $this->thread->hasReplyPermission(GWF_Session::getUser(), $this->_module),
+			'reply' => $this->thread->hasReplyPermission(GWF_Session::getUser(), $this->module),
 			'nav' => true,
-			'can_vote' => $user === false ? false : $this->_module->cfgVotesEnabled(),
-			'can_thank' => $user === false ? false : $this->_module->cfgThanksEnabled(),
+			'can_vote' => $user === false ? false : $this->module->cfgVotesEnabled(),
+			'can_thank' => $user === false ? false : $this->module->cfgThanksEnabled(),
 			'term' => GWF_QuickSearch::getQuickSearchHighlights(Common::getRequest('term', '')),
 			'page' => $this->page,	
 			'href_add_poll' => $this->thread->hrefAddPoll(),
 			'href_edit' => $this->thread->getEditHREF(),
 		);
 		
-		return $this->_module->templatePHP('show_thread.php', $tVars);
+		return $this->module->templatePHP('show_thread.php', $tVars);
 	}
 	
 	private function getPageMenu()

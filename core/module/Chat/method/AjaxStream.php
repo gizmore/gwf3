@@ -22,10 +22,10 @@ final class Chat_AjaxStream extends GWF_Method
 		
 		while (true)
 		{
-			GWF_ChatOnline::setSessOnline($this->_module);
+			GWF_ChatOnline::setSessOnline($this->module);
 //			GWF_Session::updateLastActivity();
 			
-			$page = $this->_module->getAjaxUpdates($times);
+			$page = $this->module->getAjaxUpdates($times);
 			# --- Anything happened?
 			if ($page !== '')
 			{

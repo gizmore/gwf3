@@ -11,11 +11,11 @@ final class Lamb_Ajax extends GWF_Method
 		
 		switch ($cmd)
 		{
-			case 'send': return $this->sendMessage($this->_module, $player_id);
-			case 'peek': return $this->peekMessages($this->_module, $player_id);
+			case 'send': return $this->sendMessage($this->module, $player_id);
+			case 'peek': return $this->peekMessages($this->module, $player_id);
 		}
 		
-		$this->_module->initShadowlamb();
+		$this->module->initShadowlamb();
 		if (false === ($player = SR_Player::getByID($player_id))) {
 			return 'PLAYER GONE!';
 		}
@@ -23,17 +23,17 @@ final class Lamb_Ajax extends GWF_Method
 		switch ($cmd)
 		{
 			
-			case 'i': return $this->getInventory($this->_module, $player);
-			case 'q': return $this->getEquipment($this->_module, $player);
-			case 's': return $this->getStats($this->_module, $player);
-			case 'p': return $this->getParty($this->_module, $player);
-			case 'c': return $this->getCommands($this->_module, $player);
-			case 'kp': return $this->getLocations($this->_module, $player);
-			case 'kw': return $this->getWords($this->_module, $player);
-			case 'cy': return $this->getCyberware($this->_module, $player);
+			case 'i': return $this->getInventory($this->module, $player);
+			case 'q': return $this->getEquipment($this->module, $player);
+			case 's': return $this->getStats($this->module, $player);
+			case 'p': return $this->getParty($this->module, $player);
+			case 'c': return $this->getCommands($this->module, $player);
+			case 'kp': return $this->getLocations($this->module, $player);
+			case 'kw': return $this->getWords($this->module, $player);
+			case 'cy': return $this->getCyberware($this->module, $player);
 			
-			case 'item': return $this->getItem($this->_module, $player);
-			case 'sitem': return $this->getStoreItem($this->_module, $player);
+			case 'item': return $this->getItem($this->module, $player);
+			case 'sitem': return $this->getStoreItem($this->module, $player);
 			
 			default: return 'UNKNOWN COMMAND!';
 		}
@@ -72,7 +72,7 @@ final class Lamb_Ajax extends GWF_Method
 			'player' => $player,
 			'img' => GWF_WEB_ROOT.'tpl/lamb/slimg/item/'.$item->getName().'.png',
 		);
-		return $this->_module->template('item.php', NULL, $tVars);
+		return $this->module->template('item.php', NULL, $tVars);
 	}
 	
 	public function getStoreItem(Module_Lamb $module, SR_Player $player)
@@ -86,7 +86,7 @@ final class Lamb_Ajax extends GWF_Method
 			'player' => $player,
 			'img' => GWF_WEB_ROOT.'tpl/lamb/slimg/item/'.$item->getName().'.png',
 		);
-		return $this->_module->template('store_item.php', NULL, $tVars);
+		return $this->module->template('store_item.php', NULL, $tVars);
 	}
 	
 	public function getCommands(Module_Lamb $module, $player)
@@ -171,7 +171,7 @@ final class Lamb_Ajax extends GWF_Method
 		$tVars = array(
 			'equipment' => $eq,
 		);
-		return $this->_module->template('equipment.php', NULL, $tVars);
+		return $this->module->template('equipment.php', NULL, $tVars);
 	}
 	
 	public function getStats(Module_Lamb $module, $player)
@@ -182,7 +182,7 @@ final class Lamb_Ajax extends GWF_Method
 		$tVars = array(
 			'player' => $player,
 		);
-		return $this->_module->template('stats.php', NULL, $tVars);
+		return $this->module->template('stats.php', NULL, $tVars);
 	}
 	
 	public function getParty(Module_Lamb $module, $player)
@@ -193,7 +193,7 @@ final class Lamb_Ajax extends GWF_Method
 		$tVars = array(
 			'player' => $player,
 		);
-		return $this->_module->template('party.php', NULL, $tVars);
+		return $this->module->template('party.php', NULL, $tVars);
 	}
 	
 	public function getWords(Module_Lamb $module, SR_Player $player)

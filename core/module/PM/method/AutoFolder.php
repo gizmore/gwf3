@@ -24,7 +24,7 @@ final class PM_AutoFolder extends GWF_Method
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
-			return $this->_module->error('err_pm');
+			return $this->module->error('err_pm');
 		}
 		return $this->autoFolderB($pm->getHashcode(), $pm->getID(), $user->getID());
 	}
@@ -39,11 +39,11 @@ final class PM_AutoFolder extends GWF_Method
 	public function autoFolderB($token, $pmid, $uid)
 	{
 		if (false === ($pm = GWF_PM::getByID($pmid))) {
-			return $this->_module->error('err_pm');
+			return $this->module->error('err_pm');
 		}
 		
 		if ($token !== ($pm->getHashcode())) {
-			return $this->_module->error('err_pm');
+			return $this->module->error('err_pm');
 		}
 		
 		if (false === ($user = GWF_User::getByID($uid))) {
@@ -51,7 +51,7 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (!$pm->canRead($user)) {
-			return $this->_module->error('err_pm');
+			return $this->module->error('err_pm');
 		}
 		
 		if (false === ($pmo = GWF_PMOptions::getPMOptions($user))) {
@@ -63,7 +63,7 @@ final class PM_AutoFolder extends GWF_Method
 		}
 		
 		if (0 >= ($peak = $pmo->getAutoFolderValue())) {
-			return $this->_module->message('msg_auto_folder_off');
+			return $this->module->message('msg_auto_folder_off');
 		}
 		
 		if (false === ($other_user = $pm->getOtherUser($user))) {
@@ -79,7 +79,7 @@ final class PM_AutoFolder extends GWF_Method
 		$count = GDO::table('GWF_PM')->countRows($conditions);
 		
 		if ($count < $peak) {
-			return $this->_module->message('msg_auto_folder_none', array($count));
+			return $this->module->message('msg_auto_folder_none', array($count));
 		}
 		
 		$foldername = $other_user->getVar('user_name');
@@ -89,7 +89,7 @@ final class PM_AutoFolder extends GWF_Method
 			if (false === ($folder->insert())) {
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
-			$back .= $this->_module->message('msg_auto_folder_created', array($other_user->displayUsername()));
+			$back .= $this->module->message('msg_auto_folder_created', array($other_user->displayUsername()));
 		}
 		
 		$pms = GDO::table('GWF_PM')->selectObjects('*', $conditions);
@@ -103,7 +103,7 @@ final class PM_AutoFolder extends GWF_Method
 			}
 		}
 		
-		return $back.$this->_module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
+		return $back.$this->module->message('msg_auto_folder_moved', array($moved, $other_user->displayUsername()));
 	}
 }
 

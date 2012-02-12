@@ -16,7 +16,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 	
 	public function display()
 	{
-		$this->_module->onInclude();
+		$this->module->onInclude();
 		return
 			'<div id="wc_sidebar">'.PHP_EOL.
 			$this->displayLogin().
@@ -47,12 +47,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 		
 		$formhash = '_username_password_bind_ip';
 		$formhash = GWF_Password::getToken($formhash);
-		$username = $this->_module->lang('th_user_name');
-		$password = $this->_module->lang('th_password');
-		$bind_ip = $this->_module->lang('th_bind_ip');
-		$register = $this->_module->lang('menu_register');
-		$forgot = $this->_module->lang('btn_forgot_pw');
-		$login = $this->_module->lang('btn_login');
+		$username = $this->module->lang('th_user_name');
+		$password = $this->module->lang('th_password');
+		$bind_ip = $this->module->lang('th_bind_ip');
+		$register = $this->module->lang('menu_register');
+		$forgot = $this->module->lang('btn_forgot_pw');
+		$login = $this->module->lang('btn_login');
 		
 		$box = 
 //			'<div id="sidebar_login">'.PHP_EOL.
@@ -72,12 +72,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 //			GWF_Table::end().
 			'</form>'.PHP_EOL;
 //			'</div>'.PHP_EOL;
-		return $this->sidebox($this->_module->lang('ft_signup').$this->getHideButton(), $box);
+		return $this->sidebox($this->module->lang('ft_signup').$this->getHideButton(), $box);
 	}
 	
 	private function getHideButton()
 	{
-		return '<span class="">'.GWF_Button::delete($this->getMethodHref('&rightpanel=0'), $this->_module->lang('btn_sidebar_on')).'</span>';
+		return '<span class="">'.GWF_Button::delete($this->getMethodHref('&rightpanel=0'), $this->module->lang('btn_sidebar_on')).'</span>';
 	}
 	
 	private function displayStats()
@@ -90,12 +90,12 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$btn = GWF_Session::isLoggedIn() ? $this->getHideButton() : '';
 
 		$box = 
-			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$this->_module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'challs">'.$this->_module->lang('rp_challcount', array(GDO::table('WC_Challenge')->countRows())).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'forum">'.$this->_module->lang('rp_postcount', array($postcount)).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'users">'.$this->_module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></div>'.PHP_EOL;
+			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$this->module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'challs">'.$this->module->lang('rp_challcount', array(GDO::table('WC_Challenge')->countRows())).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'forum">'.$this->module->lang('rp_postcount', array($postcount)).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'users">'.$this->module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></div>'.PHP_EOL;
 		return
-			$this->sidebox($this->_module->lang('rp_stats').$btn, $box);
+			$this->sidebox($this->module->lang('rp_stats').$btn, $box);
 	}
 	
 	private function displaySites()
@@ -111,7 +111,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			$site instanceof WC_Site;
 			$box .= '<div>'.$site->displayLink().'</div>'.PHP_EOL;
 		}
-		return $this->sidebox($this->_module->lang('rp_sites', array($count)), $box);
+		return $this->sidebox($this->module->lang('rp_sites', array($count)), $box);
 	}
 
 	private function displayTopTen($amount=10)
@@ -123,9 +123,9 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$box = '';
 		foreach ($users as $user)
 		{
-			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $user->getProfileHREF(), $this->_module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername()).PHP_EOL;
+			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $user->getProfileHREF(), $this->module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername()).PHP_EOL;
 		}
-		return $this->sidebox($this->_module->lang('rp_topusers', array($amount)), $box);
+		return $this->sidebox($this->module->lang('rp_topusers', array($amount)), $box);
 	}
 	
 	private function displayActive($amount=20)
@@ -144,16 +144,16 @@ final class WeChall_Sidebar2 extends GWF_Method
 		while (false !== ($row = $db->fetchRow($result)))
 		{
 			$href = GWF_WEB_ROOT.'profile/'.urlencode($row[1]);
-			$title = $this->_module->lang('li_last_active', array(GWF_HTML::display($row[1]), round($row[3]*100, 2), GWF_HTML::display($row[4])));
+			$title = $this->module->lang('li_last_active', array(GWF_HTML::display($row[1]), round($row[3]*100, 2), GWF_HTML::display($row[4])));
 			$box .= sprintf('<div><a href="%s" title="%s">%s</a></div>', $href, $title, GWF_HTML::display($row[1]));
 		}
 		
-		return $this->sidebox($this->_module->lang('rp_last_active', array($amount)), $box);
+		return $this->sidebox($this->module->lang('rp_last_active', array($amount)), $box);
 	}
 	
 	private function displayOnline($max=20)
 	{
-		$cut = $this->_module->cfgLastActiveTime();
+		$cut = $this->module->cfgLastActiveTime();
 		$users = GDO::table('GWF_User');
 		$hidden = GWF_User::HIDE_ONLINE;
 		$deleted = GWF_User::DELETED;
@@ -162,7 +162,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$count = $users->countRows($conditions);
 		$href = GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1';
 		
-		$box = sprintf('<div>%s</div>', $this->_module->lang('lp_last_online2', array($href, $count)));
+		$box = sprintf('<div>%s</div>', $this->module->lang('lp_last_online2', array($href, $count)));
 		
 		$users2 = $users->selectObjects('*', $conditions, 'user_lastactivity DESC', $max);
 		foreach ($users2 as $user)
@@ -175,7 +175,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 			$box .= '<div><a href="'.$href.'">more...</a></div>';
 		}
 		
-		return $this->sidebox($this->_module->lang('lp_last_online', array(GWF_Time::humanDuration($cut, 1))), $box);
+		return $this->sidebox($this->module->lang('lp_last_online', array(GWF_Time::humanDuration($cut, 1))), $box);
 	}
 	
 }

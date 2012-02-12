@@ -11,9 +11,9 @@ final class Konzert_Intro extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/color.js');
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter();');
-		GWF_Website::setPageTitle($this->_module->lang('page_title'));
+		GWF_Website::setPageTitle($this->module->lang('page_title'));
 		
-		$this->_module->setNextHREF(GWF_WEB_ROOT.'melanie_gobbo.html');
+		$this->module->setNextHREF(GWF_WEB_ROOT.'melanie_gobbo.html');
 		
 		return $this->templateIntro();
 	}
@@ -25,7 +25,7 @@ final class Konzert_Intro extends GWF_Method
 		$tVars = array(
 //			'playmusic' => $intro,
 		);
-		return $this->_module->template('intro.tpl', $tVars);
+		return $this->module->template('intro.tpl', $tVars);
 	}
 }
 ?>

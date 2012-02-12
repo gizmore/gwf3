@@ -16,21 +16,21 @@ final class Konzert_AddTermin extends GWF_Method
 	{
 		$form = $this->formAdd();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_add')),
+			'form' => $form->templateY($this->module->lang('ft_add')),
 		);
-		return $this->_module->template('at_add.tpl', $tVars);
+		return $this->module->template('at_add.tpl', $tVars);
 	}
 	
 	private function formAdd()
 	{
 		$data = array();
-		$data['date'] = array(GWF_Form::DATE_FUTURE, '', $this->_module->lang('th_date'), '', GWF_Date::LEN_DAY);
-		$data['time'] = array(GWF_Form::TIME, '', $this->_module->lang('th_time'));
-		$data['prog'] = array(GWF_Form::STRING, '', $this->_module->lang('th_prog'));
-		$data['city'] = array(GWF_Form::STRING, '', $this->_module->lang('th_city'));
-		$data['location'] = array(GWF_Form::STRING, '', $this->_module->lang('th_location'));
-		$data['tickets'] = array(GWF_Form::STRING, '', $this->_module->lang('th_tickets'));
-		$data['add'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_add'));
+		$data['date'] = array(GWF_Form::DATE_FUTURE, '', $this->module->lang('th_date'), '', GWF_Date::LEN_DAY);
+		$data['time'] = array(GWF_Form::TIME, '', $this->module->lang('th_time'));
+		$data['prog'] = array(GWF_Form::STRING, '', $this->module->lang('th_prog'));
+		$data['city'] = array(GWF_Form::STRING, '', $this->module->lang('th_city'));
+		$data['location'] = array(GWF_Form::STRING, '', $this->module->lang('th_location'));
+		$data['tickets'] = array(GWF_Form::STRING, '', $this->module->lang('th_tickets'));
+		$data['add'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_add'));
 		return new GWF_Form($this, $data);
 	}
 	
@@ -44,7 +44,7 @@ final class Konzert_AddTermin extends GWF_Method
 	private function onAdd()
 	{
 		$form = $this->formAdd();
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validate($this->module)))
 		{
 			return $error.$this->templateAdd();
 		}
@@ -65,7 +65,7 @@ final class Konzert_AddTermin extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateAdd();
 		}
 		
-		return $this->_module->message('msg_t_added');
+		return $this->module->message('msg_t_added');
 	}
 }
 ?>

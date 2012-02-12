@@ -8,20 +8,20 @@ final class Usergroups_Create extends GWF_Method
 	{
 		$user = GWF_Session::getUser();
 		
-//		if (false !== ($group = $this->_module->getGroup($user))) {
-//			return GWF_Website::redirect($this->_module->hrefEdit());
+//		if (false !== ($group = $this->module->getGroup($user))) {
+//			return GWF_Website::redirect($this->module->hrefEdit());
 //		}
 		
-		if (!$this->_module->canCreateGroup($user)) {
-			return $this->_module->error('err_perm');
+		if (!$this->module->canCreateGroup($user)) {
+			return $this->module->error('err_perm');
 		}
 		
-//		if ($this->_module->hasGroup($user)) {
-//			return $this->_module->error('err_group_exists');
+//		if ($this->module->hasGroup($user)) {
+//			return $this->module->error('err_group_exists');
 //		}
 		
 		if (false !== Common::getPost('create')) {
-			return $this->onCreate().$this->_module->requestMethodB('ShowGroups');
+			return $this->onCreate().$this->module->requestMethodB('ShowGroups');
 		}
 		return $this->templateCreate();
 	}
@@ -31,29 +31,29 @@ final class Usergroups_Create extends GWF_Method
 		
 		$form = $this->formCreate();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_create')),
+			'form' => $form->templateY($this->module->lang('ft_create')),
 		);
-		return $this->_module->templatePHP('create.php', $tVars);
+		return $this->module->templatePHP('create.php', $tVars);
 	}
 	
 	private function formCreate()
 	{
 		$data = array(
-			'name' => array(GWF_Form::STRING, '', $this->_module->lang('th_name')),
-			'join' => array(GWF_Form::SELECT, $this->_module->selectJoinType(Common::getPost('join')), $this->_module->lang('th_join')),
-			'view' => array(GWF_Form::SELECT, $this->_module->selectViewType(Common::getPost('view')), $this->_module->lang('th_view')),
-			'create' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_create')),
+			'name' => array(GWF_Form::STRING, '', $this->module->lang('th_name')),
+			'join' => array(GWF_Form::SELECT, $this->module->selectJoinType(Common::getPost('join')), $this->module->lang('th_join')),
+			'view' => array(GWF_Form::SELECT, $this->module->selectViewType(Common::getPost('view')), $this->module->lang('th_view')),
+			'create' => array(GWF_Form::SUBMIT, $this->module->lang('btn_create')),
 		);
 		return new GWF_Form($this, $data);
 	}
 
-	public function validate_name(Module_Usergroups $module, $arg) { return $this->_module->validate_name($arg); }
-	public function validate_join(Module_Usergroups $module, $arg) { return $this->_module->validate_join($arg); }
-	public function validate_view(Module_Usergroups $module, $arg) { return $this->_module->validate_view($arg); }
+	public function validate_name(Module_Usergroups $module, $arg) { return $this->module->validate_name($arg); }
+	public function validate_join(Module_Usergroups $module, $arg) { return $this->module->validate_join($arg); }
+	public function validate_view(Module_Usergroups $module, $arg) { return $this->module->validate_view($arg); }
 	private function onCreate()
 	{
 		$form = $this->formCreate();
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors.$this->templateCreate();
 		}
 		
@@ -90,15 +90,15 @@ final class Usergroups_Create extends GWF_Method
 			return $error;
 		}
 		
-		return $this->_module->message('msg_created');
+		return $this->module->message('msg_created');
 	}
 	
 	private function createBoard(GWF_Group $group)
 	{
 		$name = $group->getName();
 		
-		$pid = $this->_module->getForumBoard()->getID();
-//		$pid = Common::clamp($this->_module->cfgBID(), 1);
+		$pid = $this->module->getForumBoard()->getID();
+//		$pid = Common::clamp($this->module->cfgBID(), 1);
 		
 		if (false === GWF_ForumBoard::getByID($pid)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
@@ -114,7 +114,7 @@ final class Usergroups_Create extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false !== ($error = $this->_module->adjustFlags($group))) {
+		if (false !== ($error = $this->module->adjustFlags($group))) {
 			return $error;
 		}
 		

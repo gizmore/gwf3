@@ -27,7 +27,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 	
 	private function onNewPrivmsg()
 	{
-		if (false === ($nick = $this->_module->getNickname())) {
+		if (false === ($nick = $this->module->getNickname())) {
 			return;
 		}
 		
@@ -191,7 +191,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			}
 			
 			# Get Private Messages
-			if (false !== ($nick = $this->_module->getNickname())) {
+			if (false !== ($nick = $this->module->getNickname())) {
 				$last = $times[3];
 				$privmsg = $msgs->selectAll('*', "(chatmsg_to='$nick' OR (chatmsg_from='$nick' AND chatmsg_to!='')) AND chatmsg_time>$last", 'chatmsg_time ASC');
 				if (count($privmsg) > 0)
@@ -205,7 +205,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 //			if (!$stuff_sent)
 //			{
 //				usleep(1000000);
-				GWF_ChatOnline::setSessOnline($this->_module);
+				GWF_ChatOnline::setSessOnline($this->module);
 //			}
 //			else
 //			{
@@ -221,7 +221,7 @@ final class Chat_Ajax_OLD extends GWF_Method
 			sleep(1);
 		}
 		
-		GWF_ChatOnline::setSessOffline($this->_module);
+		GWF_ChatOnline::setSessOffline($this->module);
 		
 		die();
 	}

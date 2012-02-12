@@ -13,7 +13,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 	private function formPurge()
 	{
 		$data = array(
-			'purge' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_purge')),
+			'purge' => array(GWF_Form::SUBMIT, $this->module->lang('btn_purge')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -22,15 +22,15 @@ final class VersionServer_PurgeFiles extends GWF_Method
 	{
 		$form = $this->formPurge();
 		$tVars = array(
-			'form' => $form->templateX($this->_module->lang('ft_purge')),
+			'form' => $form->templateX($this->module->lang('ft_purge')),
 		);
-		return $this->_module->template('purge.tpl', $tVars);
+		return $this->module->template('purge.tpl', $tVars);
 	}
 
 	private function onPurge()
 	{
 		$form = $this->formPurge();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templatePurge();
 		}
 		
@@ -41,7 +41,7 @@ final class VersionServer_PurgeFiles extends GWF_Method
 		
 		GWF_VersionFiles::populateAll();
 		
-		return $this->_module->message('msg_purged', array($table->countRows(), GWF_Upload::humanFilesize(GWF_VersionFiles::getSizeUnpacked())));
+		return $this->module->message('msg_purged', array($table->countRows(), GWF_Upload::humanFilesize(GWF_VersionFiles::getSizeUnpacked())));
 	}
 	
 }

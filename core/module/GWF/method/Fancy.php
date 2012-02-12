@@ -11,7 +11,7 @@ final class GWF_Fancy extends GWF_Method
 		$ret = '';
 
 		# The Fancy Options
-		if (true === $this->_module->cfgFancyIndex())
+		if (true === $this->module->cfgFancyIndex())
 		{
 			# TODO: This check does not seem to work on WC5 server.
 // 			if (false === GWF_ServerInfo::isApache())
@@ -36,19 +36,19 @@ final class GWF_Fancy extends GWF_Method
 			$ret .= '# Fancy Index'.PHP_EOL;
 			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
 				'IndexOptions'.
-				' NameWidth='.$this->_module->cfgNameWidth(). 
-				' DescriptionWidth='.$this->_module->cfgDescriptionWidth().
-				' IconHeight='.$this->_module->cfgIconHeight().
-				' IconWidth='.$this->_module->cfgIconWidth().PHP_EOL;
+				' NameWidth='.$this->module->cfgNameWidth(). 
+				' DescriptionWidth='.$this->module->cfgDescriptionWidth().
+				' IconHeight='.$this->module->cfgIconHeight().
+				' IconWidth='.$this->module->cfgIconWidth().PHP_EOL;
 			$ret .= 'IndexOptions ';
-			$ret .= $this->_module->cfgHTMLTable() ? 'HTMLTable ' : '';
-			$ret .= $this->_module->cfgIgnoreClient() ? 'IgnoreClient ' : '';
-			$ret .= $this->_module->cfgFoldersFirst() ? 'FoldersFirst ': '';
-			$ret .= $this->_module->cfgIgnoreCase() ? 'IgnoreCase ' : '';
-			$ret .= $this->_module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
-			$ret .= $this->_module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
-			$ret .= $this->_module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
-			$ret .= $this->_module->cfgSuppressRules() ? 'SuppressRules ' : '';
+			$ret .= $this->module->cfgHTMLTable() ? 'HTMLTable ' : '';
+			$ret .= $this->module->cfgIgnoreClient() ? 'IgnoreClient ' : '';
+			$ret .= $this->module->cfgFoldersFirst() ? 'FoldersFirst ': '';
+			$ret .= $this->module->cfgIgnoreCase() ? 'IgnoreCase ' : '';
+			$ret .= $this->module->cfgSuppressHTMLPreamble() ? 'SuppressHTMLPreamble ' : '';
+			$ret .= $this->module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
+			$ret .= $this->module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
+			$ret .= $this->module->cfgSuppressRules() ? 'SuppressRules ' : '';
 			$ret .= PHP_EOL.PHP_EOL;
 			# The Fancy URLs
 			$ret .=

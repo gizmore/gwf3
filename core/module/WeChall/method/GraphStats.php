@@ -83,7 +83,7 @@ final class WeChall_GraphStats extends GWF_Method
 		// Check end date
 		$this->end = sprintf('%04d%02d%02d', intval(Common::getGet('y',0), 10), intval(Common::getGet('m',0), 10), intval(Common::getGet('d',0), 10));
 		if (!GWF_Time::isValidDate($this->end, false, GWF_Date::LEN_DAY)) {
-			return $this->_module->error('err_end_date');
+			return $this->module->error('err_end_date');
 		}
 
 		// Check start date
@@ -129,7 +129,7 @@ final class WeChall_GraphStats extends GWF_Method
 			}
 		}
 //		if (count($this->sites) === 0) {
-//			return $this->_module->error('err_no_sites');
+//			return $this->module->error('err_no_sites');
 //		}
 		
 		// Options
@@ -296,7 +296,7 @@ final class WeChall_GraphStats extends GWF_Method
 		//define the graph
 		$dateformat = "d.M.y";
 		$datemargin = strlen(date($dateformat)) * 11; 
-//		$graph = new Graph($this->_module->cfgGraphWidth()*2, $this->_module->cfgGraphHeight()*2);
+//		$graph = new Graph($this->module->cfgGraphWidth()*2, $this->module->cfgGraphHeight()*2);
 		$graph = new Graph($this->width, $this->height);
 		if ($no_data) {
 			$graph->SetScale('textint', 0, 100, 0, 1);
@@ -307,7 +307,7 @@ final class WeChall_GraphStats extends GWF_Method
 		$graph->SetColor(array(238, 238, 238));
 		$graph->SetMarginColor(array(208, 211, 237));
 		$graph->title->Set($this->getGraphTitle());
-		$graph->yaxis->title->Set($this->_module->lang('percentage'));
+		$graph->yaxis->title->Set($this->module->lang('percentage'));
 		$graph->SetShadow();
 		$graph->xaxis->SetLabelAngle(90);
 		$graph->img->SetMargin(40, 170, 20, $datemargin);
@@ -359,10 +359,10 @@ final class WeChall_GraphStats extends GWF_Method
 
 		if ($no_data) {
 			if (count($this->sites) === 0) {
-				$text = $this->_module->lang('err_no_sites');
+				$text = $this->module->lang('err_no_sites');
 			}
 			else {
-				$text = $this->_module->lang('err_graph_empty');
+				$text = $this->module->lang('err_graph_empty');
 			}
 			
 			$txt = new Text($text);
@@ -408,9 +408,9 @@ final class WeChall_GraphStats extends GWF_Method
 	private function getGraphTitle()
 	{
 		if ($this->user2 === false) {
-			return $this->_module->lang('pt_stats', array($this->user1->getVar('user_name')));
+			return $this->module->lang('pt_stats', array($this->user1->getVar('user_name')));
 		} else {
-			return $this->_module->lang('pt_stats2', array($this->user1->getVar('user_name'), $this->user2->getVar('user_name')));
+			return $this->module->lang('pt_stats2', array($this->user1->getVar('user_name'), $this->user2->getVar('user_name')));
 		}
 	}
 	

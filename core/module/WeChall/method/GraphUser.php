@@ -92,9 +92,9 @@ final class WeChall_GraphUser extends GWF_Method
 		}
 		
 		if ($vs === false) {
-			$graphtitle = $this->_module->lang('alt_graph_'.$type2, array($user->displayUsername()));
+			$graphtitle = $this->module->lang('alt_graph_'.$type2, array($user->displayUsername()));
 		} else {
-			$graphtitle = $this->_module->lang('alt_graph_'.$type2.'_vs', array($user->displayUsername(), $vs->displayUsername()));
+			$graphtitle = $this->module->lang('alt_graph_'.$type2.'_vs', array($user->displayUsername(), $vs->displayUsername()));
 		}
 		
 		$db = gdo_db();
@@ -187,7 +187,7 @@ final class WeChall_GraphUser extends GWF_Method
 		$datemargin = strlen(date($dateformat)) * 11; 
 
 		//define the graph
-		$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
+		$graph = new Graph($this->module->cfgGraphWidth(), $this->module->cfgGraphHeight());
 		if ($invert) {
 			$graph->SetScale('datlin', -$highestValue, -1);
 		}

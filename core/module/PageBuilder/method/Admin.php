@@ -29,13 +29,13 @@ final class PageBuilder_Admin extends GWF_Method
 			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Admin&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'pages' => $pages->selectAll('*', $where, $orderby, NULL, $ipp, $from, GDO::ARRAY_O),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Admin&by=%BY%&dir=%DIR%',
-			'href_add' => $this->_module->getMethodURL('Add'),
+			'href_add' => $this->module->getMethodURL('Add'),
 			'href_published' => '',
 			'href_revisions' => '',
 			'href_disableds' => '',
 		);
 		
-		return $this->_module->template('admin.tpl', $tVars);
+		return $this->module->template('admin.tpl', $tVars);
 	}
 }
 ?>

@@ -15,14 +15,14 @@ final class News_ShowComments extends GWF_Method
 		
 		if (false === ($news = GWF_News::getByID(Common::getGetString('newsid'))))
 		{
-			return $this->_module->error('err_news');
+			return $this->module->error('err_news');
 		}
 		
 		$key = $news->getCommentsKey();
 		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
 		if (false === ($comments = GWF_Comments::getOrCreateComments($key, 0, $gid)))
 		{
-			return $this->_module->error('err_news');
+			return $this->module->error('err_news');
 		}
 		
 		$_REQUEST['cmts_id'] = $comments->getID();
@@ -59,7 +59,7 @@ final class News_ShowComments extends GWF_Method
 			'comments' => $comments->displayComments($c, $href),
 			'form' => $me->templateReply($href),
 		);
-		return $this->_module->template('comments.tpl', $tVars);
+		return $this->module->template('comments.tpl', $tVars);
 	}
 	
 	private function onReply(Module_Comments $mod_c, GWF_News $news, GWF_Comments $comments)

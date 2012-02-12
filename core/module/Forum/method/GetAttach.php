@@ -9,11 +9,11 @@ final class Forum_GetAttach extends GWF_Method
 	public function execute()
 	{
 		if (false === ($attach = GWF_ForumAttachment::getByID(Common::getGet('aid')))) {
-			return $this->_module->error('err_attach');
+			return $this->module->error('err_attach');
 		}
 		
 		if (false === ($post = $attach->getPost())) {
-			return $this->_module->error('err_post');
+			return $this->module->error('err_post');
 		}
 		
 		$user = GWF_Session::getUser();

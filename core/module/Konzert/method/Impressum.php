@@ -8,20 +8,20 @@ final class Konzert_Impressum extends GWF_Method
 
 	public function execute()
 	{
-		$this->_module->setNextHREF(GWF_WEB_ROOT.'sponsoren.html');
+		$this->module->setNextHREF(GWF_WEB_ROOT.'sponsoren.html');
 		return $this->templateImpressum();
 	}
 	
 	private function templateImpressum()
 	{
-		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/impressum'));
+		$l = new GWF_LangTrans($this->module->getModuleFilePath('lang/impressum'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
 		$tVars = array(
 			'l' => $l,
 		);
-		return $this->_module->template('impressum.tpl', $tVars);
+		return $this->module->template('impressum.tpl', $tVars);
 	}
 }
 ?>

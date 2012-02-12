@@ -23,11 +23,11 @@ final class WeChall_API_User extends GWF_Method
 	
 	private function showUser(GWF_User $user, $api_key)
 	{
-		if (false !== ($error = $this->_module->isExcludedFromAPI($user, $api_key))) {
+		if (false !== ($error = $this->module->isExcludedFromAPI($user, $api_key))) {
 			return $error;
 		}
 		
-		$private_mode = $this->_module->isAPIKeyCorrect($user, $api_key);
+		$private_mode = $this->module->isAPIKeyCorrect($user, $api_key);
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		if (false === ($regats = WC_RegAt::getRegats($user->getID(), 'regat_solved ASC'))) {

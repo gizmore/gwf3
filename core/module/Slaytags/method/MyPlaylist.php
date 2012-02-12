@@ -12,7 +12,7 @@ final class Slaytags_MyPlaylist extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $this->_module->template('myplaylist.tpl', $tVars);
+		return $this->module->template('myplaylist.tpl', $tVars);
 	}
 }
 ?>

@@ -61,9 +61,9 @@ final class WeChall_RankingLang extends GWF_Method
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		list($page, $hl_rank) = $this->getPageRank($langid, $ipp, $user);
 		
-		GWF_Website::setPageTitle($this->_module->lang('pt_langrank', array($lang->displayName(), $page, $nPages)));
-		GWF_Website::setMetaTags($this->_module->lang('mt_ranking_lang', array($lang->displayName())));
-		GWF_Website::setMetaDescr($this->_module->lang('md_ranking_lang', array($lang->displayName(), $page, $nPages)));
+		GWF_Website::setPageTitle($this->module->lang('pt_langrank', array($lang->displayName(), $page, $nPages)));
+		GWF_Website::setMetaTags($this->module->lang('mt_ranking_lang', array($lang->displayName())));
+		GWF_Website::setMetaDescr($this->module->lang('md_ranking_lang', array($lang->displayName(), $page, $nPages)));
 		
 //		echo 'PAGE:';
 //		var_dump($page);
@@ -111,7 +111,7 @@ final class WeChall_RankingLang extends GWF_Method
 			'form_action' => $this->getMethodHref(),
 			'iso' => $lang->getISO(),
 		);
-		return $this->_module->templatePHP('ranking_lang.php', $tVars);
+		return $this->module->templatePHP('ranking_lang.php', $tVars);
 	}
 	
 	private function getPageRank($langid, $ipp, $user)

@@ -7,11 +7,11 @@ final class Links_Favorite extends GWF_Method
 	public function execute()
 	{
 		if (false === ($link = GWF_Links::getByID(Common::getGet('lid')))) {
-			return $this->_module->error('err_link');
+			return $this->module->error('err_link');
 		}
 		
 		if (!$link->mayView(GWF_Session::getUser())) {
-			return $this->_module->error('err_view_perm');
+			return $this->module->error('err_view_perm');
 		}
 		
 		if ('favorite' === Common::getGet('my')) {
@@ -28,6 +28,6 @@ final class Links_Favorite extends GWF_Method
 		}
 
 		$msg = $fav ? 'msg_fav_yes' : 'msg_fav_no';
-		return $this->_module->message($msg);
+		return $this->module->message($msg);
 	}
 }

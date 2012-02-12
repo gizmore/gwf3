@@ -12,19 +12,19 @@ final class Konzert_AboutMelanie extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter(); initAboutSlideshow();');
 		
-		$this->_module->setNextHREF(GWF_WEB_ROOT.'biography.html');
+		$this->module->setNextHREF(GWF_WEB_ROOT.'biography.html');
 		
 		return $this->templateAbout();
 	}
 	
 	private function templateAbout()
 	{
-		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/about_meli'));
+		$l = new GWF_LangTrans($this->module->getModuleFilePath('lang/about_meli'));
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		$tVars = array(
 			'l' => $l,
 		);
-		return $this->_module->template('about_melanie.tpl', $tVars);
+		return $this->module->template('about_melanie.tpl', $tVars);
 	}
 }
 ?>

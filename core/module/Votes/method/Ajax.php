@@ -21,7 +21,7 @@ final class Votes_Ajax extends GWF_Method
 	private function statsVoteScore($vsid)
 	{
 		if (false === ($votescore = GWF_VoteScore::getByID($vsid))) {
-			return $this->_module->error('err_votescore');
+			return $this->module->error('err_votescore');
 		}
 		$cnt = $votescore->getVar('vs_count');
 		$avg = $votescore->getVar('vs_avg');
@@ -34,7 +34,7 @@ final class Votes_Ajax extends GWF_Method
 	private function statsVoteMulti($vmid)
 	{
 		if (false === ($poll = GWF_VoteMulti::getByID($vmid))) {
-			return $this->_module->error('err_poll');
+			return $this->module->error('err_poll');
 		}
 		
 		

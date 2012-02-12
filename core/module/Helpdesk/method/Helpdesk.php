@@ -16,14 +16,14 @@ final class Helpdesk_Helpdesk extends GWF_Method
 	private function templateHelpdesk()
 	{
 		$tVars = array(
-			'href_new_ticket' => $this->_module->getMethodURL('CreateTicket'),
-			'href_my_tickets' => $this->_module->getMethodURL('ShowTickets'),
-			'href_staffdesk' => $this->_module->getMethodURL('Staff'),
-			'href_faq' => $this->_module->getMethodURL('FAQ'),
+			'href_new_ticket' => $this->module->getMethodURL('CreateTicket'),
+			'href_my_tickets' => $this->module->getMethodURL('ShowTickets'),
+			'href_staffdesk' => $this->module->getMethodURL('Staff'),
+			'href_faq' => $this->module->getMethodURL('FAQ'),
 			'ticketcount' => $this->getTicketCount(),
 			'stafftickets' => $this->getTicketCountStaff(),
 		);
-		return $this->_module->template('helpdesk.tpl', $tVars);
+		return $this->module->template('helpdesk.tpl', $tVars);
 	}
 	
 	private function getTicketCount()

@@ -28,7 +28,7 @@ final class Admin_Module extends GWF_Method
 			return $error;
 		}
 		
-		$nav = $this->_module->templateNav();
+		$nav = $this->module->templateNav();
 		$back = '';
 		
 		# Enable
@@ -63,7 +63,7 @@ final class Admin_Module extends GWF_Method
 			}
 			else
 			{
-				$back .= $this->_module->error('err_no_admin_sect');
+				$back .= $this->module->error('err_no_admin_sect');
 			}
 		}
 		
@@ -89,7 +89,7 @@ final class Admin_Module extends GWF_Method
 	private function getForm()
 	{
 		$mod = $this->mod;
-		$m = $this->_module;
+		$m = $this->module;
 		
 		$data = array(
 			'modulename' => array(GWF_Form::SSTRING, $mod->getName(), $m->lang('th_modulename')),
@@ -148,7 +148,7 @@ final class Admin_Module extends GWF_Method
 	 */
 	private function getFormInstall()
 	{
-		if (false === ($method = $this->_module->getMethod('Install'))) {
+		if (false === ($method = $this->module->getMethod('Install'))) {
 			echo GWF_HTML::err('ERR_METHOD_MISSING', array( 'Install'));
 			return false; 
 		} $method instanceof Admin_Install;
@@ -177,24 +177,24 @@ final class Admin_Module extends GWF_Method
 		switch($var['mv_type'])
 		{
 			case 'int':
-				$default_txt = $this->_module->lang('tt_int', array($var['mv_min'], $var['mv_max']));
+				$default_txt = $this->module->lang('tt_int', array($var['mv_min'], $var['mv_max']));
 				break;
 			case 'text':
-				$default_txt = $this->_module->lang('tt_text', array( $var['mv_min'], $var['mv_max']));
+				$default_txt = $this->module->lang('tt_text', array( $var['mv_min'], $var['mv_max']));
 				break;
 			case 'bool':
-				$default_txt = $this->_module->lang('tt_bool');
+				$default_txt = $this->module->lang('tt_bool');
 				break;
 			case 'script':
-				$default_txt = $this->_module->lang('tt_script');
+				$default_txt = $this->module->lang('tt_script');
 				break;
 			case 'time':
 				$min = GWF_TimeConvert::humanDuration((int)$var['mv_min']);
 				$max = GWF_TimeConvert::humanDuration((int)$var['mv_max']);
-				$default_txt = $this->_module->lang('tt_time', array( $min, $max));
+				$default_txt = $this->module->lang('tt_time', array( $min, $max));
 				break;
 			case 'float':
-				$default_txt = $this->_module->lang('tt_float', array( $var['mv_min'], $var['mv_max']));
+				$default_txt = $this->module->lang('tt_float', array( $var['mv_min'], $var['mv_max']));
 				break;
 		}
 		$extkey = 'tt_cfg_'.$varname;
@@ -216,17 +216,17 @@ final class Admin_Module extends GWF_Method
 		$form_install = $this->getFormInstall();
 		$seoname = $this->mod->urlencodeSEO('module_name');
 		$modname = $this->mod->display('module_name');
-		$install_action = $this->_module->getMethodURL('Install');
+		$install_action = $this->module->getMethodURL('Install');
 		$tVars = array(
 			'cfgmodule' => $this->mod,
-			'modules' => $this->_module->getAllModules(),
-			'form' => $form->templateY($this->_module->lang('form_title', array($modname))),
-			'form_install' => $form_install->templateY($this->_module->lang('ft_install', array($modname)), $install_action),
+			'modules' => $this->module->getAllModules(),
+			'form' => $form->templateY($this->module->lang('form_title', array($modname))),
+			'form_install' => $form_install->templateY($this->module->lang('ft_install', array($modname)), $install_action),
 //			'url_install' => sprintf('%s%s/install/%s', GWF_WEB_ROOT, Module_Admin::ADMIN_URL_NAME, $seoname),
 //			'url_reinstall' => sprintf('%s%s/wipe/%s', GWF_WEB_ROOT, Module_Admin::ADMIN_URL_NAME, $seoname),
 		
 		);
-		return $this->_module->templatePHP('module.php', $tVars);
+		return $this->module->templatePHP('module.php', $tVars);
 	}
 	
 	##############
@@ -254,11 +254,11 @@ final class Admin_Module extends GWF_Method
 		if (false === ($val = GWF_ModuleLoader::getVarValue($value, $type, $min, $max, $ex))) {
 			if ($ex) {
 				unset($_POST['mv_'.$key]);
-				return $this->_module->lang('err_arg_range', array($transkey, $min, $max));
+				return $this->module->lang('err_arg_range', array($transkey, $min, $max));
 			}
 			else {
 				unset($_POST['mv_'.$key]);
-				return $this->_module->lang('err_arg_type', array($transkey));
+				return $this->module->lang('err_arg_type', array($transkey));
 			}
 		}
 		
@@ -270,7 +270,7 @@ final class Admin_Module extends GWF_Method
 		if ($type === 'script')
 		{
 			unset($_POST['mv_'.$key]);
-			return $this->_module->lang('err_arg_script', array($transkey));
+			return $this->module->lang('err_arg_script', array($transkey));
 		}
 		
 		if (false === GDO::table('GWF_ModuleVar')->insertAssoc(array(
@@ -290,7 +290,7 @@ final class Admin_Module extends GWF_Method
 	private function onUpdate()
 	{
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->_module)))
+		if (false !== ($error = $form->validate($this->module)))
 		{
 			return $error;
 		}
@@ -327,7 +327,7 @@ final class Admin_Module extends GWF_Method
 			else
 			{
 				$transkey = $this->mod->lang('cfg_'.$key);
-				$messages[] = $this->_module->lang('msg_update_var', array($transkey, GWF_HTML::display($newval)));
+				$messages[] = $this->module->lang('msg_update_var', array($transkey, GWF_HTML::display($newval)));
 			}
 		}
 		
@@ -356,7 +356,7 @@ final class Admin_Module extends GWF_Method
 		
 		if ($this->mod->isCoreModule())
 		{
-			return $this->_module->error('err_disable_core_module');
+			return $this->module->error('err_disable_core_module');
 		}
 		
 		if (false === $this->mod->saveOption(GWF_Module::ENABLED, $enum==='enabled'))
@@ -369,14 +369,14 @@ final class Admin_Module extends GWF_Method
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 
-		return $this->_module->message('msg_module_'.$enum, array($this->mod->display('module_name')));
+		return $this->module->message('msg_module_'.$enum, array($this->mod->display('module_name')));
 	}
 	
 	private function onDefaults()
 	{
 		$_POST['reinstall'] = true;
 		$_POST['modulename'] = $this->mod->getName();
-		$this->_module->execute('Install');
+		$this->module->execute('Install');
 	}
 
 }

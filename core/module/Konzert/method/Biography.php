@@ -12,14 +12,14 @@ final class Konzert_Biography extends GWF_Method
 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jq/ghostwriter.js');
 		GWF_Website::addJavascriptOnload('initGhostwriter(); initBiographySlideshow();');
 		
-		$this->_module->setNextHREF(GWF_WEB_ROOT.'repertoire.html');
+		$this->module->setNextHREF(GWF_WEB_ROOT.'repertoire.html');
 		
 		return $this->templateBiography();
 	}
 	
 	private function templateBiography()
 	{
-		$l = new GWF_LangTrans($this->_module->getModuleFilePath('lang/biography'));
+		$l = new GWF_LangTrans($this->module->getModuleFilePath('lang/biography'));
 		
 		GWF_Website::setPageTitle($l->lang('page_title'));
 		
@@ -31,7 +31,7 @@ final class Konzert_Biography extends GWF_Method
 			't1' => $l->lang('t1'),
 			'altimg' => $l->lang('t1'),
 		);
-		return $this->_module->template('biography.tpl', $tVars);
+		return $this->module->template('biography.tpl', $tVars);
 	}
 }
 ?>

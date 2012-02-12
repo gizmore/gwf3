@@ -23,7 +23,7 @@ final class WeChall_License extends GWF_Method
 		$tVars = array(
 			'license' => $lang,
 		);
-		return $this->_module->templatePHP('license.php', $tVars);
+		return $this->module->templatePHP('license.php', $tVars);
 	}
 }
 

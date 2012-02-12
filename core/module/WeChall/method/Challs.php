@@ -72,18 +72,18 @@ final class WeChall_Challs extends GWF_Method
 			'by' => $by,
 			'dir' => $dir,
 		);
-		return $this->_module->templatePHP('challs.php', $tVars);
+		return $this->module->templatePHP('challs.php', $tVars);
 	}
 	
 	private function getTableTitle($for_userid, $from_userid, $tag, $challcount)
 	{
 		$dtag = GWF_HTML::display($tag);
 		if ($for_userid != 0) {
-			return $this->_module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
+			return $this->module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
 		} else if ($from_userid != 0) {
-			return $this->_module->lang('tt_challs_from', array($challcount, $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername()));
+			return $this->module->lang('tt_challs_from', array($challcount, $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername()));
 		} else {
-			return $this->_module->lang('tt_challs', array($dtag));
+			return $this->module->lang('tt_challs', array($dtag));
 		}
 	}
 	
@@ -96,25 +96,25 @@ final class WeChall_Challs extends GWF_Method
 		if ($for_userid != 0) {
 			$for_user = GWF_User::getByIDOrGuest($for_userid);
 			$for_username = $for_user->displayUsername();
-			GWF_Website::setMetaTags($this->_module->lang('mt_challs_for', array($dtag, $for_username)), false);
-			GWF_Website::setMetaDescr($this->_module->lang('md_challs_for', array($dtag, $for_username)), false);
+			GWF_Website::setMetaTags($this->module->lang('mt_challs_for', array($dtag, $for_username)), false);
+			GWF_Website::setMetaDescr($this->module->lang('md_challs_for', array($dtag, $for_username)), false);
 		}
 		else if ($from_userid != 0) {
 			$from_user = GWF_User::getByIDOrGuest($from_userid);
 			$from_username = $from_user->displayUsername();
-			GWF_Website::setMetaTags($this->_module->lang('mt_challs_from', array($dtag, $from_username)), false);
-			GWF_Website::setMetaDescr($this->_module->lang('md_challs_from', array($dtag, $from_username)), false);
+			GWF_Website::setMetaTags($this->module->lang('mt_challs_from', array($dtag, $from_username)), false);
+			GWF_Website::setMetaDescr($this->module->lang('md_challs_from', array($dtag, $from_username)), false);
 		}
 		else {
-			GWF_Website::setMetaTags($this->_module->lang('mt_challs', array($dtag, GWF_HTML::display($tag))), false);
-			GWF_Website::setMetaDescr($this->_module->lang('md_challs', array($dtag, GWF_HTML::display($tag))), false);
+			GWF_Website::setMetaTags($this->module->lang('mt_challs', array($dtag, GWF_HTML::display($tag))), false);
+			GWF_Website::setMetaDescr($this->module->lang('md_challs', array($dtag, GWF_HTML::display($tag))), false);
 		}
 	}
 	
 	
 	private function getTags()
 	{
-		$tags = explode(':', $this->_module->cfgChallTags());
+		$tags = explode(':', $this->module->cfgChallTags());
 		$back = array();
 		foreach ($tags as $tag)
 		{
@@ -133,7 +133,7 @@ final class WeChall_Challs extends GWF_Method
 	public function templateSolvers($cid)
 	{
 		if (false === ($chall = WC_Challenge::getByID($cid))) {
-			return $this->_module->error('err_chall');
+			return $this->module->error('err_chall');
 		}
 	}
 }

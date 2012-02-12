@@ -25,27 +25,27 @@ final class Votes_Vote extends GWF_Method
 	private function sanitize()
 	{
 		if (false === ($this->votescore = GWF_VoteScore::getByID(Common::getGet('vsid')))) {
-			return $this->_module->error('err_votescore');
+			return $this->module->error('err_votescore');
 		}
 		
 		if ($this->votescore->isIrreversible() && $this->votescore->hasVoted(GWF_Session::getUser())) {
-			return $this->_module->error('err_irreversible');
+			return $this->module->error('err_irreversible');
 		}
 		
 		if (false === ($this->score = Common::getGet('score'))) {
-			return $this->_module->error('err_score');
+			return $this->module->error('err_score');
 		}
 		
 		if (!$this->votescore->isInRange($this->score)) {
-			return $this->_module->error('err_score');
+			return $this->module->error('err_score');
 		}
 		
 		if ($this->votescore->isExpired()) {
-			return $this->_module->error('err_expired');
+			return $this->module->error('err_expired');
 		}
 		
 		if ($this->votescore->isDisabled()) {
-			return $this->_module->error('err_disabled');
+			return $this->module->error('err_disabled');
 		}
 		
 		return false;
@@ -67,7 +67,7 @@ final class Votes_Vote extends GWF_Method
 	private function onGuestVote()
 	{
 		if (!$this->votescore->isGuestVote()) {
-			return $this->_module->error('err_no_guest');
+			return $this->module->error('err_no_guest');
 		}
 		
 		$ip = GWF_IP6::getIP(GWF_IP_QUICK);
@@ -81,9 +81,9 @@ final class Votes_Vote extends GWF_Method
 		else
 		{
 			if ($vsr->isUserVote()) {
-				return $this->_module->message('err_vote_ip');
+				return $this->module->message('err_vote_ip');
 			}
-			if (!$vsr->isGuestVoteExpired($this->_module->cfgGuestTimeout())) {
+			if (!$vsr->isGuestVoteExpired($this->module->cfgGuestTimeout())) {
 				$this->votescore->revertVote($vsr, $ip, 0);
 			}
 			if (false === $this->votescore->onGuestVote($this->score, $ip)) {
@@ -98,7 +98,7 @@ final class Votes_Vote extends GWF_Method
 	{
 		GWF_Hook::call(GWF_Hook::VOTED_SCORE, $user, array($this->votescore->getID(), $this->score));
 		
-		return isset($_GET['ajax']) ? $this->_module->message('msg_voted_ajax') : $this->_module->message('msg_voted', array(GWF_Session::getLastURL()));
+		return isset($_GET['ajax']) ? $this->module->message('msg_voted_ajax') : $this->module->message('msg_voted', array(GWF_Session::getLastURL()));
 	}
 	
 	private function onUserVote(GWF_User $user)

@@ -20,7 +20,7 @@ final class WeChall_GraphSite extends GWF_Method
 	private function graph($sitename, $type)
 	{
 		if (false === ($site = WC_Site::getByName($sitename))) {
-			return $this->_module->error('err_site');
+			return $this->module->error('err_site');
 		}
 		require_once GWF_CORE_PATH.'module/WeChall/WC_HistorySite.php';
 		if (false === GDO::table('WC_HistorySite')->getWhitelistedBy($type, false)) {
@@ -38,7 +38,7 @@ final class WeChall_GraphSite extends GWF_Method
 	
 	private function graphB(WC_Site $site, $field)
 	{
-		$graphtitle = $this->_module->lang('gt_site_'.$field, array($site->getVar('site_name')));
+		$graphtitle = $this->module->lang('gt_site_'.$field, array($site->getVar('site_name')));
 		$siteid = $site->getID();
 		$history = GDO::table('WC_HistorySite');
 		if (false === ($result = $history->select("sitehist_date, {$field}", 'sitehist_sid='.$siteid, 'sitehist_date ASC')))
@@ -84,9 +84,9 @@ final class WeChall_GraphSite extends GWF_Method
 		
 		
 		if ($highestvalue === 0) {
-			$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
+			$graph = new Graph($this->module->cfgGraphWidth(), $this->module->cfgGraphHeight());
 			$graph->SetScale('intlin', 1, 2, 1, 2);
-			$caption = new Text($this->_module->lang('err_graph_empty'), 0.1, 0.8);
+			$caption = new Text($this->module->lang('err_graph_empty'), 0.1, 0.8);
 //			$caption->SetFont(FS_BOLD);
 			$graph->AddText($caption);
 			$graph->stroke();
@@ -99,7 +99,7 @@ final class WeChall_GraphSite extends GWF_Method
 		$datemargin = strlen(date($dateformat)) * 11; 
 		
 		//define the graph
-		$graph = new Graph($this->_module->cfgGraphWidth(), $this->_module->cfgGraphHeight());
+		$graph = new Graph($this->module->cfgGraphWidth(), $this->module->cfgGraphHeight());
 		
 		$graph->SetScale('datlin', 0, 1.05 * $highestvalue);
 		$graph->title->Set($graphtitle);

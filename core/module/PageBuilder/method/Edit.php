@@ -6,7 +6,7 @@ final class PageBuilder_Edit extends GWF_Method
 	public function execute()
 	{
 		if (false === ($page = GWF_Page::getByID(Common::getGetString('pageid')))) {
-			return $this->_module->lang('err_page');
+			return $this->module->lang('err_page');
 		}
 		
 		$back = '';
@@ -14,12 +14,12 @@ final class PageBuilder_Edit extends GWF_Method
 			$back .= $this->onEdit($page);
 		}
 		elseif (isset($_POST['translate'])) {
-			GWF_Website::redirect($this->_module->getMethodURL('Translate', '&pageid='.$page->getID()));
+			GWF_Website::redirect($this->module->getMethodURL('Translate', '&pageid='.$page->getID()));
 			die();
 		}
 		elseif (isset($_POST['upload'])) {
 			require_once GWF_CORE_PATH.'module/PageBuilder/PB_Uploader.php';
-			$back .= PB_Uploader::onUpload($this->_module);
+			$back .= PB_Uploader::onUpload($this->module);
 		}
 		
 		return $back.$this->templateEdit($page);
@@ -29,9 +29,9 @@ final class PageBuilder_Edit extends GWF_Method
 	{
 		$form = $this->formEdit($page);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit')),
+			'form' => $form->templateY($this->module->lang('ft_edit')),
 		);
-		return $this->_module->template('edit.tpl', $tVars);
+		return $this->module->template('edit.tpl', $tVars);
 	}
 
 	private function formEdit(GWF_Page $page)
@@ -39,47 +39,47 @@ final class PageBuilder_Edit extends GWF_Method
 		$mod_cat = GWF_Module::loadModuleDB('Category', true, true);
 		
 		$data = array();
-		$data['url'] = array(GWF_Form::STRING, $page->getVar('page_url'), $this->_module->lang('th_url'));
-		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($this->_module, $page->getMode()), $this->_module->lang('th_type'));
-		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->_module->lang('th_groups'));
-		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->_module->lang('th_noguests'));
-		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $this->_module->lang('th_index'));
-		$data['follow'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::FOLLOW), $this->_module->lang('th_follow'));
-		$data['sitemap'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::IN_SITEMAP), $this->_module->lang('th_in_sitemap'));
-//		'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $page->getVar('page_lang')), $this->_module->lang('th_lang')),
-		$data['enabled'] = array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->_module->lang('th_enabled'));
-		$data['title'] = array(GWF_Form::STRING, $page->getVar('page_title'), $this->_module->lang('th_title'));
+		$data['url'] = array(GWF_Form::STRING, $page->getVar('page_url'), $this->module->lang('th_url'));
+		$data['type'] = array(GWF_Form::SELECT, GWF_PageType::select($this->module, $page->getMode()), $this->module->lang('th_type'));
+		$data['groups'] = array(GWF_Form::SELECT_A, GWF_GroupSelect::multi('groups', $this->getSelectedGroups($page), true, true), $this->module->lang('th_groups'));
+		$data['noguests'] = array(GWF_Form::CHECKBOX, $page->isLoginRequired(), $this->module->lang('th_noguests'));
+		$data['index'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::INDEX), $this->module->lang('th_index'));
+		$data['follow'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::FOLLOW), $this->module->lang('th_follow'));
+		$data['sitemap'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::IN_SITEMAP), $this->module->lang('th_in_sitemap'));
+//		'lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(1, 'lang', $page->getVar('page_lang')), $this->module->lang('th_lang')),
+		$data['enabled'] = array(GWF_Form::CHECKBOX, $page->isEnabled(), $this->module->lang('th_enabled'));
+		$data['title'] = array(GWF_Form::STRING, $page->getVar('page_title'), $this->module->lang('th_title'));
 		if ($mod_cat !== false)
 		{
-			$data['cat'] = array(GWF_Form::SELECT, GWF_CategorySelect::single('cat', Common::getPostString('cat')), $this->_module->lang('th_cat'));
+			$data['cat'] = array(GWF_Form::SELECT, GWF_CategorySelect::single('cat', Common::getPostString('cat')), $this->module->lang('th_cat'));
 		}
-		$data['descr'] = array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $this->_module->lang('th_descr'));
-		$data['tags'] = array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $this->_module->lang('th_tags'));
-		$data['show_author'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_AUTHOR), $this->_module->lang('th_show_author'));
-		$data['show_similar'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_SIMILAR), $this->_module->lang('th_show_similar'));
-		$data['show_modified'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED), $this->_module->lang('th_show_modified'));
-		$data['show_trans'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_TRANS), $this->_module->lang('th_show_trans'));
-		$data['show_comments'] = array(GWF_Form::CHECKBOX, $page->wantComments(), $this->_module->lang('th_show_comments'));
-		$data['home_page'] = array(GWF_Form::CHECKBOX, ($this->_module->cfgHomePage() === $page->getID()), $this->_module->lang('th_home_page'));
-		$data['file'] = array(GWF_Form::FILE_OPT, '', $this->_module->lang('th_file'));
-		$data['upload'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_upload'));
-		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_inline_css'), $this->_module->lang('th_inline_css'));
+		$data['descr'] = array(GWF_Form::STRING, $page->getVar('page_meta_desc'), $this->module->lang('th_descr'));
+		$data['tags'] = array(GWF_Form::STRING, trim($page->getVar('page_meta_tags'),','), $this->module->lang('th_tags'));
+		$data['show_author'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_AUTHOR), $this->module->lang('th_show_author'));
+		$data['show_similar'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_SIMILAR), $this->module->lang('th_show_similar'));
+		$data['show_modified'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED), $this->module->lang('th_show_modified'));
+		$data['show_trans'] = array(GWF_Form::CHECKBOX, $page->isOptionEnabled(GWF_Page::SHOW_TRANS), $this->module->lang('th_show_trans'));
+		$data['show_comments'] = array(GWF_Form::CHECKBOX, $page->wantComments(), $this->module->lang('th_show_comments'));
+		$data['home_page'] = array(GWF_Form::CHECKBOX, ($this->module->cfgHomePage() === $page->getID()), $this->module->lang('th_home_page'));
+		$data['file'] = array(GWF_Form::FILE_OPT, '', $this->module->lang('th_file'));
+		$data['upload'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_upload'));
+		$data['inline_css'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_inline_css'), $this->module->lang('th_inline_css'));
 		if($page->getMode() === GWF_Page::BBCODE)
 		{
-			$data['content'] = array(GWF_Form::MESSAGE, $page->getVar('page_content'), $this->_module->lang('th_content'));
+			$data['content'] = array(GWF_Form::MESSAGE, $page->getVar('page_content'), $this->module->lang('th_content'));
 		}
 		else
 		{
-			$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $this->_module->lang('th_content'));
+			$data['content'] = array(GWF_Form::MESSAGE_NOBB, $page->getVar('page_content'), $this->module->lang('th_content'));
  		}
-		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$this->_module->lang('btn_edit'),'translate'=>$this->_module->lang('btn_translate')));
+		$data['buttons'] = array(GWF_Form::SUBMITS, array('edit'=>$this->module->lang('btn_edit'),'translate'=>$this->module->lang('btn_translate')));
  		return new GWF_Form($this, $data);
 	}
 	
 	private function onEdit(GWF_Page $page)
 	{
 		$form = $this->formEdit($page);
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		
@@ -112,7 +112,7 @@ final class PageBuilder_Edit extends GWF_Method
 
 		if (true === isset($_POST['home_page']))
 		{
-			$this->_module->setHomePage($page->getID());
+			$this->module->setHomePage($page->getID());
 		}
 		
 		if (false === ($page->saveVars($data))) {
@@ -132,11 +132,11 @@ final class PageBuilder_Edit extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__,__LINE__));
 		}
 		
-		if (false === $this->_module->writeHTA()) {
+		if (false === $this->module->writeHTA()) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__,__LINE__));
 		}
 		
-		return $this->_module->message('msg_edited', array(GWF_WEB_ROOT.$page->getVar('page_url'), $page->getVar('page_title')));
+		return $this->module->message('msg_edited', array(GWF_WEB_ROOT.$page->getVar('page_url'), $page->getVar('page_title')));
 	}
 	
 	public function validate_title($m, $arg) { return GWF_Validator::validateString($m, 'title', $arg, 4, 255, false); }

@@ -3,7 +3,7 @@ final class GWF_Security extends GWF_Method
 {
 	public function getHTAccess()
 	{
-		$m = $this->_module;
+		$m = $this->module;
 		$m instanceof Module_GWF;
 		$back = '';
 		if (false === $m->cfgAllRequests())

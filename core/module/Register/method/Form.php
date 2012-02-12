@@ -8,11 +8,11 @@ final class Register_Form extends GWF_Method
 	
 	public function execute()
 	{
-		GWF_Website::setPageTitle($this->_module->lang('pt_register'));
+		GWF_Website::setPageTitle($this->module->lang('pt_register'));
 
 		if (false !== GWF_Session::getUser())
 		{
-			return $this->_module->error('ERR_ALREADY_REDISTERED');
+			return $this->module->error('ERR_ALREADY_REDISTERED');
 		}
 
 		if (false !== (Common::getPost('register')))
@@ -25,37 +25,37 @@ final class Register_Form extends GWF_Method
 	private function getForm()
 	{
 		$data = array(
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_username'), $this->_module->lang('tt_username', array(GWF_User::USERNAME_LENGTH))),
-			'password' => array(GWF_Form::PASSWORD, '', $this->_module->lang('th_password'), $this->_module->lang('tt_password')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_username'), $this->module->lang('tt_username', array(GWF_User::USERNAME_LENGTH))),
+			'password' => array(GWF_Form::PASSWORD, '', $this->module->lang('th_password'), $this->module->lang('tt_password')),
 		);
 		
-		if ($this->_module->wantEmailActivation()) { 
-			$data['email'] = array(GWF_Form::STRING, '', $this->_module->lang('th_email'), $this->_module->lang('tt_email'));
+		if ($this->module->wantEmailActivation()) { 
+			$data['email'] = array(GWF_Form::STRING, '', $this->module->lang('th_email'), $this->module->lang('tt_email'));
 		}
 		
-		if ($this->_module->hasMinAge()) {
-			$data['birthdate'] = array(GWF_Form::DATE, 0, $this->_module->lang('th_birthdate'), '', GWF_Date::LEN_DAY);
+		if ($this->module->hasMinAge()) {
+			$data['birthdate'] = array(GWF_Form::DATE, 0, $this->module->lang('th_birthdate'), '', GWF_Date::LEN_DAY);
 		}
 		
-		if ($this->_module->wantCountrySelect()) {
+		if ($this->module->wantCountrySelect()) {
 			$cid = isset($_POST['countryid']) ? $_POST['countryid'] : GWF_IP2Country::detectCountryID();
-			$data['countryid'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('countryid', $cid), $this->_module->lang('th_countryid'));
+			$data['countryid'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('countryid', $cid), $this->module->lang('th_countryid'));
 		}
 		
-		if ($this->_module->isTOSForced()) {
-			if ('' !== ($href_tos = $this->_module->cfgHrefTos())) {
-				$data['tos'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_tos2', array(htmlspecialchars($href_tos))));
+		if ($this->module->isTOSForced()) {
+			if ('' !== ($href_tos = $this->module->cfgHrefTos())) {
+				$data['tos'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_tos2', array(htmlspecialchars($href_tos))));
 			} else {
-				$data['tos'] = array(GWF_Form::CHECKBOX, false, $this->_module->lang('th_tos'));
+				$data['tos'] = array(GWF_Form::CHECKBOX, false, $this->module->lang('th_tos'));
 			}
 			$data['eula'] = array(GWF_Form::VALIDATOR);
 		}
 
-		if ($this->_module->wantCaptcha()) {
+		if ($this->module->wantCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		
-		$data['register'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_register'));
+		$data['register'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_register'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -64,10 +64,10 @@ final class Register_Form extends GWF_Method
 	{
 		$form = $this->getForm();
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('title_register'), GWF_WEB_ROOT.'register'),
+			'form' => $form->templateY($this->module->lang('title_register'), GWF_WEB_ROOT.'register'),
 			'cookie_info' => GWF_Session::haveCookies() ? '' : GWF_HTML::err('ERR_COOKIES_REQUIRED', NULL, false),
 		);
-		return $this->_module->template('register.tpl', $tVars);
+		return $this->module->template('register.tpl', $tVars);
 	}
 	
 	private function onRegister()
@@ -75,7 +75,7 @@ final class Register_Form extends GWF_Method
 		$form = $this->getForm();
 		
 		$errorsA = $errorsB = '';
-		if ( (false !== ($errorsA = $form->validate($this->_module))) || (false !== ($errorsB = $this->onRegisterB())) ) {
+		if ( (false !== ($errorsA = $form->validate($this->module))) || (false !== ($errorsB = $this->onRegisterB())) ) {
 			return $errorsA.$errorsB.$this->templateForm();
 		}
 		
@@ -83,7 +83,7 @@ final class Register_Form extends GWF_Method
 		$password = Common::getPost('password');
 		$email = Common::getPost('email');
 		$birthdate = sprintf('%04d%02d%02d', Common::getPost('birthdatey'), Common::getPost('birthdatem'), Common::getPost('birthdated'));
-		$default_country = $this->_module->cfgDetectCountry() ? GWF_IP2Country::detectCountryID() : 0;
+		$default_country = $this->module->cfgDetectCountry() ? GWF_IP2Country::detectCountryID() : 0;
 		$countryid = $form->getVar('countryid', $default_country);
 		require_once GWF_CORE_PATH.'module/Register/GWF_UserActivation.php';
 		$token = GWF_UserActivation::generateToken();
@@ -102,13 +102,13 @@ final class Register_Form extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateForm();
 		}
 
-		if ($this->_module->wantEmailActivation()) {
+		if ($this->module->wantEmailActivation()) {
 			return $this->sendEmail($username, $email, $token, $password);
 		}
 		else {
 			GWF_Website::redirect(GWF_WEB_ROOT.'quick_activate/'.$token);
 		}
-		return $this->_module->message('msg_registered');
+		return $this->module->message('msg_registered');
 	}
 
 	/**
@@ -120,17 +120,17 @@ final class Register_Form extends GWF_Method
 	{
 		$errors = array();
 		
-		if ($this->_module->hasIPActivatedRecently()) {
-			$errors[] = $this->_module->lang('err_ip_timeout');
+		if ($this->module->hasIPActivatedRecently()) {
+			$errors[] = $this->module->lang('err_ip_timeout');
 		}
 		
-		if ($this->_module->isTOSForced()) {
+		if ($this->module->isTOSForced()) {
 			if (!isset($_POST['tos'])) {
-				$errors[] = $this->_module->lang('err_tos');
+				$errors[] = $this->module->lang('err_tos');
 			}
 		}
 		
-		return count($errors) === 0 ? false : GWF_HTML::error($this->_module->getName(), $errors);
+		return count($errors) === 0 ? false : GWF_HTML::error($this->module->getName(), $errors);
 	}
 	
 	private function sendEmail($username, $email, $token, $password)
@@ -138,17 +138,17 @@ final class Register_Form extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($email);
-		$mail->setSubject($this->_module->lang('regmail_subject'));
+		$mail->setSubject($this->module->lang('regmail_subject'));
 		$href = Common::getAbsoluteURL('activate/'.$token);
 		$a = GWF_HTML::anchor($href, $href);
-		if ($this->_module->isPlaintextInEmail()) {
-			$pt = $this->_module->lang('regmail_ptbody', array(htmlspecialchars($username), htmlspecialchars($password)));
+		if ($this->module->isPlaintextInEmail()) {
+			$pt = $this->module->lang('regmail_ptbody', array(htmlspecialchars($username), htmlspecialchars($password)));
 		} else {
 			$pt = '';
 		}
-		$mail->setBody($this->_module->lang('regmail_body', array($username, $a, $pt)));
+		$mail->setBody($this->module->lang('regmail_body', array($username, $a, $pt)));
 		
-		return $mail->sendAsHTML() ? $this->_module->message('msg_mail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
+		return $mail->sendAsHTML() ? $this->module->message('msg_mail_sent') : GWF_HTML::err('ERR_MAIL_SENT');
 	}
 	
 	##################
@@ -157,10 +157,10 @@ final class Register_Form extends GWF_Method
 	public function validate_username(Module_Register $module, $arg)
 	{
 		if (false !== (GWF_User::getByName($arg))) {
-			return $this->_module->lang('err_name_taken');
+			return $this->module->lang('err_name_taken');
 		}
 		if (!GWF_Validator::isValidUsername($arg)) {
-			return $this->_module->lang('err_name_invalid');
+			return $this->module->lang('err_name_invalid');
 		}
 		return false;
 	}
@@ -169,7 +169,7 @@ final class Register_Form extends GWF_Method
 	{
 		if ( ($this->isBadPassword($arg)) || (!GWF_Validator::isValidPassword($arg)) )
 		{
-			return $this->_module->lang('err_pass_weak');
+			return $this->module->lang('err_pass_weak');
 		}
 		return false;
 	}
@@ -187,16 +187,16 @@ final class Register_Form extends GWF_Method
 	public function validate_email(Module_Register $module, $arg)
 	{
 		if (!GWF_Validator::isValidEmail($arg)) {
-			return $this->_module->lang('err_email_invalid');
+			return $this->module->lang('err_email_invalid');
 		}
-		if (!$this->_module->isEMailAllowedTwice()) {
+		if (!$this->module->isEMailAllowedTwice()) {
 			if (false !== (GWF_User::getByEmail($arg))) {
-				return $this->_module->lang('err_email_taken');
+				return $this->module->lang('err_email_taken');
 			}
 		}
 		if (GWF_BlackMail::isBlacklisted($arg))
 		{
-			return $this->_module->lang('err_domain_banned');
+			return $this->module->lang('err_domain_banned');
 		}
 		return false;
 	}
@@ -205,12 +205,12 @@ final class Register_Form extends GWF_Method
 	{
 		if (!GWF_Time::isValidDate($arg, true, 8))
 		{
-			return $this->_module->lang('err_birthdate');
+			return $this->module->lang('err_birthdate');
 		}
 		
-		if (0 < ($minage = $this->_module->getMinAge())) {
+		if (0 < ($minage = $this->module->getMinAge())) {
 			if ($minage > ($age = GWF_Time::getAge($arg))) {
-				return $this->_module->lang('err_minage', array($minage));
+				return $this->module->lang('err_minage', array($minage));
 			}
 		}
 		return false;
@@ -223,7 +223,7 @@ final class Register_Form extends GWF_Method
 		{
 			if (GWF_Country::getByID($countryid) === false)
 			{
-				return $this->_module->lang('err_country');
+				return $this->module->lang('err_country');
 			}
 		}
 		return false;
@@ -232,7 +232,7 @@ final class Register_Form extends GWF_Method
 	public function validate_eula(Module_Register $module, $arg)
 	{
 		if (!isset($_POST['tos'])) {
-			return $this->_module->lang('err_tos');
+			return $this->module->lang('err_tos');
 		}
 		return false;
 	}

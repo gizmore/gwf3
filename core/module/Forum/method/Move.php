@@ -21,7 +21,7 @@ final class Forum_Move extends GWF_Method
 	private function move($dir=-1, $bid)
 	{
 		if (false === ($board = GWF_ForumBoard::getBoard($bid))) {
-			return $this->_module->error('err_board');
+			return $this->module->error('err_board');
 		}
 		
 		if ($board->isRoot()) {
@@ -35,7 +35,7 @@ final class Forum_Move extends GWF_Method
 		$cmp = $dir === 1 ? '>' : '<';
 		$orderby = $dir === 1 ? 'board_pos ASC' : 'board_pos DESC';
 		if (false === ($swap = $board->selectFirst('1', "board_pid=$pid AND board_pos$cmp$myPos", $orderby))) {
-			return $this->_module->requestMethodB('Forum');
+			return $this->module->requestMethodB('Forum');
 		}
 		
 		$swapPos = $swap->getVar('board_pos');
@@ -50,12 +50,12 @@ final class Forum_Move extends GWF_Method
 		
 		$this->cleanupPositions();
 		
-		$this->_module->setCurrentBoard(GWF_ForumBoard::getBoard($pid));
+		$this->module->setCurrentBoard(GWF_ForumBoard::getBoard($pid));
 		
 		GWF_ForumBoard::init(true, true);
 		
 
-		return $this->_module->requestMethodB('Forum');
+		return $this->module->requestMethodB('Forum');
 	}
 	
 	private function cleanupPositions()

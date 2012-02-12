@@ -12,7 +12,7 @@ final class Slaytags_AdminTags extends GWF_Method
 	{
 		$tVars = array(
 		);
-		return $this->_module->template('admin_tags.tpl', $tVars);
+		return $this->module->template('admin_tags.tpl', $tVars);
 	}
 }
 ?>

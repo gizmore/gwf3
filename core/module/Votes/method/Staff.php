@@ -13,7 +13,7 @@ final class Votes_Staff extends GWF_Method
 		{
 			// Validate
 			if (false === ($vs = GWF_VoteScore::getByID($vsid))) {
-				return $this->_module->error('err_votescore');
+				return $this->module->error('err_votescore');
 			}
 
 			// Edit
@@ -48,14 +48,14 @@ final class Votes_Staff extends GWF_Method
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Votes&me=Staff&by=%BY%&dir=%DIR%',
 		);
 		
-		return $this->_module->templatePHP('staff.php', $tVars);
+		return $this->module->templatePHP('staff.php', $tVars);
 	}
 	
 	private function formEdit(GWF_VoteScore $vs)
 	{
 		$data = array();
 		
-		$data['editvs'] = array(GWF_Form::SUBMIT, $this->_module->lang('btn_edit'));
+		$data['editvs'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit'));
 		
 		return new GWF_Form($this, $data);
 	}
@@ -64,9 +64,9 @@ final class Votes_Staff extends GWF_Method
 	{
 		$form = $this->formEdit($vs);
 		$tVars = array(
-			'form' => $form->templateY($this->_module->lang('ft_edit_vs')),
+			'form' => $form->templateY($this->module->lang('ft_edit_vs')),
 		);
-		return $this->_module->template('edit_vs.tpl', $tVars);
+		return $this->module->template('edit_vs.tpl', $tVars);
 	}
 }
 ?>

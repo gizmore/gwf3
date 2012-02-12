@@ -32,7 +32,7 @@ final class Register_Admin extends GWF_Method
 	private function sanitize()
 	{
 		$this->table = new GWF_UserActivation(false);
-		$this->ipp = $this->_module->getActivationsPerPage();
+		$this->ipp = $this->module->getActivationsPerPage();
 		$this->nItems = $this->table->countRows();
 		$this->nPages = GWF_PageMenu::getPagecount($this->ipp, $this->nItems);
 		$this->page = Common::clamp((int)Common::getGet('page', 1), 1, $this->nPages);
@@ -47,13 +47,13 @@ final class Register_Admin extends GWF_Method
 	private function templateAdmin()
 	{
 		$headers = array(
-			array($this->_module->lang('th_username'), 'username', 'ASC'),
-			array($this->_module->lang('th_token'), 'token', 'ASC'),
-			array($this->_module->lang('th_email'), 'email', 'ASC'),
-			array($this->_module->lang('th_birthdate'), 'birthdate', 'ASC'),
-			array($this->_module->lang('th_countryid'), 'countryid', 'ASC'),
-			array($this->_module->lang('th_timestamp'), 'timestamp', 'ASC'),
-			array($this->_module->lang('th_ip'), 'ip', 'ASC'),
+			array($this->module->lang('th_username'), 'username', 'ASC'),
+			array($this->module->lang('th_token'), 'token', 'ASC'),
+			array($this->module->lang('th_email'), 'email', 'ASC'),
+			array($this->module->lang('th_birthdate'), 'birthdate', 'ASC'),
+			array($this->module->lang('th_countryid'), 'countryid', 'ASC'),
+			array($this->module->lang('th_timestamp'), 'timestamp', 'ASC'),
+			array($this->module->lang('th_ip'), 'ip', 'ASC'),
 		);
 		$tVars = array(
 //			'by' => $this->by,
@@ -63,7 +63,7 @@ final class Register_Admin extends GWF_Method
 			'activations' => $this->table->selectAll('*', '', $this->orderby, NULL, $this->ipp, GWF_PageMenu::getFrom($this->page, $this->ipp)),
 			'pagemenu' => $this->getPageMenu(),
 		);
-		return $this->_module->template('admin.tpl', $tVars);
+		return $this->module->template('admin.tpl', $tVars);
 	}
 	
 	private function getPageMenu()

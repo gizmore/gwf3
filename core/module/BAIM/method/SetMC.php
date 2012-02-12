@@ -8,11 +8,11 @@ final class BAIM_SetMC extends GWF_Method
 	public function execute()
 	{
 		if (false === ($this->row = BAIM_MC::getByUID(GWF_Session::getUserID()))) {
-			return $this->_module->error('err_not_purchased');
+			return $this->module->error('err_not_purchased');
 		}
 		
 		if ($this->row->isDemo()) {
-			return $this->_module->error('err_not_purchased');
+			return $this->module->error('err_not_purchased');
 		}
 		
 //		var_dump($this->row);
@@ -28,9 +28,9 @@ final class BAIM_SetMC extends GWF_Method
 	private function formMC(BAIM_MC $row)
 	{
 		$data = array(
-//			'mc' => array(GWF_Form::STRING, $row->getMC(), $this->_module->lang('th_mc'), $this->_module->lang('tt_mc')),
+//			'mc' => array(GWF_Form::STRING, $row->getMC(), $this->module->lang('th_mc'), $this->module->lang('tt_mc')),
 			'mc' => array(GWF_Form::VALIDATOR),
-			'set' => array(GWF_Form::SUBMIT, $this->_module->lang('menu_mc')),
+			'set' => array(GWF_Form::SUBMIT, $this->module->lang('menu_mc')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -40,9 +40,9 @@ final class BAIM_SetMC extends GWF_Method
 		$form = $this->formMC($row);
 		$tVars = array(
 			'row' => $row,
-			'form' => $form->templateY($this->_module->lang('ft_set_mc')),
+			'form' => $form->templateY($this->module->lang('ft_set_mc')),
 		);
-		return $this->_module->templatePHP('set_mc.php', $tVars);
+		return $this->module->templatePHP('set_mc.php', $tVars);
 	}
 	
 	public function validate_mc(Module_BAIM $m, $arg)
@@ -59,7 +59,7 @@ final class BAIM_SetMC extends GWF_Method
 	private function onSetMC(BAIM_MC $row)
 	{
 		$form = $this->formMC($row);
-		if (false !== ($errors = $form->validate($this->_module))) {
+		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
 		
@@ -68,7 +68,7 @@ final class BAIM_SetMC extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_set_mc');#, GWF_HTML::display($mc));
+		return $this->module->message('msg_set_mc');#, GWF_HTML::display($mc));
 	}
 }
 ?>

@@ -43,25 +43,25 @@ final class WeChall_Admin extends GWF_Method
 	{
 		$formHardlink = $this->formHardlink();
 		$tVars = array(
-			'href_ddos' => $this->_module->getMethodURL('UpdateAll'),
-			'href_convert' => $this->_module->getMethodURL('Convert'),
-			'href_update' => $this->_module->getMethodURL('Admin', '&remote_update=yes'),
-			'href_chall_cache' => $this->_module->getMethodURL('Admin', '&chall_cache=yes'),
-			'href_recalc_all' => $this->_module->getMethodURL('Admin', '&recalc=all'),
-			'href_sitetags' => $this->_module->getMethodURL('Admin', '&sitetags=yes'),
-			'href_freeze' => $this->_module->getMethodURL('Freeze'),
-			'href_fix_challs' => $this->_module->getMethodURL('Admin', '&fix_challs=yes'),
-			'href_fix_irc' => $this->_module->getMethodURL('Admin', '&fix_irc=yes'),
-			'form_hardlink' => $formHardlink->templateY($this->_module->lang('ft_hardlink')),
-			'href_siteminmail' => $this->_module->getMethodURL('Admin', '&siteminmail=yes'),
+			'href_ddos' => $this->module->getMethodURL('UpdateAll'),
+			'href_convert' => $this->module->getMethodURL('Convert'),
+			'href_update' => $this->module->getMethodURL('Admin', '&remote_update=yes'),
+			'href_chall_cache' => $this->module->getMethodURL('Admin', '&chall_cache=yes'),
+			'href_recalc_all' => $this->module->getMethodURL('Admin', '&recalc=all'),
+			'href_sitetags' => $this->module->getMethodURL('Admin', '&sitetags=yes'),
+			'href_freeze' => $this->module->getMethodURL('Freeze'),
+			'href_fix_challs' => $this->module->getMethodURL('Admin', '&fix_challs=yes'),
+			'href_fix_irc' => $this->module->getMethodURL('Admin', '&fix_irc=yes'),
+			'form_hardlink' => $formHardlink->templateY($this->module->lang('ft_hardlink')),
+			'href_siteminmail' => $this->module->getMethodURL('Admin', '&siteminmail=yes'),
 		);
-		return $this->_module->templatePHP('admin.php', $tVars);
+		return $this->module->templatePHP('admin.php', $tVars);
 	}
 	
 	private function onCacheChallTags()
 	{
-		$this->_module->cacheChallTags();
-		return $this->_module->message('msg_cached_ctags').
+		$this->module->cacheChallTags();
+		return $this->module->message('msg_cached_ctags').
 		$this->templateAdmin();
 	}
 	
@@ -184,17 +184,17 @@ final class WeChall_Admin extends GWF_Method
 	public function validate_site(Module_WeChall $module, $arg)
 	{
 		if (false === ($this->site = WC_Site::getByID($arg))) {
-			return $this->_module->lang('err_site');
+			return $this->module->lang('err_site');
 		}
 		return false;
 	}
 	private function formHardlink()
 	{
 		$data = array(
-			'site' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->_module->lang('th_site_name')),
-			'username' => array(GWF_Form::STRING, '', $this->_module->lang('th_user_name')),
-			'onsitename' => array(GWF_Form::STRING, '', $this->_module->lang('th_onsitename')),
-			'hardlink' => array(GWF_Form::SUBMIT, $this->_module->lang('btn_hardlink')),
+			'site' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->module->lang('th_site_name')),
+			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_user_name')),
+			'onsitename' => array(GWF_Form::STRING, '', $this->module->lang('th_onsitename')),
+			'hardlink' => array(GWF_Form::SUBMIT, $this->module->lang('btn_hardlink')),
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -211,7 +211,7 @@ final class WeChall_Admin extends GWF_Method
 	private function onHardlink()
 	{
 		$form = $this->formHardlink();
-		if (false !== ($error = $form->validate($this->_module))) {
+		if (false !== ($error = $form->validate($this->module))) {
 			return $error;
 		}
 		$onsitename = Common::getPost('onsitename');
@@ -223,17 +223,17 @@ final class WeChall_Admin extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		
 		if (false !== WC_RegAt::getRegatRow($user->getID(), $site->getID())) {
-			return $this->_module->error('err_already_linked', array($site->displayName()));
+			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		if (WC_Freeze::isUserFrozenOnSite($user->getID(), $site->getID())) {
-			return $this->_module->error('err_site_ban', array($site->displayName()));
+			return $this->module->error('err_site_ban', array($site->displayName()));
 		}
 		if (false !== ($regat = WC_RegAt::getByOnsitename($site->getID(), $onsitename))) {
 			if (false === ($user = $regat->getUser())) {
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			else {
-				return $this->_module->error('err_onsitename_taken', array(htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername()));
+				return $this->module->error('err_onsitename_taken', array(htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername()));
 			}
 		}
 		
@@ -257,7 +257,7 @@ final class WeChall_Admin extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $this->_module->message('msg_hardlinked', array($user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename)));
+		return $this->module->message('msg_hardlinked', array($user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename)));
 	}
 }
 

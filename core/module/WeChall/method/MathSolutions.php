@@ -7,7 +7,7 @@ final class WeChall_MathSolutions extends GWF_Method
 	public function execute()
 	{
 		if (false === ($chall = WC_Challenge::getByID(Common::getGetString('cid')))) {
-			return $this->_module->error('err_chall');
+			return $this->module->error('err_chall');
 		}
 		$user = GWF_User::getStaticOrGuest();
 		$token = Common::getGetString('token');
@@ -17,7 +17,7 @@ final class WeChall_MathSolutions extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_MathChall.php';
 		if (!WC_ChallSolved::hasSolved($user->getID(), $chall->getID())) {
 			if (!WC_MathChall::checkToken($chall, $length, $token)) {
-				return $this->_module->error('err_token');
+				return $this->module->error('err_token');
 			}
 		}
 		
@@ -26,7 +26,7 @@ final class WeChall_MathSolutions extends GWF_Method
 	
 	private function templateSolutions(WC_Challenge $chall, GWF_User $user, $length, $token)
 	{
-		$tt = $this->_module->lang('pt_wmc_sol', array($chall->display('chall_title'), $length));
+		$tt = $this->module->lang('pt_wmc_sol', array($chall->display('chall_title'), $length));
 		GWF_Website::setPageTitle($tt);
 		$ipp = 50;
 		$cid = $chall->getID();
@@ -52,7 +52,7 @@ final class WeChall_MathSolutions extends GWF_Method
 			'table_title' => $tt,
 			'chall' => $chall,
 		);
-		return $this->_module->templatePHP('math_solutions.php', $tVars);
+		return $this->module->templatePHP('math_solutions.php', $tVars);
 	}
 }
 ?>
