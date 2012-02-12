@@ -16,5 +16,10 @@ final class GWF_Security extends GWF_Method
 		}
 		return $back;
 	}
+	
+	public function execute()
+	{
+		
+	}
 }
 ?>
