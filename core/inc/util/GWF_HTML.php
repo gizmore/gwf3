@@ -44,7 +44,7 @@ final class GWF_HTML
 	 * @param boolean $to_smarty group errors to a fixed smarty area
 	 * @return string
 	 */
-	public static function error($title=NULL, $messages, $log=true, $to_smarty=false)
+	public static function error($title=NULL, $messages, $log=true)
 	{
 		$messages = (array) $messages;
 
@@ -54,7 +54,7 @@ final class GWF_HTML
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if (false === $to_smarty && false === GWF_ERRORS_TO_SMARTY)
+		if (false === GWF_ERRORS_TO_SMARTY)
 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
 		}
@@ -88,8 +88,8 @@ final class GWF_HTML
 	### Messages ###
 	################
 	private static $_MESSAGES = array();
-	public static function message($title=NULL, $message, $log=true, $to_smarty=false) { return self::messageA($title, array($message), $log, $to_smarty); }
-	public static function messageA($title=NULL, array $messages, $log=true, $to_smarty=false)
+	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
+	public static function messageA($title=NULL, array $messages, $log=true)
 	{
 		if (count($messages) === 0) return '';
 		
@@ -97,7 +97,7 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if (false === $to_smarty && false === GWF_MESSAGES_TO_SMARTY)
+		if (false === GWF_MESSAGES_TO_SMARTY)
 		{
 			return self::displayMessages(array('title' => $title, 'messages' => $messages));
 		}
