@@ -139,7 +139,7 @@ final class Language_Checker extends GWF_Method
 				$this->onCheckFile($fullisopath);
 			}
 			# ELSEIF!!
-			elseif (false && is_file($fullisopath))
+			elseif (is_file($fullisopath))
 			{
 				$this->onCheckFile($fullisopath);
 			}
@@ -159,13 +159,14 @@ final class Language_Checker extends GWF_Method
 	private function onCheckFile($path2)
 	{
 		$this->num_files++;
-		
+
 		$path1 = $this->getOtherPath($path2);
 		# English file exists?
 		if (!file_exists($path1) || !is_file($path1) || !is_readable($path1))
 		{
 			$this->enMissingFile[] = $path1;
 			$this->errors++;
+			$lang1 = array();
 		}
 		# Include english language file
 		else 
@@ -176,7 +177,7 @@ final class Language_Checker extends GWF_Method
 			{
 				$this->enEmptyFile[] = $path1;
 				$this->errors++;
-				return;
+				$lang = array();
 			}
 			$lang1 = $lang;
 			unset($lang);
@@ -198,12 +199,6 @@ final class Language_Checker extends GWF_Method
 		else 
 		{
 			include $path2;
-			if (!isset($lang))
-			{
-				$this->enEmptyFile[] = $path2;
-				$this->errors++;
-				return;
-			}
 			$lang2 = $lang;
 			unset($lang);
 		}
