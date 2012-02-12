@@ -31,13 +31,13 @@ $lang = array(
 	'err_zip' => 'Si è verificato un errore durante la creazione del file ZIP, nel file %s linea %s.',
 
 	# v1.01
-	'dh_langchecker' => 'Results',
-	'err_probsum' => 'Summary for language "%s": %d errors, %d warnings and %d missing files.',
-	'dh_transfilemiss' => 'Files missing: %d',
-	'err_transfilemiss' => 'Missing file: %s',
-	'dh_warning' => 'Warnings in %s',
-	'err_transkey' => 'Key "%s" is not translated: %s',
-	'dh_errors' => 'Errors in %s',
-	'err_keymiss' => 'Key "%s" is completely missing.',
+	'dh_langchecker' => 'Risultati',
+	'err_probsum' => 'Sommario per il linguggio "%s": %d errori, %d avverimenti e %d file mancanti.',
+	'dh_transfilemiss' => 'File mancanti: %d',
+	'err_transfilemiss' => 'File mancante: %s',
+	'dh_warning' => 'Avvertimenti in %s',
+	'err_transkey' => 'la chiave "%s" non è tradotta: %s',
+	'dh_errors' => 'Errori in %s',
+	'err_keymiss' => 'La chiave "%s" manca completamente.',
 );
 ?>
