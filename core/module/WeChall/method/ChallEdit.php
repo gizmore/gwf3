@@ -72,7 +72,7 @@ final class WeChall_ChallEdit extends GWF_Method
 		
 		# Solution
 		$is_case_i = isset($_POST['case_i']);
-		if ('' !== ($solution = Common::getPost('solution', '')))
+		if ('' !== ($solution = Common::getPostString('solution', '')))
 		{
 			if (false === $chall->saveVar('chall_solution', $chall->hashSolution($solution, $is_case_i))) {
 				$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -112,8 +112,6 @@ final class WeChall_ChallEdit extends GWF_Method
 		if (false === $chall->saveVars(array(
 			'chall_url' => $form->getVar('url'),
 			'chall_title' => $form->getVar('title'),
-			'chall_solution' => $form->getVar('solution'),
-			
 		))) {
 			$msgs .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}

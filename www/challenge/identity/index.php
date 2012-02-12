@@ -51,7 +51,7 @@ require_once('challenge/html_foot.php');
 <?php
 function identity_filter(WC_Challenge $chall)
 {
-	if ( (!isset($_POST['answer'])) || (is_string($_POST['answer'])) )
+	if ( (!isset($_POST['answer'])) || (!is_string($_POST['answer'])) )
 	{
 		return;
 	}
