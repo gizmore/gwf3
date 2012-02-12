@@ -82,27 +82,27 @@ final class Language_Checker extends GWF_Method
 		if (count($this->enMissingFile) > 0)
 		{
 			# missing english files
-			$message .= $this->module->error('err_missing_en_files', array(count($this->enMissingFile), implode('<br>'PHP_EOL, $this->enMissingFile)), false);
+			$message .= $this->module->error('err_missing_en_files', array(count($this->enMissingFile), implode('<br>'.PHP_EOL, $this->enMissingFile)), false);
 		}
 		if (count($this->enEmptyFile) > 0)
 		{
 			# empty and uncorrect files
-			$message .= $this->module->error('err_empty_files', array(count($this->enEmptyFile), implode('<br>'PHP_EOL, $this->enEmptyFile)), false);
+			$message .= $this->module->error('err_empty_files', array(count($this->enEmptyFile), implode('<br>'.PHP_EOL, $this->enEmptyFile)), false);
 		}
 		if (count($this->transMissing) > 0)
 		{
 			# missing translation files
-			$message .= $this->module->error('err_missing_files', array(count($this->transMissing), implode('<br>'PHP_EOL, $this->transMissing)), false);
+			$message .= $this->module->error('err_missing_files', array(count($this->transMissing), implode('<br>'.PHP_EOL, $this->transMissing)), false);
 		}
 		foreach($this->errErrorMessages as $path => $err)
 		{
-			$message .= $this->module->error('err_file_errors', array($path, implode('<br>'PHP_EOL, $err)), false)
+			$message .= $this->module->error('err_file_errors', array($path, implode('<br>'.PHP_EOL, $err)), false);
 		}
 		if (true === $this->show_warns)
 		{
 			foreach($this->errWarnMessages as $path => $warn)
 			{
-				$message .= $this->module->error('err_file_warnings', array($path, implode('<br>'PHP_EOL, $warn)), false)
+				$message .= $this->module->error('err_file_warnings', array($path, implode('<br>'.PHP_EOL, $warn)), false);
 			}
 		}
 
@@ -259,11 +259,11 @@ final class Language_Checker extends GWF_Method
 
 		if (count($errs) > 0)
 		{
-			$this->errErrorMessages[$path][] = $errs;
+			$this->errErrorMessages[$path] = $errs;
 		}
 		if (count($warn) > 0 && $this->show_warns === true)
 		{
-			$this->errWarnMessages[$path][] = $warn;
+			$this->errWarnMessages[$path] = $warn;
 		}
 	}
 }
