@@ -63,7 +63,6 @@ $lang = array(
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
-// 'last_action' => ' Last action: %s %s. %s.', # last action, last target, last durcation
 'pa_delete' => "{$b}beeing deleted{$b}.",
 'pa_talk' => "{$b}talking{$b} to %s. %s remaining. Last action: %s", # enemy party, duration, last action
 'pa_fight' => "{$b}fighting{$b} against %s. Last action: %s", # enemy party last action.
@@ -665,5 +664,6 @@ $lang = array(
 '5256' => 'You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.',
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
+'5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
 );
 ?>

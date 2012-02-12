@@ -22,7 +22,7 @@ final class Shadowlang
 	
 	public static function langNPC(SR_NPC $npc, SR_Player $player, $key, $args=NULL)
 	{
-		return self::getLangNPC($npc)->lang($player->getLangISO(), $key, $args);
+		return self::getLangNPC($npc)->langISO($player->getLangISO(), $key, $args);
 	}
 	
 	/**
@@ -103,8 +103,6 @@ final class Shadowlang
 		if (false === isset(self::$LANG_LOCATION[$locname]))
 		{
 			$llocname = strtolower(Common::substrFrom($locname, '_'));
-			$cityname = $location->getCity();
-			$lcityname = strtolower($cityname);
 			$path = sprintf('%scity/%s/lang/location/%s/%s', Shadowrun4::getShadowDir(), $location->getCity(), $llocname, $llocname);
 			self::$LANG_QUEST[$locname] = new GWF_LangTrans($path);
 		}

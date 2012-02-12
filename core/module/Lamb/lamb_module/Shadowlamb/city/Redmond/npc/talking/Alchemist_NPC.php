@@ -10,25 +10,28 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
-		$b = chr(2);
+// 		$b = chr(2);
 		switch ($word)
 		{
 			case 'magic':
-				$this->reply('Yeah, I even sell some magic potions and elixirs.');
-				break;
+				return $this->rply('magic');
+// 				$this->reply('Yeah, I even sell some magic potions and elixirs.');
 			
 			case 'chemistry':
-				$this->reply("You can buy similar things here for chemistry or even {$b}magic{$b} potions.");
+				$this->rply('chemistry');
+// 				$this->reply("You can buy similar things here for chemistry or even {$b}magic{$b} potions.");
 				$player->giveKnowledge('words', 'Magic');
-				break;
+				return true;
 			
 			case 'hello':
-				$this->reply("Hello, my name is carsten and I sell items for {$b}chemistry{$b} and similar stuff.");
-				break;
+				return $this->rply('hello');
+// 				$this->reply("Hello, my name is carsten and I sell items for {$b}chemistry{$b} and similar stuff.");
+// 				break;
 				
 			default:
-				$this->reply("What do you mean with $word?");
-				break;
+				return $this->rply('default', array($word));
+// 				$this->reply("What do you mean with $word?");
+// 				break;
 		}
 	}
 }

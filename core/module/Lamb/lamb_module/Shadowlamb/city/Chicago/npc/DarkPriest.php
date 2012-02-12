@@ -3,7 +3,7 @@ final class Chicago_DarkPriest extends SR_NPC
 {
 	public function getNPCLevel() { return 21; }
 	public function getNPCPlayerName() { return 'DarkPriest'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 35.00; }
 	public function getNPCEquipment()
 	{
 		return array(

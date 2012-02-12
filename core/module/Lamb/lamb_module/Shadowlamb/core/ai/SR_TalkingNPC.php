@@ -55,7 +55,26 @@ abstract class SR_TalkingNPC extends SR_NPC
 		return true;
 	}
 	
-// 	public function rply($key)
+	/**
+	 * Multi lang version of NPC->reply.
+	 * @param string $key
+	 * @param arry $args
+	 * @return boolean
+	 */
+	public function rply($key, $args=NULL)
+	{
+		$player = $this->chat_partner;
+		$p = $player->getParty();
+		$message = $player->lang('5085', array($this->getName(), Shadowlang::langNPC($this, $player, $key, $args)));
+		if (true === $p->isTalking())
+		{
+			return $p->notice($message);
+		}
+		else
+		{
+			return $player->message($message);
+		}
+	}
 	
 	public function bye()
 	{

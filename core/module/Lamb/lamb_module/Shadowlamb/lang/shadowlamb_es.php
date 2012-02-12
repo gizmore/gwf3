@@ -63,7 +63,6 @@ $lang = array(
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'un grupo vacío',
-// 'last_action' => ' Ultima acción: %s %s. %s.', # last action, last target, last durcation
 'pa_delete' => "{$b}siendo borrado{$b}.",
 'pa_talk' => "{$b}hablando{$b} a %s. %s queda. Ultima acción: %s", # enemy party, duration, last action
 'pa_fight' => "{$b}luchando{$b} contra %s. Ultima acción: %s", # enemy party last action.
@@ -325,7 +324,6 @@ $lang = array(
 '1153' => 'Este destino es desconocido. Comprueba posibles destinos con #travel.',
 '1154' => 'No puedes permitirte el lujo de %d billetes para %s.',
 '1155' => 'Este equipo no tiene un uso especial. Puedes equiparlo con #equip.',
-
 '1156' => 'Tu arma ya esta cargada.',
 '1157' => 'Este objeto solo funciona en combate.',
 '1158' => 'Sólo se puedes construir el equipo.',
@@ -647,7 +645,6 @@ $lang = array(
 '5239' => 'Tu das %d %s(s) a %s.',
 '5240' => 'Recibes %s.', # quest reward string
 '5241' => 'En Shadowlamb v3 hay: %s diferentes NPC en %s Areas con %s Lugares. %s Objetos, %s Hechizos y %s Pruebas. Teclea #stats para ver cuantos están jugando.',
-
 '5242' => 'El grupo ha parado. Ahora qué?!',
 '5243' => 'Es el año 2064 + %s.',
 '5244' => 'Actualmente hay %s Humanos, %s NPC y %s grupos en memoria.',
@@ -665,6 +662,7 @@ $lang = array(
 '5256' => 'Tu jugabas #running_mode y has sido asesiando por un NPC o otro #rm jugador. Estas muerto. Usa #reset para comenzar otra vez.',
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
+'5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
 
 );
 ?>

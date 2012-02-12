@@ -78,7 +78,7 @@ abstract class SR_Subway extends SR_Location
 // 			$out = 'There are no trains planned for today.';
 		}
 		
-		return $bot->rply('', array(substr($out, 2)));
+		return $bot->rply('5259', array(substr($out, 2)));
 		
 // 		else {
 // 			$out = substr($out, 2);

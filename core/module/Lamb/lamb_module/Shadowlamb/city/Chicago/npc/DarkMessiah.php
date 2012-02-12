@@ -3,7 +3,7 @@ final class Chicago_DarkMessiah extends SR_NPC
 {
 	public function getNPCLevel() { return 25; }
 	public function getNPCPlayerName() { return 'DarkMessiah'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 30.00; }
 	public function getNPCEquipment()
 	{
 		return array(
@@ -16,7 +16,7 @@ final class Chicago_DarkMessiah extends SR_NPC
 		);
 	}
 
-	public function getNPCInventory() { return array('FirstAid'); }
+	public function getNPCInventory() { return array('FirstAid', 'Diamond', 'Hematite', 'Quartz'); }
 	
 	public function getNPCModifiers()
 	{

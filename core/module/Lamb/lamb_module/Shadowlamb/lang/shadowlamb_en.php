@@ -669,7 +669,7 @@ $lang = array(
 '5256' => 'You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.',
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
-'5259' => '',
+'5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
 '5260' => '',
 );
 ?>
