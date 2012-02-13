@@ -43,7 +43,8 @@ final class Shadowcmd_brew extends Shadowcmd
 			return false;
 // 			return $bot->reply('You don\'t have this spell.');
 		}
-		$spell->setMode(SR_Spell::MODE_POTION);
+		$spell->setMode(SR_Spell::MODE_BREW);
+		$spell->setCaster($player);
 		$level = $player->getSpellLevel($spellname);
 		
 		if ($wantlevel === true)

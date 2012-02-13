@@ -334,10 +334,10 @@ class Shadowcmd
 	 */
 	public static function checkLeader(SR_Player $player)
 	{
-		if (false === self::checkCreated($player))
-		{
-			return false;
-		}
+// 		if (false === self::checkCreated($player))
+// 		{
+// 			return false;
+// 		}
 		if ($player->isLeader())
 		{
 			return true;

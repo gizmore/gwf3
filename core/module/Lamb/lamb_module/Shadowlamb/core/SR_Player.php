@@ -235,7 +235,7 @@ class SR_Player extends GDO
 	public function getMaxMP() { return $this->get('max_mp'); }
 	public function getNuyen() { return $this->getFloat('sr4pl_nuyen'); }
 	public function getBankNuyen() { return $this->getFloat('sr4pl_bank_nuyen'); }
-	public function getDistance() { return $this->getParty()->getDistance($this); }
+	public function getDistance() { $p = $this->getParty(); return $p === false ? 0 : $p->getDistance($this); }
 	public function displayNuyen() { return Shadowfunc::displayNuyen($this->getNuyen()); }
 	public function displayBankNuyen() { return Shadowfunc::displayNuyen($this->getBankNuyen()); }
 	public function isDrunk() { return $this->get('alc') >= (0.8 + $this->getBase('body')*0.20); }
