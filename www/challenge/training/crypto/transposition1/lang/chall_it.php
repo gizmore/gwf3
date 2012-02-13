@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto - Transposition I',
+	'title' => 'Crypto - Transposition I ',
 	'info' =>
 		'Sembra che i cifrari a sostituzione siano troppo semplici per te.<br/>'.
 		'Dalla mia esperienza personale posso dirti che <a href="http://it.wikipedia.org/wiki/Cifrario_a_trasposizione">i cifrari a trasposizione</a> sono più difficile da attaccare.<br/>'.

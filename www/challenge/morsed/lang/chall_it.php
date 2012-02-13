@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Morsed',
+	'title' => 'Morsed ',
 	'info' => 
 		'Questa è la mia prima piccola sfida, spero vi piaccia.<br/>'.
 		'Dovrebbe essere abbastanza semplice e non servono ulteriori aiuti.<br/>'.

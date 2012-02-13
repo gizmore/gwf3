@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Fixus',
+	'title' => 'Fixus ',
 	'info' =>
 		'La tua missione è quella di guadagnare l\'accesso alla sezione soluzioni del forum per la sfida di Z.<br/>'.
 		'Il tuo piano è quello di raccogliere informazioni riguardanti le soluzioni delle sfide e guadagnare punti su WeChall.net.<br/>'.

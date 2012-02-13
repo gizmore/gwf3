@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Fremes',
+	'title' => 'Fremes ',
 	'info' =>
 		'Hai spiato il gruppo FREMES e puoi <a href="%2$s">intercettare i loro messaggi</a>.<br/>'.PHP_EOL.
 		'Il nostro team di esperti in steganografia dice che si stanno cambiando Chiavi da %1$s Bit tramite un metodo sconosciuto.<br/>'.PHP_EOL.

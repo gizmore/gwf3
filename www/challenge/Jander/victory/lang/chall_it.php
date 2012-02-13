@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Speed Your Way To VICtory',
+	'title' => 'Speed Your Way To VICtory ',
 	'info' =>
 //		'I found <a href="%1$s">this recording</a>, but can\'t remember what\'s on it.<br/>'.PHP_EOL.
 		'L\'altro giorno stato rivedendo e riascoltando le mie vecchia cassette, e ho trovato <a href="%1$s">questa degli Eurythmics</a>.<br/>'.PHP_EOL.

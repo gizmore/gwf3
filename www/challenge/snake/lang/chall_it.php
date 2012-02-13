@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Snake 4 Poors',
+	'title' => 'Snake 4 Poors ',
 	'info' =>
 		'La tua missione è di ottenere esattamente %1$s punti. Puoi <a href="%2$s">dare un occhiata alla tabella dei punteggi qui</a>.<br/>'.
 		'<br/>'.

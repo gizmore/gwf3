@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'PHP - Local File Inclusion',
+	'title' => 'PHP - Local File Inclusion ',
 	'info' =>
 		'La tua missione è quella di sfruttare questo codice, che ha una ovvia <a href="http://it.wikipedia.org/wiki/Remote_File_Inclusion">vulnerabilità LFI</a>:<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.

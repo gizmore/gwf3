@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crackcha',
+	'title' => 'Crackcha ',
 	'info' =>
 		'In questa sfida, il tuo compito è quello di crackare il WC4_Captcha.<br/><br/>'.
 		'Prima di iniziare a crackare, richiedi <a href="%1$s">%1$s</a>.<br/>'.

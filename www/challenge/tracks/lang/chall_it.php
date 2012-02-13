@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Tracks',
+	'title' => 'Tracks ',
 	'info' => 
 		'La compagnia Gizmore è fiera di presentare il suo nuovo sistema di voto.<br/>'.PHP_EOL.
 		'La tua missione è semplice: Vota almeno due volte.<br/>'.PHP_EOL.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Letterworm',
+	'title' => 'Letterworm ',
 	'info' =>
 		'La griglia di lettere è tornare, infettada da un verme maligno.<br/>'.
 		'Questa  volta le parole cambiano direzione, a zigzag.<br/>'.

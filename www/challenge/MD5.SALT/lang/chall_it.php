@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'MD5.SALT',
+	'title' => 'MD5.SALT ',
 	'info' => 
 		'La tua missione è quella di accedere come Admin.<br/>'.
 		'L\'applicazione è vulnerabile a SQL Injection, ma il processo di iscrizione sembra un pò &quot;strano&quot;.<br/>'.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'No Escape',
+	'title' => 'No Escape ',
 	'info' =>
 		'La piccola compagnia di software di gizmore si sta espandendo ed è stata incaricata di creare un nuovo sistema di voto online per le elezioni presidenziali del 2012.<br/>'.
 		'Lo script corrente è ancora nella fase alpha, e vorremmo sapere se è sicuro.<br/>'.

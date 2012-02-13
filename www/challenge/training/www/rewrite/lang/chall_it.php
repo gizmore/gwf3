@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'WWW - Rewrites',
+	'title' => 'WWW - Rewrites ',
 	'info' =>
 		'Nella sfida WWW - Basics hai imparato ad installare un server HTTP.<br/>'.
 		'Ora la sfida è leggermente più ardua:<br/>'.

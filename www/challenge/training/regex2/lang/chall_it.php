@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Regex Mini',
+	'title' => 'Regex Mini ',
 	'info' =>
 		'Stiamo cercando di creare un sito sicuro.<br/>'.PHP_EOL.
 		'Finora abbiamo una definizione sicura dei nomi utente possibili.<br/>'.PHP_EOL.

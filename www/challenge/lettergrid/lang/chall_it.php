@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Lettergrid',
+	'title' => 'Lettergrid ',
 	'info' =>
 		'Puoi trovare le parole nascoste in tempo (%1$ss)?<br/>'.
 		'Ordina le parole trovate in base alla posizione della prima lettera della parola ed inviale separate da virgole.<br/>'.

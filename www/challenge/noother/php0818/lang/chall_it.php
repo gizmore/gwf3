@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'PHP 0818',
+	'title' => 'PHP 0818 ',
 	'info' =>
 		'PHP è strano!<br/>'.PHP_EOL.
 		'Dai un occhiata al <a href="%1$s">codice sorgente</a>, anche in <a href="%2$s">versione evidenziata</a>.<br/>'.PHP_EOL.

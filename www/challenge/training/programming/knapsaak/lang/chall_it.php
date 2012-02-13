@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'The Travelling Customer',
+	'title' => 'The Travelling Customer ',
 	'info' =>
 		'In questa sfida di programmazione devi risolvere il seguente problema:<br/>'.
 		'Ti viene presentata un menù, un NumOggetti e una Somma, insieme ad un parametro di Stock.<br/>'.

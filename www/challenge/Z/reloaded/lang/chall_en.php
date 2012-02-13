@@ -25,7 +25,7 @@ $lang = array(
 	'narr_13' => 'Your nasty virus is doing a good job against the power grid, it will take days to recover the whole database - and the power grid. Nice work Trinity, mission accomplished :)',
 
 	### After (prompts?) ###
-	'after_1' => '', # none
+	'after_1' => ' ', # none
 	'after_2' => 
 		'Starting nmap V. 2.54BETA25'.PHP_EOL.
 		'Insufficient responses for TCP sequencing (3), OS detection may be less accurate'.PHP_EOL.

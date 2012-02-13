@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto - Digraphs',
+	'title' => 'Crypto - Digraphs ',
 	'info' =>
 		'Questa volta stò utilizzando uno sistema di crittazione a digrammi per trasformare una lettera in due caratteri.<br/>'.PHP_EOL.
 		'Con sole 26 lettere sono in grado di crittare fino a 26*26 caratteri.<br/>'.PHP_EOL.

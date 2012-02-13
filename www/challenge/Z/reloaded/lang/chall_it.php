@@ -25,7 +25,7 @@ $lang = array(
 	'narr_13' => 'Il tuo fastidioso virus sta facendo un gran bel lavoro contro la rete elettrica, ci metteranno giorni per recuperare l\'intero database - e la rete elettrica. Bel lavoro Trinity, missione compiuta :)',
 
 	### After (prompts?) ###
-	'after_1' => '', # none
+	'after_1' => '  ', # none
 	'after_2' => 
 		'Starting nmap V. 2.54BETA25'.PHP_EOL.
 		'Insufficient responses for TCP sequencing (3), OS detection may be less accurate'.PHP_EOL.
@@ -36,22 +36,22 @@ $lang = array(
 		'...'.PHP_EOL.
 		'No exact OS matches for host'.PHP_EOL.
 		'...'.PHP_EOL.
-		'Nmap run completed -- 1 IP address (1 host up) scanneds'.PHP_EOL,
-	'after_3' => 'Right :)',
+		'Nmap run completed -- 1 IP address (1 host up) scanneds '.PHP_EOL,
+	'after_3' => 'Right :) ',
 	'after_4' =>
 		'Connecting to 10.2.2.2:ssh ... successful.'.PHP_EOL.
 		'Attempting to exploit SSHv1 CRC32 ... successful.'.PHP_EOL.
 		'Reseting root password to "Z1ON0101".'.PHP_EOL.
-		'System open: Access Level <9>'.PHP_EOL,
-	'after_5' => 'Password:',
-	'after_6' => 'Welcome to the gateway server, root.',
-	'after_7' => 'Welcome to MSSQL. We put the screws in your database!',
-	'after_8' => 'Added user trinity.',
-	'after_9' => 'Added user trinity to group administrators',
-	'after_10' => 'Port Forward 1 done.',		
-	'after_11' => 'Port Forward 2 done.',
-	'after_12' => 'Password:',
-	'after_13' => 'OWNED',
+		'System open: Access Level <9> '.PHP_EOL,
+	'after_5' => 'Password: ',
+	'after_6' => 'Welcome to the gateway server, root. ',
+	'after_7' => 'Welcome to MSSQL. We put the screws in your database! ',
+	'after_8' => 'Added user trinity. ',
+	'after_9' => 'Added user trinity to group administrators ',
+	'after_10' => 'Port Forward 1 done. ',		
+	'after_11' => 'Port Forward 2 done. ',
+	'after_12' => 'Password: ',
+	'after_13' => 'OWNED ',
 
 	'cmd_help' => 'Questa non è una Shell. E\' più simile a trivia - un gioco di domande e risposte. Buon divertimento con la ricerca.',
 );

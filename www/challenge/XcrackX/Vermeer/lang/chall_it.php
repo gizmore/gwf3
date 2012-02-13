@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Vermeer',
+	'title' => 'Vermeer ',
 	'info' => 
 		'Un amico paranoico mi ha inviato un messaggio,'.PHP_EOL.
 		'ma, forse a causa della sua mente paranoica, si è dimenticato di dirmi come decodificarlo.<br/>'.PHP_EOL.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crypto - GPG',
+	'title' => 'Crypto - GPG ',
 	'info' =>
 		'In questa sfida, il tuo compito è quello di impostare correttamente la crittatura GPG per la tue E-Mail.<br/>'.PHP_EOL.
 		'Per fare ciò, genera la tua coppia di chiavi localmente e salva la tua chiave pubblica su WeChall.<br/>'.PHP_EOL.
