@@ -305,9 +305,10 @@ abstract class SR_Spell
 		# Announce
 		$p = $player->getParty();
 		$p->ntice($key_friend, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
-		if ($p->isFighting())
+		
+		$ep = $target->getParty();
+		if ($ep->getID() !== $p->getID())
 		{
-			$ep = $p->getEnemyParty();
 			$ep->ntice($key_foe, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
 		}
 	}
