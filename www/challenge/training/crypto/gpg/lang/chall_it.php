@@ -2,10 +2,10 @@
 $lang = array(
 	'title' => 'Crypto - GPG',
 	'info' =>
-		'In questa sfida, il tuo compito è quello di impostare corretamente la crittatura GPG per la tue E-Mail.<br/>'.PHP_EOL.
+		'In questa sfida, il tuo compito è quello di impostare correttamente la crittatura GPG per la tue E-Mail.<br/>'.PHP_EOL.
 		'Per fare ciò, genera la tua coppia di chiavi localmente e salva la tua chiave pubblica su WeChall.<br/>'.PHP_EOL.
 		'Una volta fatto ciò, tutte le E-mail inviateti da WeChall saranno crittate.<br/>'.PHP_EOL.
-		'Per attivare la crittazione GPG, devi semplicemente andare <a href="%1$s">impostazioni account</a>.<br/>'.PHP_EOL.
+		'Per attivare la crittazione GPG, devi semplicemente andare in <a href="%1$s">impostazioni account</a>.<br/>'.PHP_EOL.
 		'Quando hai finito, clicca sul bottone sottostante per inviarti una E-Mail.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Buon divertimento!',

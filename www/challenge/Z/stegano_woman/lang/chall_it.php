@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-	'info' => 'Un\'altra sfida di Z.<br/>Puoi <a href="%1$s">scaricarla qui</a>.<br/>',
+	'info' => 'Un\'altra sfida di Z.<br/>Puoi scaricarla <a href="%1$s">qui</a>.<br/>',
 );
 
 ?>

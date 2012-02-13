@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'info' => 
-		'L\'anno è il 2018, la terza guerra mondiale incombe tra Cine e USA. Tu sei<br/>'.
+		'L\'anno è il 2018, la terza guerra mondiale incombe tra Cina e USA. Tu sei<br/>'.
 		'un agente segreto che lavora per gli USA. L\'agenzia IGA (Information Gathering<br/>'.
 		'Agency) degli USA ha raccolto tre messaggi RSA. Tutti i messaggi contengono <br/>'.
 		'lo stesso "messaggio in chiaro", ovvero una chiave simmetrica (m). Con questa<br/>'.
@@ -81,7 +81,7 @@ $lang = array(
 		'Hai un cervello, hai accesso a tutta la conoscenza del mondo (wikipedia),<br/>'.
 		'hai una matita e della carta e, ovviamente, una BNC (Big Number Calculator).<br/>'.
 		'Se recupererai la chiave entro un ora, salverai il mondo, poichè i cinesi non<br/>'.
-		'attaccherano, se avrai le loro armi segrete. Per cui sbrigati!<br/>'.
+		'attaccheranno, se avrai le loro armi segrete. Per cui sbrigati!<br/>'.
 		'Il mondo ha bisogno di TE!',
 );
 ?>

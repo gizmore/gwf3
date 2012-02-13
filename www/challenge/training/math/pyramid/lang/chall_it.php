@@ -7,7 +7,7 @@ $lang = array(
 		'Ecco la nostra storia:<br/>'.
 		'<br/>'.
 		'Il faraone %3$s vuole una <b>piramide a base quadrata</b>, dove tutti i vertici abbiano la stessa lunghezza \'a\'.<br/>'.
-		'Quello che serve è una fortuma che calcoli il volume della piramide per una data lunghezza del vertice.<br/>'.
+		'Quello che serve è una formula che calcoli il volume della piramide per una data lunghezza del vertice.<br/>'.
 		'I tuoi colleghi hanno già disegnato uno schizzo della piramide vista di fronte:<br/>'.
 		'%2$s<br/>'.
 		'<br/>'.

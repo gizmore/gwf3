@@ -7,7 +7,7 @@ $lang = array(
 
 	'err_no_request' => 'Non hai richiesto nessuna immagine.',
 	'err_wrong' => 'La soluzione è sbagliata: %s<br/>Quella corretta sarebbe stata: \'%s\'<br/>Tempo impiegato: %ss',
-	'err_slow' => 'Ci hai messo troppo tempo<br/>Avevi %ss e ci hai messo %ss.',
+	'err_slow' => 'Ci hai messo troppo tempo<br/>Avevi %s secondi e ci hai messo %s secondi.',
 	'msg_correct' => 'Corretto dopo %s secondi.',
 );
 ?>

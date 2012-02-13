@@ -25,7 +25,7 @@ $lang = array(
 	'btn_upload' => 'Carica',
 	
 	'test_input' => 'Esempio input smiley',
-	'test_output' => 'Esempio output smileyt',
+	'test_output' => 'Esempio output smiley',
 	'test_input_msg' => 'Questo è un test',
 
 	'all_smileys_input' => 'Tutti gli esempi input smiley',

@@ -4,7 +4,7 @@ $lang = array(
 	'title' => 'Sfida PHP 0815',
 	'info' => 
 	'Ho <a href="%1$s">questo script</a> ed è suscettibile di un attacco di SQL injection.<br/>La tua missione è quella di fornirmi una soluzione.<br/>'.
-	'La soluzione che cerco è quella che richiede lo sforzo minimo (Il cambiamento più corto in una posizione logica) e garantisce che lo script funzioni ancora.<br/>'.
+	'La soluzione che cerco è quella che richiede lo sforzo minimo (il cambiamento più corto in una posizione logica) e garantisce che lo script funzioni ancora.<br/>'.
 	'Se pensi che <i>&quot;urldecode()&quot;</i> aggiusti lo script devi solo inserirlo come soluzione.<br/>'.
 	'La soluzione deve contenere tutti i caratteri che devono essere digitati.<br/>'.
 	'Sentiti libero di discutere nei forum, visto che questa è una sfida educativa :)',

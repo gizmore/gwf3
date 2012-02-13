@@ -13,7 +13,7 @@ $lang = array(
 		'Grazie a %2$s e %3$s per aver testato la sfida.'.PHP_EOL,
 
 	'err_already_voted' => 'Sembra che tu abbia già votato!',
-	'err_vote_param' => 'la preghiamo di votare solo per candidati validi!',
+	'err_vote_param' => 'La preghiamo di votare solo per candidati validi!',
 	'err_hacking_attempt' => 'Tentativo di hacking rilevato!',
 	'msg_voted' => 'Voto registrato!',
 	'msg_vote_inited' => 'State votando per %1$s. La preghiamo di premere il bottone del voto ancora.',

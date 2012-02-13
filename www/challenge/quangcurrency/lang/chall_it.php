@@ -24,7 +24,7 @@ $lang = array(
 	# Buy
 	'err_money' => 'Non hai abbastanza soldi nel tuo account.',
 	'msg_buy' => 'Grazie per il tuo acquisto. Ora hai %1$s oggetti nel tuo portafoglio.',
-	'msg_solved' => 'Come diamine...?! Come hai fatto a comprare10 oggetti?!<br/>Comunque... hai risolto la sfida e le tue statistiche sono state resettate.',
+	'msg_solved' => 'Come diamine...?! Come hai fatto a comprare 10 oggetti?!<br/>Comunque... hai risolto la sfida e le tue statistiche sono state resettate.',
 
 	# Click
 	'err_max_clicks' => 'Hai raggiunto il massimo numero di click possibili (%1$s). Ti preghiamo di resettare le tue statistiche.',

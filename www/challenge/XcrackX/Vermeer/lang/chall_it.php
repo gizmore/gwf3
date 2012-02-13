@@ -2,12 +2,12 @@
 $lang = array(
 	'title' => 'Vermeer',
 	'info' => 
-		'A paranoid friend has sent me a message,'.PHP_EOL.
-		'but in his paranoid mind he forgot to tell me how to decode it.<br/>'.PHP_EOL.
+		'Un amico paranoico mi ha inviato un messaggio,'.PHP_EOL.
+		'ma, forse a causa della sua mente paranoica, si è dimenticato di dirmi come decodificarlo.<br/>'.PHP_EOL.
 		'%1$s<br/>'.PHP_EOL.
-		'What can I do now?<br/>',
-	'hint' => 'If Picasso got a computer he would know what to do!',
-	'embed' => 'Sadly, this is not the message you are looking for :( Try further!',
-	'title_ct' => 'Here is the message',
+		'Cosa posso fare ora?<br/>',
+	'hint' => 'Se Picasso avesse un computer, saprebbe cosa fare!',
+	'embed' => 'Sfortunatamente questo non è il messaggio che stiamo cercando :( Prova ancora!',
+	'title_ct' => 'Ecco il messaggio',
 );
 ?>

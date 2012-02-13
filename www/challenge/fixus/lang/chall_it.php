@@ -5,7 +5,7 @@ $lang = array(
 		'La tua missione è quella di guadagnare l\'accesso alla sezione soluzioni del forum per la sfida di Z.<br/>'.
 		'Il tuo piano è quello di raccogliere informazioni riguardanti le soluzioni delle sfide e guadagnare punti su WeChall.net.<br/>'.
 		'Siccome Z è un ingenuo, un tipo clicca-poi-pensa, lui clicca su ogni link che gli viene inviato.<br/>'.
-		'Il tuo piano è quello di inviare a Z un link malizioso, ma a prima vista innocenten e, una volta che accede a WeChall, sarai in grado di accedere con le credenziali di Z e leggere la sezione delle soluzioni.<br/>'.
+		'Il tuo piano è quello di inviare a Z un link malizioso, ma a prima vista innocente e, una volta che accede a WeChall, sarai in grado di accedere con le credenziali di Z e leggere la sezione delle soluzioni.<br/>'.
 		'Gizmore ha fatto un gran bel lavoro contro XSS and CSRF, quindi devi trovare un\'altra falla per accedere.<br/>'.
 		'Dopo aver esaminato il codice sorgente di WeChall, hai trovato una pagina segreta per effettuare il login alla sezione delle soluzioni di Z.<br/>'.
 		'<br/>'.

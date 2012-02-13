@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'info' =>
-		'Ti sei svegliato ed è un\'altra brutta giornata; inoltre, il tuo account bancario è vuoto, da mesi. Ti servono dei soldi facili, quindi vai su una "darknet" irc per parlare con persone che hanno dei lavoretti "non proprio legali" da darti. Il tuo nuovo boss vuole che ti introduca nella rete di una piccola banca e trasferica dei soldi da un account ad un altro. Un semplice lavoretto, no?<br/>'.
+		'Ti sei svegliato ed è un\'altra brutta giornata; inoltre, il tuo account bancario è vuoto, da mesi. Ti servono dei soldi facili, quindi vai su una "darknet" IRC per parlare con persone che hanno dei lavoretti "non proprio legali" da darti. Il tuo nuovo boss vuole che ti introduca nella rete di una piccola banca e trasferica dei soldi da un account ad un altro. Un semplice lavoretto, no?<br/>'.
 		'<br/>'.
 		'Porti il tuo forguncino davanti all\'ufficio principale della banca e lanci il tuo programma di sniffing preferito. Wow, sembra che stiano usando una reta WPA. Intercettiamo <a href="%1$s">qualche trasmissione</a> e proviamo a recuperare la password WPA con un dictionary attack.<br/>'.
 		'<br/>'.
@@ -13,12 +13,12 @@ $lang = array(
 	'info_login' =>
 		'Ora puoi intercettare i dati inviati sulla rete. '.
 		'Sembra che gli amministratori stiano usando PSA InsecurID per autenticarsi al PSA ACE server. '.
-		'La buona notiziona è che stanno utilizzando delle connessioni HTTP in chiaro. '.
+		'La buona notizia è che stanno utilizzando delle connessioni HTTP in chiaro. '.
 		'Forse gli amministratori pensavano che WPA fosse sicuro, per cui non hanno introdotto un secondo livello di sicurezza. '.
 		'Ora puoi utilizzare arp cache poisoning, <a href="%1$s">intercettare dei dati relativi all\'autenticazione</a> (nome utente e la one time password generata dal token PSA InsecurID) ed inviarlo nuovamente alla pagina di autenticazione.<br/>'.
 		'Hai tre secondi per fare ciò.<br/>'.
 		'<br/>'.
-		'invia il testo a %2$s<br/>'.
+		'Invia il testo a %2$s<br/>'.
 		'Il tempo limite è %3$s secondi.',
 
 	'failed' => 'Login fallito, nome utente o password invalidi.',

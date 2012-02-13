@@ -14,7 +14,7 @@ $lang = array(
 		'Buona fortuna!',
 
 	'msg_reset' => 'La tua password è stata cambiata per ragioni di sicurezza.',
-	'msg_logged_in' => 'bentornato, utente. Hai effettuato il login dopo %s tentativi errati.',
+	'msg_logged_in' => 'Bentornato, utente. Hai effettuato il login dopo %s tentativi errati.',
 	'msg_consec_success' => 'Wow, sei stato capace di recuperare l\'hash corretta restando nei limiti della sfida. Devi completare la missione ancora %s volte per risolvere la sfida.',
 	'msg_old_pass' => 'Siamo spiacenti di vedere che ti sei arreso così presto. Per aiutarti, ecco la tua ultima hash: %s.',
 		

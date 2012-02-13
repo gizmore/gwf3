@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'Non puoi fermarci!',
 	'info' =>
-		'Noother ha creato un business per vendere domini .xyz a qualche dollaro.<br/>'.PHP_EOL.
+		'Noother ha creato un\'azienda per vendere domini .xyz a qualche dollaro.<br/>'.PHP_EOL.
 		'Il tuo obiettivo è quello di trovare un bug nello script per effettuare acquisti senza pagarli.<br/>'.PHP_EOL.
 		'Puoi testare <a href="%1$s">lo script qui</a>.<br/>'.PHP_EOL.
 		'Per aiutarti nel debugging, puoi dare un occhiata al <a href="%2$s">codice sorgente</a>, anche <a href="%3$s">versione evidenziata</a>.<br/>'.PHP_EOL.

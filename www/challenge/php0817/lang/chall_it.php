@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'PHP-0817 ',
 	'info' =>
-		'Ho scrittp in sistema per includere risorse nelle pagine dinamiche ma sembra sia vulnerabile a LFI (Local File Inclusion).<br/>'.
+		'Ho scritto un sistema per includere risorse nelle pagine dinamiche ma sembra sia vulnerabile a LFI (Local File Inclusion).<br/>'.
 		'Ecco il codice:<br/>'.
 		'%1$s<br/>'.
 		'La tua missione è di includere il file <a href="%2$s">solution.php</a>.<br/>'.

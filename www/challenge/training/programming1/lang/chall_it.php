@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'info' =>
-		'Quando visiti <a href="%1$s">questo link</a> riceverai il messaggio.<br/>'.
+		'Quando visiti <a href="%1$s">questo link</a> riceverai un messaggio.<br/>'.
 		'Invia lo stesso messaggio a %2$s<br/>'.
 		'Il tempo limite è di %3$s secondi',
 

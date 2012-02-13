@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Crittazione primitiva',
+	'title' => 'Crittazione Pimitiva',
 	'info' =>
 		'Questa sfida doveva essere pubblicata su net-force ma ci vogliono anni per vederla pubblicata.<br/>'.
 		'Quindi ho deciso di inserirla tra le sfide di WeChall.<br/>'.
@@ -16,7 +16,7 @@ $lang = array(
 		'<b>Tipo di crittatura</b>: One-Time-Pad XOR'.PHP_EOL.
 		'</pre>'.
 		'<br/>'.
-		'<a href="%s" title="Il File criptato">scarica il file criptato</a><br/>'.
+		'<a href="%s" title="Il File criptato">Scarica il file criptato</a><br/>'.
 		'<br/>'.
 		'Buon divertimento!',
 );

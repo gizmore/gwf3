@@ -5,7 +5,7 @@ $lang = array(
 	'info' =>
 		'Prima di inizare la sfida ti consiglio di salvere tutte le informazioni e le soluzioni che riceverai,<br/>'.
 		'poichè poi ti serviranno, molto probabilmente, nelle parti successive della sfida.<br/>'.
-		'Specialmente se vedi delle password nello casella del narratore.<br/>'.
+		'Specialmente se vedi delle password nella casella del narratore.<br/>'.
 		'<br/>'.
 		'<a href="%1$s" title="Start the challenge">Inizia la sfida</a>',
 

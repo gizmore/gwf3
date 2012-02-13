@@ -14,6 +14,6 @@ $lang = array(
 	'btn_hackit' => 'Il tuo bottone',
 	'th_text' => 'Il tuo test',
 
-	'noote' => 'Inviace del testo per la nostra raccolta dati personali su di te.',
+	'noote' => 'Inviaci del testo per la nostra raccolta dati personali su di te.',
 );
 ?>

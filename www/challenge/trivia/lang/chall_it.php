@@ -3,7 +3,7 @@ $lang = array(
 	'msg_solved' => 
 		'Wow, ce l\'hai fatto!<br/>'.
 		'Hai risolto la sfida.<br/>'.
-		'ma... non sei loggato.<br/>'.
+		'Ma... non sei loggato.<br/>'.
 		'Beh...Ti darò la password magica: %s.',
 
 	'box_title' => 'Domanda %s',

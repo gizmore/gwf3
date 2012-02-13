@@ -3,9 +3,9 @@ $lang = array(
 	'title' => 'Gioco dell\'hashing di WeChall',
 	'info' => 
 		'Benvenuto al gioco dell\'hashing di WeChall.<br/>'.
-		'La tua missione è crackare due list di hash.<br/>'.
+		'La tua missione è crackare due liste di hash.<br/>'.
 		'La <a href="%1$s">prima lista</a> utilizza <a href="%2$s">l\'algoritmo di hashing WC3</a>, che utilizza un algoritmo MD5 con una SALT fissa.<br/>'.
-		'La <a href="%3$s">seconda lista</a> utilizza <a href="%4$s">l\'algoritmo di hashing WC4</a>, che utilizza un algoritmo SHA-1 con salt.<br/>'.
+		'La <a href="%3$s">seconda lista</a> utilizza <a href="%4$s">l\'algoritmo di hashing WC4</a>, che utilizza un algoritmo SHA-1 con SALT.<br/>'.
 		'<br/>'.
 		'La soluzione è data dalle due parole più lunghe di ogni lista, concatenate con una virgola.<br/>'.
 		'Esempio soluzione: parolada1,parolada1,parolada2,parolada2.<br/>'.

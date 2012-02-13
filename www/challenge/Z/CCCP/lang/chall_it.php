@@ -16,7 +16,7 @@ Ecco il flusso logico dettagliato dell\'attacco.<br/>
 http://www.mysite.evil/log.php?cc_number=1111222233334444&cvv=423<br/>
 Il formato è un esempio, puoi usare qualsiasi cosa dopo http://www.mysite.evil/ (è fisso perchè rende più semplice il test della sfida :) ), ma deve contenere il numero di carta di credito e il codice cvv. Dovresti essere in grado di ricevere sul tuo sito tutte le informazioni salvate nella tabella delle carte di credito (e non solo pezzi di esse).<br/> 
 <br/>
-Obbiettivo opzionale: La rete dela vittima è auto-monitorata e un allarme è generato se c\'è un numero di carta di credito inviato in chiaro sulla rete. Il tuo obbiettivo aggiuntivo è quello di evitare questo controllo utilizzando un qualsiasi tipo di codifica/crittazione.<br/>
+Obiettivo opzionale: La rete dela vittima è auto-monitorata e un allarme è generato se c\'è un numero di carta di credito inviato in chiaro sulla rete. Il tuo obiettivo aggiuntivo è quello di evitare questo controllo utilizzando un qualsiasi tipo di codifica/crittazione.<br/>
 <br/>
 Per risolvere questa sfida, devi crare questa pagina forum.html, pubblicarla da qualsiasi parte su Internet (anche in formato scaricabile), ed inviare un PM a Z con il link a forum.html. Z controllerà la tua soluzione e, se funziona, ti invierà la soluzione della sfida. Per maggiori informazioni, dai un occhiata agli aiuti pubblicati nella sezione di aiuto.<br/>
 <br/>

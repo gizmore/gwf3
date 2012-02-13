@@ -15,7 +15,7 @@ $lang = array(
 		'ripristinare l\'inizio di un file del database, che puoi trovare<br/>'.
 		'<a href="%2$s">qui</a>.<br/>'.
 		'<br/>'.
-		'Il tuo obbiettivo è di trovare un identificativo nome utente - password - connessione valido nella forma seguente<br/>'.
+		'Il tuo obiettivo è di trovare un identificativo nome utente - password - connessione valido nella forma seguente<br/>'.
 		'<br/>'.
 		'<b>utente_database/password@ip_database:porta/nome_database</b><br/>'.
 		'<br/>'.

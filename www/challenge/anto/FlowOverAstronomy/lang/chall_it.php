@@ -8,13 +8,13 @@ $lang = array(
 	'info' =>
 		'Il tuo compito è semplice. Computa l\'equazione e invia il risultato come numero nella base della soluzione.<br/>'.
 		'Per favore, usa il charset fornito per i tuoi calcoli.<br/>'.
-		'Per esempio, il charset esadecimale maiuscolo è 0123456789ABCDEF. I vari charset differenziano maiuscolo e minuscole.<br/>'.
+		'Per esempio, il charset esadecimale maiuscolo è 0123456789ABCDEF. I vari charset differenziano maiuscole e minuscole.<br/>'.
 		'Base N significa che la base usa i primi N caratteri del charset.<br/>',
 
 	'problem' => 
 		'Charset: %1$s<br/> '.
 		'Base dell\'input: %2$s<br/>'.
-		'Base dela soluzione: %3$s<br/>'.
+		'Base della soluzione: %3$s<br/>'.
 		'Tempo limite: %4$s secondi<br/>',
 
 	'params' => 'Parametri',

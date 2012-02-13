@@ -3,10 +3,10 @@ $lang = array(
 	'title' => 'Regex Mini',
 	'info' =>
 		'Stiamo cercando di creare un sito sicuro.<br/>'.PHP_EOL.
-		'Finora, abbiamo una definizione sicura dei nomi utente possibili.<br/>'.PHP_EOL.
+		'Finora abbiamo una definizione sicura dei nomi utente possibili.<br/>'.PHP_EOL.
 		'A meno che non ci dimostri il contrario.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Ancora ti viene dato il <a href="%1$s">codice sorgente</a>, anche in <a href="%2$s">versione evidenziata</a>.<br/>'.PHP_EOL.
+		'Ti viene dato il <a href="%1$s">codice sorgente</a>, anche in <a href="%2$s">versione evidenziata</a>.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'&copy;Softworx(tm) 2011',
 

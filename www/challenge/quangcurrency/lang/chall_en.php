@@ -9,7 +9,7 @@ $lang = array(
 		'When clicking <a href="%3$s">this link</a> your stats will reset.<br/>'.
 		'Navigate <a href="%4$s">here to see your stats</a>.<br/><br/>'.
 		'Good luck.', #<br/><br/>'.
-		#'<i>Note: Do not change the userid. The userid is needed because I could not call session_start() for this challenge.<br/>The userid is your wechall userid, so in theory you can check out other user`s stats or play with their accounts.</i> (will get fixed)',
+		#'<i>Note: Do not change the userid. The userid is needed because I could not call session_start() for this challenge.<br/>The userid is your wechall userid, so in theory you can check out other user`s stats or play with their accounts.</i> (will get fixed)' FIXME,
 
 	# Reset
 	'reset_info' => 'Your stats have been reset. Try again!',

@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'title' => 'WWW - WWW-Rewrites',
+	'title' => 'WWW - Rewrites',
 	'info' =>
-		'Nella sfida WWW - Basics hai imparato come installare un server HTTP.<br/>'.
+		'Nella sfida WWW - Basics hai imparato ad installare un server HTTP.<br/>'.
 		'Ora la sfida è leggermente più ardua:<br/>'.
 		'La sfida richiederà un file casuale sul tuo server, con lo schema %1$s[0-9]+_mul_[0-9]+.html<br/>'.
 		'Il tuo server dovrà rispondere alla richiesta con il risultato di Numero1*Numero2.<br/>'.

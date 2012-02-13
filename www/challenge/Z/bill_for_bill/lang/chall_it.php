@@ -5,7 +5,7 @@ $lang = array(
 		'<a href="%1$s">Vai alla sfida</a>.',
 
 	'story_1' =>
-		'Vuoi comprarti un nuovo M4C ma tuo padre, Bill, non vuole darti i soldi. Lui è uno delle persone più ricche del mondo, ma diche che un M4C non è un buon SO, usa W1nd0w5, dice lui. hai deciso di prendere il suo numero di carta di credito, insieme al codice CVV, cosi da comprare online il tuo M4C. Il problema è che la carta di credito è sempre nelle mani di tuo padre e non hai la possibilità di prenderla. Sai però che tuo padre scrive ogni password ed informazione segreta nel suo database KeePass, ma non sai la password per quel il file KeePass. Un giorno, guardando di soppiatto tuo padre, noti che effettua l\'accesso a W1nd0w5 e, subito dopo, accede a KeePass. La password sembrano molto simili...'.
+		'Vuoi comprarti un nuovo M4C ma tuo padre, Bill, non vuole darti i soldi. Lui è una delle persone più ricche del mondo, ma dice che un M4C non è un buon SO... usa W1nd0w5, dice lui. Hai deciso di prendere il suo numero di carta di credito, insieme al codice CVV, cosi da comprare online il tuo M4C. Il problema è che la carta di credito è sempre nelle mani di tuo padre e non hai la possibilità di prenderla. Sai però che tuo padre scrive ogni password ed informazione segreta nel suo database KeePass, ma non sai la password per quel il file KeePass. Un giorno, guardando di soppiatto tuo padre, noti che effettua l\'accesso a W1nd0w5 e, subito dopo, accede a KeePass. La password sembrano molto simili...'.
 		'<br/><br/>'.
 		'Hai potuto vedere che la password è molto lunga, con lettere maiuscole e minuscole. Forse c\'è metodo per crackare la password di W1nd0w5 e c\'è la possibilità che la stessa password sia utilizzata per KeePass.'.
 		'<br/><br/>'.

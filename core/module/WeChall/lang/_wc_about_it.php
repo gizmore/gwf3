@@ -2,7 +2,7 @@
 $lang = array(
 		# About WeChall
 		'about_meta' => 'A proposito di '.GWF_SITENAME,
-		'about_pagetitle' => 'A proposito di'.GWF_SITENAME,
+		'about_pagetitle' => 'A proposito di '.GWF_SITENAME,
 		'about_info' =>
 		'Wechall si focalizza su siti che si occupano di problemi e prove legate al mondo dei computer.<br/>',
 		'about_08' => 'A proposito di Wechall (nel 2008)',

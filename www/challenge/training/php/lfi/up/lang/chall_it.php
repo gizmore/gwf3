@@ -18,7 +18,7 @@ $lang = array(
 
 	'example_title' => 'Lo script vulnerabile in azione',
 	'err_basedir' => 'Questa cartella non è parte della sfida.',
-	'credits' => 'Grazie a %1$s per l\'alpha testing, grandi idee e motivazione!',
+	'credits' => 'Grazie a %1$s per l\'alpha testing, le grandi idee e la motivazione!',
 	'msg_solved' => 'Ben fatto. Se trovi una vulnerabilità come questa, un hacker può prendere il controllo completo della macchina in pochi minuti.',
 );
 ?>
