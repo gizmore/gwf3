@@ -71,5 +71,6 @@ $lang = array(
 	'pe' => 'weight',
 	'suss' => 'whisper',
 	'rsuss' => 'whisper_back',
+	'mos' => 'show',
 );
 ?>
