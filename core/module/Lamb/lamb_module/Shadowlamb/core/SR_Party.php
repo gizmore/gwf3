@@ -1447,11 +1447,11 @@ final class SR_Party extends GDO
 			$this->timestamp = time();
 			foreach ($this->members as $player)
 			{
-				$player instanceof SR_Player;
-				if (NULL !== ($user = $player->getUser()))
-				{
-					Lamb::instance()->setCurrentUser($user);
-				}
+// 				$player instanceof SR_Player;
+// 				if (NULL !== ($user = $player->getUser()))
+// 				{
+// 					Lamb::instance()->setCurrentUser($user);
+// 				}
 				Shadowcmd::$CURRENT_PLAYER = $player;
 				$player->combatTimer();
 			}

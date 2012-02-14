@@ -15,7 +15,6 @@ final class Chicago_Archery extends SR_School
 			array('ReignBow', 100.0, 7999.95),
 
 			array('Ammo_Arrow', 100.0, 150, 30),
-			array('Ammo_Arrow', 100.0, 250, 75),
 			
 // 			array('Rune_of_bows:0.1', 100.0, 1000),
 // 			array('Rune_of_attack:0.1', 100.0, 1900),
