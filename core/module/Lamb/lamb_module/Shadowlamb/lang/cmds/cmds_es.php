@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * Shortcuts mapped to long commands in commands/commands_en.php
  */
@@ -6,7 +6,7 @@ $lang = array(
 	'ac' => 'accept',			//aceptar
 	'#' => 'attack',			//atacar
 	'a' => 'attributes',	//atributos
-	'va' => 'backward',		//volver atrás
+	'va' => 'backward',		//volver atrÃ¡s
 	'ro' => 'break',			//romper
 	'po' => 'brew',				//pocion
 	'co' => 'buy',				//comprar
@@ -33,7 +33,7 @@ $lang = array(
 	'dd' => 'giveny',			//dar dinero
 	'ir' => 'goto',				//ir a
 	'ca' => 'hunt',				//cazar
-	'in' => 'info',				//información
+	'in' => 'info',				//informaciÃ³n
 	'i' => 'inventory',		//inventario
 	'un' => 'join',				//unirse
 	'ka' => 'karma',			//karma
@@ -42,7 +42,7 @@ $lang = array(
 	'luc' => 'known_places',			//lugares conocidos
 	'hec' => 'known_spells',			//hechizos conocidos
 	'pac' => 'known_words',			//palabras conocidas
-	'li' => 'leader',			//líder
+	'li' => 'leader',			//lÃ­der
 	'mi' => 'look',				//mirar
 	'sb' => 'lvlup',			//subir nivel
 	'ge' => 'manage',			//gestionar
@@ -57,7 +57,7 @@ $lang = array(
 	'pr' => 'quests',			//pruebas
 	'r' => 'reload',			//recargar
 	'so' => 'request',		//solicitar
-	'sl' => 'request_leader',	//solicitar al líder
+	'sl' => 'request_leader',	//solicitar al lÃ­der
 	'mc' => 'running_mode',		//modo corredor
 	'ed' => 'set_distance',		//establecer distancia
 	'gr' => 'shout',			//gritar
