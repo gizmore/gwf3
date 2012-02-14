@@ -351,6 +351,7 @@ final class Shadowrun4
 			self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp');
 			self::initCore(Lamb::DIR);
 			self::initCmds(Lamb::DIR);
+			Shadowcmd::init();
 			self::initItems(Lamb::DIR);
 // 			self::initQuests(Lamb::DIR);
 			self::initCityBases(Lamb::DIR);

@@ -26,7 +26,7 @@ final class Delaware_Priest extends SR_TalkingNPC
 	
 	private function praySins(SR_Player $player, array $args)
 	{
-		if (1 >= ($badkarma = $player->getBase('bad_karma')))
+		if (1 > ($badkarma = $player->getBase('bad_karma')))
 		{
 			return $this->reply('You are free from all sins, my son.');
 		}

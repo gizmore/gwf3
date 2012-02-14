@@ -334,17 +334,26 @@ final class Shadowfunc
 	#################
 	### Shortcuts ###
 	#################
-	public static function unshortcut($string, array $array)
+	public static function unshortcut($string, $array)
 	{
 		$string = strtolower($string);
+		if ($array === false)
+		{
+			return $string;
+		}
 		return true === isset($array[$string]) ? $array[$string] : $string;
 	}
 	
-	public static function shortcut($string, array $array)
+	public static function shortcut($string, $array)
 	{
-		if (false === ($key = array_search(strtolower($string), $array, true)))
+		$string = strtolower($string);
+		if ($array === false)
 		{
-			return strtolower($string);
+			return false;
+		}
+		if (false === ($key = array_search($string, $array, true)))
+		{
+			return $string;
 		}
 		return strtolower($key);
 	}

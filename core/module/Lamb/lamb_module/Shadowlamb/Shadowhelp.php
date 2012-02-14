@@ -20,7 +20,7 @@ final class Shadowhelp
 			'die' => 'death',
 		);
 		
-		$shortcuts = array_merge($shortcuts, Shadowcmd::$CMD_SHORTCUTS, SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
+		$shortcuts = array_merge($shortcuts, Shadowcmd::getCommandShortcutMap(), SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
 		
 		if (true === isset($shortcuts[$word]))
 		{
