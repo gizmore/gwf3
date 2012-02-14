@@ -18,7 +18,8 @@ final class SR_Install
 			}
 		}
 		
-		return self::onCreateLangFiles();
+		return true;
+// 		return self::onCreateLangFiles();
 	}
 	
 	##############################
@@ -28,6 +29,7 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
+		return self::createItemLangFile();
 		return true;
 // 		return
 // 			(true === self::createNPCLangFiles()) &&
@@ -260,9 +262,22 @@ final class SR_Install
 				}
 				else
 				{
-					$out .= sprintf("//'%s' => '',", $key);
+					$out .= sprintf("'%s' => '%s',", $key, str_replace("'", '\\\'', $trans));
 				}
 				$out .= PHP_EOL;
+				
+				
+				$key .= '__desc__';
+				if ($key === ($trans = $langfile->langISO($iso, $key)))
+				{
+					$out .= sprintf("'%s' => '%s',", $key, str_replace("'", '\\\'', $item->getItemDescription()));
+				}
+				else
+				{
+					$out .= sprintf("'%s' => '%s',", $key, str_replace("'", '\\\'', $trans));
+				}
+				$out .= PHP_EOL;
+				
 			}
 			$out .= ');'.PHP_EOL;
 			$out .= '?>'.PHP_EOL;

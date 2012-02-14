@@ -10,6 +10,10 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
+		if (true === $this->onNPCQuestTalk($player, $word, $args))
+		{
+			return true;
+		}
 // 		$b = chr(2);
 		switch ($word)
 		{

@@ -52,6 +52,11 @@ abstract class SR_SecondHandStore extends SR_Store
 	public function on_buy(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
+		if (count($args) === 0)
+		{
+			$player->message(Shadowhelp::getHelp($player, 'buy'));
+			return false;
+		}
 		if (is_numeric($args[0]))
 		{
 			$bot->rply('1150');

@@ -1123,9 +1123,10 @@ final class Shadowfunc
 			$loot_ny[$member->getID()] = 0;
 		}
 		
+		$out = array();
 		
-		$out = '';
-		$out_ep = '';
+// 		$out = '';
+// 		$out_ep = '';
 		foreach ($damage as $pid => $dmg)
 		{
 			if ($dmg <= 0) {
@@ -1135,7 +1136,7 @@ final class Shadowfunc
 			$target = $ep->getMemberByPID($pid);
 			$target->dealDamage($dmg);
 			
-			if ($target->isDead())
+			if (true === $target->isDead())
 			{
 				$xp = $target->isHuman() ? 0 : $target->getLootXP();
 //				$xp = $target->getLootXP();
@@ -1146,9 +1147,10 @@ final class Shadowfunc
 				}
 				$target->giveNuyen(-$nuyen);
 				
-				$app = Shadowrun4::lang('kills', array($target->getName(), $dmg));
-				$out .= $app;
-				$out_ep .= $app;
+// 				$app = Shadowrun4::lang('kills', array($target->getName(), $dmg));
+				$out[$target->getID()] = array($target, $dmg, true);
+// 				$out .= $app;
+// 				$out_ep .= $app;
 // 				$out .= sprintf(', kills %s with %s', $target->getName(), $dmg);
 // 				$out_ep .= sprintf(', kills %s with %s', $target->getName(), $dmg);
 				$pxp = 0;
@@ -1168,23 +1170,31 @@ final class Shadowfunc
 			}
 			else 
 			{
-				$out .= Shadowrun4::lang('hits1', array($target->getName(), $dmg));
-				$out_ep .= Shadowrun4::lang('hits2', array($target->getName(), $dmg, $target->getHP(), $target->getMaxHP()));
+				$out[$target->getID()] = array($target, $dmg, false);
+// 				$out .= Shadowrun4::lang('hits1', array($target->getName(), $dmg));
+// 				$out_ep .= Shadowrun4::lang('hits2', array($target->getName(), $dmg, $target->getHP(), $target->getMaxHP()));
 // 				$out .= sprintf(', hits %s with %s damage', $target->getName(), $dmg);
 // 				$out_ep .= sprintf(', hits %s with %s(%s/%s)HP left', $target->getName(), $dmg, $target->getHP(), $target->getMaxHP());
 			}
 		}
 
-		if ($out === '')
+		
+		### OUTPUT
+		
+		if (count($out) === 0)
+// 		if ($out === '')
 		{
 			$p->ntice('1057', array($spellname, $player->getName()));
 // 			$p->notice($failmsg);
 			return;
 		}
 		
-		$out = substr($out, 2);
+		### FRIEND PARTY
+		
+// 		$out = substr($out, 2);
 		foreach ($p->getMembers() as $member)
 		{
+			$member instanceof SR_Player;
 			$loot_out = '';
 			
 			$ny = $loot_ny[$member->getID()];
@@ -1192,23 +1202,47 @@ final class Shadowfunc
 			
 			if ($ny > 0 || $xp > 0)
 			{
-				$loot_out = Shadowrun4::lang('loot_nyxp', array(Shadowfunc::displayNuyen($ny), $xp));
+				$loot_out = $member->lang('loot_nyxp', array(Shadowfunc::displayNuyen($ny), $xp));
 // 				$loot_out = sprintf('. You loot %s and %.02f XP', Shadowfunc::displayNuyen($ny), $xp);
 				$member->giveNuyen($ny);
 				$member->giveXP($xp);
 			}
 			
-			$member->message($out.$loot_out.'.');
+			$msg = '';
+			foreach ($out as $pid => $data)
+			{
+				list($target, $dmg, $is_kill) = $data;
+				$target instanceof SR_Player;
+				$key = true === $is_kill ? 'kills' : 'hits1';
+// 				$app = Shadowrun4::lang('kills', array($target->getName(), $dmg));
+				$msg .= $member->lang($key, array($target->getName(), $dmg));
+			}
+			
+			$member->message($msg.$loot_out.'.');
 		}
 		
-		$out_ep = substr($out_ep, 2);
-		$ep->message($player, $out_ep.'.');
+		# ENEMY PARTY
 		
-		foreach ($ep->getMembers() as $target)
+// 		$out_ep = substr($out_ep, 2);
+// 		$ep->message($player, $out_ep.'.');
+		
+		foreach ($ep->getMembers() as $member)
 		{
-			if ($target->isDead())
+			
+			$msg = '';
+			foreach ($out as $pid => $data)
 			{
-				$target->gotKilledBy($player);
+				list($target, $dmg, $is_kill) = $data;
+				$target instanceof SR_Player;
+				$key = true === $is_kill ? 'kills' : 'hits2';
+				$msg .= $member->lang($key, array($target->getName(), $dmg, $target->getHP(), $target->getMaxHP()));
+			}
+			
+			$member->message($msg.$loot_out.'.');
+			
+			if ($member->isDead())
+			{
+				$member->gotKilledBy($player);
 			}
 		}
 		
