@@ -32,15 +32,16 @@ $lang = array(
 		
 	# v1.01
 	'err_probsum' => 'Summary for language "%s": %d errors, %d warnings and %d missing files.',
-	'err_missing_en_files' => 'The following %d directories do not contain an english file:<br>%s',
-	'err_empty_files' => 'The following %d translation files are empty:<br/>%s',
-	'err_missing_files' => 'The following %d translation files do not exist:<br>%s', # translation files
-	'err_file_errors' => 'Errors in %s:<br/>%s',
-	'err_file_warnings' => 'Warnings in %s<br/>%s',
+	'err_missing_en_files' => 'The following %d directories do not contain an english file:',
+	'err_empty_files' => 'The following %d translation files are empty:',
+	'err_missing_files' => 'The following %d translation files do not exist:', # translation files
+	'err_file_errors' => 'Errors in %s:',
+	'err_file_warnings' => 'Warnings in %s:',
 	'err_key_not_translated' => 'Key "%s" is not translated: %s',
 	'err_missing_key' => 'Key "%s" is missing.',
 	'err_empty_key' => 'Empty value for key: %s',
 	'err_not_finished' => 'The following file contains an empty key: %s',
+	'err_body' => '%s ',
 	'msg_no_errors' => 'No errors found for language "%s".',
 );
 ?>

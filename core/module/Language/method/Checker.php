@@ -80,50 +80,50 @@ final class Language_Checker extends GWF_Method
 		# statistics for english files
 		if ($this->errors['en'] > 0 || $this->warnings['en'] > 0 || $this->missing['en'] > 0)
 		{
-			$message .= $this->module->message('err_probsum', array('English', $this->errors['en'], $this->warnings['en'], $this->missing['en']), false);
+			$message .= $this->message('Summary', NULL, 'err_probsum', array('English', $this->errors['en'], $this->warnings['en'], $this->missing['en']), false);
 		}
 		else
 		{
-			$message .= $this->module->message('msg_no_errors', array('English'), false); # FIXME: If GWF_DEFAULT_LANGUAGE is added, change this to use the default lang
+			$message .= $this->message('Summary', NULL, 'msg_no_errors', array('English'), false); # FIXME: If GWF_DEFAULT_LANGUAGE is added, change this to use the default lang
 		}
 		# statistics for italian files
 		if ($this->errors['tr'] > 0 || $this->warnings['tr'] > 0 || $this->missing['tr'] > 0)
 		{
-			$message .= $this->module->message('err_probsum', array($this->lang->getVar('lang_name'), $this->errors['tr'], $this->warnings['tr'], $this->missing['tr']), false);
+			$message .= $this->message('Summary', NULL, 'err_probsum', array($this->lang->getVar('lang_name'), $this->errors['tr'], $this->warnings['tr'], $this->missing['tr']), false);
 		}
 		else
 		{
-			$message .= $this->module->message('msg_no_errors', array($this->lang->getVar('lang_name')), false);
+			$message .= $this->message('Summary', NULL, 'msg_no_errors', array($this->lang->getVar('lang_name')), false);
 		}
 		# missing english files
 		if (count($this->MissingFile['en']) > 0)
 		{
-			$message .= $this->module->error('err_missing_en_files', array(count($this->MissingFile['en']), implode('<br>'.PHP_EOL, $this->MissingFile['en'])), false);
+			$message .= $this->error('err_missing_en_files', array(count($this->MissingFile['en'])), "err_body", array(implode('<br>'.PHP_EOL, $this->MissingFile['en'])), false);
 		}
 		# missing translation files
 		if (count($this->MissingFile['tr']) > 0)
 		{
-			$message .= $this->module->error('err_missing_files', array(count($this->MissingFile['tr']), implode('<br>'.PHP_EOL, $this->MissingFile['tr'])), false);
+			$message .= $this->error('err_missing_files', array(count($this->MissingFile['tr'])), "err_body", array(implode('<br>'.PHP_EOL, $this->MissingFile['tr'])), false);
 		}
 		# empty and uncorrect english files
 		if (count($this->EmptyFile['en']) > 0)
 		{
-			$message .= $this->module->error('err_empty_files', array(count($this->EmptyFile['en']), implode('<br>'.PHP_EOL, $this->EmptyFile['en'])), false);
+			$message .= $this->error('err_empty_files', array(count($this->EmptyFile['en'])), "err_body", array(implode('<br>'.PHP_EOL, $this->EmptyFile['en'])), false);
 		}
 		# empty and uncorrect translation files
 		if (count($this->EmptyFile['tr']) > 0)
 		{
-			$message .= $this->module->error('err_empty_files', array(count($this->EmptyFile['tr']), implode('<br>'.PHP_EOL, $this->EmptyFile['tr'])), false);
+			$message .= $this->error('err_empty_files', array(count($this->EmptyFile['tr'])), "err_body", array(implode('<br>'.PHP_EOL, $this->EmptyFile['tr'])), false);
 		}
 		foreach($this->errErrorMessages as $path => $err)
 		{
-			$message .= $this->module->error('err_file_errors', array($path, implode('<br>'.PHP_EOL, $err)), false);
+			$message .= $this->error('err_file_errors', array($path), "err_body", array(implode('<br>'.PHP_EOL, $err)), false);
 		}
 		if (true === $this->show_warns)
 		{
 			foreach($this->errWarnMessages as $path => $warn)
 			{
-				$message .= $this->module->error('err_file_warnings', array($path, implode('<br>'.PHP_EOL, $warn)), false);
+				$message .= $this->error('err_file_warnings', array($path), "err_body", array(implode('<br>'.PHP_EOL, $warn)), false);
 			}
 		}
 		
@@ -337,6 +337,13 @@ final class Language_Checker extends GWF_Method
 				$this->errWarnMessages[$path] = $warn['en'];
 			}
 		}
+	}
+	
+	public function error($title, $targs=NULL, $key, $kargs=NULL, $log=true) {
+		return GWF_HTML::error($this->module->lang($title, $targs), $this->module->lang($key, $kargs), $log);
+	}
+	public function message($title, $targs=NULL, $key, $kargs=NULL, $log=true) {
+		return GWF_HTML::message($this->module->lang($title, $targs), $this->module->lang($key, $kargs), $log);
 	}
 }
 ?>
