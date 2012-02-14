@@ -2393,17 +2393,32 @@ class SR_Player extends GDO
 		$target = $targets[array_rand($targets)];
 		return '# '.$target->getEnum();
 	}
-	
+
+	/**
+	 * Let L be the last locking command and N the last non-locking
+	 * command after L. If no such command exists we use '' instead. We
+	 * write old_combat_stack,combat_stack to denote the stack.
+	 *
+	 * If N === '', stack should be '',L.
+	 * If N !== '', stack should be L,N.
+	 **/
 	public function combatPush($message)
 	{
 //		echo 'Pushing "'.$message.'" on '.$this->getName().'\'s combat stack.'.PHP_EOL;
-		$this->combat_stack = $message;
-		
-		# Push on keeper stack?
+
+		# If new command is locking -> '',message
 		if (true === $this->isLockingCommand($message))
 		{
-			$this->old_combat_stack = $message;
+			$this->old_combat_stack = '';
 		}
+		# New command is not locking; push previous locking command
+		# -> combat_stack,message
+		else if (true === $this->isLockingCommand($this->combat_stack))
+		{
+			$this->old_combat_stack = $this->combat_stack;
+		}
+
+		$this->combat_stack = $message;
 	}
 		
 	public function combatTimer()
@@ -2413,38 +2428,23 @@ class SR_Player extends GDO
 			return;
 		}
 		
+		# No command on stack; make one up! -> '',rand()
 		if ($this->combat_stack === '')
 		{
-			$this->combat_stack = $this->old_combat_stack = $this->cmdAttackRandom();
+			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
-		# We will execute this one.
-		$stack = $this->combat_stack;
+		# Execute top of stack.
+		$result = Shadowcmd::onExecute($this, $this->combat_stack);
 		
-		# Is not a keeper, so we clear stack.
-		if (false === $this->keepCombatStack(true, $stack))
+		# If not a keeper (failed or not locking), we pop the stack.
+		# -> '',old
+		if (false === $this->keepCombatStack($result, $this->combat_stack))
 		{
-			$this->combat_stack = '';
+			$this->combat_stack = $this->old_combat_stack;
+			$this->old_combat_stack = '';
 		}
 		
-		$result = Shadowcmd::onExecute($this, $stack);
-		
-
-		# Don't keep depending on result?
-		if (false === $this->keepCombatStack($result, $stack))
-		{
-			# Do we have an old keeper?
-			if ($this->old_combat_stack !== '')
-			{
-				$this->combat_stack = $this->old_combat_stack;
-				$this->old_combat_stack = '';
-			}
-			# All cleared
-			else
-			{
-				$this->combat_stack = '';
-			}
-		}
 		return $result;
 	}
 	
