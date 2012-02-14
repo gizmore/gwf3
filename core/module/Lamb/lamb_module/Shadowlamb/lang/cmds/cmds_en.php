@@ -1,6 +1,8 @@
 <?php
 /**
  * Shortcuts mapped to long commands in commands/commands_en.php
+ * XXX: THIS FILE IS WEIRD BECAUSE
+ * XXX: YOU HAVE TO TRANSLATE KEY, NOT TEXT
  */
 $lang = array(
 	'ac' => 'accept',
