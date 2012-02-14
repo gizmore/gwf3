@@ -28,7 +28,11 @@ if (Lamb_User::isOnAnonetS($server->getBotsNickname()))
 
 if ($server->isLogging())
 {
-	Lamb_Log::logChat($server, $message);
+	$t = LAMB_TRIGGER;
+	if ( (strpos($message, "{$t}login") !== false) && (strpos($message, "{$t}register") !==false ) )
+	{
+		Lamb_Log::logChat($server, $message);
+	}
 }
 
 if (Common::startsWith($message, LAMB_TRIGGER))
