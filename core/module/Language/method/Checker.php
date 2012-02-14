@@ -14,6 +14,10 @@ final class Language_Checker extends GWF_Method
 	private $EmptyFile = array('en' => array(), 'tr' => array()); # files without $lang (base, translation)
 	private $errWarnMessages = array(); # warnings
 	private $errErrorMessages = array(); # errors
+	private $dirsToSkip = array(
+			'1' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/cmds',
+			'2' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/commands',
+			); # array of directories to skip
 
 	public function getUserGroups() { return 'admin'; }
 	
@@ -148,6 +152,10 @@ final class Language_Checker extends GWF_Method
 				if($entry === 'lang')
 				{
 					$this->locateBaseFile($fullpath);
+				}
+				if(in_array(GWF_Debug::shortpath(realpath($fullpath)), $this->dirsToSkip))
+				{
+					continue;
 				}
 				$this->onCheckRecursive($fullpath);
 			}
