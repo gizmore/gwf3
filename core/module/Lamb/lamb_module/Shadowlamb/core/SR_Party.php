@@ -1399,6 +1399,7 @@ final class SR_Party extends GDO
 		foreach ($this->members as $player)
 		{
 			$player instanceof SR_Player;
+			Shadowcmd::$CURRENT_PLAYER = $player;
 			$player->effectsTimer();
 		}
 		
@@ -1451,6 +1452,7 @@ final class SR_Party extends GDO
 				{
 					Lamb::instance()->setCurrentUser($user);
 				}
+				Shadowcmd::$CURRENT_PLAYER = $player;
 				$player->combatTimer();
 			}
 		}

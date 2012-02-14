@@ -179,7 +179,7 @@ class Shadowcmd
 	private static $BOLD = array();
 	private static $NON_BOLD = array('exit','brew');
 	
-	private static $CURRENT_PLAYER = NULL;
+	public static $CURRENT_PLAYER = NULL;
 	
 	# Command lang files
 	private static $LANG_CMDS = NULL;
@@ -506,7 +506,8 @@ class Shadowcmd
 		if ($player->isFighting())
 		{
 			$cmd = Common::substrUntil($message, ' ', $message);
-			$cmd = self::shortcut(self::unshortcut($cmd));
+			$cmd = self::unshortcut($cmd);
+			$cmd = self::untranslate($cmd);
 			if (true === in_array($cmd, self::$CMDS['fight'], true))
 			{
 				$player->combatPush($message);
