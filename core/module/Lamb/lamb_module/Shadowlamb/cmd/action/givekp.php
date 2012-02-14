@@ -20,7 +20,14 @@ class Shadowcmd_givekp extends Shadowcmd
 // 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
 			return false;
 		}
-		return self::giveKnow($player, $target, 'places', $args[1]);
+		
+		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $args[1])))
+		{
+			$player->msg('1023');
+			return false;
+		}
+		
+		return self::giveKnow($player, $target, 'places', $tlc);
 	}
 	
 	public static function giveKnow(SR_Player $player, SR_Player $target, $what, $which)
@@ -33,7 +40,7 @@ class Shadowcmd_givekp extends Shadowcmd
 			return false;
 		}
 		
-		if (!$target->hasKnowledge($what, $which))
+		if (false === $target->hasKnowledge($what, $which))
 		{
 			$target->giveKnowledge($what, $which);
 			$player->getParty()->ntice('5117', array($player->getName(), $target->getName(), $which));
