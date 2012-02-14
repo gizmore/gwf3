@@ -33,14 +33,14 @@ $lang = array(
 	# v1.01
 	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avvertimenti e %d file mancanti.',
 	'err_missing_en_files' => 'Le seguenti %d cartelle non contengono il file in inglese:<br>%s',
-	'err_file_warnings' => 'Avvertimenti in %s<br/>%s',
-	'err_file_errors' => 'Errori in %s:<br/>%s',
+	'err_empty_files' => 'I seguenti %d file di traduzione sono vuoti:<br/>%s',
 	'err_missing_files' => 'I seguenti %d file di traduzione non esistono:<br>%s',
+	'err_file_errors' => 'Errori in %s:<br/>%s',
+	'err_file_warnings' => 'Avvertimenti in %s<br/>%s',
 	'err_key_not_translated' => 'La chiave "%s" non è tradotta: %s',
 	'err_missing_key' => 'Manca la chiave "%s".',
-	'err_empty_key' => 'Il file di linguaggio %s contiene una chiave a cui è associato un valore nullo: %s',
-	'err_empty_files' => 'I seguenti %d file di traduzione sono vuoti:<br/>%s',
-	'err_not_finished' => 'Il seguente file, in "%s", contiene una chiave vuota: %s',
-	'msg_no_errors' => 'Nessun errore trovato.',
+	'err_empty_key' => 'Valore nullo per la chiave: "%s"',
+	'err_not_finished' => 'Il seguente file contiene una chiave vuota: "%s"',
+	'msg_no_errors' => 'Nessun errore trovato nei file del linguaggio "%s".',
 );
 ?>
