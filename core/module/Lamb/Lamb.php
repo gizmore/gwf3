@@ -564,12 +564,23 @@ final class Lamb
 //			return true;
 //		}
 
-		printf('%s << %s'.PHP_EOL, $server->getHostname(), $message);
-		
-		if ($server->isLogging())
+		# TODO: Set a bit if this line is logged. The login and register scripts set it to false. logging is done after the proecessing has taken place.
+		$t = LAMB_TRIGGER;
+		if ( (strpos($message, "{$t}login") !== false) && (strpos($message, "{$t}register") !==false ) )
 		{
-			Lamb_Log::logChat($server, $message);
+			printf('%s << %s'.PHP_EOL, $server->getHostname(), $message);
+		
+			if ($server->isLogging())
+			{
+				
+				Lamb_Log::logChat($server, $message);
+			}
 		}
+		else
+		{
+			printf('%s << %s'.PHP_EOL, $server->getHostname(), "XXX CENSORED XXX");
+		}
+		
 		
 		# NEW
 		$by_space = explode(' ', $message);
