@@ -402,7 +402,7 @@ final class Shadowhelp
 					
 						'shop_cmds' => 'Store commands',
 						array(
-							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name>. In shops you can buy items with this command. The price depends on your negotiation.',
+							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name> [<amount>]. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
 							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
 							'view' => 'Location command. Usage: #(v)iew [<vid>]. In some locations you can use view to search or examine items stored there.',

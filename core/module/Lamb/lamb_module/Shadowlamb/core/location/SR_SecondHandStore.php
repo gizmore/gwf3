@@ -49,7 +49,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
-	public function on_buy(SR_Player $player, array $args)
+	public function on_buy(SR_Player $player, array $args, $max_amt=false)
 	{
 		$bot = Shadowrap::instance($player);
 		if (count($args) === 0)
@@ -71,7 +71,7 @@ abstract class SR_SecondHandStore extends SR_Store
 			return false;
 		}
 		
-		if (false === parent::on_buy($player, $args)) {
+		if (false === parent::on_buy($player, $args, 1)) {
 			return false;
 		}
 		

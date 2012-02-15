@@ -118,7 +118,7 @@ abstract class SR_Store extends SR_Location
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
-	public function getStoreItem(SR_Player $player, $itemname)
+	public function getStoreItem(SR_Player $player, $itemname, $amount=false)
 	{
 		$items = $this->getStoreItemsB($player);
 		$data = false;
@@ -147,13 +147,16 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 
-		return $this->createItemFromData($player, $data);
+		return $this->createItemFromData($player, $data, $amount);
 	}
 	
-	private function createItemFromData(SR_Player $player, array $data)
+	private function createItemFromData(SR_Player $player, array $data, $amount=false)
 	{
 		$avail = isset($data[1]) ? $data[1] : 100.0;
-		$amount = isset($data[3]) ? $data[3] : true;
+		if ( $amount === false )
+		{
+			$amount = isset($data[3]) ? $data[3] : true;
+		}
 		if (false === ($item = SR_Item::createByName($data[0], $amount, false))) {
 			return false;
 		}
@@ -215,7 +218,7 @@ abstract class SR_Store extends SR_Location
 		$text = array(
 		);
 		$items = $this->getStoreItemsC($player);
-		return Shadowfunc::genericViewI($player, $items, $args, $text);
+		return Shadowfunc::genericViewS($player, $items, $args, $text);
 		
 		
 // 		$bot = Shadowrap::instance($player);
@@ -247,23 +250,34 @@ abstract class SR_Store extends SR_Location
 	###########
 	### Buy ###
 	###########
-	public function on_buy(SR_Player $player, array $args)
+	public function on_buy(SR_Player $player, array $args, $max_amt=false)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) !== 1)
+		if (count($args) < 1 or count($args) > 2)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'buy'));
 			return false;
 		}
-		if (false === ($item = $this->getStoreItem($player, $args[0])))
+		if (false === ($dummyitem = $this->getStoreItem($player, $args[0])))
 		{
 			$bot->rply('1029');
 // 			$bot->reply('We don`t have that item.');
 			return false;
 		}
 		
-		$price = $item->getStorePrice();
-		$dprice = Shadowfunc::displayNuyen($price);
+		$amt = (count($args) == 2) ? ((int) $args[1]) : 1;
+		if ( $amt < 1 )
+		{
+			$bot->rply('1038'); # specify positive amt
+			return false;
+		}
+		if ( false !== $max_amt and $amt > $max_amt )
+		{
+			$bot->rply('1175'); # more than offered
+			return false;
+		}
+		$total_amount = $amt * $dummyitem->getAmount();
+		$price = $amt * $dummyitem->getStorePrice();
 		
 		if (false === ($player->pay($price)))
 		{
@@ -272,16 +286,35 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		
-		if (false === $item->insert())
+		if ( $dummyitem->isItemStackable() )
 		{
-			$bot->reply('Database error 5.');
-			return false;
+			$item = $this->getStoreItem($player, $args[0],$total_amount);
+			$items = array($item);
+		} else {
+			$items = array($dummyitem);
+			for ($i=1; $i<$amt; $i++) # using $amt here in case the default amount !== 1
+			{
+				$item = $this->getStoreItem($player, $args[0]);
+				$items[] = $item;
+			}
 		}
 
-		$player->giveItems(array($item));
+		
+		foreach ( $items as $item )
+		{
+			if (false === $item->insert())
+			{
+				$bot->reply('Database error 5.');
+				return false;
+			}
+		}
+
+		$player->giveItems($items);
 		$player->modify();
-		$item = $player->getInvItemByName($item->getItemName());
-		$bot->rply('5190', array($dprice, $item->getItemName(), $item->getInventoryID()));
+		$item = $player->getInvItemByName($dummyitem->getItemName());
+		$dprice = Shadowfunc::displayNuyen($price);
+		$damount = ($total_amount == 1) ? '' : "({$total_amount})";
+		$bot->rply('5190', array($dprice, $item->getItemName().$damount, $item->getInventoryID()));
 // 		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayNuyen($price), $item->getItemName(), $item->getInventoryID()));
 		return true;
 	}
