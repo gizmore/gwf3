@@ -11,7 +11,7 @@ $lang = array(
 	'yes' => 'Ok chummer, here is the puzzle:',
 	'no' => 'Nodded.',
 	'answer_us_pls' => 'Just use #talk <answer> to solve this mini encryption.',
-	'grats' => 'Wow, i am impressed! Here some reward fellow chummer!',
+	'grats' => 'Wow, I am impressed! Here some reward fellow chummer!',
 		
 );
 ?>

@@ -9,7 +9,6 @@ $lang = array(
 	'die' => 'backward',
 	'ro' => 'break',
 	'dist' => 'brew',
-	'buy' => 'buy',
 	'la' => 'cast',
 	'cc' => 'ccommands',
 	'cl' => 'clan',
@@ -44,6 +43,7 @@ $lang = array(
 	'pac' => 'known_words',
 	'le' => 'leader',
 	'gu' => 'view',
+	'gui' => 'viewi',
 	'l' => 'lvlup',
 	'ge' => 'manage',
 	'mo' => 'mount',
@@ -68,8 +68,8 @@ $lang = array(
 	'req' => 'unequip',
 	'u' => 'use',
 	'pe' => 'weight',
-	'sus' => 'whisper',
-	'rsus' => 'whisper_back',
+	'su' => 'whisper',
+	'sub' => 'whisper_back',
 	'mos' => 'show',
 );
 ?>

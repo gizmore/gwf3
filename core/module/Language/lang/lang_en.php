@@ -41,7 +41,7 @@ $lang = array(
 	'err_missing_key' => 'Key "%s" is missing.',
 	'err_empty_key' => 'Empty value for key: %s',
 	'err_not_finished' => 'The following file contains an empty key: %s',
-	'err_body' => '%s ',
+	'err_body' => '%s',
 	'msg_no_errors' => 'No errors found for language "%s".',
 );
 ?>

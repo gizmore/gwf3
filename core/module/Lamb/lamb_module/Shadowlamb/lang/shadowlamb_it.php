@@ -104,8 +104,8 @@ $lang = array(
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
-'ch_1' => '%s ha richiesto di unirsi al clan come membro n° #%s.', # player, membernum
-'ch_2' => '%s si è unito al tuo clan come utente n° #%s.', # player, membernum
+'ch_1' => '%s ha richiesto di unirsi al clan come membro #%s.', # player, membernum
+'ch_2' => '%s si è unito al tuo clan come utente #%s.', # player, membernum
 'ch_3' => '%s ha lasciato il tuo clan, che ora ospita %s membri.', # player, amt
 'ch_4' => "{$b}%s{$b}: \"%s\"", # player, message
 'ch_5' => '%s ha versato %s nella banca del clan.', # player, nuyen
@@ -128,7 +128,7 @@ $lang = array(
 
 # Ingame help
 'hlp_in_outside' => 'Quando trovi delle località, ti troverai al di fuori di esse. Usa #goto o #enter per entrarvi. Puoi #(exp)lorare ancora per trovare altre località.', #TRANS: check command #explore
-'hlp_clan_enter' => "Unisciti al clan con {$c}abbandona, {$c}richiedi e {$c}accetta. Crea un clan con {$c}crea. Compra dei miglioramenti ed un motto con {$c}gestisci. Imposta le opzioni con {$c}toggle. Accedi alla banca oggetti del clan con {$c}versa, {$c}ritira e {$c}guarda, e a quella degli oggetti con {$c}versay e {$c}ritiray.",
+'hlp_clan_enter' => "Unisciti al clan con {$c}abbandona, {$c}richiedi e {$c}accetta. Crea un clan con {$c}crea. Compra dei miglioramenti ed un motto con {$c}gestisci. Imposta le opzioni con {$c}alterna. Accedi alla banca oggetti del clan con {$c}versa, {$c}ritira e {$c}guarda, e a quella degli oggetti con {$c}versay e {$c}ritiray.",
 'hlp_bank' => "In una banca puoi usare {$c}versa e {$c}ritira per lasciare e prendere oggetti, e {$c}versay and {$c}ritiray per versare e ritirare nuyen. Usa {$c}guarda per visualizzare o cercare i tuoi oggetti nella banca. Ogni transazione ti costa %s.",
 'hlp_bazar' => "Nel bazaar puoi vendere i tuoi oggetti. Qui puoi usare #versa, #ritira, #guarda, #cerca, #compra, #compramigliore, #compraslot, #slogan e #prezzo.",
 'hlp_elevator' => 'Negli ascensori puoi usare #su, #giù e #piano.',
@@ -136,7 +136,7 @@ $lang = array(
 'hlp_hotel' => 'Puoi pagare %s per #dormi qui e recuperare gli HP/MP del tuo gruppo.',
 'hlp_hack' => ' Puoi usare un Cyberdeck per hackare in un computer.',
 'hlp_search' => ' Puoi usare #cerca qui per cercare oggetti nella stanza.',
-'hlp_second_hand' => 'Puoi vendere oggetti migliorati qui per prezzi più alti. Gli oggetti migliorati venduti qui saranno resteranno, in vendita, nel negozio.',
+'hlp_second_hand' => 'Puoi vendere oggetti migliorati qui per prezzi più alti. Gli oggetti migliorati venduti qui resteranno in vendita nel negozio.',
 'hlp_store' => 'In questo negozio puoi usare %s.',
 'hlp_cyberdeck' => 'Questo oggetto funziona solo in località dotate di computer.',
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
@@ -168,7 +168,7 @@ $lang = array(
 ##########################
 #   0000-4999   = Errors #
 ##########################
-'0000' => 'Non hai ancora iniziato il gioco (con #start). Digita #start razza genere per iniziare a giocare.',
+'0000' => 'Non hai ancora iniziato il gioco. Digita #inizia razza genere per iniziare a giocare.',
 '0001' => 'Devi effetuare il login per giocare.',
 		
 '1002' => 'Ti serve un livello minimo di %d per urlare.', # level
@@ -343,8 +343,8 @@ $lang = array(
 '1171' => 'Il tuo personaggio è già stato creato. Puoi usare #resetta per ripartire da capo.',
 '1172' => 'La tua razza è sconosciuta o è una razza disponibile solo per gli NPC. Razze valide: %s.',
 '1173' => 'Il tuo genere è sconosciuto. Generi validi: %s.',
-'1174' => "Il comando non è disponibile per la tua corrente località. Utilizza {$c}c [<l|long>] per vedere tutti i comandi attualmente disponibili.",
-'1175' => '',
+'1174' => "Il comando non è disponibile per la tua corrente località. Utilizza {$c}c [<l|lunghi>] per vedere tutti i comandi attualmente disponibili.",
+'1175' => 'E\' più di quanto ho, fratello',
 '1176' => '',
 '1177' => '',
 '1178' => '',
