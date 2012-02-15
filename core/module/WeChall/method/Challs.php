@@ -77,13 +77,19 @@ final class WeChall_Challs extends GWF_Method
 	
 	private function getTableTitle($for_userid, $from_userid, $tag, $challcount)
 	{
+		$module = Module_WeChall::instance();
 		$dtag = GWF_HTML::display($tag);
-		if ($for_userid != 0) {
-			return $this->module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
-		} else if ($from_userid != 0) {
-			return $this->module->lang('tt_challs_from', array($challcount, $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername()));
-		} else {
-			return $this->module->lang('tt_challs', array($dtag));
+		if ($for_userid != 0)
+		{
+			return $module->lang('tt_challs_for', array($dtag, GWF_User::getByIDOrGuest($for_userid)->displayUsername()));
+		}
+		else if ($from_userid != 0)
+		{
+			return $module->lang('tt_challs_from', array($challcount, $dtag, GWF_User::getByIDOrGuest($from_userid)->displayUsername()));
+		}
+		else
+		{
+			return $module->lang('tt_challs', array($dtag));
 		}
 	}
 	
