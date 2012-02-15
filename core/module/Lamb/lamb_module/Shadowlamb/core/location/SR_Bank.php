@@ -5,7 +5,7 @@ abstract class SR_Bank extends SR_Location
 	
 	public function getTransactionPrice() { return 0; }
 	
-	public function getCommands(SR_Player $player) { return array('view', 'push', 'pop', 'pushy', 'popy'); }
+	public function getCommands(SR_Player $player) { return array('view', 'viewi', 'push', 'pop', 'pushy', 'popy'); }
 
 	public function getHelpText(SR_Player $player)
 	{
@@ -71,7 +71,26 @@ abstract class SR_Bank extends SR_Location
 		$text = array(
 			'prefix' => $player->lang('bank_items')
 		);
-		return $player->msg('', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
+		return $player->msg('', array(Shadowfunc::getGenericViewI($player, $items, $args, false, $text)));
+	}
+
+	public function on_viewi(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+
+		if (count($args) !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'viewi'));
+			return false;
+		}
+
+		if (false === ($item = $player->getBankItem($args[0])))
+		{
+			$bot->rply('1101'); # item not in bank
+			return false;
+		}
+
+		return $bot->rply('5189', array($item->getItemInfo($player)));
 	}
 	
 	public function on_push(SR_Player $player, array $args)

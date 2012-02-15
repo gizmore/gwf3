@@ -4,7 +4,7 @@ abstract class SR_Hospital extends SR_Store
 	public abstract function getHealPrice();
 	public function calcHealPrice(SR_Player $player) { return Shadowfunc::calcBuyPrice($this->getHealPrice(), $player); }
 	
-	public function getCommands(SR_Player $player) { return array('heal','view','implant','unplant'); }
+	public function getCommands(SR_Player $player) { return array('heal','view','viewi','implant','unplant'); }
 	
 	public function on_heal(SR_Player $player, array $args)
 	{

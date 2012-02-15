@@ -168,6 +168,7 @@ $lang = array(
 	'upgrade' => 'upgrade',
 	'use' => 'use',
 	'view' => 'view',
+	'viewi' => 'viewi',
 	'weight' => 'weight',
 	'whisper' => 'whisper',
 	'whisper_back' => 'whisper_back',

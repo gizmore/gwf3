@@ -14,7 +14,7 @@ abstract class SR_School extends SR_Store
 	{
 		if ($this->hasStoreItems($player))
 		{
-			return array('view', 'buy', 'steal', 'learn', 'courses');
+			return array('view', 'viewi', 'buy', 'steal', 'learn', 'courses');
 		}
 		else
 		{

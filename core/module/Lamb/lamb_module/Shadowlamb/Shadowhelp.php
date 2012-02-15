@@ -405,8 +405,8 @@ final class Shadowhelp
 							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name> [<amount>]. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
 							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
-							'view' => 'Location command. Usage: #(v)iew [<vid>]. In some locations you can use view to search or examine items stored there.',
-// 							'viewi' => 'Location command: Usage: #viewi [<pattern>] [<page>]. Generic searchable view implementation.',
+							'view' => 'Location command. Usage: #(v)iew [<pattern>] [<page>]. In some locations you can use view to list or search items stored there.',
+ 							'viewi' => 'Location command: Usage: #(v)iew(i) <view_id>. In some locations you can use viewi to examine items stored there.',
 						),
 						
 						'bank_cmds' => 'Bank commands',

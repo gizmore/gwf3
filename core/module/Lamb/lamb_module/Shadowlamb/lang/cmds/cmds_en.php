@@ -70,6 +70,7 @@ $lang = array(
 	'uq' => 'unequip',
 	'u' => 'use',
 	'v' => 'view',
+	'vi' => 'viewi',
 	'we' => 'weight',
 	'w' => 'whisper',
 	'wb' => 'whisper_back',

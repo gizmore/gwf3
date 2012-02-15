@@ -340,7 +340,7 @@ final class Shadowcmd_compare extends Shadowcmd
 	{
 		if (preg_match('/^S_[0-9]+$/D', $itemid))
 		{
-			$location = $player->getParty()->getLocationClass('inside');
+			$location = $player->getParty()->getLocationClass(SR_Party::ACTION_INSIDE);
 			if ($location !== false && $location instanceof SR_Store)
 			{
 				return $location->getStoreItem($player, substr($itemid,2));

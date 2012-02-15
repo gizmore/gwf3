@@ -14,6 +14,7 @@ abstract class SR_Store extends SR_Location
 		if (true === $this->allowShopBuy($player))
 		{
 			$back[] = 'view';
+			$back[] = 'viewi';
 			$back[] = 'buy';
 		}
 			if (true === $this->allowShopSell($player))
@@ -171,34 +172,11 @@ abstract class SR_Store extends SR_Location
 	############
 	public function on_view(SR_Player $player, array $args)
 	{
-		return $this->onViewItems($player, $args);
-// 		$bot = Shadowrap::instance($player);
-// 		if (count($args) === 0)
-// 		{
-// // 			$bot->reply($this->onViewItems($player));
-// 			$this->onViewItems($player, array());
-// 		}
-// 		elseif (count($args) === 1)
-// 		{
-// 			$this->onViewItem($player, $args[0]);
-// 		}
-// 		else
-// 		{
-// 			$bot->reply(Shadowhelp::getHelp($player, 'view'));
-// 		}
-	}
-	
-	private function onViewItem(SR_Player $player, $itemname)
-	{
-		$bot = Shadowrap::instance($player);
-		if (false === ($item = $this->getStoreItem($player, $itemname)))
-		{
-			$bot->rply('1029');
-// 			return 'We don`t have that item.';
-			return false;
-		}
-		return $bot->rply('5189', array($item->getItemInfo($player)));
-// 		return $item->getItemInfo($player);
+		$player->setOption(SR_Player::RESPONSE_ITEMS);
+		$text = array(
+		);
+		$items = $this->getStoreItemsC($player);
+		return Shadowfunc::genericViewS($player, $items, $args, $text);
 	}
 	
 	private function getStoreItemsC(SR_Player $player)
@@ -212,41 +190,25 @@ abstract class SR_Store extends SR_Location
 		return $back;
 	}
 	
-	private function onViewItems(SR_Player $player, array $args=array())
+	public function on_viewi(SR_Player $player, array $args)
 	{
-		$player->setOption(SR_Player::RESPONSE_ITEMS);
-		$text = array(
-		);
-		$items = $this->getStoreItemsC($player);
-		return Shadowfunc::genericViewS($player, $items, $args, $text);
-		
-		
-// 		$bot = Shadowrap::instance($player);
-		
-// 		$back = '';
-// 		$items = $this->getStoreItemsB($player);
-		
-// 		if (count($items) === 0)
-// 		{
-// 			return $bot->rply('1008');
-// // 			return 'There are no items here.';
-// 		}
-		
-// 		$i = 1;
-// 		$format = $player->lang('fmt_sumlist');
-// 		foreach ($items as $data)
-// 		{
-// 			if (false === ($item = $this->createItemFromData($player, $data))) {
-// 				continue;
-// 			}
-// 			$back .= sprintf($format, $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
-// // 			$back .= sprintf(', %d-%s(%s)', $i++, $item->getItemName(), Shadowfunc::displayNuyen($item->getStorePrice()));
-// 		}
-		
-// 		return $bot->rply('5188', array(substr($back, 2)));
-// // 		return substr($back, 2);
+		$bot = Shadowrap::instance($player);
+
+		if (count($args) !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'viewi'));
+			return false;
+		}
+
+		if (false === ($item = $this->getStoreItem($player, $args[0])))
+		{
+			$bot->rply('1140'); # no such item
+			return false;
+		}
+
+		return $bot->rply('5189', array($item->getItemInfo($player)));
 	}
-	
+
 	###########
 	### Buy ###
 	###########
@@ -260,8 +222,7 @@ abstract class SR_Store extends SR_Location
 		}
 		if (false === ($dummyitem = $this->getStoreItem($player, $args[0])))
 		{
-			$bot->rply('1029');
-// 			$bot->reply('We don`t have that item.');
+			$bot->rply('1140'); # no such item
 			return false;
 		}
 		
