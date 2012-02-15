@@ -48,6 +48,7 @@ final class Guestbook_Sign extends GWF_Method
 		$tVars = array(
 			'in_reply' => $gbe,
 			'form' => $form->templateY($this->module->lang('ft_sign', array( $gb->displayTitle()))),
+			'can_mod' => $gb->canModerate(GWF_Session::getUser()),
 		);
 		return $this->module->template('sign.tpl', $tVars);
 	}
