@@ -179,6 +179,8 @@ abstract class SR_TalkingNPC extends SR_NPC
 			return false;
 		}
 		
+		$q instanceof SR_Quest;
+		
 		$key = $q->getTempKey();
 		$has = $q->isInQuest($player);
 		$t = $player->hasTemp($key);
@@ -223,6 +225,10 @@ abstract class SR_TalkingNPC extends SR_NPC
 				return false;
 				
 			default:
+				if (true === in_array($word, $q->getTriggers(), true))
+				{
+					return $q->onNPCQuestTalk($this, $player, $word, $args);
+				}
 				return false;
 		}
 	}

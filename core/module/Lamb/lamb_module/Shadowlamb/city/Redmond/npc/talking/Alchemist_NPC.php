@@ -8,6 +8,11 @@ final class Redmond_Alchemist_NPC extends SR_TalkingNPC
 		return array('race'=>'elve');
 	}
 	
+	public function getNPCQuests(SR_Player $player)
+	{
+		return array('Redmond_Alchemist1');
+	}
+	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		if (true === $this->onNPCQuestTalk($player, $word, $args))

@@ -21,9 +21,14 @@ class SR_Quest extends GDO
 		return $this->lang($player, 'description');
 	}
 	
-	public function lang(SR_Player $player, $key, $args=NULL)
+	public function langPlayer(SR_Player $player, $key, $args=NULL)
 	{
 		return Shadowlang::langQuest($this, $player, $key, $args);
+	}
+	
+	public function lang($key, $args=NULL)
+	{
+		return $this->langPlayer($this->getPlayer(), $key, $args);
 	}
 	
 	####################
@@ -68,6 +73,7 @@ class SR_Quest extends GDO
 	#############
 	public function getName() { return $this->getVar('sr4qu_name'); }
 	public function getTrigger() { return 'shadowrun'; }
+	public function getTriggers() { return array(); }
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
 	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
 	public function getAmount() { return $this->getVar('sr4qu_amount'); }
@@ -75,8 +81,10 @@ class SR_Quest extends GDO
 	public function increaseAmount($by=1) { return $this->increase('sr4qu_amount', $by); }
 	public function getNeededAmount() { return 0; }
 	public function onQuestSolve(SR_Player $player) {}
-	public function getQuestName() { return $this->getName(); }
-	public function getQuestDescription() { return 'QUEST DESCRIPTION'; }
+	public function getQuestName() { return $this->lang('title'); }
+	public function getQuestDescription() { return $this->lang('descr'); }
+// 	public function getQuestName() { return $this->getName(); }
+// 	public function getQuestDescription() { return 'QUEST DESCRIPTION'; }
 	public function isDone(SR_Player $player) { return $this->isOptionEnabled(self::DONE); }
 	public function isInQuest(SR_Player $player) { return (false === $this->isDone($player)) && (true === $this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
@@ -234,10 +242,15 @@ class SR_Quest extends GDO
 		$ename = self::escape($name);
 		if (false === ($data = self::table(__CLASS__)->selectFirst('*', "sr4qu_uid=$uid AND sr4qu_name='$ename'")))
 		{
-			return self::createQuest($player, $name);
+			$quest = self::createQuest($player, $name);
 		}
-		$classname = 'Quest_'.$name;
-		$quest = new $classname($data);
+		else
+		{
+			$classname = 'Quest_'.$name;
+			$quest = new $classname($data);
+			$quest instanceof SR_Quest; # code hint
+		}
+		$quest->setCityName(self::$QUESTS[$name]->getCityName()); # copy cityname
 		return $quest;
 	}
 	
@@ -270,7 +283,7 @@ class SR_Quest extends GDO
 		# Setup
 		$quest->setCityName($cityname);
 		# Global cache
-		self::$QUESTS[strtolower($quest->getQuestName())] = $quest;
+		self::$QUESTS[$cname] = $quest;
 	}
 	
 	/**
@@ -340,6 +353,8 @@ class SR_Quest extends GDO
 		{
 			$classname = 'Quest_'.$row['sr4qu_name'];
 			$quest = new $classname($row);
+			$quest instanceof SR_Quest;
+			$quest->setCityName(self::$QUESTS[$row['sr4qu_name']]->getCityName());
 			$back[] = $quest;
 		}
 		$table->free($result);

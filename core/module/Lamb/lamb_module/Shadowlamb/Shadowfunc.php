@@ -1208,7 +1208,7 @@ final class Shadowfunc
 				$member->giveXP($xp);
 			}
 			
-			$msg = '';
+			$msg = $player->getName();
 			foreach ($out as $pid => $data)
 			{
 				list($target, $dmg, $is_kill) = $data;

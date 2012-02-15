@@ -49,7 +49,7 @@ final class Spell_fireball extends SR_CombatSpell
 			$dmg /= ($d/SR_Party::X_COORD_INC)*1.40; # Apply area reduction
 			$dmg = round($dmg,1);
 			
-			$player->message(sprintf("You have hit %s with %d hits, your damage is %.02f-%.02f, Distance from impact: %.02fm", $target->getName(), $hits, $min, $max, $d));
+// 			$player->message(sprintf("You have hit %s with %d hits, your damage is %.02f-%.02f, Distance from impact: %.02fm", $target->getName(), $hits, $min, $max, $d));
 			
 			$damage[$pid] = $dmg;
 		}

@@ -611,13 +611,13 @@ class Shadowcmd
 		
 		$args = explode(' ', $message);
 		
-		echo sprintf("Your command is %s\n", $args[0]);
+// 		echo sprintf("Your command is %s\n", $args[0]);
 		
 // 		$cmd = array_shift($args);
 		$command = self::unshortcut(array_shift($args));
 		$command = self::untranslate($command);
 		
-		echo "Command got untranslated to $command\n";
+// 		echo "Command got untranslated to $command\n";
 		
 // 		$cmd = self::shortcut(self::unshortcut($cmd));
 // 		$command = self::unshortcut($cmd);
