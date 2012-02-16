@@ -101,10 +101,10 @@ $lang = array(
 'stub_enter_clanhq' => 'Entri nel quartier generale del clan.',
 'stub_found_elevator' => 'Hai trovato il %s. Un cartelo recita: "MAX %s KG".',
 'stub_enter_elevator' => 'Entri nel %s. Un cartelo recita: "MAX %s KG".',
-'stub_found_bank' => 'You found the Bank of %s. All transactions are done with slot machines.',
-'stub_enter_bank' => 'You enter the Bank of %s. You see some customers at the counters and also some security officers.',
-'stub_found_blacksmith' => 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.',
-'stub_enter_blacksmith' => 'You enter the %s blacksmith. You see two dwarfs at the counter.',
+'stub_found_bank' => 'Hai trovato la Banca di %s. Tutte le transazioni sono effettuate tramite slot machines.',
+'stub_enter_bank' => 'Hai trovato la Banca di %s. Vedi alcuni clienti al bancone ed anche alcuni ufficiali di sicurezza.',
+'stub_found_blacksmith' => 'Trovi un piccolo negozio, "Il Fabbro". Sembra che possano migliorare il tuo equipaggiamento.',
+'stub_enter_blacksmith' => 'Entri il fabbro di %s. Vedi due nani al bancone.',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
@@ -145,7 +145,7 @@ $lang = array(
 'hlp_cyberdeck' => 'Questo oggetto funziona solo in località dotate di computer.',
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
-'hlp_blacksmith' => "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here.",
+'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l\'equipaggiamento con le rune. Inoltre puoi {$c}rompere o {$c}pulire gli oggetti in rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",
