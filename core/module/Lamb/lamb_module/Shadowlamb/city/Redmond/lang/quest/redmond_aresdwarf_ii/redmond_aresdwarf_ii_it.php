@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'Punks!',
+	'title' => 'Punk!',
 	'descr' => 'Porta %d/%d scalpi di punk al Redmond_Ares.',
 	'solved' => 'Il nano si congratuala e ti ricompensa con %s. Inoltre, hai guadagnato %s XP.',
 		

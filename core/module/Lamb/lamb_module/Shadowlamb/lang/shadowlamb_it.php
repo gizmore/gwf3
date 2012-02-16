@@ -350,11 +350,11 @@ $lang = array(
 '1173' => 'Il tuo genere è sconosciuto. Generi validi: %s.',
 '1174' => "Il comando non è disponibile per la tua corrente località. Utilizza {$c}c [<l|lunghi>] per vedere tutti i comandi attualmente disponibili.",
 '1175' => 'E\' più di quanto ho, fratello',
-'1176' => '',
-'1177' => '',
-'1178' => '',
-'1179' => '',
-'1180' => '',
+//'1176' => '',
+//'1177' => '',
+//'1178' => '',
+//'1179' => '',
+//'1180' => '',
 
 ########################
 # 10000-14999 = Spells #
@@ -520,7 +520,7 @@ $lang = array(
 '5090' => '%s si muove di %.01f metri %s ed è ora in posizione %.01f meters%s', # player, fw/bw, metres, busy (OWN)
 '5091' => '%s si muove di %.01f metri %s ed è ora in posizione %.01f meters%s', # player, fw/bw, metres, busy (ENEMY)
 '5092' => 'Il gruppo nemico ha detto "Addio".',
-'5093' => 'Stai nuovamente a %s.', # action
+'5093' => 'Stai nuovamente %s.', # action
 '5094' => '%s ti ha ringraziato ed ha lasciato il gruppo.', # player
 '5095' => 'Hai incontrato %s.',
 '5096' => 'Hai incrociato %s.%s%s',
