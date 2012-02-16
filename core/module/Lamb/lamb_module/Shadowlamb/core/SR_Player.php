@@ -1358,7 +1358,11 @@ class SR_Player extends GDO
 		{
 			$gain = $this->getMPGain();
 // 			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
-			return $this->healMP($gain);
+			$gain = $this->healMP($gain);
+			if ($gain > 0)
+			{
+				$this->msg('5260', array($gain, $this->getMP(), $this->getMaxMP()));
+			}
 		}
 		return true;
 	}
@@ -1377,8 +1381,13 @@ class SR_Player extends GDO
 		if ($ele > 0)
 		{
 			$gain = $this->getHPGain();
+			$gain = $this->healHP($gain);
 // 			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
-			return $this->healHP($gain);
+// 			return $this->healHP($gain);
+			if ($gain > 0)
+			{
+				$this->msg('5261', array($gain, $this->getHP(), $this->getMaxHP()));
+			}
 		}
 		return true;
 	}

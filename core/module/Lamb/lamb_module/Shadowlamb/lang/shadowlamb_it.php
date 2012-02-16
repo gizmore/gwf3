@@ -675,6 +675,7 @@ $lang = array(
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
 '5259' => 'Treni: %s.', # Travel target list fmt_sumlist.
-'5260' => '',
+'5260' => 'You gained +%s MP (%s/%s).', # From orcas effect
+'5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
 );
 ?>
