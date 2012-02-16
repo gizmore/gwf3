@@ -13,10 +13,13 @@ abstract class SR_Blacksmith extends SR_Store
 	public function getSplitPercentPrice(SR_Player $player) { return 35.00; }
 
 	public function getCommands(SR_Player $player) { return array('view','viewi','buy','sell','clean','break','split'/*,'simulate'*/,'upgrade'); }
-	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
-	//	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
-
+// 	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
+//	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
+// 	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
+	public function getHelpText(SR_Player $player) { return $player->lang('hlp_blacksmith'); }
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_blacksmith'); }
+	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter_blacksmith', array($this->getCity())); }
+	
 	public function calcUpgradePrice(SR_Player $player, $item_price)
 	{
 		return Shadowfunc::calcBuyPrice(($item_price*($this->getUpgradePercentPrice()/100))+$this->getUpgradePrice(), $player);

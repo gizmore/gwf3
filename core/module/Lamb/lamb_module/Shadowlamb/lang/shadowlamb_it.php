@@ -99,8 +99,12 @@ $lang = array(
 'stub_enter_bazar' => 'Entri nel bazaar. Vedi %d negozi con un totale di %d oggetti.', # shopcount, itemcount
 'stub_found_clanhq' => 'Hai trovato il quartier generale del clan.',
 'stub_enter_clanhq' => 'Entri nel quartier generale del clan.',
-'stub_found_elevator' =>  'Hai trovato il %s. Un cartelo recita: "MAX %s KG".',
-'stub_enter_elevator' =>  'Entri nel %s. Un cartelo recita: "MAX %s KG".',
+'stub_found_elevator' => 'Hai trovato il %s. Un cartelo recita: "MAX %s KG".',
+'stub_enter_elevator' => 'Entri nel %s. Un cartelo recita: "MAX %s KG".',
+'stub_found_bank' => 'You found the Bank of %s. All transactions are done with slot machines.',
+'stub_enter_bank' => 'You enter the Bank of %s. You see some customers at the counters and also some security officers.',
+'stub_found_blacksmith' => 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.',
+'stub_enter_blacksmith' => 'You enter the %s blacksmith. You see two dwarfs at the counter.',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
@@ -141,6 +145,7 @@ $lang = array(
 'hlp_cyberdeck' => 'Questo oggetto funziona solo in località dotate di computer.',
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
+'hlp_blacksmith' => "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here.",
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",

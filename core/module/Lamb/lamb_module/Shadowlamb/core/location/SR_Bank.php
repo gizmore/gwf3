@@ -6,6 +6,16 @@ abstract class SR_Bank extends SR_Location
 	public function getTransactionPrice() { return 0; }
 	
 	public function getCommands(SR_Player $player) { return array('view', 'viewi', 'push', 'pop', 'pushy', 'popy'); }
+	
+	public function getFoundText(SR_Player $player)
+	{
+		return $player->lang('stub_found_bank', array($this->getCity()));
+	}
+
+	public function getEnterText(SR_Player $player)
+	{
+		return $player->lang('stub_enter_bank', array($this->getCity()));
+	}
 
 	public function getHelpText(SR_Player $player)
 	{
