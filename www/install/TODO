@@ -89,3 +89,8 @@ core/module/Guestbook/tpl/default/_entry.php
      For PMs this requires a redesign of database.
 
 --------------------------------------------------------------------------------
+
+#19: There might be a bug in PM or gwf2=>3 update: readet outgoing messages
+     are displayed as unreadet
+
+--------------------------------------------------------------------------------

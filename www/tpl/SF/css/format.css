@@ -168,6 +168,9 @@ p.copyright {
 	line-height: 25px;
 	margin: 0;
 }
+p.copyright img {
+	height: 20px;
+}
 div#content {
 	text-align: justify;
 	padding: 10px;

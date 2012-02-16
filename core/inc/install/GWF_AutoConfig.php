@@ -15,6 +15,7 @@ final class GWF_AutoConfig
 		define('GWF_DOMAIN', $_SERVER['HTTP_HOST']);
 		define('GWF_SITENAME', 'GWF install script');
 		define('GWF_WEB_ROOT_NO_LANG', $self);
+		define('GWF_LOG_BITS', 0xfff);
 		
 		define('GWF_DEFAULT_DOCTYPE', 'html5');
 		define('GWF_DEFAULT_LANG', 'en');
