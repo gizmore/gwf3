@@ -7,9 +7,9 @@
  */
 final class Common
 {
-	###########
-	### GPC ###
-	###########
+	############
+	### GPCS ###
+	############
 	public static function getGet($var, $default=false) { return true === isset($_GET[$var]) ? $_GET[$var] : $default; }
 	public static function cmpGet($var, $cmp, $default=false) { return $cmp === self::getGet($var, $default) ? true : $default; }
 	public static function getGetInt($var, $default=0) { return true === isset($_GET[$var]) ? ((int)$_GET[$var]) : $default; }
@@ -33,6 +33,10 @@ final class Common
 	public static function getCookie($var, $default=NULL) { return (true === isset($_COOKIE[$var]) ? (string)$_COOKIE[$var] : $default); }
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
 	public static function displayCookie($var, $default='') { return true === isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
+
+	public static function getServer($var, $default=NULL) { return (true === isset($_SERVER[$var]) ? $_SERVER[$var] : $default); }
+	public static function cmpServer($var, $cmp, $default=false) { return $cmp === self::getServer($var, $default) ? true : $default; }
+	public static function displayServer($var, $default='') { return true === isset($_SERVER[$var]) ? htmlspecialchars($_SERVER[$var], ENT_QUOTES) : $default; }
 	
 	###############
 	## CONSTANTS ##

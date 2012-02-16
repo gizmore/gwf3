@@ -5,20 +5,14 @@
 */
 final class GWF_ServerInfo
 {
-	public static function getServer($var, $default=false) { return true === isset($_SERVER[$var]) ? $_SERVER[$var] : $default; }
-	public static function cmpServer($var, $cmp, $default=false) { return $cmp === self::getServer($var, $default) ? true : $default; }
-	public static function getServerInt($var, $default=0) { return true === isset($_SERVER[$var]) ? ((int)$_SERVER[$var]) : $default; }
-	public static function getServerString($var, $default='') { return (true === isset($_SERVER[$var]) ? (string)$_SERVER[$var] : $default); }
-	public static function displayServer($var, $default='') { return true === isset($_SERVER[$var]) ? htmlspecialchars($_SERVER[$var], ENT_QUOTES) : $default; }
-
-	public static function getHost() { return self::getServer('HTTP_HOST', GWF_DOMAIN); }
-	public static function getIPAddress() { return self::getServer('SERVER_ADDR', '127.0.0.1'); }
-	public static function getSoftware() { return self::getServer('SERVER_SOFTWARE', 'PHP'); }
+	public static function getHost() { return Common::getServer('HTTP_HOST', GWF_DOMAIN); }
+	public static function getIPAddress() { return Common::getServer('SERVER_ADDR', '127.0.0.1'); }
+	public static function getSoftware() { return Common::getServer('SERVER_SOFTWARE', 'PHP'); }
 	/** This will give the OS where PHP was compiled on! */
 	public static function getOperatingSystem() { return PHP_OS; }
 
-	public static function isHTTPS() { return 'off' !== self::getServer('HTTPS', 'off'); }
-	public static function isApache() { return 'Apache' === self::getSoftware(); }
+	public static function isHTTPS() { return 'off' !== Common::getServer('HTTPS', 'off'); }
+	public static function isApache() { return 'Apache' === Common::getSoftware(); }
 	public static function isApacheAPI() { return PHP_SAPI === 'apache2handler'; }
 	public static function isLinux() { return 'Linux' === PHP_OS; }
 	public static function isFreeBSD() { return 'FreeBSD' === PHP_OS; }
