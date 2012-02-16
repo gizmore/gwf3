@@ -2,7 +2,7 @@
 $lang = array(
 	'page_title' => 'Exklusive Events',
 	'title' => 'Exklusiv',
-	'subtitle' => '',
+	'subtitle' => '  ',
 
 	'text' =>
 		'„Der exklusive Treffpunkt für außergewöhnliche Events!“<br/>'.PHP_EOL.
