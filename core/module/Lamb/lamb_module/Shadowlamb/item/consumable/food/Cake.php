@@ -1,7 +1,7 @@
 <?php
 final class Item_Cake extends SR_Food
 {
-	public function getItemDescription() { return 'A delicious cake baken by Unhandleds mom.'; }
+	public function getItemDescription() { return 'A delicious cake baken by Unhandled\'s mom.'; }
 	public function getItemWeight() { return 500; }
 	public function getItemUseTime(){ return 90; }
 	public function onConsume(SR_Player $player)
