@@ -31,6 +31,11 @@ class SR_Quest extends GDO
 		return $this->langPlayer($this->getPlayer(), $key, $args);
 	}
 	
+	public function msg($key, $args=NULL)
+	{
+		return $this->getPlayer()->message($this->lang($key, $args));
+	}
+	
 	####################
 	### Option flags ###
 	####################

@@ -13,7 +13,8 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 		{
 			if ($word === 'yes')
 			{
-				$this->reply('Good luck while punish them! *mwahaha*');
+				$this->rply('accept');
+// 				$this->reply('Good luck while punish them! *mwahaha*');
 				$quest2->accept($player);
 				$player->unsetTemp('Redmond_AresDwarf_II_sr');
 				return;
@@ -21,7 +22,8 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 			if ($word === 'no')
 			{
 				$player->unsetTemp('Redmond_AresDwarf_II_sr');
-				$this->reply('Too bad. If you change your mind let me know.');
+				$this->rply('decline');
+// 				$this->reply('Too bad. If you change your mind let me know.');
 				return;
 			}
 		}
@@ -32,12 +34,16 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 				$this->checkQuest2($player, $quest2);
 			}
 			elseif ($player->hasTemp('Redmond_AresDwarf_II_sr')) {
-				$this->reply('Do you accept the quest, chummer?');
+				$this->rply('confirm');
+// 				$this->reply('Do you accept the quest, chummer?');
 			}
 			else {
-				$this->reply('You are looking for a job, chummer?');
-				$this->reply('As you might know we regulary get robbed by the cyberpunks.');
-				$this->reply("It is payback time! Bring me $num Cyberpunk Scalps and I will happliy reward you. What do you say?");
+				$this->rply('descr1');
+				$this->rply('descr2');
+				$this->rply('descr3', array($num));
+// 				$this->reply('You are looking for a job, chummer?');
+// 				$this->reply('As you might know we regulary get robbed by the cyberpunks.');
+// 				$this->reply("It is payback time! Bring me $num Cyberpunk Scalps and I will happliy reward you. What do you say?");
 				$player->setTemp('Redmond_AresDwarf_II_sr', true);
 			}
 		}
@@ -48,18 +54,22 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 				$this->checkQuest2($player, $quest2);
 			}
 			elseif ($word === 'yes' || $word === 'no') {
-				$this->reply('We have the finest weapons and utilities. Low prices and high damage =)');
+				$this->rply('default2');
+// 				$this->reply('We have the finest weapons and utilities. Low prices and high damage =)');
 			}
 			else {
-				$this->reply("Hello my friend, are you interested in our fine armoury?");
+				$this->rply('default1');
+// 				$this->reply("Hello my friend, are you interested in our fine armoury?");
 			} 
 		}
+		return true;
 	}
 	
 	private function checkQuest2(SR_Player $player, SR_Quest $quest2)
 	{
 		if ($quest2->isDone($player)) {
-			return $this->reply('Thank you for your help.');
+			return $this->rply('thx');
+// 			return $this->reply('Thank you for your help.');
 		}
 		
 		$have = $quest2->getAmount();
@@ -83,14 +93,17 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 		
 		if ($give > 0)
 		{
-			$this->reply(sprintf('You give %d scalp(s) to the dwarf.', $give));
+			$this->rply('hand', array($give));
+// 			$this->reply(sprintf('You give %d scalp(s) to the dwarf.', $give));
 			$quest2->giveAmount($player, $give);
 		}
 		
 		if (!$quest2->isDone($player))
 		{
-			$this->reply(sprintf('Could you please bring me %d more scalps?', $need));
+			$this->rply('more', array($need));
+// 			$this->reply(sprintf('Could you please bring me %d more scalps?', $need));
 		}
+		return true;
 	}
 	
 }

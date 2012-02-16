@@ -12,6 +12,8 @@ $lang = array(
 	'no' => 'Va bene, va bene.',
 	'answer_us_pls' => 'Utilizza #parla <risposta> per risolvere questo semplice crittogramma.',
 	'grats' => 'Wow, sono impressionato! Eccoti una ricompensa, fratello!',
+	
+	'funny' => 'Hehe, you are a smartass ... If i recall correctly it was a roman emperor though.',
 		
 );
 ?>

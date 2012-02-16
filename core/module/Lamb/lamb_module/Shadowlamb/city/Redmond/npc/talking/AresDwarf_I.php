@@ -18,11 +18,16 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 				$quest1->accept($player);
 				$player->unsetTemp('Redmond_AresDwarf_I_sr');
 			}
-			if ($word === 'no')
+			else if ($word === 'no')
 			{
 				$player->unsetTemp('Redmond_AresDwarf_I_sr');
 				$this->rply('laters');
 // 				$this->reply('Well, if you change your mind.. Come back later.');
+			}
+			else
+			{
+				$this->rply('confirm');
+// 				$this->reply('Do you accept the quest, chummer?');
 			}
 			return true;
 		}
@@ -32,14 +37,14 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 			if ($has1 || $done1) {
 				$this->checkQuest1($player, $quest1);
 			}
-			elseif ($player->hasTemp('Redmond_AresDwarf_I_sr')) {
-				$this->rply('confirm');
-// 				$this->reply('Do you accept the quest, chummer?');
-			}
+// 			elseif ($player->hasTemp('Redmond_AresDwarf_I_sr')) {
+// 				$this->rply('confirm');
+// // 				$this->reply('Do you accept the quest, chummer?');
+// 			}
 			else {
 				$this->rply('quest1');
 				$this->rply('quest2');
-				$this->rply('quest3');
+				$this->rply('quest3', array($num));
 				$this->rply('quest4');
 				$this->rply('quest5');
 // 				$this->reply('You are a newbie runner, eh?');
@@ -69,7 +74,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 	
 	private function checkQuest1(SR_Player $player, SR_Quest $quest1)
 	{
-		if ($quest1->isDone($player))
+		if (true === $quest1->isDone($player))
 		{
 			return $this->rply('thx2');
 // 			return $this->reply('We have enogh knifes now to play with. Thanks again for your help.');
@@ -98,11 +103,13 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 			$quest1->giveAmount($player, $give);
 		}
 		
-		if (!$quest1->isDone($player))
+		if (false === $quest1->isDone($player))
 		{
 			$this->rply('pls', array($need));
 // 			$this->reply(sprintf('Could you please bring me %d more knifes?', $need));
 		}
+		
+		return true;
 	}
 }
 ?>

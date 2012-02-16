@@ -29,7 +29,7 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
-		return self::createItemLangFile();
+// 		return self::createItemLangFile();
 		return true;
 // 		return
 // 			(true === self::createNPCLangFiles()) &&

@@ -343,6 +343,7 @@ $lang = array(
 '1172' => 'Your race is unknown or an NPC only race. Valid races: %s.',
 '1173' => 'Your gender is unknown. Valid genders: %s.',
 '1174' => "The command is not available for your current action or location. Try {$c}c [<l|long>] to see all currently available commands.",
+'1175' => 'That\'s more than I offer, chummer.',
 
 ########################
 # 10000-14999 = Spells #

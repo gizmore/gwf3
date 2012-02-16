@@ -343,6 +343,7 @@ $lang = array(
 '1172' => 'Tu raza es desconocida ó es una raza NPC. Razas válidas: %s.',
 '1173' => 'Tu género es desconocido. Géneros válidos: %s.',
 '1174' => "El comando no esta disponible en tu actual acción o lugar. Intenta {$c}c [<l|long>] para ver todos los comandos disponibles.",
+'1175' => 'That\'s more than I offer, chummer.',
 
 ########################
 # 10000-14999 = Spells #

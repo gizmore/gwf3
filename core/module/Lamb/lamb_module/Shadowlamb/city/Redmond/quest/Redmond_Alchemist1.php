@@ -11,7 +11,7 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 		);
 	}
 	
-	public function getTriggers() { return array($this->lang('solution')); }
+	public function getTriggers() { return array($this->lang('solution'), 'carsten'); }
 	
 	public function checkQuest(SR_NPC $npc, SR_Player $player) { return $npc->reply($this->lang('answer_us_pls')); }
 	
@@ -19,14 +19,14 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 	{
 		$plaintext = $this->lang('plaintext');
 		$solution = $this->lang('solution');
-		$ciphertext = GWF_PolyROT::encrypt($plaintext, 'C');
+		$ciphertext = GWF_PolyROT::encrypt($plaintext, "D");
 		
 		switch ($word)
 		{
 			case 'shadowrun':
 				return $npc->reply($this->lang('shadowrun'));
 			
-			case 'confirm': $npc->reply("");
+			case 'confirm':
 				return $npc->reply($this->lang('confirm'));
 			
 			case 'yes':
@@ -40,6 +40,9 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 			case $solution:
 				$npc->reply($this->lang('grats'));
 				return $this->onSolve($player);
+				
+			case 'carsten':
+				return $npc->reply($this->lang('funny'));
 
 			default:
 				return false;				

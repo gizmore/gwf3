@@ -1,14 +1,16 @@
 <?php
 final class Quest_Redmond_AresDwarf_II extends SR_Quest
 {
-	public function getQuestName() { return 'Punks!'; }
-	public function getQuestDescription() { return sprintf('Bring %d/%d punk scalps to the Redmond_Ares.', $this->getAmount(), $this->getNeededAmount()); }
+// 	public function getQuestName() { return 'Punks!'; }
+// 	public function getQuestDescription() { return sprintf('Bring %d/%d punk scalps to the Redmond_Ares.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	public function getNeededAmount() { return 25; }
 	public function onQuestSolve(SR_Player $player)
 	{
 		$xp = 7;
 		$ny = 1500;
-		$player->message(sprintf('The dwarf cheers and hands you %s. You also gained %s XP.', Shadowfunc::displayNuyen($ny), $xp));
+		$this->msg('solved', array(Shadowfunc::displayNuyen($ny), $xp));
+// 		$player->message(sprintf('The dwarf cheers and hands you %s. You also gained %s XP.', Shadowfunc::displayNuyen($ny), $xp));
 		$player->giveXP($xp);
 		$player->giveNuyen($ny);
 		
@@ -27,18 +29,22 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 	
 	public function onSolveDuo(SR_Player $player)
 	{
-		$player->message('The dwars look very pleased.');
-		$player->message('"Thank you so much", Aron says, "For your help we have thought of a special reward..."');
+		$this->msg('solve2a');
+		$this->msg('solve2b');
+// 		$player->message('The dwarfs look very pleased.');
+// 		$player->message('"Thank you so much", Aron says, "For your help we have thought of a special reward..."');
 		
 		$max = $player->isRunner() ? Shadowcmd_lvlup::MAX_VAL_SKILL_RUNNER : Shadowcmd_lvlup::MAX_VAL_SKILL;
 		if ($player->getBase('melee') > $max)
 		{
 			$player->giveNuyen(5000);
-			$player->message('You received another 5000 nuyen!');
+			$this->msg('solve2c');
+// 			$player->message('You received another 5000 nuyen!');
 		}
 		else
 		{
-			$player->message('Your melee skill has increased by 1.');
+			$this->msg('solve2d');
+// 			$player->message('Your melee skill has increased by 1.');
 			$player->increase('sr4pl_melee', 1);
 			$player->modify();
 		}
