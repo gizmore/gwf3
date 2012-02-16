@@ -58,7 +58,7 @@ final class GWF_Session extends GDO
 	############
 	public static function start($blocking=true)
 	{
-		if ( (NULL === ($cookie = Common::getCookie(GWF_SESS_NAME)))
+		if ( (false === ($cookie = Common::getCookie(GWF_SESS_NAME)))
 		  || (false === self::reload($cookie, $blocking)) )
 		{
 			return self::create();

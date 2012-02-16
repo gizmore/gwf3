@@ -33,7 +33,7 @@ echo $gwf->onDisplayHead();
 $chall->showHeader();
 
 # Logged in user
-if (false !== ($user = unserialize(Common::getCookie('serial_user'))))
+if (false !== ($user = unserialize(Common::getCookie('serial_user', ''))))
 {
 	# Show welcome screen
 	echo GWF_HTML::message('Serial Challenger', $chall->lang('msg_wb', array(htmlspecialchars($user->getUsername()), $user->getPassword(), $user->getUserlevel())));
