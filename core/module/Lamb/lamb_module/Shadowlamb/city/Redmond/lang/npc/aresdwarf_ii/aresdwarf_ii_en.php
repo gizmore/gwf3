@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'accept' => 'Good luck while punish them! *mwahaha*',
+	'accept' => 'Good luck while you punish them! *mwahaha*',
 	'decline' => 'Too bad. If you change your mind let me know.',
 	'confirm' => 'Do you accept the quest, chummer?',
 	'descr1' => 'You are looking for a job, chummer?',
