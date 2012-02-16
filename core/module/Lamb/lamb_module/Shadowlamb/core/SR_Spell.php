@@ -212,7 +212,7 @@ abstract class SR_Spell
 		$need = Common::clamp($need, 1, 1000000);
 		$have = $player->getMP();
 		
-		if ($need > $have)
+		if ( ($need > $have) && (false === $this->isPotionMode()) )
 		{
 			$player->msg('1055', array($need, $this->getName(), $level, $have));
 // 			$player->message(sprintf('You need %s MP to cast %s, but you only have %s.', $need, $this->getName(), $have));

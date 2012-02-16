@@ -73,6 +73,7 @@ final class Item_AlchemicPotion extends SR_Usable
 			return false;
 		}
 		$spell->setCaster($player);
+		$spell->setMode(SR_Spell::MODE_POTION);
 		
 		if (count($args) === 0)
 		{
@@ -85,7 +86,6 @@ final class Item_AlchemicPotion extends SR_Usable
 			return false;
 		}
 		
-		$spell->setMode(SR_Spell::MODE_POTION);
 		if (false !== ($target = $spell->getTarget($player, $args, false)))
 		{
 			if ( (false === $spell->isOffensive()) && ($target->getID() != $player->getID()) )
