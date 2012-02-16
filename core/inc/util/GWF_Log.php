@@ -64,7 +64,8 @@ final class GWF_Log
 	 */
 	private static function getRequest()
 	{
-		if (true === self::isDisabled(self::HTTP_GET) && true === ($post = self::isDisabled(self::HTTP_POST))
+		$post = self::isDisabled(self::HTTP_POST);
+		if (true === self::isDisabled(self::HTTP_GET) && true === $post)
 		{
 			return '';
 		}
@@ -156,7 +157,7 @@ final class GWF_Log
 		$ret = array();
 		foreach (self::$logs as $file => $msg)
 		{
-			if (true === ($e = self::writeLog($file, $msg))
+			if (true === ($e = self::writeLog($file, $msg)))
 			{
 				unset(self::$logs[$file]);
 			}
@@ -192,7 +193,7 @@ final class GWF_Log
 		}
 	}
 
-	public static function rawLog($filename, $message. $logmode=0)
+	public static function rawLog($filename, $message, $logmode=0)
 	{
 		# log it?
 		if (true === self::isEnabled($logmode))
