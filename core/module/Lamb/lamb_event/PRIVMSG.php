@@ -28,8 +28,9 @@ if (Lamb_User::isOnAnonetS($server->getBotsNickname()))
 
 if ($server->isLogging())
 {
+	# TODO: Set a bit if this line is logged. The login and register scripts set it to false. logging is done after the proecessing has taken place.
 	$t = LAMB_TRIGGER;
-	if ( (strpos($message, "{$t}login") !== false) && (strpos($message, "{$t}register") !==false ) )
+	if ( (strpos($message, "{$t}login") !== false) && (strpos($message, "{$t}register") !== false ) )
 	{
 		Lamb_Log::logChat($server, $message);
 	}
