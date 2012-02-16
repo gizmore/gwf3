@@ -1,5 +1,5 @@
 <?php
-final class Spell_blow extends SR_CombatSpell
+final class Spell_blow extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 1; }
 	public function getHelp() { return 'Blow an enemy away to increase his distance.'; }

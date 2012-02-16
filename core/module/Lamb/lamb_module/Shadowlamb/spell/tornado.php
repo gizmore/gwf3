@@ -1,5 +1,5 @@
 <?php
-final class Spell_tornado extends SR_CombatSpell
+final class Spell_tornado extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 3; }
 	public function isOffensive() { return true; }

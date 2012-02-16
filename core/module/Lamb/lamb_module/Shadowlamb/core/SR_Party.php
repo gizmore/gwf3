@@ -558,6 +558,10 @@ final class SR_Party extends GDO
 			$this->updateMembers();
 			if ($this->getMemberCount() === 0)
 			{
+				if ( $this->isFighting() )
+				{
+					$this->getEnemyParty()->onFightDone();
+				}
 				$this->deleteParty();
 			}
 		}
@@ -1447,13 +1451,24 @@ final class SR_Party extends GDO
 			$this->timestamp = time();
 			foreach ($this->members as $player)
 			{
+				# Make sure player hasn't left because of something like #cast bunny.
+				if ( $player->getParty() !== $this )
+				{
+					continue;
+				}
+
 // 				$player instanceof SR_Player;
 // 				if (NULL !== ($user = $player->getUser()))
 // 				{
 // 					Lamb::instance()->setCurrentUser($user);
 // 				}
 				Shadowcmd::$CURRENT_PLAYER = $player;
-				$player->combatTimer();
+
+				if ( $player->combatTimer() )
+				{
+					# No more enemies! \o/
+					break;
+				}
 			}
 		}
 	}

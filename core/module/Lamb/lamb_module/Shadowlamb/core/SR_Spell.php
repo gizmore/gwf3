@@ -140,7 +140,7 @@ abstract class SR_Spell
 
 	public function onCast(SR_Player $player, array $args, $wanted_level=true)
 	{
-		if ($this->isOffensive())
+		if ($this instanceof SR_CombatSpell)
 		{
 			if ($this->mode === self::MODE_BREW)
 			{
@@ -338,7 +338,6 @@ abstract class SR_Spell
 		}
 		
 		$p = $player->getParty();
-		$ep = $p->getEnemyParty();
 		$mc = $p->getMemberCount();
 		
 		
@@ -384,11 +383,6 @@ abstract class SR_Spell
 // 			$append = " and caused {$damage} damage";
 // 			$append_ep = "{$append} ($hp/$maxhp)HP left.";
 			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp);
-		}
-
-		if ($ep->getMemberCount() === 0)
-		{
-			$p->onFightDone();
 		}
 
 		return true;
@@ -443,6 +437,12 @@ abstract class SR_SupportSpell extends SR_Spell
 abstract class SR_CombatSpell extends SR_Spell
 {
 	public function displayType() { return 'Combat Spell'; }
+	public function isOffensive() { return false; }
+}
+
+abstract class SR_OffensiveSpell extends SR_CombatSpell
+{
+	public function displayType() { return 'Offensive Combat Spell'; }
 	public function isOffensive() { return true; }
 	public function getRange() { return 10; }
 }

@@ -30,11 +30,6 @@ final class Shadowcmd_flee extends Shadowcmd
 		$player->resetXP();
 		$party->kickUser($player, true);
 		
-		if ($party->getMemberCount() === 0)
-		{
-			$ep->onFightDone();
-		}
-		
 		$np = SR_Party::createParty();
 		$np->addUser($player, true);
 		$np->cloneAction($party);

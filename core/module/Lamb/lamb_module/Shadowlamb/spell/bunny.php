@@ -1,5 +1,5 @@
 <?php
-final class Spell_bunny extends SR_SupportSpell
+final class Spell_bunny extends SR_CombatSpell
 {
 	public function getSpellLevel() { return 1; }
 	

@@ -1,5 +1,5 @@
 <?php
-final class Spell_poison_dart extends SR_CombatSpell
+final class Spell_poison_dart extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 2; }
 	

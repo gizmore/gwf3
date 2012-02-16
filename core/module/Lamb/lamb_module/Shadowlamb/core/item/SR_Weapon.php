@@ -12,7 +12,6 @@ abstract class SR_Weapon extends SR_Equipment
 		$p = $player->getParty();
 		$mc = $p->getMemberCount();
 		$ep = $p->getEnemyParty();
-		$emc = $ep->getMemberCount();
 		
 		if (false === ($target = $this->getOffensiveTarget($player, $arg)))
 		{
@@ -144,10 +143,6 @@ abstract class SR_Weapon extends SR_Equipment
 		$ep->ntice('5235', array($pname, $tname, $iname, $damage, $busy, $bold, $crit));
 		
 		$target->gotKilledBy($player);
-		if ($emc === 1)
-		{
-			$p->onFightDone();
-		}
 		
 		return true;
 	}

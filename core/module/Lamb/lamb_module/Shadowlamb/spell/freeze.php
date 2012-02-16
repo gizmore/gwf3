@@ -4,7 +4,7 @@
  * @author gizmore
  *
  */
-final class Spell_freeze extends SR_CombatSpell
+final class Spell_freeze extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 3; }
 	public function getHelp() { return "Freezes an enemy for some time"; }

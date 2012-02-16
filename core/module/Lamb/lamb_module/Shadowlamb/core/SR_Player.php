@@ -2425,8 +2425,11 @@ class SR_Player extends GDO
 	{
 		if ($this->isBusy())
 		{
-			return;
+			return false; # Nothing changed.
 		}
+		
+		# Save original party in case of flee.
+		$p = $this->getParty();
 		
 		# No command on stack; make one up! -> '',rand()
 		if ($this->combat_stack === '')
@@ -2434,18 +2437,25 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
 		
+		# Clear combat_stack to avoid repeat via onFightDone/ExecAnyway
+		$action = $this->combat_stack;
+		$this->combat_stack = '';
+
 		# Execute top of stack.
-		$result = Shadowcmd::onExecute($this, $this->combat_stack);
-		
+		$result = Shadowcmd::onExecute($this, $action);
+
+		# Restore combat_stack
+		$this->combat_stack = $action;
+
 		# If not a keeper (failed or not locking), we pop the stack.
 		# -> '',old
-		if (false === $this->keepCombatStack($result, $this->combat_stack))
+		if (false === $this->keepCombatStack($result, $action))
 		{
 			$this->combat_stack = $this->old_combat_stack;
 			$this->old_combat_stack = '';
 		}
 		
-		return $result;
+		return !$p->isFighting(); # Did this player kill the last enemy?
 	}
 	
 	private function isLockingCommand($command)

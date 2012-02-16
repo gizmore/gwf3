@@ -3,7 +3,7 @@
  * The flu spell will reduce an enemies hp slowly.
  * @author gizmore
  */
-final class Spell_flu extends SR_CombatSpell
+final class Spell_flu extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 1; }
 	public function getHelp() { return sprintf('Poisons an enemy which reduces it\'s HP slowly.'); }

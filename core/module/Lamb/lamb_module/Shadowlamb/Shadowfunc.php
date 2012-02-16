@@ -1246,11 +1246,6 @@ final class Shadowfunc
 			}
 		}
 		
-		if ($ep->getMemberCount() === 0)
-		{
-			$p->onFightDone();
-		}
-		
 	}
 	
 	/**

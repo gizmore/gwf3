@@ -1,5 +1,5 @@
 <?php
-final class Spell_whirlwind extends SR_CombatSpell
+final class Spell_whirlwind extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 2; }
 	public function isOffensive() { return true; }
