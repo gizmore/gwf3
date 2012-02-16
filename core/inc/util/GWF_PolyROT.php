@@ -12,7 +12,7 @@ final class GWF_PolyROT
 		$charset = self::CHARSET;
 		$message = trim(strtoupper($message));
 		$key = trim(strtoupper($key));
-		if (!self::checkArgs($message, $key))
+		if (false === self::checkArgs($message, $key))
 		{
 			return false;
 		}
@@ -23,13 +23,12 @@ final class GWF_PolyROT
 		$clen = strlen($charset);
 		for ($i = 0; $i < $len; $i++)
 		{
-			if ($message[$i] === ' ')
+			if (false === ($j = strpos($charset, $message[$i])))
 			{
-				$back .= ' ';
+				# Cannot encode this one ...
+				$back .= $message[$i];
 				continue;
 			}
-			
-			$j = strpos($charset, $message[$i]);
 			$k = strpos($charset, $key[$i%$klen]);
 			$back .= $charset[($j+$k)%$clen]; 
 		}
@@ -52,12 +51,12 @@ final class GWF_PolyROT
 		$clen = strlen(self::CHARSET);
 		for ($i = 0; $i < $len; $i++)
 		{
-			if ($message[$i] === ' ')
+			if (false === ($j = strpos($charset, $message[$i])))
 			{
-				$back .= ' ';
+				$back .= $message[$i];
 				continue;
 			}
-			$j = strpos($charset, $message[$i]);
+			
 			$k = strpos($charset, $key[$i%$klen]);
 			$j -= $k;
 			while ($j < 0)
@@ -71,20 +70,13 @@ final class GWF_PolyROT
 	
 	private static function checkArgs($message, $key)
 	{
-		if ($key === '')
+		if (false === is_string($message))
 		{
-			return false;
-		}
-		
-		if (!preg_match('/^[A-Z ]+$/D', $message))
-		{
-			echo "ERRMSG";
 			return false;
 		}
 
-		if (!preg_match('/^[A-Z]+$/D', $key))
+		if (false === preg_match('/^[A-Z]+$/D', $key))
 		{
-			echo "ERRKEY: $key\n";
 			return false;
 		}
 		

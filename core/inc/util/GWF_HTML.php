@@ -54,10 +54,10 @@ final class GWF_HTML
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if (false === GWF_ERRORS_TO_SMARTY)
-		{
+// 		if (false === GWF_ERRORS_TO_SMARTY)
+// 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
-		}
+// 		}
 		
 		self::$_ERRORS[] = array('title' => $title, 'messages' => $messages); 
 		return '';

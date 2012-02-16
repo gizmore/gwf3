@@ -24,15 +24,14 @@ final class GWF_LangTrans
 	/**
 	 * Get the whole lang file for an iso and basefile.
 	 * @param null|string $iso
-	 * @return array
+	 * @return array|false
 	 */
 	public function getTrans($iso=NULL)
 	{
 		if ($iso === NULL) { $iso = self::getBrowserISO(); }
-		$this->loadLanguage($iso);
-		return $this->trans[$iso];
+		return false === $this->loadLanguage($iso) ? false : $this->trans[$iso];
 	}
-	
+
 	
 	/**
 	 * Translate an item for the browser ISO.

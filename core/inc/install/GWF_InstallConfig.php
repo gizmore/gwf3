@@ -219,7 +219,7 @@ final class GWF_InstallConfig
 
 			# Smarty
 			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
-			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
+// 			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Group all Error and display them in one Box?'),
 			array('bool', 'Smarty', 'GWF_MESSAGES_TO_SMARTY', false, 'Same as above with success-messages'),
 
 			# Defaults
