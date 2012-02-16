@@ -5,6 +5,8 @@ $server instanceof Lamb_Server; # 1
 $origin = $args[0]; # origin 3
 $message = trim($args[1]); # msg 4
 
+# TODO: Better only check origin, because it prevents priviledge escalation!
+# XXX: dloser
 //if (false === ($user = $server->getUserFromOrigin($from, $origin)))
 if ( (false === ($user = $server->getUserFromOrigin($from))) && (false === ($user = $server->getUserByNickname($from))) )
 {
