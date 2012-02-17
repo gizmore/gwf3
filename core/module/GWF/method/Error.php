@@ -59,13 +59,13 @@ final class GWF_Error extends GWF_Method
 		$message = self::getMessage($code);
 
 		# Mail it?
-		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->_module->cfgMail()))
+		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgMail()))
 		{
 			self::errorMail($code, $message);
 		}
 
 		# Log it?
-		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->_module->cfgLog()))
+		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgLog()))
 		{
 			GWF_Log::logHTTP($message);
 		}

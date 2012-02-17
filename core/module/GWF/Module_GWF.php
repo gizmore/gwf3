@@ -28,8 +28,8 @@ final class Module_GWF extends GWF_Module
 	public function cfgSuppressRules() { return $this->getModuleVarBool('SuppressRules', '1'); }
 	
 	# Error Config
-	public function cfgLog404() { return $this->getModuleVar('log_404', '403,404'); }
-	public function cfgMail404() { return $this->getModuleVar('mail_404', '403,404'); }
+	public function cfgLog() { return $this->getModuleVar('log', '403,404'); }
+	public function cfgMail() { return $this->getModuleVar('mail', '403,404'); }
 	
 	# Captcha Config
 	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
