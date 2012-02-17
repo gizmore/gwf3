@@ -24,7 +24,7 @@ final class BAIM_ValidateMC extends GWF_Method
 	private function garbage($real_token='???', $real_mc='???', $ext_msg='somethings wrong')
 	{
 		$msg = sprintf('InvalidMC: uid=%d, token=%s(%s), mc=%s(%s): %s.', Common::getGet('id')-1000, Common::getGet('token'), $real_token, Common::getGet('mc'), $real_mc, $ext_msg);
-		GWF_Log::log('baim_log.txt', $msg, false);
+		GWF_Log::log('baim_log.txt', $msg);
 		return GWF_Random::randomKey(self::SHA512_LEN, GWF_Random::HEXLOWER);
 	}
 	
