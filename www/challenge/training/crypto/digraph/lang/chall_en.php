@@ -8,7 +8,7 @@ $lang = array(
 		'The message is in the current language, is written with correct case and punctuation. There are no line breaks.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Good luck!',
-
+	# ASCII only (obvious)
 	'plaintext' => 
 		'Congratulations. You decrypted this message successfully. Was not too difficult either, was it? Well, good job. Enter this keyword as solution: %1$s.',
 

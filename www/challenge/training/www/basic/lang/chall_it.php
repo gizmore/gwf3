@@ -13,7 +13,7 @@ $lang = array(
 		'<br/>'.
 		'Buon divertimento!',
 
-	'content' => 'Il mio nome è %1$s e iChall.', # TODO: Ask Gizmore if this is ok
+	'content' => 'Il mio nome è %1$s e iChall.',
 
 	'btn_go' => 'Ho installato il server. Controllalo.',
 	'err_file_not_found' => 'Il tuo webserver sembra irraggiungibile.',

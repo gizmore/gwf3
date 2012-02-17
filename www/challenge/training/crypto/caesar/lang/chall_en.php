@@ -7,7 +7,7 @@ $lang = array(
 		'I welcome you to the WeChall style of these training challenges :)<br/>'.
 		'<br/>'.
 		'Enjoy!',
-	
+	# ASCII only (obvious)
 	'plaintext' => 'The quick brown fox jumps over the lazy dog of caesar and your unique solution is %1$s.',
 );
 	

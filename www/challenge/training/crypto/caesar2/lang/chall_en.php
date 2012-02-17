@@ -9,7 +9,7 @@ $lang = array(
 		'The keyspace has increased from 26 to 128 too. \o/<br/>'.
 		'<br/>'.
 		'Enjoy!',
-	
+	# ASCII only (obvious)
 	'plaintext' => 'Good job, you solved one more challenge in your journey. This one was fairly easy to crack. Wasn\'t it? 128 keys is a quite small keyspace, so it shouldn\'t have taken you too long to decrypt this message. Well done, your solution is %1$s.',
 );
 ?>
