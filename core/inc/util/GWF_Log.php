@@ -3,68 +3,103 @@ Common::defineConst('GWF_CHMOD', '0777'); # Fallback
 
 /**
  * The GWF Logger
- * @author gizmore
- * @version 3.0
+ * @author gizmore, spaceone
+ * @version 4.0
  * @since 1.0
+ * @todo use only one logfile?!
  * @todo error_log() if GWF3-config
  */
 final class GWF_Log
 {
-	const POST_DELIMITER = '.::.';
+	const NONE = 0;
+	const GWF_WARNING = 0x01;
+	const GWF_MESSAGE = 0x02;
+	const GWF_ERROR = 0x04;
+	const GWF_CRITICAL = 0x08;
+	const PHP_ERROR = 0x10;
+	const DB_ERROR = 0x20;
+	const SMARTY = 0x40;
+	const HTTP_ERROR = 0x80;
+	const HTTP_GET = 0x100;
+	const HTTP_POST = 0x200;
+	const IP = 0x400;
+	const _DEFAULT = 0x7ff;
+
+	private static $POST_DELIMITER = '.::.';
 	
 	private static $username = false;
 	private static $basedir = 'protected/logs';
-	private static $log_requests = true;
+	private static $logbits = self::_DEFAULT;
+	private static $logformat = "%s [%s%s] - %s\n";
+	private static $cache = 0;
+	private static $logs = array();
 	
-	############
-	### Init ###
-	############
 	/**
-	 * Init the logger. If a username is given, the logger will log _additionally_ into a logs/username dir. 
+	 * Init the logger. If a username is given, the logger will log _additionally_ into a logs/username dir.
 	 * @param string $username The username for memberlogs
-	 * @param boolean $log_requests Log every request?
+	 * @param int $logbits bitmask for logging-modes
 	 * @param string $basedir The path to the logfiles. Should be relative.
 	 */
-	public static function init($username=false, $log_requests=true, $basedir='protected/logs')
+	public static function init($username=false, $logbits=self::_DEFAULT, $basedir='protected/logs')
 	{
 		self::$username = $username;
-		self::$log_requests = $log_requests;
+		self::$logbits = $logbits;
 		self::$basedir = $basedir;
-// 		if ( ($log_requests) && (isset($_SERVER['REMOTE_ADDR'])) )
-// 		{
-// 			self::logRequest();
-// 		}
 	}
 	
-	###############
-	### Request ###
-	###############
+	public static function isEnabled($bits) { return ($bits === (self::$logbits & $bits)); }
+	public static function isDisabled($bits) { return ($bits !== (self::$logbits & $bits)); }
+
+	public static function cache($new) { self::$cache = self::$logbits; self::$logbits = $new; }
+	public static function restore() { self::$logbits = self::$cache; }
+
+	public static function enable($bits) { self::$logbits |= $bits; }
+	public static function disable($bits) { self::$logbits &= (~$bits); }
+
+	public static function setLogFormat($format) { self::$logformat = $format; }
+
 	/**
-	 * Get the whole request to log it. Censor passwords. 
+	 * Get the whole request to log it. Censor passwords.
 	 * @return string
 	 */
 	private static function getRequest()
 	{
-		$back = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '';
-		$back .= isset($_SERVER['REQUEST_URI']) ? ' '.$_SERVER['REQUEST_URI'] : '';
-		
-		$de = self::POST_DELIMITER;
-		
-		if (count($_POST) > 0)
+		$post = self::isDisabled(self::HTTP_POST);
+		if (true === self::isDisabled(self::HTTP_GET) && true === $post)
 		{
-			$back .= "{$de}POSTDATA";
-			foreach ($_POST as $k => $v)
+			return '';
+		}
+
+		$back = Common::getServer('REQUEST_METHOD', '').' ';
+		$back .= Common::getServer('REQUEST_URI', '');
+		
+		if (false === $post && count($_POST) > 0)
+		{
+			$back .= self::$POST_DELIMITER .'POSTDATA'.self::stripPassword($_GET);
+		}
+		return $back;
+	}
+
+	/**
+	 * strip values from arraykeys which begin with 'pass'
+	 * @todo faster way without foreach...
+	 * print_r and preg_match ?
+	 * array_map stripos('pass') return '';
+	 */
+	private static function stripPassword(array $a)
+	{
+		$back = '';
+		foreach ($a as $k => $v)
+		{
+			if (stripos($k, 'pass') !== false)
 			{
-				if (stripos($k, 'pass') !== false)
-				{
-					$v = 'xxxxx';
-				}
-				elseif(is_array($v) === true)
-				{
-					$v = GWF_Array::implode(',', $v);
-				}
-				$back .= $de.$k.'=>'.$v;
+				$v = 'xxxxx';
 			}
+			elseif (is_array($v) === true)
+			{
+				$v = GWF_Array::implode(',', $v);
+			}
+			$back .= self::$POST_DELIMITER.$k.'=>'.$v;
 		}
 		return $back;
 	}
@@ -77,16 +112,18 @@ final class GWF_Log
 	########################
 	### Default logfiles ###
 	########################
-	public static function logCron($message) { self::log('cron', $message, true); echo $message.PHP_EOL; }
-	public static function logError($message) { self::log('error', $message); }
-	public static function logMessage($message) { self::log('message', $message); }
-	public static function logWarning($message) { self::log('warning', $message); }
-	public static function logCritical($message) { self::log('critical', $message); self::log('critical_details', GWF_Debug::backtrace(self::getRequest().PHP_EOL.$message, false)); }
-	public static function logInstall($message) { self::log('install', $message); }
-	
-	##############
-	### Helper ###
-	##############
+	public static function logCron($message) { self::rawLog('cron', $message, 0); echo $message.PHP_EOL; } # TODO: remove echo
+	public static function logError($message) { self::log('error', $message, self::GWF_ERROR); }
+	public static function logMessage($message) { self::log('message', $message, self::GWF_MESSAGE); }
+	public static function logWarning($message) { self::log('warning', $message, self::GWF_WARNING); }
+	public static function logCritical($message)
+	{
+		self::log('critical', $message, self::GWF_CRITICAL);
+		self::log('critical_details', GWF_Debug::backtrace(print_r($_GET, true).PHP_EOL.self::stripPassword($_POST).PHP_EOL.$message, false), self::GWF_CRITICAL); // TODO: formating
+	}
+	public static function logInstall($message) { self::log('install', $message, self::NONE); }
+	public static function logHTTP($message) { self::rawLog('http', $message, self::HTTP_ERROR); }
+
 	/**
 	 * Get the full log path, either for username log or site log.
 	 * @param string $filename
@@ -102,96 +139,115 @@ final class GWF_Log
 
 	/**
 	 * Recursively create logdir with GWF_CHMOD permissions.
-	 * If this function fails, it dies!
 	 * @param string $filename
 	 * @return boolean
 	 */
 	private static function createLogDir($filename)
 	{
-		$curr = '';
-		foreach (explode('/', dirname($filename)) as $dir)
-		{
-			$curr .= $dir;
-			if ($curr !== '') # root?
-			{
-				if (!is_dir($curr))
-				{
-					if (!@mkdir($curr))
-					{
-						die(sprintf('Cannot create dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
-					}
-					if (!@chmod($curr, GWF_CHMOD))
-					{
-						die(sprintf('Cannot chmod dir \'%s\' in %s line %s.', $curr, __METHOD__, __LINE__));
-					}
-				}
-			}
-			$curr .= '/';
-		}
-		return true;
+		$dir = dirname($filename);
+		return is_dir($dir) ? true : (false !== @mkdir($dir, GWF_CHMOD, true));
 	}
 	
 	/**
-	 * Open the logfile with GWF_CHMOD permissions.
-	 * @param string $filename
-	 * @return file_handle
+	 * Flush all logfiles
+	 * throws an GWF_Exception within logfile content when fails
 	 */
-	private static function createLogFile($filename)
+	public static function flush()
 	{
-		if (!is_file($filename))
+		$ret = array();
+		foreach (self::$logs as $file => $msg)
 		{
-			# Default kill banner.
-			if (!file_put_contents($filename, '<?php die(2); ?>'.PHP_EOL))
+			if (true === ($e = self::writeLog($file, $msg)))
 			{
-				return false;
+				unset(self::$logs[$file]);
 			}
-			if (!chmod($filename, GWF_CHMOD))
+			else
 			{
-				return false;
+				throw $e;
+				# TODO: the logfile content could be important, it could be send by email
+				# The TODO thing: optimize GWF_Exception
+//				$e->_throw( 'flushing logfile failed: content:' . $msg );
 			}
 		}
-		return fopen($filename, 'a+');
 	}
 
 	/**
 	 * Log a message.
 	 * The core logging function.
 	 * Raw mode will not write any datestamps or IP/username.
-	 * If this function fails it dies.
 	 * @param string $filename short logname
 	 * @param string $message the message
-	 * @param boolean $raw
+	 * format: $time, $ip, $username, $message
 	 */
-	public static function log($filename, $message, $raw=false)
+	public static function log($filename, $message, $logmode=0)
 	{
-		# Get the file
-		$filename = self::getFullPath($filename, self::$username);
-		if (false === self::createLogDir($filename))
+		# log it?
+		if (true === self::isEnabled($logmode))
 		{
-			die('Can not create logdir '.$filename);
-		}
-		if (false === ($fh = self::createLogFile($filename)))
-		{
-			die('Can not open logfile '.$filename);
-		}
-		
-		# Write to file
-		if (!$raw)
-		{		
 			$time = date('H:i');
-			$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'localhost';
+			$ip = (false === isset($_SERVER['REMOTE_ADDR']) || self::isDisabled(self::IP))
+				? '' : $_SERVER['REMOTE_ADDR'];
 			$username = self::$username === false ? '' : ':'.self::$username;
-			fprintf($fh, '%s [%s%s] - %s'.PHP_EOL, $time, $ip, $username, $message);
+
+			self::logB($filename, sprintf(self::$logformat, $time, $ip, $username, $message));
+		}
+	}
+
+	public static function rawLog($filename, $message, $logmode=0)
+	{
+		# log it?
+		if (true === self::isEnabled($logmode))
+		{
+			self::logB($filename, $message.PHP_EOL);
+		}
+	}
+
+
+	private static function logB($filename, $message)
+	{
+		# logging enabled?
+		if((true === class_exists('GWF3')) && (false === GWF3::getConfig('do_logging')))
+		{
+			return false;
+		}
+
+		if (true === isset(self::$logs[$filename]))
+		{
+			self::$logs[$filename] .= $message;
 		}
 		else
 		{
-			fprintf($fh, "%s\n", $message);
+			self::$logs[$filename] = $message;
 		}
-		
-		# Close handle
-		if (false === fclose($fh))
+	}
+
+	private static function writeLog($filename, $message, $logmode=0)
+	{
+		# Create logdir if not exists
+		$filename = self::getFullPath($filename, self::$username);
+		if (false === self::createLogDir($filename))
 		{
-			die('Cannot close logfile '.$filename);
+			return new GWF_Exception(sprintf('Cannot create logdir "%s" in %s line %s.', dirname($filename), __METHOD__, __LINE__), GWF_Exception::LOG);
 		}
+
+		# Default kill banner.
+		if (false === is_file($filename))
+		{
+			$bool = true;
+			$bool = $bool && (false !== file_put_contents($filename, '<?php die(2); ?>'.PHP_EOL));
+			$bool = $bool && @chmod($filename, GWF_CHMOD&0666);
+			if (false === $bool)
+			{
+				return new GWF_Exception(sprintf('Cannot create logfile "%s" in %s line %s.', $filename, __METHOD__, __LINE__), GWF_Exception::LOG);
+			}
+		}
+	
+		# Write to file
+		if (false === file_put_contents($filename, $message, FILE_APPEND))
+		{
+			return new GWF_Exception(sprintf('Cannot write logs: logfile "%s" in %s line %s.', $filename, __METHOD__, __LINE__), GWF_Exception::LOG);
+		}
+
+		return true;
 	}
 }

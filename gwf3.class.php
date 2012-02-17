@@ -50,7 +50,7 @@ class GWF3
 		}
 		
 		# Windows patch
-//		if(GWF_ServerInfo::isWindows())
+//		if (GWF_ServerInfo::isWindows())
 //		{
 // 			$basepath = str_replace('\\', '/', $basepath);
 //		}
@@ -96,7 +96,7 @@ class GWF3
 		self::onDefineWebRoot();
 
 		# Init the config?
-		if(true === $config['init'])
+		if (true === $config['init'])
 		{
 			$this->init();
 		}
@@ -110,7 +110,7 @@ class GWF3
 	 */
 	public function init()
 	{
-		if(true === defined('GWF_WEBSITE_DOWN'))
+		if (true === defined('GWF_WEBSITE_DOWN'))
 		{
 			$this->setConfig('load_module', false);
 			$this->setConfig('autoload_modules', false);
@@ -160,7 +160,7 @@ class GWF3
 			$this->onLoadModule(); 
 		}
 
-		if(true === defined('GWF_WEBSITE_DOWN'))
+		if (true === defined('GWF_WEBSITE_DOWN'))
 		{
 			die( $this->onDisplayPage(GWF_WEBSITE_DOWN) );
 		}
@@ -174,9 +174,16 @@ class GWF3
 	 */
 	public function __destruct() 
 	{
-		if(false === self::getConfig('no_session'))
+		# Commit Session
+		if (false === self::getConfig('no_session'))
 		{
 			$this->onSessionCommit(self::getConfig('store_last_url'));
+		}
+
+		# Flush logfiles
+		if (true === self::getConfig('do_logging'))
+		{
+			GWF_Log::flush();
 		}
 	}
 		
@@ -194,7 +201,7 @@ class GWF3
 		require_once 'core/inc/util/Common.php';
 		
 //		$path = dirname(__FILE__).'/';		
-//		if(true === GWF_ServerInfo::isWindows()) // replace by original code!?
+//		if (true === GWF_ServerInfo::isWindows()) // replace by original code!?
 //		{
 //			$path = str_replace('\\', '/', $path); # Windows patch
 //		}
@@ -214,7 +221,7 @@ class GWF3
 	 */
 	public static function logDie($msg='')
 	{
-		if(true === self::getConfig('do_logging'))
+		if (true === self::getConfig('do_logging'))
 		{
 			GWF_Log::logCritical($msg);
 		}
@@ -244,7 +251,7 @@ class GWF3
 		# Get the config
 		if (false === defined('GWF_HAVE_CONFIG'))
 		{
-			if(false === file_exists($config))
+			if (false === file_exists($config))
 			{			
 				self::logDie('GWF3 couldnt load the config: '.$config.'file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
 			}
@@ -338,7 +345,7 @@ class GWF3
 				$username = $user->getVar('user_name');
 			}
 		}
-		GWF_Log::init($username, false, GWF_LOGGING_PATH);
+		GWF_Log::init($username, GWF_LOG_BITS, GWF_LOGGING_PATH);
 	}
 
 	/**
@@ -414,7 +421,7 @@ class GWF3
 	 */
 	public function onDisplayPage($content=NULL)
 	{
-		if ( (true === self::getConfig('log_request')) && (class_exists('GWF_Log')) )
+		if ((true === self::getConfig('log_request')) && (class_exists('GWF_Log')))
 		{
 			GWF_Log::logRequest();
 		}
