@@ -20,7 +20,6 @@ final class GWF_Error extends GWF_Method
 	
 	private function templateError()
 	{
-		# Get the error page
 		$errors = array(
 			# client errors 4xx
 			'400' => 'Bad Request',
@@ -48,39 +47,32 @@ final class GWF_Error extends GWF_Method
 			# TODO: server errors 5XX; add htaccess
 		);
 
-		$realcode = Common::getGet('code', '0');
-		if(true ===  isset($errors[$realcode]))
+		# Get the error page
+		$code = Common::getGet('code', '0');
+		if(false === isset($errors[$code]))
 		{
-			header($_SERVER['SERVER_PROTOCOL'].' '.$realcode.' '.$errors[$realcode]); 
+			return GWF_HTML::error('ERR_NO_PERMISSION');
 		}
-		
-		# Real 404 page?
-		if ($realcode === '404')
+
+		@header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.$errors[$code]);
+
+		$message = self::getMessage($code);
+
+		# Mail it?
+		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->_module->cfgMail()))
 		{
-			$message = self::getMessage('404');
-			# Mail it?
-			if ((GWF_DEBUG_EMAIL & 4) && $this->module->cfgMail404())
-			{
-				self::errorMail(': 404 Error', $message);
-			}
-			
-			# Log it?
-			if ($this->module->cfgLog404())
-			{
-				GWF_Log::log('404', $message, true);
-			}
+			self::errorMail($code, $message);
 		}
-		elseif ($realcode === '403' && (GWF_DEBUG_EMAIL & 8))
+
+		# Log it?
+		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->_module->cfgLog()))
 		{
-			self::errorMail(': 403 Error', self::getMessage('403'));
+			GWF_Log::logHTTP($message);
 		}
-		
-		# TODO: create base-lang: ERR_HTTP_404
-		$err_msg =  GWF_HTML::lang('ERR_FILE_NOT_FOUND', array(htmlspecialchars($_SERVER['REQUEST_URI'])));
-		
+
 		$tVars = array(
-			'code' => $realcode,
-			'file' => GWF_HTML::error(GWF_SITENAME, $err_msg, false),
+			'code' => $code,
+			'file' => GWF_HTML::error(GWF_SITENAME, GWF_HTML::getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false),
 		);
 		
 		return $this->module->template('error.tpl', $tVars);
@@ -89,7 +81,7 @@ final class GWF_Error extends GWF_Method
 	public static function errorMail($subject, $body)
 	{
 		# TODO: blacklist for domains or paths by config?
-		return GWF_Mail::sendDebugMail($subject, $body);
+		return GWF_Mail::sendDebugMail(': HTTP Error '.$subject, $body);
 	}
 
 	private static function getMessage($code)

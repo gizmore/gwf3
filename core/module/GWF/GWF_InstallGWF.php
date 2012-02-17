@@ -20,8 +20,8 @@ final class GWF_InstallGWF
 			'SuppressDescription' => array('YES', 'bool'),
 			'SuppressRules' => array('YES', 'bool'),
 			# Error Config
-			'log_404' => array('YES', 'bool'),
-			'mail_404' => array('YES', 'bool'),
+			'log_404' => array('404,403', 'text'),
+			'mail_404' => array('404,403', 'text'),
 			# Captcha Config
 			'CaptchaBGColor' => array('FFFFFF', 'text'),
 			'CaptchaFont' => array(GWF_PATH.'extra/font/teen.ttf', 'text'),
