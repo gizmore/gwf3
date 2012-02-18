@@ -280,7 +280,7 @@ final class GWF_Debug
 		);
 
 		$args[] = $user;
-		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nUser: %s\n\nnMessage: \n";
+		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nUser: %s\n\nMessage: \n";
 		return htmlspecialchars( vsprintf($pattern, $args) ).$message.PHP_EOL;
 	}
 	

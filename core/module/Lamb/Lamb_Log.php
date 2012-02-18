@@ -31,6 +31,8 @@ final class Lamb_Log
 			GWF_Log::rawLog("lamb/lamb_chat_{$host}", $message);
 		}
 		
+		GWF_Log::flush();
+		
 		return $result;
 	}
 	
@@ -39,6 +41,7 @@ final class Lamb_Log
 		$message = GWF_Debug::backtrace($message, false);
 		echo $message;
 		GWF_Log::rawLog('lamb_error', $message);
+		GWF_Log::flush();
 // 		GWF_Log::log('lamb_error_details', GWF_Debug::backtrace($message, false));
 		return false;
 	}
@@ -49,7 +52,9 @@ final class Lamb_Log
 	public static function logDebug($message)
 	{
 		echo $message.PHP_EOL;
-		return GWF_Log::rawLog('lamb_debug', $message);
+		GWF_Log::rawLog('lamb_debug', $message);
+		GWF_Log::flush();
+		return true;
 	}
 	
 	/**

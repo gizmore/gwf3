@@ -45,7 +45,7 @@ GWF_HTML::init();
 # Init it
 //GWF_HTML::init();
 # Init the logger
-GWF_Log::init(false, false, 'www/protected/logs');
+GWF_Log::init(false, 0xfff, 'www/protected/logs');
 
 # Lamb3 core config
 $dir = 'core/module/Lamb';

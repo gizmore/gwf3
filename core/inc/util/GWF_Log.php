@@ -206,10 +206,10 @@ final class GWF_Log
 	private static function logB($filename, $message)
 	{
 		# logging enabled?
-		if((true === class_exists('GWF3')) && (false === GWF3::getConfig('do_logging')))
-		{
-			return false;
-		}
+// 		if((true === class_exists('GWF3')) && (false === GWF3::getConfig('do_logging')))
+// 		{
+// 			return false;
+// 		}
 
 		if (true === isset(self::$logs[$filename]))
 		{
