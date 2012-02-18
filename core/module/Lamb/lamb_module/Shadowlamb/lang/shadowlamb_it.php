@@ -145,7 +145,7 @@ $lang = array(
 'hlp_cyberdeck' => 'Questo oggetto funziona solo in località dotate di computer.',
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
-'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l\'equipaggiamento con le rune. Inoltre puoi {$c}rompere o {$c}pulire gli oggetti in rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
+'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere o {$c}pulire gli oggetti in rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",
@@ -654,7 +654,7 @@ $lang = array(
 '5236' => 'Hai ricevuto una nuova quest: %s.',
 '5237' => 'Hai declinato la quest "%s", per sempre.',
 '5238' => 'Hai completato una quest: %s.',
-'5239' => 'Dai %d %s s %s.',
+'5239' => 'Dai %d %s a %s.',
 '5240' => 'Hai ricevuto %s.', # quest reward string
 '5241' => 'In Shadowlamb v3 ci sono: %s NPC differenti in %s Aree con %s Località. %s Oggetti, %s Incantesimi e %s Quest. Prova #stats per vedere quante persone stanno giocando al momento.',
 '5242' => 'Il gruppo si è fermato. Cosa facciamo ora?!',
@@ -675,7 +675,7 @@ $lang = array(
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
 '5259' => 'Treni: %s.', # Travel target list fmt_sumlist.
-'5260' => 'You gained +%s MP (%s/%s).', # From orcas effect
-'5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
+'5260' => 'Hai guadagnato +%s MP (%s/%s).', # From orcas effect
+'5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
 );
 ?>
