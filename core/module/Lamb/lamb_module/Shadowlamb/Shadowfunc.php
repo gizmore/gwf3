@@ -1333,12 +1333,12 @@ final class Shadowfunc
 	
 	public static function genericViewI(SR_Player $player, array $items, array $args, $text = array())
 	{
-		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, false, $text));
+		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, $text));
 	}
 	
 	public static function genericViewS(SR_Player $player, array $items, array $args, $text = array())
 	{
-		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, true, $text));
+		return Shadowrap::instance($player)->reply(self::getGenericViewS($player, $items, $args, $text));
 	}
 	
 	/**
@@ -1350,6 +1350,14 @@ final class Shadowfunc
 	 * @author dloser
 	 */
 	public static function getGenericViewI(SR_Player $player, array $items, array $args, $is_store, $text = array())
+	{
+		return self::getGenericView($player, $items, $args, false, $text);
+	}
+	public static function getGenericViewS(SR_Player $player, array $items, array $args, $is_store, $text = array())
+	{
+		return self::getGenericView($player, $items, $args, true, $text);
+	}
+	private static function getGenericView(SR_Player $player, array $items, array $args, $is_store, $text)
 	{
 		$bot = Shadowrap::instance($player);
 		
