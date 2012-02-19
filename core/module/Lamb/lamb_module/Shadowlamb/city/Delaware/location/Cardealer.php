@@ -12,7 +12,7 @@ final class Delaware_Cardealer extends SR_Store
 		return array(
 			array('Famstar2400', 100.0, 9000),
 			array('Razor1911', 100.0, 79000),
-			array('Crucifer235', 4500),
+			array('Crucifer235', 100.0, 4500),
 		);
 	}
 }
