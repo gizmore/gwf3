@@ -528,11 +528,19 @@ final class Shadowhelp
 					
 					'teachers' => 'The teachers',
 					array(
-						'jmoncayo' => 'jmoncayo is the founder of the \'School of Fireweapons\' in Redmond.',
 						'caesum' => 'Caesum is the founder of the \'School of Cryptography and applied Math\' in Seattle.',
-						'livinskull' => 'livinskull is the founder of the "School of Computers" in the Amerindian Area.',
-						'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
 						'digitalseraphim' => 'digitalseraphim is the founder of the School of Alchemy in Delaware.',
+						'dloser' => 'There is not much notes on dloser yet.',
+						'freeartman' => 'FreeArtMan is the founder of the "School of Electronics" in the Amerindian Area.',
+						'jmoncayo' => 'jmoncayo is the founder of the \'School of Fireweapons\' in Redmond.',
+						'livinskull' => 'livinskull is the founder of the "School of Computers" in the Amerindian Area.',
+						'monnino' => 'Monsieur monnino teaches swordsmanship and other melee skills in the MeleeRange in Chicago.',
+						'noother' => 'Mr. Northwood is the head of NySoft, the most successful software company in the 21th century.',
+						'paipai' => 'Senor paiapi teaches hacking and spanish at the coelet institute.',
+						'bsdhell' => 'bsdhell and kwisatz run the School of Assembly in Vegas.',
+						'kwisatz' => 'kwisatz and bsdhell run the School of Assembly in Vegas.',
+						'more_teachers' => 'Erik, MiB, Tsutomu, epoch_qwert, Mawekl, InfoMirmo, Caesum, Edge, Sphinx, TheBlackSheep, ChaosDreamer, quangtenemy, matrixman, wb7331, Z, and a lot more!',
+						'way_more_teachers' => 'TheHiveMind, Jinx, Garfield, jjk, Jander, Kender, Inferno, digitalseraphim, spaceone!',
 					),
 					
 					'options' => 'Player and interface options:',
