@@ -766,7 +766,7 @@ final class SR_Party extends GDO
 			$member instanceof SR_Player;
 			$pid = $member->getID();
 			$member->busy(SR_Player::FIGHT_INIT_BUSY);
-			$member->combatPush('');
+			$member->initCombatStack();
 			$this->setupMaxDist();
 			$dist = Common::clamp($member->getBase('distance'), 0, $this->max_dist);
 			$this->distance[$pid] = $neg * $dist;

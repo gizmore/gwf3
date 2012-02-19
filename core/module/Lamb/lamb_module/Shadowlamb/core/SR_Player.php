@@ -2437,6 +2437,12 @@ class SR_Player extends GDO
 
 		$this->combat_stack = $message;
 	}
+	
+	public function initCombatStack()
+	{
+		$this->combat_stack = '';
+		$this->old_combat_stack = '';
+	}
 		
 	public function combatTimer()
 	{

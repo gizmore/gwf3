@@ -540,7 +540,7 @@ final class Shadowhelp
 						'bsdhell' => 'bsdhell and kwisatz run the School of Assembly in Vegas.',
 						'kwisatz' => 'kwisatz and bsdhell run the School of Assembly in Vegas.',
 						'more_teachers' => 'Erik, MiB, Tsutomu, epoch_qwert, Mawekl, InfoMirmo, Caesum, Edge, Sphinx, TheBlackSheep, ChaosDreamer, quangtenemy, matrixman, wb7331, Z, and a lot more!',
-						'way_more_teachers' => 'TheHiveMind, Jinx, Garfield, jjk, Jander, Kender, Inferno, digitalseraphim, spaceone!',
+						'way_more_teachers' => 'TheHiveMind, Jinx, Garfield, jjk, dalfor, Jander, Kender, Inferno, digitalseraphim, spaceone!',
 					),
 					
 					'options' => 'Player and interface options:',
