@@ -1,5 +1,5 @@
 <?php
-final class Item_OldAxe extends SR_MeleeWeapon
+final class Item_OldAxe extends SR_Axe
 {
 	public function getAttackTime() { return 45; }
 	public function getItemLevel() { return 9; }

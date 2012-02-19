@@ -1,5 +1,5 @@
 <?php
-final class Item_Katana extends SR_MeleeWeapon
+final class Item_Katana extends SR_Sword
 {
 	public function getAttackTime() { return 34; }
 	public function getItemLevel() { return 12; }

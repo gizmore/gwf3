@@ -1,5 +1,5 @@
 <?php
-final class Item_Hellebard extends SR_MeleeWeapon
+final class Item_Hellebard extends SR_Axe
 {
 	public function getAttackTime() { return 75; }
 	public function getItemLevel() { return 8; }

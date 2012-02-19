@@ -1,5 +1,5 @@
 <?php
-final class Item_ShortSword extends SR_MeleeWeapon
+final class Item_ShortSword extends SR_Sword
 {
 	public function getAttackTime() { return 30; }
 	public function getItemLevel() { return 5; }

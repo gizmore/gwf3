@@ -28,4 +28,41 @@ abstract class SR_MeleeWeapon extends SR_Weapon
 		);
 	}
 }
+
+abstract class SR_Sword extends SR_MeleeWeapon
+{
+	public function displayType() { return 'Sword'; }
+	public function getItemSubType() { return 'swordsman'; }
+	public function getItemRange() { return 2.5; }
+	public function getItemModifiersW(SR_Player $player)
+	{
+		$st = $player->get('strength');
+		$mel = $player->get('melee');
+		$sub = $player->get('swordsman');
+		return array(
+			'attack'   => 3.0 + round($st*0.5 + $mel*0.5 + $sub*2.2, 1), # 3.2
+			'min_dmg'  => 0.9 + round($st*0.2 + $mel*0.1 + $sub*0.2, 1), # 0.5
+			'max_dmg'  => 1.5 + round($st*0.5 + $mel*0.5 + $sub*1.0, 1), # 2.0
+		);
+	}
+}
+
+abstract class SR_Axe extends SR_MeleeWeapon
+{
+	public function displayType() { return 'Axe'; }
+	public function getItemSubType() { return 'viking'; }
+	public function getItemRange() { return 1.6; }
+	public function getItemModifiersW(SR_Player $player)
+	{
+		$st = $player->get('strength');
+		$mel = $player->get('melee');
+		$sub = $player->get('viking');
+		return array(
+			'attack'   => 3.0 + round($st*0.7 + $mel*0.7 + $sub*1.5, 1), # 2.9
+			'min_dmg'  => 0.9 + round($st*0.2 + $mel*0.2 + $sub*0.3, 1), # 0.7
+			'max_dmg'  => 1.5 + round($st*0.5 + $mel*0.5 + $sub*1.3, 1), # 2.3
+		);
+	}
+}
+
 ?>

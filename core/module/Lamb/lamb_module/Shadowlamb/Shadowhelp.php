@@ -89,6 +89,8 @@ final class Shadowhelp
 				array(
 					'melee' => 'The melee skill will increase your attack for melee weapons.',
 					'ninja' => 'The ninja skill will increase your damage and attack for ninja weapons. The ninja weapons extend melee weapons, so they get a big additional bonus.',
+					'swordsman' => 'The swordsman skill will increase your damage and attack for swords. The swords extend the melee weapons, so they get an additional bonus.',
+					'viking' => 'The viking skill will increase your damage and attack for axes. The axes extend the melee weapons, and get an additional bonus.',
 					'firearms' => 'The firearms skill will increase your damage and attack for fireweapons.',
 					'bows' => 'The bows skill will increase your damage and attack for bows.',
 					'pistols' => 'The pistols skill will increase your damage and attack for pistols.',

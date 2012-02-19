@@ -16,7 +16,7 @@ final class Item_Pringles extends SR_Food
 		$newhp = $player->getHP();
 		$gainmsg = Shadowfunc::displayHPGain($oldhp, $gain, $maxhp);
 		
-		$last = $this->getAmount() === 1 ? 'the last' : 'a';
+		$last = $this->getAmount() === 0 ? 'the last' : 'a';
 		if ($p->isFighting())
 		{
 			$busy = $this->getItemUsetime();
