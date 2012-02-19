@@ -40,9 +40,9 @@ abstract class SR_Sword extends SR_MeleeWeapon
 		$mel = $player->get('melee');
 		$sub = $player->get('swordsman');
 		return array(
-			'attack'   => 3.0 + round($st*0.5 + $mel*0.5 + $sub*2.2, 1), # 3.2
+			'attack'   => 3.0 + round($st*1.0 + $mel*1.0 + $sub*1.2, 1), # 3.2
 			'min_dmg'  => 0.9 + round($st*0.2 + $mel*0.1 + $sub*0.2, 1), # 0.5
-			'max_dmg'  => 1.5 + round($st*0.5 + $mel*0.5 + $sub*1.0, 1), # 2.0
+			'max_dmg'  => 1.5 + round($st*0.6 + $mel*0.7 + $sub*0.7, 1), # 2.0
 		);
 	}
 }
@@ -58,9 +58,9 @@ abstract class SR_Axe extends SR_MeleeWeapon
 		$mel = $player->get('melee');
 		$sub = $player->get('viking');
 		return array(
-			'attack'   => 3.0 + round($st*0.7 + $mel*0.7 + $sub*1.5, 1), # 2.9
+			'attack'   => 3.0 + round($st*1.5 + $mel*0.7 + $sub*0.7, 1), # 2.9
 			'min_dmg'  => 0.9 + round($st*0.2 + $mel*0.2 + $sub*0.3, 1), # 0.7
-			'max_dmg'  => 1.5 + round($st*0.5 + $mel*0.5 + $sub*1.3, 1), # 2.3
+			'max_dmg'  => 1.5 + round($st*1.3 + $mel*0.5 + $sub*0.5, 1), # 2.3
 		);
 	}
 }
