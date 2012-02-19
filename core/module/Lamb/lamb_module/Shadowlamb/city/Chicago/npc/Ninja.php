@@ -7,7 +7,7 @@ final class Chicago_Ninja extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'NinjaSword',
+			'weapon' => array('NinjaSword', 'Ninjaken', 'Ninjato'),
 			'armor' => 'Uwagi',
 			'legs' => 'Hakama',
 			'boots' => 'ChikaTabi',
