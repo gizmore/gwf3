@@ -27,7 +27,7 @@ final class Spell_calm extends SR_HealSpell
 		echo "Cast calm with amount=$amount and seconds=$seconds and per_sec=$per_sec\n";
 		$mod = array('hp' => $per_sec);
 		$target->addEffects(new SR_Effect($seconds, $mod, SR_Effect::MODE_REPEAT));
-		$this->announceADV($player, $target, $level);
+		$this->announceADV($player, $target, $level, '10120', $per_sec, $seconds);
 		return true;
 	}
 }

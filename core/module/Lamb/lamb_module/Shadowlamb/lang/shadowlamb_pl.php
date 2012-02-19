@@ -413,7 +413,12 @@ $lang = array(
 '10111' => '%s casts a level %s %s on %s, %s.',
 '10112' => '%s uses a level %s %s potion on %s.',
 '10113' => '%s casts a level %s %s on %s.',
-
+# Calm
+'10120' => '%1$s uses a level %2$s %3$s potion on %4$s. +%5$sHP for %6$s seconds.',
+'10121' => '%1$s casts a level %2$s %3$s on %4$s. %5$s. +%5$sHP for %6$s seconds.',
+'10122' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10123' => '%1$s casts a level %2$s %3$s on %4$s.',
+s
 ############################
 #   5000-9999   = Messages #
 ############################
