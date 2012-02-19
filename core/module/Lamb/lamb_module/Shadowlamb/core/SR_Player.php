@@ -1353,6 +1353,10 @@ class SR_Player extends GDO
 	
 	public function refreshMPTimer()
 	{
+		if ($this->getParty()->isSleeping())
+		{
+			return true;
+		}
 		$ma = $this->getBase('magic');
 		if ($ma > 0)
 		{
@@ -1377,6 +1381,10 @@ class SR_Player extends GDO
 	
 	public function refreshHPTimer()
 	{
+		if ($this->getParty()->isSleeping())
+		{
+			return true;
+		}
 		$ele = $this->get('elephants');
 		if ($ele > 0)
 		{
