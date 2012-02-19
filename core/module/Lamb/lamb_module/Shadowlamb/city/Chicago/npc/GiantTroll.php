@@ -12,7 +12,7 @@ final class Chicago_GiantTroll extends SR_NPC
 			'helmet' => 'KevlarHelmet',
 			'boots' => 'ArmyBoots',
 			'legs' => 'KevlarLegs',
-			'weapon' => 'SpikedClub',
+			'weapon' => array('SpikedClub', 'ArabianAxe'),
 			'shield' => 'KevlarShield',
 		);
 	}
