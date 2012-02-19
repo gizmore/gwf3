@@ -86,7 +86,8 @@ final class GWF_Error extends GWF_Method
 
 	private static function getMessage($code)
 	{
-		return sprintf('The page %s threw a %s error.', htmlspecialchars($_SERVER['REQUEST_URI']), $code);
+		$ip = isset($_SERVER['REMOTE_ADDR']) ? "[{$_SERVER['REMOTE_ADDR']}] " : '';
+		return sprintf('%sThe page %s threw a %s error.', $ip, htmlspecialchars($_SERVER['REQUEST_URI']), $code);
 	}
 }
 ?>
