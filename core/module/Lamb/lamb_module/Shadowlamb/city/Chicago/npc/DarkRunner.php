@@ -23,7 +23,7 @@ final class Chicago_DarkRunner extends SR_NPC
 		);
 	}
 
-	public function getNPCInventory() { return array('Ammo_7mm', 'Ammo_7mm', 'NinjaSword', 'Stimpatch'); }
+	public function getNPCInventory() { return array('Ammo_7mm', 'Ammo_7mm', 'Nihonto', 'Stimpatch'); }
 	
 	public function getNPCModifiers()
 	{
