@@ -859,7 +859,8 @@ class WC_Site extends GDO
 	
 	public function getScoreURL($onsitename)
 	{
-		$score_part = $this->replaceURL($this->getVar('site_url_score'), urlencode($onsitename));
+// 		$score_part = $this->replaceURL($this->getVar('site_url_score'), urlencode($onsitename));
+		$score_part = $this->replaceURL($this->getVar('site_url_score'), $onsitename);
 		if (Common::startsWith($score_part, 'http'))
 		{
 			return $score_part;
@@ -869,7 +870,8 @@ class WC_Site extends GDO
 	
 	private function getAccountURL($onsitename, $onsitemail)
 	{
-		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), urlencode($onsitename), urlencode($onsitemail));
+// 		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), urlencode($onsitename), urlencode($onsitemail));
+		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), $onsitename, $onsitemail);
 		if (Common::startsWith($mail_part, 'http'))
 		{
 			return $mail_part;
