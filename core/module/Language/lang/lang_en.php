@@ -31,7 +31,7 @@ $lang = array(
 	'err_zip' => 'An error occured in zip archive in %s line %s.',
 		
 	# v1.01
-	'err_probsum' => 'Summary for language "%s": %d errors, %d warnings and %d missing files.',
+	'err_probsum' => 'We found a total of %d errors, %d warnings and %d missing files.',
 	'err_missing_en_files' => 'The following %d directories do not contain an english file:',
 	'err_empty_files' => 'The following %d translation files are empty:',
 	'err_missing_files' => 'The following %d translation files do not exist:', # translation files
@@ -43,5 +43,6 @@ $lang = array(
 	'err_not_finished' => 'The following file contains an empty key: %s',
 	'err_body' => '%s',
 	'msg_no_errors' => 'No errors found for language "%s".',
+	'th_summary' => 'Summary for language %s',
 );
 ?>

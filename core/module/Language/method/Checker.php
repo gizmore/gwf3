@@ -80,20 +80,20 @@ final class Language_Checker extends GWF_Method
 		# statistics for english files
 		if ($this->errors['en'] > 0 || $this->warnings['en'] > 0 || $this->missing['en'] > 0)
 		{
-			$message .= $this->message('Summary', NULL, 'err_probsum', array('English', $this->errors['en'], $this->warnings['en'], $this->missing['en']), false);
+			$message .= $this->message('th_summary', array('English'), 'err_probsum', array($this->errors['en'], $this->warnings['en'], $this->missing['en']), false);
 		}
 		else
 		{
-			$message .= $this->message('Summary', NULL, 'msg_no_errors', array('English'), false); # FIXME: If GWF_DEFAULT_LANGUAGE is added, change this to use the default lang
+			$message .= $this->message('th_summary', array('English'), 'msg_no_errors', NULL, false); # FIXME: If GWF_DEFAULT_LANGUAGE is added, change this to use the default lang
 		}
 		# statistics for italian files
 		if ($this->errors['tr'] > 0 || $this->warnings['tr'] > 0 || $this->missing['tr'] > 0)
 		{
-			$message .= $this->message('Summary', NULL, 'err_probsum', array($this->lang->getVar('lang_name'), $this->errors['tr'], $this->warnings['tr'], $this->missing['tr']), false);
+			$message .= $this->message('th_summary',  array($this->lang->getVar('lang_name')), 'err_probsum', array($this->errors['tr'], $this->warnings['tr'], $this->missing['tr']), false);
 		}
 		else
 		{
-			$message .= $this->message('Summary', NULL, 'msg_no_errors', array($this->lang->getVar('lang_name')), false);
+			$message .= $this->message('th_summary',  array($this->lang->getVar('lang_name')), 'msg_no_errors', NULL, false);
 		}
 		# missing english files
 		if (count($this->MissingFile['en']) > 0)

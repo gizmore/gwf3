@@ -31,7 +31,7 @@ $lang = array(
 	'err_zip' => 'Si è verificato un errore durante la creazione del file ZIP, nel file %s linea %s.',
 
 	# v1.01
-	'err_probsum' => 'Sommario per il linguaggio "%s": %d errori, %d avvertimenti e %d file mancanti.',
+	'err_probsum' => 'Abbiamo trovato un totale di %d errori, %d avvertimenti e %d file mancanti.',
 	'err_missing_en_files' => 'Le seguenti %d cartelle non contengono il file in inglese:',
 	'err_empty_files' => 'I seguenti %d file di traduzione sono vuoti:',
 	'err_missing_files' => 'I seguenti %d file di traduzione non esistono:',
@@ -43,6 +43,6 @@ $lang = array(
 	'err_not_finished' => 'Il seguente file contiene una chiave vuota: "%s"',
 	'err_body' => '%s ',
 	'msg_no_errors' => 'Nessun errore trovato nei file del linguaggio "%s".',
-
+	'th_summary' => 'Sommario per il linguaggio %s',
 );
 ?>

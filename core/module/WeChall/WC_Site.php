@@ -174,7 +174,7 @@ class WC_Site extends GDO
 	
 	public function getLink()
 	{
-		return GWF_HTML::anchor($this->getURL(), $this->getSitename(), 'site_'.$this->getStatus());
+		return GWF_HTML::anchor($this->getURL(), $this->getSitename(), WC_HTML::lang('site_'.$this->getStatus()));
 	}
 	
 	/**
