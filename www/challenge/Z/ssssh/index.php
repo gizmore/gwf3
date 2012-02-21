@@ -9,6 +9,8 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
+$chall->onCheckSolution();
+
 $href_warchall = GWF_WEB_ROOT.'challenge/warchall/begins';
 echo GWF_Box::box($chall->lang('info', array($href_warchall)), $chall->lang('title'));
 formSolutionbox($chall, 14);
