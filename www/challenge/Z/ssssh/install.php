@@ -7,8 +7,8 @@ html_head("Install: $title");
 if (!GWF_User::isAdminS()) {
 	return htmlSendToLogin("Better be admin !");
 }
-$solution = 'XXX';
-$score = 4;
+$solution = require_once 'solution.php';
+$score = 3;
 $url = "challenge/Z/ssssh/index.php";
 $creators = "Z";
 $tags = 'Linux,Exploit';
