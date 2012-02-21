@@ -3,7 +3,7 @@ $lang = array(
 'title' => 'Ringdom',
 'description' => 'Bring %s to the jeweler in Las Vegas jewelry.',
 
-'1' => 'Oh, indeed i do reward all the runners out there...',
+'1' => 'Oh, indeed I do reward all the runners out there...',
 '2' => 'If you could bring me %s?',
 		
 '3' => 'What do you say?',
