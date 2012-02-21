@@ -180,9 +180,9 @@ final class Language_Checker extends GWF_Method
 				return;
 			}
 		}
-		
+		echo $entry;
 		$this->MissingFile['en'][] = $path;
-		$this->errors['en']++;
+		$this->missing['en']++;
 	}
 
 	private function getOtherPath($path)
