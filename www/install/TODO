@@ -52,6 +52,7 @@ Some installer functions could be private!
 #10 Enhancements in module PageBuilder:
 make a page downloadable as PDF
 make it possible to add a Shoutbox to each page
+show unified diff on changing content
 
 --------------------------------------------------------------------------------
 
@@ -65,6 +66,8 @@ Create a new default template which represent GWF. We need someone with graphic 
 --------------------------------------------------------------------------------
 
 #13 GWF should have some JavaScript but there should be an nonJS mode
+implement ajax into the core with JSON (e.g. a page {title: '', content : ''}
+accessable by /ajax/.*
 
 --------------------------------------------------------------------------------
 
@@ -74,6 +77,8 @@ core/module/Guestbook/tpl/default/_entry.php
 --------------------------------------------------------------------------------
 
 #15 reimplement: show failures on login; show cookie warning on login
+show warning if connection is not secured
+(show warning if using IE)
 
 --------------------------------------------------------------------------------
 
@@ -81,7 +86,8 @@ core/module/Guestbook/tpl/default/_entry.php
 
 --------------------------------------------------------------------------------
 
-#17: PM attachments
+#17: PM: add attachments
+Bugfix: readet (outgoing) PMs are displayed as unreaded after upgrade to WC5, could be a bug in gwf2=>3 update
 
 --------------------------------------------------------------------------------
 
@@ -90,7 +96,6 @@ core/module/Guestbook/tpl/default/_entry.php
 
 --------------------------------------------------------------------------------
 
-#19: There might be a bug in PM or gwf2=>3 update: readet outgoing messages
-     are displayed as unreadet
+#19: cleanup TODO file
 
 --------------------------------------------------------------------------------
