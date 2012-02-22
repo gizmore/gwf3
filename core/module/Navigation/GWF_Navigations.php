@@ -105,6 +105,17 @@ final class GWF_Navigations extends GDO
 	{
 		return self::table(__CLASS__)->getRow($id);
 	}
+
+	/**
+	 * get a ID by Navigation Name
+	 * @return int
+	 */
+	public static function getIdByName($name)
+	{
+		$id = self::table(__CLASS__)->selectFirst('navis_id', 'navis_name='.$name);
+		return (int)$id['navis_id'];
+	}
+
 	/**
 	 * Delete a complete Navigation
 	 * @return boolean

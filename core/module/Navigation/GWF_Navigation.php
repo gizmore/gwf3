@@ -88,13 +88,13 @@ final class GWF_Navigation extends GDO
 		return self::table(__CLASS__)->getRow($id);
 	}
 	/**
-	 * Get all Navigationentries ny it's nid name
+	 * Get all Navigationentries by it's nid name
 	 * @param string $name
 	 * @return GWF_Navigation
 	 */
 	public static function getByName($name)
 	{
-		$nid = self::table('GWF_Navigations')->getByName($name)->getID(); //unperformant; selectAll('navis_id', 'navis_name = '.$name)['navis_id']
+		$nid = GWF_Navigations->getIdByName($name);
 		return self::getNavigation($nid);
 	}	
 }

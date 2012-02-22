@@ -19,17 +19,29 @@
  * @param array $params parameters
  * @return string with compiled code
  */
-function smarty_modifier_filesize($bytes, $digits=3, $divisor=1024)
+function smarty_modifier_filesize($bytes, $digits=3, $divisor=1024, $output=0)
 {
-	static $units = array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PT', 'XX', 'YY', 'ZZ');
+	$output = (int)$output;
+	$digits = (int)$digits;
+	$divisor = (int)$divisor;
+	static $units = array(
+		array(
+			array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'),
+			array('Bytes', 'KiloBytes', 'MegaBytes', 'GigaBytes', 'TerraBytes', 'PetaBytes', 'Exabytes', 'Zettabytes', 'Yottabytes'),
+		),
+		array(
+			array('Bytes', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'),
+			array('Bytes', 'KibiBytes', 'MebiBytes', 'GibiBytes', 'TebiBytes', 'PebiBytes', 'Exbiytes', 'Zebibytes', 'Yobibytes'),
+		),
+	);
+	$foo = $divisor === 1024 ? 1 : 0;
 	$unit = 0;
-	while ($bytes >= $divisor)
+	while ($bytes >= $divisor && $unit < count($units[$foo][$output])-1)
 	{
 		$bytes /= $divisor;
 		$unit++;
 	}
-	$digits = (int)$digits;
-	return sprintf('%0.'.$digits.'f %s', $bytes, $units[$unit]);
+	return sprintf('%0.'.$digits.'f %s', $bytes, $units[$foo][$output][$unit]);
 //	return Common::humanFilesize();
 //    return '('.implode(').(', $params).')';
 }
