@@ -821,7 +821,16 @@ class SR_Bazar extends SR_Location
 		$pname = $player->getName();
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
-			SR_BazarShop::createShop($pname);
+			if (false === SR_BazarShop::createShop($pname))
+			{
+				$player->message('Database error 3!');
+				return false;
+			}
+			if (false === ($shop = SR_BazarShop::getShop($pname)))
+			{
+				$player->message('Database error 4!');
+				return false;
+			}
 		}
 
 		if (GWF_String::strlen($new_slogan) > SR_BazarShop::MAX_SLOGAN_LEN)
