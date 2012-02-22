@@ -6,6 +6,7 @@ abstract class SR_Weapon extends SR_Equipment
 	public abstract function getItemModifiersW(SR_Player $player);
 	public abstract function onAttack(SR_Player $player, $target);
 	public abstract function onReload(SR_Player $player);
+	public function isLoaded() { return true; }
 
 	public function onAttackB(SR_Player $player, $arg, $armor_type)
 	{

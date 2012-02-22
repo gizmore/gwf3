@@ -1494,10 +1494,24 @@ final class SR_Party extends GDO
 			$this->setContactEta(rand(15,25));
 			$this->iExecAnyway();
 			$this->recomputeEnums();
+			$this->reloadAfterFight();
 		}
 		else
 		{
 			$this->deleteParty();
+		}
+	}
+	
+	private function reloadAfterFight()
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			$weapon = $member->getWeapon();
+			if (false === $weapon->isLoaded())
+			{
+				$weapon->onReload($member);
+			}
 		}
 	}
 	
