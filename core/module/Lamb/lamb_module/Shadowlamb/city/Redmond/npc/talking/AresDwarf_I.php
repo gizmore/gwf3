@@ -98,7 +98,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 		
 		if ($give > 0)
 		{
-			$player->message($this->langNPC($player, 'hand', array($give)));
+			$player->message($this->langNPC('hand', array($give)));
 // 			$this->reply(sprintf('You give %d knife(s) to the dwarf.', $give));
 			$quest1->giveAmount($player, $give);
 		}

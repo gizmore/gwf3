@@ -14,9 +14,14 @@ abstract class SR_TalkingNPC extends SR_NPC
 	############
 	### Lang ###
 	############
-	public function langNPC($player, $key, $args=NULL)
+	private function langNPCB($player, $key, $args=NULL)
 	{
 		return Shadowlang::langNPC($this, $player, $key, $args);
+	}
+	
+	public function langNPC($key, $args=NULL)
+	{
+		return $this->langNPCB($this->chat_partner, $key, $args);
 	}
 	
 	################
@@ -31,9 +36,9 @@ abstract class SR_TalkingNPC extends SR_NPC
 		
 		echo __METHOD__;
 		$key = 'word_'.$word;
-		if ($key === ($text = $this->langNPC($player, $key)))
+		if ($key === ($text = $this->langNPCB($player, $key)))
 		{
-			return $this->reply($this->langNPC($player, 'word_default'));
+			return $this->reply($this->langNPCB($player, 'word_default'));
 		}
 		return $this->reply($text);
 	}

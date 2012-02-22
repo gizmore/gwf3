@@ -789,7 +789,7 @@ class SR_ClanHQ extends SR_Location
 		$amt = isset($args[1]) ? ((int)$args[1]) : 1;
 		if ($amt <= 0)
 		{
-			$player->message('1038');
+			$player->msg('1038');
 // 			$player->message('Please pop a positive amount of items.');
 			return false;
 		}
@@ -797,7 +797,7 @@ class SR_ClanHQ extends SR_Location
 		
 		if (false === ($row = SR_ClanBank::getByCIDINAME($clan->getID(), $itemname)))
 		{
-			$player->message('1133');
+			$player->msg('1133');
 // 			$player->message('You don\'t have that item in your clanbank.');
 			return false;
 		}

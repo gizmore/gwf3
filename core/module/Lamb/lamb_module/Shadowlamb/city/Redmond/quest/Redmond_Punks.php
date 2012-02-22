@@ -1,13 +1,15 @@
 <?php
 final class Quest_Redmond_Punks extends SR_Quest
 {
-	public function getQuestName() { return 'Punks!!'; }
-	public function getQuestDescription() { return sprintf('Kill %s/%s Punks and return to the HellsPub', $this->getAmount(), $this->getNeededAmount()); }
+// 	public function getQuestName() { return 'Punks!!'; }
+// 	public function getQuestDescription() { return sprintf('Kill %s/%s Punks and return to the HellsPub', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	public function getNeededAmount() { return 10; }
 	public function onKilledPunk(SR_Player $player)
 	{
 		$this->increase('sr4qu_amount', 1);
-		$player->message(sprintf('Now you have killed %d of %d Punks for the HellPub quest.', $this->getAmount(), $this->getNeededAmount()));
+		$player->message($this->lang('onkill', array($this->getAmount(), $this->getNeededAmount())));
+// 		$player->message(sprintf('Now you have killed %d of %d Punks for the HellPub quest.', $this->getAmount(), $this->getNeededAmount()));
 	}
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
@@ -16,12 +18,14 @@ final class Quest_Redmond_Punks extends SR_Quest
 		if ($have >= $need) {
 			$this->onSolve($player);
 		} else {
-			$npc->reply(sprintf('Our informants reported you have killed %d of %d punks yet... Kill some more!', $have, $need));
+			$npc->reply($this->lang('reports', array($have, $need)));
+// 			$npc->reply(sprintf('Our informants reported you have killed %d of %d punks yet... Kill some more!', $have, $need));
 		}
 	}
 	public function onQuestSolve(SR_Player $player)
 	{
-		$player->message('The biker cheers: "Here chummer, you may now wear our jacket." - He hands you a biker jacket and 150 nuyen. You also gained 2 XP.');
+		$player->message($this->lang('grats', array(150, 2)));
+// 		$player->message('The biker cheers: "Here chummer, you may now wear our jacket." - He hands you a biker jacket and 150 nuyen. You also gained 2 XP.');
 		$player->giveNuyen(150);
 		$player->giveXP(2);
 		$player->giveItems(array(SR_Item::createByName('BikerJacket')));

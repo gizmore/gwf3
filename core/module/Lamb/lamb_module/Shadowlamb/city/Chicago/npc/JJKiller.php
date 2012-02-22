@@ -16,7 +16,7 @@ final class Chicago_JJKiller extends SR_NPC
 		);
 	}
 	
-	public function getNPCInventory() { return array('Stimpatch', 'Pizza'); }
+	public function getNPCInventory() { return array('Pizza'); }
 	
 	public function getNPCModifiers()
 	{
