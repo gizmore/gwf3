@@ -1524,8 +1524,10 @@ final class SR_Party extends GDO
 			$player instanceof SR_Player;
 			if ($player->hasFullHPMP()) { $sleeping--; continue; }
 			
-			$player->healHP(0.1);
-			$player->healMP(0.1);
+			$body = Common::clamp($player->getBase('body'), 1);
+			$magic = Common::clamp($player->getBase('magic'), 1);
+			$player->healHP($body/10);
+			$player->healMP($magic/10);
 			
 			if ($player->hasFullHPMP())
 			{
