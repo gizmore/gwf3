@@ -1,202 +1,82 @@
 <?php
-function guessLanguage($sourcecode) {
-    $score = 0;
-    $max_score = 5;
-    $lang = 'text';
- 
-    $score = isPerlCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang = 'perl';
-    } 
-    $score = isPHPCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang = 'php';
-    }
- 
-    $score = isHTMLCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang = 'html4strict';
-    }
- 
-    $score = isJavaCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang = 'java';
-    }
- 
-    $score = isCppCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang =  'Cpp';
-    }
- 
-    $score = isCCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang = 'c';
-    } 
-    $score = isPrologCode($sourcecode);
-    if ($score > $max_score) {
-        $max_score = $score;
-        $lang =  'prolog';
-    }
- 
-    // echo "Lang: $lang Score: $score";
-    return $lang;
-} 
-function isPerlCode($sourcecode) {
-    $score = 0;
- 
-    $pattern = '/#!\/usr\/bin\/perl\s.*/i';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/\s*use\s+?\w*?\:*?:*?\w*?;*?/i';
-    $points = 4;    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/.*\ssub\s.*/i';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/.*\suntil\s.*/i';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     $pattern = '/.*\sunless\s.*/i';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/.*\slast\s.*/i';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/.*\snext\s.*/i';
-    $points = 2;    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/.*\sredo\s.*/i';
-    $points = 3;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/#!\/usr\/bin\/perl\s.*/i';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     return $score;
-}
- 
-function isPHPCode($sourcecode) {
-    $score = 0;
- 
-    $pattern = '/<\?php/i';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     $pattern = '/strrpos/i';
-    $points = 4;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/while/i';
-    $points = 1;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/print/i';
-    $points = 1;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/\$/i';
-    $points = 1;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/echo/i';
-    $points = 1;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     return $score;
-}
- 
-function isPrologCode($sourcecode) {
-    $score = 0;
-    
-    $pattern = '/\s*%(.)*\n/';
-    $points = 1;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     $pattern = '/[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*\./i';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-    
-    $pattern = '/\s*[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*:-[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*(%.*\n)?/i';
-    $points = 4;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-    return $score;
-}
-  
-function isHTMLCode($sourcecode) {
-    $score = 0;
- 
-    $pattern = '/<html>/';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/<body>/';
-    $points = 6;    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/<a href/';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/<div/';
-    $points = 3;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     $pattern = '/<table/';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/<br/';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    return $score;
-} 
-function isJavaCode($sourcecode) {
-    $score = 0;
- 
-    $pattern = '/import java/';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/public static void/';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/class/';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/implements/';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
-     $pattern = '/extends/';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/interface/';
-    $points = 2;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    return $score;
-} 
-function isCppCode($sourcecode) {
-    return 0;
-}
- 
-function isCCode($sourcecode) {
-    $score = 0;
- 
-    $pattern = '/#include\s+</i';
-    $points = 6;    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    $pattern = '/#define\s+/i';
-    $points = 6;
-    if (preg_match_all($pattern, $sourcecode, $matches)) $score += sizeof($matches[0])*$points;
- 
-    return $score;
+/**
+ * Guess a code language by pattern
+ * @author byte, spaceone
+ */
+final class GWF_GuessCodeLang
+{
+	public static $langs = array(
+		'perl' => array(
+			array('/#!\/usr\/bin\/perl\s.*/i', 6),
+			array('/\s*use\s+?\w*?\:*?:*?\w*?;*?/i', 4),
+			array('/.*\ssub\s.*/i', 2),
+			array('/.*\suntil\s.*/i', 2),
+			array('/.*\sunless\s.*/i', 2),
+			array('/.*\slast\s.*/i', 2),
+			array('/.*\snext\s.*/i', 2),
+			array('/.*\sredo\s.*/i', 3),
+			array('/#!\/usr\/bin\/perl\s.*/i', 6),
+		),
+		'php' => array(
+			array('/<\?php/i', 6),
+			array('/strrpos/i', 4),
+			array('/while/i', 1),
+			array('/print/i', 1),
+			array('/\$/i', 1),
+			array('/echo/i', 1),
+		),
+		'prolog' => array(
+			array('/\s*%(.)*\n/', 1),
+			array('/[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*\./i', 2),
+			array('/\s*[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*:-[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*(%.*\n)?/i', 4),
+		),
+		'html4strict' => array(
+			array('/<html>/', 6),
+			array('/<body>/', 6),
+			array('/<a href/', 6),
+			array('/<div/', 3),
+			array('/<table/', 6),
+			array('/<br/', 6),
+		),
+		'java' => array(
+			array('/import java/', 6),
+			array('/public static void/', 2),
+			array('/class/', 2),
+			array('/implements/', 2),
+			array('/extends/', 2),
+			array('/interface/', 2),
+		),
+		'c' => array(
+			array('/#include\s+(<|")/i', 6),
+			array('/#define\s+/i', 6),
+		),
+	);
+
+	/**
+	 * Guess a Language
+	 * Can be used for geshi
+	 * @return string language name
+	 */
+	public static function guessLanguage($sourcecode)
+	{
+		$max_score = 5;
+		$language = 'text';
+
+		foreach ($langs as $lang => $data)
+		{
+			$score = 0;
+			list($pattern, $points) = $data;
+
+			if (preg_match_all($pattern, $sourcecode, $matches))
+			{
+				$score += count($matches[0]) * $points;
+			}
+			if ($score > $max_score)
+			{
+				$max_score = $score;
+				$language = $lang;
+		    }
+		}
+		return $language;
+	}
 }
