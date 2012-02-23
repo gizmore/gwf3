@@ -66,6 +66,7 @@ $lang = array(
 	'ru' => 'steal',
 	'sc' => 'swap',
 	'req' => 'unequip',
+	'rimp' => 'unplant',
 	'u' => 'use',
 	'pe' => 'weight',
 	'su' => 'whisper',

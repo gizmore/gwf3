@@ -105,8 +105,8 @@ $lang = array(
 'stub_enter_bank' => 'Hai trovato la Banca di %s. Vedi alcuni clienti al bancone ed anche alcuni ufficiali di sicurezza.',
 'stub_found_blacksmith' => 'Trovi un piccolo negozio, "Il Fabbro". Sembra che possano migliorare il tuo equipaggiamento.',
 'stub_enter_blacksmith' => 'Entri il fabbro di %s. Vedi due nani al bancone.',
-'stub_found_hospital' => 'You found the local hospital. The sign reads: "Renraku Cyberware 20% off".',
-'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
+'stub_found_hospital' => 'Hai trovato l\'ospedarle locale. Il cartello recita: "Sconto del 20% sul Cyberware Renraku".',
+'stub_enter_hospital' => 'Entri in un immenso palazze e vieni portato da un dottore.',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
@@ -147,8 +147,8 @@ $lang = array(
 'hlp_cyberdeck' => 'Questo oggetto funziona solo in località dotate di computer.',
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
-'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere o {$c}pulire gli oggetti in rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
-'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberwear. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
+'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere gli oggetti in rune o {$c}pulire gli oggetti dalle rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
+'hlp_hospital' => 'Usa #parla <argomento> per parlare con il dottore. Usa #guarda, #impianta e #rimouvi_imp per gestire il tuo cyberwear. Usa #cura per pagare alcuni nuyen e venire curato. Usa #chirurgia per invertire lvlup in karma.',
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",
@@ -664,7 +664,7 @@ $lang = array(
 '5238' => 'Hai completato una quest: %s.',
 '5239' => 'Dai %d %s a %s.',
 '5240' => 'Hai ricevuto %s.', # quest reward string
-'5241' => 'In Shadowlamb v3 ci sono: %s NPC differenti in %s Aree con %s Località. %s Oggetti, %s Incantesimi e %s Quest. Prova #stats per vedere quante persone stanno giocando al momento.',
+'5241' => 'In Shadowlamb v3 ci sono: %s differenti NPC in %s Aree con %s Località. %s Oggetti, %s Incantesimi e %s Quest. Prova #stats per vedere quante persone stanno giocando al momento.',
 '5242' => 'Il gruppo si è fermato. Cosa facciamo ora?!',
 '5243' => 'L\'anno è il 2064 + %s.',
 '5244' => 'Al momento ci sono %s Umani, %s NPC e %s gruppi in memoria.',
@@ -674,7 +674,7 @@ $lang = array(
 '5248' => 'Gruppi attivi, pagina %s di %s: %s.', # page, nPages, rawlist
 '5249' => 'Messaggio del giorno: %s', # file content
 '5250' => 'Conosci qualcosa di nuovo su %s: %s.', # knowledge, what, field
-'5251' => "Ora hai {$b}%d(+%d) karma{$b}. Con il karma puoi #lvlup (salire di livello).", # karma, karmagain
+'5251' => "Ora hai {$b}%d(+%d) karma{$b}. Con il karma puoi salire di livello (con #lvlsu).", # karma, karmagain
 '5252' => 'Risorgi a %s.', # location
 '5253' => 'Hai perso %s XP!', # xp
 '5254' => 'Hai perso %s!', # nuyen
@@ -685,5 +685,7 @@ $lang = array(
 '5259' => 'Treni: %s.', # Travel target list fmt_sumlist.
 '5260' => 'Hai guadagnato +%s MP (%s/%s).', # From orcas effect
 '5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
+'5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
+'5263' => 'Interventi di chirurgia possibili: %s.', # Some prices fmt_sumlist.
 );
 ?>
