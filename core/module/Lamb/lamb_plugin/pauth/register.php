@@ -10,7 +10,7 @@ if (count($split) === 2)
 	{
 		$user->saveVar('lusr_password', md5($split[1]));
 		$user->setLoggedIn(true);
-		$bot->reply(sprintf('Your password has been changed to %s. You are now logged in.', $split[1]));
+		$bot->reply(sprintf('Your password has been changed. You are now logged in.'));
 	}
 }
 elseif ($user->isRegistered())
@@ -25,6 +25,6 @@ else
 {
 	$user->saveVar('lusr_password', md5($split[0]));
 	$user->setLoggedIn(true);
-	$bot->reply(sprintf('You have successfully registered with Lamb. Your password is %s. You are now logged in.', $split[0]));
+	$bot->reply(sprintf('You have successfully registered with Lamb. You are now logged in.'));
 }
 ?>
