@@ -197,9 +197,7 @@ final class GWF_Debug
 			die(1); # oops :)
 		}
 		
-		# Return false to populate php last error.
-		# TODO: Check if we want that.
-		return false; 
+		return true; 
 	}
 
 	public static function exception_handler($e)
