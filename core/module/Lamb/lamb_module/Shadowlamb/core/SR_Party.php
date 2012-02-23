@@ -1508,7 +1508,7 @@ final class SR_Party extends GDO
 		{
 			$member instanceof SR_Player;
 			$weapon = $member->getWeapon();
-			if (false === $weapon->isLoaded())
+			if (false === $weapon->isFullyLoaded())
 			{
 				$weapon->onReload($member);
 			}

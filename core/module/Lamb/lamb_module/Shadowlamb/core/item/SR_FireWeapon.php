@@ -4,7 +4,7 @@ abstract class SR_FireWeapon extends SR_Weapon
 	public abstract function getAmmoName();
 	public abstract function getReloadTime();
 	public function isLoaded() { return $this->getAmmo() >= $this->getBulletsPerShot(); }
-	
+	public function isFullyLoaded() { return $this->getAmmo() >= $this->getBulletsMax(); }
 	public function getItemRange() { return 20.0; }
 	
 	public function getItemModifiersW(SR_Player $player)
