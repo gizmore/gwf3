@@ -16,9 +16,9 @@ abstract class SR_FireWeapon extends SR_Weapon
 		$sub = $player->get($this->getItemSubType());
 //		$nin = $player->get('ninja');
 		return array(
-			'attack' =>  3.2 + round($fir*2.0 + $sub*1.2, 1), # 3.2
+			'attack' =>  3.2 + round($fir*2.5 + $sub*1.5, 1), # 4.0
 			'min_dmg' => 0.6 + round($fir*0.2 + $sub*0.4, 1), # 0.6
-			'max_dmg' => 1.8 + round($fir*0.9 + $sub*0.9, 1), # 1.8
+			'max_dmg' => 1.8 + round($fir*1.0 + $sub*1.0, 1), # 1.8
 //			'attack' =>  round($fir*2.0 + $sub*1.0 + $nin*0.2, 1), # 3.2
 //			'min_dmg' => round($fir*0.1 + $sub*0.2 + $nin*0.1, 1), # 0.4
 //			'max_dmg' => round($fir*0.1 + $sub*0.8 + $nin*0.1, 1), # 1.0

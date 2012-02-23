@@ -7,7 +7,7 @@ class SR_Player extends GDO
 	const BASE_HP = 4;
 	const BASE_HP_NPC = 1;
 	const BASE_MP = 0;
-	const HP_PER_BODY = 2.5;
+	const HP_PER_BODY = 3.0;
 	const MP_PER_MAGIC = 5;
 	const MP_PER_CASTING = 5;
 	const HP_REFRESH_MULTI = 0.03;
