@@ -41,38 +41,35 @@ final class Navigation_Show extends GWF_Method
 	{
 		if(false === ($navis = GWF_Navigations::getById($id)))
 		{
-			return false;
+			return false; # TODO
 		}
 		$nsid = $navis->getID();
 
 		$pb = $navis->isnotPB() ? 'navi_vars' : 'navi_pbvars';
 		$cols = 't.*, page_url, page_title, page_lang, page_meta_desc/*, page_views,*/';
 		$t = GDO::table('GWF_Navigation');
-		$navi = $t->selectAll($cols, "navi_nid={$nsid} AND page_groups != 'TODO' AND page_options&".GWF_Page::ENABLED, 'navi_position', array($pb), '-1', '-1', GDO::ARRAY_O);
+		# TODO: page_lang, permissions
+		$where = "navi_nid={$nsid}"/* AND page_groups != 'TODO' AND page_options&".GWF_Page::ENABLED*/;
 
-		if(true === empty($navi))
-		{
-			var_dump($navi);
-			return $navi;
-		}
+		$navi = array();
 		$navi['category_name'] = $navis->getName();
+		$navi['subs'] = array();
+		$navi['links'] = (false !== ($links = $t->selectAll($cols, $where, 'navi_position', array($pb)))) ? $links : array();
 
-		$navi['subs'] = NULL;
-		if (false !== ($subs = $navis->selectAll('navis_id', 'navis_pid='.$nsid/*TODO:, 'position'*/) && count($subs)))
+		if (false === ($subs = $navis->selectAll('navis_id', 'navis_pid='.$nsid/*TODO:, 'position'*/)))
 		{
-			$navi['subs'] = array();
-			foreach ($subs as $sub)
+			$subs = array(); # TODO: error
+		}
+		foreach ($subs as $sub)
+		{
+			if (false !== ($sn = $this->getNavigation($sub['navis_id'])))
 			{
-				if (false !== ($sn = $this->getNavigation($sub['navis_id'])))
-				{
-					$navi['subs'][] = $sn;
-				}
-				else
-				{
-					GWF_HTML::error('');
-				}
+				$navi['subs'][] = $sn;
 			}
-			// impossible: empty subs ?
+			else
+			{
+				# TODO
+			}
 		}
 
 		return $navi;

@@ -18,6 +18,7 @@
  * @todo: convert FormY to smarty
  * @todo: A module file is mostly 20 lines not 300
  * @todo: Make general menu editing module?
+ * @todo caching into html files
  * @author spaceone
  * @since 01.11.2011
  * @version 0.06
@@ -39,10 +40,10 @@ final class Module_Navigation extends GWF_Module
 		require_once GWF_CORE_PATH.'module/Navigation/GWF_NaviInstall.php';
 		$ret = GWF_NaviInstall::onInstall($this, $dropTable);
 		
-		if(false !== ($foo = $this->installPageMenu(self::debugPM())))
-		{
-			Common::var_dump($foo);
-		}
+	//	if(false !== ($foo = $this->installPageMenu(self::debugPM())))
+	//	{
+	//		var_dump($foo);
+	//	}
 		return $ret;
 	}
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
