@@ -53,6 +53,15 @@ abstract class SR_Location
 		return Shadowlang::langLocation($this, $player, $key, $args);
 	}
 	
+	public function partyMessage(SR_Player $player, $key, $args)
+	{
+		foreach ($player->getParty()->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->message($this->lang($member, $key, $args));
+		}
+	}
+	
 	/**
 	 * We enter the location and are inside after we message the members.
 	 * @param SR_Player $player
