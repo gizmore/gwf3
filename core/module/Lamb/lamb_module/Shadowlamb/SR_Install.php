@@ -10,7 +10,7 @@ final class SR_Install
 		
 		foreach (self::$TABLES as $classname)
 		{
-			require_once $dir.'core/'.$classname;
+			require_once $dir.'core/'.$classname.'.php';
 			if (false !== ($table = GDO::table($classname)))
 			{
 				Lamb_Log::logDebug('SR_Install::onInstall('.$classname.')');

@@ -53,7 +53,7 @@ abstract class SR_Location
 		return Shadowlang::langLocation($this, $player, $key, $args);
 	}
 	
-	public function partyMessage(SR_Player $player, $key, $args)
+	public function partyMessage(SR_Player $player, $key, $args=NULL)
 	{
 		foreach ($player->getParty()->getMembers() as $member)
 		{
