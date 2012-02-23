@@ -99,3 +99,5 @@ Bugfix: readet (outgoing) PMs are displayed as unreaded after upgrade to WC5, co
 #19: cleanup TODO file
 
 --------------------------------------------------------------------------------
+
+#20: /install includes method/* but should only include .php files

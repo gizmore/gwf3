@@ -81,7 +81,7 @@ final class GWF_Template
 				$msg .= $e->getTraceAsString();
 				self::sendErrorMail($path, $msg);
 			}
-			return $msg;
+			return str_replace("\n", "<br>\n", $msg);
 		}
 	}
 	

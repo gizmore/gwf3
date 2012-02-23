@@ -14,5 +14,5 @@ function smarty_function_link($params, $template)
 	$post = empty($params['post']) ? '' : $params['post'];
 	$url = empty($params['url']) ? '#' : htmlspecialchars($params['url']);
 	
-	return sprintf('%s<a href="%s"%s%s%s%s>%s</a>%s'.PHP_EOL, $pre, $url, $title, $class, $id, $onclick, $text, $post);
+	return sprintf('%s<a href="%s"%s%s%s%s>%s</a>%s', $pre, $url, $title, $class, $id, $onclick, $text, $post);
 }

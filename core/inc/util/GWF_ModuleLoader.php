@@ -434,7 +434,7 @@ final class GWF_ModuleLoader
 			return false; //Module Navigation not enabled or cannot be modified!
 		}
 		$pml = array();
-		$c = 3; # page_url, page_title
+		$c = 2; # page_url, page_title
 		foreach ($modules as $module)
 		{
 			$module instanceof GWF_Module;
@@ -451,7 +451,7 @@ final class GWF_ModuleLoader
 			{
 				$mname = $method->getName();
 				$pml[$name][$mname] = array();
-				if(true === is_array($pmlinks = $method->getPageMenuLinks($module)))
+				if(true === is_array($pmlinks = $method->getPageMenuLinks()))
 				{
 					foreach($pmlinks as $k => $a)
 					{
@@ -459,15 +459,18 @@ final class GWF_ModuleLoader
 						{
 							unset($pmlinks[$k]);
 						}
-					//	else
-					//	{
-					//		$pml[$name][$mname][] = $a;
-					//	}
+						else
+						{
+							# set permissions, overwritable
+							$groups = $this->method->getUserGroups();
+							$groups = $groups ? implode(',', $groups) : '';
+							$pmlinks[$k] = array_merge(array('page_groups' => $groups), $a);
+						}
 					}
 					$pml[$name][$mname] = $pmlinks;
 				}
 				# Method does not have PageMenu Links?
-				if($pml[$name][$mname] === array())
+				if(true === empty($pml[$name][$mname]))
 				{
 					unset($pml[$name][$mname]);
 				}

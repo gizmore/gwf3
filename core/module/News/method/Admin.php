@@ -16,6 +16,17 @@ final class News_Admin extends GWF_Method
 			'RewriteRule ^news/admin$ index.php?mo=News&me=Admin&page=1&by=date&dir=DESC'.PHP_EOL.
 			'RewriteRule ^news/admin/page/([0-9]+)/by/([a-zA-Z_,]+)/([DEASC,]+)$ index.php?mo=News&me=Admin&page=$1&by=$2&dir=$3'.PHP_EOL;
 	}
+
+	public function getPageMenuLinks()
+	{
+		return array(
+			array(
+				'page_url' => 'news/admin',
+				'page_title' => 'Admin',
+				'page_meta_desc' => 'Administrate News',
+			),
+		);
+	}
 	
 	public function execute()
 	{

@@ -19,6 +19,7 @@
  * @todo: A module file is mostly 20 lines not 300
  * @todo: Make general menu editing module?
  * @todo caching into html files
+ * @todo possibility to add an unique ID
  * @author spaceone
  * @since 01.11.2011
  * @version 0.06
