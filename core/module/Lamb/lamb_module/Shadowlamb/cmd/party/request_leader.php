@@ -10,12 +10,14 @@ final class Shadowcmd_request_leader extends Shadowcmd
 		if (!$player->getParty()->isIdle())
 		{
 			$player->msg('1033');
+			return false;
 // 			return $player->message('Your party needs to be idle to request a new leader.');
 		}
 		
 		if ($player->isLeader())
 		{
 			$player->msg('1095');
+			return false;
 // 			return $bot->reply('You are already leader of your party.');
 		}
 
@@ -28,19 +30,21 @@ final class Shadowcmd_request_leader extends Shadowcmd
 		if ($leader->isOptionEnabled(SR_Player::NO_RL))
 		{
 			self::rply($player, '1096');
+			return false;
 // 			return $bot->reply('Your leader does not allow to takeover the leadership.');
 		}
 		
 		if ($wait > 0)
 		{
 			self::rply($player, '1097', array(GWF_Time::humanDuration($wait)));
+			return false;			
 // 			return $bot->reply(sprintf('Please wait %s and try again.', GWF_Time::humanDuration($wait)));
 		}
 		
 		
 		if (false === $party->setLeader($player))
 		{
-			return $bot->reply('Error.');
+			return $bot->reply('Database Error.');
 		}
 		
 		return $party->ntice('5138', array($player->getName()));
