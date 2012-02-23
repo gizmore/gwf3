@@ -1,11 +1,36 @@
 <?php
 abstract class SR_Hospital extends SR_Store
 {
+	# Surgery prices
+	public function getGenderPrice($gender=NULL) { return 5000; }
+	public function getSkillPrice($skill=NULL) { return 6000; }
+	public function getAttributePrice($attribute=NULL) { return 4000; }
+	public function getKnowledgePrice($knowledge=NULL) { return 2000; }
+	public function getSpellPrice($spellname=NULL) { return 3000; }
+	public function getRacePrice($race) { return $this->calcRacePrice(); }
+	
+	public static $SECTIONS = array('race','skill','gender','attribute','spell','knowledge');
+	
+	public function calcRacePrice()
+	{
+		$races = array_keys(SR_Player::$RACE);
+		return 500000;
+	}
+	
+	# Heal prices
 	public abstract function getHealPrice();
 	public function calcHealPrice(SR_Player $player) { return Shadowfunc::calcBuyPrice($this->getHealPrice(), $player); }
 	
-	public function getCommands(SR_Player $player) { return array('heal','view','viewi','implant','unplant'); }
+	# Location
+	public function getFoundPercentage() { return 85.00; }
+	public function getCommands(SR_Player $player) { return array('heal','view','viewi','implant','unplant',/*'surgery'*/); }
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_hospital'); }
+	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter_hospital'); }
+	public function getHelpText(SR_Player $player) { return $player->lang('hlp_hospital'); }
 	
+	############
+	### Heal ###
+	############
 	public function on_heal(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -31,7 +56,10 @@ abstract class SR_Hospital extends SR_Store
 // 		$bot->reply(sprintf('The doctor takes your %s and heals you.', $p1));
 		return true;
 	}
-	
+
+	###############
+	### Implant ###
+	###############
 	public function on_implant(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -88,6 +116,9 @@ abstract class SR_Hospital extends SR_Store
 		return true;
 	}
 
+	###############
+	### Unplant ###
+	###############
 	public function on_unplant(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -128,5 +159,40 @@ abstract class SR_Hospital extends SR_Store
 // 		$bot->reply(sprintf('You pay %s and got your %s removed.', $p1, $item->getItemName()));
 		return true;
 	}
+	
+	###############
+	### Surgery ###
+	###############
+// 	public function on_surgery(SR_Player $player, array $args)
+// 	{
+// 		if (count($args) === 0)
+// 		{
+// 			return $this->displaySurgeryPrices($player);
+// 		}
+		
+// 		if (count($args) !== 1)
+// 		{
+// 			return $this->displaySurgeryHelp($player);
+// 		}
+		
+// 		$section = $args[0];
+		
+		
+// 		if (in_array($needle, $haystack))
+// 		if (SR_Player::$RACE);
+// 	}
+	
+// 	private function displaySurgeryHelp(SR_Player $player)
+// 	{
+// 		return Shadowrap::instance($player)->reply(Shadowhelp::getHelp($player, 'surgery'));
+// 	}
+		
+// 	private function displaySurgeryPrices(SR_Player $player, $section=NULL)
+// 	{
+// 		if ($section === NULL)
+// 		{
+// 			return $this->displayAllSurgeryPrices($player);
+// 		}
+// 	}
 }
 ?>

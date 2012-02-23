@@ -10,9 +10,9 @@ final class Delaware_Cardealer extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
-			array('Famstar2400', 100.0, 9000),
-			array('Razor1911', 100.0, 79000),
-			array('Crucifer235', 100.0, 4500),
+			array('Famstar2400', 100.0, 12500),
+			array('Razor1911', 100.0, 86000),
+			array('Crucifer235', 100.0, 9500),
 		);
 	}
 }

@@ -14,13 +14,25 @@ final class Shadowrap
 	
 	public function reply($message)
 	{
-		if ($this->player->isOptionEnabled(SR_Player::WWW_OUT))
+		if (true === $this->player->isOptionEnabled(SR_Player::WWW_OUT))
 		{
 			$this->player->message($message);
 		}
 		else
 		{
 			Lamb::instance()->reply($message);
+// 			if (NULL === ($user = $this->player->getUser()))
+// 			{
+// 				echo "PLAYER HAS NO USER IN SHADOWRAP.\n";
+// 			}
+// 			elseif (false === ($server = $user->getServer()))
+// 			{
+// 				echo "USER HAS NO SERVER IN SHADOWRAP.\n";
+// 			}
+// 			else
+// 			{
+// 				# BAH
+// 			}
 		}
 		
 		return true;

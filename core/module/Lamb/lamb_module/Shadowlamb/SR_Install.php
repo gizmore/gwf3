@@ -6,8 +6,11 @@ final class SR_Install
 	{
 		Lamb_Log::logDebug(__METHOD__);
 		
+		$dir = Shadowrun4::getShadowDir();
+		
 		foreach (self::$TABLES as $classname)
 		{
+			require_once $dir.'core/'.$classname;
 			if (false !== ($table = GDO::table($classname)))
 			{
 				Lamb_Log::logDebug('SR_Install::onInstall('.$classname.')');

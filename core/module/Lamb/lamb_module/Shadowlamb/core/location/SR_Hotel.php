@@ -5,16 +5,12 @@ abstract class SR_Hotel extends SR_Location
 	public function getSleepPrice(SR_Player $player) { return 0; }
 	public function getNPCS(SR_Player $player) { return array(); }
 	public function getLeaderCommands(SR_Player $player) { return array_merge(parent::getLeaderCommands($player), array('sleep')); }
+	public function displaySleepPrice(SR_Player $player) { return Shadowfunc::displayNuyen($this->calcPrice($player)); }
 	public function calcPrice(SR_Player $player)
 	{
 		$p = $this->getSleepPrice($player);
 		$n = $player->getParty()->getMemberCount();
 		return Shadowfunc::calcBuyPrice($n*$p, $player);
-	}
-	
-	public function displaySleepPrice(SR_Player $player)
-	{
-		return Shadowfunc::displayNuyen($this->calcPrice($player));
 	}
 	
 	public function getHelpText(SR_Player $player)

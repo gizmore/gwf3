@@ -448,9 +448,10 @@ final class Shadowhelp
 						
 						'hospital_cmds' => 'Hospital commands',
 						array(
-							'implant' => 'Location command. Usage #implant <view_id|item>. In hospitals you can implant cyberware. Cyberware will cost essence, which is important for magic spells.',
-							'unplant' => 'Location command. Usage #unplant <cy_id|item>. In hospitals you can unimplant your cyberware, in case it conflicts with other cyberware or you need more essence.',
-							'heal_cmd' => 'Location command. Usage #heal. In hospitals you can quickly get healed for a small fee.',
+							'implant' => 'Hospital command. Usage #implant <view_id|item>. In hospitals you can implant cyberware. Cyberware will cost essence, which is important for magic spells.',
+							'unplant' => 'Hospital command. Usage #unplant <cy_id|item>. In hospitals you can unimplant your cyberware, in case it conflicts with other cyberware or you need more essence.',
+							'heal_cmd' => 'Hospital command. Usage #heal. In hospitals you can quickly get healed for a small fee.',
+							'surgery' => 'Hospital command. Usage #surgery [<section>]. Revert some lvlup into karma or change your class or gender. This is a quite costly process and could even cost you some cost essence.',
 						),
 						
 						'subway_cmds' => 'Subway commands',

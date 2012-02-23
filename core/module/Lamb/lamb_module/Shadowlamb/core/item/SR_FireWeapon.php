@@ -81,8 +81,9 @@ abstract class SR_FireWeapon extends SR_Weapon
 		else
 		{
 // 			$message = sprintf('You load %d bullet(s) into your %s.', $put, $this->getItemName());
-			$bot = Shadowrap::instance($player);
-			$bot->rply('5207', array($put, $this->getName()));
+// 			$bot = Shadowrap::instance($player);
+// 			$bot->rply('5207', array($put, $this->getName()));
+			$player->msg('5207', array($put, $this->getName()));
 // 			$bot->reply($message);
 		}
 		

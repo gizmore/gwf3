@@ -1,5 +1,4 @@
 <?php
-$c = "#";
 $b = chr(2);
 /**
  * Please respect weird punctuations when doing human readable translations
@@ -105,6 +104,8 @@ $lang = array(
 'stub_enter_bank' => 'You enter the Bank of %s. You see some customers at the counters and also some security officers.',
 'stub_found_blacksmith' => 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.',
 'stub_enter_blacksmith' => 'You enter the %s blacksmith. You see two dwarfs at the counter.',
+'stub_found_hospital' => 'You found the local hospital. The sign reads: "Renraku Cyberware 20% off".',
+'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
 
 # Clan history
 'ch_0' => '%s created the clan %s.', # player, clanname
@@ -132,8 +133,8 @@ $lang = array(
 
 # Ingame help
 'hlp_in_outside' => 'When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.',
-'hlp_clan_enter' => "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.",
-'hlp_bank' => "In a bank you can use {$c}push and {$c}pop to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}view to list or search your banked items. Every transaction costs %s for you.",
+'hlp_clan_enter' => "Join clans with #abandon, #request and #accept. Create a clan with #create. Purchase more size and motto with #manage. Set options with #toggle. Access clan bank with #push, #pop and #view, clan money with #pushy and #popy.",
+'hlp_bank' => "In a bank you can use #push and #pop to bank items, and #pushy and #popy to store nuyen. Use #view to list or search your banked items. Every transaction costs %s for you.",
 'hlp_bazar' => "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.",
 'hlp_elevator' => 'In elevators you can use #up, #down and #floor.',
 'hlp_exit' => 'You can return to this location to #leave the building.',
@@ -145,13 +146,14 @@ $lang = array(
 'hlp_cyberdeck' => 'This item only works inside locations with computers.',
 'hlp_cyberdeck_targets' => 'You don\'t see any Computers with a Headcomputer interface here.',
 'hlp_start' => "{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.",
-'hlp_blacksmith' => "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here.",
+'hlp_blacksmith' => "At a blacksmith you can #upgrade equipment with runes. You can also #break items into runes or #clean them. It is also possible to #split runes. Also #view, #buy and #sell works here.",
+'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberwear. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
 
 # Start storyline
 'start_1' => "You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.",
 'start_2' => "What happened... You can`t remember anything.... Gosh, you even forgot your name.",
-'start_3' => "You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.",
-'start_4' => "Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files. Use {$c}help <cmd> to see the help for a command.",
+'start_3' => "You check your {$b}#inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}#talk{$b} to talk with the hotelier.",
+'start_4' => "Use {$b}#c{$b} to see all available commands. Check {$b}#help{$b} to browse the Shadowlamb help files. Use #help <cmd> to see the help for a command.",
 
 # Knowledge
 'ks_words' => 'Word',
@@ -348,7 +350,7 @@ $lang = array(
 '1171' => 'Your character has been created already. You can type #reset to start over.',
 '1172' => 'Your race is unknown or an NPC only race. Valid races: %s.',
 '1173' => 'Your gender is unknown. Valid genders: %s.',
-'1174' => "The command is not available for your current action or location. Try {$c}c [<l|long>] to see all currently available commands.",
+'1174' => "The command is not available for your current action or location. Try #c [<l|long>] to see all currently available commands.",
 '1175' => 'That\'s more than I offer, chummer.',
 '1176' => '',
 '1177' => '',
@@ -682,8 +684,8 @@ $lang = array(
 '5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
 '5260' => 'You gained +%s MP (%s/%s).', # From orcas effect
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
-'5262' => '',
-'5263' => '',
+'5262' => 'Possible sections in surgery: %s.', # Some sections fmt_rawlist.
+'5263' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
 '5264' => '',
 '5265' => '',
 '5266' => '',

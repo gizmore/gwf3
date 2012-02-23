@@ -105,6 +105,8 @@ $lang = array(
 'stub_enter_bank' => 'Hai trovato la Banca di %s. Vedi alcuni clienti al bancone ed anche alcuni ufficiali di sicurezza.',
 'stub_found_blacksmith' => 'Trovi un piccolo negozio, "Il Fabbro". Sembra che possano migliorare il tuo equipaggiamento.',
 'stub_enter_blacksmith' => 'Entri il fabbro di %s. Vedi due nani al bancone.',
+'stub_found_hospital' => 'You found the local hospital. The sign reads: "Renraku Cyberware 20% off".',
+'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
@@ -146,6 +148,7 @@ $lang = array(
 'hlp_cyberdeck_targets' => 'Non vedi alcun Computer con un interfaccia Headcomputer qui.',
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
 'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere o {$c}pulire gli oggetti in rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
+'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberwear. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",

@@ -104,6 +104,8 @@ $lang = array(
 'stub_enter_bank' => 'You enter the Bank of %s. You see some customers at the counters and also some security officers.',
 'stub_found_blacksmith' => 'You find a small store, "The Blacksmith". It seems like they can upgrade your equipment here.',
 'stub_enter_blacksmith' => 'You enter the %s blacksmith. You see two dwarfs at the counter.',
+'stub_found_hospital' => 'You found the local hospital. The sign reads: "Renraku Cyberware 20% off".',
+'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
 
 # Clan history
 'ch_0' => '%s created the clan %s.', # player, clanname
@@ -145,6 +147,7 @@ $lang = array(
 'hlp_cyberdeck_targets' => 'You don\'t see any Computers with a Headcomputer interface here.',
 'hlp_start' => "{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.",
 'hlp_blacksmith' => "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here.",
+'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberwear. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
 
 # Start storyline
 'start_1' => "You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.",
