@@ -102,11 +102,11 @@ $lang = array(
 'stub_found_elevator' => 'Hai trovato il %s. Un cartelo recita: "MAX %s KG".',
 'stub_enter_elevator' => 'Entri nel %s. Un cartelo recita: "MAX %s KG".',
 'stub_found_bank' => 'Hai trovato la Banca di %s. Tutte le transazioni sono effettuate tramite slot machines.',
-'stub_enter_bank' => 'Hai trovato la Banca di %s. Vedi alcuni clienti al bancone ed anche alcuni ufficiali di sicurezza.',
+'stub_enter_bank' => 'Hai trovato la Banca di %s. Vedi alcuni clienti al bancone insieme ad alcuni ufficiali di sicurezza.',
 'stub_found_blacksmith' => 'Trovi un piccolo negozio, "Il Fabbro". Sembra che possano migliorare il tuo equipaggiamento.',
-'stub_enter_blacksmith' => 'Entri il fabbro di %s. Vedi due nani al bancone.',
-'stub_found_hospital' => 'Hai trovato l\'ospedarle locale. Il cartello recita: "Sconto del 20% sul Cyberware Renraku".',
-'stub_enter_hospital' => 'Entri in un immenso palazze e vieni portato da un dottore.',
+'stub_enter_blacksmith' => 'Entri dal fabbro di %s. Vedi due nani al bancone.',
+'stub_found_hospital' => 'Hai trovato l\'ospedale locale. Il cartello recita: "Sconto del 20% sul Cyberware Renraku".',
+'stub_enter_hospital' => 'Entri in un immenso palazzo e vieni portato da un dottore.',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
@@ -134,11 +134,11 @@ $lang = array(
 
 # Ingame help
 'hlp_in_outside' => 'Quando trovi delle località, ti troverai al di fuori di esse. Usa #goto o #enter per entrarvi. Puoi #(exp)lorare ancora per trovare altre località.', #TRANS: check command #explore
-'hlp_clan_enter' => "Unisciti al clan con {$c}abbandona, {$c}richiedi e {$c}accetta. Crea un clan con {$c}crea. Compra dei miglioramenti ed un motto con {$c}gestisci. Imposta le opzioni con {$c}alterna. Accedi alla banca oggetti del clan con {$c}versa, {$c}ritira e {$c}guarda, e a quella degli oggetti con {$c}versay e {$c}ritiray.",
-'hlp_bank' => "In una banca puoi usare {$c}versa e {$c}ritira per lasciare e prendere oggetti, e {$c}versay and {$c}ritiray per versare e ritirare nuyen. Usa {$c}guarda per visualizzare o cercare i tuoi oggetti nella banca. Ogni transazione ti costa %s.",
+'hlp_clan_enter' => "Unisciti al clan con {$c}abbandona, {$c}richiedi e {$c}accetta. Crea un clan con {$c}crea. Compra dei miglioramenti ed un motto con {$c}gestisci. Imposta le opzioni con {$c}alterna. Accedi alla banca oggetti del clan con {$c}versa, {$c}ritira e {$c}guarda, e alla cassa con {$c}versay e {$c}ritiray.",
+'hlp_bank' => "In una banca puoi usare {$c}versa e {$c}ritira per lasciare e prendere oggetti, e {$c}versay and {$c}ritiray per versare e ritirare nuyen. Usa {$c}guarda per visualizzare o cercare i tuoi oggetti nella banca. Ogni transazione ti costerà %s.",
 'hlp_bazar' => "Nel bazaar puoi vendere i tuoi oggetti. Qui puoi usare #versa, #ritira, #guarda, #cerca, #compra, #compramigliore, #compraslot, #slogan e #prezzo.",
 'hlp_elevator' => 'Negli ascensori puoi usare #su, #giù e #piano.',
-'hlp_exit' => 'Puoi ritornare in questa località per #esci la costruzione.',
+'hlp_exit' => 'Puoi ritornare in questa località per #esci dall\'edificio.',
 'hlp_hotel' => 'Puoi pagare %s per #dormi qui e recuperare gli HP/MP del tuo gruppo.',
 'hlp_hack' => ' Puoi usare un Cyberdeck per hackare in un computer.',
 'hlp_search' => ' Puoi usare #cerca qui per cercare oggetti nella stanza.',

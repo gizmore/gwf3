@@ -48,7 +48,7 @@ $lang = array(
 	'msg_update' => 'Modulo configurato',
 	'msg_install' => 'Il modulo %s è stato re-installato. Aggiornamento database..',
 	'msg_wipe_confirm' => 'Vuole veramente cancellare i dati presenti nei database utilizzat dal modulo %s?',
-	'msg_wipe' => 'Il modulo %s è stato cancellato dal disco. TUtti i dati sono stati eliminati.',
+	'msg_wipe' => 'Il modulo %s è stato cancellato dal disco. Tutti i dati sono stati eliminati.',
 	'msg_installed' => 'Può continuare con la <a href="%s">configurazione del modulo %s</a>.',
 	'msg_install_all' => 'TUtti i modulo sono stati attivati con richieste di installazione/aggiornamento.<br/><a href="%s">Clicca qui per tornare alla panoramica moduli</a>.',
 	'msg_enabled' => 'Il modulo è stato attivato.',
