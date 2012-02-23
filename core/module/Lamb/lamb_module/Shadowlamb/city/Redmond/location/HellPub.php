@@ -19,7 +19,7 @@ final class Redmond_HellPub extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		$back = array(
-			array('Moped', 100.0, 1500), # TODO: raise price to 5000 on beta release
+			array('Moped', 100.0, 4000),
 		);
 		return $back;
 	}
