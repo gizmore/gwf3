@@ -36,6 +36,7 @@ final class GWF_Navigation extends GDO
 	public function hrefShow($nid) { return sprintf(GWF_WEB_ROOT.'navigation/edit/%s/show/%s', $nid, $this->getID()); }
 	public function hrefUp($nid) { return sprintf(GWF_WEB_ROOT.'navigation/edit/%s/up/%s', $nid, $this->getID()); }
 	public function hrefDown($nid) { return sprintf(GWF_WEB_ROOT.'navigation/edit/%s/down/%s', $nid, $this->getID()); }
+	public function hrefPageEdit() { return ''; }
 
 	public function displayTitle() { return $this->display('page_title'); }
 	public function displayURL() { return $this->display('page_url'); }
@@ -94,7 +95,7 @@ final class GWF_Navigation extends GDO
 	 */
 	public static function getByName($name)
 	{
-		$nid = GWF_Navigations->getIdByName($name);
+		$nid = GWF_Navigations::getIdByName($name);
 		return self::getNavigation($nid);
 	}	
 }

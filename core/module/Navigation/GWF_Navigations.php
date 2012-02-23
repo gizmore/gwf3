@@ -112,7 +112,7 @@ final class GWF_Navigations extends GDO
 	 */
 	public static function getIdByName($name)
 	{
-		$id = self::table(__CLASS__)->selectFirst('navis_id', 'navis_name='.$name);
+		$id = self::table(__CLASS__)->selectFirst('navis_id', "navis_name='{$name}'");
 		return (int)$id['navis_id'];
 	}
 

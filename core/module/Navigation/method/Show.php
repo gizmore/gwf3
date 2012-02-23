@@ -12,6 +12,7 @@ final class Navigation_Show extends GWF_Method
 
 	public function execute()
 	{
+		$_GET['ajax'] = 1;
 		$name = Common::getPostString('navigation', 'PageMenu');
 
 		if(false === ($navi = $this->getNavigation(GWF_Navigations::getIdByName($name))))
@@ -19,6 +20,9 @@ final class Navigation_Show extends GWF_Method
 			GWF_HTML::error('');
 			$navi = array();
 		}
+
+//		var_dump($navi);
+
 		$tVars = array(
 			'navi' => $navi,
 		);
@@ -42,10 +46,15 @@ final class Navigation_Show extends GWF_Method
 		$nsid = $navis->getID();
 
 		$pb = $navis->isnotPB() ? 'navi_vars' : 'navi_pbvars';
-		$cols = 't.*, page_id, page_url, page_title, page_lang, page_cat, page_meta_desc, page_views, page_groups, page_options';
+		$cols = 't.*, page_url, page_title, page_lang, page_meta_desc/*, page_views,*/';
 		$t = GDO::table('GWF_Navigation');
 		$navi = $t->selectAll($cols, "navi_nid={$nsid} AND page_groups != 'TODO' AND page_options&".GWF_Page::ENABLED, 'navi_position', array($pb), '-1', '-1', GDO::ARRAY_O);
 
+		if(true === empty($navi))
+		{
+			var_dump($navi);
+			return $navi;
+		}
 		$navi['category_name'] = $navis->getName();
 
 		$navi['subs'] = NULL;
@@ -63,6 +72,7 @@ final class Navigation_Show extends GWF_Method
 					GWF_HTML::error('');
 				}
 			}
+			// impossible: empty subs ?
 		}
 
 		return $navi;
@@ -73,5 +83,11 @@ final class Navigation_Show extends GWF_Method
 	 * needet for recursion
 	 * @param array $navi a subnavigation
 	 */
-	public function display(array $navi) { return $this->templateShow("_{$this->_tpl}", array('navi' => $navi)); }
+	public function display($navi)
+	{
+		if (false === is_array($navi)) {
+			return "<h1>FEHLER: <b>$navi</b></h1>";
+		}
+		return $this->templateShow("_{$this->_tpl}", array('navi' => $navi)); 
+	}
 }

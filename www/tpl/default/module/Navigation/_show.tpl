@@ -1,4 +1,4 @@
-{foreach $navi as $key => $category}
+{foreach $navi => $category}
 	<li>
 		{$category['category_name']}
 		<ul>

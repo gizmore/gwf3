@@ -13,6 +13,9 @@
 		{*<td>{$navigations->displayGroups()}</td>*}
 	</tr>
 </table>
+
+<br><br><br>
+<!-- TODO: margin -->
 </div>
 {* TODO: displayed in Sitenav, language*}
 <div class="gwf_table">
@@ -26,7 +29,7 @@
 	array($lang->lang('th_hide_show')),
 	array($lang->lang('th_delete')),
 	array($lang->lang('btn_edit')),
-	array($lang->lang('th_multiaction')),
+	array($lang->lang('th_multiaction'))
 ), $sort_url)}
 
 {foreach $navigation as $n}
@@ -48,7 +51,7 @@
 {/foreach}
 </table>
 </div>
-
+<br><br><br>
 <div class="gwf_table">
 <table>
 {GWF_Table::displayHeaders1(array(
@@ -59,7 +62,6 @@
 	array($lang->lang('th_multiaction')),
 	array($lang->lang('btn_edit'))
 ), $sort_url)}
-
 {foreach $pages as $page}
 {* TODO: if not in navi *}
 	{GWF_Table::rowStart()}

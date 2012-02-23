@@ -57,7 +57,9 @@ final class GWF_NaviPage extends GDO
 	
 	public function displayLang()
 	{
-		if (false === ($lang = GWF_Language::getByID($this->getVar('page_lang')))) {
+		# FIXME: page_lang not assigned
+		//if (false === ($lang = GWF_Language::getByID($this->getVar('page_lang')))) {
+		if (false === ($lang = GWF_Language::getByID(1))) {
 			return GWF_Module::getModule('PageBuilder')->lang('lang_all');
 		}
 		return $lang->displayName();

@@ -25,7 +25,12 @@
 final class Module_Navigation extends GWF_Module
 {
 	public function getVersion() { return 0.06; }
-	public function getClasses() { return array('GWF_Navigation', 'GWF_Navigations', 'GWF_NaviPage'); }
+	public function getClasses()
+	{
+		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
+		require_once GWF_CORE_PATH.'module/Category/GWF_Category.php';
+		return array('GWF_Navigation', 'GWF_Navigations', 'GWF_NaviPage');
+	}
 	public function onLoadLanguage() { return $this->loadLanguage('lang/navigation'); }
 	public function getOptionalDependencies() { return array('PageBuilder'); }
 //	public function getDependencies() { return array(); }	//PageBuilder here?, Category, GWF_Tree?
@@ -34,10 +39,10 @@ final class Module_Navigation extends GWF_Module
 		require_once GWF_CORE_PATH.'module/Navigation/GWF_NaviInstall.php';
 		$ret = GWF_NaviInstall::onInstall($this, $dropTable);
 		
-//		if(false !== ($foo = $this->installPageMenu(self::debugPM())))
-//		{
-//			Common::var_dump($foo);
-//		}
+		if(false !== ($foo = $this->installPageMenu(self::debugPM())))
+		{
+			Common::var_dump($foo);
+		}
 		return $ret;
 	}
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
