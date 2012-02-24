@@ -180,9 +180,7 @@ $lang = array(
 '0001' => 'Devi effetuare il login per giocare.',
 		
 '1002' => 'Ti serve un livello minimo di %d per urlare.', # level
-'1003' => 'Aspetta %s prima di urlare ancora.', # duration
 '1004' => 'Non hai alcuna quest in %s.', # section
-// '1005' => 'You don\'t know any word.',
 '1006' => 'Non hai i requisiti richiesti: %s.', # statted-list
 '1007' => 'Non è stato trovato alcun elemento che corrisponda ai parametri di ricerca.',
 '1008' => 'Non ci sono oggetti qui.',

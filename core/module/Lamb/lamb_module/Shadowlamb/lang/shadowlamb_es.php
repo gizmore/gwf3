@@ -179,9 +179,7 @@ $lang = array(
 '0001' => 'Necesitas logearte para jugar.',
 		
 '1002' => 'Necesitas al menos un nivel de %d para hablar.', # level
-'1003' => 'Por favor espera %s antes de hablar otra vez.', # duration
 '1004' => 'No tienes %s pruebas.', # section
-// '1005' => 'You don\'t know any word.',
 '1006' => 'No cumples con los requisitos: %s.', # statted-list
 '1007' => 'No hay objetos encontrados con los terminos de búsqueda.',
 '1008' => 'No hay objetos aquí.',

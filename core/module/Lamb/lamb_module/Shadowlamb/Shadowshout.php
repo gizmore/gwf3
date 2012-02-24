@@ -54,7 +54,7 @@ final class Shadowshout
 		if ($delay > 0)
 		{
 			# Please wait %s before you shout again.
-			$player->msg('1003', array(GWF_Time::humanDuration($delay)));
+			$player->msg('1044', array(GWF_Time::humanDuration($delay)));
 			return false;
 		}
 		

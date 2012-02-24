@@ -179,9 +179,7 @@ $lang = array(
 '0001' => 'You need to login to play.',
 		
 '1002' => 'You need at least level %d to shout.', # level
-'1003' => 'Please wait %s before you shout again.', # duration
 '1004' => 'You have no %s quests.', # section
-// '1005' => 'You don\'t know any word.',
 '1006' => 'You do not meet the requirements: %s.', # statted-list
 '1007' => 'No items found that match the search pattern.',
 '1008' => 'There are no items here.',

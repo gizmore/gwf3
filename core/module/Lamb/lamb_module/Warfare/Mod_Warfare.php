@@ -72,7 +72,7 @@ final class LambModule_Warfare extends Lamb_Module
 				{
 					if ($this->auto_probe)
 					{
-						$this->addIP($ip, $user);
+						$this->addIP($server, $ip);
 					}
 					else
 					{

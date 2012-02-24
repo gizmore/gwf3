@@ -43,6 +43,8 @@ final class Shadowcmd_party_loot extends Shadowcmd
 				return false;
 		}
 		
+		$type = $args[0];
+		
 		$party->setLootMode($bit);
 		$party->ntice('5139', array($player->lang('pl_'.$type)));
 // 		$party->notice(sprintf("The party's loot mode has been set to: \X02%s\X02.", $args[0]));
