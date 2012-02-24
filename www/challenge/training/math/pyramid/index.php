@@ -35,7 +35,7 @@ echo GWF_Box::box($chall->lang('info', array($maxlen, $img, $c1, $c2, $c3, $c4))
 
 if (WC_ChallSolved::hasSolved(GWF_Session::getUserID(), $chall->getID())) {
 	require_once GWF_CORE_PATH.'module/WeChall/WC_MathChall.php';
-	echo GWF_Box::box(WC_HTML::lang('msg_wmc_solved', array($chall->display('chall_title')), WC_MathChall::getLimitedHREF($chall, 0)));
+	echo GWF_Box::box(WC_HTML::lang('msg_wmc_solved', array($chall->display('chall_title'), WC_MathChall::getLimitedHREF($chall, 0))));
 }
 
 if ('' !== ($formula = Common::getPostString('formula'))) {

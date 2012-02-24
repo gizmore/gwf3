@@ -1,14 +1,22 @@
 <?php
 chdir("../../../");
 define('GWF_PAGE_TITLE', 'Training: Programming I');
-require_once 'challenge/html_head.php';
 
 define("TIMELIMIT", 1.337);
-if (false === ($chall = WC_Challenge::getByTitle("Training: Programming 1"))) {
+
+if ( (isset($_GET['action'])) && (is_string($_GET['action'])) && ($_GET['action'] === 'request') )
+{
+	define('NO_HEADER_PLEASE', true);
+}
+require_once 'challenge/html_head.php';
+
+if (false === ($chall = WC_Challenge::getByTitle("Training: Programming 1")))
+{
 	$chall = WC_Challenge::dummyChallenge("[Training: Programming 1]");
 }
 
-if ('request' === Common::getGet('action')) {
+if (true === defined('NO_HEADER_PLEASE'))
+{
 	prog2NextQuestion($chall);
 }
 

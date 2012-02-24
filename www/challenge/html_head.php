@@ -49,5 +49,8 @@ GWF_Doctype::setDoctype('xhtmlstrict');
 
 # HTML Header
 //echo GWF_Website::getPagehead();
-echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
+if (false === defined('NO_HEADER_PLEASE'))
+{
+	echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
+}
 ?>
