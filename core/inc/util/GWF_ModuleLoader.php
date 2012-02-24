@@ -503,7 +503,7 @@ final class GWF_ModuleLoader
 		foreach ($dir as $file)
 		{
 			# starts with .
-			if ($file[0] === '.')
+			if ($file[0] === '.' || false === Common::endsWith($file, '.php'))
 			{
 				continue;
 			}
