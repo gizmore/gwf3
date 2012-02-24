@@ -7,6 +7,17 @@ final class Forum_MarkRead extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Forum&me=MarkRead',
+						'page_title' => 'Mark threads as read',
+						'page_meta_desc' => 'Mark all the unread forum threads to read',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$user = GWF_Session::getUser();

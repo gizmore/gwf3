@@ -9,6 +9,17 @@ final class Forum_Unread extends GWF_Method
 		return $this->templateUnread();
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Forum&me=Unread',
+						'page_title' => 'Unread Threads',
+						'page_meta_desc' => 'Browse your unread threads',
+				),
+		);
+	}
+	
 	public function templateUnread()
 	{
 		$by = Common::getGet('by', 'thread_lastdate');

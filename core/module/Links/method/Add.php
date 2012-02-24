@@ -5,6 +5,18 @@
  */
 final class Links_Add extends GWF_Method
 {
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Links&me=Add',
+						'page_title' => 'Add Link',
+						'page_meta_desc' => 'Add a new link',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($error = $this->sanitize())) {

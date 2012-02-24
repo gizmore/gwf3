@@ -8,6 +8,17 @@ final class Links_Staff extends GWF_Method
 	const DEFAULT_BY = 'link_id';
 	const DEFAULT_DIR = 'DESC';
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Links&me=Staff',
+						'page_title' => 'Links Staff Page',
+						'page_meta_desc' => 'Staff page for links moderation and edit',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($lid = Common::getGet('approve'))) {

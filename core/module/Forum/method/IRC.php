@@ -7,7 +7,18 @@ final class Forum_IRC extends GWF_Method
 			'RewriteCond %{QUERY_STRING} datestamp=([^&]+)&limit=([^&]+)'.PHP_EOL.
 			'RewriteRule ^nimda_forum.php$ index.php?mo=Forum&me=IRC&datestamp=%1&limit=%2&no_session=true&ajax=true'.PHP_EOL;
 	}
-
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'nimda_forum.php',
+						'page_title' => 'Nimda Forum',
+						'page_meta_desc' => 'Take a look at the Nimda Forum',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		GWF_Website::plaintext();

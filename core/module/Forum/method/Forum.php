@@ -46,6 +46,17 @@ final class Forum_Forum extends GWF_Method
 			'RewriteRule ^forum-b(\d+)/bby/([^/]+)/([DEASC,]+)/bp-(\d+)/tby/([^/]+)/([DEASC,]+)/[^/\-]+-p(\d+)\.html$ index.php?mo=Forum&me=Forum&bid=$1&bby=$2&bdir=$3&bpage=$4&tby=$5&tdir=$6&tpage=$7'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'forum',
+						'page_title' => 'Forum',
+						'page_meta_desc' => GWF_SITENAME.' Forum',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($error = $this->sanitize())) {

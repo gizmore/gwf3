@@ -15,7 +15,18 @@ final class Forum_Search extends GWF_Method
 	{
 		return $this->getHTAccessMethod();
 	}
-
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Forum&me=Search',
+						'page_title' => 'Forum Search',
+						'page_meta_desc' => 'Quick search through the forum',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$this->pagemenu = '';

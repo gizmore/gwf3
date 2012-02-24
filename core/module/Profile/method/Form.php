@@ -8,7 +8,18 @@ final class Profile_Form extends GWF_Method
 	{
 		return 'RewriteRule ^profile_settings$ index.php?mo=Profile&me=Form'.PHP_EOL;
 	}
-
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'profile_settings',
+						'page_title' => 'Profile Settings',
+						'page_meta_desc' => 'Browse or change settings in your account',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== Common::getPost('edit')) {

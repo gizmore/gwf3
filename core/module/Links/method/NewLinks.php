@@ -8,6 +8,17 @@ final class Links_NewLinks extends GWF_Method
 	const DEFAULT_BY = 'link_date';
 	const DEFAULT_DIR = 'ASC';
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Links&me=NewLinks',
+						'page_title' => 'New Links',
+						'page_meta_desc' => 'Browse the newest links and mark them as read',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		GWF_Website::setPageTitle($this->module->lang('pt_new_links'));

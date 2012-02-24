@@ -17,6 +17,17 @@ final class Links_Overview extends GWF_Method
 			'RewriteRule ^links/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=Links&me=Overview&by=$1&dir=$2&page=$3'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'links',
+						'page_title' => 'Links',
+						'page_meta_desc' => 'Links overview',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		GWF_Module::loadModuleDB('Votes')->onInclude();

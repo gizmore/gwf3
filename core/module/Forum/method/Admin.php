@@ -17,6 +17,17 @@ final class Forum_Admin extends GWF_Method
 		return 'RewriteRule ^forum/admin$ index.php?mo=Forum&me=Admin'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'forum/admin',
+						'page_title' => 'Forum Admin Panel',
+						'page_meta_desc' => 'Admin Panel for the Forum',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== Common::getGet('fixcounters')) {

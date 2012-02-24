@@ -8,6 +8,17 @@ final class Forum_Subscriptions extends GWF_Method
 		return $this->templateSubscription();
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Forum&me=Subscriptions',
+						'page_title' => 'Subscriptions',
+						'page_meta_desc' => 'Browse your subscriptions',
+				),
+		);
+	}
+	
 	private function templateSubscription()
 	{
 		$tsub = GDO::table('GWF_ForumSubscription');

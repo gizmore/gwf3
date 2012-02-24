@@ -13,6 +13,17 @@ final class Forum_History extends GWF_Method
 			'RewriteRule ^forum/history$ index.php?mo=Forum&me=History&by=thread_lastdate&dir=ASC'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'forum/history',
+						'page_title' => 'Forum History',
+						'page_meta_desc' => 'History of the '.GWF_SITENAME." Forum",
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false === ($error = $this->sanitize())) {

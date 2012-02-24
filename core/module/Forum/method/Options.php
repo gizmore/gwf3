@@ -12,6 +12,17 @@ final class Forum_Options extends GWF_Method
 		return 'RewriteRule ^forum/options/?$ index.php?mo=Forum&me=Options'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'forum/options',
+						'page_title' => 'Forum options',
+						'page_meta_desc' => 'Browse or change forum options',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== Common::getPost('change')) {

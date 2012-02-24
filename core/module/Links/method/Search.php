@@ -9,6 +9,17 @@ final class Links_Search extends GWF_Method
 			'RewriteRule ^link/search/([^/]+)$ index.php?mo=Links&me=Search&term=$1'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'link/search',
+						'page_title' => 'Search Links',
+						'page_meta_desc' => 'Search for links',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== Common::getPost('search_quick')) {
