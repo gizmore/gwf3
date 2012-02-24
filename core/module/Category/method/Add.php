@@ -13,6 +13,17 @@ final class Category_Add extends GWF_Method
 //		return $this->getHTAccessMethod();
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'category/add',
+						'page_title' => 'Add Category',
+						'page_meta_desc' => 'Add a new category',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== (Common::getPost('add'))) {

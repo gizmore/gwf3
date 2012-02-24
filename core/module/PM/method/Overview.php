@@ -18,6 +18,17 @@ final class PM_Overview extends GWF_Method
 			'RewriteRule ^pm/folders/(\d+)/[^/]+/by/([^/]+)/([ADESC,]{0,})/page-([0-9]+)$ index.php?mo=PM&me=Overview&folder=$1&fby=$2&fdir=$3&fpage=$4'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'pm',
+						'page_title' => 'PM Overview',
+						'page_meta_desc' => 'Overview for your PMs',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false === ($user = GWF_Session::getUser())) {

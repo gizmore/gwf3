@@ -10,7 +10,18 @@ final class Chat_History extends GWF_Method
 			'RewriteRule ^chat/history/page-([0-9]+)$ index.php?mo=Chat&me=History&channel=&page=$1'.PHP_EOL.
 			'RewriteRule ^chat/history$ index.php?mo=Chat&me=History'.PHP_EOL;
 	}
-	
+
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'chat/history',
+						'page_title' => 'Chat history',
+						'page_meta_desc' => 'Chat history of '.GWF_SITENAME,
+				),
+		);
+	}
+		
 	public function execute()
 	{
 		$this->sanitize();

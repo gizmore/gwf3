@@ -3,6 +3,17 @@ final class Helpdesk_CreateTicket extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Helpdesk&me=CreateTicket',
+						'page_title' => 'Create Helpdesk ticket',
+						'page_meta_desc' => 'Create a new Helpdesk ticket to help us improve the site',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		require_once GWF_CORE_PATH.'module/Helpdesk/GWF_HelpdeskTitle.php';

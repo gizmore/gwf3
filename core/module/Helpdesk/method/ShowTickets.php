@@ -3,6 +3,17 @@ final class Helpdesk_ShowTickets extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Helpdesk&me=ShowTickets',
+						'page_title' => 'Show Tickets',
+						'page_meta_desc' => 'Show the tickets submitted to the Helpdesk',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->templateTickets();

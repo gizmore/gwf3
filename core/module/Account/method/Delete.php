@@ -10,6 +10,17 @@ final class Account_Delete extends GWF_Method
 	{
 		return 'RewriteRule ^account/delete$ index.php?mo=Account&me=Delete'.PHP_EOL;
 	}
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'account/delete',
+						'page_title' => 'Delete Account',
+						'page_meta_desc' => 'Delete your account',
+				),
+		);
+	}
 
 	public function execute()
 	{

@@ -7,7 +7,18 @@ final class PM_Options extends GWF_Method
 	{
 		return 'RewriteRule ^pm/options/?$ index.php?mo=PM&me=Options'.PHP_EOL;
 	}
-		
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'pm/options',
+						'page_title' => 'PM Options',
+						'page_meta_desc' => 'Browse and edit options for your PMs',
+				),
+		);
+	}
+	
 	/**
 	 * @var GWF_PMOptions
 	 */

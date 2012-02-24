@@ -7,6 +7,17 @@ final class Chat_AjaxStream extends GWF_Method
 		return 'RewriteRule ^gwf_chat.php$ core/module/Chat/gwf_chat.php'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'gwf_chat.php',
+						'page_title' => GWF_SITENAME.' Chat',
+						'page_meta_desc' => 'The chat of '.GWF_SITENAME,
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->stream();

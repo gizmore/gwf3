@@ -4,6 +4,17 @@ final class PM_Trashcan extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=PM&me=Trashcan',
+						'page_title' => 'PM Trashcan',
+						'page_meta_desc' => 'Your PM trashcan',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($error = $this->sanitize())) {

@@ -6,6 +6,19 @@ final class Admin_Superuser extends GWF_Method
 	### Method ###
 	##############
 	public function getUserGroups() { return GWF_Group::ADMIN; }
+
+	# TODO: Check what Superuser page does.
+	public function getPageMenuLinks()
+	{ 
+		return array(
+				array( 
+						'page_url' => 'index.php?mo=Admin&me=Superuser',
+						'page_title' => 'Superuser page',
+						'page_meta_desc' => 'Change superuser password',
+				),
+		);
+	}
+
 	public function execute()
 	{
 		$nav = $this->module->templateNav();

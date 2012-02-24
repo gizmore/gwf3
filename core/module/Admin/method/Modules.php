@@ -11,6 +11,18 @@ final class Admin_Modules extends GWF_Method
 			sprintf('RewriteRule ^%s/modules/by/([a-z_]+)/(DESC|ASC)$ index.php?mo=Admin&me=Modules&by=$1&dir=$2'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 			
 	}
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => Module_Admin::ADMIN_URL_NAME,
+						'page_title' => 'Admin Page',
+						'page_meta_desc' => 'Page reserved for administration stuff',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->module->templateNav().$this->templateModules();

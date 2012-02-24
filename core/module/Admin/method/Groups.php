@@ -15,6 +15,18 @@ final class Admin_Groups extends GWF_Method
 	### GWF_Method ###
 	##################
 	public function getUserGroups() { return GWF_Group::ADMIN; }
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Admin&me=Groups',
+						'page_title' => 'Groups',
+						'page_meta_desc' => 'Groups list',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 //		if (false !== ($error = $this->sanitize())) {

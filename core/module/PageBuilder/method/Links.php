@@ -26,7 +26,18 @@ final class PageBuilder_Links extends GWF_Method
 		}
 		return $back;
 	}
-
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'PageBuilder/Links',
+						'page_title' => 'PageBuilder Links',
+						'page_meta_desc' => 'Links of the PageBuilder',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$back = '';

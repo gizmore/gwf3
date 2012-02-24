@@ -3,6 +3,17 @@ final class Helpdesk_FAQAdd extends GWF_Method
 {
 	public function getUserGroups() { return array('admin','staff'); }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Helpdesk&mo=FAQAdd',
+						'page_title' => 'Add FAQ',
+						'page_meta_desc' => 'Add a new FAQ',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (isset($_POST['add'])) {

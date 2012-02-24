@@ -6,6 +6,19 @@ final class Admin_LoginAs extends GWF_Method
 	### Method ###
 	##############
 	public function getUserGroups() { return GWF_Group::ADMIN; }
+
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Admin&me=LoginAs',
+						'page_title' => 'Login as User',
+						'page_meta_desc' => 'Login as another user',
+				),
+		);
+	}
+
 	public function execute()
 	{
 		$nav = $this->module->templateNav();

@@ -3,6 +3,17 @@ final class PageBuilder_Add extends GWF_Method
 {
 	public function getUserGroups() { return array('admin'); }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=PageBuilder&me=Add',
+						'page_title' => 'Add Page',
+						'page_meta_desc' => 'Add a new page with the PageBuilder',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (isset($_POST['add'])) {

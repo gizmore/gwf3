@@ -6,7 +6,18 @@ final class PM_Search extends GWF_Method
 	
 	# Need Login
 	public function isLoginRequired() { return true; }
-	
+
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=PM&me=Search',
+						'page_title' => 'Pm Search',
+						'page_meta_desc' => 'Search through your PMs',
+				),
+		);
+	}
+
 	public function execute()
 	{
 //		if (false !== ($errors = $this->sanitize())) {

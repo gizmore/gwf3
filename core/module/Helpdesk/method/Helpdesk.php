@@ -8,6 +8,17 @@ final class Helpdesk_Helpdesk extends GWF_Method
 		return 'RewriteRule ^helpdesk/?$ index.php?mo=Helpdesk&me=Helpdesk'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'helpdesk',
+						'page_title' => 'Helpdesk',
+						'page_meta_desc' => GWF_SITENAME.' Helpdesk',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->templateHelpdesk();

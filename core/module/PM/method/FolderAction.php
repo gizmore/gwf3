@@ -1,6 +1,17 @@
 <?php
 final class PM_FolderAction extends GWF_Method
 {
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=PM&me=FolderAction',
+						'page_title' => 'PM Folder Actions',
+						'page_meta_desc' => 'Actions you can carry out in your PM folder',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$back = '';

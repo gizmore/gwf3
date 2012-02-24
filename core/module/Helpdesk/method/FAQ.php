@@ -3,6 +3,17 @@ final class Helpdesk_FAQ extends GWF_Method
 {
 	private function onGenerate() { require_once GWF_CORE_PATH.'module/Helpdesk/GWF_FAQ_Generator.php'; return GWF_FAQ_Generator::generate($this->module); }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Helpdesk&me=FAQ',
+						'page_title' => 'Helpdesk FAQ',
+						'page_meta_desc' => 'Browse the Helpdesk FAQs',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$back = '';

@@ -3,6 +3,17 @@ final class Helpdesk_Staff extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::ADMIN, GWF_Group::STAFF); }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Helpdesk&me=Staff.php',
+						'page_title' => 'Helpdesk Staff Page',
+						'page_meta_desc' => 'Staff page for tickets editing',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->templateStaff();

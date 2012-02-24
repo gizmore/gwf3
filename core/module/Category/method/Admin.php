@@ -10,6 +10,17 @@ final class Category_Admin extends GWF_Method
 //		return $this->getHTAccessMethod();
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'category/admin',
+						'page_title' => 'Category Admin Page',
+						'page_meta_desc' => 'Admin page for the Category module',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		return $this->templateAdmin();

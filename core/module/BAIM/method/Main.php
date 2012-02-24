@@ -6,6 +6,17 @@ final class BAIM_Main extends GWF_Method
 		return 'RewriteRule ^about_baim$ index.php?mo=BAIM&me=Main'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'about_baim',
+						'page_title' => 'About BAiM',
+						'page_meta_desc' => 'Informations about BAiM',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		GWF_Website::setPageTitle($this->module->lang('pt_main'));

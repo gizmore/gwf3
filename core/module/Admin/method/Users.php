@@ -10,6 +10,17 @@ final class Admin_Users extends GWF_Method
 	
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Admin&me=Users',
+						'page_title' => 'Users List',
+						'page_meta_desc' => 'List of the users of the site',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($error = $this->sanitize())) {

@@ -2,6 +2,18 @@
 final class Admin_GroupAdd extends GWF_Method
 {
 	public function getUserGroups() { return GWF_Group::ADMIN; }
+	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=Admin&me=GroupAdd',
+						'page_title' => 'Add Group',
+						'page_meta_desc' => 'Add a new group',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (false !== Common::getPost('add')) {

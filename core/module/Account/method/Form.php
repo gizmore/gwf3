@@ -12,6 +12,17 @@ final class Account_Form extends GWF_Method
 		return 'RewriteRule ^account/?$ index.php?mo=Account&me=Form'.PHP_EOL;
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'account',
+						'page_title' => 'Account',
+						'page_meta_desc' => 'Your account',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		if (isset($_POST['delete'])) {

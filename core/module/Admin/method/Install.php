@@ -12,6 +12,17 @@ final class Admin_Install extends GWF_Method
 			sprintf('RewriteRule ^%s/wipe/([a-zA-Z]+)$ index.php?mo=Admin&me=Install&module=$1&drop=1'.PHP_EOL, Module_Admin::ADMIN_URL_NAME);
 	}
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => Module_Admin::ADMIN_URL_NAME.'/install_all',
+						'page_title' => 'Admin install all',
+						'page_meta_desc' => 'Install all module from the admin page',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 		$nav = $this->module->templateNav();

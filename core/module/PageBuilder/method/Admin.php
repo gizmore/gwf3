@@ -3,6 +3,17 @@ final class PageBuilder_Admin extends GWF_Method
 {
 	public function getUserGroups() { return array('admin'); }
 	
+	public function getPageMenuLinks()
+	{
+		return array(
+				array(
+						'page_url' => 'index.php?mo=PageBuilder&me=Admin',
+						'page_title' => 'PageBuilder Admin Page',
+						'page_meta_desc' => 'Admin page for the Pagebuilder module',
+				),
+		);
+	}
+	
 	public function execute()
 	{
 
