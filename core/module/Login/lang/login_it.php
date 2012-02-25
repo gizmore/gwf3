@@ -64,7 +64,8 @@ $lang = array(
 		PHP_EOL.
 		'Verrà avvisato ad ogni tentativo di accesso fallito.'.PHP_EOL.
 		PHP_EOL.
-		'Cordiali saluti,<br/>'.
+		'Cordiali saluti,<br/>'.PHP_EOL.
+		PHP_EOL.
 		'Il team di '.GWF_SITENAME,
 		
 		#monnino fixes

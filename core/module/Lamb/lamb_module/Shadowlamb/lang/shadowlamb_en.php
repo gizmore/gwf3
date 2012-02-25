@@ -684,12 +684,12 @@ $lang = array(
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Possible sections in surgery: %s.', # Some sections fmt_rawlist.
 '5263' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
-'5264' => '',
-'5265' => '',
-'5266' => '',
-'5267' => '',
-'5268' => '',
-'5269' => '',
-'5270' => '',
+//'5264' => '',
+//'5265' => '',
+//'5266' => '',
+//'5267' => '',
+//'5268' => '',
+//'5269' => '',
+//'5270' => '',
 );
 ?>

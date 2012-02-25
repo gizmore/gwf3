@@ -72,5 +72,6 @@ $lang = array(
 	'su' => 'whisper',
 	'sub' => 'whisper_back',
 	'mos' => 'show',
+	'do' => 'sleep',
 );
 ?>

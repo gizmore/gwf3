@@ -124,7 +124,7 @@ $lang = array (
 		'%10$s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' script!',
 );
 ?>

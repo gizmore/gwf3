@@ -176,7 +176,7 @@ $lang = array(
 		PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# v2.04 Change Password

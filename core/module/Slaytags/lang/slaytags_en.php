@@ -78,7 +78,7 @@ $lang = array(
 		'You can delete it here:'.PHP_EOL.
 		'%6$s'.PHP_EOL.
 		PHP_EOL.
-		'Sincerly'.PHP_EOL.
+		'Sincerely'.PHP_EOL.
 		'The Slaytagginsite',
 		
 	# config

@@ -63,7 +63,7 @@ $lang = array(
 		PHP_EOL.
 		'We just let you know.'.PHP_EOL.
 		PHP_EOL.
-		'Sincerly'.
+		'Sincerely'.
 		'The '.GWF_SITENAME.' script',
 );
 ?>

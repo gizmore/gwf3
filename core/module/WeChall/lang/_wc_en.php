@@ -434,7 +434,7 @@ $lang = array(
 		PHP_EOL.
 		'If you did not request to link the accounts, you could alert us by writing an email to '.GWF_ADMIN_EMAIL.', or simply ignore it.'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The WeChall Script',
 		
 	# Admin config

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'The Burning Fox ', # Foxi inflammabile?
+	'title' => 'Volpe Ardente',
 	'info' =>
 		'La nostra agenzia di sicurezza ha ricevuto una copia portabile di Firefox.<br/>'.
 		'Il tuo lavoro è di recuperare la password principale così che le autorità possano investigare sui siti e sulle informazioni private generate da questa persona.<br/>'.
@@ -8,11 +8,11 @@ $lang = array(
 		'<br/>'.
 		'Buona fortuna!',
 
-	'disc_title' => 'Disclaimer',
+	'disc_title' => 'Disclaimer ',
 	'disclaimer' =>
-		'Firefox is a trademark of Mozilla and &quot;Open Source&quot;<br/>'.PHP_EOL.
-		'You are allowed to distribute the source but not rebrand it.<br/>'.PHP_EOL.
+		'Firefox è un marchio registrato da Mozilla ed è &quot;Open Source&quot;<br/>'.PHP_EOL.
+		'E\' consentito distrubirne il sorgente ma non sotto un nome diverso.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Mozilla\'s Firefox is used by gizmore daily since 2003, and there is still no better browser according to him.',
+		'Mozilla Firefox è usato da gizmore quotidianamente dal 2003 e, secondo lui, è tutt\'ora il miglior browser.',
 );
 ?>

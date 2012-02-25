@@ -22,7 +22,7 @@ $lang = array(
 		'I just want to tell you the solution to the GPG challenge.'.PHP_EOL.
 		'It is: %2$s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The WeChall Bot!',
 		
 	'msg_mail_sent' => 'We have sent you an encrypted email to %1$s which contains the solution.',

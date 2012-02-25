@@ -79,7 +79,7 @@ $lang = array(
 		PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 				
 	# CHANGE MAIL B
@@ -90,7 +90,7 @@ $lang = array(
 		'To use this email address as your main contact address you have to confirm it by visiting the URL below:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# CHANGE DEMO
@@ -110,7 +110,7 @@ $lang = array(
 		'If you want to keep these settings, please use the link below:'.PHP_EOL.
 		'%s'.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 
 	# New Flags 
@@ -176,7 +176,7 @@ $lang = array(
 		PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' staff',
 		
 	# v2.04 Change Password

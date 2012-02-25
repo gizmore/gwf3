@@ -195,7 +195,7 @@ $lang = array(
 		PHP_EOL.
 		'The post will get automatically shown after %s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,
 
 	# New Post EMail
@@ -222,7 +222,7 @@ $lang = array(
 		'To unsubscribe from the whole board, you can follow this link:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards'.PHP_EOL.
+		'Kind Regards,'.PHP_EOL.
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,
 		
 	'submail_body_part' =>  # that`s the %s above

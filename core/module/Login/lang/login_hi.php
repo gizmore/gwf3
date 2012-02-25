@@ -54,7 +54,8 @@ PHP_EOL.
 PHP_EOL.
 'हम बस चलो तुम्हें पता है'.PHP_EOL.
 PHP_EOL.
-'Sincerly'.
+'Sincerely,'.
+		PHP_EOL.
 GWF_SITENAME.' स्क्रिप्ट',
 );
 ?>
