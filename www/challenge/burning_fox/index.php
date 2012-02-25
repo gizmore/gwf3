@@ -10,6 +10,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $chall->onCheckSolution();
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('disclaimer'), $chall->lang('disc_title'));
 formSolutionbox($chall, 14);
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');

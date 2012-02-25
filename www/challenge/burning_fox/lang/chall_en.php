@@ -7,5 +7,12 @@ $lang = array(
 		'You can download the portable version from this folder, filename &quot;burningfox.zip&quot;.<br/>'.
 		'<br/>'.
 		'Good Luck!',
+		
+	'disc_title' => 'Disclaimer',
+	'disclaimer' =>
+		'Firefox is a trademark of Mozilla and &quot;Open Source&quot;<br/>'.PHP_EOL.
+		'You are allowed to distribute the source but not rebrand it.<br/>'.PHP_EOL.
+		'<br/>'.PHP_EOL.
+		'Mozilla\'s Firefox is used by gizmore daily since 2003, and there is still no better browser according to him.',
 );
 ?>
