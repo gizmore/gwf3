@@ -429,7 +429,8 @@ final class GWF_ModuleLoader
 	 */
 	public static function installHTMenu(array $modules)
 	{
-		if(false === ($navigation = GWF_Module::loadModuleDB('Navigation', false, false, true)) || false === $navigation->isEnabled() || false === $navigation->PMisLocked())
+		$navigation = GWF_Module::loadModuleDB('Navigation', false, false, true);
+		if ((false === $navigation) || (false === $navigation->isEnabled()) || (false === $navigation->cfgLockedPageMenu()))
 		{
 			return false; //Module Navigation not enabled or cannot be modified!
 		}
@@ -462,8 +463,8 @@ final class GWF_ModuleLoader
 						else
 						{
 							# set permissions, overwritable
-							$groups = $this->method->getUserGroups();
-							$groups = $groups ? implode(',', $groups) : '';
+							$groups = $method->getUserGroups();
+							$groups = $groups ? implode(',', (array)$groups) : '';
 							$pmlinks[$k] = array_merge(array('page_groups' => $groups), $a);
 						}
 					}
@@ -476,7 +477,7 @@ final class GWF_ModuleLoader
 				}
 			}
 			# Module does not have PageMenu Links?
-			if($pml[$name] === array())
+			if(true === empty($pml[$name]))
 			{
 				unset($pml[$name]);
 			}
