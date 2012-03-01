@@ -40,12 +40,7 @@ final class GWF_LoginHistory extends GDO
 	public static function getLastLogin($userid)
 	{
 		$userid = (int)$userid;
-		return self::table(__CLASS__)->selectFirstObject('*', "loghis_uid=$userid");
-//		return $result;
-//		if ( (false === ($result = self::table(__CLASS__)->select("loghis_uid=$userid", 'loghis_time DESC', 1, 1))) || (count($result)===0) ){
-//			return false;
-//		}
-//		return $result[0];
+		return self::table(__CLASS__)->selectFirst('*', "loghis_uid={$userid}", 'loghis_time DESC', NULL, GDO::ARRAY_O, 1);
 	}
 	
 	###############
