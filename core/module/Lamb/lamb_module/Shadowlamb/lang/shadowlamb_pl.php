@@ -350,6 +350,8 @@ $lang = array(
 '1173' => 'Your gender is unknown. Valid genders: %s.',
 '1174' => "The command is not available for your current action or location. Try {$c}c [<l|long>] to see all currently available commands.",
 '1175' => 'That\'s more than I offer, chummer.',
+'1176' => 'You cannot do suregery on your %s.',
+'1177' => 'You are at the minimum %s level of %s for your race.',
 
 ########################
 # 10000-14999 = Spells #
@@ -679,5 +681,7 @@ $lang = array(
 '5259' => 'Trains: %s.', # Travel target list fmt_sumlist.
 '5260' => 'You gained +%s MP (%s/%s).', # From orcas effect
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
+'5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
+'5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
 );
 ?>

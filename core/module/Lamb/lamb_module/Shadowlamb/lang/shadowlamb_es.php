@@ -349,7 +349,10 @@ $lang = array(
 '1172' => 'Tu raza es desconocida ó es una raza NPC. Razas válidas: %s.',
 '1173' => 'Tu género es desconocido. Géneros válidos: %s.',
 '1174' => "El comando no esta disponible en tu actual acción o lugar. Intenta {$c}c [<l|long>] para ver todos los comandos disponibles.",
+
 '1175' => 'That\'s more than I offer, chummer.',
+'1176' => 'You cannot do suregery on your %s.',
+'1177' => 'You are at the minimum %s level of %s for your race.',
 
 ########################
 # 10000-14999 = Spells #
@@ -675,7 +678,10 @@ $lang = array(
 '5257' => '%s', # Arrive city message.
 '5258' => '%s', # clan message
 '5259' => 'Trenes: %s.', # Travel target list fmt_sumlist.
+
 '5260' => 'You gained +%s MP (%s/%s).', # From orcas effect
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
+'5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
+'5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
 );
 ?>

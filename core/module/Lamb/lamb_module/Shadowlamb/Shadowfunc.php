@@ -1438,5 +1438,41 @@ final class Shadowfunc
 	{
 		return (false === ($index = array_search($type, SR_Player::$EQUIPMENT))) ? $type : $index;
 	}
+	
+	public static function isSpell($spellname)
+	{
+		foreach (SR_Spell::getSpells() as $spell)
+		{
+			$spell instanceof SR_Spell;
+			if ($spell->getName() === $spellname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static function unshortcutVariable(SR_Player $player, $var)
+	{
+		$lang = Shadowlang::getVarFile();
+		return self::unshortcut($var, $lang->getTrans($player->getLangISO()));
+	}
+
+	public static function shortcutVariable(SR_Player $player, $var)
+	{
+		$lang = Shadowlang::getVarFile();
+		return self::shortcut($var, $lang->getTrans($player->getLangISO()));
+	}
+
+	public static function untranslateVariable(SR_Player $player, $var)
+	{
+		$lang = Shadowlang::getVariableFile();
+		return self::unshortcut($var, $lang->getTrans($player->getLangISO()));
+	}
+	
+	public static function translateVariable(SR_Player $player, $var)
+	{
+		return Shadowlang::langVariable($player, $var);
+	}
 }
 ?>

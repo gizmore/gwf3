@@ -351,8 +351,8 @@ $lang = array(
 '1173' => 'Il tuo genere è sconosciuto. Generi validi: %s.',
 '1174' => "Il comando non è disponibile per la tua corrente località. Utilizza {$c}c [<l|lunghi>] per vedere tutti i comandi attualmente disponibili.",
 '1175' => 'E\' più di quanto ho, fratello.',
-//'1176' => '',
-//'1177' => '',
+'1176' => 'You cannot do suregery on your %s.',
+'1177' => 'You are at the minimum %s level of %s for your race.',
 //'1178' => '',
 //'1179' => '',
 //'1180' => '',
@@ -684,6 +684,6 @@ $lang = array(
 '5260' => 'Hai guadagnato +%s MP (%s/%s).', # From orcas effect
 '5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
-'5263' => 'Interventi di chirurgia possibili: %s.', # Some prices fmt_sumlist.
+'5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
 );
 ?>

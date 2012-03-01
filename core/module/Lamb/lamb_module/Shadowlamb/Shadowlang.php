@@ -6,9 +6,13 @@ final class Shadowlang
 	private static $LANG_LOCATION = array();
 	private static $LANG_ITEM;
 	private static $LANG_HELP;
+	private static $LANG_VARS;
+	private static $LANG_VARIABLES;
 	
 	public static function getItemFile() { return self::$LANG_ITEM; }
 	public static function getHelpFile() { return self::$LANG_HELP; }
+	public static function getVarFile() { return self::$LANG_VARS; }
+	public static function getVariableFile() { return self::$LANG_VARIABLES; }
 	
 	public static function onLoadLanguage()
 	{
@@ -18,7 +22,13 @@ final class Shadowlang
 		self::$LANG_LOCATION = array();
 		self::$LANG_HELP = new GWF_LangTrans("{$dir}/lang/help/shadowhelp");
 		self::$LANG_ITEM = new GWF_LangTrans("{$dir}/lang/item/shadowitems");
+		self::$LANG_VARS = new GWF_LangTrans("{$dir}/lang/vars/vars");
+		self::$LANG_VARIABLES = new GWF_LangTrans("{$dir}/lang/variables/variables");
 	}
+	
+	############
+	### NPCs ###
+	############
 	
 	public static function langNPC(SR_NPC $npc, SR_Player $player, $key, $args=NULL)
 	{
@@ -64,6 +74,10 @@ final class Shadowlang
 		return self::$LANG_NPC[$cl];
 	}
 	
+	##############
+	### Quests ###
+	##############
+	
 	public static function langQuest(SR_Quest $quest, SR_Player $player, $key, $args)
 	{
 		return self::getLangQuest($quest)->langISO($player->getLangISO(), $key, $args);
@@ -85,7 +99,10 @@ final class Shadowlang
 		}
 		return self::$LANG_QUEST[$cl];
 	}
-	
+
+	#################
+	### Locations ###
+	#################
 	
 	public static function langLocation(SR_Location $location, SR_Player $player, $key, $args=NULL)
 	{
@@ -108,5 +125,19 @@ final class Shadowlang
 		}
 		return self::$LANG_QUEST[$locname];
 	}
+	
+	#################
+	### Variables ###
+	#################
+	public static function langVar(SR_Player $player, $key, $args=NULL)
+	{
+		return self::$LANG_VARS->langISO($player->getLangISO(), $key, $args);
+	}
+
+	public static function langVariable(SR_Player $player, $key, $args=NULL)
+	{
+		return self::$LANG_VARIABLES->langISO($player->getLangISO(), $key, $args);
+	}
+
 }
 ?>
