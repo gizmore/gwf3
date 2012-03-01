@@ -30,7 +30,8 @@ final class Module_GWF extends GWF_Module
 	# Error Config
 	public function cfgLog() { return $this->getModuleVar('log', '403,404'); }
 	public function cfgMail() { return $this->getModuleVar('mail', '403,404'); }
-	
+	public function cfgBlacklist() { return 'mo=GWF,me=Error,favicon.ico,.png'; } # TODO: dont want to write updatescript
+
 	# Captcha Config
 	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
 	public function cfgCaptchaFont()

@@ -5,6 +5,8 @@
  */
 final class GWF_Error extends GWF_Method
 {
+	protected $_tpl = 'error.tpl';
+
 	public function getHTAccess()
 	{
 		return 'RewriteRule ^error/(.*?)$ index.php?mo=GWF&me=Error&code=$1'.PHP_EOL;
@@ -48,39 +50,50 @@ final class GWF_Error extends GWF_Method
 		);
 
 		# Get the error page
-		$code = Common::getGet('code', '0');
-		if(false === isset($errors[$code]))
+		$code = Common::getGetString('code', '0');
+		if (false === isset($errors[$code]))
 		{
 			return GWF_HTML::error('ERR_NO_PERMISSION');
 		}
 
 		@header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.$errors[$code]);
 
+		# Generate template
+		$tVars = array(
+			'code' => $code,
+			'file' => GWF_HTML::error(GWF_SITENAME, GWF_HTML::getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false), # FIXME: this is frontend work!
+		);
+		$template = $this->module->template($this->_tpl, $tVars);
+
+		# Is the request blacklisted?
+		foreach (preg_split('/[,;]/', $this->module->cfgBlacklist()) as $pattern)
+		{
+			if (false !== strpos($_SERVER['REQUEST_URI'], $pattern))
+			{
+				# Do not log and email the request
+				return $template;
+			}
+		}
+
 		$message = self::getMessage($code);
 
 		# Mail it?
-		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgMail()))
+		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgMail()))
 		{
 			self::errorMail($code, $message);
 		}
 
 		# Log it?
-		if(1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgLog()))
+		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgLog()))
 		{
 			GWF_Log::logHTTP($message);
 		}
 
-		$tVars = array(
-			'code' => $code,
-			'file' => GWF_HTML::error(GWF_SITENAME, GWF_HTML::getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false),
-		);
-		
-		return $this->module->template('error.tpl', $tVars);
+		return $template;
 	}
 	
 	public static function errorMail($subject, $body)
 	{
-		# TODO: blacklist for domains or paths by config?
 		return GWF_Mail::sendDebugMail(': HTTP Error '.$subject, $body);
 	}
 
