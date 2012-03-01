@@ -18,7 +18,7 @@ final class PM_Show extends GWF_Method
 			return $error;
 		}
 		
-		GWF_Website::addJavascript('http://www.google.com/jsapi');
+		GWF_Website::addJavascript(Common::getProtocol().'://www.google.com/jsapi');
 		GWF_Website::addJavascriptInline('google.load("language", "1");');
 		
 		GWF_Website::setPageTitle($this->pm->display('pm_title'));
