@@ -48,7 +48,7 @@ final class GWF_Javascript
 	{
 		$boundary = self::BOUNDARY;
 		echo "--$boundary\n";
-//		ob_flush();
+		ob_flush(); # XXX WTF needed sometimes, sometimes not Oo
 		flush();
 	}
 	
@@ -58,7 +58,7 @@ final class GWF_Javascript
 	 */
 	public static function flush()
 	{
-//		echo(str_repeat(' ',256));
+// 		echo(str_repeat(' ',256));
 		echo self::BOUNDARY.PHP_EOL;
 		
 		if (ob_get_length())
