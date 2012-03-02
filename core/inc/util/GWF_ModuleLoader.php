@@ -307,6 +307,14 @@ final class GWF_ModuleLoader
 		return $back;
 	}
 	
+	public static function removeModuleVar(GWF_Module $module, $key)
+	{
+		$mid = $module->getID();
+		$ekey = GDO::escape($key);
+		$var_t = GDO::table('GWF_ModuleVar');
+		return $var_t->deleteWhere("mv_mid={$mid} AND mv_key='{$ekey}'");
+	}
+	
 	public static function getVarValue($value, $type, $min, $max, &$exceed=0)
 	{
 		switch ($type)
