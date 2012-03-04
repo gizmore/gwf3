@@ -465,7 +465,8 @@ class SR_Item extends GDO
 	
 	public function displayModifiersA(SR_Player $player)
 	{
-		if ('' === ($out = Shadowfunc::getModifiers($this->getItemModifiersA($player)))) {
+		if ('' === ($out = Shadowfunc::displayModifiers($player, $this->getItemModifiersA($player))))
+		{
 			return '';
 		}
 		return " {$out}.";
@@ -481,7 +482,7 @@ class SR_Item extends GDO
 		{
 			return '';
 		}
-		return Shadowrun4::lang('modifiers', array(Shadowfunc::getModifiers($this->getItemModifiersB())));
+		return Shadowrun4::lang('modifiers', array(Shadowfunc::displayModifiers($player, $this->getItemModifiersB())));
 // 		$b = chr(2);
 // 		return sprintf(' %sModifiers%s: %s.', $b, $b, Shadowfunc::getModifiers($this->getItemModifiersB()));
 	}
@@ -727,7 +728,7 @@ class SR_Item extends GDO
 	public static function canMergeModifiersLength(SR_item $item, SR_Rune $rune)
 	{
 		$string = $item->getItemName();
-		$string .= '_of_'.$rune->displayModifiersB($item->getOwner());
+		$string .= '_ofxxxxxxx_'.$rune->displayModifiersB($item->getOwner());
 		return strlen($string) <= 255;
 	}
 	

@@ -124,6 +124,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		if ($out === '')
 		{
 			self::reply($player, Shadowrun4::lang('1010'));
+			return false;
 		}
 
 		$message = Shadowrun4::lang('5009', array(substr($out, 2)));

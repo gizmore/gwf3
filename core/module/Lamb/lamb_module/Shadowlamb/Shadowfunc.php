@@ -344,7 +344,7 @@ final class Shadowfunc
 		return true === isset($array[$string]) ? $array[$string] : $string;
 	}
 	
-	public static function shortcut($string, $array)
+	public static function shortcut($string, array $array)
 	{
 		$string = strtolower($string);
 		if ($array === false)
@@ -881,17 +881,19 @@ final class Shadowfunc
 		return substr($back, 2);
 	}
 	
-	public static function displayModifiers(array $modifiers)
+	public static function displayModifiers(SR_Player $player, array $modifiers)
 	{
 		if (count($modifiers) === 0)
 		{
 			return '';
 		}
+		
 		$back = '';
 		$format = Shadowrun4::lang('fmt_stats');
 		foreach ($modifiers as $k => $v)
 		{
-			$back .= sprintf($format, $k, $v, '', self::shortcutModifier($k), $v);
+			$mod = Shadowfunc::translateVariable($player, $k);
+			$back .= sprintf($format, $mod, $v, '', self::shortcutModifier($k), $v);
 		}
 		return substr($back, 2);
 	}
@@ -1317,6 +1319,7 @@ final class Shadowfunc
 			{
 				$dprice = sprintf("(%s)",Shadowfunc::displayNuyen($data[2]));
 			}
+			
 			$back .= sprintf(', %s%d%s-%s%s%s', $b, $idx+1, $b, $itemname, $count, $dprice);
 		}
 		$back = substr($back,2);
@@ -1446,7 +1449,7 @@ final class Shadowfunc
 	
 	public static function shortcutModifier($modifier)
 	{
-		return Shadowfunc::shortcut($modifier, SR_Player::$REV_ALL);
+		return Shadowfunc::shortcut($modifier, SR_Player::$ALL);
 // 		return true === isset(SR_Player::$REV_ALL[$modifier]) ? SR_Player::$REV_ALL[$modifier] : $modifier;
 	}
 
@@ -1489,6 +1492,17 @@ final class Shadowfunc
 	public static function translateVariable(SR_Player $player, $var)
 	{
 		return Shadowlang::langVariable($player, $var);
+	}
+
+	/**
+	 * Turn a var into translated shortcut.
+	 * @param SR_Player $player
+	 * @param string $var
+	 * @return string
+	 */
+	public static function translateVar(SR_Player $player, $var)
+	{
+		return self::shortcut($var, Shadowlang::getVarFile()->getTrans($player->getLangISO()));
 	}
 }
 ?>
