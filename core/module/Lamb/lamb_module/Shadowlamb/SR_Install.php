@@ -22,7 +22,6 @@ final class SR_Install
 		}
 		
 		return true;
-// 		return self::onCreateLangFiles();
 	}
 	
 	##############################
@@ -32,8 +31,8 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
-// 		return self::createItemLangFile();
-		return true;
+		return self::createItemLangFile();
+// 		return true;
 // 		return
 // 			(true === self::createNPCLangFiles()) &&
 // 			(true === self::createQuestLangFiles()) &&
@@ -245,26 +244,52 @@ final class SR_Install
 	}
 	private static function createItemLangFile()
 	{
+// 		printf("%s\n", __METHOD__);
+		
 		$langfile = Shadowlang::getItemfile();
 		
 		$items = SR_Item::getAllItems();
 		usort($items, array('SR_Item', 'sort_type_asc'));
 		
+		$old_type = '';
+		
+// 		printf("%s: sorted items...\n", __METHOD__);
+		
 		foreach (Lamb::instance()->getISOCodes() as $iso)
 		{
+			$path = sprintf('%slang/item/shadowitems_%s.php', Shadowrun4::getShadowDir(), $iso);
+			
+			if (false === Common::isFile($path))
+			{
+				continue;
+			}
+			
 			$out = '<?php'.PHP_EOL;
 			$out .= '$lang = array('.PHP_EOL;
 		
 			foreach ($items as $item)
 			{
 				$item instanceof SR_Item;
+				
+				
+				$type = $item->getItemType();
+				if ($old_type !== $type)
+				{
+// 					printf("%s: New subsection %s\n", __METHOD__, $type);
+					$old_type = $type;
+					$out .= PHP_EOL;
+					$out .= '# '.$type.PHP_EOL;
+				}
+				
 				$key = $item->getName();
 				if ($key === ($trans = $langfile->langISO($iso, $key)))
 				{
+// 					printf("%s: Unknown Key %s\n", __METHOD__, $key);
 					$out .= sprintf("'%s' => '%s',", $key, str_replace("'", '\\\'', $trans));
 				}
 				else
 				{
+// 					printf("%s: Old Key %s\n", __METHOD__, $key);
 					$out .= sprintf("'%s' => '%s',", $key, str_replace("'", '\\\'', $trans));
 				}
 				$out .= PHP_EOL;
@@ -285,7 +310,6 @@ final class SR_Install
 			$out .= ');'.PHP_EOL;
 			$out .= '?>'.PHP_EOL;
 			
-			$path = sprintf('%slang/item/shadowitems_%s.php', Shadowrun4::getShadowDir(), $iso);
 			GWF_File::writeFile($path, $out);
 		}
 		

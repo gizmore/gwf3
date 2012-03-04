@@ -1,7 +1,6 @@
 <?php
 $lang = array(
-
-# amulet
+# Amulets
 'Amulet' => 'Amuleto',
 'Amulet__desc__' => 'Un amuleto dorato. E... costoso.',
 'LO_Amulet' => 'Amuleto_LO',
@@ -13,7 +12,7 @@ $lang = array(
 'UM_Amulet' => 'Amuleto_UM',
 'UM_Amulet__desc__' => 'Un pezzo della famosa meteora Thalion.',
 
-# armor
+# Body Armor
 'BikerJacket' => 'GiaccaDaMotociclista',
 'BikerJacket__desc__' => 'Una giacca da motociclista. Sul retro c\'è scritto "Hell or Angel".',
 'Blouse' => 'Camicetta',
@@ -68,8 +67,8 @@ $lang = array(
 'WizardCloak__desc__' => 'Una corta veste da mago nera. Da abbinare con occhiali ed un libro.',
 'WizardRobe' => 'GiubbottoDaMago',
 'WizardRobe__desc__' => 'Una vesta bianca per maghi Da abbinare ad una lunga barba.',
-
-# boots
+		
+# Boots
 'ArmyBoots' => 'StivaliMilitari',
 'ArmyBoots__desc__' => 'Stivali militari grigi-verdognoli.',
 'BikerBoots' => 'StivaliDaMotociclista',
@@ -105,7 +104,7 @@ $lang = array(
 'TinfoilSandals' => 'SandaliInStagnola',
 'TinfoilSandals__desc__' => 'Dei semplici sandali rivestiti di carta stagnola. Insieme ad un ElmettoInStagnola diventerai un magnifico capacitore.',
 
-# earring
+# Earrings
 'Earring' => 'Orecchini',
 'Earring__desc__' => 'Un piccolo orecchino. Non proprio da pirata..',
 'LO_Earring' => 'Orecchini_LO',
@@ -113,7 +112,7 @@ $lang = array(
 'UM_Earring' => 'Orecchini_UM',
 'UM_Earring__desc__' => 'Un orecchino magico, creato da vecchi nani.',
 
-# helmet
+# Helmet
 'ArmyHelmet' => 'ElmettoMilitare',
 'ArmyHelmet__desc__' => 'Un elmetto leggero che garantisce un ottima protezione.',
 'BikerHelmet' => 'CascoDaMotociclista',
@@ -144,8 +143,8 @@ $lang = array(
 'TinfoilCap__desc__' => 'Un capuccio fatto di stagnola. Ti protegge dagli alieni succhiacervelli.',
 'WizardHat' => 'CappelloDaMago',
 'WizardHat__desc__' => 'Un largo capello da mago.',
-
-# item
+		
+# Miscellaneous
 'AimElixir' => 'ElisirDellaMira',
 'AimElixir__desc__' => 'Una pozione magica che incrementa la tua abilità con le armi da fuoco per qualche tempo.',
 'AimWater' => 'AcquaDellaMira',
@@ -191,7 +190,7 @@ $lang = array(
 'Coke' => 'Coca-Cola',
 'Coke__desc__' => '0.33 litri di Coca~Cola.',
 'Collar' => 'Collare',
-'Collar__desc__' => 'Un collare da Mogrid. Devi portare questo a Mr.Johnson ai Seattle Deckers.',
+'Collar__desc__' => 'Un collare da Mogrid. Devi portare questo a Mr.Johnson ai Seattle Deckers.', #TODO: Translate deckers
 'Credstick' => 'Credstick',
 'Credstick__desc__' => 'Puoi accedere ai soldi depositati in banca con un Credstick. Prova #usa Credstick [<versa|ritira>] [<totale>]. Ogni transazione con la carta costa 50.00¥. Esempio #usa Credstick versa 100.',
 'Cybermuscles' => 'Cybermuscoli',
@@ -263,7 +262,7 @@ $lang = array(
 'MolotovCocktail' => 'CocktailMolotov',
 'MolotovCocktail__desc__' => 'Farà del danno al gruppo nemico su una vasta area.',
 'MON_Rune' => 'Runa_MON',
-'MON_Rune__desc__' => 'Una delle rune misteriose create dai dungeon masters stessi.',
+'MON_Rune__desc__' => 'Una delle rune misteriose create dai dungeon masters stessi.', #TODO: Ask for dungeon masters
 'NIA62' => 'NIA62',
 'NIA62__desc__' => 'Un cyberdeck NIA62 abbastanza nuovo, prodotto da Vizions-Unlimted(tm).',
 'NinjaElixir' => 'ElisirNinja',
@@ -271,15 +270,15 @@ $lang = array(
 'NinjaPotion' => 'PozioneNinja',
 'NinjaPotion__desc__' => 'Pozione magica che aumenta le tue skill ninja per un periodo di tempo limitato.',
 'Note' => 'Nota',
-'Note__desc__' => 'Sulla nota leggi: "Non è sicuro parlare qui. Incontrami al Store.".',
+'Note__desc__' => 'Sulla nota leggi: "Non è sicuro parlare qui. Incontrami al Store.".', #TODO: Translate store
 'NySoftBackup' => 'backupNySoft',
-'NySoftBackup__desc__' => 'Un file virtuale sul tuo computer celebrale. Gli ultimi backup NySoft che devi portare a Mr.Johnson nel Club Owls, Chicago.',
+'NySoftBackup__desc__' => 'Un file virtuale sul tuo computer celebrale. Gli ultimi backup NySoft che devi portare a Mr.Johnson nel Club Owls, Chicago.', #TODO: translate owls club
 'ON_Rune' => 'Runa_ON',
 'ON_Rune__desc__' => 'Una runa fatta dal concilio dei maghi.',
 'PA_Rune' => 'Runa_PA',
 'PA_Rune__desc__' => 'Una rara runa dal lato oscuro della magia.',
 'Package' => 'Pacchetto',
-'Package__desc__' => 'Un pacco. Devi consegnarlo al portiere del Seattle_Hotel.',
+'Package__desc__' => 'Un pacco. Devi consegnarlo al portiere del Seattle_Hotel.', # TODO: Translated seattle hotel
 'Pen' => 'Penna',
 'Pen__desc__' => 'Una pennza dell\'ufficio Renraku.',
 'Pizza' => 'Pizza',
@@ -321,7 +320,7 @@ $lang = array(
 'SmallFirstAid' => 'KitPrimoSoccorsoPiccolo',
 'SmallFirstAid__desc__' => 'Un piccolo kit di primo soccorso per curare giocatori amici. Sfortunatamente non contiene molti strumenti curativi.',
 'SmartGoggles' => 'VisoreIntelligente',
-'SmartGoggles__desc__' => 'Connetti i tuoi occhi alla tua pistola, migliorando la probabilità di colpire (firearms+2).',
+'SmartGoggles__desc__' => 'Connetti i tuoi occhi alla tua pistola, migliorando la probabilità di colpire (firearms+2).', #TODO: Translate
 'SmithHammer' => 'MartelloDaFabbro',
 'SmithHammer__desc__' => 'Un martello di qualità per battere il ferro. Non è un arma.',
 'SparklingWine' => 'Spumante',
@@ -354,8 +353,8 @@ $lang = array(
 'WiredReflexesV2__desc__' => 'I riflessi cablati migliorati aumenteranno la tua velocità(+3). Utilizzati dalle forze speciali.',
 'WiredReflexesV3' => 'RiflessiCablatiV3',
 'WiredReflexesV3__desc__' => 'I riflessi cablati militari aumenteranno la tua velocità(+4).',
-
-# legs
+		
+# Legs
 'BikerLegs' => 'PantaloniDaMotociclista',
 'BikerLegs__desc__' => 'Pantaloni da motociclista. Utili per un giro in moto.',
 'ChainLegs' => 'GambaliDiMaglia',
@@ -386,8 +385,8 @@ $lang = array(
 'StuddedLegs__desc__' => 'Pantaloni borchiati in pelle. Il sogno dei motociclisti.',
 'Trousers' => 'Pantaloni',
 'Trousers__desc__' => 'Dei jeans economici.',
-
-# mount
+		
+# Mounts
 'Aygo1000' => 'Aygo1000',
 'Aygo1000__desc__' => 'Una vecchia macchina economica prodotta dalla Toyota negli anni 20. Il nome "Speggen" è intagliato nel cruscotto.',
 'Backpack' => 'Zaino',
@@ -404,8 +403,6 @@ $lang = array(
 'Famstar2400__desc__' => 'Uno vecchio ed usato minivan per la famiglia prodotto dalla Toyota ancora in buono stato. Ha 2400ccm e un bagagliato da 80kg con una velocità massima di 155km/h.',
 'Horse' => 'Cavallo',
 'Horse__desc__' => 'Puoi addirittura comprarti un cavallo. Strepitoso!',
-'Kingstar2600' => 'Kingstar2600',
-'Kingstar2600__desc__' => 'An older minivan from the Famstar family produced by Unico. It\'s still in good shape. It has 2450ccm and 120kg storage with a maxspeed of 155km/h.',
 'Moped' => 'Scooter',
 'Moped__desc__' => 'Un vecchio scooter da 125cc.',
 'Pockets' => 'Tasche',
@@ -418,10 +415,8 @@ $lang = array(
 'Skateboard__desc__' => 'Un semplice skateboard. Fai attenzione a non cadere!',
 'Skates' => 'PattiniInLinea',
 'Skates__desc__' => 'Dei nuovi pattini in linea fiammanti.',
-'XDStar2500' => 'XDStar2500',
-'XDStar2500__desc__' => 'An old and used minivan from the Famstar family produced by Unico, but it\'s in good shape. It has 2450ccm and 100kg storage with a maxspeed of 155km/h.',
-
-# ring
+		
+# Rings
 'EE_Ring' => 'Anello_EE',
 'EE_Ring__desc__' => 'Un anello fabbricato dai nativi indiani.',
 'LO_Ring' => 'Anello_LO',
@@ -438,8 +433,8 @@ $lang = array(
 'UM_Ring__desc__' => 'Un anello creato dal concilio magico.',
 'WeddingRing' => 'FedeNuziale',
 'WeddingRing__desc__' => 'Il tuo anello nuziale. Al momento sei spostao con il Tuo PC.',
-
-# shield
+		
+# Shields
 'CopShield' => 'ScudoDaPoliziotto',
 'CopShield__desc__' => 'Un grosso scudo da poliziotto. Non uno scudo antisommossa, ma protettivo nondimeno.',
 'ElvenShield' => 'ScudoElfico',
@@ -453,7 +448,7 @@ $lang = array(
 'SmallShield' => 'ScudoPiccolo',
 'SmallShield__desc__' => 'Un raffinato scudo piccolo ornamentale, creato dagli orchi.',
 
-# weapon
+# Ranger Weapons
 'DarkBow' => 'ArcoOscuro',
 'DarkBow__desc__' => 'Un arco oscuro, creato dagli elfi scudi. E\' un arma vera, non un giocattolo.',
 'ElvenBow' => 'ArcoElfico',
@@ -472,30 +467,58 @@ $lang = array(
 'Microgun__desc__' => 'La Microgun spara munizioni speciali da 4mm con un alto volume di fuoco.',
 'ArchStaff' => 'BastoneDaArcimago',
 'ArchStaff__desc__' => 'Un bastone marrone scudo costruito dai malvagi arci-elfi. Richiede dei poteri arcani per poterlo utilizzare correttamente.',
+'Axe' => 'Ascia',
+'Axe__desc__' => 'Un\'ascia di media taglia. Perfetta con una maschera da sci.',
 'BaseballBat' => 'MAzzaDaBaseball',
 'BaseballBat__desc__' => 'Una mazza da baseball fatta di alluminio. Si può usare per altro, oltre che il baseball.',
+'BattleAxe' => 'AsciaDaBattagli',
+'BattleAxe__desc__' => 'Una pesante ascia da battaglia larga a due lame. L\'hai rubata ad un nano?',
 'BrassKnuckles' => 'Tirapugni',
 'BrassKnuckles__desc__' => 'Tirapugni d\'acciaio. Molto meglio dei semplici pugni.',
+'BroadSword' => 'SpadaLarga',
+'BroadSword__desc__' => 'Una spada larga d\'acciaio.',
 'ButchersKnife' => 'Mannaia',
 'ButchersKnife__desc__' => 'Una grande mannaia da macellario. Utile per tagliare carne morta, ma non così utile in combattimento.',
 'Club' => 'Clava',
 'Club__desc__' => 'Una clava di legno. Ti chiedi se l\'umanità si sia veramente evoluta.',
+'DaneAxe' => 'AsciaDanese',
+'DaneAxe__desc__' => 'Un\'ascia vichinga a lama singola. ha un design antico ma è ancora letale in questo periodo.',
 'ElvenStaff' => 'BastoneElfico',
 'ElvenStaff__desc__' => 'Un bastone magico per maghi, incantato dagli elfi.',
 'FairyStaff' => 'BastoneFatato',
 'FairyStaff__desc__' => 'Un bastone marrone chiaro costruito dagli elfi silvani. Richiede dei poteri arcani per utilizzarlo correttamente.',
 'FineStaff' => 'BstoneElegante',
 'FineStaff__desc__' => 'Un bastone elegante con una forza magica. Molto costosa.',
+'HaukAxe' => 'HaukAxe',
+'HaukAxe__desc__' => 'Una grande ascia per tagilare la legna, prodotta da Hauk(tm), il leader di mercato delle asce da taglio.',
+'Hellebard' => 'Alabarda',
+'Hellebard__desc__' => 'Una vecchia alabarda. Pereftta per le antiche battaglie medievali.',
 'IronPipe' => 'TuboDiFerro',
 'IronPipe__desc__' => 'Un pesante tubo di ferro. Utile a rompere le ossa.',
+'Katana' => 'Katana',
+'Katana__desc__' => 'Un capolavoro dell\'arte metallurgica giapponese. Preziosa e letale.',
 'Knife' => 'Coltello',
 'Knife__desc__' => 'Un lungo coltello d\'acciaio.',
+'KnightsSword' => 'SpadaDaCavaliere',
+'KnightsSword__desc__' => 'Una spada lunga da cavaliere, come quelle utilizzare nelle Crociate.',
+'LargeAxe' => 'AsciaLarga',
+'LargeAxe__desc__' => 'Un\'ascia larga. Taglia anche gli alberi. Non è ancora stat testata sulle automobili...',
+'LongSword' => 'SpadaLunga',
+'LongSword__desc__' => 'Una spada lunga d\'acciaio.',
 'Mace' => 'Mazza',
 'Mace__desc__' => 'Una mazza di ferro. Ti domandi perchè armi simili siano diventate popolari negli ultimi anni.',
+'OldAxe' => 'VecchiaAscia',
+'OldAxe__desc__' => 'Un vecchia ascia. Forse sarà utile in mischia.',
 'Pike' => 'Picca',
 'Pike__desc__' => 'Una vecchia picca. Forse sarà utile per il combattimento a distanza.',
 'QWand' => 'BacchettaQ',
 'QWand__desc__' => 'Una piccola bacchetta magica. Brilla di vari colori a seconda di come la si guardi.',
+'SamuraiSword' => 'SpadaSamurai',
+'SamuraiSword__desc__' => 'Un spada samurai finemente ornata.',
+'ShortSword' => 'SpadaCorta',
+'ShortSword__desc__' => 'Una spada corta d\'acciaio.',
+'SmallAxe' => 'AsciaPiccola',
+'SmallAxe__desc__' => 'Una piccola ascia usata per tagliare, occasionalmente, piccoli pezzi di legno.',
 'SpikedClub' => 'ClavaChiodata',
 'SpikedClub__desc__' => 'Una clava chiodata. Sembra che almeno le clave si siano evolute.',
 'Staff' => 'Bastone',
@@ -510,8 +533,6 @@ $lang = array(
 'HanBo__desc__' => 'Un semplice bastone lungo poco più di un metro con una buona impugnatura e un design aerodinamico.',
 'KusariGama' => 'KusariGama',
 'KusariGama__desc__' => 'La Kusari-gama è una combinazione di una falce e una lunga catena con un peso attaccato alla sua fine.',
-'Ninjaken' => 'Ninjaken',
-'Ninjaken__desc__' => 'A sharp Ninja Sword.',
 'NinjaSword' => 'SpadaNinja',
 'NinjaSword__desc__' => 'Un sottile e letale spada ninja nera. Delizioso.',
 'Ninjato' => 'Ninjato',
@@ -539,44 +560,12 @@ $lang = array(
 'William911S' => 'William911S',
 'William911S__desc__' => 'Una solita ed accurata pistola a 9mm. Un pò costosa e non molto famosa.',
 'T250Shotgun' => 'FucileAPompaT250',
-'T250Shotgun__desc__' => 'Un fucile a pompa pesante. Potresti sicuramente creare scompiglo nella scuola di Element con questo.',
+'T250Shotgun__desc__' => 'Un fucile a pompa pesante. Potresti sicuramente creare scompiglo nella scuola di Element con questo.', #TODO: Translate Element
 'AresEleminator' => 'AresEleminator',
 'AresEleminator__desc__' => 'Un fucile da cecchino prodotto da Ares. E\' illegale nella maggior parte delle zone.',
 'HK227sVariant' => 'HK227sVariant',
 'HK227sVariant__desc__' => 'Una piccola mitraglietta da Hekler&Koch. Qualcosa su cui contare in combattimento.',
 'Uzi' => 'Uzi',
 'Uzi__desc__' => 'Una mitragliatrice leggera. Un buon prezzo per una buona arma.',
-'BroadSword' => 'SpadaLarga',
-'BroadSword__desc__' => 'Una spada larga d\'acciaio.',
-'Katana' => 'Katana',
-'Katana__desc__' => 'Un capolavoro dell\'arte metallurgica giapponese. Preziosa e letale.',
-'KnightsSword' => 'SpadaDaCavaliere',
-'KnightsSword__desc__' => 'Una spada lunga da cavaliere, come quelle utilizzare nelle Crociate.',
-'LongSword' => 'SpadaLunga',
-'LongSword__desc__' => 'Una spada lunga d\'acciaio.',
-'Nihonto' => 'Nihonto',
-'Nihonto__desc__' => 'A traditional Japanese Sword. Katana style, and well manufactured.',
-'SamuraiSword' => 'SpadaSamurai',
-'SamuraiSword__desc__' => 'Un spada samurai finemente ornata.',
-'ShortSword' => 'SpadaCorta',
-'ShortSword__desc__' => 'Una spada corta d\'acciaio.',
-'ArabianAxe' => 'ArabianAxe',
-'ArabianAxe__desc__' => 'More a club than an axe, still sharp, heavy and dangerous.',
-'Axe' => 'Ascia',
-'Axe__desc__' => 'Un\'ascia di media taglia. Perfetta con una maschera da sci.',
-'BattleAxe' => 'AsciaDaBattagli',
-'BattleAxe__desc__' => 'Una pesante ascia da battaglia larga a due lame. L\'hai rubata ad un nano?',
-'DaneAxe' => 'AsciaDanese',
-'DaneAxe__desc__' => 'Un\'ascia vichinga a lama singola. ha un design antico ma è ancora letale in questo periodo.',
-'HaukAxe' => 'HaukAxe',
-'HaukAxe__desc__' => 'Una grande ascia per tagilare la legna, prodotta da Hauk(tm), il leader di mercato delle asce da taglio.',
-'Hellebard' => 'Alabarda',
-'Hellebard__desc__' => 'Una vecchia alabarda. Pereftta per le antiche battaglie medievali.',
-'LargeAxe' => 'AsciaLarga',
-'LargeAxe__desc__' => 'Un\'ascia larga. Taglia anche gli alberi. Non è ancora stat testata sulle automobili...',
-'OldAxe' => 'VecchiaAscia',
-'OldAxe__desc__' => 'Un vecchia ascia. Forse sarà utile in mischia.',
-'SmallAxe' => 'AsciaPiccola',
-'SmallAxe__desc__' => 'Una piccola ascia usata per tagliare, occasionalmente, piccoli pezzi di legno.',
 );
 ?>

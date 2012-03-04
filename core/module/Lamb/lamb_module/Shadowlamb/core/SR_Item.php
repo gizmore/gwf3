@@ -355,11 +355,11 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
-		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s%s',
-			$this->getName(),
-			$this->displayType(),
+		return $player->lang('fmt_examine', array(
+			Shadowlang::displayItemname($player, $this),
+			$player->lang($this->displayType()),
 			$this->displayLevel(),
-			$this->getItemDescription(),
+			$this->displayDescription($player),
 			$this->displayModifiersA($player),
 			$this->displayModifiersB($player),
 			$this->displayRequirements($player),
@@ -368,7 +368,27 @@ class SR_Item extends GDO
 			$this->displayWeightB(),
 			$this->displayDuration(),
 			$this->displayWorth()
-		);
+		));
+		
+// 		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s%s',
+// 			$this->getName(),
+// 			$this->displayType(),
+// 			$this->displayLevel(),
+// 			$this->getItemDescription(),
+// 			$this->displayModifiersA($player),
+// 			$this->displayModifiersB($player),
+// 			$this->displayRequirements($player),
+// 			$this->displayRange($player),
+// 			$this->displayUseTime($player),
+// 			$this->displayWeightB(),
+// 			$this->displayDuration(),
+// 			$this->displayWorth()
+// 		);
+	}
+	
+	public function displayDescription(SR_Player $player)
+	{
+		return Shadowlang::displayItemdescr($player, $this);
 	}
 		
 	private function displayRange(SR_Player $player)

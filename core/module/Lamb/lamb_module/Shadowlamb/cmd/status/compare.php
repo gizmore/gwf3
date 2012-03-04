@@ -58,8 +58,8 @@ final class Shadowcmd_compare extends Shadowcmd
 		$type = $item1->getItemType();
 
 		$titles[] = 'Type';
-		$item1Stuff[] = str_replace(" Weapon","",$item1->displayType());
-		$item2Stuff[] = str_replace(" Weapon","",$item2->displayType());
+		$item1Stuff[] = str_replace(" Weapon","",$player->lang($item1->displayType()));
+		$item2Stuff[] = str_replace(" Weapon","",$player->lang($item2->displayType()));
 
 		$titles[] = 'Lvl';
 		$item1Lvl = $item1->getItemLevel();

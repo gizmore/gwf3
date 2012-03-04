@@ -138,6 +138,34 @@ final class Shadowlang
 	{
 		return self::$LANG_VARIABLES->langISO($player->getLangISO(), $key, $args);
 	}
-
+	
+	#############
+	### Items ###
+	#############
+	public static function displayItemname(SR_Player $player, SR_Item $item)
+	{
+		return self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName());
+	}
+	
+	public static function displayItemdescr(SR_Player $player, SR_Item $item)
+	{
+		return self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName().'__desc__');
+	}
+	
+	public static function displayItemnameFull(SR_Player $player, SR_Item $item)
+	{
+		$back = self::displayItemname($player, $item);
+		if ($this->modifiers === NULL)
+		{
+			return $back;
+		}
+		$mod = '';
+		foreach ($this->modifiers as $key => $value)
+		{
+			$key = Shadowfunc::translateVariable($player, $key);
+			$mod .= sprintf(',%s:%s', $key, $value);
+		}
+		return $back.$player->lang('of').substr($mod, 1);
+	}
 }
 ?>

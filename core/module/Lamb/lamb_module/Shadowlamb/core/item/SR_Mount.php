@@ -61,7 +61,7 @@ abstract class SR_Mount extends SR_Equipment
 	############
 	### Item ###
 	############
-	public function displayType() { return 'Mount LOCK '.$this->getMountLockLevelB(); }
+	public function displayType() { return 'Mount'; } #LOCK '.$this->getMountLockLevelB(); }
 	public function displayWeight()
 	{
 		if (0 == ($max = $this->getMountWeightB()))

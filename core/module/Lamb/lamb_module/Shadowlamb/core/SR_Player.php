@@ -2524,7 +2524,7 @@ class SR_Player extends GDO
 	public function getLootNuyen()
 	{
 		$back = round($this->getBase('nuyen') / 8, 2);
-		$this->msg('', array(Shadowfunc::displayNuyen($back)));
+		$this->msg('5254', array(Shadowfunc::displayNuyen($back)));
 // 		$this->message(sprintf('You lost %s!', Shadowfunc::displayNuyen($back)));
 		return $back;
 	}

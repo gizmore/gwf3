@@ -8,7 +8,14 @@ final class Item_WeddingRing extends SR_Ring
 	
 	public function getItemDescription()
 	{
-		$username = Lamb::instance()->getCurrentUser()->getName();
+		if (false === ($user = Lamb::instance()->getCurrentUser()))
+		{
+			$username = '';
+		}
+		else
+		{
+			$username = $user->getName();
+		}
 		
 		$partner = 'Your PC';
 		switch ($username)

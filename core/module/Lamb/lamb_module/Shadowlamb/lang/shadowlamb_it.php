@@ -32,6 +32,7 @@ $lang = array(
 'page' => 'pagina %d/%d: %s.',
 'from_brewing' => 'preparando pozioni magiche',
 'members' => '%d membri',
+'of' => '_with_', # MIT, AVEC, CON
 
 # Options
 'opt_help' => 'Aiuto',
@@ -41,7 +42,41 @@ $lang = array(
 'enabled' => 'attivata',
 'disabled' => 'disattivata',
 
+# Item types
+'Item' => 'Item',
+'Potion' => 'Potion',
+'LvlupScroll' => 'LvlupScroll',
+'Ammo' => 'Ammo',
+'Amulet' => 'Amulet',
+'Armor' => 'Armor',
+'Boots' => 'Boots',
+'Food' => 'Food',
+'Drink' => 'Drink',
+'Cyberdeck' => 'Cyberdeck',
+'Cyberware' => 'Cyberware',
+'Earring' => 'Earring',
+'Bow' => 'Bow',
+'Pistol' => 'Pistol',
+'Shotgun' => 'Shotgun',
+'SMG' => 'SMG',
+'HMG' => 'HMG',
+'Helmet' => 'Helmet',
+'Legs' => 'Legs',
+'Magic Weapon' => 'Magic Weapon',
+'Melee Weapon' => 'Melee Weapon',
+'Sword' => 'Sword',
+'Axe' => 'Axe',
+'Mount' => 'Mount',
+'Ninja Weapon' => 'Ninja Weapon',
+'Quest Item' => 'Quest Item',
+'Ring' => 'Ring',
+'Rune' => 'Rune',
+'Shield' => 'Shield',
+'Usable' => 'Usable',
+'Heal Item' => 'Heal Item',
+
 # PrintF-Formats
+'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
 'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%.02f(%.02f/%.02f)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Età{$b}:%d, %dcm %s", # age, height, weight

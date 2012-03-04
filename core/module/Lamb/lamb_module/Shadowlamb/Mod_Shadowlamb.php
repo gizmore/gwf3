@@ -19,8 +19,18 @@ final class LambModule_Shadowlamb extends Lamb_Module
 	################
 	### Triggers ###
 	################
-	public function onInstall() { require_once 'SR_Install.php'; SR_Install::onInstall(false); Shadowrun4::init(); }
-	public function onInitTimers() { Shadowrun4::initTimers(); }
+	public function onInstall()
+	{
+		require_once 'SR_Install.php';
+		SR_Install::onInstall(false);
+		Shadowrun4::init();
+		SR_Install::onCreateLangFiles();
+	}
+	
+	public function onInitTimers()
+	{
+		Shadowrun4::initTimers();
+	}
 	
 	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args)
 	{

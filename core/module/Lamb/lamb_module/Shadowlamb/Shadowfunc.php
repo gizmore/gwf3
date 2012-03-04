@@ -881,6 +881,21 @@ final class Shadowfunc
 		return substr($back, 2);
 	}
 	
+	public static function displayModifiers(array $modifiers)
+	{
+		if (count($modifiers) === 0)
+		{
+			return '';
+		}
+		$back = '';
+		$format = Shadowrun4::lang('fmt_stats');
+		foreach ($modifiers as $k => $v)
+		{
+			$back .= sprintf($format, $k, $v, '', self::shortcutModifier($k), $v);
+		}
+		return substr($back, 2);
+	}
+	
 	#############
 	### Drops ###
 	#############
@@ -1431,7 +1446,8 @@ final class Shadowfunc
 	
 	public static function shortcutModifier($modifier)
 	{
-		return true === isset(SR_Player::$REV_ALL[$modifier]) ? SR_Player::$REV_ALL[$modifier] : $modifier;
+		return Shadowfunc::shortcut($modifier, SR_Player::$REV_ALL);
+// 		return true === isset(SR_Player::$REV_ALL[$modifier]) ? SR_Player::$REV_ALL[$modifier] : $modifier;
 	}
 
 	public static function shortcutEquipment($type)

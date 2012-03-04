@@ -40,7 +40,7 @@ final class Shadowcmd_show extends Shadowcmd
 			return false;
 		}
 		
-		return $target->msg('5062', array($player->displayName(), $item->getItemInfo($player)));
+		return $target->msg('5062', array($player->displayName(), $item->getItemInfo($target)));
 // 		$msg = sprintf('%s shows you: %s', $player->displayName(), $item->getItemInfo($player));
 // 		return $target->message($msg);
 	}
