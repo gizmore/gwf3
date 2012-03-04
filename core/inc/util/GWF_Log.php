@@ -81,6 +81,20 @@ final class GWF_Log
 	}
 
 	/**
+	 * shorten a string and remove dangerous pattern
+	 *
+	 */
+	public static function &shortString(&$str, $length=256)
+	{
+		$str = substr($str, 0, $length);
+		while (false !== strpos($str, '<?'))
+		{
+			$str = str_replace('<?', '##', $str);
+		}
+		return $str;
+	}
+
+	/**
 	 * strip values from arraykeys which begin with 'pass'
 	 * @todo faster way without foreach...
 	 * print_r and preg_match ?
@@ -101,7 +115,7 @@ final class GWF_Log
 			}
 			$back .= self::$POST_DELIMITER.$k.'=>'.$v;
 		}
-		return $back;
+		return self::shortString($back);
 	}
 	
 	/**
