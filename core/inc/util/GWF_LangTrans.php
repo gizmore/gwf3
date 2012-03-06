@@ -29,7 +29,8 @@ final class GWF_LangTrans
 	public function getTrans($iso=NULL)
 	{
 		if ($iso === NULL) { $iso = self::getBrowserISO(); }
-		return false === $this->loadLanguage($iso) ? false : $this->trans[$iso];
+		$this->loadLanguage($iso);
+		return isset($this->trans[$iso]) ? $this->trans[$iso] : false;
 	}
 
 	
