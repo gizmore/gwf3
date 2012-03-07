@@ -47,14 +47,16 @@ final class GWF_LangTrans
 	
 	/**
 	 * Translate an key1[key2] for the browser ISO.
-	 * @deprecated
 	 * @param string $key
 	 * @param null|array $args
 	 */
 	public function langA($var, $key, $args=NULL)
 	{
 		$back = $this->lang($var);
-		return (is_array($back) && array_key_exists($key, $back)) ? $this->replaceArgs($back[$key], $args) : $back.'['.$key.']: '.htmlspecialchars(implode(',', $args)); # TODO: htmlspecialchars could break something
+		return (is_array($back) && array_key_exists($key, $back))
+			? $this->replaceArgs($back[$key], $args)
+			# FIXME: htmlspecialchars could break something
+			: $back.'['.$key.']' . ( is_array($args) ? '('.htmlspecialchars(implode(',', $args)).')' : '' );
 	}
 	
 	
