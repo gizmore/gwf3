@@ -18,7 +18,7 @@ final class Redmond_Noob extends SR_NPC
 	{
 		return array(
 			'nuyen' => rand(10, 25),
-			'base_hp' => rand(-4, -3),
+			'base_hp' => rand(-6, -4),
 			'distance' => rand(0, 2),
 			'strength' => 1,
 			'quickness' => 1,

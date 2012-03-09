@@ -42,10 +42,10 @@ class SR_Rune extends SR_Item
 		self::$RUNEDATA['defense']    = array('defense',    6, 150,  50.00,  900.00,  22.00,  7.00,   0.2,    2.0);
 //		self::$RUNEDATA['spellatk']   = array('spellatk',  10, 120,  40.00,  750.00,  20.00,  6.00,   0.2,    2.0);
 //		self::$RUNEDATA['spelldef']   = array('spelldef',  	6, 160,  30.00, 1000.00,  22.00,  7.00,   0.2,    2.0);
-		self::$RUNEDATA['min_dmg']    = array('min_dmg',   12, 120,  10.00,  900.00,  21.00,  6.50,   0.2,    2.0);
-		self::$RUNEDATA['max_dmg']    = array('max_dmg',   10, 110,  20.00,  900.00,  21.00,  6.50,   0.2,    2.0);
-		self::$RUNEDATA['marm']       = array('marm',      10, 120,   8.00, 1250.00,  24.00,  8.00,   0.2,    2.0);
-		self::$RUNEDATA['farm']       = array('farm',      10, 130,   7.00, 1250.00,  24.00,  8.00,   0.2,    2.0);
+		self::$RUNEDATA['min_dmg']    = array('min_dmg',   12, 120,  20.00,  900.00,  21.00,  6.50,   0.2,    2.0);
+		self::$RUNEDATA['max_dmg']    = array('max_dmg',   10, 110,  40.00,  900.00,  21.00,  6.50,   0.2,    2.0);
+		self::$RUNEDATA['marm']       = array('marm',      10, 120,  16.00, 1250.00,  24.00,  8.00,   0.2,    2.0);
+		self::$RUNEDATA['farm']       = array('farm',      10, 130,  15.00, 1250.00,  24.00,  8.00,   0.2,    2.0);
 		# Mount
 		self::$RUNEDATA['lock']       = array('lock',      10, 140,  50.00,  800.00,  25.00,  6.50,   0.2,    2.0);
 		self::$RUNEDATA['transport']  = array('transport', 10, 120,  50.00,  600.00,  20.00,  6.50,   0.2,    2.0);

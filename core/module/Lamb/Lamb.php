@@ -116,6 +116,14 @@ final class Lamb
 		return $this->lm_user;
 	}
 	
+	/**
+	 * Get current language ISO code.
+	 */
+	public function getCurrentISO()
+	{
+		return false === $this->lm_user ? 'en' : $this->lm_user->getLangISO();
+	}
+	
 	##############
 	### Uptime ###
 	##############
@@ -241,6 +249,13 @@ final class Lamb
 		$module instanceof Lamb_Module;
 		$module->setName($module_name);
 
+		# Language
+		if (false === ($module->onLoadLanguage()))
+		{
+			return Lamb_Log::logError(sprintf('Lamb::initModule(%s) failed: onLoadLanguage returned false.', $module_name).PHP_EOL);
+			return false;
+		}
+
 		# Install
 		if (false === ($module->onInstall()))
 		{
@@ -255,13 +270,6 @@ final class Lamb
 			return false;
 		}
 		
-		# Language
-		if (false === ($module->onLoadLanguage()))
-		{
-			return Lamb_Log::logError(sprintf('Lamb::initModule(%s) failed: onLoadLanguage returned false.', $module_name).PHP_EOL);
-			return false;
-		}
-
 		# Cache
 		$this->modules[] = $module;
 		

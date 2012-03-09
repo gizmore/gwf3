@@ -394,7 +394,8 @@ class SR_Item extends GDO
 	private function displayRange(SR_Player $player)
 	{
 		$range = $this->getItemRange();
-		return $range <= 0 ? '' : sprintf(" \X02Range\X02: %s.", Shadowfunc::displayDistance($range, 1));
+// 		return $range <= 0 ? '' : sprintf(" \X02Range\X02: %s.", Shadowfunc::displayDistance($range, 1));
+		return $range <= 0 ? '' : $player->lang('range', array(Shadowfunc::displayDistance($range, 1)));
 	}
 	
 	private function displayUseTime(SR_Player $player)
@@ -402,7 +403,8 @@ class SR_Item extends GDO
 		if ($this instanceof SR_Weapon)
 		{
 			$t = $this->getAttackTime();
-			return $t > 0 ? sprintf(" \X02UseTime\X02: %ss.", $t) : '';
+			return $t > 0 ? $player->lang('atk_time', array($t)) : '';
+// 			return $t > 0 ? sprintf(" \X02UseTime\X02: %ss.", $t) : '';
 		}
 		else
 		{
@@ -413,9 +415,11 @@ class SR_Item extends GDO
 	private function displayWorth()
 	{
 		$price = $this->getItemPrice();
-		if ($price > 0) {
-			$b = chr(2);
-			return sprintf(' %sWorth%s: %s.', $b, $b, Shadowfunc::displayNuyen($price));
+		if ($price > 0)
+		{
+			return Shadowrun4::lang('worth', array(Shadowfunc::displayNuyen($price)));
+// 			$b = chr(2);
+// 			return sprintf(' %sWorth%s: %s.', $b, $b, Shadowfunc::displayNuyen($price));
 		}
 		return '';
 	}
@@ -489,8 +493,9 @@ class SR_Item extends GDO
 	
 	private function displayWeightB()
 	{
-		$b = chr(2);
-		return ('' === ($s = $this->displayWeight())) ? '' : " {$b}Weight{$b}: {$s}.";
+		return ('' === ($s = $this->displayWeight())) ? '' : Shadowrun4::lang('weight', array($s));
+// 		$b = chr(2);
+// 		return ('' === ($s = $this->displayWeight())) ? '' : " {$b}Weight{$b}: {$s}.";
 	}
 	
 	public function displayWeight()

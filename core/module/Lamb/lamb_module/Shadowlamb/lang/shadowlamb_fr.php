@@ -31,6 +31,10 @@ $lang = array(
 'from_brewing' => 'mélange options magiques',
 'members' => '%d membres',
 'of' => '_avec_', # MIT, AVEC, CON
+'range' => " {$b}Range{$b}: %s.",
+'atk_time' => " {$b}AttackTime{$b}: %ss.",
+'worth' => " {$b}Worth{$b}: %s.",
+'weight' => " {$b}Weight{$b}: %s.",
 
 # Options
 'opt_help' => 'Aide',

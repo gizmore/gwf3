@@ -526,6 +526,7 @@ final class Shadowfunc
 			if ($now >= 0)
 			{
 				$dnow = $base == $now ? '' : "($now)";
+				$field = self::translateVariable($player, $field);
 				$back .= Shadowrun4::lang('fmt_stats', array($field, $base, $dnow, $fiel, $now));
 // 				$back .= sprintf(', %s:%s%s', $b.$field.$b, $base, $now);
 			}
@@ -892,7 +893,8 @@ final class Shadowfunc
 		$format = Shadowrun4::lang('fmt_stats');
 		foreach ($modifiers as $k => $v)
 		{
-			$mod = Shadowfunc::translateVariable($player, $k);
+			$mod = Shadowfunc::shortcutVariable($player, $k);
+// 			$mod = translateVariable($player, $k);
 			$back .= sprintf($format, $mod, $v, '', self::shortcutModifier($k), $v);
 		}
 		return substr($back, 2);

@@ -33,6 +33,10 @@ $lang = array(
 'from_brewing' => 'preparando pozioni magiche',
 'members' => '%d membri',
 'of' => '_con_', # MIT, AVEC, CON
+'range' => " {$b}Range{$b}: %s.",
+'atk_time' => " {$b}AttackTime{$b}: %ss.",
+'worth' => " {$b}Worth{$b}: %s.",
+'weight' => " {$b}Weight{$b}: %s.",
 
 # Options
 'opt_help' => 'Aiuto',

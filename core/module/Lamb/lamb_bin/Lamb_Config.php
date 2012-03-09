@@ -110,7 +110,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.gizmore.org:6666',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite,#gwf-dev',
+			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite,#metamorph',
 			'admins' => 'gizmore',
 		),
 		
@@ -202,7 +202,23 @@ $LAMB_CFG = array
 			'channels' => '#shadowlamb,#haxtor',
 			'admins' => 'gizmore',
 		),
-		
+
+		array(
+			'host' => 'ircs://irc.evilzone.org:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+			
+		array(
+			'host' => 'ircs://irc.esper.net:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+			
 //		array(
 //			'host' => '',
 //			'nickname' => 'Lamb3',

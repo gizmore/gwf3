@@ -20,7 +20,7 @@ abstract class Lamb_Module
 	private $lang;
 	public function getLang() { return $this->lang; }
 	public function onLoadLanguage() { $this->lang = new GWF_LangTrans(Lamb::DIR.'lamb_module/'.$this->name.'/lang/'.strtolower($this->name)); }
-	public function lang($key, $args=NULL) { return $this->lang->langISO(Lamb::instance()->getCurrentUser()->getLangISO(), $key, $args); }
+	public function lang($key, $args=NULL) { return $this->lang->langISO(Lamb::instance()->getCurrentISO(), $key, $args); }
 	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
 	public function langUser(Lamb_User $user, $key, $args=NULL) { return $this->lang->langISO($user->getLangISO(), $key, $args); }
 		

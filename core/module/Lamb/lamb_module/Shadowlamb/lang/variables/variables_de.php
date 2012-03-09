@@ -42,7 +42,7 @@ $lang = array(
 	'essence'=>'Essenz',
 
 	# Skills
-	'melee'=>'Nahkamp',
+	'melee'=>'Nahkampf',
 	'ninja'=>'Ninja',
 	'swordsman'=>'Ritter',
 	'viking'=>'Vikinger',
