@@ -32,7 +32,7 @@ $lang = array(
 'page' => 'pagina %d/%d: %s.',
 'from_brewing' => 'preparando pozioni magiche',
 'members' => '%d membri',
-'of' => '_with_', # MIT, AVEC, CON
+'of' => '_con_', # MIT, AVEC, CON
 
 # Options
 'opt_help' => 'Aiuto',
@@ -43,37 +43,37 @@ $lang = array(
 'disabled' => 'disattivata',
 
 # Item types
-'Item' => 'Item',
-'Potion' => 'Potion',
-'LvlupScroll' => 'LvlupScroll',
-'Ammo' => 'Ammo',
-'Amulet' => 'Amulet',
-'Armor' => 'Armor',
-'Boots' => 'Boots',
-'Food' => 'Food',
-'Drink' => 'Drink',
+'Item' => 'Oggetto',
+'Potion' => 'Pozione',
+'LvlupScroll' => 'PergamenaLvlSu',
+'Ammo' => 'Munizioni',
+'Amulet' => 'Amuleto',
+'Armor' => 'Armatura',
+'Boots' => 'Stivali',
+'Food' => 'Cibo',
+'Drink' => 'Bevanda',
 'Cyberdeck' => 'Cyberdeck',
 'Cyberware' => 'Cyberware',
-'Earring' => 'Earring',
-'Bow' => 'Bow',
-'Pistol' => 'Pistol',
-'Shotgun' => 'Shotgun',
+'Earring' => 'Orecchini',
+'Bow' => 'Arco',
+'Pistol' => 'Pistola',
+'Shotgun' => 'Fucile a Pompa',
 'SMG' => 'SMG',
 'HMG' => 'HMG',
-'Helmet' => 'Helmet',
-'Legs' => 'Legs',
-'Magic Weapon' => 'Magic Weapon',
-'Melee Weapon' => 'Melee Weapon',
-'Sword' => 'Sword',
-'Axe' => 'Axe',
-'Mount' => 'Mount',
-'Ninja Weapon' => 'Ninja Weapon',
-'Quest Item' => 'Quest Item',
-'Ring' => 'Ring',
-'Rune' => 'Rune',
-'Shield' => 'Shield',
-'Usable' => 'Usable',
-'Heal Item' => 'Heal Item',
+'Helmet' => 'Elmo',
+'Legs' => 'Pantaloni',
+'Magic Weapon' => 'Armi magiche',
+'Melee Weapon' => 'Armi da mischia',
+'Sword' => 'Spada',
+'Axe' => 'Ascia',
+'Mount' => 'Mezzo',
+'Ninja Weapon' => 'Arma Ninja',
+'Quest Item' => 'Oggetto Quest',
+'Ring' => 'Anello',
+'Rune' => 'Runa',
+'Shield' => 'Scudo',
+'Usable' => 'Utilizzabile',
+'Heal Item' => 'Medicamento',
 
 # PrintF-Formats
 'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
@@ -212,7 +212,7 @@ $lang = array(
 #   0000-4999   = Errors #
 ##########################
 '0000' => 'Non hai ancora iniziato il gioco. Digita #inizia razza genere per iniziare a giocare.',
-'0001' => 'Devi effetuare il login per giocare.',
+'0001' => 'Devi effettuare il login per giocare.',
 		
 '1002' => 'Ti serve un livello minimo di %d per urlare.', # level
 '1004' => 'Non hai alcuna quest in %s.', # section
@@ -386,8 +386,8 @@ $lang = array(
 '1173' => 'Il tuo genere è sconosciuto. Generi validi: %s.',
 '1174' => "Il comando non è disponibile per la tua corrente località. Utilizza {$c}c [<l|lunghi>] per vedere tutti i comandi attualmente disponibili.",
 '1175' => 'E\' più di quanto ho, fratello.',
-'1176' => 'You cannot do suregery on your %s.',
-'1177' => 'You are at the minimum %s level of %s for your race.',
+'1176' => 'Nessuna operazione chirurgica può essere effettuata sul suo %s.',
+'1177' => 'Sei al livello minimo di %s per %s per la tua razza.',
 //'1178' => '',
 //'1179' => '',
 //'1180' => '',
@@ -401,8 +401,8 @@ $lang = array(
 '10002' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
 '10003' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
 # Berzerk
-'10010' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, +%5$s min_dmg / +%6$s max_dmg per %7$s.',
-'10011' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s min_dmg / +%6$s max_dmg per %7$%s.',
+'10010' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$s.',
+'10011' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$%s.',
 '10012' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
 '10013' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
 # Blow
@@ -719,6 +719,6 @@ $lang = array(
 '5260' => 'Hai guadagnato +%s MP (%s/%s).', # From orcas effect
 '5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
-'5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
+'5263' => 'Hai pagato %s per cambiare il tuo %s in %s. Hai perso %s punti d\'essenza recuperando %s punti karma.', # price, field, value, essence, karma
 );
 ?>
