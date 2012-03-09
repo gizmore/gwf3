@@ -33,10 +33,10 @@ $lang = array(
 'from_brewing' => 'preparando pozioni magiche',
 'members' => '%d membri',
 'of' => '_con_', # MIT, AVEC, CON
-'range' => " {$b}Range{$b}: %s.",
-'atk_time' => " {$b}AttackTime{$b}: %ss.",
-'worth' => " {$b}Worth{$b}: %s.",
-'weight' => " {$b}Weight{$b}: %s.",
+'range' => " {$b}Raggio{$b}: %s.",
+'atk_time' => " {$b}Tempo Attacco{$b}: %ss.",
+'worth' => " {$b}Valore{$b}: %s.",
+'weight' => " {$b}Peso{$b}: %s.",
 
 # Options
 'opt_help' => 'Aiuto',
@@ -435,8 +435,8 @@ $lang = array(
 '10062' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
 '10063' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
 # Hawkeye
-'10070' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, armi da fuoco +%5$s per %6$s.',
-'10071' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, armi da fuoco +%5$s per %6$s.',
+'10070' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s.',
+'10071' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s.',
 '10072' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
 '10073' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
 # Hummingbird

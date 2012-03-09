@@ -16,7 +16,7 @@ $lang = array(
 		'<br/>'.PHP_EOL.
 		'Invia la tua risposta qui: <a href="%s">INKA</a><br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Grazie mille a: livinskull per l\'idea, monnino for great work, dloser per il testing.<br/>'.PHP_EOL.
+		'Grazie mille a: livinskull per l\'idea, monnino per la motivazione, dloser per il testing.<br/>'.PHP_EOL.
 		'Grazie anche a una certa libreria esterna... ma non ti posso dire quale è...<br/>'.PHP_EOL.
 		'%s<br/>'.PHP_EOL.
 		'Buona fortuna!',
