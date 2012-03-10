@@ -312,7 +312,7 @@ final class Shadowfunc
 			}
 			else # Human Attacks NPC
 			{
-				$oops = rand(80, 150) / 10;
+				$oops = rand(80, 250) / 10;
 			}
 		}
 		else # NPC attacks ...
