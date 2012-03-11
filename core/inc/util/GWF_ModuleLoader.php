@@ -432,8 +432,8 @@ final class GWF_ModuleLoader
 
 	/**
 	 * Install the PageMenu
-	 * @todo GWF_Result
 	 * @author spaceone
+	 * @return true|GWF_Exception
 	 */
 	public static function installHTMenu(array $modules)
 	{

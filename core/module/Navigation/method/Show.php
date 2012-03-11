@@ -12,19 +12,35 @@ final class Navigation_Show extends GWF_Method
 
 	public function execute()
 	{
-		$_GET['ajax'] = 1;
+		# Plaintext if called directly
+		if($_GET['mo'].'_'.$_GET['me'] === __CLASS__ )
+			$_GET['ajax'] = 1;
+
+		# The navigation called should have pid == 0
 		$name = Common::getPostString('navigation', 'PageMenu');
 
-		if(false === ($navi = $this->getNavigation(GWF_Navigations::getIdByName($name))))
+		# Select all subnavigations from $name
+		$id = GWF_Navigations::getIdByName($name);
+		if (false === ($selects = GDO::table('GWF_Navigations')->selectAll('navis_id', 'navis_pid='.$id))
 		{
-			GWF_HTML::error('');
-			$navi = array();
+			//$this->module->error();
+			$selects = array();
 		}
 
-//		var_dump($navi);
+		$navis = array();
+		foreach ($selects as $n)
+		{
+			if(false === ($navi = $this->getNavigation($n['navis_id'])))
+			{
+				# Should not happen
+				$this->module->error(sprintf('Navigation: could not add navigation with id %s', $n['navis_id']))
+				$navi = array();
+			}
+			$navis[] = $navi;
+		}
 
 		$tVars = array(
-			'navi' => $navi,
+			'navis' => $navis, # array of navigations
 		);
 		return $this->templateShow($this->_tpl, $tVars);
 	}

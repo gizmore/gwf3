@@ -4,29 +4,29 @@
  * All GWF modules can entry in one PageMenu-Navigation.
  * You can build your own Navigations from Pagebuilder sites.
  * @todo let PageBuilder add pages on pagecreation
- * @todo meShow: add CSS for each navigation, select template
  * @todo (sub)Navigation overviewpage
- * @todo WeChall: Overview page for challenges
+ * (@todo WeChall: Overview page for challenges)
  * @todo extending GWF_Tree
  * @todo lock a navigation, protect before modifying
  * @todo title translation
  * @todo copy navigation
  * @todo Method: LinkParser for Links like CMS/(<sec>.*)/(<cat>.*)/link
  * @TODO: policy and module settings for the PageMenu Order... Maybe in this module
- * @decide allow to edit PageMenu? only copy it for editing? only do it via modulecars?
+ * @decide allow to edit PageMenu? only copy it for editing? only do it via modulevars?
  * @todo: gwf_buttons actions: edit, delete, show, hide, up, down (left, right?), visible, hidden, add
  * @todo: convert FormY to smarty
- * @todo: A module file is mostly 20 lines not 300
+ * @todo: A module file is mostly 20 lines not 300… it is 214 and see module wechall, forum, usergroups
  * @todo: Make general menu editing module?
- * @todo caching into html files
- * @todo possibility to add an unique ID
+ ** We could split it into 2 modules, one for only PageBuilder and one for pagemenu, but this would be much duplicated code
+ * @todo: caching into html files
+ * @todo possibility to add an unique ID?? WTF: was habe ich hier gemeint?
  * @author spaceone
  * @since 01.11.2011
  * @version 0.06
  */
 final class Module_Navigation extends GWF_Module
 {
-	public function getVersion() { return 0.06; }
+	public function getVersion() { return 0.07; }
 	public function getClasses()
 	{
 		require_once GWF_CORE_PATH.'module/PageBuilder/GWF_Page.php';
@@ -40,41 +40,19 @@ final class Module_Navigation extends GWF_Module
 	{
 		require_once GWF_CORE_PATH.'module/Navigation/GWF_NaviInstall.php';
 		$ret = GWF_NaviInstall::onInstall($this, $dropTable);
-		
-	//	if(false !== ($foo = $this->installPageMenu(self::debugPM())))
-	//	{
-	//		var_dump($foo);
-	//	}
+
+		if ($this->cfgInstallPageMenu())
+		{
+			if (true !== ($e = GWF_ModuleLoader::installHTMenu(GWF_ModuleLoader::loadModuleFS())))
+			{
+				$e instanceof GWF_Exception;
+			}
+		}
 		return $ret;
 	}
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
-
-	public static function debugPM()
-	{
-		return array('foomodule' => array(
-			array(
-				'page_url' => '/foo',
-				'page_title' => 'foo',
-				'page_lang' => '0',
-				'page_cat' => '', 
-				'page_meta_desc' => 'foofoo', 
-				'page_views' => '0',
-				'page_options' => GWF_Page::ENABLED,
-			),
-			false,
-			array(
-				'page_url' => '/bar',
-				'page_title' => 'bar',
-				'page_lang' => '0',
-				'page_cat' => '', 
-				'page_meta_desc' => 'barbar', 
-				'page_views' => '0',
-				'page_options' => GWF_Page::ENABLED,
-			),
-		));
-	}
-	
 	public function cfgLockedPageMenu() { return $this->getModuleVarBool('lockedPM'); }
+	public function cfgInstallPagemenu() { return false; } # (re)Install PageMenu on module-installation?
 
 	public function canModerate()
 	{
@@ -84,8 +62,10 @@ final class Module_Navigation extends GWF_Module
 	 * Install the PageMenu for all Modules.
 	 * @param array $pmdata = a GWF_NaviPage Row
 	 * @return false|String
+	 * @todo GWF_Exception
 	 * @todo navi_pbid bug
 	 * @decide static? Cannot lock the navi then?!
+	 * @ return false|string|GWF_Exception
 	 */
 	public function installPageMenu(array $pmdata)
 	{
@@ -106,7 +86,7 @@ final class Module_Navigation extends GWF_Module
 		$navigation = GDO::table('GWF_Navigation');
 		$pagevars = GDO::table('GWF_NaviPage');
 		
-		if(false === ($navigations = GWF_Navigations::getByName('PageMenu')) )
+		if(false === ($navigations = GWF_Navigations::getByName('PageMenu')) ) # empty array??
 		{
 			# There is no PageMenu yet
 			$navigations = GDO::table('GWF_Navigations');
@@ -230,7 +210,6 @@ final class Module_Navigation extends GWF_Module
 				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
 		}
 		
-		# everything is okay
-		return false;
+		return true;
 	}
 }
