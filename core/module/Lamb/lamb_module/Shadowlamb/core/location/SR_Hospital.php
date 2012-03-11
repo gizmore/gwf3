@@ -304,7 +304,7 @@ abstract class SR_Hospital extends SR_Store
 				}
 				
 				# Get the minimum base
-				if (-1 == ($racebase = $player->getRaceBaseVar($field, -1)))
+				if (0 > ($racebase = $player->getRaceBaseVar($field, -1)))
 				{
 					$racebase = 0;
 // 					$player->message('Database error 2!');
