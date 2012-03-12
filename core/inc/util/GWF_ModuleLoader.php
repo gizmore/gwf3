@@ -438,7 +438,10 @@ final class GWF_ModuleLoader
 	public static function installHTMenu(array $modules)
 	{
 		$navigation = GWF_Module::loadModuleDB('Navigation', false, false, true);
-		if ((false === $navigation) || (false === $navigation->isEnabled()) || (false === $navigation->cfgLockedPageMenu()))
+		if ((false === $navigation) 
+			|| (false === $navigation->isEnabled()) 
+		//	|| (false === $navigation->cfgLockedPageMenu())
+		)
 		{
 			return false; //Module Navigation not enabled or cannot be modified!
 		}

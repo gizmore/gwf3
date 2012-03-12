@@ -43,7 +43,7 @@ final class Module_Navigation extends GWF_Module
 
 		if ($this->cfgInstallPageMenu())
 		{
-			if (true !== ($e = GWF_ModuleLoader::installHTMenu(GWF_ModuleLoader::loadModuleFS())))
+			if (true !== ($e = GWF_ModuleLoader::installHTMenu(GWF_ModuleLoader::loadModulesFS())))
 			{
 				$e instanceof GWF_Exception;
 			}
@@ -73,7 +73,8 @@ final class Module_Navigation extends GWF_Module
 //		if(false === GWF_Navigations::getByID('1')->isOptionEnabled(GWF_Navigations::LOCKED))
 		if($this->cfgLockedPageMenu())
 		{
-			return $this->error('ERR_LOCKED');
+			# FIXME: Always locked
+	//		return $this->error('ERR_LOCKED');
 		}
 		
 		# Are there PageMenu entries?
@@ -117,37 +118,39 @@ final class Module_Navigation extends GWF_Module
 		$count = 0;
 		foreach($pmdata as $modulename => $pbmodule)
 		{
-			#TODO: create GWF_Category for each module
-			$catid = 0;
+		//	# DECIDE: create only a PageMenu category?
+		//	#TODO: create GWF_Category for each module
+		//	$catid = 0;
 			
 			#TODO: create GWF_Navigations for each Module
 			$nid = '1';
 			
 			$i = 0;
 
+			# TODO: only check values here, dont insert
 			if (is_array($pbmodule))
 			foreach($pbmodule as $methodname => $pbvars)
 			{
 				#TODO: Create Category for each Method?
-				
-				#TODO: create GWF_Navigations for each Method
 
+				$pbvars = $pbvars[0];
 				if(false === is_array($pbvars) || false === isset($pbvars['page_url']) || false === isset($pbvars['page_title']))
 				{
+					unset($pbmodule[$methodname]);
 					continue; # required entries does not exists
 				}
 				unset($pbvars['page_id']);
 
 				# entries that need to exist
 				$overwritable = array(
-					'page_cat' => $catid,
+				//	'page_cat' => $catid,
 					'page_views' => '0',
 					'page_meta_desc' => '',
 					'page_options' => GWF_Page::ENABLED
 				);
 				$pbvars = array_merge($overwritable, $pbvars);
 
-				if(false === $pagevars->insertAssoc($pbvars)) 
+				if(false === $pagevars->insertAssoc($pbvars))
 				{
 					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
 				}
@@ -160,7 +163,7 @@ final class Module_Navigation extends GWF_Module
 
 				$navi = array(
 					//'navi_id' => ++$i, # AUTO INCREMENT
-					'navi_nid' => $nid, # the GWF_Navigations PageMenu navi_id
+					'navi_nid' => $nid, # the GWF_Navigations navis_id (pid of modulenavis)
 					'navi_pbid' => $pbid,
 					'navi_position' => ++$i,
 					'navi_options' => GWF_Navigation::ENABLED,
@@ -188,7 +191,7 @@ final class Module_Navigation extends GWF_Module
 			# Replace the GWF_Navigations PageMenu row
 			if(false === $navigations->insertAssoc($pm))
 			{
-					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
+				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
 			}
 			
 		}
