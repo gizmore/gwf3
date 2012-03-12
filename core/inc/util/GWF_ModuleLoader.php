@@ -377,9 +377,6 @@ final class GWF_ModuleLoader
 	#############################
 	public static function installHTAccess(array $modules)
 	{
-//		if (false === self::installHTMenu($modules)) {
-//			return false;
-//		}
 		if (false === self::installHTHooks($modules)) {
 			return false;
 		}
@@ -428,72 +425,6 @@ final class GWF_ModuleLoader
 			$hta .= PHP_EOL;
 		}
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
-	}
-
-	/**
-	 * Install the PageMenu
-	 * @author spaceone
-	 * @return true|GWF_Exception
-	 */
-	public static function installHTMenu(array $modules)
-	{
-		$navigation = GWF_Module::loadModuleDB('Navigation', false, false, true);
-		if ((false === $navigation) 
-			|| (false === $navigation->isEnabled()) 
-		//	|| (false === $navigation->cfgLockedPageMenu())
-		)
-		{
-			return false; //Module Navigation not enabled or cannot be modified!
-		}
-		$pml = array();
-		$c = 2; # page_url, page_title
-		foreach ($modules as $module)
-		{
-			$module instanceof GWF_Module;
-			
-			if (false === $module->isEnabled()) {
-				continue;
-			}
-
-			$name = $module->getName();
-			$pml[$name] = array();
-
-			$methods = self::getAllMethods($module);
-			foreach ($methods as $method)
-			{
-				$mname = $method->getName();
-				$pml[$name][$mname] = array();
-				if(true === is_array($pmlinks = $method->getPageMenuLinks()))
-				{
-					foreach($pmlinks as $k => $a)
-					{
-						if(false === is_array($a) || count($a) < $c)
-						{
-							unset($pmlinks[$k]);
-						}
-						else
-						{
-							# set permissions, overwritable
-							$groups = $method->getUserGroups();
-							$groups = $groups ? implode(',', (array)$groups) : '';
-							$pmlinks[$k] = array_merge(array('page_groups' => $groups), $a);
-						}
-					}
-					$pml[$name][$mname] = $pmlinks;
-				}
-				# Method does not have PageMenu Links?
-				if(true === empty($pml[$name][$mname]))
-				{
-					unset($pml[$name][$mname]);
-				}
-			}
-			# Module does not have PageMenu Links?
-			if(true === empty($pml[$name]))
-			{
-				unset($pml[$name]);
-			}
-		}
-		return $navigation->installPageMenu($pml);
 	}
 	
 	public static function getAllMethods(GWF_Module $module)
