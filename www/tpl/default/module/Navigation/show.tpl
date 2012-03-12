@@ -1,5 +1,6 @@
 <!-- @start gwf_navigation -->
 <ol class="gwf_navigation">
+{foreach $navis as $navi}
 	<li>
 		<!-- @start section {$navi['category_name']} -->
 		<h2>{$navi['category_name']}</h2>
@@ -13,5 +14,6 @@
 		</ul>
 		<!-- @start section {$navi['category_name']} -->
 	</li>
+{/foreach}
 </ol>
 <!-- @end gwf_navigation -->
