@@ -9,7 +9,7 @@ abstract class SR_School extends SR_Store
 
 	public function getStoreItems(SR_Player $player) { return array(); }
 	public function hasStoreItems(SR_Player $player) { return count($this->getStoreItems($player)) > 0; }
-		
+	
 	public function getCommands(SR_Player $player)
 	{
 		if ($this->hasStoreItems($player))

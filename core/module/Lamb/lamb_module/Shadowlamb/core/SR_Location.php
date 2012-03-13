@@ -62,6 +62,15 @@ abstract class SR_Location
 		}
 	}
 	
+	public function partyHelpMessage(SR_Player $player, $key, $args=NULL)
+	{
+		foreach ($player->getParty()->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			$member->help($this->lang($member, $key, $args));
+		}
+	}
+	
 	/**
 	 * We enter the location and are inside after we message the members.
 	 * @param SR_Player $player

@@ -65,7 +65,8 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		$data['site_name'] = array(GWF_Form::STRING, $site->getVar('site_name'), $this->module->lang('th_site_name'));
 		
-		if ($is_admin) {
+		if ($is_admin)
+		{
 			$data['site_classname'] = array(GWF_Form::STRING, $site->getVar('site_classname'), $this->module->lang('th_site_classname'));
 			$data['site_basescore'] = array(GWF_Form::INT, $site->getVar('site_basescore'), $this->module->lang('th_site_basescore'));
 			$data['site_usercount'] = array(GWF_Form::INT, $site->getVar('site_usercount'), $this->module->lang('th_site_usercount'));
@@ -83,24 +84,28 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		$data['div0'] = array(GWF_Form::DIVIDER);
 		
-		if ($is_admin) {
+		if ($is_admin)
+		{
 			$data['divi0'] = array(GWF_Form::HEADLINE, $this->module->lang('pi_site_tags', array($site->displayTags(true))));
 			$data['site_tags'] = array(GWF_Form::STRING, $site->getVar('site_tags'), $this->module->lang('th_site_tags'));
 		}
 		
-		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', $site->getCountryID()), $this->module->lang('th_site_country2'));
-		if ($is_admin) {
+		$data['site_country'] = array(GWF_Form::SELECT, GWF_CountrySelect::single('site_country', Common::getPostString('site_country', $site->getCountryID())), $this->module->lang('th_site_country2'));
+		if ($is_admin)
+		{
 			$data['site_language'] = array(GWF_Form::SELECT, GWF_LangSelect::single(0, 'site_language', $site->getLangID()), $this->module->lang('th_site_language2'));
 		}
-		if ($is_admin) {
+		
+		if ($is_admin)
+		{
 			$data['site_joindate'] = array(GWF_Form::STRING, $site->getVar('site_joindate'), $this->module->lang('th_site_joindate'), '', GWF_Date::LEN_SECOND);
 		}
 		$data['site_launchdate'] = array(GWF_Form::DATE, $site->getVar('site_launchdate'), $this->module->lang('th_site_launchdate'), '', GWF_Date::LEN_DAY);
 		
-		if ($is_admin) {
+		if ($is_admin)
+		{
 			$data['site_authkey'] = array(GWF_Form::STRING, $site->getVar('site_authkey'), $this->module->lang('th_site_authkey'));
 		}
-		
 		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $this->module->lang('th_site_xauthkey'));
 
 		$data['site_irc'] = array(GWF_Form::STRING, $site->getVar('site_irc'), $this->module->lang('th_site_irc'));
@@ -113,7 +118,6 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['site_url_profile'] = array(GWF_Form::STRING, $site->getVar('site_url_profile'), $this->module->lang('th_site_url_profile'));
 		
 //		$data['site_description'] = array(GWF_Form::MESSAGE, $site->getVar('site_description'), $this->module->lang('th_site_description'));
-		
 
 		$data['edit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_site'));
 		

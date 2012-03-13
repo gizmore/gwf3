@@ -8,15 +8,16 @@ final class Redmond_School extends SR_School
 // 	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "Use {$c}learn <course> to learn a new skill. See an overview of the skills to learn with {$c}courses. Use {$c}talk <word> to talk to the teacher.";}
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
-	
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter1'); }
 	public function onEnter(SR_Player $player)
 	{
 // 		$p = $player->getParty();
-		$this->partyMessage($player, 'enter1');
+// 		$this->partyMessage($player, 'enter1');
+		parent::onEnter($player);
 		$this->partyMessage($player, 'enter2');
+		return true;
 // 		$p->notice('You enter the school and take a look at the billboard: "Courses: Firearms, Pistols, Shotguns, SMGs, Sharpshooter"');
 // 		$p->notice('A teacher tips your shoulder: "Welcome. Are you here to learn a new skill? You can take a course anytime."');
-		return parent::onEnter($player);
 	}
 	
 	public function getFields(SR_Player $player)

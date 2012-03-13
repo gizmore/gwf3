@@ -5,11 +5,13 @@ final class GWF_CountrySelect
 	{
 		$db = gdo_db();
 		$table = GDO::table('GWF_Country');
-		if (false === ($result = $table->select('country_id,country_name', '', 'country_name ASC'))) {
+		if (false === ($result = $table->select('country_id,country_name', '', 'country_name ASC')))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$data = array(array('0', GWF_HTML::lang('sel_country')));
-		while (false !== ($row = $db->fetchRow($result))) {
+		while (false !== ($row = $db->fetchRow($result)))
+		{
 			$data[] = $row;
 		}
 		$db->free($result);
@@ -53,7 +55,8 @@ final class GWF_CountrySelect
 	public static function isValidCountry($cid, $allow_zero=false)
 	{
 		$min = $allow_zero === true ? -1 : 0;
-		if ($min >= ($cid = (int) $cid)) {
+		if ($min >= ($cid = (int) $cid))
+		{
 			return false;
 		}
 		return $cid === 0 ? true : (GWF_Country::getByID($cid) !== false);

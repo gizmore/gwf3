@@ -6,6 +6,16 @@ abstract class SR_Subway extends SR_Location
 	
 	public function getLeaderCommands(SR_Player $player) { return array_merge(parent::getLeaderCommands($player), array('travel')); }
 	
+	public function getFoundText(SR_Player $player)
+	{
+		return $player->lang('stub_found_subway', array($this->getCity()));
+	}
+	
+	public function getEnterText(SR_Player $player)
+	{
+		return $player->lang('stub_enter_subway');
+	}
+	
 	public function calcTicketPrice($price, SR_Player $player)
 	{
 		$neg = Common::clamp($player->get('negotiation'), 0, 10) * 0.01;

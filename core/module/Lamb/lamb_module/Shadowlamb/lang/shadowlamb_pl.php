@@ -145,6 +145,8 @@ $lang = array(
 'stub_enter_blacksmith' => 'You enter the %s blacksmith. You see two dwarfs at the counter.',
 'stub_found_hospital' => 'You found the local hospital. The sign reads: "Renraku Cyberware 20% off".',
 'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
+'stub_found_store' => 'You find a small Store. There are no employees as all transactions are done by slot machines.',
+'stub_enter_store' => 'You enter the %s Store. No people or employees are around.',
 
 # Clan history
 'ch_0' => '%s created the clan %s.', # player, clanname

@@ -10,7 +10,7 @@ final class Item_HaukAxe extends SR_Axe
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 2.0, 
+			'attack' => 8.0, 
 			'min_dmg' => 2.5,
 			'max_dmg' => 12.0,
 		);

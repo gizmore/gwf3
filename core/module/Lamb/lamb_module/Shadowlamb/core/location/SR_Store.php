@@ -47,6 +47,16 @@ abstract class SR_Store extends SR_Location
 // 		}
 	}
 	
+	public function getFoundText(SR_Player $player)
+	{
+		return $player->lang('stub_found_store');
+	}
+	
+	public function getEnterText(SR_Player $player)
+	{
+		return $player->lang('stub_enter_store', array($this->getCity()));
+	}
+	
 	/**
 	 * Get the items available at the store.
 	 * @param SR_Player $player

@@ -10,17 +10,20 @@ final class Redmond_Doctor extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'heal':
-				$this->reply("We can heal you for some nuyen. Just use {$c}heal here.");
+				$this->rply('heal');
+// 				$this->reply("We can heal you for some nuyen. Just use {$c}heal here.");
 				break;
 			
 			case 'yes': case 'no':
 			case 'cyberware':
-				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accesoires.");
+				$this->rply('cyberware');
+// 				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accesoires.");
 				break;
 				
 			case 'hello':
 			default:
-				$this->reply("Hello chummer, need some {$b}heal{$b} or {$b}cyberware{$b}?");
+				$this->rply('default');
+// 				$this->reply("Hello chummer, need some {$b}heal{$b} or {$b}cyberware{$b}?");
 				$player->giveKnowledge('words', 'Cyberware','Yes','No');
 				break;
 			

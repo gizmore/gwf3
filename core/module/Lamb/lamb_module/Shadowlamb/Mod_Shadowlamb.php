@@ -6,7 +6,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 //	const WITH_INTERLINK = 0;
 	
 	# Hardcoded shadowlamb channels for shortcuts
-	public static $INCLUDE_CHANS = array('#sr', '#shadowlamb');
+	public static $INCLUDE_CHANS = array('#sr', '#shadowlamb', '#Nasu_gaming');
 
 	private static $INSTANCE;
 	public static function instance() { return self::$INSTANCE; }

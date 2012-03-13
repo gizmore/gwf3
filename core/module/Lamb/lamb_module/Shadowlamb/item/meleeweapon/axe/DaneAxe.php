@@ -10,7 +10,7 @@ final class Item_DaneAxe extends SR_Axe
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 5.5, 
+			'attack' => 7.5, 
 			'min_dmg' => 3.5,
 			'max_dmg' => 16.5,
 		);

@@ -62,7 +62,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.idlemonkeys.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#wechall,#net-force,#securitytraps,#3564020356,#revolutionelite,#pyramid,#tbs,#lost-chall,#hackquest',
+			'channels' => '#wechall,#net-force,#securitytraps,#3564020356,#revolutionelite,#pyramid,#tbs,#lost-chall,#hackquest,#shadowlamb',
 			'admins' => 'gizmore',
 		),
 		
@@ -213,6 +213,14 @@ $LAMB_CFG = array
 			
 		array(
 			'host' => 'ircs://irc.esper.net:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+
+		array(
+			'host' => 'ircs://irc.root-me.org:6697',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',

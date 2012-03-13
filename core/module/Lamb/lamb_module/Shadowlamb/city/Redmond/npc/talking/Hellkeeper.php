@@ -35,6 +35,7 @@ final class Redmond_Hellkeeper extends SR_TalkingNPC
 			default:
 				$msg = array('def1', 'def2', 'def3');
 				$msg = Shadowfunc::randomListItem($msg);
+				$msg = $this->langNPC($msg);
 				return $this->rply('default', array($msg));
 // 				$msg = array('anything new?', 'the usual stuff?', 'how can I serve you?');
 // 				return $this->reply('Hello chummer, '.Shadowfunc::randomListItem($msg));

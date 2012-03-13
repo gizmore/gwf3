@@ -7,7 +7,7 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 	const NEED_LARGE_BEER = 6;
 	const NEED_BOOZE = 3;
 	
-	public function getQuestName() { return 'Booze'; }
+// 	public function getQuestName() { return 'Booze'; }
 	
 	public function getQuestDescription()
 	{
@@ -15,18 +15,26 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 		$have_s = isset($data['S']) ? $data['S'] : 0;
 		$have_l = isset($data['L']) ? $data['L'] : 0;
 		$have_b = isset($data['B']) ? $data['B'] : 0;
-		return sprintf(
-			'Bring these items to the Barkeeper in Redmond_TrollsInn: %d/%d SmallBeer, %d/%d LargeBeer and %d/%d Booze.',
+		return $this->lang('descr', array(
 			$have_s, self::NEED_SMALL_BEER,
 			$have_l, self::NEED_LARGE_BEER,
 			$have_b, self::NEED_BOOZE
-		);
+		));
+// 		return sprintf(
+			
+// 			'Bring these items to the Barkeeper in Redmond_TrollsInn: %d/%d SmallBeer, %d/%d LargeBeer and %d/%d Booze.',
+// 			$have_s, self::NEED_SMALL_BEER,
+// 			$have_l, self::NEED_LARGE_BEER,
+// 			$have_b, self::NEED_BOOZE
+// 		);
 	}
 	
 	public function onQuestSolve(SR_Player $player)
 	{
-		$player->message(sprintf('The barkeeper looks happy: "Now we have enough drinks for the party :)", he says.'));
-		$player->message(sprintf('He hands you %s, and you also gained %d XP.', Shadowfunc::displayNuyen(self::REWARD_NY), self::REWARD_XP));
+		$player->message($this->lang('solve1'));
+		$player->message($this->lang('solve2', array(Shadowfunc::displayNuyen(self::REWARD_NY), self::REWARD_XP)));
+// 		$player->message(sprintf('The barkeeper looks happy: "Now we have enough drinks for the party :)", he says.'));
+// 		$player->message(sprintf('He hands you %s, and you also gained %d XP.', Shadowfunc::displayNuyen(self::REWARD_NY), self::REWARD_XP));
 		$player->giveXP(self::REWARD_XP);
 		$player->giveNuyen(self::REWARD_NY);
 	}
@@ -46,7 +54,8 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 			$this->onSolve($player);
 		}
 		else {
-			$npc->reply(sprintf('Listen chummer, I still need %d SmallBeer, %d LargeBeer and %d Booze.', self::NEED_SMALL_BEER-$have_s, self::NEED_LARGE_BEER-$have_l, self::NEED_BOOZE-$have_b));
+			$npc->reply($this->lang('listen', array(self::NEED_SMALL_BEER-$have_s, self::NEED_LARGE_BEER-$have_l, self::NEED_BOOZE-$have_b)));
+// 			$npc->reply(sprintf('Listen chummer, I still need %d SmallBeer, %d LargeBeer and %d Booze.', self::NEED_SMALL_BEER-$have_s, self::NEED_LARGE_BEER-$have_l, self::NEED_BOOZE-$have_b));
 		}
 	}
 	
