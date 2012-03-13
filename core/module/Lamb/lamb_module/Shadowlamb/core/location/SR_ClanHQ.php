@@ -934,7 +934,7 @@ class SR_ClanHQ extends SR_Location
 		}
 		
 		$bot = Shadowrap::instance($player);
-		return $bot->rply('5175', array($player->lang('ct_'.$text)), $player->lang($switch));
+		return $bot->rply('5175', array($player->lang('ct_'.$text), $player->lang($switch)));
 // 		return $bot->reply(sprintf('Your clan\'s %s option has been %s.', $text, $switch));
 	}
 	
