@@ -1,7 +1,8 @@
 <?php
-
 final class Admin_BaseCFG extends GWF_Method
 {
+	public function getUserGroups() { return GWF_Group::ADMIN; }
+	
 	public function execute()
 	{
 		if (false !== Common::getPost('gpg_create')) {

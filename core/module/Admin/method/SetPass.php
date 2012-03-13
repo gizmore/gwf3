@@ -6,6 +6,8 @@
  */
 final class Admin_SetPass extends GWF_Method
 {
+	public function getUserGroups() { return GWF_Group::ADMIN; }
+	
 	public function execute()
 	{
 		$nav = $this->module->templateNav();

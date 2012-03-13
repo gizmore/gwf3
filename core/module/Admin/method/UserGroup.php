@@ -5,7 +5,6 @@
  */
 final class Admin_UserGroup extends GWF_Method
 {
-	public function isLoginRequired() { return true; }
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 	
 	public function execute()
