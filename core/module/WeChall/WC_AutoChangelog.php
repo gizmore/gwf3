@@ -29,12 +29,27 @@ final class WC_AutoChangelog
 		foreach ($logs as $log)
 		{
 			$comment = $log['comment'];
+			$thx = '';
+
 			if (Common::startsWith($comment, 'WC') || false !== strpos(strtolower($comment), 'wechall'))
 			{
-				# TODO: parse (thx )
-				# TODO: GWF_Date::toStrin
-				$pattern = 'Revision: %s; by %s; on %s;'.PHP_EOL.'  %s';
-				$back .= sprintf($pattern, $log['version-name'], $log['creator-displayname'], $log['date'], str_replace("\n", "\n  ",$comment));
+				# TODO: GWF_Date::toString
+
+				if (0 < preg_match_all('/\(\s*?thx +([^\)]+)\)/', $comment, $matches))
+				{
+					foreach ($matches[1] as $match)
+					{
+						foreach (preg_split('/[\s,;]+/', $match) as $username)
+						{
+							$username = htmlspecialchars(trim($username));
+							$thx .= sprintf('<a title="%s" href="%sprofile/%s">%s</a>'.PHP_EOL, $username, GWF_WEB_ROOT, $username);
+						}
+					}
+				}
+
+				# TODO: HTML formatting
+				$pattern = 'Revision: %s; by %s; on %s;'.PHP_EOL.'  %s'.PHP_EOL.'%s'.PHP_EOL;
+				$back .= sprintf($pattern, $log['version-name'], $log['creator-displayname'], $log['date'], str_replace("\n", "\n  ", $comment), $thx);
 			}
 		}
 
