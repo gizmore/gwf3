@@ -273,13 +273,16 @@ final class GWF_Debug
 			isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe(),
 			isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'NULL',
 			isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'NULL',
+			$user,
+			$message,
 			print_r($_GET, true),
 			print_r($_POST, true),
 		);
+		
+		$args = array_map('htmlspecialchars', $args);
 
-		$args[] = $user;
-		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\n\n_GET: %s\n\n_POST: %s\n\nUser: %s\n\nMessage: \n";
-		return htmlspecialchars( vsprintf($pattern, $args) ).$message.PHP_EOL;
+		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: \n\n_GET: %s\n\n_POST: %s\n\n";
+		return vsprintf($pattern, $args);
 	}
 	
 	private static function getMoMe()
