@@ -11,18 +11,18 @@ class GWF_NaviInstall
 		return GWF_ModuleLoader::installVars($module, array(
 			'lockedPM' => array('0', 'bool'),
 		));
-		// GWF_ModuleLoader::installPageMenu
 	}
 
 
 	/**
-	 * Install the PageMenu
+	 * Parse all Module-pagemenu entries into valid format
 	 * @author spaceone
-	 * @return true|GWF_Exception
+	 * @return array accociative array
 	 */
-	public static function installHTMenu(array $modules)
+	public static function parseModules(array $modules)
 	{
 		$navigation = GWF_Module::loadModuleDB('Navigation', false, false, true);
+
 		if ((false === $navigation) 
 			|| (false === $navigation->isEnabled()) 
 		//	|| (false === $navigation->cfgLockedPageMenu())
@@ -30,12 +30,13 @@ class GWF_NaviInstall
 		{
 			return false; //Module Navigation not enabled or cannot be modified!
 		}
+
 		$pml = array();
 		$c = 2; # page_url, page_title
 		foreach ($modules as $module)
 		{
 			$module instanceof GWF_Module;
-			
+
 			if (false === $module->isEnabled()) {
 				continue;
 			}
@@ -43,11 +44,12 @@ class GWF_NaviInstall
 			$name = $module->getName();
 			$pml[$name] = array();
 
-			$methods = self::getAllMethods($module);
+			$methods = GWF_ModuleLoader::getAllMethods($module);
 			foreach ($methods as $method)
 			{
 				$mname = $method->getName();
 				$pml[$name][$mname] = array();
+
 				if(true === is_array($pmlinks = $method->getPageMenuLinks()))
 				{
 					foreach($pmlinks as $k => $a)
@@ -78,37 +80,36 @@ class GWF_NaviInstall
 				unset($pml[$name]);
 			}
 		}
-		return $navigation->installPageMenu2($pml);
-	}
-	
-	public static function installPageMenu()
-	{
-		return self::installHTMenu(GWF_ModuleLoader::loadModulesFS());
+		return $pml;
 	}
 	
 	/**
 	 * Install the PageMenu for all Modules.
-	 * @param array $pmdata = a GWF_NaviPage Row
-	 * @return false|String
+	 *
+	 * @return #TODO
+	 */
+	public static function installPageMenu()
+	{
+		$pagemenulinks = self::parseModules(GWF_ModuleLoader::loadModulesFS());
+		return self::installPageMenu2($pagemenulinks);
+	}
+	
+	/**
+	 * Install the PageMenu
+	 * @param array $pmdata = array of GWF_NaviPage Rows
 	 * @todo GWF_Exception
 	 * @todo navi_pbid bug
-	 * @decide static? Cannot lock the navi then?!
-	 * @ return false|string|GWF_Exception
+	 * @todo encapsulate
+	 * 	remove old pagemenu: recursive in GWF_Navigations
+	 * 	possibility to merge old PageMenu?
+	 * @return true|false|string|GWF_Exception # TODO
 	 */
 	public static function installPageMenu2(array $pmdata)
 	{
-		# PageMenu editing has been disabled?
-//		if(false === GWF_Navigations::getByID('1')->isOptionEnabled(GWF_Navigations::LOCKED))
-		if($this->cfgLockedPageMenu()) # FIXME
-		{
-			# FIXME: Always locked
-	//		return $this->error('ERR_LOCKED');
-		}
-		
 		# Are there PageMenu entries?
 		if(0 === count($pmdata))
 		{
-			return false;
+			return false; # TODO: return true?
 		}
 		
 		# Create Instances
@@ -146,7 +147,7 @@ class GWF_NaviInstall
 		$count = 0;
 		foreach($pmdata as $modulename => $pbmodule)
 		{
-		//	# DECIDE: create only a PageMenu category?
+		//	# DECIDE: create only a (one) PageMenu category?
 		//	#TODO: create GWF_Category for each module
 		//	$catid = 0;
 			
