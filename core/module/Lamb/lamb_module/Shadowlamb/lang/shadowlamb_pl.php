@@ -1,5 +1,4 @@
 <?php
-$c = "#";
 $b = chr(2);
 /**
  * Please respect weird punctuations when doing human readable translations
@@ -17,7 +16,7 @@ $lang = array(
 'mount' => 'Mount',
 'bank_items' => 'Your bank items',
 'unknown' => 'Unknown',
-'unknown_contr' => 'Unknown Contactors',
+'unknown_contr' => 'Unknown Contractors',
 'modifiers' => " {$b}Modifiers{$b}: %s.", # statlist
 'm' => 'm', # metres
 'g' => '%dg', # gram
@@ -102,7 +101,8 @@ $lang = array(
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
-'pa_delete' => "{$b}beeing deleted{$b}.",
+// 'last_action' => ' Last action: %s %s. %s.', # last action, last target, last durcation
+'pa_delete' => "{$b}being deleted{$b}.",
 'pa_talk' => "{$b}talking{$b} to %s. %s remaining. Last action: %s", # enemy party, duration, last action
 'pa_fight' => "{$b}fighting{$b} against %s. Last action: %s", # enemy party last action.
 'pa_inside' => "{$b}inside{$b} %s.", # location
@@ -137,7 +137,7 @@ $lang = array(
 'stub_enter_bazar' => 'You enter the bazar. You see %d shops with a total of %d items.', # shopcount, itemcount
 'stub_found_clanhq' => 'You found the clan headquarters.',
 'stub_enter_clanhq' => 'You enter the clan headquarters.',
-'stub_found_elevator' => 'You enter the %s. A sign reads: "MAX %s KG".',
+'stub_found_elevator' => 'You found the %s. A sign reads: "MAX %s KG".',
 'stub_enter_elevator' => 'You enter the %s. A sign reads: "MAX %s KG".',
 'stub_found_bank' => 'You found the Bank of %s. All transactions are done with slot machines.',
 'stub_enter_bank' => 'You enter the Bank of %s. You see some customers at the counters and also some security officers.',
@@ -147,6 +147,8 @@ $lang = array(
 'stub_enter_hospital' => 'You enter the huge building and are guided to a doctor.',
 'stub_found_store' => 'You find a small Store. There are no employees as all transactions are done by slot machines.',
 'stub_enter_store' => 'You enter the %s Store. No people or employees are around.',
+'stub_found_subway' => 'You found the %s subway. You can travel to other cities from here.',
+'stub_enter_subway' => 'You enter the subway and walk to the tracks.',
 
 # Clan history
 'ch_0' => '%s created the clan %s.', # player, clanname
@@ -174,8 +176,8 @@ $lang = array(
 
 # Ingame help
 'hlp_in_outside' => 'When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.',
-'hlp_clan_enter' => "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.",
-'hlp_bank' => "In a bank you can use {$c}pushi and {$c}popi to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}viewi to list or search your banked items. Every transaction costs %s for you.",
+'hlp_clan_enter' => "Join clans with #abandon, #request and #accept. Create a clan with #create. Purchase more size and motto with #manage. Set options with #toggle. Access clan bank with #push, #pop and #view, clan money with #pushy and #popy.",
+'hlp_bank' => "In a bank you can use #push and #pop to bank items, and #pushy and #popy to store nuyen. Use #view to list or search your banked items. Every transaction costs %s for you.",
 'hlp_bazar' => "In the bazar you can sell your items. You can use #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan and #price here.",
 'hlp_elevator' => 'In elevators you can use #up, #down and #floor.',
 'hlp_exit' => 'You can return to this location to #leave the building.',
@@ -187,14 +189,14 @@ $lang = array(
 'hlp_cyberdeck' => 'This item only works inside locations with computers.',
 'hlp_cyberdeck_targets' => 'You don\'t see any Computers with a Headcomputer interface here.',
 'hlp_start' => "{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.",
-'hlp_blacksmith' => "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here.",
-'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberwear. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
+'hlp_blacksmith' => "At a blacksmith you can #upgrade equipment with runes. You can also #break items into runes or #clean them. It is also possible to #split runes. Also #view, #buy and #sell works here.",
+'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberware. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
 
 # Start storyline
 'start_1' => "You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.",
 'start_2' => "What happened... You can`t remember anything.... Gosh, you even forgot your name.",
-'start_3' => "You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.",
-'start_4' => "Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files. Use {$c}help <cmd> to see the help for a command.",
+'start_3' => "You check your {$b}#inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}#talk{$b} to talk with the hotelier.",
+'start_4' => "Use {$b}#c{$b} to see all available commands. Check {$b}#help{$b} to browse the Shadowlamb help files. Use #help <cmd> to see the help for a command.",
 
 # Knowledge
 'ks_words' => 'Word',
@@ -226,7 +228,7 @@ $lang = array(
 '1008' => 'There are no items here.',
 '1009' => 'No such page!',
 '1010' => 'There are no quests here.',
-'1011' => 'You did not setup your asl with {$b}#aslset{$b} yet. You need to do this to start moving in the game.',
+'1011' => "You did not setup your asl with {$b}#aslset{$b} yet. You need to do this to start moving in the game.",
 '1012' => 'The target is unknown.',
 '1013' => 'You cannot use this item.',
 '1014' => 'You cannot equip this item.',
@@ -289,7 +291,7 @@ $lang = array(
 '1071' => 'You are already in %s.',
 '1072' => 'Please specify a target to teleport to.',
 '1073' => 'This city is unknown.',
-'1074' => 'You cannot cast teleport inside this lcoation.',
+'1074' => 'You cannot cast teleport inside this location.',
 '1075' => 'You cannot teleport to %s because %s do(es) not have the min level of %s.',
 '1076' => 'You need at least %s level %s to teleport %s party members.',
 '1077' => 'You need %s MP to brew this potion, but you got only %s.',
@@ -353,7 +355,7 @@ $lang = array(
 '1135' => 'Somehow the elevator is blocking this floor for you.',
 '1136' => 'You push the button but you are on the very same floor already.',
 '1137' => 'You don`t need to rest.',
-'1138' => 'The doctor says: "You don`t need my help, chummer.',
+'1138' => 'The doctor says: "You don`t need my help, chummer".',
 '1139' => 'The doctor shakes his head: "No, my friend. Healing you will cost %s but you only have %s."',
 '1140' => 'There is no such item here.',
 '1141' => 'You already have %s implanted.',
@@ -384,79 +386,82 @@ $lang = array(
 '1166' => 'You can only split runes.',
 '1167' => 'This rune has only one modifier.',
 '1168' => 'The rune completely broke while splitting it. You don\'t need to pay.',
-'1169' => 'You can not reload a melee weapon? Oo',
+'1169' => 'You can not reload a melee weapon, can you? Oo',
 '1170' => 'Your party is not moving.',
 '1171' => 'Your character has been created already. You can type #reset to start over.',
 '1172' => 'Your race is unknown or an NPC only race. Valid races: %s.',
 '1173' => 'Your gender is unknown. Valid genders: %s.',
-'1174' => "The command is not available for your current action or location. Try {$c}c [<l|long>] to see all currently available commands.",
+'1174' => "The command is not available for your current action or location. Try #c [<l|long>] to see all currently available commands.",
 '1175' => 'That\'s more than I offer, chummer.',
-'1176' => 'You cannot do suregery on your %s.',
+'1176' => 'You cannot do surgery on your %s.',
 '1177' => 'You are at the minimum %s level of %s for your race.',
+//'1178' => '',
+//'1179' => '',
+//'1180' => '',
 
 ########################
 # 10000-14999 = Spells #
 ########################
 # Generic
-'10000' => '%s uses a level %s %s potion on %s.',
-'10001' => '%s casts a level %s %s on %s.',
-'10002' => '%s uses a level %s %s potion on %s.',
-'10003' => '%s casts a level %s %s on %s.',
+'10000' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10001' => '%1$s casts a level %2$s %3$s on %4$s.',
+'10002' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10003' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Berzerk
-'10010' => '%s uses a level %s %s potion on %s, +%s min_dmg / +%s max_dmg for %s.',
-'10011' => '%s casts a level %s %s on %s, +%s min_dmg / +%s max_dmg for %s.',
-'10012' => '%s uses a level %s %s potion on %s.',
-'10013' => '%s casts a level %s %s on %s.',
+'10010' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s.',
+'10011' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$%s.',
+'10012' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10013' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Blow
-'10020' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
-'10021' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
-'10022' => '%s uses a level %s %s potion on %s who got blown away %s and is now on position %s.',
-'10023' => '%s casts a level %s %s on %s who got blown away %s and is now on position %s.',
+'10020' => '%1$s uses a level %2$s %3$s potion on %4$s who got blown away %5$s and is now on position %6$s.',
+'10021' => '%1$s casts a level %2$s %3$s on %4$s who got blown away %5$s and is now on position %6$s.',
+'10022' => '%1$s uses a level %2$s %3$s potion on %4$s who got blown away %5$s and is now on position %6$s.',
+'10023' => '%1$s casts a level %2$s %3$s on %4$s who got blown away %5$s and is now on position %6$s.',
 # Chameleon
-'10030' => '%s uses a level %s %s potion on %s, +%s charisma for %s.',
-'10031' => '%s casts a level %s %s on %s, +%s charisma for %s.',
-'10032' => '%s uses a level %s %s potion on %s.',
-'10033' => '%s casts a level %s %s on %s.',
+'10030' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s charisma for %6$s.',
+'10031' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s charisma for %6$s.',
+'10032' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10033' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Firebolt
-'10040' => '%s uses a level %s %s potion on %s and caused %s damage.',
-'10041' => '%s casts a level %s %s on %s and caused %s damage.',
-'10042' => '%s uses a level %s %s potion on %s and caused %s damage, %s/%s HP left.',
-'10043' => '%s casts a level %s %s on %s and caused %s damage, %s/%s HP left.',
+'10040' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage.',
+'10041' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage.',
+'10042' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage, %6$s/%7$s HP left.',
+'10043' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage, %6$s/%7$s HP left.',
 # Freeze
-'10050' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
-'10051' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
-'10052' => '%s uses a level %s %s potion on %s. %s seconds frozen with power %01f.',
-'10053' => '%s casts a level %s %s on %s. %s seconds frozen with power %01f.',
+'10050' => '%1$s uses a level %2$s %3$s potion on %4$s. %5$s seconds frozen with power %6$01f.',
+'10051' => '%1$s casts a level %2$s %3$s on %4$s. %5$s seconds frozen with power %6$01f.',
+'10052' => '%1$s uses a level %2$s %3$s potion on %4$s. %5$s seconds frozen with power %6$01f.',
+'10053' => '%1$s casts a level %2$s %3$s on %4$s. %5$s seconds frozen with power %6$01f.',
 # Goliath
-'10060' => '%s uses a level %s %s potion on %s, +%s strength for %s.',
-'10061' => '%s casts a level %s %s on %s, +%s strength for %s.',
-'10062' => '%s uses a level %s %s potion on %s.',
-'10063' => '%s casts a level %s %s on %s.',
+'10060' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s strength for %6$s.',
+'10061' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s strength for %6$s.',
+'10062' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10063' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Hawkeye
-'10070' => '%s uses a level %s %s potion on %s, +%s firearms for %s.',
-'10071' => '%s casts a level %s %s on %s, +%s firearms for %s.',
-'10072' => '%s uses a level %s %s potion on %s.',
-'10073' => '%s casts a level %s %s on %s.',
+'10070' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s firearms for %6$s.',
+'10071' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s firearms for %6$s.',
+'10072' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10073' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Hummingbird
-'10080' => '%s uses a level %s %s potion on %s, +%s quickness for %s.',
-'10081' => '%s casts a level %s %s on %s, +%s quickness for %s.',
-'10082' => '%s uses a level %s %s potion on %s.',
-'10083' => '%s casts a level %s %s on %s.',
+'10080' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s quickness for %6$s.',
+'10081' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s quickness for %6$s.',
+'10082' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10083' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Magicarp
-'10090' => '%s uses a level %s %s potion on %s and they lost %s MP.',
-'10091' => '%s casts a level %s %s on %s, +%s and they lost %s MP.',
-'10092' => '%s uses a level %s %s potion on %s and they lost %s MP.',
-'10093' => '%s casts a level %s %s on %s and they lost %s MP.',
+'10090' => '%1$s uses a level %2$s %3$s potion on %4$s and they lost %5$s MP.',
+'10091' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s and they lost %6$s MP.',
+'10092' => '%1$s uses a level %2$s %3$s potion on %4$s and they lost %5$s MP.',
+'10093' => '%1$s casts a level %2$s %3$s on %4$s and they lost %5$s MP.',
 # Turtle
-'10100' => '%s uses a level %s %s potion on %s, +%s marm/farm for %s.',
-'10101' => '%s casts a level %s %s on %s, +%s marm/farm for %s.',
-'10102' => '%s uses a level %s %s potion on %s.',
-'10103' => '%s casts a level %s %s on %s.',
+'10100' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s marm/farm for %6$s.',
+'10101' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s marm/farm for %5$s.',
+'10102' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10103' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Heal
-'10110' => '%s uses a level %s %s potion on %s, %s.',
-'10111' => '%s casts a level %s %s on %s, %s.',
-'10112' => '%s uses a level %s %s potion on %s.',
-'10113' => '%s casts a level %s %s on %s.',
+'10110' => '%1$s uses a level %2$s %3$s potion on %4$s, %5$s.',
+'10111' => '%1$s casts a level %2$s %3$s on %4$s, %5$s.',
+'10112' => '%1$s uses a level %2$s %3$s potion on %4$s.',
+'10113' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Calm
 '10120' => '%1$s uses a level %2$s %3$s potion on %4$s. +%5$sHP for %6$s seconds.',
 '10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds.',
@@ -466,7 +471,7 @@ $lang = array(
 ############################
 #   5000-9999   = Messages #
 ############################
-'5000' => '%s just quit his irc server.', # username 
+'5000' => '%s just quit the irc server.', # username 
 '5001' => 'You awake and have a delicious breakfast.',
 '5002' => 'You are ready to go.',
 '5003' => 'The party advanced to level %s.', # level
@@ -565,7 +570,7 @@ $lang = array(
 '5092' => 'The enemy party said "bye".',
 '5093' => 'You continue %s', # action
 '5094' => '%s thanked you and left the party.', # player
-'5095' => 'You encounter %s.',
+'5095' => "You {$b}ENCOUNTER{$b} %s.",
 '5096' => 'You meet %s.%s%s',
 '5097' => '%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.',
 '5098' => '%s moves %.01f meters towards %s and is now on position %.01f meters.',
@@ -581,25 +586,23 @@ $lang = array(
 '5118' => 'You received %s from %s.', # itemname, player
 '5119' => 'You gave %s to %s.', # itemname, player
 '5120' => 'You see no other players.',
-
-'5121' => 'Widoczni gracze: %s.',
-'5122' => 'Twój domyślny dystans walki został zmieniony na %.01f metrów.',
-'5123' => 'Dystans: %s.', # sumlist
-'5124' => 'Dystans: %s.', # sumlist
-'5125' => 'Zostałeś/aś nagrodzony %s za zabicie przeciwnika.',
-'5126' => 'Zacząłeś/aś eksplorację %s. ETA: %s.',
-'5127' => 'Zmierzasz do %s. ETA: %s.',
-'5128' => 'Nie widzisz żadnych dodatków u innych graczy, które można ukraść.',
+'5121' => 'You see these players: %s.', # sumlist?
+'5122' => 'Your default combat distance has been set to %.01f meters.', # distance
+'5123' => 'Distances: %s.', # sumlist
+'5124' => 'Distances: %s.', # sumlist
+'5125' => 'You get a reward of %s for killing the enemy.', # nuyen
+'5126' => 'You start to explore %s. ETA: %s.', # cityname, duration
+'5127' => 'You are going to %s. ETA: %s.', # location, duration
+'5128' => 'You see no mounts from other players to rob.',
 '5129' => '%s', # Mount page
-'5130' => 'Mounts hijack : %s.',
-'5133' => '%s użył %s MP to cast %s i Twoja grupa jest na zewnątrz %s.',
-'5134' => 'Zacząłeś/aś polowanie %s. ETA: %s.',
-'5135' => '%s opuścił grupę.',
-'5136' => '%s dołączył do grupy.',
-'5137' => '%s został wyrzucony z grupy.',
-'5138' => '%s jest nowym liderem grupy.',
-'5139' => "Tryb łupu dla Twojej grupy został zmieniony na: {$b}%s{$b}.",
-
+'5130' => 'Mounts to hijack: %s.', # sumlist
+'5133' => '%s used %s MP to cast %s and your party is now outside of %s.', # player, mp, teleportspellname, location 
+'5134' => 'You start to hunt %s. ETA: %s.', # player, duration
+'5135' => '%s left the party.', # player
+'5136' => '%s joined the party.', # player
+'5137' => '%s has been kicked off the party.', # player
+'5138' => '%s is the new party leader.', # player
+'5139' => "Your party has set it's loot mode to: {$b}%s{$b}.", # lootmode
 '5140' => '%s and %s have swapped their party position.', # player, player
 '5141' => 'You are guided into the arena and see your enemy: %s.', # snippet
 '5142' => '%s', # generic bank viewi.
@@ -707,13 +710,13 @@ $lang = array(
 '5244' => 'Currently there are %s Human, %s NPC and %s parties in memory.',
 '5245' => 'Your character has been deleted. You may issue "#start" again.',
 '5246' => 'This will completely delete your character. Type "#reset i_am_sure" to confirm.',
-'5247' => 'Active players, page %d of %d: %s.',
-'5248' => 'Active parties, page %s of %s: %s.',
-'5249' => 'Message of the day: %s',
+'5247' => 'Active players, page %d of %d: %s.', # page, nPages, rawlist
+'5248' => 'Active parties, page %s of %s: %s.', # page, nPages, rawlist
+'5249' => 'Message of the day: %s', # file content
 '5250' => 'You know a new %s: %s.', # knowledge, what, field
-'5251' => "You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.",
-'5252' => 'You respawn at %s.',
-'5253' => 'You lost %s XP!',
+'5251' => "You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", # karma, karmagain
+'5252' => 'You respawn at %s.', # location
+'5253' => 'You lost %s XP!', # xp
 '5254' => 'You lost %s!', # nuyen
 '5255' => 'You lost %d of your %s.',
 '5256' => 'You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.',
@@ -724,5 +727,12 @@ $lang = array(
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
 '5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
+//'5264' => '',
+//'5265' => '',
+//'5266' => '',
+//'5267' => '',
+//'5268' => '',
+//'5269' => '',
+//'5270' => '',
 );
 ?>

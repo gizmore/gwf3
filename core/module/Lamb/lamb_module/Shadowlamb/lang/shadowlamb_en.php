@@ -471,7 +471,7 @@ $lang = array(
 ############################
 #   5000-9999   = Messages #
 ############################
-'5000' => '%s just quit his irc server.', # username 
+'5000' => '%s just quit the irc server.', # username 
 '5001' => 'You awake and have a delicious breakfast.',
 '5002' => 'You are ready to go.',
 '5003' => 'The party advanced to level %s.', # level
@@ -570,7 +570,7 @@ $lang = array(
 '5092' => 'The enemy party said "bye".',
 '5093' => 'You continue %s', # action
 '5094' => '%s thanked you and left the party.', # player
-'5095' => 'You encounter %s.',
+'5095' => "You {$b}ENCOUNTER{$b} %s.",
 '5096' => 'You meet %s.%s%s',
 '5097' => '%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.',
 '5098' => '%s moves %.01f meters towards %s and is now on position %.01f meters.',
