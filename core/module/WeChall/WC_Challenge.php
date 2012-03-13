@@ -106,6 +106,17 @@ final class WC_Challenge extends GDO
 	}
 	
 	/**
+	 * Get a challenge by boardid.
+	 * @param int $bid
+	 * @return WC_Challenge
+	 */
+	public static function getByBoardID($bid)
+	{
+		$bid = (int)$bid;
+		return self::table(__CLASS__)->selectFirstObject('*', "chall_board={$bid} OR chall_sboard={$bid}");
+	}
+	
+	/**
 	 * Get a challenge by ID.
 	 * @param int $id
 	 * @return WC_Challenge

@@ -657,5 +657,7 @@ $lang = array(
 	'pi_site_tags' => 'Site Tags',
 	'ft_hardlink' => 'Force a useraccount link',
 	'btn_hardlink' => 'Force link',
+	'goto_chall' => 'Go to the %s challenge',
+	'menu_papers' => 'Papers',
 );
 ?>

@@ -650,5 +650,15 @@ $lang = array(
 	# v5.00 (fixes)
 	'msg_rem_favcat' => 'The category \'%s\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
+	'menu_download' => 'Downloads',
+		
+	#WC5 (monnino fixes)
+	'th_site_color' => 'Site color',
+	'th_onsitename' => 'User OnSiteName',
+	'pi_site_tags' => 'Site Tags',
+	'ft_hardlink' => 'Force a useraccount link',
+	'btn_hardlink' => 'Force link',
+	'goto_chall' => 'Go to the %s challenge',
+	'menu_papers' => 'Papers',
 );
 ?>

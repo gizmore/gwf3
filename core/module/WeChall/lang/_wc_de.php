@@ -638,19 +638,28 @@ $lang = array(
 	'btn_edit_site_descr' => 'Seiten Beschreibungen bearbeiten',
 
 	# v4.17 (Hide ranking)
-	'th_hide_rank' => 'Hide your ranks',
-	'tt_hide_rank' => 'Remove yourself from the ranking tables.',
-	'th_hide_score' => 'Hide your scores',
-	'tt_hide_score' => 'This will hide your scores and percentages in your profile.',
-	'msg_hide_rank_1' => 'Your rank is now hidden in your profile and the rankings.',
-	'msg_hide_rank_0' => 'Your rank is now visible in your profile and the rankings.',
-	'msg_hide_score_1' => 'Your scores and percentages are now hidden in your profile.',
-	'msg_hide_score_0' => 'Your scores and percentages are now visible in your profile.',
-	'hidden' => 'Hidden',
+	'th_hide_rank' => 'Rang verbergen',
+	'tt_hide_rank' => 'Entferne Dich aus den Ranglisten.',
+	'th_hide_score' => 'Punkte verbergen',
+	'tt_hide_score' => 'Diese Einstellung versteckt die Punkte und Prozente in Deinem Profil.',
+	'msg_hide_rank_1' => 'Dein Rang wird nun nicht mehr im Profil sowie den Ranglisten angezeigt.',
+	'msg_hide_rank_0' => 'Dein Rang ist nun wieder überall sichtbar.',
+	'msg_hide_score_1' => 'Deine Punkte und Prozente werden nun nicht mehr in Deinem Profil angezeigt.',
+	'msg_hide_score_0' => 'Deine Punkte und Prozente sind nun wieder sichtbar.',
+	'hidden' => 'Versteckt',
 
 	# v5.00 (fixes)
-	'msg_rem_favcat' => 'The category \'%s\' got removed from your favorite categories.',
-	'err_site_status' => 'The sites status is invalid.',
+	'msg_rem_favcat' => 'Die Kategorie \'%s\' wurde von Deinen Lieblingskategorien entfernt.',
+	'err_site_status' => 'Der Status dieser Seite ist ungültig.',
 	'menu_download' => 'Downloads',
+
+	#WC5 (monnino fixes)
+	'th_site_color' => 'Farbe',
+	'th_onsitename' => 'Nickname',
+	'pi_site_tags' => 'Kategorien',
+	'ft_hardlink' => 'Konto Verlinkung Erzwingen',
+	'btn_hardlink' => 'Verlinken',
+	'goto_chall' => 'Gehe zur %s Challenge',
+	'menu_papers' => 'Artikel',
 );
 ?>

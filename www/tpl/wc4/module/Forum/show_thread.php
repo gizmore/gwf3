@@ -15,11 +15,18 @@
 
 <div class="gwf_thread">
 
-<?php if ($title) { ?>
-	<h1><?php echo $t->display('thread_title'); ?></h1>
-<?php } ?>
-
 <?php
+if ($title)
+{
+	$button = '';
+	if (false !== ($chall = WC_Challenge::getByBoardID($t->getVar('thread_bid'))))
+	{
+		$text = WC_HTML::lang('goto_chall', array($chall->display('chall_title')));
+		$button = '&nbsp;&nbsp;'.GWF_Button::forward($chall->getHREF(), $text);
+	}
+	printf('<h1>%s%s</h1>', $t->display('thread_title'), $button);
+}
+
 if ($actions)
 {
 	$buttons = '';
