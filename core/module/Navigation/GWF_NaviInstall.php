@@ -75,6 +75,16 @@ class GWF_NaviInstall
 				unset($pml[$name]);
 			}
 		}
+
+		/**
+		 * An array of modules containing methods containing an array of pagemenu links (GWF_Page row)
+		 * Array: Modulename -> Array:
+		 *     Methodname -> Array:
+		 *         Array: GWF_Page row,
+		 *         [...],
+		 *     [...],
+		 * [...],
+		 */
 		return $pml;
 	}
 
@@ -184,54 +194,62 @@ class GWF_NaviInstall
 				# continue ?
 			}
 
-			$modulecount = 0;
 			$count++; # increase count because module have been added
+			$modulecount = 0; # The modulecount (how many methods the module has)
 			$nid = '1'; # TODO: get $modulename-Navigation ID
+			$i = 0; # counter variable used for position
 
 			# TODO: only check values here, dont insert
 			if (is_array($pbmodule))
-			foreach($pbmodule as $methodname => $pbvars)
+			foreach ($pbmodule as $methodname => $methodlinks)
 			{
-				#TODO: Create Category for each Method?
-
-				$pbvars = $pbvars[0];
-				if(false === is_array($pbvars) || false === isset($pbvars['page_url']) || false === isset($pbvars['page_title']))
+				foreach ($methodlinks as $num => $pbvars)
 				{
-					unset($pbmodule[$methodname]);
-					continue; # required entries does not exists
-				}
-				unset($pbvars['page_id']);
+					if (false === is_array($pbvars) || false === isset($pbvars['page_url']) || false === isset($pbvars['page_title']))
+					{
+						unset($pbmodule[$methodname][$num]);
+						continue; # required entries does not exists
+					}
 
-				# entries that need to exist
-				$overwritable = array(
-				//	'page_cat' => $catid,
-					'page_views' => '0',
-					'page_meta_desc' => '',
-					'page_options' => GWF_Page::ENABLED
-				);
-				$pbvars = array_merge($overwritable, $pbvars);
+					# page_id is AUTO INCREMENT
+					unset($pbvars['page_id']);
+	
+					# entries that need to exist
+					$overwritable = array(
+						'page_cat' => $catid,
+						'page_views' => '0',
+						'page_meta_desc' => '',
+						'page_options' => GWF_Page::ENABLED
+					);
+					$pbvars = array_merge($overwritable, $pbvars);
 
-				if(false === $pagevars->insertAssoc($pbvars))
-				{
-					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
-				}
+					# Insert the GWF_NaviPage
+					if (false === $pagevars->insertAssoc($pbvars))
+					{
+						return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+					}
 
-				if(false === ($pb = $pagevars->selectFirst('page_id', "page_url='".$pbvars['page_url']."'")))
-				{
-					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
-				}
-				$pbid = $pb['page_id']; # Check: No such page, impossible
+					# Get the ID of the inserted GWF_NaviPage # TODO: a more comfortable way?
+					if (false === ($pb = $pagevars->selectFirst('page_id', "page_url='".$pbvars['page_url']."'")))
+					{
+						return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+					}
+					$pbid = $pb['page_id'];
+	
+					$navi = array(
+					//	'navi_id' => $i-1, # AUTO INCREMENT
+						'navi_nid' => $nid, # the GWF_Navigations navis_id (pid of modulenavis)
+						'navi_pbid' => $pbid,
+						'navi_position' => ++$i,
+						'navi_options' => GWF_Navigation::ENABLED,
+					);
+					if (false === $navigation->insertAssoc($navi))
+					{
+						return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+					}
 
-				$navi = array(
-					//'navi_id' => ++$i, # AUTO INCREMENT
-					'navi_nid' => $nid, # the GWF_Navigations navis_id (pid of modulenavis)
-					'navi_pbid' => $pbid,
-					'navi_position' => ++$i,
-					'navi_options' => GWF_Navigation::ENABLED,
-				);
-				if(false === $navigation->insertAssoc($navi))
-				{
-					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+					# increase the modulecount, a methodlink has been added
+					$modulecount++;
 				}
 			}
 
@@ -248,5 +266,4 @@ class GWF_NaviInstall
 		
 		return true;
 	}
-	
 }

@@ -117,7 +117,7 @@ final class GWF_Navigations extends GDO
 	}
 
 	/**
-	 * Recursive remove a complete Navigation
+	 * Recursive remove a Navigation
 	 * @param string|int Name or id
 	 * @return boolean
 	 */
