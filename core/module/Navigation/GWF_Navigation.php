@@ -71,12 +71,19 @@ final class GWF_Navigation extends GDO
 	 */
 	public static function onDelete($nid, $pb=false)
 	{
-//		$ids = array();
-//		if($pb && false === GWF_NaviPage::onDelete($ids))
-//		{
-//			return false;
-//		}
-		return GDO::table(__CLASS__)->deleteWhere("navi_nid = {$nid}");
+		$t = self::table(__CLASS__);
+		if($pb)
+		{
+			$success = true;
+			$ids = $t->selectAll('navi_pbid', "navi_nid = '{$nid}'");
+			# TODO: only if count(*) where nid = $nid == 1
+			foreach ($ids as $id)
+			{
+				if (false === GWF_NaviPage::onDelete($id['navi_pbid'])))
+					$success = false;
+			}
+		}
+		return GDO::table(__CLASS__)->deleteWhere("navi_nid = '{$nid}'");
 	}
 
 	/**

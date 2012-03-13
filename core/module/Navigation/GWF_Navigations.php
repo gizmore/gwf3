@@ -19,7 +19,7 @@ final class GWF_Navigations extends GDO
 			'navis_id' => array(GDO::AUTO_INCREMENT),
 			'navis_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S|GDO::UNIQUE, GDO::NOT_NULL, 255), # navi_key
 			'navis_pid' => array(GDO::UINT, GDO::NULL), # nested Navigations
-//			'navi_position' => array(GDO::INT|GDO::INDEX, '0'), # if isSubNavi the position in the parent navigation//GDO::NULL ?
+//			'navis_position' => array(GDO::INT|GDO::INDEX, '0'), # if isSubNavi the position in the parent navigation//GDO::NULL ?
 //			'navis_gid' => array(GDO::UINT, GDO::NULL), # allow moderate by groupid?
 			'navis_count' => array(GDO::UINT, 0),
 			'navis_options' => array(GDO::UINT, self::ENABLED),
@@ -117,12 +117,23 @@ final class GWF_Navigations extends GDO
 	}
 
 	/**
-	 * Delete a complete Navigation
+	 * Recursive remove a complete Navigation
+	 * @param string|int Name or id
 	 * @return boolean
 	 */
-	public static function deleteNavigation($nid)
+	public static function deleteNavigation($navi)
 	{
-		$navis = self::getByID($nid);
+		if (is_numeric($navi))
+		{
+			$nid = $navi;
+			$navis = self::getByID($nid);
+		}
+		else
+		{
+			$navis = self::getByName($navi);
+			$nid = $navis->getID();
+		}
+
 		if(false === GWF_Navigation::onDelete($nid, $navis->isnotPB()))
 		{
 			return false;

@@ -33,7 +33,7 @@ final class GWF_NaviPage extends GDO
 	
 	public static function onDelete($id)
 	{
-		die('TODO');
+		return self::table(__CLASS__)->deleteWhere("page_id = '{$id}'");
 	}
 	
 //	/**

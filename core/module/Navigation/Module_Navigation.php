@@ -33,7 +33,7 @@ final class Module_Navigation extends GWF_Module
 		return array('GWF_Navigation', 'GWF_Navigations', 'GWF_NaviPage');
 	}
 	public function onLoadLanguage() { return $this->loadLanguage('lang/navigation'); }
-	public function getOptionalDependencies() { return array('PageBuilder'); }
+	public function getOptionalDependencies() { return array('PageBuilder', 'Category'); }
 //	public function getDependencies() { return array(); }	//PageBuilder here?, Category, GWF_Tree?
 	public function onInstall($dropTable) 
 	{
@@ -51,7 +51,7 @@ final class Module_Navigation extends GWF_Module
 	}
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function cfgLockedPageMenu() { return $this->getModuleVarBool('lockedPM'); }
-	public function cfgInstallPagemenu() { return false; } # (re)Install PageMenu on module-installation?
+	public function cfgInstallPagemenu() { return false; return $this->isEnabled() && !$this->cfgLockedPageMenu(); } # (re)Install PageMenu on module-installation?
 
 	public function canModerate()
 	{

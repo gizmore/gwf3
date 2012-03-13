@@ -1,7 +1,7 @@
 <?php
 /**
- * Description of GWF_NaviInstall
- *
+ * Install the Navigation module
+ * Install PageMenu
  * @author spaceone
  */
 class GWF_NaviInstall
@@ -13,6 +13,11 @@ class GWF_NaviInstall
 		));
 	}
 
+	public static function PageMenuExists()
+	{
+		$t = GDO::table('GWF_Navigations');
+		return 1 === $t->countRows('navis_name=\'PageMenu\'');
+	}
 
 	/**
 	 * Parse all Module-pagemenu entries into valid format
@@ -21,16 +26,6 @@ class GWF_NaviInstall
 	 */
 	public static function parseModules(array $modules)
 	{
-		$navigation = GWF_Module::loadModuleDB('Navigation', false, false, true);
-
-		if ((false === $navigation) 
-			|| (false === $navigation->isEnabled()) 
-		//	|| (false === $navigation->cfgLockedPageMenu())
-		)
-		{
-			return false; //Module Navigation not enabled or cannot be modified!
-		}
-
 		$pml = array();
 		$c = 2; # page_url, page_title
 		foreach ($modules as $module)
@@ -82,7 +77,24 @@ class GWF_NaviInstall
 		}
 		return $pml;
 	}
-	
+
+	/**
+	 * Create a PageMenu-GWF_Category
+	 * @return int ID
+	 */
+	public static function createPageMenuCategory()
+	{
+		require_once GWF_CORE_PATH.'module/Category/Module_Category.php';
+		# TODO: get module...
+		# TODO: isEnabled
+		if(false === ($cat = GWF_Category::getByKey('PageMenu')))
+		{
+			# TODO: Create GWF_Category: PageMenu
+			return 0;
+		}
+		return $cat->getId();
+	}
+
 	/**
 	 * Install the PageMenu for all Modules.
 	 *
@@ -93,68 +105,88 @@ class GWF_NaviInstall
 		$pagemenulinks = self::parseModules(GWF_ModuleLoader::loadModulesFS());
 		return self::installPageMenu2($pagemenulinks);
 	}
-	
+
 	/**
 	 * Install the PageMenu
-	 * @param array $pmdata = array of GWF_NaviPage Rows
+	 * @param array $pmarray = array of GWF_NaviPage Rows
 	 * @todo GWF_Exception
 	 * @todo navi_pbid bug
 	 * @todo encapsulate
 	 * 	remove old pagemenu: recursive in GWF_Navigations
 	 * 	possibility to merge old PageMenu?
-	 * @return true|false|string|GWF_Exception # TODO
+	 * @return true|string|GWF_Exception # TODO
 	 */
-	public static function installPageMenu2(array $pmdata)
+	public static function installPageMenu2(array $pmarray)
 	{
 		# Are there PageMenu entries?
-		if(0 === count($pmdata))
+		if (0 === count($pmarray))
 		{
-			return false; # TODO: return true?
+			return true;
 		}
 		
 		# Create Instances
 		$navigation = GDO::table('GWF_Navigation');
 		$pagevars = GDO::table('GWF_NaviPage');
 		
-		if(false === ($navigations = GWF_Navigations::getByName('PageMenu')) ) # empty array??
+		if (false === ($navigations = GWF_Navigations::getByName('PageMenu')))
 		{
 			# There is no PageMenu yet
 			$navigations = GDO::table('GWF_Navigations');
 		}
-
-		# remove old entries
-		if(false === ($pbids = $navigation->selectAll('navi_pbid', 'navi_nid = 1')) || false === $navigation->deleteWhere('navi_nid = 1'))
+		else
 		{
-			return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
-		}
-
-		foreach($pbids as $id)
-		{
-			if(false === $pagevars->deleteWhere("page_id = {$id['navi_pbid']}"))
+			# recursive remove old PageMenu
+			# TODO: merging possibility?
+			if (false === GWF_Navigations::deleteNavigation('PageMenu'))
 			{
 				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
 			}
 		}
 
-		$categories = array();
-		
-		if(false === ($categories['Modules'] = GWF_Category::getByKey('Modules')))
+		# The PageMenu row for GWF_Navigations
+		$pm = array(
+		//	'navis_id' => '1', # AUTO INCREMENT
+			'navis_name' => 'PageMenu',
+			'navis_pid' => '0', # dont have parent Navigation
+		//	'navi_position' => '0',
+		//	'navis_gid' => '', # create groupid for PageMenuNavigation?
+		//	'navis_count' => 0, # default
+			'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
+		);
+
+		# Insert the new GWF_Navigations PageMenu row
+		if(false === $navigations->insertAssoc($pm))
 		{
-			# TODO: Create GWF_Category: Modules
+			return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
-		# insert new entries
+		$pmid = 1; # TODO: get the PageMenu ID
+		$catid = createPageMenuCategory();
 		$count = 0;
-		foreach($pmdata as $modulename => $pbmodule)
+
+		foreach ($pmarray as $modulename => $pbmodule)
 		{
-		//	# DECIDE: create only a (one) PageMenu category?
-		//	#TODO: create GWF_Category for each module
-		//	$catid = 0;
-			
-			#TODO: create GWF_Navigations for each Module
-			$nid = '1';
-			
-			$i = 0;
+			# The $modulename-Module row for GWF_Navigations
+			$pm = array(
+			//	'navis_id' => '0', # AUTO INCREMENT
+				'navis_name' => $modulename,
+				'navis_pid' => $pmid, # parent-id: PageMenu ID
+ 			//	'navis_position' => $count, # currently not existent # TODO: get old value
+			//	'navis_gid' => '', # create groupid for PageMenuNavigation?
+			//	'navis_count' => $count, # set later
+				'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
+			);
+
+			# Insert the GWF_Navigations $modulename row
+			if(false === $navigations->insertAssoc($pm))
+			{
+				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
+				# continue ?
+			}
+
+			$modulecount = 0;
+			$count++; # increase count because module have been added
+			$nid = '1'; # TODO: get $modulename-Navigation ID
 
 			# TODO: only check values here, dont insert
 			if (is_array($pbmodule))
@@ -202,45 +234,17 @@ class GWF_NaviInstall
 					return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__));
 				}
 			}
-			
-			$count++;
-			
-			
-			# The Module row for GWF_Navigations
-			$pm = array(
-				'navis_id' => $i, # TODO: Overwrite old Navi (getByName) #AUTO INCREMENT
-				'navis_name' => $modulename,
-				'navis_pid' => '1', # PageMenu ID
-// 				'navi_position' => $i, ## TODO: $count ?
-	//			'navis_gid' => '', # create groupid for PageMenuNavigation?
-				'navis_count' => $count,
-				'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
-			);
 
-			# Replace the GWF_Navigations PageMenu row
-			if(false === $navigations->insertAssoc($pm))
+			if ($modulecount === 0)
 			{
-				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
+				# TODO: remove the $modulename-Navigation
 			}
-			
+			else
+			{
+				$navigations->set("navis_count = '{$modulecount}'", "navis_name='{$modulename}'");
+			}
 		}
-		
-		# The PageMenu row for GWF_Navigations
-		$pm = array(
-			'navis_id' => '1',
-			'navis_name' => 'PageMenu',
-			'navis_pid' => '0', # dont have parent Navigation
-//			'navi_position' => '0',
-//			'navis_gid' => '', # create groupid for PageMenuNavigation?
-			'navis_count' => $count,
-			'navis_options' => GWF_Navigations::ENABLED|GWF_Navigations::NONPBSITE,
-		);
-		
-		# Replace the GWF_Navigations PageMenu row
-		if(false === $navigations->insertAssoc($pm))
-		{
-				return GWF_HTML::error('ERR_DATABASE', array(__FILE__, __LINE__)); 
-		}
+		$navigations->set("navis_count = '{$count}'", 'navis_name=\'PageMenu\'');
 		
 		return true;
 	}
