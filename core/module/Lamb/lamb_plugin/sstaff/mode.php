@@ -5,8 +5,6 @@ $server instanceof Lamb_Server;
 #$message
 #$from
 
-
-
 #################
 ### Functions ###
 #################
@@ -18,7 +16,6 @@ if (!function_exists('lambUserMode200')) { function lambUserMode200(Lamb_User $u
 		'o' => Lamb_User::OPERATOR,
 		'h' => Lamb_User::HALFOP,
 		'v' => Lamb_User::VOICE,
-	
 	);
 	
 	$flags = $user->getOptions() & Lamb_User::USERMODE_FLAGS;

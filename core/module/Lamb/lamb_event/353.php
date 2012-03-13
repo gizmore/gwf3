@@ -21,7 +21,7 @@ foreach (explode(' ', $nicknames) as $nickname)
 //		$user->setLoggedIn(true);
 	}
 	
-	$channel->addUser($user, $usermode);
+	$channel->addUser($user, Lamb_Channel::symbolsToUsermode($usermode));
 	$server->addUser($nickname);
 }
 ?>

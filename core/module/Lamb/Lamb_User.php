@@ -20,7 +20,7 @@ final class Lamb_User extends GDO
 	const BOT = 0x100;
 	
 	public static $PRIVS = array('public','voice','halfop','op','staff','admin');
-	public static $SYMBOL = array('public'=>'','voice'=>'','halfop'=>'','op'=>'','staff'=>'','admin'=>'');
+	public static $SYMBOL = array('public'=>'','voice'=>'+','halfop'=>'%','op'=>'@','staff'=>'&','admin'=>'~');
 	public static function priv2symbol($priv)
 	{
 		return self::$SYMBOL[$priv];
@@ -182,6 +182,17 @@ final class Lamb_User extends GDO
 			return true;
 		}
 		
+		return $this->hasPriviledgeBit($need);
+	}
+	
+	/**
+	 * Check if this user has a certain priviledge.
+	 * @param int $modebit
+	 */
+	public function hasPriviledgeBit($modebit)
+	{
+		$modebit = (int)$modebit;
+		
 		if (!$this->isLoggedIn())
 		{
 			return false;
@@ -192,7 +203,7 @@ final class Lamb_User extends GDO
 			return false;
 		}
 		
-		return $have <= $need;
+		return $have <= $modebit;
 	}
 	
 	public static function longPriv($p)

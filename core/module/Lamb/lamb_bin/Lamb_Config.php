@@ -75,7 +75,7 @@ $LAMB_CFG = array
 		),
 		
 		array(
-			'host' => 'ircs://natalya.psych0tik.net:6697',
+			'host' => 'ircs://irc.psych0tik.net:6697',
 			'nickname' => 'Lamb',
 			'password' => LAMB_PASSWORD2,
 			'channels' => '#shadowlamb,#valhalla,#hbh,#shadowlamb_bots',

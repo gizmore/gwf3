@@ -120,9 +120,14 @@ final class Lamb_Channel extends GDO
 	public function addUser(Lamb_User &$user, $usermode='')
 	{
 		$u = strtolower($user->getVar('lusr_name'));
-		$this->users[$u] = array($user, $usermode);
+		$this->users[$u] = array($user, self::alterUsermode('', $usermode));
 	}
 	
+	/**
+	 * Get a user by name for this channel.
+	 * @param string $username
+	 * @return Lamb_User
+	 */
 	public function getUserByName($username)
 	{
 		return $this->users[strtolower($username)][0];
@@ -135,13 +140,15 @@ final class Lamb_Channel extends GDO
 	
 	public function getModeByName($username)
 	{
-		return isset($this->users[strtolower($username)][1]) ? $this->users[strtolower($username)][1] : '';
+		$username = strtolower($username);
+		return isset($this->users[$username][1]) ? $this->users[$username][1] : '';
 	}
 	
 	public function setUserMode($username, $usermode)
 	{
 		$u = strtolower($username);
-		$this->users[$u] = array($this->getUserByName($u), $usermode);
+		$oldmode = $this->getModeByName($u);
+		$this->users[$u] = array($this->getUserByName($u), self::alterUsermode($oldmode, $usermode));
 	}
 	
 	public function removeUser($username)
@@ -157,6 +164,120 @@ final class Lamb_Channel extends GDO
 	public function saveTopic($topic)
 	{
 		return $this->saveVar('chan_topic', $topic);
+	}
+
+	
+	##################
+	### Bitmapping ###
+	##################
+	private static $MAP = array(
+		'a' => Lamb_User::ADMIN,
+		's' => Lamb_User::STAFF,
+		'o' => Lamb_User::OPERATOR,
+		'h' => Lamb_User::HALFOP,
+		'v' => Lamb_User::VOICE,
+	);
+	
+	private static $SYMBOLMAP = array(
+		'~' => 'a',
+		'&' => 's',
+		'@' => 'o',
+		'%' => 'h',
+		'+' => 'v',
+	);
+	
+	/**
+	 * Alter a usermode by another usermode, for example vh, +o as params.
+	 * @param string $oldmode
+	 * @param string $usermode
+	 * @return string the altered usermode
+	 */
+	public static function alterUsermode($oldmode, $usermode)
+	{
+		$oldmode = trim($oldmode);
+		
+		if ($usermode === '')
+		{
+			$back = $oldmode;
+		}
+		elseif ($usermode[0] === '+')
+		{
+			$back = $oldmode.substr($usermode, 1);
+		}
+		elseif ($usermode[0] === '-')
+		{
+			$back = preg_replace(sprintf('/[%s]/', substr($usermode, 1)), '', $oldmode);
+		}
+		else
+		{
+			$back = $usermode;
+		}
+		
+// 		Lamb_Log::logDebug(sprintf('%s(%s,%s) === %s', __METHOD__, $oldmode, $usermode, $back));
+		
+		return $back;
+	}
+	
+	/**
+	 * Convert usermode symbol to usermode char.
+	 * @param string $symbols
+	 * @return string usermode equivalent string.
+	 */
+	public static function symbolsToUsermode($symbols)
+	{
+		$symbols = trim($symbols);
+		
+		$back = '';
+		$len = strlen($symbols);
+		for ($i = 0; $i < $len; $i++)
+		{
+			if (isset(self::$SYMBOLMAP[$symbols[$i]]))
+			{
+				$back .= self::$SYMBOLMAP[$symbols[$i]];
+			}
+		}
+		
+// 		Lamb_Log::logDebug(sprintf('%s(%s) === %s', __METHOD__, $symbols, $back));
+		
+		return $back;
+	}
+	
+	/**
+	 * Convert usermode flags into lambuser bits.
+	 * @param string $usermode
+	 * @return int bitfield
+	 */
+	public static function usermodeToBits($usermode)
+	{
+		$bit = 0;
+		$len = strlen($usermode);
+		for ($i = 0; $i < $len; $i++)
+		{
+			if (isset(self::$MAP[$usermode[$i]]))
+			{
+				$bit |= self::$MAP[$usermode[$i]];
+			}
+		}
+		
+// 		Lamb_Log::logDebug(sprintf('%s(%s) === %s', __METHOD__, $usermode, $bit));
+		
+		return $bit;
+	}
+	
+	public static function bitsToUsermode($bits)
+	{
+		$back = '';
+		for ($i = 1; $i <= Lamb_User::VOICE; $i *= 2)
+		{
+			if (($bits & $i) === $i)
+			{
+				$back .= array_search($i, self::$MAP);
+			}
+		}
+		
+// 		Lamb_Log::logDebug(sprintf('%s(%s) === %s', __METHOD__, $bits, $back));
+		
+		return $back;
 	}
 }
 ?>
