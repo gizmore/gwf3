@@ -6,7 +6,9 @@
  */
 final class WC_AutoChangelog
 {
-
+	/**
+	 * Relative path from GWF_WWW_PATH
+	 */
 	private static $outfile = 'changes.txt';
 
 	/**
@@ -23,7 +25,13 @@ final class WC_AutoChangelog
 		$svn->setRepository('https://svn.gwf3.gizmore.org/GWF3');
 
 		$startrev = 422;//292;
-		$logs = $svn->getLog($startrev, 5000);
+		$logs = $svn->getLog($startrev, $svn->getCurrentRevision());
+
+		# Known users and their WeChall profiles
+		$users = array(
+			'spaceone' => 'space',
+			'gizmore' => 'Gizmore',
+		);
 
 		$back = '';
 		foreach ($logs as $log)
@@ -42,14 +50,17 @@ final class WC_AutoChangelog
 						foreach (preg_split('/[\s,;]+/', $match) as $username)
 						{
 							$username = htmlspecialchars(trim($username));
+							$username = isset($users[$username]) ? $users[$username] : $username;
 							$thx .= sprintf('<a title="%s" href="%sprofile/%s">%s</a>'.PHP_EOL, $username, GWF_WEB_ROOT, $username);
 						}
 					}
 				}
 
 				# TODO: HTML formatting
-				$pattern = 'Revision: %s; by %s; on %s;'.PHP_EOL.'  %s'.PHP_EOL.'%s'.PHP_EOL;
-				$back .= sprintf($pattern, $log['version-name'], $log['creator-displayname'], $log['date'], str_replace("\n", "\n  ", $comment), $thx);
+				$creator = isset($users[$log['creator-displayname']]) ? $users[$log['creator-displayname']] : $log['creator-displayname'];
+
+				$pattern = 'Revision: %s; by <a href="%s/profile/%s">%s</a>; on %s;'.PHP_EOL.'  %s'.PHP_EOL.'%s'.PHP_EOL;
+				$back .= sprintf($pattern, $log['version-name'], GWF_WEB_ROOT, $creator, $creator, $log['date'], str_replace("\n", "\n  ", $comment), $thx);
 			}
 		}
 
