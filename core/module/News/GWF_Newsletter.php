@@ -250,6 +250,16 @@ final class GWF_Newsletter extends GDO
 	{
 		return GWF_WEB_ROOT.sprintf('newsletter/unsubscribe/%s/%s', $this->getEmail(), $this->getToken());
 	}
+
+	############
+	### Hook ###
+	############
+	public static function onHookChangeMail($oldmail, $newmail)
+	{
+		$oldmail = self::escape($oldmail);
+		$newmail = self::escape($newmail);
+		return self::table(__CLASS__)->update("nl_email='{$newmail}'", "nl_email='{$oldmail}'");
+	}
 	
 }
 

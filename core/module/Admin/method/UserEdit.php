@@ -116,8 +116,14 @@ final class Admin_UserEdit extends GWF_Method
 	{
 		$u = $this->user;
 		$form = $this->getForm();
-		if (false !== ($error = $form->validate($this->module))) {
+		if (false !== ($error = $form->validate($this->module)))
+		{
 			return $error;
+		}
+		
+		if ($form->getVar('email') !== $u->getVar('user_email'))
+		{
+			GWF_Hook::call(GWF_Hook::CHANGE_MAIL, $u, array($u->getVar('user_email'), $form->getVar('email')));
 		}
 		
 		if (false === $u->saveVars(array(

@@ -147,22 +147,38 @@ final class Account_ChangeEmail extends GWF_Method
 	private function onChangeB($token)
 	{
 		$userid = (int) Common::getGet('userid');
-		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'email2'))) {
+		if (false === ($ac = GWF_AccountChange::checkToken($userid, $token, 'email2')))
+		{
 			return $this->module->error('err_token');
 		}
 		
-		if (false === ($user = $ac->getUser())) {
+		if (false === ($user = $ac->getUser()))
+		{
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		if (false === $ac->delete()) {
+		if (false === $ac->delete())
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
+		$oldmail = $user->getValidMail();
 		$newmail = $ac->getVar('data');
 		
-		$user->saveVar('user_email', $newmail);
-		$user->saveOption(GWF_User::MAIL_APPROVED, true);
+		if (false === GWF_Hook::call(GWF_Hook::CHANGE_MAIL, $user, array($oldmail, $newmail)))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		if (false === $user->saveVar('user_email', $newmail))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
+		
+		if (false === $user->saveOption(GWF_User::MAIL_APPROVED, true))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		}
 		
 		return $this->module->message('msg_mail_changed', array(htmlspecialchars($newmail)));
 	}

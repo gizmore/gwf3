@@ -12,7 +12,7 @@ final class Module_News extends GWF_Module
 	#################
 	### Overrides ###
 	#################
-	public function getVersion() { return 1.02; }
+	public function getVersion() { return 1.03; }
 	public function getAdminSectionURL() { return GWF_WEB_ROOT.'news/admin'; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/news'); }
 	public function onCronjob() { require_once 'GWF_NewsCronjob.php'; GWF_NewsCronjob::onCronjob($this); }
@@ -79,6 +79,7 @@ final class Module_News extends GWF_Module
 	public function onAddHooks()
 	{
 		GWF_Hook::add(GWF_Hook::INSTALL_MODULE, array(__CLASS__, 'onHookInstallModule'));
+		GWF_Hook::add(GWF_Hook::CHANGE_MAIL, array(__CLASS__, 'onHookChangeMail'));
 	}
 	
 //	public function onAddMenu()
@@ -113,6 +114,15 @@ final class Module_News extends GWF_Module
 			return $this->onReinstallForumNews();
 		}
 		
+		return '';
+	}
+	
+	public function onHookChangeMail(GWF_User $user, array $args)
+	{
+		if (false === GWF_Newsletter::onHookChangeMail($args[0], $args[1]))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
 		return '';
 	}
 	
