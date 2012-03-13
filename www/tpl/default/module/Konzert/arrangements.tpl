@@ -1,6 +1,6 @@
 <div class="ce">
 	<h1>{$title}</h1>
-	{*	<div class="fl">{include file="{$core}module/Konzert/tpl/default/mugshot.tpl" small='/tpl/konz/bild/87.jpg' large='/tpl/konz/bild/87_large.jpg' title=$lang->lang('name') alt=$lang->lang('foto') text=$lang->lang('name')}</div> *}
+	{*	<div class="fl">{include file="tpl/default/module/Konzert/mugshot.tpl" small='/tpl/konz/bild/87.jpg' large='/tpl/konz/bild/87_large.jpg' title=$lang->lang('name') alt=$lang->lang('foto') text=$lang->lang('name')}</div> *}
 	<div class="">
 		<div class="box box_c">
 			<h2><a href="http://www.reservix.de/reservation/plan_reservation_back.php?eventID=212083&eventGrpID=57018&presellercheckID=3">{$h1}</a></h2>
