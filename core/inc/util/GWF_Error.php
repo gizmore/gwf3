@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Error messages
  * @author spaceone

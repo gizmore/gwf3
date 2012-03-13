@@ -7,7 +7,7 @@
  */
 final class Module_GWF extends GWF_Module
 {
-	public function getVersion() { return 3.10; }
+	public function getVersion() { return 3.11; }
 	public function onInstall($dropTable) { require_once GWF_CORE_PATH.'module/GWF/GWF_InstallGWF.php'; return GWF_InstallGWF::onInstall($this, $dropTable); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/gwf'); }
 
@@ -31,8 +31,7 @@ final class Module_GWF extends GWF_Module
 	# Error Config
 	public function cfgLog() { return $this->getModuleVar('log', '403,404'); }
 	public function cfgMail() { return $this->getModuleVar('mail', '403,404'); }
-// 	public function cfgBlacklist() { return 'mo=GWF,me=Error,favicon.ico,.png'; } # TODO: dont want to write updatescript
-	public function cfgBlacklist() { return $this->getModuleVar('blacklist', 'me=Error;favicon.ico[^$]'); }
+	public function cfgBlacklist() { return $this->getModuleVar('blacklist', 'me=ShowError;favicon.ico[^$]'); }
 
 	# Captcha Config
 	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }

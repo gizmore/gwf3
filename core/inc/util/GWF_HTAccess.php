@@ -33,10 +33,10 @@ final class GWF_HTAccess
 			'RedirectMatch 404 /\..*$'.PHP_EOL.
 			PHP_EOL.
 			'# Custom error pages'.PHP_EOL.
-			'ErrorDocument 403 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=403'.PHP_EOL.
-			'ErrorDocument 404 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=404'.PHP_EOL.
-			'ErrorDocument 400 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=400'.PHP_EOL.
-			'ErrorDocument 401 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=Error&code=401'.PHP_EOL.
+			'ErrorDocument 400 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=400'.PHP_EOL.
+			'ErrorDocument 401 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=401'.PHP_EOL.
+			'ErrorDocument 403 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=403'.PHP_EOL.
+			'ErrorDocument 404 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=404'.PHP_EOL.
 			PHP_EOL.
 			'RewriteEngine On'.PHP_EOL.
 #			PHP_EOL.
@@ -96,7 +96,7 @@ final class GWF_HTAccess
 	 */
 	public static function protect404($dir)
 	{
-		$content = 'RewriteEngine On'.PHP_EOL.'RewriteRule .* /index.php?mo=GWF&me=Error&code=404'.PHP_EOL;
+		$content = 'RewriteEngine On'.PHP_EOL.'RewriteRule .* /index.php?mo=GWF&me=ShowError&code=404'.PHP_EOL;
 		return self::protectB($dir, $content);
 	}
 	

@@ -29,7 +29,7 @@ final class GWF_InstallGWF
 			'CaptchaHeight' => array('42', 'int'),
 			# Security
 			'allow_all_requests' => array('NO', 'bool'),
-			'blacklist' => array('me=Error;favicon.ico[^$]', 'text'),
+			'blacklist' => array('me=ShowError;favicon.ico[^$]', 'text'),
 		));
 	}
 }

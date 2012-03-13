@@ -3,13 +3,13 @@
  * Custom 404 error pages and email on 404.
  * @author spaceone, gizmore
  */
-final class GWF_Error extends GWF_Method
+final class GWF_ShowError extends GWF_Method
 {
 	protected $_tpl = 'error.tpl';
 
 	public function getHTAccess()
 	{
-		return 'RewriteRule ^error/(.*?)$ index.php?mo=GWF&me=Error&code=$1'.PHP_EOL;
+		return 'RewriteRule ^error/(.*?)$ index.php?mo=GWF&me=ShowError&code=$1'.PHP_EOL;
 	}
 	
 	public function execute()
@@ -56,7 +56,7 @@ final class GWF_Error extends GWF_Method
 			return GWF_HTML::error('ERR_NO_PERMISSION');
 		}
 
-		@header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.$errors[$code]);
+		@header(Common::getProtocol().' '.$code.' '.$errors[$code]);
 
 		# Generate template
 		$tVars = array(
