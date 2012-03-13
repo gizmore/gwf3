@@ -51,7 +51,7 @@ final class WeChall_RankingCountry extends GWF_Method
 			"AS `top3`, ".
 			'ROUND(SUM(`user_level`) / `c`.`country_pop` * 1000, 2) AS `spc` '.
 			"FROM `$countries` AS `c` ".
-			"JOIN `$users` AS `u` ON `u`.`user_countryid` = `c`.`country_id` ".
+			"JOIN `$users` AS `u` ON `u`.`user_countryid` = `c`.`country_id` AND `u`.`user_options`&2=0 ".
 			"WHERE `c`.`country_id` > 0 ".#$hide_ranking ".
 			"GROUP BY `country_id` ".
 			"ORDER BY $by $dir; ";
@@ -138,7 +138,7 @@ final class WeChall_RankingCountry extends GWF_Method
 	private function getDataForCountry(GWF_Country $country, $ipp, $from)
 	{
 		$cid = $country->getID();
-		return GDO::table('GWF_User')->selectObjects('*', "user_countryid=$cid and user_options&0x10000000=0", "user_level DESC ", $ipp, $from);
+		return GDO::table('GWF_User')->selectObjects('*', "user_countryid=$cid and user_options&0x10000002=0", "user_level DESC ", $ipp, $from);
 	}
 	
 	private function getSinglePageRank($cid, $ipp, $user)
