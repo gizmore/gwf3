@@ -29,6 +29,7 @@ final class GWF_Newsletter extends GDO
 	public function getToken() { return $this->getVar('nl_unsign'); }
 	public function getOptions() { return (int) $this->getVar('nl_options'); }
 	public function isHTML() { return $this->getType() === self::WANT_HTML; }
+	public function getLangID() { return $this->getInt('nl_langid'); }
 	
 	public function getType()
 	{
@@ -156,14 +157,16 @@ final class GWF_Newsletter extends GDO
 	 */
 	public static function getRowForUser($user)
 	{
-		if ($user === false) {
+		if ($user === false)
+		{
 			return false;
 		}
 		$user instanceof GWF_User;
-		if ('' === ($email = $user->getValidMail())) {
+		if ('' === ($email = $user->getValidMail()))
+		{
 			return false;
 		}
-		return self::table(__CLASS__)->getRow($email);
+		return self::table(__CLASS__)->getBy('nl_userid', $user->getID());
 	}
 	
 	public static function userWantsNewsletter(GWF_User $user)
@@ -203,7 +206,7 @@ final class GWF_Newsletter extends GDO
 		return self::getTypeSelectB($module, $key, $type);
 	}
 	
-	private static function getTypeSelectB(Module_News $module, $key, $value)
+	public static function getTypeSelectB(Module_News $module, $key, $value=0)
 	{
 		$key = GWF_HTML::display($key);
 		$value = (int) $value;
