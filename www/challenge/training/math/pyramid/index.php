@@ -56,6 +56,7 @@ function math_pyramid_check(WC_Challenge $chall, $formula, $maxlen, $precision=4
 {
 	error_reporting(E_ERROR);
 	GWF_Debug::setDieOnError(false);
+	GWF_Debug::setMailOnError(false);
 	
 	$len = strlen($formula);
 	
@@ -73,7 +74,10 @@ function math_pyramid_check(WC_Challenge $chall, $formula, $maxlen, $precision=4
 		echo GWF_HTML::error('Math Pyramid', $chall->lang('err_formula', array(htmlspecialchars($fa))));
 		return false;
 	}
-
+	
+	GWF_Debug::setDieOnError(true);
+	GWF_Debug::setMailOnError(true);
+	
 	$back = GWF_HTML::message('Math Pyramid', $chall->lang('msg_formula', array(htmlspecialchars($fa))), false);
 	
 	$correct = 0;

@@ -47,8 +47,6 @@ echo GWF_Box::box($chall->lang('info', array(GWF_Message::display('[PH'.'P]'.$co
 GWF_Debug::setDieOnError(false);
 GWF_Debug::setMailOnError(false);
 eval($code.$code_emulate_pnb); # eval the first line
-GWF_Debug::setMailOnError(true);
-GWF_Debug::setDieOnError(true);
 
 echo '<div class="box">'.PHP_EOL;
 echo '<div class="box_t">'.$chall->lang('example_title').' ('.htmlspecialchars($filename).')'.'</div>'.PHP_EOL;
@@ -57,6 +55,8 @@ if (lfiIsSafeDir($filename) === true) { eval($code2); } # Eval the seconds line,
 else { echo GWF_HTML::error('LFI', $chall->lang('err_basedir'), false); }
 echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
+GWF_Debug::setMailOnError(true);
+GWF_Debug::setDieOnError(true);
 
 # Show credits box
 if (false !== ($minus = GWF_User::getByName('minus')))
