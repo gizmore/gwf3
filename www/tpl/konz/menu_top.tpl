@@ -1,11 +1,11 @@
-{assign var='user' value=$gwf->User()->getStaticOrGuest()}
-{assign var='k' value=$gwf->Module()->loadModuleDB('Konzert', true, true)}
+{assign var='user' value=GWF_User::getStaticOrGuest()}
+{assign var='k' value=GWF_Module::loadModuleDB('Konzert', true, true)}
 <div id="gwf3_topmenu">
 	<ul>
-{if $gwf->Language()->getCurrentISO() === 'en'}
-		<li><a href="/de{$gwf->Session()->getCurrentURL()}"><img src="/img/country/17" width="24" height="16" alt="Deutsch" title="Deutsche Sprache auswählen" /></a></li>
+{if GWF_Language::getCurrentISO() === 'en'}
+		<li><a href="/de{GWF_Session::getCurrentURL()}"><img src="/img/country/17" width="24" height="16" alt="Deutsch" title="Deutsche Sprache auswählen" /></a></li>
 {else}
-		<li><a href="/en{$gwf->Session()->getCurrentURL()}"><img src="/img/country/2" width="24" height="16" alt="English" title="Select english language" /></a></li>
+		<li><a href="/en{GWF_Session::getCurrentURL()}"><img src="/img/country/2" width="24" height="16" alt="English" title="Select english language" /></a></li>
 {/if}
 
 		<li><a href="{$root}startseite.html">{$k->lang('menu_int')}</a></li>

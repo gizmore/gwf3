@@ -5,7 +5,7 @@
 	<meta name="robots" content="index, follow" />
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
-	<link rel="shortcut icon" href="{$favicon}" />
+{*	<link rel="shortcut icon" href="{$favicon}" /> *}
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/default/css/gwf3.css?v=3" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/konz/css/konzert.css?v=5" /> 
 {*	<link rel="stylesheet" type="text/css" href="{$root}tpl/konz/css/konzert_easy.css?v=4" /> *}
@@ -18,6 +18,5 @@
 	<script type="text/javascript" src="{$root}js/jq/tinyzoom.js?v=3"></script>
 	<script type="text/javascript" src="{$root}js/jq/mugshots.js?v=3"></script>
 	{$js}
-	{$css}
-	{$feeds}
+	{$head_links}
 </head>

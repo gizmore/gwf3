@@ -1,4 +1,4 @@
-{assign var=k value=$gwf->Module()->getModule('Konzert', true, true)}
+{assign var=k value=GWF_Module::getModule('Konzert', true, true)}
 {$k->getNextPageLink()}
 			</div>
 		</div>
