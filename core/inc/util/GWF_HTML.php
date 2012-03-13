@@ -33,11 +33,11 @@ final class GWF_HTML
 	##############
 	private static $_ERRORS = array();
 	/** strip full paths */
-	public static function err($key, $args=NULL, $log=true, $to_smarty = false) { return self::error('GWF', GWF_Debug::shortpath(self::$trans->lang($key, $args)), $log, $to_smarty); }
+	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', GWF_Debug::shortpath(self::lang($key, $args)), $log); }
 
 	/**
 	 * Display a errormessage
-	 * @uathor spaceone, gizmore
+	 * @author spaceone, gizmore
 	 * @param string $title
 	 * @param string|array $messages
 	 * @param boolean $log log the Error?
@@ -54,10 +54,10 @@ final class GWF_HTML
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
-// 		if (false === GWF_ERRORS_TO_SMARTY)
-// 		{
+ 		if (false === GWF_ERRORS_TO_SMARTY)
+ 		{
 			return self::displayErrors(array('title' => $title, 'messages' => $messages));
-// 		}
+ 		}
 		
 		self::$_ERRORS[] = array('title' => $title, 'messages' => $messages); 
 		return '';
@@ -79,9 +79,9 @@ final class GWF_HTML
 				}
 			}
 			return $err;
-// 			return GWF_Website::addDefaultOutput($err);
+//			return GWF_Website::addDefaultOutput($err);
 		}
-		return GWF_Template::templateMain('error.tpl', array('title'=>$errors[0]['title'], 'errors' => $errors));
+		return GWF_Template::templateMain('error.tpl', array('title' => $errors[0]['title'], 'errors' => $errors));
 	}
 
 	################
@@ -123,7 +123,7 @@ final class GWF_HTML
 			return $output;
 // 			return GWF_Website::addDefaultOutput($output);
 		}
-		return GWF_Template::templateMain('message.tpl', array('title'=>$messages[0]['title'], 'messages' => $messages));
+		return GWF_Template::templateMain('message.tpl', array('title' => $messages[0]['title'], 'messages' => $messages));
 	}
 	
 	##############

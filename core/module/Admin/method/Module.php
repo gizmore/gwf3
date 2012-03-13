@@ -24,7 +24,8 @@ final class Admin_Module extends GWF_Method
 	}
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize())) {
+		if (false !== ($error = $this->sanitize()))
+		{
 			return $error;
 		}
 		
@@ -73,7 +74,8 @@ final class Admin_Module extends GWF_Method
 	
 	private function sanitize()
 	{
-		if (false === ($this->mod = GWF_Module::loadModuleDB(Common::getGet('module')))) {
+		if (false === ($this->mod = GWF_Module::loadModuleDB(Common::getGet('module'))))
+		{
 			return GWF_HTML::err('ERR_MODULE_MISSING', array(Common::displayGet('module')));
 		}
 		
@@ -105,13 +107,17 @@ final class Admin_Module extends GWF_Method
 		
 		# Actions
 		$data['btns'] = array(GWF_Form::SUBMITS, array('update'=>$m->lang('btn_update')));#, 'defaults'=>$m->lang('btn_defaults')));
-		if ($mod->isEnabled()) {
+		if ($mod->isEnabled())
+		{
 			$data['disable'] = array(GWF_Form::SUBMIT, $m->lang('btn_disable'), $m->lang('th_enabled'));
-		} else {
+		}
+		else
+		{
 			$data['enable'] = array(GWF_Form::SUBMIT, $m->lang('btn_enable'), $m->lang('th_disabled'));
 		}
 		
-		if ($mod->getAdminSectionURL() !== '#') {
+		if ($mod->getAdminSectionURL() !== '#')
+		{
 			$data['admin_sect'] = array(GWF_Form::SUBMIT, $m->lang('btn_admin_section'), $m->lang('btn_admin_section'));
 		}
 		
@@ -148,10 +154,12 @@ final class Admin_Module extends GWF_Method
 	 */
 	private function getFormInstall()
 	{
-		if (false === ($method = $this->module->getMethod('Install'))) {
+		if (false === ($method = $this->module->getMethod('Install')))
+		{
 			echo GWF_HTML::err('ERR_METHOD_MISSING', array( 'Install'));
 			return false; 
-		} $method instanceof Admin_Install;
+		}
+		$method instanceof Admin_Install;
 		
 		return $method->formInstall($this->mod);
 	}
@@ -198,9 +206,12 @@ final class Admin_Module extends GWF_Method
 				break;
 		}
 		$extkey = 'tt_cfg_'.$varname;
-		if ($extkey === ($extend = $mod->lang($extkey))) {
+		if ($extkey === ($extend = $mod->lang($extkey)))
+		{
 			$extend = '';
-		} else {
+		}
+		else
+		{
 			$extend = "\n".$extend;
 		}
 
@@ -236,7 +247,8 @@ final class Admin_Module extends GWF_Method
 	{
 		foreach ($vars as $data)
 		{
-			if ($data['mv_key'] === $key) {
+			if ($data['mv_key'] === $key)
+			{
 				return $data;
 			}
 		}
@@ -251,12 +263,15 @@ final class Admin_Module extends GWF_Method
 		$transkey = $this->mod->lang('cfg_'.$key);
 
 		$ex = 0;
-		if (false === ($val = GWF_ModuleLoader::getVarValue($value, $type, $min, $max, $ex))) {
-			if ($ex) {
+		if (false === ($val = GWF_ModuleLoader::getVarValue($value, $type, $min, $max, $ex)))
+		{
+			if ($ex)
+			{
 				unset($_POST['mv_'.$key]);
 				return $this->module->lang('err_arg_range', array($transkey, $min, $max));
 			}
-			else {
+			else
+			{
 				unset($_POST['mv_'.$key]);
 				return $this->module->lang('err_arg_type', array($transkey));
 			}
@@ -364,7 +379,7 @@ final class Admin_Module extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
-		if (false === GWF_ModuleLoader::installHTAccess(GWF_ModuleLoader::loadModulesFS()))
+		if (false === GWF_ModuleLoader::reinstallHTAccess())
 		{
 			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
