@@ -125,7 +125,7 @@ final class Module_Admin extends GWF_Module
 	public static function getSortURL($orderby, $orderdir) { return sprintf('%s%s/modules/by/%s/%s', GWF_WEB_ROOT, self::ADMIN_URL_NAME, $orderby, $orderdir); }
 	public static function getModulesURL() { return sprintf('%s%s', GWF_WEB_ROOT, self::ADMIN_URL_NAME); }
 	public static function getSuperuserBlockURL() { return GWF_WEB_ROOT.'index.php?mo=Admin&me=Superuser&prompt=now'; }
-	public static function getSuperuserSetupURL() { return GWF_WEB_ROOT.'index.php?mo=Admin&me=Superuser&setup=now'; }
+	public static function getSuperuserSetupURL() { return GWF_WEB_ROOT.'index.php?mo=Admin&me=SetPass'; }
 	public static function getUsersURL() { return GWF_WEB_ROOT.'index.php?mo=Admin&me=Users'; }
 	public static function getUserEditURL($userid) { return GWF_WEB_ROOT.'index.php?mo=Admin&me=UserEdit&uid='.$userid; }
 	public static function getGroupsURL() { return GWF_WEB_ROOT.'index.php?mo=Admin&me=Groups'; }

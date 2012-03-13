@@ -1,5 +1,4 @@
 <?php
-
 final class Admin_Superuser extends GWF_Method
 {
 	##############
@@ -7,31 +6,34 @@ final class Admin_Superuser extends GWF_Method
 	##############
 	public function getUserGroups() { return GWF_Group::ADMIN; }
 
-	# TODO: Check what Superuser page does.
-	public function getPageMenuLinks()
-	{ 
-		return array(
-				array( 
-						'page_url' => 'index.php?mo=Admin&me=Superuser',
-						'page_title' => 'Superuser page',
-						'page_meta_desc' => 'Change superuser password',
-				),
-		);
-	}
+// 	# TODO: Check what Superuser page does.
+//	# XXX: This method is superuser authentication. The SetPass to set superuser has been moved to a new method SetPass now.
+// 	public function getPageMenuLinks()
+// 	{ 
+// 		return array(
+// 				array( 
+// 						'page_url' => 'index.php?mo=Admin&me=Superuser',
+// 						'page_title' => 'Superuser page',
+// 						'page_meta_desc' => 'Change superuser password',
+// 				),
+// 		);
+// 	}
 
 	public function execute()
 	{
-		$nav = $this->module->templateNav();
-		
+		# Moved to SetPass
+// 		$nav = $this->module->templateNav();
 		# Setup / Change Password
-		if (Common::getPost('setup') !== false) {
-			return $nav.$this->onSetup();
-		}
-		if (Common::getGet('setup') !== false) {
-			return $nav.$this->templateSetup();
-		}
+// 		if (Common::getPost('setup') !== false) {
+// 			return $nav.$this->onSetup();
+// 		}
+// 		if (Common::getGet('setup') !== false) {
+// 			return $nav.$this->templateSetup();
+// 		}
+		
 		# Prompt & Login		
-		if (Common::getPost('login') !== false) {
+		if (Common::getPost('login') !== false)
+		{
 			return $this->onLogin();
 		}
 		return $this->templatePrompt();
@@ -74,45 +76,45 @@ final class Admin_Superuser extends GWF_Method
 		
 		return $this->module->requestMethodB('Modules');
 	}
+	# Moved to SetPass
+// 	#############
+// 	### Setup ###
+// 	#############
+// 	public function validate_new_pass() { return false; }
+// 	public function getFormSetup()
+// 	{
+// 		$data = array(
+// 			'new_pass' => array(GWF_Form::STRING, '', $this->module->lang('th_new_pass')),
+// 			'setup' => array(GWF_Form::SUBMIT, $this->module->lang('btn_setup'), ''),
+// 		);
+// 		return new GWF_Form($this, $data);
+// 	}
 	
-	#############
-	### Setup ###
-	#############
-	public function validate_new_pass() { return false; }
-	public function getFormSetup()
-	{
-		$data = array(
-			'new_pass' => array(GWF_Form::STRING, '', $this->module->lang('th_new_pass')),
-			'setup' => array(GWF_Form::SUBMIT, $this->module->lang('btn_setup'), ''),
-		);
-		return new GWF_Form($this, $data);
-	}
+// 	public function templateSetup()
+// 	{
+// 		$form = $this->getFormSetup();
+// 		$tVars = array(
+// 			'form' => $form->templateY($this->module->lang('ft_setup')),
+// 		);
+// 		return $this->module->templatePHP('setup.php', $tVars);
+// 	}
 	
-	public function templateSetup()
-	{
-		$form = $this->getFormSetup();
-		$tVars = array(
-			'form' => $form->templateY($this->module->lang('ft_setup')),
-		);
-		return $this->module->templatePHP('setup.php', $tVars);
-	}
-	
-	public function onSetup()
-	{
-		$form = $this->getFormSetup();
-		if (false !== ($error = $form->validate($this->module))) {
-			return $error.$this->templatePrompt();
-		}
+// 	public function onSetup()
+// 	{
+// 		$form = $this->getFormSetup();
+// 		if (false !== ($error = $form->validate($this->module))) {
+// 			return $error.$this->templatePrompt();
+// 		}
 		
-		$plain = $newpass = $form->getVar('new_pass');
-		if ($newpass !== '') {
-			$newpass = GWF_Password::hashPasswordS($newpass);
-		}
-		$this->module->cfgSaveSuperhash($newpass);
+// 		$plain = $newpass = $form->getVar('new_pass');
+// 		if ($newpass !== '') {
+// 			$newpass = GWF_Password::hashPasswordS($newpass);
+// 		}
+// 		$this->module->cfgSaveSuperhash($newpass);
 		
-		$key = $newpass === '' ? 'msg_pass_cleared' : 'msg_pass_set';
-		return $this->module->message($key, array($plain));
-	}
+// 		$key = $newpass === '' ? 'msg_pass_cleared' : 'msg_pass_set';
+// 		return $this->module->message($key, array($plain));
+// 	}
 	
 }
 
