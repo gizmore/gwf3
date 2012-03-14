@@ -69,7 +69,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
+			'password' => LAMB_PASSWORD,
 			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru',
 			'admins' => 'gizmore',
 		),
@@ -225,6 +225,16 @@ $LAMB_CFG = array
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',
 			'admins' => 'gizmore',
+		),
+
+		# EFnet BNC
+		array(
+			'host' => 'warchall.gizmore.org:4096',
+			'nickname' => 'Lamb3,Lambee',
+			'password' => LAMB_PASSWORD3,
+			'channels' => '#shadowlamb,#wechall',
+			'admins' => 'gizmore',
+			'options' => Lamb_Server::BNC_MODE,
 		),
 			
 //		array(

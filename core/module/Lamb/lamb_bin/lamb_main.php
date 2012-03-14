@@ -50,7 +50,6 @@ GWF_Log::init(false, 0xfff, 'www/protected/logs');
 # Lamb3 core config
 $dir = 'core/module/Lamb';
 chdir($dir);
-require_once 'lamb_bin/Lamb_ConfigInit.php';
 
 # Lamb3 core
 require_once 'Lamb_Channel.php';
@@ -61,6 +60,9 @@ require_once 'Lamb_Server.php';
 require_once 'Lamb_Timer.php';
 require_once 'Lamb_User.php';
 require_once 'Lamb.php';
+
+require_once 'lamb_bin/Lamb_ConfigInit.php';
+
 chdir('../../../');
 
 ###########

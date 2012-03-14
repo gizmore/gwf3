@@ -170,7 +170,7 @@ final class Lamb_IRC
 		# On flood, put the message into queue.
 		if ($this->isFlooding())
 		{
-			Lamb_Log::logDebug("Flooding");
+// 			Lamb_Log::logDebug("Flooding");
 			$this->queue[] = $message;
 			return true;
 		}

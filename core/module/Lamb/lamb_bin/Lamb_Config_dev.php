@@ -11,7 +11,7 @@ $LAMB_CFG = array
 	# IRC
 	'hostname' => 'lamb3.gizmore.org',
 	'realname' => 'Lamb: IRC-Botten',
-	'username' => 'Lamb3',
+	'username' => 'Lambee',
 
 	# Modules
 	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG',
@@ -38,6 +38,14 @@ $LAMB_CFG = array
 			'channels' => '#sr,#wechall',
 			'admins' => 'gizmore',
 		),
+// 		array(
+// 			'host' => 'warchall.gizmore.org:4096',
+// 			'nickname' => 'Lambee',
+// 			'password' => LAMB_PASSWORD3,
+// 			'channels' => '#shadowlamb',
+// 			'admins' => 'gizmore',
+// 			'options' => Lamb_Server::BNC_MODE,
+// 		),
 //		array(
 //			'host' => 'irc.gizmore.org:6668',
 //			'nickname' => 'Lamb3',

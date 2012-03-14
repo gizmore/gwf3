@@ -5,16 +5,16 @@ $server instanceof Lamb_Server;
 
 switch (count($args))
 {
-	case 2: # Set mode for user
+	case 2: # Set mode for channel
 		if (false !== ($user = $server->getUserByNickname($args[0])))
 		{
 			if (false !== ($chan = $bot->getCurrentChannel()))
 			{
-				$chan->setUserMode($args[0], $args[1]);
+// 				$chan->setUserMode($args[0], $args[1]);
 			}
 		}
 		break;
-	case 3: # Set mode for channel
+	case 3: # Set mode for user
 		if (false !== ($chan = $server->getOrCreateChannel($args[0])))
 		{
 			if (false !== ($chan->isUserInChannel($args[2])))

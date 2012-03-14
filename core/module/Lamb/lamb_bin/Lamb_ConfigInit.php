@@ -20,7 +20,7 @@ define('LAMB_REPLY_ISSUING_NICK', $LAMB_CFG['send_command_issuer_nickname_on_rep
 ###############
 ### Servers ###
 ###############
-$hosts = $nicks = $passs = $chans = $admns = array();
+$hosts = $nicks = $passs = $chans = $admns = $optss = array();
 foreach ($LAMB_CFG['servers'] as $data)
 {
 	$hosts[] = $data['host'];
@@ -28,10 +28,12 @@ foreach ($LAMB_CFG['servers'] as $data)
 	$passs[] = $data['password'];
 	$chans[] = $data['channels'];
 	$admns[] = $data['admins'];
+	$optss[] = isset($data['options']) ? (string)$data['options'] : '0';
 }
 define('LAMB_SERVERS', trim(implode(';', $hosts), ';'));
 define('LAMB_NICKNAMES', trim(implode(';', $nicks), ';'));
 define('LAMB_PASSWORDS', trim(implode(';', $passs), ';'));
 define('LAMB_CHANNELS', trim(implode(';', $chans), ';'));
 define('LAMB_ADMINS', trim(implode(';', $admns), ';'));
+define('LAMB_OPTIONS', trim(implode(';', $optss), ';'));
 ?>

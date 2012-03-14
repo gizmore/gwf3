@@ -27,6 +27,8 @@ final class Lamb_Server extends GDO
 	const HAS_STATUS = 0x10;
 	const HAS_ACC = 0x20;
 	
+	const BNC_MODE = 0x100;
+	
 	# Current Message From
 	private $lm_from = ''; # latest from/origin:
 	private $lm_from_raw = ''; # latest from/origin:!IP.blub
@@ -85,6 +87,7 @@ final class Lamb_Server extends GDO
 	public function getAdminUsernames() { return explode(',', $this->getVar('serv_admins')); }
 	public function isThrottled() { return $this->getInt('serv_flood_amt') > 0; }
 	public function getLangIso() { return $this->getVar('serv_lang'); }
+	public function isBNCMode() { return $this->isOptionEnabled(self::BNC_MODE); }
 	
 	/**
 	 * Get language class object for server or english.
@@ -136,12 +139,24 @@ final class Lamb_Server extends GDO
 		$this->next_retry = time();
 	}
 	
-	public static function factory($host, $nicknames, $password, $channels, $admins)
+	public static function factory($host, $nicknames, $password, $channels, $admins, $options=0)
 	{
+		# Compute BNC flag
+		$options = (int)$options;
+		$bncmode = ($options & self::BNC_MODE) === self::BNC_MODE;
+		
 		if (false !== ($server = self::getByHost(Common::getDomain($host))))
 		{
+			if (false === ($server->saveOption(self::BNC_MODE, $bncmode)))
+			{
+				return false;
+			}
 			return $server;
 		}
+		
+		# Create only certain options
+		$options = 0;
+		$options |= $bncmode ? self::BNC_MODE : 0;
 		
 		$server = new self(array(
 			'serv_id' => '0',
@@ -158,7 +173,7 @@ final class Lamb_Server extends GDO
 			'serv_flood_amt' => Lamb_IRC::DEFAULT_FLOOD_AMOUNT,
 			'serv_usermodes' => '',
 			'serv_chanmodes' => '',
-			'serv_options' => '0',
+			'serv_options' => $options,
 		));
 		
 		return $server;
@@ -226,8 +241,9 @@ final class Lamb_Server extends GDO
 		return $this->saveVar('serv_ip', $ip);
 	}
 	
-	public function saveConfigVars($host, $nicks, $chans, $pass, $admin)
+	public function saveConfigVars($host, $nicks, $chans, $pass, $admin, $options=0)
 	{
+		# Save server vars
 		if (false === $this->saveVars(array(
 			'serv_host' => $host,
 			'serv_nicknames' => $nicks,
@@ -238,6 +254,14 @@ final class Lamb_Server extends GDO
 		{
 			return false;
 		}
+		
+		# Save BNC setting
+		$bnc_mode = ($options & self::BNC_MODE) === self::BNC_MODE;
+		if (false === $this->saveOption(self::BNC_MODE, $bnc_mode))
+		{
+			return false;
+		}
+		
 		$this->setupConnection();
 		return true;
 	}
@@ -345,6 +369,10 @@ final class Lamb_Server extends GDO
 	public function sendNickname()
 	{
 		$this->connection->send('NICK '.$this->current_nick);
+		if ($this->isBNCMode())
+		{
+			$this->connection->send('PASS '.$this->getVar('serv_password'));
+		}
 	}
 	
 	public function getCurrentNick()
@@ -363,7 +391,10 @@ final class Lamb_Server extends GDO
 	{
 		if ($this->nickname_id === 0)
 		{
-			$this->connection->sendPrivmsg('NickServ', 'IDENTIFY '.$this->getVar('serv_password'));
+			if (!$this->isBNCMode())
+			{
+				$this->connection->sendPrivmsg('NickServ', 'IDENTIFY '.$this->getVar('serv_password'));
+			}
 		}
 	}
 	

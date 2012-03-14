@@ -153,18 +153,18 @@ final class Lamb
 		$passs = array_map('trim', explode(';', LAMB_PASSWORDS));
 		$chans = array_map('trim', explode(';', LAMB_CHANNELS));
 		$admin = array_map('trim', explode(';', LAMB_ADMINS));
-		
+		$optss = array_map('trim', explode(';', LAMB_OPTIONS));
 		foreach ($hosts as $i => $host)
 		{
 			if ($host !== '')
 			{
-				$server = Lamb_Server::factory($host, $nicks[$i], $passs[$i], $chans[$i], $admin[$i]);
+				$server = Lamb_Server::factory($host, $nicks[$i], $passs[$i], $chans[$i], $admin[$i], $optss[$i]);
 				
 //				$server->selectNextNickname();
 				
 				if (false !== $server->replace())
 				{
-					if (false !== $server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i]))
+					if (false !== $server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i], $optss[$i]))
 					{
 						$this->addServer($server);
 					}

@@ -1,4 +1,4 @@
-<?php # Usage %CMD%. The bot will try to lift your permissions, like an eggrdrop.
+<?php # Usage %CMD%. Make the bot try to lift your permissions, like an eggdrop.
 $bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;
