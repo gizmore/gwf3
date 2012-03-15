@@ -148,6 +148,7 @@ $lang = array(
 	'talk' => 'talk',
 	'time' => 'time',
 	'toggle' => 'toggle',
+	'travel' => 'travel',
 	'tt1' => 'tt1',
 	'tt2' => 'tt2',
 	'ttb' => 'ttb',

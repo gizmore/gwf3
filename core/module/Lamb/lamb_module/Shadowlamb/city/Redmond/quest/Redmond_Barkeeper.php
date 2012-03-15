@@ -22,7 +22,7 @@ final class Quest_Redmond_Barkeeper extends SR_Quest
 		));
 // 		return sprintf(
 			
-// 			'Bring these items to the Barkeeper in Redmond_TrollsInn: %d/%d SmallBeer, %d/%d LargeBeer and %d/%d Booze.',
+// 			'Bring these items to the Barkeeper in Redmond\'s Trolls\' Inn: %d/%d SmallBeer, %d/%d LargeBeer and %d/%d Booze.',
 // 			$have_s, self::NEED_SMALL_BEER,
 // 			$have_l, self::NEED_LARGE_BEER,
 // 			$have_b, self::NEED_BOOZE

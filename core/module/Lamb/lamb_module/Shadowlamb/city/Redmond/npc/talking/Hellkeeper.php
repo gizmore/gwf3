@@ -10,7 +10,7 @@ final class Redmond_Hellkeeper extends SR_TalkingNPC
 		{
 			case 'shadowrun':
 				return $this->rply($word);
-// 				return $this->reply("You are looking for a job? You could ask my brother in the TrollsInn. He has some urgent need for spiritouses.");
+// 				return $this->reply("You are looking for a job? You could ask my brother in the Trolls\' Inn. He has some urgent need for spiritouses.");
 			case 'cyberware':
 				return $this->rply($word);
 // 				return $this->reply('Nobody wants to be a complete robot. When your essence is 0 you are screwed.');
