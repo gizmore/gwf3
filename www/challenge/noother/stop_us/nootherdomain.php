@@ -53,7 +53,7 @@ noothtable::initNoothworks($sid); # init domain stuff.
 	<meta name="keywords" content="wechall, challenge, stopus, stop us, stop_us" />
 	<meta name="description" content="noother-domain.com is a fictional service selling .xyz domains. It is a hacking challenge on wechall." />
 	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/tpl/default/css/default.css?v=9" />
+	<link rel="stylesheet" type="text/css" href="/tpl/default/css/gwf3.css?v=9" />
 	<link rel="stylesheet" type="text/css" href="/tpl/wc4/css/wechall4.css?v=9a" />
 </head>
 <body>
