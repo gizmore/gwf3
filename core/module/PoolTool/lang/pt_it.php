@@ -34,7 +34,7 @@ $lang = array(
 		'Al momento, PoolTool è in grado di fornire aiuto solo per PlayRay. Quindi, altri simili giochi di biliardo necessiterebbero di qualche modifica al codice.<br/>'.
 		'Se vuoi provare PootTool, dai un occhiata alla pagina del tutorial.<br/>',
 	'faq_info' => 'Ecco alcune risposte alle domande più frequenti:',
-	'faqq_1' => 'Se non vi piace barare, perchè lo avete messo online?',
+	'faqq_1' => 'Se non vi piace barare, perché lo avete messo online?',
 	'faqa_1' => 'Penso che vi siano numerosi programmi per barare. Questo è solo uno di essi, e abbastanza buono, e vorrei mostrarlo. Inoltre, ho investito tempo e fatica in questo progetto e sarebbe brutto se stesse a prendere polvere sul mio hard disk. Infine, sono orgoglioso del programma :)',
 	'faqq_2' => 'Pensi ci siano delle persone che barano su PlayRay?',
 	'faqa_2' => 'Penso che una minoranza dei giocatori non abbia remore a barare. Comunque, provarlo è un compito arduo. Non puoi provare l\'uso di PoolTool o di qualche altro programm, ma puoi indovinare se qualcuno ne fa uso. Se venire a conoscenza di altri programmi che consentono di barare su PlayRay, fatecelo sapere.',
@@ -46,7 +46,7 @@ $lang = array(
 	'faqa_5' => 'Questo dipende, oltre che dal programma, dalla mia motivazione.',
 	'faqq_6' => 'Potresti, per favore, rimuovere questo sito?',
 	'faqa_6' => 'No, non lo farò. Il software sarebbe disponibile alle persone che l\'hanno già ottenuto, per cui non avrebbe senso rimuoverlo ora.',
-	'faqq_7' => 'Sei un baro! Perchè bari?!?!',
+	'faqq_7' => 'Sei un baro! Perché bari?!?!',
 	'faqa_7' => 'Ti prego di leggere la pagina in ordine e con attenzione. Come? Sei qui ancora? Ti prego di rifare la tua domanda a) al contrario, b) in un altra lingua, c) in rot26',
 
 	# Tutorial

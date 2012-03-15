@@ -15,7 +15,7 @@ $lang = array(
 		'Il tuo boss, il generale Eromzig, ha comprato un supercomputer per fattorizzare<br/>'.
 		'la chiave pubblica dell\'RSA. Gli scienziati dicone che ci vorranno 2 settimane per<br/>'.
 		'fattorizzare una delle chiavi pubbliche.<br/>'.
-		'Ecco perchè ti ha assunto: perchè pensa che tu possa rompere l\'algoritmo RSA in<br/>'.
+		'Ecco perché ti ha assunto: perché pensa che tu possa rompere l\'algoritmo RSA in<br/>'.
 		'meno di un ora. La tua missione è di trovarela chiave simmetrica in formato decimale.<br/>'.
 		'<br/>'.
 		'Le chiavi pubbliche utilizzate per crittare la chiave simmetrica sono le seguenti:<br/>'.

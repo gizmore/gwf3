@@ -657,7 +657,7 @@ $lang = array(
 	'pi_site_tags' => 'Tag del Sito',
 	'ft_hardlink' => 'Forza collegamento utente',
 	'btn_hardlink' => 'Forza collegamento utente',
-	'goto_chall' => 'Go to the %s challenge',
-	'menu_papers' => 'Papers',
+	'goto_chall' => 'Vai alla sfida "%s"',
+	'menu_papers' => 'Saggi',
 );
 ?>

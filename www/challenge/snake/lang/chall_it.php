@@ -36,7 +36,7 @@ $lang = array(
 	'hs_title' => 'Classifica di Snake',
 	'hs_info' => 'La classifica di Snake.<br/>Eroe del giorno: <b>%1$s</b>.<br/>Per cancellare tutti i bari, <a href="%2$s">premi questo bottone</a>.',
 
-	'solved_note' => 'Ben fatto! Cancellerò il tuo punteggio ora, perchè il valore potrebbe rovinare la sfida agli altri! Per favore, non fare nulla che possa rivelare informazioni sul modo in cui risolvere la sfida, per mantenerla difficile per tutti.',
+	'solved_note' => 'Ben fatto! Cancellerò il tuo punteggio ora, perché il valore potrebbe rovinare la sfida agli altri! Per favore, non fare nulla che possa rivelare informazioni sul modo in cui risolvere la sfida, per mantenerla difficile per tutti.',
 
 	'msg_del_cheaters' => '%1$s bari sono stati cancellati!',
 
