@@ -1,4 +1,5 @@
 <?php
+$b = chr(2);
 $lang = array(
 	'yes1' => 'Yes, what?',
 	'yes2' => 'Thanks, chummer. I am waiting for your delivery.',

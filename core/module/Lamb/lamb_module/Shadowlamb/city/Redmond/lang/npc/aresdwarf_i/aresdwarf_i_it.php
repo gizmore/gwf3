@@ -10,7 +10,7 @@ $lang = array(
 	'pls' => 'Potresti portarmi ancora %d coltelli?',
 	'quest1' => 'E così sei un ancora un runner novellino, eh?',
 	'quest2' => 'Fratello... Ascolta... Dei cyberpunks vengono regolarmente al negozio per derubarci.',
-	'quest3' => 'La cosa peggiore è che continuano a rubare di tutto, anche le cose meno costose, come dei normali coltelli. Se potessi aiutarmi, portandomi %d coltelli normali (senza miglioramenti di sorta), sarei molto felice, perchè ho intenzione di diventare un maestro nel lancio dei coltelli.',
+	'quest3' => 'La cosa peggiore è che continuano a rubare di tutto, anche le cose meno costose, come dei normali coltelli. Se potessi aiutarmi, portandomi %d coltelli normali (senza miglioramenti di sorta), sarei molto felice, perché ho intenzione di diventare un maestro nel lancio dei coltelli.',
 	'quest4' => 'Puoi rimuovere i miglioramenti dagli oggetti dal fabbro locale.',
 	'quest5' => 'Se mi potessi aiutare, ti ricompenserei in maniera adeguata.',
 );

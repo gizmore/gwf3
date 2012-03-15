@@ -2,7 +2,7 @@
 $b = chr(2);
 $lang = array(
 	'found' => 'In a small sidestreet you found a pub called Trolls_Inn. You have a bad feeling in this area.',
-	'enter' => 'You are about to enter the TrollsInn ...',
+	'enter' => 'You are about to enter the Troll_sInn ...',
 	'help' => "Use {$b}#ttb{$b}(arkeeper), {$b}#ttg{$b}(uest), {$b}#ttj{$b}(ohnson) and {$b}#tts{$b}(oldier) to talk to the persons.",
 		
 	'afraid' => 'You are too afraid to go in there. (Each party member needs a minimum level of 1)',
