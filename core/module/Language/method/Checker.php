@@ -210,7 +210,7 @@ final class Language_Checker extends GWF_Method
 		{
 			# TODO: try{} to catch syntax errors?!
 			include $path1;
-			if (!isset($lang))
+			if (!isset($lang) || empty($lang))
 			{
 				$this->EmptyFile['en'][] = $path1;
 				$this->errors['en']++;
@@ -228,8 +228,12 @@ final class Language_Checker extends GWF_Method
 		# other-ISO file exists?
 		elseif (!file_exists($path2) || !is_file($path2) || !is_readable($path2))
 		{
-			$this->MissingFile['tr'][] = $path2;
-			$this->missing['tr']++;
+			# if $lang1 is false or empty, the error lies within the english file, not the translation one
+			if(false !== $lang1 && !empty($lang1))
+			{
+				$this->MissingFile['tr'][] = $path2;
+				$this->missing['tr']++;				
+			}
 			$lang2 = false;
 		}
 		# include other-ISO file
