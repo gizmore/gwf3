@@ -357,19 +357,19 @@ final class GWF_ModuleLoader
 		{
 			return $value > 0 ? '1' : '0';
 		}
-		
-		$true = array('on', 'yes', 'true', '1', 'y', 'ja', 'si', 'oui');
-		$false = array('off', 'no', 'false', '0', 'n', 'nein', 'no', 'non');
-		$value = strtolower($value);
-		if (in_array($value, $true, true)) {
-			return '1';
-		}
-		elseif (in_array($value, $false, true)) {
-			return '0';
-		}
-		else {
-			return false;
-		}
+		return false;
+// 		$true = array('on', 'yes', 'true', '1', 'y', 'ja', 'si', 'oui');
+// 		$false = array('off', 'no', 'false', '0', 'n', 'nein', 'no', 'non');
+// 		$value = strtolower($value);
+// 		if (in_array($value, $true, true)) {
+// 			return '1';
+// 		}
+// 		elseif (in_array($value, $false, true)) {
+// 			return '0';
+// 		}
+// 		else {
+// 			return false;
+// 		}
 	}
 	
 	#############################
