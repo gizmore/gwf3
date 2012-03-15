@@ -21,7 +21,7 @@
 			}
 			.error {
 				font-weight: bolder;
-				background: url(../../img/cross_shield_2.png) center left no-repeat;
+				background: url(../../img/default/cross_shield_2.png) center left no-repeat;
 				padding-left: 18px;
 				color: #f00;
 				padding: 5px 20px;
