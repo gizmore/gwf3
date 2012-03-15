@@ -79,8 +79,10 @@ final class GWF_Navigation extends GDO
 			# TODO: only if count(*) where nid = $nid == 1
 			foreach ($ids as $id)
 			{
-				if (false === GWF_NaviPage::onDelete($id['navi_pbid'])))
+				if (false === GWF_NaviPage::onDelete($id['navi_pbid']))
+				{
 					$success = false;
+				}
 			}
 		}
 		return GDO::table(__CLASS__)->deleteWhere("navi_nid = '{$nid}'");
