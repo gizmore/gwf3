@@ -8,7 +8,7 @@ if (!$tVars['searched'])
 }
 elseif ($tVars['hits'] === 0)
 {
-	echo GWF_HTML::lang('no_math', array(GWF_HTML::display($tVars['term'])));
+	echo GWF_HTML::err('ERR_SEARCH_NO_MATCH', array(GWF_HTML::display($tVars['term'])));
 //	$raw_body = sprintf('<tr><td colspan="5"></td></tr>', GWF_HTML::lang('no_math', GWF_HTML::display($tVars['term'])));
 }
 else
