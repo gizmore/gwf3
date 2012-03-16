@@ -98,15 +98,18 @@ class GWF_Module extends GDO
 	{
 		if ($this->lang === NULL)
 		{
-			$path2 = sprintf('module/%s/%s', $this->getName(), $path);
-			if(true === is_dir(GWF_WWW_PATH.'lang/' . Common::substrUntil($path2, '/', NULL, true)))
-//			if(true === is_file(sprintf('%slang/%s_%s.php', GWF_WWW_PATH, $path2, GWF_DEFAULT_LANG))) // replace GWF_DEFAULT_LANG by getCurrentISO
+			$mod = $this->getName();
+			# Check for branch first
+			$path2 = Common::substrFrom($path, 'lang/', $path); # remove lang/ from beginning.
+			$branchfile = GWF_WWW_PATH.'lang/module/'.$mod.'/'.$path2; # Branchfile
+			if(Common::isDir(dirname($branchfile)))
 			{
-				$path3 = GWF_WWW_PATH.'lang/'.$path2;
+				$path3 = $branchfile;
 			}
 			else
 			{
-				$path3 = GWF_CORE_PATH.$path2;
+				# No branch
+				$path3 = sprintf('%smodule/%s/%s', GWF_CORE_PATH, $mod, $path);
 			}
 
 			$this->lang = new GWF_LangTrans($path3);
