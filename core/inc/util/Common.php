@@ -58,9 +58,10 @@ final class Common
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
 	{
-		static $search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '-', '@',	'&',	 '%');
-		static $replace = array('_', '_', '_', '_', '_', '_', '_', '',  '',  '',  '',  '',  '',  '',  '',  '',  '_', '_at_', '_and_', '_');
+		$search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '-', '@',	'&',	 '%');
+		$replace = array('_', '_', '_', '_', '_', '_', '_', '',  '',  '',  '',  '',  '',  '',  '',  '',  '_', '_at_', '_and_', '_');
 		$back = str_replace($search, $replace, $string);
+		$back = preg_replace('/[^a-z0-9_]/i', '_', $back);
 		return $back === '' ? '_Title_' : $back;
 	}
 	
