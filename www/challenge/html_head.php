@@ -45,7 +45,7 @@ require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 
-GWF_Doctype::setDoctype('xhtmlstrict');
+echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
 
 # HTML Header
 //echo GWF_Website::getPagehead();

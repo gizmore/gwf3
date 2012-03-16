@@ -11,7 +11,7 @@ final class WeChall_Ranking extends GWF_Method
 		return 
 			'RewriteRule ^ranking$ index.php?mo=WeChall&me=Ranking'.PHP_EOL.
 			'RewriteRule ^ranking/player/([^/]+)$ index.php?mo=WeChall&me=Ranking&username=$1'.PHP_EOL.
-			'RewriteRule ^ranking/page-(\d+)$ index.php?mo=WeChall&me=Ranking&page=$1'.PHP_EOL;
+			'RewriteRule ^ranking/page-(\d+)/?$ index.php?mo=WeChall&me=Ranking&page=$1'.PHP_EOL;
 	}
 
 	public function execute()
