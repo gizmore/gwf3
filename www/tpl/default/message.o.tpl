@@ -1,10 +1,9 @@
 <div class="gwf_messages">
-	<span class="gwf_msg_t">Messages</span>
+	<span class="gwf_msg_t">{$title}</span>
 		<ul>
-{foreach $messages as $message}
-{foreach ($message['messages']) as $msg}
-		<li>{$message['title']}: {$msg}</li>
-{/foreach}{/foreach}
+{foreach $messages as $msg}
+		<li>{$msg}</li>
+{/foreach}
 		</ul>
 </div>
 <div class="cl"></div>

@@ -57,24 +57,20 @@ final class GWF_HTML
 	}
 	public static function displayErrors($errors) 
 	{
-		$errors = array($errors);
 		if(count($errors) === 0) return ''; 
 		
 		if (isset($_GET['ajax']))
 		{
 			$err = '';
-			foreach ($errors as $msg)
+			foreach ($errors['messages'] as $m)
 			{
-				foreach ($msg['messages'] as $m)
-				{
-					$m2 = GWF_Debug::shortpath(self::decode($m));
-					$err .= sprintf('0:%d:%s', strlen($m2), $m2).PHP_EOL;
-				}
+				$m2 = GWF_Debug::shortpath(self::decode($m));
+				$err .= sprintf('0:%d:%s', strlen($m2), $m2).PHP_EOL;
 			}
 			return $err;
 //			return GWF_Website::addDefaultOutput($err);
 		}
-		return GWF_Template::templateMain('error.o.tpl', array('title' => $errors[0]['title'], 'errors' => $errors));
+		return GWF_Template::templateMain('error.o.tpl', array('title' => $errors['title'], 'errors' => $errors['messages']));
 	}
 
 	################
@@ -93,25 +89,20 @@ final class GWF_HTML
 	}
 	public static function displayMessages($messages) 
 	{
-		$messages = array($messages);
-		var_dump($messages);
 		if(count($messages) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)
 		{
 			$output = '';
-			foreach ($messages as $msg)
+			foreach ($messages['messages'] as $m)
 			{
-				foreach ($msg['messages'] as $m)
-				{
-					$m2 = GWF_Debug::shortpath(self::decode($m));
-					$output .= sprintf('1:%d:%s', strlen($m2), $m2).PHP_EOL;
-				}
+				$m2 = GWF_Debug::shortpath(self::decode($m));
+				$output .= sprintf('1:%d:%s', strlen($m2), $m2).PHP_EOL;
 			}
 			return $output;
 // 			return GWF_Website::addDefaultOutput($output);
 		}
-		return GWF_Template::templateMain('message.o.tpl', array('title' => $messages[0]['title'], 'messages' => $messages));
+		return GWF_Template::templateMain('message.o.tpl', array('title' => $messages['title'], 'messages' => $messages['messages']));
 	}
 	
 	##############
