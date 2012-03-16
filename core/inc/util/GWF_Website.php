@@ -223,7 +223,7 @@ final class GWF_Website
 			'head_links' => self::displayLink(),
 		);
 
-		$t = array();
+		$t = array('errors' => '', 'messages' => '');
 		# Errors from GWF_Error
 		$errors = GWF_Error::displayErrors();
 		if (GWF_ERRORS_TO_SMARTY)
@@ -246,10 +246,7 @@ final class GWF_Website
 			GWF_Website::addDefaultOutput($messages);
 		}
 
-		if (GWF_MESSAGES_TO_SMARTY || GWF_ERRORS_TO_SMARTY)
-		{
-			GWF_Template::addMainTvars($t);
-		}
+		GWF_Template::addMainTvars($t);
 
 		return GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE) . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
