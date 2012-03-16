@@ -17,35 +17,36 @@ $headers = array(
 	array($tLang->lang('th_sitemas_tracktime')),
 	array($tLang->lang('th_sitemas_startperc'), 'sitemas_startperc'),
 );
-if ($tVars['old'] === true) {
+if ($tVars['old'] === true)
+{
 	$headers[] = array($tLang->lang('th_regat_onsitescore'), 'sitemas_currperc');
 }
 
 echo $tVars['page_menu'];
-?>
-<table>
-	<?php echo GWF_Table::displayHeaders2($headers); ?>
-	<?php
-	foreach ($tVars['masters'] as $master)
+
+echo GWF_Table::start();
+echo GWF_Table::displayHeaders2($headers, $tVars['sort_url']);
+foreach ($tVars['masters'] as $master)
+{
+	$master instanceof WC_SiteMaster;
+	$site = $master->getSite();
+	$user = $master->getUser();
+	echo GWF_Table::rowStart();
+	echo sprintf('<td class="ri">%s</td>', $user->displayCountryFlag());
+	echo sprintf('<td><a href="%s">%s</a></td>', GWF_WEB_ROOT.'profile/'.$user->urlencode('user_name'), $user->displayUsername());
+//	echo sprintf('<td class="ce">%s</td>', $site->display('site_name'));
+	echo sprintf('<td class="ce">%s</td>', $site->displayLink());
+	echo sprintf('<td class="gwf_date">%s</td>', $master->displayFirstDate());
+	echo sprintf('<td class="gwf_date">%s</td>', $master->displayDate());
+	echo sprintf('<td class="gwf_date">%s</td>', $master->displayTrackTime());
+	echo sprintf('<td class="gwf_num">%s</td>', $master->displayStartPerc());
+	if ($tVars['old'] === true)
 	{
-		$master instanceof WC_SiteMaster;
-		$site = $master->getSite();
-		$user = $master->getUser();
-		echo GWF_Table::rowStart();
-		echo sprintf('<td class="ri">%s</td>', $user->displayCountryFlag());
-		echo sprintf('<td><a href="%s">%s</a></td>', GWF_WEB_ROOT.'profile/'.$user->urlencode('user_name'), $user->displayUsername());
-//		echo sprintf('<td class="ce">%s</td>', $site->display('site_name'));
-		echo sprintf('<td class="ce">%s</td>', $site->displayLink());
-		echo sprintf('<td class="gwf_date">%s</td>', $master->displayFirstDate());
-		echo sprintf('<td class="gwf_date">%s</td>', $master->displayDate());
-		echo sprintf('<td class="gwf_date">%s</td>', $master->displayTrackTime());
-		echo sprintf('<td class="gwf_num">%s</td>', $master->displayStartPerc());
-		if ($tVars['old'] === true) {
-			echo sprintf('<td class="gwf_num">%s</td>', $master->displayCurrPerc());
-		}
-		echo GWF_Table::rowEnd();
+		echo sprintf('<td class="gwf_num">%s</td>', $master->displayCurrPerc());
 	}
-	?>
+	echo GWF_Table::rowEnd();
+}
+?>
 </table>
 <?php
 echo $tVars['page_menu'];
