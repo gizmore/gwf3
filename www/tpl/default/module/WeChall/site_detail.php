@@ -61,7 +61,7 @@ if ($user !== false) {
 	$vdif = $site->getVotesDif();
 	echo GWF_Table::rowStart().
 		'<th>'.$tLang->lang('th_site_dif').'</th>'.PHP_EOL.
-		'<td><span id="gwf_vsba_'.$vdif->getID().'">'.$vdif->displayPercent().'</td>'.PHP_EOL.
+		'<td><span id="gwf_vsba_'.$vdif->getID().'">'.$vdif->displayPercent().'</span></td>'.PHP_EOL.
 		GWF_Table::rowEnd();
 
 	if ($tVars['can_vote'])
@@ -73,7 +73,7 @@ if ($user !== false) {
 	$vfun = $site->getVotesFun();
 	echo GWF_Table::rowStart().
 		'<th>'.$tLang->lang('th_site_fun').'</th>'.PHP_EOL.
-		'<td><span id="gwf_vsba_'.$vfun->getID().'">'.$vfun->displayPercent().'</td>'.PHP_EOL.
+		'<td><span id="gwf_vsba_'.$vfun->getID().'">'.$vfun->displayPercent().'</span></td>'.PHP_EOL.
 		GWF_Table::rowEnd();
 		
 	if ($tVars['can_vote'])

@@ -84,7 +84,8 @@ final class GWF_ForumSubscription extends GDO
 	{
 		foreach ($users as $uid => $user)
 		{
-			if (!$user->hasValidMail()) {
+			if (!$user->hasValidMail())
+			{
 				unset($users[$uid]);
 			}
 		}
@@ -93,7 +94,8 @@ final class GWF_ForumSubscription extends GDO
 		{
 			foreach ($users as $uid => $user)
 			{
-				if (!$user->isInGroupID($gid)) {
+				if (!$user->isInGroupID($gid))
+				{
 					unset($users[$uid]);
 				}
 			}
@@ -120,7 +122,8 @@ final class GWF_ForumSubscription extends GDO
 		$table = self::table(__CLASS__);
 		$tid = $thread->getID();
 		$hidden_query = self::getHiddenQuery($show_hidden);
-		if (false === ($rows = $table->selectColumn('subscr_uid', "subscr_tid=$tid AND ($hidden_query)", '', array('subscr_fopts')))) {
+		if (false === ($rows = $table->selectColumn('subscr_uid', "subscr_tid=$tid AND ($hidden_query)", '', array('subscr_fopts'))))
+		{
 			return array();
 		}
 		return self::getSubscrConverted($rows);
@@ -147,7 +150,8 @@ final class GWF_ForumSubscription extends GDO
 		$tid = $thread->getID();
 		$own = GWF_ForumOptions::SUBSCRIBE_OWN;
 		$hidden_query = self::getHiddenQuery($show_hidden);
-		if (false === ($rows = $table->selectColumn('post_uid', "post_tid=$tid AND fopt_subscr='$own' AND ($hidden_query)", '', array('post_useropts')))) {
+		if (false === ($rows = $table->selectColumn('post_uid', "post_tid=$tid AND fopt_subscr='$own' AND ($hidden_query)", '', array('post_useropts'))))
+		{
 			return array();
 		}
 		return self::getSubscrConverted($rows);
@@ -158,7 +162,8 @@ final class GWF_ForumSubscription extends GDO
 		$hidden_query = self::getHiddenQuery($show_hidden);
 		$table = new GWF_ForumOptions(false);
 		$all = GWF_ForumOptions::SUBSCRIBE_ALL;
-		if (false === ($rows = $table->selectColumn('fopt_uid', "fopt_subscr='$all' AND ($hidden_query)"))) {
+		if (false === ($rows = $table->selectColumn('fopt_uid', "fopt_subscr='$all' AND ($hidden_query)")))
+		{
 			return array();
 		}
 		return self::getSubscrConverted($rows);
@@ -166,7 +171,8 @@ final class GWF_ForumSubscription extends GDO
 	
 	private static function getHiddenQuery($show_hidden)
 	{
-		if ($show_hidden === true) {
+		if ($show_hidden === true)
+		{
 			return '1';
 		}
 		$bit = GWF_ForumOptions::HIDE_SUBSCR;
@@ -220,7 +226,8 @@ final class GWF_ForumSubscription extends GDO
 
 	private static function sendModMail(Module_Forum $module, $boardtxt, $threadtxt, $usertxt, $title, $message, $addtxt, $remtxt)
 	{
-		if ($usertxt === '') {
+		if ($usertxt === '')
+		{
 			$usertxt = GWF_HTML::lang('guest');
 		}
 		
@@ -229,17 +236,20 @@ final class GWF_ForumSubscription extends GDO
 //		$showtime = GWF_Time::humanDuration($module->getModerationTime());
 		$showtime = GWF_HTML::langAdmin('never');
 		
-		if (false === ($admin_ids = GDO::table('GWF_UserGroup')->selectColumn('ug_userid', "group_name='admin'", '', array('group')))) {
+		if (false === ($admin_ids = GDO::table('GWF_UserGroup')->selectColumn('ug_userid', "group_name='admin'", '', array('group'))))
+		{
 			return false;
 		}
 		
 		foreach ($admin_ids as $userid)
 		{
-			if (false === ($admin = GWF_User::getByID($userid))) {
+			if (false === ($admin = GWF_User::getByID($userid)))
+			{
 				continue;
 			}
 			
-			if ('' === ($rec = $admin->getValidMail())) {
+			if ('' === ($rec = $admin->getValidMail()))
+			{
 				continue;
 			}
 
@@ -276,14 +286,17 @@ final class GWF_ForumSubscription extends GDO
 		$userid = $user->getID();
 		$username = $user->displayUsername();
 		
-		if (false === ($receiver = $user->getValidMail())) {
+		if (false === ($receiver = $user->getValidMail()))
+		{
 			GWF_Log::logCron('[ERROR] User '.$username.' has no valid email.');
 			return false;
 		}
 			
-		if (false === ($options = GWF_ForumOptions::getUserOptions($user))) {
+		if (false === ($options = GWF_ForumOptions::getUserOptions($user)))
+		{
 			GWF_Log::logCron('[ERROR] User '.$username.' has no valid forum options.');
 		}
+		
 		$token = $options->getVar('fopt_token');
 		
 		$href = Common::getAbsoluteURL($thread->getLastPageHREF(false), false);
@@ -301,13 +314,14 @@ final class GWF_ForumSubscription extends GDO
 		$mail->setSubject($module->langUser($user, 'submail_subj'));
 		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $showLink, $unsubLink, $unsubLinkAll)));
 		
-		if (false === $mail->sendToUser($user)) {
+		if (false === $mail->sendToUser($user))
+		{
 			GWF_Log::logCron('[ERROR] Can not send mail to '.$username.'; EMail: '.$receiver);
-		} else {
+		}
+		else
+		{
 			GWF_Log::logCron('[+] Successfully sent Email to '.$username.'; EMail: '.$receiver);
 		}
 	}
-	
 }
-
 ?>

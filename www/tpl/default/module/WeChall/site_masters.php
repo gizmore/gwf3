@@ -9,7 +9,7 @@ echo GWF_Button::generic(WC_HTML::lang('btn_site_masters'), GWF_WEB_ROOT.'site_m
 
 <?php
 $headers = array(
-	array('', 'user_country'),
+	array('', 'user_countryid'),
 	array($tLang->lang('th_user_name'), 'user_name'),
 	array($tLang->lang('th_site_name'), 'site_name'),
 	array($tLang->lang('th_sitemas_firstdate'), 'sitemas_firstdate'),

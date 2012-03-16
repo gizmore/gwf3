@@ -6,13 +6,13 @@ $lang = array(
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
-	'md_wechall' => 'Áttekintés a hacking "challenge" és egy rejtvényeket tartalmazó oldalakról. - wechall',
+	'md_wechall' => 'Áttekintés a hacking &quot;challenge&quot; és egy rejtvényeket tartalmazó oldalakról. - wechall',
 
 	# TextHistory
 	'pt_texthis' => '%s aktivitása',
 	'pi_texthis' => '%s teljes aktivitása.',
 	'mt_texthis' => 'WeChall, Aktivitás, %s, szöveg alapú',
-	'md_texthis' => '%s teljes története és "challenge" oldal aktivitása.',
+	'md_texthis' => '%s teljes története és &quot;challenge&quot; oldal aktivitása.',
 
 	# Country Ranking
 	'pt_csrank' => 'Országos ranglista',
@@ -369,7 +369,7 @@ $lang = array(
 	'msg_chall_voted' => 'Köszönjük az értékelést.',
 	'msg_created_gb' => 'A vendégkönyved létre lett hozva. Itt <a href="%s">állíthatod be</a>.',
 	'msg_bd_marked' => 'A heti születésnapok olvasottként lettek megjelölve.',
-	'msg_challs_marked' => 'A "challenge" hírek olvasottként lettek megjelölve.',
+	'msg_challs_marked' => 'A &quot;challenge&quot; hírek olvasottként lettek megjelölve.',
 	'msg_marked_fav' => '%s oldalt kedvencként jelölted meg.',
 	'msg_unmarked_fav' => '%s oldal továbbá már nem kedvenced.',
 
