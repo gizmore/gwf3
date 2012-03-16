@@ -180,8 +180,9 @@ textarea {
 	text-align: left;
 }
 
-/** Fancy Default Error+MSG **/
-.gwf_errors, .gwf_messages {
+
+/** @deprecated Fancy Default Error+MSG **/
+div.gwf_errors, div.gwf_messages {
 /* 	float: left; */
 	margin: 28px 20px;
 	line-height: 18px;
@@ -192,13 +193,14 @@ textarea {
 	border: 1px solid #700;
 }
 
-.gwf_errors {
+div.gwf_errors {
 	background-color: #f33;
 }
-.gwf_messages {
+div.gwf_messages {
 	background-color: #3f3;
 }
-.gwf_err_t, .gwf_msg_t {
+div.gwf_errors span.gwf_err_t,
+div.gwf_messages span.gwf_msg_t {
 	display: inline-block;
 	position: relative;
 	top: -16px;
@@ -210,26 +212,26 @@ textarea {
 	border-radius: 15px;
 	border: 1px solid #700;
 }
-.gwf_err_t{
+div.gwf_errors span.gwf_err_t {
 	background-color: #f66;
 }
-.gwf_msg_t{
+div.gwf_messages span.gwf_msg_t {
 	background-color: #6f6;
 }
-.gwf_errors ul, .gwf_messages ul {
+div.gwf_errors ul, div.gwf_messages ul {
 	margin-top: -5px;
 }
-.gwf_errors li, .gwf_messages li {
+div.gwf_errors li, div.gwf_messages li {
 	list-style: none;
 /*	font-weight: bolder;*/
 	font-size: 17px;
 	margin: 0;
 	padding: 0px 10px 2px 22px;
 }
-.gwf_errors li {
+div.gwf_errors li {
 	background: url(../../../img/default/cross_shield_2.png) left center no-repeat;
 }
-.gwf_messages li {
+div.gwf_messages li {
 	background: url(../../../img/default/accept.png) left center no-repeat;
 }
 

@@ -5,7 +5,6 @@
  */
 final class GWF_Error
 {
-	public static $ajax = false;
 	private static $_errors = array();
 	private static $_messages = array();
 	private static $_criticals = array();
@@ -28,6 +27,7 @@ final class GWF_Error
 	public static function log_warn($content) { GWF_Log::logWarning(self::log($content)); }
 	public static function log_critical($content) { GWF_Log::logCritical(self::log($content)); }
 
+	/** @deprecated */
 	public static function displayErrors()
 	{
 		$back = '';
@@ -36,6 +36,8 @@ final class GWF_Error
 		$back .= self::display(self::$_warnings, 'error.tpl');
 		return $back;
 	}
+
+	/** @deprecated */
 	public static function displayMessages()
 	{
 		return self::display(self::$_messages, 'message.tpl');
@@ -59,19 +61,49 @@ final class GWF_Error
 			$subject[$title] = $messages;
 	}
 
+	/** @deprecated */
 	private static function display(&$subject, $tpl)
 	{
+		if (true === empty($subject))
+		{
+			return '';
+		}
 		if (true === isset($_GET['ajax']))
 		{
 			return self::displayAjax($subject);
 		}
 
-		$back = '';
-		foreach ($subject as $title => $messages)
+		return GWF_Template::templateMain($tpl, array('messages' => $subject));
+	}
+
+	public static function displayAll()
+	{
+		$all = array(
+			'messages' => self::$_messages,
+			'criticals' => self::$_criticals,
+			'errors' => self::$_errors,
+			'warnings' => self::$_warnings,
+		);
+
+		foreach ($all as $k => $subject)
 		{
-			$back .= GWF_Template::templateMain($tpl, array('title' => $title, 'messages' => $messages));
+			if (true === empty($subject))
+			{
+				unset $all[$k];
+			}
 		}
-		return $back;
+
+		if (true === isset($_GET['ajax']))
+		{
+			$back = '';
+			foreach ($all as $subject)
+			{
+				$back .= self::displayAjax($subject);
+			}
+			return $back;
+		}
+
+		return GWF_Template::templateMain('errors.tpl', array('messages' => $all));
 	}
 
 	private static function displayAjax(&$subject)

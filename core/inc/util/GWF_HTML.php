@@ -70,7 +70,7 @@ final class GWF_HTML
 			return $err;
 //			return GWF_Website::addDefaultOutput($err);
 		}
-		return GWF_Template::templateMain('error.o.tpl', array('title' => $errors['title'], 'errors' => $errors['messages']));
+		return GWF_Template::templateMain('error.tpl', array('title' => $errors['title'], 'errors' => $errors['messages']));
 	}
 
 	################
@@ -102,7 +102,7 @@ final class GWF_HTML
 			return $output;
 // 			return GWF_Website::addDefaultOutput($output);
 		}
-		return GWF_Template::templateMain('message.o.tpl', array('title' => $messages['title'], 'messages' => $messages['messages']));
+		return GWF_Template::templateMain('message.tpl', array('title' => $messages['title'], 'messages' => $messages['messages']));
 	}
 	
 	##############
