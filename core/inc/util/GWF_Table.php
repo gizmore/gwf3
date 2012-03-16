@@ -25,7 +25,7 @@ final class GWF_Table
 
 	public static function column($text='', $class='', $colspan=1)
 	{
-		$colspan = $colspan === 1 ? '' : "colspan=\"$colspan\"";
+		$colspan = $colspan === 1 ? '' : " colspan=\"{$colspan}\"";
 		$class = $class === '' ? '' : ' class="'.$class.'"';
 		return sprintf('<td%s%s>%s</td>', $class, $colspan, $text);
 	}
