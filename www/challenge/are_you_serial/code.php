@@ -30,7 +30,12 @@ elseif (isset($_POST['logout']))
 
 ### Display
 echo $gwf->onDisplayHead();
+
 $chall->showHeader();
+
+# MEH
+GWF_Debug::setDieOnError(false);
+GWF_Debug::setMailOnError(false);
 
 # Logged in user
 if (false !== ($user = unserialize(Common::getCookie('serial_user', ''))))
@@ -47,8 +52,11 @@ else
 	# Show login form
 	echo $form->serial_formz()->templateY($chall->lang('ft_login'));
 }
-
 # --- 8< --- 8< --- SNIP --- 8< --- 8< --- #
+
+# MEH
+GWF_Debug::setDieOnError(true);
+GWF_Debug::setMailOnError(true);
 
 echo $chall->copyrightFooter();
 require_once 'challenge/html_foot.php';
