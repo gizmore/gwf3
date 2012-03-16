@@ -39,7 +39,7 @@ final class Module_GWF extends GWF_Module
 	{
 		$default = GWF_PATH.'extra/font/teen.ttf';
 		$paths = explode(',', $this->getModuleVar('CaptchaFont', $default));
-		return false === $this->validate_CaptchaFont($paths) ? $default : $paths;
+		return false === $this->validate_CaptchaFont($paths) ? array($default) : $paths;
 	}
 	public function cfgCaptchaWidth() { return (int)$this->getModuleVar('CaptchaWidth', '210'); }
 	public function cfgCaptchaHeight() { return (int)$this->getModuleVar('CaptchaHeight', '42'); }

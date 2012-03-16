@@ -27,7 +27,7 @@ class GWF_Captcha extends GWF_Method
 		GWF_HTTP::noCache();
 		
 		# Setup Font, Color, Size
-		$aFonts = preg_split('/[,;]+/', $this->module->cfgCaptchaFont());
+		$aFonts = $this->module->cfgCaptchaFont();
 		$rgbcolor = $this->module->cfgCaptchaBG();
 		$width = $this->module->cfgCaptchaWidth();
 		$height = $this->module->cfgCaptchaHeight();
