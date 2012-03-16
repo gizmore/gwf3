@@ -13,13 +13,24 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 	
 	public function getTriggers() { return array($this->lang('solution'), 'carsten'); }
 	
-	public function checkQuest(SR_NPC $npc, SR_Player $player) { return $npc->reply($this->lang('answer_us_pls')); }
+	public function checkQuest(SR_NPC $npc, SR_Player $player)
+	{
+		$npc->reply($this->lang('answer_us_pls'));
+		$npc->reply($this->getAlcemCiphertext($npc, $player));
+		return true;
+	}
 	
-	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
+	public function getAlcemCiphertext(SR_NPC $npc, SR_Player $player)
 	{
 		$plaintext = $this->lang('plaintext');
 		$solution = $this->lang('solution');
 		$ciphertext = GWF_PolyROT::encrypt($plaintext, "D");
+		return $ciphertext;
+	}
+	
+	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
+	{
+		$ciphertext = $this->getAlcemCiphertext($npc, $player);
 		
 		switch ($word)
 		{
