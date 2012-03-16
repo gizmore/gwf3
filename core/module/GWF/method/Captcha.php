@@ -1,7 +1,8 @@
 <?php
 /**
  * Create and display a captcha.
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  */
 class GWF_Captcha extends GWF_Method
 {

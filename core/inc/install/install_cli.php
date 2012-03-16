@@ -2,7 +2,8 @@
 <?php
 /**
  * GWF Installer via CLI
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  * @todo configpath, GWF_AutoConfig
  */
 die('TODO: did not test it yet; GWF_AutoConfig');

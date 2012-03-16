@@ -3,7 +3,8 @@ Common::defineConst('GWF_CHMOD', '0777'); # Fallback
 
 /**
  * The GWF Logger
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  * @version 4.0
  * @since 1.0
  * @todo use only one logfile?!

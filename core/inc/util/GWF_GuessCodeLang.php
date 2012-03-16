@@ -1,7 +1,8 @@
 <?php
 /**
  * Guess a code language by pattern
- * @author byte, spaceone
+ * @author spaceone
+ * @author byte
  */
 final class GWF_GuessCodeLang
 {

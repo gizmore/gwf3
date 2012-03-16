@@ -7,7 +7,8 @@ require_once 'GWF_TemplateWrappers.php';
  * Smarty templates are usually faster and preferred.
  * There exist wrapper objects to call gwf stuff within smarty.
  * @todo Allow to switch designs on a per user basis.
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  * @version 3.0
  * @since 1.0
  * @see GWF_TemplateWrappers

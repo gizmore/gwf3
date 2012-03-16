@@ -1,7 +1,8 @@
 <?php
 /**
  * Error pages, and Fancy indexing.
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  * @version 3.0
  * @since 1.0
  */

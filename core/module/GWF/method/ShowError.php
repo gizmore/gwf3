@@ -1,7 +1,8 @@
 <?php
 /**
  * Custom 404 error pages and email on 404.
- * @author spaceone, gizmore
+ * @author spaceone
+ * @author gizmore
  */
 final class GWF_ShowError extends GWF_Method
 {

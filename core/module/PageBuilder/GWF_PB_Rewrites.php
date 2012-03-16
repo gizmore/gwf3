@@ -1,7 +1,8 @@
 <?php
 /**
  * 
- * @author spaceone, gizmore
+ * @author spaceone
+ * @author gizmore
  */
 final class GWF_PB_Rewrites
 {

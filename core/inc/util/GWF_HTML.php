@@ -1,7 +1,8 @@
 <?php
 /**
  * HTML markup helper class
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  */
 final class GWF_HTML
 {
@@ -36,7 +37,8 @@ final class GWF_HTML
 
 	/**
 	 * Display a errormessage
-	 * @author spaceone, gizmore
+	 * @author spaceone
+	 * @author gizmore
 	 * @param string $title
 	 * @param string|array $messages
 	 * @param boolean $log log the Error?

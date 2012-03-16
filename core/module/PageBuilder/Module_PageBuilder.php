@@ -1,7 +1,8 @@
 <?php
 /**
  * Create pages with static content.
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  * @version 1.03
  * @since 3.0
  */

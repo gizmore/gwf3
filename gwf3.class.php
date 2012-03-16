@@ -4,7 +4,8 @@ define('GWF_CORE_VERSION', '3.03-2011.Dec.24');
 
 /**
  * Welcome to GWF3
- * @author spaceone, gizmore
+ * @author spaceone <space@wechall.net>
+ * @author gizmore <gizmore@gizmore.org>
  * @version 1.04
  * @since 01.07.2011
  * @todo better design handling

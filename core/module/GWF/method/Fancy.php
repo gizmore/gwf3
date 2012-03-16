@@ -1,7 +1,8 @@
 <?php
 /**
  * For Fancy Indexing.
- * @author spaceone,gizmore
+ * @author spaceone
+ * @author gizmore
  * @see http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html
  */
 final class GWF_Fancy extends GWF_Method

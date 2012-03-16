@@ -1,7 +1,8 @@
 <?php
 /**
  * The GWF-Installation-Wizard
- * @author spaceone, gizmore
+ * @author spaceone
+ * @author gizmore
  */
 # Load Install-Core
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallWizard.php';

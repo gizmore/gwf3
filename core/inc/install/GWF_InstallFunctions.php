@@ -3,7 +3,8 @@
  * Functions for the GWF Installer
  * @todo declare some functions as private
  * @todo use GWF_Result
- * @author gizmore, spaceone
+ * @author gizmore
+ * @author spaceone
  */
 final class GWF_InstallFunctions
 {
