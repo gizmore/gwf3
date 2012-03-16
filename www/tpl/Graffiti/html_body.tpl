@@ -11,5 +11,4 @@
 			</div>
 <!-- CONTENT -->
 			<div id="content">
-{$messages}
 {$errors}

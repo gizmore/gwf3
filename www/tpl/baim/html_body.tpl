@@ -5,5 +5,4 @@
 {/if}
 <div id="baimonline">{GWF_Notice::getOnlineUsers()}</div>
 <div id="page">
-{$messages}
 {$errors}

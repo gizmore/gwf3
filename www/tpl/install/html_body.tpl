@@ -27,7 +27,6 @@
 		<div class="cb"></div>
 		
 		<div id="gwf_inst_errors">
-			{$messages}
 			{$errors}
 		</div>
 		

@@ -6,5 +6,4 @@
 		<div id="wc_banner_space"></div>
 		{WC_HTML::displaySidebar2()}
 		<div id="page">
-{$messages}
 {$errors}

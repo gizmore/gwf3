@@ -56,7 +56,6 @@
 {/if}
 <!-- @start content -->
 				<div id="content" class="inhalt {if $SF->getMoMe('SF_Shell')}shell" id="largeshell{/if}">
-<!-- @begin error/success messages -->
-{$messages}
+<!-- @begin errormessages -->
 {$errors}
-<!-- @end error/success messages -->
+<!-- @end errormessages -->

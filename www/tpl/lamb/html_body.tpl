@@ -6,5 +6,4 @@
 		</div>
 		<hr/>
 		<div id="gwf3_page">
-{$messages}
 {$errors}

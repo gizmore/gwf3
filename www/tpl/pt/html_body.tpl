@@ -5,5 +5,4 @@
 			{GWF_Notice::loadModuleClass('PoolTool', 'PT_Menu.php')}
 			{PT_Menu::display()}
 			<div id="ptpage">
-{$messages}
 {$errors}
