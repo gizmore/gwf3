@@ -1,7 +1,7 @@
 <?php
 ### This is wechall html_foot!
 
-if(defined('WC_HTML_HEAD__DEFINED')) { return; }
+if ( (defined('WC_HTML_HEAD__DEFINED')) || (isset($_GET['ajax'])) ) { return; }
 define('WC_HTML_HEAD__DEFINED', true);
 
 //GWF_Session::commit();

@@ -859,6 +859,11 @@ final class WC_Challenge extends GDO
 	 */
 	public function showHeader($embed=true)
 	{
+		if (isset($_GET['ajax']))
+		{
+			return;
+		}
+		
 		if (!$embed)
 		{
 			echo WC_HTML::displayMenu();

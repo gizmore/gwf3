@@ -36,6 +36,11 @@ if (defined('GWF_PAGE_TITLE')) {
 	GWF_Website::setMetaTags(GWF_PAGE_TITLE.', Challenge, WeChall');
 }
 
+if (isset($_GET['ajax']))
+{
+	return;
+}
+
 # Include Needed Modules
 //GWF_Module::getModule('Votes', true);
 GWF_Module::loadModuleDB('Forum', true);
@@ -49,7 +54,7 @@ echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
 
 # HTML Header
 //echo GWF_Website::getPagehead();
-if (false === defined('NO_HEADER_PLEASE'))
+if (!defined('NO_HEADER_PLEASE'))
 {
 	echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
 }
