@@ -36,12 +36,12 @@ abstract class SR_Usable extends SR_Item
 			$busymsg = '';
 		}
 		
-		$player->getParty()->ntice('5228', array($player->getName(), $this->getName(), $target->getName(), $busymsg, $message));
+		$player->getParty()->ntice('5228', array($player->displayNameNB(), $this->getName(), $target->displayNameNB(), $busymsg, $message));
 // 		$player->getParty()->notice(sprintf('%s used %s on %s.%s%s', $player->getName(), $this->getName(), $target->getName(), $busymsg, $message));
 		
 		if ($player->isFighting())
 		{
-			$player->getEnemyParty()->ntice('5229', array($player->getName(), $this->getName(), $target->getName(), $busymsg, $message2));
+			$player->getEnemyParty()->ntice('5229', array($player->displayNameNB(), $this->getName(), $target->displayNameNB(), $busymsg, $message2));
 // 			$player->getEnemyParty()->notice(sprintf('%s used %s on %s.%s', $player->getName(), $this->getName(), $target->getName(), $message2));
 		}
 
