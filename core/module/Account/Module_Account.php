@@ -19,18 +19,18 @@ final class Module_Account extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'use_email' => array('YES', 'bool'),
-			'show_adult' => array('YES', 'bool'),
+			'use_email' => array(true, 'bool'),
+			'show_adult' => array(true, 'bool'),
 			'adult_age' => array('21', 'int', '12', '40'),
-			'show_gender' => array('YES', 'bool'),
+			'show_gender' => array(true, 'bool'),
 			'mail_sender' => array(GWF_BOT_EMAIL, 'text', 0, 128),
-			'show_avatar' => array('YES', 'bool'),
+			'show_avatar' => array(true, 'bool'),
 			'avatar_min_x' => array('1', 'int', '1', '2048'),
 			'avatar_max_x' => array('96', 'int', '1', '2048'),
 			'avatar_min_y' => array('1', 'int', '1', '4096'),
 			'avatar_max_y' => array('96', 'int', '1', '4096'),
 			'demo_changetime' => array(GWF_Time::ONE_MONTH*3, 'time', 0, GWF_TIME::ONE_YEAR*2),
-			'show_checkboxes' => array('YES', 'bool'),
+			'show_checkboxes' => array(true, 'bool'),
 		));
 	}
 	##################

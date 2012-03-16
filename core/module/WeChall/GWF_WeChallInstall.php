@@ -13,6 +13,7 @@ final class GWF_WeChallInstall
 	public static function onInstall(Module_WeChall $module, $dropTable)
 	{
 		Module_WeChall::includeForums();
+		$module->onStartup();
 		return
 		self::installMoreClasses($module, $dropTable).
 		GWF_ModuleLoader::installVars($module, array(

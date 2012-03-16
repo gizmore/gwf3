@@ -45,12 +45,12 @@ final class Module_News extends GWF_Module
 				'news_per_box' => array('4', 'int', '1', '100'),
 				'news_per_page' => array('10', 'int', '1', '100'),
 				'news_per_adminpage' => array('20', 'int', '1', '100'),
-				'newsletter_guests' => array('NO', 'bool'),
+				'newsletter_guests' => array(false, 'bool'),
 				'newsletter_mail' => array(GWF_SUPPORT_EMAIL, 'text', '6', GWF_User::EMAIL_LENGTH),
 				'newsletter_sleep' => array('250', 'int', '0', '2000'),
 				'news_per_feed' => array('6', 'int', '1', '10'),
-				'news_comments' => array('YES', 'bool'),
-//				'news_in_forum' => array('NO', 'bool'),
+				'news_comments' => array(true, 'bool'),
+//				'news_in_forum' => array(false, 'bool'),
 			));
 	}
 	public function getNewsPerBox() { return $this->getModuleVarInt('news_per_box', 4); }

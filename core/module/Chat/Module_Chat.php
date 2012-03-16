@@ -32,10 +32,10 @@ final class Module_Chat extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'private' => array('YES', 'bool'),
-			'guest_public' => array('YES', 'bool'),
-			'guest_private' => array('YES', 'bool'),
-			'bbcode' => array('YES', 'bool'),
+			'private' => array(true, 'bool'),
+			'guest_public' => array(true, 'bool'),
+			'guest_private' => array(true, 'bool'),
+			'bbcode' => array(true, 'bool'),
 			'msg_len' => array('512', 'int', '16', '2048'),
 			'online_time' => array('20 seconds', 'time', '5', GWF_Time::ONE_DAY*2),
 			'message_peak' => array('1 minute', 'time', '5', GWF_Time::ONE_DAY*2),
@@ -43,14 +43,14 @@ final class Module_Chat extends GWF_Module
 			'chanmsg_per_page' => array(5, 'int', '1', '255'),
 			'privmsg_per_page' => array(5, 'int', '1', '255'),
 			'histmsg_per_page' => array(50, 'int', '1', '255'),
-			'chat_menu' => array('YES', 'bool'),
-			'chat_submenu' => array('YES', 'bool'),
-			'mibbit' => array('YES', 'bool'),
-			'mibbit_ssl' => array('YES', 'bool'),
+			'chat_menu' => array(true, 'bool'),
+			'chat_submenu' => array(true, 'bool'),
+			'mibbit' => array(true, 'bool'),
+			'mibbit_ssl' => array(true, 'bool'),
 			'mibbit_server' => array('irc.idlemonkeys.net', 'text', 6, 128),
 			'mibbit_channel' => array('#wechall', 'text', 1, 64),
 			'mibbit_port' => array('7000', 'int', '1', '65535'),
-			'gwf_chat' => array('NO', 'bool'),
+			'gwf_chat' => array(false, 'bool'),
 		));
 }
 	public function isPrivateAllowed() { return $this->getModuleVarBool('private', '1'); }

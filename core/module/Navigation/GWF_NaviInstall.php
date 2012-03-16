@@ -9,7 +9,7 @@ class GWF_NaviInstall
 	public static function onInstall(Module_Navigation $module, $dropTable) 
 	{
 		return GWF_ModuleLoader::installVars($module, array(
-			'lockedPM' => array('0', 'bool'),
+			'lockedPM' => array(false, 'bool'),
 		));
 	}
 

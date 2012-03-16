@@ -12,12 +12,12 @@ final class Module_Login extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-				'captcha' => array('NO', 'bool'),
+				'captcha' => array(false, 'bool'),
 				'max_tries' => array('6', 'int', '1', '100'),
 				'try_exceed' => array('600', 'time', '0', 60*60*24),
 				'lf_cleanup_t' => array('1 month', 'time', '0', 60*60*24*365*8),
-				'lf_cleanup_i' => array('YES', 'bool'),
-				'send_alerts' => array('YES', 'bool'),
+				'lf_cleanup_i' => array(true, 'bool'),
+				'send_alerts' => array(true, 'bool'),
 			));
 	}
 	public function cfgCaptcha() { return $this->getModuleVarBool('captcha', '1'); }

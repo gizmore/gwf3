@@ -14,8 +14,8 @@ final class Module_SF extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'shell_enabled' => array('1', 'bool'),
-			'debug_enabled' => array('0', 'bool'),
+			'shell_enabled' => array(true, 'bool'),
+			'debug_enabled' => array(false, 'bool'),
 		));
 	}
 	public function onLoadLanguage() { return $this->loadLanguage('lang/SF'); }

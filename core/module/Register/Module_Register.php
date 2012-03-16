@@ -16,20 +16,20 @@ final class Module_Register extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'email_activation' => array('YES', 'bool'),
-			'auto_login' => array('YES', 'bool'),
-			'country_select' => array('NO', 'bool'),
+			'email_activation' => array(true, 'bool'),
+			'auto_login' => array(true, 'bool'),
+			'country_select' => array(false, 'bool'),
 			'min_age' => array('0', 'int', '0', '42'),
 			'ip_usetime' => array('1 seconds', 'time', '0', 60*60*24*365),
-			'force_tos' => array('YES', 'bool'),
-			'captcha' => array('NO', 'bool'),
-			'email_twice' => array('NO', 'bool'),
-			'plaintextpass' => array('NO', 'bool'),
+			'force_tos' => array(true, 'bool'),
+			'captcha' => array(false, 'bool'),
+			'email_twice' => array(false, 'bool'),
+			'plaintextpass' => array(false, 'bool'),
 			'activation_pp' => array('50', 'int', '1', '250'),
 			'ua_threshold' => array('24 hours', 'time', 60*15, 60*60*24*7),
 			'reg_toslink' => array(GWF_WEB_ROOT.'tos', 'text', 0 , 512),
-			'reg_detect_country' => array('YES', 'bool'),
-//			'signup_moderation' => array('NO', 'bool'),
+			'reg_detect_country' => array(true, 'bool'),
+//			'signup_moderation' => array(false, 'bool'),
 		));
 	}
 	public function wantEmailActivation() { return $this->getModuleVarBool('email_activation', '1'); }

@@ -353,11 +353,11 @@ final class GWF_ModuleLoader
 	
 	private static function getBoolValue($value)
 	{
-		if (is_numeric($value))
-		{
-			return $value > 0 ? '1' : '0';
-		}
-		return false;
+// 		if (is_numeric($value))
+// 		{
+			return $value ? '1' : '0';
+// 		}
+// 		return false;
 // 		$true = array('on', 'yes', 'true', '1', 'y', 'ja', 'si', 'oui');
 // 		$false = array('off', 'no', 'false', '0', 'n', 'nein', 'no', 'non');
 // 		$value = strtolower($value);

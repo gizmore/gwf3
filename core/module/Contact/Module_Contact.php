@@ -13,8 +13,8 @@ final class Module_Contact extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'captcha' => array('YES', 'bool'),
-			'captcha_member' => array('NO', 'bool'),
+			'captcha' => array(true, 'bool'),
+			'captcha_member' => array(false, 'bool'),
 			'email' => array(GWF_SUPPORT_EMAIL, 'text', '0', GWF_User::EMAIL_LENGTH),
 			'icq' => array('', 'text', '0', '32'),
 			'skype' => array('', 'text', '0', '128'),

@@ -12,16 +12,16 @@ final class Module_Shoutbox extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'sb_guests' => array('YES', 'bool'),
-			'sb_guest_captcha' => array('NO', 'bool'),
-			'sb_member_captcha' => array('NO', 'bool'),
+			'sb_guests' => array(true, 'bool'),
+			'sb_guest_captcha' => array(false, 'bool'),
+			'sb_member_captcha' => array(false, 'bool'),
 			'sb_ipp' => array('25', 'int', 1, 512),
 			'sb_ippbox' => array('6', 'int', 1, 64),
 			'sb_maxlen' => array('196', 'int', 16, 1024),
 			'sb_timeout' => array('60', 'time', 0, GWF_Time::ONE_DAY*2),
 			'sb_maxdayu' => array('12', 'int', 1, 1024),
 			'sb_maxdayg' => array('6', 'int', 1, 1024),
-			'sb_email_moderation' => array('YES', 'bool'), 
+			'sb_email_moderation' => array(true, 'bool'), 
 		));
 	}
 	public function cfgMaxlen() { return $this->getModuleVarInt('sb_maxlen', 196); }

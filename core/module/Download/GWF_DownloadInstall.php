@@ -5,18 +5,18 @@ final class GWF_DownloadInstall
 	{
 		return
 			GWF_ModuleLoader::installVars($module, array(
-				'anon_upload' => array('NO', 'bool'),
-				'anon_downld' => array('YES', 'bool'),
-				'user_upload' => array('YES', 'bool'),
+				'anon_upload' => array(false, 'bool'),
+				'anon_downld' => array(true, 'bool'),
+				'user_upload' => array(true, 'bool'),
 				'dl_descr_min' => array('0', 'int', 0, 16),
 				'dl_descr_max' => array('512', 'int', 16, 65535),
 				'dl_ipp' => array('50', 'int', 1, 512),
 				'dl_minvote' => array('1', 'int', 0, 3),
 				'dl_maxvote' => array('5', 'int', 3, 100),
-				'dl_gvotes' => array('NO', 'bool'),
-				'dl_gcaptcha' => array('YES', 'bool'),
+				'dl_gvotes' => array(false, 'bool'),
+				'dl_gcaptcha' => array(true, 'bool'),
 				'dl_moderators' => array('moderator', 'text', 0, 63),
-				'dl_moderated' => array('YES', 'bool'),
+				'dl_moderated' => array(true, 'bool'),
 				'dl_min_level' => array('0', 'int', 0, 1000000),
 			)).
 			self::dropVotes($module, $dropTable).

@@ -17,29 +17,29 @@ final class GWF_ForumInstall
 			'max_message_len' => array('16384', 'int', '16', '65535'),
 			'max_sig_len' => array('512', 'int', '16', '1024'),
 		
-			'guest_posts' => array('YES', 'bool'),
-			'guest_captcha' => array('YES', 'bool'),
+			'guest_posts' => array(false, 'bool'),
+			'guest_captcha' => array(true, 'bool'),
 			'mod_guest_time' => array('1 day', 'time', '0', GWF_Time::ONE_MONTH),
-			'search' => array('YES', 'bool'),
+			'search' => array(true, 'bool'),
 //			'last_posts_reply' => array('9', 'int', '1', '50'),
 			'mod_sender' => array(GWF_BOT_EMAIL, 'text', '4', GWF_User::EMAIL_LENGTH),
 			'mod_receiver' => array(GWF_SUPPORT_EMAIL, 'text', '4', GWF_User::EMAIL_LENGTH),
-			'unread' => array('YES', 'bool'),
-			'gtranslate' => array('YES', 'bool'),
+			'unread' => array(true, 'bool'),
+			'gtranslate' => array(true, 'bool'),
 //			'subscr_sender' => array(GWF_BOT_EMAIL, 'text', '4', GWF_User::EMAIL_LENGTH),
 //			'mail_microsleep' => array('200000', 'int', '1000', '5000000'),
-			'thanks' => array('YES', 'bool'),
-			'votes' => array('YES', 'bool'),
-			'uploads' => array('YES', 'bool'),
+			'thanks' => array(true, 'bool'),
+			'votes' => array(true, 'bool'),
+			'uploads' => array(true, 'bool'),
 			'watch_timeout' => array('300 seconds', 'time', '0', GWF_Time::ONE_HOUR),
 			'postcount' => array('0', 'script'),
-			'doublepost' => array('YES', 'bool'),
-			'lang_boards' => array('NO', 'bool'),
+			'doublepost' => array(true, 'bool'),
+			'lang_boards' => array(false, 'bool'),
 		
 			'post_timeout' => array('0', 'time', 0, '172800'),
 			'post_min_level' => array('0', 'int', 0, '1000000'),
 				
-			'gwf2_rewrites' => array('NO', 'bool'), # wc4/oldurl sheme
+			'gwf2_rewrites' => array(false, 'bool'), # wc4/oldurl sheme
 		)).
 		self::installForumDefaults($module);
 	}

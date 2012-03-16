@@ -39,7 +39,7 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 // 		array(
-// 			'host' => 'warchall.gizmore.org:4096',
+// 			'host' => 'bouncing.efnet.org:4096',
 // 			'nickname' => 'Lambee',
 // 			'password' => LAMB_PASSWORD3,
 // 			'channels' => '#shadowlamb',

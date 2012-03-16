@@ -6,8 +6,8 @@ final class GWF_Install
 	public static function onInstall(Module_GWF $module, $dropTable)
 	{
 		return GWF_ModuleLoader::installVars($module, array(
-			'pagecount_on' => array('YES', 'bool'),
-			'userrec' => array('YES', 'bool'),
+			'pagecount_on' => array(true, 'bool'),
+			'userrec' => array(true, 'bool'),
 			'userrecc' => array(0, 'script'),
 			'userrecd' => array('00000000000000', 'script'),
 		));

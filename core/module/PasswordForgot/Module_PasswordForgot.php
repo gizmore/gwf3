@@ -14,7 +14,7 @@ final class Module_PasswordForgot extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'captcha' => array('no', 'bool'),
+			'captcha' => array(false, 'bool'),
 			'mail_sender' => array(GWF_SUPPORT_EMAIL, 'text', '6', '128'),
 		));
 	}

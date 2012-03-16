@@ -1,8 +1,7 @@
 <?php
-
 final class Module_Language extends GWF_Module
 {
-	public function getVersion() { return 1.01; }
+	public function getVersion() { return 1.02; }
 	public function getAdminSectionURL() { return $this->getMethodURL('EditFiles'); }
 //	public function getDefaultPriority() { return 1; }
 //	public function getDefaultAutoLoad() { return true; }
@@ -13,21 +12,6 @@ final class Module_Language extends GWF_Module
 		require_once 'InstallLanguages.php';
 		return InstallLanguages::onInstall($this, $dropTable);
 	}
-//	public function cfgLangByDomain() { return $this->getModuleVar('lang_by_domain', true); }
-	
-	public function onStartup()
-	{
-//		if ($this->cfgLangByDomain())
-//		{
-//			$domain = $_SERVER['SERVER_NAME'];
-//			$dot = substr($domain, 2, 1);
-//			if ($dot === '.')
-//			{
-//				$iso = substr($domain, 0, 2);
-//				$this->setLanguage($iso);
-//			}
-//		}
-	}
 	
 	public function setLanguage($iso)
 	{
@@ -35,7 +19,6 @@ final class Module_Language extends GWF_Module
 			return false;
 		}
 		GWF_Language::setCurrentLanguage($lang);
-// 		GWF_Language::setBrowserLang($lang);
 		return true;
 	}
 	
@@ -67,5 +50,4 @@ final class Module_Language extends GWF_Module
 		return GWF_Select::display('switch_lang', $data, $current_iso, $onchange);
 	}
 }
-
 ?>

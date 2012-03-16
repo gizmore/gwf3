@@ -24,7 +24,7 @@ final class Module_PaymentPaypal extends GWF_PaymentModule
 				'PAYPAL_API_SIGNATURE' => array('An5ns1Kso7MWUdW4ErQKJJJ4qi4-AKKoQTrZVr51cIn6b.aMsI-4t2xg', 'text'),
 				'PAYPAL_API_ENDPOINT'  => array('https://api-3t.sandbox.paypal.com/nvp', 'text'),
 				'PAYPAL_URL'           => array('https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token=', 'text'),
-				'PAYPAL_USE_PROXY'  => array('NO', 'bool'),
+				'PAYPAL_USE_PROXY'  => array(false, 'bool'),
 				'PAYPAL_PROXY_HOST' => array('127.0.0.1', 'text'),
 				'PAYPAL_PROXY_PORT' => array('8080', 'int', 1, 65535),
 			));

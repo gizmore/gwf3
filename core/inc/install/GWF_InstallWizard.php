@@ -617,10 +617,12 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('10');
 		
-		if (false === GWF_File::removeDir(GWF_SMARTY_COMPILE_DIR, true, true))
+		$template_cache = GWF_SMARTY_DIRS.'tplc';
+		if (false === GWF_File::removeDir($template_cache, true, true))
 		{
 			$back .= self::wizard_error('err_clear_smarty');
 		}
+		
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0'));
 		$back .= self::wizard_btn('11');
 		return $back;

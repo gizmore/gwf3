@@ -172,7 +172,7 @@ final class Lamb_Channel extends GDO
 	##################
 	private static $MAP = array(
 		'a' => Lamb_User::ADMIN,
-		's' => Lamb_User::STAFF,
+		'q' => Lamb_User::STAFF,
 		'o' => Lamb_User::OPERATOR,
 		'h' => Lamb_User::HALFOP,
 		'v' => Lamb_User::VOICE,
@@ -180,7 +180,7 @@ final class Lamb_Channel extends GDO
 	
 	private static $SYMBOLMAP = array(
 		'~' => 'a',
-		'&' => 's',
+		'&' => 'q',
 		'@' => 'o',
 		'%' => 'h',
 		'+' => 'v',

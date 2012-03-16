@@ -23,7 +23,7 @@ final class Module_PaymentAlertpay extends GWF_PaymentModule
 				'ap_seller' => array(GWF_ADMIN_EMAIL, 'text', '6', GWF_User::EMAIL_LENGTH),
 				'ap_sec_code' => array('1234567890abcdef', 'text', '16', '16'),
 				'ap_send_code' => array('1234567890abcdef', 'text', '16', '16'),
-				'ap_test_mode' => array('YES', 'bool'),
+				'ap_test_mode' => array(true, 'bool'),
 			));
 	}
 	public function cfgSeller() { return $this->getModuleVar('ap_seller', GWF_ADMIN_EMAIL); }

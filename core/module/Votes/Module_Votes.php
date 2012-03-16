@@ -18,7 +18,7 @@ final class Module_Votes extends GWF_Module
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
-			'vote_guests' => array('YES', 'bool'),
+			'vote_guests' => array(true, 'bool'),
 			'vote_guests_timeout' => array('1 Day', 'time', 60*30, GWF_Time::ONE_YEAR),
 			'vote_iconlimit' => array('10', 'int', '0', '32'),
 			'vote_title_min' => array('1', 'int', '1', '16'),

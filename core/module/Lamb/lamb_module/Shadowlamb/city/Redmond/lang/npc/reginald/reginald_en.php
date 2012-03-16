@@ -1,8 +1,8 @@
 <?php
 $b = chr(2);
 $lang = array(
-	'run1' => 'I am sorry but I don`t have another job for you... Maybe ask Mr.Johnson over there ;)',
-	'run2' => 'Welcome back my friend! Thank you again for your help. Take a seat and have a drink :)',
+	'sr1' => 'I am sorry but I don`t have another job for you... Maybe ask Mr.Johnson over there ;)',
+	'sr2' => 'Welcome back my friend! Thank you again for your help. Take a seat and have a drink :)',
 	'thx' => 'Thank you so very much!',
 	'aww1' => 'I see you don`t have the bracelett for me :( ... But there is no need to hurry :)',
 	'yes1' => 'Thank you so very very much. I put all my trust in you... Go kill those bastards!',

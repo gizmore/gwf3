@@ -6,18 +6,18 @@ final class GWF_GuestbookInstall
 	{
 		return GWF_ModuleLoader::installVars($module, array(
 			'gb_ipp' => array('10', 'int', '1', '512'),
-			'gb_allow_url' => array('YES', 'bool'),
-			'gb_allow_email' => array('YES', 'bool'),
-			'gb_allow_guest' => array('YES', 'bool'),
-			'gb_captcha' => array('YES', 'bool'),
+			'gb_allow_url' => array(true, 'bool'),
+			'gb_allow_email' => array(true, 'bool'),
+			'gb_allow_guest' => array(true, 'bool'),
+			'gb_captcha' => array(true, 'bool'),
 			'gb_max_ulen' => array(GWF_User::USERNAME_LENGTH, 'int', '1', '61'),
 			'gb_max_msglen' => array('1024', 'int', '128', '65535'),
 			'gb_max_titlelen' => array('63', 'int', '16', '63'),
 			'gb_max_descrlen' => array('255', 'int', '16', '1024'),
 			'gb_level' => array('0', 'int', '0'),
-			'gb_menu' => array('YES', 'bool'),
-			'gb_submenu' => array('YES', 'bool'),
-			'gb_nesting' => array('YES', 'bool'),
+			'gb_menu' => array(true, 'bool'),
+			'gb_submenu' => array(true, 'bool'),
+			'gb_nesting' => array(true, 'bool'),
 		)).
 		self::onInstallDefaultGB($module, $dropTable);
 	}

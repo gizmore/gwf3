@@ -4,8 +4,8 @@ final class InstallLanguages
 	public static function onInstall(Module_Language $module, $dropTables)
 	{
 		return GWF_ModuleLoader::installVars($module, array(
-			'edit_time' => array('300', 'time', '0', GWF_Time::ONE_HOUR),
-//			'lang_by_domain' => array('YES', 'bool'),
+// 			'edit_time' => array('300', 'time', '0', GWF_Time::ONE_HOUR),
+//			'lang_by_domain' => array(true, 'bool'),
 		)).self::installSupported($module, $dropTables).
 		self::installGoogleHasIt($module, $dropTables);
 	}

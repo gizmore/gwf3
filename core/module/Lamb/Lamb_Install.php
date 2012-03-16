@@ -26,13 +26,13 @@ final class Lamb_Install
 				'LAMB_HOSTNAME' => array('lamb.gizmore.org', 'script'),
 				'LAMB_MODULES' => array('Link;News;Quote;Scum;Shadowlamb;Slapwarz', 'script'),
 				'LAMB_OWNER' => array('gizmore', 'script'),
-				'LAMB_EVENTS' => array('NO', 'bool'),
+				'LAMB_EVENTS' => array(false, 'bool'),
 				'LAMB_TRIGGER' => array('.', 'script'),
-				'LAMB_LOGGING' => array('YES', 'bool'),
+				'LAMB_LOGGING' => array(true, 'bool'),
 				'LAMB_PING_TIMEOUT' => array('360', 'int', '30', '3600'),
 				'LAMB_CONNECT_TIMEOUT' => array('3', 'int', '0', '300'),
 				'LAMB_SLEEP_MILLIS' => array('50', 'int', '5', '5000'),
-				'LAMB_NICKREPLY' => array('YES', 'bool'),
+				'LAMB_NICKREPLY' => array(true, 'bool'),
 				# Servers
 				'LAMB_SERVERS' => array(self::LAMB_SERVERS, 'script'),
 				'LAMB_NICKNAMES' => array(self::LAMB_NICKNAMES, 'script'),
@@ -44,6 +44,10 @@ final class Lamb_Install
 
 	private static function installLamb(Module_Lamb $module, $dropTable)
 	{
+		foreach (self::$DB_CLASSES as $class)
+		{
+			$module->includeClass($class);
+		}
 		if ('' !== ($error = GWF_ModuleLoader::installModuleClassesB($module, self::$DB_CLASSES, $dropTable)))
 		{
 			return $error;

@@ -12,12 +12,12 @@ final class Redmond_Reginald extends SR_TalkingNPC
 		{
 			if ($word === 'shadowrun')
 			{
-				$this->rply('run1');
+				$this->rply('sr1');
 // 				$this->reply("I am sorry but I don`t have another job for you... Maybe ask Mr.Johnson over there ;)");
 			}
 			else
 			{
-				$this->rply('run2');
+				$this->rply('sr2');
 // 				$this->reply("Welcome back my friend! Thank you again for your help. Take a seat and have a drink :)");
 			}
 		}

@@ -229,7 +229,7 @@ $LAMB_CFG = array
 
 		# EFnet BNC
 		array(
-			'host' => 'warchall.gizmore.org:4096',
+			'host' => 'bouncing.efnet.org:4096',
 			'nickname' => 'Lamb3,Lambee',
 			'password' => LAMB_PASSWORD3,
 			'channels' => '#shadowlamb,#wechall',

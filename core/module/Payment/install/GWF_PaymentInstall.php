@@ -6,7 +6,7 @@ final class GWF_PaymentInstall
 	{
 		return
 			GWF_ModuleLoader::installVars($module, array(
-				'donations' => array('YES', 'bool'),
+				'donations' => array(true, 'bool'),
 				'currency' => array('EUR', 'text'),
 				'currencies' => array('EUR:USD', 'script'),
 //				'local_fee_buy' => array('1.00', 'float', '-50', '50'),
