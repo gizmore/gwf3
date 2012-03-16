@@ -61,7 +61,7 @@ final class GWF_ShowError extends GWF_Method
 		# Generate template
 		$tVars = array(
 			'code' => $code,
-			'file' => GWF_HTML::error(GWF_SITENAME, $this->module->getLang()->langA('ERR_HTTP', (string)$code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false), # FIXME: this is frontend work!
+			'file' => GWF_HTML::error(GWF_SITENAME, $this->module->getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false), # FIXME: this is frontend work!
 		);
 		$template = $this->module->template($this->_tpl, $tVars);
 

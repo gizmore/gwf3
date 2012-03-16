@@ -182,20 +182,25 @@ final class GWF_Mail
 	
 	private function encrypt($message)
 	{
-		if ($this->gpgKey === '' && self::GPG_FINGERPRINT === '') {
+		if ($this->gpgKey === '' && self::GPG_FINGERPRINT === '')
+		{
 			return $message;
 		}
 		
-		if (!function_exists('gnupg_init')) {
+		if (false === function_exists('gnupg_init'))
+		{
 			return $message.PHP_EOL.'GnuPG Error: gnupg extension is missing.';
 		}
 		
-		if (false === ($gpg = gnupg_init())) {
+		if (false === ($gpg = gnupg_init()))
+		{
 			return $message.PHP_EOL.'GnuPG Error: gnupg_init() failed.';
 		}
 		
-		if ($this->gpgKey !== '') {
-			if (false === gnupg_addencryptkey($gpg, $this->gpgKey)) {
+		if ($this->gpgKey !== '')
+		{
+			if (false === gnupg_addencryptkey($gpg, $this->gpgKey)))
+			{
 				return $message.PHP_EOL.'GnuPG Error: gnupg_addencryptkey() failed.';
 			}
 		}

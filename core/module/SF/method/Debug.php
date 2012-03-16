@@ -11,6 +11,8 @@ final class SF_Debug extends GWF_Method
 		return $this->getHTAccessMethod();
 	}
 
+	public function getUserGroups() { return 'admin'; }
+
 	public function execute() 
 	{
 		if(!$this->module->cfgDebugEnabled())

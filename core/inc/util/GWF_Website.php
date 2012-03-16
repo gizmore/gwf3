@@ -222,9 +222,36 @@ final class GWF_Website
 			'js' => self::displayJavascripts(),
 			'head_links' => self::displayLink(),
 		);
-		GWF_Template::addMainTvars(array('errors' => GWF_HTML::displayErrors(), 'messages' => GWF_HTML::displayMessages()));
-		
-		return GWF_Doctype::getDoctype() . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
+
+		$t = array();
+		# Errors from GWF_Error
+		$errors = GWF_Error::displayErrors();
+		if (GWF_ERRORS_TO_SMARTY)
+		{
+			$t['errors'] = $errors;
+		}
+		else
+		{
+			GWF_Website::addDefaultOutput($errors);
+		}
+
+		# Messages from GWF_Error
+		$messages = GWF_Error::displayMessages();
+		if (GWF_MESSAGES_TO_SMARTY)
+		{
+			$t['messages'] = $messages;
+		}
+		else
+		{
+			GWF_Website::addDefaultOutput($messages);
+		}
+
+		if (GWF_MESSAGES_TO_SMARTY || GWF_ERRORS_TO_SMARTY)
+		{
+			GWF_Template::addMainTvars($t);
+		}
+
+		return GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE) . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
 	
 	public static function getHTMLbody_head($tVars=NULL)
