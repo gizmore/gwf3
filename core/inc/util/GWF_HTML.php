@@ -31,7 +31,6 @@ final class GWF_HTML
 	##############
 	### Errors ###
 	##############
-	private static $_ERRORS = array();
 	/** strip full paths */
 	public static function err($key, $args=NULL, $log=true) { return self::error('GWF', GWF_Debug::shortpath(self::lang($key, $args)), $log); }
 
@@ -54,17 +53,11 @@ final class GWF_HTML
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
 		}
- 		if (false === GWF_ERRORS_TO_SMARTY)
- 		{
-			return self::displayErrors(array('title' => $title, 'messages' => $messages));
- 		}
-		
-		self::$_ERRORS[] = array('title' => $title, 'messages' => $messages); 
-		return '';
+		return self::displayErrors(array('title' => $title, 'messages' => $messages));
 	}
-	public static function displayErrors($errors = NULL) 
+	public static function displayErrors($errors) 
 	{
-		$errors = $errors === NULL ? self::$_ERRORS : array($errors); 
+		$errors = array($errors);
 		if(count($errors) === 0) return ''; 
 		
 		if (isset($_GET['ajax']))
@@ -87,7 +80,6 @@ final class GWF_HTML
 	################
 	### Messages ###
 	################
-	private static $_MESSAGES = array();
 	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
 	public static function messageA($title=NULL, array $messages, $log=true)
 	{
@@ -97,16 +89,12 @@ final class GWF_HTML
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
 		}
-		if (false === GWF_MESSAGES_TO_SMARTY)
-		{
-			return self::displayMessages(array('title' => $title, 'messages' => $messages));
-		}
-		self::$_MESSAGES[] = array('title' => $title, 'messages' => $messages); 
-		return '';
+		return self::displayMessages(array('title' => $title, 'messages' => $messages));
 	}
-	public static function displayMessages($messages = NULL) 
+	public static function displayMessages($messages) 
 	{
-		$messages = $messages === NULL ? self::$_MESSAGES : array($messages); 
+		$messages = array($messages);
+		var_dump($messages);
 		if(count($messages) === 0) return ''; 
 		
 		if (Common::getGet('ajax') !== false)

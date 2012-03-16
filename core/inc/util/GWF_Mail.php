@@ -199,7 +199,7 @@ final class GWF_Mail
 		
 		if ($this->gpgKey !== '')
 		{
-			if (false === gnupg_addencryptkey($gpg, $this->gpgKey)))
+			if (false === gnupg_addencryptkey($gpg, $this->gpgKey))
 			{
 				return $message.PHP_EOL.'GnuPG Error: gnupg_addencryptkey() failed.';
 			}
