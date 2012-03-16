@@ -204,15 +204,15 @@ class GWF_Form
 	
 	public function templateX($title='', $action=true)
 	{
-		return $this->template('formX.php', $title, $action);
+		return $this->template('formX.php', $title, $action, $this->computeColspanX());
 	}
 	
 	public function templateY($title='', $action=true)
 	{
-		return $this->template('formY.php', $title, $action);
+		return $this->template('formY.php', $title, $action, 3);
 	}
 	
-	private function template($file, $title, $action=true)
+	private function template($file, $title, $action=true, $colspan)
 	{
 		
 //		if (!is_string($method) || ($method !== 'get'))
@@ -232,9 +232,33 @@ class GWF_Form
 			'action' => htmlspecialchars($action),
 			'method' => $this->method,
 			'enctype' => $this->getEncType(),
+			'colspan' => $colspan,
 		);
 		
 		return GWF_Template::templatePHPMain($file, $tVars);
+	}
+	
+	private function computeColspanX()
+	{
+		return count($this->form_data) + 1;
+// 		static $hidden = array(self::HIDDEN);
+// 		static $special = array(
+// 			self::CAPTCHA => 2,
+// 		);
+		
+// 		$colspan = 0;
+// 		foreach ($this->form_data as $key => $data)
+// 		{
+// 			if (!in_array($data[0], $hidden))
+// 			{
+// 				if (in_array($data[0], $special))
+// 				{
+// 					$colspan += $special[$data[0]];
+// 				}
+// 				$colspan++;
+// 			}
+// 		}
+// 		return $colspan + 1;
 	}
 	
 	private function getEncType()

@@ -3,7 +3,7 @@
 	<form action="<?php echo $tVars['action']; ?>" method="<?php echo $tVars['method']; ?>" enctype="<?php echo $tVars['enctype']; ?>">
 	<table>
 		<thead>
-			<tr><th colspan="0"><?php echo $tVars['title']?></th></tr>
+			<tr><th colspan="<?php echo $tVars['colspan']; ?>"><?php echo $tVars['title']?></th></tr>
 			<tr>
 <?php
 $no_head = array(GWF_Form::HIDDEN, GWF_Form::SUBMIT);
