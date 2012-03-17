@@ -23,7 +23,6 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 	public function getAlcemCiphertext(SR_NPC $npc, SR_Player $player)
 	{
 		$plaintext = $this->lang('plaintext');
-		$solution = $this->lang('solution');
 		$ciphertext = GWF_PolyROT::encrypt($plaintext, "D");
 		return $ciphertext;
 	}
@@ -31,6 +30,7 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		$ciphertext = $this->getAlcemCiphertext($npc, $player);
+		$solution = $this->lang('solution');
 		
 		switch ($word)
 		{
