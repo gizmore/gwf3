@@ -89,7 +89,7 @@ final class GWF_Error
 		{
 			if (true === empty($subject))
 			{
-				unset $all[$k];
+				unset($all[$k]);
 			}
 		}
 
