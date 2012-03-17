@@ -89,24 +89,24 @@ class Shadowcmd
 	
 	private static function unshortcut($cmd)
 	{
-		return Shadowfunc::unshortcut($cmd, self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
+		return Shadowfunc::unshortcut(strtolower($cmd), self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
 // 		return Shadowfunc::unshortcut($cmd, self::$CMD_SHORTCUTS);
 	}
 	
 	private static function shortcut($cmd)
 	{
-		return Shadowfunc::shortcut($cmd, self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
+		return Shadowfunc::shortcut(strtolower($cmd), self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
 // 		return Shadowfunc::shortcut($cmd, self::$CMD_SHORTCUTS);
 	}
 	
 	public static function translate($cmd)
 	{
-		return Shadowfunc::unshortcut($cmd, self::$LANG_COMMANDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
+		return Shadowfunc::unshortcut(strtolower($cmd), self::$LANG_COMMANDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
 	}
 	
 	public static function untranslate($cmd)
 	{
-		return Shadowfunc::shortcut($cmd, self::$LANG_COMMANDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
+		return Shadowfunc::shortcut(strtolower($cmd), self::$LANG_COMMANDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
 	}
 	
 	################

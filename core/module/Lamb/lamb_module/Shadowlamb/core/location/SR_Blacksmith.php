@@ -510,7 +510,7 @@ abstract class SR_Blacksmith extends SR_Store
 			return false;
 		}
 	
-		return $bot->rply('5217');
+		return $bot->rply('5217', array($dp, $itemname, GWF_Array::implodeHuman($names)));
 // 		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 	}
 	

@@ -57,11 +57,13 @@ final class Shadowcmd_compare extends Shadowcmd
 
 		$type = $item1->getItemType();
 
-		$titles[] = 'Type';
+// 		$titles[] = 'Type';
+		$titles[] = Shadowfunc::translateVariable($player, 'Type');
 		$item1Stuff[] = str_replace(" Weapon","",$player->lang($item1->displayType()));
 		$item2Stuff[] = str_replace(" Weapon","",$player->lang($item2->displayType()));
 
-		$titles[] = 'Lvl';
+// 		$titles[] = 'Lvl';
+		$titles[] = Shadowfunc::shortcutVariable($player, 'Level');
 		$item1Lvl = $item1->getItemLevel();
 		$item2Lvl = $item2->getItemLevel();
 		if($item1Lvl == $item2Lvl)
@@ -80,14 +82,19 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2Stuff[] = $item2Lvl;
 		}
 		
-		$item1ModA = $item1->getItemModifiersA($player);
-		$item2ModA = $item2->getItemModifiersA($player);
-
+// 		$item1ModA = $item1->getItemModifiersA($player);
+// 		$item2ModA = $item2->getItemModifiersA($player);
+		$item1ModA = $item1->getItemModifiers($player);
+		$item2ModA = $item2->getItemModifiers($player);
+		unset($item1ModA['weight']);
+		unset($item2ModA['weight']);
+		
 		if($item1ModA || $item2ModA)
 		{
 			if(array_key_exists('min_dmg', $item1ModA) || array_key_exists('min_dmg', $item2ModA))
 			{
-				$titles[] = 'dmg';
+// 				$titles[] = 'dmg';
+				$titles[] = Shadowfunc::shortcutVariable($player, 'Damage');
 				$item1min = false;
 				$item1max = false;
 				$item2min = false;
@@ -156,7 +163,8 @@ final class Shadowcmd_compare extends Shadowcmd
 			                                 array_keys($item2ModA?$item2ModA:array())));
 			foreach($keys as $k => $v)
 			{
-				$titles[] = Shadowfunc::longModifierToShort($v);
+// 				$titles[] = Shadowfunc::longModifierToShort($v);
+				$titles[] = Shadowfunc::shortcutVariable($player, $v);
 				$item1V = ($item1ModA&&array_key_exists($v,$item1ModA))?$item1ModA[$v]:false; 
 				$item2V = ($item2ModA&&array_key_exists($v,$item2ModA))?$item2ModA[$v]:false;
 
@@ -179,40 +187,42 @@ final class Shadowcmd_compare extends Shadowcmd
 			}
 		}
 		
-		$item1ModB = $item1->getItemModifiersB();
-		$item2ModB = $item2->getItemModifiersB();
+// 		$item1ModB = $item1->getItemModifiersB();
+// 		$item2ModB = $item2->getItemModifiersB();
 
-		if($item1ModB || $item2ModB)
-		{
-			$keys = array_unique(array_merge(array_keys($item1ModB?$item1ModB:array()), array_keys($item2ModB?$item2ModB:array())));
-			foreach($keys as $k => $v){
-				$titles[] = Shadowfunc::longModifierToShort($v);
-				$item1V = ($item1ModB&&array_key_exists($v,$item1ModB))?$item1ModB[$v]:false; 
-				$item2V = ($item2ModB&&array_key_exists($v,$item2ModB))?$item2ModB[$v]:false;
+// 		if($item1ModB || $item2ModB)
+// 		{
+// 			$keys = array_unique(array_merge(array_keys($item1ModB?$item1ModB:array()), array_keys($item2ModB?$item2ModB:array())));
+// 			foreach($keys as $k => $v){
+// 				$titles[] = Shadowfunc::longModifierToShort($v);
+// 				$item1V = ($item1ModB&&array_key_exists($v,$item1ModB))?$item1ModB[$v]:false; 
+// 				$item2V = ($item2ModB&&array_key_exists($v,$item2ModB))?$item2ModB[$v]:false;
 
-				if($item1V && $item2V && ($item1V == $item2V))
-				{
-					$item1V = $b.$item1V.$b;
-					$item2V = $b.$item2V.$b;
-				}
-				else if(!$item1V || $item2V > $item1V)
-				{
-					$item2V = $b.$item2V.$b;
-				}
-				else if(!$item2V || $item1V > $item2V)
-				{
-					$item1V = $b.$item1V.$b;
-				}
+// 				if($item1V && $item2V && ($item1V == $item2V))
+// 				{
+// 					$item1V = $b.$item1V.$b;
+// 					$item2V = $b.$item2V.$b;
+// 				}
+// 				else if(!$item1V || $item2V > $item1V)
+// 				{
+// 					$item2V = $b.$item2V.$b;
+// 				}
+// 				else if(!$item2V || $item1V > $item2V)
+// 				{
+// 					$item1V = $b.$item1V.$b;
+// 				}
 				
-				$item1Stuff[] = $item1V;
-				$item2Stuff[] = $item2V;
-			}
-		}
+// 				$item1Stuff[] = $item1V;
+// 				$item2Stuff[] = $item2V;
+// 			}
+// 		}
 
 		$item1Reqs = $item1->getItemRequirements();
 		$item2Reqs = $item2->getItemRequirements();
-		if($item1Reqs || $item2Reqs){
-			$titles[] = 'Reqs';
+		if($item1Reqs || $item2Reqs)
+		{
+// 			$titles[] = 'Reqs';
+			$titles[] = Shadowfunc::shortcutVariable($player, 'Requirements');
 			$keys = array_unique(array_merge(array_keys($item1Reqs?$item1Reqs:array()), array_keys($item2Reqs?$item2Reqs:array())));
 			$samekeys = array_intersect(array_keys($item1Reqs?$item1Reqs:array()), array_keys($item2Reqs?$item2Reqs:array()));
 			$item1V = array();
@@ -244,7 +254,8 @@ final class Shadowcmd_compare extends Shadowcmd
 
 			foreach($keys as $key)
 			{
-				$req = Shadowfunc::longModifierToShort($key);
+// 				$req = Shadowfunc::longModifierToShort($key);
+				$req = Shadowfunc::shortcutVariable($player, $key);
 				$item1R = false;
 				$item2R = false;
 				if(array_key_exists($key, $item1Reqs))
@@ -277,7 +288,9 @@ final class Shadowcmd_compare extends Shadowcmd
 
 		if($item1Rng > 0 || $item2Rng > 0)
 		{
-			$titles[] = 'Rng';
+// 			$titles[] = 'Rng';
+			$titles[] = Shadowfunc::shortcutVariable($player, 'Range');
+			
 			if($item1Rng == $item2Rng)
 			{
 				$item1Stuff[] = $b.$item1Rng.$b;
@@ -295,7 +308,8 @@ final class Shadowcmd_compare extends Shadowcmd
 			}
 		}
 		
-		$titles[] = 'Wgt';
+// 		$titles[] = 'Wgt';
+		$titles[] = Shadowfunc::shortcutVariable($player, 'Weight');
 		$item1Wgt = $item1->getItemWeight();
 		$item2Wgt = $item2->getItemWeight();
 		if($item1Wgt == $item2Wgt)

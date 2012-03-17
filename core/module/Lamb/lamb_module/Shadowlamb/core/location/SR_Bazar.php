@@ -341,7 +341,7 @@ class SR_Bazar extends SR_Location
 			$player->msg('5153', array($amt, $iname, $dprice));
 			
 			# Global shout.
-			Shadowshout::sendGlobalMessage(sprintf('%s offers %d x %s for %s each in his bazaar.',
+			Shadowshout::sendGlobalMessage(sprintf('%s offers %d x %s for %s each in their bazaar.',
 				$player->getName(), $amt, $iname, $dprice
 			));
 			

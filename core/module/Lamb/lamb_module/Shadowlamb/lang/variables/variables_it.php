@@ -99,5 +99,13 @@ $lang = array(
 	'redmond' => 'redmond',
 	'seattle' => 'seattle',
 	'delaware' => 'delaware',
+
+	# Compare stuff
+	'Damage' => 'Damage',
+	'Type' => 'Type',
+	'Requirements' => 'Requirements',
+	'Range' => 'Range',
+	'Weight' => 'Weight',
+	'Level' => 'Level',
 );
 ?>

@@ -336,7 +336,7 @@ final class Shadowfunc
 	#################
 	public static function unshortcut($string, $array)
 	{
-		$string = strtolower($string);
+// 		$string = strtolower($string);
 		if ($array === false)
 		{
 			return $string;
@@ -346,7 +346,7 @@ final class Shadowfunc
 	
 	public static function shortcut($string, array $array)
 	{
-		$string = strtolower($string);
+// 		$string = strtolower($string);
 		if ($array === false)
 		{
 			return false;
@@ -355,7 +355,8 @@ final class Shadowfunc
 		{
 			return $string;
 		}
-		return strtolower($key);
+		return $key;
+// 		return strtolower($key);
 	}
 	
 	##############
