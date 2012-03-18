@@ -12,9 +12,9 @@ define('GWF_CORE_VERSION', '3.03-2011.Dec.24');
  */
 class GWF3 
 {
-	private static $design = 'default';
-	private static $module, $page, $user;
-	private static $_config = array(
+	private static $DESIGN = 'default';
+	private static $MODULE, $page, $user;
+	private static $CONFIG = array(
 		'init' => true, # Init?
 		'bootstrap' => false, # Init GWF_Bootstrap?
 		'website_init' => true, # Init GWF_Website?
@@ -31,8 +31,8 @@ class GWF3
 		'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
 		'kick_banned_ip' => true, # Kick banned IP adress by temp_ban file?
 	);
-	public static function setConfig($key, $v) { self::$_config[$key] = $v; }
-	public static function getConfig($key) { return self::$_config[$key]; }
+	public static function setConfig($key, $v) { self::$CONFIG[$key] = $v; }
+	public static function getConfig($key) { return self::$CONFIG[$key]; }
  	
 	/**
 	 * @param array $config
@@ -42,7 +42,7 @@ class GWF3
 	 */
 	public function __construct($basepath, array $config = array())
 	{
-		self::$_config = ($config = array_merge(self::$_config, $config));
+		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
 
 		# Bootstrap
 		if (true === $config['bootstrap'])
@@ -127,6 +127,7 @@ class GWF3
 
 		if (true === $config['start_debug'])
 		{
+			die('A');
 			GWF_Debug::enableErrorHandler();
 			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
@@ -370,9 +371,9 @@ class GWF3
 	public function onLoadModule()
 	{
 		# Load the module
-		if (false === (self::$module = GWF_Module::loadModuleDB($_GET['mo']))) 
+		if (false === (self::$MODULE = GWF_Module::loadModuleDB($_GET['mo']))) 
 		{
-			if (false === (self::$module = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
+			if (false === (self::$MODULE = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
 			{
 				self::logDie('No module found.');
 			}
@@ -380,12 +381,12 @@ class GWF3
 		}
 
 		# Module is enabled?
-		if (true === self::$module->isEnabled())
+		if (true === self::$MODULE->isEnabled())
 		{
 			# Execute the method
-			self::$module->onInclude();
-			self::$module->onLoadLanguage();
-			self::$page = self::$module->execute($_GET['me']);
+			self::$MODULE->onInclude();
+			self::$MODULE->onLoadLanguage();
+			self::$page = self::$MODULE->execute($_GET['me']);
 			if (true === isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
@@ -393,7 +394,7 @@ class GWF3
 		}
 		else
 		{
-			self::$page = GWF_HTML::err('ERR_MODULE_DISABLED', array(self::$module->display('module_name')));
+			self::$page = GWF_HTML::err('ERR_MODULE_DISABLED', array(self::$MODULE->display('module_name')));
 		}
 		return $this;
 	}
@@ -458,10 +459,10 @@ class GWF3
 		return GWF_Website::getHTMLbody_foot();
 	}
 
-	public static function getModule() { return self::$module; }
+	public static function getModule() { return self::$MODULE; }
 	public static function getUser() { return self::$user; }
-	public static function setDesign($design) { self::$design = $design; }
-	public static function getDesign() { return self::$design; }
+	public static function setDesign($design) { self::$DESIGN = $design; }
+	public static function getDesign() { return self::$DESIGN; }
 	
 	public function __toString()
 	{

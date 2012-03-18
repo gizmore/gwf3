@@ -16,10 +16,10 @@
 		
 		{* Member *}
 		{if $user->isLoggedIn()}
-		<li><a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user)}</a></li>
-		<li><a href="{$root}forum">Forum{GWF_Notice::getUnreadForum($user)}</a></li>
+		<li><a href="{$root}links">Links{GWF_Notice::getUnreadLinks($user, '[%s]', '')}</a></li>
+		<li><a href="{$root}forum">Forum{GWF_Notice::getUnreadForum($user, '[%s]', '')}</a></li>
 		<li><a href="{$root}irc_chat">Chat</a></li>
-		<li><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user)}</a></li>
+		<li><a href="{$root}pm">PM{GWF_Notice::getUnreadPM($user, '[%s]', '')}</a></li>
 		<li><a href="{$root}account">Account</a></li>
 		<li><a href="{$root}profile_settings">Profile</a></li>
 		{if $user->isAdmin()}
