@@ -118,7 +118,7 @@ class GWF3
 			# log_request ?
 		}
 
-		$config = &self::$_config;
+		$config = &self::$CONFIG;
 
 		if (true === $config['kick_banned_ip'])
 		{
@@ -127,7 +127,6 @@ class GWF3
 
 		if (true === $config['start_debug'])
 		{
-			die('A');
 			GWF_Debug::enableErrorHandler();
 			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
