@@ -50,12 +50,11 @@ require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 
-echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
-
 # HTML Header
 //echo GWF_Website::getPagehead();
 if (!defined('NO_HEADER_PLEASE'))
 {
+	echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
 	echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
 }
 ?>
