@@ -2,7 +2,6 @@
 /**
  * GWF Session Handler. It's database driven, and queries a bot database to detect bots by IP.
  * @author gizmore
- *
  */
 final class GWF_Session extends GDO
 {
@@ -69,24 +68,29 @@ final class GWF_Session extends GDO
 	private static function reload($cookie, $blocking)
 	{
 		$split = explode('-', $cookie);
-		if (count($split) !== 3) {
-			die('WRONG COUNT: '.count($split).' :'.$cookie);
+		if (count($split) !== 3)
+		{
+// 			die('WRONG COUNT: '.count($split).' :'.$cookie);
 			return false;
 		}
 		$id = (int)$split[0];
 		
-		
-		if (false === ($session = GDO::table(__CLASS__)->selectFirstObject('*', "sess_id=$id"))) {
+		# Load session from DB
+		if (false === ($session = GDO::table(__CLASS__)->selectFirstObject('*', "sess_id=$id")))
+		{
 			return false;
 		}
-		$user = $session->getVar('sess_user');
+		
 		# Check UID
-		if ( ($user->getID() !== NULL) && ($user->getID() !== $split[1]) ) {
+		$user = $session->getVar('sess_user');
+		if ( ($user->getID() !== NULL) && ($user->getID() !== $split[1]) )
+		{
 			return false;
 		}
 		
 		# Check SESSID
-		if ($session->getVar('sess_sid') !== $split[2]) {
+		if ($session->getVar('sess_sid') !== $split[2])
+		{
 			return false;
 		}
 		
@@ -120,10 +124,7 @@ final class GWF_Session extends GDO
 	
 	private static function reloadSessData($data)
 	{
-		if ($data === NULL) {
-			return array();
-		}
-		return unserialize($data);
+		return $data === NULL ? array() : unserialize($data);
 	}
 
 	private static function create()
@@ -246,6 +247,11 @@ final class GWF_Session extends GDO
 	{
 		$data = array();
 		
+		if (self::$SESSION === NULL)
+		{
+			return false;
+		}
+		
 		# Save new sess last activity time
 		if (self::$SESSION->getInt('sess_time') < time())
 		{
@@ -280,7 +286,9 @@ final class GWF_Session extends GDO
 		if (false === ($result = self::$SESSION->selectFirst('sess_id min', "sess_user=$userid", 'sess_id DESC', NULL, self::ARRAY_N, GWF_SESS_PER_USER-1)))
 		{
 			$cut_id = '1';#return false;
-		} else {
+		}
+		else
+		{
 			$cut_id = $result[0];
 		}
 		
@@ -312,7 +320,8 @@ final class GWF_Session extends GDO
 	
 	public static function onLogout()
 	{
-		if (self::$USER === false) {
+		if (self::$USER === false)
+		{
 			return true;
 		}
 		
