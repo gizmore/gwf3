@@ -70,7 +70,7 @@ final class GWF_Session extends GDO
 		$split = explode('-', $cookie);
 		if (count($split) !== 3)
 		{
-// 			die('WRONG COUNT: '.count($split).' :'.$cookie);
+// 			die('WRONG COUNT: '.count($split).' :'.htmlspecialchars($cookie));
 			return false;
 		}
 		$id = (int)$split[0];
