@@ -9,7 +9,7 @@ Then press a few buttons.
 
 ==========================================================
 
-2) Using the install_wizard.php
+2) Using the wizard.php
 
 Just follow the install script :)
 Do not forget to protect your protected folder!

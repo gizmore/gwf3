@@ -31,6 +31,10 @@ see Functions
 always write the access modifiers (public, protected, private)
 (public|protected|private) static? methodname()
 
+Static variables:
+Should be written UPPERCASE.
+Example is public static $FOO = 'baz';
+
 Comments:
 are very welcome
 use # for short comments (e.g. for the step)

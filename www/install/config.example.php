@@ -34,7 +34,7 @@ define('GWF_GESHI_PATH', '/opt/php/geshi/geshi.php'); # Path to geshi.php. GeSHi
 ##############
 define('GWF_SMARTY_DIRS', '/data/_ProjectPDT6/GWF35/extra/temp/smarty/'); # Path to smarty cache/compile/config directories.
 define('GWF_ERRORS_TO_SMARTY', false); # Group all Error and display them in one Box?
-define('GWF_MESSAGES_TO_SMARTY', false); # Same as above with success-messages
+// define('GWF_MESSAGES_TO_SMARTY', false); # Same as above with success-messages
 
 ################
 ### Defaults ###

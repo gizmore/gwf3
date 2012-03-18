@@ -357,7 +357,7 @@ final class GWF_InstallConfig
 	 * @param $action
 	 * @return string html
 	 */
-	public static function displayForm($action='install_wizard.php', GWF_LangTrans $lang)
+	public static function displayForm($action='wizard.php', GWF_LangTrans $lang)
 	{
 		self::init($lang);
 		

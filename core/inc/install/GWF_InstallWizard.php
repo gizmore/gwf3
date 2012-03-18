@@ -23,7 +23,7 @@ final class GWF_InstallWizard
 	{
 		return
 		'<div id="gwfinstallbanner">'.PHP_EOL.
-		'<h1><a href="install_wizard.php">'.self::$gwfil->lang('pt_wizard').'</a></h1>'.PHP_EOL.
+		'<h1><a href="wizard.php">'.self::$gwfil->lang('pt_wizard').'</a></h1>'.PHP_EOL.
 		'</div>'.PHP_EOL;
 	}
 
@@ -88,7 +88,7 @@ final class GWF_InstallWizard
 	}
 	public static function wizard_btn($step)
 	{
-		return sprintf('<p class="gwfinstallbtn"><a href="install_wizard.php?step=%s">Step %s: %s</a></p>', $step, $step, self::$gwfil->lang('step_'.$step)).PHP_EOL;
+		return sprintf('<p class="gwfinstallbtn"><a href="wizard.php?step=%s">Step %s: %s</a></p>', $step, $step, self::$gwfil->lang('step_'.$step)).PHP_EOL;
 	}
 	public static function wizard_bool($bool)
 	{
@@ -235,7 +235,7 @@ final class GWF_InstallWizard
 	public static function wizard_1()
 	{
 		$back = self::wizard_h2('1');
-		$back .= GWF_InstallConfig::displayForm('install_wizard.php', self::$gwfil);
+		$back .= GWF_InstallConfig::displayForm('wizard.php', self::$gwfil);
 		return $back;
 	}
 
@@ -445,7 +445,7 @@ final class GWF_InstallWizard
 		$js = 'var c = $(\'input:checkbox\');  this.checked ? c.attr(\'checked\', \'checked\') : c.removeAttr(\'checked\');';
 		$back .= sprintf('<tr><td><input name="toggle_all" type="checkbox" checked="checked" onclick="%s" /></td><td></td></tr>', $js).PHP_EOL;
 		
-		$back .= '<form action="install_wizard.php?step=6" method="post" id="form_install_modules" >'.PHP_EOL;
+		$back .= '<form action="wizard.php?step=6" method="post" id="form_install_modules" >'.PHP_EOL;
 
 		GWF_ModuleLoader::sortModules($modules, 'module_name', 'ASC');
 
@@ -550,7 +550,7 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('9');
 		$back .= '<div>';
-		$back .= sprintf('<form method="post" action="install_wizard.php?step=9">');
+		$back .= sprintf('<form method="post" action="wizard.php?step=9">');
 		$back .= '<div>Username:';
 		$back .= sprintf('<input type="text" name="username" value="" />');
 		$back .= '</div>';
