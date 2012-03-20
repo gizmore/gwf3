@@ -124,9 +124,11 @@ final class Forum_AddThread extends GWF_Method
 		$options |= $is_mod === false ? 0 : GWF_ForumThread::IN_MODERATION;
 		$options |= $this->board->isGuestView() ? GWF_ForumThread::GUEST_VIEW : 0;
 //		$options |= Common::getPost('guest_view') === false ? 0 : GWF_ForumThread::GUEST_VIEW;
+		$date = GWF_Time::getDate(GWF_Time::LEN_SECOND);
 		
-		$thread = GWF_ForumThread::fakeThread($user, $title, $bid, $gid, 1, $options);
-		if (false === ($thread->insert())) {
+		$thread = GWF_ForumThread::fakeThread($user, $title, $bid, $gid, 1, $options, $date);
+		if (false === ($thread->insert()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
@@ -138,8 +140,9 @@ final class Forum_AddThread extends GWF_Method
 		$options |= $is_mod === false ? 0 : GWF_ForumPost::IN_MODERATION;
 		$options |= $this->board->isGuestView() ? GWF_ForumPost::GUEST_VIEW : 0;
 		
-		$post = GWF_ForumPost::fakePost($user, $title, $message, $options, $tid, $gid);
-		if (false === ($post->insert())) {
+		$post = GWF_ForumPost::fakePost($user, $title, $message, $options, $tid, $gid, $date);
+		if (false === ($post->insert()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		

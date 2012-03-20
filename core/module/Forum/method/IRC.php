@@ -23,15 +23,18 @@ final class Forum_IRC extends GWF_Method
 	{
 		GWF_Website::plaintext();
 		
-		if (false === ($datestamp = Common::getGet('datestamp'))) {
+		if (false === ($datestamp = Common::getGet('datestamp')))
+		{
 			return 'TRY ?datestamp=YYYYMMDDHHIISS&limit=5';
 		}
 		
-		if (strlen($datestamp) !== 14) {
+		if (strlen($datestamp) !== 14)
+		{
 			return 'TRY ?datestamp=YYYYMMDDHHIISS&limit=5';
 		}
 		
-		if (0 === ($limit = Common::getGetInt('limit', 0))) {
+		if (0 === ($limit = Common::getGetInt('limit', 0)))
+		{
 			return 'TRY ?datestamp=YYYYMMDDHHIISS&limit=5';
 		}
 		
@@ -39,7 +42,8 @@ final class Forum_IRC extends GWF_Method
 		
 		$limit = Common::clamp($limit, 1, 25);
 		
-		if (false === ($result = GDO::table('GWF_ForumThread')->selectObjects('*', "thread_lastdate>='$date' AND thread_options&4=0", 'thread_lastdate DESC', $limit))) {
+		if (false === ($result = GDO::table('GWF_ForumThread')->selectObjects('*', "thread_lastdate>='$date' AND thread_options&4=0", 'thread_lastdate DESC', $limit)))
+		{
 			return GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
@@ -60,12 +64,34 @@ final class Forum_IRC extends GWF_Method
 			$back .= '::';
 			$back .= GWF_DOMAIN.$thread->getLastPageHREF($locked==='1');
 			$back .= '::';
-			$back .= $locked === '1' ? $unknown : $thread->getVar('thread_lastposter');
+			$back .= $locked === '1' ? $unknown : $this->getLastPosterName($thread);
 			$back .= '::';
 			$back .= $locked === '1' ? $unknown : $thread->getVar('thread_title');
 			$back .= PHP_EOL;
 		}	
 		return $back;
+	}
+	
+	private function getLastPosterName(GWF_ForumThread $thread)
+	{
+		$posts = GDO::table('GWF_ForumPost'); # posts table
+		
+		$date = $thread->getVar('thread_lastdate'); # last date
+		
+		# Check if a post was made at this date.
+		if (false !== ($username = $posts->selectVar('user_name', "post_date='{$date}'", '', array('post_uid'))))
+		{
+			return $username;
+		}
+		
+		# Check if an edit was made at this date.
+		if (false !== ($username = $posts->selectVar('post_eusername', "post_edate='{$date}'")))
+		{
+			return $username;
+		}
+		
+		# Should not get here (race condition) but works as a fallback. 
+		return $thread->getVar('thread_lastposter');
 	}
 }
 ?>

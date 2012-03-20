@@ -436,7 +436,7 @@ final class GWF_ForumThread extends GDO
 	* @param unknown_type $options int
 	* @return GWF_ForumThread
 	*/
-	public static function fakeThread($user=false, $title, $boardid=0, $groupid=0, $postcount=1, $options=0)
+	public static function fakeThread($user=false, $title, $boardid=0, $groupid=0, $postcount=1, $options=0, $date=true)
 	{
 		if ($user === false) {
 			$userid = 0;
@@ -445,7 +445,9 @@ final class GWF_ForumThread extends GDO
 			$userid = $user->getID();
 			$username = $user->getVar('user_name');
 		}
-		$now = GWF_Time::getDate(GWF_Date::LEN_SECOND);
+		
+		$date = is_bool($date) ? GWF_Time::getDate(GWF_Date::LEN_SECOND) : $date;
+		
 		return new self(array(
 			'thread_tid' => 0,
 			'thread_bid' => $boardid,
@@ -453,11 +455,11 @@ final class GWF_ForumThread extends GDO
 			'thread_uid' => $userid,
 
 			'thread_firstposter' => $username,
-			'thread_firstdate' => $now,
+			'thread_firstdate' => $date,
 
 			'thread_lastpost' => 0,
 			'thread_lastposter' => $username,
-			'thread_lastdate' => $now,
+			'thread_lastdate' => $date,
 
 			'thread_title' => $title,
 			'thread_options' => $options,

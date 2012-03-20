@@ -148,12 +148,14 @@ final class Forum_EditPost extends GWF_Method
 		
 		$user = GWF_Session::getUser();
 		
+		$date = GWF_Time::getDate(GWF_Date::LEN_SECOND);
+		
 		if (false === $p->saveVars(array(
 			'post_title' => $form->getVar('title'),
 			'post_message' => $form->getVar('message'),
 			'post_euid' => $user->getVar('user_id'),
 			'post_eusername' => $user->getVar('user_name'),
-			'post_edate' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
+			'post_edate' => $date,
 		
 		))) { return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__); }
 		
@@ -163,7 +165,7 @@ final class Forum_EditPost extends GWF_Method
 		if (isset($_POST['unread'])) {
 			$t = $p->getThread();
 			$t->markUnRead(GWF_Session::getUserID());
-			$t->saveVar('thread_lastdate', GWF_Time::getDate(GWF_Date::LEN_SECOND));
+			$t->saveVar('thread_lastdate', $date);
 			$p->saveOption(GWF_ForumPost::MAIL_OUT, true);
 		}
 		

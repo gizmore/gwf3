@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Forum post table and row.
+ * @author gizmore
+ */
 final class GWF_ForumPost extends GDO # implements GDO_Searchable
 {
 	###################
@@ -68,20 +71,18 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	public function isEdited() { return $this->getVar('euid') !== '0'; }
 	public function hasAttachments() { return $this->getVar('post_attachments') !== '0'; }
 	public function getAttachments() { return GWF_ForumAttachment::getAttachments($this->getID()); }
+	
 	/**
 	 * 
 	 * @return GWF_ForumOptions
 	 */
 	public function getUserOptions($guest_opts=false)
 	{
-		if (false === ($user_opts = $this->getVar('post_useropts', false))) {
+		if (false === ($user_opts = $this->getVar('post_useropts', false)))
+		{
 			return $this->getGuestOptions();
 		}
 		return $user_opts;
-//		if (false !== ($opts = GWF_ForumOptions::getUserOptions($this->getUser($guest_opts)))) {
-//			return $opts;
-//		}
-//		return $guest_opts ? GWF_ForumOptions::guestOptions() : false;
 	}
 	
 	/**
@@ -89,7 +90,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	 */
 	public function getUserID($return_guest=true)
 	{
-		if (false === ($user = $this->getUser($return_guest))) {
+		if (false === ($user = $this->getUser($return_guest)))
+		{
 			return '0';
 		}
 		return $user->getID();
@@ -100,7 +102,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	 */
 	public function getUser($return_guest=true)
 	{
-		if  ( (false === ($user = $this->getVar('post_uid'))) || ($user->getID() == 0) ) {
+		if  ( (false === ($user = $this->getVar('post_uid'))) || ($user->getID() == '0') )
+		{
 			return $return_guest ? GWF_Guest::getGuest() : false;
 		}
 		return $user;
@@ -113,7 +116,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	
 	public function displayEditBy(Module_Forum $m)
 	{
-		if ('' === ($ename = $this->display('post_eusername'))) {
+		if ('' === ($ename = $this->display('post_eusername')))
+		{
 			return ''; 
 		}
 		$edate = GWF_Time::displayDate($this->getVar('post_edate'));
@@ -170,10 +174,12 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	########################
 	public static function getPermQuery()
 	{
-		if ('0' === ($uid = GWF_Session::getUserID())) {
+		if ('0' === ($uid = GWF_Session::getUserID()))
+		{
 			return 'post_gid=0 AND post_options&8=0 AND post_options&'.self::GUEST_VIEW;
 		}
-		else {
+		else
+		{
 			$grp = GWF_TABLE_PREFIX.'usergroup';
 			return "post_options&8=0 AND ((post_gid=0) OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=post_gid))";
 		}
@@ -188,7 +194,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		$posts = new self(false);
 		$new_username = $posts->escape($new_username);
 		
-		if (false === $posts->update("post_eusername='$new_username'", "post_euid=$uid")) {
+		if (false === $posts->update("post_eusername='$new_username'", "post_euid=$uid"))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
@@ -200,11 +207,13 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		$uid = $user->getID();
 		$posts = new self(false);
 		
-		if (false === $posts->update("post_uid=0", "post_uid=$uid")) {
+		if (false === $posts->update("post_uid=0", "post_uid=$uid"))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		if (false === $posts->update("post_eusername='', post_euid=0", "post_euid=$uid")) {
+		if (false === $posts->update("post_eusername='', post_euid=0", "post_euid=$uid"))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
@@ -228,19 +237,12 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	 */
 	public static function fakePost($user, $title, $message, $options=0, $threadid=0, $groupid=0, $date=true, $display_mode=false)
 	{
-		if ($user === false) { # Guest
-			$userid = 0;
-		} else { # Not Guest
-			$userid = $user->getID();
-		}
+		$userid = $user === false ? '0' : $user->getID();
 		
 		$date = is_bool($date) ? GWF_Time::getDate(GWF_Date::LEN_SECOND) : $date;
 		
-		if ($display_mode === true) {
-			$useropts = GWF_ForumOptions::getUserOptions($user, true);
-		} else {
-			$useropts = $userid;
-		}
+		# Useropts structure
+		$useropts = $display_mode === true ? GWF_ForumOptions::getUserOptions($user, true) : $userid;
 		
 		return new self(array(
 			'post_pid' => '0',
@@ -361,24 +363,29 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	###################
 	public function hasEditPermission()
 	{
-		if (false === ($user = GWF_Session::getUser())) {
+		if (false === ($user = GWF_Session::getUser()))
+		{
 			return false;
 		}
 		
-		if ($user->getID() === $this->getUserID()) {
+		if ($user->getID() === $this->getUserID())
+		{
 			return true;
 		}
 		
-		if ($user->isInGroupName('moderator')) {
+		if ($user->isInGroupName('moderator'))
+		{
 			return true;
 		}
 		
 		$gid = $this->getGroupID();
-		if (false === ($ugo = $user->getUserGroupOptions($gid))) {
+		if (false === ($ugo = $user->getUserGroupOptions($gid)))
+		{
 			return false;
 		}
 
-		if (($ugo &(GWF_UserGroup::MODERATOR|GWF_UserGroup::CO_LEADER|GWF_UserGroup::LEADER)) > 0) {
+		if (($ugo &(GWF_UserGroup::MODERATOR|GWF_UserGroup::CO_LEADER|GWF_UserGroup::LEADER)) > 0)
+		{
 			return true;
 		}
 		
@@ -388,17 +395,20 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	public function hasViewPermission($user)
 	{
 		# Guest
-		if ( ($user === false) || ($user->getID() === '0') ) {
+		if ( ($user === false) || ($user->getID() === '0') )
+		{
 			return $this->isOptionEnabled(self::GUEST_VIEW);
 		}
 		
 		# No group
-		if ('0' === ($gid = $this->getGroupID())) {
+		if ('0' === ($gid = $this->getGroupID()))
+		{
 			return true;
 		}
 		
 		# Check group
-		if ($user->isInGroupID($gid)) {
+		if ($user->isInGroupID($gid))
+		{
 			return true;
 		}
 		
@@ -410,7 +420,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	##############
 	public function deletePost()
 	{
-		if (false === $this->delete()) {
+		if (false === $this->delete())
+		{
 			return false;
 		}
 		
@@ -444,34 +455,41 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	public function onApprove(Module_Forum $module, $mark_unread=true)
 	{
 		# Sane?
-		if (false === ($thread = $this->getThread())) {
+		if (false === ($thread = $this->getThread()))
+		{
 			echo $module->error('err_thread');
 			return false;
 		}
-		if (false === ($board = $thread->getBoard())) {
+		if (false === ($board = $thread->getBoard()))
+		{
 			echo $module->error('err_board');
 			return false;
 		}
 		
 		# Update Last Poster
-		if (false === $thread->updateLastPost()) {
+		if (false === $thread->updateLastPost())
+		{
 			return false;
 		}
 			
 		# Increase counters
-		if (false === $thread->increase('thread_postcount', 1)) {
+		if (false === $thread->increase('thread_postcount', 1))
+		{
 			return false;
 		}
-		if (false === $board->adjustCounters(0, 1)) {
+		if (false === $board->adjustCounters(0, 1))
+		{
 			return false;
 		}
 		
 		# Mail us soon
-		if (false === $this->saveOption(self::MAIL_OUT, true)) {
+		if (false === $this->saveOption(self::MAIL_OUT, true))
+		{
 			return false;
 		}
 		
-		if (false === $this->saveOption(self::IN_MODERATION, false)) {
+		if (false === $this->saveOption(self::IN_MODERATION, false))
+		{
 			return false;
 		}
 		
@@ -484,7 +502,8 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		}
 		
 		# We got approved
-		if (false === $this->saveOption(GWF_ForumPost::IN_MODERATION, false)) {
+		if (false === $this->saveOption(GWF_ForumPost::IN_MODERATION, false))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 
@@ -516,11 +535,13 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 			'post_thanks_txt' => $this->getVar('post_thanks_txt').$user->getVar('user_name').':',
 			'post_thanks' => $this->getThanksCount() + 1,
 		);
-		if (false === $this->saveVars($data)) { 
+		if (false === $this->saveVars($data))
+		{ 
 			return false; # DB error
 		}
 		
-		if (false === $this->getThread()->increase('thread_thanks', 1)) {
+		if (false === $this->getThread()->increase('thread_thanks', 1))
+		{
 			return false;
 		}
 		
@@ -532,6 +553,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 				$options->increase('fopt_thanks', 1);
 			}
 		}
+		
 		return true;
 	}
 	
@@ -648,5 +670,4 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	public function getSearchableFields(GWF_User $user) { return array('post_title', 'post_message'); }
 	public function getSearchableFormData(GWF_User $user) { return array(); }
 }
-
 ?>
