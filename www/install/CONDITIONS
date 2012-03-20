@@ -59,8 +59,15 @@ wrong: function() {\n
 right: foo( bar() ) || foo($bar)
 wrong: foo(bar())
 right: if(foo())
-wrong if($foo == 'bar'); if($bar)
-right: if($foo === 'bar'); if(true === $bar)
+
+Comparision:
+first the constant, then the $variable
+right: if(NULL === $foo)
+wrong: if($foo === NULL)
+always compare typesafe!
+wrong if('bar' == $foo); if($bar)
+right: if('bar' === $foo); if(true === $bar)
+
 
 Return:
 use $back for strings
