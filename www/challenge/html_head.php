@@ -36,11 +36,6 @@ if (defined('GWF_PAGE_TITLE')) {
 	GWF_Website::setMetaTags(GWF_PAGE_TITLE.', Challenge, WeChall');
 }
 
-if (isset($_GET['ajax']))
-{
-	return;
-}
-
 # Include Needed Modules
 //GWF_Module::getModule('Votes', true);
 GWF_Module::loadModuleDB('Forum', true);
@@ -48,13 +43,18 @@ GWF_Module::loadModuleDB('Forum', true);
 require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 //GWF_ForumBoard::init(true);
 
+if (isset($_GET['ajax']))
+{
+	return;
+}
+
 $mb = (WC_HTML::wantFooter()) ? ' style="margin-bottom: -48px;"' : '';
 
 # HTML Header
 //echo GWF_Website::getPagehead();
 if (!defined('NO_HEADER_PLEASE'))
 {
-	echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
+	#echo GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
 	echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
 }
 ?>

@@ -70,7 +70,7 @@ final class GWF_QuickSearch
 		{
 			if (false === $gdo->getWhitelistedBy($field))
 			{
-				echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
+				GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
 				return false;
 			}
 		}
