@@ -11,6 +11,7 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		self::start('Forum');
 //		self::autoModeration($module);
 		self::emailSubscription($module);
+		self::fixCounters($module);
 		self::end('Forum');
 	}
 	
@@ -149,6 +150,35 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		}
 		return $back;
 	}
+	
+	##################
+	### Counterfix ###
+	##################
+	/**
+	 * Fix the up/down/thx counters, as they can get out of sync when users are deleted.
+	 * Should be actually fixed with a hook, but i don't bother.
+	 * @param Module_Forum $module
+	 */
+	private static function fixCounters(Module_Forum $module)
+	{
+		$posts = GDO::table('GWF_ForumPost');
+		$pt = $posts->getTableName();
+		$opts = GDO::table('GWF_ForumOptions');
+		if (false === $opts->update("fopt_upvotes = (SELECT sum(post_votes_up) FROM `$pt` WHERE post_uid=fopt_uid)"))
+		{
+			return self::error(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__));
+		}
+		if (false === $opts->update("fopt_downvotes = (SELECT sum(post_votes_down) FROM `$pt` WHERE post_uid=fopt_uid)"))
+		{
+			return self::error(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__));
+		}
+		if (false === $opts->update("fopt_thanks = (SELECT sum(post_thanks) FROM `$pt` WHERE post_uid=fopt_uid)"))
+		{
+			return self::error(GWF_HTML::lang('ERR_DATABASE', __FILE__, __LINE__));
+		}
+		return true;
+	}
+	
 }
 
 ?>
