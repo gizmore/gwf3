@@ -120,7 +120,7 @@ function salesman_check_answer_B(WC_Challenge $chall, $answer)
 		}
 		
 		if ($stocks[$name] > $stock) {
-			echo $chall->lang('err_item_stock', $stocks[$name], $name, $stock).PHP_EOL;
+			echo $chall->lang('err_item_stock', array($stocks[$name], $name, $stock)).PHP_EOL;
 			continue;
 		}
 		
