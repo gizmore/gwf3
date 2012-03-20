@@ -1,5 +1,5 @@
 <?php
-function Upgrade_Language_1_02(Module_GWF $module)
+function Upgrade_Language_1_02(Module_Language $module)
 {
 	echo GWF_HTML::message('GWF', 'Triggering Upgrade_Language_1_02');
 	echo GWF_HTML::message('GWF', 'Removing some outdated module vars ...');
