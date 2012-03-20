@@ -202,7 +202,7 @@ final class WC_RegAt extends GDO
 	 */
 	public static function calcRank(GWF_User $user)
 	{
-		$score = $user->getVar('user_level');
+		$score = $user->getInt('user_level');
 		return $user->countRows("user_level>$score AND user_options&0x10000000=0") + 1;
 	}
 	
@@ -214,8 +214,8 @@ final class WC_RegAt extends GDO
 	public static function calcExactRank(GWF_User $user)
 	{
 		$rank = self::calcRank($user);
-		$score = $user->getVar('user_level');
-		$uid = $user->getVar('user_id');
+		$score = $user->getInt('user_level');
+		$uid = $user->getInt('user_id');
 		$rank += $user->countRows("user_level=$score AND user_id<$uid AND user_options&0x10000000=0");
 		return $rank;
 	}

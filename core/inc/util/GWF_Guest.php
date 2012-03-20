@@ -31,11 +31,11 @@ final class GWF_Guest
 				'user_countryid' => '0',
 				'user_langid' => '0',
 				'user_langid2' => '0',
-//				'user_groups' => array(),
 				'user_level' => '0',
 				'user_title' => '',
-				'user_data' => '',
 				'user_settings' => '',
+				'user_data' => '',
+				'user_credits' => '0.00',
 			));
 		}
 		return $GUEST;

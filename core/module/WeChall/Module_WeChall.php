@@ -702,7 +702,7 @@ final class Module_WeChall extends GWF_Module
 	{
 		$back = '';
 		$db = gdo_db();
-		$uid = $user->getVar('user_id');
+		$uid = $user->getInt('user_id');
 		$regats = GWF_TABLE_PREFIX.'wc_regat';
 		$query = "SELECT regat_sid, regat_solved FROM $regats WHERE regat_uid=$uid";
 		if (false === ($result = $db->queryRead($query))) {
