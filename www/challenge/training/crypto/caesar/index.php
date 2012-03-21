@@ -17,7 +17,7 @@ echo GWF_Box::box(crypto_caesar_1_ciphertext($chall));
 
 formSolutionbox($chall);
 
-$chall->copyrightFooter();
+echo $chall->copyrightFooter();
 require_once("challenge/html_foot.php");
 ?>
 <?php 
