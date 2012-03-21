@@ -3,28 +3,28 @@ $lang = array(
 	'title' => 'Mathe - Mathe Pyramide',
 	'info' =>
 		'Das ist das erste Mathematik Rätsel auf WeChall.<br/>'.
-		'You have to come up with the shortest solution (%1$s chars or less) for a geometric function.<br/>'.
-		'And the story goes like:<br/>'.
+		'Du musst uns die kürzeste Formel (%1$s oder weniger Zeichen) für eine geometrische Funktion liefern.<br/>'.
+		'Und die Geschichte geht so:<br/>'.
 		'<br/>'.
-		'Pharao %3$s wants a <b>square-based pyramid</b>, where all the eight edges are of the same length \'a\'.<br/>'.
-		'Please support him with a formula to calculate the volume for a given side length.<br/>'.
-		'Your co-workers already drew a sketch how the pyramid looks like from front-view:<br/>'.
+		'Pharao %3$s möchte eine <b>quadratische Pyramide</b>, in der alle Kanten die gleiche Länge \'a\' haben.<br/>'.
+		'Bitte nenne uns eine Formel die das Volumen für eine beliebige Seitenlänge ausgibt.<br/>'.
+		'Deine Mitarbeiter haben bereits eine Zeichnung angefertigt wie die Pyramide von Vorne aussieht:<br/>'.
 		'%2$s<br/>'.
 		'<br/>'.
-		'Example Formula: a^3/3*sqrt(a*a)<br/>'.
-		'Notation Hints: sqrt(), a^2, etc.<br/>'.
+		'Beispiel Formel: a^3/3*sqrt(a*a)<br/>'.
+		'Schreibweisen: sqrt(), a^2, etc.<br/>'.
 		'<br/>'.
-		'Enjoy!<br/>'.
+		'Viel Spass!<br/>'.
 		'<br/>'.
-		'Thanks go out to %3$s for the idea, %4$s for testing, %5$s for a copy of EvalMath and %6$s for writing the EvalMath class.',
+		'Vielen Dank an %3$s für die Idee, %4$s für\'s testen, %5$s für eine Kopie der EvalMath und %6$s für das Erstellen der EvalMath Bibliothek.',
 
-	'th_formula' => 'Your formula',
-	'btn_go' => 'Show to Momo',
-	'msg_formula' => 'Using \'%1$s\' as formula...',
-	'err_wrong' => 'Testing f(%1$s) = %2$s equals correct f(%1$s) = %3$s ... wrong!',
-	'msg_correct' => 'Testing f(%1$s) = %2$s equals correct f(%1$s) = %3$s ... passed!',
-	'err_too_long' => 'Your formula is %1$s chars in length and exceeds the maxlen of %2$s.',
-	'msg_new_record' => 'You broke the record of %2$s chars and set it to %1$s!',
-	'err_formula' => 'Your formula \'%1$s\' looks invalid.',
+	'th_formula' => 'Deine Formel',
+	'btn_go' => 'Dem Pharao zeigen',
+	'msg_formula' => 'Benutze \'%1$s\' als Formel...',
+	'err_wrong' => 'Teste ob f(%1$s) = %2$s enstspricht. f(%1$s) = %3$s ... Falsch!',
+	'msg_correct' => 'Teste ob f(%1$s) = %2$s entspricht. f(%1$s) = %3$s ... Richtig!',
+	'err_too_long' => 'Deine Formel ist %1$s Zeichen lang und das überschreitet die maximale Länge von %2$s.',
+	'msg_new_record' => 'Du hast den Rekord von %2$s Zeichen gebrochen und ihn auf %1$s gesetzt!',
+	'err_formula' => 'Deine Formel \'%1$s\' scheint fehlerhaft.',
 );
 ?>
