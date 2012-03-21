@@ -57,5 +57,9 @@ PHP_EOL.
 'Sincerely,'.
 		PHP_EOL.
 GWF_SITENAME.' स्क्रिप्ट',
+
+# monnino fixes
+'cfg_send_alerts' => 'Send alerts',
+'err_already_logged_in' => 'You are already logged in.',
 );
 ?>

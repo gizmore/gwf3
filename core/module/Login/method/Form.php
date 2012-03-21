@@ -18,7 +18,7 @@ final class Login_Form extends GWF_Method
 		
 		if (false !== GWF_Session::getUser())
 		{
-			return $this->module->error('ERR_ALREADY_LOGGED_IN');
+			return $this->module->error('err_already_logged_in');
 		}
 
 		if (false !== Common::getPost('login'))

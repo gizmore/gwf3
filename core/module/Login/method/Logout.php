@@ -15,7 +15,7 @@ final class Login_Logout extends GWF_Method
 	{
 		if (false === GWF_Session::getUser())
 		{
-			return $this->module->error('ERR_LOGIN_REQUIRED');
+			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 
 		if (false === GWF_Session::onLogout())

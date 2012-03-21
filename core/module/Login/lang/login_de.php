@@ -67,6 +67,10 @@ $lang = array(
 		'Sincerely,'.
 		PHP_EOL.
 		'The '.GWF_SITENAME.' script',
+
+	# monnino fixes
+	'cfg_send_alerts' => 'Alarm senden',
+	'err_already_logged_in' => 'Sie sind bereits eingeloggt.',
 );
 
 ?>
