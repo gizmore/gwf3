@@ -684,7 +684,7 @@ class SR_Bazar extends SR_Location
 		
 		if (false === $bi->onPayOwner($player, $amt))
 		{
-			$player->message('Shop owner could not been paid, because the player is probably deleted.(BUG?!)');
+			$player->message('Shop owner could not be paid, because the player is probably deleted.(BUG?!)');
 //			return false;
 		}
 		

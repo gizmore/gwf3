@@ -67,7 +67,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		if (false === ($id = $this->getSecondsHandArgID($player, $args[0])))
 		{
 			$bot->rply('1108');
-// 			$bot->reply('The item could not been found in the second hand store.');
+// 			$bot->reply('The item could not be found in the second hand store.');
 			return false;
 		}
 		
