@@ -23,51 +23,56 @@ final class GWF_ShowError extends GWF_Method
 	
 	private function templateError()
 	{
-		$errors = array(
-			# client errors 4xx
-			'400' => 'Bad Request',
-			'401' => 'Unauthorized',
-			'403' => 'Forbidden',
-			'404' => 'Not Found',
-			'405' => 'Method Not Allowed',
-			'406' => 'Not Acceptable',
-			'407' => 'Proxy Authentication Required',
-			'408' => 'Request Time-out',
-			'409' => 'Conflict',
-			'410' => 'Gone',
-			'411' => 'Length Required',
-			'412' => 'Precondition Failed',
-			'413' => 'Request Entity Too Large',
-			'414' => 'Request-URI Too Long',
-			'415' => 'Unsupported Media Type',
-			'417' => 'Expectation Failed',
-			'418' => 'I\'m a Teapot',
-			'421' => 'There are too many connections from your internet address',
-			'422' => 'Unprocessable Entity',
-			'423' => 'Locked',
-			'424' => 'Failed Dependency',
-			'426' => 'Upgrade Required',
-			# TODO: server errors 5XX; add htaccess
-		);
+// 		$errors = array(
+// 			# client errors 4xx
+// 			'400' => 'Bad Request',
+// 			'401' => 'Unauthorized',
+// 			'403' => 'Forbidden',
+// 			'404' => 'Not Found',
+// 			'405' => 'Method Not Allowed',
+// 			'406' => 'Not Acceptable',
+// 			'407' => 'Proxy Authentication Required',
+// 			'408' => 'Request Time-out',
+// 			'409' => 'Conflict',
+// 			'410' => 'Gone',
+// 			'411' => 'Length Required',
+// 			'412' => 'Precondition Failed',
+// 			'413' => 'Request Entity Too Large',
+// 			'414' => 'Request-URI Too Long',
+// 			'415' => 'Unsupported Media Type',
+// 			'417' => 'Expectation Failed',
+// 			'418' => 'I\'m a Teapot',
+// 			'421' => 'There are too many connections from your internet address',
+// 			'422' => 'Unprocessable Entity',
+// 			'423' => 'Locked',
+// 			'424' => 'Failed Dependency',
+// 			'426' => 'Upgrade Required',
+// 			# TODO: server errors 5XX; add htaccess
+// 		);
+
+		$module = $this->module;
+		$module instanceof Module_GWF;
+
+		$codes = $module->lang('ERR_HTTP');
 
 		# Get the error page
 		$code = Common::getGetString('code', '0');
-		if (false === isset($errors[$code]))
+		if (false === isset($codes[$code]))
 		{
-			return GWF_HTML::error('ERR_NO_PERMISSION');
+			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
-		@header(Common::getProtocol().' '.$code.' '.$errors[$code]);
+		@header(Common::getProtocol().' '.$code.' '.$codes[$code]);
 
 		# Generate template
 		$tVars = array(
 			'code' => $code,
-			'file' => GWF_HTML::error(GWF_SITENAME, $this->module->getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false), # FIXME: this is frontend work!
+			'file' => GWF_HTML::error(GWF_SITENAME, $module->getLang()->langA('ERR_HTTP', $code, array(htmlspecialchars($_SERVER['REQUEST_URI']))), false), # FIXME: this is frontend work!
 		);
-		$template = $this->module->template($this->_tpl, $tVars);
+		$template = $module->template($this->_tpl, $tVars);
 
 		# Is the request blacklisted?
-		foreach (preg_split('/[,;]/', $this->module->cfgBlacklist()) as $pattern)
+		foreach (preg_split('/[,;]/', $module->cfgBlacklist()) as $pattern)
 		{
 			if (false !== strpos($_SERVER['REQUEST_URI'], $pattern))
 			{
@@ -79,13 +84,13 @@ final class GWF_ShowError extends GWF_Method
 		$message = self::getMessage($code);
 
 		# Mail it?
-		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgMail()))
+		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $module->cfgMail()))
 		{
 			self::errorMail($code, $message);
 		}
 
 		# Log it?
-		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $this->module->cfgLog()))
+		if (1 === preg_match("/(?:^|[,;]){$code}(?:$|[,;])/", $module->cfgLog()))
 		{
 			GWF_Log::logHTTP($message);
 		}

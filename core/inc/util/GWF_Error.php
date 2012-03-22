@@ -18,6 +18,7 @@ final class GWF_Error
 	 * shortpath and language
 	 **/
 	public static function err($key, $args=NULL) { self::error('GWF', GWF_Debug::shortpath(GWF_HTML::lang($key, $args))); }
+	public static function err404($filename) { @header(Common::getProtocol().' 404 File not found'); self::err('ERR_FILE_NOT_FOUND', htmlspecialchars($filename)); }
 	public static function error($title, $messages) { self::add('errors', $title, $messages); self::log_error($messages); }
 	public static function message($title, $messages) { self::add('messages', $title, $messages); self::log_message($messages); }
 	public static function warn($title, $messages) { self::add('criticals', $title, $messages); self::log_warning($messages); }
