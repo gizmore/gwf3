@@ -59,8 +59,15 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		if ($party->getLocation('outside') === $tlc)
 		{
-			$target->onEnter($player);
-			return true;
+			if ($party->getLocationClass()->isEnterAllowed($player))
+			{
+				return $target->onEnter($player);
+			}
+			else
+			{
+				self::rply($player, '1118');
+				return false;
+			}
 		}
 		
 		if ( ($party->getAction() === SR_Party::ACTION_GOTO) && ($party->getTarget() === $tlc) )
