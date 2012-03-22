@@ -1,5 +1,7 @@
 <?php
 $lang = array(
+	'title' => 'Monk(ey)s',
+	'descr' => 'Bring %d/%d WoodNunchaku to the monks in Redmond_Shrine.',
 	'more' => 'Ciao amico. Portami altri %d NunchakuDiLegno.',
 	'impressed' => 'Il monk sorride: "Sono molto impressionato. Che lo spirito di Buddah guidi il tuo cammino..."',
 	'strong' => 'Il monaco dice: "Sei molto forte, ti prego di accettare questa donazione come segno del mio profondo rispetto per la tua grande abilità e pazienza."',

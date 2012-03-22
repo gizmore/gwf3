@@ -91,10 +91,11 @@ final class Shadowlang
 	private static function getLangQuest(SR_Quest $quest)
 	{
 		$cl = $quest->getName();
-		$cll = strtolower($cl);
-		if (false === isset(self::$LANG_QUEST[$cl]))
+		if (!isset(self::$LANG_QUEST[$cl]))
 		{
+			$cll = strtolower($cl);
 			$path = sprintf('%scity/%s/lang/quest/%s/%s', Shadowrun4::getShadowDir(), $quest->getCityName(), $cll, $cll);
+// 			echo "Loading $path\n";
 			self::$LANG_QUEST[$cl] = new GWF_LangTrans($path);
 		}
 		return self::$LANG_QUEST[$cl];
@@ -121,9 +122,9 @@ final class Shadowlang
 		{
 			$llocname = strtolower(Common::substrFrom($locname, '_'));
 			$path = sprintf('%scity/%s/lang/location/%s/%s', Shadowrun4::getShadowDir(), $location->getCity(), $llocname, $llocname);
-			self::$LANG_QUEST[$locname] = new GWF_LangTrans($path);
+			self::$LANG_LOCATION[$locname] = new GWF_LangTrans($path);
 		}
-		return self::$LANG_QUEST[$locname];
+		return self::$LANG_LOCATION[$locname];
 	}
 	
 	#################
