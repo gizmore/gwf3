@@ -47,6 +47,11 @@ final class GWF_Language extends GDO
 		return $CACHE[$iso];
 	}
 	
+	public static function getIDByISO($iso)
+	{
+		return false === ($lang = self::getByISO($iso)) ? false : $lang->getID();
+	}
+	
 	public static function isSupported($id) { return self::table(__CLASS__)->selectVar('1', 'lang_id='.((int)$id).' AND lang_options&1') === '1'; }
 	public static function getByIDOrUnknown($id)
 	{
@@ -168,6 +173,7 @@ final class GWF_Language extends GDO
 	private static $LANG_NAMES = true;
 	private static function initLangNames() { if (self::$LANG_NAMES === true) { self::$LANG_NAMES = new GWF_LangTrans(GWF_CORE_PATH.'lang/language/languages'); } }
 	public function displayName() { return $this->displayNameISO(GWF_Language::getCurrentISO()); }
+	public function displayNativeName() { return $this->display('lang_nativename'); }
 	public function displayNameISO($iso)
 	{
 		self::initLangNames();
@@ -175,16 +181,68 @@ final class GWF_Language extends GDO
 	}
 	
 	/**
-	 * Get an array of all supported language.
+	 * Get an array of all supported (or other type) languages.
 	 * @return array|false
 	 */
-	public static function getSupported()
+	public static function getSupported($type=GDO::ARRAY_O, $options=self::SUPPORTED)
 	{
-		return GDO::table(__CLASS__)->selectObjects('*', 'lang_options&1');
+		return GDO::table(__CLASS__)->selectAll('*', 'lang_options&'.$options, 'lang_id', NULL, -1, -1, $type);
 	}
+	
 	public static function getAvailable()
 	{
 		return preg_split('/[;,]+/', GWF_SUPPORTED_LANGS);
 	}
+	
+	/**
+	 * Get array of available language IDs. Horrible slow
+	 * @return array
+	 */
+	public static function getAvailableIDs()
+	{
+		$back = array();
+		foreach (self::getAvailable() as $iso)
+		{
+			if (false !== ($id = self::getIDByISO($iso)))
+			{
+				$back[] = $id;
+			}
+		}
+		return $back;
+	}
+	
+	/**
+	 * Get all languages as assoc id=>type array
+	 */
+	public static function getAllLanguages($type=GDO::ARRAY_A)
+	{
+		static $CACHE;
+		if (!isset($CACHE))
+		{
+			$CACHE = self::table(__CLASS__)->selectArrayMap('*', '', 'lang_id', NULL, $type);
+		}
+		return $CACHE;
+	}
+
+	#############
+	### Flags ###
+	#############
+	public static function displayFlagByID($id, $txt_unknown='Unknown Language')
+	{
+		return false === ($lang = self::getByID($id))
+			? self::displayUnknownFlag($txt_unknown)
+			: $lang->displayFlag();
+	}
+
+	public static function displayUnknownFlag($txt_unknown='Unknown Language')
+	{
+		return sprintf('<img width="30" src="%simg/default/language/0" alt="??" title="%s">', GWF_WEB_ROOT, $txt_unknown);
+	}
+	
+	public function displayFlag()
+	{
+		return sprintf('<img width="30" src="%simg/default/language/%s" alt="%s" title="%s">', GWF_WEB_ROOT, $this->getID(), $this->getISO(), $this->displayNativeName());
+	}
+	
 }
 ?>
