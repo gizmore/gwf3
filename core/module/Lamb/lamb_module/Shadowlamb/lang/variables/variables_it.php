@@ -101,11 +101,11 @@ $lang = array(
 	'delaware' => 'delaware',
 
 	# Compare stuff
-	'Damage' => 'Damage',
-	'Type' => 'Type',
-	'Requirements' => 'Requirements',
-	'Range' => 'Range',
-	'Weight' => 'Weight',
-	'Level' => 'Level',
+	'Damage' => 'Danno',
+	'Type' => 'Tipo',
+	'Requirements' => 'Requisiti',
+	'Range' => 'Raggio',
+	'Weight' => 'Peso',
+	'Level' => 'Livello',
 );
 ?>
