@@ -84,7 +84,7 @@ final class GWF_File
 	 * @param boolean $keep_dir
 	 * @return true|false
 	 */
-	public static function removeDir($path, $verbose=true, $keep_dir=false)
+	public static function removeDir($path, $verbose=true, $keep_dir=false, $remove_dotfiles=true)
 	{
 		$success = true;
 		
@@ -104,6 +104,11 @@ final class GWF_File
 		while (false !== ($entry = $dir->read()))
 		{
 			if ($entry === '.' || $entry === '..')
+			{
+				continue;
+			}
+			
+			if ( (!$remove_dotfiles)  && ($entry[0] === '.') )
 			{
 				continue;
 			}
