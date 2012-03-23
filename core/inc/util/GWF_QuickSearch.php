@@ -56,6 +56,14 @@ final class GWF_QuickSearch
 		return $gdo->selectObjects('*', $where, $orderby, $limit, $from);
 	}
 	
+	/**
+	 * Create a WHERE clause from fields and searchterm.
+	 * This function does not sanitize the fields anymore!
+	 * @param GDO $gdo
+	 * @param array $fields
+	 * @param string $term
+	 * @return string the where clause
+	 */
 	public static function getQuickSearchConditions(GDO $gdo, array $fields, $term)
 	{
 		$term = trim($term);
@@ -66,14 +74,14 @@ final class GWF_QuickSearch
 		}
 		
 		# Whitelist fields
-		foreach ($fields as $field)
-		{
-			if (false === $gdo->getWhitelistedBy($field))
-			{
-				GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
-				return false;
-			}
-		}
+// 		foreach ($fields as $field)
+// 		{
+// 			if (false === $gdo->getWhitelistedBy($field))
+// 			{
+// 				GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
+// 				return false;
+// 			}
+// 		}
 		
 		# Concat the Fields, (we are doing a full search anyway)
 		$concat = 'CONCAT('.implode(', ":", ', $fields).')';
