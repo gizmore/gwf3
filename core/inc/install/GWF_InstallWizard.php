@@ -173,7 +173,7 @@ final class GWF_InstallWizard
 		{
 			if (function_exists($func))
 			{
-				echo GWF_HTML::error('Install Wizard', sprintf('Function %s is available!', $func), false, true);
+				echo GWF_Error::error('Install Wizard', sprintf('Function %s is available!', $func), false, true);
 				$secure = false;
 			}
 		}
@@ -263,12 +263,12 @@ final class GWF_InstallWizard
 	###########################
 	public static function wizard_error($key, $param=NULL)
 	{
-		return GWF_HTML::error(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
+		return GWF_Error::error(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
 	}
 		
 	public static function wizard_message($key, $param=NULL)
 	{
-		return GWF_HTML::message(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
+		return GWF_Error::message(self::$gwfil->lang('wizard'), self::$gwfil->lang($key, $param), false, true).PHP_EOL;
 	}
 	
 	public static function wizard_2()
@@ -619,7 +619,7 @@ final class GWF_InstallWizard
 		$back = self::wizard_h2('10');
 		
 		$template_cache = GWF_SMARTY_DIRS.'tplc';
-		if (false === GWF_File::removeDir($template_cache, true, true))
+		if (false === GWF_File::removeDir($template_cache, true, true)) # FIXME: remove only .php or dont remove .git and .svn
 		{
 			$back .= self::wizard_error('err_clear_smarty');
 		}

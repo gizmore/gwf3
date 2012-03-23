@@ -39,6 +39,7 @@ div#gwf_inst_logo {
 }
 div#gwf_inst_body {
 	padding: 15px 5%;
+	overflow: auto;
 }
 div#gwf_inst_foot {
 /*	border-bottom: 20px solid #000080;*/
@@ -47,7 +48,7 @@ div#gwf_inst_foot {
 	padding: 0 1%;
 }
 div#gwf_inst_errors {
-	padding: 1%;
+	padding: 0 35px;
 }
 div#gwf_inst_progress {
 	border-top: thick solid #0000ff;

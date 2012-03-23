@@ -6,7 +6,7 @@ chdir('../');
 $worker_ip = 'YOUR.IP.GOES.HERE';
 
 if (!is_readable('protected/config.php')) {
-	die('Try protected/wizard.php');
+	die('Try install/wizard.php');
 }
 
 set_time_limit(0);

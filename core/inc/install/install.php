@@ -4,6 +4,7 @@
  * @author spaceone
  * @author gizmore
  */
+header('Content-Type: text/html; charset=UTF-8');
 # Load Install-Core
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallWizard.php';
 require_once GWF_CORE_PATH.'inc/install/GWF_InstallConfig.php';
@@ -34,7 +35,6 @@ GWF_Debug::setDieOnError(false);
 # Website init
 GWF_InstallWizardLanguage::init();
 GWF_HTML::init();
-header('Content-Type: text/html; charset=UTF-8');
 
 
 # Set install language

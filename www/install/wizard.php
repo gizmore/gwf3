@@ -7,7 +7,7 @@ $worker_ip = 'YOUR.IP.GOES.HERE';
 ### Try to find GWF automagically ###
 #####################################
 $gwf_path = '';
-$inc_path = '../:'.get_include_path();
+$inc_path = '../:../GWF3/:'.get_include_path();
 foreach (explode(':', $inc_path) as $path)
 {
 	$path = rtrim($path, '/\\');
@@ -53,7 +53,7 @@ if (!GWF_IP6::isLocal())
 {
 	if ($_SERVER['REMOTE_ADDR'] !== $worker_ip)
 	{
-		GWF3::logDie(sprintf('You have no valid $worker_ip in %s line %s.', __FILE__, __LINE__));
+		die(sprintf('You have no valid $worker_ip in %s line %s. Your current IP is %s', __FILE__, __LINE__, $_SERVER['REMOTE_ADDR']));
 	}
 }
 

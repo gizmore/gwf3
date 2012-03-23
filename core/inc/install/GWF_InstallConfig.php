@@ -220,7 +220,7 @@ final class GWF_InstallConfig
 
 			# Smarty
 			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
-			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', false, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
+			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', true, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
 
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_LANG', 'en', 'Fallback language. Should be \'en\'.'),
