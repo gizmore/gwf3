@@ -490,6 +490,11 @@ class Shadowcmd
 	public static function init()
 	{
 // 		Lamb_Log::logDebug(__METHOD__);
+		return self::onLoadLanguage();
+	}
+	
+	public static function onLoadLanguage()
+	{
 		$dir = Shadowrun4::getShadowDir();
 		self::$LANG_CMDS = new GWF_LangTrans($dir.'lang/cmds/cmds');
 		self::$LANG_COMMANDS = new GWF_LangTrans($dir.'lang/commands/commands');

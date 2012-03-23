@@ -32,6 +32,13 @@ final class LambModule_Shadowlamb extends Lamb_Module
 		Shadowrun4::initTimers();
 	}
 	
+	public function onLoadLanguage()
+	{
+		parent::onLoadLanguage();
+// 		Shadowcmd::onLoadLanguage();
+// 		Shadowlang::onLoadLanguage();
+	}
+	
 	public function onEvent(Lamb $bot, Lamb_Server $server, $event, $from, $args)
 	{
 		

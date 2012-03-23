@@ -4,6 +4,8 @@ $lang = array(
 # amulet
 'Amulet' => 'Amuleto',
 'Amulet__desc__' => 'Un amuleto dorato. E... costoso.',
+'AmuletOfLove' => 'AmuletOfLove',
+'AmuletOfLove__desc__' => 'A golden amulet in a shape of a rose with a large red rubin looking like a heart. It\'s glowing bright red and you feel like you are in love.',
 'LO_Amulet' => 'Amuleto_LO',
 'LO_Amulet__desc__' => 'Questo amuleto è un pezzo della magia ThalionLionhearth.',
 'Moonstone' => 'PietraDiLuna',
