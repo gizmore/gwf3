@@ -169,25 +169,28 @@ final class Module_Usergroups extends GWF_Module
 	
 	public function canCreateGroup($user)
 	{
-		if ($user === false || $user->getID() === 0) {
+		if ( ($user === false) || ($user->getID() === '0') || ($user->isBot()) )
+		{
 			return false;			
 		}
 		
 		// Not min level
-		if ($user->getLevel() < $this->cfgLevel()) {
+		if ($user->getLevel() < $this->cfgLevel())
+		{
 			return false;
 		}
 		
 		// Max Exceeded
-		if ($this->getNumGroups($user) >= $this->cfgMaxGroups()) {
+		if ($this->getNumGroups($user) >= $this->cfgMaxGroups())
+		{
 			return false;
 		}
 		
 		// Not enough points
-		if ($user->getLevel() < $this->levelForNextGroup($user)) {
+		if ($user->getLevel() < $this->levelForNextGroup($user))
+		{
 			return false;
 		}
-		
 		
 		return true;
 	}
