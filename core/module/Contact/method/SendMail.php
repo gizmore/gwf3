@@ -75,7 +75,8 @@ final class Contact_SendMail extends GWF_Method
 		}
 
 		$data['message'] = array(GWF_Form::MESSAGE, '', $this->module->lang('th_message'));
-		if ($u->getID() === 0) {
+		if ($u->getID() === '0')
+		{
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		$data['send'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_sendmail'));

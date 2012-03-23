@@ -49,7 +49,7 @@ final class Module_Guestbook extends GWF_Module
 	public function canCreateGuestbook($user)
 	{
 		# Logged in?
-		if ($user === false || $user->getID() === 0) {
+		if ($user === false || $user->getID() === '0') {
 			return false;
 		}
 		# Level?

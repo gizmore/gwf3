@@ -40,7 +40,7 @@ final class Usergroups_Join extends GWF_Method
 			return $this->module->error('err_unk_group');
 		}
 		
-		if ($group->getFounderID() === 0) {
+		if ($group->getFounderID() === '0') {
 			return $this->module->error('err_no_join');
 		}
 		

@@ -409,6 +409,8 @@ final class WC_HTML
 		$back .= self::displayMenuAbout($module).PHP_EOL;
 		$back .= self::displayMenuLinks($module).PHP_EOL;
 		$back .= self::displayMenuSites($module).PHP_EOL;
+		if (GWF_IP6::isLocal()) # XXX delete me 
+		$back .= self::displayMenuPapers($module).PHP_EOL;
 		$back .= self::displayMenuForum($module).PHP_EOL;
 		$back .= self::displayMenuRanking($module).PHP_EOL;
 		$back .= self::displayMenuChallenges($module).PHP_EOL;
@@ -525,6 +527,13 @@ final class WC_HTML
 		}
 		$sel = $sel ? ' class="wc_menu_sel"' : '';
 		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('menu_sites').'</a></li>';
+	}
+	
+	public static function displayMenuPapers(Module_WeChall $module)
+	{
+		$sel = Common::getGetString('mo') === 'PageBuilder';
+		$sel = $sel ? ' class="wc_menu_sel"' : '';
+		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'pages">'.$module->lang('menu_papers').'</a></li>';
 	}
 	
 	public static function getUnreadThreadCount($user)

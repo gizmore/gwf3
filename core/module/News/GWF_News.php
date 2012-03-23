@@ -282,7 +282,7 @@ final class GWF_News extends GDO
 	public function displayAuthor()
 	{
 		if (false === ($user = ($this->getVar('news_userid'))) 
-		|| ($user->getID() === 0)) {
+		|| ($user->getID() === '0')) {
 			return GWF_HTML::lang('unknown_user');
 		}
 		return $user->display('user_name');

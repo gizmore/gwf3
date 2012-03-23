@@ -730,7 +730,7 @@ final class WC_Challenge extends GDO
 			return true;
 		}
 		
-		if ($this->getID() === 0) {
+		if ($this->getID() === '0') {
 			echo WC_HTML::message('msg_correct_alpha');
 			return true;
 		}
@@ -830,7 +830,7 @@ final class WC_Challenge extends GDO
 	public static function dummyChallenge($title, $score=1, $url=false, $solution=false, $options=0)
 	{
 		return new self(array(
-			'chall_id' => 0,
+			'chall_id' => '0',
 			'chall_gid' => 0,
 			'chall_creator' => '',
 			'chall_creator_name' => '',

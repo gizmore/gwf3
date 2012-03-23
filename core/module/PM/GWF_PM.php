@@ -80,7 +80,7 @@ final class GWF_PM extends GDO # implements GDO_Searchable
 		return GWF_Message::display($msg, true, $this->isOptionEnabled(self::SMILEYS), false, GWF_Message::getQuickSearchHighlights(Common::getRequest('term', '')));
 	}
 	
-	public function isGuestPM() { return $this->getFromID() === 0; }
+	public function isGuestPM() { return $this->getFromID() === '0'; }
 	/**
 	 * @param int $pmid
 	 * @return GWF_PM

@@ -31,7 +31,7 @@ final class GWF_Shoutbox extends GDO
 //	public function getUser() { return GWF_User::getByID($this->getVar('shout_uid')); }
 	public function getUID() { return $this->getUser()->getID(); }
 	public function getUser() { return $this->getVar('shout_uid'); }
-	public function isGuestShout() { return $this->getUID() === 0; }
+	public function isGuestShout() { return $this->getUID() === '0'; }
 	
 	
 	###############
