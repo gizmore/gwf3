@@ -190,6 +190,7 @@ final class GWF_User extends GDO
 	public function isGuest() { return $this->getID() === '0'; }
 	public function isWebspider() { return $this->isOptionEnabled(self::WEBSPIDER); }
 	public function isDeleted() { return $this->isOptionEnabled(self::DELETED); }
+	public function isUser() { return false === ($this->isGuest() || $this->isBot() || $this->isWebspider() || $this->isDeleted()); }
 	public function getLevel() { return $this->getVar('user_level'); }
 	public function hasValidMail() { return $this->isOptionEnabled(self::MAIL_APPROVED); }
 	public function getValidMail() { return $this->hasValidMail() ? $this->getVar('user_email') : ''; }
