@@ -56,7 +56,7 @@ $lang = array(
 		
 	# Notice #
 	'subj_cmt' => GWF_SITENAME.': New comment',
-	'body_mod' =>
+	'body_cmt' =>
 		'Hello %s, '.PHP_EOL.
 		PHP_EOL.
 		'There has been posted a new comment on '.GWF_SITENAME.'.'.PHP_EOL.

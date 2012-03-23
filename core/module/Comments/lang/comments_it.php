@@ -55,7 +55,7 @@ $lang = array(
 		'Gli script di '.GWF_SITENAME,
 		
 	'subj_cmt' => GWF_SITENAME.': Nuovo commento',
-	'body_mod' =>
+	'body_cmt' =>
 		'Salve %s, '.PHP_EOL.
 		PHP_EOL.
 		'E\' stato pubblicato un commento su '.GWF_SITENAME.'.'.PHP_EOL.
