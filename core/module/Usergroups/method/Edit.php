@@ -293,7 +293,7 @@ final class Usergroups_Edit extends GWF_Method
 		return $this->module->message('msg_accepted', array($user->displayUsername(), $group->display('group_name')));
 	}
 
-	public function validate_username($m, $arg) { return $this->module->validate_username($m, $arg); }
+	public function validate_username($m, $arg) { return $this->module->validate_username($arg); }
 	public function onInvite(GWF_Group $group)
 	{
 		$form = $this->getFormInvite($group);

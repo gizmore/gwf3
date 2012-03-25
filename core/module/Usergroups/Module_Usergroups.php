@@ -282,7 +282,8 @@ final class Module_Usergroups extends GWF_Module
 	public function validate_username($arg)
 	{
 		$arg = $_POST['username'] = trim($arg);
-		if (false === GWF_User::getByName($arg)) {
+		if (false === GWF_User::getByName($arg))
+		{
 			$_POST['username'] = '';
 			return GWF_HTML::lang('ERR_UNKNOWN_USER');
 		}
