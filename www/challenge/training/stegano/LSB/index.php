@@ -23,7 +23,8 @@ $href = 'http://wechall.blogspot.com/2007/11/steganabara-explained.html';
 $hidden_hint = sprintf('<p style="color: #eee;">Hidden Hint: %s</p>', $href);
 
 $thx = 'buttmonkey';
-if (false !== ($user = GWF_User::getByName($thx))) {
+if (false !== ($user = GWF_User::getByName($thx)))
+{
 	$thx = $user->displayProfileLink();
 }
 echo GWF_Box::box($chall->lang('info', array($hidden_hint, $thx)), $chall->lang('title'));
@@ -53,7 +54,8 @@ function lsb_gen_image($solution)
 //	lsb_write_string($image, 2, $solution);
 
 	$sessid = GWF_Session::getSessID();
-	$out_path = 'dbimg/lsb/'.$sessid.'.png';
+	$out_path = "challenge/training/stegano/LSB/temp/{$sessid}.png";
+// 	$out_path = 'dbimg/lsb/'.$sessid.'.png';
 	
 	imagepng($image, $out_path);
 	
