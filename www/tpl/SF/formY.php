@@ -5,7 +5,8 @@
 <?php 
 foreach ($tVars['data'] as $key => $data)
 {
-	if (NULL != ($tt = $data[3]))
+	$tt = '';
+	if (isset($data[3]) && NULL != ($tt = $data[3]))
 	{
 		$tt = GWF_Button::tooltip($tt);
 	}

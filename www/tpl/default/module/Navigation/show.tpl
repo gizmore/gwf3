@@ -12,7 +12,7 @@
 			{link pre='<li>' post='</li>' text={$link['page_title']} url={$link['page_url']} title={$link['page_meta_desc']}}
 {/foreach}
 		</ul>
-		<!-- @start section {$navi['category_name']} -->
+		<!-- @end section {$navi['category_name']} -->
 	</li>
 {/foreach}
 </ol>

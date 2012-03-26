@@ -2,7 +2,7 @@
 <!-- @end content -->
 				<hr/>
 				<p class="bottom">
-					<a class="backbutton" href="{GWF_Session::getLastURL()|escape}" title="{$SF->getLastURL()}">{$SF->lang('back')} ({GWF_Session::getLastURL()|escape})</a>
+					<a class="backbutton" href="{GWF_Session::getLastURL()|escape}" title="{GWF_Session::getLastURL()|escape}">{$SF->lang('back')} ({GWF_Session::getLastURL()|escape})</a>
 				</p>
 			</div>
 <!-- @end middle -->

@@ -24,7 +24,7 @@
 <!-- @start body -->
 		<div id="body">
 <!--@start left -->
-{if true === $SF->isDisplayed('navileft')}
+{if $SF->isDisplayed('navileft')}
 			<div id="left" class="navigation">
 {include file="tpl/{$design}/navi.tpl" assign='navi_left' side='navileft' navigation="{SF_Navigation::display_navigation(SF_Navigation::SIDE_LEFT)}"}
 {$navi_left|indent:4:"\t"}

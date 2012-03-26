@@ -7,7 +7,7 @@
 		<div id="body">
 <!--LEFT NAVIGATION -->
 			<div id="left" class="navigation">
-{$SF->displayNavi('left')}
+{$navigation|indent:4}
 			</div>
 <!-- CONTENT -->
 			<div id="content">

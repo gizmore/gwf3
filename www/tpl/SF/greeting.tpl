@@ -1,3 +1,5 @@
+{*{assign var="month" val="$SF->langA('monthnames', date('n'))"}
+{array( $SF->langA('daynames', date('w')), date('w'), $month, date('n'), date('Y')))}|*}
 <pre class="logo" id="shell_logo">
     .--.      _____________________________________________________________
    |o_o |    /    WELCOME TO       {$SF->lang(SF::greeting())}                            \
