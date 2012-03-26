@@ -1,7 +1,8 @@
 function gwfPMToggleAll(value)
 {
 	var form = document.getElementById('gwf_pm_form');
-	if (form === null) {
+	if (form === null)
+	{
 		return;
 	}
 	for (i = 0; i < form.length; i++)
@@ -10,7 +11,6 @@ function gwfPMToggleAll(value)
 		{
 			form[i].checked = value;
 		}
-		
 	}
 	return true;
 	

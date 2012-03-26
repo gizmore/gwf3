@@ -1,8 +1,7 @@
 <?php
-
 /**
- * @author gizmore
  * Main PM Functionality / Navigation
+ * @author gizmore
  */
 final class PM_Overview extends GWF_Method
 {
@@ -21,36 +20,43 @@ final class PM_Overview extends GWF_Method
 	public function getPageMenuLinks()
 	{
 		return array(
-				array(
-						'page_url' => 'pm',
-						'page_title' => 'PM Overview',
-						'page_meta_desc' => 'Overview for your PMs',
-				),
+			array(
+				'page_url' => 'pm',
+				'page_title' => 'PM Overview',
+				'page_meta_desc' => 'Overview for your PMs',
+			),
 		);
 	}
 	
 	public function execute()
 	{
-		if (false === ($user = GWF_Session::getUser())) {
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/PM/gwf_pm.js');
+		
+		if (false === ($user = GWF_Session::getUser()))
+		{
 			return $this->templateGuests();
 		}
 		
-		if (false !== ($error = $this->sanitize())) {
+		if (false !== ($error = $this->sanitize()))
+		{
 			return $error;
 		}
 		
-		if (false !== (Common::getPost('newfolder'))) {
-			return $this->onCreateFolder().$this->templateOverview();
+		$back = '';
+		if (isset($_POST['newfolder']))
+		{
+			$back = $this->onCreateFolder();
+		}
+		elseif (isset($_POST['delete']))
+		{
+			$back = $this->onDelete();
+		}
+		elseif (isset($_POST['move']))
+		{
+			$back = $this->onMove();
 		}
 		
-		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete().$this->templateOverview();
-		}
-		if (false !== (Common::getPost('move'))) {
-			return $this->onMove().$this->templateOverview();
-		}
-		
-		return $this->templateOverview();
+		return $back.$this->templateOverview();
 	}
 	
 	/**
@@ -60,8 +66,10 @@ final class PM_Overview extends GWF_Method
 	
 	private function sanitize()
 	{
-		if (false === ($this->folder = GWF_PMFolder::getByID(Common::getGet('folder', GWF_PM::INBOX)))) {
-			if (false === ($this->folder = GWF_PMFolder::getInBox())) {
+		if (false === ($this->folder = GWF_PMFolder::getByID(Common::getGet('folder', GWF_PM::INBOX))))
+		{
+			if (false === ($this->folder = GWF_PMFolder::getInBox()))
+			{
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 			}
 		}
@@ -69,7 +77,7 @@ final class PM_Overview extends GWF_Method
 		$this->fid = $fid = $this->folder->getID();
 		$uid = GWF_Session::getUserID();
 		$del = GWF_PM::OWNER_DELETED;
-		$conditions = "pm_owner=$uid AND pm_folder=$fid AND pm_options&$del=0";
+		$conditions = "pm_owner={$uid} AND pm_folder={$fid} AND pm_options&{$del}=0";
 		$pmTable = GDO::table('GWF_PM');
 		$this->ipp = $this->module->cfgPMPerPage();
 		$this->nItems = $pmTable->countRows($conditions);
@@ -108,8 +116,6 @@ final class PM_Overview extends GWF_Method
 			'folder' => $this->folder,
 			'folders' => $this->folderTable(),
 			'form_new_folder' => $this->getFormNewFolder()->templateX($this->module->lang('ft_new_folder')),
-		
-//			'pms' => $this->pmTable(),
 			'pms' => $this->pms,
 			'pagemenu' => GWF_PageMenu::display($this->page, $this->nPages, $hrefPage),
 			'sort_url' => $hrefSort,
@@ -186,7 +192,8 @@ final class PM_Overview extends GWF_Method
 
 	private function getCorrespondence()
 	{
-		if (false === ($user = GWF_Session::getUser())) {
+		if (false === ($user = GWF_Session::getUser()))
+		{
 			return array();
 		}
 		$uid = $user->getID();
@@ -195,7 +202,8 @@ final class PM_Overview extends GWF_Method
 			GDO::table('GWF_PM')->selectColumn('T_B.user_name', "pm_to=$uid OR pm_from=$uid", 'T_B.user_name ASC')
 		);
 		$uname = $user->getVar('user_name');
-		if (false !== ($i = array_search($uname, $back))) {
+		if (false !== ($i = array_search($uname, $back)))
+		{
 			unset($back[$i]);
 		}
 		return $back;
@@ -226,21 +234,25 @@ final class PM_Overview extends GWF_Method
 	private function onDelete()
 	{
 		$ids = Common::getPost('pm');
-		if (!(is_array($ids))) {
-			return ''; #$this->module->error('err_delete');
+		if (!(is_array($ids)))
+		{
+			return ''; # Nothing to do
 		}
 		
 		$user = GWF_Session::getUser();
 		$count = 0;
 		foreach ($ids as $id => $stub)
 		{
-			if (false === ($pm = GWF_PM::getByID($id))) {
+			if (false === ($pm = GWF_PM::getByID($id)))
+			{
 				continue;
 			}
-			if (false === ($pm->canRead($user))) {
+			if (false === ($pm->canRead($user)))
+			{
 				continue;
 			}
-			if (false === $pm->markDeleted($user)) {
+			if (false === $pm->markDeleted($user))
+			{
 				continue;
 			}
 			$count++;
@@ -254,22 +266,25 @@ final class PM_Overview extends GWF_Method
 	##################
 	### New Folder ###
 	##################
-	public function validate_foldername(Module_PM $module, $arg) { return $this->module->validate_foldername($arg); }
+	public function validate_foldername($m, $arg) { return $this->module->validate_foldername($arg); }
 	public function onCreateFolder()
 	{
 		$form = $this->getFormNewFolder();
-		if (false !== ($error = $form->validate($this->module))) {
+		if (false !== ($error = $form->validate($this->module)))
+		{
 			return $error;
 		}
 		
 		$userid = GWF_Session::getUserID();
 		
 		$folders = GWF_PMFolder::getFolders($userid);
-		if (count($folders) >= $this->module->cfgMaxFolders()) {
+		if (count($folders) >= $this->module->cfgMaxFolders())
+		{
 			return $this->module->error('err_max_folders');
 		}
 		
-		if (false === ($folder = GWF_PMFolder::insertFolder($userid, $form->getVar('foldername')))) {
+		if (false === ($folder = GWF_PMFolder::insertFolder($userid, $form->getVar('foldername'))))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -282,30 +297,36 @@ final class PM_Overview extends GWF_Method
 	private function onMove($ids=NULL)
 	{
 		$ids = Common::getPost('pm');
-		if (!(is_array($ids))) {
+		if (!(is_array($ids)))
+		{
 			return '';
 		}
 		
 		$user = GWF_Session::getUser();
 		
-		if (false === ($folder = GWF_PMFolder::getByID(Common::getPost('folders')))) {
+		if (false === ($folder = GWF_PMFolder::getByID(Common::getPost('folders'))))
+		{
 			return $this->module->error('err_folder');
 		}
 		
-		if ($folder->getVar('pmf_uid') !== $user->getID()) {
+		if ($folder->getVar('pmf_uid') !== $user->getID())
+		{
 			return $this->module->error('err_folder');
 		}
 		
 		$count = 0;
 		foreach ($ids as $id => $stub)
 		{
-			if (false === ($pm = GWF_PM::getByID($id))) {
+			if (false === ($pm = GWF_PM::getByID($id)))
+			{
 				continue;
 			}
-			if (false === ($pm->canRead($user))) {
+			if (false === ($pm->canRead($user)))
+			{
 				continue;
 			}
-			if (false === $pm->move($user, $folder)) {
+			if (false === $pm->move($user, $folder))
+			{
 				continue;
 			}
 			$count++;
@@ -314,7 +335,6 @@ final class PM_Overview extends GWF_Method
 		$this->sanitize();
 		return $this->module->message('msg_moved', array($count));
 	}
-	
 }
 
 ?>

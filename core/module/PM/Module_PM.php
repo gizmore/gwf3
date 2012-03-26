@@ -110,24 +110,29 @@ final class Module_PM extends GWF_Module
 		
 		$pm1 = GWF_PM::fakePM($from, $to, $title, $message, $from, GWF_PM::OUTBOX, $parent1);
 		$pm1->setOption(GWF_PM::READ, true);
-		if (false === ($pm1->insert())) {
+		if (false === ($pm1->insert()))
+		{
 			return -1;
 		}
 		$pm2 = GWF_PM::fakePM($from, $to, $title, $message, $to, GWF_PM::INBOX, $parent2, $pm1->getID());
 		$pm2->setOption(GWF_PM::OTHER_READ, true);
-		if (false === ($pm2->insert())) {
+		if (false === ($pm2->insert()))
+		{
 			return -2;
 		}
-		if (false === $pm1->saveVar('pm_otherid', $pm2->getID())) {
+		if (false === $pm1->saveVar('pm_otherid', $pm2->getID()))
+		{
 			return -3;
 		}
-		if (false === GWF_Counter::increaseCount('gwf3_pms_sent', 1)) {
+		if (false === GWF_Counter::increaseCount('gwf3_pms_sent', 1))
+		{
 			return -4;
 		}
-		if (!$this->cfgEmailOnPM()) {
+		if (!$this->cfgEmailOnPM())
+		{
 			return 0;
 		}
-		require_once 'GWF_EMailOnPM.php';
+		$this->includeClass('GWF_EMailOnPM');
 		return GWF_EMailOnPM::deliver($this, $pm2);
 	}
 	
