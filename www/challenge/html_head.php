@@ -45,6 +45,7 @@ require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 
 if (isset($_GET['ajax']))
 {
+	GWF_Website::plaintext();
 	return;
 }
 
