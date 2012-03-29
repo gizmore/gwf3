@@ -1,0 +1,82 @@
+#!/bin/bash
+# -*- coding: utf-8 -*-
+#
+# not yet finished generator for GWF modules
+# TODO: templates
+# TODO: www path
+
+usage () {
+	cat <<EOF
+usage: $(basename $0) [<options>...] <moduleName> [<destinationDir>]
+
+destination dir:
+  If not given, it defaults to the current working directory.
+
+options:
+  --name         displayed name of the module
+  --languages    create language files (default: en,de)
+  --method       add a GWF_Method
+
+EOF
+}
+
+if [ $# -eq 0 -o "$1" == "--help" -o "$1" == "-h" ]; then
+	usage
+	exit 1
+fi
+
+function err() {
+	echo "ERROR: $@"
+	exit 1
+}
+
+MODULENAME="$1"
+if [ -z "$MODULEID" ]; then
+	usage
+	err "module name missing!"
+fi
+
+if [ $# -ge 2 ]; then
+	DESTDIR=$(readlink -f "$2")
+fi
+
+
+# default values
+LANGUAGES="de,en"
+DESTDIR="$PWD"
+METHODS=()
+MODULEDIR=$DESTDIR/$MODULENAME
+
+# parse the CLI parameters
+for param in "$@"; do
+	case "$param" in
+		--name)
+			MODULENAME="$2"
+			shift 2
+			;;
+		--languages)
+			LANGUAGES="$2"
+			shift 2
+			;;
+		--method)
+			METHODS[${#METHODS[@]}+1]="$2"
+			shift 2
+			;;
+	esac
+done
+
+# create directorys
+[ -e "$MODULEDIR" ] && err "The destination directory already exists: $MODULEDIR"
+mkdir -p $MODULEDIR/{lang,method}
+mkdir $WWWDIR/tpl/default/$MODULENAME
+
+# create GWF_METHODS
+for method in ${METHODS[@]}; do
+	touch $MODULEDIR/method/$method.php
+	#TODO
+
+# TODO: split lang by commata
+# TODO: strtolower or SHORTNAME?
+for lang in TODO; do
+	echo -e '<?php\n\n$lang = array(\n\n);' > $MODULEDIR/lang/$MODULENAME_$lang.php
+
