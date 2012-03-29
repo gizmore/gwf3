@@ -2,10 +2,10 @@
 class GWF_Module extends GDO
 {
 	public static $MODULES = array();
-	
+
 	private $module_vars;
 	private $lang;
-	
+
 	const DEFAULT_PRIORITY = 50;
 	const ENABLED = 0x01;
 	const AUTOLOAD = 0x02;
@@ -64,13 +64,13 @@ class GWF_Module extends GDO
 	{
 		return sprintf($pattern, implode(', ', array_keys(self::$MODULES)), count(self::$MODULES));
 	}
-	
+
 	public function onStartup() {}
 	public function onAddHooks() {}
 	public function onInstall($dropTable) { return ''; }
 	public function onCronjob() {} # Output to stdout for debuglogs. Errors are redirected to stderr.
 	public function isAjax() { return isset($_REQUEST['ajax']); }
-	
+
 	/**
 	 * Save a module var the quick way. No validation is performed.
 	 * @param string $key
@@ -89,7 +89,7 @@ class GWF_Module extends GDO
 		$this->module_vars[$key] = $value;
 		return true;
 	}
-	
+
 	############
 	### Lang ###
 	############
@@ -116,7 +116,7 @@ class GWF_Module extends GDO
 		}
 		return $this->lang;
 	}
-	
+
 	public function onLoadLanguage() { $this->lang = GWF_HTML::getLang(); }
 	public function error($key, $args=NULL, $log=true) { return GWF_HTML::error($this->getName(), $this->lang($key, $args), $log); }
 	public function message($key, $args=NULL, $log=true) { return GWF_HTML::message($this->getName(), $this->lang($key, $args), $log); }
@@ -125,7 +125,7 @@ class GWF_Module extends GDO
 	public function langUser(GWF_User $user, $key, $args=NULL) { return $this->lang->langUser($user, $key, $args); }
 	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
 	public function includeAjaxLang($iso=NULL) { GWF_Website::addJavascriptInline('var LANG_'.$this->getName().' = '.json_encode($this->getLang()->getTrans($iso)).';'); }
-	
+
 	################
 	### Template ###
 	################
@@ -143,7 +143,7 @@ class GWF_Module extends GDO
 		$tVars['module'] = $this;
 		return GWF_Template::templatePHPMain("module/{$name}/{$file}", $tVars);
 	}
-	
+
 	##############
 	### Loader ###
 	##############
@@ -156,7 +156,7 @@ class GWF_Module extends GDO
 	{
 		return isset(self::$MODULES[$modulename]) ? self::$MODULES[$modulename] : false;
 	}
-	
+
 	/**
 	 * Load a module from the database.
 	 * @param string $modulename
@@ -200,7 +200,7 @@ class GWF_Module extends GDO
 		
 		return $module;
 	}
-	
+
 	/**
 	 * Autoload modules with autoload flag.
 	 * @todo GWF_Result or return integer / modules which could not be loaded
@@ -230,7 +230,7 @@ class GWF_Module extends GDO
 		return true;
 		//return count($msg) ? true : new GWF_Exception($msg, GWF_Exception::MODULES);
 	}
-	
+
 	/**
 	 * Init a module from assoc data array.
 	 * @param string $modulename
@@ -268,7 +268,7 @@ class GWF_Module extends GDO
 		}
 		return $m;
 	}
-	
+
 	public function loadVars()
 	{
 		$db = gdo_db();
@@ -285,10 +285,36 @@ class GWF_Module extends GDO
 		$db->free($result);
 		return true;
 	}
-	
+
 	############
 	### Exec ###
 	############
+	public function showEmbededHTML()
+	{
+		return isset($_GET['embed']);
+	}
+
+	public function getWrappingContent($content)
+	{
+		$doctype = GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
+		return sprintf("%s<html>\n<head></head>\n<body>\n%s\n</body>\n</html>", $doctype, $content);
+	}
+
+	/**
+	 *
+	 *
+	 */
+	public function executeMain($methodname)
+	{
+		$back = $this->execute($methodname);
+
+		if (true === $this->showEmbededHTML())
+		{
+			die($this->getWrappingContent($back));
+		}
+		return $back;
+	}
+
 	/**
 	 * Execute a method. Arguments are given via $_GET and _$POST.
 	 * @param string $methodname
@@ -325,7 +351,7 @@ class GWF_Module extends GDO
 			$this->includeClass($class);
 		}
 	}
-	
+
 	/**
 	 * Include a file in the modules directory.
 	 * This function is not sanitized!
@@ -335,7 +361,7 @@ class GWF_Module extends GDO
 	{
 		require_once GWF_CORE_PATH.'module/'.$this->getName().'/'.$class.'.php';
 	}
-	
+
 	/**
 	 * @param string $methodname
 	 * @return GWF_Method
@@ -363,9 +389,13 @@ class GWF_Module extends GDO
 		}
 		return new $classname($this);
 	}
-	
+
 	public function requestMethodB($methodname, $get=NULL, $post=NULL)
 	{
+		# Cache old vars
+		$post_cache = $_POST;
+		$get_cache = $_GET;
+
 		# Copy vars.
 		if (is_array($post))
 		{
@@ -377,7 +407,12 @@ class GWF_Module extends GDO
 			$_GET = $get;
 			$_REQUEST = $get;
 		}
-		return $this->getMethod($methodname)->execute();
+		$back = $this->getMethod($methodname)->execute();
+
+		# Reset vars
+		$_POST = &$post_cache;
+		$_GET = &$get_cache;
+
+		return $back;
 	}
 }
-?>

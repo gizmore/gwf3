@@ -385,7 +385,7 @@ class GWF3
 			# Execute the method
 			self::$MODULE->onInclude();
 			self::$MODULE->onLoadLanguage();
-			self::$page = self::$MODULE->execute($_GET['me']);
+			self::$page = self::$MODULE->executeMain($_GET['me']);
 			if (true === isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
