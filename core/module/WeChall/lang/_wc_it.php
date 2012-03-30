@@ -659,9 +659,9 @@ $lang = array(
 	'btn_hardlink' => 'Forza collegamento utente',
 	'goto_chall' => 'Vai alla sfida "%s"',
 	'menu_papers' => 'Saggi',
-	'btn_stats' => 'Player Comparison',
-	'btn_your_stats' => 'Your Stats',
-	'menu_changes' => 'Changes',
-	'btn_helpdesk' => 'Helpdesk',
+	'btn_stats' => 'Confronto Utenti',
+	'btn_your_stats' => 'Statistiche Personali',
+	'menu_changes' => 'Cambiamenti',
+	'btn_helpdesk' => 'Helpdesk ',
 );
 ?>

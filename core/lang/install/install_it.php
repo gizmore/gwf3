@@ -15,7 +15,7 @@ $lang = array(
 	'err_no_mods_selected' => 'Seleziona altri moduli.',
 	'err_htaccess' => 'Non è stato possibile scrivere il file .htaccess.',
 	'err_copy' => 'Non è stato possibile copiare %s.',
-	'err_clear_smarty' => 'Non è stato possibile ripulire la smarty cache.',
+	'err_clear_smarty' => 'Non è stato possibile ripulire la cache smarty.',
 		
 	'msg_copy' => 'La copia di %s è avvenuta con successo.',
 	'msg_copy_untouched' => 'La tua copia di %s non è stato toccata.',
@@ -69,8 +69,8 @@ $lang = array(
 	'step_0_11' => 'E\' installata la libreria PHP \'ZipArchive\'?',
 	'step_0_12' => 'E\' installata la libreria PHP \'curl\'?',
 	'step_0_13' => 'E\' disponibile \'Fileinfo\' o \'mime_content_type\', per PHP, disponibile?',
-	'step_0_14' => 'Le seguenti funzioni nocive sono pericolose: exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen,link?',
-	'step_0_15' => 'Sono disponibili le funcioni GnuPG?',
+	'step_0_14' => 'Sono abilitate le seguenti funzioni potenzialmente nocive: exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen,link? (Se sono abilitate e non vengono utilizzate si consiglia di disabilitarle)',
+	'step_0_15' => 'Sono disponibili le funzioni GnuPG?',
 
 	'step_1' => 'Crea &quot;protected/config.php&quot;',
 
@@ -107,10 +107,10 @@ $lang = array(
 	'step_9' => 'Create account amministrativi',
 
 	'step_10' => 'Ripulisci la Cache',
-	'step_10_0' => 'l\'installazione è finita.<br/>Tutte le cache sono state ripulite.<br/>Puoi effettuare il login ora o migliorare la protezione della cartella di installazione.',
+	'step_10_0' => 'L\'installazione è finita.<br/>Tutte le cache sono state ripulite.<br/>Puoi effettuare il login ora o migliorare la protezione della cartella di installazione.',
 		
 	'step_11' => 'Proteggi la cartella di installazione',
-	'step_11_0' => 'La tua cartella di installazione dovrebbe essere protetta, rispndendo con errori 404 ad ogni richiesta.',
+	'step_11_0' => 'La tua cartella di installazione dovrebbe essere protetta, rispondendo con errori 404 ad ogni richiesta.',
 	
 	'msg_all_done' => 'Congratulazioni, la tua installazione è completa!<br/>Grazie per aver scelto GWF3<br/>Speriamo che sia di tuo gradimento.<br/><br/>gizmore e spaceone',
 );
