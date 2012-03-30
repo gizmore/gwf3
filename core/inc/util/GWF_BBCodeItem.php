@@ -25,10 +25,12 @@ final class GWF_BBCodeItem
 	
 	public function addChild(GWF_BBCodeItem $child)
 	{
-		if ($this->childs === NULL) {
+		if ($this->childs === NULL)
+		{
 			$this->childs = array($child);
 		}
-		else {
+		else
+		{
 			$this->childs[] = $child;
 		}
 	}
@@ -46,13 +48,16 @@ final class GWF_BBCodeItem
 	###############
 	public function close($tag)
 	{
-		if ($this->parent === NULL) {
+		if ($this->parent === NULL)
+		{
 			return NULL;
 		}
-		elseif ($this->tag === $tag) {
+		elseif ($this->tag === $tag)
+		{
 			return $this->parent;
 		}
-		else {
+		else
+		{
 			return $this->parent->close($tag);
 		}
 	}
@@ -83,7 +88,8 @@ final class GWF_BBCodeItem
 //			return $this->renderText($htmlspecial, $nl2br);
 //		}
 	
-		if ($raw) {
+		if ($raw)
+		{
 			return $this->fulltag.$this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
 		
@@ -105,6 +111,7 @@ final class GWF_BBCodeItem
 		{
 			foreach ($this->childs as $child)
 			{
+				$child instanceof GWF_BBCodeItem;
 				$back .= $child->render($htmlspecial, $nl2br, $raw);
 			}
 		}
@@ -113,19 +120,22 @@ final class GWF_BBCodeItem
 	
 	public function renderText($htmlspecial=true, $nl2br=true, $raw=false)
 	{
-		$back = $this->text;
+		$back = trim($this->text);
 		
-		if ($htmlspecial) {
+		if ($htmlspecial)
+		{
 			$back = htmlspecialchars($back, ENT_QUOTES);
 		}
 		
 		$back = GWF_BBCode::highlight($back);
 		
-		if (!$raw) {
+		if (!$raw)
+		{
 			$back = GWF_BBCode::replaceSmileys($back);			
 		}
 		
-		if ($nl2br) {
+		if ($nl2br)
+		{
 			$back = nl2br($back);
 		}
 		
@@ -139,20 +149,24 @@ final class GWF_BBCodeItem
 	{
 		static $allow = array('http', 'https', 'ftp', 'ftps');
 		
-		if ('' === ($href = trim($href))) {
+		if ('' === ($href = trim($href)))
+		{
 			return false;
 		}
 		
-		if ($href[0]==='/') {
+		if ($href[0]==='/')
+		{
 			return GWF_WEB_ROOT.substr($href, 1);
 		}
 		
-		if (false === ($pos = strpos($href, '://'))) {
+		if (false === ($pos = strpos($href, '://')))
+		{
 			return false;
 		}
 		
 		$protocol = substr($href, 0, $pos);
-		if (!in_array($protocol, $allow)) {
+		if (!in_array($protocol, $allow))
+		{
 			return false;
 		}
 		
@@ -178,7 +192,8 @@ final class GWF_BBCodeItem
 		$lang = htmlspecialchars($lang);
 		
 		$title = '';
-		if (isset($this->params['title'])) {
+		if (isset($this->params['title']))
+		{
 			$title = $this->params['title'];
 			$title = htmlspecialchars($title);
 		}
@@ -186,11 +201,11 @@ final class GWF_BBCodeItem
 		$head = $lang;
 		$head .= ' '.GWF_HTML::lang('code');
 		
-		$head .= $title === '' ? '' : ' '.GWF_HTML::lang('for').' '.$title;
+		$head .= $title === '' ? '' : ' '.GWF_HTML::lang('for').' <cite>'.$title.'</cite>';
 		
 		if (!GWF_GESHI_PATH)
 		{
-			$pre = '<div class="gwf_code">';
+			$pre = '<div class="gwf_bb_code">';
 			$pre .= sprintf('<div>%s</div>', $head);
 			$pre .= '<code>';
 			$after = '</code></div>';
@@ -217,7 +232,7 @@ final class GWF_BBCodeItem
 //			$geshi->enable_classes();
 			
 			$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
-			$pre = '<div class="gwf_code">';
+			$pre = '<div class="gwf_bb_code">';
 			$pre .= sprintf('<div>%s%s</div>', $geshi_a, $head);
 			$after = '</div>';
 			return $pre.$geshi->parse_code().$after;			
@@ -262,15 +277,10 @@ final class GWF_BBCodeItem
 		return '<li>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</li>';
 	}
 
-//	public function render_yt($htmlspecial, $nl2br, $raw)
-//	{
-//		return '<object type="application/x-shockwave-flash" style="width:501px; height:330px" data="http://www.youtube.com/v/'.$this->renderChilds($htmlspecial, $nl2br, $raw).'"><param name="movie" value="http://www.youtube.com/v/'.$this->renderChilds($htmlspecial, $nl2br, $raw).'" /></object>';
-//	}
-	
-	
 	public function render_colour($htmlspecial, $nl2br, $raw)
 	{
-		if (isset($this->params['colour'])) {
+		if (isset($this->params['colour']))
+		{
 			$this->params['color'] = $this->params['colour'];
 		}
 		return $this->render_color($htmlspecial, $nl2br, $raw);
@@ -288,30 +298,36 @@ final class GWF_BBCodeItem
 		}
 
 		$text = $this->renderChilds($htmlspecial, $nl2br, $raw);
+		
 		if (isset($the_color))
 		{
 			return sprintf('<span style="color: #%s;">%s</span>', $the_color, $text);
 		}
-		else {
+		else
+		{
 			return $text;
 		}
 	}
 	
 	public function render_size($htmlspecial, $nl2br, $raw)
 	{
-		if (!empty($this->params['size'])) {
+		if (!empty($this->params['size']))
+		{
 			$size = (int)$this->params['size'];
-			if ($size >= 8 && $size <= 32) {
+			if ($size >= 8 && $size <= 32)
+			{
 				$the_size = $size;
 			}
 		}
 
 		$text = $this->renderChilds($htmlspecial, $nl2br, $raw);
+		
 		if (isset($the_size))
 		{
 			return sprintf('<span style="font-size: %spx;">%s</span>', $the_size, $text);
 		}
-		else {
+		else
+		{
 			return $text;
 		}
 	}
@@ -333,16 +349,19 @@ final class GWF_BBCodeItem
 	
 	public function render_url($htmlspecial, $nl2br, $raw)
 	{
-		if (isset($this->params['url']) && !empty($this->params['url'])) {
+		if (isset($this->params['url']) && !empty($this->params['url']))
+		{
 			$href = $this->params['url'];
 			$text = $this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
-		else {
+		else
+		{
 			$href = $text = $this->renderChilds(false, false, false);
 			$text = htmlspecialchars($text);
 		}
 		
-		if (false === ($the_href = $this->filterHREF($href))) {
+		if (false === ($the_href = $this->filterHREF($href)))
+		{
 			$text = htmlspecialchars($href);
 			$the_href = '#error';
 		}
@@ -359,13 +378,16 @@ final class GWF_BBCodeItem
 	
 	public function render_code($htmlspecial, $nl2br, $raw)
 	{
-		if (isset($this->params['code'])) {
+		if (isset($this->params['code']))
+		{
 			$lang = $this->params['code'];
 		}
-		elseif (isset($this->params['lang'])) {
+		elseif (isset($this->params['lang']))
+		{
 			$lang = $this->params['lang'];
 		}
-		else {
+		else
+		{
 			$lang = 'Plaintext';
 		}
 		return $this->renderCode($lang, $htmlspecial, $nl2br, $raw);
@@ -385,31 +407,37 @@ final class GWF_BBCodeItem
 
 		# Show from whom is the quote.
 		$username = '';
-		if (isset($this->params['quote'])) {
+		if (isset($this->params['quote']))
+		{
 			$username = $this->params['quote'];
 		}
-		elseif (isset($this->params['from'])) {
+		elseif (isset($this->params['from']))
+		{
 			$username = $this->params['from'];
 		}
 		$username = htmlspecialchars($username);
 		
-		$pre = '<div class="gwf_quote">';
-		$pre .= '<blockquote>';
-		$pre .= '<div>';
+		$pre = '<blockquote class="gwf_bb_quote">';
 		if ($date !== '' || $username !== '')
 		{
-			$pre .= '<div>';
-			if ($username !== '') {
-				$pre .= sprintf('<span>%s</span>', GWF_HTML::lang('quote_from', array($username)));
+			$top = '';
+			if ($username !== '')
+			{
+				$top .= sprintf('<span>%s</span>', GWF_HTML::lang('quote_from', array($username)));
 			}
-			if ($date !== '') {
-				$pre .= sprintf('<span class="gwf_date">%s</span>', $date);
+			if ($date !== '')
+			{
+				$top .= sprintf('<div class="gwf_date">%s</div>', $date);
 			}
-//			$pre .= '<br/>';
-			$pre .= '</div>';
+			if ($top !== '')
+			{
+				$pre .= '<div class="gwf_bb_quote_top">';
+				$pre .= $top;
+				$pre .= '</div>';
+			}
 		}
 		
-		$after = '</div></blockquote></div>';
+		$after = '</blockquote>';
 		
 		return $pre.$this->renderChilds($htmlspecial, $nl2br, $raw).$after;
 	}
@@ -424,22 +452,26 @@ final class GWF_BBCodeItem
 
 		# Javascript:
 		static $spoil_id = 0; $spoil_id++;
-		$id = 'gwf_spoiler_'.$spoil_id;
+		$id = 'gwf_bb_spoiler_'.$spoil_id;
 		$link_txt = GWF_HTML::lang('bbspoiler_info');
-		if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
+		if (isset($_SERVER['REDIRECT_QUERY_STRING']))
+		{
 			$href_no_js = $_SERVER['REDIRECT_QUERY_STRING'];
 		}
-		elseif (isset($_SERVER['QUERY_STRING'])) {
+		elseif (isset($_SERVER['QUERY_STRING']))
+		{
 			$href_no_js = $_SERVER['QUERY_STRING'];
 		}
-		else {
+		else
+		{
 			return $this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
+		
 		$href_no_js = htmlspecialchars(GWF_WEB_ROOT.'index.php?'.$href_no_js.'&show_spoilers=please');
 		
 		return
-			'<div><a href="'.$href_no_js.'" onclick="toggleHidden(\''.$id.'\'); return false;">'.$link_txt.'</a></div>'.PHP_EOL.
-			'<div class="gwf_spoiler" id="'.$id.'">'.$this->renderChilds().'</div>'.PHP_EOL;
+			'<nav><a href="'.$href_no_js.'" onclick="toggleHidden(\''.$id.'\'); return false;">'.$link_txt.'</a></nav>'.PHP_EOL.
+			'<section class="gwf_bb_spoiler" id="'.$id.'">'.$this->renderChilds().'</section>'.PHP_EOL;
 	}
 	
 	public function render_noparse($htmlspecial, $nl2br, $raw)
@@ -447,5 +479,48 @@ final class GWF_BBCodeItem
 		return $this->renderChilds(true, true, true);
 	}
 	
+	public function render_youtube($htmlspecial, $nl2br, $raw)
+	{
+		$the_id = isset($this->params['youtube']) ? $this->params['youtube'] : $this->text;
+		if (!preg_match('/^[-a-z0-9]{11,12}$/iD', $the_id))
+		{
+			return GWF_HTML::lang('err_youtube_id');
+		}
+		
+		$title = isset($this->params['title']) ? $this->params['title'] : GWF_HTML::lang('youtube_title');
+		
+		return sprintf('<iframe title="%s" class="gwf_bb_youtube" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/%s" frameborder="0" allowFullScreen="allowFullScreen"></iframe>', htmlspecialchars($title), $the_id);
+	}
+
+/*
+	public function render_img($htmlspecial, $nl2br, $raw)
+	{
+		$href = $this->text;
+		if ( (false === ($href = $this->filterHREF($href))) || (false !== strpos($href, '&')) )
+		{
+			return GWF_HTML::lang('err_bb_img');
+		}
+		
+		$title = isset($this->params['title']) ? $this->params['title'] : GWF_HTML::lang('an_img');
+		$width = isset($this->params['width']) ? (int)$this->params['width'] : NULL;
+		$height = isset($this->params['height']) ? (int)$this->params['height'] : NULL;
+		$w = $h = '';
+		
+		if ( ($width !== NULL) && ($width > 15) && ($width < 640) )
+		{
+			$w = " width=\"{$width}\"";
+		}
+		
+		if ( ($height !== NULL) && ($height > 15) && ($height < 480) )
+		{
+			$h = " height=\"{$height}\"";
+		}
+		
+		$title = htmlspecialchars($title);
+		$alt = $title;
+		
+		return sprintf('<img class="gwf_bb_img" alt="%s" title="%s"%s%s src="%s" />', $alt, $title, $w, $h, $href);
+	}
+*/
 }
 ?>
