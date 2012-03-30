@@ -17,12 +17,12 @@ final class GWF_Error
 	/**
 	 * shortpath and language
 	 **/
-	public static function err($key, $args=NULL) { self::error('GWF', GWF_Debug::shortpath(GWF_HTML::lang($key, $args))); }
-	public static function err404($filename) { @header(Common::getProtocol().' 404 File not found'); self::err('ERR_FILE_NOT_FOUND', htmlspecialchars($filename)); }
-	public static function error($title, $messages) { self::add('errors', $title, $messages); self::log_error($messages); }
-	public static function message($title, $messages) { self::add('messages', $title, $messages); self::log_message($messages); }
-	public static function warn($title, $messages) { self::add('criticals', $title, $messages); self::log_warning($messages); }
-	public static function critical($title, $messages) { self::add('warnings', $title, $messages); self::log_critical($messages); }
+	public static function err($key, $args=NULL) { return self::error('GWF', GWF_Debug::shortpath(GWF_HTML::lang($key, $args))); }
+	public static function err404($filename) { @header(Common::getProtocol().' 404 File not found'); return self::err('ERR_FILE_NOT_FOUND', htmlspecialchars($filename)); }
+	public static function error($title, $messages) { self::add('errors', $title, $messages); self::log_error($messages); return false; }
+	public static function message($title, $messages) { self::add('messages', $title, $messages); self::log_message($messages); return true; }
+	public static function warn($title, $messages) { self::add('criticals', $title, $messages); self::log_warning($messages);}
+	public static function critical($title, $messages) { self::add('warnings', $title, $messages); self::log_critical($messages); return false; }
 
 	public static function log($s) { return self::decode(implode("\n", (array)$s)); }
 	public static function log_error($content) { GWF_Log::logError(self::log($content)); }
