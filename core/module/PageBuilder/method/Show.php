@@ -95,6 +95,7 @@ final class PageBuilder_Show extends GWF_Method
 		return false;
 	}
 	
+/*
 	private function showPageOLD(GWF_Page $page)
 	{
 		$page->increase('page_views', 1);
@@ -112,18 +113,23 @@ final class PageBuilder_Show extends GWF_Method
 		ob_end_clean();
 		return $back;
 	}
-
-	private function showPage(GWF_Page $page)
+*/
+	
+	public function showPage(GWF_Page $page)
 	{
 		$page->increase('page_views', 1);
 		
-		$robot = ($page->isOptionEnabled(GWF_PAGE::INDEX)) ? 'index,' : 'noindex,';
+		$robot = ($page->isOptionEnabled(GWF_PAGE::INDEXED)) ? 'index,' : 'noindex,';
 		$robot .= ($page->isOptionEnabled(GWF_PAGE::FOLLOW)) ? 'follow' : 'nofollow';
 		GWF_Website::addMeta(array('robots', $robot, 0), true);
 		GWF_Website::setMetaDescr($page->getVar('page_meta_desc'));
 		GWF_Website::setMetaTags($page->getVar('page_meta_tags'));
 		GWF_Website::setPageTitle($page->getVar('page_title'));
 		GWF_Website::addInlineCSS($page->getVar('page_inline_css'));
+		
+		$translations = $this->getPageTranslations($page);
+		
+		$user = GWF_User::getStaticOrGuest();
 		
 		$tVars = array(
 			'page' => $page,
@@ -136,12 +142,14 @@ final class PageBuilder_Show extends GWF_Method
 			'comments' => $this->getPageComments($page),
 			'form_reply' => $this->getPageCommentsForm($page),
 			'pagemenu' => $this->getPagemenuComments($page),
-			'translations' => $this->getPageTranslations($page),
+			'translations' => $translations,
+			'trans_string' => $this->getPageTranslationsString($page, $translations),
 			'similar' => $this->getSimilarPages($page),
+			'edit_permission' => $page->isOwner($user) || $this->module->isAuthor($user),
 		);
 		return $this->module->template('show_page.tpl', $tVars);
 	}
-
+	
 	private function getPageContent(GWF_Page $page)
 	{
 		switch ($page->getMode())
@@ -149,7 +157,7 @@ final class PageBuilder_Show extends GWF_Method
 			case GWF_Page::HTML: return $page->getVar('page_content');
 			case GWF_Page::BBCODE: return GWF_Message::display($page->getVar('page_content'));
 			case GWF_Page::SMARTY: return $this->getPageContentSmarty($page);
-			default: return 'ERROR 0915';
+			default: return 'NO PAGE MODE SELECTED ERROR 0915';
 		}
 	}
 	
@@ -225,15 +233,27 @@ final class PageBuilder_Show extends GWF_Method
 		}
 		
 		$pid = $page->getID();
-		$where = "page_otherid={$pid} AND page_id!={$pid}";
+		$oid = $page->getOtherID();
 		
-		if (false === ($result = $page->selectAll('page_title title, page_url url, page_lang langid', $where, 'page_lang ASC', NULL, -1, -1, GDO::ARRAY_N)))
+		if (false === ($result = $page->selectAll('page_title title, page_url url, page_lang langid', "page_otherid={$oid} AND page_id!={$pid}", 'page_lang ASC', NULL, -1, -1, GDO::ARRAY_N)))
 		{
 			return array();
 		}
 		
 		return $result;
 	}
+	
+	private function getPageTranslationsString(GWF_Page $page, array $translations)
+	{
+		$back = '';
+		foreach ($translations as $data)
+		{
+			list($title, $url, $id) = $data;
+			$back .= sprintf('<a href="%s%s">%s</a>', GWF_WEB_ROOT, htmlspecialchars($url), GWF_Language::displayFlagByID($id));
+		}
+		return $back;
+	}
+	
 	
 	private function onReply(GWF_Page $page)
 	{

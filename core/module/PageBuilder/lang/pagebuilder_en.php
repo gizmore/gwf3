@@ -83,5 +83,61 @@ $lang = array(
 	'btn_show_published' => 'Show Published', 
 	'btn_show_revisions' => 'Show Revisions',
 	'btn_show_disableds' => 'Show Disableds',
+	'btn_show_locked' => 'Show Unmoderated',
+
+	#v1.05 Searching, Locked pages and Overview
+	'overview_title' => 'Page Overview on '.GWF_SITENAME,
+	'mt_overview' => 'Pages,Papers,Tutorials,'.GWF_SITENAME,
+	'md_overview' => 'An overview of pages, papers and tutorials on '.GWF_SITENAME,
+	'overview_info' =>
+		'BLA SEARCH.'.PHP_EOL.
+		'BLA ADD',
+	'translate_to' => 'Translate to %s',
+	'ft_search' => 'Quicksearch',
+	'th_term' => 'Searchterm',
+	'btn_search' => 'Search',
+	'btn_unlock' => 'Unlock',
+	'btn_delete' => 'Delete',
+	'msg_added_locked' => 'Your page has been created but will be reviewed before it gets published.',
+	'msg_del_confirm' => 'To delete the page click here: <a href="%s">Delete Page</a>.',
+	'msg_unlock_confirm' => 'Tu publish the page click here: <a href="%s">Publish Page</a>.',
+	'err_dup_url' => 'The URL is already in use. Please change it.',
+	'err_locked' => 'This page is still waiting to be reviewed and published.',
+	'cfg_locked_posting' => 'Allow moderated guest posts?',
+	'cfg_author_level' => 'Minimum level to add a page',
+	'cfg_ipp' => 'Items per Page',
+	'cfg_authors' => 'Author Usergroups',
+	'tt_cfg_locked_posting' => 'Toggle if unpriviledged users may create pages that end up in the moderation queue.',
+	'tt_cfg_authors' => 'Comma separated list of usergroup-names.',
+	'btn_preview' => 'Preview',
+	'msg_enabled' => 'The page is now <a href="%s">visible here</a>.',
+	'msg_edit_locked' => 'Your page has been edited but will be reviewed before it gets published.',
+	'err_token' => 'The token is invalid because the page has been moderated already.',
+	'subj_mod' => GWF_SITENAME.': Page Moderation',
+	'body_mod' =>
+		'Hello %s'.PHP_EOL.
+		PHP_EOL.
+		'The user %s has just created or edited a page or translation on '.GWF_SITENAME.'.'.PHP_EOL.
+		PHP_EOL.
+		'URL: %s'.PHP_EOL.
+		'Title: %s'.PHP_EOL.
+		'Meta-Tags: %s'.PHP_EOL.
+		'Description: %s'.PHP_EOL.
+		'Inline-CSS:'.PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		'Content:'.PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		PHP_EOL.
+		'You can use these URLs for quick moderation:'.PHP_EOL.
+		'ENABLE: %s'.PHP_EOL.
+		PHP_EOL.
+		'or'.PHP_EOL.
+		PHP_EOL.
+		'DELETE: %s'.PHP_EOL.
+		PHP_EOL.
+		'Kind Regards'.PHP_EOL.
+		'The '.GWF_SITENAME.' Script'.PHP_EOL,
 );
 ?>

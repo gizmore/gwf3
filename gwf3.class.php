@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.03-2011.Dec.24');
+define('GWF_CORE_VERSION', '3.04-2012.Apr.1');
 
 /**
  * Welcome to GWF3
