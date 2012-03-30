@@ -69,7 +69,7 @@ $lang = array(
 	'step_0_11' => 'E\' installata la libreria PHP \'ZipArchive\'?',
 	'step_0_12' => 'E\' installata la libreria PHP \'curl\'?',
 	'step_0_13' => 'E\' disponibile \'Fileinfo\' o \'mime_content_type\', per PHP, disponibile?',
-	'step_0_14' => 'Le seguenti funzioni nocive sono pericolose: exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen?',
+	'step_0_14' => 'Le seguenti funzioni nocive sono pericolose: exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen,link?',
 	'step_0_15' => 'Sono disponibili le funcioni GnuPG?',
 
 	'step_1' => 'Crea &quot;protected/config.php&quot;',

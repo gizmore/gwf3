@@ -308,14 +308,15 @@ final class Usergroups_Edit extends GWF_Method
 		$back = '';
 		if (false === GWF_UsergroupsInvite::getInviteRow($user->getID(), $group->getID()))
 		{
-			if (false === GWF_UsergroupsInvite::invite($user->getID(), $group->getID())) {
+			if (false === GWF_UsergroupsInvite::invite($user->getID(), $group->getID()))
+			{
 				return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__)).$this->templateEdit($group);
 			}
-			
-			$back = $this->sendInvitePM($user, $group);
 		}
 		
-		return $back.$this->module->message('msg_invited', array($user->displayUsername()).$this->templateEdit($group));
+		$back = $this->sendInvitePM($user, $group);
+		
+		return $back.$this->module->message('msg_invited', array($user->displayUsername())).$this->templateEdit($group);
 	}
 
 	#################
@@ -328,6 +329,7 @@ final class Usergroups_Edit extends GWF_Method
 	
 	private function getPMMessage(GWF_User $user, GWF_Group $group, $bbcode=true)
 	{
+		# bbcode urls, no web root needed
 		$href_join = '/index.php?mo=Usergroups&me=Join&gid='.$group->getVar('group_id');
 		$href_deny = '/index.php?mo=Usergroups&me=Join&deny='.$group->getVar('group_id');
 		$founder = $group->getFounder();
@@ -343,25 +345,25 @@ final class Usergroups_Edit extends GWF_Method
 			$link_no = GWF_HTML::anchor($href_deny, $href_deny);
 		}
 		
-		return $this->module->langUser($user, 'invite_message', $user->getVar('user_name'), $founder->getVar('user_name'), $group->getName(), $link_yes, $link_no);
+		return $this->module->langUser($user, 'invite_message', array($user->getVar('user_name'), $founder->getVar('user_name'), $group->getName(), $link_yes, $link_no));
 	}
 	
 	private function sendInvitePM(GWF_User $user, GWF_Group $group)
 	{
-		if (false === ($mod_pm = GWF_Module::getModule('PM'))) {
+		if (false === ($mod_pm = GWF_Module::loadModuleDB('PM', true, true, true)))
+		{
 			return '';
 //			return $this->sendInviteEMail($user, $group);
 		}
 		
-		$mod_pm->onInclude();
-		$mod_pm->onLoadLanguage();
+		$mod_pm instanceof Module_PM;
 		
 		$title = $this->getPMTitle($user, $group);
 		$message = $this->getPMMessage($user, $group);
 		
-		$pm = GWF_PM::fakePM(GWF_Session::getUserID(), $user->getID(), $title, $message);
-		if (false === $pm->insert()) {
-			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
+		if ($mod_pm->deliver(GWF_Session::getUserID(), $user->getID(), $title, $message) < 0)
+		{
+			return ''; # error
 		}
 		
 		return '';

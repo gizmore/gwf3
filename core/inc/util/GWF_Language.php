@@ -236,12 +236,12 @@ final class GWF_Language extends GDO
 
 	public static function displayUnknownFlag($txt_unknown='Unknown Language')
 	{
-		return sprintf('<img width="30" src="%simg/default/language/0" alt="??" title="%s">', GWF_WEB_ROOT, $txt_unknown);
+		return sprintf('<img class="flag" src="%simg/default/language/0" alt="??" title="%s">', GWF_WEB_ROOT, $txt_unknown);
 	}
 	
 	public function displayFlag()
 	{
-		return sprintf('<img width="30" src="%simg/default/language/%s" alt="%s" title="%s">', GWF_WEB_ROOT, $this->getID(), $this->getISO(), $this->displayNativeName());
+		return sprintf('<img class="flag" src="%simg/default/language/%s" alt="%s" title="%s">', GWF_WEB_ROOT, $this->getID(), $this->getISO(), $this->displayNativeName());
 	}
 	
 }

@@ -80,7 +80,7 @@ final class GWF_UsergroupsInvite extends GDO
 	{
 		$userid = (int) $userid;
 		$groupid = (int) $groupid;
-		return self::table(__CLASS__)->selectFirst("ugi_uid=$userid AND ugi_gid=$groupid AND ugi_type='$type'");
+		return self::table(__CLASS__)->selectFirstObject('*', "ugi_uid=$userid AND ugi_gid=$groupid AND ugi_type='$type'");
 	}
 	
 	public function deny()

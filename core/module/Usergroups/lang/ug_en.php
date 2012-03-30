@@ -165,6 +165,5 @@ $lang = array(
 	'th_haswww' => 'Website',
 	'th_gender' => 'Gender',
 	'err_minlevel' => 'Your specified minimum level is invalid.',
-		
 );
 ?>

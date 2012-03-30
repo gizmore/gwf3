@@ -407,7 +407,7 @@ abstract class GDO
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
 		$query = "SELECT {$columns} FROM `{$table}` t ".$join.$where.$groupby.$orderby.$limit;
-// 		echo "$query<br/>\n";
+// 		GWF_Website::addDefaultOutput("$query<br/>\n");
 		return self::$CURRENT_DB->queryRead($query);
 	}
 
@@ -449,9 +449,13 @@ abstract class GDO
 		return $row;
 	}
 	
-	public function selectFirstObject($columns='*', $where='', $orderby='', $groupby='')
+	public function selectFirstObject($columns='*', $where='', $orderby='', $groupby='', $joins=true)
 	{
-		return $this->selectFirst($columns, $where, $orderby, $this->getAutoJoins(), self::ARRAY_O, -1, $groupby);
+		if ($joins === true)
+		{
+			$joins = $this->getAutoJoins();
+		}
+		return $this->selectFirst($columns, $where, $orderby, $joins, self::ARRAY_O, -1, $groupby);
 	}
 	
 	/**

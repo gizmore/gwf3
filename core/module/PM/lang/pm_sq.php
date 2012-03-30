@@ -190,6 +190,10 @@ $lang = array(
 	'msg_empty' => 'Plehra juaj (%s Mesazha) pastrohen.<br/>%s Mesazh ishte do të eleminohet nga database.<br/>%s Mesazh nuk mund të fshihet sepse e kundërta ka arkivuar mesazh akoma.',
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
+	# monnino fixes
+	'cfg_pm_limit_per_level' => 'PM limit per level',
+	'cfg_pm_own_bot' => 'PM own bot',
+	'th_reason' => 'Reason',
 );
 
 ?>

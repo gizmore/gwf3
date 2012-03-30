@@ -181,8 +181,13 @@ $lang = array(
 	'cfg_pm_delete' => '¿Permitir borrar PM?',
 	'ft_empty' => 'Vaciar Papelera',
 	'msg_empty' => 'Tu Papelera (%s mensajes) ha sido vaciada.<br/>%s mensajes han sido borrados de nuestra base de datos.<br/>%s mensajes estan aún en uso y no han sido borrados.',
+
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
+	# monnino fixes
+	'cfg_pm_limit_per_level' => 'PM limit per level',
+	'cfg_pm_own_bot' => 'PM own bot',
+	'th_reason' => 'Reason',
 );
 
 ?>

@@ -187,5 +187,9 @@ $lang = array(
 	'msg_empty' => 'A kukád (%s üzenet) ki lett ürítve.<br/>%s üzenet lett törölve az adatbázisból.<br/>%s üzenet továbbra is az adatbázisban maradt a másik felhasználónál.',
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
+	# monnino fixes
+	'cfg_pm_limit_per_level' => 'PM limit per level',
+	'cfg_pm_own_bot' => 'PM own bot',
+	'th_reason' => 'Reason',
 );
 ?>

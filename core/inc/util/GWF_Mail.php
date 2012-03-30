@@ -157,7 +157,7 @@ final class GWF_Mail
 		
 		if (GWF_DEBUG_EMAIL & 16)
 		{
-			printf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message);
+			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
 			return true;
 		}
 		else

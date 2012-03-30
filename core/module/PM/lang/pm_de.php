@@ -1,5 +1,4 @@
 <?php
-
 $lang = array(
 	'hello' => 'Hallo %s',
 	'sel_username' => 'Wählen Sie einen Benutzer',
@@ -191,6 +190,10 @@ $lang = array(
 
 	# v2.08 (GT)
 	'btn_translate' => 'Translate with Google',
-);
 
+	# monnino fixes
+	'cfg_pm_limit_per_level' => 'Benötigter Level pro PM',
+	'cfg_pm_own_bot' => 'Eigener PM Bot',
+	'th_reason' => 'Grund',
+);
 ?>

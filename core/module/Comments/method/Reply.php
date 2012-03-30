@@ -5,8 +5,6 @@ final class Comments_Reply extends GWF_Method
 	{
 		if (isset($_POST['reply']))
 		{
-//			unset($_POST['x']);
-//			unset($_POST['y']);
 			return $this->onReply();
 		}
 		

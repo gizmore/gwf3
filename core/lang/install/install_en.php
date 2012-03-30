@@ -69,7 +69,7 @@ $lang = array(
 	'step_0_11' => 'Is PHP ZipArchive installed?',
 	'step_0_12' => 'Is PHP curl library installed?',
 	'step_0_13' => 'Is PHP Fileinfo or mime_content_type available?',
-	'step_0_14' => 'Are dangerous functions (exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen) disabled?',
+	'step_0_14' => 'Are dangerous functions (exec,system,passthru,pcntl_exec,proc_open,shell_exec,popen,link) disabled?',
 	'step_0_15' => 'Are GnuPG functions available?',
 
 	'step_1' => 'Create &quot;protected/config.php&quot;',

@@ -1,5 +1,4 @@
-<?php
-
+<?php # Italian PM by monnino
 $lang = array(
 	'hello' => 'Salve %s',
 	'sel_username' => 'Scegli Username',
@@ -192,6 +191,6 @@ $lang = array(
 	# monnino fixes
 	'cfg_pm_limit_per_level' => 'Limite PM per livello',
 	'cfg_pm_own_bot' => 'Invia PM ',
+	'th_reason' => 'Motivo',
 );
-
 ?>

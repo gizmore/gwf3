@@ -193,7 +193,8 @@ final class Module_News extends GWF_Module
 	
 	public static function displayBoxB(array $news)
 	{
-		if (false === ($module = self::getNewsModule())) {
+		if (false === ($module = self::getNewsModule()))
+		{
 			return GWF_HTML::err('ERR_MODULE_MISSING', array( 'News'));
 		}
 		# Display Template

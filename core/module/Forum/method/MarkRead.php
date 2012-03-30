@@ -38,7 +38,7 @@ final class Forum_MarkRead extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 
-		$cnt = $threads->affectedRows();
+// 		$cnt = $threads->affectedRows(); # As we mark all read it's easier to assume it works :D
 		
 		return $this->module->message('msg_mark_aread', array($cnt));
 	}

@@ -229,7 +229,7 @@ class GWF_Form
 		$tVars = array(
 			'data' => $this->getTemplateData(),
 			'title' => $title,
-			'action' => htmlspecialchars($action),
+			'action' => urlencode($action),
 			'method' => $this->method,
 			'enctype' => $this->getEncType(),
 			'colspan' => $colspan,
@@ -423,7 +423,6 @@ class GWF_Form
 		{
 			$action = $_SERVER['REQUEST_URI'];
 		}
-		$action = GWF_HTML::display($action);
 		
 		if ($encoding !== self::ENC_DEFAULT && $encoding !== self::ENC_MULTIPART)
 		{
@@ -433,7 +432,7 @@ class GWF_Form
 		
 		return
 			'<div>'.PHP_EOL.
-			sprintf('<form action="%s" enctype="%s" method="post">', $action, $encoding).PHP_EOL.
+			sprintf('<form action="%s" enctype="%s" method="post">', urlencode($action), $encoding).PHP_EOL.
 			sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('')).PHP_EOL;
 	}
 	

@@ -105,17 +105,17 @@ final class GWF_Button
 	
 	public static function wrapStart($class='')
 	{
-		return '<div class="gwf_buttons '.$class.'">'.PHP_EOL;
+		return '<div class="gwf_buttons_outer"><div class="gwf_buttons '.$class.'">'.PHP_EOL;
 	}
 	
-	public static function wrapEnd($class='')
+	public static function wrapEnd()
 	{
-		return '</div>'.PHP_EOL;
+		return '</div></div>'.PHP_EOL;
 	}
 	
-	public static function wrap($html,$class='')
+	public static function wrap($html, $class='')
 	{
-		return GWF_HTML::div($html, 'gwf_buttons '.$class);
+		return self::wrapStart($class).$html.self::wrapEnd();
 	}
 }
 

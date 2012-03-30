@@ -1,5 +1,4 @@
 <?php
-
 $lang = array(
 	'hello' => 'Hello %s',
 	'sel_username' => 'Choose Username',
@@ -191,7 +190,7 @@ $lang = array(
 		
 	# monnino fixes
 	'cfg_pm_limit_per_level' => 'PM limit per level',
-	'cfg_pm_own_bot' => 'PM own bot',		
+	'cfg_pm_own_bot' => 'PM own bot',
+	'th_reason' => 'Reason',
 );
-
 ?>

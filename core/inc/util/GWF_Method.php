@@ -10,6 +10,10 @@
 abstract class GWF_Method
 {
 	protected $_tpl = NULL;
+	
+	/**
+	 * @var GWF_Module
+	 */
 	protected $module = NULL;
 
 	public function __construct(GWF_Module $module) { $this->module = $module; return $this; }

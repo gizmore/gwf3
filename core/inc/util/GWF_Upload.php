@@ -319,13 +319,15 @@ final class GWF_Upload
 		
 		if ($as_attach)
 		{
-			if (!is_string($filename)) {
+			if (!is_string($filename))
+			{
 				$filename = basename($fullpath);
 			}
 			header("Content-disposition: attachment; filename=$filename");
 		}
 		
-		echo file_get_contents($fullpath);
+		readfile($fullpath);
+// 		echo file_get_contents($fullpath);
 	}
 	
 	public static function humanFilesize($bytes, $factor='1024', $digits='2')

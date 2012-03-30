@@ -22,7 +22,7 @@ final class GWF_News extends GDO
 			'news_date' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S, '200912312359', GWF_NEWS_DATE_LEN),
 			'news_catid' => array(GDO::INT|GDO::INDEX|GDO::UNSIGNED, 0, 11),
 			'news_userid' => array(GDO::OBJECT|GDO::INDEX, 0, array('GWF_User', 'news_userid', 'user_id')),
-			'news_trans' => array(GDO::GDO_ARRAY, 0, array('GWF_NewsTranslation', 'newst_langid', 'news_id', 'newst_newsid'), array('news')),
+// 			'news_trans' => array(GDO::GDO_ARRAY, 0, array('GWF_NewsTranslation', 'newst_langid', 'news_id', 'newst_newsid'), array('news')),
 			'news_readby' => array(GDO::BLOB),
 			'news_options' => array(GDO::UINT, 0),
 //			'news_trans' => array(GDO::JOIN, 0, array('GWF_NewsTranslation', 'news_id', 'newst_newsid')),
@@ -210,22 +210,34 @@ final class GWF_News extends GDO
 		return $this->chosenTrans;
 	}
 	
+	private $translations = NULL;
 	public function getTranslationB($__langid)
 	{
-//		var_dump($this->gdo_data['translations']);
-		$first = true;
-		foreach ($this->gdo_data['news_trans'] as $langid => $data)
+		if ($this->translations === NULL)
 		{
-//			var_dump($langid);
-			if ($first === true) {
+			$id = $this->getID();
+			if (false === ($this->translations = GDO::table('GWF_NewsTranslation')->selectAll('newst_langid, newst_title, newst_message', "newst_newsid={$id}", '', NULL, -1, -1, GDO::ARRAY_A)))
+			{
+				return false;
+			}
+		}
+
+		$first = true;
+		foreach ($this->translations as $data)
+		{
+			$langid = $data['newst_langid'];
+			if ($first === true)
+			{
 				$first = $data;
 			}
-			if ($langid == $__langid) {
+			if ($langid == $__langid)
+			{
 				return $data;
 			}
 		}
 		
-		if ($first === true) {
+		if ($first === true)
+		{
 			return false;
 		}
 		
@@ -268,7 +280,8 @@ final class GWF_News extends GDO
 	
 	public function getMessage()
 	{
-		if (false === ($translation = $this->getTranslation())) {
+		if (false === ($translation = $this->getTranslation()))
+		{
 			return 'ERR';
 		}
 		return $translation['newst_message'];

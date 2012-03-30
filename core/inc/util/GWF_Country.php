@@ -91,11 +91,11 @@ final class GWF_Country extends GDO
 		return self::displayFlagS2($this->getID(), $this->getVar('country_name'));
 	}
 	
-	public static function displayFlagS2($countryid, $countryname, $pattern='<img src="%s" width="30" height="18" title="%s" alt="%s" />')
+	public static function displayFlagS2($countryid, $countryname, $pattern='<img src="%s" class="flag" title="%s" alt="%s" />')
 	{
-		$path = sprintf('%simg/%s/country/%s',GWF_WEB_ROOT, GWF_ICON_SET, $countryid);
+		$path = sprintf('%simg/%s/country/%d',GWF_WEB_ROOT, GWF_ICON_SET, $countryid);
 		$t = htmlspecialchars($countryname);
-		return sprintf($pattern, $path, $t, $t).PHP_EOL;
+		return sprintf($pattern, $path, $t, $t);
 	}
 	
 	#################
