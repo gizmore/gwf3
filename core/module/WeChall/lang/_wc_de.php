@@ -661,5 +661,9 @@ $lang = array(
 	'btn_hardlink' => 'Verlinken',
 	'goto_chall' => 'Gehe zur %s Challenge',
 	'menu_papers' => 'Artikel',
+	'btn_stats' => 'Spielervergleich',
+	'btn_your_stats' => 'Deine Statistik',
+	'menu_changes' => 'Änderungen',
+	'btn_helpdesk' => 'Hilfecenter',
 );
 ?>

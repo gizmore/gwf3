@@ -658,5 +658,9 @@ $lang = array(
 	'btn_hardlink' => 'Force link',
 	'goto_chall' => 'Go to the %s challenge',
 	'menu_papers' => 'Papers',
+	'btn_stats' => 'Player Comparison',
+	'btn_your_stats' => 'Your Stats',
+	'menu_changes' => 'Changes',
+	'btn_helpdesk' => 'Helpdesk',
 );
 ?>

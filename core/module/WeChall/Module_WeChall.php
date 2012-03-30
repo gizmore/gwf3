@@ -398,7 +398,7 @@ final class Module_WeChall extends GWF_Module
 		$yesterday = date('md', time() - GWF_Time::ONE_DAY);
 		
 		# Output
-		$href = '/index.php?mo=WeChall&me=BirthdayRead';
+		$href = '/index.php?mo=WeChall&amp;me=BirthdayRead';
 		$title = $this->lang('bdnews_title');
 		$text = $this->lang('bdnews_body_init', array($href));
 		$weekdays = GWF_Time::getWeekdaysFromMo();
@@ -465,7 +465,7 @@ final class Module_WeChall extends GWF_Module
 			return '';
 		}
 		
-		$href = '/index.php?mo=WeChall&me=ChallNewsRead';
+		$href = '/index.php?mo=WeChall&amp;me=ChallNewsRead';
 		$title = $this->lang('cnews_title');
 		$text = $this->lang('cnews_body', array($href)).PHP_EOL.PHP_EOL;
 		while (false !== ($row = $db->fetchRow($result)))
@@ -527,7 +527,7 @@ final class Module_WeChall extends GWF_Module
 		$count = 0;
 
 		# Masters
-		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteMaster.php';
+		$this->includeClass('WC_SiteMaster');
 		$mastercount = WC_SiteMaster::countMasters($this->cfgSiteMasterTime());
 		if ($mastercount > 0) {
 //			$count++;

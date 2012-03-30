@@ -253,6 +253,37 @@ final class WC_Challenge extends GDO
 		}
 		return $back;
 	}
+
+	/**
+	 * Display the single vote icon for challenge description pages.
+	 * @return string
+	 */
+	public function displayVoteLink()
+	{
+		if (false === ($user = GWF_Session::getUser()))
+		{
+			return '';
+		}
+		
+		require_once GWF_CORE_PATH.'module/Votes/GWF_VoteScore.php';
+		require_once GWF_CORE_PATH.'module/Votes/GWF_VoteScoreRow.php';
+		
+		if (false === ($votes = $this->getVotesDif()))
+		{
+			return '';
+		}
+		
+		$d = $votes->hasVoted($user) ? 'd' : '';
+		
+		$title = WC_HTML::lang('alt_challvotes');
+		$alt = WC_HTML::lang('btn_vote');
+		$imgurl = GWF_WEB_ROOT."tpl/wc4/ico/vote{$d}.gif";
+		
+		return
+			sprintf('&nbsp;<a href="%s"><img title="%s" alt="%s" src="%s" /></a>&nbsp;<span title="diffi">%.01f</span>',
+				$this->hrefVotes(), $title, $alt, $imgurl, $votes->getVar('vs_avg')
+			);
+	}
 	
 	public function getEditHREF()
 	{
@@ -885,7 +916,7 @@ final class WC_Challenge extends GDO
 		$div = '&nbsp;|&nbsp;'.PHP_EOL; // divider space
 		
 		echo '<div class="chall_head box box_c">'.PHP_EOL;
-		echo '<span>'.$this->displayBoardLinks(true, $isSolved).'</span>'.PHP_EOL.$div;
+		echo '<span>'.$this->displayBoardLinks(true, $isSolved).$this->displayVoteLink().'</span>'.PHP_EOL.$div;
 		echo '<span>'.WC_HTML::lang('score').': '.$this->getVar('chall_score').'</span>'.PHP_EOL.$div;
 		echo '<span>'.GWF_HTML::anchor($this->hrefSolvers(), WC_HTML::lang('chall_solvecount', array($this->getVar('chall_solvecount')))).'</span>'.PHP_EOL.$div;
 		echo '<span>'.$this->getVar('chall_views').' '.WC_HTML::lang('views').'</span>'.PHP_EOL.$div;
