@@ -1,4 +1,5 @@
 <thead>
+{$raw}
 <tr>
 {foreach $headers as $head}
 	<th class="nowrap">

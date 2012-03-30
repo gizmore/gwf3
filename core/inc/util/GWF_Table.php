@@ -48,11 +48,6 @@ final class GWF_Table
 		$back = '<thead>'.PHP_EOL;
 		$back .= $raw;
 		
-//		if ($raw !== '')
-//		{
-//			$back .= sprintf('<tr><th colspan="%d">%s</th></tr>', count($headers), $raw).PHP_EOL;
-//		}
-		
 		$back .= '<tr>'.PHP_EOL;
 		foreach ($headers as $h)
 		{

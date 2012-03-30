@@ -12,7 +12,7 @@ foreach ($tVars['data'] as $key => $data)
 	$text = '';
 	if (!in_array($data[0], $no_head, true))
 	{
-		$text = isset($data[3]) ? $data[3] : '';
+		$text = isset($data[2]) ? $data[2] : '';
 	}
 	printf('<th>%s</th>', $text);
 }
@@ -32,6 +32,7 @@ foreach ($tVars['data'] as $key => $data)
 			break;
 		case GWF_Form::INT:
 		case GWF_Form::STRING:
+		case GWF_Form::STRING_NO_CHECK:
 			printf('<input type="text" name="%s" value="%s" />'.PHP_EOL, $key, $data[1]);
 			break;
 		case GWF_Form::PASSWORD:
