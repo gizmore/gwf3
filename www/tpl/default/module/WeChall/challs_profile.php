@@ -16,10 +16,9 @@ $is_admin = GWF_User::isStaffS();
 if ($is_admin) {
 	$headers[] = array($tLang->lang('th_csolve_time_taken'), 'csolve_time_taken');
 }
-echo '<a name="wc_profile_challenges"></a>'.PHP_EOL;
-echo '<table class="wc_chall_table">'.PHP_EOL;
+echo '<table class="wc_chall_table" id="wc_profile_challenges">'.PHP_EOL;
 $raw = '<tr><th colspan="10">'.$tVars['table_title'].'</th></tr>';
-echo GWF_Table::displayHeaders1($headers, $tVars['sort_url'], '', '', 'pcby', 'pcdir');
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url'], '', '', 'pcby', 'pcdir', $raw);
 
 $chall = new WC_Challenge(false);
 

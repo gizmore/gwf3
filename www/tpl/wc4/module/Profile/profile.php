@@ -185,11 +185,11 @@ require_once GWF_CORE_PATH.'module/WeChall/WC_HistoryUser2.php';
 if ($u->getLevel() > 0)
 {
 	echo wcProfileLastActivity($u, 10, $priv);
-	echo '<div class="cb"></div>'.PHP_EOL;
-	echo '<div>';
+// 	echo '<div class="cb"></div>'.PHP_EOL;
+	echo '<section class="profile_graphs">';
 	echo wcProfileGraphRank($u);
 	echo wcProfileGraphScore($u);
-	echo '</div>';
+	echo '</section>';
 }
 else {
 	echo '<div class="cb"></div>'.PHP_EOL;
@@ -216,9 +216,12 @@ if (WC_Challenge::getScoreForUser($u) > 0)
 	$method instanceof WeChall_ChallsProfile;
 	echo $method->templateChalls($u);
 	# Created By
-	$method = $wechall->getMethod('Challs');
-	$method instanceof WeChall_Challs;
-	echo $method->templateChalls(false, $u->getID(), '', '', '', false, false);
+	if ($u->getID() !== '1') # no gizmore
+	{
+		$method = $wechall->getMethod('Challs');
+		$method instanceof WeChall_Challs;
+		echo $method->templateChalls(false, $u->getID(), '', '', '', false, false);
+	}
 }
 
 # Guestbook

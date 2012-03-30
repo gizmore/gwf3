@@ -10,7 +10,7 @@
 			<h3>{$item->displayTitle()}</h3>
 			<div class="cb"></div>
 		</div>
-		<div class="gwf_newsbox_message">{$item->displayMessage()}</div>
+		<article class="gwf_newsbox_message">{$item->displayMessage()}</article>
 	</div>
 	{/foreach}
 </div>

@@ -24,15 +24,13 @@ if ($tVars['page'] === 1) {
 foreach ($tVars['news'] as $news)
 {
 ?>
-<div class="gwf_newsbox_item">
-	<div><a name="newsid_<?php echo $news['news_id']; ?>"></a></div>
-	
+<div class="gwf_newsbox_item" id="newsid_<?php echo $news['news_id']; ?>">
 	<div class="gwf_newsbox_title">
 		<div class="fr">
-			<div class="gwf_newsbox_date gwf_date"><?php echo GWF_Time::displayDate($news['news_date']); ?></div>
+			<div class="gwf_newsbox_date"><?php echo GWF_Time::displayDate($news['news_date']); ?></div>
 			<div class="gwf_newsbox_author"><?php echo GWF_HTML::anchor(GWF_WEB_ROOT.'profile/'.$news['user_name'], $news['user_name']); ?></div>
 		</div>
-		<h3><?php echo GWF_HTML::display($news['newst_title']); ?></h3>
+		<h3><?php echo htmlspecialchars($news['newst_title']); ?></h3>
 		<div class="cb"></div>
 	</div>
 
@@ -49,14 +47,14 @@ foreach ($tVars['news'] as $news)
 //			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
 //			$more .= '<br/>'.$c->displayTopComments();
 //			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
-			$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.htmlspecialchars($news['newst_title']).'-page-1.html');
+			$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.Common::urlencodeSEO($news['newst_title']).'-page-1.html');
 //			$more .= '<br/>'.$c->displayTopComments();
 //			$more .= '<br/>'.$c->displayReplyForm();
 		}
 	} 
 	?>
 
-	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']).$more; ?></div>
+	<article class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']).$more; ?></article>
 	
 	<?php
 //	$tid = intval($t['newst_threadid']);

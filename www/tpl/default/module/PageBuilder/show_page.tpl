@@ -1,48 +1,50 @@
-<div class="GWF_PB_head">
+<section class="GWF_PB_page">
+
+<header class="GWF_PB_head">
 	<div class="fl">{$title}</div>
-	<div class="fr">{$lang->lang('created_on')}: {$created}</div>
+	<div class="fr">{$lang->lang('created_on')}: <span class="gwf_date">{$created}</span></div>
 	<div class="cb"></div>
-</div>
-<hr/>
+</header>
 
-<div class="GWF_PB_content">
+<article class="GWF_PB_content">
 {$content}
-</div>
+</article>
 
-<hr/>
-
-<div class="GWF_PB_foot">
+<footer class="GWF_PB_foot">
 	<div class="fl">
 {if $page->isOptionEnabled(GWF_Page::SHOW_AUTHOR)}{$lang->lang('author')}: <a href="{$root}profile/{$author}">{$author}</a>, {/if}
 	{$lang->lang('page_views')}: {$page_views}
 	</div>
 	<div class="fr">
-{if $author === $user->displayUsername()}
+{if $edit_permission}
   <a class="gwf_button " href="index.php?mo=PageBuilder&me=Edit&pageid={$page->getID()}" title="Edit">
     <span class="gwf_btn_edit"></span>
   </a>
 {/if}
-		{if $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED)}{$lang->lang('modified_on')}: {$modified}{/if}
+	{if $page->isOptionEnabled(GWF_Page::SHOW_MODIFIED)}{$lang->lang('modified_on')}: {$modified}{/if}
 	</div>
 	<div class="cb"></div>
+
 {if $page->isOptionEnabled(GWF_Page::SHOW_TRANS)}
-{if $translations == NULL}	
-{elseif $translations != array()}
-	<div>{$lang->lang('translations')}: {$translations}</div>
-{elseif $translations == array()}
-{$lang->lang('msg_no_trans')}
+{if $trans_string == ''}	
+	<div>{$lang->lang('msg_no_trans')}</div>
+{else}
+	<div>{$lang->lang('translations')}: {$trans_string}</div>
 {/if}
 {/if}
+
 {if $page->isOptionEnabled(GWF_Page::SHOW_SIMILAR)}
 	<div>{$lang->lang('similar_pages')}: 
 {foreach $similar as $sim}
 {/foreach}
 	</div>
 {/if}
-</div>
+</footer>
+
+</section>
 
 {if $page->isOptionEnabled(GWF_Page::COMMENTS)}
-<hr/>
+<section class="GWF_PB_Comments">
 {$pagemenu}
 
 {$comments}
@@ -50,4 +52,5 @@
 {$pagemenu}
 
 {$form_reply}
+</section>
 {/if}

@@ -3,7 +3,8 @@
 $is_staff = $tVars['may_add'];
 $id = 1;
 
-if ($tVars['can_sign']) {
+if ($tVars['can_sign'])
+{
 	echo GWF_Button::wrap(GWF_Button::generic($tLang->lang('btn_sign'), $tVars['href_sign_news']));
 }
 
@@ -15,9 +16,7 @@ foreach ($tVars['news'] as $news)
 if($news['newst_message'] !== NULL)
 {
 ?>
-<div class="gwf_newsbox_item">
-	<div><a name="newsid_<?php echo $news['news_id']; ?>"></a></div>
-	
+<div class="gwf_newsbox_item" id="newsid_<?php echo $news['news_id']; ?>">
 	<div class="gwf_newsbox_title">
 		<div class="fr">
 			<div class="gwf_newsbox_date gwf_date"><?php echo GWF_Time::displayDate($news['news_date']); ?></div>
@@ -26,9 +25,7 @@ if($news['newst_message'] !== NULL)
 		<h3><?php echo GWF_HTML::display($news['newst_title']); ?></h3>
 		<div class="cb"></div>
 	</div>
-
 	<?php #if ($is_staff) { echo '<div class="gwf_newsbox_translate">'.$news->getTranslateSelect().'</div>'; } ?>
-
 	<?php
 	$more = '';
 	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true, true)))
@@ -48,7 +45,7 @@ if($news['newst_message'] !== NULL)
 	} 
 	?>
 
-	<div class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']) . $more; ?></div>
+	<article class="gwf_newsbox_message"><?php echo GWF_Message::display($news['newst_message']) . $more; ?></article>
 	
 	<?php
 //	$tid = intval($t['newst_threadid']);

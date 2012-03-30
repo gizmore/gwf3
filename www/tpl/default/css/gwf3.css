@@ -168,7 +168,7 @@ textarea {
 }
 
 /** BBCode Spoiler **/
-.gwf_spoiler {
+.gwf_bb_spoiler {
 	display: none;
 }
 
@@ -329,4 +329,9 @@ div.gwf_messages li {
 	font-size: 14px;
 	text-align: left;
 	font-family: monospace;
+}
+
+img.flag {
+	width: 30px;
+	height: 18px;
 }

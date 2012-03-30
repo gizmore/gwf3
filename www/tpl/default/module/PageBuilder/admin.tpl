@@ -2,8 +2,9 @@
 
 <div class="gwf_buttons gwf_buttons_outer">
 {button url=$href_published text=$lang->lang('btn_show_published') title=$lang->lang('btn_show_published')}
-{button url=$href_revisions text=$lang->lang('btn_show_revisions') title=$lang->lang('btn_show_revisions')}
 {button url=$href_disableds text=$lang->lang('btn_show_disableds') title=$lang->lang('btn_show_disableds')}
+{button url=$href_locked text=$lang->lang('btn_show_locked') title=$lang->lang('btn_show_locked')}
+{button url=$href_revisions text=$lang->lang('btn_show_revisions') title=$lang->lang('btn_show_revisions')}
 </div>
 
 {GWF_Table::start()}

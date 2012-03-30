@@ -85,7 +85,7 @@ function wcProfileLastActivity(GWF_User $user, $ipp, $priv=false)
 	$entries = $uh->selectObjects('*', "userhist_uid=$uid", 'userhist_date DESC', $ipp);
 //	$entries = array_reverse($entries);
 	$back = '';
-	$back .= '<table class="fl">';
+	$back .= '<table class="cl">';
 	$href_txt_history = GWF_WEB_ROOT.'history/for/'.$user->urlencode2('user_name');
 	$anchor = GWF_HTML::anchor($href_txt_history, WC_HTML::lang('th_last_activites', array($user->displayUsername())));
 	$back .= sprintf('<thead><tr><th colspan="2">%s</th></tr></thead>', $anchor);
@@ -120,7 +120,8 @@ function wcProfileGraph(GWF_User $user, $type)
 		$alt = WC_HTML::lang('alt_graph_'.$type, array($user->displayUsername()));
 		return sprintf('<img src="%s" alt="%s" title="%s" />', $href, $alt, $alt);
 	}
-	else {
+	else
+	{
 		$href = GWF_WEB_ROOT.'graph/wc_'.$type.'.'.$user->urlencode('user_name').'.vs.'.$tu->urlencode('user_name').'.png';
 		$alt = WC_HTML::lang('alt_graph_'.$type.'_vs', array($user->displayUsername(), $tu->displayUsername()));
 		return sprintf('<img src="%s" alt="%s" title="%s" />', $href, $alt, $alt);

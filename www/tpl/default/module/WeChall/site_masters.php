@@ -1,12 +1,9 @@
-<div class="gwf_buttons_outer">
-<div class="gwf_buttons">
+<div class="gwf_buttons_outer gwf_buttons">
 <?php
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters_old'), GWF_WEB_ROOT.'old_site_masters', 'generic', '', $tVars['old']===true);
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters'), GWF_WEB_ROOT.'site_masters', 'generic', '', $tVars['old']===false);
 ?>
 </div>
-</div>
-
 <?php
 $headers = array(
 	array('', 'user_countryid'),
@@ -46,8 +43,7 @@ foreach ($tVars['masters'] as $master)
 	}
 	echo GWF_Table::rowEnd();
 }
-?>
-</table>
-<?php
+echo GWF_Table::end();
+
 echo $tVars['page_menu'];
 ?>

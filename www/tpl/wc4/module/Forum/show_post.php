@@ -20,10 +20,9 @@
 	
 #echo GWF_Table::rowStartB();
 ?>
-<div class="gwf_post">
-	<a name="post<?php echo $post->getID(); ?>"></a>
+<div class="gwf_post" id="post<?php echo $post->getID(); ?>">
 
-	<div class="gwf_post_uinfo gwf_<?php echo $trd?'odd':'even'; ?>">
+	<div class="gwf_post_uinfo gwf_tr_<?php echo $trd; ?>">
 		<?php echo GWF_HTML::div('<span>'.$user->displayCountryFlag().$user->displayProfileLink().'</span>'); ?>
 		<?php if (!$user->isOptionEnabled(0x10000000)) { ?>
 		<?php echo GWF_HTML::div(WC_HTML::lang('th_rank2').':&nbsp;'. WC_RegAt::calcExactRank($user)); ?>
@@ -74,7 +73,7 @@ if ($actions) {
 //	}
 }
 ?>
-	<div class="gwf_post_body gwf_<?php echo $trd?'odd':'even'; ?>">
+	<div class="gwf_post_body gwf_tr_<?php echo $trd; ?>">
 		<div class="gwf_post_head">
 			<div>
 				<span class="ib">

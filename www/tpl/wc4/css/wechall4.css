@@ -509,7 +509,7 @@ h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5
 	width: 100%;
 }
 
-.gwf_post_uinfo, .gwf_post_body, .gwf_quote, .gwf_code {
+.gwf_post_uinfo, .gwf_post_body, .gwf_bb_quote, .gwf_bb_code {
 	border: 1px solid #447;
 }
 
@@ -617,7 +617,7 @@ h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5
 	max-height: 112px;
 }
 
-.gwf_quote, .gwf_code {
+.gwf_bb_quote, .gwf_bb_code {
 	margin: 10px 10px 10px 20px;
 	background: #fff;
 	padding: 10px 10px 10px 20px;
@@ -627,25 +627,25 @@ h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5
 	overflow: auto;
 }
 
-.gwf_code pre, .gwf_code pre span, pre, pre a {
+.gwf_bb_code pre, .gwf_bb_code pre span, pre, pre a {
 	font-family: monospace;
 	white-space: pre;
 }
 
-.gwf_quote blockquote div + div {
-	padding-left: 10px;
-}
+/* .gwf_bb_quote blockquote div + div { */
+/* 	padding-left: 10px; */
+/* } */
 
-.gwf_quote span {
+.gwf_bb_quote span {
 	padding-left: 20px;
 	background: url(../../../img/default/comment.png) no-repeat #fff center left;
 }
 
-.gwf_quote span + span {
+.gwf_bb_quote span + span {
 	background: none;
 }
 
-.gwf_code span {
+.gwf_bb_code span {
 	padding: 0px;
 }
 
@@ -795,7 +795,7 @@ input[type="submit"]:HOVER {
 }
 
 /** FIX 2 **/
-.gwf_code span {
+.gwf_bb_code span {
 	background: none;
 }
 
@@ -807,11 +807,11 @@ input, select {
 }
 
 /** GeSHi fix **/
-.gwf_code table {
+.gwf_bb_code table {
 	border: none;
 }
 
-.gwf_code pre {
+.gwf_bb_code pre {
 	margin-right: 10px!important;
 }
 
@@ -841,4 +841,34 @@ input, select {
 
 .gwf3_formY table {
 	min-width: 400px;
+}
+
+
+td img.flag {
+	width: 30px;
+	height: 18px;
+	margin: 1px 1px;
+}
+
+.profile_logout {
+ 	padding: 0px!important;
+}
+
+.gwf_bb_quote .gwf_date {
+	float: right;
+}
+
+.profile_graphs {
+	clear: both;
+}
+.profile_graphs img {
+	margin-left: 6px;
+}
+
+.chall_head, .chall_head span {
+	vertical-align:sub;
+}
+
+.chall_head {
+	vertical-align: middle;
 }

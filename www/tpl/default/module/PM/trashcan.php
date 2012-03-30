@@ -11,7 +11,7 @@ $headers = array(
 );
 $data = array();
 $uid = GWF_Session::getUserID();
-echo sprintf('<form id="gwf_pm_form" method="post" action="%s">', $tVars['form_action']);
+echo sprintf('<form id="gwf_pm_form" method="post" action="%s">', htmlspecialchars($tVars['form_action']));
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 foreach ($tVars['pms'] as $pm)

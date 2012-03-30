@@ -10,11 +10,11 @@ $may_edit = $p->mayEdit($user);
 $reveal = $p->canSeeOutcome($user);
 $voterow = $user === false ? GWF_VoteMultiRow::getVoteRowGuest($pid, GWF_IP6::getIP(GWF_IP_QUICK)) : GWF_VoteMultiRow::getVoteRowUser($pid, $user->getID());
 ?>
-<form method="post" action="<?php echo $tVars['form_action']; ?>">
+<form method="post" action="<?php echo htmlspecialchars($tVars['form_action']); ?>">
 <table>
-<tr><th colspan="4"><?php echo $p->display('vm_title'); ?></th></tr>
+<thead><tr><th colspan="4"><?php echo $p->display('vm_title'); ?></th></tr></thead>
 <tr><td colspan="4"><span id="vm_<?php echo $pid; ?>"><?php echo $reveal ? $total : '????'; ?></span>&nbsp;<?php echo $tLang->lang('votes'); ?></td></tr>
-<tr><td><input type="hidden" name="vmid" value="<?php echo $pid; ?>" /></td></tr>
+<tr><td colspan="4"><input type="hidden" name="vmid" value="<?php echo $pid; ?>" /></td></tr>
 <?php
 $i = 1;
 $lang_votes = '&nbsp;'.$tLang->lang('voted');

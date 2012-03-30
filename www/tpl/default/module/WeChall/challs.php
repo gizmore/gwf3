@@ -32,13 +32,10 @@ $headers = array(
 	array($tLang->lang('th_edu'), 'chall_edu'),
 	array($tLang->lang('th_fun'), 'chall_fun'),
 	array($tLang->lang('th_forum')),
-
 );
 echo '<table class="wc_chall_table">';
-echo '<thead>'.PHP_EOL;
 $raw = '<tr><th colspan="10">'.$tVars['table_title'].'</th></tr>';
-echo GWF_Table::displayHeaders2($headers, $tVars['sort_url']);#, $raw);
-echo '</thead>'.PHP_EOL;
+echo GWF_Table::displayHeaders2($headers, $tVars['sort_url'], '', '', '', '', $raw);
 $is_admin = GWF_User::isAdminS();
 
 $icon_vote = GWF_WEB_ROOT.'tpl/wc4/ico/vote.gif';

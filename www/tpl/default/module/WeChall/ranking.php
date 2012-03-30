@@ -30,9 +30,9 @@ $samescore = 0;
 echo $tVars['pagemenu'];
 
 echo '<table>'.PHP_EOL;
-echo '<thead>'.PHP_EOL;
+// echo '<thead>'.PHP_EOL;
 echo GWF_Table::displayHeaders2($headers);
-echo '</thead>'.PHP_EOL;
+// echo '</thead>'.PHP_EOL;
 foreach ($tVars['userdata'] as $user)
 {
 	$user instanceof GWF_User;
@@ -44,8 +44,8 @@ foreach ($tVars['userdata'] as $user)
 	}
 	
 	$style = $samerank === $highlight_rank ? WC_HTML::styleSelected() : '';
-	echo GWF_Table::rowStart(true, '', '', $style);
-	echo sprintf('<td><a name="rank_%s">%s</a></td>', $rank, $samerank).PHP_EOL;
+	echo GWF_Table::rowStart(true, '', 'rank_'.$rank, $style);
+	echo sprintf('<td>%s</td>', $samerank).PHP_EOL;
 	echo sprintf('<td>%s</td>', $user->displayCountryFlag()).PHP_EOL;
 	echo sprintf('<td>%s</td>', $user->displayProfileLink()).PHP_EOL;
 	echo sprintf('<td class="gwf_num">%s</td>', $user->getVar('nlinks'));

@@ -44,10 +44,13 @@ foreach ($tVars['links'] as $link)
 			$vsid = $vote->getVar('vs_id');
 			$votecount = $vote->getVar('vs_count');
 			$voteperc = $vote->getAvgPercent();
+			$ida = ' id="gwf_vsba_'.$vsid.'"';
+			$idc = ' id="gwf_vsbc_'.$vsid.'"';
 		} else {
 			$vsid = 0;
 			$votecount = 0;
 			$voteperc = 50;
+			$ida = $idc = '';
 		}
 //	}
 	
@@ -59,14 +62,15 @@ foreach ($tVars['links'] as $link)
 		echo '<td colspan="2" class="ri"><em>['.$perm_text.']</em></td>';
 		echo '<td class="gwf_num">'.$link->getVar('link_favcount').'</td>';
 		echo '<td class="gwf_num">'.$link->getVar('link_clicks').'</td>';
-		echo sprintf('<td class="gwf_num"><span id="gwf_vsbc_%s">%s</span></td>', $vsid, $votecount);
-		echo sprintf('<td class="gwf_num"><span id="gwf_vsba_%s">%.02f%%</span></td>', $vsid, $voteperc);
-		if ($wv) {
+		echo sprintf('<td class="gwf_num"><span%s>%s</span></td>', $idc, $votecount);
+		echo sprintf('<td class="gwf_num"><span%s>%.02f%%</span></td>', $ida, $voteperc);
+		if ($wv)
+		{
 			echo '<td></td>';
 		}
-		if ($user !== false) {
-			echo '<td></td>';
-			echo '<td></td>';
+		if ( ($wv) && ($user !== false) )
+		{
+			echo '<td></td><td></td>';
 		}
 	}
 	else
@@ -81,21 +85,26 @@ foreach ($tVars['links'] as $link)
 		
 		if ($wv)
 		{
-			echo sprintf('<td class="gwf_num"><span id="gwf_vsbc_%s">%s</span></td>', $vsid, $votecount);
-			echo sprintf('<td class="gwf_num"><span id="gwf_vsba_%s">%.02f%%</span></td>', $vsid, $voteperc);
+			echo sprintf('<td class="gwf_num"><span%s>%s</span></td>', $idc, $votecount);
+			echo sprintf('<td class="gwf_num"><span%s>%.02f%%</span></td>', $ida, $voteperc);
 			echo '<td class="nowrap">'.$vote->displayButtons().'</td>';
 		}
 		else
 		{
-			echo sprintf('<td class="gwf_num"><span id="gwf_vsbc_%s">%s</span></td>', $vsid, $votecount);
-			echo sprintf('<td class="gwf_num"><span id="gwf_vsba_%s">%.02f%%</span></td>', $vsid, $voteperc);
+			echo sprintf('<td class="gwf_num"><span%s>%s</span></td>', $idc, $votecount);
+			echo sprintf('<td class="gwf_num"><span%s>%.02f%%</span></td>', $ida, $voteperc);
 //			echo '<td class="gwf_num">0</td>';
 //			echo '<td class="gwf_num">50.00%</td>';
 		}
 		
-		if ($user !== false && $wv) {
+		if ($user !== false && $wv)
+		{
 			echo sprintf('<td>%s</td>', $link->displayFavButton($t_fav));
 			echo sprintf('<td>%s</td>', $link->displayUnFavButton($t_unfav));
+		}
+		else
+		{
+// 			echo '<td></td><td></td>';
 		}
 	}
 		
