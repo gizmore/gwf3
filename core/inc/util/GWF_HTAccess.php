@@ -45,9 +45,19 @@ final class GWF_HTAccess
 			PHP_EOL.
 			self::getLangRewrites().PHP_EOL.
 			PHP_EOL;
-			
 	}
-	
+
+	public static function getPostHTAccess()
+	{
+		return
+			PHP_EOL.
+			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
+			'RewriteRule ^(.*)/(.*)(?:/?|/\?(.*))$ index.php?mo=$1&me=$2&$3 [L,QSA]'.
+#			'RewriteRule ^(.*)/(.*)/?$ index.php?mo=$1&me=$2 [L,QSA]'.
+			PHP_EOL;
+	}
+
 	private static function getLangRewrites()
 	{
 		$back  = '#################'.PHP_EOL;
@@ -73,7 +83,7 @@ final class GWF_HTAccess
 		}
 		return self::protectB(GWF_WWW_PATH.'img' ,$content);
 	}
-	
+
 	###############
 	### Protect ###
 	###############
@@ -87,8 +97,8 @@ final class GWF_HTAccess
 		$content = 'deny from all'.PHP_EOL;
 		return self::protectB($dir, $content);
 	}
-	
-	
+
+
 	/**
 	 * Deny access to a directory via .htaccess and a fake 404 response.
 	 * @param string $dir
@@ -99,7 +109,7 @@ final class GWF_HTAccess
 		$content = 'RewriteEngine On'.PHP_EOL.'RewriteRule .* /index.php?mo=GWF&me=ShowError&code=404'.PHP_EOL;
 		return self::protectB($dir, $content);
 	}
-	
+
 	/**
 	 * HTA Writer.
 	 * @param string $dir

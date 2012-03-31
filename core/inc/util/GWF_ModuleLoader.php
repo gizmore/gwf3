@@ -23,7 +23,7 @@ final class GWF_ModuleLoader
 	public static function sort_module_priority_DESC($a, $b) { return $b->getPriority() - $a->getPriority(); }
 	public static function sort_module_name_ASC($a, $b) { return strcasecmp($a->getName(), $b->getName()); }
 	public static function sort_module_name_DESC($a, $b) { return strcasecmp($b->getName(), $a->getName()); }
-	
+
 	############
 	### Vars ###
 	############
@@ -31,7 +31,7 @@ final class GWF_ModuleLoader
 	{
 		return GDO::table('GWF_ModuleVar')->selectAll('mv_key, mv_val, mv_value, mv_type, mv_min, mv_max', 'mv_mid='.intval($module_id));
 	}
-	
+
 	public static function saveModuleVar(GWF_Module $module, $key, $value)
 	{
 		if (false === ($mv = GDO::table('GWF_ModuleVar')->getRow($module->getID(), $key))) {
@@ -45,13 +45,13 @@ final class GWF_ModuleLoader
 			'mv_value' => $value,
 		));
 	}
-	
+
 	public static function getVarValueMV($value, GWF_ModuleVar $mv)
 	{
 		return self::getVarValue($value, $mv->getVar('mv_type'), $mv->getVar('mv_min'), $mv->getVar('mv_max'), $exceed);
 	}
-	
-	
+
+
 	###############
 	### Load FS ###
 	###############
@@ -84,7 +84,7 @@ final class GWF_ModuleLoader
 		}
 		return GWF_Module::$MODULES;
 	}
-	
+
 	public static function loadModuleFS($name)
 	{
 		if (isset(GWF_Module::$MODULES[$name])) {
@@ -132,7 +132,7 @@ final class GWF_ModuleLoader
 		}
 		return $module;
 	}
-	
+
 	###############
 	### Install ###
 	###############
@@ -145,12 +145,12 @@ final class GWF_ModuleLoader
 			self::installModuleB($module, $dropTables).
 			$module->onInstall($dropTables);
 	}
-	
+
 	private static function installModuleClasses(GWF_Module $module, $dropTables=false)
 	{
 		return self::installModuleClassesB($module, $module->getClasses(), $dropTables);
 	}
-	
+
 	public static function installModuleClassesB(GWF_Module $module, array $classnames, $dropTables=false)
 	{
 		$name = $module->getName();
@@ -168,7 +168,7 @@ final class GWF_ModuleLoader
 		}
 		return $back;
 	}
-	
+
 	private static function installModuleB(GWF_Module $module, $dropTables=false)
 	{
 		
@@ -186,7 +186,7 @@ final class GWF_ModuleLoader
 			return self::upgradeModule($module, $dropTables);
 		}
 	}
-	
+
 	private static function installModuleC(GWF_Module $module, $dropTables=false)
 	{
 		$module->setVar('module_version', $module->getVersionFS());
@@ -199,7 +199,7 @@ final class GWF_ModuleLoader
 //		}
 		return '';
 	}
-	
+
 	private static function upgradeModule(GWF_Module $module, $dropTables=false)
 	{
 		$back = '';
@@ -217,7 +217,7 @@ final class GWF_ModuleLoader
 		
 		return $back;
 	}
-	
+
 	private static function upgradeModuleStep(GWF_Module $module, $version)
 	{
 		GWF_Log::logInstall(sprintf('Upgrading module %s to v%.02f.', $module->getName(), $version));
@@ -257,7 +257,7 @@ final class GWF_ModuleLoader
 		
 		return '';
 	}
-	
+
 	/**
 	 * Install modulevars for a module. $vars is an array of array($default_value, $type, $min, $max).
 	 * @param GWF_Module $module
@@ -306,7 +306,7 @@ final class GWF_ModuleLoader
 		}
 		return $back;
 	}
-	
+
 	public static function removeModuleVar(GWF_Module $module, $key)
 	{
 		$mid = $module->getID();
@@ -314,7 +314,7 @@ final class GWF_ModuleLoader
 		$var_t = GDO::table('GWF_ModuleVar');
 		return $var_t->deleteWhere("mv_mid={$mid} AND mv_key='{$ekey}'");
 	}
-	
+
 	public static function getVarValue($value, $type, $min, $max, &$exceed=0)
 	{
 		switch ($type)
@@ -350,7 +350,7 @@ final class GWF_ModuleLoader
 				return false;
 		}
 	}
-	
+
 	private static function getBoolValue($value)
 	{
 // 		if (is_numeric($value))
@@ -371,7 +371,7 @@ final class GWF_ModuleLoader
 // 			return false;
 // 		}
 	}
-	
+
 	#############################
 	### Write HT Config files ###
 	#############################
@@ -385,7 +385,7 @@ final class GWF_ModuleLoader
 		}
 		return true;
 	}
-	
+
 	public static function reinstallHTAccess()
 	{
 		return self::installHTAccess(self::loadModulesFS());
@@ -424,9 +424,10 @@ final class GWF_ModuleLoader
 			}
 			$hta .= PHP_EOL;
 		}
+		$hta .= GWF_HTAccess::getPostHTAccess();
 		return file_put_contents(GWF_WWW_PATH.'.htaccess', $hta);
 	}
-	
+
 	public static function getAllMethods(GWF_Module $module)
 	{
 		$back = array();
@@ -463,15 +464,15 @@ final class GWF_ModuleLoader
 		}
 		return $back;
 	}
-	
+
 	### 
-	
+
 	public static function sortVarsByType(array &$vars)
 	{
 		uasort($vars, array(__CLASS__, 'sort_vars_type'));
 		return $vars;
 	}
-	
+
 	public static function sort_vars_type($a, $b)
 	{
 		if (0 !== ($back = strcmp($a['mv_type'], $b['mv_type']))) {
@@ -479,17 +480,17 @@ final class GWF_ModuleLoader
 		}
 		return strcmp($a['mv_key'], $b['mv_key']);
 	}
-	
+
 	###
-	
+
 	public static function checkModuleDependencies(GWF_Module $module)
 	{
 		return false;
 		return $error;
 	}
-	
+
 	###
-	
+
 	/**
 	 * Run the cronjob for all modules.
 	 * Stuff for the cron-logfile goes to stdout.
@@ -521,12 +522,12 @@ final class GWF_ModuleLoader
 		GWF_Cronjob::notice('=== Finished GWFv3 cronjob ===');
 		GWF_Cronjob::notice('==============================');
 	}
-	
+
 	private static function cronjobsCore()
 	{
 		self::cronjobsSession();
 	}
-	
+
 	private static function cronjobsSession()
 	{
 		GWF_Cronjob::start('Session');
@@ -542,19 +543,19 @@ final class GWF_ModuleLoader
 		}
 		GWF_Cronjob::end('Session');
 	}
-	
+
 	public static function addColumn(GDO $gdo, $columnname)
 	{
 		$defs = $gdo->getColumnDefcache();
 		$define = $defs[$columnname];
 		return gdo_db()->createColumn($gdo->getTableName(), $columnname, $define);
 	}
-	
+
 	public static function renameColumn(GDO $gdo, $old_columnname, $new_columnname)
 	{
 		return self::changeColumn($gdo, $old_columnname, $new_columnname);
 	}
-	
+
 	public static function changeColumn(GDO $gdo, $old_columnname, $new_columnname)
 	{
 		$defs = $gdo->getColumnDefcache();
