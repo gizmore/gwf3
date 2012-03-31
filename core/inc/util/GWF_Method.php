@@ -24,7 +24,7 @@ abstract class GWF_Method
 	public function isCSRFProtected() { return true; }
 	public function isLoginRequired() { return false; }
 	public function checkDependencies() { return false; }
-	public function getHTAccess() { return ''; }
+	public function getHTAccess() { return $this->getHTAccessMethod(); }
 	public function getMetaKeywords() { return false; }
 	public function getMetaDescription() { return false; }
 	public function getPageTitle() { return false; }
@@ -83,7 +83,7 @@ abstract class GWF_Method
 	/**
 	 * Generate htaccess rule for this method. Simply ^module/method$. 
 	 */
-	public function getHTAccessMethod()
+	public final function getHTAccessMethod()
 	{
 		list($mo, $me) = $this->getMoMe();
 		return sprintf('RewriteRule ^%s/%s/?$ index.php?mo=%s&me=%s', strtolower($mo), strtolower($me), $mo, $me).PHP_EOL;

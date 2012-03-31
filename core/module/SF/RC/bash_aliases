@@ -23,7 +23,7 @@ alias cl='clear; ls'
 alias du='du -kh'
 alias df='df -kThlx tmpfs'
 
-alias e='vim'
+alias e='emacs -nw'
 alias vi='vim'
 alias diff='diff -u'
 alias dch='dch -i --no-auto-nmu'
@@ -46,13 +46,14 @@ alias tree='tree -Csu'
 
 alias rlm='readlink -m'
 alias scr='exec screen -xrr'
-alias topu='top -u "$user"'
+alias topu='top -u "$USER"'
 alias grephist='history | grep'
 alias lesshist='history | less'
 
 alias rootbind='sshfs florianbest.de:/home/spaceone ~/florianbest.de/'
 alias GWFco='svn co https://svn.gwf3.gizmore.org/GWF3'
 alias startlamp='/etc/rc.d/httpd start && /etc/rc.d/mysqld start'
+alias phplf='php -lf'
 
 IP=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }'
 alias ncl="nc -l $IP"
@@ -67,7 +68,7 @@ alias sdmom="net rpc shutdown -t 0 -f -I 192.168.178.23 -U susanne%"
 alias vncmom='rdesktop -g 1275x1000 -k de -u susanne -p "" susanne'
 
 function msgLuke() { # TODO: optimize
-ssh luke@Lukas "DISPLAY=:0.0;export DISPLAY;zenity --info --text $1" && echo DONE;
+  ssh luke@Lukas "export DISPLAY=:0.0;zenity --info --text $1" && echo DONE;
 }
 
 function mkcd () {
@@ -76,8 +77,4 @@ function mkcd () {
 }
 function psgrep () {
   ps aux | grep "$1" | grep -v "grep"
-}
-
-function inj() {
-curl -i --data "inject=Inject&injection=foo') union select $1" 'http://www.wechall.net/challenge/blind_light/index.php' #| tail -n 52
 }

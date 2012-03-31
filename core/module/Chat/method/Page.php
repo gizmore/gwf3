@@ -5,11 +5,6 @@
  */
 final class Chat_Page extends GWF_Method
 {
-	public function getHTAccess()
-	{
-		return $this->getHTAccessMethod();
-	}
-	
 	public function execute()
 	{
 		GWF_ChatOnline::onRequest($this->module);

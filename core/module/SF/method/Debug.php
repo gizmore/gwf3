@@ -1,16 +1,10 @@
 <?php
-
 /**
  * Execute PHP Code for debugging purposes
  * @author spaceone
  */
 final class SF_Debug extends GWF_Method
 {
-	public function getHTAccess()
-	{
-		return $this->getHTAccessMethod();
-	}
-
 	public function getUserGroups() { return 'admin'; }
 
 	public function execute() 
