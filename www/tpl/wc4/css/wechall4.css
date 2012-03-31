@@ -757,6 +757,7 @@ form > .gwf_table > table {
 
 /** Challs **/
 .chall_head {
+	overflow: hidden;
 	height: 24px;
 	line-height: 24px;
 	vertical-align: middle;
