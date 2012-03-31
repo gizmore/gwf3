@@ -978,7 +978,7 @@ abstract class GDO
 	 */
 	public function selectMatrix2D($col1, $col2, $where='', $orderby='', $joins=NULL, $limit=-1, $from=-1, $groupby='')
 	{
-		if (false === ($result = $this->select("{$col1}, {$col1}", $where, $orderby, $joins, $limit, $from, $groupby)))
+		if (false === ($result = $this->select("{$col1}, {$col2}", $where, $orderby, $joins, $limit, $from, $groupby)))
 		{
 			return false;
 		}

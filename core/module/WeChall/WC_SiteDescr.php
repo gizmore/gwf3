@@ -50,7 +50,6 @@ final class WC_SiteDescr extends GDO
 	public static function getDescriptions($siteid)
 	{
 		$siteid = (int)$siteid;
-		return GDO::table(__CLASS__)->selectArrayMap('site_desc_lid', 'site_desc_txt', 'site_desc_sid='.$siteid);
 		return GDO::table(__CLASS__)->selectMatrix2D('site_desc_lid', 'site_desc_txt', 'site_desc_sid='.$siteid);
 	}
 	
