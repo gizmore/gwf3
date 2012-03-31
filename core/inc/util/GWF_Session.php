@@ -258,12 +258,12 @@ final class GWF_Session extends GDO
 	 */
 	public static function commit($store_last_url=true)
 	{
-		$data = array();
-		
-		if (self::$SESSION === NULL)
+		if (!self::haveCookies())
 		{
 			return false;
 		}
+		
+		$data = array();
 		
 		# Save new sess last activity time
 		if (self::$SESSION->getInt('sess_time') < time())
