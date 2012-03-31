@@ -326,7 +326,11 @@ class GWF3
 	 */
 	public static function onStartSession($blocking=true)
 	{
-		if (false === GWF_Session::start($blocking))
+		if (!isset($_COOKIE[GWF_SESS_NAME]))
+		{
+			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/');
+		}
+		elseif (false === GWF_Session::start($blocking))
 		{
 			self::logDie('GWF not installed?!');
 		}

@@ -356,6 +356,12 @@ final class GWF_Session extends GDO
 	public static function getOnlineSessions()
 	{
 		$cut = time() - GWF_ONLINE_TIMEOUT;
+		
+		if (!self::haveCookies())
+		{
+			return self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut}");
+		}
+		
 		$sid = self::$SESSION->getSessID();
 		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut} AND sess_sid!='{$sid}'"));
 	}
