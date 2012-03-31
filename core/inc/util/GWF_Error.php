@@ -30,22 +30,6 @@ final class GWF_Error
 	public static function log_warn($content) { GWF_Log::logWarning(self::log($content)); }
 	public static function log_critical($content) { GWF_Log::logCritical(self::log($content)); }
 
-	/** @deprecated */
-//	public static function displayErrors()
-//	{
-//		$back = '';
-//		$back .= self::display('criticals', 'error.tpl');
-//		$back .= self::display('errors', 'error.tpl');
-//		$back .= self::display('warnings', 'error.tpl');
-//		return $back;
-//	}
-
-	/** @deprecated */
-//	public static function displayMessages()
-//	{
-//		return self::display('messages', 'message.tpl');
-//	}
-
 	/**
 	 * @param string $type criticals|errors|warnings|messages
 	 * @param string $title
@@ -64,22 +48,21 @@ final class GWF_Error
 			self::$_all[$type][$title] = $messages;
 	}
 
-	/** @deprecated */
-//	private static function display($type, $tpl)
-//	{
-//		if (true === empty(self::$_all[$type]))
-//		{
-//			return '';
-//		}
-//		if (true === isset($_GET['ajax']))
-//		{
-//			return self::displayAjax(self::$_all[$type]);
-//		}
-
-//		return GWF_Template::templateMain($tpl, array('messages' => self::$_all[$type]));
-//	}
-
 	public static function displayAll()
+	{
+		$errors = self::getAll();
+		if (GWF_ERRORS_TO_SMARTY)
+		{
+			GWF_Template::addMainTvars(array('errors' => $errors));
+		}
+		elseif(!isset($_GET['ajax']))
+		{
+			GWF_Website::addDefaultOutput($errors);
+			GWF_Template::addMainTvars(array('errors' => ''));
+		}
+	}
+
+	public static function getAll()
 	{
 		foreach (self::$_all as $k => $subject)
 		{

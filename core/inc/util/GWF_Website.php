@@ -224,18 +224,8 @@ final class GWF_Website
 			'head_links' => self::displayLink(),
 		);
 
-		$t = array('errors' => '');
 		# Errors and messages from GWF_Error
-		$errors = GWF_Error::displayAll();
-		if (GWF_ERRORS_TO_SMARTY)
-		{
-			$t['errors'] = $errors;
-		}
-		else
-		{
-			GWF_Website::addDefaultOutput($errors);
-		}
-		GWF_Template::addMainTvars($t);
+		GWF_Error::displayAll();
 
 		return GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE) . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
