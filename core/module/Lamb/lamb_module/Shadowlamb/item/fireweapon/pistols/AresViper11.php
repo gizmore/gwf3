@@ -14,7 +14,7 @@ final class Item_AresViper11 extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 10,
+			'attack' => 15,
 			'min_dmg' => 5,
 			'max_dmg' => 15,
 		);

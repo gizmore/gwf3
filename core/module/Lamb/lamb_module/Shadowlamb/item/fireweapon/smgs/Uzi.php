@@ -14,12 +14,10 @@ final class Item_Uzi extends SR_SMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 16,
+			'attack' => 20,
 			'min_dmg' => 1,
 			'max_dmg' => 15,
 		);
 	}
-	
-	
 }
 ?>

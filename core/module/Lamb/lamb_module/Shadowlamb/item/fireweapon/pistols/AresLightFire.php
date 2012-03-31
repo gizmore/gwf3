@@ -17,7 +17,7 @@ final class Item_AresLightFire extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 5,
+			'attack' => 8,
 			'min_dmg' => 4,
 			'max_dmg' => 8,
 		);

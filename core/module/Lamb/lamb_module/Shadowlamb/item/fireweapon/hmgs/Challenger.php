@@ -14,7 +14,7 @@ final class Item_Challenger extends SR_HMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 26,
+			'attack' => 27,
 			'min_dmg' => 4,
 			'max_dmg' => 25,
 		);

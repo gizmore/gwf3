@@ -14,7 +14,7 @@ final class Item_AresEleminator extends SR_SMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 20,
+			'attack' => 25,
 			'min_dmg' => 6,
 			'max_dmg' => 16,
 		);

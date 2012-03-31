@@ -14,7 +14,7 @@ final class Item_Microgun extends SR_HMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 28,
+			'attack' => 32,
 			'min_dmg' => 2,
 			'max_dmg' => 30,
 		);

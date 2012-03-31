@@ -14,7 +14,7 @@ final class Item_M16 extends SR_HMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 20,
+			'attack' => 26,
 			'min_dmg' => 3,
 			'max_dmg' => 20,
 		);

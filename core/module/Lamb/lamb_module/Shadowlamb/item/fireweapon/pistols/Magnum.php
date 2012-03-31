@@ -14,7 +14,7 @@ final class Item_Magnum extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 14.5,
+			'attack' => 18.5,
 			'min_dmg' => 6.5,
 			'max_dmg' => 19.0,
 		);

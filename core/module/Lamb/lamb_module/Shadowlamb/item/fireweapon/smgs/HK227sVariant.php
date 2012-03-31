@@ -14,7 +14,7 @@ final class Item_HK227sVariant extends SR_SMG
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 18,
+			'attack' => 22,
 			'min_dmg' => 3,
 			'max_dmg' => 16,
 		);

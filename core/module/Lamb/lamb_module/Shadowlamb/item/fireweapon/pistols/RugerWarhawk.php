@@ -14,7 +14,7 @@ final class Item_RugerWarhawk extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 12.5,
+			'attack' => 16.5,
 			'min_dmg' => 5.5,
 			'max_dmg' => 17.0,
 		);

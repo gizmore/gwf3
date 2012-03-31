@@ -14,7 +14,7 @@ final class Item_William911 extends SR_Pistol
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'attack' => 10,
+			'attack' => 13,
 			'min_dmg' => 4,
 			'max_dmg' => 14.5,
 		);
