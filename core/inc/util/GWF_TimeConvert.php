@@ -29,7 +29,7 @@ final class GWF_TimeConvert
 			return 0;
 		}
 		$duration = strtolower($duration);
-		
+
 		$multis = array('s' => 1,'i' => 60,'h' => 3600,'d' => 86400,'w' => 604800,'m' => 2592000,'y' => 31536000);
 		$replace = array(
 			'seconds' => 's', 'second' => 's', 'sec' => 's',
@@ -40,7 +40,7 @@ final class GWF_TimeConvert
 			'months' => 'm', 'month' => 'm', 'mon' => 'm',
 			'years' => 'y', 'year' => 'y',
 		);
-		
+
 		$negative = 1;
 		$duration = strtolower(trim($duration));
 		if ($duration[0] == '-') {
@@ -62,12 +62,12 @@ final class GWF_TimeConvert
 				$d = substr($d, 0, -1);
 			}
 			$d = intval($d);
-			
+
 			$back += $multis[$unit] * $d;
 		}
 		return $negative * $back;
 	}
-	
+
 	################
 	### Duration ###
 	################
@@ -79,7 +79,7 @@ final class GWF_TimeConvert
 		}
 		return self::humanDurationRaw($duration, $nUnits, $units);
 	}
-	
+
 	public static function humanDurationISO($iso, $duration, $nUnits=2)
 	{
 		static $cache = array();
@@ -95,7 +95,7 @@ final class GWF_TimeConvert
 		}
 		return self::humanDurationRaw($duration, $nUnits, $cache[$iso]);
 	}
-	
+
 	public static function humanDurationRaw($duration, $nUnits=2, array $units)
 	{
 		$calced = array();
@@ -109,11 +109,11 @@ final class GWF_TimeConvert
 				break;
 			}
 		}
-		
+
 		if (count($calced) === 0) {
 			return '0'.key($units);
 		}
-		
+
 		$calced = array_reverse($calced, true);
 		$i = 0;
 		foreach ($calced as $key => $value)
@@ -123,10 +123,10 @@ final class GWF_TimeConvert
 				unset($calced[$key]);
 			}
 		}
-		
+
 		return implode(' ', $calced);
 	}
-	
+
 	/**
 	 * Return a human readable duration.
 	 * Example: 666 returns 11 minutes 6 seconds.
@@ -138,12 +138,11 @@ final class GWF_TimeConvert
 	{
 		return self::humanDurationISO(GWF_LangTrans::getBrowserISO(), $duration, $nUnits);
 	}
-	
+
 	public static function isValidDuration($string, $min, $max)
 	{
 		$duration = self::humanToSeconds($string);
 		return $duration >= $min && $duration <= $max;
 	}
-	
+
 }
-?>

@@ -52,7 +52,7 @@ final class GWF_Website
 	public static function getDefaultOutput() { return self::$_output; }
 	public static function displayPageTitle() { return htmlspecialchars(self::$_page_title_pre.self::$_page_title.self::$_page_title_post); }
 	public static function indent(&$str, $num=1) { return str_replace("\n", "\n".  str_repeat("\t", $num), $str); }
-	
+
 	public static function redirect($url) { header('Location: ' . $url); }
 	public static function redirectMeta($url, $seconds) { header(sprintf('refresh: %d; url=%s', $seconds, $url)); }
 	public static function redirectBack()
@@ -106,7 +106,7 @@ final class GWF_Website
 			$media = self::$_media[$media];
 			$media = $media === '' ? '' : ' media="'.$media.'"';
 			$title = $title === '' ? '' : ' title="'.$title.'"';
-			
+
 			$back .= sprintf('<link rel="%s" type="%s" href="%s"%s%s%s', $rel, $type, $href, $media, $title, self::$xhtml);
 		}
 		# embedded CSS (move?)
@@ -199,7 +199,7 @@ final class GWF_Website
 		}
 		return $back.self::displayJavascriptInline();
 	}
-	
+
 	public static function displayJavascriptInline()
 	{
 		$inline_defines = sprintf('var GWF_WEB_ROOT = \'%s\'; var GWF_DOMAIN = \'%s\';'.PHP_EOL, GWF_WEB_ROOT, GWF_DOMAIN);
@@ -229,27 +229,27 @@ final class GWF_Website
 
 		return GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE) . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
 	}
-	
+
 	public static function getHTMLbody_head($tVars=NULL)
 	{
 		return GWF_Template::templateMain('html_body.tpl', $tVars);
 	}
-	
+
 	public static function getHTMLbody_foot($tVars=NULL)
 	{
 		return GWF_Template::templateMain('html_foot.tpl', $tVars);
 	}
-	
+
 	public static function getPagehead()
 	{
 		return self::getHTMLHead() . self::getHTMLbody_head();
 	}
-	
+
 	public static function getHTMLBody($page)
 	{
 		return self::getHTMLbody_head() . self::getDefaultOutput() .  $page . self::getHTMLbody_foot();
 	}
-	
+
 	public static function displayPage($page)
 	{
 		return self::getHTMLHead() . self::getHTMLBody($page) . PHP_EOL.'</html>';

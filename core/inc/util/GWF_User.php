@@ -27,7 +27,7 @@ final class GWF_User extends GDO
 	const EMAIL_TEXT = 0x1000;
 	const EMAIL_GPG = 0x2000;
 	const WEBSPIDER = 0x4000;
-	
+
 	### Gender Bits ###
 	const MALE = 'male';
 	const FEMALE = 'female';
@@ -36,7 +36,7 @@ final class GWF_User extends GDO
 	### Constants
 	const EMAIL_LENGTH = 255;
 	const USERNAME_LENGTH = 32;
-	
+
 	###########
 	### GDO ###
 	###########
@@ -71,7 +71,7 @@ final class GWF_User extends GDO
 	public function getID() { return $this->getVar('user_id'); }
 	public function hasAvatar() { return $this->isOptionEnabled(self::HAS_AVATAR); }
 	public function hasCountry() { return $this->getVar('user_countryid') !== '0'; }
-	
+
 	/**
 	 * Get a user by ID.
 	 * @param int $userid
@@ -92,23 +92,23 @@ final class GWF_User extends GDO
 	 * @return GWF_User
 	 */
 	public static function getByEmail($email) { return self::table(__CLASS__)->selectFirstObject('*', 'user_email=\''.self::escape($email).'\''); }
-	
+
 	############
 	### Lang ###
 	############
-	
+
 	/**
 	 * @return GWF_Language
 	 */
 	public function getLanguage() { return GWF_Language::getByID($this->getVar('user_langid')); }
-	
+
 	/**
 	 * @return GWF_Language
 	 */
 	public function getSecLanguage() { return GWF_Language::getByID($this->getVar('user_langid2')); }
-	
+
 	public function getLangID() { return $this->getVar('user_langid'); }
-	
+
 	###############
 	### Country ###
 	###############
@@ -120,7 +120,7 @@ final class GWF_User extends GDO
 		}
 		return GWF_Country::displayFlagS($cid);
 	}
-	
+
 	###############
 	### Profile ###
 	###############
@@ -155,12 +155,12 @@ final class GWF_User extends GDO
 	public function displayTitle() { return $this->display('user_title'); }
 	public function isOnline() { return $this->isOptionEnabled(self::HIDE_ONLINE) ? false : ($this->getVar('user_lastactivity') + GWF_ONLINE_TIMEOUT) >= time(); }
 	public function getPMHREF() { return sprintf('%spm/send/to/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
-	
+
 	public function displayEMail()
 	{
 		return self::displayEMailS($this->getVar('user_email'));
 	}
-	
+
 	public static function displayEMailS($email)
 	{
 		switch(rand(1,6))
@@ -174,7 +174,7 @@ final class GWF_User extends GDO
 		}
 		return htmlspecialchars(str_replace(array('@', '.'), $r, $email));
 	}
-	
+
 	###################
 	### Permissions ###
 	###################
@@ -194,7 +194,7 @@ final class GWF_User extends GDO
 	public function getLevel() { return $this->getVar('user_level'); }
 	public function hasValidMail() { return $this->isOptionEnabled(self::MAIL_APPROVED); }
 	public function getValidMail() { return $this->hasValidMail() ? $this->getVar('user_email') : ''; }
-	
+
 	#########################
 	### Group Permissions ###
 	#########################
@@ -235,7 +235,7 @@ final class GWF_User extends GDO
 		}
 		return $group->getInt('ug_options');
 	}
-	
+
 	###################
 	### Option BLOB ###
 	###################
@@ -252,11 +252,11 @@ final class GWF_User extends GDO
 		}
 		return unserialize($data);
 	}
-	
+
 	public function saveUserData(array $userdata)
 	{
 		$this->setVar('user_data', $userdata);
 		return $this->saveVar('user_data', serialize($userdata));
 	}
 }
-?>
+

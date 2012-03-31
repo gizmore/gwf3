@@ -19,4 +19,3 @@ final class GWF_StringPermutation extends GWF_Permutation
 		return $back;
 	}
 }
-?>

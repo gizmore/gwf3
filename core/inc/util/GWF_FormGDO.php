@@ -16,7 +16,7 @@ final class GWF_FormGDO extends GWF_Form
 		}
 		return self::dataFromGDOExclusive($module, $gdo, $exclusive);
 	}
-	
+
 	public static function dataFromGDOExclusive(GWF_Module $module, GDO $gdo, array $exclusive)
 	{
 		$data = array();
@@ -31,10 +31,10 @@ final class GWF_FormGDO extends GWF_Form
 			}
 			$data[$c] = $fd;
 		}
-		
+
 		return $data;
 	}
-	
+
 	public static function dataFromGDOInclusive(GWF_Module $module, GDO $gdo, array $inclusive)
 	{
 		$data = array();
@@ -49,17 +49,17 @@ final class GWF_FormGDO extends GWF_Form
 			}
 			$data[$c] = $fd;
 		}
-		
+
 		return $data;
 	}
-	
+
 	private static function getDataFromGDO(GWF_Module $module, GDO $gdo, $c, $d)
 	{
 		$gdo_d = (int) $d[0];
-		
+
 		$ttk = 'tt_'.$c;
 		if ($ttk === ($tt = $module->lang($ttk))) { $tt = ''; }
-		
+
 		# Numbers
 		if (($gdo_d & GDO::TINYINT) === GDO::TINYINT) {
 			return array(self::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 4, '', $tt);
@@ -103,7 +103,7 @@ final class GWF_FormGDO extends GWF_Form
 //		}
 		die(sprintf('UNRECOGNIZED GDO TYPE in %s: %08x', __METHOD__, $gdo_d));
 	}
-	
+
 	##########################
 	### Some default forms ###
 	##########################
@@ -126,7 +126,7 @@ final class GWF_FormGDO extends GWF_Form
 		);
 		return new GWF_Form($caller, $data);
 	}
-	
+
 	public static function getQuickSearchForm(GWF_Module $module, $caller, GDO $gdo, $user, $use_captcha=true)
 	{
 		$data = array(
@@ -162,7 +162,7 @@ final class GWF_FormGDO extends GWF_Form
 			$filtered[$c] = $gdo->getColumnDefine($c);
 		}
 	}
-	
+
 	$data = array();
 	foreach ($filtered as $c => $define)
 	{
@@ -170,6 +170,5 @@ final class GWF_FormGDO extends GWF_Form
 	}
 	return $data;
 	}
-	
+
 }
-?>

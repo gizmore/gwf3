@@ -31,4 +31,3 @@ final class GWF_Random
 		return $key;
 	}
 }
-?>

@@ -24,7 +24,7 @@ final class GWF_PublicKey extends GDO
 			'gpg_options' => array(GDO::UINT, 0),
 		);
 	}
-	
+
 	##############
 	### Static ###
 	##############
@@ -40,7 +40,7 @@ final class GWF_PublicKey extends GDO
 		}
 		return self::grabFingerprint($key);
 	}
-	
+
 	/**
 	 * Return a public key in hex format or false.
 	 * @param string $key
@@ -59,4 +59,3 @@ final class GWF_PublicKey extends GDO
 		return $result['fingerprint'];
 	}
 }
-?>

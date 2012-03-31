@@ -10,7 +10,7 @@ final class GWF_LangMap extends GDO
 			'langmap_lid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
 		);
 	}
-	
+
 	public static function getPrimaryLangID($countryid)
 	{
 		if (0 === ($countryid = (int) $countryid))
@@ -37,4 +37,4 @@ final class GWF_LangMap extends GDO
 		return $result;
 	}
 }
-?>
+

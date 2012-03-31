@@ -8,7 +8,7 @@ final class GWF_AES
 	const IV = 'MyHomeIsMyCastleIamhungrywhereisi'; # <-- 32 chars
 	const MODE = MCRYPT_MODE_CBC;
 	const CIPHER = MCRYPT_RIJNDAEL_256;
-	
+
 	/**
 	 * Encrypt with AES256 using the default IV.
 	 * @param string $data
@@ -18,7 +18,7 @@ final class GWF_AES
 	{
 		return self::encrypt4($data, $key, self::IV);
 	}
-	
+
 	/**
 	 * Encrypt with AES256. Use sha256($iv) as IV. It is recommended to call this with a funny IV over the above.
 	 * @param string $data
@@ -30,8 +30,8 @@ final class GWF_AES
 	{
 		return mcrypt_encrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
 	}
-	
-	
+
+
 	/**
 	 * Decrypt with AES256 using the default IV.
 	 * @param string $data
@@ -41,7 +41,7 @@ final class GWF_AES
 	{
 		return self::decrypt4($data, $key, self::IV);
 	}
-	
+
 	/**
 	 * Decrypt with AES256. Use sha256($iv) as IV.
 	 * @param string $data
@@ -54,4 +54,3 @@ final class GWF_AES
 		return mcrypt_decrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
 	}
 }
-?>

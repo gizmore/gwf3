@@ -11,7 +11,7 @@ final class GWF_Password
 	const HASHLEN = 44; # Total hash length (hash+salt)
 	const ROUNDS = 1; # Number of sha rounds.
 	const TOKEN_LEN = 16; # Length of a generic random token.
-	
+
 	################
 	### Password ###
 	################
@@ -25,7 +25,7 @@ final class GWF_Password
 		$salt = GWF_Random::randomKey(self::SALTLEN); // Generate random salt.
 		return self::hashSHA1(self::SECRET_SALT.$password.$salt.self::SECRET_SALT).$salt; 
 	}
-	
+
 	/**
 	 * Check if a password matches a hash.
 	 * @param string $password
@@ -37,7 +37,7 @@ final class GWF_Password
 		$salt = substr($hash, -self::SALTLEN);
 		return self::hashSHA1(self::SECRET_SALT.$password.$salt.self::SECRET_SALT) === substr($hash, 0, self::SHA1LEN);
 	}
-	
+
 	public static function hashSHA1($string)
 	{
 // 		for ($i = 0; $i < self::ROUNDS; $i++)
@@ -47,7 +47,7 @@ final class GWF_Password
 // 		return $string;
 		return hash('sha1', $string);
 	}
-	
+
 	##############
 	### Tokens ###
 	##############
@@ -55,17 +55,17 @@ final class GWF_Password
 	{
 		return hash('crc32', $string);
 	}
-	
+
 	public static function getToken($data)
 	{
 		return substr(md5($data.self::SECRET_SALT.$data.self::SECRET_SALT), 1, self::TOKEN_LEN);
 	}
-	
+
 	public static function md5($data)
 	{
 		return md5(self::SECRET_SALT.$data.self::SECRET_SALT);
 	}
-	
+
 	###################
 	### ClearMemory ###
 	###################
@@ -81,4 +81,3 @@ final class GWF_Password
 		if (isset($_REQUEST[$key])) { $_REQUEST[$key]=$clr; }
 	}
 }
-?>

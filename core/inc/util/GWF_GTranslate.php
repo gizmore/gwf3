@@ -5,7 +5,7 @@ final class GWF_GTranslate
 	const VERSION = '1.0';
 	const URL_DETECT = 'http://ajax.googleapis.com/ajax/services/language/detect';
 	const URL_TRANSLATE = 'http://ajax.googleapis.com/ajax/services/language/translate';
-	
+
 	public static $LANGUAGES = array(
 		'af','sq','ar','hy','az','eu','be','bg','ca','zh-CN',
 		'hr','cs','da','nl','en','et','tl','fi','fr','gl',
@@ -36,11 +36,11 @@ final class GWF_GTranslate
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		if ($from === 'auto') {
 			$from = '';
 		}
-		
+
 		$keyString = '';
 		if (self::API_KEY !== '') {
 			$keyString = '&key='.urlencode(self::API_KEY);
@@ -48,7 +48,7 @@ final class GWF_GTranslate
 		$postString = sprintf('v=%s%s&q=%s&langpair=%s|%s&userip=%s', self::VERSION, $keyString, urlencode($text), $from, $to, $_SERVER['REMOTE_ADDR']);
 		return self::parseResponse(self::curlRequest($postString, self::URL_TRANSLATE));
 	}
-	
+
 	private static function curlRequest($postString, $url)
 	{
 		$ch = curl_init();
@@ -61,7 +61,7 @@ final class GWF_GTranslate
 		curl_close($ch);
 		return $result;
 	}
-	
+
 	private static function parseResponse($response)
 	{
 		$result = json_decode($response);
@@ -71,7 +71,7 @@ final class GWF_GTranslate
 		}
 		return $result->responseData->translatedText;
 	}
-	
+
 	#######################
 	### Detect Language ###
 	#######################
@@ -84,7 +84,7 @@ final class GWF_GTranslate
 		$url = sprintf('%s?v=%s%s&q=%s&userip=%s', self::URL_DETECT, self::VERSION, $keyString, urlencode($text), $_SERVER['REMOTE_ADDR']);
 		return self::parseResponseDetect(self::curlRequestDetect($url));
 	}
-	
+
 	private static function curlRequestDetect($url)
 	{
 		$ch = curl_init();
@@ -95,7 +95,7 @@ final class GWF_GTranslate
 		curl_close($ch);
 		return $result;
 	}
-	
+
 	private static function parseResponseDetect($response)
 	{
 		$result = json_decode($response);
@@ -104,6 +104,5 @@ final class GWF_GTranslate
 		}
 		return $result->responseData->language;
 	}
-	
+
 }
-?>

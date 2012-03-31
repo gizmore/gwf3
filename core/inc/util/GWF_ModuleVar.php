@@ -19,4 +19,3 @@ final class GWF_ModuleVar extends GDO
 		);
 	}
 }
-?>

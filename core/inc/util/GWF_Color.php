@@ -45,7 +45,7 @@ final class GWF_Color
 		$B2 = round(($B1-$B0) * $perc + $B0);
 		return imagecolorallocate($image, $R2, $G2, $B2);
 	}
-	
+
 	########################
 	### HTML Interpolate ###
 	########################
@@ -72,4 +72,3 @@ final class GWF_Color
 		return sprintf('%02X%02X%02X', $R2, $G2, $B2);
 	}
 }
-?>

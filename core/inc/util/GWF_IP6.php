@@ -27,13 +27,13 @@ final class GWF_IP6
 	const AS_IS = 'as_is';			# 3-39 byte, Losless: Both 100% 2-24 byte
 	const PACK_1 = 'pack_1';		# 2-24 byte, Losless: Both 100% (not implemented) using 1111==16 bits per char
 	const PACK_2 = 'pack_2';		# 2-?? byte, Losless: Both 100% (not implemented) using 3rd party compression
-	
+
 	# UserAgent/IP hash
 	const UA_HASH = 'ua_hash';
 	const UA_HASH_LEN = 16;
-	
+
 	public static $TYPES = array(self::INT_32, self::UINT_32, self::HASH_32_1, self::HASH_32_2, self::HASH_32_3, self::HASH_64, self::HEX_128, self::HEX_32_128, self::BIN_128, self::BIN_32_128, self::AS_IS, self::PACK_1, self::PACK_2);
-	
+
 	###################
 	### Convinience ###
 	###################
@@ -48,12 +48,12 @@ final class GWF_IP6
 	{
 		return array(self::getGDOType($type, $gdo_flags), self::getDefault($type, $default_null), self::getSize($type));
 	}
-	
+
 	public static function isValidType($type)
 	{
 		return in_array($type, self::$TYPES, true);
 	}
-	
+
 	/**
 	 * Checks if a string is human readable IP.
 	 * @param string $string
@@ -63,7 +63,7 @@ final class GWF_IP6
 	{
 		return self::isV4($string) || self::isV6($string);
 	}
-	
+
 	public static function getIP($type=self::INT_32, $ip=false)
 	{
 		$ip = is_bool($ip) ? self::remoteAddress() : $ip;
@@ -72,7 +72,7 @@ final class GWF_IP6
 		if ($is6 && $is4) {
 			$ip = self::ip6toIP4($ip);
 		}
-		
+
 		switch ($type)
 		{
 			case self::INT_32: return $is4 ? self::ip4ToInt32($ip) : 0; 
@@ -91,7 +91,7 @@ final class GWF_IP6
 			default: echo GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'type')); die($type); return false;
 		}
 	}
-	
+
 	public static function isLocal()
 	{
 		if (self::serverAddress() === ($ip = self::remoteAddress())) {
@@ -124,7 +124,7 @@ final class GWF_IP6
 			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); return false;
 		}
 	}
-	
+
 	public static function getSize($type)
 	{
 		switch ($type)
@@ -134,22 +134,22 @@ final class GWF_IP6
 			case self::HASH_32_1:
 			case self::HASH_32_2:
 			case self::HASH_32_3: return 4;
-			
+
 			case self::HASH_64: return 8;
-			
+
 			case self::BIN_128:
 			case self::BIN_32_128: return 16;
-			
+
 			case self::PACK_1:
 			case self::PACK_2: return 20; #(2-20)
-			
+
 			case self::HEX_128:
 			case self::HEX_32_128: return 32;
-			
+
 			case self::AS_IS: return 39;
-			
+
 			case self::UA_HASH: return 16;
-			
+
 			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); echo $type; return false;
 		}
 	}
@@ -181,13 +181,13 @@ final class GWF_IP6
 		{
 			case self::HASH_64:
 				return GDO::BIGINT|GDO::UNSIGNED|$gdo_flags;
-			
+
 			case self::BIN_32_128:
 				return GDO::VARCHAR|GDO::BINARY|$gdo_flags;
-			
+
 			case self::UINT_32:
 				return GDO::UINT|$gdo_flags;
-			
+
 			case self::INT_32:
 			case self::HASH_32_1:
 			case self::HASH_32_2:
@@ -195,10 +195,10 @@ final class GWF_IP6
 			case self::BIN_128: 
 //				return GDO::CHAR|GDO::ASCII|GDO::CASE_S|$gdo_flags;
 				return GDO::CHAR|GDO::BINARY|$gdo_flags;
-			
+
 			case self::HEX_128:
 				return GDO::CHAR|GDO::ASCII|GDO::CASE_S|$gdo_flags;
-			
+
 			case self::PACK_1:
 			case self::PACK_2:
 			case self::HEX_32_128:
@@ -207,11 +207,11 @@ final class GWF_IP6
 
 			case self::UA_HASH:
 				return GDO::TOKEN|$gdo_flags; 
-			
+
 			default: echo GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'type')); return false;
 		}
 	}
-	
+
 	##############
 	### Checks ###
 	##############
@@ -219,12 +219,12 @@ final class GWF_IP6
 	{
 		return strrpos($ip, '.') !== false;
 	}
-	
+
 	public static function isV6($ip)
 	{
 		return strpos($ip, ':') !== false;
 	}
-	
+
 	#################
 	### HTTP Vars ###
 	#################
@@ -246,7 +246,7 @@ final class GWF_IP6
 			return false;
 		}
 	}
-	
+
 	/**
 	 * return the remote IP address + a proxy info if any (forwarder)
 	 * */
@@ -259,9 +259,9 @@ final class GWF_IP6
 		}
 		return $back;
 	}
-	
+
 	public static function getUserAgent() { return Common::getServer('HTTP_USER_AGENT', ''); }
-	
+
 	######################
 	### Useragent Hash ###
 	######################
@@ -281,7 +281,7 @@ final class GWF_IP6
 //		}
 //		return $padding.$ip_part.substr(md5(self::getUserAgent()), 0, $ua_part_len);
 //	}
-	
+
 	###############
 	### General ###
 	###############
@@ -300,7 +300,7 @@ final class GWF_IP6
 	{
 		return self::hex2bin(substr(sprintf("%08x", $dec), 0, $bytes*2));
 	}
-	
+
 	public static function ip6toIP4($ip)
 	{
 		return substr($ip, strrpos($ip, ':')+1);
@@ -315,7 +315,7 @@ final class GWF_IP6
 	{
 		return str_repeat(chr(0x00), $multi);
 	}
-	
+
 	#######################
 	### From IP to Data ###
 	#######################
@@ -323,7 +323,7 @@ final class GWF_IP6
 	{
 		return inet_pton($ip);
 	}
-	
+
 	/**
 	 * @param $ip is a IPv4 as string (112.134.156.89)
 	 * @return the ip address as _unsigned_ integer
@@ -338,19 +338,19 @@ final class GWF_IP6
 		}
 		return $back;		
 	}
-	
+
 	public static function ip6ToInt32($ip)
 	{
 		return chr(127).substr(hash('md5', $ip, true), 1, 3);
 //		$hash = mhash(MHASH_MD5, $ip);
 //		return chr(127).substr($hash, 1, 3);
 	}
-	
+
 	public static function ip4ToInt32Hash($ip)
 	{
 		return self::dec2bin(ip2long($ip)&0x7fffffff);
 	}
-	
+
 	public static function ip6ToInt32Hash($ip, $msb)
 	{
 		$hash = hash('md5', $ip, true);
@@ -367,43 +367,43 @@ final class GWF_IP6
 			return substr($hash, 0, 3).chr($last);
 		}
 	}
-	
+
 	public static function ip4ToInt64Hash($ip)
 	{
 		return self::binFF().inet_pton($ip);
 	}
-	
+
 	public static function ip6ToInt64Hash($ip)
 	{
 		return substr(mhash(MHASH_MD5, inet_pton($ip), true), 0, 8);
 	}
-	
+
 	public static function ip4ToHex128($ip)
 	{
 		$ip = '::FFFF:'.$ip;
 		return bin2hex(inet_pton($ip));
 	}
-	
+
 	public static function ip6ToHex128($ip)
 	{
 		return bin2hex(inet_pton($ip));
 	}
-	
+
 	public static function ip4ToBlob128($ip)
 	{
 		return inet_pton($ip);
 	}
-	
+
 	public static function ip6ToBlob128($ip)
 	{
 		return inet_pton($ip);
 	}
-	
+
 	public static function ip6AsIs($ip)
 	{
 		return $ip;
 	}
-	
+
 	#######################
 	### From Data To IP ###
 	#######################
@@ -411,20 +411,20 @@ final class GWF_IP6
 	{
 		return inet_ntop($data);
 	}
-	
+
 	public static function uint32ToIP($data)
 	{
 		$ip = '';
 		for ($i = 0; $i < 4; $i++) {
-			
+
 			$current = bcmod($int, 256);
 			$int /= 256;
 			$ip = ".$current".$ip;
-			
+
 		}
 		return substr($ip, 1);
 	}
-	
+
 	public static function int32Hash2ToIP($data)
 	{
 		if ((ord($data[0]) & 0x80) === 0x80)
@@ -436,7 +436,7 @@ final class GWF_IP6
 			return sprintf('%d|%d.%d.%d.%d', ord($data[0]), ord($data[0])|0x80, ord($data[1]), ord($data[2]), ord($data[3]));
 		}
 	}
-	
+
 	public static function int32Hash3ToIP($data)
 	{
 		if ((ord($data[3]) & 0x01))
@@ -448,7 +448,7 @@ final class GWF_IP6
 			return sprintf('%d|%d.%d.%d.%d', ord($data[1]), ord($data[0]), ord($data[1]), ord($data[2]), ord($data[3])|0x01);
 		}
 	}
-	
+
 	public static function int64HashToIP($data)
 	{
 		if (substr($data, 0, 4) === self::binFF())
@@ -495,4 +495,4 @@ if (!function_exists('inet_pton'))
 	}
 }
 
-?>
+

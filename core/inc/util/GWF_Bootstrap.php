@@ -16,7 +16,7 @@ final class GWF_Bootstrap
 		# anti register globals
 //		self::unregisterGlobals();
 	}
-	
+
 	/**
 	 * Unmagicquote a variable.
 	 * This will recursively unmagicquote arrays and only touch strings.
@@ -29,7 +29,7 @@ final class GWF_Bootstrap
 		elseif (is_array($var)) { return array_map(array(__CLASS__, 'unmagicquoteTypesafe'), $var); }
 		return $var;
 	}
-	
+
 	/**
 	 * UnMagicquote GetPostCookie.
 	 * Call me once please. 
@@ -90,4 +90,4 @@ if (!function_exists('inet_pton'))
 		return false;
 	}
 }
-?>
+

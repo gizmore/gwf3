@@ -22,7 +22,7 @@ final class GWF_IP2Country extends GDO
 			'ip2c_cid' => array(GDO::UINT| GDO::NOT_NULL),
 		);
 	}
-	
+
 	########################
 	### Static Detection ###
 	########################
@@ -30,7 +30,7 @@ final class GWF_IP2Country extends GDO
 	{
 		return GWF_Country::getByID(self::detectCountryID());
 	}
-	
+
 	public static function detectCountryID()
 	{
 		if (self::$detectedCountry === true)
@@ -41,4 +41,4 @@ final class GWF_IP2Country extends GDO
 		return self::$detectedCountry;
 	}
 }
-?>
+

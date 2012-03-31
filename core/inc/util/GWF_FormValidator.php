@@ -14,7 +14,7 @@ final class GWF_FormValidator
 		GWF_Form::FILE_OPT,
 		GWF_Form::FILE,
 	);
-	
+
 	public static function validate($context, GWF_Form $form, $validator)
 	{
 		if (false === ($errors = self::validateB($context, $form, $validator)))
@@ -23,7 +23,7 @@ final class GWF_FormValidator
 		}
 		return $errors;
 	}
-	
+
 	private static function validateB($context, GWF_Form $form, $validator)
 	{
 		$name = method_exists($context, 'getName') ? $context->getName() : 'unknown Name';
@@ -31,20 +31,20 @@ final class GWF_FormValidator
 		{
 			return GWF_HTML::error($name, $error, false);
 		}
-		
+
 		if (false !== ($errors = self::validateMissingVars($context, $form, $validator)))
 		{
 			return GWF_HTML::error($name, $errors, false);
 		}
-		
+
 		if (false !== ($errors = self::validateVars($context, $form, $validator)))
 		{
 			return GWF_HTML::error($name, $errors, false);
 		}
-		
+
 		return false;
 	}
-	
+
 	private static function validateCSRF($context, GWF_Form $form, $validator)
 	{
 		if (GWF_Form::CSRF_OFF === ($level = $form->getCSRFLevel()))
@@ -52,7 +52,7 @@ final class GWF_FormValidator
 		}
 //		elseif ($level === GWF_Form::CSRF_WEAK)
 //		{
-//			
+//
 //		}
 		else#if ($level === GWF_Form::CSRF_STRONG)
 		{
@@ -63,7 +63,7 @@ final class GWF_FormValidator
 		}
 		return false;
 	}
-	
+
 	private static function validateCaptcha($context, GWF_Form $form, $validator, $key)
 	{
 		if (GWF_Session::getOrDefault('php_captcha', false) !== strtoupper($form->getVar($key)))
@@ -75,15 +75,15 @@ final class GWF_FormValidator
 		$form->onSolvedCaptcha();
 		return false;
 	}
-	
+
 	private static function validateMissingVars($context, GWF_Form $form, $validator)
 	{
 		$errors = array();
 		$check_sent = $form->getMethod() === GWF_Form::METHOD_POST ? $_POST : $_GET;
 		$check_need = array();
-		
+
 //		var_dump($_POST);
-		
+
 		foreach ($form->getFormData() as $key => $data)
 		{
 			if (in_array($data[0], self::$SKIPPERS, true))
@@ -91,21 +91,21 @@ final class GWF_FormValidator
 				unset($check_sent[$key]);
 				continue;
 			}
-			
+
 			switch ($data[0])
 			{
 				case GWF_Form::VALIDATOR:
 					break;
-					
+		
 				case GWF_Form::SELECT_A:
 					unset($check_sent[$key]);
 					break;
-				
+	
 				case GWF_Form::TIME:
 					$check_need[] = $key.'h';
 					$check_need[] = $key.'i';
 					break;
-					
+		
 				case GWF_Form::DATE:
 				case GWF_Form::DATE_FUTURE:
 					switch ($data[4])
@@ -120,7 +120,7 @@ final class GWF_FormValidator
 						default: die('Date field is invalid in form!');
 					}
 					break;
-					
+		
 				case GWF_Form::SUBMITS:
 				case GWF_Form::SUBMIT_IMGS:
 						foreach (array_keys($data[1]) as $key)
@@ -132,14 +132,14 @@ final class GWF_FormValidator
 
 						}
 					break;
-					
+		
 				case GWF_Form::FILE:
 					if (false === GWF_Upload::getFile($key))
 					{
 						$check_need[] = $key;
 					}
 					break;
-					
+		
 				case GWF_Form::INT:
 				case GWF_Form::STRING:
 					if (Common::endsWith($key, ']'))
@@ -151,15 +151,15 @@ final class GWF_FormValidator
 						}
 						break;
 					}
-					
+		
 				default:
 					$check_need[] = $key;
 					break;
 			}
 		}
-		
+
 //		var_dump($check_need);
-		
+
 		foreach ($check_need as $key)
 		{
 			if (!isset($check_sent[$key]))
@@ -171,8 +171,8 @@ final class GWF_FormValidator
 				unset ($check_sent[$key]);
 			}
 		}
-		
-		
+
+
 		foreach ($check_sent as $key => $value)
 		{
 			$errors[] = GWF_HTML::lang('ERR_POST_VAR', array(htmlspecialchars($key)));
@@ -180,13 +180,13 @@ final class GWF_FormValidator
 
 		return count($errors) === 0 ? false : $errors;
 	}
-	
+
 	private static function validateVars($context, GWF_Form $form, $validator)
 	{
 		$errors = array();
-		
+
 		$method = $form->getMethod();
-		
+
 		foreach ($form->getFormData() as $key => $data)
 		{
 			# Skippers
@@ -194,7 +194,7 @@ final class GWF_FormValidator
 			{
 				continue;
 			}
-			
+
 			# Captcha
 			if ($data[0] === GWF_Form::CAPTCHA)
 			{
@@ -204,7 +204,7 @@ final class GWF_FormValidator
 				}
 				continue;
 			}
-			
+
 			# Get forms do not validate mo/me
 			if ($method === GWF_Form::METHOD_GET)
 			{
@@ -213,7 +213,7 @@ final class GWF_FormValidator
 					continue;
 				}
 			}
-			
+
 			# Validators
 			$func_name = 'validate_'.Common::substrUntil($key, '[', $key);
 			$function = array($validator, $func_name);
@@ -226,8 +226,7 @@ final class GWF_FormValidator
 				$errors[] = $error;
 			}
 		}
-		
+
 		return count($errors) === 0 ? false : $errors;
 	}
 }
-?>

@@ -7,7 +7,7 @@ final class GWF_QuickSearch
 	const MIN_LEN = 3;
 	const MAX_LEN = 32;
 	public static function errorSearchLength() { return GWF_HTML::err('ERR_SEARCH_TERM', array(self::MIN_LEN, self::MAX_LEN)); }
-	
+
 	const SEARCH_TYPE = 0x0f;
 	const SEARCH_EMPTY = 1;
 	const SEARCH_TERM = 2;
@@ -17,8 +17,8 @@ final class GWF_QuickSearch
 	const SEARCH_BRACKET_OPEN = 6;
 	const SEARCH_BRACKET_CLOSE = 7;
 	const SEARCH_NOT = 0x18;
-	
-	
+
+
 	/**
 	 * Get a real basic quicksearch form.
 	 * @param GWF_Module $module
@@ -33,7 +33,7 @@ final class GWF_QuickSearch
 		);
 		return new GWF_Form($caller, $data);
 	}
-	
+
 	public static function getQuickSearchHighlights($term)
 	{
 		if (!is_string($term))
@@ -43,7 +43,7 @@ final class GWF_QuickSearch
 		$term = trim(str_replace(array(',', '+'), ' ', $term));
 		return preg_split('/ +/', $term);
 	}
-	
+
 
 	public static function search(GDO $gdo, array $fields, $term, $orderby='', $limit=-1, $from=0, $where='')
 	{
@@ -55,7 +55,7 @@ final class GWF_QuickSearch
 		$where = $conditions.$where;
 		return $gdo->selectObjects('*', $where, $orderby, $limit, $from);
 	}
-	
+
 	/**
 	 * Create a WHERE clause from fields and searchterm.
 	 * This function does not sanitize the fields anymore!
@@ -72,7 +72,7 @@ final class GWF_QuickSearch
 			GWF_Website::addDefaultOutput(GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__)));
 			return false;
 		}
-		
+
 		# Whitelist fields
 // 		foreach ($fields as $field)
 // 		{
@@ -82,10 +82,10 @@ final class GWF_QuickSearch
 // 				return false;
 // 			}
 // 		}
-		
+
 		# Concat the Fields, (we are doing a full search anyway)
 		$concat = 'CONCAT('.implode(', ":", ', $fields).')';
-		
+
 		$prev = array(self::SEARCH_EMPTY, '');
 		$prevnot = false;
 		$where = array();
@@ -112,11 +112,11 @@ final class GWF_QuickSearch
 							break;
 					}
 					break;
-					
+		
 				case self::SEARCH_NEAR:
 					echo "NEAR NOT SUPPORTED YET.";
 					break;
-					
+		
 				case self::SEARCH_BRACKET_OPEN:
 					if ($prev[0] === self::SEARCH_TERM)
 					{
@@ -124,13 +124,13 @@ final class GWF_QuickSearch
 					}
 					$where[] = $sql;
 					break;
-					
+		
 				case self::SEARCH_BRACKET_CLOSE:
 				case self::SEARCH_OR:
 				case self::SEARCH_AND:
 					$where[] = $sql;
 					break;
-					
+		
 				default:
 					if ($token[0] === self::SEARCH_NOT)
 					{
@@ -138,27 +138,27 @@ final class GWF_QuickSearch
 						$setprev = false;
 					}
 					break;
-					
+		
 			}
-			
+
 			if ($setprev === true)
 			{
 				$prev = $token;
 			}
 		}
-		
+
 		$back = implode(' ', $where);
 		return $back === '' ? '1' : $back;
 	}
-	
+
 	private static function search_tokenize($term)
 	{
 		# Thx Geo
 		$term = str_replace(array('%', '_'), array('\\%', '\\_'), $term);
-		
+
 		#Thx Geo
 		$term = preg_replace('/\( *\)/', '', $term);
-		
+
 		$len = strlen($term);
 		$back = array();
 		$cur = '';
@@ -171,7 +171,7 @@ final class GWF_QuickSearch
 				case '"':
 					$in_quote = !$in_quote;
 					break;
-					
+		
 				case ' ':
 					if (!$in_quote)
 					{
@@ -186,7 +186,7 @@ final class GWF_QuickSearch
 						$cur .= ' ';
 					}
 					break;
-					
+		
 				case '(': $bracket += 2;
 				case ')': $bracket -= 1;
 	//				if ($cur !== ')' && $cur !== '(')
@@ -202,59 +202,58 @@ final class GWF_QuickSearch
 					}
 					$cur = '';
 					break;
-					
+		
 				default:
 					$cur .= $term{$i};
 					break;
 			}
 		}
-		
+
 		if (false !== ($item = self::search_item($cur, $in_quote)))
 		{
 			$back[] = $item;
 		}
-		
+
 		if ( ($bracket !== 0) || ($in_quote === true) )
 		{
 			return false;
 		}
-		
+
 		return $back;
 	}
-	
+
 	private static function search_item($txt, $in_quotes)
 	{
 		if ($in_quotes)
 		{
 			return array(0, $txt);
 		}
-		
+
 		switch (strtolower($txt))
 		{
 			case '':
 				return false;
-				
+	
 			case ')':
 				return array(self::SEARCH_BRACKET_CLOSE, $txt);
-				
+	
 			case '(':
 				return array(self::SEARCH_BRACKET_OPEN, $txt);
-				
+	
 			case 'not':
 				return array(self::SEARCH_NOT, strtoupper($txt));
-				
+	
 			case 'near':
 				return array(self::SEARCH_NEAR, strtoupper($txt));
-				
+	
 			case 'and':
 				return array(self::SEARCH_AND, strtoupper($txt));
-				
+	
 			case 'or':
 				return array(self::SEARCH_OR, strtoupper($txt));
-				
+	
 			default:
 				return array(self::SEARCH_TERM, $txt);
 		}
 	}
 }
-?>

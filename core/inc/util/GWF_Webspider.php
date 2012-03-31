@@ -18,7 +18,7 @@ final class GWF_Webspider extends GDO
 			'wesp_ip_max' => array(GDO::CHAR|GDO::ASCII|GDO::CASE_S|GDO::INDEX, GDO::NOT_NULL, 32),
 		);
 	}
-	
+
 	public static function insertSpider($uid, $ipmin, $ipmax)
 	{
 		return self::table(__CLASS__)->insertAssoc(array(
@@ -27,7 +27,7 @@ final class GWF_Webspider extends GDO
 			'wesp_ip_max' => $ipmax,
 		));
 	}
-	
+
 	/**
 	 * @return GWF_User
 	 */
@@ -35,7 +35,7 @@ final class GWF_Webspider extends GDO
 	{
 		return self::getSpiderByIPHex128(GWF_IP6::getIP(GWF_IP6::HEX_128));
 	}
-	
+
 	/**
 	 * Get a robot by IP
 	 * @param string $ip human notation
@@ -45,7 +45,7 @@ final class GWF_Webspider extends GDO
 	{
 		return self::getSpiderByIPHex128(GWF_IP6::getIP(GWF_IP6::HEX_128, $ip));
 	}
-	
+
 	/**
 	 * @param string IP hex128
 	 * @return GWF_User
@@ -59,6 +59,5 @@ final class GWF_Webspider extends GDO
 //		}
 //		return $row->getVar('wesp_uid');
 	}
-	
+
 }
-?>

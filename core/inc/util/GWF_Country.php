@@ -17,28 +17,28 @@ final class GWF_Country extends GDO
 	}
 
 	public function getID() { return $this->getVar('country_id'); }
-	
+
 	/**
 	 * Get a country by ID.
 	 * @param int $id
 	 * @return GWF_Country
 	 */
 	public static function getByID($id) { return self::table(__CLASS__)->getBy('country_id', $id); }
-	
+
 	/**
 	 * Get a country by TLD, like cc for columbia.
 	 * @param string $tld 2 letter tld
 	 * @return GWF_Country
 	 */
 	public static function getByTLD($tld) { return self::table(__CLASS__)->getBy('country_tld', $tld); }
-	
+
 	/**
 	 * Get a country by database (english?) name.
 	 * @param string $name
 	 * @return 
 	 */
 	public static function getByName($name) { return self::table(__CLASS__)->getBy('country_name', $name); }
-	
+
 	/**
 	 * Get a country by ID or return a stub object with name "Unknown".
 	 * @param int $id
@@ -55,7 +55,7 @@ final class GWF_Country extends GDO
 		}
 		return self::getUnknown();
 	}
-	
+
 	###############
 	### Unknown ###
 	###############
@@ -73,7 +73,7 @@ final class GWF_Country extends GDO
 		}
 		return $UNKNOWN;
 	}
-	
+
 	############
 	### Flag ###
 	############
@@ -90,14 +90,14 @@ final class GWF_Country extends GDO
 	{
 		return self::displayFlagS2($this->getID(), $this->getVar('country_name'));
 	}
-	
+
 	public static function displayFlagS2($countryid, $countryname, $pattern='<img src="%s" class="flag" title="%s" alt="%s" />')
 	{
 		$path = sprintf('%simg/%s/country/%d',GWF_WEB_ROOT, GWF_ICON_SET, $countryid);
 		$t = htmlspecialchars($countryname);
 		return sprintf($pattern, $path, $t, $t);
 	}
-	
+
 	#################
 	### ISO Names ###
 	#################
@@ -110,4 +110,4 @@ final class GWF_Country extends GDO
 		return self::$COUNTRY_NAMES->lang($this->getVar('country_name'));
 	}
 }
-?>
+

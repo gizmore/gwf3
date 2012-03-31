@@ -7,7 +7,7 @@ final class GWF_Table
 {
 	public static function start($class='', $id='') { $cl = $class === '' ? '' : " class=\"$class\""; $id = $id === '' ? '' : " id=\"$id\""; return '<div class="gwf_table"><table'.$cl.$id.'>'.PHP_EOL; }
 	public static function end() { return '</table></div>'.PHP_EOL; }
-	
+
 	public static function rowStart($flip=true, $class='', $id='', $style='')
 	{
 		static $odd = 0;
@@ -29,7 +29,7 @@ final class GWF_Table
 		$class = $class === '' ? '' : ' class="'.$class.'"';
 		return sprintf('<td%s%s>%s</td>', $class, $colspan, $text);
 	}
-	
+
 	/**
 	 * Simple one column sorting.
 	 * @param array $headers
@@ -44,10 +44,10 @@ final class GWF_Table
 	public static function displayHeaders1(array $headers=array(), $sortURL=NULL, $default='', $defdir='ASC', $by='by', $dir='dir', $raw='')
 	{
 		$sel = Common::getGetString($by, $default);
-		
+
 		$back = '<thead>'.PHP_EOL;
 		$back .= $raw;
-		
+
 		$back .= '<tr>'.PHP_EOL;
 		foreach ($headers as $h)
 		{
@@ -56,14 +56,14 @@ final class GWF_Table
 				$back .= '</th>'.PHP_EOL;
 				continue;
 			}
-			
+
 			$sort = isset($h[1]) ? $h[1] : '';
 			if ($sort === '') {
 				$back .= $h[0];
 				$back .= '</th>'.PHP_EOL;
 				continue; # can not sort field;
 			}
-			
+
 			else
 			{
 				$is_sel = $sel === $h[1];
@@ -78,14 +78,14 @@ final class GWF_Table
 				$back .= '</th>'.PHP_EOL;
 				continue;
 			}
-			
-			
+
+
 		}
 		$back .= '</tr>'.PHP_EOL;
 		$back .= '</thead>'.PHP_EOL;
 		return $back;
 	}
-	
+
 	/**
 	 * Display a multisort header. These rarely make sense, only on overlapping values. (School notes would be an example)
 	 * @param array $headers
@@ -105,11 +105,11 @@ final class GWF_Table
 		);
 		return GWF_Template::templateMain('thead.tpl', $tVars);
 	}
-	
+
 	private static function getHeaders2(array $headers, $sortURL='', $key_by='by', $key_dir='dir')
 	{
 		$sortURL = htmlspecialchars($sortURL);
-		
+
 		$allowed = array();
 		foreach ($headers as $header)
 		{
@@ -118,7 +118,7 @@ final class GWF_Table
 				$allowed[] = $header[1];
 			}
 		}
-		
+
 		# Gather the current selected sorting
 		$curBy = explode(',', Common::getGet($key_by, ''));
 		$curDir = explode(',', Common::getGet($key_dir, ''));
@@ -129,12 +129,12 @@ final class GWF_Table
 			{
 				continue;
 			}
-			
+
 			$cd = isset($curDir[$i]) ? $curDir[$i] : 'ASC';
 			$cd = GDO::getWhitelistedDirS($cd, 'ASC');
 			$cur[$cby] = $cd;
 		}
-		
+
 		$back = array();
 		foreach ($headers as $header)
 		{
@@ -177,7 +177,7 @@ final class GWF_Table
 		unset($current[$exclude]);
 		return str_replace(array('%BY%', '%DIR%'), array( urlencode(implode(',', array_keys($current))), urlencode(implode(',', array_values($current)))), $sortURL );
 	}
-	
+
 	/**
 	 * Flip the order direction.
 	 * @param string $dir
@@ -187,7 +187,7 @@ final class GWF_Table
 	{
 		return strtoupper($dir) === 'ASC' ? 'DESC' : 'ASC';
 	}
-	
-	
+
+
 }
-?>
+

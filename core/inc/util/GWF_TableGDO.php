@@ -8,17 +8,17 @@ final class GWF_TableGDO
 	public static function display(GWF_Module $module, GDO $gdo, $user, $sortURL, $conditions='', $ipp=25, $pageURL=false, $joins=NULL)
 	{
 		$fields = $gdo->getSortableFields($user);
-	
+
 		$headers = self::getGDOHeaders2($module, $gdo, $user, $sortURL);
-	
+
 		$nItems = $gdo->countRows($conditions);
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
-		
+
 		$orderby = self::getMultiOrderBy($gdo, $user);
-		
+
 		$from = GWF_PageMenu::getFrom($page, $ipp);
-	
+
 		$i = 0;
 		$data = array();
 		if (false === ($result = $gdo->select('*', $conditions, $orderby, $joins, $ipp, $from)))
@@ -26,7 +26,7 @@ final class GWF_TableGDO
 			echo GWF_HTML::err(ERR_DATABASE, __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		while (false !== ($row = $gdo->fetch($result, GDO::ARRAY_O)))
 		{
 			$row instanceof GWF_Sortable;
@@ -37,9 +37,9 @@ final class GWF_TableGDO
 			}
 			$i++;
 		}
-		
+
 		$gdo->free($result);
-	
+
 		if ($pageURL === false)
 		{
 			$pageURL = '';
@@ -50,13 +50,13 @@ final class GWF_TableGDO
 			$pageURL .= '&page=%PAGE%';
 		}
 		$pagemenu = $pageURL === '' ? '' : GWF_PageMenu::display($page, $nPages, $pageURL);
-	
+
 		return
 			$pagemenu.
 			self::display2($headers, $data).
 			$pagemenu;
 	}
-	
+
 	public static function display2(array $headers, array $data, $sortURL='', $raw_head='', $raw_body='')
 	{
 		$tVars = array(
@@ -67,12 +67,12 @@ final class GWF_TableGDO
 		);
 		return GWF_Template::templatePHPMain('table2.php', $tVars);
 	}
-	
+
 	public static function getGDOHeaders2(GWF_Module $module, GWF_Sortable $gdo, $user, $sortURL)
 	{
 		# Possible fields...
 		$fields = $gdo->getSortableFields($user);
-	
+
 		# Gather the current selected sorting
 		$curBy = explode(',', Common::getGet('by', ''));
 		$curDir = explode(',', Common::getGet('dir', ''));
@@ -92,7 +92,7 @@ final class GWF_TableGDO
 			$cd = GDO::getWhitelistedDirS($cd, 'ASC');
 			$cur[$cby] = $cd;
 		}
-		
+
 		$headers = array();
 		foreach ($fields as $field)
 		{
@@ -119,14 +119,14 @@ final class GWF_TableGDO
 //		if (count($current) === 0) {
 //			$current[$by] = $dir;
 //		}
-		
+
 		return str_replace(array('%BY%', '%DIR%'), array( urlencode(implode(',', array_keys($current))), urlencode(implode(',', array_values($current)))), $sortURL );
 	}
 
 	private static function getMultiOrderBy(GDO $gdo, $user)
 	{
 		$fields = $gdo->getSortableFields($user);
-		
+
 		# Gather the current selected sorting
 		$curBy = explode(',', Common::getGetString('by', ''));
 		$curDir = explode(',', Common::getGetString('dir', ''));
@@ -143,4 +143,3 @@ final class GWF_TableGDO
 		return $back === '' ? '1' : substr($back, 1);
 	}
 }
-?>

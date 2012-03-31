@@ -41,4 +41,4 @@ final class GWF_Guest
 		return $GUEST;
 	}
 }
-?>
+

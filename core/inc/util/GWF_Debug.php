@@ -137,17 +137,17 @@ final class GWF_Debug
 		{
 			return;
 		}
-		
+
 		# Log as critical!
 		if (class_exists('GWF_Log'))
 		{
 			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline));
 		}
-		
+
 		switch($errno)
 		{
 			case -1: $errnostr = 'GWF Error'; break;
-			
+
 			case E_ERROR: E_CORE_ERROR: $errnostr = 'PHP Fatal Error'; break;
 			case E_WARNING: case E_USER_WARNING: case E_CORE_WARNING: $errnostr = 'PHP Warning'; break;
 			case E_USER_NOTICE: case E_NOTICE: $errnostr = 'PHP Notice'; break;
@@ -157,7 +157,7 @@ final class GWF_Debug
 			# if(PHP5.2) case E_RECOVERABLE_ERROR: $errnostr = 'PHP Recoverable Error'; break;
 			case E_COMPILE_WARNING: case E_COMPILE_ERROR: $errnostr = 'PHP Compiling Error'; break;
 			case E_PARSE: $errnostr = 'PHP Parsing Error'; break;
-			
+
 			default: $errnostr = 'PHP Unknown Error'; break;
 		}
 
@@ -171,7 +171,7 @@ final class GWF_Debug
 		{
 			$message = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline).PHP_EOL;
 		}
-		
+
 		# Output error
 		if (PHP_SAPI === 'cli')
 		{
@@ -185,18 +185,18 @@ final class GWF_Debug
 		{
 			echo $message;
 		}
-		
+
 		# Send error to admin
 		if (true === self::$MAIL_ON_ERROR)
 		{
 			self::sendDebugMail(self::backtrace($message, false));
 		}
-		
+
 		if (true === self::$die)
 		{
 			die(1); # oops :)
 		}
-		
+
 		return true; 
 	}
 
@@ -226,7 +226,7 @@ final class GWF_Debug
 			{
 				GWF_Log::logCritical($e->getMessage());
 			}
-			
+
 		}
 		catch (Exception $null) { unset($null); }
 
@@ -278,13 +278,13 @@ final class GWF_Debug
 			print_r($_GET, true),
 			print_r($_POST, true),
 		);
-		
+
 		$args = array_map('htmlspecialchars', $args);
 
 		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: %s\n\n_GET: %s\n\n_POST: %s\n\n";
 		return vsprintf($pattern, $args);
 	}
-	
+
 	private static function getMoMe()
 	{
 		return Common::getGetString('mo').'/'.Common::getGetString('me');
@@ -302,16 +302,16 @@ final class GWF_Debug
 	{
 		# Fix full path disclosure
 		$message = self::shortpath($message);
-		
+
 		# Append PRE header.
 		$back = $html ? ('<pre class="gwf_backtrace">'.PHP_EOL) : '';
-		
+
 		# Append general title message.
 		if ($message !== '')
 		{
 			$back .= $html ? '<em>'.$message.'</em>' : $message;
 		}
-		
+
 		$implode = array();
 		$preline = 'Unknown';
 		$prefile = 'Unknown';

@@ -35,7 +35,7 @@ final class GWF_Counter extends GDO
 		}
 		return $row->getVar('count_value');
 	}
-	
+
 	/**
 	 * Get a counter value.
 	 * @param string $key
@@ -49,7 +49,7 @@ final class GWF_Counter extends GDO
 		}
 		return (int)$value;
 	}
-	
+
 	/**
 	 * Increase or decrease a counter.
 	 * @param string $key
@@ -65,7 +65,7 @@ final class GWF_Counter extends GDO
 			return $row->increase('count_value', $by);
 		}
 	}
-	
+
 	/**
 	 * Set a counter to a fixed value.
 	 * @param string $key
@@ -78,4 +78,3 @@ final class GWF_Counter extends GDO
 		return $row->replace();
 	}
 }
-?>

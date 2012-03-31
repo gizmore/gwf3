@@ -19,7 +19,7 @@ final class GWF_Box
 		}
 		return $title === '' ? self::boxNT($content) : self::boxT($content, $title);
 	}
-	
+
 	/**
 	 * Display a box with a title
 	 * @param string $content
@@ -30,7 +30,7 @@ final class GWF_Box
 	{
 		return GWF_Template::templateMain('box_t.tpl', array('title'=>$title,'content'=>$content));
 	}
-	
+
 	/**
 	 * Box with no title.
 	 * @param string $content
@@ -41,4 +41,4 @@ final class GWF_Box
 		return GWF_Template::templateMain('box_nt.tpl', array('content'=>$content));
 	}
 }
-?>
+

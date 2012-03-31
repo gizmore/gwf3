@@ -8,7 +8,7 @@ final class GWF_HTAccess
 	{
 		$custom_hta = GWF_PROTECTED_PATH.'pre_htaccess.txt';
 		$custom = Common::isFile($custom_hta) ? (file_get_contents($custom_hta).PHP_EOL) : '';
-		
+
 		if ($custom !== '')
 		{
 			$custom = 
@@ -119,26 +119,26 @@ final class GWF_HTAccess
 	{
 		$dir = rtrim($dir, '\/');
 		$path = $dir.'/.htaccess';
-		
+
 		if (!is_dir($dir))
 		{
 			GWF_Log::logCritical(sprintf('Supported arg is not a dir in %s.', __METHOD__));
 			return false;
 		}
-		
+
 		if (!is_writable($dir))
 		{
 			GWF_Log::logCritical(sprintf('Cannot write to directory %s in %s.', $dir, __METHOD__));
 			return false;
 		}
-		
+
 		if (false === file_put_contents($path, $content))
 		{
 			GWF_Log::logCritical(sprintf('Cannot write to file %s in %s.', $path, __METHOD__));
 			return false;
 		}
-		
+
 		return true;
 	}
 }
-?>
+

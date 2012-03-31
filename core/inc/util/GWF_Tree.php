@@ -6,7 +6,7 @@
 abstract class GWF_Tree extends GDO
 {
 	public abstract function getColumnPrefix();# { return 'tree_'; }
-	
+
 	###########
 	### GDO ###
 	###########
@@ -31,7 +31,7 @@ abstract class GWF_Tree extends GDO
 	public function getRight() { return $this->getVar($this->getRightColumn()); }
 	public function getParentColumn() { return $this->getColumnPrefix().'tree_pid'; }
 	public function getParentID() { return $this->getVar($this->getgetParentColumn()); }
-	
+
 	public function getTree()
 	{
 		$pre = $this->getColumnPrefix();
@@ -39,19 +39,19 @@ abstract class GWF_Tree extends GDO
 		$l = $this->getLeft();
 		$r = $this->getRight();
 		return $this->selectAll("{$pre}tree_id, {$pre}tree_name", "$left BETWEEN $l AND $r", "$left ASC");
-		
+
 	}
-	
+
 //	public function insertTreeItem($name, $pid=0)
 //	{
 //		
 //	}
-	
+
 	function rebuildFullTree()
 	{
 		return $this->rebuildTree(1, 1);
 	}
-	
+
 	function rebuildTree($parent, $left)
 	{  
 		$parent = (int)$parent;
@@ -70,4 +70,3 @@ abstract class GWF_Tree extends GDO
 		return $right+1;  
 	}   
 }
-?>

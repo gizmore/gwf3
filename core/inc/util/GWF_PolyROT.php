@@ -6,7 +6,7 @@
 final class GWF_PolyROT
 {
 	const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	
+
 	public static function encrypt($message, $key)
 	{
 		$charset = self::CHARSET;
@@ -16,7 +16,7 @@ final class GWF_PolyROT
 		{
 			return false;
 		}
-		
+
 		$back = '';
 		$len = strlen($message);
 		$klen = strlen($key);
@@ -44,7 +44,7 @@ final class GWF_PolyROT
 		{
 			return false;
 		}
-		
+
 		$back = '';
 		$len = strlen($message);
 		$klen = strlen($key);
@@ -56,7 +56,7 @@ final class GWF_PolyROT
 				$back .= $message[$i];
 				continue;
 			}
-			
+
 			$k = strpos($charset, $key[$i%$klen]);
 			$j -= $k;
 			while ($j < 0)
@@ -67,7 +67,7 @@ final class GWF_PolyROT
 		}
 		return $back;
 	}
-	
+
 	private static function checkArgs($message, $key)
 	{
 		if (false === is_string($message))
@@ -79,8 +79,7 @@ final class GWF_PolyROT
 		{
 			return false;
 		}
-		
+
 		return true;
 	}
 }
-?>

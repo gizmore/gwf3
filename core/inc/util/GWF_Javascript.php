@@ -16,7 +16,7 @@ final class GWF_Javascript
 	 * @var string
 	 */
 	const BOUNDARY = 'ENDOFSECTION';
-	
+
 	/**
 	 * Start http stream.
 	 * @return unknown_type
@@ -28,7 +28,7 @@ final class GWF_Javascript
 		header("Content-type: multipart/x-mixed-replace;boundary=$boundary");
 		echo "\n--$boundary\n";
 	}
-	
+
 	/**
 	 * Start new section
 	 * @param $type
@@ -38,7 +38,7 @@ final class GWF_Javascript
 	{
 		print "Content-type: $type\n\n";
 	}
-	
+
 	/**
 	 * End section.
 	 * @param unknown_type $content_type
@@ -51,7 +51,7 @@ final class GWF_Javascript
 		ob_flush(); # XXX WTF needed sometimes, sometimes not Oo
 		flush();
 	}
-	
+
 	/**
 	 * Flush the stream.
 	 * @return unknown_type
@@ -60,7 +60,7 @@ final class GWF_Javascript
 	{
 // 		echo(str_repeat(' ',256));
 		echo self::BOUNDARY.PHP_EOL;
-		
+
 		if (ob_get_length())
 		{
 			ob_flush();
@@ -69,11 +69,11 @@ final class GWF_Javascript
 		}
 		ob_start();
 	}
-	
+
 	############
 	### Util ###
 	############
-	
+
 	/**
 	 * Convert a php array to a javascript sourcecode array.
 	 * @param array $array
@@ -99,7 +99,7 @@ final class GWF_Javascript
 		}
 		return sprintf('new Array(%s)', $back);
 	}
-	
+
 	#############
 	### Focus ###
 	#############
@@ -137,4 +137,3 @@ final class GWF_Javascript
 	}
 }
 
-?>

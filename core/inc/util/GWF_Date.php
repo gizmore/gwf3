@@ -9,4 +9,3 @@ class GWF_Date
 	const LEN_SECOND = 14;
 	const LEN_MILLI = 17;
 }
-?>

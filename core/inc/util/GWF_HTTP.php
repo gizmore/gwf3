@@ -285,5 +285,3 @@ final class GWF_HTTP
 		return $ret;
 	}
 }
-
-?>

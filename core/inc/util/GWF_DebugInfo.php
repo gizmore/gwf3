@@ -19,7 +19,7 @@ class GWF_DebugInfo
 			$disk_free = disk_free_space(dirname(__FILE__));
 			$disk_total = disk_total_space(dirname(__FILE__));
 		}
-		
+
 		return array(
 			'queries' => $queries,
 			't_sql' => $t_sql,
@@ -34,4 +34,3 @@ class GWF_DebugInfo
 		);
 	}
 }
-?>

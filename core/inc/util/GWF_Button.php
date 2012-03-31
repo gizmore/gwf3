@@ -9,7 +9,7 @@ final class GWF_Button
 {
 	private static $templateButtons = true;
 	private static $templateTooltip = true;
-	
+
 	/**
 	 * Preload button template.
 	 */
@@ -21,7 +21,7 @@ final class GWF_Button
 			self::$templateTooltip = GWF_Template::templateMain('tooltip.tpl');
 		}
 	}
-	
+
 	/**
 	 * Get a GWF HTML button. Type is 'generic'. Command is ''. 
 	 * @param string $text
@@ -42,13 +42,13 @@ final class GWF_Button
 			self::$templateButtons
 		);
 	}
-	
+
 
 	public static function icon($class)
 	{
 		return sprintf('<span class="gwf_button"><span class="gwf_btn_%s"></span></span>', $class);
 	}
-	
+
 	public static function imgbtn($class, $href, $text='', $command='', $onclick='')
 	{
 		$onclick = $onclick === '' ? '' : " onclick=\"$onclick\"";
@@ -80,11 +80,11 @@ final class GWF_Button
 	{
 		return $enabled ? self::generic($text, $href, 'on', $command) : self::generic($text, $href, 'off', $command);
 	}
-	
+
 	public static function next($href='#', $text=true, $command='', $onclick='') { return self::imgbtn('next', $href, $text, $command, $onclick); }
 	public static function prev($href='#', $text=true, $command='', $onclick='') { return self::imgbtn('prev', $href, $text, $command, $onclick); }
-	
-	
+
+
 	public static function tooltip($text, $id='gwf_tt')
 	{
 		return str_replace(
@@ -92,7 +92,7 @@ final class GWF_Button
 			array(htmlspecialchars($text), GWF_HTML::displayJS($text), $id),
 			self::$templateTooltip);
 	}
-	
+
 	public static function up($href)
 	{
 		return self::generic('^', $href, 'up');
@@ -102,17 +102,17 @@ final class GWF_Button
 	{
 		return self::generic('v', $href, 'down');
 	}
-	
+
 	public static function wrapStart($class='')
 	{
 		return '<div class="gwf_buttons_outer"><div class="gwf_buttons '.$class.'">'.PHP_EOL;
 	}
-	
+
 	public static function wrapEnd()
 	{
 		return '</div></div>'.PHP_EOL;
 	}
-	
+
 	public static function wrap($html, $class='')
 	{
 		return self::wrapStart($class).$html.self::wrapEnd();
@@ -120,4 +120,4 @@ final class GWF_Button
 }
 
 GWF_Button::init();
-?>
+

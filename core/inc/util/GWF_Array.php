@@ -59,7 +59,7 @@ final class GWF_Array
 		$last = array_pop($array);
 		return implode(', ', $array)." {$and} {$last}";
 	}
-	
+
 	/**
 	 * Swap the positions of an associative array.
 	 * @param array $arr
@@ -87,4 +87,4 @@ final class GWF_Array
 		return $back;
 	}
 }
-?>
+

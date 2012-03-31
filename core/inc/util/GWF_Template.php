@@ -39,7 +39,7 @@ final class GWF_Template
 			$smarty->setCacheDir(GWF_SMARTY_DIRS.'cache');
 			$smarty->setConfigDir(GWF_SMARTY_DIRS.'cfg');
 			$smarty->addPluginsDir(GWF_CORE_PATH.'inc/smartyplugins');
-			
+
 			# Assign common template vars
 //			$smarty->assign('db', gdo_db());
 			$smarty->assign('gwff', GWF_SmartyFile::instance());
@@ -64,7 +64,7 @@ final class GWF_Template
 		{
 			return self::pathError($path);
 		}
-		
+
 		if (true === is_array($tVars))
 		{
 			foreach ($tVars as $k => $v)
@@ -85,7 +85,7 @@ final class GWF_Template
 			return str_replace("\n", "<br>\n", $msg);
 		}
 	}
-	
+
 	private static function sendErrorMail($path, $msg)
 	{
 		return GWF_Mail::sendDebugMail(': Smarty Error: '.$path, GWF_Debug::backtrace($msg, false));
@@ -119,7 +119,7 @@ final class GWF_Template
 	public static function addMainTvars(array $tVars=array())
 	{
 		$smarty = self::getSmarty();
-		
+
 		foreach ($tVars as $k => $v)
 		{
 			$smarty->assign($k, $v);
@@ -166,4 +166,4 @@ final class GWF_Template
 		return false;
 	}
 }
-?>
+

@@ -7,4 +7,3 @@ final class GWF_UserSelect
 		return GDO::table('GWF_UserGroup')->selectAll('user.*', "group_name='{$groupname}'", $orderby, array('user','group'), -1, -1, GDO::ARRAY_A);
 	}
 }
-?>

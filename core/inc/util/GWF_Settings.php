@@ -21,7 +21,7 @@ final class GWF_Settings extends GDO
 			'set_val' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
 		);
 	}
-	
+
 	public static function getSetting($var, $default='')
 	{
 		$var = GDO::escape($var);
@@ -31,16 +31,15 @@ final class GWF_Settings extends GDO
 		}
 		return $val;
 	}
-	
+
 	public static function setSetting($var, $value)
 	{
 		return self::table(__CLASS__)->insertAssoc(array('set_key' => $var, 'set_val' => $value), true);
 	}
-	
+
 	public static function unsetSetting($var)
 	{
 		$var = GDO::escape($var);
 		return self::table(__CLASS__)->deleteWhere("set_key='$var'");
 	}
 }
-?>

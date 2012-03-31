@@ -166,4 +166,4 @@ class GWF_Permutation
 		return $this->a;
 	}
 }
-?>
+

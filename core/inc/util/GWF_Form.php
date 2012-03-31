@@ -10,11 +10,11 @@ class GWF_Form
 	# Methods
 	const METHOD_GET = 'get';
 	const METHOD_POST = 'post';
-	
+
 	# Encoding Types
 	const ENC_DEFAULT   = 'application/x-www-form-urlencoded';
 	const ENC_MULTIPART = 'multipart/form-data';
-	
+
 	# Form array offsets
 	const TYPE = 0;
 	const VALUE = 1;
@@ -22,7 +22,7 @@ class GWF_Form
 	const TOOLTIP = 3;
 	const LENGTH = 4;
 	const REQUIRED = 5;
-	
+
 	# Data Types
 	const INT = 1;
 	const DATE = 2;
@@ -51,17 +51,17 @@ class GWF_Form
 	const TIME = 25;
 //	const HIDDEN_NO_CHECK = 26;
 	const HTML = 27;
-	
+
 	# CSRF protection levels.
 	const CSRF_OFF = 0;
 	const CSRF_WEAK = 1;
 	const CSRF_STRONG = 2;
-	
+
 	private $method;
 	private $validator;
 	private $form_data;
 	private $csrf_bit;
-	
+
 	/**
 	 * $data is [0]=TYPE,[1]=value,[2]=title,[3]=Tooltip,[4]=LEN?,[5]=required
 	 * @param callback $validator
@@ -74,14 +74,14 @@ class GWF_Form
 		$this->method = $method;
 		$this->csrf_bit = $csrf_bit;
 	}
-	
+
 	public function getMethod() { return $this->method; }
 	public function getCSRFLevel() { return $this->csrf_bit; }
 	public function getFormData() { return $this->form_data; }
 	public function getFormDataFor($key) { return $this->form_data[$key]; }
 	public function getFormCSRFToken() { return $this->form_data[GWF_CSRF::TOKEN_NAME][self::VALUE]; }
 	public function getTooltipText($key) { return isset($this->form_data[$key][self::TOOLTIP]) ? $this->form_data[$key][self::TOOLTIP] : ''; }
-	
+
 	public function getVar($key, $default=false)
 	{
 		if (!isset($this->form_data[$key]))
@@ -90,61 +90,61 @@ class GWF_Form
 		}
 		return $this->method === self::METHOD_POST ? $this->getPostVar($key, $default) : $this->getGetVar($key, $default);
 	}
-	
+
 	private function getPostVar($key, $default)
 	{
 		switch($this->form_data[$key][0])
 		{
 			case self::FILE: case self::FILE_OPT:
 				return $this->getFile($key, $default);
-				
+	
 			case self::DATE: case self::DATE_FUTURE:
 				return $this->getDate($key, $this->form_data[$key][4], $_POST);
-				
+	
 			case self::TIME:
 				return sprintf('%02s%02s', Common::getPostString($key.'h', '00'), Common::getPostString($key.'i', '00'));
-			
+
 			case self::CHECKBOX:
 				return isset($_POST[$key]);
-			
+
 			case self::INT:
 				return Common::getPostInt($key, $default);
-			
+
 			case self::SELECT_A:
 				return Common::getPostArray($key, $default);
-			
+
 			default:
 				return Common::getPostString($key, $default);
 		}
 	}
-	
+
 	private function getGetVar($key, $default)
 	{
 		switch($this->form_data[$key][0])
 		{
 			case self::FILE: case self::FILE_OPT:
 				return $default;
-				
+	
 			case self::DATE: case self::DATE_FUTURE:
 				return $this->getDate($key, $this->form_data[$key][4], $_GET);
-				
+	
 			case self::TIME:
 				return sprintf('%02s%02s', Common::getGetString($key.'h', '00'), Common::getGetString($key.'i', '00'));
-			
+
 			case self::CHECKBOX:
 				return isset($_GET[$key]);
-			
+
 			case self::INT:
 				return Common::getGetInt($key, $default);
-			
+
 			case self::SELECT_A:
 				return Common::getGetArray($key, $default);
-			
+
 			default:
 				return Common::getGetString($key, $default);
 		}
 	}
-	
+
 	private function getFile($key, $default)
 	{
 		if (!isset($_FILES[$key]))
@@ -158,7 +158,7 @@ class GWF_Form
 		}
 		return $file;
 	}
-	
+
 	private function getDate($key, $len, array $array)
 	{
 		$back = '';
@@ -173,16 +173,16 @@ class GWF_Form
 				break;
 			default: die('Form Date Length is invalid for '.$key);
 		}
-		
+
 //		var_dump($back);
 //		
 //		if(str_repeat('0', $len) === $back) {
 //			return '';
 //		}
-		
+
 		return $back;
 	}
-	
+
 	public function validate($context)
 	{
 		if (false !== ($error = GWF_FormValidator::validate($context, $this, $this->validator)))
@@ -192,7 +192,7 @@ class GWF_Form
 		$this->onNewCaptcha();
 		return false;
 	}
-	
+
 	public static function validateCSRF_WeakS()
 	{
 		if (false === ($token = GWF_CSRF::validateToken()))
@@ -201,31 +201,31 @@ class GWF_Form
 		}
 		return false;
 	}
-	
+
 	public function templateX($title='', $action=true)
 	{
 		return $this->template('formX.php', $title, $action, $this->computeColspanX());
 	}
-	
+
 	public function templateY($title='', $action=true)
 	{
 		return $this->template('formY.php', $title, $action, 3);
 	}
-	
+
 	private function template($file, $title, $action=true, $colspan)
 	{
-		
+
 //		if (!is_string($method) || ($method !== 'get'))
 //		{
 //			$method = 'post';
 //		}
 //		$this->method = $method;
-		
+
 		if (is_bool($action))
 		{
 			$action = $_SERVER['REQUEST_URI'];
 		}
-		
+
 		$tVars = array(
 			'data' => $this->getTemplateData(),
 			'title' => $title,
@@ -234,10 +234,10 @@ class GWF_Form
 			'enctype' => $this->getEncType(),
 			'colspan' => $colspan,
 		);
-		
+
 		return GWF_Template::templatePHPMain($file, $tVars);
 	}
-	
+
 	private function computeColspanX()
 	{
 		return count($this->form_data) + 1;
@@ -245,7 +245,7 @@ class GWF_Form
 // 		static $special = array(
 // 			self::CAPTCHA => 2,
 // 		);
-		
+
 // 		$colspan = 0;
 // 		foreach ($this->form_data as $key => $data)
 // 		{
@@ -260,7 +260,7 @@ class GWF_Form
 // 		}
 // 		return $colspan + 1;
 	}
-	
+
 	private function getEncType()
 	{
 		foreach ($this->form_data as $key => $data)
@@ -272,7 +272,7 @@ class GWF_Form
 		}
 		return self::ENC_DEFAULT;
 	}
-	
+
 	private function getTemplateData()
 	{
 		foreach ($this->form_data as $key => $data)
@@ -287,15 +287,15 @@ class GWF_Form
 				case self::DATE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, false, false);
 					break;
-					
+		
 				case self::DATE_FUTURE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, true, false);
 					break;
-					
+		
 				case self::TIME:
 					$this->form_data[$key][1] = GWF_TimeSelect::select($key.'h', $key.'i', $data[1]);
 					break;
-					
+		
 				case self::SELECT:
 				case self::SELECT_A:
 				case self::SUBMIT:
@@ -306,11 +306,11 @@ class GWF_Form
 				case self::DIVIDER:
 				case self::VALIDATOR:
 					break;
-					
+		
 				case self::HIDDEN:
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
-					
+		
 				case self::CHECKBOX:
 					# TODO: Optimize for size. Tricky, as $this->getVar() is not always appropiate for overwriting, because bool=isset or notset.
 					$arr = $this->method === self::METHOD_GET ? $_GET : $_POST;
@@ -319,18 +319,18 @@ class GWF_Form
 						$this->form_data[$key][1] = true;
 					} 
 					break;
-					
+		
 				case self::FILE:
 				case self::FILE_OPT:
 				case self::HTML:
 					break;
-					
+		
 				default:
 					if (false !== ($v = $this->getVar($key)))
 					{
 						$this->form_data[$key][1] = $v;
 					}
-					
+		
 					if (true === is_array($this->form_data[$key][1]))
 					{
 					# recursion needet?
@@ -346,7 +346,7 @@ class GWF_Form
 					}
 					break;
 			}
-			
+
 			# Setup required
 //			if (!isset($data[self::REQUIRED]))
 //			{
@@ -358,15 +358,15 @@ class GWF_Form
 //				}
 //			}
 		}
-		
+
 		if ($this->csrf_bit > self::CSRF_OFF)
 		{
 			$this->form_data[GWF_CSRF::TOKEN_NAME] = array(self::HIDDEN, GWF_CSRF::generateToken($this->getCSRFToken()));
 		}
-		
+
 		return $this->form_data;
 	}
-	
+
 	############
 	### CSRF ###
 	############
@@ -390,10 +390,10 @@ class GWF_Form
 					$hash .= '_'.$k;
 			}
 		}
-		
+
 		return GWF_Password::getToken($hash);
 	}
-	
+
 	###############
 	### Captcha ###
 	###############
@@ -403,17 +403,17 @@ class GWF_Form
 		GWF_Session::remove(self::SESS_NEXT_CAPTCHA);
 		GWF_Session::remove('php_captcha');
 	}
-	
+
 	public function onSolvedCaptcha()
 	{
 		GWF_Session::set(self::SESS_NEXT_CAPTCHA, GWF_Session::get('php_captcha'));
 	}
-	
+
 	private function getCaptchaData()
 	{
 		return GWF_Session::getOrDefault(self::SESS_NEXT_CAPTCHA, '');
 	}
-	
+
 	##############
 	### Render ###
 	##############
@@ -423,43 +423,43 @@ class GWF_Form
 		{
 			$action = $_SERVER['REQUEST_URI'];
 		}
-		
+
 		if ($encoding !== self::ENC_DEFAULT && $encoding !== self::ENC_MULTIPART)
 		{
 			echo GWF_HTML::error('GWF_Form', 'Unknown Form Encoding 0815-F1');
 			$encoding = self::ENC_DEFAULT;
 		}
-		
+
 		return
 			'<div>'.PHP_EOL.
 			sprintf('<form action="%s" enctype="%s" method="post">', htmlspecialchars($action), $encoding).PHP_EOL.
 			sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('')).PHP_EOL;
 	}
-	
+
 	public static function end()
 	{
 		return 
 			'</form>'.PHP_EOL.
 			'</div>'.PHP_EOL;
 	}
-	
+
 	public static function hidden($key, $value)
 	{
 		return sprintf('<input type="hidden" name="%s" value="%s" />', htmlspecialchars($key), htmlspecialchars($value));
 	}
-	
+
 	public static function buttonImage($key, $src)
 	{
 		return sprintf('<input type="image" name="%s" src="%s" />', htmlspecialchars($key), GWF_WEB_ROOT.htmlspecialchars($src));
 	}
-	
+
 	public static function captcha()
 	{
 		return
 			sprintf('<img src="%sCaptcha/%s" onclick="this.src=\'%sCaptcha/?\'+(new Date()).getTime();" />'.PHP_EOL, 
 			GWF_WEB_ROOT, '?v='.time(), GWF_WEB_ROOT);
 	}
-	
+
 	public static function checkbox($name, $checked=false, $id='', $onclick='')
 	{
 		$name = htmlspecialchars($name);
@@ -468,7 +468,7 @@ class GWF_Form
 		$onclick = ''; # TODO: onclick
 		return sprintf('<input type="checkbox" %s name="%s" %s %s />', $id, $name, $checked, $onclick);
 	}
-	
+
 	public static function submit($name, $text='', $id='', $onclick='')
 	{
 		$id = $id === '' ? '' : sprintf(' id="%s"', htmlspecialchars($id));
@@ -477,4 +477,4 @@ class GWF_Form
 		return sprintf('<span><input%s type="submit" name="%s" value="%s" /></span>', $id, $name, $text);
 	}
 }
-?>
+

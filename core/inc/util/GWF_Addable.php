@@ -9,4 +9,3 @@ interface GWF_Addable
 	public function getAddableFormData(GWF_User $user); # return GWF_Form input array
 	public function getAddableActions(GWF_User $user); # return array(string)
 }
-?>

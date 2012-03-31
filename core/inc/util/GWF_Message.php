@@ -9,49 +9,49 @@ class GWF_Message {
 	 * BB Replacements
 	 */
 	private static $bbReplaceNew = array(
-	
+
 		'b' => array(
 			'score' => 0,
 			'help' => '[b]<b>bold</b>[/b]',
 			'script' => 'bbInsert(\'[b]\', \'[/b]\')',
 		),
-		
+
 		'i' => array(
 			'score' => 0,
 			'help' => '[i]<em>italic</em>[/i]',
 			'script' => 'bbInsert(\'[i]\', \'[/i]\')',
 		),
-		
+
 		'u' => array(
 			'score' => 0,
 			'help' => '[u]<u>underlined</u>[/u]',
 			'script' => "bbInsert('[u]', '[/u]')",
 		),
-		
+
 		'code' => array(
 			'score' => 0,
 			'help' => '[code=lang]Mark text as code[/code]',
 			'script' => "bbInsert('[code]', '[/code]')",
 		),
-		
+
 		'quote' => array(
 			'score' => 0,
 			'help' => '[quote=username]quote someone[/quote]',
 			'script' => "bbInsert('[quote=Unknown]', '[/quote]')",
 		),
-		
+
 		'url' => array(
 			"score" => 0,
 			"help" => "[url=url]link_text[/url] or [url]url[/url]",
 			"script" => "bbInsert('[url=http://]', '[/url]')",
 		),
-		
+
 		"email" => array(
 			"score" => 0,
 			"help" => "[email=email@url]link_text[/email] or [email]email[/email]",
 			"script" => "bbInsert('[email]', '[/email]')",
 		),
-		
+
 		"noparse" => array(
 			"score" => 0,
 			"help" => "[noparse]disable bb-decoding[/noparse]",
@@ -64,7 +64,7 @@ class GWF_Message {
 			"script" => "bbInsert('[spoiler]', '[/spoiler]')",
 		),
 	);
-	
+
 	private static $bbSmileyPath;
 	public static function bbSmileyPath()
 	{
@@ -85,15 +85,15 @@ class GWF_Message {
 
 	private static $bbSmileys = array(
 		'=D' => array('biggrin.png', 'Yay'),
-		
+
 		'o-o' => array('sconfused.png', 'Confused'),
 		'O-O' => array('sconfused.png', 'Confused'),
 
 		'B)' => array('scool.png', 'Cool'),
 		'B-)' => array('scool.png', 'Cool'),
-		
+
 		":'(" => array('scry.png', 'Cry'),
-		
+
 		':P' => array('sdrool.png', 'Drool'),
 		':-P' => array('sdrool.png', 'Drool'),
 		':p' => array('sdrool.png', 'Drool'),
@@ -101,10 +101,10 @@ class GWF_Message {
 
 		':D' => array('shappy.png', 'Happy'),
 		':-D' => array('shappy.png', 'Happy'),
-	
+
 		'>:-(' => array('smad.png', 'Mad'),
 		'>:-/' => array('smad.png', 'Mad'),
-		
+
 		':-(' => array('ssad.png', 'Sad'),
 		':(' => array('ssad.png', 'Sad'),
 
@@ -112,18 +112,18 @@ class GWF_Message {
 		'o-O' => array('ssleepy.png', 'Euh'),
 		'Oo' => array('ssleepy.png', 'Euh'),
 		'O-o' => array('ssleepy.png', 'Euh'),
-	
+
 		':)' => array('ssmile.png', 'Smile'),
 		':-)' => array('ssmile.png', 'Smile'),
-	
+
 		':O' => array('ssuprised.png', 'Woot'),
 		':-O' => array('ssuprised.png', 'Woot'),
 		':o' => array('ssuprised.png', 'Woot'),
 		':-o' => array('ssuprised.png', 'Woot'),
 	);
-	
+
 	#----- end of static -----#
-	
+
 	private $message;
 
 	/**
@@ -134,7 +134,7 @@ class GWF_Message {
 	{
 		$this->message = $message;
 	}
-	
+
 	/**
 	 * return a form input field, containing the message + the editing bar
 	*/
@@ -154,7 +154,7 @@ class GWF_Message {
 //		return $back;
 //		
 //	}
-	
+
 	/*
 	 * Get a replacement javascript bar, to aid in editing
 	 */
@@ -167,7 +167,7 @@ class GWF_Message {
 //		$back = '<div class="bb_replace_bar">';
 //		
 //		foreach (self::$bbReplaceNew as $code => $data) {
-//			
+//
 //			$score = $data["score"];
 //			$script = $data["script"];
 //			$alt = $data["help"];
@@ -175,17 +175,17 @@ class GWF_Message {
 //			if ($script === false) {
 //				continue;
 //			}
-//			
+//
 //			if ($userscore < $score) {
 //				continue;
 //			}
-//			
+//
 //			$onclick = $script == "" ? "" : "onclick=\"return $script\"";
 //			$back .= '<div class="bb_replace">';
 //			$alt = htmlspecialchars($alt);
 //			$back .= "<img src=\"/image/button/bb/$code.png\" alt=\"$alt\" title=\"$alt\" $onclick />";
 //			$back .= "</div>";
-//			
+//
 //		}
 //		
 //		$back .= "</div>\n";
@@ -204,7 +204,7 @@ class GWF_Message {
 //			self::$parser = new ubbParser();
 //		}
 //	}
-	
+
 	/**
 	 * Display a message bb decoded.
 	 * @param string $message the message
@@ -217,22 +217,22 @@ class GWF_Message {
 	public static function display($message, $allowBB=true, $allowSmiley=true, $allowIMG=false, array $highlight=array())
 	{
 //		$message = self::wordwrap($message);
-		
+
 		if (!$allowBB) {
 			$message = sprintf('[noparse]%s[/noparse]', $message);
 		}
 
 		self::init($allowSmiley, $highlight);
-		
+
 //		ubbsetsmileys(self::$bbSmileys, GWF_WEB_ROOT.self::bbSmileyPath(), $allowIMG, $allowSmiley);
-		
+
 //		self::$parser->setHighlight($highlight);
-		
+
 		return GWF_BBCode::decode($message);
 //		return GWF_BB3::decode($message);
 //		return self::$parser->parse($message);
 	}
-	
+
 	private static function init($allowSmiley, $highlight)
 	{
 		GWF_BBCode::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
@@ -240,12 +240,12 @@ class GWF_Message {
 //		GWF_BB3::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
 //		GWF_BB3::initHighlighter($highlight);
 	}
-	
+
 	private static function wordwrap($string, $maxlen=72, $break="\n")
 	{
 		return preg_replace('#(\S{'.$maxlen.',})#e', "chunk_split('$1', ".$maxlen.", '".$break."')", $string); 
 	}
-	
+
 	/**
 	 * return the message bb-replaced.
 	 * the user is the poster, and thus different replacements can be taken for different skilled users.
@@ -268,7 +268,7 @@ class GWF_Message {
 		$parser = new ubbParser();
 		$parser->setUsername('test');
 		$parser->setScores($this->getScoresForNewBB(), $score);
-		
+
 		if (false === ($user = Session::get('user')))
 		{
 			$showimgs = false;
@@ -279,13 +279,13 @@ class GWF_Message {
 			$showimgs = $user->isOptionEnabled(USER_OPTION_SHOW_IMAGES);
 			$showsmiley = $user->isOptionEnabled(USER_OPTION_SHOW_SMILEYS);
 		}
-		
+
 		ubbsetsmileys(self::$bbSmileys, self::bbSmileyPath(), $showimgs, $showsmiley);
 		#echo $this->message;
-		
+
 		return '<div class="quickerubb">'.$parser->parse($this->message).'</div>';
 	}*/
-	
+
 	private function getScoresForNewBB()
 	{
 		$back = array();
@@ -304,7 +304,7 @@ class GWF_Message {
 		$term = trim(str_replace(array(',', '+'), ' ', $term));
 		return preg_split('/ +/', $term);
 	}
-	
+
 	public static function getCodeBar($key)
 	{
 		$tVars = array(
@@ -313,5 +313,5 @@ class GWF_Message {
 		return GWF_Template::templateMain('bb_codebar.tpl', $tVars);
 	}
 }
-	
-?>
+
+

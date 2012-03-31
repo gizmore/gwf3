@@ -12,7 +12,7 @@ final class GWF_LangSelect
 	const TYPE_ALL = 0;
 	const TYPE_SUPPORTED = 1;
 	const TYPE_GOOGLE = 2;
-	
+
 	/**
 	 * Return a single html select for languages. 
 	 * @param int $bitmask
@@ -30,29 +30,29 @@ final class GWF_LangSelect
 			GWF_Error::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return '';
 		}
-		
+
 		if ($selected === true)
 		{
 			$selected = Common::getPostString($name, '0');
 		}
-		
+
 		if ($text === true)
 		{
 			$text = GWF_HTML::lang('sel_language');
 		}
-		
+
 		$data = array(array('0', $text));
-		
+
 		while (false !== ($row = $db->fetchRow($result)))
 		{
 			$data[] = $row;
 		}
-		
+
 		$db->free($result);
-		
+
 		return GWF_Select::display($name, $data, Common::getPostString($name, $selected));
 	}
-	
+
 	#################
 	### Validator ###
 	#################
@@ -60,7 +60,7 @@ final class GWF_LangSelect
 	{
 		return self::isValidLanguage($langid, $allow_zero, $bitmask) ? false : GWF_HTML::lang('ERR_UNKNOWN_LANGUAGE');
 	}	
-	
+
 	public static function isValidLanguage($langid, $allow_zero=false, $bitmask=self::TYPE_ALL)
 	{
 		$min = $allow_zero === true ? -1 : 0;
@@ -68,20 +68,20 @@ final class GWF_LangSelect
 		{
 			return false;
 		}
-		
+
 		if ($langid === 0)
 		{
 			return true; # Zero allowed
 		}
-		
+
 		if (false === ($lang = GWF_Language::getByID($langid)))
 		{
 			return false;
 		}
-		
+
 		return $lang->isOptionEnabled($bitmask);
 	}
-	
+
 	public static function validate_langidMulti($langids, $allow_zero=false, $bitmask=self::TYPE_ALL)
 	{
 		# Zero and nothing
@@ -89,7 +89,7 @@ final class GWF_LangSelect
 		{
 			return $allow_zero ? false : GWF_HTML::lang('ERR_UNKNOWN_LANGUAGE');
 		}
-		
+
 		# Validate them all
 		foreach ($langids as $langid)
 		{
@@ -101,4 +101,4 @@ final class GWF_LangSelect
 		return false;
 	}
 }
-?>
+

@@ -13,10 +13,9 @@ final class GWF_Copyright
 		$years = $y1 === $y2 ? $y1 : "$y1-$y2";
 		return GWF_HTML::lang('copy', array($years));
 	}
-	
+
 	public static function displayGWF()
 	{
 		return GWF_HTML::lang('copygwf');
 	}
 }
-?>

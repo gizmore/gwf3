@@ -166,4 +166,3 @@ final class GWF_PageMenu
 	}
 	
 }
-?>

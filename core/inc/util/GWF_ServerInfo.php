@@ -17,7 +17,7 @@ final class GWF_ServerInfo
 	public static function isLinux() { return 'Linux' === PHP_OS; }
 	public static function isFreeBSD() { return 'FreeBSD' === PHP_OS; }
 	public static function isWindows() { return 'WIN' === strtoupper(substr(PHP_OS, 0, 3)); }
-	
+
 	/**
 	 * Overwrite missing $_SERVER variables
 	 * @todo rename
@@ -62,6 +62,6 @@ final class GWF_ServerInfo
 				$_SERVER[$key] = $val;
 			}
 		}
-		
+
 	}
 }

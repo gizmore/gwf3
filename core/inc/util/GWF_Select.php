@@ -13,12 +13,12 @@ final class GWF_Select
 		$back .= '</select>'.PHP_EOL;
 		return $back;
 	}
-	
+
 	public static function multi($name, $data, $selected=array(), $onchange='')
 	{
 		$onchange = $onchange === '' ? '' : " onchange=\"{$onchange}\"";
 		$back = '<select name="'.$name.'[]" multiple="multiple"'.$onchange.'>'.PHP_EOL;
-		
+
 		foreach ($data as $d)
 		{
 			$sel = in_array($d[0], $selected, false) ? ' selected="selected"' : '';
@@ -28,4 +28,3 @@ final class GWF_Select
 		return $back;
 	}
 }
-?>

@@ -109,7 +109,7 @@ final class GWF_Notice
 	public static function getUnreadAudit(GWF_User $user) { return ''; }
 	public static function getUnreadComments(GWF_User $user) { return ''; }
 //	public static function getUnread(GWF_User $user) { return ''; } # Template
-	
+
 	public static function getOnlineUsers($pattern='<span id="gwf_heartbeat">%s</span>', $default='0')
 	{
 		if (false !== ($heart = GWF_Module::loadModuleDB('Heart', false, false, true)))

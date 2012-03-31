@@ -21,25 +21,25 @@ class GWF_Wordlist
 			htmlDisplayError("Wordlist is too small");
 			return array();
 		}
-		
+
 		$back = array();
 		for ($i = 0; $i < $amount; $i++) {
-			
+
 			$index = rand(0, count($words)-1);
-			
+
 			if (isset($back[$index])) {
 				$i--;
 				continue;
 			}
-			
+
 			$back[$index] = trim($words[$index]);
-	
+
 		}
-		
+
 		return $back;
-		
+
 	}
-	
+
 	# Check a wordlist for duplicates
 	# @Args: path to wordlist
 	# @Back: boolean: true on no duplicates
@@ -48,9 +48,9 @@ class GWF_Wordlist
 		$file = file($wordlistPath);
 		$checked = array();
 		$back = true;
-		
+
 		foreach ($file as $word) {
-			
+
 			if (in_array($word, $checked)) {
 				htmlDisplayError("Warning: Duplicate entry '$word' in $wordlistPath");
 				$back = false;
@@ -58,10 +58,10 @@ class GWF_Wordlist
 			else {
 				$checked[] = $word;
 			}
-			
+
 		}
 		return $back;
 	}
 }
 
-?>
+

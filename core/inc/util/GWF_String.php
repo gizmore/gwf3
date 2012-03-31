@@ -27,7 +27,7 @@ final class GWF_String
 	{
 		return ( (($c>='a')&&($c<='z')) || (($c>='A')&&($c<='Z')) || (($c>='0')&&($c<='9')) );
 	}
-	
+
 	/**
 	 * Count the occurance of a string within a string.
 	 * @param string $s
@@ -43,7 +43,7 @@ final class GWF_String
 		}
 		return $count;
 	}
-	
+
 	/**
 	 * Return the last position of a char, counting backwards from offset.
 	 * This function does not work with strings, only with a char as needle.
@@ -66,4 +66,3 @@ final class GWF_String
 		return false;
 	}
 }
-?>

@@ -10,7 +10,7 @@
 abstract class GWF_Method
 {
 	protected $_tpl = NULL;
-	
+
 	/**
 	 * @var GWF_Module
 	 */
@@ -79,7 +79,7 @@ abstract class GWF_Method
 		$class = get_class($this);
 		return array(Common::substrUntil($class, '_'), Common::substrFrom($class, '_'));
 	}
-	
+
 	/**
 	 * Generate htaccess rule for this method. Simply ^module/method$. 
 	 */
@@ -107,4 +107,4 @@ abstract class GWF_Method
 		return false;
 	}
 }
-?>
+

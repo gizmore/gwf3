@@ -22,7 +22,7 @@ final class GWF_BBCodeItem
 	public function setFullTag($full_tag) { $this->fulltag = $full_tag; }
 	public function setParams($params) { $this->params = $params; }
 	public function setParent(GWF_BBCodeItem $parent) { $this->parent = $parent; }
-	
+
 	public function addChild(GWF_BBCodeItem $child)
 	{
 		if ($this->childs === NULL)
@@ -34,7 +34,7 @@ final class GWF_BBCodeItem
 			$this->childs[] = $child;
 		}
 	}
-	
+
 	public function addTextChild($text)
 	{
 		$child = new self();
@@ -42,7 +42,7 @@ final class GWF_BBCodeItem
 		$child->setText($text);
 		$this->addChild($child);
 	}
-	
+
 	###############
 	### Closing ###
 	###############
@@ -61,7 +61,7 @@ final class GWF_BBCodeItem
 			return $this->parent->close($tag);
 		}
 	}
-	
+
 	###################
 	### Render Main ###
 	###################
@@ -80,19 +80,19 @@ final class GWF_BBCodeItem
 			return $this->renderText($htmlspecial, $nl2br, $raw);
 		}
 	}
-	
+
 	public function renderTag($htmlspecial=true, $nl2br=true, $raw=false)
 	{
 //		if ($this->tag === NULL)
 //		{
 //			return $this->renderText($htmlspecial, $nl2br);
 //		}
-	
+
 		if ($raw)
 		{
 			return $this->fulltag.$this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
-		
+
 		$method_name = 'render_'.$this->tag;
 		if (method_exists($this, $method_name))
 		{
@@ -103,7 +103,7 @@ final class GWF_BBCodeItem
 			return $this->fulltag.$this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
 	}
-	
+
 	public function renderChilds($htmlspecial=true,$nl2br=true, $raw=false)
 	{
 		$back = '';
@@ -117,63 +117,63 @@ final class GWF_BBCodeItem
 		}
 		return $back;
 	}
-	
+
 	public function renderText($htmlspecial=true, $nl2br=true, $raw=false)
 	{
 // 		$back = trim($this->text);
 		$back = $this->text;
-		
+
 		if ($htmlspecial)
 		{
 			$back = htmlspecialchars($back);
 		}
-		
+
 		$back = GWF_BBCode::highlight($back);
-		
+
 		if (!$raw)
 		{
-			$back = GWF_BBCode::replaceSmileys($back);			
+			$back = GWF_BBCode::replaceSmileys($back);
 		}
-		
+
 		if ($nl2br)
 		{
 			$back = nl2br($back);
 		}
-		
+
 		return $back;
 	}
-	
+
 	##############
 	### Helper ###
 	##############
 	private function filterHREF($href)
 	{
 		static $allow = array('http', 'https', 'ftp', 'ftps');
-		
+
 		if ('' === ($href = trim($href)))
 		{
 			return false;
 		}
-		
+
 		if ($href[0]==='/')
 		{
 			return GWF_WEB_ROOT.substr($href, 1);
 		}
-		
+
 		if (false === ($pos = strpos($href, '://')))
 		{
 			return false;
 		}
-		
+
 		$protocol = substr($href, 0, $pos);
 		if (!in_array($protocol, $allow))
 		{
 			return false;
 		}
-		
+
 		return $href;
 	}
-	
+
 	private function filterURLText($text, $maxlen=48, $middle='...')
 	{
 		return $text;
@@ -184,26 +184,26 @@ final class GWF_BBCodeItem
 //		$side = intval($maxlen / 2);
 //		return substr($text, 0, $side).$middle.substr($text, -$side);
 	}
-	
+
 	####################
 	### Helper GeSHi ###
 	####################
 	private function renderCode($lang, $htmlspecial, $nl2br, $raw)
 	{
 		$lang = htmlspecialchars($lang);
-		
+
 		$title = '';
 		if (isset($this->params['title']))
 		{
 			$title = $this->params['title'];
 			$title = htmlspecialchars($title);
 		}
-		
+
 		$head = $lang;
 		$head .= ' '.GWF_HTML::lang('code');
-		
+
 		$head .= $title === '' ? '' : ' '.GWF_HTML::lang('for').' <cite>'.$title.'</cite>';
-		
+
 		if (!GWF_GESHI_PATH)
 		{
 			$pre = '<div class="gwf_bb_code">';
@@ -217,29 +217,29 @@ final class GWF_BBCodeItem
 			require_once GWF_GESHI_PATH;
 			$source = $this->renderChilds(false, false, true);
 			$geshi = new GeSHi($source, $lang);
-			
+
 //			$type = GESHI_HEADER_NONE;
 //			$type = GESHI_HEADER_DIV;
 //			$type = GESHI_HEADER_PRE;
 //			$type = GESHI_HEADER_PRE_VALID;
 			$type = GESHI_HEADER_PRE_TABLE;
 			$geshi->set_header_type($type);
-			
+
 // 			$flag = GESHI_NORMAL_LINE_NUMBERS;
 			$flag = GESHI_FANCY_LINE_NUMBERS;
 			$geshi->enable_line_numbers($flag);
-			
+
 //			$geshi->start_line_numbers_at(1);
 //			$geshi->enable_classes();
-			
+
 			$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
 			$pre = '<div class="gwf_bb_code">';
 			$pre .= sprintf('<div>%s%s</div>', $geshi_a, $head);
 			$after = '</div>';
-			return $pre.$geshi->parse_code().$after;			
+			return $pre.$geshi->parse_code().$after;
 		}
 	}	
-	
+
 	############
 	### Tags ###
 	############
@@ -252,27 +252,27 @@ final class GWF_BBCodeItem
 	{
 		return '<ins>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</ins>';
 	}
-	
+
 	public function render_s($htmlspecial, $nl2br, $raw)
 	{
 		return '<del>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</del>';
 	}
-	
+
 	public function render_i($htmlspecial, $nl2br, $raw)
 	{
 		return '<em>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</em>';
 	}
-	
+
 	public function render_ul($htmlspecial, $nl2br, $raw)
 	{
 		return '<ul>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</ul>';
 	}
-	
+
 	public function render_ol($htmlspecial, $nl2br, $raw)
 	{
 		return '<ol>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</ol>';
 	}
-	
+
 	public function render_li($htmlspecial, $nl2br, $raw)
 	{
 		return '<li>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</li>';
@@ -286,7 +286,7 @@ final class GWF_BBCodeItem
 		}
 		return $this->render_color($htmlspecial, $nl2br, $raw);
 	}
-	
+
 	public function render_color($htmlspecial, $nl2br, $raw)
 	{
 		if (!empty($this->params['color']))
@@ -299,7 +299,7 @@ final class GWF_BBCodeItem
 		}
 
 		$text = $this->renderChilds($htmlspecial, $nl2br, $raw);
-		
+
 		if (isset($the_color))
 		{
 			return sprintf('<span style="color: #%s;">%s</span>', $the_color, $text);
@@ -309,7 +309,7 @@ final class GWF_BBCodeItem
 			return $text;
 		}
 	}
-	
+
 	public function render_size($htmlspecial, $nl2br, $raw)
 	{
 		if (!empty($this->params['size']))
@@ -322,7 +322,7 @@ final class GWF_BBCodeItem
 		}
 
 		$text = $this->renderChilds($htmlspecial, $nl2br, $raw);
-		
+
 		if (isset($the_size))
 		{
 			return sprintf('<span style="font-size: %spx;">%s</span>', $the_size, $text);
@@ -332,8 +332,8 @@ final class GWF_BBCodeItem
 			return $text;
 		}
 	}
-	
-	
+
+
 	public function render_level($htmlspecial, $nl2br, $raw) { return $this->render_score($htmlspecial, $nl2br, $raw); }
 	public function render_score($htmlspecial, $nl2br, $raw)
 	{
@@ -347,7 +347,7 @@ final class GWF_BBCodeItem
 			return $this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
 	}
-	
+
 	public function render_url($htmlspecial, $nl2br, $raw)
 	{
 		if (isset($this->params['url']) && !empty($this->params['url']))
@@ -360,23 +360,23 @@ final class GWF_BBCodeItem
 			$href = $text = $this->renderChilds(false, false, false);
 			$text = htmlspecialchars($text);
 		}
-		
+
 		if (false === ($the_href = $this->filterHREF($href)))
 		{
 			$text = htmlspecialchars($href);
 			$the_href = '#error';
 		}
-		
+
 		$text = $this->filterURLText($text);
 
 		return sprintf('<a href="%s">%s</a>', $the_href, $text);
 	}
-	
+
 	public function render_php($htmlspecial, $nl2br, $raw)
 	{
 		return $this->renderCode('PHP', $htmlspecial, $nl2br, $raw);
 	}
-	
+
 	public function render_code($htmlspecial, $nl2br, $raw)
 	{
 		if (isset($this->params['code']))
@@ -393,7 +393,7 @@ final class GWF_BBCodeItem
 		}
 		return $this->renderCode($lang, $htmlspecial, $nl2br, $raw);
 	}
-	
+
 	public function render_quote($htmlspecial, $nl2br, $raw)
 	{
 		# Display the date of the original message.
@@ -417,7 +417,7 @@ final class GWF_BBCodeItem
 			$username = $this->params['from'];
 		}
 		$username = htmlspecialchars($username);
-		
+
 		$pre = '<blockquote class="gwf_bb_quote">';
 		if ($date !== '' || $username !== '')
 		{
@@ -437,12 +437,12 @@ final class GWF_BBCodeItem
 				$pre .= '</div>';
 			}
 		}
-		
+
 		$after = '</blockquote>';
-		
+
 		return $pre.$this->renderChilds($htmlspecial, $nl2br, $raw).$after;
 	}
-	
+
 	public function render_spoiler($htmlspecial, $nl2br, $raw)
 	{
 		# No Javascript:
@@ -467,19 +467,19 @@ final class GWF_BBCodeItem
 		{
 			return $this->renderChilds($htmlspecial, $nl2br, $raw);
 		}
-		
+
 		$href_no_js = htmlspecialchars(GWF_WEB_ROOT.'index.php?'.$href_no_js.'&show_spoilers=please');
-		
+
 		return
 			'<nav><a href="'.$href_no_js.'" onclick="toggleHidden(\''.$id.'\'); return false;">'.$link_txt.'</a></nav>'.PHP_EOL.
 			'<section class="gwf_bb_spoiler" id="'.$id.'">'.$this->renderChilds().'</section>'.PHP_EOL;
 	}
-	
+
 	public function render_noparse($htmlspecial, $nl2br, $raw)
 	{
 		return $this->renderChilds(true, true, true);
 	}
-	
+
 	public function render_youtube($htmlspecial, $nl2br, $raw)
 	{
 		$the_id = isset($this->params['youtube']) ? $this->params['youtube'] : $this->text;
@@ -487,9 +487,9 @@ final class GWF_BBCodeItem
 		{
 			return GWF_HTML::lang('err_youtube_id');
 		}
-		
+
 		$title = isset($this->params['title']) ? $this->params['title'] : GWF_HTML::lang('youtube_title');
-		
+
 		return sprintf('<iframe title="%s" class="gwf_bb_youtube" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/%s" frameborder="0" allowFullScreen="allowFullScreen"></iframe>', htmlspecialchars($title), $the_id);
 	}
 
@@ -501,27 +501,27 @@ final class GWF_BBCodeItem
 		{
 			return GWF_HTML::lang('err_bb_img');
 		}
-		
+
 		$title = isset($this->params['title']) ? $this->params['title'] : GWF_HTML::lang('an_img');
 		$width = isset($this->params['width']) ? (int)$this->params['width'] : NULL;
 		$height = isset($this->params['height']) ? (int)$this->params['height'] : NULL;
 		$w = $h = '';
-		
+
 		if ( ($width !== NULL) && ($width > 15) && ($width < 640) )
 		{
 			$w = " width=\"{$width}\"";
 		}
-		
+
 		if ( ($height !== NULL) && ($height > 15) && ($height < 480) )
 		{
 			$h = " height=\"{$height}\"";
 		}
-		
+
 		$title = htmlspecialchars($title);
 		$alt = $title;
-		
+
 		return sprintf('<img class="gwf_bb_img" alt="%s" title="%s"%s%s src="%s" />', $alt, $title, $w, $h, $href);
 	}
 */
 }
-?>
+

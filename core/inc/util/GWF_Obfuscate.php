@@ -45,4 +45,3 @@ final class GWF_Obfuscate
 		return mb_substr($s, 0, $pos)."\xC2\xAD".mb_substr($s, $pos);
 	}	
 }
-?>

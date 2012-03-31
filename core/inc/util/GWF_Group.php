@@ -5,9 +5,9 @@ final class GWF_Group extends GDO
 	const STAFF = 'staff';
 	const MODERATOR = 'moderator';
 	const PUBLISHER = 'publisher';
-	
+
 	const NAME_LEN = 63; # maxlen
-	
+
 	###############
 	### Options ###
 	###############
@@ -17,16 +17,16 @@ final class GWF_Group extends GDO
 	const MODERATE = 0x04;  # Memebership applications
 	const FREE = 0x08;      # Click and join
 	const SYSTEM = 0x10;    # By Script
-	
+
 	const VIEW_FLAGS = 0xf00;
 	const VISIBLE = 0x100;   # Memberlist publicy visible
 	const COMUNITY = 0x200;  # Memberlist visible to normal members
 	const HIDDEN = 0x400;    # Memberlist visible to group members
 	const SCRIPT = 0x800;    # Memberlist is only visible to scripts
-	
+
 	const VISIBLE_GROUP = 0x1000; # Is visible in group list
 	const VISIBLE_MEMBERS = 0x2000; # Is memberlist always visible
-	
+
 	public function getTableName() { return GWF_TABLE_PREFIX.'group'; }
 	public function getClassName() { return __CLASS__; }
 	public function getOptionsName() { return 'group_options'; } 
@@ -53,15 +53,15 @@ final class GWF_Group extends GDO
 	public function getVisibleMode() { return $this->getVar('group_options') & self::VIEW_FLAGS; }
 	public function getJoinMode() { return $this->getVar('group_options') & self::JOIN_FLAGS; }
 	public function isAskToJoin() { return ($this->getJoinMode() & (self::MODERATE|self::FREE)) > 0; }
-	
+
 	/**
 	 * @param int $gid
 	 * @return GWF_Group
 	 */
 	public static function getByID($gid) { return self::table(__CLASS__)->getRow($gid); }
 	public static function getByName($name) { $name = self::escape($name); return self::table(__CLASS__)->selectFirstObject('*', "group_name='$name'"); }
-	
-	
+
+
 	# Display
 	public function displayJoinType(GWF_Module $module)
 	{
@@ -78,7 +78,7 @@ final class GWF_Group extends GDO
 				return 'ERR_GRP_FLAG'.$flag;
 		}
 	}
-	
+
 	public function displayViewType(GWF_Module $module)
 	{
 		$flag = $this->getVar('group_options')&self::VIEW_FLAGS;
@@ -93,6 +93,5 @@ final class GWF_Group extends GDO
 				return 'ERR_GRP_FLAG'.$flag;
 		}
 	}
-	
+
 }
-?>

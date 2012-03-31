@@ -17,7 +17,7 @@ final class GWF_BlackMail extends GDO
 			'eb_domain' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 		);
 	}
-	
+
 	public static function isBlacklisted($email)
 	{
 		if (false === ($domain = Common::substrFrom($email, '@', false)))
@@ -27,7 +27,7 @@ final class GWF_BlackMail extends GDO
 		$domain = self::escape($domain);
 		return self::table(__CLASS__)->selectVar('1', "eb_domain='{$domain}'") !== false;
 	}
-	
+
 	public static function addToBlacklist($email)
 	{
 		if (false === ($domain = Common::substrFrom($email, '@', false)))
@@ -41,4 +41,3 @@ final class GWF_BlackMail extends GDO
 		return self::table(__CLASS__)->insertAssoc(array('eb_domain'=>$domain), false);
 	}
 }
-?>

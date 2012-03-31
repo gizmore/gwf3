@@ -88,10 +88,10 @@ class GWF_SvnInfo {
 			$port = 443;
 		else if (empty($port))
 			$port = 80;
-		
+
 		if ($schema == 'https')
 			$host = "ssl://".$host;
-		
+
 		$fp = fsockopen($host, $port, $errorno, $errorstr, 10);
 
 		if (!$fp) {
@@ -114,10 +114,10 @@ class GWF_SvnInfo {
 		}
 
 		$succ = fwrite($fp, implode("\r\n", $request) . "\r\n\r\n" . $this->_RequestData);
-		
+
 		if (!$succ)
 			return '';
-		
+
 
 		// Read response
 		$response = '';
@@ -229,7 +229,7 @@ Repository
 		{
 			return 0;
 		}
-		
+
 		return (int)$datedRevision[0];
 	}
 
@@ -258,4 +258,4 @@ Repository
 
 }
 
-?>
+

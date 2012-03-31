@@ -5,7 +5,7 @@ final class GWF_UserGroup extends GDO
 	const CO_LEADER = 0x02;
 	const MODERATOR = 0x04;
 	const HIDDEN = 0x08;
-	
+
 	###########
 	### GDO ###
 	###########
@@ -22,12 +22,12 @@ final class GWF_UserGroup extends GDO
 			'group' => array(GDO::JOIN, 0, array('GWF_Group', 'ug_groupid', 'group_id')),
 		);
 	}
-	
+
 	public static function show_groups($username)
 	{
 		return GDO::table(__CLASS__)->selectColumn('group_name', "user_name='$username'", '', array('user', ''));
 	}
-	
+
 	# Add a user to a group
 	public static function addToGroup($userid, $groupid, $options=0)
 	{
@@ -41,13 +41,13 @@ final class GWF_UserGroup extends GDO
 		}
 		return self::fixGroupMC();
 	}
-	
+
 	public static function fixGroupMC()
 	{
 		$ug = GWF_TABLE_PREFIX.'usergroup';
 		return GDO::table('GWF_Group')->update("group_memberc=(SELECT COUNT(*) FROM $ug WHERE ug_groupid=group_id)");
 	}
-	
+
 	public static function removeFromGroup($userid, $groupid)
 	{
 		$userid = (int)$userid;
@@ -55,4 +55,3 @@ final class GWF_UserGroup extends GDO
 		return self::table(__CLASS__)->deleteWhere("ug_userid={$userid} AND ug_groupid={$groupid}");
 	}
 }
-?>

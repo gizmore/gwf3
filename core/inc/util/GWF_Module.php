@@ -171,7 +171,7 @@ class GWF_Module extends GDO
 			{
 				return false;
 			}
-			
+
 			if (false === ($module = self::initModuleB($modulename, $data)))
 			{
 				return false;
@@ -181,23 +181,23 @@ class GWF_Module extends GDO
 		{
 			$module = self::$MODULES[$modulename];
 		}
-		
+
 //		if (false === $module->isEnabled())
 //		{
 //			return false;
 //		}
-		
-		
+
+
 		if (true === $include)
 		{
 			$module->onInclude();
 		}
-		
+
 		if (true === $load_lang)
 		{
 			$module->onLoadLanguage();
 		}
-		
+
 		return $module;
 	}
 
@@ -261,7 +261,7 @@ class GWF_Module extends GDO
 		{
 			return false;
 		}
-		
+
 		if (true === $m->isEnabled())
 		{
 			$m->onStartup();
@@ -326,17 +326,17 @@ class GWF_Module extends GDO
 		{
 			return '';
 		}
-		
+
 		if (false === ($method = $this->getMethod($methodname)))
 		{
 			return GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($methodname), $this->getName()));
 		}
-		
+
 		if (false === $method->hasPermission())
 		{
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
-		
+
 		return $method->execute();
 	}
 

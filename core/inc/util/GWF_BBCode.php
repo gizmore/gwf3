@@ -19,13 +19,13 @@ final class GWF_BBCode
 		self::$allowSmileys = $allowed;
 		self::$smileyPath = $path;
 		self::$smileys = $smileys;
-		
+
 		self::initSmileysB();
 	}
 	private static function initSmileysB()
 	{
 		static $init = true;
-		
+
 		if ($init === true)
 		{
 			foreach (self::$smileys as $txt => $data)
@@ -33,18 +33,18 @@ final class GWF_BBCode
 				list($path, $alt) = $data;
 				$alt = htmlspecialchars($alt, ENT_QUOTES);
 				$src = GWF_WEB_ROOT.self::$smileyPath.$path;
-				
+	
 				self::$smileysReplace[$txt] = sprintf('<img src="%s" title="%s" alt="%s" />', $src, $alt, $alt);
 			}
 			$init = false;
 		}
 	}
-	
+
 	public static function replaceSmileys($text)
 	{
 		return self::$allowSmileys ? str_replace(array_keys(self::$smileysReplace), array_values(self::$smileysReplace), $text): $text;
 	}
-	
+
 	########################
 	### Init Highlighter ###
 	########################
@@ -65,7 +65,7 @@ final class GWF_BBCode
 		}
 		return $text;
 	}
-	
+
 	####################
 	### Decoder Main ###
 	####################
@@ -84,9 +84,9 @@ final class GWF_BBCode
 					$read_len = $close_bracket - $i + 1;
 					$full_tag = substr($message, $i, $read_len);
 					$i += $read_len;
-					
+		
 					list($tag, $params, $is_closing) = self::parseTag($curr, $full_tag);
-					
+		
 					if ($tag === NULL)
 					{
 						$curr->addTextChild($full_tag);
@@ -123,23 +123,23 @@ final class GWF_BBCode
 				$i += $read_len;
 			}
 		}
-		
+
 		return $stack->render();
 	}
-	
+
 	private static function parseTag(GWF_BBCodeItem $item, $full_tag)
 	{
 		$full_tag = trim($full_tag, '[ ]');
-		
+
 		if ($full_tag === '') {
 			return array(NULL, NULL, false);
 		}
-		
+
 		if ($full_tag[0] === '/') {
 			return array(substr($full_tag, 1), NULL, true);
 		}
 
-		
+
 		# TODO: getTag() Optimize
 		$pos_space = strpos($full_tag, ' ');
 		$pos_equal = strpos($full_tag, '=');
@@ -154,12 +154,12 @@ final class GWF_BBCode
 		}
 		$pos = $pos_equal < $pos_space ? $pos_equal : $pos_space;
 		$tag = substr($full_tag, 0, $pos);
-		
-		
+
+
 		if (!method_exists($item, 'render_'.$tag)) {
 			return array(NULL, NULL, false);
 		}
-		
+
 		$params = NULL;
 		foreach(explode(' ', $full_tag) as $arg)
 		{
@@ -178,4 +178,3 @@ final class GWF_BBCode
 		return array($tag, $params, false);
 	}
 }
-?>

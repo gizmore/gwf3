@@ -11,7 +11,7 @@ final class GWF_Crypt
 	{
 		return self::decrypt($plaintext, $key);
 	}
-	
+
 	public static function decrypt($ciphertext, $key)
 	{
 		if (0 === ($klen = strlen($key))) {
@@ -37,4 +37,3 @@ final class GWF_Crypt
 		return $back;
 	}
 }
-?>

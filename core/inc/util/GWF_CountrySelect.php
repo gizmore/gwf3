@@ -17,7 +17,7 @@ final class GWF_CountrySelect
 		$db->free($result);
 		return GWF_Select::display($name, $data, $selected);
 	}
-	
+
 	#################
 	### Validator ###
 	#################
@@ -25,13 +25,13 @@ final class GWF_CountrySelect
 	{
 		return self::isValidCountry($arg, $allow_zero) ? false : GWF_HTML::lang('ERR_UNKNOWN_COUNTRY');
 	}
-	
+
 	public static function validate_countryidMulti($arg, $allow_zero=false)
 	{
 		if (!(is_array($arg))) {
 			return $allow_zero === true ? false : GWF_HTML::lang('ERR_UNKNOWN_COUNTRY');
 		}
-		
+
 		$success = true;
 		foreach ($arg as $cid)
 		{
@@ -51,7 +51,7 @@ final class GWF_CountrySelect
 		}
 		return $success === true ? false : GWF_HTML::lang('ERR_UNKNOWN_COUNTRY');
 	}
-	
+
 	public static function isValidCountry($cid, $allow_zero=false)
 	{
 		$min = $allow_zero === true ? -1 : 0;
@@ -62,4 +62,3 @@ final class GWF_CountrySelect
 		return $cid === 0 ? true : (GWF_Country::getByID($cid) !== false);
 	}
 }
-?>

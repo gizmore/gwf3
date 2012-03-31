@@ -13,7 +13,7 @@ final class GWF_Mail
 	const HEADER_NEWLINE = "\n";
 	const GPG_PASSPHRASE = ''; #GWF_EMAIL_GPG_SIG_PASS;
 	const GPG_FINGERPRINT = ''; #GWF_EMAIL_GPG_SIG;
-	
+
 	private $receiver = '';
 	private $receiverName = 'Bar';
 	private $sender = '';
@@ -23,7 +23,7 @@ final class GWF_Mail
 	private $attachments = array();
 	private $headers = array();
 	private $gpgKey = '';
-	
+
 	private $allowGPG = true;
 
 	public function __construct() {}
@@ -63,7 +63,7 @@ final class GWF_Mail
 		);
 		return GWF_Template::templateMain('mail.tpl', $tVars);
 	}
-	
+
 	public function nestedTextBody()
 	{
 		$body = $this->body;
@@ -87,7 +87,7 @@ final class GWF_Mail
 	public function sendToUser(GWF_User $user)
 	{
 		$this->setupGPG($user);
-		
+
 		if ($user->isOptionEnabled(GWF_User::EMAIL_TEXT))
 		{
 			return $this->sendAsText();
@@ -96,9 +96,9 @@ final class GWF_Mail
 		{
 			return $this->sendAsHTML();
 		}
-		
+
 	}
-	
+
 	public function sendAsText($cc='', $bcc='')
 	{
 		return $this->send($cc, $bcc, $this->nestedTextBody(), false);
@@ -108,10 +108,10 @@ final class GWF_Mail
 	{
 		return $this->send($cc, $bcc, $this->nestedHTMLBody(), true);
 	}
-	
+
 	public function send($cc, $bcc, $message, $html=true)
 	{
-		
+
 		$headers = '';
 			#'From: =?UTF-8?B?'
 			#.base64_encode($this->senderName).'?=<'
@@ -119,7 +119,7 @@ final class GWF_Mail
 
 			#$to = '=?UTF-8?B?'.base64_encode($this->receiverName)
 			#.'?=<'. $this->receiver.'>' ;
-		
+
 		$to = $this->receiver;
 
 		# UTF8 Subject :)
@@ -144,9 +144,9 @@ final class GWF_Mail
 			$headers .= 'From: '.$this->sender.self::HEADER_NEWLINE;
 			# HTML / UTF8
 			$contentType= $html ? 'text/html' : 'text/plain';
-			
+
 			$headers .= 
-			
+
 		"Content-Type: $contentType; charset=utf-8".self::HEADER_NEWLINE
 #		. ""# format=flowed\n"
 		. "MIME-Version: 1.0".self::HEADER_NEWLINE
@@ -154,7 +154,7 @@ final class GWF_Mail
 		. "X-Mailer: PHP";
 
 		$encrypted = $this->encrypt($message);
-		
+
 		if (GWF_DEBUG_EMAIL & 16)
 		{
 			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
@@ -165,7 +165,7 @@ final class GWF_Mail
 			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->sender);
 		}
 	}
-	
+
 	private function setupGPG(GWF_User $user)
 	{
 		if ($this->allowGPG)
@@ -179,24 +179,24 @@ final class GWF_Mail
 			}
 		}
 	}
-	
+
 	private function encrypt($message)
 	{
 		if ($this->gpgKey === '' && self::GPG_FINGERPRINT === '')
 		{
 			return $message;
 		}
-		
+
 		if (false === function_exists('gnupg_init'))
 		{
 			return $message.PHP_EOL.'GnuPG Error: gnupg extension is missing.';
 		}
-		
+
 		if (false === ($gpg = gnupg_init()))
 		{
 			return $message.PHP_EOL.'GnuPG Error: gnupg_init() failed.';
 		}
-		
+
 		if ($this->gpgKey !== '')
 		{
 			if (false === gnupg_addencryptkey($gpg, $this->gpgKey))
@@ -204,11 +204,11 @@ final class GWF_Mail
 				return $message.PHP_EOL.'GnuPG Error: gnupg_addencryptkey() failed.';
 			}
 		}
-		
+
 		$signed = false;
 //		if (self::GPG_FINGERPRINT !== '') {
 //			$sign_key = preg_replace('/[^a-z0-9]/i', '', self::GPG_FINGERPRINT);
-//			
+//
 //			if (self::GPG_PASSPHRASE==='')
 //			{
 //				if (false === gnupg_addsignkey($gpg, $sign_key)) {
@@ -227,9 +227,9 @@ final class GWF_Mail
 //					$signed = true;
 //				}
 //			}
-//			
+//
 //		}
-		
+
 		if ($signed === true)
 		{
 			if (false === ($back = gnupg_encryptsign($gpg, $message))) {
@@ -243,7 +243,7 @@ final class GWF_Mail
 					'GnuPG Error: gnupg_encrypt() failed.'.PHP_EOL.'Message has been removed!';
 			}
 		}
-		
+
 		return $back;
 	}
 }

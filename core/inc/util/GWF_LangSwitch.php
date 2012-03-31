@@ -5,18 +5,18 @@ final class GWF_LangSwitch
 	{
 		$current = GWF_Language::getCurrentLanguage();
 		$langs = GWF_Language::getSupported();
-		
+
 		$data = array();
-		
+
 		foreach ($langs as $lang)
 		{
 			$lang instanceof GWF_Language;
 			$data[] = array($lang->getISO(), $lang->getVar('lang_name'));
 		}
-		
+
 		return GWF_Select::display($name, $data, $current->getISO(), self::getOnChange());
 	}
-	
+
 	public static function getOnChange()
 	{
 		# TODO: Use GWF_DOMAIN?
@@ -29,4 +29,3 @@ final class GWF_LangSwitch
 		return 'window.location = \''.$url.'\'+this.value+\''.$current_url.'\'; return true;';
 	}
 }
-?>

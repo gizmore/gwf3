@@ -73,8 +73,8 @@ final class GWF_Session
 	public static function isLoggedIn() {
 		return self::$USER !== false;
 	}
-	
-	
+
+
 	public static function start($blocking=true)
 	{
 		$ret = self::create();
@@ -98,20 +98,20 @@ final class GWF_Session
 		}
 		return session_commit();
 	}
-	
+
 	public static function onLogin(GWF_User $user, $bind_to_ip=true, $with_hooks=true)
 	{
-		
+
 	}
-	
+
 	public static function onLogout()
 	{
-		
+
 	}
 
 	public static function getOnlineSessions()
 	{
-		
+
 	}
 }
-?>
+

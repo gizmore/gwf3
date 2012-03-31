@@ -6,7 +6,7 @@ final class GWF_DateSelect
 		$this_year = intval(date('Y'));
 		$minyear = $in_future ? $this_year : 1900;
 		$maxyear = $in_future ? $this_year+2 : $this_year; 
-		
+
 		$selects = array();
 		switch ($size)
 		{
@@ -56,19 +56,19 @@ final class GWF_DateSelect
 					$selects['y'] = self::getYearInput($aKey, $def, $minyear, $maxyear);
 				}
 		}
-		
+
 		$format = strtolower(GWF_HTML::lang('df'.$size));
 		$format = str_replace(array('n','j','l'), array('m','d','d'), $format);
-		
+
 		$back = '';
 		if ($with_compare)
 		{
 			$aKey = $key.'c';
 			$back = self::getDateCmpInput($aKey, Common::getPost($aKey, 'younger'));
 		}
-		
+
 		$taken = array();
-		
+
 		$len = strlen($format);
 		for ($i = 0; $i < $len; $i++)
 		{
@@ -89,10 +89,10 @@ final class GWF_DateSelect
 				$back .= ' ';
 			}
 		}
-		
+
 		return $back;
 	}
-	
+
 	private static function getDateCmpInput($key, $selected)
 	{
 		$valid = array(
@@ -108,7 +108,7 @@ final class GWF_DateSelect
 		$back .= '</select>';
 		return $back;
 	}
-	
+
 	private static function getSecondInput($key, $selected) { return self::getRangeInput($key, $selected, 0, 59); }
 	private static function getMinuteInput($key, $selected) { return self::getRangeInput($key, $selected, 0, 59); }
 	private static function getHourInput($key, $selected) { return self::getRangeInput($key, $selected, 0, 23); }
@@ -175,4 +175,3 @@ final class GWF_DateSelect
 		return $back;
 	}	
 }
-?>

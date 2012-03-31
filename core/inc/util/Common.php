@@ -16,20 +16,20 @@ final class Common
 	public static function getGetString($var, $default='') { return true === isset($_GET[$var]) ? (string)$_GET[$var] : $default; }
 	public static function getGetArray($var, $default=false) { return (true === isset($_GET[$var]) && is_array($_GET[$var])) ? $_GET[$var] : $default; }
 	public static function displayGet($var, $default='') { return true === isset($_GET[$var]) ? htmlspecialchars($_GET[$var], ENT_QUOTES) : $default; }
-	
+
 	public static function getPost($var, $default=false) { return true === isset($_POST[$var]) ? ($_POST[$var]) : $default; }
 	public static function cmpPost($var, $cmp, $default=false) { return $cmp === self::getPost($var, $default) ? true : $default; }
 	public static function getPostInt($var, $default=0) { return true === isset($_POST[$var]) ? ((int)$_POST[$var]) : $default; }
 	public static function getPostString($var, $default='') { return true === isset($_POST[$var]) ? (string)$_POST[$var] : $default; }
 	public static function getPostArray($var, $default=false) { return (true === isset($_POST[$var]) && is_array($_POST[$var])) ? $_POST[$var] : $default; }
 	public static function displayPost($var, $default='') { return true === isset($_POST[$var]) ? htmlspecialchars($_POST[$var], ENT_QUOTES) : $default; }
-	
+
 	public static function getRequest($var, $default=false) { return true === isset($_REQUEST[$var]) ? ($_REQUEST[$var]) : $default; }
 	public static function cmpRequest($var, $cmp, $default=false) { return $cmp === self::getRequest($var, $default) ? true : $default; }
 	public static function getRequestInt($var, $default=0) { return true === isset($_REQUEST[$var]) ? ((int)$_REQUEST[$var]) : $default; }
 	public static function getRequestString($var, $default='') { return true === isset($_REQUEST[$var]) ? (string)$_REQUEST[$var] : $default; }
 	public static function getRequestArray($var, $default=false) { return (true === isset($_REQUEST[$var]) && is_array($_REQUEST[$var])) ? $_REQUEST[$var] : $default; }
-	
+
 	public static function getCookie($var, $default=false) { return (true === isset($_COOKIE[$var]) ? $_COOKIE[$var] : $default); }
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
 	public static function displayCookie($var, $default='') { return true === isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
@@ -37,18 +37,18 @@ final class Common
 	public static function getServer($var, $default=false) { return (true === isset($_SERVER[$var]) ? $_SERVER[$var] : $default); }
 	public static function cmpServer($var, $cmp, $default=false) { return $cmp === self::getServer($var, $default) ? true : $default; }
 	public static function displayServer($var, $default='') { return true === isset($_SERVER[$var]) ? htmlspecialchars($_SERVER[$var], ENT_QUOTES) : $default; }
-	
+
 	###############
 	## CONSTANTS ##
 	###############
 	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
 	public static function defineConst($var, $val) { if (false === defined($var)) define($var, $val); return constant($var); }
-	
+
 	###########
 	## DEBUG ##
 	###########
 	public static function var_dump($var) { header('Content-Type: text/plain; charset=UTF-8'); die(var_dump($var)); }
-	
+
 	###########
 	### URL ###
 	###########
@@ -64,7 +64,7 @@ final class Common
 		$back = preg_replace('/[^a-z0-9_]/i', '_', $back);
 		return $back === '' ? '_Title_' : $back;
 	}
-	
+
 	/**
 	 * Get the 2nd level domain.tld part of an url.
 	 * @todo Move to a different file.
@@ -90,7 +90,7 @@ final class Common
 	public static function isDir($path) { return (is_dir($path) === true) && (is_readable($path) === true); }
 	public static function isFile($path) { return (is_file($path) === true) && (is_readable($path) === true); }
 	public static function unlink($path) { return (is_file($path) === true) && (is_writeable($path) === true) ? unlink($path) : false; }
-	
+
 	#################
 	### Math Util ###
 	#################
@@ -113,7 +113,7 @@ final class Common
 		}
 		return $val;
 	}
-	
+
 	/**
 	 * janklopper .AT. gmail dot.com 10-Nov-2004 02:26
 	 * Since pow doesn't support decimal powers, you can use a different solution.
@@ -125,7 +125,7 @@ final class Common
 	{
 		return exp($b * log($a));
 	}
-	
+
 	/**
 	 * Test if a string is numeric. In addition to the php function is_numeric, this one can test on integer only.
 	 * @param string $s
@@ -136,11 +136,11 @@ final class Common
 	{
 		return $allow_float === true ? is_numeric($s) === true : preg_match('/^[-+]?\d+$/D', $s) === 1;
 	}
-	
+
 	###################
 	### String Util ###
 	###################
-	
+
 	/**
 	 * Return true if a string ends with another string.
 	 * @param $str the string to test.
@@ -162,7 +162,7 @@ final class Common
 	{
 		return substr($str, 0, strlen($start)) === $start;		
 	}
-	
+
 	/**
 	 * return a substring of string until a specified character sequence.
 	 * @param $string  - the string to cut
@@ -180,7 +180,7 @@ final class Common
 		}
 		return substr($string, 0, $pos);
 	}
-	
+
 	/**
 	 * return a substring of string from a specified character sequence.
 	 * @param $string  - string the string to work on
@@ -201,7 +201,7 @@ final class Common
 		$len = strlen($from);
 		return substr($string, $pos+$len);
 	}
-	
+
 	/**
 	 * Cut a message by length.
 	 * Cut only at spaces, append a string as cutting replacement.
@@ -219,7 +219,7 @@ final class Common
 		}
 		return (false === ($pos = strrpos($msg, ' ', -(strlen($msg)-$limit)))) ? $msg : substr($msg, 0, $pos).$append;
 	}
-	
+
 	/**
 	 * Return the first match of capturing regex. Not safe. Do not use it!
 	 * @todo Move to another file?
@@ -233,4 +233,4 @@ final class Common
 		return preg_match($pattern, $s, $matches) > 0 ? $matches[1] : false;
 	}
 }
-?>
+

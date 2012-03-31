@@ -3,7 +3,7 @@ final class GWF_Language extends GDO
 {
 	const SUPPORTED = 0x01;
 	const GOOGLE_HAS_IT = 0x02;
-	
+
 	###########
 	### GDO ###
 	###########
@@ -23,9 +23,9 @@ final class GWF_Language extends GDO
 	}
 	public function getID() { return $this->getVar('lang_id'); }
 	public function getISO() { return $this->getVar('lang_iso'); }
-	
+
 	public static function getByID($id) { return self::table(__CLASS__)->selectFirstObject('*', 'lang_id='.((int)$id)); }
-	
+
 	/**
 	 * Get a language by ISO.
 	 * @param string $iso
@@ -36,7 +36,7 @@ final class GWF_Language extends GDO
 		# NoCache
 // 		$iso = self::escape($iso);
 // 		return self::table(__CLASS__)->selectFirstObject('*', "lang_iso='{$iso}'");
-		
+
 		# Cached
 		static $CACHE = array();
 		if (false === isset($CACHE[$iso]))
@@ -46,12 +46,12 @@ final class GWF_Language extends GDO
 		}
 		return $CACHE[$iso];
 	}
-	
+
 	public static function getIDByISO($iso)
 	{
 		return false === ($lang = self::getByISO($iso)) ? false : $lang->getID();
 	}
-	
+
 	public static function isSupported($id) { return self::table(__CLASS__)->selectVar('1', 'lang_id='.((int)$id).' AND lang_options&1') === '1'; }
 	public static function getByIDOrUnknown($id)
 	{
@@ -66,12 +66,12 @@ final class GWF_Language extends GDO
 		}
 		return self::getUnknown();
 	}
-	
+
 	public static function getISOByID($id)
 	{
 		return self::table(__CLASS__)->selectVar('lang_iso', 'lang_id='.((int)$id));
 	}
-	
+
 	###############
 	### Unknown ###
 	###############
@@ -91,7 +91,7 @@ final class GWF_Language extends GDO
 		}
 		return $UNKNOWN;
 	}
-	
+
 	############
 	### Init ###
 	############
@@ -101,14 +101,14 @@ final class GWF_Language extends GDO
 	public static function getCurrentID() { return self::$LANG->getID(); }
 	public static function getCurrentISO() { return self::$ISO; }
 	public static function getCurrentLanguage() { return self::$LANG; }
-	
+
 	public static function setCurrentLanguage(GWF_Language $lang, $refresh_lang_cache=false)
 	{
 		self::$LANG = $lang;
 		self::$ISO = $lang->getVar('lang_iso');
 		return true;
 	}
-	
+
 	public static function init()
 	{
 		# IN URL
@@ -125,7 +125,7 @@ final class GWF_Language extends GDO
 				}
 			}
 		}
-		
+
 		# By account setting.
 		if (false !== ($user = GWF_Session::getUser()))
 		{
@@ -135,7 +135,7 @@ final class GWF_Language extends GDO
 				return true;
 			}
 		}
-		
+
 		# Browser
 		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
 		{
@@ -152,11 +152,11 @@ final class GWF_Language extends GDO
 		{
 			return true;
 		}
-		
+
 		# English
 		return self::initEnglish();
 	}
-	
+
 	public static function initEnglish()
 	{
 		if (false !== (self::$LANG = self::getEnglish()))
@@ -166,7 +166,7 @@ final class GWF_Language extends GDO
 		}
 		return false;
 	}
-	
+
 	###################
 	### DisplayName ###
 	###################
@@ -179,7 +179,7 @@ final class GWF_Language extends GDO
 		self::initLangNames();
 		return self::$LANG_NAMES->lang($this->getVar('lang_name'));
 	}
-	
+
 	/**
 	 * Get an array of all supported (or other type) languages.
 	 * @return array|false
@@ -188,12 +188,12 @@ final class GWF_Language extends GDO
 	{
 		return GDO::table(__CLASS__)->selectAll('*', 'lang_options&'.$options, 'lang_id', NULL, -1, -1, $type);
 	}
-	
+
 	public static function getAvailable()
 	{
 		return preg_split('/[;,]+/', GWF_SUPPORTED_LANGS);
 	}
-	
+
 	/**
 	 * Get array of available language IDs. Horrible slow
 	 * @return array
@@ -210,7 +210,7 @@ final class GWF_Language extends GDO
 		}
 		return $back;
 	}
-	
+
 	/**
 	 * Get all languages as assoc id=>type array
 	 */
@@ -238,11 +238,10 @@ final class GWF_Language extends GDO
 	{
 		return sprintf('<img class="flag" src="%simg/default/language/0" alt="??" title="%s">', GWF_WEB_ROOT, $txt_unknown);
 	}
-	
+
 	public function displayFlag()
 	{
 		return sprintf('<img class="flag" src="%simg/default/language/%s" alt="%s" title="%s">', GWF_WEB_ROOT, $this->getID(), $this->getISO(), $this->displayNativeName());
 	}
-	
+
 }
-?>

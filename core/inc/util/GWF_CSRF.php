@@ -159,4 +159,3 @@ final class GWF_CSRF
 		return true;
 	}
 }
-?>

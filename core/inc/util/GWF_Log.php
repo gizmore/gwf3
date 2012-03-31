@@ -27,14 +27,14 @@ final class GWF_Log
 	const _DEFAULT = 0x7ff;
 
 	private static $POST_DELIMITER = '.::.';
-	
+
 	private static $username = false;
 	private static $basedir = 'protected/logs';
 	private static $logbits = self::_DEFAULT;
 	private static $logformat = "%s [%s%s] - %s\n";
 	private static $cache = 0;
 	private static $logs = array();
-	
+
 	/**
 	 * Init the logger. If a username is given, the logger will log _additionally_ into a logs/username dir.
 	 * @param string $username The username for memberlogs
@@ -47,7 +47,7 @@ final class GWF_Log
 		self::$logbits = $logbits;
 		self::$basedir = $basedir;
 	}
-	
+
 	public static function isEnabled($bits) { return ($bits === (self::$logbits & $bits)); }
 	public static function isDisabled($bits) { return ($bits !== (self::$logbits & $bits)); }
 
@@ -73,7 +73,7 @@ final class GWF_Log
 
 		$back = Common::getServer('REQUEST_METHOD', '').' ';
 		$back .= Common::getServer('REQUEST_URI', '');
-		
+
 		if (false === $post && count($_POST) > 0)
 		{
 			$back .= self::$POST_DELIMITER .'POSTDATA'.self::stripPassword($_GET);
@@ -118,7 +118,7 @@ final class GWF_Log
 		}
 		return self::shortString($back);
 	}
-	
+
 	/**
 	 * Log the request.
 	 */
@@ -162,7 +162,7 @@ final class GWF_Log
 		$dir = dirname($filename);
 		return is_dir($dir) ? true : (false !== @mkdir($dir, GWF_CHMOD, true));
 	}
-	
+
 	/**
 	 * Flush all logfiles
 	 * throws an GWF_Exception within logfile content when fails
@@ -256,7 +256,7 @@ final class GWF_Log
 				return new GWF_Exception(sprintf('Cannot create logfile "%s" in %s line %s.', $filename, __METHOD__, __LINE__), GWF_Exception::LOG);
 			}
 		}
-	
+
 		# Write to file
 		if (false === file_put_contents($filename, $message, FILE_APPEND))
 		{

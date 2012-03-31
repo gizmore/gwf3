@@ -9,4 +9,3 @@ interface GWF_Searchable
 	public function getSearchableFields(GWF_User $user);
 	public function getSearchableFormData(GWF_User $user);
 }
-?>

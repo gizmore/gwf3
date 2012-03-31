@@ -22,21 +22,21 @@ final class GWF_Hook
 	const CHANGE_PASSWD = 'change_pass';  # args: NewPass, NewPIN
 	const DELETE_USER = 'delete';         # args: none
 	const PURGE_USER = 'purge';           # args: none
-	
+
 	const ENABLE_MODULE = 'enable_mod';   # args: module, enabled
 	const INSTALL_MODULE = 'install_mod'; # args: module, dropTable
 
 	const ADD_GROUP = 'add_group';        # args: groupid, groupname
 	const REM_GROUP = 'rem_group';        # args: group
-	
+
 	const ADD_TO_GROUP = 'add_usr_grp';   # args: groupid, groupname
 	const REM_FROM_GROUP = 'rem_usr_grp'; # args: groupid, groupname
-	
+
 	const EARN = 'earn';                  # args: type, credits
 	const DOWNLOAD = 'download';          # args: download 
 	const VOTED_POLL = 'voted_poll';      # args: vsid, score
 	const VOTED_SCORE = 'voted_score';    # args: vmid, score
-	
+
 	########################
 	### Build Hook Table ###
 	########################
@@ -52,7 +52,7 @@ final class GWF_Hook
 		{
 			self::$_write_hooks[$name] = array();
 		}
-		
+
 		if (!in_array($function, self::$_write_hooks[$name]))
 		{
 //			var_dump(__METHOD__, $name, $function);
@@ -63,7 +63,7 @@ final class GWF_Hook
 	{
 		GWF_Settings::setSetting('gwf3_hooks', serialize(self::$_write_hooks));
 	}
-	
+
 	###################
 	### Call a hook ###
 	###################
@@ -80,7 +80,7 @@ final class GWF_Hook
 			}
 		}
 	}
-	
+
 	/**
 	 * Call a hook. User is a default argument. calls hook($user, array $args)
 	 * @param string $name unique ID
@@ -90,15 +90,15 @@ final class GWF_Hook
 	public static function call($name, GWF_User $user, array $args=array())
 	{
 		self::initHooks();
-		
+
 		if (!isset(self::$HOOKS[$name]))
 		{
 			GWF_Log::logCritical('Unknown hook: '.$name);
 			return true;
 		}
-		
+
 		$output = '';
-		
+
 		foreach (self::$HOOKS[$name] as $hook)
 		{
 			$modulename = Common::substrFrom($hook[0], '_');
@@ -112,11 +112,11 @@ final class GWF_Hook
 		{
 			return true;
 		}
-		
+
 		GWF_Website::addDefaultOutput($output);
 		return false;
 	}
-	
+
 	/**
 	 * Hooks return various shit, we unify booleans into success/error msg.
 	 * @param array $hook
@@ -128,11 +128,11 @@ final class GWF_Hook
 		if ($result === true) {
 			return '';
 		}
-		
+
 		if ($result === false) {
 			return GWF_HTML::err('ERR_HOOK', array(self::callbackToName($hook)));
 		}
-		
+
 		return $result;
 	}
 
@@ -153,7 +153,7 @@ final class GWF_Hook
 		$cb = $callback[1];
 		if (is_array($cb))
 		{
-			
+
 			if (is_object($cb[0]))
 			{
 				return get_class($cb[0]).'->'.$cb[1];
@@ -170,4 +170,3 @@ final class GWF_Hook
 		}
 	}
 }
-?>

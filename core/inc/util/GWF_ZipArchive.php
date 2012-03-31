@@ -146,4 +146,3 @@ final class GWF_ZipArchive extends ZipArchive
 		}
 	}
 }
-?>

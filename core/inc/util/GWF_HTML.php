@@ -11,7 +11,7 @@ final class GWF_HTML
 	 * @var GWF_LangTrans
 	 */
 	private static $trans;
-	
+
 	#####################
 	### SPECIAL CHARS ###
 	#####################
@@ -28,7 +28,7 @@ final class GWF_HTML
 	public static function langAdmin($key, $args=NULL) { return self::$trans->langAdmin($key, $args); }
 	public static function langISO($iso, $key, $args=NULL) { return self::$trans->langISO($iso, $key, $args); }
 	public static function langUser(GWF_User $user, $key, $args=NULL) { return self::$trans->langUser($user, $key, $args); }
-	
+
 	##############
 	### Errors ###
 	##############
@@ -50,7 +50,7 @@ final class GWF_HTML
 		$messages = (array) $messages;
 
 		if (count($messages) === 0) return '';
-		
+
 		if ($log === true)
 		{
 			GWF_Log::logError(self::decode(implode(PHP_EOL, $messages)));
@@ -60,7 +60,7 @@ final class GWF_HTML
 	public static function displayErrors($errors) 
 	{
 		if(count($errors) === 0) return ''; 
-		
+
 		if (isset($_GET['ajax']))
 		{
 			$err = '';
@@ -82,7 +82,7 @@ final class GWF_HTML
 	public static function messageA($title=NULL, array $messages, $log=true)
 	{
 		if (count($messages) === 0) return '';
-		
+
 		if ($log === true)
 		{
 			GWF_Log::logMessage(self::decode(implode(PHP_EOL, $messages)));
@@ -92,7 +92,7 @@ final class GWF_HTML
 	public static function displayMessages($messages) 
 	{
 		if(count($messages) === 0) return ''; 
-		
+
 		if (Common::getGet('ajax') !== false)
 		{
 			$output = '';
@@ -106,7 +106,7 @@ final class GWF_HTML
 		}
 		return GWF_Template::templateMain('message.tpl', array('title' => $messages['title'], 'messages' => $messages['messages']));
 	}
-	
+
 	##############
 	### Markup ###
 	##############
@@ -114,12 +114,12 @@ final class GWF_HTML
 	{
 		return self::element('div', $html, $class, $id, $style='');
 	}
-	
+
 	public static function span($html, $class='', $id='', $style='')
 	{
 		return self::element('span', $html, $class, $id, $style='');
 	}
-	
+
 	private static function element($name, $inner_html, $class='', $id='', $style='')
 	{
 		$id = $id === '' ? '' : ' id="'.$id.'"';
@@ -127,20 +127,20 @@ final class GWF_HTML
 		$style = $style === '' ? '' : ' style="'.$style.'"';
 		return sprintf('<%s%s%s%s>%s</%s>', $name, $id, $class, $style, $inner_html, $name).PHP_EOL;
 	}
-	
+
 	public static function anchor($url, $text=NULL, $title=NULL)
 	{
 		if ($text === NULL)
 		{
 			$text = $url;
 		}
-		
+
 		$url = htmlspecialchars($url);
 		$title = $title === NULL ? '' : ' title="'.htmlspecialchars($title).'"';
-		
+
 		return sprintf('<a href="%s"%s>%s</a>', $url, $title, htmlspecialchars($text));
 	}
-	
+
 	public static function selected($bool)
 	{
 		return $bool ? ' selected="selected"' : '';
@@ -150,10 +150,10 @@ final class GWF_HTML
 	{
 		return $bool ? ' checked="checked"' : '';
 	}
-	
+
 	public static function br2nl($s, $nl=PHP_EOL)
 	{
 		return preg_replace('/< *br *\/? *>/i', $nl, $s);
 	}
 }
-?>
+

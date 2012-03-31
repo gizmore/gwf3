@@ -15,7 +15,7 @@ final class GWF_File
 	{
 		return file_get_contents($filename);
 	}
-	
+
 	/**
 	 * Check if a file is writeable or could be created. Returns true or false.
 	 * @param string $filename
@@ -30,7 +30,7 @@ final class GWF_File
 		$dir = dirname($filename);
 		return is_dir($dir) && is_writable($dir);
 	}
-	
+
 	public static function createDir($path)
 	{
 		if (true === Common::isDir($path))
@@ -39,7 +39,7 @@ final class GWF_File
 		}
 		return @mkdir($path, GWF_CHMOD, true);
 	}
-	
+
 	/**
 	 * Write file contents to a file.
 	 * @param string $path path with a filename
@@ -58,7 +58,7 @@ final class GWF_File
 		}
 		return true;
 	}
-	
+
 	public static function touch($filename)
 	{
 		if (false === ($fh = @fopen($filename, 'w')))
@@ -75,8 +75,8 @@ final class GWF_File
 		}
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Remove a dir recursively. Returns boolean, true on success. Prints error messages when verbose. Can keep the affected dir if desired.
 	 * @param string $path
@@ -87,11 +87,11 @@ final class GWF_File
 	public static function removeDir($path, $verbose=true, $keep_dir=false, $remove_dotfiles=true)
 	{
 		$success = true;
-		
+
 		# Does not work on basedir or even one up.
 		$failsafe = array('','/','.','./','..','../');
 		if (in_array($path, $failsafe, true)) { return false; }
-		
+
 		if (false === ($dir = @dir($path)))
 		{
 			if ($verbose)
@@ -100,19 +100,19 @@ final class GWF_File
 			}
 			return false;
 		}
-		
+
 		while (false !== ($entry = $dir->read()))
 		{
 			if ($entry === '.' || $entry === '..')
 			{
 				continue;
 			}
-			
+
 			if ( (!$remove_dotfiles)  && ($entry[0] === '.') )
 			{
 				continue;
 			}
-			
+
 			$fullpath = $path.'/'.$entry;
 			if (is_dir($fullpath))
 			{ // dir
@@ -133,7 +133,7 @@ final class GWF_File
 				}
 			}
 		}
-		
+
 		// current dir
 		if (!$keep_dir)
 		{
@@ -146,10 +146,10 @@ final class GWF_File
 				$success = false;
 			}
 		}
-		
+
 		return $success;
 	}
-	
+
 	/**
 	 * Template for a filewalker callback.
 	 * @param string $entry dir/filename.
@@ -157,7 +157,7 @@ final class GWF_File
 	 * @param mixed $args Custom args.
 	 */
 	public static function filewalker_stub($entry, $fullpath, $args=NULL) {}
-	
+
 	/**
 	 * Walk a dir and trigger callbacks on files and dirs
 	 * @param string $path
@@ -172,17 +172,17 @@ final class GWF_File
 		{
 			return false;
 		}
-		
+
 		if (is_bool($callback_file))
 		{
 			$callback_file = array(__CLASS__, 'filewalker_stub');
 		}
-		
+
 		if (is_bool($callback_dir))
 		{
 			$callback_dir = array(__CLASS__, 'filewalker_stub');
 		}
-		
+
 		$dirstack = array();
 		while (false !== ($entry = $dir->read()))
 		{
@@ -191,7 +191,7 @@ final class GWF_File
 			{
 				continue;
 			}
-			
+
 			if (is_dir($fullpath))
 			{
 				$dirstack[] = array($entry, $fullpath);
@@ -201,9 +201,9 @@ final class GWF_File
 				call_user_func($callback_file, $entry, $fullpath, $args);
 			}
 		}
-		
+
 		$dir->close();
-		
+
 		foreach ($dirstack as $d)
 		{
 			call_user_func($callback_dir, $d[0], $d[1], $args);
@@ -215,4 +215,4 @@ final class GWF_File
 		}
 	}
 }
-?>
+

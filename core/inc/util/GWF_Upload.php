@@ -26,25 +26,25 @@ final class GWF_Upload
 		}
 		return $file;
 	}
-	
+
 	public static function getMaxUploadSize()
 	{
 		$mu = ini_get('upload_max_size');
 		$mp = ini_get('post_max_size');
-		
+
 		if ($mu == false) {
 			$mu = 1000000000; # 1GB
 		}
 		if ($mp == false) {
 			$mp = 1000000000;
 		}
-		
+
 		$mu = self::iniToBytes($mu);
 		$mp = self::iniToBytes($mp);
-		
+
 		return min(array($mu, $mp));
 	}
-	
+
 	/**
 	 * Convert human filesize to bytes. Example 1KB = 1024. Optionally supports 1000 or 1024. 
 	 * @param string $human
@@ -76,7 +76,7 @@ final class GWF_Upload
 		$bytes = intval(round($bytes, 2));
 		return $bytes;
 	}
-	
+
 	/**
 	 * Get the mime type of the file, by reading it`s content, not by extension.
 	 * @param string $filename
@@ -94,7 +94,7 @@ final class GWF_Upload
 			return self::getMimeTypeFallback($filename);
 		}
 	}
-	
+
 	/**
 	 * No built-in available for mime detection.
 	 * @param string $filename
@@ -104,7 +104,7 @@ final class GWF_Upload
 	{
 		return 'application/octet-stream';
 	}
-	
+
 	/**
 	 * Use fileinfo extension to detect mime type of a file.
 	 * @param string $filename
@@ -117,7 +117,7 @@ final class GWF_Upload
 		finfo_close($finfo);
 		return Common::substrUntil($mime, ';');
 	}
-	
+
 	/**
 	 * Move file to a public accesible dir.
 	 * On error return false. On success return the same file structure with an altered tmp_name
@@ -131,7 +131,7 @@ final class GWF_Upload
 		$newtmp = $pubtemp.'/'.$newtmp;
 		return self::moveTo($file, $newtmp);
 	}
-	
+
 	/**
 	 * Actually this is "copy to"!
 	 * @param array $file
@@ -147,7 +147,7 @@ final class GWF_Upload
 		$file['tmp_name'] = $target;
 		return $file;
 	}
-	
+
 	/**
 	 * Get the filename from a path / full name.
 	 * eg: /foo/bar will become bar.
@@ -162,7 +162,7 @@ final class GWF_Upload
 		}
 		return substr($filename, $pos+1);
 	}
-	
+
 	/**
 	 * Check MIME Type of $_FILES[file]['type]. Return true or false.
 	 * @param array $file from $_FILES[$file]
@@ -172,7 +172,7 @@ final class GWF_Upload
 	{
 		return self::isImageMime($file['type']);
 	}
-	
+
 	/**
 	 * Check if mimetype is image
 	 * @param unknown_type $mime
@@ -182,7 +182,7 @@ final class GWF_Upload
 	{
 		return Common::startsWith($mime, 'image/');
 	}
-	
+
 	/**
 	 * Resize an image and replace it with a scaled jpg image.
 	 * If the image is within the bounds, it will not get touched.
@@ -206,22 +206,22 @@ final class GWF_Upload
 		imagedestroy($image);
 		return $back;
 	}
-	
+
 	private static function resizeImageB($image, array $file, $max_width, $max_height, $min_width=1, $min_height=1)
 	{
 		if (0 === ($width = imagesx($image)) || 0 === ($height = imagesy($image))) {
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		if ($width < $min_width) {
 			$scale_x = $width / $min_width;
 		} elseif ($width > $max_width) {
-			$scale_x = $max_width / $width;			
+			$scale_x = $max_width / $width;
 		} else {
 			$scale_x = 1.0;
 		}
-		
+
 		if ($height < $min_height) {
 			$scale_y = $height / $min_height;
 		} elseif ($height > $max_height) {
@@ -229,12 +229,12 @@ final class GWF_Upload
 		} else {
 			$scale_y = 1.0;
 		}
-		
+
 		# All fine
 		if ($scale_x === 1.0 && $scale_y === 1.0) {
 			return true;
 		}
-		
+
 		return self::resizeImageC($image, $scale_x, $scale_y, $width, $height, $file);
 		/*
 		if ($min_width > ($width = imagesx($image))) {
@@ -243,10 +243,10 @@ final class GWF_Upload
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		$diff_w = $width - $max_width;
 		$diff_h = $height - $max_height;
-		
+
 		if ($diff_w > 0 && $diff_h > 0)
 		{
 			if ($diff_w > $diff_h) {
@@ -267,10 +267,10 @@ final class GWF_Upload
 		{
 			return true; # Keep the original image!
 		}
-		
+
 		return self::resizeImageC($image, $scale, $width, $height, $file);//*/
 	}
-	
+
 	private static function resizeImageC($image, $scale_x, $scale_y, $width, $height, array $file)
 	{
 		$new_width = round($scale_x * $width);
@@ -279,13 +279,13 @@ final class GWF_Upload
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 			return false;
 		}
-				
+	
 		# Create new Image
 		if (false === ($resized_img = imagecreatetruecolor($new_width, $new_height))) {
 			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
 			return false;
 		}
-		
+
 		$back = false;
 		# Resize into it
 		if (false !== imagecopyresized($resized_img, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height)) {
@@ -304,7 +304,7 @@ final class GWF_Upload
 		imagedestroy($resized_img);
 		return $back;
 	}
-	
+
 	/**
 	 * Output a file.
 	 * @param string $fullpath
@@ -316,7 +316,7 @@ final class GWF_Upload
 	public static function outputFile($fullpath, $as_attach=true, $mime='application/octet-stream', $filename=true)
 	{
 		header("Content-type: $mime");
-		
+
 		if ($as_attach)
 		{
 			if (!is_string($filename))
@@ -325,11 +325,11 @@ final class GWF_Upload
 			}
 			header("Content-disposition: attachment; filename=$filename");
 		}
-		
+
 		readfile($fullpath);
 // 		echo file_get_contents($fullpath);
 	}
-	
+
 	public static function humanFilesize($bytes, $factor='1024', $digits='2')
 	{
 //		var_dump($bytes, $factor, $digits);
@@ -346,7 +346,6 @@ final class GWF_Upload
 			? sprintf("%s%s", $bytes, $txt[$i])
 			: sprintf("%.0{$digits}f%s", ($bytes+$rem/$factor), $txt[$i]);
 	}
-	
+
 }
 
-?>

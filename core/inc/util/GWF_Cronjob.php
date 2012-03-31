@@ -12,4 +12,4 @@ abstract class GWF_Cronjob
 	public static function start($modulename) { GWF_Log::logCron('[START] '.$modulename); }
 	public static function end($modulename) { GWF_Log::logCron('[DONE] '.$modulename.PHP_EOL); }
 }
-?>
+

@@ -5,7 +5,7 @@ final class GWF_Gender
 	{
 		return $gender === 'no_gender' || $gender === 'male' || $gender === 'female';
 	}
-	
+
 	public static function select($key='gender', $selected='no_gender')
 	{
 		$data = array(
@@ -16,4 +16,3 @@ final class GWF_Gender
 		return GWF_Select::display('gender', $data, $selected);
 	}
 }
-?>

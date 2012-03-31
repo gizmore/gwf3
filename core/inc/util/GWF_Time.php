@@ -10,7 +10,7 @@
 final class GWF_Time
 {
 	private static $CACHE = NULL; # Date language cache
-	
+
 	const LEN_MILLI = 17;
 	const LEN_SECOND = 14;
 	const LEN_MINUTE = 12;
@@ -18,7 +18,7 @@ final class GWF_Time
 	const LEN_DAY = 8;
 	const LEN_MONTH = 6;
 	const LEN_YEAR = 4;
-	
+
 	const ONE_SECOND = 1;
 	const ONE_MINUTE = 60;
 	const ONE_HOUR = 3600;
@@ -26,7 +26,7 @@ final class GWF_Time
 	const ONE_WEEK = 604800;
 	const ONE_MONTH = 2592000;
 	const ONE_YEAR = 31536000;
-	
+
 	/**
 	 * Get a gwf_date from a timestamp, like YYmmddHHiiss.
 	 * @example $date = GWF_Time::getDate();
@@ -41,7 +41,7 @@ final class GWF_Time
 		$dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis');
 		return date($dates[$len], $time);
 	}
-	
+
 	/**
 	 * Get a datestring like YYmmddHHiissMMM.
 	 * @example $date = GWF_Time::getDate();
@@ -55,7 +55,7 @@ final class GWF_Time
 		$time = (int)$microtime;
 		return self::getDate(14, $time).sprintf('%.03f', $microtime-$time);
 	}
-	
+
 	/**
 	 * Get a date in RSS format from a gwf_date.
 	 * @param int $time unix timestamp or NULL
@@ -65,12 +65,12 @@ final class GWF_Time
 	{
 		return $gwf_date === NULL ? self::rssTime() : self::rssTime(self::getTimestamp($gwf_date));
 	}
-	
+
 	public static function rssTime($time=NULL)
 	{
 		return date('r', $time===NULL?time():$time);
 	}
-	
+
 	###############
 	### Display ###
 	###############
@@ -93,23 +93,23 @@ final class GWF_Time
 		}
 		return self::displayDateISO(self::getDate(self::LEN_SECOND, $timestamp), $iso, $default_return);
 	}
-	
+
 	public static function displayDate($gwf_date, $default_return='ERROR')
 	{
 		return self::displayDateISO($gwf_date, GWF_LangTrans::getBrowserISO(), $default_return);
 	}
-	
+
 	private static function displayDateFormatB($gwf_date, $format, $default_return, $m_names, $month_names, $d_names, $day_names, $unknown='Unknown')
 	{
 		$replace = array();
-		
+
 		if ($gwf_date == 0) {
 			return $unknown;
 		}
-		
+
 		$month_names[-1] = $unknown;
 		$m_names[-1] = $unknown;
-		
+
 		switch (strlen($gwf_date))
 		{
 //			case GWF_Date::LEN_NANO: # LOL :)
@@ -151,7 +151,7 @@ final class GWF_Time
 			default:
 				return $default_return;
 		}
-		
+
 		$back = '';
 		$dflen = strlen($format);
 		for ($i = 0; $i < $dflen; $i++)
@@ -163,10 +163,10 @@ final class GWF_Time
 				$back .= $j;
 			}
 		}
-		
+
 		return $back;
 	}
-	
+
 	/**
 	 * Get the dateformat language cache for an ISO.
 	 * @param string $iso
@@ -185,8 +185,8 @@ final class GWF_Time
 		self::$CACHE[$iso] = GWF_HTML::getLang()->langISO($iso, 'datecache');
 		return self::$CACHE[$iso];
 	}
-	
-	
+
+
 	/**
 	 * Display a date from a GWF_Date.
 	 * We format something like 19993112235912 to Monday, January the 1st, 22:33:12
@@ -206,7 +206,7 @@ final class GWF_Time
 		$cache = self::getCache($iso);
 		return self::displayDateFormatB($gwf_date, $cache[4][strlen($gwf_date)], $default_return, $cache[0], $cache[1], $cache[2], $cache[3]);
 	}
-	
+
 	/**
 	 * Display a GWF_Date with a custom dateformat.
 	 * @param string $gwf_date
@@ -223,8 +223,8 @@ final class GWF_Time
 		$cache = self::getCache($iso);
 		return self::displayDateFormatB($gwf_date, $format, $default_return, $cache[0], $cache[1], $cache[2], $cache[3]);
 	}
-	
-	
+
+
 	/**
 	 * Compute the week of the day for a given GWF_Date.
 	 * 0=Sunday.
@@ -246,7 +246,7 @@ final class GWF_Time
 		$sum = $step1 + $y + $step3 + $step4 + $d;
 		return $sum % 7;
 	}
-	
+
 	################
 	### Validate ###
 	################
@@ -267,9 +267,9 @@ final class GWF_Time
 		if (preg_match('/^\d{'.$length.'}$/D', $date) === 0) {
 			return false;
 		}
-		
+
 		$convert = array('y'=>0,'m'=>0,'d'=>0,'h'=>0,'i'=>0,'s'=>0,'ms'=>0, 'us'=>0, 'ns'=>0);
-		
+
 		switch ($length)
 		{
 			case 23: $convert['ns'] += intval(substr(20, 3), 10);
@@ -296,17 +296,17 @@ final class GWF_Time
 				$convert['y'] = intval(substr($date, 0, 4), 10);
 				if ($convert['y'] > date('Y')+5) { return false; }
 		}
-		
+
 		// Check days for months in year 
 		if ($length >= 8) {
 			if (self::getNumDaysForMonth($convert['m'], $convert['y']) < $convert['d']) {
 				return false;
 			}
 		}
-		
+
 		return true; 
 	}
-	
+
 	private static function getNumDaysForMonth($month, $year)
 	{
 		$leap = (($year % 4) === 0);
@@ -318,7 +318,7 @@ final class GWF_Time
 			default: return false;
 		}
 	}
-	
+
 	/**
 	 * Compute an age, in years, from a date compared to current date.
 	 * @param $birthdate
@@ -334,7 +334,7 @@ final class GWF_Time
 		$age = $now - $birthdate;
 		return intval($age / 10000, 10);
 	}
-	
+
 	public static function getTimestamp($gwf_date)
 	{
 		if (0 === preg_match('/^(\d{4})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?$/D', $gwf_date, $matches)) {
@@ -349,21 +349,21 @@ final class GWF_Time
 			isset($matches[1]) ? intval($matches[1], 10) : 0
 		);
 	}
-	
+
 	public static function displayAge($gwf_date)
 	{
 		return self::displayAgeTS(self::getTimestamp($gwf_date));
 	}
-	
+
 	public static function displayAgeTS($timestamp)
 	{
 		return self::humanDuration(time()-round($timestamp));
 	}
-	
+
 	################
 	### Duration ###
 	################
-	
+
 	public static function humanDurationEN($duration, $nUnits=2)
 	{
 		static $units = true;
@@ -372,8 +372,8 @@ final class GWF_Time
 		}
 		return self::humanDurationRaw($duration, $nUnits, $units);
 	}
-	
-	
+
+
 	public static function humanDurationISO($iso, $duration, $nUnits=2)
 	{
 		static $cache = array();
@@ -389,8 +389,8 @@ final class GWF_Time
 		}
 		return self::humanDurationRaw($duration, $nUnits, $cache[$iso]);
 	}
-	
-	
+
+
 	public static function humanDurationRaw($duration, $nUnits=2, array $units)
 	{
 		$duration = (int)$duration;
@@ -405,11 +405,11 @@ final class GWF_Time
 				break;
 			}
 		}
-		
+
 		if (count($calced) === 0) {
 			return '0'.key($units);
 		}
-		
+
 		$calced = array_reverse($calced, true);
 		$i = 0;
 		foreach ($calced as $key => $value)
@@ -419,11 +419,11 @@ final class GWF_Time
 				unset($calced[$key]);
 			}
 		}
-		
+
 		return implode(' ', $calced);
 	}
-	
-	
+
+
 	/**
 	 * Return a human readable duration.
 	 * Example: 666 returns 11 minutes 6 seconds.
@@ -435,14 +435,14 @@ final class GWF_Time
 	{
 		return self::humanDurationISO(GWF_Language::getCurrentISO(), $duration, $nUnits);
 	}
-	
-	
+
+
 	public static function isValidDuration($string, $min, $max)
 	{
 		$duration = GWF_TimeConvert::humanToSeconds($string);
 		return $duration >= $min && $duration <= $max;
 	}
-	
+
 
 	/**
 	 * Get timestamp of start of this week. (Monday)
@@ -452,7 +452,7 @@ final class GWF_Time
 	{
 		return strtotime('previous monday', time()+self::ONE_DAY);
 	}
-	
+
 
 	/**
 	 * Get Long Weekday Names (translated), starting from monday. returns array('monday', 'tuesday', ...); 
@@ -464,4 +464,4 @@ final class GWF_Time
 		return array($l->lang('D1'),$l->lang('D2'),$l->lang('D3'),$l->lang('D4'),$l->lang('D5'),$l->lang('D6'),$l->lang('D0'));
 	}
 }
-?>
+

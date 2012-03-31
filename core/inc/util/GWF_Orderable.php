@@ -19,7 +19,7 @@ interface GWF_Orderable
 	public function getOrderHeight(); # return 0.0; (cm)
 	public function getOrderDepth(); # return 0.0; (cm)
 	public function getOrderWeight(); # return 0.0; (kg)
-	
+
 	public function getOrderModuleName();
 	public function getOrderPrice(GWF_User $user); # return 9.95;
 	public function getOrderItemName(GWF_Module $module, $lang_iso);
@@ -27,8 +27,7 @@ interface GWF_Orderable
 	public function getOrderStock(GWF_User $user); # return 1;
 	public function getOrderCancelURL(GWF_User $user);
 	public function getOrderSuccessURL(GWF_User $user);
-	
+
 	public function displayOrder(GWF_Module $module); # return 'html';
 	public function executeOrder(GWF_Module $module, GWF_User $user); # return false;
 }
-?>
