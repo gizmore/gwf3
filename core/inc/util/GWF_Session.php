@@ -42,7 +42,7 @@ final class GWF_Session extends GDO
 	public static function getSessID() { return self::$SESSION->getVar('sess_sid'); }
 	public static function getSessSID() { return self::$SESSION->getVar('sess_id'); }
 	public static function getSession() { return self::$SESSION; }
-	public static function haveCookies() { return self::$SESSION !== NULL; }
+	public static function haveCookies() { return self::getSessID() !== NULL; }
 	public static function set($var, $value) { self::$SESSDATA[$var] = $value; }
 	public static function exists($var) { return isset(self::$SESSDATA[$var]); }
 	public static function remove($var) { unset(self::$SESSDATA[$var]); }
@@ -65,6 +65,19 @@ final class GWF_Session extends GDO
 		return true;
 	}
 	
+	public static function initFakeSession()
+	{
+		self::$SESSION = new self(array(
+			'sess_id' => '0',
+			'sess_sid' => 'xxxx_gwf3_nope_sess',
+			'sess_user' => NULL,
+			'sess_data' => NULL,
+			'sess_time' => time(),
+			'sess_ip' => NULL,
+			'sess_lasturl' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : GWF_WEB_ROOT,
+		));
+	}
+	
 	private static function reload($cookie, $blocking)
 	{
 		$split = explode('-', $cookie);
@@ -76,7 +89,7 @@ final class GWF_Session extends GDO
 		$id = (int)$split[0];
 		
 		# Load session from DB
-		if (false === ($session = GDO::table(__CLASS__)->selectFirstObject('*', "sess_id=$id")))
+		if (false === ($session = GDO::table(__CLASS__)->selectFirstObject('*', 'sess_id='.$id)))
 		{
 			return false;
 		}
@@ -356,12 +369,6 @@ final class GWF_Session extends GDO
 	public static function getOnlineSessions()
 	{
 		$cut = time() - GWF_ONLINE_TIMEOUT;
-		
-		if (!self::haveCookies())
-		{
-			return self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut}");
-		}
-		
 		$sid = self::$SESSION->getSessID();
 		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut} AND sess_sid!='{$sid}'"));
 	}
