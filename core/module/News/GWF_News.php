@@ -82,18 +82,22 @@ final class GWF_News extends GDO
 			'newst_options' => 0,
 			'newst_threadid' => 0,
 		);
-		$trans = new GWF_NewsTranslation($transdata);
 		
 //		var_dump($trans);
 
 		if ($fake === false)
 		{
-			if (false === ($trans->insert())) {
+			$trans = new GWF_NewsTranslation($transdata);
+			if (false === ($trans->insert()))
+			{
 				return false;
 			}
-		} else {
+		}
+		else
+		{
 			$news->setVar('news_trans', array($langid=>$transdata));
 			$news->setVar('news_userid', GWF_User::getByID($userid));
+			$news->translations = array($transdata);
 		}
 		
 		return $news; 

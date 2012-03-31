@@ -120,11 +120,12 @@ final class GWF_BBCodeItem
 	
 	public function renderText($htmlspecial=true, $nl2br=true, $raw=false)
 	{
-		$back = trim($this->text);
+// 		$back = trim($this->text);
+		$back = $this->text;
 		
 		if ($htmlspecial)
 		{
-			$back = htmlspecialchars($back, ENT_QUOTES);
+			$back = htmlspecialchars($back);
 		}
 		
 		$back = GWF_BBCode::highlight($back);
