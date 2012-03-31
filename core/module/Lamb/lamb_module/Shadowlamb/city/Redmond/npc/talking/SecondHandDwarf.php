@@ -8,21 +8,24 @@ final class Redmond_SecondHandDwarf extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'negotiation':
-				$this->reply('Of course we can argue about the price a bit... But not too much.');
-				break;
+// 				$this->reply('Of course we can argue about the price a bit... But not too much.');
+// 				break;
 				
 			case 'yes':
-				$this->reply("Yes, please use {$c}view to see what we have in stock.");
-				break;
+// 				$this->reply("Yes, please use {$c}view to see what we have in stock.");
+// 				break;
 			
 			case 'no':
-				$this->reply("Please use {$c}view to see what we have in stock.");
-				break;
+// 				$this->reply("Please use {$c}view to see what we have in stock.");
+// 				break;
 				
-			case 'hello':
+				return $this->rply($word);
+				
+// 			case 'hello':
 			default:
-				$this->reply('Hello Dear Sire, my name is Donor. Are you looking for something special?');
-				break;
+				return $this->rply('hello');
+// 				$this->reply('Hello Dear Sire, my name is Donor. Are you looking for something special?');
+// 				break;
 		}
 	}
 }

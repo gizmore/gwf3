@@ -1,8 +1,8 @@
 <?php
 final class Quest_Redmond_Johnson_2 extends SR_Quest
 {
-	public function getQuestName() { return 'BikersOutfit'; }
-	public function getQuestDescription() { return 'Bring a BikerJacket and a BikerHelmet to Mr.Johnson in the Redmond\'s Trolls\' Inn.'; }
+// 	public function getQuestName() { return 'BikersOutfit'; }
+// 	public function getQuestDescription() { return 'Bring a BikerJacket and a BikerHelmet to Mr.Johnson in the Redmond\'s Trolls\' Inn.'; }
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		$data = $this->getQuestData();
@@ -18,17 +18,24 @@ final class Quest_Redmond_Johnson_2 extends SR_Quest
 		}
 		$this->saveQuestData($data);
 		
-		if (isset($data['J']) && isset($data['H'])) {
+		if (isset($data['J']) && isset($data['H']))
+		{
 			$this->onSolve($player);
 		}
-		elseif (isset($data['J'])) {
-			$npc->reply('Now only the BikerHelmet is missing. Please bring it to me, too');
+		elseif (isset($data['J']))
+		{
+			$npc->reply($this->lang('missH'));
+// 			$npc->reply('Now only the BikerHelmet is missing. Please bring it to me, too');
 		}
-		elseif (isset($data['H'])) {
-			$npc->reply('Now only the BikerJacket is missing. Please bring it to me, too');
+		elseif (isset($data['H']))
+		{
+			$npc->reply($this->lang('missJ'));
+// 			$npc->reply('Now only the BikerJacket is missing. Please bring it to me, too');
 		}
-		else {
-			$npc->reply('I need a BikerJacket and a BikerHelmet. Please bring me those items.');
+		else
+		{
+			$npc->reply($this->lang('missB'));
+// 			$npc->reply('I need a BikerJacket and a BikerHelmet. Please bring me those items.');
 		}
 	}
 	
@@ -36,7 +43,8 @@ final class Quest_Redmond_Johnson_2 extends SR_Quest
 	{
 		$ny = 650;
 		$xp = 5;
-		$player->message(sprintf('Mr.Johnson hands you the payment: %s and %d XP.', Shadowfunc::displayNuyen($ny), $xp));
+		$player->message($this->lang('reward', array(Shadowfunc::displayNuyen($ny), $xp)));
+// 		$player->message(sprintf('Mr.Johnson hands you the payment: %s and %d XP.', Shadowfunc::displayNuyen($ny), $xp));
 		$player->giveNuyen($ny);
 		$player->giveXP($xp);
 	}

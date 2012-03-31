@@ -11,16 +11,6 @@ class SR_Quest extends GDO
 	############
 	### Lang ###
 	############
-	public function displayQuestName(SR_Player $player)
-	{
-		return $this->lang($player, 'name');
-	}
-	
-	public function displayQuestDescription(SR_Player $player)
-	{
-		return $this->lang($player, 'description');
-	}
-	
 	public function langPlayer(SR_Player $player, $key, $args=NULL)
 	{
 		return Shadowlang::langQuest($this, $player, $key, $args);
