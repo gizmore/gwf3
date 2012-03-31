@@ -414,8 +414,7 @@ final class WC_HTML
 // 		$back .= self::displayMenuAbout($module).PHP_EOL;
 		$back .= self::displayMenuLinks($module).PHP_EOL;
 		$back .= self::displayMenuSites($module).PHP_EOL;
-// 		if (GWF_IP6::isLocal()) # XXX delete me 
-		$back .= self::displayMenuPapers($module).PHP_EOL;
+// 		$back .= self::displayMenuPapers($module).PHP_EOL;
 		$back .= self::displayMenuForum($module).PHP_EOL;
 		$back .= self::displayMenuRanking($module).PHP_EOL;
 		$back .= self::displayMenuChallenges($module).PHP_EOL;
