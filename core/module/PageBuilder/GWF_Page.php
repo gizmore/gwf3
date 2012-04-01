@@ -115,14 +115,14 @@ final class GWF_Page extends GDO
 	public function hrefEdit() { return GWF_WEB_ROOT.'index.php?mo=PageBuilder&me=Edit&pageid='.$this->getID(); }
 	public function hrefShow() { return GWF_WEB_ROOT.$this->getVar('page_url'); }
 	
-// 	public function displayLang()
-// 	{
-// 		if (false === ($lang = GWF_Language::getByID($this->getVar('page_lang'))))
-// 		{
-// 			return GWF_Module::getModule('PageBuilder')->lang('lang_all');
-// 		}
-// 		return $lang->displayName();
-// 	}
+	public function displayLang()
+	{
+		if (false === ($lang = GWF_Language::getByID($this->getVar('page_lang'))))
+		{
+			return GWF_Module::getModule('PageBuilder')->lang('lang_all');
+		}
+		return $lang->displayName();
+	}
 	
 	/**
 	 * This checks if a user is page owner.
