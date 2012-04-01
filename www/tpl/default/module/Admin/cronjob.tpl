@@ -1,3 +1,3 @@
 <pre>
-{GWF_Message::display({$cron_output}, false, false, false)}
+{$cron_output|htmlspecialchars}
 </pre>

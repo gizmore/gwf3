@@ -53,7 +53,7 @@ final class News_Preview extends GWF_Method
 	
 	private function previewText(GWF_Mail $mail)
 	{
-		header('Content-Type: text/plain');
+		GWF_Website::plaintext();
 		die($mail->nestedTextBody());
 	}
 	
@@ -61,8 +61,5 @@ final class News_Preview extends GWF_Method
 	{
 		die($mail->nestedHTMLBody());
 	}
-	
 }
-
-
 ?>
