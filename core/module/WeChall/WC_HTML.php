@@ -117,16 +117,15 @@ final class WC_HTML
 	
 	private static function displayHeaderLogin(Module_WeChall $module)
 	{
-		if (GWF_User::isLoggedIn()) {
+		if ( (GWF_User::isLoggedIn()) || (!GWF_Session::haveCookies()) )
+		{
 			return '';
 		}
 		
-		if (false === ($mod_login = GWF_Module::getModule('Login'))) {
+		if (false === ($mod_login = GWF_Module::getModule('Login')))
+		{
 			return '';
 		}
-//		if (false === ($met_login = $mod_login->getMethod('Form'))) {
-//			return '';
-//		}
 		
 		$formhash = GWF_Password::getToken('_username_password_bind_ip_login');
 		
@@ -384,7 +383,7 @@ final class WC_HTML
 		return
 		'<nav id="gwf_foot_menu">'.PHP_EOL.
 			'<a href="'.GWF_WEB_ROOT.'news">'.$module->lang('menu_news').'</a>'.PHP_EOL.
-			'|<a href="'.GWF_WEB_ROOT.'changes.txt">'.$module->lang('menu_changes').'</a>'.PHP_EOL.
+			'| <a href="'.GWF_WEB_ROOT.'changes.txt">'.$module->lang('menu_changes').'</a>'.PHP_EOL.
 			'| <a href="'.GWF_WEB_ROOT.'about_wechall">'.$module->lang('menu_about').'</a>'.PHP_EOL.
 			'| <a href="'.GWF_WEB_ROOT.'join_us">'.$module->lang('menu_join').'</a>'.PHP_EOL.
 			'| <a href="'.GWF_WEB_ROOT.'links">'.$module->lang('menu_links').'</a>'.PHP_EOL.
