@@ -89,6 +89,17 @@ abstract class GWF_Method
 		return sprintf('RewriteRule ^%s/%s/?$ index.php?mo=%s&me=%s', strtolower($mo), strtolower($me), $mo, $me).PHP_EOL;
 	}
 
+	public function showEmbededHTML()
+	{
+		return isset($_GET['embed']);
+	}
+
+	public function getWrappingContent($content)
+	{
+		$doctype = GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
+		return sprintf("%s<html>\n<head></head>\n<body>\n%s\n</body>\n</html>", $doctype, $content);
+	}
+
 	/**
 	 * @author spaceone
 	 * Generate link(s) in PageMenu for this method.

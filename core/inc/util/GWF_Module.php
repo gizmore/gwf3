@@ -289,32 +289,6 @@ class GWF_Module extends GDO
 	############
 	### Exec ###
 	############
-	public function showEmbededHTML()
-	{
-		return isset($_GET['embed']);
-	}
-
-	public function getWrappingContent($content)
-	{
-		$doctype = GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE);
-		return sprintf("%s<html>\n<head></head>\n<body>\n%s\n</body>\n</html>", $doctype, $content);
-	}
-
-	/**
-	 *
-	 *
-	 */
-	public function executeMain($methodname)
-	{
-		$back = $this->execute($methodname);
-
-		if (true === $this->showEmbededHTML())
-		{
-			die($this->getWrappingContent($back));
-		}
-		return $back;
-	}
-
 	/**
 	 * Execute a method. Arguments are given via $_GET and _$POST.
 	 * @param string $methodname
@@ -322,21 +296,31 @@ class GWF_Module extends GDO
 	 */
 	public function execute($methodname)
 	{
+		# Module enabled?
 		if (false === $this->isEnabled())
 		{
 			return '';
 		}
 
+		# Method existing?
 		if (false === ($method = $this->getMethod($methodname)))
 		{
 			return GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($methodname), $this->getName()));
 		}
 
+		# User has Permissions?
 		if (false === $method->hasPermission())
 		{
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
+		# Display directly?
+		if (true === $method->showEmbededHTML())
+		{
+			# TODO: nicer way than die()ing
+			die($method->getWrappingContent($method->execute()));
+		}
+	
 		return $method->execute();
 	}
 

@@ -7,6 +7,9 @@
  */
 final class GWF_Fancy extends GWF_Method
 {
+	public function showEmbededHTML() { return false; }
+	public function getWrappingContent($content) { return $content; }
+
 	public function getHTAccess()
 	{
 		$ret = '';
@@ -30,6 +33,7 @@ final class GWF_Fancy extends GWF_Method
 			$ret .= '<Files "*.php">'.PHP_EOL;
 
 			# TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
+			# The value is hardcoded in PHP (src/php.h): 242:#define PHP_MIME_TYPE "application/x-httpd-php"
 			$ret .= '    AddHandler application/x-httpd-php .php'.PHP_EOL.
 
 			$ret .= '</Files>'.PHP_EOL.PHP_EOL;
@@ -53,6 +57,7 @@ final class GWF_Fancy extends GWF_Method
 			$ret .= PHP_EOL.PHP_EOL;
 			# The Fancy URLs
 			$ret .=
+				# TODO: WTF is the condition needet??
 				'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
 				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%1'.PHP_EOL.
 				'ReadmeName /index.php?mo=GWF&me=Fancy&fancy=foot'.PHP_EOL;
@@ -66,14 +71,13 @@ final class GWF_Fancy extends GWF_Method
 		{
 			case 'head': 
 				GWF_Website::addCSS(sprintf('/tpl/%s/css/fancy.css', GWF3::getDesign()));
-				die(GWF3::onDisplayHead());
+				return GWF3::onDisplayHead();
 				
 			case 'foot': 
-				die(GWF3::onDisplayFoot());
+				return GWF3::onDisplayFoot();
 				
 			default:
-				die(GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'fancy')));
+				return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'fancy'));
 		}
-	}	
+	}
 }
-?>
