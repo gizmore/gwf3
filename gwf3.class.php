@@ -328,7 +328,7 @@ class GWF3
 	{
 		if (!isset($_COOKIE[GWF_SESS_NAME]))
 		{
-			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/');
+			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/', GWF_Session::getDomain());
 			GWF_Session::initFakeSession();
 		}
 		elseif (false === GWF_Session::start($blocking))
