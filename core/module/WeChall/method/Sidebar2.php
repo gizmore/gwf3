@@ -41,7 +41,8 @@ final class WeChall_Sidebar2 extends GWF_Method
 	
 	private function displayLogin()
 	{
-		if (GWF_Session::isLoggedIn()) {
+		if ( (GWF_Session::isLoggedIn()) || (!GWF_Session::haveCookies()) )
+		{
 			return '';
 		}
 		
