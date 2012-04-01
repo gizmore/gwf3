@@ -1,6 +1,6 @@
 <?php
 chdir('../../../../');
-define('GWF_PAGE_TITLE', 'Training: Eruca');
+define('GWF_PAGE_TITLE', 'Training: Caterpillar');
 require_once('challenge/html_head.php');
 require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
