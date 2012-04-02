@@ -101,13 +101,24 @@ final class Module_Chat extends GWF_Module
 	
 	public static function getMibbitURL2($server, $port, $channel, $ssl)
 	{
-		return sprintf('http%s://embed.mibbit.com/?server=%s%%3A%s%d&channel=%s&noServerNotices=true&noServerMotd=true&forcePrompt=true',
+		return sprintf('http%s://embed.mibbit.com/?server=%s%%3A%s%d&channel=%s&noServerNotices=true&noServerMotd=true&nick=%s&forcePrompt=true',
 			($ssl ? 's' : ''),
 			$server,
 			($ssl ? '%2B' : ''),
 			$port,
-			urlencode($channel)
+			urlencode($channel),
+			urlencode(self::getMibbitNickname())
 		);
+	}
+	
+	private static function getMibbitNickname()
+	{
+		if (false !== ($user = GWF_Session::getUser()))
+		{
+			return $user->getVar('user_name');
+		}
+		
+		return GWF_SITENAME.'_'.GWF_Random::randomKey(8, '0123456789');
 	}
 	
 	public function cfgGWFChat() { return $this->getModuleVar('gwf_chat', true); } //Bug ?!
