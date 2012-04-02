@@ -7,7 +7,7 @@
  */
 final class GWF_Fancy extends GWF_Method
 {
-	public function showEmbededHTML() { return false; }
+	public function showEmbededHTML() { return true; }
 	public function getWrappingContent($content) { return $content; }
 
 	public function getHTAccess()
