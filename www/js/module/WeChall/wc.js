@@ -431,3 +431,77 @@ function wcjsAutocompleteUser(termObject, callback)
 	}
 	callback(suggest);
 }
+
+/* Unread3 engine */
+function wcjsInit()
+{
+	setInterval(wcjsNotify, 90000);
+}
+
+function wcjsNotify()
+{
+	$.ajax({
+		url: GWF_WEB_ROOT+'index.php?mo=WeChall&me=UnreadCounter&ajax=true',
+		success: function(data)
+		{
+			if (data.charAt(0) === '0')
+			{
+//				alert(data);
+				return;
+			}
+			wcjsNotifyB(eval('('+data+');'));
+		}
+	});
+}
+
+function wcjsNotifyB(data)
+{
+	wcjsNotifyC('#wc_menu a[href*=news]', data['news']);
+	wcjsNotifyC('#wc_menu a[href*=forum]', data['forum']);
+	wcjsNotifyC('#wc_menu a[href*=pm]', data['pm']);
+	wcjsNotifyC('#wc_menu a[href*=links]', data['links']);
+	
+	wcjsNotifyD(data);
+}
+
+function wcjsNotifyC(selector, amt)
+{
+	var anchor = $(selector);
+	if (anchor.length !== 1)
+	{
+		return;
+	}
+	
+	var text = anchor.text();
+	text = text.substrUntil('[', text);
+	
+	if (amt > 0)
+	{
+		text += '['+amt+']';
+	}
+	
+	anchor.text(text);
+}
+
+function wcjsNotifyD(data)
+{
+	var total = 0;
+	for (var key in data)
+	{
+		total += data[key];
+	}
+	
+	var text = document.title;
+	var re = /^\[\d+\]/;
+	if (text.match(re))
+	{
+		text = text.substrFrom(']');
+	}
+	
+	if (total > 0)
+	{
+		text = '['+total+']'+text;
+	}
+	
+	document.title = text;
+}

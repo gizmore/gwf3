@@ -505,7 +505,7 @@ final class WC_HTML
 	
 	private static function getLinkUnreadQuery($user)
 	{
-		if (is_object($user))
+		if (is_object($user) && $user->isUser())
 		{
 			$user instanceof GWF_User;
 			$uid = $user->getVar('user_id');
@@ -515,7 +515,8 @@ final class WC_HTML
 		}
 		else
 		{
-			$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time() - $this->cfgGuestUnreadTime());
+			$time = 60*60*24;
+			$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time() - $time);
 			return "link_date>'$cut'";
 		}
 	}
@@ -541,7 +542,10 @@ final class WC_HTML
 	
 	public static function getUnreadThreadCount($user)
 	{
-		$uid = $user->getVar('user_id');
+		if ('0' === ($uid = $user->getVar('user_id')))
+		{
+			return 0;
+		}
 		$threads = GWF_TABLE_PREFIX.'forumthread';
 		$grp = GWF_TABLE_PREFIX.'usergroup';
 		$permquery = "(thread_gid=0 OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=thread_gid))";
@@ -615,7 +619,7 @@ final class WC_HTML
 		$app = $count === 0 ? '' : '['.$count.']';
 		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'pm">'.$module->lang('menu_pm').$app.'</a></li>';
 	}
-	private static function getUnreadPMCount(GWF_User $user)
+	public static function getUnreadPMCount(GWF_User $user)
 	{
 		$db = gdo_db();
 		$pms = GWF_TABLE_PREFIX.'pm';

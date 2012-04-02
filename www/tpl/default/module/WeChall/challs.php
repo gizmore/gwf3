@@ -35,7 +35,7 @@ $headers = array(
 );
 echo '<table class="wc_chall_table">';
 $raw = '<tr><th colspan="10">'.$tVars['table_title'].'</th></tr>';
-echo GWF_Table::displayHeaders2($headers, $tVars['sort_url'], '', '', '', '', $raw);
+echo GWF_Table::displayHeaders2($headers, $tVars['sort_url'], '', '', 'by', 'dir', $raw);
 $is_admin = GWF_User::isAdminS();
 
 $icon_vote = GWF_WEB_ROOT.'tpl/wc4/ico/vote.gif';
