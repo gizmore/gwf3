@@ -10,8 +10,8 @@ $lang = array(
 'LO_Amulet__desc__' => 'Questo amuleto è un pezzo della magia ThalionLionhearth.',
 'Moonstone' => 'PietraDiLuna',
 'Moonstone__desc__' => 'Una grande Pietra di Luna blu',
-'Reginalds_Bracelett' => 'Bracciletto_Reginald',
-'Reginalds_Bracelett__desc__' => 'Il braccialendo della moglie di Reginalds. Un bel gioiello con un enorme smeraldo.',
+'Reginalds_Bracelett' => 'Braccialetto_Reginald',
+'Reginalds_Bracelett__desc__' => 'Il braccialetto della moglie di Reginalds. Un bel gioiello con un enorme smeraldo.',
 'UM_Amulet' => 'Amuleto_UM',
 'UM_Amulet__desc__' => 'Un pezzo della famosa meteora Thalion.',
 

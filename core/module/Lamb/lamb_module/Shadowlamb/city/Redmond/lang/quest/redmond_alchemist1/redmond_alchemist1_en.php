@@ -12,6 +12,6 @@ $lang = array(
 	'no' => 'Nodded.',
 	'answer_us_pls' => 'Just use #talk <answer> to solve this mini encryption.',
 	'grats' => 'Wow, I am impressed! Here some reward fellow chummer!',
-	'funny' => 'Hehe, you are a smartass ... If i recall correctly it was a roman emperor though.',
+	'funny' => 'Hehe, you are a smartass ... If I recall correctly it was a roman emperor though.',
 );
 ?>
