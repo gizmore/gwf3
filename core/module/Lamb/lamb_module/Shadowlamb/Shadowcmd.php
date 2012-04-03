@@ -195,6 +195,11 @@ class Shadowcmd
 	##########################
 	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=true, $translate=false)
 	{
+		if ($player->isOptionEnabled(self::DEAD))
+		{
+			return array('reset');
+		}
+		
 		if (false === $player->isCreated())
 		{
 			return self::$CMDS_ALWAYS_CREATE;
@@ -606,26 +611,11 @@ class Shadowcmd
 
 	public static function onExecute(SR_Player $player, $message)
 	{
-		# Check for dead people.
-		if ($player->isOptionEnabled(SR_Player::DEAD))
-		{
-			$player->msg('5256');
-// 			$player->message('You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.');
-			return false;
-		}
-		
 		$args = explode(' ', $message);
-		
-// 		echo sprintf("Your command is %s\n", $args[0]);
-		
-// 		$cmd = array_shift($args);
+
 		$command = self::unshortcut(array_shift($args));
 		$command = self::untranslate($command);
 		
-// 		echo "Command got untranslated to $command\n";
-		
-// 		$cmd = self::shortcut(self::unshortcut($cmd));
-// 		$command = self::unshortcut($cmd);
 		$commands = self::getCurrentCommands($player);
 
 		if (false === in_array($command, $commands, true))
@@ -634,6 +624,10 @@ class Shadowcmd
 			{
 				self::rply($player, '0000');
 // 				Shadowrun4::removePlayer($player);
+			}
+			elseif ($player->isOptionEnabled(SR_Player::DEAD))
+			{
+				self::rply($player, '5256'); # You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.
 			}
 			else
 			{
