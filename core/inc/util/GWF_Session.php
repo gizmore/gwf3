@@ -143,10 +143,10 @@ final class GWF_Session extends GDO
 
 	private static function create()
 	{
-		if (false !== ($spider = GWF_Webspider::getSpider()))
-		{
-			return self::createSpider($spider);
-		}
+// 		if (false !== ($spider = GWF_Webspider::getSpider()))
+// 		{
+// 			return self::createSpider($spider);
+// 		}
 		
 //		return self::createByETag();
 		return self::createSession();
