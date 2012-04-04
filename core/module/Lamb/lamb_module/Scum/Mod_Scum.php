@@ -67,9 +67,9 @@ final class LambModule_Scum extends Lamb_Module
 			default: $out = $this->scumPlay($server, $channel_name, $user, $msg, false); break;
 		}
 		
-		if(empty($out))
+		if ( ($out === '') || (!is_string($out)) )
 		{
-			Lamb_Log::logError('!!!Scum output is EMPTY!!!');
+// 			Lamb_Log::logError('!!!Scum output is EMPTY!!!');
 		}
 		else
 		{

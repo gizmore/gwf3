@@ -8,10 +8,11 @@ final class Lamb_Shadowlamb extends GWF_Method
 	
 	public function execute()
 	{
-		require_once 'core/module/Lamb/Lamb_User.php';
-		require_once 'core/module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';
+		$this->module->includeClass('Lamb_User');
+		$this->module->includeClass('lamb_module/Shadowlamb/core/SR_Player');
+// 		require_once 'core/module/Lamb/lamb_module/Shadowlamb/core/SR_Player.php';
 		
-		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
+// 		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Lamb/shadowlamb.js?v=2');
 		
 		return $this->templateShadowlamb();
 	}

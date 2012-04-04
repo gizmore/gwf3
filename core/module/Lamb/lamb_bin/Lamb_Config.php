@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru,#mo,#Nasu_gaming',
 			'admins' => 'gizmore',
 		),
 		
@@ -222,7 +222,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'ircs://irc.root-me.org:6697',
 			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
+			'password' => LAMB_PASSWORD2,
 			'channels' => '#shadowlamb',
 			'admins' => 'gizmore',
 		),
@@ -236,6 +236,16 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 			'options' => Lamb_Server::BNC_MODE,
 		),
+			
+		# mibbit
+		array(
+			'host' => 'irc.mibbit.net',
+			'nickname' => 'Lamb',
+			'password' => '',
+			'channels' => '#YPERSYMMAXIA_test_channel',
+			'admins' => 'gizmore',
+		),
+			
 			
 //		array(
 //			'host' => '',

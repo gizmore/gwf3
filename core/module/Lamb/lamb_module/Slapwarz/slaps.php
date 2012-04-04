@@ -13,6 +13,7 @@ $slaps = array(
 	array('urgently', 50),
 	array('quickly', 55),
 	array('angrily', 60),
+	array('epicly', 70),
 	array('sadly', 25),
 	array('funnily', 28),
 	array('grossly', 35),
@@ -102,8 +103,9 @@ $slaps = array(
 	array('a hot', 30),
 	array('a wild', 30),
 	array('an awesome', 40),
+	array('a disgusting', 25),
+	array('a sexy', 69),
 ),
-
 
 'items' => array(
 	array('railgun' , 75), 
@@ -181,6 +183,7 @@ $slaps = array(
 	array('boar', 29),
 	array('parrot', 24),
 	array('link', 21),
+	array('savoy', 19),
 	
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),

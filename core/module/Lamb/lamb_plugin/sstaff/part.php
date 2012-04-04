@@ -1,6 +1,8 @@
 <?php
+$bot instanceof Lamb;
 $server instanceof Lamb_Server;
-$channel = Common::substrUntil($message, ' ');
+
+$channel = strtolower(Common::substrUntil($message, ' '));
 $channels = $server->getChannels();
 if (!isset($channels[$channel]))
 {
