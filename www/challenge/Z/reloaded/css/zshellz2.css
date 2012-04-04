@@ -1,0 +1,58 @@
+.chall_rel_shell_wrap {
+	background-color: gray;
+	padding: 6px;
+	color: black;
+	font-family: monospace;
+}
+
+.chall_rel_shell {
+	background-color: black;
+	color: white;
+	font-family: monospace;
+}
+
+.chall_rel_shell_out {
+	height: 256px;
+	color: white;
+	overflow: auto;
+}
+
+#chall_rel_nar_2 {
+	background: url("../img/Paddy.png") left bottom no-repeat; 
+	background-color: white;
+	color: black;
+	padding-left: 59px;
+	min-height: 68px;
+	width: 80%;
+	margin: 5px auto;
+}
+
+#chall_rel_nar_3 {
+	background: url("../img/Paddy.png") left bottom; 
+	background-color: white;
+	color: black;
+}
+
+.chall_rel_shell form {
+	height: 18px;
+	line-height: 18px;
+}
+
+.chall_rel_shell_wrap input[type=text] {
+	color: #fff!important;
+	margin: 0;
+	padding: 0;
+	border: none;
+	background-color: black;
+	height: 18px;
+	line-height: 18px;
+	width: 80%;
+}
+.chall_rel_shell_wrap input[type=submit] {
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	background-color: black;
+	height: 18px;
+	line-height: 18px;
+}
