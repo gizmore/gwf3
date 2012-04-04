@@ -197,7 +197,7 @@ class Shadowcmd
 	{
 		if ($player->isOptionEnabled(self::DEAD))
 		{
-			return array('reset');
+			return array_merge(self::$CMDS_ALWAYS_CREATE, array('reset'));
 		}
 		
 		if (false === $player->isCreated())

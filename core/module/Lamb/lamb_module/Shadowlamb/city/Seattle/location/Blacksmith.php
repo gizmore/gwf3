@@ -32,7 +32,8 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1)
 		{
-			$bot->reply('Usage: #reward <attribute|skill>. Will create a new rune.');
+			$bot->reply($this->lang($player, 'usage'));
+// 			$bot->reply('Usage: #reward <attribute|skill>. Will create a new rune.');
 			return false;
 		}
 		
@@ -45,36 +46,44 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 			$min = 0.1;
 			$max = 0.1;
 		}
-		elseif (in_array($f, SR_Player::$SKILL)) {
+		elseif (in_array($f, SR_Player::$SKILL))
+		{
 			$min = 0.2;
 			$max = 0.6;
 		}
-		elseif (in_array($f, SR_Player::$ATTRIBUTE)) {
+		elseif (in_array($f, SR_Player::$ATTRIBUTE))
+		{
 			$min = 0.4;
 			$max = 0.8;
 		}
-		else {
-			$bot->reply('This skill or attribute is unknown.');
+		else
+		{
+			$bot->reply($this->lang($player, 'unknown'));
+// 			$bot->reply('This skill or attribute is unknown.');
 			return false;
 		}
-		
-		$bot->reply('The dwarf cheers and get\'s to work.');
 		
 		$itemname = 'Rune_of_'.$f.':'.Shadowfunc::diceFloat($min, $max, 1);
 		if (false === ($item = SR_Item::createByName($itemname)))
 		{
-			$bot->reply('My smith hammer is broken!');
+			$bot->reply($this->lang($player, 'broken'));
+// 			$bot->reply('My smith hammer is broken!');
 			return false;
 		}
 		
-		$bot->reply("You received ${itemname}.");
+		$bot->reply($this->lang($player, 'cheers'));
+// 		$bot->reply('The dwarf cheers and get\'s to work.');
+		
+		$bot->reply($this->lang($player, 'received', array($itemname)));
+// 		$bot->reply("You received ${itemname}.");
 		
 		$key = self::REWARD_RUNES;
 		$player->giveItems(array($item));
 		$player->decreaseConst($key, -1);
 		if (!$player->hasConst($key))
 		{
-			$bot->reply('You haved used all your #reward now.');
+			$bot->reply($this->lang($player, 'rewarded'));
+// 			$bot->reply('You haved used all your #reward now.');
 		}
 		
 		return true;

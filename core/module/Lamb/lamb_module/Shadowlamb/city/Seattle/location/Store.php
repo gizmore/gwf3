@@ -1,7 +1,9 @@
 <?php
 final class Seattle_Store extends SR_Store
 {
-	public function getFoundText(SR_Player $player) { return 'You find a small Store. There are no employees as all transactions are done by slot machines.'; }
+// 	public function getFoundText(SR_Player $player) { return 'You find a small Store. There are no employees as all transactions are done by slot machines.'; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	
 	public function getFoundPercentage() { return 50.00; }
 	
 	public function getNPCS(SR_Player $player)
@@ -32,19 +34,22 @@ final class Seattle_Store extends SR_Store
 	{
 		if ($this->isMaloisHere($player))
 		{
-			return 'You enter the Seattle Store. No employees are around. In front of a slot machine you see Malois.';
+			return $this->lang($player, 'enter2');
+// 			return 'You enter the Seattle Store. No employees are around. In front of a slot machine you see Malois.';
 		}
 		else
 		{
-			return 'You enter the Seattle Store. No people or employees are around.';
+			return $this->lang($player, 'enter1');
+// 			return 'You enter the Seattle Store. No people or employees are around.';
 		}
-		
 	}
+	
 	public function getHelpText(SR_Player $player)
 	{
 		if ($this->isMaloisHere($player))
 		{
-			return parent::getHelpText($player)." Use #talk to talk to Malois.";
+// 			return parent::getHelpText($player)." Use #talk to talk to Malois.";
+			return parent::getHelpText($player).' '.$this->lang($player, 'help');
 		}
 		else
 		{
