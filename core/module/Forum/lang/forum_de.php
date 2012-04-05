@@ -135,7 +135,7 @@ $lang = array(
 	# Selects
 	'sel_group' => 'Wählen Sie eine Benutzergruppe',
 	'subscr_none' => 'Nichts',
-	'subscr_own' => 'Wo ich selbst geschrieben habe',	# FIXME: sehr unschön ;)
+	'subscr_own' => 'Themen mit eigenen Beiträgen',
 	'subscr_all' => 'Alle Themen',
 
 	# Config
