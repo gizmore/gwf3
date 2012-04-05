@@ -47,13 +47,13 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 			self::parseSudoshRow($module, $row, $fh2);
 		}
 		
-		if (!self::DEBUG)
-		{
+// 		if (!self::DEBUG)
+// 		{
 			if (false === ftruncate($fh, 0))
 			{
 				self::error('Cannot ftruncate sudosh logs.');
 			}
-		}
+// 		}
 	}
 	
 	private static function parseSudoshRow(Module_Audit $module, $row, $fh2)
@@ -168,7 +168,7 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	private static function copySudoDestroyed(Module_Audit $module, GWF_AuditLog $log)
 	{
 		$filename = $log->getFileName();
-		if (false === ($file = file_get_contents($filename)))
+		if (false === ($file = @file_get_contents($filename)))
 		{
 			return self::error('Cannot read file: '.$filename);
 		}

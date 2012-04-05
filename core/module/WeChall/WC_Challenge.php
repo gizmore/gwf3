@@ -5,7 +5,7 @@
  */
 final class WC_Challenge extends GDO
 {
-	#const CHALL_CASE_S = 0;
+	const CHALL_CASE_S = 0;
 	const CHALL_CASE_I = 1;
 	
 	const MIN_SCORE = 1;

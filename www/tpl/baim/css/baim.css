@@ -171,7 +171,7 @@ h1, h2, h3 {
 }
 
 /** Code and Quote **/
-.gwf_code, .gwf_quote {
+.gwf_bb_code, .gwf_bb_quote {
 	background: #fff;
 	-moz-border-radius: 9px;
 	-webkit-border-radius: 9px;
