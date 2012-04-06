@@ -5,6 +5,6 @@
 	<base href="http://{$smarty.server['SERVER_NAME']}">
 {/if}
 	{$meta}
-	<link rel="shortcut icon" href="/templates/Graffiti/images/favicon.ico">
+	<link rel="shortcut icon" href="/tpl/Graffiti/images/favicon.ico">
 	{$head_links}
 </head>
