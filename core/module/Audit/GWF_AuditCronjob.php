@@ -2,12 +2,9 @@
 /**
  * This cronjob runs as client on gizmore.org
  * @author gizmore
- *
  */
 final class GWF_AuditCronjob extends GWF_Cronjob
 {
-	const DEBUG = false;
-	
 	public static function onCronjob(Module_Audit $module)
 	{
 		self::start('Audit');
@@ -47,13 +44,10 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 			self::parseSudoshRow($module, $row, $fh2);
 		}
 		
-// 		if (!self::DEBUG)
-// 		{
-			if (false === ftruncate($fh, 0))
-			{
-				self::error('Cannot ftruncate sudosh logs.');
-			}
-// 		}
+		if (false === ftruncate($fh, 0))
+		{
+			self::error('Cannot ftruncate sudosh logs.');
+		}
 	}
 	
 	private static function parseSudoshRow(Module_Audit $module, $row, $fh2)
@@ -213,17 +207,17 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	private static function appendToLog(Module_Audit $module, $id, $row)
 	{
 		$filename = GWF_AuditLog::getFilenameS($id);
-		if (false === ($fh = fopen($filename, 'a')))
+		if (false === ($fh = @fopen($filename, 'a')))
 		{
 			return self::error('Cannot open '.$filename);
 		}
 		
-		if (false === fprintf($fh, '%s', $row))
+		if (false === @fprintf($fh, '%s', $row))
 		{
 			return self::error('Cannot append to '.$filename);
 		}
 		
-		if (false === fclose($fh))
+		if (false === @fclose($fh))
 		{
 			return self::error('Cannot close '.$filename);
 		}
