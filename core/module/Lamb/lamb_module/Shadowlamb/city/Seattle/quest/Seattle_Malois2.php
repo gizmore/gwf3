@@ -3,9 +3,11 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 {
 	const REWARD_XP = 4;
 	
-	public function getQuestName() { return 'HelpMalois'; }
 	public function getNeededAmount() { return 2000; }
-	public function getQuestDescription() { return sprintf('Help Malois and give him %s.', $this->displayNuyen()); }
+	
+// 	public function getQuestName() { return 'HelpMalois'; }
+// 	public function getQuestDescription() { return sprintf('Help Malois and give him %s.', $this->displayNuyen()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->displayNuyen())); }
 	
 	public function displayNuyen()
 	{
@@ -21,16 +23,19 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 		$ny = $this->getNeededAmount();
 		if ($player->hasNuyen($ny))
 		{
-			$player->message(sprintf('You hand Malois %s ...', $this->displayNuyen()));
+			$player->message($this->lang('give', array($this->displayNuyen())));
+// 			$player->message(sprintf('You hand Malois %s ...', $this->displayNuyen()));
 			$player->giveNuyen(-$ny);
-			$npc->reply('Thank you very much my friend. I think I can find out more now.');
+			$npc->reply($this->lang('thx1'));
+// 			$npc->reply('Thank you very much my friend. I think I can find out more now.');
 			$player->giveXP(self::REWARD_XP);
 			$this->onSolve($player);
 			return true;
 		}
 		else
 		{
-			$npc->reply('Oh, I see you don\'t have enough money :(');
+			$npc->reply($this->lang('aww'));
+// 			$npc->reply('Oh, I see you don\'t have enough money :(');
 			return true;
 		}
 	}
@@ -46,19 +51,25 @@ final class Quest_Seattle_Malois2 extends SR_Quest
 				}
 				else
 				{
-					$npc->reply('Oh you want to help me again? That is very kind of you :)');
-					$npc->reply('Well ... To be honest I am short on nuyen, and I need to hire a decker to get me into level2 of the Renraku office.');
-					$npc->reply(sprintf('If you could give me %s, so I can continue my research ... What do you think?', $this->displayNuyen()));
+					$npc->reply($this->lang('sr1'));
+					$npc->reply($this->lang('sr2'));
+					$npc->reply($this->lang('sr3', array($this->displayNuyen())));
+// 					$npc->reply('Oh you want to help me again? That is very kind of you :)');
+// 					$npc->reply('Well ... To be honest I am short on nuyen, and I need to hire a decker to get me into level2 of the Renraku office.');
+// 					$npc->reply(sprintf('If you could give me %s, so I can continue my research ... What do you think?', $this->displayNuyen()));
 				}
 				break;
 			case 'confirm':
-				$npc->reply('I think it is of your own interest to know the truth.');
+				$npc->reply($this->lang('confirm'));
+// 				$npc->reply('I think it is of your own interest to know the truth.');
 				break;
 			case 'yes':
-				$npc->reply('Yes, it\'s horrible.');
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply('Yes, it\'s horrible.');
 				break;
 			case 'no':
-				$npc->reply('Too bad.');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('Too bad.');
 				break;
 		}
 		return true;

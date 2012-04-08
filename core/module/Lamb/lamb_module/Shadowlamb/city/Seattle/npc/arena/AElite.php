@@ -35,7 +35,8 @@ final class Seattle_AElite extends SR_NPC
 		$nuyen = 1200;
 		$key = 'SEATTLE_ARENA_N';
 		$player->setConst($key, $player->getConst($key)+1);
-		$player->message("The fight is over. The director hands you $nuyen Nuyen.");
+		$player->msg('5125', array(Shadowfunc::displayNuyen($nuyen)));
+// 		$player->message("The fight is over. The director hands you $nuyen Nuyen.");
 		$player->giveNuyen($nuyen);
 		return array();
 	}

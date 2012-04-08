@@ -39,7 +39,8 @@ final class Seattle_Cop extends SR_TalkingNPC
 		switch ($word)
 		{
 			default:
-				return $this->reply("If you have nothing to report, please move along sir.");
+				return $this->rply('nothing');
+// 				return $this->reply("If you have nothing to report, please move along sir.");
 		}
 	}
 	

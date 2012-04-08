@@ -40,7 +40,8 @@ final class Seattle_Killer extends SR_NPC
 		if ($quest->isInQuest($player))
 		{
 			$quest->increase('sr4qu_amount', 1);
-			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
+			$player->message($quest->lang('kill', array($quest->getAmount(), $quest->getNeededAmount())));
+// 			$player->message(sprintf('Now you killed %d Killers for Mr.Johnson.', $quest->getAmount()));
 		}
 		return array();
 	}

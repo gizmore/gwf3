@@ -4,9 +4,11 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 	const REWARD_XP = 4;
 	const REWARD_NUYEN = 2500;
 	
-	public function getQuestName() { return 'Hardware'; }
 	public function getNeededAmount() { return 3; }
-	public function getQuestDescription() { return sprintf('Bring %s/%s ElectronicParts to Mr.Johnson in the Garage Pub.', $this->getAmount(), $this->getNeededAmount()); }
+	
+// 	public function getQuestName() { return 'Hardware'; }
+// 	public function getQuestDescription() { return sprintf('Bring %s/%s ElectronicParts to Mr.Johnson in the Garage Pub.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	
 	public function giveElectronicParts(SR_Player $player)
 	{
@@ -44,10 +46,12 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		
 		if ($have >= $need)
 		{
-			$npc->reply('Good job, chummer. Here is your reward.');
+			$npc->reply($this->lang('thx1'));
+// 			$npc->reply('Good job, chummer. Here is your reward.');
 			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
-			$player->message(sprintf('Mr.Johnson hands you a couvert with %s. You also gain %s XP.', $ny, $xp));
+			$player->message($this->lang('thx2', array($ny, $xp)));
+// 			$player->message(sprintf('Mr.Johnson hands you a couvert with %s. You also gain %s XP.', $ny, $xp));
 			$player->giveNuyen(self::REWARD_NUYEN);
 			$player->giveXP(self::REWARD_XP);
 			$this->onSolve($player);
@@ -55,32 +59,37 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		}
 		else
 		{
-			$npc->reply(sprintf('You brought me %s of %s ElectronicParts. Please bring %s more.', $have, $need, $need-$have));
+			$npc->reply($this->lang('more', array($have, $need, $need-$have)));
+// 			$npc->reply(sprintf('You brought me %s of %s ElectronicParts. Please bring %s more.', $have, $need, $need-$have));
 			return true;
 		}
 	}
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
+		$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply('Yo chummer, I have another important mission for you.');
-				$npc->reply('A contractor needs to get some ElectronicParts stolen from a ship delivery in the harbor.)');
-				$npc->reply(sprintf('You would need to bring me %s ElectronicParts to get the job done. What do you say?', $this->getNeededAmount()));
+				$npc->reply($this->lang('thx1'));
+				$npc->reply($this->lang('thx2'));
+				$npc->reply($this->lang('thx3', array($this->getNeededAmount())));
+// 				$npc->reply('Yo chummer, I have another important mission for you.');
+// 				$npc->reply('A contractor needs to get some ElectronicParts stolen from a ship delivery in the harbor.)');
+// 				$npc->reply(sprintf('You would need to bring me %s ElectronicParts to get the job done. What do you say?', $this->getNeededAmount()));
 				break;
 			
 			case 'confirm':
-				$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
-				$npc->reply(sprintf('I will pay you %s for this run.', $ny));
-				break;
+// 				$npc->reply(sprintf('I will pay you %s for this run.', $ny));
+// 				break;
 				
 			case 'yes':
-				$npc->reply(sprintf('See you around, chummer.'));
-				break;
+// 				$npc->reply(sprintf('See you around, chummer.'));
+// 				break;
 				
 			case 'no':
-				$npc->reply(sprintf('See you around, chummer.'));
+// 				$npc->reply(sprintf('See you around, chummer.'));
+				$npc->reply($this->lang($word));
 				break;
 		}
 		return true;

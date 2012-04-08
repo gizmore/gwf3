@@ -35,7 +35,8 @@ final class Seattle_AngryElve extends SR_NPC
 		if ($quest->isInQuest($player))
 		{
 			$quest->increase('sr4qu_amount', 1);
-			$player->message(sprintf('Now you killed %d Angry Elves for the Archery Quest.', $quest->getAmount()));
+			$player->message($quest->lang('kill', array($quest->getAmount(), $quest->getNeededAmount())));
+// 			$player->message(sprintf('Now you killed %d Angry Elves for the Archery Quest.', $quest->getAmount()));
 		}
 		return array();
 	}

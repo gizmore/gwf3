@@ -34,13 +34,11 @@ final class Seattle_TrollDecker extends SR_NPC
 	public function getNPCLoot(SR_Player $player)
 	{
 		$quest = SR_Quest::getQuest($player, 'Seattle_Johnson1');
-		if ($quest->isInQuest($player))
-		{
-			$quest->increase('sr4qu_amount', 1);
-			$player->message(sprintf('Now you killed %d TrollDeckers for Mr.Johnson.', $quest->getAmount()));
-		}
+		$quest instanceof Quest_Seattle_Johnson1;
+		$quest->onKilled($player);
 		
-		if (rand(1,3) === 1) {
+		if (rand(1,3) === 1)
+		{
 			return array('IDCard');
 		}
 		

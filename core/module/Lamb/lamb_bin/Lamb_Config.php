@@ -241,7 +241,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'irc.mibbit.net',
 			'nickname' => 'Lamb',
-			'password' => '',
+			'password' => 'lamblamb',
 			'channels' => '#YPERSYMMAXIA_test_channel',
 			'admins' => 'gizmore',
 		),

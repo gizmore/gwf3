@@ -195,7 +195,7 @@ class Shadowcmd
 	##########################
 	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=true, $translate=false)
 	{
-		if ($player->isOptionEnabled(self::DEAD))
+		if ($player->isOptionEnabled(SR_Player::DEAD))
 		{
 			return array_merge(self::$CMDS_ALWAYS_CREATE, array('reset'));
 		}

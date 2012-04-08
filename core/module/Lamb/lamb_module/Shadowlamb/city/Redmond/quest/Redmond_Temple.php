@@ -36,7 +36,7 @@ final class Quest_Redmond_Temple extends SR_Quest
 				break;
 			case 'confirm':
 				$npc->reply($this->lang('confirm'));
-				$npc->reply("What do you think?");
+// 				$npc->reply("What do you think?");
 				break;
 			case 'yes':
 				$npc->reply($this->lang('yes'));
@@ -50,5 +50,17 @@ final class Quest_Redmond_Temple extends SR_Quest
 		return true;
 	}
 	
+	public function onMerchandize(SR_TalkingNPC $npc, SR_Player $player)
+	{
+		$npc->reply($this->lang('m_'.rand(0,4)));
+		if ($this->isInQuest($player))
+		{
+			$this->increaseAmount(1);
+			$player->message($this->lang('one_more', array($this->getAmount(), $this->getNeededAmount())));
+// 			$player->message(sprintf('You now told %d/%d citizens about the Redmond Temple.', $this->getAmount(), $this->getNeededAmount()));
+			$npc->reply($this->lang('bye'));
+			$npc->onByeChat($player);
+		}
+	}
 }
 ?>

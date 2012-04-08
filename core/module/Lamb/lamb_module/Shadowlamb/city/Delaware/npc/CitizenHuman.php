@@ -68,34 +68,10 @@ final class Delaware_CitizenHuman extends SR_HireNPC
 				break;
 				
 			case 'invite':
-				
 				$quest = SR_Quest::getQuest($player, 'Seattle_Barkeeper');
-				
-				if (!$quest->isInQuest($player)) {
-					$this->reply('You invite me to a party? Maybe try #join or #say hire.');
-					break;
-				}
-				
-				if (!$this->hasTemp($key2)) {
-					$this->setTemp($key2, rand(1,4));
-				}
-				
-				switch ($this->getTemp($key2))
-				{
-					case 1: $this->reply('Yeah, I am already invited. Thanks.'); break;
-					case 2: $this->reply('No, I am not interested.'); break;
-					case 3: $this->reply('Better get a job, chummer'); break;
-					case 4:
-						$this->reply('An invitation for a big party? Sure me and my friends are in. Thank you!');
-						$quest->onInviteCitizen($this, $player, $this->getParty()->getMemberCount());
-						$this->setTemp($key2, 5);
-						break;
-					case 5:
-						$this->reply('See you there!');
-						break;
-				}
+				$quest instanceof Quest_Seattle_Barkeeper;
+				$quest->onTryInvite($this, $player);
 				break;
-				
 				
 			default:
 			case 'hello':

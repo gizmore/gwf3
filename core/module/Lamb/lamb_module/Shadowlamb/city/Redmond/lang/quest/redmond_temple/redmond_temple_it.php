@@ -9,5 +9,16 @@ $lang = array(
 	'confirm' => 'Cosa ne pensi?',
 	'yes' => 'Perfetto!',
 	'no' => 'Nessun problema.',
+
+	# XXX delete me
+	'm_0' => 'Oh the temple, I haven\'t been there for ages!',
+	'm_1' => 'Are you getting paid for this?',
+	'm_2' => 'There is a temple in redmond?',
+	'm_3' => 'I am not interested in magic, thank you.',
+	'm_4' => 'Dude, you are the third person today that told me about this crappy temple -.- leave me alone!',
+		
+	'bye' => 'I gotta go!',
+		
+	'one_more' => 'Now you told %d/%d citizens about the Redmond Temple.',
 );		
 ?>
