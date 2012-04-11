@@ -12,8 +12,9 @@ if (!GWF_User::isAdminS())
 $score = 2;
 $url = 'challenge/space/pytong/index.php';
 $creators = 'space';
-$tags = 'Fun';
+$tags = 'Fun,Python';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
 require_once('challenge/html_foot.php');
+?>

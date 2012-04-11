@@ -11,18 +11,20 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $chall->onCheckSolution();
 
-echo GWF_Box::box($chall->lang('info', array('index.php?show=source', 'index.php?highlight=christmas')), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/warchall/begins/index.php', 'index.php?highlight=christmas')), $chall->lang('title'));
 
 $filename = 'challenge/space/pytong/pytong.py';
-if (Common::getGetString('show') === 'source') {
-	echo GWF_Box::box('<pre>'.htmlspecialchars(file_get_contents($filename)).'</pre>');
-}
-elseif (Common::getGetString('highlight') === 'christmas') {
-	$message = '[PHP]'.file_get_contents($filename).'[/PHP]';
+// if (Common::getGetString('show') === 'source') {
+// 	echo GWF_Box::box('<pre>'.htmlspecialchars(file_get_contents($filename)).'</pre>');
+// }
+// else
+if (Common::getGetString('highlight') === 'christmas')
+{
+	$message = '[php title=pytong.py]'.file_get_contents($filename).'[/php]';
 	echo GWF_Message::display($message);
 }
 
 formSolutionbox($chall);
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');
-
+?>
