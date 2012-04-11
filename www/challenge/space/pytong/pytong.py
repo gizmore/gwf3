@@ -6,6 +6,7 @@ import os
 # Your main objective is to return 0
 def main(argv):
 	if not os.path.exists(argv):
+		print('sorry file does not exists: '+argv)
 		return 1
 
 	print('opening '+argv)
@@ -28,9 +29,9 @@ def main(argv):
 
 def sanitize_arg(value):
 	# no symlinks, etc. please
-	value = os.path.realpath(value)
-	while -1 != value.find('proc'):
-		value = value.replace('proc', '')
+	for ipattern in ['proc', '..']:
+		while -1 != value.find(ipattern):
+			value = value.replace(ipattern, '')
 	return value
 
 if __name__ == "__main__":
