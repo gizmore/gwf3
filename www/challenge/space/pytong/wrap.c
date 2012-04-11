@@ -32,10 +32,10 @@ int escape_single_quotes(char *to, char *from, int max)
 int main(int argc, char *argv[])
 {
 	FILE *fp;
+	FILE *solution;
 	char buf[BUFSIZE];
 	char escaped_name[BUFSIZE];
 	char *filename;
-	int returncode;
 
 	setregid(1013,1013); // gid of level12
 
@@ -59,16 +59,28 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	fp = popen(buf, "r");
-	if (!fp)
+	if (!(fp = popen(buf, "r")))
 	{
 		fprintf(stderr, "Command execution failed! Sorry!\n");
 		exit(EXIT_FAILURE);
 	}
-	returncode = pclose(fp);
-	if (0 == returncode)
+	while(fgets(buf, sizeof(buf), fp)!=NULL)
 	{
-		//TODO: printf solution or cat solution.txt
+		printf(buf);
+	}
+	if (0 == pclose(fp))
+	{
+		if(!(solution = fopen("./solution.txt", "r")))
+		{
+			fprintf(stderr, "Sorry! Solution is right but an error occured, please try again!\n");
+			exit(EXIT_FAILURE);
+		}
+		while(fgets(buf, sizeof(buf), solution)!=NULL)
+		{
+			printf(buf);
+		}
+		fclose(solution);
+
 	}
 
 	return EXIT_SUCCESS;
