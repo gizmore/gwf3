@@ -31,6 +31,7 @@ def sanitize_arg(value):
 	value = os.path.realpath(value)
 	while -1 != value.find('proc'):
 		value = value.replace('proc', '')
+	return value
 
 if __name__ == "__main__":
 	rc = 1

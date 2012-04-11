@@ -4,7 +4,7 @@
 
 int escape_single_quotes(char *to, char *from, int max)
 {
-	int l= 0;
+	int l = 0;
 
 	for (;*from;from++)
 	{
@@ -24,7 +24,7 @@ int escape_single_quotes(char *to, char *from, int max)
 		}
 	}
 
-	*to= 0;
+	*to = 0;
 
 	return 1;
 }
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/space/foo.py %s", escaped_name)>=BUFSIZE)
+	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/space/pytong.py %s", escaped_name)>=BUFSIZE)
 	{
 		fprintf(stderr, "Filename %s is too long!\n", filename);
 		exit(EXIT_FAILURE);
