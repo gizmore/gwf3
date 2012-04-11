@@ -20,7 +20,7 @@ $filename = 'challenge/space/pytong/pytong.py';
 // else
 if (Common::getGetString('highlight') === 'christmas')
 {
-	$message = '[php title=pytong.py]'.file_get_contents($filename).'[/php]';
+	$message = '[code lang=python title=pytong.py]'.file_get_contents($filename).'[/code]';
 	echo GWF_Message::display($message);
 }
 
