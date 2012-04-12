@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/space/pytong.py %s", escaped_name)>=BUFSIZE)
+	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/pytong.py '%s'", escaped_name)>=BUFSIZE)
 	{
 		fprintf(stderr, "Filename %s is too long!\n", filename);
 		exit(EXIT_FAILURE);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 	}
 	if (0 == pclose(fp))
 	{
-		if(!(solution = fopen("./solution.txt", "r")))
+		if(!(solution = fopen("/home/level/12/solution.txt", "r")))
 		{
 			fprintf(stderr, "Sorry! Solution is right but an error occured, please try again!\n");
 			exit(EXIT_FAILURE);

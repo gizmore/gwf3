@@ -29,7 +29,7 @@ def main(argv):
 
 def sanitize_arg(value):
 	# no symlinks, etc. please
-	for ipattern in ['proc', '..']:
+	for ipattern in ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']:
 		while -1 != value.find(ipattern):
 			value = value.replace(ipattern, '')
 	return value
