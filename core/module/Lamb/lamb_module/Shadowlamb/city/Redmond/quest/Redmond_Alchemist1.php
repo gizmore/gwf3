@@ -49,8 +49,15 @@ final class Quest_Redmond_Alchemist1 extends SR_Quest
 				break;
 
 			case $solution:
-				$npc->reply($this->lang('grats'));
-				return $this->onSolve($player);
+				if ($this->isInQuest($player))
+				{
+					$npc->reply($this->lang('grats'));
+					return $this->onSolve($player);
+				}
+				else
+				{
+					return $npc->reply($this->lang('wtf'));
+				}
 				
 			case 'carsten':
 				return $npc->reply($this->lang('funny'));
