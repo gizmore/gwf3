@@ -148,6 +148,11 @@ class SR_Quest extends GDO
 	
 	public function onSolve(SR_Player $player)
 	{
+		if (!$this->isInQuest($player))
+		{
+			$player->message('You did not accept this quest yet (should not happen).');
+		}
+		
 		if (true === $this->isDone($player))
 		{
 			$player->message('You already solved this quest (should not happen).');
