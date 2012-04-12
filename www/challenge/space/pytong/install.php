@@ -12,7 +12,7 @@ if (!GWF_User::isAdminS())
 $score = 2;
 $url = 'challenge/space/pytong/index.php';
 $creators = 'space';
-$tags = 'Fun,Python';
+$tags = 'Exploit,Python';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
