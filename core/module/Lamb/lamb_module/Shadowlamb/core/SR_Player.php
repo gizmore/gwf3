@@ -441,6 +441,12 @@ class SR_Player extends GDO
 			return false;
 		}
 		$player instanceof SR_Player;
+		
+		if (NULL !== ($classname = $player->getVar('sr4pl_classname')))
+		{
+			$player->setNPCClassName($classname);
+		}
+		
 		foreach (self::$EQUIPMENT as $e)
 		{
 			$player->reloadEquipment($e);

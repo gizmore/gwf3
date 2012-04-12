@@ -54,14 +54,14 @@ final class Shadowlang
 		# Get classname without city
 		if (false === ($cls = Common::substrFrom($cl, '_', false)))
 		{
-			die(sprintf('NPC %s does not follow naming conventions 1!'));
+			die(sprintf('NPC %s does not follow naming conventions 1!', $npc->getClassName()));
 		}
 		$cls = strtolower($cls);
 		
 		# Get cityname
 		if (false === ($city = $npc->getNPCCityClass()))
 		{
-			die(sprintf('NPC %s does not follow naming conventions 2!'));
+			die(sprintf('NPC %s does not follow naming conventions 2!', $npc->getClassName()));
 		}
 		$cityname = $city->getName();
 		
