@@ -29,9 +29,14 @@ def main(argv):
 
 def sanitize_arg(value):
 	# no symlinks, etc. please
-	for ipattern in ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']:
+	pattern = ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']
+	for ipattern in pattern:
 		while -1 != value.find(ipattern):
 			value = value.replace(ipattern, '')
+	for ipattern in pattern:
+		if -1 != value.find(ipattern):
+			return 'nononono: hacking is not allowed'
+	
 	return value
 
 if __name__ == "__main__":
