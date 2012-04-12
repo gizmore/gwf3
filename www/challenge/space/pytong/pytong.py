@@ -31,10 +31,10 @@ def sanitize_arg(value):
 	# no symlinks, etc. please
 	pattern = ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']
 	for ipattern in pattern:
-		while -1 != value.find(ipattern):
+		while ipattern in value:
 			value = value.replace(ipattern, '')
 	for ipattern in pattern:
-		if -1 != value.find(ipattern):
+		if ipattern in value:
 			return 'nononono: hacking is not allowed'
 	
 	return value
@@ -45,5 +45,6 @@ if __name__ == "__main__":
 		if len(sys.argv[1]) > 1:
 			rc = main(sanitize_arg(sys.argv[1]))
 	except:
+		print('an exception occured: maybe no file permissions!')
 		rc = 1
 	sys.exit(rc)
