@@ -10,7 +10,13 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $chall->onCheckSolution();
 
-echo GWF_Box::box($chall->lang('info', array('/challenge/warchall/begins/index.php'), $chall->lang('title')));
+echo GWF_Box::box($chall->lang('info', array('/challenge/warchall/begins/index.php', 'index.php?highlight=christmas'), $chall->lang('title')));
+
+$filename = 'challenge/warchall/tropical/7/level7.c';
+if (Common::getGetString('highlight') === 'christmas') {
+	$message = '[code lang=C title=tropic7.c]'.file_get_contents($filename).'[/code]';
+	echo GWF_Message::display($message);
+}
 
 formSolutionbox($chall, 18);
 
