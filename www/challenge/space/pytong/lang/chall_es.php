@@ -7,6 +7,7 @@ $lang = array(
 		'Para ver de que se trata puedes <a href="%s">ver el código fuente aquí</a><br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Nota: No se requiere hacer una condición de carrera, pero debería funcionar así.<br/>'.PHP_EOL.
+		'Nota: You have to use the binary "pytong" not the pytong.py. It is a wrapper which is needet for SETREGID and finally gives the solution<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'¡Buena Suerte!'.PHP_EOL,
 );

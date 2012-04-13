@@ -7,7 +7,7 @@ import os
 def main(argv):
 	# You have to give me an valid file!
 	if not os.path.exists(argv):
-		print('sorry file does not exists: ' + argv)
+		print('sorry file "%s" does not exists' % argv)
 		return False
 
 	# We are opening the file here and store the content in 'jjk'
@@ -35,16 +35,11 @@ def main(argv):
 			return True
 	return False
 
-def sanitize_arg(value):
+def validate_arg(value):
 	# We also want to prevent some noobish solutions
-	pattern = ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']
-	for ipattern in pattern:
-		while ipattern in value:
-			value = value.replace(ipattern, '')
-	for ipattern in pattern:
+	for ipattern in ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']:
 		if ipattern in value:
-			return 'nononono: hacking is not allowed'
-	
+			raise ValueError('nononono: hacking is not allowed')
 	return value
 
 # Call main() when running file directly
@@ -56,7 +51,8 @@ if __name__ == "__main__":
 	rc = 2
 	try:
 		# Objective: return True here!
-		success = main(sanitize_arg(sys.argv[1]))
+		validate_arg(sys.argv[1])
+		success = main(sys.argv[1])
 	except:
 		print('an Exception occured: corrupted file or no file permissions?')
 	else:
