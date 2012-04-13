@@ -3,32 +3,40 @@
 import sys
 import os
 
-# Your main objective is to return 0
+# Your main objective is to return True
 def main(argv):
+	# You have to give me an valid file!
 	if not os.path.exists(argv):
-		print('sorry file does not exists: '+argv)
-		return 1
+		print('sorry file does not exists: ' + argv)
+		return False
 
+	# We are opening the file here and store the content in 'jjk'
 	print('opening '+argv)
 	gizmore = open(argv)
 	jjk = ''.join(gizmore.readlines())
 	gizmore.close()
 	print('closed')
 
+	# The file was closed, does it still exists?
 	if not os.path.exists(argv):
+		# The file does not exists anymore, you have found a solution
 		print('You are l33t')
-		return 0
+		return True
 	else:
+		# Ok, we will reopen the file and store its content in 'kwisatz'
 		spaceone = open(argv)
 		kwisatz = ''.join(spaceone.readlines())
 		spaceone.close()
+
+		# Does the content differs from old content?
 		if jjk != kwisatz:
+			# content differs so return True
 			print('You are a winner')
-			return 0
-	return 1
+			return True
+	return False
 
 def sanitize_arg(value):
-	# no symlinks, etc. please
+	# We also want to prevent some noobish solutions
 	pattern = ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']
 	for ipattern in pattern:
 		while ipattern in value:
@@ -39,12 +47,18 @@ def sanitize_arg(value):
 	
 	return value
 
+# Call main() when running file directly
 if __name__ == "__main__":
-	rc = 1
+	if len(sys.argv) != 2:
+		print('wrong argcount')
+		sys.exit(1)
+
+	rc = 2
 	try:
-		if len(sys.argv[1]) > 1:
-			rc = main(sanitize_arg(sys.argv[1]))
+		# Objective: return True here!
+		success = main(sanitize_arg(sys.argv[1]))
 	except:
-		print('an exception occured: maybe no file permissions!')
-		rc = 1
+		print('an Exception occured: corrupted file or no file permissions?')
+	else:
+		rc = 0 if success else 2
 	sys.exit(rc)
