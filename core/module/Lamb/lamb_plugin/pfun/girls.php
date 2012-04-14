@@ -1,7 +1,7 @@
 <?php
 $girls = array(
 	'PoisonIvy',
-	'IceRain',
+	'Unholy',
 );
 $girl = $girls[array_rand($girls)];
 $bot->reply("I like {$girl}.");
