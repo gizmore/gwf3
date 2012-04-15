@@ -70,14 +70,25 @@ abstract class SR_TalkingNPC extends SR_NPC
 	{
 		$player = $this->chat_partner;
 		$p = $player->getParty();
-		$message = $player->lang('5085', array($this->getName(), Shadowlang::langNPC($this, $player, $key, $args)));
 		if (true === $p->isTalking())
 		{
-			return $p->notice($message);
+			return $this->partyRply($key, $args);
 		}
 		else
 		{
+			$message = $player->lang('5085', array($this->getName(), Shadowlang::langNPC($this, $player, $key, $args)));
 			return $player->message($message);
+		}
+	}
+	
+	public function partyRply($key, $args=NULL)
+	{
+		$player = $this->chat_partner;
+		$p = $player->getParty();
+		foreach ($p->getMembers() as $member)
+		{
+			$message = $member->lang('5085', array($this->getName(), Shadowlang::langNPC($this, $member, $key, $args)));
+			$member->message($message);
 		}
 	}
 	
@@ -246,6 +257,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 		$ep->popAction(true);
 		$p->setContactEta(rand(10, 20));
 		$ep->setContactEta(rand(10, 20));
+		return true;
 	}
 }
 ?>

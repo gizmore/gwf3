@@ -48,7 +48,7 @@ abstract class SR_Cyberdeck extends SR_Usable
 			return false;
 		}
 
-		if (false === ($computer = SR_Computer::getInstance($computer)))
+		if (false === ($computer = SR_Computer::getInstance($computer, $l)))
 		{
 			$bot->reply('Database error.');
 			return false;

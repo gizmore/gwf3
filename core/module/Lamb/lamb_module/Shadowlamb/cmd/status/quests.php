@@ -210,7 +210,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		return self::onDisplayQuest($player, $quests[$id-1], $id);
 	}
 	
-	private static function onSearchQuests(SR_Player $player, array $quests, array $args)
+	public static function onSearchQuests(SR_Player $player, array $quests, array $args)
 	{
 		$page = isset($args[1]) ? ((int)$args[1]) : 1;
 		

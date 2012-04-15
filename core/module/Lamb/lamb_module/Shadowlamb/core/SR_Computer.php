@@ -24,6 +24,13 @@ abstract class SR_Computer
 		Lamb_Log::logDebug($message);
 	}
 	
+	public function transferedNuyen(SR_Player $player, $nuyen)
+	{
+		$player->giveBankNuyen($nuyen);
+		$player->msg('5264', array(Shadowfunc::displayNuyen($nuyen)));
+		return true;
+	}
+	
 	###############
 	### Factory ###
 	###############
@@ -33,7 +40,7 @@ abstract class SR_Computer
 	 * @param string $computer
 	 * @return SR_Computer
 	 */
-	public static function getInstance($computer)
+	public static function getInstance($computer, $location)
 	{
 		if (!isset(self::$COMPUTERS[$computer]))
 		{
@@ -44,6 +51,7 @@ abstract class SR_Computer
 			}
 			self::$COMPUTERS[$computer] = new $classname();
 			self::$COMPUTERS[$computer]->setName($computer);
+			self::$COMPUTERS[$computer]->setLocation($location);
 		}
 		return self::$COMPUTERS[$computer];
 	}
@@ -55,6 +63,28 @@ abstract class SR_Computer
 	
 	public function getName() { return $this->name; }
 	public function setName($name) { $this->name = $name; }
+	
+	################
+	### Location ###
+	################
+	private $location;
+	public function setLocation($loc) { $this->location = $loc; }
+	/**
+	 * @return SR_Location
+	 */
+	public function getLocation() { return $this->location; }
+	
+	############
+	### Lang ###
+	############
+	public function lang(SR_Player $player, $key, $args=NULL)
+	{
+		return $this->getLocation()->lang($player, $key, $args);
+	}
+	public function msg(SR_Player $player, $key, $args=NULL)
+	{
+		return $player->message($this->lang($player, $key, $args));
+	}
 	
 	###############
 	### Hacking ###

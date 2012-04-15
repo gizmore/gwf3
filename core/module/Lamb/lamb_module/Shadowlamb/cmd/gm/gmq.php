@@ -28,7 +28,7 @@ final class Shadowcmd_gmq extends Shadowcmd
 			return false;
 		}
 		
-		$questname = strtolower($args[1]);
+		$questname = $args[1];
 		$quests = SR_Quest::getQuests();
 		if (false === array_key_exists($questname,$quests))
 		{
@@ -36,7 +36,6 @@ final class Shadowcmd_gmq extends Shadowcmd
 			return false;
 		}
 		$quest = $quests[$questname];
-		$questname = $quest->getQuestName();
 
 		$internalname = substr(get_class($quest),6);
 		if (false === ($quest = SR_Quest::getQuest($target,$internalname)))
@@ -44,6 +43,7 @@ final class Shadowcmd_gmq extends Shadowcmd
 			$bot->reply(sprintf('Cannot get quest %s. (Should not happen.)', $args[1]));
 			return false;
 		}
+		$questname = $quest->getQuestName();
 		
 		if (count($args) === 2)
 		{

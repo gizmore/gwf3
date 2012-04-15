@@ -728,5 +728,6 @@ $lang = array(
 '5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
 '5263' => 'Hai pagato %s per cambiare il tuo %s in %s. Hai perso %s punti d\'essenza recuperando %s punti karma.', # price, field, value, essence, karma
+'5264' => 'You managed to transfer %s to your bank account from another.',
 );
 ?>

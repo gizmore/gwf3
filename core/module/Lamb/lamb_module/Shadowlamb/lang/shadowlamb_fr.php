@@ -721,5 +721,6 @@ $lang = array(
 '5261' => 'You gained +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
 '5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
+'5264' => 'You managed to transfer %s to your bank account from another.',
 );
 ?>
