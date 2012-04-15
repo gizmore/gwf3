@@ -37,7 +37,8 @@ final class BAIM_MC extends GDO
 	{
 		if ($this->isDemo())
 		{
-			if (false !== self::getBy('bmc_mc', $mc)) {
+			if (false !== self::getDemoByMC($mc))
+			{
 				return false;
 			}
 		}
@@ -46,6 +47,12 @@ final class BAIM_MC extends GDO
 			'bmc_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 			'bmc_mc' => $mc,
 		));
+	}
+	
+	public static function getDemoByMC($mc)
+	{
+		$mc = GDO::escape($mc);
+		return self::table(__CLASS__)->selectFirstObject('*', "bmc_mc='$mc' AND bmc_options&2");
 	}
 	
 	public function canChange()

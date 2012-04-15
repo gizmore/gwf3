@@ -8,13 +8,16 @@ final class BAIM_ValidateMC extends GWF_Method
 	{
 		GWF_Website::plaintext();
 		
-		if (false === ($uid = Common::getGet('id'))) {
+		if (false === ($uid = Common::getGetString('id')))
+		{
 			return $this->garbage();
 		}
-		if (false === ($token = Common::getGet('token'))) {
+		if (false === ($token = Common::getGetString('token')))
+		{
 			return $this->garbage();
 		}
-		if (false === ($mc = Common::getGet('mc'))) {
+		if (false === ($mc = Common::getGetString('mc')))
+		{
 			return $this->garbage();
 		}
 		
