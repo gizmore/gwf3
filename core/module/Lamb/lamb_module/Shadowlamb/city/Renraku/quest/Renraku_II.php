@@ -1,8 +1,8 @@
 <?php
 final class Quest_Renraku_II extends SR_Quest
 {
-	public function getQuestName() { return 'TheOffice'; }
-	public function getQuestDescription() { return 'Find out what happened to you and other players during the Renraku experiments.'; }
+// 	public function getQuestName() { return 'TheOffice'; }
+// 	public function getQuestDescription() { return 'Find out what happened to you and other players during the Renraku experiments.'; }
 	
 	public function checkQuestB(SR_Player $player)
 	{
@@ -29,13 +29,15 @@ final class Quest_Renraku_II extends SR_Quest
 	
 	public function onHackedOne(SR_Player $player)
 	{
-		$player->message('You find an interesting file: "proband.dbm" with some familiar names in it ...');
+		$player->message($this->lang('file1_a'));
+// 		$player->message('You find an interesting file: "proband.dbm" with some familiar names in it ...');
 		$names = GDO::table('SR_Player')->selectColumn('sr4pl_name', "sr4pl_classname='NULL'", 'RAND()', NULL, 20, 0, '');
 		$names[] = $player->getShortName();
 		$names[] = 'Malois';
 		array_unique($names);
 		sort($names);
-		$player->message('Probands: '.implode(', ', $names).'.');
+		$player->message($this->lang('file1_b', array(implode(', ', $names))));
+// 		$player->message('Probands: '.implode(', ', $names).'.');
 		$data = $this->getQuestData();
 		if (!isset($data['H1']))
 		{
@@ -46,9 +48,12 @@ final class Quest_Renraku_II extends SR_Quest
 	
 	public function onHackedTwo(SR_Player $player)
 	{
-		$player->message('You find an interesting file: "experiments.dbm" ...');
-		$player->message('Experiments: TrollDNA, OrkDNA, ElveDNA, DragonDNA.');
-		$player->message('That surely is evidence for Renraku playing with the DNA of the probands!');
+		$player->message($this->lang('file2_a'));
+// 		$player->message('You find an interesting file: "experiments.dbm" ...');
+		$player->message($this->lang('file2_b'));
+// 		$player->message('Experiments: TrollDNA, OrkDNA, ElvenDNA, DragonDNA.');
+		$player->message($this->lang('file2_c'));
+// 		$player->message('That surely is evidence for Renraku playing with the DNA of the probands!');
 		$data = $this->getQuestData();
 		if (!isset($data['H2']))
 		{
@@ -59,9 +64,12 @@ final class Quest_Renraku_II extends SR_Quest
 	
 	public function onHackedThree(SR_Player $player)
 	{
-		$player->message('You find an interesting file: "project_leaders.dbm" ...');
-		$player->message('Leaders: G. Lessley[Seattle Headquarters], R. Stolemeyer[NySoft, Delaware], J. Johnson[Amerindian Labs]');
-		$player->message('You get angry while you read the file ... ');
+		$player->message($this->lang('file3_a'));
+// 		$player->message('You find an interesting file: "project_leaders.dbm" ...');
+		$player->message($this->lang('file3_b'));
+// 		$player->message('Leaders: G. Lessley[Seattle Headquarters], R. Stolemeyer[NySoft, Delaware], J. Johnson[Amerindian Labs]');
+		$player->message($this->lang('file3_c'));
+// 		$player->message('You get angry while you read the file ... ');
 		if (!isset($data['H3']))
 		{
 			$this->saveHackData('H3');

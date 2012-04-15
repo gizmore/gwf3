@@ -29,7 +29,10 @@ final class Renraku_Room4 extends SR_SearchRoom
 	public function getSearchMaxAttemps() { return 2; }
 	 
 	public function getFoundPercentage() { return 50; }
-	public function getFoundText(SR_Player $player) { return "You found another locked room."; }
-	public function getEnterText(SR_Player $player) { return "You enter a small storage room. In a corner you locate a single computer."; }
+	
+// 	public function getFoundText(SR_Player $player) { return "You found another locked room."; }
+// 	public function getEnterText(SR_Player $player) { return "You enter a small storage room. In a corner you locate a single computer."; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 }
 ?>

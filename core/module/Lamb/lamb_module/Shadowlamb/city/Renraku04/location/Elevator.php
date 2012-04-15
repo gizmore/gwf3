@@ -14,14 +14,16 @@ final class Renraku04_Elevator extends Renraku_Elevator
 			}
 			else
 			{
-				$member->message(sprintf('You use one of your %d ID4 cards...', $item->getAmount()));
+				$member->message($this->lang($member, 'usecard', array($item->getAmount())));
+// 				$member->message(sprintf('You use one of your %d ID4 cards...', $item->getAmount()));
 				$item->useAmount($member, 1);
 			}
 		}
 		
 		if ($errors !== '')
 		{
-			$party->notice(sprintf('%s do(es) not have an ID4Card... You hear the alarm sound!', substr($errors, 2)));
+			$this->partyMessage($player, 'nocard', array(substr($errors, 2)));
+// 			$party->notice(sprintf('%s do(es) not have an ID4Card... You hear the alarm sound!', substr($errors, 2)));
 			if (false !== ($city = $this->getCityClass()))
 			{
 				$city->setAlert($party, GWF_Time::ONE_HOUR*2);

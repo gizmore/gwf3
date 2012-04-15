@@ -10,9 +10,14 @@ final class Renraku_Guard extends SR_TalkingNPC
 		$b = chr(2);
 		switch ($word)
 		{
-			case 'renraku': return $this->reply("The office is only for {$b}employee{$b}.");
-			case 'employee': return $this->checkIDCards($player); break;
-			default: return $this->reply("Good day sire. If you are not an {$b}employee{$b}, please move away.");
+			case 'renraku':
+				return $this->rply($word);
+// 				return $this->reply("The office is only for {$b}employee{$b}.");
+			case 'employee':
+				return $this->checkIDCards($player); break;
+			default:
+				return $this->rply('default');
+// 				return $this->reply("Good day sire. If you are not an {$b}employee{$b}, please move away.");
 		}
 	}
 	
@@ -56,18 +61,24 @@ final class Renraku_Guard extends SR_TalkingNPC
 		
 		if (count($names) > 0)
 		{
-			$p->notice(sprintf("It seems like %s is/are missing an IDCard.", GWF_Array::implodeHuman($names)));
-			$this->reply('Every person needs an own ID card. Move along.');
+			$this->rply('no_card', array(implode(', ', $names)));
+// 			$p->notice(sprintf("It seems like %s is/are missing an IDCard.", GWF_Array::implodeHuman($names)));
+			$this->rply('everyone');
+// 			$this->reply('Every person needs an own ID card. Move along.');
 			return;
 		}
+		
+		$this->rply('revoke');
+// 		$this->reply('These ID cards need to be revoked and you have to get a new one. I will also have to keep them for investigation. I may let you pass as your security level is below 2.');
+		$this->rply('hand');
+// 		$p->notice("Each member hands an IDCard to the guards and you enter the Renraku tower.");
 		
 		foreach ($p->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
 			$card = $member->getInvItemByName('IDCard');
 			$card->useAmount($member, 1);
-			$this->reply('These ID cards need to be revoked and you have to get a new one. I will also have to keep them for investigation. I may let you pass as your security level is below 2.');
-			$p->notice("Each member hands an IDCard to the guards and you enter the Renraku tower.");
+			
 			
 			$p->giveKnowledge('places', 'Renraku_Exit');
 			

@@ -7,8 +7,7 @@ class PC_RenrakuBOX1 extends SR_Computer
 	public function onHacked(SR_Player $player, $hits)
 	{
 		$nuyen = rand(100, 200);
-		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
+		$this->transferedNuyen($player, $nuyen);
 	}
 }
 
@@ -21,8 +20,7 @@ class PC_RenrakuBOX2 extends SR_Computer
 	public function onHacked(SR_Player $player, $hits)
 	{
 		$nuyen = rand(200, 400);
-		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
+		$this->transferedNuyen($player, $nuyen);
 	}
 }
 
@@ -35,8 +33,7 @@ class PC_RenrakuBOX3 extends SR_Computer
 	public function onHacked(SR_Player $player, $hits)
 	{
 		$nuyen = rand(100, 300);
-		$player->giveBankNuyen($nuyen);
-		$player->message(sprintf('You managed to transfer %s to your bank account from another.', Shadowfunc::displayNuyen($nuyen)));
+		$this->transferedNuyen($player, $nuyen);
 	}
 }
 
@@ -49,8 +46,11 @@ final class Renraku_Room1 extends SR_SearchRoom
 	public function getSearchMaxAttemps() { return 1; }
 	
 	public function getFoundPercentage() { return 50; }
-	public function getFoundText(SR_Player $player) { return 'You find a room with several computers. Nobody is around.'; }
-	public function getEnterText(SR_Player $player) { return 'You see several computers and a lot of garbage in the corners.'; }
-	public function getHelpText(SR_Player $player) { return $player->canHack() ? 'You can use a cyberdeck here to hack into the workstations.' : parent::getHelpText($player); }
+
+// 	public function getFoundText(SR_Player $player) { return 'You find a room with several computers. Nobody is around.'; }
+// 	public function getEnterText(SR_Player $player) { return 'You see several computers and a lot of garbage in the corners.'; }
+// 	public function getHelpText(SR_Player $player) { return $player->canHack() ? 'You can use a cyberdeck here to hack into the workstations.' : parent::getHelpText($player); }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 }
 ?>

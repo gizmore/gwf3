@@ -14,67 +14,79 @@ final class Renraku_Employee extends SR_TalkingNPC
 		
 		switch ($word)
 		{
-			case 'magic': return $this->reply('The magic department is in level 3. Use your IDCard3 at the elevator and simply choose floor 3.');
-			case 'cyberware': return $this->reply('The cyberware department is in level 2. Use your IDCard2 at the elevator and simply choose floor 2.');
+			case 'magic': #return $this->reply('The magic department is in level 3. Use your IDCard3 at the elevator and simply choose floor 3.');
+			case 'cyberware': #return $this->reply('The cyberware department is in level 2. Use your IDCard2 at the elevator and simply choose floor 2.');
+				return $this->rply($word);
+				
 			case 'hire':
 				if ($this->hasTemp($hire))
 				{
-					$this->reply('Nah.');
+					$this->rply('nah');
+// 					$this->reply('Nah.');
 					return $this->bye();
 				}
 				$this->setTemp($hire, 1);
-				$this->reply('What do you plan?');
-				break;
+				return $this->rply('plan');
+// 				$this->reply('What do you plan?');
+// 				break;
 			
 			case 'renraku':
-				$this->nervousAlert($player);
-				break;
+				return $this->nervousAlert($player);
 				
 			case 'yes':
 				if ($this->hasTemp($help))
 				{
 					$this->setTemp($helpyes);
-					$this->reply('May I see your ID card please?');
+					return $this->rply('card');
+// 					$this->reply('May I see your ID card please?');
 				}
 				else
 				{
-					$this->reply('Yes, what?');
+					return $this->rply('yes_what');
+// 					$this->reply('Yes, what?');
 				}
-				break;
+// 				break;
 				
 			case 'no':
 				if ($this->hasTemp($helpyes))
 				{
-					$this->nervousAlert($player);
+					return $this->nervousAlert($player);
 				}
-				break;
+				return $this->rply('no');
+// 				break;
 				
 			default:
 				if ($this->hasTemp($hire))
 				{
-					$this->reply('I don\'t know');
+					return $this->rply('dunno');
+// 					$this->reply('I don\'t know');
 				}
 				elseif ($this->hasTemp($help))
 				{
-					$this->reply('See ya\'round, chummer.');
-					$this->bye();
+					$this->rply('laters');
+// 					$this->reply('See ya\'round, chummer.');
+					return $this->bye();
 				}
 				else
 				{
-					$this->reply('Hey, I don\'t know you ... Can I help?');
 					$this->setTemp($help);
+					return $this->rply('helpya');
+// 					$this->reply('Hey, I don\'t know you ... Can I help?');
 				}
-				break;
+// 				break;
 		}
-		return true;
+// 		return true;
 	}
 
 	private function nervousAlert(SR_Player $player)
 	{
 		$party = $player->getParty();
-		$party->notice('The employee looks nervous ... ');
-		$this->reply('I have to go now.');
-		$party->notice('After a few seconds you hear the alert sound.');
+		$party->notice($this->langNPC('nervous'));
+// 		$party->notice('The employee looks nervous ... ');
+		$this->rply('bye');
+// 		$this->reply('I have to go now.');
+		$party->notice($this->langNPC('alert'));
+// 		$party->notice('After a few seconds you hear the alert sound.');
 		$renraku = Shadowrun4::getCity('Renraku');
 		$renraku->setAlert($party, 1200);
 		return $this->bye();
