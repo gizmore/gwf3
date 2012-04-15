@@ -7,11 +7,13 @@ final class Seattle_Passenger extends SR_TalkingNPC
 		switch ($word)
 		{
 			default:
-				$this->reply('Lol I was at a party in Seattle Hotel over there... It was awesome. But now I head back to Redmond.');
+				$this->rply('default1');
+// 				$this->reply('Lol I was at a party in Seattle Hotel over there... It was awesome. But now I head back to Redmond.');
 				$player->giveKnowledge('places', 'Seattle_Hotel');
-				$this->reply('If you are new to Seattle, you might want to know where the Ares is... It\'s just down the road, then left.');
+				$this->rply('default2');
+// 				$this->reply('If you are new to Seattle, you might want to know where the Ares is... It\'s just down the road, then left.');
 				$player->giveKnowledge('places', 'Seattle_Ares');
-				break;
+				return true;
 		}
 	}
 }

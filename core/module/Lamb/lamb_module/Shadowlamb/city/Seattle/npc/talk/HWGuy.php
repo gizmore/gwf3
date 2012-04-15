@@ -6,7 +6,9 @@ final class Seattle_HWGuy extends SR_TalkingNPC
 	{
 		switch ($word)
 		{
-			default: $this->reply('Hello my name is Iben. Welcome to my hardware store and computer workshop.');
+			default:
+				return $this->rply('default');
+				#$this->reply('Hello my name is Iben. Welcome to my hardware store and computer workshop.');
 		}
 	}
 }

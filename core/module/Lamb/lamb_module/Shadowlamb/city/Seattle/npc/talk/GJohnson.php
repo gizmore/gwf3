@@ -10,7 +10,7 @@ final class Seattle_GJohnson extends SR_TalkingNPC
 			return true;
 		}
 		
-		$b = chr(2);
+// 		$b = chr(2);
 		if ($this->onNPCQuestTalk($player, $word))
 		{
 			return true;
@@ -23,12 +23,16 @@ final class Seattle_GJohnson extends SR_TalkingNPC
 				{
 					return true;
 				}
-				return $this->reply('Yeah, become a bountyhunter!');
+				return $this->rply('bounty');
+// 				return $this->reply('Yeah, become a bountyhunter!');
 			
-			case 'malois': return $this->reply('I am very busy this evening.');
+			case 'malois':
+				return $this->rply('malois');
+// 				return $this->reply('I am very busy this evening.');
 				
 			default:
-				$this->reply("Hello chummer. Looking for a job? Maybe you wanna become a {$b}bounty{$b}hunter");
+				$this->rply('default');
+// 				$this->reply("Hello chummer. Looking for a job? Maybe you wanna become a {$b}bounty{$b}hunter");
 				$player->giveKnowledge('words', 'Bounty');
 				return true;
 		}

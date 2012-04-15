@@ -6,8 +6,12 @@ final class Seattle_GBarkeeper extends SR_TalkingNPC
 	{
 		switch ($word)
 		{
-			case 'hello': return $this->reply('Welcome chummer. How are things?');
-			default: return $this->reply('I am very busy this evening!');
+			case 'hello':
+				return $this->rply('hello');
+// 				return $this->reply('Welcome chummer. How are things?');
+			default:
+				return $this->rply('default');
+// 				return $this->reply('I am very busy this evening!');
 		}
 	}
 }

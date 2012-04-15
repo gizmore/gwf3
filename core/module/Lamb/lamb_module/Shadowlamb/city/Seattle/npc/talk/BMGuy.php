@@ -40,21 +40,24 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 			case 'shadowrun':
 				if ($quest->isInQuest($player))
 				{
-					$this->reply('What? You want money for Mr.Johnson?! ... ');
-					$this->reply('Well ... Give him that from me:');
+					$this->rply('fight1');
+					$this->rply('fight2');
+// 					$this->reply('What? You want money for Mr.Johnson?! ... ');
+// 					$this->reply('Well ... Give him that from me:');
 					SR_NPC::createEnemyParty('Seattle_BMGuy')->fight($player->getParty(), true);
 					return true;
 				}
 				else
 				{
-					return $this->reply('Yeah, I have heard from you. I have nothing todo though.');
+					return $this->rply('sr');
+// 					return $this->reply('Yeah, I have heard from you. I have nothing todo though.');
 				}
 
-			case 'magic': return $this->reply('There is no magic in a good weapon.'); break;
-			case 'renraku': return $this->reply('You don\'t have trouble with renraku, do you?'); break;
-			case 'blackmarket': return $this->reply('I\'d call it graymarket.'); break;
-				
-			case 'negotiation': return $this->reply('Yes, all want to negotiate nowadays.');
+			case 'magic': #return $this->reply('There is no magic in a good weapon.'); break;
+			case 'renraku': #return $this->reply('You don\'t have trouble with renraku, do you?'); break;
+			case 'blackmarket': #return $this->reply('I\'d call it graymarket.'); break;
+			case 'negotiation': #return $this->reply('Yes, all want to negotiate nowadays.');
+				return $this->rply($word);
 			
 			case 'malois':
 			case 'yes':
@@ -62,7 +65,9 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 			case 'fakeid':
 				return $this->bmguyFakesID($player, $word);
 				
-			default: return $this->reply('Come buy hot stuff!');
+			default:
+				return $this->rply('default');
+// 				return $this->reply('Come buy hot stuff!');
 		}
 	}
 
@@ -91,7 +96,8 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 				{
 					$player->unsetTemp($tmp1);
 					$player->setTemp($tmp2, 1);
-					return $this->reply('LOL ok ... who you are gonna be today?');
+					return $this->rply('buy1');
+// 					return $this->reply('LOL ok ... who you are gonna be today?');
 				}
 				
 				elseif ($player->hasTemp($tmp3))
@@ -99,39 +105,47 @@ final class Seattle_BMGuy extends SR_TalkingNPC
 					$player->unsetTemp($tmp3);
 					if ($is_poor)
 					{
-						return $this->reply('Are you kidding me ... you didn\'t get the money!');
+						return $this->rply('poor');
+// 						return $this->reply('Are you kidding me ... you didn\'t get the money!');
 					}
 					else
 					{
 						$player->giveNuyen(-$price);
 						$player->setConst('MALOIS_ID', 1);
-						return $this->reply('Ok Mr.Peltzer, here is your new ID card.');
+						return $this->rply('buy2');
+// 						return $this->reply('Ok Mr.Peltzer, here is your new ID card.');
 					}
 				}
 				
-				return $this->reply('Yes what?');
+				return $this->rply('yes');
+// 				return $this->reply('Yes what?');
 				
 			case 'no':
 				$player->unsetTemps(array($tmp1, $tmp2, $tmp3));
-				return $this->reply('I just wanted to test you.');
+				return $this->rply('buyno');
+// 				return $this->reply('I just wanted to test you.');
 				
 			case 'fakeid':
 				$player->unsetTemps(array($tmp2, $tmp3));
 				$player->setTemp($tmp1, 1);
-				return $this->reply(sprintf('You need a fake id? ... this will cost you at least %s. Do you have that much money?', Shadowfunc::displayNuyen($price)));
+				return $this->rply('fakeid', array(Shadowfunc::displayNuyen($price)));
+// 				return $this->reply(sprintf('You need a fake id? ... this will cost you at least %s. Do you have that much money?', Shadowfunc::displayNuyen($price)));
 				
 			case 'malois':
 				if ($player->hasTemp($tmp2))
 				{
 					$player->unsetTemp($tmp2);
 					$player->setTemp($tmp3, 1);
-					$this->reply('A family member of Malois Peltzer? Interesting ...');
-					$this->reply('I have an ID card almost ready for that ... just let me get the photo straigth...');
-					return $this->reply(sprintf('Ok chummer, that will be %s. You got that?', Shadowfunc::displayNuyen($price)));
+					$this->rply('purchase1');
+					$this->rply('purchase2');
+					return $this->rply('purchase3', array(Shadowfunc::displayNuyen($price)));
+// 					$this->reply('A family member of Malois Peltzer? Interesting ...');
+// 					$this->reply('I have an ID card almost ready for that ... just let me get the photo straigth...');
+// 					return $this->reply(sprintf('Ok chummer, that will be %s. You got that?', Shadowfunc::displayNuyen($price)));
 					
 				}
-				return $this->reply('Never heard of that guy.');
-				
+				return $this->rply('unknown');
+// 				return $this->reply('Never heard of that guy.');
 		}
 	}
 }

@@ -14,23 +14,28 @@ final class Seattle_Alchemist_NPC extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'magic':
-				return $this->reply('Yeah, I even sell some magic potions and elixirs.');
+				return $this->rply($word);
+// 				return $this->reply('Yeah, I even sell some magic potions and elixirs.');
 			
 			case 'alchemy':
-				return $this->reply('Alchemy is that art of creating potions.');
+				return $this->rply($word);
+// 				return $this->reply('Alchemy is that art of creating potions.');
 				
 			case 'chemistry':
-				$this->reply("You can buy similar things here for {$b}alchemy{$b} and {$b}magic{$b} potions.");
+				$this->rply($word);
+// 				$this->reply("You can buy similar things here for {$b}alchemy{$b} and {$b}magic{$b} potions.");
 				$player->giveKnowledge('words', 'Magic');
 				$player->giveKnowledge('words', 'Alchemy');
 				return true;
 			
 			case 'hello':
 				$name = $this->getName();
-				return $this->reply("Hello, my name is {$name} and I sell items for {$b}chemistry{$b} and similar stuff.");
+				return $this->rply($word, array($name));
+// 				return $this->reply("Hello, my name is {$name} and I sell items for {$b}chemistry{$b} and similar stuff.");
 				
 			default:
-				return $this->reply("I don't know anything about $word.");
+				return $this->rply('default', array($word));
+// 				return $this->reply("I don't know anything about $word.");
 		}
 	}
 }
