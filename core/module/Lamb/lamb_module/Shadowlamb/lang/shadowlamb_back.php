@@ -191,6 +191,9 @@ $lang = array(
 'hlp_start' => "{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.",
 'hlp_blacksmith' => "At a blacksmith you can #upgrade equipment with runes. You can also #break items into runes or #clean them. It is also possible to #split runes. Also #view, #buy and #sell works here.",
 'hlp_hospital' => 'Use #talk <topic> to talk to the doctor. Use #view, #implant and #unplant to manage your cyberware. Use #heal to pay some nuyen and get healed. Use #surgery to revert lvlup into karma.',
+'hlp_talking1' => 'Use %s to talk to %s.',
+'hlp_talking2' => 'Use %s to talk to the NPCs.',
+'hlp_school' => 'In schools you can use #learn and #courses.',
 
 # Start storyline
 'start_1' => "You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.",
@@ -728,11 +731,6 @@ $lang = array(
 '5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
 '5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
 '5264' => 'You managed to transfer %s to your bank account from another.',
-//'5265' => '',
-//'5266' => '',
-//'5267' => '',
-//'5268' => '',
-//'5269' => '',
-//'5270' => '',
+'5265' => 'Missing quests in %s: %s.',
 );
 ?>

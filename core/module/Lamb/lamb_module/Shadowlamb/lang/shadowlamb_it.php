@@ -192,6 +192,9 @@ $lang = array(
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
 'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere gli oggetti in rune o {$c}pulire gli oggetti dalle rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
 'hlp_hospital' => 'Usa #parla <argomento> per parlare con il dottore. Usa #guarda, #impianta e #rimouvi_imp per gestire il tuo cyberware. Usa #cura per pagare alcuni nuyen e venire curato. Usa #chirurgia per invertire lvlup in karma.',
+'hlp_talking1' => 'Use %s to talk to %s.',
+'hlp_talking2' => 'Use %s to talk to the NPCs.',
+'hlp_school' => 'In schools you can use #learn and #courses.',
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",
@@ -729,5 +732,6 @@ $lang = array(
 '5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
 '5263' => 'Hai pagato %s per cambiare il tuo %s in %s. Hai perso %s punti d\'essenza recuperando %s punti karma.', # price, field, value, essence, karma
 '5264' => 'You managed to transfer %s to your bank account from another.',
+'5265' => 'Missing quests in %s: %s.',
 );
 ?>

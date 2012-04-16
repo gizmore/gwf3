@@ -22,6 +22,11 @@ abstract class SR_School extends SR_Store
 		}
 	}
 	
+// 	public function getHelpText(SR_Player $player)
+// 	{
+// 		return $player->lang('hlp_school').parent::getHelpText($player);
+// 	}
+	
 	public function on_courses(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);

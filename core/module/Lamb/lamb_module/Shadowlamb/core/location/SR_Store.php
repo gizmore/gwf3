@@ -36,7 +36,7 @@ abstract class SR_Store extends SR_Location
 		{
 			$cmds[$i] = "{$c}{$cmd}";
 		}
-		return $player->lang('hlp_store', array(GWF_Array::implodeHuman($cmds)));
+		return $player->lang('hlp_store', array(GWF_Array::implodeHuman($cmds))).parent::getHelpText($player);
 // 		if ($player->getBase('thief') > 0)
 // 		{
 // 			return "In shops you can use {$c}view, {$c}buy, {$c}sell and {$c}steal.";

@@ -1,4 +1,8 @@
 <?php
+/**
+ * Show quests and their description.
+ * @author gizmore
+ */
 final class Shadowcmd_quests extends Shadowcmd
 {
 	/**
@@ -22,6 +26,8 @@ final class Shadowcmd_quests extends Shadowcmd
 		
 		switch ($args[0])
 		{
+			case 'miss': case 'missing':
+				return self::displayMissing($player, $quests, $args);
 			case 'open': 
 			case 'deny':
 			case 'done':
@@ -250,6 +256,49 @@ final class Shadowcmd_quests extends Shadowcmd
 		));
 // 		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
 		return self::reply($player, $message);
+	}
+
+	/**
+	 * Display classnames of missing quests in a city.
+	 * @param SR_Player $player
+	 * @param array $quests
+	 * @param array $args
+	 * @return true
+	 */
+	private static function displayMissing(SR_Player $player, array $quests, array $args)
+	{
+		if (count($args) !== 2)
+		{
+			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
+		}
+		
+		if (false === ($city = Shadowrun4::getCity($args[1])))
+		{
+			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
+		}
+		
+		$cityname = $city->getName();
+		
+		$names = array();
+		$all = SR_Quest::getQuests();
+		foreach ($all as $classname => $quest)
+		{
+			$quest instanceof SR_Quest;
+
+			if ($quest->getCityName() !== $cityname)
+			{
+				continue;
+			}
+			
+			$q2 = SR_Quest::getQuest($player, $quest->getVar('sr4qu_name'));
+			
+			if ($q2->isUnknown($player))
+			{
+				$names[] = Common::substrFrom($classname, '_', $classname);
+			}
+		}
+		
+		return self::rply($player, '5265', array($cityname, GWF_Array::implodeHuman($names)));
 	}
 }
 ?>

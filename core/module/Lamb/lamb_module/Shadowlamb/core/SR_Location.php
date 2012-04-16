@@ -29,9 +29,10 @@ abstract class SR_Location
 	public function getFoundPercentage() { return 0.00; }
 	public function getFoundText(SR_Player $player) { return $player->lang('stub_found', array($this->getName())); }
 	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter', array($this->getName())); }
+	public function getHelpText(SR_Player $player) { return $this->getHelpTextNPCs($player); }
 // 	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
 // 	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
-	public function getHelpText(SR_Player $player) { return false; }
+// 	public function getHelpText(SR_Player $player) { return false; }
 	public function isPVP() { return false; }
 	public function getCity() { return Common::substrUntil($this->getName(), '_'); }
 	public function getCityClass() { return Shadowrun4::getCity($this->getCity()); }
@@ -197,6 +198,37 @@ abstract class SR_Location
 		$party->ntice('5020', array($party->getLocation()));
 // 		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
 		return true;
+	}
+	
+	
+	public function getHelpTextNPCs(SR_Player $player)
+	{
+		echo "NAGNAG!\n";
+		
+		$npcs = $this->getNPCS($player);
+
+		# None
+		if (count($npcs) === 0)
+		{
+			return '';
+		}
+		
+		# Single
+		if (count($npcs) === 1)
+		{
+			$cmd = '#'.key($npcs);
+			$classname = array_pop($npcs);
+			$npc = Shadowrun4::getNPC($classname);
+			return ' '.$player->lang('hlp_talking1', array($cmd, $npc->getName()));
+		}
+		
+		# Multiple
+		$cmds = array();
+		foreach ($npcs as $cmd => $classname)
+		{
+			$cmds[] = '#'.$cmd;
+		}
+		return ' '.$player->lang('hlp_talking2', array(GWF_Array::implodeHuman($cmds)));
 	}
 }
 ?>
