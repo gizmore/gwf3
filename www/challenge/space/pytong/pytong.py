@@ -13,7 +13,7 @@ def main(argv):
 	# We are opening the file here and store the content in 'jjk'
 	print('opening '+argv)
 	gizmore = open(argv)
-	jjk = ''.join(gizmore.readlines())
+	jjk = gizmore.read()
 	gizmore.close()
 	print('closed')
 
@@ -25,7 +25,7 @@ def main(argv):
 	else:
 		# Ok, we will reopen the file and store its content in 'kwisatz'
 		spaceone = open(argv)
-		kwisatz = ''.join(spaceone.readlines())
+		kwisatz = spaceone.read()
 		spaceone.close()
 
 		# Does the content differs from old content?
@@ -37,10 +37,9 @@ def main(argv):
 
 def validate_arg(value):
 	# We also want to prevent some noobish solutions
-	for ipattern in ['proc', '..', 'tmp', 'random', 'full', 'zero', 'null']:
+	for ipattern in ['proc', 'uptime', 'tmp', 'random', 'full', 'zero', 'null']:
 		if ipattern in value:
 			raise ValueError('nononono: hacking is not allowed')
-	return value
 
 # Call main() when running file directly
 if __name__ == "__main__":

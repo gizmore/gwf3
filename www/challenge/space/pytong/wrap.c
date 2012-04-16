@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 	}
 	while(fgets(buf, sizeof(buf), fp)!=NULL)
 	{
-		printf(buf);
+		printf("%s", buf);
 	}
 	if (0 == pclose(fp))
 	{
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 		}
 		while(fgets(buf, sizeof(buf), solution)!=NULL)
 		{
-			printf(buf);
+			printf("%s", buf);
 		}
 		fclose(solution);
 
