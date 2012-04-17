@@ -52,9 +52,9 @@ if (isset($_GET['eval']))
 ## END ##
 #########
 
-echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/space/string/index.php')), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/space/php0819/index.php')), $chall->lang('title'));
 
-$filename = 'challenge/space/string/index.php';
+$filename = 'challenge/space/php0819/index.php';
 $message = '[PHP]'.file_get_contents($filename).'[/PHP]';
 echo GWF_Message::display($message);
 
