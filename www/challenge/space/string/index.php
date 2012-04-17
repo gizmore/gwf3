@@ -7,7 +7,7 @@ require_once('challenge/html_head.php');
 
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/space/string/index.php', $solution);
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/space/string/index.php', false);
 }
 
 $chall->showHeader();
@@ -20,7 +20,7 @@ $challenge = function()
 {
 	// closure, because of namespace!
 
-	$f = (string)$_GET['eval'];
+	$f = Common::getGetString('eval');
 	$f = str_replace(array('`', '$', '*', '#', ':', '\\', '"', "'", '(', '.'), '', $f);
 
 	if((strlen($f) > 13) || (false !== strpos('return'))
@@ -33,9 +33,12 @@ $challenge = function()
 	return ($spaceone === '1337');
 };
 
-if (true === $challenge())
+if (isset($_GET['eval']))
 {
-	$chall->onChallengeSolved(GWF_Session::getID());
+	if (true === $challenge())
+	{
+		$chall->onChallengeSolved(GWF_Session::getID());
+	}
 }
 
 #########
