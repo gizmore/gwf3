@@ -11,7 +11,8 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $chall->onCheckSolution();
 
-echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/space/pytong/index.php', 'index.php?highlight=christmas')), $chall->lang('title'));
+# First link is to warchall begins so people know where to create warbox account.
+echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/warchall/begins/index.php', 'index.php?highlight=christmas')), $chall->lang('title'));
 
 $filename = 'challenge/space/pytong/pytong.py';
 if (Common::getGetString('highlight') === 'christmas')
