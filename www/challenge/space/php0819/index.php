@@ -15,30 +15,11 @@ $chall->showHeader();
 ###############
 ## Challenge ##
 ###############
+require_once 'challenge/space/php0819/php0819.php';
 
-$challenge = function()
-{
-	// closure, because of namespace!
+echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'profile/space')), $chall->lang('title'));
 
-	$f = Common::getGetString('eval');
-	$f = str_replace(array('`', '$', '*', '#', ':', '\\', '"', "'", '(', '.'), '', $f);
-
-	if((strlen($f) > 13) || (false !== strpos('return', $f)))
-	{
-		die('sorry, not allowed!');
-	}
-
-	try
-	{
-		eval("\$spaceone = $f");
-	}
-	catch (Exception $e)
-	{
-		return false;
-	}
-
-	return ($spaceone === '1337');
-};
+GWF_Debug::setDieOnError(false);
 
 if (isset($_GET['eval']))
 {
@@ -47,14 +28,10 @@ if (isset($_GET['eval']))
 		$chall->onChallengeSolved(GWF_Session::getUserID());
 	}
 }
+GWF_Debug::setDieOnError(true);
 
-#########
-## END ##
-#########
 
-echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'challenge/space/php0819/index.php')), $chall->lang('title'));
-
-$filename = 'challenge/space/php0819/index.php';
+$filename = 'challenge/space/php0819/php0819.php';
 $message = '[PHP]'.file_get_contents($filename).'[/PHP]';
 echo GWF_Message::display($message);
 
