@@ -58,7 +58,8 @@ final class BAIM_Admin extends GWF_Method
 		}
 		$emc = $mc->getMC();
 		$emc = $table->escape($emc);
-		$count = $table->countRows("bmc_mc='$emc'");
+		$demo = BAIM_MC::DEMO;
+		$count = $table->countRows("bmc_mc='$emc' AND bmc_options&$demo");
 		
 		if ($count > 1) {
 			return $this->module->error('err_mc_cheater');
