@@ -7,7 +7,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 	const TEMP_WORD2 = 'Seattle_Hotelier_NEGO2';
 	
 // 	public function getName() { return 'The hotelier'; }
-	public function getName() { return $this->lang('name'); }
+	public function getName() { return $this->langNPC('name'); }
 	
 	private function calcNegPrice(SR_Player $player)
 	{
