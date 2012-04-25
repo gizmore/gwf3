@@ -79,15 +79,15 @@ final class Lamb_IRC
 	{
 		$this->blocked = $blocked ? 1 : 0;
 		
-		$protocol_part = $this->isSSL() ? 'ssl://' : '';
+// 		$protocol_part = $this->isSSL() ? 'ssl://' : '';
 		
 		if (false === ($this->context = stream_context_create()))
 		{
 			Lamb_Log::logError('Lamb_IRC::connect() ERROR: stream_context_create()');
 			return false;
 		}
-		
-		$url = $protocol_part.$this->host.':'.$this->port;
+// 		$url = $protocol_part.$this->host.':'.$this->port;
+		$url = $this->host.':'.$this->port;
 		
 		Lamb_Log::logDebug('Lamb_IRC::connect() to '.$url);
 		
@@ -100,9 +100,17 @@ final class Lamb_IRC
 				$this->context)))
 		{
 			$this->socket = NULL;
-			Lamb_Log::logError("Lamb_IRC::connect() ERROR: stream_socket_client(): $url={$url} LAMB_CONNECT_TIMEOUT=".LAMB_CONNECT_TIMEOUT);
+			Lamb_Log::logError("Lamb_IRC::connect() ERROR: stream_socket_client(): URL={$url} LAMB_CONNECT_TIMEOUT=".LAMB_CONNECT_TIMEOUT);
 			Lamb_Log::logError(sprintf('ERROR in stream_socket_client(): $errno=%d; $errstr=%s', $errno, $errstr));
 			return false;
+		}
+		
+		if ($this->isSSL())
+		{
+			if (false === stream_socket_enable_crypto($this->socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT))
+			{
+				return false;
+			}
 		}
 		
 		if (false === stream_set_blocking($this->socket, $blocked))
