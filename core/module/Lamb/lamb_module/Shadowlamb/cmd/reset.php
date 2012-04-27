@@ -19,6 +19,7 @@ final class Shadowcmd_reset extends Shadowcmd
 		
 		if ( (count($args)===1) && ($args[0]==='i_am_sure') )
 		{
+			self::deletePlayer($player);
 			$player->deletePlayer();
 			$player->msg('5245');
 // 			$player->message(sprintf('Your character has been deleted. You may issue %sstart again.', $c));
@@ -30,6 +31,20 @@ final class Shadowcmd_reset extends Shadowcmd
 		}
 		
 		return true;
+	}
+	
+	private static function deletePlayer(SR_Player $player)
+	{
+		$epname = GDO::escape($player->getName());
+		
+		if (false === GDO::table('SR_BazarShop')->deleteWhere("sr4bs_pname='$epname'"))
+		{
+			return false;
+		}
+		if (false === GDO::table('SR_BazarItem')->deleteWhere("sr4ba_pname='$epname'"))
+		{
+			return false;
+		}
 	}
 }
 ?>
