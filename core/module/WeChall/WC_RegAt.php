@@ -246,11 +246,13 @@ final class WC_RegAt extends GDO
 	 */
 	public static function calcCountryRank(GWF_User $user)
 	{
-		if ('0' === ($cid = $user->getVar('user_countryid'))) {
+		if ('0' === ($cid = $user->getVar('user_countryid')))
+		{
 			return -1;
 		}
+		$deleted = GWF_User::DELETED;
 		$score = $user->getVar('user_level');
-		return $user->countRows("user_options&0x10000000=0 AND user_level>$score AND user_countryid=$cid") + 1;
+		return $user->countRows("user_options&0x10000000=0 AND user_options&$deleted=0 AND user_level>$score AND user_countryid=$cid") + 1;
 	}
 	
 	public static function calcExactCountryRank(GWF_User $user)
@@ -258,10 +260,11 @@ final class WC_RegAt extends GDO
 		if ('0' === ($cid = $user->getVar('user_countryid'))) {
 			return -1;
 		}
+		$deleted = GWF_User::DELETED;
 		$rank = self::calcCountryRank($user);
 		$score = $user->getVar('user_level');
 		$uid = $user->getVar('user_id');
-		$rank += $user->countRows("user_options&0x10000000=0 AND user_level=$score AND user_countryid=$cid AND user_id<$uid");
+		$rank += $user->countRows("user_options&0x10000000=0 AND user_options&$deleted=0 AND user_level=$score AND user_countryid=$cid AND user_id<$uid");
 		return $rank;
 	}
 	

@@ -36,6 +36,7 @@ final class WeChall_RankingCountry extends GWF_Method
 		$users = GWF_TABLE_PREFIX.'user';
 		$countries = GWF_TABLE_PREFIX.'country';
 		$hide_ranking = 'AND user_options&0x10000000=0';
+// 		$deleted = GWF_User::DELETED;
 		$query = 
 			"SELECT ".
 			"`c`.`country_id`, ".
@@ -138,7 +139,8 @@ final class WeChall_RankingCountry extends GWF_Method
 	private function getDataForCountry(GWF_Country $country, $ipp, $from)
 	{
 		$cid = $country->getID();
-		return GDO::table('GWF_User')->selectObjects('*', "user_countryid=$cid and user_options&0x10000002=0", "user_level DESC ", $ipp, $from);
+		$deleted = GWF_User::DELETED;
+		return GDO::table('GWF_User')->selectObjects('*', "user_countryid=$cid AND user_options&0x10000002=0 AND user_options&$deleted=0", "user_level DESC ", $ipp, $from);
 	}
 	
 	private function getSinglePageRank($cid, $ipp, $user)
