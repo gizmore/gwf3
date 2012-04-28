@@ -1,7 +1,8 @@
 <?php
 final class Delaware_Doctor extends SR_TalkingNPC
 {
-	public function getName() { return 'The doctor'; }
+	public function getName() { return $this->langNPC('name'); }
+// 	public function getName() { return 'The doctor'; }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
@@ -16,19 +17,20 @@ final class Delaware_Doctor extends SR_TalkingNPC
 				return $quest->onDoctorTalk($this, $player, $word);
 			
 			case 'heal':
-				$this->reply("We can heal you for some nuyen. Just use {$c}heal here.");
-				break;
+// 				$this->reply("We can heal you for some nuyen. Just use {$c}heal here.");
+// 				break;
 			
 			case 'cyberware':
-				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accesoires.");
-				break;
+// 				$this->reply("We have the best Renraku Cyberware available. Use {$c}view, {$c}implant and {$c}unplant to manage your accesoires.");
+// 				break;
+				return $this->rply($word);
 				
 			case 'hello':
 			default:
-				$this->reply("Hello chummer, need some {$b}heal{$b} or {$b}cyberware{$b}?");
+				$this->rply('default');
+// 				$this->reply("Hello chummer, need some {$b}heal{$b} or {$b}cyberware{$b}?");
 				$player->giveKnowledge('words', 'Cyberware','Yes','No');
-				break;
-			
+				return true;
 		}
 	}
 }

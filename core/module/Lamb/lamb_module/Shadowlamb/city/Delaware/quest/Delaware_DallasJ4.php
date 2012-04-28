@@ -1,8 +1,8 @@
 <?php
 final class Quest_Delaware_DallasJ4 extends SR_Quest
 {
-	public function getQuestName() { return 'Disquette'; }
-	public function getQuestDescription() { return sprintf('Steal the file "results2.dbm" from the Renraku office in Seattle and bring it to Mr.Johnson in the Delaware_Dallas.'); }
+// 	public function getQuestName() { return 'Disquette'; }
+// 	public function getQuestDescription() { return sprintf('Steal the file "results2.dbm" from the Renraku office in Seattle and bring it to Mr.Johnson in the Delaware_Dallas.'); }
 	public function getRewardXP() { return 2; }
 	public function getRewardNuyen() { return 1000; }
 	public function getNeededAmount() { return 1; }
@@ -14,12 +14,14 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 		$need = $this->getNeededAmount();
 		if ($have >= $need)
 		{
-			$npc->reply('The client will be very happy. Good job.');
+			$npc->reply($this->lang('thx'));
+// 			$npc->reply('The client will be very happy. Good job.');
 			return $this->onSolve($player);
 		}
 		else
 		{
-			return $npc->reply("Please bring us the data.");
+			return $npc->reply($this->lang('more'));
+// 			return $npc->reply("Please bring us the data.");
 		}
 	}
 	
@@ -29,19 +31,26 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("I have a client but he cannot pay much.");
-				$npc->reply("Also the run is very difficult, but you might be interested.");
-				$npc->reply("The client wants the copy of a certain file from the Renraku database.");
-				$npc->reply("The file is named \"results2.dbm\". I think you might be interested in a copy as well.");
+				$npc->reply($this->lang('sr1'));
+// 				$npc->reply("I have a client but he cannot pay much.");
+				$npc->reply($this->lang('sr2'));
+// 				$npc->reply("Also the run is very difficult, but you might be interested.");
+				$npc->reply($this->lang('sr3'));
+// 				$npc->reply("The client wants the copy of a certain file from the Renraku database.");
+				$npc->reply($this->lang('sr4'));
+// 				$npc->reply("The file is named \"results2.dbm\". I think you might be interested in a copy as well.");
 				break;
 			case 'confirm':
-				$npc->reply(sprintf("What do you think? I can pay you %s.", $this->displayRewardNuyen()));
+				$npc->reply($this->lang('confirm', array($this->displayRewardNuyen())));
+// 				$npc->reply(sprintf("What do you think? I can pay you %s.", $this->displayRewardNuyen()));
 				break;
 			case 'yes':
-				$npc->reply('Yes?');
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply('Very good.');
 				break;
 			case 'no':
-				$npc->reply('No?');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('No?');
 				break;
 		}
 		return true;
@@ -51,6 +60,5 @@ final class Quest_Delaware_DallasJ4 extends SR_Quest
 	{
 		return $this->saveAmount($this->getNeededAmount());
 	}
-
 }
 ?>

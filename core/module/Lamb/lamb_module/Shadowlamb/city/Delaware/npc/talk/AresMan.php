@@ -1,7 +1,8 @@
 <?php
 final class Delaware_AresMan extends SR_TalkingNPC
 {
-	public function getName() { return 'The salesman'; }
+	public function getName() { return $this->langNPC('name'); }
+// 	public function getName() { return 'The salesman'; }
 	public function getNPCModifiers() { return array('race' => 'human'); }
 	public function getNPCQuests(SR_Player $player) { return array('Delaware_Ares_I'); }
 	
@@ -15,7 +16,8 @@ final class Delaware_AresMan extends SR_TalkingNPC
 		switch ($word)
 		{
 			default:
-				return $this->reply('Come in, come in and upgrade your equipment.');
+				return $this->rply('default');
+// 				return $this->reply('Come in, come in and upgrade your equipment.');
 		}
 		
 	}

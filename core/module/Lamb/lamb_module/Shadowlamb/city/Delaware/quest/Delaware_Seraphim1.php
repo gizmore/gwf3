@@ -1,8 +1,8 @@
 <?php
 final class Quest_Delaware_Seraphim1 extends SR_Quest
 {
-	public function getQuestName() { return 'FirstHand'; }
-	public function getQuestDescription() { return sprintf('Convince the Delaware Doctor to agree to Seraphim\'s implant request by asking him about hand.'); }
+// 	public function getQuestName() { return 'FirstHand'; }
+// 	public function getQuestDescription() { return sprintf('Convince the Delaware Doctor to agree to Seraphim\'s implant request by asking him about hand.'); }
 	public function getRewardXP() { return 8; }
 	public function getRewardNuyen() { return 1000; }
 
@@ -10,13 +10,17 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 	{
 		if ($this->isConvinced($player))
 		{
-			$npc->reply('Thank you so very very much. This will help me to get my business running.');
+			$npc->reply($this->lang('thx'));
+// 			$npc->reply('Thank you so very very much. This will help me to get my business running.');
 			$this->onSolve($player);
 		}
 		else
 		{
-			$npc->reply(sprintf('Sad to hear you could not convince him yet.'));
+			$npc->reply($this->lang('more'));
+// 			$npc->reply(sprintf('Sad to hear you could not convince him yet.'));
 		}
+		
+		return true;
 	}
 
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
@@ -25,20 +29,28 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Hello chummer :( You want to hear about my problems?");
-				$npc->reply("I got robbed by Trolls and Goblins, and I lost my FirstHand ...");
-				$npc->reply("I wanted to get a new HandL3 implanted, but the doctor says it's illegal.");
-				$npc->reply("If you could convince him to do it anyway I would be very thankful.");
-				$npc->reply("Just ask him about \X02hand\X02.");
+				$npc->reply($this->lang('sr1'));
+// 				$npc->reply("Hello chummer :( You want to hear about my problems?");
+				$npc->reply($this->lang('sr2'));
+// 				$npc->reply("I got robbed by Trolls and Goblins, and I lost my FirstHand ...");
+				$npc->reply($this->lang('sr3'));
+// 				$npc->reply("I wanted to get a new HandL3 implanted, but the doctor says it's illegal.");
+				$npc->reply($this->lang('sr4'));
+// 				$npc->reply("If you could convince him to do it anyway I would be very thankful.");
+				$npc->reply($this->lang('sr5'));
+// 				$npc->reply("Just ask him about \X02hand\X02.");
 				break;
 			case 'confirm':
-				$npc->reply("Just ask him about \X02hand\X02.");
+				$npc->reply($this->lang('sr5'));
+// 				$npc->reply("Just ask him about \X02hand\X02.");
 				break;
 			case 'yes':
-				$npc->reply('Yes.');
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply('Yes.');
 				break;
 			case 'no':
-				$npc->reply('Please.');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('Please.');
 				break;
 		}
 		return true;
@@ -54,7 +66,8 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 	{
 		if ($this->isConvinced($player))
 		{
-			return $npc->reply('You already convinced me.');
+			return $npc->reply($this->lang('convinced'));
+// 			return $npc->reply('You already convinced me.');
 		}
 		
 		$key = 'DLW_DOC_HAND';
@@ -64,10 +77,12 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 		if ($nuyen < $price)
 		{
 			$player->setTemp($key, 1);
-			return $npc->reply(sprintf("For %s I would do it.", $dp));
+			return $npc->reply($this->lang('doc_price', array($dp)));
+// 			return $npc->reply(sprintf("For %s I would do it.", $dp));
 		}
 		$player->giveNuyen(-$price);
-		$player->message(sprintf("You pay %s and the doctor smiles.", $dp));
+		$player->message($this->lang('pay', array($dp)));
+// 		$player->message(sprintf("You pay %s and the doctor smiles.", $dp));
 		return $this->onConvinced($npc, $player);
 	}
 	
@@ -95,10 +110,12 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 				switch ($temp)
 				{
 					case 1:
-						return $npc->reply('Yes');
+						return $npc->reply($this->lang('doc_yes'));
+// 						return $npc->reply('Yes');
 					case 2:
 						$player->setTemp($key, 1);
-						return $npc->reply('Hahahah ^^');
+						return $npc->reply($this->lang('doc_haha'));
+// 						return $npc->reply('Hahahah ^^');
 					case 3:
 						return $this->onConvince($npc, $player);
 				}
@@ -109,10 +126,12 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 					case 1: break;
 					case 2:
 						$player->setTemp($key, $temp+1);
-						return $npc->reply("Okok ... I will do it for {$price}.");
+						return $npc->reply($this->lang('doc_ok', array($price)));
+// 						return $npc->reply("Okok ... I will do it for {$price}.");
 					case 3:
 						$player->setTemp($key, 1);
-						return $npc->reply("Haha ok :)");
+						return $npc->reply($this->lang('doc_haha_ok'));
+// 						return $npc->reply("Haha ok :)");
 						
 				}
 				
@@ -122,10 +141,12 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 					case 1:
 						$player->setTemp($key, $temp+1);
 					default:
-						return $npc->reply("Haha, the old dwarf sent you? That's funny.");
+						return $npc->reply($this->lang('doc_oh'));
+// 						return $npc->reply("Haha, the old dwarf sent you? That's funny.");
 				}
 		}
-		return $npc->reply('Pardon?');
+		return $npc->reply($this->lang('doc_mh'));
+// 		return $npc->reply('Pardon?');
 	}
 }
 ?>

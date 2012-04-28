@@ -8,15 +8,18 @@ final class Delaware_SecondHandTroll extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'blackmarket':
-				return $this->reply('Thank you '.$player->getRace().'!');
+				return $this->rply($word, array($player->getRace()));
+// 				return $this->reply('Thank you '.$player->getRace().'!');
 			
 			case 'yes':
 			case 'no':
-				return $this->reply('Hehe thanks '.$player->getRace().'!');
+				return $this->rply('hehe', array($player->getRace()));
+// 				return $this->reply('Hehe thanks '.$player->getRace().'!');
 				
 			case 'hello':
 			default:
-				return $this->reply('Thank you.');
+				return $this->rply('default');
+// 				return $this->reply('Thank you.');
 		}
 	}
 }

@@ -1,8 +1,9 @@
 <?php
 final class Quest_Delaware_Exams3 extends SR_Quest
 {
-	public function getQuestName() { return 'Exams3'; }
-	public function getQuestDescription() { return sprintf('Bring %d of %d ElvenStaff to the gnome in the Delaware_Library.', $this->getAmount(), $this->getNeededAmount()); }
+// 	public function getQuestName() { return 'Exams3'; }
+// 	public function getQuestDescription() { return sprintf('Bring %d of %d ElvenStaff to the gnome in the Delaware_Library.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	public function getRewardXP() { return 1; }
 	public function getRewardNuyen() { return 500; }
 	public function getNeededAmount() { return 2; }
@@ -15,19 +16,24 @@ final class Quest_Delaware_Exams3 extends SR_Quest
 		
 		if ($have > $have_before)
 		{
-			$npc->reply('Wow you are doing a great job. Thank you! :O');
+			$npc->reply($this->lang('thx'));
+// 			$npc->reply('Wow you are doing a great job. Thank you! :O');
 			$this->saveAmount($have);
 		}
 		
 		if ($have >= $need)
 		{
-			$npc->reply("Tell you what. If you can bring me some more stuff I am gonna teach you a magic spell afterwards! :)");
+			$npc->reply($this->lang('thx2'));
+// 			$npc->reply("Tell you what. If you can bring me some more stuff I am gonna teach you a magic spell afterwards! :)");
 			$this->onSolve($player);
 		}
 		else
 		{
-			$npc->reply(sprintf('I still need %d ElvenStaff for my experiments.', $need-$have));
+			$npc->reply($this->lang('more', array($need-$have)));
+// 			$npc->reply(sprintf('I still need %d ElvenStaff for my experiments.', $need-$have));
 		}
+		
+		return true;
 	}
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
@@ -37,17 +43,22 @@ final class Quest_Delaware_Exams3 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("I think my friend in Seattle is right. I need elven staffs to cast more powerful spells.");
-				$npc->reply('Can you bring me one or two, just in case one gets broken?');
+				$npc->reply($this->lang('sr1'));
+// 				$npc->reply("I think my friend in Seattle is right. I need elven staffs to cast more powerful spells.");
+				$npc->reply($this->lang('sr2'));
+// 				$npc->reply('Can you bring me one or two, just in case one gets broken?');
 				break;
 			case 'confirm':
-				$npc->reply("This would be really awesome. I am gonna pay you {$ny}.");
+				$npc->reply($this->lang('confirm'));
+// 				$npc->reply("This would be really awesome. I am gonna pay you {$ny}.");
 				break;
 			case 'yes':
-				$npc->reply('Yes.');
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply('Yes.');
 				break;
 			case 'no':
-				$npc->reply('I am not sure.');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('I am not sure.');
 				break;
 		}
 		return true;

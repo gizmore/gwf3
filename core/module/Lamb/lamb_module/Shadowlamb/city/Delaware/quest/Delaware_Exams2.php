@@ -1,8 +1,9 @@
 <?php
 final class Quest_Delaware_Exams2 extends SR_Quest
 {
-	public function getQuestName() { return 'Exams2'; }
-	public function getQuestDescription() { return sprintf('Bring %d of %d waterbottles to the gnome in the Delaware_Library.', $this->getAmount(), $this->getNeededAmount()); }
+// 	public function getQuestName() { return 'Exams2'; }
+// 	public function getQuestDescription() { return sprintf('Bring %d of %d waterbottles to the gnome in the Delaware_Library.', $this->getAmount(), $this->getNeededAmount()); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	public function getRewardXP() { return 2; }
 	public function getRewardNuyen() { return 40; }
 	public function getNeededAmount() { return 6; }
@@ -15,7 +16,8 @@ final class Quest_Delaware_Exams2 extends SR_Quest
 		
 		if ($have > $have_before)
 		{
-			$npc->reply('Thank you a lot, chummer.');
+			$npc->reply($this->lang('thx'));
+// 			$npc->reply('Thank you a lot, chummer.');
 			$this->saveAmount($have);
 		}
 		
@@ -25,8 +27,11 @@ final class Quest_Delaware_Exams2 extends SR_Quest
 		}
 		else
 		{
-			$npc->reply(sprintf('I still need %d waterbottles for my experiments.', $need-$have));
+			$npc->reply($this->lang('more', array($need-$have)));
+// 			$npc->reply(sprintf('I still need %d waterbottles for my experiments.', $need-$have));
 		}
+		
+		return true;
 	}
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
@@ -35,17 +40,22 @@ final class Quest_Delaware_Exams2 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Yes, yes, the water is not pure enough here. Please bring me {$need} waterbottles.");
-				$npc->reply('Thanks.');
+				$npc->reply($this->lang('sr1', array($need)));
+// 				$npc->reply("Yes, yes, the water is not pure enough here. Please bring me {$need} waterbottles.");
+				$npc->reply($this->lang('sr2'));
+// 				$npc->reply('Thanks.');
 				break;
 			case 'confirm':
-				$npc->reply("Do you accept the quest?");
+				$npc->reply($this->lang('confirm'));
+// 				$npc->reply("Do you accept the quest?");
 				break;
 			case 'yes':
-				$npc->reply('Thank you chummer.');
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply('Thank you chummer.');
 				break;
 			case 'no':
-				$npc->reply('I am not sure.');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('I am not sure.');
 				break;
 		}
 		return true;

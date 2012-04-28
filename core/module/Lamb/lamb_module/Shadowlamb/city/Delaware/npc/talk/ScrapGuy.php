@@ -7,11 +7,14 @@ final class Delaware_ScrapGuy extends SR_TalkingNPC
 		switch ($word)
 		{
 			case 'fight': case 'challenge':
-				return $this->reply('Yeah, issue #challenge here and gain money and reputation!');
+				return $this->rply('fight');
+// 				return $this->reply('Yeah, issue #challenge here and gain money and reputation!');
 			case 'hello':
-				return $this->reply("Ello there! Interested in a \X02fight\X02?");
+				return $this->rply('hello');
+// 				return $this->reply("Ello there! Interested in a \X02fight\X02?");
 			default:
-				return $this->reply("I don't know anything about $word.");
+				return $this->rply('default', array($word));
+// 				return $this->reply("I don't know anything about $word.");
 		}
 	}
 }

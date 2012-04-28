@@ -1,7 +1,8 @@
 <?php
 final class Delaware_DBarkeeper extends SR_TalkingNPC
 {
-	public function getName() { return 'The Barkeeper'; }
+	public function getName() { return $this->langNPC('name'); }
+// 	public function getName() { return 'The barkeeper'; }
 	public function getNPCQuests(SR_Player $player) { return array('Delaware_DBarkeeper'); }
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
@@ -13,8 +14,7 @@ final class Delaware_DBarkeeper extends SR_TalkingNPC
 		switch ($word)
 		{
 			default:
-				$this->reply("Yawn");
-				return true;
+				return $this->rply('default');
 		}
 		
 	}

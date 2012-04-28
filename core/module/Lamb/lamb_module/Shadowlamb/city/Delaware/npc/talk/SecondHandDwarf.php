@@ -14,18 +14,22 @@ final class Delaware_SecondHandDwarf extends SR_TalkingNPC
 		$c = Shadowrun4::SR_SHORTCUT;
 		switch ($word)
 		{
-			case 'negotiation':
-				return $this->reply('Of course we can argue about the price a bit... But not too much.');
+// 			case 'negotiation':
+// 				return $this->reply('Of course we can argue about the price a bit... But not too much.');
 				
 			case 'yes':
-				return $this->reply("Yes, please use {$c}view to see what we have in stock.");
+// 				return $this->reply("Yes, please use {$c}view to see what we have in stock.");
 			
 			case 'no':
-				return $this->reply("Please use {$c}view to see what we have in stock.");
+// 				return $this->reply("Please use {$c}view to see what we have in stock.");
 				
 			case 'hello':
+// 				return $this->reply('Hello Dear Sire, my name is Donor. Are you looking for something special?');
+				return $this->rply($word);
+				
 			default:
-				return $this->reply('Hello Dear Sire, my name is Donor. Are you looking for something special?');
+				return $this->rply('default');
+// 				return $this->reply('I think we don\' have that here.');
 		}
 	}
 }

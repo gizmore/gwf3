@@ -96,38 +96,47 @@ final class Delaware_Citizen extends SR_HireNPC
 
 	public function seraphimQuest(SR_Player $player, $word, array $args)
 	{
+		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
+		$quest instanceof Quest_Delaware_Seraphim2;
+		
 		$race = $this->getRace();
 		$gender = $this->getGender();
 		
-		$player->message('You offer the citizen a job as troll in the SecondHand ...');
+		$player->message($quest->lang('offer'));
+// 		$player->message('You offer the citizen a job as troll in the SecondHand ...');
 
 		// someone said yes already, but you haven't told Seraphim yet to complete the quest
-		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
 		if ($quest->isWorkerFound())
 		{
 			if ($quest->getWorkerName() === $this->getName())
 			{
-				return $this->reply("I said 'yes' already. Go tell Seraphim, damnit!");
+				return $this->reply($quest->lang('i_yes'));
+// 				return $this->reply("I said 'yes' already. Go tell Seraphim, damnit!");
 			}
-			return $this->reply("You found someone already. Go tell Seraphim, damnit!");
+			return $this->reply($quest->lang('u_yes'));
+// 			return $this->reply("You found someone already. Go tell Seraphim, damnit!");
 		}
 		
 		if ($gender === 'female')
 		{
-			return $this->reply('A job in the SecondHand? No thanks.');
+			return $this->reply($quest->lang('no_thx'));
+// 			return $this->reply('A job in the SecondHand? No thanks.');
 		}
 		
 		if ( ($race !== 'troll') && ($race !== 'halftroll') )
 		{
-			return $this->reply('A job in the SecondHand? .. As troll ... Ok wtf? Oo');
+			return $this->reply($quest->lang('no_wtf'));
+// 			return $this->reply('A job in the SecondHand? .. As troll ... Ok wtf? Oo');
 		}
 		
 		switch (rand(1,3))
 		{
 			case 1:
-				return $this->reply('Me? Job? Hahah!');
+				return $this->reply($quest->lang('no_haha'));
+// 				return $this->reply('Me? Job? Hahah!');
 			case 2:
-				return $this->reply(sprintf('%s not looking for job!', $this->getName()));
+				return $this->reply($quest->lang('no_look', array($this->getName())));
+// 				return $this->reply(sprintf('%s not looking for job!', $this->getName()));
 			case 3:
 				return $this->onAcceptJob($player, $word, $args);
 		}
@@ -138,7 +147,8 @@ final class Delaware_Citizen extends SR_HireNPC
 		$quest = SR_Quest::getQuest($player, 'Delaware_Seraphim2');
 		$quest instanceof Quest_Delaware_Seraphim2;
 		$quest->setWorkerFound($this->getName());
-		return $this->reply(sprintf('Thanks you. %s think about it!', $this->getName()));
+		return $this->reply($quest->lang('yes_thx', array($this->getName())));
+// 		return $this->reply(sprintf('Thanks you. %s think about it!', $this->getName()));
 	}
 }
 ?>

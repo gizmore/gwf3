@@ -14,7 +14,10 @@ final class Delaware_SecondHand extends SR_SecondHandStore
 		return $back;
 	}
 	public function getFoundPercentage() { return 40.00; }
-	public function getFoundText(SR_Player $player) { return 'You found a SecondHandStore.'; }
-	public function getEnterText(SR_Player $player) { return 'You enter the second hand store. A dwarf is behind the counter and greets you.'; }
+	
+// 	public function getFoundText(SR_Player $player) { return 'You found a SecondHandStore.'; }
+// 	public function getEnterText(SR_Player $player) { return 'You enter the second hand store. A dwarf is behind the counter and greets you.'; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 }
 ?>
