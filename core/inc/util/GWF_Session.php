@@ -119,6 +119,7 @@ final class GWF_Session extends GDO
 		# Lock the session if blocking.
 		if ( ($blocking) && (!$session->lock('GWF_SESS_'.$session->getVar('sess_id'))) )
 		{
+			self::initFakeSession();
 			die('Your session is still executing another page. You may delete your cookie to create a new session.');
 		}
 		

@@ -21,11 +21,12 @@ final class GWF_TimeConvert
 	public static function humanToSeconds($duration)
 	{
 		if (is_int($duration)) { return $duration; }
-		if (!is_string($duration)) {
-//			GWF_Logger::logCriticalError('Bad Duration: '.$duration);
+		if (!is_string($duration))
+		{
 			return 0;
 		}
-		if (strlen($duration)===0) {
+		if (strlen($duration)===0)
+		{
 			return 0;
 		}
 		$duration = strtolower($duration);

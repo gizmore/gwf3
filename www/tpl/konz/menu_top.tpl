@@ -3,9 +3,9 @@
 <div id="gwf3_topmenu">
 	<ul>
 {if GWF_Language::getCurrentISO() === 'en'}
-		<li><a href="/de{GWF_Session::getCurrentURL()}"><img src="/img/country/17" width="24" height="16" alt="Deutsch" title="Deutsche Sprache auswählen" /></a></li>
+		<li><a href="/de{GWF_Session::getCurrentURL()}"><img src="/img/default/country/17" width="24" height="16" alt="Deutsch" title="Deutsche Sprache auswählen" /></a></li>
 {else}
-		<li><a href="/en{GWF_Session::getCurrentURL()}"><img src="/img/country/2" width="24" height="16" alt="English" title="Select english language" /></a></li>
+		<li><a href="/en{GWF_Session::getCurrentURL()}"><img src="/img/default/country/2" width="24" height="16" alt="English" title="Select english language" /></a></li>
 {/if}
 
 		<li><a href="{$root}startseite.html">{$k->lang('menu_int')}</a></li>

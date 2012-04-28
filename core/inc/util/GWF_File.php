@@ -168,7 +168,7 @@ final class GWF_File
 	public static function filewalker($path, $callback_file=true, $callback_dir=true, $recursive=true, $args=NULL)
 	{
 		# Readable?
-		if (false === ($dir = dir($path)))
+		if (false === ($dir = @dir($path)))
 		{
 			return false;
 		}
