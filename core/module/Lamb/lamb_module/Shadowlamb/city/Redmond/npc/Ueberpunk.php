@@ -34,5 +34,16 @@ final class Redmond_Ueberpunk extends SR_NPC
 			'pistols' => rand(2, 3),
 		);
 	}
+	
+	public function getNPCLoot(SR_Player $player)
+	{
+		$key = 'RED_FIR_UBE_SCR';
+		if ('0' === SR_PlayerVar::getVal($player, $key, '0'))
+		{
+			SR_PlayerVar::setVal($player, $key, '1');
+			return array('ScrollOfWisdom');
+		}
+		return array();
+	}
 }
 ?>
