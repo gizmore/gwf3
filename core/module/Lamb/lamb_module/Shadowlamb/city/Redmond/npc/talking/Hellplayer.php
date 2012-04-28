@@ -12,7 +12,7 @@ final class Redmond_Hellplayer extends SR_TalkingNPC
 // 		$this->reply('Ok, that does it! Rudy!');
 		foreach ($party->getMembers() as $member)
 		{
-			$this->msg('pissed2', array($player->getName()));
+			$member->message($this->langNPCB($member, 'pissed2', array($player->getName())));
 		}
 // 		$party->message($player, ' pissed of the two pool players in the pub. They attack!');
 		SR_NPC::createEnemyParty('Redmond_ToughGuy','Redmond_ToughGuy')->fight($party, true);

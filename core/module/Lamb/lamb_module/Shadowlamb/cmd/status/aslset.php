@@ -65,7 +65,8 @@ final class Shadowcmd_aslset extends Shadowcmd_asl
 			return false;
 		}
 		$player->modify();
-		return self::reply($player, sprintf('Your asl has been set to %s.', Shadowfunc::displayASL($player)));
+		return self::rply($player, '5266', array(Shadowfunc::displayASL($player)));
+// 		return self::reply($player, sprintf('Your asl has been set to %s.', Shadowfunc::displayASL($player)));
 	}
 	
 	public static function onASLSetRandom(SR_Player $player)

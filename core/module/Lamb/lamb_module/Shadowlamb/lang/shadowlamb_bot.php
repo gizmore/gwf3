@@ -26,5 +26,46 @@ $lang = array(
 'fmt_bazar_shop' => ", %d,%s,%s", # itemcount, itemname, price
 'fmt_bazar_shops' => ", %s,%d", # player, itemcount
 'fmt_bazar_search' => ", %s,%s,%s,%s", # player, itemname, amount, price
+
+'pa_delete' => "delete",
+'pa_talk' => "talk,%s,%s", # enemy party, duration,
+'pa_fight' => "fight,%s", # enemy party
+'pa_inside' => "inside,%s", # location
+'pa_outside1' => "outside,%s", # location
+'pa_outside2' => "outside,%s", # location
+'pa_sleep' => "sleep,%s", # location
+'pa_travel' => "travel,%s,%s", # location, duration
+'pa_explore' => "explore,%s,%s", # location, duration
+'pa_goto' => "goto,%s,%s", # location, duration
+'pa_hunt' => "hunt,%s,%s", # location, duration
+'pa_hijack' => "hijack,%s,%s,%s", # playername, location, duration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 );
 ?>

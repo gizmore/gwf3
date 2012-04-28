@@ -731,11 +731,15 @@ $lang = array(
 '5262' => 'Possible surgery: %s.', # Some prices fmt_sumlist.
 '5263' => 'You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.', # price, field, value, essence, karma
 '5264' => 'You managed to transfer %s to your bank account from another.',
-'5265' => 'Missing quests in %s: %s.',
-//'5266' => '',
+'5265' => 'Missing quests in %s: %s.', # city, list
+'5266' => 'Your asl has been set to %s.', # asl_list
 //'5267' => '',
 //'5268' => '',
 //'5269' => '',
 //'5270' => '',
+
+####################
+### Shadowclient ###
+####################
 );
 ?>

@@ -109,7 +109,7 @@ $LAMB_CFG = array
 		array(
 			'host' => 'ircs://irc.gizmore.org:6666',
 			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
+			'password' => LAMB_PASSWORD,
 			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite,#metamorph',
 			'admins' => 'gizmore',
 		),

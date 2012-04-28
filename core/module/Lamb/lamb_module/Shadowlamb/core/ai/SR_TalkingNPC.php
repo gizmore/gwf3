@@ -14,7 +14,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	############
 	### Lang ###
 	############
-	private function langNPCB($player, $key, $args=NULL)
+	public function langNPCB($player, $key, $args=NULL)
 	{
 		return Shadowlang::langNPC($this, $player, $key, $args);
 	}

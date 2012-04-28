@@ -203,8 +203,6 @@ abstract class SR_Location
 	
 	public function getHelpTextNPCs(SR_Player $player)
 	{
-		echo "NAGNAG!\n";
-		
 		$npcs = $this->getNPCS($player);
 
 		# None

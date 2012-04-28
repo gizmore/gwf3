@@ -38,6 +38,15 @@ $LAMB_CFG = array
 			'channels' => '#sr,#wechall',
 			'admins' => 'gizmore',
 		),
+
+// 		array(
+// 			'host' => 'ircs://irc.idlemonkeys.net:7000',
+// 			'nickname' => 'Lamb3',
+// 			'password' => LAMB_PASSWORD,
+// 			'channels' => '#wechall,#net-force,#securitytraps,#3564020356,#revolutionelite,#pyramid,#tbs,#lost-chall,#hackquest,#shadowlamb',
+// 			'admins' => 'gizmore',
+// 		),
+		
 // 		array(
 // 			'host' => 'bouncing.efnet.org:4096',
 // 			'nickname' => 'Lambee',
