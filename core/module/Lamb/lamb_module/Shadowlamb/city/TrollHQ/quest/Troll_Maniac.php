@@ -6,16 +6,22 @@ final class Quest_Troll_Maniac extends SR_Quest
 	const NEED_ELVEN = 2;
 	const NEED_KEVLAR = 1;
 	
-	public function getQuestName() { return 'TrollManiac'; }
+// 	public function getQuestName() { return 'TrollManiac'; }
 	public function getRewardXP() { return 6; }
 	public function getRewardNuyen() { return 1200; }
 	public function getQuestDescription()
 	{
 		$data = $this->getTrollManiacData();
-		return
-			sprintf('Bring %d/%d SmallShield, %d/%d LargeShield, %d/%d ElvenShield and %d/%d KevlarShield to Larry, your Troll chief.',
-				$data['S'], self::NEED_SMALL, $data['L'], self::NEED_LARGE, $data['E'], self::NEED_ELVEN, $data['K'], self::NEED_KEVLAR
-			);
+		return $this->lang('descr', array(
+				$data['S'], self::NEED_SMALL,
+				$data['L'], self::NEED_LARGE,
+				$data['E'], self::NEED_ELVEN,
+				$data['K'], self::NEED_KEVLAR
+		));
+// 		return
+// 			sprintf('Bring %d/%d SmallShield, %d/%d LargeShield, %d/%d ElvenShield and %d/%d KevlarShield to Larry, your Troll chief.',
+// 				$data['S'], self::NEED_SMALL, $data['L'], self::NEED_LARGE, $data['E'], self::NEED_ELVEN, $data['K'], self::NEED_KEVLAR
+// 			);
 	}
 	
 	
@@ -51,13 +57,15 @@ final class Quest_Troll_Maniac extends SR_Quest
 			($have_elven>=self::NEED_ELVEN) &&
 			($have_kevlar>=self::NEED_KEVLAR))
 		{
-			$npc->reply('We thank you very much. Please come with me.');
+			$npc->reply($this->lang('thx'));
+// 			$npc->reply('We thank you very much. Please come with me.');
 			$this->onTrollReward($npc, $player);
 			return $this->onSolve($player);
 		}
 		else
 		{
-			$npc->reply('We need more shield for the army');
+			$npc->reply($this->lang('more'));
+// 			$npc->reply('We need more shield for the army');
 		}
 		return false;
 	}
@@ -69,24 +77,32 @@ final class Quest_Troll_Maniac extends SR_Quest
 		
 		if ($base >= $max)
 		{
-			$player->giveNuyen(5000);
-			return $player->message('Larry hands you another 5000 nuyen!');
+			$ny = 5000;
+			$player->giveNuyen($ny);
+			return $player->message($this->lang('reward_ny', array($ny)));
+// 			return $player->message('Larry hands you another 5000 nuyen!');
 		}
 		
-		$player->message('Larry leads you to a shamane: "This is our shamane, Srando, he can help you."');
+		$player->message($this->lang('reward1'));
+// 		$player->message('Larry leads you to a shamane: "This is our shamane, Srando, he can help you."');
 		
 		$race = $player->getRace();
 		
 		if ( ($race === 'Ork') || ($race === 'Troll') )
 		{
-			$player->message('The shamane says: "You are a strong '.$race.'. You just need to calm down sometime."');
-			$player->message('You are starting to argue, but the shamane continues: "If you calm you have more time to strengthen yourself. Focus yourself, and the path is clear."');
-			$player->message('The shamane touches your head: "Your mind is now clear from anything. You can focus yourself from now on."');
-			$player->message('Your character is now allowed to learn magic and spells.');
+			$player->message($this->lang('reward2', array($race)));
+// 			$player->message('The shamane says: "You are a strong '.$race.'. You just need to calm down sometime."');
+			$player->message($this->lang('reward3'));
+// 			$player->message('You are starting to argue, but the shamane continues: "If you calm you have more time to strengthen yourself. Focus yourself, and the path is clear."');
+			$player->message($this->lang('reward4'));
+// 			$player->message('The shamane touches your head: "Your mind is now clear from anything. You can focus yourself from now on."');
+			$player->message($this->lang('reward5'));
+// 			$player->message('Your character is now allowed to learn magic and spells.');
 		}
 		else 
 		{
-			$player->message('The shamane mumbles some magic spells and raises your base value for magic by 1.');
+			$player->message($this->lang('reward5'));
+// 			$player->message('The shamane mumbles some magic spells and raises your base value for magic by 1.');
 		}
 		
 		$player->alterField('magic', 1);
@@ -101,18 +117,24 @@ final class Quest_Troll_Maniac extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("You are the best. If you can help us an last time we will help you big.");
-				$npc->reply(sprintf('Bring %d SmallShield, %d LargeShield, %d ElvenShield, and %d KevlarShield so I can create better army.', self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR));
-				$npc->reply('Shamane will reward you well!');
+				$npc->reply($this->lang('sr1'));
+// 				$npc->reply("You are the best. If you can help us an last time we will help you big.");
+				$npc->reply($this->lang('sr2', array(self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR)));
+// 				$npc->reply(sprintf('Bring %d SmallShield, %d LargeShield, %d ElvenShield, and %d KevlarShield so I can create better army.', self::NEED_SMALL, self::NEED_LARGE, self::NEED_ELVEN, self::NEED_KEVLAR));
+				$npc->reply($this->lang('sr3'));
+// 				$npc->reply('Shamane will reward you well!');
 				break;
 			case 'confirm':
-				$npc->reply("Go!");
+				$npc->reply($this->lang('confirm'));
+// 				$npc->reply("Go!");
 				break;
 			case 'yes':
-				$npc->reply("Thank you!");
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply("Thank you!");
 				break;
 			case 'no':
-				$npc->reply('You should do it.');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('You should do it.');
 				break;
 		}
 		return true;

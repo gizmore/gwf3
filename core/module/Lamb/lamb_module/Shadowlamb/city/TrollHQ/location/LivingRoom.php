@@ -2,18 +2,21 @@
 final class TrollHQ_LivingRoom extends SR_SearchRoom
 {
 	public function getAreaSize() { return 22; }
-	public function getFoundText(SR_Player $player) { return "You locate a room with a big door. You think you hear a tv, so it might be a living room."; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+// 	public function getFoundText(SR_Player $player) { return "You locate a room with a big door. You think you hear a tv, so it might be a living room."; }
 	public function getFoundPercentage() { return 50.00; }
 	public function getEnterText(SR_Player $player)
 	{
 		$c = $this->getTrollCount($player);
 		if ($c === 0)
 		{
-			return "You enter the room. There is a lonely tv, turned up loud, but nobody is in there.";
+			return $this->lang($player, 'enter1');
+// 			return "You enter the room. There is a lonely tv, turned up loud, but nobody is in there.";
 		}
 		else
 		{
-			return "You enter the room. You see {$c} Trolls playing cards.";
+			return $this->lang($player, 'enter2', array($c));
+// 			return "You enter the room. You see {$c} Trolls playing cards.";
 		}
 	}
 	

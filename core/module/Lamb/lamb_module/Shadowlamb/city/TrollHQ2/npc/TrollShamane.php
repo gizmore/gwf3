@@ -37,12 +37,20 @@ final class TrollHQ2_TrollShamane extends SR_TalkingNPC
 			return true;
 		}
 		
-		$b = chr(2);
 		switch ($word)
 		{
-			default: return $this->reply("What you want, chummer?");
+			case 'larry':
+			case 'renraku':
+			case 'magic':
+			case 'cyberware':
+			case 'alchemy':
+			case 'malois':
+			case 'hello':
+				return $this->rply($word);
+			default:
+				return $this->rply('default');
+// 				return $this->reply("What you want, chummer?");
 		}		
 	}
-	
 }
 ?>

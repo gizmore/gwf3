@@ -15,8 +15,10 @@ final class TrollHQ_Kitchen extends SR_SearchRoom
 		return parent::getSearchLoot($player);
 	}
 	
-	public function getEnterText(SR_Player $player) { return "You enter the kitchen, a room of dust and ... A cook!"; }
-	public function getFoundText(SR_Player $player) { return "You found a room with a gilded door. Probably the kitchen."; }
+// 	public function getFoundText(SR_Player $player) { return "You found a room with a gilded door. Probably the kitchen."; }
+// 	public function getEnterText(SR_Player $player) { return "You enter the kitchen, a room of dust and ... A cook!"; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 	
 	public function onEnter(SR_Player $player)
 	{

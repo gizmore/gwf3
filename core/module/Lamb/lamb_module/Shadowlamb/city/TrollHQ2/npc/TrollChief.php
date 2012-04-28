@@ -35,26 +35,18 @@ final class TrollHQ2_TrollChief extends SR_TalkingNPC
 		{
 			return true;
 		}
-		
-		$b = chr(2);
 		switch ($word)
 		{
-			case 'renraku': return $this->reply('I hate Renraku. They discriminate Orks and Trolls.');
-			case 'hello': return $this->reply('Me is Larry. You better have reason for the visiting me.');
-			case 'hire': return $this->reply('You kidding?');
-			case 'blackmarket': return $this->reply('I have better stuff than blackmarket.');
-			case 'cyberware': return $this->reply('Tough trolls not need cyberware.'); 
-			default: return $this->reply("What is you want?");
+			case 'renraku': #return $this->reply('I hate Renraku. They discriminate Orks and Trolls.');
+			case 'hello': #return $this->reply('Me is Larry. You better have reason for the visiting me.');
+			case 'hire': #return $this->reply('You kidding?');
+			case 'blackmarket': #return $this->reply('I have better stuff than blackmarket.');
+			case 'cyberware': #return $this->reply('Tough trolls not need cyberware.');
+				return $this->rply($word); 
+			default:
+				return $this->rply('default');
+// 				return $this->reply("What is you want?");
 		}		
 	}
-	
-//	public function getNPCLoot(SR_Player $player)
-//	{
-//		$quest = SR_Quest::getQuest($player, 'Redmond_Orks');
-//		if ($quest->isInQuest($player)) {
-//			return array('Reginalds_Bracelett');
-//		}
-//		return array();
-//	}
 }
 ?>

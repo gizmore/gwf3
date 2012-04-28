@@ -5,19 +5,23 @@ final class TrollHQ_Bathroom extends SR_SearchRoom
 	
 	public function getSearchLevel() { return 4; }
 
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+// 	public function getFoundText(SR_Player $player) { return "You locate a bathroom."; }
+	
 	public function getEnterText(SR_Player $player)
 	{
 		$val = SR_PlayerVar::getVal($player, 'THQFEORK', 0);
 		if ($val == 0)
 		{
-			return "You enter the bathroom. Two female Orks are dying their hair.";
+			return $this->lang($player, 'enter1');
+// 			return "You enter the bathroom. Two female Orks are dying their hair.";
 		}
 		else
 		{
-			return "You enter the bathroom. It's empty beside the washing utilities.";
+			return $this->lang($player, 'enter2');
+// 			return "You enter the bathroom. It's empty beside the washing utilities.";
 		}
 	}
-	public function getFoundText(SR_Player $player) { return "You locate a bathroom."; }
 	public function getFoundPercentage() { return 50.00; }
 
 	public function onEnter(SR_Player $player)

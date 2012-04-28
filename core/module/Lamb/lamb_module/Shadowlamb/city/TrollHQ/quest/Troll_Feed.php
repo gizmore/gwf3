@@ -7,12 +7,12 @@ final class Quest_Troll_Feed extends SR_Quest
 	public function getRewardXP() { return 5; }
 	public function getRewardNuyen() { return 500; }
 	
-	public function getQuestName() { return 'TrollFeed'; }
+// 	public function getQuestName() { return 'TrollFeed'; }
 	public function getQuestDescription()
 	{
 		$data = $this->getTrollFeedData();
-		return sprintf('Bring %d/%d Bacon and %d/%d LargeBeer to Larry, the TrollChief.', $data['bacon'], self::NEED_BACON, $data['beer'], self::NEED_BEER);
-
+		return $this->lang('descr', array($data['bacon'], self::NEED_BACON, $data['beer'], self::NEED_BEER));
+// 		return sprintf('Bring %d/%d Bacon and %d/%d LargeBeer to Larry, the TrollChief.', $data['bacon'], self::NEED_BACON, $data['beer'], self::NEED_BEER);
 	}
 	
 	private function getTrollFeedData()
@@ -36,13 +36,15 @@ final class Quest_Troll_Feed extends SR_Quest
 		
 		if ( ($have_bacon >= self::NEED_BACON) && ($have_beer >= self::NEED_BEER) )
 		{
+			$npc->reply($this->lang('thx'));
 			return $this->onSolve($player);
 		}
 		else
 		{
-			$player->message('I have still hungry!');
+			return $npc->reply($this->lang('more'));
+// 			$player->message('I have still hungry!');
 		}
-		return false;
+// 		return false;
 	}
 	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
@@ -51,21 +53,25 @@ final class Quest_Troll_Feed extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply("Haha, you really want jobs.");
-				$npc->reply("I am hungry. Bring Bacon and Beer!");
+				$npc->reply($this->lang('sr1'));
+// 				$npc->reply("Haha, you really want jobs.");
+				$npc->reply($this->lang('sr2'));
+// 				$npc->reply("I am hungry. Bring Bacon and Beer!");
 				break;
 			case 'confirm':
-				$npc->reply("Go!");
+				$npc->reply($this->lang('confirm'));
+// 				$npc->reply("Go!");
 				break;
 			case 'yes':
-				$npc->reply("You still here?");
+				$npc->reply($this->lang('yes'));
+// 				$npc->reply("You still here?");
 				break;
 			case 'no':
-				$npc->reply('You should go!');
+				$npc->reply($this->lang('no'));
+// 				$npc->reply('You should go!');
 				break;
 		}
 		return true;
-		
 	}
 }
 ?>

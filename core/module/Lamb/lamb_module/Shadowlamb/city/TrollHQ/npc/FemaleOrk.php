@@ -34,8 +34,10 @@ final class TrollHQ_FemaleOrk extends SR_TalkingNPC
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
-		$player->message('The orks grunt.');
-		$this->reply("What the ...");
+		$player->message($this->langNPC('grunt'));
+// 		$player->message('The orks grunt.');
+		$this->rply('wtf');
+// 		$this->reply("What the ...");
 		$p = $player->getParty();
 		$p->popAction(false);
 		$ep = $this->getParty();
