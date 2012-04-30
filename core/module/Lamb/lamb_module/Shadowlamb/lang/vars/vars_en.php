@@ -1,7 +1,7 @@
 <?php
 /**
  * Variable shortcutting.
- * Do NOT TRANSLATE THIS FILE YET!
+ * Do NOT TRANSLATE THIS FILE!
  */
 $lang = array(
 	# Effects
@@ -76,18 +76,6 @@ $lang = array(
 	'mat'=>'math',
 	'cry'=>'crypto',
 	'ste'=>'stegano',
-
-	# Equipment
-	'am'=>'amulet',
-	'ar'=>'armor',
-	'bo'=>'boots',
-	'ea'=>'earring',
-	'he'=>'helmet',
-	'le'=>'legs',
-	'ri'=>'ring',
-	'sh'=>'shield',
-	'we'=>'weapon',
-	'mo'=>'mount',
 
 	# Words
 	'renraku' => 'renraku',

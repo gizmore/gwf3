@@ -79,9 +79,10 @@ abstract class SR_Bank extends SR_Location
 	{
 		$items = $player->getBankItems();
 		$text = array(
-			'prefix' => $player->lang('bank_items')
+			'prefix' => $player->lang('5188')
 		);
-		return $player->msg('5188', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
+		return Shadowfunc::getGenericViewI($player, $items, $args, $text);
+// 		return $player->msg('5188', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
 	}
 
 	public function on_viewi(SR_Player $player, array $args)

@@ -1,6 +1,29 @@
 <?php
 # Translate this long varnames as usual.
 $lang = array(
+	# Race
+	'fairy'=>'fairy',
+	'elve' => 'elve',
+	'halfelve' => 'halfelve',
+	'vampire' => 'vampire',
+	'darkelve' => 'darkelve',
+	'woodelve' => 'woodelve',
+	'human' => 'human',
+	'gnome' => 'gnome',
+	'dwarf' => 'dwarf',
+	'halfork' => 'halfork',
+	'halftroll' => 'halftroll',
+	'ork' => 'ork',
+	'troll' => 'troll',
+	'gremlin' => 'gremlin',
+	'droid' => 'droid',
+	'dragon' => 'dragon',
+
+	# Gender
+	'gender' => 'gender',
+	'male' => 'male',
+	'female' => 'female',
+		
 	# Effects
 	'alc' => 'alc',
 	'caf' => 'caf',
@@ -75,17 +98,20 @@ $lang = array(
 	'stegano'=>'stegano',
 
 	# Equipment
-	'amulet'=>'amulet',
-	'armor'=>'armor',
-	'boots'=>'boots',
-	'earring'=>'earring',
-	'helmet'=>'helmet',
-	'legs'=>'legs',
-	'ring'=>'ring',
-	'shield'=>'shield',
-	'weapon'=>'weapon',
-	'mount'=>'mount',
-
+	'amulet'=>'Amulet',
+	'armor'=>'Armor',
+	'boots'=>'Boots',
+	'earring'=>'Earring',
+	'helmet'=>'Helmet',
+	'legs'=>'Legs',
+	'ring'=>'Ring',
+	'shield'=>'Shield',
+	'weapon'=>'Weapon',
+	'mount'=>'Mount',
+	'belt' => 'Belt',
+	'gloves' => 'Gloves',
+	'piercing' => 'Piercing',
+		
 	# Words
 	'renraku' => 'renraku',
 	'hello' => 'hello',

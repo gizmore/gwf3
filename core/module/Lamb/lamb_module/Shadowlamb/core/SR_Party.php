@@ -296,6 +296,9 @@ final class SR_Party extends GDO
 	
 	public function pushAction($action, $target=NULL, $eta=-1)
 	{
+		# Diff Commands 
+		$old_cmds = $this->getCurrentCommands();
+		
 		if ($target === NULL)
 		{
 			$target = $this->getTarget();
@@ -347,8 +350,62 @@ final class SR_Party extends GDO
 			}
 		}
 		
+		# Diff Commands
+		$new_cmds = $this->getCurrentCommands();
+		$this->sendCommandDiffs($old_cmds, $new_cmds);
+		
 		return true;
 	}
+	
+	private function getCurrentCommands()
+	{
+		$back = array();
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->getLangISO() === 'bot')
+			{
+				$back[$member->getID()] = Shadowcmd::getCurrentCommands($member, false, false, false, false);
+			}
+		}
+		return $back;
+	}
+	
+	private function sendCommandDiffs(array &$old_cmds, array &$new_cmds)
+	{
+		foreach ($old_cmds as $pid => $ocmds)
+		{
+			$ncmds = $new_cmds[$pid];
+			$this->sendCommandDiffsB($this->getMemberByPID($pid), $ocmds, $ncmds);
+		}
+	}
+	
+	private function sendCommandDiffsB(SR_Player $player, array &$old_cmds, array &$new_cmds)
+	{
+		$out = '';
+		foreach ($old_cmds as $cmd)
+		{
+			if (!in_array($cmd, $new_cmds))
+			{
+				$out .= ',-'.$cmd;
+			}
+		}
+		
+		foreach ($new_cmds as $cmd)
+		{
+			if (!in_array($cmd, $old_cmds))
+			{
+				$out .= ',+'.$cmd;
+			}
+		}
+		
+		if (strlen($out) > 0)
+		{
+			$player->msg('9000', array(substr($out, 1)));
+		}
+	}
+	
+	
 	
 	/**
 	 * Announce when a party arrives somewhere.

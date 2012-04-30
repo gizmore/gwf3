@@ -1,5 +1,4 @@
 <?php
-$c = '#';
 $lang = array(
 	'intro1' => 'Ciao chumo, tutto apposto? Hai dormito per 32 ore filate!',
 	'intro2' => 'Sei un\'altra vittima della Renraku?',
@@ -12,7 +11,7 @@ $lang = array(
 	'chiphead' => 'Si, testa di chip... Oh, non hai ancora un ComputerCelebrale? Da come hai tagliato i capelli, sembrava che ne avessi uno.',
 	'headcomputer' => 'Chumo, sembri proprio confuso... Un ComputerCelebrale è un interfaccia che ti consente di connetterti ai terminali... meglio se #dormi un pò.',
 	'hello' => 'Si, ciao. Ti serve una stanza di Hotel? Mi stai simpatico, chumo, per cui non devi pagare.',
-	'yes' => 'Oh si, ti serve una stanza per riposarti. Non devi pagare nulla. Usa '.$c.'dormi per andare nella tua stanza.', #FIXME: is this a leftover?
+	'yes' => 'Oh si, ti serve una stanza per riposarti. Non devi pagare nulla. Usa #dormi per andare nella tua stanza.',
 	'no' => 'Oh, certo, non ti serve una stanza ora. Puoi tornare quando vuoi.',
 	'default' => 'Ciao, chumo, spero tu stia bene ora?',
 );

@@ -81,10 +81,10 @@ final class Shadowcmd_lvlup extends Shadowcmd
 // 					$s .= sprintf(', %s:%s(%s)', $name, ($base+1), $n);
 				}
 			}
-			$s = $s === '' ? $player->lang('none') : substr($s,2);
-			$player->msg('5060', array($s));
+			$s = $s === '' ? $player->lang('none') : ltrim($s,',; ');
+			return $player->msg('5060', array($s));
 // 			$player->message('Spells to upgrade: '.$s);
-			return true;
+// 			return true;
 		}
 		$f = strtolower($args[0]);
 

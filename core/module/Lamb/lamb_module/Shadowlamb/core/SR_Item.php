@@ -39,6 +39,7 @@ class SR_Item extends GDO
 	 */
 	public static function getItem($name) { return isset(self::$items[$name]) ? self::$items[$name] : false; }
 	public static function getAllItems() { return self::$items; }
+	public static function getTotalItemCount() { return count(self::$items); }
 	public static function includeItem($filename, $fullpath)
 	{
 		Lamb_Log::logDebug("SR_Item::initItem($filename)");
@@ -89,9 +90,11 @@ class SR_Item extends GDO
 			'sr4it_duration' => array(GDO::INT, -1), # sr time
 		);
 	}
+	
+	public function __toString() { return $this->getName().'{'.$this->getID().'}'; }
+	
 	public function getID() { return $this->getInt('sr4it_id'); }
 	public function getName() { return $this->getVar('sr4it_name'); }
-	public function __toString() { return $this->getName().'{'.$this->getID().'}'; }
 	public function getOwner() { return Shadowrun4::getPlayerByPID($this->getOwnerID()); }
 	public function getOwnerID() { return $this->getVar('sr4it_uid'); }
 	public function getAmmo() { return $this->getVar('sr4it_ammo'); }
@@ -106,11 +109,6 @@ class SR_Item extends GDO
 	##################
 	### StaticLoad ###
 	##################
-	public static function getTotalItemCount()
-	{
-		return count(self::$items);
-	}
-	
 	/**
 	 * @param string $itemname
 	 * @param array $data
@@ -358,7 +356,7 @@ class SR_Item extends GDO
 		return $player->lang('fmt_examine', array(
 			Shadowlang::displayItemname($player, $this),
 			$player->lang($this->displayType()),
-			$this->displayLevel(),
+			$this->displayLevel($player),
 			$this->displayDescription($player),
 			$this->displayModifiersA($player),
 			$this->displayModifiersB($player),
@@ -369,25 +367,14 @@ class SR_Item extends GDO
 			$this->displayDuration(),
 			$this->displayWorth()
 		));
-		
-// 		return sprintf('%s is %s%s. %s%s%s%s%s%s%s%s%s',
-// 			$this->getName(),
-// 			$this->displayType(),
-// 			$this->displayLevel(),
-// 			$this->getItemDescription(),
-// 			$this->displayModifiersA($player),
-// 			$this->displayModifiersB($player),
-// 			$this->displayRequirements($player),
-// 			$this->displayRange($player),
-// 			$this->displayUseTime($player),
-// 			$this->displayWeightB(),
-// 			$this->displayDuration(),
-// 			$this->displayWorth()
-// 		);
 	}
 	
 	public function displayDescription(SR_Player $player)
 	{
+		if ($player->getLangISO() === 'bot')
+		{
+			return '';
+		}
 		return Shadowlang::displayItemdescr($player, $this);
 	}
 		
@@ -451,21 +438,11 @@ class SR_Item extends GDO
 	###############
 	### Display ###
 	###############
-	public function displayType()
-	{
-		return 'Item';
-	}
-	
-	public function displayLevel()
-	{
-		$l = $this->getItemLevel();
-		return $l < 0 ? '' : (' Lvl'.$l);
-	}
-	
-	public function displayRequirements(SR_Player $player)
-	{
-		return Shadowfunc::getRequirements($player, $this->getItemRequirements());
-	}
+	public function displayName(SR_Player $player) { return Shadowlang::displayItemname($player, $this); }
+	public function displayFullName(SR_Player $player) { return Shadowlang::displayItemnameFull($player, $this); }
+	public function displayType() { return 'Item'; }
+	public function displayLevel(SR_Player $player) { return Shadowfunc::displayALevel($player, $this->getItemLevel()); }
+	public function displayRequirements(SR_Player $player) { return Shadowfunc::getRequirements($player, $this->getItemRequirements()); }
 	
 	public function displayModifiersA(SR_Player $player)
 	{
@@ -473,7 +450,8 @@ class SR_Item extends GDO
 		{
 			return '';
 		}
-		return " {$out}.";
+		
+		return ($player->getLangISO() === 'bot') ? $out : " {$out}.";
 	}
 	
 	/**
@@ -549,35 +527,37 @@ class SR_Item extends GDO
 	######################
 	### Item Overrides ###
 	######################
-	public function getBulletsMax() { return 0; }
-	public function getBulletsPerShot() { return 1; }
-	public function getItemType() { return 'item'; }
-	public function getItemSubType() { return 'item'; }
+	public function getItemModifiersA(SR_Player $player) { return array(); }
+	public function getItemAvail() { return 100.00; }
+	public function getItemDropChance() { return 100.00; }
+	public function getItemType() { return 'Item'; }
+	public function getItemSubType() { return 'Item'; }
+	public function getItemLevel() { return -1; }
+	public function getItemRange() { return 0.0; }
 	public function getItemPrice() { return -1; }
 	public function getItemWeight() { return -1; }
 	public function getItemWeightStacked() { return $this->getItemWeight() * $this->getAmount(); }
 	public function getItemPriceStacked() { return $this->getItemPrice() * $this->getAmount(); }
 	public function getItemUsetime() { return 60; }
+	public function getItemEquipTime() { return 0; }
+	public function getItemUnequipTime() { return 0; }
 	public function getItemDuration() { return self::IMMORTAL; }
-	public function getItemDescription() { return 'ITEM DESCRIPTION'; }
-	public function getItemTypeDescr(SR_Player $player) { return ''; }
+	public function getItemDescription() { return '__ITEM_DESCRIPTION'; }
+	public function getItemTypeDescr(SR_Player $player) { return '__ITEM_TYPE_DESCRIPTION'; }
 	public function getItemDefaultAmount() { return 1; }
 	public function getItemRequirements() { return array(); }
-	public function getItemDropChance() { return 100.00; }
-	public function getItemAvail() { return 100.00; }
+	public function isItemStatted() { return $this->modifiers !== NULL; }
 	public function isItemSellable() { return $this->getItemPrice() > 0; }
+	public function isItemLootable() { return true; }
 	public function isItemTradeable() { return true; }
 	public function isItemStackable() { return true; }
-	public function isItemStatted() { return $this->modifiers !== NULL; }
 	public function isItemStattable() { return false; }
 	public function isItemDropable() { return true; }
 	public function isItemFriendly() { return false; }
 	public function isItemOffensive() { return false; }
-	public function isItemLootable() { return true; }
-	public function getItemModifiersA(SR_Player $player) { return array(); }
-	public function getItemLevel() { return -1; }
-	public function getItemRange() { return 0.0; }
-	
+	public function getBulletsMax() { return 0; }
+	public function getBulletsPerShot() { return 1; }
+
 	################
 	### Triggers ###
 	################

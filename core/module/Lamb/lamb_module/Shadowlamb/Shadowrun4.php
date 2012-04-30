@@ -63,6 +63,11 @@ final class Shadowrun4
 	public static function getCityCount() { return count(self::$cities); }
 	
 	/**
+	 * @return SR_Player
+	 */
+	public static function getCurrentPlayer() { return Shadowcmd::$CURRENT_PLAYER; }
+	
+	/**
 	 * @param string $name
 	 * @return SR_Dungeon
 	 */

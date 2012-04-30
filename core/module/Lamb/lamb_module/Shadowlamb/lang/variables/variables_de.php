@@ -1,6 +1,29 @@
 <?php
 # Translate this long varnames as usual.
 $lang = array(
+	# Race
+	'fairy'=>'Fee',
+	'elve' => 'Elfe',
+	'halfelve' => 'Halbelf',
+	'vampire' => 'Vampir',
+	'darkelve' => 'Dunkelelf',
+	'woodelve' => 'Waldelf',
+	'human' => 'Mensch',
+	'gnome' => 'Gnom',
+	'dwarf' => 'Zwerg',
+	'halfork' => 'Halbork',
+	'halftroll' => 'Halbtroll',
+	'ork' => 'Ork',
+	'troll' => 'Troll',
+	'gremlin' => 'Gremlin',
+	'droid' => 'Drohne',
+	'dragon' => 'Drache',
+
+	# Gender
+	'gender' => 'Geschlecht',
+	'male' => 'männlich',
+	'female' => 'weiblich',
+		
 	# Effects
 	'alc' => 'Alkohol',
 	'caf' => 'Koffein',
@@ -85,7 +108,10 @@ $lang = array(
 	'shield'=>'Schild',
 	'weapon'=>'Waffe',
 	'mount'=>'Fahrzeug',
-
+	'belt' => 'Gürtel',
+	'gloves' => 'Handschuhe',
+	'piercing' => 'Piercing',
+		
 	# Words
 	'renraku' => 'Renraku',
 	'hello' => 'Hallo',

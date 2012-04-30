@@ -9,12 +9,13 @@ $lang = array(
 ### Bits ###
 ############
 # Tiny bits
+'ny2' => '%.02f¥',
+'lvl' => 'Level %d',
 'name' => 'Name',
 'none' => 'None',
 'over' => 'Over',
 'items' => 'Items',
 'mount' => 'Mount',
-'bank_items' => 'Your bank items',
 'unknown' => 'Unknown',
 'unknown_contr' => 'Unknown Contractors',
 'modifiers' => " {$b}Modifiers{$b}: %s.", # statlist
@@ -27,7 +28,7 @@ $lang = array(
 'hits2' => ', hits %s with %s(%s/%s)HP left', # player, damage, hp left, max hp
 'kills' => ', kills %s with %s', # player, damage
 'loot_nyxp' => '. You loot %s and %.02f XP',
-'page' => 'page %d/%d: %s.',
+'page' => ', page %d/%d: %s.',
 'from_brewing' => 'brewing magic potions',
 'members' => '%d members',
 'of' => '_with_', # MIT, AVEC, CON
@@ -83,12 +84,15 @@ $lang = array(
 'fmt_gain' => '%s%.02f(%.02f/%.02f)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Age{$b}:%d, %dcm %s", # age, height, weight
 'fmt_requires' => " {$b}Requires{$b}: %s.", # statted list
+'fmt_mods' => ", {$b}%s{$b}:%s", # stat-long, value
 'fmt_stats' => ", {$b}%s{$b}:%s%s", # stat-long, base, (now), stat, now
 'fmt_cityquests' => ', %s(%.01f%%)', # cityname, percent
 'fmt_sumlist' => ", {$b}%s{$b}-%s(%s)", # enum, playername, summand
 'fmt_quests' => ", %1\$s%2\$d%1\$s-%3\$s", # boldy, id, name
 'fmt_rawitems' => ", {$b}%s{$b}-%s", # id, itemname
 'fmt_items' => ", {$b}%s{$b}-%s%s", # id, itemname, (amt), amt
+'fmt_itemmods' => ',%s:%s', # stat, value
+'fmt_itemindex' => ", {$b}%s{$b}-%s%s%s", # id, itemname, dcount, dprice, count, price 
 'fmt_effect' => ", {$b}%s{$b}:%s(%s)", # stat, gain, duration
 'fmt_equip' => ", {$b}%s{$b}:%s", # long type, item, short type
 'fmt_hp_mp' => ", {$b}%1\$s{$b}-%2\$s%5\$s(%3\$s/%4\$s)%5\$s", # $member->getEnum(), $member->getName(), $hpmp, $hpmmpm, $b2, $b1
@@ -398,9 +402,6 @@ $lang = array(
 '1175' => 'That\'s more than I offer, chummer.',
 '1176' => 'You cannot do surgery on your %s.',
 '1177' => 'You are at the minimum %s level of %s for your race.',
-//'1178' => '',
-//'1179' => '',
-//'1180' => '',
 
 ########################
 # 10000-14999 = Spells #
@@ -479,7 +480,7 @@ $lang = array(
 '5002' => 'You are ready to go.',
 '5003' => 'The party advanced to level %s.', # level
 '5004' => 'Your attributes: %s.', # statlist
-'5005' => 'Inventory',
+'5005' => 'Your inventory',
 '5006' => 'Your skills: %s.', # statlist
 '5007' => 'Known Places in %s: %s.', # cityname, places
 '5008' => 'Your party has %s: %s.', # nuyen sum, party sum list
@@ -584,7 +585,7 @@ $lang = array(
 '5113' => '%s has fled from the enemy.', # player
 '5114' => '%s has fled from combat.', # player
 '5115' => 'You gave %d %s to %s.%s', # amt, item, player, busytime
-'5116' => '%s received %s from %s.', # player, itemlist, source
+'5116' => "{$b}%s{$b} received {$b}%s{$b} from %s.", # player, itemlist, source
 '5117' => '%s told %s about %s.', # player, player, knowledge
 '5118' => 'You received %s from %s.', # itemname, player
 '5119' => 'You gave %s to %s.', # itemname, player
@@ -669,8 +670,8 @@ $lang = array(
 '5200' => '%s paid the price of %s and you take the next train to %s. ETA: %s.', # player, nuyen, target, eta
 '5201' => '%s consumed an item: %s. %s seconds busy.', # player, itemname, busytime
 '5202' => 'Possible targets: %s.', # Computer target list fmt_rawitems.
-'5203' => 'You put your %s into the inventory, %s seconds busy.', # itemname, busytime
-'5204' => 'You use %s from now on, %d seconds busy.', # itemname, busytime
+'5203' => 'You put your %s into the inventory. %s seconds busy.', # itemname, busytime
+'5204' => 'You put your %s into the inventory.', # itemname
 '5205' => 'You are out of ammo!',
 '5206' => '%s loads %d bullet(s) into his %s. %s seconds busy.', # player, amount, itemname, busytime
 '5207' => 'You load %d bullet(s) into your %s.', # amount, itemname
@@ -733,13 +734,18 @@ $lang = array(
 '5264' => 'You managed to transfer %s to your bank account from another.',
 '5265' => 'Missing quests in %s: %s.', # city, list
 '5266' => 'Your asl has been set to %s.', # asl_list
-//'5267' => '',
-//'5268' => '',
-//'5269' => '',
-//'5270' => '',
+'5267' => 'You put your %s into the inventory and use %s as %s from now on. %s seconds busy.', # olditem, newitem, type, busytime
+'5268' => 'You use %s as %s from now on. %d seconds busy.', # newitem, type, busytime
+'5269' => 'You put your %s into the inventory and use %s as %s from now on.', # olditem, newitem, type
+'5270' => 'You use %s as %s from now on.', # newitem, type
+'5271' => '%s unequips %s and uses %s as %s from now on. %s seconds busy.', # player, olditem, newitem, type, busytime
+'5272' => '%s uses %s as %s from now on. %s seconds busy.', # player, newitem, type, busytime
+'5273' => "You received {$b}%s{$b}.",
+'5274' => "You received {$b}%s{$b} from %s.",
 
 ####################
 ### Shadowclient ###
 ####################
+'9000' => '%s',
 );
 ?>

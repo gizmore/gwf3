@@ -5,6 +5,9 @@ abstract class SR_Equipment extends SR_Usable
 	public function isItemStattable() { return true; }
 	public function getItemDuration() { return 3600*24*60; } # 60 days
 	
+	public function getItemEquipTime() { return 60; }
+	public function getItemUnequipTime() { return 60; }
+		
 	public function isEquipped(SR_Player $player)
 	{
 		$type = $this->getItemType();
@@ -19,7 +22,7 @@ abstract class SR_Equipment extends SR_Usable
 	
 	public function onItemUnequip(SR_Player $player)
 	{
-		return $player->unequip($this);
+		return $player->unequip($this, true);
 	}
 	
 	public function onItemEquip(SR_Player $player)
@@ -38,40 +41,89 @@ abstract class SR_Equipment extends SR_Usable
 // 			return false;
 // 		}
 		
-// 		$msg = '';
-		$busy = 0;
 		$type = $this->getItemType();
 		$combat = $player->isFighting();
+		$unequipped = NULL;
 		
 		# Unequip first
 		if ($player->hasEquipment($type))
 		{
-			$item = $player->getEquipment($type);
-// 			$msg .= 'You put your '.$item->getItemName().' into the inventory. ';
-			$player->unequip($item, false);
-			$busy += $combat === true ? 15 : 0;
+			$unequipped = $player->getEquipment($type);
+			if (false === $player->unequip($unequipped, false))
+			{
+				return false;
+			}
 		}
 		
 		# Equip
-		$player->equip($this);
-// 		$msg .= sprintf('You use %s as %s from now on.', $this->getItemName(), $type);
-		$busy += $combat === true ? $this->getItemUsetime() : 0;
-		
-		if ($busy > 0)
+		if (false === $player->equip($this))
 		{
-			$busy = $player->busy($busy);
-// 			$msg .= sprintf(' %s busy.', GWF_Time::humanDuration($busy));
+			return false;
 		}
+		
+		# Announce
+		$type = $this->displayType();
+		$unam = $unequipped !== NULL ? $unequipped->displayName($player) : NULL;
+		$fnam = $this->displayFullName($player);
+		if ($combat)
+		{
+			$busy = $player->busy($this->getItemEquipTime());
+			if ($unequipped !== NULL)
+			{
+				$player->msg('5267', array($unam, $fnam, $type, $busy));
+			}
+			else
+			{
+				$player->msg('5268', array($fnam, $type, $busy));
+			}
+			
+			# Additional combat announce
+			$this->announceEquipChange($player, $unam, $fnam, $type, $busy);
+		}
+		else
+		{
+			if ($unequipped !== NULL)
+			{
+				$player->msg('5269', array($unam, $fnam, $type));
+			}
+			else
+			{
+				$player->msg('5270', array($fnam, $type));
+			}
+		}
+		
 		$player->modify();
 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
-		$player->msg('5204', array($this->getItemName(), $busy));
-// 		$player->message($msg);
+		
 		return true;
 	}
 	
+	private function announceEquipChange(SR_Player $player, $unam, $fnam, $type, $busy)
+	{
+		$pnam = $player->getName();
+		
+		$p = $player->getParty();
+		$ep = $p->getEnemyParty();
+		
+		if ($unam !== NULL)
+		{
+			$args = array($pnam, $unam, $fnam, $type, $busy);
+			$p->ntice('5271', $args, $player);
+			$ep->ntice('5271', $args);
+		}
+		else
+		{
+			$args = array($pnam, $fnam, $type, $busy);
+			$p->ntice('5272', $args, $player);
+			$ep->ntice('5272', $args);
+		}
+		
+		return true;
+	}
+	
+	
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		$c = Shadowrun4::SR_SHORTCUT;
 		$player->msg('1155');
 // 		$player->message('This equipment has no special usage. You can equip it with '.$c.'equip.');
 		return false;

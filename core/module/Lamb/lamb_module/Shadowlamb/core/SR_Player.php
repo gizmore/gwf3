@@ -41,10 +41,10 @@ class SR_Player extends GDO
 	const NO_RL = 0x400000; # No RequestLeader
 	
 	# Timing
-	const FIGHT_INIT_BUSY = 12;
-	const GIVE_TIME = 60;
-	const UNEQUIP_TIME = 20;
-	const FORWARD_TIME = 30;
+	const FIGHT_INIT_BUSY = 15;
+	const GIVE_TIME = 45;
+// 	const UNEQUIP_TIME = 20;
+	const FORWARD_TIME = 35;
 	const BACKWARD_TIME = 45;
 	
 	# WWW hack
@@ -83,46 +83,46 @@ class SR_Player extends GDO
 	 * Bonus values for races.
 	 */
 	public static $RACE = array(
-		'fairy' =>    array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>3,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
-		'elve' =>     array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2,'bows'=>1),
-		'halfelve' => array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
-		'vampire' =>  array('body'=>0,'magic'=> 3,'strength'=> 0,'quickness'=>4,'wisdom'=>2,'intelligence'=>3,'charisma'=> 1),
-		'darkelve' => array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
-		'woodelve' => array('body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
-		'human' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2),
-		'gnome' =>    array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
-		'dwarf' =>    array('body'=>3,'magic'=> 0,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
-		'halfork' =>  array('body'=>3,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
-		'halftroll'=> array('body'=>3,'magic'=>-2,'strength'=> 2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 0),
-		'ork' =>      array('body'=>4,'magic'=>-3,'strength'=> 3,'quickness'=>1,'wisdom'=>1,'intelligence'=>1,'charisma'=> 0),
-		'troll' =>    array('body'=>4,'magic'=>-4,'strength'=> 4,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'essence'=>-0.2),
-		'gremlin' =>  array('body'=>4,'magic'=>-5,'strength'=> 3,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>2,'essence'=>-0.5),
+		'fairy' =>     array('body'=>0,'magic'=> 5,'strength'=>-2,'quickness'=>3,'wisdom'=>4,'intelligence'=>4,'charisma'=> 4,'luck'=>3),
+		'elve' =>      array('body'=>1,'magic'=> 4,'strength'=>-1,'quickness'=>3,'wisdom'=>2,'intelligence'=>3,'charisma'=> 2,'bows'=>1),
+		'halfelve' =>  array('body'=>1,'magic'=> 3,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
+		'vampire' =>   array('body'=>0,'magic'=> 3,'strength'=> 0,'quickness'=>4,'wisdom'=>2,'intelligence'=>3,'charisma'=> 1),
+		'darkelve' =>  array('body'=>1,'magic'=> 2,'strength'=> 0,'quickness'=>3,'wisdom'=>2,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
+		'woodelve' =>  array('body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2,'bows'=>2),
+		'human' =>     array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 2),
+		'gnome' =>     array('body'=>2,'magic'=> 0,'strength'=> 0,'quickness'=>3,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
+		'dwarf' =>     array('body'=>3,'magic'=> 0,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1,'luck'=>1),
+		'halfork' =>   array('body'=>3,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=>1,'intelligence'=>2,'charisma'=> 1),
+		'halftroll' => array('body'=>3,'magic'=>-2,'strength'=> 2,'quickness'=>2,'wisdom'=>0,'intelligence'=>1,'charisma'=> 0),
+		'ork' =>       array('body'=>4,'magic'=>-3,'strength'=> 3,'quickness'=>1,'wisdom'=>1,'intelligence'=>1,'charisma'=> 0),
+		'troll' =>     array('body'=>4,'magic'=>-4,'strength'=> 4,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'essence'=>-0.2),
+		'gremlin' =>   array('body'=>4,'magic'=>-5,'strength'=> 3,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>2,'essence'=>-0.5),
 		#NPC
-		'droid' =>    array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-3,'reputation'=>0, 'essence'=>0),
-		'dragon' =>   array('body'=>8,'magic'=>8, 'strength'=> 8,'quickness'=>0,'wisdom'=>8,'intelligence'=>8,'charisma'=> 0,'reputation'=>12,'essence'=>2),
+		'droid' =>     array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-3,'reputation'=>0, 'essence'=>0),
+		'dragon' =>    array('body'=>8,'magic'=>8, 'strength'=> 8,'quickness'=>0,'wisdom'=>8,'intelligence'=>8,'charisma'=> 0,'reputation'=>12,'essence'=>2),
 	);
 	
 	/**
 	 * Base values for races.
 	 */
 	public static $RACE_BASE = array(
-		'fairy' =>    array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 1,'intelligence'=> 4,'charisma'=> 3,'luck'=>1,'height'=>120,'age'=>  20,'bmi'=> 40), # fairy
-		'elve' =>     array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 1,'luck'=>0,'height'=>140,'age'=>  32,'bmi'=> 50), # elve
-		'halfelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>160,'age'=>  28,'bmi'=> 60), # halfelve
-		'vampire' =>  array('base_hp'=>5, 'base_mp'=>3, 'body'=>0,'magic'=> 1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=> 140,'bmi'=> 70), # vampire
-		'darkelve' => array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>170,'age'=>  26,'bmi'=> 70), # darkelve
-		'woodelve' => array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>180,'age'=>  24,'bmi'=> 75), # woodelve
-		'human' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=>  30,'bmi'=> 80), # human
-		'gnome' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>130,'age'=>  32,'bmi'=> 55), # gnome
-		'dwarf' =>    array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>145,'age'=>  34,'bmi'=> 65), # dwarf
-		'halfork' =>  array('base_hp'=>7, 'base_mp'=>-1,'body'=>2,'magic'=>-1,'strength'=> 2,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>195,'age'=>  24,'bmi'=> 80), # halfork
-		'halftroll'=> array('base_hp'=>8, 'base_mp'=>-2,'body'=>3,'magic'=>-1,'strength'=> 2,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>200,'age'=>  24,'bmi'=> 90), # halftroll
-		'ork' =>      array('base_hp'=>9, 'base_mp'=>-3,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>205,'age'=>  22,'bmi'=>100), # ork
-		'troll' =>    array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>215,'age'=>  18,'bmi'=>110), # troll
-		'gremlin' =>  array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=> 0,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=> 50,'age'=>   1,'bmi'=> 10), # gremlin
+		'fairy' =>     array('base_hp'=>3, 'base_mp'=>6, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 1,'intelligence'=> 4,'charisma'=> 3,'luck'=>1,'height'=>120,'age'=>  20,'bmi'=> 40), # fairy
+		'elve' =>      array('base_hp'=>4, 'base_mp'=>4, 'body'=>1,'magic'=> 1,'strength'=> 0,'quickness'=>3,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 1,'luck'=>0,'height'=>140,'age'=>  32,'bmi'=> 50), # elve
+		'halfelve' =>  array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>160,'age'=>  28,'bmi'=> 60), # halfelve
+		'vampire' =>   array('base_hp'=>5, 'base_mp'=>3, 'body'=>0,'magic'=> 1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 2,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=> 140,'bmi'=> 70), # vampire
+		'darkelve' =>  array('base_hp'=>5, 'base_mp'=>1, 'body'=>1,'magic'=>-1,'strength'=> 2,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>170,'age'=>  26,'bmi'=> 70), # darkelve
+		'woodelve' =>  array('base_hp'=>5, 'base_mp'=>2, 'body'=>1,'magic'=>-1,'strength'=> 1,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 1,'charisma'=> 1,'luck'=>0,'height'=>180,'age'=>  24,'bmi'=> 75), # woodelve
+		'human' =>     array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>185,'age'=>  30,'bmi'=> 80), # human
+		'gnome' =>     array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>130,'age'=>  32,'bmi'=> 55), # gnome
+		'dwarf' =>     array('base_hp'=>6, 'base_mp'=>0, 'body'=>2,'magic'=>-1,'strength'=> 1,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>145,'age'=>  34,'bmi'=> 65), # dwarf
+		'halfork' =>   array('base_hp'=>7, 'base_mp'=>-1,'body'=>2,'magic'=>-1,'strength'=> 2,'quickness'=>1,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>195,'age'=>  24,'bmi'=> 80), # halfork
+		'halftroll' => array('base_hp'=>8, 'base_mp'=>-2,'body'=>3,'magic'=>-1,'strength'=> 2,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>200,'age'=>  24,'bmi'=> 90), # halftroll
+		'ork' =>       array('base_hp'=>9, 'base_mp'=>-3,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>205,'age'=>  22,'bmi'=>100), # ork
+		'troll' =>     array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>215,'age'=>  18,'bmi'=>110), # troll
+		'gremlin' =>   array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=> 0,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=> 50,'age'=>   1,'bmi'=> 10), # gremlin
 		#NPC
-		'droid' =>    array('base_hp'=>0, 'base_mp'=>0, 'body'=>0,'magic'=> 0,'strength'=> 0,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>160,'age'=>   2,'bmi'=> 70), # droid
-		'dragon' =>   array('base_hp'=>0, 'base_mp'=>0, 'body'=>8,'magic'=> 8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0,'height'=>500,'age'=>6000,'bmi'=>400), # dragon
+		'droid' =>     array('base_hp'=>0, 'base_mp'=>0, 'body'=>0,'magic'=> 0,'strength'=> 0,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>160,'age'=>   2,'bmi'=> 70), # droid
+		'dragon' =>    array('base_hp'=>0, 'base_mp'=>0, 'body'=>8,'magic'=> 8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0,'height'=>500,'age'=>6000,'bmi'=>400), # dragon
 	);
 	
 	public static $GENDER = array(
@@ -1181,6 +1181,11 @@ class SR_Player extends GDO
 		return isset($this->sr4_equipment[$field]);
 	}
 	
+	/**
+	 * Get currently equipped item.
+	 * @param string $field
+	 * @return SR_Equipment
+	 */
 	public function getEquipment($field)
 	{
 		return $this->sr4_equipment[$field];
@@ -1202,7 +1207,7 @@ class SR_Player extends GDO
 	{
 		unset($this->sr4_inventory[$item->getID()]);
 		$this->updateInventory();
-		$this->updateEquipment($item->getItemType(), $item);
+		return $this->updateEquipment($item->getItemType(), $item);
 	}
 	
 	public function unequip(SR_Equipment $item, $announce=true)
@@ -1216,22 +1221,32 @@ class SR_Player extends GDO
 		}
 		
 		$this->sr4_inventory[$itemid] = $item;
-		$this->updateInventory();
-		$this->updateEquipment($field, NULL);
+		
+		if (false === $this->updateInventory())
+		{
+			return false;
+		}
+		
+		if (false === $this->updateEquipment($field, NULL))
+		{
+			return false;
+		}
 
-		$busy = $this->isFighting() ? $this->busy(self::UNEQUIP_TIME) : 0;
+		# Busy has to be set.
+		$busy = $this->isFighting() ? $this->busy($item->getItemUnequipTime()) : 0;
 		
 		if ($announce)
 		{
-			$this->msg('5203', array($item->getName(), $busy));
-// 			$msg = 'You put your '.$item->getItemName().' into the inventory.';
-// 			if ($this->isFighting())
-// 			{
-// 				$msg .= sprintf(' %ss busy.', $busy);	
-// 			}
-// 			$this->message($msg);
+			if ($this->isFighting())
+			{
+				$this->msg('5203', array($item->getName(), $busy));
+			}
+			else
+			{
+				$this->msg('5204', array($item->getName()));
+			}
 		}
-//		$this->modify();
+		
 		$this->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
 		return true;
 	}
@@ -1836,35 +1851,60 @@ class SR_Player extends GDO
 			return true;
 		}
 		
-		$format = $this->lang('fmt_giveitems');
-		
-		$b = chr(2);
-		$message = '';
 		foreach ($items as $item)
 		{
-			$this->giveItem($item);
-			$amt = $item->getAmount();
-			$multi = $amt > 1 ? "{$amt} x " : '';
-			$message .= sprintf($format, $amt, $item->getItemName());
-// 			$message .= sprintf(", {$b}%s%s{$b}", $multi, $item->getItemName());
+			$item instanceof SR_Item;
+			if (false === $this->giveItem($item))
+			{
+				Lamb_Log::logError(sprintf("Could not give %s to %s.", $item->getItemName(), $this->getName()));
+				return false;
+			}
 		}
 		
 		if (false === $this->updateInventory())
 		{
+			Lamb_Log::logError(sprintf("Could not give items to %s.", $this->getName()));
 			return false;
 		}
 		
-		if ($from !== '')
+		# Always sync clients
+		$givelist = $this->getGiveItemList($items);
+		if ($from === '')
 		{
-			$message = substr($message, 2);
-			$this->getParty()->ntice('5116', array($this->getName(), $message, $from));
-// 			$from = " from {$from}";
-// 			$plur = $cnt > 1 ? $cnt.' items' : 'an item';
-// 			$message = sprintf(' received %s%s: %s.', $plur, $from, $message);
-// 			$this->getParty()->message($this, $message);
+			return $this->msg('5273', array($givelist));
+		}
+		else
+		{
+			$this->msg('5274', array($givelist, $from));
+		}
+		
+		# Announce to party
+		foreach ($this->getParty()->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->getID() !== $this->getID())
+			{
+				$member->msg('5116', array($this->getName(), $member->getGiveItemList($items), $from));
+			}
 		}
 		
 		return true;
+	}
+
+	/**
+	 * Get simple comma separated list for display.
+	 * @param array $items
+	 */
+	protected function getGiveItemList(array $items)
+	{
+		$back = '';
+		$format = $this->lang('fmt_giveitems');
+		foreach ($items as $item)
+		{
+			$item instanceof SR_Item;
+			$back .= sprintf($format, $item->getAmount(), $item->displayFullName($this));
+		}
+		return ltrim($back, ',; ');
 	}
 	
 	public function giveItem(SR_Item $item)
@@ -2386,9 +2426,10 @@ class SR_Player extends GDO
 	
 	public function busy($seconds)
 	{
-		$seconds = $this->calcBusyTime($seconds);
-		$this->setCombatETA($seconds);
-		return $seconds;
+		$total = Common::clamp($this->getBusyLeft(), 0);
+		$total += $this->calcBusyTime($seconds);
+		$this->setCombatETA($total);
+		return $total;
 	}
 	
 	public function setCombatETA($seconds)
@@ -2399,6 +2440,11 @@ class SR_Player extends GDO
 	public function isBusy()
 	{
 		return $this->combat_eta > Shadowrun4::getTime();
+	}
+	
+	public function getBusyLeft()
+	{
+		return $this->combat_eta - Shadowrun4::getTime();
 	}
 	
 	protected function cmdAttackRandom()

@@ -233,6 +233,7 @@ final class Shadowhelp
 					'leader_cmds' => 'Some special leader commands',
 					array(
 						'kick' => 'Leader command. Usage: #kick <player>. Kick a player from you party. See #ban.',
+						'party_order' => 'Leader command. Usage #party_order <member1> <member2>. Swap the order of two party members.',
 					),
 					
 					'guest_cmds' => 'These commands always work',

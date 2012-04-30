@@ -4,7 +4,7 @@ abstract class SR_Cyberdeck extends SR_Usable
 	public abstract function getCyberdeckLevel();
 	
 	public function displayType() { return 'Cyberdeck'; }
-	public function displayLevel() { return ' Lvl:'.$this->getCyberdeckLevel(); }
+	public function displayLevel(SR_Player $player) { return Shadowfunc::displayALevel($this->getCyberdeckLevel()); }
 	
 	public function onItemUse(SR_Player $player, array $args)
 	{

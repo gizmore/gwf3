@@ -6,11 +6,13 @@ final class Shadowlang
 	private static $LANG_LOCATION = array();
 	private static $LANG_ITEM;
 	private static $LANG_HELP;
+	private static $LANG_EQ;
 	private static $LANG_VARS;
 	private static $LANG_VARIABLES;
 	
 	public static function getItemFile() { return self::$LANG_ITEM; }
 	public static function getHelpFile() { return self::$LANG_HELP; }
+	public static function getEqFile() { return self::$LANG_EQ; }
 	public static function getVarFile() { return self::$LANG_VARS; }
 	public static function getVariableFile() { return self::$LANG_VARIABLES; }
 	
@@ -22,6 +24,7 @@ final class Shadowlang
 		self::$LANG_LOCATION = array();
 		self::$LANG_HELP = new GWF_LangTrans("{$dir}/lang/help/shadowhelp");
 		self::$LANG_ITEM = new GWF_LangTrans("{$dir}/lang/item/shadowitems");
+		self::$LANG_EQ = new GWF_LangTrans("{$dir}/lang/eq/eq");
 		self::$LANG_VARS = new GWF_LangTrans("{$dir}/lang/vars/vars");
 		self::$LANG_VARIABLES = new GWF_LangTrans("{$dir}/lang/variables/variables");
 	}
@@ -156,17 +159,18 @@ final class Shadowlang
 	public static function displayItemnameFull(SR_Player $player, SR_Item $item)
 	{
 		$back = self::displayItemname($player, $item);
-		if ($this->modifiers === NULL)
+		if (NULL === ($mods = $item->getItemModifiersB()))
 		{
 			return $back;
 		}
 		$mod = '';
-		foreach ($this->modifiers as $key => $value)
+		$format = $player->lang('fmt_itemmods');
+		foreach ($mods as $key => $value)
 		{
 			$key = Shadowfunc::translateVariable($player, $key);
-			$mod .= sprintf(',%s:%s', $key, $value);
+			$mod .= sprintf($format, $key, $value);
 		}
-		return $back.$player->lang('of').substr($mod, 1);
+		return $back.$player->lang('of').ltrim($mod, ',; ');
 	}
 }
 ?>

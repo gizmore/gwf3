@@ -5,14 +5,7 @@ final class Redmond_Ueberpunk extends SR_NPC
 	public function getNPCLevel() { return 9; }
 	public function getNPCMeetPercent(SR_Party $party) { return 10.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCLoot(SR_Player $player)
-	{
-		$quest = SR_Quest::getQuest($player, 'Redmond_Ueberpunk');
-		if ( ($quest->isInQuest($player)) && (false === $player->getInvItemByName('UeberpunkHead')) ) {
-			return array('UeberpunkHead');
-		}
-		return array();
-	}
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -37,13 +30,25 @@ final class Redmond_Ueberpunk extends SR_NPC
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		$key = 'RED_FIR_UBE_SCR';
+		$back = array();
+		
+		# Free scroll
+		$key = 'RED_FIR_UBER';
 		if ('0' === SR_PlayerVar::getVal($player, $key, '0'))
 		{
 			SR_PlayerVar::setVal($player, $key, '1');
-			return array('ScrollOfWisdom');
+			$back[] = 'ScrollOfWisdom';
 		}
-		return array();
+		
+		# Free head
+		$quest = SR_Quest::getQuest($player, 'Redmond_Ueberpunk');
+		if ( ($quest->isInQuest($player)) && (false === $player->getInvItemByName('UeberpunkHead')) )
+		{
+			$back[] = 'UeberpunkHead';
+		}
+		
+		return $back;
 	}
+	
 }
 ?>

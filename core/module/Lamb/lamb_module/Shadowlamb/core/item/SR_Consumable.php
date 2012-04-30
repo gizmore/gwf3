@@ -71,9 +71,6 @@ abstract class SR_Potion extends SR_Drink
 		parent::onItemUse($player, $args);
 		$empty_bottle = SR_Item::createByName('EmptyBottle');
 		$player->giveItems(array($empty_bottle));
-		
 	}
 }
-
-
 ?>

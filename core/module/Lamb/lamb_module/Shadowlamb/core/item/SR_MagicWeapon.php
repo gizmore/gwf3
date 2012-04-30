@@ -4,7 +4,7 @@ require_once 'SR_MeleeWeapon.php';
 abstract class SR_MagicWeapon extends SR_MeleeWeapon
 {
 	public function displayType() { return 'Magic Weapon'; }
-//	public function getItemSubType() { return 'melee'; }
+
 	public function getItemModifiersW(SR_Player $player)
 	{
 		$ma = $player->get('magic');

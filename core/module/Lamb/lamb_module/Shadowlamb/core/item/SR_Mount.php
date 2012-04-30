@@ -21,6 +21,9 @@ abstract class SR_Mount extends SR_Equipment
 	public function getMountLockLevel() { return 0; } # Lock level against lockpickers
 	public function getMountTime($eta) { return $eta; } # Reduce goto timer
 	
+	public function getItemEquipTime() { return 30; }
+	public function getItemUnequipTime() { return 30; }
+	
 	private $mount_inv_weight = -1;
 	public function calcMountWeight()
 	{

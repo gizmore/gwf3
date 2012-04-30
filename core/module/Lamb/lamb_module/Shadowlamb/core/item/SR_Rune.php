@@ -192,6 +192,5 @@ class SR_Rune extends SR_Item
 		}
 		return false;
 	}
-	
 }
 ?>

@@ -9,6 +9,9 @@ abstract class SR_Weapon extends SR_Equipment
 	public function isLoaded() { return true; }
 	public function isFullyLoaded() { return true; }
 	
+	public function getItemEquipTime() { return 30; }
+	public function getItemUnequipTime() { return 30; }
+	
 	public function onAttackB(SR_Player $player, $arg, $armor_type)
 	{
 		$p = $player->getParty();
