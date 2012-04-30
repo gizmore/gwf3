@@ -58,9 +58,10 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 				}
 				elseif ($player->hasTemp(self::TEMP_WORD1))
 				{
+					$back = $this->teachNego($player);
 					$player->unsetTemp(self::TEMP_WORD1);
 					$player->unsetTemp(self::TEMP_WORDN);
-					return $this->teachNego($player);
+					return $back;
 				}
 				else
 				{
