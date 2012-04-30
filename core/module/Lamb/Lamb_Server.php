@@ -460,8 +460,12 @@ final class Lamb_Server extends GDO
 	
 	public function part($channel)
 	{
-		unset($this->channels[$channel]);
 		$this->connection->send(sprintf('PART %s', $channel));
+	}
+	
+	public function onPart($channel)
+	{
+		unset($this->channels[$channel]);
 	}
 	
 	public function pong($hash)
