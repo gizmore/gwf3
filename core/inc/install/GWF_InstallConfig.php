@@ -232,7 +232,7 @@ final class GWF_InstallConfig
 			
 			# Language
 			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
-			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
+			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
 			
 			# Various
 			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 60, 'A request will mark you online for N seconds.'),
