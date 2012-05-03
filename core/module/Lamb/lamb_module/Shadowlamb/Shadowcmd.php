@@ -112,10 +112,11 @@ class Shadowcmd
 	################
 	### Triggers ###
 	################
+	public static $REALLY_HIDDEN = array('helo','ehlo','exx','redmond','aslset','dropkp','mounts','uid');
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmlangfiles','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmul','gmns','gmx');
-	public static $CMDS_ALWAYS = array('ccommands','status','attributes','skills','equipment','party','party_loot','inventory','cyberware','lvlup','effects','examine','show','compare','known_knowledge','known_places','known_spells','known_words','quests','say','swap','swapkp');
-	public static $CMDS_ALWAYS_HIDDEN = array('uid','commands','reset','redmond','bounty','bounties','clan','asl','aslset','nuyen','karma','hp','mp','weight','running_mode','level','givekp','givekw','giveny','dropkp','mount','mounts','shout','whisper','whisper_back','set_distance','clan_message','party_message','request_leader');
+	public static $CMDS_ALWAYS = array('ccommands','status','attributes','skills','equipment','party','party_loot','inventory','cyberware','lvlup','effects','examine','exx','show','compare','known_knowledge','known_places','known_spells','known_words','quests','say','swap','swapkp');
+	public static $CMDS_ALWAYS_HIDDEN = array('uid','commands','reset','redmond','bounty','bounties','clan','asl','aslset','nuyen','karma','hp','mp','weight','set_distance','running_mode','level','givekp','givekw','giveny','dropkp','mount','mounts','shout','whisper','whisper_back','clan_message','party_message','request_leader');
 // 	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw','swapkp');
 // 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','cl','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mos','sh','w','wb','sd','cm','pm','rl');
 	public static $CMDS = array(
@@ -193,7 +194,7 @@ class Shadowcmd
 	##########################
 	### Get valid commands ###
 	##########################
-	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=true, $translate=false)
+	public static function getCurrentCommands(SR_Player $player, $show_hidden=true, $boldify=false, $long_versions=true, $translate=false, $filter_hidden=false, $hidden_only=false)
 	{
 		if ($player->isOptionEnabled(SR_Player::DEAD))
 		{
@@ -209,98 +210,109 @@ class Shadowcmd
 		{
 			return array();
 		}
+		
 		$action = $party->getAction();
 		$leader = $player->isLeader();
 		
+		$commands = array();
+		
 		# Allways commands
-		$commands = self::$CMDS_ALWAYS;
+		if (!$hidden_only)
+		{
+			$commands = array_merge($commands, self::$CMDS_ALWAYS);
+		}
 		
 		# Always
-		if ($show_hidden === true)
+		if ($show_hidden)
 		{
 			$commands = array_merge($commands, self::$CMDS_ALWAYS_CREATE);
 		}
 		
 		# GM commands
-		if ($player->isGM())
+		if ($show_hidden && $player->isGM())
 		{
-			if ($show_hidden === true)
-			{
-				$commands = array_merge($commands, self::$CMDS_GM);
-			}
+			$commands = array_merge($commands, self::$CMDS_GM);
 		}
 		
 		# Hidden commands
-		if ($show_hidden === true)
+		if ($show_hidden)
 		{
 			$commands = array_merge($commands, self::$CMDS_ALWAYS_HIDDEN);
 		}
 		
 		# Player actions
-		$commands = array_merge($commands, self::$CMDS[$action]);
-		if (false !== ($scanner = $player->getInvItemByName('Scanner_v6')))
+		if (!$hidden_only)
 		{
-			$commands = array_merge(array('spy'), $commands);
-		}
-		if ($player->getBase('alchemy') >= 0)
-		{
-			$commands = array_merge(array('brew'), $commands);
+			$commands = array_merge($commands, self::$CMDS[$action]);
+			if (false !== ($scanner = $player->getInvItemByName('Scanner_v6')))
+			{
+				$commands = array_merge(array('spy'), $commands);
+			}
+			if ($player->getBase('alchemy') >= 0)
+			{
+				$commands = array_merge(array('brew'), $commands);
+			}
 		}
 		
 		# Leader actions
-		if ($leader === true)
+		if ($leader)
 		{
-			if ($show_hidden === true)
+			if ($show_hidden)
 			{
 				$commands = array_merge($commands, self::$CMDS_LEADER_ALWAYS);
 			}
 			
-			# Outside location?
-			if (false !== ($location = $party->getLocationClass('outside')))
+			if (!$hidden_only)
 			{
-				if ($location->isEnterAllowed($player))
+				# Outside location?
+				if (false !== ($location = $party->getLocationClass('outside')))
 				{
-					# We can enter
-					$commands[] = 'enter';
+					if ($location->isEnterAllowed($player))
+					{
+						# We can enter
+						$commands[] = 'enter';
+					}
 				}
+				
+				# Action
+				$commands = array_merge($commands, self::$CMDS_LEADER[$action]);
 			}
-			
-			# Action
-			$commands = array_merge($commands, self::$CMDS_LEADER[$action]);
 		}
 		
 		# Location commands
-		if (false !== ($location = $party->getLocationClass('inside')))
+		if (!$hidden_only)
 		{
-			# Leader
-			if ($leader === true)
+			if (false !== ($location = $party->getLocationClass('inside')))
 			{
-// 				$commands = array_merge($commands, self::shortcutArray($location->getLeaderCommands($player)));
-				$commands = array_merge($commands, $location->getLeaderCommands($player));
-				if ($location->isPVP())
+				# Leader
+				if ($leader === true)
 				{
-					$commands[] = 'fight';
+	// 				$commands = array_merge($commands, self::shortcutArray($location->getLeaderCommands($player)));
+					$commands = array_merge($commands, $location->getLeaderCommands($player));
+					if ($location->isPVP())
+					{
+						$commands[] = 'fight';
+					}
 				}
+				# Talk
+				$commands = array_merge($commands, $location->getNPCTalkCommands($player));
+				# Special
+	// 			$commands = array_merge($commands, self::shortcutArray($location->getCommands($player)));
+				$commands = array_merge($commands, $location->getCommands($player));
 			}
-			# Talk
-			$commands = array_merge($commands, $location->getNPCTalkCommands($player));
-			# Special
-// 			$commands = array_merge($commands, self::shortcutArray($location->getCommands($player)));
-			$commands = array_merge($commands, $location->getCommands($player));
-		}
-		
-		if (false !== ($location = $party->getLocationClass('outside')))
-		{
-			if ($location->isHijackable())
+			elseif (false !== ($location = $party->getLocationClass('outside')))
 			{
-				$commands[] = 'hijack';
+				if ($location->isHijackable())
+				{
+					$commands[] = 'hijack';
+				}
+	//			if ($location->isPVP())
+	//			{
+					$commands[] = 'fight';
+	//			}
 			}
-//			if ($location->isPVP())
-//			{
-				$commands[] = 'fight';
-//			}
 		}
-		
+
 // 		if ($long_versions === false)
 // 		{
 // 			$commands = array_map(array(__CLASS__, 'shortcut'), $commands);
@@ -309,8 +321,16 @@ class Shadowcmd
 // 		{
 // 			$commands = array_map(array(__CLASS__, 'unshortcut'), $commands);
 // 		}
+
+		##############
+		### FORMAT ###
+		##############
+		if ($filter_hidden)
+		{
+			$commands = array_values(array_diff($commands, self::$REALLY_HIDDEN));
+		}
 		
-		if ($boldify === true)
+		if ($boldify)
 		{
 // 			if ($long_versions === true)
 // 			{
@@ -322,17 +342,19 @@ class Shadowcmd
 // 			}
 		}
 		
-		if ($long_versions === false)
+		# Shortcut
+		if (!$long_versions)
 		{
 			$commands = array_map(array(__CLASS__, 'shortcut_bolded'), $commands);
 		}
 		
-		if ($translate === true)
+		# Translate
+		if ($translate)
 		{
 			$commands = array_map(array(__CLASS__, 'translate_bolded'), $commands);
 		}
 
-		
+		# \o/
 		return $commands;
 	}
 	
@@ -401,11 +423,6 @@ class Shadowcmd
 		# Bold it
 		return "\X02{$cmd}\X02";
 	}
-	
-// 	private static function shortcutArray(array $cmds)
-// 	{
-// 		return array_map(array(__CLASS__, 'shortcut'), $cmds);
-// 	}
 	
 	################
 	### Checkers ###

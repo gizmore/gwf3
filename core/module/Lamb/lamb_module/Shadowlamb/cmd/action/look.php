@@ -3,11 +3,17 @@ final class Shadowcmd_look extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
+		return self::executeLook($player, true);
+	}
+	
+	public static function executeLook(SR_Player $player, $always_respond=true)
+	{
 		$bot = Shadowrap::instance($player);
 		$p = $player->getParty();
 		$pid = $player->getPartyID();
 		
 		$format = $player->lang('fmt_list');
+		
 		$back = '';
 		foreach (Shadowrun4::getParties() as $party)
 		{
@@ -36,17 +42,13 @@ final class Shadowcmd_look extends Shadowcmd
 		
 		if ($back === '')
 		{
-			return self::rply($player, '5120');
+			return $always_respond ? self::rply($player, '5120') : true;
 // 			$bot->reply('You see no other players.');
 		}
-		else
-		{
-			$player->setOption(SR_Player::RESPONSE_PLAYERS);
-			return self::rply($player, '5121', array(ltrim($back, ',; ')));
-// 			$bot->reply(sprintf('You see these players: %s.', substr($back, 2)));
-		}
-		
-		return true;
+
+		$player->setOption(SR_Player::RESPONSE_PLAYERS);
+		return self::rply($player, '5121', array(ltrim($back, ',; ')));
+//		$bot->reply(sprintf('You see these players: %s.', substr($back, 2)));
 	}
 }
 ?>

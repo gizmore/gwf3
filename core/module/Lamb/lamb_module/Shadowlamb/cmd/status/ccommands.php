@@ -3,10 +3,9 @@ final class Shadowcmd_ccommands extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-// 		$bot = Shadowrap::instance($player);
-		$commands = array_merge(self::$CMDS_ALWAYS_CREATE, self::$CMDS_ALWAYS_HIDDEN, self::$CMDS_LEADER_ALWAYS);
-		self::rply($player, '5037', array(implode(',', $commands)));
-// 		$bot->reply(sprintf('Hidden commands: %s.', implode(',', $commands)));
+		$long_versions = isset($args[0]);
+		$commands = self::getCurrentCommands($player, true, true, $long_versions, true, true, true);
+		return self::rply($player, '5037', array(implode(',', $commands)));
 	}
 }
 ?>
