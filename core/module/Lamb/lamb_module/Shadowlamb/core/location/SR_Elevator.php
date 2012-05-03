@@ -65,7 +65,7 @@ abstract class SR_Elevator extends SR_Tower
 // 	public function getEnterText(SR_Player $player) {  return sprintf('You enter the %s. A sign reads: "MAX %s KG".', $this->getName(), $this->getElevatorMaxKG()); }
 // 	public function getFoundText(SR_Player $player) { return 'You found an elevator.'; }
 // 	public function getHelpText(SR_Player $player) { return 'In elevators you can use #up, #down and #floor.'; }
-	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_elevator'); }
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_elevator', array($this->getName(), $this->getElevatorMaxKG())); }
 	public function getEnterText(SR_Player $player) {  return $player->lang('stub_enter_elevator', array($this->getName(), $this->getElevatorMaxKG())); }
 	public function getHelpText(SR_Player $player) { return $player->lang('hlp_elevator'); }
 	public function getCommands(SR_Player $player) { return array('up','down','floor'); }
