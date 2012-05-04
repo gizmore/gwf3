@@ -71,9 +71,9 @@ final class Quest_Seattle_GJohnson4 extends SR_Quest
 		switch ($word)
 		{
 			case 'shadowrun':
-				$npc->reply($this->lang('thx1'));
-				$npc->reply($this->lang('thx2'));
-				$npc->reply($this->lang('thx3', array($this->getNeededAmount())));
+				$npc->reply($this->lang('sr1'));
+				$npc->reply($this->lang('sr2'));
+				$npc->reply($this->lang('sr3', array($this->getNeededAmount())));
 // 				$npc->reply('Yo chummer, I have another important mission for you.');
 // 				$npc->reply('A contractor needs to get some ElectronicParts stolen from a ship delivery in the harbor.)');
 // 				$npc->reply(sprintf('You would need to bring me %s ElectronicParts to get the job done. What do you say?', $this->getNeededAmount()));
