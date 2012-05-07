@@ -259,16 +259,26 @@ final class GWF_Time
 	 * @param $length
 	 * @return boolean
 	 */
-	public static function isValidDate($date, $allowBlank, $length)
+	public static function isValidDate($date, $allowBlank, $length, $max_future_years=5)
 	{
-		if ( ($date === '' || $date == 0) && $allowBlank) {
+		if ( $allowBlank && ($date === '' || $date == 0))
+		{
 			return true;
-		}
-		if (preg_match('/^\d{'.$length.'}$/D', $date) === 0) {
-			return false;
 		}
 
 		$convert = array('y'=>0,'m'=>0,'d'=>0,'h'=>0,'i'=>0,'s'=>0,'ms'=>0, 'us'=>0, 'ns'=>0);
+		
+		if ($length === NULL)
+		{
+			$length = strlen($date);
+		}
+		else
+		{
+			if (!preg_match('/^\d{'.$length.'}$/D', $date))
+			{
+				return false;
+			}
+		}
 
 		switch ($length)
 		{
@@ -294,12 +304,16 @@ final class GWF_Time
 				if ($convert['m'] > 12 || $convert['m'] < 1) { return false; }
 			case 4:
 				$convert['y'] = intval(substr($date, 0, 4), 10);
-				if ($convert['y'] > date('Y')+5) { return false; }
+				if ($convert['y'] > date('Y')+$max_future_years) { return false; }
+			default:
+				return false;
 		}
 
 		// Check days for months in year 
-		if ($length >= 8) {
-			if (self::getNumDaysForMonth($convert['m'], $convert['y']) < $convert['d']) {
+		if ($length >= 8)
+		{
+			if (self::getNumDaysForMonth($convert['m'], $convert['y']) < $convert['d'])
+			{
 				return false;
 			}
 		}
