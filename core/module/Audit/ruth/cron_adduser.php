@@ -11,7 +11,7 @@ function setup_chall($entry, $fullpath, $username)
 function getUID($username)
 {
 	$susername = escapeshellarg($username);
-	$uid = exec("id \"{$susername}\"");
+	$uid = exec("id '{$susername}'");
 	$pusername = preg_quote($username);
 	if (1 !== preg_match("/(\\d+)\\({$pusername}\\)/", $uid, $matches))
 	{
@@ -36,8 +36,8 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		continue;
 	}
 	
-	$crypt_pass = $row['password'];
-// 	$epassword = escapeshellarg($row['password']);
+	$create = false;
+	$crypt_pass = escapeshellarg($row['password']);
 	
 	if (false === ($uid = getUID($username)))
 	{
@@ -45,11 +45,20 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		$nextuid++;
 		$uid = $nextuid;
 		file_put_contents($uidfile, $uid);
+		$create = true;
 	}
 	
 	if ($uid > 3000)
 	{
-		system(GWF_PATH.'core/module/Audit/ruth/adduser.sh'." {$uid} {$username} {$crypt_pass}");
+		if ($create)
+		{
+			system(GWF_PATH.'core/module/Audit/ruth/adduser.sh'." {$uid} {$username} {$crypt_pass}");
+		}
+		else
+		{
+			system("/usr/sbin/usermod -p {$crypt_pass} {$username}");
+		}
+		
 		GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
 		
 		$dirname = "/home/user/{$username}/level";
@@ -61,8 +70,6 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		chmod($dirname, 0700);
 		chown($dirname, $username);
 		chgrp($dirname, $username);
-
-		system("/usr/sbin/usermod -p {$crypt_pass} {$username}");
 	}
 }
 

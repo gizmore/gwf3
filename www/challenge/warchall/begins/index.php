@@ -161,7 +161,7 @@ function warchall1createAccountB(WC_Challenge $chall)
 		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 	}
 	
-	return $chall->lang('msg_creating_account', $username, $_POST['password1']);
+	return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', $username, $_POST['password1']));
 }
 
 function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusername)
