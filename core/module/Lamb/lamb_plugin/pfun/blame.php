@@ -10,7 +10,7 @@
 #$bot->reply("I blame {$blame}.");
 
 # tehron'ed version
-$goats = array("spaceone", "spaceone", "spaceone");
+$goats = array_map(array('Lamb', 'softhyphe'), array("spaceone", "spaceone", "spaceone"));
 shuffle($goats);
 $rand_keys = array_rand($goats, count($goats));
 shuffle($goats);
