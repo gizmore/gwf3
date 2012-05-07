@@ -17,7 +17,7 @@ function getUID($username)
 	{
 		return false;
 	}
-	return $matches[1];
+	return (int)$matches[1];
 }
 
 $query = "SELECT * FROM war_audit_add_user";
@@ -39,7 +39,7 @@ while (false !== ($row = $db->fetchAssoc($result)))
 	$crypt_pass = $row['password'];
 // 	$epassword = escapeshellarg($row['password']);
 	
-	if (false === ($uid = (int)getUID($username)))
+	if (false === ($uid = getUID($username)))
 	{
 		$nextuid = trim(file_get_contents($uidfile));
 		$nextuid++;
