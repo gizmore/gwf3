@@ -29,18 +29,27 @@ if (false === ($result = $db->queryRead($query)))
 while (false !== ($row = $db->fetchAssoc($result)))
 {
 	$username = $row['username'];
-	if (false === ($uid = getUID($username)))
+	
+	if (!preg_match('/^[a-z][a-z0-9]{0,31}$/iD', $username))
+	{
+		GWF_Cronjob::error('Username invalid: '.$username);
+		continue;
+	}
+	
+	$crypt_pass = $row['password'];
+// 	$epassword = escapeshellarg($row['password']);
+	
+	if (false === ($uid = (int)getUID($username)))
 	{
 		$nextuid = trim(file_get_contents($uidfile));
 		$nextuid++;
 		$uid = $nextuid;
 		file_put_contents($uidfile, $uid);
 	}
+	
 	if ($uid > 3000)
 	{
-		$eusername = escapeshellarg($row['username']);
-		$epassword = escapeshellarg($row['password']);
-		system("/root/wechall/adduser.sh {$uid} {$eusername} {$epassword}");
+		system(GWF_PATH.'core/module/Audit/ruth/adduser.sh'." {$uid} {$username} {$crypt_pass}");
 		GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
 		
 		$dirname = "/home/user/{$username}/level";
@@ -52,6 +61,8 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		chmod($dirname, 0700);
 		chown($dirname, $username);
 		chgrp($dirname, $username);
+
+		system("/usr/sbin/usermod -p {$crypt_pass} {$username}");
 	}
 }
 
