@@ -6,5 +6,11 @@ function cron_challs($entry, $fullpath, $args=NULL)
 	{
 		require_once $fullpath;
 	}
+	
+	elseif ($entry === 'cronjob.sh')
+	{
+		$fullpath = escapeshellcmd($fullpath);
+		system("$fullpath");
+	}
 }
 ?>
