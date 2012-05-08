@@ -165,7 +165,7 @@ final class GWF_File
 	 * @param mixed $callback_dir
 	 * @return void
 	 */
-	public static function filewalker($path, $callback_file=true, $callback_dir=true, $recursive=true, $args=NULL)
+	public static function filewalker($path, $callback_file=false, $callback_dir=false, $recursive=true, $args=NULL)
 	{
 		# Readable?
 		if (false === ($dir = @dir($path)))

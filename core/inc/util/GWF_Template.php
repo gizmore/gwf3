@@ -35,9 +35,10 @@ final class GWF_Template
 			require_once GWF_SMARTY_PATH;
 			$smarty = new Smarty();
 			$smarty->setTemplateDir(GWF_WWW_PATH.'tpl/');
-			$smarty->setCompileDir(GWF_SMARTY_DIRS.'tplc');
-			$smarty->setCacheDir(GWF_SMARTY_DIRS.'cache');
-			$smarty->setConfigDir(GWF_SMARTY_DIRS.'cfg');
+			$dir = rtrim(GWF_SMARTY_DIRS, '/').'/';
+			$smarty->setCompileDir($dir.'tplc');
+			$smarty->setCacheDir($dir.'cache');
+			$smarty->setConfigDir($dir.'cfg');
 			$smarty->addPluginsDir(GWF_CORE_PATH.'inc/smartyplugins');
 
 			# Assign common template vars
@@ -64,7 +65,7 @@ final class GWF_Template
 		{
 			return self::pathError($path);
 		}
-
+		
 		if (true === is_array($tVars))
 		{
 			foreach ($tVars as $k => $v)

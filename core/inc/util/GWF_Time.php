@@ -85,10 +85,12 @@ final class GWF_Time
 	 */
 	public static function displayTimestamp($timestamp=NULL, $iso=NULL, $default_return='ERROR')
 	{
-		if ($timestamp === NULL) {
+		if ($timestamp === NULL)
+		{
 			$timestamp = time();
 		}
-		if ($iso === NULL) {
+		if ($iso === NULL)
+		{
 			$iso = GWF_LangTrans::getBrowserISO();
 		}
 		return self::displayDateISO(self::getDate(self::LEN_SECOND, $timestamp), $iso, $default_return);

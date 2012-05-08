@@ -173,7 +173,7 @@ final class GWF_LangTrans
 
 		elseif (true === isset($this->trans[GWF_DEFAULT_LANG]))
 		{
-			$this->trans[$iso] = $this->trans[GWF_DEFAULT_LANG];
+			$this->trans[$iso] = &$this->trans[GWF_DEFAULT_LANG];
 			return false; # Copy default cache
 		}
 
@@ -183,7 +183,7 @@ final class GWF_LangTrans
 			$path = $this->base_path.'_'.GWF_DEFAULT_LANG.'.php';
 			if (false === Common::isFile($path))
 			{
-				die(sprintf('A language file is completely missing: %s', htmlspecialchars($path)));
+				die(sprintf("A language file is completely missing: %s\n", htmlspecialchars($path)));
 			}
 		}
 

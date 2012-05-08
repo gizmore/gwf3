@@ -27,7 +27,7 @@ final class GWF_Website
 	const NONE=0, SCREEN=1, TTY=2, TV=3, PROJECTION=4, HANDHELP=5, _PRINT=6, BRAILLE=7, AURAL=8, ALL=9; 
 	private static $_media = array('', 'screen','tty','tv','projection','handheld','print','braille','aural','all');
 
-	public static function init()
+	public static function init($init_language=true)
 	{
 		if(isset($_GET['plain']))
 		{
@@ -37,7 +37,11 @@ final class GWF_Website
 		{
 			header('Content-Type: text/html; charset=UTF-8');
 		}
-		GWF_Language::init();
+		
+		if ($init_language)
+		{
+			GWF_Language::init();
+		}
 		GWF_HTML::init();
 
 		self::$xhtml = (self::isHTML() ? '>' : ' />') . "\n\t";

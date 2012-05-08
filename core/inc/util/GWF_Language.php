@@ -108,6 +108,7 @@ final class GWF_Language extends GDO
 		self::$ISO = $lang->getVar('lang_iso');
 		return true;
 	}
+	
 
 	public static function init()
 	{
