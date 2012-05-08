@@ -8,10 +8,18 @@ define('GWF_CORE_VERSION', '3.04-2012.Apr.1');
  */
 class GWF3
 {
+	public function __construct($basepath, array $config=array())
+	{
+		self::init($basepath);
+		self::onDefineWebRoot();
+		GWF_Language::initEnglish();
+		GWF_Website::init(false);
+	}
+	
 	public static function init($basepath)
 	{
 		define('GWF_PATH', dirname(__FILE__).'/');
-		define('GWF_WWW_PATH', $basepath);
+		define('GWF_WWW_PATH', $basepath.'/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		
 		# Require the Database
