@@ -1,7 +1,8 @@
 <?php
 require_once 'project97.config.php';
 
-require_once '../../../../../GWF3.php';
+require_once '/opt/php/gwf3/GWF3.php';
+
 $gwf = new GWF3(getcwd());
 
 // require_once '../../../../../gwf3.class.php';
