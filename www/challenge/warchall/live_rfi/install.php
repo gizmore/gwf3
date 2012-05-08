@@ -1,16 +1,16 @@
 <?php
 chdir('../../../');
 require_once('challenge/html_head.php');
-define('GWF_PAGE_TITLE', 'Warchall: Live LFI');
+define('GWF_PAGE_TITLE', 'Warchall: Live RFI');
 $title = GWF_PAGE_TITLE;
 html_head("Install: $title");
 if (!GWF_User::isAdminS())
 {
 	return htmlSendToLogin('Better be admin !');
 }
-$solution = require_once 'challenge/warchall/live_lfi/www/solution.php';
-$score = 11;
-$url = 'challenge/warchall/live_lfi/index.php';
+$solution = require_once 'challenge/warchall/live_rfi/www/solution.php';
+$score = 4;
+$url = 'challenge/warchall/live_rfi/index.php';
 $creators = 'gizmore';
 $tags = 'Linux,Exploit,Warchall';
 

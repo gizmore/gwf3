@@ -13,8 +13,8 @@ error_reporting(0xffffffff);
 ############
 ### Main ###
 ############
-define('GWF_DOMAIN', 'lfi.warchall.net'); # Example: 'www.foobar.com'.
-define('GWF_SITENAME', 'Live-FI'); # Your Site`s name. htmlspecialchars() it yourself.
+define('GWF_DOMAIN', 'rfi.warchall.net'); # Example: 'www.foobar.com'.
+define('GWF_SITENAME', 'Right-FI'); # Your Site`s name. htmlspecialchars() it yourself.
 define('GWF_WEB_ROOT_NO_LANG', '/'); # Add trailing and leading slash. Example: '/' or '/mywebdir/'.
 define('GWF_DEFAULT_DOCTYPE', 'html5'); # Set the default html-doctype for gwf. Modules can change it.
 define('GWF_LOG_BITS', 0x7fffffff);
@@ -60,20 +60,20 @@ define('GWF_USER_STACKTRACE', true); # Show stacktrace to the user on error? Exa
 ################
 ### Database ###
 ################
-define('GWF_SECRET_SALT', 'schnism_schnism'); # May not be changed after install!
+define('GWF_SECRET_SALT', 'schnickschmugg'); # May not be changed after install!
 define('GWF_CHMOD', 0700); # CHMOD mask for file creation. 0700 for mpm-itk env. 0777 in worst case.
 define('GWF_DB_HOST', 'localhost'); # Database host. Usually localhost.
-define('GWF_DB_USER', 'LFI'); # Database username. Example: 'some_sql_username'.
-define('GWF_DB_PASSWORD', 'LFI'); # Database password.
-define('GWF_DB_DATABASE', 'LFI'); # Database db-name.
+define('GWF_DB_USER', 'RFI'); # Database username. Example: 'some_sql_username'.
+define('GWF_DB_PASSWORD', 'RFI'); # Database password.
+define('GWF_DB_DATABASE', 'RFI'); # Database db-name.
 define('GWF_DB_TYPE', 'mysql'); # Database type. Currently only 'mysql' is supported.
 define('GWF_DB_ENGINE', 'myIsam'); # Default database table type. Either 'innoDB' or 'myIsam'.
-define('GWF_TABLE_PREFIX', 'lfi_'); # Database table prefix. Example: 'gwf3_'.
+define('GWF_TABLE_PREFIX', 'rfi_'); # Database table prefix. Example: 'gwf3_'.
 
 ###############
 ### Session ###
 ###############
-define('GWF_SESS_NAME', 'LFI'); # Cookie Prefix. Example: 'GWF'.
+define('GWF_SESS_NAME', 'RFI'); # Cookie Prefix. Example: 'GWF'.
 define('GWF_SESS_LIFETIME', 14400); # Session lifetime in seconds.
 define('GWF_SESS_PER_USER', 1); # Number of allowed simultanous sessions per user. Example: 1
 

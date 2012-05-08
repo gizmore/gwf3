@@ -1,5 +1,5 @@
 <?php
-require_once 'live_lfi.config.php';
+require_once 'live_rfi.config.php';
 
 require_once '/opt/php/gwf3/GWF3.php';
 

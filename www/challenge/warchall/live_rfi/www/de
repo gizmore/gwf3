@@ -1,0 +1,6 @@
+<?php
+return array(
+	'welcome' => 'Willkommen auf Right-FI, Ihr Partner für FI-Schutzschalter!',
+	'construction' => 'Diese Seite befindet sich noch im aufbau.',
+);
+?>
