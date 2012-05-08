@@ -9,7 +9,7 @@ if (!GWF_User::isAdminS())
 	return htmlSendToLogin('Better be admin !');
 }
 $solution = require_once 'challenge/warchall/live_lfi/www/solution.php';
-$score = 11;
+$score = 4;
 $url = 'challenge/warchall/live_lfi/index.php';
 $creators = 'gizmore';
 $tags = 'Linux,Exploit,Warchall';

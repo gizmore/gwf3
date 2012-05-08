@@ -24,9 +24,14 @@ $gwf = new GWF3(getcwd());
 // 'kick_banned_ip' => false,
 // ));
 
-GWF_Debug::enableErrorHandler();
+# include
+GWF_Website::displayPage('aaa');
 
-$lang = require Common::getGetString('lang', 'en');
+$iso = Common::getGetString('lang', 'en');
+
+ini_set('open_basedir', getcwd());
+$lang = require $iso;
+ini_set('open_basedir', '/');
 
 $page = sprintf('%s<br/>%s', $lang['welcome'], $lang['construction']);
 

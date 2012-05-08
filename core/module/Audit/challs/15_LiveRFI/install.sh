@@ -10,10 +10,10 @@ chown -R root:level15 /home/level/15_live_rfi
 chmod -R 0750 /home/level/15_live_rfi
 
 # Copy www files
-cp /opt/php/gwf3/www/challenge/warchall/live_lfi/www/* /home/level/14_live_fi/www
+cp -R /opt/php/gwf3/www/challenge/warchall/live_lfi/www/* /home/level/14_live_fi/www
 rm /home/level/15_live_rfi/www/.htaccess
 chown -R root:level15 /home/level/15_live_rfi/www
-chmod -R 0640 /home/level/15_live_rfi/www
+chmod -R 0750 /home/level/15_live_rfi/www
 
 # Copy VHOST APACHE
 cp /opt/php/gwf3/www/challenge/warchall/live_rfi/install/live_rfi.conf /etc/apache2/vhosts.d

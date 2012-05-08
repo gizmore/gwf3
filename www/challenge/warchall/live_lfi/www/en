@@ -2,5 +2,6 @@
 return array(
 	'welcome' => 'Welcome to Live-FI, Your Residual-current device partner!',
 	'construction' => 'This page is under construction.',
+	'err_remote' => 'You cannot include remote files.',
 );
 ?>
