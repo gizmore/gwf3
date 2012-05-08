@@ -1,4 +1,6 @@
 <?php
+return;
+
 GWF_File::filewalker('/home/user', true, 'cron_level_6', false);
 function cron_level_6($entry, $fullpath, $args=NULL)
 {

@@ -87,9 +87,9 @@ final class Common
 	#################
 	### File Util ###
 	#################
-	public static function isDir($path) { return (is_dir($path) === true) && (is_readable($path) === true); }
-	public static function isFile($path) { return (is_file($path) === true) && (is_readable($path) === true); }
-	public static function unlink($path) { return (is_file($path) === true) && (is_writeable($path) === true) ? unlink($path) : false; }
+	public static function isDir($path) { return (is_dir($path)) && (!is_link($path)) && (is_readable($path) === true); }
+	public static function isFile($path) { return (is_file($path)) && (!is_link($path)) && (is_readable($path)); }
+	public static function unlink($path) { return (is_file($path)) && (!is_link($path)) && (is_writeable($path)) ? unlink($path) : false; }
 
 	#################
 	### Math Util ###
