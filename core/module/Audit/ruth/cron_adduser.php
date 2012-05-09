@@ -61,15 +61,18 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		
 		GWF_File::filewalker(GWF_CORE_PATH.'module/Audit/challs', 'setup_chall', true, true, $username);
 		
-		$dirname = "/home/user/{$username}/level";
-		chmod($dirname, 0705);
-		chown($dirname, $username);
-		chgrp($dirname, $username);
-
-		$dirname = "/home/user/{$username}";
-		chmod($dirname, 0700);
-		chown($dirname, $username);
-		chgrp($dirname, $username);
+		if ($create)
+		{
+			$dirname = "/home/user/{$username}/level";
+			chmod($dirname, 0705);
+			chown($dirname, $username);
+			chgrp($dirname, $username);
+	
+			$dirname = "/home/user/{$username}";
+			chmod($dirname, 0700);
+			chown($dirname, $username);
+			chgrp($dirname, $username);
+		}
 	}
 }
 
