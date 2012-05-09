@@ -42,6 +42,7 @@ class GWF3
 	
 	public static function getDesign()
 	{
+		ini_set('allow_url_include', true);
 		return GWF_DEFAULT_DESIGN;
 	}
 	
