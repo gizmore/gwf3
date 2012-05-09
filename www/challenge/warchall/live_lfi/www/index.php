@@ -9,17 +9,16 @@ GWF_Debug::enableErrorHandler();
 
 $iso = Common::getGetString('lang', 'en');
 
-if (Common::isFile($iso))
+if (Common::isFile($iso) || Common::isDir($iso))
 {
-	$lang = require_once $iso;
-	$page = sprintf('%s<br/>%s', $lang['welcome'], $lang['construction']);
+        $lang = require_once $iso;
+        $page = sprintf('%s<br/>%s', $lang['welcome'], $lang['construction']);
 }
 else
 {
-	$lang = require_once 'en';
-	$page = $lang['err_remote'];
+        $lang = require_once 'en';
+        $page = $lang['err_remote'];
 }
-
 
 echo GWF_Website::displayPage($page);
 ?>

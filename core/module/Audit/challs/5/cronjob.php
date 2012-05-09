@@ -19,11 +19,15 @@ function cron_level_5($entry, $fullpath, $args=NULL)
 	$filename = $home.'/level/5/solution.txt';
 	if (!Common::isFile($filename))
 	{
-		fopen($filename, 'w+', null);
-		file_put_contents($filename, "The solution to level 5 is 'OhRightThePerms', without the quotes.\n");
-// 		chmod($filename, '0700');
-// 		chown($filename, $username);
-// 		chgrp($filename, $username);
+		// Create solution file
+		$tmp = '/root/_tmp_5';
+		file_put_contents($tmp, "The solution to level 5 is 'OhRightThePerms', without the quotes.\n");
+		chmod($tmp, '0700');
+		chown($tmp, $username);
+		chgrp($tmp, $username);
+		
+		// Copy it to user home
+		rename($tmp, $filename);
 	}
 }
 ?>
