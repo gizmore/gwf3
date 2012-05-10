@@ -2,6 +2,5 @@
 return array(
 	'welcome' => 'Willkommen auf Live-FI, Ihr Partner für FI-Schutzschalter!',
 	'construction' => 'Diese Seite befindet sich noch im aufbau.',
-	'err_remote' => 'Datei nicht gefunden oder allow_url_inlcude nicht aktiviert.',
 );
 ?>

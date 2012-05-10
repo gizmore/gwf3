@@ -2,6 +2,5 @@
 return array(
 	'welcome' => 'Welcome to Live-FI, Your Residual-current device partner!',
 	'construction' => 'This page is under construction.',
-	'err_remote' => 'File not found or allow_url_include not enabled.',
 );
 ?>
