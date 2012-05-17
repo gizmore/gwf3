@@ -148,7 +148,7 @@ final class GWF_Debug
 		{
 			case -1: $errnostr = 'GWF Error'; break;
 
-			case E_ERROR: E_CORE_ERROR: $errnostr = 'PHP Fatal Error'; break;
+			case E_ERROR: case E_CORE_ERROR: $errnostr = 'PHP Fatal Error'; break;
 			case E_WARNING: case E_USER_WARNING: case E_CORE_WARNING: $errnostr = 'PHP Warning'; break;
 			case E_USER_NOTICE: case E_NOTICE: $errnostr = 'PHP Notice'; break;
 			case E_USER_ERROR: $errnostr = 'PHP Error'; break;
