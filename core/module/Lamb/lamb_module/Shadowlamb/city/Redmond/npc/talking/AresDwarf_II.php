@@ -65,42 +65,25 @@ final class Redmond_AresDwarf_II extends SR_TalkingNPC
 		return true;
 	}
 	
-	private function checkQuest2(SR_Player $player, SR_Quest $quest2)
+	private function checkQuest2(SR_Player $player, Quest_Redmond_AresDwarf_II $quest2)
 	{
-		if ($quest2->isDone($player)) {
+		if ($quest2->isDone($player))
+		{
 			return $this->rply('thx');
 // 			return $this->reply('Thank you for your help.');
 		}
 		
 		$have = $quest2->getAmount();
-		$need = $quest2->getNeededAmount() - $have;
-		$give = 0;
-		while ($need > 0)
-		{
-			if (false === ($scalps = $player->getInvItemByName('PunkScalp'))) {
-				break;
-			}
-			
-			$possible = $scalps->getAmount();
-			$give = Common::clamp($possible, 0, $need);
-			
-			if (false === ($scalps->useAmount($player, $give))) {
-				break;
-			}
-			$have += $give;
-			$need -= $give;
-		}
+		$need = $quest2->getNeededAmount();
+		$have = $quest2->giveQuesties($player, $this, 'PunkScalp', $have, $need, true);
 		
-		if ($give > 0)
+		if ($have >= $need)
 		{
-			$this->rply('hand', array($give));
-// 			$this->reply(sprintf('You give %d scalp(s) to the dwarf.', $give));
-			$quest2->giveAmount($player, $give);
+			$quest2->onSolve($player);
 		}
-		
-		if (!$quest2->isDone($player))
+		else
 		{
-			$this->rply('more', array($need));
+			$this->rply('more', array($need-$have));
 // 			$this->reply(sprintf('Could you please bring me %d more scalps?', $need));
 		}
 		return true;

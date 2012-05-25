@@ -9,7 +9,6 @@ $lang = array(
 	'default1' => 'Hello my friend, are you interested in fine Ares\' armoury?',
 	'default2' => 'We have the finest weapons and utilities. Low prices and high damage =)',
 	'thx' => 'Thank you for your help.',
-	'hand' => 'You give %d scalp(s) to the dwarf.',
 	'more' => 'Could you please bring me %d more scalps?',
 );
 ?>

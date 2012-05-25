@@ -32,6 +32,6 @@ final class Redmond_Ares extends SR_Store
 // 	public function getEnterText(SR_Player $player) { return "You enter the Ares weapon store. Two dwarfs are behind the counter. One of the Ares sale officers greets you."; }
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
-	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
+// 	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
 } 
 ?>

@@ -74,38 +74,23 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 	
 	private function checkQuest1(SR_Player $player, SR_Quest $quest1)
 	{
-		if (true === $quest1->isDone($player))
+		if ($quest1->isDone($player))
 		{
 			return $this->rply('thx2');
 // 			return $this->reply('We have enogh knifes now to play with. Thanks again for your help.');
 		}
 		
 		$have = $quest1->getAmount();
-		$need = $quest1->getNeededAmount() - $have;
-		$give = 0;
-		while ($need > 0)
-		{
-			if (false === ($knife = $player->getInvItemByName('Knife'))) {
-				break;
-			}
-			if (false === $knife->deleteItem($player)) {
-				break;
-			}
-			$give++;
-			$have++;
-			$need--;
-		}
+		$need = $quest1->getNeededAmount();
+		$have = $quest1->giveQuesties($player, $this, 'Knife', $have, $need, true);
 		
-		if ($give > 0)
+		if ($have >= $need)
 		{
-			$player->message($this->langNPC('hand', array($give)));
-// 			$this->reply(sprintf('You give %d knife(s) to the dwarf.', $give));
-			$quest1->giveAmount($player, $give);
+			$quest1->onSolve($player);
 		}
-		
-		if (false === $quest1->isDone($player))
+		else
 		{
-			$this->rply('pls', array($need));
+			$this->rply('pls', array($need-$have));
 // 			$this->reply(sprintf('Could you please bring me %d more knifes?', $need));
 		}
 		

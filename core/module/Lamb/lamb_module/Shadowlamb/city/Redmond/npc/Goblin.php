@@ -28,5 +28,18 @@ final class Redmond_Goblin extends SR_NPC
 			'legs' => 'Shorts',
 		);
 	}
+
+	public function getNPCLoot(SR_Player $player)
+	{
+		$quest = SR_Quest::getQuest($player, 'Redmond_Blacksmith');
+		if ($quest->isInQuest($player))
+		{
+			if (rand(0,2) === 0)
+			{
+				return array('SmithHammer');
+			}
+		}
+		return array();
+	}
 }
 ?>

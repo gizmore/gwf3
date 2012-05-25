@@ -4,6 +4,9 @@ final class Quest_Redmond_Johnson_3 extends SR_Quest
 // 	public function getQuestName() { return 'Delivery'; }
 // 	public function getQuestDescription() { return 'Deliver a package to the Hotelier in Seattle_Hotel.'; }
 	
+	public function getRewardXP() { return 6; }
+	public function getRewardNuyen() { return 750; }
+	
 	public function accept(SR_Player $player)
 	{
 		$player->giveItems(array(SR_Item::createByName('Package')));
@@ -57,14 +60,14 @@ final class Quest_Redmond_Johnson_3 extends SR_Quest
 // 			$npc->reply('It seems like you did not deliver the package yet.');
 			return false;
 		}
-		$xp = 6;
-		$ny = 750;
+// 		$xp = 6;
+// 		$ny = 750;
 		$npc->reply($this->lang('reward1'));
-		$player->message($this->lang('reward2', array($ny, $xp)));
+		$player->message($this->lang('reward2', array($this->getRewardNuyen(), $this->getRewardXP())));
 // 		$npc->reply('I have heard you delivered the package. Thank you chummer.');
 // 		$player->message('Mr. Johnson hands you '.$ny.' Nuyen. You also gained '.$xp.' XP.');
-		$player->giveXP($xp);
-		$player->giveNuyen($ny);
+// 		$player->giveXP($xp);
+// 		$player->giveNuyen($ny);
 		return $this->onSolve($player);
 	}
 }

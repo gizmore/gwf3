@@ -6,7 +6,7 @@ $lang = array(
 		
 	'solve2a' => 'The dwarfs look very pleased.',
 	'solve2b' => '"Thank you so much", Aron says, "For your help we have thought of a special reward..."',
-	'solve2c' => 'You received another 5000 nuyen!',
+	'solve2c' => 'You received another %s!',
 	'solve2d' => 'Your melee skill has increased by 1.',
 		
 );

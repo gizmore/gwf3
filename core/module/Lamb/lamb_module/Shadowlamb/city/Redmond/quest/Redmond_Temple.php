@@ -31,6 +31,7 @@ final class Quest_Redmond_Temple extends SR_Quest
 			case 'shadowrun':
 				$npc->reply($this->lang('run1'));
 				$npc->reply($this->lang('run2', array($need)));
+				$player->giveKnowledge('words', 'Temple');
 // 				$npc->reply("We could need help in getting more customers here.");
 // 				$npc->reply("If you could \X02#say temple\X02 to {$need} citizens i will reward you very well, ok?");
 				break;

@@ -16,8 +16,9 @@ final class Redmond_Ninja extends SR_TalkingNPC
 // 		$this->reply('MMMh... You are unsure about your path...');
 		$player->message($this->langNPC('confident'));
 // 		$player->message('The monk strengthens your self confidence... You have learned the melee skill!');
-		$player->updateField('melee', 0);
-		$player->modify();
+		$player->levelupFieldTo('melee', 0);
+// 		$player->updateField('melee', 0);
+// 		$player->modify();
 		return false;
 	}
 	
@@ -144,7 +145,8 @@ final class Redmond_Ninja extends SR_TalkingNPC
 		elseif ($player->hasNuyen($price))
 		{
 			$player->pay($price);
-			$player->updateField('ninja', 0);
+			$player->levelupFieldTo('ninja', 0);
+// 			$player->updateField('ninja', 0);
 			$this->rply('come');
 			$player->message($this->langNPC('teaching'));
 // 			$this->reply("Thank you my friend. Come with me...");

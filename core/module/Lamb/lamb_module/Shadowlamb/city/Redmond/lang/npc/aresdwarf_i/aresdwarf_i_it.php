@@ -6,7 +6,7 @@ $lang = array(
 	'default2' => 'Abbiamo le migliori armi e i gadget più avanzati. Prezzi bassi e grandi danni =)',
 	'confirm' => 'Accetti la quest, fratello?',
 	'thx2' => 'Abbiamo abbastanza coltelli per aprire una macelleria. Grazie ancora per il tuo aiuto.',
-	'hand' => 'Dai %d coltelli al nano.',
+// 	'hand' => 'Dai %d coltelli al nano.',
 	'pls' => 'Potresti portarmi ancora %d coltelli?',
 	'quest1' => 'E così sei un ancora un runner novellino, eh?',
 	'quest2' => 'Fratello... Ascolta... Dei cyberpunks vengono regolarmente al negozio per derubarci.',

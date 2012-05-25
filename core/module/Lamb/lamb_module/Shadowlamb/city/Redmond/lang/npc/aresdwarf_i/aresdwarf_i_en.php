@@ -6,7 +6,6 @@ $lang = array(
 	'default2' => 'We have the finest weapons and utilities. Low prices and high damage =)',
 	'confirm' => 'Do you accept the quest, chummer?',
 	'thx2' => 'We have enogh knifes now to play with. Thanks again for your help.',
-	'hand' => 'You give %d knife(s) to the dwarf.',
 	'pls' => 'Could you please bring me %d more knifes?',
 	'quest1' => 'You are a newbie runner, eh?',
 	'quest2' => 'Chummer... Listen... We regulary get robbed by the cyberpunks.',

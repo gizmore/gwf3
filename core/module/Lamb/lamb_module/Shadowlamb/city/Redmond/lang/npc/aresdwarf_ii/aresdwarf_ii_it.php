@@ -9,7 +9,6 @@ $lang = array(
 	'default1' => 'Ciao caro amico, sei interessato agli oggetti che vedi nella raffinata armeria Ares?',
 	'default2' => 'Abbiamo le migliori armi e i gadget più avanzati. Prezzi bassi e grandi danni =)',
 	'thx' => 'Grazie per il tuo aiuto.',
-	'hand' => 'hai dato %d scalpi al nano.',
 	'more' => 'Potresti portarmi ancora %d scalpi?',
 );
 ?>

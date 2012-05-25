@@ -24,9 +24,8 @@ final class Redmond_Reginald extends SR_TalkingNPC
 		
 		elseif ($quest->isAccepted($player))
 		{
-			if (false !== ($item = $player->getItem('Reginalds_Bracelett')))
+			if (1 === $quest->giveQuesties($player, $this, 'Reginalds_Bracelett', 0, 1, true))
 			{
-				$item->deleteItem($player);
 				$quest->onSolve($player);
 				$this->rply('thx');
 // 				$this->reply("Thank you so very much!");

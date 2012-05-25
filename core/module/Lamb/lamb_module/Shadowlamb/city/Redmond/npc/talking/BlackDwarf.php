@@ -79,6 +79,7 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 				}
 				else
 				{
+					$player->giveKnowledge('words', 'Smithing');
 					$this->rply('hello');
 // 					$this->reply("Hello. I am Galdor and I master the art of {$b}smithing{$b} and {$b}runecrafting{$b}.");
 				}

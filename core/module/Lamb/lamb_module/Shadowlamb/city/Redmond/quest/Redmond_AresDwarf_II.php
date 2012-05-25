@@ -5,23 +5,25 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 // 	public function getQuestDescription() { return sprintf('Bring %d/%d punk scalps to the Redmond_Ares.', $this->getAmount(), $this->getNeededAmount()); }
 	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	public function getNeededAmount() { return 25; }
+	public function getRewardNuyen() { return 1500; }
+	public function getRewardXP() { return 7; }
 	public function onQuestSolve(SR_Player $player)
 	{
-		$xp = 7;
-		$ny = 1500;
+		$xp = $this->getRewardXP();
+		$ny = $this->getRewardNuyen();
 		$this->msg('solved', array(Shadowfunc::displayNuyen($ny), $xp));
 // 		$player->message(sprintf('The dwarf cheers and hands you %s. You also gained %s XP.', Shadowfunc::displayNuyen($ny), $xp));
-		$player->giveXP($xp);
-		$player->giveNuyen($ny);
+// 		$player->giveXP($xp);
+// 		$player->giveNuyen($ny);
 		
 		if (false !== ($scalps = $player->getInvItemByName('PunkScalp')))
 		{
 			$scalps->deleteItem($player);
 		}
 
-		$quest = SR_Quest::getQuest($player, 'Redmond_AresDwarf_I');
-		
-		if ($quest->isDone($player))
+		$quest1 = SR_Quest::getQuest($player, 'Redmond_AresDwarf_I');
+		$quest1 instanceof Quest_Redmond_AresDwarf_I;
+		if ($quest1->isDone($player))
 		{
 			$this->onSolveDuo($player);
 		}
@@ -37,16 +39,16 @@ final class Quest_Redmond_AresDwarf_II extends SR_Quest
 		$max = $player->isRunner() ? Shadowcmd_lvlup::MAX_VAL_SKILL_RUNNER : Shadowcmd_lvlup::MAX_VAL_SKILL;
 		if ($player->getBase('melee') > $max)
 		{
-			$player->giveNuyen(5000);
-			$this->msg('solve2c');
+			$this->msg('solve2c', array(Shadowfunc::displayNuyen(5000)));
+			$player->giveNuyenEvent(5000);
 // 			$player->message('You received another 5000 nuyen!');
 		}
 		else
 		{
 			$this->msg('solve2d');
 // 			$player->message('Your melee skill has increased by 1.');
-			$player->increase('sr4pl_melee', 1);
-			$player->modify();
+			$player->levelupField('melee', 1);
+// 			$player->modify();
 		}
 		return true;
 		
