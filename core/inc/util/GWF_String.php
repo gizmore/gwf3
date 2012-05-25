@@ -65,4 +65,25 @@ final class GWF_String
 		}
 		return false;
 	}
+	
+	/**
+	 * UTF8 strtolower.
+	 * @param string $s
+	 * @return string
+	 */
+	public static function toLower($s)
+	{
+		return mb_strtolower($s, 'UTF-8');
+	}
+
+	/**
+	 * UTF8 strtoupper.
+	 * @param string $s
+	 * @return string
+	 */
+	public static function toUpper($s)
+	{
+		return mb_strtoupper($s, 'UTF-8');
+	}
 }
+?>

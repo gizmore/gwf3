@@ -1,5 +1,5 @@
 <?php
-final class GWF_FormGDO extends GWF_Form
+final class GWF_FormGDO
 {
 	#######################################
 	### Convert From GDO Column Defines ###
@@ -60,50 +60,87 @@ final class GWF_FormGDO extends GWF_Form
 		$ttk = 'tt_'.$c;
 		if ($ttk === ($tt = $module->lang($ttk))) { $tt = ''; }
 
+		# GDO Object
+		if (($gdo_d & GDO::OBJECT) === GDO::OBJECT)
+		{
+			return array(GWF_Form::SELECT, self::getObjectSelect($module, $gdo, $c, $d[2][0]), $module->lang('th_'.$c), $tt);
+		}
 		# Numbers
-		if (($gdo_d & GDO::TINYINT) === GDO::TINYINT) {
-			return array(self::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 4, '', $tt);
+		if (($gdo_d & GDO::TINYINT) === GDO::TINYINT)
+		{
+			return array(GWF_Form::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 4);
 		}
-		if (($gdo_d & GDO::MEDIUMINT) === GDO::MEDIUMINT) {
-			return array(self::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 7, '', $tt);
+		if (($gdo_d & GDO::MEDIUMINT) === GDO::MEDIUMINT)
+		{
+			return array(GWF_Form::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 7);
 		}
-		if (($gdo_d & GDO::BIGINT) === GDO::BIGINT) {
-			return array(self::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 16, '', $tt);
+		if (($gdo_d & GDO::BIGINT) === GDO::BIGINT)
+		{
+			return array(GWF_Form::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 16);
 		}
-		if (($gdo_d & GDO::INT) === GDO::INT) {
-			return array(self::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 11, '', $tt);
+		if (($gdo_d & GDO::INT) === GDO::INT)
+		{
+			return array(GWF_Form::INT, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 11);
 		}
-		if (($gdo_d & GDO::DECIMAL) === GDO::DECIMAL) {
-			return array(self::FLOAT, $gdo->getVar($c, ''), $module->lang('th_'.$c), 16, '', $tt);
+		if (($gdo_d & GDO::DECIMAL) === GDO::DECIMAL)
+		{
+			return array(GWF_Form::FLOAT, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 16);
 		}
 		# Text
-//		if (($gdo_d & GDO::MESSAGE) === GDO::MESSAGE) {
-//			return array(self::MESSAGE, $gdo->getVar($c, ''), $module->lang('th_'.$c), 40, '', $tt);
-//		}
-		if (($gdo_d & GDO::CHAR) === GDO::CHAR) {
-			return array(self::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $d[2], '', $tt);
+		if (($gdo_d & GDO::CHAR) === GDO::CHAR)
+		{
+			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, $d[2]);
 		}
-		if (($gdo_d & GDO::VARCHAR) === GDO::VARCHAR) {
-			return array(self::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $d[2], '', $tt);
+		if (($gdo_d & GDO::VARCHAR) === GDO::VARCHAR)
+		{
+			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, $d[2]);
 		}
-		if (($gdo_d & GDO::TEXT) === GDO::TEXT) {
-			return array(self::MESSAGE, $gdo->getVar($c, ''), $module->lang('th_'.$c), 40, '', $tt);
+		if (($gdo_d & GDO::TEXT) === GDO::TEXT)
+		{
+			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 40);
+		}
+		if (($gdo_d & GDO::MESSAGE) === GDO::MESSAGE)
+		{
+			return array(GWF_Form::MESSAGE, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt);
 		}
 		# Enum
-		if (($gdo_d & GDO::ENUM) === GDO::ENUM) {
+		if (($gdo_d & GDO::ENUM) === GDO::ENUM)
+		{
 			return self::getEnumDataFromGDO($module, $gdo, $c, $d, $tt);
 		}
-		if ($gdo_d === GDO::JOIN) {
+		if ($gdo_d === GDO::JOIN)
+		{
 			return true;
 		}
-		# GDO Object
-//		if (($gdo_d & GDO::OBJECT) === GDO::OBJECT) {
-////		$data['langid'] = array(GDO, $user->getVar('langid'), $module->lang('th_langid'), 0, 'GWF_Language');
-//			return array(self::GDO, $gdo->getVar($c, ''), $module->lang('th_'.$c), 0, $d[2][0], $tt);
-//		}
 		die(sprintf('UNRECOGNIZED GDO TYPE in %s: %08x', __METHOD__, $gdo_d));
 	}
+	
+	private static function getEnumDataFromGDO(GWF_Module $module, GDO $gdo, $c, $d, $tt)
+	{
+		return array(GWF_Form::SELECT, self::getEnumSelect($module, $gdo, $c), $module->lang('th_'.$c), $tt);
+	}
+	
+	private static function getEnumSelect(GWF_Module $module, GDO $gdo, $c)
+	{
+		$data = array();
+		$d = $gdo->getColumnDefines();
+		foreach ($d[$c][2] as $enum)
+		{
+			$data[] = array($enum, $module->lang($c.'_'.$enum));
+		}
+		return GWF_Select::display($c, $data, $gdo->getVar($c));
+	}
 
+	private static function getObjectSelect(GWF_Module $module, GDO $gdo, $c, $classname)
+	{
+		if ($classname === 'GWF_Country')
+		{
+			return GWF_CountrySelect::single($c, $gdo->getVar($c));
+		}
+		
+		die('Unsupported object in GWF_FormGDO::getObjectSelect: '.$classname);
+	}
+	
 	##########################
 	### Some default forms ###
 	##########################
@@ -141,34 +178,61 @@ final class GWF_FormGDO extends GWF_Form
 		$filtered = array();
 		foreach ($fields as $c)
 		{
-		# Option GRP
-		if (strpos($c, '&&') !== false)
+			# Option GRP
+			if (strpos($c, '&&') !== false)
 			{
-			$pos = strpos($c, '&&');
-			$pos = strpos($c, '&', $pos+1);
-			$colname = substr($c, 0, $pos);
-			$choice = substr($c, $pos+1);
-			if (!isset($filtered[$c])) {
-			$filtered[$colname] = array(GDO::ENUM, GDO::NULL, array());
-		}
-		$filtered[$colname][2][] = $choice;
-		}
-		elseif (strpos($c, '&') !== false)
-		{
-			$filtered[$c] = $gdo->getColumnDefine($gdo->getOptionsName());
+				$pos = strpos($c, '&&');
+				$pos = strpos($c, '&', $pos+1);
+				$colname = substr($c, 0, $pos);
+				$choice = substr($c, $pos+1);
+				if (!isset($filtered[$c]))
+				{
+					$filtered[$colname] = array(GDO::ENUM, GDO::NULL, array());
+				}
+				$filtered[$colname][2][] = $choice;
+			}
+			elseif (strpos($c, '&') !== false)
+			{
+				$filtered[$c] = $gdo->getColumnDefine($gdo->getOptionsName());
 			}
 			else
 			{
-			$filtered[$c] = $gdo->getColumnDefine($c);
+				$filtered[$c] = $gdo->getColumnDefine($c);
+			}
 		}
+	
+		$data = array();
+		foreach ($filtered as $c => $define)
+		{
+			die('OOOOOOOOOPS 0815');
+// 			$data[$c] = self::getFormData($module, $gdo, $c, $define);
+		}
+		return $data;
 	}
 
-	$data = array();
-	foreach ($filtered as $c => $define)
+	/**
+	 * Return all values from the form except buttons.
+	 * @param GWF_Form $form
+	 * @return array
+	 */
+	public static function getFormVars(GWF_Form $form)
 	{
-	$data[$c] = self::getFormData($module, $gdo, $c, $define);
+		$back = array();
+		foreach ($form->getFormData() as $key => $d)
+		{
+			switch ($d[0])
+			{
+				case GWF_Form::HIDDEN:
+				case GWF_Form::SUBMIT:
+				case GWF_Form::SUBMITS:
+				case GWF_Form::SUBMIT_IMG:
+				case GWF_Form::SUBMIT_IMGS:
+					break;
+				default:
+					$back[$key] = $form->getVar($key, '');
+			}
+		}
+		return $back;
 	}
-	return $data;
-	}
-
 }
+?>

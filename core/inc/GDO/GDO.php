@@ -285,6 +285,12 @@ abstract class GDO
 		return self::$CURRENT_DB->truncateTable($this->getTableName());
 	}
 	
+	public function enumExists($field, $enum)
+	{
+		$data = $this->getColumnDefines();
+		return isset($data[$field]) ? in_array($enum, $data[$field][2]) : false;
+	}
+	
 	#############
 	### Limit ###
 	#############
