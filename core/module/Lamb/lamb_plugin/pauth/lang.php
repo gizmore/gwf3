@@ -10,6 +10,9 @@ if ($message === '')
 	return $bot->reply('Known ISO-1 language codes: '.GWF_Array::implodeHuman($iso_codes));
 } 
 
+if ($message == 'lv')
+{
+} else
 if (false === in_array($message, $iso_codes, true))
 {
 	return $bot->reply('Unknown language ISO-1 code.');

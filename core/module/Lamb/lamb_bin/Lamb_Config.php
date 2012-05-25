@@ -246,6 +246,15 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 			
+		# HA
+		array(
+			'host' => 'hacking.allowed.org:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb,#default',
+			'admins' => 'gizmore,epoch',
+		),
+			
 			
 //		array(
 //			'host' => '',

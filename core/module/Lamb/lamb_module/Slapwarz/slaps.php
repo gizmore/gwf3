@@ -26,6 +26,7 @@ $slaps = array(
 	array('periodically', 33),
 	array('arbitarily', 32),
 	array('ruthlessly', 45),
+	array('mistakenly', 33),
 ),
 
 'verbs' => array(
@@ -72,6 +73,7 @@ $slaps = array(
 'adjectives' => array(
 	array('a tiny' , 15),
 	array('a very small' , 20),
+	array('a drooling' , 27),
 	array('a rotten' , 25),
 	array('a small' , 30),
 	array('a' , 40),
@@ -105,6 +107,7 @@ $slaps = array(
 	array('an awesome', 40),
 	array('a disgusting', 25),
 	array('a sexy', 69),
+	array('an unholy', 66),
 ),
 
 'items' => array(
@@ -177,14 +180,15 @@ $slaps = array(
 	array('CPU', 13),
 	array('edge', 22),
 	array('drone strike', 55),
-	array('horse', 30),
-	array('cactus', 22),
-	array('puppy', 18),
+	array('horse', 42),
+	array('cactus', 33),
+	array('puppy', 12),
 	array('boar', 29),
-	array('parrot', 24),
+	array('parrot', 27),
 	array('link', 21),
-	array('savoy', 19),
-	
+	array('savoy', 24),
+	array('sandwich', 22)	,
+
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),
 //	array('god', 20),

@@ -1,4 +1,4 @@
-<?php # Usage: %CMD% <password>. Registers you with Lamb and logs you in. Use %CMD% <oldpass> <newpass> to change your password.
+<?php # Usage: %CMD% <password>. Registers you with Lamb and logs you in. Use %CMD% <oldpass> <newpass> to change your password. Features NickServ auto-auth-avec Lamb. 
 $split = explode(' ', $message);
 if (count($split) === 2)
 {
