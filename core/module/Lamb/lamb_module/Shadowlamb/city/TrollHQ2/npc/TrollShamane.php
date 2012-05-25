@@ -48,7 +48,7 @@ final class TrollHQ2_TrollShamane extends SR_TalkingNPC
 			case 'hello':
 				return $this->rply($word);
 			default:
-				return $this->rply('default');
+				return $this->rply('default',array($word));
 // 				return $this->reply("What you want, chummer?");
 		}		
 	}
