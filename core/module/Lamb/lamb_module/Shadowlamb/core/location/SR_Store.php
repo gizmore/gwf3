@@ -1,12 +1,19 @@
 <?php
 abstract class SR_Store extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	const BAD_KARMA_STEAL_PRISON = 0.4;
 	const BAD_KARMA_STEAL_COMBAT = 0.2;
+	
+	const CONFIRM_BUY_ID = 'STORE_CONFIRM_BUY_ID';
 	
 	public function allowShopBuy(SR_Player $player) { return true; }
 	public function allowShopSell(SR_Player $player) { return true; }
 	public function allowShopSteal(SR_Player $player) { return $player->getBase('thief') > 0; }
+	
+	private $lastPurchasedItem = NULL;
+	public function getLastPurchasedItemName() { return $this->lastPurchasedItem; }
 	
 	public function getCommands(SR_Player $player)
 	{
@@ -17,7 +24,7 @@ abstract class SR_Store extends SR_Location
 			$back[] = 'viewi';
 			$back[] = 'buy';
 		}
-			if (true === $this->allowShopSell($player))
+		if (true === $this->allowShopSell($player))
 		{
 			$back[] = 'sell';
 		}
@@ -71,7 +78,8 @@ abstract class SR_Store extends SR_Location
 	public function getStoreItemsB(SR_Player $player)
 	{
 		$key = $this->getStoreItemsKey();
-		if ($player->hasTemp($key)) {
+		if ($player->hasTemp($key))
+		{
 			return $player->getTemp($key);
 		}
 		
@@ -129,36 +137,18 @@ abstract class SR_Store extends SR_Location
 		return Shadowfunc::calcSellPrice($price, $player);
 	}
 	
-	public function getStoreItem(SR_Player $player, $itemname, $amount=false)
+	public function getStoreItem(SR_Player $player, $itemname)
 	{
-		$items = $this->getStoreItemsB($player);
-		$data = false;
+		$items = $this->getStoreItemsC($player);
 		if (is_numeric($itemname))
 		{
 			$id = (int)$itemname;
-			if ($id < 1 || $id > count($items)) {
-				return false;
-			}
-			$data = $items[$id-1];
+			return ($id < 1) || ($id > count($items)) ? false : $items[$id-1];
 		}
 		else
 		{
-			$itemname = strtolower($itemname);
-			foreach ($items as $d)
-			{
-				if (stripos($d[0], $itemname) === 0)
-				{
-					$data = $d;
-					break;
-				}
-			}
+			return $player->getItemByNameB($itemname, $items);
 		}
-		if ($data === false)
-		{
-			return false;
-		}
-
-		return $this->createItemFromData($player, $data, $amount);
 	}
 	
 	private function createItemFromData(SR_Player $player, array $data, $amount=false)
@@ -168,7 +158,8 @@ abstract class SR_Store extends SR_Location
 		{
 			$amount = isset($data[3]) ? $data[3] : true;
 		}
-		if (false === ($item = SR_Item::createByName($data[0], $amount, false))) {
+		if (false === ($item = SR_Item::createByName($data[0], $amount, false)))
+		{
 			return false;
 		}
 		$price = isset($data[2]) ? $data[2] : $item->getItemPrice();
@@ -180,16 +171,18 @@ abstract class SR_Store extends SR_Location
 	############
 	### View ###
 	############
+	public function getStoreViewCode() { return '5276'; }
 	public function on_view(SR_Player $player, array $args)
 	{
 		$player->setOption(SR_Player::RESPONSE_ITEMS);
 		$text = array(
+			'code' => $this->getStoreViewCode(),
 		);
 		$items = $this->getStoreItemsC($player);
-		return Shadowfunc::genericViewS($player, $items, $args, $text);
+		return Shadowfunc::genericViewS($player, $items, $args, $text, false);
 	}
 	
-	private function getStoreItemsC(SR_Player $player)
+	public function getStoreItemsC(SR_Player $player)
 	{
 		$back = array();
 		$items = $this->getStoreItemsB($player);
@@ -222,10 +215,10 @@ abstract class SR_Store extends SR_Location
 	###########
 	### Buy ###
 	###########
-	public function on_buy(SR_Player $player, array $args, $max_amt=false)
+	public function on_buy(SR_Player $player, array $args, $max_amt=false, $confirm=false)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) < 1 or count($args) > 2)
+		if ( (count($args) < 1) || (count($args) > 2) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'buy'));
 			return false;
@@ -236,41 +229,66 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		
+		$itemname = $dummyitem->getItemName();
+		
+		# Amt
 		$amt = (count($args) == 2) ? ((int) $args[1]) : 1;
-		if ( $amt < 1 )
+		if ($amt < 1)
 		{
 			$bot->rply('1038'); # specify positive amt
 			return false;
 		}
-		if ( false !== $max_amt and $amt > $max_amt )
+		if ( (false !== $max_amt) && ($amt > $max_amt) )
 		{
 			$bot->rply('1175'); # more than offered
 			return false;
 		}
+		
+		# Calc price
 		$total_amount = $amt * $dummyitem->getAmount();
 		$price = $amt * $dummyitem->getStorePrice();
+		$dprice = Shadowfunc::displayNuyen($price);
 		
 		if (false === ($player->pay($price)))
 		{
-			$bot->rply('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
+			$bot->rply('1063', array($dprice, $player->displayNuyen()));
 // 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
 			return false;
 		}
 		
+		# Confirm?
+		if ($confirm)
+		{
+			$confirmstring = "{$total_amount}x{$itemname}";
+			if ($player->getTemp(self::CONFIRM_BUY_ID) !== $confirmstring)
+			{
+				$player->setTemp(self::CONFIRM_BUY_ID, $confirmstring);
+				$bot->rply('5155', array($total_amount, $dummyitem->displayFullName($player), $this->displayName($player), $dprice));
+				# You attempt to purchase %s %s from %s for %s. Retype to confirm.
+				return false;
+			}
+			else
+			{
+				$player->unsetTemp(self::CONFIRM_BUY_ID);
+			}
+		}
+		
+		# Insert the items
 		if ( $dummyitem->isItemStackable() )
 		{
-			$item = $this->getStoreItem($player, $args[0],$total_amount);
+			$item = $this->getStoreItem($player, $args[0]);
+			$item->setAmount($total_amount);
 			$items = array($item);
-		} else {
+		}
+		else
+		{
 			$items = array($dummyitem);
-			for ($i=1; $i<$amt; $i++) # using $amt here in case the default amount !== 1
+			for ($i = 1; $i < $amt; $i++) # using $amt here in case the default amount !== 1
 			{
-				$item = $this->getStoreItem($player, $args[0]);
+				$item = $this->getStoreItem($player, $args[0], 1);
 				$items[] = $item;
 			}
 		}
-
-		
 		foreach ( $items as $item )
 		{
 			if (false === $item->insert())
@@ -280,12 +298,14 @@ abstract class SR_Store extends SR_Location
 			}
 		}
 
+		$this->lastPurchasedItem = $dummyitem->getItemName();
+		
+		# Give to player
 		$player->giveItems($items);
 		$player->modify();
-		$item = $player->getInvItemByName($dummyitem->getItemName());
-		$dprice = Shadowfunc::displayNuyen($price);
+		$item = $player->getInvItemByName($this->lastPurchasedItem);
 		$damount = ($total_amount == 1) ? '' : "({$total_amount})";
-		$bot->rply('5190', array($dprice, $item->getItemName().$damount, $item->getInventoryID()));
+		$bot->rply('5190', array($dprice, $total_amount, $item->displayFullName($player), $player->displayWeight(), $player->displayMaxWeight(), $item->getInventoryID()));
 // 		$bot->reply(sprintf('You paid %s and bought %s. Inventory ID: %d.', Shadowfunc::displayNuyen($price), $item->getItemName(), $item->getInventoryID()));
 		return true;
 	}
@@ -385,14 +405,12 @@ abstract class SR_Store extends SR_Location
 
 	public function checkLocation()
 	{
-// 		return true;
 		$player = new SR_Player(SR_Player::getPlayerData(0));
 		$player->modify();
 		$items = $this->getStoreItems($player);
 		foreach ($items as $data)
 		{
 			$iname = $data[0];
-//			printf("Checking %s in %s.\n", $iname, $this->getName());
 			if (false === SR_Item::createByName($iname, 1, false))
 			{
 				die(sprintf('%s has an invalid item: %s.', $this->getName(), $iname));
@@ -404,8 +422,6 @@ abstract class SR_Store extends SR_Location
 	################
 	### Stealing ###
 	################
-	
-	
 	public function on_steal(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -423,12 +439,6 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		$itemname = $item->getItemName();
-		
-// 		if ($player->getBase('thief') < 0)
-// 		{
-// 			$bot->reply('You are missing the thief skill.');
-// 			return false;
-// 		}
 		
 		# Steal difficulty
 		$difficulty = $item->getItemLevel();
@@ -558,6 +568,18 @@ abstract class SR_Store extends SR_Location
 		$bot = Shadowrap::instance($player);
 		$bot->rply('5197');
 // 		return $bot->reply('The shop owner is watching ... you better wait a bit.');
+	}
+	
+	public function onCityExit(SR_Party $party)
+	{
+		parent::onCityExit($party);
+		$party->unsetTemp($this->getStoreItemsKey());
+	}
+	
+	public function onLeaveLocation(SR_Party $party)
+	{
+		parent::onLeaveLocation($party);
+		$party->unsetTemp(self::CONFIRM_BUY_ID);
 	}
 }
 ?>
