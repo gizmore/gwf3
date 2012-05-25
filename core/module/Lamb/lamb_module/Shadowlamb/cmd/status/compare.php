@@ -18,7 +18,7 @@ final class Shadowcmd_compare extends Shadowcmd
 		}
 
 		$item1 = self::getItem($bot, $player, $args[0]);
-
+		
 		if(!$item1)
 		{
 			self::rply($player, '1020', array($args[0]));
@@ -44,6 +44,12 @@ final class Shadowcmd_compare extends Shadowcmd
 				return false;
 			}
 		}
+		
+		if ($player->getLangISO() === 'bot')
+		{
+// 			return self::replyBotTable(self::getComparisonMatrix($player, $item1, $item2));
+		}
+		
 		$bot->replyTable(self::getComparisonMatrix($player, $item1, $item2), '5043');
 		return true;
 	}
@@ -352,7 +358,7 @@ final class Shadowcmd_compare extends Shadowcmd
 
 	private static function getItem($bot, SR_Player $player, $itemid)
 	{
-		if (preg_match('/^S_[0-9]+$/D', $itemid))
+		if (preg_match('/^S_[0-9]+$/Di', $itemid))
 		{
 			$location = $player->getParty()->getLocationClass(SR_Party::ACTION_INSIDE);
 			if ($location !== false && $location instanceof SR_Store)
@@ -368,7 +374,18 @@ final class Shadowcmd_compare extends Shadowcmd
 		}
 		else
 		{
-			return $player->getInvItem($itemid);
+			if (false !== ($item = $player->getInvItem($itemid)))
+			{
+				return $item;
+			}
+			
+			$location = $player->getParty()->getLocationClass(SR_Party::ACTION_INSIDE);
+			if ($location !== false && $location instanceof SR_Store)
+			{
+				return $location->getStoreItem($player, $itemid);
+			}
+			
+			return false;
 		}
 	}
 }

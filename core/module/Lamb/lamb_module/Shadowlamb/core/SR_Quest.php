@@ -69,17 +69,30 @@ class SR_Quest extends GDO
 	public function getName() { return $this->getVar('sr4qu_name'); }
 	public function getTrigger() { return 'shadowrun'; }
 	public function getTriggers() { return array(); }
+	public function getQuestTriggers() { return array(); }
 	public function checkQuest(SR_NPC $npc, SR_Player $player) {}
 	public function getTempKey() { return 'SR4QT1_'.$this->getName(); }
 	public function getAmount() { return $this->getVar('sr4qu_amount'); }
-	public function saveAmount($amt) { return $this->saveVar('sr4qu_amount', $amt); }
+	public function getAmountPercent() { return round(100*$this->getAmount()/$this->getNeededAmount(), 2); }
+	public function saveAmount($amt)
+	{
+		if (!$this->saveVar('sr4qu_amount', $amt))
+		{
+			return false;
+		}
+		
+		if ($this->getPlayer()->getLangISO() === 'bot')
+		{
+			$this->getPlayer()->msg('9003', array($this->getAmountPercent(), $this->getQuestName(), $this->getQuestDescription()));
+		}
+		
+		return true;
+	}
 	public function increaseAmount($by=1) { return $this->increase('sr4qu_amount', $by); }
 	public function getNeededAmount() { return 0; }
 	public function onQuestSolve(SR_Player $player) {}
 	public function getQuestName() { return $this->lang('title'); }
 	public function getQuestDescription() { return $this->lang('descr'); }
-// 	public function getQuestName() { return $this->getName(); }
-// 	public function getQuestDescription() { return 'QUEST DESCRIPTION'; }
 	public function isDone(SR_Player $player) { return $this->isOptionEnabled(self::DONE); }
 	public function isInQuest(SR_Player $player) { return (false === $this->isDone($player)) && (true === $this->isAccepted($player)); }
 	public function isAccepted(SR_Player $player) { return $this->isOptionEnabled(self::ACCEPTED); }
@@ -120,7 +133,7 @@ class SR_Quest extends GDO
 		$this->onAccept($player); 
 		
 		# Announce
-		$player->msg('5236', array($this->getQuestName()));
+		$player->msg('5236', array($this->getQuestName(), $this->getCityName(), $this->getQuestDescription()));
 // 		$player->message(sprintf('You got a new quest: %s.', $this->getQuestName()));
 		return true;
 	}
@@ -179,25 +192,6 @@ class SR_Quest extends GDO
 		$player->modify();
 		$player->msg('5238', array($this->getQuestName()));
 // 		$player->message(sprintf('You have completed a quest: %s.', $this->getQuestName()));
-		return true;
-	}
-	
-	/**
-	 * Old helper.
-	 * @deprecated
-	 * @param SR_Player $player
-	 * @param int $by
-	 */
-	public function giveAmount(SR_Player $player, $by=1)
-	{
-		if (false === ($this->increase('sr4qu_amount', $by)))
-		{
-			return false;
-		}
-		if ($this->getAmount() >= $this->getNeededAmount())
-		{
-			$this->onSolve($player);
-		}
 		return true;
 	}
 	
@@ -431,14 +425,14 @@ class SR_Quest extends GDO
 	 * @param int $have
 	 * @param int $need
 	 */
-	public function giveQuesties(SR_Player $player, SR_NPC $npc, $itemname, $have, $need)
+	public function giveQuesties(SR_Player $player, SR_NPC $npc, $itemname, $have, $need, $save_amt=false)
 	{
 		$left = $need - $have;
 		$give = 0;
 		
 		while ($left > 0)
 		{
-			if (false === ($item = $player->getInvItemByShortName($itemname)))
+			if (false === ($item = $player->getInvItem($itemname)))
 			{
 				break;
 			}
@@ -453,6 +447,11 @@ class SR_Quest extends GDO
 		{
 			$player->msg('5239', array($give, $itemname, $npc->getName()));
 // 			$player->message(sprintf('You hand %d %s(s) to %s.', $give, $itemname, $npc->getName()));
+			
+			if ($save_amt === true)
+			{
+				$this->saveAmount($have);
+			}
 		}
 		
 		return $have;
@@ -490,6 +489,11 @@ class SR_Quest extends GDO
 	
 	public function onReward(SR_Player $player)
 	{
+		if ($player->getLangISO() === 'bot')
+		{
+			$player->msg('5240', array($this->getQuestName(), $this->getRewardNuyen(), $this->getRewardXP()));
+		}
+		
 		$nystr = $xpstr = $itemstr = '';
 		
 		# Ny
@@ -521,13 +525,22 @@ class SR_Quest extends GDO
 				$player->message(sprintf('Cannot create item: %s. (report to gizmore)', $itemname));
 			}
 		}
-		$player->giveItems($giveitems, 'Quest Reward');
+		
+		$player->giveItems($giveitems, $player->lang('quest_reward'));
 		
 		$out = $nystr.$xpstr.$itemstr;
 		if ($out !== '')
 		{
 			$player->msg('5240', substr($out, 2));
 // 			$player->message(sprintf('You received %s.', substr($out, 2)));
+		}
+	}
+	
+	public function sendStatusUpdate(SR_Player $player)
+	{
+		if ($player->getLangISO() === 'bot')
+		{
+			$player->msg('9002', array($this->getQuestName(), $this->getQuestDescription()));
 		}
 	}
 }

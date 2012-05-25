@@ -49,8 +49,6 @@ final class Item_AlchemicPotion extends SR_Usable
 			echo "DB ERROR\n";
 		}
 		
-		$player->giveItems(array(SR_Item::createByName('EmptyBottle')));
-		
 		$busy = $player->isFighting() ? $this->getItemUseTime() : 0;
 		if ($busy > 0)
 		{
@@ -62,8 +60,9 @@ final class Item_AlchemicPotion extends SR_Usable
 	
 	public function onUsePotion(SR_Player $player, array $args)
 	{
-		echo "Using potion".implode(',', $args).PHP_EOL;
+// 		echo "Using potion".implode(',', $args).PHP_EOL;
 		
+		$receive_bottle = true;
 		$mods = $this->getItemModifiersB();
 		$spellname = key($mods);
 		$level = array_shift($mods);
@@ -80,23 +79,29 @@ final class Item_AlchemicPotion extends SR_Usable
 			$args[] = '';
 		}
 		
-		if ( ($spell->isOffensive()) && (!$player->isFighting()) )
+		if ($spell->isOffensive())
 		{
-			$player->message('This potion works in combat only.');
-			return false;
+			$receive_bottle = false;
+			if (!$player->isFighting())
+			{
+				$player->msg('1180');
+// 				$player->message('This potion works in combat only.');
+				return false;
+			}
 		}
 		
 		if (false !== ($target = $spell->getTarget($player, $args, false)))
 		{
-			if ( (false === $spell->isOffensive()) && ($target->getID() != $player->getID()) )
+			if ( (!$spell->isOffensive()) && ($target->getID() !== $player->getID()) )
 			{
-				$player->message('You cannot inject potions into other peoples mouth\'.');
+				$player->msg('1181');
+// 				$player->message('You cannot inject potions into other peoples mouth\'.');
 				return false;
 			}
 		}
 		
 		
-		echo "Using potion 2222 ".implode(',', $args).PHP_EOL;
+// 		echo "Using potion 2222 ".implode(',', $args).PHP_EOL;
 		
 		# Dummy player
 		$mods['magic'] = false === isset($mods['magic']) ? $player->getBase('magic') : $mods['magic'];
@@ -111,10 +116,17 @@ final class Item_AlchemicPotion extends SR_Usable
 		$dummy->modify();
 		$spell->setCaster($dummy);
 		
-// 		$hits = $spell->dice($dummy, $target, $level);
-// 		$spell->setMode(SR_Spell::MODE_SPELL);
-		return $spell->onCast($player, $args, $level);
-// 		return $spell->cast($player, $target, $level, $hits, $dummy);
+		if (false === $spell->onCast($player, $args, $level))
+		{
+			return false;
+		}
+		
+		if ($receive_bottle)
+		{
+			$player->giveItems(array(SR_Item::createByName('EmptyBottle')));
+		}
+		
+		return true;
 	}
 }
 ?>

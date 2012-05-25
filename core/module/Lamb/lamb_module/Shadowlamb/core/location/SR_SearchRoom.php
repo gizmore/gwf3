@@ -1,6 +1,8 @@
 <?php
-class SR_SearchRoom extends SR_Tower
+abstract class SR_SearchRoom extends SR_Tower
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	public function isLocked() { return $this->getLockLevel() >= 0; } 
 	public function getLockLevel() { return -1; } # 0.0-10.0
 // 	public function onCrackLockFailed(SR_Player $player) { $player->message('Your party members tried to crack the lock, but failed.'); }

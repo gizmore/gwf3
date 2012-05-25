@@ -74,6 +74,8 @@ final class Shadowcmd_gml extends Shadowcmd
 			return false;
 		}
 		
+		$p->pushAction(SR_Party::ACTION_DELETE);
+		
 		$cl = $loc->getName();
 		$city->onCityEnter($p);
 		$p->pushAction($action, $cl);

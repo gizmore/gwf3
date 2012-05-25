@@ -23,6 +23,10 @@ abstract class SR_NPCBase extends SR_Player
 	{
 		$this->arena_ny = $nuyen;
 	}
+	public function setChatPartner(SR_Player $player)
+	{
+		$this->chat_partner = $player;
+	}
 	#################
 	### SR_Player ###
 	#################

@@ -1,7 +1,7 @@
 <?php
 final class Item_Handcuffs extends SR_Gloves
 {
-	public function isItemDropable() { return false; }
+	public function isItemLootable() { return false; }
 	public function getItemLevel() { return 0; }
 	public function getItemPrice() { return 69; }
 	public function getItemWeight() { return 260; }

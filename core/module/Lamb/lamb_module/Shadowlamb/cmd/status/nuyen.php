@@ -17,7 +17,7 @@ final class Shadowcmd_nuyen extends Shadowcmd
 			$back .= sprintf($format, $member->getEnum(), $member->getName(), Shadowfunc::displayNuyen($ny));
 		}
 		
-		$bot->reply(Shadowrun4::lang('5008', array(Shadowfunc::displayNuyen($total), substr($back, 2))));
+		$bot->reply(Shadowrun4::lang('5008', array(Shadowfunc::displayNuyen($total), ltrim($back, ',; '))));
 // 		$bot->reply(sprintf('Your party has %s: %s.', Shadowfunc::displayNuyen($total), substr($back, 2)));
 		return true;
 	}

@@ -1,7 +1,7 @@
 <?php
 final class Item_T250Shotgun extends SR_Shotgun
 {
-	public function getAttackTime() { return 32; }
+	public function getAttackTime() { return 38; }
 	public function getAmmoName() { return 'Ammo_Shotgun'; }
 	public function getBulletsMax() { return 2; }
 	public function getBulletsPerShot() { return 1; }

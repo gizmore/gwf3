@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Subway extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	# array(array($target, $price, $time, $level))
 	public abstract function getSubwayTargets(SR_Player $player);
 	
@@ -88,7 +90,7 @@ abstract class SR_Subway extends SR_Location
 // 			$out = 'There are no trains planned for today.';
 		}
 		
-		return $bot->rply('5259', array(substr($out, 2)));
+		return $bot->rply('5259', array(ltrim($out, ',; ')));
 		
 // 		else {
 // 			$out = substr($out, 2);

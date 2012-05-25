@@ -1,6 +1,8 @@
 <?php
-class SR_Arena extends SR_Store
+abstract class SR_Arena extends SR_Store
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	public function getStoreItems(SR_Player $player) { return array(); }
 
 	/**

@@ -66,18 +66,15 @@ class SR_Player extends GDO
 	public static $ALL = NULL; # see init
 	public static $REV_ALL = NULL; # see init
 	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
-//	public static $COMBAT_STATS = array('elep'=>'elephants','mxhp'=>'max_hp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
-//	public static $MAGIC_STATS = array('orca'=>'orcas','mxmp'=>'max_mp','satk'=>'spellatk','sdef'=>'spelldef');
 	public static $COMBAT_STATS = array('mxhp'=>'max_hp','mxmp'=>'max_mp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm');
 	public static $MAGIC_STATS = array();
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
 	public static $ATTRIBUTE = array('bo'=>'body','ma'=>'magic','st'=>'strength','qu'=>'quickness','wi'=>'wisdom','in'=>'intelligence','ch'=>'charisma','lu'=>'luck','re'=>'reputation','es'=>'essence');
-//	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief');
 	public static $SKILL = array('mel'=>'melee','nin'=>'ninja','swo'=>'swordsman','vik'=>'viking','fir'=>'firearms','bow'=>'bows','pis'=>'pistols','sho'=>'shotguns','smg'=>'smgs','hmg'=>'hmgs','com'=>'computers','ele'=>'electronics','bio'=>'biotech','neg'=>'negotiation','sha'=>'sharpshooter','sea'=>'searching','loc'=>'lockpicking','thi'=>'thief','orca'=>'orcas','elep'=>'elephants','sat'=>'spellatk','sde'=>'spelldef','cas'=>'casting','alc'=>'alchemy');
 	public static $KNOWLEDGE = array('inc'=>'indian_culture','inl'=>'indian_language','mat'=>'math','cry'=>'crypto','ste'=>'stegano');
-	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount');
+	public static $EQUIPMENT = array('am'=>'amulet','ar'=>'armor','bo'=>'boots','ea'=>'earring','he'=>'helmet','le'=>'legs','ri'=>'ring','sh'=>'shield','we'=>'weapon','mo'=>'mount','gl'=>'gloves','be'=>'belt','pi'=>'piercing');
 	public static $WORDS = array('Renraku','Hello','Yes','No','Shadowrun','Hire','Blackmarket','Cyberware','Magic','Redmond','Seattle','Delaware');
-	public static $NPC_RACES = array('droid','dragon');
+	public static $NPC_RACES = array('droid','dragon','animal');
 	
 	/**
 	 * Bonus values for races.
@@ -98,6 +95,7 @@ class SR_Player extends GDO
 		'troll' =>     array('body'=>4,'magic'=>-4,'strength'=> 4,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0,'essence'=>-0.2),
 		'gremlin' =>   array('body'=>4,'magic'=>-5,'strength'=> 3,'quickness'=>1,'wisdom'=>0,'intelligence'=>0,'charisma'=>-1,'reputation'=>2,'essence'=>-0.5),
 		#NPC
+		'animal' =>    array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=> 0),
 		'droid' =>     array('body'=>0,'magic'=>0, 'strength'=> 0,'quickness'=>0,'wisdom'=>0,'intelligence'=>0,'charisma'=>-3,'reputation'=>0, 'essence'=>0),
 		'dragon' =>    array('body'=>8,'magic'=>8, 'strength'=> 8,'quickness'=>0,'wisdom'=>8,'intelligence'=>8,'charisma'=> 0,'reputation'=>12,'essence'=>2),
 	);
@@ -121,6 +119,7 @@ class SR_Player extends GDO
 		'troll' =>     array('base_hp'=>10,'base_mp'=>-4,'body'=>3,'magic'=>-2,'strength'=> 3,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>215,'age'=>  18,'bmi'=>110), # troll
 		'gremlin' =>   array('base_hp'=>11,'base_mp'=>-6,'body'=>1,'magic'=>-3,'strength'=> 0,'quickness'=>2,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=> 50,'age'=>   1,'bmi'=> 10), # gremlin
 		#NPC
+		'animal' =>    array('base_hp'=>0, 'base_mp'=>0, 'body'=>0,'magic'=> 0,'strength'=> 0,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>160,'age'=>   2,'bmi'=> 70), # droid
 		'droid' =>     array('base_hp'=>0, 'base_mp'=>0, 'body'=>0,'magic'=> 0,'strength'=> 0,'quickness'=>0,'wisdom'=> 0,'intelligence'=> 0,'charisma'=> 0,'luck'=>0,'height'=>160,'age'=>   2,'bmi'=> 70), # droid
 		'dragon' =>    array('base_hp'=>0, 'base_mp'=>0, 'body'=>8,'magic'=> 8,'strength'=>12,'quickness'=>3,'wisdom'=>12,'intelligence'=>12,'charisma'=> 0,'luck'=>0,'height'=>500,'age'=>6000,'bmi'=>400), # dragon
 	);
@@ -264,9 +263,9 @@ class SR_Player extends GDO
 		}
 		return 'en';
 	}
-	public function msg($key, $args=NULL) { return $this->message(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
-// 	public function rply($key, $args=NULL) { return Shadowrap::instance($this)->reply(LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args)); }
-	public function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->langISO($this->getLangISO(), $key, $args); }
+	public function msg($key, $args=NULL) { return $this->message($this->lang($key, $args)); }
+	public function lang($key, $args=NULL) { return Shadowrun4::langPlayer($this, $key, $args); }
+
 	############
 	### Enum ###
 	############
@@ -627,7 +626,7 @@ class SR_Player extends GDO
 	{
 		if (NULL === ($user = $this->getUser()))
 		{
-			Lamb_Log::logError('User does not exist: '.$message);
+			Lamb_Log::logError('User does not exist: '.$this->getName());
 			return false;
 		}
 		
@@ -720,9 +719,20 @@ class SR_Player extends GDO
 	{
 		$party = $this->getParty();
 		$city = $party->getCityClass();
+		$singleplayer = $party->getMemberCount() === 1;
 		$party->kickUser($this, true);
+		$oldlevel = $party->getPartyLevel();
+		$newlevel = (int)round($oldlevel/2);
 		$new_party = SR_Party::createParty();
 		$new_party->addUser($this, true);
+		if ($singleplayer)
+		{
+			$new_party->savePartyLevel($newlevel);
+		}
+		else
+		{
+			$party->savePartyLevel($newlevel);
+		}
 		$location = $city === false ? 'Redmond_Hotel' : $city->getRespawnLocation($this);
 //		$location = $city->getRespawnLocation();
 		$new_party->pushAction(SR_Party::ACTION_INSIDE, $location);
@@ -750,7 +760,7 @@ class SR_Player extends GDO
 		
 		$this->modifyRace();
 		$this->modifyGender();
-		if (!$this->hasEquipment('weapon')) { $this->modifyItem(Item_Fists::staticFists()); }
+		if (!$this->hasWeapon()) { $this->modifyItem(Item_Fists::staticFists()); }
 		$this->modifyItems($this->sr4_equipment);
 		$this->modifyItems($this->sr4_cyberware);
 		$this->modifyInventory();
@@ -790,6 +800,9 @@ class SR_Player extends GDO
 		{
 			$this->modifyLevelInventory();
 		}
+		
+		$this->sr4_data_modified['attack'] = round(Common::clamp($this->sr4_data_modified['attack'], 0.1), 2);
+		$this->sr4_data_modified['defense'] = round(Common::clamp($this->sr4_data_modified['defense'], 0.1), 2);
 	}
 	
 	private function modifyLevelLocked()
@@ -1114,7 +1127,36 @@ class SR_Player extends GDO
 			$data[$spellname] = 0;
 		}
 		
-		return $this->saveSpellData($data);
+		$value = $data[$spellname];
+		
+		if (false === $this->saveSpellData($data))
+		{
+			return false;
+		}
+		
+		$this->modify();
+		
+		return $this->msg('5285', array(Shadowfunc::translateVariable($this, $spellname), $value, $by, Shadowcmd_lvlup::getMaxLevel($this, $spellname), Shadowcmd_lvlup::getKarmaCost($spellname, $value)));
+	}
+	
+	public function levelupField($field, $by=1)
+	{
+		return $this->levelupFieldTo($field, $this->getBase($field)+$by);
+	}
+	
+	public function levelupFieldTo($field, $value)
+	{
+		$value = (int)$value;
+		$old = $this->getBase($field);
+		$by = $value - $old;
+		if (false === $this->saveBase($field, $value))
+		{
+			return false;
+		}
+		
+		$this->modify();
+		
+		return $this->msg('5285', array(Shadowfunc::translateVariable($this, $field), $value, $by, Shadowcmd_lvlup::getMaxLevel($this, $field), Shadowcmd_lvlup::getKarmaCost($field, $value)));
 	}
 	
 	/**
@@ -1181,6 +1223,11 @@ class SR_Player extends GDO
 		return isset($this->sr4_equipment[$field]);
 	}
 	
+	public function hasWeapon()
+	{
+		return $this->hasEquipment('weapon');
+	}
+	
 	/**
 	 * Get currently equipped item.
 	 * @param string $field
@@ -1194,7 +1241,7 @@ class SR_Player extends GDO
 	public function getAllEquipment($with_fists=true)
 	{
 		$back = array();
-		if ( ($with_fists) && (!$this->hasEquipment('weapon')) )
+		if ( ($with_fists) && (!$this->hasWeapon()) )
 		{
 			$back['weapon'] = Item_Fists::staticFists();
 		}
@@ -1247,7 +1294,7 @@ class SR_Player extends GDO
 			}
 		}
 		
-		$this->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
+// 		$this->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
 		return true;
 	}
 	
@@ -1495,7 +1542,8 @@ class SR_Player extends GDO
 	
 	public function getAllItems()
 	{
-		return array_merge($this->sr4_cyberware, $this->sr4_inventory, $this->sr4_equipment);
+		$fists = $this->hasWeapon() ? array() : array(Item_Fists::staticFists());
+		return array_merge($this->sr4_cyberware, $this->sr4_inventory, $this->sr4_equipment, $fists);
 	}
 	
 	public function getItemByItemID($itemid)
@@ -1533,13 +1581,11 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getInvItem($arg)
+	public function getInvItem($arg, $shortcuts=true, $verbose=true)
 	{
-		if (is_numeric($arg)) {
-			return $this->getItemByID($this->getInventorySorted(), $arg, $this->sr4_inventory);
-		} else {
-			return $this->getInvItemByName($arg);
-		}
+		return is_numeric($arg)
+			? $this->getItemByID($this->getInventorySorted(), $arg, $this->sr4_inventory)
+			: $this->getInvItemByName($arg, $shortcuts, $verbose);
 	}
 	
 	/**
@@ -1586,30 +1632,37 @@ class SR_Player extends GDO
 	 * @param string $itemname
 	 * @return SR_Item
 	 */
-	public function getInvItemByName($itemname, $shortcuts=true)
+	public function getInvItemByName($itemname, $shortcuts=true, $verbose=true)
 	{
-		return $this->getItemByNameB($itemname, $this->sr4_inventory, $shortcuts);
+		return $this->getItemByNameB($itemname, $this->sr4_inventory, $shortcuts, $verbose);
 	}
 	
-	public function getItemByNameB($itemname, array $items, $shortcuts=true)
+	/**
+	 * Get an item from an array.
+	 * @param string $itemname
+	 * @param array $items
+	 * @param boolean $shortcuts
+	 * @param boolean $verbose
+	 * @return SR_Item
+	 */
+	public function getItemByNameB($itemname, array $items, $shortcuts=true, $verbose=true)
 	{
 		$itemname = strtolower($itemname);
 		
+		# Full name match
 		foreach (array_reverse($items) as $item)
 		{
-			if (strtolower($item->getItemName()) === $itemname)
+			$item instanceof SR_Item;
+			if (   (strtolower($item->displayFullName($this)) === $itemname)
+				|| (strtolower($item->getItemName()) === $itemname) )
 			{
 				return $item;
 			}
 		}
 		
-		if (strlen($itemname) < 3)
-		{
-			$shortcuts = false;
-		}
-		
-		return $shortcuts === true
-			? $this->getItemByShortNameB($itemname, $items)
+		# Try shortcuts
+		return (strlen($itemname) > 2) && ($shortcuts === true)
+			? $this->getItemByShortNameB($itemname, $items, $verbose)
 			: false;
 	}
 	
@@ -1618,29 +1671,46 @@ class SR_Player extends GDO
 		return $this->getItemByShortNameB($itemname, $this->sr4_inventory);
 	}
 	
-	public function getItemByShortNameB($itemname, array $items)
+	/**
+	 * Try to get an item by abbreviation.
+	 * @param string $itemname
+	 * @param array $items
+	 * @return SR_Item
+	 */
+	public function getItemByShortNameB($itemname, array $items, $verbose=true)
 	{
 		$itemname = strtolower($itemname);
 		
 		$items = array_reverse($items);
 		
-		# Beginning is better than in the middle
+		$hits = array();
+		
 		foreach ($items as $item)
 		{
-			if (strpos(strtolower($item->getItemName()), $itemname) === 0)
+			$item instanceof SR_Item;
+
+			$iname = strtolower($item->getItemName());
+			$diname = strtolower($item->displayFullName($this));
+			
+			if ( (strpos($iname, $itemname) !== false) || (strpos($diname, $itemname) !== false) )
 			{
-				return $item;
+				if (!isset($hits[$iname]))
+				{
+					$hits[$iname] = $item;
+				}
 			}
 		}
 		
-		# In the middle still works.
-		foreach ($items as $item)
+		if (count($hits) === 1)
 		{
-			if (strpos(strtolower($item->getItemName()), $itemname) !== false)
-			{
-				return $item;
-			}
+			return array_pop($hits);
 		}
+		
+		if ( (count($hits) > 1) && ($verbose) )
+		{
+			$this->msg('1179'); # Ambigious
+		}
+		
 		return false;
 	}
 	
@@ -1685,7 +1755,7 @@ class SR_Player extends GDO
 		if (false === $this->updateItemArray('sr4pl_cyberware', $this->sr4_cyberware)) {
 			return false;
 		}
-		$this->setOption(self::CYBER_DIRTY|self::STATS_DIRTY, true);
+// 		$this->setOption(self::CYBER_DIRTY|self::STATS_DIRTY, true);
 		return true;
 	}
 	
@@ -1926,10 +1996,11 @@ class SR_Player extends GDO
 	
 	public function updateInventory()
 	{
-		if (false === $this->updateItemArray('sr4pl_inventory', $this->sr4_inventory)) {
+		if (false === $this->updateItemArray('sr4pl_inventory', $this->sr4_inventory))
+		{
 			return false;
 		}
-		$this->setOption(self::INV_DIRTY, true);
+// 		$this->setOption(self::INV_DIRTY, true);
 		$this->modify();
 		return true;
 	}
@@ -1939,7 +2010,7 @@ class SR_Player extends GDO
 		if (false === $this->updateItemArray('sr4pl_mount_inv', $mount_inv)) {
 			return false;
 		}
-		$this->setOption(self::MOUNT_DIRTY, true);
+// 		$this->setOption(self::MOUNT_DIRTY, true);
 		return true;
 	}
 	
@@ -2208,14 +2279,14 @@ class SR_Player extends GDO
 				return false;
 			}
 			
-			if ($field === 'places')
-			{
-				$this->setOption(self::LOCATION_DIRTY, true);
-			}
-			elseif ($field === 'words')
-			{
-				$this->setOption(self::WORDS_DIRTY, true);
-			}
+// 			if ($field === 'places')
+// 			{
+// 				$this->setOption(self::LOCATION_DIRTY, true);
+// 			}
+// 			elseif ($field === 'words')
+// 			{
+// 				$this->setOption(self::WORDS_DIRTY, true);
+// 			}
 			
 			if ($announce)
 			{
@@ -2276,7 +2347,7 @@ class SR_Player extends GDO
 		$old = $this->getBase($field);
 		$max = $this->get('max_'.$field);
 		$new = round(Common::clamp($old+$gain, 0.0, $max), 2);
-		$this->setOption(SR_Player::STATS_DIRTY, true);
+// 		$this->setOption(SR_Player::STATS_DIRTY, true);
 		$this->updateField($field, $new);
 		return $new-$old;
 	}
@@ -2369,6 +2440,21 @@ class SR_Player extends GDO
 	public function giveNuyen($nuyen)
 	{
 		return $this->alterField('nuyen', round($nuyen, 2));
+	}
+	
+	public function giveNuyenEvent($nuyen)
+	{
+		if (!$this->giveNuyen($nuyen))
+		{
+			return false;
+		}
+		
+		if ($this->getLangISO() === 'bot')
+		{
+			$this->msg('5290', array(Shadowfunc::displayNuyen($nuyen)));
+		}
+		
+		return true;
 	}
 	
 	public function giveBankNuyen($nuyen)

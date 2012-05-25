@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Blacksmith extends SR_Store
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	public abstract function getSimulationPrice();
 	public abstract function getUpgradePrice();
 	public abstract function getUpgradePercentPrice();
@@ -245,7 +247,7 @@ abstract class SR_Blacksmith extends SR_Store
 // 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if (!($item instanceof SR_Equipment))
+		if ( (!($item instanceof SR_Equipment)) || (!($item->isItemStattable())) )
 		{
 			$bot->rply('1158');
 // 			$bot->reply('The first item is not an equipment.');
@@ -310,8 +312,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
 		$dpu = Shadowfunc::displayNuyen($price_u);
 		
-		$fail = Common::clamp($fail, 5, 85);
-		$break = Common::clamp($break, 1, 50);
+		$fail = round(Common::clamp($fail, 5, 85), 2);
+		$break = round(Common::clamp($break, 1, 50), 2);
 
 		## Confirm
 		$pid = $player->getID();

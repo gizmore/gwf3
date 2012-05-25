@@ -34,7 +34,7 @@ final class Shadowcmd_mounts extends Shadowcmd
 // 			$out .= sprintf(", \x02%s\x02-%s%s", $member->getEnum(), $mount->getName(), $weight);
 		}
 		
-		return self::rply($player, '5083', array(Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2)));
+		return self::rply($player, '5083', array(Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), ltrim($out, ',; ')));
 // 		$message = sprintf('Party Mounts(%s/%s): %s.', Shadowfunc::displayWeight($total), Shadowfunc::displayWeight($total_max), substr($out, 2));
 		
 		return Shadowrap::instance($player)->reply($message);

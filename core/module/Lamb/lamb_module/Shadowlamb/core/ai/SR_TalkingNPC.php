@@ -34,13 +34,12 @@ abstract class SR_TalkingNPC extends SR_NPC
 			return true;
 		}
 		
-		echo __METHOD__;
-		$key = 'word_'.$word;
-		if ($key === ($text = $this->langNPCB($player, $key)))
+		if (Shadowlang::hasLangNPC($this, $player, $word))
 		{
-			return $this->reply($this->langNPCB($player, 'word_default'));
+			return $this->rply($word, $args);
 		}
-		return $this->reply($text);
+		
+		return $this->rply('default', $args);
 	}
 	
 	public function reply($message)
@@ -203,24 +202,6 @@ abstract class SR_TalkingNPC extends SR_NPC
 		
 		switch ($word)
 		{
-			case $q->getTrigger():
-				if ($has === true)
-				{
-					$q->checkQuest($this, $player);
-				}
-				elseif ($t === true)
-				{
-					$q->onNPCQuestTalk($this, $player, 'confirm', $args);
-				}
-				else
-				{
-					if ($q->onNPCQuestTalk($this, $player, $word, $args))
-					{
-						$player->setTemp($key, 1);
-					}
-				}
-				return true;
-				
 			case 'yes':
 				if ($t === true)
 				{
@@ -241,9 +222,31 @@ abstract class SR_TalkingNPC extends SR_NPC
 				return false;
 				
 			default:
+				
+				if ( (true === in_array($word, $q->getQuestTriggers(), true)) || ($word === $q->getTrigger()) )
+				{
+					if ($has === true)
+					{
+						$q->checkQuest($this, $player);
+					}
+					elseif ($t === true)
+					{
+						$q->onNPCQuestTalk($this, $player, 'confirm', $args);
+					}
+					else
+					{
+						if ($q->onNPCQuestTalk($this, $player, $word, $args))
+						{
+							$player->setTemp($key, 1);
+						}
+					}
+					return true;
+				}
+				
 				if (true === in_array($word, $q->getTriggers(), true))
 				{
-					return $q->onNPCQuestTalk($this, $player, $word, $args);
+					$q->onNPCQuestTalk($this, $player, $word, $args);
+					return true;
 				}
 				return false;
 		}

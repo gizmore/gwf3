@@ -77,7 +77,7 @@ class Shadowcmd_asl extends Shadowcmd
 			case 'height': $sumtxt = Shadowfunc::displayDistance($sum, 2); break;
 			default: self::reply($player, 'Error unknown field2 in onASLShowPartyB()'); return false;
 		}
-		self::rply($player, '', array(Shadowrun4::lang('sum_'.$field), $sumtxt, substr($out, 2)));
+		self::rply($player, '', array(Shadowrun4::lang('sum_'.$field), $sumtxt, ltrim($out, ',; ')));
 		return true;
 	}
 }

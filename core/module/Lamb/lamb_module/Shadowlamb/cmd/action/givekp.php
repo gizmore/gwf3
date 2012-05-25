@@ -9,19 +9,34 @@ class Shadowcmd_givekp extends Shadowcmd
 // 			$player->message('This does not work in combat');
 			return false;
 		}
-		if (count($args) !== 2)
+		
+		$argc = count($args);
+		
+		if ( ($argc < 1) || ($argc > 2) )
 		{
 			$player->message(Shadowhelp::getHelp($player, 'givekp'));
 			return false;
 		}
-		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
+		
+		if ($argc === 2)
 		{
-			$player->msg('1028', array($args[0]));
-// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
-			return false;
+			
+			if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0])))
+			{
+				$player->msg('1028', array($args[0]));
+	// 			$player->message(sprintf('%s is not here or the name is ambigous.', $args[0]));
+				return false;
+			}
+			$place = $args[1];
+			$targets = array($target);
+		}
+		else
+		{
+			$place = $args[0];
+			$targets = $player->getParty()->getMembers();
 		}
 		
-		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $args[1])))
+		if (false === ($tlc = Shadowcmd_goto::getTLCByArgMulticity($player, $place)))
 		{
 			$player->msg('1023');
 			return false;
@@ -30,16 +45,16 @@ class Shadowcmd_givekp extends Shadowcmd
 		return self::giveKnow($player, $target, 'places', $tlc);
 	}
 	
-	public static function giveKnow(SR_Player $player, SR_Player $target, $what, $which)
+	public static function giveKnow(SR_Player $player, array $targets, $what, $which)
 	{
-		if (false === $player->hasKnowledge($what, $which))
-// 		if (false === ($which = $player->getKnowledgeByArg($what, $which)))
+		foreach ($targets as $target)
 		{
-			$player->msg('1023');
-// 			$player->message('You don`t have this knowledge.');
-			return false;
+			self::giveKnowB($player, $target, $what, $which);
 		}
-		
+	}
+	
+	private static function giveKnowB(SR_Player $player, SR_Player $target, $what, $which)
+	{
 		if (false === $target->hasKnowledge($what, $which))
 		{
 			$target->giveKnowledge($what, $which);

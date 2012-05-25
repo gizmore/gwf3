@@ -61,8 +61,8 @@ final class Shadowcmd_start extends Shadowcmd
 // 		$player->help("Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files. Use {$c}help <cmd> to see the help for a command.");
 	
 		$player->giveItems(array(SR_Item::createByName('Pen')));
-		$player->giveKnowledge('words', 'Renraku');
 		$player->giveKnowledge('words', 'Shadowrun');
+		$player->giveKnowledge('words', 'Renraku');
 		$player->giveKnowledge('places', 'Redmond_Hotel');
 		
 		Shadowcmd_gmm::sendGlobalMessage(sprintf('Welcome a new player: %s the %s %s.', $player->getName(), $player->getGender(), $player->getRace()));

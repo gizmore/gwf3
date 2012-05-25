@@ -16,7 +16,21 @@ final class Shadowrun4
 	################
 	### Language ###
 	################
-	public static function lang($key, $args=NULL) { return LambModule_Shadowlamb::instance()->lang($key, $args); }
+	public static function lang($key, $args=NULL)
+	{
+		return self::langPlayer(self::getCurrentPlayer(), $key, $args);
+// 		return LambModule_Shadowlamb::instance()->lang($key, $args).(Shadowrun4::getCurrentPlayer()->getLangISO()==='bot'?'X':'');
+	}
+	public static function langPlayer(SR_Player $player, $key, $args=NULL)
+	{
+		$iso = $player->getLangISO();
+		$x = is_numeric($key) && ($iso === 'bot') ? 'X' : '';
+		return LambModule_Shadowlamb::instance()->langISO($iso, $key, $args).$x;
+	}
+	public static function hasLang($key)
+	{
+		return array_key_exists($key, LambModule_Shadowlamb::instance()->getLang()->getTrans('en'));
+	}
 	
 	####################
 	### Game Masters ###
@@ -81,6 +95,21 @@ final class Shadowrun4
 		return self::$cities[$name];
 	}
 	
+	/**
+	 * Get a city by ID.
+	 * @param int $id
+	 * @return SR_City
+	 */
+	public static function getCityByID($id)
+	{
+		$id = (int)$id;
+		$back = array_slice(self::$cities, $id-1, 1);
+		return array_pop($back);
+	}
+	
+	/**
+	 * @return SR_City
+	 */
 	public static function getCityByAbbrev($name)
 	{
 		$back = array();
@@ -556,7 +585,7 @@ final class Shadowrun4
 		Lamb::instance()->addTimer(array(__CLASS__, 'shadowTimer'), self::TICKLEN, NULL, NULL, 1);
 		
 		# Execute Web Commands
-		self::shadowTimerWebcommands();
+// 		self::shadowTimerWebcommands();
 		
 		# All parties:
 		$partyids = array_keys(self::$parties);
@@ -587,8 +616,8 @@ final class Shadowrun4
 		{
 			if (false !== ($player = self::getPlayerByPID($row['lit_pid'])))
 			{
-				$player->setOption(SR_Player::WWW_OUT, true);
-				$player->setOption(SR_Player::DIRTY_FLAGS, false);
+// 				$player->setOption(SR_Player::WWW_OUT, true);
+// 				$player->setOption(SR_Player::DIRTY_FLAGS, false);
 				echo $row['lit_message'].PHP_EOL;
 				Shadowcmd::onTrigger($player, $row['lit_message']);
 			}

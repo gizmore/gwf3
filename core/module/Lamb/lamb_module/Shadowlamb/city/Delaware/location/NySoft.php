@@ -2,15 +2,11 @@
 final class Delaware_NySoft extends SR_Tower
 {
 	public function getFoundPercentage() { return 25.00; }
-// 	public function getFoundText(SR_Player $player) { return 'You found the NySoft headquarters in Delaware. They are into military software.'; }
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
-	
 	public function onEnter(SR_Player $player)
 	{
 		$this->partyMessage($player, 'enter');
-// 		$party = $player->getParty();
-// 		$party->notice('Nice, their business is open.');
-		$this->teleportInstant($player, 'NySoft_Exit', 'inside');
+		$this->teleportInside($player, 'NySoft_Exit');
 	}
 }
 ?>

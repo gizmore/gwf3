@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Bank extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	public function getAreaSize() { return 48; }
 	
 	public function getTransactionPrice() { return 0; }
@@ -79,10 +81,10 @@ abstract class SR_Bank extends SR_Location
 	{
 		$items = $player->getBankItems();
 		$text = array(
-			'prefix' => $player->lang('5188')
+			'prefix' => $player->lang('bank'),
+			'code' => '5188',
 		);
-		return Shadowfunc::getGenericViewI($player, $items, $args, $text);
-// 		return $player->msg('5188', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
+		return Shadowfunc::genericViewI($player, $items, $args, $text, false);
 	}
 
 	public function on_viewi(SR_Player $player, array $args)
@@ -225,7 +227,7 @@ abstract class SR_Bank extends SR_Location
 		
 		$player->modify();
 		return $bot->rply('5144', array(
-			$stored, $item->getItemName(),
+			$stored, $item->displayFullName($player),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
 // 		$paymsg .= sprintf('put %d of your %s into your bank account. You now carry %s/%s.',
@@ -370,7 +372,7 @@ abstract class SR_Bank extends SR_Location
 		}
 		
 		return $bot->rply('5145', array(
-			$collected, $item->getItemName(),
+			$collected, $item->displayFullName($player),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
 		
@@ -388,10 +390,10 @@ abstract class SR_Bank extends SR_Location
 	##################
 	### Show Nuyen ###
 	##################
-	private function showNuyen(SR_Player $player)
+	private function showNuyen(SR_Player $player, $code='5146')
 	{
 		$bot = Shadowrap::instance($player);
-		return $bot->rply('5146', array(
+		return $bot->rply($code, array(
 				$player->displayNuyen(), $player->displayBankNuyen(),
 				Shadowfunc::displayNuyen($this->calcPrice($player))
 		));
@@ -406,7 +408,7 @@ abstract class SR_Bank extends SR_Location
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1)
 		{
-			$this->showNuyen($player);
+			$this->showNuyen($player, '5146');
 			return true;
 		}
 		
@@ -457,7 +459,7 @@ abstract class SR_Bank extends SR_Location
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1)
 		{
-			$this->showNuyen($player);
+			$this->showNuyen($player, '5279');
 			return true;
 		}
 		

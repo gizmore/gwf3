@@ -3,8 +3,10 @@
  * Generic ClanHQ location.
  * @author gizmore
  */
-class SR_ClanHQ extends SR_Location
+abstract class SR_ClanHQ extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	const CONFIRM_PHRASE = 'IAMSURE';
 
 	const COST_SLOGAN = 200;
@@ -27,30 +29,12 @@ class SR_ClanHQ extends SR_Location
 	const COST_PUSHI = 10;
 	const COST_POPI = 30;
 	
-	public function getFoundPercentage()
-	{
-		return 100;
-	}
+	public function getFoundPercentage() { return 65.0; }
 	
-	public function getFoundText(SR_Player $player)
-	{
-		return $player->lang('stub_found_clanhq');
-// 		return sprintf('You found the clan headquarters.');
-	}
-	
-	public function getEnterText(SR_Player $player)
-	{
-		return $player->lang('stub_enter_clanhq');
-// 		return sprintf('You enter the clan headquarters.');
-	}
-	
-	public function getHelpText(SR_Player $player)
-	{
-		return $player->lang('hlp_clan_enter');
-// 		$c = Shadowrun4::SR_SHORTCUT;
-// 		return "Join clans with {$c}abandon, {$c}request and {$c}accept. Create a clan with {$c}create. Purchase more size and motto with {$c}manage. Set options with {$c}toggle. Access clan bank with {$c}push, {$c}pop and {$c}view, clan money with {$c}pushy and {$c}popy.";
-	}
-	
+	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_clanhq'); }
+	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter_clanhq'); }
+	public function getHelpText(SR_Player $player) { return $player->lang('hlp_clan_enter'); }
+
 	public function getCommands(SR_Player $player)
 	{
 		return array('abandon', 'request', 'accept', 'create' , 'manage', 'toggle', 'push', 'pop', 'view', 'pushy', 'popy');

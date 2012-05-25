@@ -140,7 +140,7 @@ abstract class SR_Weapon extends SR_Equipment
 			$lny = round($nuyen/$mc, 2);
 			$member->giveNuyen($lny);
 			$member->msg('5234', array($pname, $tname, $iname, $damage, $busy, Shadowfunc::displayNuyen($lny), $lxp, $bold, $crit));
-			$member->setOption(SR_Player::STATS_DIRTY, true);
+// 			$member->setOption(SR_Player::STATS_DIRTY, true);
 		}
 				
 		$p->givePartyXP($pxp);

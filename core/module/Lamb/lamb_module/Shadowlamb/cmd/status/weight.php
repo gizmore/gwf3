@@ -20,7 +20,7 @@ final class Shadowcmd_weight extends Shadowcmd
 			$back .= sprintf($format, $member->getEnum(), $b.$member->getName().$b, $summand);
 // 			$back .= sprintf(', %s(%s/%s)', $b.$member->getName().$b, $b.Shadowfunc::displayWeight($we).$b, Shadowfunc::displayWeight($mw));
 		}
-		return self::rply($player, '5064', array(Shadowfunc::displayWeight($total), substr($back, 2)));
+		return self::rply($player, '5064', array(Shadowfunc::displayWeight($total), ltrim($back, ',; ')));
 // 		$bot->reply(sprintf('Your party carries %s: %s.', Shadowfunc::displayWeight($total), substr($back, 2)));
 // 		return true;
 	}

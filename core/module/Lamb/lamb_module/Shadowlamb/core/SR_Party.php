@@ -16,7 +16,7 @@ final class SR_Party extends GDO
 	const LOOT_BITS = 0xF0;
 	
 	public static $ACTIONS = array('delete','talk','fight','inside','outside','sleep','travel','explore','goto','hunt','hijack');
-	private static $ACTIONS_LEAVE = array('delete', 'fight','inside', 'outside', 'travel', 'explore', 'goto', 'hunt');
+	private static $ACTIONS_LEAVE = array('delete', 'fight', 'outside', 'travel', 'explore', 'goto', 'hunt');
 	const ACTION_DELETE = 'delete';
 	const ACTION_TALK = 'talk';
 	const ACTION_FIGHT = 'fight';
@@ -296,8 +296,13 @@ final class SR_Party extends GDO
 	
 	public function pushAction($action, $target=NULL, $eta=-1)
 	{
-		# Diff Commands 
-		$old_cmds = $this->getCurrentCommands();
+		$with_events = $action !== self::ACTION_DELETE;
+		
+		# Diff Commands
+		if ($with_events)
+		{
+			$old_cmds = $this->getCurrentCommands();
+		}
 		
 		if ($target === NULL)
 		{
@@ -308,15 +313,15 @@ final class SR_Party extends GDO
 		
 		$this->timestamp = time();
 		
-		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
+// 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 
 		# Announce leaving a location.
-		if (in_array($action, self::$ACTIONS_LEAVE, true))
-		{
-			$this->onPartyLeft($action);
-		}
+// 		if (in_array($action, self::$ACTIONS_LEAVE, true))
+// 		{
+// 			$this->onPartyLeft($action);
+// 		}
 		
-		
+		$old_action = $this->getAction();
 		$oldcity = $this->getCityClass();
 		
 		# Save new vars
@@ -332,27 +337,37 @@ final class SR_Party extends GDO
 			return false;
 		}
 		
-		# Announce reaching a location.
-		if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
+		# Event stuff
+		if ($with_events)
 		{
-			$this->onPartyArrived($action);
-		}
-		
-		# Fire city left events
-		if ($oldcity !== false)
-		{
-			if (false !== ($newcity = $this->getCityClass()))
+			# Announce reaching a location.
+			if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
 			{
-				if ($oldcity->getName() !== $newcity->getName())
+				$this->onPartyArrived($old_action);
+			}
+			
+			# Fire city left events
+			if ($oldcity !== false)
+			{
+				if (false !== ($newcity = $this->getCityClass()))
 				{
-					$oldcity->onCityExit($this);
+					if ($oldcity->getName() !== $newcity->getName())
+					{
+						$oldcity->onCityExit($this);
+					}
 				}
 			}
+			
+			# Diff Commands
+			$new_cmds = $this->getCurrentCommands();
+			$this->sendCommandDiffs($old_cmds, $new_cmds);
+			
+			# Auto Look
+			if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
+			{
+				$this->sendAutoLook();
+			}
 		}
-		
-		# Diff Commands
-		$new_cmds = $this->getCurrentCommands();
-		$this->sendCommandDiffs($old_cmds, $new_cmds);
 		
 		return true;
 	}
@@ -405,101 +420,114 @@ final class SR_Party extends GDO
 		}
 	}
 	
-	
+	private function sendAutoLook()
+	{
+		foreach ($this->members as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->isHuman())
+			{
+				Shadowcmd_look::executeLook($member, false);
+			}
+		}
+	}
 	
 	/**
 	 * Announce when a party arrives somewhere.
 	 * @param string $action
 	 */
-	public function onPartyArrived($action)
+	public function onPartyArrived($old_action='delete')
 	{
 		if (false !== ($loc = $this->getLocationClass()))
 		{
 			$loc->onEnterLocation($this);
+			$this->onPartyArriveLeft($loc, $old_action, $this->getAction());
 		}
-		
-		return $this->onPartyArriveLeft(sprintf('arrived %s %s', $action, $this->getTarget()));
 	}
 	
 	/**
 	 * Announce when a party has left a location.
 	 */ 
-	public function onPartyLeft($action)
-	{
-		if (false !== ($loc = $this->getLocationClass()))
-		{
-			$loc->onLeaveLocation($this);
-		}
-		
-		$this->onPartyArriveLeft(sprintf('left %s', $this->getTarget()));
-	}
+// 	public function onPartyLeft($new_action)
+// 	{
+// 		if (false !== ($loc = $this->getLocationClass()))
+// 		{
+// 			$loc->onLeaveLocation($this);
+// 			$this->onPartyArriveLeft($loc, $this->getAction(), $new_action, false);
+// 		}
+// 	}
 	
 	/**
 	 * Announce when a party leaves/enters a location.
 	 * @param string $text_snippet
 	 */
-	private function onPartyArriveLeft($text_snippet)
+	private function onPartyArriveLeft(SR_Location $loc, $old_action, $new_action)
 	{
 		if (!$this->isHuman())
 		{
 			return;
 		}
 		
+		$arrive = !in_array($old_action, array(self::ACTION_INSIDE, self::ACTION_SLEEP));
+
+		$args =  array('___LOCNAME', $this->displayMembers(false, true));
+		
 		# Check all parties
 		foreach (Shadowrun4::getParties() as $p)
 		{
 			$p instanceof SR_Party;
-			if ($p->getID() === $this->getID())
+			$pa = $p->getAction();
+			if (
+				($p->getID() === $this->getID()) || # Own
+				(!$p->isAtLocation()) || # other not at location
+				($this->getTarget() !== $p->getTarget()) || # not same location
+				(($pa === self::ACTION_INSIDE) && ($new_action === self::ACTION_OUTSIDE) && ($arrive)) # The checked party does not see our outside activity.
+			)
 			{
 				continue;
 			}
 			
-			$a1 = $this->getAction();
-			$a2 = $p->getAction();
+			printf("Arrive=%d, old=%s, new=%s\n", $arrive, $old_action, $new_action);
 			
-			$t1 = $this->getTarget();
-			$t2 = $p->getTarget();
-			
-			if ( ($a1 !== self::ACTION_INSIDE) && ($a1 !== self::ACTION_OUTSIDE) )
+			# Different event keys allow easy managing of #look list.
+			if (!$arrive)
 			{
-				return ;
+				if ($new_action === self::ACTION_OUTSIDE)
+				{
+					$key = '5284'; # %2$s is now outside of %1$s.
+				}
+				else
+				{
+					$key = '5283'; # %2$s left the %1$s and went away.
+				}
+			}
+			elseif ($new_action === self::ACTION_OUTSIDE)
+			{
+				$key = '5282'; # %2$s just arrived outside of %1$s.
+			}
+			elseif ($new_action !== $pa)
+			{
+				$key = '5281'; # %2$s walk(s) by and enter(s) the %1$s.
+			}
+			else
+			{
+				$key = '5280'; # %2$s just entered the %1$s.
 			}
 			
-			# TODO: Check if inside arrivals are announced to outside parties.
-// 			if ($a1 === self::ACTION_OUTSIDE)
-// 			{
-// 				$a1 = self::ACTION_INSIDE;
-// 			}
-			
-// 			if ($a2 === self::ACTION_OUTSIDE)
-// 			{
-// 				$a2 = self::ACTION_INSIDE;
-// 			}
-			
-			# Sharing the location for this event?
-			if ( ($a1 === $a2) && ($t1 === $t2) )
+			# Send events
+			foreach ($p->getMembers() as $member)
 			{
-				# Output!
-				if (!isset($message))
-				{
-					$message = sprintf('%s %s.', $this->displayMembers(false, true), $text_snippet);
-				}
-				foreach ($p->getMembers() as $player)
-				{
-					$player instanceof SR_Player;
-					$player->message($message); 
-					$player->setOption(SR_Player::LOOK_DIRTY); # Clients refresh.
-				}
+				$member instanceof SR_Player;
+				$args[0] = $loc->displayName($member);
+				$member->msg($key, $args);
 			}
 		}
 	}
 	
 	public function popAction($announce=false)
 	{
-// 		if (!$this->isHuman())
-// 		{
-// 			return $this->deleteParty();
-// 		}
+		# Diff Commands
+		$old_cmds = $this->getCurrentCommands();
 		
 		if ('0' === ($last_eta = $this->getVar('sr4pa_last_eta'))) {
 			$new_eta = 0;
@@ -519,7 +547,7 @@ final class SR_Party extends GDO
 		
 		$this->onCleanupHirelings();
 
-		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
+// 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 		
 		if ($announce === true)
 		{
@@ -529,6 +557,18 @@ final class SR_Party extends GDO
 				$member->msg('5093', array($this->displayAction($member)));
 			}
 // 			$this->notice('You continue '.$this->displayAction());
+		}
+		
+			
+		# Diff Commands
+		$new_cmds = $this->getCurrentCommands();
+		$this->sendCommandDiffs($old_cmds, $new_cmds);
+		
+		# Auto Look
+		$action = $this->getAction();
+		if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
+		{
+			$this->sendAutoLook();
 		}
 		
 		$this->timestamp = time();
@@ -628,7 +668,7 @@ final class SR_Party extends GDO
 	public function updateMembers()
 	{
 		$this->timestamp = time();
-		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+// 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		return $this->saveVars(array(
 			'sr4pa_members' => implode(',', array_keys($this->members)),
 			'sr4pa_distance' => implode(',', array_values($this->distance)),
@@ -762,8 +802,8 @@ final class SR_Party extends GDO
 // 			$this->notice(sprintf('You encounter %s.', $party->displayMembers(true, true)));
 // 			$party->notice(sprintf('You encounter %s.', $this->displayMembers(true, true)));
 		}
-		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
-		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+// 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+// 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 		return true;
 	}
 	
@@ -810,8 +850,8 @@ final class SR_Party extends GDO
 // 			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 		}
 		
-		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
-		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+// 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
+// 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 	}
 	
 	private function initFightBusy($neg=1)
@@ -825,7 +865,7 @@ final class SR_Party extends GDO
 			$member->busy(SR_Player::FIGHT_INIT_BUSY);
 			$member->initCombatStack();
 			$this->setupMaxDist();
-			$dist = Common::clamp($member->getBase('distance'), 0, $this->max_dist);
+			$dist = Common::clamp($member->getBase('distance'), 1, $this->max_dist);
 			$this->distance[$pid] = $neg * $dist;
 		}
 		return $this->updateMembers();
@@ -859,12 +899,20 @@ final class SR_Party extends GDO
 	##############
 	public static function getByID($partyid)
 	{
-		if (false === ($party = self::table(__CLASS__)->getRow($partyid))) {
+		if (false === ($party = self::table(__CLASS__)->getRow($partyid)))
+		{
 			return false;
 		}
-		if (false === $party->initMembers()) {
+		
+		$party instanceof SR_Party;
+		
+		if (false === $party->initMembers())
+		{
 			return false;
 		}
+		
+		$party->onPartyArrived();
+		
 		return $party;
 	}
 	
@@ -916,9 +964,12 @@ final class SR_Party extends GDO
 			'sr4pa_xp_total' => 0,
 			'sr4pa_level' => 0,
 		));
-		if (false === ($party->insert())) {
+		
+		if (false === ($party->insert()))
+		{
 			return false;
 		}
+		
 		Shadowrun4::addParty($party);
 		return $party;
 	}
@@ -1216,14 +1267,18 @@ final class SR_Party extends GDO
 		$pid = $player->getID();
 		$move = -$move;
 		$new_d = 0;
+		$move = round($move, 1);
 		$this->movePlayerB($pid, $move, $new_d);
+		$new_d = round($new_d, 1);
 		$busy = $player->busy(25);
 		$name = $player->displayNameNB();
 		$tn = $target->displayNameNB();
 		
 		$ep = $this->getEnemyParty();
-		$this->ntice('5097', array($name, abs($move), $tn, $new_d, $busy));
-		$ep->ntice('5098', array($name, abs($move), $tn, $new_d));
+		$args = array($name, abs($move), $tn, $new_d, $busy);
+		$this->ntice('5097', $args);
+		$ep->ntice('5097', $args);
+// 		$ep->ntice('5098', array($name, abs($move), $tn, $new_d));
 // 		$this->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters. %ds busy.', $name, abs($move), $tn, $new_d, $busy));
 // 		$this->getEnemyParty()->notice(sprintf('%s moves %.01f meters towards %s and is now on position %.01f meters.', $name, abs($move), $tn, $new_d));
 		return true;
@@ -1241,6 +1296,9 @@ final class SR_Party extends GDO
 		$new_d = 0;
 		$this->movePlayerB($pid, $by, $new_d);
 		$busy = $busy > 0 ? ', '.Shadowfunc::displayBusy($player->busy($busy)) : '.';
+		
+		$by = round($by, 1);
+		$new_d = round($new_d, 1);
 		
 		$ep = $this->getEnemyParty();
 		$pname = $player->getName();
@@ -1709,6 +1767,7 @@ final class SR_Party extends GDO
 	public function getPartyXP() { return $this->getVar('sr4pa_xp') / 100; }
 	public function getPartyXPTotal() { return $this->getVar('sr4pa_xp_total') / 100; }
 	public function getPartyLevel() { return $this->getVar('sr4pa_level'); }
+	public function savePartyLevel($level) { return $this->saveVar('sr4pa_level', $level); }
 	public function givePartyXP($xp)
 	{
 		$xp_gain = (int)round($xp*100);

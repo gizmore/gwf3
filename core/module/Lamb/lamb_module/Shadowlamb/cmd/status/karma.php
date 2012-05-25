@@ -17,7 +17,7 @@ final class Shadowcmd_karma extends Shadowcmd
 			$back .= sprintf($format, $member->getEnum(), $member->getName(), $karma);
 // 			$back .= sprintf(', %s-%s(%s)', $b.($member->getEnum()).$b, $member->getName(), $karma);
 		}
-		return self::rply($player, '5052', array($total, substr($back, 2)));
+		return self::rply($player, '5052', array($total, ltrim($back, ',; ')));
 // 		$bot->reply(sprintf('Your party has %s karma: %s.', $total, substr($back, 2)));
 // 		return true;
 	}

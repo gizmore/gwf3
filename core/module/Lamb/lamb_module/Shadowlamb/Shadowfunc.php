@@ -320,7 +320,7 @@ final class Shadowfunc
 			if ($target->isHuman()) # NPC attacks Human
 			{
 				$rand = rand(12, 20) / 10;
-				$oops = $rand + $ep->getMemberCount()*0.4 + $ep->getMax('level', true)*0.01;
+				$oops = $rand + $ep->getMemberCount()*0.3; # + $ep->getMax('level', true)*0.01;
 			}
 			else # NPC attacks NPC
 			{
@@ -378,8 +378,8 @@ final class Shadowfunc
 				$player->get('attack'), $player->get('defense'),
 				$player->get('min_dmg'), $player->get('max_dmg'),
 				$player->get('marm'), $player->get('farm'),
-				$player->getBase('xp'), $player->getBase('karma'),
-				$player->getNuyen(),
+				round($player->getBase('xp'), 2), $player->getBase('karma'),
+				round($player->getNuyen(), 2),
 				$player->displayWeight(), $player->displayMaxWeight(),
 			));
 		}	
@@ -391,8 +391,8 @@ final class Shadowfunc
 				$player->get('attack'), $player->get('defense'),
 				$player->get('min_dmg'), $player->get('max_dmg'),
 				$player->get('marm'), $player->get('farm'),
-				$player->getBase('xp'), $player->getBase('karma'),
-				$player->getNuyen(),
+				round($player->getBase('xp'), 2), $player->getBase('karma'),
+				round($player->getNuyen(), 2),
 				$player->displayWeight(), $player->displayMaxWeight(),
 			));
 		}
@@ -481,7 +481,7 @@ final class Shadowfunc
 // 			return sprintf('You are leading %d members (%s) and you are %s', $mc, $party->displayMembers($with_distance), $action);
 		}
 		else {
-			return $player->lang('5018', array($party->displayMembers($with_distance), $action));
+			return $player->lang('5018', array($mc, $party->displayMembers($with_distance), $action));
 // 			return sprintf('Your party (%s) is %s', $party->displayMembers($with_distance), $action);
 		}
 	}
@@ -769,20 +769,19 @@ final class Shadowfunc
 	{
 		$now = $old + $gain;
 		$sign = $gain > 0 ? '+' : '';
-		$pattern = Shadowrun4::lang('fmt_gain');
-		return sprintf($pattern, $sign, $gain, $now, $max, $unit);
+		$format = Shadowrun4::lang('fmt_gain');
+		return sprintf($format, $sign, round($gain,2), round($now,2), round($max,2), $unit);
 	}
 	
 	public static function displayNuyen($price, $precision=2)
 	{
-		return Shadowrun4::lang('ny'.$precision, array($price));
-// 		return sprintf('%.0'.$precision.'f¥', $price);
+		return Shadowrun4::lang('ny', array(sprintf('%.02f', $price)));
 	}
 	
 	public static function displayWeight($weight)
 	{
 		return $weight > 1000 ? 
-			Shadowrun4::lang('kg', array($weight/1000)) :
+			Shadowrun4::lang('kg', array(round($weight/1000, 2))) :
 			Shadowrun4::lang('g', array(round($weight)));
 	}
 	
@@ -882,29 +881,40 @@ final class Shadowfunc
 		foreach ($modifiers as $k => $v)
 		{
 			$back .= sprintf($format, $k, $v);
-// 			$back .= sprintf($format, $k, $v, '', self::shortcutModifier($k), $v);
-// 			$back .= sprintf(', %s:%s', $k, $v);
 		}
 		return ltrim($back, ',; ');
 	}
 	
 	public static function displayModifiers(SR_Player $player, array $modifiers)
 	{
-		if (count($modifiers) === 0)
-		{
-			return '';
-		}
-		
 		$back = '';
 		$format = Shadowrun4::lang('fmt_mods');
 		foreach ($modifiers as $k => $v)
 		{
 			$mod = Shadowfunc::shortcutVariable($player, $k);
-// 			$mod = translateVariable($player, $k);
 			$back .= sprintf($format, $mod, $v);
-// 			$back .= sprintf($format, $mod, $v, '', self::shortcutModifier($k), $v);
 		}
 		return ltrim($back, ',; ');
+	}
+	
+	public static function displayModifiersPacked(SR_Player $player, $modifiers)
+	{
+		$back = '';
+		if (!is_array($modifiers))
+		{
+			return $back;
+		}
+		$format = Shadowrun4::lang('fmt_mods');
+		foreach ($modifiers as $k => $v)
+		{
+			$back .= sprintf($format, self::packField($k), $v);
+		}
+		return ltrim($back, ',; ');
+	}
+	
+	private static function packField($field)
+	{
+		return self::shortcut($field, Shadowlang::getStatUUIDFile()->getTrans('en'));
 	}
 	
 	#############
@@ -1225,6 +1235,7 @@ final class Shadowfunc
 			
 			$ny = $loot_ny[$member->getID()];
 			$xp = $loot_xp[$member->getID()];
+// 			$xp = round($xp, 2);
 			
 			if ($ny > 0 || $xp > 0)
 			{
@@ -1343,7 +1354,7 @@ final class Shadowfunc
 			if ($is_store)
 			{
 				$price = $data[2];
-				$dprice = sprintf("(%s)",Shadowfunc::displayNuyen($price));
+				$dprice = sprintf("(%s)", Shadowfunc::displayNuyen($price));
 			}
 			$back .= sprintf($format, $idx+1, $itemname, $dcount, $dprice, $count, $price);
 // 			$back .= sprintf(', %s%d%s-%s%s%s', $b, $idx+1, $b, $itemname, $count, $dprice);
@@ -1462,14 +1473,15 @@ final class Shadowfunc
 // 			return true;
 		}
 		
-		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items,$is_store)))
+		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items, $is_store)))
 		{
 			return self::arrayGet($text, 'no_page', Shadowrun4::lang('1009'));
 // 			$bot->reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
 // 			return false;
 		}
 		
-		return sprintf('%s%s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr);
+		$code = self::arrayGet($text, 'code', '5276');
+		return $player->lang($code, array(sprintf('%s%s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr)));
 // 		return sprintf('%s, %s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr);
 	}
 	

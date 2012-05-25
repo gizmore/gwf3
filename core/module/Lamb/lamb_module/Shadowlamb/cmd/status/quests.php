@@ -124,7 +124,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		foreach ($by_city as $cityname => $data)
 		{
 			list($done, $total) = $data;
-			$out .= sprintf($format, $cityname, $done/$total*100);
+			$out .= sprintf($format, $cityname, round($done/$total*100,1));
 		}
 		
 		if ($out === '')
@@ -138,39 +138,69 @@ final class Shadowcmd_quests extends Shadowcmd
 		self::reply($player, $message);
 	}
 
+	private static function getCitySection($arg)
+	{
+		if (false === ($city = Shadowrun4::getCityByAbbrev($arg)))
+		{
+			return false;
+		}
+		return $city->getName();
+	}
+	
 	private static function displaySection(SR_Player $player, array $quests, $section, array $args)
 	{
-		$page = isset($args[1]) ? ((int)$args[1]) : 1;
+		$city = false;
+		$page = isset($args[2]) ? (int)$args[2] : 1;
+		if (isset($args[1]))
+		{
+			if (is_numeric($args[1]))
+			{
+				$page = (int)$args[1];
+			}
+			else
+			{
+				$city = self::getCitySection($args[1]);
+			}
+		}
+// 		$page = isset($args[1]) && Common::isNumeric($args[1]) ? ((int)$args[1]) : 1;
+		 
+		
+// 		$page = isset($args[1]) ? ((int)$args[1]) : 1;
 		$filtered = array();
-		$i = 1;
+		$i = 0;
 		foreach ($quests as $quest)
 		{
 			$quest instanceof SR_Quest;
+			
+			$i++;
+			
+			if ( ($city !== false) && ($city !== $quest->getCityName()) )
+			{
+				continue;
+			}
+			
 			$bitin = SR_Quest::$QUEST_FLAGS[$section][0];
 			$bitot = SR_Quest::$QUEST_FLAGS[$section][1];
 			if (($quest->getOptions() & $bitin) === $bitot)
 			{
 				$filtered[$i] = $quest;
 			}
-			$i++;
 		}
-		return self::displayMultiple($player, $filtered, $page, $section);
+		return self::displayMultiple($player, $filtered, $page, $section, '1178');
 	}
 	
-	private static function displayMultiple(SR_Player $player, array $quests, $page=1, $section='All')
+	private static function displayMultiple(SR_Player $player, array $quests, $page=1, $section='All', $errcode='1010')
 	{
 		$nQuests = count($quests);
 		$ipp = 10;
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nQuests);
 		$page = (int)$page;
 		
-		$format = Shadowrun4::lang('fmt_quests');
-		
 		if (count($quests) === 0)
 		{
-			return self::rply($player, '1010'); # There are no quests here.
+			return self::rply($player, $errcode); # There are no quests here.
 		}
-		if (count($quests) === 1)
+		if ( (count($quests) === 1) && ($player->getLangISO() !== 'bot') )
 		{
 			$id = key($quests);
 			return self::onDisplayQuest($player, $quests[$id], $id);
@@ -179,10 +209,11 @@ final class Shadowcmd_quests extends Shadowcmd
 		{
 			if ( ($page < 1) || ($page > $nPages) )
 			{
-				return self::reply($player, Shadowrun4::lang('1009'));
+				return self::reply($player, Shadowrun4::lang($errcode));
 			}
 			$quests = array_slice($quests, ($page-1)*10, 10, true);
 			$message = '';
+			$format = Shadowrun4::lang('fmt_quests');
 			foreach ($quests as $id => $quest)
 			{
 				$quest instanceof SR_Quest;
@@ -192,12 +223,12 @@ final class Shadowcmd_quests extends Shadowcmd
 			
 			if ($message === '')
 			{
-				return self::reply($player, Shadowrun4::lang('1010')); # There are no quests here.
+				return self::reply($player, Shadowrun4::lang($errcode)); # There are no quests here.
 			}
 			
 			$section = Shadowrun4::lang('qu_'.$section);
 			
-			return self::rply($player, '5069', array($section, $page, $nPages, substr($message, 2)));
+			return self::rply($player, '5069', array($section, $page, $nPages, ltrim($message, ',; ')));
 // 			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
 // 			$message = sprintf('%s quests, page %d/%d: %s.', $section, $page, $nPages, substr($message, 2));
 // 			self::reply($player, $message);
@@ -251,8 +282,9 @@ final class Shadowcmd_quests extends Shadowcmd
 			return $player->msg('1010');
 // 			return self::reply($player, 'This quest is unknown to you.');
 		}
+		// questid, city, status, questname, description,
 		$message = Shadowrun4::lang('5011', array(
-			$id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player)
+			$id, $quest->getCityName(), $quest->getStatusString($player), $quest->getQuestName(), $quest->getQuestDescription()
 		));
 // 		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
 		return self::reply($player, $message);

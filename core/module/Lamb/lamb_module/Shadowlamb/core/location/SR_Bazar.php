@@ -1,6 +1,8 @@
 <?php
-class SR_Bazar extends SR_Location
+abstract class SR_Bazar extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	const FEE = 4.5;
 	const POP_FEE = 50;
 	

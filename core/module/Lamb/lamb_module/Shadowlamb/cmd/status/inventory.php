@@ -7,9 +7,10 @@ final class Shadowcmd_inventory extends Shadowcmd
 		$items = $player->getInventory();
 		$text = array(
 			'usage' => Shadowhelp::getHelp($player, 'i'),
-			'prefix' => $player->lang('5005'),
+			'prefix' => $player->lang('inventory'),
+			'code' => '5005',
 		);
-		return Shadowfunc::genericViewI($player, $items, $args, $text, false);
+		Shadowfunc::genericViewI($player, $items, $args, $text, false);
 	}
 }
 ?>

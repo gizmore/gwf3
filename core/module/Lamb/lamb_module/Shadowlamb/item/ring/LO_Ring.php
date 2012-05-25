@@ -10,7 +10,8 @@ final class Item_LO_Ring extends SR_Ring
 		$back = array();
 		switch($player->getRace())
 		{
-			default: $back['body'] = 0.5; break;
+			default:
+				$back['body'] = 0.5; break;
 		}
 		return $back;
 	}

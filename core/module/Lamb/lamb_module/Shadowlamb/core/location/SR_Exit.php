@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Exit extends SR_Tower
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	/**
 	 * Get the exit location. Eg: Redmond_Hotel
 	 */

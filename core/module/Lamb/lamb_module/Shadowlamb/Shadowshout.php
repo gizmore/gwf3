@@ -114,7 +114,7 @@ final class Shadowshout
 						
 						if ($sid === $s->getID())
 						{
-							if ( ($channel !== false) && ($channel->getUserByName($u->getName())) )
+							if ( ($channel !== false) && ($channel->isUserInChannel($u->getName())) )
 							{
 								# TODO: fix this
 //								continue; # player already read it in irc.

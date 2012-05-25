@@ -25,9 +25,9 @@ final class Shadowcmd_unequip extends Shadowcmd
 			return false;
 		}
 		
-		if (false === $item->isEquipped($player))
+		if ( (!$item->isEquipped($player)) || ($item instanceof SR_Piercing) )
 		{
-			self::rply($player, '1067', array($item->getItemName()));
+			self::rply($player, '1067', array($player->lang($item->getItemType())));
 // 			$player->message(sprintf('You don`t have a %s equipped.', $item->getItemName()));
 			return false;
 		}

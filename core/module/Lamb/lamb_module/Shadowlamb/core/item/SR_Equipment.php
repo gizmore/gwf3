@@ -62,8 +62,8 @@ abstract class SR_Equipment extends SR_Usable
 		}
 		
 		# Announce
-		$type = $this->displayType();
-		$unam = $unequipped !== NULL ? $unequipped->displayName($player) : NULL;
+		$type = $this->displayEquipmentType($player);
+		$unam = $unequipped !== NULL ? $unequipped->displayFullName($player) : NULL;
 		$fnam = $this->displayFullName($player);
 		if ($combat)
 		{
@@ -93,7 +93,7 @@ abstract class SR_Equipment extends SR_Usable
 		}
 		
 		$player->modify();
-		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
+// 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
 		
 		return true;
 	}

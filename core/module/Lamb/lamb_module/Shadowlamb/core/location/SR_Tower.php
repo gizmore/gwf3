@@ -6,6 +6,8 @@
  */
 abstract class SR_Tower extends SR_Location
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	################
 	### Location ###
 	################
@@ -35,11 +37,6 @@ abstract class SR_Tower extends SR_Location
 // 		$party->giveKnowledge('places', $target);
 // 		return true;
 // 	}
-	
-	public function teleportInstant(SR_Player $player, $target, $action=SR_Party::ACTION_INSIDE)
-	{
-		return $this->beam($player, $target, $action);
-	}
 	
 	public function teleportInside(SR_Player $player, $target, $eta=10)
 	{
@@ -85,6 +82,8 @@ abstract class SR_Tower extends SR_Location
 				$member->message($location->getEnterText($member));
 			}
 		}
+		
+		
 		
 		return true;
 	}

@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Elevator extends SR_Tower
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	#############
 	### Const ###
 	#############

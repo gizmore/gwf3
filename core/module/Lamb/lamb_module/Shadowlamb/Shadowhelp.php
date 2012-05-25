@@ -78,7 +78,7 @@ final class Shadowhelp
 					'strength' => "The strength attribute raises attack for melee weapons. It also raises the max weight you can carry.",
 					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime and explore times will decrease.",
 					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",
-					'intelligence' => "Intelligence increases the power of your magic spells.",
+					'intelligence' => "Intelligence increases the power of your magic spells. It also increases your magic defense.",
 					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::BUY_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::SELL_PERCENT_CHARISMA."%) prices for your character.  You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
 					'luck' => "Luck increases the chance of better drops.",
 					'reputation' => "Reputation determines how famous you are amongst the world of Shadowlamb. Some quests require a minimum reputation.",
@@ -232,8 +232,14 @@ final class Shadowhelp
 
 					'leader_cmds' => 'Some special leader commands',
 					array(
-						'kick' => 'Leader command. Usage: #kick <player>. Kick a player from you party. See #ban.',
+						'leader' => 'Leader command. Usage: #(le)ader <member_name|member_enum>. Set a new party leader for your party.',
+						'party_loot' => "Leader command. Usage: #pl <killer|cycle|rand>. Define who loots the items from kills. The default is killer.",
 						'party_order' => 'Leader command. Usage #party_order <member1> <member2>. Swap the order of two party members.',
+						'fight' => 'Leader Command. Usage: #(fi)ght [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
+						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party. If you meet humans, both have to say bye so the "evil" players get a chance to kill you.',
+						'kick' => 'Leader command. Usage: #kick <player>. Kick a player from you party. See #ban.',
+						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
+						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',
 					),
 					
 					'guest_cmds' => 'These commands always work',
@@ -352,8 +358,8 @@ final class Shadowhelp
 						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
 						'hijack' => "Leader command. Usage: #hijack [<target>]. Try to break into a player mount and steal an item. This will always add {$hjbk} bad karma to your character for trying such bad things.",
 						'give' => 'Player command. Usage: #give <player_name> <inv_id|item> [<amount>]. Give a player in the same location some items. In combat this costs time. See also #givekp, #givekw and #giveny.',
-						'givekp' => 'Player command. Usage: #givekp <player_name> <#(kp)_id|place>. Tell a player in your location about a known place. See #give, #givekw and #giveny.',
-						'givekw' => 'Player command. Usage: #givekw <player_name> <#(kw)_id|word. Tell a player in your location about a known word. See #give, #givekp and #giveny.',
+						'givekp' => 'Player command. Usage: #givekp [<player_name>] <#(kp)_id|place>. Tell a player in your location about a known place. See #give, #givekw and #giveny. If no player is specified, it will tell all your party members about it.',
+						'givekw' => 'Player command. Usage: #givekw [<player_name>] <#(kw)_id|word>. Tell a player in your location about a known word. See #give, #givekp and #giveny. If no player is specified, it will tell all your party members about it.',
 						'giveny' => 'Player command. Usage: #giveny <player_name> <nuyen>. Give a player in your location some nuyen. See #give, #givekp and #givekw.',
 					),
 					
@@ -379,16 +385,10 @@ final class Shadowhelp
 					
 					'party_cmds' => 'Party commands',
 					array(
-						'leader' => 'Leader command. Usage: #(le)ader <member_name|member_enum>. Set a new party leader for your party.',
 						'request_leader' => 'Player command. Usage: #(r)equest_(l)eader. Request leadership in case the current leader is away.',
 						'join' => 'Player command. Usage: #(j)oin <player>. Join the party of another player who is at the same location as you. You can #look to see which players are around you.',
 						'part' => 'Player command. Usage: #(pa)rt. Leave your current party and create a fresh one.',
-						'fight' => 'Leader Command. Usage: #(fi)ght [<player>]. When you meet talking parties on the street you can #fight them. This command also works inside PVP locations.',
-						'bye' => 'Leader Command. Usage: #bye. Say goodbye to a talking party. If you meet humans, both have to say bye so the "evil" players get a chance to kill you.',
-						'party_loot' => "Leader command. Usage: #pl <killer|cycle|rand>. Define who loots the items from kills. The default is killer.",
 						'info' => "Player command. Usage: #info. Show the info text of your current location.",
-						'ban' => 'Leader command. Usage: #ban [<player>]. Ban all or one player from your party. If no argument is given you ban all players.',
-						'unban' => 'Leader command. Usage: #unban [<player>]. Unban all or one player from your party. If no argument is given your party will be open to all players again.',
 						'clan' => 'Player command. Usage: #clan [<player|historypage|!(m)embers>] [<memberpage>]. Show clan info for a player or browse the clan history or member pages.',
 					),
 					
@@ -406,10 +406,11 @@ final class Shadowhelp
 						'shop_cmds' => 'Store commands',
 						array(
 							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name> [<amount>]. In shops you can buy items with this command. The price depends on your negotiation.',
-							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In shops you can sell your items with this command. The price depends on your negotiation.',
+							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name> [<amount>]. In shops you can sell your items with this command. The price depends on your negotiation.',
+							'secondhand_sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In second hand stores you can only sell equipment, but modified items get slightly better prices here.',
 							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
-							'view' => 'Location command. Usage: #(v)iew [<pattern>] [<page>]. In some locations you can use view to list or search items stored there.',
- 							'viewi' => 'Location command: Usage: #(v)iew(i) <view_id>. In some locations you can use viewi to examine items stored there.',
+							'view' => 'Location command. Usage: #(v)iew [<pattern>] [<page>]. In shops and alike you can use view to list or search items stored there.',
+ 							'viewi' => 'Location command: Usage: #(v)iew(i) <view_id>. In shop and alike you can use viewi to examine items stored there.',
 						),
 						
 						'bank_cmds' => 'Bank commands',
@@ -418,6 +419,7 @@ final class Shadowhelp
 							'pushy' => "Location command. Usage: #pushy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
 							'pop' => NULL,
 							'popy' => "Location command. Usage: #popy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
+							'bank_search' => 'Location command. Usage: #search <term> [<page>]. Search your bank for items.',
 						),
 						
 						'bazar_cmds' => 'Bazar commands',
@@ -439,6 +441,12 @@ final class Shadowhelp
 							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
 							'upgrade' => 'Location command. Usage: #(up)grade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
 // 							'simulate' => 'Location command. Usage: #simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
+						),
+							
+						'piercer_cmds' => 'Piercer commands',
+						array(
+							'pierce' => 'Location command. Usage: #pierce <rune>. Apply a rune to your body. This rune cannot be upgraded further and is lost on #unpierce.',
+							'unpierce' => 'Location command. Usage: #unpierce. Remove your piercing which will be lost forever.',
 						),
 						
 						'school_cmds' => 'School and Temple commands',

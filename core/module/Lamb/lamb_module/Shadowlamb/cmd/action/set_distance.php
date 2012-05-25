@@ -19,10 +19,19 @@ final class Shadowcmd_set_distance extends Shadowcmd
 		
 		# Out of bounds
 		$d = round(floatval($args[0]), 1);
-		if ($d < 0 || $d > SR_Player::MAX_SD)
+		if ($d < 1 || $d > SR_Player::MAX_SD)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
+		}
+		
+		foreach ($player->getParty()->getMembers() as $member)
+		{
+			$member instanceof SR_Player;
+			if ($member->getLangISO() === 'bot')
+			{
+				$member->msg('5278', array($player->getName(), $d));
+			}
 		}
 		
 		$player->updateField('distance', $d);
@@ -44,7 +53,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 			$out .= sprintf($format, $member->getEnum(), $member->getName(), $val);
 // 			$out .= sprintf(', %s:%s(%s)', $member->getName(), $member->getBase('distance'), $p->getDistance($member));
 		}
-		return self::rply($player, $key, array(substr($out, 2)));
+		return self::rply($player, $key, array(ltrim($out, ',; ')));
 	}
 	
 }

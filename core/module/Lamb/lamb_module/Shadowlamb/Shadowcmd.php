@@ -12,91 +12,14 @@ class Shadowcmd
 	#################
 	### Shortcuts ###
 	#################
-/*	public static $CMD_SHORTCUTS = array(
-		'#' => 'attack',
-		'a' => 'attributes',
-		'ac' => 'accept',
-		'br' => 'brew',
-		'bk' => 'break',
-		'bu' => 'buy',
-		'bw' => 'backward',
-		'c' => 'commands',
-		'ca' => 'cast',
-		'cc' => 'ccommands',
-		'cl' => 'clan',
-		'cm' => 'clan_message',
-		'cmp' => 'compare',
-		'cy' => 'cyberware',
-		'dr' => 'drop',
-		'ef' => 'effects',
-		'en' => 'enter',
-		'eq' => 'equip',
-		'ex' => 'examine',
-		'exp' => 'explore',
-		'fi' => 'fight',
-		'fl' => 'flee',
-		'fw' => 'forward',
-		'g' => 'goto',
-		'gi' => 'give',
-		'gp' => 'givekp',
-		'gw' => 'givekw',
-		'gy' => 'giveny',
-		'h' => 'hunt',
-		'i' => 'inventory',
-		'in' => 'info',
-		'j' => 'join',
-		'ka' => 'karma',
-		'ki' => 'kick',
-		'kk' => 'known_knowledge',
-		'kp' => 'known_places',
-		'ks' => 'known_spells',
-		'kw' => 'known_words',
-		'l' => 'lvlup',
-		'le' => 'leader',
-		'lo' => 'look',
-		'ma' => 'manage',
-		'mo' => 'mount',
-		'mos' => 'mounts',
-		'ny' => 'nuyen',
-		'p' => 'party',
-		'pa' => 'part',
-		'pl' => 'party_loot',
-		'po' => 'party_order',
-		'pm' => 'party_message',
-		'q' => 'equipment',
-		'qu' => 'quests',
-		'r' => 'reload',
-		're' => 'request',
-		'rl' => 'request_leader',
-		'rm' => 'running_mode',
-		's' => 'status',
-		'sd' => 'set_distance',
-// 		'se' => 'sell',
-		'st' => 'steal',
-		'sh' => 'shout',
-		'sk' => 'skills',
-		'sw' => 'swap',
-		't' => 'travel',
-		'u' => 'use',
-		'uq' => 'unequip',
-// 		'up' => 'upgrade',
-		'v' => 'view',
-		'w' => 'whisper',
-		'wb' => 'whisper_back',
-		'we' => 'weight',
-		'x' => 'flee',
-	);*/
-	
 	private static function unshortcut($cmd)
 	{
 		return Shadowfunc::unshortcut(strtolower($cmd), self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
-// 		return Shadowfunc::unshortcut($cmd, self::$CMD_SHORTCUTS);
 	}
 	
 	private static function shortcut($cmd)
 	{
 		return Shadowfunc::shortcut(strtolower($cmd), self::$LANG_CMDS->getTrans(self::$CURRENT_PLAYER->getLangISO()));
-// 		return Shadowfunc::shortcut($cmd, self::$CMD_SHORTCUTS);
 	}
 	
 	public static function translate($cmd)
@@ -117,8 +40,6 @@ class Shadowcmd
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmlangfiles','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmul','gmns','gmx');
 	public static $CMDS_ALWAYS = array('ccommands','status','attributes','skills','equipment','party','party_loot','inventory','cyberware','lvlup','effects','examine','exx','show','compare','known_knowledge','known_places','known_spells','known_words','quests','say','swap','swapkp');
 	public static $CMDS_ALWAYS_HIDDEN = array('uid','commands','reset','redmond','bounty','bounties','clan','asl','aslset','nuyen','karma','hp','mp','weight','set_distance','running_mode','level','givekp','givekw','giveny','dropkp','mount','mounts','shout','whisper','whisper_back','clan_message','party_message','request_leader');
-// 	public static $CMDS_ALWAYS = array('cc','s','a','sk','q','p','pl','i','cy','l','ef','ex','show','cmp','kk','kp','ks','kw','qu','say','sw','swapkp');
-// 	public static $CMDS_ALWAYS_HIDDEN = array('c','reset','redmond','bounty','bounties','cl','asl','aslset','ny','ka','hp','mp','we','rm','level','gp','gw','gy','dropkp','mo','mos','sh','w','wb','sd','cm','pm','rl');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
@@ -132,35 +53,7 @@ class Shadowcmd
 		'travel' => array('use','reload','cast','equip','unequip','give','drop'),
 		'hijack' => array(),
 	);
-// 	public static $CMDS = array(
-// 		'delete' => array(),
-// 		'sleep' => array(),
-// 		'talk' => array('u','r','eq','uq','j','pa','gi','dr','ca','say'),
-// 		'fight' => array('fl','eq','uq','gi','idle','fw','bw','u','r','ca','#'),
-// 		'inside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
-// 		'outside' => array('j','pa','u','r','ca','eq','uq','gi','dr','lo','in'),
-// 		'explore' => array('u','r','ca','eq','uq','pa','gi','dr'),
-// 		'goto' => array('u','r','ca','eq','uq','gi','dr','pa'),
-// 		'hunt' => array('u','r','ca','eq','uq','gi','dr','pa'),
-// 		'travel' => array('u','r','ca','eq','uq','gi','dr'),
-// // 		'hijack' => array('u','r','ca','eq','uq','gi','dr','pa'),
-// 		'hijack' => array(),
-// 	);
-// 	public static $CMDS_LEADER_ALWAYS = array('le','po','npc','ban','unban');
 	public static $CMDS_LEADER_ALWAYS = array('leader','party_order','npc','ban','unban');
-// 	public static $CMDS_LEADER = array(
-// 		'delete' => array(),
-// 		'sleep' => array('stop'),
-// 		'talk' => array('ki','fi','bye'),
-// 		'fight' => array(),
-// 		'inside' => array('ki'),
-// 		'outside' => array('g','exp','h','ki'),
-// 		'explore' => array('g','exp','h','ki','stop'),
-// 		'goto' => array('g','exp','h','ki','stop'),
-// 		'hunt' => array('g','exp','h','ki','stop'), 
-// 		'travel' => array(),
-// 		'hijack' => array(),
-// 	);
 	public static $CMDS_LEADER = array(
 		'delete' => array(),
 		'sleep' => array('stop'),
@@ -246,11 +139,11 @@ class Shadowcmd
 			$commands = array_merge($commands, self::$CMDS[$action]);
 			if (false !== ($scanner = $player->getInvItemByName('Scanner_v6')))
 			{
-				$commands = array_merge(array('spy'), $commands);
+				$commands[] = 'spy';
 			}
 			if ($player->getBase('alchemy') >= 0)
 			{
-				$commands = array_merge(array('brew'), $commands);
+				$commands[] = 'brew';
 			}
 		}
 		
@@ -682,18 +575,16 @@ class Shadowcmd
 	#############
 	### Reply ###
 	#############
+	public static function rply(SR_Player $player, $key, $args=NULL)
+	{
+		return self::reply($player, $player->lang($key, $args));
+	}
+	
 	public static function reply(SR_Player $player, $message)
 	{
 		return (self::isCombatCommand() && $player->isFighting()) ?
 			$player->message($message) :
 			Shadowrap::instance($player)->reply($message);
-	}
-
-	public static function rply(SR_Player $player, $key, $args=NULL)
-	{
-		return (self::isCombatCommand() && $player->isFighting()) ?
-			$player->msg($key, $args) :
-			Shadowrap::instance($player)->reply(Shadowrun4::lang($key, $args));
 	}
 }
 ?>

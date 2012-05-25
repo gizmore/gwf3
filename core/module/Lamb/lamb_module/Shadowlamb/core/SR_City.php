@@ -92,7 +92,7 @@ abstract class SR_City
 		foreach ($items as $iname)
 		{
 //			printf("Testing item %s - %s.\n", get_class($npc), $iname);
-			if (false === SR_Item::createByName($iname, 1, false))
+			if (false === SR_Item::createByName($iname, true, false))
 			{
 				die(sprintf('The NPC %s has an invalid item: %s.', get_class($npc), $iname));
 			}
@@ -170,7 +170,7 @@ abstract class SR_City
 		{
 			$member instanceof SR_Player;
 			$text = $this->getArriveText($member);
-			$member->msg('5257', array($text, $this->getName()));
+			$member->msg('5257', array($this->getName(), $text));
 		}
 	}
 	
@@ -303,7 +303,7 @@ abstract class SR_City
 		{
 			$n = $l->getName();
 			$party->giveKnowledge('places', $n);
-			$party->ntice('5029', array($l->getFoundText($leader)));
+			$party->ntice('5029', array($n, $l->getFoundText($leader)));
 // 			$party->notice($l->getFoundText($leader));
 			$leader->hlp('hlp_in_outside');
 // 			$leader->help('When you find locations, you are outside of them. Use #goto or #enter to enter them. You can #(exp)lore again to find more locations.');

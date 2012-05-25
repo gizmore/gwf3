@@ -144,7 +144,7 @@ final class Shadowcmd_clan extends Shadowcmd
 // 			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
 		}
 		
-		return self::rply($player, '5040', array($nItems, $page, $nPages, substr($back, 2)));
+		return self::rply($player, '5040', array($nItems, $page, $nPages, ltrim($back, ',; ')));
 // 		return Shadowrap::instance($player)->reply(sprintf('%d ClanMembers page %d/%d: %s.', $nItems, $page, $nPages, substr($back, 2)));
 	}
 	

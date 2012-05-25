@@ -49,11 +49,14 @@ final class SR_BadKarma
 	 */
 	public static function addBadKarma(SR_Player $player, $add)
 	{
+		$add = round($add, 2);
+		
 		# Sane?
 		if ($add <= 0)
 		{
 			return true;
 		}
+		
 
 		# Get fraction
 		$fraction = SR_PlayerVar::getVal($player, '__SLBADKARMA', 0.00);

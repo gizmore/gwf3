@@ -47,7 +47,16 @@ final class Shadowcmd_look extends Shadowcmd
 		}
 
 		$player->setOption(SR_Player::RESPONSE_PLAYERS);
-		return self::rply($player, '5121', array(ltrim($back, ',; ')));
+		
+		if ($always_respond)
+		{
+			return self::rply($player, '5121', array(ltrim($back, ',; ')));
+		}
+		else
+		{
+			return $player->msg('5121', array(ltrim($back, ',; ')));
+		}
+		
 //		$bot->reply(sprintf('You see these players: %s.', substr($back, 2)));
 	}
 }

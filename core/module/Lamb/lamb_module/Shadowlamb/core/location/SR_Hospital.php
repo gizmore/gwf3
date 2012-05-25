@@ -1,6 +1,8 @@
 <?php
 abstract class SR_Hospital extends SR_Store
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	# Surgery prices
 	public function getGenderPrice($gender=NULL) { return 5000; }
 	public function getSkillPrice($skill=NULL) { return 6000; }
@@ -48,7 +50,8 @@ abstract class SR_Hospital extends SR_Store
 	public function getFoundText(SR_Player $player) { return $player->lang('stub_found_hospital'); }
 	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter_hospital'); }
 	public function getHelpText(SR_Player $player) { return $player->lang('hlp_hospital'); }
-	
+	public function getStoreViewCode() { return '5277'; }
+
 	############
 	### Heal ###
 	############

@@ -21,6 +21,7 @@ abstract class SR_Location
 	private $name;
 	
 	public function __construct($name) { $this->name = $name; }
+	public function getAbstractClassName() { return __CLASS__; }
 	public function getName() { return $this->name; }
 	public function getShortName() { return Common::substrFrom($this->name, '_', $this->name); }
 	public function getNPCS(SR_Player $player) { return array(); }
@@ -30,7 +31,7 @@ abstract class SR_Location
 	public function getFoundText(SR_Player $player) { return $player->lang('stub_found', array($this->getName())); }
 	public function getEnterText(SR_Player $player) { return $player->lang('stub_enter', array($this->getName())); }
 	public function getHelpText(SR_Player $player) { return $this->getHelpTextNPCs($player); }
-// 	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
+//	public function getFoundText(SR_Player $player) { return sprintf('You found %s. There is no description yet.', $this->getName()); }
 // 	public function getEnterText(SR_Player $player) { return sprintf('You enter the %s. There is no text yet.', $this->getName()); }
 // 	public function getHelpText(SR_Player $player) { return false; }
 	public function isPVP() { return false; }
@@ -48,6 +49,35 @@ abstract class SR_Location
 	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isEnterAllowed($m))) return false; return true; }
 	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isExitAllowed($m))) return false; return true; }
 	public function getLeaderCommands(SR_Player $player) { $back = array(); if ($this->isExitAllowedParty($player->getParty())) $back = array('hunt','exit','goto','explore'); return $back; }
+	
+	############
+	### Lang ###
+	############
+	public function displayName(SR_Player $player)
+	{
+		return $this->getName();
+		
+		# Overriden by location?
+// 		if ($this->hasLang('name'))
+// 		{
+// 			return $this->lang($player, 'name');
+// 		}
+
+// 		# Default classname
+// 		$key = strtolower($this->getAbstractClassname());
+// 		if (Shadowrun4::hasLang($key))
+// 		{
+// 			return Shadowrun4::langPlayer($player, $key);
+// 		}
+		
+// 		# Nothing at all :O
+// 		return $this->getName();
+	}
+	
+	public function hasLang($key)
+	{
+		return Shadowlang::hasLangLocation($this, $key);
+	}
 	
 	public function lang(SR_Player $player, $key, $args=NULL)
 	{
@@ -88,7 +118,7 @@ abstract class SR_Location
 			
 			if (false !== ($text = $this->getEnterText($member)))
 			{
-				$member->message($text);
+				$member->msg('5275', array($text,$this->getName()));
 			}
 			if (false !== ($text = $this->getHelpText($member)))
 			{
@@ -124,18 +154,21 @@ abstract class SR_Location
 	 */
 	public function __call($name, $args)
 	{
-		$player = array_shift($args);
-		$args = array_shift($args);;
-		$npcs = $this->getNPCS($player);
-		$word = count($args) > 0 ? array_shift($args) : '';
-		if (isset($npcs[$name]))
+		if ($args !== NULL)
 		{
-			if (false !== ($npc = Shadowrun4::getNPC($npcs[$name])))
+			$player = array_shift($args);
+			$args = array_shift($args);;
+			$npcs = $this->getNPCS($player);
+			$word = count($args) > 0 ? array_shift($args) : '';
+			if (isset($npcs[$name]))
 			{
-				return $npc->onNPCTalkA($player, $word, $args);
+				if (false !== ($npc = Shadowrun4::getNPC($npcs[$name])))
+				{
+					return $npc->onNPCTalkA($player, $word, $args);
+				}
 			}
 		}
-		
+				
 		Lamb_Log::logError("ERROR: Unknown function '$name'.");
 		return false;
 	}
@@ -208,7 +241,7 @@ abstract class SR_Location
 		# None
 		if (count($npcs) === 0)
 		{
-			return '';
+			return false;
 		}
 		
 		# Single
@@ -217,6 +250,7 @@ abstract class SR_Location
 			$cmd = '#'.key($npcs);
 			$classname = array_pop($npcs);
 			$npc = Shadowrun4::getNPC($classname);
+			$npc->setChatPartner($player);
 			return ' '.$player->lang('hlp_talking1', array($cmd, $npc->getName()));
 		}
 		

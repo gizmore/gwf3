@@ -6,12 +6,18 @@ final class Shadowcmd_known_places extends Shadowcmd
 		$bot = Shadowrap::instance($player);
 		$party = $player->getParty();
 		$city = false;
-		if (count($args) === 1)
+		if (count($args) >= 1)
 		{
-			$city = Shadowrun4::getCityByAbbrev($args[0]);
+			if (is_numeric($args[0]))
+			{
+				$city = Shadowrun4::getCityByID($args[0]);
+			}
+			else
+			{
+				$city = Shadowrun4::getCityByAbbrev($args[0]);
+			}
 		}
-		
-		if ($city === false)
+		else
 		{
 			$city = $party->getCityClass();
 		}

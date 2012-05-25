@@ -105,6 +105,8 @@ class SR_Item extends GDO
 	
 	public function isEquipped(SR_Player $player) { return false; }
 	public function setOwnerID($pid) { $this->setVar('sr4it_uid', $pid); }
+	public function setAmount($amt) { $this->setVar('sr4it_amount', $amt); }
+
 	
 	##################
 	### StaticLoad ###
@@ -213,6 +215,18 @@ class SR_Item extends GDO
 	 */
 	public static function createByName($itemname, $amount=true, $insert=true)
 	{
+// 		printf("%s(%s, %s, %s)\n", __METHOD__, $itemname, $amount, $insert);
+		
+		if ($amount === true)
+		{
+// 			printf("%s(%s, %s, %s)\n", __METHOD__, $itemname, $amount, $insert);
+			if (preg_match('/^(\\d+)x(.*)$/iD', $itemname, $matches))
+			{
+				$amount = (int) $matches[1];
+				$itemname = $matches[2];
+			}
+		}
+		
 		$name = Common::substrUntil($itemname, '_of_', $itemname);
 		if (!array_key_exists($name, self::$items))
 		{
@@ -306,7 +320,7 @@ class SR_Item extends GDO
 	}
 	
 	/**
-	 * Get full item name including modifiers.
+	 * Get raw database full item name including modifiers.
 	 * @example Foo_of_bar:1,foobar:2
 	 * @return string
 	 */
@@ -353,6 +367,14 @@ class SR_Item extends GDO
 	
 	public function getItemInfo(SR_Player $player)
 	{
+		return $this->displayItemInfo($player);
+// 		return $player->getLangISO() === 'bot'
+// 			? $this->displayPacked($player)
+// 			: $this->displayItemInfo($player);
+	}
+	
+	public function displayItemInfo($player)
+	{
 		return $player->lang('fmt_examine', array(
 			Shadowlang::displayItemname($player, $this),
 			$player->lang($this->displayType()),
@@ -365,8 +387,38 @@ class SR_Item extends GDO
 			$this->displayUseTime($player),
 			$this->displayWeightB(),
 			$this->displayDuration(),
-			$this->displayWorth()
+			$this->displayWorth(),
 		));
+	}
+	
+	public function displayPacked(SR_Player $player)
+	{
+		return $player->lang('fmt_exx', array(
+			Shadowlang::getItemUUID($this),
+			$this->getAmount(),
+			$this->getItemLevel(),
+			Shadowfunc::displayModifiersPacked($player, $this->getItemModifiersA($player)),
+			Shadowfunc::displayModifiersPacked($player, $this->getItemModifiersB($player)),
+			Shadowfunc::displayModifiersPacked($player, $this->getItemRequirements()),
+			$this->getItemPrice(),
+			$this->getItemWeight(),
+			$this->getItemRange(),
+			$this->getItemUsetime(),
+		));
+	}
+	
+	public function getNamePacked(SR_Player $player)
+	{
+		$back = '';
+		if (1 < ($amt = $this->getAmount()))
+		{
+			$back .= $amt.'x';
+		}
+		if ($this->isItemStatted())
+		{
+			$back .= '_of_'.Shadowfunc::displayModifiersPacked($player, $this->getItemModifiersB($player));
+		}
+		return $back;
 	}
 	
 	public function displayDescription(SR_Player $player)
@@ -439,9 +491,10 @@ class SR_Item extends GDO
 	### Display ###
 	###############
 	public function displayName(SR_Player $player) { return Shadowlang::displayItemname($player, $this); }
-	public function displayFullName(SR_Player $player) { return Shadowlang::displayItemnameFull($player, $this); }
+	public function displayFullName(SR_Player $player, $short_mods=false) { return Shadowlang::displayItemnameFull($player, $this, $short_mods); }
 	public function displayType() { return 'Item'; }
-	public function displayLevel(SR_Player $player) { return Shadowfunc::displayALevel($player, $this->getItemLevel()); }
+	public function displayEquipmentType(SR_Player $player) { return Shadowrun4::langPlayer($player, $this->getItemType()); }
+	public function displayLevel(SR_Player $player) { return Shadowfunc::displayALevel($this->getItemLevel()); }
 	public function displayRequirements(SR_Player $player) { return Shadowfunc::getRequirements($player, $this->getItemRequirements()); }
 	
 	public function displayModifiersA(SR_Player $player)
@@ -527,6 +580,7 @@ class SR_Item extends GDO
 	######################
 	### Item Overrides ###
 	######################
+	public final function getItemUUID() { return Shadowlang::getItemUUID($this); }
 	public function getItemModifiersA(SR_Player $player) { return array(); }
 	public function getItemAvail() { return 100.00; }
 	public function getItemDropChance() { return 100.00; }
@@ -536,8 +590,8 @@ class SR_Item extends GDO
 	public function getItemRange() { return 0.0; }
 	public function getItemPrice() { return -1; }
 	public function getItemWeight() { return -1; }
-	public function getItemWeightStacked() { return $this->getItemWeight() * $this->getAmount(); }
-	public function getItemPriceStacked() { return $this->getItemPrice() * $this->getAmount(); }
+	public final function getItemWeightStacked() { return $this->getItemWeight() * $this->getAmount(); }
+	public final function getItemPriceStacked() { return $this->getItemPrice() * $this->getAmount(); }
 	public function getItemUsetime() { return 60; }
 	public function getItemEquipTime() { return 0; }
 	public function getItemUnequipTime() { return 0; }
@@ -546,7 +600,7 @@ class SR_Item extends GDO
 	public function getItemTypeDescr(SR_Player $player) { return '__ITEM_TYPE_DESCRIPTION'; }
 	public function getItemDefaultAmount() { return 1; }
 	public function getItemRequirements() { return array(); }
-	public function isItemStatted() { return $this->modifiers !== NULL; }
+	public final function isItemStatted() { return $this->modifiers !== NULL; }
 	public function isItemSellable() { return $this->getItemPrice() > 0; }
 	public function isItemLootable() { return true; }
 	public function isItemTradeable() { return true; }

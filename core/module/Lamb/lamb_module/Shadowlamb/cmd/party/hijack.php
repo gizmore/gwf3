@@ -63,7 +63,7 @@ final class Shadowcmd_hijack extends Shadowcmd
 				$out .= sprintf($format, ($i+1), $victim->getName(), $mount->getName());
 // 				$out .= sprintf(", \x02%s\x02-%s(%s)", ($i+1), $victim->getName(), $mount->getName());
 			}
-			return self::rply($player, '5130', array(substr($out, 2)));
+			return self::rply($player, '5130', array(ltrim($out, ',; ')));
 // 			return $bot->reply(substr($out, 2));
 		}
 		

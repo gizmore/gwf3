@@ -1,12 +1,15 @@
 <?php
 abstract class SR_School extends SR_Store
 {
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	/**
 	 * Get the courses for a school. array(array(field, price))
 	 * @param SR_Player $player
 	 */
 	public abstract function getFields(SR_Player $player);
 
+	public function displayName(SR_Player $player) { return Shadowrun4::langPlayer($player, 'ln_school'); }
 	public function getStoreItems(SR_Player $player) { return array(); }
 	public function hasStoreItems(SR_Player $player) { return count($this->getStoreItems($player)) > 0; }
 	
@@ -31,17 +34,18 @@ abstract class SR_School extends SR_Store
 	{
 		$bot = Shadowrap::instance($player);
 		
-		$format = $player->lang('fmt_bazar_shops');
+		$format = $player->lang('fmt_sumlist');
+		$i = 1;
 		$c = '';
 		foreach ($this->getFields($player) as $data)
 		{
 			$price = Shadowfunc::calcBuyPrice($data[1], $player);
 			$dp = Shadowfunc::displayNuyen($price);
-			$c .= sprintf($format, $data[0], $dp);
+			$c .= sprintf($format, $i++, $data[0], $dp);
 // 			$c .= sprintf(', %s(%s)', $data[0], $price);
 		}
 		
-		$c = $c === '' ? $player->lang('none') : substr($c, 2);
+		$c = $c === '' ? $player->lang('none') : ltrim($c, ',; ');
 		return $bot->rply('5183', array($c));
 // 		$bot->reply(sprintf('Available Courses: %s.', substr($c, 2)));
 // 		return true;
@@ -126,13 +130,13 @@ abstract class SR_School extends SR_Store
 		if ($type === 'spell') {
 			$player->levelupSpell($field, 1);
 		} elseif ($type === 'skill') {
-			$player->updateField($field, 0);
+			$player->levelupFieldTo($field, 0);
 		} else {
 			$player->message('Database error!');
 			return Lamb_Log::logError(sprintf('Learned field "%s" is neither a skill nor a spell!', $field));
 		}
 	
-		$player->modify();
+// 		$player->modify();
 		
 		$player->msg('5184', array($dp, $field));
 // 		$player->message(sprintf('You pay %s and learned the %s %s.', $dp, $type, $field));
