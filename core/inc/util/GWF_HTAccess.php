@@ -50,10 +50,10 @@ final class GWF_HTAccess
 	public static function getPostHTAccess()
 	{
 		return
-			PHP_EOL.
-			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-			'RewriteRule ^(.*)/(.*)(?:/?|/\?(.*))$ index.php?mo=$1&me=$2&$3 [L,QSA]'.
+#			PHP_EOL.
+#			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+#			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
+#			'RewriteRule ^(.*)/(.*)(?:/?|/\?(.*))$ index.php?mo=$1&me=$2&$3 [L,QSA]'.
 #			'RewriteRule ^(.*)/(.*)/?$ index.php?mo=$1&me=$2 [L,QSA]'.
 			PHP_EOL;
 	}
