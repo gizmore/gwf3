@@ -42,7 +42,7 @@ class Shadowcmd_givekp extends Shadowcmd
 			return false;
 		}
 		
-		return self::giveKnow($player, $target, 'places', $tlc);
+		return self::giveKnow($player, $targets, 'places', $tlc);
 	}
 	
 	public static function giveKnow(SR_Player $player, array $targets, $what, $which)
