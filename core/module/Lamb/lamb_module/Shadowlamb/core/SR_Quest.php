@@ -528,11 +528,14 @@ class SR_Quest extends GDO
 		
 		$player->giveItems($giveitems, $player->lang('quest_reward'));
 		
-		$out = $nystr.$xpstr.$itemstr;
-		if ($out !== '')
+		if ($player->getLangISO() !== 'bot')
 		{
-			$player->msg('5240', substr($out, 2));
-// 			$player->message(sprintf('You received %s.', substr($out, 2)));
+			$out = $nystr.$xpstr.$itemstr;
+			if ($out !== '')
+			{
+				$player->msg('5240', substr($out, 2));
+	// 			$player->message(sprintf('You received %s.', substr($out, 2)));
+			}
 		}
 	}
 	
