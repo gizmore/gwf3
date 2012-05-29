@@ -307,6 +307,7 @@ final class GWF_Time
 			case 4:
 				$convert['y'] = intval(substr($date, 0, 4), 10);
 				if ($convert['y'] > date('Y')+$max_future_years) { return false; }
+				return true;
 			default:
 				return false;
 		}
