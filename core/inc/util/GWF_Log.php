@@ -76,7 +76,7 @@ final class GWF_Log
 
 		if (false === $post && count($_POST) > 0)
 		{
-			$back .= self::$POST_DELIMITER .'POSTDATA'.self::stripPassword($_GET);
+			$back .= self::$POST_DELIMITER .'POSTDATA'.self::stripPassword($_POST);
 		}
 		return $back;
 	}
