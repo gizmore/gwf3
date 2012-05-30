@@ -2,7 +2,7 @@
 $lang = array(
 	'title' => 'PHP - Local File Inclusion',
 	'info' =>
-		'Votre mission est d'exploiter ce code, lequel a évidemment une :<a href="http://en.wikipedia.org/wiki/Local_File_Inclusion">faille LFI</a>:<br/>'.PHP_EOL.
+		'Votre mission est d\'exploiter ce code, lequel a évidemment une :<a href="http://en.wikipedia.org/wiki/Local_File_Inclusion">faille LFI</a>:<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'<code>%1$s</code><br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
