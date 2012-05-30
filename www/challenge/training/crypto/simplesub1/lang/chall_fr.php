@@ -1,10 +1,10 @@
-<?php
+ï»¿<?php
 $lang = array(
 	'title' => 'Crypto - Simple Substitution I',
 	'info' =>
-		'Oh là là, Je suppose que vous avez déjà craqué deux crypto de Caesar...<br/>'.
+		'Oh lÃ  lÃ , Je suppose que vous avez dÃ©jÃ  craquÃ© deux crypto de Caesar...<br/>'.
 		'Celui-ci est plus difficile. Bien qu'une <a href="http://fr.wikipedia.org/wiki/Chiffrement_par_substitution#Les_chiffrements_par_substitution_monoalphab.C3.A9tique">simple substitution</a> est facilement crackable...<br/>'.
-		'Encore que les caractères sont limités de A-Z... Mais je pense que je peux encore faire une version à 256.<br/>'.
+		'Encore que les caractÃ¨res sont limitÃ©s de A-Z... Mais je pense que je peux encore faire une version Ã  256.<br/>'.
 		'<br/>'.
 		'Enjoy!',
 

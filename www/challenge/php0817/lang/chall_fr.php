@@ -1,8 +1,8 @@
-<?php
+ï»¿<?php
 $lang = array(
 	'title' => 'PHP-0817',
 	'info' =>
-		'J'ai écrit un autre système d'intégration pour mes pages web dynamiques, mais il semble être vulnérable à la faille LFI.<br/>'.
+		'J'ai Ã©crit un autre systÃ¨me d'intÃ©gration pour mes pages web dynamiques, mais il semble Ãªtre vulnÃ©rable Ã  la faille LFI.<br/>'.
 		'Voici le code:<br/>'.
 		'%1$s<br/>'.
 		'Votre mission est d'inclure <a href="%2$s">solution.php</a>.<br/>'.
@@ -10,7 +10,7 @@ $lang = array(
 		'<br/>'.
 		'Bonne chance!<br/>',
 
-	'msg_solved' => 'Bien joué, trop facile... Savez-vous pourquoi c'est possible ?',
-	'err_security' => 'Parce que le code est sacrément vulnérable, les points et les slash ne sont pas autorisés dans votre entrée.',
+	'msg_solved' => 'Bien jouÃ©, trop facile... Savez-vous pourquoi c'est possible ?',
+	'err_security' => 'Parce que le code est sacrÃ©ment vulnÃ©rable, les points et les slash ne sont pas autorisÃ©s dans votre entrÃ©e.',
 );
 ?>
