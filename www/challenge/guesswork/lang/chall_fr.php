@@ -12,7 +12,7 @@ $lang = array(
 		'gizmore'.PHP_EOL.
 		PHP_EOL.
 		'PS: [b]Ne réutilisez pas les mots de passe importants![/b]'.PHP_EOL.
-		'Edit: Je pense que vous n'êtes même plus un utilisateur légitime, depuis que vous postez de nouveaux élèments :WEIRD:',
+		'Edit: Je pense que vous n\'êtes même plus un utilisateur légitime, depuis que vous postez de nouveaux élèments :WEIRD:',
 	'err_bf' => 'BruteforceProtection&trade;',
 	'err_close' => 'héhé.... Votre êtes proche',
 	'err_wrong' => 'Le couple user/password est inconnu.',
@@ -20,6 +20,6 @@ $lang = array(
 		'Bien joué. Vous avez maintenant le contrôle sur le compte WeChall.<br/>'.
 		'N'en abusez pas trop, cela dit, vous pouvez vous amuser sur les forums ou via la shoutbox.<br/>'.
 		'WeChall est un utilisateur régulier, les PM ne sont pas autorisés.<br/>',
-		'Amusez vous bien, bons challenges et :&nbsp;<span style="color:red;">pas d'abus!</span><br/>'.
+		'Amusez vous bien, bons challenges et :&nbsp;<span style="color:red;">pas d\'abus!</span><br/>'.
 		'Si vous trouvez qu'il y a moyen d'en abuser, faites-nous en part!',
 );
