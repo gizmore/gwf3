@@ -7,6 +7,7 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 	{
 		$b = chr(2);
 		$quest = SR_Quest::getQuest($player, 'Redmond_Blacksmith');
+		$quest instanceof Quest_Redmond_Blacksmith;
 		$has = $quest->isInQuest($player);
 		$done = $quest->isDone($player);
 		
@@ -79,8 +80,8 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 				}
 				else
 				{
-					$player->giveKnowledge('words', 'Smithing');
 					$this->rply('hello');
+					$player->giveKnowledge('words', 'Smithing');
 // 					$this->reply("Hello. I am Galdor and I master the art of {$b}smithing{$b} and {$b}runecrafting{$b}.");
 				}
 				break;

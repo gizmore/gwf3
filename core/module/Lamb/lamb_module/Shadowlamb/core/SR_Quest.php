@@ -517,7 +517,7 @@ class SR_Quest extends GDO
 		{
 			if (false !== ($item = SR_Item::createByName($itemname)))
 			{
-				$itemstr .= ', '.$itemname;
+// 				$itemstr .= ', '.$itemname;
 				$giveitems[] = $item;
 			}
 			else
@@ -530,7 +530,7 @@ class SR_Quest extends GDO
 		
 		if ($player->getLangISO() !== 'bot')
 		{
-			$out = $nystr.$xpstr.$itemstr;
+			$out = $nystr.$xpstr;#.$itemstr;
 			if ($out !== '')
 			{
 				$player->msg('5240', substr($out, 2));

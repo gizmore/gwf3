@@ -29,16 +29,26 @@ final class Redmond_Ork extends SR_NPC
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		// check for the first killed ork 
+		# check for the first killed ork 
 		foreach ($player->getParty()->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
 			$quest = SR_Quest::getQuest($member, 'Renraku_I');
 			$quest instanceof Quest_Renraku_I;
-			if (false === $quest->checkOrk($member)) {
+			if (false === $quest->checkOrk($member))
+			{
 				$quest->setOrk($member);
 			}
 		}
+		
+		# OrkRage
+		$quest = SR_Quest::getQuest($player, 'Redmond_OrkRage');
+		$quest instanceof Quest_Redmond_OrkRage;
+		if ($quest->isInQuest($player))
+		{
+			$quest->onKilled($player);
+		}
+		
 		return array();
 	}
 }

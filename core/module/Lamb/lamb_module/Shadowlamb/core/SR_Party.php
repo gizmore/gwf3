@@ -790,11 +790,11 @@ final class SR_Party extends GDO
 		
 		$this->pushAction(self::ACTION_FIGHT, $party->getID(), 0);
 		$party->pushAction(self::ACTION_FIGHT, $this->getID(), 0);
-		$this->initFightBusy(1);
-		$party->initFightBusy(-1);
 		$this->initNPCb($party);
 		$this->setContactEta(rand(10,25));
 		$party->setContactEta(rand(10,25));
+		$this->initFightBusy(1);
+		$party->initFightBusy(-1);
 		if ($announce === true)
 		{
 			$this->ntice('5095', array($party->displayMembers(true, true)));
@@ -841,11 +841,13 @@ final class SR_Party extends GDO
 		$party->pushAction(self::ACTION_TALK, $this->getID(), 0);
 		$this->setContactEta(60);
 		$party->setContactEta(60);
+		$this->initFightBusy(1);
+		$party->initFightBusy(-1);
 		
 		if ($announce === true)
 		{
-			$this->ntice('5096', array($party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
-			$party->ntice('5096', array($this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
+			$this->ntice('5096', array($party->displayMembers(true, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
+			$party->ntice('5096', array($this->displayMembers(true, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 // 			$this->notice(sprintf('You meet %s.%s%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
 // 			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 		}

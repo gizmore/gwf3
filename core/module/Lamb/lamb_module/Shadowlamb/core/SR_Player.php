@@ -216,7 +216,7 @@ class SR_Player extends GDO
 	public function isFemale() { return $this->getGender() === 'female'; }
 	public static function getGenders() { return array_keys(self::$GENDER); }
 	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getServerID()); }
-	public function displayName() { $u = $this->getUser(); return sprintf("\X02%s{%s}\X02", Lamb::softhyphe($u->getName()), $u->getServerID()) ; }
+	public function displayName() { $u = $this->getUser(); return sprintf("\X02%s{%s}\X02", $u->getName(), $u->getServerID()) ; }
 	public function displayNameNB() { return $this->getEnum().'-'.trim($this->displayName(), "\X02"); }
 	public function getShortName() { return $this->getUser()->getName(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }

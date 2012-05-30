@@ -22,7 +22,7 @@ final class Quest_Redmond_Blacksmith extends SR_Quest
 	public function onQuestSolve(SR_Player $player)
 	{
 		$this->msg('solve1');
-		$this->msg('solve2');
+		$this->msg('solve2', array($this->getRewardNuyen()));
 // 		$player->message('The dwarf cheers: "Thank you very much. Now I can get back to work!"');
 // 		$player->message('"Take this as a special reward", the dwarf says. (He hands you 200 nuyen)');
 // 		$player->giveNuyen(200);
