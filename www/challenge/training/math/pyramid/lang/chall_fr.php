@@ -1,14 +1,14 @@
-<?php
+ï»¿<?php
 $lang = array(
 	'title' => 'Math - Math Pyramid',
 	'info' =>
-		'Ceci est la première parution d'un challenge de mathématiques.<br/>'.
-		'Vous avez à trouver la solution la plus courte (%1$s caractères ou moins) pour la fonction géométrique.<br/>'.
+		'Ceci est la premiÃ¨re parution d\'un challenge de mathÃ©matiques.<br/>'.
+		'Vous avez Ã  trouver la solution la plus courte (%1$s caractÃ¨res ou moins) pour la fonction gÃ©omÃ©trique.<br/>'.
 		'Et l\'histoire est la suivante:<br/>'.
 		'<br/>'.
-		'Pharao %3$s veut une <b>pyramide à base carrée</b>, où les huit bords sont de même longueur \'a\'.<br/>'.
-		'Aidez-le avec une formule pour calculer le volume pour une longueur de côté donné.<br/>'.
-		'Vos collègues ont déjà dessiné un croquis de la pyramide vue de face:<br/>'.
+		'Pharao %3$s veut une <b>pyramide Ã  base carrÃ©e</b>, oÃ¹ les huit bords sont de mÃªme longueur \'a\'.<br/>'.
+		'Aidez-le avec une formule pour calculer le volume pour une longueur de cÃ´tÃ© donnÃ©.<br/>'.
+		'Vos collÃ¨gues ont dÃ©jÃ  dessinÃ© un croquis de la pyramide vue de face:<br/>'.
 		'%2$s<br/>'.
 		'<br/>'.
 		'Exemple de formule: a^3/3*sqrt(a*a)<br/>'.
@@ -16,15 +16,15 @@ $lang = array(
 		'<br/>'.
 		'Enjoy!<br/>'.
 		'<br/>'.
-		'Merci à %3$s pour l\'idée, %4$s pour les tests, %5$s pour une copie d\'EvalMath et %6$s pour l\'écriture de la class EvalMath.',
+		'Merci Ã  %3$s pour l\'idÃ©e, %4$s pour les tests, %5$s pour une copie d\'EvalMath et %6$s pour l\'Ã©criture de la class EvalMath.',
 
 	'th_formula' => 'Votre formule',
-	'btn_go' => 'Montrer à Momo',
+	'btn_go' => 'Montrer Ã  Momo',
 	'msg_formula' => 'Utilisation de \'%1$s\' comme formule...',
-	'err_wrong' => 'Test de f(%1$s) = %2$s équivalent à (%1$s) = %3$s ... faux!',
-	'msg_correct' => 'Test de f(%1$s) = %2$s équivalent à f(%1$s) = %3$s ... correct!',
-	'err_too_long' => 'Votre formule a %1$s caractères de longueur et dépasse la longueur maximale authorisée de %2$s.',
-	'msg_new_record' => 'Vous avez cassé le record de %2$s caractères et vous l\'avais placé à %1$s!',
+	'err_wrong' => 'Test de f(%1$s) = %2$s Ã©quivalent Ã  (%1$s) = %3$s ... faux!',
+	'msg_correct' => 'Test de f(%1$s) = %2$s Ã©quivalent Ã  f(%1$s) = %3$s ... correct!',
+	'err_too_long' => 'Votre formule a %1$s caractÃ¨res de longueur et dÃ©passe la longueur maximale authorisÃ©e de %2$s.',
+	'msg_new_record' => 'Vous avez cassÃ© le record de %2$s caractÃ¨res et vous l\'avais placÃ© Ã  %1$s!',
 	'err_formula' => 'Votre formule \'%1$s\' semble invalide.',
 );
 ?>
