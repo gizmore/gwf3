@@ -125,7 +125,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		$player->giveNuyen($price);
 
 		$dprice = Shadowfunc::displayNuyen($price);
-		return $bot->rply('5191', array('1', $item->getItemName(), $dprice, $player->displayWeight(), $player->displayMaxWeight()));
+		return $bot->rply('5191', array('1', $item->displayFullName($player), $dprice, $player->displayWeight(), $player->displayMaxWeight()));
 // 		$bot->reply(sprintf('You sold your %s for %s.%s', $item->getItemName(), Shadowfunc::displayNuyen($price), $statmsg));
 // 		return true;
 	}

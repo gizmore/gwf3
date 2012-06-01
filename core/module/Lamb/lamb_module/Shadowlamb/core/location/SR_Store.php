@@ -249,13 +249,6 @@ abstract class SR_Store extends SR_Location
 		$price = $amt * $dummyitem->getStorePrice();
 		$dprice = Shadowfunc::displayNuyen($price);
 		
-		if (false === ($player->pay($price)))
-		{
-			$bot->rply('1063', array($dprice, $player->displayNuyen()));
-// 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
-			return false;
-		}
-		
 		# Confirm?
 		if ($confirm)
 		{
@@ -271,6 +264,13 @@ abstract class SR_Store extends SR_Location
 			{
 				$player->unsetTemp(self::CONFIRM_BUY_ID);
 			}
+		}
+		
+		if (false === ($player->pay($price)))
+		{
+			$bot->rply('1063', array($dprice, $player->displayNuyen()));
+// 			$bot->reply(sprintf('You can not afford %s. You need %s but only have %s.', $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowfunc::displayNuyen($player->getBase('nuyen'))));
+			return false;
 		}
 		
 		# Insert the items
@@ -391,7 +391,7 @@ abstract class SR_Store extends SR_Location
 		$player->giveNuyen($total);
 
 		return $bot->rply('5191', array(
-			$amt, $item->getItemName(), Shadowfunc::displayNuyen($total),
+			$amt, $item->displayFullName($player), Shadowfunc::displayNuyen($total),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
 		
