@@ -9,7 +9,7 @@ $lang = array(
 		'J\'ai réparé ça et à présent je peux utiliser n\'importe quel caractère ascii dans le texte.<br/>'.
 		'L\'espace de solution a aussi été augmenté de 26 à 128. \o/<br/>'.
 		'<br/>'.
-		'Note: Le text contient des lettres majuscule ainsi qu'une ponctuation correcte. Les accents ont été remplacé par des voyelles normales.<br/>'.
+		'Note: Le text contient des lettres majuscule ainsi qu\'une ponctuation correcte. Les accents ont été remplacé par des voyelles normales.<br/>'.
 		'<br/>'.
 		'Enjoy!',
 
