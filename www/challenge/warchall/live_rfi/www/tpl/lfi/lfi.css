@@ -1,0 +1,27 @@
+#gwf3_topmenu {
+	background: url(text.png) left center no-repeat #000;
+	background-size: 50% 80px;
+	width: 100%;
+	height: 80px;
+/* 	padding-left: 50%; */
+	text-align: right;
+}
+
+body {
+	background: url(bg.jpg) no-repeat #000 center;
+	background-size: 100%;
+}
+
+#gwf3_page {
+	height: 100%;
+	min-height: 480px;
+	padding: 10px;
+}
+
+* {
+	color: #fff;
+}
+
+hr {
+	margin: 5px;
+}

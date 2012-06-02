@@ -39,7 +39,7 @@ define('GWF_DEFAULT_URL', 'about'); # 1st visit URL. Example: 'home'.
 define('GWF_DEFAULT_LANG', 'en'); # Fallback language. Should be 'en'.
 define('GWF_DEFAULT_MODULE', 'GWF'); # 1st visit module. Example: 'MyModule'.
 define('GWF_DEFAULT_METHOD', 'About'); # 1st visit method. Example: 'Home'.
-define('GWF_DEFAULT_DESIGN', 'default'); # Default design. Example: 'default'.
+define('GWF_DEFAULT_DESIGN', 'lfi'); # Default design. Example: 'default'.
 define('GWF_ICON_SET', 'default'); # Default Icon-Set. Example: 'default'.
 //define('GWF_DOWN_REASON', 'Converting the database atm. should be back within 45 minutes.'); # The Message if maintainance-mode is enabled.
 
