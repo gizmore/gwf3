@@ -14,6 +14,7 @@ cp -R /opt/php/gwf3/www/challenge/warchall/live_lfi/www/* /home/level/14_live_fi
 rm /home/level/14_live_fi/www/.htaccess
 chown -R root:level14 /home/level/14_live_fi/www
 chmod -R 0750 /home/level/14_live_fi/www
+chmod -R 0770 /home/level/14_live_fi/www/temp
 
 # Copy VHOST APACHE
 cp /opt/php/gwf3/www/challenge/warchall/live_lfi/install/live_fi.conf /etc/apache2/vhosts.d
