@@ -10,7 +10,7 @@ chown -R root:level15 /home/level/15_live_rfi
 chmod -R 0750 /home/level/15_live_rfi
 
 # Copy www files
-cp -R /opt/php/gwf3/www/challenge/warchall/live_rfi/www/* /home/level/15_live_fi/www
+cp -R /opt/php/gwf3/www/challenge/warchall/live_rfi/www/* /home/level/15_live_rfi/www
 rm /home/level/15_live_rfi/www/.htaccess
 chown -R root:level15 /home/level/15_live_rfi/www
 chmod -R 0750 /home/level/15_live_rfi/www
