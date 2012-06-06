@@ -22,27 +22,32 @@ final class GWF_GTranslate
 	{
 		$to = strtolower(trim($to));
 		$from = strtolower(trim($from));
-		if ($from === $to) {
+		if ($from === $to)
+		{
 			return $text;
 		}
-		if ($text === '') {
+		if ($text === '')
+		{
 			return $text;
 		}
-		if ( (!in_array($from, self::$LANGUAGES, true)) && $from !== 'auto' ) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+		if ( (!in_array($from, self::$LANGUAGES, true)) && $from !== 'auto' )
+		{
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 		if (!in_array($to, self::$LANGUAGES, true)) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 
-		if ($from === 'auto') {
+		if ($from === 'auto')
+		{
 			$from = '';
 		}
 
 		$keyString = '';
-		if (self::API_KEY !== '') {
+		if (self::API_KEY !== '')
+		{
 			$keyString = '&key='.urlencode(self::API_KEY);
 		}
 		$postString = sprintf('v=%s%s&q=%s&langpair=%s|%s&userip=%s', self::VERSION, $keyString, urlencode($text), $from, $to, $_SERVER['REMOTE_ADDR']);
@@ -65,8 +70,9 @@ final class GWF_GTranslate
 	private static function parseResponse($response)
 	{
 		$result = json_decode($response);
-		if ($result->responseStatus !== 200) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+		if ($result->responseStatus !== 200)
+		{
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 		return $result->responseData->translatedText;
@@ -78,7 +84,8 @@ final class GWF_GTranslate
 	public static function detectLanguage($text)
 	{
 		$keyString = '';
-		if (self::API_KEY !== '') {
+		if (self::API_KEY !== '')
+		{
 			$keyString = '&key='.urlencode(self::API_KEY);
 		}
 		$url = sprintf('%s?v=%s%s&q=%s&userip=%s', self::URL_DETECT, self::VERSION, $keyString, urlencode($text), $_SERVER['REMOTE_ADDR']);
@@ -99,8 +106,9 @@ final class GWF_GTranslate
 	private static function parseResponseDetect($response)
 	{
 		$result = json_decode($response);
-		if ($result->responseStatus !== 200) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+		if ($result->responseStatus !== 200)
+		{
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		return $result->responseData->language;
 	}
