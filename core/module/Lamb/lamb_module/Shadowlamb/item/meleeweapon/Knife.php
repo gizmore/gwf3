@@ -2,7 +2,7 @@
 final class Item_Knife extends SR_MeleeWeapon
 {
 	public function getAttackTime() { return 30; }
-	public function getItemLevel() { return 2; }
+	public function getItemLevel() { return 1; }
 	public function getItemWeight() { return 250; }
 	public function getItemPrice() { return 150; }
 	public function getItemRange() { return 1.4; }
