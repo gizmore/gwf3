@@ -14,7 +14,7 @@ abstract class SR_Blacksmith extends SR_Store
 	public function getSplitPrice(SR_Player $player) { return 200; }
 	public function getSplitPercentPrice(SR_Player $player) { return 35.00; }
 
-	public function getCommands(SR_Player $player) { return array('view','viewi','buy','sell','clean','break','split'/*,'simulate'*/,'upgrade'); }
+	public function getCommands(SR_Player $player) { return array('view','viewi','buy','sell','clean','break','split','upgrade','safeupgrade'); }
 // 	public function getEnterText(SR_Player $player) { return 'You enter the '.$this->getName().'. You see two dwarfs at the counter.'; }
 //	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. Do {$c}simulate first if you like to see the odds. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
 // 	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "At a blacksmith you can {$c}upgrade equipment with runes. You can also {$c}break items into runes or {$c}clean them. It is also possible to {$c}split runes. Also {$c}view, {$c}buy and {$c}sell works here."; }
@@ -232,8 +232,16 @@ abstract class SR_Blacksmith extends SR_Store
 	### Upgrade / Simulate ###
 	##########################
 	private static $UPGRADE_CONFIRM = array();
-	public function on_upgrade(SR_Player $player, array $args)
+	public function on_upgrade(SR_Player $player, array $args) { return $this->onUpgradeB($player, $args, false); }
+	public function on_safeupgrade(SR_Player $player, array $args) { return $this->onUpgradeB($player, $args, true); }
+	
+	public function onUpgradeB(SR_Player $player, array $args, $safe)
 	{
+		$pid = $player->getID();
+		$safebit = $safe ? 'X' : 'Y';
+		$old_msg = isset(self::$UPGRADE_CONFIRM[$pid.$safebit]) ? self::$UPGRADE_CONFIRM[$pid.$safebit] : '';
+		unset(self::$UPGRADE_CONFIRM[$pid.$safebit]);
+		
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 2)
 		{
@@ -314,14 +322,18 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		$fail = round(Common::clamp($fail, 5, 85), 2);
 		$break = round(Common::clamp($break, 1, 50), 2);
-
+		
+		if ($safe)
+		{
+			$fail -= 5;
+			$break = 0;
+		}
+		
 		## Confirm
-		$pid = $player->getID();
 		$msg = implode(' ', $args);
-		$old_msg = isset(self::$UPGRADE_CONFIRM[$pid]) ? self::$UPGRADE_CONFIRM[$pid] : '';
 		if ($msg !== $old_msg)
 		{
-			self::$UPGRADE_CONFIRM[$pid] = $msg;
+			self::$UPGRADE_CONFIRM[$pid.$safebit] = $msg;
 			return $player->msg('5211', array(
 				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
 			));
@@ -330,17 +342,30 @@ abstract class SR_Blacksmith extends SR_Store
 // 				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
 // 			));
 		}
-		else
-		{
-			unset(self::$UPGRADE_CONFIRM[$pid]);
-		}
-
+		
 		if (!$player->hasNuyen($price_u))
 		{
 			$bot->rply('1063', array($dpu, $player->displayNuyen()));
 // 			$bot->reply(sprintf('The smith says: "I am sorry chummer, the upgrade would cost you %s."', $dpu));
 			return false;
 		}
+		
+		# Safe mode
+		if ($safe)
+		{
+			$break = 0;
+			if (false === ($oil = $player->getInvItemByName('MagicOil')))
+			{
+				$bot->rply('1187', array(Shadowlang::displayItemNameS('MagicOil')));
+				return false;
+			}
+			if (!$oil->useAmount($player, 1))
+			{
+				$bot->reply('DB Error 19');
+				return false;
+			}
+		}
+
 			
 			
 		$player->msg('5212');
@@ -352,7 +377,7 @@ abstract class SR_Blacksmith extends SR_Store
 			if (Shadowfunc::dicePercent($break))
 			{
 				$player->removeItem($item);
-				$bot->rply('5213');
+				$bot->rply('5213', array($item->getItemName(), $rune->getItemName()));
 // 				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
 			}
 			else
@@ -360,16 +385,17 @@ abstract class SR_Blacksmith extends SR_Store
 				$price_f = $this->calcUpgradePrice($player, 0);
 				$player->pay($price_f);
 				$dpf = Shadowfunc::displayNuyen($price_f);
-				$bot->rply('5214', array($dpf));
+				$bot->rply('5214', array($dpf, $rune->getItemName()));
 // 				$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
 			}
 		}
 		else
 		{
 			$player->pay($price_u);
+			$old_name = $item->displayFullName($player);
 			$item->addModifiers($rune->getItemModifiersB(), true);
 			$item->addModifiers($rune->getItemModifiersA($player), true);
-			$bot->rply('5215', array($dpu, $item->getItemName()));
+			$bot->rply('5215', array($dpu, $item->displayFullName($player), $old_name, $rune->displayFullName($player)));
 // 			$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
 		}
 			
@@ -521,11 +547,11 @@ abstract class SR_Blacksmith extends SR_Store
 		foreach ($party->getMembers() as $player)
 		{
 			$pid = $player->getID();
-			unset(self::$UPGRADE_CONFIRM[$pid]);
+			unset(self::$UPGRADE_CONFIRM[$pid.'X']);
+			unset(self::$UPGRADE_CONFIRM[$pid.'Y']);
 			unset(self::$SPLIT_CONFIRM[$pid]);
 			unset(self::$BREAK_CONFIRM[$pid]);
 		}
 	}
-
 }
 ?>
