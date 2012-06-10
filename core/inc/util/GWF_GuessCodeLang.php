@@ -51,6 +51,14 @@ final class GWF_GuessCodeLang
 			array('/#include\s+(<|")/i', 6),
 			array('/#define\s+/i', 6),
 		),
+		'DiffFileFormat' => array(
+			array('/^(\+|\-){3}/'),
+			array('/^[\+\- ]/'),
+		),
+		'python' => array(
+			array('/^#/usr/bin/python/', 6),
+			array('//', 6),
+		),
 	);
 
 	/**

@@ -22,7 +22,7 @@ $chall->showHeader();
 # Highlighter BBCode
 if (isset($_GET['highlight']) && $_GET['highlight'] === 'christmas')
 {
-	echo GWF_Message::display('[PH'.'P]'.file_get_contents($_SERVER['SCRIPT_FILENAME']).'[/PH'.'P]');
+	echo GWF_Message::display('[PHP]'.file_get_contents($_SERVER['SCRIPT_FILENAME']).'[/PHP]');
 	require_once('challenge/html_foot.php');
 	return;
 }
@@ -41,7 +41,7 @@ $ex = array('welcome', 'news', 'forums');
 $showsrc1 = 'index.php?show=source';
 $showsrc2 = 'index.php?highlight=christmas';
 foreach ($ex as $i => $e) { $ex[$i] = htmlspecialchars($url.$e); }
-echo GWF_Box::box($chall->lang('info', array(GWF_Message::display('[PH'.'P]'.$code.PHP_EOL.$code2.'[/PH'.'P]'), '../solution.php', $showsrc1, $showsrc2, $ex[0], $ex[1], $ex[2])), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', array(GWF_Message::display('[PHP]'.$code.PHP_EOL.$code2.'[/PHP]'), '../solution.php', $showsrc1, $showsrc2, $ex[0], $ex[1], $ex[2])), $chall->lang('title'));
 
 # Execute the code, using eval.
 GWF_Debug::setDieOnError(false);
@@ -51,7 +51,7 @@ eval($code.$code_emulate_pnb); # eval the first line
 echo '<div class="box">'.PHP_EOL;
 echo '<div class="box_t">'.$chall->lang('example_title').' ('.htmlspecialchars($filename).')'.'</div>'.PHP_EOL;
 echo '<div class="box_c">'.PHP_EOL;
-if (lfiIsSafeDir($filename) === true) { eval($code2); } # Eval the seconds line, when safe.
+if (lfiIsSafeDir($filename) === true) { eval($code2); } # Eval the second line, when safe.
 else { echo GWF_HTML::error('LFI', $chall->lang('err_basedir'), false); }
 echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
