@@ -32,6 +32,7 @@ $lang = array(
 'loot_nyxp' => '. You loot %s and %s XP',
 'page' => ', page %s/%s: %s.',
 'from_brewing' => 'brewing magic potions',
+'from_recipe' => 'a recipe',
 'members' => '%s members',
 'of' => '_with_', # MIT, AVEC, CON
 'range' => " {$b}Range{$b}: %s.",
@@ -452,6 +453,9 @@ $lang = array(
 '1182' => 'You have no piercing that could be removed.',
 '1183' => 'You already have a piercing. Use #unpierce to remove it first.',
 '1184' => 'You can only pierce yourself with a rune.',
+'1185' => 'This recipe is unknown.',
+'1186' => 'To get %s brewed you are missing %s.',
+'1187' => 'You need %s to safeupgrade items.',
 
 ########################
 # 10000-14999 = Spells #
@@ -808,6 +812,9 @@ $lang = array(
 '5288' => 'It would cost %s to remove your %s. Type #unpierce %s to confirm.', # nuyen, piercing, iamsure
 '5289' => 'You pay %s and get your %s removed.', # nuyen, piercing
 '5290' => 'You received %s.', # nuyen
+'5291' => 'You paid %s and received %s from brewing the %s recipe. You have used these incredients: %s.', #ny, item, recipe, incredients
+'5292' => 'Recipes to brew: %s.', # list
+'5293' => '%1$s(%2$s): Take %4$s to create %3$s.',
 
 ####################
 ### Shadowclient ###

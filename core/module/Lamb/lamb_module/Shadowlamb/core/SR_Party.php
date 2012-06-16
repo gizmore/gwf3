@@ -571,6 +571,11 @@ final class SR_Party extends GDO
 			$this->sendAutoLook();
 		}
 		
+		if ($action === self::ACTION_INSIDE)
+		{
+			$this->getLocationClass()->onEnterLocation($this);
+		}
+		
 		$this->timestamp = time();
 		
 		return true;
@@ -1568,6 +1573,8 @@ final class SR_Party extends GDO
 			$this->timestamp = time();
 			foreach ($this->members as $player)
 			{
+				$player instanceof SR_Player;
+				
 				# Make sure player hasn't left because of something like #cast bunny.
 				if ( $player->getParty() !== $this )
 				{

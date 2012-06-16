@@ -1,9 +1,24 @@
 <?php
 final class Forest_Clearing extends SR_Location
 {
-	const NEED_STR = 35;
+	const NEED_STR = 28;
 	const THESWORD = 'DemonSword_of_attack:10,magic:5,melee:5';
 	const SWORDKEY = 'SFC_SWORD';
+	const SKELSKEY = 'SFC_SKELS';
+	
+	public static function getNumSkeletons(SR_Player $player)
+	{
+		$party = $player->getParty();
+		$amt = 2 + $party->getMemberCount() * 2;
+		return Common::clamp($amt, 4, SR_Party::MAX_MEMBERS);
+	}
+	
+	public static function getNumBanshees(SR_Player $player)
+	{
+		$party = $player->getParty();
+		$amt = 2 + $party->getMemberCount();
+		return Common::clamp($amt, 3, SR_Party::MAX_MEMBERS);
+	}
 	
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 	public function getEnterText(SR_Player $player)
@@ -51,17 +66,43 @@ final class Forest_Clearing extends SR_Location
 	{
 		$p = $player->getParty();
 		
-		if (!$player->giveItem(SR_Item::createByName(self::THESWORD)))
+		$numSkels = self::getNumSkeletons($player);
+		
+		$this->partyMessage($player, 'pulled1', array($player->getName()));
+		$this->partyMessage($player, 'pulled2');
+		$this->partyMessage($player, 'pulled3');
+		$this->partyMessage($player, 'pulled4', array($numSkels));
+		
+		$skels = array();
+		for ($i = 0; $i < $numSkels; $i++)
 		{
-			return false;
+			$skels[] = 'Forest_Skeleton';
 		}
 		
-		$this->partyMessage($player, 'pulled', array($player->getName()));
+		SR_PlayerVar::setVal($player, self::SKELSKEY, '0');
 		
-		SR_PlayerVar::setVal($player, self::SWORDKEY, '1');
-		
-		$p->fight(SR_NPC::createEnemyParty('Forest_Ghost','Forest_Ghost','Forest_Ghost','Forest_Ghost','Forest_Ghost'));
-		
+		$p->fight(SR_NPC::createEnemyParty($skels));
+	}
+	
+	public function onEnterLocation(SR_Party $party)
+	{
+		$player = $party->getLeader();
+		if ('1' === SR_PlayerVar::getVal($player, self::SWORDKEY, '0'))
+		{
+			$numBansh = self::getNumBanshees($player);
+			
+			$this->partyMessage($player, 'magic1');
+			$this->partyMessage($player, 'magic2');
+			$this->partyMessage($player, 'magic3');
+			
+			$enemies = array('Forest_Mordak');
+			for ($i = 0; $i < $numBansh; $i++)
+			{
+				$enemies[] = 'Forest_Banshee';
+			}
+			shuffle($enemies); # Legitimate use of shuffle!
+			$party->fight(SR_NPC::createEnemyParty($enemies));
+		}
 	}
 }
 ?>

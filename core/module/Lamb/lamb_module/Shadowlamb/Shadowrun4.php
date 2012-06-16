@@ -601,6 +601,7 @@ final class Shadowrun4
 				}
 				else 
 				{
+					self::$parties[$id] instanceof SR_Party; 
 					self::$parties[$id]->timer(self::$sr_timestamp);
 				}
 			}

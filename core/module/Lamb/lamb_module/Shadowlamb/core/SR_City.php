@@ -67,6 +67,8 @@ abstract class SR_City
 		$npc->setNPCClassName($classname);
 		$this->npcs[$classname] = $npc;
 		$this->checkNPCEquipment($npc);
+		$this->checkNPCStats($npc);
+		$this->checkNPCSpells($npc);
 	}
 	
 	private function checkNPCEquipment(SR_NPC $npc)
@@ -95,6 +97,45 @@ abstract class SR_City
 			if (false === SR_Item::createByName($iname, true, false))
 			{
 				die(sprintf('The NPC %s has an invalid item: %s.', get_class($npc), $iname));
+			}
+		}
+	}
+	
+	private function checkNPCStats(SR_NPC $npc)
+	{
+		$mods = $npc->getNPCModifiers();
+		
+		foreach ($mods as $key => $value)
+		{
+			if (!$this->checkNPCStat($key))
+			{
+				die(sprintf('The NPC %s has an invalid modifier: %s.', get_class($npc), $key));
+			}
+		}
+	}
+	
+	private function checkNPCStat($key)
+	{
+		$specials = array('nuyen', 'base_hp', 'base_mp', 'race', 'gender', 'distance');
+		if (  (in_array($key, SR_Player::$ATTRIBUTE))
+			||(in_array($key, $specials))
+			||(in_array($key, SR_Player::$SKILL))
+			||(in_array($key, SR_Player::$KNOWLEDGE))
+		)
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private function checkNPCSpells(SR_NPC $npc)
+	{
+		foreach ($npc->getNPCSpells() as $spell => $level)
+		{
+			if (false === SR_Spell::getSpell($spell))
+			{
+				die(sprintf('The NPC %s has an unknown spell: %s.', get_class($npc), $spell));
 			}
 		}
 	}
@@ -301,6 +342,7 @@ abstract class SR_City
 		}
 		else
 		{
+			$l instanceof SR_Location;
 			$n = $l->getName();
 			$party->giveKnowledge('places', $n);
 			$party->ntice('5029', array($n, $l->getFoundText($leader)));

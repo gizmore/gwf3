@@ -26,6 +26,6 @@ $lang = array(
 	'come' => 'Grazie amico mio. Vieni con me...',
 	'teaching' => 'Il monaco ti insegna l\'abilità ninja. Questa aumenterà il danno e l\'attacco con le armi ninja.',
 	
-	'src' => 'Sono spiacente ma imparare l\'abilità ninja costerebbe %s.',
+	'sry' => 'Sono spiacente ma imparare l\'abilità ninja costerebbe %s.',
 );
 ?>

@@ -173,6 +173,7 @@ $lang = array(
 	'upgrade' => 'actualizar',
 	'use' => 'usar',
 	'view' => 'ver',
+	'wakeup' => 'wakeup',
 	'weight' => 'peso',
 	'whisper' => 'susurrar',
 	'whisper_back' => 'susurrar_respuesta',

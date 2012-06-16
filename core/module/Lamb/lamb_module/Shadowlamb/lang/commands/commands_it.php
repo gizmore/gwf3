@@ -175,6 +175,7 @@ $lang = array(
 	'use' => 'usa',
 	'view' => 'guarda',
 	'viewi' => 'guarda',
+	'wakeup' => 'wakeup',
 	'weight' => 'peso',
 	'whisper' => 'sussurra',
 	'whisper_back' => 'rispondi_sussurro',

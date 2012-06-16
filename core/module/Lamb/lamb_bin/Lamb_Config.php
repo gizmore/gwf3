@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru,#mo,#Nasu_gaming',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru,#Nasu_gaming',
 			'admins' => 'gizmore',
 		),
 		
@@ -86,7 +86,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://epic.irc.hackthissite.org:7000',
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
-			'channels' => '#shadowlamb,#hackthissite',
+			'channels' => '#shadowlamb',#,#hackthissite',
 			'admins' => 'gizmore',
 		),
 		
@@ -110,7 +110,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.gizmore.org:6666',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite,#metamorph',
+			'channels' => '#wechall,#shadowlamb,#sr,#revolutionelite',
 			'admins' => 'gizmore',
 		),
 		
@@ -171,13 +171,13 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-		array(
-			'host' => 'ircs://irc.enigmagroup.org:6697',
-			'nickname' => 'Lamb3',
-			'password' => 'lamblamb',
-			'channels' => '#wechall,#shadowlamb',
-			'admins' => 'gizmore',
-		),
+#		array(
+#			'host' => 'ircs://irc.enigmagroup.org:6697',
+#			'nickname' => 'Lamb3',
+#			'password' => 'lamblamb',
+#			'channels' => '#wechall,#shadowlamb',
+#			'admins' => 'gizmore',
+#		),
 		
 		array(
 			'host' => 'ircs://lanthanum.vutral.net:6667',
@@ -264,6 +264,13 @@ $LAMB_CFG = array
 //			'admins' => 'gizmore',
 //		),
 		
+		array(
+			'host' => 'irc.zoite.net:6667',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
 	),
 );
 ?>

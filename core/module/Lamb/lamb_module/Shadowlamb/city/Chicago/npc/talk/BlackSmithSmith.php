@@ -8,6 +8,7 @@ final class Chicago_BlackSmithSmith extends SR_TalkingNPC
 		return array(
 			'Chicago_BlackSmith2',
 			'Chicago_BlackSmith1',
+			'Chicago_BlackSmith3',
 		);
 	}
 	

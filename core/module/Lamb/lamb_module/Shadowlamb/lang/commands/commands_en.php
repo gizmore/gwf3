@@ -175,6 +175,7 @@ $lang = array(
 	'use' => 'use',
 	'view' => 'view',
 	'viewi' => 'viewi',
+	'wakeup' => 'wakeup',
 	'weight' => 'weight',
 	'whisper' => 'whisper',
 	'whisper_back' => 'whisper_back',

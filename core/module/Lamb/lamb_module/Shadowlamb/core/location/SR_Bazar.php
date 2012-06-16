@@ -38,7 +38,7 @@ abstract class SR_Bazar extends SR_Location
 	
 	public function getCommands(SR_Player $player)
 	{
-		return array('push','pop','view','search','buy','bestbuy','buyslot','slogan','price');
+		return array('push', 'pop', 'view', 'search', 'buy', 'bestbuy', 'buyslot', 'slogan', 'price');
 	}
 	
 	public function getBazarSlots(SR_Player $player)
@@ -945,18 +945,29 @@ abstract class SR_Bazar extends SR_Location
 		if ($old_term === $term)
 		{
 			$page = $player->getTemp(self::TEMP_PAGE, 1);
-			$player->setTemp(self::TEMP_PAGE, $page+1);
+			if ($page >= $nPages)
+			{
+				$player->unsetTemp(self::TEMP_PAGE);
+			}
+			else
+			{
+				$player->setTemp(self::TEMP_PAGE, $page+1);
+			}
 		}
 		else
 		{
 			$player->setTemp(self::TEMP_SEARCH, $term);
-			$player->setTemp(self::TEMP_PAGE, 2);
 			$page = 1;
+			if ($page < $nPages)
+			{
+				$player->setTemp(self::TEMP_PAGE, 2);
+			}
 		}
 		
 		if ($page > $nPages)
 		{
 			$player->msg('1009');
+// 			$player->unsetTemp(self::TEMP_PAGE);
 // 			$player->message('There are no more matches.');
 			return false;
 		}
@@ -973,7 +984,7 @@ abstract class SR_Bazar extends SR_Location
 		$format = $player->lang('fmt_bazar_search');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
 		{
-			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_iamt'], $row['sr4ba_price']);
+			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_iamt'], Shadowfunc::displayNuyen($row['sr4ba_price']));
 // 			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
 		

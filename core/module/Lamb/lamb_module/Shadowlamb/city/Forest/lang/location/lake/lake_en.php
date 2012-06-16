@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'found' => '',
-	'enter' => '',
+	'found' => 'You found a large lake. The surrounding area is scenic.',
+	'enter' => 'You approach to the lake. ',
 );
 ?>

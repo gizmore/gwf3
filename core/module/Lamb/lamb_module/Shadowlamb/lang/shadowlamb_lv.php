@@ -449,6 +449,7 @@ $lang = array(
 '1182' => 'You have no piercing that could be removed.',
 '1183' => 'You already have a piercing. Use #unpierce to remove it first.',
 '1184' => 'You can only pierce yourself with a rune.',
+'1185' => 'This recipe is unknown.',
 
 ########################
 # 10000-14999 = Spells #

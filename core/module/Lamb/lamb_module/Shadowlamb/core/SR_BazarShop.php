@@ -86,7 +86,8 @@ final class SR_BazarShop extends GDO
 	 */
 	public static function getTotalItemCount()
 	{
-		$count = self::table(__CLASS__)->selectVar('SUM(sr4bs_itemcount)');
+// 		$count = self::table(__CLASS__)->selectVar('SUM(sr4bs_itemcount)');
+		$count = self::table(__CLASS__)->selectVar('COUNT(*)');
 		return $count < 1 ? '0' : $count;
 	}
 	

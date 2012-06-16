@@ -88,7 +88,7 @@ class SR_Quest extends GDO
 		
 		return true;
 	}
-	public function increaseAmount($by=1) { return $this->increase('sr4qu_amount', $by); }
+	public function increaseAmount($by=1) { return $this->saveAmount($this->getAmount()+$by); }
 	public function getNeededAmount() { return 0; }
 	public function onQuestSolve(SR_Player $player) {}
 	public function getQuestName() { return $this->lang('title'); }

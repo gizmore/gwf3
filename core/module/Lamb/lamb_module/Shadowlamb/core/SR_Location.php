@@ -24,6 +24,7 @@ abstract class SR_Location
 	public function getAbstractClassName() { return __CLASS__; }
 	public function getName() { return $this->name; }
 	public function getShortName() { return Common::substrFrom($this->name, '_', $this->name); }
+	public function getLangfileName() { return $this->getName(); }
 	public function getNPCS(SR_Player $player) { return array(); }
 	public function getComputers() { return array(); }
 	public function getCommands(SR_Player $player) { return array(); }

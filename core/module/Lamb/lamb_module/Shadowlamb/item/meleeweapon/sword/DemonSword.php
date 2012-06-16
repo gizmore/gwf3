@@ -12,7 +12,7 @@ final class Item_DemonSword extends SR_Sword
 		return array(
 			'attack' => 11.5, 
 			'min_dmg' => 4.5,
-			'max_dmg' => 16.5,
+			'max_dmg' => 17.5,
 		);
 	}
 }

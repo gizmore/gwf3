@@ -1627,6 +1627,24 @@ class SR_Player extends GDO
 		return $back;
 	}
 	
+	/**
+	 * Get total amount of an item you have in inventory. Safe for equipment and stackables.
+	 * @param string $itemname
+	 * @return int
+	 */
+	public function getInvItemCount($itemname)
+	{
+		$back = 0;
+		foreach ($this->sr4_inventory as $item)
+		{
+			$item instanceof SR_Item;
+			if ($item->getItemName() === $itemname)
+			{
+				$back += $item->getAmount();
+			}
+		}
+		return $back;
+	}
 	
 	/**
 	 * @param string $itemname

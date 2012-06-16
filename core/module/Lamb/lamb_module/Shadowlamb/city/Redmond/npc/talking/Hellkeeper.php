@@ -32,6 +32,7 @@ final class Redmond_Hellkeeper extends SR_TalkingNPC
 			case 'hello':
 				$this->rply($word);
 				$player->giveKnowledge('words', 'Punks');
+				return true;
 // 				return $this->reply("Hello chummer. Better don`t annoy the bikers. They are pissed because of the {$b}punks{$b}");
 			default:
 				$msg = array('def1', 'def2', 'def3');

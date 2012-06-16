@@ -231,7 +231,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 			return $runner ? self::MAX_VAL_KNOWLEDGE_RUNNER : self::MAX_VAL_KNOWLEDGE;
 		}
 		
-		elseif (false !== ($spell = SR_Spell::getSpell($f))) {
+		elseif (false !== ($spell = SR_Spell::getSpell($field))) {
 			return $runner ? self::MAX_VAL_SPELL_RUNNER : self::MAX_VAL_SPELL;
 		}
 		

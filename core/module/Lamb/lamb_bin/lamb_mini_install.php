@@ -6,7 +6,7 @@ chdir('../../../../');
 
 # EDIT!
 # Change your protected/config.php location
-require_once 'www/protected/config_lamb_dev.php';
+require_once 'www/protected/config_lamb.php';
 # Change your gwf3.class.php location
 require_once 'gwf3.class.php'; 
 # End of EDIT!

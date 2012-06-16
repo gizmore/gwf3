@@ -134,7 +134,8 @@ final class Shadowlang
 	 */
 	private static function getLangLocation(SR_Location $location)
 	{
-		$locname = $location->getName();
+// 		$locname = $location->getName();
+		$locname = $location->getLangfileName();
 		if (false === isset(self::$LANG_LOCATION[$locname]))
 		{
 			$llocname = strtolower(Common::substrFrom($locname, '_'));

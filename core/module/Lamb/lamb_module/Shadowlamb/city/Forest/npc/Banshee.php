@@ -30,6 +30,16 @@ final class Forest_Banshee extends SR_NPC
 			'sharpshooter' => rand(5, 12),
 			'nuyen' => rand(30, 110),
 			'base_hp' => rand(40, 50),
+			'magic' => rand(8, 12),
+			'intelligence' => rand(6, 8),
+			'wisdom' => rand(4, 8),
+		);
+	}
+	
+	public function getNPCSpells()
+	{
+		return array(
+			'poison_dart' => 5,
 		);
 	}
 	

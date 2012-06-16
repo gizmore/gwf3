@@ -8,7 +8,7 @@ final class Redmond_OrkHQ extends SR_Tower
 	public function onEnter(SR_Player $player)
 	{
 		$party = $player->getParty();
-		$this->partyMessage($player, 'cracked', $args);
+		$this->partyMessage($player, 'cracked');
 // 		$party->notice('You easily manage to crack the rotten front door open...');
 		$this->teleportInside($player, 'OrkHQ_Exit');
 	}

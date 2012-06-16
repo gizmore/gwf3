@@ -10,7 +10,7 @@ final class Redmond_Lamer extends SR_NPC
 		$quest = SR_Quest::getQuest($player, 'Redmond_Johnson_1');
 		if ($quest->isInQuest($player))
 		{
-			$quest->increase('sr4qu_amount', 1);
+			$quest->increaseAmount(1);
 			$player->message(sprintf('Now you killed %d Lamers for Mr.Johnson.', $quest->getAmount()));
 		}
 		return array();

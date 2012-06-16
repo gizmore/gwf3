@@ -35,6 +35,11 @@ final class SR_PlayerVar extends GDO
 		), true);
 	}
 	
+	public static function increaseVal(SR_Player $player, $key, $by)
+	{
+		return self::setVal($player, $key, self::getVal($player, $key)+$by);
+	}
+	
 	public static function deletePlayer(SR_Player $player)
 	{
 		return self::table(__CLASS__)->deleteWhere('sr4pv_uid='.$player->getID());
