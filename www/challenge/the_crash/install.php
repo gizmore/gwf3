@@ -9,7 +9,7 @@ if (!GWF_User::isAdminS())
 	return htmlSendToLogin('Better be admin !');
 }
 $solution = false;
-$score = 5;
+$score = 4;
 $url = 'challenge/the_crash/index.php';
 $creators = 'Gizmore';
 $tags = 'Crypto,Programming';
