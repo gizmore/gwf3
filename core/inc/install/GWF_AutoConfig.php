@@ -28,7 +28,7 @@ final class GWF_AutoConfig
 		define('GWF_SMARTY_DIRS', GWF_PATH.'extra/temp/smarty/');
 		
 		define('GWF_LANG_ADMIN', 'en');
-		define('GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr');
+		define('GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv');
 
 		define('GWF_ONLINE_TIMEOUT', 60);
 		define('GWF_CRONJOB_BY_WEB', 0);
