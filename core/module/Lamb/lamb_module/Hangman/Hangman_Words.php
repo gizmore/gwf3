@@ -21,10 +21,17 @@ final class Hangman_Words extends GDO
 
 	public static function getRandomWord()
 	{
-		if (false === ($row = self::table(__CLASS__)->selectRandom('hangman_text', '', 1, NULL, GDO::ARRAY_N))) {
+		if (false === ($row = self::table(__CLASS__)->selectRandom('hangman_text', '', 1, NULL, GDO::ARRAY_N)))
+		{
 			return false;
 		}
-		return $row[0];
+		
+		if (count($row) === 0)
+		{
+			return false;
+		}
+		
+		return $row[0][0];
 	}
 
 	public static function getByWord($hang_word)
@@ -37,13 +44,12 @@ final class Hangman_Words extends GDO
 	{
 		$word = new self(array(
 			'hangman_id' => 0,
-			'link_text' => $hang_word,
-//			'link_rating' => 0,
-//			'link_date' => GWF_Time::getDate(14),
+			'hangman_text' => $hang_word,
 		));
-		if (false === $word->insert()) {
+		if (false === $word->insert())
+		{
 			return false;
 		}
-		return $link;
+		return $word;
 	}
 }

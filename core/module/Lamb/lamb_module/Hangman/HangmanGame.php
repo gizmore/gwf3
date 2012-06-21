@@ -1,5 +1,4 @@
 <?php
-
 /*
 	This file is part of Nimda - An advanced event-driven IRC Bot written in PHP with a nice plugin system
 	Copyright (C) 2009  noother [noothy@gmail.com]
@@ -48,10 +47,15 @@ final class HangmanGame {
 
 		if ($this->finish/* && self::START === $message*/)
 		{
-			$running = $this->onStartGame();
+			$this->onStartGame();
+		}
+		
+		elseif ($message === '')
+		{
+			# TODO: Bla already started
 		}
 
-		if ($running)
+		else
 		{
 			 if (strlen($message) !== 1)
 			 {
@@ -62,6 +66,7 @@ final class HangmanGame {
 				$this->tryChar($from, $message);
 			 }
 		}
+		
 		return $this->clearOutput();
 	}
 
@@ -85,13 +90,15 @@ final class HangmanGame {
 			$this->sendOutput('something went wrong! Database error while selecting a random word! cannot play, sorry!');
 			return false;
 		}
-		$this->sendOutput('Hangman started.');
+		$this->sendOutput('Hangman started. ');
 		$this->finish = false;
 		$this->lastNick = NULL;
 		
 		$length = strlen($this->solution);
 		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
 		$this->sendGrid();
+		
+		$this->sendOutput(' ');
 		
 		$this->lives = $this->CONFIG['lives'];
 		$this->sendLivesLeft();
