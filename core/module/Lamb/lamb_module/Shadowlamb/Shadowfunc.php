@@ -942,7 +942,7 @@ final class Shadowfunc
 	 * @param int $level of killed mob
 	 * @return array
 	 */
-	public static function randLoot(SR_Player $player, $level, $high_chance=array())
+	public static function randLoot(SR_Player $player, $level, $high_chance=array(), $chance_none=1.85)
 	{
 		$back = array();
 		
@@ -973,7 +973,7 @@ final class Shadowfunc
 			$total += $dc;
 		}
 
-		$chance_none = 1.85;
+// 		$chance_none = 1.85;
 		$chance_none -= ($player->get('luck') / 200);
 		$chance_none -= ($player->getParty()->getPartyLevel() / 200);
 		$chance_none = Common::clamp($chance_none, 1.2);

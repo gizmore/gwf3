@@ -25,11 +25,13 @@ final class Chicago_Blackmarket extends SR_Store
 		);
 	}
 	public function getFoundPercentage()  { return 15; }
-	public function getFoundText(SR_Player $player) { return "You recognize the local blackmarket due to signs from the undergound scene."; }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_BMGuy'); }
-	public function getHelpText(SR_Player $player) { return "Use #view, #buy and #sell here. The items in the Blackmarket are a bit random. Use #talk to talk to the salesman."; }
 	public function isPVP() { return true; }
-	public function getEnterText(SR_Player $player) { return "You enter the blackmarket. You move to a big bazaar-like shop. The owner is a big Troll."; }
+	
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
+	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
+	
 	public function onEnter(SR_Player $player)
 	{
 		$p = $player->getParty();
@@ -42,12 +44,13 @@ final class Chicago_Blackmarket extends SR_Store
 			}
 		}
 		
-		if (count($names) === 0) {
-			parent::onEnter($player);
-			return;
+		if (count($names) === 0)
+		{
+			return parent::onEnter($player);
 		}
-
-		$p->notice(sprintf('One of the guards come to you. Seems like %s lack(s) the permission to enter. You decide to turn around and leave.', GWF_Array::implodeHuman($names)));
+		
+		$this->partyMessage($player, 'oops', array(GWF_Array::implodeHuman($names)));
+		return false;
 	}
 }
 ?>

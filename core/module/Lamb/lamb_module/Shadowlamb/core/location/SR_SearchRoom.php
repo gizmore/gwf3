@@ -13,6 +13,7 @@ abstract class SR_SearchRoom extends SR_Tower
 	public function getSearchMaxAttemps() { return 1; }
 	public function getSearchLevel() { return -1; }
 	public function getSearchLoot(SR_Player $player) { return array(); }
+	public function getSearchChanceNone() { return 1.85; }
 	
 	public function getHelpText(SR_Player $player)
 	{
@@ -61,7 +62,7 @@ abstract class SR_SearchRoom extends SR_Tower
 		$attemp++;
 		$player->setTemp($key, $attemp);
 
-		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel()), $this->getSearchLoot($player));
+		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel()), $this->getSearchLoot($player), $this->getSearchChanceNone());
 		
 		if (count($loot) > 0)
 		{

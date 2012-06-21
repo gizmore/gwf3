@@ -3,10 +3,11 @@ final class Chicago_GrayTemple extends SR_School
 {
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_GrayTempleShamane'); }
 	public function getFoundPercentage() { return 20.00; }
-	public function getFoundText(SR_Player $player) { return 'You think you located the local temple. You think you may #enter.'; }
-	public function getEnterText(SR_Player $player) { return 'You enter the Temple. You see a shamane in a gray robe approaching.'; }
-	public function getHelpText(SR_Player $player) { $c = Shadowrun4::SR_SHORTCUT; return "You can use {$c}learn or {$c}courses here to see the skill(s) to learn. You can also {$c}talk to the shamane. Also a shop is available here. User #view, #buy, #sell, as usual."; }
 
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
+	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
+	
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
@@ -48,11 +49,8 @@ final class Chicago_GrayTemple extends SR_School
 	
 	public function onEnter(SR_Player $player)
 	{
-		$c = Shadowrun4::SR_SHORTCUT;
-		$b = chr(2);
 		parent::onEnter($player);
-		$p = $player->getParty();
-		$p->notice("The shamane says: \"Hi, do you want to {$b}{$c}learn{$b} the arcane powers of {$b}magic{$b}?\"");
+		return $this->partyMessage($player, 'enter2');
 	}
 }
 ?>

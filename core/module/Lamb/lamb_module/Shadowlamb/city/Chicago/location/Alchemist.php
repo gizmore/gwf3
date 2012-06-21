@@ -3,8 +3,8 @@ final class Chicago_Alchemist extends SR_Store
 {
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Chicago_Alchemist_NPC'); }
 	public function getFoundPercentage() { return 20.00; }
-	public function getFoundText(SR_Player $player) { return 'In a small sidestreet you found an alchemic store: "Newton\'s Alchemic Utilities".'; }
-	public function getEnterText(SR_Player $player) { return 'You enter the store. A gnome greets you: "Oh hello, come in ... how can i help?!"'; }
+	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
+	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
