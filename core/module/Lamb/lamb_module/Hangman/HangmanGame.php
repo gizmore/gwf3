@@ -19,58 +19,100 @@
 	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 */
 
-class HangmanGame {
-	
+require_once 'Hangman_Words.php';
+require_once 'Mod_Hangman.php';
+
+/**
+ * @author noother <noothy@gmail.com>
+ * @author spaceone <space@wechall.net>
+ * @see https://github.com/noother/Nimda
+ */
+final class HangmanGame {
+
+//	const START = 'start';
 	private $CONFIG;
-	private $IRC;
-	private $channel;
-	private $MySQL;
-	private $info;
 	private $lives;
 	private $grid;
 	private $solution;
 	private $lastNick;
-	public  $finish = false;
-	
-	function HangmanGame($plugin,$channel) {
-		$this->info		= $plugin->info;
-		$this->IRC		= $plugin;
-		$this->MySQL	= $plugin->IRCBot->MySQL;
-		$this->CONFIG	= $plugin->CONFIG;
-		$this->channel	= $channel;
-		
-		$this->IRC->sendOutput("Hangman started.");
-	echo $this->info['channel']." has initiated a new game of Hangman.\n";
-		$tmp = $this->MySQL->sendQuery("SELECT word FROM hangman ORDER BY RAND() LIMIT 1");
-		$this->solution = $tmp['result'][0]['word'];
-	//echo "Solution: ".$this->solution."\n";
+	private $finish = true;
+	private $output = '';
+
+	public function HangmanGame($config) {
+		$this->CONFIG = $config;
+	}
+
+	public function onGuess(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
+	{
+		$message = trim($message);
+
+		if ($this->finish/* && self::START === $message*/)
+		{
+			$running = $this->onStartGame();
+		}
+
+		if ($running)
+		{
+			 if (strlen($message) !== 1)
+			 {
+				$this->trySolution($from, $message);
+			 }
+			 else
+			 {
+				$this->tryChar($from, $message);
+			 }
+		}
+		return $this->clearOutput();
+	}
+
+	private function clearOutput()
+	{
+		$output = $this->output;
+		$this->output = '';
+		return $output;
+	}
+
+	private function sendOutput($out)
+	{
+		$this->output .= $out . PHP_EOL;
+	}
+
+	private function onStartGame()
+	{
+		$this->solution = Hangman_Words::getRandomWord();
+		if (false === $this->solution)
+		{
+			$this->sendOutput('something went wrong! Database error while selecting a random word! cannot play, sorry!');
+			return false;
+		}
+		$this->sendOutput('Hangman started.');
+		$this->finish = false;
+		$this->lastNick = NULL;
 		
 		$length = strlen($this->solution);
-		$grid = str_pad("",$length,$this->CONFIG['placeholder']);
-		$this->grid = $grid;
+		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
 		$this->sendGrid();
 		
 		$this->lives = $this->CONFIG['lives'];
 		$this->sendLivesLeft();
 	return true;
 	}
-	
-	function sendLivesLeft() {
-		if($this->lives == 1) $str = "life";
-		else $str = "lives";
-		$this->IRC->sendOutput($this->lives." ".$str." left.");
+
+	private function sendLivesLeft() {
+		$str = $this->lives == 1 ? 'life' : 'lives';
+		$this->sendOutput(sprintf('%d %s left', $this->lives, $str));
 	return true;
 	}
-	
-	function tryChar($nick,$char) {
+
+	public function tryChar($nick,$char) {
 		if(strtolower($nick) == strtolower($this->lastNick)) {
-			$this->IRC->sendOutput("You can't guess chars twice in a row.");
+			$this->sendOutput("You can't guess chars twice in a row.");
 			return;
 		}
 		
 		$charset = "abcdefghijklmnopqrstuvwxyz";
 		if(!stristr($charset,$char)) {
-			$this->IRC->sendOutput("Charset is a-z.");
+			$this->sendOutput("Charset is a-z.");
 			return;
 		}
 		
@@ -78,7 +120,7 @@ class HangmanGame {
 		
 		if(!stristr($this->solution,$char)) {
 			if($this->subLife() === "lose") return;
-			$this->IRC->sendOutput("That char doesn't match.");
+			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
 			$this->sendLivesLeft();
 			return false;
@@ -91,14 +133,18 @@ class HangmanGame {
 		}
 		
 		$this->sendGrid();
-		
 	}
-	
-	function trySolution($nick,$solution) {
-		$solution = libString::convertUmlaute($solution);
+
+	private static function convertUmlaute($string) {
+		$replace = array("ä" => "ae", "ö" => "oe", "ü" => "ue", "Ä" => "Ae", "Ö" => "Oe", "Ü" => "Ue");
+		return strtr($string,$replace);
+	}
+
+	public function trySolution($nick,$solution) {
+		$solution = self::convertUmlaute($solution);
 		if(strtolower($solution) != strtolower($this->solution)) {
 			if($this->subLife() === "lose") return;
-			$this->IRC->sendOutput("Sorry ".$nick.", that was not the correct solution.");
+			$this->sendOutput(sprintf('Sorry %s, that was not the correct solution.', $nick));
 			$this->sendGrid();
 			$this->sendLivesLeft();
 			return false;
@@ -107,77 +153,40 @@ class HangmanGame {
 		$this->winGame($nick);
 	return true;
 	}
-	
-	function sendGrid() {
-		$this->IRC->sendOutput($this->grid);
+
+	private function sendGrid() {
+		$this->sendOutput($this->grid);
 	return true;
 	}
-	
-	function winGame($nick) {
-		$send = sprintf("Congrats %s. The solution was: %s",
+
+	private function winGame($nick) {
+		$send = sprintf('Congrats %s. The solution was: %s',
 							$nick,
 							$this->solution);
-		$this->IRC->sendOutput($send);
-		
-		$this->updateStats($nick);
-		
+		$this->sendOutput($send);
 		
 		$this->finish = true;
 	return true;
 	}
-	
-	function LoseGame() {
-		$this->IRC->sendOutput("Nobody guessed the solution.");
+
+	private function LoseGame() {
+		$this->sendOutput('Nobody guessed the solution.');
 		$this->showSolution();
 		$this->finish = true;
 	}
-	
-	function showSolution() {
-		$this->IRC->sendOutput("The correct solution was: ".$this->solution);
+
+	private function showSolution() {
+		$this->sendOutput(sprintf('The correct solution was: %s', $this->solution));
 	return;
 	}
-	
-	function subLife() {
+
+	private function subLife() {
 		$this->lives--;
 		if($this->lives == 0) {
 			$this->loseGame();
-			return "lose";
+			return 'lose';
 		}
 	return true;
 	}
-	
-	function updateStats($nick) {
-		$sql = "SELECT points FROM hangman_stats WHERE channel='".addslashes($this->channel)."' AND nick='".addslashes($nick)."'";
-		$res = $this->MySQL->sendQuery($sql);
-		if($res['count'] == 0) {
-			$sql = "INSERT INTO 
-						hangman_stats 
-						(channel, nick, points, created, last_played)
-					VALUES (
-						'".addslashes($this->channel)."',
-						'".addslashes($nick)."',
-						1,
-						NOW(),
-						NOW()
-					)";
-			$this->MySQL->sendQuery($sql);
-			$this->IRC->sendOutput("You've just made your first point. :)");
-			return;
-		}
-		
-		$points = $res['result'][0]['points'];
-		$sql = "UPDATE
-					hangman_stats
-				SET
-					points=points+1,
-					last_played = NOW()
-				WHERE 
-					nick='".addslashes($nick)."' AND
-					channel='".addslashes($this->channel)."'";
-		$this->MySQL->sendQuery($sql);
-		$this->IRC->sendOutput("You now have ".($points+1)." points.");
-	return;
-	}
-}
 
-?>
+}
