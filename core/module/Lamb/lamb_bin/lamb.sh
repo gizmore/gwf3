@@ -2,16 +2,11 @@
 # -*- coding: utf-8 -*-
 
 usage() {
-
-cat <<<EOF
-usage: $(basename $0) <config_lamp.php> <Lamb_Config.php> <www> <backup> <music>
-
-EOF
-
+	echo "usage: $(basename $0) <config_lamp.php> <Lamb_Config.php> <www> <backup> <music>"
 }
 
 if [ $# -eq 0 -o "$1" == "--help" -o "$1" == "-h" ]; then
-	usage()
+	usage
 	exit 1
 fi
 
