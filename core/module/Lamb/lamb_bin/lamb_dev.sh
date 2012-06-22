@@ -1,5 +1,0 @@
-# chroot
-cd ../../../../
-
-# exec bot
-php core/module/Lamb/lamb_bin/lamb_main.php www/protected/config_lamb_dev.php Lamb_Config_dev.php
