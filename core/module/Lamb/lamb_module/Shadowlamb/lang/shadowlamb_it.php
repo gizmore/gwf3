@@ -12,14 +12,14 @@ $lang = array(
 ############
 # Tiny bits
 'ny' => '%s¥',
-'lvl' => 'Level %s',
+'lvl' => 'Livello %s',
 'name' => 'Nome',
 'none' => 'Nessuno',
 'over' => 'Sopra',
-'bank' => 'Your Bank',
+'bank' => 'La tua banca',
 'items' => 'Oggetti',
 'mount' => 'Mezzo di Trasporto',
-'inventory' => 'Inventaire',
+'inventory' => 'Inventario',
 'unknown' => 'Sconosciuto',
 'unknown_contr' => 'Appaltatore Sconosciuto',
 'modifiers' => " {$b}Modificatori{$b}: %s.", # statlist
@@ -34,15 +34,16 @@ $lang = array(
 'loot_nyxp' => '. Hai ricevuto %s e %s XP',
 'page' => ', pagina %s/%s: %s.',
 'from_brewing' => 'preparando pozioni magiche',
+'from_recipe' => 'una ricetta',
 'members' => '%s membri',
 'of' => '_con_', # MIT, AVEC, CON
 'range' => " {$b}Raggio{$b}: %s.",
 'atk_time' => " {$b}Tempo Attacco{$b}: %ss.",
 'worth' => " {$b}Valore{$b}: %s.",
 'weight' => " {$b}Peso{$b}: %s.",
-'forwards' => 'forwards',
-'backwards' => 'backwards',
-'quest_reward' => 'Quest Reward',
+'forwards' => 'avanti',
+'backwards' => 'indietro',
+'quest_reward' => 'Ricompensa della Quest',
 
 # Options
 'opt_help' => 'Aiuto',
@@ -54,21 +55,21 @@ $lang = array(
 
 # Core Locations
 'sr_arena' => 'Arena',
-'sr_bank' => 'Bank',
+'sr_bank' => 'Banca',
 'sr_bazar' => 'Bazaar',
-'sr_blacksmith' => 'Blacksmith',
-'sr_cell' => 'Cell',
-'sr_clanhq' => 'ClanHQ',
-'sr_elevator' => 'Elevator',
-'sr_exit' => 'Exit',
-'sr_hospital' => 'Hospital',
+'sr_blacksmith' => 'Fabbro',
+'sr_cell' => 'Cella',
+'sr_clanhq' => 'QGClan',
+'sr_elevator' => 'Ascensore',
+'sr_exit' => 'Uscita',
+'sr_hospital' => 'Ospedale',
 'sr_hotel' => 'Hotel',
-'sr_school' => 'School',
-'sr_searchroom' => 'Room',
-'sr_secondhandstore' => 'SecondHand',
-'sr_store' => 'Store',
-'sr_subway' => 'Subway',
-'sr_tower' => 'Stairway',
+'sr_school' => 'Scuola',
+'sr_searchroom' => 'Stanza',
+'sr_secondhandstore' => 'SecondaMano',
+'sr_store' => 'Negozio',
+'sr_subway' => 'Metropolitana',
+'sr_tower' => 'RampaDiScale',
 'sr_piercer' => 'Piercer',
 
 # Item types
@@ -106,23 +107,23 @@ $lang = array(
 'Piercing' => 'Piercing',
 
 # Equipment types
-'amulet' => 'Amulet',
-'armor' => 'Armor',
-'boots' => 'Boots',
-'earring' => 'Earring',
-'helmet' => 'Helmet',
-'legs' => 'Legs',
-'ring' => 'Ring',
-'shield' => 'Shield',
-'weapon' => 'Weapon',
-'mount' => 'Mount',
-'gloves' => 'Gloves',
-'belt' => 'Belt',
+'amulet' => 'Amuleto',
+'armor' => 'Armatura',
+'boots' => 'Stivali',
+'earring' => 'Orecchini',
+'helmet' => 'Elmo',
+'legs' => 'Pantaloni',
+'ring' => 'Anello',
+'shield' => 'Scudo',
+'weapon' => 'Arma',
+'mount' => 'Mezzo',
+'gloves' => 'Guanti',
+'belt' => 'Cintura',
 'piercing' => 'Piercing',
 
 # PrintF-Formats
 'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', # Ouch
-'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
+'fmt_examine' => '%s è %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
 'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%s(%s/%s)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Età{$b}:%s, %scm %s", # age, height, weight
@@ -237,9 +238,9 @@ $lang = array(
 'hlp_start' => "{$b}Razze conosciute{$b}: %s. {$b}Sessi conosciuti{$b}: %s.",
 'hlp_blacksmith' => "Dal fabbro utilizza {$c}migliora per migliorare l'equipaggiamento con le rune. Inoltre puoi {$c}rompere gli oggetti in rune o {$c}pulire gli oggetti dalle rune. E\' inoltre possibile {$c}dividere le rune. Qui funzionano anche {$c}guarda, {$c}compra e {$c}vendi.",
 'hlp_hospital' => 'Usa #parla <argomento> per parlare con il dottore. Usa #guarda, #impianta e #rimouvi_imp per gestire il tuo cyberware. Usa #cura per pagare alcuni nuyen e venire curato. Usa #chirurgia per invertire lvlup in karma.',
-'hlp_talking1' => 'Use %s to talk to %s.',
-'hlp_talking2' => 'Use %s to talk to the NPCs.',
-'hlp_school' => 'In schools you can use #learn and #courses.',
+'hlp_talking1' => 'Usa %s per parlare a %s.',
+'hlp_talking2' => 'Usa %s per parlare agli NPC.',
+'hlp_school' => 'Nelle scuole puoi usare #impara e #corsi.',
 
 # Start storyline
 'start_1' => "Ti svegli una stanza irradiata dal sole... Sembra che sia passato mezzogiorno... ti sembra di trovarti in una stanza d\'albergo.",
@@ -445,13 +446,15 @@ $lang = array(
 '1176' => 'Nessuna operazione chirurgica può essere effettuata sul suo %s.',
 '1177' => 'Sei al livello minimo di %s per %s per la tua razza.',
 '1178' => 'Non ci sono quest qui.',
-'1179' => 'The itemname is ambiguous and refers to multiple items.',
-'1180' => 'This potion works in combat only and is thrown against the enemy.',
-'1181' => 'You cannot inject potions into other peoples mouth`.',
-'1182' => 'You have no piercing that could be removed.',
-'1183' => 'You already have a piercing. Use #unpierce to remove it first.',
-'1184' => 'You can only pierce yourself with a rune.',
-'1185' => 'This recipe is unknown.',
+'1179' => 'Il nome dell\'oggetto è ambiguo o si riferisce a più di un oggetto.',
+'1180' => 'Questa pozione funziona solo in combattimenti e deve essere lanciato contro un nemico.',
+'1181' => 'Non puoi far ingoiare pozioni alle persone`.',
+'1182' => 'Non hai nessun piercing da rimuovere.',
+'1183' => 'Hai già un piercing. Prima devi usare #unpierce per rimuoverlo.',
+'1184' => 'Puoi utilizzare solo rune come piercing.',
+'1185' => 'Questa ricetta è sconosciuta.',
+'1186' => 'Per distillare %s ti serve altro %s.',
+'1187' => 'Ti serve del %s per poter migliorare in sicurezza degli oggetti.',
 
 ########################
 # 10000-14999 = Spells #
@@ -707,7 +710,7 @@ $lang = array(
 '5187' => '%s ha forzato la serratura!',
 '5188' => '%s', # Store item list fmt_sumlist
 '5189' => '%s', # Store item examine string
-'5190' => 'You paid %s and bought %s x %s. You now carry %s / %s. Inventory ID: %s.', # nuyen, amount, itemname, weight, maxweight.
+'5190' => 'Hai pagato %s per comprare %s x %s. Ora trasporti %s / %s. ID Inventario: %s.', # nuyen, amount, itemname, weight, maxweight.
 '5191' => 'Hai venduto %s dei tuoi %s per %s. Ora trasporti %s/%s.', # amount, itemname, nuyen, weight, maxweight
 '5192' => 'Cerci di rubare %s...', # itemname
 '5193' => 'Sei stato fortunato e sei riuscito a rubare %s.',
@@ -781,32 +784,43 @@ $lang = array(
 '5261' => 'Hai guadagnato +%s HP (%s/%s).', # From elpehants effect
 '5262' => 'Sezioni operabili chirurgicamente: %s.', # Some sections fmt_rawlist.
 '5263' => 'Hai pagato %s per cambiare il tuo %s in %s. Hai perso %s punti d\'essenza recuperando %s punti karma.', # price, field, value, essence, karma
-'5264' => 'You managed to transfer %s to your bank account from another.',
-'5265' => 'Missing quests in %s: %s.',
-'5266' => 'Your asl has been set to %s.', # asl_list
-'5267' => 'You put your %s into the inventory and use %s as %s from now on. %s seconds busy.', # olditem, newitem, type, busytime
-'5268' => 'You use %s as %s from now on. %s seconds busy.', # newitem, type, busytime
-'5269' => 'You put your %s into the inventory and use %s as %s from now on.', # olditem, newitem, type
-'5270' => 'You use %s as %s from now on.', # newitem, type
-'5271' => '%s unequips %s and uses %s as %s from now on. %s seconds busy.', # player, olditem, newitem, type, busytime
-'5272' => '%s uses %s as %s from now on. %s seconds busy.', # player, newitem, type, busytime
-'5273' => "You received {$b}%s{$b}.",
-'5274' => "You received {$b}%s{$b} from %s.",
+'5264' => 'Sei riuscito a trasferire %s sul tuo account bancario da un altro account.',
+'5265' => 'Quest irrisolte a %s: %s.',
+'5266' => 'Il tuo asl è stato impostato a %s.', # asl_list
+'5267' => 'Metti il tuo %s nel tuo inventario ed usi %s come %s d\'ora in avanti. Occupato per %s secondi.', # olditem, newitem, type, busytime
+'5268' => 'Userai %s come %s d\'ora in avanti. Occupato per %s secondi.', # newitem, type, busytime
+'5269' => 'Metti il tuo %s nell\'inventario e usi %s come %s d\'ora in avanti.', # olditem, newitem, type
+'5270' => 'Userai %s come %s d\'ora in avanti.', # newitem, type
+'5271' => '%s rimuove %s ed usa %s come %s d\'ora in avanti. Occupato per %s secondi.', # player, olditem, newitem, type, busytime
+'5272' => '%s userà %s come %s d\'ora in avanti. Occupato per %s secondi.', # player, newitem, type, busytime
+'5273' => "Hai ricevuto {$b}%s{$b}.",
+'5274' => "Hai ricevuto {$b}%s{$b} da %s.",
 '5275' => '%s', # entertext, location
 '5276' => '%s', # Store items
 '5277' => '%s', # Hospital items
-'5278' => '%s has set the default combat distance to %s meters.',
+'5278' => '%s ha impostato la distanza di combattimenti di default a %s metri.',
 '5279' => 'Trasporti %s. Nella tua banca ci sono %s. Ogni transazione costa %s.', # nuyen, nuyen. cost
-'5280' => '%2$s just entered the %1$s.', # playerlist, location. (when look and see)
-'5281' => '%2$s walks by and enters the %1$s.', # playerlist, location. (when outside sees rushing inside)
-'5282' => '%2$s arrived outside the %1$s.', # playerlist, location. (when look and see)
-'5283' => '%2$s left the %1$s and went away.', # playerlist, location.
-'5284' => '%2$s went outside the %1$s.', # playerlist, location.
-'5285' => 'Your %s level has increased to %s.', # Skill, by, now
-'5286' => 'It would cost %s to pierce your %s. Retype to confirm.', # nuyen, piercing
-'5287' => 'You pay %s and get your %s pierced.', # nuyen, piercing
-'5288' => 'It would cost %s to remove your %s. Type #unpierce %s to confirm.', # nuyen, piercing, iamsure
-'5289' => 'You pay %s and get your %s removed.', # nuyen, piercing
-'5290' => 'You received %s.', # nuyen
+'5280' => '%2$s è appena entrato in %1$s.', # playerlist, location. (when look and see)
+'5281' => '%2$s ti passa accanto ed entra in %1$s.', # playerlist, location. (when outside sees rushing inside)
+'5282' => '%2$s è appena arrivato di fronte a %1$s.', # playerlist, location. (when look and see)
+'5283' => '%2$s ha lasciato la %1$s e se ne è andato.', # playerlist, location.
+'5284' => '%2$s è andato fuori da %1$s.', # playerlist, location.
+'5285' => 'Il tuo livello in %s è aumentato a %s.', # Skill, by, now
+'5286' => 'Ti costerebbe %s per mettere un piercing sul tuo %s. Ridigita il comando per confermare.', # nuyen, piercing
+'5287' => 'Paghi %s per inserire un piercing nel tuo %s.', # nuyen, piercing
+'5288' => 'Ti costerebbe %s per rimuovere il tuo %s. Digita #unpierce %s per confermare.', # nuyen, piercing, iamsure
+'5289' => 'Paghi %s per rimuovere il tuo %s.', # nuyen, piercing
+'5290' => 'Hai ricevuto %s.', # nuyen
+'5291' => 'Hai pagato %s e ricevuto %s dalla creazione della ricetta %s. Sono stati utilizzati i seguenti ingredienti: %s.', #ny, item, recipe, incredients
+'5292' => 'Ricette distillabili: %s.', # list
+'5293' => '%1$s(%2$s): Prepare %4$s per creare %3$s.',
+
+####################
+### Shadowclient ###
+####################
+'9000' => '%s', # Command diff
+'9001' => '%s', # Crunched examine
+'9002' => '%s,%s', # Quest status update
+'9003' => 'Ora hai completato al %s%% la quest %s.',
 );
 ?>

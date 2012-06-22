@@ -15,7 +15,6 @@ $lang = array(
 	
 	'funny' => 'Hehe, sapientone ... Però se ricordo correttamente era un imperatore romano.',
 
-	#XXX: Translate me
-	'wtf' => 'Hm? What are you talking about?',
+	'wtf' => 'Mmm? Di che diamine stai parlando?',
 );
 ?>

@@ -10,15 +10,14 @@ $lang = array(
 	'yes' => 'Perfetto!',
 	'no' => 'Nessun problema.',
 
-	# XXX delete me
-	'm_0' => 'Oh the temple, I haven\'t been there for ages!',
-	'm_1' => 'Are you getting paid for this?',
-	'm_2' => 'There is a temple in redmond?',
-	'm_3' => 'I am not interested in magic, thank you.',
-	'm_4' => 'Dude, you are the third person today that told me about this crappy temple -.- leave me alone!',
+	'm_0' => 'Oh il tempio, non ci vado da secoli!',
+	'm_1' => 'Ti pagano per fare così?',
+	'm_2' => 'C\'è un tempio a Redmond?',
+	'm_3' => 'La magia non mi interessa, grazie lo stesso.',
+	'm_4' => 'Amico, sei la terza persona che mi importuna a proposito di questo dannato tempo oggi. -.- Lasciatemi in pace!',
 		
-	'bye' => 'I gotta go!',
+	'bye' => 'Devo andare!',
 		
-	'one_more' => 'Now you told %d/%d citizens about the Redmond Temple.',
+	'one_more' => 'Sei riuscito ad informare %d/%d cittadini a proposito del Tempio di Redmond.',
 );		
 ?>

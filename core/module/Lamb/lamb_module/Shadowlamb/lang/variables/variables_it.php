@@ -2,27 +2,27 @@
 # Translate this long varnames as usual.
 $lang = array(
 	# Race
-	'fairy'=>'fairy', # XXX: NEW
-	'elve' => 'elve',
-	'halfelve' => 'halfelve',
-	'vampire' => 'vampire',
-	'darkelve' => 'darkelve',
-	'woodelve' => 'woodelve',
-	'human' => 'human',
-	'gnome' => 'gnome',
-	'dwarf' => 'dwarf',
-	'halfork' => 'halfork',
-	'halftroll' => 'halftroll',
-	'ork' => 'ork',
+	'fairy'=>'fata',
+	'elve' => 'elfo',
+	'halfelve' => 'mezzelfo',
+	'vampire' => 'vampiro',
+	'darkelve' => 'elfo_oscuro',
+	'woodelve' => 'elfo_silvano',
+	'human' => 'umano',
+	'gnome' => 'gnomo',
+	'dwarf' => 'nano',
+	'halfork' => 'mezzorco',
+	'halftroll' => 'mezzo_troll',
+	'ork' => 'orco',
 	'troll' => 'troll',
 	'gremlin' => 'gremlin',
-	'droid' => 'droid',
-	'dragon' => 'dragon',
+	'droid' => 'droide',
+	'dragon' => 'drago',
 
 	# Gender
-	'gender' => 'gender', # TODO: NEW
-	'male' => 'male',
-	'female' => 'female',
+	'gender' => 'genere', 
+	'male' => 'maschio',
+	'female' => 'femmina',
 		
 	# Effects
 	'alc' => 'alc',
@@ -108,9 +108,9 @@ $lang = array(
 	'shield'=>'scudo',
 	'weapon'=>'arma',
 	'mount'=>'mezzo',
-	'belt' => 'Belt', # TODO: new types
-	'gloves' => 'Gloves', # XXX: new types
-	'piercing' => 'Piercing', # XXX: new type
+	'belt' => 'Cintura', 
+	'gloves' => 'Guanti', 
+	'piercing' => 'Piercing', 
 		
 	# Words
 	'renraku' => 'renraku',
@@ -135,30 +135,30 @@ $lang = array(
 	'Level' => 'Livello',
 
 	# Spells
-	'berzerk' => 'berzerk',
-	'blow' => 'blow',
+	'berzerk' => 'berserk',
+	'blow' => 'soffio',
 	'bunny' => 'bunny',
-	'calm' => 'calm',
-	'chameleon' => 'chameleon',
-	'fireball' => 'fireball',
-	'firebolt' => 'firebolt',
-	'firewall' => 'firewall',
-	'flu' => 'flu',
-	'freeze' => 'freeze',
-	'goliath' => 'goliath',
-	'hawkeye' => 'hawkeye',
-	'heal' => 'heal',
-	'hummingbird' => 'hummingbird',
+	'calm' => 'calma',
+	'chameleon' => 'camaleonte',
+	'fireball' => 'pallaDiFuoco',
+	'firebolt' => 'globoDiFuoco',
+	'firewall' => 'muroDiFuoco',
+	'flu' => 'influenza',
+	'freeze' => 'congela',
+	'goliath' => 'golia',
+	'hawkeye' => 'occhioDiFalco',
+	'heal' => 'cura',
+	'hummingbird' => 'colibrì',
 	'magicarp' => 'magicarp',
-	'poison_dart' => 'poison_dart',
+	'poison_dart' => 'dardoAvvelenato',
 	'rabbit' => 'rabbit',
-	'teleport' => 'teleport',
-	'teleportii' => 'teleportii',
-	'teleportiii' => 'teleportiii',
-	'teleportiv' => 'teleportiv',
+	'teleport' => 'teletrasporto',
+	'teleportii' => 'teletrasportoii',
+	'teleportiii' => 'teletrasportoiii',
+	'teleportiv' => 'teletrasportoiv',
 	'tornado' => 'tornado',
-	'turtle' => 'turtle',
+	'turtle' => 'testuggine',
 	'vulcano' => 'vulcano',
-	'whirlwind' => 'whirlwind',
+	'whirlwind' => 'vortice',
 );
 ?>

@@ -12,9 +12,9 @@ $lang = array(
 	
 	'm_0' => 'Oh the temple, I haven\'t been there for ages!',
 	'm_1' => 'Are you getting paid for this?',
-	'm_2' => 'There is a temple in redmond?',
+	'm_2' => 'There is a temple in Redmond?',
 	'm_3' => 'I am not interested in magic, thank you.',
-	'm_4' => 'Dude, you are the third person today that told me about this crappy temple -.- leave me alone!',
+	'm_4' => 'Dude, you are the third person today that told me about this crappy temple -.- Leave me alone!',
 		
 	'bye' => 'I gotta go!',
 		
