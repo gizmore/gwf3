@@ -1,5 +1,15 @@
 <?php
-require_once LAMB_CONFIG_FILENAME;
+
+# new config files
+if (Common::endswith(LAMB_CONFIG_FILENAME, '.ini'))
+{
+	$LAMB_CFG = parse_ini_file(LAMB_CONFIG_FILENAME, true);
+	foreach(array('LAMB_DEV', 'LAMB_PASSWORD', 'LAMB_PASSWORD2', 'LAMB_PASSWORD3') as $constant)
+		if(isset($LAMB_CFG[$constant]) && !defined($constant))
+			define($constant, $LAMB_CFG[$constant]);
+}
+else
+	require_once LAMB_CONFIG_FILENAME;
 # Version
 define('LAMB_VERSION', $LAMB_CFG['version']);
 # Info
