@@ -28,7 +28,6 @@ require_once 'Mod_Hangman.php';
  */
 final class HangmanGame {
 
-//	const START = 'start';
 	private $CONFIG;
 	private $lives;
 	private $grid;
@@ -45,14 +44,14 @@ final class HangmanGame {
 	{
 		$message = trim($message);
 
-		if ($this->finish/* && self::START === $message*/)
+		if ($this->finish)
 		{
 			$this->onStartGame();
 		}
 		
 		elseif ($message === '')
 		{
-			# TODO: Bla already started
+			$this->sendOutput('The game has already started');
 		}
 
 		else
@@ -84,8 +83,7 @@ final class HangmanGame {
 
 	private function onStartGame()
 	{
-		$this->solution = Hangman_Words::getRandomWord();
-		if (false === $this->solution)
+		if (false === ($this->solution = Hangman_Words::getRandomWord()))
 		{
 			$this->sendOutput('something went wrong! Database error while selecting a random word! cannot play, sorry!');
 			return false;
@@ -111,9 +109,16 @@ final class HangmanGame {
 	return true;
 	}
 
-	public function tryChar($nick,$char) {
+	private function testUser($nick) {
 		if(strtolower($nick) == strtolower($this->lastNick)) {
 			$this->sendOutput("You can't guess chars twice in a row.");
+			return false;
+		}
+	return true;
+	}
+
+	public function tryChar($nick,$char) {
+		if(false === $this->testUser($nick)) {
 			return;
 		}
 		
@@ -148,10 +153,14 @@ final class HangmanGame {
 	}
 
 	public function trySolution($nick,$solution) {
+		if(false === $this->testUser($nick)) {
+			return;
+		}
 		$solution = self::convertUmlaute($solution);
 		if(strtolower($solution) != strtolower($this->solution)) {
 			if($this->subLife() === "lose") return;
 			$this->sendOutput(sprintf('Sorry %s, that was not the correct solution.', $nick));
+			$this->lastNick = $nick;
 			$this->sendGrid();
 			$this->sendLivesLeft();
 			return false;
