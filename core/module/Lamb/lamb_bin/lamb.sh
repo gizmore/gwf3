@@ -38,20 +38,20 @@ else
 fi
 
 #exec bot
-php core/module/Lamb/lamb_bin/lamb_main.php $config $lamb
-
-# Oops
-case $5 in
-	"once")
-		# play music once
-		mplayer core/module/Lamb/lamb_bin/wecken.mp3
-		;;
-	"yes")
-		# play music every 20 seconds
-		while [ 1 ]
-		do
+if [ ! php core/module/Lamb/lamb_bin/lamb_main.php $config $lamb ]; then
+	# Oops
+	case $5 in
+		"once")
+			# play music once
 			mplayer core/module/Lamb/lamb_bin/wecken.mp3
-			sleep 20
-		done
-		;;
-esac
+			;;
+		"yes")
+			# play music every 20 seconds
+			while [ 1 ]
+			do
+				mplayer core/module/Lamb/lamb_bin/wecken.mp3
+				sleep 20
+			done
+			;;
+	esac
+fi

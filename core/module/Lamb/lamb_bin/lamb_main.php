@@ -1,6 +1,6 @@
 <?php
 # Not by remote!
-if (isset($_SERVER['REMOTE_ADDR']))
+if (PHP_SAPI !== 'cli')
 {
 	die('NO REMOTE CALLS PLEASE!');
 }
@@ -8,7 +8,8 @@ if (isset($_SERVER['REMOTE_ADDR']))
 # Parse Args:
 if ($argc !== 3)
 {
-	die("Usage: $argv[0] gwfconfigfile lambconfigfile\nExample: $argv[0] protected/config.php Lamb_Config.php\n");
+	file_put_contents('php://stderr', "Usage: $argv[0] gwfconfigfile lambconfigfile\nExample: $argv[0] protected/config.php Lamb_Config.php\n");
+	die(1);
 }
 $_GET['ajax'] = 'true'; # emulate ajax templates
 
@@ -16,14 +17,16 @@ $_GET['ajax'] = 'true'; # emulate ajax templates
 $gwfcfg = $argv[1];
 if (!file_exists($gwfcfg))
 {
-	die("Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.\n");
+	file_put_contents('php://stderr', "Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.\n");
+	die(1);
 }
 define('GWF_CONFIG_PATH', $gwfcfg);
 
 # Lamb config
 if (!file_exists("core/module/Lamb/lamb_bin/{$argv[2]}"))
 {
-	die("Error: Lamb Config File not found.\nExample for the 2nd parameter: Lamb_Config.php\nThis is the Lamb3 config file.\n");
+	file_put_contents('php://stderr', "Error: Lamb Config File not found.\nExample for the 2nd parameter: Lamb_Config.php\nThis is the Lamb3 config file.\n");
+	die(1);
 }
 define('LAMB_CONFIG_FILENAME', $argv[2]);
 //define('GWF_WWW_PATH', '');
@@ -71,21 +74,25 @@ chdir('../../../');
 # Check installed
 if (gdo_db() === false)
 {
-	die('Cannot connect to database.');
+	file_put_contents('php://stderr', 'Cannot connect to database.');
+	die(1);
 }
 if (false === ($table = GDO::table('Lamb_User')))
 {
-	die('The Lamb_User GDO structure is not found. Please install Lamb first.'.PHP_EOL);
+	file_put_contents('php://stderr', 'The Lamb_User GDO structure is not found. Please install Lamb first.'.PHP_EOL);
+	die(1);
 }
 if (!$table->tableExists())
 {
-	die('The Lamb_User table does not exist. Please install Lamb first.'.PHP_EOL);
+	file_put_contents('php://stderr', 'The Lamb_User table does not exist. Please install Lamb first.'.PHP_EOL);
+	die(1);
 }
 # Init the bot :)
 $lamb = new Lamb();
 if (!$lamb->init())
 {
-	die('Could not init lamb!');
+	file_put_contents('php://stderr', 'Could not init lamb!');
+	die(1);
 }
 
 # No halt on warnings ...
@@ -95,5 +102,11 @@ GWF_Debug::setDieOnError(false);
 gdo_db()->setDieOnError(false);
 
 # ... And go!
-$lamb->mainloop();
-?>
+try {
+	$lamb->mainloop();
+} catch (Exception $e) {
+	file_put_contents('php://stderr', sprintf('Exception in mainloop: %s%s', GWF_Debug::backtrace($e->getMessage())));
+	die(2);
+}
+
+die(0);
