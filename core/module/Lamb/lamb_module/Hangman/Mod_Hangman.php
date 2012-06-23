@@ -107,7 +107,13 @@ final class LambModule_Hangman extends Lamb_Module
 	{
 		if (false === isset($this->instances[$server->getID() . $origin]))
 		{
-			$this->instances[$server->getID() . $origin] = new HangmanGame(array('placeholder' => '*', 'lives' => 8));
+			$config = array(
+				'solution_allowed_everytime' => true,
+				'placeholder' => '*',
+				'lives' => 8,
+				'singleplayer' => false
+			);
+			$this->instances[$server->getID() . $origin] = new HangmanGame($config);
 		}
 		$hang = $this->instances[$server->getID() . $origin];
 		$hang instanceof HangmanGame;

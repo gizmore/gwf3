@@ -52,6 +52,11 @@ final class HangmanGame {
 
 		if ($this->finish)
 		{
+			if ($message === 'false')
+			{
+				$this->CONFIG['solution_allowed_everytime'] = false;
+			}
+			# TODO: possibility to end a game?
 			$this->onStartGame();
 		}
 		
@@ -69,6 +74,11 @@ final class HangmanGame {
 			 else
 			 {
 				$this->tryChar($user, $message);
+			 }
+
+			 if (strtolower($this->grid) === strtolower($this->solution))
+			 {
+				$this->winGame($nick);
 			 }
 		}
 		
@@ -116,6 +126,11 @@ final class HangmanGame {
 	}
 
 	private function testUser($nick) {
+		if ($this->CONFIG['singleplayer'])
+		{
+			return true;
+		}
+
 		if(strtolower($nick) == strtolower($this->lastNick)) {
 			$this->sendOutput("You can't guess chars twice in a row.");
 			return false;
@@ -159,7 +174,7 @@ final class HangmanGame {
 	}
 
 	public function trySolution($nick,$solution) {
-		if(false === $this->testUser($nick)) {
+		if(!$this->config['solution_allowed_everytime'] && false === $this->testUser($nick)) {
 			return;
 		}
 		$solution = self::convertUmlaute($solution);
