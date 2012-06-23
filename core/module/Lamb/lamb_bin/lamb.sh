@@ -38,7 +38,7 @@ else
 fi
 
 #exec bot
-if [ ! php core/module/Lamb/lamb_bin/lamb_main.php $config $lamb ]; then
+if ! php core/module/Lamb/lamb_bin/lamb_main.php $config $lamb; then
 	# Oops
 	case $5 in
 		"once")
