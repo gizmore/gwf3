@@ -48,6 +48,17 @@ final class LambModule_Hangman extends Lamb_Module
 
 	private function onAdd($hang_word)
 	{
+		$hang_word = strtolower($hang_Word);
+		if (strlen($hang_word) < 3 || strlen($hang_word) > 30)
+		{
+			return 'wordsize is not accepted';
+		}
+
+		if (!preg_match('/^[a-z]+$/', $hang_word))
+		{
+			return 'only alphabetical letters are allowed';
+		}
+
 		if (false !== ($word = Hangman_Words::getByWord($hang_word)))
 		{
 			return 'This word was already in the database.';
