@@ -2,6 +2,10 @@
 require_once 'Hangman_Words.php';
 require_once 'HangmanGame.php';
 
+/**
+ * The Lamb module with triggers for Nimdas hangman plugin
+ * @author spaceone
+ */
 final class LambModule_Hangman extends Lamb_Module
 {
 	private $instances = array();
@@ -57,6 +61,21 @@ final class LambModule_Hangman extends Lamb_Module
 		return sprintf('Inserted Word %s (ID:%d)', $hang_word, $word->getID());
 	}
 
+	private function onDelete($hang_word) {
+		if (false === ($word = Hangman_Words::getByWord($hang_word)))
+		{
+			return 'This word does not exists in the database.';
+		}
+		$id = $word->getID();
+
+		if (false === $word->delete()) # FIXME ?
+		{
+			return 'database error';
+		}
+
+		return sprintf('Deleted Word %s (ID:%d)', $hang_word, $id);
+	}
+
 	################
 	### Commands ###
 	################
@@ -81,7 +100,7 @@ final class LambModule_Hangman extends Lamb_Module
 		}
 		$hang = $this->instances[$server->getID() . $origin];
 		$hang instanceof HangmanGame;
-		return $hang->onGuess($server, $user, $from, $origin, $message); #FIXME: remove all params except from and message
+		return $hang->onGuess($user->getName(), $message);
 	}
 
 }

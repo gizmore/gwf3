@@ -40,7 +40,13 @@ final class HangmanGame {
 		$this->CONFIG = $config;
 	}
 
-	public function onGuess(Lamb_Server $server, Lamb_User $user, $from, $origin, $message)
+	/**
+	 *
+	 * @param string $user the username
+	 * @param string|char $message the guess
+	 * @return the answer
+	 */
+	public function onGuess($user, $message)
 	{
 		$message = trim($message);
 
@@ -58,11 +64,11 @@ final class HangmanGame {
 		{
 			 if (strlen($message) !== 1)
 			 {
-				$this->trySolution($from, $message);
+				$this->trySolution($user, $message);
 			 }
 			 else
 			 {
-				$this->tryChar($from, $message);
+				$this->tryChar($user, $message);
 			 }
 		}
 		
