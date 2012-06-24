@@ -56,7 +56,6 @@ final class HangmanGame {
 			{
 				$this->CONFIG['solution_allowed_everytime'] = false;
 			}
-			# TODO: possibility to end a game?
 			$this->onStartGame();
 		}
 		
