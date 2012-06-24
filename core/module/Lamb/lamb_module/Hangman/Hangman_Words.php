@@ -52,4 +52,15 @@ final class Hangman_Words extends GDO
 		}
 		return $word;
 	}
+
+	public static function insertList($filename, $seperator="\n")
+	{
+		$content = explode($seperator, file_get_contents($filename));
+		$success = true;
+		foreach ($content as $word)
+		{
+			$success = self::insertWord(strtolower(trim($word))) && $success;
+		}
+		return $success;
+	}
 }
