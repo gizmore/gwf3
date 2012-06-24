@@ -19,12 +19,14 @@ final class GWF_GuessCodeLang
 			array('/#!\/usr\/bin\/perl\s.*/i', 6),
 		),
 		'php' => array(
-			array('/<\?php/i', 6),
+			array('/^<\?php/i', 6),
 			array('/strrpos/i', 4),
 			array('/while/i', 1),
 			array('/print/i', 1),
 			array('/\$/i', 1),
-			array('/echo/i', 1),
+			array('/echo/i', 4),
+			array('/(?:require|include)(?:\(?|_once)/', 6),
+			array('/GWF_/', 10), # muhaha
 		),
 		'prolog' => array(
 			array('/\s*%(.)*\n/', 1),
@@ -40,7 +42,7 @@ final class GWF_GuessCodeLang
 			array('/<br/', 6),
 		),
 		'java' => array(
-			array('/import java/', 6),
+			array('/^import java/', 6),
 			array('/public static void/', 2),
 			array('/class/', 2),
 			array('/implements/', 2),
@@ -48,16 +50,23 @@ final class GWF_GuessCodeLang
 			array('/interface/', 2),
 		),
 		'c' => array(
-			array('/#include\s+(<|")/i', 6),
-			array('/#define\s+/i', 6),
+			array('/^#include\s+(<|")/i', 6),
+			array('/^#define\s+/i', 6),
 		),
 		'DiffFileFormat' => array(
-			array('/^(\+|\-){3}/'),
-			array('/^[\+\- ]/'),
+			array('/^(\+|\-){3}/', 6),
+			array('/^[\+\- ]/', 4),
+			array('/^=+$/', 3),
+			array('/^@@ \-[0-9]+,[0-9]+ \+[0-9]+,[0-9]+ @@/', 6),
+			array('/^Index: /', 2),
+			array('/\(Revision [0-9] \)/', 2),
 		),
 		'python' => array(
-			array('/^#/usr/bin/python/', 6),
-			array('//', 6),
+			array('/^#!\/usr\/bin\/python/', 6),
+			array('/^from [a-zA-Z]+ import/', 6),
+			array('/^import /', 4),
+			array('/"""/', 4),
+			array("/'''/", 4),
 		),
 	);
 
