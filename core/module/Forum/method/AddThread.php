@@ -15,15 +15,18 @@ final class Forum_AddThread extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize())) {
+		if (false !== ($error = $this->sanitize()))
+		{
 			return $error;
 		}
 		
-		if (false !== (Common::getPost('preview'))) {
+		if (false !== (Common::getPost('preview')))
+		{
 			return $this->onPreview();
 		}
 		
-		if (false !== (Common::getPost('add_thread'))) {
+		if (false !== (Common::getPost('add_thread')))
+		{
 			return $this->onAddThread();
 		}
 		
@@ -32,11 +35,15 @@ final class Forum_AddThread extends GWF_Method
 	
 	private function sanitize()
 	{
-		if (false !== ($error = $this->module->isNewThreadAllowed())) {
+		if (false !== ($error = $this->module->isNewThreadAllowed()))
+		{
 			return $error;
 		}
 		
-		$this->board = $this->module->getCurrentBoard();
+		if (false === ($this->board = $this->module->getCurrentBoard()))
+		{
+			return $this->module->error('err_board');
+		}
 		
 		return false;
 	}

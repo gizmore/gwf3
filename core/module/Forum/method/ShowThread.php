@@ -48,7 +48,8 @@ final class Forum_ShowThread extends GWF_Method
 	{
 		GWF_ForumBoard::init(true);
 		
-		if (false !== ($error = $this->sanitize())) {
+		if (false !== ($error = $this->sanitize()))
+		{
 			return $error;
 		}
 		
@@ -68,7 +69,8 @@ final class Forum_ShowThread extends GWF_Method
 	#########################
 	private function sanitize()
 	{
-		if (false === ($this->thread = GWF_ForumThread::getByID(Common::getGetString('tid')))) {
+		if (false === ($this->thread = GWF_ForumThread::getByID(Common::getGetString('tid'))))
+		{
 			return $this->module->error('err_thread');
 		}
 		
@@ -78,11 +80,18 @@ final class Forum_ShowThread extends GWF_Method
 		$default_page = isset($_GET['last_page']) ? $this->nPages : 1;
 		$this->page = Common::clamp(Common::getGetInt('page'), $default_page, $this->nPages);
 
-		if (!$this->thread->hasPermission(GWF_Session::getUser())) {
+		if (!$this->thread->getBoard())
+		{
 			return $this->module->error('err_thread_perm');
 		}
 		
-		if ($this->thread->isInModeration()) {
+		if (!$this->thread->hasPermission(GWF_Session::getUser()))
+		{
+			return $this->module->error('err_thread_perm');
+		}
+		
+		if ($this->thread->isInModeration())
+		{
 			return $this->module->error('err_in_mod');
 		}
 		

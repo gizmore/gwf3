@@ -33,8 +33,17 @@ final class Module_Forum extends GWF_Module
 	private $board_id = 0;
 	private $thread_id = 0;
 	private $post_id = 0;
+	/**
+	 * @var GWF_ForumBoard
+	 */
 	private $board = false;
+	/**
+	 * @var GWF_ForumThread
+	 */
 	private $thread = false;
+	/**
+	 * @var GWF_ForumPost
+	 */
 	private $post = false;
 	public function getBoardID() { return $this->board->getID(); }
 	public function getThreadID() { return $this->thread->getID(); }

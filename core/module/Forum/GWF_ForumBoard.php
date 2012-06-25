@@ -130,7 +130,8 @@ final class GWF_ForumBoard extends GDO
 			$bby = Common::getGet('bby', 'board_pos');
 			$bdir = Common::getGet('bdir', 'ASC');
 			$orderby = $boards->getMultiOrderby($bby, $bdir);
-			if (false === ($all = $boards->selectObjects('*', $permquery, $orderby))) {
+			if (false === ($all = $boards->selectObjects('*', $permquery, $orderby)))
+			{
 				return false;
 			}
 			
