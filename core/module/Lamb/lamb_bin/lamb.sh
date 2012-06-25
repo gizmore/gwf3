@@ -17,24 +17,24 @@ fi
 
 # backup db
 if [ $4 -eq 1 ]; then
-	cd protected
-	./db_backup.sh # WTF ?? why cd ?
-	cd ..
+	cd www/protected
+	./db_backup.sh
+	cd ../..
 fi
 
 # paths
 if [ $1 = "dev" ]; then
 	config="www/protected/config_lamb_dev.php"
-elif [ $1 = "gwf" ]; then #FIXME: name
-	config="protected/config.php"
+elif [ $1 = "gwf" ];
+	config="www/protected/config.php"
 else
-	config="protected/config.php"
+	config=$1
 fi
 
 if [ $2 = "dev" ]; then
 	lamb="Lamb_Config_dev.php"
 else
-	lamb="Lamb_Config_dev.php"
+	lamb=$2
 fi
 
 #exec bot

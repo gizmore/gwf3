@@ -15,6 +15,7 @@ $_GET['ajax'] = 'true'; # emulate ajax templates
 
 # GWF config
 $gwfcfg = $argv[1];
+
 if (!file_exists($gwfcfg))
 {
 	file_put_contents('php://stderr', "Error: GWF Config file not found.\nExample for the 1st parameter: protected/config.php.\nThis is the GWF config file.\n");

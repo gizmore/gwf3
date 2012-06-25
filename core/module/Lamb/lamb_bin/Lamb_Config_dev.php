@@ -6,7 +6,7 @@ global $LAMB_CONFIG;
 $LAMB_CFG = array
 (
 	# Version
-	'version' => '3.01.2011.MAY.08(DEV) - GWF '.GWF_CORE_VERSION,
+	'version' => '3.01.2012.JUN.22(DEV) - GWF '.GWF_CORE_VERSION,
 
 	# IRC
 	'hostname' => 'lamb3.gizmore.org',
@@ -14,7 +14,7 @@ $LAMB_CFG = array
 	'username' => 'Lambee',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG',
+	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG;Hangman',
 
 	# Various
 	'owner' => 'gizmore',
