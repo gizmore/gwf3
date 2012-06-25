@@ -15,7 +15,7 @@ $LAMB_CFG = array
 	'hostname' => 'lamb3.gizmore.org',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;Quote;Scum;Slapwarz;Notes;Greetings;Hangman',#;News;IRCLink;Warfare;PG',
+	'modules' => 'Shadowlamb;Link;Quote;Scum;Slapwarz;Notes;Greetings;Hangman;Translate',#;News;IRCLink;Warfare;PG',
 
 	# Various
 	'owner' => 'gizmore',

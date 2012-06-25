@@ -25,7 +25,7 @@ fi
 # paths
 if [ $1 = "dev" ]; then
 	config="www/protected/config_lamb_dev.php"
-elif [ $1 = "gwf" ];
+elif [ $1 = "gwf" ]; then
 	config="www/protected/config.php"
 else
 	config=$1

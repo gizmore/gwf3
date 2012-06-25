@@ -62,7 +62,7 @@ abstract class Lamb_Module
 	### Getters ###
 	###############
 	public function getHelp() { return array(); }
-	public function getTriggers($priviledge) { return array(); }
+	public function getTriggers($priviledge, $showHidden=true) { return array(); }
 	################
 	### Triggers ###
 	################

@@ -94,7 +94,7 @@ final class LambModule_Greetings extends Lamb_Module
 	######################
 	### Admin Triggers ###
 	######################
-	public function getTriggers($priviledge)
+	public function getTriggers($priviledge, $showHidden=true)
 	{
 		switch ($priviledge)
 		{

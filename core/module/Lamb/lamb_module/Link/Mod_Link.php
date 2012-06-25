@@ -18,7 +18,7 @@ final class LambModule_Link extends Lamb_Module
 	###############
 	### Getters ###
 	###############
-	public function getTriggers($priviledge)
+	public function getTriggers($priviledge, $showHidden=true)
 	{
 		switch ($priviledge)
 		{

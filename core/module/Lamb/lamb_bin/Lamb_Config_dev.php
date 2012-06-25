@@ -14,7 +14,7 @@ $LAMB_CFG = array
 	'username' => 'Lambee',
 
 	# Modules
-	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG;Hangman',
+	'modules' => 'Shadowlamb;Link;News;Quote;Scum;Slapwarz;Notes;IRCLink;Warfare;Greetings;PG;Hangman;Translate',
 
 	# Various
 	'owner' => 'gizmore',

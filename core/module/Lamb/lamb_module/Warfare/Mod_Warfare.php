@@ -41,7 +41,7 @@ final class LambModule_Warfare extends Lamb_Module
 	###############
 	### Getters ###
 	###############
-	public function getTriggers($priviledge)
+	public function getTriggers($priviledge, $showHidden=true)
 	{
 		switch ($priviledge)
 		{

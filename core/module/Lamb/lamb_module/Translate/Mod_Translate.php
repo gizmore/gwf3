@@ -7,10 +7,8 @@
  */
 class LambModule_Translate extends Lamb_Module
 {
-
-	public function getTriggers($priviedge)
+	public function getTriggers($priviledge, $showHidden=true)
 	{
-
 		$languages = array(
 			'af', 'ar', 'az', 'be', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el', 'en', 'es',
 			'et', 'eu', 'fa', 'fi', 'fr', 'ga', 'gl', 'gu', 'hi', 'hr', 'ht', 'hu', 'hy', 'id',
@@ -19,18 +17,21 @@ class LambModule_Translate extends Lamb_Module
 			'tl', 'tr', 'uk', 'ur', 'vi', 'yi'
 		);
 
-		$pubtriggers = array('tranlate');
+		$pubtriggers = array('translate');
 		
-		foreach($languages as $lang1)
+		if ($showHidden)
 		{
-			foreach($languages as $lang2)
+			foreach($languages as $lang1)
 			{
-				if($lang1 !== $lang2)
+				foreach($languages as $lang2)
 				{
-					$pubtriggers[] = $lang1.'-'.$lang2;
+					if($lang1 !== $lang2)
+					{
+						$pubtriggers[] = $lang1.'-'.$lang2;
+					}
 				}
+				$pubtriggers[] = 'auto-'.$lang1;
 			}
-			$pubtriggers[] = 'auto-'.$lang1;
 		}
 
 		switch($priviledge)
@@ -52,8 +53,8 @@ class LambModule_Translate extends Lamb_Module
 
 	public static function googleTranslate($text, $from='auto', $to='de', $return_source_lang=false)
 	{
-		# TODO: Gizmore: will this block the whole lamb?
-		$html = GWF_HTML::post('http://translate.google.com/', array(
+		# TODO: Gizmore: will this block the whole lamb? => YES
+		$html = GWF_HTTP::post('http://translate.google.com/', array(
 			'sl' => $from,
 			'tl' => $to,
 			'js' => 'n',
@@ -79,12 +80,13 @@ class LambModule_Translate extends Lamb_Module
 
 	public function onTrigger(Lamb_Server $server, Lamb_User $user, $from, $origin, $command, $message)
 	{
-		if($command === 'translate') {
+		if($command === 'translate')
+		{
 			$server->reply($origin, '');
 			return;
 		}
 
-		list($sl, $tl) = explode('-', $trigger);
+		list($sl, $tl) = explode('-', $command);
 
 		if(false === ($translation = self::googleTranslate($message, $sl, $tl, $sl=='auto')))
 		{
@@ -103,5 +105,5 @@ class LambModule_Translate extends Lamb_Module
 
 		$server->reply($origin, $out);
 	}
-
 }
+?>

@@ -51,7 +51,7 @@ if ($message === '')
 				continue;
 			}
 			$symbol = Lamb_User::priv2Symbol($priv);
-			$triggers = $module->getTriggers($priv);
+			$triggers = $module->getTriggers($priv, false);
 			sort($triggers);
 			foreach ($triggers as $trigger)
 			{
