@@ -50,12 +50,13 @@ if ($message === '')
 			if ( (!$server->isAdminUsername($username)) && !$user->hasPriviledge($priv) ) {
 				continue;
 			}
-			$symbol = Lamb_User::priv2Symbol($priv);
+// 			$symbol = Lamb_User::priv2Symbol($priv);
 			$triggers = $module->getTriggers($priv, false);
 			sort($triggers);
 			foreach ($triggers as $trigger)
 			{
-				$commands[] = $symbol.$trigger;
+// 				$commands[] = $symbol.$trigger;
+				$commands[] = $trigger;
 			}
 		}
 		if (count($commands) > 0)
@@ -81,7 +82,7 @@ if ($message === '')
 			$dirname = basename($fullpath);
 			$p = substr($dirname, 0, 1);
 			$priv = Lamb_User::longPriv($p);
-			$symbol = Lamb_User::priv2Symbol($priv);
+// 			$symbol = Lamb_User::priv2Symbol($priv);
 			if ( (!$is_admin) && (!$user->hasPriviledge($priv)) ) {
 				continue;
 			}
