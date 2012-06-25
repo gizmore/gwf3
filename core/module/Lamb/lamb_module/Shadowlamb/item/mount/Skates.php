@@ -7,7 +7,7 @@ final class Item_Skates extends Item_Backpack
 	public function getItemLevel() { return 4; }
 	public function getItemDropChance() { return 30.0; }
 	
-	public function getMountWeight() { return 0; }
+// 	public function getMountWeight() { return 0; }
 	public function getMountPassengers() { return 1; }
 	public function getMountLockLevel() { return 0; }
 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.95; }
