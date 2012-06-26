@@ -8,8 +8,8 @@ final class GWF_GuessCodeLang
 {
 	public static $langs = array(
 		'perl' => array(
-			array('/^#!\/usr\/bin\/(?:env )?perl\s.*/i', 6),
-			array('/\s*use\s+?\w*?\:*?:*?\w*?;*?/i', 4),
+			array('/^#!\/usr\/bin\/(?:env )?perl\s.*/im', 6),
+			array('/\s*use\s+?\w*?\:*?:*?\w*?;*?/im', 4),
 			array('/.*\ssub\s.*/i', 2),
 			array('/.*\suntil\s.*/i', 2),
 			array('/.*\sunless\s.*/i', 2),
@@ -18,8 +18,8 @@ final class GWF_GuessCodeLang
 			array('/.*\sredo\s.*/i', 3),
 		),
 		'php' => array(
-			array('/^#!\/usr\/bin\/(?:env )?php/', 6),
-			array('/^<\?php/i', 6),
+			array('/^#!\/usr\/bin\/(?:env )?php/im', 6),
+			array('/^<\?php/im', 6),
 			array('/strrpos/i', 4),
 			array('/while/i', 1),
 			array('/print/i', 1),
@@ -34,7 +34,7 @@ final class GWF_GuessCodeLang
 			array('/\s*[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*:-[_a-z0-9\[\]]+\s*\(\s*[_a-z0-9\[\]]+\s*(,\s*[_a-z0-9\[\]]+\s*)*\)\s*(%.*\n)?/i', 4),
 		),
 		'html4strict' => array(
-			array('/^<!DOCTYPE html/', 6),
+			array('/^<!DOCTYPE html/m', 6),
 			array('/<html>/', 6),
 			array('/<body>/', 6),
 			array('/<a href/', 6),
@@ -43,8 +43,8 @@ final class GWF_GuessCodeLang
 			array('/ (?:class|id)="/', 4),
 		),
 		'java' => array(
-			array('/^import java/', 6),
-			array('/^import /', 4),
+			array('/^import java/m', 6),
+			array('/^import /m', 4),
 			array('/public static void/', 2),
 			array('/class/', 2),
 			array('/implements/', 2),
@@ -52,21 +52,21 @@ final class GWF_GuessCodeLang
 			array('/interface/', 2),
 		),
 		'c' => array(
-			array('/^#include\s+(<|")/i', 6),
-			array('/^#define\s+/i', 6),
+			array('/^#include\s+(<|")/im', 6),
+			array('/^#define\s+/im', 6),
 		),
 		'DiffFileFormat' => array(
-			array('/^(\+|\-){3}/', 6),
-			array('/^[\+\- ]/', 4),
-			array('/^=+$/', 3),
-			array('/^@@ \-[0-9]+,[0-9]+ \+[0-9]+,[0-9]+ @@/', 6),
-			array('/^Index: /', 2),
-			array('/\(Revision [0-9] \)/', 2),
+			array('/^(\+{3}|\-{3})/m', 6),
+			array('/^[\+-]/m', 4),
+			array('/^=+$/m', 3),
+			array('/^@@ \-[0-9]+,[0-9]+ \+[0-9]+,[0-9]+ @@/m', 6),
+			array('/^Index: /m', 2),
+			array('/\(Revision [0-9]+\)/', 2),
 		),
 		'python' => array(
-			array('/^#!\/usr\/bin\/(?:env )?python/', 6),
-			array('/^from [a-zA-Z]+ import/', 6),
-			array('/^import /', 4),
+			array('/^#!\/usr\/bin\/(?:env )?python/m', 6),
+			array('/^from [a-zA-Z]+ import/m', 6),
+			array('/^import /m', 4),
 			array('/"""/', 4),
 			array("/'''/", 4),
 		),
@@ -93,12 +93,13 @@ final class GWF_GuessCodeLang
 				{
 					$score += count($matches[0]) * $points;
 				}
-				if ($score > $max_score)
-				{
-					$max_score = $score;
-					$language = $lang;
-		    	}
-		    }
+			}
+//			print_r(array($lang, $score));
+			if ($score > $max_score)
+			{
+				$max_score = $score;
+				$language = $lang;
+		   	}
 		}
 		return $language;
 	}
