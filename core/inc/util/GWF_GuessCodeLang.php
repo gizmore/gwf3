@@ -82,19 +82,22 @@ final class GWF_GuessCodeLang
 		$max_score = 5;
 		$language = 'text';
 
-		foreach ($langs as $lang => $data)
+		foreach (self::$langs as $lang => $patterns)
 		{
 			$score = 0;
-			list($pattern, $points) = $data;
+			foreach ($patterns as $data)
+			{
+				list($pattern, $points) = $data;
 
-			if (preg_match_all($pattern, $sourcecode, $matches))
-			{
-				$score += count($matches[0]) * $points;
-			}
-			if ($score > $max_score)
-			{
-				$max_score = $score;
-				$language = $lang;
+				if (preg_match_all($pattern, $sourcecode, $matches))
+				{
+					$score += count($matches[0]) * $points;
+				}
+				if ($score > $max_score)
+				{
+					$max_score = $score;
+					$language = $lang;
+		    	}
 		    }
 		}
 		return $language;
