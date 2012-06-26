@@ -305,7 +305,7 @@ $lang = array(
 
 # belt
 'LeatherBelt' => 'LeatherBelt',
-'LeatherBelt__desc__' => 'A broad leather belt. Not much additionl protection.',
+'LeatherBelt__desc__' => 'A broad leather belt. Not much additional protection.',
 'TinfoilBelt' => 'TinfoilBelt',
 'TinfoilBelt__desc__' => 'A belt made of tinfoil. Quite useless even with the full set.',
 
@@ -375,7 +375,7 @@ $lang = array(
 'WizardGloves' => 'WizardGloves',
 'WizardGloves__desc__' => 'Long-sleeved black gloves made of black silk. They seem to have a magical sphere surrounding them.',
 'WoolGloves' => 'WoolGloves',
-'WoolGloves__desc__' => 'Thick wool gloves as your grandma would knit them. Keeps you warm and comfy',
+'WoolGloves__desc__' => 'Thick wool gloves as your grandma would knit them. Keeps you warm and comfy.',
 
 # helmet
 'ArmyHelmet' => 'ArmyHelmet',
@@ -575,7 +575,7 @@ $lang = array(
 'QWand' => 'QWand',
 'QWand__desc__' => 'A small magic wand. It glows in different colors.',
 'SirenePike' => 'SirenePike',
-'SirenePike__desc__' => 'A long pike worn by the sirenes. It´s really sharp and you fear their deadly tip.',
+'SirenePike__desc__' => 'A long pike worn by the sirenes. It\'s really sharp and you fear its deadly tip.',
 'SpikedClub' => 'SpikedClub',
 'SpikedClub__desc__' => 'A spiked, wooden club. It seems at least the clubs evoluted.',
 'Staff' => 'Staff',
@@ -583,7 +583,7 @@ $lang = array(
 'Stiletto' => 'Stiletto',
 'Stiletto__desc__' => 'A surgical instrument. Actually not made for combat.',
 'Claws' => 'Claws',
-'Claws__desc__' => 'Animal claws. Can surely hurt you if you are not caucios.',
+'Claws__desc__' => 'Animal claws. Can surely hurt you if you are not cautios enough.',
 'ElvenSabre' => 'ElvenSabre',
 'ElvenSabre__desc__' => 'A slim elven sabre. It is not robust but does good damage.',
 'Fists' => 'Fists',

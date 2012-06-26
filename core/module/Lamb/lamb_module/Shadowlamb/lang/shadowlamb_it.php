@@ -196,6 +196,8 @@ $lang = array(
 'stub_enter_store' => 'Entri nel negozio di %s. Non si vede alcuna persona o impiegato.',
 'stub_found_subway' => 'Hai trovato la metropolitana di %s. Da qui puoi raggiungere altre città.',
 'stub_enter_subway' => 'Entri nella metropolitana e ti avvii verso i binari.',
+'stub_found_piercer' => 'Hai trovato un negozio creato appositamente per hipster. "Pierre´s Fashion, Tattoo e Piercings".',
+'stub_enter_piercer' => 'Entri nel negozio. ',
 
 # Clan history
 'ch_0' => '%s ha creato il clan %s.', # player, clanname
