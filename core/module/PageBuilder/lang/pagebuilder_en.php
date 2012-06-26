@@ -100,7 +100,7 @@ $lang = array(
 	'btn_delete' => 'Delete',
 	'msg_added_locked' => 'Your page has been created but will be reviewed before it gets published.',
 	'msg_del_confirm' => 'To delete the page click here: <a href="%s">Delete Page</a>.',
-	'msg_unlock_confirm' => 'Tu publish the page click here: <a href="%s">Publish Page</a>.',
+	'msg_unlock_confirm' => 'To publish the page click here: <a href="%s">Publish Page</a>.',
 	'err_dup_url' => 'The URL is already in use. Please change it.',
 	'err_locked' => 'This page is still waiting to be reviewed and published.',
 	'cfg_locked_posting' => 'Allow moderated guest posts?',

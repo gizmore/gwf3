@@ -83,5 +83,61 @@ $lang = array(
 	'btn_show_published' => 'Mostra pubblicate', 
 	'btn_show_revisions' => 'Mostra revisioni',
 	'btn_show_disableds' => 'Mostra disabilitate',
+	'btn_show_locked' => 'Mostra non moderati',
+		
+	#v1.05 Searching, Locked pages and Overview
+	'overview_title' => 'Panoramica della pagina su '.GWF_SITENAME,
+	'mt_overview' => 'Pagine,Saggi,Tutorial,'.GWF_SITENAME,
+	'md_overview' => 'Una panoramica delle pagine, dei saggi e dei tutorial su '.GWF_SITENAME,
+	'overview_info' =>
+	'BLA SEARCH.'.PHP_EOL.
+	'BLA ADD',
+	'translate_to' => 'Traduci in %s',
+	'ft_search' => 'Ricerca Rapida',
+	'th_term' => 'Termini di ricerca',
+	'btn_search' => 'Cerca',
+	'btn_unlock' => 'Sblocca',
+	'btn_delete' => 'Cancella',
+	'msg_added_locked' => 'La tua pagina è stata creata ma dovrà essere controllata prima di essere pubblicata.',
+	'msg_del_confirm' => 'Per cancellare una pagina clicca qui: <a href="%s">Cancella pagina</a>.',
+	'msg_unlock_confirm' => 'Per pubblicare la pagina clicca qui: <a href="%s">Pubblica pagina</a>.',
+	'err_dup_url' => 'L\'URL è già stato riservato per un altra risorsa. E\' pregato di sceglierne un altro.',
+	'err_locked' => 'Questa pagina è ancora in attesa di essere controllata e pubblicata.',
+	'cfg_locked_posting' => 'Permetti commenti agli utenti non registrati?',
+	'cfg_author_level' => 'Livello minimo per aggiungere una pagina',
+	'cfg_ipp' => 'Elementi per pagina',
+	'cfg_authors' => 'Gruppo Utenti dell\'autore',
+	'tt_cfg_locked_posting' => 'Setta per consentire agli utenti senza privilegi di creare pagine che finiranno nella coda di moderazione.',
+	'tt_cfg_authors' => 'Lista, separata da virgole, dei nomi dei Gruppi utente.',
+	'btn_preview' => 'Anteprima',
+	'msg_enabled' => 'La pagine è ora <a href="%s">visibile qui</a>.',
+	'msg_edit_locked' => 'La tua pagina è stata modificata ma sarà controllata prima di essere pubblicata.',
+	'err_token' => 'Il token è invalido perchè la pagina è già stata inserita nella coda di moderazione.',
+	'subj_mod' => GWF_SITENAME.': Moderazione Pagina',
+	'body_mod' =>
+	'Ciao %s'.PHP_EOL.
+	PHP_EOL.
+	'L\'utente %s ha appena creato o modificato una pagina o una traduzione su '.GWF_SITENAME.'.'.PHP_EOL.
+	PHP_EOL.
+	'URL: %s'.PHP_EOL.
+	'Titolo: %s'.PHP_EOL.
+	'Meta-Tag: %s'.PHP_EOL.
+	'Descrizione: %s'.PHP_EOL.
+	'Inline-CSS:'.PHP_EOL.
+	'%s'.PHP_EOL.
+	PHP_EOL.
+	'Contenuto:'.PHP_EOL.
+	'%s'.PHP_EOL.
+	PHP_EOL.
+	PHP_EOL.
+	'Puoi usare questi URL per la moderazione veloce:'.PHP_EOL.
+	'AUTORIZZA: %s'.PHP_EOL.
+	PHP_EOL.
+	'o'.PHP_EOL.
+	PHP_EOL.
+	'CANCELLA: %s'.PHP_EOL.
+	PHP_EOL.
+	'Cordiali saluti,'.PHP_EOL.
+	'Gli script di '.GWF_SITENAME.PHP_EOL,
 );
 ?>
