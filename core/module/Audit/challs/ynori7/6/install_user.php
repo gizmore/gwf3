@@ -2,14 +2,17 @@
 $dirname = $home.'/level/6';
 if (!Common::isDir($dirname))
 {
-	if (!@mkdir($dirname, 0700, true))
+	@unlink($dirname);
+	$dirname2 = tempnam("/tmp", "L6D");
+	if (!@mkdir($dirname2, 0700, true))
 	{
 		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname));
 		return;
 	}
-	chmod($dirname, 0700);
-	chown($dirname, $username);
-	chgrp($dirname, $username);
+	@chmod($dirname2, 0700);
+	@chown($dirname2, $username);
+	@chgrp($dirname2, $username);
+	@rename($dirname2, $dirname);
 }
 
 $filename = $dirname.'/solution.php';
