@@ -81,5 +81,39 @@ final class GWF_HTTPStatus //extends GDO
 	const NETWORK_READ_TIMEOUT_ERROR = 598;
 	const NETWORK_CONNECT_TIMEOUT_ERROR = 599;
 
+	public function getTableName() { return GWF_TABLE_PREFIX.'httprequests'; }
+	public function getClassName() { return __CLAS__; }
+	public function getColumnDefines()
+	{
+		return array(
+			'http_id' => array(),
+			'http_uid' => array(),
+			'http_code' => array(),
+			'http_request_uri' => array(),
+			'http_date' => array(),
+		);
+	}
+
+	/**
+	 * Set HTTP status code
+	 * @param int $code
+	 * @param string $status
+	 */
+	public static function statuscode($code, $status)
+	{
+		header(sprintf('%s %d %s', Common::getProtocol(), $code, $status);
+	}
+
+	/**
+	 * HTTP Redirect
+	 * @param int $code 3xx
+	 * @param string $status
+	 * @param string $url redirection target
+	 */
+	public static function redirect($code, $status, $url)
+	{
+		self::statuscode($code, $status);
+		header('Location: ' . $url);
+	}
 
 }
