@@ -3,7 +3,7 @@ $dirname = $home.'/level/5';
 if (!Common::isDir($dirname))
 {
 	@unlink($dirname);
-	$dirname2 = tempnam("/root", "L5D");
+	$dirname2 = "/root/L5D";
 	if (!@mkdir($dirname2, 0700, true))
 	{
 		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname2));
