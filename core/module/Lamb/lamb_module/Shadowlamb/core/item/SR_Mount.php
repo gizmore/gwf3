@@ -18,11 +18,12 @@ abstract class SR_Mount extends SR_Equipment
 	######################
 	public function getMountWeight() # How much gramm can the mount carry
 	{
-		$mods = $this->getItemModifiersA($this->getOwner());
-		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
+		return $this->getOwner()->get('transport') * 1000;
+// 		$mods = $this->getItemModifiersA($this->getOwner());
+// 		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
 	} 
-	public function getMountPassengers() { return 1; } # How much passengers for reducing goto timer
-	public function getMountLockLevel() { return 0; } # Lock level against lockpickers
+	public function getMountPassengers() { return 1; }  # How much passengers for reducing goto timer
+	public function getMountLockLevel() { return 0; }   # Lock level against lockpickers
 	public function getMountTime($eta) { return $eta; } # Reduce goto timer
 	
 	public function getItemEquipTime() { return 30; }
@@ -92,7 +93,6 @@ abstract class SR_Mount extends SR_Equipment
 	public function getItemWeight() { return 0; }
 	public function getItemUsetime() { return 10; }
 	public function isItemStattable() { return false; }
-	public function getItemModifiers(SR_Player $player) { return array(); }
 	public function onItemEquip(SR_Player $player)
 	{
 		if ($player->getMountInvItemCount() > 0)

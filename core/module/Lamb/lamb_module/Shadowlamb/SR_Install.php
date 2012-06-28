@@ -31,6 +31,10 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
+		$user = new Lamb_User(array('lusr_sid'=>'0', 'lusr_name'=>'__FAKE__', 'lusr_lang'=>'en'));
+		$player = new SR_Player(array('sr4pl_uid'=>$user));
+		Shadowcmd::$CURRENT_PLAYER = $player;
+		
 // 		$spells = SR_Spell::getSpells();
 // 		ksort($spells);
 // 		foreach ($spells as $name => $spell)
@@ -38,7 +42,11 @@ final class SR_Install
 // 			printf("'%s' => '%s'\n", $name, $name);
 // 		}
 // 		die();
-		return self::createItemLangFile() && self::createItemTypeFile() && self::createStatUUIDFile(); # && self::createItemDataFile();
+		$back = self::createItemLangFile() && self::createItemTypeFile() && self::createStatUUIDFile(); # && self::createItemDataFile();
+		
+		Shadowcmd::$CURRENT_PLAYER = NULL;
+		
+		return $back;
 // 		return true;
 // 		return
 // 			(true === self::createNPCLangFiles()) &&
