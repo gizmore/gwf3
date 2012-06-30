@@ -99,3 +99,7 @@ Bugfix: readet (outgoing) PMs are displayed as unreaded after upgrade to WC5, co
 #19: cleanup TODO file
 
 --------------------------------------------------------------------------------
+
+#20: Fix Chrome's cookie token error while loging in or registering.  
+
+--------------------------------------------------------------------------------
