@@ -10,7 +10,7 @@ $lang = array(
 ############
 # Tiny bits
 'ny' => '%s¥',
-'lvl' => 'Līmenis %s',
+'lvl' => ' Līmenis %s',
 'name' => 'Vārds',
 'none' => 'Nekā',
 'over' => 'pāri',

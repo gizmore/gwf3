@@ -5,5 +5,7 @@ $lang = array(
 
 	'heat_off' => 'You have totally turned off the heating in this building.',
 	'heat_on' => 'You have totally turned on the heating in this building.',
+		
+	'sour' => 'Oh no... all your Milk turned sour!',
 );
 ?>

@@ -5,7 +5,7 @@ final class TrollHQ2_TrollChief extends SR_TalkingNPC
 	public function getNPCPlayerName() { return 'Larry'; }
 	public function getNPCLevel() { return 16; }
 	public function canNPCMeet(SR_Party $party) { return false; }
-	public function getNPCQuests(SR_Player $player) { return array('Troll_Intro', 'Troll_Feed', 'Troll_Support', 'Troll_Forever', 'Troll_Maniac'); }
+	public function getNPCQuests(SR_Player $player) { return array('Troll_Intro', 'Troll_Feed', 'Troll_Support', 'Troll_Forever', 'Troll_Maniac', 'Troll_SourFaced'); }
 	public function getNPCModifiers()
 	{
 		return array(

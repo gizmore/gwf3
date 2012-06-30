@@ -18,9 +18,9 @@ abstract class SR_Mount extends SR_Equipment
 	######################
 	public function getMountWeight() # How much gramm can the mount carry
 	{
-		return $this->getOwner()->get('transport') * 1000;
-// 		$mods = $this->getItemModifiersA($this->getOwner());
-// 		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
+// 		return $this->getOwner()->get('transport') * 1000;
+		$mods = $this->getItemModifiersA($this->getOwner());
+		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
 	} 
 	public function getMountPassengers() { return 1; }  # How much passengers for reducing goto timer
 	public function getMountLockLevel() { return 0; }   # Lock level against lockpickers

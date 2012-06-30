@@ -323,6 +323,12 @@ final class SR_Party extends GDO
 		
 		$old_action = $this->getAction();
 		$oldcity = $this->getCityClass();
+
+		# Leave location event
+		if ( ($old_action === self::ACTION_INSIDE) )
+		{
+			$this->getLocationClass()->onLeaveLocation($this);
+		}
 		
 		# Save new vars
 		if (false === $this->saveVars(array(

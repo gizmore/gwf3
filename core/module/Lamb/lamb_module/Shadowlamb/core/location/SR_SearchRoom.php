@@ -62,7 +62,7 @@ abstract class SR_SearchRoom extends SR_Tower
 		$attemp++;
 		$player->setTemp($key, $attemp);
 
-		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel()), $this->getSearchLoot($player), $this->getSearchChanceNone());
+		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel(), array(), $this->getSearchChanceNone()), $this->getSearchLoot($player));
 		
 		if (count($loot) > 0)
 		{

@@ -60,6 +60,7 @@ final class Seattle_Store extends SR_Store
 	public function getStoreItems(SR_Player $player)
 	{
 		return array(
+			array('Milk', 100.0, 69.95),
 			array('Stimpatch', 100.0, 1000),
 			array('Ether', 100.0, 1000),
 			array('AimWater', 100.0, 500),
