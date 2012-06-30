@@ -105,7 +105,9 @@ final class LambModule_Link extends Lamb_Module
 			}
 		}
 		
-		return $title.' - '.$descr;
+		$back = $title.' - '.$descr;
+		
+		return substr($back, 0, 480);
 	}
 	
 	private function decode($s)

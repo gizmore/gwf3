@@ -401,7 +401,7 @@ final class Shadowhelp
 					'location_cmds' => 'All location commands',
 					array(
 					
-						'look' => "Player command. Usage: #(lo)ok. Look around to spot other players in your current location. You can see players from other servers too.",
+						'look' => "Location command. Usage: #(lo)ok. Look around to spot other players in your current location. You can see players from other servers too.",
 					
 						'shop_cmds' => 'Store commands',
 						array(
