@@ -7,12 +7,13 @@ class Item_RacingBike extends Item_Bike
 	
 // 	public function getMountWeight() { return 1500; }
 	public function getMountPassengers() { return 1; }
-	public function getMountLockLevel() { return 1; }
+// 	public function getMountLockLevel() { return 1; }
 // 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.85; }
 
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
+			'lock' => 1,
 			'tuneup' => '2.50',
 			'transport' => '1.50',
 		);

@@ -6,12 +6,13 @@ final class Item_Famstar2400 extends SR_Mount
 	
 // 	public function getMountWeight() { return 80000; }
 	public function getMountPassengers() { return 6; }
-	public function getMountLockLevel() { return 5; }
+// 	public function getMountLockLevel() { return 5; }
 // 	public function getMountTime($eta) { return $eta * 0.70; }
 
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
+			'lock' => 5,
 			'tuneup' => '7.00',
 			'transport' => '80.00',
 		);

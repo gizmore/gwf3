@@ -7,7 +7,7 @@ class Item_Bike extends Item_Backpack
 	
 // 	public function getMountWeight() { return 2500; }
 	public function getMountPassengers() { return 1; }
-	public function getMountLockLevel() { return 0; }
+// 	public function getMountLockLevel() { return 0; }
 // 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.80; }
 	
 	public function getItemModifiersA(SR_Player $player)

@@ -26,7 +26,17 @@ abstract class SR_Mount extends SR_Equipment
 		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
 	} 
 	public function getMountPassengers() { return 1; }  # How much passengers for reducing goto timer
-	public function getMountLockLevel() { return 0; }   # Lock level against lockpickers
+	
+	# Lock level against lockpickers
+	public final function getMountLockLevel()
+	{
+		if (false === ($owner = $this->getOwner()))
+		{
+			$owner = Shadowcmd::$CURRENT_PLAYER;
+		}
+		$mods = $this->getItemModifiersA($owner);
+		return isset($mods['lock']) ? $mods['lock'] : 0;
+	}
 	
 	public final function getMountTuneup()
 	{
@@ -39,8 +49,8 @@ abstract class SR_Mount extends SR_Equipment
 	}
 	
 	/**
-	 * @param unknown_type $eta
-	 * @return unknown
+	 * @param int $eta
+	 * @return int new eta
 	 */
 	public final function getMountTime($eta)
 	{
@@ -51,9 +61,8 @@ abstract class SR_Mount extends SR_Equipment
 		
 		$back = round($eta * $tuneup);
 		
-		printf('!!!!Changed ETA %s to %s. (tuneup=%s)'.PHP_EOL, $eta, $back, $this->getMountTuneup()
-				);
-		
+		printf('!!!!Changed ETA %s to %s. (tuneup=%s)'.PHP_EOL, $eta, $back, $this->getMountTuneup());
+				
 		return $back;
 	}
 	

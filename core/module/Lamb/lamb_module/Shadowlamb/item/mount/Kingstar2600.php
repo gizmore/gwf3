@@ -6,12 +6,13 @@ final class Item_Kingstar2600 extends SR_Mount
 	
 // 	public function getMountWeight() { return 120000; }
 	public function getMountPassengers() { return 6; }
-	public function getMountLockLevel() { return 6; }
+// 	public function getMountLockLevel() { return 6; }
 // 	public function getMountTime($eta) { return $eta * 0.68; }
 
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
+			'lock' => 6,
 			'tuneup' => '7.00',
 			'transport' => '120.00',
 		);

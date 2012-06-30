@@ -12,6 +12,7 @@ final class Item_Horse extends SR_Mount
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
+			'lock' => 1,
 			'tuneup' => '2.85',
 			'transport' => '6.00',
 		);
