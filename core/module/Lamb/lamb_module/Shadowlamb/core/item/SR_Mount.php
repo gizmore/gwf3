@@ -18,8 +18,11 @@ abstract class SR_Mount extends SR_Equipment
 	######################
 	public function getMountWeight() # How much gramm can the mount carry
 	{
-// 		return $this->getOwner()->get('transport') * 1000;
-		$mods = $this->getItemModifiersA($this->getOwner());
+		if (false === ($owner = $this->getOwner()))
+		{
+			$owner = Shadowcmd::$CURRENT_PLAYER;
+		}
+		$mods = $this->getItemModifiersA($owner);
 		return isset($mods['transport']) ? $mods['transport'] * 1000 : 0;
 	} 
 	public function getMountPassengers() { return 1; }  # How much passengers for reducing goto timer

@@ -51,6 +51,8 @@ abstract class SR_Blacksmith extends SR_Store
 	#############
 	### Clean ###
 	#############
+	private static $CLEAN_CONFIRM = array();
+	
 	public function on_clean(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
@@ -69,19 +71,38 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->rply('1158');
 			return false;
 		}
-// 		if (!$item->isItemStatted())
-// 		{
+		if (!$item->isItemStatted())
+		{
+			$bot->rply('1188');
 // 			$bot->reply('You can only clean statted items.');
-// 			return false;
-// 		}
-// 		if ($item instanceof SR_Rune)
-// 		{
-// 			$bot->reply('You cannot clean runes.');
-// 			return false;
-// 		}
-
+			return false;
+		}
+		
 		$itemname = $item->getItemName();
 		$price = $this->calcCleanPrice($player, $item->getItemPriceStatted());
+		
+		if (!$player->hasNuyen($price))
+		{
+			$bot->rply('1063', array($p, $player->displayNuyen()));
+			return false;
+		}
+		
+		
+		# Confirm
+		$uid = $player->getUID();
+		if ($args[0] !== $itemname)
+		{
+			if ( (!isset(self::$CLEAN_CONFIRM[$uid])) || (self::$CLEAN_CONFIRM[$uid] !== $args[0]) )
+			{
+				$bot->reply(sprintf('You plan to clean your %s. Please retype to confirm.', $itemname));
+				self::$CLEAN_CONFIRM[$uid] = $args[0];
+				return false;
+			}
+			else
+			{
+				unset(self::$CLEAN_CONFIRM[$uid]);
+			}
+		}
 
 		$p = Shadowfunc::displayNuyen($price);
 		if (false === ($player->pay($price)))

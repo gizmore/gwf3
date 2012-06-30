@@ -457,6 +457,7 @@ $lang = array(
 '1185' => 'Questa ricetta è sconosciuta.',
 '1186' => 'Per distillare %s ti serve altro %s.',
 '1187' => 'Ti serve del %s per poter migliorare in sicurezza degli oggetti.',
+'1188' => 'You can only clean statted items.',
 
 ########################
 # 10000-14999 = Spells #
