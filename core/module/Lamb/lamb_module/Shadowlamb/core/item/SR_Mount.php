@@ -27,7 +27,35 @@ abstract class SR_Mount extends SR_Equipment
 	} 
 	public function getMountPassengers() { return 1; }  # How much passengers for reducing goto timer
 	public function getMountLockLevel() { return 0; }   # Lock level against lockpickers
-	public function getMountTime($eta) { return $eta; } # Reduce goto timer
+	
+	public final function getMountTuneup()
+	{
+		if (false === ($owner = $this->getOwner()))
+		{
+			$owner = Shadowcmd::$CURRENT_PLAYER;
+		}
+		$mods = $this->getItemModifiersA($owner);
+		return isset($mods['tuneup']) ? $mods['tuneup'] : 0;
+	}
+	
+	/**
+	 * @param unknown_type $eta
+	 * @return unknown
+	 */
+	public final function getMountTime($eta)
+	{
+		$tuneup = $this->getMountTuneup();
+		$tuneup = Common::clamp($tuneup, 0, 20);
+		$tuneup = $tuneup / 40;
+		$tuneup = 1.00 - $tuneup;
+		
+		$back = round($eta * $tuneup);
+		
+		printf('!!!!Changed ETA %s to %s. (tuneup=%s)'.PHP_EOL, $eta, $back, $this->getMountTuneup()
+				);
+		
+		return $back;
+	}
 	
 	public function getItemEquipTime() { return 30; }
 	public function getItemUnequipTime() { return 30; }
@@ -63,11 +91,11 @@ abstract class SR_Mount extends SR_Equipment
 		return $lock + $lock2;
 	}
 	
-	public function getMountTuneup()
-	{
-		$mods = $this->getItemModifiersB();
-		return isset($mods['tuneup']) ? $mods['tuneup'] : 0;
-	}
+// 	public function getMountTuneup()
+// 	{
+// 		$mods = $this->getItemModifiersB();
+// 		return isset($mods['tuneup']) ? $mods['tuneup'] : 0;
+// 	}
 	
 	############
 	### Item ###

@@ -8,11 +8,12 @@ class Item_Crucifer235 extends Item_DavyHasselhoff
 // 	public function getMountWeight() { return 4000; }
 	public function getMountPassengers() { return 1; }
 	public function getMountLockLevel() { return 3; }
-	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.78; }
+// 	public function getMountTime($eta) { return parent::getMountTime($eta) * 0.78; }
 
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
+			'tuneup' => '4.50',
 			'transport' => '4.00',
 		);
 	}

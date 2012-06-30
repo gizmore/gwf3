@@ -48,7 +48,7 @@ abstract class SR_City
 			if (false !== ($mount = $party->getCriticalMount()))
 			{
 				$eta = $mount->getMountTime($eta);
-				$eta -= ($mount->getMountTuneup() * 10);
+// 				$eta -= ($mount->getMountTuneup() * 2);
 			}
 		}
 		$eta += rand(0, $randtime);
