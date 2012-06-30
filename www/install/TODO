@@ -103,3 +103,7 @@ Bugfix: readet (outgoing) PMs are displayed as unreaded after upgrade to WC5, co
 #20: Fix Chrome's cookie token error while loging in or registering.  
 
 --------------------------------------------------------------------------------
+
+#21: Make geshi highlighted [code] tags downloadable. (thx spaceone)
+
+--------------------------------------------------------------------------------
