@@ -101,7 +101,7 @@ final class GWF_HTTPStatus //extends GDO
 	 */
 	public static function statuscode($code, $status)
 	{
-		header(sprintf('%s %d %s', Common::getProtocol(), $code, $status);
+		header(sprintf('%s %d %s', Common::getProtocol(), $code, $status));		return null;
 	}
 
 	/**
