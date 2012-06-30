@@ -299,12 +299,17 @@ final class Shadowcmd_quests extends Shadowcmd
 	 */
 	private static function displayMissing(SR_Player $player, array $quests, array $args)
 	{
+		if (count($args) === 1)
+		{
+			$args[] = $player->getParty()->getCity();
+		}
+		
 		if (count($args) !== 2)
 		{
 			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
 		}
 		
-		if (false === ($city = Shadowrun4::getCity($args[1])))
+		if (false === ($city = Shadowrun4::getCityByAbbrev($args[1])))
 		{
 			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
 		}
