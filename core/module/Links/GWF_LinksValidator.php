@@ -140,5 +140,14 @@ final class GWF_LinksValidator
 			return GWF_Links::mayGuestAddTag($module);
 		}
 	}
+	
+	################
+	### Language ###
+	################
+	
+	public static function vaildate_language (Module_Links $module, $arg) 
+	{
+		return GWF_LangSelect::validate_langid($arg,false,GWF_LangSelect:: TYPE_SUPPORTED);
+	} 
 }
 ?>

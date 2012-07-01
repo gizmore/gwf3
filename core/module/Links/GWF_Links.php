@@ -243,7 +243,7 @@ final class GWF_Links extends GDO #implements GDO_Searchable
 	 * @param unknown_type $memberlink
 	 * @return GWF_Links
 	 */
-	public static function fakeLink($user, $href, $descr, $descr2, $tags='', $score=0, $gid=0, $sticky=false, $in_moderation=false, $unafiliate=false, $memberlink=false, $private=false)
+	public static function fakeLink($user, $href, $descr, $descr2, $tags='', $score=0, $gid=0, $sticky=false, $in_moderation=false, $unafiliate=false, $memberlink=false, $private=false, $langid=1)
 	{
 		$options = 0;
 		$options |= $sticky ? self::STICKY : 0;
@@ -268,6 +268,7 @@ final class GWF_Links extends GDO #implements GDO_Searchable
 			'link_readby' => $user === false ? ':' : ':'.$user->getVar('user_id').':',
 			'link_tags' => $tags,
 			'link_popular' => 0,
+			'link_lang' => $langid,
 		));
 	}
 	

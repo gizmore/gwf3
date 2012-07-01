@@ -131,7 +131,7 @@ final class Links_Add extends GWF_Method
 	public function validate_link_href(Module_Links $m, $arg) { return GWF_LinksValidator::validate_href($this->module, $arg, true); }
 	public function validate_link_descr(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr1($this->module, $arg); }
 	public function validate_link_descr2(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr2($this->module, $arg); }
-	public function validate_link_lang($m, $arg) { return GWF_LangSelect::isValidLanguage($arg,false,GWF_LangSelect:: TYPE_SUPPORTED);}
+	public function validate_link_lang(Module_Links $m, $arg) { return GWF_LinksValidator::vaildate_language($this->module, $arg);}
 	
 	private function onAdd()
 	{
@@ -151,8 +151,10 @@ final class Links_Add extends GWF_Method
 		$in_moderation = $user === false && $this->module->cfgGuestModerated();
 		$unafiliate = isset($_POST['link_options&'.GWF_Links::UNAFILIATE]);
 		$memberlink = isset($_POST['link_options&'.GWF_Links::MEMBER_LINK]);
+		$private = false;
+		$langid = $form->getvar('link_lang');
 		
-		$link = GWF_Links::fakeLink($user, $href, $descr1, $descr2, $tags, $score, $gid, $sticky, $in_moderation, $unafiliate, $memberlink);
+		$link = GWF_Links::fakeLink($user, $href, $descr1, $descr2, $tags, $score, $gid, $sticky, $in_moderation, $unafiliate, $memberlink, $private, $langid);
 		
 		if (false !== ($error = $link->insertLink($this->module, $in_moderation))) {
 			return $error.$this->templateAdd();
