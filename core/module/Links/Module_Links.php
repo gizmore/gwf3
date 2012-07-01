@@ -9,7 +9,7 @@ final class Module_Links extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.02; }
+	public function getVersion() { return 1.03; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/links'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('Staff'); }
 	public function getDependencies() { return array('Votes'=>1.00); }

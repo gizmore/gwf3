@@ -147,7 +147,7 @@ final class GWF_LinksValidator
 	
 	public static function vaildate_language (Module_Links $module, $arg) 
 	{
-		return GWF_LangSelect::validate_langid($arg,false,GWF_LangSelect:: TYPE_SUPPORTED);
+		return GWF_LangSelect::validate_langid($arg,false,GWF_LangSelect::TYPE_SUPPORTED);
 	} 
 }
 ?>
