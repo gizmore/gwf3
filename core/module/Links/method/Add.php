@@ -50,6 +50,7 @@ final class Links_Add extends GWF_Method
 	{
 		$tags = Common::getPostString('link_tags', Common::getGet('tag'));
 		$data = array(
+			'link_lang' => array(GWF_Form::SELECT, GWF_LangSelect::single(GWF_LangSelect::TYPE_SUPPORTED, 'link_lang'),  $this->module->lang('th_link_lang')),
 			'link_score' => array(GWF_Form::STRING, '0', $this->module->lang('th_link_score'), $this->module->lang('tt_link_score')),
 			'link_gid' => array(GWF_Form::SELECT, GWF_GroupSelect::single('link_gid'), $this->module->lang('th_link_gid'), $this->module->lang('tt_link_gid')),
 			'tag_info' => array(GWF_Form::HEADLINE, '', $this->module->lang('info_tag')),
@@ -130,6 +131,7 @@ final class Links_Add extends GWF_Method
 	public function validate_link_href(Module_Links $m, $arg) { return GWF_LinksValidator::validate_href($this->module, $arg, true); }
 	public function validate_link_descr(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr1($this->module, $arg); }
 	public function validate_link_descr2(Module_Links $m, $arg) { return GWF_LinksValidator::validate_descr2($this->module, $arg); }
+	public function validate_link_lang($m, $arg) { return GWF_LangSelect::isValidLanguage($arg,false,GWF_LangSelect:: TYPE_SUPPORTED);}
 	
 	private function onAdd()
 	{

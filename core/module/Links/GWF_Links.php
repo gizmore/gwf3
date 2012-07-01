@@ -53,6 +53,8 @@ final class GWF_Links extends GDO #implements GDO_Searchable
 			# DownCheck
 			'link_lastcheck' => array(GDO::UINT, 0),
 			'link_downcount' => array(GDO::UINT, 0),
+			# Lanuguage
+			'link_lang' => array(GDO::UINT|GDO::INDEX, 1),
 		);
 	}
 	
