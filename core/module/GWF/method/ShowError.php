@@ -23,33 +23,6 @@ final class GWF_ShowError extends GWF_Method
 	
 	private function templateError()
 	{
-// 		$errors = array(
-// 			# client errors 4xx
-// 			'400' => 'Bad Request',
-// 			'401' => 'Unauthorized',
-// 			'403' => 'Forbidden',
-// 			'404' => 'Not Found',
-// 			'405' => 'Method Not Allowed',
-// 			'406' => 'Not Acceptable',
-// 			'407' => 'Proxy Authentication Required',
-// 			'408' => 'Request Time-out',
-// 			'409' => 'Conflict',
-// 			'410' => 'Gone',
-// 			'411' => 'Length Required',
-// 			'412' => 'Precondition Failed',
-// 			'413' => 'Request Entity Too Large',
-// 			'414' => 'Request-URI Too Long',
-// 			'415' => 'Unsupported Media Type',
-// 			'417' => 'Expectation Failed',
-// 			'418' => 'I\'m a Teapot',
-// 			'421' => 'There are too many connections from your internet address',
-// 			'422' => 'Unprocessable Entity',
-// 			'423' => 'Locked',
-// 			'424' => 'Failed Dependency',
-// 			'426' => 'Upgrade Required',
-// 			# TODO: server errors 5XX; add htaccess
-// 		);
-
 		$module = $this->module;
 		$module instanceof Module_GWF;
 

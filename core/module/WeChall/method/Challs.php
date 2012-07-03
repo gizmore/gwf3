@@ -50,7 +50,7 @@ final class WeChall_Challs extends GWF_Method
 		}
 		
 		$from_query = $from_userid === 0 ? '1' : "chall_creator LIKE '%,$from_userid,%'";
-		$tag_query = $tag == '' ? '1' : "chall_tags LIKE '%,".GDO::escape($tag)."%'";
+		$tag_query = $tag === '' ? '1' : "chall_tags LIKE '%,".GDO::escape($tag)."%'";
 		$conditions = "($from_query) AND ($tag_query)";
 //		var_dump($conditions);
 		if (0 === ($count = $challs->countRows($conditions))) {

@@ -169,6 +169,16 @@ class GWF3
 		return $this;
 	}
 
+	public static function getInstance($dir, $config=array())
+	{
+		static $gwf = false;
+		if (false === $gwf)
+		{
+			$gwf = new self($dir, $config);
+		}
+		return $gwf;
+	}
+
 	/**
 	 * commits the session if allowed
 	 * @return NULL
@@ -226,7 +236,7 @@ class GWF3
 		{
 			GWF_Log::logCritical($msg);
 		}
-		die(htmlspecialchars($msg));
+		die(htmlspecialchars($msg)); # FIXME: dont die here, raise global GWF_Exception
 	}
 
 	/**
@@ -254,7 +264,7 @@ class GWF3
 		{
 			if (false === file_exists($config))
 			{			
-				self::logDie('GWF3 couldnt load the config: '.$config.'file doesnt exists. Message in '.__FILE__.' at line'.__LINE__);
+				self::logDie(sprintf('GWF3 couldnt load the config: %s file doesnt exists. Message in %s at line %s', $config, __FILE__, __LINE__));
 			}
 			require_once $config;
 			define('GWF_HAVE_CONFIG', 1);
@@ -291,7 +301,8 @@ class GWF3
 			{
 				if ($ban[1] === $ip && $ban[0] > time())
 				{
-					die('You are banned until '.date('Y-m-d H:i:s', $ban[0]).'+UGZ.');
+					# FIXME: WTF? and why not logDie ?
+					die(sprintf('You are banned until %s+UGZ.', date('Y-m-d H:i:s', $ban[0]));
 					return true;
 				}
 			}
@@ -398,6 +409,7 @@ class GWF3
 		}
 		else
 		{
+			# TODO: HTTP Response code (by GWF_Exception(?))
 			self::$page = GWF_HTML::err('ERR_MODULE_DISABLED', array(self::$MODULE->display('module_name')));
 		}
 		return $this;

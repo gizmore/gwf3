@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * @todo rename
  * @author spaceone
  */
 final class GWF_HTTPStatus //extends GDO
@@ -81,6 +81,7 @@ final class GWF_HTTPStatus //extends GDO
 	const NETWORK_READ_TIMEOUT_ERROR = 598;
 	const NETWORK_CONNECT_TIMEOUT_ERROR = 599;
 
+/* TODO: remove; this is the wrong place for logging/saving != 2XX errors
 	public function getTableName() { return GWF_TABLE_PREFIX.'httprequests'; }
 	public function getClassName() { return __CLAS__; }
 	public function getColumnDefines()
@@ -93,6 +94,41 @@ final class GWF_HTTPStatus //extends GDO
 			'http_date' => array(),
 		);
 	}
+*/
+
+	/**
+	 * The HTTP Response code
+	 * @var int $status
+	 */
+	private $status;
+
+	/**
+	 * The Response content
+	 * @var string $content
+	 */
+	private $content;
+
+	private $messages;
+	private $errors;
+
+	/**
+	 *
+	 * @todo make it GWF_Error compatible
+	 * @todo add setter
+	 */
+	public function __construct($status, $content, $messages=array(), $errors=array())
+	{
+		$this->status = $status;
+		$this->content = $content;
+		$this->messages = $messages;
+		$this->errors = $errors;
+	}
+
+	public function getStatus() { return $this->status; }
+	public function getContent() { return $this->content; }
+	public function getErrors() { return $this->errors; }
+	public function getMessages() { return $this->messages; }
+
 
 	/**
 	 * Set HTTP status code

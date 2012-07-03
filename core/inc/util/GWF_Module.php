@@ -48,7 +48,7 @@ class GWF_Module extends GDO
 	public function getModuleVarBool($var, $default='0') { return $this->getModuleVar($var, $default) === '1'; }
 	public function getModuleVarString($var, $default='') { return $this->getModuleVar($var, $default); }
 	public function getClasses() { return array(); }
-	public function getMethodURL($method, $app='') { return GWF_WEB_ROOT.'index.php?mo='.$this->getName().'&me='.$method.$app; }
+	public function getMethodURL($method, $app='') { return GWF_WEB_ROOT.'index.php?mo='.$this->getName().'&me='.$method.$app; } # FIXME: RESTful URIs
 	public function getAdminSectionURL() { return '#'; }
 	public function hasAdminSection() { return $this->getAdminSectionURL() !== '#'; }
 	public function isEnabled() { return $this->isOptionEnabled(self::ENABLED); }
@@ -68,7 +68,11 @@ class GWF_Module extends GDO
 	public function onStartup() {}
 	public function onAddHooks() {}
 	public function onInstall($dropTable) { return ''; }
-	public function onCronjob() {} # Output to stdout for debuglogs. Errors are redirected to stderr.
+	/**
+	 * Output to stdout for debuglogs. Errors are redirected to stderr.
+	 * @todo rethink the output handling...
+	 */
+	public function onCronjob() {}
 	public function isAjax() { return isset($_REQUEST['ajax']); }
 
 	/**
@@ -320,8 +324,23 @@ class GWF_Module extends GDO
 			# TODO: nicer way than die()ing
 			die($method->getWrappingContent($method->execute()));
 		}
-	
-		return $method->execute();
+
+		try
+		{
+			$back = $method->execute();
+//			if ($back instanceof GWF_Response)
+//			{
+//				$response = $back;
+//				$back = $response->getContent();
+//				# TODO: request logging here?
+//				# TODO: HTTP Response code
+//			}
+			return $back;
+		}
+		catch (Exception $e)
+		{
+			# TODO: does this makes sense... PHP Errors aren't exceptions?
+		}
 	}
 
 	/**
