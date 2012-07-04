@@ -15,5 +15,21 @@ class Item_Pockets extends SR_Mount
 // 		$perc = Common::clamp($perc, 0.50, 1.00);
 // 		return $eta * $perc;
 // 	}
+
+	public function getPocketsTuneup(SR_Player $player)
+	{
+		$bo = $player->get('body') * 0.02;
+		$st = $player->get('strength') * 0.04;
+		$qu = $player->get('quickness') * 0.06;
+		return $bo + $st + $qu;
+	}
+	
+	public function getItemModifiersA(SR_Player $player)
+	{
+		return array(
+			'tuneup' => $this->getPocketsTuneup($player),
+		);
+	}
+	
 }
 ?>

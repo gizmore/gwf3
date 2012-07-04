@@ -6,7 +6,7 @@ final class Item_Horse extends SR_Mount
 	
 // 	public function getMountWeight() { return 6000; }
 	public function getMountPassengers() { return 2; }
-	public function getMountLockLevel() { return 1; }
+// 	public function getMountLockLevel() { return 1; }
 // 	public function getMountTime($eta) { return $eta * 0.8; }
 
 	public function getItemModifiersA(SR_Player $player)
