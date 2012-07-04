@@ -1,6 +1,6 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.04-2012.Apr.1');
+define('GWF_CORE_VERSION', '3.04-2012.Jul.01');
 
 /**
  * Welcome to GWF3
@@ -302,8 +302,8 @@ class GWF3
 				if ($ban[1] === $ip && $ban[0] > time())
 				{
 					# FIXME: WTF? and why not logDie ?
-					die(sprintf('You are banned until %s+UGZ.', date('Y-m-d H:i:s', $ban[0]));
-					return true;
+					die(sprintf('You are banned until %s+UGZ.', date('Y-m-d H:i:s', $ban[0])));
+// 					return true;
 				}
 			}
 		}
