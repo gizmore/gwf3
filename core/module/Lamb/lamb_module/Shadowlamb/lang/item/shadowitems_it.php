@@ -362,8 +362,8 @@ $lang = array(
 # gloves
 'BoxingGloves' => 'GuantiDaPugilato',
 'BoxingGloves__desc__' => 'Spessi guanti rossi da pugilato ancora in buono stato. Non molto utili in strada, purtroppo.',
-'DornGloves' => 'DornGloves',
-'DornGloves__desc__' => 'Hard black leather gloves with long dorns for your ankles. Deadly assistance for close combat.',
+'DornGloves' => 'GuantiBorchiati',
+'DornGloves__desc__' => 'Guanti pesanti di pelle nera con lunghe borchie sopra le nocche. Un aiuto mortale nel combattimento in mischia.',
 'ElvenGloves' => 'GuantiElfici',
 'ElvenGloves__desc__' => 'Guanti elfici verdi realizzati da un materiale sconosciuto. Risplendono di un pallido verde.',
 'Handcuffs' => 'Mancette',
