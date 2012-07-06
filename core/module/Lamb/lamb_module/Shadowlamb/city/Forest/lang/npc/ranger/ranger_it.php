@@ -1,8 +1,8 @@
 <?php
 $b = chr(2);
 $lang = array(
-'name' => 'Melanie',
-'seattle' => 'I rarely leave the forest and go to Seattle.',
+'name' => 'Roger',
+'seattle' => 'Non mi piace molto la città. Preferisco la foresta.',
 'shadowrun' => '',
 'cyberware' => '',
 'magic' => '',
@@ -17,11 +17,12 @@ $lang = array(
 'yes' => '',
 'no' => '',
 'negotiation' => '',
-'hello' => "Hello young adventurer. I have forseen your arrival. I am sure you are interested in brewing a {$b}recipe.{$b}",
+'hello' => "Ciao, chumo. Chiamami Roger. Sono un ranger della foresta di Seattle.",
 'default' => '',
 'temple' => '',
 'smithing' => '',
 'ninja' => '',
-'recipe' => 'Bring me the correct incredients and I will brew you a potion from it.',
+		
+'bear' => 'Ci sono alcune creature furiose!',
 );
 ?>
