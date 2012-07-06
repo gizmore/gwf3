@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Edit a category and it's translations.
+ * @author gizmore
+ */
 final class Category_Edit extends GWF_Method
 {
 	public function getUserGroups() { return array(GWF_Group::STAFF, GWF_Group::ADMIN); }
@@ -13,9 +16,12 @@ final class Category_Edit extends GWF_Method
 	
 	public function execute()
 	{
-		if (false === ($cat = GWF_Category::getByID(Common::getGet('catid')))) {
+		if (false === ($cat = GWF_Category::getByID(Common::getGet('catid'))))
+		{
 			return $this->module->error('err_cat');
 		}
+		
+		$cat->loadTranslations();
 		
 		self::$cat = $cat;
 		
@@ -51,8 +57,7 @@ final class Category_Edit extends GWF_Method
 	private function getFormLangs(GWF_Category $cat)
 	{
 		$back = array();
-		$trans = $cat->getVar('translations');
-//		var_dump($trans);
+		$trans = $cat->getTranslations();
 		foreach ($trans as $key => $value)
 		{
 			$getkey = sprintf('trans[%s]', $value['cl_langid']);
@@ -152,21 +157,18 @@ final class Category_Edit extends GWF_Method
 			$_POST['trans'] = array();
 		}
 		
-//		var_dump($_POST);
-		// update translation
+		# update translation
 		foreach ($_POST['trans'] as $langid => $textNew)
 		{
 			$textOld = $cat->getTranslation($langid);
 			if ($textNew !== $textOld) {
-				if (false === $cat->saveTranslation($langid, $textNew)) {
+				if (false === $cat->saveTranslation($langid, $textNew))
+				{
 					return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 				}
 				$langname = GWF_Language::getByID($langid)->display('lang_name');
 				$back .= $this->module->message('msg_trans_changed', array($langname, GWF_HTML::display($textNew)));
 			}
-//			var_dump($langid);
-//			var_dump($textNew);
-//			var_dump($textOld);
 		}
 		
 		return $back;

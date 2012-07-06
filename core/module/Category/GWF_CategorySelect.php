@@ -16,6 +16,7 @@ final class GWF_CategorySelect
 			foreach ($cats as $cat)
 			{
 				$cat instanceof GWF_Category;
+				$cat->loadTranslations();
 				$trans = $cat->getTranslation($langid);
 				$data[] = array($cat->getID(), false !== $trans ? $trans : $cat->getVar('cat_tree_key'));
 			}
