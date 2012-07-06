@@ -12,8 +12,9 @@ $headers = array(
 
 echo $tVars['page_menu'];
 
-$icon_hidden = GWF_Button::sub($tLang->lang('th_hidden'));
-$icon_visible = GWF_Button::add(true, $tLang->lang('th_visible'));
+$lang_visible = $tLang->lang('th_visible');
+$lang_hidden = $tLang->lang('th_hidden');
+
 echo GWF_Table::start();
 foreach ($tVars['news'] as $item)
 {
@@ -27,6 +28,15 @@ foreach ($tVars['news'] as $item)
 	
 	foreach ($trans as $langid => $t)
 	{
+		if ($item->isHidden())
+		{
+			$icon = GWF_Button::sub($lang_hidden, $item->hrefEnable());
+		}
+		else
+		{
+			$icon = GWF_Button::add($lang_visible, $item->hrefDisable());
+		}
+		
 		echo GWF_Table::rowStart();
 		echo GWF_Table::column($date, 'gwf_date');
 		echo GWF_Table::column($author);
@@ -35,7 +45,7 @@ foreach ($tVars['news'] as $item)
 		$title = $t['newst_title'];
 		$href = GWF_WEB_ROOT.sprintf('news/edit/%d-%s/langid-%d', $newsid, Common::urlencodeSEO($title), $langid);
 		echo GWF_Table::column(sprintf('<a href="%s">%s</a>', $href, htmlspecialchars($title)));
-		echo GWF_Table::column($item->isHidden() ? $icon_hidden : $icon_visible);
+		echo GWF_Table::column($icon);
 		echo GWF_Table::rowEnd();
 	}
 }

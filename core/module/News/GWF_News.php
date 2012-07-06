@@ -450,5 +450,15 @@ final class GWF_News extends GDO
 	{
 		return GWF_WEB_ROOT.'news/edit/'.$this->getVar('news_id').'-'.$this->getTitle().'/langid-'.$lang->getVar('lang_id');
 	}
+	
+	public function hrefEnable()
+	{
+		return GWF_WEB_ROOT.'index.php?mo=News&me=Toggle&hidden=0&newsid='.$this->getID();
+	}
+
+	public function hrefDisable()
+	{
+		return GWF_WEB_ROOT.'index.php?mo=News&me=Toggle&hidden=1&newsid='.$this->getID();
+	}
 }
 ?>

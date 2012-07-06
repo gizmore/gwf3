@@ -14,8 +14,6 @@ echo $tVars['page_menu'];
 
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
-$icon_hidden = GWF_Button::sub($tLang->lang('th_hidden'));
-$icon_visible = GWF_Button::add(true, $tLang->lang('th_visible'));
 foreach ($tVars['news'] as $item)
 {
 	
@@ -27,9 +25,22 @@ foreach ($tVars['news'] as $item)
 	$author = $item->displayAuthor();
 	$cat = $item->displayCategory();
 	
+	$lang_visible = $tLang->lang('th_visible');
+	$lang_hidden = $tLang->lang('th_hidden');
+	
 	foreach ($trans as $langid => $t)
 	{
 		var_dump($langid, $t);
+		
+		if ($item->isHidden())
+		{
+			$icon = GWF_Button::add($lang_hidden, $item->hrefEnable());
+		}
+		else
+		{
+			$icon = GWF_Button::sub($lang_visible, $item->hrefDisable());
+		}
+		
 		echo GWF_Table::rowStart();
 		$title = $t['newst_title'];
 		$data[] = array(
