@@ -69,6 +69,6 @@ $lang = array(
 	
 	#monnino fixes
 	'cfg_send_alerts' => 'Invia avvertimenti',
-	'err_already_logged_in' => 'You are already logged in.',
+	'err_already_logged_in' => 'Ha già effettuato l\'accesso.',
 );
 ?>

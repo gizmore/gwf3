@@ -96,7 +96,7 @@ $lang = array(
 	'th_vote' => 'Vote',
 	'th_link_date' => 'Insert Date',
 	'th_user_name' => 'Username',
-	'th_link_lang' => 'Select a Langague',
+	'th_link_lang' => 'Select a Language',
 
 	# Tooltips
 	'tt_link_gid' => 'Restrict Link to a usergroup (or leave blank)',

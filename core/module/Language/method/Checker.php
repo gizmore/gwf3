@@ -17,6 +17,8 @@ final class Language_Checker extends GWF_Method
 	private $dirsToSkip = array(
 			'1' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/cmds',
 			'2' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/commands',
+			'3' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/vars',
+			'4' => 'core/module/Lamb/lamb_module/Shadowlamb/lang/eq',
 			); # array of directories to skip
 
 	public function getUserGroups() { return 'admin'; }
