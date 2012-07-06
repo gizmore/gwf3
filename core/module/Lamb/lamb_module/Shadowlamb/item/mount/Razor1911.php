@@ -13,7 +13,7 @@ final class Item_Razor1911 extends SR_Mount
 	{
 		return array(
 			'lock' => 8,
-			'tuneup' => '11.00',
+			'tuneup' => '14.00',
 			'transport' => '12.00',
 		);
 	}

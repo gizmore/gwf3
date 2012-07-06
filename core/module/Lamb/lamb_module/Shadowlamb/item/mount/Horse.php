@@ -13,7 +13,7 @@ final class Item_Horse extends SR_Mount
 	{
 		return array(
 			'lock' => 1,
-			'tuneup' => '2.85',
+			'tuneup' => '4.85',
 			'transport' => '6.00',
 		);
 	}

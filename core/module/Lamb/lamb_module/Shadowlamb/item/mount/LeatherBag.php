@@ -14,7 +14,7 @@ class Item_LeatherBag extends Item_Pockets
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'tuneup' => 0.50 + $this->getPocketTuneup($player),
+			'tuneup' => 0.50 + $this->getPocketsTuneup($player),
 			'max_weight' => self::BAG_WEIGHT,
 		);
 	}

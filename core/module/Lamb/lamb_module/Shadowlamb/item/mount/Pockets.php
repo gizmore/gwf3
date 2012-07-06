@@ -19,8 +19,8 @@ class Item_Pockets extends SR_Mount
 	public function getPocketsTuneup(SR_Player $player)
 	{
 		$bo = $player->get('body') * 0.02;
-		$st = $player->get('strength') * 0.04;
-		$qu = $player->get('quickness') * 0.06;
+		$st = $player->get('strength') * 0.03;
+		$qu = $player->get('quickness') * 0.05;
 		return $bo + $st + $qu;
 	}
 	

@@ -13,7 +13,7 @@ final class Item_Famstar2400 extends SR_Mount
 	{
 		return array(
 			'lock' => 5,
-			'tuneup' => '7.00',
+			'tuneup' => '10.00',
 			'transport' => '80.00',
 		);
 	}

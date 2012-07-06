@@ -14,7 +14,7 @@ class Item_Crucifer235 extends Item_DavyHasselhoff
 	{
 		return array(
 			'lock' => 3,
-			'tuneup' => '4.50',
+			'tuneup' => '8.50',
 			'transport' => '4.00',
 		);
 	}

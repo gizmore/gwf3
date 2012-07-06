@@ -14,7 +14,7 @@ class Item_DavyHasselhoff extends Item_Moped
 	{
 		return array(
 			'lock' => 2,
-			'tuneup' => '4.30',
+			'tuneup' => '7.30',
 			'transport' => '6.00',
 		);
 	}

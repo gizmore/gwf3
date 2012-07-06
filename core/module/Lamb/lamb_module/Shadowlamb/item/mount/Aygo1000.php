@@ -13,7 +13,7 @@ final class Item_Aygo1000 extends SR_Mount
 	{
 		return array(
 			'lock' => 4,
-			'tuneup' => '7.00',
+			'tuneup' => '9.00',
 			'transport' => '15.00',
 		);
 	}

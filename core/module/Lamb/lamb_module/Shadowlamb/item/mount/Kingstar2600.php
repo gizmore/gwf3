@@ -13,7 +13,7 @@ final class Item_Kingstar2600 extends SR_Mount
 	{
 		return array(
 			'lock' => 6,
-			'tuneup' => '7.00',
+			'tuneup' => '11.00',
 			'transport' => '120.00',
 		);
 	}

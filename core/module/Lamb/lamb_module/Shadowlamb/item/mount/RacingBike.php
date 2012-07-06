@@ -14,7 +14,7 @@ class Item_RacingBike extends Item_Bike
 	{
 		return array(
 			'lock' => 1,
-			'tuneup' => '2.50',
+			'tuneup' => '2.50' + $this->getBikeTuneup($player),
 			'transport' => '1.50',
 		);
 	}

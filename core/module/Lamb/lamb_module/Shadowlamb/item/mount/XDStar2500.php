@@ -13,7 +13,7 @@ final class Item_XDStar2500 extends SR_Mount
 	{
 		return array(
 			'lock' => 6,
-			'tuneup' => '7.00',
+			'tuneup' => '12.00',
 			'transport' => '100.00',
 		);
 	}

@@ -12,7 +12,7 @@ final class Item_Delorian extends SR_Mount
 	{
 		return array(
 			'lock' => 2,
-			'tuneup' => '8.00',
+			'tuneup' => '13.00',
 			'transport' => '3.00',
 		);
 	}

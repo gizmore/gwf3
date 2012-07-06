@@ -14,7 +14,7 @@ class Item_Backpack extends Item_Pockets
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'tuneup' => 1.00 + $this->getPocketTuneup($player),
+			'tuneup' => 1.00 + $this->getPocketsTuneup($player),
 			'max_weight' => self::BACKPACK_WEIGHT,
 		);
 	}
