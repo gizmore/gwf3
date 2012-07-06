@@ -1,5 +1,5 @@
 <?php
-//@translators: black,white and gray temple have the same lines. Just change the robe colour
+#@translators: black,white and gray temple have the same lines. Just change the robe colour
 $b = chr(2);
 $lang = array(
 	'found' => 'You think you located the local temple. You think you may #enter.',
