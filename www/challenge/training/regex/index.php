@@ -8,15 +8,18 @@ if (false === ($chall = WC_Challenge::getByTitle('Training: Regex'))) {
 }
 $chall->showHeader();
 
-# Users can cause errors... don`t die :) (thx busyr
-GWF_Debug::setDieOnError(false);
-
 $level = GWF_Session::getOrDefault('WCC_T_REGEX', 1);
 
 if (false !== ($answer = Common::getPost('answer')))
 {
 	$function = 'train_regex_level_'.$level;
+
+	# Users can cause errors... don`t die :) (thx busyr
+	GWF_Debug::setMailOnError(false);
+	GWF_Debug::setDieOnError(false);
 	$solved = call_user_func($function, $chall, $answer);
+	GWF_Debug::setMailOnError(true);
+	GWF_Debug::setDieOnError(true);
 	
 	if ($solved === true)
 	{
