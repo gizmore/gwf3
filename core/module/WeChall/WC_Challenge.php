@@ -55,6 +55,8 @@ final class WC_Challenge extends GDO
 			'chall_options' => array(GDO::UINT, 0),
 		
 			'chall_token' => array(GDO::TOKEN, '', 8),
+				
+// 			'solved' => array(GDO::JOIN, GDO::NULL, array('WC_ChallSolved', 'chall_id', 'csolve_cid')),
 		);
 	}
 	

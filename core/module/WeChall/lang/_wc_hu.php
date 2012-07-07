@@ -648,7 +648,7 @@ $lang = array(
 	'err_site_status' => 'The sites status is invalid.',
 	'menu_download' => 'Downloads',
 		
-	#WC5 (monnino fixes)
+	# WC5 (monnino fixes)
 	'th_site_color' => 'Site color',
 	'th_onsitename' => 'User OnSiteName',
 	'pi_site_tags' => 'Site Tags',
@@ -660,5 +660,9 @@ $lang = array(
 	'btn_your_stats' => 'Your Stats',
 	'menu_changes' => 'Changes',
 	'btn_helpdesk' => 'Helpdesk',
+
+	# v5.01 (chall filter)
+	'btn_all' => 'All',
+	'btn_open' => 'Open',
 );
 ?>

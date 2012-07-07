@@ -651,7 +651,7 @@ $lang = array(
 	'err_site_status' => 'Lo stato del sito è invalido.',
 	'menu_download' => 'Downloads ',
 	
-	#WC5 (monnino fixes)
+	# WC5 (monnino fixes)
 	'th_site_color' => 'Colore del Sito',
 	'th_onsitename' => 'Nome utente sul sito',
 	'pi_site_tags' => 'Tag del Sito',
@@ -663,5 +663,9 @@ $lang = array(
 	'btn_your_stats' => 'Statistiche Personali',
 	'menu_changes' => 'Cambiamenti',
 	'btn_helpdesk' => 'Helpdesk ',
+
+	# v5.01 (chall filter)
+	'btn_all' => 'All',
+	'btn_open' => 'Open',
 );
 ?>

@@ -15,6 +15,20 @@ final class WeChall_Challs extends GWF_Method
 			'RewriteRule ^challs/([a-zA-Z0-9]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&by=$2&dir=$3&page=$4'.PHP_EOL.
 			'RewriteRule ^chall/solvers/(\d+)/[^/]+$ index.php?mo=WeChall&me=Challs&solvers=$1'.PHP_EOL.
 			'RewriteRule ^chall/solvers/(\d+)/[^/]/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&solvers=$1&by=$2&dir=$3&page=$4'.PHP_EOL.
+
+			'RewriteRule ^solved_challs/?$ index.php?mo=WeChall&me=Challs&filter=solved'.PHP_EOL.
+			'RewriteRule ^solved_challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1&filter=solved'.PHP_EOL.
+			'RewriteRule ^solved_challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3&filter=solved'.PHP_EOL.
+			'RewriteRule ^solved_challs/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&page=$1&filter=solved'.PHP_EOL.
+			'RewriteRule ^solved_challs/([a-zA-Z0-9]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&page=$2&filter=solved'.PHP_EOL.
+			'RewriteRule ^solved_challs/([a-zA-Z0-9]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&by=$2&dir=$3&page=$4&filter=solved'.PHP_EOL.
+			
+			'RewriteRule ^open_challs/?$ index.php?mo=WeChall&me=Challs&filter=open'.PHP_EOL.
+			'RewriteRule ^open_challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1&filter=open'.PHP_EOL.
+			'RewriteRule ^open_challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3&filter=open'.PHP_EOL.
+			'RewriteRule ^open_challs/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&page=$1&filter=open'.PHP_EOL.
+			'RewriteRule ^open_challs/([a-zA-Z0-9]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&page=$2&filter=open'.PHP_EOL.
+			'RewriteRule ^open_challs/([a-zA-Z0-9]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&by=$2&dir=$3&page=$4&filter=open'.PHP_EOL.
 			'';
 	}
 	
@@ -49,8 +63,11 @@ final class WeChall_Challs extends GWF_Method
 			return '';
 		}
 		
+		$solve_filter = Common::getGetString('filter', '');
+		
 		$from_query = $from_userid === 0 ? '1' : "chall_creator LIKE '%,$from_userid,%'";
 		$tag_query = $tag === '' ? '1' : "chall_tags LIKE '%,".GDO::escape($tag)."%'";
+				 
 		$conditions = "($from_query) AND ($tag_query)";
 //		var_dump($conditions);
 		if (0 === ($count = $challs->countRows($conditions))) {
@@ -58,10 +75,12 @@ final class WeChall_Challs extends GWF_Method
 		}
 		
 		$orderby = $challs->getMultiOrderby($by, $dir);
+		$tag_2 = $tag == '' ? '' : $tag.'/';
 		
 		$this->setPageDescr($for_userid, $from_userid, $tag, $count);
 		
-		$tag_2 = $tag == '' ? '' : $tag.'/';
+		$sort_url = 'challs/'.$tag_2.'by/'.$by.'/'.$dir.'/page-1';
+		
 		$tVars = array(
 			'sort_url' => GWF_WEB_ROOT.'challs/'.$tag_2.'by/%BY%/%DIR%/page-1',
 //			'challs' => $challs->select($conditions, $orderby),
@@ -71,6 +90,12 @@ final class WeChall_Challs extends GWF_Method
 			'table_title' => $this->getTableTitle($for_userid, $from_userid, $tag, $count),
 			'by' => $by,
 			'dir' => $dir,
+			'href_all' => GWF_WEB_ROOT.$sort_url,
+			'href_solved' => GWF_WEB_ROOT.'solved_'.$sort_url,
+			'href_unsolved' => GWF_WEB_ROOT.'open_'.$sort_url,
+			'sel_all' => $solve_filter === '',
+			'sel_solved' => $solve_filter === 'solved',
+			'sel_unsolved' => $solve_filter === 'open',
 		);
 		return $this->module->templatePHP('challs.php', $tVars);
 	}

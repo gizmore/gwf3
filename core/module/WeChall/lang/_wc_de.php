@@ -653,7 +653,7 @@ $lang = array(
 	'err_site_status' => 'Der Status dieser Seite ist ungültig.',
 	'menu_download' => 'Downloads',
 
-	#WC5 (monnino fixes)
+	# WC5 (monnino fixes)
 	'th_site_color' => 'Farbe',
 	'th_onsitename' => 'Nickname',
 	'pi_site_tags' => 'Kategorien',
@@ -665,5 +665,9 @@ $lang = array(
 	'btn_your_stats' => 'Deine Statistik',
 	'menu_changes' => 'Änderungen',
 	'btn_helpdesk' => 'Hilfecenter',
+
+	# v5.01 (chall filter)
+	'btn_all' => 'All',
+	'btn_open' => 'Open',
 );
 ?>

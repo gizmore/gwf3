@@ -663,5 +663,9 @@ $lang = array(
 	'btn_your_stats' => 'Your Stats',
 	'menu_changes' => 'Changes',
 	'btn_helpdesk' => 'Helpdesk',
+		
+	# v5.01 (chall filter)
+	'btn_all' => 'All',
+	'btn_open' => 'Open',
 );
 ?>
