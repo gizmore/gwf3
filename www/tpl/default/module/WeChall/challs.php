@@ -3,9 +3,9 @@ GWF_Module::loadModuleDB('Forum', true);
 GWF_ForumBoard::init(true);
 $by = $tVars['by'];
 $dir = $tVars['dir'];
-$cloud = '';
 if (is_array($tVars['tags']))
 {
+	$cloud = '';
 	$cloud .= '<div class="gwf_tags_outer">'.PHP_EOL;
 	$cloud .= '<div class="gwf_tags">'.PHP_EOL;
 	$cloud_tags = '';
@@ -18,8 +18,14 @@ if (is_array($tVars['tags']))
 	$cloud .= substr($cloud_tags, 2);
 	$cloud .= '</div>'.PHP_EOL;
 	$cloud .= '</div>'.PHP_EOL;
+	echo $cloud.PHP_EOL;
 }
-echo $cloud.PHP_EOL;
+
+echo GWF_Button::wrapStart();
+echo GWF_Button::generic($tLang->lang('btn_all'), $tVars['href_all'], 'generic', '', $tVars['sel_all']);
+echo GWF_Button::generic($tLang->lang('th_regat_solved'), $tVars['href_solved'], 'generic', '', $tVars['sel_solved']);
+echo GWF_Button::generic($tLang->lang('btn_open'), $tVars['href_unsolved'], 'generic', '', $tVars['sel_unsolved']);
+echo GWF_Button::wrapEnd();
 
 $headers = array(
 	array($tLang->lang('th_chall_score'), 'chall_score'),
@@ -49,16 +55,27 @@ foreach ($tVars['challs'] as $chall)
 {
 	$chall instanceof WC_Challenge;
 	
-	$edit = $is_admin ? GWF_Button::edit($chall->getEditHREF(), $txt_edit) : '';
 	$cid = $chall->getID();
 	$solved = isset($solved_bits[$cid]);
 	
-	if ($solved) {
+	if ($solved)
+	{
+		if ($tVars['sel_unsolved'])
+		{
+			continue;
+		}
 		$icon = $solved_bits[$cid]['csolve_options']&1 ? $icon_voted : $icon_vote;
-	} else {
+	}
+	else
+	{
+		if ($tVars['sel_solved'])
+		{
+			continue;
+		}
 		$icon = $icon_novote;
 	}
 	
+	$edit = $is_admin ? GWF_Button::edit($chall->getEditHREF(), $txt_edit) : '';
 	$href_votes = $chall->hrefVotes();
 	
 	echo GWF_Table::rowStart();
