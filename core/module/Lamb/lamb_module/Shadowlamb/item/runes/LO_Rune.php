@@ -8,7 +8,7 @@ final class Item_LO_Rune extends SR_Rune
 	public function getItemWeight() { return 250; }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return array('attack'=>0.2);
+		return array('attack'=>4.0);
 	}
 }
 ?>

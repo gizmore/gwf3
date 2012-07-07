@@ -8,7 +8,7 @@ final class Item_UM_Rune extends SR_Rune
 	public function getItemWeight() { return 250; }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return array('strength'=>0.5);
+		return array('strength'=>1.0);
 	}
 }
 ?>

@@ -8,7 +8,9 @@ final class Item_Mon_Rune extends SR_Rune
 	public function getItemWeight() { return 250; }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return array('essence'=>2.0);
+		return array(
+			'essence'=>0.5,
+		);
 	}
 }
 ?>

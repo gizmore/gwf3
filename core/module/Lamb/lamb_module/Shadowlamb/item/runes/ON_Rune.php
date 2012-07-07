@@ -8,7 +8,7 @@ final class Item_ON_Rune extends SR_Rune
 	public function getItemWeight() { return 250; }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return array('max_mp'=>6);
+		return array('body'=>2);
 	}
 }
 ?>
