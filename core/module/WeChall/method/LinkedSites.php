@@ -292,7 +292,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		return $error->display().$this->module->message('msg_site_linked', array($site->displayName()));
+		return $error->display($this->module->lang('btn_linked_sites')).$this->module->message('msg_site_linked', array($site->displayName()));
 	}
 	
 	###################
