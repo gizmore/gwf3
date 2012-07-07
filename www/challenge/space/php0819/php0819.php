@@ -3,7 +3,7 @@
 $challenge = function()
 {
 	$f = Common::getGetString('eval');
-	$f = str_replace(array('`', '$', '*', '#', ':', '\\', '"', "'", '(', '.'), '', $f);
+	$f = str_replace(array('`', '$', '*', '#', ':', '\\', '"', "'", '(', ')', '.', '>'), '', $f);
 
 	if((strlen($f) > 13) || (false !== strpos($f, 'return')))
 	{

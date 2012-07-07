@@ -20,6 +20,7 @@ require_once 'challenge/space/php0819/php0819.php';
 echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'profile/space')), $chall->lang('title'));
 
 GWF_Debug::setDieOnError(false);
+GWF_Debug::setMailOnError(false);
 
 if (isset($_GET['eval']))
 {
@@ -29,6 +30,7 @@ if (isset($_GET['eval']))
 	}
 }
 GWF_Debug::setDieOnError(true);
+GWF_Debug::setMailOnError(true);
 
 
 $filename = 'challenge/space/php0819/php0819.php';
