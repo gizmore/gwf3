@@ -61,7 +61,7 @@ final class Module_WeChall extends GWF_Module
 	public function getVersion() { return 1.07; }
 	public function onInstall($dropTable) { require_once 'GWF_WeChallInstall.php'; return GWF_WeChallInstall::onInstall($this, $dropTable); }
 	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge'); }
-	public function onLoadLanguage() { return $this->loadLanguage('lang/_wc'); }
+	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
 	public function getDefaultAutoLoad() { return true; }
 	public function onCronjob() { require_once 'WC_Cronjob.php'; }
 	public function onStartup()

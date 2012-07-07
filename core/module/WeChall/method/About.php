@@ -13,7 +13,7 @@ final class WeChall_About extends GWF_Method
 
 	public function execute()
 	{
-		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/_wc_about');
+		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/about/_wc_about');
 		GWF_Website::setPageTitle($lang->lang('about_pagetitle'));
 		GWF_Website::setMetaTags($lang->lang('about_meta'));
 		$tVars = array(
