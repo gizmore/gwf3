@@ -34,7 +34,7 @@ final class Login_Form extends GWF_Method
 		$tVars = array(
 			'form' => $form->templateY($this->module->lang('title_login')),
 			'have_cookies' => GWF_Session::haveCookies(),
-			'token' => $form->getFormCSRFToken(),
+// 			'token' => $form->getFormCSRFToken(),
 			'tooltip' => $form->getTooltipText('bind_ip'),
 			'register' => GWF_Module::loadModuleDB('Register', false, false, true) !== false,
 			'recovery' => GWF_Module::loadModuleDB('PasswordForgot', false, false, true) !== false,
@@ -56,19 +56,22 @@ final class Login_Form extends GWF_Method
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		$data['login'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_login'));
-		return new GWF_Form($this, $data);
+		return new GWF_Form($this, $data, GWF_Form::METHOD_POST, GWF_Form::CSRF_OFF);
 	}
 	
-	public function onLogin()
+	public function onLogin($doValidate=true)
 	{
 		require_once GWF_CORE_PATH.'module/Login/GWF_LoginFailure.php';
 		$isAjax = isset($_GET['ajax']);
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->module, $isAjax))) {
-			if ($isAjax) {
-				return $errors;
-			} else {
-				return $errors.$this->form();
+		if ($doValidate)
+		{
+			if (false !== ($errors = $form->validate($this->module, $isAjax))) {
+				if ($isAjax) {
+					return $errors;
+				} else {
+					return $errors.$this->form();
+				}
 			}
 		}
 		

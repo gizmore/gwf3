@@ -151,5 +151,5 @@ final class GWF_HTTPStatus //extends GDO
 		self::statuscode($code, $status);
 		header('Location: ' . $url);
 	}
-
 }
+?>

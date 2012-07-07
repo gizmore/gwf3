@@ -41,7 +41,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 	
 	private function displayLogin()
 	{
-		if ( (GWF_Session::isLoggedIn()) || (!GWF_Session::haveCookies()) )
+		if ( (GWF_Session::isLoggedIn()) ) #|| (!GWF_Session::haveCookies()) )
 		{
 			return '';
 		}
@@ -58,7 +58,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		$box = 
 //			'<div id="sidebar_login">'.PHP_EOL.
 			'<form action="'.GWF_WEB_ROOT.'login" method="post" id="wc_toplogin">'.PHP_EOL.
-			'<div>'.GWF_CSRF::hiddenForm($formhash).'</div>'.PHP_EOL.
+			#'<div>'.GWF_CSRF::hiddenForm($formhash).'</div>'.PHP_EOL.
 			'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.':" />&nbsp;<input type="text" name="username" value="" /></div>'.PHP_EOL.
 			'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.':" />&nbsp;<input type="password" name="password" value="" /></div>'.PHP_EOL.
 			'<div class="le">'.$bind_ip.'&nbsp;<input type="checkbox" name="bind_ip" checked="checked" /></div>'.PHP_EOL.

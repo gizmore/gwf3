@@ -32,7 +32,7 @@ final class GWF_Button
 	 * @param string $onclick
 	 * @return string
 	 */
-	public static function generic($text, $href, $type='generic', $command='', $selected=false, $onclick='')
+	public static function generic($text, $href='#', $type='generic', $command='', $selected=false, $onclick='')
 	{
 		$class = $selected ? ' gwf_btn_sel' : '';
 		$onclick = $onclick === '' ? '' : " onclick=\"$onclick\"";

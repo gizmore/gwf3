@@ -667,7 +667,7 @@ $lang = array(
 	'btn_helpdesk' => 'Hilfecenter',
 
 	# v5.01 (chall filter)
-	'btn_all' => 'All',
-	'btn_open' => 'Open',
+	'btn_all' => 'Alle',
+	'btn_open' => 'Ungelöst',
 );
 ?>

@@ -7,7 +7,8 @@ function html_head($title="WeChall", $withSidebar=false, $strict=true, $scripts=
 	GWF_Website::setPageTitle($title);
 	WC_HTML::$LEFT_PANEL = $withSidebar;
 	WC_HTML::$RIGHT_PANEL = $withSidebar;
-	foreach ($css as $path) {
+	foreach ($css as $path)
+	{
 		GWF_Website::addCSS($path);
 	}
 }
