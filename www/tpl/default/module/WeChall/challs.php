@@ -21,11 +21,14 @@ if (is_array($tVars['tags']))
 	echo $cloud.PHP_EOL;
 }
 
-echo GWF_Button::wrapStart();
-echo GWF_Button::generic($tLang->lang('btn_all'), $tVars['href_all'], 'generic', '', $tVars['sel_all']);
-echo GWF_Button::generic($tLang->lang('th_regat_solved'), $tVars['href_solved'], 'generic', '', $tVars['sel_solved']);
-echo GWF_Button::generic($tLang->lang('btn_open'), $tVars['href_unsolved'], 'generic', '', $tVars['sel_unsolved']);
-echo GWF_Button::wrapEnd();
+if (GWF_Session::isLoggedIn())
+{
+	echo GWF_Button::wrapStart();
+	echo GWF_Button::generic($tLang->lang('btn_all'), $tVars['href_all'], 'generic', '', $tVars['sel_all']);
+	echo GWF_Button::generic($tLang->lang('th_regat_solved'), $tVars['href_solved'], 'generic', '', $tVars['sel_solved']);
+	echo GWF_Button::generic($tLang->lang('btn_open'), $tVars['href_unsolved'], 'generic', '', $tVars['sel_unsolved']);
+	echo GWF_Button::wrapEnd();
+}
 
 $headers = array(
 	array($tLang->lang('th_chall_score'), 'chall_score'),
