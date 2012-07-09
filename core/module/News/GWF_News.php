@@ -269,15 +269,20 @@ final class GWF_News extends GDO
 	
 	public function getCategory()
 	{
-		if (false === ($cat = GWF_Category::getByID($this->getCategoryID()))) {
+		if (false === ($cat = GWF_Category::getByID($this->getCategoryID())))
+		{
 			return false;
 		}
+		
+		$cat->loadTranslations();
+		
 		return $cat;		
 	}
 	
 	public function getCategoryTitle($langid=0)
 	{
-		if (false === ($cat = $this->getCategory())) {
+		if (false === ($cat = $this->getCategory()))
+		{
 			return GWF_HTML::lang('no_category');
 		}
 		return $cat->getTranslatedText($langid);
