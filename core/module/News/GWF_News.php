@@ -345,6 +345,9 @@ final class GWF_News extends GDO
 			{
 				continue;
 			}
+			
+			$cat->loadTranslations();
+			
 			$back[] = $cat->getTranslatedText($langid);
 		}
 		return $back;
