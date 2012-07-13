@@ -12,8 +12,8 @@ class Item_UM_Amulet extends Item_LO_Amulet
 		switch($player->getRace())
 		{
 			default:
-				$back['attack'] = 2;
-				$back['intelligence'] = 2;
+				$back['attack'] = 5;
+				$back['intelligence'] = 1.5;
 				break;
 		}
 		return SR_Item::mergeModifiers(parent::getItemModifiersA($player), $back);

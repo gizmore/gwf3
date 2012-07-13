@@ -14,7 +14,7 @@ class Item_Bike extends Item_Backpack
 	{
 		$bo = $player->get('body') * 0.04;
 		$st = $player->get('strength') * 0.05;
-		return $bo + $st + $qu;
+		return $bo + $st;
 	}
 	
 	public function getItemModifiersA(SR_Player $player)

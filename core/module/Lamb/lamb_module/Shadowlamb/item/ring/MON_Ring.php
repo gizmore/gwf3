@@ -10,7 +10,7 @@ final class Item_MON_Ring extends SR_Ring
 		$mods = parent::getItemModifiersB();
 		foreach ($mods as $k => $v)
 		{
-			$mods[$k] = ceil($mods[$k]*2);
+			$mods[$k] = ceil($mods[$k]*3);
 		}
 		return $mods;
 	}

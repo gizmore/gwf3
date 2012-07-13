@@ -10,7 +10,7 @@ final class Item_UM_Ring extends SR_Ring
 		$back = array();
 		switch($player->getRace())
 		{
-			default: $back['attack'] = 0.5;
+			default: $back['attack'] = 5.0;
 		}
 		return $back;
 	}

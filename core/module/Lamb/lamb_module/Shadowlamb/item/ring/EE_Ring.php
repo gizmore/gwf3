@@ -12,9 +12,9 @@ final class Item_EE_Ring extends SR_Ring
 		switch($player->getRace())
 		{
 			default:
-				$back['attack'] = 0.5;
-				$back['wisdom'] = 0.5;
-				$back['intelligence'] = 0.5;
+				$back['attack'] = 10.0;
+				$back['wisdom'] = 1.0;
+				$back['intelligence'] = 1.0;
 		}
 		return $back;
 	}
