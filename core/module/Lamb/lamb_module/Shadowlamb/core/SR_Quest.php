@@ -7,6 +7,25 @@ class SR_Quest extends GDO
 	private static $QUESTS = array();
 	public static function getQuests() { return self::$QUESTS; }
 	public static function getTotalQuestCount() { return count(self::$QUESTS); }
+	public static function exists($classname) { return isset(self::$QUESTS[$classname]); }
+	
+	/**
+	 * Get a quest without city prefix. Used in #help.
+	 * @param string $classname
+	 * @return SR_Quest
+	 */
+	public static function getQuestWithoutCity(SR_Player $player, $classname)
+	{
+		$classname = '_'.$classname;
+		foreach (self::$QUESTS as $cname => $quest)
+		{
+			if (Common::endsWith($cname, $classname))
+			{
+				return self::getQuest($player, $cname);
+			}
+		}
+		return false;
+	}
 	
 	############
 	### Lang ###

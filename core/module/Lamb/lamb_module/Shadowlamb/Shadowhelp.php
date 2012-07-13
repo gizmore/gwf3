@@ -20,7 +20,7 @@ final class Shadowhelp
 			'die' => 'death',
 		);
 		
-		$shortcuts = array_merge($shortcuts, Shadowcmd::getCommandShortcutMap(), SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE);
+		$shortcuts = array_merge($shortcuts, Shadowcmd::getCommandShortcutMap(), SR_Player::$ATTRIBUTE, SR_Player::$SKILL, SR_Player::$KNOWLEDGE, SR_Player::$MOUNT_STATS);
 		
 		if (true === isset($shortcuts[$word]))
 		{
@@ -105,6 +105,7 @@ final class Shadowhelp
 					'searching' => 'The searching skill will increase the dropchance on searches.',
 					'lockpicking' => 'The lockpicking skill will increase your chance on picking locks. It also increases the chance of a successful #hijack.',
 					'thief' => 'The thief skill will increase your chance on thieving items of shops and not getting caught. It also increases the chance of a successful #hijack.',
+					'alchemy' => 'The alchemy skill improves the power of your AlchemicPotions. An AlchemicPotion is a spell in a bottle. Alchemic_Potion_of_spell. The other attributes equal the stats that are used when casting the spell from the bottle.',
 				),
 				
 				'knowledge' => 'Your character can gather special knowledge during the game (unused)',
@@ -679,6 +680,11 @@ final class Shadowhelp
 	public static function getHelp(SR_Player $player, $topic)
 	{
 		$bot = Shadowrap::instance($player);
+		
+		if (false !== ($quest = SR_Quest::getQuestWithoutCity($player, $topic)))
+		{
+			return $quest->getQuestDescription();
+		}
 		
 		if (false !== ($item = SR_Item::getItem($topic)))
 		{
