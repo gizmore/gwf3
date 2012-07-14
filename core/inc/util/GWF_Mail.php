@@ -10,6 +10,9 @@
  * */
 final class GWF_Mail
 {
+	public static $RESEND_PATH = 'dbimg/_GWF3_MAIL_RESEND_.txt';
+	public static $RESEND_THRESHOLD = 1800;
+	
 	const HEADER_NEWLINE = "\n";
 	const GPG_PASSPHRASE = ''; #GWF_EMAIL_GPG_SIG_PASS;
 	const GPG_FINGERPRINT = ''; #GWF_EMAIL_GPG_SIG;
@@ -23,6 +26,7 @@ final class GWF_Mail
 	private $attachments = array();
 	private $headers = array();
 	private $gpgKey = '';
+	private $resendCheck = false;
 
 	private $allowGPG = true;
 
@@ -35,16 +39,18 @@ final class GWF_Mail
 	public function setBody($b) { $this->body = $b; }
 	public function setGPGKey($k) { $this->gpgKey = $k; }
 	public function setAllowGPG($bool) { $this->allowGPG = $bool; }
+	public function setResendCheck($bool) { $this->resendCheck = $bool; }
 //	public function addAttachment($title, $file) {}
 //	public function removeAttachment($title) {}
 
-	public static function sendMailS($sender, $receiver, $subject, $body, $html=false)
+	public static function sendMailS($sender, $receiver, $subject, $body, $html=false, $resendCheck=false)
 	{
 		$mail = new self();
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
 		$mail->setSubject($subject);
 		$mail->setBody($body);
+		$mail->setResendCheck($resendCheck);
 
 		return false === $html
 			? $mail->sendAsText()
@@ -53,7 +59,7 @@ final class GWF_Mail
 
 	public static function sendDebugMail($subject, $body)
 	{
-		return self::sendMailS(GWF_BOT_EMAIL, GWF_ADMIN_EMAIL, GWF_SITENAME.$subject, GWF_Debug::getDebugText($body));
+		return self::sendMailS(GWF_BOT_EMAIL, GWF_ADMIN_EMAIL, GWF_SITENAME.$subject, GWF_Debug::getDebugText($body), false, true);
 	}
 
 	public function nestedHTMLBody()
@@ -101,11 +107,19 @@ final class GWF_Mail
 
 	public function sendAsText($cc='', $bcc='')
 	{
+		if ($this->alreadySent())
+		{
+			return true;
+		}
 		return $this->send($cc, $bcc, $this->nestedTextBody(), false);
 	}
 
 	public function sendAsHTML($cc='', $bcc='')
 	{
+		if ($this->alreadySent())
+		{
+			return true;
+		}
 		return $this->send($cc, $bcc, $this->nestedHTMLBody(), true);
 	}
 
@@ -164,6 +178,75 @@ final class GWF_Mail
 		{
 			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->sender);
 		}
+	}
+	
+	/**
+	 * Check if we have sent this email recently
+	 * @return boolean - true if already sent
+	 */
+	private function alreadySent()
+	{
+		return $this->resendCheck ? $this->alreadySentB() : false;
+	}
+	
+	/**
+	 * We do this via a timestamp and hash.
+	 */
+	private function alreadySentB()
+	{
+		$back = false;
+		
+		$myhash = $this->computeSentHash();
+		$timeout = time() - self::$RESEND_THRESHOLD;
+		
+		$filename = self::$RESEND_PATH;
+		
+		if ($fh = fopen($filename, 'c+'))
+		{
+			if (flock($fh, LOCK_EX))
+			{
+				$keep = array();
+				$changed = false;
+				
+				while (fscanf($fh, "%d:%s\n", $time, $hash))
+				{
+					if ($time > $timeout)
+					{
+						$keep[] = sprintf("%d:%s\n", $time, $hash);
+						if ($hash === $myhash)
+						{
+							$back = true;
+						}
+					}
+					else
+					{
+						$changed = true;
+					}
+				}
+				
+				if (!$back)
+				{
+					$keep[] = sprintf("%d:%s\n", time(), $myhash);
+					$changed = true;
+				}
+				
+				if ($changed)
+				{
+					file_put_contents($filename, implode('', $keep));
+				}
+
+				flock($fh, LOCK_UN);
+			}
+			fclose($fh);
+		}
+		
+		return $back;
+	}
+	
+	private function computeSentHash()
+	{
+		$b = $this->subject.$this->body;
+		return crc32($b).md5($b).substr(sha1($b), 0, 32);
 	}
 
 	private function setupGPG(GWF_User $user)

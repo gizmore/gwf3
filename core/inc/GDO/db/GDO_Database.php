@@ -138,12 +138,7 @@ abstract class GDO_Database
 		if (GWF_DEBUG_EMAIL & 1)
 		{
 			$message = GWF_HTML::br2nl($message).PHP_EOL.PHP_EOL;
-			$mail = new GWF_Mail();
-			$mail->setSender(GWF_BOT_EMAIL);
-			$mail->setReceiver(GWF_ADMIN_EMAIL);
-			$mail->setSubject(GWF_SITENAME.': Database Error!');
-			$mail->setBody(GWF_Debug::backtrace($message, false));
-			$mail->sendAsText();
+			GWF_Mail::sendDebugMail(GWF_SITENAME.': Database Error!', GWF_Debug::backtrace($message, false));
 		}
 	}
 	
