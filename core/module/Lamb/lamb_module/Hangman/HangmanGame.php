@@ -31,8 +31,10 @@ final class HangmanGame {
 	private $CONFIG;
 	private $lives;
 	private $grid;
+	private $guesses;
 	private $solution;
 	private $lastNick;
+	private $lastTime;
 	private $finish = true;
 	private $output = '';
 
@@ -93,7 +95,7 @@ final class HangmanGame {
 
 	private function sendOutput($out)
 	{
-		$this->output .= $out . PHP_EOL;
+		$this->output .= $out . " ";
 	}
 
 	private function onStartGame()
@@ -106,6 +108,8 @@ final class HangmanGame {
 		$this->sendOutput('Hangman started. ');
 		$this->finish = false;
 		$this->lastNick = NULL;
+		$this->lastTime = time();
+		$this->guesses = '';
 		
 		$length = strlen($this->solution);
 		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
@@ -131,8 +135,11 @@ final class HangmanGame {
 		}
 
 		if(strtolower($nick) == strtolower($this->lastNick)) {
-			$this->sendOutput("You can't guess chars twice in a row.");
-			return false;
+			if (($this->lastTime + 60) > time())
+			{
+				$this->sendOutput("You can't guess chars twice in a row.");
+				return false;
+			}
 		}
 	return true;
 	}
@@ -142,16 +149,24 @@ final class HangmanGame {
 			return;
 		}
 		
-		$charset = "abcdefghijklmnopqrstuvwxyz";
+		$charset = 'abcdefghijklmnopqrstuvwxyz';
 		if(!stristr($charset,$char)) {
-			$this->sendOutput("Charset is a-z.");
+			$this->sendOutput('Charset is a-z.');
 			return;
 		}
-		
+
+		if (false !== strpos($this->guesses, $char))
+		{
+			$this->sendOutput(sprintf('The char was already guessed, guessed chars: %s', $this->guesses));
+			return;
+		}
+
+		$this->guesses .= $char;
 		$this->lastNick = $nick;
-		
+		$this->lastTime = time();
+
 		if(!stristr($this->solution,$char)) {
-			if($this->subLife() === "lose") return;
+			if($this->subLife() === 'lose') return;
 			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
 			$this->sendLivesLeft();
