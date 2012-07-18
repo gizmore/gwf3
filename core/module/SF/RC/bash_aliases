@@ -19,6 +19,7 @@ alias h='history'
 alias j='jobs -l'
 alias L='less'
 alias grep='grep --colour=always'
+alias rgrep='grep -r'
 alias cl='clear; ls'
 alias du='du -kh'
 alias df='df -kThlx tmpfs'
@@ -78,3 +79,16 @@ function mkcd () {
 function psgrep () {
   ps aux | grep "$1" | grep -v "grep"
 }
+
+function highlight() {
+python2 -c 'import sys
+CSI="\x1B["
+replacements = sys.argv[1:]
+input = sys.stdin.read().split("\n")
+for line in input:
+        for repl in replacements:
+                line = line.replace(repl, "%s1;31m%s%s0m" % (CSI, repl, CSI))
+        print line.rstrip("\n")
+' $@
+}
+
