@@ -88,7 +88,10 @@ final class GWF_IP6
 			case self::AS_IS: return $is4 ? $ip : self::ip6AsIs($ip);
 			case self::PACK_1:
 			case self::PACK_2:
-			default: echo GWF_HTML::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'type')); die($type); return false;
+			default:
+				GWF_Error::err('ERR_PARAMETER', array( __FILE__, __LINE__, 'type'));
+				//return false;
+				die(htmlspecialchars($type));
 		}
 	}
 

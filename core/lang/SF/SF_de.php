@@ -103,7 +103,7 @@ $lang = array(
 		
 	),
 	
-	//COUNTER TODO: Array
+	//COUNTER TODO: move to gwf counter
 	'ct_vis_total' => 'Besucher gesamt: %s',
 	'ct_vis_today' => 'Besucher heute: %s',
 	'ct_vis_yesterday' => 'Besucher gestern: %s',
@@ -113,26 +113,7 @@ $lang = array(
 	'ct_online_yesterday' => 'Online gestern: %s',
 	'ct_online_atm' => 'Online: %s',
 
-	// FORMS 
-	# profile, account
-	'name' => 'Name',
-	'email' => 'E-Mail Adresse',
-	'website' => 'Webseite',
-	'icq' => 'ICQ-Nummer',
-	'skype' => 'Skype',
-	'irc' => 'IRC',
-	'account_settings' => 'Account Einstellungen',
-	'show_email_on_profile' => 'E-Mail Adresse im Profil anzeigen',
-	'profile_settings' => 'Profil Einstellungen',
-	'birthdate' => 'Geburtstdatum',
-	'firstname' => 'Vorname',
-	'lastname' => 'Nachname',
-	'nickname' => 'Spitzname',
-	'displ_username' => 'Angezeigter Benutzername',
-	'old_password' => 'Altes Passwort',
-	'new_password' => 'Neues Passwort',
-	'password_wdh' => 'Passwort wiederholung',
-
+	# TODO: tell a friend form in Contact?
 	# contact, tell a friend
 	'contactform' => 'Kontaktformular',
 	'contact' => 'Kontakt',
@@ -142,21 +123,6 @@ $lang = array(
 	'subject' => 'Betreff',
 	'message' => 'Nachricht',
 	'send_copy_to_me' => 'Eine Kopie an mich senden',
-
-	# login, logout, register	
-	'login' => 'Einloggen',
-	'logout' => 'Ausloggen',
-	'register' => 'Registrieren',
-	'username' => 'Benutzername',
-	'password' => 'Passwort',
-
-	# submits
-	'submit' => 'Bestätigen',
-	'reset' => 'Zurücksetzen',
-	'send' => 'Senden',
-	'save_profile' => 'Profil speichern',
-	'change_password' => 'Passwort ändern',
-	'req_field' => 'Pflichtfeld',
 
 	# Color switcher
 	'designcolor' => 'Designfarbe: %s',
@@ -172,35 +138,27 @@ $lang = array(
 	'brown' => 'Braun',
 	'change_layout' => 'Layout ändern',
 
-	// MELDUNGEN 
-	'sucessfully' => 'Erfolgreich',
-	'error_be_logged_in_as' => array(
-		'user' => 'Du musst Registriert sein, um diesen versteckten Inhalt zu sehen!',
-		'special_user' => 'Du musst als Special-User eingelogt sein, um diesen versteckten Inhalt zu sehen!',
-		'moderator' => 'Du musst als Moderator eingelogt sein, um diesen versteckten Inhalt zu sehen!',
-		'admin' => 'Du musst als Admin eingelogt sein, um diesen versteckten Inhalt zu sehen!',
-	),
-
-	// ERRORS
-	'INVALID_FORM' => 'Benutzen sie nur Formulare von der Homepage.',
-	'EMPTY_FORM' => 'Bitte fülle das Formular vollständig aus.',
-	'NOT_LOGGED_IN' => 'Du musst eingeloggt sein um diese Funktion nutzen zu können.',
-
-	// CONTENT 
 	'screen_resolution' => 'Bildschirmaufl&ouml;sung',
+	'last_change' => 'Letzte Aktualisierung am %s',
 
 	#greeting
 	'good_morning' => 'Guten Morgen!',
 	'good_day' => 'Guten Tag!&nbsp;&nbsp;&nbsp;',
 	'good_evening' => 'Guten Abend!&nbsp;',
 	'good_night' => 'Du solltest schlafen gehen!',
-
-	#donate
-	'why_donate' => 'Warum spenden?',
-	'donate_via_paypal' => 'per PayPal spenden',
-
-	// CONTENT
-	'last_change' => 'Letzte Aktualisierung am %s',
 );
 
-?>
+switch($h = date('G'))
+{
+	case ($h >= 8 && $h <= 12):
+		$lang['greeting'] = $lang['good_morning'];
+		break;
+	case ($h >= 13 && $h <= 18):
+		$lang['greeting'] = $lang['good_day'];
+		break;
+	case ($h >= 19 && $h <= 23):
+		$lang['greeting'] = $lang['good_evening'];
+		break;
+	default:
+		$lang['greeting'] = $lang['good_night'];
+}
