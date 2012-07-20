@@ -30,7 +30,7 @@ abstract class GWF_Tree extends GDO
 	public function getRightColumn() { return $this->getColumnPrefix().'tree_right'; }
 	public function getRight() { return $this->getVar($this->getRightColumn()); }
 	public function getParentColumn() { return $this->getColumnPrefix().'tree_pid'; }
-	public function getParentID() { return $this->getVar($this->getgetParentColumn()); }
+	public function getParentID() { return $this->getVar($this->getParentColumn()); }
 
 	public function getTree()
 	{
@@ -47,26 +47,30 @@ abstract class GWF_Tree extends GDO
 //		
 //	}
 
-	function rebuildFullTree()
+	public function rebuildFullTree()
 	{
-		return $this->rebuildTree(1, 1);
+		return $this->rebuildTree(0, 0);
 	}
 
-	function rebuildTree($parent, $left)
+	private function rebuildTree($parent, $left)
 	{  
-		$parent = (int)$parent;
-		$left = (int)$left;
+// 		$parent = (int)$parent;
+// 		$left = (int)$left;
 		$right = $left + 1;
+		
 		$p = $this->getParentColumn();
-		$id = $this->getIDColumn();
-		$result = $this->selectColumn($id, "$p=$parent");
+		$idc = $this->getIDColumn();
+		
+		$result = $this->selectColumn($idc, "$p=$parent");
 		foreach ($result as $id)
 		{
 			$right = $this->rebuildTree($id, $right);
 		}
+		
 		$l = $this->getLeftColumn();
 		$r = $this->getRightColumn();
-		$this->update("$l=$left, $r=$right", "$id=$parent");
+		$this->update("$l=$left, $r=$right", "$idc=$parent");
+		
 		return $right+1;  
 	}   
 }
