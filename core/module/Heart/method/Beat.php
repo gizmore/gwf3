@@ -4,6 +4,8 @@ final class Heart_Beat extends GWF_Method
 {
 	public function execute()
 	{
+		GWF3::setConfig('log_request', false);
+		
 		$_GET['ajax'] = 1;
 		$cut = time()-GWF_ONLINE_TIMEOUT;
 		$user = new GWF_User();

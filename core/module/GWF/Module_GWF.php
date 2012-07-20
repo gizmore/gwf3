@@ -30,10 +30,11 @@ final class Module_GWF extends GWF_Module
 	public function cfgSuppressRules() { return $this->getModuleVarBool('SuppressRules', '1'); }
 	
 	# Error Config
-	public function cfgLog() { return $this->getModuleVar('log', '403,404'); }
-	public function cfgMail() { return $this->getModuleVar('mail', '403,404'); }
+	public function cfgLog() { return $this->filterCodeVar('log', '403,404'); }
+	public function cfgMail() { return $this->filterCodeVar('mail', '403,404'); }
 	public function cfgBlacklist() { return $this->getModuleVar('blacklist', 'me=ShowError;favicon.ico[^$]'); }
-
+	private function filterCodeVar($var, $default) { return str_replace(' ', '', $this->getModuleVar($var, $default)); }
+	
 	# Captcha Config
 	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
 	public function cfgCaptchaFont()

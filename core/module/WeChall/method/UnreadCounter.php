@@ -7,6 +7,8 @@ final class WeChall_UnreadCounter extends GWF_Method
 {
 	public function execute()
 	{
+		GWF3::setConfig('log_request', false);
+		
 		$back = array();
 		$user = GWF_User::getStaticOrGuest();
 		$back['news'] = (int)$this->module->getNewsCount();

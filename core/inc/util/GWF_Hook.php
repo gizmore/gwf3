@@ -72,10 +72,12 @@ final class GWF_Hook
 	{
 		if (self::$HOOKS === true)
 		{
-			if (false !== ($hooks = GWF_Settings::getSetting('gwf3_hooks', false))) {
+			if (false !== ($hooks = GWF_Settings::getSetting('gwf3_hooks', false)))
+			{
 				self::$HOOKS = unserialize($hooks);
 			}
-			else {
+			else
+			{
 				self::$HOOKS = array();
 			}
 		}
@@ -93,7 +95,7 @@ final class GWF_Hook
 
 		if (!isset(self::$HOOKS[$name]))
 		{
-			GWF_Log::logCritical('Unknown hook: '.$name);
+// 			GWF_Log::logCritical('Unknown hook: '.$name);
 			return true;
 		}
 
