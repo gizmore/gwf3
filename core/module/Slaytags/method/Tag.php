@@ -69,8 +69,12 @@ final class Slaytags_Tag extends GWF_Method
 		{
 			$checked = in_array($tag, $votes, true) ? ' checked="checked"' : '';
 // 			$data["tag_$tag"] = array(GWF_Form::CHECKBOX, $checked, $this->module->lang('tag', array($tag, $song->getVotePercent($tag))));
+
+			$perc = $song->getVotePercent($tag);
+			$key = $perc > 0 ? 'tag' : 'tag2';
 			
-			$html .= sprintf('<input type="checkbox" name="tag_%s"%s /><span>%s</span>', $tag, $checked, $this->module->lang('tag', array($tag, $song->getVotePercent($tag))));
+			$text = $this->module->lang($key, array($tag, $song->getVotePercent($tag)));
+			$html .= sprintf('<input type="checkbox" name="tag_%s"%s /><span>%s</span>', $tag, $checked, $text);
 		}
 		$html .= '</div>'.PHP_EOL;
 	

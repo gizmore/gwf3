@@ -1,6 +1,7 @@
 <?php
 $lang = array(
 	'tag' => '%1$s (%2$s%%)',
+	'tag2' => '%s',
 	'now_playing' => 'Now playing',
 	'previously_played' => 'Previously played',
 	'tag_this_song' => 'Tag this song',
