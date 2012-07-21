@@ -6,10 +6,10 @@ final class Slay_TagVote extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'stv_uid' => array(GDO::UINT|GDO::PRIMARY_KEY),
-			'stv_sid' => array(GDO::UINT|GDO::PRIMARY_KEY),
-			'stv_tid' => array(GDO::UINT|GDO::PRIMARY_KEY),
-			'stv_date' => array(GDO::DATE|GDO::INDEX, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
+			'stv_uid' => array(GDO::UINT|GDO::PRIMARY_KEY), # user
+			'stv_sid' => array(GDO::UINT|GDO::PRIMARY_KEY), # song
+			'stv_tid' => array(GDO::UINT|GDO::PRIMARY_KEY), # tag
+			'stv_date' => array(GDO::DATE|GDO::INDEX, GDO::NOT_NULL, GWF_Date::LEN_SECOND), # when
 		
 			'tags' => array(GDO::JOIN, GDO::NULL, array('Slay_Tag', 'st_id', 'stv_tid')),
 			'songs' => array(GDO::JOIN, GDO::NULL, array('Slay_Song', 'ss_id', 'stv_sid')),

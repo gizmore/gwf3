@@ -8,8 +8,8 @@ final class Slay_SongTag extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'sst_sid' => array(GDO::UINT|GDO::PRIMARY_KEY),
-			'sst_tid' => array(GDO::UINT|GDO::PRIMARY_KEY),
+			'sst_sid' => array(GDO::UINT|GDO::PRIMARY_KEY), # song id
+			'sst_tid' => array(GDO::UINT|GDO::PRIMARY_KEY), # tag id
 			'sst_count' => array(GDO::UINT|GDO::INDEX, 0),
 			'sst_average' => array(GDO::UINT, 0), # between 0 and 10000
 		

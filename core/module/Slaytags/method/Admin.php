@@ -68,7 +68,13 @@ final class Slaytags_Admin extends GWF_Method
 
 	private function onCleanupUntagged()
 	{
-		return 'ERR_STUB';
+		$songs = GDO::table('Slay_Song');
+		
+		$cut = GWF_Time::getDate(14, time()-3600);
+		
+		$songs->deleteWhere("ss_taggers=0 AND ss_last_played<'$cut'");
+		
+		return $this->module->message('msg_cleanup');
 	}
 }
 ?>
