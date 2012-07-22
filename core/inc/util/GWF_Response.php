@@ -1,9 +1,9 @@
 <?php
 /**
- * @todo rename
+ * A HTTP Response
  * @author spaceone
  */
-final class GWF_HTTPStatus //extends GDO
+final class GWF_Response
 {
 ##	INFORMATIONAL = 1xx;
 	const _CONTINUE = 100;
@@ -81,21 +81,6 @@ final class GWF_HTTPStatus //extends GDO
 	const NETWORK_READ_TIMEOUT_ERROR = 598;
 	const NETWORK_CONNECT_TIMEOUT_ERROR = 599;
 
-/* TODO: remove; this is the wrong place for logging/saving != 2XX errors
-	public function getTableName() { return GWF_TABLE_PREFIX.'httprequests'; }
-	public function getClassName() { return __CLAS__; }
-	public function getColumnDefines()
-	{
-		return array(
-			'http_id' => array(),
-			'http_uid' => array(),
-			'http_code' => array(),
-			'http_request_uri' => array(),
-			'http_date' => array(),
-		);
-	}
-*/
-
 	/**
 	 * The HTTP Response code
 	 * @var int $status
@@ -110,46 +95,44 @@ final class GWF_HTTPStatus //extends GDO
 
 	private $messages;
 	private $errors;
+	private $location;
 
 	/**
 	 *
 	 * @todo make it GWF_Error compatible
 	 * @todo add setter
+	 * @todo format
 	 */
-	public function __construct($status, $content, $messages=array(), $errors=array())
+	public function __construct($status, $content='', $messages=array(), $errors=array(), $redirect='')
 	{
 		$this->status = $status;
 		$this->content = $content;
 		$this->messages = $messages;
 		$this->errors = $errors;
+		$this->location = $redirect;
 	}
 
 	public function getStatus() { return $this->status; }
 	public function getContent() { return $this->content; }
 	public function getErrors() { return $this->errors; }
 	public function getMessages() { return $this->messages; }
+	public function getRedirect() { return $this->location; }
 
-
-	/**
-	 * Set HTTP status code
-	 * @param int $code
-	 * @param string $status
-	 */
-	public static function statuscode($code, $status)
+	public function response()
 	{
-		header(sprintf('%s %d %s', Common::getProtocol(), $code, $status));
-	}
+		$status = $this->getStatus();
+		if ($status >= 300 && $status < 400)
+		{
+			self::redirect($status, $this->getRedirect());
+		}
+		else
+		{
+			self::statuscode($status);
+		}
 
-	/**
-	 * HTTP Redirect
-	 * @param int $code 3xx
-	 * @param string $status
-	 * @param string $url redirection target
-	 */
-	public static function redirect($code, $status, $url)
-	{
-		self::statuscode($code, $status);
-		header('Location: ' . $url);
+		# TODO: add GWF_Error
+
+		return $this->getContent();
 	}
 }
 ?>

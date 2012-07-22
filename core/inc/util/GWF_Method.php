@@ -31,6 +31,43 @@ abstract class GWF_Method
 	public function setTemplate($tpl) { $this->_tpl = $tpl; return $this; }
 
 	/**
+	 * this method is called before real execution of method
+	 * @todo implement :D:D
+	 */
+	public function preExecute()
+	{
+		if (($cache = $this->cacheControl()) instanceof GWF_Response)
+		{
+			return $cache;
+		}
+
+
+		return $this->execute();
+	}
+
+	public function getETag() { return false; }
+	public function getModifiedTime() { return true; } # FIXME: a return value which is always <= 1 (infinite)
+
+	public final function cacheControl()
+	{
+		if (false !== ($modified = GWF_HTTPHeader::getHeader('If-Modified-Since', false)))
+		{
+			if ($this->getModifiedTime() < $modified)
+			{
+				return GWF_Response(GWF_Response::NOT_MODIFIED);
+			}
+		}
+		elseif (false !== ($etag = GWF_HTTPHeader::getHeader('E-Tag', false)))
+		{
+			if ($this->getETag() === $etag)
+			{
+			# TODO
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Check if user has permission to execute this method
 	 * @see GWF_Module->execute()
 	 */
