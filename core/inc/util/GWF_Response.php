@@ -93,9 +93,41 @@ final class GWF_Response
 	 */
 	private $content;
 
-	private $messages;
-	private $errors;
+	/**
+	 * Error messages
+	 * @var GWF_Error $error
+	 */
+	public $error;
+
+	/**
+	 * The redirect location
+	 * @var string $location
+	 */
 	private $location;
+
+	/**
+	 * additional HTTP response header
+	 * @var array $header
+	 */
+	private $header;
+
+	/**
+	 * HTTP GET request data
+	 * @var array $GET
+	 */
+	private $GET;
+
+	/**
+	 * HTTP POST request data
+	 * @var array $POST
+	 */
+	private $POST;
+
+	/**
+	 * HTTP request header
+	 * @var array $RHEADER
+	 */
+	private $RHEADER;
 
 	/**
 	 *
@@ -103,32 +135,52 @@ final class GWF_Response
 	 * @todo add setter
 	 * @todo format
 	 */
-	public function __construct($status, $content='', $messages=array(), $errors=array(), $redirect='')
+	public function __construct($status = self::OK, $get = array(), $post = array(), $header = array())
 	{
+		# request
+		$this->RHEADER = $header;
+		$this->GET = $get;
+		$this->POST = $post;
+
+		# response
 		$this->status = $status;
-		$this->content = $content;
-		$this->messages = $messages;
-		$this->errors = $errors;
-		$this->location = $redirect;
+		$this->content = '';
+		$this->error = new GWF_Error();
+		$this->header = array();
 	}
 
 	public function getStatus() { return $this->status; }
 	public function getContent() { return $this->content; }
-	public function getErrors() { return $this->errors; }
-	public function getMessages() { return $this->messages; }
+	public function getError() { return $this->errors; }
 	public function getRedirect() { return $this->location; }
+
+	public function setStatus($status) { $this->status = $status; }
+	public function setContent($content) {$this->content = $content; }
+	public function setRedirect($location) { $this->location = $location; }
+	public function setHeader($header) { $this->header = $header; }
+
+	public function addContent($content) {$this->content .= $content; }
+	public function addHeader($header)
+	{
+		foreach ((array) $header as $head)
+		{
+			$this->header[] = $head;
+		}
+	}
 
 	public function response()
 	{
 		$status = $this->getStatus();
 		if ($status >= 300 && $status < 400)
 		{
-			self::redirect($status, $this->getRedirect());
+			GWF_HTTPHeader::redirect($status, $this->getRedirect());
 		}
 		else
 		{
-			self::statuscode($status);
+			GWF_HTTPHeader::statuscode($status);
 		}
+
+		GWF_HTTPHeader::setHeaders($this->headers);
 
 		# TODO: add GWF_Error
 

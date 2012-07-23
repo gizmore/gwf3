@@ -1,16 +1,32 @@
 <?php
 /**
  * Error messages
+ * @todo cleanup
  * @author spaceone
  */
 final class GWF_Error
 {
-	private static $_all = array(
-		'messages' => array(),
-		'criticals' => array(),
-		'errors' => array(),
-		'warnings' => array(),
-	);
+	private static $static;
+	private $all;
+	
+	public function __construct()
+	{
+		$this->all = array(
+			'message' => array(),
+			'critical' => array(),
+			'error' => array(),
+			'warning' => array(),
+		);
+	}
+
+	public static function getInstance()
+	{
+		if (NULL === self::$static)
+		{
+			self::$static = new self();
+		}
+		return self::$static;
+	}
 
 	public static function decode($s) { return htmlspecialchars_decode($s, ENT_QUOTES); }
 
@@ -18,71 +34,100 @@ final class GWF_Error
 	 * shortpath and language
 	 **/
 	public static function err($key, $args=NULL) { return self::error('GWF', GWF_Debug::shortpath(GWF_HTML::lang($key, $args))); }
-	public static function err404($filename) { @header(Common::getProtocol().' 404 File not found'); return self::err('ERR_FILE_NOT_FOUND', htmlspecialchars($filename)); }
-	public static function error($title, $messages) { self::add('errors', $title, $messages); self::log_error($messages); return false; }
-	public static function message($title, $messages) { self::add('messages', $title, $messages); self::log_message($messages); return true; }
-	public static function warn($title, $messages) { self::add('criticals', $title, $messages); self::log_warning($messages);}
-	public static function critical($title, $messages) { self::add('warnings', $title, $messages); self::log_critical($messages); return false; }
+	public static function err404($filename) { @header(Common::getProtocol().' 404 File not found'); return self::err('ERR_FILE_NOT_FOUND', htmlspecialchars($filename)); } # DEPRECATED
+	public static function error($title, $messages) { self::$static->addError($title, $messages); }
+	public static function message($title, $messages) { self::$static->addMessage($title, $messages); }
+	public static function warn($title, $messages) { self::$static->addCritical($title, $messages); }
+	public static function critical($title, $messages) { self::$static->addWarning($title, $messages); }
 
-	public static function log($s) { return self::decode(implode("\n", (array)$s)); }
-	public static function log_error($content) { GWF_Log::logError(self::log($content)); }
-	public static function log_message($content) { GWF_Log::logMessage(self::log($content)); }
-	public static function log_warn($content) { GWF_Log::logWarning(self::log($content)); }
-	public static function log_critical($content) { GWF_Log::logCritical(self::log($content)); }
+	public function addError($title, $messages) { $this->add('error', $title, $messages); }
+	public function addMessage($title, $messages) { $this->add('message', $title, $messages); }
+	public function addWarning($title, $messages) { $this->add('critical', $title, $messages); }
+	public function addCritical($title, $messages) { $this->add('warning', $title, $messages); }
+
+
+	public static function log($type, $s)
+	{
+		$s = self::decode(implode("\n", (array)$s));
+		switch ($type)
+		{
+			case 'error':
+				GWF_Log::logError($s);
+				break;
+			case 'info':
+			case 'message':
+				GWF_Log::logMessage($s);
+				break;
+			case 'critical':
+			case 'fatal':
+				GWF_Log::logCritical($s);
+				break;
+			case 'warning':
+			case 'warn':
+				GWF_Log::logWarning($s);
+				break;
+		}
+	}
 
 	/**
-	 * @param string $type criticals|errors|warnings|messages
+	 * @param string $type critical|error|warning|message
 	 * @param string $title
 	 * @param string|array $messages
 	 */
-	private static function add($type, $title, $messages)
+	private function add($type, $title, $messages)
 	{
 		$messages = (array) $messages;
 
 		if (0 === count($messages))
 			return;
 
-		if (true === isset(self::$_all[$type][$title]))
-			self::$_all[$type][$title] = array_merge(self::$_all[$type][$title], $messages);
+		self::log($type, $messages);
+
+		if (isset($this->all[$type][$title]))
+		{
+			$this->all[$type][$title] = array_merge($this->all[$type][$title], $messages);
+		}
 		else
-			self::$_all[$type][$title] = $messages;
+		{
+			$this->all[$type][$title] = $messages;
+		}
 	}
 
 	public static function displayAll()
 	{
-		$errors = self::getAll();
+		$errors = self::$static->getAll();
 		if (GWF_ERRORS_TO_SMARTY)
 		{
 			GWF_Template::addMainTvars(array('errors' => $errors));
 		}
-		elseif(!isset($_GET['ajax']))
+		elseif (!isset($_GET['ajax']))
 		{
 			GWF_Website::addDefaultOutput($errors);
 			GWF_Template::addMainTvars(array('errors' => ''));
 		}
 	}
 
-	public static function getAll()
+	public function getAll()
 	{
-		foreach (self::$_all as $k => $subject)
+		foreach ($this->all as $k => $subject)
 		{
 			if (true === empty($subject))
 			{
-				unset(self::$_all[$k]);
+				unset($this->all[$k]);
 			}
 		}
 
 		if (true === isset($_GET['ajax']))
 		{
 			$back = '';
-			foreach (self::$_all as $subject)
+			foreach ($this->all as $subject)
 			{
 				$back .= self::displayAjax($subject);
 			}
 			return $back;
 		}
 
-		return GWF_Template::templateMain('errors.tpl', array('messages' => self::$_all));
+		return GWF_Template::templateMain('errors.tpl', array('messages' => $this->all));
 	}
 
 	private static function displayAjax(&$subject)
@@ -97,7 +142,9 @@ final class GWF_Error
 			}
 		}
 		GWF_Website::addDefaultOutput($back);
-		//return $back;
+		return $back;
 	}
 
 }
+
+GWF_Error::getInstance();
