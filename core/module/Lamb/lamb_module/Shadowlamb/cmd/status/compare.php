@@ -374,7 +374,7 @@ final class Shadowcmd_compare extends Shadowcmd
 		}
 		else
 		{
-			if (false !== ($item = $player->getInvItem($itemid)))
+			if (false !== ($item = $player->getItem($itemid)))
 			{
 				return $item;
 			}
