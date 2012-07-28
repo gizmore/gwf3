@@ -112,6 +112,12 @@ final class GWF_Response
 	private $header;
 
 	/**
+	 * HTTP method
+	 * @var string $METHOD
+	 */
+	private $METHOD;
+
+	/**
 	 * HTTP GET request data
 	 * @var array $GET
 	 */
@@ -125,28 +131,202 @@ final class GWF_Response
 
 	/**
 	 * HTTP request header
-	 * @var array $RHEADER
+	 * @var array $HEADER
 	 */
-	private $RHEADER;
+	private $HEADER;
+
+	/**
+	 * HTTP request body
+	 * @var string $BODY
+	 */
+	private $BODY;
+
+	/**
+	 * HTTP request header cookies
+	 * @var array $COOKIE
+	 */
+	private $COOKIE;
+
+	/**
+	 * server and client information provided by PHP
+	 * @var array $SERVER
+	 */
+	private $SERVER;
+
+	/**
+	 * The user, authenticated by HTTP or cookie
+	 * @var GWF_User $user
+	 */
+	private $user;
+
+	public static $methods_allowed_to_cache = array('GET' => true, 'HEAD' => true);
 
 	/**
 	 *
 	 * @todo make it GWF_Error compatible
-	 * @todo add setter
-	 * @todo format
+	 * @todo header should not be a array, because it should be case insensitive
+	 * @todo format | remember what was meant?
+	 * @todo add a config param?
+	 * @todo hook mechanisms
+	 * @param $method HTTP request method ($_SERVER['REQUEST_METHOD'])
+	 * @param $get HTTP request get data ($_GET)
+	 * @param $post HTTP request post dara ($_POST)
+	 * @param $body HTTP request body (file_get_contents('php://input'))
+	 * @param $header HTTP request headers (GWF_HTTP::getHeaders())
+	 * @param $cookie HTTP request cookies ($_COOKIE)
+	 * @param $server client and server information ($_SERVER)
 	 */
-	public function __construct($status = self::OK, $get = array(), $post = array(), $header = array())
+	public function __construct($method='GET', &$get, &$post, &$header, &$cookie, &$server, $body='')
 	{
 		# request
-		$this->RHEADER = $header;
+		$this->METHOD = $method;
+		$this->HEADER = $header;
 		$this->GET = $get;
 		$this->POST = $post;
+		$this->BODY = $body;
+		$this->COOKIE = $cookie;
+		$this->SERVER = $server;
 
 		# response
-		$this->status = $status;
+		$this->status = self::OK;
 		$this->content = '';
 		$this->error = new GWF_Error();
 		$this->header = array();
+	}
+
+	# TODO: split into void methods
+	public function init()
+	{
+		list($modulename, $methodname) = array($this->GET['mo'], $this->GET['me']);
+
+		# Authenticate
+		if (false !== false) {
+			# TODO: implement HTTP Authentification mechanisms
+		}
+		else {
+			$this->user = GWF_Session::getUser();
+		}
+
+		# Load the module
+		if (false === ($module = GWF_Module::loadModuleDB($modulename, $this)))
+		{
+			$this->status = self::NOT_FOUND;
+			# TODO: GWF_Error module not found
+			return false;
+		}
+
+		# Module is disabled?
+		if (false === $module->isEnabled())
+		{
+			$this->status = self::NOT_FOUND; #TODO: which response code?
+			# TODO: GWF_Error module disabled
+			return false;
+		}
+
+		# initialize the module # FIXME: this can be happened in GWF_Module
+		$module->onInclude();
+		$module->onLoadLanguage(); # TODO: language header
+
+//		# execute method
+//		$content = $module->execute($this->METHOD, $methodname);
+
+		# Load method
+		if (false === ($method = $module->getMethod($methodname)))
+		{
+			$this->status = self::NOT_FOUND;
+			# TODO: GWF_Error 'ERR_METHOD_MISSING' htmlspecialchars($methodname), $module->getName()
+			return false;
+		}
+
+		# check permissions
+		if (false === $method->hasPermission())
+		{
+			$this->status = self::UNAUTHORIZED; # FORBIDDEN ?
+			# 'ERR_NO_PERMISSION'
+			return false;
+		}
+
+		# Caching
+		if (true === $this->get(self::$methods_allowed_to_cache, $this->METHOD))
+		{
+			# Conditional GET
+			if (
+				(false !== ($ifmodified = $this->HEADER->getHeader('If-Modified-Since'))) &&
+				(false !== ($modified = $method->getModifiedTime())) &&
+				($modified < $ifmodified)
+			) {
+				$this->status = self::NOT_MODIFIED;
+				$this->content = '';
+				return false;
+			}
+
+			# ETAG
+			if (
+				(false !== ($hetag = $this->HEADER->getHeader('E-Tag'))) &&
+				(false !== ($etag = $method->getETag())) &&
+				($etag === $hetag)
+			) {
+				# TODO: which status?
+				$this->status = self::NOT_MODIFIED;
+				$this->content = '';
+				return false;
+			}
+		}
+
+		$format = $this->getFormat(); #TODO
+
+		try
+		{
+			# backwards compatibility
+			$back = $method->execute($this->METHOD, $format, $tthis);
+		}
+		catch (GWF_Exception $e)
+		{
+			# TODO
+		}
+		catch (Exception $e)
+		{
+			$this->status = self::INTERNAL_SERVER_ERROR;
+			# TODO: GWF_Error, GWF_Debug (if config)
+			return false;
+		}
+
+		return true;
+	}
+
+	public function getLanguage($default)
+	{
+		# FIXME: use GWF_Language for this
+		# FIXME: allow whole languages (de-DE) and check if language is existing, else use second.
+		# NOTE: also decide if we support a fallback/GWF_DEFAULT_LANGUAGE if the client doesn't accept available languages
+		$lang = substr($this->HEADER->getHeader('Accept-Language'), 0, 2);
+
+		# TODO: by account setting, URL, etc...
+	}
+
+	public function getFormat($default)
+	{
+		# TODO: decide if GET[format] overwrites it
+		if (false !== ($accept = $this->HEADER->getHeader('Accept')))
+		{
+			# TODO: parse
+			$json = strpos($accept, 'application/json');
+			$html = strpos($accept, 'text/html');
+			$xml = strpos($accept, 'application/xml');
+			$plain = strpos($accept, 'text/plain');
+			# $rss, $atom
+		}
+		return $default;
+		# return value could be a array containing (shorten?) mime types
+	}
+
+	public function &get(&$array, $key, $default=false)
+	{
+		if (isset($array[$key]))
+		{
+			return $array[$key];
+		}
+		return $default;
 	}
 
 	public function getStatus() { return $this->status; }
@@ -168,16 +348,30 @@ final class GWF_Response
 		}
 	}
 
+	/**
+	 * set HTTP Response Header and return the content
+	 * 
+	 */
 	public function response()
 	{
 		$status = $this->getStatus();
 		if ($status >= 300 && $status < 400)
 		{
+			# Redirection
 			GWF_HTTPHeader::redirect($status, $this->getRedirect());
 		}
 		else
 		{
 			GWF_HTTPHeader::statuscode($status);
+			if ($status >= 200 && $status < 300)
+			{
+				# Success
+				if (true === $this->get(self::$methods_allowed_to_cache, $this->METHOD))
+				{
+					# TODO: set Modified Time and E-Tag
+				}
+
+			}
 		}
 
 		GWF_HTTPHeader::setHeaders($this->headers);
@@ -185,6 +379,11 @@ final class GWF_Response
 		# TODO: add GWF_Error
 
 		return $this->getContent();
+	}
+	
+	public function __toString()
+	{
+		return sprintf("%s %d %s\r\n%s\r\n\r\n%s", $this->SERVER['SERVER_PROTOCOL'], $this->status, $this->status, implode("\r\n", $this->header), $this->content);
 	}
 }
 ?>
