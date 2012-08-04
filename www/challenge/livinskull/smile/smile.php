@@ -119,6 +119,11 @@ class LivinForm
 			}
 		}
 		
+		if (strpos($filename, '.php') !== false)
+		{
+			$allowed = false;
+		}
+		
 		if (!$allowed)
 		{
 			return GWF_HTML::error('Smile', $chall->lang('err_no_image'));
