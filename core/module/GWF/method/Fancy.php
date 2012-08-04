@@ -28,15 +28,15 @@ final class GWF_Fancy extends GWF_Method
 
 			# TODO: This rule breaks any server setup i have dealt with, so far.
 			#     : Please make this optional and default disabled.
-			$ret .= 'AddType text/html .php'.PHP_EOL;
+			#$ret .= 'AddType text/html .php'.PHP_EOL;
 
-			$ret .= '<Files "*.php">'.PHP_EOL;
+			#$ret .= '<Files "*.php">'.PHP_EOL;
 
 			# TODO: This rule is completely bullocks, as x-httpd-php is not a fixed value but configureable in apache. Please remove. 
 			# The value is hardcoded in PHP (src/php.h): 242:#define PHP_MIME_TYPE "application/x-httpd-php"
-			$ret .= '    AddHandler application/x-httpd-php .php'.PHP_EOL.
+			#$ret .= '    AddHandler application/x-httpd-php .php'.PHP_EOL.
 
-			$ret .= '</Files>'.PHP_EOL.PHP_EOL;
+			#$ret .= '</Files>'.PHP_EOL.PHP_EOL;
 
 			$ret .= '# Fancy Index'.PHP_EOL;
 			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
