@@ -89,17 +89,17 @@ class LivinForm
 		$form = $this->getForm($chall);
 		if (false === ($file = $form->getVar('image')))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_no_image'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_no_image')));
 		}
 		
 		if (!GWF_Upload::isImageFile($file))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_no_image'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_no_image')));
 		}
 		
 		if (false === GWF_Upload::resizeImage($file, 64, 64, 16, 16))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_no_image'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_no_image')));
 		}
 		
 		$whitelist = array(
@@ -126,7 +126,7 @@ class LivinForm
 		
 		if (!$allowed)
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_no_image'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_no_image')));
 		}
 		
 		$fullpath = "challenge/livinskull/smile/smiles/{$filename}";
@@ -157,22 +157,22 @@ class LivinForm
 		# Show a sample output for the new smiley :)
 		if (!LIVIN_Smile::testSmiley($chall, $pattern, $path))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_test'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_test')));
 		}
 		
 		# If it looks valid we even add it globally :)
 		if (!LIVIN_Smile::looksHarmless($path))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_xss'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_xss')));
 		}
 		if (!LIVIN_Smile::imageExists($path))
 		{
-			return GWF_HTML::error('Smile', $chall->lang('err_path'));
+			return GWF_HTML::error('Smile', array($chall->lang('err_path')));
 		}
 
 		# Like this :)
 		LIVIN_Smile::onAddSmiley($pattern, $path);
-		return GWF_HTML::message('Smile', $chall->lang('msg_rule_added'));
+		return GWF_HTML::message('Smile', array($chall->lang('msg_rule_added')));
 	}
 }
 
