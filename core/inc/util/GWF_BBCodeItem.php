@@ -150,7 +150,7 @@ final class GWF_BBCodeItem
 	{
 		static $allow = array('http', 'https', 'ftp', 'ftps');
 
-		if ('' === ($href = trim($href)))
+		if ('' === ($href = trim(htmlspecialchars($href))))
 		{
 			return false;
 		}
@@ -368,7 +368,7 @@ final class GWF_BBCodeItem
 		}
 
 		$text = $this->filterURLText($text);
-
+		
 		return sprintf('<a href="%s">%s</a>', $the_href, $text);
 	}
 
