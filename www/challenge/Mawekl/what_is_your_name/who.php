@@ -1,18 +1,22 @@
 <?php
-ob_start();
 chdir('../../../');
 define('GWF_PAGE_TITLE', 'What is your Name?');
+define('NO_HEADER_PLEASE', '1');
 require_once('challenge/html_head.php');
+GWF_Debug::disableErrorHandler();
+$SOLUTION_FLAG = 'challenge/Mawekl/what_is_your_name/solution.php';
 #########################
 # Challenge starts here #
 #########################
-
+ob_start();
+?>
+<html><head><title>What is your name?</title><meta name="description" content="What is your name challenge from Mawekl on WeChall. It requires knowledge of PHP, Programming and Exploitation." /><meta name="keywords" content="Hackit,Challenge,PHP,Exploit" /><meta name="author" content="Mawekl" /><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><body><p>
+<?php
 session_start();
-$password = 'challenge/Mawekl/what_is_your_name/solution.php';
 if(isset($_SESSION['whoami']))
 {
 	if($_SESSION['whoami'] === 'Mawekl')
-		echo 'Welcome Mawekl! Password is '.$password;
+		echo 'Welcome Mawekl! Password is '.$SOLUTION_FLAG;
 	else
 		echo 'STRANGER! GO AWAY!';
 }
@@ -39,9 +43,5 @@ else
 {
 	echo 'Who are you?!';
 }
-
-########################
-### End of challenge ###
-########################
-require_once('challenge/html_foot.php');
 ?>
+</p></body></html>
