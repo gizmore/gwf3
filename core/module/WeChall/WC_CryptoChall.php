@@ -35,7 +35,7 @@ final class WC_CryptoChall
 	
 	public static function checkSolution(WC_Challenge $chall, $random, $letters_only=false, $lowercase=false, $length=12)
 	{
-		if (false === ($answer = Common::getPostString('answer')))
+		if (false === ($answer = Common::getPostString('answer', false)))
 		{
 			return;
 		}
