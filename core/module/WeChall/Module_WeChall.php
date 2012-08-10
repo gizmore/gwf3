@@ -67,10 +67,6 @@ final class Module_WeChall extends GWF_Module
 	public function onStartup()
 	{
 		self::$instance = $this;
-//		self::getModule('Forum', true, true);
-//		self::getModule('News', true, true);
-//		self::getModule('Links', true, true);
-//		self::getModule('PM', true, true);
 		
 		// Register login hook
 		GWF_Hook::add(GWF_HOOK::LOGIN_PRE, array(__CLASS__, 'hookLoginPre'));
@@ -81,18 +77,11 @@ final class Module_WeChall extends GWF_Module
 		GWF_Hook::add(GWF_HOOK::DELETE_USER, array(__CLASS__, 'hookDeleteUser'));
 		GWF_Hook::add(GWF_HOOK::CHANGE_UNAME, array(__CLASS__, 'hookDeleteUser'));
 		
-		# _ALLWAYS_ include this Oo :(
-//		if (false !== ($mv = self::getModule('Votes'))) {
-//			$mv->onInclude();
-//		}
 		$this->onLoadLanguage();
 		
 		if (Common::getGet('mo')!=='WeChall') {
 			$this->onInclude();
 		}
-		
-//		GWF_Website::addDefaultOutput(GWF_HTML::message('Test', sprintf('Your last url is: %s', GWF_Session::getLastURL()), false));
-
 		
 		GWF_Website::addJavascriptOnload('wcjsInit();');
 		
@@ -401,7 +390,7 @@ final class Module_WeChall extends GWF_Module
 		$yesterday = date('md', time() - GWF_Time::ONE_DAY);
 		
 		# Output
-		$href = '/index.php?mo=WeChall&amp;me=BirthdayRead';
+		$href = '/index.php?mo=WeChall&me=BirthdayRead';
 		$title = $this->lang('bdnews_title');
 		$text = $this->lang('bdnews_body_init', array($href));
 		$weekdays = GWF_Time::getWeekdaysFromMo();
@@ -468,7 +457,7 @@ final class Module_WeChall extends GWF_Module
 			return '';
 		}
 		
-		$href = '/index.php?mo=WeChall&amp;me=ChallNewsRead';
+		$href = '/index.php?mo=WeChall&me=ChallNewsRead';
 		$title = $this->lang('cnews_title');
 		$text = $this->lang('cnews_body', array($href)).PHP_EOL.PHP_EOL;
 		while (false !== ($row = $db->fetchRow($result)))
