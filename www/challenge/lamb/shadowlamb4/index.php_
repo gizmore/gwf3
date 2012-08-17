@@ -1,0 +1,18 @@
+<?php
+chdir('../../../');
+define('GWF_PAGE_TITLE', 'Shadowlamb - Chapter IV');
+require_once('challenge/html_head.php');
+require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
+require_once GWF_CORE_PATH.'module/WeChall/WC_CryptoChall.php';
+if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 5, 'challenge/lamb/shadowlamb4/index.php');
+}
+$chall->showHeader();
+
+WC_CryptoChall::checkSolution($chall, 'ThisStringIsOutdated...WhoKnowsMySecrets?', true, true, 16);
+
+echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
+echo formSolutionbox($chall);
+echo $chall->copyrightFooter();
+require_once('challenge/html_foot.php');
+?>
