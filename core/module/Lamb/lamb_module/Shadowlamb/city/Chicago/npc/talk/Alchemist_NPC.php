@@ -118,7 +118,7 @@ final class Chicago_Alchemist_NPC extends SR_TalkingNPC
 	{
 		
 		$have = SR_PlayerVar::getVal($player, self::SCRL_COUNT, 0);
-		$need = 10;
+		$need = 4;
 		
 		if ($have > $need)
 		{
