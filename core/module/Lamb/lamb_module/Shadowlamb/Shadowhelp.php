@@ -79,7 +79,7 @@ final class Shadowhelp
 					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime and explore times will decrease.",
 					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",
 					'intelligence' => "Intelligence increases the power of your magic spells. It also increases your magic defense.",
-					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::BUY_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::SELL_PERCENT_CHARISMA."%) prices for your character.  You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
+					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::SELL_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::BUY_PERCENT_CHARISMA."%) prices for your character.  You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
 					'luck' => "Luck increases the chance of better drops.",
 					'reputation' => "Reputation determines how famous you are amongst the world of Shadowlamb. Some quests require a minimum reputation.",
 					'essence' => "Essence describes how wasted your body and mind is. Every player starts with an essence of 6. You cannot lvlup your essence. Although it is known that some rare runes can increase your essence. Essence is essential for magic, similar to intelligence.",
