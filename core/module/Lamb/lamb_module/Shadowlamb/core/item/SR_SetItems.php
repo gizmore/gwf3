@@ -10,6 +10,11 @@ final class SR_SetItems
 			array('defense' => 0.1),
 			array('TinfoilGloves', 'TinfoilBelt', 'TinfoilCap', 'TinfoilSandals'),
 		),
+		
+		'BikerSet' => array(
+			array('defense' => 0.5),
+			array('BikerJacket', 'BikerBelt', 'BikerBoots', 'BikerGloves', 'BikerHelmet', 'BikerLegs'),
+		),
 
 		'ElvenSet' => array(
 			array('quickness' => 0.5, 'bows' => 5.0, 'body' => 1.0, 'strength' => 1.0),
