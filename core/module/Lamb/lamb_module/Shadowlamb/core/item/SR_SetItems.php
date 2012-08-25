@@ -25,7 +25,12 @@ final class SR_SetItems
 			array('quickness' => 0.5, 'ninja' => 5.0, 'sharpshooter' => 5.0),
 			array('NinjaCloak', 'UwaObi', 'ChikaTabi', 'Yugake', 'Hakama', array('NinjaSword', 'Ninjato', 'Ninjaken')),
 		),
-
+			
+		'MagicSet' => array(
+			array('spellatk' => 3.0, 'spelldef' => 1.5, 'intelligence' => 1.0),
+			array(array('WizardCloak', 'WizardRobe'), 'WizardGloves', 'WizardHat'),
+		),
+			
 		'DemonSet' => array(
 			array('attack' => 20.0),
 			array('DemonVest', 'DemonBoots', 'DemonGloves', 'DemonHelmet', 'DemonLegs', array('DemonAxe', 'DemonSword'), 'DemonShield'),
