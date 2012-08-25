@@ -1533,8 +1533,9 @@ final class SR_Party extends GDO
 			$player instanceof SR_Player;
 			$dist = $with_distance ? sprintf('(%.01fm)', $this->distance[$player->getID()]) : '';
 			$level = $with_levels ? Shadowfunc::displayLevel($player) : '';
-			$pbot = $player->isOptionEnabled(SR_Player::PLAYER_BOT) ? '[Bot]' : '';
-			$back .= sprintf(', %s-%s%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level, $pbot);
+			$rmod = $player->isOptionEnabled(SR_Player::RUNNING_MODE) ? '[RM]' : '';
+			$pbot = $player->isOptionEnabled(SR_Player::PLAYER_BOT) ? '[BOT]' : '';
+			$back .= sprintf(', %s-%s%s%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level, $pbot, $rmod);
 		}
 		return substr($back, 2);
 	}
