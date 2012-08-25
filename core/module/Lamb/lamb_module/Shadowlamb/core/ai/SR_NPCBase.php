@@ -133,12 +133,19 @@ abstract class SR_NPCBase extends SR_Player
 		{
 			$data['sr4pl_'.$k] = $v;
 		}
+		
 		# base race bonus
-		$race_bonus = self::$RACE[$race];
-		foreach ($race_bonus as $k => $v)
-		{
-			$data['sr4pl_'.$k] += $v;
-		}
+// 		$race_bonus = self::$RACE[$race];
+// 		foreach ($race_bonus as $k => $v)
+// 		{
+// 			# Combat stats don't belong in the db.
+// 			if (SR_Player::isCombatStat($k))
+// 			{
+// 				continue;
+// 			}
+			
+// 			$data['sr4pl_'.$k] += $v;
+// 		}
 
 		### Now override with specified values
 		foreach ($mods as $k => $v)
