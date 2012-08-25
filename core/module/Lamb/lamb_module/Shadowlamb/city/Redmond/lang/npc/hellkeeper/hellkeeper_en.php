@@ -2,7 +2,7 @@
 $b = chr(2);
 $lang = array(
 	'name' => 'The barkeeper',
-	'shadowrun' => "You are looking for a job? You could ask my brother in the Trolls\' Inn. He has some urgent need for spiritouses.",
+	'shadowrun' => 'You are looking for a job? You could ask my brother in the Trolls\' Inn. He has some urgent need for spiritouses.',
 	'cyberware' => 'Nobody wants to be a complete robot. When your essence is 0 you are screwed.',
 	'magic' => 'I don\'t trust those psychos.',
 	'bikers' => 'Most of my guests are hardcore bikers. They protect my pub and in exchange they can have cheap parties here. They do not annoy the other guests, so all are fine with that.',

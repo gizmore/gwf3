@@ -316,6 +316,8 @@ $lang = array(
 'WizardRobe__desc__' => 'Una vesta bianca per maghi Da abbinare ad una lunga barba.',
 
 # belt
+'BikerBelt' => 'BikerBelt',
+'BikerBelt__desc__' => 'A broad motorbike belt to protect your kidney.',
 'LeatherBelt' => 'CinturaDiPelle',
 'LeatherBelt__desc__' => 'Una larga cintura di pelle. Non offre molta protezione.',
 'TinfoilBelt' => 'CinturaInStagnola',
@@ -370,6 +372,8 @@ $lang = array(
 'UM_Earring__desc__' => 'Un orecchino magico, creato da vecchi nani.',
 
 # gloves
+'BikerGloves' => 'BikerGloves',
+'BikerGloves__desc__' => 'Black thick biker gloves. Best worn when riding a motorbike.',
 'BoxingGloves' => 'GuantiDaPugilato',
 'BoxingGloves__desc__' => 'Spessi guanti rossi da pugilato ancora in buono stato. Non molto utili in strada, purtroppo.',
 'DemonGloves' => 'DemonGloves',

@@ -316,6 +316,8 @@ $lang = array(
 'WizardRobe__desc__' => 'A white robe for wizards. Looks best with a long beard.',
 
 # belt
+'BikerBelt' => 'BikerBelt',
+'BikerBelt__desc__' => 'A broad motorbike belt to protect your kidney.',
 'LeatherBelt' => 'LeatherBelt',
 'LeatherBelt__desc__' => 'A broad leather belt. Not much additional protection.',
 'TinfoilBelt' => 'TinfoilBelt',
@@ -370,6 +372,8 @@ $lang = array(
 'UM_Earring__desc__' => 'A magic earring, smithed by the old dwarfes.',
 
 # gloves
+'BikerGloves' => 'BikerGloves',
+'BikerGloves__desc__' => 'Black thick biker gloves. Best worn when riding a motorbike.',
 'BoxingGloves' => 'BoxingGloves',
 'BoxingGloves__desc__' => 'Thick red boxing gloves in good shape. Not very useful on the streets.',
 'DemonGloves' => 'DemonGloves',

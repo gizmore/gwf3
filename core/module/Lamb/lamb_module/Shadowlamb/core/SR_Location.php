@@ -178,7 +178,7 @@ abstract class SR_Location
 	{
 		foreach ($this->getComputers() as $computer)
 		{
-			if (false !== ($computer = SR_Computer::getInstance($computer)))
+			if (false !== ($computer = SR_Computer::getInstance($computer, $this)))
 			{
 				$computer->onReset($party);
 			}

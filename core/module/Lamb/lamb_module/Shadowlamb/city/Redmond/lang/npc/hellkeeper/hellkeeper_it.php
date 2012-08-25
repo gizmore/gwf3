@@ -2,7 +2,7 @@
 $b = chr(2);
 $lang = array(
 	'name' => 'Il barista',
-	'shadowrun' => "Stai cercando un lavoro? Potresti chiedere a mio fratello, al Trolls\' Inn. Ha alcune faccende urgenti da sbrigare.",
+	'shadowrun' => "Stai cercando un lavoro? Potresti chiedere a mio fratello, al Trolls' Inn. Ha alcune faccende urgenti da sbrigare.",
 	'cyberware' => 'Nessuno vuole essere un robot completo. Quando la tua essenza raggiungerà lo zero, sarai fregato.',
 	'magic' => 'Non fidarti di questi psicotici.',
 	'bikers' => 'La maggior parte dei miei ospiti sono motociclisti convinti. Loro proteggono il mio pub ed in cambio possono tenere dei party nel pub, ad un modico prezzo. Non importunano gli altri ospiti, per cui nessuno ha problemi.',

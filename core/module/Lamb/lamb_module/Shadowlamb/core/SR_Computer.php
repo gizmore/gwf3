@@ -40,7 +40,7 @@ abstract class SR_Computer
 	 * @param string $computer
 	 * @return SR_Computer
 	 */
-	public static function getInstance($computer, $location)
+	public static function getInstance($computer, SR_Location $location)
 	{
 		if (!isset(self::$COMPUTERS[$computer]))
 		{
@@ -68,7 +68,7 @@ abstract class SR_Computer
 	### Location ###
 	################
 	private $location;
-	public function setLocation($loc) { $this->location = $loc; }
+	public function setLocation(SR_Location $loc) { $this->location = $loc; }
 	/**
 	 * @return SR_Location
 	 */
