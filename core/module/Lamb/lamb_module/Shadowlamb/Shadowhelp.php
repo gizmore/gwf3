@@ -280,6 +280,7 @@ final class Shadowhelp
 						'asl' => NULL,
 						'aslset' => "Player command. Usage: #aslset RANDOM || #aslset <age>y <bmi>kg <hgt>cm. Example: #aslset 20y 140cm 80kg.",
 						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment.',
+						'sets' => 'Player command: Usage: #sets [<setpage|itemname|setname>]. Show all sets or list items and boni for an itemset.',
 						array(
 							'amulet' => 'You can #equip amulets and wear them as #equipment.',
 							'armor' => 'You can #equip armory and wear them as #equipment.',
@@ -413,6 +414,12 @@ final class Shadowhelp
 							'view' => 'Location command. Usage: #(v)iew [<pattern>] [<page>]. In shops and alike you can use view to list or search items stored there.',
  							'viewi' => 'Location command: Usage: #(v)iew(i) <view_id>. In shop and alike you can use viewi to examine items stored there.',
 						),
+							
+						'alchemist_cmds' => 'Alchemist commands',
+						array(
+							'recipes' => 'Location command. Usage: #recipes [<recipe>]. Show all the recipes here that you can create with #recipe, or show the details of a single recipe.',
+							'recipe' => 'Location command. Usage: #recipe [<recipe>]. Create a receipe from it\'s incredients.',
+						),
 						
 						'bank_cmds' => 'Bank commands',
 						array(
@@ -441,7 +448,7 @@ final class Shadowhelp
 							'break' => 'Location command. Usage: #(b)rea(k) <item>. Will destroy an item and release it`s runes, which you will receive.',
 							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
 							'upgrade' => 'Location command. Usage: #(up)grade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
-// 							'simulate' => 'Location command. Usage: #simulate <item> <rune>. Simulates an upgrade and prints the odds of fail and destroy.',
+							'safeupgrade' => 'Location command. Usage: #(s)afe(up)grade <item> <rune>. Apply a rune on your equipment. This uses one amount of MagicOil and may still fail. However, breakchances are zero for this command.',
 						),
 							
 						'piercer_cmds' => 'Piercer commands',
