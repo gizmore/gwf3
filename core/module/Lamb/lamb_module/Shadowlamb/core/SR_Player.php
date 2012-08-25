@@ -222,6 +222,8 @@ class SR_Player extends GDO
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
 	public function isFrozen() { return $this->get('frozen') > 0; }
+	public function isIdle() { return $this->getParty()->isIdle(); }
+	public function isInParty() { return $this->getParty()->getMemberCount() > 1; }
 	public function hasSkill($skill) { return $this->getBase($skill) > -1; }
 	public function isOverloadedHalf() { return $this->get('weight') >= ($this->get('max_weight')*1.0); }
 	public function isOverloadedFull() { return $this->get('weight') >= ($this->get('max_weight')*1.5); }
@@ -250,7 +252,6 @@ class SR_Player extends GDO
 	public function hasSolvedQuest($name) { return SR_Quest::getQuest($this, $name)->isDone($this); }
 	public function displayWeight() { return Shadowfunc::displayWeight($this->get('weight')); }
 	public function displayMaxWeight() { return Shadowfunc::displayWeight($this->get('max_weight')); }
-	
 	################
 	### Language ###
 	################
@@ -348,6 +349,21 @@ class SR_Player extends GDO
 	#################
 	public static function isValidRace($race) { return array_key_exists($race, self::$RACE); }
 	public static function isValidGender($gender) { return array_key_exists($gender, self::$GENDER); }
+	public static function isValidModifier($modifier)
+	{
+// 		$specials = array('nuyen', 'base_hp', 'base_mp', 'race', 'gender', 'distance');
+		if (  (in_array($modifier, self::$ATTRIBUTE))
+// 			||(in_array($modifier, $specials))
+			||(in_array($modifier, self::$SKILL))
+			||(in_array($modifier, self::$KNOWLEDGE))
+			||(in_array($modifier, self::$COMBAT_STATS))
+			||(SR_Spell::getSpell($modifier)!==false)
+		)
+		{
+			return true;
+		}
+		return false;
+	}
 	public static function getRandomRace() { return Shadowfunc::randomListItem(self::getHumanRaces()); }
 	public static function getRandomGender() { return Shadowfunc::randomListItem('male', 'female'); }
 	public static function getHumanRaces()
@@ -391,9 +407,12 @@ class SR_Player extends GDO
 			return false;
 		}
 		
-		if (NULL !== ($classname = $result['sr4pl_classname'])) {
+		if (NULL !== ($classname = $result['sr4pl_classname']))
+		{
 			$player = new $classname($result);
-		} else {
+		}
+		else
+		{
 			$player = new self($result);
 			if ($result['sr4pl_uid'] !== NULL)
 			{
@@ -706,7 +725,8 @@ class SR_Player extends GDO
 	public function deletePlayer()
 	{
 		SR_Item::deleteAllItems($this);
-		if (false !== ($p = $this->getParty())) {
+		if (false !== ($p = $this->getParty()))
+		{
 			$p->kickUser($this, true);
 		}
 		Shadowrun4::removePlayer($this);
@@ -763,6 +783,7 @@ class SR_Player extends GDO
 		if (!$this->hasWeapon()) { $this->modifyItem(Item_Fists::staticFists()); }
 		$this->modifyItems($this->sr4_equipment);
 		$this->modifyItems($this->sr4_cyberware);
+		SR_SetItems::applyModifiers($this);
 		$this->modifyInventory();
 		
 		$this->modifyQuests();
@@ -1044,7 +1065,7 @@ class SR_Player extends GDO
 		}
 	}
 	
-	private function applyModifiers(array $modifiers)
+	public function applyModifiers(array $modifiers)
 	{
 		foreach ($modifiers as $key => $value)
 		{
@@ -1250,6 +1271,19 @@ class SR_Player extends GDO
 		return $back;
 	}
 	
+	public function hasEquipped($itemname)
+	{
+		foreach ($this->sr4_equipment as $item)
+		{
+			$item instanceof SR_Equipment;
+			if ($item->getName() === $itemname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public function equip(SR_Equipment $item)
 	{
 		unset($this->sr4_inventory[$item->getID()]);
@@ -1425,7 +1459,7 @@ class SR_Player extends GDO
 		{
 			return true;
 		}
-		$ma = $this->getBase('magic');
+		$ma = $this->get('magic');
 		if ($ma > 0)
 		{
 			$gain = $this->getMPGain();
@@ -1507,7 +1541,7 @@ class SR_Player extends GDO
 			elseif ($itemname === 'weapon')
 			{
 				return Item_Fists::staticFists();
-			} 
+			}
 		}
 		
 		return $this->getItemByName($itemname, $shortcuts);
@@ -1672,7 +1706,8 @@ class SR_Player extends GDO
 		{
 			$item instanceof SR_Item;
 			if (   (strtolower($item->displayFullName($this)) === $itemname)
-				|| (strtolower($item->getItemName()) === $itemname) )
+				|| (strtolower($item->getItemName()) === $itemname)
+				|| (strtolower($item->getName()) === $itemname) )
 			{
 				return $item;
 			}
@@ -1699,11 +1734,9 @@ class SR_Player extends GDO
 	{
 		$itemname = strtolower($itemname);
 		
-		$items = array_reverse($items);
-		
 		$hits = array();
 		
-		foreach ($items as $item)
+		foreach (array_reverse($items) as $item)
 		{
 			$item instanceof SR_Item;
 
@@ -2424,6 +2457,7 @@ class SR_Player extends GDO
 		}
 		
 		$level = 0;
+		$karma = 0;
 		while ($this->getBase('xp_level') >= ($xppl = $this->getXPPerLevel()))
 		{
 			$this->alterField('level', 1);
@@ -2433,18 +2467,18 @@ class SR_Player extends GDO
 		if ($level > 0)
 		{
 			$this->getParty()->notice(sprintf("{$b}%s{$b} reached {$b}level %s(+%d){$b}.", $this->getName(), $this->getBase('level'), $level));
+			$karma += $this->getBase('level');
 		}
 		
-		$karma = 0;
 		while ($this->getBase('xp') >= ($xppk = $this->getXPPerKarma()))
 		{
-			$this->giveKarma(1);
 			$this->alterField('xp', -$xppk);
 			$karma++;
 		}
 		
 		if ($karma > 0)
 		{
+			$this->giveKarma($karma);
 			$this->msg('5251', array($this->getBase('karma'), $karma));
 // 			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", $this->getBase('karma'), $karma));
 		}
@@ -2710,6 +2744,8 @@ class SR_Player extends GDO
 	
 	public function gotKilledByNPC(SR_Player $killer)
 	{
+		$this->looseItem($killer);
+		
 		if ($this->isRunner())
 		{
 			# Forever a dead?
