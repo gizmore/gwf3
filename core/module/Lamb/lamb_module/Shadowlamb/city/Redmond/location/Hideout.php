@@ -27,7 +27,7 @@ final class Redmond_Hideout extends SR_Tower
 		else {
 			$this->partyMessage($player, 'fight4');
 // 			$party->notice('You take a look through the doors keyhole. A party of four punks opens the door and surprises you.');
-			SR_NPC::createEnemyParty('Redmond_Cyberpunk','Redmond_Cyberpunk','Redmond_Cyberpunk','Redmond_Lamer')->fight($party, true);
+			SR_NPC::createEnemyParty('Redmond_Cyberpunk','Redmond_Cyberpunk','Redmond_Pinkhead','Redmond_Lamer')->fight($party, true);
 		}
 	}
 }

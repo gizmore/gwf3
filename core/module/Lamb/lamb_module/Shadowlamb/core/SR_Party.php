@@ -1535,7 +1535,8 @@ final class SR_Party extends GDO
 			$level = $with_levels ? Shadowfunc::displayLevel($player) : '';
 			$rmod = $player->isOptionEnabled(SR_Player::RUNNING_MODE) ? '[RM]' : '';
 			$pbot = $player->isOptionEnabled(SR_Player::PLAYER_BOT) ? '[BOT]' : '';
-			$back .= sprintf(', %s-%s%s%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level, $pbot, $rmod);
+			$race = Shadowfunc::translateVariable('_'.$player->getRace());
+			$back .= sprintf(', %s-%s%s%s%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level, $pbot, $rmod, $race);
 		}
 		return substr($back, 2);
 	}

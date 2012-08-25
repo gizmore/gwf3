@@ -234,10 +234,11 @@ abstract class SR_Elevator extends SR_Tower
 			return false;
 		}
 
+		$eta = $this->getElevatorTime();
+		
 		$player->getParty()->ntice('5177', array($btn, Shadowfunc::displayETA($eta)));
 		
-		$eta = $this->getElevatorTime();
-		if (false === $this->teleportInside($player, $floor->getName()))
+		if (false === $this->teleportInside($player, $floor->getName(), $eta))
 		{
 			$player->message('Error!');
 			return false;

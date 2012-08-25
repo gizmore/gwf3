@@ -425,7 +425,7 @@ final class Shadowrun4
 // 	private static function initCityNPCs($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityNPC'), false); }
 // 	private static function initCityQuests($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityQuest'), false); }
 // 	private static function initCityLocations($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCityLocation'), false); }
-	private static function initCityAfter() { foreach (self::$cities as $city) { $city->onInit(); } }
+	private static function initCityAfter() { foreach (self::$cities as $city) { $city instanceof SR_City; $city->onInit(); } }
 // 	public static function initQuests($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/quest', array('SR_Quest', 'includeQuest')); }
 //	public static function initTimer() { self::$sr_timestamp = GWF_Counter::getCount('Lamb_SR4_Timestamp'); }
 

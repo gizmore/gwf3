@@ -166,7 +166,11 @@ abstract class SR_City
 	{
 		foreach ($this->getImportNPCS() as $classname)
 		{
-			$this->npcs[$classname] = Shadowrun4::getNPC($classname);
+			if (false === ($npc = Shadowrun4::getNPC($classname)))
+			{
+				die("Unknown import_npc {$classname} in city {$this->getName()}.\n");
+			}
+			$this->npcs[$classname] = $npc;
 		}
 	}
 	

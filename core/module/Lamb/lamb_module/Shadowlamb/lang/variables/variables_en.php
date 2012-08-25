@@ -16,8 +16,29 @@ $lang = array(
 	'ork' => 'ork',
 	'troll' => 'troll',
 	'gremlin' => 'gremlin',
+	'animal' => 'animal',
 	'droid' => 'droid',
 	'dragon' => 'dragon',
+
+	# R
+	'_fairy'=>'F',
+	'_elve' => 'E',
+	'_halfelve' => 'HE',
+	'_vampire' => 'V',
+	'_darkelve' => 'DE',
+	'_woodelve' => 'WE',
+	'_human' => 'H',
+	'_gnome' => 'G',
+	'_dwarf' => 'D',
+	'_halfork' => 'HO',
+	'_halftroll' => 'HT',
+	'_ork' => 'O',
+	'_troll' => 'T',
+	'_gremlin' => 'GR',
+	'_animal' => '_A',
+	'_droid' => '_D2',
+	'_dragon' => '_DR',
+		
 
 	# Gender
 	'gender' => 'gender',
