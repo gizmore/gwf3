@@ -52,7 +52,9 @@ final class Shadowcmd_sets extends Shadowcmd
 
 	private static function displaySet(SR_Player $player, $set)
 	{
-		if (false === ($data = SR_SetItems::getSetByName($set)))
+		if ( (false === ($data = SR_SetItems::getSetByName($set)))
+		   && (false === ($data = SR_SetItems::getSetForItem($set)))
+		)
 		{
 			return self::rply($player, '1189');
 		}
