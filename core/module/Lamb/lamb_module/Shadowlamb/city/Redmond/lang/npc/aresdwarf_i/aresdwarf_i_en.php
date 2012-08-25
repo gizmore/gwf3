@@ -11,6 +11,6 @@ $lang = array(
 	'quest2' => 'Chummer... Listen... We regulary get robbed by the cyberpunks.',
 	'quest3' => 'The worst thing is they keep robbing even cheap things, like unstatted knifes. If you can help us and bring me %d unstatted knifes I would be very happy, as I plan to master the skill of knife-throwing.',
 	'quest4' => 'You can remove stats from an item at the local blacksmith.',
-	'quest5' => 'If you could help help us we will reward you gracefully.',
+	'quest5' => 'If you could help us we will reward you gracefully.',
 );
 ?>

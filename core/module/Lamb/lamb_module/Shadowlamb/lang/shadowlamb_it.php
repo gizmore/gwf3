@@ -123,7 +123,7 @@ $lang = array(
 
 # PrintF-Formats
 'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', # Ouch
-'fmt_examine' => '%s è %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
+'fmt_examine' => '%s è %s%s. %s%s%s%s%s%s%s%s%s%s', # Ouch
 'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%s(%s/%s)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Età{$b}:%s, %scm %s", # age, height, weight
@@ -817,6 +817,12 @@ $lang = array(
 '5291' => 'Hai pagato %s e ricevuto %s dalla creazione della ricetta %s. Sono stati utilizzati i seguenti ingredienti: %s.', #ny, item, recipe, incredients
 '5292' => 'Ricette distillabili: %s.', # list
 '5293' => '%1$s(%2$s): Prepare %4$s per creare %3$s.',
+'5294' => 'You got poisoned for %s HP each %s.',
+'5295' => 'SetItems, page %s/%s: %s.',
+'5296' => 'The %s itemset consists of: %s. Bonus: %s',
+'5297' => '%s of the %s itemset. Bonus: %s. Items: %s.',
+'5298' => 'Use "#redmond i_am_sure" to take some of your XP and beam you back to %s.',
+'5299' => 'Your XP stack got reset and you get beamed back to %s.',
 
 ####################
 ### Shadowclient ###

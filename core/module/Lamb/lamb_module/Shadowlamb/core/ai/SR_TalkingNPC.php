@@ -262,5 +262,31 @@ abstract class SR_TalkingNPC extends SR_NPC
 		$ep->setContactEta(rand(10, 20));
 		return true;
 	}
+	
+	public function giveQuesties(SR_Player $player, $itemname, $have, $need)
+	{
+		$left = $need - $have;
+		$give = 0;
+		
+		while ($left > 0)
+		{
+			if (false === ($item = $player->getInvItem($itemname)))
+			{
+				break;
+			}
+			$possible = Common::clamp($item->getAmount(), 0, $left);
+			$item->useAmount($player, $possible);
+			$give += $possible;
+			$left -= $possible;
+			$have += $possible;
+		}
+		
+		if ($give > 0)
+		{
+			$player->msg('5239', array($give, $itemname, $this->getName()));
+		}
+		
+		return $have;
+	}
 }
 ?>

@@ -38,6 +38,7 @@ class SR_Item extends GDO
 	 * @return SR_Item
 	 */
 	public static function getItem($name) { return isset(self::$items[$name]) ? self::$items[$name] : false; }
+	public static function exists($name) { return isset(self::$items[$name]); }
 	public static function getAllItems() { return self::$items; }
 	public static function getTotalItemCount() { return count(self::$items); }
 	public static function includeItem($filename, $fullpath)
@@ -382,6 +383,7 @@ class SR_Item extends GDO
 			$this->displayDescription($player),
 			$this->displayModifiersA($player),
 			$this->displayModifiersB($player),
+			$this->displaySetModifiers($player),
 			$this->displayRequirements($player),
 			$this->displayRange($player),
 			$this->displayUseTime($player),
@@ -522,6 +524,27 @@ class SR_Item extends GDO
 // 		return sprintf(' %sModifiers%s: %s.', $b, $b, Shadowfunc::getModifiers($this->getItemModifiersB()));
 	}
 	
+	public function displaySetModifiers(SR_Player $player)
+	{
+		if (false === ($set = SR_SetItems::getSetForItem($this->getName())))
+		{
+			return '';
+		}
+		
+		if (SR_SetItems::hasSet($player, $set))
+		{
+			$b = $i = "\X02\X036";
+			$b2 = $i2 = "\X03\X02";
+		}
+		else
+		{
+			$b = $i = "\X02\X0315";
+			$b2 = $i2 = "\X03\X02";
+// 			$b = $b2 = $i = $i2 = ''; # italic
+		}
+		return ' '.Shadowrun4::lang('set_modifiers', array($b, $set, $b2, $i, Shadowfunc::displayModifiers($player, SR_SetItems::getModifiersForSet($set)), $i2));
+	}
+	
 	private function displayWeightB()
 	{
 		return ('' === ($s = $this->displayWeight())) ? '' : Shadowrun4::lang('weight', array($s));
@@ -611,6 +634,7 @@ class SR_Item extends GDO
 	public function isItemOffensive() { return false; }
 	public function getBulletsMax() { return 0; }
 	public function getBulletsPerShot() { return 1; }
+	public function isItemRare() { return false; }
 
 	################
 	### Triggers ###

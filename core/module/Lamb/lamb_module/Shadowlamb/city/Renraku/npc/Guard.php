@@ -78,17 +78,15 @@ final class Renraku_Guard extends SR_TalkingNPC
 			$member instanceof SR_Player;
 			$card = $member->getInvItemByName('IDCard');
 			$card->useAmount($member, 1);
-			
-			
-			$p->giveKnowledge('places', 'Renraku_Exit');
-			
-			$this->getParty()->popAction(true);
-			
-			$renraku = Shadowrun4::getCity('Renraku');
-			$exit = $renraku->getLocation('Renraku_Exit');
-			$renraku->onCityEnter($p);
-			$exit->onEnter($player);
 		}
+			
+		// Delete guards
+		$this->getParty()->popAction(true);
+			
+		$p->popAction(false);
+		$renraku = $player->getParty()->getLocationClass();
+		$renraku instanceof Seattle_Renraku;
+		$renraku->beam($player, 'Renraku_Exit', SR_Party::ACTION_INSIDE);
 	}
 }
 ?>

@@ -391,13 +391,15 @@ abstract class SR_Blacksmith extends SR_Store
 			
 		$player->msg('5212');
 // 		$player->message('The smith takes your items and goes to work...');
-		$player->removeItem($rune);
+ 		$player->removeItem($rune);
+ 		$rune->delete();
 			
 		if (Shadowfunc::dicePercent($fail))
 		{
 			if (Shadowfunc::dicePercent($break))
 			{
 				$player->removeItem($item);
+				$item->delete();
 				$bot->rply('5213', array($item->getItemName(), $rune->getItemName()));
 // 				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
 			}

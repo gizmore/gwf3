@@ -17,5 +17,16 @@ abstract class SR_Exit extends SR_Tower
 	{
 		$this->teleportOutside($player, $this->getExitLocation());
 	}
+	
+	public function checkLocation()
+	{
+		parent::checkLocation();
+		
+		if (false === Shadowrun4::getLocationByTarget($this->getExitLocation()))
+		{
+			die(sprintf("%s has an invalid Exit location!\n", $this->getName()));
+		}
+	}
+	
 }
 ?>

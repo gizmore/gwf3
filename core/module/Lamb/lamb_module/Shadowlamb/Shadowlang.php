@@ -163,7 +163,17 @@ final class Shadowlang
 	#############
 	public static function displayItemname(SR_Player $player, SR_Item $item)
 	{
-		return self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName());
+		$name = self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName());
+		
+		if ($item->isItemRare())
+		{
+			return "\X02\X035{$name}\X03\X02";
+		}
+		elseif (false !== SR_SetItems::getSetForItem($item->getName()))
+		{
+			return "\X02\X036{$name}\X03\X02";
+		}
+		return $name;
 	}
 	
 	public static function displayItemdescr(SR_Player $player, SR_Item $item)

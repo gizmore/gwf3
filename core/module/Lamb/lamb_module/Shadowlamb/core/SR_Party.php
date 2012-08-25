@@ -104,6 +104,7 @@ final class SR_Party extends GDO
 	public function isHijacking() { return $this->getAction() === self::ACTION_HIJACK; }
 	public function isHunting() { return $this->getAction() === self::ACTION_HUNT; }
 	public function isSleeping() { return $this->getAction() === self::ACTION_SLEEP; }
+	public function isDeleting() { return $this->getAction() === self::ACTION_DELETE; }
 	public function isDeleted() { return $this->deleted; }
 	public function isHuman() { return (false === ($leader = $this->getLeader())) ? false : $leader->isHuman(); }
 	public function isFull() { return $this->getMemberCount() >= self::MAX_MEMBERS; }
@@ -324,11 +325,11 @@ final class SR_Party extends GDO
 		$old_action = $this->getAction();
 		$oldcity = $this->getCityClass();
 
-		# Leave location event
-		if ( ($old_action === self::ACTION_INSIDE) )
-		{
-			$this->getLocationClass()->onLeaveLocation($this);
-		}
+// 		# Leave location event
+// 		if ( ($old_action === self::ACTION_INSIDE) )
+// 		{
+// 			$this->getLocationClass()->onLeaveLocation($this);
+// 		}
 		
 		# Save new vars
 		if (false === $this->saveVars(array(
@@ -350,6 +351,12 @@ final class SR_Party extends GDO
 			if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
 			{
 				$this->onPartyArrived($old_action);
+			}
+			
+			# Announce leaving a location.
+			if ( ($old_action === self::ACTION_INSIDE) || ($old_action === self::ACTION_OUTSIDE) )
+			{
+				$this->onPartyLeft($old_action);
 			}
 			
 			# Fire city left events
@@ -447,6 +454,19 @@ final class SR_Party extends GDO
 		if (false !== ($loc = $this->getLocationClass()))
 		{
 			$loc->onEnterLocation($this);
+			$this->onPartyArriveLeft($loc, $old_action, $this->getAction());
+		}
+	}
+	
+	/**
+	 * Announce when a party arrives somewhere.
+	 * @param string $action
+	 */
+	public function onPartyLeft($old_action='delete')
+	{
+		if (false !== ($loc = $this->getLocationClass()))
+		{
+			$loc->onLeaveLocation($this);
 			$this->onPartyArriveLeft($loc, $old_action, $this->getAction());
 		}
 	}
@@ -910,7 +930,13 @@ final class SR_Party extends GDO
 	##############
 	### Static ###
 	##############
-	public static function getByID($partyid)
+	/**
+	 * Load a party and it's members.
+	 * @param int $partyid
+	 * @param boolean $fire_events
+	 * @return SR_Party
+	 */
+	public static function getByID($partyid, $fire_events=true)
 	{
 		if (false === ($party = self::table(__CLASS__)->getRow($partyid)))
 		{
@@ -924,7 +950,10 @@ final class SR_Party extends GDO
 			return false;
 		}
 		
-		$party->onPartyArrived();
+		if ($fire_events)
+		{
+			$party->onPartyArrived();
+		}
 		
 		return $party;
 	}
@@ -995,7 +1024,7 @@ final class SR_Party extends GDO
 		foreach ($this->members as $member)
 		{
 			$member instanceof SR_Player;
-			if ($member->isHuman())
+			if ($member->isNPC())
 			{
 				$member->deletePlayer();
 			}

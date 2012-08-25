@@ -31,7 +31,7 @@ final class Delaware_Emo extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'earring' => array('LO_Ring_of_strength:1'),
+			'earring' => array('LO_Earring_of_strength:1'),
 			'weapon' => array('Fists'),
 			'armor' => array('LeatherVest','StuddedVest'),
 			'boots' => array('Boots','ArmyBoots'),

@@ -378,9 +378,10 @@ abstract class SR_Store extends SR_Location
 			$stored = 0;
 			foreach ($items2 as $item2)
 			{
-				if (!$player->removeFromInventory($item2))
+				$item2 instanceof SR_Item;
+				if (!$item2->useAmount($player, 1))
 				{
-					$bot->reply('Database Error R2 D2.');
+					$bot->reply('Database Error R3 D3.');
 					return false;
 				}
 			}

@@ -12,6 +12,8 @@ abstract class SR_Weapon extends SR_Equipment
 	public function getItemEquipTime() { return 30; }
 	public function getItemUnequipTime() { return 30; }
 	
+	public function onDealDamage(SR_Player $player, SR_Player $target, $hits, $damage) {}
+	
 	public function onAttackB(SR_Player $player, $arg, $armor_type)
 	{
 		$p = $player->getParty();
@@ -100,9 +102,11 @@ abstract class SR_Weapon extends SR_Equipment
 // 			$hpmsg = sprintf(' %s/%s HP left.', round($target->getHP(), 1), round($target->get('max_hp'), 1));
 		}
 
-		
 		$target->dealDamage($damage);
-
+		
+		# Special poison weapons
+		$this->onDealDamage($player, $target, $hits, $damage);
+		
 		# Some damage
 		if (false === $target->isDead())
 		{

@@ -2,8 +2,7 @@
 $lang = array(
 	'name' => 'The jeweler',
 		
-	'word_hello' => 'Hello my friend!',
-	'word_default' => 'Welcome my friend!',
-		
+	'hello' => 'Hello my friend!',
+	'default' => 'Welcome my friend!',
 );
 ?>

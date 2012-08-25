@@ -21,8 +21,7 @@ final class Seattle_Arena extends SR_Location
 	public function on_challenge(SR_Player $player, array $args)
 	{
 		# No fight with party:
-		$party = $player->getParty();
-		if ($party->getMemberCount() > 1)
+		if ($player->isInParty())
 		{
 			$player->msg('1099');
 // 			$player->message("You can't fight here when you are in a party. Use #part to leave your party.");

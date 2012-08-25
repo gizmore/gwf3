@@ -21,6 +21,7 @@ $lang = array(
 'unknown' => 'Unknown',
 'unknown_contr' => 'Unknown Contractors',
 'modifiers' => " {$b}Modifiers{$b}: %s.", # statlist
+'set_modifiers' => '%s%s%s: %s%s%s.', # statlist
 'm' => 'm', # metres
 'g' => '%sg', # gram
 'kg' => '%skg', # kilogram
@@ -457,6 +458,7 @@ $lang = array(
 '1186' => 'To get %s brewed you are missing %s.',
 '1187' => 'You need %s to safeupgrade items.',
 '1188' => 'You can only clean statted items.',
+'1189' => 'This itemset is unknown.',
 
 ########################
 # 10000-14999 = Spells #
@@ -816,6 +818,12 @@ $lang = array(
 '5291' => 'You paid %s and received %s from brewing the %s recipe. You have used these incredients: %s.', #ny, item, recipe, incredients
 '5292' => 'Recipes to brew: %s.', # list
 '5293' => '%1$s(%2$s): Take %4$s to create %3$s.',
+'5294' => 'You got poisoned for %s HP each %s.',
+'5295' => 'SetItems, page %s/%s: %s.',
+'5296' => 'The %s itemset consists of: %s. Bonus: %s',
+'5297' => '%s of the %s itemset. Bonus: %s. Items: %s.',
+'5298' => 'Use "#redmond i_am_sure" to take some of your XP and beam you back to %s.',
+'5299' => 'Your XP stack got reset and you get beamed back to %s.',
 
 ####################
 ### Shadowclient ###

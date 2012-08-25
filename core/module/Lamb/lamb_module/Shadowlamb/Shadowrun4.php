@@ -5,6 +5,7 @@ require_once 'Shadowhelp.php';
 require_once 'Shadowlang.php';
 require_once 'Shadowrap.php';
 require_once 'Shadowshout.php';
+require_once 'Shadowcleanup.php';
 
 final class Shadowrun4
 {
@@ -398,8 +399,10 @@ final class Shadowrun4
 			SR_Player::init();
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
-
+			
 			Shadowlang::onLoadLanguage();
+			
+			Shadowcleanup::cleanup();
 		}
 	}
 	public static function initTimers()
@@ -415,7 +418,7 @@ final class Shadowrun4
 	public static function getShadowDir() { return Lamb::DIR.'lamb_module/Shadowlamb/'; }
 	public static function initCmds($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/cmd', array(__CLASS__, 'includeFile')); }
 	public static function initCore($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/core', array(__CLASS__, 'includeFile')); }
-	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); }
+	public static function initItems($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/item', array('SR_Item', 'includeItem')); SR_SetItems::validateSets(); }
 	public static function initSpells($dir='') { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/spell', array('SR_Spell', 'includeSpell')); }
 // 	public static function initCities($dir='') { self::initCityFiles($dir); self::initCityAfter(); }
 // 	private static function initCityFiles($dir) { GWF_File::filewalker($dir.'lamb_module/Shadowlamb/city', false, array(__CLASS__, 'initCity'), false); }
@@ -517,6 +520,16 @@ final class Shadowrun4
 			{
 				GWF_File::filewalker($fullpath, array($city, 'initLocations'));				
 			}
+		}
+		self::validateCityLocations();
+	}
+	
+	public static function validateCityLocations()
+	{
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			$city->validateLocations();
 		}
 	}
 	

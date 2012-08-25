@@ -24,16 +24,13 @@ abstract class SR_Arena extends SR_Store
 		$enemies = $this->getArenaEnemies($player);
 		if (count($enemies) === 0)
 		{
-			$player->msg('1098');
-// 			$player->message("There is currently no enemy available.");
+			$player->msg('1098'); # There is currently no enemy available.
 			return false;
 		}
 		
-		$party = $player->getParty();
-		if ($party->getMemberCount() > 1)
+		if ($player->isInParty())
 		{
-			$player->msg('1099');
-// 			$player->message("You cannot challenge when you are in a party. Use #part to leave your party.");
+			$player->msg('1099'); # You cannot do this when you are in a party.
 			return false;
 		}
 		
@@ -49,8 +46,7 @@ abstract class SR_Arena extends SR_Store
 			}
 		}
 		
-		$player->msg('1098');
-// 		$player->message("You have defeated every enemy in this location.");
+		$player->msg('1098'); # You have defeated every enemy in this location.
 		return false;
 	}
 	

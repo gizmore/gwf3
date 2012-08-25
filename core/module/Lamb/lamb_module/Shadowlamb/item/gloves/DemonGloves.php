@@ -16,4 +16,3 @@ final class Item_DemonGloves extends SR_Gloves
 	}
 }
 ?>
-

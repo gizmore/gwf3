@@ -41,6 +41,8 @@ final class Forest_ZombieBear extends SR_NPC
 		{
 			$quest->increaseAmount(1);
 		}
+		
+		return array();
 	}
 }
 ?>

@@ -5,8 +5,16 @@ final class Forest_SmallZombieBear extends SR_NPC
 	public function getNPCPlayerName() { return 'SmallZombieBear'; }
 	public function getNPCMeetPercent(SR_Party $party)
 	{
-		$quest = SR_Quest::getQuest($player, 'Seattle_Ranger');
-		return $quest->getAmount() > 0 ? 90 : 0;
+		foreach ($party->getMembers() as $player)
+		{
+			
+			$quest = SR_Quest::getQuest($player, 'Seattle_Ranger');
+			if ($quest->getAmount() > 0)
+			{
+				return 90;
+			}
+		}
+		return 0;
 	}
 	
 	public function getNPCEquipment()

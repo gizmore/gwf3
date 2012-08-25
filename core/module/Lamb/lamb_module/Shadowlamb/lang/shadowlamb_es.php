@@ -121,7 +121,7 @@ $lang = array(
 
 # PrintF-Formats
 'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', # Ouch
-'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
+'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s%s', # Ouch
 'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%s(%s/%s)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Edad{$b}:%s, %scm %s", # age, height, weight
@@ -810,5 +810,22 @@ $lang = array(
 '5288' => 'It would cost %s to remove your %s. Type #unpierce %s to confirm.', # nuyen, piercing, iamsure
 '5289' => 'You pay %s and get your %s removed.', # nuyen, piercing
 '5290' => 'You received %s.', # nuyen
+'5291' => 'You paid %s and received %s from brewing the %s recipe. You have used these incredients: %s.', #ny, item, recipe, incredients
+'5292' => 'Recipes to brew: %s.', # list
+'5293' => '%1$s(%2$s): Take %4$s to create %3$s.',
+'5294' => 'You got poisoned for %s HP each %s.',
+'5295' => 'SetItems, page %s/%s: %s.',
+'5296' => 'The %s itemset consists of: %s. Bonus: %s',
+'5297' => '%s of the %s itemset. Bonus: %s. Items: %s.',
+'5298' => 'Use "#redmond i_am_sure" to take some of your XP and beam you back to %s.',
+'5299' => 'Your XP stack got reset and you get beamed back to %s.',
+
+####################
+### Shadowclient ###
+####################
+'9000' => '%s', # Command diff
+'9001' => '%s', # Crunched examine
+'9002' => '%s,%s', # Quest status update
+'9003' => 'You have now accomplished %s%% for the %s quest.',
 );
 ?>

@@ -1,6 +1,7 @@
 <?php
 final class Item_KnessetsClub extends SR_MeleeWeapon
 {
+	public function isItemRare() { return true; }
 	public function getAttackTime() { return 35; }
 	public function getItemDropChance() { return 2.5; }
 	public function getItemLevel() { return 0; }

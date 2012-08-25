@@ -75,28 +75,29 @@ abstract class SR_City
 	{
 		foreach ($npc->getNPCEquipment() as $key => $value)
 		{
-			$this->checkNPCEquipmentB($npc, $value);
+			$this->checkNPCEquipmentB($npc, $key, $value);
 		}
-		$this->checkNPCEquipmentB($npc, $npc->getNPCInventory());
-		$this->checkNPCEquipmentB($npc, $npc->getNPCCyberware());
+		$this->checkNPCEquipmentB($npc, NULL, $npc->getNPCInventory());
+		$this->checkNPCEquipmentB($npc, NULL, $npc->getNPCCyberware());
 	}
 	
-	private function checkNPCEquipmentB(SR_NPC $npc, $items)
+	private function checkNPCEquipmentB(SR_NPC $npc, $key=NULL, $items)
 	{
 		if ($items === '')
 		{
 			return;
 		}
-		if (!is_array($items))
+		
+		foreach (GWF_Array::arrify($items) as $iname)
 		{
-			$items = array($items);
-		}
-		foreach ($items as $iname)
-		{
-//			printf("Testing item %s - %s.\n", get_class($npc), $iname);
-			if (false === SR_Item::createByName($iname, true, false))
+			if (false === ($item = SR_Item::createByName($iname, true, false)))
 			{
 				die(sprintf('The NPC %s has an invalid item: %s.', get_class($npc), $iname));
+			}
+			
+			if ( ($key !== NULL) && ($item->getItemType() !== $key) )
+			{
+				die(sprintf('The NPC %s has %s item in wrong slot %s: %s.', get_class($npc), $item->getItemType(), $key, $iname));
 			}
 		}
 	}
@@ -148,10 +149,19 @@ abstract class SR_City
 		SR_Location::$LOCATION_COUNT++;
 		require_once $fullpath;
 		$location = new $classname($classname);
+		$location instanceof SR_Location;
 		$this->locations[strtolower($name)] = $location;
-		$location->checkLocation();
 	}
-	
+
+	public function validateLocations()
+	{
+		foreach ($this->locations as $location)
+		{
+			$location instanceof SR_Location;
+			$location->checkLocation();
+		}
+	}
+		
 	public function onInit()
 	{
 		foreach ($this->getImportNPCS() as $classname)
@@ -324,8 +334,12 @@ abstract class SR_City
 				continue;
 			}
 			$perc = round($l->getFoundPercentage()*100);
-			$total += $perc;
-			$possible[] = array($l, $perc);
+			
+			if ($perc > 0)
+			{
+				$total += $perc;
+				$possible[] = array($l, $perc);
+			}
 		}
 		
 		if (count($possible) === 0)
@@ -501,7 +515,7 @@ abstract class SR_City
 	
 	private function enemyContact(SR_Party $party, $friendly=false)
 	{
-		$dice = $friendly ? 18 : 7;
+		$dice = $friendly ? 18 : 8;
 		if (rand(1, $dice) !== 1)
 		{
 			return false;

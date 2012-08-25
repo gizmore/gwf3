@@ -138,9 +138,19 @@ final class Shadowcmd_goto extends Shadowcmd
 	 */
 	public static function getTLCByArgMulticity(SR_Player $player, $arg)
 	{
-		return Common::isNumeric($arg) ?
-			self::getTLCByIDMulticity($player, $arg) :
-			self::getTLCByNameMulticity($player, $arg);
+		if (Common::isNumeric($arg))
+		{
+			return self::getTLCByID($player, $arg);
+		}
+		
+		if (strpos($arg, '_') === false)
+		{
+			return self::getTLCByName($player, $arg);
+		}
+		else
+		{
+			return self::getTLCByNameMulticity($player, $arg);
+		}
 	}
 	
 	public static function getTLCByIDMulticity(SR_Player $player, $arg)

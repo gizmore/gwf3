@@ -6,7 +6,7 @@ $lang = array(
 	'plaintext' => "Who invented the cipher that is used in this message?",
 	'solution' => 'caesar',
 
-	'shadowrun' => 'I don\'t take the fuzz about runners for real ... want to solved a puzzle instead?',
+	'shadowrun' => 'I don\'t take the fuzz about runners for real ... want to solve a puzzle instead?',
 	'confirm' => 'Do you?',
 	'yes' => 'Ok chummer, here is the puzzle:',
 	'no' => 'Nodded.',

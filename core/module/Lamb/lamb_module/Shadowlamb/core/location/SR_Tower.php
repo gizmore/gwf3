@@ -58,6 +58,7 @@ abstract class SR_Tower extends SR_Location
 	{
 		if (false === ($location = Shadowrun4::getLocationByTarget($target)))
 		{
+			$player->message('Unknown location to beam to, report to gizmore!');
 			Lamb_Log::logError('Unknown $target "'.$target.'" for '.__METHOD__.' in '.__FILE__.' line '.__LINE__.'.');
 			return false;
 		}
@@ -75,13 +76,13 @@ abstract class SR_Tower extends SR_Location
 			$city->onCityEnter($party);
 		}
 		
-		if ($action === 'inside')
-		{
-			foreach ($party->getMembers() as $member)
-			{
-				$member->message($location->getEnterText($member));
-			}
-		}
+// 		if ($action === 'inside')
+// 		{
+// 			foreach ($party->getMembers() as $member)
+// 			{
+// 				$member->message($location->getEnterText($member));
+// 			}
+// 		}
 		
 		
 		

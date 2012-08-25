@@ -1,6 +1,7 @@
 <?php
 final class Vegas extends SR_City
 {
+	const TIME_TO_WestVegas = 60;
 	const TIME_TO_Chicago = 500;
 	
 	public function getImportNPCS()

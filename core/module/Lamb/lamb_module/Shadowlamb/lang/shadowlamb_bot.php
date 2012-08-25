@@ -33,7 +33,7 @@ $lang = array(
 'backwards' => 'backwards',
 		
 'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s',
-'fmt_examine' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s',
+'fmt_examine' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s',
 'fmt_list' => ',%s', # item
 'fmt_gain' => '%5$s,%1$s%2$.02f,%3$.02f,%4$.02f', # sign, gain, now, max, unit
 'fmt_asl' => '%d,%d,%s', # age, height, weight
