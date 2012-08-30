@@ -125,6 +125,12 @@ abstract class SR_NPCBase extends SR_Player
 		{
 			$race = 'human';
 		}
+		
+		if (is_array($race))
+		{
+			$race = Shadowfunc::randomListItem($race);
+		}
+		
 		# base essence
 		$data['sr4pl_essence'] = 6.0;
 		# base race
