@@ -257,7 +257,9 @@ abstract class SR_Spell
 	private function diceOffensive(SR_Player $player, SR_Player $target, $level)
 	{
 		$dices = round($level * 10);
-		$dices += round($player->get('intelligence') * 5);
+		$int = $player->get('intelligence');
+		$int += Common::pow($level, 1.3);
+		$dices += round($int * 5);
 		$dices += round($player->get('spellatk') * 6);
 		$dices += round($player->get('essence') * 18);
 		$dices -= round(Shadowfunc::calcDistance($this->caster, $target)/4); # XXX Cannot apply distance malus because of alchemy.
@@ -315,10 +317,12 @@ abstract class SR_Spell
 
 		if ($this->isCastMode())
 		{
-			$gain = $this->getManaCost($player, $level);
-			$oldmp = $player->getMP() + $gain;
-			$maxmp = $player->getMaxMP();
-			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); # 9 args
+			$args[] = $this->getManaCost($player, $level);
+			$args[] = $player->getMP();
+			$args[] = $player->getMaxMP();
+// 			$oldmp = $player->getMP() + $gain;
+// 			$maxmp = $player->getMaxMP();
+// 			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); # 9 args
 		}
 
 		

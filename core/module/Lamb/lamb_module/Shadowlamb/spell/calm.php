@@ -19,9 +19,11 @@ final class Spell_calm extends SR_HealSpell
 	{
 		$wis = $potion_player->get('wisdom');
 		$int = $potion_player->get('intelligence');
-		$min = $wis / 2 + $level;
-		$max = $min + $int * 2 + 2;
-		$amount = Shadowfunc::diceFloat($min, $max, 1) / 2;
+		
+		$min = $wis * 0.5 + $level; # min hp gain
+		$max = $min + $int * 1.5 + $wis * 0.25; # max hp gain
+		$amount = Shadowfunc::diceFloat($min, $max, 1) / 2; # amount gain
+		
 		$seconds = Common::clamp(300-$hits, 30, 300);
 		$per_sec = round($amount / $seconds, 2);
 		echo "Cast calm with amount=$amount and seconds=$seconds and per_sec=$per_sec\n";
