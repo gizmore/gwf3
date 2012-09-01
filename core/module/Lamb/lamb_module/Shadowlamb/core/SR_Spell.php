@@ -294,23 +294,33 @@ abstract class SR_Spell
 		# Pick right keys. Each spell has own 4 keys for all 4 possibilities.
 		$key_friend = $key;
 		$key_foe = $key+2;
-		if (true === $this->isCastMode())
+		if ($this->isCastMode())
 		{
 			$key_friend++;
 			$key_foe++;
 		}
 		$key_friend = (string)$key_friend;
 		$key_foe = (string)$key_foe;
+
+		$args = array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3);
 		
 		# Announce
 		$p = $player->getParty();
-		$p->ntice($key_friend, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
-		
 		$ep = $target->getParty();
 		if ($ep->getID() !== $p->getID())
 		{
-			$ep->ntice($key_foe, array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3));
+			$ep->ntice($key_foe, $args);
 		}
+
+		if ($this->isCastMode())
+		{
+			$gain = $this->getManaCost($player, $level);
+			$oldmp = $player->getMP() + $gain;
+			$maxmp = $player->getMaxMP();
+			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp);
+		}
+		$p->ntice($key_friend, $args);
+		
 	}
 	
 	#####################

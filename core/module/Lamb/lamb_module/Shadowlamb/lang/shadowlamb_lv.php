@@ -459,67 +459,67 @@ $lang = array(
 ########################
 # Generic
 '10000' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
-'10001' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10001' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s kreisi.',
 '10002' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
 '10003' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Berzerk
 '10010' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s.',
-'10011' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s min_dmg / +%6$s max_dmg par %7$%s.',
+'10011' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s min_dmg / +%6$s max_dmg par %7$%s, %8$s kreisi.',
 '10012' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
 '10013' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Blow
 '10020' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un ir tagad uz dziras %6$s.',
-'10021' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s.',
+'10021' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s, %8$s kreisi.',
 '10022' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s.',
 '10023' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s.',
 # Chameleon
 '10030' => '%1$s izmanto līmeni%2$s %3$s dzira uz %4$s, +%5$s valdzinājums priekš %6$s.',
-'10031' => '%1$s iemācās līmeni %2$s %3$s uz%4$s, +%5$s valdzinājums priekš %6$s.',
+'10031' => '%1$s iemācās līmeni %2$s %3$s uz%4$s, +%5$s valdzinājums priekš %6$s, %8$s kreisi.',
 '10032' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10033' => '%1$s iemācas līmeni %2$s %3$s uz %4$s.',
 # Firebolt
 '10040' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus.',
-'10041' => '%1$s iemācijās līmeni %2$s %3$s uz %4$s un nodarīja %5$s bojājumus.',
+'10041' => '%1$s iemācijās līmeni %2$s %3$s uz %4$s un nodarīja %5$s bojājumus, %8$s kreisi.',
 '10042' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis.',
 '10043' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis.',
 # Freeze
 '10050' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
-'10051' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
+'10051' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f, %8$s kreisi.',
 '10052' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
 '10053' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
 # Goliath
 '10060' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s spēks par %6$s.',
-'10061' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s spēks par %6$s.',
+'10061' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s spēks par %6$s, %8$s kreisi.',
 '10062' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10063' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Hawkeye
 '10070' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ugunsrokas par %6$s.',
-'10071' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ugunsrokas par %6$s.',
+'10071' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ugunsrokas par %6$s, %8$s kreisi.',
 '10072' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10073' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Hummingbird
 '10080' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ātrums par %6$s.',
-'10081' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ātrums par %6$s.',
+'10081' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ātrums par %6$s, %8$s kreisi.',
 '10082' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10083' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Magicarp
 '10090' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP.',
-'10091' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s un viņi zaudē %6$s MP.',
+'10091' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s un viņi zaudē %6$s MP, %8$s kreisi.',
 '10092' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP.',
 '10093' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un viņi zaudē %5$s MP.',
 # Turtle
 '10100' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s marm/ferma par %6$s.',
-'10101' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s marm/ferma par %5$s.',
+'10101' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s marm/ferma par %5$s, %8$s kreisi.',
 '10102' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10103' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Heal
 '10110' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s, %5$s.',
-'10111' => '%1$s iemācās līmeni %2$s %3$s on %4$s, %5$s.',
+'10111' => '%1$s iemācās līmeni %2$s %3$s on %4$s, %5$s, %8$s kreisi.',
 '10112' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s.',
 '10113' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
 # Calm
 '10120' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s. +%5$sHP priekš %6$s sekundēm.',
-'10121' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. +%5$sHP priekš %6$s sekundēm.',
+'10121' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. +%5$sHP priekš %6$s sekundēm, %8$s kreisi.',
 '10122' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
 '10123' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
  

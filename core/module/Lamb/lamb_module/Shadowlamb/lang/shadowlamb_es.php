@@ -459,67 +459,67 @@ $lang = array(
 ########################
 # Generic
 '10000' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
-'10001' => '%s hace un hechizo de nivel %s %s sobre %s.',
+'10001' => '%s hace un hechizo de nivel %s %s sobre %s, %8$s izquierda.',
 '10002' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10003' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Berzerk
 '10010' => '%s usa un hechizo de nivel %s %s poción sobre %s, +%s min_dmg / +%s max_dmg para %s.',
-'10011' => '%s hace un hechizo de nivel %s %s sobre %s, +%s min_dmg / +%s max_dmg para %s.',
+'10011' => '%s hace un hechizo de nivel %s %s sobre %s, +%s min_dmg / +%s max_dmg para %s, %8$s izquierda.',
 '10012' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10013' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Blow
 '10020' => '%s usa un hechizo de nivel %s %s poción sobre %s que quedó impresionado %s y ahora esta en posición %s.',
-'10021' => '%s hace un hechizo de nivel %s %s sobre %s que quedó impresionado %s y ahora esta en posición %s.',
+'10021' => '%s hace un hechizo de nivel %s %s sobre %s que quedó impresionado %s y ahora esta en posición %s, %8$s izquierda.',
 '10022' => '%s usa un hechizo de nivel %s %s poción sobre %s que quedó impresionado %s y ahora esta en posición %s.',
 '10023' => '%s hace un hechizo de nivel %s %s sobre %s que quedó impresionado %s y ahora esta en posición %s.',
 # Chameleon
 '10030' => '%s usa un hechizo de nivel %s %s poción sobre %s, +%s carisma para %s.',
-'10031' => '%s hace un hechizo de nivel %s %s sobre %s, +%s carisma para %s.',
+'10031' => '%s hace un hechizo de nivel %s %s sobre %s, +%s carisma para %s, %8$s izquierda.',
 '10032' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10033' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Firebolt
 '10040' => '%s usa un hechizo de nivel %s %s poción sobre %s y causa %s daño.',
-'10041' => '%s hace un hechizo de nivel %s %s sobre %s y causa %s daño.',
+'10041' => '%s hace un hechizo de nivel %s %s sobre %s y causa %s daño, %8$s izquierda.',
 '10042' => '%s usa un hechizo de nivel %s %s poción sobre %s y causa %s daño, %s/%s HP queda.',
 '10043' => '%s hace un hechizo de nivel %s %s sobre %s y causa %s daño, %s/%s HP queda.',
 # Freeze
 '10050' => '%s usa un hechizo de nivel %s %s poción sobre %s. %s segundos y queda congelado con un poder de %s.',
-'10051' => '%s hace un hechizo de nivel %s %s sobre %s. %s segundos y queda congelado con un poder de %s.',
+'10051' => '%s hace un hechizo de nivel %s %s sobre %s. %s segundos y queda congelado con un poder de %s, %8$s izquierda.',
 '10052' => '%s usa un hechizo de nivel %s %s pocion sobre %s. %s segundos y queda congelado con un poder de %s.',
 '10053' => '%s hace un hechizo de nivel %s %s sobre %s. %s segundos y queda congelado con un poder de %s.',
 # Goliath
 '10060' => '%s usa un hechizo de nivel %s %s poción sobre %s, +%s fuerza para %s.',
-'10061' => '%s hace un hechizo de nivel %s %s sobre %s, +%s fuerza para %s.',
+'10061' => '%s hace un hechizo de nivel %s %s sobre %s, +%s fuerza para %s, %8$s izquierda.',
 '10062' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10063' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Hawkeye
 '10070' => '%s usa un hechizo de nivel %s %s poción sobre %s, +%s armas de fuego para %s.',
-'10071' => '%s hace un hechizo de nivel %s %s sobre %s, +%s armas de fuego para %s.',
+'10071' => '%s hace un hechizo de nivel %s %s sobre %s, +%s armas de fuego para %s, %8$s izquierda.',
 '10072' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10073' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Hummingbird
 '10080' => '%s usa un hechizo de nivel %s %s poción sobre %s, +%s rápidez para %s.',
-'10081' => '%s hace un hechizo de nivel %s %s sobre %s, +%s rápidez para %s.',
+'10081' => '%s hace un hechizo de nivel %s %s sobre %s, +%s rápidez para %s, %8$s izquierda.',
 '10082' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10083' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Magicarp
 '10090' => '%s usa un hechizo de nivel %s %s poción sobre %s y pierden %s MP.',
-'10091' => '%s hace un hechizo de nivel %s %s sobre %s, +%s y pierden %s MP.',
+'10091' => '%s hace un hechizo de nivel %s %s sobre %s, +%s y pierden %s MP, %8$s izquierda.',
 '10092' => '%s usa un hechizo de nivel %s %s pocion sobre %s y pierden %s MP.',
 '10093' => '%s hace un hechizo de nivel %s %s sobre %s y pierden %s MP.',
 # Turtle
 '10100' => '%s usa un hechizo de nivel %s %s pocion sobre %s, +%s marm/farm for %s.',
-'10101' => '%s hace un hechizo de nivel %s %s sobre %s, +%s marm/farm for %s.',
+'10101' => '%s hace un hechizo de nivel %s %s sobre %s, +%s marm/farm for %s, %8$s izquierda.',
 '10102' => '%s usa un hechizo de nivel %s %s pocion sobre %s.',
 '10103' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Heal
 '10110' => '%s usa un hechizo de nivel %s %s poción sobre %s, %s.',
-'10111' => '%s hace un hechizo de nivel %s %s sobre %s, %s.',
+'10111' => '%s hace un hechizo de nivel %s %s sobre %s, %s, %8$s izquierda.',
 '10112' => '%s usa un hechizo de nivel %s %s poción sobre %s.',
 '10113' => '%s hace un hechizo de nivel %s %s sobre %s.',
 # Calm
 '10120' => '%1$s uses a level %2$s %3$s potion on %4$s. +%5$sHP for %6$s seconds.',
-'10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds.',
+'10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds, %8$s izquierda.',
 '10122' => '%1$s uses a level %2$s %3$s potion on %4$s.',
 '10123' => '%1$s casts a level %2$s %3$s on %4$s.',
 

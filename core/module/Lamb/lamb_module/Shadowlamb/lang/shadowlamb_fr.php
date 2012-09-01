@@ -456,68 +456,68 @@ $lang = array(
 ########################
 # Generic
 '10000' => '%s utilise le niveau %s %s potion sur %s.',
-'10001' => '%s utilise le niveau %s %s sur %s.',
+'10001' => '%s utilise le niveau %s %s sur %s, %8$s quitté.',
 '10002' => '%s utilise le niveau %s %s potion sur %s.',
 '10003' => '%s utilise le niveau %s %s sur %s.',
 # Berzerk
 '10010' => '%s utilise le niveau %s %s potion sur %s, +%s min_dmg / +%s max_dmg pour %s.',
-'10011' => '%s jette le niveau %s %s sur %s, +%s min_dmg / +%s max_dmg for %s.',
+'10011' => '%s jette le niveau %s %s sur %s, +%s min_dmg / +%s max_dmg for %s, %8$s quitté.',
 '10012' => '%s utilise le niveau %s %s potion sur %s.',
 '10013' => '%s jette le niveau %s %s sur %s.',
 # Blow
 '10020' => '%s utilise le niveau %s %s potion sur %s qui a volatilisé %s et est maintenant en position %s.',
-'10021' => '%s jette le niveau %s %s sur %s qui a volatilisé %s et est maintenant en position %s.',
+'10021' => '%s jette le niveau %s %s sur %s qui a volatilisé %s et est maintenant en position %s, %8$s quitté.',
 '10022' => '%s utilise le niveau %s %s potion sur %s qui a volatilisé %s et est maintenant en position %s.',
 '10023' => '%s jette le niveau %s %s sur %s qui a volatilisé %s et est maintenant en position %s.',
 # Chameleon
 '10030' => '%s utilise le niveau %s %s potion sur %s, +%s charisma pour %s.',
-'10031' => '%s jette le niveau %s %s sur %s, +%s charisma pour %s.',
+'10031' => '%s jette le niveau %s %s sur %s, +%s charisma pour %s, %8$s quitté.',
 '10032' => '%s utilise le niveau %s %s potion sur %s.',
 '10033' => '%s jette le niveau %s %s sur %s.',
 # Firebolt
 '10040' => '%s utilise le niveau %s %s potion sur %s et a causé %s dommage.',
-'10041' => '%s jette le niveau %s %s sur %s et a causé %s dommage.',
+'10041' => '%s jette le niveau %s %s sur %s et a causé %s dommage, %8$s quitté.',
 '10042' => '%s utilise le niveau %s %s potion sur %s et à causé %s dommage, %s/%s HP perdu.',
 '10043' => '%s jette le niveau %s %s sur %s et à causé %s dommage, %s/%s HP perdu.',
 # Freeze
 '10050' => '%s utilise le niveau %s %s potion sur %s. %s secondes gelés avec la puissance %s.',
-'10051' => '%s jette le niveau %s %s sur %s. %s secondes gelés avec la puissance %s.',
+'10051' => '%s jette le niveau %s %s sur %s. %s secondes gelés avec la puissance %s, %8$s quitté.',
 '10052' => '%s utilise le niveau %s %s potion sur %s. %s secondes gelés avec la puissance %s.',
 '10053' => '%s jette le niveau %s %s sur %s. %s secondes gelés avec la puissance %s.',
 # Goliath
 '10060' => '%s utilise le niveau %s %s potion sur %s, +%s force pour %s.',
-'10061' => '%s jette le niveau %s %s sur %s, +%s force pour %s.',
+'10061' => '%s jette le niveau %s %s sur %s, +%s force pour %s, %8$s quitté.',
 '10062' => '%s utilise le niveau %s %s potion sur %s.',
 '10063' => '%s jette le niveau %s %s sur %s.',
 # Hawkeye
 '10070' => '%s utilise le niveau %s %s potion on %s, +%s firearms for %s.',
-'10071' => '%s jette le niveau %s %s on %s, +%s firearms for %s.',
+'10071' => '%s jette le niveau %s %s on %s, +%s firearms for %s, %8$s quitté.',
 '10072' => '%s utilise le niveau %s %s potion on %s.',
 '10073' => '%s jette le niveau %s %s on %s.',
 # Hummingbird
 '10080' => '%s utilise le niveau %s %s potion sur %s, +%s de rapidité pour %s.',
-'10081' => '%s jette le niveau %s %s sur %s, +%s de rapidité pour %s.',
+'10081' => '%s jette le niveau %s %s sur %s, +%s de rapidité pour %s, %8$s quitté.',
 '10082' => '%s utilise le niveau %s %s potion sur %s.',
 '10083' => '%s jette le niveau %s %s sur %s.',
 # Magicarp
 '10090' => '%s utilise le niveau %s %s potion sur %s et ils ont perdu %s MP.',
-'10091' => '%s jette le niveau %s %s sur %s, +%s et ils ont perdu %s MP.',
+'10091' => '%s jette le niveau %s %s sur %s, +%s et ils ont perdu %s MP, %8$s quitté.',
 '10092' => '%s utilise le niveau %s %s potion sur %s et ils ont perdu %s MP.',
 '10093' => '%s jette le niveau %s %s sur %s et ils ont perdu %s MP.',
 # Turtle
 '10100' => '%s utilise le niveau %s %s potion sur %s, +%s marm/ferme pour %s.',
-'10101' => '%s jette le niveau %s %s sur %s, +%s marm/ferme fpour %s.',
+'10101' => '%s jette le niveau %s %s sur %s, +%s marm/ferme fpour %s, %8$s quitté.',
 '10102' => '%s utilise le niveau %s %s potion sur %s.',
 '10103' => '%s jette le niveau %s %s sur %s.',
 # XXX: Translate
 # Heal
 '10110' => '%1$s uses a level %2$s %3$s potion on %4$s, %5$s.',
-'10111' => '%1$s casts a level %2$s %3$s on %4$s, %5$s.',
+'10111' => '%1$s casts a level %2$s %3$s on %4$s, %5$s, %8$s quitté.',
 '10112' => '%1$s uses a level %2$s %3$s potion on %4$s.',
 '10113' => '%1$s casts a level %2$s %3$s on %4$s.',
 # Calm
 '10120' => '%1$s uses a level %2$s %3$s potion on %4$s. +%5$sHP for %6$s seconds.',
-'10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds.',
+'10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds, %8$s quitté.',
 '10122' => '%1$s uses a level %2$s %3$s potion on %4$s.',
 '10123' => '%1$s casts a level %2$s %3$s on %4$s.',
 
