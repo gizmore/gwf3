@@ -7,11 +7,8 @@ final class Shadowcmd_cast extends Shadowcmd
 	{
 		if (count($args) === 0)
 		{
-			Shadowcmd_known_spells::execute($player, $args);
+			Shadowcmd_known_spells::execute($player, array());
 			return false;
-// 			$message = sprintf('Known spells: %s.', Shadowfunc::getSpells($player));
-// 			self::reply($player, $message);
-// 			return false;
 		}
 		
 		$sn = array_shift($args);

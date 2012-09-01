@@ -22,7 +22,7 @@ class Item_Scanner_v5 extends Item_Scanner_v4
 	
 	public function onScanLevel5(SR_Player $player, SR_Player $target)
 	{
-		$message = 'Spells: '.Shadowfunc::getSpells($target);
+		$message = Shadowfunc::getSpells($target, '5307');
 		if ($player->isFighting())
 		{
 			$player->message($message);

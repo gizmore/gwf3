@@ -193,7 +193,7 @@ final class Shadowhelp
 					'weight' => NULL,
 					'max_weight' => 'The max_weight you can carry. If you exceed your max_weight you get a malus on your attack and defense or cannot move at all.',
 					'nuyen' => NULL,
-					'bad_karma' => "Bad karma determines how evil your character is. If you have bad karma you might meet Polizia, also known as BlackOps. These will annoy the bad guys during their journey.$bad_karma",
+					'bad_karma' => "Bad karma determines how evil your character is. If you have bad karma you might encounter Polizia, also known as BlackOps. These will annoy the bad guys during their journey.$bad_karma",
 					
 					'special_stats' => 'There are some special stats too:',
 					array(
@@ -447,8 +447,8 @@ final class Shadowhelp
 							'clean' => 'Location command. Usage: #(cl)ean <item>. Will remove all modifiers from an item. The runes / modifiers will be lost.',
 							'break' => 'Location command. Usage: #(b)rea(k) <item>. Will destroy an item and release it`s runes, which you will receive.',
 							'split' => 'Location command. Usage: #split <rune>. Will split a rune into multiple runes. Useful to extract modifiers from high level runes.',
-							'upgrade' => 'Location command. Usage: #(up)grade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
-							'safeupgrade' => 'Location command. Usage: #(s)afe(up)grade <item> <rune>. Apply a rune on your equipment. This uses one amount of MagicOil and may still fail. However, breakchances are zero for this command.',
+							'upgrade' => 'Location command. Usage: #upgrade <item> <rune>. Apply a rune on your equipment. This may fail or even destroy the item.',
+							'safeupgrade' => 'Location command. Usage: #safeupgrade <item> <rune>. Apply a rune on your equipment. This uses one amount of MagicOil and may still fail. However, breakchances are zero for this command.',
 						),
 							
 						'piercer_cmds' => 'Piercer commands',

@@ -19,7 +19,7 @@ class Item_Scanner_v2 extends Item_Scanner_v1
 	
 	public function onScanLevel2(SR_Player $player, SR_Player $target)
 	{
-		$message = 'Attributes: '.Shadowfunc::getAttributes($target);
+		$message = Shadowfunc::getAttributes($target, '5304');
 		if ($player->isFighting())
 		{
 			$player->message($message);

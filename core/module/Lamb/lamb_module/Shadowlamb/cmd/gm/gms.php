@@ -20,10 +20,11 @@ final class Shadowcmd_gms extends Shadowcmd
 			$bot->reply('The player '.$args[0].' is not in memory.');
 			return false;
 		}
-		$bot->reply(sprintf('Status for %s: %s', $npc->getName(), Shadowfunc::getStatus($npc)));
-		$bot->reply(sprintf('Equipment: %s', Shadowfunc::getEquipment($npc)));
-		$bot->reply(sprintf('Attributes: %s', Shadowfunc::getAttributes($npc)));
-		$bot->reply(sprintf('Skills: %s', Shadowfunc::getSkills($npc)));
+		
+		self::reply($player, Shadowfunc::getStatus($npc, '5301'));
+		self::reply($player, Shadowfunc::getEquipment($npc, '5303'));
+		self::reply($player, Shadowfunc::getAttributes($npc, '5304'));
+		self::reply($player, Shadowfunc::getSkills($npc, '5305'));
 //		$bot->reply(sprintf('Party: %s.', Shadowfunc::getPartyStatus($npc)));
 		return true;
 	}

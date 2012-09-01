@@ -366,48 +366,74 @@ final class Shadowfunc
 	 * Return status string for a player.
 	 * @param SR_Player $player
 	 */
-	public static function getStatus(SR_Player $player)
+	public static function getStatus(SR_Player $player, $key='5014')
 	{
-		# Status message
+		$args = array();
+		
+		# Scanner in Use?
+		if ($key > 5015)
+		{
+			$args[] = $player->getName();
+		}
+
+		# Pre magic
+		$args = array_merge($args, array(
+			$player->getGender(), $player->getRace(),
+			$player->getBase('level'), $player->get('level'),
+			$player->getHP(), $player->getMaxHP()
+		));
+
+		# Magic?
 		if ($player->getBase('magic') >= 0)
 		{
-			return Shadowrun4::lang('5014', array(
-				$player->getGender(), $player->getRace(), $player->getBase('level'), $player->get('level'),
-				$player->getHP(), $player->getMaxHP(),
-				$player->getMP(), $player->getMaxMP(),
-				$player->get('attack'), $player->get('defense'),
-				$player->get('min_dmg'), $player->get('max_dmg'),
-				$player->get('marm'), $player->get('farm'),
-				round($player->getBase('xp'), 2), $player->getBase('karma'),
-				round($player->getNuyen(), 2),
-				$player->displayWeight(), $player->displayMaxWeight(),
-			));
-		}	
-		else
-		{
-			return Shadowrun4::lang('5015', array(
-				$player->getGender(), $player->getRace(), $player->getBase('level'), $player->get('level'),
-				$player->getHP(), $player->getMaxHP(),
-				$player->get('attack'), $player->get('defense'),
-				$player->get('min_dmg'), $player->get('max_dmg'),
-				$player->get('marm'), $player->get('farm'),
-				round($player->getBase('xp'), 2), $player->getBase('karma'),
-				round($player->getNuyen(), 2),
-				$player->displayWeight(), $player->displayMaxWeight(),
+			$key++; # different event
+			$args = array_merge($args, array(
+				$player->getMP(), $player->getMaxMP()
 			));
 		}
-// 		$b = chr(2);
-// 		return sprintf("%s %s %s. {$b}HP{$b}:%s/%s%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%.02f, {$b}Karma{$b}:%s, {$b}¥{$b}:%.02f, {$b}Weight{$b}:%s/%s.",
-// 			$player->getGender(), $player->getRace(), self::displayLevel($player),
-// 			$player->getHP(), $player->get('max_hp'),
-// 			$player->get('magic') > 0 ? sprintf(", {$b}MP{$b}:%s/%s", $player->getMP(), $player->get('max_mp')) : '', 
-// 			$player->get('attack'), $player->get('defense'),
-// 			$player->get('min_dmg'), $player->get('max_dmg'),
-// 			$player->get('marm'), $player->get('farm'),
-// 			$player->getBase('xp'), $player->getBase('karma'),
-// 			$player->getNuyen(),
-// 			self::displayWeight($player->get('weight')), self::displayWeight($player->get('max_weight'))
-// 		);
+
+		# After magic
+		$args = array_merge($args, array(
+			$player->get('attack'), $player->get('defense'),
+			$player->get('min_dmg'), $player->get('max_dmg'),
+			$player->get('marm'), $player->get('farm'),
+			round($player->getBase('xp'), 2), $player->getBase('karma'),
+			round($player->getNuyen(), 2),
+			$player->displayWeight(), $player->displayMaxWeight())
+		);
+		
+		return Shadowrun4::lang($key, $args);
+		
+		
+		
+		# Status message
+// 		if ($player->getBase('magic') >= 0)
+// 		{
+// 			return Shadowrun4::lang('5014', array(
+// 				$player->getGender(), $player->getRace(), $player->getBase('level'), $player->get('level'),
+// 				$player->getHP(), $player->getMaxHP(),
+// 				$player->getMP(), $player->getMaxMP(),
+// 				$player->get('attack'), $player->get('defense'),
+// 				$player->get('min_dmg'), $player->get('max_dmg'),
+// 				$player->get('marm'), $player->get('farm'),
+// 				round($player->getBase('xp'), 2), $player->getBase('karma'),
+// 				round($player->getNuyen(), 2),
+// 				$player->displayWeight(), $player->displayMaxWeight(),
+// 			));
+// 		}	
+// 		else
+// 		{
+// 			return Shadowrun4::lang('5015', array(
+// 				$player->getGender(), $player->getRace(), $player->getBase('level'), $player->get('level'),
+// 				$player->getHP(), $player->getMaxHP(),
+// 				$player->get('attack'), $player->get('defense'),
+// 				$player->get('min_dmg'), $player->get('max_dmg'),
+// 				$player->get('marm'), $player->get('farm'),
+// 				round($player->getBase('xp'), 2), $player->getBase('karma'),
+// 				round($player->getNuyen(), 2),
+// 				$player->displayWeight(), $player->displayMaxWeight(),
+// 			));
+// 		}
 	}
 	
 	public static function getKnownPlaces(SR_Player $player, $cityname)
@@ -486,14 +512,26 @@ final class Shadowfunc
 		}
 	}
 	
-	public static function getSkills(SR_Player $player)
+	public static function getSkills(SR_Player $player, $key='5006')
 	{
-		return self::getStatsArray($player, SR_Player::$SKILL);
+		$args = array();
+		if ($key > 5006)
+		{
+			$args[] = $player->getName();
+		}
+		$args[] = self::getStatsArray($player, SR_Player::$SKILL);
+		return Shadowrun4::lang($key, $args);
 	}
 	
-	public static function getAttributes(SR_Player $player)
+	public static function getAttributes(SR_Player $player, $key='5004')
 	{
-		return self::getStatsArray($player, SR_Player::$ATTRIBUTE);
+		$args = array();
+		if ($key > 5004)
+		{
+			$args[] = $player->getName();
+		}
+		$args[] = self::getStatsArray($player, SR_Player::$ATTRIBUTE);
+		return Shadowrun4::lang($key, $args);
 	}
 	
 	public static function getKnowledge(SR_Player $player)
@@ -501,7 +539,7 @@ final class Shadowfunc
 		return self::getStatsArray($player, SR_Player::$KNOWLEDGE);
 	}
 	
-	public static function getEquipment(SR_Player $player)
+	public static function getEquipment(SR_Player $player, $langkey='5048')
 	{
 // 		$b = chr(2);
 		$back = '';
@@ -513,7 +551,16 @@ final class Shadowfunc
 // 			$back .= sprintf($format, $key, $item->getItemName(), self::shortcutEquipment($key));
 // 			$back .= sprintf(', %s:%s', "{$b}$key{$b}", $item->getItemName());
 		}
-		return ltrim($back, ',; ');
+		$back = ltrim($back, ',; ');
+		
+		$args = array();
+		if ($langkey > 5048)
+		{
+			$args[] = $player->getName();
+		}
+		$args[] = $back;
+		
+		return Shadowrun4::lang($langkey, $args);
 	}
 	
 	/**
@@ -626,7 +673,7 @@ final class Shadowfunc
 		return ltrim($back, ',; ');
 	}
 	
-	public static function getSpells(SR_Player $player)
+	public static function getSpells(SR_Player $player, $key='5054')
 	{
 		$format = $player->lang('fmt_spells');
 		$back = '';
@@ -640,7 +687,12 @@ final class Shadowfunc
 // 			$back .= sprintf(', %s-%s:%s%s', $b.$i.$b, $name, $base, $mod);
 // 			$i++;
 		}
-		return $back === '' ? Shadowrun4::lang('none') : ltrim($back, ',; ');
+		$back = $back === '' ? Shadowrun4::lang('none') : ltrim($back, ',; ');
+		
+		$args = $key === '5054' ? array() : array($player->getName());
+		$args[] = $back;
+		
+		return Shadowrun4::lang($key, $args);
 	}
 	
 	public static function getMountInv(SR_Player $player)
@@ -669,17 +721,23 @@ final class Shadowfunc
 		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
 	}
 	
-	public static function getCyberware(SR_Player $player)
+	public static function getCyberware(SR_Player $player, $key='5045', SR_Player $spectator)
 	{
 		$i = 1;
 		$back = '';
 		$format = $player->lang('fmt_rawitems');
 		foreach ($player->getCyberware() as $item)
 		{
-			$back .= sprintf($format, $i++, $item->getItemName());
+			$item instanceof SR_Item;
+			$back .= sprintf($format, $i++, $item->displayName($spectator));
 // 			$back .= sprintf(', %d-:%s', $i++, $item->getItemName());
 		}
-		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
+		
+		$back = $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
+		
+		$args = $key === '5045' ? array() : array($player->getName());
+		$args[] = $back;
+		return Shadowrun4::lang($key, $args);
 	}
 	
 	###################

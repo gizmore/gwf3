@@ -9,7 +9,8 @@ class Item_Scanner_v6 extends Item_Scanner_v5
 	
 	public function onItemUse(SR_Player $player, array $args)
 	{
-		if (false === ($target = $this->getScannerTarget($player, $args))) {
+		if (false === ($target = $this->getScannerTarget($player, $args)))
+		{
 			$player->message('Invalid target for scanner.');
 			return false;
 		}
@@ -19,19 +20,5 @@ class Item_Scanner_v6 extends Item_Scanner_v5
 		$this->onScanLevel4($player, $target);
 		$this->onScanLevel5($player, $target);
 	}
-	
-	public function onScanLevel6(SR_Player $player, SR_Player $target)
-	{
-		$message = 'Spells: '.Shadowfunc::getSpells($target);
-		if ($player->isFighting())
-		{
-			$player->message($message);
-		}
-		else
-		{
-			Shadowrap::instance($player)->reply($message);
-		}
-	}
-	
 }
 ?>

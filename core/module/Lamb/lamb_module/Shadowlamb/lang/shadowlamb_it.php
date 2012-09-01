@@ -546,10 +546,10 @@ $lang = array(
 '5012' => 'Il tuo asl: %s. Usa #asl [<eta|peso|altezza>] per la somma su tutto il gruppo.',
 '5013' => 'Il %s(%s) del tuo gruppo: %s.', # field, total, sumlist
 # Gender Race L(LL), HP/HPP MP/MPP, ATK, DEF, DMG-DDMG, MARM/FARM, XP, Karma, NY, WEIGHT/WWEIGHT
-# Status with magic
-'5014' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
 # Status without magic
-'5015' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5014' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+# Status with magic
+'5015' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
 # Party status
 '5016' => 'Stai %s', # action
 '5017' => 'Stai conducendo i %s membri (%s) del tuo gruppo e stai %s', # membercount, memberlist, action
@@ -823,6 +823,14 @@ $lang = array(
 '5297' => '%s of the %s itemset. Bonus: %s. Items: %s.',
 '5298' => 'Use "#redmond i_am_sure" to take some of your XP and beam you back to %s.',
 '5299' => 'Your XP stack got reset and you get beamed back to %s.',
+'5300' => '%2$s left the %1$s.', # playerlist, location.
+'5301' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5302' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Att{$b}:%s, {$b}Dif{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5303' => '%s`s equipment: %s.', # equipstring
+'5304' => '%s`s attributes: %s.', # attributes
+'5305' => '%s`s skills: %s.', # skills
+'5306' => '%s`s cyberware: %s.', # cyberware
+'5307' => '%s`s spells: %s.', # spells
 
 ####################
 ### Shadowclient ###

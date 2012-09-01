@@ -34,8 +34,9 @@ class Item_Scanner_v1 extends SR_Usable
 	
 	public function onScanLevel1(SR_Player $player, SR_Player $target)
 	{
-		$message = $target->getName().': '.Shadowfunc::getStatus($target);
-		$message2 = Shadowfunc::getEquipment($target);
+		#$message = $target->getName().': '.Shadowfunc::getStatus($target);
+		$message = Shadowfunc::getStatus($target, '5301');
+		$message2 = Shadowfunc::getEquipment($target, '5303');
 		if ($player->isFighting())
 		{
 			$player->message($message);

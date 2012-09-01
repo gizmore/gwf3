@@ -21,7 +21,7 @@ class Item_Scanner_v4 extends Item_Scanner_v3
 	
 	public function onScanLevel4(SR_Player $player, SR_Player $target)
 	{
-		$message = 'Cyberware: '.Shadowfunc::getCyberware($target);
+		$message = Shadowfunc::getCyberware($target, '5306');
 		if ($player->isFighting())
 		{
 			$player->message($message);

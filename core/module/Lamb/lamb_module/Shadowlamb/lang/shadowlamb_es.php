@@ -541,10 +541,10 @@ $lang = array(
 '5012' => 'Tu asl: %s. Usa #asl [<edad|indice masa corporal|altura>] para sumas del grupo.',
 '5013' => 'Tu grupo %s(%s): %s.', # field, total, sumlist
 # Gender Race L(LL), HP/HPP MP/MPP, ATK, DEF, DMG-DDMG, MARM/FARM, XP, Karma, NY, WEIGHT/WWEIGHT
-# Status with magic
-'5014' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
 # Status without magic
-'5015' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5014' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+# Status with magic
+'5015' => "%s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
 # Party status
 '5016' => 'Tu estás %s', # action
 '5017' => 'Estás liderando %s miembros (%s) y estás en %s', # membercount, memberlist, action
@@ -819,6 +819,14 @@ $lang = array(
 '5297' => '%s of the %s itemset. Bonus: %s. Items: %s.',
 '5298' => 'Use "#redmond i_am_sure" to take some of your XP and beam you back to %s.',
 '5299' => 'Your XP stack got reset and you get beamed back to %s.',
+'5300' => '%2$s left the %1$s.', # playerlist, location.
+'5301' => "%s: %s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5302' => "%s: %s %s L%s(%s). {$b}HP{$b}:%s/%s, {$b}MP{$b}:%s/%s, {$b}Atk{$b}:%s, {$b}Def{$b}:%s, {$b}Dmg{$b}:%s-%s, {$b}Arm{$b}(M/F):%s/%s, {$b}XP{$b}:%s, {$b}Karma{$b}:%s, {$b}¥{$b}:%s, {$b}Peso{$b}:%s/%s.",
+'5303' => '%s`s equipment: %s.', # equipstring
+'5304' => '%s`s attributes: %s.', # attributes
+'5305' => '%s`s skills: %s.', # skills
+'5306' => '%s`s cyberware: %s.', # cyberware
+'5307' => '%s`s spells: %s.', # spells
 
 ####################
 ### Shadowclient ###
