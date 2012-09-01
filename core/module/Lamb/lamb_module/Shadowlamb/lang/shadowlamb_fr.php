@@ -145,6 +145,7 @@ $lang = array(
 'fmt_bazar_shop' => ", %sx{$b}%s{$b}(%s)", # itemcount, itemname, price
 'fmt_bazar_shops' => ", {$b}%s{$b}(%s)", # player, itemcount
 'fmt_bazar_search' => ", \"{$b}%s %s{$b}\"(%sx%s)", # player, itemname, amount, price
+'fmt_xp' => " | %s-%s L%s(%s/%sxp), KA(%s/%sxp)",
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'une partie vide',
@@ -826,6 +827,7 @@ $lang = array(
 '5305' => '%s`s skills: %s.', # skills
 '5306' => '%s`s cyberware: %s.', # cyberware
 '5307' => '%s`s spells: %s.', # spells
+'5308' => 'Your party´s xp: %s', # fmt_xp
 
 ####################
 ### Shadowclient ###

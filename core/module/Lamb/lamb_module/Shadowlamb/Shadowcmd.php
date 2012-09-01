@@ -39,7 +39,7 @@ class Shadowcmd
 	public static $CMDS_ALWAYS_CREATE = array('helo','ehlo','time','start','help','enable','disable','stats','players','parties','world','motd');
 	public static $CMDS_GM = array('gm','gmb','gmc','gmd','gmi','gml','gmlangfiles','gmload','gmm','gmn','gmq','gms','gmsp','gmt','gmul','gmns','gmx');
 	public static $CMDS_ALWAYS = array('ccommands','status','attributes','skills','equipment','party','party_loot','inventory','cyberware','lvlup','effects','examine','exx','show','compare','known_knowledge','known_places','known_spells','known_words','quests','say','swap','swapkp');
-	public static $CMDS_ALWAYS_HIDDEN = array('uid','commands','reset','redmond','bounty','bounties','clan','sets','asl','aslset','nuyen','karma','hp','mp','weight','set_distance','running_mode','level','givekp','givekw','giveny','dropkp','mount','mounts','shout','whisper','whisper_back','clan_message','party_message','request_leader');
+	public static $CMDS_ALWAYS_HIDDEN = array('uid','commands','reset','redmond','bounty','bounties','clan','sets','asl','aslset','nuyen','xp','karma','hp','mp','weight','set_distance','running_mode','level','givekp','givekw','giveny','dropkp','mount','mounts','shout','whisper','whisper_back','clan_message','party_message','request_leader');
 	public static $CMDS = array(
 		'delete' => array(),
 		'sleep' => array(),
