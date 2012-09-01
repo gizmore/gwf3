@@ -274,7 +274,9 @@ abstract class SR_Spell
 	private function diceDefensive(SR_Player $player, SR_Player $target, $level)
 	{
 		$dices = round($level * 10);
-		$dices += round($player->get('intelligence') * 5);
+		$int = $player->get('intelligence');
+		$int += Common::pow($level, 1.3);
+		$dices += round($int * 5);
 		$dices += round($player->get('essence') * 15);
 		
 		# To have supportive defense is bad.
