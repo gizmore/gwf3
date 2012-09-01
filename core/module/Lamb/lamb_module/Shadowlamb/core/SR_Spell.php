@@ -302,7 +302,8 @@ abstract class SR_Spell
 		$key_friend = (string)$key_friend;
 		$key_foe = (string)$key_foe;
 
-		$args = array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3);
+		# 8 args
+		$args = array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3, Shadowfunc::displayBusy($player->getBusyLeft()));
 		
 		# Announce
 		$p = $player->getParty();
@@ -317,8 +318,10 @@ abstract class SR_Spell
 			$gain = $this->getManaCost($player, $level);
 			$oldmp = $player->getMP() + $gain;
 			$maxmp = $player->getMaxMP();
-			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp);
+			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); # 9 args
 		}
+
+		
 		$p->ntice($key_friend, $args);
 		
 	}

@@ -21,10 +21,11 @@ $lang = array(
 'unknown' => 'nezināms',
 'unknown_contr' => 'Nezināmi priekšnieki',
 'modifiers' => " {$b}Modifikatori{$b}: %s.", # statlist
+'set_modifiers' => '%s%s%s: %s%s%s.', # statlist
 'm' => 'm', # metres
 'g' => '%sg', # gram
 'kg' => '%skg', # kilogram
-'busy' => '%s aizkavētās sekundes.', # duration
+'busy' => '%s aizkavētās.', # duration
 'eta' => 'ETA: %s.', # duration
 'hits1' => ', sitieni %s ar %s bojājumu', # player, damage
 'hits2' => ', sitieni %s ar %s(%s/%s)HP palikuši', # player, damage, hp left, max hp
@@ -458,70 +459,70 @@ $lang = array(
 # 10000-14999 = Spells #
 ########################
 # Generic
-'10000' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
-'10001' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s kreisi.',
-'10002' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
-'10003' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10000' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, %8$s',
+'10001' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s %9$s kreisi.',
+'10002' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, %8$s',
+'10003' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Berzerk
-'10010' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s.',
-'10011' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s min_dmg / +%6$s max_dmg par %7$%s, %8$s kreisi.',
-'10012' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s.',
-'10013' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10010' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s, %8$s',
+'10011' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s min_dmg / +%6$s max_dmg par %7$%s, %8$s %9$s kreisi.',
+'10012' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s, %8$s',
+'10013' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Blow
-'10020' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un ir tagad uz dziras %6$s.',
-'10021' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s, %8$s kreisi.',
-'10022' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s.',
-'10023' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s.',
+'10020' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un ir tagad uz dziras %6$s, %8$s',
+'10021' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s, %8$s %9$s kreisi.',
+'10022' => '%1$s izmanto līmeni %2$s %3$s dziru uz %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s, %8$s',
+'10023' => '%1$s iemācās līmeni %2$s %3$s on %4$s kurš tiek aizšauts prom %5$s un tagad ir uz dziras %6$s, %8$s',
 # Chameleon
-'10030' => '%1$s izmanto līmeni%2$s %3$s dzira uz %4$s, +%5$s valdzinājums priekš %6$s.',
-'10031' => '%1$s iemācās līmeni %2$s %3$s uz%4$s, +%5$s valdzinājums priekš %6$s, %8$s kreisi.',
-'10032' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10033' => '%1$s iemācas līmeni %2$s %3$s uz %4$s.',
+'10030' => '%1$s izmanto līmeni%2$s %3$s dzira uz %4$s, +%5$s valdzinājums priekš %6$s, %8$s',
+'10031' => '%1$s iemācās līmeni %2$s %3$s uz%4$s, +%5$s valdzinājums priekš %6$s, %8$s %9$s kreisi.',
+'10032' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10033' => '%1$s iemācas līmeni %2$s %3$s uz %4$s, %8$s',
 # Firebolt
-'10040' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus.',
-'10041' => '%1$s iemācijās līmeni %2$s %3$s uz %4$s un nodarīja %5$s bojājumus, %8$s kreisi.',
-'10042' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis.',
-'10043' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis.',
+'10040' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus, %8$s',
+'10041' => '%1$s iemācijās līmeni %2$s %3$s uz %4$s un nodarīja %5$s bojājumus, %8$s %9$s kreisi.',
+'10042' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis, %8$s',
+'10043' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un nodarīja %5$s postījumus, %6$s/%7$s HP palicis, %8$s',
 # Freeze
-'10050' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
-'10051' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f, %8$s kreisi.',
-'10052' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
-'10053' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$01f.',
+'10050' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$s, %8$s',
+'10051' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$s, %8$s %9$s kreisi.',
+'10052' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$s, %8$s',
+'10053' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. %5$s otrie tiek sasaldēti ar spēku %6$s, %8$s',
 # Goliath
-'10060' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s spēks par %6$s.',
-'10061' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s spēks par %6$s, %8$s kreisi.',
-'10062' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10063' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10060' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s spēks par %6$s, %8$s',
+'10061' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s spēks par %6$s, %8$s %9$s kreisi.',
+'10062' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10063' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Hawkeye
-'10070' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ugunsrokas par %6$s.',
-'10071' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ugunsrokas par %6$s, %8$s kreisi.',
-'10072' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10073' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10070' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ugunsrokas par %6$s, %8$s',
+'10071' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ugunsrokas par %6$s, %8$s %9$s kreisi.',
+'10072' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10073' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Hummingbird
-'10080' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ātrums par %6$s.',
-'10081' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ātrums par %6$s, %8$s kreisi.',
-'10082' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10083' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10080' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s ātrums par %6$s, %8$s',
+'10081' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s ātrums par %6$s, %8$s %9$s kreisi.',
+'10082' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10083' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Magicarp
-'10090' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP.',
-'10091' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s un viņi zaudē %6$s MP, %8$s kreisi.',
-'10092' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP.',
-'10093' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un viņi zaudē %5$s MP.',
+'10090' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP, %8$s',
+'10091' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s un viņi zaudē %6$s MP, %8$s %9$s kreisi.',
+'10092' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s un viņi zaudē %5$s MP, %8$s',
+'10093' => '%1$s iemācās līmeni %2$s %3$s uz %4$s un viņi zaudē %5$s MP, %8$s',
 # Turtle
-'10100' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s marm/ferma par %6$s.',
-'10101' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s marm/ferma par %5$s, %8$s kreisi.',
-'10102' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10103' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10100' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, +%5$s marm/ferma par %6$s, %8$s',
+'10101' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, +%5$s marm/ferma par %5$s, %8$s %9$s kreisi.',
+'10102' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10103' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Heal
-'10110' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s, %5$s.',
-'10111' => '%1$s iemācās līmeni %2$s %3$s on %4$s, %5$s, %8$s kreisi.',
-'10112' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s.',
-'10113' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10110' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s, %5$s, %8$s',
+'10111' => '%1$s iemācās līmeni %2$s %3$s on %4$s, %5$s, %8$s %9$s kreisi.',
+'10112' => '%1$s izmanto līmeni %2$s %3$s potion on %4$s, %8$s',
+'10113' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
 # Calm
-'10120' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s. +%5$sHP priekš %6$s sekundēm.',
-'10121' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. +%5$sHP priekš %6$s sekundēm, %8$s kreisi.',
-'10122' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s.',
-'10123' => '%1$s iemācās līmeni %2$s %3$s uz %4$s.',
+'10120' => '%1$s Izmanto līmeni %2$s %3$s dzira uz %4$s. +%5$sHP priekš %6$s sekundēm, %8$s',
+'10121' => '%1$s iemācās līmeni %2$s %3$s uz %4$s. +%5$sHP priekš %6$s sekundēm, %8$s %9$s kreisi.',
+'10122' => '%1$s izmanto līmeni %2$s %3$s dzira uz %4$s, %8$s',
+'10123' => '%1$s iemācās līmeni %2$s %3$s uz %4$s, %8$s',
  
 ############################
 #5000-9999= Messages #
@@ -670,12 +671,12 @@ $lang = array(
 '5149' => 'Veikali, lapa %s/%s: %s.',
 '5150' => '%s\'s veikali: "%s"', # player, bazar slogan
 '5151' => '%s lietas: %s.', # # itemcount, bazaritemlist
-'5152' => "%s pārdot vienu no %s %s priekš {$b}%s{$b}. Raksti {$b}#buy %1\$s %3\$s{$b} lai pirktu.", # player, itemcount, itemname, nuyen, examinestring
+'5152' => "%s pārdot vienu no %s %s priekš {$b}%s{$b}. Raksti {$b}#%s %1\$s %3\$s{$b} lai pirktu.", # player, itemcount, itemname, nuyen, examinestring
 '5153' => 'Tu tagad piedāvā %s %s priekš %s katra tavā tirgū.', # amount, itemname, price
 '5154' => 'Tu maksā par %s un noņem %s %s no sava tirgus un ieliec savā glabātuvē.', # price, amount, itemname
 '5155' => 'Tu domā pirkt %s %s no %s priekš %s. Ieraksti par jaunu lai apstiprinātu.', # amount, itemname, player, price
 '5156' => '%s nopirkts %s %s no %s\'s tirgus.', # player, amount, itemname, player
-'5157' => 'Tev tagad ir %s no %s tirgus vietām izmantotas. Vēl tirgus vietas tev maksās %s. Raksti "#buyslot yesplease" lai apstiprinātu.',
+'5157' => 'Tev tagad ir %s no %s tirgus vietām izmantotas. Vēl tirgus vietas tev maksās %s. Raksti "#%s yesplease" lai apstiprinātu.',
 '5158' => 'Tu maksā no %s un tagad tev ir %s tirgus vietas.', # nuyen, slotcount
 '5159' => 'Tav sauklis ir uzstādīts uz: "%s".', # slogan
 '5160' => 'Tirgus sakrīt, lapa %s/%s: %s.', # page, npages, bazaar searchlist

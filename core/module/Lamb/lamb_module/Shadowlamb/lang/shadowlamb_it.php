@@ -23,10 +23,11 @@ $lang = array(
 'unknown' => 'Sconosciuto',
 'unknown_contr' => 'Appaltatore Sconosciuto',
 'modifiers' => " {$b}Modificatori{$b}: %s.", # statlist
+'set_modifiers' => '%s%s%s: %s%s%s.', # statlist
 'm' => 'm', # metres
 'g' => '%sg', # gram
 'kg' => '%skg', # kilogram
-'busy' => 'occupato per %s secondi.', # duration
+'busy' => 'occupato per %s.', # duration
 'eta' => 'ETA: %s.', # duration
 'hits1' => ', colpisce %s causando %s punti danno', # player, damage
 'hits2' => ', colpisce %s causando %s punti danno (%s/%s)HP rimasti', # player, damage, hp left, max hp
@@ -463,70 +464,70 @@ $lang = array(
 # 10000-14999 = Spells #
 ########################
 # Generic
-'10000' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10001' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s a sinistra.',
-'10002' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10003' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10000' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10001' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s %9$s a sinistra.',
+'10002' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10003' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Berzerk
-'10010' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$s.',
-'10011' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$%s, %8$s a sinistra.',
-'10012' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10013' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10010' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$s, %8$s',
+'10011' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s dmg_min / +%6$s dmg_max per %7$%s, %8$s %9$s a sinistra.',
+'10012' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10013' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Blow
-'10020' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s.',
-'10021' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s, %8$s a sinistra.',
-'10022' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s.',
-'10023' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s.',
+'10020' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s, %8$s',
+'10021' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s, %8$s %9$s a sinistra.',
+'10022' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s, %8$s',
+'10023' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, che è stato sbalzato di %5$s ed è ora in posizione %6$s, %8$s',
 # Chameleon
-'10030' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, carisma +%5$s per %6$s.',
-'10031' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, carisma +%5$s per %6$s, %8$s a sinistra.',
-'10032' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10033' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10030' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, carisma +%5$s per %6$s, %8$s',
+'10031' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, carisma +%5$s per %6$s, %8$s %9$s a sinistra.',
+'10032' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10033' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Firebolt
-'10040' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, causando %5$s punti danno.',
-'10041' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %8$s a sinistra.',
-'10042' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %6$s/%7$s HP left.',
-'10043' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %6$s/%7$s HP left.',
+'10040' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %8$s',
+'10041' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %8$s %9$s a sinistra.',
+'10042' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %6$s/%7$s HP left, %8$s',
+'10043' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, causando %5$s punti danno, %6$s/%7$s HP left, %8$s',
 # Freeze
-'10050' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$01f.',
-'10051' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$01f, %8$s a sinistra.',
-'10052' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$01f.',
-'10053' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$01f.',
+'10050' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$s, %8$s',
+'10051' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$s, %8$s %9$s a sinistra.',
+'10052' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$s, %8$s',
+'10053' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. Congelamento per %5$s secondi con potenza %6$s, %8$s',
 # Goliath
-'10060' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, forza +%5$s per %6$s.',
-'10061' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, forza +%5$s per %6$s, %8$s a sinistra.',
-'10062' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10063' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10060' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, forza +%5$s per %6$s, %8$s',
+'10061' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, forza +%5$s per %6$s, %8$s %9$s a sinistra.',
+'10062' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10063' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Hawkeye
-'10070' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s.',
-'10071' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s, %8$s a sinistra.',
-'10072' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10073' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10070' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s, %8$s',
+'10071' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, armi_da_fuoco +%5$s per %6$s, %8$s %9$s a sinistra.',
+'10072' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10073' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Hummingbird
-'10080' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, velocità +%5$s per %6$s.',
-'10081' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, velocità +%5$s per %6$s, %8$s a sinistra.',
-'10082' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10083' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10080' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, velocità +%5$s per %6$s, %8$s',
+'10081' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, velocità +%5$s per %6$s, %8$s %9$s a sinistra.',
+'10082' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10083' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Magicarp
-'10090' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP.',
-'10091' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s ed hanno perso %6$s MP, %8$s a sinistra.',
-'10092' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP.',
-'10093' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP.',
+'10090' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP, %8$s',
+'10091' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, +%5$s ed hanno perso %6$s MP, %8$s %9$s a sinistra.',
+'10092' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP, %8$s',
+'10093' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s ed hanno perso %5$s MP, %8$s',
 # Turtle
-'10100' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, marm/farm +%5$s per %6$s.',
-'10101' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, marm/farm +%5$s per %5$s, %8$s a sinistra.',
-'10102' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10103' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10100' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, marm/farm +%5$s per %6$s, %8$s',
+'10101' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, marm/farm +%5$s per %5$s, %8$s %9$s a sinistra.',
+'10102' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10103' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Heal
-'10110' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %s.',
-'10111' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %s, %8$s a sinistra.',
-'10112' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10113' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10110' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %s, %8$s',
+'10111' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %s, %8$s %9$s a sinistra.',
+'10112' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10113' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 # Calm
-'10120' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. +%5$sHP per %6$s secondi.',
-'10121' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. +%5$sHP per %6$s secondi, %8$s a sinistra.',
-'10122' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s.',
-'10123' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s.',
+'10120' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s. +%5$sHP per %6$s secondi, %8$s',
+'10121' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. +%5$sHP per %6$s secondi, %8$s %9$s a sinistra.',
+'10122' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
+'10123' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
 
 ############################
 #   5000-9999   = Messages #
@@ -675,12 +676,12 @@ $lang = array(
 '5149' => 'Negozi, pagina %s/%s: %s.',
 '5150' => 'Negozio di %s: "%s"', # player, bazar slogan
 '5151' => '%s oggetti: %s.', # # itemcount, bazaritemlist
-'5152' => "%s vende un %3\$s, da un totale di %2\$d, per {$b}%4\$s{$b}. Digita {$b}#compra %1\$s %3\$s{$b} per comprare.", # player, itemcount, itemname, nuyen, examinestring
+'5152' => "%s vende un %3\$s, da un totale di %2\$d, per {$b}%4\$s{$b}. Digita {$b}#%s %1\$s %3\$s{$b} per comprare.", # player, itemcount, itemname, nuyen, examinestring
 '5153' => 'Da ora offri %s %s nel tuo bazaar, ad un prezzo di %s ciascuno.', # amount, itemname, price
 '5154' => 'Paghi la commissione di %s e rimuovi %s %s dal tuo bazaar e li metti nel tuo inventario.', # price, amount, itemname
 '5155' => 'Cerchi di comprare %s %s da %s per %s. Ridigita per confermare.', # amount, itemname, player, price
 '5156' => '%s ha comprato %s %s dal bazaar di %s.', # player, amount, itemname, player
-'5157' => 'Attualmente hai %s di %s slot per il tuo bazaar utilizzati. Un altro slot ti costerebbe %s. Digita "#compraslot sissignore" per confermare.',
+'5157' => 'Attualmente hai %s di %s slot per il tuo bazaar utilizzati. Un altro slot ti costerebbe %s. Digita "#%s yesplease" per confermare.',
 '5158' => 'Paghi la commissione di %s ed ora hai %s slot per il tuo bazaar.', # nuyen, slotcount
 '5159' => 'Il tuo slogan è stato impostato a: "%s".', # slogan
 '5160' => 'Oggetti corrispondenti nel bazaar, pagina %s/%s: %s.', # page, npages, bazaar searchlist
