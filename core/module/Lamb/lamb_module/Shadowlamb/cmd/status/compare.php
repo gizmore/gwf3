@@ -236,7 +236,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			
 			foreach($samekeys as $key)
 			{
-				unset($keys[$key]);
+				unset($keys[array_search($key, $keys)]);
 				$req = Shadowfunc::longModifierToShort($key);
 				$item1R = $item1Reqs[$key];
 				$item2R = $item2Reqs[$key];
