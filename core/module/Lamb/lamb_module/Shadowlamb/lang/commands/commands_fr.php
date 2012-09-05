@@ -5,8 +5,8 @@
 $lang = array(
 	'abandon' => 'abandonner',
 	'accept' => 'accepter',
-	'asl' => 'asl', // XXX: Translate
-	'aslset' => 'aslset', // XXX: Translate
+	'asl' => 'asv',
+	'aslset' => 'asvset',
 	'attack' => 'attaquer',
 	'attributes' => 'attributs',
 	'backward' => 'reculer',
