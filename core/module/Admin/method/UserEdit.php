@@ -207,7 +207,7 @@ final class Admin_UserEdit extends GWF_Method
 			return array();
 		}
 		
-		return array($this->module->lang('msg_username_changed', array( GWF_HTML::display($oldName)), GWF_HTML::display($newName)));
+		return array($this->module->lang('msg_username_changed', array(GWF_HTML::display($oldName), GWF_HTML::display($newName))));
 	}
 	
 	private function onEditPassword($newpass)
