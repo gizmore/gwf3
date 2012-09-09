@@ -1,11 +1,5 @@
 <?php
 
-if(!isset($_HEADER))
-{
-	$_HEADER = array();
-	global $_HEADER;
-}
-
 if (false === function_exists('http_response_code'))
 {
 	function http_response_code($code)
@@ -13,6 +7,38 @@ if (false === function_exists('http_response_code'))
 		//header(sprintf('%s %d %s', Common::getProtocol(), $code, $status));
 		header(':', true, $code);
 	}
+}
+
+if (false === function_exists('getallheaders'))
+{
+	function getallheaders() { return array(); }
+}
+
+if (false === function_exists('apache_request_headers'))
+{
+	function apache_request_headers() { return getallheaders(); }
+}
+
+if (false === function_exists('apache_response_headers'))
+{
+	function apache_response_headers()
+	{
+		$response = array();
+		$headers = headers_list();
+		foreach($headers as $header)
+		{
+			list($key, $val) = array_map('trim', explode(':', $header, 2));
+			$response[$key] = $val;
+		}
+		return $response;
+	}
+}
+
+if(!isset($_HEADER))
+{
+	# A global variable containing all response headers (needet for CLI)
+	$_HEADER = apache_response_headers();
+	global $_HEADER;
 }
 
 /**
@@ -31,7 +57,7 @@ final class GWF_HTTPHeader
 	{
 		if (!isset(self::$HEADERS))
 		{
-			self::$HEADERS = headers_list();
+			self::$HEADERS = getallheaders();
 			if(PHP_SAPI === 'cli')
 			{
 				global $_HEADER;
@@ -89,10 +115,8 @@ final class GWF_HTTPHeader
 			global $_HEADER;
 			if (!$replace && isset($_HEADER[$key]))
 			{
-				if ($_HEADER[$key] !== $val)
-				{
-					$_HEADER[$key] = array($_HEADER[$key], $val);
-				}
+				# section 4.2 of RFC 2616
+				$_HEADER[$key] = implode(',', array($_HEADER[$key], $val));
 			}
 			else
 			{
