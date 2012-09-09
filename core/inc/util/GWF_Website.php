@@ -94,7 +94,38 @@ final class GWF_Website
 	 */
 	public static function addLink($href, $type, $rel, $media=0, $title='')
 	{
-		self::$_links[] = array(htmlspecialchars($href), $type, $rel, (int)$media, htmlspecialchars($title));
+		self::$_links[] = array(self::parseLink($href), $type, $rel, (int)$media, htmlspecialchars($title));
+	}
+
+	public static function parseLink($href)
+	{
+		$url = parse_url($href);
+		$scheme = isset($url['scheme']) ? $url['scheme'].'://' : '';
+		$host = isset($url['host']) ? htmlspecialchars($url['host']) : '';
+		$port = isset($url['port']) ? sprintf(':%d', $url['port']) : '';
+		$path = isset($url['path']) ? htmlspecialchars($url['path']) : '';
+		$querystring = '';
+		if (isset($url['query']))
+		{
+			$querystring .= '?';
+			parse_str($url['query'], $query);
+			foreach ($query as $k => $v)
+			{
+				$k = urlencode(urldecode($k));
+				if (is_array($v))
+				{
+					foreach($v as $vk => $vv)
+					{
+						$querystring .= sprintf('%s[%s]=&s&', $k, is_int($vk) ? '' : urlencode(urldecode($vk)), urlencode(urldecode($vv)));
+					}
+				}
+				else
+				{
+					$querystring .= sprintf('%s=%s&', $k, urlencode(urldecode($v)));
+				}
+			}
+		}
+		return $scheme . $host . $port . $path . $querystring;
 	}
 
 	/**
