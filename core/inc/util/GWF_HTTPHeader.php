@@ -71,6 +71,12 @@ final class GWF_HTTPHeader
 		return self::$HEADERS;
 	}
 
+	public static function getResponseHeaders()
+	{
+		global $_HEADER;
+		return $_HEADER;
+	}
+
 	/**
 	 * get a request header
 	 * 
