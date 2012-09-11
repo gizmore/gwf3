@@ -9,8 +9,10 @@ foreach(array('_SERVER', '_GET', '_POST', '_REQUEST', '_COOKIE') as $k)
 	$$k = $json[$k];
 }
 
-# TODO: fake request header
-$json['header'];
+$_REQUEST_HEADER = $json['header'];
+global $_REQUEST_HEADER;
+
+$code = 0;
 
 try
 {
@@ -21,15 +23,16 @@ try
 }
 catch (Exception $e)
 {
-	# TODO
+	http_response_code(500);
+	$output = htmlspecialchars($e);
+	$code = 1;
 }
 
 $header = GWF_HTTPHeader::getResponseHeaders();
 
 echo json_encode(array(
 	'header' => $header,
-	'cookie' => NULL, #TODO
 	'output' => $output,
 	'status' => http_response_code()
 ));
-die(0);
+die($code);

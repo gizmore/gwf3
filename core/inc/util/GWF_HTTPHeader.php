@@ -2,10 +2,16 @@
 
 if (false === function_exists('http_response_code'))
 {
-	function http_response_code($code)
+	function http_response_code($code=NULL)
 	{
+		if ($code === NULL)
+		{
+			return GWF_HTTPHeader::$status;
+		}
 		//header(sprintf('%s %d %s', Common::getProtocol(), $code, $status));
 		header(':', true, $code);
+		GWF_HTTPHeader::$status = $code;
+		return $code;
 	}
 }
 
@@ -36,9 +42,16 @@ if (false === function_exists('apache_response_headers'))
 
 if(!isset($_HEADER))
 {
-	# A global variable containing all response headers (needet for CLI)
+	# A global variable containing all response header (needet for CLI)
 	$_HEADER = apache_response_headers();
 	global $_HEADER;
+}
+
+if(!isset($_REQUEST_HEADER))
+{
+	# a global variable containing request header (needet for CLI)
+	$_REQUEST_HEADER = array();
+	global $_REQUEST_HEADER;
 }
 
 /**
@@ -48,6 +61,7 @@ if(!isset($_HEADER))
 final class GWF_HTTPHeader
 {
 	private static $HEADERS;
+	public static $status = 200;
 
 	/**
 	 *
@@ -60,13 +74,13 @@ final class GWF_HTTPHeader
 			self::$HEADERS = getallheaders();
 			if(PHP_SAPI === 'cli')
 			{
-				global $_HEADER;
-				if(is_array($_HEADER))
+				global $_REQUEST_HEADER;
+				if(is_array($_REQUEST_HEADER))
 				{
-					self::$HEADERS = $_HEADER;
+					self::$HEADERS = $_REQUEST_HEADER;
 				}
 			}
-			array_map('strtolower', self::$HEADERS);
+			self::$HEADERS = array_map('strtolower', self::$HEADERS);
 		}
 		return self::$HEADERS;
 	}
@@ -167,8 +181,12 @@ final class GWF_HTTPHeader
 	 * Set HTTP status code
 	 * @param int $code
 	 */
-	public static function statuscode($code)
+	public static function statuscode($code=NULL)
 	{
+		if (NULL !== $code)
+		{
+			self::$status = $code;
+		}
 		return http_response_code($code);
 	}
 
