@@ -69,7 +69,7 @@ final class Contact_Form extends GWF_Method
 		$u = GWF_TABLE_PREFIX.'user';
 		$ug = GWF_TABLE_PREFIX.'usergroup';
 		$db = gdo_db();
-		$query = "SELECT user_name FROM $ug AS ug INNER JOIN $u AS u ON u.user_id=ug_userid WHERE ug_groupid=$admin";
+		$query = "SELECT user_name FROM {$ug} AS ug INNER JOIN {$u} AS u ON u.user_id=ug_userid WHERE ug_groupid={$admin}";
 		if (false === ($result = $db->queryRead($query))) {
 			return '';
 		}
@@ -96,7 +96,7 @@ final class Contact_Form extends GWF_Method
 	private function onSendB($email, $message)
 	{
 		$admin = GWF_Group::ADMIN;
-		if (false === ($adminids = GDO::table('GWF_UserGroup')->selectColumn('ug_userid', "group_name='$admin'", '', array('group')))) {
+		if (false === ($adminids = GDO::table('GWF_UserGroup')->selectColumn('ug_userid', "group_name='{$admin}'", '', array('group')))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		
@@ -114,10 +114,10 @@ final class Contact_Form extends GWF_Method
 			}
 			$send_to[] = $user->displayUsername();
 		}
-		
+
 		return $send_to === '' ? GWF_HTML::err('ERR_MAIL_SENT') : $this->module->message('msg_mailed', array(GWF_Array::implodeHuman($send_to)));
 	}
-	
+
 	private function onSendC($email, $message, GWF_User $user)
 	{
 		$mail = new GWF_Mail();

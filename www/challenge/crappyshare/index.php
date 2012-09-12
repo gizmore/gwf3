@@ -15,7 +15,7 @@ htmlTitleBox($chall->lang('title'), $chall->lang('info'));
 # Show This Code
 if ('code' === Common::getGet('show'))
 {
-	$msg = '[CO'.'DE=PHP title=crappyshare.php]'.file_get_contents('challenge/crappyshare/crappyshare.php').'[/'.'CODE]';
+	$msg = '[CODE=PHP title=crappyshare.php]'.file_get_contents('challenge/crappyshare/crappyshare.php').'[/CODE]';
 	echo GWF_Box::box(GWF_Message::display($msg, true, true, true));
 }
 

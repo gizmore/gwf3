@@ -1,12 +1,15 @@
 <?php
 # fake a http request
 
-$json = json_decode($_SERVER['argv'][1]);
-$gwffile = $json['config']['GWF']; # $_SERVER['argv'][2]; ?
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$json = json_decode($_SERVER['argv'][1], true);
+$gwffile = $_SERVER['argv'][2];
 
 foreach(array('_SERVER', '_GET', '_POST', '_REQUEST', '_COOKIE') as $k)
 {
-	$$k = $json[$k];
+	${$k} = $json[$k];
 }
 
 $_REQUEST_HEADER = $json['header'];

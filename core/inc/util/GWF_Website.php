@@ -94,12 +94,13 @@ final class GWF_Website
 	 */
 	public static function addLink($href, $type, $rel, $media=0, $title='')
 	{
-		self::$_links[] = array(self::parseLink($href), $type, $rel, (int)$media, htmlspecialchars($title));
+		self::$_links[] = array(htmlspecialchars($href), $type, $rel, (int)$media, htmlspecialchars($title));
 	}
 
+	# TODO: move
 	public static function parseLink($href)
 	{
-		$url = parse_url($href);
+		$url = parse_url(urldecode($href));
 		$scheme = isset($url['scheme']) ? $url['scheme'].'://' : '';
 		$host = isset($url['host']) ? htmlspecialchars($url['host']) : '';
 		$port = isset($url['port']) ? sprintf(':%d', $url['port']) : '';
@@ -111,19 +112,20 @@ final class GWF_Website
 			parse_str($url['query'], $query);
 			foreach ($query as $k => $v)
 			{
-				$k = urlencode(urldecode($k));
+				$k = urlencode($k);
 				if (is_array($v))
 				{
 					foreach($v as $vk => $vv)
 					{
-						$querystring .= sprintf('%s[%s]=&s&', $k, is_int($vk) ? '' : urlencode(urldecode($vk)), urlencode(urldecode($vv)));
+						$querystring .= sprintf('%s[%s]=&s&', $k, is_int($vk) ? '' : urlencode($vk), urlencode($vv));
 					}
 				}
 				else
 				{
-					$querystring .= sprintf('%s=%s&', $k, urlencode(urldecode($v)));
+					$querystring .= sprintf('%s=%s&', $k, urlencode($v));
 				}
 			}
+			$querystring = htmlspecialchars(substr($querystring, 0, -1));
 		}
 		return $scheme . $host . $port . $path . $querystring;
 	}
