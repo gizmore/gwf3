@@ -221,20 +221,22 @@ abstract class SR_Spell
 		
 		$hits = $this->dice($this->getCaster(), $target, $level);
 		
+		echo "!!! CASTED $hits hits !!!\n";
+		
 		$busy = '';
 		if ($player->isFighting())
 		{
 			$busy = Shadowfunc::displayBusy($player->busy($this->getCastTime($level)));
 		}
 		
-		if ($hits < $target->get('essence'))
-		{
-			$waste = round($need/2, 1);
-			$player->healMP(-$waste);
-			$player->msg('1056', array($this->getName(), $waste, $busy));
-// 			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
-			return false;
-		}
+// 		if ($hits < $target->get('essence'))
+// 		{
+// 			$waste = round($need/2, 1);
+// 			$player->healMP(-$waste);
+// 			$player->msg('1056', array($this->getName(), $waste, $busy));
+// // 			$player->message(sprintf('You failed to cast %s. %s MP wasted.%s', $this->getName(), $waste, $busy));
+// 			return false;
+// 		}
 		
 		if (false === $this->isPotionMode())
 		{
@@ -268,26 +270,31 @@ abstract class SR_Spell
 		$defense += round($target->get('intelligence') * 2);
 		$defense += round($target->get('spelldef') * 2);
 
-		return Shadowfunc::dicePool($dices, $defense, 2);
+		echo "Dice Offensive with $dices dices and defense $defense\n";
+		return Shadowfunc::dicePoolB($dices, $defense);
+// 		return Shadowfunc::dicePool($dices, $defense, 4);
+		
 	}
 
 	private function diceDefensive(SR_Player $player, SR_Player $target, $level)
 	{
 		$dices = round($level * 10);
 		$int = $player->get('intelligence');
-		$int += Common::pow($level, 1.3);
+		$int += Common::pow($level, 1.25);
 		$dices += round($int * 5);
-		$dices += round($player->get('essence') * 15);
+		$dices += round($target->get('essence') * 15);
 		
-		# To have supportive defense is bad.
+// 		# To have supportive defense is bad.
 		$es = $target->get('essence');
-		$defense = Common::clamp(($es/6), 0.1, 1.0); # 0.1-1.0 compared against base essence
-		$dices *= $defense; # percent of dices
-		
-		# The dice defense
-		$defense = Common::clamp(self::MAX_ESSENCE-$es, 2, self::MAX_ESSENCE); # roll a 1-8 against essence
+		echo "Target has $es essence\n";
+		$defense = 9 - $es * 1.5;
+		$defense = Common::clamp($defense, 1.0, 8.0);
 
-		return Shadowfunc::dicePool($dices, $defense, 2);
+		echo "Dice Defensive with $dices dices and defense $defense\n";
+		return Shadowfunc::dicePoolB($dices, $defense);
+// 		$hits = Shadowfunc::dicePool($dices, $defense, 4);
+// 		return rand($hits/2, $hits);
+// 		return $hits;
 	}
 	
 	################
@@ -319,12 +326,18 @@ abstract class SR_Spell
 
 		if ($this->isCastMode())
 		{
-			$args[] = $this->getManaCost($player, $level);
-			$args[] = $player->getMP();
-			$args[] = $player->getMaxMP();
-// 			$oldmp = $player->getMP() + $gain;
-// 			$maxmp = $player->getMaxMP();
-// 			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); # 9 args
+			# 9 args
+			
+			# TODO: this 11 args
+// 			$args[] = $this->getManaCost($player, $level);
+// 			$args[] = $player->getMP();
+// 			$args[] = $player->getMaxMP();
+			
+			# Old spell style 9 args
+			$gain = $this->getManaCost($player, $level);
+			$oldmp = $player->getMP() + $gain;
+			$maxmp = $player->getMaxMP();
+			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); 
 		}
 
 		

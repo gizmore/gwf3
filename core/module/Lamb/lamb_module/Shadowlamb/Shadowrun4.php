@@ -13,6 +13,7 @@ final class Shadowrun4
 	const KICK_IDLE_TIMEOUT = 1800; # 30min
 	const TICKLEN = 1.0; # 1.0 real second == 1 gametick
 	const SECONDS_PER_TICK = 1; # N game second per gametick (you may want to raise during developement, only full int)
+	public static $CITIES = array('Redmond', 'Seattle', 'Delaware', 'Chicago', 'Vegas', 'WestVegas');
 	
 	################
 	### Language ###
@@ -353,6 +354,34 @@ final class Shadowrun4
 			return Lamb_Log::logError(sprintf('Shadowrun4::getNPC(%s) failed no such NPC.', $name));
 		}
 		return $npc;
+	}
+	
+	/**
+	 * Get an NPC by shortcut.
+	 * @param string $name
+	 * @return SR_NPC
+	 */
+	public static function getNPCByAbbrev(SR_Player $player, $name)
+	{
+		$candidates = array();
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			foreach ($city->getNPCs() as $npc)
+			{
+				$npc instanceof SR_NPC;
+				$npc->setChatPartner($player);
+				$classname = $npc->getNPCClassName();
+				if ( (stripos($classname, $name) !== false)
+				   ||(stripos($npc->getName(), $name) !== false) )
+				{
+					echo "Testing ".$npc->getNPCClassName()."\n";
+					echo "Testing ".$npc->getName()."\n";
+					$candidates[$classname] = $npc;
+				}
+			}
+		}
+		return count($candidates) === 1 ? array_pop($candidates) : false;
 	}
 	
 	/**

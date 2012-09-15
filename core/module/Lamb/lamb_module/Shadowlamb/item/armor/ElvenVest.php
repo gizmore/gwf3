@@ -2,7 +2,7 @@
 final class Item_ElvenVest extends SR_Armor
 {
 	public function getItemLevel() { return 5; }
-	public function getItemPrice() { return 750; }
+	public function getItemPrice() { return 350; }
 	public function getItemWeight() { return 1200; }
 	public function getItemDescription() { return 'A light vest with low firearms protection. It is greenish.'; }
 	public function getItemModifiersA(SR_Player $player)

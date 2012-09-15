@@ -7,7 +7,7 @@ final class Redmond_Cyberpunk extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => array('BaseballBat', 'IronPipe', 'Club', 'Stiletto'),
+			'weapon' => array('BaseballBat', 'IronPipe', 'Club', 'Stiletto', 'WoodNunchaku'),
 			'armor' => 'Clothes',
 			'legs' => 'Trousers',
 			'boots' => array('Sneakers', 'Sandals'),

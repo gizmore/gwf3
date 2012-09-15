@@ -1,9 +1,11 @@
 <?php
-final class Redmond_OrkHQ extends SR_Tower
+final class Redmond_OrkHQ extends SR_Entrance
 {
 	public function getFoundPercentage() { return 5.00; }
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 // 	public function getFoundText(SR_Player $player) { return 'You see a rotten building with lots of garbage in front of it. You hear the noise of Orks grunting.'; }
+	
+	public function getExitLocation() { return 'OrkHQ_Exit'; }
 	
 	public function onEnter(SR_Player $player)
 	{

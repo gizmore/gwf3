@@ -20,5 +20,8 @@ final class Delaware_Blacksmith extends SR_Blacksmith
 	public function getSimulationPrice() { return 175; }
 	public function getUpgradePrice() { return 350; }
 	public function getUpgradePercentPrice() { return 15.50; }
+
+	public function getUpgradeFailModifier() { return 2.6; }
+	public function getUpgradeBreakModifier() { return 1.0; }
 }
 ?>

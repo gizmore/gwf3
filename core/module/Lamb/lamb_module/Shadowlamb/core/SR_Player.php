@@ -951,9 +951,9 @@ class SR_Player extends GDO
 		{
 			$basehp = self::BASE_HP;
 			$this->sr4_data_modified['max_mp'] +=
-				 $this->get('magic') * $this->get('mp_per_magic') /*+ $this->get('mp_per_magic')*/ + # -1?
+				 $this->get('magic') * $this->get('mp_per_magic') +
 				 $this->get('base_mp') + self::BASE_MP + # Race bonus
-				 $this->get('casting') * $this->get('mp_per_casting') /*+ $this->get('mp_per_casting')*/; # -1?
+				 ($this->get('casting')+1) * $this->get('mp_per_casting');
 		}
 		else
 		{
@@ -2479,7 +2479,7 @@ class SR_Player extends GDO
 		if ($karma > 0)
 		{
 			$this->giveKarma($karma);
-			$this->msg('5251', array($this->getBase('karma'), $karma));
+			$this->msg('5251', array($this->getBase('karma'), $karma, Shadowcmd::translate('lvlup')));
 // 			$this->message(sprintf("You now have {$b}%d(+%d) karma{$b}. With karma you can #lvlup.", $this->getBase('karma'), $karma));
 		}
 		
@@ -2744,7 +2744,7 @@ class SR_Player extends GDO
 	
 	public function gotKilledByNPC(SR_Player $killer)
 	{
-		$this->looseItem($killer);
+// 		$this->looseItem($killer);
 		
 		if ($this->isRunner())
 		{

@@ -35,7 +35,7 @@ final class Spell_fireball extends SR_OffensiveSpell
 			
 			$hits = $this->dice($potion_player, $target, $level); # Dice hits
 			
-			echo "!! Fireball hits=$hits, Distance=$d";
+			echo "!! Fireball hits=$hits, Distance=$d\n";
 			
 // 			$hits /= 2; # We take half..
 // 			$hits /= ($d * 5); # And divide by distance

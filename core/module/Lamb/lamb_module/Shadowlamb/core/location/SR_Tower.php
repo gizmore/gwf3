@@ -64,7 +64,6 @@ abstract class SR_Tower extends SR_Location
 		}
 		
 		$party = $player->getParty();
-		$party->giveKnowledge('places', $target);
 
 		# City changed?
 		$oldcity = $party->getCity();
@@ -85,6 +84,7 @@ abstract class SR_Tower extends SR_Location
 // 		}
 		
 		
+		$party->giveKnowledge('places', $target);
 		
 		return true;
 	}

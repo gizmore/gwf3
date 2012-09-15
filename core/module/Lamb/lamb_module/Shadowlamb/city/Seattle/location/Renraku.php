@@ -1,10 +1,13 @@
 <?php
-final class Seattle_Renraku extends SR_Tower
+final class Seattle_Renraku extends SR_Entrance
 {
 	public function getFoundPercentage() { return 40.00; }
 // 	public function getFoundText(SR_Player $player) { return 'You found the Renraku Inc. Headquarters. They have an office in every metropole meanwhile. You see a few guards at the entrance.'; }
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 // 	public function getEnterText(SR_Player $player) {}
+
+	public function getExitLocation() { return 'Renraku_Exit'; }
+	
 	public function onEnter(SR_Player $player)
 	{
 		$p = $player->getParty();

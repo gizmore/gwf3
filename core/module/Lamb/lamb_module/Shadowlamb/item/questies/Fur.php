@@ -6,5 +6,6 @@ final class Item_Fur extends SR_QuestItem
 	public function isItemDropable() { return true; }
 	public function isItemSellable() { return true; }
 	public function isItemTradeable() { return true; }
+	public function getItemPrice() { return 149; }
 }
 ?>

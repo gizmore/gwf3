@@ -38,6 +38,7 @@ class SR_Item extends GDO
 	 * @return SR_Item
 	 */
 	public static function getItem($name) { return isset(self::$items[$name]) ? self::$items[$name] : false; }
+	public static function getItemCI($name) { return GWF_Array::getCaseI(self::$items, $name); }
 	public static function exists($name) { return isset(self::$items[$name]); }
 	public static function getAllItems() { return self::$items; }
 	public static function getTotalItemCount() { return count(self::$items); }

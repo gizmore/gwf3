@@ -1,5 +1,5 @@
 <?php
-abstract class SR_Elevator extends SR_Tower
+abstract class SR_Elevator extends SR_Entrance
 {
 	public function getAbstractClassName() { return __CLASS__; }
 	
@@ -71,6 +71,8 @@ abstract class SR_Elevator extends SR_Tower
 	public function getEnterText(SR_Player $player) {  return $player->lang('stub_enter_elevator', array($this->getName(), $this->getElevatorMaxKG())); }
 	public function getHelpText(SR_Player $player) { return $player->lang('hlp_elevator'); }
 	public function getCommands(SR_Player $player) { return array('up','down','floor'); }
+	public function onEnter(SR_Player $player) { return $this->onEnterSearchRoom($player); }
+	public function getExitLocation() { false; }
 	
 	#############
 	### Flags ###

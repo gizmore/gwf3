@@ -201,7 +201,7 @@ abstract class SR_Bazar extends SR_Location
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price'));
 		
 		return $player->msg('5152', array(
-			$pname, $bi->getVar('sr4ba_iamt'), $item->getItemName(), Shadowfunc::displayNuyen($price), $item->getItemInfo($player)
+			$pname, $bi->getVar('sr4ba_iamt'), $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowcmd::translate('buy'), $item->getItemInfo($player)
 		));
 // 		$out = sprintf("%s sells one of %d items for \X02%s\X02: %s.", $pname, $bi->getVar('sr4ba_iamt'), Shadowfunc::displayNuyen($price), $item->getItemInfo($player));
 // 		return $player->message($out);
@@ -316,7 +316,9 @@ abstract class SR_Bazar extends SR_Location
 				
 				foreach ($items as $item2)
 				{
+					$item2 instanceof SR_Item;
 					$player->removeItem($item2);
+					$item2->delete();
 				}
 				
 				if (false === SR_BazarItem::insertBazarItem($player->getName(), $iname, $price, $amt))
@@ -627,7 +629,7 @@ abstract class SR_Bazar extends SR_Location
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price')) * $amt;
 		if ($price > $player->getNuyen())
 		{
-			$player->message('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
+			$player->msg('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			$player->message(sprintf('The price for %d %s is %s in this shop, but you only have %s.', $amt, $iname, Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 			return false;
 		}
@@ -745,7 +747,7 @@ abstract class SR_Bazar extends SR_Location
 		}
 		$avail_slots = $this->getBazarSlots($player);
 		$price = $this->calcBuySlotPrice($player);
-		$player->msg('5157', array($used_slots, $avail_slots, Shadowfunc::displayNuyen($price)));
+		$player->msg('5157', array($used_slots, $avail_slots, Shadowfunc::displayNuyen($price), Shadowcmd::translate('buyslot')));
 // 		return $player->message(sprintf('You currently have %d of %d bazar slots in use. Another slot would cost you %s. Type #buyslot yesplease to confirm.', $used_slots, $avail_slots, Shadowfunc::displayNuyen($price)));
 	}
 	

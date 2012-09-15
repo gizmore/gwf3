@@ -297,7 +297,16 @@ final class Shadowfunc
 				$hits++;
 			}
 		}
-// 		echo sprintf('Shadowfunc::dicePool(dices=%s, sides=%s, min=%s) === %s hits', $dices, $n, $min, $hits).PHP_EOL;
+		printf('Shadowfunc::dicePool(dices=%s, sides=%s, min=%s) === %s hits', $dices, $n, $min, $hits).PHP_EOL;
+		return $hits;
+	}
+
+	public static function dicePoolB($dices, $defense)
+	{
+		$defense = Common::clamp($defense, 1);
+		$dicesB = $dices / $defense;
+		$hits = rand(0, $dicesB);
+		printf('Shadowfunc::dicePoolB(dices=%s, defense=%s) === %s hits', $dices, $defense, $hits);
 		return $hits;
 	}
 	
@@ -1002,10 +1011,6 @@ final class Shadowfunc
 	 */
 	public static function randLoot(SR_Player $player, $level, $high_chance=array(), $chance_none=1.85)
 	{
-		$back = array();
-		
-// 		$minlevel = Common::clamp($level-8, 0);
-		
 		$items = SR_Item::getAllItems();
 		$total = 0;
 		$possible = array();
@@ -1018,39 +1023,56 @@ final class Shadowfunc
 				continue;
 			}
 			
+			# Normalize chance
 			$chance = 100;
-//			$chance += round($player->get('luck')/2);
+			
+			# High chance
 			if (in_array($item->getItemName(), $high_chance))
 			{
-				$chance *= 2;
+				$chance *= 3; # 3/1
 			}
-			$chance = round($chance);
+
+			# Lucky :)
+			$chance = self::randLootLuckChance($player, $item, $level, $chance);
 			
+			# Crunch bit
+			$chance /= 10;
+			
+			# dropchance = base chance * funky stuff
 			$dc = round($item->getItemDropChance()*$chance);
+			
+			# printf("You can loot a %s with %d chance.", $item->getItemName(), $dc);
+			
 			$possible[] = array($item->getName(), $dc);
 			$total += $dc;
 		}
 
-// 		$chance_none = 1.85;
-		$chance_none -= ($player->get('luck') / 200);
+		# Party level betters chance none.
+// 		$chance_none -= ($player->get('luck') / 200);
 		$chance_none -= ($player->getParty()->getPartyLevel() / 200);
 		$chance_none = Common::clamp($chance_none, 1.2);
 		
-		$i = $chance_none;
-		while (true)
-		{
-			if (false === ($drop = self::randLootItem($player, $level, $possible, $total, $total*$i)))
-			{
-				break;
-			}
-			
-			$back[] = $drop;
-			
-			$i *= $i;
-		}
 		
+		# Produce loot. Raise chance_none a lot.
+		$back = array();
+		while (false !== ($loot = self::randLootItem($player, $level, $possible, $total, $total*$chance_none)))
+		{
+			$back[] = $loot;
+			
+			$chance_none *= $chance_none;
+		}
 		return $back;
 	}
+	
+	private static function randLootLuckChance(SR_Player $player, SR_Item $item, $level, $chance)
+	{
+		$level++;
+		$il = $item->getItemLevel() + 1;
+		$luck = $player->get('luck');
+		$luck_bonus_wanted = $il / $level;
+		return $chance + $luck * 8 * Common::pow($chance, $luck_bonus_wanted);  
+	}
+	
 
 	/**
 	 * Get a random item with percentages and with a chance of no item. 
@@ -1308,7 +1330,7 @@ final class Shadowfunc
 			{
 				list($target, $dmg, $is_kill) = $data;
 				$target instanceof SR_Player;
-				$key = true === $is_kill ? 'kills' : 'hits1';
+				$key = true === $is_kill ? 'kills' : 'hits';
 // 				$app = Shadowrun4::lang('kills', array($target->getName(), $dmg));
 				$msg .= $member->lang($key, array($target->getName(), $dmg));
 			}

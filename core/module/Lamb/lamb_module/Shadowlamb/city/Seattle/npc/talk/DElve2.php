@@ -34,10 +34,13 @@ final class Seattle_DElve2 extends SR_TalkingNPC
 					$this->rply('renraku2');
 // 					$this->reply("We know there are a lot of people involved in the {$b}experiments{$b}, and they do everything to keep it secret.");
 					$this->rply('renraku3');
-					$this->reply("Almost none of the victims remember anything. Some of them got serious brain damage, or even died.");
+// 					$this->reply("Almost none of the victims remember anything. Some of them got serious brain damage, or even died.");
 					$quest1->onSolve($player);
 				}
-				$this->rply('renraku4');
+				else
+				{
+					$this->rply('renraku4');
+				}				
 // 				$this->reply("I hope we will soon find out what happened in their {$b}experiments{$b}!");
 				return true;
 		}

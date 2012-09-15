@@ -47,7 +47,10 @@ abstract class SR_Blacksmith extends SR_Store
 	{
 		return Shadowfunc::calcBuyPrice(($item_price*($this->getSplitPercentPrice($player)/100))+$this->getSplitPrice($player), $player);
 	}
-
+	
+	public function getUpgradeFailModifier() { return 3.0; }
+	public function getUpgradeBreakModifier() { return 1.2; }
+	
 	#############
 	### Clean ###
 	#############
@@ -80,6 +83,7 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		$itemname = $item->getItemName();
 		$price = $this->calcCleanPrice($player, $item->getItemPriceStatted());
+		$p = Shadowfunc::displayNuyen($price);
 		
 		if (!$player->hasNuyen($price))
 		{
@@ -104,7 +108,6 @@ abstract class SR_Blacksmith extends SR_Store
 			}
 		}
 
-		$p = Shadowfunc::displayNuyen($price);
 		if (false === ($player->pay($price)))
 		{
 			$bot->rply('1063', array($p, $player->displayNuyen()));
@@ -336,8 +339,8 @@ abstract class SR_Blacksmith extends SR_Store
 		$luck = Common::clamp($luck, 0, 30);
 		$luckmod = 0.35;
 		$luckmod -= $luck * 0.005;
-		$fail = SR_Rune::calcFailChance($mods)*$luckmod*3.0;
-		$break = SR_Rune::calcBreakChance($mods)*$luckmod*1.2;
+		$fail = SR_Rune::calcFailChance($mods) * $luckmod * $this->getUpgradeFailModifier();
+		$break = SR_Rune::calcBreakChance($mods) * $luckmod * $this->getUpgradeBreakModifier();
 		$price_u = $this->calcUpgradePrice($player, $rune->getItemPriceStatted());
 		$dpu = Shadowfunc::displayNuyen($price_u);
 		

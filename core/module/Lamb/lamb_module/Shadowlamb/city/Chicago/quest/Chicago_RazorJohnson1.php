@@ -22,7 +22,7 @@ final class Quest_Chicago_RazorJohnson1 extends SR_Quest
 		if ($have >= $need)
 		{
 			$npc->reply('Excellent. Here is a compensation for your time.');
-			$player->message('Mr. Johnson hands you a letter.');
+			$player->message('Mr. Johnson hands you an envelope.');
 			return $this->onSolve($player);
 		}
 		else

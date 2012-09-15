@@ -20,6 +20,7 @@ final class Forest_Clearing extends SR_Location
 		return Common::clamp($amt, 3, SR_Party::MAX_MEMBERS);
 	}
 	
+	public function getFoundPercentage() { return 60.0; }
 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
 	public function getEnterText(SR_Player $player)
 	{

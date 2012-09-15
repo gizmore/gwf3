@@ -5,6 +5,8 @@ final class Quest_Chicago_BlackSmith3 extends SR_Quest
 	public function getRewardNuyen() { return 10000; }
 	public function getNeededAmount() { return 1; }
 	
+	public function getQuestDescription() { return $this->lang('descr', array(Shadowlang::displayItemNameS(Forest_Clearing::THESWORD))); }
+	
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		if ($this->giveQuesties($player, $npc, Forest_Clearing::THESWORD, 0, 1, true))

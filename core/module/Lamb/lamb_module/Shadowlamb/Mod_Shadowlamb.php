@@ -66,7 +66,7 @@ final class LambModule_Shadowlamb extends Lamb_Module
 		}
 		
 		# Trigger?
-		if (Common::startsWith($message, Shadowrun4::SR_SHORTCUT))
+		if (in_array($message[0], array(',', '#')))
 		{
 			return Shadowrun4::onTrigger($server, $user, $origin, substr($message, 1));
 		}

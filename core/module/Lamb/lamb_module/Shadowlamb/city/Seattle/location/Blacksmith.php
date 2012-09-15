@@ -27,6 +27,9 @@ final class Seattle_Blacksmith extends SR_Blacksmith
 	public function getUpgradePrice() { return 350; }
 	public function getUpgradePercentPrice() { return 15.50; }
 	
+	public function getUpgradeFailModifier() { return 2.8; }
+	public function getUpgradeBreakModifier() { return 1.1; }
+	
 	public function on_reward(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);

@@ -19,10 +19,12 @@ final class Redmond_OrkLeader extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'Knife',
+			'weapon' => array('ShortSword', 'LongSword'),
 			'armor' => 'LeatherVest',
 			'boots' => 'LeatherBoots',
-			'helmet' => 'BikerHelmet',
+			'helmet' => 'LeatherCap',
+			'gloves' => 'SpikeGloves',
+			'belt' => 'LeatherBelt',
 		);
 	}
 	public function getNPCLoot(SR_Player $player)

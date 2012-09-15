@@ -47,9 +47,11 @@ abstract class SR_Location
 	public function getAreaSize() { return 16; }
 	public function isEnterAllowed(SR_Player $player) { return true; }
 	public function isExitAllowed(SR_Player $player) { return true; }
-	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isEnterAllowed($m))) return false; return true; }
-	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) if (!($this->isExitAllowed($m))) return false; return true; }
-	public function getLeaderCommands(SR_Player $player) { $back = array(); if ($this->isExitAllowedParty($player->getParty())) $back = array('hunt','exit','goto','explore'); return $back; }
+	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) { if (!($this->isEnterAllowed($m))) return false; } return true; }
+	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) { if (!($this->isExitAllowed($m))) return false; } return true; }
+	public function getLeaderCommands(SR_Player $player) { return $this->isExitAllowedParty($player->getParty()) ? array('hunt','exit','goto','explore') : array(); }
+// 	public function getOpenHour() { return 0; }
+// 	public function getOpenHours() { return 24; }
 	
 	############
 	### Lang ###

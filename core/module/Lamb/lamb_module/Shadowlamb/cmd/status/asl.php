@@ -28,12 +28,12 @@ class Shadowcmd_asl extends Shadowcmd
 		$b = chr(2);
 		if ($player->getBase('age') > 0)
 		{
-			return self::rply($player, '5012', array(Shadowfunc::displayASL($player)));
+			return self::rply($player, '5012', array(Shadowfunc::displayASL($player), self::translate('asl')));
 // 			return self::reply($player, sprintf("Your asl: %s. Use #asl [<age|bmi|height>] for party sums.", Shadowfunc::displayASL($player)));
 		}
 		else
 		{
-			$player->msg('1011');
+			$player->msg('1011', array(self::translate('aslset')));
 // 			$player->message(sprintf("You did not setup your asl with {$b}#aslset{$b} yet. You need to do this to start moving in the game."));
 			return false;
 		}

@@ -70,6 +70,7 @@ final class Seattle_Store extends SR_Store
 			array('Scanner_v2', 100.0, 349.95),
 			array('Credstick', 100.0, 129.95),
 			array('Backpack', 100.0, 350),
+			array('Shovel', 100.0, 179),
 			array('RacingBike', 100.0, 950),
 		);
 	}

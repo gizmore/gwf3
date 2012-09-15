@@ -18,7 +18,7 @@ final class Quest_Seattle_Florist1 extends SR_Quest
 			{
 				$npc->reply($this->lang('yay1'));
 				$player->message($this->lang('yay2'));
-				$player->giveItems(SR_Item::createByName('WhiteOrchid'), $npc->getName());
+				$player->giveItems(array(SR_Item::createByName('WhiteOrchid')), $npc->getName());
 				if ($this->isInQuest($player))
 				{
 					$this->onSolve($player);

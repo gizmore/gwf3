@@ -689,7 +689,7 @@ abstract class SR_ClanHQ extends SR_Location
 				return false;
 			}
 			
-			if (false === $item->useAmount($player))
+			if (false === $item->useAmount($player, $amt))
 			{
 				$player->message('DB ERROR 1');
 				return false;

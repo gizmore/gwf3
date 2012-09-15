@@ -12,7 +12,7 @@ final class Redmond_Pinkhead extends SR_NPC
 			'armor' => 'Clothes',
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory() { return array('LargeBeer'); }
 	public function getNPCModifiers()
 	{
 		return array(

@@ -29,7 +29,8 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				}
 				elseif ($quest->isInQuest($player))
 				{
-					return $this->rply('more');
+					return true;
+// 					return $this->rply('more');
 // 					$msg = 'Please invite more citizens to our party!';
 				}
 				elseif (!$player->hasTemp(self::TEMP_WORD))

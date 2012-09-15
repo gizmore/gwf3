@@ -316,21 +316,10 @@ final class SR_Party extends GDO
 		
 // 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 
-		# Announce leaving a location.
-// 		if (in_array($action, self::$ACTIONS_LEAVE, true))
-// 		{
-// 			$this->onPartyLeft($action);
-// 		}
-		
 		$old_action = $this->getAction();
+		$old_location = $this->getLocationClass();
 		$oldcity = $this->getCityClass();
 
-// 		# Leave location event
-// 		if ( ($old_action === self::ACTION_INSIDE) )
-// 		{
-// 			$this->getLocationClass()->onLeaveLocation($this);
-// 		}
-		
 		# Save new vars
 		if (false === $this->saveVars(array(
 			'sr4pa_action' => $action,
@@ -345,7 +334,7 @@ final class SR_Party extends GDO
 		}
 		
 		# Event stuff
-		if ($with_events)
+		if ( ($with_events) && ($this->isHuman()) )
 		{
 			# Announce reaching a location.
 			if ( ($action === self::ACTION_INSIDE) || ($action === self::ACTION_OUTSIDE) )
@@ -356,7 +345,7 @@ final class SR_Party extends GDO
 			# Announce leaving a location.
 			if ( ($old_action === self::ACTION_INSIDE) || ($old_action === self::ACTION_OUTSIDE) )
 			{
-				$this->onPartyLeft($old_action);
+				$this->onPartyLeft($old_location, $old_action);
 			}
 			
 			# Fire city left events
@@ -451,10 +440,24 @@ final class SR_Party extends GDO
 	 */
 	public function onPartyArrived($old_action='delete')
 	{
-		if (false !== ($loc = $this->getLocationClass()))
+		if (false !== ($location = $this->getLocationClass()))
 		{
-			$loc->onEnterLocation($this);
-			$this->onPartyArriveLeft($loc, $old_action, $this->getAction());
+			$location->onEnterLocation($this);
+			
+			$action = $this->getAction();
+			
+			if ($action === self::ACTION_INSIDE)
+			{
+				# %2$s walk(s) by and enter(s) the %1$s.
+				$this->onPartyArrivedLeftEvents($location, array('outside'), '5281');
+				# %2$s just entered the %1$s.
+				$this->onPartyArrivedLeftEvents($location, array('inside'), '5280');
+			}
+			elseif ($action === self::ACTION_OUTSIDE)
+			{
+				#% 2$s is now outside of the %1$s.
+				$this->onPartyArrivedLeftEvents($location, array('outside'), '5284');
+			}
 		}
 	}
 	
@@ -462,92 +465,54 @@ final class SR_Party extends GDO
 	 * Announce when a party arrives somewhere.
 	 * @param string $action
 	 */
-	public function onPartyLeft($old_action='delete')
+	public function onPartyLeft($old_location, $old_action='delete')
 	{
-		if (false !== ($loc = $this->getLocationClass()))
+		if ( ($old_location !== false) && (!$this->isSleeping()) )
 		{
-			$loc->onLeaveLocation($this);
-			$this->onPartyArriveLeft($loc, $old_action, $this->getAction());
+			$old_location->onLeaveLocation($this);
+			if ($old_action === self::ACTION_INSIDE)
+			{
+				if ($this->getAction() === self::ACTION_OUTSIDE)
+				{
+					# %2$s left the %1$s.
+					$this->onPartyArrivedLeftEvents($old_location, array('inside', 'outside'), '5300');
+				}
+				else
+				{
+					# %2$s left the %1$s and went away.
+					$this->onPartyArrivedLeftEvents($old_location, array('inside', 'outside'), '5283');
+				}
+			}
+			elseif ($old_action === self::ACTION_OUTSIDE)
+			{
+				# %2$s left the %1$s and went away.
+				$this->onPartyArrivedLeftEvents($old_location, array('outside'), '5283');
+			}
 		}
 	}
 	
-	/**
-	 * Announce when a party has left a location.
-	 */ 
-// 	public function onPartyLeft($new_action)
-// 	{
-// 		if (false !== ($loc = $this->getLocationClass()))
-// 		{
-// 			$loc->onLeaveLocation($this);
-// 			$this->onPartyArriveLeft($loc, $this->getAction(), $new_action, false);
-// 		}
-// 	}
-	
-	/**
-	 * Announce when a party leaves/enters a location.
-	 * @param string $text_snippet
-	 */
-	private function onPartyArriveLeft(SR_Location $loc, $old_action, $new_action)
+	private function onPartyArrivedLeftEvents(SR_Location $location, array $actions, $key)
 	{
-		if (!$this->isHuman())
-		{
-			return;
-		}
-		
-		$arrive = !in_array($old_action, array(self::ACTION_INSIDE, self::ACTION_SLEEP));
-
+		$loc = $location->getName();
 		$args =  array('___LOCNAME', $this->displayMembers(false, true));
 		
-		# Check all parties
 		foreach (Shadowrun4::getParties() as $p)
 		{
 			$p instanceof SR_Party;
-			$pa = $p->getAction();
-			if (
-				($p->getID() === $this->getID()) || # Own
-				(!$p->isAtLocation()) || # other not at location
-				($this->getTarget() !== $p->getTarget()) || # not same location
-				(($pa === self::ACTION_INSIDE) && ($new_action === self::ACTION_OUTSIDE) && ($arrive)) # The checked party does not see our outside activity.
-			)
+			
+			if ( ($p->getID() === $this->getID()) || (!in_array($p->getAction(), $actions, true)) || ($p->getLocation() !== $loc) )
 			{
 				continue;
 			}
 			
-			printf("Arrive=%d, old=%s, new=%s\n", $arrive, $old_action, $new_action);
-			
-			# Different event keys allow easy managing of #look list.
-			if (!$arrive)
-			{
-				if ($new_action === self::ACTION_OUTSIDE)
-				{
-					$key = '5284'; # %2$s is now outside of %1$s.
-				}
-				else
-				{
-					$key = '5283'; # %2$s left the %1$s and went away.
-				}
-			}
-			elseif ($new_action === self::ACTION_OUTSIDE)
-			{
-				$key = '5282'; # %2$s just arrived outside of %1$s.
-			}
-			elseif ($new_action !== $pa)
-			{
-				$key = '5281'; # %2$s walk(s) by and enter(s) the %1$s.
-			}
-			else
-			{
-				$key = '5280'; # %2$s just entered the %1$s.
-			}
-			
-			# Send events
 			foreach ($p->getMembers() as $member)
 			{
 				$member instanceof SR_Player;
-				$args[0] = $loc->displayName($member);
+				$args[0] = $location->displayName($member);
 				$member->msg($key, $args);
 			}
 		}
+		
 	}
 	
 	public function popAction($announce=false)
@@ -668,6 +633,18 @@ final class SR_Party extends GDO
 			$this->updateMembers();
 			$this->recomputeEnums();
 		}
+	}
+	
+	public function mergeParty(SR_Party $p)
+	{
+		foreach ($p->getMembers() as $player)
+		{
+			$p->kickUser($player, true);
+			$this->addUser($player, false);
+			$player->saveVar('sr4pl_partyid', $this->getID());
+		}
+		$this->updateMembers();
+		$this->recomputeEnums();
 	}
 	
 	public function kickUser(SR_Player $player, $update=true)
@@ -1280,7 +1257,6 @@ final class SR_Party extends GDO
 			$member instanceof SR_Player;
 			$t = $base === true ? $member->getBase($field) : $member->get($field);
 			$sum += $t;
-//			$sum += $member->get($field);
 		}
 		return $sum;
 	}
@@ -1535,7 +1511,7 @@ final class SR_Party extends GDO
 			$level = $with_levels ? Shadowfunc::displayLevel($player) : '';
 			$rmod = $player->isOptionEnabled(SR_Player::RUNNING_MODE) ? '[RM]' : '';
 			$pbot = $player->isOptionEnabled(SR_Player::PLAYER_BOT) ? '[BOT]' : '';
-			$race = Shadowfunc::translateVariable('_'.$player->getRace());
+			$race = '['.Shadowfunc::translateVariable($player, '_'.$player->getRace()).']';
 			$back .= sprintf(', %s-%s%s%s%s%s%s', $b.($player->getEnum()).$b, $player->getName(), $dist, $level, $pbot, $rmod, $race);
 		}
 		return substr($back, 2);

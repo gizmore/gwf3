@@ -534,15 +534,15 @@ abstract class SR_City
 			$npc instanceof SR_NPC;
 			if ( ($npc->getNPCLevel() <= $level) && ($npc->isNPCFriendly($party)===$friendly) && ($npc->canNPCMeet($party)) )
 			{
-				$multi = $friendly === true ? 100 : 100;
-				$percent = round($npc->getNPCMeetPercent($party) * $multi);
+				$multi = $friendly === true ? 1 : 1;
+				$percent = round($npc->getNPCMeetPercent($party) * $multi * 100);
 				$total += $percent;
 				$possible[] = array($npc->getNPCClassName(), $percent);
 			}
 		}
 		
 		$npcs = array();
-		$x = 200;
+		$x = 200; // 200% chance nothing
 		do 
 		{
 			$contact = false;
@@ -551,10 +551,11 @@ abstract class SR_City
 			{
 				$contact = true;
 				$npcs[] = $npc;
-				$x += 100;
+				$x += 120 - Common::clamp($mc*10, 0, 50);
 			}
 			
-			if (count($npcs) >= ($mc+1)) {
+			if (count($npcs) >= ($this->maxEnemies($party)))
+			{
 				break;
 			}
 		}
@@ -573,6 +574,12 @@ abstract class SR_City
 		}
 		
 		return true;
+	}
+	
+	private function maxEnemies(SR_Party $party)
+	{
+		$mc = $party->getMemberCount();
+		return Common::clamp(round($party->getSum('level', true)/14)+1, $mc, 9);
 	}
 }
 ?>

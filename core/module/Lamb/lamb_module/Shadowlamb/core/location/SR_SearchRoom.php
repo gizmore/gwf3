@@ -153,6 +153,11 @@ abstract class SR_SearchRoom extends SR_Tower
 	
 	public function onEnter(SR_Player $player)
 	{
+		return $this->onEnterSearchRoom($player);
+	}
+	
+	public function onEnterSearchRoom(SR_Player $player)
+	{
 		if ($this->isLocked())
 		{
 			if (!$this->onEnterLocked($player))

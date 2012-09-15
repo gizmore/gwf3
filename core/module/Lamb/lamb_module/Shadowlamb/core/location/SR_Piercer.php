@@ -135,7 +135,7 @@ abstract class SR_Piercer extends SR_Location
 		
 		if ( (!isset($args[0])) || ($args[0] !== self::CONFIRM_UNPIERCE) )
 		{
-			return $bot->rply('5288', array($dprice, $piercing->displayFullName($player), self::CONFIRM_UNPIERCE));
+			return $bot->rply('5288', array($dprice, $piercing->displayFullName($player), Shadowcmd::translate('unpierce'), self::CONFIRM_UNPIERCE));
 		}
 		
 		

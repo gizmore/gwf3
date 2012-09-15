@@ -167,6 +167,8 @@ abstract class SR_NPCBase extends SR_Player
 		### Apply needed missing vars
 		$data['sr4pl_level'] = $this->getNPCLevel();
 		$data['sr4pl_quests_done'] = 0;
+
+		$data['sr4pl_race'] = $race;
 		
 		return $data;
 	}

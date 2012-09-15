@@ -21,8 +21,8 @@ final class Item_Stimpatch extends SR_HealItem
 		}
 		
 		$bio = Common::clamp($player->get('biotech'), 0);
-		$mingain = 40 + $bio*8;
-		$maxgain = 140 + $bio*14;
+		$mingain = 60 + $bio*8;
+		$maxgain = 180 + $bio*14;
 		$gain = round(rand($mingain, $maxgain) / 10, 2);
 		$gained = $target->healHP($gain);
 		

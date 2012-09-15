@@ -35,10 +35,13 @@ final class Shadowhelp
 		$sell_rate = $player === NULL ? 10 : Shadowfunc::calcSellPrice(100/10, $player);
 		$buy_rate = $player === NULL ? 100 : Shadowfunc::calcBuyPrice(100, $player);
 		
-		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
-		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
+		# XP karma
 		$xp = $player === NULL ? 0 : round($player->getBase('xp'), 2);
+		$xppk = $player === NULL ? SR_Player::XP_PER_KARMA : $player->getXPPerKarma();
+		# XP level
 		$xpl = $player === NULL ? 0 : round($player->getBase('xp_level'), 2);
+		$xppl = $player === NULL ? SR_Player::XP_PER_LEVEL : $player->getXPPerLevel();
+		# XP total
 		$xpt = $player === NULL ? 0 : round($player->getBase('xp_total'), 2);
 		
 		$ele = $player === NULL ? 0 : $player->get('elephants');
@@ -259,7 +262,7 @@ final class Shadowhelp
 						'gm' => 'GM command. Usage: #gm <username> <field> [<value>].',
 						'gmc' => 'GM command. Usage: #gmc. Cleanup the database. Handle with care!',
 						'gmd' => 'GM command. Usage: #gmd <player> <remote command to execute>.',
-						'gmi' => 'GM command. Usage: #gmi <username> <itemname>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
+						'gmi' => 'GM command. Usage: #gmi <username> <item_name>. Example: gmi gizmore LeatherVest_of_strength:1,quickness:4,marm:4,foo:4',
 						#'gmk' => 'GM command. Usage: #gmk <username> <field> <knowledge>',
 						'gml' => "GM command. Usage: #gml <username> <city_location> [inside|outside]. Teleport a party to a location. By default parties end up outside of the location.",
 						'gmm' => "GM command. Usage: #gmm <the message>. Send a hyperglobal message to all Shadowlamb channels.",
@@ -280,7 +283,7 @@ final class Shadowhelp
 						'asl' => NULL,
 						'aslset' => "Player command. Usage: #aslset RANDOM || #aslset <age>y <bmi>kg <hgt>cm. Example: #aslset 20y 140cm 80kg.",
 						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment.',
-						'sets' => 'Player command: Usage: #sets [<setpage|itemname|setname>]. Show all sets or list items and boni for an itemset.',
+						'sets' => 'Player command: Usage: #sets [<setpage|item_name|setname>]. Show all sets or list items and boni for an itemset.',
 						array(
 							'amulet' => 'You can #equip amulets and wear them as #equipment.',
 							'armor' => 'You can #equip armory and wear them as #equipment.',
@@ -302,24 +305,25 @@ final class Shadowhelp
 						'party' => 'Player command. Usage. #(p)arty. View your party status.',
 						'inventory' => 'Player command. Usage: #(i)nventory [<page|search>] <[page]>. View or search your inventory. See',
 						array(
-							'compare' => 'Player command. Usage: #(c)o(mp)are <item1: inv_id|S_<store_id>|item_name> [<item2:inv_id|S_<store_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
+							'compare' => 'Player command. Usage: #(c)o(mp)are <item_name|inv_id|S_<view_id>|item_name> [<item2:inv_id|S_<view_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
 							'swap' => 'Player command. Usage: #(sw)ap <item1> <item2>. Will swap inventory item position',
 							'sort' => 'Use the swap command to sort your inventory.',
 						),
 						'cyberware' => 'Player command. Usage: #(cy)berware [<cy_id>]. View your cyberware.',
 						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
-						'examine' => 'Player command. Usage: #(ex)amine <inv_id|'.$eqs.'|itemname>. Examine your items.',
-						'show' => 'Player command. Usage: #show [<player>] <inv_id|'.$eqs.'|itemname>. Show another player the examine string of your items, or behave like #examine.',
+						'examine' => 'Player command. Usage: #(ex)amine <inv_id|'.$eqs.'|item_name>. Examine your items.',
+						'show' => 'Player command. Usage: #show [<player>] <inv_id|'.$eqs.'|item_name>. Show another player the examine string of your items, or behave like #examine.',
 						'known_knowledge' => "Player command. Usage: #known_knowledge|#kk. List your known knowledge. Knowledge can help you on some quests but it is not required.",
 						'known_places' => "Player command. Usage: #known_places|#kp <[city]>. List your known places in your current or specified city. You can go to them with #(g)oto. Use #(exp)lore to find new places.",
 						'swapkp' => 'Player command. Usage: #swapkp <kp1> <kp2>. Swap the position of two known places in the current city.',
 						'known_words' => "Player command. Usage: #known_words|#kw. List some useful words you have learned, which you can enumerate with #talk and #say.",
 						'known_spells' => 'Player command. Usage: #known_spells|#ks <[ks_id|spell_name]>. List your known magic spells or examine a spell.',
-						'quests' => 'Player command. Usage: #(qu)ests [<open|done|deny|fail|abort|missing|stats|cstats|searchterm|id>] [<page|city>]. Shows info about your quests. To get quests you need to talk to the npc. Most often, the trigger is #talk shadowrun and #talk yes to get them.',
+						'quests' => 'Player command. Usage: #(qu)ests [<open|done|deny|fail|abort|missing|stats|cstats|searchterm|qu_id>] [<page|city>]. Shows info about your quests. To get quests you need to talk to the npc. Most often, the trigger is #talk shadowrun and #talk yes to get them.',
 						'nuyen' => "Player command. Usage: #(n)u(y)en/#ny. Show the parties nuyen. Nuyen is the currency(money) in Shadowlamb. It means \"New Yen\". The nuyen is considered strong as there are only {$all_ny} in the whole world.",
 						'karma' => 'Player command. Usage: #(ka)rma. Show the parties karma. With karma you can #lvlup your skills, attributes and spells.',
 						'hp' => NULL,
 						'mp' => NULL,
+						'xp' => "Player command: Usage: #xp. Show party XP stats. In total you have collected {$xpt} XP",
 						'weight' => "Player command. Usage: #(we)ight. Show how much stuff the party is carrying. You can increase your max_weight with strength. If you carry more than your max weight, you get a malus on attack and defense.",
 						'lvlup' => "Player command. Usage: #lvlup [<skill|attribute|spell|knowledge>]. Increase your level for an attribute,skill,spell or knowledge by using karma. With no arguments show the list of things you can level up, the level they will go to, and how much karma is needed. Bolded karma values are ones you can 'afford'. ",
 						'level' => NULL,
@@ -355,19 +359,19 @@ final class Shadowhelp
 						'brew' => 'Player command. Usage: #(br)ew <spell> [<level>]. Try to brew a magic potion. Needs a WaterBottle and Mandrake(s).',
 						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>][:level] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
 						'drop' => 'Player command. Usage: #(dr)op <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
-						'equip' => 'Player command. Usage: #(eq)uip <itemname|inv_id>. Equip yourself with an item. Will cost time in combat.',
+						'equip' => 'Player command. Usage: #(eq)uip <item_name|inv_id>. Equip yourself with an item. Will cost time in combat.',
 						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
 						'hijack' => "Leader command. Usage: #hijack [<target>]. Try to break into a player mount and steal an item. This will always add {$hjbk} bad karma to your character for trying such bad things.",
 						'give' => 'Player command. Usage: #give <player_name> <inv_id|item> [<amount>]. Give a player in the same location some items. In combat this costs time. See also #givekp, #givekw and #giveny.',
-						'givekp' => 'Player command. Usage: #givekp [<player_name>] <#(kp)_id|place>. Tell a player in your location about a known place. See #give, #givekw and #giveny. If no player is specified, it will tell all your party members about it.',
+						'givekp' => 'Player command. Usage: #givekp [<player_name>] <#(kp)_id|location>. Tell a player in your location about a known place. See #give, #givekw and #giveny. If no player is specified, it will tell all your party members about it.',
 						'givekw' => 'Player command. Usage: #givekw [<player_name>] <#(kw)_id|word>. Tell a player in your location about a known word. See #give, #givekp and #giveny. If no player is specified, it will tell all your party members about it.',
 						'giveny' => 'Player command. Usage: #giveny <player_name> <nuyen>. Give a player in your location some nuyen. See #give, #givekp and #givekw.',
 					),
 					
 					'option_cmds' => 'Commands that change your player and client options',
 					array(
-						'redmond' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
+						'redmond_reset' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
 						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot|norl>. Toggle player and interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
@@ -377,7 +381,7 @@ final class Shadowhelp
 					'move_cmds' => 'Commands that change the party location or action',
 					array(
 						'explore' => 'Leader command. Usage: #(exp)lore. Start to explore the current city. When the explore time is over, you find a new #kp. When you have found a new known_place, you are outside of it. Use #(en)ter to enter it.',
-						'goto' => "Leader command. Usage: #(g)oto <kp_id|place>. Goto another place in your current city.",
+						'goto' => "Leader command. Usage: #(g)oto <kp_id|location>. Goto another place in your current city.",
 						'hunt' => "Leader command. Usage: #hunt <player>. Hunt another human party. When your ETA is over, you will be in the same location, or meet the party on streets.",
 						'enter' => 'Leader command. Usage: #(en)ter. Enter a location. Check your current location with #kp. Find new locations with #(exp)lore.',
 						'exit' => 'Leader command. Usage: #exit. Exit a location and return outside of it in the same city. To leave a dungeon, use #leave in the dungeons exit.',
@@ -438,8 +442,8 @@ final class Shadowhelp
 							'bazar_buy' => 'Bazar command. Usage #buy <player> <item> [<amt>]. Buy an item from the bazar.',
 							'bazar_buyslot' => 'Bazar command. Usage: #buyslot [<CONFIRM>]. Buy another slot in your bazar to sell items. ',
 							'bazar_price' => 'Bazar command. Usage: #price <item> <price>. Set a new price for one of your items offered in your bazar.',
-							'bazar_search' => 'Bazar command. Usage: #search <itemname>. Search the bazar for items in their full-name.',
-							'bazar_bestbuy' => 'Bazar command. Usage: #bestbuy <itemname> <price> [<amt>]. Try to purchase an item for a given price or less.',
+							'bazar_search' => 'Bazar command. Usage: #search <item_name>. Search the bazar for items in their full-name.',
+							'bazar_bestbuy' => 'Bazar command. Usage: #bestbuy <item_name> <price> [<amt>]. Try to purchase an item for a given price or less.',
 						),
 
 						'smith_cmds' => 'Blacksmith commands',
@@ -487,7 +491,7 @@ final class Shadowhelp
 							'search' => 'Location command. Usage: #search. In some dungeon rooms you can use #search to search for hidden items.',
 						),
 							
-						'clanhq_cmds' => 'ClanHQ commands',
+						'clan_cmds' => 'ClanHQ commands',
 						array(
 							'clan_create' => 'Player command: Usage: #create <name>. Create your clan.',
 							'clan_manage' => 'ClanLeader command. Usage: #manage <buywealth|buystorage|buymembers|slogan>. Manage your clan size and motto.',
@@ -499,7 +503,7 @@ final class Shadowhelp
 							'clan_popy' => 'Player command. Usage: #popy <amt>. Withdraw money out of your clan\'s bank.',
 							'clan_push' => 'Player command. Usage: #push <item> <amt>. Deposit items into your clan\'s storage.',
 							'clan_pop' => 'Player command. Usage: #pop <item> <amt>. Withdraw items out of your clan\'s storage.',
-							'clan_view' => 'Player command. Usage: #view <page|itemname|searchterm>. Browse and view items in the clan bank.',
+							'clan_view' => 'Player command. Usage: #view <page|item_name|searchterm>. Browse and view items in the clan bank.',
 						),
 					),
 				),
@@ -507,16 +511,6 @@ final class Shadowhelp
 				'various' => 'I know about',
 				array(
 				
-					'annoying' => 'Annoying stuff',
-					array(
-						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
-						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey. If you use scripts, please #enable bot.',
-						'clones' => 'You are allowed to have multiple characters, aka. Clones. For clones, the same rules as for bots apply.',
-						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
-					),
-					
-					'location' => "Each (p)arty has a location. There are multiple cities and dungeons with lots of locations. You can #(g)oto your #known_places and #(exp)lore your current city to find more. Check your #kp to see all your known places in the current city.",
-						
 					'action' => 'Each #(p)arty has an action',
 					array(
 						'action_delete' => 'This means the party is going to be deleted from database.',
@@ -530,18 +524,58 @@ final class Shadowhelp
 						'action_goto' => 'This means the party is going to a location in the current city.',
 						'action_hunt' => 'This means the party is hunting another human player.',
 					),
-				
-					'xp' => "Collect {$xp}/{$xppk} XP and gain 1 Karma. With Karma you can #(l)vlup. Collect {$xpl}/{$xppl} XP and gain one level. In total you have collected {$xpt} XP.",
-					'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
-					'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
-					'enum' => "To choose targets with items and spells, you can use enumeration. Like #use item 1,2,3, #attack 1,2,3 #spell foo 1,2,3.",
-					'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
-					'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
-					'pvp' => 'PVP, or Player Vs Player, means attacking other humans. Most locations are non pvp, and you cannot #fight there. Dungeons usually have pvp enabled. Please note that outside of locations, pvp generally works.',
 					
-					'slang' => 'Terms',
+					'location' => "Each (p)arty has a location. There are multiple cities and dungeons with lots of locations. You can #(g)oto your #known_places and #(exp)lore your current city to find more. Check your #kp to see all your known places in the current city. Cities",
+					self::getLocationTree(),
+
+					'annoying' => 'Annoying stuff',
 					array(
-						'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
+						'annoy_kvirc' => "Add a new event handler for 'OnQueryMessage'. Code: if(\$0 == \"BotNick\"){ echo \$3-; halt; }",
+						'bots' => 'You are allowed to write bots. Maybe you even like to contribute code or ideas to the AI. Although if you abuse your powers in-game, or your bot disturbs other players, you might get bad_karma, which will annoy you during your journey. If you use scripts, please #enable bot.',
+						'clones' => 'You are allowed to have multiple characters, aka. Clones. For clones, the same rules as for bots apply.',
+						'cheating' => 'If you get caught all your characters will be deleted. Do not whine! You have been warned!',
+					),
+				
+					'features' => 'Features',
+					array(
+						'crafting' => 'Crafting System: ',
+						array(
+							'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
+							'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
+						),
+							
+						'pvp' => 'PVP, or Player Vs Player, means attacking other humans. Most locations are non pvp, and you cannot #fight there. Dungeons usually have pvp enabled. Please note that outside of locations, pvp generally works.',
+						array(
+							'kill_protection' => '',
+						),
+							
+// 						'items' => SR_Item::getTotalItemCount().' items: ',
+// 						self::getItemTree($player),
+					),
+						
+					'selection' => 'Selection: ',
+					array(
+						'enum' => 'To select items, words, places and spells, you can use the id from their respective status_commands; #inventory, #known_words, #known_places, #known_spells.',
+						'id' => 'ID´s:',
+						array(
+							'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
+							'view_id' => 'view_id specifies an item from a shop by enumeration. This type of enum / ID works for buy and similar commands. With #compare you can use S_1 to reference the first shop item.',
+							'spell_id' => 'Refer to your spell by using the id from #known_spells. Use #(k)nown_(s)pells to list your spells, use #(ca)st to cast a spell.',
+							'kp_id' => 'A kp_id means the enum of one of your #(k)nown_(p)laces. You can find new known_places with #explore.',
+							'kw_id' => 'The game stores common #talk triggers inside your #(k)nown_(w)ords. you can use their enumeration when using #talk.',
+							'target_id' => 'Also with #cast, #attack and #use you can specify a target by enum. For friendly actions this is the ID from the #party command, for offensive actions this is the enemy_party member_id.',
+							'player_id' => '',
+							'server_id' => '',
+							'npc_id' => '',
+						),
+						'shortcuts' => 'Most often you can use IDs and shortcut names to reference things. If you use shortcuts in names please use at least 3 characters.',
+						'item_name' => 'Specify an item by name. You can use abbreviations, like lglo for TinfoilGloves, but an abbreviation has to be at least 3 characters in length.',
+					),
+					
+					'events' => 'Events: ',
+					array(
+						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join or #give or any other command you can imagine.',
+						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to lock a random target.',
 					),
 					
 					'teachers' => 'The teachers',
@@ -574,8 +608,8 @@ final class Shadowhelp
 					
 					'glossary' => 'Some glossary of terms and keywords used.',
 					array(
-						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join or #give or any other command you can imagine.',
-						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to lock a random target.',
+						'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
+						'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
 					),
 				),
 			),
@@ -646,7 +680,7 @@ final class Shadowhelp
 				self::getHelpRec($topic, $item1, $results);
 			}
 			
-			elseif ( ($key1 === $topic) && ($item1 !== NULL) )
+			elseif ( (strtolower($key1) === $topic) && ($item1 !== NULL) )
 			{
 				$item2 = '';
 				if ($i <($len-1))
@@ -693,7 +727,7 @@ final class Shadowhelp
 			return $quest->getQuestDescription();
 		}
 		
-		if (false !== ($item = SR_Item::getItem($topic)))
+		if (false !== ($item = SR_Item::getItemCI($topic)))
 		{
 			return $item->getItemInfo($player);
 		}
@@ -780,6 +814,52 @@ final class Shadowhelp
 		}
 		
 		return sprintf(' Stats: %s.', substr($back, 2));
+	}
+	
+	private static function getLocationTree()
+	{
+		$back = array();
+		foreach (Shadowrun4::$CITIES as $cityname)
+		{
+			$city = Shadowrun4::getCity($cityname);
+			$back[$cityname] = sprintf('%s: %s', $cityname, $city->getArriveText(Shadowrun4::getCurrentPlayer()));
+			$back[] = self::getLocationTreeB($cityname);
+		}
+		return $back;
+	}
+	
+	private static function getLocationTreeB($cityname)
+	{
+		if (false === $city = Shadowrun4::getCity($cityname))
+		{
+			echo 'Unknown City in get location tree: '.$cityname.PHP_EOL;
+			return array();
+		}
+		
+		$player = Shadowrun4::getCurrentPlayer();
+		
+		$back = array();
+		
+		foreach ($city->getLocations() as $location)
+		{
+			$location instanceof SR_Location;
+			if ($location->getFoundPercentage() <= 0)
+			{
+				continue;
+			}
+			$loc_name = $location->getName();
+ 			if ( ($location instanceof SR_Entrance) && ($location->getExitLocation() !== false) ) 
+ 			{
+ 				$exit_loc = $location->getExitCity();
+ 				$back[$exit_loc] = sprintf('%s: %s', $loc_name, $location->getFoundText($player));
+ 				$back[] = self::getLocationTreeB($exit_loc);
+ 			}
+ 			else
+ 			{
+ 				$back[$loc_name] = sprintf('%s: %s', $loc_name, $location->getFoundText($player));
+ 			}
+		}
+		return $back;
 	}
 }
 ?>

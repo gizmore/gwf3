@@ -20,7 +20,7 @@ final class Redmond_Lamer extends SR_NPC
 		return array(
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory() { return array('SmallBeer'); }
 	public function getNPCModifiers()
 	{
 		return array(

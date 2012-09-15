@@ -74,9 +74,11 @@ class SR_Rune extends SR_Item
 	
 	public static function randModifier(SR_Player $player, $level)
 	{
+		$luck = $player->get('luck');
+		
 		$total = 0;
 		$possible = array();
-		$level = (int) $level;
+		$level = intval($level + $luck * 2);
 		foreach (self::getRuneData() as $data)
 		{
 			$minlvl = $data[self::RUNE_MIN_LEVEL];

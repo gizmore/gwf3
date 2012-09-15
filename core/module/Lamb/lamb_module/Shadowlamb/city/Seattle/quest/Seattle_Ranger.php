@@ -2,7 +2,7 @@
 final class Quest_Seattle_Ranger extends SR_Quest
 {
 	public function getRewardXP() { return 40; }
-	public function getRewardItems() { return 'SuperBow_of_attack:10'; }
+	public function getRewardItems() { return array('SuperBow_of_attack:10'); }
 	
 	public function getNeededAmount() { return 1; }
 	

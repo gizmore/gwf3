@@ -22,6 +22,9 @@ final class Chicago_Blacksmith extends SR_Blacksmith
 	public function getUpgradePrice() { return 350; }
 	public function getUpgradePercentPrice() { return 15.50; }
 
+	public function getUpgradeFailModifier() { return 2.4; }
+	public function getUpgradeBreakModifier() { return 0.9; }
+	
 	public function getBreakPrice(SR_Player $player)
 	{
 		return $player->hasSolvedQuest('Chicago_BlackSmith1') ? 0 : parent::getBreakPrice($player);
