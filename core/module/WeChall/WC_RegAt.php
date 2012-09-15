@@ -147,6 +147,7 @@ final class WC_RegAt extends GDO
 		$maxscore = $site->getVar('site_maxscore');
 		$sitescore = $site->getVar('site_score');
 		
+		$regats->update("regat_onsitescore={$maxscore}", "regat_onsitescore>{$maxscore} and regat_sid={$siteid}");
 		
 		if (defined('WECHALL_CAESUM_PATCH'))
 		{
