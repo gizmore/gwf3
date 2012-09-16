@@ -833,6 +833,8 @@ $lang = array(
 '5306' => '%s`s cyberware: %s.', # cyberware
 '5307' => '%s`s spells: %s.', # spells
 '5308' => 'Your party´s xp: %s', # fmt_xp
+'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s',
+'5310' => 'The %s is open from %s:%s to %s:%s.',
 
 ####################
 ### Shadowclient ###

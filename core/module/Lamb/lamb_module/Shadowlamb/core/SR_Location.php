@@ -50,8 +50,36 @@ abstract class SR_Location
 	public function isEnterAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) { if (!($this->isEnterAllowed($m))) return false; } return true; }
 	public function isExitAllowedParty(SR_Party $party) { foreach ($party->getMembers() as $m) { if (!($this->isExitAllowed($m))) return false; } return true; }
 	public function getLeaderCommands(SR_Player $player) { return $this->isExitAllowedParty($player->getParty()) ? array('hunt','exit','goto','explore') : array(); }
-// 	public function getOpenHour() { return 0; }
-// 	public function getOpenHours() { return 24; }
+	public function getOpenHour() { return 0; }
+	public function getOpenMin() { return 0; } 
+	public function getOpenHours() { return 24; }
+	public function getOpenMins() { return 0; }
+	public function checkOpenTimes(SR_Player $player)
+	{
+		$realtime = Shadowrun4::getRealTime();
+		$hours = explode(':', date('h:i:s', $realtime));
+		$h = $hours[0]; $i = $hours[1]; $s = $hours[2];
+		
+		$hs = $this->getOpenHour();
+		$he = $hs + $this->getOpenHours();
+		$ms = $this->getOpenMin();
+		$me = $ms + $this->getOpenMins();
+		
+		$start = $hs * 60 + $ms;
+		$end = $he * 60 + $me + $start;
+		$now = $h * 60 + $i;
+		
+		if ( ($now >= $start) && ($now <= $end) )
+		{
+			return true;
+		}
+		
+		$hs = sprintf('%02d', $hs); $he = sprintf('%02d', $he);
+		$ms = sprintf('%02d', $ms); $me = sprintf('%02d', $me);
+		
+		$player->msg('1190', array($this->getName(), $h, $i, $hs, $ms, $he, $me));
+		return false;
+	}
 	
 	############
 	### Lang ###
@@ -112,6 +140,11 @@ abstract class SR_Location
 	 */
 	public function onEnter(SR_Player $player)
 	{
+		if (!$this->checkOpenTimes($player))
+		{
+			return false;
+		}
+		
 		$party = $player->getParty();
 		
 		# Messages

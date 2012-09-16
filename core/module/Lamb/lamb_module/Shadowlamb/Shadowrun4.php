@@ -618,6 +618,8 @@ final class Shadowrun4
 	#############
 	private static $sr_timestamp = 0;
 	public static function getTime() { return self::$sr_timestamp; }
+	public static function getRealTime() { return self::$sr_timestamp * 6; }
+
 	public static function shadowTimer()
 	{
 		# 1 second over in the Shadowlamb world.
