@@ -60,7 +60,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 					$k = 'K';
 					$bold = '';
 					$could = 0;
-					if($base == $max)
+					if($base >= $max)
 					{
 						$n = '*';
 						$k = '';
