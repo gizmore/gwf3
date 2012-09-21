@@ -32,6 +32,12 @@ final class Delaware_Ares extends SR_Store
 			array('KevlarShield', 90.0, 35000),
 			array('LightBodyArmor', 10.0, 75000),
 			array('CombatHelmet', 10.0, 25000),
+			array('AramitBoots', 50.0, 30000),
+			array('AramitGloves', 50.0, 30000),
+			array('AramitHelmet', 50.0, 45000),
+			array('AramitLegs', 50.0, 55000),
+			array('AramitShield', 40.0, 85000),
+			array('AramitVest', 40.0, 125000),
 		);
 	}
 }

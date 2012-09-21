@@ -460,6 +460,8 @@ $lang = array(
 '1186' => 'Per distillare %s ti serve altro %s.',
 '1187' => 'Ti serve del %s per poter migliorare in sicurezza degli oggetti.',
 '1188' => 'Puoi ripulire solo oggetti che sono già stati migliorati.',
+'1189' => 'This itemset is unknown.',
+'1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
 
 ########################
 # 10000-14999 = Spells #
@@ -834,6 +836,8 @@ $lang = array(
 '5306' => '%s`s cyberware: %s.', # cyberware
 '5307' => '%s`s spells: %s.', # spells
 '5308' => 'Your party´s xp: %s', # fmt_xp
+'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
+'5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 
 ####################
 ### Shadowclient ###

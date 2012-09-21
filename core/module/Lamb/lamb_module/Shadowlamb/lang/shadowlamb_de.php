@@ -459,6 +459,8 @@ $lang = array(
 '1186' => 'To get %s brewed you are missing %s.',
 '1187' => 'You need %s to safeupgrade items.',
 '1188' => 'You can only clean statted items.',
+'1189' => 'This itemset is unknown.',
+'1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
 
 ########################
 # 10000-14999 = Spells #
@@ -748,7 +750,7 @@ $lang = array(
 '5221' => 'You are done with cracking your target\'s lock.',
 '5222' => '"Hey, what are you doing!!!" ... You spot a police officer approaching!',
 '5223' => 'You managed to crack the lock on %s\'s %s but it seems empty.',
-'5224' => 'You managed to crack the lock on %s\'s',
+'5224' => 'You managed to crack the lock on %s\'s %s.',
 '5225' => '%s managed to crack your lock on your %s!',
 '5226' => 'In the last second you see military forces approaching and decide to interrupt your activities.',
 '5227' => '%s stole %sx%s out of your %s.',

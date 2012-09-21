@@ -454,6 +454,7 @@ $lang = array(
 '1187' => 'Vous avez besoin de %s pour améliorer de manière sûre.',
 '1188' => 'Vous ne pouvez nettoyer que les objets améliorés.',
 '1189' => 'Ce set d\'objets est inconnu.',
+'1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
 
 ########################
 # 10000-14999 = Spells #
@@ -743,7 +744,7 @@ $lang = array(
 '5221' => 'Vous avez fini de crocheter la serrure de votre cible.',
 '5222' => '"Hey, qu\'est-ce que vous êtes en train de faire !!!"... Vous repérez un officier de police approcher !',
 '5223' => 'Vous avez réussi à crocheter la serrure de %s\'s %s mais il semblerait qu\'elle soit vide.',
-'5224' => 'Vous avez réussi à crocheter la serrure de %s\'s',
+'5224' => 'Vous avez réussi à crocheter la serrure de %s\'s %s.',
 '5225' => '%s a réussi à crocheter la serrure de votre %s !',
 '5226' => 'À la dernière secondes, vous voyez des forces militaires approcher et décidez d\'interrompre vos activités.',
 '5227' => '%s vole %sx%s de votre %s.',
@@ -828,6 +829,8 @@ $lang = array(
 '5306' => 'Cyberimplants de %s : %s.', # cyberware
 '5307' => 'Sorts de %s : %s.', # spells
 '5308' => 'Les XP de votre parti : %s', # fmt_xp
+'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
+'5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 
 ####################
 ### Shadowclient ###

@@ -613,7 +613,7 @@ final class Shadowfunc
 			$could = 0;
 			if ($base >= 0)
 			{
-				if($base == $max)
+				if($base >= $max)
 				{
 					$n = '*';
 					$k = '';

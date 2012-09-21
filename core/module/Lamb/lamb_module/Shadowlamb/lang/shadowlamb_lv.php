@@ -455,6 +455,8 @@ $lang = array(
 '1186' => 'To get %s brewed you are missing %s.',
 '1187' => 'You need %s to safeupgrade items.',
 '1188' => 'You can only clean statted items.',
+'1189' => 'This itemset is unknown.',
+'1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
 
 ########################
 # 10000-14999 = Spells #
@@ -744,7 +746,7 @@ $lang = array(
 '5221' => 'Tu beidz uzlauzt sava mērķa slēdzeni.',
 '5222' => '"Hey, ko tu dari!!!" ... Policists sāk tuvoties tev klāts!',
 '5223' => 'Tev sanāca uzlauzt atslēgu %s\'s %s bet izskatās ka te nekā nav.',
-'5224' => 'Tev sanāca uzlauzt atslēgu %s\'s',
+'5224' => 'Tev sanāca uzlauzt atslēgu %s\'s %s.',
 '5225' => '%s sanāca uzlauzt atslēgu savā %s!',
 '5226' => 'Pēdēja brīdī tu redzi militāristus tuvojamies un nolem pārtraukt savu darbu.',
 '5227' => '%s zodz %sx%s no sava %s.',
@@ -829,6 +831,8 @@ $lang = array(
 '5306' => '%s`s cyberware: %s.', # cyberware
 '5307' => '%s`s spells: %s.', # spells
 '5308' => 'Your party´s xp: %s', # fmt_xp
+'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
+'5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 
 ####################
 ### Shadowclient ###

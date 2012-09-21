@@ -750,7 +750,7 @@ $lang = array(
 '5221' => 'You are done with cracking your target\'s lock.',
 '5222' => '"Hey, what are you doing!!!" ... You spot a police officer approaching!',
 '5223' => 'You managed to crack the lock on %s\'s %s but it seems empty.',
-'5224' => 'You managed to crack the lock on %s\'s',
+'5224' => 'You managed to crack the lock on %s\'s %s.',
 '5225' => '%s managed to crack your lock on your %s!',
 '5226' => 'In the last second you see military forces approaching and decide to interrupt your activities.',
 '5227' => '%s stole %sx%s out of your %s.',
@@ -835,8 +835,8 @@ $lang = array(
 '5306' => '%s`s cyberware: %s.', # cyberware
 '5307' => '%s`s spells: %s.', # spells
 '5308' => 'Your party´s xp: %s', # fmt_xp
-'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s',
-'5310' => 'The %s is open from %s:%s to %s:%s.',
+'5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
+'5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 
 ####################
 ### Shadowclient ###
