@@ -325,7 +325,7 @@ abstract class SR_Mount extends SR_Equipment
 // 		$player->message(sprintf('You managed to crack the lock on %s\'s %s and stole a %s.', $this->getOwner()->getName(), $this->getName(), $item->getItemName()));
 
 		
-		$owner->msg('5227', array($pname, $item->getAmount(), $iname, $oname));
+		$owner->msg('5227', array($player->getName(), $item->getAmount(), $iname, $oname));
 // 		$owner->message(sprintf('%s stole %dx%s out of your %s.', $player->getName(), $item->getItemName(), $this->getName()));
 		
 		return true;
