@@ -59,16 +59,39 @@ abstract class SR_School extends SR_Store
 			return false;
 		}
 		
-		foreach ($this->getFields($player) as $data)
+		if (false !== ($data = $this->getFieldData($player, $args[0])))
 		{
-			if ($args[0] === $data[0])
-			{
-				$price = Shadowfunc::calcBuyPrice($data[1], $player);
-				return $this->onLearn($player, $args[0], $price);
-			}
+			$price = Shadowfunc::calcBuyPrice($data[1], $player);
+			return $this->onLearn($player, $data[0], $price);
 		}
 
 		$this->on_courses($player, array());
+		return false;
+	}
+	
+	private function getFieldData(SR_Player $player, $arg)
+	{
+		$fields = $this->getFields($player);
+		
+		if (Common::isNumeric($arg))
+		{
+			if ( ($arg < 1) || ($arg > count($fields)) )
+			{
+				return false;
+			}
+			
+			$back = array_slice($fields, $arg-1, 1);
+			return $back[0];
+		}
+		
+		foreach ($fields as $data)
+		{
+			if ($arg === $data[0])
+			{
+				return $data;
+			}
+		}
+		
 		return false;
 	}
 	
