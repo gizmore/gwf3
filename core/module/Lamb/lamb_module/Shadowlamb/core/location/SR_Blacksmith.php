@@ -279,7 +279,9 @@ abstract class SR_Blacksmith extends SR_Store
 // 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		if ( (!($item instanceof SR_Equipment)) || (!($item->isItemStattable())) )
+		
+		if ($item instanceof SR_Mount){ /* thx noother */ } # allowed
+		elseif ( (!($item instanceof SR_Equipment)) || (!($item->isItemStattable())) ) # not allowed
 		{
 			$bot->rply('1158');
 // 			$bot->reply('The first item is not an equipment.');
