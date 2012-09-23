@@ -56,7 +56,7 @@ alias GWFco='svn co https://svn.gwf3.gizmore.org/GWF3'
 alias startlamp='/etc/rc.d/httpd start && /etc/rc.d/mysqld start'
 alias phplf='php -lf'
 
-IP=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }'
+IP=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }')
 alias ncl="nc -l $IP"
 
 MAC='50:e5:49:30:b9:94'
@@ -92,3 +92,21 @@ for line in input:
 ' $@
 }
 
+function svnci {
+    echo "=== Changed files ==="
+    svn st "$@"
+    echo "=== Changelog message ==="
+    msg=$(dpkg-parsechangelog | sed '1,/ \./d; s/\s\+//')
+    echo "$msg"
+    echo "=== Ok? (y/N)"
+    read answer
+    if [ "$answer" = y ]; then
+        if svn ci -m "$msg" "$@"; then
+            echo "=== submitted ==="
+        else
+            echo "=== error ==="
+        fi
+    else
+        echo "=== aborted ==="
+    fi
+}
