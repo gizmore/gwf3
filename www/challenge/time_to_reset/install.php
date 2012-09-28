@@ -8,7 +8,7 @@ if (!GWF_User::isAdminS()) {
 }
 $title = GWF_PAGE_TITLE;
 $solution = false;
-$score = 8;
+$score = 5;
 $url = "challenge/time_to_reset/index.php";
 $creators = "Gizmore";
 $tags = 'Exploit,Coding,PHP';

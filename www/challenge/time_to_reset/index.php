@@ -1,6 +1,7 @@
 <?php
 chdir('../../');
 
+# Show source.
 if (isset($_GET['show']))
 {
 	header('Content-Type: text/plain');
@@ -24,11 +25,10 @@ require_once 'challenge/time_to_reset/TTR_Tokens.include';
 $chall->showHeader();
 
 # Generate csrf token
-srand(microtime(true));
-$csrf = GWF_Random::randomKey(32);
+srand(time()+rand(0, 100));
+$csrf = GWF_Random::randomKey(32); 
 $ttr = new TTR_Form();
 $form = $ttr->getForm($chall, $csrf);
-
 
 if (isset($_POST['reset']))
 {
@@ -43,6 +43,11 @@ echo GWF_Website::getDefaultOutput();
 
 echo GWF_Box::box($chall->lang('info', array('index.php?show=source', 'index.php?highlight=christmas')), $chall->lang('title'));
 
+if (Common::getGetString('highlight') === 'christmas')
+{
+	$source = '[PHP title=TimeToReset]'.trim(file_get_contents('challenge/time_to_reset/index.php')).'[/PHP]';
+	echo GWF_Box::box(GWF_BBCode::decode($source));
+}
 
 echo $form->templateY($chall->lang('ft_reset'), GWF_WEB_ROOT.'challenge/time_to_reset/index.php');
 
@@ -64,7 +69,7 @@ function ttr_request(WC_Challenge $chall, GWF_Form $form)
 	# Generate reset token
 	$sid = GWF_Session::getSessSID();
 	$email = $form->getVar('email');
-	$token = GWF_Random::randomKey(16);
+	$token = GWF_Random::randomKey(16); # See source in http://trac.gwf3.gizmore.org/browser/core/inc/util/GWF_Random.php
 	
 	if (!TTR_Tokens::insertToken($sid, $email, $token))
 	{
