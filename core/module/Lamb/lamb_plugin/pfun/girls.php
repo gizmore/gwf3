@@ -1,6 +1,7 @@
 <?php
 $girls = array(
 	'PoisonIvy',
+	'Wyshfire',
 	'Unholy',
 	'bb',
 );

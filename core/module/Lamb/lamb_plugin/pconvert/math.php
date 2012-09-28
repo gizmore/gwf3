@@ -1,5 +1,8 @@
 <?php # Usage: %CMD% <expression>. Evaluate a math expression and print results.
 $bot instanceof Lamb;
+global $__p_math_old_result;
+if (!isset($__p_math_old_result)) { $__p_math_old_result = 0; }
+$message = str_replace(array('_', '$'), $__p_math_old_result, $message);
 
 if ($message === '0^0')
 {
@@ -23,8 +26,10 @@ if (false === ($result = $eval->e($message)))
 $result = sprintf('%.09f', $result);
 if (strpos($result, '.') !== false )
 {
-	$result = rtrim($result, '0');
-	$result = rtrim($result, '.');
+	$result = rtrim($result, '0.');
 }
+
+$__p_math_old_result = $result;
+
 $bot->reply($result);
 ?>

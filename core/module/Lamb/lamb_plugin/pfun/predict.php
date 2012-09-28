@@ -1,4 +1,4 @@
-<?php # Usage: %CMD% <integer>. Predict the next sequentiell integer polled from rand(). When you can predict 20 numbers in a row i send you $100. (gizmore)
+<?php # Usage: %CMD% <integer>. Predict the next sequential integer polled from rand(). When you can predict 20 numbers in a row i send you $100. (gizmore)
 $bot = Lamb::instance();
 
 if ( ($message === '') || (false === Common::isNumeric($message)) )

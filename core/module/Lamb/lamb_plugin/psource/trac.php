@@ -21,6 +21,7 @@ if (!(function_exists('lamb_trac_helper')))
 
 GWF_File::filewalker('core', 'lamb_trac_helper', true, true, $message);
 GWF_File::filewalker('www/js', 'lamb_trac_helper', true, true, $message);
+GWF_File::filewalker('www/challenge', 'lamb_trac_helper', true, true, $message);
 
 $url = 'http://trac.gwf3.gizmore.org/browser/';
 
