@@ -10,7 +10,7 @@ final class WeChall_JoinUs extends GWF_Method
 	
 	public function execute()
 	{
-		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/_wc_join');
+		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/join_us/_wc_join');
 		GWF_Website::setPageTitle($lang->lang('pt_joinus'));
 		GWF_Website::setMetaTags($lang->lang('mt_joinus'));
 		

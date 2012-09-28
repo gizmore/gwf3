@@ -17,7 +17,7 @@ final class WeChall_License extends GWF_Method
 	
 	private function templateLicense()
 	{
-		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/_wc_tos');
+		$lang = new GWF_LangTrans(GWF_CORE_PATH.'module/WeChall/lang/tos/_wc_tos');
 		GWF_Website::setPageTitle($lang->lang('pt_license'));
 		
 		$tVars = array(

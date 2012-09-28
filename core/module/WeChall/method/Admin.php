@@ -43,7 +43,7 @@ final class WeChall_Admin extends GWF_Method
 	{
 		$formHardlink = $this->formHardlink();
 		$tVars = array(
-			'href_ddos' => $this->module->getMethodURL('UpdateAll'),
+			'href_ddos' => $this->module->getMethodURL('SiteDDOS'),
 			'href_convert' => $this->module->getMethodURL('Convert'),
 			'href_update' => $this->module->getMethodURL('Admin', '&remote_update=yes'),
 			'href_chall_cache' => $this->module->getMethodURL('Admin', '&chall_cache=yes'),
