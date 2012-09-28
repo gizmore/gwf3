@@ -68,8 +68,10 @@ final class WC_Challenge extends GDO
 	public function getDate() { return $this->getVar('chall_date'); }
 	public function getScore() { return $this->getVar('chall_score'); }
 	public function getTitle() { return $this->getVar('chall_title'); }
+	public function getName() { return $this->getTitle(); }
 	public function getVotecount() { return $this->getVar('chall_votecount'); }
 	public function isCaseI() { return $this->isOptionEnabled(self::CHALL_CASE_I); }
+	public function setSolution($solution, $case_i=false) { $this->setVar('chall_solution', self::hashSolution($solution, $case_i)); }
 	
 	/**
 	 * Get the usergroup associated with the challenge.

@@ -1,0 +1,24 @@
+<?php
+final class TTR_Form
+{
+	public function validate_email(WC_Challenge $chall, $arg)
+	{
+		return GWF_Validator::validateEMail($chall, 'email', $arg, true, false);
+	}
+	
+	public function validate_csrf(WC_Challenge $chall, $arg)
+	{
+		return false; # disabled
+	}
+	
+	public function getForm(WC_Challenge $chall, $csrf)
+	{
+		$data = array(
+			'email' => array(GWF_Form::STRING, '', $chall->lang('th_email')),
+			'reset' => array(GWF_Form::SUBMIT, $chall->lang('btn_reset')),
+			'csrf' => array(GWF_Form::HIDDEN, $csrf),
+		);
+		return new GWF_Form($this, $data, GWF_Form::METHOD_POST, GWF_Form::CSRF_OFF);
+	}
+}
+?>
