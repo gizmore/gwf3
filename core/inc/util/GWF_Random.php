@@ -30,4 +30,14 @@ final class GWF_Random
 		}
 		return $key;
 	}
+	
+	public static function secureRandomKey($len=self::TOKEN_LEN, $alpha=self::ALPHANUMUPLOW)
+	{
+		$t = microtime();
+		$s = (Common::substrFrom($t, ' ') % 4200) * 1000000;
+		$m = (int)(Common::substrUntil($t, ' ') * 1000000);
+		$seed = $s + $m;
+		srand($seed);
+		return self::randomKey($len, $alpha);
+	}
 }

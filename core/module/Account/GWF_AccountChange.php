@@ -29,10 +29,12 @@ final class GWF_AccountChange extends GDO
 	 */
 	public static function checkToken($userid, $token, $type)
 	{
-		if (false === ($row = self::table(__CLASS__)->getRow($userid, $type))) {
+		if (false === ($row = self::table(__CLASS__)->getRow($userid, $type)))
+		{
 			return false;
 		}
-		if ($token !== $row->getVar('token')) {
+		if ($token !== $row->getVar('token'))
+		{
 			return false;
 		}
 		return $row;
@@ -46,7 +48,7 @@ final class GWF_AccountChange extends GDO
 	 */
 	public static function createToken($userid, $type, $data=false)
 	{
-		$token = GWF_Random::randomKey(self::TOKEN_LENGTH);
+		$token = GWF_Random::secureRandomKey(self::TOKEN_LENGTH);
 		
 		$gdodata = array(
 			'userid' => $userid,
@@ -54,16 +56,15 @@ final class GWF_AccountChange extends GDO
 			'token' => $token,
 			'timestamp' => time(),
 		);
-		if (is_string($data)) {
+		
+		if (is_string($data))
+		{
 			$gdodata['data'] = $data;
 		}
 		
 		$ac = new self($gdodata);
-		if (false === $ac->replace()) {
-			return false;
-		}
 		
-		return $token;
+		return false === $ac->replace() ? false : $token;
 	}
 	
 	/**
