@@ -40,4 +40,19 @@ final class GWF_Random
 		srand($seed);
 		return self::randomKey($len, $alpha);
 	}
+	
+	public static function realSecureRandomKey($len=self::TOKEN_LEN)
+	{
+		if (is_readable('/dev/urandom'))
+		{
+			$f = fopen('/dev/urandom', 'r');
+			$rand = fread($f, $len);
+			fclose($f);
+			return str_replace(array('+', '/'), array('_', '-'), substr(base64_encode($rand), 0, $len));
+		}
+		else
+		{
+			return self::secureRandomKey($len);
+		}
+	}
 }
