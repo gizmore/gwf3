@@ -44,7 +44,7 @@ final class Redmond_Ork extends SR_NPC
 		# OrkRage
 		$quest = SR_Quest::getQuest($player, 'Redmond_OrkRage');
 		$quest instanceof Quest_Redmond_OrkRage;
-		if ($quest->isInQuest($player))
+		if ($quest->isAccepted($player))
 		{
 			$quest->onKilled($player);
 		}
