@@ -30,7 +30,7 @@ if (false === ($botmode = $channel->getModeByName($botname)))
 }
 if (0 === ($botflags = Lamb_Channel::usermodeToBits($botmode)))
 {
-	return $bot->reply('I have no priviledges in this channel.');
+	return $bot->reply('I have no privileges in this channel.');
 }
 
 # Gather user data
@@ -42,7 +42,7 @@ if (false === ($usermode = $channel->getModeByName($username)))
 
 if (0 === ($userflags = $user->getOptions() & Lamb_User::USERMODE_FLAGS))
 {
-	return $bot->reply('You have no priviledges.');
+	return $bot->reply('You have no privileges.');
 }
 
 
