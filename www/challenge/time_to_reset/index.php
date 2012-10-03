@@ -26,7 +26,7 @@ $chall->showHeader();
 
 # Generate csrf token
 srand(time()+rand(0, 100));
-$csrf = GWF_Random::randomKey(32); 
+$csrf = ttr_random(32);
 $ttr = new TTR_Form();
 $form = $ttr->getForm($chall, $csrf);
 
@@ -58,6 +58,20 @@ echo $chall->copyrightFooter();
 # Print end of website
 require_once('challenge/html_foot.php');
 
+#################
+### FUNCTIONS ###
+#################
+
+function ttr_random($len, $alpha='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+{
+	$alphalen = strlen($alpha) - 1;
+	$key = '';
+	for($i = 0; $i < $len; $i++)
+	{
+		$key .= $alpha[rand(0, $alphalen)];
+	}
+	return $key;
+}
 
 function ttr_request(WC_Challenge $chall, GWF_Form $form)
 {
@@ -69,7 +83,7 @@ function ttr_request(WC_Challenge $chall, GWF_Form $form)
 	# Generate reset token
 	$sid = GWF_Session::getSessSID();
 	$email = $form->getVar('email');
-	$token = GWF_Random::randomKey(16); # See source in http://trac.gwf3.gizmore.org/browser/core/inc/util/GWF_Random.php
+	$token = ttr_random(16); # See source in http://trac.gwf3.gizmore.org/browser/core/inc/util/GWF_Random.php
 	
 	if (!TTR_Tokens::insertToken($sid, $email, $token))
 	{

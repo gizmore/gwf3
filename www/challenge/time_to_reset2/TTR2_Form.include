@@ -1,0 +1,18 @@
+<?php
+final class TTR2_Form
+{
+	public function validate_email(WC_Challenge $chall, $arg)
+	{
+		return GWF_Validator::validateEMail($chall, 'email', $arg, true, false);
+	}
+	
+	public function getForm(WC_Challenge $chall)
+	{
+		$data = array(
+			'email' => array(GWF_Form::STRING, '', $chall->lang('th_email')),
+			'reset' => array(GWF_Form::SUBMIT, $chall->lang('btn_reset')),
+		);
+		return new GWF_Form($this, $data, GWF_Form::METHOD_POST, GWF_FORM::CSRF_OFF);
+	}
+}
+?>

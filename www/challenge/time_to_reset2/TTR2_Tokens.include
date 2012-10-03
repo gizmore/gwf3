@@ -1,0 +1,38 @@
+<?php
+final class TTR2_Tokens extends GDO
+{
+	public function getClassName() { return __CLASS__; }
+	public function getTableName() { return GWF_TABLE_PREFIX.'chall_ttr2'; }
+	
+	public function getColumnDefines()
+	{
+		return array(
+			# Every session got it's own email stack
+			'ttr_sessid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
+			'ttr_email' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::PRIMARY_KEY, GDO::NOT_NULL, 63),
+			'ttr_token' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 16),
+		);
+	}
+	
+	public static function insertToken($sid, $email, $token)
+	{
+		return self::table(__CLASS__)->insertAssoc(array(
+			'ttr_sessid' => $sid,
+			'ttr_email' => $email,
+			'ttr_token' => $token,
+		));
+	}
+	
+	public static function getSolution($sid)
+	{
+		$sid = (int)$sid;
+		return self::table(__CLASS__)->selectFirst('ttr_email, ttr_token', "ttr_sessid={$sid} AND ttr_email = 'admin@wechall.net'");
+	}
+	
+	public static function getSolutions($sid)
+	{
+		$sid = (int)$sid;
+		return self::table(__CLASS__)->selectAll('ttr_email, ttr_token', "ttr_sessid={$sid} AND ttr_email != 'admin@wechall.net'");
+	}
+}
+?>
