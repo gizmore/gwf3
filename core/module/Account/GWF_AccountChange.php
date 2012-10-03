@@ -5,7 +5,7 @@
  */
 final class GWF_AccountChange extends GDO
 {
-	const TOKEN_LENGTH = 8;
+	const TOKEN_LENGTH = 24;
 	
 	public function getTableName() { return GWF_TABLE_PREFIX.'accchange'; }
 	public function getClassName() { return __CLASS__; }
@@ -48,7 +48,7 @@ final class GWF_AccountChange extends GDO
 	 */
 	public static function createToken($userid, $type, $data=false)
 	{
-		$token = GWF_Random::realSecureRandomKey(self::TOKEN_LENGTH);
+		$token = GWF_Random::randomKey(self::TOKEN_LENGTH);
 		
 		$gdodata = array(
 			'userid' => $userid,

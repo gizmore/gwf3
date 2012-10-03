@@ -8,7 +8,7 @@ final class Module_Account extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.02; }
+	public function getVersion() { return 1.03; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
 	public function onCronjob() { require_once 'GWF_AccountCronjob.php'; GWF_AccountCronjob::onCronjob($this); }
 	public function getClasses() { return array('GWF_AccountChange', 'GWF_AccountDelete'); }
