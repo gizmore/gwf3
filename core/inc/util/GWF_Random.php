@@ -1,12 +1,14 @@
 <?php
+/**
+ * Random functions.
+ * @author gizmore
+ * @author noother
+ */
 final class GWF_Random
 {
-	public static function arrayItem(array $array)
-	{
-		return $array[array_rand($array, 1)];
-	}
-
 	const TOKEN_LEN = 16;
+	const RAND_MAX = 4294967296;
+	
 	const ALPHAUP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	const ALPHALOW = 'abcdefghijklmnopqrstuvwxyz';
 	const HEXLOWER = 'abcdef0123456789';
@@ -14,6 +16,17 @@ final class GWF_Random
 	const ALPHANUMLOW = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	const ALPHANUMUPLOW = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 	const ALPHANUMUPLOWSPECIAL = '!"\'_.,%&/()=<>;:#+-*~@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	
+	/**
+	 * Get a single random item from an array.
+	 * @param array $array
+	 * @return mixed
+	 */
+	public static function arrayItem(array $array)
+	{
+		return $array[array_rand($array, 1)];
+	}
+
 	/**
 	 * Generate a randomkey from a charset. A bit slow but should be random.
 	 * @param $len int
@@ -26,33 +39,31 @@ final class GWF_Random
 		$key = '';
 		for($i = 0; $i < $len; $i++)
 		{
-			$key .= $alpha[rand(0, $alphalen)];
+			$key .= $alpha[self::rand(0, $alphalen)];
 		}
 		return $key;
 	}
 	
-	public static function secureRandomKey($len=self::TOKEN_LEN, $alpha=self::ALPHANUMUPLOW)
-	{
-		$t = microtime();
-		$s = (Common::substrFrom($t, ' ') % 4200) * 1000000;
-		$m = (int)(Common::substrUntil($t, ' ') * 1000000);
-		$seed = $s + $m;
-		srand($seed);
-		return self::randomKey($len, $alpha);
-	}
 	
-	public static function realSecureRandomKey($len=self::TOKEN_LEN)
+	/**
+	 * Secure and evenly distributed random generator.
+	 * @author noother
+	 * @author gizmore
+	 * @param int $min
+	 * @param int $max
+	 * @return int
+	 */
+	public static function rand($min, $max)
 	{
-		if (is_readable('/dev/urandom'))
+		static $BUFFER;
+		if (empty($BUFFER))
 		{
-			$f = fopen('/dev/urandom', 'r');
-			$rand = fread($f, $len);
-			fclose($f);
-			return str_replace(array('+', '/'), array('_', '-'), substr(base64_encode($rand), 0, $len));
+			$BUFFER = openssl_random_pseudo_bytes(2048);
 		}
-		else
-		{
-			return self::secureRandomKey($len);
-		}
+		$n = unpack('L', substr($BUFFER, 0, 4));
+		$BUFFER = substr($BUFFER, 4);
+		
+		return (int)($min + ($max-$min+1)*($n[1]/(self::RAND_MAX-1)));
 	}
 }
+?>
