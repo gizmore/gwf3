@@ -11,9 +11,9 @@ final class Lamb_Server extends GDO
 {
 	# Connect retry
 	const RETRY_MAX_TRY = 1000; # Try forever... Kinda
-	const RETRY_MIN_WAIT = 5;   # 5 seconds min wait
-	const RETRY_WAIT_INC = 5;   # 5 seconds increase
-	const RETRY_MAX_WAIT = 600; # 10 minutes max wait
+	const RETRY_MIN_WAIT = 30;   # 45 seconds min wait
+	const RETRY_WAIT_INC = 15;   # 30 seconds increase
+	const RETRY_MAX_WAIT = 900; # 15 minutes max wait
 	
 	private $online = false;
 	private $next_retry = 0;
@@ -137,6 +137,11 @@ final class Lamb_Server extends GDO
 	{
 		$this->connection = new Lamb_IRC($this->getVar('serv_host'));
 		$this->next_retry = time();
+	}
+	
+	public function setStartupTimeout($n)
+	{
+		$this->next_retry = time() + $n*(intval(LAMB_CONNECT_TIMEOUT / 2) + 1);
 	}
 	
 	public static function factory($host, $nicknames, $password, $channels, $admins, $options=0)
@@ -316,6 +321,7 @@ final class Lamb_Server extends GDO
 			$this->sendNickname();
 			$this->setupIP();
 			Lamb::instance()->initServer($this);
+			$this->retry_count = 0;
 			return true;
 		}
 		

@@ -2,6 +2,7 @@
 $girls = array(
 	'PoisonIvy',
 	'Wyshfire',
+	'gemgale',
 	'Unholy',
 	'bb',
 );

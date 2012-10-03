@@ -208,7 +208,11 @@ final class Lamb_IRC
 	{
 		# Anti remote-irc-cmd-execution. (thx noother)
 		$message = str_replace(array("\r", "\n"), '', $message);
-		fprintf($this->socket, "%s\r\n", $message);
+		if (@fprintf($this->socket, "%s\r\n", $message) !== strlen($message))
+		{
+			$this->disconnect('Cannot fprintf, Maikey');
+			return false;
+		}
 		$this->flood_count++;
 		
 		# Log?

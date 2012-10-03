@@ -1,14 +1,14 @@
-<?php # Usage: %CMD% <integer>. Predict the next sequential integer polled from rand(). $100 won by noother!
+<?php # Usage: %CMD% <integer>. Predict the next sequential integer polled from GWF_Random::rand(). Predict 20 in a row and i send you $100.
 $bot = Lamb::instance();
 
 if ( ($message === '') || (false === Common::isNumeric($message)) )
 {
-	return $bot->getHelp('predict');
+	return $bot->getHelp('predict2');
 }
 
 $predicted = (int)$message;
-$max = getrandmax();
-$rand = rand(0, getrandmax());
+
+$rand = GWF_Random::rand(0, GWF_Random::RAND_MAX);
 
 if ($rand === $predicted)
 {

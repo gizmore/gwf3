@@ -10,6 +10,10 @@ final class Lamb
 	### Const ###
 	#############
 	const DIR = 'core/module/Lamb/';
+
+	const SERVER_WORKING = 1;
+	const SERVER_CONNECTING = 2;
+	const SERVER_FAILED = 3;
 	
 	################
 	### Instance ###
@@ -51,8 +55,6 @@ final class Lamb
 	 */
 	private $servers = array();
 	
-	public $seed = 0;
-
 	##############
 	### Getter ###
 	##############
@@ -154,6 +156,9 @@ final class Lamb
 		$chans = array_map('trim', explode(';', LAMB_CHANNELS));
 		$admin = array_map('trim', explode(';', LAMB_ADMINS));
 		$optss = array_map('trim', explode(';', LAMB_OPTIONS));
+		
+		$nServers = 0;
+		
 		foreach ($hosts as $i => $host)
 		{
 			if ($host !== '')
@@ -166,6 +171,7 @@ final class Lamb
 				{
 					if (false !== $server->saveConfigVars($host, $nicks[$i], $chans[$i], $passs[$i], $admin[$i], $optss[$i]))
 					{
+						$server->setStartupTimeout($nServers++);
 						$this->addServer($server);
 					}
 				}
@@ -401,11 +407,6 @@ final class Lamb
 			{
 				usleep(LAMB_SLEEP_MILLIS * 1000);
 			}
-			else
-			{
-				# This is a public var, and thus cannot get optimized away.
-				$this->seed += rand();
-			}
 		}
 	}
 	
@@ -534,12 +535,12 @@ final class Lamb
 				if (false === ($msg = $c->getMessage()))
 				{
 					$server->disconnect('Somethings wrong');
-					return false;
+					return self::SERVER_FAILED;
 				}
 				
 				if ('' === ($msg = trim($msg)))
 				{
-					return true;
+					return self::SERVER_WORKING;
 				}
 				
 				$this->is_idle = false;
@@ -550,8 +551,10 @@ final class Lamb
 		elseif (false === $server->connect())
 		{
 			$this->removeServer($server);
-			return false;
+			return self::SERVER_FAILED;
 		}
+		
+		return self::SERVER_CONNECTING;
 	}
 	
 	/**

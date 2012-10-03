@@ -107,7 +107,7 @@ final class LambModule_Link extends Lamb_Module
 		
 		$back = $title.' - '.$descr;
 		
-		return substr($back, 0, 480);
+		return $back;
 	}
 	
 	private function decode($s)
@@ -222,7 +222,7 @@ final class LambModule_Link extends Lamb_Module
 			return sprintf('Link with ID(%d) is unknown.', $link_id);
 		}
 		
-		return sprintf('Link %d: %s - %s - Rated: %s.', $link_id, $link->getVar('link_url'), $link->getVar('link_text'), $link->getVar('link_rating'));
+		return sprintf('Link %d: %s - %s - Rated: %s.', $link_id, $link->getVar('link_url'), substr($link->getVar('link_text'), 0, 480), $link->getVar('link_rating'));
 	}
 	
 	private function stats()
