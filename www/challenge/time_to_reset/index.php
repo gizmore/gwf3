@@ -83,7 +83,7 @@ function ttr_request(WC_Challenge $chall, GWF_Form $form)
 	# Generate reset token
 	$sid = GWF_Session::getSessSID();
 	$email = $form->getVar('email');
-	$token = ttr_random(16); # See source in http://trac.gwf3.gizmore.org/browser/core/inc/util/GWF_Random.php
+	$token = ttr_random(16);
 	
 	if (!TTR_Tokens::insertToken($sid, $email, $token))
 	{

@@ -5,7 +5,7 @@ chdir('../../');
 if (isset($_GET['show']))
 {
 	header('Content-Type: text/plain');
-	die(file_get_contents('challenge/time_to_reset2/index.php'));
+	die(file_get_contents('challenge/time_to_reset2/reset.php'));
 }
 
 define('GWF_PAGE_TITLE', 'Time to Reset II');
@@ -36,7 +36,7 @@ echo GWF_Box::box($chall->lang('info', array($noother, 'reset.php', 'index.php?s
 
 if (Common::getGetString('highlight') === 'christmas')
 {
-	$source = '[PHP title=TimeToReset]'.trim(file_get_contents('challenge/time_to_reset2/index.php')).'[/PHP]';
+	$source = '[PHP title=reset.php]'.trim(file_get_contents('challenge/time_to_reset2/reset.php')).'[/PHP]';
 	echo GWF_Box::box(GWF_BBCode::decode($source));
 }
 

@@ -24,9 +24,10 @@ require_once 'challenge/time_to_reset2/TTR2_Tokens.include';
 # And display the header
 $chall->showHeader();
 
-# Generate csrf token
-#srand(time()+rand(0, 100));        # noother says it's too easy
-#$csrf = GWF_Random::randomKey(32); # noother says it's too easy
+# Generate csrf token         # noother says it's too easy
+#srand(time()+rand(0, 100));  # noother says it's too easy
+#$csrf = ttr2_random(32);     # noother says it's too easy
+
 $ttr = new TTR2_Form();
 $form = $ttr->getForm($chall);
 
@@ -37,7 +38,7 @@ if (isset($_POST['reset']))
 
 echo GWF_Website::getDefaultOutput();
 
-echo $form->templateY($chall->lang('ft_reset'), GWF_WEB_ROOT.'challenge/time_to_reset2/index.php');
+echo $form->templateY($chall->lang('ft_reset'), GWF_WEB_ROOT.'challenge/time_to_reset2/reset.php');
 
 
 # Print Challenge Footer
@@ -70,7 +71,7 @@ function ttr2_request(WC_Challenge $chall, GWF_Form $form)
 	# Generate reset token
 	$sid = GWF_Session::getSessSID();
 	$email = $form->getVar('email');
-	$token = ttr2_random(16); # See source in http://trac.gwf3.gizmore.org/browser/core/inc/util/GWF_Random.php
+	$token = ttr2_random(16);
 	
 	if (!TTR2_Tokens::insertToken($sid, $email, $token))
 	{
