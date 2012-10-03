@@ -7,7 +7,7 @@
 final class GWF_Random
 {
 	const TOKEN_LEN = 16;
-	const RAND_MAX = 4294967296;
+	const RAND_MAX = 4294967295;
 	
 	const ALPHAUP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	const ALPHALOW = 'abcdefghijklmnopqrstuvwxyz';
@@ -53,7 +53,7 @@ final class GWF_Random
 	 * @param int $max
 	 * @return int
 	 */
-	public static function rand($min, $max)
+	public static function rand($min=0, $max=self::RAND_MAX)
 	{
 		static $BUFFER;
 		if (empty($BUFFER))
@@ -63,7 +63,11 @@ final class GWF_Random
 		$n = unpack('L', substr($BUFFER, 0, 4));
 		$BUFFER = substr($BUFFER, 4);
 		
-		return (int)($min + ($max-$min+1)*($n[1]/(self::RAND_MAX-1)));
+		$min = (double) $min;
+		$max = (double) $max;
+		$n = (double) $n[1];
+		
+		return (int) ( $min + ($max-$min+1) * ($n/(self::RAND_MAX+1)) );
 	}
 }
 ?>
