@@ -7,7 +7,7 @@
 final class GWF_Random
 {
 	const TOKEN_LEN = 16;
-	const RAND_MAX = 4294967295;
+	const RAND_MAX = 4294967295; # 2147483647
 	
 	const ALPHAUP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	const ALPHALOW = 'abcdefghijklmnopqrstuvwxyz';
@@ -55,18 +55,22 @@ final class GWF_Random
 	 */
 	public static function rand($min=0, $max=self::RAND_MAX)
 	{
+		# Generate random numbers
 		static $BUFFER;
 		if (empty($BUFFER))
 		{
-			$BUFFER = openssl_random_pseudo_bytes(2048);
+			$BUFFER = openssl_random_pseudo_bytes(1024);
 		}
+		
+		# Take 4 bytes and unpack to a signed int
 		$n = unpack('L', substr($BUFFER, 0, 4));
+		# thx to dloser we convert to unsigned on 32 bit arch
+		$n = PHP_INT_SIZE === 4 ? $n[1] + 2147483648 : $n[1]; 
+		
+		# Eat from random buffer
 		$BUFFER = substr($BUFFER, 4);
 		
-		$min = (double) $min;
-		$max = (double) $max;
-		$n = (double) $n[1];
-		
+		# Evenly distributed
 		return (int) ( $min + ($max-$min+1) * ($n/(self::RAND_MAX+1)) );
 	}
 }

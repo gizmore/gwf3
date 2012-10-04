@@ -203,10 +203,9 @@ final class WeChall_Admin extends GWF_Method
 		$data = array();
 		foreach (WC_Site::getSitesRanked('site_name ASC') as $site)
 		{
-			$data[] = array($site->getVar('site_name'), $site->getID());
+			$data[] = array($site->getID(), $site->getVar('site_name'));
 		}
-		$selected = (int)Common::getPost('site', 0);
-		return GWF_Select::display('site', $data, $selected);
+		return GWF_Select::display('site', $data, Common::getPostString('site', '0'));
 	}
 	private function onHardlink()
 	{
