@@ -904,6 +904,8 @@ class WC_Site extends GDO
 	 */
 	private function replaceURL($url, $username, $email='')
 	{
+		$username = urlencode($username);
+		$email = urlencode($email);
 		return str_replace(array('%USERNAME%', '%EMAIL%', '%AUTHKEY%'), array($username, $email, $this->getVar('site_xauthkey')), $url);
 	}
 	
