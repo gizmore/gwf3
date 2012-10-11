@@ -53,6 +53,8 @@ echo $form->templateY($chall->lang('ft_reset'), GWF_WEB_ROOT.'challenge/time_to_
 
 formSolutionbox($chall);
 
+srand(GWF_Random::rand()); # Reset seed to something more secure. (thx noother) (thx Mart)
+
 # Print Challenge Footer
 echo $chall->copyrightFooter();
 # Print end of website
