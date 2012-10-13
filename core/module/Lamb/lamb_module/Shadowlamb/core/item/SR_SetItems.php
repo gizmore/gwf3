@@ -7,7 +7,7 @@ final class SR_SetItems
 {
 	private static $SETS = array(
 		'TinfoilSet' => array(
-			array('defense' => 0.1),
+			array('defense' => 0.2),
 			array('TinfoilGloves', 'TinfoilBelt', 'TinfoilCap', 'TinfoilSandals'),
 		),
 		
@@ -17,22 +17,27 @@ final class SR_SetItems
 		),
 
 		'ElvenSet' => array(
-			array('quickness' => 0.5, 'bows' => 5.0, 'body' => 1.0, 'strength' => 1.0),
+			array('quickness' => 0.5, 'bows' => 6.0, 'body' => 1.0, 'strength' => 1.0),
 			array('ElvenTag', array('ElvenVest', 'ElvenRobe'), 'ElvenBoots', 'ElvenGloves', 'ElvenCap', array('ElvenShorts', 'ElvenTrousers')),
 		),
 
 		'NinjaSet' => array(
-			array('quickness' => 0.5, 'ninja' => 5.0, 'sharpshooter' => 5.0),
+			array('quickness' => 1.5, 'ninja' => 5.0, 'sharpshooter' => 6.0),
 			array('NinjaCloak', 'UwaObi', 'ChikaTabi', 'Yugake', 'Hakama', array('NinjaSword', 'Ninjato', 'Ninjaken')),
 		),
 			
 		'MagicSet' => array(
-			array('spellatk' => 3.0, 'spelldef' => 1.5, 'intelligence' => 1.0),
+			array('spellatk' => 4.0, 'spelldef' => 1.8, 'intelligence' => 4.0),
 			array(array('WizardCloak', 'WizardRobe'), 'WizardGloves', 'WizardHat'),
 		),
 			
+		'SireneSet' => array(
+			array('intelligence' => 3.0, 'spellatk' => 1.5),
+			array('SireneSkin', 'SireneLegs'),
+		),
+			
 		'DemonSet' => array(
-			array('attack' => 20.0),
+			array('attack' => 25.0),
 			array('DemonVest', 'DemonBoots', 'DemonGloves', 'DemonHelmet', 'DemonLegs', array('DemonAxe', 'DemonSword'), 'DemonShield'),
 		),
 	);

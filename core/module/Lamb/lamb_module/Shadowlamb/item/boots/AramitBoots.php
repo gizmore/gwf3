@@ -4,7 +4,7 @@ final class Item_AramitBoots extends SR_Boots
 	public function getItemLevel() { return 23; }
 	public function getItemPrice() { return 1450; }
 	public function getItemWeight() { return 575; }
-	public function isItemDropable() { return false; }
+	public function isItemLootable() { return false; }
 	public function getItemDescription() { return 'Aramit boots are used by military forces.'; }
 	public function getItemModifiersA(SR_Player $player)
 	{

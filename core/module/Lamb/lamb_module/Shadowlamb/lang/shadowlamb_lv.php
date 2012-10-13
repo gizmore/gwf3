@@ -48,6 +48,8 @@ $lang = array(
 'opt_lock' => 'Ekipējuma aizslēgšana',
 'opt_bot' => 'Spēlētāja pašiezīmēšanās',
 'opt_norl' => 'Galvenais līderis',
+'opt_norefreshsmg' => 'HP/MP Refresh Messages',
+'opt_noautolook' => 'Auto-Look',
 'enabled' => 'Ieslēgts',
 'disabled' => 'Izslēgts',
  

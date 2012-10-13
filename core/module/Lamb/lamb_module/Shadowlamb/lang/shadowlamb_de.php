@@ -49,6 +49,8 @@ $lang = array(
 'opt_lock' => 'Equipment Lock',
 'opt_bot' => 'Player Botflag',
 'opt_norl' => 'Permleader',
+'opt_norefreshsmg' => 'HP/MP Refresh Meldungen',
+'opt_noautolook' => 'Autom. Umsehen',
 'enabled' => 'enabled',
 'disabled' => 'disabled',
 

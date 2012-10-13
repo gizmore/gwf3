@@ -33,7 +33,7 @@ final class Spell_calm extends SR_HealSpell
 		$maxhits = 1400;
 		$hits = Common::clamp($hits, 1, $maxhits);
 		$per_sec = round($hits/$maxhits, 2);
-		$per_sec = Common::clamp($per_sec, 0.01);
+		$per_sec = Common::clamp($per_sec, 0.01, round($level*0.015+0.02, 2));
 		$minsec = round($wis*10 + $hits);
 		$seconds = rand($minsec, $minsec*2);
 		

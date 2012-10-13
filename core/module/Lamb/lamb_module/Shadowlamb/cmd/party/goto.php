@@ -197,7 +197,12 @@ final class Shadowcmd_goto extends Shadowcmd
 		$back = array();
 		foreach ($places as $place)
 		{
-			if (stripos($place, $arg) !== false)
+			if ($arg === $place)
+			{
+				return $place;
+			}
+			
+			elseif (stripos($place, $arg) !== false)
 			{
 				$back[] = $place;
 			}

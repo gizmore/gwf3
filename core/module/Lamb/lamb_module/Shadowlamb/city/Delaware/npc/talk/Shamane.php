@@ -30,7 +30,7 @@ final class Delaware_Shamane extends SR_TalkingNPC
 			case 'hello': #return $this->reply("Hello my friend!");
 				return $this->rply($word);
 			default:
-				return $this->rply('default');
+				return $this->rply('default', array($word));
 // 				return $this->reply("I do not know anything about $word.");
 		}
 	}

@@ -49,6 +49,8 @@ $lang = array(
 'opt_lock' => 'Equipo bloqueado',
 'opt_bot' => 'Jugador marcado como Bot',
 'opt_norl' => 'Líder permanente',
+'opt_norefreshsmg' => 'HP/MP Refresh Messages',
+'opt_noautolook' => 'Auto-Look',
 'enabled' => 'activado',
 'disabled' => 'desactivado',
 

@@ -133,5 +133,17 @@ abstract class SR_Subway extends SR_Location
 		
 		return true;
 	}
+	
+	public function checkLocation()
+	{
+		foreach ($this->getSubwayTargets(Shadowrun4::getDummyPlayer()) as $data)
+		{
+			$target = $data[0];
+			if (false === ($location = Shadowrun4::getLocationByTarget($target)))
+			{
+				die(sprintf('The subway %s has an invalid target: %s.', $this->getName(), $target));
+			}
+		}
+	}
 }
 ?>

@@ -25,7 +25,7 @@ final class Renraku04_Elevator extends Renraku_Elevator
 		
 		if ($errors !== '')
 		{
-			$this->partyMessage($player, 'nocard', array(substr($errors, 2)));
+			$this->partyMessage($party->getLeader(), 'nocard', array(substr($errors, 2)));
 // 			$party->notice(sprintf('%s do(es) not have an ID4Card... You hear the alarm sound!', substr($errors, 2)));
 			if (false !== ($city = $this->getCityClass()))
 			{

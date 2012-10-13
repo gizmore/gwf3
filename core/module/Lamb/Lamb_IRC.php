@@ -210,8 +210,8 @@ final class Lamb_IRC
 		$message = str_replace(array("\r", "\n"), '', $message);
 		if (@fprintf($this->socket, "%s\r\n", $message) !== strlen($message))
 		{
-			$this->disconnect('Cannot fprintf, Maikey');
-			return false;
+// 			$this->disconnect('Cannot fprintf, Maikey');
+// 			return false;
 		}
 		$this->flood_count++;
 		

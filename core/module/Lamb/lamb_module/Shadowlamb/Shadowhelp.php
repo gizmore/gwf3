@@ -72,6 +72,8 @@ final class Shadowhelp
 					'get_started' => 'First you should #talk to the hotelier. Then you should #equip clothes. Then you should #party up with players and #join their parties. Then you should #explore the first city.',
 					'where_am_i' => 'You begin in the Redmond Hotel. Check your party status with #(p)arty. Check your #known_places with #(kp). Find new places with #(exp)lore. Do not forget to check your #e(q)uipment and cleanup your #(i)nventory.',
 					'what_is_it' => "Shadowlamb is a full featured mmorpg. You can #(j)oin parties, solve #(qu)ests, runecraft your items and learn magic spells. It combines multiple irc networks into a single gameworld, and thus is unique among all irc games.",
+					'first_talk' => 'You should #talk to the hotelier first. Use #talk <word|kw_id> to ask for something in particular. You will get your first_equipment.',
+					'first_equipment' => 'The hotelier will give you some items. Check your #inventory and #equip them, so you are ready to #explore.',
 				),
 				
 				'attributes' => "Player Command. Usage: #(a)ttributes. Attributes",
@@ -373,7 +375,7 @@ final class Shadowhelp
 					array(
 						'redmond_reset' => 'Player command. Usage: #redmond. If idle you can teleport to Redmond_Hotel. This will cost some XP from the karmapool and part your current party.',
 						'reset' => 'Player command. Usage: #reset. #reset. Use reset to delete your player and start over. Handle with care!',
-						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot|norl>. Toggle player and interface options for your player.',
+						'enable' => 'Player command. Usage: #enable <help|notice|privmsg|lock|bot|norl|norefresh|noautolook>. Toggle player and interface options for your player.',
 						'disable' => 'Player command. Usage: #disable <help|notice|privmsg|lock|bot>. Toggle user interface options for your player.',
 						'running_mode' => "Player command. Usage: #(r)unning_(m)ode. Use it twice to convert your character into a real runner. This means raised max stats, but permanent death. The permdeath rule applies only when killed by NPC or other Runners / RM Players.",
 					),
@@ -596,7 +598,7 @@ final class Shadowhelp
 						'way_more_teachers' => 'TheHiveMind, Jinx, Garfield, jjk, dalfor, Jander, Kender, Inferno, digitalseraphim, spaceone!',
 					),
 					
-					'options' => 'Player and interface options:',
+					'options' => 'Player and interface options',
 					array(
 						'help_option' => 'You can dis/enable this option to receive some basic help messages or not.',
 						'notice_option' => 'You can toggle your lamb reply type to NOTICE with #enable notice.',
@@ -604,6 +606,8 @@ final class Shadowhelp
 						'lock_option' => 'Dis/enable equipment lock, which determines how your (effective) level is computed. When you lock your equipment you cannot change it in combat.',
 						'bot_option' => 'Dis/enable the bot flag for your player. This has no effect on the game, just that [BOT] is shown behind your playername as information.',
 						'norl_option' => 'You can dis/enable this option to specify if it is allowed to steal your leadership with the #rl command.',
+						'norefresh_option' => 'You can enable this option to supress HP/MP refreshing messages.',
+						'noautolook_option' => 'You can enable this option to supress auto look, and arrival / leave messages.',
 					),
 					
 					'glossary' => 'Some glossary of terms and keywords used.',

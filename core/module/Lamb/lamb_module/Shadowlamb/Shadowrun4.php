@@ -84,6 +84,22 @@ final class Shadowrun4
 	public static function getCurrentPlayer() { return Shadowcmd::$CURRENT_PLAYER; }
 	
 	/**
+	 * @return SR_Player
+	 */
+	public static function getDummyPlayer()
+	{
+		static $DUMMY;
+		if (isset($DUMMY))
+		{
+			return $DUMMY; 
+		}
+		$DUMMY = new SR_Player(SR_Player::getPlayerData(0));
+// 		$DUMMY->setVar('sr4pl_uid', new Lamb_User());
+		$DUMMY->modify();
+		return $DUMMY;
+	}
+	
+	/**
 	 * @param string $name
 	 * @return SR_Dungeon
 	 */
@@ -115,13 +131,23 @@ final class Shadowrun4
 	public static function getCityByAbbrev($name)
 	{
 		$back = array();
+		$name = strtolower($name);
+		
 		foreach (self::$cities as $cn => $city)
 		{
-			if (stripos($cn, $name) !== false)
+			$city instanceof SR_City;
+			
+			if ($name === $cn)
+			{
+				return $city;
+			}
+			
+			if (strpos($cn, $name) !== false)
 			{
 				$back[] = $city;
 			}
 		}
+		
 		return count($back) === 1 ? $back[0] : false;
 	}
 	
@@ -363,6 +389,7 @@ final class Shadowrun4
 	 */
 	public static function getNPCByAbbrev(SR_Player $player, $name)
 	{
+		echo "Testing ".$name."\n";
 		$candidates = array();
 		foreach (self::$cities as $city)
 		{
@@ -372,7 +399,13 @@ final class Shadowrun4
 				$npc instanceof SR_NPC;
 				$npc->setChatPartner($player);
 				$classname = $npc->getNPCClassName();
-				if ( (stripos($classname, $name) !== false)
+				
+				if ($name === $classname)
+				{
+					return $npc;
+				}
+				
+				elseif ( (stripos($classname, $name) !== false)
 				   ||(stripos($npc->getName(), $name) !== false) )
 				{
 					echo "Testing ".$npc->getNPCClassName()."\n";
@@ -428,6 +461,8 @@ final class Shadowrun4
 			SR_Player::init();
 			require_once Lamb::DIR.'Lamb_IRCFrom.php';
 			require_once Lamb::DIR.'Lamb_IRCTo.php';
+			
+			self::initRealNPCs();
 			
 			Shadowlang::onLoadLanguage();
 			
@@ -538,6 +573,41 @@ final class Shadowrun4
 			}
 		}
 	}
+	
+	private static function initRealNPCs()
+	{
+		foreach (self::$cities as $city)
+		{
+			$city instanceof SR_City;
+			
+			foreach ($city->getLocations() as $location)
+			{
+				$location instanceof SR_Location;
+				
+				foreach ($location->getRealNPCS() as $npcname)
+				{
+					if (false !== ($npc = SR_Player::getRealNPCByName($npcname)))
+					{
+						$npc->getParty()->deleteParty();
+					}
+					
+					if (false === ($party = SR_NPC::createEnemyParty($npcname)))
+					{
+						die('AAAAAA');
+					}
+					$npc = $party->getLeader();
+					$party = $npc->getParty();
+					$party->pushAction(SR_Party::ACTION_INSIDE, $location->getName());
+					self::addPlayer($npc);
+					self::addParty($party);
+					
+					$party->setTimestamp(time()+GWF_Time::ONE_MONTH);
+				}
+			}
+			
+		}
+	}
+	
 	
 	public static function initCityLocations($dir='stub')
 	{

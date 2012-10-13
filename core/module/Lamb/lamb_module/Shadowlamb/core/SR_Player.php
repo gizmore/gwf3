@@ -39,6 +39,8 @@ class SR_Player extends GDO
 	const LOCKED = 0x100000;
 	const PLAYER_BOT = 0x200000;
 	const NO_RL = 0x400000; # No RequestLeader
+	const NO_REFRESH_MSGS = 0x800000;
+	const NO_AUTO_LOOK = 0x1000000;
 	
 	# Timing
 	const FIGHT_INIT_BUSY = 15;
@@ -435,7 +437,21 @@ class SR_Player extends GDO
 		}
 		$username = Shadowfunc::toShortname($username);
 		$username = self::escape($username);
-		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "lusr_sid={$sid} AND lusr_name='{$username}'"))) {
+		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "lusr_sid={$sid} AND lusr_name='{$username}'")))
+		{
+			return false;
+		}
+		return self::reloadPlayer($player);
+	}
+	
+	/**
+	 * @return SR_Player
+	 */
+	public static function getRealNPCByName($name)
+	{
+		$name = self::escape($name);
+		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "lusr_name='{$name}'")))
+		{
 			return false;
 		}
 		return self::reloadPlayer($player);
@@ -654,10 +670,10 @@ class SR_Player extends GDO
 			return $remote->message($message);
 		}
 		
-		if ($this->isOptionEnabled(self::WWW_OUT))
-		{
-			return $this->onMessageWWW($message);
-		}
+// 		if ($this->isOptionEnabled(self::WWW_OUT))
+// 		{
+// 			return $this->onMessageWWW($message);
+// 		}
 		
 		$username = $user->getName();
 		if (false === ($server = $user->getServer()))
@@ -675,10 +691,14 @@ class SR_Player extends GDO
 		}
 		elseif ($this->isOptionEnabled(self::PRIVMSG))
 		{
+			Lamb::instance()->setCurrentUser($server->getUser($username));
+			Lamb::instance()->setCurrentServer($server);
 			$server->sendPrivmsg($username, $message);
 		}
 		else
 		{
+			Lamb::instance()->setCurrentUser($server->getUser($username));
+			Lamb::instance()->setCurrentServer($server);
 			$server->sendNotice($username, $message);
 		}
 		
@@ -1455,19 +1475,19 @@ class SR_Player extends GDO
 	
 	public function refreshMPTimer()
 	{
-		if ($this->getParty()->isSleeping())
+		if (!$this->getParty()->isSleeping())
 		{
-			return true;
-		}
-		$ma = $this->get('magic');
-		if ($ma > 0)
-		{
-			$gain = $this->getMPGain();
-// 			echo sprintf("%s gained %s MP\n", $this->getName(), $gain);
-			$gain = $this->healMP($gain);
-			if ($gain > 0)
+			if ($this->get('magic') > 0)
 			{
-				$this->msg('5260', array(round($gain, 2), $this->getMP(), $this->getMaxMP()));
+				$gain = $this->getMPGain();
+				$gain = $this->healMP($gain);
+				if ($gain > 0)
+				{
+					if (!$this->isOptionEnabled(self::NO_REFRESH_MSGS))
+					{
+						$this->msg('5260', array(round($gain, 2), $this->getMP(), $this->getMaxMP()));
+					}
+				}
 			}
 		}
 		return true;
@@ -1483,20 +1503,19 @@ class SR_Player extends GDO
 	
 	public function refreshHPTimer()
 	{
-		if ($this->getParty()->isSleeping())
+		if (!$this->getParty()->isSleeping())
 		{
-			return true;
-		}
-		$ele = $this->get('elephants');
-		if ($ele > 0)
-		{
-			$gain = $this->getHPGain();
-			$gain = $this->healHP($gain);
-// 			echo sprintf("%s gained %s HP\n", $this->getName(), $gain);
-// 			return $this->healHP($gain);
-			if ($gain > 0)
+			if ($this->get('elephants') > 0)
 			{
-				$this->msg('5261', array(round($gain, 2), $this->getHP(), $this->getMaxHP()));
+				$gain = $this->getHPGain();
+				$gain = $this->healHP($gain);
+				if ($gain > 0)
+				{
+					if (!$this->isOptionEnabled(self::NO_REFRESH_MSGS))
+					{
+						$this->msg('5261', array(round($gain, 2), $this->getHP(), $this->getMaxHP()));
+					}
+				}
 			}
 		}
 		return true;

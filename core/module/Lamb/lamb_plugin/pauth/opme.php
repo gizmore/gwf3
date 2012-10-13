@@ -2,6 +2,7 @@
 $bot instanceof Lamb;
 $user instanceof Lamb_User;
 $server instanceof Lamb_Server;
+
 #$message
 #$from
 

@@ -306,7 +306,7 @@ final class Shadowfunc
 		$defense = Common::clamp($defense, 1);
 		$dicesB = $dices / $defense;
 		$hits = rand(0, $dicesB);
-		printf('Shadowfunc::dicePoolB(dices=%s, defense=%s) === %s hits', $dices, $defense, $hits);
+		printf("Shadowfunc::dicePoolB(dices=%s, defense=%s) === %s hits\n", $dices, $defense, $hits);
 		return $hits;
 	}
 	
@@ -317,27 +317,38 @@ final class Shadowfunc
 		{
 			if ($target->isHuman()) # Human attacks Human
 			{
-				$oops = rand(80, 250) / 10;
+// 				$oops = rand(80, 250) / 10;
+				$oops = self::diceFloat(6.0, 9.0, 1);
 			}
 			else # Human Attacks NPC
 			{
-				$oops = rand(80, 190) / 10;
+// 				$oops = rand(80, 190) / 10;
+				$oops = $player->getBase('level') * 0.1;
+				$oops = self::diceFloat(6.0+$oops, 9.0+$oops, 1);
 			}
 		}
 		else # NPC attacks ...
 		{
 			if ($target->isHuman()) # NPC attacks Human
 			{
-				$rand = rand(12, 20) / 10;
-				$oops = $rand + $ep->getMemberCount()*0.3; # + $ep->getMax('level', true)*0.01;
+// 				$rand = rand(12, 20) / 10;
+// 				$oops = $rand + $ep->getMemberCount()*0.3; # + $ep->getMax('level', true)*0.01;
+				$oops = 0.2 + $target->getBase('level') * 0.05;
+				$oops *= Common::pow(1.28, $ep->getMemberCount());
 			}
 			else # NPC attacks NPC
 			{
-				$oops = rand(80, 250) / 10;
+// 				$oops = rand(80, 250) / 10;
+				$oops = self::diceFloat(0.8, 2.5, 1);
 			}
 		}
-		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops * 0.65;
-		return Shadowfunc::dicePool(round($chances), round($def)+1, round(sqrt($def)));
+// 		$chances = (($atk*10 + $mindmg*5) / ($def*5 + $arm*2)) * $oops * 0.65;
+		$chances = (($atk*20 + $mindmg*50) / ($def*5 + $arm*2)) * $oops * 0.70;
+		
+// 		echo "OOOOOOOPS: $oops\n";
+		
+// 		return Shadowfunc::dicePool(round($chances), round($def)+1, round(sqrt($def)));
+		return Shadowfunc::dicePoolB($chances, $def);
 	}	
 	
 	#################
@@ -785,7 +796,7 @@ final class Shadowfunc
 			'gremlin_female' => array('gizma'),
 		);
 		$r = $rand[$player->getVar('sr4pl_race').'_'.$player->getVar('sr4pl_gender')];
-		return $r[rand(0,count($r)-1)];
+		return GWF_Random::arrayItem($r);
 	}
 	
 	##############
@@ -1036,7 +1047,7 @@ final class Shadowfunc
 			$chance = self::randLootLuckChance($player, $item, $level, $chance);
 			
 			# Crunch bit
-			$chance /= 10;
+// 			$chance /= 10;
 			
 			# dropchance = base chance * funky stuff
 			$dc = round($item->getItemDropChance()*$chance);
@@ -1066,11 +1077,12 @@ final class Shadowfunc
 	
 	private static function randLootLuckChance(SR_Player $player, SR_Item $item, $level, $chance)
 	{
+		return $chance;
 		$level++;
 		$il = $item->getItemLevel() + 1;
 		$luck = $player->get('luck');
 		$luck_bonus_wanted = $il / $level;
-		return $chance + $luck * 8 * Common::pow($chance, $luck_bonus_wanted);  
+		return $chance + $luck * 1 * Common::pow($chance, $luck_bonus_wanted);  
 	}
 	
 
@@ -1330,7 +1342,7 @@ final class Shadowfunc
 			{
 				list($target, $dmg, $is_kill) = $data;
 				$target instanceof SR_Player;
-				$key = true === $is_kill ? 'kills' : 'hits';
+				$key = true === $is_kill ? 'kills' : 'hits1';
 // 				$app = Shadowrun4::lang('kills', array($target->getName(), $dmg));
 				$msg .= $member->lang($key, array($target->getName(), $dmg));
 			}

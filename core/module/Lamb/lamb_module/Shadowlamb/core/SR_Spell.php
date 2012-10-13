@@ -55,6 +55,7 @@ abstract class SR_Spell
 	public function getName() { return $this->name; }	
 	public function getLevel(SR_Player $player) { return $player->getSpellLevel($this->getName()); }
 	public function getBaseLevel(SR_Player $player) { return $player->getSpellBaseLevel($this->getName()); }
+	public function getEffectiveLevel(SR_Player $player) { return $this->getLevel($player); }
 	
 	private $caster = NULL;
 	public function setCaster(SR_Player $player) { $this->caster = $player; }
@@ -170,9 +171,7 @@ abstract class SR_Spell
 		if ($this->mode === self::MODE_BREW)
 		{
 			# Dummy player
-			$dummy = new SR_Player(SR_Player::getPlayerData(0));
-			$dummy->modify();
-			$target = $dummy;
+			$target = Shadowrun4::getDummyPlayer();
 		}
 		elseif (false === ($target = $this->getTarget($player, $args)))
 		{
@@ -266,9 +265,9 @@ abstract class SR_Spell
 		$dices += round($player->get('essence') * 18);
 		$dices -= round(Shadowfunc::calcDistance($this->caster, $target)/4); # XXX Cannot apply distance malus because of alchemy.
 		
-		$defense = round($target->get('essence') * 2);
-		$defense += round($target->get('intelligence') * 2);
-		$defense += round($target->get('spelldef') * 2);
+		$defense = round($target->get('essence') * 0.3);
+		$defense += round($target->get('intelligence') * 0.2);
+		$defense += round($target->get('spelldef') * 0.2);
 
 		echo "Dice Offensive with $dices dices and defense $defense\n";
 		return Shadowfunc::dicePoolB($dices, $defense);

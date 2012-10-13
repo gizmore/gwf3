@@ -1,5 +1,5 @@
 <?php
-final class Item_Nihonto extends SR_Sword
+final class Item_Nihonto extends SR_NinjaWeapon
 {
 	public function getAttackTime() { return 38; }
 	public function getItemLevel() { return 23; }

@@ -51,6 +51,8 @@ $lang = array(
 'opt_lock' => 'Blocca Equipaggiamento',
 'opt_bot' => 'Flag Giocatore Bot',
 'opt_norl' => 'Leader Permanente',
+'opt_norefreshsmg' => 'HP/MP Refresh Messages',
+'opt_noautolook' => 'Auto-Look',
 'enabled' => 'attivata',
 'disabled' => 'disattivata',
 

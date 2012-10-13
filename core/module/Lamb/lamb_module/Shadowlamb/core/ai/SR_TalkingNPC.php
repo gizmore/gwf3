@@ -7,7 +7,8 @@ require_once 'SR_NPC.php';
  */
 abstract class SR_TalkingNPC extends SR_NPC
 {
-//	public function getName() { return __CLASS__; }
+// 	public function getName() { return __CLASS__; }
+// 	public function getName() { return $this->langNPC('name'); }
 	public function isNPCFriendly(SR_Party $party) { return true; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	
@@ -27,6 +28,26 @@ abstract class SR_TalkingNPC extends SR_NPC
 	################
 	### NPC Talk ###
 	################
+	public function msg($key, $args=NULL)
+	{
+		if ($key === '5086')
+		{
+			$player = Shadowrun4::getPlayerByName(array_shift($args));
+			$this->setChatPartner($player);
+			$word = array_shift($args);
+			return $this->onNPCWhisper($player, $word, $args);
+		}
+		
+		if ($key === '')
+		{
+			
+		}
+	}
+	
+	public function onNPCGive(SR_Player $player, SR_Item $item) {}
+	
+	public function onNPCWhisper(SR_Player $player, $word, $args) { return $this->onNPCTalk($player, $word, $args); }
+	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		if (true === $this->onNPCQuestTalk($player, $word, $args))
@@ -205,9 +226,9 @@ abstract class SR_TalkingNPC extends SR_NPC
 			case 'yes':
 				if ($t === true)
 				{
-					$q->accept($player);
 					$player->unsetTemp($key);
 					$q->onNPCQuestTalk($this, $player, $word, $args);
+					$q->accept($player);
 					return true;
 				}
 				return false;

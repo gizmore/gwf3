@@ -191,6 +191,41 @@ abstract class SR_City
 	}
 	
 	/**
+	 * Get a location in this city by abbreviation.
+	 * @param $arg
+	 * @return SR_Location
+	 */
+	public function getLocationByAbbrev($arg)
+	{
+		$candidates = $this->getLocationsByAbbrev($arg);
+		return count($candidates) === 1 ? $candidates[0] : false;
+	}
+	
+	public function getLocationsByAbbrev($arg)
+	{
+		echo "{$this->getName()}::getLocationsByAbbrev({$arg})\n";
+		$arg = strtolower($arg);
+		$back = array();
+		foreach ($this->locations as $key => $location)
+		{
+			$location instanceof SR_Location;
+			$name = strtolower($location->getName());
+			
+			echo "Testing $name against $arg\n";
+			
+			if ($name === $arg)
+			{
+				return $location;
+			}
+			elseif (strpos($name, $arg) !== false)
+			{
+				$back[] = $location;
+			}
+		}
+		return $back;
+	}
+	
+	/**
 	 * Get an NPC class from this city.
 	 * @param string $name
 	 * @return SR_NPC

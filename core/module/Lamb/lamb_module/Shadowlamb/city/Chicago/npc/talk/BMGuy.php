@@ -1,7 +1,7 @@
 <?php
 final class Chicago_BMGuy extends SR_TalkingNPC
 {
-// 	public function getName() { return 'Jonas'; }
+	public function getName() { return 'Helios'; }
 	
 	public function getNPCPlayerName() { return 'Helios'; }
 	

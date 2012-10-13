@@ -26,6 +26,7 @@ abstract class SR_Location
 	public function getShortName() { return Common::substrFrom($this->name, '_', $this->name); }
 	public function getLangfileName() { return $this->getName(); }
 	public function getNPCS(SR_Player $player) { return array(); }
+	public function getRealNPCS() { return array(); }
 	public function getComputers() { return array(); }
 	public function getCommands(SR_Player $player) { return array(); }
 	public function getFoundPercentage() { return 0.00; }
@@ -140,10 +141,10 @@ abstract class SR_Location
 	 */
 	public function onEnter(SR_Player $player)
 	{
-		if (!$this->checkOpenTimes($player))
-		{
-			return false;
-		}
+#		if (!$this->checkOpenTimes($player))
+#		{
+#			return false;
+#		}
 		
 		$party = $player->getParty();
 		
@@ -229,6 +230,14 @@ abstract class SR_Location
 		{
 			return false;
 		}
+		
+		# Validate lang file
+// 		$player = Shadowrun4::getDummyPlayer();
+// 		$this->getEnterText($player);
+// 		$this->getHelpText($player);
+// 		$this->getFoundText($player);
+// 		$this->getName();
+		
 		return true;
 	}
 	
@@ -238,8 +247,7 @@ abstract class SR_Location
 	private function checkLocationNPCs()
 	{
 		# Dummy player
-		$player = new SR_Player(SR_Player::getPlayerData(0));
-		$player->modify();
+		$player = Shadowrun4::getDummyPlayer();
 		
 		# Validate talking NPCs
 		foreach ($this->getNPCS($player) as $tt => $classname)
@@ -250,6 +258,7 @@ abstract class SR_Location
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

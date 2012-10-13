@@ -55,7 +55,7 @@ abstract class SR_Weapon extends SR_Equipment
 		$maxdmg = $player->get('max_dmg');
 		$arm = $target->get($armor_type);
 		$atk = round(Common::clamp(($player->get('attack')-$d2*1.2), 1));
-		$def = ($target->get('defense'));
+		$def = $target->get('defense');
 		$hits = Shadowfunc::diceHits($mindmg, $arm, $atk, $def, $player, $target);
 		
 		$pname = $player->displayNameNB();
@@ -140,10 +140,11 @@ abstract class SR_Weapon extends SR_Equipment
 			$lxp = round(Common::clamp($lxp, 0.01), 2);
 
 			$pxp += $lxp;
-			$member->giveXP($lxp);
+			$xps[] = $lxp;
 			$lny = round($nuyen/$mc, 2);
 			$member->giveNuyen($lny);
 			$member->msg('5234', array($pname, $tname, $iname, $damage, $busy, Shadowfunc::displayNuyen($lny), $lxp, $bold, $crit));
+			$member->giveXP($lxp);
 // 			$member->setOption(SR_Player::STATS_DIRTY, true);
 		}
 				
@@ -152,7 +153,7 @@ abstract class SR_Weapon extends SR_Equipment
 		$ep->ntice('5235', array($pname, $tname, $iname, $damage, $busy, $bold, $crit));
 		
 		$target->gotKilledBy($player);
-		
+
 		return true;
 	}
 }

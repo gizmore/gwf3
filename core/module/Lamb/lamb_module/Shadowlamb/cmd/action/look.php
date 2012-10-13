@@ -6,7 +6,7 @@ final class Shadowcmd_look extends Shadowcmd
 		return self::executeLook($player, true);
 	}
 	
-	public static function executeLook(SR_Player $player, $always_respond=true)
+	public static function executeLook(SR_Player $player, $command_mode=true)
 	{
 		$bot = Shadowrap::instance($player);
 		$p = $player->getParty();
@@ -32,32 +32,32 @@ final class Shadowcmd_look extends Shadowcmd
 			foreach ($party->getMembers() as $member)
 			{
 				$member instanceof SR_Player;
-				if ($member->isHuman())
+// 				if ($member->isHuman())
 				{
 					$back .= sprintf($format, $member->getName());
-// 					$back .= sprintf(', %s', $member->getName());
 				}
 			}
 		}
 		
 		if ($back === '')
 		{
-			return $always_respond ? self::rply($player, '5120') : true;
-// 			$bot->reply('You see no other players.');
+			# You see no other players.
+			return $command_mode ? self::rply($player, '5120') : true;
 		}
 
 		$player->setOption(SR_Player::RESPONSE_PLAYERS);
 		
-		if ($always_respond)
+		# You see these players: %s.
+		if ($command_mode)
 		{
-			return self::rply($player, '5121', array(ltrim($back, ',; ')));
+			self::rply($player, '5121', array(ltrim($back, ',; ')));
 		}
 		else
 		{
-			return $player->msg('5121', array(ltrim($back, ',; ')));
+			$player->msg('5121', array(ltrim($back, ',; ')));
 		}
 		
-//		$bot->reply(sprintf('You see these players: %s.', substr($back, 2)));
+		return true;
 	}
 }
 ?>

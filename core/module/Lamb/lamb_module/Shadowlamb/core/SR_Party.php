@@ -356,6 +356,7 @@ final class SR_Party extends GDO
 					if ($oldcity->getName() !== $newcity->getName())
 					{
 						$oldcity->onCityExit($this);
+						$newcity->onCityEnter($this);
 					}
 				}
 			}
@@ -427,7 +428,7 @@ final class SR_Party extends GDO
 		foreach ($this->members as $member)
 		{
 			$member instanceof SR_Player;
-			if ($member->isHuman())
+			if ($member->isHuman() && (!$member->isOptionEnabled(SR_Player::NO_AUTO_LOOK)) )
 			{
 				Shadowcmd_look::executeLook($member, false);
 			}
@@ -508,8 +509,12 @@ final class SR_Party extends GDO
 			foreach ($p->getMembers() as $member)
 			{
 				$member instanceof SR_Player;
-				$args[0] = $location->displayName($member);
-				$member->msg($key, $args);
+				
+				if (!$member->isOptionEnabled(SR_Player::NO_AUTO_LOOK))
+				{
+					$args[0] = $location->displayName($member);
+					$member->msg($key, $args);
+				}
 			}
 		}
 		
@@ -1594,11 +1599,6 @@ final class SR_Party extends GDO
 					continue;
 				}
 
-// 				$player instanceof SR_Player;
-// 				if (NULL !== ($user = $player->getUser()))
-// 				{
-// 					Lamb::instance()->setCurrentUser($user);
-// 				}
 				Shadowcmd::$CURRENT_PLAYER = $player;
 
 				if ( $player->combatTimer() )
@@ -1661,11 +1661,11 @@ final class SR_Party extends GDO
 		}
 	}
 	
-
-	public function on_inside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
-
-	public function on_outside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
-
+	public function on_inside($done) {}
+	public function on_outside($done) {}
+// 	public function on_inside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
+// 	public function on_outside($done) { if (!$this->isHuman()) { $this->pushAction(self::ACTION_DELETE); } }
+	
 	public function on_sleep($done)
 	{
 		$this->timestamp = time();

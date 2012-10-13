@@ -59,31 +59,63 @@ final class Shadowcmd_gml extends Shadowcmd
 			return false;
 		}
 		
-		$cityname = Common::substrUntil($args[1], '_', '');
-		$locname = Common::substrFrom($args[1], '_', '');
-		
-		if (false === ($city = Shadowrun4::getCity($cityname)))
+		if (false === ($location = self::getLocationByAbbrev($p->getCity(), $args[1])))
 		{
-			$bot->reply('The city '.$cityname.' is unknown');
+			$bot->reply('What location?');
 			return false;
 		}
 		
-		if (false === ($loc = $city->getLocation($locname)))
-		{
-			$bot->reply(sprintf('The location %s is unknown in %s.', $locname, $cityname));
-			return false;
-		}
+// 		$cityname = Common::substrUntil($args[1], '_', '');
+// 		$locname = Common::substrFrom($args[1], '_', '');
+		
+// 		if (false === ($city = Shadowrun4::getCity($cityname)))
+// 		{
+// 			$bot->reply('The city '.$cityname.' is unknown');
+// 			return false;
+// 		}
+		
+// 		if (false === ($loc = $city->getLocation($locname)))
+// 		{
+// 			$bot->reply(sprintf('The location %s is unknown in %s.', $locname, $cityname));
+// 			return false;
+// 		}
 		
 		$p->pushAction(SR_Party::ACTION_DELETE);
 		
-		$cl = $loc->getName();
-		$city->onCityEnter($p);
+		$cl = $location->getName();
+// 		$city->onCityEnter($p);
 		$p->pushAction($action, $cl);
 // 		$p->pushAction(SR_Party::ACTION_OUTSIDE, $cl);
 		$bot->reply(sprintf('The party is now %s of %s.', $action, $cl));
 		$p->giveKnowledge('places', $cl);
 		
 		return true;
+	}
+	
+	/**
+	 * @param string $cityname
+	 * @param string $arg
+	 * @return SR_Location
+	 */
+	public static function getLocationByAbbrev($cityname, $arg)
+	{
+		$player = Shadowrun4::getCurrentPlayer();
+		
+		if (false !== ($c = Common::substrUntil($arg, '_', false)))
+		{
+			$cityname = $c;
+			$arg = Common::substrFrom($arg, '_', $arg);
+		}
+		
+		if (false === ($city = Shadowrun4::getCityByAbbrev($cityname)))
+		{
+			self::reply($player, 'Unknown city: '.$cityname);
+			return false;
+		}
+		
+		$city instanceof SR_City;
+		
+		return $city->getLocationByAbbrev($arg);
 	}
 }
 ?>

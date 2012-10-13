@@ -50,6 +50,8 @@ $lang = array(
 'Cake__desc__' => 'Una torta deleziosa cucinata dalla mamma di Unhandled.',
 'Chalk' => 'Gesso',
 'Chalk__desc__' => 'Un gessetto rosso, utile per scrivere messaggi sul muro.',
+'Cigar' => 'Cigar',
+'Cigar__desc__' => 'A big handrolled cigar from the cubanic amerindian people.',
 'Coffee' => 'Caffè',
 'Coffee__desc__' => 'Un caffè per ripartire.',
 'Coke' => 'Coca-Cola',
@@ -246,6 +248,8 @@ $lang = array(
 'AmuletOfLove__desc__' => 'Un amuleto dorato a forma di rosa con un grosso rubino a forma di cuore. Brilla di una pallida luce rossa e ti senti innamorato.',
 'ElvenTag' => 'ElvenTag',
 'ElvenTag__desc__' => 'A small medallion that emblems the woodelve symbol.',
+'KylesAmulet' => 'KylesAmulet',
+'KylesAmulet__desc__' => 'A golden amulet with a big Hematite. The names Kyle and Ilona are engraved on it.',
 'LO_Amulet' => 'Amuleto_LO',
 'LO_Amulet__desc__' => 'Questo amuleto è un pezzo della magia ThalionLionhearth.',
 'Moonstone' => 'PietraDiLuna',
@@ -256,6 +260,8 @@ $lang = array(
 'UM_Amulet__desc__' => 'Un pezzo della famosa meteora Thalion.',
 
 # armor
+'AramitVest' => 'AramitVest',
+'AramitVest__desc__' => 'The military version of a kevlar vest. Better compounds and factory.',
 'BikerJacket' => 'GiaccaDaMotociclista',
 'BikerJacket__desc__' => 'Una giacca da motociclista. Sul retro c\'è scritto "Hell or Angel".',
 'Blouse' => 'Camicetta',
@@ -328,6 +334,8 @@ $lang = array(
 'UwaObi__desc__' => 'This belt was worn by the samurai and their retainers in feudal Japan. It was mostly used to hold your blade.',
 
 # boots
+'AramitBoots' => 'AramitBoots',
+'AramitBoots__desc__' => 'Aramit boots are used by military forces.',
 'ArmyBoots' => 'StivaliMilitari',
 'ArmyBoots__desc__' => 'Stivali militari grigi-verdognoli.',
 'BikerBoots' => 'StivaliDaMotociclista',
@@ -374,6 +382,8 @@ $lang = array(
 'UM_Earring__desc__' => 'Un orecchino magico, creato da vecchi nani.',
 
 # gloves
+'AramitGloves' => 'AramitGloves',
+'AramitGloves__desc__' => 'Hard Aramit gloves are worn by special forces.',
 'BikerGloves' => 'BikerGloves',
 'BikerGloves__desc__' => 'Black thick biker gloves. Best worn when riding a motorbike.',
 'BoxingGloves' => 'GuantiDaPugilato',
@@ -404,6 +414,8 @@ $lang = array(
 'Yugake__desc__' => 'The Yugake are gloves from japanese archers.',
 
 # helmet
+'AramitHelmet' => 'AramitHelmet',
+'AramitHelmet__desc__' => 'Harded Aramit combat helmet. Used by the military.',
 'ArmyHelmet' => 'ElmettoMilitare',
 'ArmyHelmet__desc__' => 'Un elmetto leggero che garantisce un ottima protezione.',
 'BikerHelmet' => 'CascoDaMotociclista',
@@ -438,6 +450,8 @@ $lang = array(
 'WizardHat__desc__' => 'Un largo capello da mago.',
 
 # legs
+'AramitLegs' => 'AramitLegs',
+'AramitLegs__desc__' => 'Military grade aramit leg protection.',
 'BikerLegs' => 'PantaloniDaMotociclista',
 'BikerLegs__desc__' => 'Pantaloni da motociclista. Utili per un giro in moto.',
 'ChainLegs' => 'GambaliDiMaglia',
@@ -538,6 +552,8 @@ $lang = array(
 'WeddingRing__desc__' => 'Il tuo anello nuziale. Al momento sei spostao con il Tuo PC.',
 
 # shield
+'AramitShield' => 'AramitShield',
+'AramitShield__desc__' => 'A large protective aramit shield, used by the military.',
 'CopShield' => 'ScudoDaPoliziotto',
 'CopShield__desc__' => 'Un grosso scudo da poliziotto. Non uno scudo antisommossa, ma protettivo nondimeno.',
 'DemonShield' => 'ScudoDelDemone',
@@ -570,6 +586,10 @@ $lang = array(
 'Challenger__desc__' => 'Il Challenger è è stata la prima mitragliatrice pesante, sparando proiettivi da 9mm ad una velocità tre volte superiore a quella del suono.',
 'M16' => 'M16',
 'M16__desc__' => 'Il Momoshima16 è un remake di una mitragliatrice utilizzata nelle vecchia guerre riprodotta dalla Momoshima Inc. già dagli anni \'50.',
+'M60' => 'M60',
+'M60__desc__' => 'The M60 Heavy Machine gun. A gun like noother.',
+'M60baim' => 'M60baim',
+'M60baim__desc__' => 'Compund improved version of the M60 HMG. The modifcations also half the mag.',
 'Microgun' => 'Micropistola',
 'Microgun__desc__' => 'La Microgun spara munizioni speciali da 4mm con un alto volume di fuoco.',
 'ArchStaff' => 'BastoneDaArcimago',
@@ -622,6 +642,8 @@ $lang = array(
 'HanBo__desc__' => 'Un semplice bastone lungo poco più di un metro con una buona impugnatura e un design aerodinamico.',
 'KusariGama' => 'KusariGama',
 'KusariGama__desc__' => 'La Kusari-gama è una combinazione di una falce e una lunga catena con un peso attaccato alla sua fine.',
+'Nihonto' => 'Nihonto',
+'Nihonto__desc__' => 'Una spada tradizionale giapponese. Simile alla katana e di pregiata fattura.',
 'Ninjaken' => 'Ninjaken',
 'Ninjaken__desc__' => 'Una spada ninja molto tagliente.',
 'NinjaSword' => 'SpadaNinja',
@@ -676,8 +698,6 @@ $lang = array(
 'KnightsSword__desc__' => 'Una spada lunga da cavaliere, come quelle utilizzare nelle Crociate.',
 'LongSword' => 'SpadaLunga',
 'LongSword__desc__' => 'Una spada lunga d\'acciaio.',
-'Nihonto' => 'Nihonto',
-'Nihonto__desc__' => 'Una spada tradizionale giapponese. Simile alla katana e di pregiata fattura.',
 'SamuraiSword' => 'SpadaSamurai',
 'SamuraiSword__desc__' => 'Un spada samurai finemente ornata.',
 'ShortSword' => 'SpadaCorta',

@@ -45,7 +45,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://irc.freenode.net:7000',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#wechall,#shadowlamb,#hacker.org,#happy-security',
+			'channels' => '#wechall,#shadowlamb,#hacker.org,#happy-security,##TrustNoOne',
 			'admins' => 'gizmore',
 		),
 		
@@ -70,7 +70,7 @@ $LAMB_CFG = array
 			'host' => 'ircs://DOminiOn.german-elite.net:6670',
 			'nickname' => 'Lamb3',
 			'password' => LAMB_PASSWORD,
-			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru,#Nasu_gaming',
+			'channels' => '#shadowlamb,#127.0.0.1,#linux,#Mathematik,#ru,#Nasu_gaming,#mo',
 			'admins' => 'gizmore',
 		),
 		
@@ -171,13 +171,13 @@ $LAMB_CFG = array
 			'admins' => 'gizmore',
 		),
 		
-#		array(
-#			'host' => 'ircs://irc.enigmagroup.org:6697',
-#			'nickname' => 'Lamb3',
-#			'password' => 'lamblamb',
-#			'channels' => '#wechall,#shadowlamb',
-#			'admins' => 'gizmore',
-#		),
+		array(
+			'host' => 'ircs://irc.enigmagroup.org:6697',
+			'nickname' => 'Lamb3',
+			'password' => 'lamblamb',
+			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
 		
 		array(
 			'host' => 'ircs://lanthanum.vutral.net:6667',
@@ -238,13 +238,13 @@ $LAMB_CFG = array
 		),
 			
 		# mibbit
-		array(
-			'host' => 'irc.mibbit.net',
-			'nickname' => 'Lamb',
-			'password' => 'lamblamb',
-			'channels' => '#YPERSYMMAXIA_test_channel',
-			'admins' => 'gizmore',
-		),
+// 		array(
+// 			'host' => 'irc.mibbit.net',
+// 			'nickname' => 'Lamb',
+// 			'password' => 'lamblamb',
+// 			'channels' => '#YPERSYMMAXIA_test_channel',
+// 			'admins' => 'gizmore',
+// 		),
 			
 		# HA
 		array(
@@ -269,6 +269,14 @@ $LAMB_CFG = array
 			'nickname' => 'Lamb3',
 			'password' => 'lamblamb',
 			'channels' => '#shadowlamb',
+			'admins' => 'gizmore',
+		),
+			
+		array(
+			'host' => 'rizon.mibbit.org:6667',
+			'nickname' => 'Lamb',
+			'password' => 'lamblamb',
+			'channels' => '#USF,#shadowlamb',
 			'admins' => 'gizmore',
 		),
 	),

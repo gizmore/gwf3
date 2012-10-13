@@ -30,7 +30,7 @@ abstract class SR_NPCBase extends SR_Player
 	#################
 	### SR_Player ###
 	#################
-	public function getName() { return sprintf('%s[%d]', $this->getVar('sr4pl_name'), $this->getID()); }
+	public function getName() { return sprintf('%s[%s]', $this->getVar('sr4pl_name'), $this->getID()); }
 	public function displayName() { return sprintf("\x02%s\x02", $this->getName()) ; }
 	public function getShortName() { return $this->getName(); }
 	public function help($message) { $this->message($message); }
@@ -73,6 +73,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function getNPCModifiersB() { return array(); }
 	public function getNPCSpells() { return array(); }
 	public function getNPCCyberware() { return array(); }
+	public function getNPCMountInventory() { return array(); }
 	
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
@@ -331,6 +332,11 @@ abstract class SR_NPCBase extends SR_Player
 		{
 			$npc->addCyberware(SR_Item::createByName($itemname));
 		}
+		
+		foreach ($this->getNPCMountInventory() as $itemname)
+		{
+			$npc->putInMountInv(SR_Item::createByName($itemname));
+		}
 
 		$inv = array();
 		foreach ($this->getNPCInventory() as $itemname)
@@ -408,7 +414,10 @@ abstract class SR_NPCBase extends SR_Player
 		$back = array();
 		foreach ($this->getNPCLoot($player) as $itemname)
 		{
-			$back[] = SR_Item::createByName($itemname);
+			if (false !== ($item = SR_Item::createByName($itemname)))
+			{
+				$back[] = $item;
+			}
 		}
 		return $back;
 	}

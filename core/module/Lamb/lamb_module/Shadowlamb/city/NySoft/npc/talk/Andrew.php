@@ -21,24 +21,28 @@ final class NySoft_Andrew extends SR_TalkingNPC
 		$b = chr(2); # bold
 		switch ($word)
 		{
-			case 'seattle': return $this->reply("");
-			case 'shadowrun': return $this->reply("");
-			case 'cyberware': return $this->reply("");
-			case 'magic': return $this->reply("");
-			case 'hire': return $this->reply("");
-			case 'blackmarket': return $this->reply("");
-			case 'bounty': return $this->reply("");
-			case 'alchemy': return $this->reply("");
-			case 'invite': return $this->reply("");
-			case 'renraku': return $this->reply("");
-			case 'malois': return $this->reply("");
-			case 'bribe': return $this->reply("");
-			case 'yes': return $this->reply("");
-			case 'no': return $this->reply("");
-			case 'negotiation': return $this->reply("");
-			case 'hello': return $this->reply("");
-			default:
-				return $this->reply("");
+			case 'seattle': return $this->reply($word);
+			case 'shadowrun': return $this->reply($word);
+			case 'cyberware': return $this->reply($word);
+			case 'magic': return $this->reply($word);
+			case 'hire': return $this->reply($word);
+			case 'blackmarket': return $this->reply($word);
+			case 'bounty': return $this->reply($word);
+			case 'alchemy': return $this->reply($word);
+			case 'invite': return $this->reply($word);
+			case 'renraku': return $this->reply($word);
+			case 'malois': return $this->reply($word);
+			case 'bribe': return $this->reply($word);
+			case 'yes': return $this->reply($word);
+			case 'no': return $this->reply($word);
+			case 'punks': return $this->reply($word);
+			case 'donate': return $this->reply($word);
+			case 'ninja': return $this->reply($word);
+			case 'smithing': return $this->reply($word);
+			case 'temple': return $this->reply($word);
+			case 'negotiation': return $this->reply($word);
+			case 'hello': return $this->reply($word);
+			default: return $this->reply('default', array($word));
 		}
 	}
 }

@@ -170,7 +170,13 @@ class SR_Rune extends SR_Item
 	{
 		$have_mount = false;
 		$have_equip = false;
-		foreach ($this->getItemModifiersB() as $k => $v)
+		
+		$mods = array_merge(
+			$this->getItemModifiersA(Shadowrun4::getCurrentPlayer()),
+			$this->getItemModifiersB()
+		);
+		
+		foreach ($mods as $k => $v)
 		{
 			if ($this->isMountModifier($k))
 			{

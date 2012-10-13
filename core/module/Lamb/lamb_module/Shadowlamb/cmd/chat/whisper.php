@@ -15,6 +15,11 @@ final class Shadowcmd_whisper extends Shadowcmd
 		
 		$name = array_shift($args);
 		$message = implode(' ', $args);
+
+// 		if (self::whisperToRealNPC($player, $name, $message))
+// 		{
+// 			return true;
+// 		}
 		
 		$result = Shadowrun4::getPlayerByShortName($name);
 		
@@ -33,6 +38,24 @@ final class Shadowcmd_whisper extends Shadowcmd
 			return self::onWhisper($player, $result, $message);
 		}
 	}
+	
+// 	private static function whisperToRealNPC(SR_Player $player, $name, $message)
+// 	{
+// 		if (false === ($location = $player->getParty()->getLocationClass()))
+// 		{
+// 			return false;
+// 		}
+		
+// 		foreach ($location->getRealNPCS() as $npcname)
+// 		{
+// 			if ()
+// 		}
+// 		if (in_array($name, ->getRealNPCS()))
+// 		{
+// 			return self::onWhisper($player, SR_Player::getRealNPCByName($name), $message);
+// 		}
+		
+// 	}
 	
 	public static function onWhisper(SR_Player $from, SR_Player $to, $message)
 	{

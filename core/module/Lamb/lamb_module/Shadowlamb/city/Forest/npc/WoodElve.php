@@ -26,6 +26,11 @@ final class Forest_WoodElve extends SR_NPC
 		);
 	}
 	
+	public function getNPCInventory()
+	{
+		return array('100xAmmo_Arrow');
+	}
+	
 	public function getNPCModifiers()
 	{
 		return array(

@@ -49,6 +49,8 @@ $lang = array(
 'opt_lock' => 'Equipment Lock',
 'opt_bot' => 'Player Botflag',
 'opt_norl' => 'Permleader',
+'opt_norefreshsmg' => 'HP/MP Refresh Messages',
+'opt_noautolook' => 'Auto-Look',
 'enabled' => 'enabled',
 'disabled' => 'disabled',
 
@@ -272,7 +274,7 @@ $lang = array(
 #   0000-4999   = Errors #
 ##########################
 '0000' => 'You did not #start the game yet. Type #start race gender to begin playing.',
-'0001' => 'You need to login to play.',
+'0001' => 'You need to login to play. Use ".login yourpass" with Lamb in private.',
 		
 '1002' => 'You need at least level %s to shout.', # level
 '1004' => 'You have no %s quests.', # section

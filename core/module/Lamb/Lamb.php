@@ -394,6 +394,7 @@ final class Lamb
 			
 			foreach ($this->servers as $serverid => $server)
 			{
+				$this->lm_user = false;
 				$this->lm_server = $server;
 				$this->processServer($server);
 			}
@@ -528,6 +529,8 @@ final class Lamb
 		$c = $server->getConnection();
 		if ($c->isConnected())
 		{
+			$this->setCurrentServer($server);
+			
 			while (true)
 			{
 				$c->sendQueue();
@@ -575,23 +578,6 @@ final class Lamb
 //			return true;
 //		}
 
-		# TODO: Set a bit if this line is logged. The login and register scripts set it to false. logging is done after the proecessing has taken place.
-		$t = LAMB_TRIGGER;
-		if ( (strpos($message, "{$t}login") === false) && (strpos($message, "{$t}register") === false) )
-		{
-			printf('%s << %s'.PHP_EOL, $server->getHostname(), $message);
-		
-			if ($server->isLogging())
-			{
-				
-				Lamb_Log::logChat($server, $message);
-			}
-		}
-		else
-		{
-			printf('%s << %s'.PHP_EOL, $server->getHostname(), "XXX CENSORED XXX");
-		}
-		
 		
 		# NEW
 		$by_space = explode(' ', $message);
@@ -628,6 +614,30 @@ final class Lamb
 		$this->lm_server = $server;
 		
 		$this->lm_origin = isset($args[0]) ? $args[0] : '';
+
+		
+		# Log
+		# TODO: Set a bit if this line is logged. The login and register scripts set it to false. logging is done after the proecessing has taken place.
+		
+		if ( (false !== ($user = $server->getUserFromOrigin($from))))
+		{
+			$this->setCurrentUser($user);
+		}
+		$t = LAMB_TRIGGER;
+		if ( (strpos($message, "{$t}login") === false) && (strpos($message, "{$t}register") === false) )
+		{
+			printf('%s << %s'.PHP_EOL, $server->getHostname(), $message);
+		
+			if ($server->isLogging())
+			{
+		
+				Lamb_Log::logChat($server, $message);
+			}
+		}
+		else
+		{
+			printf('%s << %s'.PHP_EOL, $server->getHostname(), "XXX CENSORED XXX");
+		}
 		
 		# Process
 		$back = $this->processCommand($server, $command, $from, $args);
@@ -863,6 +873,11 @@ final class Lamb
 	public function setCurrentUser(Lamb_User $user)
 	{
 		$this->lm_user = $user;
+	}
+	
+	public function setCurrentServer(Lamb_Server $server)
+	{
+		$this->lm_server = $server;
 	}
 	
 	public function setupLanguage(Lamb_User $user)

@@ -22,6 +22,8 @@ final class Chicago_Blackmarket extends SR_Store
 			array('M16', 16.0, 55000),
 			array('Challenger', 12.0, 95000),
 			array('Microgun', 8.0, 125000),
+			array('M60', -1.0, 175000),
+			array('M60baim', -2.0, 179000),
 		);
 	}
 	public function getFoundPercentage()  { return 15; }

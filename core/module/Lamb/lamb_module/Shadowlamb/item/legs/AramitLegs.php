@@ -1,7 +1,7 @@
 <?php
 final class Item_AramitLegs extends SR_Legs
 {
-	public function isItemDropable() { return false; }
+	public function isItemLootable() { return false; }
 	public function getItemLevel() { return 20; }
 	public function getItemPrice() { return 1450; }
 	public function getItemWeight() { return 1250; }

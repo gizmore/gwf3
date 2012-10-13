@@ -23,5 +23,8 @@ final class Redmond_Blacksmith extends SR_Blacksmith
 	public function getSimulationPrice() { return 125; }
 	public function getUpgradePrice() { return 250; }
 	public function getUpgradePercentPrice() { return 15.00; }
+	
+	public function getOpenHour() { return 0; }
+	public function getOpenHours() { return 24; }
 }
 ?>

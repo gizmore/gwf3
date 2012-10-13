@@ -406,8 +406,7 @@ abstract class SR_Store extends SR_Location
 
 	public function checkLocation()
 	{
-		$player = new SR_Player(SR_Player::getPlayerData(0));
-		$player->modify();
+		$player = Shadowrun4::getDummyPlayer();
 		$items = $this->getStoreItems($player);
 		foreach ($items as $data)
 		{

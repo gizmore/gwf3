@@ -12,7 +12,6 @@ final class Chicago_Monnino extends SR_TalkingNPC
 		{
 			return true;
 		}
-		
 		switch ($word)
 		{
 			case 'seattle': return $this->rply($word);
@@ -29,6 +28,11 @@ final class Chicago_Monnino extends SR_TalkingNPC
 			case 'bribe': return $this->rply($word);
 			case 'yes': return $this->rply($word);
 			case 'no': return $this->rply($word);
+			case 'punks': return $this->rply($word);
+			case 'donate': return $this->rply($word);
+			case 'ninja': return $this->rply($word);
+			case 'smithing': return $this->rply($word);
+			case 'temple': return $this->rply($word);
 			case 'negotiation': return $this->rply($word);
 			case 'hello': return $this->rply($word);
 			default: return $this->rply('default', array($word));

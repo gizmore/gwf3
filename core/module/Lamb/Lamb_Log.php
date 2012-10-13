@@ -18,17 +18,18 @@ final class Lamb_Log
 		{
 			$name = $user->getName();
 			$name = preg_replace('/[^a-z_0-9]/i', '', $name);
-			GWF_Log::rawLog("lamb/lamb_chat_{$host}_{$name}", $message);
+			GWF_Log::rawLog("lamb/lamb_chat/{$host}/user/{$name}", $message);
 		}
 		
 		if (false !== ($chan = $bot->getCurrentChannel()))
 		{
 			$name = $chan->getName();
-			GWF_Log::rawLog("lamb/lamb_chat_{$host}_{$name}", $message);
+			GWF_Log::rawLog("lamb/lamb_chat/{$host}/channel/{$name}", $message);
 		}
+		
 		else
 		{
-			GWF_Log::rawLog("lamb/lamb_chat_{$host}", $message);
+			GWF_Log::rawLog("lamb/lamb_chat/{$host}/{$host}", $message);
 		}
 		
 		GWF_Log::flush();

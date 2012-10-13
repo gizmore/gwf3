@@ -50,7 +50,7 @@ final class Forest_OldGraveyard extends SR_Location
 	
 	private function onFoundRing(SR_Player $player)
 	{
-		$this->partyMessage($player, 'dig2');
+		$this->partyMessage($player, 'dig2', array($player->getName()));
 		$player->giveItems(array(SR_Item::createByName('IlonasRing')), $this->lang($player, 'digging'));
 	}
 
@@ -58,7 +58,7 @@ final class Forest_OldGraveyard extends SR_Location
 	{
 		$party = $player->getParty();
 		$mc = $party->getMemberCount();
-		$this->partyMessage($player, 'dig1');
+		$this->partyMessage($player, 'dig1', array($player->getName()));
 		$amt = rand($mc+1, $mc+3);
 		$amt = Common::clamp($amt, 1, SR_Party::MAX_MEMBERS);
 		

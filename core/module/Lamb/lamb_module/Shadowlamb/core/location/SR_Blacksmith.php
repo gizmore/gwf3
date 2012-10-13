@@ -51,6 +51,9 @@ abstract class SR_Blacksmith extends SR_Store
 	public function getUpgradeFailModifier() { return 3.0; }
 	public function getUpgradeBreakModifier() { return 1.2; }
 	
+	public function getOpenHour() { return 6; }
+	public function getOpenHours() { return 18; }
+	
 	#############
 	### Clean ###
 	#############

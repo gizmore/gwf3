@@ -5,7 +5,7 @@ final class Item_AramitGloves extends SR_Gloves
 	public function getItemPrice() { return 600; }
 	public function getItemWeight() { return 200; }
 	public function getItemDescription() { return 'Hard Aramit gloves are worn by special forces.'; }
-	public function isItemDropable() { return false; }
+	public function isItemLootable() { return false; }
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(

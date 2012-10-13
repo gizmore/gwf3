@@ -19,6 +19,8 @@ class Shadowcmd_enable extends Shadowcmd
 			case 'lock': return self::onEnable($player, SR_Player::LOCKED, true, $player->lang('opt_lock')); break;
 			case 'bot': return self::onEnable($player, SR_Player::PLAYER_BOT, true, $player->lang('opt_bot')); break;
 			case 'norl': return self::onEnable($player, SR_Player::NO_RL, true, $player->lang('opt_norl')); break;
+			case 'norefresh': return self::onEnable($player, SR_Player::NO_REFRESH_MSGS, true, $player->lang('opt_norefreshsmg')); break;
+			case 'noautolook': return self::onEnable($player, SR_Player::NO_AUTO_LOOK, true, $player->lang('opt_noautolook')); break;
 			default: $bot->reply(Shadowhelp::getHelp($player, 'enable'));
 		}
 		return false;

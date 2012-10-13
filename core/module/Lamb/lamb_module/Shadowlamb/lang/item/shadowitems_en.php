@@ -50,6 +50,8 @@ $lang = array(
 'Cake__desc__' => 'A delicious cake baken by Unhandled\'s mom.',
 'Chalk' => 'Chalk',
 'Chalk__desc__' => 'A piece of red chalk, perfect to write messages on a wall.',
+'Cigar' => 'Cigar',
+'Cigar__desc__' => 'A big handrolled cigar from the cubanic amerindian people.',
 'Coffee' => 'Coffee',
 'Coffee__desc__' => 'A coffee to go.',
 'Coke' => 'Coke',
@@ -246,6 +248,8 @@ $lang = array(
 'AmuletOfLove__desc__' => 'A golden amulet in a shape of a rose with a large red rubin looking like a heart. It\'s glowing bright red and you feel like you are in love.',
 'ElvenTag' => 'ElvenTag',
 'ElvenTag__desc__' => 'A small medallion that emblems the woodelve symbol.',
+'KylesAmulet' => 'KylesAmulet',
+'KylesAmulet__desc__' => 'A golden amulet with a big Hematite. The names Kyle and Ilona are engraved on it.',
 'LO_Amulet' => 'LO_Amulet',
 'LO_Amulet__desc__' => 'This amulet is a piece of the magic ThalionLionhearth.',
 'Moonstone' => 'Moonstone',
@@ -256,6 +260,8 @@ $lang = array(
 'UM_Amulet__desc__' => 'A piece of the famous Thalion meteor.',
 
 # armor
+'AramitVest' => 'AramitVest',
+'AramitVest__desc__' => 'The military version of a kevlar vest. Better compounds and factory.',
 'BikerJacket' => 'BikerJacket',
 'BikerJacket__desc__' => 'A fat biker jacket. It reads "Hell or Angel".',
 'Blouse' => 'Blouse',
@@ -328,6 +334,8 @@ $lang = array(
 'UwaObi__desc__' => 'This belt was worn by the samurai and their retainers in feudal Japan. It was mostly used to hold your blade.',
 
 # boots
+'AramitBoots' => 'AramitBoots',
+'AramitBoots__desc__' => 'Aramit boots are used by military forces.',
 'ArmyBoots' => 'ArmyBoots',
 'ArmyBoots__desc__' => 'Gray/greenish army boots.',
 'BikerBoots' => 'BikerBoots',
@@ -374,6 +382,8 @@ $lang = array(
 'UM_Earring__desc__' => 'A magic earring, smithed by the old dwarfes.',
 
 # gloves
+'AramitGloves' => 'AramitGloves',
+'AramitGloves__desc__' => 'Hard Aramit gloves are worn by special forces.',
 'BikerGloves' => 'BikerGloves',
 'BikerGloves__desc__' => 'Black thick biker gloves. Best worn when riding a motorbike.',
 'BoxingGloves' => 'BoxingGloves',
@@ -404,6 +414,8 @@ $lang = array(
 'Yugake__desc__' => 'The Yugake are gloves from japanese archers.',
 
 # helmet
+'AramitHelmet' => 'AramitHelmet',
+'AramitHelmet__desc__' => 'Harded Aramit combat helmet. Used by the military.',
 'ArmyHelmet' => 'ArmyHelmet',
 'ArmyHelmet__desc__' => 'A quite protective and light helmet.',
 'BikerHelmet' => 'BikerHelmet',
@@ -438,6 +450,8 @@ $lang = array(
 'WizardHat__desc__' => 'A large white wizard\'s hat.',
 
 # legs
+'AramitLegs' => 'AramitLegs',
+'AramitLegs__desc__' => 'Military grade aramit leg protection.',
 'BikerLegs' => 'BikerLegs',
 'BikerLegs__desc__' => 'Biker legs. Nice for riding a motorbike.',
 'ChainLegs' => 'ChainLegs',
@@ -538,6 +552,8 @@ $lang = array(
 'WeddingRing__desc__' => 'Your wedding ring. You are currently married to Your PC.',
 
 # shield
+'AramitShield' => 'AramitShield',
+'AramitShield__desc__' => 'A large protective aramit shield, used by the military.',
 'CopShield' => 'CopShield',
 'CopShield__desc__' => 'A bigger cop shield. Not a riot shiel, but still protective.',
 'DemonShield' => 'DemonShield',
@@ -570,6 +586,10 @@ $lang = array(
 'Challenger__desc__' => 'The challenger was the first heavy machine gun blasting 9mm bullets above triple as fast as the speed of sound.',
 'M16' => 'M16',
 'M16__desc__' => 'The Momoshima16 is a remake from a MachineGun used in old wars, and reproduced by Momoshima Inc. since the fifties.',
+'M60' => 'M60',
+'M60__desc__' => 'The M60 Heavy Machine gun. A gun like noother.',
+'M60baim' => 'M60baim',
+'M60baim__desc__' => 'Compund improved version of the M60 HMG. The modifcations also half the mag.',
 'Microgun' => 'Microgun',
 'Microgun__desc__' => 'The Microgun shoots special 4mm ammunition with a high fire rate.',
 'ArchStaff' => 'ArchStaff',
@@ -622,6 +642,8 @@ $lang = array(
 'HanBo__desc__' => 'A simple staff around 1.0m in length with a nice grip and slightly aerodynamic design.',
 'KusariGama' => 'KusariGama',
 'KusariGama__desc__' => 'The Kusari-gama is a combination of a sickle (short scythe) and a long chain with a weight attached to the end of it.',
+'Nihonto' => 'Nihonto',
+'Nihonto__desc__' => 'A traditional Japanese Sword. Katana style, and well manufactured.',
 'Ninjaken' => 'Ninjaken',
 'Ninjaken__desc__' => 'A sharp Ninja Sword.',
 'NinjaSword' => 'NinjaSword',
@@ -676,8 +698,6 @@ $lang = array(
 'KnightsSword__desc__' => 'A long knights sword, as used in the holy wars.',
 'LongSword' => 'LongSword',
 'LongSword__desc__' => 'A long steel sword.',
-'Nihonto' => 'Nihonto',
-'Nihonto__desc__' => 'A traditional Japanese Sword. Katana style, and well manufactured.',
 'SamuraiSword' => 'SamuraiSword',
 'SamuraiSword__desc__' => 'A nicely ornamented samurai sword.',
 'ShortSword' => 'ShortSword',

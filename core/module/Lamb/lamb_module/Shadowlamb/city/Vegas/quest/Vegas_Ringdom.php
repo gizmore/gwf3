@@ -24,6 +24,11 @@ final class Quest_Vegas_Ringdom extends SR_QuestMultiItem
 		$npc->reply($this->lang('thx'));
 	}
 	
+	public function onQuestMIMore($npc, SR_Player $player)
+	{
+		$npc->reply($this->lang('more2'));
+	}
+	
 	public function onNPCQuestTalkB(SR_TalkingNPC $npc, SR_Player $player, $word, array $args=NULL)
 	{
 		switch ($word)

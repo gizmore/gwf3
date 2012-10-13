@@ -9,6 +9,8 @@ abstract class SR_HireNPC extends SR_TalkingNPC
 {
 	const HIRE_END = 'hire';
 	
+	public function getName() { return sprintf('%s[%s]', $this->getVar('sr4pl_name'), $this->getID()); }
+	
 	public function onHire(SR_Player $player, $price, $time)
 	{
 		$p = $player->getParty();

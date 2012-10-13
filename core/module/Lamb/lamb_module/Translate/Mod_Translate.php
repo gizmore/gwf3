@@ -64,8 +64,7 @@ class LambModule_Translate extends Lamb_Module
 		));
 
 		if(!preg_match('#<span id=result_box .+?>(.+?)</div>#', $html, $arr)) return false;
-		$translation = mb_convert_encoding(strip_tags($arr[1]), 'UTF-8', 'HTML-ENTITIES');
-
+		$translation = html_entity_decode(strip_tags($arr[1]), ENT_QUOTES);
 		if($return_source_lang)
 		{
 			if(!preg_match('#<div id=autotrans.+?<h3.+?>(.+?) to .+? translation</h3>#', $html, $arr))
