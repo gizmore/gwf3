@@ -687,6 +687,28 @@ class SR_Item extends GDO
 		return $back;
 	}
 	
+	/**
+	 * Multiply a player stat and return as modifiers. Used by cyberware and MON_Rings.
+	 * @param SR_Player $player
+	 * @param array $matrix
+	 * @param boolean $base_values true for base, false for modified
+	 * @return array modifiers
+	 */
+	public static function multiplyStats(SR_Player $player, array $matrix, $base_values=true)
+	{
+		$back = array();
+		foreach ($matrix as $field => $multiplier)
+		{
+			$value = $base_values ? $player->getBase($field) : $player->get($field);
+			if ($value > 0)
+			{
+				$back[$field] = round($value * $multiplier, 2);
+			}
+		}
+		return $back;
+	}
+	
+	
 	################
 	### Duration ###
 	################

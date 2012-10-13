@@ -7,8 +7,8 @@ final class Item_DermalPlatesV3 extends SR_Cyberware
 	public function getItemModifiersA(SR_Player $player)
 	{
 		return array(
-			'marm' => 3.0,
-			'farm' => 3.0,
+			'marm' => 3.5,
+			'farm' => 3.5,
 			'essence' => -2.0,
 		);
 	}
