@@ -15,6 +15,8 @@
 	if (!is_array($tVars['term'])) {
 		$tVars['term'] = $tVars['term'] === '' ? array() : explode('+', $tVars['term']);
 	}
+
+	$class = 'gwf_' . $user->isAdmin() ? 'admin' : ($user->isStaff() ? 'staff' : ($user->isGuest() ? 'guest' : ($user->isBot() ? 'bot' : ($user->isWebspider() ? 'webspider' : 'user'))));
 	
 #echo GWF_Table::rowStartB();
 ?>
@@ -23,11 +25,11 @@
 
 	<div class="gwf_post_uinfo gwf_<?php echo $trd?'odd':'even'; ?>">
 		<?php echo GWF_HTML::div('<span>'.$user->displayCountryFlag().$user->displayProfileLink().'</span>'); ?>
+		<?php echo GWF_HTML::div($user->displayTitle(), $class); /* do not htmlspecialchar */ ?>
 		<?php echo GWF_HTML::div($tLang->lang('th_postcount').':&nbsp;'. $opts->getPostcount()); ?>
 		<?php #echo GWF_HTML::div($tLang->lang('th_user_regdate').':&nbsp;'. $user->displayRegdate()); ?>
 		<?php echo GWF_HTML::div($tLang->lang('th_user_regdate').':&nbsp;'. GWF_Time::displayAge($user->getVar('user_regdate'))); ?>
 		<?php echo GWF_HTML::div($user->displayAvatar()); ?>
-		<?php echo GWF_HTML::div($user->displayTitle()); ?>
 		<?php echo GWF_HTML::div($user->isOptionEnabled(GWF_User::HIDE_ONLINE) ? '' : sprintf('<div>%s</div>', $tLang->lang('last_seen', array(GWF_Time::displayAgeTS($user->getVar('user_lastactivity')))))); ?>
 		<?php echo GWF_HTML::div($user->isOnline() ? $tLang->lang('online') : $tLang->lang('offline')); ?>
 <?php
