@@ -18,7 +18,10 @@
 		$tVars['term'] = $tVars['term'] === '' ? array() : explode('+', $tVars['term']);
 	}
 
-	$class = 'gwf_' . $user->isAdmin() ? 'admin' : ($user->isStaff() ? 'staff' : ($user->isGuest() ? 'guest' : ($user->isBot() ? 'bot' : ($user->isWebspider() ? 'webspider' : 'user'))));
+	$class = '';
+	# Broken because $user has empty ID or something :(
+	# TODO: Inspect database and what causes the crash here.
+// 	$class = 'gwf_' . $user->isAdmin() ? 'admin' : ($user->isStaff() ? 'staff' : ($user->isGuest() ? 'guest' : ($user->isBot() ? 'bot' : ($user->isWebspider() ? 'webspider' : 'user'))));
 	
 #echo GWF_Table::rowStartB();
 ?>
