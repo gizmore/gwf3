@@ -27,7 +27,7 @@ final class Spell_poison_dart extends SR_OffensiveSpell
 		$amount = rand($level*2, $level*2+$hits/3);
 		$per_sec = round($amount / $seconds, 2);
 		echo "Casting poison_dart with level $level and $hits hits. The target will loose $amount HP within $seconds seconds.\n";
-		$modifiers = array('hp' => $per_sec);
+		$modifiers = array('hp' => -$per_sec);
 		$target->addEffects(new SR_Effect($seconds, $modifiers, SR_Effect::MODE_REPEAT));
 		$this->announceADV($player, $target, $level);
 		

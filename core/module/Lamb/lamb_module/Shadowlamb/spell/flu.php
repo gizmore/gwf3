@@ -21,7 +21,7 @@ final class Spell_flu extends SR_OffensiveSpell
 		$amount = rand($level, $level+$hits/3) + rand(0, $player->get('wisdom'));
 		$per_sec = round($amount / $seconds, 2);
 		echo "Casting flu with level $level and $hits hits. The target will loose $amount HP within $seconds seconds.\n";
-		$modifiers = array('hp' => $per_sec);
+		$modifiers = array('hp' => -$per_sec);
 		$target->addEffects(new SR_Effect($seconds, $modifiers, SR_Effect::MODE_REPEAT));
 		
 		$this->announceADV($player, $target, $level);
