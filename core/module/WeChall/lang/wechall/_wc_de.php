@@ -669,5 +669,7 @@ $lang = array(
 	# v5.01 (chall filter)
 	'btn_all' => 'Alle',
 	'btn_open' => 'Ungelöst',
+	'th_no_urlencode' => 'No urlencoding',
+	'tt_no_urlencode' => 'Disable urlencoding of parameters. Not recommended!',
 );
 ?>

@@ -10,6 +10,7 @@ class WC_Site extends GDO
 	const HIDE_BY_DEFAULT = 0x02;
 	const HAS_LOGO = 0x04;
 	const ONSITE_RANK = 0x08;
+	const NO_URLENCODE = 0x10;
 	
 	# Site Status
 	const UP = 'up'; # Site is scored, up and running.
@@ -114,6 +115,7 @@ class WC_Site extends GDO
 	public function getLangISO() { return $this->getLang()->getISO(); }
 	public function getSolved($onsitescore) { $m = $this->getOnsiteScore(); return $m <= 0 ? 0 : $onsitescore / $m; }
 	public function getPercent($onsitescore) { return $this->getSolved($onsitescore) * 100; }
+	public function useUrlencode() { return $this->isOptionEnabled(self::NO_URLENCODE) === false; }
 	
 	/**
 	 * @return GWF_Language
@@ -237,7 +239,6 @@ class WC_Site extends GDO
 	public function getVotesDif()
 	{
 		return GWF_VoteScore::getByID($this->getVar('site_vote_dif', 0));
-//		return $this->getVar('site_vote_dif', false);
 	}
 	
 	/**
@@ -246,7 +247,6 @@ class WC_Site extends GDO
 	public function getVotesFun()
 	{
 		return GWF_VoteScore::getByID($this->getVar('site_vote_fun', 0));
-//		return $this->getVar('site_vote_fun', false);
 	}
 	
 	/**
@@ -255,7 +255,6 @@ class WC_Site extends GDO
 	public function getBoard()
 	{
 		return GWF_ForumBoard::getBoard($this->getVar('site_boardid'));
-//		return GDO::table('GWF_ForumBoard')->getRow($this->getVar('site_boardid'));
 	}
 	
 	/**
@@ -290,7 +289,6 @@ class WC_Site extends GDO
 		static $cache = true;
 		if ($cache === true)
 		{
-//			$cache = GDO::table('WC_Site')->select("site_status='up'", 'site_joindate DESC');
 			$cache = GDO::table('WC_Site')->selectObjects('*', "site_status='up'", 'site_joindate DESC');
 		}
 		return $cache;
@@ -330,7 +328,6 @@ class WC_Site extends GDO
 	public static function getQuickUpdateSites($userid)
 	{
 		$userid = (int) $userid;
-//		$regat = GDO::table('WC_Regat')->getTableName();
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
 		$au = self::AUTO_UPDATE;
 		return GDO::table(__CLASS__)->selectObjects('*', "site_options&$au=0 AND (IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 1, 0))");
@@ -389,7 +386,6 @@ class WC_Site extends GDO
 			$back .= sprintf(', %s%s', $this->displayIRCURL($url), $this->displayMibbitURL($url));
 		}
 		return $back === '' ? '' : substr($back, 2);
-//		return sprintf('%s', $this->display('site_irc'));
 	}
 	private function displayIRCURL($url)
 	{
@@ -403,18 +399,15 @@ class WC_Site extends GDO
 		return GWF_Button::link($href, 'foo');
 	}
 	
-	
 	public function displayName() { return $this->display('site_name'); }
 	public function displayCountry()
 	{
 		return $this->getCountry()->displayFlag();
-//		return GWF_Country::displayFlagS($this->getVar('site_country'));
 	}
 	
 	public function displayLanguage()
 	{
 		return $this->getLang()->displayName();
-//		return GWF_Language::displayNativeByID($this->getVar('site_language'));
 	}
 
 	public function displayLink()
@@ -442,11 +435,6 @@ class WC_Site extends GDO
 	{
 		return $this->displayVoteValue($this->getVar('site_fun'));
 	}
-	
-//	public function displayDescrShort()
-//	{
-//		return Common::stripMessage($this->getVar('site_description'), 120);
-//	}
 	
 	public function isSiteAdmin(GWF_User $user)
 	{
@@ -481,19 +469,9 @@ class WC_Site extends GDO
 	{
 		return $this->isOptionEnabled(self::HAS_LOGO);
 	}
-	
-//	public function displayDescr()
-//	{
-//		return GWF_Message::display($this->getVar('site_description'));
-//	}
 		
 	public function displayLogo($size=32, $hovertext=false, $glow=false, $pad=false, $username='[LOGO]')
 	{
-//		GWF_Profiler::push(__CLASS__.'->'.__METHOD__);
-//		if (!$this->hasLogo()) {
-//			return '';
-//		}
-		
 		if ($glow === true)
 		{
 			$glow = ' border: 3px groove #FE0;';
@@ -514,10 +492,7 @@ class WC_Site extends GDO
 			$pad = ' padding: '.$padsize.'px;';
 		}
 		
-		
 		$hovertext = $hovertext === false ? $this->displayName() : $hovertext;
-		
-//		GWF_Profiler::pop();
 		
 		return sprintf('<img class="wc_logo" src="%s" title="%s" alt="%s" style="width: %spx; height:%spx;%s%s" />', $this->getLogoHREF(), $hovertext, $username, $size, $size, $glow, $pad);
 	}
@@ -676,21 +651,7 @@ class WC_Site extends GDO
 	
 	public function onCreateBoard()
 	{
-		##############!
-		$this->saveVar('site_boardid', $this->getBoardID());
-		return true; #!
-		
-////		$root =  GWF_ForumBoard::getRoot();
-//		$title = 'Comments on '.$this->getSitename();
-//		$options = GWF_ForumBoard::GUEST_VIEW;
-//		if (false === ($board = GWF_ForumBoard::createBoard($title, $title, Module_WeChall::instance()->cfgSiteBoardID(), $options))) {
-//			return false;
-//		}
-//		if (false === $this->saveVar('site_boardid', $board->getID())) {
-//			return false;
-//		}
-////		$this->setVar('site_boardid', $board);
-//		return true;
+		return $this->saveVar('site_boardid', $this->getBoardID());
 	}
 
 	public function onCreateThread(Module_WeChall $module)
@@ -822,11 +783,6 @@ class WC_Site extends GDO
 		$this->recalcScore();
 		WC_RegAt::calcSite($this);
 		
-//		if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $usercount, $challcount)) {
-//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-//			return false;
-//		}
-		
 		return true;
 	}
 	
@@ -904,8 +860,11 @@ class WC_Site extends GDO
 	 */
 	private function replaceURL($url, $username, $email='')
 	{
-		$username = urlencode($username);
-		$email = urlencode($email);
+		if ($this->useUrlencode())
+		{
+			$username = urlencode($username);
+			$email = urlencode($email);
+		}
 		return str_replace(array('%USERNAME%', '%EMAIL%', '%AUTHKEY%'), array($username, $email, $this->getVar('site_xauthkey')), $url);
 	}
 	

@@ -27,7 +27,7 @@ class WCSite_WX extends WC_Site
 		
 		$this->updateSite($maxscore, $usercount, $challcount);
 		
-		return array($onsitescore, $rank, $challssolved);
+		return array($onsitescore, -1, $challssolved);
 	}
 }
 ?>

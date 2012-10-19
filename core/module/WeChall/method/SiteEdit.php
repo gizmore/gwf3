@@ -78,6 +78,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		$data['site_status'] = array(GWF_Form::SELECT, $this->getStatusSelect($site), $this->module->lang('th_site_status'));
 		
+		$data['no_urlencode'] = array(GWF_Form::CHECKBOX, $site->isOptionEnabled(WC_Site::NO_URLENCODE), $this->module->lang('th_no_urlencode'));
 		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->module->lang('th_autoupdate'));
 		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->module->lang('th_site_has_osr'));
 		$data['default_hide'] = array(GWF_Form::CHECKBOX, $site->isDefaultHidden(), $this->module->lang('th_default_hide'));
@@ -306,6 +307,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 		}
 		
+		$site->saveOption(WC_Site::NO_URLENCODE, isset($_POST['no_urlencode']));
 		$site->saveOption(WC_Site::AUTO_UPDATE, isset($_POST['auto_update']));
 		$site->saveOption(WC_Site::HIDE_BY_DEFAULT, isset($_POST['default_hide']));
 		$site->saveOption(WC_Site::ONSITE_RANK, isset($_POST['onsite_rank']));
