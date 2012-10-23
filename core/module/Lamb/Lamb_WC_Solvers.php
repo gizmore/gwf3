@@ -67,8 +67,8 @@ function lamb_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=
 		# uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount::url
 		list($uid, $cid, $solvedate, $firstdate, $views, $options, $timetaken, $tries, $username, $challname, $solvercount, $challurl) = $thedata;
 		
-		if (strlen($firstdate) !== 14) {
-			echo "Dateformat in $url is invalid: $lastdate\n";
+		if (strlen($solvedate) !== 14) {
+			echo "Dateformat in $url is invalid: '$lastdate'\n";
 			return false;
 		}
 		
