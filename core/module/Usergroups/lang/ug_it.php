@@ -166,5 +166,7 @@ $lang = array(
 	'th_gender' => 'Sesso',
 	'err_minlevel' => 'Il livello minimo specificato è invalido.',
 		
+	# v2.08 (Quickjoin)
+	'btn_join' => 'Join',
 );
 ?>

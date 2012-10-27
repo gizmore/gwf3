@@ -64,7 +64,7 @@ final class Usergroups_Join extends GWF_Method
 		}
 	}
 	
-	private function onQuickJoin(GWF_Group $group, GWF_User $user)
+	public function onQuickJoin(GWF_Group $group, GWF_User $user)
 	{
 		if (false === GWF_UserGroup::addToGroup($user->getID(), $group->getID()))
 		{

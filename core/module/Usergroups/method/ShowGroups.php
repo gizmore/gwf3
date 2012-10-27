@@ -12,8 +12,14 @@ final class Usergroups_ShowGroups extends GWF_Method
 	{
 		GWF_Module::loadModuleDB('Forum',true);
 		
-		if (false !== ($array = Common::getPost('part'))) {
+		if (false !== ($array = Common::getPostArray('part')))
+		{
 			return $this->onPart($array).$this->templateGroups();
+		}
+		
+		if (false !== ($array = Common::getPostArray('join')))
+		{
+			return $this->onJoin($array).$this->templateGroups();
 		}
 		return $this->templateGroups();
 	}
@@ -47,18 +53,20 @@ final class Usergroups_ShowGroups extends GWF_Method
 
 	private function onPart($array)
 	{
-		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
+		if (false !== ($error = GWF_Form::validateCSRF_WeakS()))
+		{
 			return GWF_HTML::error('Part Group', $error);
 		}
 		
 		$gid = key($array);
-//		foreach ($array as $gid => $stub) { break; }
 		
-		if (false === ($group = GWF_Group::getByID($gid))) {
+		if (false === ($group = GWF_Group::getByID($gid)))
+		{
 			return $this->module->error('err_unk_group');
 		}
 		
-		if ($group->getFounder()->getID() === GWF_Session::getUserID()) {
+		if ($group->getFounder()->getID() === GWF_Session::getUserID())
+		{
 			return $this->module->error('err_kick_leader');
 		}
 		
@@ -72,5 +80,17 @@ final class Usergroups_ShowGroups extends GWF_Method
 		return '';
 	}
 	
+	private function onJoin($array)
+	{
+		if (false !== ($error = GWF_Form::validateCSRF_WeakS()))
+		{
+			return GWF_HTML::error('Join Group', $error);
+		}
+		if (false === ($group = GWF_Group::getByID(key($array))))
+		{
+			return $this->module->error('err_unk_group');
+		}
+		return $this->module->getMethod('Join')->onQuickJoin($group, GWF_User::getStaticOrGuest());
+	}
 }
 ?>
