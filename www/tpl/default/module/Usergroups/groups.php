@@ -6,11 +6,13 @@ $user = GWF_User::getStaticOrGuest();
 $tVars['module'] instanceof Module_Usergroups;
 
 $btn_part = $tLang->lang('btn_part');
+$btn_join = $tLang->lang('btn_join');
+
 $headers = array(
-	array($tLang->lang('th_group_name'), 'group_name'),
-	array($tLang->lang('th_group_memberc'), 'group_memberc'),
-	array($tLang->lang('th_group_founder'), 'user_name'),
-	array($btn_part),
+		array($tLang->lang('th_group_name'), 'group_name'),
+		array($tLang->lang('th_group_memberc'), 'group_memberc'),
+		array($tLang->lang('th_group_founder'), 'user_name'),
+		array($btn_part),
 );
 
 echo $tVars['page_menu'];
@@ -27,10 +29,10 @@ foreach ($tVars['groups'] as $group)
 	$groupname = $group->getVar('group_name');
 	$founder = $group->getFounder();
 	$in_grp = $user->isInGroupName($groupname);
-	
+
 	if ($in_grp) {
 		$ugopt = $user->getUserGroupOptions($group->getID());#getGroupByName($groupname)->getInt('group_options');
-//		$ugopt = $user->getUserGroupOptions($groupname);
+		//		$ugopt = $user->getUserGroupOptions($groupname);
 	} else {
 		$ugopt = 0;
 	}
@@ -39,7 +41,7 @@ foreach ($tVars['groups'] as $group)
 	} else {
 		$edit = '';
 	}
-	
+
 	$parent_board = $tVars['module']->getForumBoard();
 
 	if (false !== ($board = GWF_ForumBoard::getByID($group->getVar('group_bid')))) {
@@ -48,16 +50,23 @@ foreach ($tVars['groups'] as $group)
 	} else {
 		$forum = $group->display('group_name');
 	}
-	
+
 	$members = GWF_HTML::anchor(GWF_WEB_ROOT.'users_in_group/'.$group->getID().'/'.$group->urlencodeSEO('group_name'), $group->getVar('group_memberc'));
-	 
+
 	echo GWF_Table::rowStart();
 	echo GWF_Table::column($edit.$forum, 'nowrap');
 	echo GWF_Table::column($members, 'gwf_num');
 	echo GWF_Table::column($founder->displayProfileLink());
-	if ($in_grp) {
+	if ($in_grp)
+	{
 		echo GWF_Table::column(sprintf('<input type="submit" name="part[%s]" value="%s" />', $group->getVar('group_id'), $btn_part));
-	} else {
+	}
+	elseif ($group->isOptionEnabled(GWF_Group::FREE))
+	{
+		echo GWF_Table::column(sprintf('<input type="submit" name="join[%s]" value="%s" />', $group->getVar('group_id'), $btn_join));
+	}
+	else
+	{
 		echo '<td></td>'.PHP_EOL;
 	}
 	echo GWF_Table::rowEnd();
