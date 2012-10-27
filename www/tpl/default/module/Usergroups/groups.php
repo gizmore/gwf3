@@ -57,7 +57,11 @@ foreach ($tVars['groups'] as $group)
 	echo GWF_Table::column($edit.$forum, 'nowrap');
 	echo GWF_Table::column($members, 'gwf_num');
 	echo GWF_Table::column($founder->displayProfileLink());
-	if ($in_grp)
+	if ($user->isGuest())
+	{
+		echo '<td></td>'.PHP_EOL;
+	}
+	elseif ($in_grp)
 	{
 		echo GWF_Table::column(sprintf('<input type="submit" name="part[%s]" value="%s" />', $group->getVar('group_id'), $btn_part));
 	}
