@@ -38,7 +38,7 @@ final class GWF_Time
 	public static function getDate($len=14, $time=NULL)
 	{
 		if ($time === NULL) { $time = time(); }
-		$dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis');
+		$dates = array(4=>'Y',6=>'Ym',8=>'Ymd',10=>'YmdH',12=>'YmdHi',14=>'YmdHis', 17=>'YmdHis000');
 		return date($dates[$len], $time);
 	}
 
@@ -51,9 +51,18 @@ final class GWF_Time
 	 */
 	public static function getDateMillis($microtime=NULL)
 	{
-		if ($microtime === null) { $microtime = microtime(true); }
+		return self::getDateMM($microtime === NULL ? microtime(true) : $microtime, 3);
+	}
+	
+	public static function getDateMicros($microtime=NULL)
+	{
+		return self::getDateMM($microtime === NULL ? microtime(true) : $microtime, 6);
+	}
+	
+	private static function getDateMM($microtime, $digits)
+	{
 		$time = (int)$microtime;
-		return self::getDate(14, $time).sprintf('%.03f', $microtime-$time);
+		return self::getDate(14, $time).substr(sprintf('%.0'.$digits.'f', $microtime-$time), 2);
 	}
 
 	/**
@@ -376,7 +385,17 @@ final class GWF_Time
 	{
 		return self::humanDuration(time()-round($timestamp));
 	}
+	
+	public static function displayAgeISO($gwf_date, $iso)
+	{
+		return self::displayAgeTSISO(self::getTimestamp($gwf_date), $iso);
+	}
 
+	public static function displayAgeTSISO($timestamp, $iso)
+	{
+		return self::humanDurationISO($iso, time()-round($timestamp));
+	}
+	
 	################
 	### Duration ###
 	################

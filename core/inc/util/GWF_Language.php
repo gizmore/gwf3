@@ -46,6 +46,11 @@ final class GWF_Language extends GDO
 		}
 		return $CACHE[$iso];
 	}
+	
+	public static function displayNameByISO($iso)
+	{
+		return (false === ($l = self::getByISO($iso))) ? 'UNKNOWN' : $l->displayNameISO($iso);
+	}
 
 	public static function getIDByISO($iso)
 	{

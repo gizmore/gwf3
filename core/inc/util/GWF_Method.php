@@ -29,6 +29,7 @@ abstract class GWF_Method
 	public function getMetaDescription() { return false; }
 	public function getPageTitle() { return false; }
 	public function setTemplate($tpl) { $this->_tpl = $tpl; return $this; }
+	public function l($key, $args=NULL) { return $this->module->lang($key, $args); }
 
 	/**
 	 * this method is called before real execution of method

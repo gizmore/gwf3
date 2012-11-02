@@ -236,39 +236,6 @@ final class GWF_Upload
 		}
 
 		return self::resizeImageC($image, $scale_x, $scale_y, $width, $height, $file);
-		/*
-		if ($min_width > ($width = imagesx($image))) {
-		}
-		if ($min_height > ($height = imagesy($image))) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
-			return false;
-		}
-
-		$diff_w = $width - $max_width;
-		$diff_h = $height - $max_height;
-
-		if ($diff_w > 0 && $diff_h > 0)
-		{
-			if ($diff_w > $diff_h) {
-				$scale = $max_width / $width;
-			} else {
-				$scale = $max_height / $height;
-			}
-		}
-		elseif ($diff_w > 0)
-		{
-			$scale = $max_width / $width;
-		}
-		elseif ($diff_h > 0)
-		{
-			$scale = $max_height / $height; # 100 / 1000 => 10%
-		}
-		else
-		{
-			return true; # Keep the original image!
-		}
-
-		return self::resizeImageC($image, $scale, $width, $height, $file);//*/
 	}
 
 	private static function resizeImageC($image, $scale_x, $scale_y, $width, $height, array $file)

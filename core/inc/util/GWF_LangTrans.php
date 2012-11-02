@@ -183,7 +183,7 @@ final class GWF_LangTrans
 			$path = $this->base_path.'_'.GWF_DEFAULT_LANG.'.php';
 			if (false === Common::isFile($path))
 			{
-				die(sprintf("A language file is completely missing: %s\n", htmlspecialchars($path)));
+				die(GWF_Debug::backtrace(sprintf("A language file is completely missing: %s\n", htmlspecialchars($path)), false));
 			}
 		}
 

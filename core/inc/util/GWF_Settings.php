@@ -22,7 +22,7 @@ final class GWF_Settings extends GDO
 		);
 	}
 
-	public static function getSetting($var, $default='')
+	private static function getSettingB($var, $default='')
 	{
 		$var = GDO::escape($var);
 		if (false === ($val = self::table(__CLASS__)->selectVar('set_val', "set_key='$var'")))
@@ -32,14 +32,34 @@ final class GWF_Settings extends GDO
 		return $val;
 	}
 
-	public static function setSetting($var, $value)
+	private static function setSettingB($var, $value)
 	{
+		self::$CACHE[$var] = $value;
 		return self::table(__CLASS__)->insertAssoc(array('set_key' => $var, 'set_val' => $value), true);
 	}
 
 	public static function unsetSetting($var)
 	{
+		unset(self::$CACHE[$var]);
 		$var = GDO::escape($var);
 		return self::table(__CLASS__)->deleteWhere("set_key='$var'");
+	}
+	
+	######################
+	### Cached version ###
+	######################
+	private static $CACHE = array();
+	public static function getSetting($var, $default='')
+	{
+		return isset(self::$CACHE[$var]) ? self::$CACHE[$var] : self::getFillCache($var, $default);
+	}
+	private static function getFillCache($var, $default)
+	{
+		self::$CACHE[$var] = self::getSettingB($var, $default);
+		return self::$CACHE[$var];
+	}
+	public static function setSetting($var, $value)
+	{
+		return self::setSettingB($var, $value);
 	}
 }

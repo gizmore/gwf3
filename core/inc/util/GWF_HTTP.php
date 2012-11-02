@@ -284,4 +284,16 @@ final class GWF_HTTP
 		}
 		return $ret;
 	}
+	
+	/**
+	 * 
+	 * @param string $url
+	 * @return Ambigous <string, false, boolean, unknown>
+	 */
+	public static function getDomain($url)
+	{
+		$url = Common::substrFrom($url, '://', $url);
+		$url = Common::substrUntil($url, '/', $url);
+		return Common::regex('#([^\\.]+\\.[^\\.]+)$#D', $url);
+	}
 }

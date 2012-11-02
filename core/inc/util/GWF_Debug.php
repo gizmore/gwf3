@@ -142,6 +142,7 @@ final class GWF_Debug
 		if (class_exists('GWF_Log'))
 		{
 			GWF_Log::logCritical(sprintf('%s in %s line %s', $errstr, $errfile, $errline));
+			GWF_Log::flush();
 		}
 
 		switch($errno)
@@ -161,7 +162,7 @@ final class GWF_Debug
 			default: $errnostr = 'PHP Unknown Error'; break;
 		}
 
-		$is_html = !isset($_GET['ajax']);
+		$is_html = PHP_SAPI === 'cli' ? false : !isset($_GET['ajax']); 
 
 		if ($is_html)
 		{
@@ -169,13 +170,13 @@ final class GWF_Debug
 		}
 		else
 		{
-			$message = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline).PHP_EOL;
+			$message = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline);
 		}
 
 		# Output error
 		if (PHP_SAPI === 'cli')
 		{
-			file_put_contents('php://stderr', self::backtrace($message, false));
+			file_put_contents('php://stderr', self::backtrace($message, false).PHP_EOL);
 		}
 		elseif (GWF_USER_STACKTRACE)
 		{
@@ -183,7 +184,7 @@ final class GWF_Debug
 		}
 		else
 		{
-			echo $message;
+			echo $message.PHP_EOL;
 		}
 
 		# Send error to admin

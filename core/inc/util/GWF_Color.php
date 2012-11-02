@@ -7,8 +7,6 @@
  */
 final class GWF_Color
 {
-//	private $r,$g,$b,$a;
-
 	######################
 	### GD Interpolate ###
 	######################

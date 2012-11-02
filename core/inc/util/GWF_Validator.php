@@ -134,7 +134,7 @@ final class GWF_Validator
 	##########################
 	### Default Validators ###
 	##########################
-	public static function validateString($m, $key, $arg, $min=0, $max=63, $unset=true)
+	public static function validateString($m, $key, $arg, $min=0, $max=63, $unset=true, $reduced_ascii_only=false)
 	{
 		$_POST[$key] = $arg = trim($arg);
 		$len = GWF_String::strlen($arg);
@@ -147,6 +147,15 @@ final class GWF_Validator
 			}
 			return $m->lang('err_'.$key, array($min, $max)); // FIXME: {gizmore} if lang is not loaded it will ends up in FATAL
 		}
+		
+		if ($reduced_ascii_only)
+		{
+			if (!preg_match('/^[-a-z0-9_]*$/iD', $arg))
+			{
+				return $m->lang('err_'.$key, array($min, $max));
+			}
+		}
+		
 		return false;
 	}
 

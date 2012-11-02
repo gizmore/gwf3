@@ -12,7 +12,6 @@ Common::defineConst('GWF_CHMOD', '0777'); # Fallback
  */
 final class GWF_Log
 {
-	const NONE = 0;
 	const GWF_WARNING = 0x01;
 	const GWF_MESSAGE = 0x02;
 	const GWF_ERROR = 0x04;
@@ -24,7 +23,10 @@ final class GWF_Log
 	const HTTP_GET = 0x100;
 	const HTTP_POST = 0x200;
 	const IP = 0x400;
-	const _DEFAULT = 0x7ff;
+	
+	const _NONE = 0x00;
+	const _ALL = 0x7ff;
+	const _DEFAULT = self::_ALL;
 
 	private static $POST_DELIMITER = '.::.';
 
@@ -169,7 +171,7 @@ final class GWF_Log
 	 */
 	public static function flush()
 	{
-		$ret = array();
+// 		$ret = array();
 		foreach (self::$logs as $file => $msg)
 		{
 			if (true === ($e = self::writeLog($file, $msg)))
@@ -211,7 +213,7 @@ final class GWF_Log
 	public static function rawLog($filename, $message, $logmode=0)
 	{
 		# log it?
-		if (true === self::isEnabled($logmode))
+		if (self::isEnabled($logmode))
 		{
 			self::logB($filename, $message.PHP_EOL);
 		}
@@ -220,12 +222,6 @@ final class GWF_Log
 
 	private static function logB($filename, $message)
 	{
-		# logging enabled?
-// 		if((true === class_exists('GWF3')) && (false === GWF3::getConfig('do_logging')))
-// 		{
-// 			return false;
-// 		}
-
 		if (true === isset(self::$logs[$filename]))
 		{
 			self::$logs[$filename] .= $message;

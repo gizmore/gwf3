@@ -37,7 +37,33 @@ final class GWF_Array
 		}
 		return implode($glue, $retVal);
 	}
-
+	
+	/**
+	 * Get a paginated slice from an array.
+	 * @param array $array
+	 * @param int $page
+	 * @param int $ipp items per page
+	 * @return array || false
+	 */
+	public static function slicePage(array $array, $page, $ipp)
+	{
+		if ( (0 > ($from = ($page-1)*$ipp)) || ($from > count($array)) )
+		{
+			return false;
+		}
+		return array_slice($array, $from, $ipp);
+	}
+	
+	/**
+	 * Make a single item array of the arg if no an array.
+	 * @param mixed $array
+	 * @return array
+	 */
+	public static function arrify($array)
+	{
+		return is_array($array) ? $array : array($array);
+	}
+	
 	/**
 	 * Implode an array like humans would do:
 	 * Example: 1, 2, 3 and last
@@ -85,6 +111,19 @@ final class GWF_Array
 			}
 		}
 		return $back;
+	}
+	
+	public static function getCaseI($array, $key)
+	{
+		$key = strtolower($key);
+		foreach(self::arrify($array) as $k => $item)
+		{
+			if (strtolower($k) === $key)
+			{
+				return $item;
+			}
+		}
+		return false;
 	}
 }
 

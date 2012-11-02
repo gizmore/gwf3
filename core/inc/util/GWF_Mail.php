@@ -199,7 +199,7 @@ final class GWF_Mail
 		$myhash = $this->computeSentHash();
 		$timeout = time() - self::$RESEND_THRESHOLD;
 		
-		$filename = self::$RESEND_PATH;
+		$filename = GWF_WWW_PATH.self::$RESEND_PATH;
 		
 		if ($fh = fopen($filename, 'c+'))
 		{

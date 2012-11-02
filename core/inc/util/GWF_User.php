@@ -84,8 +84,8 @@ final class GWF_User extends GDO
 	 * @param string $username
 	 * @return GWF_User
 	 */
-
 	public static function getByName($name) { return self::table(__CLASS__)->selectFirstObject('*', 'user_name=\''.self::escape($name).'\''); }
+
 	/**
 	 * Get a user by EMail.
 	 * @param string $email
@@ -149,13 +149,16 @@ final class GWF_User extends GDO
 			return '';
 		}
 		$alt = GWF_HTML::lang('alt_avatar', array($this->displayUsername()));
-		$src = sprintf('%sdbimg/avatar/%d?v=%d', GWF_WEB_ROOT, $this->getID(), $this->getVar('user_avatar_v'));
+		$src = $this->getAvatarURL();
 		return sprintf('<img src="%s" alt="%s" title="%s" />', $src, $alt, $alt);
 	}
 	public function displayTitle() { return $this->display('user_title'); }
 	public function isOnline() { return $this->isOptionEnabled(self::HIDE_ONLINE) ? false : ($this->getVar('user_lastactivity') + GWF_ONLINE_TIMEOUT) >= time(); }
 	public function getPMHREF() { return sprintf('%spm/send/to/%s', GWF_WEB_ROOT, $this->urlencode('user_name')); }
-
+	public function getAvatarURL() { return sprintf('%sdbimg/avatar/%d?v=%d', GWF_WEB_ROOT, $this->getID(), $this->getVar('user_avatar_v')); }
+	public function getAvatarFilename() { return sprintf('%sdbimg/avatar/%d', GWF_WWW_PATH, $this->getID());
+	}
+	
 	public function displayEMail()
 	{
 		return self::displayEMailS($this->getVar('user_email'));

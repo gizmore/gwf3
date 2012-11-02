@@ -3,12 +3,14 @@
  * Simple counter, key => intvalue.
  * @author gizmore
  */
-final class GWF_Counter extends GDO
+final class GWF_CachedCounter extends GDO
 {
+	private static $CACHE = array();
+	
 	###########
 	### GDO ###
 	###########
-	public function getTableName() { return GWF_TABLE_PREFIX.'counter'; }
+	public function getTableName() { return GWF_TABLE_PREFIX.'ccounter'; }
 	public function getClassName() { return __CLASS__; }
 	public function getColumnDefines()
 	{
@@ -17,6 +19,8 @@ final class GWF_Counter extends GDO
 			'count_value' => array(GDO::UINT, 0),
 		);
 	}
+	
+	
 	###################
 	### Convinience ###
 	###################
@@ -27,13 +31,8 @@ final class GWF_Counter extends GDO
 	 */
 	public static function getAndCount($key, $by=1)
 	{
-		if (false === ($row = self::table(__CLASS__)->getRow($key))) {
-			$row = new self(array('count_key'=>$key,'count_value'=>$by));
-			$row->insert();
-		} else {
-			$row->increase('count_value', $by);
-		}
-		return $row->getVar('count_value');
+		self::increaseCount($key, $by);
+		return self::getCount($key);
 	}
 
 	/**
@@ -43,11 +42,16 @@ final class GWF_Counter extends GDO
 	 */
 	public static function getCount($key)
 	{
-		$key = self::escape($key);
-		if (false === ($value = self::table(__CLASS__)->selectVar('count_value', "count_key='$key'"))) {
-			return 0;
+		if (!isset(self::$CACHE[$key]))
+		{
+			$ekey = self::escape($key);
+			if (false === ($value = self::table(__CLASS__)->selectVar('count_value', "count_key='{$ekey}'")))
+			{
+				$value = 0;
+			}
+			self::$CACHE[$key] = $value;
 		}
-		return (int)$value;
+		return self::$CACHE[$key];
 	}
 
 	/**
@@ -58,11 +62,13 @@ final class GWF_Counter extends GDO
 	 */
 	public static function increaseCount($key, $by=1)
 	{
-		if (false === ($row = self::table(__CLASS__)->getRow($key))) {
-			$row = new self(array('count_key'=>$key,'count_value'=>$by));
-			return $row->insert();
-		} else {
-			return $row->increase('count_value', $by);
+		if (!isset(self::$CACHE[$key]))
+		{
+			self::$CACHE[$key] = $by;
+		}
+		else
+		{
+			self::$CACHE[$key] += $by;
 		}
 	}
 
@@ -74,7 +80,16 @@ final class GWF_Counter extends GDO
 	 */
 	public static function saveCounter($key, $value)
 	{
-		$row = new self(array('count_key'=>$key,'count_value'=>$value));
-		return $row->replace();
+		self::$CACHE[$key] = $by;
+	}
+	
+	public static function persist()
+	{
+		$table = self::table(__CLASS__);
+		foreach (self::$CACHE as $key => $value)
+		{
+			$table->insertAssoc(array('count_key' => $key, 'count_value' => $value));
+		}
 	}
 }
+?>

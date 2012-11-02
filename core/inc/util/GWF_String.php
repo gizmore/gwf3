@@ -17,6 +17,11 @@ final class GWF_String
 	{
 		return mb_strlen($str, 'utf8');
 	}
+	
+	public static function remove($str, $chars, $replace='')
+	{
+		return str_replace(str_split($chars), $replace, $str);
+	}
 
 	/**
 	 * Check if a character is [a-zA-Z0-9]

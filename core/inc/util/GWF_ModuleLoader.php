@@ -259,7 +259,7 @@ final class GWF_ModuleLoader
 	}
 
 	/**
-	 * Install modulevars for a module. $vars is an array of array($default_value, $type, $min, $max).
+	 * Install modulevars for a module. $vars is an array of $key => array($default_value, $type, $min, $max).
 	 * @param GWF_Module $module
 	 * @param array $vars
 	 * return error message or ''

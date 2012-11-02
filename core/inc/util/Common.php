@@ -42,7 +42,7 @@ final class Common
 	## CONSTANTS ##
 	###############
 	public static function getConst($var, $default=false) { return defined($var) ? constant($var) : $default; }
-	public static function defineConst($var, $val) { if (false === defined($var)) define($var, $val); return constant($var); }
+	public static function defineConst($var, $val) { if (!defined($var)) define($var, $val); return $val; }
 
 	###########
 	## DEBUG ##
@@ -221,16 +221,15 @@ final class Common
 	}
 
 	/**
-	 * Return the first match of capturing regex. Not safe. Do not use it!
+	 * Return the first match of capturing regex.
 	 * @todo Move to another file?
-	 * @deprecated
 	 * @param string $pattern
 	 * @param string $s
 	 * @return string|false
 	 */
 	public static function regex($pattern, $s)
 	{
-		return preg_match($pattern, $s, $matches) > 0 ? $matches[1] : false;
+		return preg_match($pattern, $s, $matches) ? $matches[1] : false;
 	}
 }
 
