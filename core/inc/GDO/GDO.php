@@ -115,6 +115,9 @@ abstract class GDO
 	const TINYINT = 0x01100000;
 	const MEDIUMINT = 0x01200000;
 	const BIGINT = 0x01400000;
+	const UTINYINT = 0x01104000;
+	const UMEDIUMINT = 0x01204000;
+	const UBIGINT = 0x01404000;
 	const URL = 0x04042000;
 	
 	#########################
@@ -134,8 +137,8 @@ abstract class GDO
 	const URL_LENGTH = 255;
 	
 	protected $gdo_data;
-	protected $auto_col;
-	protected $primary_keys;
+// 	protected $auto_col;
+// 	protected $primary_keys;
 	
 	public function __construct($data=NULL) { $this->gdo_data = $data; }
 	public function getGDOData() { return $this->gdo_data; }
@@ -145,12 +148,14 @@ abstract class GDO
 	public function getInt($var) { return (int)$this->gdo_data[$var]; }
 	public function getFloat($var) { return (double)$this->gdo_data[$var]; }
 	public function setVar($var, $val) { $this->gdo_data[$var] = $val; }
+	public function unsetVar($var) { unset($this->gdo_data[$var]); }
 	public function setVars(array $data) { $this->gdo_data = array_merge($this->gdo_data, $data); }
 	public function getEscaped($var) { return $this->escape($this->gdo_data[$var]); }
 	public function display($var) { return htmlspecialchars($this->gdo_data[$var]); }
 	public function urlencode($s) { return urlencode($this->getVar($s)); }
 	public function urlencode2($s) { return urlencode(urlencode($this->getVar($s))); }
 	public function urlencodeSEO($var) { return Common::urlencodeSEO($this->gdo_data[$var]); }
+	public function getVarDefault($var, $default) { return isset($this->gdo_data[$var]) ? $this->gdo_data[$var] : $default; }
 	
 	#############
 	### Magic ###
@@ -162,8 +167,8 @@ abstract class GDO
 	################
 	public function getID() { return $this->getVar($this->getAutoColName()); }
 	public function getClassName() { return __CLASS__; }
-	public function getTableName() { die('Please override GDO::getTableName() for '.$this->getClassName()); }
-	public function getOptionsName() { return false; } 
+	public function getTableName() { die('Please override GDO::getTableName() for '.$this->getClassName().PHP_EOL); }
+	public function getOptionsName() { return 'options'; } 
 	public function getColumnDefines() { return array(); }
 	
 	#######################
@@ -194,6 +199,9 @@ abstract class GDO
 	############################
 	### Multi DB connections ###
 	############################
+	/**
+	 * @var GDO_DB_mysql
+	 */
 	private static $CURRENT_DB = NULL;
 	public static function setCurrentDB(GDO_Database $db)
 	{
@@ -226,35 +234,39 @@ abstract class GDO
 	
 	public function getAutoColName()
 	{
-		if (!isset($this->auto_col))
-		{
-			$this->auto_col = false;
+// 		if (!isset($this->auto_col))
+// 		{
+// 			$this->auto_col = false;
 			foreach ($this->getColumnDefcache() as $c => $d)
 			{
 				if ( ($d[0]&self::AUTO_INCREMENT) === self::AUTO_INCREMENT)
 				{
-					$this->auto_col = $c;
-					break;
+					return $c; #$this->auto_col = $c;
+// 					break;
 				}
 			}
-		}
-		return $this->auto_col;
+			return false;
+// 		}
+// 		return $this->auto_col;
 	}
 	
 	public function getPrimaryKeys()
 	{
-		if (!isset($this->primary_keys))
-		{
-			$this->primary_keys = array();
+// 		if (!isset($this->primary_keys))
+// 		{
+// 			$this->primary_keys = array();
+			$back = array();
 			foreach ($this->getColumnDefcache() as $c => $d)
 			{
 				if ( ($d[0]&self::PRIMARY_KEY) === self::PRIMARY_KEY)
 				{
-					$this->primary_keys[] = $c;
+// 					$this->primary_keys[] = $c;
+					$back[] = $c;
 				}
 			}
-		}
-		return $this->primary_keys;
+			return $back;
+// 		}
+// 		return $this->primary_keys;
 	}
 	
 	######################

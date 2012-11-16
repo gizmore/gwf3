@@ -443,7 +443,7 @@ final class GWF_InstallFunctions
 				'%%DB%%' => escapeshellarg(GWF_DB_DATABASE),
 				'%%USER%%' => escapeshellarg(GWF_DB_USER),
 				'%%PASS%%' => escapeshellarg(GWF_DB_PASSWORD),
-				'%%SALT%%' => escapeshellarg(GWF_Random::randomKey(12)),
+				'%%SALT%%' => escapeshellarg(GWF_Random::randomKey(16)),
 			);
 			$content = str_replace(array_keys($replace), array_values($replace), $content);
 			

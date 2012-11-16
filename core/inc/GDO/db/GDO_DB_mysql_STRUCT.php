@@ -25,7 +25,7 @@ final class GDO_DB_mysql_STRUCT
 	public static function changeColumn($tablename, $old_columnname, $new_columnname, array $define)
 	{
 		$col_def = self::getColumnDefineB($tablename, $old_columnname, $define);
-		print ("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
+#		print ("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
 		return gdo_db()->queryWrite("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
 	}
 	
@@ -63,7 +63,7 @@ final class GDO_DB_mysql_STRUCT
 		# PK
 		if ($have_auto && count($pks) !== 1)
 		{
-			die(sprintf(__FILE__.' : table `%s` has an auto_increment column but more primary keys!', $tablename));
+			die(sprintf(__FILE__.' : table `%s` has an auto_increment column but more primary keys!', $tablename).PHP_EOL);
 		}
 		
 		if (count($pks) > 0)
@@ -93,55 +93,71 @@ final class GDO_DB_mysql_STRUCT
 		$default = self::getDefaultDefine( (isset($define[1]) ? $define[1] : true) );
 		
 		
-		if ($type & GDO::INT) {
+		if ($type & GDO::INT)
+		{
 			$def = self::getIntDefine($type);
 			$unsigned = self::getUnsigned($type);
 		}
-		elseif ($type & GDO::DECIMAL) {
-			if (!isset($define[2]) || !is_array($define[2]) || count($define[2]) !== 2) {
+		elseif ($type & GDO::DECIMAL)
+		{
+			if (!isset($define[2]) || !is_array($define[2]) || count($define[2]) !== 2)
+			{
 				die(sprintf(__FILE__.' : Table `%s` has an invalid 3rd parameter for decimal column `%s`. Try array(digits,digits).', $tablename, $columname));
 			}
 			$def = self::getDecimalDefine($define[2]);
 		}
-		elseif ( ($type & GDO::CHAR) || ($type & GDO::VARCHAR) ) {
-			if (!isset($define[2]) || $define[2] < 1) {
-				die(sprintf(__FILE__.' : Table `%s` is missing 3rd parameter in column `%s`', $tablename, $columname));
+		elseif ( ($type & GDO::CHAR) || ($type & GDO::VARCHAR) )
+		{
+			if (!isset($define[2]) || $define[2] < 1)
+			{
+				die(sprintf(__FILE__.' : Table `%s` is missing 3rd parameter in column `%s`', $tablename, $columname).PHP_EOL);
 			}
-			if (false === ($charset = self::getCharsetDefine($type))) {
-				die(sprintf(__FILE__.' : Table `%s` has no charset for column `%s`', $tablename, $columname));
+			
+			if (false === ($charset = self::getCharsetDefine($type)))
+			{
+				die(sprintf(__FILE__.' : Table `%s` has no charset for column `%s`', $tablename, $columname).PHP_EOL);
 			}
-			if ($type & GDO::CHAR) {
+			
+			if ($type & GDO::CHAR)
+			{
 				$def = "CHAR($define[2])";
-			} else {
+			}
+			else
+			{
 				$def = "VARCHAR($define[2])";
 			}
 		}
-		elseif ($type&GDO::TEXT) {
-			if ( (false === ($charset = self::getCharsetDefine($type))) ){
-				die(sprintf(__FILE__.' : Table `%s` has no charset for column `%s`', $tablename, $columname));
+		elseif ($type&GDO::TEXT)
+		{
+			if ( (false === ($charset = self::getCharsetDefine($type))) )
+			{
+				die(sprintf(__FILE__.' : Table `%s` has no charset for column `%s`', $tablename, $columname).PHP_EOL);
 			}
 			$def = self::getTextDefine($type);
 		}
-		
-		elseif ($type&GDO::ENUM) {
-			if (!isset($define[2]) || !is_array($define[2]) || count($define[2])===0) {
-				die(sprintf(__FILE__.' : Table `%s` has no valid enums in column `%s`', $tablename, $columname));
+		elseif ($type&GDO::ENUM)
+		{
+			if (!isset($define[2]) || !is_array($define[2]) || count($define[2])===0)
+			{
+				die(sprintf(__FILE__.' : Table `%s` has no valid enums in column `%s`', $tablename, $columname).PHP_EOL);
 			}
 			$def = self::getEnumDefine($type, $define[2]);
 		}
-		elseif ($type&GDO::BLOB) {
+		elseif ($type&GDO::BLOB)
+		{
 			$def = self::getBlobDefine($type);
 		}
-		
-		elseif ($type&GDO::JOIN) {
+		elseif ($type&GDO::JOIN)
+		{
 			return false;
 		}
-		elseif ($type&GDO::GDO_ARRAY) {
+		elseif ($type&GDO::GDO_ARRAY)
+		{
 			return false;
 		}
-		
-		else {
-			die(sprintf(__FILE__.' : Table `%s` column `%s` has an unknown type: %08x', $tablename, $columname, $type));
+		else
+		{
+			die(sprintf(__FILE__.' : Table `%s` column `%s` has an unknown type: %08x', $tablename, $columname, $type).PHP_EOL);
 		}
 		
 		return " $def$unsigned$charset$default$autoinc$unique";
@@ -200,17 +216,26 @@ final class GDO_DB_mysql_STRUCT
 	
 	private static function getCharsetDefine($type)
 	{
-		if ($type & GDO::BINARY) {
+		if ($type & GDO::BINARY)
+		{
 			return ' CHARACTER SET binary';
-		} elseif ($type & GDO::ASCII) {
+		}
+		elseif ($type & GDO::ASCII)
+		{
 			if ($type & GDO::CASE_I) { return ' CHARACTER SET ascii COLLATE ascii_general_ci'; }
 			elseif ($type & GDO::CASE_S) { return ' CHARACTER SET ascii COLLATE ascii_bin'; }
 			else { return false; }
-		} elseif ($type & GDO::UTF8) {
+		}
+		elseif ($type & GDO::UTF8)
+		{
 			if ($type & GDO::CASE_I) { return ' CHARACTER SET utf8 COLLATE utf8_general_ci'; }
 			elseif ($type & GDO::CASE_S) { return ' CHARACTER SET utf8 COLLATE utf8_bin'; }
 			else { return false; }
-		} else { return false; }
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 ?>

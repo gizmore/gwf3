@@ -38,7 +38,7 @@ final class GDO_DB_mysql extends GDO_Database
 		$this->query_time += $time;
 		$this->query_count++;
 		$this->queries_opened++;
-
+		
 		if (GDO_Database::DEBUG)
 		{
 			GWF_Log::rawLog(self::DEBUG_PATH, sprintf('Q#%03d(%.03fs): %s', $this->query_count, $time, $query));
