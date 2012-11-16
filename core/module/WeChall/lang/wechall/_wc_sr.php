@@ -522,7 +522,7 @@ $lang = array(
 	'pt_sites_5' => 'All sites listed on '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Sites with %s challenges on '.GWF_SITENAME,
 	'th_site_country_detail' => 'Држава из које сајт потиче',
-	'site_detail_uinfo' => '%s has a score of %s/%s on %s (%s%). Rank %s within '.GWF_SITENAME.', scoring %s points.',
+	'site_detail_uinfo' => '%s has a score of %s/%s on %s (%s%%). Rank %s within '.GWF_SITENAME.', scoring %s points.',
 		
 	# v4.03
 	'ft_signup' => 'Креирај Налог',

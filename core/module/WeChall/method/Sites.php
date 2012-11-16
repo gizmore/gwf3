@@ -16,6 +16,8 @@ final class WeChall_Sites extends GWF_Method
 			'RewriteRule ^active_sites/([a-z]{2,3})/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Sites&langiso=$1&which=1&by=$2&dir=$3&page=$4'.PHP_EOL.
 			
 			'RewriteRule ^all_sites$ index.php?mo=WeChall&me=Sites&which=5'.PHP_EOL.
+			'RewriteRule ^all_sites/by/page-(\d+)$ index.php?mo=WeChall&me=Sites&which=5&page=$1'.PHP_EOL.
+			'RewriteRule ^all_sites/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Sites&which=5&by=$1&dir=$2&page=$3'.PHP_EOL.
 			'RewriteRule ^all_sites/by/([^/]+)/([DEASC,]+)/?$ index.php?mo=WeChall&me=Sites&which=5&by=$1&dir=$2&page=1'.PHP_EOL.
 			'RewriteRule ^all_sites/(\d+)-([^/]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Sites&which=5&tag=$2&page=$3'.PHP_EOL.
 			'RewriteRule ^all_sites/(\d+)-([^/]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Sites&tag=$2&which=5&by=$3&dir=$4&page=$5'.PHP_EOL.
@@ -149,10 +151,12 @@ final class WeChall_Sites extends GWF_Method
 
 	private function getPageMenuHREF()
 	{
+		$by = urlencode(Common::getGetString('by'));
+		$dir = urlencode(Common::getGetString('dir'));
 		switch(intval(Common::getGet('which')))
 		{
-			case 1:
-				return GWF_WEB_ROOT.sprintf('active_sites/%s/by/%s/%s/page-%%PAGE%%', Common::getGet('langiso'), Common::getGet('by'), Common::getGet('dir'));
+			case 1: return GWF_WEB_ROOT.sprintf('active_sites/%s/by/%s/%s/page-%%PAGE%%', Common::getGet('langiso'), $by, $dir);
+			case 5: return GWF_WEB_ROOT.sprintf('all_sites/by/%s/%s/page-%%PAGE%%', $by, $dir);
 			default: return '';
 		}
 	}

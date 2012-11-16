@@ -739,14 +739,14 @@ class WC_Site extends GDO
 	### Update / Scoring ###
 	########################
 	/**
-	 * Override this method for scoring. Returns array($onsitescore, $onsiterank)
+	 * Override this method for scoring. Returns array($onsitescore, $onsiterank, $challssolved)
 	 * @param $url
 	 * @return array
 	 */
 	public function parseStats($url)
 	{
 		echo WC_HTML::error('err_parse_stub', __CLASS__);
-		return array(0, -1);
+		return array(0, -1, 0);
 	}
 	
 	/**
