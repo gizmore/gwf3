@@ -752,7 +752,10 @@ final class WC_HTML
 	{
 		$mo = Common::getGet('mo');
 		$me = Common::getGet('me');
-		$user = GWF_Session::getUser();
+		if (false === ($user = GWF_Session::getUser()))
+		{
+			return '';
+		}
 		
 		echo '<nav>'.PHP_EOL;
 		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
