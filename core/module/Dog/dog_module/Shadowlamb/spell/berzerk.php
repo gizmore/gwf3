@@ -16,6 +16,7 @@ final class Spell_berzerk extends SR_SupportSpell
 	{
 		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
 		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
+		$by = $this->lowerSpellIncrement($target, $by, 'min_dmg');
 		$mod = array('min_dmg'=>$by, 'max_dmg'=>$by*2);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$this->announceADV($player, $target, $level, '10010', $by, $by*2, GWF_Time::humanDuration($dur));

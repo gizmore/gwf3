@@ -20,6 +20,7 @@ final class Spell_turtle extends SR_SupportSpell
 	{
 		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
 		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
+		$by = $this->lowerSpellIncrement($target, $by, 'marm');
 		$mod = array('marm'=>$by, 'farm'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 // 		$append = sprintf('+%s marm/farm for %s.', $by, GWF_Time::humanDuration($dur));

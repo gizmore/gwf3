@@ -432,6 +432,24 @@ abstract class SR_Spell
 	{
 		Shadowfunc::multiDamage($player, $damage, $this->getName());
 	}
+
+	public function lowerSpellIncrement(SR_Player $target, $by, $field)
+	{
+		# Count number of effects with same field
+		$count = 1;
+		foreach ($target->getEffects() as $effect)
+		{
+			$effect instanceof SR_Effect;
+			foreach ($effect->getModifiersRaw() as $k => $v)
+			{
+				if ($k === $field)
+				{
+					$count++;
+				}
+			}
+		}
+		return round($by * 1/$count, 2);
+	}
 }
 
 #----------------#

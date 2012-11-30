@@ -19,6 +19,7 @@ final class Spell_hawkeye extends SR_SupportSpell
 	{
 		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
 		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
+		$by = $this->lowerSpellIncrement($target, $by, 'firearms');
 		$mod = array('firearms'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 		$this->announceADV($player, $target, $level, '10070', $by, GWF_Time::humanDuration($dur));

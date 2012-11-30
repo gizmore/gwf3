@@ -20,6 +20,7 @@ final class Spell_freeze extends SR_OffensiveSpell
 		$min = 20+$level*10;
 		$max = 40+$level*20+$wis;
 		$seconds = rand($min, $max);
+		$seconds = $this->lowerSpellIncrement($target, $seconds, 'frozen');
 		$target->busy($seconds*10);
 		$ef = Shadowfunc::diceFloat(0.1, $level, 1);
 		$target->addEffects(new SR_Effect($seconds, array('frozen'=>$ef), SR_Effect::MODE_ONCE_EXTEND));

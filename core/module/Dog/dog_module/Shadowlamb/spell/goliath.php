@@ -19,6 +19,7 @@ final class Spell_goliath extends SR_SupportSpell
 	{
 		$dur = $this->getSpellDuration($potion_player, $target, $level, $hits);
 		$by = $this->getSpellIncrement($potion_player, $target, $level, $hits);
+		$by = $this->lowerSpellIncrement($target, $by, 'strength');
 		$mod = array('strength'=>$by);
 		$target->addEffects(new SR_Effect($dur, $mod));
 // 		$append = sprintf('+%s strength for %s.', $by, GWF_Time::humanDuration($dur));
