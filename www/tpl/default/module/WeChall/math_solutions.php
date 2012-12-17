@@ -17,7 +17,7 @@ echo $tVars['page_menu'];
 
 echo GWF_Table::start();
 //echo GWF_Table::displayHeaders1($headers, $tVars['sort_url'], 'wmc_date', 'ASC', 'by', 'dir', $tVars['table_title']);
-echo GWF_Table::displayHeaders1($headers, htmlspecialchars($tVars['sort_url']));
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 $guest = GWF_Guest::getGuest();
 $userr = new GWF_User(false);
 foreach ($tVars['data'] as $row)

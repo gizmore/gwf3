@@ -48,7 +48,7 @@ final class WeChall_MathSolutions extends GWF_Method
 		$tVars = array(
 			'sort_url' => GWF_WEB_ROOT."index.php?mo=WeChall&me=MathSolutions&cid=$cid&length=$length&token=$token&by=%BY%&dir=%DIR%",
 			'data' => $db->queryAll($query),
-			'page_menu' => GWF_PageMenu::display($page, $nPages, htmlspecialchars(GWF_WEB_ROOT.sprintf('index.php?mo=WeChall&me=MathSolutions&cid=%d&length=%d&token=%s&by=%s&dir=%s&page=%%PAGE%%', $cid, $length, $token, urlencode($by), urlencode($dir)))),
+			'page_menu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.sprintf('index.php?mo=WeChall&me=MathSolutions&cid=%d&length=%d&token=%s&by=%s&dir=%s&page=%%PAGE%%', $cid, $length, $token, urlencode($by), urlencode($dir))),
 			'table_title' => $tt,
 			'chall' => $chall,
 		);
