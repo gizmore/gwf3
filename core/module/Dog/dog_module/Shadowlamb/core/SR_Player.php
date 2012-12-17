@@ -24,6 +24,7 @@ class SR_Player extends GDO
 	const WEIGHT_PER_STRENGTH = 1500;
 	
 	const RUNE_MULTIPLIER = 6;
+	const ATTACK_TIME_SECONDS = 0.4;
 	
 	# Human Starter
 	const START_HP = 4;
@@ -52,20 +53,20 @@ class SR_Player extends GDO
 	const BACKWARD_TIME = 45;
 	
 	# WWW hack
-// 	const WWW_OUT = 0x00010;
-// 	const INV_DIRTY = 0x00020;
-// 	const CMD_DIRTY = 0x00040;
-// 	const STATS_DIRTY = 0x00080;
-// 	const EQ_DIRTY = 0x00100;
-// 	const PARTY_DIRTY = 0x00200;
-// 	const LOCATION_DIRTY = 0x00400;
-// 	const CYBER_DIRTY = 0x00800;
-// 	const WORDS_DIRTY = 0x01000;
-// 	const RESPONSE_ITEMS = 0x02000;
-// 	const RESPONSE_PLAYERS = 0x04000;
-// 	const MOUNT_DIRTY = 0x80000;
-// 	const LOOK_DIRTY = 0x100000;
-// 	const DIRTY_FLAGS = 0x187fe0;
+	const WWW_OUT = 0x00010;
+	const INV_DIRTY = 0x00020;
+	const CMD_DIRTY = 0x00040;
+	const STATS_DIRTY = 0x00080;
+	const EQ_DIRTY = 0x00100;
+	const PARTY_DIRTY = 0x00200;
+	const LOCATION_DIRTY = 0x00400;
+	const CYBER_DIRTY = 0x00800;
+	const WORDS_DIRTY = 0x01000;
+	const RESPONSE_ITEMS = 0x02000;
+	const RESPONSE_PLAYERS = 0x04000;
+	const MOUNT_DIRTY = 0x80000;
+	const LOOK_DIRTY = 0x100000;
+	const DIRTY_FLAGS = 0x187fe0;
 
 	public static $ALL = NULL; # see init
 	public static $REV_ALL = NULL; # see init
@@ -144,9 +145,10 @@ class SR_Player extends GDO
 		$back = array(
 			# ID
 			'sr4pl_id' => array(GDO::AUTO_INCREMENT),
-			'sr4pl_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NULL, array('Dog_User', 'sr4pl_uid', 'user_id')),
+// 			'sr4pl_uid' => array(GDO::OBJECT|GDO::INDEX, GDO::NULL, array('Dog_User', 'sr4pl_uid', 'user_id')),
+			'sr4pl_uid' => array(GDO::UINT|GDO::INDEX, GDO::NULL),
 			'sr4pl_sid' => array(GDO::UINT, 0),
-			'sr4pl_partyid' => array(GDO::UINT, GDO::NOT_NULL),
+			'sr4pl_partyid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'sr4pl_classname' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
 			'sr4pl_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
 			'sr4pl_title' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
@@ -208,10 +210,10 @@ class SR_Player extends GDO
 	### Convinience ###
 	###################
 	public function getID() { return $this->getInt('sr4pl_id'); }
-	public function getUID() { return $this->getUser()->getID(); }
+	public function getUID() { return $this->getVar('sr4pl_uid'); }
 	public function getSID() { return $this->getVar('sr4pl_sid'); }
-	public function isNPC() { return $this->getVar('sr4pl_uid') === NULL; }
-	public function isHuman() { return $this->getVar('sr4pl_uid') !== NULL; }
+	public function isNPC() { return $this->getUID() === NULL; }
+	public function isHuman() { return $this->getUID() !== NULL; }
 	public function isCreated() { return $this->isOptionEnabled(self::CREATED); }
 	public function getRace() { return $this->getVar('sr4pl_race'); }
 	public static function getRaces() { return array_keys(self::$RACE); }
@@ -219,10 +221,11 @@ class SR_Player extends GDO
 	public function isMale() { return $this->getGender() === 'male'; }
 	public function isFemale() { return $this->getGender() === 'female'; }
 	public static function getGenders() { return array_keys(self::$GENDER); }
-	public function getName() { $u = $this->getUser(); return sprintf('%s{%d}', $u->getName(), $u->getSID()); }
-	public function displayName() { $u = $this->getUser(); return sprintf("\X02%s{%s}\X02", $u->getName(), $u->getSID()) ; }
+	public function getNam() { return $this->getVar('sr4pl_name'); }
+	public function getName() { return sprintf('%s{%d}', $this->getNam(), $this->getSID()); }
+	public function displayName() { return sprintf("\X02%s{%s}\X02", $this->getNam(), $this->getSID()) ; }
 	public function displayNameNB() { return $this->getEnum().'-'.trim($this->displayName(), "\X02"); }
-	public function getShortName() { return $this->getUser()->getName(); }
+	public function getShortName() { return $this->getNam(); }
 	public function isFighting() { return $this->getParty()->isFighting(); }
 	public function isDead() { return $this->getHP() <= 0 || $this->isOptionEnabled(self::DEAD); }
 	public function isFrozen() { return $this->get('frozen') > 0; }
@@ -291,7 +294,17 @@ class SR_Player extends GDO
 	 */
 	public function getUser()
 	{
-		return $this->getVar('sr4pl_uid');
+		if (false === ($server = Dog::getServerByID($this->getSID())))
+		{
+			return false;
+		}
+		if (false !== ($user = $server->getUserByID($this->getUID())))
+		{
+			return $user;
+		}
+		return Dog_User::getByID($this->getUID());
+		
+// 		return $this->getVar('sr4pl_uid');
 		#XXX What the heck?
 // 		$user = $this->getVar('sr4pl_uid');
 // 		if (false !== ($server = Lamb::instance()->getServer($user->getVar('user_sid'))))
@@ -408,7 +421,8 @@ class SR_Player extends GDO
 		$users = GWF_TABLE_PREFIX.'dog_users';
 		$players = GWF_TABLE_PREFIX.'sr4_player';
 		$player_id = (int) $player_id;
-		if (false === ($result = $db->queryFirst("SELECT p.*, u.* FROM $players p LEFT JOIN $users u ON user_id=sr4pl_uid WHERE sr4pl_id=$player_id", true))) {
+// 		if (false === ($result = $db->queryFirst("SELECT p.*, u.* FROM $players p LEFT JOIN $users u ON user_id=sr4pl_uid WHERE sr4pl_id=$player_id", true))) {
+		if (false === ($result = $db->queryFirst("SELECT p.* FROM $players p WHERE sr4pl_id=$player_id", true))) {
 			return false;
 		}
 		
@@ -419,10 +433,10 @@ class SR_Player extends GDO
 		else
 		{
 			$player = new self($result);
-			if ($result['sr4pl_uid'] !== NULL)
-			{
-				$player->setVar('sr4pl_uid', new Dog_User($result));
-			}
+// 			if ($result['sr4pl_uid'] !== NULL)
+// 			{
+// 				$player->setVar('sr4pl_uid', new Dog_User($result));
+// 			}
 		}
 		return self::reloadPlayer($player);
 	}
@@ -435,12 +449,13 @@ class SR_Player extends GDO
 	
 	public static function getByLongName($username)
 	{
-		if (0 === ($sid = (int)Common::regex('/^.+\\{(\\d+)\\}$/', $username))) {
+		if (0 === ($sid = (int)Common::regex('/^.+\\{(\\d+)\\}$/', $username)))
+		{
 			return false;
 		}
 		$username = Shadowfunc::toShortname($username);
 		$username = self::escape($username);
-		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "user_sid={$sid} AND user_name='{$username}'")))
+		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "sr4pl_sid={$sid} AND sr4pl_name='{$username}'")))
 		{
 			return false;
 		}
@@ -453,7 +468,7 @@ class SR_Player extends GDO
 	public static function getRealNPCByName($name)
 	{
 		$name = self::escape($name);
-		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "user_name='{$name}'")))
+		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "sr4pl_name='{$name}'")))
 		{
 			return false;
 		}
@@ -500,39 +515,30 @@ class SR_Player extends GDO
 	
 	public function reloadConstVars()
 	{
-		if (NULL === ($s = $this->getVar('sr4pl_const_vars'))) {
+		if (NULL === ($s = $this->getVar('sr4pl_const_vars')))
+		{
 			$this->sr4_const_vars = array();
-		} else {
+		}
+		else
+		{
 			$this->sr4_const_vars = unserialize($s);
 		}
 	}
 
 	private function updateConstVars()
 	{
-		if (count($this->sr4_const_vars) === 0) {
-			$s = NULL;
-		} else {
-			$s = serialize($this->sr4_const_vars);
-		}
+		$s = count($this->sr4_const_vars) === 0 ? NULL : serialize($this->sr4_const_vars);
 		return $this->saveVar('sr4pl_const_vars', $s);
 	}
 	
 	private function reloadEquipment($key)
 	{
-		
 		if (false !== ($data = GDO::table('SR_Item')->selectFirst('*', "sr4it_uid={$this->getID()} AND sr4it_position='{$key}'")))
 		{
 			$item = SR_Item::instance($data['sr4it_name'], $data);
 			$item->initModifiersB();
 			$this->sr4_equipment[$key] = $item;
 		}
-// 		if ('0' === ($itemid = $this->getVar('sr4pl_'.$key))) {
-// 			return;
-// 		}
-// 		if (false === ($item = SR_Item::getByID($itemid))) {
-// 			return;
-// 		}
-// 		$this->sr4_equipment[$key] = $item; 
 	}
 	
 	private function reloadItemArray($key)
@@ -551,29 +557,12 @@ class SR_Player extends GDO
 		}
 		$items->free($result);
 		return $back;
-		
-// 		$back = array();
-// 		foreach (explode(',', $this->getVar('sr4pl_'.$key)) as $itemid)
-// 		{
-// 			$itemid = (int) $itemid;
-// 			if (false !== ($item = SR_Item::getByID($itemid))) 
-// 			{
-// 				$back[$itemid] = $item;
-// 			}
-// 		}
-		
-// 		return $back;
 	}
 	
 	private function reloadEffects()
 	{
 		$e = $this->getVar('sr4pl_effects');
-		if (empty($e)) {
-			$this->sr4_effects = array();
-		}
-		else {
-			$this->sr4_effects = unserialize($e);
-		}
+		$this->sr4_effects = empty($e) ? array() : unserialize($e);
 	}
 	
 	public static function getPlayerData($userid=0, $serverid=0)
@@ -648,7 +637,7 @@ class SR_Player extends GDO
 			return false;
 		}
 		$human = self::reloadPlayer($human);
-		$human->setVar('sr4pl_uid', $user);
+// 		$human->setVar('sr4pl_uid', $user);
 		$human->healHP(10000);
 		$human->healMP(10000);
 		$party = SR_Party::createParty();
@@ -659,7 +648,8 @@ class SR_Player extends GDO
 	
 	public static function getPlayer(Dog_User $user)
 	{
-		if (false === ($player = self::getByUID($user->getID()))) {
+		if (false === ($player = self::getByUID($user->getID())))
+		{
 			$player = self::createHuman($user);
 		}
 		return $player;
@@ -686,7 +676,7 @@ class SR_Player extends GDO
 	
 	public function message($message)
 	{
-		if (NULL === ($user = $this->getUser()))
+		if (false === ($user = $this->getUser()))
 		{
 			return Dog_Log::error('User does not exist: '.$this->getName());
 		}
@@ -1760,7 +1750,7 @@ class SR_Player extends GDO
 		foreach (array_reverse($items) as $item)
 		{
 			$item instanceof SR_Item;
-			if (   (strtolower($item->displayFullName($this)) === $itemname)
+			if (   (strtolower($item->displayFullName($this, false, false)) === $itemname)
 				|| (strtolower($item->getItemName()) === $itemname)
 				|| (strtolower($item->getName()) === $itemname) )
 			{
@@ -1854,6 +1844,7 @@ class SR_Player extends GDO
 		$item->saveVar('sr4it_uid', $this->getID());
 		$item->changePosition('cyberware');
 		$this->sr4_cyberware[$item->getID()] = $item;
+		return true;
 // 		return $this->updateCyberware();
 	}
 	
@@ -1956,19 +1947,27 @@ class SR_Player extends GDO
 	 */
 	public function swapInvItems($item1, $item2)
 	{
-		return -3;
-// 		$items1 = $this->getInvItems($item1);
-// 		$items2 = $this->getInvItems($item2);
+		$items1 = array_reverse($this->getInvItems($item1));
+		$items2 = array_reverse($this->getInvItems($item2));
 		
-// 		if(count($items1) == 0){
-// 			return -1;
-// 		}
-// 		if(count($items2) == 0){
-// 			return -2;
-// 		}
-// 		if($items1[0]->getName() == $items2[0]->getName()){
-// 			return -3;
-// 		}
+		if(count($items1) == 0)
+		{
+			return -1;
+		}
+		if(count($items2) == 0)
+		{
+			return -2;
+		}
+		if($items1[0]->getName() == $items2[0]->getName())
+		{
+			return -3;
+		}
+		
+		$this->sr4_inventory = GWF_Array::swapAssoc($this->sr4_inventory, $items1[0]->getID(), $items2[0]->getID());
+		$temp = $items1[0]->getMicrotime(); # Look ma, without temp!
+		$items1[0]->saveMicrotime($items2[0]->getMicrotime());
+		$items2[0]->saveMicrotime($temp);
+		
 		
 // 		$beforeFirst = array();
 // 		$firstKey = -1;
@@ -2026,6 +2025,10 @@ class SR_Player extends GDO
 	 */
 	public function giveItems(array $items, $from='')
 	{
+// 		if ($items instanceof SR_Item)
+// 		{
+// 			$items = array($items);
+// 		}
 		if (0 === ($cnt = count($items)))
 		{
 			return true;
@@ -2068,6 +2071,8 @@ class SR_Player extends GDO
 			}
 		}
 		
+		$this->modify();
+		
 		return true;
 	}
 
@@ -2079,10 +2084,15 @@ class SR_Player extends GDO
 	{
 		$back = '';
 		$format = $this->lang('fmt_giveitems');
+		$have = array();
 		foreach ($items as $item)
 		{
 			$item instanceof SR_Item;
-			$back .= sprintf($format, $item->getAmount(), $item->displayFullName($this));
+			if (!in_array($item->getItemName(), $have))
+			{
+				$have[] = $item->getItemName();
+				$back .= sprintf($format, $item->getAmount(), $item->displayFullName($this));
+			}
 		}
 		return ltrim($back, ',; ');
 	}
@@ -2094,48 +2104,28 @@ class SR_Player extends GDO
 			if (false !== ($other = $this->getInvItemByName($item->getItemName(), false)))
 			{
 				$other->increase('sr4it_amount', $item->getAmount());
-				$item->delete();
-				return true;
+				return $item->delete();
 			}
 		}
-		
 		$this->sr4_inventory[$item->getID()] = $item;
-		return $item->saveVars(array(
-			'sr4it_uid' => $this->getID(),
-			'sr4it_position' => 'inventory',
-			'sr4it_microtime' => microtime(true),
-		));
+		return $item->changeOwnerAndPosition($this->getID(), 'inventory');
 	}
-	
-// 	public function updateInventory()
-// 	{
-// 		if (false === $this->updateItemArray('sr4pl_inventory', $this->sr4_inventory))
-// 		{
-// 			return false;
-// 		}
-// // 		$this->setOption(self::INV_DIRTY, true);
-// 		$this->modify();
-// 		return true;
-// 	}
-	
-	private function updateMountInv($mount_inv)
-	{
-		if (false === $this->updateItemArray('sr4pl_mount_inv', $mount_inv)) {
-			return false;
-		}
-// 		$this->setOption(self::MOUNT_DIRTY, true);
-		return true;
-	}
-	
-// 	private function updateItemArray($field, array $items)
-// 	{
-// 		return $this->saveVar($field, implode(',', array_keys($items)));
-// 	}
 	
 	public function removeFromInventory(SR_Item $item)
 	{
+		return $this->removeFromPlayer($item);
+	}
+	
+	public function removeFromPlayer(SR_Item $item)
+	{
+		unset($this->sr4_bank[$item->getID()]);
 		unset($this->sr4_inventory[$item->getID()]);
+		unset($this->sr4_cyberware[$item->getID()]);
+		unset($this->sr4_mount_inv[$item->getID()]);
+		unset($this->sr4_equipment[$item->getID()]);
+		$this->modify();
 		return true;
+		
 	}
 	
 	public function deleteFromInventory(SR_Item $item)
@@ -2183,12 +2173,9 @@ class SR_Player extends GDO
 				return true;
 			}
 		}
-		$item->changePosition('mount_inv');
+		$item->changeOwnerAndPosition($this->getID(), 'mount_inv');
 		$this->sr4_mount_inv[$item->getID()] = $item;
-		
-// 		$mount_inv = $this->getMountInvItems();
-// 		$mount_inv[$item->getID()] = $item;
-// 		return $this->updateMountInv($mount_inv);
+		return true;
 	}
 	
 	public function getMountInvItemCount()
@@ -2229,9 +2216,6 @@ class SR_Player extends GDO
 		unset($this->sr4_mount_inv[$item->getID()]);
 		$this->sr4_inventory[$item->getID()] = $item;
 		return $item->changePosition('inventory');
-// 		$mount_inv = $this->getMountInvItems();
-// 		unset($mount_inv[$item->getID()]);
-// 		return $this->updateMountInv($mount_inv);
 	}
 	
 	/**
