@@ -9,7 +9,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'The_GHEEEEZZ', true, false);
+WC_CryptoChall::checkSolution($chall, 'The_GHEEEEZZ', true, true);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 
