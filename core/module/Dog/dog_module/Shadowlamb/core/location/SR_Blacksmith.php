@@ -125,7 +125,7 @@ abstract class SR_Blacksmith extends SR_Store
 		$item->initModifiersB();
 		$player->modify();
 
-		$bot->rply('5208', array($p, $itemname, $item->getItemName()));
+		$bot->rply('5208', array($p, $itemname, $item->displayFullName($player)));
 // 		$bot->reply("You pay {$p} and the smith cleans the {$itemname} from all it's runes. You receive a(n): ".$item->getItemName().'.');
 
 		return true;
@@ -176,6 +176,7 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 		
 		$itemname = $item->getItemName();
+		$ditemname = $item->displayFullName($player);
 		
 		$price = $this->calcBreakPrice($player, $item->getItemPriceStatted());
 		$p = Shadowfunc::displayNuyen($price);
@@ -192,7 +193,7 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			if ( (!isset(self::$BREAK_CONFIRM[$uid])) || (self::$BREAK_CONFIRM[$uid] !== $args[0]) )
 			{
-				$bot->reply(sprintf('You plan to break your %s into rune(s). Please retype to confirm.', $itemname));
+				$bot->reply(sprintf('You plan to break your %s into rune(s). Please retype to confirm.', $ditemname));
 				self::$BREAK_CONFIRM[$uid] = $args[0];
 				return false;
 			}
@@ -239,17 +240,17 @@ abstract class SR_Blacksmith extends SR_Store
 				continue;
 			}
 			$runes[] = $rune;
-			$runestr .= ', '.$rn;
+			$runestr .= ', '.$rune->displayFullName($player);
 		}
 		if (count($runes) > 0)
 		{
-			$bot->rply('5209', array($p, $itemname, substr($runestr, 2)));
+			$bot->rply('5209', array($p, $ditemname, substr($runestr, 2)));
 // 			$bot->reply(sprintf('You pay %s and break the %s into %s.', $p, $itemname, substr($runestr, 2)));
 			$player->giveItems($runes);
 		}
 		else
 		{
-			$bot->rply('5210', array($p, $itemname));
+			$bot->rply('5210', array($p, $ditemname));
 // 			$bot->reply(sprintf('You pay %s but breaking the %s into runes failed.', $p, $itemname));
 		}
 		$player->modify();
@@ -402,14 +403,14 @@ abstract class SR_Blacksmith extends SR_Store
 // 		$player->message('The smith takes your items and goes to work...');
  		$player->removeItem($rune);
  		$rune->delete();
-			
+ 		
 		if (Shadowfunc::dicePercent($fail))
 		{
 			if (Shadowfunc::dicePercent($break))
 			{
 				$player->removeItem($item);
 				$item->delete();
-				$bot->rply('5213', array($item->getItemName(), $rune->getItemName()));
+				$bot->rply('5213', array($item->displayFullName($player), $rune->displayFullName($player)));
 // 				$bot->reply(sprintf('The upgrade horrible failed and the item and the rune is lost. The smith is very sorry and you don`t need to pay any money.'));
 			}
 			else
@@ -417,7 +418,7 @@ abstract class SR_Blacksmith extends SR_Store
 				$price_f = $this->calcUpgradePrice($player, 0);
 				$player->pay($price_f);
 				$dpf = Shadowfunc::displayNuyen($price_f);
-				$bot->rply('5214', array($dpf, $rune->getItemName()));
+				$bot->rply('5214', array($dpf, $rune->displayFullName($player)));
 // 				$bot->reply(sprintf('The upgrade failed and the rune is lost. You only need to pay %s for the work.', $dpf));
 			}
 		}
@@ -492,6 +493,7 @@ abstract class SR_Blacksmith extends SR_Store
 		}
 		$pid = $player->getID();
 		$itemname = $rune->getItemName();
+		$ditemname = $rune->displayFullName($player);
 		$confirmed = ( (isset(self::$SPLIT_CONFIRM[$pid])) && (self::$SPLIT_CONFIRM[$pid]===$rune->getID()) );
 		unset(self::$SPLIT_CONFIRM[$pid]);
 	
@@ -523,7 +525,7 @@ abstract class SR_Blacksmith extends SR_Store
 		if (!$confirmed)
 		{
 			self::$SPLIT_CONFIRM[$pid] = $rune->getID();
-			$bot->rply('5216', array($dp, $itemname));
+			$bot->rply('5216', array($dp, $ditemname));
 // 			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
 			return true;
 		}
@@ -540,8 +542,9 @@ abstract class SR_Blacksmith extends SR_Store
 			if ($v >= 0.1)
 			{
 				$name = "Rune_of_{$k}:{$v}";
+				$rune = SR_Item::createByName($name);
 				$runes[] = SR_Item::createByName($name);
-				$names[] = $name;
+				$names[] = $rune->displayFullName($player);
 			}
 		}
 	
@@ -570,7 +573,7 @@ abstract class SR_Blacksmith extends SR_Store
 			return false;
 		}
 	
-		return $bot->rply('5217', array($dp, $itemname, GWF_Array::implodeHuman($names)));
+		return $bot->rply('5217', array($dp, $ditemname, GWF_Array::implodeHuman($names)));
 // 		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 	}
 	
