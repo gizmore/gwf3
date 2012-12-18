@@ -40,7 +40,7 @@ final class Shadowcmd_mount extends Shadowcmd
 				$text = array(
 					'prefix' => $player->lang('mount'),
 				);
-				return self::rply($player, '5129', array(Shadowfunc::getGenericViewI($player, $items, $args, $text)));
+				return self::rply($player, '5129', array(Shadowfunc::getGenericViewI($player, $items, $args, $text, false)));
 		}
 	}
 
@@ -52,8 +52,7 @@ final class Shadowcmd_mount extends Shadowcmd
 	 */
 	private static function on_help(SR_Player $player, array $args)
 	{
-		$bot = Shadowrap::instance($player);
-		return $bot->reply(Shadowhelp::getHelp($player, 'mount'));
+		return self::reply($player, Shadowhelp::getHelp($player, 'mount'));
 	}
 
 	/**
@@ -78,6 +77,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			return false;
 		}
 		$itemname = $item->getItemName();
+		$ditemname = $item->displayFullName($player);
 
 		# Is Storage Mount?
 		if (0 >= ($max = $mount->getMountWeightB()))
@@ -111,7 +111,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			$have_amt = $item->getAmount();
 			if ($amt > $have_amt)
 			{
-				self::rply($player, '1040', array($item->getItemName()));
+				self::rply($player, '1040', array($item->displayFullName($player)));
 // 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
@@ -121,7 +121,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			$items2 = $player->getInvItems($item->getItemName(), $amt);
 			if (count($items2) < $amt)
 			{
-				self::rply($player, '1040', array($item->getItemName()));
+				self::rply($player, '1040', array($item->displayFullName($player)));
 // 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
@@ -133,8 +133,8 @@ final class Shadowcmd_mount extends Shadowcmd
 		if ( ($iw + $we) > $max )
 		{
 			self::rply($player, '1041', array(
-				$mount->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max), 
-				$amt, $item->getName(), Shadowfunc::displayWeight($iw))
+				$mount->displayName($player), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max), 
+				$amt, $item->displayName($player), Shadowfunc::displayWeight($iw))
 			);
 // 			$bot->reply(sprintf('Your %s(%s/%s) has no room for %d of your %s (%s).', $mount->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max), $amt, $item->getName(), Shadowfunc::displayWeight($iw)));
 			return false;
@@ -144,11 +144,8 @@ final class Shadowcmd_mount extends Shadowcmd
 		if ($item->isItemStackable())
 		{
 //			$have_amt = $item->getAmount();
-
 			$item->useAmount($player, $amt);
-			$item2 = SR_Item::createByName($item->getItemName(), $amt, true);
-			$item2->saveVar('sr4it_uid', $player->getID());
-			$player->putInMountInv($item2);
+			$player->putInMountInv(SR_Item::createByName($item->getItemName(), $amt, true));
 			$stored = $amt;
 		}
 		
@@ -170,7 +167,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			}
 		}
 		
-		self::rply($player, '5080', array($stored, $itemname, $mount->getName()));
+		return self::rply($player, '5080', array($stored, $ditemname, $mount->getName()));
 // 		$message = sprintf('You stored %d of your %s in your %s.', $stored, $itemname, $mount->getName());
 // 		return $player->message($message);
 	}
@@ -213,6 +210,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			return false;
 		}
 		$itemname = $item->getItemName();
+		$ditemname = $item->displayFullName($player);
 		$amt = isset($args[0]) ? intval(array_shift($args)) : 1;
 		$collected = 0;
 		
@@ -230,7 +228,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			$have_amt = $item->getAmount();
 			if ($amt > $have_amt)
 			{
-				self::rply($player, '1043', array($itemname, $mount->getName()));
+				self::rply($player, '1043', array($ditemname, $mount->getName()));
 // 				$bot->reply(sprintf('You don\'t have that much %s in your %s.', $itemname, $mount->getName()));
 				return false;
 			}
@@ -247,15 +245,15 @@ final class Shadowcmd_mount extends Shadowcmd
 				return false;
 			}
 			
-			if ($item->getAmount() <= 0)
-			{
-				if (false === $player->removeFromMountInv($item))
-				{
-					$bot->reply(sprintf('Cannot remove from mount inventory in %s line %s.', __FILE__, __LINE__));
-				}
-			}
+// 			if ($item->getAmount() <= 0)
+// 			{
+// 				if (false === $player->removeFromMountInv($item))
+// 				{
+// 					$bot->reply(sprintf('Cannot remove from mount inventory in %s line %s.', __FILE__, __LINE__));
+// 				}
+// 			}
 			
-// 			$player->giveItem($item2);
+			$player->giveItem($item2);
 			$collected = $amt;
 		}
 		
@@ -285,7 +283,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			$invid = $invItem->getInventoryID();
 		}
-		return self::rply($player, '5081', array($collected, $itemname, $mount->getName(), $invid));
+		return self::rply($player, '5081', array($collected, $ditemname, $mount->displayName($player), $invid));
 // 		$reply = sprintf('You collect %d %s from your %s and put it into your inventory.', $collected, $itemname, $mount->getName());
 
 		// append inventory id if it can be determined
