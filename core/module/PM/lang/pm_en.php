@@ -109,7 +109,7 @@ $lang = array(
 		'We hope you like our site and have fun with it.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.'New PM from %s',
+	'mail_subj' => GWF_SITENAME.': New PM from %s',
 	'mail_body' =>
 		'Hello %s'.PHP_EOL.
 		PHP_EOL.

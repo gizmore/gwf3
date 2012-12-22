@@ -110,7 +110,7 @@ $lang = array(
 		'Reméljük tetszik az oldal, és sok örömet okoz majd.'.PHP_EOL,
 		
 	# New PM Email
-	'mail_subj' => GWF_SITENAME.' Új privát üzeneted érkezett, melynek feladója: %s',
+	'mail_subj' => GWF_SITENAME.': Új privát üzeneted érkezett, melynek feladója: %s',
 	'mail_body' =>
 		'Kedves %s'.PHP_EOL.
 		PHP_EOL.
