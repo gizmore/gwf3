@@ -8,7 +8,8 @@ final class Chicago extends SR_City
 		return
 			array(
 				'Redmond_OrkLeader','Redmond_Ueberpunk',
-
+				'Redmond_Snowman',
+					
 				'Seattle_Cop','Seattle_BlackOp',
 				'Seattle_Ninja','Seattle_TrollDecker','Seattle_Samurai','Seattle_Shaolin','Seattle_Headhunter',
 					

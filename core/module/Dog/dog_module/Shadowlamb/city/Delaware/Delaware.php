@@ -11,6 +11,7 @@ final class Delaware extends SR_City
 				'Redmond_Ork','Redmond_Ueberpunk',
 				'Seattle_Cop','Seattle_Ninja','Seattle_BlackOp','Seattle_TrollDecker',
 				'Prison_GrayOp',
+				'Redmond_Snowman',
 			);
 	}
 	public function getArriveText(SR_Player $player) { return 'You arrive in Delaware. Meanwhile it\'s known for its automobile industry.'; }
