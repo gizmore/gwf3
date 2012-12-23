@@ -14,6 +14,7 @@ foreach (Dog::getServers() as $server)
 	if ($server->isConnected())
 	{
 		$server->getConnection()->disconnect($message);
+//		$server->getConnection()->hard_disconnect();
 	}
 }
 ?>

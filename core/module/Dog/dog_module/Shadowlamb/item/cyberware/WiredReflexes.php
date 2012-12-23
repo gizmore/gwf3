@@ -6,13 +6,18 @@ final class Item_WiredReflexes extends SR_Cyberware
 	public function getConflicts() { return array('WiredReflexesV2','WiredReflexesV3'); }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return self::mergeModifiers(
-			self::multiplyStats($player, array('quickness' => '0.5')),
-			array(
-				'quickness' => 2.0,
-				'essence' => -1.0,
-			)
+		return array(
+// 			'quickness' => 2.0,
+			'essence' => -1.0,
+			'quickness' => '*1.5',
 		);
+// 		return self::mergeModifiers(
+// 			self::multiplyStats($player, array('quickness' => '0.5')),
+// 			array(
+// 				'quickness' => 2.0,
+// 				'essence' => -1.0,
+// 			)
+// 		);
 	}
 }
 

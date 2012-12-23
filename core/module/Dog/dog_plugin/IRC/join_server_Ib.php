@@ -16,21 +16,29 @@ if ($argc !== 1)
 	return $plugin->showHelp();
 }
 
-$url = parse_url($argv[0]);
-if (!isset($url['host']))
+if ( (Common::isNumeric($argv[0])) && (false !== ($server = Dog::getServerByID($argv[0]))) )
 {
-	return $plugin->rply('err_url');
+	$prot = $server->isSSL() ? 'ircs' : 'irc';
+	$port = $server->getPort();
 }
-$host = $url['host'];
-$prot = isset($url['scheme']) ? strtolower($url['scheme']) : 'irc';
-if ( ($prot !== 'irc') && ($prot !== 'ircs') )
+else
 {
-	return $plugin->rply('err_url');
+	$url = parse_url($argv[0]);
+	if (!isset($url['host']))
+	{
+		return $plugin->rply('err_url');
+	}
+	$host = $url['host'];
+	$prot = isset($url['scheme']) ? strtolower($url['scheme']) : 'irc';
+	if ( ($prot !== 'irc') && ($prot !== 'ircs') )
+	{
+		return $plugin->rply('err_url');
+	}
+	$default_port = $prot === 'ircs' ? 6697 : 6667;
+	$port = isset($url['port']) ? intval($url['port']) : $default_port;
+	$options = Dog_Server::DEFAULT_OPTIONS;
+	$options |= $prot === 'ircs' ? Dog_Server::SSL : 0;
 }
-$default_port = $prot === 'ircs' ? 6697 : 6667;
-$port = isset($url['port']) ? intval($url['port']) : $default_port;
-$options = Dog_Server::DEFAULT_OPTIONS;
-$options |= $prot === 'ircs' ? Dog_Server::SSL : 0;
 
 if ( (false !== ($server = Dog::getServerByArg($argv[0]))) || ((false !== ($server = Dog::getServerByArg($host)))) )
 {

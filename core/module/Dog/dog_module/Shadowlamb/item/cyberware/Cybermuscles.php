@@ -6,13 +6,18 @@ class Item_Cybermuscles extends SR_Cyberware
 	public function getConflicts() { return array('CybermusclesV2','CybermusclesV3'); }
 	public function getItemModifiersA(SR_Player $player)
 	{
-		return self::mergeModifiers(
-			self::multiplyStats($player, array('strength' => '0.5')),
-			array(
-				'quickness' => 1.0,
-				'essence' => -1.0,
-			)
+		return array(
+			'quickness' => 1.0,
+			'essence' => -1.0,
+			'strength' => '*1.5',
 		);
+// 		return self::mergeModifiers(
+// 			self::multiplyStats($player, array('strength' => '0.5')),
+// 			array(
+// 				'quickness' => 1.0,
+// 				'essence' => -1.0,
+// 			)
+// 		);
 	}
 }
 ?>

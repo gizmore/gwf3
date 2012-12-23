@@ -23,10 +23,12 @@ if (false === ($channel = Dog::getChannel()))
 
 $dogprv = $channel->getPriv($channel->getDog());
 $dogbit = Dog_IRCPriv::charsToBits($dogprv);
-$bit = Dog_PrivChannel::getPermbits($channel, $user);
-
-echo "ME HAS $dogprv === $dogbit\n";
-echo "HE HAS $bit\n";
+$bit = Dog_IRCPriv::charsToBits($channel->getPriv($user));
+$wantbit = Dog_PrivChannel::getPermbits($channel, $user);
+if ($wantbit > $dogbit)
+{
+	$wantbit = $dogbit;
+}
 
 if ($dogbit < Dog_IRCPriv::charsToBits('h'))
 {
@@ -40,6 +42,6 @@ elseif ($bit > $dogbit)
 
 elseif ($dogbit > $bit)
 {
-	$server->getConnection()->sendRAW(sprintf('MODE %s +%s %s', $channel->getName(), Dog_IRCPriv::bitToBestNamedSymbol($dogbit), $user->getName()));
+	$server->getConnection()->sendRAW(sprintf('MODE %s +%s %s', $channel->getName(), Dog_IRCPriv::bitToBestNamedSymbol($wantbit), $user->getName()));
 }
 ?>

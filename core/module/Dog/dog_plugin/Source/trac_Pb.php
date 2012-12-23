@@ -25,14 +25,17 @@ $message = str_replace('$', $__DOG_TRAC_LAST, $message);
 $__DOG_TRAC_LAST = $message;
 
 # The callback function for the filewalker
-if (!(function_exists('dog_trac_helper')))
+if (!(function_exists('dog_trac_helper4')))
 {
-	function dog_trac_helper($entry, $fullpath, $search)
+	function dog_trac_helper4($entry, $fullpath, $search)
 	{
 		if (strpos($fullpath, $search) !== false)
 		{
-			global $__DOG_TRAC_RESULTS;
-			$__DOG_TRAC_RESULTS[] = $fullpath;
+			if (strpos($fullpath, '/module/Lamb/') === false)
+			{
+				global $__DOG_TRAC_RESULTS;
+				$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);
+			}
 		}
 	}
 }
@@ -46,7 +49,7 @@ $dirs = array(
 
 foreach ($dirs as $dir)
 {
-	GWF_File::filewalker(GWF_PATH.$dir, 'dog_trac_helper2', true, true, $message);
+	GWF_File::filewalker(GWF_PATH.$dir, 'dog_trac_helper4', true, true, $message);
 }
 
 # Print results

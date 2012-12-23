@@ -6,6 +6,7 @@ final class Dog_Server extends GDO
 	const ACTIVE = 0x10;
 	const SSL = 0x20;
 	const BNC = 0x40;
+	const WS = 0x80;
 	const HAS_CONNECTED_ONCE = 0x100;
 	const DEFAULT_OPTIONS = 0x11;
 	const LOGBITS = 0x03;
@@ -76,6 +77,7 @@ final class Dog_Server extends GDO
 	public function nextNick() { return Dog_Nick::getNickFor($this, $this->getIncreaseNicknum()); }
 	public function getConf($key, $def='0') { return Dog_Conf_Plug_Serv::getConf('servers', $this->getID(), $key, $def); }
 	public function setConf($key, $val='1') { return Dog_Conf_Plug_Serv::setConf('servers', $this->getID(), $key, $val); }
+	public function isWebsocket() { return $this->isOptionEnabled(self::WS); }
 	/**
 	 * @return Dog_Nick
 	 */
@@ -168,7 +170,14 @@ final class Dog_Server extends GDO
 	
 	public function setupConnection()
 	{
-		$this->connection = new Dog_IRC();
+		if ($this->isWebsocket())
+		{
+			$this->connection = new Dog_IRCWS($this);
+		}
+		else
+		{
+			$this->connection = new Dog_IRCC();
+		}
 	}
 	
 	public function connect()
@@ -230,13 +239,7 @@ final class Dog_Server extends GDO
 	
 	public function getMessage()
 	{
-		$msg = $this->connection->receive();
-		if (!$this->connection->alive())
-		{
-			$this->disconnect('oops');
-			return false;
-		} 
-		return $msg;
+		return $this->connection->alive() ? $this->connection->receive() : false;
 	}
 	
 	private function getReplyTarget()
@@ -354,6 +357,11 @@ final class Dog_Server extends GDO
 	public function getUsers()
 	{
 		return $this->users;
+	}
+	
+	public function getUserByID($uid)
+	{
+		return isset($this->users[$uid]) ? $this->users[$uid] : false;
 	}
 
 	public function getUserByName($username)

@@ -26,9 +26,10 @@ elseif ($argc === 1)
 	}
 	else
 	{
-		$old = $user->displayLang();
+		$old = $user->getLangISO() === 'bot' ? 'Bot' : $user->displayLang();
 		Dog::getUser()->saveVar('user_lang', $argv[0]);
-		$plugin->rply('set', array($server->displayName(), $old, $user->displayLang()));
+		$dlang = $argv[0] === 'bot' ? 'Bot' : $user->displayLang();
+		$plugin->rply('set', array($server->displayName(), $old, $dlang));
 	}
 }
 

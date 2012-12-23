@@ -38,7 +38,11 @@ final class Dog_Init
 		foreach ($servers as $server)
 		{
 			$server instanceof Dog_Server;
-			if (false === Dog_Nick::getNickFor($server))
+			if ($server->isWebsocket())
+			{
+				
+			}
+			elseif (false === Dog_Nick::getNickFor($server))
 			{
 				return Dog_Log::error(sprintf('Server %s has no nickname setup!', $server->displayName()));
 			}

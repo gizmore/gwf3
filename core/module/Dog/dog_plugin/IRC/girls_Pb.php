@@ -14,6 +14,7 @@ $girls = array(
 	'gemgale',
 	'Unholy',
 	'bb',
+	'nour',
 );
 
 $girl = $girls[array_rand($girls)];

@@ -1092,12 +1092,24 @@ class SR_Player extends GDO
 	{
 		foreach ($modifiers as $key => $value)
 		{
-			if ($key === 'hp') {
+			if ($key === 'hp')
+			{
 				$this->healHP($value);
-			} elseif ($key === 'mp') {
+			}
+			elseif ($key === 'mp')
+			{
 				$this->healMP($value);
-			} else {
-				$this->sr4_data_modified[$key] += $value;
+			}
+			else
+			{
+				if ($value[0] === '*')
+				{
+					$this->sr4_data_modified[$key] *= substr($value, 1);
+				}
+				else
+				{
+					$this->sr4_data_modified[$key] += $value;
+				}
 			}
 		}
 	}

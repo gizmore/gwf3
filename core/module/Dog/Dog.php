@@ -103,14 +103,16 @@ final class Dog
 	}
 	
 	public static function addServer(Dog_Server $server)
-	{
+	{		
+		Dog_Log::debug(sprintf('addServer(%d)', $server->getID()));
 		$server->setConnectIn(count(self::$SERVERS)*1.5+1);
 		
-		$tld = $server->getTLD();
-		if (!isset(self::$SERVERS[$tld]))
+		$host = $server->getHost();
+		if (!isset(self::$SERVERS[$host]))
 		{
 			$server->setupConnection();
-			self::$SERVERS[$tld] = $server;
+			self::$SERVERS[$host] = $server;
+			Dog_Log::debug(sprintf('addServer(%d)', $server->getID()));
 		}
 	}
 	
@@ -338,6 +340,7 @@ final class Dog
 		
 		while (false !== ($message = $server->getMessage()))
 		{
+// 			echo 'Rec: '.$message.PHP_EOL;
 			self::processMessage($server, rtrim($message, "\r\n"));
 		}
 	}

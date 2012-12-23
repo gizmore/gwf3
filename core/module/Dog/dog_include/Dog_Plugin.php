@@ -64,7 +64,6 @@ final class Dog_Plugin
 		if (  ($entry[0] !== '_') # disabled
 			&&(substr($entry, 0, -7) === $name) )
 		{
-			echo "Got Plug recursive\n";
 			self::$PLUGIN[] = new Dog_Plugin($name, substr($entry, -6, 2), $fullpath);
 		}
 	}

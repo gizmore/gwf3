@@ -21,7 +21,7 @@ abstract class Dog_Module
 	public function argc() { return count($this->argv()); }
 	public function argv($n=NULL) { $m = self::msgarg(); $argv = $m === '' ? array() : explode(' ', $m); return $n === NULL ? $argv : $argv[$n]; }
 	public function msg() { return Dog::getIRCMsg()->getArg(1); } # The full .cmd thing
-	public function msgarg() { return trim(Common::substrFrom(self::msg(), ' ', '')); } # only the three .cmd arg arg arg
+	public function msgarg() { return trim(Common::substrFrom($this->msg(), ' ', '')); } # only the three .cmd arg arg arg
 	public function rply($key, $args=NULL) { Dog::reply($this->lang($key, $args)); }
 	public function reply($message) { Dog::reply($message); }
 	public function lang($key, $args=NULL) { return $this->lang_->langISO(Dog::getLangISO(), $key, $args); }
