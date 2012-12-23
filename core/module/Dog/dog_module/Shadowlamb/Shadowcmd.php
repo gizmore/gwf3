@@ -532,16 +532,19 @@ class Shadowcmd
 		{
 			if (!$player->isCreated())
 			{
-				self::rply($player, '0000');
+				$player->msg('0000');
+// 				self::rply($player, '0000');
 // 				Shadowrun4::removePlayer($player);
 			}
 			elseif ($player->isOptionEnabled(SR_Player::DEAD))
 			{
-				self::rply($player, '5256', array(self::translate('running_mode'), self::shortcut('running_mode'), self::translate('reset'))); # You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.
+				$player->msg('5256', array(self::translate('running_mode'), self::shortcut('running_mode'), self::translate('reset')));
+#				self::rply($player, '5256', array(self::translate('running_mode'), self::shortcut('running_mode'), self::translate('reset'))); # You played #running_mode and got killed by an NPC or other #rm player. You are dead. Use #reset to start over.
 			}
 			else
 			{
-				self::rply($player, '1174');
+				$player->msg('1174');
+#				self::rply($player, '1174');
 // 				$bot->reply('The command is not available for your current action or location. Try '.$c.'c [<l|long>] to see all currently available commands.');
 			}
 			return false;
@@ -582,9 +585,9 @@ class Shadowcmd
 	
 	public static function reply(SR_Player $player, $message)
 	{
-		return $player->isFighting() ?
+		return $player->isFighting() && self::isCombatCommand() ?
 			$player->message($message) :
-			Shadowrap::instance($player)->reply($message);
+			Dog::reply($message);
 	}
 }
 ?>

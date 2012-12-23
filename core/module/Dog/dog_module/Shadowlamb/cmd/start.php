@@ -55,10 +55,6 @@ final class Shadowcmd_start extends Shadowcmd
 		$player->msg('start_2');
 		$player->msg('start_3');
 		$player->hlp('start_4');
-// 		$player->message('You wake up in a bright room... It seems like it is past noon...looks like you are in a hotel room.');
-// 		$player->message('What happened... You can`t remember anything.... Gosh, you even forgot your name.');
-// 		$player->message("You check your {$b}{$c}inventory{$b} and find a pen from 'Renraku Inc.'. You leave your room and walk to the counter. Use {$b}{$c}talk{$b} to talk with the hotelier.");
-// 		$player->help("Use {$b}{$c}c{$b} to see all available commands. Check {$b}{$c}help{$b} to browse the Shadowlamb help files. Use {$c}help <cmd> to see the help for a command.");
 	
 		$player->giveItems(array(SR_Item::createByName('Pen')));
 		$player->giveKnowledge('words', 'Shadowrun');
@@ -72,11 +68,8 @@ final class Shadowcmd_start extends Shadowcmd
 	
 	private static function onHelp(SR_Player $player, $races, $genders)
 	{
-//		$bot = Shadowrap::instance($player);
-// 		$b = chr(2);
 		$player->message(Shadowhelp::getHelp($player, 'start'));
 		$player->hlp('hlp_start', array($races, $genders));
-// 		$player->message(sprintf("{$b}Known races{$b}: %s. {$b}Known genders{$b}: %s.", $races, $genders));
 		return false;
 	}
 }

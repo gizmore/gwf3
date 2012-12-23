@@ -1081,7 +1081,7 @@ final class Shadowfunc
 		$il = $item->getItemLevel() + 1;
 		$luck = $player->get('luck');
 		$luck_bonus_wanted = $il / $level;
-		return $chance + $luck * 8 * Common::pow($chance, $luck_bonus_wanted);  
+		return $chance + /*$luck **/ 2 * Common::pow($chance, $luck_bonus_wanted);  
 	}
 	
 

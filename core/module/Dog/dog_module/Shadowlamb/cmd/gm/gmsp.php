@@ -18,7 +18,7 @@ final class Shadowcmd_gmsp extends Shadowcmd
 		
 		$server = $player->getUser()->getServer();
 		
-		if (false === ($user = $server->getUserByNickname($args[0])))
+		if (false === ($user = Dog::getUserByArg($args[0])))
 		{
 			$bot->reply(sprintf('The user %s is unknown.', $args[0]));
 			return false;

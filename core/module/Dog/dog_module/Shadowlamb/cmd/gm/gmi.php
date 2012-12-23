@@ -27,7 +27,8 @@ final class Shadowcmd_gmi extends Shadowcmd
 			return false;
 		}
 		
-		if (false === ($item = SR_Item::createByName($args[1]))) {
+		if (false === ($item = SR_Item::createByName($args[1])))
+		{
 			$bot->reply(sprintf('The item %s could not be created.', $args[1]));
 			return false;
 		} 

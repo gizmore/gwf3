@@ -5,7 +5,6 @@ final class Redmond_Snowman extends SR_NPC
 	public function getNPCPlayerName() { return 'Snowman'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 15.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
-	public function getNPCLoot(SR_Player $player) { return array(); }
 	public function getNPCEquipment()
 	{
 		return array(
@@ -32,7 +31,7 @@ final class Redmond_Snowman extends SR_NPC
 	{
 		$got = SR_PlayerVar::getVal($player, '2012_SNO', 0);
 		
-		if ($got >= 15)
+		if ($got >= 20)
 		{
 			return array();
 		}

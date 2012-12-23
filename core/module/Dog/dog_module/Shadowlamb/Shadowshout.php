@@ -100,7 +100,7 @@ final class Shadowshout
 					
 					if ($m->isCreated())
 					{
-						if (NULL === ($u = $m->getUser()))
+						if (false === ($u = $m->getUser()))
 						{
 							continue;
 						}

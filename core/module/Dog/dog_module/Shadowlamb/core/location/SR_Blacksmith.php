@@ -542,9 +542,9 @@ abstract class SR_Blacksmith extends SR_Store
 			if ($v >= 0.1)
 			{
 				$name = "Rune_of_{$k}:{$v}";
-				$rune = SR_Item::createByName($name);
-				$runes[] = SR_Item::createByName($name);
-				$names[] = $rune->displayFullName($player);
+				$rune2 = SR_Item::createByName($name);
+				$runes[] = $rune2;
+				$names[] = $rune2->displayFullName($player);
 			}
 		}
 	

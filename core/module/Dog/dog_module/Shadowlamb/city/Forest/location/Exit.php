@@ -6,6 +6,6 @@ final class Forest_Exit extends SR_Exit
 
 	public function getFoundPercentage() { return 100; }
 	
-	public function getExitLocation() { return 'Seattle_Harbor'; }
+	public function getExitLocation() { return 'Seattle_Forest'; }
 }
 ?>

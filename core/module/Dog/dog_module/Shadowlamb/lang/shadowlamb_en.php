@@ -466,6 +466,9 @@ $lang = array(
 '1188' => 'You can only clean statted items.',
 '1189' => 'This itemset is unknown.',
 '1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
+'1191' => 'All your "want to buy" slots are in use. Try #nowtb or two times #buyslot.',
+'1192' => 'This item is unknown.',
+'1193' => 'You cannot request statted items.',
 
 ########################
 # 10000-14999 = Spells #
@@ -842,6 +845,7 @@ $lang = array(
 '5308' => 'Your party´s xp: %s', # fmt_xp
 '5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
 '5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
+'5311' => 'You want to buy: %s.',
 
 ####################
 ### Shadowclient ###

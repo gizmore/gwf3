@@ -31,9 +31,8 @@ final class SR_Install
 	
 	public static function onCreateLangFiles()
 	{
-		$user = new Dog_User(array('user_sid'=>'0', 'user_name'=>'__FAKE__', 'user_lang'=>'en'));
-		$player = new SR_Player(array('sr4pl_uid'=>$user));
-		Shadowcmd::$CURRENT_PLAYER = $player;
+		$player = Shadowrun4::getDummyPlayer();
+// 		Shadowcmd::$CURRENT_PLAYER = $player;
 		
 // 		$spells = SR_Spell::getSpells();
 // 		ksort($spells);
@@ -382,8 +381,7 @@ final class SR_Install
 	{
 		$out = '<?php'."\n\$lang = array(\n";
 		
-		$user = new Dog_User(array('user_sid'=>'0', 'user_name'=>'__FAKE__', 'user_lang'=>'en'));
-		$player = new SR_Player(array('sr4pl_uid'=>$user));
+		$player = Shadowrun4::getDummyPlayer();
 		
 		$data = array();
 		foreach (SR_Item::getAllItems() as $item)
@@ -413,8 +411,7 @@ final class SR_Install
 	private static function createItemDataFile()
 	{
 		$out = '<?php'."\n\$lang = array(\n";
-		$user = new Dog_User(array('user_sid'=>'0', 'user_name'=>'__FAKE__', 'user_lang'=>'en'));
-		$player = new SR_Player(array('sr4pl_uid'=>$user));
+		$player = Shadowrun4::getDummyPlayer();
 		$data = array();
 		foreach (SR_Item::getAllItems() as $item)
 		{

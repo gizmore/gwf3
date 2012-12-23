@@ -1,5 +1,5 @@
 <?php
-final class Item_SmallFirstAid extends SR_Usable
+final class Item_SmallFirstAid extends SR_HealItem
 {
 	public function getItemLevel() { return 0; }
 	public function getItemDescription() { return 'A small first aid kit to heal friendly players. Sadly does not contain too much of the useful healing tools.'; }

@@ -20,7 +20,7 @@ final class Forest_Lake extends SR_SearchRoom
 	
 	public function onCityEnter(SR_Party $party)
 	{
-		$party->unsetTemp('FORLAKGRB', $value);
+		$party->unsetTemp('FORLAKGRB');
 		
 	}
 	

@@ -79,9 +79,7 @@ final class Shadowcmd_give extends Shadowcmd
 		
 // 		$player->message(sprintf('You gave %d %s to %s.%s', $amt, $giveItem->getName(), $target->getName(), $busymsg));
 
-		$items = array($giveItem);
-		
-		$target->giveItems($items, $player->getName());
+		$target->giveItems(array($giveItem), $player->getName());
 		
 // 		if ($target instanceof SR_TalkingNPC)
 // 		{

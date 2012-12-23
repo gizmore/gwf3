@@ -66,9 +66,24 @@ abstract class SR_City
 		$npc = new $classname(NULL);
 		$npc->setNPCClassName($classname);
 		$this->npcs[$classname] = $npc;
+		$this->checkNPC($npc);
+	}
+	
+	private function checkNPC(SR_NPC $npc)
+	{
+// 		$this->checkNPCLang($npc);
 		$this->checkNPCEquipment($npc);
 		$this->checkNPCStats($npc);
 		$this->checkNPCSpells($npc);
+	}
+
+	private function checkNPCLang(SR_NPC $npc)
+	{
+		if ($npc instanceof SR_TalkingNPC)
+		{
+			$npc->setChatPartner(Shadowrun4::getDummyPlayer());
+			$npc->langNPC('default');
+		}
 	}
 	
 	private function checkNPCEquipment(SR_NPC $npc)

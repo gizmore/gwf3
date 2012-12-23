@@ -54,7 +54,7 @@ final class Shadowrun4
 			}
 		}
 		
-		if (NULL === ($user = $player->getUser()))
+		if (false === ($user = $player->getUser()))
 		{
 			return false;
 		}
@@ -90,13 +90,12 @@ final class Shadowrun4
 	public static function getDummyPlayer()
 	{
 		static $DUMMY;
-		if (isset($DUMMY))
+		if (!isset($DUMMY))
 		{
-			return $DUMMY; 
+			$DUMMY = new SR_DummyPlayer(SR_Player::getPlayerData(0));
+			$DUMMY->modify();
 		}
-		$DUMMY = new SR_Player(SR_Player::getPlayerData(0));
-// 		$DUMMY->setVar('sr4pl_uid', new Dog_User());
-		$DUMMY->modify();
+		Shadowcmd::$CURRENT_PLAYER = $DUMMY;
 		return $DUMMY;
 	}
 	
@@ -257,7 +256,7 @@ final class Shadowrun4
 		foreach (self::$players as $player)
 		{
 			$player instanceof SR_Player;
-			if (NULL !== ($user = $player->getUser()))
+			if (false !== ($user = $player->getUser()))
 			{
 				if ($uid == $user->getID())
 				{
@@ -356,7 +355,7 @@ final class Shadowrun4
 			}
 		}
 		
-		$player->setVar('sr4pl_uid', $user);
+// 		$player->setVar('sr4pl_uid', $user);
 		
 		self::addPlayer($player);
 		
@@ -392,7 +391,7 @@ final class Shadowrun4
 	 */
 	public static function getNPCByAbbrev(SR_Player $player, $name)
 	{
-		echo "Testing ".$name."\n";
+// 		echo "Testing ".$name."\n";
 		$candidates = array();
 		foreach (self::$cities as $city)
 		{
@@ -411,8 +410,8 @@ final class Shadowrun4
 				elseif ( (stripos($classname, $name) !== false)
 				   ||(stripos($npc->getName(), $name) !== false) )
 				{
-					echo "Testing ".$npc->getNPCClassName()."\n";
-					echo "Testing ".$npc->getName()."\n";
+// 					echo "Testing ".$npc->getNPCClassName()."\n";
+// 					echo "Testing ".$npc->getName()."\n";
 					$candidates[$classname] = $npc;
 				}
 			}

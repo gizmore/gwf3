@@ -143,7 +143,6 @@ final class Shadowcmd_mount extends Shadowcmd
 		# A stackable?
 		if ($item->isItemStackable())
 		{
-//			$have_amt = $item->getAmount();
 			$item->useAmount($player, $amt);
 			$player->putInMountInv(SR_Item::createByName($item->getItemName(), $amt, true));
 			$stored = $amt;
@@ -166,6 +165,8 @@ final class Shadowcmd_mount extends Shadowcmd
 				}
 			}
 		}
+		
+		$player->modify();
 		
 		return self::rply($player, '5080', array($stored, $ditemname, $mount->getName()));
 // 		$message = sprintf('You stored %d of your %s in your %s.', $stored, $itemname, $mount->getName());
@@ -264,19 +265,20 @@ final class Shadowcmd_mount extends Shadowcmd
 			{
 				if (false !== $player->removeFromMountInv($item2))
 				{
-// 					if (false !== $player->giveItem($item2))
-// 					{
+					if (false !== $player->giveItem($item2))
+					{
 						$collected++;
 						if ($collected >= $amt)
 						{
 							break;
 						}
-// 					}
+					}
 				}
 			}
 		}
 		
 // 		$player->updateInventory();
+		$player->modify();
 		
 		$invid = -1;
 		if (false !== ($invItem = $player->getInvItemByName($itemname)))
@@ -307,9 +309,10 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			$item = $player->getMountInvItemByID(1);
 			$player->removeFromMountInv($item);
-// 			$player->giveItem($item);
+			$player->giveItem($item);
 		}
 		
+		$player->modify();
 // 		$player->updateInventory();
 		return self::rply($player, '5082');
 // 		$player->message('You have cleaned your mount.');

@@ -70,14 +70,14 @@ final class Shadowcmd_gmx extends Shadowcmd
 			$player->message('Database error 1');
 			return false;
 		}
-		$p1->setVar('sr4pl_uid', $u2);
+// 		$p1->setVar('sr4pl_uid', $u2);
 		
 		if (false === $p2->saveVar('sr4pl_uid', $u1->getID()))
 		{
 			$player->message('Database error 2');
 			return false;
 		}
-		$p2->setVar('sr4pl_uid', $u1);
+// 		$p2->setVar('sr4pl_uid', $u1);
 		
 		
 		

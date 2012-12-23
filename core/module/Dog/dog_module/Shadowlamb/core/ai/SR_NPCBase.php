@@ -36,7 +36,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function help($message) { $this->message($message); }
 	public function isCreated() { return true; }
 	public function getLootNuyen() { return $this->getBase('nuyen'); }
-	public function getUser() { return NULL; }
+	public function getUser() { return false; }
 	public function getLangISO() { return 'en'; }
 	
 	/**
@@ -324,10 +324,8 @@ abstract class SR_NPCBase extends SR_Player
 				return false;
 			}
 			
-			$item->saveVar('sr4it_uid', $npc->getID());
-			$item->changePosition($field);
+			$item->changeOwnerAndPosition($npc->getID(), $field);
 			$npc->setEquipment($field, $item);
-// 			$npc->updateEquipment($field, $item);
 		}
 		
 		foreach ($this->getNPCCyberware() as $itemname)

@@ -5,13 +5,15 @@ abstract class SR_Bazar extends SR_Location
 	
 	const FEE = 4.5;
 	const POP_FEE = 50;
+	const WTB_FEE = 5.5;
 	
 	const SLOT_PRICE = 10;
 //	const MAX_SLOTS = 20;
 	const MIN_SLOTS = 2;
-	const MAX_SLOTS_BUY = 18;
+	const MAX_SLOTS_BUY = 20;
+	const MAX_SLOTS_WTB = 10;
 	
-	const MAX_SLOT_PRICE = 2000;
+	const MAX_SLOT_PRICE = 6000;
 	
 	const MIN_PRICE = 50;
 	const MAX_PRICE = 1234567890;
@@ -38,12 +40,17 @@ abstract class SR_Bazar extends SR_Location
 	
 	public function getCommands(SR_Player $player)
 	{
-		return array('push', 'pop', 'view', 'search', 'buy', 'bestbuy', 'buyslot', 'slogan', 'price');
+		return array('push', 'pop', 'view', 'search', 'buy', 'bestbuy', 'buyslot', 'slogan', 'price',/* 'wtb', 'nowtb', 'wts'*/);
 	}
 	
 	public function getBazarSlots(SR_Player $player)
 	{
 		return self::MIN_SLOTS + SR_PlayerVar::getVal($player, '__BAZAAR_SLOTS', 0);
+	}
+	
+	public function getWTBSlots(SR_Player $player)
+	{
+		return ceil($this->getBazarSlots($player)/2);
 	}
 	
 	public function getFoundText(SR_Player $player)
@@ -538,11 +545,11 @@ abstract class SR_Bazar extends SR_Location
 					return false;
 				}
 			}
-			if (false === $player->updateInventory())
-			{
-				$player->message('Database Error 3!');
-				return false;
-			}
+// 			if (false === $player->updateInventory())
+// 			{
+// 				$player->message('Database Error 3!');
+// 				return false;
+// 			}
 		}
 		
 		if (false === $bitem->onPurchased($amt))
@@ -668,7 +675,7 @@ abstract class SR_Bazar extends SR_Location
 				$item2 = SR_Item::createByName($iname, 1, true);
 				$player->giveItem($item2);
 			}
-			$player->updateInventory();
+// 			$player->updateInventory();
 			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, $pname));
 // 			$player->getParty()->notice(sprintf('%s purchased %d %s from %s\'s bazar.', $player->getName(), $amt, $iname, $pname));
 		}
@@ -1204,11 +1211,11 @@ abstract class SR_Bazar extends SR_Location
 					return false;
 				}
 			}
-			if (false === $player->updateInventory())
-			{
-				$player->message('Database error 7!');
-				return false;
-			}
+// 			if (false === $player->updateInventory())
+// 			{
+// 				$player->message('Database error 7!');
+// 				return false;
+// 			}
 			
 			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, '!Shadowlamb!'));
 // 			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazar.', $player->getName(), $amt, $iname));
@@ -1222,5 +1229,110 @@ abstract class SR_Bazar extends SR_Location
 		
 		return true;
 	}
+	
+	###########
+	### WTB ###
+	###########
+	/**
+	 * wtb: show your list
+	 * wtb: item price amt: insert entry
+	 * @param SR_Player $player
+	 * @param array $args
+	 */
+	public function on_wtb(SR_Player $player, array $args)
+	{
+		switch (count($args))
+		{
+			case 0:
+				return $this->showYourWTB($player);
+			case 2:
+				$args[] = 1;
+			case 3:
+				return $this->onAddWTB($player, $args);
+			default:
+				return Dog::reply(Shadowhelp::getHelp($player, 'wtb'));
+		}
+	}
+	
+	private function showYourWTB(SR_Player $player)
+	{
+		$items = SR_BazarWTB::getItemsForPlayer($player);
+		$itemcount = count($items);
+		$out = '';
+		$format = $player->lang('fmt_bazar_shop');
+		foreach ($items as $item)
+		{
+			$item instanceof SR_Item;
+			$out .= sprintf($format, $item->getAmount(), $item->displayName($player), Shadowfunc::displayNuyen($this->calcBuyPrice($item->getVar('bwtb_price'))));
+		}
+		$out = $itemcount === 0 ? $player->lang('none') : substr($out, 2);
+		Dog::reply($player->lang('5311', array($out)));
+	}
+	
+	private function onAddWTB(SR_Player $player, array $args)
+	{
+		$have = $this->getWTBSlots($player);
+		$used = SR_BazarWTB::getItemcountForPlayer($player);
+		if ($used >= $have)
+		{
+			return Dog::reply($player->lang('1191'));
+		}
+		
+		$price = round($args[1]);
+		if ($price < self::MIN_PRICE)
+		{
+			return Dog::reply($player->lang('1109', array(self::MIN_PRICE)));
+		}
+		if ($price > 10000000)
+		{
+			return Dog::reply($player->lang('1110'));
+		}
+		
+		$amt = $args[2];
+		if ( (!Common::isNumeric($amt)) || ($amt < 1) )
+		{
+			return Dog::reply($player->lang('1038'));
+		}
+		
+		if (false === ($item = SR_Item::createByName($args[0], $amt, false)))
+		{
+			return Dog::reply($player->lang('1192'));
+		}
+		
+		if ($item->isItemStatted())
+		{
+			return Dog::reply($player->lang('1193'));
+		}
+		
+		if (false === SR_BazarWTB::insertEntry($player, $item, $price))
+		{
+			return Dog::reply('Database Error 1b');
+		}
+		
+	}
+
+	/**
+	 * nowtb: show your list
+	 * nowtb: item/id: remove entry
+	 * @param SR_Player $player
+	 * @param array $args
+	 */
+	public function on_nowtb(SR_Player $player, array $args)
+	{
+		
+	}
+	
+	/**
+	 * wts id: show lists
+	 * wts id: show page
+	 * wts r14: sell stuff with confirm
+	 * @param SR_Player $player
+	 * @param array $args
+	 */
+	public function on_wts(SR_Player $player, array $args)
+	{
+	
+	}
+	
 }
 ?>

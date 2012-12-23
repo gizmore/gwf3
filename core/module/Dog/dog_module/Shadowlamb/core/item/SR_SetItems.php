@@ -23,7 +23,7 @@ final class SR_SetItems
 
 		'NinjaSet' => array(
 			array('quickness' => 1.5, 'ninja' => 5.0, 'sharpshooter' => 6.0),
-			array('NinjaCloak', 'UwaObi', 'ChikaTabi', 'Yugake', 'Hakama', array('NinjaSword', 'Ninjato', 'Ninjaken')),
+			array('NinjaCloak', 'UwaObi', 'ChikaTabi', 'Yugake', 'Hakama', array('NinjaSword', 'Ninjato', 'Ninjaken', 'KusariGama')),
 		),
 			
 		'MagicSet' => array(

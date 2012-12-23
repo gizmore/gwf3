@@ -17,7 +17,8 @@ final class Shadowcmd_cast extends Shadowcmd
 		
 		if (false === ($spell = $player->getSpell($sn)))
 		{
-			self::rply($player, '1048');
+			$player->msg('1048');
+//			self::rply($player, '1048');
 // 			$player->message(sprintf('You don\'t know the %s spell.', $sn));
 			return false;
 		}

@@ -161,19 +161,21 @@ final class Shadowlang
 	#############
 	### Items ###
 	#############
-	public static function displayItemname(SR_Player $player, SR_Item $item)
+	public static function displayItemname(SR_Player $player, SR_Item $item, $colors=true)
 	{
-		$name = self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName());
-		
-		if ($item->isItemRare())
+		$back = self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName());
+		if ($colors)
 		{
-			return "\X02\X035{$name}\X03\X02";
+			if ($item->isItemRare())
+			{
+				return "\X02\X035{$back}\X03\X02";
+			}
+			elseif (false !== SR_SetItems::getSetForItem($item->getName()))
+			{
+				return "\X02\X036{$back}\X03\X02";
+			}
 		}
-		elseif (false !== SR_SetItems::getSetForItem($item->getName()))
-		{
-			return "\X02\X036{$name}\X03\X02";
-		}
-		return $name;
+		return $back;
 	}
 	
 	public static function displayItemdescr(SR_Player $player, SR_Item $item)
@@ -181,24 +183,38 @@ final class Shadowlang
 		return self::$LANG_ITEM->langISO($player->getLangISO(), $item->getName().'__desc__');
 	}
 	
-	public static function displayItemnameFull(SR_Player $player, SR_Item $item, $short_mods=false)
+	public static function displayItemnameFull(SR_Player $player, SR_Item $item, $short_mods=false, $colors=true)
 	{
-		$back = self::displayItemname($player, $item);
-		if (NULL === ($mods = $item->getItemModifiersB()))
+		$back = self::displayItemname($player, $item, false);
+
+		if (NULL !== ($mods = $item->getItemModifiersB()))
 		{
-			return $back;
+			$mod = '';
+			$format = $player->lang('fmt_itemmods');
+			foreach ($mods as $key => $value)
+			{
+				$key = $short_mods
+					? Shadowfunc::shortcutVariable($player, $key)
+					: Shadowfunc::translateVariable($player, $key);
+				
+				$mod .= sprintf($format, $key, $value);
+			}
+			$back = $back.$player->lang('of').ltrim($mod, ',; ');
 		}
-		$mod = '';
-		$format = $player->lang('fmt_itemmods');
-		foreach ($mods as $key => $value)
+		
+		if ($colors)
 		{
-			$key = $short_mods
-				? Shadowfunc::shortcutVariable($player, $key)
-				: Shadowfunc::translateVariable($player, $key);
-			
-			$mod .= sprintf($format, $key, $value);
+			if ($item->isItemRare())
+			{
+				return "\X02\X035{$back}\X03\X02";
+			}
+			elseif (false !== SR_SetItems::getSetForItem($item->getName()))
+			{
+				return "\X02\X036{$back}\X03\X02";
+			}
 		}
-		return $back.$player->lang('of').ltrim($mod, ',; ');
+		
+		return $back;
 	}
 	
 	public static function getItemUUID(SR_Item $item)

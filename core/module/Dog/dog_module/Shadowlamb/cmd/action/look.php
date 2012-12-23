@@ -45,7 +45,7 @@ final class Shadowcmd_look extends Shadowcmd
 			return $command_mode ? self::rply($player, '5120') : true;
 		}
 
-		$player->setOption(SR_Player::RESPONSE_PLAYERS);
+// 		$player->setOption(SR_Player::RESPONSE_PLAYERS);
 		
 		# You see these players: %s.
 		if ($command_mode)

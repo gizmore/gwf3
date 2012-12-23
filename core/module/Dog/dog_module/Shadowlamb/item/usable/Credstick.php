@@ -60,7 +60,7 @@ class Item_Credstick extends SR_Usable
 		$bank = $player->getBankNuyen();
 		if ($amount <= 0)
 		{
-			$message = sprintf("Your bank account is {$b}%s Nuyen{$b}. You carry %s Nuyen. In total you have %s Nuyen.", $bank, $have, $bank+$have);
+			$message = sprintf("Your bank account is {$b}%s Nuyen{$b}. You carry %s Nuyen. In total you have %s Nuyen.", $player->displayBankNuyen(), $player->displayNuyen(), Shadowfunc::displayNuyen($bank+$have));
 			return $this->reply($player, $message);
 		}
 		

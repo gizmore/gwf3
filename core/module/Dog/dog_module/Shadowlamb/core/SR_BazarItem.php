@@ -10,6 +10,8 @@ final class SR_BazarItem extends GDO
 	{
 		return array(
 			'sr4ba_id' => array(GDO::AUTO_INCREMENT),
+// 			'sr4ba_uid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
+// 			'sr4ba_iid' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4ba_pname' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::INDEX, GDO::NOT_NULL, 63),
 			'sr4ba_iname' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'sr4ba_price' => array(GDO::UINT, GDO::NOT_NULL),

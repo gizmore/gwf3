@@ -37,50 +37,50 @@ final class DOGMOD_Shadowlamb extends Dog_Module
 		$result = $players->select('*');
 		while (false !== ($player = $players->fetch($result, GDO::ARRAY_O)))
 		{
-			foreach (explode(',', $player->getVar('sr4pl_inventory')) as $itemid)
-			{
-				if ($itemid < 1) continue;
-				$now = microtime(true);
-				if (!$items->update("sr4it_position='inventory', sr4it_microtime=$now", "sr4it_id=$itemid"))
-				{
-					die('oops1');
-				}
-			}
-			foreach (explode(',', $player->getVar('sr4pl_bank')) as $itemid)
-			{
-				if ($itemid < 1) continue;
-				$now = microtime(true);
-				if (!$items->update("sr4it_position='bank', sr4it_microtime=$now", "sr4it_id=$itemid"))
-				{
-					die('oops2');
-				}
-			}
-			foreach (explode(',', $player->getVar('sr4pl_mount_inv')) as $itemid)
-			{
-				if ($itemid < 1) continue;
-				$now = microtime(true);
-				if (!$items->update("sr4it_position='mount_inv', sr4it_microtime=$now", "sr4it_id=$itemid"))
-				{
-					die('oops3');
-				}
-			}
-			foreach (explode(',', $player->getVar('sr4pl_cyberware')) as $itemid)
-			{
-				if ($itemid < 1) continue;
-				$now = microtime(true);
-				if (!$items->update("sr4it_position='cyberware', sr4it_microtime=$now", "sr4it_id=$itemid"))
-				{
-					die('oops4');
-				}
-			}
+// 			foreach (explode(',', $player->getVar('sr4pl_inventory')) as $itemid)
+// 			{
+// 				if ($itemid < 1) continue;
+// 				$now = microtime(true);
+// 				if (!$items->update("sr4it_position='inventory', sr4it_microtime=$now", "sr4it_id=$itemid"))
+// 				{
+// 					die('oops1');
+// 				}
+// 			}
+// 			foreach (explode(',', $player->getVar('sr4pl_bank')) as $itemid)
+// 			{
+// 				if ($itemid < 1) continue;
+// 				$now = microtime(true);
+// 				if (!$items->update("sr4it_position='bank', sr4it_microtime=$now, sr4it_uid={$player->getID()}", "sr4it_id=$itemid AND sr4it_uid=0"))
+// 				{
+// 					die('oops2');
+// 				}
+// 			}
+// 			foreach (explode(',', $player->getVar('sr4pl_mount_inv')) as $itemid)
+// 			{
+// 				if ($itemid < 1) continue;
+// 				$now = microtime(true);
+// 				if (!$items->update("sr4it_position='mount_inv', sr4it_microtime=$now", "sr4it_id=$itemid"))
+// 				{
+// 					die('oops3');
+// 				}
+// 			}
+// 			foreach (explode(',', $player->getVar('sr4pl_cyberware')) as $itemid)
+// 			{
+// 				if ($itemid < 1) continue;
+// 				$now = microtime(true);
+// 				if (!$items->update("sr4it_position='cyberware', sr4it_microtime=$now", "sr4it_id=$itemid"))
+// 				{
+// 					die('oops4');
+// 				}
+// 			}
 			
-			foreach (SR_Player::$EQUIPMENT as $position)
-			{
-				$itemid = $player->getVar('sr4pl_'.$position);
-				if ($itemid < 1) continue;
-				$now = microtime(true);
-				$items->update("sr4it_position='$position', sr4it_microtime=$now", "sr4it_id=$itemid");
-			}
+// 			foreach (SR_Player::$EQUIPMENT as $position)
+// 			{
+// 				$itemid = $player->getVar('sr4pl_'.$position);
+// 				if ($itemid < 1) continue;
+// 				$now = microtime(true);
+// 				$items->update("sr4it_position='$position', sr4it_microtime=$now", "sr4it_id=$itemid");
+// 			}
 		}
 		die('HA!');
 	}

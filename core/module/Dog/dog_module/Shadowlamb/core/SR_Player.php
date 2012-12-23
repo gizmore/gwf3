@@ -2214,8 +2214,9 @@ class SR_Player extends GDO
 	public function removeFromMountInv(SR_Item $item)
 	{
 		unset($this->sr4_mount_inv[$item->getID()]);
-		$this->sr4_inventory[$item->getID()] = $item;
-		return $item->changePosition('inventory');
+		return true;
+// 		$this->sr4_inventory[$item->getID()] = $item;
+// 		return $item->changePosition('inventory');
 	}
 	
 	/**

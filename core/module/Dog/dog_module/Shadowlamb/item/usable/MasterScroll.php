@@ -47,6 +47,8 @@ final class Item_MasterScroll extends SR_Usable
 			return $bot->reply('Database error 3!');
 		}
 		
+		$player->modify();
+		
 		return $bot->reply(sprintf('You read the %s and got your %s increased by 1.', $this->getItemName(), $field));
 	}
 }

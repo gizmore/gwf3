@@ -62,6 +62,8 @@ final class Shadowhelp
 		$all_ny += GDO::table('SR_Clan')->selectVar('SUM(sr4cl_money)');
 		$all_ny = Shadowfunc::displayNuyen($all_ny);
 		
+		$latency_seconds = sprintf('%.01f', SR_Player::ATTACK_TIME_SECONDS);
+		
 		$eqs = implode('|', array_keys(SR_Player::$EQUIPMENT));
 		$back = array(
 			'root' => "Check out these topics",
@@ -70,8 +72,8 @@ final class Shadowhelp
 				'beginners' => 'First steps',
 				array(
 					'get_started' => 'First you should #talk to the hotelier. Then you should #equip clothes. Then you should #party up with players and #join their parties. Then you should #explore the first city.',
-					'where_am_i' => 'You begin in the Redmond Hotel. Check your party status with #(p)arty. Check your #known_places with #(kp). Find new places with #(exp)lore. Do not forget to check your #e(q)uipment and cleanup your #(i)nventory.',
 					'what_is_it' => "Shadowlamb is a full featured mmorpg. You can #(j)oin parties, solve #(qu)ests, runecraft your items and learn magic spells. It combines multiple irc networks into a single gameworld, and thus is unique among all irc games.",
+					'where_am_i' => 'You begin in the Redmond Hotel. Check your party status with #(p)arty. Check your #known_places with #(kp). Find new places with #(exp)lore. Do not forget to check your #e(q)uipment and cleanup your #(i)nventory.',
 					'first_talk' => 'You should #talk to the hotelier first. Use #talk <word|kw_id> to ask for something in particular. You will get your first_equipment.',
 					'first_equipment' => 'The hotelier will give you some items. Check your #inventory and #equip them, so you are ready to #explore.',
 				),
@@ -209,6 +211,7 @@ final class Shadowhelp
 						'orcas' => "Increases your MP refreshening. This is also affected by the magic attribute. Your current orcas level is {$orca} and you gain {$orca_gain} every {$orca_time}.",
 						'elephants' => "Increases your HP refreshening. Your current elephants level is {$ele} and you gain {$ele_gain} every {$ele_time}.",
 						'critical' => "Your current chance of a critical hit is {$crit}%.",
+						'attack_time' => "A special rune that only affects weapons. It reduces your busytime for attacks by {$latency_seconds}.",
 					),
 				),
 				

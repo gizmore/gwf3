@@ -111,10 +111,21 @@ class SR_Item extends GDO
 	public function isEquipped(SR_Player $player) { return false; }
 	public function setOwnerID($pid) { $this->setVar('sr4it_uid', $pid); }
 	public function setAmount($amt) { $this->setVar('sr4it_amount', $amt); }
-
+	public function getMicrotime() { return $this->getVar('sr4it_microtime'); }
+	public function saveMicrotime($microtime) { return $this->saveVar('sr4it_microtime', $microtime); }
+	
 	public function changePosition($position)
 	{
 		return $this->saveVars(array(
+			'sr4it_position' => $position,
+			'sr4it_microtime' => microtime(true),
+		));
+	}
+
+	public function changeOwnerAndPosition($pid, $position)
+	{
+		return $this->saveVars(array(
+			'sr4it_uid' => $pid,
 			'sr4it_position' => $position,
 			'sr4it_microtime' => microtime(true),
 		));
@@ -356,9 +367,9 @@ class SR_Item extends GDO
 	
 	public function deleteItem(SR_Player $owner)
 	{
-		if (false === $owner->removeFromInventory($this))
+		if (false === $owner->removeFromPlayer($this))
 		{
-			Dog_Log::error(sprintf('Item %s(%d) can not remove from inventory!', $this->getItemName(), $this->getID()));
+			Dog_Log::error(sprintf('Item %s(%d) can not remove from player!', $this->getItemName(), $this->getID()));
 			return false;
 		}
 		if (false === $this->delete())
@@ -475,7 +486,7 @@ class SR_Item extends GDO
 			return $t;
 		}
 		$mod = $owner->get('attack_time'); # get rune power
-		$mod = round($mod * 0.4, 1); # to seconds
+		$mod = round($mod * SR_Player::ATTACK_TIME_SECONDS, 1); # to seconds
 		return $t - $mod;
 	}
 	
@@ -519,7 +530,7 @@ class SR_Item extends GDO
 	### Display ###
 	###############
 	public function displayName(SR_Player $player) { return Shadowlang::displayItemname($player, $this); }
-	public function displayFullName(SR_Player $player, $short_mods=false) { return Shadowlang::displayItemnameFull($player, $this, $short_mods); }
+	public function displayFullName(SR_Player $player, $short_mods=false, $colors=true) { return Shadowlang::displayItemnameFull($player, $this, $short_mods, $colors); }
 	public function displayType() { return 'Item'; }
 	public function displayEquipmentType(SR_Player $player) { return Shadowrun4::langPlayer($player, $this->getItemType()); }
 	public function displayLevel(SR_Player $player) { return Shadowfunc::displayALevel($this->getItemLevel()); }
