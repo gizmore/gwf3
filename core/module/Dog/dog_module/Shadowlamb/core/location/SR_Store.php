@@ -313,12 +313,80 @@ abstract class SR_Store extends SR_Location
 	############
 	### Sell ###
 	############
+	public function on_sellall(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$argc = count($args);
+		if ($argc > 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'sellall'));
+			return false;
+		}
+		
+		$min = 1;
+		$max = count($player->getInventorySorted());
+		
+		if (count($args) === 0)
+		{
+			$from = $min;
+			$to = $max;
+		}
+		elseif (preg_match('/^\\d*-?\\d*$/', $args[0]))
+		{
+			$arg = $args[0];
+			$pos = strpos($arg, '-');
+			if ($pos === false)
+			{
+				$from = (int)$arg;
+				$to = $max;
+			}
+			elseif ($pos === 0)
+			{
+				$from = $min;
+				$to = (int)substr($arg, 1);
+			}
+			else
+			{
+				echo "P{$pos} ".strlen($arg).PHP_EOL;
+				$from = (int)substr($arg, 0, $pos);
+				$to = $pos === strlen($arg)-1 ? $max : (int)substr($arg, $pos+1);
+			}
+		}
+		else
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'sellall'));
+			return false;
+		}
+		
+		echo "$from-$to/$max\n";
+		
+		if ( ($from > $to) || ($from < 1) || ($to > $max) )
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'sellall'));
+			return false;
+		}
+		
+		while ($to >= $from)
+		{
+			$item = $player->getInvItem($to--, false, false);
+			$this->on_sell($player, array($item->getItemName(), $item->getAmount()));
+		}
+	}
+	
 	public function on_sell(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		if (count($args) === 0) {
+		$argc = count($args);
+		if ($argc < 1 || $argc > 2)
+		{
 			$bot->reply(Shadowhelp::getHelp($player, 'sell'));
 			return false;
+		}
+		
+		// Multisell
+		if (preg_match('/^\\d*-?\\d*$/', $args[0]) && $argc === 1)
+		{
+			return $this->on_sellall($player, $args);
 		}
 		
 		# Item
