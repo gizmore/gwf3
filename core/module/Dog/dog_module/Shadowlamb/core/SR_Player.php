@@ -2094,18 +2094,31 @@ class SR_Player extends GDO
 	 */
 	protected function getGiveItemList(array $items)
 	{
-		$back = '';
-		$format = $this->lang('fmt_giveitems');
+		// Collapse
 		$have = array();
 		foreach ($items as $item)
 		{
 			$item instanceof SR_Item;
-			if (!in_array($item->getItemName(), $have))
+			$name = $item->getItemName();
+			$amt = $item->getAmount();
+			if (!isset($have[$name]))
 			{
-				$have[] = $item->getItemName();
-				$back .= sprintf($format, $item->getAmount(), $item->displayFullName($this));
+				$have[$name] = array($item, $amt);
+			}
+			else
+			{
+				$have[$name][1] += $amt;
 			}
 		}
+
+		// Out
+		$back = '';
+		$format = $this->lang('fmt_giveitems');
+		foreach ($have as $name => $data)
+		{
+			$back .= sprintf($format, $data[1], $data[0]->displayFullName($this));
+		}
+		
 		return ltrim($back, ',; ');
 	}
 	
