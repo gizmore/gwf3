@@ -5,7 +5,7 @@ $lang = array(
 		'J\'ai parcouru ma todo-liste et codé un challenge.<br/>'.PHP_EOL.
 		'Dans ce challenge, vous devez soumettre le jeton de reset de mot de passe pour l\'utilisateur admin@wechall.net<br/>'.PHP_EOL.
 		'Notez que votre jeton est lié à votre session.<br/>'.PHP_EOL.
-		'Vous aurez probablement envie de jetez un oeil au <a href="%s" title="Code source du challenge TTR">code source</a>, disponible aussi en <a href="%s" title="Code source coloré pour le challenge TTR">version colorée</a><br/>'.PHP_EOL.
+		'Vous aurez probablement envie de jeter un oeil au <a href="%s" title="Code source du challenge TTR">code source</a>, disponible aussi en <a href="%s" title="Code source coloré pour le challenge TTR">version colorée</a><br/>'.PHP_EOL.
 		'<p style="color:#eefeef" id="hint">L\'indice ci-dessus est suffisant.</p>'.PHP_EOL.
 		'Bonne chance !<br/>'.PHP_EOL,
 
