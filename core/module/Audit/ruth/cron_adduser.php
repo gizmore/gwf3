@@ -30,7 +30,7 @@ while (false !== ($row = $db->fetchAssoc($result)))
 {
 	$username = $row['username'];
 	
-	if (!preg_match('/^[a-z][a-z0-9]{0,31}$/iD', $username))
+	if (!preg_match('/^[a-z][a-z0-9_]{0,31}$/iD', $username))
 	{
 		GWF_Cronjob::error('Username invalid: '.$username);
 		continue;
