@@ -4,24 +4,6 @@ final class Shadowcmd_mount extends Shadowcmd
 	# mount push cap 4
 	public static function execute(SR_Player $player, array $args)
 	{
-		$p = $player->getParty();
-		if (false !== ($city = $p->getCityClass()))
-		{
-			if ($city->isDungeon())
-			{
-				self::rply($player, '1035');
-// 				Shadowrap::instance($player)->reply('In dungeons you don\'t have mounts.');
-				return false;
-			}
-		}
-		
-		if ($player->isFighting())
-		{
-			self::rply($player, '1036');
-// 			$player->message('This command does not work in combat.');
-			return false;
-		}
-		
  		if (0 === ($cnt = count($args)))
  		{
  			$args = array('1');
@@ -54,6 +36,31 @@ final class Shadowcmd_mount extends Shadowcmd
 	{
 		return self::reply($player, Shadowhelp::getHelp($player, 'mount'));
 	}
+	
+	/**
+	 * Check if player is in dungeon or combat.
+	 * Send errors and deny push/pop/clean.
+	 * @param SR_Player $player
+	 * @return boolean
+	 */
+	private static function inCombatOrDungeon(SR_Player $player)
+	{
+		$p = $player->getParty();
+		if (false !== ($city = $p->getCityClass()))
+		{
+			if ($city->isDungeon())
+			{
+				self::rply($player, '1035');
+				return true;
+			}
+		}
+		if ($p->isFighting())
+		{
+			self::rply($player, '1036');
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Push an item to your mount.
@@ -63,6 +70,11 @@ final class Shadowcmd_mount extends Shadowcmd
 	 */
 	private static function on_push(SR_Player $player, array $args)
 	{
+		if (self::inCombatOrDungeon($player))
+		{
+			return false;
+		}
+		
 		$bot = Shadowrap::instance($player);
 		$mount = $player->getMount();
 		
@@ -180,6 +192,11 @@ final class Shadowcmd_mount extends Shadowcmd
 	 */
 	private static function on_pop(SR_Player $player, array $args)
 	{
+		if (self::inCombatOrDungeon($player))
+		{
+			return false;
+		}
+		
 		$bot = Shadowrap::instance($player);
 		$mount = $player->getMount();
 		
@@ -301,6 +318,11 @@ final class Shadowcmd_mount extends Shadowcmd
 	
 	private static function on_clean(SR_Player $player, array $args)
 	{	
+		if (self::inCombatOrDungeon($player))
+		{
+			return false;
+		}
+		
 		if (count($args) !== 1)
 		{
 			return self::on_help($player, $args);
