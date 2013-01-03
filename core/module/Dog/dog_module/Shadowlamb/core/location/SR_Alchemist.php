@@ -8,6 +8,8 @@ abstract class SR_Alchemist extends SR_Store
 	 */
 	public abstract function getRecipes(SR_Player $player);
 	
+	public function getAbstractClassName() { return __CLASS__; }
+	
 	const NAME = 0;
 	const PRICE = 1;
 	const PRODUCT = 2;

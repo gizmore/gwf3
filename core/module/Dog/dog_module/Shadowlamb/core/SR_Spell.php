@@ -154,6 +154,12 @@ abstract class SR_Spell
 			}
 			elseif (count($args) === 0) {
 				$members = $player->getEnemyParty()->getMembers();
+				
+				if (count($members) === 0)
+				{
+					$player->msg('1052', array($this->getName()));
+					return false;
+				}
 				$member = $members[array_rand($members)];
 				$args[] = $member->getEnum();
 //				$args[] = rand(1, $player->getEnemyParty()->getMemberCount());

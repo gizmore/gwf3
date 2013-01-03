@@ -8,9 +8,13 @@ final class Item_ON_Ring extends SR_Ring
 	public function getItemModifiersB()
 	{
 		$mods = parent::getItemModifiersB();
-		foreach ($mods as $k => $v)
+		
+		if (is_array($mods))
 		{
-			$mods[$k] = floor($mods[$k]*1.5);
+			foreach ($mods as $k => $v)
+			{
+				$mods[$k] = floor($mods[$k]*1.5);
+			}
 		}
 		return $mods;
 	}

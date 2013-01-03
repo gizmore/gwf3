@@ -27,7 +27,7 @@ final class DOGMOD_AutoLogin extends Dog_Module
 	{
 		$user = Dog::getUser();
 		$server = Dog::getServer();
-		if ( (!$user->isLoggedIn() && (!$this->triedAutologin($user->getID()))) )
+		if ( (!$user->isLoggedIn() && ($user->isRegistered()) && (!$this->triedAutologin($user->getID()))) )
 		{
 			$this->tryAutoLogin($server, $user);
 		}

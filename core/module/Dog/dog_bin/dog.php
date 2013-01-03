@@ -31,6 +31,8 @@ GWF_Debug::setDieOnError(false);
 
 require_once 'Dog.php';
 
+
+// dog 
 if (isset($argv[2]) && $argv[2] === 'install')
 {
 	require_once 'mini_install.php';
@@ -38,7 +40,7 @@ if (isset($argv[2]) && $argv[2] === 'install')
 
 Dog_Init::init();
 
-if (Dog_Init::validate())
+if ( (!defined('DOG_NO_LAUNCH')) && (Dog_Init::validate()) )
 {
 	Dog::mainloop();
 }

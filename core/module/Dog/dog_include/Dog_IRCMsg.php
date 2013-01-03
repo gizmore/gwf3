@@ -17,7 +17,7 @@ final class Dog_IRCMsg
 	
 	public function shouldLog()
 	{
-		return strpos($this->raw, '.login') !== false && strpos($this->raw, '.register') !== false;
+		return strpos($this->raw, '.login') === false && strpos($this->raw, '.register') === false;
 	}
 	
 	public function Dog_IRCMsg($message)

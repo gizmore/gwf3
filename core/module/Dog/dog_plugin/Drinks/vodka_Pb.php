@@ -9,7 +9,7 @@ $lang = array(
 		'Oz'         => 'Nastrovje!',
 		'sabretooth' => 'One vodka, Mr. Bond. Shaken, not stirred.',
 		'dalfor'     => 'vodka? what am I russian?',
-		
+		'MkZ^'       => 'You can pop more vodka than i thought!',
 	),
 );
 $plugin = Dog::getPlugin();

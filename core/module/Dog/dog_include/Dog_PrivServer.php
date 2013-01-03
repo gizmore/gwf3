@@ -29,7 +29,6 @@ final class Dog_PrivServer extends GDO
 	
 	public static function hasPermBits(Dog_Server $server, Dog_User $user, $bits)
 	{
-		echo self::getPermbits($server, $user).PHP_EOL;
 		return (self::getPermbits($server, $user) & $bits) == $bits;
 	}
 	

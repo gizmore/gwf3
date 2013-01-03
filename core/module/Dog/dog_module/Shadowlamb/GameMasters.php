@@ -7,6 +7,7 @@ return array(
 	'gizmore{6}',
 	'gizmore{14}',
 	'gizmore{19}',
+	'gizmore{28}',
 	'giz|work{14}',
 );
 ?>

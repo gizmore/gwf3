@@ -56,7 +56,7 @@ if (false === ($result = getWikiText($message, 'http://en.wikipedia.org/wiki/', 
 	return $plugin->rply('nope');
 }
 
-$maxlength = (int)$plugin->getConfChan('maxlen', 433);
+$maxlength = (int)$plugin->getConf('maxlen', 433);
 
 $output = substr($result['text'], 0, $maxlength - (strlen($result['link']) + 6));
 $output .= '... ('.$result['link'].')';

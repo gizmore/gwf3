@@ -21,6 +21,7 @@ final class Shadowcmd_ehlo extends Shadowcmd
 	
 		# Output to Exi client :)
 		return $player->message($out);
+		return $player->message('9009: '.$out);
 	}
 	
 	/**

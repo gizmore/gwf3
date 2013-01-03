@@ -694,11 +694,8 @@ final class Shadowrun4
 	public static function shadowTimer()
 	{
 		# 1 second over in the Shadowlamb world.
-		self::$sr_timestamp = GWF_CachedCounter::getAndCount('SR4_TIME', self::SECONDS_PER_TICK);
+		self::$sr_timestamp = GWF_Counter::getAndCount('SR4_TIME', self::SECONDS_PER_TICK);
 	
-		# Next tick in one second max pls.
-		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimer'), NULL, self::TICKLEN, false);
-		
 		# Execute Web Commands
 // 		self::shadowTimerWebcommands();
 		
@@ -721,6 +718,9 @@ final class Shadowrun4
 				}
 			}
 		}
+		
+		# Next tick in one second pls.
+		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimer'), NULL, self::TICKLEN, false);
 	}
 // 	private static function shadowTimerWebcommands()
 // 	{

@@ -585,7 +585,7 @@ class Shadowcmd
 	
 	public static function reply(SR_Player $player, $message)
 	{
-		return $player->isFighting() && self::isCombatCommand() ?
+		return $player->isNPC() || ($player->isFighting() && self::isCombatCommand()) ?
 			$player->message($message) :
 			Dog::reply($message);
 	}

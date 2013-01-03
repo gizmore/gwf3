@@ -384,7 +384,7 @@ abstract class SR_Store extends SR_Location
 		}
 		
 		// Multisell
-		if (preg_match('/^\\d*-?\\d*$/', $args[0]) && $argc === 1)
+		if (preg_match('/^\\d*-\\d*$/', $args[0]) && $argc === 1)
 		{
 			return $this->on_sellall($player, $args);
 		}
@@ -412,6 +412,17 @@ abstract class SR_Store extends SR_Location
 		# Amount
 		$amt = isset($args[0]) ? array_shift($args) : 1;
 		
+		if (!Common::isNumeric($amt))
+		{
+			$bot->rply('1040', array($item->getItemName()));
+			return false; 
+		}
+		
+		if ($amt < 1)
+		{
+			$bot->rply('1038', array($item->getItemName()));
+			return false; 
+		}
 		
 		# A stackable?
 		if ($item->isItemStackable())

@@ -78,7 +78,8 @@ class SR_Quest extends GDO
 			'sr4qu_date' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4qu_amount' => array(GDO::UINT, 0),
 			'sr4qu_data' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
-			'sr4qu_options' => array(GDO::UINT, 0),	
+// 			'sr4qu_time' => array(GDO::UINT, 0),
+			'sr4qu_options' => array(GDO::UINT, 0),
 		);
 	}
 	
@@ -143,6 +144,7 @@ class SR_Quest extends GDO
 		
 		# Insert
 		$this->setOption(self::ACCEPTED, true);
+// 		$this->setVar('sr4qu_date', Shadowrun4::getTime());
 		if (false === $this->replace())
 		{
 			return false;
@@ -167,6 +169,7 @@ class SR_Quest extends GDO
 		
 		# Insert
 		$this->setOption(self::REJECTED, true);
+// 		$this->setVar('sr4qu_date', Shadowrun4::getTime());
 		if (false === $this->replace())
 		{
 			return false;

@@ -1627,9 +1627,9 @@ final class SR_Party extends GDO
 	{
 		if ($this->isHuman())
 		{
+			$this->iExecAnyway();
 			$this->popAction(true);
 			$this->setContactEta(rand(15,25));
-			$this->iExecAnyway();
 			$this->recomputeEnums();
 			$this->reloadAfterFight();
 		}

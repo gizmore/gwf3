@@ -56,7 +56,7 @@ elseif ($argc === 2)
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh > $high)
 		{
-			$plugin->rply('no', array(Dog_IRCPriv::displayBits($wigh, $user->displayName())));
+			$plugin->rply('no', array(Dog_IRCPriv::displayBits($wigh), $user->displayName()));
 		}
 		else
 		{
@@ -74,7 +74,7 @@ elseif ($argc === 2)
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh >= $high)
 		{
-			$plugin->rply('no2', array(Dog_IRCPriv::displayBits($wigh, $user->displayName())));
+			$plugin->rply('no2', array(Dog_IRCPriv::displayBits($wigh), $user->displayName()));
 		}
 		else
 		{

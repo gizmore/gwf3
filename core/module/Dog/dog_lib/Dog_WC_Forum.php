@@ -50,9 +50,12 @@ function dog_wc_forum($key, $name, $url, $channels=array(), $limit=5, $onlygids=
 		{
 			$badlines++;
 			echo 'Invalid line in dog_wc_forum: '.$line.PHP_EOL;
-			if ($badlines > 3)
+			if ($badlines === 1)
 			{
 				echo "BAD URL IS: $url\n";
+			}
+			if ($badlines > 3)
+			{
 				return;
 			}
 			continue;

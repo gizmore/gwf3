@@ -152,7 +152,6 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	public function send($message)
 	{
 		echo "SENDING: $message\n";
-		
 	}
 	
 	public function sendAction($to, $message)
