@@ -1685,16 +1685,16 @@ class SR_Player extends GDO
 	 * @param int $max
 	 * @return array(SR_Item)
 	 */
-	public function getInvItems($arg, $max=-1)
+	public function getItems(array $items, $arg, $max=-1)
 	{
 		$max = $max < 0 ? PHP_INT_MAX : intval($max);
-
+		
 		$back = array();
 		
 		# Convert id to itemname
 		if (is_numeric($arg))
 		{
-			if (false === ($item = $this->getInvItem($arg)))
+			if (false === ($item = $this->getItemByNameB($arg, $items)))
 			{
 				return $back;
 			}
@@ -1702,7 +1702,7 @@ class SR_Player extends GDO
 		}
 		
 		# Collect by itemname
-		foreach (array_reverse($this->sr4_inventory) as $item)
+		foreach (array_reverse($items) as $item)
 		{
 			$item instanceof SR_Item;
 			if (!strcasecmp($item->getItemName(), $arg))
@@ -1716,6 +1716,16 @@ class SR_Player extends GDO
 		}
 		
 		return $back;
+	}
+	
+	public function getInvItems($arg, $max=-1)
+	{
+		return $this->getItems($this->getInventory(), $arg, $max);
+	}
+	
+	public function getMountItems($arg, $max=-1)
+	{
+		return $this->getItems($this->getMountInvItems(), $arg, $max);
 	}
 	
 	/**
@@ -1762,9 +1772,18 @@ class SR_Player extends GDO
 		foreach (array_reverse($items) as $item)
 		{
 			$item instanceof SR_Item;
-			if (   (strtolower($item->displayFullName($this, false, false)) === $itemname)
-				|| (strtolower($item->getItemName()) === $itemname)
-				|| (strtolower($item->getName()) === $itemname) )
+			if (   (!strcasecmp($item->displayFullName($this, false, false), $itemname))
+				|| (!strcasecmp($item->getItemName(), $itemname)) )
+			{
+				return $item;
+			}
+		}
+		
+		# Full base name match
+		foreach (array_reverse($items) as $item)
+		{
+			$item instanceof SR_Item;
+			if (!strcasecmp($item->getName(), $itemname))
 			{
 				return $item;
 			}
@@ -2677,10 +2696,10 @@ class SR_Player extends GDO
 			return '# 1';
 		}
 		$targets = $ep->getMembers();
-// 		if (count($targets) === 0)
-// 		{
-// 			return '# 1';
-// 		}
+		if (count($targets) === 0)
+		{
+			return '# 1';
+		}
 		
 		$target = $targets[array_rand($targets)];
 		return '# '.$target->getEnum();

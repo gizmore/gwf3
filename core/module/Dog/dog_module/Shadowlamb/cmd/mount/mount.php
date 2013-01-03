@@ -261,7 +261,8 @@ final class Shadowcmd_mount extends Shadowcmd
 		# NonStackable
 		else
 		{
-			while (false !== ($item2 = $player->getMountInvItemByName($itemname)))
+			$items2 = $player->getMountItems($itemname, $amt);
+			foreach ($items2 as $item2)
 			{
 				if (false !== $player->removeFromMountInv($item2))
 				{
