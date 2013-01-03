@@ -15,6 +15,11 @@ final class Dog_IRCMsg
 	public function getArgc() { return count($this->args); }
 	public function getArg($n) { return $this->args[$n]; }
 	
+	public function shouldLog()
+	{
+		return strpos($this->raw, '.login') !== false && strpos($this->raw, '.register') !== false;
+	}
+	
 	public function Dog_IRCMsg($message)
 	{
 		$this->raw = $message;

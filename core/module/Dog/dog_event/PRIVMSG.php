@@ -10,8 +10,11 @@ $user = Dog::setupUser();
 
 # Log PRIVMSGs
 $msg = Dog::getIRCMsg()->getArg(1);
-Dog_Log::user($user, $msg);
-Dog_Log::channel($chan, $msg);
+if (Dog::getIRCMsg()->shouldLog())
+{
+	Dog_Log::user($user, $msg);
+	Dog_Log::channel($chan, $msg);
+}
 
 # Exec Stuff
 if (!$user->isBot())

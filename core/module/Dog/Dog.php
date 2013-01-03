@@ -392,11 +392,14 @@ final class Dog
 		self::$LAST_USER = false;
 		self::$LAST_CHANNEL = false;
 		
-		# Log to server log
-		Dog_Log::server($server, $message);
-		
 		# Parse the message
 		self::$LAST_MSG = new Dog_IRCMsg($message);
+
+		# Log to server log
+		if (self::$LAST_MSG->shouldLog())
+		{
+			Dog_Log::server($server, $message);
+		}
 		
 		# Include event code
 		$event = self::$LAST_MSG->getEvent();
