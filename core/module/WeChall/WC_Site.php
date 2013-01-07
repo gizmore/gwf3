@@ -102,10 +102,15 @@ class WC_Site extends GDO
 	### Convinience ###
 	###################
 	public function getID() { return $this->getVar('site_id'); }
+	public function getHostname() { return Common::getHostname($this->getURL()); } # Warbox host. Can override
+	public function getIP() { return gethostbyname($this->getHostname()); } # Warbox IP
+	public function getPort() { return 113; } # identd port for warbox
+	public function getReduceScore() { return 1; } # Score reduce for warbox
 	public function hasAutoUpdate() { return $this->isOptionEnabled(self::AUTO_UPDATE); }
 	public function hasOnSiteRank() { return $this->isOptionEnabled(self::ONSITE_RANK); }
 	public function isDefaultHidden() { return $this->isOptionEnabled(self::HIDE_BY_DEFAULT); }
 	public function isScored() { $s = $this->getVar('site_status'); return $s === self::UP || $s === self::DOWN; }
+	public function isWarBox() { return false; }
 	public function getURL() { return $this->getVar('site_url'); }
 	public function getStatus() { return $this->getVar('site_status'); }
 	public function getSitename() { return $this->getVar('site_name'); }
@@ -116,6 +121,7 @@ class WC_Site extends GDO
 	public function getSolved($onsitescore) { $m = $this->getOnsiteScore(); return $m <= 0 ? 0 : $onsitescore / $m; }
 	public function getPercent($onsitescore) { return $this->getSolved($onsitescore) * 100; }
 	public function useUrlencode() { return $this->isOptionEnabled(self::NO_URLENCODE) === false; }
+	public function isValidWarboxLink(GWF_User $user, $onsitename) { return $this->isWarBox() ? $user->getVar('user_name') === $onsitename : true; }
 	
 	/**
 	 * @return GWF_Language
@@ -875,17 +881,29 @@ class WC_Site extends GDO
 	public function getSiteClass()
 	{
 		$classname = 'WCSite_'.$this->getVar('site_classname');
-		$path = sprintf(GWF_CORE_PATH.'module/WeChall/sites/%s.php', $classname);
-		if (!file_exists($path)) {
-			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
-			return false;
+		
+		$pathes = array('sites', 'sites/warbox', 'sites/english', 'sites/french', 'sites/german', 'sites/polish');
+		
+		foreach ($pathes as $path)
+		{
+			$path = sprintf(GWF_CORE_PATH.'module/WeChall/%s/%s.php', $path, $classname);
+			if (file_exists($path))
+			{
+				require_once $path;
+				if (!class_exists($classname))
+				{
+					echo GWF_HTML::err('ERR_CLASS_NOT_FOUND', array($classname));
+					return false;
+				}
+				else
+				{
+					return new $classname($this->getGDOData());
+				}
+			}
 		}
-		require_once $path;
-		if (!class_exists($classname)) {
-			echo GWF_HTML::err('ERR_CLASS_NOT_FOUND', array($classname));
-			return false;
-		}
-		return new $classname($this->getGDOData());
+
+		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
+		return false;
 	}
 	
 	public function recalcAvg()
@@ -924,11 +942,11 @@ class WC_Site extends GDO
 		
 		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
 		
-		if (WECHALL_DEBUG_LINKING)
-		{
-			var_dump('SECRET URL:');
-			var_dump($url);
-		}
+// 		if (WECHALL_DEBUG_LINKING)
+// 		{
+// 			var_dump('SECRET URL:');
+// 			var_dump($url);
+// 		}
 		
 		$stats = $site->parseStats($url);
 		
@@ -980,7 +998,7 @@ class WC_Site extends GDO
 	 * @param boolean $onlink
 	 * @return GWF_Result
 	 */
-	private function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false, $challs_solved=-1)
+	public function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false, $challs_solved=-1)
 	{
 		$old_score = $regat->getOnsiteScore();
 		$old_totalscore = $this->calcScore($regat);
@@ -1116,7 +1134,8 @@ class WC_Site extends GDO
 	
 	public function onLinkUser(GWF_User $user)
 	{
-		if (false === ($regat = WC_RegAt::linkUser($user->getID(), $this->getID()))) {
+		if (false === ($regat = WC_RegAt::linkUser($user->getID(), $this->getID())))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 	}

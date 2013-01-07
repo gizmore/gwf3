@@ -22,27 +22,33 @@ final class WeChall_LinkedSites extends GWF_Method
 		require_once GWF_CORE_PATH.'module/WeChall/WC_Freeze.php';
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
-		if (false !== ($token = Common::getGet('link'))) {
+		if (false !== ($token = Common::getGet('link')))
+		{
 			return $this->onLinkSiteAfterMailPre($token, (int)Common::getGet('site', 0));
 		}
 		
-		if (!(GWF_User::isLoggedIn())) {
+		if (!(GWF_User::isLoggedIn()))
+		{
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 
 		# Hide and Show
-		if (false !== ($array = Common::getPost('showname'))) {
+		if (false !== ($array = Common::getPost('showname')))
+		{
 			return $this->onHide($array, 0).$this->templateSites();
 		}
-		if (false !== ($array = Common::getPost('hidename'))) {
+		if (false !== ($array = Common::getPost('hidename')))
+		{
 			return $this->onHide($array, 1).$this->templateSites();
 		}
 
 		# Link and UnLink
-		if (false !== (Common::getPost('link'))) {
+		if (false !== (Common::getPost('link')))
+		{
 			return $this->onLinkSite().$this->templateSites();
 		}
-		if (false !== ($array = Common::getPost('unlink'))) {
+		if (false !== ($array = Common::getPost('unlink')))
+		{
 			return $this->onUnLinkSite($array).$this->templateSites();
 		}
 		
@@ -160,23 +166,33 @@ final class WeChall_LinkedSites extends GWF_Method
 	private function onLinkSite()
 	{
 		$form = $this->getFormLink();
-		if (false !== ($errors = $form->validate($this->module))) {
+		if (false !== ($errors = $form->validate($this->module)))
+		{
 			return $errors;
 		}
 		
+		$user = GWF_Session::getUser();
 		$onsitename = Common::getPostString('onsitename', '');
 		$onsitemail = Common::getPostString('email', '');
 		
-		if (false === ($site = WC_Site::getByID_Class(Common::getPost('siteid')))) {
+		if (false === ($site = WC_Site::getByID_Class(Common::getPost('siteid'))))
+		{
 			return $this->module->error('err_site');
 		}
 		
-		if (false !== WC_RegAt::getRegatRow(GWF_Session::getUserID(), $site->getID())) {
+		if (false !== WC_RegAt::getRegatRow(GWF_Session::getUserID(), $site->getID()))
+		{
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
-		if (WC_Freeze::isUserFrozenOnSite(GWF_Session::getUserID(), $site->getID())) {
+		if (WC_Freeze::isUserFrozenOnSite(GWF_Session::getUserID(), $site->getID()))
+		{
 			return $this->module->error('err_site_ban', array($site->displayName()));
+		}
+		
+		if (!$site->isValidWarboxLink($user, $onsitename))
+		{
+			return $this->module->error('err_warbox_nick');
 		}
 		
 		
@@ -193,8 +209,6 @@ final class WeChall_LinkedSites extends GWF_Method
 				return $this->module->error('err_onsitename_taken', array(htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername()));
 			}
 		}
-		
-		$user = GWF_Session::getUser();
 		
 		if ($onsitemail !== $user->getValidMail()) {
 			return $this->onLinkSiteMail($site, $user, $onsitename, $onsitemail);

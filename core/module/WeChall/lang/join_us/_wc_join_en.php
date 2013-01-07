@@ -307,4 +307,40 @@ $lang = array(
 		'Examples:<br/>'.
 		'%s<br/>'.
 		'%s<br/>',
+		
+	# v5.02 (EPOCH WARBOX)
+	'btn_join_war' => 'Join Warbox',
+	'war_1t' => 'Warbox API and instructions',
+	'war_1b' =>
+		'These pages are for &quot;Warbox&quot; administrators.<br/>'.
+		'A Warbox is a computer that offers hacking challenges, but does not keep track of it´s users and their progress.<br/><br/>'.
+		'If you are the admin of a Warbox, adding it to WeChall has never been easier.<br/><br/>'.
+		'All you need todo is make sure that you have an identd running on a port below 1025 and being reachable by hacking.allowed.org.<br/>'.
+		'Also your box needs to be able to connect to hacking.allowed.org on port 1234.<br/>'.
+		'<br/>'.
+		'Thanks epoch_qwert, for your fabulous idea and implementation!',
+		
+	'war_2t' => 'Setting up identd',
+	'war_2b' => 'Some examples how to install an identd can be found here.',
+	'war_2b_os' => array(
+		'gentoo' =>
+			'<pre>'.
+			"su\n".
+			"emerge -av oidentd\n".
+			"/etc/init.d/oidentd start\n".
+			"rc-update add oidentd default\n".
+			'</pre>'.PHP_EOL,
+// 		'windows' =>
+// 			'Test',
+	),
+	
+	'war_3t' => 'Configuring iptables',
+	'war_3b' =>
+		"<pre>".
+		"<b>Allow incoming 113 from hacking.allowed.org</b>\n".
+		"<i>iptables -I INPUT -p tcp -m tcp --dport 113 -s hacking.allowed.org -j ACCEPT</i>\n".
+		"\n".
+		"<b>Allow outgoing to hacking.allowed.org port 1235</b>\n".
+		"<i>iptables -I OUTPUT -p tcp -m tcp --dport 1235 -d hacking.allowed.org -j ACCEPT</i>\n",
 );
+?>

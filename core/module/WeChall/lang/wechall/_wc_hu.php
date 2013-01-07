@@ -666,5 +666,16 @@ $lang = array(
 	'btn_open' => 'Open',
 	'th_no_urlencode' => 'No urlencoding',
 	'tt_no_urlencode' => 'Disable urlencoding of parameters. Not recommended!',
+
+	# v5.02 (EPOCH_WARBOX)
+	'btn_warboxes' => 'WarBoxes',
+	'err_warbox_nick' => 'You cannot, and do not need to, choose a different nickname on a Warbox.',
+	'title_wartoken' => 'WarTokens',
+	'info_wartoken' => 'On many Warboxes, individual useraccounts do not exist.<br/>%s made it possible to score them easily with %s, an identd authentication wrapper.',
+	'title_warboxes' => 'Supported Warboxes',
+	'info_warboxes' => 'Simply solve a chall on a Warbox; when logged in as the flag, do netcat to port %s:<br/><br/><i>%s</i><br/><br/>That´s it!<br/><br/>You can <a href="%s">link a Warbox</a> like a regular site.<br/><br/><a href="%s">I have a new Warbox, how to add it?</a>',
+	'title_your_wartoken' => 'Your current WarToken',
+	'title_warcredits' => 'Warbox idea',
+	'info_warcredits' => 'Big big thanks to %s for this fabulous idea and implementation!',
 );
 ?>

@@ -307,6 +307,11 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 		}
 		
+		if ($site->isWarBox())
+		{
+			GWF_HTTP::getFromURL('http://hacking.allowed.org/cgi-bin/rtb.pullconfig.cgi');
+		}
+		
 		$site->saveOption(WC_Site::NO_URLENCODE, isset($_POST['no_urlencode']));
 		$site->saveOption(WC_Site::AUTO_UPDATE, isset($_POST['auto_update']));
 		$site->saveOption(WC_Site::HIDE_BY_DEFAULT, isset($_POST['default_hide']));

@@ -4,8 +4,8 @@ final class WeChall_JoinUs extends GWF_Method
 	public function getHTAccess()
 	{
 		return
-			'RewriteRule ^join_us$ index.php?mo=WeChall&me=JoinUs'.PHP_EOL.
-			'RewriteRule ^join.php$ index.php?mo=WeChall&me=JoinUs'.PHP_EOL;
+			'RewriteRule ^join_us/?$ /index.php?mo=WeChall&me=JoinUs'.PHP_EOL.
+			'RewriteRule ^join.php/?$ /index.php?mo=WeChall&me=JoinUs'.PHP_EOL;
 	}
 	
 	public function execute()
@@ -20,6 +20,7 @@ final class WeChall_JoinUs extends GWF_Method
 		{
 			case 'optional': $filename = 'join_opt.php'; break;
 			case 'wechall_api': $filename = 'join_api.php'; break;
+			case 'warbox': $filename = 'join_warbox.php'; break;
 			default: $filename = 'join.php'; break;
 		}
 		$tVars = array(

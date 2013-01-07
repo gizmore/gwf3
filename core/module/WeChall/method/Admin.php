@@ -181,9 +181,19 @@ final class WeChall_Admin extends GWF_Method
 		}
 		return false;
 	}
+	public function validate_percent(Module_WeChall $module, $arg)
+	{
+		if ( (!Common::isNumeric($arg, true)) || ($arg < 0) || ($arg > 100) ) 
+		{
+			return $module->lang('err_percent');
+		}
+		return false;
+	}
+	
 	public function validate_site(Module_WeChall $module, $arg)
 	{
-		if (false === ($this->site = WC_Site::getByID($arg))) {
+		if (false === ($this->site = WC_Site::getByID($arg)))
+		{
 			return $this->module->lang('err_site');
 		}
 		return false;
@@ -194,6 +204,7 @@ final class WeChall_Admin extends GWF_Method
 			'site' => array(GWF_Form::SELECT, $this->getSiteSelect(), $this->module->lang('th_site_name')),
 			'username' => array(GWF_Form::STRING, '', $this->module->lang('th_user_name')),
 			'onsitename' => array(GWF_Form::STRING, '', $this->module->lang('th_onsitename')),
+			'percent' => array(GWF_Form::FLOAT, '0.00', $this->module->lang('th_percent')),
 			'hardlink' => array(GWF_Form::SUBMIT, $this->module->lang('btn_hardlink')),
 		);
 		return new GWF_Form($this, $data);
@@ -250,10 +261,17 @@ final class WeChall_Admin extends GWF_Method
 			'regat_langid' => 0,
 			'regat_tagbits' => 0,
 			'regat_onsiterank' => 0,
+			'regat_challsolved' => 0,
 		));
 		
 		if (false === $entry->insert()) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		if (0 < ($percent = $form->getVar('percent')))
+		{
+			$new_score = round($site->getOnsiteScore() * $percent / 100);
+			$site->onUpdateUserB($user, $entry, $new_score, true, true);
 		}
 		
 		return $this->module->message('msg_hardlinked', array($user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename)));

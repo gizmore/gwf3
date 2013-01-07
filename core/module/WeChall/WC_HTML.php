@@ -761,6 +761,7 @@ final class WC_HTML
 		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
 		echo '<div class="gwf_buttons">'.PHP_EOL;
 		echo WC_HTML::button('btn_linked_sites', GWF_WEB_ROOT.'linked_sites', $me==='LinkedSites');
+		echo WC_HTML::button('btn_warboxes', GWF_WEB_ROOT.'warboxes', $me==='Warbox');
 		echo WC_HTML::button('btn_view_profile', GWF_WEB_ROOT.'profile/'.$user->urlencode('user_name'));
 		echo WC_HTML::button('btn_your_stats', GWF_WEB_ROOT.'stats/'.$user->urlencode('user_name'));
 		echo WC_HTML::button('btn_delete_account', GWF_WEB_ROOT.'account/delete', $mo==='Account'&&$me==='Delete');
