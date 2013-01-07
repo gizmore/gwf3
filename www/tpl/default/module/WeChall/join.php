@@ -2,6 +2,7 @@
 $l = $tVars['join'];
 echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us', 'generic', '', true);
+echo GWF_Button::generic($l->lang('btn_join_war'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=warbox');
 echo GWF_Button::generic($l->lang('btn_join_opt'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional');
 echo GWF_Button::generic($l->lang('btn_api'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=wechall_api');
 echo '</div></div>'.PHP_EOL;

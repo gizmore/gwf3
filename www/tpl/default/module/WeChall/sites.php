@@ -21,6 +21,8 @@ $headers = array(
 	array($tLang->lang('th_site_description')), #, 'site_description'),
 );
 
+echo $tVars['pagemenu'];
+
 echo GWF_Table::start('');
 echo GWF_Table::displayHeaders1($headers, $tVars['sortURL']);
 foreach ($tVars['sites'] as $site)
