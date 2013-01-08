@@ -26,7 +26,11 @@ final class WeChall_API_Site extends GWF_Method
 		$back = '';
 		foreach ($sites as $site)
 		{
-			$back .= $this->showSite($site);
+			$site instanceof WC_Site;
+			if ($site->getURL() !== '')
+			{
+				$back .= $this->showSite($site);
+			}
 		}
 		return $back;
 	}
