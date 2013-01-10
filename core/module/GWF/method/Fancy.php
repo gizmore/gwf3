@@ -3,6 +3,7 @@
  * For Fancy Indexing.
  * @author spaceone
  * @author gizmore
+ * @version 3.0
  * @see http://httpd.apache.org/docs/2.0/mod/mod_autoindex.html
  */
 final class GWF_Fancy extends GWF_Method
@@ -17,20 +18,14 @@ final class GWF_Fancy extends GWF_Method
 		# The Fancy Options
 		if (true === $this->module->cfgFancyIndex())
 		{
-			# TODO: This check does not seem to work on WC5 server.
-// 			if (false === GWF_ServerInfo::isApache())
-// 			{
-// 				return '';
-// 			}
+			# TODO: can we check if AllowOverride is on? <-- THIS!
+			# TODO: This check does not seem to work on WC5 server. 
+			##### ?! (ONLY APACHE ANYWAY) ?! #####
+// 			if (!GWF_ServerInfo::isApache()) return '';
 
-			# PHP workability; please add to your vhosts if AllowOverride All is deactivated!
-			# TODO: can we check if AllowOverride is on?
-
-			# TODO: This rule breaks any server setup i have dealt with, so far.
-			#     : Please make this optional and default disabled.
-			$ret .= 'AddType text/html .php'.PHP_EOL;
-
+			# The Fancy htaccess
 			$ret .= '# Fancy Index'.PHP_EOL;
+			$ret .= 'AddType text/html .php'.PHP_EOL; # Needed for fancy. No idea why.
 			$ret .= 'IndexOptions FancyIndexing'.PHP_EOL.
 				'IndexOptions'.
 				' NameWidth='.$this->module->cfgNameWidth(). 
@@ -46,12 +41,18 @@ final class GWF_Fancy extends GWF_Method
 			$ret .= $this->module->cfgScanHTMLTitles() ? 'ScanHTMLTitles ' : '';
 			$ret .= $this->module->cfgSuppressDescription() ? 'SuppressDescription ' : '';
 			$ret .= $this->module->cfgSuppressRules() ? 'SuppressRules ' : '';
+
+			# The Fancy htaccess URLs
 			$ret .= PHP_EOL.PHP_EOL;
-			# The Fancy URLs
 			$ret .=
+#				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%1'.PHP_EOL.
+				# TODO: Is the condition needed for capturing sorting options?
+				'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
 				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%{QUERY_STRING}'.PHP_EOL.
+				
 				'ReadmeName /index.php?mo=GWF&me=Fancy&fancy=foot'.PHP_EOL;
 		}
+		
 		return $ret.PHP_EOL;
 	}
 	
