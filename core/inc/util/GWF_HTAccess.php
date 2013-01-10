@@ -33,10 +33,10 @@ final class GWF_HTAccess
 			'RedirectMatch 404 /\..*$'.PHP_EOL.
 			PHP_EOL.
 			'# Custom error pages'.PHP_EOL.
-			'ErrorDocument 400 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=400'.PHP_EOL.
-			'ErrorDocument 401 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=401'.PHP_EOL.
-			'ErrorDocument 403 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=403'.PHP_EOL.
-			'ErrorDocument 404 '.GWF_WEB_ROOT.'index.php?mo=GWF&me=ShowError&code=404'.PHP_EOL.
+			'ErrorDocument 400 '.GWF_WEB_ROOT_NO_LANG.'index.php?mo=GWF&me=ShowError&code=400'.PHP_EOL.
+			'ErrorDocument 401 '.GWF_WEB_ROOT_NO_LANG.'index.php?mo=GWF&me=ShowError&code=401'.PHP_EOL.
+			'ErrorDocument 403 '.GWF_WEB_ROOT_NO_LANG.'index.php?mo=GWF&me=ShowError&code=403'.PHP_EOL.
+			'ErrorDocument 404 '.GWF_WEB_ROOT_NO_LANG.'index.php?mo=GWF&me=ShowError&code=404'.PHP_EOL.
 			PHP_EOL.
 			'RewriteEngine On'.PHP_EOL.
 #			PHP_EOL.
@@ -50,12 +50,13 @@ final class GWF_HTAccess
 	public static function getPostHTAccess()
 	{
 		return
-			PHP_EOL.
-			'RewriteCond %{REQUEST_URI} ^/[^/]+/[^/]+$'.PHP_EOL.
-			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL. # if not in .htaccess or <directory block> add a %{DOCUMENT_ROOT}/ in front of
-			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-			'RewriteRule ^([^/]+)/([^/]+)$ /index.php?mo=$1&me=$2&%{QUERY_STRING} [L,QSA]'.PHP_EOL.
-			PHP_EOL;
+			sprintf(PHP_EOL.
+			'RewriteCond %%{REQUEST_URI} ^%s([^/]+)/([^/]+)$'.PHP_EOL.
+			'RewriteCond %%{REQUEST_FILENAME} !-f'.PHP_EOL. # if not in .htaccess or <directory block> add a %{DOCUMENT_ROOT}/ in front of
+			'RewriteCond %%{REQUEST_FILENAME} !-d'.PHP_EOL.
+			'RewriteCond %smodule/%%1/method/%%2.php -f'.PHP_EOL.
+			'RewriteRule ^([^/]+)/([^/]+)$ %sindex.php?mo=$1&me=$2&%%{QUERY_STRING} [L,QSA]'.PHP_EOL.
+			PHP_EOL, GWF_WEB_ROOT_NO_LANG, GWF_CORE_PATH, GWF_WEB_ROOT_NO_LANG);
 	}
 
 	private static function getLangRewrites()
