@@ -17,8 +17,8 @@ array($lang->lang('btn_unsubscribe'))
 {foreach from=$subscr_boards item=sub}
 {GWF_Table::rowStart()}
 <td>{$sub['board_bid']}</td>
-<td><a href={$sub['board_url']|urlencode}>{$sub['board_title']}</a></td>
-<td>{button url=$sub['href_unsub']|urlencode text=$lang->lang('btn_unsubscribe')} </td>
+<td><a href={$sub['board_url']}>{$sub['board_title']}</a></td>
+<td>{button url=$sub['href_unsub'] text=$lang->lang('btn_unsubscribe')} </td>
 {GWF_Table::rowEnd()}
 {/foreach}
 {GWF_Table::end()}
@@ -36,8 +36,8 @@ array($lang->lang('btn_unsubscribe'))
 {foreach from=$subscr_threads item=sub}
 {GWF_Table::rowStart()}
 <td>{$sub['thread_tid']}</td>
-<td><a href={$sub['thread_url']|urlencode}>{$sub['thread_title']}</a></td>
-<td>{button url=$sub['href_unsub']|urlencode text=$lang->lang('btn_unsubscribe')} </td>
+<td><a href={$sub['thread_url']}>{$sub['thread_title']}</a></td>
+<td>{button url=$sub['href_unsub'] text=$lang->lang('btn_unsubscribe')} </td>
 {GWF_Table::rowEnd()}
 {/foreach}
 {GWF_Table::end()}
