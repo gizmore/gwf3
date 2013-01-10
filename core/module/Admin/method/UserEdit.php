@@ -77,17 +77,23 @@ final class Admin_UserEdit extends GWF_Method
 	##################	
 	public function validate_username(Module_Admin $module, $arg)
 	{
-		$arg = trim($arg);
-		$_POST['username'] = $arg;
-		if ($this->user->getVar('user_name') === $arg) {
+		$_POST['username'] = $arg = trim($arg);
+		
+		if ($this->user->getVar('user_name') === $arg)
+		{
 			return false;
 		}
-		if (GWF_User::getByName($arg) !== false) {
+		
+		if (GWF_User::getByName($arg) !== false)
+		{
 			return $this->module->lang('err_username_taken');
 		}
-		if (!GWF_Validator::isValidUsername($arg)) {
+		
+		if (!GWF_Validator::isValidUsername($arg))
+		{
 			return $this->module->lang('err_username');
 		}
+		
 		return false;
 	}
 	

@@ -53,7 +53,7 @@ final class GWF_Validator
 			return false; # check limits
 		}
 		# return a-z then a-z_0-9
-		return preg_match('/^[a-z][a-z0-9_'.$allowChars.']+$/iD', $name) === 1;
+		return preg_match('/^[a-z][-a-z0-9_'.$allowChars.']+$/iD', $name) === 1;
 	}
 
 	/**
