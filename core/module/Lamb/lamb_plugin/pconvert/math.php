@@ -26,7 +26,8 @@ if (false === ($result = $eval->e($message)))
 $result = sprintf('%.09f', $result);
 if (strpos($result, '.') !== false )
 {
-	$result = rtrim($result, '0.');
+	$result = rtrim($result, '0');
+	$result = rtrim($result, '.');
 }
 
 $__p_math_old_result = $result;

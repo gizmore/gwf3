@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 usage() {
-	echo "usage: $(basename $0) <config_lamp.php> <Lamb_Config.php> <www> <backup> <music>"
+	echo "usage: $(basename $0) <config_lamb.php> <Lamb_Config.php> <www> <backup> <music>"
 }
 
 if [ $# -eq 0 -o "$1" == "--help" -o "$1" == "-h" ]; then

@@ -1,0 +1,637 @@
+/*** Gradient Colors: 
+* Bright : #576578
+*   Dark : #020811
+**** Text Colors:
+* Front Blue: #acb5c1
+***/ /** HTML **/
+* {
+	color: #acb5c1;
+	margin: 0 auto;
+	font-family: arial, serif;
+}
+
+html,body {
+	height: 100%;
+	min-height: 100%;
+}
+
+#ssy_wrap,#ssy_main,#ssy_right {
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+}
+
+a {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+a:HOVER {
+	text-decoration: none;
+}
+
+/*** GRADIENTS ***/
+.ssy1600h {
+	background: url(../img/_ssy1600h.png) right repeat-y #020811;
+}
+
+.ssy1600h_faux {
+	background: url(../img/_ssy1600h_faux.png) right repeat-y #020811;
+}
+
+.ssy1024h,.ssy_border2 {
+	background: url(../img/_ssy1024h.png) repeat-y #020811;
+}
+
+.ssy1024h_R,.ssy_box {
+	background: url(../img/_ssy1024h_R.png) repeat-y #576578;
+}
+
+.ssy1024v {
+	background: url(../img/_ssy1024v.png) repeat-x #020811;
+}
+
+.ssy1024v_R {
+	background: url(../img/_ssy1024v_R.png) repeat-x #576578;
+}
+
+.ssy800h,.ssy_table_even_0,.gwf_even,.ssy_form_border,form textarea {
+	background: url(../img/_ssy800h.png) repeat-y #020811;
+}
+
+.ssy800h_R,#ssy_soft_table,.ssy_table_even_1,.gwf_odd,.ssy_form_wrap {
+	background: url(../img/_ssy800h_R.png) repeat-y #576578;
+}
+
+.ssy800v {
+	background: url(../img/_ssy800v.png) repeat-x #020811;
+}
+
+.ssy800v_R {
+	background: url(../img/_ssy800v_R.png) repeat-x #576578;
+}
+
+.ssy640h {
+	background: url(../img/_ssy640h.png) repeat-y #020811;
+}
+
+.ssy640h_R {
+	background: url(../img/_ssy640h_R.png) repeat-y #576578;
+}
+
+.ssy640v {
+	background: url(../img/_ssy640v.png) repeat-x #020811;
+}
+
+.ssy640v_R {
+	background: url(../img/_ssy640v_R.png) repeat-x #576578;
+}
+
+.ssy480h {
+	background: url(../img/_ssy480h.png) repeat-y #020811;
+}
+
+.ssy480h_R {
+	background: url(../img/_ssy480h_R.png) repeat-y #576578;
+}
+
+.ssy480v {
+	background: url(../img/_ssy480v.png) repeat-x #020811;
+}
+
+.ssy480v_R {
+	background: url(../img/_ssy480v_R.png) repeat-x #576578;
+}
+
+.ssy320h,form input,form input[type="submit"],.ssy_leftlinks a,#ssy_soft_table td
+	{
+	background: url(../img/_ssy320h.png) repeat-y #020811;
+}
+
+.ssy320h_R,.ssy_border,form input[type="submit"]:HOVER,.ssy_leftlinks a:HOVER,#ssy_soft_table td:HOVER
+	{
+	background: url(../img/_ssy320h_R.png) repeat-y #576578;
+}
+
+.ssy320v {
+	background: url(../img/_ssy320v.png) repeat-x #020811;
+}
+
+.ssy320v_R {
+	background: url(../img/_ssy320v_R.png) repeat-x #576578;
+}
+
+.ssy240h,.ssy_sidemenu_e,.ssy_small_softbox a,#ssy_service_table td,td.ssy_soft_in
+	{
+	background: url(../img/_ssy240h.png) repeat-y #020811;
+}
+
+.ssy240h_R,.ssy_sidemenu_e:HOVER,.ssy_small_softbox a:HOVER,#ssy_service_table td:HOVER,td.ssy_soft_in:HOVER
+	{
+	background: url(../img/_ssy240h_R.png) repeat-y #576578;
+}
+
+.ssy240v {
+	background: url(../img/_ssy240v.png) repeat-x #020811;
+}
+
+.ssy240v_R {
+	background: url(../img/_ssy240v_R.png) repeat-x #576578;
+}
+
+/* MAIN FRAMES */
+#ssy_main {
+	text-align: center;
+	margin: 0px auto;
+}
+
+#ssy_right {
+	text-align: center;
+	float: right;
+	width: 250px;
+}
+
+.ssy_fauxed2 {
+	padding-right: 250px;
+}
+
+.ssy_fauxed {
+	padding-right: 250px;
+}
+
+/** FRONT LOGO **/
+.ssy_logotext {
+	margin-top: 20px;
+	width: 200px;
+	height: 15px;
+	background: url(../img/assessystem.png);
+}
+
+/* LANG MENU */
+.ssy_langmenu {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.ssy_langmenu a {
+	display: block;
+	font-size: 12px;
+	text-decoration: none;
+	color: #acb5c1;
+}
+
+.ssy_langmenu a:HOVER {
+	font-weight: bolder;
+}
+
+/* ANGEL */
+.ssy_angel {
+	position: fixed;
+	width: 180px;
+	height: 190px;
+	right: 7px;
+	bottom: 7px;
+	background: url(../img/AngeloSmallR.png) no-repeat transparent 100% 100%
+		;
+	z-index: 1;
+}
+
+/* ROSE */
+.ssy_rose {
+	display: inline-block;
+	width: 160px;
+	height: 170px;
+	background: url(../img/RoseSmall.png) no-repeat transparent center top;
+	text-align: center;
+	margin: 0px auto;
+}
+
+/** BORDER 2px */
+.ssy_border,.ssy_noborder {
+	display: inline-block;
+	padding: 2px;
+}
+
+/* SIDEMENU */
+#ssy_sidemenu {
+	display: inline-block;
+	position: relative;
+	z-index: 2;
+	font-size: 12px;
+}
+
+#ssy_sidemenu a {
+	text-align: right;
+	padding: 16px 10px 2px 10px;
+}
+
+.ssy_sidemenu_e {
+	display: block;
+	margin: 1px 0px;
+	vertical-align: bottom;
+}
+
+.ssy_sidemenu_e {
+	min-width: 240px;
+}
+
+.ssy_sidemenu_e a {
+	display: block;
+	text-decoration: none;
+	text-align: right;
+	font-weight: normal;
+}
+
+/** MAIN MENU */
+#ssy_mainmenu {
+	position: fixed;
+	bottom: 8px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+#ssy_mainmenu a {
+	text-align: center;
+	display: block;
+	padding: 16px 10px 2px 10px;
+	font-weight: normal;
+}
+
+/* FOOTER */
+#ssy_footersp,#ssy_footer,#ssy_footer a {
+	height: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+#ssy_footer {
+	vertical-align: bottom;
+	text-align: center;
+	z-index: 2;
+}
+
+#ssy_footer a {
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #acb5c1;
+	text-decoration: none;
+	padding: 0px 32px;
+}
+
+#ssy_footer a:HOVER {
+	color: #bcc5d1;
+}
+
+/** BOX **/
+.ssy_border3 {
+	display: table;
+	min-width: 50%;
+}
+
+.ssy_border2 {
+	margin-top: 20px;
+	padding: 2px;
+	display: inline-block;
+	width: 95%;
+}
+
+.ssy_box {
+	text-align: left;
+	padding: 5px;
+	display: block;
+	min-height: 80px;
+}
+
+/** Error / Message **/
+.ssy_errors {
+	display: block;
+	background: url(../img/_ssy_error.png) repeat-y #020811;
+}
+
+.ssy_messages {
+	display: block;
+	background: url(../img/_ssy_message.png) repeat-y #020811;
+}
+
+.ssy_errors li {
+	list-style: none;
+	font-weight: bold;
+	color: white;
+}
+
+.ssy_messages li {
+	list-style: none;
+	font-weight: bold;
+	color: white;
+}
+
+.ssy_errors li, .ssy_messages li {
+	display: block;
+	padding: 4px 10px;
+}
+
+.ssy_errors,.ssy_messages {
+	width: 80%;
+	display: table;
+	padding: 10px 20px 10px 10px;
+}
+
+/** SOFT TABLE OUTLINE **/
+.ssy_st_out3_t {
+	display: block;
+	text-align: left;
+	margin-bottom: 1px;
+	padding: 16px 0px 4px 6px;
+	margin-left: 220px;
+}
+
+.ssy_st_out2_t { /*	display: block;*/
+	text-align: left;
+	margin-left: 40px;
+	line-height: 20px;
+}
+
+.ssy_st_out3 {
+	margin-top: 40px;
+	/*	display: table;*/
+	padding: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	display: table;
+	float: left;
+}
+
+.ssy_st_out2 {
+	display: block;
+	padding: 10px 4px 4px 4px;
+	margin-left: 220px;
+}
+
+.ssy_st_out1 {
+	display: block;
+	padding: 10px;
+	text-align: left;
+}
+
+.ssy_st_out3,ssy_st_out3_t { /*	padding-left: 220px;*/
+	
+}
+
+.ssy_small_softbox { /*	display: block;
+	float: left;*/ /*	display: table;
+	float: left;*/ /*	margin-left: -210px;*/ /*	background: inherit;
+	text-align: left;-*/
+	float: left;
+	display: inline-block;
+	width: 210px;
+	text-align: left;
+}
+
+.ssy_small_softbox a {
+	width: 180px;
+	display: block;
+	margin-bottom: 1px;
+	padding: 2px 10px 2px 10px;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+/** DEV / SERVICE **/
+#ssy_service_table {
+	margin-top: 20px;
+}
+
+#ssy_service_table td {
+	vertical-align: bottom;
+	text-align: left;
+	padding: 20px 20px 4px 10px;
+	min-width: 20%;
+	font-size: 11px;
+}
+
+/* 2 3 10 table **/
+#ssy_soft_table {
+	font-size: 12px;
+	margin-top: 20px;
+	width: 98%;
+}
+
+.ssy_soft_inner span {
+	height: inherit;
+	text-align: right;
+	display: block;
+}
+
+#ssy_soft_table a {
+	display: block;
+}
+
+.ssy_soft2 {
+	vertical-align: bottom;
+	text-align: right;
+	padding: 0 4px 2px 0;
+}
+
+.ssy_soft3 {
+	vertical-align: bottom;
+	height: 40px;
+}
+
+.ssy_soft3 a {
+	text-align: right;
+	padding: 0 4px 2px 0;
+}
+
+.ssy_soft_in {
+	vertical-align: bottom;
+	text-align: right;
+}
+
+#ssy_soft_table a {
+	display: block;
+	text-decoration: none;
+	color: #acb5c1; /* The Front Blue */
+}
+
+.ssy_soft_out {
+	vertical-align: top;
+	text-align: left;
+}
+
+/* FORM */
+form,table {
+	margin: auto;
+	position: relative;
+	z-index: 2;
+	display: table;
+}
+
+form {
+	display: table;
+}
+
+.ssy_form_border {
+	display: table !important;
+	display: inline;
+}
+
+.ssy_form_wrap {
+	display: inline;
+	margin: 2px;
+}
+
+.ssy_form_spacer {
+	height: 40px;
+}
+
+form table {
+	display: table;
+}
+
+form table th {
+	font-size: 18px;
+}
+
+td {
+	
+}
+
+form>table>tbody>tr>td {
+	text-align: right;
+}
+
+form>table>tbody>tr>td+td {
+	text-align: left;
+}
+
+form input {
+	padding: 4px 6px;
+	font-size: 12px;
+}
+
+form textarea {
+	width: 100%;
+	min-width: 520px;
+}
+
+form input[type="text"],form input[type="password"] {
+	width: 320px;
+	border-color: #acb5c1;
+}
+
+form input[type="checkbox"] {
+	color: black;
+}
+
+form input[type="submit"] {
+	padding: 6px 12px;
+}
+
+form input[type="submit"]:HOVER {
+	cursor: pointer;
+}
+
+.ssy_form_y form { /*	min-width: 80%;*/ /*	padding-top: 20px;
+	padding-bottom: 20px;*/
+	
+}
+
+/** Default Tables */
+th, th a {
+/* th.gwf_th, th.gwf_th_sel, .gwf_th a, .gwf_th_sel a, .gwf_th, .gwf_th_sel { */
+	line-height: 32px;
+	height: 32px;
+	vertical-align: middle;
+	text-align: left !important;
+	white-space: nowrap;
+	margin: 1px 5px;
+}
+
+.gwf_th,.gwf_th_sel {
+	
+}
+
+.gwf_th_sel a {
+	color: white !important;
+}
+
+.gwf_th_ASC {
+	padding-left: 32px;
+	background: url(../ico/desc.gif) no-repeat left;
+}
+
+.gwf_th_DESC {
+	padding-left: 32px;
+	background: url(../ico/asc.gif) no-repeat left;
+}
+
+/** WE THANK **/
+.ssy_rightcontainer {
+	margin-left: 48px;
+}
+
+.ssy_leftlinks {
+	min-width: 180px;
+	margin-right: 48px;
+}
+
+.ssy_leftlinks,.ssy_rightcontainer {
+	display: inline-block;
+	min-height: 240px;
+}
+
+.ssy_leftlinks a {
+	display: block;
+	text-align: left;
+	margin: 1px;
+	padding: 2px 15px;
+	min-width: 240px;
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.ssy_leftlinks a:HOVER {
+	
+}
+
+/** Page Menu **/
+.gwf_pagemenu a {
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.gwf_pagemenu_sel {
+	font-weight: bolder !important;
+	font-size: 24px !important;
+	color: #ffffff;
+}
+
+/** Admin **/
+.gwf_tabs {
+	margin: 0px auto 20px auto;
+	padding-top: 10px;
+}
+
+.gwf_tab, .gwf_tab_sel {
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+.gwf_tab_sel {
+	color: white !important;
+}
+
+/** GWF_Buttons **/
+.gwf_button,.gwf_buttons {
+	padding: 10px;
+}
+
+.gwf_buttons a,a.gwf_button {
+	white-space: nowrap;
+}

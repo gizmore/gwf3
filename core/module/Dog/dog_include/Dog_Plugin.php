@@ -139,9 +139,9 @@ final class Dog_Plugin
 			$this->trans = array();
 			
 			if  ( (false !== ($file = file_get_contents($this->path)))
-				&&(preg_match('/\\$lang *= *([^;]+);/i', $file, $match)) )
+				&&(preg_match('/\\$lang *= *([^;]+)\);/i', $file, $match)) )
 			{
-				$this->trans = eval("return {$match[1]};");
+				$this->trans = eval("return {$match[1]});");
 			}
 		}
 		

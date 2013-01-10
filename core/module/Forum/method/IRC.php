@@ -62,7 +62,7 @@ final class Forum_IRC extends GWF_Method
 			$back .= '::';
 			$back .= $thread->getVar('thread_gid');
 			$back .= '::';
-			$back .= GWF_DOMAIN.$thread->getLastPageHREF($locked==='1');
+			$back .= 'https://'.GWF_DOMAIN.$thread->getLastPageHREF($locked==='1');
 			$back .= '::';
 			$back .= $locked === '1' ? $unknown : $this->getLastPosterName($thread);
 			$back .= '::';

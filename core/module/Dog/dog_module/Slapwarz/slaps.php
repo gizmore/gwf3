@@ -189,7 +189,12 @@ $slaps = array(
 	array('parrot', 27),
 	array('link', 21),
 	array('savoy', 24),
-	array('sandwich', 22)	,
+	array('sandwich', 22),
+	array('wrench', 33),
+	array('email', 10),
+	array('bone', 13),
+	array('hummingbird', 11),
+	array('backup', 10),
 
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),

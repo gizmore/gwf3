@@ -8,7 +8,7 @@ define('GWF_CORE_VERSION', '3.04-2012.Apr.1');
  */
 class GWF3
 {
-	public function __construct($basepath, array $config=array())
+	public function __construct($basepath=NULL, array $config=array())
 	{
 		self::init($basepath);
 		self::onDefineWebRoot();
@@ -16,9 +16,10 @@ class GWF3
 		GWF_Website::init(false);
 	}
 	
-	public static function init($basepath)
+	public static function init($basepath=NULL)
 	{
 		define('GWF_PATH', dirname(__FILE__).'/');
+		$basepath = $basepath === NULL ? GWF_PATH.'www' : $basepath;
 		define('GWF_WWW_PATH', $basepath.'/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 		

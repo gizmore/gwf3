@@ -366,7 +366,7 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			self::$UPGRADE_CONFIRM[$pid.$safebit] = $msg;
 			return $player->msg('5211', array(
-				Shadowfunc::displayNuyen($price_u), $item->getItemName(), $rune->getItemName(), $fail, $break
+				Shadowfunc::displayNuyen($price_u), $item->displayFullName($player), $rune->displayFullName($player), $fail, $break
 			));
 // 			return $player->message(sprintf(
 // 				'The smith examines your items ... "It would cost you %s to upgrade your %s with %s. The fail chance is %.02f%% and the break chance is %.02f%%. Please retype to confirm.',

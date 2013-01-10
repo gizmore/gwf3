@@ -35,8 +35,11 @@ $hidden_7_2 = Common::getGet('show') === 'example_7_2' ? 'block' : 'none';
 echo '<a name="join_7"></a>'.PHP_EOL;
 echo GWF_Box::box($l->lang('join_7b', array($url_7_1, $hidden_7_1, $code_7_1, $url_7_2, $hidden_7_2, $code_7_2)), '7) '.$l->lang('join_7t'));
 
+
+
 echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us');
+echo GWF_Button::generic($l->lang('btn_join_war'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=warbox');
 echo GWF_Button::generic($l->lang('btn_join_opt'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional', 'generic', '', true);
 echo GWF_Button::generic($l->lang('btn_api'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=wechall_api');
 echo '</div></div>'.PHP_EOL;

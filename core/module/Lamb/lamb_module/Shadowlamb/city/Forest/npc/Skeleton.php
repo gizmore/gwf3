@@ -43,7 +43,10 @@ final class Forest_Skeleton extends SR_NPC
 		SR_PlayerVar::setVal($player, Forest_Clearing::SKELSKEY, $kills);
 		if ($kills >= Forest_Clearing::getNumSkeletons($leader))
 		{
-			SR_PlayerVar::setVal($player, Forest_Clearing::SWORDKEY, '1');
+			if (SR_PlayerVar::getVal($player, Forest_Clearing::SWORDKEY, '0') === '0')
+			{
+				SR_PlayerVar::setVal($player, Forest_Clearing::SWORDKEY, '1');
+			}
 		}
 		
 		# A bone \o/

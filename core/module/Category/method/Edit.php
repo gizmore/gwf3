@@ -41,6 +41,7 @@ final class Category_Edit extends GWF_Method
 				'catid' => array(GWF_Form::SSTRING, $cat->getID(), $this->module->lang('th_catid')),
 				'group' => array(GWF_Form::STRING, $cat->getGroup(), $this->module->lang('th_group')),
 				'key' => array(GWF_Form::STRING, $cat->getKey(), $this->module->lang('th_key')),
+				'parent' => array(GWF_Form::SELECT, $this->getParentSelect($cat), $this->module->lang('th_parent')),
 				'div1' => array(GWF_Form::DIVIDER),
 			);
 			$data += $this->getFormLangs($cat);
@@ -52,6 +53,24 @@ final class Category_Edit extends GWF_Method
 			$form = new GWF_Form($this, $data);
 //		}
 		return $form;
+	}
+	
+	private function getParentSelect(GWF_Category $cat)
+	{
+		$id = $cat->getID();
+		$group = $cat->getEscaped('cat_group');
+		
+		$data = array(array('0', $this->module->lang('sel_parent')));
+		$table = GDO::table('GWF_Category');
+		if (false !== ($result = $table->select('cat_tree_id, cat_tree_key', "cat_group='$group' AND cat_tree_id != $id")))
+		{
+			while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
+			{
+				$data[] = $row;
+			}
+			$table->free($result);
+		}
+		return GWF_Select::display('parent', $data, Common::getPostString('parent', $cat->getParentID()));
 	}
 	
 	private function getFormLangs(GWF_Category $cat)
@@ -100,7 +119,7 @@ final class Category_Edit extends GWF_Method
 	{
 		if (!GWF_LangSelect::isValidLanguage($langid, true)) {
 			$_POST['langid'] = 0;
-			return $this->module->error('err_invalid_langid');
+			return $this->module->lang('err_invalid_langid');
 		}
 		
 		if (self::$cat->getTranslation($langid) !== false) {
@@ -120,6 +139,22 @@ final class Category_Edit extends GWF_Method
 	{
 		return false;
 	}
+	
+	public function validate_parent(Module_Category $module, $p)
+	{
+		if ($p === '0')
+		{
+			return false;
+		}
+		
+		if ( ($p === self::$cat->getID()) || (false === ($cat = GWF_Category::getByID($p))) || ($cat->getGroup() !== self::$cat->getGroup()) )
+		{
+			return $this->module->lang('err_parent');
+		}
+		
+		return false;
+	}
+	
 	
 	public function onEdit(GWF_Category $cat)
 	{
@@ -153,10 +188,26 @@ final class Category_Edit extends GWF_Method
 			$back .= $this->module->message('msg_new_key', array(GWF_HTML::display($keyOld), GWF_HTML::display($keyNew)));
 		}
 		
-		if (!isset($_POST['trans']) || !is_array($_POST['trans'])) {
-			$_POST['trans'] = array();
+		# Change tree
+		$parent = $form->getVar('parent', '0');
+		$oldpar = $cat->getParentID();
+		if ($oldpar !== $parent)
+		{
+			if (!$cat->saveVar('cat_tree_pid', $parent))
+			{
+				$back .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			}
+			else
+			{
+				$cat->rebuildFullTree();
+				$back .= $this->module->message('msg_new_parent');
+			}
 		}
 		
+		if (!isset($_POST['trans']) || !is_array($_POST['trans']))
+		{
+			$_POST['trans'] = array();
+		}
 		# update translation
 		foreach ($_POST['trans'] as $langid => $textNew)
 		{

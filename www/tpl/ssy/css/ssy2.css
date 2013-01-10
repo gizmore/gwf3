@@ -1,0 +1,332 @@
+* {
+	margin: 0 auto;
+}
+
+html, body, #ssy_wrap, #ssy_main, #ssy_right {
+	height: 100%;
+	min-height: 100%;
+	font-family: arial, serif;
+/*	background: url(/template/ssy/img/grad_big.png) repeat-y #8692a3;*/
+	color: #acb5c1;
+	margin: 0;
+}
+
+/* COMMON */
+.ce {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.ib {
+	display: inline-block;
+}
+.b {
+	display: block;
+}
+.b {
+	display: inline;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.cl {
+	clear: both;
+}
+.ri {
+	text-align: right;
+/*	margin-left: auto;
+	margin-right: 0;*/
+}
+
+/* MSG / Error */
+.ssy_messages {
+}
+.ssy_message {
+}
+
+.ssy_errors {
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	z-index: 10;
+	margin: 2px auto;
+	padding: 4px 2px;
+	width: 50%;
+	color: red;
+	background: white;
+	font-weight: bolder;
+	font-size: 18px;
+	border: 6px groove black;
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+}
+.ssy_error {
+	display: block;
+}
+
+/* BASIC */
+
+#ssy_wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px;
+	vertical-align: bottom;
+}
+
+/* 
+* html #ssy_wrap { height:100% }*/
+
+/* TOP LOGO */
+
+.ssy_rose {
+	display: inline-block;
+	width: 160px;
+	height: 170px;
+	background: url(/template/ssy/img/RoseSmall.png) no-repeat transparent center top;
+	text-align: center;
+	margin: 0px auto 0px auto;
+}
+
+.ssy_rosepad {
+	height: 175px;
+	line-height: 175px;
+	margin: 0px auto;
+	padding: 0;
+}
+
+.ssy_assess {
+	text-align: center;
+	color: white;
+	font-size: 38px;
+	color: #e2e2e2;
+	background: url(/template/ssy/img/RoseSmall.png) no-repeat transparent center top;
+	padding-top: 170px;
+	margin: 4px 0 4px 0;
+	display: inline-block;
+}
+
+/* LANG MENU */
+.ssy_langmenu {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.ssy_langmenu a {
+	display: block;
+	font-size: 12px;
+	text-decoration: none;
+	color: #acb5c1;
+}
+.ssy_langmenu a:HOVER {
+	font-weight: bolder;
+}
+
+/* MAIN MENU */
+.ssy_mainmenu {
+	text-align: center;
+	width: 100%;
+/*	height: 100%;*/
+	position: fixed;
+	bottom: 8px;
+}
+
+/* SIDE MENU */
+/*#ssy_sidemenu {
+	display: inline;
+	position: relative;
+	z-index: 2;
+}*/
+	
+#ssy_sidemenu {
+	display: inline-block;
+	margin: 0;
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 16px;
+	position: relative;
+	z-index: 2;
+}
+/*
+.ssy_sidemenu_se {
+	padding-left: 20px;
+}*/
+
+.ssy_sidemenu_e {
+	display: block;
+	width: 100%;
+	max-width: 240px;
+	background: url(/template/ssy/img/grad_menuS.png) repeat-y #091321;
+	min-height: 28px;
+	list-style: none;
+	margin: 3px 0 0 0;
+	vertical-align: bottom;
+	padding: 0 4px;
+}
+.ssy_sidemenu_e:HOVER {
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #657487;
+}
+
+#ssy_sidemenu a {
+	display: block;
+	line-height: 28px;
+	width: 100%;
+	color: #d3d4d5;
+	text-decoration: none;
+	position: relative;
+	z-index: 2;
+	vertical-align: bottom;
+	
+}
+
+/* PAGE */
+/*
+#ssy_page {
+	margin: 10px;
+	position: relative;
+	z-index: 2;
+	top: -45px;
+	vertical-align: super;
+}
+
+#ssy_main {
+}
+#ssy_main td {
+	vertical-align: top;
+}
+*/
+/* ANGEL */
+.ssy_angel {
+	position: fixed;
+	width: 180px;
+	height: 190px;
+	right: 7px;
+	bottom: 7px;
+	background: url(/template/ssy/img/AngeloSmallR.png) no-repeat transparent 100% 100%;
+	z-index: 1;
+}
+
+/* FOOTER */
+#ssy_footsp {
+	height: 40px;
+}
+#ssy_footer {
+	vertical-align: bottom;
+	height: 40px;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+
+#ssy_footer a {
+	font-weight: bolder;
+	color: #acb5c1;
+	text-decoration: none;
+	padding: 0px 20px; 
+}
+#ssy_footer a:HOVER {
+	color: #bcc5d1;
+}
+
+/* CONTENT */
+h1 {
+	padding: 0; /*23px 4px 30px 4px;*/
+	text-align: center;
+}
+
+.ssy_pce {
+	text-align: center;
+}
+
+#content {
+	height: inherit;
+}
+
+/* MAINTABLE */
+#ssy_maintable {
+	width: 100%;
+	height: 100%;
+}
+
+/* FORM */
+form, table {
+	margin: auto;
+	position: relative;
+	z-index: 2;
+}
+
+form {
+	display: inline;
+	width: inherit;
+	/*	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 20px;*/
+}
+
+.ssy_form_wrap {
+	display: table;
+	padding: 20px;
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+}
+
+form table {
+	display: table;
+	padding: 20px;
+	text-align: right;
+	background: url(/template/ssy/img/grad_menuR.png) repeat-y #091321;
+}
+
+form table th {
+	font-size: 20px;
+}
+
+form input {
+	color: #ffffff;
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 4px 6px;
+	font-size: 14px;
+}
+
+form input[type="text"], form input[type="password"] {
+	width: 240px;
+	
+}
+
+form input[type="submit"] {
+	color: #ffffff;
+	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 6px 12px;
+}
+form input[type="submit"]:HOVER {
+	background: url(/template/ssy/img/grad_menuR.png) repeat-y #091321;
+	cursor: pointer;
+}
+
+/**/
+.ssy_headout {
+	
+}
+
+.ssy_headerbox {
+	text-align: center;
+	margin: 20px auto 0 auto;
+	background: url(/template/ssy/img/grad_menuR.png) repeat-y #091321;
+}
+
+.ssy_outline {
+	margin: 20px;
+}
+
+
+.ssy_outer {
+	display: inline-block;
+	background: url(/template/ssy/img/grad_menuR.png) repeat-y #091321;
+	padding: 20px;
+}
+
+.ssy_inner {
+	display: inline-block;
+		background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 20px;
+}

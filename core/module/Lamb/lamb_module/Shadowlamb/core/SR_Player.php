@@ -549,7 +549,7 @@ class SR_Player extends GDO
 		}
 	}
 	
-	public static function getPlayerData($userid=0, $serverid=0)
+	public static function getPlayerData($userid='0', $serverid='0')
 	{
 		$back = array(
 			'sr4pl_id' => 0,

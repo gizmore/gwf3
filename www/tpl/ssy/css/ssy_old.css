@@ -1,0 +1,142 @@
+#ssy_left {
+	float: left;
+	min-height: 100%;
+	background: red;
+}
+#ssy_right {
+	background: green;
+}
+
+#ssy_wrap {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+.ssy_langmenu {
+/*	margin: 30px 0px 0px 30px;
+	position: relative;
+	z-index: 100;*/
+}
+
+.ssy_langmenu a {
+	display: block;
+	font-size: 12px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.sys_langmenu a:HOVER {
+	font-weight: bolder;
+}
+
+.sys_angel {
+	position: fixed;
+	z-index: 1;
+	width: 99%;
+	height: 98%;
+	background: url(/template/sys/img/AngeloSmallR.png) no-repeat transparent 100% 100%;
+}
+/*
+.sys_rose {
+	width: 160px;
+	height: 170px;
+}
+
+.sys_patch {
+}*/
+
+.sys_assess {
+	text-align: center;
+	color: white;
+	font-size: 38px;
+	color: #e2e2e2;
+	background: url(/template/sys/img/RoseSmall.png) no-repeat transparent center bottom;
+	height: 190px;
+	display: inline-block;
+}
+
+.center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sys_mainmenu {
+	display: inline-block;
+}
+
+.sys_mainmenu a {
+	display: list-item;
+}
+
+.sys_page {
+	background: blue;
+}
+
+h1 {
+	text-align: center;
+}
+
+.sys_sidemenu {
+	background: url(/template/sys/img/grad_menu.png) repeat-y #a2acb9;
+	padding: 20px;
+	position: relative;
+	z-index: 1000;
+	height: inherit;
+}
+
+.sys_fl {
+	float: left;
+}
+
+.sys_sidemenu_e {
+}
+
+.sys_sidemenu_se {
+	padding-left: 20px;
+}
+
+.sys_sidemenu_e, .sys_sidemenu_se {
+	margin: 2px 0px;
+	background: url(/template/sys/img/grad_menuR.png) repeat-y #091321;
+}
+.sys_sidemenu_e:HOVER, .sys_sidemenu_se:HOVER {
+	background: url(/template/sys/img/grad_menu.png) repeat-y #091321;
+}
+
+.sys_sidemenu a {
+	display: block;
+	padding: 4px 20px;
+	color: white;
+	text-decoration: none;
+}
+
+.sys_sidemenu_se a {
+	display: list-item;
+}
+
+.sys_sidemenu a:HOVER {
+}
+
+.sys_bottom_links {
+	text-align: center;
+}
+
+.sys_bottom_links a {
+	padding: 0px 20px;
+	color: white;
+	text-decoration: none;	
+}
+
+.sys_cl {
+	clear: both;
+}
+
+.sys_fr {
+	float: right;
+}
+
+.sys_wrap {
+	background: url(/template/sys/img/grad_big.png) repeat-y #8692a3;
+}

@@ -75,6 +75,11 @@ final class Common
 	{
 		return preg_match('/([^\\.]+\\.[a-z]{2,3})([\\/:].*|$)/D', $url, $matches) ? $matches[1] : false;
 	}
+	
+	public static function getHostname($url)
+	{
+		return Common::substrUntil(Common::substrFrom($url, '://', $url), '/');
+	}
 
 	/**
 	 * @deprecated

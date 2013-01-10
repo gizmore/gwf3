@@ -40,7 +40,7 @@ class GWF3
 	 * $basepath is the GWF_WWW_PATH without trailing slash 
 	 * @return GWF3 
 	 */
-	public function __construct($basepath, array $config = array())
+	public function __construct($basepath=NULL, array $config = array())
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
 
@@ -57,6 +57,7 @@ class GWF3
 //		}
 		
 		# Important definements...
+		$basepath = $basepath === NULL ? GWF_PATH.'www' : $basepath;
 		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
 		Common::defineConst('GWF_PROTECTED_PATH', GWF_WWW_PATH.'protected/');
 		Common::defineConst('GWF_CONFIG_PATH', GWF_PROTECTED_PATH.'config.php');
@@ -192,10 +193,11 @@ class GWF3
 		}
 
 		# Flush logfiles
-		if (true === self::getConfig('do_logging'))
-		{
+// 		if (true === self::getConfig('do_logging'))
+// 		{
 			GWF_Log::flush();
-		}
+			GWF_CachedCounter::persist();
+// 		}
 	}
 		
 	/**

@@ -24,8 +24,14 @@ final class DOGMOD_Seen extends Dog_Module
 	{
 		$argv = $this->argv();
 		$argc = count($argv);
+		
 		if ($argc === 1)
 		{
+			if (!preg_match('/^[a-z0-9_]+$/iD', $argv[0]))
+			{
+				return Dog::rply('err_user');
+			}
+		
 			if (false === ($server = Dog::getServerBySuffix($argv[0])))
 			{
 				return Dog::rply('err_server');

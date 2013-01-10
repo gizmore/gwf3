@@ -512,7 +512,7 @@ final class GWF_InstallWizard
 		$back = self::wizard_h2('7');
 		if (false === GWF_InstallFunctions::copyExampleFiles($back))
 		{
-			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php'), true, true);
+			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php', __FILE__, __LINE__), true, true);
 			return $back;
 		}
 		return $back.self::wizard_btn('8');

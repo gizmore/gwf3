@@ -95,7 +95,7 @@ class SR_Item extends GDO
 	
 	public function __toString() { return $this->getName().'{'.$this->getID().'}'; }
 	
-	public function getID() { return $this->getInt('sr4it_id'); }
+	public function getID() { return $this->getVar('sr4it_id'); }
 	public function getName() { return $this->getVar('sr4it_name'); }
 	public function getOwner() { return Shadowrun4::getPlayerByPID($this->getOwnerID()); }
 	public function getOwnerID() { return $this->getVar('sr4it_uid'); }

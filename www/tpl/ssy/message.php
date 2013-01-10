@@ -1,0 +1,1 @@
+<div class="ssy_message">%MESSAGE%</div>
