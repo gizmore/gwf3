@@ -25,7 +25,7 @@ final class GWF_HTAccess
 			'#############################'.PHP_EOL.
 			PHP_EOL.
 // 			'# Secure Limits'.PHP_EOL.
-// 			'<LimitExcept GET HEAD POST>'.PHP_EOL.
+// 			'<LimitExcept GET HEAD POST PUT DELETE>'.PHP_EOL.
 // 			'  Deny from all'.PHP_EOL.
 // 			'</LimitExcept>'.PHP_EOL.
 			PHP_EOL.
@@ -50,11 +50,11 @@ final class GWF_HTAccess
 	public static function getPostHTAccess()
 	{
 		return
-#			PHP_EOL.
-#			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-#			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-#			'RewriteRule ^(.*)/(.*)(?:/?|/\?(.*))$ index.php?mo=$1&me=$2&$3 [L,QSA]'.
-#			'RewriteRule ^(.*)/(.*)/?$ index.php?mo=$1&me=$2 [L,QSA]'.
+			PHP_EOL.
+			'RewriteCond %{REQUEST_URI} ^/[^/]+/[^/]+$'.PHP_EOL.
+			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL. # if not in .htaccess or <directory block> add a %{DOCUMENT_ROOT}/ in front of
+			'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
+			'RewriteRule ^([^/]+)/([^/]+)$ /index.php?mo=$1&me=$2&%{QUERY_STRING} [L,QSA]'.PHP_EOL.
 			PHP_EOL;
 	}
 
