@@ -87,14 +87,15 @@ final class WeChall_Warbox extends GWF_Method
 	
 	private function genConfig()
 	{
-		$output = '';
+		#          CLS, IP,        ,prt,RS, boxhostname,  dispname, website
+		$output = 'W0,176.58.89.195,113,1,w0.warchall.net,Warchall0,http://www.warchall.net'."\n";
 		foreach ($this->getWarboxes() as $warbox)
 		{
 			$warbox instanceof WC_Site;
 			$output .= sprintf('%s,%s,%s,%s,%s,%s,%s',
 				$warbox->getVar('site_classname'), $warbox->getIP(),
 				$warbox->getPort(), $warbox->getReduceScore(),
-				$warbox->getHostname(), $warbox->getSitename(), $warbox->getURL());
+				$warbox->getHostname(), $warbox->getSitename(), $warbox->getURL())."\n";
 		}
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();

@@ -9,6 +9,8 @@ echo '</div></div>'.PHP_EOL;
 
 echo GWF_Box::box($l->lang('war_1b'), $l->lang('war_1t'));
 
+echo GWF_Box::box($l->lang('war_4b'), $l->lang('war_4t'));
+
 $box = "";
 $box .= $l->lang('war_2b')."\n<br/>\n";
 foreach ($l->lang('war_2b_os') as $os => $code)

@@ -316,9 +316,18 @@ $lang = array(
 		'A Warbox is a computer that offers hacking challenges, but does not keep track of it´s users and their progress.<br/><br/>'.
 		'If you are the admin of a Warbox, adding it to WeChall has never been easier.<br/><br/>'.
 		'All you need todo is make sure that you have an identd running on a port below 1025 and being reachable by hacking.allowed.org.<br/>'.
-		'Also your box needs to be able to connect to hacking.allowed.org on port 1235.<br/>'.
+		'Also your box needs to be able to connect to hacking.allowed.org on port 1235.<br/>',
+		
+	'war_4t' => 'How does it work?',
+	'war_4b' =>
+		'When a user does the netcat(nc) command from your box, the identd will securely tell the service at port 1235 which level on your box sent the command.<br/>'.
+		'As the user sends a unique Warbox token as well, the service at hacking.allowed can keep track of a users progress.<br/>'.
+		'Users can then link your Warbox as any regular site, via hacking.allowed as a data proxy.<br/>'.
 		'<br/>'.
-		'Thanks epoch_qwert, for your fabulous idea and implementation!',
+		'Of course adding a new site also requires us to choose a proper display name, hostname and other settings manually.<br/>'.
+		'Provide us with the required information by email to get your site added to wechall.<br/>'.
+		'<br/>'.
+		'<i>Let us thank <a href="/profile/epoch_qwert">epoch_qwert</a>, for this fabulous idea and implementation!</i>',
 		
 	'war_2t' => 'Setting up identd',
 	'war_2b' => 'Some examples how to install an identd can be found here.',
