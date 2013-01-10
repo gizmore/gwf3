@@ -70,7 +70,7 @@ final class Forum_Subscriptions extends GWF_Method
 			$back[] = array(
 				'thread_tid' => $row[0],
 				'thread_title' => $row[1],
-				'thread_url' => sprintf('%sforum-t/%s/%s.html', GWF_WEB_ROOT, $row[0], Common::urlencodeSEO($row[1])),
+				'thread_url' => sprintf('%sforum-t%s/%s.html', GWF_WEB_ROOT, $row[0], Common::urlencodeSEO($row[1])),
 				'href_unsub' => sprintf('%sforum/unsubscribe/from/%s/%s', GWF_WEB_ROOT, $row[0], Common::urlencodeSEO($row[1])),
 			);
 		}
