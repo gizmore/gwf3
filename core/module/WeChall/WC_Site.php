@@ -942,11 +942,11 @@ class WC_Site extends GDO
 		
 		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
 		
-// 		if (WECHALL_DEBUG_LINKING)
-// 		{
-// 			var_dump('SECRET URL:');
-// 			var_dump($url);
-// 		}
+		if (WECHALL_DEBUG_LINKING)
+		{
+			var_dump('SECRET URL:');
+			var_dump($url);
+		}
 		
 		$stats = $site->parseStats($url);
 		

@@ -316,7 +316,7 @@ $lang = array(
 		'A Warbox is a computer that offers hacking challenges, but does not keep track of it´s users and their progress.<br/><br/>'.
 		'If you are the admin of a Warbox, adding it to WeChall has never been easier.<br/><br/>'.
 		'All you need todo is make sure that you have an identd running on a port below 1025 and being reachable by hacking.allowed.org.<br/>'.
-		'Also your box needs to be able to connect to hacking.allowed.org on port 1234.<br/>'.
+		'Also your box needs to be able to connect to hacking.allowed.org on port 1235.<br/>'.
 		'<br/>'.
 		'Thanks epoch_qwert, for your fabulous idea and implementation!',
 		
