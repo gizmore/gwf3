@@ -1,0 +1,18 @@
+sudosh has been tested on the following systems:
+================================================
+
+alpha-dec-osf4*
+alpha-dec-osf5.1*
+alpha-dec-linux
+hppa2.0w-hp-hpux11.11
+hppa2.0w-hp-hpux11.12
+ia64-hp-hpux11.23
+powerpc-ibm-aix4.3.3
+powerpc-ibm-aix5.1.0
+powerpc-ibm-aix5.2.0
+sparc-sun-solaris2.8
+sparc-sun-solaris2.9
+i*86-*-solaris2.9
+i*86-*-solaris2.8
+i*86-suse-linux (SuSE Enterprise Server 9.0)
+i*86-intel-linux (RedHat Enterprise Linux ES/AS 3.0)
