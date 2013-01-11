@@ -315,17 +315,17 @@ $lang = array(
 		'These pages are for &quot;Warbox&quot; administrators.<br/>'.
 		'A Warbox is a computer that offers hacking challenges, but does not keep track of it´s users and their progress.<br/><br/>'.
 		'If you are the admin of a Warbox, adding it to WeChall has never been easier.<br/><br/>'.
-		'All you need todo is make sure that you have an identd running on a port below 1025 and being reachable by hacking.allowed.org.<br/>'.
-		'Also your box needs to be able to connect to hacking.allowed.org on port 1235.<br/>',
+		'All you need todo is make sure that you have an identd running on a port below %2$s and being reachable by %1$s.<br/>'.
+		'Also your box needs to be able to connect to %1$s on port %2$s.<br/>',
 		
 	'war_4t' => 'How does it work?',
 	'war_4b' =>
-		'When a user does the netcat(nc) command from your box, the identd will securely tell the service at port 1235 which level on your box sent the command.<br/>'.
-		'As the user sends a unique Warbox token as well, the service at hacking.allowed can keep track of a users progress.<br/>'.
-		'Users can then link your Warbox as any regular site, via hacking.allowed as a data proxy.<br/>'.
+		'When a user does the netcat(nc) command from your box, the identd will securely tell the service at port %2$s which level on your box sent the command.<br/>'.
+		'As the user sends a unique Warbox token as well, the service at %1$s can keep track of a users progress.<br/>'.
+		'Users can then link your Warbox as any regular site, via %1$s as a data proxy.<br/>'.
 		'<br/>'.
 		'Of course adding a new site also requires us to choose a proper display name, hostname and other settings manually.<br/>'.
-		'Provide us with the required information by email to get your site added to wechall.<br/>'.
+		'Send us an email with the required information to get your box added to wechall.<br/>'.
 		'<br/>'.
 		'<i>Let us thank <a href="/profile/epoch_qwert">epoch_qwert</a>, for this fabulous idea and implementation!</i>',
 		
@@ -346,10 +346,10 @@ $lang = array(
 	'war_3t' => 'Configuring iptables',
 	'war_3b' =>
 		"<pre>".
-		"<b>Allow incoming 113 from hacking.allowed.org</b>\n".
-		"<i>iptables -I INPUT -p tcp -m tcp --dport 113 -s hacking.allowed.org -j ACCEPT</i>\n".
+		"<b>Allow incoming 113 from %1\$s</b>\n".
+		"<i>iptables -I INPUT -p tcp -m tcp --dport 113 -s %1\$s -j ACCEPT</i>\n".
 		"\n".
-		"<b>Allow outgoing to hacking.allowed.org port 1235</b>\n".
-		"<i>iptables -I OUTPUT -p tcp -m tcp --dport 1235 -d hacking.allowed.org -j ACCEPT</i>\n",
+		"<b>Allow outgoing to %1\$s port %2\$s</b>\n".
+		"<i>iptables -I OUTPUT -p tcp -m tcp --dport %2\$s -d %1\$s -j ACCEPT</i>\n",
 );
 ?>

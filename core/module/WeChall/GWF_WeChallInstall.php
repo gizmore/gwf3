@@ -32,6 +32,8 @@ final class GWF_WeChallInstall
 			'wc_chall_board' => array('0', 'script'),
 			'wc_sitemas_dur' => array('1 week', 'time', GWF_Time::ONE_DAY, GWF_Time::ONE_MONTH),
 			'wc_active_time' => array('1 day', 'time', 0, GWF_Time::ONE_WEEK),
+			'wc_warbox_url' => array('warbox.wechall.net', 'text', '5', '255'),
+			'wc_warbox_port' => array('1336', 'int', '1', '65535'),
 		)).
 		self::createForums($module, $dropTable).
 		self::createDBIMGDIR($module, $dropTable).

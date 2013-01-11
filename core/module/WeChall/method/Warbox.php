@@ -49,12 +49,14 @@ final class WeChall_Warbox extends GWF_Method
 	{
 		$user = GWF_Session::getUser();
 		$token = WC_WarToken::genWarToken($user->getID());
+		$host = Module_WeChall::instance()->cfgWarboxURL();
+		$port = Module_WeChall::instance()->cfgWarboxPort();
 		$tVars = array(
 			'epoch' => $this->getEpochUser(),
 			'warboxes' => $this->getWarboxes(),
 			'token' => $token,
-			'port' => '1235',
-			'netcat_cmd' => sprintf('echo -e "%s\n%s" | nc hacking.allowed.org 1235', $user->displayUsername(), $token),
+			'port' => $port,
+			'netcat_cmd' => sprintf('echo -e "%s\n%s" | nc %s %s', $user->displayUsername(), $token, $host, $port),
 		);
 		return $this->module->templatePHP('wartoken.php', $tVars);
 	}
@@ -87,8 +89,8 @@ final class WeChall_Warbox extends GWF_Method
 	
 	private function genConfig()
 	{
-		#          CLS, IP,        ,prt,RS, boxhostname,  dispname, website
-		$output = 'W0,176.58.89.195,113,1,w0.warchall.net,Warchall0,http://www.warchall.net'."\n";
+		#          CLS, IP,          ,prt,RS, boxhostname,  dispname, website
+		$output = 'WCW0,176.58.89.195,113,1,w0.warchall.net,Warchall0,http://www.warchall.net'."\n";
 		foreach ($this->getWarboxes() as $warbox)
 		{
 			$warbox instanceof WC_Site;
