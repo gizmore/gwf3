@@ -269,6 +269,15 @@ abstract class GDO
 // 		return $this->primary_keys;
 	}
 	
+	#######################
+	### Column Creation ###
+	#######################
+	public function createColumn($key)
+	{
+		$d = $this->getColumnDefines();
+		return gdo_db()->createColumn($this->getTableName(), $key, $d[$key]);
+	}
+	
 	######################
 	### Table Creation ###
 	######################
