@@ -11,6 +11,7 @@ class WC_Site extends GDO
 	const HAS_LOGO = 0x04;
 	const ONSITE_RANK = 0x08;
 	const NO_URLENCODE = 0x10;
+	const IS_WARBOX = 0x20;
 	
 	# Site Status
 	const UP = 'up'; # Site is scored, up and running.
@@ -92,6 +93,12 @@ class WC_Site extends GDO
 			'site_powarg' => array(GDO::UINT, 100),
 		
 			'site_descr_lid' => array(GDO::UINT, 1),
+				
+			# Warbox
+			'site_warport' => array(GDO::MEDIUM|GDO::UINT, 113),
+			'site_warhost' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, '', 255),
+			'site_war_rs' => array(GDO::MEDIUM|GDO::UINT, 1),
+			'site_war_ip' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '',  63),
 		
 			'description' => array(GDO::JOIN, NULL, array('WC_SiteDescr', 'site_id', 'site_desc_sid')),
 		
@@ -102,15 +109,15 @@ class WC_Site extends GDO
 	### Convinience ###
 	###################
 	public function getID() { return $this->getVar('site_id'); }
-	public function getHostname() { return Common::getHostname($this->getURL()); } # Warbox host. Can override
-	public function getIP() { return gethostbyname($this->getHostname()); } # Warbox IP
-	public function getPort() { return 113; } # identd port for warbox
-	public function getReduceScore() { return 1; } # Score reduce for warbox
+	public function isWarBox() { return $this->isOptionEnabled(self::IS_WARBOX); }
+	public function getWarHost() { return $this->getVar('site_warhost'); } # Warbox host. Can override
+	public function getWarIP() { return $this->getWarIPCached(); } # Warbox IP
+	public function getWarPort() { return $this->getVar('site_warport'); } # identd port for warbox
+	public function getWarReduceScore() { return $this->getVar('site_war_rs'); } # Score reduce for warbox
 	public function hasAutoUpdate() { return $this->isOptionEnabled(self::AUTO_UPDATE); }
 	public function hasOnSiteRank() { return $this->isOptionEnabled(self::ONSITE_RANK); }
 	public function isDefaultHidden() { return $this->isOptionEnabled(self::HIDE_BY_DEFAULT); }
 	public function isScored() { $s = $this->getVar('site_status'); return $s === self::UP || $s === self::DOWN; }
-	public function isWarBox() { return false; }
 	public function getURL() { return $this->getVar('site_url'); }
 	public function getStatus() { return $this->getVar('site_status'); }
 	public function getSitename() { return $this->getVar('site_name'); }
@@ -122,7 +129,8 @@ class WC_Site extends GDO
 	public function getPercent($onsitescore) { return $this->getSolved($onsitescore) * 100; }
 	public function useUrlencode() { return $this->isOptionEnabled(self::NO_URLENCODE) === false; }
 	public function isValidWarboxLink(GWF_User $user, $onsitename) { return $this->isWarBox() ? $user->getVar('user_name') === $onsitename : true; }
-	
+	public function getSiteClassName() { return $this->getVar('site_classname'); }
+
 	/**
 	 * @return GWF_Language
 	 */
@@ -209,7 +217,8 @@ class WC_Site extends GDO
 	 */
 	public static function getByID_Class($siteid)
 	{
-		if (false === ($site = self::getByID($siteid))) {
+		if (false === ($site = self::getByID($siteid)))
+		{
 			return false;
 		}
 		return $site->getSiteClass();
@@ -830,7 +839,7 @@ class WC_Site extends GDO
 		return $this->getVar('site_url').'/'.$score_part;
 	}
 	
-	private function getAccountURL($onsitename, $onsitemail)
+	public function getAccountURL($onsitename, $onsitemail)
 	{
 // 		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), urlencode($onsitename), urlencode($onsitemail));
 		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), $onsitename, $onsitemail);
@@ -875,14 +884,20 @@ class WC_Site extends GDO
 	}
 	
 	/**
-	 * get the site as derived class (WCSite_TBS for example)
+	 * Get the site as derived class (WCSite_TBS for example)
 	 * @return WC_Site
 	 */
 	public function getSiteClass()
 	{
+		if ($this->isWarBox())
+		{
+			require_once GWF_CORE_PATH.'module/WeChall/sites/warbox/WCSite_WARBOX.php';
+			return new WCSite_WARBOX($this->getGDOData());
+		}
+		
 		$classname = 'WCSite_'.$this->getVar('site_classname');
 		
-		$pathes = array('sites', 'sites/warbox', 'sites/english', 'sites/french', 'sites/german', 'sites/polish');
+		$pathes = array('sites', 'sites/english', 'sites/french', 'sites/german', 'sites/korean', 'sites/polish', 'sites/spanish');
 		
 		foreach ($pathes as $path)
 		{
@@ -1266,7 +1281,17 @@ class WC_Site extends GDO
 		$db->free($result);
 		return $back;
 	}
+	
+	private function getWarIPCached()
+	{
+		$host = $this->getWarHost();
+		$old = $this->getVar('site_war_ip');
+		if ( ($host === ($ip = gethostbyname($host))) || ($ip === $old) )
+		{
+			return $old;
+		}
+		$this->saveVar('site_war_ip', $ip);
+		return $ip;
+	}
 
 }
-
-?>

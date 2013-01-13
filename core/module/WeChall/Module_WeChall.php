@@ -45,6 +45,9 @@ final class Module_WeChall extends GWF_Module
 	public function cfgLastPlayersTime() { return $this->getModuleVar('wc_lpt', GWF_Time::ONE_DAY*14); }
 	public function cfgWarboxURL() { return $this->getModuleVar('wc_warbox_url', 'warbox.wechall.net'); }
 	public function cfgWarboxPort() { return $this->getModuleVarInt('wc_warbox_port', 1336, 1, 65535); }
+	public function cfgWarboxHost() { return Common::getHostname($this->cfgWarboxURL()); }
+	public function cfgWarboxProtocol() { return Common::substrUntil($this->cfgWarboxURL(), '://', 'http'); }
+	
 	//	public function cfgSiteBoardID() { return intval($this->getModuleVar('wc_site_board', 0)); }
 //	public function cfgSolutionBoardID() { return intval($this->getModuleVar('wc_sol_board', 0)); }
 //	public function cfgChallengeBoardID() { return intval($this->getModuleVar('wc_chall_board', 0)); }
@@ -60,7 +63,7 @@ final class Module_WeChall extends GWF_Module
 //	public function getDependencies() { return array('Forum'=>1.00, 'Votes'=>1.00); } 
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function getDefaultPriority() { return 60; } # 50 is default
-	public function getVersion() { return 1.10; }
+	public function getVersion() { return 5.02; }
 	public function onInstall($dropTable) { require_once 'GWF_WeChallInstall.php'; return GWF_WeChallInstall::onInstall($this, $dropTable); }
 	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
@@ -743,6 +746,10 @@ final class Module_WeChall extends GWF_Module
 		}
 		return $data['WC_NO_XSS_PASS'] === $api_key;
 	}
+	
+	public function flushWarboxConfig()
+	{
+		$url = sprintf('http://%s/cgi-bin/rtb.pullconfig.cgi', $this->cfgWarboxURL());
+		GWF_HTTP::getFromURL($url);
+	}
 }
-
-?>

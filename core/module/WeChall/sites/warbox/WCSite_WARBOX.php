@@ -1,7 +1,29 @@
 <?php
-class WCSite_W0 extends WC_Site
+/**
+ * Generic Warbox stats parser.
+ * @author gizmore
+ */
+class WCSite_WARBOX extends WC_Site
 {
-	public function isWarBox() { return true; }
+	/**
+	 * Scoreurl for warbox.wechall.net
+	 * @see WC_Site::getScoreURL()
+	 */
+	public function getScoreURL($onsitename)
+	{
+		$host = Module_WeChall::instance()->cfgWarboxURL();
+		return sprintf('%s/cgi/warscore.score.cgi?username=%s&site=%s', $host, $onsitename, $this->getSiteClassName());
+	}
+
+	/**
+	 * Link URL. No emails submitted.
+	 * @see WC_Site::getAccountURL()
+	 */
+	public function getAccountURL($onsitename, $onsitemail)
+	{
+		$host = Module_WeChall::instance()->cfgWarboxURL();
+		return sprintf('%s/cgi/warscore.link.cgi?site=%s', $host, $this->getSiteClassName());
+	}
 	
 	public function parseStats($url)
 	{

@@ -680,5 +680,12 @@ $lang = array(
 	'title_your_wartoken' => 'Your current WarToken',
 	'title_warcredits' => 'Warbox idea',
 	'info_warcredits' => 'Big big thanks to %s for this fabulous idea and implementation!',
+	'pi_warboxes' => 'Warbox setup - For shell boxes without user handling',
+	'th_war_score_reduce' => 'Reduce solvecount by',
+	'th_warhost' => 'Warbox host',
+	'th_warport' => 'Port identd',
+	'th_warbox' => 'Warbox mode?',
+	'on_warbox_on' => 'Warbox mode has been enabled. Linking and scoring is directed to %s now.',
+	'on_warbox_off' => 'Warbox mode has been disabled.',
 );
 ?>
