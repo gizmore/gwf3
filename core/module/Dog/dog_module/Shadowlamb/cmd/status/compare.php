@@ -54,7 +54,7 @@ final class Shadowcmd_compare extends Shadowcmd
 		return true;
 	}
 
-	private static function getComparisonMatrix($player, $item1, $item2)
+	private static function getComparisonMatrix(SR_Player $player, SR_Item $item1, SR_Item $item2)
 	{
 		$titles=array();
 		$item1Stuff=array();
@@ -353,7 +353,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2Stuff[] = Shadowfunc::displayNuyen($item2Prc);
 		}
 		
-		return array(Shadowrun4::lang('name') => $titles, $item1->getItemName() => $item1Stuff, $item2->getItemName() => $item2Stuff);
+		return array(Shadowrun4::lang('name') => $titles, $item1->displayName($player) => $item1Stuff, $item2->displayName($player) => $item2Stuff);
 	}
 
 	private static function getItem($bot, SR_Player $player, $itemid)
