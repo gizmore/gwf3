@@ -61,6 +61,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			'form_logo' => $form_logo->templateY($this->module->lang('ft_edit_site_logo', $site->displayName())),
 			'form_site_admin' => $form_sitemin->templateX($this->module->lang('ft_edit_site_admin', array($site->displayName()))),
 			'href_edit_descr' => $this->module->getMethodURL('SiteDescr', '&siteid='.$site->getVar('site_id')),
+			'href_edit_boxes' => $this->module->getMethodURL('Warboxes', '&siteid='.$site->getVar('site_id')),
 		);
 		return $this->module->templatePHP('site_edit.php', $tVars);
 	}
@@ -127,9 +128,9 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['div4'] = array(GWF_Form::DIVIDER);
 		$data['div5'] = array(GWF_Form::HEADLINE, $this->l('pi_warboxes'));
 		$data['warenbl'] = array(GWF_Form::CHECKBOX, $site->isWarBox(), $this->l('th_warbox'));
-		$data['warhost'] = array(GWF_Form::STRING, $site->getWarHost(), $this->l('th_warhost'));
-		$data['warport'] = array(GWF_Form::INT, $site->getWarPort(), $this->l('th_warport'));
-		$data['warscrd'] = array(GWF_Form::INT, $site->getWarReduceScore(), $this->l('th_war_score_reduce'));
+// 		$data['warhost'] = array(GWF_Form::STRING, $site->getWarHost(), $this->l('th_warhost'));
+// 		$data['warport'] = array(GWF_Form::INT, $site->getWarPort(), $this->l('th_warport'));
+// 		$data['warscrd'] = array(GWF_Form::INT, $site->getWarReduceScore(), $this->l('th_war_score_reduce'));
 //		$data['site_description'] = array(GWF_Form::MESSAGE, $site->getVar('site_description'), $this->module->lang('th_site_description'));
 
 		$data['edit'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_edit_site'));
@@ -257,42 +258,42 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function validate_site_powarg(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'site_powarg', $arg, 0, 10000, true); }
 	public function validate_site_color(Module_WeChall $m, $arg) { return preg_match('/^[a-z0-9]{6}$/iD', $arg) ? false : $m->lang('err_site_color'); }
 // 	public function validate_new_logo($m, $arg) { return false; }
-	public function validate_warhost(Module_WeChall $m, $arg)
-	{
-		if (isset($_POST['warenbl']))
-		{
-			if (false !== ($error = GWF_Validator::validateString($m, 'warhost', $arg, 0, 255, false, false)))
-			{
-				unset($_POST['warenbl']);
-				return $error;
-			}
-			elseif ($arg === gethostbyname($arg))
-			{
-				unset($_POST['warenbl']);
-				return $m->lang('err_warhost');
-			}
-		}
-		return false;
-	}
-	public function validate_warport(Module_WeChall $m, $arg)
-	{
-		if (false !== ($error = GWF_Validator::validateInt($m, 'warport', $arg, 1, 1024, true)))
-		{
-			unset($_POST['warenbl']);
-			return $error;
-		}
-		return false;
-	}
+// 	public function validate_warhost(Module_WeChall $m, $arg)
+// 	{
+// 		if (isset($_POST['warenbl']))
+// 		{
+// 			if (false !== ($error = GWF_Validator::validateString($m, 'warhost', $arg, 0, 255, false, false)))
+// 			{
+// 				unset($_POST['warenbl']);
+// 				return $error;
+// 			}
+// 			elseif ($arg === gethostbyname($arg))
+// 			{
+// 				unset($_POST['warenbl']);
+// 				return $m->lang('err_warhost');
+// 			}
+// 		}
+// 		return false;
+// 	}
+// 	public function validate_warport(Module_WeChall $m, $arg)
+// 	{
+// 		if (false !== ($error = GWF_Validator::validateInt($m, 'warport', $arg, 1, 1024, true)))
+// 		{
+// 			unset($_POST['warenbl']);
+// 			return $error;
+// 		}
+// 		return false;
+// 	}
 	
-	public function validate_warscrd(Module_WeChall $m, $arg)
-	{
-		if (false !== ($error = GWF_Validator::validateInt($m, 'warscrd', $arg, 0, 999999, true)))
-		{
-			unset($_POST['warenbl']);
-			return $error;
-		}
-		return false;
-	}
+// 	public function validate_warscrd(Module_WeChall $m, $arg)
+// 	{
+// 		if (false !== ($error = GWF_Validator::validateInt($m, 'warscrd', $arg, 0, 999999, true)))
+// 		{
+// 			unset($_POST['warenbl']);
+// 			return $error;
+// 		}
+// 		return false;
+// 	}
 	##############
 	### OnEdit ###
 	##############
@@ -337,9 +338,9 @@ final class WeChall_SiteEdit extends GWF_Method
 			'site_url_mail' => $form->getVar('site_url_mail'),
 			'site_url_score' => $form->getVar('site_url_score'),
 			'site_url_profile' => $form->getVar('site_url_profile'),
-			'site_warhost' => $form->getVar('warhost'),
-			'site_warport' => $form->getVar('warport'),
-			'site_war_rs' => $form->getVar('warscrd'),
+// 			'site_warhost' => $form->getVar('warhost'),
+// 			'site_warport' => $form->getVar('warport'),
+// 			'site_war_rs' => $form->getVar('warscrd'),
 //			'site_description' => $form->getVar('site_description'),
 		));
 		
@@ -368,7 +369,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		# Trigger warbox config parsing.
 		if ($site->isWarBox())
 		{
-			$site->getWarIP();
+// 			$site->getWarIP();
 			Module_WeChall::instance()->flushWarboxConfig();
 		}
 		

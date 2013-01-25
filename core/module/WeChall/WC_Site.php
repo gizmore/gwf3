@@ -95,10 +95,13 @@ class WC_Site extends GDO
 			'site_descr_lid' => array(GDO::UINT, 1),
 				
 			# Warbox
-			'site_warport' => array(GDO::MEDIUM|GDO::UINT, 113),
-			'site_warhost' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, '', 255),
-			'site_war_rs' => array(GDO::MEDIUM|GDO::UINT, 1),
-			'site_war_ip' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '',  63),
+// 			'site_warport' => array(GDO::MEDIUM|GDO::UINT, 113),
+// 			'site_warhost' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, '', 255),
+// 			'site_war_rs' => array(GDO::MEDIUM|GDO::UINT, 1),
+// 			'site_war_ip' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '',  63),
+// 			'site_war_wl' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
+// 			'site_war_bl' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
+// 			'site_wargroup' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
 		
 			'description' => array(GDO::JOIN, NULL, array('WC_SiteDescr', 'site_id', 'site_desc_sid')),
 		
@@ -110,10 +113,10 @@ class WC_Site extends GDO
 	###################
 	public function getID() { return $this->getVar('site_id'); }
 	public function isWarBox() { return $this->isOptionEnabled(self::IS_WARBOX); }
-	public function getWarHost() { return $this->getVar('site_warhost'); } # Warbox host. Can override
-	public function getWarIP() { return $this->getWarIPCached(); } # Warbox IP
-	public function getWarPort() { return $this->getVar('site_warport'); } # identd port for warbox
-	public function getWarReduceScore() { return $this->getVar('site_war_rs'); } # Score reduce for warbox
+// 	public function getWarHost() { return $this->getVar('site_warhost'); } # Warbox host. Can override
+// 	public function getWarIP() { return $this->getWarIPCached(); } # Warbox IP
+// 	public function getWarPort() { return $this->getVar('site_warport'); } # identd port for warbox
+// 	public function getWarReduceScore() { return $this->getVar('site_war_rs'); } # Score reduce for warbox
 	public function hasAutoUpdate() { return $this->isOptionEnabled(self::AUTO_UPDATE); }
 	public function hasOnSiteRank() { return $this->isOptionEnabled(self::ONSITE_RANK); }
 	public function isDefaultHidden() { return $this->isOptionEnabled(self::HIDE_BY_DEFAULT); }
@@ -321,8 +324,9 @@ class WC_Site extends GDO
 	public static function getUnlinkedSites($userid)
 	{
 		$userid = (int) $userid;
+		$warmode = self::IS_WARBOX;
 		$regat = GDO::table('WC_Regat')->getTableName();
-		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1)) AND site_status='up'", "site_name ASC");
+		return GDO::table(__CLASS__)->selectObjects('*', "(site_status='up' || site_status='down' || site_options&$warmode) AND (IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1))", "site_name ASC");
 	}
 	
 	public static function getLinkedSites($userid, $orderby='site_name ASC')

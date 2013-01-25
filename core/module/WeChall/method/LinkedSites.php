@@ -185,6 +185,11 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
+		if ( (!$site->isScored()) && (!$site->isWarBox()) )
+		{
+			return $this->module->error('err_site');
+		}
+		
 		if (WC_Freeze::isUserFrozenOnSite(GWF_Session::getUserID(), $site->getID()))
 		{
 			return $this->module->error('err_site_ban', array($site->displayName()));

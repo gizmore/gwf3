@@ -8,8 +8,9 @@ final class WeChall_Warbox extends GWF_Method
 {
 	public function execute()
 	{
+		$this->module->includeClass('WC_Warbox');
 		$this->module->includeClass('WC_WarToken');
-		
+		$this->module->includeClass('sites/warbox/WCSite_WARBOX');
 		# CHECK TOKEN
 		if (isset($_GET['CHECK']))
 		{
@@ -53,7 +54,7 @@ final class WeChall_Warbox extends GWF_Method
 		$port = Module_WeChall::instance()->cfgWarboxPort();
 		$tVars = array(
 			'epoch' => $this->getEpochUser(),
-			'warboxes' => $this->getWarboxes(),
+			'warboxes' => $this->getWarboxes(true),
 			'token' => $token,
 			'port' => $port,
 			'netcat_cmd' => sprintf('echo -e "%s\n%s" | nc %s %s', $user->displayUsername(), $token, $host, $port),
@@ -68,36 +69,79 @@ final class WeChall_Warbox extends GWF_Method
 	
 	private function getWarboxes($all=false)
 	{
-		$table = GDO::table('WC_Site');
-		$back = array();
-		$where = 'site_options&'.WC_Site::IS_WARBOX;
-		$where .= $all ? '' : ' AND site_status IN ("up","down")';
-		if (false === ($result = $table->selectColumn('site_id', $where)))
+		$table = GDO::table('WC_Warbox');
+		
+		$joins = array('sites');
+		$orderby = 'site_name ASC, wb_name ASC';
+		if (!$all)
 		{
-			return $back;
+			$where = 'site_status IN ("up","down")';
 		}
-		foreach ($result as $siteid)
+		else
 		{
-			if (false !== ($site = WC_Site::getByID_Class($siteid)))
-			{
-				$back[] = $site;
-			}
+			$where = '';
 		}
-		return $back;
+		return $table->selectAll('*', $where, $orderby, $joins, -1, -1, GDO::ARRAY_O);
+// 		$table = GDO::table('WC_Site');
+// 		$back = array();
+// 		$where = 'site_options&'.WC_Site::IS_WARBOX;
+// 		$where .= $all ? '' : ' AND site_status IN ("up","down")';
+// 		if (false === ($result = $table->selectColumn('site_id', $where)))
+// 		{
+// 			return $back;
+// 		}
+// 		foreach ($result as $siteid)
+// 		{
+// 			if (false !== ($site = WC_Site::getByID_Class($siteid)))
+// 			{
+// 				$back[] = $site;
+// 			}
+// 		}
+// 		return $back;
 	}
 	
 	private function genConfig()
 	{
-		$format = '%5s, %15s, %5s, %2s, %64s, %24s, %s'."\n";
-		$output = vsprintf('#'.$format, explode(',', 'CLS,IP,prt,RS,warhost,displayname,webhost'));
+		$vars = array(
+			'site_id',
+			'site_name',
+			'site_classname',
+			'wb_id',
+			'wb_name',
+			'wb_levels',
+			'wb_port',
+			'wb_host',
+			'wb_user',
+			'wb_pass',
+			'wb_weburl',
+			'wb_ip',
+			'wb_whitelist',
+			'wb_blacklist',
+			'wb_launched_at',
+		);
+		$output = GWF_Array::toCSV($vars)."\n";
 		foreach ($this->getWarboxes(true) as $warbox)
 		{
-			$warbox instanceof WC_Site;
-			$output .= sprintf(' '.$format,
-				$warbox->getVar('site_classname'), $warbox->getWarIP(),
-				$warbox->getWarPort(), $warbox->getWarReduceScore(),
-				$warbox->getWarHost(), $warbox->getSitename(), $warbox->getURL())."\n";
+			$warbox instanceof WC_Warbox;
+			$data = array();
+			foreach ($vars as $var)
+			{
+				$data[] = $warbox->getVar($var);
+			}
+			$output .= GWF_Array::toCSV($data)."\n";
 		}
+			
+// 		$format = '%5s, %15s, %5s, %2s, %64s, %24s, %s'."\n";
+// 		$output = vsprintf('#'.$format, explode(',', 'CLS,IP,prt,RS,warhost,displayname,webhost'));
+// 		foreach ($this->getWarboxes(true) as $warbox)
+// 		{
+			
+// 			$warbox instanceof WC_Warbox;
+// 			$output .= sprintf(' '.$format,
+// 				$warbox->getVar('site_classname'), $warbox->getWarIP(),
+// 				$warbox->getWarPort(), $warbox->getWarReduceScore(),
+// 				$warbox->getWarHost(), $warbox->getSitename(), $warbox->getURL())."\n";
+// 		}
 		$_GET['ajax'] = 1;
 		GWF_Website::plaintext();
 		return $output;
