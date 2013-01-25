@@ -278,6 +278,11 @@ abstract class GDO
 		return gdo_db()->createColumn($this->getTableName(), $key, $d[$key]);
 	}
 	
+	public function dropColumn($columnname)
+	{
+		return gdo_db()->dropColumn($this->getTableName(), $columnname);
+	}
+	
 	######################
 	### Table Creation ###
 	######################

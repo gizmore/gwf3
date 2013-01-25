@@ -51,6 +51,8 @@ class GWF_Form
 	const TIME = 25;
 //	const HIDDEN_NO_CHECK = 26;
 	const HTML = 27;
+	const ENUM = 28; # array(array(key,value),array(key,value),...)
+// 	const ENUM_ASSOC = 29;
 
 	# CSRF protection levels.
 	const CSRF_OFF = 0;
@@ -294,6 +296,10 @@ class GWF_Form
 		
 				case self::TIME:
 					$this->form_data[$key][1] = GWF_TimeSelect::select($key.'h', $key.'i', $data[1]);
+					break;
+				
+				case self::ENUM:
+					$this->form_data[$key][1] = GWF_Select::display($key, $data[4], $data[1]);
 					break;
 		
 				case self::SELECT:

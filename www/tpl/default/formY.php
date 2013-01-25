@@ -53,6 +53,7 @@
 				printf('<tr><td>%s</td><td>%s</td><td><input type="text" name="%s" value="%s" /></td></tr>'.PHP_EOL, GWF_HTML::lang('th_captcha2'), GWF_Button::tooltip(GWF_HTML::lang('tt_captcha2')), $key, $data[1]);
 				break;
 			
+			case GWF_Form::ENUM:
 			case GWF_Form::TIME:
 			case GWF_Form::DATE:
 			case GWF_Form::DATE_FUTURE:
