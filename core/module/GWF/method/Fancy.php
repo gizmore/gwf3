@@ -45,11 +45,7 @@ final class GWF_Fancy extends GWF_Method
 			# The Fancy htaccess URLs
 			$ret .= PHP_EOL.PHP_EOL;
 			$ret .=
-#				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%1'.PHP_EOL.
-				# TODO: Is the condition needed for capturing sorting options?
-				'RewriteCond %{QUERY_STRING} (.*)'.PHP_EOL.
 				'HeaderName /index.php?mo=GWF&me=Fancy&fancy=head&%{QUERY_STRING}'.PHP_EOL.
-				
 				'ReadmeName /index.php?mo=GWF&me=Fancy&fancy=foot'.PHP_EOL;
 		}
 		
