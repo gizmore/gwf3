@@ -185,7 +185,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
-		if ( (!$site->isScored()) && (!$site->isWarBox()) )
+		if ( (!$site->isScored()) )
 		{
 			return $this->module->error('err_site');
 		}

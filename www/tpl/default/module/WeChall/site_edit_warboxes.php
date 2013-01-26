@@ -1,7 +1,7 @@
 <?php
 echo GWF_Button::wrapStart();
-echo GWF_Button::generic('Site', $tVars['href_site']);
-echo GWF_Button::generic('Descr', $tVars['href_descr']);
+echo GWF_Button::generic($tLang->lang('menu_sites'), $tVars['href_site']);
+echo GWF_Button::generic($tLang->lang('btn_edit_site_descr'), $tVars['href_descr']);
 echo GWF_Button::wrapEnd();
 
 echo GWF_Table::start();

@@ -64,7 +64,7 @@ final class WeChall_Warboxes extends GWF_Method
 	### VALIDATORS ###
 	##################
 	
-	public function validate_name(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'name', $arg, 0, 31, false, false); }
+	public function validate_name(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'name', $arg, 1, 31, false, false); }
 	public function validate_host(Module_WeChall $m, $arg)
 	{
 		if (false !== ($error = GWF_Validator::validateString($m, 'host', $arg, 0, 255, false, false)))
@@ -95,7 +95,7 @@ final class WeChall_Warboxes extends GWF_Method
 			'boxes' => WC_Warbox::getBoxes($this->site),
 			'href_add' => $this->getMethodHREF(sprintf('&siteid=%s&add=1', $this->site->getID())),
 			'href_site' => $this->module->getMethodURL('SiteEdit', '&siteid='.$this->site->getID()),
-			'href_descr' => $this->module->getMethodURL('SiteEdit', '&siteid='.$this->site->getID()),
+			'href_descr' => $this->module->getMethodURL('SiteDescr', '&siteid='.$this->site->getID()),
 		);
 		return $this->module->templatePHP('site_edit_warboxes.php', $tVars);
 	}

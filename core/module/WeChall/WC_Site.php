@@ -326,7 +326,7 @@ class WC_Site extends GDO
 		$userid = (int) $userid;
 		$warmode = self::IS_WARBOX;
 		$regat = GDO::table('WC_Regat')->getTableName();
-		return GDO::table(__CLASS__)->selectObjects('*', "(site_status='up' || site_status='down' || site_options&$warmode) AND (IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1))", "site_name ASC");
+		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1)) AND site_status='up'", "site_name ASC");
 	}
 	
 	public static function getLinkedSites($userid, $orderby='site_name ASC')
@@ -1286,16 +1286,16 @@ class WC_Site extends GDO
 		return $back;
 	}
 	
-	private function getWarIPCached()
-	{
-		$host = $this->getWarHost();
-		$old = $this->getVar('site_war_ip');
-		if ( ($host === ($ip = gethostbyname($host))) || ($ip === $old) )
-		{
-			return $old;
-		}
-		$this->saveVar('site_war_ip', $ip);
-		return $ip;
-	}
+// 	private function getWarIPCached()
+// 	{
+// 		$host = $this->getWarHost();
+// 		$old = $this->getVar('site_war_ip');
+// 		if ( ($host === ($ip = gethostbyname($host))) || ($ip === $old) )
+// 		{
+// 			return $old;
+// 		}
+// 		$this->saveVar('site_war_ip', $ip);
+// 		return $ip;
+// 	}
 
 }

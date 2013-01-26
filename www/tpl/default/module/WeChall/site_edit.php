@@ -7,7 +7,7 @@ echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
 
 echo GWF_Button::generic($tLang->lang('btn_edit_site_descr'), $tVars['href_edit_descr']);
-echo GWF_Button::generic($tLang->lang('btn_edit_site_boxes'), $tVars['href_edit_boxes']);
+echo GWF_Button::generic($tLang->lang('btn_warboxes'), $tVars['href_edit_boxes']);
 //echo sprintf('<');
 
 echo $tVars['form'];
