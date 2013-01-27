@@ -18,6 +18,7 @@ final class GWF_Array
 	{
 		foreach ($input as $key => $value)
 		{
+			$value = str_replace($escape, $escape.$escape, $value);
 			$input[$key] = str_replace($enclosure, $escape.$enclosure, $value);
 		}
 		return $enclosure.implode($enclosure.$delimiter.$enclosure, $input).$enclosure;
