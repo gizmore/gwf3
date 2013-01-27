@@ -274,6 +274,7 @@ final class GWF_Debug
 			isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : self::getMoMe(),
 			isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'NULL',
 			isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'NULL',
+			isset($_SERVER['USER_AGENT']) ? $_SERVER['USER_AGENT'] : 'NULL',
 			$user,
 			$message,
 			print_r($_GET, true),
@@ -283,7 +284,7 @@ final class GWF_Debug
 
 		$args = array_map('htmlspecialchars', $args);
 
-		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\nUser: %s\n\nMessage: %s\n\n_GET: %s\n\n_POST: %s\n\n_COOKIE: %s\n\n";
+		$pattern = "RequestMethod: %s\nRequestURI: %s\nReferer: %s\nIP: %s\nUserAgent: %s\nUser: %s\n\nMessage: %s\n\n_GET: %s\n\n_POST: %s\n\n_COOKIE: %s\n\n";
 		return vsprintf($pattern, $args);
 	}
 
