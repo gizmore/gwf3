@@ -236,7 +236,7 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		
 		if ($log->isRoot())
 		{
-			$gid2 = GWF_Group::getByName('sysmin');
+			$gid2 = GWF_Group::getByName('sysmin')->getID();
 			$where = "(ug_groupid={$gid1} OR ug_groupid={$gid2})";
 		}
 		elseif ($mode === 1)
@@ -263,13 +263,17 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 				case 1: self::sendMailGo($module, $user, $log); break;
 				case 2:
 					self::sendMailDone($module, $user, $log);
-					self::sendMailDoneUser($module, $log);
 					break;
 			}
 			
 		}
 		
 		$users->free($result);
+		
+		if ($mode == 2)
+		{
+			self::sendMailDoneUser($module, $log);
+		}
 		
 		return true;
 	}
