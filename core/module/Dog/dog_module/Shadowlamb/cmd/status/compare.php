@@ -353,7 +353,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2Stuff[] = Shadowfunc::displayNuyen($item2Prc);
 		}
 		
-		return array(Shadowrun4::lang('name') => $titles, $item1->displayName($player) => $item1Stuff, $item2->displayName($player) => $item2Stuff);
+		return array(Shadowrun4::lang('name') => $titles, '1.'.$item1->displayName($player, false) => $item1Stuff, '2.'.$item2->displayName($player, false) => $item2Stuff);
 	}
 
 	private static function getItem($bot, SR_Player $player, $itemid)

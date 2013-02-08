@@ -529,7 +529,7 @@ class SR_Item extends GDO
 	###############
 	### Display ###
 	###############
-	public function displayName(SR_Player $player) { return Shadowlang::displayItemname($player, $this); }
+	public function displayName(SR_Player $player, $colors=true) { return Shadowlang::displayItemname($player, $this, $colors); }
 	public function displayFullName(SR_Player $player, $short_mods=false, $colors=true) { return Shadowlang::displayItemnameFull($player, $this, $short_mods, $colors); }
 	public function displayType() { return 'Item'; }
 	public function displayEquipmentType(SR_Player $player) { return Shadowrun4::langPlayer($player, $this->getItemType()); }
