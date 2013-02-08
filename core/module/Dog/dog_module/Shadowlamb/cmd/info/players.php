@@ -5,6 +5,11 @@ final class Shadowcmd_players extends Shadowcmd
 	
 	public static function execute(SR_Player $player, array $args)
 	{
+		if (count($args) === 0)
+		{
+			$args[] = '1';
+		}
+		
 		if (count($args) !== 1)
 		{
 			$player->message(Shadowhelp::getHelp($player, 'players'));
