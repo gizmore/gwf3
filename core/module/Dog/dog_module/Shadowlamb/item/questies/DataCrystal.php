@@ -5,6 +5,7 @@ final class Item_DataCrystal extends SR_QuestItem
 	public function getItemLevel() { return -1; }
 	public function getItemWeight() { return 35; }
 	public function getItemDescription() { return 'A data crystal you have to show around ... scary!'; }
+	public function isItemSellable() { return false; }
 	public function isItemDropable() { return false; }
 	public function isItemTradeable() { return false; }
 }

@@ -28,8 +28,8 @@ final class DOGMOD_Peak extends Dog_Module
 		return sprintf('Channel peak of %d for %s has been reached on %s, %s ago. The peakshow is %s.', $count, $channel->getName(), GWF_Time::displayDate($date), GWF_Time::displayAge($date), $peakshow);
 	}
 	
-	public function on_addpeak_Ac() { $this->onPeakEnable(true); }
-	public function on_removepeak_Ac() { $this->onPeakEnable(false); }
+	public function on_ADDpeak_Ac() { $this->onPeakEnable(true); }
+	public function on_REMOVEpeak_Ac() { $this->onPeakEnable(false); }
 	private function onPeakEnable($enable=true)
 	{
 		$channel = Dog::getChannel();

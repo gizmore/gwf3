@@ -364,6 +364,7 @@ abstract class SR_Bank extends SR_Location
 			}
 		}
 		
+		$player->modify();
 // 		$player->updateInventory();
 		
 		if (false === $this->pay($player))

@@ -37,6 +37,7 @@ final class Shadowcmd_drop extends Shadowcmd
 			return false;
 		}
 		$iname = $item->getItemName();
+		$dname = $item->displayFullName($player);
 		
 		# Confirm
 		if (is_numeric($args[0]))
@@ -105,7 +106,7 @@ final class Shadowcmd_drop extends Shadowcmd
 		
 		$player->modify();
 
-		return self::rply($player, '5111', array($dropped, $iname));
+		return self::rply($player, '5111', array($dropped, $dname));
 // 		$bot->reply(sprintf('You got rid of %d %s.',$dropped, $iname));
 // 		return true;
 	}

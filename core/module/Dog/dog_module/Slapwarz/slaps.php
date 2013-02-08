@@ -195,6 +195,7 @@ $slaps = array(
 	array('bone', 13),
 	array('hummingbird', 11),
 	array('backup', 10),
+	array('toilet', 39),
 
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),

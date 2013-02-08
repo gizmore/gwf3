@@ -6,7 +6,7 @@ $lang = array(
 		'conf_retries' => 'Number of reconnect attempts.',
 		'conf_timeout' => 'Timeout of a single connection attempt.',
 		'conf_throttle' => 'Messages per .33 seconds. 3 equals 1 msg/s.',
-		'server' => '%s has set the throttle to %s and a connect timeout of %s seconds with %s retries. This server is rated awesome!',
+		'server' => '%s has set the throttle to %s and a connect timeout of %s seconds with %s retries. URI: %s',
 		'servers' => '%d/%d servers: %s.',
 	),
 );
@@ -41,7 +41,9 @@ elseif ($argc === 1)
 	}
 	else
 	{
-		$plugin->rply('server', array($server->displayLongName(), $server->getThrottle(), $server->getTimeout(), $server->getRetries()));
+		$url = $server->isSSL() ? 'ircs://' : 'irc://';
+		$url .= $server->getURL();
+		$plugin->rply('server', array($server->displayLongName(), $server->getThrottle(), $server->getTimeout(), $server->getRetries(), $url));
 	}
 }
 else

@@ -91,8 +91,8 @@ final class DOGMOD_Quote extends Dog_Module
 		return sprintf('Quote(%d): %s - Rating(%d)', $id, $quote->getVar('quot_text'), $quote->getVar('quot_rating'));
 	}
 
-	public function on_addquote_Sb() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
-	public function on_addquote_Pc() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
+	public function on_ADDquote_Sb() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
+	public function on_ADDquote_Pc() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
 	private function onAdd($username, $message)
 	{
 		if ($message === '')
@@ -108,8 +108,8 @@ final class DOGMOD_Quote extends Dog_Module
 		return sprintf('Quote has been added (ID:%d)', $quote->getID());
 	}
 
-	public function on_removequote_Ab() { Dog::reply($this->onDelete($this->msgarg())); }
-	public function on_removequote_Sc() { Dog::reply($this->onDelete($this->msgarg())); }
+	public function on_REMOVEquote_Ab() { Dog::reply($this->onDelete($this->msgarg())); }
+	public function on_REMOVEquote_Sc() { Dog::reply($this->onDelete($this->msgarg())); }
 	private function onDelete($message)
 	{
 		$id = (int)$message;
@@ -124,8 +124,8 @@ final class DOGMOD_Quote extends Dog_Module
 		return sprintf('Quote with ID %d has been deleted.', $id);
 	}
 
-	public function on_quoteup_Pc() { Dog::reply($this->onVote(1)); }
-	public function on_quotedown_Pc() { Dog::reply($this->onVote(1)); }
+	public function on_quoteUP_Pc() { Dog::reply($this->onVote(1)); }
+	public function on_quoteDOWN_Pc() { Dog::reply($this->onVote(1)); }
 	private function onVote($vote)
 	{
 		$id = (int)$this->argv(0);

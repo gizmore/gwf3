@@ -45,5 +45,5 @@ if ($out === '')
 	return $plugin->rply('none', array($server->displayName()));
 }
 
-$plugin->rply('out', array(count($channels), $server->displayName(), substr($channels, 2)));
+$plugin->rply('out', array(count($channels), $server->displayName(), substr($out, 2)));
 ?>

@@ -251,15 +251,18 @@ final class Dog_Server extends GDO
 	{
 		if ('' !== ($message = trim($message)))
 		{
-			$username = Dog::getUser()->getName();
-			
-			if (false !== ($channel = Dog::getChannel()))
+			if (false !== ($user = Dog::getUser()))
 			{
-				$this->sendPRIVMSG($channel->getName(), $username.': '.$message);
-			}
-			else
-			{
-				$this->sendPRIVMSG($username, $message);
+				$username = Dog::getUser()->getName();
+				
+				if (false !== ($channel = Dog::getChannel()))
+				{
+					$this->sendPRIVMSG($channel->getName(), $username.': '.$message);
+				}
+				else
+				{
+					$this->sendPRIVMSG($username, $message);
+				}
 			}
 		}
 	}

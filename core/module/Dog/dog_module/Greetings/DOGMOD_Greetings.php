@@ -43,7 +43,7 @@ final class DOGMOD_Greetings extends Dog_Module
 	}
 
 	
-	public function on_addgreet_Sc()
+	public function on_ADDgreet_Sc()
 	{
 		$message = $this->msgarg();
 		$channel = Dog::getChannel();
@@ -58,7 +58,7 @@ final class DOGMOD_Greetings extends Dog_Module
 		}
 	}
 	
-	public function on_removegreet_Sc()
+	public function on_REMOVEgreet_Sc()
 	{
 		$channel = Dog::getChannel();
 		

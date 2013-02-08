@@ -21,27 +21,27 @@ if ($plugin->argc() !== 1)
 }
 
 $arg = $plugin->argv(0);
-if (false !== ($channel = Dog::getChannelByArg($arg)))
-{
-	return $plugin->rply('already');
-}
+
 if (false === ($server = Dog::getServerBySuffix($arg)))
 {
 	return $plugin->rply('unknown_serv');
 }
 
+if (false !== ($channel = Dog::getChannelByArg($arg)))
+{
+	return $plugin->rply('already');
+}
+
+$chan_name = Common::substrFrom($arg, '!', $arg);
+
+if (false === ($channel = Dog_Channel::getOrCreate($server, $chan_name)))
+{
+	return Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
+}
+
 $plugin->rply('trying');
 
-$channel = new Dog_Channel(array(
-	'chan_id' => '0',
-	'chan_sid' => $server->getID(),
-	'chan_name' => Common::substrUntil($arg, '!'),
-	'chan_lang' => $server->getLangISO(),
-	'chan_pass' => NULL,
-	'chan_modes' => '',
-	'chan_triggers' => NULL,
-	'chan_options' => Dog_Channel::DEFAULT_OPTIONS,
-));
+$channel->saveOption(Dog_Channel::AUTO_JOIN, true);	
 
 $server->joinChannel($channel);
 ?>

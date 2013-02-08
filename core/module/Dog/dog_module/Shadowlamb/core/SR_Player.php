@@ -760,6 +760,8 @@ class SR_Player extends GDO
 	
 	public function respawn()
 	{
+		$this->sr4_effects = array();
+		$this->updateEffects();
 		$party = $this->getParty();
 		$city = $party->getCityClass();
 		$singleplayer = $party->getMemberCount() === 1;

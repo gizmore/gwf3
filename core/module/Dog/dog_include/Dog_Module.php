@@ -19,7 +19,7 @@ abstract class Dog_Module
 	public function getLangPath() { return $this->getPath().'lang'.'/'.strtolower($this->getName()); }
 	public function getTablePath() { return $this->getPath().'tables'.'/'; }
 	public function argc() { return count($this->argv()); }
-	public function argv($n=NULL) { $m = self::msgarg(); $argv = $m === '' ? array() : explode(' ', $m); return $n === NULL ? $argv : $argv[$n]; }
+	public function argv($n=NULL, $def=NULL) { $m = self::msgarg(); $argv = $m === '' ? array() : explode(' ', $m); return $n === NULL ? $argv : (isset($argv[$n]) ? $argv[$n] : NULL) ; }
 	public function msg() { return Dog::getIRCMsg()->getArg(1); } # The full .cmd thing
 	public function msgarg() { return trim(Common::substrFrom($this->msg(), ' ', '')); } # only the three .cmd arg arg arg
 	public function rply($key, $args=NULL) { Dog::reply($this->lang($key, $args)); }
@@ -96,9 +96,11 @@ abstract class Dog_Module
 		{
 			if (substr($method, 0, 3) === 'on_')
 			{
-				$this->triggers[$method] = str_replace($s, $r, substr($method, 3, -3));
+				$trigger = str_replace($s, $r, substr($method, 3, -3));
+				$this->triggers[$method] = $trigger;
 			}
 		}
+		var_dump($this->triggers);
 	}
 
 	public function showHelp($trigger, $args=NULL)

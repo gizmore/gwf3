@@ -21,7 +21,7 @@ final class DOGMOD_Hangman extends Dog_Module
 		);
 	}
 
-	public function on_addhang_Pc()
+	public function on_ADDhang_Pc()
 	{
 		$argv = $this->argv();
 		if (1 !== ($argc = count($argv)))
@@ -54,7 +54,7 @@ final class DOGMOD_Hangman extends Dog_Module
 		$this->rply('msg_added', array($hang_word, $word->getID()));
 	}
 
-	public function on_removehang_Hb()
+	public function on_REMOVEhang_Hb()
 	{
 		$argv = $this->argv();
 		if (1 !== ($argc = count($argv)))

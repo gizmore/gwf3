@@ -93,7 +93,15 @@ final class DOGMOD_Link extends Dog_Module
 	 */
 	private function getRandomLink()
 	{
-		return false === ($links = GDO::table('Dog_Link')->selectRandom('*')) ? false : $links[0];
+		if (false === ($links = GDO::table('Dog_Link')->selectRandom('*')))
+		{
+			return false;
+		}
+		if (count($links) === 0)
+		{
+			return false;
+		}
+		return $links[0];
 	}
 	
 	################
@@ -171,8 +179,8 @@ final class DOGMOD_Link extends Dog_Module
 		$this->rply('stats', array($count, $votes, $links->selectVar('MAX(link_id)')));
 	}
 	
-	public function on_linkup_Lc() { $this->onVote(1); }
-	public function on_linkdown_Lc() { $this->onVote(-1); }
+	public function on_linkUP_Lc() { $this->onVote(1); }
+	public function on_linkDOWN_Lc() { $this->onVote(-1); }
 	private function onVote($by)
 	{
 		if ('' === ($message = $this->msgarg()))
@@ -198,7 +206,7 @@ final class DOGMOD_Link extends Dog_Module
 		}
 	}
 	
-	public function on_removelink_Ob()
+	public function on_REMOVElink_Ob()
 	{
 		if ('' === ($message = $this->msgarg()))
 		{
@@ -218,4 +226,3 @@ final class DOGMOD_Link extends Dog_Module
 		}
 	}
 }
-?>
