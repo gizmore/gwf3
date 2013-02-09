@@ -63,6 +63,7 @@ final class GWF_HTTP
 		}
 		
 		#curl_setopt($ch, CURLOPT_VERBOSE, true);
+		curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		
 		# Set the user agent - might help, doesn't hurt
 		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
@@ -130,6 +131,8 @@ final class GWF_HTTP
 		$ch = curl_init();
 		
 //		curl_setopt($ch, CURLOPT_VERBOSE, 1);
+
+		curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		
 		# Try to follow redirects
 		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
@@ -207,6 +210,8 @@ final class GWF_HTTP
 		{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeaders);
 		}
+		
+		curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		
 		# Cookie stuff
 		$cookiefile = tempnam(self::COOKIE_PATH, self::COOKIE_PREFIX);
