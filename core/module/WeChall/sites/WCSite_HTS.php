@@ -20,13 +20,12 @@ final class WCSite_HTS extends WC_Site
 		$usercount = 39500;
 		$challcount = 102; #intval($stats[3]);
 		
-		if ( ($score > ($onsitescore * 2)) || ($challcount <= 2) || ($onsitescore < 0)) {
+		if ( ($score > ($onsitescore * 2)) || ($challcount <= 2) || ($onsitescore < 0))
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($onsitescore, $usercount, $challcount);
-		
-		return array($score, -1, -1);
+		return array($score, -1, -1, $onsitescore, $usercount, $challcount);
 	}
 }
 ?>

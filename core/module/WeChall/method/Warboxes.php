@@ -18,7 +18,7 @@ final class WeChall_Warboxes extends GWF_Method
 			return $this->module->error('err_site');
 		}
 		
-		if (!GWF_User::isAdminS())
+		if (!GWF_User::isInGroupS(GWF_Group::STAFF))
 		{
 			$this->module->includeClass('WC_SiteAdmin');
 			if (!$this->site->isSiteAdmin($this->user))
@@ -47,6 +47,10 @@ final class WeChall_Warboxes extends GWF_Method
 				return $this->module->error('err_site');
 			}
 		}
+		if (isset($_POST['flags']))
+		{
+			GWF_Website::redirect($this->module->getMethodURL('Warflags', '&wbid='.$boxid));
+		}
 		if (isset($_POST['edit']))
 		{
 			return $this->onEdit($box);
@@ -67,6 +71,10 @@ final class WeChall_Warboxes extends GWF_Method
 	public function validate_name(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'name', $arg, 1, 31, false, false); }
 	public function validate_host(Module_WeChall $m, $arg)
 	{
+		if (!isset($_POST['warbox']))
+		{
+			return false;
+		}
 		if (false !== ($error = GWF_Validator::validateString($m, 'host', $arg, 0, 255, false, false)))
 		{
 			return $error;
@@ -116,6 +124,9 @@ final class WeChall_Warboxes extends GWF_Method
 			'blist' => array(GWF_Form::STRING, 'apache,www,nobody', $this->l('th_wb_blist')),
 			'launch' => array(GWF_Form::DATE, '', $this->l('th_wb_launch'), '', 8),
 			'status' => array(GWF_Form::ENUM, 'up', $this->l('th_wb_status'), '', $this->statusValues()),
+			'warbox' => array(GWF_Form::CHECKBOX, true, $this->l('th_warbox')),
+			'multi' => array(GWF_Form::CHECKBOX, false, $this->l('th_multisolve')),
+
 			'add' => array(GWF_Form::SUBMIT, $this->l('btn_add_warbox')),
 		);
 		return new GWF_Form($this, $data);
@@ -153,6 +164,10 @@ final class WeChall_Warboxes extends GWF_Method
 		
 		$now = GWF_Time::getDate(14);
 		
+		$options = 0;
+		$options |= isset($_POST['warbox']) ? WC_Warbox::WARBOX : 0;
+		$options |= isset($_POST['multi']) ? WC_Warbox::MULTI_SOLVE : 0;
+		
 		$box = new WC_Warbox(array(
 			'wb_id' => '0',
 			'wb_sid' => $this->site->getID(),
@@ -168,7 +183,8 @@ final class WeChall_Warboxes extends GWF_Method
 			'wb_blacklist' => $form->getVar('blist'),
 			'wb_launched_at' => $form->getVar('launch'),
 			'wb_status' => $form->getVar('status'),
-			
+			'wb_options' => $options,
+				
 			'wb_created_at' => $now,
 			'wb_updated_at' => $now,
 		));
@@ -200,7 +216,13 @@ final class WeChall_Warboxes extends GWF_Method
 			'blist' => array(GWF_Form::STRING, $box->getVar('wb_blacklist'), $this->l('th_wb_blist')),
 			'launch' => array(GWF_Form::DATE, $box->getVar('wb_launched_at'), $this->l('th_wb_launch'), '', 8),
 			'status' => array(GWF_Form::ENUM, $box->getVar('wb_status'), $this->l('th_wb_status'), '', $this->statusValues()),
-			'edit' => array(GWF_Form::SUBMIT, $this->l('btn_edit_warbox')),
+			'warbox' => array(GWF_Form::CHECKBOX, $box->isWarbox(), $this->l('th_warbox')),
+			'multi' => array(GWF_Form::CHECKBOX, $box->isMultisolve(), $this->l('th_multisolve')),
+			'buttons' => array(GWF_Form::SUBMITS, array(
+				'edit' => $this->l('btn_edit_warbox'),
+				'flags' => $this->l('btn_edit_warflags'),
+			)),
+			
 		);
 		return new GWF_Form($this, $data);
 	}
@@ -234,6 +256,10 @@ final class WeChall_Warboxes extends GWF_Method
 			return $error.$this->templateEdit($box);
 		}
 		
+		$options = 0;
+		$options |= isset($_POST['warbox']) ? WC_Warbox::WARBOX : 0;
+		$options |= isset($_POST['multi']) ? WC_Warbox::MULTI_SOLVE : 0;
+		
 		if (!$box->saveVars(array(
 			'wb_name' => $form->getVar('name'),
 			'wb_port' => $form->getVar('port'),
@@ -247,7 +273,8 @@ final class WeChall_Warboxes extends GWF_Method
 			'wb_blacklist' => $form->getVar('blist'),
 			'wb_launched_at' => $form->getVar('launch'),
 			'wb_updated_at' => GWF_Time::getDate(14),
-		)))
+			'wb_options' => $options,
+		)));
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEdit($box);
 		}

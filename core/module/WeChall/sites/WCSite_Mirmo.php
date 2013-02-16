@@ -29,9 +29,7 @@ class WCSite_Mirmo extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $users, $challs);
-		
-		return array($score, $rank, -1);
+		return array($score, $rank, -1, $maxscore, $users, $challs);
 	}
 }
 ?>

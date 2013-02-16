@@ -18,13 +18,16 @@ final class WeChall_SiteEdit extends GWF_Method
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php';
 		
-		if (false === ($site = WC_Site::getByID(Common::getGet('siteid')))) {
+		if (false === ($site = WC_Site::getByID(Common::getGet('siteid'))))
+		{
 			return $this->module->error('err_site');
 		}
 		$this->site = $site;
 		
-		if (false === ($is_admin = GWF_User::isAdminS())) {
-			if (false === ($site->isSiteAdmin(GWF_Session::getUser()))) {
+		if (false === ($is_admin = GWF_User::isInGroupS(GWF_Group::STAFF)))
+		{
+			if (false === ($site->isSiteAdmin(GWF_Session::getUser())))
+			{
 				return GWF_HTML::err('ERR_NO_PERMISSION');
 			}
 		}
@@ -127,7 +130,8 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 		$data['div4'] = array(GWF_Form::DIVIDER);
 		$data['div5'] = array(GWF_Form::HEADLINE, $this->l('pi_warboxes'));
-		$data['warenbl'] = array(GWF_Form::CHECKBOX, $site->isWarBox(), $this->l('th_warbox'));
+		$data['no_v1'] = array(GWF_Form::CHECKBOX, $site->isNoV1(), $this->l('th_no_v1'), $this->l('tt_no_v1'));
+// 		$data['warenbl'] = array(GWF_Form::CHECKBOX, $site->isWarBox(), $this->l('th_warbox'));
 // 		$data['warhost'] = array(GWF_Form::STRING, $site->getWarHost(), $this->l('th_warhost'));
 // 		$data['warport'] = array(GWF_Form::INT, $site->getWarPort(), $this->l('th_warport'));
 // 		$data['warscrd'] = array(GWF_Form::INT, $site->getWarReduceScore(), $this->l('th_war_score_reduce'));
@@ -161,7 +165,8 @@ final class WeChall_SiteEdit extends GWF_Method
 	{
 		$data = array();
 		$buttons = array();
-		if ($site->hasLogo()) {
+		if ($site->hasLogo())
+		{
 			$buttons['rem_logo'] = $this->module->lang('btn_rem_logo');
 			$data['current_logo'] = array(GWF_Form::HEADLINE, $site->displayLogo(), $this->module->lang('th_site_logo'));
 		}
@@ -224,8 +229,6 @@ final class WeChall_SiteEdit extends GWF_Method
 			return $this->module->error('err_write_logo', array($filenamegif));
 		}
 		imagedestroy($img);
-		
-		
 		
 		$site->increase('site_logo_v', 1);
 		$site->saveOption(WC_Site::HAS_LOGO);
@@ -359,19 +362,20 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 		}
 		
-		$out = $this->onEditWarflag($site, isset($_POST['warenbl']));
+// 		$out = $this->onEditWarflag($site, isset($_POST['warenbl']));
 		
 		$site->saveOption(WC_Site::NO_URLENCODE, isset($_POST['no_urlencode']));
 		$site->saveOption(WC_Site::AUTO_UPDATE, isset($_POST['auto_update']));
 		$site->saveOption(WC_Site::HIDE_BY_DEFAULT, isset($_POST['default_hide']));
 		$site->saveOption(WC_Site::ONSITE_RANK, isset($_POST['onsite_rank']));
+		$site->saveOption(WC_Site::NO_V1_SCRIPTS, isset($_POST['no_v1']));
 		
 		# Trigger warbox config parsing.
-		if ($site->isWarBox())
-		{
-// 			$site->getWarIP();
-			Module_WeChall::instance()->flushWarboxConfig();
-		}
+// 		if ($site->isWarBox())
+// 		{
+// // 			$site->getWarIP();
+// 			Module_WeChall::instance()->flushWarboxConfig();
+// 		}
 		
 		# Recalculate in case of a change
 //		if ($site->isScored())
@@ -382,19 +386,19 @@ final class WeChall_SiteEdit extends GWF_Method
 			}
 //		}
 		
-		return $this->module->message('msg_site_edited', array($site->displayName())).$out;
+		return $this->module->message('msg_site_edited', array($site->displayName())); #.$out;
 	}
 
-	private function onEditWarflag(WC_Site $site, $bool)
-	{
-		$old = $site->isWarBox();
-		if ($bool === $old)
-		{
-			return '';
-		}
-		$site->saveOption(WC_Site::IS_WARBOX, $bool);
-		return $this->module->message($bool ? 'on_warbox_on' : 'on_warbox_off', Module_WeChall::instance()->cfgWarboxHost());
-	}
+// 	private function onEditWarflag(WC_Site $site, $bool)
+// 	{
+// 		$old = $site->isWarBox();
+// 		if ($bool === $old)
+// 		{
+// 			return '';
+// 		}
+// 		$site->saveOption(WC_Site::IS_WARBOX, $bool);
+// 		return $this->module->message($bool ? 'on_warbox_on' : 'on_warbox_off', Module_WeChall::instance()->cfgWarboxHost());
+// 	}
 
 	##################
 	### Site Admin ###

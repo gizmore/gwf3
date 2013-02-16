@@ -19,9 +19,7 @@ class WCSite_LB extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, $rank, -1);
+		return array($onsitescore, $rank, -1, $maxscore, $usercount, $challcount);
 	}
 }
 ?>

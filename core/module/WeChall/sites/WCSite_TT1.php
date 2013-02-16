@@ -25,9 +25,7 @@ final class WCSite_TT1 extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($data[2], $usercount, $challcount);
-		
-		return array($data[1], $data[0], -1);
+		return array($data[1], $data[0], -1, $data[2], $usercount, $challcount);
 	}
 }
 ?>

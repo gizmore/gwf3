@@ -9,6 +9,7 @@ final class WeChall_Warbox extends GWF_Method
 	public function execute()
 	{
 		$this->module->includeClass('WC_Warbox');
+		$this->module->includeClass('WC_Warflag');
 		$this->module->includeClass('WC_WarToken');
 		$this->module->includeClass('sites/warbox/WCSite_WARBOX');
 		# CHECK TOKEN
@@ -51,13 +52,15 @@ final class WeChall_Warbox extends GWF_Method
 		$user = GWF_Session::getUser();
 		$token = WC_WarToken::genWarToken($user->getID());
 		$host = Module_WeChall::instance()->cfgWarboxURL();
+		$ip = gethostbyname(Common::getHostname($host));
 		$port = Module_WeChall::instance()->cfgWarboxPort();
 		$tVars = array(
 			'epoch' => $this->getEpochUser(),
 			'warboxes' => $this->getWarboxes(true),
 			'token' => $token,
 			'port' => $port,
-			'netcat_cmd' => sprintf('echo -e "%s\n%s" | nc %s %s', $user->displayUsername(), $token, $host, $port),
+			'host' => $host,
+			'netcat_cmd' => sprintf('(echo -e "%s\n%s"; cat) | nc %s %s', $user->displayUsername(), $token, $ip, $port),
 		);
 		return $this->module->templatePHP('wartoken.php', $tVars);
 	}

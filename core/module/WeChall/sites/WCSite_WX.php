@@ -26,9 +26,7 @@ class WCSite_WX extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, $onsitesrank, $challssolved);
+		return array($onsitescore, $onsitesrank, $challssolved, $maxscore, $usercount, $challcount);
 	}
 }
 ?>

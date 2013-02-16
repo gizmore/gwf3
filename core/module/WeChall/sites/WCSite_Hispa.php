@@ -20,9 +20,7 @@ class WCSite_Hispa extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($challs, 0, $challs);
-		
-		return array($done, -1, $done);
+		return array($done, -1, $done, $challs, 0, $challs);
 	}
 }
 ?>

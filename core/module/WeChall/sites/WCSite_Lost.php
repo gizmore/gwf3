@@ -20,9 +20,7 @@ class WCSite_Lost extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($data[2], $data[3], $data[4]);
-		
-		return array($data[1], $data[0], -1);
+		return array($data[1], $data[0], -1, $data[2], $data[3], $data[4]);
 	}
 }
 ?>

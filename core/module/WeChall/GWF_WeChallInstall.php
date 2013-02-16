@@ -8,7 +8,7 @@
  */
 final class GWF_WeChallInstall
 {
-	private static $more_classes = array('WC_API_Block', 'WC_Challenge', 'WC_ChallSolved', 'WC_Freeze', 'WC_HistorySite', 'WC_HistoryUser2', 'WC_MathChall', 'WC_PasswordMap', 'WC_SiteAdmin', 'WC_SiteDescr', 'WC_Site', 'WC_RegAt', 'WC_SiteMaster', 'WC_SiteCats', 'WC_SiteFavorites', 'WC_FirstLink', 'WC_SolutionBlock', 'WC_FavCats', 'WC_Warbox', 'WC_WarToken');
+	private static $more_classes = array('WC_API_Block', 'WC_Challenge', 'WC_ChallSolved', 'WC_Freeze', 'WC_HistorySite', 'WC_HistoryUser2', 'WC_MathChall', 'WC_PasswordMap', 'WC_SiteAdmin', 'WC_SiteDescr', 'WC_Site', 'WC_RegAt', 'WC_SiteMaster', 'WC_SiteCats', 'WC_SiteFavorites', 'WC_FirstLink', 'WC_SolutionBlock', 'WC_FavCats', 'WC_Warbox', 'WC_Warflag', 'WC_Warflags', 'WC_WarToken');
 	
 	public static function onInstall(Module_WeChall $module, $dropTable)
 	{

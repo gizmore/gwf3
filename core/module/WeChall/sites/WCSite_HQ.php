@@ -20,11 +20,9 @@ class WCSite_HQ extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite(10000, $stats[3], $stats[2]);
-		
 		$score = round($stats[0] / $stats[1] * 10000);
 		
-		return array($score, -1, -1);
+		return array($score, -1, -1, 10000, $stats[3], $stats[2]);
 	}
 	
 }

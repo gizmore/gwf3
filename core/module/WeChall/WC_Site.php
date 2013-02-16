@@ -1,9 +1,10 @@
 <?php
+require 'WC_SiteBase.php';
 /**
  * @author gizmore
  * @version 1.0
  */
-class WC_Site extends GDO
+class WC_Site extends WC_SiteBase
 {
 	# Options
 	const AUTO_UPDATE = 0x01;
@@ -11,7 +12,8 @@ class WC_Site extends GDO
 	const HAS_LOGO = 0x04;
 	const ONSITE_RANK = 0x08;
 	const NO_URLENCODE = 0x10;
-	const IS_WARBOX = 0x20;
+	const NO_V1_SCRIPTS = 0x20;
+	const LINK_CASE_S = 0x40;
 	
 	# Site Status
 	const UP = 'up'; # Site is scored, up and running.
@@ -112,7 +114,9 @@ class WC_Site extends GDO
 	### Convinience ###
 	###################
 	public function getID() { return $this->getVar('site_id'); }
-	public function isWarBox() { return $this->isOptionEnabled(self::IS_WARBOX); }
+	public function isNoV1() { return $this->isOptionEnabled(self::NO_V1_SCRIPTS); }
+	public function isCaseS() { return $this->isOptionEnabled(self::LINK_CASE_S); }
+// 	public function isWarBox() { return $this->isOptionEnabled(self::IS_WARBOX); }
 // 	public function getWarHost() { return $this->getVar('site_warhost'); } # Warbox host. Can override
 // 	public function getWarIP() { return $this->getWarIPCached(); } # Warbox IP
 // 	public function getWarPort() { return $this->getVar('site_warport'); } # identd port for warbox
@@ -131,7 +135,7 @@ class WC_Site extends GDO
 	public function getSolved($onsitescore) { $m = $this->getOnsiteScore(); return $m <= 0 ? 0 : $onsitescore / $m; }
 	public function getPercent($onsitescore) { return $this->getSolved($onsitescore) * 100; }
 	public function useUrlencode() { return $this->isOptionEnabled(self::NO_URLENCODE) === false; }
-	public function isValidWarboxLink(GWF_User $user, $onsitename) { return $this->isWarBox() ? $user->getVar('user_name') === $onsitename : true; }
+	public function isValidWarboxLink(GWF_User $user, $onsitename) { return $user->getVar('user_name') === $onsitename; }
 	public function getSiteClassName() { return $this->getVar('site_classname'); }
 
 	/**
@@ -324,7 +328,6 @@ class WC_Site extends GDO
 	public static function getUnlinkedSites($userid)
 	{
 		$userid = (int) $userid;
-		$warmode = self::IS_WARBOX;
 		$regat = GDO::table('WC_Regat')->getTableName();
 		return GDO::table(__CLASS__)->selectObjects('*', "(IF((SELECT 1 FROM $regat WHERE regat_sid=site_id AND regat_uid=$userid), 0, 1)) AND site_status='up'", "site_name ASC");
 	}
@@ -782,6 +785,9 @@ class WC_Site extends GDO
 		$usercount = (int) $usercount;
 		$challcount = (int) $challcount;
 		
+		$maxscore += $this->getWarboxMaxScore();
+		$challcount += $this->getWarboxChallCount();
+		
 		if (($this->getOnsiteScore() === $maxscore) && ($this->getUsercount() === $usercount) && ($this->getChallcount() === $challcount))
 		{
 			return true; # no change
@@ -805,13 +811,35 @@ class WC_Site extends GDO
 		return true;
 	}
 	
+	private function getWarboxMaxScore()
+	{
+		$boxes = WC_Warbox::getBoxes($this);
+		foreach ($boxes as $box)
+		{
+			$box instanceof WC_Warbox;
+		}
+	}
+	
+	private function getWarboxChallCount()
+	{
+	
+	}
+	
 	/**
 	 * Check if EMail+Username exists on the site.
 	 * @return boolean
 	 */
 	public function isAccountValid($onsitename, $onsitemail)
 	{
-		$url = $this->getAccountURL($onsitename, $onsitemail);
+		if ($this->isNoV1())
+		{
+			$url = $this->getWarboxAccountURL($onsitename, $onsitemail);
+		}
+		else
+		{
+			$url = $this->getAccountURL($onsitename, $onsitemail);
+		}
+		
 		$result = GWF_HTTP::getFromURL($url, false);
 		$result = str_replace("\xEF\xBB\xBF", '', $result); # BOM
 		$result = trim($result);
@@ -893,12 +921,6 @@ class WC_Site extends GDO
 	 */
 	public function getSiteClass()
 	{
-		if ($this->isWarBox())
-		{
-			require_once GWF_CORE_PATH.'module/WeChall/sites/warbox/WCSite_WARBOX.php';
-			return new WCSite_WARBOX($this->getGDOData());
-		}
-		
 		$classname = 'WCSite_'.$this->getVar('site_classname');
 		
 		$pathes = array('sites', 'sites/english', 'sites/french', 'sites/german', 'sites/korean', 'sites/polish', 'sites/spanish');
@@ -921,8 +943,15 @@ class WC_Site extends GDO
 			}
 		}
 
-		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
-		return false;
+	// 		if ($this->isWarBox())
+// 		{
+		# New default site, handles warbox, warflags, and the reference implementation of old scorescript.	
+		require_once GWF_CORE_PATH.'module/WeChall/sites/warbox/WCSite_WARBOX.php';
+		return new WCSite_WARBOX($this->getGDOData());
+// 		}
+		
+// 		echo GWF_HTML::err('ERR_FILE_NOT_FOUND', array($path));
+// 		return false;
 	}
 	
 	public function recalcAvg()
@@ -967,12 +996,26 @@ class WC_Site extends GDO
 			var_dump($url);
 		}
 		
-		$stats = $site->parseStats($url);
+		if ($this->isNoV1())
+		{
+			// score, rank, challssolved, maxscore, usercount, challcount
+			$stats = array(0, -1, 0, 0, -1, 0);
+		}
+		else
+		{
+			$stats = $site->parseStats($url);
+		}
 		
 		if (!is_array($stats))
 		{
 			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
 		}
+		
+		# Sum points from warboxes and warflags
+		$this->onUpdateUserWarboxWarflag($user, $stats);
+
+		# Save new base stats
+		$this->updateSite($stats[3], $stats[4], $stats[5]);
 		
 		# OnsiteScore Change
 		$new_score = Common::clamp((int)$stats[0], 0, $site->getOnsiteScore());
@@ -1005,6 +1048,35 @@ class WC_Site extends GDO
 		}
 		
 		return new GWF_Result(WC_HTML::lang('msg_no_change'), false);
+	}
+	
+	/**
+	 * Update new scoring shemes. Warboxes and Warflags.
+	 * @param GWF_User $user
+	 * @param array $stats
+	 */
+	public function onUpdateUserWarboxWarflag(GWF_User $user, array &$stats)
+	{
+		Module_WeChall::instance()->includeClass('WC_Warbox');
+		Module_WeChall::instance()->includeClass('WC_Warflag');
+		Module_WeChall::instance()->includeClass('WC_Warflags');
+		
+		$boxes = WC_Warbox::getBoxes($this);
+		
+		if (count($boxes) > 0)
+		{
+			$this->parseMultiStats($user, $stats);
+			
+			foreach ($boxes as $box)
+			{
+				$box instanceof WC_Warbox;
+				if ($box->isUp())
+				{
+					$box instanceof WC_Warbox;
+					$box->parseFlagStats($user, $stats);
+				}
+			}
+		}
 	}
 	
 	/**
@@ -1102,7 +1174,7 @@ class WC_Site extends GDO
 	 */
 	private function recalcAverage()
 	{
-		if ('0' === ($max = $this->getVar('site_maxscore'))) {
+		if (0 <= ($max = $this->getVar('site_maxscore'))) {
 			$avg = 0;
 		}
 		else {

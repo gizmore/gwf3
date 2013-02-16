@@ -5,7 +5,7 @@
  */
 final class WeChall_SiteAdd extends GWF_Method
 {
-	public function getUserGroups() { return GWF_Group::ADMIN; }
+	public function getUserGroups() { return array(GWF_Group::ADMIN, GWF_Group::STAFF); }
 	
 	public function getHTAccess()
 	{

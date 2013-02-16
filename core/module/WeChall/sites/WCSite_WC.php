@@ -8,15 +8,14 @@ final class WCSite_WC extends WC_Site
 		
 		$result = explode(':', $result2);
 		
-		if (count($result) !== 6) {
+		if (count($result) !== 6)
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result2), $this->displayName())));
 		}
 		
 		list($rank, $score, $maxscore, $challsolved, $challcount, $usercount) = $result;
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array(intval($score), (int)$rank, $challsolved);
+		return array(intval($score), (int)$rank, $challsolved, $maxscore, $usercount, $challcount);
 	}
 }
 

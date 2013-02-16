@@ -23,9 +23,7 @@ class WCSite_TDH extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, $rank, $solved_challs);
+		return array($onsitescore, $rank, $solved_challs, $maxscore, $usercount, $challcount);
 	}
 }
 ?>

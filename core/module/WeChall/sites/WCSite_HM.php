@@ -30,9 +30,7 @@ class WCSite_HM extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, $rank, $challssolved);
+		return array($onsitescore, $rank, $challssolved, $maxscore, $usercount, $challcount);
 	}
 }
 ?>

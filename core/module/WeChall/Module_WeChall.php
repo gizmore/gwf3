@@ -63,7 +63,7 @@ final class Module_WeChall extends GWF_Module
 //	public function getDependencies() { return array('Forum'=>1.00, 'Votes'=>1.00); } 
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function getDefaultPriority() { return 60; } # 50 is default
-	public function getVersion() { return 5.03; }
+	public function getVersion() { return 5.04; }
 	public function onInstall($dropTable) { require_once 'GWF_WeChallInstall.php'; return GWF_WeChallInstall::onInstall($this, $dropTable); }
 	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
@@ -749,7 +749,7 @@ final class Module_WeChall extends GWF_Module
 	
 	public function flushWarboxConfig()
 	{
-		$url = sprintf('http://%s/cgi-bin/rtb.pullconfig.cgi', $this->cfgWarboxURL());
+		$url = sprintf('http://%s/cgi-bin/warscore.pullconfig.cgi', $this->cfgWarboxURL());
 		GWF_HTTP::getFromURL($url);
 	}
 }

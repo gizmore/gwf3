@@ -29,6 +29,7 @@ if (count($tVars['warboxes']) > 0)
 				array('Password'),
 				array('Levels'),
 				array('Status'),
+				array('Flags'),
 			);
 			
 			$boxes_out .= GWF_Table::displayHeaders1($headers);
@@ -42,6 +43,16 @@ if (count($tVars['warboxes']) > 0)
 		$boxes_out .= GWF_Table::column($box->display('wb_pass'));
 		$boxes_out .= GWF_Table::column($box->displayLevels(), 'gwf_num');
 		$boxes_out .= GWF_Table::column(WC_HTML::lang('wb_'.$box->getVar('wb_status')), 'gwf_num');
+		
+		if ($box->hasWarFlags())
+		{
+			$boxes_out .= GWF_Table::column(GWF_Button::forward($box->hrefFlags()));
+		}
+		else
+		{
+			$boxes_out .= GWF_Table::column();
+		}
+		
 		$boxes_out .= GWF_Table::rowEnd();
 	}
 	$boxes_out .= GWF_Table::end();

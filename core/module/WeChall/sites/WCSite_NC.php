@@ -32,9 +32,7 @@ final class WCSite_NC extends WC_Site
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($back[2], $usercount, $challcount);
-
-		return array($back[1], $ranking, -1);
+		return array($back[1], $ranking, -1, $back[2], $usercount, $challcount);
 	}
 }
 

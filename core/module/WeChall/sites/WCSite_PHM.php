@@ -1,13 +1,14 @@
 <?php
 /**
  * Polnish Hacker Master (PHM)
- * rank:score:maxscore:usercount:challcount
+ * username:rank:score:maxscore:challssolved:challcount:usercount
  */
 class WCSite_PHM extends WC_Site
 {
 	public function parseStats($url)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
+		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 
@@ -15,23 +16,27 @@ class WCSite_PHM extends WC_Site
 		$result = trim($result);
 		
 		$stats = explode(":", $result);
-		if (count($stats) !== 5) {
+		if (count($stats) !== 7)
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 
-		$rank = intval($stats[0]);
-		$onsitescore = intval($stats[1]);
+		$i = 0;
+		$username = $stats[$i++];
+		$rank = intval($stats[$i++]);
+		$onsitescore = intval($stats[$i++]);
 		$onsitescore = Common::clamp($onsitescore, 0);
-		$maxscore = intval($stats[2]);
-		$usercount = intval($stats[3]);
-		$challcount = intval($stats[4]);
-		if ($maxscore === 0 || $challcount === 0 || $usercount === 0) {
+		$maxscore = intval($stats[$i++]);
+		$challssolved = intval($stats[$i++]);
+		$challcount = intval($stats[$i++]);
+		$usercount = intval($stats[$i++]);
+		
+		if ($maxscore === 0 || $challcount === 0 || $usercount === 0)
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, $rank, -1);
+		return array($onsitescore, $rank, $challssolved, $maxscore, $usercount, $challcount);
 	}
 	
 }

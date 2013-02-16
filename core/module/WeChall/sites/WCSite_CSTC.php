@@ -5,12 +5,14 @@ class WCSite_CSTC extends WC_Site
 {
 	public function parseStats($url)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
+		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
 		$stats = explode(':', $result);
-		if (count($stats) < 3) {
+		if (count($stats) < 3)
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
@@ -19,14 +21,11 @@ class WCSite_CSTC extends WC_Site
 		$challcount = $maxscore;
 		$usercount = intval($stats[2]);
 		
-		if ($maxscore === 0 || $challcount === 0 || $usercount === 0) {
+		if ($maxscore === 0 || $challcount === 0 || $usercount === 0)
+		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 		
-		$this->updateSite($maxscore, $usercount, $challcount);
-		
-		return array($onsitescore, -1, $onsitescore);
+		return array($onsitescore, -1, $onsitescore, $maxscore, $usercount, $challcount);
 	}
-	
 }
-?>
