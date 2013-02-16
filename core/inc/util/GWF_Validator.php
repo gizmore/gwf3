@@ -318,11 +318,13 @@ final class GWF_Validator
 	{
 		$_POST[$key] = $arg = trim($arg);
 
-		if ($arg === '' && $allow_empty === true) {
+		if ($arg === '' && $allow_empty === true)
+		{
 			return false;
 		}
 
-		if (GWF_Validator::isValidURL($arg) && GWF_HTTP::pageExists($arg)) {
+		if (GWF_HTTP::pageExists($arg))
+		{
 			return false;
 		}
 

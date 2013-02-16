@@ -63,6 +63,8 @@ class GWF_Form
 	private $validator;
 	private $form_data;
 	private $csrf_bit;
+	
+	private static $SUBMITTED = false;
 
 	/**
 	 * $data is [0]=TYPE,[1]=value,[2]=title,[3]=Tooltip,[4]=LEN?,[5]=required
@@ -187,6 +189,7 @@ class GWF_Form
 
 	public function validate($context)
 	{
+		self::$SUBMITTED = true;
 		if (false !== ($error = GWF_FormValidator::validate($context, $this, $this->validator)))
 		{
 			return $error;
@@ -299,7 +302,7 @@ class GWF_Form
 					break;
 				
 				case self::ENUM:
-					$this->form_data[$key][1] = GWF_Select::display($key, $data[4], $data[1]);
+					$this->form_data[$key][1] = GWF_Select::display($key, $data[4], $this->getVar($key, $data[1]));
 					break;
 		
 				case self::SELECT:
@@ -323,7 +326,11 @@ class GWF_Form
 					if (isset($arr[$key]))
 					{
 						$this->form_data[$key][1] = true;
-					} 
+					}
+					elseif (self::$SUBMITTED)
+					{
+						$this->form_data[$key][1] = false;
+					}
 					break;
 		
 				case self::FILE:

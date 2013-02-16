@@ -14,15 +14,32 @@ final class GDO_DB_mysql extends GDO_Database
 		return (false !== ($this->link = mysql_connect($host, $user, $pass)));
 	}
 	
+	public function setCharset($charset)
+	{
+		return $this->queryWrite("SET NAMES '{$charset}'");
+	}
+	
 	public function useDatabase($db)
 	{
 		return mysql_select_db($db, $this->link);
 	}
 	
-	public function setCharset($charset)
+	public function transactionStart()
 	{
-		return $this->queryWrite("SET NAMES '{$charset}'");
+		$this->queryWrite("SET AUTOCOMMIT=0");
+		$this->queryWrite("START TRANSACTION");
 	}
+	
+	public function transactionEnd()
+	{
+		$this->queryWrite("COMMIT");
+	}
+	
+// 	public function transactionRollback()
+// 	{
+// 		# Micro rollbacks, seriously?
+// 		$this->queryWrite("ROLLBACK");
+// 	}
 	
 	public function queryRead($query)
 	{

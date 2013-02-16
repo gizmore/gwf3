@@ -578,11 +578,21 @@ abstract class GDO
 		$back = '';
 		if ($joins !== NULL)
 		{
+			// TODO: Merge the loops
 			foreach ($this->getColumnDefcache() as $c => $d)
 			{
 				if (in_array($c, $joins, true))
 				{
 					$back .= $this->getJoin($c, $d[2], $type);
+				}
+			}
+			
+			// TODO: Merge the loops
+			foreach ($joins as $i => $join)
+			{
+				if (is_array($join))
+				{
+					$back .= $this->getJoin('join_'.$i, $join, $type);
 				}
 			}
 		}

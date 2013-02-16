@@ -51,6 +51,10 @@ abstract class GDO_Database
 	public abstract function setCharset($charset);
 	public abstract function useDatabase($db);
 	
+	public abstract function transactionStart();
+	public abstract function transactionEnd();
+// 	public abstract function transactionRollback();
+	
 	public abstract function queryRead($query);
 	public abstract function queryWrite($query);
 	public abstract function free($result);
