@@ -82,8 +82,6 @@ class GWF3
 			}
 		}
 		
-		$db = gdo_db();
-	
 		# Set valid mo/me
 		$_GET['mo'] = Common::getGetString('mo', GWF_DEFAULT_MODULE);
 		$_GET['me'] = Common::getGetString('me', GWF_DEFAULT_METHOD);
@@ -102,8 +100,7 @@ class GWF3
 		{
 			$this->init();
 		}
-
-		return $this;
+// 		return $this;
 	}
 
 	/**
@@ -132,6 +129,8 @@ class GWF3
 			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
 			
+		$db = gdo_db();
+		
 		if (false === $config['no_session'])
 		{
 			$this->onStartSession($config['blocking']);
@@ -187,7 +186,7 @@ class GWF3
 	public function __destruct() 
 	{
 		# Commit Session
-		if (false === self::getConfig('no_session'))
+		if (!self::getConfig('no_session'))
 		{
 			$this->onSessionCommit(self::getConfig('store_last_url'));
 		}
@@ -403,7 +402,10 @@ class GWF3
 			# Execute the method
 			self::$MODULE->onInclude();
 			self::$MODULE->onLoadLanguage();
+			$db = gdo_db();
+			$db->transactionStart();
 			self::$page = self::$MODULE->execute($_GET['me']);
+			$db->transactionEnd();
 			if (true === isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
