@@ -195,9 +195,12 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->module->error('err_site_ban', array($site->displayName()));
 		}
 		
-		if (!$site->isValidWarboxLink($user, $onsitename))
+		if ($site->isNoV1())
 		{
-			return $this->module->error('err_warbox_nick');
+			if (!$site->isValidWarboxLink($user, $onsitename))
+			{
+				return $this->module->error('err_warbox_nick');
+			}
 		}
 		
 		

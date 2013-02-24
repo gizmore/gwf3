@@ -785,8 +785,8 @@ class WC_Site extends WC_SiteBase
 		$usercount = (int) $usercount;
 		$challcount = (int) $challcount;
 		
-		$maxscore += $this->getWarboxMaxScore();
-		$challcount += $this->getWarboxChallCount();
+// 		$maxscore += $this->getWarboxMaxScore();
+// 		$challcount += $this->getWarboxChallCount();
 		
 		if (($this->getOnsiteScore() === $maxscore) && ($this->getUsercount() === $usercount) && ($this->getChallcount() === $challcount))
 		{
@@ -818,11 +818,12 @@ class WC_Site extends WC_SiteBase
 		{
 			$box instanceof WC_Warbox;
 		}
+		return 0;
 	}
 	
 	private function getWarboxChallCount()
 	{
-	
+		return 0;
 	}
 	
 	/**
@@ -833,7 +834,8 @@ class WC_Site extends WC_SiteBase
 	{
 		if ($this->isNoV1())
 		{
-			$url = $this->getWarboxAccountURL($onsitename, $onsitemail);
+			return true;
+			//$url = $this->getWarboxAccountURL($onsitename, $onsitemail);
 		}
 		else
 		{
@@ -848,13 +850,13 @@ class WC_Site extends WC_SiteBase
 		{
 			var_dump('SECRET URL:');
 			var_dump($url);
-			var_dump('UPDATE RESULT:');
+			var_dump('LINK RESULT:');
 			var_dump($result);
-			$len = strlen($result);
-			for ($i = 0; $i < $len; $i++)
-			{
-				echo sprintf(' %02X', ord($result{$i}));
-			}
+// 			$len = strlen($result);
+// 			for ($i = 0; $i < $len; $i++)
+// 			{
+// 				echo sprintf(' %02X', ord($result{$i}));
+// 			}
 		}
 
 		return $result > 0;
@@ -1065,15 +1067,15 @@ class WC_Site extends WC_SiteBase
 		
 		if (count($boxes) > 0)
 		{
-			$this->parseMultiStats($user, $stats);
+// 			$this->parseMultiStats($user, $stats);
 			
 			foreach ($boxes as $box)
 			{
 				$box instanceof WC_Warbox;
 				if ($box->isUp())
 				{
-					$box instanceof WC_Warbox;
 					$box->parseFlagStats($user, $stats);
+					$box->parseWarboxStats($user, $stats);
 				}
 			}
 		}
@@ -1174,7 +1176,7 @@ class WC_Site extends WC_SiteBase
 	 */
 	private function recalcAverage()
 	{
-		if (0 <= ($max = $this->getVar('site_maxscore'))) {
+		if (0 >= ($max = $this->getVar('site_maxscore'))) {
 			$avg = 0;
 		}
 		else {

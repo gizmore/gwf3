@@ -96,6 +96,8 @@ final class WC_Warbox extends GDO
 	
 	public function parseFlagStats(GWF_User $user, &$stats)
 	{
+		$this->setVar('wb_levels', '0');
+		
 		$flags = WC_Warflag::getForBoxAndUser($this, $user);
 		if (count($flags) > 0)
 		{
@@ -115,8 +117,8 @@ final class WC_Warbox extends GDO
 				$maxscore += $flag->getVar('wf_score');
 			}
 			
-			# Save challcount
-			$flag->getWarbox()->saveVar('wb_levels', count($flags));
+			# Remember challcount
+			$this->setVar('wb_levels', count($flags));
 			
 			# Save usercount?
 			if ($this->getSite()->isNoV1())
@@ -132,6 +134,74 @@ final class WC_Warbox extends GDO
 			$stats[5] += count($flags);
 		}
 		
+	}
+	
+	public function parseWarboxStats(GWF_User $user, &$stats)
+	{
+		$warchalls = WC_Warchall::getForBoxAndUser($this, $user);
+		if (count($warchalls) > 0)
+		{
+			$score = 0;
+			$challs = 0;
+			$maxscore = 0;
+			foreach ($warchalls as $chall)
+			{
+				$chall instanceof WC_Warchall;
+			
+				if ($chall->getVar('wc_solved_at') !== NULL)
+				{
+					$score += $chall->getVar('wc_score');
+					$challs++;
+				}
+			
+				$maxscore += $chall->getVar('wc_score');
+			}
+			
+			# Save challcount
+			$this->setVar('wb_levels', $this->getVar('wb_levels') + count($challs));
+			
+			# Save usercount?
+			if ($this->getSite()->isNoV1())
+			{
+			}
+			
+			// score, rank, challssolved, maxscore, usercount, challcount
+			$stats[0] += $score;
+			// 			$stats[1]; RANK
+			$stats[2] += $challs;
+			$stats[3] += $maxscore;
+			// 			$stats[4]; USERCOUNT
+			$stats[5] += count($warchalls);
+			
+		}
+
+		$this->saveVar('wb_levels', $this->getVar('wb_levels'));
+	}
+	
+	public function isBlacklisted($level)
+	{
+		return $this->isListed('wb_blacklist', $level);
+	}
+	
+	public function isWhitelisted($level)
+	{
+		return $this->isListed('wb_whitelist', $level);
+	}
+	
+	public function isListed($list, $level)
+	{
+		if ('' !== ($list = $this->getVar($list)))
+		{
+			foreach (explode(',', $list) as $pattern)
+			{
+				echo "Checking pattern $pattern\n";
+				if (preg_match('/^'.$pattern.'$/D', $level))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public static function getByID($id)
@@ -153,6 +223,19 @@ final class WC_Warbox extends GDO
 	public static function getAllBoxes($where='', $orderby='')
 	{
 		return self::table(__CLASS__)->selectAll('*', $where, $orderby, array('sites'), -1, -1, GDO::ARRAY_O);
+	}
+	
+	public static function getByIP($ip)
+	{
+		$ip = self::escape($ip);
+		return self::getAllBoxes("wb_ip='$ip'", 'wb_port ASC');
+	}
+
+	public static function getByIPAndPort($ip, $port)
+	{
+		$ip = self::escape($ip);
+		$port = self::escape($port);
+		return self::getAllBoxes("wb_ip='$ip' AND wb_port='$port'");
 	}
 }
 ?>

@@ -42,20 +42,25 @@ final class WC_WarToken extends GDO
 	}
 	
 	
-	public static function isValidWarToken($username, $token)
+	public static function isValidWarToken(GWF_User $user, $token)
 	{
-		$username = self::escape($username);
-		if (false === ($uid = GDO::table('GWF_User')->selectVar('user_id', "user_name='$username'")))
-		{
-			return false;
-		}
+// 		$username = self::escape($username);
+// 		if (false === ($uid = GDO::table('GWF_User')->selectVar('user_id', "user_name='$username'")))
+// 		{
+// 			return false;
+// 		}
 		$token = self::escape(strtoupper($token));
-		if (false !== ($token = self::table(__CLASS__)->selectFirstObject('*', "wt_uid=$uid AND wt_token='$token'")))
+		if (false !== ($token = self::table(__CLASS__)->selectFirstObject('*', "wt_uid={$user->getID()} AND wt_token='$token'")))
 		{
-			$token->delete();
+// 			$token->delete();
 			return true;
 		}
 		return false;
+	}
+	
+	public static function deleteWarToken(GWF_User $user)
+	{
+		return self::table(__CLASS__)->deleteWhere("wt_uid={$user->getID()}");
 	}
 }
 ?>

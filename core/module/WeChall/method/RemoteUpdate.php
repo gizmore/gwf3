@@ -49,6 +49,8 @@ final class WeChall_RemoteUpdate extends GWF_Method
 		# Update him
 		$result = $site->onUpdateUser($user);
 		
+		$site->saveOption(WC_Site::AUTO_UPDATE, true);
+		
 		# Output result
 		switch ($img)
 		{

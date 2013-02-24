@@ -5,7 +5,6 @@ final class WC_Warflag extends GDO
 	
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'wc_warflag'; }
-	public function getOptionsName() {}
 	public function getColumnDefines()
 	{
 		return array(

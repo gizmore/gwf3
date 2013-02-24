@@ -274,7 +274,7 @@ final class WeChall_Warboxes extends GWF_Method
 			'wb_launched_at' => $form->getVar('launch'),
 			'wb_updated_at' => GWF_Time::getDate(14),
 			'wb_options' => $options,
-		)));
+		)))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEdit($box);
 		}
