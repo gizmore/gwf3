@@ -127,11 +127,8 @@ final class GWF_HTTP
 		);
 		$url = str_replace(array_keys($replace), array_values($replace), $url);
 		
-		
 		$ch = curl_init();
 		
-//		curl_setopt($ch, CURLOPT_VERBOSE, 1);
-
 		curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		
 		# Try to follow redirects
