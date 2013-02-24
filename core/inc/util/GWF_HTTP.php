@@ -108,7 +108,7 @@ final class GWF_HTTP
   		}
  
   		# See if code indicates success
-  		return (($code>=200) && ($code<400)) || $code == 403;	
+  		return (($code>=200) && ($code<400)) || $code === 403 || $code === 401;	
 	}
 
 	/**
