@@ -768,7 +768,7 @@ class WC_Site extends WC_SiteBase
 	public function parseStats($url)
 	{
 		echo WC_HTML::error('err_parse_stub', __CLASS__);
-		return array(0, -1, 0);
+		return array(0, -1, 0, 0, -1, 0);
 	}
 	
 	/**
@@ -811,20 +811,20 @@ class WC_Site extends WC_SiteBase
 		return true;
 	}
 	
-	private function getWarboxMaxScore()
-	{
-		$boxes = WC_Warbox::getBoxes($this);
-		foreach ($boxes as $box)
-		{
-			$box instanceof WC_Warbox;
-		}
-		return 0;
-	}
+// 	private function getWarboxMaxScore()
+// 	{
+// 		$boxes = WC_Warbox::getBoxes($this);
+// 		foreach ($boxes as $box)
+// 		{
+// 			$box instanceof WC_Warbox;
+// 		}
+// 		return 0;
+// 	}
 	
-	private function getWarboxChallCount()
-	{
-		return 0;
-	}
+// 	private function getWarboxChallCount()
+// 	{
+// 		return 0;
+// 	}
 	
 	/**
 	 * Check if EMail+Username exists on the site.
@@ -1060,14 +1060,18 @@ class WC_Site extends WC_SiteBase
 	public function onUpdateUserWarboxWarflag(GWF_User $user, array &$stats)
 	{
 		Module_WeChall::instance()->includeClass('WC_Warbox');
-		Module_WeChall::instance()->includeClass('WC_Warflag');
-		Module_WeChall::instance()->includeClass('WC_Warflags');
 		
 		$boxes = WC_Warbox::getBoxes($this);
 		
 		if (count($boxes) > 0)
 		{
 // 			$this->parseMultiStats($user, $stats);
+			
+			Module_WeChall::instance()->includeClass('WC_Warflag');
+			Module_WeChall::instance()->includeClass('WC_Warflags');
+			Module_WeChall::instance()->includeClass('WC_Warchall');
+			Module_WeChall::instance()->includeClass('WC_Warchalls');
+			Module_WeChall::instance()->includeClass('sites/warbox/WCSite_WARBOX');
 			
 			foreach ($boxes as $box)
 			{

@@ -31,7 +31,7 @@ final class WC_Warbox extends GDO
 			'wb_updated_at' => array(GDO::DATE, GDO::NULL, GWF_Date::LEN_SECOND),
 			'wb_status' => array(GDO::ENUM, 'up', self::$STATUS),
 				
-			'wb_options' => array(GDO::UINT, self::MULTI_SOLVE),
+			'wb_options' => array(GDO::UINT, 0),
 				
 			# JOIN
 			'sites' => array(GDO::JOIN, GDO::NULL, array('WC_Site', 'site_id', 'wb_sid')),
@@ -158,7 +158,7 @@ final class WC_Warbox extends GDO
 			}
 			
 			# Save challcount
-			$this->setVar('wb_levels', $this->getVar('wb_levels') + count($challs));
+			$this->setVar('wb_levels', $this->getVar('wb_levels') + count($warchalls));
 			
 			# Save usercount?
 			if ($this->getSite()->isNoV1())
@@ -167,15 +167,18 @@ final class WC_Warbox extends GDO
 			
 			// score, rank, challssolved, maxscore, usercount, challcount
 			$stats[0] += $score;
-			// 			$stats[1]; RANK
+// 			$stats[1]; RANK
 			$stats[2] += $challs;
 			$stats[3] += $maxscore;
-			// 			$stats[4]; USERCOUNT
+// 			$stats[4]; USERCOUNT
 			$stats[5] += count($warchalls);
 			
 		}
-
-		$this->saveVar('wb_levels', $this->getVar('wb_levels'));
+		
+		# BAH!
+		$levels = $this->getVar('wb_levels'); # Get Cache
+		$this->setVar('wb_levels', '-2'); # Invalidate cache -.-
+		$this->saveVar('wb_levels', $levels); # Save!
 	}
 	
 	public function isBlacklisted($level)
@@ -194,7 +197,6 @@ final class WC_Warbox extends GDO
 		{
 			foreach (explode(',', $list) as $pattern)
 			{
-				echo "Checking pattern $pattern\n";
 				if (preg_match('/^'.$pattern.'$/D', $level))
 				{
 					return true;

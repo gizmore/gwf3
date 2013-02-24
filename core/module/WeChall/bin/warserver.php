@@ -152,10 +152,7 @@ function warscore_success($socket, WC_Warbox $box, GWF_User $user, $level)
 	
 	foreach ($boxes as $box)
 	{
-		echo "Checking Box {$box->getID()}\n";
-		
 		$box instanceof WC_Warbox;
-
 		if (warscore_has_level($box, $level))
 		{
 			warscore_levelup($socket, $box, $user, $level);
@@ -163,7 +160,7 @@ function warscore_success($socket, WC_Warbox $box, GWF_User $user, $level)
 		}
 	}
 	
-	warscore_error($socket, 'This level is not part of the wargame!');
+	warscore_error($socket, 'This login is not part of the wargame!');
 }
 
 function warscore_levelup($socket, WC_Warbox $box, GWF_User $user, $level)
@@ -229,6 +226,7 @@ function warscore_levelup_multi($socket, WC_Warbox $box, GWF_User $user, $level)
 	
 	if (0 >= ($levelnum = warscore_get_level_num($level)))
 	{
+		echo "LEVELNUM is 0";
 		return warscore_levelup_single($socket, $box, $user, $level);
 	}
 	
@@ -239,13 +237,14 @@ function warscore_levelup_multi($socket, WC_Warbox $box, GWF_User $user, $level)
 		$other_level = $warchall->getVar('wc_level');
 		if (0 >= ($olevelnum = warscore_get_level_num($other_level)))
 		{
+			echo "OLEVELNUM is 0";
 			continue;
 		}
 		if ($olevelnum > $levelnum)
 		{
 			continue;
 		}
-		if (warscore_levelup_single($socket, $box, $user, $level))
+		if (warscore_levelup_single($socket, $box, $user, $other_level))
 		{
 			$changed = true;
 		}
