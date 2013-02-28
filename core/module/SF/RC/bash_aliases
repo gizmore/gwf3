@@ -1,10 +1,15 @@
+alias SF='python2 -m SF'
+
 alias alsource='source /etc/bash_aliases'
 alias resource='source /etc/bash.bashrc'
 alias sf='pacman -Ss'
 alias install='pacman -S'
-alias pacman='pacman-color'
 alias vibash='vim ~/.bashrc'
 alias virc='vim /etc/rc.conf'
+
+if hash pacman-color 2> /dev/null; then
+	alias pacman='pacman-color'
+fi
 
 alias mv='mv -vi'
 alias cp='cp -vi'
@@ -92,7 +97,7 @@ for line in input:
 ' $@
 }
 
-function svnci {
+function svnci() {
     echo "=== Changed files ==="
     svn st "$@"
     echo "=== Changelog message ==="
@@ -109,4 +114,8 @@ function svnci {
     else
         echo "=== aborted ==="
     fi
+}
+
+function svndiff() {
+	vim <(svn diff "$@")
 }

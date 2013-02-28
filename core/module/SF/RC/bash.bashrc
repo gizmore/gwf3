@@ -5,6 +5,7 @@ export EDITOR='vim'
 export LANG='de_DE.UTF-8'
 #export LC_COLLATE='C'
 export PAGER='less'
+export PYTHONPATH=$(realpath '~/public_html/')
 
 shopt -s cdspell
 shopt -s checkwinsize
@@ -19,6 +20,7 @@ shopt -s nocaseglob
 [ -r ~/.bash_aliases ] && . ~/.bash_aliases
 
 [ -r /etc/bash_completion ] && . /etc/bash_completion
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #TODO
