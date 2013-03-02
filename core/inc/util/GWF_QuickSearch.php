@@ -102,10 +102,10 @@ final class GWF_QuickSearch
 					{
 						case self::SEARCH_BRACKET_CLOSE:
 						case self::SEARCH_TERM:
-							$where[] = 'AND';
 //							break;
-
 						default:
+							$where[] = 'AND';
+						case self::SEARCH_EMPTY:
 							$not = $prevnot ? ' NOT' : '';
 							$prevnot = false;
 							$where[] = sprintf('%s%s LIKE \'%%%s%%\'', $concat, $not, $gdo->escape($sql));
