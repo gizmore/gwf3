@@ -74,7 +74,7 @@ final class GWF_Table
 					$ddir = self::flipOrderDir($seldir);
 				}
 				$href = str_replace(array('%BY%','%DIR%'), array($h[1], $ddir), $sortURL);
-				$back .= sprintf('<a href="%s"%s>%s</a>', htmlspecialchars($href), $selhtml, htmlspecialchars($h[0]));
+				$back .= sprintf('<a rel="nofollow" href="%s"%s>%s</a>', htmlspecialchars($href), $selhtml, htmlspecialchars($h[0]));
 				$back .= '</th>'.PHP_EOL;
 				continue;
 			}
