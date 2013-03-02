@@ -301,6 +301,11 @@ abstract class GDO
 		return $db->createTable($tablename, $this->getColumnDefcache());
 	}
 	
+	public function dropTable()
+	{
+		return self::$CURRENT_DB->dropTable($this->getTableName());
+	}
+	
 	public function tableExists()
 	{
 		return self::$CURRENT_DB->tableExists($this->getTableName());
@@ -884,7 +889,8 @@ abstract class GDO
 	 */
 	public function countRows($where='', $joins=NULL, $groupby='')
 	{
-		if (false === ($result = $this->selectFirst('COUNT(*)', $where, '', $joins, self::ARRAY_N, -1, $groupby)))
+		$field = $groupby === '' ? '1' : 'DISTINCT(`'.self::escapeIdentifier($groupby).'`)'; 
+		if (false === ($result = $this->selectFirst("COUNT($field)", $where, '', $joins, self::ARRAY_N)))
 		{
 			return false;
 		}
