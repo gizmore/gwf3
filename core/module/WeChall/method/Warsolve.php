@@ -45,7 +45,7 @@ final class WeChall_Warsolve extends GWF_Method
 			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
 		}
 		
-		if (false === ($this->flags = WC_Warflag::getForBoxAndUser($this->box, $this->user)))
+		if (false === ($this->flags = WC_Warflag::getForBoxAndUser($this->box, $this->user, 'wf_order ASC')))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
@@ -98,8 +98,6 @@ final class WeChall_Warsolve extends GWF_Method
 	
 	private function onSolveB($flagid, $password)
 	{
-		var_dump($flagid, $password);
-		
 		if (false === ($flag = WC_Warflag::getByID($flagid)))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -154,7 +152,14 @@ final class WeChall_Warsolve extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === ($this->flags = WC_Warflag::getForBoxAndUser($this->box, $this->user)))
+		$flag->setLastSolver($this->user);
+		
+		if (!$this->box->recalcPlayersAndScore())
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		if (false === ($this->flags = WC_Warflag::getForBoxAndUser($this->box, $this->user, 'wf_order ASC')))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
@@ -166,9 +171,11 @@ final class WeChall_Warsolve extends GWF_Method
 			return $result->display($this->site->displayName());
 		}
 		
-		return 'YEAH!';
+		else
+		{
+			return '_YOU_ARE_NOT_LINKED_TO_THE_SITE,_BUT_WELL_DONE!';
+		}
 		
 	}
 	
 }
-?>

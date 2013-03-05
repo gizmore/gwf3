@@ -710,4 +710,14 @@ $lang = array(
 	'err_name' => 'The name hase to be between %s and %s characters in length.',
 	'msg_warbox_added' => 'You have added another Warbox to your site!',
 	'msg_warbox_edited' => 'The Warbox config has been edited.',
+	
+	#5.06 wargames
+	'title_warboxes_details' => 'Warboxes on %s',
+	'info_warboxes_details' => 'There are %2$s warboxes available on %1$s. Click on a levels count to see the levels. Click on a players count to inspect the rankings for this box.',
+	'title_warbox_details' => 'Levels for the %2$s box on %1$s',
+	'info_warbox_details' => 'There are currently %3$s levels available on the %2$s box on %1$s. Please note that on ssh wargames the levels are added when they get solved the first time.',
+	'title_warflag_solvers' => 'People that solved %2$s on %3$s - %4$s',
+	'info_warflag_solvers' => '%s people solved %s on %4$s. See them here in chronological order.',
+	'title_warbox_players' => 'Ranking for the %2$s box on %3$s',
+	'info_warbox_players' => 'All %s players ranked on %s - %s sorted by score and last activity.',
 );

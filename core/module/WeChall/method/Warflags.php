@@ -25,7 +25,7 @@ final class WeChall_Warflags extends GWF_Method
 		$this->module->includeClass('WC_Warflag');
 		if (false === ($this->warbox = WC_Warbox::getByID(Common::getGetString('wbid'))))
 		{
-			return WC_HTML::error('err_site');
+			return WC_HTML::error('err_warbox');
 		}
 		
 		if (!$this->warbox->hasEditPermission($this->user))
@@ -148,7 +148,6 @@ final class WeChall_Warflags extends GWF_Method
 			'div' => array(GWF_Form::DIVIDER),
 			'wf_login' => array(GWF_Form::STRING, '', $this->l('th_wf_login')),
 			'password' => array(GWF_Form::STRING, '', $this->l('th_wf_flag')),
-			'enc' => array(GWF_Form::CHECKBOX, false, $this->l('th_wf_enc')),
 			'add' => array(GWF_Form::SUBMIT, $this->l('btn_add_flag')),
 		);
 		return new GWF_Form($this, $data);
@@ -175,20 +174,18 @@ final class WeChall_Warflags extends GWF_Method
 		
 		$f = $form->getVar('password');
 		
-		$flag_plain = !isset($_POST['enc']) ? $f : NULL;
-		$flag_enc = isset($_POST['enc']) ? WC_Warflag::hashPassword($f) : NULL;
+		$flag_enc = WC_Warflag::hashPassword($f);
 		
 		$flag = new WC_Warflag(array(
 			'wf_id' => '0',
 			'wf_wbid' => $this->warbox->getID(),
-			'wf_order' => '0',
+			'wf_order' => WC_Warflag::getNextOrder($this->warbox),
 			'wf_cat' => $form->getVar('wf_cat'),
 			'wf_score' => $form->getVar('wf_score'),
 			'wf_title' => $form->getVar('wf_title'),
 			'wf_authors' => $form->getVar('wf_authors'),
 			'wf_status' => $form->getVar('wf_status'),
 			'wf_login' => $form->getVar('wf_login'),
-			'wf_flag' => $flag_plain,
 			'wf_flag_enc' => $flag_enc,
 			'wf_created_at' => $form->getVar('wf_created_at'),
 			'wf_last_solved_at' => NULL,
@@ -199,6 +196,13 @@ final class WeChall_Warflags extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateOverview();
 		}
+		
+		$this->warbox->increase('wb_challs');
+		$this->warbox->increase('wb_flags');
+		
+		$this->warbox->recalcTotalscore();
+		
+		$this->warbox->getSite()->recalcSite();
 		
 		return $this->module->message('msg_add_flag').$this->templateOverview();
 	}
@@ -221,7 +225,6 @@ final class WeChall_Warflags extends GWF_Method
 			'div' => array(GWF_Form::DIVIDER),
 			'wf_login' => array(GWF_Form::STRING, $this->flag->getVar('wf_login'), $this->l('th_wf_login')),
 			'password' => array(GWF_Form::STRING, $enc?$plain:'', $this->l('th_wf_flag')),
-			'enc' => array(GWF_Form::CHECKBOX, $enc, $this->l('th_wf_enc')),
 			'edit' => array(GWF_Form::SUBMIT, $this->l('btn_edit_flag')),
 		);
 		return new GWF_Form($this, $data);
@@ -259,22 +262,17 @@ final class WeChall_Warflags extends GWF_Method
 		$enc = isset($_POST['enc']);
 		if ($f !== '')
 		{
-			if ($enc)
-			{
-				$data['wf_flag'] = NULL;
-				$data['wf_flag_enc'] = WC_Warflag::hashPassword($f);
-			}
-			else
-			{
-				$data['wf_flag'] = $f;
-				$data['wf_flag_enc'] = NULL;
-			}
+			$data['wf_flag_enc'] = WC_Warflag::hashPassword($f);
 		}
 		
 		if (!$this->flag->saveVars($data))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateOverview();
 		}
+
+		$this->warbox->recalcTotalscore();
+		
+		$this->warbox->getSite()->recalcSite();
 		
 		return $this->module->message('msg_edit_flag').$this->templateOverview();
 	}

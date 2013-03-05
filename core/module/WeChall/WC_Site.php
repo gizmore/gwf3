@@ -302,6 +302,11 @@ class WC_Site extends WC_SiteBase
 		}
 	}
 	
+	public function getBoxCount()
+	{
+		Module_WeChall::instance()->includeClass('WC_Warbox');
+		return WC_Warbox::getBoxCount($this);
+	}
 	
 	##############
 	### Static ###
@@ -625,7 +630,8 @@ class WC_Site extends WC_SiteBase
 	public function hrefEdit() { return GWF_WEB_ROOT.sprintf('site/edit/%s/%s', $this->getVar('site_id'), $this->urlencodeSEO('site_name')); }
 	public function hrefLogo() { return GWF_WEB_ROOT.'dbimg/logo/'.$this->getVar('site_id'); }
 	public function hrefHistory() { return GWF_WEB_ROOT.'site/history/'.$this->urlencode2('site_name'); }
-	
+	public function hrefWarboxes() { return GWF_WEB_ROOT.sprintf('%s-wargames-on-%s.html', $this->getID(), $this->getSitename()); }
+
 	####################################
 	### Creation of Votes And Thread ###
 	####################################
@@ -1069,8 +1075,6 @@ class WC_Site extends WC_SiteBase
 			
 			Module_WeChall::instance()->includeClass('WC_Warflag');
 			Module_WeChall::instance()->includeClass('WC_Warflags');
-			Module_WeChall::instance()->includeClass('WC_Warchall');
-			Module_WeChall::instance()->includeClass('WC_Warchalls');
 			Module_WeChall::instance()->includeClass('sites/warbox/WCSite_WARBOX');
 			
 			foreach ($boxes as $box)
@@ -1079,7 +1083,7 @@ class WC_Site extends WC_SiteBase
 				if ($box->isUp())
 				{
 					$box->parseFlagStats($user, $stats);
-					$box->parseWarboxStats($user, $stats);
+// 					$box->parseWarboxStats($user, $stats);
 				}
 			}
 		}

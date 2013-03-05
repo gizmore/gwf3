@@ -16,14 +16,29 @@ final class WC_Warflags extends GDO
 			# Join
 			'flag' => array(GDO::JOIN, GDO::NULL, array('WC_Warflag', 'wf_wfid', 'wf_id')),
 			'flagbox' => array(GDO::JOIN, GDO::NULL, array('WC_Warbox', 'wf_wbid', 'wb_id')),
-			'flagsite' => array(GDO::JOIN, GDO::NULL, array('WC_Site', 'wf_sid', 'site_id')),
+			'flagsite' => array(GDO::JOIN, GDO::NULL, array('WC_Site', 'wb_sid', 'site_id')),
 			'solvers' => array(GDO::JOIN, GDO::NULL, array('GWF_User', 'user_id', 'wf_uid')),
 		);
+	}
+	
+	public static function getPlayercount(WC_Warbox $box)
+	{
+		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wf_wbid={$box->getID()}", '', array('flag', 'flagbox'));
+	}
+	
+	public static function getPlayercountForSite(WC_Site $site)
+	{
+		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wf_sid={$site->getID()}", '', array('flag', 'flagbox', 'flagsite'));
 	}
 	
 	public static function getByFlagUser(WC_Warflag $flag, GWF_User $user)
 	{
 		return self::table(__CLASS__)->selectFirstObject('*', "wf_wfid={$flag->getID()} AND wf_uid={$user->getID()}");
+	}
+	
+	public static function hasSolved(WC_Warflag $flag, GWF_User $user)
+	{
+		return self::table(__CLASS__)->selectVar('1', "wf_wfid={$flag->getID()} AND wf_uid={$user->getID()}") !== false;
 	}
 	
 	public static function getLastAttemptTime(GWF_User $user)

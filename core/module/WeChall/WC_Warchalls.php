@@ -12,6 +12,11 @@ final class WC_Warchalls extends GDO
 		);
 	}
 	
+	public function getSolverCount(WC_Warchall $warchall)
+	{
+		return self::table(__CLASS__)->selectVar('COUNT(*)', "wc_wcid={$warchall->getID()}");
+	}
+	
 	public static function hasSolved(GWF_User $user, WC_Warchall $chall)
 	{
 		return self::table(__CLASS__)->selectVar('1', "wc_wcid={$chall->getID()} AND wc_uid={$user->getID()}") !== false;
@@ -19,11 +24,15 @@ final class WC_Warchalls extends GDO
 
 	public static function markSolved(GWF_User $user, WC_Warchall $chall)
 	{
-		return self::table(__CLASS__)->insertAssoc(array(
+		if (!self::table(__CLASS__)->insertAssoc(array(
 			'wc_wcid' => $chall->getID(),
 			'wc_uid' => $user->getID(),
 			'wc_solved_at' => GWF_Time::getDate(14),
-		));
+		)))
+		{
+			return false;
+		}
+		return true;
 	}
 }
 ?>

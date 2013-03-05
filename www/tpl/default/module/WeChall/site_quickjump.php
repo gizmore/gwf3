@@ -1,4 +1,10 @@
 <?php
+$SITE = WC_Site::getByID(Common::getGetString('sid'));
+if ($SITE === false)
+{	# fallback
+	$SITE = GDO::table('WC_Site')->selectRandom('*', "site_status='up'", 1, NULL, GDO::ARRAY_O);
+	$SITE = $SITE[0];
+}
 
 # Put in cats.
 //$types = array(); # Row types
@@ -76,6 +82,21 @@ foreach ($cats as $cat => $sites)
 {
 	wcSiteQJSel($cat, $sites, $tVars['mode'], $nqj++);
 }
+
+#- 4th Row (boxes)
+$boxes = WC_Warbox::getBoxes($SITE, 'wb_name ASC');
+if (count($boxes) > 0)
+{
+	$data = array(array('0', 'Warboxes'));
+	foreach ($boxes as $box)
+	{
+		$box instanceof WC_Warbox;
+		$data[] = array($box->getID(), $box->displayName());
+	}
+	echo GWF_Select::display('wc_boxes_quickjump', $data, Common::getGetString('bid'), "wcSiteQuickqump(this, '{$tVars['mode']}', 2)");
+}
+
+
 # - Button
 echo '<noscript><div class="i"><input type="submit" name="quickjump" value="'.$tLang->lang('btn_quickjump').'" /></div></noscript>';
 echo '</div>';
@@ -87,32 +108,39 @@ echo '</div>'.PHP_EOL;
 $which = Common::getGet('which', '0');
 echo '<div class="gwf_buttons_outer gwf_buttons">'.PHP_EOL;
 
-$site = WC_Site::getByID(Common::getGet('sid', 0));
-if ($site === false) { # fallback
-	$site = GDO::table('WC_Site')->selectRandom('*', "site_status='up'", 1, NULL, GDO::ARRAY_O);
-	$site = $site[0];
-}
 
-//echo WC_HTML::button('btn_ranking');
+$btn_boxes = count($boxes) === 0 ? '' : WC_HTML::button('btn_warboxes', $SITE->hrefWarboxes());;
 
-switch($_GET['me'])
+switch(Common::getGetString('me'))
 {
+	case 'WarboxDetails':
+	case 'WarboxesDetails':
+		echo WC_HTML::button('btn_site_details', $SITE->hrefDetail());
+		echo $btn_boxes;
+		echo WC_HTML::button('btn_ranking', $SITE->hrefRanking(true));
+		echo WC_HTML::button('btn_site_history', $SITE->hrefHistory());
+		break;
+	case 'WarboxPlayers':
 	case 'SiteRankings':
-		echo WC_HTML::button('btn_site_details', $site->hrefDetail());
-		echo WC_HTML::button('btn_site_history', $site->hrefHistory());
+		echo WC_HTML::button('btn_site_details', $SITE->hrefDetail());
+		echo $btn_boxes;
+		echo WC_HTML::button('btn_site_history', $SITE->hrefHistory());
 		break;
 	case 'SiteDetails':
-		echo WC_HTML::button('btn_ranking', $site->hrefRanking(true));
-		echo WC_HTML::button('btn_site_history', $site->hrefHistory());
+		echo $btn_boxes;
+		echo WC_HTML::button('btn_ranking', $SITE->hrefRanking(true));
+		echo WC_HTML::button('btn_site_history', $SITE->hrefHistory());
 		break;
 	case 'SiteHistory': 
-		echo WC_HTML::button('btn_site_details', $site->hrefDetail());
-		echo WC_HTML::button('btn_ranking', $site->hrefRanking(true));
+		echo WC_HTML::button('btn_site_details', $SITE->hrefDetail());
+		echo $btn_boxes;
+		echo WC_HTML::button('btn_ranking', $SITE->hrefRanking(true));
 		break;
 	default:
-		echo WC_HTML::button('btn_site_details', $site->hrefDetail());
-		echo WC_HTML::button('btn_ranking', $site->hrefRanking(true));
-		echo WC_HTML::button('btn_site_history', $site->hrefHistory());
+		echo WC_HTML::button('btn_site_details', $SITE->hrefDetail());
+		echo $btn_boxes;
+		echo WC_HTML::button('btn_ranking', $SITE->hrefRanking(true));
+		echo WC_HTML::button('btn_site_history', $SITE->hrefHistory());
 		break;
 }
 
@@ -125,31 +153,30 @@ echo WC_HTML::button('btn_not_ranked', GWF_WEB_ROOT.'not_ranked', $which==='4');
 echo WC_HTML::button('btn_coming_soon', GWF_WEB_ROOT.'coming_soon', $which==='3');
 echo '</div>'.PHP_EOL;
 
-
 ### Helper
 # Output 1 select
 function wcSiteQJSel($text, $sites, $mode, $nqj)
 {
 	
-	echo '<select name="quickjumps['.$nqj.']" onchange="wcSiteQuickqump(this, \''.$mode.'\');">'.PHP_EOL;
+	echo '<select name="quickjumps['.$nqj.']" onchange="wcSiteQuickqump(this, \''.$mode.'\', 1);">'.PHP_EOL;
 	echo '<option value="0">'.$text.'</option>';
 
 	foreach ($sites as $site)
 	{
 		$site instanceof WC_Site;
 	
-		switch ($mode)
-		{
-			case 'detail':
-				$href = $site->hrefDetail();
-				break;
-			case 'ranking':
-				$href = $site->hrefRanking();
-				break;
-			case 'history':
-				$href = $site->hrefHistory();
-				break;
-		}
+// 		switch ($mode)
+// 		{
+// 			case 'detail':
+// 				$href = $site->hrefDetail();
+// 				break;
+// 			case 'ranking':
+// 				$href = $site->hrefRanking();
+// 				break;
+// 			case 'history':
+// 				$href = $site->hrefHistory();
+// 				break;
+// 		}
 		
 		echo sprintf('<option value="%s">%s</option>', $site->getVar('site_id'), $site->displayName()).PHP_EOL;
 	}

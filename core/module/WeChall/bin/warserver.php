@@ -13,7 +13,7 @@ if (false === ($socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP)))
 	die(1);
 }
 
-if (!@socket_bind($socket, '127.0.0.1', 4141))
+if (!@socket_bind($socket, '0.0.0.0', 4141))
 {
 	die(2);
 }
@@ -23,10 +23,19 @@ if (!socket_listen($socket))
 	die(3);
 }
 
+function warscore_debug($message)
+{
+#	echo $message.PHP_EOL;
+}
+
 function warscore_error($socket, $message)
 {
 	socket_write($socket, $message);
 	socket_close($socket);
+	if (function_exists('gc_collect_cycles'))
+	{
+		gc_collect_cycles();
+	}
 	die(0);
 }
 
@@ -58,8 +67,8 @@ function warscore_function($socket, $pid)
 	}
 	$wechall->includeClass('WC_Warbox');
 	$wechall->includeClass('WC_WarToken');
-	$wechall->includeClass('WC_Warchall');
-	$wechall->includeClass('WC_Warchalls');
+	$wechall->includeClass('WC_Warflag');
+	$wechall->includeClass('WC_Warflags');
 	$wechall->includeClass('sites/warbox/WCSite_WARBOX');
 	
 	
@@ -67,6 +76,9 @@ function warscore_function($socket, $pid)
 	{
 		warscore_error($socket, 'Read Error 1!');
 	}
+	
+	warscore_debug("GOT INPUT: $input");
+	
 	if (false === ($username = Common::substrUntil($input, "\n", false)))
 	{
 		warscore_error($socket, 'No username sent!');
@@ -75,6 +87,9 @@ function warscore_function($socket, $pid)
 	{
 		warscore_error($socket, 'Unknown user!');
 	}
+	
+	warscore_debug("GOT USER: $username");
+	
 	if ('' === ($token = Common::substrFrom($input, "\n", '')))
 	{
 		warscore_error($socket, 'No token sent!');
@@ -83,7 +98,7 @@ function warscore_function($socket, $pid)
 	
 	if (!WC_WarToken::isValidWarToken($user, $token))
 	{
-// 		warscore_error($socket, 'Invalid Token!');
+		warscore_error($socket, 'Invalid Token!');
 	}
 	
 	if (!socket_getpeername($socket, $client_ip, $client_port))
@@ -91,11 +106,15 @@ function warscore_function($socket, $pid)
 		warscore_error($socket, 'Socket Error 2!');
 	}
 	
+	echo "$client_ip\n";
+	
 	$boxes = WC_Warbox::getByIP($client_ip);
 	if (count($boxes) === 0)
 	{
 		warscore_error($socket, 'Unknown Warbox!');
 	}
+
+	warscore_debug("GOT N BOXES: ".count($boxes));
 	
 	$curr_port = 0;
 	foreach ($boxes as $box)
@@ -115,30 +134,39 @@ function warscore_function($socket, $pid)
 
 function warscore_identd($socket, WC_Warbox $box, GWF_User $user, $identd_ip, $identd_port)
 {
+	warscore_debug("warscore_identd()");
+
 	if (false === ($socket2 = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)))
 	{
+		warscore_error($socket, 'Could not create socket to your identd.');
 		return;
 	}
-	
+	warscore_debug("socket created");
+
+	warscore_debug("connecting to $identd_ip : {$box->getVar('wb_port')}");
 	if (!socket_connect($socket2, $identd_ip, $box->getVar('wb_port')))
 	{
 		socket_close($socket2);
+		warscore_error($socket, 'Could not connect to your identd.');
 		return;
 	}
-	
+	warscore_debug("socket connected");
+
+	warscore_debug("Writing to socket: $identd_port, 4141\\r\\n");
 	if (false !== socket_write($socket2, "$identd_port, 4141\r\n"))
 	{
+		warscore_debug("Wrote to socket. reading now...");
 		if (false !== ($in = socket_read($socket2, 2048)))
 		{
-// 			echo "\n$in\n";
-			if (preg_match("/^$identd_port,4141:USERID:UNIX:(.*)$/", $in, $matches))
+			warscore_debug("GOT IDENTD RESPONSE: $in");
+			if (preg_match("/^ *$identd_port *, *4141 *: *USERID *: *UNIX *:(.*)$/", $in, $matches))
 			{
 				warscore_success($socket, $box, $user, trim($matches[1]));
 			}
 			else
 			{
 				socket_close($socket2);
-				warscore_error($socket, 'Invalid response from identd: '+$in);
+				warscore_error($socket, 'Invalid response from identd: '.$in);
 			}
 		}
 	}
@@ -176,8 +204,9 @@ function warscore_levelup($socket, WC_Warbox $box, GWF_User $user, $level)
 
 	if ($changed)
 	{
-		warscore_update($socket, $box, $user, $level);
+		$box->recalcPlayersAndScore();
 		WC_WarToken::deleteWarToken($user);
+		warscore_update($socket, $box, $user, $level);
 	}
 	else
 	{
@@ -199,45 +228,50 @@ function warscore_nochange($socket, WC_Warbox $box, GWF_User $user, $level)
 
 function warscore_levelup_single($socket, WC_Warbox $box, GWF_User $user, $level)
 {
-	if (false === ($warchall = WC_Warchall::getLevel($box, $level)))
+	if (false === ($warchall = WC_Warflag::getWarchall($box, $level)))
 	{
 		return false;
 	}
 	
-	if (WC_Warchalls::hasSolved($user, $warchall))
+	if (WC_Warflags::hasSolved($warchall, $user))
 	{
 		return false;
 	}
 	
-	return WC_Warchalls::markSolved($user, $warchall);
+	if (!WC_Warflags::insertSuccess($warchall, $user))
+	{
+		return false;
+	}
+	
+	$warchall->setLastSolver($user);
+	
+	return true;
 }
 
 function warscore_levelup_multi($socket, WC_Warbox $box, GWF_User $user, $level)
 {
-	if (false === ($warchall = WC_Warchall::getLevel($box, $level)))
+	if (false === ($warchall = WC_Warflag::getWarchall($box, $level)))
 	{
 		return false;
 	}
 
-	if (false === ($warchalls = WC_Warchall::getLevels($box)))
+	if (false === ($warchalls = WC_Warflag::getWarchalls($box)))
 	{
 		return false;
 	}
 	
 	if (0 >= ($levelnum = warscore_get_level_num($level)))
 	{
-		echo "LEVELNUM is 0";
 		return warscore_levelup_single($socket, $box, $user, $level);
 	}
 	
 	$changed = false;
 	foreach ($warchalls as $warchall)
 	{
-		$warchall instanceof WC_Warchall;
-		$other_level = $warchall->getVar('wc_level');
+		$warchall instanceof WC_Warflag;
+		$other_level = $warchall->getVar('wf_title');
 		if (0 >= ($olevelnum = warscore_get_level_num($other_level)))
 		{
-			echo "OLEVELNUM is 0";
 			continue;
 		}
 		if ($olevelnum > $levelnum)
@@ -278,6 +312,10 @@ while(true)
 	}
 	elseif ($pid) # Parent
 	{
+		if (function_exists('gc_collect_cycles'))
+		{
+			gc_collect_cycles();
+		}
 // 		pcntl_wait($status);
 	}
 	else # Child

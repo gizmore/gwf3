@@ -48,7 +48,7 @@ final class Module_WeChall extends GWF_Module
 	public function cfgWarboxHost() { return Common::getHostname($this->cfgWarboxURL()); }
 	public function cfgWarboxProtocol() { return Common::substrUntil($this->cfgWarboxURL(), '://', 'http'); }
 	
-	//	public function cfgSiteBoardID() { return intval($this->getModuleVar('wc_site_board', 0)); }
+//	public function cfgSiteBoardID() { return intval($this->getModuleVar('wc_site_board', 0)); }
 //	public function cfgSolutionBoardID() { return intval($this->getModuleVar('wc_sol_board', 0)); }
 //	public function cfgChallengeBoardID() { return intval($this->getModuleVar('wc_chall_board', 0)); }
 	public function cfgSiteMasterTime() { return $this->getModuleVar('wc_sitemas_dur', GWF_Time::ONE_WEEK);}
@@ -63,9 +63,9 @@ final class Module_WeChall extends GWF_Module
 //	public function getDependencies() { return array('Forum'=>1.00, 'Votes'=>1.00); } 
 	public function getAdminSectionURL() { return $this->getMethodURL('Admin'); }
 	public function getDefaultPriority() { return 60; } # 50 is default
-	public function getVersion() { return 5.05; }
+	public function getVersion() { return 5.06; }
 	public function onInstall($dropTable) { require_once 'GWF_WeChallInstall.php'; return GWF_WeChallInstall::onInstall($this, $dropTable); }
-	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge'); }
+	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge', 'WC_Warbox'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
 	public function getDefaultAutoLoad() { return true; }
 	public function onCronjob() { require_once 'WC_Cronjob.php'; }
@@ -277,9 +277,12 @@ final class Module_WeChall extends GWF_Module
 	#######################
 	### Site Quickjumps ###
 	#######################
-	private function templateSiteQuickjump($mode)
+	public function templateSiteQuickjump($mode)
 	{
 		$actions = array(
+			'boxdetail' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WarboxDetails',
+			'boxdetails' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WarboxesDetails',
+			'boxranking' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WarboxPlayers',
 			'detail' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=SiteDetails',
 			'ranking' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=SiteRankings',
 			'history' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=SiteHistory',

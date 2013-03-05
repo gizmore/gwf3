@@ -16,7 +16,11 @@ final class WC_Warbox extends GDO
 			'wb_sid' => array(GDO::UINT, GDO::NOT_NULL),
 
 			'wb_name' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::UNIQUE, '', 31),
-			'wb_levels' => array(GDO::MEDIUMINT, -1),
+			'wb_challs' => array(GDO::MEDIUMINT, -1), # Sum of
+			'wb_levels' => array(GDO::MEDIUMINT, -1), # ssh and
+			'wb_flags' => array(GDO::MEDIUMINT, -1),  # flags
+			'wb_players' => array(GDO::UINT, 0),
+			'wb_totalscore' => array(GDO::UINT, 0),
 			'wb_port' => array(GDO::UMEDIUMINT, 113),
 			'wb_host' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL, 255),
 			'wb_user' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, '',  63),
@@ -35,7 +39,7 @@ final class WC_Warbox extends GDO
 				
 			# JOIN
 			'sites' => array(GDO::JOIN, GDO::NULL, array('WC_Site', 'site_id', 'wb_sid')),
-			'flags' => array(GDO::JOIN, GDO::NULL, array('WC_Warflag', 'wb_id', 'wf_wbid')),
+// 			'flags' => array(GDO::JOIN, GDO::NULL, array('WC_Warflag', 'wb_id', 'wf_wbid')),
 		);
 	}
 	
@@ -60,7 +64,22 @@ final class WC_Warbox extends GDO
 	{
 		return GWF_WEB_ROOT.'index.php?mo=WeChall&me=Warsolve&boxid='.$this->getID();
 	}
-		
+	
+	public function hrefDetails()
+	{
+		return GWF_WEB_ROOT.sprintf('%s-levels-on-%s.html', $this->getID(), $this->urlencodeSEO('wb_name'));
+	}
+	
+	public function hrefPlayers()
+	{
+		return GWF_WEB_ROOT.sprintf('%s-players-on-%s.html', $this->getID(), $this->urlencodeSEO('wb_name'));
+	}
+	
+	public function displayName()
+	{
+		return $this->display('wb_name');
+	}
+	
 	public function displayLink()
 	{
 		if ('' === ($url = $this->getVar('wb_weburl')))
@@ -94,11 +113,26 @@ final class WC_Warbox extends GDO
 		return WC_SiteAdmin::isSiteAdmin($user->getID(), $this->getSiteID());
 	}
 	
+	public function recalcPlayersAndScore()
+	{
+		return $this->recalcTotalscore() && $this->recalcPlayers();
+	}
+
+	public function recalcTotalscore()
+	{
+		return $this->saveVar('wb_totalscore', WC_Warflag::getTotalscore($this));
+	}
+	
+	public function recalcPlayers()
+	{
+		return $this->saveVar('wb_players', WC_Warflags::getPlayercount($this));
+	}
+	
 	public function parseFlagStats(GWF_User $user, &$stats)
 	{
-		$this->setVar('wb_levels', '0');
-		
 		$flags = WC_Warflag::getForBoxAndUser($this, $user);
+		$ssh = 0;
+		$flg = 0;
 		if (count($flags) > 0)
 		{
 			$score = 0;
@@ -114,15 +148,30 @@ final class WC_Warbox extends GDO
 					$challs++;
 				}
 				
+				if ($flag->isWarflag())
+				{
+					$flg++;
+				}
+				else
+				{
+					$ssh++;
+				}
+				
 				$maxscore += $flag->getVar('wf_score');
 			}
 			
 			# Remember challcount
-			$this->setVar('wb_levels', count($flags));
+			$this->saveVars(array(
+				'wb_challs' => count($flags),
+				'wb_levels' => $ssh,
+				'wb_flags' => $flg,
+			));
 			
 			# Save usercount?
-			if ($this->getSite()->isNoV1())
+			$site = $this->getSite();
+			if ($site->isNoV1())
 			{
+				$site->saveVar('site_usercount', WC_Warflags::getPlayercountForSite($site));
 			}
 			
 			// score, rank, challssolved, maxscore, usercount, challcount
@@ -136,50 +185,50 @@ final class WC_Warbox extends GDO
 		
 	}
 	
-	public function parseWarboxStats(GWF_User $user, &$stats)
-	{
-		$warchalls = WC_Warchall::getForBoxAndUser($this, $user);
-		if (count($warchalls) > 0)
-		{
-			$score = 0;
-			$challs = 0;
-			$maxscore = 0;
-			foreach ($warchalls as $chall)
-			{
-				$chall instanceof WC_Warchall;
+// 	public function parseWarboxStats(GWF_User $user, &$stats)
+// 	{
+// 		$warchalls = WC_Warchall::getForBoxAndUser($this, $user);
+// 		if (count($warchalls) > 0)
+// 		{
+// 			$score = 0;
+// 			$challs = 0;
+// 			$maxscore = 0;
+// 			foreach ($warchalls as $chall)
+// 			{
+// 				$chall instanceof WC_Warchall;
 			
-				if ($chall->getVar('wc_solved_at') !== NULL)
-				{
-					$score += $chall->getVar('wc_score');
-					$challs++;
-				}
+// 				if ($chall->getVar('wc_solved_at') !== NULL)
+// 				{
+// 					$score += $chall->getVar('wc_score');
+// 					$challs++;
+// 				}
 			
-				$maxscore += $chall->getVar('wc_score');
-			}
+// 				$maxscore += $chall->getVar('wc_score');
+// 			}
 			
-			# Save challcount
-			$this->setVar('wb_levels', $this->getVar('wb_levels') + count($warchalls));
+// 			# Save challcount
+// 			$this->setVar('wb_levels', $this->getVar('wb_levels') + count($warchalls));
 			
-			# Save usercount?
-			if ($this->getSite()->isNoV1())
-			{
-			}
+// 			# Save usercount?
+// 			if ($this->getSite()->isNoV1())
+// 			{
+// 			}
 			
-			// score, rank, challssolved, maxscore, usercount, challcount
-			$stats[0] += $score;
-// 			$stats[1]; RANK
-			$stats[2] += $challs;
-			$stats[3] += $maxscore;
-// 			$stats[4]; USERCOUNT
-			$stats[5] += count($warchalls);
+// 			// score, rank, challssolved, maxscore, usercount, challcount
+// 			$stats[0] += $score;
+// // 			$stats[1]; RANK
+// 			$stats[2] += $challs;
+// 			$stats[3] += $maxscore;
+// // 			$stats[4]; USERCOUNT
+// 			$stats[5] += count($warchalls);
 			
-		}
+// 		}
 		
-		# BAH!
-		$levels = $this->getVar('wb_levels'); # Get Cache
-		$this->setVar('wb_levels', '-2'); # Invalidate cache -.-
-		$this->saveVar('wb_levels', $levels); # Save!
-	}
+// 		# BAH!
+// 		$levels = $this->getVar('wb_levels'); # Get Cache
+// 		$this->setVar('wb_levels', '-2'); # Invalidate cache -.-
+// 		$this->saveVar('wb_levels', $levels); # Save!
+// 	}
 	
 	public function isBlacklisted($level)
 	{
@@ -217,9 +266,14 @@ final class WC_Warbox extends GDO
 		return self::table(__CLASS__)->selectFirstObject('*', $where, '', '', array('sites'));
 	}
 	
-	public static function getBoxes(WC_Site $site)
+	public static function getBoxes(WC_Site $site, $orderby='')
 	{
-		return self::getAllBoxes('wb_sid='.$site->getID());
+		return self::getAllBoxes('wb_sid='.$site->getID(), $orderby);
+	}
+	
+	public static function getBoxCount(WC_Site $site)
+	{
+		return self::table(__CLASS__)->selectVar('COUNT(*)', "wb_sid={$site->getID()}");
 	}
 	
 	public static function getAllBoxes($where='', $orderby='')

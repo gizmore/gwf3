@@ -49,6 +49,8 @@ if ($user !== false) {
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_admins'), $site->displaySiteAdmins());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_autoup'), $site->displayAutoUpdate());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_has_osr'), $site->displayOnSiteRank());
+		$warboxes = $tVars['boxcount'] > 0 ? $tVars['boxcount'].GWF_Button::forward($site->hrefWarboxes(), 'Show Wargames') : '0';
+		echo WC_HTML::tableRowForm($tLang->lang('btn_warboxes'), $warboxes);
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_score'), $site->getScore());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_basescore'), $site->getBasescore());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_usercount'), $site->getUsercount());

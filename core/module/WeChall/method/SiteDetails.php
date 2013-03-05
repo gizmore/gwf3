@@ -36,6 +36,7 @@ final class WeChall_SiteDetails extends GWF_Method
 		$time = $this->module->cfgLastPlayersTime();
 		$tVars = array(
 			'site' => $site,
+			'boxcount' => $site->getBoxCount(),
 			'descr' => WC_SiteDescr::getDescription($site->getID()),
 			'site_quickjump' => $this->module->templateSiteQuickjumpDetail(),
 			'latest_players_time' => GWF_Time::humanDuration($time),
