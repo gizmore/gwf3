@@ -28,7 +28,7 @@ final class WC_Warflags extends GDO
 	
 	public static function getPlayercountForSite(WC_Site $site)
 	{
-		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wf_sid={$site->getID()}", '', array('flag', 'flagbox', 'flagsite'));
+		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wb_sid={$site->getID()}", '', array('flag', 'flagbox', 'flagsite'));
 	}
 	
 	public static function getByFlagUser(WC_Warflag $flag, GWF_User $user)
