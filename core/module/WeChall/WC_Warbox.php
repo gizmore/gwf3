@@ -109,7 +109,6 @@ final class WC_Warbox extends GDO
 		{
 			return true;
 		}
-		$this->module->includeClass('WC_SiteAdmin');
 		return WC_SiteAdmin::isSiteAdmin($user->getID(), $this->getSiteID());
 	}
 	

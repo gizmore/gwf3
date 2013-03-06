@@ -23,6 +23,8 @@ final class WeChall_Warflags extends GWF_Method
 		
 		$this->module->includeClass('WC_Warbox');
 		$this->module->includeClass('WC_Warflag');
+		$this->module->includeClass('WC_SiteAdmin');
+		
 		if (false === ($this->warbox = WC_Warbox::getByID(Common::getGetString('wbid'))))
 		{
 			return WC_HTML::error('err_warbox');
