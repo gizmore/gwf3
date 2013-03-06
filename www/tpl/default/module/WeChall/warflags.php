@@ -9,7 +9,6 @@ $headers = array(
 	array($tLang->lang('th_wf_cat'), 'wf_cat'),
 	array($tLang->lang('th_wf_title'), 'wf_title'),
 	array($tLang->lang('th_wf_login'), 'wf_login'),
-	array($tLang->lang('th_wf_flag')),
 	array($tLang->lang('th_wf_status')),
 );
 
@@ -26,7 +25,6 @@ foreach ($tVars['flags'] as $flag)
 	echo GWF_Table::column($flag->display('wf_cat'));
 	echo GWF_Table::column($flag->display('wf_title'));
 	echo GWF_Table::column($flag->display('wf_login'));
-	echo GWF_Table::column($flag->display('wf_flag'));
 	echo GWF_Table::column($flag->display('wf_status'));
 	echo GWF_Table::rowEnd();
 }

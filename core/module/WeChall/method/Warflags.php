@@ -24,6 +24,7 @@ final class WeChall_Warflags extends GWF_Method
 		$this->module->includeClass('WC_Warbox');
 		$this->module->includeClass('WC_Warflag');
 		$this->module->includeClass('WC_SiteAdmin');
+		$this->module->includeClass('sites/warbox/WCSite_WARBOX');
 		
 		if (false === ($this->warbox = WC_Warbox::getByID(Common::getGetString('wbid'))))
 		{
@@ -82,7 +83,7 @@ final class WeChall_Warflags extends GWF_Method
 	public function validate_wf_status(Module_WeChall $m, $arg) { return in_array($arg, WC_Warflag::$STATUS) ? false : $m->lang('err_wf_status'); }
 	public function validate_wf_created_at(Module_WeChall $m, $arg) { return GWF_Validator::validateDate($m, 'wf_created_at', $arg, 8, false); }
 	public function validate_wf_login(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'wf_login', $arg, 0, 255, false); }
-	public function validate_wf_url(Module_WeChall $m, $arg) { return GWF_Validator::validateURL($m, 'wf_url', $arg, true, false); }
+	public function validate_wf_url(Module_WeChall $m, $arg) { return false; return GWF_Validator::validateURL($m, 'wf_url', $arg, true, false); }
 	public function validate_password(Module_WeChall $m, $arg)
 	{
 		if ($arg === '' && isset($_GET['edit']))
