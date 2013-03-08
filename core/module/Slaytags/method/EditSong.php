@@ -88,6 +88,11 @@ final class Slaytags_EditSong extends GWF_Method
 	{
 		$sid = $song->getID();
 		
+		if (!GWF_User::isInGroupS(GWF_Group::STAFF))
+		{
+			return GWF_HTML::err('ERR_NO_PERMISSION');
+		}
+		
 		if (false === GDO::table('Slay_SongTag')->deleteWhere("sst_sid={$sid}"))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
