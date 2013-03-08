@@ -41,7 +41,7 @@ final class Admin_GroupAdd extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
-	public function validate_groupname(Module_Admin $m, $arg) { return GWF_Validator::validateClassname($m, 'groupname', $arg, 3, 24, true); }
+	public function validate_groupname(Module_Admin $m, $arg) { return GWF_Validator::validateClassname($m, 'groupname', $arg, 1, 24, true); }
 	private function onAdd()
 	{
 		$form = $this->getForm();

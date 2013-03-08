@@ -444,6 +444,7 @@ abstract class GDO
 		$orderby = $this->getOrderBy($orderby);
 		$limit = self::getLimit($limit, $from);
 		$query = "SELECT {$columns} FROM `{$table}` t ".$join.$where.$groupby.$orderby.$limit;
+// 		echo "$query<br/>\n";
 // 		GWF_Website::addDefaultOutput("$query<br/>\n");
 		return self::$CURRENT_DB->queryRead($query);
 	}

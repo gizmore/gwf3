@@ -180,7 +180,7 @@ final class Admin_GroupEdit extends GWF_Method
 	### Validators ###
 	##################
 	public function validate_username(Module_Admin $m, $arg) { return GWF_Validator::validateUsername($m, 'username', $arg, false, $arg); }
-	public function validate_group_name(Module_Admin $m, $arg) { return false; }
+	public function validate_group_name(Module_Admin $m, $arg) { return GWF_Validator::validateClassname($m, 'groupname', $arg, 1, 24, true); }
 	public function validate_view(Module_Admin $m, $arg) { return GWF_GroupSelect::isValidViewFlag((int)$arg) ? false : $m->lang('err_group_view'); }
 	public function validate_join(Module_Admin $m, $arg) { return GWF_GroupSelect::isValidJoinFlag((int)$arg) ? false : $m->lang('err_group_join'); }
 	public function validate_lang(Module_Admin $m, $arg) { return GWF_LangSelect::validate_langid($arg, true); }
