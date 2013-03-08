@@ -103,6 +103,8 @@ final class Slaytags_Search extends GWF_Method
 			array($this->module->lang('th_artist'), 'ss_artist'),
 			array($this->module->lang('th_title'), 'ss_title'),
 			array($this->module->lang('th_duration'), 'ss_duration'),
+			array($this->l('th_bpm'), 'ss_bpm'),
+			array($this->l('th_key'), 'ss_key'),
 		);
 		if ($tag > 0)
 		{

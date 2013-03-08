@@ -23,6 +23,8 @@
 			<td colspan="2"><a href="{$s->hrefTag()}">{$s->display('ss_artist')}<br/>{$s->display('ss_title')}</a></td>
 			{* Duration *}
 			<td class="gwf_date">{$s->displayDuration()}</td>
+			<td class="ce">{$s->getVar('ss_bpm')}</td>
+			<td class="ce">{$s->displayKey()}</td>
 			{* Single tag sort *}
 			{if $singletag}<td>{$s->getVar('sst_average')|intpercent}</td>{/if}
 			{* Tag Cache *}

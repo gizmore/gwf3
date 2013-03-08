@@ -1,7 +1,7 @@
 <?php
 final class Slaytags_EditSong extends GWF_Method
 {
-	public function getUserGroups() { return array(GWF_Group::ADMIN, GWF_Group::STAFF); }
+	public function getUserGroups() { return array(GWF_Group::ADMIN, GWF_Group::STAFF, 'dj'); }
 	
 	public function execute()
 	{
@@ -9,6 +9,8 @@ final class Slaytags_EditSong extends GWF_Method
 		{
 			return $this->module->error('err_song');
 		}
+		
+		$this->module->includeClass('Slay_KeySelect');
 		
 		if (isset($_POST['edit']))
 		{
@@ -22,6 +24,10 @@ final class Slaytags_EditSong extends GWF_Method
 		
 		return $this->templateEdit($song);
 	}
+	
+	public function validate_bpm(Module_Slaytags $m, $arg) { return GWF_Validator::validateInt($m, 'bpm', $arg, 0, 255); }
+	public function validate_key(Module_Slaytags $m, $arg) { return Slay_Key::validate('key', $arg, true); }
+	
 
 	private function templateEdit(Slay_Song $song)
 	{
@@ -36,11 +42,15 @@ final class Slaytags_EditSong extends GWF_Method
 	private function formEdit(Slay_Song $song)
 	{
 		$data = array(
+			'bpm' => array(GWF_Form::INT, $song->getVar('ss_bpm'), $this->l('th_bpm')),
+			'key' => array(GWF_Form::ENUM, $song->displayKey(), $this->l('th_key'), '', Slay_Key::data()),
 			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 			'flush_tags' => array(GWF_Form::SUBMIT, $this->module->lang('btn_flush_tags')),
 		);
 		return new GWF_Form($this, $data);
 	}
+	
+// 	private function 
 	
 	private function onEdit(Slay_Song $song)
 	{
@@ -49,6 +59,11 @@ final class Slaytags_EditSong extends GWF_Method
 		{
 			return $error;
 		}
+		
+		$song->saveVars(array(
+			'ss_bpm' => $form->getVar('bpm'),
+			'ss_key' => $form->getVar('key'),
+		));
 		
 		return $this->module->message('msg_song_edit');
 	}

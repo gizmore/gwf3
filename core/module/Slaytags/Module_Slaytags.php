@@ -1,7 +1,7 @@
 <?php
 final class Module_Slaytags extends GWF_Module
 {
-	public function getVersion() { return 1.00; }
+	public function getVersion() { return 1.01; }
 	public function getDefaultPriority() { return 60; }
 	public function getDefaultAutoLoad() { return true; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/slaytags'); }

@@ -3,6 +3,22 @@ final class Slay_Song extends GDO
 {
 	private $votes = NULL;
 	
+	public static $KEYS = array(
+		'A', 'A♭',
+		'B', 'B♭',
+		'C', 'C♭', 'C♯',
+		'D', 'D♭',
+		'E', 'E♭',
+		'F', 'F♭', 'F♯',
+		'G', 'G♭', 'G♯',
+		'a', 'a♭', 'a♯',
+		'b', 'b♭',
+		'c', 'c♯',
+		'd', 'd♭', 'd♯',
+		'e', 'e♭', 'e♯',
+		'f', 'f♯',
+		'g', 'g♯',
+	);
 	const HAS_DOWNLOAD = 0x01;
 	
 	public function getClassName() { return __CLASS__; }
@@ -29,6 +45,9 @@ final class Slay_Song extends GDO
 			'ss_tag_cache' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_I),
 			'ss_r64_vote' => array(GDO::INT|GDO::TINY|GDO::INDEX, 0),
 			'ss_sid_path' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
+				
+			'ss_bpm' => array(GDO::UTINYINT, 0),
+			'ss_key' => array(GDO::ENUM, GDO::NULL, self::$KEYS),
 		
 			# JOINS
 			'tags' => array(GDO::JOIN, GDO::NULL, array('Slay_SongTag', 'sst_sid', 'ss_id')),
@@ -44,6 +63,7 @@ final class Slay_Song extends GDO
 	public function hasLyrics() { return $this->getVar('ss_lyrics') > 0; }
 	public function getTags() { return Slay_Tag::getTags($this); }
 	public function displayDuration() { return GWF_Time::humanDuration($this->getVar('ss_duration')); }
+	public function displayKey() { return $this->getVar('ss_key'); }
 	public function hrefTag() { return GWF_WEB_ROOT.'index.php?mo=Slaytags&me=Tag&stid='.$this->getID(); }
 	public function hrefEdit() { return GWF_WEB_ROOT.'index.php?mo=Slaytags&me=EditSong&stid='.$this->getID(); }
 	public function hrefLyrics() { return GWF_WEB_ROOT.'index.php?mo=Slaytags&me=AddLyrics&stid='.$this->getID(); }
