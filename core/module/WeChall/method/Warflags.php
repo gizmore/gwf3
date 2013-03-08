@@ -186,6 +186,7 @@ final class WeChall_Warflags extends GWF_Method
 			'wf_cat' => $form->getVar('wf_cat'),
 			'wf_score' => $form->getVar('wf_score'),
 			'wf_title' => $form->getVar('wf_title'),
+			'wf_url' => $form->getVar('wf_url'),
 			'wf_authors' => $form->getVar('wf_authors'),
 			'wf_status' => $form->getVar('wf_status'),
 			'wf_login' => $form->getVar('wf_login'),
@@ -215,8 +216,6 @@ final class WeChall_Warflags extends GWF_Method
 	############
 	private function formEdit()
 	{
-		$plain = $this->flag->getVar('wf_flag');
-		$enc = $this->flag->getVar('wf_flag_enc') !== NULL;
 		$data = array(
 			'wf_cat' => array(GWF_Form::ENUM, $this->flag->getVar('wf_cat'), $this->l('th_wf_cat'), '', $this->getCatEnums()),
 			'wf_score' => array(GWF_Form::INT, $this->flag->getVar('wf_score'), $this->l('th_wf_score')),
@@ -227,7 +226,7 @@ final class WeChall_Warflags extends GWF_Method
 			'wf_created_at' => array(GWF_Form::DATE, $this->flag->getVar('wf_created_at'), $this->l('th_wf_created_at'), '', 8),
 			'div' => array(GWF_Form::DIVIDER),
 			'wf_login' => array(GWF_Form::STRING, $this->flag->getVar('wf_login'), $this->l('th_wf_login')),
-			'password' => array(GWF_Form::STRING, $enc?$plain:'', $this->l('th_wf_flag')),
+			'password' => array(GWF_Form::STRING,'', $this->l('th_wf_flag')),
 			'edit' => array(GWF_Form::SUBMIT, $this->l('btn_edit_flag')),
 		);
 		return new GWF_Form($this, $data);
@@ -254,15 +253,15 @@ final class WeChall_Warflags extends GWF_Method
 		
 		$data = array(
 			'wf_cat' => $form->getVar('wf_cat'),
-			'wf_title' => $form->getVar('wf_title'),
-			'wf_login' => $form->getVar('wf_login'),
-			'wf_status' => $form->getVar('wf_status'),
 			'wf_score' => $form->getVar('wf_score'),
+			'wf_title' => $form->getVar('wf_title'),
+			'wf_url' => $form->getVar('wf_url'),
 			'wf_authors' => $form->getVar('wf_authors'),
+			'wf_status' => $form->getVar('wf_status'),
+			'wf_login' => $form->getVar('wf_login'),
 			'wf_created_at' => $form->getVar('wf_created_at'),
 		);
 		$f = $form->getVar('password');
-		$enc = isset($_POST['enc']);
 		if ($f !== '')
 		{
 			$data['wf_flag_enc'] = WC_Warflag::hashPassword($f);

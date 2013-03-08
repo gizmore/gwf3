@@ -46,7 +46,7 @@ final class WeChall_API_ChallSolvedWarbox extends GWF_Method
 		$table = GDO::table('WC_Warflags');
 		$joins = array('flag', 'solvers', 'flagsite', 'flagbox');
 		
-		if (false === ($result = $table->selectAll('user_id, wf_id, wf_solved_at, wf_solved_at, wf_attempts, 0, 0, wf_attempts, user_name, wf_title, wf_solvers, IFNULL(wf_url, wb_weburl)' , "wb_sid={$this->site->getID()} AND wf_solved_at>='{$date}'", 'wf_solved_at DESC', $joins, $amt)))
+		if (false === ($result = $table->selectAll('user_id, wf_id, wf_solved_at, wf_solved_at, wf_attempts, 0, 0, wf_attempts, user_name, wf_title, wf_solvers, IFNULL(wf_url, wb_weburl)' , "wb_sid={$this->site->getID()} AND wf_solved_at>='{$date}'", 'wf_solved_at DESC', $joins, $amt, -1, GDO::ARRAY_N)))
 		{
 			return '';
 		}

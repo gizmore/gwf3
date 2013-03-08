@@ -57,7 +57,7 @@ final class WC_Warbox extends GDO
 	
 	public function hasWarFlags()
 	{
-		return WC_Warflag::getChallCount($this) > 0;
+		return $this->getVar('wb_flags') > 0;
 	}
 	
 	public function hrefFlags()

@@ -38,7 +38,7 @@ final class WC_Warflags extends GDO
 	
 	public static function hasSolved(WC_Warflag $flag, GWF_User $user)
 	{
-		return self::table(__CLASS__)->selectVar('1', "wf_wfid={$flag->getID()} AND wf_uid={$user->getID()}") !== false;
+		return self::table(__CLASS__)->selectVar('1', "wf_wfid={$flag->getID()} AND wf_uid={$user->getID()} AND wf_solved_at IS NOT NULL") !== false;
 	}
 	
 	public static function getLastAttemptTime(GWF_User $user)

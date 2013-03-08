@@ -20,7 +20,12 @@ foreach ($tVars['flags'] as $flag)
 	$class = 'wc_chall_solved_'. ($solved ? '1' : '0');
 	echo GWF_Table::column(GWF_HTML::anchor($flag->getURL(), $flag->getTitle()), $class);
 	echo GWF_Table::column($flag->displayCat());
-	if ($solved)
+	if ($flag->isWarchall())
+	{
+		echo GWF_Table::column('');
+		echo GWF_Table::column('');
+	}
+	elseif ($solved)
 	{
 		echo GWF_Table::column('SOLVED!');
 		echo GWF_Table::column('');

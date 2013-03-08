@@ -103,6 +103,11 @@ final class WeChall_Warsolve extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
+		if (!$flag->isWarflag())
+		{
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
+		}
+		
 		if ($this->box->getID() !== $flag->getVar('wf_wbid'))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
@@ -133,7 +138,7 @@ final class WeChall_Warsolve extends GWF_Method
 		{
 			return false;
 		}
-		return 'WAIT'.$wait;
+		return 'WAIT '.$wait;
 	}
 	
 	private function onFailed(WC_Warflag $flag)
@@ -142,7 +147,7 @@ final class WeChall_Warsolve extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return 'WONG!';
+		return 'WRONG!';
 	}
 	
 	private function onSolved(WC_Warflag $flag)
