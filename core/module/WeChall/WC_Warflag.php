@@ -73,6 +73,12 @@ final class WC_Warflag extends GDO
 		return GWF_User::displayProfileLinkS($username);
 	}
 	
+	public function getLevelNum()
+	{
+		$back = Common::regex('/(\d+)/', $this->getTitle());
+		return $back < 1 ? false : (int)$back;
+	}
+	
 	public function getURL()
 	{
 		if ('' !== ($url = $this->getVar('wf_url')))

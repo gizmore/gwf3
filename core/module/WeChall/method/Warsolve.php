@@ -150,7 +150,34 @@ final class WeChall_Warsolve extends GWF_Method
 		return 'WRONG!';
 	}
 	
-	private function onSolved(WC_Warflag $flag)
+	private function onMultiSolved(WC_Warflag $flag)
+	{
+		if (false !== ($err = $this->onSingleSolved($flag)))
+		{
+			return $err;
+		}
+		
+		
+		if (false === ($this_num = $flag->getLevelNum()))
+		{
+			return false;
+		}
+		foreach (WC_Warflag::getByWarbox($this->box) as $f)
+		{
+			$f instanceof WC_Warflag;
+			if ($f->getLevelNum() < $this_num)
+			{
+				if (false !== ($err = $this->onSingleSolved($f)))
+				{
+					return $err;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	private function onSingleSolved(WC_Warflag $flag)
 	{
 		if (!WC_Warflags::insertSuccess($flag, $this->user))
 		{
@@ -158,6 +185,26 @@ final class WeChall_Warsolve extends GWF_Method
 		}
 		
 		$flag->setLastSolver($this->user);
+		
+		return false;
+	}
+	
+	private function onSolved(WC_Warflag $flag)
+	{
+		if ($this->box->isMultisolve())
+		{
+			if (false !== ($err = $this->onMultiSolved($flag)))
+			{
+				return $err;
+			}
+		}
+		else
+		{
+			if (false !== ($err = $this->onSingleSolved($flag)))
+			{
+				return $err;
+			}
+		}
 		
 		if (!$this->box->recalcPlayersAndScore())
 		{
