@@ -1,17 +1,48 @@
 
-function wcSiteQuickqump(select, mode)
+function wcSiteQuickqump(select, mode, level)
 {
 	var siteid = select.value;
 	var sitename = select.options[select.selectedIndex].text;
-	if (mode === 'detail') {
-		var url = GWF_WEB_ROOT+'site/details/'+siteid+'/'+sitename;
-	} else if (mode === 'ranking') {
-		var url = GWF_WEB_ROOT+'site/ranking/for/'+siteid+'/'+sitename;
-	} else if (mode === 'history') {
-		var url = GWF_WEB_ROOT+'site/history/'+encodeURIComponent(encodeURIComponent(sitename));
-	} else {
+	sitename = encodeURIComponent(encodeURIComponent(sitename));
+	
+	console.log('wcSiteQuickjump', siteid, mode);
+	
+	if (siteid == 0)
+	{
 		return;
 	}
+	else if (mode === 'detail')
+	{
+		if (level === 2)
+		{
+			var url = GWF_WEB_ROOT+siteid+'-levels-on-'+sitename+'.html';
+		}
+		else
+		{
+			var url = GWF_WEB_ROOT+'site/details/'+siteid+'/'+sitename;	
+		}
+	}
+	else if (mode === 'ranking')
+	{
+		var url = GWF_WEB_ROOT+'site/ranking/for/'+siteid+'/'+sitename;
+	}
+	else if (mode === 'history')
+	{
+		var url = GWF_WEB_ROOT+'site/history/'+sitename;
+	}
+	else if ( (mode === 'boxdetail') || (mode === 'boxdetails') )
+	{
+		var url = GWF_WEB_ROOT+siteid+'-levels-on-'+sitename+'.html';
+	}
+	else if (mode === 'boxranking')
+	{
+		var url = GWF_WEB_ROOT+siteid+'-players-on-'+sitename+'.html';
+	}
+	else
+	{
+		return;
+	}
+	
 	window.location = url;
 }
 
@@ -48,7 +79,6 @@ function wcStatGetOption(id, back)
 
 function wcStatsRefreshURL()
 {
-	
 	var today = new Date();
 	var today2 = sprintf('.%04d.%02d.%02d', today.getFullYear(), today.getMonth()+1, today.getDate());
 
@@ -194,7 +224,6 @@ function wcjsShowSiteDetails(img, siteid)
 		return;
 	}
 	wcjs_last_site = siteid;
-
 	
 	var username = img.alt;
 	var detail_href = GWF_WEB_ROOT+'index.php?mo=WeChall&me=SiteDetails&ajax=true&sid='+siteid+'&username='+username;
