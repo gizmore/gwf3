@@ -186,6 +186,8 @@ final class WeChall_Warsolve extends GWF_Method
 		
 		$flag->setLastSolver($this->user);
 		
+		$flag->recalcSolvers();
+		
 		return false;
 	}
 	

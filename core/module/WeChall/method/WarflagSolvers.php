@@ -35,7 +35,7 @@ final class WeChall_WarflagSolvers extends GWF_Method
 		$fid = $this->flag->getID();
 		$table = GDO::table('WC_Warflags');
 
-		$where = "wf_id={$fid}";
+		$where = "wf_id={$fid} AND wf_solved_at IS NOT NULL";
 		$orderby = 'wf_solved_at ASC';
 		$joins = array('flag', 'solvers', 'flagbox', 'flagsite');
 		$ipp = 50;

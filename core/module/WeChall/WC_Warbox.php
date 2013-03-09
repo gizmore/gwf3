@@ -5,6 +5,7 @@ final class WC_Warbox extends GDO
 	
 	const WARBOX = 0x01;
 	const MULTI_SOLVE = 0x02;
+	const RECYCLE_TOKENS = 0x04;
 	
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'wc_warbox'; }
@@ -49,7 +50,7 @@ final class WC_Warbox extends GDO
 	public function hrefEdit() { return sprintf('index.php?mo=WeChall&me=Warboxes&siteid=%s&edit=%s', $this->getSiteID(), $this->getID()); }
 	public function isWarbox() { return $this->isOptionEnabled(self::WARBOX); }
 	public function isMultisolve() { return $this->isOptionEnabled(self::MULTI_SOLVE); }
-	
+	public function doesRecycleTokens() { return $this->isOptionEnabled(self::RECYCLE_TOKENS); }
 	public function getStatus() { return $this->getVar('wb_status'); }
 	public function isUp() { return $this->getStatus() === 'up'; }
 	public function isDown() { return $this->getStatus() === 'down'; }

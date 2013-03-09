@@ -21,14 +21,19 @@ final class WC_Warflags extends GDO
 		);
 	}
 	
+	public static function getSolvecount(WC_Warflag $flag)
+	{
+		return self::table(__CLASS__)->countRows("wf_wfid={$flag->getID()} AND wf_solved_at IS NOT NULL");
+	}
+	
 	public static function getPlayercount(WC_Warbox $box)
 	{
-		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wf_wbid={$box->getID()}", '', array('flag', 'flagbox'));
+		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wf_wbid={$box->getID()} AND wf_solved_at IS NOT NULL", '', array('flag', 'flagbox'));
 	}
 	
 	public static function getPlayercountForSite(WC_Site $site)
 	{
-		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wb_sid={$site->getID()}", '', array('flag', 'flagbox', 'flagsite'));
+		return self::table(__CLASS__)->selectVar('COUNT(DISTINCT(wf_uid))', "wb_sid={$site->getID()} AND wf_solved_at IS NOT NULL", '', array('flag', 'flagbox', 'flagsite'));
 	}
 	
 	public static function getByFlagUser(WC_Warflag $flag, GWF_User $user)

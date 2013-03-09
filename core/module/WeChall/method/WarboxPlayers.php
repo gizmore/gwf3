@@ -39,7 +39,7 @@ final class WeChall_WarboxPlayers extends GWF_Method
 		$_GET['bid'] = $bid;
 		
 		$table = GDO::table('WC_Warflags');
-		$where = "wf_wbid={$bid}";
+		$where = "wf_wbid={$bid} AND wf_solved_at IS NOT NULL";
 		$orderby = 'score DESC, solvedate ASC';
 		$joins = array('flag', 'flagbox', 'solvers');
 		$ipp = 50;

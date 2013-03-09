@@ -205,7 +205,10 @@ function warscore_levelup($socket, WC_Warbox $box, GWF_User $user, $level)
 	if ($changed)
 	{
 		$box->recalcPlayersAndScore();
-		WC_WarToken::deleteWarToken($user);
+		if ($box->doesRecycleTokens())
+		{
+			WC_WarToken::deleteWarToken($user);
+		}
 		warscore_update($socket, $box, $user, $level);
 	}
 	else
@@ -244,6 +247,8 @@ function warscore_levelup_single($socket, WC_Warbox $box, GWF_User $user, $level
 	}
 	
 	$warchall->setLastSolver($user);
+	
+	$warchall->recalcSolvers();
 	
 	return true;
 }

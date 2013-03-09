@@ -101,6 +101,11 @@ final class WC_Warflag extends GDO
 		));
 	}
 	
+	public function recalcSolvers()
+	{
+		return $this->saveVar('wf_solvers', WC_Warflags::getSolvecount($this));
+	}
+	
 	public static function getByID($id)
 	{
 		return self::table(__CLASS__)->selectFirstObject('*', sprintf('wf_id=%d',$id), '', '', array('warbox', 'solver', 'site'));
