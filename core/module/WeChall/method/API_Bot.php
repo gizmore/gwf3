@@ -54,6 +54,9 @@ final class WeChall_API_Bot extends GWF_Method
 	public function showGlobal($input)
 	{
 		if (false !== ($user = GWF_User::getByName($input))) {
+			if ($user->isOptionEnabled(0x10000000)) {
+				return 'This user is not ranked!';
+			}
 			$rank = WC_RegAt::calcExactRank($user);
 		}
 		elseif (false !== ($user = WC_RegAt::getUserByGlobalRank($input))) {
@@ -106,6 +109,9 @@ final class WeChall_API_Bot extends GWF_Method
 		}
 		
 		if (false !== ($user = GWF_User::getByName($username))) {
+			if ($user->isOptionEnabled(0x10000000)) {
+				die('This user is not ranked!');
+			}
 			$rank = WC_RegAt::calcExactRank($user);
 		}
 		
@@ -171,6 +177,9 @@ final class WeChall_API_Bot extends GWF_Method
 		$siteid = $site->getID();
 		
 		if (false !== ($user = GWF_User::getByName($username))) {
+			if ($user->isOptionEnabled(0x10000000)) {
+				die('This user is not ranked!');
+			}
 			$rank = WC_RegAt::calcExactSiteRank($user, $siteid);
 		}
 		elseif (false !== ($user = WC_RegAt::getUserBySiteRank($siteid, $username))) {
@@ -249,6 +258,9 @@ final class WeChall_API_Bot extends GWF_Method
 		$siteid = $wechall->getID();
 
 		if (false !== ($user = GWF_User::getByName($input))) {
+			if ($user->isOptionEnabled(0x10000000)) {
+				die('This user is not ranked!');
+			}
 			$rank = WC_RegAt::calcExactSiteRank($user, $siteid);
 		}
 		elseif (false !== ($user = WC_RegAt::getUserBySiteRank($siteid, $input))) {
