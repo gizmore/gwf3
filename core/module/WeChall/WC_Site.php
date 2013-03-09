@@ -197,7 +197,7 @@ class WC_Site extends WC_SiteBase
 	
 	public function getLink()
 	{
-		return GWF_HTML::anchor($this->getURL(), $this->getSitename(), WC_HTML::lang('site_'.$this->getStatus()));
+		return GWF_HTML::anchor($this->getURL(), $this->getSitename(), WC_HTML::lang('site_'.$this->getStatus()), 'siteanchor');
 	}
 	
 	/**
@@ -215,6 +215,15 @@ class WC_Site extends WC_SiteBase
 		}
 		
 		return $cache[$siteid];
+	}
+	
+	/**
+	 * @param string $url
+	 * @return WC_Site
+	 */
+	public static function getByURL($url)
+	{
+		return self::table(__CLASS__)->getBy('site_url', $url, GDO::ARRAY_O, array('description', 'site_country', 'site_language'));
 	}
 	
 	/**

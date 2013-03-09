@@ -1,7 +1,4 @@
 <?php
-GWF_Website::addJavascriptOnload('wcjsLangRanking();');
-?>
-<?php
 $site = $tVars['site']; $site instanceof WC_Site;
 $logo = $site->displayLogo(42, $tLang->lang('hover_logo', array($site->displayName())));
 $link = $site->displayLink();

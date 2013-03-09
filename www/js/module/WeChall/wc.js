@@ -201,45 +201,45 @@ function wcstatgraphInit(username, username2)
 
 
 /* Lang Ranking */
-function wcjsLangRanking()
-{
-	$("td img").click(function(){
-		var src = this.src;
-		var from = src.lastIndexOf('/');
-		var to = src.lastIndexOf('?');
-		if ( (from === -1) || (to === -1) ) {
-			return;
-		}
-		var siteid = src.substring(from+1, to);
-		wcjsShowSiteDetails(this, siteid);
-	});
-}
+//function wcjsLangRanking()
+//{
+//	$("td img").click(function(){
+//		var src = this.src;
+//		var from = src.lastIndexOf('/');
+//		var to = src.lastIndexOf('?');
+//		if ( (from === -1) || (to === -1) ) {
+//			return;
+//		}
+//		var siteid = src.substring(from+1, to);
+//		wcjsShowSiteDetails(this, siteid);
+//	});
+//}
 
-var wcjs_last_site = '';
-function wcjsShowSiteDetails(img, siteid)
-{
-	if (wcjs_last_site === siteid) {
-		wcjsHideJQuery('#wcrl_slide');
-		wcjs_last_site = '';
-		return;
-	}
-	wcjs_last_site = siteid;
-	
-	var username = img.alt;
-	var detail_href = GWF_WEB_ROOT+'index.php?mo=WeChall&me=SiteDetails&ajax=true&sid='+siteid+'&username='+username;
-	var content = ajaxSync(detail_href);
-	var slide = $('#wcrl_slide');
-	slide.html(content);
-	slide.css('top', getDivPosY(img)+30);
-//	slide.css('left', getDivPosX(img));
-//	$("#wcrl_slide").css('top', getDivPosY(img)-60);
-//	$("#wcrl_slide").css('min-width', '80%');
-//	$("#wcrl_slide").css('min-height', '80%');
-//	$("#wcrl_slide").css('width', 'auto');
-//	$("#wcrl_slide").css('height', 'auto');
-	slide.hide();
-	slide.fadeIn('fast');
-}
+var wcjs_last_site = undefined;
+//function wcjsShowSiteDetails(img, siteid)
+//{
+//	if (wcjs_last_site === siteid) {
+//		wcjsHideJQuery('#wcrl_slide');
+//		wcjs_last_site = '';
+//		return;
+//	}
+//	wcjs_last_site = siteid;
+//	
+//	var username = img.alt;
+//	var detail_href = GWF_WEB_ROOT+'index.php?mo=WeChall&me=SiteDetails&ajax=true&sid='+siteid+'&username='+username;
+//	var content = ajaxSync(detail_href);
+//	var slide = $('#wcrl_slide');
+//	slide.html(content);
+//	slide.css('top', getDivPosY(img)+30);
+////	slide.css('left', getDivPosX(img));
+////	$("#wcrl_slide").css('top', getDivPosY(img)-60);
+////	$("#wcrl_slide").css('min-width', '80%');
+////	$("#wcrl_slide").css('min-height', '80%');
+////	$("#wcrl_slide").css('width', 'auto');
+////	$("#wcrl_slide").css('height', 'auto');
+//	slide.hide();
+//	slide.fadeIn('fast');
+//}
 
 function wcjsHideJQueryAll()
 {
@@ -275,6 +275,76 @@ function wcjsProfileJQuery()
 //		wcjsToggleSidebox(this);
 //	});
 
+}
+
+function wcjsSitePopupJQuery()
+{
+	$('a.siteanchor').click(wcjsClickSite);
+	$('img.wc_logo').click(wcjsClickSiteLogo);
+}
+
+function wcjsClickSiteLogo()
+{
+	console.log('wcjsClickSiteLogo');
+	
+	var img = $(this);
+	var siteid = img.attr('src').substrUntil('?').substrFrom('logo/');
+	
+	if (wcjs_last_site === undefined)
+	{
+		wcjs_last_site = siteid;
+		
+		var username = img.attr('alt');
+		var href = GWF_WEB_ROOT+"index.php?mo=WeChall&me=SiteDetails&ajax=true&sid="+siteid+'&username='+username;
+		var content = ajaxSync(href);
+		var slide = $('#wc_profile_slide');
+		slide.css('max-width', '50%');
+		slide.html(content);
+		wcjsPopupPos(slide, this);
+		
+	}
+	
+	else if (wcjs_last_site === siteid)
+	{
+		wcjs_last_site = undefined;
+		wcjsHideJQuery('#wc_profile_slide');
+	}
+	
+	else
+	{
+	}
+	
+	return false;
+}
+
+function wcjsClickSite()
+{
+	console.log('wcjsClickSite()');
+	var a = $(this);
+	var sitename = a.attr('href');
+	
+	if (sitename === undefined)
+	{
+		return true;
+	}
+	
+	if (wcjs_last_site === sitename)
+	{
+		wcjs_last_site = undefined;
+		wcjsHideJQuery('#wc_profile_slide');
+		return false;
+	}
+	
+	wcjs_last_site = sitename;
+	
+	var href = GWF_WEB_ROOT+"index.php?mo=WeChall&me=SiteDetails&ajax=true&url="+sitename;
+	var content = ajaxSync(href);
+	var slide = $('#wc_profile_slide');
+	slide.css('max-width', '50%');
+	slide.html(content);
+	wcjsPopupPos(slide, this);
+
+	return false;
 }
 
 //function wcjsToggleSidebox(box)
@@ -465,6 +535,8 @@ function wcjsAutocompleteUser(termObject, callback)
 function wcjsInit()
 {
 	setInterval(wcjsNotify, 90000);
+	wcjsProfileJQuery();
+	wcjsSitePopupJQuery();
 }
 
 function wcjsNotify()

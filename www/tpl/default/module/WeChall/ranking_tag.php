@@ -1,6 +1,4 @@
 <?php
-GWF_Website::addJavascriptOnload('wcjsLangRanking();');
-
 echo GWF_Box::box($tLang->lang('pi_tagrank', array($tVars['tag'], $tVars['tag'])), $tLang->lang('pt_tagrank', array($tVars['tag'])));
 
 WC_HTML::rankingPageButtons();

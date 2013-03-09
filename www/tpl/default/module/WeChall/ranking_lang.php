@@ -1,7 +1,4 @@
 <?php
-$script_html = 'wcjsLangRanking();';
-GWF_Website::addJavascriptOnload($script_html);
-
 echo GWF_Box::box($tLang->lang('pi_langrank', array($tVars['langname'])), $tLang->lang('pit_langrank', array($tVars['langname'])));
 
 WC_HTML::rankingPageButtons();

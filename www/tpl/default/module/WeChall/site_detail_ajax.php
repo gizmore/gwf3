@@ -1,18 +1,23 @@
-<?php $site = $tVars['site']; $site instanceof WC_Site; $is_ranked = $site->isScored(); $siteid = $site->getID(); ?>
-
 <?php
-if (!$tVars['jquery']) {
-	echo $tVars['site_quickjump'];
-}
-?>
+$site = $tVars['site']; $site instanceof WC_Site;
+$is_ranked = $site->isScored();
+$siteid = $site->getID();
+$boxes = WC_Warbox::getBoxes($site);
 
-<?php
 echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
-if ($tVars['jquery']) {
-	$onclick = "wcjsHideJQuery('#wcrl_slide'); return false;";
-	echo GWF_Button::delete('#', $tLang->lang('btn_close'), '', $onclick);
+$onclick = "wcjsHideJQuery('#wc_profile_slide'); wcjs_last_site = undefined; return false;";
+echo GWF_Button::delete('#', $tLang->lang('btn_close'), '', $onclick);
+echo GWF_Button::forward($site->getURL(), $site->getSitename());
+echo '</div></div>'.PHP_EOL;
+
+echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
+echo WC_HTML::button('btn_site_details', $site->hrefDetail());
+if (count($boxes) > 0)
+{
+	echo WC_HTML::button('btn_warboxes', $site->hrefWarboxes());
 }
-//echo WC_HTML::button($tLang->lang('btn_ranking'), $site->hrefRanking(true));
+echo WC_HTML::button('btn_ranking', $site->hrefRanking(true));
+echo WC_HTML::button('btn_site_history', $site->hrefHistory());
 echo '</div></div>'.PHP_EOL;
 ?>
 
@@ -47,46 +52,47 @@ if ($user !== false) {
 	if ($is_ranked)
 	{
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_admins'), $site->displaySiteAdmins());
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_autoup'), $site->displayAutoUpdate());
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_has_osr'), $site->displayOnSiteRank());
-		$warboxes = $tVars['boxcount'] > 0 ? $tVars['boxcount'].GWF_Button::forward($site->hrefWarboxes(), 'Show Wargames') : '0';
-// 		if ($warboxes !== '')
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_autoup'), $site->displayAutoUpdate());
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_has_osr'), $site->displayOnSiteRank());
+		if (count($boxes) > 0)
 		{
+			$warboxes = $tVars['boxcount'].GWF_Button::forward($site->hrefWarboxes(), 'Show Wargames');
 			echo WC_HTML::tableRowForm($tLang->lang('btn_warboxes'), $warboxes);
 		}
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_score'), $site->getScore());
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_basescore'), $site->getBasescore());
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_usercount'), $site->getUsercount());
+		
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_score'), $site->getScore());
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_basescore'), $site->getBasescore());
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_usercount'), $site->getUsercount());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_challcount'), $site->getChallcount());
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_linkcount'), $site->getLinkCount());
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_linkcount'), $site->getLinkCount());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_avg'), $site->displayAvg());
 	}
 
 	# Diff Votes
-	$vdif = $site->getVotesDif();
-	echo GWF_Table::rowStart().
-		'<th>'.$tLang->lang('th_site_dif').'</th>'.PHP_EOL.
-		'<td><span id="gwf_vsba_'.$vdif->getID().'">'.$vdif->displayPercent().'</span></td>'.PHP_EOL.
-		GWF_Table::rowEnd();
+// 	$vdif = $site->getVotesDif();
+// 	echo GWF_Table::rowStart().
+// 		'<th>'.$tLang->lang('th_site_dif').'</th>'.PHP_EOL.
+// 		'<td><span id="gwf_vsba_'.$vdif->getID().'">'.$vdif->displayPercent().'</span></td>'.PHP_EOL.
+// 		GWF_Table::rowEnd();
 
-	if ($tVars['can_vote'])
-	{
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_dif'), $site->getVotesDif()->displayButtons());
-	}
+// 	if ($tVars['can_vote'])
+// 	{
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_dif'), $site->getVotesDif()->displayButtons());
+// 	}
 	
-	# Fun Votes
-	$vfun = $site->getVotesFun();
-	echo GWF_Table::rowStart().
-		'<th>'.$tLang->lang('th_site_fun').'</th>'.PHP_EOL.
-		'<td><span id="gwf_vsba_'.$vfun->getID().'">'.$vfun->displayPercent().'</span></td>'.PHP_EOL.
-		GWF_Table::rowEnd();
+// 	# Fun Votes
+// 	$vfun = $site->getVotesFun();
+// 	echo GWF_Table::rowStart().
+// 		'<th>'.$tLang->lang('th_site_fun').'</th>'.PHP_EOL.
+// 		'<td><span id="gwf_vsba_'.$vfun->getID().'">'.$vfun->displayPercent().'</span></td>'.PHP_EOL.
+// 		GWF_Table::rowEnd();
 		
-	if ($tVars['can_vote'])
-	{
-		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_fun'), $site->getVotesFun()->displayButtons());
-	}
+// 	if ($tVars['can_vote'])
+// 	{
+// 		echo WC_HTML::tableRowForm($tLang->lang('th_site_vote_fun'), $site->getVotesFun()->displayButtons());
+// 	}
 
-	echo WC_HTML::tableRowForm($tLang->lang('th_site_irc'), $site->displayIRC());
+// 	echo WC_HTML::tableRowForm($tLang->lang('th_site_irc'), $site->displayIRC());
 ?>
 </table>
 

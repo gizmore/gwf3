@@ -9,23 +9,33 @@ final class WeChall_SiteDetails extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== Common::getPost('quickjump')) {
+		if (false !== Common::getPost('quickjump'))
+		{
 			return $this->onQuickJump();
 		}
 		
-		if (false === ($site = WC_Site::getByID(Common::getGet('sid')))) {
-			return $this->module->error('err_site');
-		}
-		
-		return $this->templateSiteDetail($site);
-	}
-	
-	public function templateSiteDetail(WC_Site $site)
-	{
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_RegAt.php');
 		require_once(GWF_CORE_PATH.'module/WeChall/WC_SiteAdmin.php');
 		require_once GWF_CORE_PATH.'module/WeChall/WC_SiteDescr.php';
 		
+		if (isset($_GET['url']))
+		{
+			if (false !== ($site = WC_Site::getByURL(Common::getGet('url'))))
+			{
+				return $this->templateSiteDetail($site);
+			}
+		}
+		
+		elseif (false !== ($site = WC_Site::getByID(Common::getGet('sid'))))
+		{
+			return $this->templateSiteDetail($site);
+		}
+		
+		return $this->module->error('err_site');
+	}
+	
+	public function templateSiteDetail(WC_Site $site)
+	{
 		$this->module->includeVotes();
 //		$this->module->includeForums();
 		
@@ -44,7 +54,8 @@ final class WeChall_SiteDetails extends GWF_Method
 			'jquery' => Common::getGet('ajax') !== false,
 			'can_vote' => $site->canVote(GWF_User::getStaticOrGuest()),
 		);
-		return $this->module->templatePHP('site_detail.php', $tVars);
+		$ajax = isset($_GET['ajax']) ? '_ajax' : '';
+		return $this->module->templatePHP('site_detail'.$ajax.'.php', $tVars);
 	}
 	
 	private function getLatestPlayers($time, $siteid)

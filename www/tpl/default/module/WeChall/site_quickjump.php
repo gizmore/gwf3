@@ -109,7 +109,7 @@ $which = Common::getGet('which', '0');
 echo '<div class="gwf_buttons_outer gwf_buttons">'.PHP_EOL;
 
 
-$btn_boxes = count($boxes) === 0 ? '' : WC_HTML::button('btn_warboxes', $SITE->hrefWarboxes());;
+$btn_boxes = count($boxes) === 0 ? '' : WC_HTML::button('btn_warboxes', $SITE->hrefWarboxes());
 
 switch(Common::getGetString('me'))
 {
