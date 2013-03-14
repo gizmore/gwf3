@@ -26,19 +26,19 @@ final class Forest_Lake extends SR_SearchRoom
 	
 	public function on_grab(SR_Player $player, array $args)
 	{
-		if (rand(0,3) === 3)
-		{
-			$this->onSparkleItem($player);
-			$this->partyMessage($player, 'grab2', array($player->getName()));
-			return true;
-		}
-		elseif ($player->getParty()->hasTemp('FORLAKGRB'))
+		if ($player->getParty()->hasTemp('FORLAKGRB'))
 		{
 			$this->partyMessage($player, 'grab_twice');
 			return true;
 		}
+		elseif (rand(0,3) === 3)
+		{
+			$player->getParty()->setTemp('FORLAKGRB', 1);
+			$this->onSparkleItem($player);
+			$this->partyMessage($player, 'grab2', array($player->getName()));
+			return true;
+		}
 		
-		$player->getParty()->setTemp('FORLAKGRB', 1);
 		$this->partyMessage($player, 'grab1', array($player->getName()));
 		$numSirenes = self::getNumSirenes($player);
 		$enemies = array();
