@@ -4,7 +4,7 @@ final class Item_Uzi extends SR_SMG
 	public function getAttackTime() { return 28; }
 	public function getAmmoName() { return 'Ammo_5mm'; }
 	public function getBulletsMax() { return 60; }
-	public function getBulletsPerShot() { return 4; }
+	public function getBulletsPerShot() { return 12; }
 	public function getReloadTime() { return 70; }
 	public function getItemLevel() { return 16; }
 	public function getItemWeight() { return 1750; }
