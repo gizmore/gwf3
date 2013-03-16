@@ -99,6 +99,9 @@ class GWF_Form
 	{
 		switch($this->form_data[$key][0])
 		{
+			case self::VALIDATOR:
+				return false;
+				
 			case self::FILE: case self::FILE_OPT:
 				return $this->getFile($key, $default);
 	
@@ -126,6 +129,9 @@ class GWF_Form
 	{
 		switch($this->form_data[$key][0])
 		{
+			case self::VALIDATOR:
+				return false;
+				
 			case self::FILE: case self::FILE_OPT:
 				return $default;
 	

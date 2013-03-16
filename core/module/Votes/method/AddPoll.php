@@ -169,7 +169,7 @@ final class Votes_AddPoll extends GWF_Method
 		if ($err === '') {
 			return false;
 		}
-		return $this->module->lang('err_options', array( substr($err, 2)), $min, $max);
+		return $this->module->lang('err_options', array(substr($err, 2), $min, $max));
 	}
 	
 	public function validate_view(Module_Votes $m, $arg) { return GWF_VoteMulti::isValidViewFlag(($arg)) ? false : $m->lang('err_multiview'); }
@@ -179,12 +179,14 @@ final class Votes_AddPoll extends GWF_Method
 	private function onAddPoll()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->module))) {
+		if (false !== ($errors = $form->validate($this->module)))
+		{
 			return $errors.$this->templateAddPoll();
 		}
 		
 		$opts = Common::getPostArray('opt', array());
-		if (count($opts) === 0) {
+		if (count($opts) === 0)
+		{
 			return $this->module->error('err_no_options').$this->templateAddPoll();
 		}
 		
@@ -198,7 +200,8 @@ final class Votes_AddPoll extends GWF_Method
 		$guest_votes = isset($_POST['guests']);
 		$is_public = isset($_POST['public']);
 		$result = (int)$form->getVar('view');
-		if ($is_public && !$this->module->mayAddGlobalPoll($user)) {
+		if ($is_public && !$this->module->mayAddGlobalPoll($user))
+		{
 			return $this->module->error('err_global_poll').$this->templateAddPoll();
 		}
 		
