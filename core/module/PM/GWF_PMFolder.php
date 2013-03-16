@@ -17,6 +17,7 @@ final class GWF_PMFolder extends GDO
 		);
 	}
 	public function getID() { return $this->getVar('pmf_id'); }
+	public function isRealBox() { return $this->getID() > 2; }
 	
 	######################
 	### Static Getters ###
