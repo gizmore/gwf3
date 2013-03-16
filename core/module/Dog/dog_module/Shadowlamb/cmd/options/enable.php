@@ -11,7 +11,7 @@ class Shadowcmd_enable extends Shadowcmd
 			return false;
 		}
 		
-		switch ($args[0])
+		switch (strtolower($args[0]))
 		{
 			case 'help': return self::onEnable($player, SR_Player::HELP, true, $player->lang('opt_help')); break;
 			case 'notice': return self::onToggleMessageType($player, SR_Player::NOTICE); break;
