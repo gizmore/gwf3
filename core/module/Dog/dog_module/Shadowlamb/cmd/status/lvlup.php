@@ -8,14 +8,14 @@ final class Shadowcmd_lvlup extends Shadowcmd
 	const KARMA_COST_SPELL = 2;
 	
 	# Max values
-	const MAX_VAL_SKILL = 24;
-	const MAX_VAL_SKILL_RUNNER = 48;
-	const MAX_VAL_SPELL = 12;
-	const MAX_VAL_SPELL_RUNNER = 36;
+	const MAX_VAL_SKILL = 36;
+	const MAX_VAL_SKILL_RUNNER = 60;
+	const MAX_VAL_SPELL = 24;
+	const MAX_VAL_SPELL_RUNNER = 40;
 	const MAX_VAL_KNOWLEDGE = 12;
 	const MAX_VAL_KNOWLEDGE_RUNNER = 24;
-	const MAX_VAL_ATTRIBUTE = 12;
-	const MAX_VAL_ATTRIBUTE_RUNNER = 18;
+	const MAX_VAL_ATTRIBUTE = 16;
+	const MAX_VAL_ATTRIBUTE_RUNNER = 20;
 	
 	public static function execute(SR_Player $player, array $args)
 	{
