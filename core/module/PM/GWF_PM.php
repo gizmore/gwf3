@@ -370,11 +370,11 @@ final class GWF_PM extends GDO # implements GDO_Searchable
 		if (false !== ($other = $this->getOtherPM()))
 		{
 			$other->saveOption(self::OTHER_DELETED, $deleted);
-			$folder = $other->getFolder($other->getOwner());
-			if ($folder->isRealBox())
-			{
-				$folder->increase('pmf_count', $deleted?-1:1);
-			}
+// 			$folder = $other->getFolder($other->getOwner());
+// 			if ($folder->isRealBox())
+// 			{
+// 				$folder->increase('pmf_count', $deleted?-1:1);
+// 			}
 		}
 //		$other->getFolder($user)->increase('pmf_count', $deleted?-1:1);
 //		$$other->markRead($user, true);
