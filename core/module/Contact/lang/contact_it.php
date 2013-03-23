@@ -16,10 +16,10 @@ $lang = array(
 
 	'mail_subj' => GWF_SITENAME.': Nuovo messaggio di contatto',
 	'mail_body' => 
-		'È stata inviata una nuova E-Mail tramite il form di contatto.<br/>'.
-		'Invia: %s<br/>'.
-		'Messaggio:<br/>'.
-		'%s<br/>'.
+		'È stata inviata una nuova E-Mail tramite il form di contatto.<br/>'.PHP_EOL.
+		'Invia: %s<br/>'.PHP_EOL.
+		'Messaggio:<br/>'.PHP_EOL.
+		'%s<br/>'.PHP_EOL.
 		'',
 
 

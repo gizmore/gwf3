@@ -16,10 +16,10 @@ $lang = array(
 
 	'mail_subj' => GWF_SITENAME.': Nuevo contacto',
 	'mail_body' => 
-		'Un nuevo Email ha sido enviado por el formulario de contacto..<br/>'.
-		'De: %s<br/>'.
-		'Mensaje:<br/>'.
-		'%s<br/>'.
+		'Un nuevo Email ha sido enviado por el formulario de contacto..<br/>'.PHP_EOL.
+		'De: %s<br/>'.PHP_EOL.
+		'Mensaje:<br/>'.PHP_EOL.
+		'%s<br/>'.PHP_EOL.
 		'',
 
 	'info_skype' => '<br/>También puede contactar con nosotros a través de Skype : %s.',

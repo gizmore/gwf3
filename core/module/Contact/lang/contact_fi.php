@@ -16,10 +16,10 @@ $lang = array(
 
 	'mail_subj' => GWF_SITENAME.': uusi yhteys EMail',
 	'mail_body' => 
-		'Uusi sähköposti on lähettänyt yhteydenottolomakkeella.<br/>'.
-		'From: %s<br/>'.
-		'Message:<br/>'.
-		'%s<br/>'.
+		'Uusi sähköposti on lähettänyt yhteydenottolomakkeella.<br/>'.PHP_EOL.
+		'From: %s<br/>'.PHP_EOL.
+		'Message:<br/>'.PHP_EOL.
+		'%s<br/>'.PHP_EOL.
 		'',
 
 	'info_skype' => '<br/>Voit myös ottaa meihin yhteyttä skypellä: %s.',

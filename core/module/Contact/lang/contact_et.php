@@ -16,10 +16,10 @@ $lang = array(
 
 	'mail_subj' => GWF_SITENAME.': Uus kiri',
 	'mail_body' => 
-		'Uus e-mail saadetud.<br/>'.
-		'Kellelt: %s<br/>'.
-		'Sõnum:<br/>'.
-		'%s<br/>'.
+		'Uus e-mail saadetud.<br/>'.PHP_EOL.
+		'Kellelt: %s<br/>'.PHP_EOL.
+		'Sõnum:<br/>'.PHP_EOL.
+		'%s<br/>'.PHP_EOL.
 		'',
 
 	'info_skype' => '<br/>Sa võid meiega ka ühendust võtta läbi Skype’i: %s.',
