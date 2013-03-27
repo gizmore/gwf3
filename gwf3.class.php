@@ -344,6 +344,7 @@ class GWF3
 	 */
 	public static function onStartSession($blocking=true)
 	{
+		$db = gdo_db();
 		if (!isset($_COOKIE[GWF_SESS_NAME]))
 		{
 			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/', GWF_Session::getDomain());
@@ -351,7 +352,6 @@ class GWF3
 		}
 		else
 		{
-			$db = gdo_db();
 			if (false === GWF_Session::start($blocking))
 			{
 				self::logDie('GWF not installed?!');
