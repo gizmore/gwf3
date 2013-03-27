@@ -20,11 +20,13 @@ final class Forum_Move extends GWF_Method
 	
 	private function move($dir=-1, $bid)
 	{
-		if (false === ($board = GWF_ForumBoard::getBoard($bid))) {
+		if (false === ($board = GWF_ForumBoard::getBoard($bid)))
+		{
 			return $this->module->error('err_board');
 		}
 		
-		if ($board->isRoot()) {
+		if ($board->isRoot())
+		{
 			return GWF_HTML::err('ERR_PARAMETER', array(__FILE__, __LINE__, 'board_is_root'));
 		}
 		
@@ -34,17 +36,18 @@ final class Forum_Move extends GWF_Method
 		
 		$cmp = $dir === 1 ? '>' : '<';
 		$orderby = $dir === 1 ? 'board_pos ASC' : 'board_pos DESC';
-		if (false === ($swap = $board->selectFirst('1', "board_pid=$pid AND board_pos$cmp$myPos", $orderby))) {
+		if (false === ($swapPos = $board->selectVar('board_pos', "board_pid=$pid AND board_pos$cmp$myPos", $orderby)))
+		{
 			return $this->module->requestMethodB('Forum');
 		}
 		
-		$swapPos = $swap->getVar('board_pos');
-		
-		if (false === ($board->saveVar('board_pos', $swapPos))) {
+		if (false === ($board->saveVar('board_pos', $swapPos)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
-		if (false === ($swap->saveVar('board_pos', $myPos))) {
+		if (false === ($swap->saveVar('board_pos', $myPos)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 		}
 		
