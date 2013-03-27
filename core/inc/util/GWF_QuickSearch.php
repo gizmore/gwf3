@@ -240,17 +240,17 @@ final class GWF_QuickSearch
 			case '(':
 				return array(self::SEARCH_BRACKET_OPEN, $txt);
 	
-			case 'not':
-				return array(self::SEARCH_NOT, strtoupper($txt));
+// 			case 'not':
+// 				return array(self::SEARCH_NOT, strtoupper($txt));
 	
-			case 'near':
-				return array(self::SEARCH_NEAR, strtoupper($txt));
+// 			case 'near':
+// 				return array(self::SEARCH_NEAR, strtoupper($txt));
 	
-			case 'and':
-				return array(self::SEARCH_AND, strtoupper($txt));
+// 			case 'and':
+// 				return array(self::SEARCH_AND, strtoupper($txt));
 	
-			case 'or':
-				return array(self::SEARCH_OR, strtoupper($txt));
+// 			case 'or':
+// 				return array(self::SEARCH_OR, strtoupper($txt));
 	
 			default:
 				return array(self::SEARCH_TERM, $txt);
