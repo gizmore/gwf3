@@ -129,7 +129,7 @@ class GWF3
 			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
 			
-		$db = gdo_db();
+// 		$db = gdo_db();
 		
 		if (false === $config['no_session'])
 		{
@@ -190,13 +190,19 @@ class GWF3
 		{
 			$this->onSessionCommit(self::getConfig('store_last_url'));
 		}
+		
+		if (true === self::$MODULE->isEnabled())
+		{
+			$db = gdo_db();
+			GWF_CachedCounter::persist();
+			$db->transactionEnd();
+		}
 
 		# Flush logfiles
-// 		if (true === self::getConfig('do_logging'))
-// 		{
+		if (true === self::getConfig('do_logging'))
+		{
 			GWF_Log::flush();
-			GWF_CachedCounter::persist();
-// 		}
+		}
 	}
 		
 	/**
@@ -405,7 +411,6 @@ class GWF3
 			$db = gdo_db();
 			$db->transactionStart();
 			self::$page = self::$MODULE->execute($_GET['me']);
-			$db->transactionEnd();
 			if (true === isset($_GET['ajax']))
 			{
 				self::$page = GWF_Website::getDefaultOutput().self::$page;
