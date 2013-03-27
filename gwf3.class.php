@@ -109,24 +109,24 @@ class GWF3
 	 */
 	public function init()
 	{
+		$config = &self::$CONFIG;
+		
 		if (true === $config['start_debug'])
 		{
 			GWF_Debug::enableErrorHandler();
 			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
 		}
 		
+		if (true === $config['kick_banned_ip'])
+		{
+			$this->onKickBannedIP();
+		}
+		
 		if (true === defined('GWF_WEBSITE_DOWN'))
 		{
 			$this->setConfig('load_module', false);
 			$this->setConfig('autoload_modules', false);
-			# log_request ?
-		}
-
-		$config = &self::$CONFIG;
-
-		if (true === $config['kick_banned_ip'])
-		{
-			$this->onKickBannedIP();
+			$this->setConfig('no_session', true);
 		}
 
 // 		$db = gdo_db();
