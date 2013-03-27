@@ -1,0 +1,98 @@
+input, textarea, select, option {
+	color: #000000;
+    /*background-color: #FFFFFF;*/
+    background-color: #99acbf;
+}
+
+div.gwf_table  input
+{
+	width: 450px;
+}
+
+#wc_solutionbox input { width: 450px; } /* thx space */
+
+input[name=username] {
+	/*width: 600px; */
+}
+
+.gwf_button span
+{
+	color: #5B5B8D!important;
+}
+
+.gwf_button {
+	background-image: none!important;
+	background: transparent none!important;
+}
+
+#wc_toplogin input {
+	width: 130px;
+}
+wc_chall_table, .fl, .fl_oa,
+.gwf_table /* for pm */, .gwf_pm_folders, .gwf_pms, .gwf_table table, #page table
+{
+    width:99%;
+}
+
+table tr > td {
+    text-align: left!important;
+}
+
+.gwf_post
+{
+   /* height: 300px;*/
+    width: 100%!important;
+    border: 1px solid #444477;
+}
+
+.gwf_post_uinfo, .gwf_post_body
+{
+   /* float:left!important;*/
+  
+    border: none!important;
+/*    overflow: auto!important;*/
+
+}
+
+.gwf_table {
+	margin: 5px 5px;
+}
+
+/*  bug... overflow... nnicht im übergeordnetem div bereich
+.gwf_post_uinfo
+{
+max-width: 20%;
+}
+.gwf_post_body
+{
+max-width:79%;
+}
+* 
+* 
+* /* fbest*/
+h2 a, h2 a span {
+	color: #ffffff!important; /*#294666;*/ /* space */
+}
+
+#wc_menu {
+	background-image: url(http://florianbest.de/wcc/template/wc4/img/topmenu_shade.gif) !important;
+	background-color: #2b4a6b!important;
+	border-bottom: 1px solid #55789b!important; /*space*/
+}
+
+#wc_menu a {
+	color: #fff!important/*#0A1F33*/;
+	text-decoration:none!important; /*space*/
+}
+
+.gwf_newsbox_item, .box, .gwf_tags_outer, table, div#page > p {
+	border: 1px solid #91a8c0 /*#AFBECD*/;
+}
+
+thead, th[colspan="3"], th[colspan="4"], th[colspan="5"], .gwf_form_head, 
+h1, h2,
+.gwf_newsbox_title,.box_t {
+	background-image: url(http://florianbest.de/wcc/template/wc4/img/title_shade.gif)!important;
+	background-color: #142b42!important;
+}
+
