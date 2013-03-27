@@ -24,7 +24,14 @@ function wcSiteQuickqump(select, mode, level)
 	}
 	else if (mode === 'ranking')
 	{
-		var url = GWF_WEB_ROOT+'site/ranking/for/'+siteid+'/'+sitename;
+		if (level === 2)
+		{
+			var url = GWF_WEB_ROOT+siteid+'-players-on-'+sitename+'.html';
+		}
+		else
+		{
+			var url = GWF_WEB_ROOT+'site/ranking/for/'+siteid+'/'+sitename;
+		}
 	}
 	else if (mode === 'history')
 	{
