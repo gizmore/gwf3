@@ -321,7 +321,7 @@ while(true)
 		{
 			gc_collect_cycles();
 		}
-// 		pcntl_wait($status);
+		pcntl_wait($status, WNOHANG);
 	}
 	else # Child
 	{
