@@ -33,6 +33,9 @@ final class GWF_Session extends GDO
 			'user' => array(GDO::JOIN, 0, array('GWF_User', 'sess_user', 'user_id')),
 		);
 	}
+	
+ 	public function isOnline() { return $this->getVar('sess_time') > (time() - GWF_ONLINE_TIMEOUT); }
+	
 	public static function gdoDefine($flags=0) { return array(GDO::TOKEN|$flags, GDO::NOT_NULL, self::SESS_ENTROPY); }
 
 	/**
@@ -76,6 +79,7 @@ final class GWF_Session extends GDO
 			'sess_time' => time(),
 			'sess_ip' => NULL,
 			'sess_lasturl' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : GWF_WEB_ROOT,
+			'sessioncount' => 1,
 		));
 	}
 	
@@ -374,9 +378,16 @@ final class GWF_Session extends GDO
 	
 	public static function getOnlineSessions()
 	{
+// 		var_dump('getSess', self::$SESSION);
 		$cut = time() - GWF_ONLINE_TIMEOUT;
-		$sid = self::$SESSION->getSessID();
-		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*', "sess_time>{$cut} AND sess_sid!='{$sid}'"));
+		$sid = self::$SESSION->getSessSID();
+// 		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*, COUNT(*) as num_online', "sess_time>{$cut} AND sess_sid!='{$sid}'", 'user_name ASC', -1, -1, 'sess_user'));
+		$sessions = self::table(__CLASS__)->selectObjects('*, COUNT(1) as sessioncount', "sess_time>{$cut} OR sess_id={$sid}", 'user_name ASC', -1, -1, 'sess_user');
+		if (!self::haveCookies()) # || !self::$SESSION->isOnline())
+		{
+			$sessions = array_merge(array(self::$SESSION), $sessions);
+		}
+		return $sessions;
 	}
 }
 ?>
