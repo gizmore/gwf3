@@ -14,6 +14,7 @@ class WC_Site extends WC_SiteBase
 	const NO_URLENCODE = 0x10;
 	const NO_V1_SCRIPTS = 0x20;
 	const LINK_CASE_S = 0x40;
+	const LINEAR = 0x80;
 	
 	# Site Status
 	const UP = 'up'; # Site is scored, up and running.
@@ -116,6 +117,7 @@ class WC_Site extends WC_SiteBase
 	public function getID() { return $this->getVar('site_id'); }
 	public function isNoV1() { return $this->isOptionEnabled(self::NO_V1_SCRIPTS); }
 	public function isCaseS() { return $this->isOptionEnabled(self::LINK_CASE_S); }
+	public function isLinear() { return $this->isOptionEnabled(self::LINEAR); }
 // 	public function isWarBox() { return $this->isOptionEnabled(self::IS_WARBOX); }
 // 	public function getWarHost() { return $this->getVar('site_warhost'); } # Warbox host. Can override
 // 	public function getWarIP() { return $this->getWarIPCached(); } # Warbox IP
@@ -1007,12 +1009,6 @@ class WC_Site extends WC_SiteBase
 		
 		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
 		
-		if (WECHALL_DEBUG_LINKING)
-		{
-			var_dump('SECRET URL:');
-			var_dump($url);
-		}
-		
 		if ($this->isNoV1())
 		{
 			// score, rank, challssolved, maxscore, usercount, challcount
@@ -1020,6 +1016,11 @@ class WC_Site extends WC_SiteBase
 		}
 		else
 		{
+			if (WECHALL_DEBUG_LINKING)
+			{
+				var_dump('SECRET URL:');
+				var_dump($url);
+			}
 			$stats = $site->parseStats($url);
 		}
 		
@@ -1145,10 +1146,12 @@ class WC_Site extends WC_SiteBase
 		}
 
 		require_once 'WC_SiteMaster.php';
-		if ($solved >= 1.0) {
+		if ($solved >= 1.0)
+		{
 			WC_SiteMaster::markSiteMaster($user->getID(), $this->getID());
 		}
-		elseif ($old_solved >= 1.0) {
+		elseif ($old_solved >= 1.0)
+		{
 			WC_SiteMaster::unmarkSiteMaster($user->getID(), $this->getID(), $solved);
 		}
 		
@@ -1157,7 +1160,8 @@ class WC_Site extends WC_SiteBase
 	
 	private function getUserHistType($old_score, $new_score, $onlink)
 	{
-		if ($onlink === true) {
+		if ($onlink === true)
+		{
 			return 'link';
 		}
 		return $new_score > $old_score ? 'gain' : 'lost';
@@ -1173,35 +1177,42 @@ class WC_Site extends WC_SiteBase
 	{
 		$sitename = $this->getVar('site_name');
 		$maxscore = $this->getOnsiteScore();
-		if ($onlink && $new_score==0) {
+		
+		if ($onlink && $new_score==0)
+		{
 			return sprintf('linked an account to %s.', $sitename);
 		}
-		elseif ($onlink) {
+		elseif ($onlink)
+		{
 			$percent = $new_score / $maxscore * 100;
 			return sprintf('linked an account to %s with %.02f%% solved (+%d points).', $sitename, $percent, $scoregain);
 		}
-		else {
+		else
+		{
 			$gain = $new_score - $old_score;
 			$dir = $gain > 0 ? 'gained' : 'lost';
 			$percent = $gain / $maxscore * 100;
 			return sprintf('%s %.02f%% (%d points) on %s.', $dir, $percent, $scoregain, $sitename);
 		}
-	}	
+	}
+
 	/**
 	 * Recalculate and save the average solved.
 	 * @return unknown_type
 	 */
 	private function recalcAverage()
 	{
-		if (0 >= ($max = $this->getVar('site_maxscore'))) {
+		if (0 >= ($max = $this->getVar('site_maxscore')))
+		{
 			$avg = 0;
 		}
-		else {
+		else
+		{
 			$sid = $this->getVar('site_id');
 			$avg = GDO::table('WC_RegAt')->selectVar('AVG(regat_onsitescore)', "regat_sid=$sid AND regat_onsitescore>0");
 			$avg /= $max;
 		}
-		
+
 		return $this->saveVar('site_avg', $avg);
 	}
 	
@@ -1211,35 +1222,50 @@ class WC_Site extends WC_SiteBase
 	 */
 	private function recalcScore()
 	{
-		$basescore = $this->getBasescore();
-		$average = $this->getAverage();
-		$challcnt = $this->getChallcount();
-		$onsitescore = $this->getOnsiteScore();
+		if ($this->isLinear())
+		{
+			$wc = Module_WeChall::instance();
+			$wc->includeClass('WC_Warbox');
+			$wc->includeClass('WC_Warflag');
+			$basescore = WC_Warflag::getTotalscoreForSite($this);
+			if ($this->isNoV1())
+			{
+// 				WC_RegAt::calcTotalscores()
+			}
+		}
 		
-		if ($onsitescore === 0) { $onsitescore = 0.0000001; }
-		
-		$spc = $this->getVar('site_spc'); #Module_WeChall::instance()->cfgScorePerChall();
-		
-		$basescore += $spc * $challcnt;
-		
-		$basescore += $basescore - $average * $basescore;
-		
-		$basescore = intval(round($basescore));
+		else
+		{
+			$basescore = $this->getBasescore();
+			$average = $this->getAverage();
+			$challcnt = $this->getChallcount();
+			$onsitescore = $this->getOnsiteScore();
+			
+			if ($onsitescore === 0)
+			{
+				$onsitescore = 0.0000001;
+			}
+			
+			$spc = $this->getVar('site_spc');
+			
+			$basescore += $spc * $challcnt;
+			
+			$basescore += $basescore - $average * $basescore;
+			
+			$basescore = intval(round($basescore));
+		}
 		
 		if ($basescore !== $this->getVar('site_score'))
 		{
 			require_once 'WC_HistorySite.php';
-			if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $this->getUsercount(), $this->getChallcount())) {
+			if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $this->getUsercount(), $this->getChallcount()))
+			{
 				echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 				return false;
 			}
 			return $this->saveVar('site_score', $basescore);
 		}
 		return true;
-		
-//		$score = ($spc * $challcnt) + $basescore + ($basescore - (($average / $onsitescore) * $basescore));
-		
-//		return $this->saveVar('site_score', ceil($score));
 	}
 	
 	public function onLinkUser(GWF_User $user)
@@ -1260,7 +1286,8 @@ class WC_Site extends WC_SiteBase
 	 */
 	public function calcPercent(WC_Regat $regat)
 	{
-		if ('0' === ($maxscore = $this->getOnsiteScore())) {
+		if ('0' === ($maxscore = $this->getOnsiteScore()))
+		{
 			return 0;
 		}
 		return $regat->getOnsiteScore() / $maxscore;
@@ -1283,6 +1310,12 @@ class WC_Site extends WC_SiteBase
 		if (!defined('WECHALL_CAESUM_PATCH'))
 		{
 			$solved = $solved * $solved;
+		}
+		
+		# Strictly Linear CTF
+		elseif ($this->isLinear())
+		{
+			return $regat->getOnsiteScore();
 		}
 		
 		# Caesum Patch

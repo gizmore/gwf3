@@ -27,7 +27,7 @@ final class WC_HistorySite extends GDO
 		$entry = new self(array(
 			'sitehist_sid' => $siteid,
 			'sitehist_date' => time(), #GWF_Time::getDate(GWF_Date::LEN_SECOND),
-			'sitehist_score' => $score,
+			'sitehist_score' => $score, # === NULL ? 0 : $score,
 			'sitehist_usercount' => $usercount,
 			'sitehist_challcount' => $challcount,
 			'sitehist_comment' => $comment,

@@ -92,6 +92,17 @@ final class WeChall_Admin extends GWF_Method
 		WC_Site::recalcAllSites();
 		WC_RegAt::calcTotalscores();
 		
+		$wc = Module_WeChall::instance();
+		$wc->includeClass('WC_Warflag');
+		$wc->includeClass('WC_Warflags');
+		
+		foreach (WC_Warbox::getAllBoxes() as $box)
+		{
+			$box instanceof WC_Warbox;
+			$box->recalcPlayersAndScore();
+			$box->recalcChallcounts();
+		}
+		
 		return $this->templateAdmin();
 	}
 

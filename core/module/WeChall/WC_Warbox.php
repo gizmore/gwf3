@@ -17,9 +17,9 @@ final class WC_Warbox extends GDO
 			'wb_sid' => array(GDO::UINT, GDO::NOT_NULL),
 
 			'wb_name' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I|GDO::UNIQUE, '', 31),
-			'wb_challs' => array(GDO::MEDIUMINT, -1), # Sum of
-			'wb_levels' => array(GDO::MEDIUMINT, -1), # ssh and
-			'wb_flags' => array(GDO::MEDIUMINT, -1),  # flags
+			'wb_challs' => array(GDO::MEDIUMINT, 0), # Sum of
+			'wb_levels' => array(GDO::MEDIUMINT, 0), # ssh and
+			'wb_flags' => array(GDO::MEDIUMINT, 0),  # flags
 			'wb_players' => array(GDO::UINT, 0),
 			'wb_totalscore' => array(GDO::UINT, 0),
 			'wb_port' => array(GDO::UMEDIUMINT, 113),
@@ -126,6 +126,17 @@ final class WC_Warbox extends GDO
 	public function recalcPlayers()
 	{
 		return $this->saveVar('wb_players', WC_Warflags::getPlayercount($this));
+	}
+	
+	public function recalcChallcounts()
+	{
+		$boxid = $this->getID();
+		$flags = GDO::table('WC_Warflag');
+		return $this->saveVars(array(
+			'wb_challs' => $flags->selectVar('COUNT(*)', "wf_wbid={$boxid}"),
+			'wb_levels' => $flags->selectVar('COUNT(*)', "wf_wbid={$boxid} AND wf_options&2"),
+			'wb_flags' => $flags->selectVar('COUNT(*)', "wf_wbid={$boxid} AND wf_options&1"),
+		));
 	}
 	
 	public function parseFlagStats(GWF_User $user, &$stats)

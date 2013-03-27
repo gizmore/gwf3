@@ -116,14 +116,50 @@ final class WC_HTML
 		return '';
 	}
 	
-	private static function displayHeaderLogin(Module_WeChall $module)
+	public static function displayHeaderLogin()
+	{
+		if ( (GWF_Session::isLoggedIn()) ) #|| (!GWF_Session::haveCookies()) )
+		{
+			return '';
+		}
+		
+		$module = Module_WeChall::instance();
+		
+		$formhash = '_username_password_bind_ip';
+		$formhash = GWF_Password::getToken($formhash);
+		$username = $module->lang('th_user_name');
+		$password = $module->lang('th_password');
+		$bind_ip = $module->lang('th_bind_ip');
+		$register = $module->lang('menu_register');
+		$forgot = $module->lang('btn_forgot_pw');
+		$login = $module->lang('btn_login');
+		
+		return
+		'<div id="header_login" class="wc_head_bigbox">'.PHP_EOL.
+		'<div class="wc_head_box">'.PHP_EOL.
+		'<form action="'.GWF_WEB_ROOT.'login" method="post" id="wc_toplogin">'.PHP_EOL.
+		#'<div>'.GWF_CSRF::hiddenForm($formhash).'</div>'.PHP_EOL.
+		'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_user.gif" title="'.$username.'" alt="'.$username.':" />&nbsp;<input type="text" name="username" value="" /></div>'.PHP_EOL.
+		'<div><img src="'.GWF_WEB_ROOT.'tpl/wc4/img/icon_pass.gif" title="'.$password.'" alt="'.$password.':" />&nbsp;<input type="password" name="password" value="" /></div>'.PHP_EOL.
+		'<div class="le">'.$bind_ip.'&nbsp;<input type="checkbox" name="bind_ip" checked="checked" /></div>'.PHP_EOL.
+		'<div class="le">'.
+			'<input type="submit" name="login" value="'.$login.'" />'.
+// 			'<a href="'.GWF_WEB_ROOT.'register">'.$register.'</a>'.
+		'</div>'.PHP_EOL.
+		'<div><a href="'.GWF_WEB_ROOT.'recovery">'.$forgot.'</a></div>'.PHP_EOL.
+		'</form>'.PHP_EOL.
+		'</div></div>'.PHP_EOL;
+		
+	}
+	
+	public static function displayHeaderLoginBROKEN(Module_WeChall $module)
 	{
 		if ( (GWF_User::isLoggedIn()) || (!GWF_Session::haveCookies()) )
 		{
 			return '';
 		}
 		
-		if (false === ($mod_login = GWF_Module::getModule('Login')))
+		if (false === ($mod_login = GWF_Module::loadModuleDB('Login', false, true)))
 		{
 			return '';
 		}
@@ -155,7 +191,7 @@ final class WC_HTML
 	 * @param unknown_type $amount
 	 * @return unknown_type
 	 */
-	private static function displayHeaderSites(Module_WeChall $module, $amount=8)
+	public static function displayHeaderSites(Module_WeChall $module, $amount=8)
 	{
 		$sites = WC_Site::getActiveSites();
 		$count = count($sites);
@@ -196,7 +232,7 @@ final class WC_HTML
 //		return '<div><span class="wc_head_title">'.$module->lang('head_sites').'</span><span>'.substr($back, 0).'</span></div>';
 	}
 
-	private static function displayHeaderUsers(Module_WeChall $module, $amount=8)
+	public static function displayHeaderUsers(Module_WeChall $module, $amount=8)
 	{
 		$users = GDO::table('GWF_User')->selectObjects('*', "user_level>0", 'user_regdate DESC', $amount, 0);
 		$count = count($users);
@@ -247,24 +283,20 @@ final class WC_HTML
 //		
 //	}
 	
-
-	private static function displayHeaderOnline(Module_WeChall $module, $max=20)
+	public static function displayHeaderOnline(Module_WeChall $module, $max=20)
 	{
 		$sessions = GWF_Session::getOnlineSessions();
 		$back = '';
-		$back = '';
-// 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
-		$back .= '<div class="wc_head_bigbox" style="float:none;">';
-		$back .= '<div class="wc_head_title"><a href="'.GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1">'.$module->lang('head_online', array(count($sessions))).'</a></div>';
-		$back .= '<div class="wc_head_online">';
-
 		$text = '';
 		$more = '';
-		$i = 0;
+		$names = 0;
+		$online = 0;
 		foreach ($sessions as $sess)
 		{
 			$sess instanceof GWF_Session;
-			if (NULL !== ($user = $sess->getVar('sess_user', false)))
+			$count = $sess->getVar('sessioncount');
+			$online += $count;
+			if (NULL !== ($user = $sess->getVar('sess_user')))
 			{
 				if (!$user instanceof GWF_User)
 				{
@@ -274,16 +306,25 @@ final class WC_HTML
 				{
 					continue;
 				}
-				$i++;
-				if ($i <= $max) {
-					$text .= sprintf(', <a href="%s" title="%s">%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername());
+				$names++;
+				if ($names <= $max)
+				{
+					$multi = $count > 1 ? $count.' x ' : '';
+					$text .= sprintf(', <a href="%s" title="%s">%s%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $multi, $user->displayUsername());
 				}
-				else {
+				else
+				{
 					$more = self::onlineMoreAnchor($module);
 					break;
 				}
 			}
 		}
+		
+// 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
+		$back .= '<div class="wc_head_bigbox" style="float:none;">';
+		$back .= '<div class="wc_head_title"><a href="'.GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1">'.$module->lang('head_online', array($online)).'</a></div>';
+		$back .= '<div class="wc_head_online">';
+		
 		
 		return $back.substr($text,2).$more.'</div></div>'.PHP_EOL;
 	}
@@ -576,7 +617,8 @@ final class WC_HTML
 	
 	public static function displayMenuRanking(Module_WeChall $module)
 	{
-		switch (Common::getGet('me','')) {
+		switch (Common::getGet('me',''))
+		{
 			case 'Ranking': case 'RankingCountry': case 'RankingLang': case 'ScoringFaq': case 'SiteRankings': case 'SiteMasters':
 				$sel = true; break;
 			default:
@@ -586,10 +628,30 @@ final class WC_HTML
 		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'ranking">'.$module->lang('menu_ranking').'</a></li>';
 	}
 	
+	public static function displayMenuRankingNSC(Module_WeChall $module)
+	{
+		switch (Common::getGet('me',''))
+		{
+			case 'Ranking': case 'RankingCountry': case 'RankingLang': case 'ScoringFaq': case 'SiteRankings': case 'SiteMasters':
+				$sel = true; break;
+			default:
+				$sel = false; break;
+		}
+		$sel = $sel ? ' class="wc_menu_sel"' : '';
+		$wc = WC_Site::getWeChall();
+		return '<li><a'.$sel.' href="'.$wc->hrefRanking().'">'.$module->lang('menu_ranking').'</a></li>';
+	}
+	
 	public static function displayMenuChallenges(Module_WeChall $module)
 	{
 		$sel = $module->isMethodSelected('Challs') ? ' class="wc_menu_sel"' : '';
 		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'challs">'.$module->lang('menu_challs').'</a></li>';
+	}
+	
+	public static function displayMenuChallengesNSC(Module_WeChall $module)
+	{
+		$sel = $module->isMethodSelected('Sites') ? ' class="wc_menu_sel"' : '';
+		return '<li><a'.$sel.' href="'.WC_Site::getWeChall()->hrefWarboxes().'">'.$module->lang('menu_challs').'</a></li>';
 	}
 	
 	public static function displayMenuAccount(Module_WeChall $module)
@@ -750,42 +812,7 @@ final class WC_HTML
 
 	public static function accountButtons()
 	{
-		$mo = Common::getGet('mo');
-		$me = Common::getGet('me');
-		if (false === ($user = GWF_Session::getUser()))
-		{
-			return '';
-		}
-		
-		echo '<nav>'.PHP_EOL;
-		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
-		echo '<div class="gwf_buttons">'.PHP_EOL;
-		echo WC_HTML::button('btn_linked_sites', GWF_WEB_ROOT.'linked_sites', $me==='LinkedSites');
-		echo WC_HTML::button('btn_warboxes', GWF_WEB_ROOT.'warboxes', $me==='Warbox');
-		echo WC_HTML::button('btn_view_profile', GWF_WEB_ROOT.'profile/'.$user->urlencode('user_name'));
-		echo WC_HTML::button('btn_your_stats', GWF_WEB_ROOT.'stats/'.$user->urlencode('user_name'));
-		echo WC_HTML::button('btn_delete_account', GWF_WEB_ROOT.'account/delete', $mo==='Account'&&$me==='Delete');
-		echo '</div>'.PHP_EOL;
-		echo '</div>'.PHP_EOL;
-
-		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
-		echo '<div class="gwf_buttons">'.PHP_EOL;
-		echo WC_HTML::button('btn_wc_settings', GWF_WEB_ROOT.'wechall_settings', $me==='WeChallSettings');
-		echo WC_HTML::button('btn_account', GWF_WEB_ROOT.'account', $mo==='Account'&&$me==='Form');
-		echo WC_HTML::button('btn_pm_settings', GWF_WEB_ROOT.'pm/options', $mo==='PM'&&$me==='Options');
-		echo WC_HTML::button('btn_forum_settings', GWF_WEB_ROOT.'forum/options', $mo==='Forum'&&$me==='Options');
-		echo '</div>'.PHP_EOL;
-		echo '</div>'.PHP_EOL;
-		
-		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
-		echo '<div class="gwf_buttons">'.PHP_EOL;
-		echo WC_HTML::button('btn_edit_profile', GWF_WEB_ROOT.'profile_settings', $mo==='Profile'&&$me==='Form');
-		echo WC_HTML::button('btn_view_groups', GWF_WEB_ROOT.'my_groups');
-		echo WC_HTML::button('btn_guestbook', GWF_WEB_ROOT.'index.php?mo=WeChall&me=CreateGB', $mo==='Guestbook'||$me==='CreateGB');
-		echo WC_HTML::button('btn_helpdesk', GWF_WEB_ROOT.'helpdesk');
-		echo '</div>'.PHP_EOL;
-		echo '</div>'.PHP_EOL;
-		echo '</nav>'.PHP_EOL;
+		return Module_WeChall::instance()->templatePHP('wcaccountbuttons.php');
 	}
 	
 	public static function rankingPageButtons()

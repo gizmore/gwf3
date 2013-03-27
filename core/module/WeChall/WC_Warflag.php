@@ -106,6 +106,31 @@ final class WC_Warflag extends GDO
 		return $this->saveVar('wf_solvers', WC_Warflags::getSolvecount($this));
 	}
 	
+	/**
+	 * @return WC_Warflag
+	 */
+	public function getPrev()
+	{
+		return $this->getPrevNext('<', 'DESC');
+	}
+	
+	/**
+	 * @return WC_Warflag
+	 */
+	public function getNext()
+	{
+		return $this->getPrevNext('>', 'ASC');
+	}
+	
+	private function getPrevNext($sign, $order)
+	{
+		return self::table(__CLASS__)->selectFirstObject('*', "wf_wbid={$this->getVar('wf_wbid')} AND wf_order{$sign}{$this->getVar('wf_order')}", "wf_order {$order}");
+	}
+	
+	/**
+	 * @param int $id
+	 * @return WC_Warflag
+	 */
 	public static function getByID($id)
 	{
 		return self::table(__CLASS__)->selectFirstObject('*', sprintf('wf_id=%d',$id), '', '', array('warbox', 'solver', 'site'));
@@ -116,6 +141,11 @@ final class WC_Warflag extends GDO
 		return self::table(__CLASS__)->selectAll('*', 'wf_wbid='.$warbox->getID(), $orderby, array('warbox', 'solver', 'site'), -1, -1, GDO::ARRAY_O);
 	}
 	
+	public static function getByWarboxAndPos(WC_Warbox $box, $pos)
+	{
+		return self::table(__CLASS__)->selectFirstObject('*', "wf_wbid={$box->getID()} AND wf_order={$pos}");
+	}
+	
 	public static function getForBoxAndUser(WC_Warbox $box, GWF_User $user, $orderby='')
 	{
 		$joins = array(
@@ -124,11 +154,6 @@ final class WC_Warflag extends GDO
 			array('WC_Warflags', 'wf_wfid', 'wf_id', 'wf_uid', $user->getID()),
 		);
 		return self::table(__CLASS__)->selectAll('*', "wf_wbid={$box->getID()}", $orderby, $joins, -1, -1, GDO::ARRAY_O);
-	}
-	
-	public static function getMaxscore(WC_Warbox $warbox)
-	{
-		return self::table(__CLASS__)->selectVar('SUM(wf_score)', "wf_wbid={$warbox->getID()}");
 	}
 	
 	public static function getChallCount(WC_Warbox $warbox)
@@ -155,6 +180,11 @@ final class WC_Warflag extends GDO
 	public static function getTotalscore(WC_Warbox $box)
 	{
 		return self::table(__CLASS__)->selectVar('SUM(wf_score)', "wf_wbid={$box->getID()}");
+	}
+	
+	public static function getTotalscoreForSite(WC_Site $site)
+	{
+		return self::table(__CLASS__)->selectVar('SUM(wf_score)', "wb_sid={$site->getID()}", '', array('warbox', 'site'));
 	}
 	
 	public static function getNextOrder(WC_Warbox $box)

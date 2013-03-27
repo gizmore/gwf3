@@ -135,6 +135,24 @@ final class WC_RegAt extends GDO
 	###############
 	### Scoring ###
 	###############
+	private static function calcLinearSite(WC_Site $site)
+	{
+		$regats = self::table(__CLASS__);
+		$warbox = GWF_TABLE_PREFIX.'wc_warbox';
+		$warflag = GWF_TABLE_PREFIX.'wc_warflag';
+		$warflags = GWF_TABLE_PREFIX.'wc_warflags';
+
+		$siteid = $site->getVar('site_id');
+		$joinbox = "JOIN $warbox ON wf_wbid = wb_id";
+		$joinflag = "JOIN $warflag ON wf_id = wf_wfid";
+		$subquery = "SELECT SUM(wf_score) FROM $warflags $joinflag $joinbox  WHERE wf_uid=regat_uid AND wb_sid=$siteid";
+		
+		if (false === $regats->update("regat_onsitescore = ($subquery)", "regat_sid=$siteid"))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+	}
 	/**
 	 * Recalculate all scores for one site.
 	 * @param WC_Site $site
@@ -147,53 +165,41 @@ final class WC_RegAt extends GDO
 		$maxscore = $site->getVar('site_maxscore');
 		$sitescore = $site->getVar('site_score');
 		
-		$regats->update("regat_onsitescore={$maxscore}", "regat_onsitescore>{$maxscore} and regat_sid={$siteid}");
+		# Clamp to max
+// 		$regats->update("regat_onsitescore={$maxscore}", "regat_onsitescore>{$maxscore} and regat_sid={$siteid}");
 		
-		if (defined('WECHALL_CAESUM_PATCH'))
+		if ($site->isLinear())
+		{
+			if ($site->isNoV1())
+			{
+				self::calcLinearSite($site);
+			}
+
+			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=regat_onsitescore", "regat_sid=$siteid"))
+			{
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			}
+		}
+		elseif (defined('WECHALL_CAESUM_PATCH'))
 		{
 			# Ceasum Patch
 			$challcount = $site->getVar('site_challcount');
 			$powarg = $site->getPowArg();
-			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=POW((regat_onsitescore/$maxscore),(1+($powarg/$challcount)))*$sitescore ", "regat_sid=$siteid")) {
+			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=POW((regat_onsitescore/$maxscore),(1+($powarg/$challcount)))*$sitescore ", "regat_sid=$siteid"))
+			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		else
 		{
 			# Original Code
-			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=(regat_onsitescore/$maxscore)*(regat_onsitescore/$maxscore)*$sitescore ", "regat_sid=$siteid")) {
+			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=(regat_onsitescore/$maxscore)*(regat_onsitescore/$maxscore)*$sitescore ", "regat_sid=$siteid"))
+			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 		}
 		
-		
-		
 		return false;
-		# VERY OLD CODE
-//		if (false === ($result = $regats->queryReadAll("regat_sid=$siteid"))) {
-//			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-//		}
-//		$db = gdo_db();
-//		while (false !== ($row = $db->fetchAssoc($result)))
-//		{
-//			$regat = new self($row);
-//			
-//			
-//			$percent = $maxscore <= 0 ? 0 : ($regat->getOnsiteScore() / $maxscore);
-//			
-//			$score = $site->calcScore($regat);
-//			
-//			if (false === $regat->saveVars(array(
-//				'regat_score' => $score,
-//				'regat_solved' => $percent,
-//			))) {
-//				break;
-//			}
-//			
-//		}
-//		$db->free($result);
-//		
-//		return false;
 	}
 	
 	/**
@@ -220,12 +226,6 @@ final class WC_RegAt extends GDO
 		$rank += $user->countRows("user_level=$score AND user_id<$uid AND user_options&0x10000000=0");
 		return $rank;
 	}
-	
-//	public static function calcSiteRank(GWF_User $user, $siteid)
-//	{
-//		$table = GDO::table('WC_RegAt');
-//		return $table->countRows('regat_score>')
-//	}
 	
 	public static function calcExactSiteRank(GWF_User $user, $siteid)
 	{
@@ -258,7 +258,8 @@ final class WC_RegAt extends GDO
 	
 	public static function calcExactCountryRank(GWF_User $user)
 	{
-		if ('0' === ($cid = $user->getVar('user_countryid'))) {
+		if ('0' === ($cid = $user->getVar('user_countryid')))
+		{
 			return -1;
 		}
 		$deleted = GWF_User::DELETED;
@@ -271,75 +272,9 @@ final class WC_RegAt extends GDO
 	
 	public static function calcTotalscores()
 	{
-//		echo GWF_HTML::message('DEBUG', 'RegAt::calcTotalscores()', false);
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
 		return GDO::table('GWF_User')->update("user_level=(SELECT IFNULL(SUM(regat_score), 0) FROM $regat WHERE regat_uid=user_id)");
-//		$db = gdo_db();
-//		$users = GDO::table('GWF_User')->getTableName();
-//		if (false === ($result = $db->queryRead("SELECT user_id,user_level FROM $users"))) {
-//			return false;
-//		}
-//		while (false !== ($row = $db->fetchAssoc($result)))
-//		{
-//			self::calcTotalscore(new GWF_User($row));
-//		}
-//		$db->free($result);
-//		return true;
 	}
-	
-	/**
-	 * Calculate the totalscore for a user.
-	 * @param GWF_User $user
-	 * @return boolean
-	 */
-//	public static function calcTotalscore(GWF_User $user)
-//	{
-//		$regat = GWF_TABLE_PREFIX.'wc_regat';
-//		$userid = $user->getID();
-//		return $user->updateRow("user_level=(SELECT IFNULL(SUM(regat_score), 0) FROM $regat WHERE regat_uid=$userid, 0)");
-//		$num_linked = array();
-//		$totalscores = array();
-//		$totalscore = 0;
-//		$userid = $user->getID();
-//		$regats = self::getRegats($userid);
-//		if (count($regats) > 0)
-//		{
-//		
-//			foreach ($regats as $regat)
-//			{
-//				$site = $regat->getSite();
-//				$langid = $site->getLangID();
-//				
-//				$score = $site->calcScore($regat);
-//				
-//				$totalscore += $score;
-//				
-//				if (!isset($totalscores[$langid])) {
-//					$num_linked[$langid] = 1;
-//					$totalscores[$langid] = $score;
-//				} else {
-//					$num_linked[$langid]++;
-//					$totalscores[$langid] += $score;
-//				}
-//			}
-//			
-//			foreach ($totalscores as $langid => $score)
-//			{
-//				if (false === WC_Scores::updateScore($userid, $langid, $score, $num_linked[$langid])) {
-//					echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-//					return false;
-//				}
-//			}
-//			
-//		}
-//		
-//		if (false === $user->saveVar('user_level', $totalscore)) {
-//			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-//			return false;
-//		}
-//		
-//		return true;
-//	}
 	
 	public static function fixPercent(WC_Site $site)
 	{

@@ -13,7 +13,11 @@ final class WeChall_Warflags extends GWF_Method
 	 * @var WC_Warflag
 	 */
 	private $flag;
+
+	private $csv_data = array();
 	
+	const CSV_COLUMNS = '#POS,Category,Score,title,url,authors,status(up|down),username(may be blank),password(plain or sha1),type(SSH|WEB)';
+
 	public function execute()
 	{
 		if (false === ($this->user = GWF_Session::getUser()))
@@ -24,6 +28,7 @@ final class WeChall_Warflags extends GWF_Method
 		$this->module->includeClass('WC_Warbox');
 		$this->module->includeClass('WC_Warflag');
 		$this->module->includeClass('WC_SiteAdmin');
+		$this->module->includeClass('WC_SiteCats');
 		$this->module->includeClass('sites/warbox/WCSite_WARBOX');
 		
 		if (false === ($this->warbox = WC_Warbox::getByID(Common::getGetString('wbid'))))
@@ -61,6 +66,20 @@ final class WeChall_Warflags extends GWF_Method
 			return $this->templateAdd();
 		}
 		
+		if (isset($_POST['import']))
+		{
+			return $this->onCSV();
+		}
+		
+		if (isset($_GET['up']))
+		{
+			return $this->onUp().$this->templateOverview();
+		}
+		elseif (isset($_GET['down']))
+		{
+			return $this->onDown().$this->templateOverview();
+		}
+		
 		return $this->templateOverview();
 	}
 	
@@ -77,6 +96,8 @@ final class WeChall_Warflags extends GWF_Method
 		return $m->lang('err_wf_cat');
 	}
 	
+	public function validate_pos(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'pos', $arg, 1, 1000, true); }
+	public function validate_type(Module_WeChall $m, $arg) { return ($arg === 'WEB') || ($arg === 'SSH') ? false : $m->lang('err_wf_type'); }
 	public function validate_wf_score(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'wf_score', $arg, 0, 1000000, true); }
 	public function validate_wf_title(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'wf_title', $arg, 0, 64, false); }
 	public function validate_wf_authors(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'wf_authors', $arg, 0, 255, false); }
@@ -98,8 +119,10 @@ final class WeChall_Warflags extends GWF_Method
 	################
 	private function templateOverview()
 	{
+		$form_csv = $this->formCSV();
 		$tVars = array(
-			'flags' => WC_Warflag::getByWarbox($this->warbox),
+			'flags' => WC_Warflag::getByWarbox($this->warbox, 'wf_order ASC'),
+			'form_csv' => $form_csv->templateY($this->l('ft_csv_import')),
 			'href_add' => $this->hrefAdd(),
 		);
 		return $this->module->templatePHP('warflags.php', $tVars);
@@ -201,12 +224,16 @@ final class WeChall_Warflags extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateOverview();
 		}
 		
+		$site = $this->warbox->getSite();
+		if ($site->isLinear())
+		{
+			$site->saveVar('site_maxscore', WC_Warflag::getTotalscoreForSite($site));
+		}
+		
 		$this->warbox->increase('wb_challs');
 		$this->warbox->increase('wb_flags');
-		
 		$this->warbox->recalcTotalscore();
-		
-		$this->warbox->getSite()->recalcSite();
+		$site->recalcSite();
 		
 		return $this->module->message('msg_add_flag').$this->templateOverview();
 	}
@@ -272,11 +299,255 @@ final class WeChall_Warflags extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateOverview();
 		}
 
+		$site = $this->warbox->getSite();
+		if ($site->isLinear())
+		{
+			$site->saveVar('site_maxscore', WC_Warflag::getTotalscoreForSite($site));
+		}
 		$this->warbox->recalcTotalscore();
 		
-		$this->warbox->getSite()->recalcSite();
+		$site->recalcSite();
 		
 		return $this->module->message('msg_edit_flag').$this->templateOverview();
 	}
+	
+	##########
+	### Up ###
+	##########
+	private function onUp()
+	{
+		if (false === ($flag = WC_Warflag::getByID(Common::getGetString('up'))))
+		{
+			return $this->module->error('err_warflag');
+		}
+		if ($flag->getVar('wf_wbid') !== $this->warbox->getID())
+		{
+			return GWF_HTML::err('ERR_NO_PERMISSION');
+		}
+		if (false === ($upper = $flag->getPrev()))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		$upid = $upper->getVar('wf_order');
+		$doid = $flag->getVar('wf_order');
+		
+		$upper->saveVar('wf_order', $doid);
+		$flag->saveVar('wf_order', $upid);
+
+		return '';
+	}
+	
+	private function onDown()
+	{
+		if (false === ($flag = WC_Warflag::getByID(Common::getGetString('down'))))
+		{
+			return $this->module->error('err_warflag');
+		}
+		if ($flag->getVar('wf_wbid') !== $this->warbox->getID())
+		{
+			return GWF_HTML::err('ERR_NO_PERMISSION');
+		}
+		if (false === ($lower = $flag->getNext()))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		$upid = $flag->getVar('wf_order');
+		$doid = $lower->getVar('wf_order');
+		
+		$flag->saveVar('wf_order', $doid);
+		$lower->saveVar('wf_order', $upid);
+
+		return '';
+	}
+	
+	##################
+	### CSV Import ###
+	##################
+	private function formCSV()
+	{
+		$data = array(
+			'pass_csvdata' => array(GWF_Form::MESSAGE_NOBB, self::CSV_COLUMNS.PHP_EOL, $this->l('th_csvdata')),
+			'import' => array(GWF_Form::SUBMIT, $this->l('btn_import')),
+		);
+		return new GWF_Form($this, $data);
+	}
+	
+	public function validate_pass_csvdata(Module_WeChall $m, $arg)
+	{
+		$rows = str_getcsv($arg, "\n");
+		$line = 0;
+		
+		$colcount = count(explode(',', self::CSV_COLUMNS));
+		
+		foreach ($rows as $row)
+		{
+			$line++;
+			$row = trim($row);
+			if ( ($row === '') || ($row[0] === '#') )
+			{
+				continue;
+			}
+			$cols = str_getcsv($row);
+			
+			if (count($cols) !== $colcount)
+			{
+				return "Error in Line $line. Column count does not match!";
+			}
+
+			$i = 0;
+			if (false !== ($err = $this->validate_pos($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_cat($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_score($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_title($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_url($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_authors($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_status($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_wf_login($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_password($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			if (false !== ($err = $this->validate_type($m, $cols[$i++])))
+			{
+				return "Error in Line $line: $err";
+			}
+			
+			$this->csv_data[] = $cols;
+		}
+		
+		return false;
+	}
+	
+	
+	private function onCSV()
+	{
+		$form = $this->formCSV();
+		if (false !== ($error = $form->validate($this->module)))
+		{
+			return $error.$this->templateOverview();
+		}
+
+		$back = '';
+		
+		foreach ($this->csv_data as $row)
+		{
+			$back .= $this->onCSVRow($row);
+		}
+		
+		return $back . $this->templateOverview();
+	}
+	
+	private function onCSVRow(array $row)
+	{
+		if (false === ($flag = WC_Warflag::getByWarboxAndPos($this->warbox, $row[0])))
+		{
+			return $this->createFromCSV($row);
+		}
+		else
+		{
+			return $this->updateFromCSV($flag, $row);
+		}
+	}
+	
+	private function createFromCSV(array $row)
+	{
+		$flag = new WC_Warflag(array(
+			'wf_id' => '0',
+			'wf_wbid' => $this->warbox->getID(),
+			'wf_order' => $row[0],
+			'wf_cat' => $row[1],
+			'wf_score' => $row[2],
+			'wf_solvers' => '0',
+			'wf_title' => $row[3],
+			'wf_url' => $row[4],
+			'wf_authors' => $row[5],
+			'wf_status' => $row[6],
+			'wf_login' => $row[7],
+			'wf_flag_enc' => WC_Warflag::hashPassword($row[8]),
+			'wf_created_at' => GWF_Time::getDate(),
+			'wf_last_solved_at' => NULL,
+			'wf_last_solved_by' => NULL,
+			'wf_options' => $this->bitFromType($row),
+		));
+		if (!$flag->insert())
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		return '';
+	}
+	
+	private function bitFromType(array $row)
+	{
+		$type = $row[9];
+		if ($type === 'SSH')
+		{
+			return WC_Warflag::WARCHALL;
+		}
+		if ($type === 'WEB')
+		{
+			return WC_Warflag::WARFLAG;
+		}
+		return -1;
+	}
+	
+	private function updateFromCSV(WC_Warflag $flag, array $row)
+	{
+		$types = WC_Warflag::WARCHALL | WC_Warflag::WARFLAG;
+		$options = $flag->getOptions();
+		$options &= ~$types;
+		$options |= $this->bitFromType($row);
+		
+		if (!$flag->saveVars(array(
+			'wf_cat' => $row[1],
+			'wf_score' => $row[2],
+			'wf_title' => $row[3],
+			'wf_url' => $row[4],
+			'wf_authors' => $row[5],
+			'wf_status' => $row[6],
+			'wf_login' => $row[7],
+			'wf_flag_enc' => WC_Warflag::hashPassword($row[8]),
+			'wf_options' => $options,
+		)))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		return '';
+	}
+	
 }
+/*
+#POS,Category,Score,title,url,authors,status(up|down),username(may be blank),password(plain or sha1),TYPE
+1,Exploit,100,EasyPeasy1,http://google.de/?q=Easy1,Gizmore,up,,test1,WEB
+2,Exploit,200,EasyPeasy2,http://google.de/?q=Easy2,Gizmore,up,,test2,WEB
+3,Exploit,300,EasyPeasy3,http://google.de/?q=Easy3,Gizmore,up,,test3,WEB
+4,Exploit,400,EasyPeasy4,http://google.de/?q=Easy4,Gizmore,up,,test4,WEB
+5,Exploit,500,EasyPeasy5,http://google.de/?q=Easy5,Gizmore,up,,test5,WEB
+*/
 ?>

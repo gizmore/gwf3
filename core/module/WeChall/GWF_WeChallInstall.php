@@ -126,6 +126,7 @@ final class GWF_WeChallInstall
 	
 	private static function fixChallTags(Module_WeChall $module)
 	{
+		WC_SiteCats::fixCatBits();
 		$module->cacheChallTags();
 		return '';
 	}

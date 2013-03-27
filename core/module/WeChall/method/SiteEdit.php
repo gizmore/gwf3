@@ -92,6 +92,10 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->module->lang('th_autoupdate'));
 		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->module->lang('th_site_has_osr'));
 		$data['default_hide'] = array(GWF_Form::CHECKBOX, $site->isDefaultHidden(), $this->module->lang('th_default_hide'));
+		if ($is_admin)
+		{
+			$data['linear'] = array(GWF_Form::CHECKBOX, $site->isLinear(), $this->module->lang('th_linear'));
+		}
 		
 		$data['div0'] = array(GWF_Form::DIVIDER);
 		
@@ -364,6 +368,9 @@ final class WeChall_SiteEdit extends GWF_Method
 		
 // 		$out = $this->onEditWarflag($site, isset($_POST['warenbl']));
 		
+		$old_linear = $site->isLinear();
+		$site->saveOption(WC_Site::LINEAR, isset($_POST['linear']));
+		$linear_changed = $old_linear !== $site->isLinear();
 		$site->saveOption(WC_Site::NO_URLENCODE, isset($_POST['no_urlencode']));
 		$site->saveOption(WC_Site::AUTO_UPDATE, isset($_POST['auto_update']));
 		$site->saveOption(WC_Site::HIDE_BY_DEFAULT, isset($_POST['default_hide']));
@@ -380,7 +387,8 @@ final class WeChall_SiteEdit extends GWF_Method
 		# Recalculate in case of a change
 //		if ($site->isScored())
 //		{
-			if ($basescore_changed || $language_changed || $status_changed || $powarg_changed || $spc_changed) {
+			if ($basescore_changed || $language_changed || $status_changed || $powarg_changed || $spc_changed || $linear_changed)
+			{
 				$site->recalcSite();
 				WC_RegAt::calcTotalscores();
 			}
