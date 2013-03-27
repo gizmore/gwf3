@@ -6,10 +6,15 @@ $headers = array(
 	array('Solvers', 'wf_solvers', 'ASC'),
 	array('LastSolvedBy', 'user_name', 'ASC'),
 	array('LastSolved', 'wf_last_solved_at', 'ASC'),
+	array('Flags'),
 );
 
 $box = $tVars['box']; $box instanceof WC_Warbox;
 $site = $tVars['site']; $site instanceof WC_Site;
+
+$user = GWF_Session::getUser();
+
+$href_flags = $box->hrefFlags();
 
 echo $tVars['site_quickjump'];
 
@@ -44,6 +49,16 @@ foreach ($tVars['data'] as $flag)
 	echo GWF_Table::column($flag->displayLastSolvedBy());
 	
 	echo GWF_Table::column($flag->displayLastSolvedDate(), 'gwf_date');
+	
+	if ( ($user !== false) && ($flag->isWarflag()) ) 
+	{
+		echo GWF_Table::column(GWF_Button::bell($href_flags, 'Enter Flags'));
+	}
+	else
+	{
+		echo GWF_Table::column();
+	}
+	
 	
 	echo GWF_Table::rowEnd();
 }

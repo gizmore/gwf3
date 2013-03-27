@@ -1,7 +1,7 @@
 <?php
 echo WC_HTML::accountButtons();
 
-$epoch = $tVars['epoch']->displayProfileLink();
+$epoch = $tVars['epoch'] === false ? '<i><b>epoch</b></i>' : $tVars['epoch']->displayProfileLink();
 
 echo GWF_Box::box($tLang->lang('info_wartoken', array($epoch, '___RTB_LINK___')), $tLang->lang('title_wartoken'));
 
