@@ -109,6 +109,12 @@ class GWF3
 	 */
 	public function init()
 	{
+		if (true === $config['start_debug'])
+		{
+			GWF_Debug::enableErrorHandler();
+			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
+		}
+		
 		if (true === defined('GWF_WEBSITE_DOWN'))
 		{
 			$this->setConfig('load_module', false);
@@ -123,12 +129,6 @@ class GWF3
 			$this->onKickBannedIP();
 		}
 
-		if (true === $config['start_debug'])
-		{
-			GWF_Debug::enableErrorHandler();
-			GWF_Debug::setMailOnError((GWF_DEBUG_EMAIL & 2) > 0);
-		}
-			
 // 		$db = gdo_db();
 		
 		if (false === $config['no_session'])
@@ -349,9 +349,13 @@ class GWF3
 			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/', GWF_Session::getDomain());
 			GWF_Session::initFakeSession();
 		}
-		elseif (false === GWF_Session::start($blocking))
+		else
 		{
-			self::logDie('GWF not installed?!');
+			$db = gdo_db();
+			if (false === GWF_Session::start($blocking))
+			{
+				self::logDie('GWF not installed?!');
+			}
 		}
 	}
 
