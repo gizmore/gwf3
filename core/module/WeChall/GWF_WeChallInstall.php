@@ -34,6 +34,7 @@ final class GWF_WeChallInstall
 			'wc_active_time' => array('1 day', 'time', 0, GWF_Time::ONE_WEEK),
 			'wc_warbox_url' => array('warbox.wechall.net', 'text', '5', '255'),
 			'wc_warbox_port' => array('1336', 'int', '1', '65535'),
+			'wc_logo_url' => array('/', 'text', '1', '255'),
 		)).
 		self::createForums($module, $dropTable).
 		self::createDBIMGDIR($module, $dropTable).
@@ -170,7 +171,8 @@ final class GWF_WeChallInstall
 	
 	private static function installSiteWeChall(Module_WeChall $module)
 	{
-		if (false !== ($site = WC_Site::getByName('WeChall'))) {
+		if (false !== ($site = WC_Site::getWeChall()))
+		{
 			return '';
 		}
 		

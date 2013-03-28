@@ -138,6 +138,7 @@ class GWF3
 		
 		if (true === $config['website_init']) 
 		{ 
+			$db = gdo_db();
 			GWF_Website::init();
 		}
 		
@@ -191,7 +192,7 @@ class GWF3
 			$this->onSessionCommit(self::getConfig('store_last_url'));
 		}
 		
-		if (true === self::$MODULE->isEnabled())
+		if ( self::getConfig('load_module') && self::$MODULE->isEnabled() )
 		{
 			$db = gdo_db();
 			GWF_CachedCounter::persist();
