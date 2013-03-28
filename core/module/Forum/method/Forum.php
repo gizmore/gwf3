@@ -59,7 +59,8 @@ final class Forum_Forum extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->sanitize())) {
+		if (false !== ($error = $this->sanitize()))
+		{
 			return $error;
 		}
 		
@@ -67,7 +68,8 @@ final class Forum_Forum extends GWF_Method
 		GWF_Website::setMetaDescr($this->module->lang('md_board', array($this->board->getVar('board_descr'))));
 		GWF_Website::setMetaTags($this->module->lang('mt_board'));
 		
-		if (false !== (Common::getGet('mark_all_read'))) {
+		if (false !== (Common::getGet('mark_all_read')))
+		{
 			return $this->markAllRead().$this->templateForum();
 		}
 		
@@ -76,7 +78,8 @@ final class Forum_Forum extends GWF_Method
 	
 	public function sanitize()
 	{
-		if (false === ($this->board = $this->module->getCurrentBoard())) {
+		if (false === ($this->board = $this->module->getCurrentBoard()))
+		{
 			return $this->module->error('err_board');
 		}
 		$threads = GDO::table('GWF_ForumThread');

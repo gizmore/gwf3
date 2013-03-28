@@ -198,13 +198,15 @@ final class Module_Forum extends GWF_Module
 		}
 		
 		# Init by Board
-		else {
-			$this->board_id = (int) Common::getGet('bid', 1);
-			if (false === ($this->board = GWF_ForumBoard::getBoard($this->board_id))) {
-				$this->error('err_board');
-				$this->board_id = 1;
-				if (false === ($this->board = GWF_ForumBoard::getRoot())) {
-					$this->board_id = 0;
+		else
+		{
+			$this->board_id = Common::getGetString('bid', '1');
+			if (false === ($this->board = GWF_ForumBoard::getBoard($this->board_id)))
+			{
+				$this->board_id = '1';
+				if (false === ($this->board = GWF_ForumBoard::getRoot()))
+				{	
+					$this->board_id = '0';
 				}
 			}
 		}
@@ -400,7 +402,7 @@ final class Module_Forum extends GWF_Module
 		return $this->error('err_post_timeout', array(GWF_Time::humanDuration($wait)));
 	}
 	
-	private function getLastPostTime(GWF_User $user)
+	private function getLastPostTime($user)
 	{
 		if (false === ($result = GDO::table('GWF_ForumPost')->selectVar('MAX(post_date)')))
 		{
@@ -415,7 +417,8 @@ final class Module_Forum extends GWF_Module
 	public static function getNavTree($imploder='->')
 	{
 		$module = self::getInstance();
-		if (false === ($board = $module->getCurrentBoard())) {
+		if (false === ($board = $module->getCurrentBoard()))
+		{
 			return '';
 		}
 

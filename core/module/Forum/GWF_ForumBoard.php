@@ -50,6 +50,7 @@ final class GWF_ForumBoard extends GDO
 	public function isGuestPostAllowed() { return $this->isOptionEnabled(self::GUEST_POSTS); }
 	public function isGuestView() { return $this->isOptionEnabled(self::GUEST_VIEW); }
 	public function isRoot() { return $this->getVar('board_bid') === '1'; }
+	public function isInvisible() { return $this->isOptionEnabled(self::INVISIBLE); }
 	public function setVisible($bool) { return $this->setInvisible(!$bool); }
 	public function setInvisible($bool) { return $this->saveOption(self::INVISIBLE, $bool); }
 	
@@ -146,9 +147,13 @@ final class GWF_ForumBoard extends GDO
 			foreach (self::$boardcache as $board)
 			{
 				$board instanceof GWF_ForumBoard;
-				if ('0' !== ($pid = $board->getParentID()))
+// 				if ('0' !== ($pid = $board->getParentID()))
+				$pid = $board->getParentID();
 				{
-					self::$boardcache[$pid]->addChild($board);	
+					if (isset(self::$boardcache[$pid]))
+					{
+						self::$boardcache[$pid]->addChild($board);	
+					}
 				}
 			}
 			
@@ -185,8 +190,8 @@ final class GWF_ForumBoard extends GDO
 	 */
 	public static function getBoard($boardid)
 	{
-		$bid = (int) $boardid;
-		return isset(self::$boardcache[$bid]) ? self::$boardcache[$bid] : false;
+// 		$boardid = (int) $boardid;
+		return isset(self::$boardcache[$boardid]) ? self::$boardcache[$boardid] : false;
 	}
 	
 	public static function getRoot()
@@ -265,13 +270,17 @@ final class GWF_ForumBoard extends GDO
 	 */
 	public static function getPermQuery()
 	{
-		if ('0' === ($uid = GWF_Session::getUserID())) {
-			return 'board_gid=0 and board_options&'.self::GUEST_VIEW;
+		$visible = GWF_User::isInGroupS('moderator') ? '' : " AND board_options&".self::INVISIBLE."=0";
+		
+		if ('0' === ($uid = GWF_Session::getUserID()))
+		{
+			return 'board_gid=0 and board_options&'.self::GUEST_VIEW.$visible;
 		}
-		else {
+		else
+		{
 			$grp = GWF_TABLE_PREFIX.'usergroup';
-			$invisible = self::INVISIBLE;
-			return "board_options&$invisible=0 AND ((board_gid=0) OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=board_gid))";
+			$invisible = GWF_User::isInGroupS('moderator') ? '0' : self::INVISIBLE;
+			return "((board_gid=0) OR (SELECT 1 FROM $grp WHERE ug_userid=$uid AND ug_groupid=board_gid))$visible";
 		}
 	}
 		

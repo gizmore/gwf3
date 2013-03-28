@@ -52,6 +52,7 @@ final class Forum_EditBoard extends GWF_Method
 			'guest_view' => array(GWF_Form::CHECKBOX, $this->board->isGuestView(), $this->module->lang('th_guest_view')),
 			'is_locked' => array(GWF_Form::CHECKBOX, $this->board->isLocked(), $this->module->lang('th_locked')),
 			'guests' => array(GWF_Form::CHECKBOX, $this->board->isGuestPostAllowed(), $this->module->lang('th_guests')),
+			'invisible' => array(GWF_Form::CHECKBOX, $this->board->isInvisible(), $this->module->lang('th_invisible')),				
 		);
 		
 //		if (!$this->board->isRoot()) {
@@ -97,16 +98,17 @@ final class Forum_EditBoard extends GWF_Method
 			'board_title' => $form->getVar('title'),
 			'board_descr' => $form->getVar('descr'),
 		));
-		
-//		if (!$this->board->isRoot())
-//		{
-			$this->board->saveOption(GWF_ForumBoard::ALLOW_THREADS, Common::getPost('allow_threads') !== false);
-			$this->board->saveOption(GWF_ForumBoard::LOCKED, Common::getPost('is_locked') !== false);
-			$this->board->saveOption(GWF_ForumBoard::GUEST_POSTS, Common::getPost('guests') !== false);
-			$this->board->saveOption(GWF_ForumBoard::GUEST_VIEW, Common::getPost('guest_view') !== false);
-//		}
-		
-		
+
+		# Options
+		$this->board->saveOption(GWF_ForumBoard::ALLOW_THREADS, Common::getPost('allow_threads') !== false);
+		$this->board->saveOption(GWF_ForumBoard::LOCKED, Common::getPost('is_locked') !== false);
+		$this->board->saveOption(GWF_ForumBoard::GUEST_POSTS, Common::getPost('guests') !== false);
+		$this->board->saveOption(GWF_ForumBoard::GUEST_VIEW, Common::getPost('guest_view') !== false);
+		if (!$this->board->isRoot())
+		{
+			$this->board->saveOption(GWF_ForumBoard::INVISIBLE, Common::getPost('invisible') !== false);
+		}
+			
 		return $this->module->message('msg_edited_board', array($this->board->getShowBoardHREF()));
 	}
 	
