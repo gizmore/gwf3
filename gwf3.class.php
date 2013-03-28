@@ -383,6 +383,7 @@ class GWF3
 	public function onAutoloadModules()
 	{
 		# Autoload Modules
+		$db = gdo_db();
 		if (false === GWF_Module::autoloadModules())
 		{
 			self::logDie('Can not autoload modules. GWF not installed OR problems with database?');
@@ -397,6 +398,7 @@ class GWF3
 	public function onLoadModule()
 	{
 		# Load the module
+		$db = gdo_db();
 		if (false === (self::$MODULE = GWF_Module::loadModuleDB($_GET['mo']))) 
 		{
 			if (false === (self::$MODULE = GWF_Module::loadModuleDB(GWF_DEFAULT_MODULE))) 
