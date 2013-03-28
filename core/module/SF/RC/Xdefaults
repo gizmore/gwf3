@@ -1,0 +1,32 @@
+URxvt*transparent:true
+URxvt*borderLess:true
+
+URxvt.font: xft:DejaVu Sans Mono:size=9
+URxvt.visualBell: false
+URxvt.scrollBar: false
+URxvt.saveLines: 16384
+URxvt.imLocale: de_DE.UTF-8
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: false
+
+URxvt.background:               #000000
+URxvt.foreground:               #DDDDDD
+
+URxvt.color0:                   #000000
+URxvt.color1:                   #B21818
+URxvt.color2:                   #18B218
+URxvt.color3:                   #B2B218
+URxvt.color4:                   #1818D2
+URxvt.color5:                   #B218B2
+URxvt.color6:                   #18B2B2
+URxvt.color7:                   #B2B2B2
+URxvt.color8:                   #686868
+URxvt.color9:                   #FF5454
+URxvt.color10:                  #54FF54
+URxvt.color11:                  #FFFF54
+URxvt.color12:                  #5454FF
+URxvt.color13:                  #FF54FF
+URxvt.color14:                  #54FFFF
+URxvt.color15:                  #FFFFFF
+
+URxvt.geometry: 240x70

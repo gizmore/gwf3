@@ -5,7 +5,7 @@ export EDITOR='vim'
 export LANG='de_DE.UTF-8'
 #export LC_COLLATE='C'
 export PAGER='less'
-export PYTHONPATH=$(realpath '~/public_html/')
+export PYTHONDONTWRITEBYTECODE=x
 
 shopt -s cdspell
 shopt -s checkwinsize
