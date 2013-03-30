@@ -40,10 +40,3 @@ URxvt.color7  : #B2B2B2
 URxvt.color15 : #FFFFFF
 
 URxvt.geometry: 240x70
-
-! FIXME: not working
-URxvt.perl-ext-common: default.matcher
-URxvt.url-launcher: /usr/bin/firefox
-URxvt.url-select.launcher: firefox
-URxvt.url-select.underline: true
-URxvt.matcher.button: 1
