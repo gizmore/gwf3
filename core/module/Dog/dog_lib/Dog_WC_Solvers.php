@@ -14,8 +14,7 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 	
 	# Query URL
 	$url = str_replace(array('%DATE%'), array($lastdate), $url);
-	
-	//echo $url.PHP_EOL;
+// 	echo $url.PHP_EOL;
 	
 	GWF_HTTP::setTimeout(3);
 	GWF_HTTP::setConnectTimeout(2);
@@ -26,7 +25,7 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 	GWF_HTTP::setTimeout();
 	GWF_HTTP::setConnectTimeout();
 	
-	//echo $content.PHP_EOL;
+// 	echo $content.PHP_EOL;
 	
 	# Nothing happened
 	if ($content === '')
@@ -42,6 +41,8 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 	
 	foreach ($lines as $line)
 	{
+// 		echo "$line\n";
+		
 		if ('' === ($line = trim($line)))
 		{
 			continue;
@@ -67,7 +68,8 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 		# uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount::url
 		list($uid, $cid, $solvedate, $firstdate, $views, $options, $timetaken, $tries, $username, $challname, $solvercount, $challurl) = $thedata;
 		
-		if (strlen($solvedate) !== 14) {
+		if (strlen($solvedate) !== 14)
+		{
 			echo "Dateformat in $url is invalid: $solvedate\n";
 			return false;
 		}
@@ -84,18 +86,14 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 		{
 			break;
 		}
-//		if (intval($latestdate) <= intval($solvedate))
-//			$latestdate = intval($solvedate) + 1;
 
 		if ($solvercount > $max_solvercount)
 		{
 			continue;
 		}
-
-		
-		# Output message
 		
 		$msg = sprintf($format, $name, $username, $challname, $solvercount, $challurl);
+		
 		
 		if (count($channels) === 0)
 		{
@@ -142,7 +140,6 @@ function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=1
 	# Save state
 	if ($changed)
 	{
-//		$latestdate = date('YmdHis');
 		GWF_Settings::setSetting('DOG_SOLVERS_DATE_'.$key, $latestdate);
 		GWF_Settings::setSetting('DOG_SOLVERS_PAIR_'.$key, $firstpair);
 	}

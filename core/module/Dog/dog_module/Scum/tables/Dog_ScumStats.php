@@ -13,6 +13,8 @@ final class Dog_ScumStats extends GDO
 			'scums_games' => array(GDO::UINT, 0),
 			'scums_won' => array(GDO::UINT, 0),
 			'scums_score' => array(GDO::UINT, 0),
+				
+			'user' => array(GDO::JOIN, GDO::NULL, array('Dog_User', 'user_id', 'scums_userid')),
 		);
 	}
 	
@@ -65,7 +67,7 @@ final class Dog_ScumStats extends GDO
 		foreach ($game->getWinners() as $name)
 		{
 			$score--;
-			if (false === ($user = $server->getUserByNickname($name)))
+			if (false === ($user = $server->getUserByName($name)))
 			{
 				Dog_Log::error('Can not find user '.$name);
 				continue;

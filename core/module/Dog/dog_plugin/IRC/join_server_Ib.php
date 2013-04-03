@@ -38,6 +38,8 @@ else
 	$port = isset($url['port']) ? intval($url['port']) : $default_port;
 	$options = Dog_Server::DEFAULT_OPTIONS;
 	$options |= $prot === 'ircs' ? Dog_Server::SSL : 0;
+	
+	var_dump($host);
 }
 
 if ( (false !== ($server = Dog::getServerByArg($argv[0]))) || ((false !== ($server = Dog::getServerByArg($host)))) )

@@ -13,8 +13,12 @@ $girls = array(
 	'Wyshfire',
 	'gemgale',
 	'Unholy',
-	'bb',
 	'nour',
+	'anjaa',
+	'jenni',
+	'Rhonda',
+	'Trinary',
+	'ziza',
 );
 
 $girl = $girls[array_rand($girls)];

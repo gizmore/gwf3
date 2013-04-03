@@ -27,6 +27,7 @@ GWF_HTML::init();
 GWF_Log::init(false, GWF_Log::_DEFAULT, GWF_PATH.'www/protected/logs/dog');
 $_GET['ajax'] = 1;
 GWF_Debug::setDieOnError(false);
+gdo_db();
 // GWF_Debug::disableErrorHandler();
 
 require_once 'Dog.php';

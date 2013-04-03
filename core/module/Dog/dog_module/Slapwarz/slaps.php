@@ -196,7 +196,10 @@ $slaps = array(
 	array('hummingbird', 11),
 	array('backup', 10),
 	array('toilet', 39),
-
+	array('tarball', 14),
+	array('g-zip', 11),
+	array('lighter', 18),
+	array('beamer', 42),
 //	array('jedi', 20),
 //	array('flying spagetthi monster', 15),
 //	array('god', 20),

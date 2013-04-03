@@ -69,6 +69,8 @@ final class Dog_User extends GDO
 	 */
 	public static function getForServer($sid, $username)
 	{
+		$username = preg_replace('/[\x7f-\xff]/', '', $username);
+		
 		$where = sprintf('user_sid=\'%s\' AND user_name=\'%s\'', self::escape($sid), self::escape(Common::substrUntil($username, '!')));
 		return self::table(__CLASS__)->selectFirstObject('*', $where);
 	}

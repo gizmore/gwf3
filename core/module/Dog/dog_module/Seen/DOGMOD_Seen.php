@@ -27,7 +27,7 @@ final class DOGMOD_Seen extends Dog_Module
 		
 		if ($argc === 1)
 		{
-			if (!preg_match('/^[a-z0-9_]+$/iD', $argv[0]))
+			if (!preg_match('/^[a-z0-9_!]+$/iD', $argv[0]))
 			{
 				return Dog::rply('err_user');
 			}

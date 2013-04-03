@@ -34,12 +34,12 @@ final class DOGMOD_Scum extends Dog_Module
 		$user = Dog::getUser();
 		$msg = $this->msgarg();
 		
-		var_dump($msg);
+// 		var_dump($msg);
 		
 		$command = Common::substrUntil($msg, ' ', $msg);
 		$message = Common::substrFrom($msg, ' ', '');
-		var_dump($command);
-		var_dump($message);
+// 		var_dump($command);
+// 		var_dump($message);
 		
 		switch ($command)
 		{
@@ -324,7 +324,7 @@ final class DOGMOD_Scum extends Dog_Module
 	{
 		if ($message !== '')
 		{
-			if (false === ($user = $server->getUserByNickname($message)))
+			if (false === ($user = $this->getGame()->getServer()->getUserByName($message)))
 			{
 				return $this->errorUser();
 			}
@@ -341,11 +341,82 @@ final class DOGMOD_Scum extends Dog_Module
 	############
 	### Top5 ###
 	############
-	private function scumTop5(Dog_User $user, $message)
+	private function scumTop5(Dog_User $user, $section)
 	{
-		return 'TOTO';
+		if ($section === '')
+		{
+			return 'Try score|won|games or a username.';
+		}
+		
+		switch ($section)
+		{
+			case 'games':
+			case 'score':
+			case 'won':
+				return $this->scumTop5Section($user, $section);
+			default:
+				return $this->scumTop5Player($user, $section);
+		}
 	}
 	
+	private function scumTop5Section(Dog_User $user, $section)
+	{
+		$section = 'scums_'.$section;
+		
+		$back = '';
+		$table = GDO::table('Dog_ScumStats');
+		$entries = $table->selectAll('*', "", "$section DESC", array('user'), 5, -1, GDO::ARRAY_A);
+		
+		foreach ($entries as $entry)
+		{
+			$back .= sprintf(', %s!%s(%s)', $entry[$section], $entry['user_name'], $entry['user_sid']);
+		}
+		
+		if ($back === '')
+		{
+			return 'NO DATA YET!';
+		}
+		
+		$back = 'Scum Top5 '.$section.': '.substr($back, 2);
+
+		return $back;
+	}
 	
+	private function scumTop5Player(Dog_User $user, $username)
+	{
+		if (false === ($user = Dog::getUserByArg($username)))
+		{
+			return 'Ùnknown User';
+		}
+		
+		$table = GDO::table('Dog_ScumStats');
+		
+		if (false === ($entry = $table->selectFirst('*', "scums_uid={$user->getID()}")))
+		{
+			return 'NO DATA FOR PLAYER YET!';
+		}
+		
+		$sid = $user->getSID();
+		$username = $user->getName();
+		$games = $entry['scums_games'];
+		$won = $entry['scums_won'];
+		$score = $entry['scums_score'];
+		$rank = $table->selectVar('COUNT(*)', "scums_score>{$score}") + 1;
+		
+		if (false === ($before = $table->selectFirst('*', "scums_score>{$score}", "scums_score ASC")))
+		{
+			return sprintf(
+				'%s!%s has played %s games, won %s and scores %s points at rank %s. Praise the grand master!',
+				$username, $sid, $games, $won, $score, $rank
+			);
+		}
+		
+		$scoreB = $before['scums_score'];
+		
+		return sprintf(
+			'%s!%s has played %s games, won %s and scores %s points at rank %s. %s points needed for rankup.',
+			$username, $sid, $games, $won, $score, $rank, $scoreB - $score + 1
+				
+		);
+	}
 }
-?>

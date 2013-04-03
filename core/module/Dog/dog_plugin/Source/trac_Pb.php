@@ -27,14 +27,29 @@ $__DOG_TRAC_LAST = $message;
 # The callback function for the filewalker
 if (!(function_exists('dog_trac_helper4')))
 {
-	function dog_trac_helper4($entry, $fullpath, $search)
+	function dog_trac_helper4($entry, $fullpath, $search, $casei=false)
 	{
-		if (strpos($fullpath, $search) !== false)
+		if ($casei === true)
 		{
-			if (strpos($fullpath, '/module/Lamb/') === false)
+			if (stripos($fullpath, $search) !== false)
 			{
-				global $__DOG_TRAC_RESULTS;
-				$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);
+				if (strpos($fullpath, '/module/Lamb/') === false)
+				{
+					global $__DOG_TRAC_RESULTS;
+					$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);
+				}
+			}
+		}
+		
+		else 
+		{
+			if (strpos($fullpath, $search) !== false)
+			{
+				if (strpos($fullpath, '/module/Lamb/') === false)
+				{
+					global $__DOG_TRAC_RESULTS;
+					$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);
+				}
 			}
 		}
 	}

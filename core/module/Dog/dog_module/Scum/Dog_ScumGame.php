@@ -73,7 +73,7 @@ final class Dog_ScumGame
 	public function displayPlayers() { return implode(', ', $this->players); }
 	public function getCards(Dog_User $user) { return $this->cards[array_search($user->getName(), $this->players)]; }
 	public function displayCards(Dog_User $user) { return implode(', ', $this->getCards($user)); }
-	public function output($message) { $this->channel->sendPRIVMSG($message); }
+	public function output($message) {  $message = trim($message); if ($message !== '') $this->channel->sendPRIVMSG($message); }
 	
 	############
 	### Sort ###
