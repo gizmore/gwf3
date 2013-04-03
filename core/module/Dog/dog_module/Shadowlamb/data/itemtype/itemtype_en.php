@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-'0'=>'Melee Weapon',
+'0'=>'Ninja Weapon',
 '1'=>'Potion',
 '2'=>'Potion',
 '3'=>'Potion',

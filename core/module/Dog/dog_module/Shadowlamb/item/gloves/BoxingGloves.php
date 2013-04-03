@@ -9,7 +9,7 @@ final class Item_BoxingGloves extends SR_Gloves
 	{
 		return array(
 			'attack' => '0.5',
-			'maxdmg' => '-1.5',
+			'max_dmg' => '-1.5',
 		);
 	}
 }

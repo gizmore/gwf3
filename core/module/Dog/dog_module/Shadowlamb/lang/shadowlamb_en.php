@@ -126,8 +126,8 @@ $lang = array(
 'piercing' => 'Piercing',
 
 # PrintF-Formats
-'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', # Ouch
-'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s', # Ouch
+'fmt_exx' => '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s', # Ouch
+'fmt_examine' => '%s is %s%s. %s%s%s%s%s%s%s%s%s%s', # Ouch
 'fmt_list' => ', %s', # item
 'fmt_gain' => '%s%s(%s/%s)%s', # sign, gain, now, max, unit
 'fmt_asl' => "{$b}Age{$b}:%s, %scm %s", # age, height, weight

@@ -379,7 +379,7 @@ abstract class SR_NPC extends SR_NPCBase
 	{
 		if (false !== ($weapon = $this->getBestWeapon()))
 		{
-			$this->combatAIPushEquip($item);
+			$this->combatAIPushEquip($weapon);
 			return true;
 		}
 		return false;
@@ -420,7 +420,7 @@ abstract class SR_NPC extends SR_NPCBase
 	
 	public function canEquip(SR_Equipment $item)
 	{
-		return false === Shadowfunc::checkRequirements($player, $this->getItemRequirements());
+		return false === Shadowfunc::checkRequirements($this, $item->getItemRequirements());
 	}
 	
 	public function hasAmmoFor(SR_FireWeapon $weapon)
@@ -437,8 +437,8 @@ abstract class SR_NPC extends SR_NPCBase
 		$b instanceof SR_Weapon;
 		$amod = $a->getItemModifiersA($this);
 		$bmod = $b->getItemModifiersA($this);
-		$admg = isset($amod['maxdmg']) ? $amod['maxdmg'] : 0;
-		$bdmg = isset($bmod['maxdmg']) ? $bmod['maxdmg'] : 0;
+		$admg = isset($amod['max_dmg']) ? $amod['max_dmg'] : 0;
+		$bdmg = isset($bmod['max_dmg']) ? $bmod['max_dmg'] : 0;
 		return $admg > $bdmg;
 	}
 }

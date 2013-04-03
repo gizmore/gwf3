@@ -122,7 +122,8 @@ final class Shadowrun4
 	{
 		$id = (int)$id;
 		$back = array_slice(self::$cities, $id-1, 1);
-		return array_pop($back);
+		$back = array_pop($back);
+		return $back === NULL ? false : $back;
 	}
 	
 	/**

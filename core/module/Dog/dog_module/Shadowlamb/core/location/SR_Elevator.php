@@ -1,5 +1,5 @@
 <?php
-require 'SR_Entrance.php';
+require_once 'SR_Entrance.php';
 abstract class SR_Elevator extends SR_Entrance
 {
 	public function getAbstractClassName() { return __CLASS__; }
