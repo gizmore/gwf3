@@ -12,7 +12,7 @@ final class DOGMOD_Scum extends Dog_Module
 	public function getOptions()
 	{
 		return array(
-			'max_players' => 'c,h,i,4',
+			'max_players' => 'c,h,i,8',
 			'reset_time' => 'c,s,i,337',
 		);
 	}
@@ -195,6 +195,11 @@ final class DOGMOD_Scum extends Dog_Module
 		if ($game->getPlayerCountLeft() < 2)
 		{
 			return $this->errorLowPlayers();
+		}
+		
+		if (!$game->isInGame($user))
+		{
+			return $this->errorNotInGame();
 		}
 		
 		$game->start();
