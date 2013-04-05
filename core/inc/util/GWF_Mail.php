@@ -6,11 +6,12 @@ if (!defined('GWF_DEBUG_EMAIL'))
 /**
  * Will send very simple html and plaintext mails.
  * Supports GPG signing and encryption.
- * Uses UTF8 encoding.
- * @TODO: attachments
- * @TODO: Test cc and bcc
- * @TODO: Make use of staff cc
+ * Uses UTF8 encoding and features attachments.
+ * @TODO: Implement cc and bcc
+ * @TODO: Make use of staff cc?
  * @author gizmore
+ * @version 3.0
+ * @since 2008
  * */
 final class GWF_Mail
 {
@@ -74,6 +75,11 @@ final class GWF_Mail
 	
 	public function nestedHTMLBody()
 	{
+		if (!class_exists('GWF_Template'))
+		{
+			return nl2br($this->body);
+		}
+		
 		$tVars = array(
 			'content' => nl2br($this->body),
 		);
@@ -89,16 +95,6 @@ final class GWF_Mail
 		$body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
 		return $body;
 	}
-
-	/*	public function addHeader($key, $value)
-	 {
-		$this->headers[$key] = $value;
-		}
-
-		public function removeHeader($key)
-		{
-		unset($this->headers[$key]);
-		}*/
 
 	/**
 	 * This requires a GWF_User and chooses preferences.
