@@ -40,8 +40,9 @@ final class GWF_Mail
 	public function setGPGKey($k) { $this->gpgKey = $k; }
 	public function setAllowGPG($bool) { $this->allowGPG = $bool; }
 	public function setResendCheck($bool) { $this->resendCheck = $bool; }
-//	public function addAttachment($title, $file) {}
-//	public function removeAttachment($title) {}
+	public function addAttachment($title, $data, $mime='application/octet-stream') { $this->attachments[$title] = array($data, $mime); }
+	public function addAttachmentFile($title, $filename) { die('TODO: GET MIME TYPE AND LOAD FILE INTO MEMORY.'); }
+	public function removeAttachment($title) { unset($this->attachments[$title]); }
 
 	public static function sendMailS($sender, $receiver, $subject, $body, $html=false, $resendCheck=false)
 	{
@@ -125,50 +126,87 @@ final class GWF_Mail
 
 	public function send($cc, $bcc, $message, $html=true)
 	{
-
+		if (count($this->attachments) > 0)
+		{
+			return $this->sendWithAttachments($cc, $bcc);
+		}
+		
 		$headers = '';
-			#'From: =?UTF-8?B?'
-			#.base64_encode($this->senderName).'?=<'
-			#. $this->sender . ">\r\n";
-
-			#$to = '=?UTF-8?B?'.base64_encode($this->receiverName)
-			#.'?=<'. $this->receiver.'>' ;
-
 		$to = $this->receiver;
-
 		# UTF8 Subject :)
 		$subject='=?UTF-8?B?'.base64_encode($this->subject)."?=";
-
-#		if($cc!=''){
-#			$cc = explode('<',$cc );
-#			$headers .= 'Cc: =?UTF-8?B?'
-#			.base64_encode($cc[0]).'?= <'
-#			. $cc[1].'>' . "\r\n";
-#		}
-
-#			if($bcc!=''){#
-#				$bcc = explode('<',$bcc );
-#				$headers .= 'Bcc: =?UTF-8?B?'
-#				.base64_encode($bcc[0]).'?= <'
-#				. $bcc[1].'>' . "\r\n";
-#			}
-
-//			$message = $this->nestedHTMLBody();
-
-			$headers .= 'From: '.$this->sender.self::HEADER_NEWLINE;
-			# HTML / UTF8
-			$contentType= $html ? 'text/html' : 'text/plain';
-
-			$headers .= 
-
-		"Content-Type: $contentType; charset=utf-8".self::HEADER_NEWLINE
-#		. ""# format=flowed\n"
-		. "MIME-Version: 1.0".self::HEADER_NEWLINE
-		. "Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
-		. "X-Mailer: PHP";
-
+		$headers .= 'From: '.$this->sender.self::HEADER_NEWLINE;
+		# HTML / UTF8
+		$contentType = $html ? 'text/html' : 'text/plain';
+		$headers .= 
+			"Content-Type: $contentType; charset=utf-8".self::HEADER_NEWLINE
+			. "MIME-Version: 1.0".self::HEADER_NEWLINE
+			. "Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
+			. "X-Mailer: PHP";
 		$encrypted = $this->encrypt($message);
-
+		if (GWF_DEBUG_EMAIL & 16)
+		{
+			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
+			return true;
+		}
+		else
+		{
+			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->sender);
+		}
+	}
+	
+	public function sendWithAttachments($cc, $bcc)
+	{
+		$to = $this->receiver;
+		$subject='=?UTF-8?B?'.base64_encode($this->subject)."?=";
+		$random_hash = md5(microtime(true));
+		$bound_mix = "GWF3-MIX-{$random_hash}";
+		$bound_alt = "GWF3-ALT-{$random_hash}";
+		$headers = 
+			"Content-Type: multipart/mixed; boundary=\"{$bound_mix}\"".self::HEADER_NEWLINE.
+			"MIME-Version: 1.0".self::HEADER_NEWLINE.
+			"Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE.
+			"X-Mailer: PHP";
+		
+		$message  = "--$bound_mix\n";
+		$message .= "Content-Type: multipart/alternative; boundary=\"$bound_alt\"\n";
+		$message .= "\n";
+		
+		$message .= "--$bound_alt\n";
+		$message .= "Content-Type: text/plain; charset=utf-8\n";
+		$message .= "Content-Transfer-Encoding: 8bit\n";
+		$message .= "\n";
+		
+		$message .= $this->nestedTextBody();
+		$message .= "\n\n";
+		
+		$message .= "--$bound_alt\n";
+		$message .= "Content-Type: text/html; charset=utf-8\n";
+		$message .= "Content-Transfer-Encoding: 8bit\n";
+		$message .= "\n";
+		
+		$message .= $this->nestedHTMLBody();
+		$message .= "\n\n";
+		
+		$message .= "--$bound_alt--\n";
+		$message .= "\n";
+		
+		foreach ($this->attachments as $filename => $attachdata)
+		{
+			list($attach, $mime) = $attachdata;
+			$filename = preg_replace("/[^a-z0-9_-]/i", '', $filename);
+			$message .= "--$bound_mix\n";
+			$message .= "Content-Type: $mime; name=\"$filename\"\n";
+			$message .= "Content-Transfer-Encoding: base64\nContent-Disposition: attachment\n\n";
+			$message .= chunk_split(base64_encode($attach));
+		}
+		
+		$message .= "--$bound_mix--\n\n";
+		
+		echo $message;
+		
+		$encrypted = $this->encrypt($message);
+		
 		if (GWF_DEBUG_EMAIL & 16)
 		{
 			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
