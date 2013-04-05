@@ -1,4 +1,8 @@
 <?php
+if (!defined('GWF_DEBUG_EMAIL'))
+{
+	define('GWF_DEBUG_EMAIL', 0);
+}
 /**
  * Will send very simple html and plaintext mails.
  * Supports GPG signing and encryption.
@@ -62,7 +66,12 @@ final class GWF_Mail
 	{
 		return self::sendMailS(GWF_BOT_EMAIL, GWF_ADMIN_EMAIL, GWF_SITENAME.$subject, GWF_Debug::getDebugText($body), false, true);
 	}
-
+	
+	private static function br2nl($s, $nl=PHP_EOL)
+	{
+		return preg_replace('/< *br *\/? *>/i', $nl, $s);
+	}
+	
 	public function nestedHTMLBody()
 	{
 		$tVars = array(
@@ -76,7 +85,7 @@ final class GWF_Mail
 		$body = $this->body;
 		#$body = preg_replace('/<[^>]+>([^<]+)<[^>+]>/', '$1', $body);
 		$body = preg_replace('/<[^>]+>/', '', $body);
-		$body = GWF_HTML::br2nl($body);
+		$body = self::br2nl($body);
 		$body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
 		return $body;
 	}
@@ -91,6 +100,11 @@ final class GWF_Mail
 		unset($this->headers[$key]);
 		}*/
 
+	/**
+	 * This requires a GWF_User and chooses preferences.
+	 * Simply do not call it when you use GWF_Mail as standalone.
+	 * @param GWF_User $user
+	 */
 	public function sendToUser(GWF_User $user)
 	{
 		$this->setupGPG($user);
@@ -103,7 +117,6 @@ final class GWF_Mail
 		{
 			return $this->sendAsHTML();
 		}
-
 	}
 
 	public function sendAsText($cc='', $bcc='')
@@ -146,7 +159,7 @@ final class GWF_Mail
 		$encrypted = $this->encrypt($message);
 		if (GWF_DEBUG_EMAIL & 16)
 		{
-			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
+			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $message));
 			return true;
 		}
 		else
@@ -209,7 +222,7 @@ final class GWF_Mail
 		
 		if (GWF_DEBUG_EMAIL & 16)
 		{
-			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', GWF_HTML::display($this->subject), $message));
+			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $message));
 			return true;
 		}
 		else
