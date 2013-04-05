@@ -9,6 +9,7 @@ if (!defined('GWF_DEBUG_EMAIL'))
  * Uses UTF8 encoding and features attachments.
  * @TODO: Implement cc and bcc
  * @TODO: Make use of staff cc?
+ * @TODO: Test Attechments in combination with GPG
  * @author gizmore
  * @version 3.0
  * @since 2008
@@ -203,7 +204,7 @@ final class GWF_Mail
 		foreach ($this->attachments as $filename => $attachdata)
 		{
 			list($attach, $mime) = $attachdata;
-			$filename = preg_replace("/[^a-z0-9_-]/i", '', $filename);
+			$filename = preg_replace("/[^a-z0-9_\-\.]/i", '', $filename);
 			$message .= "--$bound_mix\n";
 			$message .= "Content-Type: $mime; name=\"$filename\"\n";
 			$message .= "Content-Transfer-Encoding: base64\nContent-Disposition: attachment\n\n";
