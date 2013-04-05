@@ -58,6 +58,7 @@ function warscore_function($socket, $pid)
 		'store_last_url' => false,
 		'ignore_user_abort' => false,
 	));
+	gdo_db();
 	GWF_Debug::setDieOnError(false);
 	GWF_HTML::init();
 	
