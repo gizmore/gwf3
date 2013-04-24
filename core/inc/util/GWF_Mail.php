@@ -24,9 +24,9 @@ final class GWF_Mail
 	const GPG_FINGERPRINT = ''; #GWF_EMAIL_GPG_SIG;
 
 	private $receiver = '';
-	private $receiverName = 'Bar';
+	private $receiverName = '';
 	private $sender = '';
-	private $senderName = 'Foo';
+	private $senderName = '';
 	private $subject = '';
 	private $body = '';
 	private $attachments = array();
@@ -50,9 +50,34 @@ final class GWF_Mail
 	public function addAttachmentFile($title, $filename) { die('TODO: GET MIME TYPE AND LOAD FILE INTO MEMORY.'); }
 	public function removeAttachment($title) { unset($this->attachments[$title]); }
 
-	private function getUTF8Sender() { return $this->getUTF8Encoded($this->sender); }
-	private function getUTF8Receiver() { return $this->getUTF8Encoded($this->receiver); }
+	private function getUTF8Sender()
+	{
+		$sn = $this->senderName;
+		if ($sn === '')
+		{
+			return $this->sender;
+		}
+		else
+		{
+			return '"'.$this->getUTF8Encoded($sn)."\" <{$this->sender}>";
+		}
+	}
+	
+	private function getUTF8Receiver()
+	{
+		$rn = $this->receiverName;
+		if ($rn === '')
+		{
+			return $this->receiver;
+		}
+		else
+		{
+			return '"'.$this->getUTF8Encoded($rn)."\" <{$this->receiver}>";
+		}
+	}
+
 	private function getUTF8Subject() { return $this->getUTF8Encoded($this->subject); }
+	
 	private function getUTF8Encoded($string) { return '=?UTF-8?B?'.base64_encode($string).'?='; }
 	
 	public static function sendMailS($sender, $receiver, $subject, $body, $html=false, $resendCheck=false)
@@ -148,16 +173,17 @@ final class GWF_Mail
 		
 		$headers = '';
 		$to = $this->getUTF8Receiver();
-		# UTF8 Subject :)
+		$from = $this->getUTF8Sender();
 		$subject = $this->getUTF8Subject();
-		$headers .= 'From: '.$this->sender.self::HEADER_NEWLINE;
-		# HTML / UTF8
 		$contentType = $html ? 'text/html' : 'text/plain';
 		$headers .= 
 			"Content-Type: $contentType; charset=utf-8".self::HEADER_NEWLINE
-			. "MIME-Version: 1.0".self::HEADER_NEWLINE
-			. "Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
-			. "X-Mailer: PHP";
+			."MIME-Version: 1.0".self::HEADER_NEWLINE
+			."Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
+			."X-Mailer: PHP".self::HEADER_NEWLINE
+		    .'From: '.$from.self::HEADER_NEWLINE
+        	.'Reply-To: '.$from.self::HEADER_NEWLINE
+        	.'Return-Path: '.$from;
 		$encrypted = $this->encrypt($message);
 		if (GWF_DEBUG_EMAIL & 16)
 		{
@@ -166,22 +192,26 @@ final class GWF_Mail
 		}
 		else
 		{
-			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->getUTF8Sender());
+			return @mail($to, $subject, $encrypted, $headers); //, '-r ' . $this->sender);
 		}
 	}
 	
 	public function sendWithAttachments($cc, $bcc)
 	{
 		$to = $this->getUTF8Receiver();
+		$from = $this->getUTF8Sender();
 		$subject = $this->getUTF8Subject();
 		$random_hash = md5(microtime(true));
 		$bound_mix = "GWF3-MIX-{$random_hash}";
 		$bound_alt = "GWF3-ALT-{$random_hash}";
 		$headers = 
-			"Content-Type: multipart/mixed; boundary=\"{$bound_mix}\"".self::HEADER_NEWLINE.
-			"MIME-Version: 1.0".self::HEADER_NEWLINE.
-			"Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE.
-			"X-Mailer: PHP";
+			"Content-Type: multipart/mixed; boundary=\"{$bound_mix}\"".self::HEADER_NEWLINE
+			."MIME-Version: 1.0".self::HEADER_NEWLINE
+			."Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
+			."X-Mailer: PHP".self::HEADER_NEWLINE
+		    .'From: '.$from.self::HEADER_NEWLINE
+        	.'Reply-To: '.$from.self::HEADER_NEWLINE
+        	.'Return-Path: '.$from;
 		
 		$message  = "--$bound_mix\n";
 		$message .= "Content-Type: multipart/alternative; boundary=\"$bound_alt\"\n";
@@ -229,7 +259,7 @@ final class GWF_Mail
 		}
 		else
 		{
-			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->getUTF8Sender());
+			return @mail($to, $subject, $encrypted, $headers); #, '-r ' . $this->sender);
 		}
 	}
 	
