@@ -50,6 +50,11 @@ final class GWF_Mail
 	public function addAttachmentFile($title, $filename) { die('TODO: GET MIME TYPE AND LOAD FILE INTO MEMORY.'); }
 	public function removeAttachment($title) { unset($this->attachments[$title]); }
 
+	private function getUTF8Sender() { return $this->getUTF8Encoded($this->sender); }
+	private function getUTF8Receiver() { return $this->getUTF8Encoded($this->receiver); }
+	private function getUTF8Subject() { return $this->getUTF8Encoded($this->subject); }
+	private function getUTF8Encoded($string) { return '=?UTF-8?B?'.base64_encode($string).'?='; }
+	
 	public static function sendMailS($sender, $receiver, $subject, $body, $html=false, $resendCheck=false)
 	{
 		$mail = new self();
@@ -142,9 +147,9 @@ final class GWF_Mail
 		}
 		
 		$headers = '';
-		$to = $this->receiver;
+		$to = $this->getUTF8Receiver();
 		# UTF8 Subject :)
-		$subject='=?UTF-8?B?'.base64_encode($this->subject)."?=";
+		$subject = $this->getUTF8Subject();
 		$headers .= 'From: '.$this->sender.self::HEADER_NEWLINE;
 		# HTML / UTF8
 		$contentType = $html ? 'text/html' : 'text/plain';
@@ -161,14 +166,14 @@ final class GWF_Mail
 		}
 		else
 		{
-			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->sender);
+			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->getUTF8Sender());
 		}
 	}
 	
 	public function sendWithAttachments($cc, $bcc)
 	{
-		$to = $this->receiver;
-		$subject='=?UTF-8?B?'.base64_encode($this->subject)."?=";
+		$to = $this->getUTF8Receiver();
+		$subject = $this->getUTF8Subject();
 		$random_hash = md5(microtime(true));
 		$bound_mix = "GWF3-MIX-{$random_hash}";
 		$bound_alt = "GWF3-ALT-{$random_hash}";
@@ -224,7 +229,7 @@ final class GWF_Mail
 		}
 		else
 		{
-			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->sender);
+			return @mail($to, $subject, $encrypted, $headers, '-r ' . $this->getUTF8Sender());
 		}
 	}
 	
