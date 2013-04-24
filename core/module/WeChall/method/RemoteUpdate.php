@@ -21,6 +21,10 @@ final class WeChall_RemoteUpdate extends GWF_Method
 		
 		// flag for images. 0=normal text, 1=default image, we can assign different image styles to higher numbers
 		$img = (int) Common::getGet('img', 0);
+		if ($img === 1)
+		{
+			header("Content-Type: image/png");
+		}
 		
 		if (false === ($sitename = Common::getRequest('sitename')))
 		{
@@ -118,7 +122,6 @@ final class WeChall_RemoteUpdate extends GWF_Method
 			$yPos += $el;
 		}
 		// Return the image
-		header("Content-Type: image/png");
 		imagepng($img);
 		imagedestroy($img);
 	}
