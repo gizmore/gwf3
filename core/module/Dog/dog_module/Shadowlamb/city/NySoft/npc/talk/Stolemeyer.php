@@ -13,8 +13,8 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 		if ($quest->isInQuest($player))
 		{
 			$p = $player->getParty();
-			$p->notice('You confront Mr.Stoleymeyer with the illegal Renraku experiments...');
-			$p->notice('"You are one of those bastards!", he shouts, "Tho shalt not escape!" ... he calls for his minions...');
+			$p->notice('You confront Mr. Stoleymeyer with the illegal Renraku experiments...');
+			$p->notice('"You are one of those bastards!", he shouts, "Tho shal not escape!" ... he calls for his minions...');
 			$p->fight(SR_NPC::createEnemyParty('NySoft_Stolemeyer','Redmond_Lamer','TrollCellar_Imp','Seattle_Shaolin','Redmond_Ueberpunk','Prison_GrayOp','Delaware_Goth','Chicago_DarkRunner'));
 			return true;
 		}
@@ -30,7 +30,7 @@ final class NySoft_Stolemeyer extends SR_TalkingNPC
 			case 'blackmarket': return $this->reply("You are wrong here.");
 			case 'bounty': return $this->reply("I can arrange things, but not for you.");
 			case 'alchemy': return $this->reply("...");
-			case 'invite': return $this->reply("Pleaes leave my office now.");
+			case 'invite': return $this->reply("Please leave my office now.");
 			case 'renraku':
 				if ($quest->isDone($player))
 				{
