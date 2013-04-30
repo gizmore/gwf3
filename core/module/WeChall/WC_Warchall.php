@@ -1,4 +1,8 @@
 <?php
+/**
+ * @deprecated
+ * @author gizmore
+ */
 final class WC_Warchall extends GDO
 {
 	public function getClassName() { return __CLASS__; }
