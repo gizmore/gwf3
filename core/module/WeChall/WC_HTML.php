@@ -309,8 +309,8 @@ final class WC_HTML
 				$names++;
 				if ($names <= $max)
 				{
-					$multi = $count > 1 ? $count.' x ' : '';
-					$text .= sprintf(', <a href="%s" title="%s">%s%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $multi, $user->displayUsername());
+					$multi = $count > 1 ? "(x{$count})" : '';
+					$text .= sprintf(', <a href="%s" title="%s">%s%s</a>', $user->getProfileHREF(), $module->lang('a_title', array($user->getVar('user_level'))), $user->displayUsername(), $multi);
 				}
 				else
 				{
