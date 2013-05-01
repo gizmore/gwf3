@@ -19,7 +19,8 @@ MY_SALT=%%SALT%%;
 #################
 MY_DAY=`date +%d`
 MY_DATE=`date +%y%m%d`
-MY_FILENAME="./""$MY_DATE""_db_backup""$MY_SALT"".sql.gz";
+MY_FILENAME="./""$MY_DATE""_db_backup_""$MY_SALT"".sql.gz";
+MY_DBIMGFILE="./""$MY_DATE""_dbimg_""$MY_SALT"".tar.bz2"
 
 ##################
 ### DB backups ###
@@ -37,7 +38,10 @@ if [ "$MY_DAY" == 01 ] || [ "$MY_DAY" == 15 ]
 then
 	echo "Moving the backup to permanent backups.";
 	mv "db_backups/$MY_FILENAME" "db_backups_old/$MY_FILENAME"
+	echo "Creating a dbimg/ backup.";
+	tar -cjf "db_backups_old/$MY_DBIMGFILE" ../dbimg
 fi
+
 
 ################
 ### Logfiles ###
