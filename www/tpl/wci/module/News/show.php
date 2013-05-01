@@ -1,4 +1,5 @@
 <?php
+$module = $tVars['module']; $module instanceof Module_News;
 $is_staff = $tVars['may_add'];
 ?>
 <?php $id = 1; ?>
@@ -37,19 +38,23 @@ foreach ($tVars['news'] as $news)
 	<?php #if ($is_staff) { echo '<div class="gwf_newsbox_translate">'.$news->getTranslateSelect().'</div>'; } ?>
 	<?php
 	$more = '';
-	if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true)))
+	if ($module->cfgAllowComments())
 	{
-		$comments instanceof Module_Comments;
-		$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
-		if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'], 0, $gid)));
+		
+		if (false !== ($comments = GWF_Module::loadModuleDB('Comments', true, true)))
 		{
-			$c instanceof GWF_Comments;
-//			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
-//			$more .= '<br/>'.$c->displayTopComments();
-//			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
-			$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.Common::urlencodeSEO($news['newst_title']).'-page-1.html');
-//			$more .= '<br/>'.$c->displayTopComments();
-//			$more .= '<br/>'.$c->displayReplyForm();
+			$comments instanceof Module_Comments;
+			$gid = GWF_Group::getByName(GWF_Group::MODERATOR)->getID();
+			if (false !== ($c = GWF_Comments::getOrCreateComments('_NEWS_ID_'.$news['news_id'], 0, $gid)));
+			{
+				$c instanceof GWF_Comments;
+	//			$more .= '<br/>'.$c->displayMore($tVars['href_comments_more']);
+	//			$more .= '<br/>'.$c->displayTopComments();
+	//			$more .= '<br/>'.$c->displayReplyForm($tVars['href_comments_reply']);
+				$more .= '<br/>'.$c->displayMore(GWF_WEB_ROOT.'news-comments-'.$news['news_id'].'-'.Common::urlencodeSEO($news['newst_title']).'-page-1.html');
+	//			$more .= '<br/>'.$c->displayTopComments();
+	//			$more .= '<br/>'.$c->displayReplyForm();
+			}
 		}
 	} 
 	?>
