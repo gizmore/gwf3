@@ -2,6 +2,7 @@
 /**
  * Session Detection
  * @author gizmore
+ * @deprecated
  */
 final class GWF_CookieCheck extends GWF_Method
 {

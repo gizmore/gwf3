@@ -1,0 +1,3 @@
+<?php
+# 'ERR_NOMOTD'
+?>

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author gizmore
+ * @deprecated
+ */
 final class GWF_JSEnabled extends GWF_Method
 {
 	public function execute(GWF_Module $module)
