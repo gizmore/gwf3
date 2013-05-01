@@ -24,7 +24,7 @@ $href_flags = $box->hrefFlags();
 
 echo $tVars['site_quickjump'];
 
-echo GWF_Box::box($tLang->lang('info_warbox_details', array($site->displayName(), $box->displayName(), count($tVars['data']))), $tLang->lang('title_warbox_details', array($site->displayName(), $box->displayName())));
+// echo GWF_Box::box($tLang->lang('info_warbox_details', array($site->displayName(), $box->displayName(), count($tVars['data']))), $tLang->lang('title_warbox_details', array($site->displayName(), $box->displayName())));
 
 echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);

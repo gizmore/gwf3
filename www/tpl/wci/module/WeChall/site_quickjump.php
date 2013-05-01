@@ -53,7 +53,7 @@ ksort($cats);
 
 ### Now output all the selects in one single form
 ###
-echo '<div id="wc_site_qj">'.PHP_EOL;
+echo '<div id="wc_site_qj" class="gwf_buttons_outer">'.PHP_EOL;
 
 $nqj=1;
 
@@ -96,13 +96,14 @@ if (count($boxes) > 0)
 	echo GWF_Select::display('wc_boxes_quickjump', $data, Common::getGetString('bid'), "wcSiteQuickqump(this, '{$tVars['mode']}', 2)");
 }
 
-
 # - Button
 echo '<noscript><div class="i"><input type="submit" name="quickjump" value="'.$tLang->lang('btn_quickjump').'" /></div></noscript>';
 echo '</div>';
 
 echo '</form>';
 echo '</div>'.PHP_EOL;
+
+return;
 
 # - Tabs
 $which = Common::getGet('which', '0');

@@ -217,7 +217,7 @@ select {
 
 /* PAGE MENU */
 .gwf_pagemenu, #join_wc ol, .gwf_board_quicktree, .gwf_letter_menu, .gwf_buttons_outer {
-	margin: 5px;
+	margin: 5px 0;
 }
 
 .gwf_pagemenu a,.gwf_pagemenu_sel,.gwf_board_quicktree a, .gwf_letter_menu a {
@@ -249,7 +249,7 @@ select {
 
 /** NEWS */
 .gwf_newsbox_item, .box, .gwf_tags_outer, table, div#page > p {
-	margin: 5px 5px;
+	margin: 5px 0px;
 	background: #fff;
 	color: #294666;
 	border: 1px solid #AFBECD;
@@ -277,9 +277,9 @@ select {
 }
 
 /** Buttons **/
-.gwf_buttons_outer {
-	margin: 5px;
-}
+/* .gwf_buttons_outer { */
+/* 	margin: 5px; */
+/* } */
 
 .gwf_button span {
 	text-decoration: none;
@@ -837,4 +837,16 @@ td.gwf_num a {
 	width: 100%;
 	height: 100%;
 }
+#page > h1 {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 10px;
+}
 
+#page > h1 > img {
+	margin-left: -10px;
+}
+
+div.fl {
+	margin-left: 5px;
+}

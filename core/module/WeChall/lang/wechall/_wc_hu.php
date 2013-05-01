@@ -196,7 +196,7 @@ $lang = array(
 	'lp_language' => 'Nyelv',
 
 	# Footer
-	'footer_1' => '©2008-2011 wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Minden kód</a> a <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a> szerint van licenszelve; itt <a href="'.GWF_WEB_ROOT.'contact">írhatsz nekünk</a>.',
+	'footer_1' => '©2008-%s wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Minden kód</a> a <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a> szerint van licenszelve; itt <a href="'.GWF_WEB_ROOT.'contact">írhatsz nekünk</a>.',
 	'footer_2' => '%s felhasználó volt online ekkor: %s - %s oldalt szolgált ki eddig  aszerver.',
 
 

@@ -641,7 +641,7 @@ class WC_Site extends WC_SiteBase
 	public function hrefEdit() { return GWF_WEB_ROOT.sprintf('site/edit/%s/%s', $this->getVar('site_id'), $this->urlencodeSEO('site_name')); }
 	public function hrefLogo() { return GWF_WEB_ROOT.'dbimg/logo/'.$this->getVar('site_id'); }
 	public function hrefHistory() { return GWF_WEB_ROOT.'site/history/'.$this->urlencode2('site_name'); }
-	public function hrefWarboxes() { return GWF_WEB_ROOT.sprintf('%s-wargames-on-%s.html', $this->getID(), $this->getSitename()); }
+	public function hrefWarboxes() { return GWF_WEB_ROOT.sprintf('%s-wargames-on-%s.html', $this->getID(), $this->urlencodeSEO('site_name')); }
 
 	####################################
 	### Creation of Votes And Thread ###

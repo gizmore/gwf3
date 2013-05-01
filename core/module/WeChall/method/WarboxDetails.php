@@ -29,9 +29,30 @@ final class WeChall_WarboxDetails extends GWF_Method
 			return $this->module->error('err_warbox');
 		}
 		
+		if ('' !== ($answer = Common::getPostString('password_solution', '')))
+		{
+			return $this->onSolve($answer) . $this->templateLevels();
+		}
+		
 		return $this->templateLevels();
 	}
 	
+	private function onSolve($answer)
+	{
+		if (false === ($flag = WC_Warflag::getByWarboxAndID($this->box, Common::getPostString('wfid'))))
+		{
+			return $this->module->error('err_warflag');
+		}
+		
+		if (false === ($solver = $this->module->getMethod('Warsolve')))
+		{
+			return GWF_HTML::err('ERR_METHOD_MISSING', array('Warsolve', 'WeChall'));
+		}
+
+		$solver instanceof WeChall_Warsolve;
+		return $solver->onAnswer($flag, $answer);
+	}
+
 	private function templateLevels()
 	{
 		$bid = $this->box->getID();
@@ -44,6 +65,7 @@ final class WeChall_WarboxDetails extends GWF_Method
 			'data' => $this->getData(),
 			'box' => $this->box,
 			'site' => $this->box->getSite(),
+			'method' => $this,
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=WeChall&me=WarboxDetails&boxid='.$bid.'&by=%BY%&dir=%DIR%',
 		);
 		return $this->module->templatePHP('warbox_details.php', $tVars);

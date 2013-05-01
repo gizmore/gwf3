@@ -45,10 +45,22 @@ final class News_ShowComments extends GWF_Method
 		$page = Common::clamp(Common::getGetInt('cpage'), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		
+		// Method
 		$me = $mod_c->getMethod('Reply');
 		$me instanceof Comments_Reply;
 		
-		$c = GDO::table('GWF_Comment')->selectObjects('*', "cmt_cid={$cid}", 'cmt_date ASC', $ipp, $from);
+		$where = "cmt_cid={$cid}";
+		$with_perms = !GWF_User::isInGroupS('moderator');
+		if ($with_perms)
+		{
+			$visible = GWF_Comment::VISIBLE;
+			$deleted = GWF_Comment::DELETED;
+			$flags = $visible|$deleted;
+			$where .= " cmt_options & {$flags} = {$visible}";
+		}
+		
+		
+		$c = GDO::table('GWF_Comment')->selectObjects('*', "", 'cmt_date ASC', $ipp, $from);
 		
 		$href = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-'.$page.'.html';
 		$hrefp = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-%PAGE%.html';

@@ -32,7 +32,7 @@ foreach ($tVars['boxes'] as $box)
 	
 	echo GWF_Table::column($box->getVar('wb_totalscore'), 'gwf_num');
 	
-	echo GWF_Table::column(GWF_HTML::anchor($box->getVar('wb_weburl'), $box->getVar('wb_name')));
+	echo GWF_Table::column(GWF_HTML::anchor($box->getWebURL(), $box->getVar('wb_name')));
 	
 	echo GWF_Table::column(GWF_HTML::anchor($box->hrefDetails(), $box->getVar('wb_challs')), 'gwf_num');
 	

@@ -1,5 +1,6 @@
 <?php
-if (false === ($user = GWF_Session::getUser()))
+return '';
+/*if (false === ($user = GWF_Session::getUser()))
 {
 	return '';
 }
@@ -36,4 +37,4 @@ echo WC_HTML::button('btn_edit_profile', GWF_WEB_ROOT.'profile_settings', $mo===
 echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
 echo '</nav>'.PHP_EOL;
-?>
+*/

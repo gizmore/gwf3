@@ -1,7 +1,7 @@
 <?php
 final class WeChall_Warsolve extends GWF_Method
 {
-	const TIMEOUT = 15;
+	const TIMEOUT = 25;
 	
 	/**
 	 * @var WC_Warbox
@@ -103,14 +103,34 @@ final class WeChall_Warsolve extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (!$flag->isWarflag())
-		{
-			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
-		}
-		
 		if ($this->box->getID() !== $flag->getVar('wf_wbid'))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		return $this->onAnswer($flag, $password);
+	}
+	
+	public function onAnswer(WC_Warflag $flag, $password)
+	{
+		if (false === ($this->user = GWF_Session::getUser()))
+		{
+			return GWF_HTML::err('ERR_LOGIN_REQUIRED');
+		}
+		
+		if (false === ($this->box = $flag->getWarbox()))
+		{
+			return $this->module->error('err_warbox');
+		}
+		
+		if (false === ($this->site = $this->box->getSite()))
+		{
+			return $this->module->error('err_site');
+		}
+		
+		if (!$flag->isWarflag())
+		{
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
 		if (false !== ($error = $this->checkBrute($flag)))
@@ -132,13 +152,12 @@ final class WeChall_Warsolve extends GWF_Method
 	private function checkBrute(WC_Warflag $flag)
 	{
 		$timestamp = WC_Warflags::getLastAttemptTime($this->user);
-		
 		$wait = $timestamp + self::TIMEOUT - time();
 		if ($wait <= 0)
 		{
 			return false;
 		}
-		return 'WAIT '.$wait;
+		return $this->module->error('err_solution_block', GWF_Time::humanDuration($wait));
 	}
 	
 	private function onFailed(WC_Warflag $flag)
@@ -147,7 +166,7 @@ final class WeChall_Warsolve extends GWF_Method
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
-		return 'WRONG!';
+		return $this->module->error('err_wrong');
 	}
 	
 	private function onMultiSolved(WC_Warflag $flag)

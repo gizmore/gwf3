@@ -14,17 +14,18 @@ final class Account_Delete extends GWF_Method
 	public function getPageMenuLinks()
 	{
 		return array(
-				array(
-						'page_url' => 'account/delete',
-						'page_title' => 'Delete Account',
-						'page_meta_desc' => 'Delete your account',
-				),
+			array(
+				'page_url' => 'account/delete',
+				'page_title' => 'Delete Account',
+				'page_meta_desc' => 'Delete your account',
+			),
 		);
 	}
 
 	public function execute()
 	{
-		if (false !== Common::getPost('delete')) {
+		if (isset($_POST['delete']))
+		{
 			return $this->onDelete();
 		}
 		
@@ -53,18 +54,21 @@ final class Account_Delete extends GWF_Method
 	private function onDelete()
 	{
 		$form = $this->getForm();
-		if (false !== ($errors = $form->validate($this->module))) {
+		if (false !== ($errors = $form->validate($this->module)))
+		{
 			return $errors.$this->templateDelete();
 		}
 		
 		$user = GWF_Session::getUser();
 		
-		if ($user->isBot()) {
+		if ($user->isBot())
+		{
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 		
 		$note = $form->getVar('note', '');
-		if ($note !== '') {
+		if ($note !== '')
+		{
 			GWF_AccountDelete::insertNote($user, $note);
 		}
 		$this->onSendEmail($user, $note);			

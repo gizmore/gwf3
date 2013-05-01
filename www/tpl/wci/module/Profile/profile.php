@@ -143,14 +143,14 @@ if (!$p->isContactHidden($user) || $is_admin)
 	
 	$buttons = '';
 	if ('' !== ($email = $u->getValidMail())) {
-		$txt = $tLang->lang('at_mailto', array( $u->displayUsername()));
+		$txt = $tLang->lang('at_mailto', array($u->displayUsername()));
 		if ($u->isOptionEnabled(GWF_User::ALLOW_EMAIL)) {
 			$buttons .= GWF_Button::mail(GWF_WEB_ROOT.'send/email/to/'.$u->urlencode('user_name'), $txt);
 		}
 	}
-	if (GWF_Session::isLoggedIn()) {
-		$buttons .= GWF_Button::generic($tLang->lang('btn_pm'), $u->getPMHref());
-	}
+// 	if (GWF_Session::isLoggedIn()) {
+// 		$buttons .= GWF_Button::generic($tLang->lang('btn_pm'), $u->getPMHref());
+// 	}
 	
 	if ($buttons !== '') {
 		echo GWF_Table::rowStart();

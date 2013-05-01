@@ -396,7 +396,7 @@ final class WC_HTML
 		$back = '<footer id="gwf_footer">';
 		$back .= self::displayFooterMenu(Module_WeChall::instance());
 		$back .= '<div id="foot_boxes">'.PHP_EOL;
-		$back .= '<div class="foot_box">'.self::lang('footer_1').'</div>'.PHP_EOL;
+		$back .= '<div class="foot_box">'.self::lang('footer_1', array(date('Y'))).'</div>'.PHP_EOL;
 		$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), GWF_Time::displayDate($module->cfgUserrecordDate()), $module->cfgPagecount())).'</div>'.PHP_EOL;
 		$back .= $debug ? '<div class="foot_box">'.self::debugFooter().'</div>'.PHP_EOL : '';
 		$back .= '</div>'.PHP_EOL;
@@ -421,22 +421,8 @@ final class WC_HTML
 	
 	private static function displayFooterMenu(Module_WeChall $module)
 	{
+		return $module->templatePHP('wcfootermenu.php');
 // 		GWF_HTML::display(self::getRevisionText($module))
-		return
-		'<nav id="gwf_foot_menu">'.PHP_EOL.
-			'<a href="'.GWF_WEB_ROOT.'news">'.$module->lang('menu_news').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'changes.txt">'.$module->lang('menu_changes').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'about_wechall">'.$module->lang('menu_about').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'join_us">'.$module->lang('menu_join').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'links">'.$module->lang('menu_links').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'active_sites">'.$module->lang('menu_sites').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'forum">'.$module->lang('menu_forum').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'ranking">'.$module->lang('menu_ranking').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('menu_challs').'</a>'.PHP_EOL.
-// 			'| <a href="'.GWF_WEB_ROOT.'register">'.$module->lang('menu_register').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'irc_chat">'.$module->lang('menu_chat').'</a>'.PHP_EOL.
-			'| <a href="'.GWF_WEB_ROOT.'contact">'.$module->lang('menu_contact').'</a>'.PHP_EOL.
-		'</nav>'.PHP_EOL;
 	}
 	
 	############
@@ -651,7 +637,8 @@ final class WC_HTML
 	public static function displayMenuChallengesNSC(Module_WeChall $module)
 	{
 		$sel = $module->isMethodSelected('Sites') ? ' class="wc_menu_sel"' : '';
-		return '<li><a'.$sel.' href="'.WC_Site::getWeChall()->hrefWarboxes().'">'.$module->lang('menu_challs').'</a></li>';
+		$href = WC_Site::getWeChall()->hrefWarboxes();
+		return '<li><a'.$sel.' href="'.$href.'">'.$module->lang('menu_challs').'</a></li>';
 	}
 	
 	public static function displayMenuAccount(Module_WeChall $module)
@@ -817,6 +804,8 @@ final class WC_HTML
 	
 	public static function rankingPageButtons()
 	{
+// 		return Module_WeChall::instance()->templatePHP('wcrankingbuttons.php');
+		
 		echo '<nav>'.PHP_EOL;
 		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
 		echo '<div class="gwf_buttons">'.PHP_EOL;

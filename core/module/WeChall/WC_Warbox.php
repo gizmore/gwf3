@@ -56,6 +56,18 @@ final class WC_Warbox extends GDO
 	public function isDown() { return $this->getStatus() === 'down'; }
 	public function isDead() { return $this->getStatus() === 'dead'; }
 	
+	public function getWebURL()
+	{
+		if ('' === ($external_url = $this->getVar('wb_weburl')))
+		{
+			return $this->hrefFlags();
+		}
+		else
+		{
+			return $external_url;
+		}
+	}
+	
 	public function hasWarFlags()
 	{
 		return $this->getVar('wb_flags') > 0;
@@ -63,7 +75,8 @@ final class WC_Warbox extends GDO
 	
 	public function hrefFlags()
 	{
-		return GWF_WEB_ROOT.'index.php?mo=WeChall&me=Warsolve&boxid='.$this->getID();
+// 		return GWF_WEB_ROOT.'index.php?mo=WeChall&me=Warsolve&boxid='.$this->getID();
+		return $this->hrefDetails();
 	}
 	
 	public function hrefDetails()

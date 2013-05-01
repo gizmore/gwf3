@@ -196,7 +196,7 @@ $lang = array(
 	'lp_language' => 'Language',
 
 	# Footer
-	'footer_1' => '©2008-2011 by wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">All code</a> runs under the terms of the <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a>; You can <a href="'.GWF_WEB_ROOT.'contact">contact us here</a>.',
+	'footer_1' => '©2008-%s by wechall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">All code</a> runs under the terms of the <a href="'.GWF_WEB_ROOT.'wechall_license">WeChall Public License</a>; You can <a href="'.GWF_WEB_ROOT.'contact">contact us here</a>.',
 	'footer_2' => '%s users were online at %s<br/>%s pages have been served until now',
 
 
@@ -720,4 +720,8 @@ $lang = array(
 	'info_warflag_solvers' => '%s people solved %s on %4$s. See them here in chronological order.',
 	'title_warbox_players' => 'Ranking for the %2$s box on %3$s',
 	'info_warbox_players' => 'All %s players ranked on %s - %s sorted by score and last activity.',
+		
+	#5.07 warflags finish
+	'err_warbox' => 'The warbox is unknown to that site.',
+	'err_warflag' => 'This challenge is unknown or not in the scope.',
 );

@@ -3,6 +3,8 @@
  * Handle Linking and Scoring for a Warbox. This is a challenge site like ROOTTHISBOX, which has 15 shell accounts but no official users.
  * Generates, shows and checks. warbox-tokens
  * @author epoch_qwert
+ * @deprecated
+ * This was to read and write configs and should be deprecated.
  */
 final class WeChall_Warbox extends GWF_Method
 {

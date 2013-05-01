@@ -136,6 +136,11 @@ final class WC_Warflag extends GDO
 		return self::table(__CLASS__)->selectFirstObject('*', sprintf('wf_id=%d',$id), '', '', array('warbox', 'solver', 'site'));
 	}
 	
+	public static function getByWarboxAndID(WC_Warbox $warbox, $id)
+	{
+		return self::table(__CLASS__)->selectFirstObject('*', sprintf('wf_id=%d AND wf_wbid=%s',$id,$warbox->getID()), '', '', array('warbox', 'solver', 'site'));
+	}
+	
 	public static function getByWarbox(WC_Warbox $warbox, $orderby='')
 	{
 		return self::table(__CLASS__)->selectAll('*', 'wf_wbid='.$warbox->getID(), $orderby, array('warbox', 'solver', 'site'), -1, -1, GDO::ARRAY_O);
@@ -231,4 +236,3 @@ final class WC_Warflag extends GDO
 	}
 	
 }
-?>
