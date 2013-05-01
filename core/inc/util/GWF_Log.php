@@ -23,9 +23,10 @@ final class GWF_Log
 	const HTTP_GET = 0x100;
 	const HTTP_POST = 0x200;
 	const IP = 0x400;
+	const BUFFERED = 0x1000;
 	
 	const _NONE = 0x00;
-	const _ALL = 0x7ff;
+	const _ALL = 0x17ff;
 	const _DEFAULT = self::_ALL;
 
 	private static $POST_DELIMITER = '.::.';
@@ -60,6 +61,10 @@ final class GWF_Log
 	public static function disable($bits) { self::$logbits &= (~$bits); }
 
 	public static function setLogFormat($format) { self::$logformat = $format; }
+	
+	public static function enableBuffer() { self::enable(self::BUFFERED); }
+	public static function disableBuffer() { self::flush();	self::disable(self::BUFFERED); }
+	public static function isBuffered() { return self::isEnabled(self::BUFFERED); }
 
 	/**
 	 * Get the whole request to log it. Censor passwords.
@@ -171,7 +176,6 @@ final class GWF_Log
 	 */
 	public static function flush()
 	{
-// 		$ret = array();
 		foreach (self::$logs as $file => $msg)
 		{
 			if (true === ($e = self::writeLog($file, $msg)))
@@ -222,7 +226,11 @@ final class GWF_Log
 
 	private static function logB($filename, $message)
 	{
-		if (true === isset(self::$logs[$filename]))
+		if (!self::isBuffered())
+		{
+			self::writeLog($filename, $message);
+		}
+		elseif (true === isset(self::$logs[$filename]))
 		{
 			self::$logs[$filename] .= $message;
 		}
@@ -232,7 +240,7 @@ final class GWF_Log
 		}
 	}
 
-	private static function writeLog($filename, $message, $logmode=0)
+	private static function writeLog($filename, $message)
 	{
 		# Create logdir if not exists
 		$filename = self::getFullPath($filename, self::$username);

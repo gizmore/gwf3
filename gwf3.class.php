@@ -24,6 +24,7 @@ class GWF3
 		'start_debug' => true, # Init GWF_Debug?
 		'get_user' => true, # Put user into smarty templates?
 		'do_logging' => true, # Init the logger?
+		'buffered_log' => true, # Use GWF_LogWithBuffer?
 		'log_request' => true, # Log the request?
 		'blocking' => true, # Lock the database, so we can request only one page by one?
 		'no_session' => false, # Suppress session creation?
@@ -43,6 +44,10 @@ class GWF3
 	public function __construct($basepath=NULL, array $config = array())
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
+		
+		# Set session_name to something we might clean up ourselves from time to time.
+		# We don't use php sessions(yet), but 3rd party might use it, and we can even cleanup.
+		session_name(GWF_SESS_NAME);
 
 		# Bootstrap
 		if (true === $config['bootstrap'])
@@ -375,6 +380,10 @@ class GWF3
 			}
 		}
 		GWF_Log::init($username, GWF_LOG_BITS, GWF_LOGGING_PATH);
+		if (!self::getConfig('buffered_log'))
+		{
+			GWF_Log::disable(GWF_Log::BUFFERED);
+		}
 	}
 
 	/**
