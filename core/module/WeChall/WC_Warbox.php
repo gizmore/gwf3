@@ -128,7 +128,7 @@ final class WC_Warbox extends GDO
 	
 	public function recalcPlayersAndScore()
 	{
-		return $this->recalcTotalscore() && $this->recalcPlayers();
+		return $this->recalcTotalscore() && $this->recalcPlayers() && $this->recalcSolvers();
 	}
 
 	public function recalcTotalscore()
@@ -139,6 +139,13 @@ final class WC_Warbox extends GDO
 	public function recalcPlayers()
 	{
 		return $this->saveVar('wb_players', WC_Warflags::getPlayercount($this));
+	}
+	
+	public function recalcSolvers()
+	{
+		$flagst = GDO::table('WC_Warflags');
+		$flags = $flagst->getTableName();
+		GDO::table('WC_Warflag')->update("wf_solvers=(SELECT COUNT(*) FROM $flags WHERE wf_wfid=wf_id AND wf_solved_at IS NOT NULL)");
 	}
 	
 	public function recalcChallcounts()
