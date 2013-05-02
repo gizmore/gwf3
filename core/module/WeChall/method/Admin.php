@@ -89,8 +89,6 @@ final class WeChall_Admin extends GWF_Method
 	private function onRecalcEverything()
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
-		WC_Site::recalcAllSites();
-		WC_RegAt::calcTotalscores();
 		
 		$wc = Module_WeChall::instance();
 		$wc->includeClass('WC_Warflag');
@@ -102,6 +100,9 @@ final class WeChall_Admin extends GWF_Method
 			$box->recalcPlayersAndScore();
 			$box->recalcChallcounts();
 		}
+		
+		WC_Site::recalcAllSites();
+		WC_RegAt::calcTotalscores();
 		
 		return $this->templateAdmin();
 	}

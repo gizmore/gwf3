@@ -637,7 +637,7 @@ class WC_Site extends WC_SiteBase
 	public function hrefGraphUsers() { return GWF_WEB_ROOT.'usercount_graph/for/'.$this->urlencode2('site_name'); }
 	public function hrefGraphChalls() { return GWF_WEB_ROOT.'challcount_graph/for/'.$this->urlencode2('site_name'); }
 	public function hrefDetail() { return GWF_WEB_ROOT.'site/details/'.$this->getVar('site_id').'/'.$this->urlencodeSEO('site_name'); }
-	public function hrefRanking($twice=false) { return GWF_WEB_ROOT.'site/ranking/for/'.$this->getVar('site_id').'/'.$this->urlencodeSEO('site_name'); }
+	public function hrefRanking() { return GWF_WEB_ROOT.'site/ranking/for/'.$this->getVar('site_id').'/'.$this->urlencodeSEO('site_name'); }
 	public function hrefEdit() { return GWF_WEB_ROOT.sprintf('site/edit/%s/%s', $this->getVar('site_id'), $this->urlencodeSEO('site_name')); }
 	public function hrefLogo() { return GWF_WEB_ROOT.'dbimg/logo/'.$this->getVar('site_id'); }
 	public function hrefHistory() { return GWF_WEB_ROOT.'site/history/'.$this->urlencode2('site_name'); }

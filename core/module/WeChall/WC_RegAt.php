@@ -145,7 +145,7 @@ final class WC_RegAt extends GDO
 		$siteid = $site->getVar('site_id');
 		$joinbox = "JOIN $warbox ON wf_wbid = wb_id";
 		$joinflag = "JOIN $warflag ON wf_id = wf_wfid";
-		$subquery = "SELECT SUM(wf_score) FROM $warflags $joinflag $joinbox  WHERE wf_uid=regat_uid AND wb_sid=$siteid";
+		$subquery = "SELECT SUM(wf_score) FROM $warflags $joinflag $joinbox  WHERE wf_uid=regat_uid AND wb_sid=$siteid AND wf_solved_at IS NOT NULL";
 		
 		if (false === $regats->update("regat_onsitescore = ($subquery)", "regat_sid=$siteid"))
 		{
