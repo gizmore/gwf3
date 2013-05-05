@@ -27,7 +27,7 @@ $lang = array(
 		'falls du es nicht schaffst die Nachricht davor zu entschlüsseln.<br/>'.PHP_EOL.
 		'Das versaute Codebuch ist hier: <a href="%1$s">Codebuch</a>;<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Deine Aufgae ist die Nachricht zu entschlüsseln, und die Lösung<br/>'.PHP_EOL.
+		'Deine Aufgabe ist die Nachricht zu entschlüsseln, und die Lösung<br/>'.PHP_EOL.
 		'ist das letzte Deutsche Wort, kleingeschrieben, und Angehängt,<br/>'.PHP_EOL.
 		'die gesamte Anzahl der möglichen Einstellungen in bits, wenn die Verdrahtung der Rotoren Geheim ist.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
