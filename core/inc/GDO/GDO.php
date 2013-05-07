@@ -847,7 +847,7 @@ abstract class GDO
 				$set .= sprintf(",`%s`=%s", $k, $v);
 			}
 		}
-		return $set === '' ? true : $this->update(substr($set, 1), $this->getPKWhere(), NULL, 1);
+		return $set === '' ? true : $this->update(substr($set, 1), $this->getPKWhere(), NULL);
 	}
 
 	##############
