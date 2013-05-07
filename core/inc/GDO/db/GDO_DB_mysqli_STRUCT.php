@@ -1,5 +1,5 @@
 <?php
-final class GDO_DB_mysql_STRUCT
+final class GDO_DB_mysqli_STRUCT
 {
 	public static function createTable($tablename, array $defines)
 	{
