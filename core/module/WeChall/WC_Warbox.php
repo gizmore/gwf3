@@ -145,7 +145,7 @@ final class WC_Warbox extends GDO
 	{
 		$flagst = GDO::table('WC_Warflags');
 		$flags = $flagst->getTableName();
-		GDO::table('WC_Warflag')->update("wf_solvers=(SELECT COUNT(*) FROM $flags WHERE wf_wfid=wf_id AND wf_solved_at IS NOT NULL)");
+		return GDO::table('WC_Warflag')->update("wf_solvers=(SELECT COUNT(*) FROM $flags WHERE wf_wfid=wf_id AND wf_solved_at IS NOT NULL)");
 	}
 	
 	public function recalcChallcounts()
