@@ -56,7 +56,7 @@ final class Contact_SendMail extends GWF_Method
 		$mail->setReceiver($user->getValidMail());
 		$mail->setSubject($this->module->langUser($user, 'mail_subj_mail', $sendermail));
 		$mail->setBody($this->module->langUser($user, 'mail_subj_body', array($user->displayUsername(), $sendermail, GWF_Message::display($_POST['message']))));
-		if (false === $mail->sendToUser($u)) {
+		if (false === $mail->sendToUser($user)) {
 			return GWF_HTML::err('ERR_MAIL_SENT');
 		}
 		return $this->module->message('msg_mailed', array($user->displayUsername()));
