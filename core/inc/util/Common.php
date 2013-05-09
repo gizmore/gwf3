@@ -31,6 +31,7 @@ final class Common
 	public static function getRequestArray($var, $default=false) { return (true === isset($_REQUEST[$var]) && is_array($_REQUEST[$var])) ? $_REQUEST[$var] : $default; }
 
 	public static function getCookie($var, $default=false) { return (true === isset($_COOKIE[$var]) ? $_COOKIE[$var] : $default); }
+	public static function getCookieString($var, $default=false) { return isset($_COOKIE[$var]) ? (string)$_COOKIE[$var] : $default; }
 	public static function cmpCookie($var, $cmp, $default=false) { return $cmp === self::getCookie($var, $default) ? true : $default; }
 	public static function displayCookie($var, $default='') { return true === isset($_COOKIE[$var]) ? htmlspecialchars($_COOKIE[$var], ENT_QUOTES) : $default; }
 
