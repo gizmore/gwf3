@@ -1,5 +1,6 @@
 <?php
 /**
+ * CREATE TABLE war_audit_add_user (username VARCHAR(32), password TEXT);
  * This table runs as root on warchall.
  * @author gizmore
  */
