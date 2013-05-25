@@ -8,6 +8,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 $chall->showHeader();
 
 GWF_Debug::setDieOnError(false);
+GWF_Debug::setMailOnError(false);
 
 # EMULATE REGISTER GLOBALS = ON
 foreach ($_GET as $k => $v) { $$k = $v; }
