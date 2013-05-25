@@ -58,7 +58,7 @@ if (isset($data['WC_HIDE_SCORE'])) {
 	echo gwfProfileRow(WC_HTML::lang('th_score'), $wechall->lang('hidden'));
 }
 else {
-	echo gwfProfileRow(WC_HTML::lang('th_score'), GWF_HTML::anchor(GWF_WEB_ROOT.'stats/'.$u->urlencode('user_name'), $u->getVar('user_level')));
+	echo gwfProfileRow(WC_HTML::lang('th_score'), GWF_HTML::anchor(WC_Site::getWeChall()->hrefRanking(), $u->getVar('user_level')));
 }
 
 if (isset($data['WC_HIDE_RANK'])) {
@@ -66,17 +66,17 @@ if (isset($data['WC_HIDE_RANK'])) {
 }
 else {
 	$rank = WC_RegAt::calcRank($u);
-	echo gwfProfileRow(WC_HTML::lang('th_rank2'), GWF_HTML::anchor(GWF_WEB_ROOT.'ranking/player/'.$u->urlencode2('user_name').'#rank_'.$rank, $rank));
+	echo gwfProfileRow(WC_HTML::lang('th_rank2'), GWF_HTML::anchor(WC_Site::getWeChall()->hrefRanking(), $rank));
 }
-if ($u->getVar('user_countryid') !== '0') {
-	if (isset($data['WC_HIDE_RANK'])) {
-		echo gwfProfileRow(WC_HTML::lang('th_crank'), $wechall->lang('hidden'));
-	} else {
-		$cRank = WC_Regat::calcCountryRank($u);
-		$href_crank = GWF_WEB_ROOT.'country_ranking/player/'.$u->urlencode2('user_name').'#rank_'.$cRank;
-		echo gwfProfileRow(WC_HTML::lang('th_crank'), GWF_HTML::anchor($href_crank, $cRank));
-	}
-}
+// if ($u->getVar('user_countryid') !== '0') {
+// 	if (isset($data['WC_HIDE_RANK'])) {
+// 		echo gwfProfileRow(WC_HTML::lang('th_crank'), $wechall->lang('hidden'));
+// 	} else {
+// 		$cRank = WC_Regat::calcCountryRank($u);
+// 		$href_crank = GWF_WEB_ROOT.'country_ranking/player/'.$u->urlencode2('user_name').'#rank_'.$cRank;
+// 		echo gwfProfileRow(WC_HTML::lang('th_crank'), GWF_HTML::anchor($href_crank, $cRank));
+// 	}
+// }
 echo gwfProfileRow($tLang->lang('th_registered'), GWF_Time::displayDate($u->getVar('user_regdate')));
 if ($u->isOptionEnabled(GWF_User::HIDE_ONLINE)) {
 	$lastactivity = GWF_HTML::lang('unknown');

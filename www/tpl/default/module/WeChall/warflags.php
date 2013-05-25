@@ -41,4 +41,7 @@ echo GWF_Button::wrapStart();
 echo GWF_Button::add($tLang->lang('btn_add_warflag'), $tVars['href_add']);
 echo GWF_Button::wrapEnd();
 
-echo $tVars['form_csv'];
+if (isset($tVars['form_csv']))
+{
+	echo $tVars['form_csv'];
+}
