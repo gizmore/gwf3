@@ -42,7 +42,7 @@ else
 	$argv[1] = strtolower($argv[1]);
 	if ($argv[1] === 'on')
 	{
-		if (Dog::hasPermission($user->getServer(), false, $user, 'x'))
+		if (Dog_PrivServer::hasPermChar($user->getServer(), $user, 'x'))
 		{
 			return $plugin->rply('err_owner', $user->getName());
 		}

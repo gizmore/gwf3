@@ -17,7 +17,7 @@ if ($argc !== 1)
 
 $host = $argv[0];
 
-if (!preg_match('/^[a-z0-9\.\-]+$/iD', $host))
+if (!preg_match('/^[a-z0-9\.\-:]+$/iD', $host))
 {
 	$plugin->rply('err_host');
 }

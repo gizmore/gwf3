@@ -22,4 +22,3 @@ require 'Dog_Server.php';
 require 'Dog_Timer.php';
 require 'Dog_User.php';
 require 'Dog_Var.php';
-?>

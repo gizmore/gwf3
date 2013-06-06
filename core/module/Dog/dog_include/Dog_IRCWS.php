@@ -28,7 +28,7 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	
 	public function connect(Dog_Server $server, $blocking=0)
 	{
-		$this->socket = new WebSocketServer('tcp://0.0.0.0:31337', 'rob_hubbard_fanclub!');
+		$this->socket = new WebSocketServer('tcp://0.0.0.0:'.$server->getPort(), 'rob_hubbard_fanclub!');
 		$this->socket->addObserver($this);
 		
 		$pid = pcntl_fork();

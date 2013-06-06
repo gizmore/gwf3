@@ -29,6 +29,7 @@ abstract class Dog_Module
 	public function langISO($iso, $key, $args=NULL) { return $this->lang_->langISO($iso, $key, $args); }
 	public function getTrans() { return $this->lang_->getTrans(Dog::getLangISO()); }
 	public function hasTrans($key) { return $this->lang($key) !== $key; }
+	public function error($key, $args=NULL) { $this->rply($key, $args); }
 
 	################
 	### OVERRIDE ###

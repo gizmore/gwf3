@@ -11,6 +11,8 @@ if (Dog::isItself())
 }
 else
 {
-	$chan->removeUser($user);
+	if ($chan instanceof Dog_Channel && $user instanceof Dog_User)
+	{
+		$chan->removeUser($user);		
+	}
 }
-?>

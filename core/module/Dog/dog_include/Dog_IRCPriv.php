@@ -47,7 +47,7 @@ final class Dog_IRCPriv
 	
 	public static function charToBit($char)
 	{
-		return false === ($index = array_search($char, self::$CHARMAP)) ? 0 : self::$BITMAP[$index];
+		return false === ($index = array_search(strtolower($char), self::$CHARMAP)) ? 0 : self::$BITMAP[$index];
 	}
 	
 	public static function getHighestBit($bits)

@@ -24,19 +24,29 @@ final class DOGMOD_Hangman extends Dog_Module
 	public function on_ADDhang_Pc()
 	{
 		$argv = $this->argv();
-		if (1 !== ($argc = count($argv)))
+		$argc = count($argv);
+		if ($argc === 1)
+		{
+			$hang_word = strtolower($argv[0]);
+			$iso = Dog::getChannel()->getLangISO();
+		}
+		elseif ($argc === 2)
+		{
+			$hang_word = strtolower($argv[0]);
+			$iso = strtolower($argv[1]);
+		}
+		else
 		{
 			return $this->showHelp('+hang');
 		}
 		
-		$hang_word = strtolower($argv[0]);
 		
-		if (strlen($hang_word) < 4 || strlen($hang_word) > 30)
+		if (GWF_String::strlen($hang_word) < 6 || GWF_String::strlen($hang_word) > 30)
 		{
-			return $this->rply('err_wordlen', array(4, 30));
+			return $this->rply('err_wordlen', array(6, 30));
 		}
 
-		if (!preg_match('/^[a-z]+$/', $hang_word))
+		if (!preg_match('/^\p{L}+$/Dui', $hang_word))
 		{
 			return $this->rply('err_alpha');
 		}
@@ -46,7 +56,7 @@ final class DOGMOD_Hangman extends Dog_Module
 			return $this->rply('err_dup');
 		}
 
-		if (false === ($word = Hangman_Words::insertWord($hang_word)))
+		if (false === ($word = Hangman_Words::insertWord($hang_word, $iso)))
 		{
 			return Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
@@ -76,7 +86,7 @@ final class DOGMOD_Hangman extends Dog_Module
 			return Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
-		return $this->rply('msg_deleted', array($hang_word, $id));
+		return $this->rply('msg_deleted', array($word->getVar('hangman_text'), $id));
 	}
 
 	public function on_hang_Pc()

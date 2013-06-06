@@ -24,14 +24,13 @@ $gwf = new GWF3(NULL, array(
 'kick_banned_ip' => false, # Kick banned IP adress by temp_ban file?
 ));
 GWF_HTML::init();
-GWF_Log::init(false, GWF_Log::_DEFAULT, GWF_PATH.'www/protected/logs/dog');
+GWF_Log::init(false, GWF_Log::_DEFAULT-GWF_Log::BUFFERED, GWF_PATH.'www/protected/logs/dog');
 $_GET['ajax'] = 1;
 GWF_Debug::setDieOnError(false);
 gdo_db();
 // GWF_Debug::disableErrorHandler();
 
 require_once 'Dog.php';
-
 
 // dog 
 if (isset($argv[2]) && $argv[2] === 'install')

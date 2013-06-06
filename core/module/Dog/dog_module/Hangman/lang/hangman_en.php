@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-	'help_hang' => 'Usage: %CMD% <char|start>. Guess a char or start a new game.',
-	'help_+hang' => 'Usage: %CMD%. Add a Word to the database.',
-	'help_-hang' => 'Usage: %CMD% <id>. Remove a word from the database.',
+	'help_hang' => 'Usage: %CMD% <char|start> [<iso>]. Guess a char or start a new game.',
+	'help_+hang' => 'Usage: %CMD% <word> [<iso>]. Add a Word to the database.',
+	'help_-hang' => 'Usage: %CMD% <id|word>. Remove a word from the database.',
 //	'hang++' => 'Usage: %CMD% <id>. Vote a word up.',
 //	'hang--' => 'Usage: %CMD% <id>. Vote a word down.',
 

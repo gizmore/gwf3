@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% [<on|off|default>]',
+		'help' => 'Usage: %CMD% [<on|off|default>]. Set or show logging for a channel.',
 		'serv_on' => 'This server has set it´s logging to explicit enabled.',
 		'serv_off' => 'This server has set it´s logging to explicit disabled.',
 		'serv_default' => 'This server has set it´s logging to %BOT% settings.',

@@ -396,7 +396,7 @@ final class DOGMOD_Scum extends Dog_Module
 		
 		$table = GDO::table('Dog_ScumStats');
 		
-		if (false === ($entry = $table->selectFirst('*', "scums_uid={$user->getID()}")))
+		if (false === ($entry = $table->selectFirst('*', "scums_userid={$user->getID()}")))
 		{
 			return 'NO DATA FOR PLAYER YET!';
 		}

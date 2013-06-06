@@ -55,7 +55,8 @@ final class HangmanGame {
 			{
 				$this->CONFIG['solution_allowed_everytime'] = false;
 			}
-			$this->onStartGame();
+			$iso = Common::substrFrom($message, ' ', Dog::getChannel()->getLangISO());
+			$this->onStartGame($iso);
 		}
 		
 		elseif ($message === '')
@@ -65,7 +66,7 @@ final class HangmanGame {
 
 		else
 		{
-			 if (strlen($message) !== 1)
+			 if (GWF_String::strlen($message) !== 1)
 			 {
 				$this->trySolution($user, $message);
 			 }
@@ -74,7 +75,7 @@ final class HangmanGame {
 				$this->tryChar($user, $message);
 			 }
 
-			 if (strtolower($this->grid) === strtolower($this->solution))
+			 if (GWF_String::toLower($this->grid) === GWF_String::tolower($this->solution))
 			 {
 				$this->winGame($nick);
 			 }
@@ -95,9 +96,9 @@ final class HangmanGame {
 		$this->output .= $out . " ";
 	}
 
-	private function onStartGame()
+	private function onStartGame($iso)
 	{
-		if (false === ($this->solution = Hangman_Words::getRandomWord()))
+		if (false === ($this->solution = Hangman_Words::getRandomWord($iso)))
 		{
 			$this->sendOutput('something went wrong! Database error while selecting a random word! cannot play, sorry!');
 			return false;
@@ -185,7 +186,7 @@ final class HangmanGame {
 	}
 
 	public function trySolution($nick,$solution) {
-		if(!$this->config['solution_allowed_everytime'] && false === $this->testUser($nick)) {
+		if(!$this->CONFIG['solution_allowed_everytime'] && false === $this->testUser($nick)) {
 			return;
 		}
 		$solution = self::convertUmlaute($solution);

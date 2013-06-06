@@ -31,27 +31,31 @@ if ($chan === false)
 {
 	if (!Dog::hasPermission($serv, false, $user, 'a'))
 	{
-		Dog::noPermission('a');
+		return Dog::noPermission('a');
 	}
-	elseif (false !== ($plug = Dog_Plugin::getPlug($name)))
+	
+	if (false !== ($plug = Dog_Plugin::getPlug($name)))
 	{
 		Dog_Conf_Plug_Serv::setDisabled($plug->getName(), $sid, false);
 		$plugin->rply('plg_on_serv', array($name, $serv->displayName()));
 	}
-	elseif (false !== ($mod = Dog_Module::getByTrigger($name)))
+	
+	if (false !== ($mod = Dog_Module::getByTrigger($name)))
 	{
 		Dog_Conf_Mod_Serv::setTriggerDisabled($mod->getName(), $sid, $name, false);
 		$plugin->rply('trg_on_serv', array($name, $mod->displayName(), $serv->displayName()));
 	}
-	elseif (false !== ($mod = Dog_Module::getByName($name)))
+	
+	if (false !== ($mod = Dog_Module::getByName($name)))
 	{
 		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, $name, false);
 		$plugin->rply('mod_on_serv', array($mod->displayName(), $serv->displayName()));
 	}
-	else
-	{
-		Dog::rply('err_command');
-	}
+	
+// 	else
+// 	{
+// 		Dog::rply('err_command');
+// 	}
 }
 
 # staff enable in channel
@@ -62,24 +66,28 @@ else
 	{
 		return Dog::noPermission('s');
 	}
-	elseif (false !== ($plug = Dog_Plugin::getPlug($name)))
+
+	if (false !== ($plug = Dog_Plugin::getPlug($name)))
 	{
 		Dog_Conf_Plug_Chan::setDisabled($plug->getName(), $cid, false);
 		$plugin->rply('plg_on_chan', array($name, $chan->displayLongName()));
 	}
-	elseif (false !== ($mod = Dog_Module::getByTrigger($name)))
+	
+	if (false !== ($mod = Dog_Module::getByTrigger($name)))
 	{
 		Dog_Conf_Mod_Chan::setTriggerDisabled($mod->getName(), $cid, $name, false);
 		$plugin->rply('trg_on_chan', array($name, $mod->displayName(), $chan->displayLongName()));
 	}
-	elseif (false !== ($mod = Dog_Module::getByName($name)))
+	
+	if (false !== ($mod = Dog_Module::getByName($name)))
 	{
 		Dog_Conf_Mod_Chan::setModuleDisabled($mod->getName(), $cid, false);
 		$plugin->rply('mod_on_chan', array($mod->displayName(), $chan->displayLongName()));
 	}
-	else
-	{
-		Dog::rply('err_command');
-	}
+	
+// 	else
+// 	{
+// 		Dog::rply('err_command');
+// 	}
 }
 ?>

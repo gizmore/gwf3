@@ -148,6 +148,7 @@ final class Dog
 	public static function rply($key, $args=NULL) { self::reply(self::lang($key, $args)); }
 	public static function reply($message) { self::$LAST_SERVER->reply($message); }
 	public static function err($key, $args=NULL) { return self::reply(GWF_HTML::lang($key, $args)); }
+	public static function getReplyObject() { return self::$LAST_CHANNEL === false ? self::$LAST_USER : self::$LAST_CHANNEL; }
 	
 	public static function getLangISO()
 	{
