@@ -34,6 +34,8 @@ final class Shadowcmd_unequip extends Shadowcmd
 		
 		$item->onItemUnequip($player);
 		$player->modify();
+		$player->healHP(0);
+		$player->healMP(0);
 		return true;
 	}
 }

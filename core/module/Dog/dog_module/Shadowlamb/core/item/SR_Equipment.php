@@ -93,6 +93,9 @@ abstract class SR_Equipment extends SR_Usable
 		}
 		
 		$player->modify();
+		$player->healHP(0);
+		$player->healMP(0);
+		
 // 		$player->setOption(SR_Player::EQ_DIRTY|SR_Player::INV_DIRTY|SR_Player::STATS_DIRTY);
 		
 		return true;
