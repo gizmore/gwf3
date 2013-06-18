@@ -5,14 +5,16 @@ $user = Dog::setupUser();
 $chan_name = $msg->getArg(0);
 #$quit_msg = $msg->getArg(1);
 $chan = Dog::setupChannel();
-if (Dog::isItself())
+
+if (!($user instanceof Dog_User))
+{
+	
+}
+elseif (Dog::isItself())
 {
 	$serv->removeChannel($chan);
 }
-else
+elseif ($chan instanceof Dog_Channel)
 {
-	if ($chan instanceof Dog_Channel && $user instanceof Dog_User)
-	{
-		$chan->removeUser($user);		
-	}
+	$chan->removeUser($user);		
 }

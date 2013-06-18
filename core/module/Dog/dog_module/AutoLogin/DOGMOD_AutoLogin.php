@@ -33,14 +33,6 @@ final class DOGMOD_AutoLogin extends Dog_Module
 		}
 	}
 	
-	public function event_307()
-	{
-		if (false !== ($user = Dog::getUserByArg(Dog::argv(1))))
-		{
-			$this->onAutoLogin($user);
-		}
-	}
-	
 	public function event_330()
 	{
 		if (false !== ($user = Dog::getUserByArg(Dog::argv(1))))
@@ -75,7 +67,7 @@ final class DOGMOD_AutoLogin extends Dog_Module
 	
 	private function onAutoLogin(Dog_User $user)
 	{
-		if ($user->isRegistered())
+		if ($user->isRegistered() && (!$user->isLoggedIn()))
 		{
 			unset($this->tried[array_search($user->getID(), $this->tried)]);
 			$user->setLoggedIn(true);
