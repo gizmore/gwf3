@@ -104,7 +104,16 @@ final class GDO_DB_mysql extends GDO_Database
 	{
 		return mysql_affected_rows($this->link);
 	}
-
+	
+	public function autoIncrement($tablename)
+	{
+		if (false === ($result = $this->queryFirst("SHOW TABLE STATUS LIKE '{$tablename}'")))
+		{
+			return false;
+		}
+		return (int)$result['Auto_increment'];
+	}
+	
 	public function insertID()
 	{
 		return mysql_insert_id($this->link);

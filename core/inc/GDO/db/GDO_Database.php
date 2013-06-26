@@ -63,6 +63,7 @@ abstract class GDO_Database
 	public abstract function fetchAssoc($result);
 	public abstract function fetchObject($result);
 	
+	public abstract function autoIncrement($tablename);
 	public abstract function insertID();
 	public abstract function numRows($result);
 	public abstract function affectedRows();

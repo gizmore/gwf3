@@ -27,7 +27,7 @@ function gdo_db()
  * @param string $charset
  * @return GDO_Database
  */
-function gdo_db_instance($host, $user, $pass, $database, $type='mysql', $charset='utf8')
+function gdo_db_instance($host, $user, $pass, $database, $type='mysqli', $charset='utf8')
 {
 	$classname = 'GDO_DB_'.$type;
 	require_once GWF_CORE_PATH.'inc/GDO/db/GDO_Database.php';
@@ -206,6 +206,11 @@ abstract class GDO
 	public static function setCurrentDB(GDO_Database $db)
 	{
 		self::$CURRENT_DB = $db;
+		self::$GDO_TABLES = array();
+	}
+	public static function getCurrentDB()
+	{
+		return self::$CURRENT_DB;
 	}
 	
 	###################
@@ -906,6 +911,11 @@ abstract class GDO
 	public function numRows($result)
 	{
 		return self::$CURRENT_DB->numRows($result);
+	}
+	
+	public function autoIncrement()
+	{
+		return self::$CURRENT_DB->autoIncrement($this->getTableName());
 	}
 	
 	##############

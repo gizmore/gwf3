@@ -3,7 +3,7 @@ final class GDO_DB_mysqli_STRUCT
 {
 	public static function createTable($tablename, array $defines)
 	{
-		$db = gdo_db();
+		$db = GDO::getCurrentDB();
 		$col_def = self::getColumnDefines($tablename, $defines);
 		$query = "CREATE TABLE IF NOT EXISTS `$tablename` ($col_def) ENGINE=".GWF_DB_ENGINE;
 		return $db->queryWrite($query);
@@ -13,20 +13,20 @@ final class GDO_DB_mysqli_STRUCT
 	{
 		$col_def = self::getColumnDefine($tablename, $columname, $define);
 		$query = "ALTER TABLE `$tablename` ADD COLUMN $col_def";
-		return gdo_db()->queryWrite($query);
+		return GDO::getCurrentDB()->queryWrite($query);
 	}
 	
 	public static function renameTable($old_tablename, $new_tablename)
 	{
 		$query = "RENAME TABLE `$old_tablename` TO `$new_tablename`";
-		return gdo_db()->queryWrite($query);
+		return GDO::getCurrentDB()->queryWrite($query);
 	}
 	
 	public static function changeColumn($tablename, $old_columnname, $new_columnname, array $define)
 	{
 		$col_def = self::getColumnDefineB($tablename, $old_columnname, $define);
 #		print ("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
-		return gdo_db()->queryWrite("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
+		return GDO::getCurrentDB()->queryWrite("ALTER TABLE `$tablename` CHANGE COLUMN `$old_columnname` `$new_columnname` $col_def");
 	}
 	
 	private static function getColumnDefines($tablename, array $defines)

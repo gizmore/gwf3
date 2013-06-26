@@ -13,6 +13,7 @@ final class GDO_DB_postgres extends GDO_Database
 	public function fetchAssoc($result) {}
 	public function fetchObject($result) {}
 	
+	public function autoIncrement() {}
 	public function insertID() {}
 	public function numRows($result) {}
 	public function affectedRows() {}

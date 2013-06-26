@@ -108,6 +108,15 @@ final class GDO_DB_mysqli extends GDO_Database
 		return mysqli_affected_rows($this->link);
 	}
 
+	public function autoIncrement($tablename)
+	{
+		if (false === ($result = $this->queryFirst("SHOW TABLE STATUS LIKE '{$tablename}'")))
+		{
+			return false;
+		}
+		return (int)$result['Auto_increment'];
+	}
+	
 	public function insertID()
 	{
 		return mysqli_insert_id($this->link);
