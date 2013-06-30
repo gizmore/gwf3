@@ -16,6 +16,7 @@ final class DOGMOD_Link extends Dog_Module
 			$user = Dog::getUser();
 			if (preg_match_all('#(https?://[^\ ]+)#D', $this->msg(), $matches))
 			{
+				array_shift($matches);
 				foreach ($matches as $match)
 				{
 					$this->onAdd($user, $match[0]);
@@ -37,9 +38,29 @@ final class DOGMOD_Link extends Dog_Module
 			return false;
 		}
 		
-		if (false === ($link = Dog_Link::insertLink($user->getID(), $url, $description)))
+		$type = $description[0];
+		$description = $description[1];
+		
+		switch ($type)
 		{
-			GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			case 'image':
+				if (false === ($link = Dog_Link::insertImage($user->getID(), $url, $description)))
+				{
+					GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+					return;
+				}
+				break;
+				
+			case 'html':
+				if (false === ($link = Dog_Link::insertLink($user->getID(), $url, $description)))
+				{
+					GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+					return;
+				}
+				break;
+			default:
+				echo "UNKNOWN TYPE: $type\n";
+				return;
 		}
 		
 		Dog_Log::user($user, sprintf('Inserted Link %s (ID:%d)', $url, $link->getID()));
@@ -51,13 +72,24 @@ final class DOGMOD_Link extends Dog_Module
 		# TODO: Only download .txt and .html content!
 		GWF_HTTP::setTimeout(10);
 		GWF_HTTP::setConnectTimeout(3);
-		$content = GWF_HTTP::getFromURL($url);
+		$content = GWF_HTTP::getFromURL($url, true);
 		GWF_HTTP::setTimeout();
 		GWF_HTTP::setConnectTimeout();
+		
 		if ($content === false)
 		{
 			Dog_Log::error('Mod_Link::getDescription(): getFromURL() failed. URL: '.$url);
 			return false;
+		}
+		
+		list ($head, $content) = preg_split("/[\r\n]{4}/", $content, 2);
+		$type = Common::regex('/Content-Type: *(.*)/Di', $head);
+
+		echo $type.PHP_EOL;
+		
+		if (Common::startsWith($type, 'image'))
+		{
+			return array('image', $content);
 		}
 		
 		# Get Title from html
@@ -76,9 +108,7 @@ final class DOGMOD_Link extends Dog_Module
 			}
 		}
 		
-		$back = $title.' - '.$descr;
-		
-		return $back;
+		return array('html', $title.' - '.$descr);
 	}
 	
 	private function decode($s)

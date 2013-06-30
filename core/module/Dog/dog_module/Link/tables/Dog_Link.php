@@ -15,6 +15,7 @@ final class Dog_Link extends GDO
 			'link_text' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 			'link_rating' => array(GDO::INT, 0),
 			'link_date' => array(GDO::DATE, GDO::NOT_NULL, 14),
+			'link_type' => array(GDO::ENUM, 'html', array('html', 'text', 'image')),
 		);
 	}
 	
@@ -73,8 +74,45 @@ final class Dog_Link extends GDO
 			'link_text' => $description,
 			'link_rating' => '0',
 			'link_date' => GWF_Time::getDate(14),
+			'link_type' => 'html',
 		));
 		return false === $link->insert() ? false : $link;
+	}
+	
+	/**
+	 * Insert a new image.
+	 * @param int $uid
+	 * @param string $url
+	 * @param string $description
+	 * @return Dog_Link
+	 */
+	public static function insertImage($uid, $url, $content)
+	{
+		echo "ADDING IMAGE\n";
+		$link = new self(array(
+			'link_id' => '0',
+			'link_uid' => $uid,
+			'link_url' => $url,
+			'link_text' => Common::substrFrom($url, '/', 'IMAGE', true),
+			'link_rating' => '0',
+			'link_date' => GWF_Time::getDate(14),
+			'link_type' => 'image',
+		));
+		if (false === $link->insert())
+		{
+			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			return false;
+		}
+		
+		$path = GWF_WWW_PATH.'dbimg/dogimg/'.$link->getID();
+		if (false === GWF_File::writeFile($path, $content))
+		{
+			echo GWF_HTML::err('ERR_WRITE_FILE', array($path));
+			$link->delete();
+			return false;
+		}
+		
+		return $link;
 	}
 	
 	/**
@@ -89,7 +127,7 @@ final class Dog_Link extends GDO
 		{
 			return array();
 		}
+		$conditions .= ' AND link_type="html"';
 		return $links->selectColumn('link_id', $conditions, 'link_id DESC');
 	}
 }
-?>
