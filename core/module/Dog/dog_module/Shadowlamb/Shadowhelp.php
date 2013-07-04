@@ -580,8 +580,8 @@ final class Shadowhelp
 					
 					'events' => 'Events: ',
 					array(
-						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join or #give or any other command you can imagine.',
-						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to lock a random target.',
+						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join, #fight, #give or any other command you can imagine.',
+						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to attack a random target, which locks this choice.',
 					),
 					
 					'teachers' => 'The teachers',
