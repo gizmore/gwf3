@@ -1770,6 +1770,14 @@ class SR_Player extends GDO
 	{
 		$itemname = strtolower($itemname);
 		
+		if (Common::isNumeric($itemname))
+		{
+			if ( ($itemname > 0) && ($itemname <= count($items)) )
+			{
+				return $items[$itemname-1];
+			}
+		}
+		
 		# Full name match
 		foreach (array_reverse($items) as $item)
 		{
