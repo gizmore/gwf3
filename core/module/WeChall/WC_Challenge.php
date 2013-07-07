@@ -714,21 +714,11 @@ final class WC_Challenge extends GDO
 	 */
 	public function onSolve($user, $answer)
 	{
-		if (function_exists('formSolutionboxValidate')) {
-			if (false !== ($error = formSolutionboxValidate($this))) {
-				echo $error;
-				return false;
-			}
-		}
-		
-		require_once 'WC_SolutionBlock.php';
-		if (false !== ($wait = WC_SolutionBlock::isBlocked($user)))
+		if (false !== ($error = $this->isAnswerBlock($user)))
 		{
-			echo WC_HTML::error('err_solution_block', array(GWF_Time::humanDuration($wait)));
+			echo $error;
 			return false;
 		}
-		
-		$this->increaseTries();
 		
 		if (self::hashSolution($answer, $this->isCaseI()) !== $this->getVar('chall_solution'))
 		{
@@ -737,6 +727,28 @@ final class WC_Challenge extends GDO
 		}
 		
 		return $this->onChallengeSolved($user === false ? 0 : $user->getID());
+	}
+	
+	public function isAnswerBlocked($user)
+	{
+		// CSRF
+		if (function_exists('formSolutionboxValidate'))
+		{
+			if (false !== ($error = formSolutionboxValidate($this)))
+			{
+				return $error;
+			}
+		}
+		require_once 'WC_SolutionBlock.php';
+		if (false !== ($wait = WC_SolutionBlock::isBlocked($user)))
+		{
+			return WC_HTML::error('err_solution_block', array(GWF_Time::humanDuration($wait)));
+		}
+		if (!$this->increaseTries())
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		return false;
 	}
 	
 	public function validate_answer($module, $arg)
@@ -753,11 +765,15 @@ final class WC_Challenge extends GDO
 		{
 			return $row->increase('csolve_tries');
 		}
-		return false;
+		return true;
 	}
 	
-	public function onChallengeSolved($userid)
+	public function onChallengeSolved($userid = NULL)
 	{
+		if ($userid === NULL)
+		{
+			$userid = GWF_Session::getUserID();
+		}
 		$userid = (int) $userid;
 		
 		if ($userid === 0) {

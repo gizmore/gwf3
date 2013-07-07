@@ -44,11 +44,12 @@ final class WC_SolutionBlock extends GDO
 			'wcsb_ip' => $ip,
 			'wcsb_time' => time(),
 		));
-		if (false === $row->insert()) {
+		
+		if (false === $row->insert())
+		{
 			return false;
 		}
 		
 		return false;
 	}
 }
-?>

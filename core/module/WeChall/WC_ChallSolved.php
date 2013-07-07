@@ -53,11 +53,13 @@ final class WC_ChallSolved extends GDO
 	 */
 	public static function getSolvedRow($userid, $challid)
 	{
-		if ($userid <= 0 || $challid <= 0) {
+		if ($userid <= 0 || $challid <= 0)
+		{
 			return false;
 		}
 		
-		if (false === ($row = GDO::table(__CLASS__)->getRow($userid, $challid))) {
+		if (false === ($row = GDO::table(__CLASS__)->getRow($userid, $challid)))
+		{
 			return self::createSolvedRow($userid, $challid);
 		}
 		
