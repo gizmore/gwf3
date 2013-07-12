@@ -17,11 +17,13 @@ $chall->showHeader();
 ###############
 require_once 'challenge/space/host_me/host_me.php';
 
-echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'profile/space')), $chall->lang('title'));
+$filename = 'challenge/space/host_me/host_me.php';
+$message = '[PHP]'.file_get_contents($filename).'[/PHP]';
+$message = GWF_Message::display($message);
+echo GWF_Box::box($chall->lang('info', array($message, GWF_WEB_ROOT.'profile/space')), $chall->lang('title'));
 
 GWF_Debug::setDieOnError(false);
 GWF_Debug::setMailOnError(false);
-
 if (true === $challenge())
 {
 	$chall->onChallengeSolved(GWF_Session::getUserID());
@@ -30,9 +32,6 @@ GWF_Debug::setDieOnError(true);
 GWF_Debug::setMailOnError(true);
 
 
-$filename = 'challenge/space/host_me/host_me.php';
-$message = '[PHP]'.file_get_contents($filename).'[/PHP]';
-echo GWF_Message::display($message);
 
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');

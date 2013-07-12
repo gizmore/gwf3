@@ -18,11 +18,8 @@ $chall->showHeader();
 GWF_Debug::setDieOnError(false);
 GWF_Debug::setMailOnError(false);
 require_once 'challenge/space/php0819/php0819.php';
-GWF_Debug::setDieOnError(true);
-GWF_Debug::setMailOnError(true);
 
 echo GWF_Box::box($chall->lang('info', array(GWF_WEB_ROOT.'profile/space')), $chall->lang('title'));
-
 
 if (isset($_GET['eval']))
 {
@@ -31,6 +28,8 @@ if (isset($_GET['eval']))
 		$chall->onChallengeSolved(GWF_Session::getUserID());
 	}
 }
+GWF_Debug::setDieOnError(true);
+GWF_Debug::setMailOnError(true);
 
 
 $filename = 'challenge/space/php0819/php0819.php';
