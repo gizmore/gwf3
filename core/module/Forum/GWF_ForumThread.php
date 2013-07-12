@@ -11,6 +11,7 @@ final class GWF_ForumThread extends GDO
 	const HIDDEN = 0x08;
 	const GUEST_VIEW = 0x10;
 	const INVISIBLE = 0x20;
+	const DELETED = 0x40;
 	
 	const STAMP_NAME = 'GWF_FORUM_STAMP';
 	
@@ -63,6 +64,7 @@ final class GWF_ForumThread extends GDO
 	public function isSticky() { return $this->isOptionEnabled(self::STICKY); }
 	public function isHidden() { return $this->isOptionEnabled(self::HIDDEN); }
 	public function isClosed() { return $this->isOptionEnabled(self::CLOSED); }
+	public function isDeleted() { return $this->isOptionEnabled(self::DELETED); }
 	public function isInModeration() { return $this->isOptionEnabled(self::IN_MODERATION); }
 	public function isGuestView() { return $this->isOptionEnabled(self::GUEST_VIEW); }
 	public function getToken() { return GWF_Password::getToken($this->getVar('thread_title').$this->getVar('thread_lastdate')); }
@@ -522,7 +524,8 @@ final class GWF_ForumThread extends GDO
 	{
 		$tid = $this->getID();
 		$posts = new GWF_ForumPost(false);
-		if (false === ($posts = $posts->selectObjects('*', "post_tid=$tid"))) {
+		if (false === ($posts = $posts->selectObjects('*', "post_tid=$tid")))
+		{
 			return false;
 		}
 
@@ -530,10 +533,11 @@ final class GWF_ForumThread extends GDO
 
 		foreach ($posts as $post)
 		{
-			$post->delete();
+			$post instanceof GWF_ForumPost;
+			$post->saveOption(GWF_ForumPost::DELETED, true);
 		}
 
-		$this->delete();
+		$this->saveOption(self::DELETED, true);
 
 		if (!$this->isInModeration())
 		{

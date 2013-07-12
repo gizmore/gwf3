@@ -13,6 +13,7 @@ final class GWF_ForumBoard extends GDO
 	const SCRIPT_LOCK = 0x08;
 	const GUEST_VIEW = 0x10;
 	const INVISIBLE = 0x20;
+	const DELETED = 0x40;
 	
 	###########
 	### GDO ###
@@ -28,7 +29,7 @@ final class GWF_ForumBoard extends GDO
 			'board_pid' => array(GDO::INT|GDO::UNSIGNED|GDO::INDEX, 0), // Parent ID
 			'board_gid' => array(GDO::INT|GDO::UNSIGNED, 0), // Group ID
 		
-			'board_pos' => array(GDO::UINT, true), // Position/order
+			'board_pos' => array(GDO::UINT, GDO::NULL), // Position/order
 			'board_options' => array(GDO::UINT, 0), 
 		
 			'board_title' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, true),
@@ -391,12 +392,14 @@ final class GWF_ForumBoard extends GDO
 		
 		foreach ($threads as $thread)
 		{
-			if (false === $thread->deleteThread()) {
+			if (false === $thread->deleteThread())
+			{
 				$back = false;
 			}
 		}
 		
-		if (false === $this->delete()) {
+		if (false === $this->saveOption(self::DELETED, true))
+		{
 			$back = false;
 		}
 		

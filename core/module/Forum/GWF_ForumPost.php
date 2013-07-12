@@ -14,7 +14,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	const IN_MODERATION = 0x08;
 	const GUEST_VIEW = 0x10;
 	const INVISIBLE = 0x20;
-	
+	const DELETED = 0x40;
 	###########
 	### GDO ###
 	###########
@@ -64,6 +64,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	public function isBBCodeEnabled() { return !$this->isOptionEnabled(self::DISABLE_BB); } 
 	public function isSmileyEnabled() { return !$this->isOptionEnabled(self::DISABLE_SMILE); }
 	public function isInModeration() { return $this->isOptionEnabled(self::IN_MODERATION); }
+	public function isDeleted() { return $this->isOptionEnabled(self::DELETED); }
 	public function getToken() { return GWF_Password::getToken($this->getVar('post_date').$this->getVar('post_title')); }
 	public function getPosterID() { return (false === ($user = $this->getVar('post_uid', false))) ? 0 : $user->getID(); }
 	public function getPosterName() { return $this->getUser()->getVar('user_name'); }
@@ -420,7 +421,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	##############
 	public function deletePost()
 	{
-		if (false === $this->delete())
+		if (false === $this->saveOption(self::DELETED, true))
 		{
 			return false;
 		}

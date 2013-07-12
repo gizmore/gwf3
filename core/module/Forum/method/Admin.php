@@ -20,20 +20,22 @@ final class Forum_Admin extends GWF_Method
 	public function getPageMenuLinks()
 	{
 		return array(
-				array(
-						'page_url' => 'forum/admin',
-						'page_title' => 'Forum Admin Panel',
-						'page_meta_desc' => 'Admin Panel for the Forum',
-				),
+			array(
+				'page_url' => 'forum/admin',
+				'page_title' => 'Forum Admin Panel',
+				'page_meta_desc' => 'Admin Panel for the Forum',
+			),
 		);
 	}
 	
 	public function execute()
 	{
-		if (false !== Common::getGet('fixcounters')) {
+		if (false !== Common::getGet('fixcounters'))
+		{
 			return $this->onFixCounters().$this->templateAdmin();
 		}
-		if (false !== Common::getGet('cleanup')) {
+		if (false !== Common::getGet('cleanup'))
+		{
 			return $this->onCleanup().$this->templateAdmin();
 		}
 		return $this->templateAdmin();
@@ -61,7 +63,6 @@ final class Forum_Admin extends GWF_Method
 			# Buttons
 			'href_fix_counters' => $this->getMethodHref('&fixcounters=now'),
 			'href_cleanup' => $this->getMethodHref('&cleanup=now'),
-		
 		);
 		return $this->module->templatePHP('admin.php', $tVars);
 	}
@@ -70,14 +71,16 @@ final class Forum_Admin extends GWF_Method
 	{
 		$threads = GDO::table('GWF_ForumThread');
 		$mod = GWF_ForumThread::IN_MODERATION;
-		if (false === $threads->deleteWhere("thread_options&$mod")) {
+		if (false === $threads->deleteWhere("thread_options&$mod"))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$dt = $threads->affectedRows();
 		
 		$posts = GDO::table('GWF_ForumPost');
 		$mod = GWF_ForumPost::IN_MODERATION;
-		if (false === $posts->deleteWhere("post_options&$mod")) {
+		if (false === $posts->deleteWhere("post_options&$mod"))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		$dp = $posts->affectedRows();
@@ -90,5 +93,3 @@ final class Forum_Admin extends GWF_Method
 		
 	}
 }
-
-?>

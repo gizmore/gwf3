@@ -61,11 +61,13 @@ final class Forum_EditAttach extends GWF_Method
 	private function onDelete()
 	{
 		$form = $this->formEdit();
-		if (false !== ($error = $form->validate($this->module))) {
+		if (false !== ($error = $form->validate($this->module)))
+		{
 			return $error;
 		}
 		
-		if (false === $this->attach->delete()) {
+		if (false === $this->attach->delete())
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		

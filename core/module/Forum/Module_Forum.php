@@ -72,6 +72,7 @@ final class Module_Forum extends GWF_Module
 	public function getAdminSectionURL() { return GWF_WEB_ROOT.'forum/admin'; }
 	public function onCronjob() { require_once 'GWF_ForumCronjob.php'; return GWF_ForumCronjob::onCronjob($this); }
 	public function onInstall($dropTable) { require_once 'GWF_ForumInstall.php'; return GWF_ForumInstall::onInstall($this, $dropTable); }
+	public function onMerge(GDO_Database $db_from, GDO_Database $db_to, array &$db_offsets, $prefix, $prevar) { require_once 'Merge_Forum.php'; return Merge_Forum::onMerge($db_from, $db_to, $db_offsets, $prefix, $prevar); }
 	
 	public function getClasses()
 	{

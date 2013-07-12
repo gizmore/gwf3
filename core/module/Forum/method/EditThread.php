@@ -117,6 +117,8 @@ final class Forum_EditThread extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__)).$this->templateEditThread();
 		}
 		
+		GWF_Hook::call('deleteforumthread', GWF_User::getStaticOrGuest(), array($t->getID()));
+		
 		$this->module->cachePostcount();
 		
 		return $this->module->message('msg_thread_deleted');
@@ -149,7 +151,8 @@ final class Forum_EditThread extends GWF_Method
 	private function onMerge(GWF_ForumThread $first, GWF_ForumThread $last)
 	{
 		// Delete thread
-		if (false === $last->delete()) {
+		if (false === $last->delete())
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 
