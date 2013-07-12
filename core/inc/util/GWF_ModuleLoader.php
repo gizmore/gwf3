@@ -51,6 +51,25 @@ final class GWF_ModuleLoader
 		return self::getVarValue($value, $mv->getVar('mv_type'), $mv->getVar('mv_min'), $mv->getVar('mv_max'), $exceed);
 	}
 
+	###################
+	### Include All ###
+	###################
+	public static function includeAll(GWF_Module $module)
+	{
+		foreach ($module->getClasses() as $classname)
+		{
+			require_once $module->getModuleFilePath($classname.'.php');
+		}
+// 		GWF_File::filewalker($module->getDir(), array(__CLASS__, 'includeFile'), false, false);
+	}
+	
+// 	public static function includeFile($entry, $fullpath, $args=NULL)
+// 	{
+// 		if (Common::endsWith($entry, '.php'))
+// 		{
+// 			require_once($fullpath);
+// 		}
+// 	}
 
 	###############
 	### Load FS ###
@@ -168,7 +187,7 @@ final class GWF_ModuleLoader
 		}
 		return $back;
 	}
-
+	
 	private static function installModuleB(GWF_Module $module, $dropTables=false)
 	{
 

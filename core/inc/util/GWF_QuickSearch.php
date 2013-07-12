@@ -118,14 +118,15 @@ final class GWF_QuickSearch
 					break;
 		
 				case self::SEARCH_BRACKET_OPEN:
-					if ($prev[0] === self::SEARCH_TERM)
-					{
-						$where[] = 'AND';
-					}
-					$where[] = $sql;
+// 					if ($prev[0] === self::SEARCH_TERM)
+// 					{
+// 						$where[] = 'AND';
+// 					}
+// 					$where[] = $sql;
 					break;
 		
 				case self::SEARCH_BRACKET_CLOSE:
+					break;
 				case self::SEARCH_OR:
 				case self::SEARCH_AND:
 					$where[] = $sql;
@@ -189,6 +190,7 @@ final class GWF_QuickSearch
 		
 				case '(': $bracket += 2;
 				case ')': $bracket -= 1;
+					break;
 	//				if ($cur !== ')' && $cur !== '(')
 //					{
 						if (false !== ($item = self::search_item($cur, $in_quote)))

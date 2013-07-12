@@ -66,6 +66,7 @@ class GWF_Module extends GDO
 	}
 
 	public function onStartup() {}
+	public function onMerge(GDO_Database $db_from, GDO_Database $db_to, array &$db_offsets, $prefix, $prevar) { return true; }
 	public function onAddHooks() {}
 	public function onInstall($dropTable) { return ''; }
 	/**

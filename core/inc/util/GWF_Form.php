@@ -436,7 +436,7 @@ class GWF_Form
 	##############
 	### Render ###
 	##############
-	public static function start($action=true, $encoding=self::ENC_DEFAULT, $method='post')
+	public static function start($action=true, $encoding=self::ENC_DEFAULT, $method='post', $usecsrf=true)
 	{
 		if (is_bool($action))
 		{
@@ -452,7 +452,7 @@ class GWF_Form
 		return
 			'<div>'.PHP_EOL.
 			sprintf('<form action="%s" enctype="%s" method="%s">', htmlspecialchars($action), $encoding, htmlspecialchars($method)).PHP_EOL.
-			sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('')).PHP_EOL;
+			($usecsrf ? sprintf('<div>%s</div>', GWF_CSRF::hiddenForm('')).PHP_EOL : '');
 	}
 
 	public static function end()

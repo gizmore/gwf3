@@ -36,7 +36,7 @@ final class GWF_Hook
 	const DOWNLOAD = 'download';          # args: download 
 	const VOTED_POLL = 'voted_poll';      # args: vsid, score
 	const VOTED_SCORE = 'voted_score';    # args: vmid, score
-
+	
 	########################
 	### Build Hook Table ###
 	########################
