@@ -2,13 +2,17 @@
 $msg = Dog::getIRCMsg();
 $argv = $msg->getArgs();
 $argc = count($argv);
-
 $channel = Dog::setupChannel();
 
 # Set mode for channel
 if ($argc === 2)
 {
 	
+}
+
+elseif ($channel === false)
+{
+	# HUH?!
 }
 
 # Set mode for user

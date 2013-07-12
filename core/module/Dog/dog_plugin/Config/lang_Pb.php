@@ -6,6 +6,8 @@ $lang = array(
 		'show' => 'Your language on %s is set to %s.',
 	),
 );
+# Special language codes
+$special = array('bot' => 'Bot', 'ibd' => 'IBDES');
 
 $user = Dog::getUser();
 $server = Dog::getServer();
@@ -26,9 +28,9 @@ elseif ($argc === 1)
 	}
 	else
 	{
-		$old = $user->getLangISO() === 'bot' ? 'Bot' : $user->displayLang();
+		$old = isset($special[$user->getLangISO()]) ? $special[$user->getLangISO()] : $user->displayLang();
 		Dog::getUser()->saveVar('user_lang', $argv[0]);
-		$dlang = $argv[0] === 'bot' ? 'Bot' : $user->displayLang();
+		$dlang = isset($special[$argv[0]]) ? $special[$argv[0]] : $user->displayLang();
 		$plugin->rply('set', array($server->displayName(), $old, $dlang));
 	}
 }

@@ -97,7 +97,7 @@ final class Dog_Init
 
 	public static function isValidISO($iso)
 	{
-		return in_array($iso, array_merge(GWF_Language::getAvailable(), array('bot')), true);
+		return in_array($iso, array_merge(GWF_Language::getAvailable(), array('bot', 'ibd')), true);
 	}
 	
 	public static function getTriggers()

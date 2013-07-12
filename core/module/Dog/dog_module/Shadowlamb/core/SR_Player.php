@@ -1770,11 +1770,13 @@ class SR_Player extends GDO
 	{
 		$itemname = strtolower($itemname);
 		
+		# ID match
 		if (Common::isNumeric($itemname))
 		{
 			if ( ($itemname > 0) && ($itemname <= count($items)) )
 			{
-				return $items[$itemname-1];
+				$back = array_slice($items, $itemname-1, 1);
+				return $back[0];
 			}
 		}
 		

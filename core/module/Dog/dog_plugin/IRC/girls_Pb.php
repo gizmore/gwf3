@@ -19,6 +19,7 @@ $girls = array(
 	'Rhonda',
 	'Trinary',
 	'ziza',
+	'Jhype',
 );
 
 $girl = $girls[array_rand($girls)];

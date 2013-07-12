@@ -11,6 +11,9 @@ $lang = array(
 		'show' => 'Die Sprache für %s auf %s ist auf %s eingestellt.',
 	),
 );
+# Special language codes
+$special = array('bot' => 'Bot', 'ibd' => 'IBDES');
+
 if (false === ($channel = Dog::getChannel()))
 {
 	return Dog::rply('err_only_channel');
@@ -29,9 +32,10 @@ elseif ($argc === 1)
 	{
 		return Dog::rply('err_lang_iso');
 	}
-	$old = $channel->displayLang();
+	$old = isset($special[$channel->getLangISO()]) ? $special[$channel->getLangISO()] : $channel->displayLang();
 	$channel->saveVar('chan_lang', $argv[0]);
-	$plugin->rply('set', array($channel->displayName(), $server->displayName(), $old, $channel->displayLang()));
+	$new = isset($special[$channel->getLangISO()]) ? $special[$channel->getLangISO()] : $channel->displayLang();
+	$plugin->rply('set', array($channel->displayName(), $server->displayName(), $old, $new));
 }
 else
 {

@@ -18,6 +18,7 @@ $unam = $user->getName();
 # Any left?
 global $DOTBEERLEFT;
 $DOTBEERLEFT = isset($DOTBEERLEFT) ? $DOTBEERLEFT-1 : 100;
+// $DOTBEERLEFT = 100;
 if ($DOTBEERLEFT < 0)
 {
 	return $plugin->rply('ouch'.rand(0, 2));

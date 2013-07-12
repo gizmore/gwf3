@@ -393,6 +393,9 @@ final class Dog
 		self::$LAST_USER = false;
 		self::$LAST_CHANNEL = false;
 		
+		# IBEDS
+		$message = str_replace('\ţ', ' ', $message);
+		
 		# Parse the message
 		self::$LAST_MSG = new Dog_IRCMsg($message);
 
