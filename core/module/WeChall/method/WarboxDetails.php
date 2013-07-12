@@ -6,6 +6,8 @@ final class WeChall_WarboxDetails extends GWF_Method
 	 */
 	private $box;
 	
+	public function isCSRFProtected() { return false; }
+	
 	public function getHTAccess()
 	{
 		return 'RewriteRule ^(\d+)-levels-on- /index.php?mo=WeChall&me=WarboxDetails&boxid=$1'.PHP_EOL;
@@ -26,7 +28,7 @@ final class WeChall_WarboxDetails extends GWF_Method
 		
 		if (false === ($this->box = WC_Warbox::getByID(Common::getGetString('boxid'))))
 		{
-			return $this->module->error('err_warbox');
+			return $this->module->error('err_warboxa', array($_GET['boxid']));
 		}
 		
 		if ('' !== ($answer = Common::getPostString('password_solution', '')))

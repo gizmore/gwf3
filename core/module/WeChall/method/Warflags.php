@@ -68,7 +68,11 @@ final class WeChall_Warflags extends GWF_Method
 		
 		if (isset($_POST['import']))
 		{
-			return $this->onCSV();
+			return $this->onCSVImport();
+		}
+		if (isset($_GET['export']))
+		{
+			return $this->onCSVExport();
 		}
 		
 		if (isset($_GET['up']))
@@ -445,7 +449,7 @@ final class WeChall_Warflags extends GWF_Method
 	}
 	
 	
-	private function onCSV()
+	private function onCSVImport()
 	{
 		$form = $this->formCSV();
 		if (false !== ($error = $form->validate($this->module)))
@@ -531,16 +535,54 @@ final class WeChall_Warflags extends GWF_Method
 			'wf_authors' => $row[5],
 			'wf_status' => $row[6],
 			'wf_login' => $row[7],
-			'wf_flag_enc' => WC_Warflag::hashPassword($row[8]),
+#			'wf_flag_enc' => WC_Warflag::hashPassword($row[8]),
 			'wf_options' => $options,
 		)))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
+		if ($row[8] !== '')
+		{
+			if (!$flag->saveVar('wf_flag_enc', WC_Warflag::hashPassword($row[8])))
+			{
+				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+			}
+		}
+		
 		return '';
 	}
 	
+	##################
+	### CSV Export ###
+	##################
+	private function onCSVExport()
+	{
+		GWF_Website::plaintext();
+		
+		$flags = WC_Warflag::getByWarbox($this->warbox, 'wf_order ASC');
+		
+		echo self::CSV_COLUMNS.PHP_EOL;
+
+		foreach ($flags as $flag)
+		{
+			$flag instanceof WC_Warflag;
+			$input = array(
+				$flag->getVar('wf_order'),
+				$flag->getVar('wf_cat'),
+				$flag->getVar('wf_score'),
+				$flag->getVar('wf_title'),
+				$flag->getVar('wf_url'),
+				$flag->getVar('wf_authors'),
+				$flag->getVar('wf_status'),
+				$flag->getVar('wf_login'),
+				'',
+				($flag->isWarchall() ? 'SSH':'WEB'),
+			);
+			echo GWF_Array::toCSV($input).PHP_EOL;
+		}
+		die(0);
+	}
 }
 /*
 #POS,Category,Score,title,url,authors,status(up|down),username(may be blank),password(plain or sha1),TYPE

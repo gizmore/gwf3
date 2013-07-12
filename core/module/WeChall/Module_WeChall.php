@@ -70,6 +70,12 @@ final class Module_WeChall extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
 	public function getDefaultAutoLoad() { return true; }
 	public function onCronjob() { require_once 'WC_Cronjob.php'; }
+	public function onMerge(GDO_Database $db_from, GDO_Database $db_to, array &$db_offsets, $prefix, $prevar)
+	{
+		require_once 'WC_Merge.php';
+		return WC_Merge::onMerge($db_from, $db_to, $db_offsets, $prefix, $prevar);
+	}
+	
 	public function onStartup()
 	{
 		self::$instance = $this;

@@ -695,7 +695,8 @@ class WC_Site extends WC_SiteBase
 
 	public function onCreateThread(Module_WeChall $module)
 	{
-		if (false !== ($thread = $this->getThread())) {
+		if (false !== ($thread = $this->getThread()))
+		{
 			return true;
 		}
 		
