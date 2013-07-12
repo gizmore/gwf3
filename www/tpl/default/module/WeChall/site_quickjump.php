@@ -93,6 +93,7 @@ if (count($boxes) > 0)
 		$box instanceof WC_Warbox;
 		$data[] = array($box->getID(), $box->displayName());
 	}
+// 	var_dump($data);
 	echo GWF_Select::display('wc_boxes_quickjump', $data, Common::getGetString('bid'), "wcSiteQuickqump(this, '{$tVars['mode']}', 2)");
 }
 

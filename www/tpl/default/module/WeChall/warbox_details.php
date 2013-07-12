@@ -32,7 +32,7 @@ echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 function solving_form($tVars, WC_Warflag $flag)
 {
 	$form = '';
-	$form .= GWF_Form::start();
+	$form .= GWF_Form::start(true, GWF_Form::ENC_DEFAULT, 'post', false);
 	$form .= sprintf('<input type="hidden" name="wfid" value="%s" />', $flag->getID());
 	$form .= sprintf('<input type="text" name="password_solution" value="" />');
 	$form .= sprintf('<input type="submit" name="igotitnow" value="!" />');

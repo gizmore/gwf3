@@ -1,11 +1,11 @@
 
 function wcSiteQuickqump(select, mode, level)
 {
+//	console.log('wcSiteQuickjump', select, mode, level);
 	var siteid = select.value;
 	var sitename = select.options[select.selectedIndex].text;
-	sitename = encodeURIComponent(encodeURIComponent(sitename));
-	
-	console.log('wcSiteQuickjump', siteid, mode);
+//	sitename = encodeURIComponent(encodeURIComponent(sitename));
+	sitename = encodeURIComponent(sitename);
 	
 	if (siteid == 0)
 	{
@@ -39,7 +39,8 @@ function wcSiteQuickqump(select, mode, level)
 	}
 	else if ( (mode === 'boxdetail') || (mode === 'boxdetails') )
 	{
-		var url = GWF_WEB_ROOT+siteid+'-levels-on-'+sitename+'.html';
+		var url = GWF_WEB_ROOT+'site/details/'+siteid+'/'+sitename;	
+//		var url = GWF_WEB_ROOT+siteid+'-levels-on-'+sitename+'.html';
 	}
 	else if (mode === 'boxranking')
 	{

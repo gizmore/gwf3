@@ -24,6 +24,8 @@ foreach ($tVars['boxes'] as $box)
 {
 	$box instanceof WC_Warbox;
 	
+// 	var_dump($box);
+	
 	echo GWF_Table::rowStart();
 	
 // 	echo GWF_Table::column($pos);
