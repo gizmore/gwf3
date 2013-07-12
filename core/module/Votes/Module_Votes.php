@@ -14,7 +14,7 @@ final class Module_Votes extends GWF_Module
 	public function getAdminSectionURL() { return $this->getMethodURL('Staff'); }
 	public function getClasses() { return array('GWF_VoteMulti', 'GWF_VoteMultiOpt', 'GWF_VoteMultiRow', 'GWF_VoteScore', 'GWF_VoteScoreRow'); }
 	public function onIncludeAjax() { GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Votes/gwf_vote.js'); }
-	
+	public function onMerge(GDO_Database $db_from, GDO_Database $db_to, array &$db_offsets, $prefix, $prevar) { require_once 'Merge_Votes.php'; return Merge_Votes::onMerge($db_from, $db_to, $db_offsets, $prefix, $prevar); }
 	public function onInstall($dropTable)
 	{
 		return GWF_ModuleLoader::installVars($this, array(
