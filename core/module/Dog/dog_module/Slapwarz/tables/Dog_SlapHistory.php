@@ -28,7 +28,7 @@ final class Dog_SlapHistory extends GDO
 	}
 	public function getID() { return $this->getVar('lsh_id'); }
 	
-	public static function maySlap($slapper_id, $target_id)
+	public static function maySlap($slapper_id, $target_id, $timeout)
 	{
 		$slapper_id = (int) $slapper_id;
 		$target_id = (int) $target_id;
@@ -41,7 +41,7 @@ final class Dog_SlapHistory extends GDO
 		
 		$last_date = $row->getVar('lsh_date');
 		$time = GWF_Time::getTimestamp($last_date);
-		$remain = $time + DOGMOD_Slapwarz::SLAP_TIMEOUT - time();
+		$remain = $time + $timeout - time();
 		if ($remain > 0)
 		{
 			return $remain;
@@ -49,7 +49,22 @@ final class Dog_SlapHistory extends GDO
 		
 		return true;
 	}
-
+	
+	public static function maySlapMore($slapper_id, $timeout, $allowed)
+	{
+		$slapper_id = (int) $slapper_id;
+		$timeout = GWF_Time::getDate(14, time()-$timeout);
+	
+		# No row yet
+		if (false === ($count = self::table(__CLASS__)->selectVar('COUNT(*)', "lsh_slapper=$slapper_id AND lsh_date>'$timeout'")))
+		{
+			return true;
+		}
+		
+		# Rows left?
+		return $count < $allowed;
+	}
+	
 	public static function slapTimeout($adverb, $dmg_adv, $verb, $dmg_verb, $adjective, $dmg_adj, $item, $dmg_item)
 	{
 		return self::slapB(0, 0, $adverb, $dmg_adv, $verb, $dmg_verb, $adjective, $dmg_adj, $item, $dmg_item, 0);

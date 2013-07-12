@@ -4,12 +4,28 @@
  */
 final class DOGMOD_Slapwarz extends Dog_Module
 {
-	const SLAP_REMAIN_MALUS = 5;
-	const SLAP_TIMEOUT = GWF_Time::ONE_DAY;
+// 	const SLAP_REMAIN_MALUS = 5;
+// 	const SLAP_TIMEOUT = GWF_Time::ONE_DAY;
 	const TOP5_COUNT = 10;
 	private $last_slapper = false;
 	private $last_target = false;
 	
+	##############
+	### Config ###
+	##############
+	public function getOptions()
+	{
+		return array(
+			'timeout' => 'c,o,s,1d',
+			'remainmalus' => 'c,o,i,5',
+			'slapsperplayer' => 'c,o,i,2000000000',
+			'perplayermalus' => 'c,o,i,25',
+		);
+	}
+	private function getTimeout() { return GWF_TimeConvert::humanToSeconds($this->getConfig('timeout', 'c')); }
+	private function getRemainMalus() { return $this->getConfig('remainmalus', 'c'); }
+	private function getSlapsPerPlayer() { return $this->getConfig('slapsperplayer', 'c'); }
+	private function getPerPlayerMalus() { return $this->getConfig('perplayermalus', 'c'); }
 	############
 	### Slap ###
 	############
@@ -60,10 +76,16 @@ final class DOGMOD_Slapwarz extends Dog_Module
 		
 		# Check if a non record slap
 		$fake = false;
-		if (false === ($target = $this->getTarget($server, $target_name, $origin))) {
+		if (false === ($target = $this->getTarget($server, $target_name, $origin)))
+		{
 			$fake = true;
 		}
-		elseif (true !== ($remain = Dog_SlapHistory::maySlap($user->getID(), $target->getID()))) {
+		elseif (true !== ($remain = Dog_SlapHistory::maySlap($user->getID(), $target->getID(), $this->getTimeout())))
+		{
+			$fake = true;
+		}
+		elseif (true !== ($toomuch = Dog_SlapHistory::maySlapMore($user->getID(), $this->getTimeout(), $this->getSlapsPerPlayer())))
+		{
 			$fake = true;
 		}
 		
@@ -78,12 +100,21 @@ final class DOGMOD_Slapwarz extends Dog_Module
 		# Insert slap
 		if ($fake === true)
 		{
-			if (false === Dog_SlapHistory::slapTimeout($adverb, $dmg_adv, $verb, $dmg_verb, $adjective, $dmg_adj, $item, $dmg_item)) {
+			if (false === Dog_SlapHistory::slapTimeout($adverb, $dmg_adv, $verb, $dmg_verb, $adjective, $dmg_adj, $item, $dmg_item))
+			{
 				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 			}
-			if (isset($remain)) {
-				Dog_SlapUser::removePoints($user->getID(), self::SLAP_REMAIN_MALUS);
-				$message .= sprintf(' (%s remaining, Lost %d points).', GWF_Time::humanDuration($remain), self::SLAP_REMAIN_MALUS);
+			if ($remain !== true)
+			{
+				$malus = $this->getRemainMalus();
+				Dog_SlapUser::removePoints($user->getID(), $malus);
+				$message .= sprintf(' (%s remaining, Lost %d points).', GWF_Time::humanDuration($remain), $malus);
+			}
+			if ($toomuch !== true)
+			{
+				$malus = $this->getPerPlayerMalus();
+				Dog_SlapUser::removePoints($user->getID(), $malus);
+				$message .= sprintf(' (more than %d slaps within %s. Lost %d points).', $this->getSlapsPerPlayer(), GWF_Time::humanDuration($this->getTimeout()), $malus);
 			}
 		}
 		else
