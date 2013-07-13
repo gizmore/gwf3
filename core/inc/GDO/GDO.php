@@ -27,7 +27,7 @@ function gdo_db()
  * @param string $charset
  * @return GDO_Database
  */
-function gdo_db_instance($host, $user, $pass, $database, $type='mysqli', $charset='utf8')
+function gdo_db_instance($host, $user, $pass, $database, $type='mysql', $charset='utf8')
 {
 	$classname = 'GDO_DB_'.$type;
 	require_once GWF_CORE_PATH.'inc/GDO/db/GDO_Database.php';
