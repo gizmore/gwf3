@@ -714,7 +714,7 @@ final class WC_Challenge extends GDO
 	 */
 	public function onSolve($user, $answer)
 	{
-		if (false !== ($error = $this->isAnswerBlock($user)))
+		if (false !== ($error = $this->isAnswerBlocked($user)))
 		{
 			echo $error;
 			return false;
