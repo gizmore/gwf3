@@ -2,6 +2,9 @@
 /*
  * This is an example how your index.php could look like
  */
+# Security headers
+header('X-Frame-Options: DENY');
+header('content-security-policy: default-src \'self\'');
 
 # Load config
 require_once 'protected/config.php'; # <-- You might need to adjust this path.
