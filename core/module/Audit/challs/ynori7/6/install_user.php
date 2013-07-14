@@ -2,7 +2,7 @@
 $dirname = $home.'/level/6';
 if (!Common::isDir($dirname))
 {
-	@unlink($dirname);
+	GWF_File::removeDir($dirname);
 	$dirname2 = "/root/L6D";
 	if (!@mkdir($dirname2, 0700, true))
 	{
