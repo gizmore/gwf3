@@ -13,4 +13,3 @@ $lang = array(
 	'msg_solved' => 'Bien joué, trop facile... Savez-vous pourquoi c\'est possible ?',
 	'err_security' => 'Parce que le code est sacrément vulnérable, les points et les slash ne sont pas autorisés dans votre entrée.',
 );
-?>

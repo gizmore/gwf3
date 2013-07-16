@@ -13,4 +13,3 @@ $lang = array(
 	'msg_solved' => 'Well done, too easy... Do you know why this is possible?',
 	'err_security' => 'Because the code is damn vulnerable, dot and slash are not allowed in your input.',
 );
-?>
