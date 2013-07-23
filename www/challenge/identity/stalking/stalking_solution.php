@@ -7,14 +7,14 @@ function stalking_check_answer(WC_Challenge $chall, $answer)
 	$answer = str_replace(' ', '', $answer); // No Spaces
 	$sections = explode(',', $answer);
 	$sc = count($sections);
-	if ($sc !== 5)
+	if ($sc !== 4)
 	{
 		return $chall->lang('err_sections', array($sc));
 	}
 	
-	list($company, $coworker, $brother, $love, $band) = $sections;
+	list($company, $coworker, $brother, $band) = $sections;
 	
-	if (stalking_company($company) && stalking_coworker($coworker) && stalking_brother($brother) && stalking_love($love) && stalking_band($band))
+	if (stalking_company($company) && stalking_coworker($coworker) && stalking_brother($brother) && stalking_band($band))
 	{
 		return false;
 	}
