@@ -44,12 +44,12 @@ if ($user !== false) {
 	$href = GWF_WEB_ROOT.'all_sites/'.$site->getLangISO();
 	echo WC_HTML::tableRowForm($tLang->lang('th_site_language'), GWF_HTML::anchor($href, $site->displayLanguage()));
 	echo WC_HTML::tableRowForm($tLang->lang('th_site_tags'), $site->displayTags(true));
+	$warboxes = $tVars['boxcount'] > 0 ? $tVars['boxcount'].GWF_Button::forward($site->hrefWarboxes(), 'Show Wargames') : '0';
 	if ($is_ranked)
 	{
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_admins'), $site->displaySiteAdmins());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_autoup'), $site->displayAutoUpdate());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_has_osr'), $site->displayOnSiteRank());
-		$warboxes = $tVars['boxcount'] > 0 ? $tVars['boxcount'].GWF_Button::forward($site->hrefWarboxes(), 'Show Wargames') : '0';
 // 		if ($warboxes !== '')
 		{
 			echo WC_HTML::tableRowForm($tLang->lang('btn_warboxes'), $warboxes);
@@ -60,6 +60,10 @@ if ($user !== false) {
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_challcount'), $site->getChallcount());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_linkcount'), $site->getLinkCount());
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_avg'), $site->displayAvg());
+	}
+	else
+	{
+		echo WC_HTML::tableRowForm($tLang->lang('btn_warboxes'), $warboxes);
 	}
 
 	# Diff Votes
