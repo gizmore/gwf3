@@ -53,13 +53,16 @@ final class WeChall_LinkedSites extends GWF_Method
 		}
 		
 		# Update
-		if (false !== ($array = Common::getPost('update'))) {
+		if (false !== ($array = Common::getPost('update')))
+		{
 			return $this->onUpdate($array).$this->templateSites();
 		}
-		if (false !== (Common::getPost('update_all'))) {
+		if (false !== (Common::getPost('update_all')))
+		{
 			return $this->onUpdateAll().$this->templateSites();
 		}
-		if (false !== ($siteid = Common::getGet('quick_update'))) {
+		if (false !== ($siteid = Common::getGet('quick_update')))
+		{
 			return $this->onQuickUpdate($siteid);
 		}
 		
@@ -95,18 +98,13 @@ final class WeChall_LinkedSites extends GWF_Method
 	
 	private function getLinkedSites($userid, $orderby)
 	{
-//		$userid = (int) $userid;
 		return GDO::table('WC_RegAt')->selectAll('*', 'regat_uid='.$userid, $orderby, array('site'));
-//		$db = gdo_db();
-//		$regat = GWF_TABLE_PREFIX.'wc_regat';
-//		$sites = GWF_TABLE_PREFIX.'wc_site';
-//		$query = "SELECT * FROM $regat JOIN $sites ON regat_sid=site_id WHERE regat_uid=$userid ORDER BY $orderby";
-//		return $db->queryAll($query, true);
 	}
 
 	public function getFormLink()
 	{
-		if (false === ($this->not_linked = WC_Site::getUnlinkedSites(GWF_Session::getUserID()))) {
+		if (false === ($this->not_linked = WC_Site::getUnlinkedSites(GWF_Session::getUserID())))
+		{
 			echo GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			return false;
 		}
@@ -115,7 +113,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		$data = array(
 			'siteid' => array(GWF_Form::SELECT, $this->getSelectNotLinked($this->not_linked), $this->module->lang('th_site_name')),
 			'onsitename' => array(GWF_Form::STRING, $user->getVar('user_name'), $this->module->lang('th_onsite_name')),
-			'email' => array(GWF_Form::STRING, $user->getValidMail(), $this->module->lang('th_email')),
+			'password_email' => array(GWF_Form::STRING, $user->getValidMail(), $this->module->lang('th_email')),
 			'link' => array(GWF_Form::SUBMIT, $this->module->lang('btn_link')),
 		);
 		return new GWF_Form($this, $data);
@@ -129,16 +127,6 @@ final class WeChall_LinkedSites extends GWF_Method
 			$data[] = array($site->getID(), $site->getVar('site_name'));
 		}
 		return GWF_Select::display($name, $data, Common::getPostString($name, '0'));
-//		$selsiteid = (int)Common::getPost($name, 0);
-//		$back = sprintf('<select name="%s">', $name);
-//		foreach ($sites as $site)
-//		{
-//			$siteid = $site->getID();
-//			$sel = GWF_HTML::selected($selsiteid === $siteid);
-//			$back .= sprintf('<option value="%s"%s>%s</option>', $siteid, $sel, $site->displayName());
-//		}
-//		$back .= '</select>';
-//		return $back;
 	}
 
 	public function getFormAll()
@@ -154,7 +142,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	#################
 	public function validate_siteid(Module_WeChall $m, $arg) { return WC_Site::validateSiteID($arg); }
 	public function validate_onsitename(Module_WeChall $m, $arg) { return false; }
-	public function validate_email(Module_WeChall $m, $arg) { return GWF_Validator::validateEMail($m, 'email', $arg); }
+	public function validate_password_email(Module_WeChall $m, $arg) { return GWF_Validator::validateEMail($m, 'password_email', $arg); }
 	
 	/**
 	 * Link a site.
@@ -173,7 +161,7 @@ final class WeChall_LinkedSites extends GWF_Method
 		
 		$user = GWF_Session::getUser();
 		$onsitename = Common::getPostString('onsitename', '');
-		$onsitemail = Common::getPostString('email', '');
+		$onsitemail = Common::getPostString('password_email', '');
 		
 		if (false === ($site = WC_Site::getByID_Class(Common::getPost('siteid'))))
 		{
@@ -204,23 +192,29 @@ final class WeChall_LinkedSites extends GWF_Method
 		}
 		
 		
-		if (false === ($site->isAccountValid($onsitename, $onsitemail))) {
+		if (false === ($site->isAccountValid($onsitename, $onsitemail)))
+		{
 			$key = $site->getVar('site_classname') === 'HTS' ? 'err_link_account_hts' : 'err_link_account';
 			return $this->module->error($key, array($site->displayName()));
 		}
 
 		if (false !== ($regat = WC_RegAt::getByOnsitename($site->getID(), $onsitename))) {
-			if (false === ($user = $regat->getUser())) {
+			if (false === ($user = $regat->getUser()))
+			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
-			else {
+			else
+			{
 				return $this->module->error('err_onsitename_taken', array(htmlspecialchars($onsitename), $site->displayName(), $user->displayUsername()));
 			}
 		}
 		
-		if ($onsitemail !== $user->getValidMail()) {
+		if ($onsitemail !== $user->getValidMail())
+		{
 			return $this->onLinkSiteMail($site, $user, $onsitename, $onsitemail);
-		} else {
+		}
+		else
+		{
 			return $this->onLinkSiteAfterMail($site, $user, $onsitename);
 		}
 	}
@@ -242,23 +236,28 @@ final class WeChall_LinkedSites extends GWF_Method
 
 	private function onLinkSiteAfterMailPre($token, $siteid)
 	{
-		if (false === ($site = WC_Site::getByID($siteid))) {
+		if (false === ($site = WC_Site::getByID($siteid)))
+		{
 			return $this->module->error('err_site');
 		}
 		
-		if (false === ($user = GWF_User::getByID(Common::getGet('userid')))) {
+		if (false === ($user = GWF_User::getByID(Common::getGet('userid'))))
+		{
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
 		
-		if (false !== WC_RegAt::getRegatRow($user->getID(), $site->getID())) {
+		if (false !== WC_RegAt::getRegatRow($user->getID(), $site->getID()))
+		{
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
-		if (false === ($onsitename = Common::getGet('onsitename'))) {
+		if (false === ($onsitename = Common::getGet('onsitename')))
+		{
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		if ($token !== $site->getLinkToken($user->getID(), $onsitename)) {
+		if ($token !== $site->getLinkToken($user->getID(), $onsitename))
+		{
 			return $this->module->error('err_link_token');
 		}
 		
@@ -267,11 +266,13 @@ final class WeChall_LinkedSites extends GWF_Method
 
 	public function onLinkSiteAfterMail(WC_Site $site, GWF_User $user, $onsitename)
 	{
-		if (WC_Freeze::isUserFrozenOnSite($user->getID(), $site->getID())) {
+		if (WC_Freeze::isUserFrozenOnSite($user->getID(), $site->getID()))
+		{
 			return $this->module->error('err_site_ban', array($site->displayName()));
 		}
 		
-		if ($site->isUserLinked($user)) {
+		if ($site->isUserLinked($user))
+		{
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
@@ -295,22 +296,26 @@ final class WeChall_LinkedSites extends GWF_Method
 			'regat_tagbits' => $site->getTagBits(),
 			'regat_linkdate' => GWF_Time::getDate(GWF_Date::LEN_DAY),
 		));
-		if (false === ($regat->insert())) {
+		if (false === ($regat->insert()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === ($site->increase('site_linkcount', 1))) {
+		if (false === ($site->increase('site_linkcount', 1)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		$error = $site->onUpdateUser($user, true, true);
 		
-		if (false === ($regat2 = WC_RegAt::getRegatRow($userid, $siteid))) {
+		if (false === ($regat2 = WC_RegAt::getRegatRow($userid, $siteid)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		require_once GWF_CORE_PATH.'module/WeChall/WC_FirstLink.php';
-		if (false === WC_FirstLink::insertFirstLink($user, $site, $onsitename, $regat2->getOnsiteScore())) {
+		if (false === WC_FirstLink::insertFirstLink($user, $site, $onsitename, $regat2->getOnsiteScore()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -322,21 +327,25 @@ final class WeChall_LinkedSites extends GWF_Method
 	###################
 	private function onHide($array, $status)
 	{
-		if (!is_array($array)) {
+		if (!is_array($array))
+		{
 			return '';
 		}
 		
 		foreach ($array as $siteid => $stub) { break; }
 		
-		if (false === ($site = WC_Site::getByID($siteid))) {
+		if (false === ($site = WC_Site::getByID($siteid)))
+		{
 			return $this->module->error('err_site');
 		}
 		
-		if (false === ($regat = WC_RegAt::getRegatRow(GWF_Session::getUserID(), $siteid))) {
+		if (false === ($regat = WC_RegAt::getRegatRow(GWF_Session::getUserID(), $siteid)))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === $regat->saveOption(WC_RegAt::HIDE_SITENAME, $status > 0)) {
+		if (false === $regat->saveOption(WC_RegAt::HIDE_SITENAME, $status > 0))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -348,13 +357,23 @@ final class WeChall_LinkedSites extends GWF_Method
 	##############
 	private function onUnLinkSite($array)
 	{
-		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
+		if (false !== ($error = GWF_Form::validateCSRF_WeakS()))
+		{
 			return GWF_HTML::error('WeChall', $error);
 		}
-		if (!is_array($array)) { return ''; }
-		foreach ($array as $siteid => $stub) { break; }
+		if (!is_array($array))
+		{
+			return '';
+		}
 		
-		if (false === ($site = WC_Site::getByID($siteid))) {
+		// TODO: Replace with appropiate PHP function
+		foreach ($array as $siteid => $stub)
+		{
+			break;
+		}
+		
+		if (false === ($site = WC_Site::getByID($siteid)))
+		{
 			return $this->module->error('err_site');
 		}
 		
@@ -362,15 +381,18 @@ final class WeChall_LinkedSites extends GWF_Method
 		$userid = GWF_Session::getUserID();
 		$old_totalscore = $user->getVar('user_level');
 		
-		if (WC_Freeze::isUserFrozen($userid)) {
+		if (WC_Freeze::isUserFrozen($userid))
+		{
 			return $this->module->error('err_frozen');
 		}
 		
-		if (false === ($regat = WC_RegAt::getRegatRow($userid, $site->getID()))) {
+		if (false === ($regat = WC_RegAt::getRegatRow($userid, $site->getID())))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === WC_RegAt::unlink($userid, $site->getID())) {
+		if (false === WC_RegAt::unlink($userid, $site->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
@@ -392,7 +414,8 @@ final class WeChall_LinkedSites extends GWF_Method
 	##############
 	private function onQuickUpdate($siteid)
 	{
-		if (false === ($site = WC_Site::getByID($siteid))) {
+		if (false === ($site = WC_Site::getByID($siteid)))
+		{
 			return $this->module->error('err_site');
 		}
 		return $this->onUpdateB($site, GWF_Session::getUser());
@@ -400,11 +423,13 @@ final class WeChall_LinkedSites extends GWF_Method
 	
 	private function onUpdate($array)
 	{
-		if (!is_array($array)) {
+		if (!is_array($array))
+		{
 			return '';
 		}
 		foreach ($array as $siteid => $stub) { break; }
-		if (false === ($site = WC_Site::getByID($siteid))) {
+		if (false === ($site = WC_Site::getByID($siteid)))
+		{
 			return $this->module->error('err_site');
 		}
 				
@@ -423,7 +448,8 @@ final class WeChall_LinkedSites extends GWF_Method
 	private function onUpdateAll()
 	{
 		$form = $this->getFormAll();
-		if (false !== ($error = $form->validate($this->module))) {
+		if (false !== ($error = $form->validate($this->module)))
+		{
 			return $error;
 		}
 		
@@ -442,5 +468,3 @@ final class WeChall_LinkedSites extends GWF_Method
 		return $back;
 	}
 }
-
-?>
