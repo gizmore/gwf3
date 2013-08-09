@@ -48,7 +48,7 @@ if (!function_exists('jbot_minify'))
 	 */	
 	function jbot_minify($url)
 	{
-		$response = GWF_HTTP::post(array('url' => $url));
+		$response = GWF_HTTP::post(JBOT_SERVICE, array('url' => $url));
 		
 		
 		// 1:1 html leech umgesetzt wie in Ralfs js example http://jbot.de/js/jbotcreate.js
