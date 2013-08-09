@@ -44,13 +44,13 @@ if (!function_exists('jbot_minify'))
 $plugin = Dog::getPlugin();
 
 //Validate Input
-if ('' === ($args = $plugin->msg()))
+if (1 !== $plugin->argc())
 {
 	return $plugin->showHelp();
 }
  
 //Minify URL
-if (false === ($reply = jbot_minify($args)))
+if (false === ($reply = jbot_minify($plugin->msg())))
 {
 	$plugin->rply('error');
 }
