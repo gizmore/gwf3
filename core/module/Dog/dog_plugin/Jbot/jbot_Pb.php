@@ -1,11 +1,4 @@
 <?php
-
-//Magic Values 
-define('JBOT_SERVICE', 'http://jbot.de/create.php');
-define('JBOT_PREFIX', '<p class="redirect">');
-define('JBOT_POSTFIX', '</p>');
-
-//Resources Localization
 $lang = array(
     'en' => array(
         'help' => 'Used to minify URLs using http://jbot.de. Usage: .jbot <string_long_url>',
@@ -13,15 +6,47 @@ $lang = array(
     ),
 );
 
+if (!function_exists('jbot_minify'))
+{
+	/**
+	 * Used to minify URLs
+	 *
+	 * @param string $url The URL you want to be minified by http://jbot.de
+	 * @return array An Array containing a Title(1) and an URL(0)
+	 */
+	function jbot_minify($url)
+	{
+		// Magic Values
+		$SERVICE = 'http://jbot.de/create.php';
+		$PREFIX = '<p class="redirect">';
+		$POSTFIX = '</p>';
+
+		$response = GWF_HTTP::post($SERVICE, array('url' => $url));
+		// 1:1 html leech umgesetzt wie in Ralfs js example http://jbot.de/js/jbotcreate.js
+		if(false === ($posStart = strpos($response, $PREFIX)))
+		{
+			return false;
+		}
+		else
+		{
+			$posStart += strlen($PREFIX);
+			if(false === ($posEnd = strpos($response, $POSTFIX, $posStart)))
+			{
+				return false;
+			}
+			$minified = substr($response, $posStart, $posEnd - $posStart);
+		}
+		return $minified;
+	}
+}
+
 //Init Plugin
 $plugin = Dog::getPlugin();
-
 
 //Validate Input
 if ('' === ($args = $plugin->msg()))
 {
-    $plugin->rply('help');
-	die();
+	return $plugin->showHelp();
 }
  
 //Minify URL
@@ -35,36 +60,3 @@ else
 }
 
 
-/* ======================================================================= */ 
-//stuff behind
-/* ======================================================================= */ 
-if (!function_exists('jbot_minify'))
-{
-	/**
-	 * Used to minify URLs
-	 *
-	 * @param string $url The URL you want to be minified by http://jbot.de
-	 * @return array An Array containing a Title(1) and an URL(0)
-	 */	
-	function jbot_minify($url)
-	{
-		$response = GWF_HTTP::post(JBOT_SERVICE, array('url' => $url));
-		
-		
-		// 1:1 html leech umgesetzt wie in Ralfs js example http://jbot.de/js/jbotcreate.js
-		if(false === ($posStart = strpos($response, JBOT_PREFIX)))
-		{
-			return false;	
-		}
-		else
-		{
-			$posStart += strlen(JBOT_PREFIX);
-			if(false === ($posEnd = strpos($response, JBOT_POSTFIX, $posStart)))
-			{
-				return false;
-			}
-			$minified = substr($response, $posStart, $posEnd - $posStart);	
-		}
-		return $minified;
-	}
-}
