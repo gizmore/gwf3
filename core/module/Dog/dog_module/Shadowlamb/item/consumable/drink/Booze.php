@@ -3,6 +3,7 @@ final class Item_Booze extends SR_Drink
 {
 	public function getItemLevel() { return 0; }
 	public function getItemWeight() { return 800; }
+	public function getLitres() { return 700; }
 	public function getItemPrice() { return 39; }
 	public function getItemDescription() { return 'A cheap bottle of booze. Alc:40%.'; }
 //	public function isItemSellable() { return false; }

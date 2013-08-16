@@ -2,6 +2,7 @@
 final class Item_Milk extends SR_Drink
 {
 	public function getItemLevel() { return 4; }
+	public function getLitres() { return 500; }
 	public function getItemWeight() { return 520; }
 	public function getItemPrice() { return 2.95; }
 	public function getItemDescription() { return 'A half litre of fresh milk.'; }

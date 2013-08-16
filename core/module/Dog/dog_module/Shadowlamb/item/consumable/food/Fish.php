@@ -4,6 +4,8 @@ final class Item_Fish extends SR_Food
 	public function getItemDescription() { return 'A frozen trout.'; }
 	public function getItemWeight() { return 333; }
 	public function getItemUseTime(){ return 45; }
+	public function getWater() { return 80; }
+	public function getCalories() { return 280; }
 	public function getItemPrice() { return 4.95; }
 	public function onConsume(SR_Player $player)
 	{

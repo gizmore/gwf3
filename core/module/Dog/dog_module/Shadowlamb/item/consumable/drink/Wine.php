@@ -4,6 +4,7 @@ final class Item_Wine extends SR_Drink
 	public function getItemLevel() { return 1; }
 	public function getItemWeight() { return 825; }
 	public function getItemPrice() { return 44.95; }
+	public function getLitres() { return 1000; }
 	public function getItemDescription() { return 'A cheap bottle of wine. Alc:13%.'; }
 //	public function isItemSellable() { return false; }
 	public function onConsume(SR_Player $player)

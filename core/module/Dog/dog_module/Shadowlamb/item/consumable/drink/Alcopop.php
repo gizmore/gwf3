@@ -3,6 +3,7 @@ final class Item_Alcopop extends SR_Drink
 {
 	public function getItemLevel() { return 2; }
 	public function getItemWeight() { return 225; }
+	public function getLitres() { return 200; }
 	public function getItemPrice() { return 9.95; }
 	public function getItemDescription() { return 'A small alcopop drink. Alc: 7%. Evil and made by the devil himself.'; }
 //	public function isItemSellable() { return false; }

@@ -6,6 +6,7 @@ final class Item_SparklingWine extends SR_Drink
 	public function getItemPrice() { return 49.95; }
 	public function getItemDescription() { return 'A cheap bottle of sparkling wine. Alc:11%.'; }
 //	public function isItemSellable() { return false; }
+	public function getLitres() { return 1000; }
 	public function onConsume(SR_Player $player)
 	{
 		$m = array('alc'=>0.1);

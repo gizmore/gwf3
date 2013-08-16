@@ -6,6 +6,8 @@ final class Item_Pringles extends SR_Food
 	public function getItemUsetime() { return 20; }
 	public function getItemDefaultAmount() { return 6; }
 	public function getItemWeight() { return 5; }
+	public function getWater() { return 1; }
+	public function getCalories() { return 5; }
 	public function onConsume(SR_Player $player)
 	{
 		$p = $player->getParty();

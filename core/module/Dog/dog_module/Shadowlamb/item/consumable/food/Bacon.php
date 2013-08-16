@@ -4,6 +4,8 @@ final class Item_Bacon extends SR_Food
 	public function getItemLevel() { return -1; }
 	public function getItemDescription() { return 'Some pork bacon. Smells weird. You wonder if it\'s still tasty.'; }
 	public function getItemWeight() { return 200; }
+	public function getWater() { return 30; }
+	public function getCalories() { return 800; }
 	public function getItemUseTime(){ return 40; }
 	public function getItemPrice() { return 2.95; }
 	

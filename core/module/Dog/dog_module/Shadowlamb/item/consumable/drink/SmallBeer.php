@@ -2,6 +2,7 @@
 final class Item_SmallBeer extends SR_Drink
 {
 	public function getItemLevel() { return 0; }
+	public function getLitres() { return 333; }
 	public function getItemWeight() { return 375; }
 	public function getItemPrice() { return 1.95; }
 	public function getItemDescription() { return '0.33 litres of Unz-Beer - 3.37% alc.'; }

@@ -4,6 +4,8 @@ final class Item_Apple extends SR_Food
 	public function getItemLevel() { return 2; }
 	public function getItemDescription() { return 'A green apple. Edible.'; }
 	public function getItemWeight() { return 250; }
+	public function getWater() { return 50; }
+	public function getCalories() { return 50; }
 	public function getItemUseTime(){ return 70; }
 	public function getItemPrice() { return 0.75; }
 	

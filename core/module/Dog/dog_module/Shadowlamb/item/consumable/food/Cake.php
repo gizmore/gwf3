@@ -4,6 +4,8 @@ final class Item_Cake extends SR_Food
 	public function getItemDescription() { return 'A delicious cake baken by Unhandled\'s mom.'; }
 	public function getItemWeight() { return 500; }
 	public function getItemUseTime(){ return 90; }
+	public function getWater() { return 150; }
+	public function getCalories() { return 1300; }
 	public function onConsume(SR_Player $player)
 	{
 		$oldhp = $player->getHP();

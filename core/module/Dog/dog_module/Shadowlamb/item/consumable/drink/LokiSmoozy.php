@@ -3,6 +3,7 @@ final class Item_LokiSmoozy extends SR_Drink
 {
 	public function getItemLevel() { return 8; }
 	public function getItemWeight() { return 225; }
+	public function getLitres() { return 250; }
 	public function getItemPrice() { return 9.95; }
 	public function getItemDescription() { return 'A bad approach of marketing an alcopop. Alc: 7.77%.'; }
 //	public function isItemSellable() { return false; }
