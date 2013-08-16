@@ -11,6 +11,10 @@ if ('' === ($message = $plugin->msg()))
 {
     $message = '*';
 }
+else
+{
+	$message = "*{$message}*";
+}
  
 if (!function_exists('getRandomRadio'))
 {

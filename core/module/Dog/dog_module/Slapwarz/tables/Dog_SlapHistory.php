@@ -52,14 +52,23 @@ final class Dog_SlapHistory extends GDO
 	
 	public static function maySlapMore($slapper_id, $timeout, $allowed)
 	{
+		echo "maySlapMore($slapper_id, $timeout, $allowed\n";
 		$slapper_id = (int) $slapper_id;
 		$timeout = GWF_Time::getDate(14, time()-$timeout);
-	
+		echo "maySlapMore($slapper_id, $timeout, $allowed\n";
+		
+		# Config says true
+		if ($allowed <= 0)
+		{
+			return true;
+		}
+		
 		# No row yet
 		if (false === ($count = self::table(__CLASS__)->selectVar('COUNT(*)', "lsh_slapper=$slapper_id AND lsh_date>'$timeout'")))
 		{
 			return true;
 		}
+		echo "maySlapMore($slapper_id, $timeout, $allowed) COUNT == $count\n";
 		
 		# Rows left?
 		return $count < $allowed;

@@ -18,7 +18,7 @@ final class DOGMOD_Slapwarz extends Dog_Module
 		return array(
 			'timeout' => 'c,o,s,1d',
 			'remainmalus' => 'c,o,i,5',
-			'slapsperplayer' => 'c,o,i,2000000000',
+			'slapsperplayer' => 'c,o,i,0',
 			'perplayermalus' => 'c,o,i,25',
 		);
 	}
@@ -104,13 +104,13 @@ final class DOGMOD_Slapwarz extends Dog_Module
 			{
 				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 			}
-			if ($remain !== true)
+			if (isset($remain) && $remain !== true)
 			{
 				$malus = $this->getRemainMalus();
 				Dog_SlapUser::removePoints($user->getID(), $malus);
 				$message .= sprintf(' (%s remaining, Lost %d points).', GWF_Time::humanDuration($remain), $malus);
 			}
-			if ($toomuch !== true)
+			elseif (isset($toomuch) && $toomuch !== true)
 			{
 				$malus = $this->getPerPlayerMalus();
 				Dog_SlapUser::removePoints($user->getID(), $malus);

@@ -1,3 +1,3 @@
 <?php
-Foo::Bar();
+#Foo::Bar();
 ?>

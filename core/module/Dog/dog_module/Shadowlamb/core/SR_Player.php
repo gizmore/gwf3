@@ -1694,7 +1694,7 @@ class SR_Player extends GDO
 		$back = array();
 		
 		# Convert id to itemname
-		if (is_numeric($arg))
+		if (Common::isNumeric($arg))
 		{
 			if (false === ($item = $this->getItemByNameB($arg, $items)))
 			{
@@ -1768,8 +1768,6 @@ class SR_Player extends GDO
 	 */
 	public function getItemByNameB($itemname, array $items, $shortcuts=true, $verbose=true)
 	{
-		$itemname = strtolower($itemname);
-		
 		# ID match
 		if (Common::isNumeric($itemname))
 		{
@@ -1779,6 +1777,8 @@ class SR_Player extends GDO
 				return $back[0];
 			}
 		}
+		
+		$itemname = strtolower($itemname);
 		
 		# Full name match
 		foreach (array_reverse($items) as $item)
@@ -2008,6 +2008,10 @@ class SR_Player extends GDO
 		
 		$this->sr4_inventory = GWF_Array::swapAssoc($this->sr4_inventory, $items1[0]->getID(), $items2[0]->getID());
 		$temp = $items1[0]->getMicrotime(); # Look ma, without temp!
+		if ($temp == $items2[0]->getMicrotime())
+		{
+			$temp += 0.001; // 1ms
+		}
 		$items1[0]->saveMicrotime($items2[0]->getMicrotime());
 		$items2[0]->saveMicrotime($temp);
 		
