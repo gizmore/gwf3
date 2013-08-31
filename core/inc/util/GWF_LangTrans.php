@@ -137,15 +137,7 @@ final class GWF_LangTrans
 		{
 			return htmlspecialchars($key).(is_array($args) ? ': '.GWF_Array::implode(',', $args) : '');
 		}
-
-		// Translate array == random, rarely used but meh?
-		$text = $this->trans[$iso][$key];
-		if (is_array($text))
-		{
-			$text = GWF_Random::arrayItem($text);
-		}
-		
-		return $this->replaceArgs($text, $args);
+		return $this->replaceArgs($this->trans[$iso][$key], $args);
 	}
 
 
