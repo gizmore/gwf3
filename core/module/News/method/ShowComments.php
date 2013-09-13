@@ -60,7 +60,7 @@ final class News_ShowComments extends GWF_Method
 		}
 		
 		
-		$c = GDO::table('GWF_Comment')->selectObjects('*', "", 'cmt_date ASC', $ipp, $from);
+		$c = GDO::table('GWF_Comment')->selectObjects('*', 'cmt_cid='.$comments->getID(), 'cmt_date ASC', $ipp, $from);
 		
 		$href = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-'.$page.'.html';
 		$hrefp = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-%PAGE%.html';
