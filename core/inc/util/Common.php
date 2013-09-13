@@ -59,7 +59,7 @@ final class Common
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
 	{
-		$ch = '-';
+		$ch = '_';
 		$search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '_', '@',	        '&',	       '%');
 		$replace = array($ch, $ch, $ch, $ch, $ch, $ch, $ch, '',  '',  '',  '',  '',  '',  '',  '',  '',  $ch, $ch.'at'.$ch, $ch.'and'.$ch, $ch);
 		$back = str_replace($search, $replace, $string);
