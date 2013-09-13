@@ -59,11 +59,14 @@ final class Common
 //	public static function getUnixPath($path) { return str_replace('\\', '/', $path); }
 	public static function urlencodeSEO($string)
 	{
-		$search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '-', '@',	'&',	 '%');
-		$replace = array('_', '_', '_', '_', '_', '_', '_', '',  '',  '',  '',  '',  '',  '',  '',  '',  '_', '_at_', '_and_', '_');
+		$ch = '-';
+		$search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '_', '@',	        '&',	       '%');
+		$replace = array($ch, $ch, $ch, $ch, $ch, $ch, $ch, '',  '',  '',  '',  '',  '',  '',  '',  '',  $ch, $ch.'at'.$ch, $ch.'and'.$ch, $ch);
 		$back = str_replace($search, $replace, $string);
-		$back = preg_replace('/[^a-z0-9_]/i', '_', $back);
-		return $back === '' ? '_Title_' : $back;
+		$back = preg_replace('/[^a-z0-9-]/i', $ch, $back);
+		$back = preg_replace('/'.$ch.'{2,}/', $ch, $back);
+		$back = trim($back, $ch);
+		return $back === '' ? '_title_' : $back;
 	}
 
 	/**
