@@ -451,7 +451,7 @@ final class WC_HTML
 		$back .= self::displayMenuDownload($module).PHP_EOL;
 // 		$back .= self::displayMenuChat($module).PHP_EOL;
 		$back .= self::displayMenuGroups($module).PHP_EOL;
-		$back .= self::displayMenuUserPages($module).PHP_EOL;
+// 		$back .= self::displayMenuUserPages($module).PHP_EOL;
 		$back .= self::displayMenuAdmin($module).PHP_EOL;
 		$back .= self::displayMenuLogout($module).PHP_EOL;
 		
