@@ -451,6 +451,7 @@ final class WC_HTML
 		$back .= self::displayMenuDownload($module).PHP_EOL;
 // 		$back .= self::displayMenuChat($module).PHP_EOL;
 		$back .= self::displayMenuGroups($module).PHP_EOL;
+		$back .= self::displayMenuUserPages($module).PHP_EOL;
 		$back .= self::displayMenuAdmin($module).PHP_EOL;
 		$back .= self::displayMenuLogout($module).PHP_EOL;
 		
@@ -738,6 +739,12 @@ final class WC_HTML
 			$sel = Common::getGet('mo')==='Usergroups' ? ' class="wc_menu_sel"' : '';
 			return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'my_groups">'.$module->lang('menu_groups').'</a></li>';
 		}
+	}
+	
+	public static function displayMenuUserPages(Module_WeChall $module)
+	{
+		$sel = Common::getGet('mo')==='Pagebuilder' ? ' class="wc_menu_sel"' : '';
+		return '<li><a'.$sel.' href="'.GWF_WEB_ROOT.'pages">'.$module->lang('menu_userpages').'</a></li>';
 	}
 	
 	public static function displayMenuAdmin(Module_WeChall $module)

@@ -785,7 +785,7 @@ class WC_Site extends WC_SiteBase
 	 */
 	public function parseStats($url)
 	{
-		echo WC_HTML::error('err_parse_stub', __CLASS__);
+		echo WC_HTML::error('err_parse_stub', array(__CLASS__));
 		return array(0, -1, 0, 0, -1, 0);
 	}
 	
