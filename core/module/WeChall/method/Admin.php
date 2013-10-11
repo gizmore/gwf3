@@ -224,7 +224,7 @@ final class WeChall_Admin extends GWF_Method
 	private function getSiteSelect()
 	{
 		$data = array();
-		foreach (WC_Site::getSitesRanked('site_name ASC') as $site)
+		foreach (WC_Site::getSites('site_name ASC') as $site)
 		{
 			$data[] = array($site->getID(), $site->getVar('site_name'));
 		}
