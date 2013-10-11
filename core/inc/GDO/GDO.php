@@ -67,7 +67,7 @@ abstract class GDO
 	const TINY     = 0x00100000;
 	const MEDIUM   = 0x00200000;
 	const BIG      = 0x00400000;
-//	const FREE_1   = 0x00800000; # Free1
+//	const NOT_NULL = 0x00800000;  # Added in GWF4
 
 	const INT      = 0x01000000;  # No 3rd parameter.
 	const DECIMAL  = 0x02000000;  # 3rd parameter is array(DIGITS_BEFORE, DIGITS_AFTER) the comma.
@@ -80,15 +80,15 @@ abstract class GDO
 //	const MSB_BROKEN = 0x80000000;# This bit does not work on 32 bit systems. 
 
 	const MESSAGE  = 0x04041001;
-//	const RES_02   = 0x00000002;  # Reserved
-//	const RES_04   = 0x00000004;  # Reserved
-//	const RES_08   = 0x00000008;  # Reserved
+//	const RES_02   = 0x00000002;  # Reserved for GWF5
+//	const RES_04   = 0x00000004;  # Reserved for GWF5
+//	const RES_08   = 0x00000008;  # Reserved for GWF5
 
 	
 	const BINARY   = 0x00010000;
-	const ASCII    = 0x00020000;
-	const UTF8     = 0x00040000;
-//	const FREE_2   = 0x00080000; # Free2
+	const ASCII    = 0x00020000; # TODO: should be obsolete/default and Free3
+	const UTF8     = 0x00040000; # TODO: means to use GDO charset
+//	const FREE_2   = 0x00080000; # Free1
 
 	const CASE_I         = 0x00001000;
 	const CASE_S         = 0x00002000;
@@ -98,7 +98,7 @@ abstract class GDO
 	const INDEX       = 0x00000100;
 	const UNIQUE      = 0x00000200;
 	const PRIMARY_KEY = 0x00000400;
-//	const RES_0800    = 0x00000800; # Free3
+//	const RES_0800    = 0x00000800; # Free2
 
 	const JOIN      = 0x00000010;
 	const OBJECT    = 0x01004020;

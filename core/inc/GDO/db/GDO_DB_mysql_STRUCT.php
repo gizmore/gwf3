@@ -92,6 +92,10 @@ final class GDO_DB_mysql_STRUCT
 		$charset = '';
 		$default = self::getDefaultDefine( (isset($define[1]) ? $define[1] : true) );
 		
+// 		if (($type & GDO::INDEX) === GDO::INDEX)
+// 		{
+// 			return false;
+// 		}
 		
 		if ($type & GDO::INT)
 		{
