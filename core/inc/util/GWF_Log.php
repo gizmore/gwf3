@@ -113,7 +113,7 @@ final class GWF_Log
 		$back = '';
 		foreach ($a as $k => $v)
 		{
-			if (stripos($k, 'pass') !== false)
+			if ( (stripos($k, 'pass') !== false) || ($k === 'answer') )
 			{
 				$v = 'xxxxx';
 			}
