@@ -679,7 +679,7 @@ abstract class SR_ClanHQ extends SR_Location
 // 				$player->message(sprintf('You try to push %s %s but you only have %s.', $amt, $itemname, $item->getAmount()));
 				return false;
 			}
-			$weight = $item->getItemWeightStacked();
+			$weight = $item->getItemWeight() * $amt;
 			if (false === $clan->canHoldMore($weight))
 			{
 				$player->msg('1132', array(Shadowfunc::displayWeight($weight), $clan->displayStorage(), $clan->displayMaxStorage()));
