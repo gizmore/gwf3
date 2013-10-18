@@ -260,10 +260,11 @@
          for ($i = 0; $i < $this->iNumChars; $i++) {
             if (count($this->aCharSet) > 0) {
                // select random character and add to code string
-               $this->sCode .= $this->aCharSet[array_rand($this->aCharSet)];
+               
+               $this->sCode .= $this->aCharSet[GWF_Random::arrayItem($this->aCharSet)];
             } else {
                // select random character and add to code string
-               $this->sCode .= chr(rand(65, 90));
+               $this->sCode .= chr(GWF_Random::rand(65, 90));
             }
          }
          
