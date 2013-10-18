@@ -20,10 +20,10 @@ final class Forum_ShowThread extends GWF_Method
 		}
 		return
 			$back. 
-			'RewriteRule ^forum-t([0-9]+)/[^/\-]+\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
-			'RewriteRule ^forum-t([0-9]+)/[^/\-]+\.html-([^/]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1&term=$2'.PHP_EOL.
-			'RewriteRule ^forum-t([0-9]+)/[^/\-]+-p([0-9]+)\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.
-			'RewriteRule ^forum-t([0-9]+)/[^/\-]+-p([0-9]+).html-([^/]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2&term=$3'.PHP_EOL;
+			'RewriteRule ^forum-t([0-9]+)/[^/]+\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1'.PHP_EOL.
+			'RewriteRule ^forum-t([0-9]+)/[^/]+\.html-([^/]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=1&term=$2'.PHP_EOL.
+			'RewriteRule ^forum-t([0-9]+)/[^/]+-p([0-9]+)\.html$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2'.PHP_EOL.
+			'RewriteRule ^forum-t([0-9]+)/[^/]+-p([0-9]+).html-([^/]+)$ index.php?mo=Forum&me=ShowThread&tid=$1&page=$2&term=$3'.PHP_EOL;
 	}
 	
 	################
