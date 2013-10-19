@@ -56,6 +56,7 @@ $lang = array(
 'fmt_bazar_shop' => ', %d,%s,%s', # itemcount, itemname, price
 'fmt_bazar_shops' => ', %s,%d', # player, itemcount
 'fmt_bazar_search' => ', %s,%s,%s,%s', # player, itemname, amount, price
+'fmt_xp' => ',%s|%s|%s|%s|%s|%s|%s', # enum, player, level, level xp, xp per level, karma xp, xp per karma
 
 'pa_delete' => 'delete',
 'pa_talk' => 'talk,%s,%s', # enemy party, duration,
