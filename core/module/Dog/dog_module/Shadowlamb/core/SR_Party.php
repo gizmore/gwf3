@@ -1438,7 +1438,7 @@ final class SR_Party extends GDO
 			
 			case 'fight':
 				return $player->lang('pa_fight', array(
-					$this->getEnemyParty()->displayMembers(true), $this->displayLastAction($player)));
+					$this->getEnemyParty()->displayMembers(true, true), $this->displayLastAction($player)));
 // 				return sprintf("{$b}fighting{$b} against %s.%s", $this->getEnemyParty()->displayMembers(true), $this->displayLastAction());
 			
 			case 'inside':
