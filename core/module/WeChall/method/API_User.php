@@ -113,9 +113,13 @@ final class WeChall_API_User extends GWF_Method
 			return $back;
 		}
 		
-		if ('' !== ($v = $user->displayEMail())) {
-			$back .= 'EMail:'.$v.PHP_EOL;
+		if ($user->isOptionEnabled(GWF_User::SHOW_EMAIL))
+		{
+			if ('' !== ($v = $user->displayEMail())) {
+				$back .= 'EMail:'.$v.PHP_EOL;
+			}
 		}
+		
 		
 		if ('' !== ($v = $p->getVar('prof_tel'))) {
 			$back .= 'Tel:'.$v.PHP_EOL;
