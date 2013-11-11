@@ -188,7 +188,7 @@ $lang = array(
 	'rp_challcount' => '%s Challs',
 	'rp_postcount' => '%s Posts',
 	'rp_usercount' => '%s Benutzer',
-	'rp_sites' => '%s Active Sites', # ?? Seiten die online sind.. ?
+	'rp_sites' => '%s Aktive Seiten',
 	'rp_topusers' => 'Top %s',
 	'rp_last_active' => '%s zuletzt Aktive',
 	
@@ -244,14 +244,14 @@ $lang = array(
 	'th_site_irc' => 'IRC Kontakt',
 	'th_site_url' => 'URL',
 	'th_site_url_mail' => 'Mail URL Template',
-	'th_site_url_score' => 'Score URL Template',	
-	'th_site_url_profile' => 'Profile URL Template',		
+	'th_site_url_score' => 'Score URL Template',
+	'th_site_url_profile' => 'Profile URL Template',
 	'th_site_new_logo' => 'Neues Logo',
 	'th_onsite_name' => 'Nickname',
 	'th_email' => 'EMail',
 	'th_chall_score' => 'Punkte',
 	'th_chall_title' => 'Titel',
-	'th_chall_solvecount' => 'Solvers', ## ?
+	'th_chall_solvecount' => 'gelöst von',
 	'th_chall_date' => 'Alter',
 	'th_chall_creator_name' => 'Autor',
 	'th_dif' => 'Schwierigkeit',
@@ -269,8 +269,8 @@ $lang = array(
 	'th_user_level' => 'Gesamtpunkte',
 	'th_user_name' => 'Nickname',
 	'th_sitemas_date' => 'Meister seit',
-	'th_sitemas_firstdate' => 'First Track', ## ?
-	'th_sitemas_tracktime' => 'Track-Time',  ## ?
+	'th_sitemas_firstdate' => 'Erste Aktivität',
+	'th_sitemas_tracktime' => 'Aktive Zeit',
 	'th_sitemas_startperc' => 'von',
 	'th_rank' => '#',
 	'th_rank2' => 'Globaler Rang',
@@ -474,7 +474,7 @@ $lang = array(
 	
 	# Statgraph
 	'err_end_date' => 'Das Enddatum ist ungültig.',
-	'percentage' => 'Prozent',	# "Fortschritt"?
+	'percentage' => 'Fortschritt (in %)',
 	
 	# Join Box
 	'sites_join_t' => 'Wie können neue Seiten bei WeChall aufgenommen werden?',
@@ -524,7 +524,7 @@ $lang = array(
 	'btn_all_sites' => 'Alle Seiten',
 	'pt_sites_5' => 'Alle Seiten auf '.GWF_SITENAME,
 	'pt_sites_5_tagged' => 'Seiten mit %s Challenges auf '.GWF_SITENAME,
-	'th_site_country_detail' => 'Sites origin country',	# ?
+	'th_site_country_detail' => 'Land',
 	'site_detail_uinfo' => '%s hat eine Punktzahl von  %s/%s auf %s (%s%%). Rang %s auf '.GWF_SITENAME.', mit %s Punkten.',
 		
 	# v4.03
@@ -533,8 +533,8 @@ $lang = array(
 	'th_bind_ip' => 'Sitzung auf IP beschränken',
 	'btn_forgot_pw' => 'Passwort vergessen',
 	'btn_login' => 'Anmelden',
-	'bd_over' => 'Last %s',	# ?
-	'bd_soon' => 'Next %s',	# ?
+	'bd_over' => 'Letzten %s',
+	'bd_soon' => 'Nächsten %s',
 		
 	'btn_close' => 'Schliessen',
 	'btn_guestbook' => 'Gästebuch',
@@ -597,7 +597,7 @@ $lang = array(
 	'msg_wmc_solved' => 'Sie haben die Challenge %s gelöst. Sie können jetzt <a href="%s">alle Lösungen ansehen</a>, wenn Sie wollen.',
 
 	# v4.13
-	'th_csolve_time_taken' => 'zeit',
+	'th_csolve_time_taken' => 'Zeit',
 	'menu_stats2' => 'Stats',
 	'stat_vs' => 'Versus',
 	'btn_show_stats_none' => 'Keine Seiten',
