@@ -54,10 +54,10 @@ final class Forum_ShowThread extends GWF_Method
 			return $error;
 		}
 		
+		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Forum/gwf_forum.js');
 		if ($this->module->cfgUseGTranslate())
 		{
 			GWF_Website::addJavascript(Common::getProtocol().'://www.google.com/jsapi');
-			GWF_Website::addJavascript(GWF_WEB_ROOT.'js/module/Forum/gwf_forum.js');
 			GWF_Website::addJavascriptInline('google.load("language", "1");');
 		}
 		
