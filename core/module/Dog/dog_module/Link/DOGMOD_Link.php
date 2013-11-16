@@ -9,9 +9,58 @@ final class DOGMOD_Link extends Dog_Module
 {
 	const MAX_COUNT = 25;
 	
+	public function getOptions()
+	{
+		return array(
+			'collect_chan' => 'c,o,i,2',
+			'collect_serv' => 's,i,i,2',
+			'collect_user' => 'u,l,i,2',
+			'collect_glob' => 'g,x,i,1',
+		);
+	}
+	
+	/**
+	 * Return only 0=off, 1=on, 2=dontcare
+	 */
+	public function getCollectConf($varname, $scope)
+	{
+		$value = (int)$this->getConfig($varname, $scope);
+		return ($value === 0) || ($value === 1) ? $value : 2;
+	}
+	
+	public function collectorEnabled()
+	{
+		$back = true;
+		$glob = $this->getCollectConf('collect_glob', 'g');
+		$serv = $this->getCollectConf('collect_serv', 's');
+		$chan = $this->getCollectConf('collect_chan', 'c');
+		$user = $this->getCollectConf('collect_user', 'u');
+		
+		if (false !== ($chan = Dog::getChannel()))
+		{
+			return $this->collectorEnabledArray(array($user, $chan, $serv, $glob));
+		}
+		else
+		{
+			return $this->collectorEnabledArray(array($user, $serv, $glob));
+		}
+	}
+	
+	public function collectorEnabledArray(array $array)
+	{
+		foreach ($array as $value)
+		{
+			if ($value !== 2)
+			{
+				return $value;
+			}
+		}
+		return true;
+	}
+	
 	public function event_privmsg()
 	{
-		if (!Dog::isTriggered())
+		if (!Dog::isTriggered() && $this->collectorEnabled())
 		{
 			$user = Dog::getUser();
 			if (preg_match_all('#(https?://[^\ ]+)#D', $this->msg(), $matches))
