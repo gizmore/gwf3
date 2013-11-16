@@ -305,7 +305,7 @@ abstract class SR_Spell
 	################
 	### Announce ###
 	################
-	public function announceADV(SR_Player $player, SR_Player $target, $level, $key='10000', $arg1='', $arg2='', $arg3='')
+	public function announceADV(SR_Player $player, SR_Player $target, $level, $key='10000', $arg1='', $arg2='', $arg3='', $arg4='')
 	{
 		# Pick right keys. Each spell has own 4 keys for all 4 possibilities.
 		$key_friend = $key;
@@ -318,7 +318,7 @@ abstract class SR_Spell
 		$key_friend = (string)$key_friend;
 		$key_foe = (string)$key_foe;
 
-		# 8 args
+		# 9 args
 		$args = array($player->displayName(), $level, $this->getName(), $target->displayName(), $arg1, $arg2, $arg3, Shadowfunc::displayBusy($player->getBusyLeft()));
 		
 		# Announce
@@ -331,20 +331,20 @@ abstract class SR_Spell
 
 		if ($this->isCastMode())
 		{
-			# 9 args
+			# 10 args
 			
-			# TODO: this 11 args
+			# TODO: this 12 args
 // 			$args[] = $this->getManaCost($player, $level);
 // 			$args[] = $player->getMP();
 // 			$args[] = $player->getMaxMP();
 			
-			# Old spell style 9 args
+			# Old spell style 10 args
 			$gain = $this->getManaCost($player, $level);
 			$oldmp = $player->getMP() + $gain;
 			$maxmp = $player->getMaxMP();
 			$args[] = Shadowfunc::displayMPGain($oldmp, -$gain, $maxmp); 
 		}
-
+		$args[] = $arg4;
 		
 		$p->ntice($key_friend, $args);
 		
@@ -361,7 +361,7 @@ abstract class SR_Spell
 	 * @param int $level
 	 * @param double $damage
 	 */
-	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage)
+	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage, $arg4)
 	{
 		$maxhp = $target->getMaxHP();
 		$damage = round($damage, 1);
@@ -370,7 +370,7 @@ abstract class SR_Spell
 // 			$append = $append_ep = $player->lang('but no damge');
 // 			$append = $append_ep = ' but caused no damage';
 			$hp = $target->getHP();
-			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp);
+			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp, $arg4);
 			return true;
 		}
 		
@@ -383,7 +383,7 @@ abstract class SR_Spell
 		{
 // 			$append = $append_ep = ' and kills them with '.$damage.' damage';
 			
-			$this->announceADV($player, $target, $level, $key, $damage, '0', $maxhp);
+			$this->announceADV($player, $target, $level, $key, $damage, '0', $maxhp, $arg4);
 
 			# Loot him!
 			$xp = $target->isHuman() ? 0 : $target->getLootXP();
@@ -419,7 +419,7 @@ abstract class SR_Spell
 // 			$maxhp = $target->getMaxHP();
 // 			$append = " and caused {$damage} damage";
 // 			$append_ep = "{$append} ($hp/$maxhp)HP left.";
-			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp);
+			$this->announceADV($player, $target, $level, $key, $damage, $hp, $maxhp, $arg4);
 		}
 
 		return true;

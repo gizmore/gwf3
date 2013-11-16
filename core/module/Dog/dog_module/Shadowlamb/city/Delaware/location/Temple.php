@@ -16,7 +16,7 @@ final class Delaware_Temple extends SR_School
 			array('casting', 2500+$p),
 			array('orcas', 4000+$p),
 			array('berzerk', 4500+$p),
-			array('freeze', 2500+$p),
+			array('freeze', 4000+$p),
 			array('calm', 2000+$p),
 			array('heal', 3500+$p),
 			array('flu', 1000+$p),

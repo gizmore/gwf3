@@ -19,7 +19,7 @@ final class Seattle_Temple extends SR_School
 			array('magic', 1500+$p),
 			array('casting', 2500+$p),
 			array('berzerk', 4500+$p),
-			array('freeze', 2500+$p),
+			array('icedorn', 3000+$p),
 			array('heal', 3500+$p),
 			array('flu', 1000+$p),
 			array('poison_dart', 3000+$p),

@@ -151,6 +151,7 @@ $lang = array(
 'fmt_bazar_shops' => ", {$b}%s{$b}(%s)", # player, itemcount
 'fmt_bazar_search' => ", \"{$b}%s %s{$b}\"(%sx%s)", # player, itemname, amount, price
 'fmt_xp' => " | %s-%s L%s(%s/%sxp), KA(%s/%sxp)",
+'fmt_feel' => ", {$b}%s{$b}-%s(%s,%s,%s,%s)",
 
 # Party actions in "You are %s", "Your party is %s", (UGLY)
 'empty_party' => 'an empty party',
@@ -538,6 +539,12 @@ $lang = array(
 '10121' => '%1$s casts a level %2$s %3$s on %4$s. +%5$sHP for %6$s seconds, %8$s %9$s left.',
 '10122' => '%1$s uses a level %2$s %3$s potion on %4$s, %8$s',
 '10123' => '%1$s casts a level %2$s %3$s on %4$s, %8$s',
+# Icedorn
+'10130' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage and %9$ss seconds freeze, %8$s',
+'10131' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage and %10$ss seconds freeze, %8$s %9$s left.',
+'10132' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage and %9$ss seconds freeze, %6$s/%7$s HP left, %8$s',
+'10133' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage and %9$ss seconds freeze, %6$s/%7$s HP left, %8$s',
+
 
 ############################
 #   5000-9999   = Messages #
@@ -846,6 +853,13 @@ $lang = array(
 '5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
 '5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 '5311' => 'You want to buy: %s.',
+'5312' => 'Your party needs: %s.', # feelings
+'5313' => 'Your feelings: %s.', # feelings
+'5314' => "{$b}%s{$b} responds: \"%s\"", # RealNPC, message
+'5980' => "{$b}%s{$b}-%s is starving and lost %s.",
+'5981' => "{$b}%s{$b}-%s is gagging for a drink and lost %s.",
+'5982' => "{$b}%s{$b}-%s is burned out due to lack of sleep and lost %s.",
+'5983' => "{$b}%s{$b}-%s is freezing and lost %s.",
 
 ####################
 ### Shadowclient ###
