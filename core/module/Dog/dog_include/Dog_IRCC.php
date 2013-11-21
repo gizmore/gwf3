@@ -87,13 +87,14 @@ final class Dog_IRCC implements Dog_IRC
 	}
 	
 	public function sendAction($to, $message) { $this->sendPRIVMSG($to, "\x01ACTION {$message}\x01"); }
-	public function sendRAW($message) { $this->queue[] = array('r', '!', $message); }
-	public function sendNOTICE($to, $message) { $this->queue[] = array('n', $to, $message); }
-	public function sendPRIVMSG($to, $message) { $this->queue[] = array('p', $to, $message); }
+	public function sendRAW($message) { $this->queue[] = array('r', '!', GWF_IRCUtil::parseCleanState($message)); }
+	public function sendNOTICE($to, $message) { $this->queue[] = array('n', $to, GWF_IRCUtil::parseCleanState($message)); }
+	public function sendPRIVMSG($to, $message) { $this->queue[] = array('p', $to, GWF_IRCUtil::parseCleanState($message)); }
 	
 	public function send($message)
 	{
-		$message = str_replace(array("\r", "\n"), '', trim($message));
+// 		$message = str_replace(array("\r", "\n"), '', trim($message));
+		$message = str_replace(array("\r", "\n"), '', $message);
 		Dog_Log::server($this->server, $message, ' >>>> ');
 		if (!fwrite($this->socket, "$message\r\n"))
 		{

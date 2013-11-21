@@ -536,6 +536,11 @@ $lang = array(
 '10121' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s. +%5$sHP per %6$s secondi, %8$s %9$s a sinistra.',
 '10122' => '%1$s usa una pozione di %3$s, di livello %2$s, su %4$s, %8$s',
 '10123' => '%1$s lancia un incantesimo %3$s, di livello %2$s, su %4$s, %8$s',
+# Icedorn
+'10130' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage and %10$ss seconds freeze, %8$s',
+'10131' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage and %10$ss seconds freezes, %8$s %9$s left.',
+'10132' => '%1$s uses a level %2$s %3$s potion on %4$s and caused %5$s damage and %9$ss seconds freeze, %6$s/%7$s HP left, %8$s',
+'10133' => '%1$s casts a level %2$s %3$s on %4$s and caused %5$s damage and %9$ss seconds freeze, %6$s/%7$s HP left, %8$s',
 
 ############################
 #   5000-9999   = Messages #

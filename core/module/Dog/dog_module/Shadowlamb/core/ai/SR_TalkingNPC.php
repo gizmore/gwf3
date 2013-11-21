@@ -15,6 +15,11 @@ abstract class SR_TalkingNPC extends SR_NPC
 	############
 	### Lang ###
 	############
+	public function getLangNPC()
+	{
+		return Shadowlang::getLangNPC($this);
+	}
+	
 	public function langNPCB($player, $key, $args=NULL)
 	{
 		return Shadowlang::langNPC($this, $player, $key, $args);
@@ -89,6 +94,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	public function rply($key, $args=NULL)
 	{
 		$player = $this->chat_partner;
+		$player instanceof SR_Player;
 		$p = $player->getParty();
 		if (true === $p->isTalking())
 		{
@@ -133,7 +139,7 @@ abstract class SR_TalkingNPC extends SR_NPC
 	 */
 	public function getNPCQuests(SR_Player $player) { return array(); }
 	
-	protected function getNPCQuest(SR_Player $player)
+	public function getNPCQuest(SR_Player $player)
 	{
 		foreach ($this->getNPCQuests($player) as $name)
 		{

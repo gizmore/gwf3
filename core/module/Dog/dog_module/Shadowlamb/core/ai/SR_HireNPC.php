@@ -1,6 +1,5 @@
 <?php
 require_once 'SR_TalkingNPC.php';
-
 /**
  * You can hire these guys.
  * @author gizmore
@@ -62,4 +61,3 @@ abstract class SR_HireNPC extends SR_TalkingNPC
 		return $this->getConst(self::HIRE_END) < Shadowrun4::getTime();
 	}
 }
-?>

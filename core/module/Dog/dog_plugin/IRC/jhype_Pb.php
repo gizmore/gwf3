@@ -5,5 +5,5 @@ $lang = array(
 		'hype' => 'Picture of Jhype: %s',
 	),
 );
-$url = sprintf('http://sabrefilms.co.uk/store/j%d.jpg', rand(1,23));
+$url = sprintf('http://sabrefilms.co.uk/store/j%d.jpg', rand(1,24));
 Dog::getPlugin()->rply('hype', array($url));

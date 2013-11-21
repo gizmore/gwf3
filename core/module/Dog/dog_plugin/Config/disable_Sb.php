@@ -42,14 +42,14 @@ elseif ($chan === false)
 	{
 		Dog::noPermission('a');
 	}
-	elseif (false !== ($plug = Dog_Plugin::getPlug()))
+	elseif (false !== ($plug = Dog_Plugin::getPlug($name)))
 	{
 		Dog_Conf_Plug_Serv::setDisabled($plug->getName(), $sid, '1');
 		$plugin->rply('plg_on_serv', array($name, $serv->displayName()));
 	}
 	elseif (false !== ($mod = Dog_Module::getByName($name)))
 	{
-		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, $name, '1');
+		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, '1');
 		$plugin->rply('mod_on_serv', array($mod->displayName(), $serv->displayName()));
 	}
 	elseif (false !== ($mod = Dog_Module::getByTrigger($name)))

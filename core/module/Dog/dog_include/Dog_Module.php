@@ -101,7 +101,6 @@ abstract class Dog_Module
 				$this->triggers[$method] = $trigger;
 			}
 		}
-		var_dump($this->triggers);
 	}
 
 	public function showHelp($trigger, $args=NULL)
@@ -243,6 +242,22 @@ abstract class Dog_Module
 			return false;
 		}
 		return true;
+	}
+	
+	public function hasPermissionFor($trigger, Dog_Server $serv, $chan, $user)
+	{
+		foreach ($this->getTriggers() as $func => $trig)
+		{
+			if ($trig === $trigger)
+			{
+				$privabc = strtolower(substr($func, -2));
+				if (Dog::hasPermission($serv, $chan, $user, $privabc[0], $privabc[1]))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public function isTriggerEnabled(Dog_Server $server, $channel, $trigger)

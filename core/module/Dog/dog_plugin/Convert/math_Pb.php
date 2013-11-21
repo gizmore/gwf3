@@ -25,6 +25,11 @@ if ($message === '0^0')
 	return $plugin->rply('00');
 }
 
+if ($message === 'pi')
+{
+	return $plugin->reply('4');
+}
+
 $path = GWF_PATH.'core/inc/3p/EvalMath.php';
 if (!Common::isFile($path))
 {

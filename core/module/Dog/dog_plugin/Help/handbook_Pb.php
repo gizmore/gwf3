@@ -5,4 +5,3 @@ $lang = array(
 	),
 );
 Dog::reply('http://caesum.com/handbook/contents.htm');
-?>

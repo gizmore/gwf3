@@ -12,7 +12,7 @@ final class Dog_Server extends GDO
 	const LOGBITS = 0x03;
 	
 	/**
-	 * @var Dog_IRC
+	 * @var Dog_IRCC
 	 */
 	private $connection = NULL;
 	private $next_connect = 0;
@@ -69,6 +69,7 @@ final class Dog_Server extends GDO
 	public function getThrottle() { return (int)$this->getConf('throttle', 3); }
 	public function getTriggers() { return $this->getVar('serv_triggers'); }
 	public function getIncreaseNicknum() { return $this->nicknum++; }
+	public function setNicknum($num) { return $this->nicknum = $num; }
 	public static function getAllServers() { return self::table(__CLASS__)->selectAll('*', '', 'serv_id ASC', NULL, -1, -1, self::ARRAY_O); }
 	public function setConnectIn($seconds) { $this->next_connect = microtime(true) + $seconds; }
 	public function setNick(Dog_Nick $nick) { $this->nick = $nick; }
@@ -86,6 +87,7 @@ final class Dog_Server extends GDO
 	public function setNickName($nickname)
 	{
 		$this->setNick(new Dog_Nick(array(
+			'nick_id' => '0',
 			'nick_sid' => $this->getID(),
 			'nick_name' => $nickname,
 		)));

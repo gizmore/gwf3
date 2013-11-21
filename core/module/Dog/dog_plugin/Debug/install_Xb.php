@@ -19,9 +19,20 @@ $argc = count($argv);
 $flush = false;
 if ($argc === 2)
 {
-	$flush = $argv[1] === 'flush';
+	$flush = ($argv[1] === 'flush') && (Dog::getUser()->getName() === 'gizmore');
 	$argc = 1;
 }
+
+if ($flush)
+{
+	Dog::reply('FLUSH!');
+}
+else
+{
+	Dog::reply('NOFLUSH!');
+}
+
+return;
 
 if ($argc !== 1)
 {

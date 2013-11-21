@@ -30,16 +30,11 @@ final class DOGMOD_Scum extends Dog_Module
 		{
 			return Dog::rply('err_only_channel');
 		}
-// 		$server = Dog::getServer();
 		$user = Dog::getUser();
 		$msg = $this->msgarg();
 		
-// 		var_dump($msg);
-		
 		$command = Common::substrUntil($msg, ' ', $msg);
 		$message = Common::substrFrom($msg, ' ', '');
-// 		var_dump($command);
-// 		var_dump($message);
 		
 		switch ($command)
 		{

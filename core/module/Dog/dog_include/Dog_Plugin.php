@@ -154,9 +154,12 @@ final class Dog_Plugin
 	public function hasKey($key) { return $this->lang($key) !== $key; }
 	public function lang($key, $args=NULL)
 	{
+		return $this->langISO(Dog::getLangISO(), $key, $args);
+	}
+	
+	public function langISO($iso, $key, $args=NULL)
+	{
 		$lang = $this->loadLang();
-		
-		$iso = Dog::getLangISO();
 		
 		if (!isset($lang[$iso]))
 		{

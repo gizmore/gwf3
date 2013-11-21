@@ -6,7 +6,7 @@ if (!class_exists('GDO'))
 
 if (isset($argv[4]) && $argv[4] === 'lamb_import')
 {
-	require 'lamb_import.php';
+	require_once 'lamb_import.php';
 }
 
 # Want a flush?

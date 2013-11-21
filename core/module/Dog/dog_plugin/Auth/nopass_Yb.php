@@ -10,12 +10,6 @@ $plugin = Dog::getPlugin();
 $argv = $plugin->argv();
 $argc = count($argv);
 
-$u = Dog::getUser();
-if ($u->getName() !== 'gizmore')
-{
-	return Dog::reply('It´s on todo!');
-}
-
 if ($argc !== 1)
 {
 	$plugin->showHelp();
@@ -31,4 +25,3 @@ else
 	$user->saveVar('user_pass', NULL);
 	$plugin->rply('removed', array($user->displayName()));
 }
-?>

@@ -32,12 +32,15 @@ if ($argc === 1)
 	}
 	else
 	{
+		Dog_PrivChannel::flushPermcache($channel, $user);
 		$privstr = Dog_PrivChannel::displayPrivs($channel, $user);
 		$plugin->rply('show', array($user->displayName(), $privstr, $channel->displayLongName()));
 	}
 }
 elseif ($argc === 2)
 {
+	$argv[1] = Dog_IRCPriv::filterPrivsToEdit($argv[1]);
+	
 	# Alter Privs
 	if (false === ($user = Dog::getOrLoadUserByArg($argv[0])))
 	{
@@ -56,7 +59,7 @@ elseif ($argc === 2)
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh > $high)
 		{
-			$plugin->rply('no', array(Dog_IRCPriv::displayBits($wigh), $user->displayName()));
+			$plugin->rply('no', array(Dog_IRCPriv::displayBits($wigh, ''), $user->displayName()));
 		}
 		else
 		{
@@ -74,7 +77,7 @@ elseif ($argc === 2)
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh >= $high)
 		{
-			$plugin->rply('no2', array(Dog_IRCPriv::displayBits($wigh), $user->displayName()));
+			$plugin->rply('no2', array(Dog_IRCPriv::displayBits($wigh, ''), $user->displayName()));
 		}
 		else
 		{

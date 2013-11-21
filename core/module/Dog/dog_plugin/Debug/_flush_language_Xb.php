@@ -10,4 +10,3 @@ foreach ($bot->getModules() as $module)
 }
 
 Dog::reply('Languge files have been flushed!');
-?>

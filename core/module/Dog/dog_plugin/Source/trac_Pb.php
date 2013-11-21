@@ -33,7 +33,7 @@ if (!(function_exists('dog_trac_helper4')))
 		{
 			if (stripos($fullpath, $search) !== false)
 			{
-				if (strpos($fullpath, '/module/Lamb/') === false)
+				if (strpos($fullpath, '/disabled_modules/') === false)
 				{
 					global $__DOG_TRAC_RESULTS;
 					$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);
@@ -45,7 +45,7 @@ if (!(function_exists('dog_trac_helper4')))
 		{
 			if (strpos($fullpath, $search) !== false)
 			{
-				if (strpos($fullpath, '/module/Lamb/') === false)
+				if (strpos($fullpath, '/disabled_modules/') === false)
 				{
 					global $__DOG_TRAC_RESULTS;
 					$__DOG_TRAC_RESULTS[] = Common::substrFrom($fullpath, GWF_PATH);

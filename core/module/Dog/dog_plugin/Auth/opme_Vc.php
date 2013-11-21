@@ -22,6 +22,9 @@ if (false === ($channel = Dog::getChannel()))
 }
 
 $dogprv = $channel->getPriv($channel->getDog());
+
+#echo "DOGPRV: $dogprv\n";
+
 $dogbit = Dog_IRCPriv::charsToBits($dogprv);
 $bit = Dog_IRCPriv::charsToBits($channel->getPriv($user));
 $wantbit = Dog_PrivChannel::getPermbits($channel, $user);

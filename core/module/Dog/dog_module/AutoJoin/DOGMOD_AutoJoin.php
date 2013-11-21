@@ -139,4 +139,3 @@ final class DOGMOD_AutoJoin extends Dog_Module
 		return $this->rply($key, array($channel->displayName()));
 	}
 }
-?>

@@ -6,4 +6,3 @@ $lang = array(
 	),
 );
 Dog::getPlugin()->rply('crds');
-?>

@@ -380,6 +380,12 @@ class SR_Item extends GDO
 		return true;
 	}
 	
+	public function getItemModifier(SR_Player $player, $field)
+	{
+		$values = $this->getItemModifiers($player);
+		return $values[$field];
+	}
+	
 	public function getItemModifiers(SR_Player $player)
 	{
 		$weight = $this->getItemWeightStacked();
@@ -508,7 +514,7 @@ class SR_Item extends GDO
 	 * @param int $amount
 	 * @return true|false
 	 */
-	public function useAmount(SR_Player $player, $amount=1)
+	public function useAmount(SR_Player $player, $amount=1, $modify=true)
 	{
 		if ($amount > $this->getAmount())
 		{
@@ -521,7 +527,10 @@ class SR_Item extends GDO
 			return false;
 		}
 		
-		$player->modify();
+		if ($modify)
+		{
+			$player->modify();
+		}
 		
 		return $this->getAmount() < 1 ? $this->deleteItem($player) : true;
 	}
@@ -705,10 +714,15 @@ class SR_Item extends GDO
 		$back = array();
 		foreach (func_get_args() as $arg)
 		{
-			if (is_array($arg))
-			{
+// 			if (is_array($arg))
+// 			{
 				foreach ($arg as $k => $v)
 				{
+					if ($k === 'bmi')
+					{
+						$v *= 1000;
+					}
+					
 					if (isset($back[$k]))
 					{
 						$back[$k] += $v;
@@ -718,7 +732,7 @@ class SR_Item extends GDO
 						$back[$k] = $v;
 					}
 				}
-			}
+// 			}
 		}
 		return $back;
 	}

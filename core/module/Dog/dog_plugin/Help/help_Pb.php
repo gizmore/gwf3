@@ -1,10 +1,10 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% [<command>]. Show all commands or the help for a %BOT% command.',
+		'help' => 'Usage: %CMD% [<command>]. Show all commands in this context or the help for a %BOT% command. Register in private with %BOT% to see more commands.',
 	),
 	'de' => array(
-		'help' => 'Nutze: %CMD% [<command>]. Zeige alle Befehle oder die Hilfe für einen %BOT% Befehl.',
+		'help' => 'Nutze: %CMD% [<command>]. Zeige alle Befehle in diesem Kontext oder die Hilfe für einen %BOT% Befehl. Registriere dich im query mit %BOT% um mehr Befehle zu sehen.',
 	),
 );
 
@@ -80,11 +80,13 @@ if ($argc === 0)
 
 elseif ($argc === 1)
 {
-	if (false !== ($plug = Dog_Plugin::getPlugWithPerms(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
+	if (false !== ($plug = Dog_Plugin::getPlug($argv[0])))
+// 	if (false !== ($plug = Dog_Plugin::getPlugWithPerms(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
 	{
 		$plugin->reply($plug->getHelp());
 	}
-	elseif (false !== ($mod = Dog_Module::getModuleWithPermsByTrigger(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
+	elseif (false !== ($mod = Dog_Module::getByTrigger($argv[0])))
+// 	elseif (false !== ($mod = Dog_Module::getModuleWithPermsByTrigger(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
 	{
 		$plugin->reply($mod->getHelp($argv[0]));
 	}
@@ -98,4 +100,3 @@ else
 {
 	$plugin->showHelp();
 }
-?>

@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD%. Show information of the current song played at http://slayradio.org',
+		'help' => 'Usage: %CMD%. Show information of the current song played at http://slayradio.org - mplayer http://relay1.slayradio.org:8000',
 		'np' => 'Now Playing on http://slayradio.org %s - %s (requested by %s)',
 		'live' => "There is probably a \X02live show\X02 on http://slayradio.org: \X02%s\X02.",
 		'ki' => 'SlayRadio AI',

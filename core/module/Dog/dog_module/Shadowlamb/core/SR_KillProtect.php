@@ -123,6 +123,16 @@ final class SR_KillProtect extends GDO
 		return false;
 	}
 	
+	public static function isKillProtectedRealNPCParty(SR_Party $defenders)
+	{
+		$leader = $defenders->getLeader();
+		if ($leader instanceof SR_RealNPC)
+		{
+			return $leader->isKillProtected();
+		}
+		return false;
+	}
+	
 	/**
 	 * Check if the party sum levels match nicely.
 	 * @param SR_Party $attackers

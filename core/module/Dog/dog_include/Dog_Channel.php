@@ -4,8 +4,12 @@ final class Dog_Channel extends GDO
 	const LOGGING_ON = 0x01;
 	const LOGGING_OFF = 0x02;
 	const AUTO_JOIN = 0x10;
+	const BOLD = 0x100;
+	const COLORS = 0x200;
+	const ACTIONS = 0x400;
+	const NOTICES = 0x800;
 	
-	const DEFAULT_OPTIONS = 0x11;
+	const DEFAULT_OPTIONS = 0xF11;
 	const LOGBITS = 0x03;
 	
 	private $users = array();
@@ -41,7 +45,16 @@ final class Dog_Channel extends GDO
 	public function sendNOTICE($message) { $this->getServer()->sendNOTICE($this->getName(), $message); }
 	public function sendPRIVMSG($message) { $this->getServer()->sendPRIVMSG($this->getName(), $message); }
 	public function getUsers() { return $this->users; }
-	
+
+	public function isBoldEnabled() { return $this->isOptionEnabled(self::BOLD); }
+	public function isColorEnabled() { return $this->isOptionEnabled(self::COLORS); }
+	public function isActionsEnabled() { return $this->isOptionEnabled(self::ACTIONS); }
+	public function isNoticesEnabled() { return $this->isOptionEnabled(self::NOTICES); }
+	public function setUIStates() { $this->setColorState(); $this->setBoldState(); }
+	public function setBoldState() { GWF_IRCUtil::andBoldEnabled($this->isBoldEnabled()); }
+	public function setColorState() { GWF_IRCUtil::andColorsEnabled($this->isColorEnabled()); }
+	public function resetUIStates() { GWF_IRCUtil::setEnabled(); }
+		
 	/**
 	 * @return Dog_Server
 	 */
@@ -131,10 +144,10 @@ final class Dog_Channel extends GDO
 		return false;
 	}
 	
-	public function addUser(Dog_User $user, $priv_symbol='')
+	public function addUser(Dog_User $user, $priv_symbols='')
 	{
 		$this->users[$user->getID()] = $user;
-		$this->privs[$user->getID()] = Dog_IRCPriv::symbolToChar($priv_symbol);
+		$this->privs[$user->getID()] = Dog_IRCPriv::symbolsToChar($priv_symbols);
 	}
 	
 	public function removeUser(Dog_User $user)

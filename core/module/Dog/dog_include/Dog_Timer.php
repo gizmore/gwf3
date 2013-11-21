@@ -102,8 +102,7 @@ final class Dog_Timer
 		else
 		{
 			$args = $this->args;
-			require $this->func;
+			include $this->func;
 		}
 	}
 }
-?>

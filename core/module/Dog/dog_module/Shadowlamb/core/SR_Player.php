@@ -70,7 +70,8 @@ class SR_Player extends GDO
 
 	public static $ALL = NULL; # see init
 	public static $REV_ALL = NULL; # see init
-	public static $CONDITIONS = array('frozen','sick','tired','hunger','thirst','alc','poisoned','caf','happy','weight');
+	public static $CONDITIONS = array('frozen','sick','cold','alc','poisoned','caf','happy','weight');
+	public static $FEELINGS = array('food','water','sleepy','stomach');
 	public static $COMBAT_STATS = array('mxhp'=>'max_hp','mxmp'=>'max_mp','mxwe'=>'max_weight','atk'=>'attack','def'=>'defense','mndmg'=>'min_dmg','mxdmg'=>'max_dmg','marm'=>'marm','farm'=>'farm', 'att'=>'attack_time');
 	public static $MAGIC_STATS = array();
 	public static $MOUNT_STATS = array('lock'=>'lock','tran'=>'transport','tune'=>'tuneup');
@@ -196,6 +197,8 @@ class SR_Player extends GDO
 			'sr4pl_combat_ai' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 			'sr4pl_game_ai' => array(GDO::TEXT|GDO::ASCII|GDO::CASE_S),
 		);
+		
+		foreach (self::$FEELINGS as $key) { $back['sr4pl_'.$key] = array(GDO::MEDIUMINT, 10000); }
 		foreach (self::$ATTRIBUTE as $key) { $back['sr4pl_'.$key] = array(GDO::INT, 0); }
 // 		foreach (self::$EQUIPMENT as $key) { $back['sr4pl_'.$key] = array(GDO::UINT, 0); }
 		foreach (self::$SKILL as $key) { $back['sr4pl_'.$key] = array(GDO::INT, -1); }
@@ -259,6 +262,14 @@ class SR_Player extends GDO
 	public function hasSolvedQuest($name) { return SR_Quest::getQuest($this, $name)->isDone($this); }
 	public function displayWeight() { return Shadowfunc::displayWeight($this->get('weight')); }
 	public function displayMaxWeight() { return Shadowfunc::displayWeight($this->get('max_weight')); }
+	public function isFeelingFine() { return SR_Feelings::isFeelingFine($this); }
+	public function isSleepy() { return $this->get('sleepy') < 8000; }
+	public function isSleeping() { return $this->getParty()->isSleeping(); }
+	public function doesRespawn() { return true; }
+	public function hasFeelings() { return true; }
+	public function hasRottingItems() { return true; }
+	public function isHotelFree() { return false; }
+
 	################
 	### Language ###
 	################
@@ -274,6 +285,46 @@ class SR_Player extends GDO
 	public function msg($key, $args=NULL) { return $this->message($this->lang($key, $args)); }
 	public function lang($key, $args=NULL) { return Shadowrun4::langPlayer($this, $key, $args); }
 
+	############
+	### Chat ###
+	############
+	private $chat_tree = array();
+// 	public function resetChatTree($tree=array())
+// 	{
+// 		$this->chat_tree = $tree;
+// 	}
+	
+	public function getChatTree(SR_RealNPC $npc, $quest=false)
+	{
+		$classname = $npc->getClassName();
+		if (!isset($this->chat_tree[$classname]))
+		{
+			if ($quest !== false)
+			{
+				$quest instanceof SR_Quest;
+				$def = strtolower($quest->getQuestName());
+			}
+			else
+			{
+				$def = 'default';
+			}
+			$this->chat_tree[$classname] = array($def);
+		}
+		return $this->chat_tree[$classname];
+	}
+	
+	public function setChatTree(SR_RealNPC $npc, $array)
+	{
+		$classname = $npc->getClassName();
+		return $this->chat_tree[$classname] = $array;
+	}
+	
+	public function pushChatTree(SR_RealNPC $npc, $word)
+	{
+		$classname = $npc->getClassName();
+		return $this->chat_tree[$classname][] = $word;
+	}
+	
 	############
 	### Enum ###
 	############
@@ -417,6 +468,7 @@ class SR_Player extends GDO
 	
 	public static function getByID($player_id)
 	{
+		echo "SR_Player::getByID($player_id);\n";
 		$db = gdo_db();
 		$users = GWF_TABLE_PREFIX.'dog_users';
 		$players = GWF_TABLE_PREFIX.'sr4_player';
@@ -467,11 +519,12 @@ class SR_Player extends GDO
 	 */
 	public static function getRealNPCByName($name)
 	{
-		$name = self::escape($name);
-		if (false === ($player = self::table(__CLASS__)->selectFirstObject('*', "sr4pl_name='{$name}'")))
+		$ename = self::escape($name);
+		if (false === ($player = self::table(__CLASS__)->selectFirst('*', "sr4pl_classname='{$ename}'")))
 		{
-			return false;
+			return SR_NPC::createEnemyNPC($name);
 		}
+		$player = new $name($player);
 		return self::reloadPlayer($player);
 	}
 	
@@ -479,6 +532,10 @@ class SR_Player extends GDO
 	{
 		foreach (SR_Item::mergeModifiers(self::$RACE_BASE[$this->getRace()], array('essence'=>6.0)) as $k => $v)
 		{
+// 			if ($k === 'bmi')
+// 			{
+// 				$v *= 1000;
+// 			}
 			$mods['sr4pl_'.$k] = $v;
 			unset($mods[$k]);
 		}
@@ -612,6 +669,7 @@ class SR_Player extends GDO
 			'sr4pl_game_ai' => NULL,
 		);
 		foreach (self::$ATTRIBUTE as $key) { $back['sr4pl_'.$key] = 0; }
+		foreach (self::$FEELINGS as $key) { $back['sr4pl_'.$key] = 10000; }
 		$back['sr4pl_magic'] = -1;
 //		$back['sr4pl_essence'] = 6;
 // 		foreach (self::$EQUIPMENT as $key) { $back['sr4pl_'.$key] = 0; }
@@ -686,6 +744,8 @@ class SR_Player extends GDO
 			return $remote->message($message);
 		}
 		
+		$user->setUIStates();
+		
 		$username = $user->getName();
 		if (false === ($server = $user->getServer()))
 		{
@@ -735,7 +795,7 @@ class SR_Player extends GDO
 	/**
 	 * @return SR_Party
 	 */
-	public function getParty() { return Shadowrun4::getParty($this->getPartyID()); }
+	public function getParty($events=true) { return Shadowrun4::getParty($this->getPartyID(), $events); }
 	public function getPartyID() { return $this->getInt('sr4pl_partyid'); }
 	public function hasParty() { return $this->hasVar('sr4pl_partyid') && ($this->getPartyID() > 0); }
 	
@@ -799,9 +859,10 @@ class SR_Player extends GDO
 //		echo __METHOD__.PHP_EOL;
 
 		$this->initModify();
-		$this->initModifyArray(self::$SKILL);
-		$this->initModifyArray(self::$ATTRIBUTE);
-		$this->initModifyArray(self::$KNOWLEDGE);
+// 		$this->initModifyArray(self::$SKILL);
+// 		$this->initModifyArray(self::$ATTRIBUTE);
+// 		$this->initModifyArray(self::$KNOWLEDGE);
+// 		$this->initModifyArray(self::$FEELINGS);
 		
 		$this->modifyRace();
 		$this->modifyGender();
@@ -810,6 +871,8 @@ class SR_Player extends GDO
 		$this->modifyItems($this->sr4_cyberware);
 		SR_SetItems::applyModifiers($this);
 		$this->modifyInventory();
+		
+		$this->modifyFellings();
 		
 		$this->modifyQuests();
 		
@@ -832,6 +895,10 @@ class SR_Player extends GDO
 //	private function modifyClamp()
 //	{
 //	}
+
+	public function modifyFellings()
+	{
+	}
 
 	private function modifyFinish()
 	{
@@ -948,6 +1015,7 @@ class SR_Player extends GDO
 		$this->initModifyStats(self::$MAGIC_STATS);
 		$this->initModifyStats(self::$MOUNT_STATS);
 		$this->initModifyStats(self::$CONDITIONS);
+		$this->initModifyArray(self::$FEELINGS);
 		$this->initModifyArray(self::$SKILL);
 		$this->initModifyArray(self::$ATTRIBUTE);
 		$this->initModifyArray(self::$KNOWLEDGE);
@@ -1094,6 +1162,11 @@ class SR_Player extends GDO
 	{
 		foreach ($modifiers as $key => $value)
 		{
+// 			if ($key === 'bmi')
+// 			{
+// 				$value *= 1000;
+// 			}
+			
 			if ($key === 'hp')
 			{
 				$this->healHP($value);
@@ -1479,7 +1552,7 @@ class SR_Player extends GDO
 //		$this->updateEffects();
 //		$this->modify();
 //	}
-	
+
 	public function effectsTimer()
 	{
 		$changed = false;
@@ -1515,7 +1588,7 @@ class SR_Player extends GDO
 	
 	public function refreshMPTimer()
 	{
-		if (!$this->getParty()->isSleeping())
+		if (!$this->getParty()->isSleeping() && $this->isFeelingFine())
 		{
 			if ($this->get('magic') > 0)
 			{
@@ -1543,7 +1616,7 @@ class SR_Player extends GDO
 	
 	public function refreshHPTimer()
 	{
-		if (!$this->getParty()->isSleeping())
+		if (!$this->getParty()->isSleeping() && $this->isFeelingFine())
 		{
 			if ($this->get('elephants') > 0)
 			{
@@ -2967,4 +3040,3 @@ class SR_Player extends GDO
 		return true;
 	}
 }
-?>

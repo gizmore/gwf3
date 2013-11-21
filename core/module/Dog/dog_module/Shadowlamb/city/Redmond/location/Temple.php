@@ -1,6 +1,7 @@
 <?php
 final class Redmond_Temple extends SR_School
 {
+	public function getRealNPCS() { return array('Redmond_Beggar'); }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Redmond_Teacher'); }
 	public function getFoundPercentage() { return 60.00; }
 // 	public function getFoundText(SR_Player $player) { return 'A bit outside of the town you can spot an old Temple. Maybe there is still some life in there.'; }

@@ -28,6 +28,14 @@ elseif ($argc === 3)
 		{
 			$channel->setUser($user, $symbol, $sign==='+');
 		}
+		else
+		{
+			echo "DUNNO!!!\n";
+		}
+// 		else if ($argv[$i] === Dog::getNickname())
+// 		{
+			
+// 		}
 	}
 }
 ?>

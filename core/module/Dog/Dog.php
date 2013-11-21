@@ -5,6 +5,8 @@ require_once 'dog_include/Dog_Includes.php';
 
 final class Dog
 {
+	const CONNECT_WAIT = 1.5;
+	
 	private static $TRIGGERED = false;
 	
 	private static $SERVERS = array();
@@ -58,7 +60,10 @@ final class Dog
 	 */
 	public static function setupUser()
 	{
-		self::$LAST_USER = self::$LAST_SERVER->getUserByName(Common::substrUntil(self::$LAST_MSG->getFrom(), '!'));
+		if (false !== (self::$LAST_USER = self::$LAST_SERVER->getUserByName(Common::substrUntil(self::$LAST_MSG->getFrom(), '!'))))
+		{
+			self::$LAST_USER->setUIStates();
+		}
 		return self::$LAST_USER;
 	}
 	
@@ -77,7 +82,10 @@ final class Dog
 	 */
 	public static function setupChannel()
 	{
-		self::$LAST_CHANNEL = self::$LAST_SERVER->getChannelByName(self::$LAST_MSG->getArg(0));
+		if (false !== (self::$LAST_CHANNEL = self::$LAST_SERVER->getChannelByName(self::$LAST_MSG->getArg(0))))
+		{
+			self::$LAST_CHANNEL->setUIStates();
+		}
 		return self::$LAST_CHANNEL;
 	}
 	
@@ -105,7 +113,7 @@ final class Dog
 	public static function addServer(Dog_Server $server)
 	{		
 		Dog_Log::debug(sprintf('addServer(%d)', $server->getID()));
-		$server->setConnectIn(count(self::$SERVERS)*1.5+1);
+		$server->setConnectIn(count(self::$SERVERS)*self::CONNECT_WAIT+1);
 		
 		$host = $server->getHost();
 		if (!isset(self::$SERVERS[$host]))
@@ -128,7 +136,12 @@ final class Dog
 		return false;
 	}
 	
-	public static function hasPermission(Dog_Server $serv, $chan=false, Dog_User $user, $priv, $abc=NULL)
+	public static function hasChanPermission(Dog_Server $serv, Dog_Channel $chan, Dog_User $user, $priv)
+	{
+		return self::hasPermission($serv, $chan, $user, $priv, 'c', false);
+	}
+	
+	public static function hasPermission(Dog_Server $serv, $chan=false, Dog_User $user, $priv, $abc=NULL, $needlogin=true)
 	{
 		switch ($abc)
 		{
@@ -140,8 +153,8 @@ final class Dog
 		$priv = Dog_IRCPriv::charToBit($priv);
 		
 		return $chan === false
-			? Dog_PrivServer::hasPermBits($serv, $user, $priv)
-			: Dog_PrivChannel::hasPermBits($chan, $user, $priv);
+			? Dog_PrivServer::hasPermBits($serv, $user, $priv, $needlogin)
+			: Dog_PrivChannel::hasPermBits($chan, $user, $priv, $needlogin);
 	}
 	
 	public static function lang($key, $args=NULL) { return Dog_Lang::langISO(self::getLangISO(), $key, $args); }
@@ -230,7 +243,7 @@ final class Dog
 	
 	public static function getOrLoadUserByArg($arg)
 	{
-		Dog_Log::debug("Dog::getOrLoadUserByArg($arg)");
+// 		Dog_Log::debug("Dog::getOrLoadUserByArg($arg)");
 		
 		if (false === ($server = self::getServerBySuffix($arg)))
 		{
@@ -423,9 +436,23 @@ final class Dog
 		{
 			include $path;
 		}
-
-		# Execute module hooks
-		Dog_Module::map('event_'.$event);
+		
+		# if FIXes invalid users on privmsg hooks :S
+		if ( ($event !== 'PRIVMSG') || (self::getUser() !== false) )
+		{
+			# Execute module hooks
+			Dog_Module::map('event_'.$event);
+		}
+		
+		
+	}
+	
+	/**
+	 * Fired when all servers _should_ be connected, but some are probably down.
+	 */
+	public static function botReady()
+	{
+		echo "Bot is ready!\n";
+		Dog_Module::map('botReady');
 	}
 }
-?>

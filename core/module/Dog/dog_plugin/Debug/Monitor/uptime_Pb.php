@@ -15,8 +15,6 @@ if ($plugin->argc() > 0)
 else
 {
 	$uptime = round(Dog_Init::getUptime());
-	var_dump($uptime);
 	$total = GWF_Counter::getCount('dog_uptime') + $uptime;
 	$plugin->rply('out', array(GWF_Time::humanDuration($uptime), GWF_Time::humanDuration($total)));
 }
-?>

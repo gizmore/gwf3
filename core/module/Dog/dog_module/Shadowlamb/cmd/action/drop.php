@@ -47,7 +47,7 @@ final class Shadowcmd_drop extends Shadowcmd
 			if ( (!isset(self::$CONFIRM[$pid])) || ($msg !== self::$CONFIRM[$pid]) )
 			{
 				self::$CONFIRM[$pid] = $msg;
-				self::rply($player, '5110', array($amt, $iname));
+				self::rply($player, '5110', array($amt, $dname));
 // 				$player->message(sprintf('You are about to drop %d %s. Retype to confirm.', $amt, $iname));
 				return true;
 			}

@@ -39,7 +39,22 @@ final class Shadowlang
 	############
 	public static function langNPC(SR_NPC $npc, SR_Player $player, $key, $args=NULL)
 	{
-		return self::getLangNPC($npc)->langISO($player->getLangISO(), $key, $args);
+		return self::langNPCISO($npc, $player->getLangISO(), $key, $args);
+	}
+	
+	public static function langNPCISO(SR_NPC $npc, $iso, $key, $args=NULL)
+	{
+		return self::getLangNPC($npc)->langISO($iso, $key, $args);
+	}
+	
+	public static function langRealNPC(SR_NPC $npc, $key, $args=NULL)
+	{
+		return self::langNPCISO($npc, 'en', $key, $args);
+	}
+	
+	public static function langRealNPCTree(SR_NPC $npc, $key, $args=NULL)
+	{
+		return self::langNPC($npc)->getTrans();
 	}
 	
 	/**
@@ -47,7 +62,7 @@ final class Shadowlang
 	 * @param SR_NPC $npc
 	 * @return GWF_LangTrans
 	 */
-	private static function getLangNPC(SR_NPC $npc)
+	public static function getLangNPC(SR_NPC $npc)
 	{
 		# Full classname
 		$cl = $npc->getNPCClassName();
@@ -83,7 +98,17 @@ final class Shadowlang
 	
 	public static function hasLangNPC(SR_NPC $npc, SR_Player $player, $word)
 	{
-		return array_key_exists($word, self::getLangNPC($npc)->getTrans($player->getLangISO()));
+		return self::hasLangNPCISO($npc, $player->getLangISO(), $word);
+	}
+	
+	public static function hasLangNPCISO(SR_NPC $npc, $iso, $word)
+	{
+		return array_key_exists($word, self::getLangNPC($npc)->getTrans($iso));
+	}
+	
+	public static function hasLangRealNPC(SR_NPC $npc, $word)
+	{
+		return self::hasLangNPCISO($npc, 'en', $word);
 	}
 	
 	##############

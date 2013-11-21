@@ -17,8 +17,4 @@ if (false !== ($connector = $server->getVarDefault('dog_connector', false)))
 
 $server->saveOption(Dog_Server::HAS_CONNECTED_ONCE);
 
-if (NULL !== ($pass = $server->getNick()->getPass()))
-{
-	$server->sendPRIVMSG('NickServ', 'IDENTIFY '.$pass);
-}
-?>
+$server->getNick()->identify();

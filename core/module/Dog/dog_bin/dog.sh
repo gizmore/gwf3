@@ -3,7 +3,9 @@
 
 curl http://192.168.0.4/dogstart.php?shall_restart=1
 
-php dog.php $1 $2 $3 $4
+USERNAME = `whoami`
+
+php dog.php $1 $2 $3 $4 $USERNAME
 
 mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
 mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3

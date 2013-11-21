@@ -27,8 +27,6 @@ switch ($argc)
 
 $url = 'http://www.wechall.net/wechall.php?username='.urlencode(implode(' ', $argv));
 
-var_dump($url);
-
 if (false === ($result = GWF_HTTP::getFromURL($url, false)))
 {
 	return Dog::rply('err_repsonse');

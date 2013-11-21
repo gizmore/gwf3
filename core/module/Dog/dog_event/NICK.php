@@ -20,11 +20,16 @@ if ($old_user)
 	}
 	$serv->removeUser($old_user);
 	
+	echo "OLD DOG: {$old_user->getName()}\n";
+	echo "OLD DOG: ".Dog::getNickname()."\n";
+	
 	if ($old_user->getName() === Dog::getNickname())
 	{
 		if (false !== ($nick = Dog_Nick::getExistingNick($serv, Dog::argv(0))))
 		{
 			$serv->setNick($nick);
+			$serv->setNicknum(0);
+			$nick->identify();
 		}
 		else
 		{
@@ -32,4 +37,3 @@ if ($old_user)
 		}
 	}
 }
-?>

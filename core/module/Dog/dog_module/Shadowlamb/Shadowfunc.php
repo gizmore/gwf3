@@ -886,7 +886,7 @@ final class Shadowfunc
 		{
 			return Shadowrun4::lang('none');
 		}
-		return Shadowrun4::lang('fmt_asl', array($age, $player->getBase('height'), Shadowfunc::displayWeight($player->getBase('bmi'))));
+		return Shadowrun4::langPlayer($player, 'fmt_asl', array($age, $player->getBase('height'), Shadowfunc::displayWeight($player->getBase('bmi'))));
 // 		return sprintf("{$b}Age{$b}:%d, %dcm %s", $age, $player->getBase('height'), Shadowfunc::displayWeight($player->getBase('bmi')));
 	}
 	

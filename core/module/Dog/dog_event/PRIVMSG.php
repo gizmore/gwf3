@@ -5,8 +5,13 @@ if (false === ($user = Dog::getOrCreateUser()))
 }
 $serv = Dog::getServer();
 $serv->addUser($user);
-$chan = Dog::setupChannel();
 $user = Dog::setupUser();
+$chan = Dog::setupChannel();
+
+if ($user === false)
+{
+	return;
+}
 
 # Log PRIVMSGs
 $msg = Dog::getIRCMsg()->getArg(1);
@@ -25,16 +30,33 @@ if (!$user->isBot())
 		{
 			Dog::setTriggered();
 			$trigger = substr($trigger, 1);
-			if (false !== ($plug = Dog_Plugin::getPlugWithPerms($serv, $chan, $user, $trigger)))
+			if (false !== ($plug = Dog_Plugin::getPlug($trigger)))
 			{
-				if ($plug->isEnabled($serv, $chan))
+				if (!$plug->hasPermission($serv, $chan, $user))
+				{
+					Dog::rply('err_no_perm');
+				}
+				elseif (!$plug->isEnabled($serv, $chan))
+				{
+					Dog::rply('err_disabled');
+				}
+				else
 				{
 					$plug->execute();
 				}
 			}
-			elseif (false !== ($mod = Dog_Module::getModuleWithPermsByTrigger($serv, $chan, $user, $trigger)))
+			
+			elseif (false !== ($mod = Dog_Module::getByTrigger($trigger)))
 			{
-				if ($mod->isTriggerEnabled($serv, $chan, $trigger))
+				if (!$mod->hasPermissionFor($trigger, $serv, $chan, $user))
+				{
+					Dog::rply('err_no_perm');
+				}
+				elseif (!$mod->isTriggerEnabled($serv, $chan, $trigger))
+				{
+					Dog::rply('err_disabled');
+				}
+				else
 				{
 					$mod->execute($trigger);
 				}
@@ -42,9 +64,8 @@ if (!$user->isBot())
 		}
 	}
 	
-	if ( (Common::startsWith($msg, "\X01")) && (Common::endsWith($msg, "\X01")) )
+	elseif ( (Common::startsWith($msg, "\X01")) && (Common::endsWith($msg, "\X01")) )
 	{
 		require 'CTCP.php';
 	}
 }
-?>

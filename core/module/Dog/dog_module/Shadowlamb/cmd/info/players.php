@@ -19,7 +19,7 @@ final class Shadowcmd_players extends Shadowcmd
 		$ppp = self::PPP;
 
 		$page = (int) $args[0];
-		$players = Shadowrun4::getPlayers();
+		$players = Shadowrun4::getHumanPlayers();
 		$nPlayers = count($players);
 		$nPages = GWF_PageMenu::getPagecount($ppp, $nPlayers);
 		$from = GWF_PageMenu::getFrom($page, $ppp);

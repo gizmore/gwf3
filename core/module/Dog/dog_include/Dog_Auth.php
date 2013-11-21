@@ -19,7 +19,12 @@ final class Dog_Auth
 	
 	private static function getNickData(Dog_Server $server)
 	{
-		return Dog_Nick::getNickFor($server, $server->getIncreaseNicknum());
+		if (false === ($nick = Dog_Nick::getNickFor($server, $server->getIncreaseNicknum())))
+		{
+			return false; // TODO: Random nick
+		}
+		$server->setNick($nick);
+		return $nick;
 	}
 
 	private static function sendUser(Dog_IRC $conn, Dog_Server $server, Dog_Nick $nick)

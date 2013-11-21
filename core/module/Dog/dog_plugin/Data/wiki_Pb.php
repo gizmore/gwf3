@@ -37,9 +37,10 @@ if (!function_exists('getWikiText'))
 		foreach($arr[2] as $row)
 		{
 			$row = trim(strip_tags($row));
-			if(empty($row)) continue;
-			var_dump($content);
-			$content.= $row." ";
+			if (!empty($row))
+			{
+				$content.= $row." ";
+			}
 		}
 	
 		$content = html_entity_decode($content);

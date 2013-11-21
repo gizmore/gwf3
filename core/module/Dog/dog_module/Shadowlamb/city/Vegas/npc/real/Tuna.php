@@ -1,5 +1,5 @@
 <?php
-final class Vegas_Tuna extends SR_TalkingNPC
+final class Vegas_Tuna extends SR_RealNPC
 {
 	public function getName() { return 'Tuna'; }
 	public function getNPCPlayerName() { return 'Tuna'; }
@@ -16,4 +16,3 @@ final class Vegas_Tuna extends SR_TalkingNPC
 		return array('100xCigar');
 	}
 }
-?>

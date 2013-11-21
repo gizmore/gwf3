@@ -8,6 +8,8 @@ require_once 'Shadowshout.php';
 require_once 'Shadowcleanup.php';
 require_once 'secret.php';
 
+// define('SL4_REALS', true);
+
 final class Shadowrun4
 {
 	const SR_SHORTCUT = '#';
@@ -92,11 +94,26 @@ final class Shadowrun4
 		static $DUMMY;
 		if (!isset($DUMMY))
 		{
-			$DUMMY = new SR_DummyPlayer(SR_Player::getPlayerData(0));
-			$DUMMY->modify();
+			echo "Creating Dummy!\n";
+			$DUMMY = new SR_DummyPlayer(array());
+			Shadowcmd::$CURRENT_PLAYER = $DUMMY;
+			$DUMMY = SR_Player::getRealNPCByName('Redmond_dloser');
+			Shadowcmd::$CURRENT_PLAYER = $DUMMY;
 		}
-		Shadowcmd::$CURRENT_PLAYER = $DUMMY;
 		return $DUMMY;
+	}
+	
+	public static function getHumanPlayers()
+	{
+		$humans = array();
+		foreach (self::$players as $player)
+		{
+			if (!($player instanceof SR_NPC))
+			{
+				$humans[] = $player;
+			}
+		}
+		return $humans;
 	}
 	
 	/**
@@ -176,12 +193,16 @@ final class Shadowrun4
 	 * @param int $partyid
 	 * @return SR_Party
 	 */
-	public static function getParty($partyid)
+	public static function getParty($partyid, $events=true)
 	{
-		$partyid = (int)$partyid;
+		if (0 === ($partyid = (int)$partyid))
+		{
+			return false;
+		}
+		
 		if (false === isset(self::$parties[$partyid]))
 		{
-			if (false === ($party = SR_Party::getByID($partyid)))
+			if (false === ($party = SR_Party::getByID($partyid, $events)))
 			{
 				return false;
 			}
@@ -334,13 +355,16 @@ final class Shadowrun4
 		foreach (self::$players as $pid => $player)
 		{
 			$player instanceof SR_Player;
-			$u = $player->getUser();
-			if ($u instanceof Dog_User)
+			if ($player->isHuman())
 			{
-				if ($user->getID() === $u->getID())
-				{
-					return $player;
-				}
+				$u = $player->getUser();
+// 				if ($u instanceof Dog_User)
+// 				{
+					if ($user->getID() === $u->getID())
+					{
+						return $player;
+					}
+// 				}
 			}
 		}
 		
@@ -447,6 +471,8 @@ final class Shadowrun4
 		if ($inited === false)
 		{
 			$inited = true;
+			Shadowlang::onLoadLanguage();
+			
 			Shadowrap::init();
 			self::$sr_timestamp = GWF_CachedCounter::getCount('SR4_TIME');
 			self::initCore(DOG_PATH);
@@ -465,20 +491,28 @@ final class Shadowrun4
 // 			require_once DOG_PATH.'Lamb_IRCFrom.php';
 // 			require_once DOG_PATH.'Lamb_IRCTo.php';
 			
-			self::initRealNPCs();
-			
-			Shadowlang::onLoadLanguage();
+			if (defined('SL4_REALS'))
+			{
+				self::initRealNPCs();
+			}
 			
 			Shadowcleanup::cleanup();
 		}
 	}
+	
 	public static function initTimers()
 	{
+		echo "Shadowrun4::initTimers()\n";
 		self::reloadParties();
-		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimer'), NULL, self::TICKLEN, false);
+		self::callRealNPCFunc('init');
+		if (defined('SL4_REALS'))
+		{
+			Dog_Timer::addTimer(array(__CLASS__, 'shadowTimerItems'), NULL, 300);
+			Dog_Timer::addTimer(array(__CLASS__, 'shadowTimerHunger'), NULL, 10); // SR_Feelings::HUNGER_TIMER
+		}
 		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimerRefreshHP'), NULL, SR_Player::HP_REFRESH_TIMER);
 		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimerRefreshMP'), NULL, SR_Player::MP_REFRESH_TIMER);
-// 		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimerItems'), NULL, 60);
+		Dog_Timer::addTimer(array(__CLASS__, 'shadowTimer'), NULL, self::TICKLEN, false);
 	}
 	
 	public static function getShadowDir() { return DOG_PATH.'dog_module/Shadowlamb/'; }
@@ -585,20 +619,29 @@ final class Shadowrun4
 			{
 				$location instanceof SR_Location;
 				
-				foreach ($location->getRealNPCS() as $npcname)
+				foreach ($location->getRealNPCS() as $classname)
 				{
-					if (false !== ($npc = SR_Player::getRealNPCByName($npcname)))
+					if (false === ($npc = SR_Player::getRealNPCByName($classname)))
 					{
-						$npc->getParty()->deleteParty();
+						GWF_Log::logCritical('Cannot create real npc with classname: '.$classname);
 					}
+
+					$party = $npc->getParty(false);
 					
-					if (false === ($party = SR_NPC::createEnemyParty($npcname)))
+					if (!$party->isAtLocation() && !$party->isMoving())
 					{
-						die('AAAAAA');
+						$party->saveVars(array(
+							'sr4pa_action' => SR_Party::ACTION_INSIDE,
+							'sr4pa_target' => $location->getName(),
+							'sr4pa_eta' => 0,
+							'sr4pa_last_action' => SR_Party::ACTION_OUTSIDE,
+							'sr4pa_last_target' => $location->getName(),
+							'sr4pa_last_eta' => 0,
+						));
 					}
+
 					$npc = $party->getLeader();
-					$party = $npc->getParty();
-					$party->pushAction(SR_Party::ACTION_INSIDE, $location->getName());
+					
 					self::addPlayer($npc);
 					self::addParty($party);
 					
@@ -690,7 +733,7 @@ final class Shadowrun4
 	#############
 	private static $sr_timestamp = 0;
 	public static function getTime() { return self::$sr_timestamp; }
-	public static function getRealTime() { return self::$sr_timestamp * 6; }
+	public static function getRealTime() { return self::$sr_timestamp * SR_Feelings::REAL_SECONDS_PER_TICK; }
 
 	public static function shadowTimer()
 	{
@@ -699,6 +742,11 @@ final class Shadowrun4
 	
 		# Execute Web Commands
 // 		self::shadowTimerWebcommands();
+		
+		if (defined('SL4_REALS'))
+		{
+			self::shadowTimerRealNPCs();
+		}
 		
 		# All parties:
 		$partyids = array_keys(self::$parties);
@@ -759,13 +807,44 @@ final class Shadowrun4
 		}
 	}
 	
+	public static function shadowTimerHunger()
+	{
+		foreach (self::$players as $player)
+		{
+			$player instanceof SR_Player;
+			if ($player->isCreated() && $player->hasFeelings())
+			{
+				SR_Feelings::timer($player);
+			}
+		}
+	}
+	
 	public static function shadowTimerItems()
 	{
 		foreach (self::$players as $player)
 		{
 			$player instanceof SR_Player;
-			$player->itemDurationTimer();
+			if ($player->hasRottingItems())
+			{
+				$player->itemDurationTimer();
+			}
 		}
 	}
+	
+	public static function callRealNPCFunc($function_name, array $args=array())
+	{
+		foreach (self::$players as $player)
+		{
+			if ($player instanceof SR_RealNPC)
+			{
+				$player->realnpcfunc($function_name, $args);
+			}
+		}
+	}
+	
+	public static function shadowTimerRealNPCs()
+	{
+		self::callRealNPCFunc('tick');
+		self::callRealNPCFunc('goal_when_idle');
+	}
 }
-?>

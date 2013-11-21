@@ -13,7 +13,9 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	 * @var WebSocketServer
 	 */
 	private $socket = NULL;
-	private $connected = false;
+	public  $connected = false;
+	private $connecting = false;
+	public  $socket_try = true;
 	private $users = array();
 	private $conns = array();
 	private $queue_in = NULL;
@@ -28,6 +30,13 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	
 	public function connect(Dog_Server $server, $blocking=0)
 	{
+		if ($this->connecting)
+		{
+			return $this->socket_try;
+		}
+		
+		$this->connecting = true;
+		
 		$this->socket = new WebSocketServer('tcp://0.0.0.0:'.$server->getPort(), 'rob_hubbard_fanclub!');
 		$this->socket->addObserver($this);
 		
@@ -45,6 +54,7 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 				die('Cannot get message queue :(');
 			}
 			$this->connected = true;
+			return true;
 		}
 		else
 		{
@@ -64,7 +74,10 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 				die('Cannot get message queue :(');
 			}
 			$this->socket->initQueue((int)$server->getID());
-			$this->socket->run();
+			if (false === $this->socket->run($this))
+			{
+				$this->socket_try = false;
+			}
 		}
 	}
 	
@@ -109,13 +122,13 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 		$table = GDO::table('Dog_User');
 		if (false === ($dog_user = $table->selectFirstObject('*', "user_name='$ename'")))
 		{
-			$this->sendToUser($user->getId(), 'Unknown username!');
+			$this->sendToUser($user->getId(), 'XLIN2,Unknown username!');
 			return false;
 		}
 		
 		if (false === GWF_Password::checkPasswordS($data[2], $dog_user->getVar('user_pass')))
 		{
-			$this->sendToUser($user->getId(), 'Wrong password!');
+			$this->sendToUser($user->getId(), 'XLIN3,Wrong password!');
 			return false;
 		}
 		
@@ -216,7 +229,7 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 		}
 		else
 		{
-			$this->say("OOOPS!");
+			$this->say("XLIN4");
 		}
 	}
 

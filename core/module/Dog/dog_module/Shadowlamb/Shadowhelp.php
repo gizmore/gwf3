@@ -150,7 +150,7 @@ final class Shadowhelp
 					'race' => 'There two major types of races',
 					array(
 					
-						'player_races' => 'Available player races',
+						'player_races' => 'Available player_races',
 						array(
 							'fairy' => 'The fairy is small, weak and very hard to play. It is meant to be a party character.'.self::helpRace('fairy'),
 							'elve' => 'The elve is weak and difficult to play. He enjoys the arcane powers. As every elve he has a bonus on the bows skill.'.self::helpRace('elve'),
@@ -281,7 +281,7 @@ final class Shadowhelp
 						
 					'status_cmds' => 'Commands for player information',
 					array(
-						'commands' => "Player command. Usage: #(c)ommands. List your currently available commands. These are ordered by always,leader,special,location and change depending on your current location and party action.",
+						'commands' => "Player command. Usage: #(c)ommands. List your currently available commands. These are ordered by always,leader,special,location and change depending on your current location and party action. The currently special location commands are listed to the most right in bold.",
 						'ccommands' => "Player command. Usage: #(cc)ommands. List many hidden default commands. These always work and you maybe don't even use them.",
 						'status' => 'Player command. Usage: #(s)tatus. View your status.',
 						'attributes' => NULL,
@@ -516,6 +516,22 @@ final class Shadowhelp
 				
 				'various' => 'I know about',
 				array(
+						
+					'tips' => 'Tips',
+					array(
+						'0' => 'Bold words in the #help pages are topics that have an own help page, but the word might not be related to the context it appears in.',
+						'1' => 'The commands in #c and #cc change according to your current action/location.',
+					),
+						
+					'notations' => 'Notations',
+					array(
+						'level_notation' => 'Attributes, skills, spells and similiar have the N(M) notation. N is the base level and (M) is the adjusted level. 2(3) means +1 on that field with an effective value of 3.',
+						'player_notation' => 'Notations for players',
+						array(
+							'human_notation' => 'The notation for human players is Nickname{<server>}. @see npc_notation.',
+							'npc_notation' => 'The notation for NPC/Mobs are Nickname[<player_id>]. @see human_notation.',
+						),
+					),
 				
 					'action' => 'Each #(p)arty has an action',
 					array(
@@ -598,6 +614,7 @@ final class Shadowhelp
 						'bsdhell' => 'bsdhell and kwisatz run the School of Assembly in Vegas.',
 						'kwisatz' => 'kwisatz and bsdhell run the School of Assembly in Vegas.',
 						'sabretooth' => 'Owner of the school of Social Engineering in Vegas. Narrator of many voices in the Shadowlamb Multiverse.',
+						'quangntenemy' => 'Professor quangntenemy teaches high level enterprise programming (HLEP) in the Vegas_Gamecollege.',
 						'more_teachers' => 'Erik, MiB, Tsutomu, epoch_qwert, Mawekl, InfoMirmo, Caesum, Edge, Sphinx, TheBlackSheep, ChaosDreamer, quangtenemy, matrixman, wb7331, Z, and a lot more!',
 						'way_more_teachers' => 'TheHiveMind, Jinx, Garfield, jjk, dalfor, Jander, Kender, Inferno, digitalseraphim, spaceone!',
 					),

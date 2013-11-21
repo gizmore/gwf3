@@ -25,4 +25,3 @@ final class Shadowcmd_weight extends Shadowcmd
 // 		return true;
 	}
 }
-?>

@@ -7,8 +7,14 @@
 abstract class SR_NPCBase extends SR_Player
 {
 	public static $NPC_COUNTER = 0;
+	
+	/**
+	 * @var SR_Player
+	 */
 	protected $chat_partner = NULL;
-	private $npc_classname;
+	
+	public function hasFeelings() { return false; }
+	public function hasRottingItems() { return false; }
 	
 	#############
 	### Arena ###
@@ -27,6 +33,13 @@ abstract class SR_NPCBase extends SR_Player
 	{
 		$this->chat_partner = $player;
 	}
+	/**
+	 * @return SR_Player
+	 */
+	public function getChatPartner()
+	{
+		return $this->chat_partner;
+	}
 	#################
 	### SR_Player ###
 	#################
@@ -38,6 +51,7 @@ abstract class SR_NPCBase extends SR_Player
 	public function getLootNuyen() { return $this->getBase('nuyen'); }
 	public function getUser() { return false; }
 	public function getLangISO() { return 'en'; }
+	public function doesRespawn() { return false; }
 	
 	/**
 	 * NPC messages are queued to a player on remote commands.
@@ -46,11 +60,15 @@ abstract class SR_NPCBase extends SR_Player
 	public function message($message)
 	{
 		Dog_Log::debug($message);
+		$this->redirectRemoteMessage($message);
+	}
+	
+	public function redirectRemoteMessage()
+	{
 		if (false !== ($user = $this->getRemotePlayer()))
 		{
 			$user->message($message);
 		}
-		return true;
 	}
 	
 	###########
@@ -253,7 +271,7 @@ abstract class SR_NPCBase extends SR_Player
 			return Dog_Log::error('WRONG ARG IN in createEnemyNPC: '.$party);
 		}
 		
-		if (false === $npc->spawn($party))
+		if (false === ($npc = $npc->spawn($party)))
 		{
 			return Dog_Log::error('Failed to spawn NPC: '.$npc->getNPCClassName());
 		}
@@ -286,6 +304,7 @@ abstract class SR_NPCBase extends SR_Player
 		{
 			return false;
 		}
+		Shadowcmd_aslset::onASLSetRandom($npc);
 		$party->addUser($npc, false);
 		$npc->saveVar('sr4pl_partyid', $party->getID());
 		return self::reloadPlayer($npc);
@@ -424,7 +443,14 @@ abstract class SR_NPCBase extends SR_Player
 	
 	public function respawn()
 	{
-		$this->deletePlayer();
+		if ($this->doesRespawn())
+		{
+			parent::respawn();
+		}
+		else
+		{
+			$this->deletePlayer();
+		}
 	}
 	
 	public function getNPCLoot(SR_Player $player)

@@ -34,7 +34,18 @@ abstract class SR_NPC extends SR_NPCBase
 	private function combatAIPushUse(SR_Item $item, $argstr='') { $this->combatPush('use '.$item->getItemName().($argstr===''?'':' '.$argstr)); return true; }
 	private function combatAIPushSpell(SR_Spell $spell, $argstr='') { $this->combatPush('spell '.$spell->getName().($argstr===''?'':' '.$argstr)); return true; }
 	private function combatAIPushEquip(SR_Item $item) { $this->combatPush('equip '.$item->getItemName()); }
-	
+	private function cmd($cmd='say ERROR :D', $args=NULL)
+	{
+		if (is_string($args))
+		{
+			$cmd .= $args;
+		}
+		elseif (is_array($args))
+		{
+			$cmd .= implode(' ', $args);
+		}
+		Shadowcmd::onTrigger($player, $cmd);
+	}
 	/**
 	 * The AI is gonna inject a command.
 	 */

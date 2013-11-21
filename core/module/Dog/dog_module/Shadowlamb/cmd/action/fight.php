@@ -63,10 +63,9 @@ final class Shadowcmd_fight extends Shadowcmd
 	{
 		$p = $player->getParty();
 // 		$ep = $p->getEnemyParty();
-		
-		if ($ep === false)
+
+		if (SR_KillProtect::isKillProtectedRealNPCParty($ep))
 		{
-			$player->message('Error: Cannot get enemy party for your party. Tell gizmore!');
 			return false;
 		}
 		

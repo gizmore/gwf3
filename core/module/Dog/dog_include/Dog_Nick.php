@@ -31,11 +31,21 @@ final class Dog_Nick extends GDO
 	public function getUsername() { return $this->getVar('nick_username'); }
 	public function getHostname() { return $this->getVar('nick_hostname'); }
 	public function getRealname() { return $this->getVar('nick_realname'); }
+	public function isSaved() { return $this->getID() > 0; }
+	public function isTemp() { return $this->getID() <= 0; }
 	
 	/**
 	 * @return Dog_Server
 	 */
 	public function getServer() { return Dog::getServerByID($this->getSID()); }
+	
+	public function identify()
+	{
+		if (NULL !== ($pass = $this->getPass()))
+		{
+			$this->getServer()->sendPRIVMSG('NickServ', 'IDENTIFY '.$pass);
+		}
+	}
 	
 	/**
 	 * Get nickname data for a server and cycle.
@@ -57,9 +67,11 @@ final class Dog_Nick extends GDO
 			return false;
 		}
 		
+		$back instanceof Dog_Nick;
+		
 		$back->setCycle($cycle/$nicks);
 		
-		$server->setNick($back);
+// 		$server->setNick($back);
 		
 		return $back;
 	}
@@ -70,4 +82,3 @@ final class Dog_Nick extends GDO
 		return self::table(__CLASS__)->selectFirstObject('*', "nick_sid={$server->getID()} AND nick_name='{$nick}'");
 	}
 }
-?>

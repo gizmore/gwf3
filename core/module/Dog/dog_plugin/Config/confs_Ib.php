@@ -12,8 +12,6 @@ $plugin = Dog::getPlugin();
 $argv = $plugin->argv();
 $argc = count($argv);
 
-var_dump($argv);
-
 if ($argc === 1)
 {
 	$name = $argv[0];

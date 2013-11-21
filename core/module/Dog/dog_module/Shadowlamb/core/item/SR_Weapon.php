@@ -8,6 +8,8 @@ abstract class SR_Weapon extends SR_Equipment
 	public abstract function onReload(SR_Player $player);
 	public function isLoaded() { return true; }
 	public function isFullyLoaded() { return true; }
+	public function getWeaponDPS(SR_Player $p) { return 60 / $this->getAttackTime() * $this->getWeaponAvgDmg($p); }
+	public function getWeaponAvgDmg(SR_Player $p) { return round(0.5*($this->getItemModifier($p, 'mindmg') + $this->getItemModifier($p, 'maxdmg'))); }
 	
 	public function getItemEquipTime() { return 30; }
 	public function getItemUnequipTime() { return 30; }

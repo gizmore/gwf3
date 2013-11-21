@@ -48,7 +48,7 @@ if ($chan === false)
 	
 	if (false !== ($mod = Dog_Module::getByName($name)))
 	{
-		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, $name, false);
+		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, false);
 		$plugin->rply('mod_on_serv', array($mod->displayName(), $serv->displayName()));
 	}
 	

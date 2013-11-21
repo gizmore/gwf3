@@ -1,7 +1,7 @@
 <?php
 final class Vegas_Jewelry extends SR_Store
 {
-	public function getRealNPCS() { return array('Vegas_Tuna'); }
+// 	public function getRealNPCS() { return array('Vegas_Tuna'); }
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Vegas_Jeweler'); }
 	
 	public function getFoundPercentage() { return 20.00; }

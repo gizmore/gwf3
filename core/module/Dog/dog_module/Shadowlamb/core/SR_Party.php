@@ -254,8 +254,11 @@ final class SR_Party extends GDO
 		return (false === ($location = $this->getLocation($action))) ? false : Shadowrun4::getLocationByTarget($location);
 	}
 	public function getAction() { return $this->getVar('sr4pa_action'); }
+	public function getLastAction() { return $this->getVar('sr4pa_last_action'); }
 	public function getTarget() { return $this->getVar('sr4pa_target'); }
+	public function getLastTarget() { return $this->getVar('sr4pa_last_target'); }
 	public function getETA() { return $this->getVar('sr4pa_eta'); }
+	public function getLastETA() { return (0 === ($last_eta = (int)$this->getVar('sr4pa_last_eta'))) ? 0 : $last_eta - $this->getETA() + Shadowrun4::getTime(); }
 	public function setETA($eta) { return $this->saveVar('sr4pa_eta', $eta+Shadowrun4::getTime()); }
 	
 	/**
@@ -289,9 +292,32 @@ final class SR_Party extends GDO
 	public function clonePreviousAction(SR_Party $party)
 	{
 		return $this->saveVars(array(
-			'sr4pa_last_action' => $party->getVar('sr4pa_last_action'),
+			'sr4pa_last_action' => $party->getLastAction(),
 			'sr4pa_last_target' => $party->getVar('sr4pa_last_target'),
 			'sr4pa_last_eta' => $party->getVar('sr4pa_last_eta'),
+		));
+	}
+	
+	private function callAIFunc($function_name, array $args=null)
+	{
+		foreach ($this->getMembers() as $member)
+		{
+			if ($member instanceof SR_RealNPC)
+			{
+				call_user_func_array(array($member, $function_name), $args);
+			}
+		}
+	}
+	
+	private function callAIChangeAction($function_name, $old_action, $new_action, $old_target, $new_target, $old_eta, $new_eta)
+	{
+		$this->callAIFunc($function_name, array(
+			'old_action' => $old_action,
+			'new_action' => $new_action,
+			'old_target' => $old_target,
+			'new_target' => $new_target,
+			'old_eta' => $old_eta,
+			'new_eta' => $new_eta,
 		));
 	}
 	
@@ -317,7 +343,9 @@ final class SR_Party extends GDO
 // 		$this->setMemberOptions(SR_Player::PARTY_DIRTY|SR_Player::CMD_DIRTY, true);
 
 		$old_action = $this->getAction();
+		$old_target = $this->getTarget();
 		$old_location = $this->getLocationClass();
+		$old_eta = $this->getETA();
 		$oldcity = $this->getCityClass();
 
 		# Save new vars
@@ -325,9 +353,9 @@ final class SR_Party extends GDO
 			'sr4pa_action' => $action,
 			'sr4pa_target' => $target,
 			'sr4pa_eta' => $eta,
-			'sr4pa_last_action' => $this->getAction(),
-			'sr4pa_last_target' => $this->getTarget(),
-			'sr4pa_last_eta' => $this->getETA(),
+			'sr4pa_last_action' => $old_action,
+			'sr4pa_last_target' => $old_target,
+			'sr4pa_last_eta' => $old_eta,
 		)))
 		{
 			return false;
@@ -371,6 +399,8 @@ final class SR_Party extends GDO
 				$this->sendAutoLook();
 			}
 		}
+		
+		$this->callAIChangeAction('ai_change_action', $old_action, $action, $old_target, $target, $old_eta, $eta);
 		
 		return true;
 	}
@@ -495,7 +525,7 @@ final class SR_Party extends GDO
 	private function onPartyArrivedLeftEvents(SR_Location $location, array $actions, $key)
 	{
 		$loc = $location->getName();
-		$args =  array('___LOCNAME', $this->displayMembers(false, true));
+		$args = array('___LOCNAME', $this->displayMembers(false, true));
 		
 		foreach (Shadowrun4::getParties() as $p)
 		{
@@ -522,17 +552,14 @@ final class SR_Party extends GDO
 	
 	public function popAction($announce=false)
 	{
+		$new_eta = $this->getLastETA();
+		$this->callAIChangeAction('change_action', $this->getAction(), $this->getLastAction(), $this->getTarget(), $this->getLastTarget(), $this->getETA(), $new_eta);
+		
 		# Diff Commands
 		$old_cmds = $this->getCurrentCommands();
-		
-		if ('0' === ($last_eta = $this->getVar('sr4pa_last_eta'))) {
-			$new_eta = 0;
-		} else {
-			$new_eta = $last_eta - $this->getETA() + Shadowrun4::getTime();
-		}
 		if (false === $this->saveVars(array(
-			'sr4pa_action' => $this->getVar('sr4pa_last_action'),
-			'sr4pa_target' => $this->getVar('sr4pa_last_target'),
+			'sr4pa_action' => $this->getLastAction(),
+			'sr4pa_target' => $this->getLastTarget(),
 			'sr4pa_eta' => $new_eta,
 			'sr4pa_last_action' => 'delete',
 			'sr4pa_last_target' => NULL,
@@ -632,9 +659,10 @@ final class SR_Party extends GDO
 		$pid = $player->getID();
 		$this->members[$pid] = $player;
 		$this->distance[$pid] = 0;
+		$player->saveVar('sr4pl_partyid', $this->getID());
+		echo "!!! SR_Party::addUser PID={$this->getID()}\n";
 		if ($update === true)
 		{
-			$player->saveVar('sr4pl_partyid', $this->getID());
 			$this->updateMembers();
 			$this->recomputeEnums();
 		}
@@ -995,6 +1023,7 @@ final class SR_Party extends GDO
 		}
 		
 		Shadowrun4::addParty($party);
+		
 		return $party;
 	}
 
@@ -1489,7 +1518,7 @@ final class SR_Party extends GDO
 	
 	public function displayLastAction(SR_Player $player)
 	{
-		$action = $this->getVar('sr4pa_last_action');
+		$action = $this->getLastAction();
 		# Do a switch here to prevent a nice deadloop condition :)
 		switch ($action)
 		{
@@ -1530,7 +1559,7 @@ final class SR_Party extends GDO
 		foreach ($this->members as $player)
 		{
 			$player instanceof SR_Player;
-			if (!$player->hasFullHPMP())
+			if ( (!$player->hasFullHPMP()) || ($player->isSleepy()) )
 			{
 				return true;
 			}
@@ -1547,7 +1576,8 @@ final class SR_Party extends GDO
 			$player->effectsTimer();
 		}
 		
-		call_user_func(array($this, 'on_'.$this->getAction()), $this->isDone($sr_time));
+		$done = $this->isDone($sr_time);
+		call_user_func(array($this, 'on_'.$this->getAction()), $done);
 	}
 	
 	public function on_delete($done)
@@ -1673,14 +1703,16 @@ final class SR_Party extends GDO
 		foreach ($this->members as $playerid => $player)
 		{
 			$player instanceof SR_Player;
-			if ($player->hasFullHPMP()) { $sleeping--; continue; }
+			if ($player->hasFullHPMP() && (!$player->isSleepy())) { $sleeping--; continue; }
 			
 			$body = Common::clamp($player->getBase('body'), 1);
 			$magic = Common::clamp($player->getBase('magic'), 1);
 			$player->healHP($body/10);
 			$player->healMP($magic/10);
 			
-			if ($player->hasFullHPMP())
+			SR_Feelings::sleep($player);
+			
+			if ($player->hasFullHPMP() && (!$player->isSleepy()))
 			{
 				$sleeping--;
 				$player->msg('5001'); # You awake and have a delicous breakfast.
@@ -1922,4 +1954,3 @@ final class SR_Party extends GDO
 		return $this->updateMembers();
 	}
 }
-?>

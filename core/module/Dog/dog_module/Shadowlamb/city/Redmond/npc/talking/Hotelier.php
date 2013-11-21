@@ -1,6 +1,12 @@
 <?php
-final class Redmond_Hotelier extends SR_TalkingNPC
+final class Redmond_Hotelier extends SR_RealNPC
 {
+	public function getExtensions()
+	{
+		return SR_AIExtension::merge(parent::getExtensions(), array(
+		));
+	}
+	
 	public function getName() { return 'The hotelier'; }
 	public function canNPCMeet(SR_Party $party) { return false; }
 	

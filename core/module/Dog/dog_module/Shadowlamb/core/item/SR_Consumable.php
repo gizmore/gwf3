@@ -3,6 +3,10 @@ abstract class SR_Consumable extends SR_Usable
 {
 	public abstract function onConsume(SR_Player $player);
 	
+	public abstract function getWater();
+	public abstract function getCalories();
+	public abstract function getLitres();
+	
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$busy = $player->isFighting() ? $this->getItemUseTime() : 0;
@@ -14,10 +18,13 @@ abstract class SR_Consumable extends SR_Usable
 //		}
 
 		# Consume it
-		if ($this->useAmount($player, 1))
+		if ($this->useAmount($player, 1, false))
 		{
 			$this->onConsume($player);
+			SR_Feelings::consume($player, $this);
+			$player->modify();
 		}
+		
 		
 		if ($busy > 0)
 		{
@@ -55,17 +62,23 @@ abstract class SR_Food extends SR_Consumable
 {
 	public function getItemDuration() { return 3600*24*7; } # 1 week.
 	public function displayType() { return 'Food'; }
+	public function getLitres() { return round($this->getItemWeight() * 2.40); }
 }
 
 abstract class SR_Drink extends SR_Consumable
 {
 	public function getItemDuration() { return 3600*24*64; } # 64 days.
 	public function displayType() { return 'Drink'; }
+	public function getWater() { return $this->getLitres(); }
+	public function getCalories() { return $this->getLitres() / 20; }
 }
 
 abstract class SR_Potion extends SR_Drink
 {
 	public function displayType() { return 'Potion'; }
+	
+	public function getLitres() { return 300; }
+	
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		parent::onItemUse($player, $args);

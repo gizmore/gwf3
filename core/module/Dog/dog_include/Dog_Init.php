@@ -14,12 +14,16 @@ final class Dog_Init
 		foreach (Dog_Server::getAllServers() as $server)
 		{
 			$server instanceof Dog_Server;
-			Dog::addServer($server);
+			if ($server->isActive())
+			{
+				Dog::addServer($server);
+			}
 		}
 		
 		Dog_Timer::init(self::getSleepMillis());
 	
-		Dog_Timer::addTimer(array(__CLASS__, 'initTimers'), NULL, count(Dog::getServers())*2+1, false);
+		Dog_Timer::addTimer(array(__CLASS__, 'initTimers'), NULL, count(Dog::getServers())*Dog::CONNECT_WAIT+1, false);
+		Dog_Timer::addTimer(array('Dog', 'botReady'), NULL, count(Dog::getServers())*Dog::CONNECT_WAIT+2, false);
 		
 		self::$STARTUP_TIME = microtime(true);
 				
@@ -166,7 +170,6 @@ final class Dog_Init
 	
 	public static function initTimersDirServer($entry, $fullpath, $null=NULL)
 	{
-		
 		if (false !== ($server = Dog_Server::getByTLD($entry)))
 		{
 			if (false !== ($server = Dog::getServerByID($server->getID())))

@@ -13,7 +13,10 @@ final class DOGMOD_Seen extends Dog_Module
 	{
 		if (!Dog::isTriggered())
 		{
-			Dog_Seen::record(Dog::getUser(), Dog::getChannel(), 'privmsg', $this->msg());
+			if (false !== Dog::getUser())
+			{
+				Dog_Seen::record(Dog::getUser(), Dog::getChannel(), 'privmsg', $this->msg());
+			}
 		}
 	}
 	

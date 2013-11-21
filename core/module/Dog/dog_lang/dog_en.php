@@ -20,6 +20,7 @@ $lang = array(
 	'priv_a' => 'Admin',
 	'priv_i' => 'IRC Operator',
 	'priv_x' => 'Owner',
+	'priv_y' => 'Responsible',
 		
 	'err_user' => 'This user is unknown.',
 	'err_exec' => 'The exec function is disabled. Good.',
@@ -41,11 +42,12 @@ $lang = array(
 	'err_repsonse' => 'Invalid server response!',
 	'err_unk_var' => 'This setting is unknown.',
 	'err_variabl' => 'This value is invalid for %s/%s, which is a %s.',
-		
+	'err_no_perm' => 'You have not the right permissions or this works only in private/channel.',
+	'err_disabled' => 'This functionality is disabled here.',
+
 	'msg_modvars' => 'Module %s config: %s.',
 	'msg_plgvars' => 'Plugin %s config: %s.',
 	'msg_showvar' => '%s/%s (%s): %s.',
 	'msg_set_var' => 'I have set %s/%s to %s.',
 	'msg_connected' => 'Yo dawg, i have connected to %s as %s. First register with me there, then use ".super %s" to elevate your privleges. Thank you for using IRC!',
 );
-?>

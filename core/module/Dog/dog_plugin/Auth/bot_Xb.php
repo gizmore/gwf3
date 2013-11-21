@@ -42,7 +42,10 @@ else
 	$argv[1] = strtolower($argv[1]);
 	if ($argv[1] === 'on')
 	{
-		if (Dog_PrivServer::hasPermChar($user->getServer(), $user, 'x'))
+		$isx = Dog_PrivServer::hasPermChar($user->getServer(), $user, 'x'); // he Owner
+		$isy = Dog_PrivServer::hasPermChar($user->getServer(), $user, 'y'); // he Hoster
+		$isuy = Dog_PrivServer::hasPermChar($user->getServer(), Dog::getUser(), 'y'); // Caller Hoster
+		if ($isy || ($isx && (!$isuy))) // He hoster or (he owner and you not hoster) 
 		{
 			return $plugin->rply('err_owner', $user->getName());
 		}

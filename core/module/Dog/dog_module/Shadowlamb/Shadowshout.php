@@ -89,26 +89,28 @@ final class Shadowshout
 //		$b = chr(2);
 //		$message = sprintf('%s in %s: "%s".', $player->getName(), $party->getLocation(), $message);
 		
-		$sent = 0;
+// 		$sent = 0;
 		foreach (Shadowrun4::getParties() as $pid => $p)
 		{
+// 			echo "party $pid\n";
 			if ($party->sharesLocation($p))
 			{
+// 				echo "partyy $pid\n";
 				foreach ($p->getMembers() as $m)
 				{
 					$m instanceof SR_Player;
 					
 					if ($m->isCreated())
 					{
-						if (false === ($u = $m->getUser()))
-						{
-							continue;
-						}
+// 						if (false === ($u = $m->getUser()))
+// 						{
+// 							continue;
+// 						}
 						
-						if (false === ($s = $u->getServer()))
-						{
-							continue;
-						}
+// 						if (false === ($s = $u->getServer()))
+// 						{
+// 							continue;
+// 						}
 						
 // 						$c = $s->getChannelByName('#shadowlamb');
 						
@@ -122,9 +124,10 @@ final class Shadowshout
 // 						}
 						
 						# send to player.
+						echo "Sending to {$m->getName()}\n";
 						$m->msg($key, $args);
 // 						$m->message($message);
-						$sent++;
+// 						$sent++;
 					}
 				}
 			}
