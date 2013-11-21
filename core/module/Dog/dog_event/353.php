@@ -13,7 +13,6 @@ foreach (explode(' ', $msg->getArg(3)) as $username)
 	if (false !== ($user = Dog::getOrCreateUserByName(ltrim($username, Dog_IRCPriv::allSymbols()))))
 	{
 		$serv->addUser($user);
-		$channel->addUser($user, $username[0]);
+		$channel->addUser($user, Dog_IRCPriv::matchSymbols($username));
 	}
 }
-?>
