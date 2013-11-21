@@ -3,23 +3,31 @@ final class Dog_IRCPriv
 {
 	const REGBIT = 0x01;
 	const LOGBIT = 0x02;
+	const HOSTBIT = 0x400;
 	
-	public static $NAMEMAP    = array('public', 'regged',     'logged',     'voice', 'halfop', 'operator', 'staff', 'admin', 'founder', 'ircop', 'owner');
-	public static $CHARMAP    = array('p',      'r',          'l',          'v',     'h',      'o',        's',     'a',     'f',       'i',     'x');
-	public static $SYMBOLMAP  = array(''  ,     ''   ,        '',           '+',     '%',      '@',        ''  ,    '',      '~'  ,     '',      '');
-	public static $CSYMBOLMAP = array('',       '',           '',           'v',     'h',      'o',        '',      '',      '',        '',      '');
-	public static $BITMAP     = array(0x0000,   self::REGBIT, self::LOGBIT, 0x0004,  0x0008,   0x0010,     0x0020,  0x0040,  0x0080,    0x0100,  0x0200);
+	public static $NAMEMAP    = array('public', 'regged',     'logged',     'voice', 'halfop', 'operator', 'staff', 'admin', 'founder', 'ircop', 'owner', 'responsible');
+	public static $CHARMAP    = array('p',      'r',          'l',          'v',     'h',      'o',        's',     'a',     'f',       'i',     'x',     'y');
+	public static $SYMBOLMAP  = array(''  ,     ''   ,        '',           '+',     '%',      '@',        ''  ,    '',      '~'  ,     '',      '',      '');
+	public static $CSYMBOLMAP = array('',       '',           '',           'v',     'h',      'o',        '',      '',      '',        '',      '',      '');
+	public static $BITMAP     = array(0x0000,   self::REGBIT, self::LOGBIT, 0x0004,  0x0008,   0x0010,     0x0020,  0x0040,  0x0080,    0x0100,  0x0200,  self::HOSTBIT);
 	
 	public static function allBits() { return 0x3ff; } # XXX: THIS FUNCTION SUXX!
 	public static function allBitsButOwner() { return 0x1ff; } # XXX: THIS FUNCTION SUXX!
 	public static function allChars() { return implode('', self::$CHARMAP); }
 	public static function allSymbols() { return implode('', self::$SYMBOLMAP); }
+	public static function allChangeableChars() { return str_replace(array('p','r','l','y'), '', self::allChars()); }
+	
+	public static function filterPrivsToEdit($chars)
+	{
+		$valid = self::allChangeableChars();
+		return preg_replace("[^$valid]", '', $chars);
+	}
 	
 	public static function displayChar($char) { return Dog::lang('priv_'.$char); }
 
-	public static function displayBits($bits)
+	public static function displayBits($bits, $p='p')
 	{
-		$back = 'p';
+		$back = $p;
 		foreach (self::$BITMAP as $i => $bit)
 		{
 			if ($bits & $bit)
@@ -30,9 +38,27 @@ final class Dog_IRCPriv
 		return $back;
 	}
 	
-	public static function symbolToChar($symbol)
+	public static function matchSymbols($username)
 	{
-		return (false === ($index = array_search($symbol, self::$SYMBOLMAP))) ? 'p' : self::$CHARMAP[$index];
+		$pattern = '/^(['.preg_quote(self::allSymbols(), '/').']+)/';
+		return Common::regex($pattern, $username);
+	}
+	
+	public static function symbolToChar($symbol, $p='p')
+	{
+		if ($symbol === '') return $p;
+		return (false === ($index = array_search($symbol, self::$SYMBOLMAP))) ? $p : self::$CHARMAP[$index];
+	}
+	
+	public static function symbolsToChar($symbols)
+	{
+// 		echo "Dog_IRCPriv::symbolsToChar($symbols)\n";
+		$chars = 'p';
+		foreach (str_split($symbols) as $symbol)
+		{
+			$chars .= self::symbolToChar($symbol, '');
+		}
+		return $chars;
 	}
 
 	public static function charsToBits($chars)
@@ -80,4 +106,3 @@ final class Dog_IRCPriv
 		return false;
 	}
 }
-?>

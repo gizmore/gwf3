@@ -27,15 +27,15 @@ final class Dog_PrivServer extends GDO
 		return self::hasPermBits($server, $user, Dog_IRCPriv::charToBit($char));
 	}
 	
-	public static function hasPermBits(Dog_Server $server, Dog_User $user, $bits)
+	public static function hasPermBits(Dog_Server $server, Dog_User $user, $bits, $needlogin=true)
 	{
-		return (self::getPermbits($server, $user) & $bits) == $bits;
+		return (self::getPermbits($server, $user, $needlogin) & $bits) >= $bits;
 	}
 	
-	public static function getPermbits(Dog_Server $server, Dog_User $user)
+	public static function getPermbits(Dog_Server $server, Dog_User $user, $needlogin=true)
 	{
 		$bits = $user->isRegistered() ? Dog_IRCPriv::REGBIT : 0;
-		if (!$user->isLoggedIn())
+		if ( ($needlogin) && (!$user->isLoggedIn()) )
 		{
 			return $bits;
 		}
@@ -45,6 +45,11 @@ final class Dog_PrivServer extends GDO
 		{
 			$bits |= Dog_IRCPriv::LOGBIT;
 			$bits |= self::table(__CLASS__)->selectVar('priv_privs', "priv_sid={$sid} AND priv_uid={$uid}");
+			# Cache
+			if ($user->isHoster())
+			{
+				$bits |= Dog_IRCPriv::HOSTBIT;
+			}
 			$user->setVar("dsp_$sid", $bits);
 		}
 		return $bits;
@@ -52,13 +57,17 @@ final class Dog_PrivServer extends GDO
 	
 	public static function setPermbits(Dog_Server $server, Dog_User $user, $bits)
 	{
-		$sid = $server->getID();
-		$user->setVar("dsp_$sid", $bits);
+		self::flushPermcache($server, $user);
 		return self::table(__CLASS__)->insertAssoc(array(
-			'priv_sid' => $sid,
+			'priv_sid' => $server->getID(),
 			'priv_uid' => $user->getID(),
 			'priv_privs' => $bits,
 		));
+	}
+	
+	public static function flushPermcache(Dog_Server $server, Dog_User $user)
+	{
+		$user->unsetVar("dsp_{$server->getID()}");
 	}
 	
 	/**
