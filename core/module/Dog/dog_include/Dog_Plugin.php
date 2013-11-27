@@ -10,7 +10,10 @@ final class Dog_Plugin
 	 */
 	public static function getPlugin() { return self::$PLUGIN[0]; }
 	private static $PLUGIN = array();
-	public static function getPlugDir() { return DOG_PATH.'dog_plugin'; }
+	public static function getPlugDir() { return DOG_PATH.'dog_plugins/dog_plugin'; }
+	public static function getPlugDirDev() { return DOG_PATH.'dog_plugins/dog_plugin_dev'; }
+	public static function getPlugDirSecret() { return DOG_PATH.'dog_plugins/dog_plugin_secret'; }
+	public static function getPlugDirUser() { return DOG_PATH.'dog_plugins/dog_plugin_user_'.Dog::getUnixUsername(); }
 	public static function sort_power_descending(Dog_Plugin $a, Dog_Plugin $b) { return $a->getPower() - $b->getPower(); }
 	
 	/**
@@ -51,6 +54,12 @@ final class Dog_Plugin
 	{
 		self::$PLUGIN = array();
 		GWF_File::filewalker(self::getPlugDir(), array(__CLASS__, 'getPlugRec'), false, true, $name);
+		if (GWF3::getConfig('env') === 'dev')
+		{
+			GWF_File::filewalker(self::getPlugDirDev(), array(__CLASS__, 'getPlugRec'), false, true, $name);
+		}
+		GWF_File::filewalker(self::getPlugDirUser(), array(__CLASS__, 'getPlugRec'), false, true, $name);
+		GWF_File::filewalker(self::getPlugDirSecret(), array(__CLASS__, 'getPlugRec'), false, true, $name);
 		usort(self::$PLUGIN, array(__CLASS__, 'sort_power_descending'));
 		return self::$PLUGIN;
 	}
@@ -62,9 +71,9 @@ final class Dog_Plugin
 	public static function getPlugRec($entry, $fullpath, $name)
 	{
 		if (  ($entry[0] !== '_') # disabled
-			&&(substr($entry, 0, -7) === $name) )
+			&&(Common::substrUntil($entry, '_', NULL, true) === $name) )
 		{
-			self::$PLUGIN[] = new Dog_Plugin($name, substr($entry, -6, 2), $fullpath);
+			self::$PLUGIN[] = new Dog_Plugin($name, substr(Common::substrFrom($entry, '_', NULL, true), 0, -4), $fullpath);
 		}
 	}
 	#####################
@@ -78,6 +87,7 @@ final class Dog_Plugin
 	private $name;  # trigger name
 	private $priv;  # prlvhosafix
 	private $scope; # a=private, b=both, c=channel
+	private $defdis;# 1=defaultDisabled, 0=normal
 	private $path;  # file to include
 	private $trans; # lang file
 	
@@ -86,6 +96,7 @@ final class Dog_Plugin
 		$this->name = strtolower($name);
 		$this->priv = strtolower($priv[0]);
 		$this->scope = strtolower($priv[1]);
+		$this->defdis = strlen($priv) > 2 ? '1' : '0';
 		$this->path = $path;
 // 		$this->trans = NULL;
 	}
@@ -104,6 +115,9 @@ final class Dog_Plugin
 	public function getConf($key) { return Dog_Var::getVar($this->getConfigVars(), $key)->getValue(); }
 	public function getHelp() { return 'help' === ($help = $this->lang('help')) ? Dog::lang('err_no_help') : $help; }
 	public function getPower() { return Dog_IRCPriv::charToBit($this->priv); }
+	public function getPriv() { return $this->priv; }
+	public function getScope() { return $this->scope; }
+	public function isInScope($serv, $chan) { return Dog::isInScope($serv, $chan, $this->scope); }
 	public function hasPermission($serv, $chan, $user) { return Dog::hasPermission($serv, $chan, $user, $this->priv, $this->scope); }
 	
 	/**
@@ -117,7 +131,7 @@ final class Dog_Plugin
 		$plg = $this->name;
 		if  (  Dog_Conf_Plug::isDisabled($plg)
 			|| Dog_Conf_Plug_Serv::isDisabled($plg, $server->getID())
-			|| ( ($channel !== false) && Dog_Conf_Plug_Chan::isDisabled($plg, $channel->getID())) )
+			|| ( ($channel !== false) && Dog_Conf_Plug_Chan::isDisabled($plg, $channel->getID(), $this->defdis)) )
 		{
 			return false;
 		}
