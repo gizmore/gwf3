@@ -125,10 +125,10 @@ final class DOGMOD_Quote extends Dog_Module
 	}
 
 	public function on_quoteUP_Pc() { Dog::reply($this->onVote(1)); }
-	public function on_quoteDOWN_Pc() { Dog::reply($this->onVote(1)); }
+	public function on_quoteDOWN_Pc() { Dog::reply($this->onVote(-1)); }
 	private function onVote($vote)
 	{
-		$id = (int)$this->argv(0);
+// 		$id = (int)$this->argv(0);
 		if (false === ($quote = Dog_Quote::getByID($id)))
 		{
 			return sprintf('Quote with ID(%d) not found.', $id);
