@@ -91,7 +91,7 @@ final class DOGMOD_Quote extends Dog_Module
 		return sprintf('Quote(%d): %s - Rating(%d)', $id, $quote->getVar('quot_text'), $quote->getVar('quot_rating'));
 	}
 
-	public function on_ADDquote_Sb() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
+// 	public function on_ADDquote_Sb() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
 	public function on_ADDquote_Pc() { Dog::reply($this->onAdd(Dog::getUser()->getName(), $this->msgarg())); }
 	private function onAdd($username, $message)
 	{
@@ -109,7 +109,7 @@ final class DOGMOD_Quote extends Dog_Module
 	}
 
 	public function on_REMOVEquote_Ab() { Dog::reply($this->onDelete($this->msgarg())); }
-	public function on_REMOVEquote_Sc() { Dog::reply($this->onDelete($this->msgarg())); }
+// 	public function on_REMOVEquote_Sc() { Dog::reply($this->onDelete($this->msgarg())); }
 	private function onDelete($message)
 	{
 		$id = (int)$message;
