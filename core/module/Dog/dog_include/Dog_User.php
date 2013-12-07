@@ -11,6 +11,7 @@ final class Dog_User extends GDO
 	const DEFAULT_OPTIONS = 0xF00;
 	
 	private $logged_in = false;
+	private $last_msg = 0.0; // microtime of last triggered command
 	
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'dog_users'; }
@@ -52,6 +53,21 @@ final class Dog_User extends GDO
 	public function sendCTCP($message) { $this->getServer()->sendCTCP($this->getName(), $message); }
 	public function sendNOTICE($message) { $this->getServer()->sendNOTICE($this->getName(), $message); }
 	public function sendPRIVMSG($message) { $this->getServer()->sendPRIVMSG($this->getName(), $message); }
+	
+	public function isFlooding($update=true)
+	{
+		$time = microtime(true);
+		$flood = Dog_Init::getFloodTime();
+		if (($this->last_msg + $flood) > $time)
+		{
+			return true;
+		}
+		if ($update)
+		{
+			$this->last_msg = $time;
+		}
+		return false;
+	}
 
 	public function setLoggedIn($bool=true)
 	{

@@ -1,5 +1,5 @@
 <?php
-####conf superword,g,x,s,gizmore,,,millis,g,x,i,50,,,blocking,g,x,b,0,,,triggers,g,x,s,"."
+####conf superword,g,x,s,gizmore,,,millis,g,x,i,50,,,blocking,g,x,b,0,,,triggers,g,x,s,".",,,floodmillis,g,y,i,800
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% [<setting>] [<value>]. Configure core bot settings.',

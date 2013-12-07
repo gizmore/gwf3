@@ -5,8 +5,10 @@ final class Dog_Init
 	public static function getStartupTime() { return self::$STARTUP_TIME; }
 	public static function getUptime() { return microtime(true) - self::$STARTUP_TIME; }
 	
-	public static function init()
+	public static function init(Dog_WorkerThread $worker)
 	{
+		Dog::setWorker($worker);
+		
 		Dog_Lang::init();
 		
 		self::initModules();
@@ -84,16 +86,35 @@ final class Dog_Init
 	
 	private static function initModules()
 	{
-		foreach (scandir(DOG_PATH.'dog_module') as $filename)
+		if (!Dog_Module::inited())
+		{
+			self::initModulesDir('dog_module');
+			if (GWF3::getConfig('env') === 'dev')
+			{
+				self::initModulesDir('dog_module_dev');
+			}
+			self::initModulesDir('dog_module_user_'.Dog::getUnixUsername());
+			self::initModulesDir('dog_module_secret');
+		}
+	}
+	
+	private static function initModulesDir($dir)
+	{
+		if (false === ($files = @scandir(DOG_PATH.'dog_modules/'.$dir)))
+		{
+			return Dog_Log::warn('Dog_Init::initModulesDir() - Directory not found: '.((DOG_PATH.'dog_modules/'.$dir)));
+		}
+		
+		foreach ($files as $filename)
 		{
 			if ($filename[0] !== '.')
 			{
-				$path = DOG_PATH.'dog_module/'.$filename;
+				$path = DOG_PATH.'dog_modules/'.$dir.'/'.$filename;
 				if (Common::isDir($path))
 				{
 					$modf = $path.'/DOGMOD_'.$filename.'.php';
 					require_once $modf;
-					Dog_Module::createModule($filename);
+					Dog_Module::createModule($path.'/', $filename);
 				}
 			}
 		}
@@ -107,6 +128,11 @@ final class Dog_Init
 	public static function getTriggers()
 	{
 		return Dog_Conf_Bot::getConf('triggers', '.');
+	}
+	
+	public static function getFloodTime()
+	{
+		return Dog_Conf_Bot::getConf('floodmillis', 800) / 1000;
 	}
 	
 	public static function isTrigger(Dog_Server $serv, $chan, $trigger)

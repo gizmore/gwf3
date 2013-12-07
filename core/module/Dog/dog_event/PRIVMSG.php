@@ -10,7 +10,7 @@ $chan = Dog::setupChannel();
 
 if ($user === false)
 {
-	return;
+	return Dog::suppressModules();
 }
 
 # Log PRIVMSGs
@@ -28,13 +28,22 @@ if (!$user->isBot())
 	{
 		if (Dog_Init::isTrigger($serv, $chan, $trigger[0]))
 		{
+			if ($user->isFlooding())
+			{
+				return;
+			}
+	
 			Dog::setTriggered();
 			$trigger = substr($trigger, 1);
 			if (false !== ($plug = Dog_Plugin::getPlug($trigger)))
 			{
-				if (!$plug->hasPermission($serv, $chan, $user))
+				if (!$plug->isInScope($serv, $chan))
 				{
-					Dog::rply('err_no_perm');
+					Dog::scopeError($plug->getScope());
+				}
+				elseif (!$plug->hasPermission($serv, $chan, $user))
+				{
+					Dog::permissionError($plug->getPriv());
 				}
 				elseif (!$plug->isEnabled($serv, $chan))
 				{
@@ -48,9 +57,13 @@ if (!$user->isBot())
 			
 			elseif (false !== ($mod = Dog_Module::getByTrigger($trigger)))
 			{
+				if (!$mod->hasScopeFor($trigger, $serv, $chan))
+				{
+					Dog::scopeError($mod->getScope($trigger));
+				}
 				if (!$mod->hasPermissionFor($trigger, $serv, $chan, $user))
 				{
-					Dog::rply('err_no_perm');
+					Dog::permissionError($mod->getPriv($trigger));
 				}
 				elseif (!$mod->isTriggerEnabled($serv, $chan, $trigger))
 				{
@@ -60,6 +73,11 @@ if (!$user->isBot())
 				{
 					$mod->execute($trigger);
 				}
+			}
+			
+			else
+			{
+// 				Dog::rply('err_command');
 			}
 		}
 	}
