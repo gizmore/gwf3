@@ -1147,7 +1147,7 @@ abstract class SR_Bazar extends SR_Location
 				$_amt = $need;
 			}
 			
-			$have_amt += $amt;
+			$have_amt += $_amt;
 			
 			if (false === $bitem->onPurchased($_amt))
 			{
