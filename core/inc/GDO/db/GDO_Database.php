@@ -48,6 +48,7 @@ abstract class GDO_Database
 	### DB_Connector ###
 	####################
 	public abstract function connect($host, $user, $pass);
+	public abstract function disconnect();
 	public abstract function setCharset($charset);
 	public abstract function useDatabase($db);
 	

@@ -241,4 +241,3 @@ final class Common
 		return preg_match($pattern, $s, $matches) ? $matches[1] : false;
 	}
 }
-

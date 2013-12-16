@@ -15,6 +15,11 @@ final class GDO_DB_mysqli extends GDO_Database
 		return (false !== ($this->link = mysqli_connect($host, $user, $pass)));
 	}
 	
+	public function disconnect()
+	{
+		return mysqli_close($this->link);
+	}
+	
 	public function setCharset($charset)
 	{
 		return $this->queryWrite("SET NAMES '{$charset}'");

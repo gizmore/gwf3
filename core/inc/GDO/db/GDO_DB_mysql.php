@@ -11,7 +11,12 @@ final class GDO_DB_mysql extends GDO_Database
 	
 	public function connect($host, $user, $pass)
 	{
-		return (false !== ($this->link = mysql_connect($host, $user, $pass)));
+		return (false !== ($this->link = @mysql_connect($host, $user, $pass)));
+	}
+	
+	public function disconnect()
+	{
+		return mysql_close($this->link);
 	}
 	
 	public function setCharset($charset)

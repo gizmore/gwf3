@@ -162,7 +162,7 @@ class WebSocketServer implements WebSocketObserver{
 	/**
 	 * Start the server
 	 */
-	public function run(){
+	public function run(DOG_IRCWS $ircws){
 
 		error_reporting(E_ALL);
 		set_time_limit(0);
@@ -177,7 +177,10 @@ class WebSocketServer implements WebSocketObserver{
 
 		$this->FLASH_POLICY_FILE = str_replace('to-ports="*','to-ports="'.$port,$this->FLASH_POLICY_FILE);
 
-		$this->master = stream_socket_server($this->_url, $errno, $err, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $this->_context);
+		if (false === ($this->master = @stream_socket_server($this->_url, $errno, $err, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $this->_context)))
+		{
+			return false;
+		}
 
 		$this->say("PHP WebSocket Server");
 		$this->say("========================================");
@@ -187,12 +190,13 @@ class WebSocketServer implements WebSocketObserver{
 
 		if($this->master == false){
 			$this->say("Error: $err");
-			return;
+			return false;
 		}
 
 		$this->sockets->attach(new WebSocketSocket($this, $this->master));
 
-
+		$ircws->connected = true;
+		
 		while(true){
 
 // 			clearstatcache();
@@ -210,7 +214,7 @@ class WebSocketServer implements WebSocketObserver{
 			$write = $this->getWriteStreams();
 			$except = null;
 
-			if(@stream_select($changed,$write,$except,0,30000) === false){
+			if(@stream_select($changed,$write,$except,0,500000) === false){
 				$this->say("Select failed!");
 				break;
 			}

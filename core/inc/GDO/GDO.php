@@ -4,17 +4,21 @@
  * @return GDO_Database
  * @version 3.0
  */
+
+global $SINGLE_GDO_DB;
+$SINGLE_GDO_DB = null;
+
 function gdo_db()
 {
-	static $db;
-	if (!isset($db))
+	global $SINGLE_GDO_DB;
+	if ($SINGLE_GDO_DB === null)
 	{
-		if (false !== ($db = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE)))
+		if (false !== ($SINGLE_GDO_DB = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE)))
 		{
-			GDO::setCurrentDB($db);
+			GDO::setCurrentDB($SINGLE_GDO_DB);
 		}
 	}
-	return $db;
+	return $SINGLE_GDO_DB;
 }
 
 /**
