@@ -27,7 +27,12 @@ class DOGMOD_YouTube extends Dog_Module
 			$iso = Dog::getUser()->getLangISO();
 		}
 		
-		$vars = array($data['title'], GWF_TimeConvert::humanDurationISO($chan->getLangISO(), $data['duration']), sprintf('%.02f', $data['rating']), number_format($data['views']), number_format($data['num_raters']));
+		$vars = array(
+				$data['title'],
+				GWF_TimeConvert::humanDurationISO($chan->getLangISO(), $data['duration']),
+				sprintf('%.02f', $data['rating']),
+				number_format($data['views']),
+				number_format($data['num_raters']));
 		Dog::reply($this->langISO($iso, 'video', $vars));
 	}
 }
